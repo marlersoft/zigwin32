@@ -3,176 +3,56 @@
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
 pub const NETCON_MAX_NAME_LEN = @as(u32, 256);
-pub const S_OBJECT_NO_LONGER_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2));
-pub const NETISO_GEID_FOR_WDAG = @as(u32, 1);
 pub const NETISO_GEID_FOR_NEUTRAL_AWARE = @as(u32, 2);
+pub const NETISO_GEID_FOR_WDAG = @as(u32, 1);
+pub const S_OBJECT_NO_LONGER_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2));
 
 //--------------------------------------------------------------------------------
 // Section: Types (97)
 //--------------------------------------------------------------------------------
-const CLSID_UPnPNAT_Value = Guid.initString("ae1e00aa-3fd5-403c-8a27-2bbdc30cd0e1");
-pub const CLSID_UPnPNAT = &CLSID_UPnPNAT_Value;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPNAT_Value = Guid.initString("b171c812-cc76-485a-94d8-b6b3a2794e99");
-pub const IID_IUPnPNAT = &IID_IUPnPNAT_Value;
-pub const IUPnPNAT = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StaticPortMappingCollection: *const fn(
-            self: *const IUPnPNAT,
-            ppSPMs: ?*?*IStaticPortMappingCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DynamicPortMappingCollection: *const fn(
-            self: *const IUPnPNAT,
-            ppDPMs: ?*?*IDynamicPortMappingCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NATEventManager: *const fn(
-            self: *const IUPnPNAT,
-            ppNEM: ?*?*INATEventManager,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_StaticPortMappingCollection(self: *const IUPnPNAT, ppSPMs: ?*?*IStaticPortMappingCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StaticPortMappingCollection(self, ppSPMs);
-    }
-    pub fn get_DynamicPortMappingCollection(self: *const IUPnPNAT, ppDPMs: ?*?*IDynamicPortMappingCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DynamicPortMappingCollection(self, ppDPMs);
-    }
-    pub fn get_NATEventManager(self: *const IUPnPNAT, ppNEM: ?*?*INATEventManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NATEventManager(self, ppNEM);
-    }
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0 = extern struct {
+    id: Guid,
+    keyword: ?[*:0]const u16,
+    flags: u32,
+    addresses: ?[*:0]const u16,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INATEventManager_Value = Guid.initString("624bd588-9060-4109-b0b0-1adbbcac32df");
-pub const IID_INATEventManager = &IID_INATEventManager_Value;
-pub const INATEventManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExternalIPAddressCallback: *const fn(
-            self: *const INATEventManager,
-            pUnk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NumberOfEntriesCallback: *const fn(
-            self: *const INATEventManager,
-            pUnk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn put_ExternalIPAddressCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExternalIPAddressCallback(self, pUnk);
-    }
-    pub fn put_NumberOfEntriesCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NumberOfEntriesCallback(self, pUnk);
-    }
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0 = extern struct {
+    dynamicKeywordAddress: _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
+    next: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+    schemaVersion: u16,
+    originType: _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INATExternalIPAddressCallback_Value = Guid.initString("9c416740-a34e-446f-ba06-abd04c3149ae");
-pub const IID_INATExternalIPAddressCallback = &IID_INATExternalIPAddressCallback_Value;
-pub const INATExternalIPAddressCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        NewExternalIPAddress: *const fn(
-            self: *const INATExternalIPAddressCallback,
-            bstrNewExternalIPAddress: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn NewExternalIPAddress(self: *const INATExternalIPAddressCallback, bstrNewExternalIPAddress: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.NewExternalIPAddress(self, bstrNewExternalIPAddress);
-    }
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS = enum(i32) {
+    AUTO_RESOLVE = 1,
+    NON_AUTO_RESOLVE = 2,
+    ALL = 3,
 };
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.AUTO_RESOLVE;
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.NON_AUTO_RESOLVE;
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.ALL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INATNumberOfEntriesCallback_Value = Guid.initString("c83a0a74-91ee-41b6-b67a-67e0f00bbd78");
-pub const IID_INATNumberOfEntriesCallback = &IID_INATNumberOfEntriesCallback_Value;
-pub const INATNumberOfEntriesCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        NewNumberOfEntries: *const fn(
-            self: *const INATNumberOfEntriesCallback,
-            lNewNumberOfEntries: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn NewNumberOfEntries(self: *const INATNumberOfEntriesCallback, lNewNumberOfEntries: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.NewNumberOfEntries(self, lNewNumberOfEntries);
-    }
+pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS = enum(i32) {
+    E = 1,
 };
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS.E;
 
-const IID_IDynamicPortMappingCollection_Value = Guid.initString("b60de00f-156e-4e8d-9ec1-3a2342c10899");
-pub const IID_IDynamicPortMappingCollection = &IID_IDynamicPortMappingCollection_Value;
-pub const IDynamicPortMappingCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IDynamicPortMappingCollection,
-            pVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IDynamicPortMappingCollection,
-            bstrRemoteHost: ?BSTR,
-            lExternalPort: i32,
-            bstrProtocol: ?BSTR,
-            ppDPM: ?*?*IDynamicPortMapping,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IDynamicPortMappingCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IDynamicPortMappingCollection,
-            bstrRemoteHost: ?BSTR,
-            lExternalPort: i32,
-            bstrProtocol: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IDynamicPortMappingCollection,
-            bstrRemoteHost: ?BSTR,
-            lExternalPort: i32,
-            bstrProtocol: ?BSTR,
-            lInternalPort: i32,
-            bstrInternalClient: ?BSTR,
-            bEnabled: i16,
-            bstrDescription: ?BSTR,
-            lLeaseDuration: i32,
-            ppDPM: ?*?*IDynamicPortMapping,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IDynamicPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
-    }
-    pub fn get_Item(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, bstrRemoteHost, lExternalPort, bstrProtocol, ppDPM);
-    }
-    pub fn get_Count(self: *const IDynamicPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-    pub fn Remove(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, bstrRemoteHost, lExternalPort, bstrProtocol);
-    }
-    pub fn Add(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
-    }
+pub const _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE = enum(i32) {
+    INVALID = 0,
+    LOCAL = 1,
+    MDM = 2,
 };
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_INVALID = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.INVALID;
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_LOCAL = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.LOCAL;
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_MDM = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.MDM;
+
+pub const ICS_TARGETTYPE = enum(i32) {
+    NAME = 0,
+    IPADDRESS = 1,
+};
+pub const ICSTT_NAME = ICS_TARGETTYPE.NAME;
+pub const ICSTT_IPADDRESS = ICS_TARGETTYPE.IPADDRESS;
 
 const IID_IDynamicPortMapping_Value = Guid.initString("4fc80282-23b6-4378-9a27-cd8f17c9400c");
 pub const IID_IDynamicPortMapping = &IID_IDynamicPortMapping_Value;
@@ -293,162 +173,66 @@ pub const IDynamicPortMapping = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStaticPortMappingCollection_Value = Guid.initString("cd1f3e77-66d6-4664-82c7-36dbb641d0f1");
-pub const IID_IStaticPortMappingCollection = &IID_IStaticPortMappingCollection_Value;
-pub const IStaticPortMappingCollection = extern union {
+const IID_IDynamicPortMappingCollection_Value = Guid.initString("b60de00f-156e-4e8d-9ec1-3a2342c10899");
+pub const IID_IDynamicPortMappingCollection = &IID_IDynamicPortMappingCollection_Value;
+pub const IDynamicPortMappingCollection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const IStaticPortMappingCollection,
+            self: *const IDynamicPortMappingCollection,
             pVal: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
-            self: *const IStaticPortMappingCollection,
+            self: *const IDynamicPortMappingCollection,
+            bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
-            ppSPM: ?*?*IStaticPortMapping,
+            ppDPM: ?*?*IDynamicPortMapping,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const IStaticPortMappingCollection,
+            self: *const IDynamicPortMappingCollection,
             pVal: ?*i32,
         ) callconv(.winapi) HRESULT,
         Remove: *const fn(
-            self: *const IStaticPortMappingCollection,
+            self: *const IDynamicPortMappingCollection,
+            bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
         ) callconv(.winapi) HRESULT,
         Add: *const fn(
-            self: *const IStaticPortMappingCollection,
+            self: *const IDynamicPortMappingCollection,
+            bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
             lInternalPort: i32,
             bstrInternalClient: ?BSTR,
             bEnabled: i16,
             bstrDescription: ?BSTR,
-            ppSPM: ?*?*IStaticPortMapping,
+            lLeaseDuration: i32,
+            ppDPM: ?*?*IDynamicPortMapping,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IStaticPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const IDynamicPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pVal);
     }
-    pub fn get_Item(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lExternalPort, bstrProtocol, ppSPM);
+    pub fn get_Item(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, bstrRemoteHost, lExternalPort, bstrProtocol, ppDPM);
     }
-    pub fn get_Count(self: *const IStaticPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const IDynamicPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
-    pub fn Remove(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, lExternalPort, bstrProtocol);
+    pub fn Remove(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, bstrRemoteHost, lExternalPort, bstrProtocol);
     }
-    pub fn Add(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStaticPortMapping_Value = Guid.initString("6f10711f-729b-41e5-93b8-f21d0f818df1");
-pub const IID_IStaticPortMapping = &IID_IStaticPortMapping_Value;
-pub const IStaticPortMapping = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalIPAddress: *const fn(
-            self: *const IStaticPortMapping,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalPort: *const fn(
-            self: *const IStaticPortMapping,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalPort: *const fn(
-            self: *const IStaticPortMapping,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: *const fn(
-            self: *const IStaticPortMapping,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalClient: *const fn(
-            self: *const IStaticPortMapping,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IStaticPortMapping,
-            pVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IStaticPortMapping,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        EditInternalClient: *const fn(
-            self: *const IStaticPortMapping,
-            bstrInternalClient: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Enable: *const fn(
-            self: *const IStaticPortMapping,
-            vb: i16,
-        ) callconv(.winapi) HRESULT,
-        EditDescription: *const fn(
-            self: *const IStaticPortMapping,
-            bstrDescription: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        EditInternalPort: *const fn(
-            self: *const IStaticPortMapping,
-            lInternalPort: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ExternalIPAddress(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExternalIPAddress(self, pVal);
-    }
-    pub fn get_ExternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExternalPort(self, pVal);
-    }
-    pub fn get_InternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InternalPort(self, pVal);
-    }
-    pub fn get_Protocol(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Protocol(self, pVal);
-    }
-    pub fn get_InternalClient(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InternalClient(self, pVal);
-    }
-    pub fn get_Enabled(self: *const IStaticPortMapping, pVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, pVal);
-    }
-    pub fn get_Description(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pVal);
-    }
-    pub fn EditInternalClient(self: *const IStaticPortMapping, bstrInternalClient: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.EditInternalClient(self, bstrInternalClient);
-    }
-    pub fn Enable(self: *const IStaticPortMapping, vb: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.Enable(self, vb);
-    }
-    pub fn EditDescription(self: *const IStaticPortMapping, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.EditDescription(self, bstrDescription);
-    }
-    pub fn EditInternalPort(self: *const IStaticPortMapping, lInternalPort: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.EditInternalPort(self, lInternalPort);
+    pub fn Add(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
     }
 };
-
-const CLSID_NetSharingManager_Value = Guid.initString("5c63c1ad-3956-4ff8-8486-40034758315b");
-pub const CLSID_NetSharingManager = &CLSID_NetSharingManager_Value;
 
 const IID_IEnumNetConnection_Value = Guid.initString("c08956a0-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_IEnumNetConnection = &IID_IEnumNetConnection_Value;
@@ -489,135 +273,284 @@ pub const IEnumNetConnection = extern union {
     }
 };
 
-pub const NETCON_CHARACTERISTIC_FLAGS = enum(i32) {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IEnumNetSharingEveryConnection_Value = Guid.initString("c08956b8-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_IEnumNetSharingEveryConnection = &IID_IEnumNetSharingEveryConnection_Value;
+pub const IEnumNetSharingEveryConnection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumNetSharingEveryConnection,
+            celt: u32,
+            rgVar: [*]VARIANT,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetSharingEveryConnection,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetSharingEveryConnection,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetSharingEveryConnection,
+            ppenum: ?*?*IEnumNetSharingEveryConnection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumNetSharingEveryConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgVar, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingEveryConnection, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingEveryConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetSharingEveryConnection, ppenum: ?*?*IEnumNetSharingEveryConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IEnumNetSharingPortMapping_Value = Guid.initString("c08956b0-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_IEnumNetSharingPortMapping = &IID_IEnumNetSharingPortMapping_Value;
+pub const IEnumNetSharingPortMapping = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumNetSharingPortMapping,
+            celt: u32,
+            rgVar: [*]VARIANT,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetSharingPortMapping,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetSharingPortMapping,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetSharingPortMapping,
+            ppenum: ?*?*IEnumNetSharingPortMapping,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumNetSharingPortMapping, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgVar, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingPortMapping, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetSharingPortMapping, ppenum: ?*?*IEnumNetSharingPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IEnumNetSharingPrivateConnection_Value = Guid.initString("c08956b5-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_IEnumNetSharingPrivateConnection = &IID_IEnumNetSharingPrivateConnection_Value;
+pub const IEnumNetSharingPrivateConnection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumNetSharingPrivateConnection,
+            celt: u32,
+            rgVar: [*]VARIANT,
+            pCeltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetSharingPrivateConnection,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetSharingPrivateConnection,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetSharingPrivateConnection,
+            ppenum: ?*?*IEnumNetSharingPrivateConnection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumNetSharingPrivateConnection, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgVar, pCeltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingPrivateConnection, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingPrivateConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetSharingPrivateConnection, ppenum: ?*?*IEnumNetSharingPrivateConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IEnumNetSharingPublicConnection_Value = Guid.initString("c08956b4-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_IEnumNetSharingPublicConnection = &IID_IEnumNetSharingPublicConnection_Value;
+pub const IEnumNetSharingPublicConnection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumNetSharingPublicConnection,
+            celt: u32,
+            rgVar: [*]VARIANT,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetSharingPublicConnection,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetSharingPublicConnection,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetSharingPublicConnection,
+            ppenum: ?*?*IEnumNetSharingPublicConnection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumNetSharingPublicConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgVar, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetSharingPublicConnection, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetSharingPublicConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetSharingPublicConnection, ppenum: ?*?*IEnumNetSharingPublicConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INATEventManager_Value = Guid.initString("624bd588-9060-4109-b0b0-1adbbcac32df");
+pub const IID_INATEventManager = &IID_INATEventManager_Value;
+pub const INATEventManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExternalIPAddressCallback: *const fn(
+            self: *const INATEventManager,
+            pUnk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NumberOfEntriesCallback: *const fn(
+            self: *const INATEventManager,
+            pUnk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn put_ExternalIPAddressCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExternalIPAddressCallback(self, pUnk);
+    }
+    pub fn put_NumberOfEntriesCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NumberOfEntriesCallback(self, pUnk);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INATExternalIPAddressCallback_Value = Guid.initString("9c416740-a34e-446f-ba06-abd04c3149ae");
+pub const IID_INATExternalIPAddressCallback = &IID_INATExternalIPAddressCallback_Value;
+pub const INATExternalIPAddressCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        NewExternalIPAddress: *const fn(
+            self: *const INATExternalIPAddressCallback,
+            bstrNewExternalIPAddress: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn NewExternalIPAddress(self: *const INATExternalIPAddressCallback, bstrNewExternalIPAddress: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.NewExternalIPAddress(self, bstrNewExternalIPAddress);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INATNumberOfEntriesCallback_Value = Guid.initString("c83a0a74-91ee-41b6-b67a-67e0f00bbd78");
+pub const IID_INATNumberOfEntriesCallback = &IID_INATNumberOfEntriesCallback_Value;
+pub const INATNumberOfEntriesCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        NewNumberOfEntries: *const fn(
+            self: *const INATNumberOfEntriesCallback,
+            lNewNumberOfEntries: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn NewNumberOfEntries(self: *const INATNumberOfEntriesCallback, lNewNumberOfEntries: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.NewNumberOfEntries(self, lNewNumberOfEntries);
+    }
+};
+
+pub const INET_FIREWALL_AC_BINARIES = extern struct {
+    count: u32,
+    binaries: ?*?PWSTR,
+};
+
+pub const INET_FIREWALL_AC_CAPABILITIES = extern struct {
+    count: u32,
+    capabilities: ?*SID_AND_ATTRIBUTES,
+};
+
+pub const INET_FIREWALL_AC_CHANGE = extern struct {
+    changeType: INET_FIREWALL_AC_CHANGE_TYPE,
+    createType: INET_FIREWALL_AC_CREATION_TYPE,
+    appContainerSid: ?*SID,
+    userSid: ?*SID,
+    displayName: ?PWSTR,
+    Anonymous: extern union {
+        capabilities: INET_FIREWALL_AC_CAPABILITIES,
+        binaries: INET_FIREWALL_AC_BINARIES,
+    },
+};
+
+pub const INET_FIREWALL_AC_CHANGE_TYPE = enum(i32) {
+    INVALID = 0,
+    CREATE = 1,
+    DELETE = 2,
+    MAX = 3,
+};
+pub const INET_FIREWALL_AC_CHANGE_INVALID = INET_FIREWALL_AC_CHANGE_TYPE.INVALID;
+pub const INET_FIREWALL_AC_CHANGE_CREATE = INET_FIREWALL_AC_CHANGE_TYPE.CREATE;
+pub const INET_FIREWALL_AC_CHANGE_DELETE = INET_FIREWALL_AC_CHANGE_TYPE.DELETE;
+pub const INET_FIREWALL_AC_CHANGE_MAX = INET_FIREWALL_AC_CHANGE_TYPE.MAX;
+
+pub const INET_FIREWALL_AC_CREATION_TYPE = enum(i32) {
     NONE = 0,
-    ALL_USERS = 1,
-    ALLOW_DUPLICATION = 2,
-    ALLOW_REMOVAL = 4,
-    ALLOW_RENAME = 8,
-    INCOMING_ONLY = 32,
-    OUTGOING_ONLY = 64,
-    BRANDED = 128,
-    SHARED = 256,
-    BRIDGED = 512,
-    FIREWALLED = 1024,
-    DEFAULT = 2048,
-    HOMENET_CAPABLE = 4096,
-    SHARED_PRIVATE = 8192,
-    QUARANTINED = 16384,
-    RESERVED = 32768,
-    HOSTED_NETWORK = 65536,
-    VIRTUAL_STATION = 131072,
-    WIFI_DIRECT = 262144,
-    BLUETOOTH_MASK = 983040,
-    LAN_MASK = 15728640,
+    PACKAGE_ID_ONLY = 1,
+    BINARY = 2,
+    MAX = 4,
 };
-pub const NCCF_NONE = NETCON_CHARACTERISTIC_FLAGS.NONE;
-pub const NCCF_ALL_USERS = NETCON_CHARACTERISTIC_FLAGS.ALL_USERS;
-pub const NCCF_ALLOW_DUPLICATION = NETCON_CHARACTERISTIC_FLAGS.ALLOW_DUPLICATION;
-pub const NCCF_ALLOW_REMOVAL = NETCON_CHARACTERISTIC_FLAGS.ALLOW_REMOVAL;
-pub const NCCF_ALLOW_RENAME = NETCON_CHARACTERISTIC_FLAGS.ALLOW_RENAME;
-pub const NCCF_INCOMING_ONLY = NETCON_CHARACTERISTIC_FLAGS.INCOMING_ONLY;
-pub const NCCF_OUTGOING_ONLY = NETCON_CHARACTERISTIC_FLAGS.OUTGOING_ONLY;
-pub const NCCF_BRANDED = NETCON_CHARACTERISTIC_FLAGS.BRANDED;
-pub const NCCF_SHARED = NETCON_CHARACTERISTIC_FLAGS.SHARED;
-pub const NCCF_BRIDGED = NETCON_CHARACTERISTIC_FLAGS.BRIDGED;
-pub const NCCF_FIREWALLED = NETCON_CHARACTERISTIC_FLAGS.FIREWALLED;
-pub const NCCF_DEFAULT = NETCON_CHARACTERISTIC_FLAGS.DEFAULT;
-pub const NCCF_HOMENET_CAPABLE = NETCON_CHARACTERISTIC_FLAGS.HOMENET_CAPABLE;
-pub const NCCF_SHARED_PRIVATE = NETCON_CHARACTERISTIC_FLAGS.SHARED_PRIVATE;
-pub const NCCF_QUARANTINED = NETCON_CHARACTERISTIC_FLAGS.QUARANTINED;
-pub const NCCF_RESERVED = NETCON_CHARACTERISTIC_FLAGS.RESERVED;
-pub const NCCF_HOSTED_NETWORK = NETCON_CHARACTERISTIC_FLAGS.HOSTED_NETWORK;
-pub const NCCF_VIRTUAL_STATION = NETCON_CHARACTERISTIC_FLAGS.VIRTUAL_STATION;
-pub const NCCF_WIFI_DIRECT = NETCON_CHARACTERISTIC_FLAGS.WIFI_DIRECT;
-pub const NCCF_BLUETOOTH_MASK = NETCON_CHARACTERISTIC_FLAGS.BLUETOOTH_MASK;
-pub const NCCF_LAN_MASK = NETCON_CHARACTERISTIC_FLAGS.LAN_MASK;
+pub const INET_FIREWALL_AC_NONE = INET_FIREWALL_AC_CREATION_TYPE.NONE;
+pub const INET_FIREWALL_AC_PACKAGE_ID_ONLY = INET_FIREWALL_AC_CREATION_TYPE.PACKAGE_ID_ONLY;
+pub const INET_FIREWALL_AC_BINARY = INET_FIREWALL_AC_CREATION_TYPE.BINARY;
+pub const INET_FIREWALL_AC_MAX = INET_FIREWALL_AC_CREATION_TYPE.MAX;
 
-pub const NETCON_STATUS = enum(i32) {
-    DISCONNECTED = 0,
-    CONNECTING = 1,
-    CONNECTED = 2,
-    DISCONNECTING = 3,
-    HARDWARE_NOT_PRESENT = 4,
-    HARDWARE_DISABLED = 5,
-    HARDWARE_MALFUNCTION = 6,
-    MEDIA_DISCONNECTED = 7,
-    AUTHENTICATING = 8,
-    AUTHENTICATION_SUCCEEDED = 9,
-    AUTHENTICATION_FAILED = 10,
-    INVALID_ADDRESS = 11,
-    CREDENTIALS_REQUIRED = 12,
-    ACTION_REQUIRED = 13,
-    ACTION_REQUIRED_RETRY = 14,
-    CONNECT_FAILED = 15,
-};
-pub const NCS_DISCONNECTED = NETCON_STATUS.DISCONNECTED;
-pub const NCS_CONNECTING = NETCON_STATUS.CONNECTING;
-pub const NCS_CONNECTED = NETCON_STATUS.CONNECTED;
-pub const NCS_DISCONNECTING = NETCON_STATUS.DISCONNECTING;
-pub const NCS_HARDWARE_NOT_PRESENT = NETCON_STATUS.HARDWARE_NOT_PRESENT;
-pub const NCS_HARDWARE_DISABLED = NETCON_STATUS.HARDWARE_DISABLED;
-pub const NCS_HARDWARE_MALFUNCTION = NETCON_STATUS.HARDWARE_MALFUNCTION;
-pub const NCS_MEDIA_DISCONNECTED = NETCON_STATUS.MEDIA_DISCONNECTED;
-pub const NCS_AUTHENTICATING = NETCON_STATUS.AUTHENTICATING;
-pub const NCS_AUTHENTICATION_SUCCEEDED = NETCON_STATUS.AUTHENTICATION_SUCCEEDED;
-pub const NCS_AUTHENTICATION_FAILED = NETCON_STATUS.AUTHENTICATION_FAILED;
-pub const NCS_INVALID_ADDRESS = NETCON_STATUS.INVALID_ADDRESS;
-pub const NCS_CREDENTIALS_REQUIRED = NETCON_STATUS.CREDENTIALS_REQUIRED;
-pub const NCS_ACTION_REQUIRED = NETCON_STATUS.ACTION_REQUIRED;
-pub const NCS_ACTION_REQUIRED_RETRY = NETCON_STATUS.ACTION_REQUIRED_RETRY;
-pub const NCS_CONNECT_FAILED = NETCON_STATUS.CONNECT_FAILED;
-
-pub const NETCON_TYPE = enum(i32) {
-    DIRECT_CONNECT = 0,
-    INBOUND = 1,
-    INTERNET = 2,
-    LAN = 3,
-    PHONE = 4,
-    TUNNEL = 5,
-    BRIDGE = 6,
-};
-pub const NCT_DIRECT_CONNECT = NETCON_TYPE.DIRECT_CONNECT;
-pub const NCT_INBOUND = NETCON_TYPE.INBOUND;
-pub const NCT_INTERNET = NETCON_TYPE.INTERNET;
-pub const NCT_LAN = NETCON_TYPE.LAN;
-pub const NCT_PHONE = NETCON_TYPE.PHONE;
-pub const NCT_TUNNEL = NETCON_TYPE.TUNNEL;
-pub const NCT_BRIDGE = NETCON_TYPE.BRIDGE;
-
-pub const NETCON_MEDIATYPE = enum(i32) {
-    NONE = 0,
-    DIRECT = 1,
-    ISDN = 2,
-    LAN = 3,
-    PHONE = 4,
-    TUNNEL = 5,
-    PPPOE = 6,
-    BRIDGE = 7,
-    SHAREDACCESSHOST_LAN = 8,
-    SHAREDACCESSHOST_RAS = 9,
-};
-pub const NCM_NONE = NETCON_MEDIATYPE.NONE;
-pub const NCM_DIRECT = NETCON_MEDIATYPE.DIRECT;
-pub const NCM_ISDN = NETCON_MEDIATYPE.ISDN;
-pub const NCM_LAN = NETCON_MEDIATYPE.LAN;
-pub const NCM_PHONE = NETCON_MEDIATYPE.PHONE;
-pub const NCM_TUNNEL = NETCON_MEDIATYPE.TUNNEL;
-pub const NCM_PPPOE = NETCON_MEDIATYPE.PPPOE;
-pub const NCM_BRIDGE = NETCON_MEDIATYPE.BRIDGE;
-pub const NCM_SHAREDACCESSHOST_LAN = NETCON_MEDIATYPE.SHAREDACCESSHOST_LAN;
-pub const NCM_SHAREDACCESSHOST_RAS = NETCON_MEDIATYPE.SHAREDACCESSHOST_RAS;
-
-pub const NETCON_PROPERTIES = extern struct {
-    guidId: Guid,
-    pszwName: ?PWSTR,
-    pszwDeviceName: ?PWSTR,
-    Status: NETCON_STATUS,
-    MediaType: NETCON_MEDIATYPE,
-    dwCharacter: u32,
-    clsidThisObject: Guid,
-    clsidUiObject: Guid,
+pub const INET_FIREWALL_APP_CONTAINER = extern struct {
+    appContainerSid: ?*SID,
+    userSid: ?*SID,
+    appContainerName: ?PWSTR,
+    displayName: ?PWSTR,
+    description: ?PWSTR,
+    capabilities: INET_FIREWALL_AC_CAPABILITIES,
+    binaries: INET_FIREWALL_AC_BINARIES,
+    workingDirectory: ?PWSTR,
+    packageFullName: ?PWSTR,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -678,40 +611,6 @@ pub const INetConnection = extern union {
     }
 };
 
-pub const NETCONMGR_ENUM_FLAGS = enum(i32) {
-    DEFAULT = 0,
-    HIDDEN = 1,
-};
-pub const NCME_DEFAULT = NETCONMGR_ENUM_FLAGS.DEFAULT;
-pub const NCME_HIDDEN = NETCONMGR_ENUM_FLAGS.HIDDEN;
-
-const IID_INetConnectionManager_Value = Guid.initString("c08956a2-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_INetConnectionManager = &IID_INetConnectionManager_Value;
-pub const INetConnectionManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumConnections: *const fn(
-            self: *const INetConnectionManager,
-            Flags: NETCONMGR_ENUM_FLAGS,
-            ppEnum: ?*?*IEnumNetConnection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnumConnections(self: *const INetConnectionManager, Flags: NETCONMGR_ENUM_FLAGS, ppEnum: ?*?*IEnumNetConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumConnections(self, Flags, ppEnum);
-    }
-};
-
-pub const NETCONUI_CONNECT_FLAGS = enum(i32) {
-    DEFAULT = 0,
-    NO_UI = 1,
-    ENABLE_DISABLE = 2,
-};
-pub const NCUC_DEFAULT = NETCONUI_CONNECT_FLAGS.DEFAULT;
-pub const NCUC_NO_UI = NETCONUI_CONNECT_FLAGS.NO_UI;
-pub const NCUC_ENABLE_DISABLE = NETCONUI_CONNECT_FLAGS.ENABLE_DISABLE;
-
 const IID_INetConnectionConnectUi_Value = Guid.initString("c08956a3-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_INetConnectionConnectUi = &IID_INetConnectionConnectUi_Value;
 pub const INetConnectionConnectUi = extern union {
@@ -745,305 +644,21 @@ pub const INetConnectionConnectUi = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumNetSharingPortMapping_Value = Guid.initString("c08956b0-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_IEnumNetSharingPortMapping = &IID_IEnumNetSharingPortMapping_Value;
-pub const IEnumNetSharingPortMapping = extern union {
+const IID_INetConnectionManager_Value = Guid.initString("c08956a2-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_INetConnectionManager = &IID_INetConnectionManager_Value;
+pub const INetConnectionManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumNetSharingPortMapping,
-            celt: u32,
-            rgVar: [*]VARIANT,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetSharingPortMapping,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetSharingPortMapping,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetSharingPortMapping,
-            ppenum: ?*?*IEnumNetSharingPortMapping,
+        EnumConnections: *const fn(
+            self: *const INetConnectionManager,
+            Flags: NETCONMGR_ENUM_FLAGS,
+            ppEnum: ?*?*IEnumNetConnection,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingPortMapping, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgVar, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetSharingPortMapping, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetSharingPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetSharingPortMapping, ppenum: ?*?*IEnumNetSharingPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingPortMappingProps_Value = Guid.initString("24b7e9b5-e38f-4685-851b-00892cf5f940");
-pub const IID_INetSharingPortMappingProps = &IID_INetSharingPortMappingProps_Value;
-pub const INetSharingPortMappingProps = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IPProtocol: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pucIPProt: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalPort: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pusPort: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalPort: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pusPort: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Options: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pdwOptions: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TargetName: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pbstrTargetName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TargetIPAddress: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pbstrTargetIPAddress: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const INetSharingPortMappingProps,
-            pbool: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetSharingPortMappingProps, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn get_IPProtocol(self: *const INetSharingPortMappingProps, pucIPProt: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IPProtocol(self, pucIPProt);
-    }
-    pub fn get_ExternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExternalPort(self, pusPort);
-    }
-    pub fn get_InternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InternalPort(self, pusPort);
-    }
-    pub fn get_Options(self: *const INetSharingPortMappingProps, pdwOptions: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Options(self, pdwOptions);
-    }
-    pub fn get_TargetName(self: *const INetSharingPortMappingProps, pbstrTargetName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TargetName(self, pbstrTargetName);
-    }
-    pub fn get_TargetIPAddress(self: *const INetSharingPortMappingProps, pbstrTargetIPAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TargetIPAddress(self, pbstrTargetIPAddress);
-    }
-    pub fn get_Enabled(self: *const INetSharingPortMappingProps, pbool: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, pbool);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingPortMapping_Value = Guid.initString("c08956b1-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_INetSharingPortMapping = &IID_INetSharingPortMapping_Value;
-pub const INetSharingPortMapping = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Disable: *const fn(
-            self: *const INetSharingPortMapping,
-        ) callconv(.winapi) HRESULT,
-        Enable: *const fn(
-            self: *const INetSharingPortMapping,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: *const fn(
-            self: *const INetSharingPortMapping,
-            ppNSPMP: ?*?*INetSharingPortMappingProps,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const INetSharingPortMapping,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Disable(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.Disable(self);
-    }
-    pub fn Enable(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.Enable(self);
-    }
-    pub fn get_Properties(self: *const INetSharingPortMapping, ppNSPMP: ?*?*INetSharingPortMappingProps) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Properties(self, ppNSPMP);
-    }
-    pub fn Delete(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumNetSharingEveryConnection_Value = Guid.initString("c08956b8-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_IEnumNetSharingEveryConnection = &IID_IEnumNetSharingEveryConnection_Value;
-pub const IEnumNetSharingEveryConnection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumNetSharingEveryConnection,
-            celt: u32,
-            rgVar: [*]VARIANT,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetSharingEveryConnection,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetSharingEveryConnection,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetSharingEveryConnection,
-            ppenum: ?*?*IEnumNetSharingEveryConnection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingEveryConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgVar, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetSharingEveryConnection, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetSharingEveryConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetSharingEveryConnection, ppenum: ?*?*IEnumNetSharingEveryConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumNetSharingPublicConnection_Value = Guid.initString("c08956b4-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_IEnumNetSharingPublicConnection = &IID_IEnumNetSharingPublicConnection_Value;
-pub const IEnumNetSharingPublicConnection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumNetSharingPublicConnection,
-            celt: u32,
-            rgVar: [*]VARIANT,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetSharingPublicConnection,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetSharingPublicConnection,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetSharingPublicConnection,
-            ppenum: ?*?*IEnumNetSharingPublicConnection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingPublicConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgVar, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetSharingPublicConnection, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetSharingPublicConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetSharingPublicConnection, ppenum: ?*?*IEnumNetSharingPublicConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumNetSharingPrivateConnection_Value = Guid.initString("c08956b5-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_IEnumNetSharingPrivateConnection = &IID_IEnumNetSharingPrivateConnection_Value;
-pub const IEnumNetSharingPrivateConnection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumNetSharingPrivateConnection,
-            celt: u32,
-            rgVar: [*]VARIANT,
-            pCeltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetSharingPrivateConnection,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetSharingPrivateConnection,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetSharingPrivateConnection,
-            ppenum: ?*?*IEnumNetSharingPrivateConnection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingPrivateConnection, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgVar, pCeltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetSharingPrivateConnection, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetSharingPrivateConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetSharingPrivateConnection, ppenum: ?*?*IEnumNetSharingPrivateConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingPortMappingCollection_Value = Guid.initString("02e4a2de-da20-4e34-89c8-ac22275a010b");
-pub const IID_INetSharingPortMappingCollection = &IID_INetSharingPortMappingCollection_Value;
-pub const INetSharingPortMappingCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const INetSharingPortMappingCollection,
-            pVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const INetSharingPortMappingCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
-    }
-    pub fn get_Count(self: *const INetSharingPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
+    pub fn EnumConnections(self: *const INetConnectionManager, Flags: NETCONMGR_ENUM_FLAGS, ppEnum: ?*?*IEnumNetConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumConnections(self, Flags, ppEnum);
     }
 };
 
@@ -1107,648 +722,161 @@ pub const INetConnectionProps = extern union {
     }
 };
 
-pub const SHARINGCONNECTIONTYPE = enum(i32) {
-    UBLIC = 0,
-    RIVATE = 1,
-};
-pub const ICSSHARINGTYPE_PUBLIC = SHARINGCONNECTIONTYPE.UBLIC;
-pub const ICSSHARINGTYPE_PRIVATE = SHARINGCONNECTIONTYPE.RIVATE;
-
-pub const SHARINGCONNECTION_ENUM_FLAGS = enum(i32) {
-    DEFAULT = 0,
-    ENABLED = 1,
-};
-pub const ICSSC_DEFAULT = SHARINGCONNECTION_ENUM_FLAGS.DEFAULT;
-pub const ICSSC_ENABLED = SHARINGCONNECTION_ENUM_FLAGS.ENABLED;
-
-pub const ICS_TARGETTYPE = enum(i32) {
-    NAME = 0,
-    IPADDRESS = 1,
-};
-pub const ICSTT_NAME = ICS_TARGETTYPE.NAME;
-pub const ICSTT_IPADDRESS = ICS_TARGETTYPE.IPADDRESS;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingConfiguration_Value = Guid.initString("c08956b6-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_INetSharingConfiguration = &IID_INetSharingConfiguration_Value;
-pub const INetSharingConfiguration = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SharingEnabled: *const fn(
-            self: *const INetSharingConfiguration,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SharingConnectionType: *const fn(
-            self: *const INetSharingConfiguration,
-            pType: ?*SHARINGCONNECTIONTYPE,
-        ) callconv(.winapi) HRESULT,
-        DisableSharing: *const fn(
-            self: *const INetSharingConfiguration,
-        ) callconv(.winapi) HRESULT,
-        EnableSharing: *const fn(
-            self: *const INetSharingConfiguration,
-            Type: SHARINGCONNECTIONTYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternetFirewallEnabled: *const fn(
-            self: *const INetSharingConfiguration,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        DisableInternetFirewall: *const fn(
-            self: *const INetSharingConfiguration,
-        ) callconv(.winapi) HRESULT,
-        EnableInternetFirewall: *const fn(
-            self: *const INetSharingConfiguration,
-        ) callconv(.winapi) HRESULT,
-        get_EnumPortMappings: *const fn(
-            self: *const INetSharingConfiguration,
-            Flags: SHARINGCONNECTION_ENUM_FLAGS,
-            ppColl: ?*?*INetSharingPortMappingCollection,
-        ) callconv(.winapi) HRESULT,
-        AddPortMapping: *const fn(
-            self: *const INetSharingConfiguration,
-            bstrName: ?BSTR,
-            ucIPProtocol: u8,
-            usExternalPort: u16,
-            usInternalPort: u16,
-            dwOptions: u32,
-            bstrTargetNameOrIPAddress: ?BSTR,
-            eTargetType: ICS_TARGETTYPE,
-            ppMapping: ?*?*INetSharingPortMapping,
-        ) callconv(.winapi) HRESULT,
-        RemovePortMapping: *const fn(
-            self: *const INetSharingConfiguration,
-            pMapping: ?*INetSharingPortMapping,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_SharingEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SharingEnabled(self, pbEnabled);
-    }
-    pub fn get_SharingConnectionType(self: *const INetSharingConfiguration, pType: ?*SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SharingConnectionType(self, pType);
-    }
-    pub fn DisableSharing(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
-        return self.vtable.DisableSharing(self);
-    }
-    pub fn EnableSharing(self: *const INetSharingConfiguration, Type: SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableSharing(self, Type);
-    }
-    pub fn get_InternetFirewallEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InternetFirewallEnabled(self, pbEnabled);
-    }
-    pub fn DisableInternetFirewall(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
-        return self.vtable.DisableInternetFirewall(self);
-    }
-    pub fn EnableInternetFirewall(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableInternetFirewall(self);
-    }
-    pub fn get_EnumPortMappings(self: *const INetSharingConfiguration, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPortMappingCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnumPortMappings(self, Flags, ppColl);
-    }
-    pub fn AddPortMapping(self: *const INetSharingConfiguration, bstrName: ?BSTR, ucIPProtocol: u8, usExternalPort: u16, usInternalPort: u16, dwOptions: u32, bstrTargetNameOrIPAddress: ?BSTR, eTargetType: ICS_TARGETTYPE, ppMapping: ?*?*INetSharingPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPortMapping(self, bstrName, ucIPProtocol, usExternalPort, usInternalPort, dwOptions, bstrTargetNameOrIPAddress, eTargetType, ppMapping);
-    }
-    pub fn RemovePortMapping(self: *const INetSharingConfiguration, pMapping: ?*INetSharingPortMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.RemovePortMapping(self, pMapping);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingEveryConnectionCollection_Value = Guid.initString("33c4643c-7811-46fa-a89a-768597bd7223");
-pub const IID_INetSharingEveryConnectionCollection = &IID_INetSharingEveryConnectionCollection_Value;
-pub const INetSharingEveryConnectionCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const INetSharingEveryConnectionCollection,
-            pVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const INetSharingEveryConnectionCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingEveryConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
-    }
-    pub fn get_Count(self: *const INetSharingEveryConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingPublicConnectionCollection_Value = Guid.initString("7d7a6355-f372-4971-a149-bfc927be762a");
-pub const IID_INetSharingPublicConnectionCollection = &IID_INetSharingPublicConnectionCollection_Value;
-pub const INetSharingPublicConnectionCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const INetSharingPublicConnectionCollection,
-            pVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const INetSharingPublicConnectionCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingPublicConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
-    }
-    pub fn get_Count(self: *const INetSharingPublicConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingPrivateConnectionCollection_Value = Guid.initString("38ae69e0-4409-402a-a2cb-e965c727f840");
-pub const IID_INetSharingPrivateConnectionCollection = &IID_INetSharingPrivateConnectionCollection_Value;
-pub const INetSharingPrivateConnectionCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const INetSharingPrivateConnectionCollection,
-            pVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const INetSharingPrivateConnectionCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingPrivateConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
-    }
-    pub fn get_Count(self: *const INetSharingPrivateConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INetSharingManager_Value = Guid.initString("c08956b7-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_INetSharingManager = &IID_INetSharingManager_Value;
-pub const INetSharingManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SharingInstalled: *const fn(
-            self: *const INetSharingManager,
-            pbInstalled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        get_EnumPublicConnections: *const fn(
-            self: *const INetSharingManager,
-            Flags: SHARINGCONNECTION_ENUM_FLAGS,
-            ppColl: ?*?*INetSharingPublicConnectionCollection,
-        ) callconv(.winapi) HRESULT,
-        get_EnumPrivateConnections: *const fn(
-            self: *const INetSharingManager,
-            Flags: SHARINGCONNECTION_ENUM_FLAGS,
-            ppColl: ?*?*INetSharingPrivateConnectionCollection,
-        ) callconv(.winapi) HRESULT,
-        get_INetSharingConfigurationForINetConnection: *const fn(
-            self: *const INetSharingManager,
-            pNetConnection: ?*INetConnection,
-            ppNetSharingConfiguration: ?*?*INetSharingConfiguration,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnumEveryConnection: *const fn(
-            self: *const INetSharingManager,
-            ppColl: ?*?*INetSharingEveryConnectionCollection,
-        ) callconv(.winapi) HRESULT,
-        get_NetConnectionProps: *const fn(
-            self: *const INetSharingManager,
-            pNetConnection: ?*INetConnection,
-            ppProps: ?*?*INetConnectionProps,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_SharingInstalled(self: *const INetSharingManager, pbInstalled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SharingInstalled(self, pbInstalled);
-    }
-    pub fn get_EnumPublicConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnumPublicConnections(self, Flags, ppColl);
-    }
-    pub fn get_EnumPrivateConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPrivateConnectionCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnumPrivateConnections(self, Flags, ppColl);
-    }
-    pub fn get_INetSharingConfigurationForINetConnection(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppNetSharingConfiguration: ?*?*INetSharingConfiguration) callconv(.@"inline") HRESULT {
-        return self.vtable.get_INetSharingConfigurationForINetConnection(self, pNetConnection, ppNetSharingConfiguration);
-    }
-    pub fn get_EnumEveryConnection(self: *const INetSharingManager, ppColl: ?*?*INetSharingEveryConnectionCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnumEveryConnection(self, ppColl);
-    }
-    pub fn get_NetConnectionProps(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppProps: ?*?*INetConnectionProps) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NetConnectionProps(self, pNetConnection, ppProps);
-    }
-};
-
-const CLSID_NetFwRule_Value = Guid.initString("2c5bc43e-3369-4c33-ab0c-be9469677af4");
-pub const CLSID_NetFwRule = &CLSID_NetFwRule_Value;
-
-const CLSID_NetFwOpenPort_Value = Guid.initString("0ca545c6-37ad-4a6c-bf92-9f7610067ef5");
-pub const CLSID_NetFwOpenPort = &CLSID_NetFwOpenPort_Value;
-
-const CLSID_NetFwAuthorizedApplication_Value = Guid.initString("ec9846b3-2762-4a6b-a214-6acb603462d2");
-pub const CLSID_NetFwAuthorizedApplication = &CLSID_NetFwAuthorizedApplication_Value;
-
-const CLSID_NetFwPolicy2_Value = Guid.initString("e2b3c97f-6ae1-41ac-817a-f6f92166d7dd");
-pub const CLSID_NetFwPolicy2 = &CLSID_NetFwPolicy2_Value;
-
-const CLSID_NetFwProduct_Value = Guid.initString("9d745ed8-c514-4d1d-bf42-751fed2d5ac7");
-pub const CLSID_NetFwProduct = &CLSID_NetFwProduct_Value;
-
-const CLSID_NetFwProducts_Value = Guid.initString("cc19079b-8272-4d73-bb70-cdb533527b61");
-pub const CLSID_NetFwProducts = &CLSID_NetFwProducts_Value;
-
-const CLSID_NetFwMgr_Value = Guid.initString("304ce942-6e39-40d8-943a-b913c40c9cd4");
-pub const CLSID_NetFwMgr = &CLSID_NetFwMgr_Value;
-
-pub const NET_FW_POLICY_TYPE = enum(i32) {
-    GROUP = 0,
-    LOCAL = 1,
-    EFFECTIVE = 2,
-    TYPE_MAX = 3,
-};
-pub const NET_FW_POLICY_GROUP = NET_FW_POLICY_TYPE.GROUP;
-pub const NET_FW_POLICY_LOCAL = NET_FW_POLICY_TYPE.LOCAL;
-pub const NET_FW_POLICY_EFFECTIVE = NET_FW_POLICY_TYPE.EFFECTIVE;
-pub const NET_FW_POLICY_TYPE_MAX = NET_FW_POLICY_TYPE.TYPE_MAX;
-
-pub const NET_FW_PROFILE_TYPE = enum(i32) {
-    DOMAIN = 0,
-    STANDARD = 1,
-    CURRENT = 2,
-    TYPE_MAX = 3,
-};
-pub const NET_FW_PROFILE_DOMAIN = NET_FW_PROFILE_TYPE.DOMAIN;
-pub const NET_FW_PROFILE_STANDARD = NET_FW_PROFILE_TYPE.STANDARD;
-pub const NET_FW_PROFILE_CURRENT = NET_FW_PROFILE_TYPE.CURRENT;
-pub const NET_FW_PROFILE_TYPE_MAX = NET_FW_PROFILE_TYPE.TYPE_MAX;
-
-pub const NET_FW_PROFILE_TYPE2 = enum(i32) {
-    DOMAIN = 1,
-    PRIVATE = 2,
-    PUBLIC = 4,
-    ALL = 2147483647,
-};
-pub const NET_FW_PROFILE2_DOMAIN = NET_FW_PROFILE_TYPE2.DOMAIN;
-pub const NET_FW_PROFILE2_PRIVATE = NET_FW_PROFILE_TYPE2.PRIVATE;
-pub const NET_FW_PROFILE2_PUBLIC = NET_FW_PROFILE_TYPE2.PUBLIC;
-pub const NET_FW_PROFILE2_ALL = NET_FW_PROFILE_TYPE2.ALL;
-
-pub const NET_FW_IP_VERSION = enum(i32) {
-    V4 = 0,
-    V6 = 1,
-    ANY = 2,
-    MAX = 3,
-};
-pub const NET_FW_IP_VERSION_V4 = NET_FW_IP_VERSION.V4;
-pub const NET_FW_IP_VERSION_V6 = NET_FW_IP_VERSION.V6;
-pub const NET_FW_IP_VERSION_ANY = NET_FW_IP_VERSION.ANY;
-pub const NET_FW_IP_VERSION_MAX = NET_FW_IP_VERSION.MAX;
-
-pub const NET_FW_SCOPE = enum(i32) {
-    ALL = 0,
-    LOCAL_SUBNET = 1,
-    CUSTOM = 2,
-    MAX = 3,
-};
-pub const NET_FW_SCOPE_ALL = NET_FW_SCOPE.ALL;
-pub const NET_FW_SCOPE_LOCAL_SUBNET = NET_FW_SCOPE.LOCAL_SUBNET;
-pub const NET_FW_SCOPE_CUSTOM = NET_FW_SCOPE.CUSTOM;
-pub const NET_FW_SCOPE_MAX = NET_FW_SCOPE.MAX;
-
-pub const NET_FW_IP_PROTOCOL = enum(i32) {
-    TCP = 6,
-    UDP = 17,
-    ANY = 256,
-};
-pub const NET_FW_IP_PROTOCOL_TCP = NET_FW_IP_PROTOCOL.TCP;
-pub const NET_FW_IP_PROTOCOL_UDP = NET_FW_IP_PROTOCOL.UDP;
-pub const NET_FW_IP_PROTOCOL_ANY = NET_FW_IP_PROTOCOL.ANY;
-
-pub const NET_FW_SERVICE_TYPE = enum(i32) {
-    FILE_AND_PRINT = 0,
-    UPNP = 1,
-    REMOTE_DESKTOP = 2,
-    NONE = 3,
-    TYPE_MAX = 4,
-};
-pub const NET_FW_SERVICE_FILE_AND_PRINT = NET_FW_SERVICE_TYPE.FILE_AND_PRINT;
-pub const NET_FW_SERVICE_UPNP = NET_FW_SERVICE_TYPE.UPNP;
-pub const NET_FW_SERVICE_REMOTE_DESKTOP = NET_FW_SERVICE_TYPE.REMOTE_DESKTOP;
-pub const NET_FW_SERVICE_NONE = NET_FW_SERVICE_TYPE.NONE;
-pub const NET_FW_SERVICE_TYPE_MAX = NET_FW_SERVICE_TYPE.TYPE_MAX;
-
-pub const NET_FW_RULE_DIRECTION = enum(i32) {
-    IN = 1,
-    OUT = 2,
-    MAX = 3,
-};
-pub const NET_FW_RULE_DIR_IN = NET_FW_RULE_DIRECTION.IN;
-pub const NET_FW_RULE_DIR_OUT = NET_FW_RULE_DIRECTION.OUT;
-pub const NET_FW_RULE_DIR_MAX = NET_FW_RULE_DIRECTION.MAX;
-
-pub const NET_FW_ACTION = enum(i32) {
-    BLOCK = 0,
-    ALLOW = 1,
-    MAX = 2,
-};
-pub const NET_FW_ACTION_BLOCK = NET_FW_ACTION.BLOCK;
-pub const NET_FW_ACTION_ALLOW = NET_FW_ACTION.ALLOW;
-pub const NET_FW_ACTION_MAX = NET_FW_ACTION.MAX;
-
-pub const NET_FW_MODIFY_STATE = enum(i32) {
-    OK = 0,
-    GP_OVERRIDE = 1,
-    INBOUND_BLOCKED = 2,
-};
-pub const NET_FW_MODIFY_STATE_OK = NET_FW_MODIFY_STATE.OK;
-pub const NET_FW_MODIFY_STATE_GP_OVERRIDE = NET_FW_MODIFY_STATE.GP_OVERRIDE;
-pub const NET_FW_MODIFY_STATE_INBOUND_BLOCKED = NET_FW_MODIFY_STATE.INBOUND_BLOCKED;
-
-pub const NET_FW_RULE_CATEGORY = enum(i32) {
-    BOOT = 0,
-    STEALTH = 1,
-    FIREWALL = 2,
-    CONSEC = 3,
-    MAX = 4,
-};
-pub const NET_FW_RULE_CATEGORY_BOOT = NET_FW_RULE_CATEGORY.BOOT;
-pub const NET_FW_RULE_CATEGORY_STEALTH = NET_FW_RULE_CATEGORY.STEALTH;
-pub const NET_FW_RULE_CATEGORY_FIREWALL = NET_FW_RULE_CATEGORY.FIREWALL;
-pub const NET_FW_RULE_CATEGORY_CONSEC = NET_FW_RULE_CATEGORY.CONSEC;
-pub const NET_FW_RULE_CATEGORY_MAX = NET_FW_RULE_CATEGORY.MAX;
-
-pub const NET_FW_EDGE_TRAVERSAL_TYPE = enum(i32) {
-    DENY = 0,
-    ALLOW = 1,
-    DEFER_TO_APP = 2,
-    DEFER_TO_USER = 3,
-};
-pub const NET_FW_EDGE_TRAVERSAL_TYPE_DENY = NET_FW_EDGE_TRAVERSAL_TYPE.DENY;
-pub const NET_FW_EDGE_TRAVERSAL_TYPE_ALLOW = NET_FW_EDGE_TRAVERSAL_TYPE.ALLOW;
-pub const NET_FW_EDGE_TRAVERSAL_TYPE_DEFER_TO_APP = NET_FW_EDGE_TRAVERSAL_TYPE.DEFER_TO_APP;
-pub const NET_FW_EDGE_TRAVERSAL_TYPE_DEFER_TO_USER = NET_FW_EDGE_TRAVERSAL_TYPE.DEFER_TO_USER;
-
-pub const NET_FW_AUTHENTICATE_TYPE = enum(i32) {
-    NONE = 0,
-    NO_ENCAPSULATION = 1,
-    WITH_INTEGRITY = 2,
-    AND_NEGOTIATE_ENCRYPTION = 3,
-    AND_ENCRYPT = 4,
-};
-pub const NET_FW_AUTHENTICATE_NONE = NET_FW_AUTHENTICATE_TYPE.NONE;
-pub const NET_FW_AUTHENTICATE_NO_ENCAPSULATION = NET_FW_AUTHENTICATE_TYPE.NO_ENCAPSULATION;
-pub const NET_FW_AUTHENTICATE_WITH_INTEGRITY = NET_FW_AUTHENTICATE_TYPE.WITH_INTEGRITY;
-pub const NET_FW_AUTHENTICATE_AND_NEGOTIATE_ENCRYPTION = NET_FW_AUTHENTICATE_TYPE.AND_NEGOTIATE_ENCRYPTION;
-pub const NET_FW_AUTHENTICATE_AND_ENCRYPT = NET_FW_AUTHENTICATE_TYPE.AND_ENCRYPT;
-
-pub const NETISO_FLAG = enum(i32) {
-    FORCE_COMPUTE_BINARIES = 1,
-    MAX = 2,
-};
-pub const NETISO_FLAG_FORCE_COMPUTE_BINARIES = NETISO_FLAG.FORCE_COMPUTE_BINARIES;
-pub const NETISO_FLAG_MAX = NETISO_FLAG.MAX;
-
-pub const INET_FIREWALL_AC_CREATION_TYPE = enum(i32) {
-    NONE = 0,
-    PACKAGE_ID_ONLY = 1,
-    BINARY = 2,
-    MAX = 4,
-};
-pub const INET_FIREWALL_AC_NONE = INET_FIREWALL_AC_CREATION_TYPE.NONE;
-pub const INET_FIREWALL_AC_PACKAGE_ID_ONLY = INET_FIREWALL_AC_CREATION_TYPE.PACKAGE_ID_ONLY;
-pub const INET_FIREWALL_AC_BINARY = INET_FIREWALL_AC_CREATION_TYPE.BINARY;
-pub const INET_FIREWALL_AC_MAX = INET_FIREWALL_AC_CREATION_TYPE.MAX;
-
-pub const INET_FIREWALL_AC_CHANGE_TYPE = enum(i32) {
-    INVALID = 0,
-    CREATE = 1,
-    DELETE = 2,
-    MAX = 3,
-};
-pub const INET_FIREWALL_AC_CHANGE_INVALID = INET_FIREWALL_AC_CHANGE_TYPE.INVALID;
-pub const INET_FIREWALL_AC_CHANGE_CREATE = INET_FIREWALL_AC_CHANGE_TYPE.CREATE;
-pub const INET_FIREWALL_AC_CHANGE_DELETE = INET_FIREWALL_AC_CHANGE_TYPE.DELETE;
-pub const INET_FIREWALL_AC_CHANGE_MAX = INET_FIREWALL_AC_CHANGE_TYPE.MAX;
-
-pub const INET_FIREWALL_AC_CAPABILITIES = extern struct {
-    count: u32,
-    capabilities: ?*SID_AND_ATTRIBUTES,
-};
-
-pub const INET_FIREWALL_AC_BINARIES = extern struct {
-    count: u32,
-    binaries: ?*?PWSTR,
-};
-
-pub const INET_FIREWALL_AC_CHANGE = extern struct {
-    changeType: INET_FIREWALL_AC_CHANGE_TYPE,
-    createType: INET_FIREWALL_AC_CREATION_TYPE,
-    appContainerSid: ?*SID,
-    userSid: ?*SID,
-    displayName: ?PWSTR,
-    Anonymous: extern union {
-        capabilities: INET_FIREWALL_AC_CAPABILITIES,
-        binaries: INET_FIREWALL_AC_BINARIES,
-    },
-};
-
-pub const INET_FIREWALL_APP_CONTAINER = extern struct {
-    appContainerSid: ?*SID,
-    userSid: ?*SID,
-    appContainerName: ?PWSTR,
-    displayName: ?PWSTR,
-    description: ?PWSTR,
-    capabilities: INET_FIREWALL_AC_CAPABILITIES,
-    binaries: INET_FIREWALL_AC_BINARIES,
-    workingDirectory: ?PWSTR,
-    packageFullName: ?PWSTR,
-};
-
-pub const PAC_CHANGES_CALLBACK_FN = *const fn(
-    context: ?*anyopaque,
-    pChange: ?*const INET_FIREWALL_AC_CHANGE,
-) callconv(.winapi) void;
-
-pub const NETISO_ERROR_TYPE = enum(i32) {
-    NONE = 0,
-    PRIVATE_NETWORK = 1,
-    INTERNET_CLIENT = 2,
-    INTERNET_CLIENT_SERVER = 3,
-    MAX = 4,
-};
-pub const NETISO_ERROR_TYPE_NONE = NETISO_ERROR_TYPE.NONE;
-pub const NETISO_ERROR_TYPE_PRIVATE_NETWORK = NETISO_ERROR_TYPE.PRIVATE_NETWORK;
-pub const NETISO_ERROR_TYPE_INTERNET_CLIENT = NETISO_ERROR_TYPE.INTERNET_CLIENT;
-pub const NETISO_ERROR_TYPE_INTERNET_CLIENT_SERVER = NETISO_ERROR_TYPE.INTERNET_CLIENT_SERVER;
-pub const NETISO_ERROR_TYPE_MAX = NETISO_ERROR_TYPE.MAX;
-
-pub const PNETISO_EDP_ID_CALLBACK_FN = *const fn(
-    context: ?*anyopaque,
-    wszEnterpriseId: ?[*:0]const u16,
-    dwErr: u32,
-) callconv(.winapi) void;
-
-pub const _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE = enum(i32) {
-    INVALID = 0,
-    LOCAL = 1,
-    MDM = 2,
-};
-pub const FW_DYNAMIC_KEYWORD_ORIGIN_INVALID = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.INVALID;
-pub const FW_DYNAMIC_KEYWORD_ORIGIN_LOCAL = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.LOCAL;
-pub const FW_DYNAMIC_KEYWORD_ORIGIN_MDM = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.MDM;
-
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0 = extern struct {
-    id: Guid,
-    keyword: ?[*:0]const u16,
-    flags: u32,
-    addresses: ?[*:0]const u16,
-};
-
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0 = extern struct {
-    dynamicKeywordAddress: _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
-    next: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
-    schemaVersion: u16,
-    originType: _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE,
-};
-
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS = enum(i32) {
-    E = 1,
-};
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS.E;
-
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS = enum(i32) {
-    AUTO_RESOLVE = 1,
-    NON_AUTO_RESOLVE = 2,
-    ALL = 3,
-};
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.AUTO_RESOLVE;
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.NON_AUTO_RESOLVE;
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.ALL;
-
-pub const PFN_FWADDDYNAMICKEYWORDADDRESS0 = *const fn(
-    dynamicKeywordAddress: ?*const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
-) callconv(.winapi) u32;
-
-pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = *const fn(
-    dynamicKeywordAddressId: Guid,
-) callconv(.winapi) u32;
-
-pub const PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0 = *const fn(
-    flags: u32,
-    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
-) callconv(.winapi) u32;
-
-pub const PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0 = *const fn(
-    dynamicKeywordAddressId: Guid,
-    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
-) callconv(.winapi) u32;
-
-pub const PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0 = *const fn(
-    dynamicKeywordAddressData: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
-) callconv(.winapi) u32;
-
-pub const PFN_FWUPDATEDYNAMICKEYWORDADDRESS0 = *const fn(
-    dynamicKeywordAddressId: Guid,
-    updatedAddresses: ?[*:0]const u16,
-    append: BOOL,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwRemoteAdminSettings_Value = Guid.initString("d4becddf-6f73-4a83-b832-9c66874cd20e");
-pub const IID_INetFwRemoteAdminSettings = &IID_INetFwRemoteAdminSettings_Value;
-pub const INetFwRemoteAdminSettings = extern union {
+const IID_INetFwAuthorizedApplication_Value = Guid.initString("b5e64ffa-c2c5-444e-a301-fb5e00018050");
+pub const IID_INetFwAuthorizedApplication = &IID_INetFwAuthorizedApplication_Value;
+pub const INetFwAuthorizedApplication = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const INetFwAuthorizedApplication,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const INetFwAuthorizedApplication,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ProcessImageFileName: *const fn(
+            self: *const INetFwAuthorizedApplication,
+            imageFileName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ProcessImageFileName: *const fn(
+            self: *const INetFwAuthorizedApplication,
+            imageFileName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpVersion: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             ipVersion: ?*NET_FW_IP_VERSION,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpVersion: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             ipVersion: NET_FW_IP_VERSION,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             scope: ?*NET_FW_SCOPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Scope: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             scope: NET_FW_SCOPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAddresses: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             remoteAddrs: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteAddresses: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             remoteAddrs: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             enabled: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
-            self: *const INetFwRemoteAdminSettings,
+            self: *const INetFwAuthorizedApplication,
             enabled: i16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const INetFwAuthorizedApplication, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const INetFwAuthorizedApplication, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ProcessImageFileName(self, imageFileName);
+    }
+    pub fn put_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ProcessImageFileName(self, imageFileName);
+    }
+    pub fn get_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.get_IpVersion(self, ipVersion);
     }
-    pub fn put_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
+    pub fn put_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.put_IpVersion(self, ipVersion);
     }
-    pub fn get_Scope(self: *const INetFwRemoteAdminSettings, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
+    pub fn get_Scope(self: *const INetFwAuthorizedApplication, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, scope);
     }
-    pub fn put_Scope(self: *const INetFwRemoteAdminSettings, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
+    pub fn put_Scope(self: *const INetFwAuthorizedApplication, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.put_Scope(self, scope);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn put_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwRemoteAdminSettings, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetFwAuthorizedApplication, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwRemoteAdminSettings, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const INetFwAuthorizedApplication, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetFwAuthorizedApplications_Value = Guid.initString("644efd52-ccf9-486c-97a2-39f352570b30");
+pub const IID_INetFwAuthorizedApplications = &IID_INetFwAuthorizedApplications_Value;
+pub const INetFwAuthorizedApplications = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const INetFwAuthorizedApplications,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const INetFwAuthorizedApplications,
+            app: ?*INetFwAuthorizedApplication,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const INetFwAuthorizedApplications,
+            imageFileName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const INetFwAuthorizedApplications,
+            imageFileName: ?BSTR,
+            app: ?*?*INetFwAuthorizedApplication,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const INetFwAuthorizedApplications,
+            newEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const INetFwAuthorizedApplications, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, count);
+    }
+    pub fn Add(self: *const INetFwAuthorizedApplications, app: ?*INetFwAuthorizedApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, app);
+    }
+    pub fn Remove(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, imageFileName);
+    }
+    pub fn Item(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR, app: ?*?*INetFwAuthorizedApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, imageFileName, app);
+    }
+    pub fn get__NewEnum(self: *const INetFwAuthorizedApplications, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, newEnum);
     }
 };
 
@@ -1921,6 +1049,64 @@ pub const INetFwIcmpSettings = extern union {
     }
     pub fn put_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundPacketTooBig(self, allow);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetFwMgr_Value = Guid.initString("f7898af5-cac4-4632-a2ec-da06e5111af2");
+pub const IID_INetFwMgr = &IID_INetFwMgr_Value;
+pub const INetFwMgr = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LocalPolicy: *const fn(
+            self: *const INetFwMgr,
+            localPolicy: ?*?*INetFwPolicy,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentProfileType: *const fn(
+            self: *const INetFwMgr,
+            profileType: ?*NET_FW_PROFILE_TYPE,
+        ) callconv(.winapi) HRESULT,
+        RestoreDefaults: *const fn(
+            self: *const INetFwMgr,
+        ) callconv(.winapi) HRESULT,
+        IsPortAllowed: *const fn(
+            self: *const INetFwMgr,
+            imageFileName: ?BSTR,
+            ipVersion: NET_FW_IP_VERSION,
+            portNumber: i32,
+            localAddress: ?BSTR,
+            ipProtocol: NET_FW_IP_PROTOCOL,
+            allowed: ?*VARIANT,
+            restricted: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        IsIcmpTypeAllowed: *const fn(
+            self: *const INetFwMgr,
+            ipVersion: NET_FW_IP_VERSION,
+            localAddress: ?BSTR,
+            type: u8,
+            allowed: ?*VARIANT,
+            restricted: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_LocalPolicy(self: *const INetFwMgr, localPolicy: ?*?*INetFwPolicy) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalPolicy(self, localPolicy);
+    }
+    pub fn get_CurrentProfileType(self: *const INetFwMgr, profileType: ?*NET_FW_PROFILE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentProfileType(self, profileType);
+    }
+    pub fn RestoreDefaults(self: *const INetFwMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreDefaults(self);
+    }
+    pub fn IsPortAllowed(self: *const INetFwMgr, imageFileName: ?BSTR, ipVersion: NET_FW_IP_VERSION, portNumber: i32, localAddress: ?BSTR, ipProtocol: NET_FW_IP_PROTOCOL, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.IsPortAllowed(self, imageFileName, ipVersion, portNumber, localAddress, ipProtocol, allowed, restricted);
+    }
+    pub fn IsIcmpTypeAllowed(self: *const INetFwMgr, ipVersion: NET_FW_IP_VERSION, localAddress: ?BSTR, @"type": u8, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.IsIcmpTypeAllowed(self, ipVersion, localAddress, @"type", allowed, restricted);
     }
 };
 
@@ -2109,304 +1295,514 @@ pub const INetFwOpenPorts = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwService_Value = Guid.initString("79fd57c8-908e-4a36-9888-d5b3f0a444cf");
-pub const IID_INetFwService = &IID_INetFwService_Value;
-pub const INetFwService = extern union {
+const IID_INetFwPolicy_Value = Guid.initString("d46d2478-9ac9-4008-9dc7-5563ce5536cc");
+pub const IID_INetFwPolicy = &IID_INetFwPolicy_Value;
+pub const INetFwPolicy = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const INetFwService,
-            name: ?*?BSTR,
+        get_CurrentProfile: *const fn(
+            self: *const INetFwPolicy,
+            profile: ?*?*INetFwProfile,
+        ) callconv(.winapi) HRESULT,
+        GetProfileByType: *const fn(
+            self: *const INetFwPolicy,
+            profileType: NET_FW_PROFILE_TYPE,
+            profile: ?*?*INetFwProfile,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_CurrentProfile(self: *const INetFwPolicy, profile: ?*?*INetFwProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentProfile(self, profile);
+    }
+    pub fn GetProfileByType(self: *const INetFwPolicy, profileType: NET_FW_PROFILE_TYPE, profile: ?*?*INetFwProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProfileByType(self, profileType, profile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetFwPolicy2_Value = Guid.initString("98325047-c671-4174-8d81-defcd3f03186");
+pub const IID_INetFwPolicy2 = &IID_INetFwPolicy2_Value;
+pub const INetFwPolicy2 = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentProfileTypes: *const fn(
+            self: *const INetFwPolicy2,
+            profileTypesBitmask: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_FirewallEnabled: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            enabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        put_FirewallEnabled: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            enabled: i16,
+        ) callconv(.winapi) HRESULT,
+        get_ExcludedInterfaces: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            interfaces: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        put_ExcludedInterfaces: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            interfaces: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        get_BlockAllInboundTraffic: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            Block: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        put_BlockAllInboundTraffic: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            Block: i16,
+        ) callconv(.winapi) HRESULT,
+        get_NotificationsDisabled: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            disabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        put_NotificationsDisabled: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            disabled: i16,
+        ) callconv(.winapi) HRESULT,
+        get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            disabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            disabled: i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const INetFwService,
-            type: ?*NET_FW_SERVICE_TYPE,
+        get_Rules: *const fn(
+            self: *const INetFwPolicy2,
+            rules: ?*?*INetFwRules,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Customized: *const fn(
-            self: *const INetFwService,
-            customized: ?*i16,
+        get_ServiceRestriction: *const fn(
+            self: *const INetFwPolicy2,
+            ServiceRestriction: ?*?*INetFwServiceRestriction,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IpVersion: *const fn(
-            self: *const INetFwService,
-            ipVersion: ?*NET_FW_IP_VERSION,
+        EnableRuleGroup: *const fn(
+            self: *const INetFwPolicy2,
+            profileTypesBitmask: i32,
+            group: ?BSTR,
+            enable: i16,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IpVersion: *const fn(
-            self: *const INetFwService,
-            ipVersion: NET_FW_IP_VERSION,
+        IsRuleGroupEnabled: *const fn(
+            self: *const INetFwPolicy2,
+            profileTypesBitmask: i32,
+            group: ?BSTR,
+            enabled: ?*i16,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: *const fn(
-            self: *const INetFwService,
-            scope: ?*NET_FW_SCOPE,
+        RestoreLocalFirewallDefaults: *const fn(
+            self: *const INetFwPolicy2,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Scope: *const fn(
-            self: *const INetFwService,
-            scope: NET_FW_SCOPE,
+        get_DefaultInboundAction: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            action: ?*NET_FW_ACTION,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAddresses: *const fn(
-            self: *const INetFwService,
-            remoteAddrs: ?*?BSTR,
+        put_DefaultInboundAction: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            action: NET_FW_ACTION,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteAddresses: *const fn(
-            self: *const INetFwService,
-            remoteAddrs: ?BSTR,
+        get_DefaultOutboundAction: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            action: ?*NET_FW_ACTION,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const INetFwService,
+        put_DefaultOutboundAction: *const fn(
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            action: NET_FW_ACTION,
+        ) callconv(.winapi) HRESULT,
+        get_IsRuleGroupCurrentlyEnabled: *const fn(
+            self: *const INetFwPolicy2,
+            group: ?BSTR,
             enabled: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const INetFwService,
+        get_LocalPolicyModifyState: *const fn(
+            self: *const INetFwPolicy2,
+            modifyState: ?*NET_FW_MODIFY_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_CurrentProfileTypes(self: *const INetFwPolicy2, profileTypesBitmask: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentProfileTypes(self, profileTypesBitmask);
+    }
+    pub fn get_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FirewallEnabled(self, profileType, enabled);
+    }
+    pub fn put_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FirewallEnabled(self, profileType, enabled);
+    }
+    pub fn get_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExcludedInterfaces(self, profileType, interfaces);
+    }
+    pub fn put_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExcludedInterfaces(self, profileType, interfaces);
+    }
+    pub fn get_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BlockAllInboundTraffic(self, profileType, Block);
+    }
+    pub fn put_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BlockAllInboundTraffic(self, profileType, Block);
+    }
+    pub fn get_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NotificationsDisabled(self, profileType, disabled);
+    }
+    pub fn put_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NotificationsDisabled(self, profileType, disabled);
+    }
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
+    }
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
+    }
+    pub fn get_Rules(self: *const INetFwPolicy2, rules: ?*?*INetFwRules) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Rules(self, rules);
+    }
+    pub fn get_ServiceRestriction(self: *const INetFwPolicy2, ServiceRestriction: ?*?*INetFwServiceRestriction) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServiceRestriction(self, ServiceRestriction);
+    }
+    pub fn EnableRuleGroup(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enable: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableRuleGroup(self, profileTypesBitmask, group, enable);
+    }
+    pub fn IsRuleGroupEnabled(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsRuleGroupEnabled(self, profileTypesBitmask, group, enabled);
+    }
+    pub fn RestoreLocalFirewallDefaults(self: *const INetFwPolicy2) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreLocalFirewallDefaults(self);
+    }
+    pub fn get_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultInboundAction(self, profileType, action);
+    }
+    pub fn put_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DefaultInboundAction(self, profileType, action);
+    }
+    pub fn get_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultOutboundAction(self, profileType, action);
+    }
+    pub fn put_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DefaultOutboundAction(self, profileType, action);
+    }
+    pub fn get_IsRuleGroupCurrentlyEnabled(self: *const INetFwPolicy2, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsRuleGroupCurrentlyEnabled(self, group, enabled);
+    }
+    pub fn get_LocalPolicyModifyState(self: *const INetFwPolicy2, modifyState: ?*NET_FW_MODIFY_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalPolicyModifyState(self, modifyState);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_INetFwProduct_Value = Guid.initString("71881699-18f4-458b-b892-3ffce5e07f75");
+pub const IID_INetFwProduct = &IID_INetFwProduct_Value;
+pub const INetFwProduct = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RuleCategories: *const fn(
+            self: *const INetFwProduct,
+            ruleCategories: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RuleCategories: *const fn(
+            self: *const INetFwProduct,
+            ruleCategories: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayName: *const fn(
+            self: *const INetFwProduct,
+            displayName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisplayName: *const fn(
+            self: *const INetFwProduct,
+            displayName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PathToSignedProductExe: *const fn(
+            self: *const INetFwProduct,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_RuleCategories(self: *const INetFwProduct, ruleCategories: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RuleCategories(self, ruleCategories);
+    }
+    pub fn put_RuleCategories(self: *const INetFwProduct, ruleCategories: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RuleCategories(self, ruleCategories);
+    }
+    pub fn get_DisplayName(self: *const INetFwProduct, displayName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayName(self, displayName);
+    }
+    pub fn put_DisplayName(self: *const INetFwProduct, displayName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisplayName(self, displayName);
+    }
+    pub fn get_PathToSignedProductExe(self: *const INetFwProduct, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PathToSignedProductExe(self, path);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_INetFwProducts_Value = Guid.initString("39eb36e0-2097-40bd-8af2-63a13b525362");
+pub const IID_INetFwProducts = &IID_INetFwProducts_Value;
+pub const INetFwProducts = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const INetFwProducts,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Register: *const fn(
+            self: *const INetFwProducts,
+            product: ?*INetFwProduct,
+            registration: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const INetFwProducts,
+            index: i32,
+            product: ?*?*INetFwProduct,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const INetFwProducts,
+            newEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const INetFwProducts, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, count);
+    }
+    pub fn Register(self: *const INetFwProducts, product: ?*INetFwProduct, registration: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Register(self, product, registration);
+    }
+    pub fn Item(self: *const INetFwProducts, index: i32, product: ?*?*INetFwProduct) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, index, product);
+    }
+    pub fn get__NewEnum(self: *const INetFwProducts, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, newEnum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetFwProfile_Value = Guid.initString("174a0dda-e9f9-449d-993b-21ab667ca456");
+pub const IID_INetFwProfile = &IID_INetFwProfile_Value;
+pub const INetFwProfile = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const INetFwProfile,
+            type: ?*NET_FW_PROFILE_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FirewallEnabled: *const fn(
+            self: *const INetFwProfile,
+            enabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FirewallEnabled: *const fn(
+            self: *const INetFwProfile,
             enabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExceptionsNotAllowed: *const fn(
+            self: *const INetFwProfile,
+            notAllowed: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExceptionsNotAllowed: *const fn(
+            self: *const INetFwProfile,
+            notAllowed: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NotificationsDisabled: *const fn(
+            self: *const INetFwProfile,
+            disabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NotificationsDisabled: *const fn(
+            self: *const INetFwProfile,
+            disabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
+            self: *const INetFwProfile,
+            disabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
+            self: *const INetFwProfile,
+            disabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RemoteAdminSettings: *const fn(
+            self: *const INetFwProfile,
+            remoteAdminSettings: ?*?*INetFwRemoteAdminSettings,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IcmpSettings: *const fn(
+            self: *const INetFwProfile,
+            icmpSettings: ?*?*INetFwIcmpSettings,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GloballyOpenPorts: *const fn(
-            self: *const INetFwService,
+            self: *const INetFwProfile,
             openPorts: ?*?*INetFwOpenPorts,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Services: *const fn(
+            self: *const INetFwProfile,
+            services: ?*?*INetFwServices,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AuthorizedApplications: *const fn(
+            self: *const INetFwProfile,
+            apps: ?*?*INetFwAuthorizedApplications,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetFwService, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn get_Type(self: *const INetFwService, @"type": ?*NET_FW_SERVICE_TYPE) callconv(.@"inline") HRESULT {
+    pub fn get_Type(self: *const INetFwProfile, @"type": ?*NET_FW_PROFILE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, @"type");
     }
-    pub fn get_Customized(self: *const INetFwService, customized: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Customized(self, customized);
+    pub fn get_FirewallEnabled(self: *const INetFwProfile, enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FirewallEnabled(self, enabled);
     }
-    pub fn get_IpVersion(self: *const INetFwService, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IpVersion(self, ipVersion);
+    pub fn put_FirewallEnabled(self: *const INetFwProfile, enabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FirewallEnabled(self, enabled);
     }
-    pub fn put_IpVersion(self: *const INetFwService, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IpVersion(self, ipVersion);
+    pub fn get_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExceptionsNotAllowed(self, notAllowed);
     }
-    pub fn get_Scope(self: *const INetFwService, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Scope(self, scope);
+    pub fn put_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExceptionsNotAllowed(self, notAllowed);
     }
-    pub fn put_Scope(self: *const INetFwService, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Scope(self, scope);
+    pub fn get_NotificationsDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NotificationsDisabled(self, disabled);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RemoteAddresses(self, remoteAddrs);
+    pub fn put_NotificationsDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NotificationsDisabled(self, disabled);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RemoteAddresses(self, remoteAddrs);
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
     }
-    pub fn get_Enabled(self: *const INetFwService, enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, enabled);
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
     }
-    pub fn put_Enabled(self: *const INetFwService, enabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, enabled);
+    pub fn get_RemoteAdminSettings(self: *const INetFwProfile, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RemoteAdminSettings(self, remoteAdminSettings);
     }
-    pub fn get_GloballyOpenPorts(self: *const INetFwService, openPorts: ?*?*INetFwOpenPorts) callconv(.@"inline") HRESULT {
+    pub fn get_IcmpSettings(self: *const INetFwProfile, icmpSettings: ?*?*INetFwIcmpSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IcmpSettings(self, icmpSettings);
+    }
+    pub fn get_GloballyOpenPorts(self: *const INetFwProfile, openPorts: ?*?*INetFwOpenPorts) callconv(.@"inline") HRESULT {
         return self.vtable.get_GloballyOpenPorts(self, openPorts);
     }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwServices_Value = Guid.initString("79649bb4-903e-421b-94c9-79848e79f6ee");
-pub const IID_INetFwServices = &IID_INetFwServices_Value;
-pub const INetFwServices = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const INetFwServices,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const INetFwServices,
-            svcType: NET_FW_SERVICE_TYPE,
-            service: ?*?*INetFwService,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const INetFwServices,
-            newEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwServices, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, count);
+    pub fn get_Services(self: *const INetFwProfile, services: ?*?*INetFwServices) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Services(self, services);
     }
-    pub fn Item(self: *const INetFwServices, svcType: NET_FW_SERVICE_TYPE, service: ?*?*INetFwService) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, svcType, service);
-    }
-    pub fn get__NewEnum(self: *const INetFwServices, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, newEnum);
+    pub fn get_AuthorizedApplications(self: *const INetFwProfile, apps: ?*?*INetFwAuthorizedApplications) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AuthorizedApplications(self, apps);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwAuthorizedApplication_Value = Guid.initString("b5e64ffa-c2c5-444e-a301-fb5e00018050");
-pub const IID_INetFwAuthorizedApplication = &IID_INetFwAuthorizedApplication_Value;
-pub const INetFwAuthorizedApplication = extern union {
+const IID_INetFwRemoteAdminSettings_Value = Guid.initString("d4becddf-6f73-4a83-b832-9c66874cd20e");
+pub const IID_INetFwRemoteAdminSettings = &IID_INetFwRemoteAdminSettings_Value;
+pub const INetFwRemoteAdminSettings = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const INetFwAuthorizedApplication,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const INetFwAuthorizedApplication,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProcessImageFileName: *const fn(
-            self: *const INetFwAuthorizedApplication,
-            imageFileName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ProcessImageFileName: *const fn(
-            self: *const INetFwAuthorizedApplication,
-            imageFileName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpVersion: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             ipVersion: ?*NET_FW_IP_VERSION,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpVersion: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             ipVersion: NET_FW_IP_VERSION,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             scope: ?*NET_FW_SCOPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Scope: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             scope: NET_FW_SCOPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAddresses: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             remoteAddrs: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteAddresses: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             remoteAddrs: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             enabled: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
-            self: *const INetFwAuthorizedApplication,
+            self: *const INetFwRemoteAdminSettings,
             enabled: i16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetFwAuthorizedApplication, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn put_Name(self: *const INetFwAuthorizedApplication, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, name);
-    }
-    pub fn get_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ProcessImageFileName(self, imageFileName);
-    }
-    pub fn put_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ProcessImageFileName(self, imageFileName);
-    }
-    pub fn get_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
+    pub fn get_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.get_IpVersion(self, ipVersion);
     }
-    pub fn put_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
+    pub fn put_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.put_IpVersion(self, ipVersion);
     }
-    pub fn get_Scope(self: *const INetFwAuthorizedApplication, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
+    pub fn get_Scope(self: *const INetFwRemoteAdminSettings, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, scope);
     }
-    pub fn put_Scope(self: *const INetFwAuthorizedApplication, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
+    pub fn put_Scope(self: *const INetFwRemoteAdminSettings, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.put_Scope(self, scope);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn put_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwAuthorizedApplication, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetFwRemoteAdminSettings, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwAuthorizedApplication, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const INetFwRemoteAdminSettings, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwAuthorizedApplications_Value = Guid.initString("644efd52-ccf9-486c-97a2-39f352570b30");
-pub const IID_INetFwAuthorizedApplications = &IID_INetFwAuthorizedApplications_Value;
-pub const INetFwAuthorizedApplications = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const INetFwAuthorizedApplications,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const INetFwAuthorizedApplications,
-            app: ?*INetFwAuthorizedApplication,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const INetFwAuthorizedApplications,
-            imageFileName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const INetFwAuthorizedApplications,
-            imageFileName: ?BSTR,
-            app: ?*?*INetFwAuthorizedApplication,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const INetFwAuthorizedApplications,
-            newEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwAuthorizedApplications, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, count);
-    }
-    pub fn Add(self: *const INetFwAuthorizedApplications, app: ?*INetFwAuthorizedApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, app);
-    }
-    pub fn Remove(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, imageFileName);
-    }
-    pub fn Item(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR, app: ?*?*INetFwAuthorizedApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, imageFileName, app);
-    }
-    pub fn get__NewEnum(self: *const INetFwAuthorizedApplications, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, newEnum);
     }
 };
 
@@ -2900,6 +2296,114 @@ pub const INetFwRules = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetFwService_Value = Guid.initString("79fd57c8-908e-4a36-9888-d5b3f0a444cf");
+pub const IID_INetFwService = &IID_INetFwService_Value;
+pub const INetFwService = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const INetFwService,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const INetFwService,
+            type: ?*NET_FW_SERVICE_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Customized: *const fn(
+            self: *const INetFwService,
+            customized: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IpVersion: *const fn(
+            self: *const INetFwService,
+            ipVersion: ?*NET_FW_IP_VERSION,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_IpVersion: *const fn(
+            self: *const INetFwService,
+            ipVersion: NET_FW_IP_VERSION,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Scope: *const fn(
+            self: *const INetFwService,
+            scope: ?*NET_FW_SCOPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Scope: *const fn(
+            self: *const INetFwService,
+            scope: NET_FW_SCOPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RemoteAddresses: *const fn(
+            self: *const INetFwService,
+            remoteAddrs: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RemoteAddresses: *const fn(
+            self: *const INetFwService,
+            remoteAddrs: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const INetFwService,
+            enabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enabled: *const fn(
+            self: *const INetFwService,
+            enabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GloballyOpenPorts: *const fn(
+            self: *const INetFwService,
+            openPorts: ?*?*INetFwOpenPorts,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const INetFwService, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn get_Type(self: *const INetFwService, @"type": ?*NET_FW_SERVICE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, @"type");
+    }
+    pub fn get_Customized(self: *const INetFwService, customized: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Customized(self, customized);
+    }
+    pub fn get_IpVersion(self: *const INetFwService, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IpVersion(self, ipVersion);
+    }
+    pub fn put_IpVersion(self: *const INetFwService, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IpVersion(self, ipVersion);
+    }
+    pub fn get_Scope(self: *const INetFwService, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Scope(self, scope);
+    }
+    pub fn put_Scope(self: *const INetFwService, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Scope(self, scope);
+    }
+    pub fn get_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RemoteAddresses(self, remoteAddrs);
+    }
+    pub fn put_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RemoteAddresses(self, remoteAddrs);
+    }
+    pub fn get_Enabled(self: *const INetFwService, enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, enabled);
+    }
+    pub fn put_Enabled(self: *const INetFwService, enabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, enabled);
+    }
+    pub fn get_GloballyOpenPorts(self: *const INetFwService, openPorts: ?*?*INetFwOpenPorts) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GloballyOpenPorts(self, openPorts);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetFwServiceRestriction_Value = Guid.initString("8267bbe3-f890-491c-b7b6-2db1ef0e5d2b");
 pub const IID_INetFwServiceRestriction = &IID_INetFwServiceRestriction_Value;
 pub const INetFwServiceRestriction = extern union {
@@ -2939,503 +2443,1037 @@ pub const INetFwServiceRestriction = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwProfile_Value = Guid.initString("174a0dda-e9f9-449d-993b-21ab667ca456");
-pub const IID_INetFwProfile = &IID_INetFwProfile_Value;
-pub const INetFwProfile = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const INetFwProfile,
-            type: ?*NET_FW_PROFILE_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FirewallEnabled: *const fn(
-            self: *const INetFwProfile,
-            enabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FirewallEnabled: *const fn(
-            self: *const INetFwProfile,
-            enabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExceptionsNotAllowed: *const fn(
-            self: *const INetFwProfile,
-            notAllowed: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExceptionsNotAllowed: *const fn(
-            self: *const INetFwProfile,
-            notAllowed: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NotificationsDisabled: *const fn(
-            self: *const INetFwProfile,
-            disabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NotificationsDisabled: *const fn(
-            self: *const INetFwProfile,
-            disabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
-            self: *const INetFwProfile,
-            disabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
-            self: *const INetFwProfile,
-            disabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAdminSettings: *const fn(
-            self: *const INetFwProfile,
-            remoteAdminSettings: ?*?*INetFwRemoteAdminSettings,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IcmpSettings: *const fn(
-            self: *const INetFwProfile,
-            icmpSettings: ?*?*INetFwIcmpSettings,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GloballyOpenPorts: *const fn(
-            self: *const INetFwProfile,
-            openPorts: ?*?*INetFwOpenPorts,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Services: *const fn(
-            self: *const INetFwProfile,
-            services: ?*?*INetFwServices,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthorizedApplications: *const fn(
-            self: *const INetFwProfile,
-            apps: ?*?*INetFwAuthorizedApplications,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Type(self: *const INetFwProfile, @"type": ?*NET_FW_PROFILE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, @"type");
-    }
-    pub fn get_FirewallEnabled(self: *const INetFwProfile, enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FirewallEnabled(self, enabled);
-    }
-    pub fn put_FirewallEnabled(self: *const INetFwProfile, enabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FirewallEnabled(self, enabled);
-    }
-    pub fn get_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExceptionsNotAllowed(self, notAllowed);
-    }
-    pub fn put_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExceptionsNotAllowed(self, notAllowed);
-    }
-    pub fn get_NotificationsDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NotificationsDisabled(self, disabled);
-    }
-    pub fn put_NotificationsDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NotificationsDisabled(self, disabled);
-    }
-    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
-    }
-    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
-    }
-    pub fn get_RemoteAdminSettings(self: *const INetFwProfile, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RemoteAdminSettings(self, remoteAdminSettings);
-    }
-    pub fn get_IcmpSettings(self: *const INetFwProfile, icmpSettings: ?*?*INetFwIcmpSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IcmpSettings(self, icmpSettings);
-    }
-    pub fn get_GloballyOpenPorts(self: *const INetFwProfile, openPorts: ?*?*INetFwOpenPorts) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GloballyOpenPorts(self, openPorts);
-    }
-    pub fn get_Services(self: *const INetFwProfile, services: ?*?*INetFwServices) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Services(self, services);
-    }
-    pub fn get_AuthorizedApplications(self: *const INetFwProfile, apps: ?*?*INetFwAuthorizedApplications) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AuthorizedApplications(self, apps);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwPolicy_Value = Guid.initString("d46d2478-9ac9-4008-9dc7-5563ce5536cc");
-pub const IID_INetFwPolicy = &IID_INetFwPolicy_Value;
-pub const INetFwPolicy = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProfile: *const fn(
-            self: *const INetFwPolicy,
-            profile: ?*?*INetFwProfile,
-        ) callconv(.winapi) HRESULT,
-        GetProfileByType: *const fn(
-            self: *const INetFwPolicy,
-            profileType: NET_FW_PROFILE_TYPE,
-            profile: ?*?*INetFwProfile,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_CurrentProfile(self: *const INetFwPolicy, profile: ?*?*INetFwProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentProfile(self, profile);
-    }
-    pub fn GetProfileByType(self: *const INetFwPolicy, profileType: NET_FW_PROFILE_TYPE, profile: ?*?*INetFwProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProfileByType(self, profileType, profile);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwPolicy2_Value = Guid.initString("98325047-c671-4174-8d81-defcd3f03186");
-pub const IID_INetFwPolicy2 = &IID_INetFwPolicy2_Value;
-pub const INetFwPolicy2 = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProfileTypes: *const fn(
-            self: *const INetFwPolicy2,
-            profileTypesBitmask: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_FirewallEnabled: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            enabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        put_FirewallEnabled: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            enabled: i16,
-        ) callconv(.winapi) HRESULT,
-        get_ExcludedInterfaces: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            interfaces: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        put_ExcludedInterfaces: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            interfaces: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        get_BlockAllInboundTraffic: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            Block: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        put_BlockAllInboundTraffic: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            Block: i16,
-        ) callconv(.winapi) HRESULT,
-        get_NotificationsDisabled: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            disabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        put_NotificationsDisabled: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            disabled: i16,
-        ) callconv(.winapi) HRESULT,
-        get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            disabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            disabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Rules: *const fn(
-            self: *const INetFwPolicy2,
-            rules: ?*?*INetFwRules,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceRestriction: *const fn(
-            self: *const INetFwPolicy2,
-            ServiceRestriction: ?*?*INetFwServiceRestriction,
-        ) callconv(.winapi) HRESULT,
-        EnableRuleGroup: *const fn(
-            self: *const INetFwPolicy2,
-            profileTypesBitmask: i32,
-            group: ?BSTR,
-            enable: i16,
-        ) callconv(.winapi) HRESULT,
-        IsRuleGroupEnabled: *const fn(
-            self: *const INetFwPolicy2,
-            profileTypesBitmask: i32,
-            group: ?BSTR,
-            enabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        RestoreLocalFirewallDefaults: *const fn(
-            self: *const INetFwPolicy2,
-        ) callconv(.winapi) HRESULT,
-        get_DefaultInboundAction: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            action: ?*NET_FW_ACTION,
-        ) callconv(.winapi) HRESULT,
-        put_DefaultInboundAction: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            action: NET_FW_ACTION,
-        ) callconv(.winapi) HRESULT,
-        get_DefaultOutboundAction: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            action: ?*NET_FW_ACTION,
-        ) callconv(.winapi) HRESULT,
-        put_DefaultOutboundAction: *const fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            action: NET_FW_ACTION,
-        ) callconv(.winapi) HRESULT,
-        get_IsRuleGroupCurrentlyEnabled: *const fn(
-            self: *const INetFwPolicy2,
-            group: ?BSTR,
-            enabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPolicyModifyState: *const fn(
-            self: *const INetFwPolicy2,
-            modifyState: ?*NET_FW_MODIFY_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_CurrentProfileTypes(self: *const INetFwPolicy2, profileTypesBitmask: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentProfileTypes(self, profileTypesBitmask);
-    }
-    pub fn get_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FirewallEnabled(self, profileType, enabled);
-    }
-    pub fn put_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FirewallEnabled(self, profileType, enabled);
-    }
-    pub fn get_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExcludedInterfaces(self, profileType, interfaces);
-    }
-    pub fn put_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExcludedInterfaces(self, profileType, interfaces);
-    }
-    pub fn get_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BlockAllInboundTraffic(self, profileType, Block);
-    }
-    pub fn put_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BlockAllInboundTraffic(self, profileType, Block);
-    }
-    pub fn get_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NotificationsDisabled(self, profileType, disabled);
-    }
-    pub fn put_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NotificationsDisabled(self, profileType, disabled);
-    }
-    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
-    }
-    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
-    }
-    pub fn get_Rules(self: *const INetFwPolicy2, rules: ?*?*INetFwRules) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Rules(self, rules);
-    }
-    pub fn get_ServiceRestriction(self: *const INetFwPolicy2, ServiceRestriction: ?*?*INetFwServiceRestriction) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServiceRestriction(self, ServiceRestriction);
-    }
-    pub fn EnableRuleGroup(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enable: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableRuleGroup(self, profileTypesBitmask, group, enable);
-    }
-    pub fn IsRuleGroupEnabled(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsRuleGroupEnabled(self, profileTypesBitmask, group, enabled);
-    }
-    pub fn RestoreLocalFirewallDefaults(self: *const INetFwPolicy2) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreLocalFirewallDefaults(self);
-    }
-    pub fn get_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultInboundAction(self, profileType, action);
-    }
-    pub fn put_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DefaultInboundAction(self, profileType, action);
-    }
-    pub fn get_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultOutboundAction(self, profileType, action);
-    }
-    pub fn put_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DefaultOutboundAction(self, profileType, action);
-    }
-    pub fn get_IsRuleGroupCurrentlyEnabled(self: *const INetFwPolicy2, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsRuleGroupCurrentlyEnabled(self, group, enabled);
-    }
-    pub fn get_LocalPolicyModifyState(self: *const INetFwPolicy2, modifyState: ?*NET_FW_MODIFY_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalPolicyModifyState(self, modifyState);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetFwMgr_Value = Guid.initString("f7898af5-cac4-4632-a2ec-da06e5111af2");
-pub const IID_INetFwMgr = &IID_INetFwMgr_Value;
-pub const INetFwMgr = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPolicy: *const fn(
-            self: *const INetFwMgr,
-            localPolicy: ?*?*INetFwPolicy,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProfileType: *const fn(
-            self: *const INetFwMgr,
-            profileType: ?*NET_FW_PROFILE_TYPE,
-        ) callconv(.winapi) HRESULT,
-        RestoreDefaults: *const fn(
-            self: *const INetFwMgr,
-        ) callconv(.winapi) HRESULT,
-        IsPortAllowed: *const fn(
-            self: *const INetFwMgr,
-            imageFileName: ?BSTR,
-            ipVersion: NET_FW_IP_VERSION,
-            portNumber: i32,
-            localAddress: ?BSTR,
-            ipProtocol: NET_FW_IP_PROTOCOL,
-            allowed: ?*VARIANT,
-            restricted: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        IsIcmpTypeAllowed: *const fn(
-            self: *const INetFwMgr,
-            ipVersion: NET_FW_IP_VERSION,
-            localAddress: ?BSTR,
-            type: u8,
-            allowed: ?*VARIANT,
-            restricted: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_LocalPolicy(self: *const INetFwMgr, localPolicy: ?*?*INetFwPolicy) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalPolicy(self, localPolicy);
-    }
-    pub fn get_CurrentProfileType(self: *const INetFwMgr, profileType: ?*NET_FW_PROFILE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentProfileType(self, profileType);
-    }
-    pub fn RestoreDefaults(self: *const INetFwMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreDefaults(self);
-    }
-    pub fn IsPortAllowed(self: *const INetFwMgr, imageFileName: ?BSTR, ipVersion: NET_FW_IP_VERSION, portNumber: i32, localAddress: ?BSTR, ipProtocol: NET_FW_IP_PROTOCOL, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.IsPortAllowed(self, imageFileName, ipVersion, portNumber, localAddress, ipProtocol, allowed, restricted);
-    }
-    pub fn IsIcmpTypeAllowed(self: *const INetFwMgr, ipVersion: NET_FW_IP_VERSION, localAddress: ?BSTR, @"type": u8, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.IsIcmpTypeAllowed(self, ipVersion, localAddress, @"type", allowed, restricted);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_INetFwProduct_Value = Guid.initString("71881699-18f4-458b-b892-3ffce5e07f75");
-pub const IID_INetFwProduct = &IID_INetFwProduct_Value;
-pub const INetFwProduct = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RuleCategories: *const fn(
-            self: *const INetFwProduct,
-            ruleCategories: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RuleCategories: *const fn(
-            self: *const INetFwProduct,
-            ruleCategories: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: *const fn(
-            self: *const INetFwProduct,
-            displayName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayName: *const fn(
-            self: *const INetFwProduct,
-            displayName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathToSignedProductExe: *const fn(
-            self: *const INetFwProduct,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_RuleCategories(self: *const INetFwProduct, ruleCategories: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RuleCategories(self, ruleCategories);
-    }
-    pub fn put_RuleCategories(self: *const INetFwProduct, ruleCategories: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RuleCategories(self, ruleCategories);
-    }
-    pub fn get_DisplayName(self: *const INetFwProduct, displayName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayName(self, displayName);
-    }
-    pub fn put_DisplayName(self: *const INetFwProduct, displayName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisplayName(self, displayName);
-    }
-    pub fn get_PathToSignedProductExe(self: *const INetFwProduct, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PathToSignedProductExe(self, path);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_INetFwProducts_Value = Guid.initString("39eb36e0-2097-40bd-8af2-63a13b525362");
-pub const IID_INetFwProducts = &IID_INetFwProducts_Value;
-pub const INetFwProducts = extern union {
+const IID_INetFwServices_Value = Guid.initString("79649bb4-903e-421b-94c9-79848e79f6ee");
+pub const IID_INetFwServices = &IID_INetFwServices_Value;
+pub const INetFwServices = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const INetFwProducts,
+            self: *const INetFwServices,
             count: ?*i32,
         ) callconv(.winapi) HRESULT,
-        Register: *const fn(
-            self: *const INetFwProducts,
-            product: ?*INetFwProduct,
-            registration: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
         Item: *const fn(
-            self: *const INetFwProducts,
-            index: i32,
-            product: ?*?*INetFwProduct,
+            self: *const INetFwServices,
+            svcType: NET_FW_SERVICE_TYPE,
+            service: ?*?*INetFwService,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const INetFwProducts,
+            self: *const INetFwServices,
             newEnum: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwProducts, count: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const INetFwServices, count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn Register(self: *const INetFwProducts, product: ?*INetFwProduct, registration: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Register(self, product, registration);
+    pub fn Item(self: *const INetFwServices, svcType: NET_FW_SERVICE_TYPE, service: ?*?*INetFwService) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, svcType, service);
     }
-    pub fn Item(self: *const INetFwProducts, index: i32, product: ?*?*INetFwProduct) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, index, product);
-    }
-    pub fn get__NewEnum(self: *const INetFwProducts, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const INetFwServices, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, newEnum);
     }
 };
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingConfiguration_Value = Guid.initString("c08956b6-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_INetSharingConfiguration = &IID_INetSharingConfiguration_Value;
+pub const INetSharingConfiguration = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SharingEnabled: *const fn(
+            self: *const INetSharingConfiguration,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SharingConnectionType: *const fn(
+            self: *const INetSharingConfiguration,
+            pType: ?*SHARINGCONNECTIONTYPE,
+        ) callconv(.winapi) HRESULT,
+        DisableSharing: *const fn(
+            self: *const INetSharingConfiguration,
+        ) callconv(.winapi) HRESULT,
+        EnableSharing: *const fn(
+            self: *const INetSharingConfiguration,
+            Type: SHARINGCONNECTIONTYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InternetFirewallEnabled: *const fn(
+            self: *const INetSharingConfiguration,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        DisableInternetFirewall: *const fn(
+            self: *const INetSharingConfiguration,
+        ) callconv(.winapi) HRESULT,
+        EnableInternetFirewall: *const fn(
+            self: *const INetSharingConfiguration,
+        ) callconv(.winapi) HRESULT,
+        get_EnumPortMappings: *const fn(
+            self: *const INetSharingConfiguration,
+            Flags: SHARINGCONNECTION_ENUM_FLAGS,
+            ppColl: ?*?*INetSharingPortMappingCollection,
+        ) callconv(.winapi) HRESULT,
+        AddPortMapping: *const fn(
+            self: *const INetSharingConfiguration,
+            bstrName: ?BSTR,
+            ucIPProtocol: u8,
+            usExternalPort: u16,
+            usInternalPort: u16,
+            dwOptions: u32,
+            bstrTargetNameOrIPAddress: ?BSTR,
+            eTargetType: ICS_TARGETTYPE,
+            ppMapping: ?*?*INetSharingPortMapping,
+        ) callconv(.winapi) HRESULT,
+        RemovePortMapping: *const fn(
+            self: *const INetSharingConfiguration,
+            pMapping: ?*INetSharingPortMapping,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_SharingEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SharingEnabled(self, pbEnabled);
+    }
+    pub fn get_SharingConnectionType(self: *const INetSharingConfiguration, pType: ?*SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SharingConnectionType(self, pType);
+    }
+    pub fn DisableSharing(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
+        return self.vtable.DisableSharing(self);
+    }
+    pub fn EnableSharing(self: *const INetSharingConfiguration, Type: SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableSharing(self, Type);
+    }
+    pub fn get_InternetFirewallEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InternetFirewallEnabled(self, pbEnabled);
+    }
+    pub fn DisableInternetFirewall(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
+        return self.vtable.DisableInternetFirewall(self);
+    }
+    pub fn EnableInternetFirewall(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableInternetFirewall(self);
+    }
+    pub fn get_EnumPortMappings(self: *const INetSharingConfiguration, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPortMappingCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnumPortMappings(self, Flags, ppColl);
+    }
+    pub fn AddPortMapping(self: *const INetSharingConfiguration, bstrName: ?BSTR, ucIPProtocol: u8, usExternalPort: u16, usInternalPort: u16, dwOptions: u32, bstrTargetNameOrIPAddress: ?BSTR, eTargetType: ICS_TARGETTYPE, ppMapping: ?*?*INetSharingPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPortMapping(self, bstrName, ucIPProtocol, usExternalPort, usInternalPort, dwOptions, bstrTargetNameOrIPAddress, eTargetType, ppMapping);
+    }
+    pub fn RemovePortMapping(self: *const INetSharingConfiguration, pMapping: ?*INetSharingPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.RemovePortMapping(self, pMapping);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingEveryConnectionCollection_Value = Guid.initString("33c4643c-7811-46fa-a89a-768597bd7223");
+pub const IID_INetSharingEveryConnectionCollection = &IID_INetSharingEveryConnectionCollection_Value;
+pub const INetSharingEveryConnectionCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const INetSharingEveryConnectionCollection,
+            pVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const INetSharingEveryConnectionCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const INetSharingEveryConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
+    }
+    pub fn get_Count(self: *const INetSharingEveryConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingManager_Value = Guid.initString("c08956b7-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_INetSharingManager = &IID_INetSharingManager_Value;
+pub const INetSharingManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SharingInstalled: *const fn(
+            self: *const INetSharingManager,
+            pbInstalled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        get_EnumPublicConnections: *const fn(
+            self: *const INetSharingManager,
+            Flags: SHARINGCONNECTION_ENUM_FLAGS,
+            ppColl: ?*?*INetSharingPublicConnectionCollection,
+        ) callconv(.winapi) HRESULT,
+        get_EnumPrivateConnections: *const fn(
+            self: *const INetSharingManager,
+            Flags: SHARINGCONNECTION_ENUM_FLAGS,
+            ppColl: ?*?*INetSharingPrivateConnectionCollection,
+        ) callconv(.winapi) HRESULT,
+        get_INetSharingConfigurationForINetConnection: *const fn(
+            self: *const INetSharingManager,
+            pNetConnection: ?*INetConnection,
+            ppNetSharingConfiguration: ?*?*INetSharingConfiguration,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EnumEveryConnection: *const fn(
+            self: *const INetSharingManager,
+            ppColl: ?*?*INetSharingEveryConnectionCollection,
+        ) callconv(.winapi) HRESULT,
+        get_NetConnectionProps: *const fn(
+            self: *const INetSharingManager,
+            pNetConnection: ?*INetConnection,
+            ppProps: ?*?*INetConnectionProps,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_SharingInstalled(self: *const INetSharingManager, pbInstalled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SharingInstalled(self, pbInstalled);
+    }
+    pub fn get_EnumPublicConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnumPublicConnections(self, Flags, ppColl);
+    }
+    pub fn get_EnumPrivateConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPrivateConnectionCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnumPrivateConnections(self, Flags, ppColl);
+    }
+    pub fn get_INetSharingConfigurationForINetConnection(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppNetSharingConfiguration: ?*?*INetSharingConfiguration) callconv(.@"inline") HRESULT {
+        return self.vtable.get_INetSharingConfigurationForINetConnection(self, pNetConnection, ppNetSharingConfiguration);
+    }
+    pub fn get_EnumEveryConnection(self: *const INetSharingManager, ppColl: ?*?*INetSharingEveryConnectionCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnumEveryConnection(self, ppColl);
+    }
+    pub fn get_NetConnectionProps(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppProps: ?*?*INetConnectionProps) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NetConnectionProps(self, pNetConnection, ppProps);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingPortMapping_Value = Guid.initString("c08956b1-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_INetSharingPortMapping = &IID_INetSharingPortMapping_Value;
+pub const INetSharingPortMapping = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Disable: *const fn(
+            self: *const INetSharingPortMapping,
+        ) callconv(.winapi) HRESULT,
+        Enable: *const fn(
+            self: *const INetSharingPortMapping,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Properties: *const fn(
+            self: *const INetSharingPortMapping,
+            ppNSPMP: ?*?*INetSharingPortMappingProps,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const INetSharingPortMapping,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Disable(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.Disable(self);
+    }
+    pub fn Enable(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.Enable(self);
+    }
+    pub fn get_Properties(self: *const INetSharingPortMapping, ppNSPMP: ?*?*INetSharingPortMappingProps) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Properties(self, ppNSPMP);
+    }
+    pub fn Delete(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingPortMappingCollection_Value = Guid.initString("02e4a2de-da20-4e34-89c8-ac22275a010b");
+pub const IID_INetSharingPortMappingCollection = &IID_INetSharingPortMappingCollection_Value;
+pub const INetSharingPortMappingCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const INetSharingPortMappingCollection,
+            pVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const INetSharingPortMappingCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const INetSharingPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
+    }
+    pub fn get_Count(self: *const INetSharingPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingPortMappingProps_Value = Guid.initString("24b7e9b5-e38f-4685-851b-00892cf5f940");
+pub const IID_INetSharingPortMappingProps = &IID_INetSharingPortMappingProps_Value;
+pub const INetSharingPortMappingProps = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IPProtocol: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pucIPProt: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExternalPort: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pusPort: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InternalPort: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pusPort: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Options: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pdwOptions: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TargetName: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pbstrTargetName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TargetIPAddress: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pbstrTargetIPAddress: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const INetSharingPortMappingProps,
+            pbool: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const INetSharingPortMappingProps, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn get_IPProtocol(self: *const INetSharingPortMappingProps, pucIPProt: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IPProtocol(self, pucIPProt);
+    }
+    pub fn get_ExternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExternalPort(self, pusPort);
+    }
+    pub fn get_InternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InternalPort(self, pusPort);
+    }
+    pub fn get_Options(self: *const INetSharingPortMappingProps, pdwOptions: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Options(self, pdwOptions);
+    }
+    pub fn get_TargetName(self: *const INetSharingPortMappingProps, pbstrTargetName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TargetName(self, pbstrTargetName);
+    }
+    pub fn get_TargetIPAddress(self: *const INetSharingPortMappingProps, pbstrTargetIPAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TargetIPAddress(self, pbstrTargetIPAddress);
+    }
+    pub fn get_Enabled(self: *const INetSharingPortMappingProps, pbool: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, pbool);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingPrivateConnectionCollection_Value = Guid.initString("38ae69e0-4409-402a-a2cb-e965c727f840");
+pub const IID_INetSharingPrivateConnectionCollection = &IID_INetSharingPrivateConnectionCollection_Value;
+pub const INetSharingPrivateConnectionCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const INetSharingPrivateConnectionCollection,
+            pVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const INetSharingPrivateConnectionCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const INetSharingPrivateConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
+    }
+    pub fn get_Count(self: *const INetSharingPrivateConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INetSharingPublicConnectionCollection_Value = Guid.initString("7d7a6355-f372-4971-a149-bfc927be762a");
+pub const IID_INetSharingPublicConnectionCollection = &IID_INetSharingPublicConnectionCollection_Value;
+pub const INetSharingPublicConnectionCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const INetSharingPublicConnectionCollection,
+            pVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const INetSharingPublicConnectionCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const INetSharingPublicConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
+    }
+    pub fn get_Count(self: *const INetSharingPublicConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IStaticPortMapping_Value = Guid.initString("6f10711f-729b-41e5-93b8-f21d0f818df1");
+pub const IID_IStaticPortMapping = &IID_IStaticPortMapping_Value;
+pub const IStaticPortMapping = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExternalIPAddress: *const fn(
+            self: *const IStaticPortMapping,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExternalPort: *const fn(
+            self: *const IStaticPortMapping,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InternalPort: *const fn(
+            self: *const IStaticPortMapping,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Protocol: *const fn(
+            self: *const IStaticPortMapping,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InternalClient: *const fn(
+            self: *const IStaticPortMapping,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const IStaticPortMapping,
+            pVal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IStaticPortMapping,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        EditInternalClient: *const fn(
+            self: *const IStaticPortMapping,
+            bstrInternalClient: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Enable: *const fn(
+            self: *const IStaticPortMapping,
+            vb: i16,
+        ) callconv(.winapi) HRESULT,
+        EditDescription: *const fn(
+            self: *const IStaticPortMapping,
+            bstrDescription: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        EditInternalPort: *const fn(
+            self: *const IStaticPortMapping,
+            lInternalPort: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ExternalIPAddress(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExternalIPAddress(self, pVal);
+    }
+    pub fn get_ExternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExternalPort(self, pVal);
+    }
+    pub fn get_InternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InternalPort(self, pVal);
+    }
+    pub fn get_Protocol(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Protocol(self, pVal);
+    }
+    pub fn get_InternalClient(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InternalClient(self, pVal);
+    }
+    pub fn get_Enabled(self: *const IStaticPortMapping, pVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, pVal);
+    }
+    pub fn get_Description(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pVal);
+    }
+    pub fn EditInternalClient(self: *const IStaticPortMapping, bstrInternalClient: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.EditInternalClient(self, bstrInternalClient);
+    }
+    pub fn Enable(self: *const IStaticPortMapping, vb: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.Enable(self, vb);
+    }
+    pub fn EditDescription(self: *const IStaticPortMapping, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.EditDescription(self, bstrDescription);
+    }
+    pub fn EditInternalPort(self: *const IStaticPortMapping, lInternalPort: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.EditInternalPort(self, lInternalPort);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IStaticPortMappingCollection_Value = Guid.initString("cd1f3e77-66d6-4664-82c7-36dbb641d0f1");
+pub const IID_IStaticPortMappingCollection = &IID_IStaticPortMappingCollection_Value;
+pub const IStaticPortMappingCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IStaticPortMappingCollection,
+            pVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IStaticPortMappingCollection,
+            lExternalPort: i32,
+            bstrProtocol: ?BSTR,
+            ppSPM: ?*?*IStaticPortMapping,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IStaticPortMappingCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IStaticPortMappingCollection,
+            lExternalPort: i32,
+            bstrProtocol: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IStaticPortMappingCollection,
+            lExternalPort: i32,
+            bstrProtocol: ?BSTR,
+            lInternalPort: i32,
+            bstrInternalClient: ?BSTR,
+            bEnabled: i16,
+            bstrDescription: ?BSTR,
+            ppSPM: ?*?*IStaticPortMapping,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IStaticPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
+    }
+    pub fn get_Item(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lExternalPort, bstrProtocol, ppSPM);
+    }
+    pub fn get_Count(self: *const IStaticPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+    pub fn Remove(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, lExternalPort, bstrProtocol);
+    }
+    pub fn Add(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUPnPNAT_Value = Guid.initString("b171c812-cc76-485a-94d8-b6b3a2794e99");
+pub const IID_IUPnPNAT = &IID_IUPnPNAT_Value;
+pub const IUPnPNAT = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StaticPortMappingCollection: *const fn(
+            self: *const IUPnPNAT,
+            ppSPMs: ?*?*IStaticPortMappingCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DynamicPortMappingCollection: *const fn(
+            self: *const IUPnPNAT,
+            ppDPMs: ?*?*IDynamicPortMappingCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NATEventManager: *const fn(
+            self: *const IUPnPNAT,
+            ppNEM: ?*?*INATEventManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_StaticPortMappingCollection(self: *const IUPnPNAT, ppSPMs: ?*?*IStaticPortMappingCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StaticPortMappingCollection(self, ppSPMs);
+    }
+    pub fn get_DynamicPortMappingCollection(self: *const IUPnPNAT, ppDPMs: ?*?*IDynamicPortMappingCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DynamicPortMappingCollection(self, ppDPMs);
+    }
+    pub fn get_NATEventManager(self: *const IUPnPNAT, ppNEM: ?*?*INATEventManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NATEventManager(self, ppNEM);
+    }
+};
+
+pub const NET_FW_ACTION = enum(i32) {
+    BLOCK = 0,
+    ALLOW = 1,
+    MAX = 2,
+};
+pub const NET_FW_ACTION_BLOCK = NET_FW_ACTION.BLOCK;
+pub const NET_FW_ACTION_ALLOW = NET_FW_ACTION.ALLOW;
+pub const NET_FW_ACTION_MAX = NET_FW_ACTION.MAX;
+
+pub const NET_FW_AUTHENTICATE_TYPE = enum(i32) {
+    NONE = 0,
+    NO_ENCAPSULATION = 1,
+    WITH_INTEGRITY = 2,
+    AND_NEGOTIATE_ENCRYPTION = 3,
+    AND_ENCRYPT = 4,
+};
+pub const NET_FW_AUTHENTICATE_NONE = NET_FW_AUTHENTICATE_TYPE.NONE;
+pub const NET_FW_AUTHENTICATE_NO_ENCAPSULATION = NET_FW_AUTHENTICATE_TYPE.NO_ENCAPSULATION;
+pub const NET_FW_AUTHENTICATE_WITH_INTEGRITY = NET_FW_AUTHENTICATE_TYPE.WITH_INTEGRITY;
+pub const NET_FW_AUTHENTICATE_AND_NEGOTIATE_ENCRYPTION = NET_FW_AUTHENTICATE_TYPE.AND_NEGOTIATE_ENCRYPTION;
+pub const NET_FW_AUTHENTICATE_AND_ENCRYPT = NET_FW_AUTHENTICATE_TYPE.AND_ENCRYPT;
+
+pub const NET_FW_EDGE_TRAVERSAL_TYPE = enum(i32) {
+    DENY = 0,
+    ALLOW = 1,
+    DEFER_TO_APP = 2,
+    DEFER_TO_USER = 3,
+};
+pub const NET_FW_EDGE_TRAVERSAL_TYPE_DENY = NET_FW_EDGE_TRAVERSAL_TYPE.DENY;
+pub const NET_FW_EDGE_TRAVERSAL_TYPE_ALLOW = NET_FW_EDGE_TRAVERSAL_TYPE.ALLOW;
+pub const NET_FW_EDGE_TRAVERSAL_TYPE_DEFER_TO_APP = NET_FW_EDGE_TRAVERSAL_TYPE.DEFER_TO_APP;
+pub const NET_FW_EDGE_TRAVERSAL_TYPE_DEFER_TO_USER = NET_FW_EDGE_TRAVERSAL_TYPE.DEFER_TO_USER;
+
+pub const NET_FW_IP_PROTOCOL = enum(i32) {
+    TCP = 6,
+    UDP = 17,
+    ANY = 256,
+};
+pub const NET_FW_IP_PROTOCOL_TCP = NET_FW_IP_PROTOCOL.TCP;
+pub const NET_FW_IP_PROTOCOL_UDP = NET_FW_IP_PROTOCOL.UDP;
+pub const NET_FW_IP_PROTOCOL_ANY = NET_FW_IP_PROTOCOL.ANY;
+
+pub const NET_FW_IP_VERSION = enum(i32) {
+    V4 = 0,
+    V6 = 1,
+    ANY = 2,
+    MAX = 3,
+};
+pub const NET_FW_IP_VERSION_V4 = NET_FW_IP_VERSION.V4;
+pub const NET_FW_IP_VERSION_V6 = NET_FW_IP_VERSION.V6;
+pub const NET_FW_IP_VERSION_ANY = NET_FW_IP_VERSION.ANY;
+pub const NET_FW_IP_VERSION_MAX = NET_FW_IP_VERSION.MAX;
+
+pub const NET_FW_MODIFY_STATE = enum(i32) {
+    OK = 0,
+    GP_OVERRIDE = 1,
+    INBOUND_BLOCKED = 2,
+};
+pub const NET_FW_MODIFY_STATE_OK = NET_FW_MODIFY_STATE.OK;
+pub const NET_FW_MODIFY_STATE_GP_OVERRIDE = NET_FW_MODIFY_STATE.GP_OVERRIDE;
+pub const NET_FW_MODIFY_STATE_INBOUND_BLOCKED = NET_FW_MODIFY_STATE.INBOUND_BLOCKED;
+
+pub const NET_FW_POLICY_TYPE = enum(i32) {
+    GROUP = 0,
+    LOCAL = 1,
+    EFFECTIVE = 2,
+    TYPE_MAX = 3,
+};
+pub const NET_FW_POLICY_GROUP = NET_FW_POLICY_TYPE.GROUP;
+pub const NET_FW_POLICY_LOCAL = NET_FW_POLICY_TYPE.LOCAL;
+pub const NET_FW_POLICY_EFFECTIVE = NET_FW_POLICY_TYPE.EFFECTIVE;
+pub const NET_FW_POLICY_TYPE_MAX = NET_FW_POLICY_TYPE.TYPE_MAX;
+
+pub const NET_FW_PROFILE_TYPE = enum(i32) {
+    DOMAIN = 0,
+    STANDARD = 1,
+    CURRENT = 2,
+    TYPE_MAX = 3,
+};
+pub const NET_FW_PROFILE_DOMAIN = NET_FW_PROFILE_TYPE.DOMAIN;
+pub const NET_FW_PROFILE_STANDARD = NET_FW_PROFILE_TYPE.STANDARD;
+pub const NET_FW_PROFILE_CURRENT = NET_FW_PROFILE_TYPE.CURRENT;
+pub const NET_FW_PROFILE_TYPE_MAX = NET_FW_PROFILE_TYPE.TYPE_MAX;
+
+pub const NET_FW_PROFILE_TYPE2 = enum(i32) {
+    DOMAIN = 1,
+    PRIVATE = 2,
+    PUBLIC = 4,
+    ALL = 2147483647,
+};
+pub const NET_FW_PROFILE2_DOMAIN = NET_FW_PROFILE_TYPE2.DOMAIN;
+pub const NET_FW_PROFILE2_PRIVATE = NET_FW_PROFILE_TYPE2.PRIVATE;
+pub const NET_FW_PROFILE2_PUBLIC = NET_FW_PROFILE_TYPE2.PUBLIC;
+pub const NET_FW_PROFILE2_ALL = NET_FW_PROFILE_TYPE2.ALL;
+
+pub const NET_FW_RULE_CATEGORY = enum(i32) {
+    BOOT = 0,
+    STEALTH = 1,
+    FIREWALL = 2,
+    CONSEC = 3,
+    MAX = 4,
+};
+pub const NET_FW_RULE_CATEGORY_BOOT = NET_FW_RULE_CATEGORY.BOOT;
+pub const NET_FW_RULE_CATEGORY_STEALTH = NET_FW_RULE_CATEGORY.STEALTH;
+pub const NET_FW_RULE_CATEGORY_FIREWALL = NET_FW_RULE_CATEGORY.FIREWALL;
+pub const NET_FW_RULE_CATEGORY_CONSEC = NET_FW_RULE_CATEGORY.CONSEC;
+pub const NET_FW_RULE_CATEGORY_MAX = NET_FW_RULE_CATEGORY.MAX;
+
+pub const NET_FW_RULE_DIRECTION = enum(i32) {
+    IN = 1,
+    OUT = 2,
+    MAX = 3,
+};
+pub const NET_FW_RULE_DIR_IN = NET_FW_RULE_DIRECTION.IN;
+pub const NET_FW_RULE_DIR_OUT = NET_FW_RULE_DIRECTION.OUT;
+pub const NET_FW_RULE_DIR_MAX = NET_FW_RULE_DIRECTION.MAX;
+
+pub const NET_FW_SCOPE = enum(i32) {
+    ALL = 0,
+    LOCAL_SUBNET = 1,
+    CUSTOM = 2,
+    MAX = 3,
+};
+pub const NET_FW_SCOPE_ALL = NET_FW_SCOPE.ALL;
+pub const NET_FW_SCOPE_LOCAL_SUBNET = NET_FW_SCOPE.LOCAL_SUBNET;
+pub const NET_FW_SCOPE_CUSTOM = NET_FW_SCOPE.CUSTOM;
+pub const NET_FW_SCOPE_MAX = NET_FW_SCOPE.MAX;
+
+pub const NET_FW_SERVICE_TYPE = enum(i32) {
+    FILE_AND_PRINT = 0,
+    UPNP = 1,
+    REMOTE_DESKTOP = 2,
+    NONE = 3,
+    TYPE_MAX = 4,
+};
+pub const NET_FW_SERVICE_FILE_AND_PRINT = NET_FW_SERVICE_TYPE.FILE_AND_PRINT;
+pub const NET_FW_SERVICE_UPNP = NET_FW_SERVICE_TYPE.UPNP;
+pub const NET_FW_SERVICE_REMOTE_DESKTOP = NET_FW_SERVICE_TYPE.REMOTE_DESKTOP;
+pub const NET_FW_SERVICE_NONE = NET_FW_SERVICE_TYPE.NONE;
+pub const NET_FW_SERVICE_TYPE_MAX = NET_FW_SERVICE_TYPE.TYPE_MAX;
+
+pub const NETCON_CHARACTERISTIC_FLAGS = enum(i32) {
+    NONE = 0,
+    ALL_USERS = 1,
+    ALLOW_DUPLICATION = 2,
+    ALLOW_REMOVAL = 4,
+    ALLOW_RENAME = 8,
+    INCOMING_ONLY = 32,
+    OUTGOING_ONLY = 64,
+    BRANDED = 128,
+    SHARED = 256,
+    BRIDGED = 512,
+    FIREWALLED = 1024,
+    DEFAULT = 2048,
+    HOMENET_CAPABLE = 4096,
+    SHARED_PRIVATE = 8192,
+    QUARANTINED = 16384,
+    RESERVED = 32768,
+    HOSTED_NETWORK = 65536,
+    VIRTUAL_STATION = 131072,
+    WIFI_DIRECT = 262144,
+    BLUETOOTH_MASK = 983040,
+    LAN_MASK = 15728640,
+};
+pub const NCCF_NONE = NETCON_CHARACTERISTIC_FLAGS.NONE;
+pub const NCCF_ALL_USERS = NETCON_CHARACTERISTIC_FLAGS.ALL_USERS;
+pub const NCCF_ALLOW_DUPLICATION = NETCON_CHARACTERISTIC_FLAGS.ALLOW_DUPLICATION;
+pub const NCCF_ALLOW_REMOVAL = NETCON_CHARACTERISTIC_FLAGS.ALLOW_REMOVAL;
+pub const NCCF_ALLOW_RENAME = NETCON_CHARACTERISTIC_FLAGS.ALLOW_RENAME;
+pub const NCCF_INCOMING_ONLY = NETCON_CHARACTERISTIC_FLAGS.INCOMING_ONLY;
+pub const NCCF_OUTGOING_ONLY = NETCON_CHARACTERISTIC_FLAGS.OUTGOING_ONLY;
+pub const NCCF_BRANDED = NETCON_CHARACTERISTIC_FLAGS.BRANDED;
+pub const NCCF_SHARED = NETCON_CHARACTERISTIC_FLAGS.SHARED;
+pub const NCCF_BRIDGED = NETCON_CHARACTERISTIC_FLAGS.BRIDGED;
+pub const NCCF_FIREWALLED = NETCON_CHARACTERISTIC_FLAGS.FIREWALLED;
+pub const NCCF_DEFAULT = NETCON_CHARACTERISTIC_FLAGS.DEFAULT;
+pub const NCCF_HOMENET_CAPABLE = NETCON_CHARACTERISTIC_FLAGS.HOMENET_CAPABLE;
+pub const NCCF_SHARED_PRIVATE = NETCON_CHARACTERISTIC_FLAGS.SHARED_PRIVATE;
+pub const NCCF_QUARANTINED = NETCON_CHARACTERISTIC_FLAGS.QUARANTINED;
+pub const NCCF_RESERVED = NETCON_CHARACTERISTIC_FLAGS.RESERVED;
+pub const NCCF_HOSTED_NETWORK = NETCON_CHARACTERISTIC_FLAGS.HOSTED_NETWORK;
+pub const NCCF_VIRTUAL_STATION = NETCON_CHARACTERISTIC_FLAGS.VIRTUAL_STATION;
+pub const NCCF_WIFI_DIRECT = NETCON_CHARACTERISTIC_FLAGS.WIFI_DIRECT;
+pub const NCCF_BLUETOOTH_MASK = NETCON_CHARACTERISTIC_FLAGS.BLUETOOTH_MASK;
+pub const NCCF_LAN_MASK = NETCON_CHARACTERISTIC_FLAGS.LAN_MASK;
+
+pub const NETCON_MEDIATYPE = enum(i32) {
+    NONE = 0,
+    DIRECT = 1,
+    ISDN = 2,
+    LAN = 3,
+    PHONE = 4,
+    TUNNEL = 5,
+    PPPOE = 6,
+    BRIDGE = 7,
+    SHAREDACCESSHOST_LAN = 8,
+    SHAREDACCESSHOST_RAS = 9,
+};
+pub const NCM_NONE = NETCON_MEDIATYPE.NONE;
+pub const NCM_DIRECT = NETCON_MEDIATYPE.DIRECT;
+pub const NCM_ISDN = NETCON_MEDIATYPE.ISDN;
+pub const NCM_LAN = NETCON_MEDIATYPE.LAN;
+pub const NCM_PHONE = NETCON_MEDIATYPE.PHONE;
+pub const NCM_TUNNEL = NETCON_MEDIATYPE.TUNNEL;
+pub const NCM_PPPOE = NETCON_MEDIATYPE.PPPOE;
+pub const NCM_BRIDGE = NETCON_MEDIATYPE.BRIDGE;
+pub const NCM_SHAREDACCESSHOST_LAN = NETCON_MEDIATYPE.SHAREDACCESSHOST_LAN;
+pub const NCM_SHAREDACCESSHOST_RAS = NETCON_MEDIATYPE.SHAREDACCESSHOST_RAS;
+
+pub const NETCON_PROPERTIES = extern struct {
+    guidId: Guid,
+    pszwName: ?PWSTR,
+    pszwDeviceName: ?PWSTR,
+    Status: NETCON_STATUS,
+    MediaType: NETCON_MEDIATYPE,
+    dwCharacter: u32,
+    clsidThisObject: Guid,
+    clsidUiObject: Guid,
+};
+
+pub const NETCON_STATUS = enum(i32) {
+    DISCONNECTED = 0,
+    CONNECTING = 1,
+    CONNECTED = 2,
+    DISCONNECTING = 3,
+    HARDWARE_NOT_PRESENT = 4,
+    HARDWARE_DISABLED = 5,
+    HARDWARE_MALFUNCTION = 6,
+    MEDIA_DISCONNECTED = 7,
+    AUTHENTICATING = 8,
+    AUTHENTICATION_SUCCEEDED = 9,
+    AUTHENTICATION_FAILED = 10,
+    INVALID_ADDRESS = 11,
+    CREDENTIALS_REQUIRED = 12,
+    ACTION_REQUIRED = 13,
+    ACTION_REQUIRED_RETRY = 14,
+    CONNECT_FAILED = 15,
+};
+pub const NCS_DISCONNECTED = NETCON_STATUS.DISCONNECTED;
+pub const NCS_CONNECTING = NETCON_STATUS.CONNECTING;
+pub const NCS_CONNECTED = NETCON_STATUS.CONNECTED;
+pub const NCS_DISCONNECTING = NETCON_STATUS.DISCONNECTING;
+pub const NCS_HARDWARE_NOT_PRESENT = NETCON_STATUS.HARDWARE_NOT_PRESENT;
+pub const NCS_HARDWARE_DISABLED = NETCON_STATUS.HARDWARE_DISABLED;
+pub const NCS_HARDWARE_MALFUNCTION = NETCON_STATUS.HARDWARE_MALFUNCTION;
+pub const NCS_MEDIA_DISCONNECTED = NETCON_STATUS.MEDIA_DISCONNECTED;
+pub const NCS_AUTHENTICATING = NETCON_STATUS.AUTHENTICATING;
+pub const NCS_AUTHENTICATION_SUCCEEDED = NETCON_STATUS.AUTHENTICATION_SUCCEEDED;
+pub const NCS_AUTHENTICATION_FAILED = NETCON_STATUS.AUTHENTICATION_FAILED;
+pub const NCS_INVALID_ADDRESS = NETCON_STATUS.INVALID_ADDRESS;
+pub const NCS_CREDENTIALS_REQUIRED = NETCON_STATUS.CREDENTIALS_REQUIRED;
+pub const NCS_ACTION_REQUIRED = NETCON_STATUS.ACTION_REQUIRED;
+pub const NCS_ACTION_REQUIRED_RETRY = NETCON_STATUS.ACTION_REQUIRED_RETRY;
+pub const NCS_CONNECT_FAILED = NETCON_STATUS.CONNECT_FAILED;
+
+pub const NETCON_TYPE = enum(i32) {
+    DIRECT_CONNECT = 0,
+    INBOUND = 1,
+    INTERNET = 2,
+    LAN = 3,
+    PHONE = 4,
+    TUNNEL = 5,
+    BRIDGE = 6,
+};
+pub const NCT_DIRECT_CONNECT = NETCON_TYPE.DIRECT_CONNECT;
+pub const NCT_INBOUND = NETCON_TYPE.INBOUND;
+pub const NCT_INTERNET = NETCON_TYPE.INTERNET;
+pub const NCT_LAN = NETCON_TYPE.LAN;
+pub const NCT_PHONE = NETCON_TYPE.PHONE;
+pub const NCT_TUNNEL = NETCON_TYPE.TUNNEL;
+pub const NCT_BRIDGE = NETCON_TYPE.BRIDGE;
+
+pub const NETCONMGR_ENUM_FLAGS = enum(i32) {
+    DEFAULT = 0,
+    HIDDEN = 1,
+};
+pub const NCME_DEFAULT = NETCONMGR_ENUM_FLAGS.DEFAULT;
+pub const NCME_HIDDEN = NETCONMGR_ENUM_FLAGS.HIDDEN;
+
+pub const NETCONUI_CONNECT_FLAGS = enum(i32) {
+    DEFAULT = 0,
+    NO_UI = 1,
+    ENABLE_DISABLE = 2,
+};
+pub const NCUC_DEFAULT = NETCONUI_CONNECT_FLAGS.DEFAULT;
+pub const NCUC_NO_UI = NETCONUI_CONNECT_FLAGS.NO_UI;
+pub const NCUC_ENABLE_DISABLE = NETCONUI_CONNECT_FLAGS.ENABLE_DISABLE;
+
+const CLSID_NetFwAuthorizedApplication_Value = Guid.initString("ec9846b3-2762-4a6b-a214-6acb603462d2");
+pub const CLSID_NetFwAuthorizedApplication = &CLSID_NetFwAuthorizedApplication_Value;
+
+const CLSID_NetFwMgr_Value = Guid.initString("304ce942-6e39-40d8-943a-b913c40c9cd4");
+pub const CLSID_NetFwMgr = &CLSID_NetFwMgr_Value;
+
+const CLSID_NetFwOpenPort_Value = Guid.initString("0ca545c6-37ad-4a6c-bf92-9f7610067ef5");
+pub const CLSID_NetFwOpenPort = &CLSID_NetFwOpenPort_Value;
+
+const CLSID_NetFwPolicy2_Value = Guid.initString("e2b3c97f-6ae1-41ac-817a-f6f92166d7dd");
+pub const CLSID_NetFwPolicy2 = &CLSID_NetFwPolicy2_Value;
+
+const CLSID_NetFwProduct_Value = Guid.initString("9d745ed8-c514-4d1d-bf42-751fed2d5ac7");
+pub const CLSID_NetFwProduct = &CLSID_NetFwProduct_Value;
+
+const CLSID_NetFwProducts_Value = Guid.initString("cc19079b-8272-4d73-bb70-cdb533527b61");
+pub const CLSID_NetFwProducts = &CLSID_NetFwProducts_Value;
+
+const CLSID_NetFwRule_Value = Guid.initString("2c5bc43e-3369-4c33-ab0c-be9469677af4");
+pub const CLSID_NetFwRule = &CLSID_NetFwRule_Value;
+
+pub const NETISO_ERROR_TYPE = enum(i32) {
+    NONE = 0,
+    PRIVATE_NETWORK = 1,
+    INTERNET_CLIENT = 2,
+    INTERNET_CLIENT_SERVER = 3,
+    MAX = 4,
+};
+pub const NETISO_ERROR_TYPE_NONE = NETISO_ERROR_TYPE.NONE;
+pub const NETISO_ERROR_TYPE_PRIVATE_NETWORK = NETISO_ERROR_TYPE.PRIVATE_NETWORK;
+pub const NETISO_ERROR_TYPE_INTERNET_CLIENT = NETISO_ERROR_TYPE.INTERNET_CLIENT;
+pub const NETISO_ERROR_TYPE_INTERNET_CLIENT_SERVER = NETISO_ERROR_TYPE.INTERNET_CLIENT_SERVER;
+pub const NETISO_ERROR_TYPE_MAX = NETISO_ERROR_TYPE.MAX;
+
+pub const NETISO_FLAG = enum(i32) {
+    FORCE_COMPUTE_BINARIES = 1,
+    MAX = 2,
+};
+pub const NETISO_FLAG_FORCE_COMPUTE_BINARIES = NETISO_FLAG.FORCE_COMPUTE_BINARIES;
+pub const NETISO_FLAG_MAX = NETISO_FLAG.MAX;
+
+const CLSID_NetSharingManager_Value = Guid.initString("5c63c1ad-3956-4ff8-8486-40034758315b");
+pub const CLSID_NetSharingManager = &CLSID_NetSharingManager_Value;
+
+pub const PAC_CHANGES_CALLBACK_FN = *const fn(
+    context: ?*anyopaque,
+    pChange: ?*const INET_FIREWALL_AC_CHANGE,
+) callconv(.winapi) void;
+
+pub const PFN_FWADDDYNAMICKEYWORDADDRESS0 = *const fn(
+    dynamicKeywordAddress: ?*const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
+) callconv(.winapi) u32;
+
+pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = *const fn(
+    dynamicKeywordAddressId: Guid,
+) callconv(.winapi) u32;
+
+pub const PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0 = *const fn(
+    dynamicKeywordAddressId: Guid,
+    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+) callconv(.winapi) u32;
+
+pub const PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0 = *const fn(
+    flags: u32,
+    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+) callconv(.winapi) u32;
+
+pub const PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0 = *const fn(
+    dynamicKeywordAddressData: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+) callconv(.winapi) u32;
+
+pub const PFN_FWUPDATEDYNAMICKEYWORDADDRESS0 = *const fn(
+    dynamicKeywordAddressId: Guid,
+    updatedAddresses: ?[*:0]const u16,
+    append: BOOL,
+) callconv(.winapi) u32;
+
+pub const PNETISO_EDP_ID_CALLBACK_FN = *const fn(
+    context: ?*anyopaque,
+    wszEnterpriseId: ?[*:0]const u16,
+    dwErr: u32,
+) callconv(.winapi) void;
+
+pub const SHARINGCONNECTION_ENUM_FLAGS = enum(i32) {
+    DEFAULT = 0,
+    ENABLED = 1,
+};
+pub const ICSSC_DEFAULT = SHARINGCONNECTION_ENUM_FLAGS.DEFAULT;
+pub const ICSSC_ENABLED = SHARINGCONNECTION_ENUM_FLAGS.ENABLED;
+
+pub const SHARINGCONNECTIONTYPE = enum(i32) {
+    UBLIC = 0,
+    RIVATE = 1,
+};
+pub const ICSSHARINGTYPE_PUBLIC = SHARINGCONNECTIONTYPE.UBLIC;
+pub const ICSSHARINGTYPE_PRIVATE = SHARINGCONNECTIONTYPE.RIVATE;
+
+const CLSID_UPnPNAT_Value = Guid.initString("ae1e00aa-3fd5-403c-8a27-2bbdc30cd0e1");
+pub const CLSID_UPnPNAT = &CLSID_UPnPNAT_Value;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (8)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationDiagnoseConnectFailureAndGetInfo(
+    wszServerName: ?[*:0]const u16,
+    netIsoError: ?*NETISO_ERROR_TYPE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationEnumAppContainers(
+    Flags: u32,
+    pdwNumPublicAppCs: ?*u32,
+    ppPublicAppCs: ?*?*INET_FIREWALL_APP_CONTAINER,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationFreeAppContainers(
+    pPublicAppCs: ?*INET_FIREWALL_APP_CONTAINER,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationGetAppContainerConfig(
+    pdwNumPublicAppCs: ?*u32,
+    appContainerSids: ?*?*SID_AND_ATTRIBUTES,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationRegisterForAppContainerChanges(
+    flags: u32,
+    callback: ?PAC_CHANGES_CALLBACK_FN,
+    context: ?*anyopaque,
+    registrationObject: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetAppContainerConfig(
+    dwNumPublicAppCs: u32,
+    appContainerSids: [*]SID_AND_ATTRIBUTES,
+) callconv(.winapi) u32;
+
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetupAppContainerBinaries(
     applicationContainerSid: ?PSID,
@@ -3448,46 +3486,8 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetupAppContaine
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationRegisterForAppContainerChanges(
-    flags: u32,
-    callback: ?PAC_CHANGES_CALLBACK_FN,
-    context: ?*anyopaque,
-    registrationObject: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationUnregisterForAppContainerChanges(
     registrationObject: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationFreeAppContainers(
-    pPublicAppCs: ?*INET_FIREWALL_APP_CONTAINER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationEnumAppContainers(
-    Flags: u32,
-    pdwNumPublicAppCs: ?*u32,
-    ppPublicAppCs: ?*?*INET_FIREWALL_APP_CONTAINER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationGetAppContainerConfig(
-    pdwNumPublicAppCs: ?*u32,
-    appContainerSids: ?*?*SID_AND_ATTRIBUTES,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetAppContainerConfig(
-    dwNumPublicAppCs: u32,
-    appContainerSids: [*]SID_AND_ATTRIBUTES,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationDiagnoseConnectFailureAndGetInfo(
-    wszServerName: ?[*:0]const u16,
-    netIsoError: ?*NETISO_ERROR_TYPE,
 ) callconv(.winapi) u32;
 
 
@@ -3514,13 +3514,13 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     if (@hasDecl(@This(), "PAC_CHANGES_CALLBACK_FN")) { _ = PAC_CHANGES_CALLBACK_FN; }
-    if (@hasDecl(@This(), "PNETISO_EDP_ID_CALLBACK_FN")) { _ = PNETISO_EDP_ID_CALLBACK_FN; }
     if (@hasDecl(@This(), "PFN_FWADDDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWADDDYNAMICKEYWORDADDRESS0; }
     if (@hasDecl(@This(), "PFN_FWDELETEDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWDELETEDYNAMICKEYWORDADDRESS0; }
-    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0")) { _ = PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0; }
     if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0")) { _ = PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0; }
+    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0")) { _ = PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0; }
     if (@hasDecl(@This(), "PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0")) { _ = PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0; }
     if (@hasDecl(@This(), "PFN_FWUPDATEDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWUPDATEDYNAMICKEYWORDADDRESS0; }
+    if (@hasDecl(@This(), "PNETISO_EDP_ID_CALLBACK_FN")) { _ = PNETISO_EDP_ID_CALLBACK_FN; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

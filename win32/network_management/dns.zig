@@ -2,238 +2,311 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (325)
 //--------------------------------------------------------------------------------
-pub const SIZEOF_IP4_ADDRESS = @as(u32, 4);
-pub const IP4_ADDRESS_STRING_LENGTH = @as(u32, 16);
-pub const IP4_ADDRESS_STRING_BUFFER_LENGTH = @as(u32, 16);
 pub const DNS_ADDR_MAX_SOCKADDR_LENGTH = @as(u32, 32);
-pub const IP6_ADDRESS_STRING_LENGTH = @as(u32, 65);
-pub const IP6_ADDRESS_STRING_BUFFER_LENGTH = @as(u32, 65);
 pub const DNS_ADDRESS_STRING_LENGTH = @as(u32, 65);
-pub const DNS_PORT_HOST_ORDER = @as(u32, 53);
-pub const DNS_PORT_NET_ORDER = @as(u32, 13568);
-pub const DNS_RFC_MAX_UDP_PACKET_LENGTH = @as(u32, 512);
-pub const DNS_MAX_NAME_LENGTH = @as(u32, 255);
-pub const DNS_MAX_LABEL_LENGTH = @as(u32, 63);
-pub const DNS_MAX_NAME_BUFFER_LENGTH = @as(u32, 256);
-pub const DNS_MAX_LABEL_BUFFER_LENGTH = @as(u32, 64);
-pub const DNS_MAX_IP4_REVERSE_NAME_LENGTH = @as(u32, 31);
-pub const DNS_MAX_IP6_REVERSE_NAME_LENGTH = @as(u32, 75);
-pub const DNS_MAX_REVERSE_NAME_LENGTH = @as(u32, 75);
-pub const DNS_MAX_IP4_REVERSE_NAME_BUFFER_LENGTH = @as(u32, 31);
-pub const DNS_MAX_IP6_REVERSE_NAME_BUFFER_LENGTH = @as(u32, 75);
-pub const DNS_MAX_REVERSE_NAME_BUFFER_LENGTH = @as(u32, 75);
-pub const DNS_MAX_TEXT_STRING_LENGTH = @as(u32, 255);
-pub const DNS_COMPRESSED_QUESTION_NAME = @as(u32, 49164);
-pub const DNS_OPCODE_QUERY = @as(u32, 0);
-pub const DNS_OPCODE_IQUERY = @as(u32, 1);
-pub const DNS_OPCODE_SERVER_STATUS = @as(u32, 2);
-pub const DNS_OPCODE_UNKNOWN = @as(u32, 3);
-pub const DNS_OPCODE_NOTIFY = @as(u32, 4);
-pub const DNS_OPCODE_UPDATE = @as(u32, 5);
-pub const DNS_RCODE_NOERROR = @as(u32, 0);
-pub const DNS_RCODE_FORMERR = @as(u32, 1);
-pub const DNS_RCODE_SERVFAIL = @as(u32, 2);
-pub const DNS_RCODE_NXDOMAIN = @as(u32, 3);
-pub const DNS_RCODE_NOTIMPL = @as(u32, 4);
-pub const DNS_RCODE_REFUSED = @as(u32, 5);
-pub const DNS_RCODE_YXDOMAIN = @as(u32, 6);
-pub const DNS_RCODE_YXRRSET = @as(u32, 7);
-pub const DNS_RCODE_NXRRSET = @as(u32, 8);
-pub const DNS_RCODE_NOTAUTH = @as(u32, 9);
-pub const DNS_RCODE_NOTZONE = @as(u32, 10);
-pub const DNS_RCODE_MAX = @as(u32, 15);
-pub const DNS_RCODE_BADVERS = @as(u32, 16);
-pub const DNS_RCODE_BADSIG = @as(u32, 16);
-pub const DNS_RCODE_BADKEY = @as(u32, 17);
-pub const DNS_RCODE_BADTIME = @as(u32, 18);
-pub const DNS_RCODE_NO_ERROR = @as(u32, 0);
-pub const DNS_RCODE_FORMAT_ERROR = @as(u32, 1);
-pub const DNS_RCODE_SERVER_FAILURE = @as(u32, 2);
-pub const DNS_RCODE_NAME_ERROR = @as(u32, 3);
-pub const DNS_RCODE_NOT_IMPLEMENTED = @as(u32, 4);
-pub const DNS_CLASS_INTERNET = @as(u32, 1);
-pub const DNS_CLASS_CSNET = @as(u32, 2);
-pub const DNS_CLASS_CHAOS = @as(u32, 3);
-pub const DNS_CLASS_HESIOD = @as(u32, 4);
-pub const DNS_CLASS_NONE = @as(u32, 254);
+pub const DNS_APP_SETTINGS_EXCLUSIVE_SERVERS = @as(u32, 1);
+pub const DNS_APP_SETTINGS_VERSION1 = @as(u32, 1);
+pub const DNS_ATMA_AESA_ADDR_LENGTH = @as(u32, 20);
+pub const DNS_ATMA_FORMAT_AESA = @as(u32, 2);
+pub const DNS_ATMA_FORMAT_E164 = @as(u32, 1);
+pub const DNS_ATMA_MAX_ADDR_LENGTH = @as(u32, 20);
+pub const DNS_ATMA_MAX_RECORD_LENGTH = @as(u32, 21);
 pub const DNS_CLASS_ALL = @as(u32, 255);
 pub const DNS_CLASS_ANY = @as(u32, 255);
+pub const DNS_CLASS_CHAOS = @as(u32, 3);
+pub const DNS_CLASS_CSNET = @as(u32, 2);
+pub const DNS_CLASS_HESIOD = @as(u32, 4);
+pub const DNS_CLASS_INTERNET = @as(u32, 1);
+pub const DNS_CLASS_NONE = @as(u32, 254);
 pub const DNS_CLASS_UNICAST_RESPONSE = @as(u32, 32768);
-pub const DNS_RCLASS_INTERNET = @as(u32, 256);
-pub const DNS_RCLASS_CSNET = @as(u32, 512);
-pub const DNS_RCLASS_CHAOS = @as(u32, 768);
-pub const DNS_RCLASS_HESIOD = @as(u32, 1024);
-pub const DNS_RCLASS_NONE = @as(u32, 65024);
+pub const DNS_COMPRESSED_QUESTION_NAME = @as(u32, 49164);
+pub const DNS_CONFIG_FLAG_ALLOC = @as(u32, 1);
+pub const DNS_CONNECTION_NAME_MAX_LENGTH = @as(u32, 64);
+pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
+pub const DNS_CONNECTION_PROXY_INFO_CURRENT_VERSION = @as(u32, 1);
+pub const DNS_CONNECTION_PROXY_INFO_EXCEPTION_MAX_LENGTH = @as(u32, 1024);
+pub const DNS_CONNECTION_PROXY_INFO_EXTRA_INFO_MAX_LENGTH = @as(u32, 1024);
+pub const DNS_CONNECTION_PROXY_INFO_FLAG_BYPASSLOCAL = @as(u32, 2);
+pub const DNS_CONNECTION_PROXY_INFO_FLAG_DISABLED = @as(u32, 1);
+pub const DNS_CONNECTION_PROXY_INFO_FRIENDLY_NAME_MAX_LENGTH = @as(u32, 64);
+pub const DNS_CONNECTION_PROXY_INFO_PASSWORD_MAX_LENGTH = @as(u32, 128);
+pub const DNS_CONNECTION_PROXY_INFO_SERVER_MAX_LENGTH = @as(u32, 256);
+pub const DNS_CONNECTION_PROXY_INFO_USERNAME_MAX_LENGTH = @as(u32, 128);
+pub const DNS_CUSTOM_SERVER_TYPE_DOH = @as(u32, 2);
+pub const DNS_CUSTOM_SERVER_TYPE_UDP = @as(u32, 1);
+pub const DNS_CUSTOM_SERVER_UDP_FALLBACK = @as(u32, 1);
+pub const DNS_MAX_IP4_REVERSE_NAME_BUFFER_LENGTH = @as(u32, 31);
+pub const DNS_MAX_IP4_REVERSE_NAME_LENGTH = @as(u32, 31);
+pub const DNS_MAX_IP6_REVERSE_NAME_BUFFER_LENGTH = @as(u32, 75);
+pub const DNS_MAX_IP6_REVERSE_NAME_LENGTH = @as(u32, 75);
+pub const DNS_MAX_LABEL_BUFFER_LENGTH = @as(u32, 64);
+pub const DNS_MAX_LABEL_LENGTH = @as(u32, 63);
+pub const DNS_MAX_NAME_BUFFER_LENGTH = @as(u32, 256);
+pub const DNS_MAX_NAME_LENGTH = @as(u32, 255);
+pub const DNS_MAX_REVERSE_NAME_BUFFER_LENGTH = @as(u32, 75);
+pub const DNS_MAX_REVERSE_NAME_LENGTH = @as(u32, 75);
+pub const DNS_MAX_TEXT_STRING_LENGTH = @as(u32, 255);
+pub const DNS_OPCODE_IQUERY = @as(u32, 1);
+pub const DNS_OPCODE_NOTIFY = @as(u32, 4);
+pub const DNS_OPCODE_QUERY = @as(u32, 0);
+pub const DNS_OPCODE_SERVER_STATUS = @as(u32, 2);
+pub const DNS_OPCODE_UNKNOWN = @as(u32, 3);
+pub const DNS_OPCODE_UPDATE = @as(u32, 5);
+pub const DNS_PORT_HOST_ORDER = @as(u32, 53);
+pub const DNS_PORT_NET_ORDER = @as(u32, 13568);
+pub const DNS_QUERY_ACCEPT_TRUNCATED_RESPONSE = @as(u32, 1);
+pub const DNS_QUERY_ADDRCONFIG = @as(u32, 8192);
+pub const DNS_QUERY_APPEND_MULTILABEL = @as(u32, 8388608);
+pub const DNS_QUERY_BYPASS_CACHE = @as(u32, 8);
+pub const DNS_QUERY_CACHE_ONLY = @as(u32, 16);
+pub const DNS_QUERY_DISABLE_IDN_ENCODING = @as(u32, 2097152);
+pub const DNS_QUERY_DNSSEC_CHECKING_DISABLED = @as(u32, 33554432);
+pub const DNS_QUERY_DNSSEC_OK = @as(u32, 16777216);
+pub const DNS_QUERY_DONT_RESET_TTL_VALUES = @as(u32, 1048576);
+pub const DNS_QUERY_DUAL_ADDR = @as(u32, 16384);
+pub const DNS_QUERY_MULTICAST_ONLY = @as(u32, 1024);
+pub const DNS_QUERY_NO_HOSTS_FILE = @as(u32, 64);
+pub const DNS_QUERY_NO_LOCAL_NAME = @as(u32, 32);
+pub const DNS_QUERY_NO_MULTICAST = @as(u32, 2048);
+pub const DNS_QUERY_NO_NETBT = @as(u32, 128);
+pub const DNS_QUERY_NO_RECURSION = @as(u32, 4);
+pub const DNS_QUERY_NO_WIRE_QUERY = @as(u32, 16);
+pub const DNS_QUERY_REQUEST_VERSION1 = @as(u32, 1);
+pub const DNS_QUERY_REQUEST_VERSION2 = @as(u32, 2);
+pub const DNS_QUERY_REQUEST_VERSION3 = @as(u32, 3);
+pub const DNS_QUERY_RESERVED = @as(u32, 4026531840);
+pub const DNS_QUERY_RESULTS_VERSION1 = @as(u32, 1);
+pub const DNS_QUERY_RETURN_MESSAGE = @as(u32, 512);
+pub const DNS_QUERY_STANDARD = @as(u32, 0);
+pub const DNS_QUERY_TREAT_AS_FQDN = @as(u32, 4096);
+pub const DNS_QUERY_USE_TCP_ONLY = @as(u32, 2);
+pub const DNS_QUERY_WIRE_ONLY = @as(u32, 256);
 pub const DNS_RCLASS_ALL = @as(u32, 65280);
 pub const DNS_RCLASS_ANY = @as(u32, 65280);
+pub const DNS_RCLASS_CHAOS = @as(u32, 768);
+pub const DNS_RCLASS_CSNET = @as(u32, 512);
+pub const DNS_RCLASS_HESIOD = @as(u32, 1024);
+pub const DNS_RCLASS_INTERNET = @as(u32, 256);
+pub const DNS_RCLASS_NONE = @as(u32, 65024);
 pub const DNS_RCLASS_UNICAST_RESPONSE = @as(u32, 128);
-pub const DNS_TYPE_ZERO = @as(u32, 0);
-pub const DNS_TYPE_A = @as(u32, 1);
-pub const DNS_TYPE_NS = @as(u32, 2);
-pub const DNS_TYPE_MD = @as(u32, 3);
-pub const DNS_TYPE_MF = @as(u32, 4);
-pub const DNS_TYPE_CNAME = @as(u32, 5);
-pub const DNS_TYPE_SOA = @as(u32, 6);
-pub const DNS_TYPE_MB = @as(u32, 7);
-pub const DNS_TYPE_MG = @as(u32, 8);
-pub const DNS_TYPE_MR = @as(u32, 9);
-pub const DNS_TYPE_NULL = @as(u32, 10);
-pub const DNS_TYPE_WKS = @as(u32, 11);
-pub const DNS_TYPE_PTR = @as(u32, 12);
-pub const DNS_TYPE_HINFO = @as(u32, 13);
-pub const DNS_TYPE_MINFO = @as(u32, 14);
-pub const DNS_TYPE_MX = @as(u32, 15);
-pub const DNS_TYPE_TEXT = @as(u32, 16);
-pub const DNS_TYPE_RP = @as(u32, 17);
-pub const DNS_TYPE_AFSDB = @as(u32, 18);
-pub const DNS_TYPE_X25 = @as(u32, 19);
-pub const DNS_TYPE_ISDN = @as(u32, 20);
-pub const DNS_TYPE_RT = @as(u32, 21);
-pub const DNS_TYPE_NSAP = @as(u32, 22);
-pub const DNS_TYPE_NSAPPTR = @as(u32, 23);
-pub const DNS_TYPE_SIG = @as(u32, 24);
-pub const DNS_TYPE_KEY = @as(u32, 25);
-pub const DNS_TYPE_PX = @as(u32, 26);
-pub const DNS_TYPE_GPOS = @as(u32, 27);
-pub const DNS_TYPE_AAAA = @as(u32, 28);
-pub const DNS_TYPE_LOC = @as(u32, 29);
-pub const DNS_TYPE_NXT = @as(u32, 30);
-pub const DNS_TYPE_EID = @as(u32, 31);
-pub const DNS_TYPE_NIMLOC = @as(u32, 32);
-pub const DNS_TYPE_SRV = @as(u32, 33);
-pub const DNS_TYPE_ATMA = @as(u32, 34);
-pub const DNS_TYPE_NAPTR = @as(u32, 35);
-pub const DNS_TYPE_KX = @as(u32, 36);
-pub const DNS_TYPE_CERT = @as(u32, 37);
-pub const DNS_TYPE_A6 = @as(u32, 38);
-pub const DNS_TYPE_DNAME = @as(u32, 39);
-pub const DNS_TYPE_SINK = @as(u32, 40);
-pub const DNS_TYPE_OPT = @as(u32, 41);
-pub const DNS_TYPE_DS = @as(u32, 43);
-pub const DNS_TYPE_RRSIG = @as(u32, 46);
-pub const DNS_TYPE_NSEC = @as(u32, 47);
-pub const DNS_TYPE_DNSKEY = @as(u32, 48);
-pub const DNS_TYPE_DHCID = @as(u32, 49);
-pub const DNS_TYPE_NSEC3 = @as(u32, 50);
-pub const DNS_TYPE_NSEC3PARAM = @as(u32, 51);
-pub const DNS_TYPE_TLSA = @as(u32, 52);
-pub const DNS_TYPE_UINFO = @as(u32, 100);
-pub const DNS_TYPE_UID = @as(u32, 101);
-pub const DNS_TYPE_GID = @as(u32, 102);
-pub const DNS_TYPE_UNSPEC = @as(u32, 103);
-pub const DNS_TYPE_ADDRS = @as(u32, 248);
-pub const DNS_TYPE_TKEY = @as(u32, 249);
-pub const DNS_TYPE_TSIG = @as(u32, 250);
-pub const DNS_TYPE_IXFR = @as(u32, 251);
-pub const DNS_TYPE_AXFR = @as(u32, 252);
-pub const DNS_TYPE_MAILB = @as(u32, 253);
-pub const DNS_TYPE_MAILA = @as(u32, 254);
-pub const DNS_TYPE_ALL = @as(u32, 255);
-pub const DNS_TYPE_ANY = @as(u32, 255);
-pub const DNS_TYPE_WINS = @as(u32, 65281);
-pub const DNS_TYPE_WINSR = @as(u32, 65282);
-pub const DNS_TYPE_NBSTAT = @as(u32, 65282);
+pub const DNS_RCODE_BADKEY = @as(u32, 17);
+pub const DNS_RCODE_BADSIG = @as(u32, 16);
+pub const DNS_RCODE_BADTIME = @as(u32, 18);
+pub const DNS_RCODE_BADVERS = @as(u32, 16);
+pub const DNS_RCODE_FORMAT_ERROR = @as(u32, 1);
+pub const DNS_RCODE_FORMERR = @as(u32, 1);
+pub const DNS_RCODE_MAX = @as(u32, 15);
+pub const DNS_RCODE_NAME_ERROR = @as(u32, 3);
+pub const DNS_RCODE_NO_ERROR = @as(u32, 0);
+pub const DNS_RCODE_NOERROR = @as(u32, 0);
+pub const DNS_RCODE_NOT_IMPLEMENTED = @as(u32, 4);
+pub const DNS_RCODE_NOTAUTH = @as(u32, 9);
+pub const DNS_RCODE_NOTIMPL = @as(u32, 4);
+pub const DNS_RCODE_NOTZONE = @as(u32, 10);
+pub const DNS_RCODE_NXDOMAIN = @as(u32, 3);
+pub const DNS_RCODE_NXRRSET = @as(u32, 8);
+pub const DNS_RCODE_REFUSED = @as(u32, 5);
+pub const DNS_RCODE_SERVER_FAILURE = @as(u32, 2);
+pub const DNS_RCODE_SERVFAIL = @as(u32, 2);
+pub const DNS_RCODE_YXDOMAIN = @as(u32, 6);
+pub const DNS_RCODE_YXRRSET = @as(u32, 7);
+pub const DNS_RFC_MAX_UDP_PACKET_LENGTH = @as(u32, 512);
 pub const DNS_RTYPE_A = @as(u32, 256);
-pub const DNS_RTYPE_NS = @as(u32, 512);
-pub const DNS_RTYPE_MD = @as(u32, 768);
-pub const DNS_RTYPE_MF = @as(u32, 1024);
-pub const DNS_RTYPE_CNAME = @as(u32, 1280);
-pub const DNS_RTYPE_SOA = @as(u32, 1536);
-pub const DNS_RTYPE_MB = @as(u32, 1792);
-pub const DNS_RTYPE_MG = @as(u32, 2048);
-pub const DNS_RTYPE_MR = @as(u32, 2304);
-pub const DNS_RTYPE_NULL = @as(u32, 2560);
-pub const DNS_RTYPE_WKS = @as(u32, 2816);
-pub const DNS_RTYPE_PTR = @as(u32, 3072);
-pub const DNS_RTYPE_HINFO = @as(u32, 3328);
-pub const DNS_RTYPE_MINFO = @as(u32, 3584);
-pub const DNS_RTYPE_MX = @as(u32, 3840);
-pub const DNS_RTYPE_TEXT = @as(u32, 4096);
-pub const DNS_RTYPE_RP = @as(u32, 4352);
-pub const DNS_RTYPE_AFSDB = @as(u32, 4608);
-pub const DNS_RTYPE_X25 = @as(u32, 4864);
-pub const DNS_RTYPE_ISDN = @as(u32, 5120);
-pub const DNS_RTYPE_RT = @as(u32, 5376);
-pub const DNS_RTYPE_NSAP = @as(u32, 5632);
-pub const DNS_RTYPE_NSAPPTR = @as(u32, 5888);
-pub const DNS_RTYPE_SIG = @as(u32, 6144);
-pub const DNS_RTYPE_KEY = @as(u32, 6400);
-pub const DNS_RTYPE_PX = @as(u32, 6656);
-pub const DNS_RTYPE_GPOS = @as(u32, 6912);
-pub const DNS_RTYPE_AAAA = @as(u32, 7168);
-pub const DNS_RTYPE_LOC = @as(u32, 7424);
-pub const DNS_RTYPE_NXT = @as(u32, 7680);
-pub const DNS_RTYPE_EID = @as(u32, 7936);
-pub const DNS_RTYPE_NIMLOC = @as(u32, 8192);
-pub const DNS_RTYPE_SRV = @as(u32, 8448);
-pub const DNS_RTYPE_ATMA = @as(u32, 8704);
-pub const DNS_RTYPE_NAPTR = @as(u32, 8960);
-pub const DNS_RTYPE_KX = @as(u32, 9216);
-pub const DNS_RTYPE_CERT = @as(u32, 9472);
 pub const DNS_RTYPE_A6 = @as(u32, 9728);
-pub const DNS_RTYPE_DNAME = @as(u32, 9984);
-pub const DNS_RTYPE_SINK = @as(u32, 10240);
-pub const DNS_RTYPE_OPT = @as(u32, 10496);
-pub const DNS_RTYPE_DS = @as(u32, 11008);
-pub const DNS_RTYPE_RRSIG = @as(u32, 11776);
-pub const DNS_RTYPE_NSEC = @as(u32, 12032);
-pub const DNS_RTYPE_DNSKEY = @as(u32, 12288);
-pub const DNS_RTYPE_DHCID = @as(u32, 12544);
-pub const DNS_RTYPE_NSEC3 = @as(u32, 12800);
-pub const DNS_RTYPE_NSEC3PARAM = @as(u32, 13056);
-pub const DNS_RTYPE_TLSA = @as(u32, 13312);
-pub const DNS_RTYPE_UINFO = @as(u32, 25600);
-pub const DNS_RTYPE_UID = @as(u32, 25856);
-pub const DNS_RTYPE_GID = @as(u32, 26112);
-pub const DNS_RTYPE_UNSPEC = @as(u32, 26368);
-pub const DNS_RTYPE_TKEY = @as(u32, 63744);
-pub const DNS_RTYPE_TSIG = @as(u32, 64000);
-pub const DNS_RTYPE_IXFR = @as(u32, 64256);
-pub const DNS_RTYPE_AXFR = @as(u32, 64512);
-pub const DNS_RTYPE_MAILB = @as(u32, 64768);
-pub const DNS_RTYPE_MAILA = @as(u32, 65024);
+pub const DNS_RTYPE_AAAA = @as(u32, 7168);
+pub const DNS_RTYPE_AFSDB = @as(u32, 4608);
 pub const DNS_RTYPE_ALL = @as(u32, 65280);
 pub const DNS_RTYPE_ANY = @as(u32, 65280);
+pub const DNS_RTYPE_ATMA = @as(u32, 8704);
+pub const DNS_RTYPE_AXFR = @as(u32, 64512);
+pub const DNS_RTYPE_CERT = @as(u32, 9472);
+pub const DNS_RTYPE_CNAME = @as(u32, 1280);
+pub const DNS_RTYPE_DHCID = @as(u32, 12544);
+pub const DNS_RTYPE_DNAME = @as(u32, 9984);
+pub const DNS_RTYPE_DNSKEY = @as(u32, 12288);
+pub const DNS_RTYPE_DS = @as(u32, 11008);
+pub const DNS_RTYPE_EID = @as(u32, 7936);
+pub const DNS_RTYPE_GID = @as(u32, 26112);
+pub const DNS_RTYPE_GPOS = @as(u32, 6912);
+pub const DNS_RTYPE_HINFO = @as(u32, 3328);
+pub const DNS_RTYPE_ISDN = @as(u32, 5120);
+pub const DNS_RTYPE_IXFR = @as(u32, 64256);
+pub const DNS_RTYPE_KEY = @as(u32, 6400);
+pub const DNS_RTYPE_KX = @as(u32, 9216);
+pub const DNS_RTYPE_LOC = @as(u32, 7424);
+pub const DNS_RTYPE_MAILA = @as(u32, 65024);
+pub const DNS_RTYPE_MAILB = @as(u32, 64768);
+pub const DNS_RTYPE_MB = @as(u32, 1792);
+pub const DNS_RTYPE_MD = @as(u32, 768);
+pub const DNS_RTYPE_MF = @as(u32, 1024);
+pub const DNS_RTYPE_MG = @as(u32, 2048);
+pub const DNS_RTYPE_MINFO = @as(u32, 3584);
+pub const DNS_RTYPE_MR = @as(u32, 2304);
+pub const DNS_RTYPE_MX = @as(u32, 3840);
+pub const DNS_RTYPE_NAPTR = @as(u32, 8960);
+pub const DNS_RTYPE_NIMLOC = @as(u32, 8192);
+pub const DNS_RTYPE_NS = @as(u32, 512);
+pub const DNS_RTYPE_NSAP = @as(u32, 5632);
+pub const DNS_RTYPE_NSAPPTR = @as(u32, 5888);
+pub const DNS_RTYPE_NSEC = @as(u32, 12032);
+pub const DNS_RTYPE_NSEC3 = @as(u32, 12800);
+pub const DNS_RTYPE_NSEC3PARAM = @as(u32, 13056);
+pub const DNS_RTYPE_NULL = @as(u32, 2560);
+pub const DNS_RTYPE_NXT = @as(u32, 7680);
+pub const DNS_RTYPE_OPT = @as(u32, 10496);
+pub const DNS_RTYPE_PTR = @as(u32, 3072);
+pub const DNS_RTYPE_PX = @as(u32, 6656);
+pub const DNS_RTYPE_RP = @as(u32, 4352);
+pub const DNS_RTYPE_RRSIG = @as(u32, 11776);
+pub const DNS_RTYPE_RT = @as(u32, 5376);
+pub const DNS_RTYPE_SIG = @as(u32, 6144);
+pub const DNS_RTYPE_SINK = @as(u32, 10240);
+pub const DNS_RTYPE_SOA = @as(u32, 1536);
+pub const DNS_RTYPE_SRV = @as(u32, 8448);
+pub const DNS_RTYPE_TEXT = @as(u32, 4096);
+pub const DNS_RTYPE_TKEY = @as(u32, 63744);
+pub const DNS_RTYPE_TLSA = @as(u32, 13312);
+pub const DNS_RTYPE_TSIG = @as(u32, 64000);
+pub const DNS_RTYPE_UID = @as(u32, 25856);
+pub const DNS_RTYPE_UINFO = @as(u32, 25600);
+pub const DNS_RTYPE_UNSPEC = @as(u32, 26368);
 pub const DNS_RTYPE_WINS = @as(u32, 511);
 pub const DNS_RTYPE_WINSR = @as(u32, 767);
-pub const DNS_ATMA_FORMAT_E164 = @as(u32, 1);
-pub const DNS_ATMA_FORMAT_AESA = @as(u32, 2);
-pub const DNS_ATMA_MAX_ADDR_LENGTH = @as(u32, 20);
-pub const DNS_ATMA_AESA_ADDR_LENGTH = @as(u32, 20);
-pub const DNS_ATMA_MAX_RECORD_LENGTH = @as(u32, 21);
+pub const DNS_RTYPE_WKS = @as(u32, 2816);
+pub const DNS_RTYPE_X25 = @as(u32, 4864);
+pub const DNS_TKEY_MODE_DIFFIE_HELLMAN = @as(u32, 2);
+pub const DNS_TKEY_MODE_GSS = @as(u32, 3);
+pub const DNS_TKEY_MODE_RESOLVER_ASSIGN = @as(u32, 4);
+pub const DNS_TKEY_MODE_SERVER_ASSIGN = @as(u32, 1);
+pub const DNS_TYPE_A = @as(u32, 1);
+pub const DNS_TYPE_A6 = @as(u32, 38);
+pub const DNS_TYPE_AAAA = @as(u32, 28);
+pub const DNS_TYPE_ADDRS = @as(u32, 248);
+pub const DNS_TYPE_AFSDB = @as(u32, 18);
+pub const DNS_TYPE_ALL = @as(u32, 255);
+pub const DNS_TYPE_ANY = @as(u32, 255);
+pub const DNS_TYPE_ATMA = @as(u32, 34);
+pub const DNS_TYPE_AXFR = @as(u32, 252);
+pub const DNS_TYPE_CERT = @as(u32, 37);
+pub const DNS_TYPE_CNAME = @as(u32, 5);
+pub const DNS_TYPE_DHCID = @as(u32, 49);
+pub const DNS_TYPE_DNAME = @as(u32, 39);
+pub const DNS_TYPE_DNSKEY = @as(u32, 48);
+pub const DNS_TYPE_DS = @as(u32, 43);
+pub const DNS_TYPE_EID = @as(u32, 31);
+pub const DNS_TYPE_GID = @as(u32, 102);
+pub const DNS_TYPE_GPOS = @as(u32, 27);
+pub const DNS_TYPE_HINFO = @as(u32, 13);
+pub const DNS_TYPE_ISDN = @as(u32, 20);
+pub const DNS_TYPE_IXFR = @as(u32, 251);
+pub const DNS_TYPE_KEY = @as(u32, 25);
+pub const DNS_TYPE_KX = @as(u32, 36);
+pub const DNS_TYPE_LOC = @as(u32, 29);
+pub const DNS_TYPE_MAILA = @as(u32, 254);
+pub const DNS_TYPE_MAILB = @as(u32, 253);
+pub const DNS_TYPE_MB = @as(u32, 7);
+pub const DNS_TYPE_MD = @as(u32, 3);
+pub const DNS_TYPE_MF = @as(u32, 4);
+pub const DNS_TYPE_MG = @as(u32, 8);
+pub const DNS_TYPE_MINFO = @as(u32, 14);
+pub const DNS_TYPE_MR = @as(u32, 9);
+pub const DNS_TYPE_MX = @as(u32, 15);
+pub const DNS_TYPE_NAPTR = @as(u32, 35);
+pub const DNS_TYPE_NBSTAT = @as(u32, 65282);
+pub const DNS_TYPE_NIMLOC = @as(u32, 32);
+pub const DNS_TYPE_NS = @as(u32, 2);
+pub const DNS_TYPE_NSAP = @as(u32, 22);
+pub const DNS_TYPE_NSAPPTR = @as(u32, 23);
+pub const DNS_TYPE_NSEC = @as(u32, 47);
+pub const DNS_TYPE_NSEC3 = @as(u32, 50);
+pub const DNS_TYPE_NSEC3PARAM = @as(u32, 51);
+pub const DNS_TYPE_NULL = @as(u32, 10);
+pub const DNS_TYPE_NXT = @as(u32, 30);
+pub const DNS_TYPE_OPT = @as(u32, 41);
+pub const DNS_TYPE_PTR = @as(u32, 12);
+pub const DNS_TYPE_PX = @as(u32, 26);
+pub const DNS_TYPE_RP = @as(u32, 17);
+pub const DNS_TYPE_RRSIG = @as(u32, 46);
+pub const DNS_TYPE_RT = @as(u32, 21);
+pub const DNS_TYPE_SIG = @as(u32, 24);
+pub const DNS_TYPE_SINK = @as(u32, 40);
+pub const DNS_TYPE_SOA = @as(u32, 6);
+pub const DNS_TYPE_SRV = @as(u32, 33);
+pub const DNS_TYPE_TEXT = @as(u32, 16);
+pub const DNS_TYPE_TKEY = @as(u32, 249);
+pub const DNS_TYPE_TLSA = @as(u32, 52);
+pub const DNS_TYPE_TSIG = @as(u32, 250);
+pub const DNS_TYPE_UID = @as(u32, 101);
+pub const DNS_TYPE_UINFO = @as(u32, 100);
+pub const DNS_TYPE_UNSPEC = @as(u32, 103);
+pub const DNS_TYPE_WINS = @as(u32, 65281);
+pub const DNS_TYPE_WINSR = @as(u32, 65282);
+pub const DNS_TYPE_WKS = @as(u32, 11);
+pub const DNS_TYPE_X25 = @as(u32, 19);
+pub const DNS_TYPE_ZERO = @as(u32, 0);
+pub const DNS_UPDATE_CACHE_SECURITY_CONTEXT = @as(u32, 512);
+pub const DNS_UPDATE_FORCE_SECURITY_NEGO = @as(u32, 2048);
+pub const DNS_UPDATE_REMOTE_SERVER = @as(u32, 16384);
+pub const DNS_UPDATE_RESERVED = @as(u32, 4294901760);
+pub const DNS_UPDATE_SECURITY_OFF = @as(u32, 16);
+pub const DNS_UPDATE_SECURITY_ON = @as(u32, 32);
+pub const DNS_UPDATE_SECURITY_ONLY = @as(u32, 256);
+pub const DNS_UPDATE_SECURITY_USE_DEFAULT = @as(u32, 0);
+pub const DNS_UPDATE_SKIP_NO_UPDATE_ADAPTERS = @as(u32, 8192);
+pub const DNS_UPDATE_TEST_USE_LOCAL_SYS_ACCT = @as(u32, 1024);
+pub const DNS_UPDATE_TRY_ALL_MASTER_SERVERS = @as(u32, 4096);
+pub const DNS_VALSVR_ERROR_INVALID_ADDR = @as(u32, 1);
+pub const DNS_VALSVR_ERROR_INVALID_NAME = @as(u32, 2);
+pub const DNS_VALSVR_ERROR_NO_AUTH = @as(u32, 5);
+pub const DNS_VALSVR_ERROR_NO_RESPONSE = @as(u32, 4);
+pub const DNS_VALSVR_ERROR_NO_TCP = @as(u32, 16);
+pub const DNS_VALSVR_ERROR_REFUSED = @as(u32, 6);
+pub const DNS_VALSVR_ERROR_UNKNOWN = @as(u32, 255);
+pub const DNS_VALSVR_ERROR_UNREACHABLE = @as(u32, 3);
+pub const DNS_WINS_FLAG_LOCAL = @as(u32, 65536);
+pub const DNS_WINS_FLAG_SCOPE = @as(u32, 2147483648);
+pub const DNSREC_ADDITIONAL = @as(u32, 3);
+pub const DNSREC_ANSWER = @as(u32, 1);
+pub const DNSREC_AUTHORITY = @as(u32, 2);
+pub const DNSREC_DELETE = @as(u32, 4);
+pub const DNSREC_NOEXIST = @as(u32, 4);
+pub const DNSREC_PREREQ = @as(u32, 1);
+pub const DNSREC_QUESTION = @as(u32, 0);
+pub const DNSREC_SECTION = @as(u32, 3);
+pub const DNSREC_UPDATE = @as(u32, 2);
+pub const DNSREC_ZONE = @as(u32, 0);
+pub const DNSSEC_ALGORITHM_ECDSAP256_SHA256 = @as(u32, 13);
+pub const DNSSEC_ALGORITHM_ECDSAP384_SHA384 = @as(u32, 14);
+pub const DNSSEC_ALGORITHM_NULL = @as(u32, 253);
+pub const DNSSEC_ALGORITHM_PRIVATE = @as(u32, 254);
 pub const DNSSEC_ALGORITHM_RSAMD5 = @as(u32, 1);
 pub const DNSSEC_ALGORITHM_RSASHA1 = @as(u32, 5);
 pub const DNSSEC_ALGORITHM_RSASHA1_NSEC3 = @as(u32, 7);
 pub const DNSSEC_ALGORITHM_RSASHA256 = @as(u32, 8);
 pub const DNSSEC_ALGORITHM_RSASHA512 = @as(u32, 10);
-pub const DNSSEC_ALGORITHM_ECDSAP256_SHA256 = @as(u32, 13);
-pub const DNSSEC_ALGORITHM_ECDSAP384_SHA384 = @as(u32, 14);
-pub const DNSSEC_ALGORITHM_NULL = @as(u32, 253);
-pub const DNSSEC_ALGORITHM_PRIVATE = @as(u32, 254);
 pub const DNSSEC_DIGEST_ALGORITHM_SHA1 = @as(u32, 1);
 pub const DNSSEC_DIGEST_ALGORITHM_SHA256 = @as(u32, 2);
 pub const DNSSEC_DIGEST_ALGORITHM_SHA384 = @as(u32, 4);
-pub const DNSSEC_PROTOCOL_NONE = @as(u32, 0);
-pub const DNSSEC_PROTOCOL_TLS = @as(u32, 1);
-pub const DNSSEC_PROTOCOL_EMAIL = @as(u32, 2);
-pub const DNSSEC_PROTOCOL_DNSSEC = @as(u32, 3);
-pub const DNSSEC_PROTOCOL_IPSEC = @as(u32, 4);
-pub const DNSSEC_KEY_FLAG_NOAUTH = @as(u32, 1);
-pub const DNSSEC_KEY_FLAG_NOCONF = @as(u32, 2);
-pub const DNSSEC_KEY_FLAG_FLAG2 = @as(u32, 4);
 pub const DNSSEC_KEY_FLAG_EXTEND = @as(u32, 8);
-pub const DNSSEC_KEY_FLAG_FLAG4 = @as(u32, 16);
-pub const DNSSEC_KEY_FLAG_FLAG5 = @as(u32, 32);
-pub const DNSSEC_KEY_FLAG_USER = @as(u32, 0);
-pub const DNSSEC_KEY_FLAG_ZONE = @as(u32, 64);
-pub const DNSSEC_KEY_FLAG_HOST = @as(u32, 128);
-pub const DNSSEC_KEY_FLAG_NTPE3 = @as(u32, 192);
-pub const DNSSEC_KEY_FLAG_FLAG8 = @as(u32, 256);
-pub const DNSSEC_KEY_FLAG_FLAG9 = @as(u32, 512);
 pub const DNSSEC_KEY_FLAG_FLAG10 = @as(u32, 1024);
 pub const DNSSEC_KEY_FLAG_FLAG11 = @as(u32, 2048);
+pub const DNSSEC_KEY_FLAG_FLAG2 = @as(u32, 4);
+pub const DNSSEC_KEY_FLAG_FLAG4 = @as(u32, 16);
+pub const DNSSEC_KEY_FLAG_FLAG5 = @as(u32, 32);
+pub const DNSSEC_KEY_FLAG_FLAG8 = @as(u32, 256);
+pub const DNSSEC_KEY_FLAG_FLAG9 = @as(u32, 512);
+pub const DNSSEC_KEY_FLAG_HOST = @as(u32, 128);
+pub const DNSSEC_KEY_FLAG_NOAUTH = @as(u32, 1);
+pub const DNSSEC_KEY_FLAG_NOCONF = @as(u32, 2);
+pub const DNSSEC_KEY_FLAG_NTPE3 = @as(u32, 192);
 pub const DNSSEC_KEY_FLAG_SIG0 = @as(u32, 0);
 pub const DNSSEC_KEY_FLAG_SIG1 = @as(u32, 4096);
+pub const DNSSEC_KEY_FLAG_SIG10 = @as(u32, 40960);
+pub const DNSSEC_KEY_FLAG_SIG11 = @as(u32, 45056);
+pub const DNSSEC_KEY_FLAG_SIG12 = @as(u32, 49152);
+pub const DNSSEC_KEY_FLAG_SIG13 = @as(u32, 53248);
+pub const DNSSEC_KEY_FLAG_SIG14 = @as(u32, 57344);
+pub const DNSSEC_KEY_FLAG_SIG15 = @as(u32, 61440);
 pub const DNSSEC_KEY_FLAG_SIG2 = @as(u32, 8192);
 pub const DNSSEC_KEY_FLAG_SIG3 = @as(u32, 12288);
 pub const DNSSEC_KEY_FLAG_SIG4 = @as(u32, 16384);
@@ -242,104 +315,65 @@ pub const DNSSEC_KEY_FLAG_SIG6 = @as(u32, 24576);
 pub const DNSSEC_KEY_FLAG_SIG7 = @as(u32, 28672);
 pub const DNSSEC_KEY_FLAG_SIG8 = @as(u32, 32768);
 pub const DNSSEC_KEY_FLAG_SIG9 = @as(u32, 36864);
-pub const DNSSEC_KEY_FLAG_SIG10 = @as(u32, 40960);
-pub const DNSSEC_KEY_FLAG_SIG11 = @as(u32, 45056);
-pub const DNSSEC_KEY_FLAG_SIG12 = @as(u32, 49152);
-pub const DNSSEC_KEY_FLAG_SIG13 = @as(u32, 53248);
-pub const DNSSEC_KEY_FLAG_SIG14 = @as(u32, 57344);
-pub const DNSSEC_KEY_FLAG_SIG15 = @as(u32, 61440);
-pub const DNS_TKEY_MODE_SERVER_ASSIGN = @as(u32, 1);
-pub const DNS_TKEY_MODE_DIFFIE_HELLMAN = @as(u32, 2);
-pub const DNS_TKEY_MODE_GSS = @as(u32, 3);
-pub const DNS_TKEY_MODE_RESOLVER_ASSIGN = @as(u32, 4);
-pub const DNS_WINS_FLAG_SCOPE = @as(u32, 2147483648);
-pub const DNS_WINS_FLAG_LOCAL = @as(u32, 65536);
-pub const DNS_CONFIG_FLAG_ALLOC = @as(u32, 1);
-pub const DNSREC_SECTION = @as(u32, 3);
-pub const DNSREC_QUESTION = @as(u32, 0);
-pub const DNSREC_ANSWER = @as(u32, 1);
-pub const DNSREC_AUTHORITY = @as(u32, 2);
-pub const DNSREC_ADDITIONAL = @as(u32, 3);
-pub const DNSREC_ZONE = @as(u32, 0);
-pub const DNSREC_PREREQ = @as(u32, 1);
-pub const DNSREC_UPDATE = @as(u32, 2);
-pub const DNSREC_DELETE = @as(u32, 4);
-pub const DNSREC_NOEXIST = @as(u32, 4);
-pub const DNS_QUERY_STANDARD = @as(u32, 0);
-pub const DNS_QUERY_ACCEPT_TRUNCATED_RESPONSE = @as(u32, 1);
-pub const DNS_QUERY_USE_TCP_ONLY = @as(u32, 2);
-pub const DNS_QUERY_NO_RECURSION = @as(u32, 4);
-pub const DNS_QUERY_BYPASS_CACHE = @as(u32, 8);
-pub const DNS_QUERY_NO_WIRE_QUERY = @as(u32, 16);
-pub const DNS_QUERY_NO_LOCAL_NAME = @as(u32, 32);
-pub const DNS_QUERY_NO_HOSTS_FILE = @as(u32, 64);
-pub const DNS_QUERY_NO_NETBT = @as(u32, 128);
-pub const DNS_QUERY_WIRE_ONLY = @as(u32, 256);
-pub const DNS_QUERY_RETURN_MESSAGE = @as(u32, 512);
-pub const DNS_QUERY_MULTICAST_ONLY = @as(u32, 1024);
-pub const DNS_QUERY_NO_MULTICAST = @as(u32, 2048);
-pub const DNS_QUERY_TREAT_AS_FQDN = @as(u32, 4096);
-pub const DNS_QUERY_ADDRCONFIG = @as(u32, 8192);
-pub const DNS_QUERY_DUAL_ADDR = @as(u32, 16384);
-pub const DNS_QUERY_DONT_RESET_TTL_VALUES = @as(u32, 1048576);
-pub const DNS_QUERY_DISABLE_IDN_ENCODING = @as(u32, 2097152);
-pub const DNS_QUERY_APPEND_MULTILABEL = @as(u32, 8388608);
-pub const DNS_QUERY_DNSSEC_OK = @as(u32, 16777216);
-pub const DNS_QUERY_DNSSEC_CHECKING_DISABLED = @as(u32, 33554432);
-pub const DNS_QUERY_RESERVED = @as(u32, 4026531840);
-pub const DNS_QUERY_CACHE_ONLY = @as(u32, 16);
-pub const DNS_QUERY_REQUEST_VERSION1 = @as(u32, 1);
-pub const DNS_QUERY_REQUEST_VERSION2 = @as(u32, 2);
-pub const DNS_QUERY_RESULTS_VERSION1 = @as(u32, 1);
-pub const DNS_QUERY_REQUEST_VERSION3 = @as(u32, 3);
-pub const DNS_CUSTOM_SERVER_TYPE_UDP = @as(u32, 1);
-pub const DNS_CUSTOM_SERVER_TYPE_DOH = @as(u32, 2);
-pub const DNS_CUSTOM_SERVER_UDP_FALLBACK = @as(u32, 1);
-pub const DNS_APP_SETTINGS_VERSION1 = @as(u32, 1);
-pub const DNS_APP_SETTINGS_EXCLUSIVE_SERVERS = @as(u32, 1);
-pub const DNS_UPDATE_SECURITY_USE_DEFAULT = @as(u32, 0);
-pub const DNS_UPDATE_SECURITY_OFF = @as(u32, 16);
-pub const DNS_UPDATE_SECURITY_ON = @as(u32, 32);
-pub const DNS_UPDATE_SECURITY_ONLY = @as(u32, 256);
-pub const DNS_UPDATE_CACHE_SECURITY_CONTEXT = @as(u32, 512);
-pub const DNS_UPDATE_TEST_USE_LOCAL_SYS_ACCT = @as(u32, 1024);
-pub const DNS_UPDATE_FORCE_SECURITY_NEGO = @as(u32, 2048);
-pub const DNS_UPDATE_TRY_ALL_MASTER_SERVERS = @as(u32, 4096);
-pub const DNS_UPDATE_SKIP_NO_UPDATE_ADAPTERS = @as(u32, 8192);
-pub const DNS_UPDATE_REMOTE_SERVER = @as(u32, 16384);
-pub const DNS_UPDATE_RESERVED = @as(u32, 4294901760);
-pub const DNS_VALSVR_ERROR_INVALID_ADDR = @as(u32, 1);
-pub const DNS_VALSVR_ERROR_INVALID_NAME = @as(u32, 2);
-pub const DNS_VALSVR_ERROR_UNREACHABLE = @as(u32, 3);
-pub const DNS_VALSVR_ERROR_NO_RESPONSE = @as(u32, 4);
-pub const DNS_VALSVR_ERROR_NO_AUTH = @as(u32, 5);
-pub const DNS_VALSVR_ERROR_REFUSED = @as(u32, 6);
-pub const DNS_VALSVR_ERROR_NO_TCP = @as(u32, 16);
-pub const DNS_VALSVR_ERROR_UNKNOWN = @as(u32, 255);
-pub const DNS_CONNECTION_NAME_MAX_LENGTH = @as(u32, 64);
-pub const DNS_CONNECTION_PROXY_INFO_CURRENT_VERSION = @as(u32, 1);
-pub const DNS_CONNECTION_PROXY_INFO_SERVER_MAX_LENGTH = @as(u32, 256);
-pub const DNS_CONNECTION_PROXY_INFO_FRIENDLY_NAME_MAX_LENGTH = @as(u32, 64);
-pub const DNS_CONNECTION_PROXY_INFO_USERNAME_MAX_LENGTH = @as(u32, 128);
-pub const DNS_CONNECTION_PROXY_INFO_PASSWORD_MAX_LENGTH = @as(u32, 128);
-pub const DNS_CONNECTION_PROXY_INFO_EXCEPTION_MAX_LENGTH = @as(u32, 1024);
-pub const DNS_CONNECTION_PROXY_INFO_EXTRA_INFO_MAX_LENGTH = @as(u32, 1024);
-pub const DNS_CONNECTION_PROXY_INFO_FLAG_DISABLED = @as(u32, 1);
-pub const DNS_CONNECTION_PROXY_INFO_FLAG_BYPASSLOCAL = @as(u32, 2);
-pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
+pub const DNSSEC_KEY_FLAG_USER = @as(u32, 0);
+pub const DNSSEC_KEY_FLAG_ZONE = @as(u32, 64);
+pub const DNSSEC_PROTOCOL_DNSSEC = @as(u32, 3);
+pub const DNSSEC_PROTOCOL_EMAIL = @as(u32, 2);
+pub const DNSSEC_PROTOCOL_IPSEC = @as(u32, 4);
+pub const DNSSEC_PROTOCOL_NONE = @as(u32, 0);
+pub const DNSSEC_PROTOCOL_TLS = @as(u32, 1);
+pub const IP4_ADDRESS_STRING_BUFFER_LENGTH = @as(u32, 16);
+pub const IP4_ADDRESS_STRING_LENGTH = @as(u32, 16);
+pub const IP6_ADDRESS_STRING_BUFFER_LENGTH = @as(u32, 65);
+pub const IP6_ADDRESS_STRING_LENGTH = @as(u32, 65);
+pub const SIZEOF_IP4_ADDRESS = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (97)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const DnsContextHandle = isize;
-
-pub const IP4_ARRAY = extern struct {
-    AddrCount: u32,
-    AddrArray: [1]u32,
+pub const _DnsRecordOptA = extern struct {
+    pNext: ?*DNS_RECORDA,
+    pName: ?PSTR,
+    wType: u16,
+    wDataLength: u16,
+    Flags: extern union {
+        DW: u32,
+        S: DNS_RECORD_FLAGS,
+    },
+    ExtHeader: DNS_HEADER_EXT,
+    wPayloadSize: u16,
+    wReserved: u16,
+    Data: extern union {
+        OPT: DNS_OPT_DATA,
+        Opt: DNS_OPT_DATA,
+    },
 };
 
+pub const _DnsRecordOptW = extern struct {
+    pNext: ?*DNS_RECORDW,
+    pName: ?PWSTR,
+    wType: u16,
+    wDataLength: u16,
+    Flags: extern union {
+        DW: u32,
+        S: DNS_RECORD_FLAGS,
+    },
+    ExtHeader: DNS_HEADER_EXT,
+    wPayloadSize: u16,
+    wReserved: u16,
+    Data: extern union {
+        OPT: DNS_OPT_DATA,
+        Opt: DNS_OPT_DATA,
+    },
+};
+
+pub const DNS_A_DATA = extern struct {
+    IpAddress: u32,
+};
+
+pub const DNS_AAAA_DATA = extern struct {
+    Ip6Address: IP6_ADDRESS,
+};
 
 pub const DNS_ADDR = extern struct {
     MaxSa: [32]CHAR,
@@ -361,33 +395,26 @@ pub const DNS_ADDR_ARRAY = extern struct {
     AddrArray: [1]DNS_ADDR align(1),
 };
 
-pub const DNS_HEADER = extern struct {
-    Xid: u16 align(1),
-    _bitfield1: u8 align(1),
-    _bitfield2: u8 align(1),
-    QuestionCount: u16 align(1),
-    AnswerCount: u16 align(1),
-    NameServerCount: u16 align(1),
-    AdditionalCount: u16 align(1),
+pub const DNS_APPLICATION_SETTINGS = extern struct {
+    Version: u32,
+    Flags: u64,
 };
 
-pub const DNS_HEADER_EXT = extern struct {
-    _bitfield: u16 align(1),
-    chRcode: u8 align(1),
-    chVersion: u8 align(1),
+pub const DNS_ATMA_DATA = extern struct {
+    AddressType: u8,
+    Address: [20]u8,
 };
 
-pub const DNS_WIRE_QUESTION = extern struct {
-    QuestionType: u16 align(1),
-    QuestionClass: u16 align(1),
+pub const DNS_CHARSET = enum(i32) {
+    Unknown = 0,
+    Unicode = 1,
+    Utf8 = 2,
+    Ansi = 3,
 };
-
-pub const DNS_WIRE_RECORD = extern struct {
-    RecordType: u16 align(1),
-    RecordClass: u16 align(1),
-    TimeToLive: u32 align(1),
-    DataLength: u16 align(1),
-};
+pub const DnsCharSetUnknown = DNS_CHARSET.Unknown;
+pub const DnsCharSetUnicode = DNS_CHARSET.Unicode;
+pub const DnsCharSetUtf8 = DNS_CHARSET.Utf8;
+pub const DnsCharSetAnsi = DNS_CHARSET.Ansi;
 
 pub const DNS_CONFIG_TYPE = enum(i32) {
     PrimaryDomainName_W = 0,
@@ -430,109 +457,161 @@ pub const DnsConfigFullHostName_A = DNS_CONFIG_TYPE.FullHostName_A;
 pub const DnsConfigFullHostName_UTF8 = DNS_CONFIG_TYPE.FullHostName_UTF8;
 pub const DnsConfigNameServer = DNS_CONFIG_TYPE.NameServer;
 
-pub const DNS_A_DATA = extern struct {
-    IpAddress: u32,
+pub const DNS_CONNECTION_IFINDEX_ENTRY = extern struct {
+    pwszConnectionName: ?[*:0]const u16,
+    dwIfIndex: u32,
 };
 
-pub const DNS_PTR_DATAW = extern struct {
-    pNameHost: ?PWSTR,
+pub const DNS_CONNECTION_IFINDEX_LIST = extern struct {
+    pConnectionIfIndexEntries: ?*DNS_CONNECTION_IFINDEX_ENTRY,
+    nEntries: u32,
 };
 
-pub const DNS_PTR_DATAA = extern struct {
-    pNameHost: ?PSTR,
+pub const DNS_CONNECTION_NAME = extern struct {
+    wszName: [65]u16,
 };
 
-pub const DNS_SOA_DATAW = extern struct {
-    pNamePrimaryServer: ?PWSTR,
-    pNameAdministrator: ?PWSTR,
-    dwSerialNo: u32,
-    dwRefresh: u32,
-    dwRetry: u32,
-    dwExpire: u32,
-    dwDefaultTtl: u32,
+pub const DNS_CONNECTION_NAME_LIST = extern struct {
+    cNames: u32,
+    pNames: ?*DNS_CONNECTION_NAME,
 };
 
-pub const DNS_SOA_DATAA = extern struct {
-    pNamePrimaryServer: ?PSTR,
-    pNameAdministrator: ?PSTR,
-    dwSerialNo: u32,
-    dwRefresh: u32,
-    dwRetry: u32,
-    dwExpire: u32,
-    dwDefaultTtl: u32,
+pub const DNS_CONNECTION_POLICY_ENTRY = extern struct {
+    pwszHost: ?[*:0]const u16,
+    pwszAppId: ?[*:0]const u16,
+    cbAppSid: u32,
+    pbAppSid: ?*u8,
+    nConnections: u32,
+    ppwszConnections: ?*?PWSTR,
+    dwPolicyEntryFlags: u32,
 };
 
-pub const DNS_MINFO_DATAW = extern struct {
-    pNameMailbox: ?PWSTR,
-    pNameErrorsMailbox: ?PWSTR,
+pub const DNS_CONNECTION_POLICY_ENTRY_LIST = extern struct {
+    pPolicyEntries: ?*DNS_CONNECTION_POLICY_ENTRY,
+    nEntries: u32,
 };
 
-pub const DNS_MINFO_DATAA = extern struct {
-    pNameMailbox: ?PSTR,
-    pNameErrorsMailbox: ?PSTR,
+pub const DNS_CONNECTION_POLICY_TAG = enum(i32) {
+    DEFAULT = 0,
+    CONNECTION_MANAGER = 1,
+    WWWPT = 2,
+};
+pub const TAG_DNS_CONNECTION_POLICY_TAG_DEFAULT = DNS_CONNECTION_POLICY_TAG.DEFAULT;
+pub const TAG_DNS_CONNECTION_POLICY_TAG_CONNECTION_MANAGER = DNS_CONNECTION_POLICY_TAG.CONNECTION_MANAGER;
+pub const TAG_DNS_CONNECTION_POLICY_TAG_WWWPT = DNS_CONNECTION_POLICY_TAG.WWWPT;
+
+pub const DNS_CONNECTION_PROXY_ELEMENT = extern struct {
+    Type: DNS_CONNECTION_PROXY_TYPE,
+    Info: DNS_CONNECTION_PROXY_INFO,
 };
 
-pub const DNS_MX_DATAW = extern struct {
-    pNameExchange: ?PWSTR,
-    wPreference: u16,
-    Pad: u16,
+pub const DNS_CONNECTION_PROXY_INFO = extern struct {
+    Version: u32,
+    pwszFriendlyName: ?PWSTR,
+    Flags: u32,
+    Switch: DNS_CONNECTION_PROXY_INFO_SWITCH,
+    Anonymous: extern union {
+        pub const _DNS_CONNECTION_PROXY_INFO_CONFIG = extern struct {
+            pwszServer: ?PWSTR,
+            pwszUsername: ?PWSTR,
+            pwszPassword: ?PWSTR,
+            pwszException: ?PWSTR,
+            pwszExtraInfo: ?PWSTR,
+            Port: u16,
+        };
+        pub const _DNS_CONNECTION_PROXY_INFO_SCRIPT = extern struct {
+            pwszScript: ?PWSTR,
+            pwszUsername: ?PWSTR,
+            pwszPassword: ?PWSTR,
+        };
+        Config: _DNS_CONNECTION_PROXY_INFO_CONFIG,
+        Script: _DNS_CONNECTION_PROXY_INFO_SCRIPT,
+    },
 };
 
-pub const DNS_MX_DATAA = extern struct {
-    pNameExchange: ?PSTR,
-    wPreference: u16,
-    Pad: u16,
+pub const DNS_CONNECTION_PROXY_INFO_EX = extern struct {
+    ProxyInfo: DNS_CONNECTION_PROXY_INFO,
+    dwInterfaceIndex: u32,
+    pwszConnectionName: ?PWSTR,
+    fDirectConfiguration: BOOL,
+    hConnection: ?HANDLE,
 };
 
-pub const DNS_TXT_DATAW = extern struct {
-    dwStringCount: u32,
-    pStringArray: [1]?PWSTR,
+pub const DNS_CONNECTION_PROXY_INFO_SWITCH = enum(i32) {
+    CONFIG = 0,
+    SCRIPT = 1,
+    WPAD = 2,
+};
+pub const DNS_CONNECTION_PROXY_INFO_SWITCH_CONFIG = DNS_CONNECTION_PROXY_INFO_SWITCH.CONFIG;
+pub const DNS_CONNECTION_PROXY_INFO_SWITCH_SCRIPT = DNS_CONNECTION_PROXY_INFO_SWITCH.SCRIPT;
+pub const DNS_CONNECTION_PROXY_INFO_SWITCH_WPAD = DNS_CONNECTION_PROXY_INFO_SWITCH.WPAD;
+
+pub const DNS_CONNECTION_PROXY_LIST = extern struct {
+    cProxies: u32,
+    pProxies: ?*DNS_CONNECTION_PROXY_ELEMENT,
 };
 
-pub const DNS_TXT_DATAA = extern struct {
-    dwStringCount: u32,
-    pStringArray: [1]?PSTR,
+pub const DNS_CONNECTION_PROXY_TYPE = enum(i32) {
+    NULL = 0,
+    HTTP = 1,
+    WAP = 2,
+    SOCKS4 = 4,
+    SOCKS5 = 5,
+};
+pub const DNS_CONNECTION_PROXY_TYPE_NULL = DNS_CONNECTION_PROXY_TYPE.NULL;
+pub const DNS_CONNECTION_PROXY_TYPE_HTTP = DNS_CONNECTION_PROXY_TYPE.HTTP;
+pub const DNS_CONNECTION_PROXY_TYPE_WAP = DNS_CONNECTION_PROXY_TYPE.WAP;
+pub const DNS_CONNECTION_PROXY_TYPE_SOCKS4 = DNS_CONNECTION_PROXY_TYPE.SOCKS4;
+pub const DNS_CONNECTION_PROXY_TYPE_SOCKS5 = DNS_CONNECTION_PROXY_TYPE.SOCKS5;
+
+pub const DNS_CUSTOM_SERVER = extern struct {
+    dwServerType: u32,
+    ullFlags: u64,
+    Anonymous1: extern union {
+        pwszTemplate: ?PWSTR,
+    },
+    Anonymous2: extern union {
+        MaxSa: [32]CHAR,
+    },
 };
 
-pub const DNS_NULL_DATA = extern struct {
+pub const DNS_DHCID_DATA = extern struct {
     dwByteCount: u32,
-    Data: [1]u8,
+    DHCID: [1]u8,
 };
 
-pub const DNS_WKS_DATA = extern struct {
-    IpAddress: u32,
-    chProtocol: u8,
-    BitMask: [1]u8,
-};
-
-pub const DNS_AAAA_DATA = extern struct {
-    Ip6Address: IP6_ADDRESS,
-};
-
-pub const DNS_SIG_DATAW = extern struct {
-    wTypeCovered: u16,
-    chAlgorithm: u8,
-    chLabelCount: u8,
-    dwOriginalTtl: u32,
-    dwExpiration: u32,
-    dwTimeSigned: u32,
+pub const DNS_DS_DATA = extern struct {
     wKeyTag: u16,
-    wSignatureLength: u16,
-    pNameSigner: ?PWSTR,
-    Signature: [1]u8,
+    chAlgorithm: u8,
+    chDigestType: u8,
+    wDigestLength: u16,
+    wPad: u16,
+    Digest: [1]u8,
 };
 
-pub const DNS_SIG_DATAA = extern struct {
-    wTypeCovered: u16,
-    chAlgorithm: u8,
-    chLabelCount: u8,
-    dwOriginalTtl: u32,
-    dwExpiration: u32,
-    dwTimeSigned: u32,
-    wKeyTag: u16,
-    wSignatureLength: u16,
-    pNameSigner: ?PSTR,
-    Signature: [1]u8,
+pub const DNS_FREE_TYPE = enum(i32) {
+    Flat = 0,
+    RecordList = 1,
+    ParsedMessageFields = 2,
+};
+pub const DnsFreeFlat = DNS_FREE_TYPE.Flat;
+pub const DnsFreeRecordList = DNS_FREE_TYPE.RecordList;
+pub const DnsFreeParsedMessageFields = DNS_FREE_TYPE.ParsedMessageFields;
+
+pub const DNS_HEADER = extern struct {
+    Xid: u16 align(1),
+    _bitfield1: u8 align(1),
+    _bitfield2: u8 align(1),
+    QuestionCount: u16 align(1),
+    AnswerCount: u16 align(1),
+    NameServerCount: u16 align(1),
+    AdditionalCount: u16 align(1),
+};
+
+pub const DNS_HEADER_EXT = extern struct {
+    _bitfield: u16 align(1),
+    chRcode: u8 align(1),
+    chVersion: u8 align(1),
 };
 
 pub const DNS_KEY_DATA = extern struct {
@@ -544,23 +623,76 @@ pub const DNS_KEY_DATA = extern struct {
     Key: [1]u8,
 };
 
-pub const DNS_DHCID_DATA = extern struct {
-    dwByteCount: u32,
-    DHCID: [1]u8,
+pub const DNS_LOC_DATA = extern struct {
+    wVersion: u16,
+    wSize: u16,
+    wHorPrec: u16,
+    wVerPrec: u16,
+    dwLatitude: u32,
+    dwLongitude: u32,
+    dwAltitude: u32,
 };
 
-pub const DNS_NSEC_DATAW = extern struct {
-    pNextDomainName: ?PWSTR,
-    wTypeBitMapsLength: u16,
-    wPad: u16,
-    TypeBitMaps: [1]u8,
+pub const DNS_MESSAGE_BUFFER = extern struct {
+    MessageHead: DNS_HEADER,
+    MessageBody: [1]CHAR,
 };
 
-pub const DNS_NSEC_DATAA = extern struct {
-    pNextDomainName: ?PSTR,
-    wTypeBitMapsLength: u16,
-    wPad: u16,
-    TypeBitMaps: [1]u8,
+pub const DNS_MINFO_DATAA = extern struct {
+    pNameMailbox: ?PSTR,
+    pNameErrorsMailbox: ?PSTR,
+};
+
+pub const DNS_MINFO_DATAW = extern struct {
+    pNameMailbox: ?PWSTR,
+    pNameErrorsMailbox: ?PWSTR,
+};
+
+pub const DNS_MX_DATAA = extern struct {
+    pNameExchange: ?PSTR,
+    wPreference: u16,
+    Pad: u16,
+};
+
+pub const DNS_MX_DATAW = extern struct {
+    pNameExchange: ?PWSTR,
+    wPreference: u16,
+    Pad: u16,
+};
+
+pub const DNS_NAME_FORMAT = enum(i32) {
+    Domain = 0,
+    DomainLabel = 1,
+    HostnameFull = 2,
+    HostnameLabel = 3,
+    Wildcard = 4,
+    SrvRecord = 5,
+    ValidateTld = 6,
+};
+pub const DnsNameDomain = DNS_NAME_FORMAT.Domain;
+pub const DnsNameDomainLabel = DNS_NAME_FORMAT.DomainLabel;
+pub const DnsNameHostnameFull = DNS_NAME_FORMAT.HostnameFull;
+pub const DnsNameHostnameLabel = DNS_NAME_FORMAT.HostnameLabel;
+pub const DnsNameWildcard = DNS_NAME_FORMAT.Wildcard;
+pub const DnsNameSrvRecord = DNS_NAME_FORMAT.SrvRecord;
+pub const DnsNameValidateTld = DNS_NAME_FORMAT.ValidateTld;
+
+pub const DNS_NAPTR_DATAA = extern struct {
+    wOrder: u16,
+    wPreference: u16,
+    pFlags: ?PSTR,
+    pService: ?PSTR,
+    pRegularExpression: ?PSTR,
+    pReplacement: ?PSTR,
+};
+
+pub const DNS_NAPTR_DATAW = extern struct {
+    wOrder: u16,
+    wPreference: u16,
+    pFlags: ?PWSTR,
+    pService: ?PWSTR,
+    pRegularExpression: ?PWSTR,
+    pReplacement: ?PWSTR,
 };
 
 pub const DNS_NSEC3_DATA = extern struct {
@@ -582,44 +714,23 @@ pub const DNS_NSEC3PARAM_DATA = extern struct {
     pbSalt: [1]u8,
 };
 
-pub const DNS_TLSA_DATA = extern struct {
-    bCertUsage: u8,
-    bSelector: u8,
-    bMatchingType: u8,
-    bCertificateAssociationDataLength: u16,
-    bPad: [3]u8,
-    bCertificateAssociationData: [1]u8,
+pub const DNS_NSEC_DATAA = extern struct {
+    pNextDomainName: ?PSTR,
+    wTypeBitMapsLength: u16,
+    wPad: u16,
+    TypeBitMaps: [1]u8,
 };
 
-pub const DNS_DS_DATA = extern struct {
-    wKeyTag: u16,
-    chAlgorithm: u8,
-    chDigestType: u8,
-    wDigestLength: u16,
+pub const DNS_NSEC_DATAW = extern struct {
+    pNextDomainName: ?PWSTR,
+    wTypeBitMapsLength: u16,
     wPad: u16,
-    Digest: [1]u8,
+    TypeBitMaps: [1]u8,
 };
 
-pub const DNS_OPT_DATA = extern struct {
-    wDataLength: u16,
-    wPad: u16,
+pub const DNS_NULL_DATA = extern struct {
+    dwByteCount: u32,
     Data: [1]u8,
-};
-
-pub const DNS_LOC_DATA = extern struct {
-    wVersion: u16,
-    wSize: u16,
-    wHorPrec: u16,
-    wVerPrec: u16,
-    dwLatitude: u32,
-    dwLongitude: u32,
-    dwAltitude: u32,
-};
-
-pub const DNS_NXT_DATAW = extern struct {
-    pNameNext: ?PWSTR,
-    wNumTypes: u16,
-    wTypes: [1]u16,
 };
 
 pub const DNS_NXT_DATAA = extern struct {
@@ -628,262 +739,88 @@ pub const DNS_NXT_DATAA = extern struct {
     wTypes: [1]u16,
 };
 
-pub const DNS_SRV_DATAW = extern struct {
-    pNameTarget: ?PWSTR,
-    wPriority: u16,
-    wWeight: u16,
-    wPort: u16,
-    Pad: u16,
+pub const DNS_NXT_DATAW = extern struct {
+    pNameNext: ?PWSTR,
+    wNumTypes: u16,
+    wTypes: [1]u16,
 };
 
-pub const DNS_SRV_DATAA = extern struct {
-    pNameTarget: ?PSTR,
-    wPriority: u16,
-    wWeight: u16,
-    wPort: u16,
-    Pad: u16,
+pub const DNS_OPT_DATA = extern struct {
+    wDataLength: u16,
+    wPad: u16,
+    Data: [1]u8,
 };
 
-pub const DNS_NAPTR_DATAW = extern struct {
-    wOrder: u16,
-    wPreference: u16,
-    pFlags: ?PWSTR,
-    pService: ?PWSTR,
-    pRegularExpression: ?PWSTR,
-    pReplacement: ?PWSTR,
+pub const DNS_PROXY_COMPLETION_ROUTINE = *const fn(
+    completionContext: ?*anyopaque,
+    status: i32,
+) callconv(.winapi) void;
+
+pub const DNS_PROXY_INFORMATION = extern struct {
+    version: u32,
+    proxyInformationType: DNS_PROXY_INFORMATION_TYPE,
+    proxyName: ?PWSTR,
 };
 
-pub const DNS_NAPTR_DATAA = extern struct {
-    wOrder: u16,
-    wPreference: u16,
-    pFlags: ?PSTR,
-    pService: ?PSTR,
-    pRegularExpression: ?PSTR,
-    pReplacement: ?PSTR,
+pub const DNS_PROXY_INFORMATION_TYPE = enum(i32) {
+    DIRECT = 0,
+    DEFAULT_SETTINGS = 1,
+    PROXY_NAME = 2,
+    DOES_NOT_EXIST = 3,
+};
+pub const DNS_PROXY_INFORMATION_DIRECT = DNS_PROXY_INFORMATION_TYPE.DIRECT;
+pub const DNS_PROXY_INFORMATION_DEFAULT_SETTINGS = DNS_PROXY_INFORMATION_TYPE.DEFAULT_SETTINGS;
+pub const DNS_PROXY_INFORMATION_PROXY_NAME = DNS_PROXY_INFORMATION_TYPE.PROXY_NAME;
+pub const DNS_PROXY_INFORMATION_DOES_NOT_EXIST = DNS_PROXY_INFORMATION_TYPE.DOES_NOT_EXIST;
+
+pub const DNS_PTR_DATAA = extern struct {
+    pNameHost: ?PSTR,
 };
 
-pub const DNS_ATMA_DATA = extern struct {
-    AddressType: u8,
-    Address: [20]u8,
+pub const DNS_PTR_DATAW = extern struct {
+    pNameHost: ?PWSTR,
 };
 
-pub const DNS_TKEY_DATAW = extern struct {
-    pNameAlgorithm: ?PWSTR,
-    pAlgorithmPacket: ?*u8,
-    pKey: ?*u8,
-    pOtherData: ?*u8,
-    dwCreateTime: u32,
-    dwExpireTime: u32,
-    wMode: u16,
-    wError: u16,
-    wKeyLength: u16,
-    wOtherLength: u16,
-    cAlgNameLength: u8,
-    bPacketPointers: BOOL,
+pub const DNS_QUERY_CANCEL = extern struct {
+    Reserved: [32]CHAR,
 };
 
-pub const DNS_TKEY_DATAA = extern struct {
-    pNameAlgorithm: ?PSTR,
-    pAlgorithmPacket: ?*u8,
-    pKey: ?*u8,
-    pOtherData: ?*u8,
-    dwCreateTime: u32,
-    dwExpireTime: u32,
-    wMode: u16,
-    wError: u16,
-    wKeyLength: u16,
-    wOtherLength: u16,
-    cAlgNameLength: u8,
-    bPacketPointers: BOOL,
+pub const DNS_QUERY_REQUEST = extern struct {
+    Version: u32,
+    QueryName: ?[*:0]const u16,
+    QueryType: u16,
+    QueryOptions: u64,
+    pDnsServerList: ?*DNS_ADDR_ARRAY,
+    InterfaceIndex: u32,
+    pQueryCompletionCallback: ?PDNS_QUERY_COMPLETION_ROUTINE,
+    pQueryContext: ?*anyopaque,
 };
 
-pub const DNS_TSIG_DATAW = extern struct {
-    pNameAlgorithm: ?PWSTR,
-    pAlgorithmPacket: ?*u8,
-    pSignature: ?*u8,
-    pOtherData: ?*u8,
-    i64CreateTime: i64,
-    wFudgeTime: u16,
-    wOriginalXid: u16,
-    wError: u16,
-    wSigLength: u16,
-    wOtherLength: u16,
-    cAlgNameLength: u8,
-    bPacketPointers: BOOL,
+pub const DNS_QUERY_REQUEST3 = extern struct {
+    Version: u32,
+    QueryName: ?[*:0]const u16,
+    QueryType: u16,
+    QueryOptions: u64,
+    pDnsServerList: ?*DNS_ADDR_ARRAY,
+    InterfaceIndex: u32,
+    pQueryCompletionCallback: ?PDNS_QUERY_COMPLETION_ROUTINE,
+    pQueryContext: ?*anyopaque,
+    IsNetworkQueryRequired: BOOL,
+    RequiredNetworkIndex: u32,
+    cCustomServers: u32,
+    pCustomServers: ?*DNS_CUSTOM_SERVER,
 };
 
-pub const DNS_TSIG_DATAA = extern struct {
-    pNameAlgorithm: ?PSTR,
-    pAlgorithmPacket: ?*u8,
-    pSignature: ?*u8,
-    pOtherData: ?*u8,
-    i64CreateTime: i64,
-    wFudgeTime: u16,
-    wOriginalXid: u16,
-    wError: u16,
-    wSigLength: u16,
-    wOtherLength: u16,
-    cAlgNameLength: u8,
-    bPacketPointers: BOOL,
-};
-
-pub const DNS_UNKNOWN_DATA = extern struct {
-    dwByteCount: u32,
-    bData: [1]u8,
-};
-
-pub const DNS_WINS_DATA = extern struct {
-    dwMappingFlag: u32,
-    dwLookupTimeout: u32,
-    dwCacheTimeout: u32,
-    cWinsServerCount: u32,
-    WinsServers: [1]u32,
-};
-
-pub const DNS_WINSR_DATAW = extern struct {
-    dwMappingFlag: u32,
-    dwLookupTimeout: u32,
-    dwCacheTimeout: u32,
-    pNameResultDomain: ?PWSTR,
-};
-
-pub const DNS_WINSR_DATAA = extern struct {
-    dwMappingFlag: u32,
-    dwLookupTimeout: u32,
-    dwCacheTimeout: u32,
-    pNameResultDomain: ?PSTR,
+pub const DNS_QUERY_RESULT = extern struct {
+    Version: u32,
+    QueryStatus: i32,
+    QueryOptions: u64,
+    pQueryRecords: ?*DNS_RECORDA,
+    Reserved: ?*anyopaque,
 };
 
 pub const DNS_RECORD_FLAGS = extern struct {
     _bitfield: u32,
-};
-
-pub const DNS_SECTION = enum(i32) {
-    Question = 0,
-    Answer = 1,
-    Authority = 2,
-    Addtional = 3,
-};
-pub const DnsSectionQuestion = DNS_SECTION.Question;
-pub const DnsSectionAnswer = DNS_SECTION.Answer;
-pub const DnsSectionAuthority = DNS_SECTION.Authority;
-pub const DnsSectionAddtional = DNS_SECTION.Addtional;
-
-pub const DNS_RECORDW = extern struct {
-    pNext: ?*DNS_RECORDW,
-    pName: ?PWSTR,
-    wType: u16,
-    wDataLength: u16,
-    Flags: extern union {
-        DW: u32,
-        S: DNS_RECORD_FLAGS,
-    },
-    dwTtl: u32,
-    dwReserved: u32,
-    Data: extern union {
-        A: DNS_A_DATA,
-        SOA: DNS_SOA_DATAW,
-        Soa: DNS_SOA_DATAW,
-        PTR: DNS_PTR_DATAW,
-        Ptr: DNS_PTR_DATAW,
-        NS: DNS_PTR_DATAW,
-        Ns: DNS_PTR_DATAW,
-        CNAME: DNS_PTR_DATAW,
-        Cname: DNS_PTR_DATAW,
-        DNAME: DNS_PTR_DATAW,
-        Dname: DNS_PTR_DATAW,
-        MB: DNS_PTR_DATAW,
-        Mb: DNS_PTR_DATAW,
-        MD: DNS_PTR_DATAW,
-        Md: DNS_PTR_DATAW,
-        MF: DNS_PTR_DATAW,
-        Mf: DNS_PTR_DATAW,
-        MG: DNS_PTR_DATAW,
-        Mg: DNS_PTR_DATAW,
-        MR: DNS_PTR_DATAW,
-        Mr: DNS_PTR_DATAW,
-        MINFO: DNS_MINFO_DATAW,
-        Minfo: DNS_MINFO_DATAW,
-        RP: DNS_MINFO_DATAW,
-        Rp: DNS_MINFO_DATAW,
-        MX: DNS_MX_DATAW,
-        Mx: DNS_MX_DATAW,
-        AFSDB: DNS_MX_DATAW,
-        Afsdb: DNS_MX_DATAW,
-        RT: DNS_MX_DATAW,
-        Rt: DNS_MX_DATAW,
-        HINFO: DNS_TXT_DATAW,
-        Hinfo: DNS_TXT_DATAW,
-        ISDN: DNS_TXT_DATAW,
-        Isdn: DNS_TXT_DATAW,
-        TXT: DNS_TXT_DATAW,
-        Txt: DNS_TXT_DATAW,
-        X25: DNS_TXT_DATAW,
-        Null: DNS_NULL_DATA,
-        WKS: DNS_WKS_DATA,
-        Wks: DNS_WKS_DATA,
-        AAAA: DNS_AAAA_DATA,
-        KEY: DNS_KEY_DATA,
-        Key: DNS_KEY_DATA,
-        SIG: DNS_SIG_DATAW,
-        Sig: DNS_SIG_DATAW,
-        ATMA: DNS_ATMA_DATA,
-        Atma: DNS_ATMA_DATA,
-        NXT: DNS_NXT_DATAW,
-        Nxt: DNS_NXT_DATAW,
-        SRV: DNS_SRV_DATAW,
-        Srv: DNS_SRV_DATAW,
-        NAPTR: DNS_NAPTR_DATAW,
-        Naptr: DNS_NAPTR_DATAW,
-        OPT: DNS_OPT_DATA,
-        Opt: DNS_OPT_DATA,
-        DS: DNS_DS_DATA,
-        Ds: DNS_DS_DATA,
-        RRSIG: DNS_SIG_DATAW,
-        Rrsig: DNS_SIG_DATAW,
-        NSEC: DNS_NSEC_DATAW,
-        Nsec: DNS_NSEC_DATAW,
-        DNSKEY: DNS_KEY_DATA,
-        Dnskey: DNS_KEY_DATA,
-        TKEY: DNS_TKEY_DATAW,
-        Tkey: DNS_TKEY_DATAW,
-        TSIG: DNS_TSIG_DATAW,
-        Tsig: DNS_TSIG_DATAW,
-        WINS: DNS_WINS_DATA,
-        Wins: DNS_WINS_DATA,
-        WINSR: DNS_WINSR_DATAW,
-        WinsR: DNS_WINSR_DATAW,
-        NBSTAT: DNS_WINSR_DATAW,
-        Nbstat: DNS_WINSR_DATAW,
-        DHCID: DNS_DHCID_DATA,
-        NSEC3: DNS_NSEC3_DATA,
-        Nsec3: DNS_NSEC3_DATA,
-        NSEC3PARAM: DNS_NSEC3PARAM_DATA,
-        Nsec3Param: DNS_NSEC3PARAM_DATA,
-        TLSA: DNS_TLSA_DATA,
-        Tlsa: DNS_TLSA_DATA,
-        UNKNOWN: DNS_UNKNOWN_DATA,
-        Unknown: DNS_UNKNOWN_DATA,
-        pDataPtr: ?*u8,
-    },
-};
-
-pub const _DnsRecordOptW = extern struct {
-    pNext: ?*DNS_RECORDW,
-    pName: ?PWSTR,
-    wType: u16,
-    wDataLength: u16,
-    Flags: extern union {
-        DW: u32,
-        S: DNS_RECORD_FLAGS,
-    },
-    ExtHeader: DNS_HEADER_EXT,
-    wPayloadSize: u16,
-    wReserved: u16,
-    Data: extern union {
-        OPT: DNS_OPT_DATA,
-        Opt: DNS_OPT_DATA,
-    },
 };
 
 pub const DNS_RECORDA = extern struct {
@@ -985,21 +922,102 @@ pub const DNS_RECORDA = extern struct {
     },
 };
 
-pub const _DnsRecordOptA = extern struct {
-    pNext: ?*DNS_RECORDA,
-    pName: ?PSTR,
+pub const DNS_RECORDW = extern struct {
+    pNext: ?*DNS_RECORDW,
+    pName: ?PWSTR,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
         DW: u32,
         S: DNS_RECORD_FLAGS,
     },
-    ExtHeader: DNS_HEADER_EXT,
-    wPayloadSize: u16,
-    wReserved: u16,
+    dwTtl: u32,
+    dwReserved: u32,
     Data: extern union {
+        A: DNS_A_DATA,
+        SOA: DNS_SOA_DATAW,
+        Soa: DNS_SOA_DATAW,
+        PTR: DNS_PTR_DATAW,
+        Ptr: DNS_PTR_DATAW,
+        NS: DNS_PTR_DATAW,
+        Ns: DNS_PTR_DATAW,
+        CNAME: DNS_PTR_DATAW,
+        Cname: DNS_PTR_DATAW,
+        DNAME: DNS_PTR_DATAW,
+        Dname: DNS_PTR_DATAW,
+        MB: DNS_PTR_DATAW,
+        Mb: DNS_PTR_DATAW,
+        MD: DNS_PTR_DATAW,
+        Md: DNS_PTR_DATAW,
+        MF: DNS_PTR_DATAW,
+        Mf: DNS_PTR_DATAW,
+        MG: DNS_PTR_DATAW,
+        Mg: DNS_PTR_DATAW,
+        MR: DNS_PTR_DATAW,
+        Mr: DNS_PTR_DATAW,
+        MINFO: DNS_MINFO_DATAW,
+        Minfo: DNS_MINFO_DATAW,
+        RP: DNS_MINFO_DATAW,
+        Rp: DNS_MINFO_DATAW,
+        MX: DNS_MX_DATAW,
+        Mx: DNS_MX_DATAW,
+        AFSDB: DNS_MX_DATAW,
+        Afsdb: DNS_MX_DATAW,
+        RT: DNS_MX_DATAW,
+        Rt: DNS_MX_DATAW,
+        HINFO: DNS_TXT_DATAW,
+        Hinfo: DNS_TXT_DATAW,
+        ISDN: DNS_TXT_DATAW,
+        Isdn: DNS_TXT_DATAW,
+        TXT: DNS_TXT_DATAW,
+        Txt: DNS_TXT_DATAW,
+        X25: DNS_TXT_DATAW,
+        Null: DNS_NULL_DATA,
+        WKS: DNS_WKS_DATA,
+        Wks: DNS_WKS_DATA,
+        AAAA: DNS_AAAA_DATA,
+        KEY: DNS_KEY_DATA,
+        Key: DNS_KEY_DATA,
+        SIG: DNS_SIG_DATAW,
+        Sig: DNS_SIG_DATAW,
+        ATMA: DNS_ATMA_DATA,
+        Atma: DNS_ATMA_DATA,
+        NXT: DNS_NXT_DATAW,
+        Nxt: DNS_NXT_DATAW,
+        SRV: DNS_SRV_DATAW,
+        Srv: DNS_SRV_DATAW,
+        NAPTR: DNS_NAPTR_DATAW,
+        Naptr: DNS_NAPTR_DATAW,
         OPT: DNS_OPT_DATA,
         Opt: DNS_OPT_DATA,
+        DS: DNS_DS_DATA,
+        Ds: DNS_DS_DATA,
+        RRSIG: DNS_SIG_DATAW,
+        Rrsig: DNS_SIG_DATAW,
+        NSEC: DNS_NSEC_DATAW,
+        Nsec: DNS_NSEC_DATAW,
+        DNSKEY: DNS_KEY_DATA,
+        Dnskey: DNS_KEY_DATA,
+        TKEY: DNS_TKEY_DATAW,
+        Tkey: DNS_TKEY_DATAW,
+        TSIG: DNS_TSIG_DATAW,
+        Tsig: DNS_TSIG_DATAW,
+        WINS: DNS_WINS_DATA,
+        Wins: DNS_WINS_DATA,
+        WINSR: DNS_WINSR_DATAW,
+        WinsR: DNS_WINSR_DATAW,
+        NBSTAT: DNS_WINSR_DATAW,
+        Nbstat: DNS_WINSR_DATAW,
+        DHCID: DNS_DHCID_DATA,
+        NSEC3: DNS_NSEC3_DATA,
+        Nsec3: DNS_NSEC3_DATA,
+        NSEC3PARAM: DNS_NSEC3PARAM_DATA,
+        Nsec3Param: DNS_NSEC3PARAM_DATA,
+        TLSA: DNS_TLSA_DATA,
+        Tlsa: DNS_TLSA_DATA,
+        UNKNOWN: DNS_UNKNOWN_DATA,
+        Unknown: DNS_UNKNOWN_DATA,
+        pDataPtr: ?*u8,
     },
 };
 
@@ -1008,235 +1026,31 @@ pub const DNS_RRSET = extern struct {
     pLastRR: ?*DNS_RECORDA,
 };
 
-pub const DNS_PROXY_COMPLETION_ROUTINE = *const fn(
-    completionContext: ?*anyopaque,
-    status: i32,
-) callconv(.winapi) void;
-
-pub const DNS_PROXY_INFORMATION_TYPE = enum(i32) {
-    DIRECT = 0,
-    DEFAULT_SETTINGS = 1,
-    PROXY_NAME = 2,
-    DOES_NOT_EXIST = 3,
+pub const DNS_SECTION = enum(i32) {
+    Question = 0,
+    Answer = 1,
+    Authority = 2,
+    Addtional = 3,
 };
-pub const DNS_PROXY_INFORMATION_DIRECT = DNS_PROXY_INFORMATION_TYPE.DIRECT;
-pub const DNS_PROXY_INFORMATION_DEFAULT_SETTINGS = DNS_PROXY_INFORMATION_TYPE.DEFAULT_SETTINGS;
-pub const DNS_PROXY_INFORMATION_PROXY_NAME = DNS_PROXY_INFORMATION_TYPE.PROXY_NAME;
-pub const DNS_PROXY_INFORMATION_DOES_NOT_EXIST = DNS_PROXY_INFORMATION_TYPE.DOES_NOT_EXIST;
+pub const DnsSectionQuestion = DNS_SECTION.Question;
+pub const DnsSectionAnswer = DNS_SECTION.Answer;
+pub const DnsSectionAuthority = DNS_SECTION.Authority;
+pub const DnsSectionAddtional = DNS_SECTION.Addtional;
 
-pub const DNS_PROXY_INFORMATION = extern struct {
-    version: u32,
-    proxyInformationType: DNS_PROXY_INFORMATION_TYPE,
-    proxyName: ?PWSTR,
-};
-
-pub const DNS_CHARSET = enum(i32) {
-    Unknown = 0,
-    Unicode = 1,
-    Utf8 = 2,
-    Ansi = 3,
-};
-pub const DnsCharSetUnknown = DNS_CHARSET.Unknown;
-pub const DnsCharSetUnicode = DNS_CHARSET.Unicode;
-pub const DnsCharSetUtf8 = DNS_CHARSET.Utf8;
-pub const DnsCharSetAnsi = DNS_CHARSET.Ansi;
-
-pub const DNS_FREE_TYPE = enum(i32) {
-    Flat = 0,
-    RecordList = 1,
-    ParsedMessageFields = 2,
-};
-pub const DnsFreeFlat = DNS_FREE_TYPE.Flat;
-pub const DnsFreeRecordList = DNS_FREE_TYPE.RecordList;
-pub const DnsFreeParsedMessageFields = DNS_FREE_TYPE.ParsedMessageFields;
-
-pub const DNS_QUERY_RESULT = extern struct {
+pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     Version: u32,
-    QueryStatus: i32,
-    QueryOptions: u64,
-    pQueryRecords: ?*DNS_RECORDA,
-    Reserved: ?*anyopaque,
-};
-
-pub const PDNS_QUERY_COMPLETION_ROUTINE = *const fn(
-    pQueryContext: ?*anyopaque,
-    pQueryResults: ?*DNS_QUERY_RESULT,
-) callconv(.winapi) void;
-
-pub const DNS_QUERY_REQUEST = extern struct {
-    Version: u32,
-    QueryName: ?[*:0]const u16,
-    QueryType: u16,
-    QueryOptions: u64,
-    pDnsServerList: ?*DNS_ADDR_ARRAY,
     InterfaceIndex: u32,
-    pQueryCompletionCallback: ?PDNS_QUERY_COMPLETION_ROUTINE,
-    pQueryContext: ?*anyopaque,
-};
-
-pub const DNS_QUERY_CANCEL = extern struct {
-    Reserved: [32]CHAR,
-};
-
-pub const DNS_CUSTOM_SERVER = extern struct {
-    dwServerType: u32,
-    ullFlags: u64,
-    Anonymous1: extern union {
-        pwszTemplate: ?PWSTR,
-    },
-    Anonymous2: extern union {
-        MaxSa: [32]CHAR,
-    },
-};
-
-pub const DNS_QUERY_REQUEST3 = extern struct {
-    Version: u32,
     QueryName: ?[*:0]const u16,
-    QueryType: u16,
-    QueryOptions: u64,
-    pDnsServerList: ?*DNS_ADDR_ARRAY,
-    InterfaceIndex: u32,
-    pQueryCompletionCallback: ?PDNS_QUERY_COMPLETION_ROUTINE,
-    pQueryContext: ?*anyopaque,
-    IsNetworkQueryRequired: BOOL,
-    RequiredNetworkIndex: u32,
-    cCustomServers: u32,
-    pCustomServers: ?*DNS_CUSTOM_SERVER,
-};
-
-pub const DNS_APPLICATION_SETTINGS = extern struct {
-    Version: u32,
-    Flags: u64,
-};
-
-pub const DNS_NAME_FORMAT = enum(i32) {
-    Domain = 0,
-    DomainLabel = 1,
-    HostnameFull = 2,
-    HostnameLabel = 3,
-    Wildcard = 4,
-    SrvRecord = 5,
-    ValidateTld = 6,
-};
-pub const DnsNameDomain = DNS_NAME_FORMAT.Domain;
-pub const DnsNameDomainLabel = DNS_NAME_FORMAT.DomainLabel;
-pub const DnsNameHostnameFull = DNS_NAME_FORMAT.HostnameFull;
-pub const DnsNameHostnameLabel = DNS_NAME_FORMAT.HostnameLabel;
-pub const DnsNameWildcard = DNS_NAME_FORMAT.Wildcard;
-pub const DnsNameSrvRecord = DNS_NAME_FORMAT.SrvRecord;
-pub const DnsNameValidateTld = DNS_NAME_FORMAT.ValidateTld;
-
-pub const DNS_MESSAGE_BUFFER = extern struct {
-    MessageHead: DNS_HEADER,
-    MessageBody: [1]CHAR,
-};
-
-pub const DNS_CONNECTION_PROXY_TYPE = enum(i32) {
-    NULL = 0,
-    HTTP = 1,
-    WAP = 2,
-    SOCKS4 = 4,
-    SOCKS5 = 5,
-};
-pub const DNS_CONNECTION_PROXY_TYPE_NULL = DNS_CONNECTION_PROXY_TYPE.NULL;
-pub const DNS_CONNECTION_PROXY_TYPE_HTTP = DNS_CONNECTION_PROXY_TYPE.HTTP;
-pub const DNS_CONNECTION_PROXY_TYPE_WAP = DNS_CONNECTION_PROXY_TYPE.WAP;
-pub const DNS_CONNECTION_PROXY_TYPE_SOCKS4 = DNS_CONNECTION_PROXY_TYPE.SOCKS4;
-pub const DNS_CONNECTION_PROXY_TYPE_SOCKS5 = DNS_CONNECTION_PROXY_TYPE.SOCKS5;
-
-pub const DNS_CONNECTION_PROXY_INFO_SWITCH = enum(i32) {
-    CONFIG = 0,
-    SCRIPT = 1,
-    WPAD = 2,
-};
-pub const DNS_CONNECTION_PROXY_INFO_SWITCH_CONFIG = DNS_CONNECTION_PROXY_INFO_SWITCH.CONFIG;
-pub const DNS_CONNECTION_PROXY_INFO_SWITCH_SCRIPT = DNS_CONNECTION_PROXY_INFO_SWITCH.SCRIPT;
-pub const DNS_CONNECTION_PROXY_INFO_SWITCH_WPAD = DNS_CONNECTION_PROXY_INFO_SWITCH.WPAD;
-
-pub const DNS_CONNECTION_PROXY_INFO = extern struct {
-    Version: u32,
-    pwszFriendlyName: ?PWSTR,
-    Flags: u32,
-    Switch: DNS_CONNECTION_PROXY_INFO_SWITCH,
     Anonymous: extern union {
-        pub const _DNS_CONNECTION_PROXY_INFO_SCRIPT = extern struct {
-            pwszScript: ?PWSTR,
-            pwszUsername: ?PWSTR,
-            pwszPassword: ?PWSTR,
-        };
-        pub const _DNS_CONNECTION_PROXY_INFO_CONFIG = extern struct {
-            pwszServer: ?PWSTR,
-            pwszUsername: ?PWSTR,
-            pwszPassword: ?PWSTR,
-            pwszException: ?PWSTR,
-            pwszExtraInfo: ?PWSTR,
-            Port: u16,
-        };
-        Config: _DNS_CONNECTION_PROXY_INFO_CONFIG,
-        Script: _DNS_CONNECTION_PROXY_INFO_SCRIPT,
+        pBrowseCallback: ?PDNS_SERVICE_BROWSE_CALLBACK,
+        pBrowseCallbackV2: ?PDNS_QUERY_COMPLETION_ROUTINE,
     },
+    pQueryContext: ?*anyopaque,
 };
 
-pub const DNS_CONNECTION_PROXY_INFO_EX = extern struct {
-    ProxyInfo: DNS_CONNECTION_PROXY_INFO,
-    dwInterfaceIndex: u32,
-    pwszConnectionName: ?PWSTR,
-    fDirectConfiguration: BOOL,
-    hConnection: ?HANDLE,
+pub const DNS_SERVICE_CANCEL = extern struct {
+    reserved: ?*anyopaque,
 };
-
-pub const DNS_CONNECTION_PROXY_ELEMENT = extern struct {
-    Type: DNS_CONNECTION_PROXY_TYPE,
-    Info: DNS_CONNECTION_PROXY_INFO,
-};
-
-pub const DNS_CONNECTION_PROXY_LIST = extern struct {
-    cProxies: u32,
-    pProxies: ?*DNS_CONNECTION_PROXY_ELEMENT,
-};
-
-pub const DNS_CONNECTION_NAME = extern struct {
-    wszName: [65]u16,
-};
-
-pub const DNS_CONNECTION_NAME_LIST = extern struct {
-    cNames: u32,
-    pNames: ?*DNS_CONNECTION_NAME,
-};
-
-pub const DNS_CONNECTION_IFINDEX_ENTRY = extern struct {
-    pwszConnectionName: ?[*:0]const u16,
-    dwIfIndex: u32,
-};
-
-pub const DNS_CONNECTION_IFINDEX_LIST = extern struct {
-    pConnectionIfIndexEntries: ?*DNS_CONNECTION_IFINDEX_ENTRY,
-    nEntries: u32,
-};
-
-pub const DNS_CONNECTION_POLICY_ENTRY = extern struct {
-    pwszHost: ?[*:0]const u16,
-    pwszAppId: ?[*:0]const u16,
-    cbAppSid: u32,
-    pbAppSid: ?*u8,
-    nConnections: u32,
-    ppwszConnections: ?*?PWSTR,
-    dwPolicyEntryFlags: u32,
-};
-
-pub const DNS_CONNECTION_POLICY_ENTRY_LIST = extern struct {
-    pPolicyEntries: ?*DNS_CONNECTION_POLICY_ENTRY,
-    nEntries: u32,
-};
-
-pub const DNS_CONNECTION_POLICY_TAG = enum(i32) {
-    DEFAULT = 0,
-    CONNECTION_MANAGER = 1,
-    WWWPT = 2,
-};
-pub const TAG_DNS_CONNECTION_POLICY_TAG_DEFAULT = DNS_CONNECTION_POLICY_TAG.DEFAULT;
-pub const TAG_DNS_CONNECTION_POLICY_TAG_CONNECTION_MANAGER = DNS_CONNECTION_POLICY_TAG.CONNECTION_MANAGER;
-pub const TAG_DNS_CONNECTION_POLICY_TAG_WWWPT = DNS_CONNECTION_POLICY_TAG.WWWPT;
 
 pub const DNS_SERVICE_INSTANCE = extern struct {
     pszInstanceName: ?PWSTR,
@@ -1252,47 +1066,6 @@ pub const DNS_SERVICE_INSTANCE = extern struct {
     dwInterfaceIndex: u32,
 };
 
-pub const DNS_SERVICE_CANCEL = extern struct {
-    reserved: ?*anyopaque,
-};
-
-pub const PDNS_SERVICE_BROWSE_CALLBACK = *const fn(
-    Status: u32,
-    pQueryContext: ?*anyopaque,
-    pDnsRecord: ?*DNS_RECORDW,
-) callconv(.winapi) void;
-
-pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
-    Version: u32,
-    InterfaceIndex: u32,
-    QueryName: ?[*:0]const u16,
-    Anonymous: extern union {
-        pBrowseCallback: ?PDNS_SERVICE_BROWSE_CALLBACK,
-        pBrowseCallbackV2: ?PDNS_QUERY_COMPLETION_ROUTINE,
-    },
-    pQueryContext: ?*anyopaque,
-};
-
-pub const PDNS_SERVICE_RESOLVE_COMPLETE = *const fn(
-    Status: u32,
-    pQueryContext: ?*anyopaque,
-    pInstance: ?*DNS_SERVICE_INSTANCE,
-) callconv(.winapi) void;
-
-pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
-    Version: u32,
-    InterfaceIndex: u32,
-    QueryName: ?PWSTR,
-    pResolveCompletionCallback: ?PDNS_SERVICE_RESOLVE_COMPLETE,
-    pQueryContext: ?*anyopaque,
-};
-
-pub const PDNS_SERVICE_REGISTER_COMPLETE = *const fn(
-    Status: u32,
-    pQueryContext: ?*anyopaque,
-    pInstance: ?*DNS_SERVICE_INSTANCE,
-) callconv(.winapi) void;
-
 pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
     Version: u32,
     InterfaceIndex: u32,
@@ -1303,6 +1076,211 @@ pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
     unicastEnabled: BOOL,
 };
 
+pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
+    Version: u32,
+    InterfaceIndex: u32,
+    QueryName: ?PWSTR,
+    pResolveCompletionCallback: ?PDNS_SERVICE_RESOLVE_COMPLETE,
+    pQueryContext: ?*anyopaque,
+};
+
+pub const DNS_SIG_DATAA = extern struct {
+    wTypeCovered: u16,
+    chAlgorithm: u8,
+    chLabelCount: u8,
+    dwOriginalTtl: u32,
+    dwExpiration: u32,
+    dwTimeSigned: u32,
+    wKeyTag: u16,
+    wSignatureLength: u16,
+    pNameSigner: ?PSTR,
+    Signature: [1]u8,
+};
+
+pub const DNS_SIG_DATAW = extern struct {
+    wTypeCovered: u16,
+    chAlgorithm: u8,
+    chLabelCount: u8,
+    dwOriginalTtl: u32,
+    dwExpiration: u32,
+    dwTimeSigned: u32,
+    wKeyTag: u16,
+    wSignatureLength: u16,
+    pNameSigner: ?PWSTR,
+    Signature: [1]u8,
+};
+
+pub const DNS_SOA_DATAA = extern struct {
+    pNamePrimaryServer: ?PSTR,
+    pNameAdministrator: ?PSTR,
+    dwSerialNo: u32,
+    dwRefresh: u32,
+    dwRetry: u32,
+    dwExpire: u32,
+    dwDefaultTtl: u32,
+};
+
+pub const DNS_SOA_DATAW = extern struct {
+    pNamePrimaryServer: ?PWSTR,
+    pNameAdministrator: ?PWSTR,
+    dwSerialNo: u32,
+    dwRefresh: u32,
+    dwRetry: u32,
+    dwExpire: u32,
+    dwDefaultTtl: u32,
+};
+
+pub const DNS_SRV_DATAA = extern struct {
+    pNameTarget: ?PSTR,
+    wPriority: u16,
+    wWeight: u16,
+    wPort: u16,
+    Pad: u16,
+};
+
+pub const DNS_SRV_DATAW = extern struct {
+    pNameTarget: ?PWSTR,
+    wPriority: u16,
+    wWeight: u16,
+    wPort: u16,
+    Pad: u16,
+};
+
+pub const DNS_TKEY_DATAA = extern struct {
+    pNameAlgorithm: ?PSTR,
+    pAlgorithmPacket: ?*u8,
+    pKey: ?*u8,
+    pOtherData: ?*u8,
+    dwCreateTime: u32,
+    dwExpireTime: u32,
+    wMode: u16,
+    wError: u16,
+    wKeyLength: u16,
+    wOtherLength: u16,
+    cAlgNameLength: u8,
+    bPacketPointers: BOOL,
+};
+
+pub const DNS_TKEY_DATAW = extern struct {
+    pNameAlgorithm: ?PWSTR,
+    pAlgorithmPacket: ?*u8,
+    pKey: ?*u8,
+    pOtherData: ?*u8,
+    dwCreateTime: u32,
+    dwExpireTime: u32,
+    wMode: u16,
+    wError: u16,
+    wKeyLength: u16,
+    wOtherLength: u16,
+    cAlgNameLength: u8,
+    bPacketPointers: BOOL,
+};
+
+pub const DNS_TLSA_DATA = extern struct {
+    bCertUsage: u8,
+    bSelector: u8,
+    bMatchingType: u8,
+    bCertificateAssociationDataLength: u16,
+    bPad: [3]u8,
+    bCertificateAssociationData: [1]u8,
+};
+
+pub const DNS_TSIG_DATAA = extern struct {
+    pNameAlgorithm: ?PSTR,
+    pAlgorithmPacket: ?*u8,
+    pSignature: ?*u8,
+    pOtherData: ?*u8,
+    i64CreateTime: i64,
+    wFudgeTime: u16,
+    wOriginalXid: u16,
+    wError: u16,
+    wSigLength: u16,
+    wOtherLength: u16,
+    cAlgNameLength: u8,
+    bPacketPointers: BOOL,
+};
+
+pub const DNS_TSIG_DATAW = extern struct {
+    pNameAlgorithm: ?PWSTR,
+    pAlgorithmPacket: ?*u8,
+    pSignature: ?*u8,
+    pOtherData: ?*u8,
+    i64CreateTime: i64,
+    wFudgeTime: u16,
+    wOriginalXid: u16,
+    wError: u16,
+    wSigLength: u16,
+    wOtherLength: u16,
+    cAlgNameLength: u8,
+    bPacketPointers: BOOL,
+};
+
+pub const DNS_TXT_DATAA = extern struct {
+    dwStringCount: u32,
+    pStringArray: [1]?PSTR,
+};
+
+pub const DNS_TXT_DATAW = extern struct {
+    dwStringCount: u32,
+    pStringArray: [1]?PWSTR,
+};
+
+pub const DNS_UNKNOWN_DATA = extern struct {
+    dwByteCount: u32,
+    bData: [1]u8,
+};
+
+pub const DNS_WINS_DATA = extern struct {
+    dwMappingFlag: u32,
+    dwLookupTimeout: u32,
+    dwCacheTimeout: u32,
+    cWinsServerCount: u32,
+    WinsServers: [1]u32,
+};
+
+pub const DNS_WINSR_DATAA = extern struct {
+    dwMappingFlag: u32,
+    dwLookupTimeout: u32,
+    dwCacheTimeout: u32,
+    pNameResultDomain: ?PSTR,
+};
+
+pub const DNS_WINSR_DATAW = extern struct {
+    dwMappingFlag: u32,
+    dwLookupTimeout: u32,
+    dwCacheTimeout: u32,
+    pNameResultDomain: ?PWSTR,
+};
+
+pub const DNS_WIRE_QUESTION = extern struct {
+    QuestionType: u16 align(1),
+    QuestionClass: u16 align(1),
+};
+
+pub const DNS_WIRE_RECORD = extern struct {
+    RecordType: u16 align(1),
+    RecordClass: u16 align(1),
+    TimeToLive: u32 align(1),
+    DataLength: u16 align(1),
+};
+
+pub const DNS_WKS_DATA = extern struct {
+    IpAddress: u32,
+    chProtocol: u8,
+    BitMask: [1]u8,
+};
+
+// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const DnsContextHandle = isize;
+
+pub const IP4_ARRAY = extern struct {
+    AddrCount: u32,
+    AddrArray: [1]u32,
+};
+
+
+
 pub const MDNS_QUERY_HANDLE = extern struct {
     nameBuf: [256]u16,
     wType: u16,
@@ -1310,12 +1288,6 @@ pub const MDNS_QUERY_HANDLE = extern struct {
     pWnfCallbackParams: ?*anyopaque,
     stateNameData: [2]u32,
 };
-
-pub const PMDNS_QUERY_CALLBACK = *const fn(
-    pQueryContext: ?*anyopaque,
-    pQueryHandle: ?*MDNS_QUERY_HANDLE,
-    pQueryResults: ?*DNS_QUERY_RESULT,
-) callconv(.winapi) void;
 
 pub const MDNS_QUERY_REQUEST = extern struct {
     Version: u32,
@@ -1330,6 +1302,34 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     ulResendCount: u32,
 };
 
+pub const PDNS_QUERY_COMPLETION_ROUTINE = *const fn(
+    pQueryContext: ?*anyopaque,
+    pQueryResults: ?*DNS_QUERY_RESULT,
+) callconv(.winapi) void;
+
+pub const PDNS_SERVICE_BROWSE_CALLBACK = *const fn(
+    Status: u32,
+    pQueryContext: ?*anyopaque,
+    pDnsRecord: ?*DNS_RECORDW,
+) callconv(.winapi) void;
+
+pub const PDNS_SERVICE_REGISTER_COMPLETE = *const fn(
+    Status: u32,
+    pQueryContext: ?*anyopaque,
+    pInstance: ?*DNS_SERVICE_INSTANCE,
+) callconv(.winapi) void;
+
+pub const PDNS_SERVICE_RESOLVE_COMPLETE = *const fn(
+    Status: u32,
+    pQueryContext: ?*anyopaque,
+    pInstance: ?*DNS_SERVICE_INSTANCE,
+) callconv(.winapi) void;
+
+pub const PMDNS_QUERY_CALLBACK = *const fn(
+    pQueryContext: ?*anyopaque,
+    pQueryHandle: ?*MDNS_QUERY_HANDLE,
+    pQueryResults: ?*DNS_QUERY_RESULT,
+) callconv(.winapi) void;
 
 pub const IP6_ADDRESS = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern union {
@@ -1349,54 +1349,173 @@ pub const IP6_ADDRESS = switch(@import("../zig.zig").arch) {
 // Section: Functions (60)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsQueryConfig(
-    Config: DNS_CONFIG_TYPE,
-    Flag: u32,
-    pwsAdapterName: ?[*:0]const u16,
-    pReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
-    pBuffer: ?*anyopaque,
-    pBufLen: ?*u32,
+pub extern "dnsapi" fn DnsAcquireContextHandle_A(
+    CredentialFlags: u32,
+    Credentials: ?*anyopaque,
+    pContext: ?*DnsContextHandle,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsRecordCopyEx(
-    pRecord: ?*DNS_RECORDA,
-    CharSetIn: DNS_CHARSET,
-    CharSetOut: DNS_CHARSET,
-) callconv(.winapi) ?*DNS_RECORDA;
+pub extern "dnsapi" fn DnsAcquireContextHandle_W(
+    CredentialFlags: u32,
+    Credentials: ?*anyopaque,
+    pContext: ?*DnsContextHandle,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "dnsapi" fn DnsCancelQuery(
+    pCancelHandle: ?*DNS_QUERY_CANCEL,
+) callconv(.winapi) i32;
+
+pub extern "dnsapi" fn DnsConnectionDeletePolicyEntries(
+    PolicyEntryTag: DNS_CONNECTION_POLICY_TAG,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionDeleteProxyInfo(
+    pwszConnectionName: ?[*:0]const u16,
+    Type: DNS_CONNECTION_PROXY_TYPE,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionFreeNameList(
+    pNameList: ?*DNS_CONNECTION_NAME_LIST,
+) callconv(.winapi) void;
+
+pub extern "dnsapi" fn DnsConnectionFreeProxyInfo(
+    pProxyInfo: ?*DNS_CONNECTION_PROXY_INFO,
+) callconv(.winapi) void;
+
+pub extern "dnsapi" fn DnsConnectionFreeProxyInfoEx(
+    pProxyInfoEx: ?*DNS_CONNECTION_PROXY_INFO_EX,
+) callconv(.winapi) void;
+
+pub extern "dnsapi" fn DnsConnectionFreeProxyList(
+    pProxyList: ?*DNS_CONNECTION_PROXY_LIST,
+) callconv(.winapi) void;
+
+pub extern "dnsapi" fn DnsConnectionGetNameList(
+    pNameList: ?*DNS_CONNECTION_NAME_LIST,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionGetProxyInfo(
+    pwszConnectionName: ?[*:0]const u16,
+    Type: DNS_CONNECTION_PROXY_TYPE,
+    pProxyInfo: ?*DNS_CONNECTION_PROXY_INFO,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionGetProxyInfoForHostUrl(
+    pwszHostUrl: ?[*:0]const u16,
+    pSelectionContext: ?[*:0]u8,
+    dwSelectionContextLength: u32,
+    dwExplicitInterfaceIndex: u32,
+    pProxyInfoEx: ?*DNS_CONNECTION_PROXY_INFO_EX,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionGetProxyList(
+    pwszConnectionName: ?[*:0]const u16,
+    pProxyList: ?*DNS_CONNECTION_PROXY_LIST,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionSetPolicyEntries(
+    PolicyEntryTag: DNS_CONNECTION_POLICY_TAG,
+    pPolicyEntryList: ?*DNS_CONNECTION_POLICY_ENTRY_LIST,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionSetProxyInfo(
+    pwszConnectionName: ?[*:0]const u16,
+    Type: DNS_CONNECTION_PROXY_TYPE,
+    pProxyInfo: ?*const DNS_CONNECTION_PROXY_INFO,
+) callconv(.winapi) u32;
+
+pub extern "dnsapi" fn DnsConnectionUpdateIfIndexTable(
+    pConnectionIfIndexEntries: ?*DNS_CONNECTION_IFINDEX_LIST,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsRecordSetCopyEx(
-    pRecordSet: ?*DNS_RECORDA,
-    CharSetIn: DNS_CHARSET,
-    CharSetOut: DNS_CHARSET,
-) callconv(.winapi) ?*DNS_RECORDA;
+pub extern "dnsapi" fn DnsExtractRecordsFromMessage_UTF8(
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
+    wMessageLength: u16,
+    ppRecord: ?*?*DNS_RECORDA,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsRecordCompare(
-    pRecord1: ?*DNS_RECORDA,
-    pRecord2: ?*DNS_RECORDA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsRecordSetCompare(
-    pRR1: ?*DNS_RECORDA,
-    pRR2: ?*DNS_RECORDA,
-    ppDiff1: ?*?*DNS_RECORDA,
-    ppDiff2: ?*?*DNS_RECORDA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsRecordSetDetach(
-    pRecordList: ?*DNS_RECORDA,
-) callconv(.winapi) ?*DNS_RECORDA;
+pub extern "dnsapi" fn DnsExtractRecordsFromMessage_W(
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
+    wMessageLength: u16,
+    ppRecord: ?*?*DNS_RECORDA,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "dnsapi" fn DnsFree(
     pData: ?*anyopaque,
     FreeType: DNS_FREE_TYPE,
 ) callconv(.winapi) void;
+
+pub extern "dnsapi" fn DnsFreeCustomServers(
+    pcServers: ?*u32,
+    ppServers: ?*?*DNS_CUSTOM_SERVER,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "dnsapi" fn DnsFreeProxyName(
+    proxyName: ?PWSTR,
+) callconv(.winapi) void;
+
+pub extern "dnsapi" fn DnsGetApplicationSettings(
+    pcServers: ?*u32,
+    ppDefaultServers: ?*?*DNS_CUSTOM_SERVER,
+    pSettings: ?*DNS_APPLICATION_SETTINGS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "dnsapi" fn DnsGetProxyInformation(
+    hostName: ?[*:0]const u16,
+    proxyInformation: ?*DNS_PROXY_INFORMATION,
+    defaultProxyInformation: ?*DNS_PROXY_INFORMATION,
+    completionRoutine: ?DNS_PROXY_COMPLETION_ROUTINE,
+    completionContext: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsModifyRecordsInSet_A(
+    pAddRecords: ?*DNS_RECORDA,
+    pDeleteRecords: ?*DNS_RECORDA,
+    Options: u32,
+    hCredentials: ?HANDLE,
+    pExtraList: ?*anyopaque,
+    pReserved: ?*anyopaque,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsModifyRecordsInSet_UTF8(
+    pAddRecords: ?*DNS_RECORDA,
+    pDeleteRecords: ?*DNS_RECORDA,
+    Options: u32,
+    hCredentials: ?HANDLE,
+    pExtraList: ?*anyopaque,
+    pReserved: ?*anyopaque,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsModifyRecordsInSet_W(
+    pAddRecords: ?*DNS_RECORDA,
+    pDeleteRecords: ?*DNS_RECORDA,
+    Options: u32,
+    hCredentials: ?HANDLE,
+    pExtraList: ?*anyopaque,
+    pReserved: ?*anyopaque,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsNameCompare_A(
+    pName1: ?[*:0]const u8,
+    pName2: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsNameCompare_W(
+    pName1: ?[*:0]const u16,
+    pName2: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dnsapi" fn DnsQuery_A(
@@ -1428,6 +1547,17 @@ pub extern "dnsapi" fn DnsQuery_W(
     pReserved: ?*?*anyopaque,
 ) callconv(.winapi) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsQueryConfig(
+    Config: DNS_CONFIG_TYPE,
+    Flag: u32,
+    pwsAdapterName: ?[*:0]const u16,
+    pReserved: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 5?
+    pBuffer: ?*anyopaque,
+    pBufLen: ?*u32,
+) callconv(.winapi) i32;
+
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "dnsapi" fn DnsQueryEx(
     pQueryRequest: ?*DNS_QUERY_REQUEST,
@@ -1435,85 +1565,43 @@ pub extern "dnsapi" fn DnsQueryEx(
     pCancelHandle: ?*DNS_QUERY_CANCEL,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "dnsapi" fn DnsCancelQuery(
-    pCancelHandle: ?*DNS_QUERY_CANCEL,
-) callconv(.winapi) i32;
-
-pub extern "dnsapi" fn DnsFreeCustomServers(
-    pcServers: ?*u32,
-    ppServers: ?*?*DNS_CUSTOM_SERVER,
-) callconv(.winapi) void;
-
-pub extern "dnsapi" fn DnsGetApplicationSettings(
-    pcServers: ?*u32,
-    ppDefaultServers: ?*?*DNS_CUSTOM_SERVER,
-    pSettings: ?*DNS_APPLICATION_SETTINGS,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsSetApplicationSettings(
-    cServers: u32,
-    pServers: [*]const DNS_CUSTOM_SERVER,
-    pSettings: ?*const DNS_APPLICATION_SETTINGS,
-) callconv(.winapi) u32;
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsRecordCompare(
+    pRecord1: ?*DNS_RECORDA,
+    pRecord2: ?*DNS_RECORDA,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsAcquireContextHandle_W(
-    CredentialFlags: u32,
-    Credentials: ?*anyopaque,
-    pContext: ?*DnsContextHandle,
-) callconv(.winapi) i32;
+pub extern "dnsapi" fn DnsRecordCopyEx(
+    pRecord: ?*DNS_RECORDA,
+    CharSetIn: DNS_CHARSET,
+    CharSetOut: DNS_CHARSET,
+) callconv(.winapi) ?*DNS_RECORDA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsAcquireContextHandle_A(
-    CredentialFlags: u32,
-    Credentials: ?*anyopaque,
-    pContext: ?*DnsContextHandle,
-) callconv(.winapi) i32;
+pub extern "dnsapi" fn DnsRecordSetCompare(
+    pRR1: ?*DNS_RECORDA,
+    pRR2: ?*DNS_RECORDA,
+    ppDiff1: ?*?*DNS_RECORDA,
+    ppDiff2: ?*?*DNS_RECORDA,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsRecordSetCopyEx(
+    pRecordSet: ?*DNS_RECORDA,
+    CharSetIn: DNS_CHARSET,
+    CharSetOut: DNS_CHARSET,
+) callconv(.winapi) ?*DNS_RECORDA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsRecordSetDetach(
+    pRecordList: ?*DNS_RECORDA,
+) callconv(.winapi) ?*DNS_RECORDA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dnsapi" fn DnsReleaseContextHandle(
     hContext: ?HANDLE,
 ) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsModifyRecordsInSet_W(
-    pAddRecords: ?*DNS_RECORDA,
-    pDeleteRecords: ?*DNS_RECORDA,
-    Options: u32,
-    hCredentials: ?HANDLE,
-    pExtraList: ?*anyopaque,
-    pReserved: ?*anyopaque,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsModifyRecordsInSet_A(
-    pAddRecords: ?*DNS_RECORDA,
-    pDeleteRecords: ?*DNS_RECORDA,
-    Options: u32,
-    hCredentials: ?HANDLE,
-    pExtraList: ?*anyopaque,
-    pReserved: ?*anyopaque,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsModifyRecordsInSet_UTF8(
-    pAddRecords: ?*DNS_RECORDA,
-    pDeleteRecords: ?*DNS_RECORDA,
-    Options: u32,
-    hCredentials: ?HANDLE,
-    pExtraList: ?*anyopaque,
-    pReserved: ?*anyopaque,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsReplaceRecordSetW(
-    pReplaceSet: ?*DNS_RECORDA,
-    Options: u32,
-    hContext: ?HANDLE,
-    pExtraInfo: ?*anyopaque,
-    pReserved: ?*anyopaque,
-) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dnsapi" fn DnsReplaceRecordSetA(
@@ -1534,145 +1622,24 @@ pub extern "dnsapi" fn DnsReplaceRecordSetUTF8(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsValidateName_W(
-    pszName: ?[*:0]const u16,
-    Format: DNS_NAME_FORMAT,
+pub extern "dnsapi" fn DnsReplaceRecordSetW(
+    pReplaceSet: ?*DNS_RECORDA,
+    Options: u32,
+    hContext: ?HANDLE,
+    pExtraInfo: ?*anyopaque,
+    pReserved: ?*anyopaque,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsValidateName_A(
-    pszName: ?[*:0]const u8,
-    Format: DNS_NAME_FORMAT,
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "dnsapi" fn DnsServiceBrowse(
+    pRequest: ?*DNS_SERVICE_BROWSE_REQUEST,
+    pCancel: ?*DNS_SERVICE_CANCEL,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsValidateName_UTF8(
-    pszName: ?[*:0]const u8,
-    Format: DNS_NAME_FORMAT,
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "dnsapi" fn DnsServiceBrowseCancel(
+    pCancelHandle: ?*DNS_SERVICE_CANCEL,
 ) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsNameCompare_A(
-    pName1: ?[*:0]const u8,
-    pName2: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsNameCompare_W(
-    pName1: ?[*:0]const u16,
-    pName2: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsWriteQuestionToBuffer_W(
-    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
-    pdwBufferSize: ?*u32,
-    pszName: ?[*:0]const u16,
-    wType: u16,
-    Xid: u16,
-    fRecursionDesired: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsWriteQuestionToBuffer_UTF8(
-    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
-    pdwBufferSize: ?*u32,
-    pszName: ?[*:0]const u8,
-    wType: u16,
-    Xid: u16,
-    fRecursionDesired: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsExtractRecordsFromMessage_W(
-    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
-    wMessageLength: u16,
-    ppRecord: ?*?*DNS_RECORDA,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dnsapi" fn DnsExtractRecordsFromMessage_UTF8(
-    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
-    wMessageLength: u16,
-    ppRecord: ?*?*DNS_RECORDA,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "dnsapi" fn DnsGetProxyInformation(
-    hostName: ?[*:0]const u16,
-    proxyInformation: ?*DNS_PROXY_INFORMATION,
-    defaultProxyInformation: ?*DNS_PROXY_INFORMATION,
-    completionRoutine: ?DNS_PROXY_COMPLETION_ROUTINE,
-    completionContext: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "dnsapi" fn DnsFreeProxyName(
-    proxyName: ?PWSTR,
-) callconv(.winapi) void;
-
-pub extern "dnsapi" fn DnsConnectionGetProxyInfoForHostUrl(
-    pwszHostUrl: ?[*:0]const u16,
-    pSelectionContext: ?[*:0]u8,
-    dwSelectionContextLength: u32,
-    dwExplicitInterfaceIndex: u32,
-    pProxyInfoEx: ?*DNS_CONNECTION_PROXY_INFO_EX,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionFreeProxyInfoEx(
-    pProxyInfoEx: ?*DNS_CONNECTION_PROXY_INFO_EX,
-) callconv(.winapi) void;
-
-pub extern "dnsapi" fn DnsConnectionGetProxyInfo(
-    pwszConnectionName: ?[*:0]const u16,
-    Type: DNS_CONNECTION_PROXY_TYPE,
-    pProxyInfo: ?*DNS_CONNECTION_PROXY_INFO,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionFreeProxyInfo(
-    pProxyInfo: ?*DNS_CONNECTION_PROXY_INFO,
-) callconv(.winapi) void;
-
-pub extern "dnsapi" fn DnsConnectionSetProxyInfo(
-    pwszConnectionName: ?[*:0]const u16,
-    Type: DNS_CONNECTION_PROXY_TYPE,
-    pProxyInfo: ?*const DNS_CONNECTION_PROXY_INFO,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionDeleteProxyInfo(
-    pwszConnectionName: ?[*:0]const u16,
-    Type: DNS_CONNECTION_PROXY_TYPE,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionGetProxyList(
-    pwszConnectionName: ?[*:0]const u16,
-    pProxyList: ?*DNS_CONNECTION_PROXY_LIST,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionFreeProxyList(
-    pProxyList: ?*DNS_CONNECTION_PROXY_LIST,
-) callconv(.winapi) void;
-
-pub extern "dnsapi" fn DnsConnectionGetNameList(
-    pNameList: ?*DNS_CONNECTION_NAME_LIST,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionFreeNameList(
-    pNameList: ?*DNS_CONNECTION_NAME_LIST,
-) callconv(.winapi) void;
-
-pub extern "dnsapi" fn DnsConnectionUpdateIfIndexTable(
-    pConnectionIfIndexEntries: ?*DNS_CONNECTION_IFINDEX_LIST,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionSetPolicyEntries(
-    PolicyEntryTag: DNS_CONNECTION_POLICY_TAG,
-    pPolicyEntryList: ?*DNS_CONNECTION_POLICY_ENTRY_LIST,
-) callconv(.winapi) u32;
-
-pub extern "dnsapi" fn DnsConnectionDeletePolicyEntries(
-    PolicyEntryTag: DNS_CONNECTION_POLICY_TAG,
-) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "dnsapi" fn DnsServiceConstructInstance(
@@ -1694,20 +1661,26 @@ pub extern "dnsapi" fn DnsServiceCopyInstance(
 ) callconv(.winapi) ?*DNS_SERVICE_INSTANCE;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "dnsapi" fn DnsServiceDeRegister(
+    pRequest: ?*DNS_SERVICE_REGISTER_REQUEST,
+    pCancel: ?*DNS_SERVICE_CANCEL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "dnsapi" fn DnsServiceFreeInstance(
     pInstance: ?*DNS_SERVICE_INSTANCE,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "dnsapi" fn DnsServiceBrowse(
-    pRequest: ?*DNS_SERVICE_BROWSE_REQUEST,
+pub extern "dnsapi" fn DnsServiceRegister(
+    pRequest: ?*DNS_SERVICE_REGISTER_REQUEST,
     pCancel: ?*DNS_SERVICE_CANCEL,
-) callconv(.winapi) i32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "dnsapi" fn DnsServiceBrowseCancel(
+pub extern "dnsapi" fn DnsServiceRegisterCancel(
     pCancelHandle: ?*DNS_SERVICE_CANCEL,
-) callconv(.winapi) i32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "dnsapi" fn DnsServiceResolve(
@@ -1720,21 +1693,10 @@ pub extern "dnsapi" fn DnsServiceResolveCancel(
     pCancelHandle: ?*DNS_SERVICE_CANCEL,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "dnsapi" fn DnsServiceRegister(
-    pRequest: ?*DNS_SERVICE_REGISTER_REQUEST,
-    pCancel: ?*DNS_SERVICE_CANCEL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "dnsapi" fn DnsServiceDeRegister(
-    pRequest: ?*DNS_SERVICE_REGISTER_REQUEST,
-    pCancel: ?*DNS_SERVICE_CANCEL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "dnsapi" fn DnsServiceRegisterCancel(
-    pCancelHandle: ?*DNS_SERVICE_CANCEL,
+pub extern "dnsapi" fn DnsSetApplicationSettings(
+    cServers: u32,
+    pServers: [*]const DNS_CUSTOM_SERVER,
+    pSettings: ?*const DNS_APPLICATION_SETTINGS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -1748,22 +1710,53 @@ pub extern "dnsapi" fn DnsStopMulticastQuery(
     pHandle: ?*MDNS_QUERY_HANDLE,
 ) callconv(.winapi) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsValidateName_A(
+    pszName: ?[*:0]const u8,
+    Format: DNS_NAME_FORMAT,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsValidateName_UTF8(
+    pszName: ?[*:0]const u8,
+    Format: DNS_NAME_FORMAT,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsValidateName_W(
+    pszName: ?[*:0]const u16,
+    Format: DNS_NAME_FORMAT,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsWriteQuestionToBuffer_UTF8(
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
+    pdwBufferSize: ?*u32,
+    pszName: ?[*:0]const u8,
+    wType: u16,
+    Xid: u16,
+    fRecursionDesired: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dnsapi" fn DnsWriteQuestionToBuffer_W(
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
+    pdwBufferSize: ?*u32,
+    pszName: ?[*:0]const u16,
+    wType: u16,
+    Xid: u16,
+    fRecursionDesired: BOOL,
+) callconv(.winapi) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (21)
 //--------------------------------------------------------------------------------
-pub const DNS_PTR_DATA = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DNS_PTR_DATAA,
-    .wide => @This().DNS_PTR_DATAW,
+pub const _DnsRecordOpt = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This()._DnsRecordOptA,
+    .wide => @This()._DnsRecordOptW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DNS_PTR_DATA' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DNS_SOA_DATA = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DNS_SOA_DATAA,
-    .wide => @This().DNS_SOA_DATAW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DNS_SOA_DATA' requires that UNICODE be set to true or false in the root module",
+        "'_DnsRecordOpt' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const DNS_MINFO_DATA = switch (@import("../zig.zig").unicode_mode) {
@@ -1780,18 +1773,11 @@ pub const DNS_MX_DATA = switch (@import("../zig.zig").unicode_mode) {
         "'DNS_MX_DATA' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const DNS_TXT_DATA = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DNS_TXT_DATAA,
-    .wide => @This().DNS_TXT_DATAW,
+pub const DNS_NAPTR_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_NAPTR_DATAA,
+    .wide => @This().DNS_NAPTR_DATAW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DNS_TXT_DATA' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DNS_SIG_DATA = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DNS_SIG_DATAA,
-    .wide => @This().DNS_SIG_DATAW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DNS_SIG_DATA' requires that UNICODE be set to true or false in the root module",
+        "'DNS_NAPTR_DATA' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const DNS_NSEC_DATA = switch (@import("../zig.zig").unicode_mode) {
@@ -1808,18 +1794,39 @@ pub const DNS_NXT_DATA = switch (@import("../zig.zig").unicode_mode) {
         "'DNS_NXT_DATA' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const DNS_PTR_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_PTR_DATAA,
+    .wide => @This().DNS_PTR_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_PTR_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_RECORD = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_RECORDA,
+    .wide => @This().DNS_RECORDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_RECORD' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_SIG_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_SIG_DATAA,
+    .wide => @This().DNS_SIG_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_SIG_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_SOA_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_SOA_DATAA,
+    .wide => @This().DNS_SOA_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_SOA_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const DNS_SRV_DATA = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().DNS_SRV_DATAA,
     .wide => @This().DNS_SRV_DATAW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'DNS_SRV_DATA' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DNS_NAPTR_DATA = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DNS_NAPTR_DATAA,
-    .wide => @This().DNS_NAPTR_DATAW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DNS_NAPTR_DATA' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const DNS_TKEY_DATA = switch (@import("../zig.zig").unicode_mode) {
@@ -1836,32 +1843,18 @@ pub const DNS_TSIG_DATA = switch (@import("../zig.zig").unicode_mode) {
         "'DNS_TSIG_DATA' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const DNS_TXT_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_TXT_DATAA,
+    .wide => @This().DNS_TXT_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_TXT_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const DNS_WINSR_DATA = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().DNS_WINSR_DATAA,
     .wide => @This().DNS_WINSR_DATAW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'DNS_WINSR_DATA' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DNS_RECORD = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DNS_RECORDA,
-    .wide => @This().DNS_RECORDW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DNS_RECORD' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const _DnsRecordOpt = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This()._DnsRecordOptA,
-    .wide => @This()._DnsRecordOptW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'_DnsRecordOpt' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DnsQuery_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DnsQuery_A,
-    .wide => @This().DnsQuery_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DnsQuery_' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const DnsAcquireContextHandle_ = switch (@import("../zig.zig").unicode_mode) {
@@ -1878,6 +1871,20 @@ pub const DnsModifyRecordsInSet_ = switch (@import("../zig.zig").unicode_mode) {
         "'DnsModifyRecordsInSet_' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const DnsNameCompare_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsNameCompare_A,
+    .wide => @This().DnsNameCompare_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsNameCompare_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsQuery_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsQuery_A,
+    .wide => @This().DnsQuery_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsQuery_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const DnsReplaceRecordSet = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().DnsReplaceRecordSetA,
     .wide => @This().DnsReplaceRecordSetW,
@@ -1890,13 +1897,6 @@ pub const DnsValidateName_ = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().DnsValidateName_W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'DnsValidateName_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DnsNameCompare_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DnsNameCompare_A,
-    .wide => @This().DnsNameCompare_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DnsNameCompare_' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -1913,8 +1913,8 @@ test {
     if (@hasDecl(@This(), "DNS_PROXY_COMPLETION_ROUTINE")) { _ = DNS_PROXY_COMPLETION_ROUTINE; }
     if (@hasDecl(@This(), "PDNS_QUERY_COMPLETION_ROUTINE")) { _ = PDNS_QUERY_COMPLETION_ROUTINE; }
     if (@hasDecl(@This(), "PDNS_SERVICE_BROWSE_CALLBACK")) { _ = PDNS_SERVICE_BROWSE_CALLBACK; }
-    if (@hasDecl(@This(), "PDNS_SERVICE_RESOLVE_COMPLETE")) { _ = PDNS_SERVICE_RESOLVE_COMPLETE; }
     if (@hasDecl(@This(), "PDNS_SERVICE_REGISTER_COMPLETE")) { _ = PDNS_SERVICE_REGISTER_COMPLETE; }
+    if (@hasDecl(@This(), "PDNS_SERVICE_RESOLVE_COMPLETE")) { _ = PDNS_SERVICE_RESOLVE_COMPLETE; }
     if (@hasDecl(@This(), "PMDNS_QUERY_CALLBACK")) { _ = PMDNS_QUERY_CALLBACK; }
 
     @setEvalBranchQuota(

@@ -3,27 +3,30 @@
 // Section: Constants (9)
 //--------------------------------------------------------------------------------
 pub const _FACDXGI = @as(u32, 2170);
-pub const DXGI_CPU_ACCESS_NONE = @as(u32, 0);
+pub const DXGI_CENTER_MULTISAMPLE_QUALITY_PATTERN = @as(u32, 4294967294);
 pub const DXGI_CPU_ACCESS_DYNAMIC = @as(u32, 1);
+pub const DXGI_CPU_ACCESS_FIELD = @as(u32, 15);
+pub const DXGI_CPU_ACCESS_NONE = @as(u32, 0);
 pub const DXGI_CPU_ACCESS_READ_WRITE = @as(u32, 2);
 pub const DXGI_CPU_ACCESS_SCRATCH = @as(u32, 3);
-pub const DXGI_CPU_ACCESS_FIELD = @as(u32, 15);
 pub const DXGI_FORMAT_DEFINED = @as(u32, 1);
 pub const DXGI_STANDARD_MULTISAMPLE_QUALITY_PATTERN = @as(u32, 4294967295);
-pub const DXGI_CENTER_MULTISAMPLE_QUALITY_PATTERN = @as(u32, 4294967294);
 
 //--------------------------------------------------------------------------------
 // Section: Types (15)
 //--------------------------------------------------------------------------------
-pub const DXGI_RATIONAL = extern struct {
-    Numerator: u32,
-    Denominator: u32,
+pub const DXGI_ALPHA_MODE = enum(u32) {
+    UNSPECIFIED = 0,
+    PREMULTIPLIED = 1,
+    STRAIGHT = 2,
+    IGNORE = 3,
+    FORCE_DWORD = 4294967295,
 };
-
-pub const DXGI_SAMPLE_DESC = extern struct {
-    Count: u32,
-    Quality: u32,
-};
+pub const DXGI_ALPHA_MODE_UNSPECIFIED = DXGI_ALPHA_MODE.UNSPECIFIED;
+pub const DXGI_ALPHA_MODE_PREMULTIPLIED = DXGI_ALPHA_MODE.PREMULTIPLIED;
+pub const DXGI_ALPHA_MODE_STRAIGHT = DXGI_ALPHA_MODE.STRAIGHT;
+pub const DXGI_ALPHA_MODE_IGNORE = DXGI_ALPHA_MODE.IGNORE;
+pub const DXGI_ALPHA_MODE_FORCE_DWORD = DXGI_ALPHA_MODE.FORCE_DWORD;
 
 pub const DXGI_COLOR_SPACE_TYPE = enum(i32) {
     RGB_FULL_G22_NONE_P709 = 0,
@@ -327,12 +330,6 @@ pub const DXGI_FORMAT_SAMPLER_FEEDBACK_MIN_MIP_OPAQUE = DXGI_FORMAT.SAMPLER_FEED
 pub const DXGI_FORMAT_SAMPLER_FEEDBACK_MIP_REGION_USED_OPAQUE = DXGI_FORMAT.SAMPLER_FEEDBACK_MIP_REGION_USED_OPAQUE;
 pub const DXGI_FORMAT_FORCE_UINT = DXGI_FORMAT.FORCE_UINT;
 
-pub const DXGI_RGB = extern struct {
-    Red: f32,
-    Green: f32,
-    Blue: f32,
-};
-
 pub const DXGI_GAMMA_CONTROL = extern struct {
     Scale: DXGI_RGB,
     Offset: DXGI_RGB,
@@ -347,25 +344,28 @@ pub const DXGI_GAMMA_CONTROL_CAPABILITIES = extern struct {
     ControlPointPositions: [1025]f32,
 };
 
-pub const DXGI_MODE_SCANLINE_ORDER = enum(i32) {
-    UNSPECIFIED = 0,
-    PROGRESSIVE = 1,
-    UPPER_FIELD_FIRST = 2,
-    LOWER_FIELD_FIRST = 3,
+pub const DXGI_JPEG_AC_HUFFMAN_TABLE = extern struct {
+    CodeCounts: [16]u8,
+    CodeValues: [162]u8,
 };
-pub const DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED = DXGI_MODE_SCANLINE_ORDER.UNSPECIFIED;
-pub const DXGI_MODE_SCANLINE_ORDER_PROGRESSIVE = DXGI_MODE_SCANLINE_ORDER.PROGRESSIVE;
-pub const DXGI_MODE_SCANLINE_ORDER_UPPER_FIELD_FIRST = DXGI_MODE_SCANLINE_ORDER.UPPER_FIELD_FIRST;
-pub const DXGI_MODE_SCANLINE_ORDER_LOWER_FIELD_FIRST = DXGI_MODE_SCANLINE_ORDER.LOWER_FIELD_FIRST;
 
-pub const DXGI_MODE_SCALING = enum(i32) {
-    UNSPECIFIED = 0,
-    CENTERED = 1,
-    STRETCHED = 2,
+pub const DXGI_JPEG_DC_HUFFMAN_TABLE = extern struct {
+    CodeCounts: [12]u8,
+    CodeValues: [12]u8,
 };
-pub const DXGI_MODE_SCALING_UNSPECIFIED = DXGI_MODE_SCALING.UNSPECIFIED;
-pub const DXGI_MODE_SCALING_CENTERED = DXGI_MODE_SCALING.CENTERED;
-pub const DXGI_MODE_SCALING_STRETCHED = DXGI_MODE_SCALING.STRETCHED;
+
+pub const DXGI_JPEG_QUANTIZATION_TABLE = extern struct {
+    Elements: [64]u8,
+};
+
+pub const DXGI_MODE_DESC = extern struct {
+    Width: u32,
+    Height: u32,
+    RefreshRate: DXGI_RATIONAL,
+    Format: DXGI_FORMAT,
+    ScanlineOrdering: DXGI_MODE_SCANLINE_ORDER,
+    Scaling: DXGI_MODE_SCALING,
+};
 
 pub const DXGI_MODE_ROTATION = enum(i32) {
     UNSPECIFIED = 0,
@@ -380,41 +380,41 @@ pub const DXGI_MODE_ROTATION_ROTATE90 = DXGI_MODE_ROTATION.ROTATE90;
 pub const DXGI_MODE_ROTATION_ROTATE180 = DXGI_MODE_ROTATION.ROTATE180;
 pub const DXGI_MODE_ROTATION_ROTATE270 = DXGI_MODE_ROTATION.ROTATE270;
 
-pub const DXGI_MODE_DESC = extern struct {
-    Width: u32,
-    Height: u32,
-    RefreshRate: DXGI_RATIONAL,
-    Format: DXGI_FORMAT,
-    ScanlineOrdering: DXGI_MODE_SCANLINE_ORDER,
-    Scaling: DXGI_MODE_SCALING,
-};
-
-pub const DXGI_JPEG_DC_HUFFMAN_TABLE = extern struct {
-    CodeCounts: [12]u8,
-    CodeValues: [12]u8,
-};
-
-pub const DXGI_JPEG_AC_HUFFMAN_TABLE = extern struct {
-    CodeCounts: [16]u8,
-    CodeValues: [162]u8,
-};
-
-pub const DXGI_JPEG_QUANTIZATION_TABLE = extern struct {
-    Elements: [64]u8,
-};
-
-pub const DXGI_ALPHA_MODE = enum(u32) {
+pub const DXGI_MODE_SCALING = enum(i32) {
     UNSPECIFIED = 0,
-    PREMULTIPLIED = 1,
-    STRAIGHT = 2,
-    IGNORE = 3,
-    FORCE_DWORD = 4294967295,
+    CENTERED = 1,
+    STRETCHED = 2,
 };
-pub const DXGI_ALPHA_MODE_UNSPECIFIED = DXGI_ALPHA_MODE.UNSPECIFIED;
-pub const DXGI_ALPHA_MODE_PREMULTIPLIED = DXGI_ALPHA_MODE.PREMULTIPLIED;
-pub const DXGI_ALPHA_MODE_STRAIGHT = DXGI_ALPHA_MODE.STRAIGHT;
-pub const DXGI_ALPHA_MODE_IGNORE = DXGI_ALPHA_MODE.IGNORE;
-pub const DXGI_ALPHA_MODE_FORCE_DWORD = DXGI_ALPHA_MODE.FORCE_DWORD;
+pub const DXGI_MODE_SCALING_UNSPECIFIED = DXGI_MODE_SCALING.UNSPECIFIED;
+pub const DXGI_MODE_SCALING_CENTERED = DXGI_MODE_SCALING.CENTERED;
+pub const DXGI_MODE_SCALING_STRETCHED = DXGI_MODE_SCALING.STRETCHED;
+
+pub const DXGI_MODE_SCANLINE_ORDER = enum(i32) {
+    UNSPECIFIED = 0,
+    PROGRESSIVE = 1,
+    UPPER_FIELD_FIRST = 2,
+    LOWER_FIELD_FIRST = 3,
+};
+pub const DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED = DXGI_MODE_SCANLINE_ORDER.UNSPECIFIED;
+pub const DXGI_MODE_SCANLINE_ORDER_PROGRESSIVE = DXGI_MODE_SCANLINE_ORDER.PROGRESSIVE;
+pub const DXGI_MODE_SCANLINE_ORDER_UPPER_FIELD_FIRST = DXGI_MODE_SCANLINE_ORDER.UPPER_FIELD_FIRST;
+pub const DXGI_MODE_SCANLINE_ORDER_LOWER_FIELD_FIRST = DXGI_MODE_SCANLINE_ORDER.LOWER_FIELD_FIRST;
+
+pub const DXGI_RATIONAL = extern struct {
+    Numerator: u32,
+    Denominator: u32,
+};
+
+pub const DXGI_RGB = extern struct {
+    Red: f32,
+    Green: f32,
+    Blue: f32,
+};
+
+pub const DXGI_SAMPLE_DESC = extern struct {
+    Count: u32,
+    Quality: u32,
+};
 
 
 //--------------------------------------------------------------------------------

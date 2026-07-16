@@ -15,46 +15,6 @@ pub const NV_MEMORY_RANGE = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub const RtlGetNonVolatileToken = switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => (struct {
-
-pub extern "ntdll" fn RtlGetNonVolatileToken(
-    // TODO: what to do with BytesParamIndex 1?
-    NvBuffer: ?*anyopaque,
-    Size: usize,
-    NvToken: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-}).RtlGetNonVolatileToken,
-    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlGetNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
-};
-
-pub const RtlFreeNonVolatileToken = switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => (struct {
-
-pub extern "ntdll" fn RtlFreeNonVolatileToken(
-    NvToken: ?*anyopaque,
-) callconv(.winapi) u32;
-
-}).RtlFreeNonVolatileToken,
-    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFreeNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
-};
-
-pub const RtlFlushNonVolatileMemory = switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => (struct {
-
-pub extern "ntdll" fn RtlFlushNonVolatileMemory(
-    NvToken: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
-    NvBuffer: ?*anyopaque,
-    Size: usize,
-    Flags: u32,
-) callconv(.winapi) u32;
-
-}).RtlFlushNonVolatileMemory,
-    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFlushNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
-};
-
 pub const RtlDrainNonVolatileFlush = switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => (struct {
 
@@ -64,23 +24,6 @@ pub extern "ntdll" fn RtlDrainNonVolatileFlush(
 
 }).RtlDrainNonVolatileFlush,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlDrainNonVolatileFlush' is not supported on architecture " ++ @tagName(a)),
-};
-
-pub const RtlWriteNonVolatileMemory = switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => (struct {
-
-pub extern "ntdll" fn RtlWriteNonVolatileMemory(
-    NvToken: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
-    NvDestination: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
-    Source: ?*const anyopaque,
-    Size: usize,
-    Flags: u32,
-) callconv(.winapi) u32;
-
-}).RtlWriteNonVolatileMemory,
-    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlWriteNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
 };
 
 pub const RtlFillNonVolatileMemory = switch (@import("../../zig.zig").arch) {
@@ -99,6 +42,21 @@ pub extern "ntdll" fn RtlFillNonVolatileMemory(
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFillNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
 };
 
+pub const RtlFlushNonVolatileMemory = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
+
+pub extern "ntdll" fn RtlFlushNonVolatileMemory(
+    NvToken: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 2?
+    NvBuffer: ?*anyopaque,
+    Size: usize,
+    Flags: u32,
+) callconv(.winapi) u32;
+
+}).RtlFlushNonVolatileMemory,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFlushNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
+};
+
 pub const RtlFlushNonVolatileMemoryRanges = switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => (struct {
 
@@ -111,6 +69,48 @@ pub extern "ntdll" fn RtlFlushNonVolatileMemoryRanges(
 
 }).RtlFlushNonVolatileMemoryRanges,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFlushNonVolatileMemoryRanges' is not supported on architecture " ++ @tagName(a)),
+};
+
+pub const RtlFreeNonVolatileToken = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
+
+pub extern "ntdll" fn RtlFreeNonVolatileToken(
+    NvToken: ?*anyopaque,
+) callconv(.winapi) u32;
+
+}).RtlFreeNonVolatileToken,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFreeNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
+};
+
+pub const RtlGetNonVolatileToken = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
+
+pub extern "ntdll" fn RtlGetNonVolatileToken(
+    // TODO: what to do with BytesParamIndex 1?
+    NvBuffer: ?*anyopaque,
+    Size: usize,
+    NvToken: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+}).RtlGetNonVolatileToken,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlGetNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
+};
+
+pub const RtlWriteNonVolatileMemory = switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => (struct {
+
+pub extern "ntdll" fn RtlWriteNonVolatileMemory(
+    NvToken: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    NvDestination: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    Source: ?*const anyopaque,
+    Size: usize,
+    Flags: u32,
+) callconv(.winapi) u32;
+
+}).RtlWriteNonVolatileMemory,
+    else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlWriteNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
 };
 
 

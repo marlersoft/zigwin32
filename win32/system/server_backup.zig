@@ -2,13 +2,37 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3)
 //--------------------------------------------------------------------------------
-pub const WSB_MAX_OB_STATUS_VALUE_TYPE_PAIR = @as(u32, 5);
 pub const WSB_MAX_OB_STATUS_ENTRY = @as(u32, 5);
+pub const WSB_MAX_OB_STATUS_VALUE_TYPE_PAIR = @as(u32, 5);
 pub const WSBAPP_ASYNC_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 7995396));
 
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IWsbApplicationAsync_Value = Guid.initString("0843f6f7-895c-44a6-b0c2-05a5022aa3a1");
+pub const IID_IWsbApplicationAsync = &IID_IWsbApplicationAsync_Value;
+pub const IWsbApplicationAsync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryStatus: *const fn(
+            self: *const IWsbApplicationAsync,
+            phrResult: ?*HRESULT,
+        ) callconv(.winapi) HRESULT,
+        Abort: *const fn(
+            self: *const IWsbApplicationAsync,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryStatus(self: *const IWsbApplicationAsync, phrResult: ?*HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryStatus(self, phrResult);
+    }
+    pub fn Abort(self: *const IWsbApplicationAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Abort(self);
+    }
+};
+
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWsbApplicationBackupSupport_Value = Guid.initString("1eff3510-4a27-46ad-b9e0-08332f0f4f6d");
 pub const IID_IWsbApplicationBackupSupport = &IID_IWsbApplicationBackupSupport_Value;
@@ -82,28 +106,20 @@ pub const IWsbApplicationRestoreSupport = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWsbApplicationAsync_Value = Guid.initString("0843f6f7-895c-44a6-b0c2-05a5022aa3a1");
-pub const IID_IWsbApplicationAsync = &IID_IWsbApplicationAsync_Value;
-pub const IWsbApplicationAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryStatus: *const fn(
-            self: *const IWsbApplicationAsync,
-            phrResult: ?*HRESULT,
-        ) callconv(.winapi) HRESULT,
-        Abort: *const fn(
-            self: *const IWsbApplicationAsync,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryStatus(self: *const IWsbApplicationAsync, phrResult: ?*HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryStatus(self, phrResult);
-    }
-    pub fn Abort(self: *const IWsbApplicationAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Abort(self);
-    }
+pub const WSB_OB_REGISTRATION_INFO = extern struct {
+    m_wszResourceDLL: ?PWSTR,
+    m_guidSnapinId: Guid,
+    m_dwProviderName: u32,
+    m_dwProviderIcon: u32,
+    m_bSupportsRemoting: BOOLEAN,
+};
+
+pub const WSB_OB_STATUS_ENTRY = extern struct {
+    m_dwIcon: u32,
+    m_dwStatusEntryName: u32,
+    m_dwStatusEntryValue: u32,
+    m_cValueTypePair: u32,
+    m_rgValueTypePair: ?*WSB_OB_STATUS_ENTRY_VALUE_TYPE_PAIR,
 };
 
 pub const WSB_OB_STATUS_ENTRY_PAIR_TYPE = enum(i32) {
@@ -128,26 +144,10 @@ pub const WSB_OB_STATUS_ENTRY_VALUE_TYPE_PAIR = extern struct {
     m_ObStatusEntryPairType: WSB_OB_STATUS_ENTRY_PAIR_TYPE,
 };
 
-pub const WSB_OB_STATUS_ENTRY = extern struct {
-    m_dwIcon: u32,
-    m_dwStatusEntryName: u32,
-    m_dwStatusEntryValue: u32,
-    m_cValueTypePair: u32,
-    m_rgValueTypePair: ?*WSB_OB_STATUS_ENTRY_VALUE_TYPE_PAIR,
-};
-
 pub const WSB_OB_STATUS_INFO = extern struct {
     m_guidSnapinId: Guid,
     m_cStatusEntry: u32,
     m_rgStatusEntry: ?*WSB_OB_STATUS_ENTRY,
-};
-
-pub const WSB_OB_REGISTRATION_INFO = extern struct {
-    m_wszResourceDLL: ?PWSTR,
-    m_guidSnapinId: Guid,
-    m_dwProviderName: u32,
-    m_dwProviderIcon: u32,
-    m_bSupportsRemoting: BOOLEAN,
 };
 
 

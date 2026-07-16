@@ -65,6 +65,83 @@ pub const IPrintManagerInterop = extern union {
     }
 };
 
+const IID_IPrintWorkflowConfigurationNative_Value = Guid.initString("c056be0a-9ee2-450a-9823-964f0006f2bb");
+pub const IID_IPrintWorkflowConfigurationNative = &IID_IPrintWorkflowConfigurationNative_Value;
+pub const IPrintWorkflowConfigurationNative = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PrinterQueue: *const fn(
+            self: *const IPrintWorkflowConfigurationNative,
+            value: ?*?*IPrinterQueue,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverProperties: *const fn(
+            self: *const IPrintWorkflowConfigurationNative,
+            value: ?*?*IPrinterPropertyBag,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserProperties: *const fn(
+            self: *const IPrintWorkflowConfigurationNative,
+            value: ?*?*IPrinterPropertyBag,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_PrinterQueue(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterQueue) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PrinterQueue(self, value);
+    }
+    pub fn get_DriverProperties(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterPropertyBag) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverProperties(self, value);
+    }
+    pub fn get_UserProperties(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterPropertyBag) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserProperties(self, value);
+    }
+};
+
+const IID_IPrintWorkflowObjectModelSourceFileContentNative_Value = Guid.initString("68c9e477-993e-4052-8ac6-454eff58db9d");
+pub const IID_IPrintWorkflowObjectModelSourceFileContentNative = &IID_IPrintWorkflowObjectModelSourceFileContentNative_Value;
+pub const IPrintWorkflowObjectModelSourceFileContentNative = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        StartXpsOMGeneration: *const fn(
+            self: *const IPrintWorkflowObjectModelSourceFileContentNative,
+            receiver: ?*IPrintWorkflowXpsReceiver,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ObjectFactory: *const fn(
+            self: *const IPrintWorkflowObjectModelSourceFileContentNative,
+            value: ?*?*IXpsOMObjectFactory1,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn StartXpsOMGeneration(self: *const IPrintWorkflowObjectModelSourceFileContentNative, receiver: ?*IPrintWorkflowXpsReceiver) callconv(.@"inline") HRESULT {
+        return self.vtable.StartXpsOMGeneration(self, receiver);
+    }
+    pub fn get_ObjectFactory(self: *const IPrintWorkflowObjectModelSourceFileContentNative, value: ?*?*IXpsOMObjectFactory1) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ObjectFactory(self, value);
+    }
+};
+
+const IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value = Guid.initString("7d96bc74-9b54-4ca1-ad3a-979c3d44ddac");
+pub const IID_IPrintWorkflowXpsObjectModelTargetPackageNative = &IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value;
+pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DocumentPackageTarget: *const fn(
+            self: *const IPrintWorkflowXpsObjectModelTargetPackageNative,
+            value: ?*?*IXpsDocumentPackageTarget,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_DocumentPackageTarget(self: *const IPrintWorkflowXpsObjectModelTargetPackageNative, value: ?*?*IXpsDocumentPackageTarget) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DocumentPackageTarget(self, value);
+    }
+};
+
 const IID_IPrintWorkflowXpsReceiver_Value = Guid.initString("04097374-77b8-47f6-8167-aae29d4cf84b");
 pub const IID_IPrintWorkflowXpsReceiver = &IID_IPrintWorkflowXpsReceiver_Value;
 pub const IPrintWorkflowXpsReceiver = extern union {
@@ -129,83 +206,6 @@ pub const IPrintWorkflowXpsReceiver2 = extern union {
     IUnknown: IUnknown,
     pub fn Failed(self: *const IPrintWorkflowXpsReceiver2, XpsError: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Failed(self, XpsError);
-    }
-};
-
-const IID_IPrintWorkflowObjectModelSourceFileContentNative_Value = Guid.initString("68c9e477-993e-4052-8ac6-454eff58db9d");
-pub const IID_IPrintWorkflowObjectModelSourceFileContentNative = &IID_IPrintWorkflowObjectModelSourceFileContentNative_Value;
-pub const IPrintWorkflowObjectModelSourceFileContentNative = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StartXpsOMGeneration: *const fn(
-            self: *const IPrintWorkflowObjectModelSourceFileContentNative,
-            receiver: ?*IPrintWorkflowXpsReceiver,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ObjectFactory: *const fn(
-            self: *const IPrintWorkflowObjectModelSourceFileContentNative,
-            value: ?*?*IXpsOMObjectFactory1,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn StartXpsOMGeneration(self: *const IPrintWorkflowObjectModelSourceFileContentNative, receiver: ?*IPrintWorkflowXpsReceiver) callconv(.@"inline") HRESULT {
-        return self.vtable.StartXpsOMGeneration(self, receiver);
-    }
-    pub fn get_ObjectFactory(self: *const IPrintWorkflowObjectModelSourceFileContentNative, value: ?*?*IXpsOMObjectFactory1) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ObjectFactory(self, value);
-    }
-};
-
-const IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value = Guid.initString("7d96bc74-9b54-4ca1-ad3a-979c3d44ddac");
-pub const IID_IPrintWorkflowXpsObjectModelTargetPackageNative = &IID_IPrintWorkflowXpsObjectModelTargetPackageNative_Value;
-pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DocumentPackageTarget: *const fn(
-            self: *const IPrintWorkflowXpsObjectModelTargetPackageNative,
-            value: ?*?*IXpsDocumentPackageTarget,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_DocumentPackageTarget(self: *const IPrintWorkflowXpsObjectModelTargetPackageNative, value: ?*?*IXpsDocumentPackageTarget) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DocumentPackageTarget(self, value);
-    }
-};
-
-const IID_IPrintWorkflowConfigurationNative_Value = Guid.initString("c056be0a-9ee2-450a-9823-964f0006f2bb");
-pub const IID_IPrintWorkflowConfigurationNative = &IID_IPrintWorkflowConfigurationNative_Value;
-pub const IPrintWorkflowConfigurationNative = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrinterQueue: *const fn(
-            self: *const IPrintWorkflowConfigurationNative,
-            value: ?*?*IPrinterQueue,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverProperties: *const fn(
-            self: *const IPrintWorkflowConfigurationNative,
-            value: ?*?*IPrinterPropertyBag,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserProperties: *const fn(
-            self: *const IPrintWorkflowConfigurationNative,
-            value: ?*?*IPrinterPropertyBag,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_PrinterQueue(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterQueue) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PrinterQueue(self, value);
-    }
-    pub fn get_DriverProperties(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterPropertyBag) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverProperties(self, value);
-    }
-    pub fn get_UserProperties(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterPropertyBag) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserProperties(self, value);
     }
 };
 

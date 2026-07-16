@@ -9,23 +9,14 @@
 const CLSID_Catalog_Value = Guid.initString("6eb22881-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_Catalog = &CLSID_Catalog_Value;
 
-const CLSID_CatalogObject_Value = Guid.initString("6eb22882-8a19-11d0-81b6-00a0c9231c29");
-pub const CLSID_CatalogObject = &CLSID_CatalogObject_Value;
-
 const CLSID_CatalogCollection_Value = Guid.initString("6eb22883-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_CatalogCollection = &CLSID_CatalogCollection_Value;
 
+const CLSID_CatalogObject_Value = Guid.initString("6eb22882-8a19-11d0-81b6-00a0c9231c29");
+pub const CLSID_CatalogObject = &CLSID_CatalogObject_Value;
+
 const CLSID_ComponentUtil_Value = Guid.initString("6eb22884-8a19-11d0-81b6-00a0c9231c29");
 pub const CLSID_ComponentUtil = &CLSID_ComponentUtil_Value;
-
-const CLSID_PackageUtil_Value = Guid.initString("6eb22885-8a19-11d0-81b6-00a0c9231c29");
-pub const CLSID_PackageUtil = &CLSID_PackageUtil_Value;
-
-const CLSID_RemoteComponentUtil_Value = Guid.initString("6eb22886-8a19-11d0-81b6-00a0c9231c29");
-pub const CLSID_RemoteComponentUtil = &CLSID_RemoteComponentUtil_Value;
-
-const CLSID_RoleAssociationUtil_Value = Guid.initString("6eb22887-8a19-11d0-81b6-00a0c9231c29");
-pub const CLSID_RoleAssociationUtil = &CLSID_RoleAssociationUtil_Value;
 
 const IID_ICatalog_Value = Guid.initString("6eb22870-8a19-11d0-81b6-00a0c9231c29");
 pub const IID_ICatalog = &IID_ICatalog_Value;
@@ -203,16 +194,6 @@ pub const IRoleAssociationUtil = extern union {
     }
 };
 
-pub const MTSPackageInstallOptions = enum(i32) {
-    s = 1,
-};
-pub const mtsInstallUsers = MTSPackageInstallOptions.s;
-
-pub const MTSPackageExportOptions = enum(i32) {
-    s = 1,
-};
-pub const mtsExportUsers = MTSPackageExportOptions.s;
-
 pub const MTSAdminErrorCodes = enum(i32) {
     ObjectErrors = -2146368511,
     ObjectInvalid = -2146368510,
@@ -305,6 +286,25 @@ pub const mtsErrNotChangeable = MTSAdminErrorCodes.NotChangeable;
 pub const mtsErrNotDeletable = MTSAdminErrorCodes.NotDeletable;
 pub const mtsErrSession = MTSAdminErrorCodes.Session;
 pub const mtsErrCompFileNoRegistrar = MTSAdminErrorCodes.CompFileNoRegistrar;
+
+pub const MTSPackageExportOptions = enum(i32) {
+    s = 1,
+};
+pub const mtsExportUsers = MTSPackageExportOptions.s;
+
+pub const MTSPackageInstallOptions = enum(i32) {
+    s = 1,
+};
+pub const mtsInstallUsers = MTSPackageInstallOptions.s;
+
+const CLSID_PackageUtil_Value = Guid.initString("6eb22885-8a19-11d0-81b6-00a0c9231c29");
+pub const CLSID_PackageUtil = &CLSID_PackageUtil_Value;
+
+const CLSID_RemoteComponentUtil_Value = Guid.initString("6eb22886-8a19-11d0-81b6-00a0c9231c29");
+pub const CLSID_RemoteComponentUtil = &CLSID_RemoteComponentUtil_Value;
+
+const CLSID_RoleAssociationUtil_Value = Guid.initString("6eb22887-8a19-11d0-81b6-00a0c9231c29");
+pub const CLSID_RoleAssociationUtil = &CLSID_RoleAssociationUtil_Value;
 
 
 //--------------------------------------------------------------------------------

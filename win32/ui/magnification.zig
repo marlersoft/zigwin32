@@ -2,20 +2,20 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (8)
 //--------------------------------------------------------------------------------
-pub const WC_MAGNIFIERA = "Magnifier";
-pub const WC_MAGNIFIERW = "Magnifier";
-pub const WC_MAGNIFIER = "Magnifier";
-pub const MS_SHOWMAGNIFIEDCURSOR = @as(i32, 1);
 pub const MS_CLIPAROUNDCURSOR = @as(i32, 2);
 pub const MS_INVERTCOLORS = @as(i32, 4);
+pub const MS_SHOWMAGNIFIEDCURSOR = @as(i32, 1);
 pub const MW_FILTERMODE_EXCLUDE = @as(u32, 0);
 pub const MW_FILTERMODE_INCLUDE = @as(u32, 1);
+pub const WC_MAGNIFIER = "Magnifier";
+pub const WC_MAGNIFIERA = "Magnifier";
+pub const WC_MAGNIFIERW = "Magnifier";
 
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-pub const MAGTRANSFORM = extern struct {
-    v: [9]f32,
+pub const MAGCOLOREFFECT = extern struct {
+    transform: [25]f32,
 };
 
 pub const MAGIMAGEHEADER = extern struct {
@@ -25,10 +25,6 @@ pub const MAGIMAGEHEADER = extern struct {
     stride: u32,
     offset: u32,
     cbSize: usize,
-};
-
-pub const MAGCOLOREFFECT = extern struct {
-    transform: [25]f32,
 };
 
 pub const MagImageScalingCallback = *const fn(
@@ -42,48 +38,42 @@ pub const MagImageScalingCallback = *const fn(
     dirty: ?HRGN,
 ) callconv(.winapi) BOOL;
 
+pub const MAGTRANSFORM = extern struct {
+    v: [9]f32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (19)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagInitialize(
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagUninitialize(
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagSetWindowSource(
+pub extern "magnification" fn MagGetColorEffect(
     hwnd: ?HWND,
-    rect: RECT,
+    pEffect: ?*MAGCOLOREFFECT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "magnification" fn MagGetFullscreenColorEffect(
+    pEffect: ?*MAGCOLOREFFECT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "magnification" fn MagGetFullscreenTransform(
+    pMagLevel: ?*f32,
+    pxOffset: ?*i32,
+    pyOffset: ?*i32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagGetWindowSource(
+pub extern "magnification" fn MagGetImageScalingCallback(
     hwnd: ?HWND,
-    pRect: ?*RECT,
-) callconv(.winapi) BOOL;
+) callconv(.winapi) ?MagImageScalingCallback;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagSetWindowTransform(
-    hwnd: ?HWND,
-    pTransform: ?*MAGTRANSFORM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagGetWindowTransform(
-    hwnd: ?HWND,
-    pTransform: ?*MAGTRANSFORM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagSetWindowFilterList(
-    hwnd: ?HWND,
-    dwFilterMode: u32,
-    count: i32,
-    pHWND: ?*?HWND,
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "magnification" fn MagGetInputTransform(
+    pfEnabled: ?*BOOL,
+    pRectSource: ?*RECT,
+    pRectDest: ?*RECT,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -95,15 +85,20 @@ pub extern "magnification" fn MagGetWindowFilterList(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagSetImageScalingCallback(
+pub extern "magnification" fn MagGetWindowSource(
     hwnd: ?HWND,
-    callback: ?MagImageScalingCallback,
+    pRect: ?*RECT,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagGetImageScalingCallback(
+pub extern "magnification" fn MagGetWindowTransform(
     hwnd: ?HWND,
-) callconv(.winapi) ?MagImageScalingCallback;
+    pTransform: ?*MAGTRANSFORM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "magnification" fn MagInitialize(
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "magnification" fn MagSetColorEffect(
@@ -111,9 +106,8 @@ pub extern "magnification" fn MagSetColorEffect(
     pEffect: ?*MAGCOLOREFFECT,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagGetColorEffect(
-    hwnd: ?HWND,
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "magnification" fn MagSetFullscreenColorEffect(
     pEffect: ?*MAGCOLOREFFECT,
 ) callconv(.winapi) BOOL;
 
@@ -124,21 +118,10 @@ pub extern "magnification" fn MagSetFullscreenTransform(
     yOffset: i32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "magnification" fn MagGetFullscreenTransform(
-    pMagLevel: ?*f32,
-    pxOffset: ?*i32,
-    pyOffset: ?*i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "magnification" fn MagSetFullscreenColorEffect(
-    pEffect: ?*MAGCOLOREFFECT,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "magnification" fn MagGetFullscreenColorEffect(
-    pEffect: ?*MAGCOLOREFFECT,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "magnification" fn MagSetImageScalingCallback(
+    hwnd: ?HWND,
+    callback: ?MagImageScalingCallback,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -148,16 +131,33 @@ pub extern "magnification" fn MagSetInputTransform(
     pRectDest: ?*const RECT,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "magnification" fn MagGetInputTransform(
-    pfEnabled: ?*BOOL,
-    pRectSource: ?*RECT,
-    pRectDest: ?*RECT,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "magnification" fn MagSetWindowFilterList(
+    hwnd: ?HWND,
+    dwFilterMode: u32,
+    count: i32,
+    pHWND: ?*?HWND,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "magnification" fn MagSetWindowSource(
+    hwnd: ?HWND,
+    rect: RECT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "magnification" fn MagSetWindowTransform(
+    hwnd: ?HWND,
+    pTransform: ?*MAGTRANSFORM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "magnification" fn MagShowSystemCursor(
     fShowCursor: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "magnification" fn MagUninitialize(
 ) callconv(.winapi) BOOL;
 
 

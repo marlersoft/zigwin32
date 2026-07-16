@@ -10,16 +10,16 @@ pub const CYPHER_BLOCK = extern struct {
     data: [8]CHAR,
 };
 
+pub const ENCRYPTED_LM_OWF_PASSWORD = extern struct {
+    data: [2]CYPHER_BLOCK,
+};
+
 pub const LM_OWF_PASSWORD = extern struct {
     data: [2]CYPHER_BLOCK,
 };
 
 pub const SAMPR_ENCRYPTED_USER_PASSWORD = extern struct {
     Buffer: [516]u8,
-};
-
-pub const ENCRYPTED_LM_OWF_PASSWORD = extern struct {
-    data: [2]CYPHER_BLOCK,
 };
 
 

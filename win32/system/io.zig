@@ -6,6 +6,12 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
+pub const LPOVERLAPPED_COMPLETION_ROUTINE = *const fn(
+    dwErrorCode: u32,
+    dwNumberOfBytesTransfered: u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(.winapi) void;
+
 pub const OVERLAPPED = extern struct {
     Internal: usize,
     InternalHigh: usize,
@@ -26,16 +32,33 @@ pub const OVERLAPPED_ENTRY = extern struct {
     dwNumberOfBytesTransferred: u32,
 };
 
-pub const LPOVERLAPPED_COMPLETION_ROUTINE = *const fn(
-    dwErrorCode: u32,
-    dwNumberOfBytesTransfered: u32,
-    lpOverlapped: ?*OVERLAPPED,
-) callconv(.winapi) void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn BindIoCompletionCallback(
+    FileHandle: ?HANDLE,
+    Function: ?LPOVERLAPPED_COMPLETION_ROUTINE,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn CancelIo(
+    hFile: ?HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn CancelIoEx(
+    hFile: ?HANDLE,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn CancelSynchronousIo(
+    hThread: ?HANDLE,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateIoCompletionPort(
     FileHandle: ?HANDLE,
@@ -43,6 +66,37 @@ pub extern "kernel32" fn CreateIoCompletionPort(
     CompletionKey: usize,
     NumberOfConcurrentThreads: u32,
 ) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn DeviceIoControl(
+    hDevice: ?HANDLE,
+    dwIoControlCode: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetOverlappedResult(
+    hFile: ?HANDLE,
+    lpOverlapped: ?*OVERLAPPED,
+    lpNumberOfBytesTransferred: ?*u32,
+    bWait: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetOverlappedResultEx(
+    hFile: ?HANDLE,
+    lpOverlapped: ?*OVERLAPPED,
+    lpNumberOfBytesTransferred: ?*u32,
+    dwMilliseconds: u32,
+    bAlertable: BOOL,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetQueuedCompletionStatus(
@@ -69,60 +123,6 @@ pub extern "kernel32" fn PostQueuedCompletionStatus(
     dwNumberOfBytesTransferred: u32,
     dwCompletionKey: usize,
     lpOverlapped: ?*OVERLAPPED,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn DeviceIoControl(
-    hDevice: ?HANDLE,
-    dwIoControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-    lpOverlapped: ?*OVERLAPPED,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetOverlappedResult(
-    hFile: ?HANDLE,
-    lpOverlapped: ?*OVERLAPPED,
-    lpNumberOfBytesTransferred: ?*u32,
-    bWait: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn CancelIoEx(
-    hFile: ?HANDLE,
-    lpOverlapped: ?*OVERLAPPED,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn CancelIo(
-    hFile: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetOverlappedResultEx(
-    hFile: ?HANDLE,
-    lpOverlapped: ?*OVERLAPPED,
-    lpNumberOfBytesTransferred: ?*u32,
-    dwMilliseconds: u32,
-    bAlertable: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn CancelSynchronousIo(
-    hThread: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn BindIoCompletionCallback(
-    FileHandle: ?HANDLE,
-    Function: ?LPOVERLAPPED_COMPLETION_ROUTINE,
-    Flags: u32,
 ) callconv(.winapi) BOOL;
 
 

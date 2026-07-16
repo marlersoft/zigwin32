@@ -2,471 +2,551 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (98)
 //--------------------------------------------------------------------------------
-pub const OFFLINEFILES_SYNC_STATE_LOCAL_KNOWN = @as(u32, 1);
-pub const OFFLINEFILES_SYNC_STATE_REMOTE_KNOWN = @as(u32, 2);
-pub const OFFLINEFILES_CHANGES_NONE = @as(u32, 0);
-pub const OFFLINEFILES_CHANGES_LOCAL_SIZE = @as(u32, 1);
 pub const OFFLINEFILES_CHANGES_LOCAL_ATTRIBUTES = @as(u32, 2);
+pub const OFFLINEFILES_CHANGES_LOCAL_SIZE = @as(u32, 1);
 pub const OFFLINEFILES_CHANGES_LOCAL_TIME = @as(u32, 4);
-pub const OFFLINEFILES_CHANGES_REMOTE_SIZE = @as(u32, 8);
+pub const OFFLINEFILES_CHANGES_NONE = @as(u32, 0);
 pub const OFFLINEFILES_CHANGES_REMOTE_ATTRIBUTES = @as(u32, 16);
+pub const OFFLINEFILES_CHANGES_REMOTE_SIZE = @as(u32, 8);
 pub const OFFLINEFILES_CHANGES_REMOTE_TIME = @as(u32, 32);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_MODIFIED_DATA = @as(u32, 1);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_MODIFIED_ATTRIBUTES = @as(u32, 2);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_MODIFIED = @as(u32, 4);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_CREATED = @as(u32, 8);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_DELETED = @as(u32, 16);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_DIRTY = @as(u32, 32);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_SPARSE = @as(u32, 64);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_FILE = @as(u32, 128);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_DIRECTORY = @as(u32, 256);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED_USER = @as(u32, 512);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED_OTHERS = @as(u32, 1024);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED_COMPUTER = @as(u32, 2048);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED = @as(u32, 4096);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_GHOST = @as(u32, 8192);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_SUSPENDED = @as(u32, 16384);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_OFFLINE = @as(u32, 32768);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_ONLINE = @as(u32, 65536);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_USER_WRITE = @as(u32, 131072);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_USER_READ = @as(u32, 262144);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_USER_ANYACCESS = @as(u32, 524288);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_OTHER_WRITE = @as(u32, 1048576);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_OTHER_READ = @as(u32, 2097152);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_OTHER_ANYACCESS = @as(u32, 4194304);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_GUEST_WRITE = @as(u32, 8388608);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_GUEST_READ = @as(u32, 16777216);
-pub const OFFLINEFILES_ITEM_FILTER_FLAG_GUEST_ANYACCESS = @as(u32, 33554432);
-pub const OFFLINEFILES_ITEM_QUERY_REMOTEINFO = @as(u32, 1);
-pub const OFFLINEFILES_ITEM_QUERY_CONNECTIONSTATE = @as(u32, 2);
-pub const OFFLINEFILES_ITEM_QUERY_LOCALDIRTYBYTECOUNT = @as(u32, 4);
-pub const OFFLINEFILES_ITEM_QUERY_REMOTEDIRTYBYTECOUNT = @as(u32, 8);
-pub const OFFLINEFILES_ITEM_QUERY_INCLUDETRANSPARENTCACHE = @as(u32, 16);
-pub const OFFLINEFILES_ITEM_QUERY_ATTEMPT_TRANSITIONONLINE = @as(u32, 32);
-pub const OFFLINEFILES_ITEM_QUERY_ADMIN = @as(u32, 2147483648);
-pub const OFFLINEFILES_ENUM_FLAT = @as(u32, 1);
-pub const OFFLINEFILES_ENUM_FLAT_FILESONLY = @as(u32, 2);
-pub const OFFLINEFILES_SETTING_SCOPE_USER = @as(u32, 1);
-pub const OFFLINEFILES_SETTING_SCOPE_COMPUTER = @as(u32, 2);
-pub const OFFLINEFILES_SETTING_PinLinkTargets = "LinkTargetCaching";
-pub const OFFLINEFILES_PINLINKTARGETS_NEVER = @as(u32, 0);
-pub const OFFLINEFILES_PINLINKTARGETS_EXPLICIT = @as(u32, 1);
-pub const OFFLINEFILES_PINLINKTARGETS_ALWAYS = @as(u32, 2);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_FILLSPARSE = @as(u32, 1);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_SYNCIN = @as(u32, 2);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_SYNCOUT = @as(u32, 4);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINNEWFILES = @as(u32, 8);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINLINKTARGETS = @as(u32, 16);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORUSER = @as(u32, 32);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORUSER_POLICY = @as(u32, 64);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORALL = @as(u32, 128);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORREDIR = @as(u32, 256);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_LOWPRIORITY = @as(u32, 512);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_ASYNCPROGRESS = @as(u32, 1024);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_INTERACTIVE = @as(u32, 2048);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_CONSOLE = @as(u32, 4096);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_SKIPSUSPENDEDDIRS = @as(u32, 8192);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_BACKGROUND = @as(u32, 65536);
-pub const OFFLINEFILES_SYNC_CONTROL_FLAG_NONEWFILESOUT = @as(u32, 131072);
-pub const OFFLINEFILES_SYNC_CONTROL_CR_MASK = @as(u32, 4026531840);
-pub const OFFLINEFILES_SYNC_CONTROL_CR_DEFAULT = @as(u32, 0);
-pub const OFFLINEFILES_SYNC_CONTROL_CR_KEEPLOCAL = @as(u32, 268435456);
-pub const OFFLINEFILES_SYNC_CONTROL_CR_KEEPREMOTE = @as(u32, 536870912);
-pub const OFFLINEFILES_SYNC_CONTROL_CR_KEEPLATEST = @as(u32, 805306368);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORUSER = @as(u32, 32);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORUSER_POLICY = @as(u32, 64);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORALL = @as(u32, 128);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORREDIR = @as(u32, 256);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_FILL = @as(u32, 1);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_LOWPRIORITY = @as(u32, 512);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_ASYNCPROGRESS = @as(u32, 1024);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_INTERACTIVE = @as(u32, 2048);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_CONSOLE = @as(u32, 4096);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_PINLINKTARGETS = @as(u32, 16);
-pub const OFFLINEFILES_PIN_CONTROL_FLAG_BACKGROUND = @as(u32, 65536);
-pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_LOWPRIORITY = @as(u32, 512);
-pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_ASYNCPROGRESS = @as(u32, 1024);
-pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_INTERACTIVE = @as(u32, 2048);
-pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_CONSOLE = @as(u32, 4096);
-pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_BACKGROUND = @as(u32, 65536);
+pub const OFFLINEFILES_DELETE_FLAG_ADMIN = @as(u32, 2147483648);
+pub const OFFLINEFILES_DELETE_FLAG_DELMODIFIED = @as(u32, 4);
 pub const OFFLINEFILES_DELETE_FLAG_NOAUTOCACHED = @as(u32, 1);
 pub const OFFLINEFILES_DELETE_FLAG_NOPINNED = @as(u32, 2);
-pub const OFFLINEFILES_DELETE_FLAG_DELMODIFIED = @as(u32, 4);
-pub const OFFLINEFILES_DELETE_FLAG_ADMIN = @as(u32, 2147483648);
-pub const OFFLINEFILES_TRANSITION_FLAG_INTERACTIVE = @as(u32, 1);
-pub const OFFLINEFILES_TRANSITION_FLAG_CONSOLE = @as(u32, 2);
-pub const OFFLINEFILES_SYNC_ITEM_CHANGE_NONE = @as(u32, 0);
-pub const OFFLINEFILES_SYNC_ITEM_CHANGE_CHANGETIME = @as(u32, 1);
-pub const OFFLINEFILES_SYNC_ITEM_CHANGE_WRITETIME = @as(u32, 2);
-pub const OFFLINEFILES_SYNC_ITEM_CHANGE_FILESIZE = @as(u32, 4);
+pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_ASYNCPROGRESS = @as(u32, 1024);
+pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_BACKGROUND = @as(u32, 65536);
+pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_CONSOLE = @as(u32, 4096);
+pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_INTERACTIVE = @as(u32, 2048);
+pub const OFFLINEFILES_ENCRYPTION_CONTROL_FLAG_LOWPRIORITY = @as(u32, 512);
+pub const OFFLINEFILES_ENUM_FLAT = @as(u32, 1);
+pub const OFFLINEFILES_ENUM_FLAT_FILESONLY = @as(u32, 2);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_CREATED = @as(u32, 8);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_DELETED = @as(u32, 16);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_DIRECTORY = @as(u32, 256);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_DIRTY = @as(u32, 32);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_FILE = @as(u32, 128);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_GHOST = @as(u32, 8192);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_GUEST_ANYACCESS = @as(u32, 33554432);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_GUEST_READ = @as(u32, 16777216);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_GUEST_WRITE = @as(u32, 8388608);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_MODIFIED = @as(u32, 4);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_MODIFIED_ATTRIBUTES = @as(u32, 2);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_MODIFIED_DATA = @as(u32, 1);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_OFFLINE = @as(u32, 32768);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_ONLINE = @as(u32, 65536);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_OTHER_ANYACCESS = @as(u32, 4194304);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_OTHER_READ = @as(u32, 2097152);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_OTHER_WRITE = @as(u32, 1048576);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED = @as(u32, 4096);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED_COMPUTER = @as(u32, 2048);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED_OTHERS = @as(u32, 1024);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_PINNED_USER = @as(u32, 512);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_SPARSE = @as(u32, 64);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_SUSPENDED = @as(u32, 16384);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_USER_ANYACCESS = @as(u32, 524288);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_USER_READ = @as(u32, 262144);
+pub const OFFLINEFILES_ITEM_FILTER_FLAG_USER_WRITE = @as(u32, 131072);
+pub const OFFLINEFILES_ITEM_QUERY_ADMIN = @as(u32, 2147483648);
+pub const OFFLINEFILES_ITEM_QUERY_ATTEMPT_TRANSITIONONLINE = @as(u32, 32);
+pub const OFFLINEFILES_ITEM_QUERY_CONNECTIONSTATE = @as(u32, 2);
+pub const OFFLINEFILES_ITEM_QUERY_INCLUDETRANSPARENTCACHE = @as(u32, 16);
+pub const OFFLINEFILES_ITEM_QUERY_LOCALDIRTYBYTECOUNT = @as(u32, 4);
+pub const OFFLINEFILES_ITEM_QUERY_REMOTEDIRTYBYTECOUNT = @as(u32, 8);
+pub const OFFLINEFILES_ITEM_QUERY_REMOTEINFO = @as(u32, 1);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_ASYNCPROGRESS = @as(u32, 1024);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_BACKGROUND = @as(u32, 65536);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_CONSOLE = @as(u32, 4096);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_FILL = @as(u32, 1);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORALL = @as(u32, 128);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORREDIR = @as(u32, 256);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORUSER = @as(u32, 32);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_FORUSER_POLICY = @as(u32, 64);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_INTERACTIVE = @as(u32, 2048);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_LOWPRIORITY = @as(u32, 512);
+pub const OFFLINEFILES_PIN_CONTROL_FLAG_PINLINKTARGETS = @as(u32, 16);
+pub const OFFLINEFILES_PINLINKTARGETS_ALWAYS = @as(u32, 2);
+pub const OFFLINEFILES_PINLINKTARGETS_EXPLICIT = @as(u32, 1);
+pub const OFFLINEFILES_PINLINKTARGETS_NEVER = @as(u32, 0);
+pub const OFFLINEFILES_SETTING_PinLinkTargets = "LinkTargetCaching";
+pub const OFFLINEFILES_SETTING_SCOPE_COMPUTER = @as(u32, 2);
+pub const OFFLINEFILES_SETTING_SCOPE_USER = @as(u32, 1);
+pub const OFFLINEFILES_SYNC_CONTROL_CR_DEFAULT = @as(u32, 0);
+pub const OFFLINEFILES_SYNC_CONTROL_CR_KEEPLATEST = @as(u32, 805306368);
+pub const OFFLINEFILES_SYNC_CONTROL_CR_KEEPLOCAL = @as(u32, 268435456);
+pub const OFFLINEFILES_SYNC_CONTROL_CR_KEEPREMOTE = @as(u32, 536870912);
+pub const OFFLINEFILES_SYNC_CONTROL_CR_MASK = @as(u32, 4026531840);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_ASYNCPROGRESS = @as(u32, 1024);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_BACKGROUND = @as(u32, 65536);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_CONSOLE = @as(u32, 4096);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_FILLSPARSE = @as(u32, 1);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_INTERACTIVE = @as(u32, 2048);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_LOWPRIORITY = @as(u32, 512);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_NONEWFILESOUT = @as(u32, 131072);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORALL = @as(u32, 128);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORREDIR = @as(u32, 256);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORUSER = @as(u32, 32);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINFORUSER_POLICY = @as(u32, 64);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINLINKTARGETS = @as(u32, 16);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_PINNEWFILES = @as(u32, 8);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_SKIPSUSPENDEDDIRS = @as(u32, 8192);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_SYNCIN = @as(u32, 2);
+pub const OFFLINEFILES_SYNC_CONTROL_FLAG_SYNCOUT = @as(u32, 4);
 pub const OFFLINEFILES_SYNC_ITEM_CHANGE_ATTRIBUTES = @as(u32, 8);
+pub const OFFLINEFILES_SYNC_ITEM_CHANGE_CHANGETIME = @as(u32, 1);
+pub const OFFLINEFILES_SYNC_ITEM_CHANGE_FILESIZE = @as(u32, 4);
+pub const OFFLINEFILES_SYNC_ITEM_CHANGE_NONE = @as(u32, 0);
+pub const OFFLINEFILES_SYNC_ITEM_CHANGE_WRITETIME = @as(u32, 2);
+pub const OFFLINEFILES_SYNC_STATE_LOCAL_KNOWN = @as(u32, 1);
+pub const OFFLINEFILES_SYNC_STATE_REMOTE_KNOWN = @as(u32, 2);
+pub const OFFLINEFILES_TRANSITION_FLAG_CONSOLE = @as(u32, 2);
+pub const OFFLINEFILES_TRANSITION_FLAG_INTERACTIVE = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
-const CLSID_OfflineFilesSetting_Value = Guid.initString("fd3659e9-a920-4123-ad64-7fc76c7aacdf");
-pub const CLSID_OfflineFilesSetting = &CLSID_OfflineFilesSetting_Value;
-
-const CLSID_OfflineFilesCache_Value = Guid.initString("48c6be7c-3871-43cc-b46f-1449a1bb2ff3");
-pub const CLSID_OfflineFilesCache = &CLSID_OfflineFilesCache_Value;
-
-pub const OFFLINEFILES_ITEM_TYPE = enum(i32) {
-    FILE = 0,
-    DIRECTORY = 1,
-    SHARE = 2,
-    SERVER = 3,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IEnumOfflineFilesItems_Value = Guid.initString("da70e815-c361-4407-bc0b-0d7046e5f2cd");
+pub const IID_IEnumOfflineFilesItems = &IID_IEnumOfflineFilesItems_Value;
+pub const IEnumOfflineFilesItems = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumOfflineFilesItems,
+            celt: u32,
+            rgelt: [*]?*IOfflineFilesItem,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumOfflineFilesItems,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumOfflineFilesItems,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumOfflineFilesItems,
+            ppenum: ?*?*IEnumOfflineFilesItems,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumOfflineFilesItems, celt: u32, rgelt: [*]?*IOfflineFilesItem, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumOfflineFilesItems, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumOfflineFilesItems) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumOfflineFilesItems, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
 };
-pub const OFFLINEFILES_ITEM_TYPE_FILE = OFFLINEFILES_ITEM_TYPE.FILE;
-pub const OFFLINEFILES_ITEM_TYPE_DIRECTORY = OFFLINEFILES_ITEM_TYPE.DIRECTORY;
-pub const OFFLINEFILES_ITEM_TYPE_SHARE = OFFLINEFILES_ITEM_TYPE.SHARE;
-pub const OFFLINEFILES_ITEM_TYPE_SERVER = OFFLINEFILES_ITEM_TYPE.SERVER;
 
-pub const OFFLINEFILES_ITEM_COPY = enum(i32) {
-    LOCAL = 0,
-    REMOTE = 1,
-    ORIGINAL = 2,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IEnumOfflineFilesSettings_Value = Guid.initString("729680c4-1a38-47bc-9e5c-02c51562ac30");
+pub const IID_IEnumOfflineFilesSettings = &IID_IEnumOfflineFilesSettings_Value;
+pub const IEnumOfflineFilesSettings = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+            celt: u32,
+            rgelt: [*]?*IOfflineFilesSetting,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+            ppenum: ?*?*IEnumOfflineFilesSettings,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumOfflineFilesSettings, celt: u32, rgelt: [*]?*IOfflineFilesSetting, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumOfflineFilesSettings, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumOfflineFilesSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumOfflineFilesSettings, ppenum: ?*?*IEnumOfflineFilesSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
 };
-pub const OFFLINEFILES_ITEM_COPY_LOCAL = OFFLINEFILES_ITEM_COPY.LOCAL;
-pub const OFFLINEFILES_ITEM_COPY_REMOTE = OFFLINEFILES_ITEM_COPY.REMOTE;
-pub const OFFLINEFILES_ITEM_COPY_ORIGINAL = OFFLINEFILES_ITEM_COPY.ORIGINAL;
 
-pub const OFFLINEFILES_CONNECT_STATE = enum(i32) {
-    UNKNOWN = 0,
-    OFFLINE = 1,
-    ONLINE = 2,
-    TRANSPARENTLY_CACHED = 3,
-    PARTLY_TRANSPARENTLY_CACHED = 4,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesCache_Value = Guid.initString("855d6203-7914-48b9-8d40-4c56f5acffc5");
+pub const IID_IOfflineFilesCache = &IID_IOfflineFilesCache_Value;
+pub const IOfflineFilesCache = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Synchronize: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            bAsync: BOOL,
+            dwSyncControl: u32,
+            pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+            pSyncId: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        DeleteItems: *const fn(
+            self: *const IOfflineFilesCache,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            dwFlags: u32,
+            bAsync: BOOL,
+            pIProgress: ?*IOfflineFilesSimpleProgress,
+        ) callconv(.winapi) HRESULT,
+        DeleteItemsForUser: *const fn(
+            self: *const IOfflineFilesCache,
+            pszUser: ?[*:0]const u16,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            dwFlags: u32,
+            bAsync: BOOL,
+            pIProgress: ?*IOfflineFilesSimpleProgress,
+        ) callconv(.winapi) HRESULT,
+        Pin: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            bDeep: BOOL,
+            bAsync: BOOL,
+            dwPinControlFlags: u32,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(.winapi) HRESULT,
+        Unpin: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            bDeep: BOOL,
+            bAsync: BOOL,
+            dwPinControlFlags: u32,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(.winapi) HRESULT,
+        GetEncryptionStatus: *const fn(
+            self: *const IOfflineFilesCache,
+            pbEncrypted: ?*BOOL,
+            pbPartial: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Encrypt: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            bEncrypt: BOOL,
+            dwEncryptionControlFlags: u32,
+            bAsync: BOOL,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(.winapi) HRESULT,
+        FindItem: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPath: ?[*:0]const u16,
+            dwQueryFlags: u32,
+            ppItem: ?*?*IOfflineFilesItem,
+        ) callconv(.winapi) HRESULT,
+        FindItemEx: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPath: ?[*:0]const u16,
+            pIncludeFileFilter: ?*IOfflineFilesItemFilter,
+            pIncludeDirFilter: ?*IOfflineFilesItemFilter,
+            pExcludeFileFilter: ?*IOfflineFilesItemFilter,
+            pExcludeDirFilter: ?*IOfflineFilesItemFilter,
+            dwQueryFlags: u32,
+            ppItem: ?*?*IOfflineFilesItem,
+        ) callconv(.winapi) HRESULT,
+        RenameItem: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPathOriginal: ?[*:0]const u16,
+            pszPathNew: ?[*:0]const u16,
+            bReplaceIfExists: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetLocation: *const fn(
+            self: *const IOfflineFilesCache,
+            ppszPath: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDiskSpaceInformation: *const fn(
+            self: *const IOfflineFilesCache,
+            pcbVolumeTotal: ?*u64,
+            pcbLimit: ?*u64,
+            pcbUsed: ?*u64,
+            pcbUnpinnedLimit: ?*u64,
+            pcbUnpinnedUsed: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        SetDiskSpaceLimits: *const fn(
+            self: *const IOfflineFilesCache,
+            cbLimit: u64,
+            cbUnpinnedLimit: u64,
+        ) callconv(.winapi) HRESULT,
+        ProcessAdminPinPolicy: *const fn(
+            self: *const IOfflineFilesCache,
+            pPinProgress: ?*IOfflineFilesSyncProgress,
+            pUnpinProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(.winapi) HRESULT,
+        GetSettingObject: *const fn(
+            self: *const IOfflineFilesCache,
+            pszSettingName: ?[*:0]const u16,
+            ppSetting: ?*?*IOfflineFilesSetting,
+        ) callconv(.winapi) HRESULT,
+        EnumSettingObjects: *const fn(
+            self: *const IOfflineFilesCache,
+            ppEnum: ?*?*IEnumOfflineFilesSettings,
+        ) callconv(.winapi) HRESULT,
+        IsPathCacheable: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPath: ?[*:0]const u16,
+            pbCacheable: ?*BOOL,
+            pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Synchronize(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bAsync: BOOL, dwSyncControl: u32, pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler, pIProgress: ?*IOfflineFilesSyncProgress, pSyncId: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Synchronize(self, hwndParent, rgpszPaths, cPaths, bAsync, dwSyncControl, pISyncConflictHandler, pIProgress, pSyncId);
+    }
+    pub fn DeleteItems(self: *const IOfflineFilesCache, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItems(self, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+    }
+    pub fn DeleteItemsForUser(self: *const IOfflineFilesCache, pszUser: ?[*:0]const u16, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItemsForUser(self, pszUser, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+    }
+    pub fn Pin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Pin(self, hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+    }
+    pub fn Unpin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Unpin(self, hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+    }
+    pub fn GetEncryptionStatus(self: *const IOfflineFilesCache, pbEncrypted: ?*BOOL, pbPartial: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEncryptionStatus(self, pbEncrypted, pbPartial);
+    }
+    pub fn Encrypt(self: *const IOfflineFilesCache, hwndParent: ?HWND, bEncrypt: BOOL, dwEncryptionControlFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Encrypt(self, hwndParent, bEncrypt, dwEncryptionControlFlags, bAsync, pIProgress);
+    }
+    pub fn FindItem(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.@"inline") HRESULT {
+        return self.vtable.FindItem(self, pszPath, dwQueryFlags, ppItem);
+    }
+    pub fn FindItemEx(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.@"inline") HRESULT {
+        return self.vtable.FindItemEx(self, pszPath, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwQueryFlags, ppItem);
+    }
+    pub fn RenameItem(self: *const IOfflineFilesCache, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.RenameItem(self, pszPathOriginal, pszPathNew, bReplaceIfExists);
+    }
+    pub fn GetLocation(self: *const IOfflineFilesCache, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocation(self, ppszPath);
+    }
+    pub fn GetDiskSpaceInformation(self: *const IOfflineFilesCache, pcbVolumeTotal: ?*u64, pcbLimit: ?*u64, pcbUsed: ?*u64, pcbUnpinnedLimit: ?*u64, pcbUnpinnedUsed: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDiskSpaceInformation(self, pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
+    }
+    pub fn SetDiskSpaceLimits(self: *const IOfflineFilesCache, cbLimit: u64, cbUnpinnedLimit: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDiskSpaceLimits(self, cbLimit, cbUnpinnedLimit);
+    }
+    pub fn ProcessAdminPinPolicy(self: *const IOfflineFilesCache, pPinProgress: ?*IOfflineFilesSyncProgress, pUnpinProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessAdminPinPolicy(self, pPinProgress, pUnpinProgress);
+    }
+    pub fn GetSettingObject(self: *const IOfflineFilesCache, pszSettingName: ?[*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSettingObject(self, pszSettingName, ppSetting);
+    }
+    pub fn EnumSettingObjects(self: *const IOfflineFilesCache, ppEnum: ?*?*IEnumOfflineFilesSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumSettingObjects(self, ppEnum);
+    }
+    pub fn IsPathCacheable(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pbCacheable: ?*BOOL, pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.@"inline") HRESULT {
+        return self.vtable.IsPathCacheable(self, pszPath, pbCacheable, pShareCachingMode);
+    }
 };
-pub const OFFLINEFILES_CONNECT_STATE_UNKNOWN = OFFLINEFILES_CONNECT_STATE.UNKNOWN;
-pub const OFFLINEFILES_CONNECT_STATE_OFFLINE = OFFLINEFILES_CONNECT_STATE.OFFLINE;
-pub const OFFLINEFILES_CONNECT_STATE_ONLINE = OFFLINEFILES_CONNECT_STATE.ONLINE;
-pub const OFFLINEFILES_CONNECT_STATE_TRANSPARENTLY_CACHED = OFFLINEFILES_CONNECT_STATE.TRANSPARENTLY_CACHED;
-pub const OFFLINEFILES_CONNECT_STATE_PARTLY_TRANSPARENTLY_CACHED = OFFLINEFILES_CONNECT_STATE.PARTLY_TRANSPARENTLY_CACHED;
 
-pub const OFFLINEFILES_OFFLINE_REASON = enum(i32) {
-    UNKNOWN = 0,
-    NOT_APPLICABLE = 1,
-    CONNECTION_FORCED = 2,
-    CONNECTION_SLOW = 3,
-    CONNECTION_ERROR = 4,
-    ITEM_VERSION_CONFLICT = 5,
-    ITEM_SUSPENDED = 6,
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOfflineFilesCache2_Value = Guid.initString("8c075039-1551-4ed9-8781-56705c04d3c0");
+pub const IID_IOfflineFilesCache2 = &IID_IOfflineFilesCache2_Value;
+pub const IOfflineFilesCache2 = extern union {
+    pub const VTable = extern struct {
+        base: IOfflineFilesCache.VTable,
+        RenameItemEx: *const fn(
+            self: *const IOfflineFilesCache2,
+            pszPathOriginal: ?[*:0]const u16,
+            pszPathNew: ?[*:0]const u16,
+            bReplaceIfExists: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IOfflineFilesCache: IOfflineFilesCache,
+    IUnknown: IUnknown,
+    pub fn RenameItemEx(self: *const IOfflineFilesCache2, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.RenameItemEx(self, pszPathOriginal, pszPathNew, bReplaceIfExists);
+    }
 };
-pub const OFFLINEFILES_OFFLINE_REASON_UNKNOWN = OFFLINEFILES_OFFLINE_REASON.UNKNOWN;
-pub const OFFLINEFILES_OFFLINE_REASON_NOT_APPLICABLE = OFFLINEFILES_OFFLINE_REASON.NOT_APPLICABLE;
-pub const OFFLINEFILES_OFFLINE_REASON_CONNECTION_FORCED = OFFLINEFILES_OFFLINE_REASON.CONNECTION_FORCED;
-pub const OFFLINEFILES_OFFLINE_REASON_CONNECTION_SLOW = OFFLINEFILES_OFFLINE_REASON.CONNECTION_SLOW;
-pub const OFFLINEFILES_OFFLINE_REASON_CONNECTION_ERROR = OFFLINEFILES_OFFLINE_REASON.CONNECTION_ERROR;
-pub const OFFLINEFILES_OFFLINE_REASON_ITEM_VERSION_CONFLICT = OFFLINEFILES_OFFLINE_REASON.ITEM_VERSION_CONFLICT;
-pub const OFFLINEFILES_OFFLINE_REASON_ITEM_SUSPENDED = OFFLINEFILES_OFFLINE_REASON.ITEM_SUSPENDED;
 
-pub const OFFLINEFILES_CACHING_MODE = enum(i32) {
-    NONE = 0,
-    NOCACHING = 1,
-    MANUAL = 2,
-    AUTO_DOC = 3,
-    AUTO_PROGANDDOC = 4,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesChangeInfo_Value = Guid.initString("a96e6fa4-e0d1-4c29-960b-ee508fe68c72");
+pub const IID_IOfflineFilesChangeInfo = &IID_IOfflineFilesChangeInfo_Value;
+pub const IOfflineFilesChangeInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsDirty: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbDirty: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsDeletedOffline: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbDeletedOffline: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsCreatedOffline: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbCreatedOffline: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsLocallyModifiedData: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbLocallyModifiedData: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsLocallyModifiedAttributes: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbLocallyModifiedAttributes: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsLocallyModifiedTime: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbLocallyModifiedTime: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsDirty(self: *const IOfflineFilesChangeInfo, pbDirty: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsDirty(self, pbDirty);
+    }
+    pub fn IsDeletedOffline(self: *const IOfflineFilesChangeInfo, pbDeletedOffline: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsDeletedOffline(self, pbDeletedOffline);
+    }
+    pub fn IsCreatedOffline(self: *const IOfflineFilesChangeInfo, pbCreatedOffline: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsCreatedOffline(self, pbCreatedOffline);
+    }
+    pub fn IsLocallyModifiedData(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedData: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsLocallyModifiedData(self, pbLocallyModifiedData);
+    }
+    pub fn IsLocallyModifiedAttributes(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedAttributes: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsLocallyModifiedAttributes(self, pbLocallyModifiedAttributes);
+    }
+    pub fn IsLocallyModifiedTime(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedTime: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsLocallyModifiedTime(self, pbLocallyModifiedTime);
+    }
 };
-pub const OFFLINEFILES_CACHING_MODE_NONE = OFFLINEFILES_CACHING_MODE.NONE;
-pub const OFFLINEFILES_CACHING_MODE_NOCACHING = OFFLINEFILES_CACHING_MODE.NOCACHING;
-pub const OFFLINEFILES_CACHING_MODE_MANUAL = OFFLINEFILES_CACHING_MODE.MANUAL;
-pub const OFFLINEFILES_CACHING_MODE_AUTO_DOC = OFFLINEFILES_CACHING_MODE.AUTO_DOC;
-pub const OFFLINEFILES_CACHING_MODE_AUTO_PROGANDDOC = OFFLINEFILES_CACHING_MODE.AUTO_PROGANDDOC;
 
-pub const OFFLINEFILES_OP_RESPONSE = enum(i32) {
-    CONTINUE = 0,
-    RETRY = 1,
-    ABORT = 2,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesConnectionInfo_Value = Guid.initString("efb23a09-a867-4be8-83a6-86969a7d0856");
+pub const IID_IOfflineFilesConnectionInfo = &IID_IOfflineFilesConnectionInfo_Value;
+pub const IOfflineFilesConnectionInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetConnectState: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            pConnectState: ?*OFFLINEFILES_CONNECT_STATE,
+            pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON,
+        ) callconv(.winapi) HRESULT,
+        SetConnectState: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+            ConnectState: OFFLINEFILES_CONNECT_STATE,
+        ) callconv(.winapi) HRESULT,
+        TransitionOnline: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        TransitionOffline: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+            bForceOpenFilesClosed: BOOL,
+            pbOpenFilesPreventedTransition: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetConnectState(self: *const IOfflineFilesConnectionInfo, pConnectState: ?*OFFLINEFILES_CONNECT_STATE, pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectState(self, pConnectState, pOfflineReason);
+    }
+    pub fn SetConnectState(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, ConnectState: OFFLINEFILES_CONNECT_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetConnectState(self, hwndParent, dwFlags, ConnectState);
+    }
+    pub fn TransitionOnline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.TransitionOnline(self, hwndParent, dwFlags);
+    }
+    pub fn TransitionOffline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, bForceOpenFilesClosed: BOOL, pbOpenFilesPreventedTransition: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.TransitionOffline(self, hwndParent, dwFlags, bForceOpenFilesClosed, pbOpenFilesPreventedTransition);
+    }
 };
-pub const OFFLINEFILES_OP_CONTINUE = OFFLINEFILES_OP_RESPONSE.CONTINUE;
-pub const OFFLINEFILES_OP_RETRY = OFFLINEFILES_OP_RESPONSE.RETRY;
-pub const OFFLINEFILES_OP_ABORT = OFFLINEFILES_OP_RESPONSE.ABORT;
 
-pub const OFFLINEFILES_EVENTS = enum(i32) {
-    EVENT_CACHEMOVED = 0,
-    EVENT_CACHEISFULL = 1,
-    EVENT_CACHEISCORRUPTED = 2,
-    EVENT_ENABLED = 3,
-    EVENT_ENCRYPTIONCHANGED = 4,
-    EVENT_SYNCBEGIN = 5,
-    EVENT_SYNCFILERESULT = 6,
-    EVENT_SYNCCONFLICTRECADDED = 7,
-    EVENT_SYNCCONFLICTRECUPDATED = 8,
-    EVENT_SYNCCONFLICTRECREMOVED = 9,
-    EVENT_SYNCEND = 10,
-    EVENT_BACKGROUNDSYNCBEGIN = 11,
-    EVENT_BACKGROUNDSYNCEND = 12,
-    EVENT_NETTRANSPORTARRIVED = 13,
-    EVENT_NONETTRANSPORTS = 14,
-    EVENT_ITEMDISCONNECTED = 15,
-    EVENT_ITEMRECONNECTED = 16,
-    EVENT_ITEMAVAILABLEOFFLINE = 17,
-    EVENT_ITEMNOTAVAILABLEOFFLINE = 18,
-    EVENT_ITEMPINNED = 19,
-    EVENT_ITEMNOTPINNED = 20,
-    EVENT_ITEMMODIFIED = 21,
-    EVENT_ITEMADDEDTOCACHE = 22,
-    EVENT_ITEMDELETEDFROMCACHE = 23,
-    EVENT_ITEMRENAMED = 24,
-    EVENT_DATALOST = 25,
-    EVENT_PING = 26,
-    EVENT_ITEMRECONNECTBEGIN = 27,
-    EVENT_ITEMRECONNECTEND = 28,
-    EVENT_CACHEEVICTBEGIN = 29,
-    EVENT_CACHEEVICTEND = 30,
-    EVENT_POLICYCHANGEDETECTED = 31,
-    EVENT_PREFERENCECHANGEDETECTED = 32,
-    EVENT_SETTINGSCHANGESAPPLIED = 33,
-    EVENT_TRANSPARENTCACHEITEMNOTIFY = 34,
-    EVENT_PREFETCHFILEBEGIN = 35,
-    EVENT_PREFETCHFILEEND = 36,
-    EVENT_PREFETCHCLOSEHANDLEBEGIN = 37,
-    EVENT_PREFETCHCLOSEHANDLEEND = 38,
-    NUM_EVENTS = 39,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesDirectoryItem_Value = Guid.initString("2273597a-a08c-4a00-a37a-c1ae4e9a1cfd");
+pub const IID_IOfflineFilesDirectoryItem = &IID_IOfflineFilesDirectoryItem_Value;
+pub const IOfflineFilesDirectoryItem = extern union {
+    pub const VTable = extern struct {
+        base: IOfflineFilesItem.VTable,
+    };
+    vtable: *const VTable,
+    IOfflineFilesItem: IOfflineFilesItem,
+    IUnknown: IUnknown,
 };
-pub const OFFLINEFILES_EVENT_CACHEMOVED = OFFLINEFILES_EVENTS.EVENT_CACHEMOVED;
-pub const OFFLINEFILES_EVENT_CACHEISFULL = OFFLINEFILES_EVENTS.EVENT_CACHEISFULL;
-pub const OFFLINEFILES_EVENT_CACHEISCORRUPTED = OFFLINEFILES_EVENTS.EVENT_CACHEISCORRUPTED;
-pub const OFFLINEFILES_EVENT_ENABLED = OFFLINEFILES_EVENTS.EVENT_ENABLED;
-pub const OFFLINEFILES_EVENT_ENCRYPTIONCHANGED = OFFLINEFILES_EVENTS.EVENT_ENCRYPTIONCHANGED;
-pub const OFFLINEFILES_EVENT_SYNCBEGIN = OFFLINEFILES_EVENTS.EVENT_SYNCBEGIN;
-pub const OFFLINEFILES_EVENT_SYNCFILERESULT = OFFLINEFILES_EVENTS.EVENT_SYNCFILERESULT;
-pub const OFFLINEFILES_EVENT_SYNCCONFLICTRECADDED = OFFLINEFILES_EVENTS.EVENT_SYNCCONFLICTRECADDED;
-pub const OFFLINEFILES_EVENT_SYNCCONFLICTRECUPDATED = OFFLINEFILES_EVENTS.EVENT_SYNCCONFLICTRECUPDATED;
-pub const OFFLINEFILES_EVENT_SYNCCONFLICTRECREMOVED = OFFLINEFILES_EVENTS.EVENT_SYNCCONFLICTRECREMOVED;
-pub const OFFLINEFILES_EVENT_SYNCEND = OFFLINEFILES_EVENTS.EVENT_SYNCEND;
-pub const OFFLINEFILES_EVENT_BACKGROUNDSYNCBEGIN = OFFLINEFILES_EVENTS.EVENT_BACKGROUNDSYNCBEGIN;
-pub const OFFLINEFILES_EVENT_BACKGROUNDSYNCEND = OFFLINEFILES_EVENTS.EVENT_BACKGROUNDSYNCEND;
-pub const OFFLINEFILES_EVENT_NETTRANSPORTARRIVED = OFFLINEFILES_EVENTS.EVENT_NETTRANSPORTARRIVED;
-pub const OFFLINEFILES_EVENT_NONETTRANSPORTS = OFFLINEFILES_EVENTS.EVENT_NONETTRANSPORTS;
-pub const OFFLINEFILES_EVENT_ITEMDISCONNECTED = OFFLINEFILES_EVENTS.EVENT_ITEMDISCONNECTED;
-pub const OFFLINEFILES_EVENT_ITEMRECONNECTED = OFFLINEFILES_EVENTS.EVENT_ITEMRECONNECTED;
-pub const OFFLINEFILES_EVENT_ITEMAVAILABLEOFFLINE = OFFLINEFILES_EVENTS.EVENT_ITEMAVAILABLEOFFLINE;
-pub const OFFLINEFILES_EVENT_ITEMNOTAVAILABLEOFFLINE = OFFLINEFILES_EVENTS.EVENT_ITEMNOTAVAILABLEOFFLINE;
-pub const OFFLINEFILES_EVENT_ITEMPINNED = OFFLINEFILES_EVENTS.EVENT_ITEMPINNED;
-pub const OFFLINEFILES_EVENT_ITEMNOTPINNED = OFFLINEFILES_EVENTS.EVENT_ITEMNOTPINNED;
-pub const OFFLINEFILES_EVENT_ITEMMODIFIED = OFFLINEFILES_EVENTS.EVENT_ITEMMODIFIED;
-pub const OFFLINEFILES_EVENT_ITEMADDEDTOCACHE = OFFLINEFILES_EVENTS.EVENT_ITEMADDEDTOCACHE;
-pub const OFFLINEFILES_EVENT_ITEMDELETEDFROMCACHE = OFFLINEFILES_EVENTS.EVENT_ITEMDELETEDFROMCACHE;
-pub const OFFLINEFILES_EVENT_ITEMRENAMED = OFFLINEFILES_EVENTS.EVENT_ITEMRENAMED;
-pub const OFFLINEFILES_EVENT_DATALOST = OFFLINEFILES_EVENTS.EVENT_DATALOST;
-pub const OFFLINEFILES_EVENT_PING = OFFLINEFILES_EVENTS.EVENT_PING;
-pub const OFFLINEFILES_EVENT_ITEMRECONNECTBEGIN = OFFLINEFILES_EVENTS.EVENT_ITEMRECONNECTBEGIN;
-pub const OFFLINEFILES_EVENT_ITEMRECONNECTEND = OFFLINEFILES_EVENTS.EVENT_ITEMRECONNECTEND;
-pub const OFFLINEFILES_EVENT_CACHEEVICTBEGIN = OFFLINEFILES_EVENTS.EVENT_CACHEEVICTBEGIN;
-pub const OFFLINEFILES_EVENT_CACHEEVICTEND = OFFLINEFILES_EVENTS.EVENT_CACHEEVICTEND;
-pub const OFFLINEFILES_EVENT_POLICYCHANGEDETECTED = OFFLINEFILES_EVENTS.EVENT_POLICYCHANGEDETECTED;
-pub const OFFLINEFILES_EVENT_PREFERENCECHANGEDETECTED = OFFLINEFILES_EVENTS.EVENT_PREFERENCECHANGEDETECTED;
-pub const OFFLINEFILES_EVENT_SETTINGSCHANGESAPPLIED = OFFLINEFILES_EVENTS.EVENT_SETTINGSCHANGESAPPLIED;
-pub const OFFLINEFILES_EVENT_TRANSPARENTCACHEITEMNOTIFY = OFFLINEFILES_EVENTS.EVENT_TRANSPARENTCACHEITEMNOTIFY;
-pub const OFFLINEFILES_EVENT_PREFETCHFILEBEGIN = OFFLINEFILES_EVENTS.EVENT_PREFETCHFILEBEGIN;
-pub const OFFLINEFILES_EVENT_PREFETCHFILEEND = OFFLINEFILES_EVENTS.EVENT_PREFETCHFILEEND;
-pub const OFFLINEFILES_EVENT_PREFETCHCLOSEHANDLEBEGIN = OFFLINEFILES_EVENTS.EVENT_PREFETCHCLOSEHANDLEBEGIN;
-pub const OFFLINEFILES_EVENT_PREFETCHCLOSEHANDLEEND = OFFLINEFILES_EVENTS.EVENT_PREFETCHCLOSEHANDLEEND;
-pub const OFFLINEFILES_NUM_EVENTS = OFFLINEFILES_EVENTS.NUM_EVENTS;
 
-pub const OFFLINEFILES_PATHFILTER_MATCH = enum(i32) {
-    SELF = 0,
-    CHILD = 1,
-    DESCENDENT = 2,
-    SELFORCHILD = 3,
-    SELFORDESCENDENT = 4,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesDirtyInfo_Value = Guid.initString("0f50ce33-bac9-4eaa-a11d-da0e527d047d");
+pub const IID_IOfflineFilesDirtyInfo = &IID_IOfflineFilesDirtyInfo_Value;
+pub const IOfflineFilesDirtyInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        LocalDirtyByteCount: *const fn(
+            self: *const IOfflineFilesDirtyInfo,
+            pDirtyByteCount: ?*LARGE_INTEGER,
+        ) callconv(.winapi) HRESULT,
+        RemoteDirtyByteCount: *const fn(
+            self: *const IOfflineFilesDirtyInfo,
+            pDirtyByteCount: ?*LARGE_INTEGER,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn LocalDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
+        return self.vtable.LocalDirtyByteCount(self, pDirtyByteCount);
+    }
+    pub fn RemoteDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoteDirtyByteCount(self, pDirtyByteCount);
+    }
 };
-pub const OFFLINEFILES_PATHFILTER_SELF = OFFLINEFILES_PATHFILTER_MATCH.SELF;
-pub const OFFLINEFILES_PATHFILTER_CHILD = OFFLINEFILES_PATHFILTER_MATCH.CHILD;
-pub const OFFLINEFILES_PATHFILTER_DESCENDENT = OFFLINEFILES_PATHFILTER_MATCH.DESCENDENT;
-pub const OFFLINEFILES_PATHFILTER_SELFORCHILD = OFFLINEFILES_PATHFILTER_MATCH.SELFORCHILD;
-pub const OFFLINEFILES_PATHFILTER_SELFORDESCENDENT = OFFLINEFILES_PATHFILTER_MATCH.SELFORDESCENDENT;
 
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE = enum(i32) {
-    RESOLVE_NONE = 0,
-    RESOLVE_KEEPLOCAL = 1,
-    RESOLVE_KEEPREMOTE = 2,
-    RESOLVE_KEEPALLCHANGES = 3,
-    RESOLVE_KEEPLATEST = 4,
-    RESOLVE_LOG = 5,
-    RESOLVE_SKIP = 6,
-    ABORT = 7,
-    RESOLVE_NUMCODES = 8,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesErrorInfo_Value = Guid.initString("7112fa5f-7571-435a-8eb7-195c7c1429bc");
+pub const IID_IOfflineFilesErrorInfo = &IID_IOfflineFilesErrorInfo_Value;
+pub const IOfflineFilesErrorInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRawData: *const fn(
+            self: *const IOfflineFilesErrorInfo,
+            ppBlob: ?*?*BYTE_BLOB,
+        ) callconv(.winapi) HRESULT,
+        GetDescription: *const fn(
+            self: *const IOfflineFilesErrorInfo,
+            ppszDescription: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRawData(self: *const IOfflineFilesErrorInfo, ppBlob: ?*?*BYTE_BLOB) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRawData(self, ppBlob);
+    }
+    pub fn GetDescription(self: *const IOfflineFilesErrorInfo, ppszDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDescription(self, ppszDescription);
+    }
 };
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_NONE = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_NONE;
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPLOCAL = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPLOCAL;
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPREMOTE = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPREMOTE;
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPALLCHANGES = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPALLCHANGES;
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPLATEST = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPLATEST;
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_LOG = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_LOG;
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_SKIP = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_SKIP;
-pub const OFFLINEFILES_SYNC_CONFLICT_ABORT = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.ABORT;
-pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_NUMCODES = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_NUMCODES;
-
-pub const OFFLINEFILES_ITEM_TIME = enum(i32) {
-    CREATION = 0,
-    LASTACCESS = 1,
-    LASTWRITE = 2,
-};
-pub const OFFLINEFILES_ITEM_TIME_CREATION = OFFLINEFILES_ITEM_TIME.CREATION;
-pub const OFFLINEFILES_ITEM_TIME_LASTACCESS = OFFLINEFILES_ITEM_TIME.LASTACCESS;
-pub const OFFLINEFILES_ITEM_TIME_LASTWRITE = OFFLINEFILES_ITEM_TIME.LASTWRITE;
-
-pub const OFFLINEFILES_COMPARE = enum(i32) {
-    EQ = 0,
-    NEQ = 1,
-    LT = 2,
-    GT = 3,
-    LTE = 4,
-    GTE = 5,
-};
-pub const OFFLINEFILES_COMPARE_EQ = OFFLINEFILES_COMPARE.EQ;
-pub const OFFLINEFILES_COMPARE_NEQ = OFFLINEFILES_COMPARE.NEQ;
-pub const OFFLINEFILES_COMPARE_LT = OFFLINEFILES_COMPARE.LT;
-pub const OFFLINEFILES_COMPARE_GT = OFFLINEFILES_COMPARE.GT;
-pub const OFFLINEFILES_COMPARE_LTE = OFFLINEFILES_COMPARE.LTE;
-pub const OFFLINEFILES_COMPARE_GTE = OFFLINEFILES_COMPARE.GTE;
-
-pub const OFFLINEFILES_SETTING_VALUE_TYPE = enum(i32) {
-    UI4 = 0,
-    BSTR = 1,
-    BSTR_DBLNULTERM = 2,
-    @"2DIM_ARRAY_BSTR_UI4" = 3,
-    @"2DIM_ARRAY_BSTR_BSTR" = 4,
-};
-pub const OFFLINEFILES_SETTING_VALUE_UI4 = OFFLINEFILES_SETTING_VALUE_TYPE.UI4;
-pub const OFFLINEFILES_SETTING_VALUE_BSTR = OFFLINEFILES_SETTING_VALUE_TYPE.BSTR;
-pub const OFFLINEFILES_SETTING_VALUE_BSTR_DBLNULTERM = OFFLINEFILES_SETTING_VALUE_TYPE.BSTR_DBLNULTERM;
-pub const OFFLINEFILES_SETTING_VALUE_2DIM_ARRAY_BSTR_UI4 = OFFLINEFILES_SETTING_VALUE_TYPE.@"2DIM_ARRAY_BSTR_UI4";
-pub const OFFLINEFILES_SETTING_VALUE_2DIM_ARRAY_BSTR_BSTR = OFFLINEFILES_SETTING_VALUE_TYPE.@"2DIM_ARRAY_BSTR_BSTR";
-
-pub const OFFLINEFILES_SYNC_OPERATION = enum(i32) {
-    CREATE_COPY_ON_SERVER = 0,
-    CREATE_COPY_ON_CLIENT = 1,
-    SYNC_TO_SERVER = 2,
-    SYNC_TO_CLIENT = 3,
-    DELETE_SERVER_COPY = 4,
-    DELETE_CLIENT_COPY = 5,
-    PIN = 6,
-    PREPARE = 7,
-};
-pub const OFFLINEFILES_SYNC_OPERATION_CREATE_COPY_ON_SERVER = OFFLINEFILES_SYNC_OPERATION.CREATE_COPY_ON_SERVER;
-pub const OFFLINEFILES_SYNC_OPERATION_CREATE_COPY_ON_CLIENT = OFFLINEFILES_SYNC_OPERATION.CREATE_COPY_ON_CLIENT;
-pub const OFFLINEFILES_SYNC_OPERATION_SYNC_TO_SERVER = OFFLINEFILES_SYNC_OPERATION.SYNC_TO_SERVER;
-pub const OFFLINEFILES_SYNC_OPERATION_SYNC_TO_CLIENT = OFFLINEFILES_SYNC_OPERATION.SYNC_TO_CLIENT;
-pub const OFFLINEFILES_SYNC_OPERATION_DELETE_SERVER_COPY = OFFLINEFILES_SYNC_OPERATION.DELETE_SERVER_COPY;
-pub const OFFLINEFILES_SYNC_OPERATION_DELETE_CLIENT_COPY = OFFLINEFILES_SYNC_OPERATION.DELETE_CLIENT_COPY;
-pub const OFFLINEFILES_SYNC_OPERATION_PIN = OFFLINEFILES_SYNC_OPERATION.PIN;
-pub const OFFLINEFILES_SYNC_OPERATION_PREPARE = OFFLINEFILES_SYNC_OPERATION.PREPARE;
-
-pub const OFFLINEFILES_SYNC_STATE = enum(i32) {
-    Stable = 0,
-    FileOnClient_DirOnServer = 1,
-    FileOnClient_NoServerCopy = 2,
-    DirOnClient_FileOnServer = 3,
-    DirOnClient_FileChangedOnServer = 4,
-    DirOnClient_NoServerCopy = 5,
-    FileCreatedOnClient_NoServerCopy = 6,
-    FileCreatedOnClient_FileChangedOnServer = 7,
-    FileCreatedOnClient_DirChangedOnServer = 8,
-    FileCreatedOnClient_FileOnServer = 9,
-    FileCreatedOnClient_DirOnServer = 10,
-    FileCreatedOnClient_DeletedOnServer = 11,
-    FileChangedOnClient_ChangedOnServer = 12,
-    FileChangedOnClient_DirOnServer = 13,
-    FileChangedOnClient_DirChangedOnServer = 14,
-    FileChangedOnClient_DeletedOnServer = 15,
-    FileSparseOnClient_ChangedOnServer = 16,
-    FileSparseOnClient_DeletedOnServer = 17,
-    FileSparseOnClient_DirOnServer = 18,
-    FileSparseOnClient_DirChangedOnServer = 19,
-    DirCreatedOnClient_NoServerCopy = 20,
-    DirCreatedOnClient_DirOnServer = 21,
-    DirCreatedOnClient_FileOnServer = 22,
-    DirCreatedOnClient_FileChangedOnServer = 23,
-    DirCreatedOnClient_DirChangedOnServer = 24,
-    DirCreatedOnClient_DeletedOnServer = 25,
-    DirChangedOnClient_FileOnServer = 26,
-    DirChangedOnClient_FileChangedOnServer = 27,
-    DirChangedOnClient_ChangedOnServer = 28,
-    DirChangedOnClient_DeletedOnServer = 29,
-    NoClientCopy_FileOnServer = 30,
-    NoClientCopy_DirOnServer = 31,
-    NoClientCopy_FileChangedOnServer = 32,
-    NoClientCopy_DirChangedOnServer = 33,
-    DeletedOnClient_FileOnServer = 34,
-    DeletedOnClient_DirOnServer = 35,
-    DeletedOnClient_FileChangedOnServer = 36,
-    DeletedOnClient_DirChangedOnServer = 37,
-    FileSparseOnClient = 38,
-    FileChangedOnClient = 39,
-    FileRenamedOnClient = 40,
-    DirSparseOnClient = 41,
-    DirChangedOnClient = 42,
-    DirRenamedOnClient = 43,
-    FileChangedOnServer = 44,
-    FileRenamedOnServer = 45,
-    FileDeletedOnServer = 46,
-    DirChangedOnServer = 47,
-    DirRenamedOnServer = 48,
-    DirDeletedOnServer = 49,
-    FileReplacedAndDeletedOnClient_FileOnServer = 50,
-    FileReplacedAndDeletedOnClient_FileChangedOnServer = 51,
-    FileReplacedAndDeletedOnClient_DirOnServer = 52,
-    FileReplacedAndDeletedOnClient_DirChangedOnServer = 53,
-    NUMSTATES = 54,
-};
-pub const OFFLINEFILES_SYNC_STATE_Stable = OFFLINEFILES_SYNC_STATE.Stable;
-pub const OFFLINEFILES_SYNC_STATE_FileOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileOnClient_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.FileOnClient_NoServerCopy;
-pub const OFFLINEFILES_SYNC_STATE_DirOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DirOnClient_FileOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DirOnClient_FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.DirOnClient_NoServerCopy;
-pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_NoServerCopy;
-pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_FileOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_DeletedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_ChangedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_ChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_DeletedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_ChangedOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_ChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_DeletedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_NoServerCopy;
-pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_FileOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_DeletedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_FileOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_ChangedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_ChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_DeletedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_FileOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_FileOnServer;
-pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_DirOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_FileOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient = OFFLINEFILES_SYNC_STATE.FileSparseOnClient;
-pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient = OFFLINEFILES_SYNC_STATE.FileChangedOnClient;
-pub const OFFLINEFILES_SYNC_STATE_FileRenamedOnClient = OFFLINEFILES_SYNC_STATE.FileRenamedOnClient;
-pub const OFFLINEFILES_SYNC_STATE_DirSparseOnClient = OFFLINEFILES_SYNC_STATE.DirSparseOnClient;
-pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient = OFFLINEFILES_SYNC_STATE.DirChangedOnClient;
-pub const OFFLINEFILES_SYNC_STATE_DirRenamedOnClient = OFFLINEFILES_SYNC_STATE.DirRenamedOnClient;
-pub const OFFLINEFILES_SYNC_STATE_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileRenamedOnServer = OFFLINEFILES_SYNC_STATE.FileRenamedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileDeletedOnServer = OFFLINEFILES_SYNC_STATE.FileDeletedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirRenamedOnServer = OFFLINEFILES_SYNC_STATE.DirRenamedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_DirDeletedOnServer = OFFLINEFILES_SYNC_STATE.DirDeletedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_FileOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_FileChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_DirOnServer;
-pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_DirChangedOnServer;
-pub const OFFLINEFILES_SYNC_STATE_NUMSTATES = OFFLINEFILES_SYNC_STATE.NUMSTATES;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IOfflineFilesEvents_Value = Guid.initString("e25585c1-0caa-4eb1-873b-1cae5b77c314");
@@ -848,276 +928,84 @@ pub const IOfflineFilesEventsFilter = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesErrorInfo_Value = Guid.initString("7112fa5f-7571-435a-8eb7-195c7c1429bc");
-pub const IID_IOfflineFilesErrorInfo = &IID_IOfflineFilesErrorInfo_Value;
-pub const IOfflineFilesErrorInfo = extern union {
+const IID_IOfflineFilesFileItem_Value = Guid.initString("8dfadead-26c2-4eff-8a72-6b50723d9a00");
+pub const IID_IOfflineFilesFileItem = &IID_IOfflineFilesFileItem_Value;
+pub const IOfflineFilesFileItem = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRawData: *const fn(
-            self: *const IOfflineFilesErrorInfo,
-            ppBlob: ?*?*BYTE_BLOB,
+        base: IOfflineFilesItem.VTable,
+        IsSparse: *const fn(
+            self: *const IOfflineFilesFileItem,
+            pbIsSparse: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        GetDescription: *const fn(
-            self: *const IOfflineFilesErrorInfo,
-            ppszDescription: ?*?PWSTR,
+        IsEncrypted: *const fn(
+            self: *const IOfflineFilesFileItem,
+            pbIsEncrypted: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IOfflineFilesItem: IOfflineFilesItem,
     IUnknown: IUnknown,
-    pub fn GetRawData(self: *const IOfflineFilesErrorInfo, ppBlob: ?*?*BYTE_BLOB) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRawData(self, ppBlob);
+    pub fn IsSparse(self: *const IOfflineFilesFileItem, pbIsSparse: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSparse(self, pbIsSparse);
     }
-    pub fn GetDescription(self: *const IOfflineFilesErrorInfo, ppszDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDescription(self, ppszDescription);
+    pub fn IsEncrypted(self: *const IOfflineFilesFileItem, pbIsEncrypted: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsEncrypted(self, pbIsEncrypted);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncErrorItemInfo_Value = Guid.initString("ecdbaf0d-6a18-4d55-8017-108f7660ba44");
-pub const IID_IOfflineFilesSyncErrorItemInfo = &IID_IOfflineFilesSyncErrorItemInfo_Value;
-pub const IOfflineFilesSyncErrorItemInfo = extern union {
+const IID_IOfflineFilesFileSysInfo_Value = Guid.initString("bc1a163f-7bfd-4d88-9c66-96ea9a6a3d6b");
+pub const IID_IOfflineFilesFileSysInfo = &IID_IOfflineFilesFileSysInfo_Value;
+pub const IOfflineFilesFileSysInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFileAttributes: *const fn(
-            self: *const IOfflineFilesSyncErrorItemInfo,
+        GetAttributes: *const fn(
+            self: *const IOfflineFilesFileSysInfo,
+            copy: OFFLINEFILES_ITEM_COPY,
             pdwAttributes: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetFileTimes: *const fn(
-            self: *const IOfflineFilesSyncErrorItemInfo,
-            pftLastWrite: ?*FILETIME,
-            pftChange: ?*FILETIME,
+        GetTimes: *const fn(
+            self: *const IOfflineFilesFileSysInfo,
+            copy: OFFLINEFILES_ITEM_COPY,
+            pftCreationTime: ?*FILETIME,
+            pftLastWriteTime: ?*FILETIME,
+            pftChangeTime: ?*FILETIME,
+            pftLastAccessTime: ?*FILETIME,
         ) callconv(.winapi) HRESULT,
         GetFileSize: *const fn(
-            self: *const IOfflineFilesSyncErrorItemInfo,
+            self: *const IOfflineFilesFileSysInfo,
+            copy: OFFLINEFILES_ITEM_COPY,
             pSize: ?*LARGE_INTEGER,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFileAttributes(self: *const IOfflineFilesSyncErrorItemInfo, pdwAttributes: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileAttributes(self, pdwAttributes);
+    pub fn GetAttributes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pdwAttributes: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttributes(self, copy, pdwAttributes);
     }
-    pub fn GetFileTimes(self: *const IOfflineFilesSyncErrorItemInfo, pftLastWrite: ?*FILETIME, pftChange: ?*FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileTimes(self, pftLastWrite, pftChange);
+    pub fn GetTimes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pftCreationTime: ?*FILETIME, pftLastWriteTime: ?*FILETIME, pftChangeTime: ?*FILETIME, pftLastAccessTime: ?*FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTimes(self, copy, pftCreationTime, pftLastWriteTime, pftChangeTime, pftLastAccessTime);
     }
-    pub fn GetFileSize(self: *const IOfflineFilesSyncErrorItemInfo, pSize: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileSize(self, pSize);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncErrorInfo_Value = Guid.initString("59f95e46-eb54-49d1-be76-de95458d01b0");
-pub const IID_IOfflineFilesSyncErrorInfo = &IID_IOfflineFilesSyncErrorInfo_Value;
-pub const IOfflineFilesSyncErrorInfo = extern union {
-    pub const VTable = extern struct {
-        base: IOfflineFilesErrorInfo.VTable,
-        GetSyncOperation: *const fn(
-            self: *const IOfflineFilesSyncErrorInfo,
-            pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION,
-        ) callconv(.winapi) HRESULT,
-        GetItemChangeFlags: *const fn(
-            self: *const IOfflineFilesSyncErrorInfo,
-            pdwItemChangeFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        InfoEnumerated: *const fn(
-            self: *const IOfflineFilesSyncErrorInfo,
-            pbLocalEnumerated: ?*BOOL,
-            pbRemoteEnumerated: ?*BOOL,
-            pbOriginalEnumerated: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        InfoAvailable: *const fn(
-            self: *const IOfflineFilesSyncErrorInfo,
-            pbLocalInfo: ?*BOOL,
-            pbRemoteInfo: ?*BOOL,
-            pbOriginalInfo: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetLocalInfo: *const fn(
-            self: *const IOfflineFilesSyncErrorInfo,
-            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-        ) callconv(.winapi) HRESULT,
-        GetRemoteInfo: *const fn(
-            self: *const IOfflineFilesSyncErrorInfo,
-            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-        ) callconv(.winapi) HRESULT,
-        GetOriginalInfo: *const fn(
-            self: *const IOfflineFilesSyncErrorInfo,
-            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IOfflineFilesErrorInfo: IOfflineFilesErrorInfo,
-    IUnknown: IUnknown,
-    pub fn GetSyncOperation(self: *const IOfflineFilesSyncErrorInfo, pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSyncOperation(self, pSyncOp);
-    }
-    pub fn GetItemChangeFlags(self: *const IOfflineFilesSyncErrorInfo, pdwItemChangeFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemChangeFlags(self, pdwItemChangeFlags);
-    }
-    pub fn InfoEnumerated(self: *const IOfflineFilesSyncErrorInfo, pbLocalEnumerated: ?*BOOL, pbRemoteEnumerated: ?*BOOL, pbOriginalEnumerated: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InfoEnumerated(self, pbLocalEnumerated, pbRemoteEnumerated, pbOriginalEnumerated);
-    }
-    pub fn InfoAvailable(self: *const IOfflineFilesSyncErrorInfo, pbLocalInfo: ?*BOOL, pbRemoteInfo: ?*BOOL, pbOriginalInfo: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InfoAvailable(self, pbLocalInfo, pbRemoteInfo, pbOriginalInfo);
-    }
-    pub fn GetLocalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalInfo(self, ppInfo);
-    }
-    pub fn GetRemoteInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRemoteInfo(self, ppInfo);
-    }
-    pub fn GetOriginalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOriginalInfo(self, ppInfo);
+    pub fn GetFileSize(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pSize: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileSize(self, copy, pSize);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesProgress_Value = Guid.initString("fad63237-c55b-4911-9850-bcf96d4c979e");
-pub const IID_IOfflineFilesProgress = &IID_IOfflineFilesProgress_Value;
-pub const IOfflineFilesProgress = extern union {
+const IID_IOfflineFilesGhostInfo_Value = Guid.initString("2b09d48c-8ab5-464f-a755-a59d92f99429");
+pub const IID_IOfflineFilesGhostInfo = &IID_IOfflineFilesGhostInfo_Value;
+pub const IOfflineFilesGhostInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin: *const fn(
-            self: *const IOfflineFilesProgress,
-            pbAbort: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        QueryAbort: *const fn(
-            self: *const IOfflineFilesProgress,
-            pbAbort: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        End: *const fn(
-            self: *const IOfflineFilesProgress,
-            hrResult: HRESULT,
+        IsGhosted: *const fn(
+            self: *const IOfflineFilesGhostInfo,
+            pbGhosted: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin(self, pbAbort);
-    }
-    pub fn QueryAbort(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryAbort(self, pbAbort);
-    }
-    pub fn End(self: *const IOfflineFilesProgress, hrResult: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.End(self, hrResult);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSimpleProgress_Value = Guid.initString("c34f7f9b-c43d-4f9d-a776-c0eb6de5d401");
-pub const IID_IOfflineFilesSimpleProgress = &IID_IOfflineFilesSimpleProgress_Value;
-pub const IOfflineFilesSimpleProgress = extern union {
-    pub const VTable = extern struct {
-        base: IOfflineFilesProgress.VTable,
-        ItemBegin: *const fn(
-            self: *const IOfflineFilesSimpleProgress,
-            pszFile: ?[*:0]const u16,
-            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(.winapi) HRESULT,
-        ItemResult: *const fn(
-            self: *const IOfflineFilesSimpleProgress,
-            pszFile: ?[*:0]const u16,
-            hrResult: HRESULT,
-            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IOfflineFilesProgress: IOfflineFilesProgress,
-    IUnknown: IUnknown,
-    pub fn ItemBegin(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
-        return self.vtable.ItemBegin(self, pszFile, pResponse);
-    }
-    pub fn ItemResult(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
-        return self.vtable.ItemResult(self, pszFile, hrResult, pResponse);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncProgress_Value = Guid.initString("6931f49a-6fc7-4c1b-b265-56793fc451b7");
-pub const IID_IOfflineFilesSyncProgress = &IID_IOfflineFilesSyncProgress_Value;
-pub const IOfflineFilesSyncProgress = extern union {
-    pub const VTable = extern struct {
-        base: IOfflineFilesProgress.VTable,
-        SyncItemBegin: *const fn(
-            self: *const IOfflineFilesSyncProgress,
-            pszFile: ?[*:0]const u16,
-            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(.winapi) HRESULT,
-        SyncItemResult: *const fn(
-            self: *const IOfflineFilesSyncProgress,
-            pszFile: ?[*:0]const u16,
-            hrResult: HRESULT,
-            pErrorInfo: ?*IOfflineFilesSyncErrorInfo,
-            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IOfflineFilesProgress: IOfflineFilesProgress,
-    IUnknown: IUnknown,
-    pub fn SyncItemBegin(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
-        return self.vtable.SyncItemBegin(self, pszFile, pResponse);
-    }
-    pub fn SyncItemResult(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pErrorInfo: ?*IOfflineFilesSyncErrorInfo, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
-        return self.vtable.SyncItemResult(self, pszFile, hrResult, pErrorInfo, pResponse);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSyncConflictHandler_Value = Guid.initString("b6dd5092-c65c-46b6-97b8-fadd08e7e1be");
-pub const IID_IOfflineFilesSyncConflictHandler = &IID_IOfflineFilesSyncConflictHandler_Value;
-pub const IOfflineFilesSyncConflictHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ResolveConflict: *const fn(
-            self: *const IOfflineFilesSyncConflictHandler,
-            pszPath: ?[*:0]const u16,
-            fStateKnown: u32,
-            state: OFFLINEFILES_SYNC_STATE,
-            fChangeDetails: u32,
-            pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE,
-            ppszNewName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ResolveConflict(self: *const IOfflineFilesSyncConflictHandler, pszPath: ?[*:0]const u16, fStateKnown: u32, state: OFFLINEFILES_SYNC_STATE, fChangeDetails: u32, pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE, ppszNewName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ResolveConflict(self, pszPath, fStateKnown, state, fChangeDetails, pConflictResolution, ppszNewName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesItemFilter_Value = Guid.initString("f4b5a26c-dc05-4f20-ada4-551f1077be5c");
-pub const IID_IOfflineFilesItemFilter = &IID_IOfflineFilesItemFilter_Value;
-pub const IOfflineFilesItemFilter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetFilterFlags: *const fn(
-            self: *const IOfflineFilesItemFilter,
-            pullFlags: ?*u64,
-            pullMask: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetTimeFilter: *const fn(
-            self: *const IOfflineFilesItemFilter,
-            pftTime: ?*FILETIME,
-            pbEvalTimeOfDay: ?*BOOL,
-            pTimeType: ?*OFFLINEFILES_ITEM_TIME,
-            pCompare: ?*OFFLINEFILES_COMPARE,
-        ) callconv(.winapi) HRESULT,
-        GetPatternFilter: *const fn(
-            self: *const IOfflineFilesItemFilter,
-            pszPattern: [*:0]u16,
-            cchPattern: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetFilterFlags(self: *const IOfflineFilesItemFilter, pullFlags: ?*u64, pullMask: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFilterFlags(self, pullFlags, pullMask);
-    }
-    pub fn GetTimeFilter(self: *const IOfflineFilesItemFilter, pftTime: ?*FILETIME, pbEvalTimeOfDay: ?*BOOL, pTimeType: ?*OFFLINEFILES_ITEM_TIME, pCompare: ?*OFFLINEFILES_COMPARE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTimeFilter(self, pftTime, pbEvalTimeOfDay, pTimeType, pCompare);
-    }
-    pub fn GetPatternFilter(self: *const IOfflineFilesItemFilter, pszPattern: [*:0]u16, cchPattern: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPatternFilter(self, pszPattern, cchPattern);
+    pub fn IsGhosted(self: *const IOfflineFilesGhostInfo, pbGhosted: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsGhosted(self, pbGhosted);
     }
 };
 
@@ -1168,108 +1056,6 @@ pub const IOfflineFilesItem = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesServerItem_Value = Guid.initString("9b1c9576-a92b-4151-8e9e-7c7b3ec2e016");
-pub const IID_IOfflineFilesServerItem = &IID_IOfflineFilesServerItem_Value;
-pub const IOfflineFilesServerItem = extern union {
-    pub const VTable = extern struct {
-        base: IOfflineFilesItem.VTable,
-    };
-    vtable: *const VTable,
-    IOfflineFilesItem: IOfflineFilesItem,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesShareItem_Value = Guid.initString("bab7e48d-4804-41b5-a44d-0f199b06b145");
-pub const IID_IOfflineFilesShareItem = &IID_IOfflineFilesShareItem_Value;
-pub const IOfflineFilesShareItem = extern union {
-    pub const VTable = extern struct {
-        base: IOfflineFilesItem.VTable,
-    };
-    vtable: *const VTable,
-    IOfflineFilesItem: IOfflineFilesItem,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesDirectoryItem_Value = Guid.initString("2273597a-a08c-4a00-a37a-c1ae4e9a1cfd");
-pub const IID_IOfflineFilesDirectoryItem = &IID_IOfflineFilesDirectoryItem_Value;
-pub const IOfflineFilesDirectoryItem = extern union {
-    pub const VTable = extern struct {
-        base: IOfflineFilesItem.VTable,
-    };
-    vtable: *const VTable,
-    IOfflineFilesItem: IOfflineFilesItem,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesFileItem_Value = Guid.initString("8dfadead-26c2-4eff-8a72-6b50723d9a00");
-pub const IID_IOfflineFilesFileItem = &IID_IOfflineFilesFileItem_Value;
-pub const IOfflineFilesFileItem = extern union {
-    pub const VTable = extern struct {
-        base: IOfflineFilesItem.VTable,
-        IsSparse: *const fn(
-            self: *const IOfflineFilesFileItem,
-            pbIsSparse: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsEncrypted: *const fn(
-            self: *const IOfflineFilesFileItem,
-            pbIsEncrypted: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IOfflineFilesItem: IOfflineFilesItem,
-    IUnknown: IUnknown,
-    pub fn IsSparse(self: *const IOfflineFilesFileItem, pbIsSparse: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSparse(self, pbIsSparse);
-    }
-    pub fn IsEncrypted(self: *const IOfflineFilesFileItem, pbIsEncrypted: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsEncrypted(self, pbIsEncrypted);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumOfflineFilesItems_Value = Guid.initString("da70e815-c361-4407-bc0b-0d7046e5f2cd");
-pub const IID_IEnumOfflineFilesItems = &IID_IEnumOfflineFilesItems_Value;
-pub const IEnumOfflineFilesItems = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumOfflineFilesItems,
-            celt: u32,
-            rgelt: [*]?*IOfflineFilesItem,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumOfflineFilesItems,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumOfflineFilesItems,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumOfflineFilesItems,
-            ppenum: ?*?*IEnumOfflineFilesItems,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumOfflineFilesItems, celt: u32, rgelt: [*]?*IOfflineFilesItem, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumOfflineFilesItems, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumOfflineFilesItems) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumOfflineFilesItems, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IOfflineFilesItemContainer_Value = Guid.initString("3836f049-9413-45dd-bf46-b5aaa82dc310");
 pub const IID_IOfflineFilesItemContainer = &IID_IOfflineFilesItemContainer_Value;
 pub const IOfflineFilesItemContainer = extern union {
@@ -1302,118 +1088,39 @@ pub const IOfflineFilesItemContainer = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesChangeInfo_Value = Guid.initString("a96e6fa4-e0d1-4c29-960b-ee508fe68c72");
-pub const IID_IOfflineFilesChangeInfo = &IID_IOfflineFilesChangeInfo_Value;
-pub const IOfflineFilesChangeInfo = extern union {
+const IID_IOfflineFilesItemFilter_Value = Guid.initString("f4b5a26c-dc05-4f20-ada4-551f1077be5c");
+pub const IID_IOfflineFilesItemFilter = &IID_IOfflineFilesItemFilter_Value;
+pub const IOfflineFilesItemFilter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsDirty: *const fn(
-            self: *const IOfflineFilesChangeInfo,
-            pbDirty: ?*BOOL,
+        GetFilterFlags: *const fn(
+            self: *const IOfflineFilesItemFilter,
+            pullFlags: ?*u64,
+            pullMask: ?*u64,
         ) callconv(.winapi) HRESULT,
-        IsDeletedOffline: *const fn(
-            self: *const IOfflineFilesChangeInfo,
-            pbDeletedOffline: ?*BOOL,
+        GetTimeFilter: *const fn(
+            self: *const IOfflineFilesItemFilter,
+            pftTime: ?*FILETIME,
+            pbEvalTimeOfDay: ?*BOOL,
+            pTimeType: ?*OFFLINEFILES_ITEM_TIME,
+            pCompare: ?*OFFLINEFILES_COMPARE,
         ) callconv(.winapi) HRESULT,
-        IsCreatedOffline: *const fn(
-            self: *const IOfflineFilesChangeInfo,
-            pbCreatedOffline: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsLocallyModifiedData: *const fn(
-            self: *const IOfflineFilesChangeInfo,
-            pbLocallyModifiedData: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsLocallyModifiedAttributes: *const fn(
-            self: *const IOfflineFilesChangeInfo,
-            pbLocallyModifiedAttributes: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsLocallyModifiedTime: *const fn(
-            self: *const IOfflineFilesChangeInfo,
-            pbLocallyModifiedTime: ?*BOOL,
+        GetPatternFilter: *const fn(
+            self: *const IOfflineFilesItemFilter,
+            pszPattern: [*:0]u16,
+            cchPattern: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IOfflineFilesChangeInfo, pbDirty: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsDirty(self, pbDirty);
+    pub fn GetFilterFlags(self: *const IOfflineFilesItemFilter, pullFlags: ?*u64, pullMask: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFilterFlags(self, pullFlags, pullMask);
     }
-    pub fn IsDeletedOffline(self: *const IOfflineFilesChangeInfo, pbDeletedOffline: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsDeletedOffline(self, pbDeletedOffline);
+    pub fn GetTimeFilter(self: *const IOfflineFilesItemFilter, pftTime: ?*FILETIME, pbEvalTimeOfDay: ?*BOOL, pTimeType: ?*OFFLINEFILES_ITEM_TIME, pCompare: ?*OFFLINEFILES_COMPARE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTimeFilter(self, pftTime, pbEvalTimeOfDay, pTimeType, pCompare);
     }
-    pub fn IsCreatedOffline(self: *const IOfflineFilesChangeInfo, pbCreatedOffline: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsCreatedOffline(self, pbCreatedOffline);
-    }
-    pub fn IsLocallyModifiedData(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedData: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsLocallyModifiedData(self, pbLocallyModifiedData);
-    }
-    pub fn IsLocallyModifiedAttributes(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedAttributes: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsLocallyModifiedAttributes(self, pbLocallyModifiedAttributes);
-    }
-    pub fn IsLocallyModifiedTime(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedTime: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsLocallyModifiedTime(self, pbLocallyModifiedTime);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesDirtyInfo_Value = Guid.initString("0f50ce33-bac9-4eaa-a11d-da0e527d047d");
-pub const IID_IOfflineFilesDirtyInfo = &IID_IOfflineFilesDirtyInfo_Value;
-pub const IOfflineFilesDirtyInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LocalDirtyByteCount: *const fn(
-            self: *const IOfflineFilesDirtyInfo,
-            pDirtyByteCount: ?*LARGE_INTEGER,
-        ) callconv(.winapi) HRESULT,
-        RemoteDirtyByteCount: *const fn(
-            self: *const IOfflineFilesDirtyInfo,
-            pDirtyByteCount: ?*LARGE_INTEGER,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn LocalDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
-        return self.vtable.LocalDirtyByteCount(self, pDirtyByteCount);
-    }
-    pub fn RemoteDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoteDirtyByteCount(self, pDirtyByteCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesFileSysInfo_Value = Guid.initString("bc1a163f-7bfd-4d88-9c66-96ea9a6a3d6b");
-pub const IID_IOfflineFilesFileSysInfo = &IID_IOfflineFilesFileSysInfo_Value;
-pub const IOfflineFilesFileSysInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAttributes: *const fn(
-            self: *const IOfflineFilesFileSysInfo,
-            copy: OFFLINEFILES_ITEM_COPY,
-            pdwAttributes: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTimes: *const fn(
-            self: *const IOfflineFilesFileSysInfo,
-            copy: OFFLINEFILES_ITEM_COPY,
-            pftCreationTime: ?*FILETIME,
-            pftLastWriteTime: ?*FILETIME,
-            pftChangeTime: ?*FILETIME,
-            pftLastAccessTime: ?*FILETIME,
-        ) callconv(.winapi) HRESULT,
-        GetFileSize: *const fn(
-            self: *const IOfflineFilesFileSysInfo,
-            copy: OFFLINEFILES_ITEM_COPY,
-            pSize: ?*LARGE_INTEGER,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAttributes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pdwAttributes: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttributes(self, copy, pdwAttributes);
-    }
-    pub fn GetTimes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pftCreationTime: ?*FILETIME, pftLastWriteTime: ?*FILETIME, pftChangeTime: ?*FILETIME, pftLastAccessTime: ?*FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTimes(self, copy, pftCreationTime, pftLastWriteTime, pftChangeTime, pftLastAccessTime);
-    }
-    pub fn GetFileSize(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pSize: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileSize(self, copy, pSize);
+    pub fn GetPatternFilter(self: *const IOfflineFilesItemFilter, pszPattern: [*:0]u16, cchPattern: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPatternFilter(self, pszPattern, cchPattern);
     }
 };
 
@@ -1486,155 +1193,48 @@ pub const IOfflineFilesPinInfo2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOfflineFilesTransparentCacheInfo_Value = Guid.initString("bcaf4a01-5b68-4b56-a6a1-8d2786ede8e3");
-pub const IID_IOfflineFilesTransparentCacheInfo = &IID_IOfflineFilesTransparentCacheInfo_Value;
-pub const IOfflineFilesTransparentCacheInfo = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesProgress_Value = Guid.initString("fad63237-c55b-4911-9850-bcf96d4c979e");
+pub const IID_IOfflineFilesProgress = &IID_IOfflineFilesProgress_Value;
+pub const IOfflineFilesProgress = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsTransparentlyCached: *const fn(
-            self: *const IOfflineFilesTransparentCacheInfo,
-            pbTransparentlyCached: ?*BOOL,
+        Begin: *const fn(
+            self: *const IOfflineFilesProgress,
+            pbAbort: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        QueryAbort: *const fn(
+            self: *const IOfflineFilesProgress,
+            pbAbort: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        End: *const fn(
+            self: *const IOfflineFilesProgress,
+            hrResult: HRESULT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsTransparentlyCached(self: *const IOfflineFilesTransparentCacheInfo, pbTransparentlyCached: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsTransparentlyCached(self, pbTransparentlyCached);
+    pub fn Begin(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin(self, pbAbort);
+    }
+    pub fn QueryAbort(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryAbort(self, pbAbort);
+    }
+    pub fn End(self: *const IOfflineFilesProgress, hrResult: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.End(self, hrResult);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesGhostInfo_Value = Guid.initString("2b09d48c-8ab5-464f-a755-a59d92f99429");
-pub const IID_IOfflineFilesGhostInfo = &IID_IOfflineFilesGhostInfo_Value;
-pub const IOfflineFilesGhostInfo = extern union {
+const IID_IOfflineFilesServerItem_Value = Guid.initString("9b1c9576-a92b-4151-8e9e-7c7b3ec2e016");
+pub const IID_IOfflineFilesServerItem = &IID_IOfflineFilesServerItem_Value;
+pub const IOfflineFilesServerItem = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsGhosted: *const fn(
-            self: *const IOfflineFilesGhostInfo,
-            pbGhosted: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
+        base: IOfflineFilesItem.VTable,
     };
     vtable: *const VTable,
+    IOfflineFilesItem: IOfflineFilesItem,
     IUnknown: IUnknown,
-    pub fn IsGhosted(self: *const IOfflineFilesGhostInfo, pbGhosted: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsGhosted(self, pbGhosted);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesConnectionInfo_Value = Guid.initString("efb23a09-a867-4be8-83a6-86969a7d0856");
-pub const IID_IOfflineFilesConnectionInfo = &IID_IOfflineFilesConnectionInfo_Value;
-pub const IOfflineFilesConnectionInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetConnectState: *const fn(
-            self: *const IOfflineFilesConnectionInfo,
-            pConnectState: ?*OFFLINEFILES_CONNECT_STATE,
-            pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON,
-        ) callconv(.winapi) HRESULT,
-        SetConnectState: *const fn(
-            self: *const IOfflineFilesConnectionInfo,
-            hwndParent: ?HWND,
-            dwFlags: u32,
-            ConnectState: OFFLINEFILES_CONNECT_STATE,
-        ) callconv(.winapi) HRESULT,
-        TransitionOnline: *const fn(
-            self: *const IOfflineFilesConnectionInfo,
-            hwndParent: ?HWND,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        TransitionOffline: *const fn(
-            self: *const IOfflineFilesConnectionInfo,
-            hwndParent: ?HWND,
-            dwFlags: u32,
-            bForceOpenFilesClosed: BOOL,
-            pbOpenFilesPreventedTransition: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetConnectState(self: *const IOfflineFilesConnectionInfo, pConnectState: ?*OFFLINEFILES_CONNECT_STATE, pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectState(self, pConnectState, pOfflineReason);
-    }
-    pub fn SetConnectState(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, ConnectState: OFFLINEFILES_CONNECT_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetConnectState(self, hwndParent, dwFlags, ConnectState);
-    }
-    pub fn TransitionOnline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.TransitionOnline(self, hwndParent, dwFlags);
-    }
-    pub fn TransitionOffline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, bForceOpenFilesClosed: BOOL, pbOpenFilesPreventedTransition: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.TransitionOffline(self, hwndParent, dwFlags, bForceOpenFilesClosed, pbOpenFilesPreventedTransition);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesShareInfo_Value = Guid.initString("7bcc43e7-31ce-4ca4-8ccd-1cff2dc494da");
-pub const IID_IOfflineFilesShareInfo = &IID_IOfflineFilesShareInfo_Value;
-pub const IOfflineFilesShareInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetShareItem: *const fn(
-            self: *const IOfflineFilesShareInfo,
-            ppShareItem: ?*?*IOfflineFilesShareItem,
-        ) callconv(.winapi) HRESULT,
-        GetShareCachingMode: *const fn(
-            self: *const IOfflineFilesShareInfo,
-            pCachingMode: ?*OFFLINEFILES_CACHING_MODE,
-        ) callconv(.winapi) HRESULT,
-        IsShareDfsJunction: *const fn(
-            self: *const IOfflineFilesShareInfo,
-            pbIsDfsJunction: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetShareItem(self: *const IOfflineFilesShareInfo, ppShareItem: ?*?*IOfflineFilesShareItem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetShareItem(self, ppShareItem);
-    }
-    pub fn GetShareCachingMode(self: *const IOfflineFilesShareInfo, pCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetShareCachingMode(self, pCachingMode);
-    }
-    pub fn IsShareDfsJunction(self: *const IOfflineFilesShareInfo, pbIsDfsJunction: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsShareDfsJunction(self, pbIsDfsJunction);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSuspend_Value = Guid.initString("62c4560f-bc0b-48ca-ad9d-34cb528d99a9");
-pub const IID_IOfflineFilesSuspend = &IID_IOfflineFilesSuspend_Value;
-pub const IOfflineFilesSuspend = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SuspendRoot: *const fn(
-            self: *const IOfflineFilesSuspend,
-            bSuspend: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SuspendRoot(self: *const IOfflineFilesSuspend, bSuspend: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SuspendRoot(self, bSuspend);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesSuspendInfo_Value = Guid.initString("a457c25b-4e9c-4b04-85af-8932ccd97889");
-pub const IID_IOfflineFilesSuspendInfo = &IID_IOfflineFilesSuspendInfo_Value;
-pub const IOfflineFilesSuspendInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsSuspended: *const fn(
-            self: *const IOfflineFilesSuspendInfo,
-            pbSuspended: ?*BOOL,
-            pbSuspendedRoot: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsSuspended(self: *const IOfflineFilesSuspendInfo, pbSuspended: ?*BOOL, pbSuspendedRoot: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSuspended(self, pbSuspended, pbSuspendedRoot);
-    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1716,247 +1316,647 @@ pub const IOfflineFilesSetting = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumOfflineFilesSettings_Value = Guid.initString("729680c4-1a38-47bc-9e5c-02c51562ac30");
-pub const IID_IEnumOfflineFilesSettings = &IID_IEnumOfflineFilesSettings_Value;
-pub const IEnumOfflineFilesSettings = extern union {
+const IID_IOfflineFilesShareInfo_Value = Guid.initString("7bcc43e7-31ce-4ca4-8ccd-1cff2dc494da");
+pub const IID_IOfflineFilesShareInfo = &IID_IOfflineFilesShareInfo_Value;
+pub const IOfflineFilesShareInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumOfflineFilesSettings,
-            celt: u32,
-            rgelt: [*]?*IOfflineFilesSetting,
-            pceltFetched: ?*u32,
+        GetShareItem: *const fn(
+            self: *const IOfflineFilesShareInfo,
+            ppShareItem: ?*?*IOfflineFilesShareItem,
         ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumOfflineFilesSettings,
-            celt: u32,
+        GetShareCachingMode: *const fn(
+            self: *const IOfflineFilesShareInfo,
+            pCachingMode: ?*OFFLINEFILES_CACHING_MODE,
         ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumOfflineFilesSettings,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumOfflineFilesSettings,
-            ppenum: ?*?*IEnumOfflineFilesSettings,
+        IsShareDfsJunction: *const fn(
+            self: *const IOfflineFilesShareInfo,
+            pbIsDfsJunction: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumOfflineFilesSettings, celt: u32, rgelt: [*]?*IOfflineFilesSetting, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    pub fn GetShareItem(self: *const IOfflineFilesShareInfo, ppShareItem: ?*?*IOfflineFilesShareItem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetShareItem(self, ppShareItem);
     }
-    pub fn Skip(self: *const IEnumOfflineFilesSettings, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
+    pub fn GetShareCachingMode(self: *const IOfflineFilesShareInfo, pCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetShareCachingMode(self, pCachingMode);
     }
-    pub fn Reset(self: *const IEnumOfflineFilesSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumOfflineFilesSettings, ppenum: ?*?*IEnumOfflineFilesSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
+    pub fn IsShareDfsJunction(self: *const IOfflineFilesShareInfo, pbIsDfsJunction: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsShareDfsJunction(self, pbIsDfsJunction);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IOfflineFilesCache_Value = Guid.initString("855d6203-7914-48b9-8d40-4c56f5acffc5");
-pub const IID_IOfflineFilesCache = &IID_IOfflineFilesCache_Value;
-pub const IOfflineFilesCache = extern union {
+const IID_IOfflineFilesShareItem_Value = Guid.initString("bab7e48d-4804-41b5-a44d-0f199b06b145");
+pub const IID_IOfflineFilesShareItem = &IID_IOfflineFilesShareItem_Value;
+pub const IOfflineFilesShareItem = extern union {
+    pub const VTable = extern struct {
+        base: IOfflineFilesItem.VTable,
+    };
+    vtable: *const VTable,
+    IOfflineFilesItem: IOfflineFilesItem,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesSimpleProgress_Value = Guid.initString("c34f7f9b-c43d-4f9d-a776-c0eb6de5d401");
+pub const IID_IOfflineFilesSimpleProgress = &IID_IOfflineFilesSimpleProgress_Value;
+pub const IOfflineFilesSimpleProgress = extern union {
+    pub const VTable = extern struct {
+        base: IOfflineFilesProgress.VTable,
+        ItemBegin: *const fn(
+            self: *const IOfflineFilesSimpleProgress,
+            pszFile: ?[*:0]const u16,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(.winapi) HRESULT,
+        ItemResult: *const fn(
+            self: *const IOfflineFilesSimpleProgress,
+            pszFile: ?[*:0]const u16,
+            hrResult: HRESULT,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IOfflineFilesProgress: IOfflineFilesProgress,
+    IUnknown: IUnknown,
+    pub fn ItemBegin(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
+        return self.vtable.ItemBegin(self, pszFile, pResponse);
+    }
+    pub fn ItemResult(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
+        return self.vtable.ItemResult(self, pszFile, hrResult, pResponse);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesSuspend_Value = Guid.initString("62c4560f-bc0b-48ca-ad9d-34cb528d99a9");
+pub const IID_IOfflineFilesSuspend = &IID_IOfflineFilesSuspend_Value;
+pub const IOfflineFilesSuspend = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Synchronize: *const fn(
-            self: *const IOfflineFilesCache,
-            hwndParent: ?HWND,
-            rgpszPaths: [*]?PWSTR,
-            cPaths: u32,
-            bAsync: BOOL,
-            dwSyncControl: u32,
-            pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler,
-            pIProgress: ?*IOfflineFilesSyncProgress,
-            pSyncId: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        DeleteItems: *const fn(
-            self: *const IOfflineFilesCache,
-            rgpszPaths: [*]?PWSTR,
-            cPaths: u32,
-            dwFlags: u32,
-            bAsync: BOOL,
-            pIProgress: ?*IOfflineFilesSimpleProgress,
-        ) callconv(.winapi) HRESULT,
-        DeleteItemsForUser: *const fn(
-            self: *const IOfflineFilesCache,
-            pszUser: ?[*:0]const u16,
-            rgpszPaths: [*]?PWSTR,
-            cPaths: u32,
-            dwFlags: u32,
-            bAsync: BOOL,
-            pIProgress: ?*IOfflineFilesSimpleProgress,
-        ) callconv(.winapi) HRESULT,
-        Pin: *const fn(
-            self: *const IOfflineFilesCache,
-            hwndParent: ?HWND,
-            rgpszPaths: [*]?PWSTR,
-            cPaths: u32,
-            bDeep: BOOL,
-            bAsync: BOOL,
-            dwPinControlFlags: u32,
-            pIProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(.winapi) HRESULT,
-        Unpin: *const fn(
-            self: *const IOfflineFilesCache,
-            hwndParent: ?HWND,
-            rgpszPaths: [*]?PWSTR,
-            cPaths: u32,
-            bDeep: BOOL,
-            bAsync: BOOL,
-            dwPinControlFlags: u32,
-            pIProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(.winapi) HRESULT,
-        GetEncryptionStatus: *const fn(
-            self: *const IOfflineFilesCache,
-            pbEncrypted: ?*BOOL,
-            pbPartial: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        Encrypt: *const fn(
-            self: *const IOfflineFilesCache,
-            hwndParent: ?HWND,
-            bEncrypt: BOOL,
-            dwEncryptionControlFlags: u32,
-            bAsync: BOOL,
-            pIProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(.winapi) HRESULT,
-        FindItem: *const fn(
-            self: *const IOfflineFilesCache,
-            pszPath: ?[*:0]const u16,
-            dwQueryFlags: u32,
-            ppItem: ?*?*IOfflineFilesItem,
-        ) callconv(.winapi) HRESULT,
-        FindItemEx: *const fn(
-            self: *const IOfflineFilesCache,
-            pszPath: ?[*:0]const u16,
-            pIncludeFileFilter: ?*IOfflineFilesItemFilter,
-            pIncludeDirFilter: ?*IOfflineFilesItemFilter,
-            pExcludeFileFilter: ?*IOfflineFilesItemFilter,
-            pExcludeDirFilter: ?*IOfflineFilesItemFilter,
-            dwQueryFlags: u32,
-            ppItem: ?*?*IOfflineFilesItem,
-        ) callconv(.winapi) HRESULT,
-        RenameItem: *const fn(
-            self: *const IOfflineFilesCache,
-            pszPathOriginal: ?[*:0]const u16,
-            pszPathNew: ?[*:0]const u16,
-            bReplaceIfExists: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetLocation: *const fn(
-            self: *const IOfflineFilesCache,
-            ppszPath: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDiskSpaceInformation: *const fn(
-            self: *const IOfflineFilesCache,
-            pcbVolumeTotal: ?*u64,
-            pcbLimit: ?*u64,
-            pcbUsed: ?*u64,
-            pcbUnpinnedLimit: ?*u64,
-            pcbUnpinnedUsed: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        SetDiskSpaceLimits: *const fn(
-            self: *const IOfflineFilesCache,
-            cbLimit: u64,
-            cbUnpinnedLimit: u64,
-        ) callconv(.winapi) HRESULT,
-        ProcessAdminPinPolicy: *const fn(
-            self: *const IOfflineFilesCache,
-            pPinProgress: ?*IOfflineFilesSyncProgress,
-            pUnpinProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(.winapi) HRESULT,
-        GetSettingObject: *const fn(
-            self: *const IOfflineFilesCache,
-            pszSettingName: ?[*:0]const u16,
-            ppSetting: ?*?*IOfflineFilesSetting,
-        ) callconv(.winapi) HRESULT,
-        EnumSettingObjects: *const fn(
-            self: *const IOfflineFilesCache,
-            ppEnum: ?*?*IEnumOfflineFilesSettings,
-        ) callconv(.winapi) HRESULT,
-        IsPathCacheable: *const fn(
-            self: *const IOfflineFilesCache,
-            pszPath: ?[*:0]const u16,
-            pbCacheable: ?*BOOL,
-            pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE,
+        SuspendRoot: *const fn(
+            self: *const IOfflineFilesSuspend,
+            bSuspend: BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Synchronize(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bAsync: BOOL, dwSyncControl: u32, pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler, pIProgress: ?*IOfflineFilesSyncProgress, pSyncId: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Synchronize(self, hwndParent, rgpszPaths, cPaths, bAsync, dwSyncControl, pISyncConflictHandler, pIProgress, pSyncId);
+    pub fn SuspendRoot(self: *const IOfflineFilesSuspend, bSuspend: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SuspendRoot(self, bSuspend);
     }
-    pub fn DeleteItems(self: *const IOfflineFilesCache, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItems(self, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesSuspendInfo_Value = Guid.initString("a457c25b-4e9c-4b04-85af-8932ccd97889");
+pub const IID_IOfflineFilesSuspendInfo = &IID_IOfflineFilesSuspendInfo_Value;
+pub const IOfflineFilesSuspendInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsSuspended: *const fn(
+            self: *const IOfflineFilesSuspendInfo,
+            pbSuspended: ?*BOOL,
+            pbSuspendedRoot: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsSuspended(self: *const IOfflineFilesSuspendInfo, pbSuspended: ?*BOOL, pbSuspendedRoot: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSuspended(self, pbSuspended, pbSuspendedRoot);
     }
-    pub fn DeleteItemsForUser(self: *const IOfflineFilesCache, pszUser: ?[*:0]const u16, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItemsForUser(self, pszUser, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesSyncConflictHandler_Value = Guid.initString("b6dd5092-c65c-46b6-97b8-fadd08e7e1be");
+pub const IID_IOfflineFilesSyncConflictHandler = &IID_IOfflineFilesSyncConflictHandler_Value;
+pub const IOfflineFilesSyncConflictHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ResolveConflict: *const fn(
+            self: *const IOfflineFilesSyncConflictHandler,
+            pszPath: ?[*:0]const u16,
+            fStateKnown: u32,
+            state: OFFLINEFILES_SYNC_STATE,
+            fChangeDetails: u32,
+            pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE,
+            ppszNewName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ResolveConflict(self: *const IOfflineFilesSyncConflictHandler, pszPath: ?[*:0]const u16, fStateKnown: u32, state: OFFLINEFILES_SYNC_STATE, fChangeDetails: u32, pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE, ppszNewName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ResolveConflict(self, pszPath, fStateKnown, state, fChangeDetails, pConflictResolution, ppszNewName);
     }
-    pub fn Pin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Pin(self, hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesSyncErrorInfo_Value = Guid.initString("59f95e46-eb54-49d1-be76-de95458d01b0");
+pub const IID_IOfflineFilesSyncErrorInfo = &IID_IOfflineFilesSyncErrorInfo_Value;
+pub const IOfflineFilesSyncErrorInfo = extern union {
+    pub const VTable = extern struct {
+        base: IOfflineFilesErrorInfo.VTable,
+        GetSyncOperation: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION,
+        ) callconv(.winapi) HRESULT,
+        GetItemChangeFlags: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pdwItemChangeFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        InfoEnumerated: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pbLocalEnumerated: ?*BOOL,
+            pbRemoteEnumerated: ?*BOOL,
+            pbOriginalEnumerated: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        InfoAvailable: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pbLocalInfo: ?*BOOL,
+            pbRemoteInfo: ?*BOOL,
+            pbOriginalInfo: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetLocalInfo: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
+        ) callconv(.winapi) HRESULT,
+        GetRemoteInfo: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
+        ) callconv(.winapi) HRESULT,
+        GetOriginalInfo: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IOfflineFilesErrorInfo: IOfflineFilesErrorInfo,
+    IUnknown: IUnknown,
+    pub fn GetSyncOperation(self: *const IOfflineFilesSyncErrorInfo, pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSyncOperation(self, pSyncOp);
     }
-    pub fn Unpin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Unpin(self, hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+    pub fn GetItemChangeFlags(self: *const IOfflineFilesSyncErrorInfo, pdwItemChangeFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemChangeFlags(self, pdwItemChangeFlags);
     }
-    pub fn GetEncryptionStatus(self: *const IOfflineFilesCache, pbEncrypted: ?*BOOL, pbPartial: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEncryptionStatus(self, pbEncrypted, pbPartial);
+    pub fn InfoEnumerated(self: *const IOfflineFilesSyncErrorInfo, pbLocalEnumerated: ?*BOOL, pbRemoteEnumerated: ?*BOOL, pbOriginalEnumerated: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InfoEnumerated(self, pbLocalEnumerated, pbRemoteEnumerated, pbOriginalEnumerated);
     }
-    pub fn Encrypt(self: *const IOfflineFilesCache, hwndParent: ?HWND, bEncrypt: BOOL, dwEncryptionControlFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Encrypt(self, hwndParent, bEncrypt, dwEncryptionControlFlags, bAsync, pIProgress);
+    pub fn InfoAvailable(self: *const IOfflineFilesSyncErrorInfo, pbLocalInfo: ?*BOOL, pbRemoteInfo: ?*BOOL, pbOriginalInfo: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InfoAvailable(self, pbLocalInfo, pbRemoteInfo, pbOriginalInfo);
     }
-    pub fn FindItem(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.@"inline") HRESULT {
-        return self.vtable.FindItem(self, pszPath, dwQueryFlags, ppItem);
+    pub fn GetLocalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalInfo(self, ppInfo);
     }
-    pub fn FindItemEx(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.@"inline") HRESULT {
-        return self.vtable.FindItemEx(self, pszPath, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwQueryFlags, ppItem);
+    pub fn GetRemoteInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRemoteInfo(self, ppInfo);
     }
-    pub fn RenameItem(self: *const IOfflineFilesCache, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.RenameItem(self, pszPathOriginal, pszPathNew, bReplaceIfExists);
+    pub fn GetOriginalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOriginalInfo(self, ppInfo);
     }
-    pub fn GetLocation(self: *const IOfflineFilesCache, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocation(self, ppszPath);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesSyncErrorItemInfo_Value = Guid.initString("ecdbaf0d-6a18-4d55-8017-108f7660ba44");
+pub const IID_IOfflineFilesSyncErrorItemInfo = &IID_IOfflineFilesSyncErrorItemInfo_Value;
+pub const IOfflineFilesSyncErrorItemInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetFileAttributes: *const fn(
+            self: *const IOfflineFilesSyncErrorItemInfo,
+            pdwAttributes: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetFileTimes: *const fn(
+            self: *const IOfflineFilesSyncErrorItemInfo,
+            pftLastWrite: ?*FILETIME,
+            pftChange: ?*FILETIME,
+        ) callconv(.winapi) HRESULT,
+        GetFileSize: *const fn(
+            self: *const IOfflineFilesSyncErrorItemInfo,
+            pSize: ?*LARGE_INTEGER,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetFileAttributes(self: *const IOfflineFilesSyncErrorItemInfo, pdwAttributes: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileAttributes(self, pdwAttributes);
     }
-    pub fn GetDiskSpaceInformation(self: *const IOfflineFilesCache, pcbVolumeTotal: ?*u64, pcbLimit: ?*u64, pcbUsed: ?*u64, pcbUnpinnedLimit: ?*u64, pcbUnpinnedUsed: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDiskSpaceInformation(self, pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
+    pub fn GetFileTimes(self: *const IOfflineFilesSyncErrorItemInfo, pftLastWrite: ?*FILETIME, pftChange: ?*FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileTimes(self, pftLastWrite, pftChange);
     }
-    pub fn SetDiskSpaceLimits(self: *const IOfflineFilesCache, cbLimit: u64, cbUnpinnedLimit: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDiskSpaceLimits(self, cbLimit, cbUnpinnedLimit);
+    pub fn GetFileSize(self: *const IOfflineFilesSyncErrorItemInfo, pSize: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileSize(self, pSize);
     }
-    pub fn ProcessAdminPinPolicy(self: *const IOfflineFilesCache, pPinProgress: ?*IOfflineFilesSyncProgress, pUnpinProgress: ?*IOfflineFilesSyncProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessAdminPinPolicy(self, pPinProgress, pUnpinProgress);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IOfflineFilesSyncProgress_Value = Guid.initString("6931f49a-6fc7-4c1b-b265-56793fc451b7");
+pub const IID_IOfflineFilesSyncProgress = &IID_IOfflineFilesSyncProgress_Value;
+pub const IOfflineFilesSyncProgress = extern union {
+    pub const VTable = extern struct {
+        base: IOfflineFilesProgress.VTable,
+        SyncItemBegin: *const fn(
+            self: *const IOfflineFilesSyncProgress,
+            pszFile: ?[*:0]const u16,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(.winapi) HRESULT,
+        SyncItemResult: *const fn(
+            self: *const IOfflineFilesSyncProgress,
+            pszFile: ?[*:0]const u16,
+            hrResult: HRESULT,
+            pErrorInfo: ?*IOfflineFilesSyncErrorInfo,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IOfflineFilesProgress: IOfflineFilesProgress,
+    IUnknown: IUnknown,
+    pub fn SyncItemBegin(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
+        return self.vtable.SyncItemBegin(self, pszFile, pResponse);
     }
-    pub fn GetSettingObject(self: *const IOfflineFilesCache, pszSettingName: ?[*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSettingObject(self, pszSettingName, ppSetting);
-    }
-    pub fn EnumSettingObjects(self: *const IOfflineFilesCache, ppEnum: ?*?*IEnumOfflineFilesSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumSettingObjects(self, ppEnum);
-    }
-    pub fn IsPathCacheable(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pbCacheable: ?*BOOL, pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.@"inline") HRESULT {
-        return self.vtable.IsPathCacheable(self, pszPath, pbCacheable, pShareCachingMode);
+    pub fn SyncItemResult(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pErrorInfo: ?*IOfflineFilesSyncErrorInfo, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.@"inline") HRESULT {
+        return self.vtable.SyncItemResult(self, pszFile, hrResult, pErrorInfo, pResponse);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOfflineFilesCache2_Value = Guid.initString("8c075039-1551-4ed9-8781-56705c04d3c0");
-pub const IID_IOfflineFilesCache2 = &IID_IOfflineFilesCache2_Value;
-pub const IOfflineFilesCache2 = extern union {
+const IID_IOfflineFilesTransparentCacheInfo_Value = Guid.initString("bcaf4a01-5b68-4b56-a6a1-8d2786ede8e3");
+pub const IID_IOfflineFilesTransparentCacheInfo = &IID_IOfflineFilesTransparentCacheInfo_Value;
+pub const IOfflineFilesTransparentCacheInfo = extern union {
     pub const VTable = extern struct {
-        base: IOfflineFilesCache.VTable,
-        RenameItemEx: *const fn(
-            self: *const IOfflineFilesCache2,
-            pszPathOriginal: ?[*:0]const u16,
-            pszPathNew: ?[*:0]const u16,
-            bReplaceIfExists: BOOL,
+        base: IUnknown.VTable,
+        IsTransparentlyCached: *const fn(
+            self: *const IOfflineFilesTransparentCacheInfo,
+            pbTransparentlyCached: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IOfflineFilesCache: IOfflineFilesCache,
     IUnknown: IUnknown,
-    pub fn RenameItemEx(self: *const IOfflineFilesCache2, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.RenameItemEx(self, pszPathOriginal, pszPathNew, bReplaceIfExists);
+    pub fn IsTransparentlyCached(self: *const IOfflineFilesTransparentCacheInfo, pbTransparentlyCached: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsTransparentlyCached(self, pbTransparentlyCached);
     }
 };
+
+pub const OFFLINEFILES_CACHING_MODE = enum(i32) {
+    NONE = 0,
+    NOCACHING = 1,
+    MANUAL = 2,
+    AUTO_DOC = 3,
+    AUTO_PROGANDDOC = 4,
+};
+pub const OFFLINEFILES_CACHING_MODE_NONE = OFFLINEFILES_CACHING_MODE.NONE;
+pub const OFFLINEFILES_CACHING_MODE_NOCACHING = OFFLINEFILES_CACHING_MODE.NOCACHING;
+pub const OFFLINEFILES_CACHING_MODE_MANUAL = OFFLINEFILES_CACHING_MODE.MANUAL;
+pub const OFFLINEFILES_CACHING_MODE_AUTO_DOC = OFFLINEFILES_CACHING_MODE.AUTO_DOC;
+pub const OFFLINEFILES_CACHING_MODE_AUTO_PROGANDDOC = OFFLINEFILES_CACHING_MODE.AUTO_PROGANDDOC;
+
+pub const OFFLINEFILES_COMPARE = enum(i32) {
+    EQ = 0,
+    NEQ = 1,
+    LT = 2,
+    GT = 3,
+    LTE = 4,
+    GTE = 5,
+};
+pub const OFFLINEFILES_COMPARE_EQ = OFFLINEFILES_COMPARE.EQ;
+pub const OFFLINEFILES_COMPARE_NEQ = OFFLINEFILES_COMPARE.NEQ;
+pub const OFFLINEFILES_COMPARE_LT = OFFLINEFILES_COMPARE.LT;
+pub const OFFLINEFILES_COMPARE_GT = OFFLINEFILES_COMPARE.GT;
+pub const OFFLINEFILES_COMPARE_LTE = OFFLINEFILES_COMPARE.LTE;
+pub const OFFLINEFILES_COMPARE_GTE = OFFLINEFILES_COMPARE.GTE;
+
+pub const OFFLINEFILES_CONNECT_STATE = enum(i32) {
+    UNKNOWN = 0,
+    OFFLINE = 1,
+    ONLINE = 2,
+    TRANSPARENTLY_CACHED = 3,
+    PARTLY_TRANSPARENTLY_CACHED = 4,
+};
+pub const OFFLINEFILES_CONNECT_STATE_UNKNOWN = OFFLINEFILES_CONNECT_STATE.UNKNOWN;
+pub const OFFLINEFILES_CONNECT_STATE_OFFLINE = OFFLINEFILES_CONNECT_STATE.OFFLINE;
+pub const OFFLINEFILES_CONNECT_STATE_ONLINE = OFFLINEFILES_CONNECT_STATE.ONLINE;
+pub const OFFLINEFILES_CONNECT_STATE_TRANSPARENTLY_CACHED = OFFLINEFILES_CONNECT_STATE.TRANSPARENTLY_CACHED;
+pub const OFFLINEFILES_CONNECT_STATE_PARTLY_TRANSPARENTLY_CACHED = OFFLINEFILES_CONNECT_STATE.PARTLY_TRANSPARENTLY_CACHED;
+
+pub const OFFLINEFILES_EVENTS = enum(i32) {
+    EVENT_CACHEMOVED = 0,
+    EVENT_CACHEISFULL = 1,
+    EVENT_CACHEISCORRUPTED = 2,
+    EVENT_ENABLED = 3,
+    EVENT_ENCRYPTIONCHANGED = 4,
+    EVENT_SYNCBEGIN = 5,
+    EVENT_SYNCFILERESULT = 6,
+    EVENT_SYNCCONFLICTRECADDED = 7,
+    EVENT_SYNCCONFLICTRECUPDATED = 8,
+    EVENT_SYNCCONFLICTRECREMOVED = 9,
+    EVENT_SYNCEND = 10,
+    EVENT_BACKGROUNDSYNCBEGIN = 11,
+    EVENT_BACKGROUNDSYNCEND = 12,
+    EVENT_NETTRANSPORTARRIVED = 13,
+    EVENT_NONETTRANSPORTS = 14,
+    EVENT_ITEMDISCONNECTED = 15,
+    EVENT_ITEMRECONNECTED = 16,
+    EVENT_ITEMAVAILABLEOFFLINE = 17,
+    EVENT_ITEMNOTAVAILABLEOFFLINE = 18,
+    EVENT_ITEMPINNED = 19,
+    EVENT_ITEMNOTPINNED = 20,
+    EVENT_ITEMMODIFIED = 21,
+    EVENT_ITEMADDEDTOCACHE = 22,
+    EVENT_ITEMDELETEDFROMCACHE = 23,
+    EVENT_ITEMRENAMED = 24,
+    EVENT_DATALOST = 25,
+    EVENT_PING = 26,
+    EVENT_ITEMRECONNECTBEGIN = 27,
+    EVENT_ITEMRECONNECTEND = 28,
+    EVENT_CACHEEVICTBEGIN = 29,
+    EVENT_CACHEEVICTEND = 30,
+    EVENT_POLICYCHANGEDETECTED = 31,
+    EVENT_PREFERENCECHANGEDETECTED = 32,
+    EVENT_SETTINGSCHANGESAPPLIED = 33,
+    EVENT_TRANSPARENTCACHEITEMNOTIFY = 34,
+    EVENT_PREFETCHFILEBEGIN = 35,
+    EVENT_PREFETCHFILEEND = 36,
+    EVENT_PREFETCHCLOSEHANDLEBEGIN = 37,
+    EVENT_PREFETCHCLOSEHANDLEEND = 38,
+    NUM_EVENTS = 39,
+};
+pub const OFFLINEFILES_EVENT_CACHEMOVED = OFFLINEFILES_EVENTS.EVENT_CACHEMOVED;
+pub const OFFLINEFILES_EVENT_CACHEISFULL = OFFLINEFILES_EVENTS.EVENT_CACHEISFULL;
+pub const OFFLINEFILES_EVENT_CACHEISCORRUPTED = OFFLINEFILES_EVENTS.EVENT_CACHEISCORRUPTED;
+pub const OFFLINEFILES_EVENT_ENABLED = OFFLINEFILES_EVENTS.EVENT_ENABLED;
+pub const OFFLINEFILES_EVENT_ENCRYPTIONCHANGED = OFFLINEFILES_EVENTS.EVENT_ENCRYPTIONCHANGED;
+pub const OFFLINEFILES_EVENT_SYNCBEGIN = OFFLINEFILES_EVENTS.EVENT_SYNCBEGIN;
+pub const OFFLINEFILES_EVENT_SYNCFILERESULT = OFFLINEFILES_EVENTS.EVENT_SYNCFILERESULT;
+pub const OFFLINEFILES_EVENT_SYNCCONFLICTRECADDED = OFFLINEFILES_EVENTS.EVENT_SYNCCONFLICTRECADDED;
+pub const OFFLINEFILES_EVENT_SYNCCONFLICTRECUPDATED = OFFLINEFILES_EVENTS.EVENT_SYNCCONFLICTRECUPDATED;
+pub const OFFLINEFILES_EVENT_SYNCCONFLICTRECREMOVED = OFFLINEFILES_EVENTS.EVENT_SYNCCONFLICTRECREMOVED;
+pub const OFFLINEFILES_EVENT_SYNCEND = OFFLINEFILES_EVENTS.EVENT_SYNCEND;
+pub const OFFLINEFILES_EVENT_BACKGROUNDSYNCBEGIN = OFFLINEFILES_EVENTS.EVENT_BACKGROUNDSYNCBEGIN;
+pub const OFFLINEFILES_EVENT_BACKGROUNDSYNCEND = OFFLINEFILES_EVENTS.EVENT_BACKGROUNDSYNCEND;
+pub const OFFLINEFILES_EVENT_NETTRANSPORTARRIVED = OFFLINEFILES_EVENTS.EVENT_NETTRANSPORTARRIVED;
+pub const OFFLINEFILES_EVENT_NONETTRANSPORTS = OFFLINEFILES_EVENTS.EVENT_NONETTRANSPORTS;
+pub const OFFLINEFILES_EVENT_ITEMDISCONNECTED = OFFLINEFILES_EVENTS.EVENT_ITEMDISCONNECTED;
+pub const OFFLINEFILES_EVENT_ITEMRECONNECTED = OFFLINEFILES_EVENTS.EVENT_ITEMRECONNECTED;
+pub const OFFLINEFILES_EVENT_ITEMAVAILABLEOFFLINE = OFFLINEFILES_EVENTS.EVENT_ITEMAVAILABLEOFFLINE;
+pub const OFFLINEFILES_EVENT_ITEMNOTAVAILABLEOFFLINE = OFFLINEFILES_EVENTS.EVENT_ITEMNOTAVAILABLEOFFLINE;
+pub const OFFLINEFILES_EVENT_ITEMPINNED = OFFLINEFILES_EVENTS.EVENT_ITEMPINNED;
+pub const OFFLINEFILES_EVENT_ITEMNOTPINNED = OFFLINEFILES_EVENTS.EVENT_ITEMNOTPINNED;
+pub const OFFLINEFILES_EVENT_ITEMMODIFIED = OFFLINEFILES_EVENTS.EVENT_ITEMMODIFIED;
+pub const OFFLINEFILES_EVENT_ITEMADDEDTOCACHE = OFFLINEFILES_EVENTS.EVENT_ITEMADDEDTOCACHE;
+pub const OFFLINEFILES_EVENT_ITEMDELETEDFROMCACHE = OFFLINEFILES_EVENTS.EVENT_ITEMDELETEDFROMCACHE;
+pub const OFFLINEFILES_EVENT_ITEMRENAMED = OFFLINEFILES_EVENTS.EVENT_ITEMRENAMED;
+pub const OFFLINEFILES_EVENT_DATALOST = OFFLINEFILES_EVENTS.EVENT_DATALOST;
+pub const OFFLINEFILES_EVENT_PING = OFFLINEFILES_EVENTS.EVENT_PING;
+pub const OFFLINEFILES_EVENT_ITEMRECONNECTBEGIN = OFFLINEFILES_EVENTS.EVENT_ITEMRECONNECTBEGIN;
+pub const OFFLINEFILES_EVENT_ITEMRECONNECTEND = OFFLINEFILES_EVENTS.EVENT_ITEMRECONNECTEND;
+pub const OFFLINEFILES_EVENT_CACHEEVICTBEGIN = OFFLINEFILES_EVENTS.EVENT_CACHEEVICTBEGIN;
+pub const OFFLINEFILES_EVENT_CACHEEVICTEND = OFFLINEFILES_EVENTS.EVENT_CACHEEVICTEND;
+pub const OFFLINEFILES_EVENT_POLICYCHANGEDETECTED = OFFLINEFILES_EVENTS.EVENT_POLICYCHANGEDETECTED;
+pub const OFFLINEFILES_EVENT_PREFERENCECHANGEDETECTED = OFFLINEFILES_EVENTS.EVENT_PREFERENCECHANGEDETECTED;
+pub const OFFLINEFILES_EVENT_SETTINGSCHANGESAPPLIED = OFFLINEFILES_EVENTS.EVENT_SETTINGSCHANGESAPPLIED;
+pub const OFFLINEFILES_EVENT_TRANSPARENTCACHEITEMNOTIFY = OFFLINEFILES_EVENTS.EVENT_TRANSPARENTCACHEITEMNOTIFY;
+pub const OFFLINEFILES_EVENT_PREFETCHFILEBEGIN = OFFLINEFILES_EVENTS.EVENT_PREFETCHFILEBEGIN;
+pub const OFFLINEFILES_EVENT_PREFETCHFILEEND = OFFLINEFILES_EVENTS.EVENT_PREFETCHFILEEND;
+pub const OFFLINEFILES_EVENT_PREFETCHCLOSEHANDLEBEGIN = OFFLINEFILES_EVENTS.EVENT_PREFETCHCLOSEHANDLEBEGIN;
+pub const OFFLINEFILES_EVENT_PREFETCHCLOSEHANDLEEND = OFFLINEFILES_EVENTS.EVENT_PREFETCHCLOSEHANDLEEND;
+pub const OFFLINEFILES_NUM_EVENTS = OFFLINEFILES_EVENTS.NUM_EVENTS;
+
+pub const OFFLINEFILES_ITEM_COPY = enum(i32) {
+    LOCAL = 0,
+    REMOTE = 1,
+    ORIGINAL = 2,
+};
+pub const OFFLINEFILES_ITEM_COPY_LOCAL = OFFLINEFILES_ITEM_COPY.LOCAL;
+pub const OFFLINEFILES_ITEM_COPY_REMOTE = OFFLINEFILES_ITEM_COPY.REMOTE;
+pub const OFFLINEFILES_ITEM_COPY_ORIGINAL = OFFLINEFILES_ITEM_COPY.ORIGINAL;
+
+pub const OFFLINEFILES_ITEM_TIME = enum(i32) {
+    CREATION = 0,
+    LASTACCESS = 1,
+    LASTWRITE = 2,
+};
+pub const OFFLINEFILES_ITEM_TIME_CREATION = OFFLINEFILES_ITEM_TIME.CREATION;
+pub const OFFLINEFILES_ITEM_TIME_LASTACCESS = OFFLINEFILES_ITEM_TIME.LASTACCESS;
+pub const OFFLINEFILES_ITEM_TIME_LASTWRITE = OFFLINEFILES_ITEM_TIME.LASTWRITE;
+
+pub const OFFLINEFILES_ITEM_TYPE = enum(i32) {
+    FILE = 0,
+    DIRECTORY = 1,
+    SHARE = 2,
+    SERVER = 3,
+};
+pub const OFFLINEFILES_ITEM_TYPE_FILE = OFFLINEFILES_ITEM_TYPE.FILE;
+pub const OFFLINEFILES_ITEM_TYPE_DIRECTORY = OFFLINEFILES_ITEM_TYPE.DIRECTORY;
+pub const OFFLINEFILES_ITEM_TYPE_SHARE = OFFLINEFILES_ITEM_TYPE.SHARE;
+pub const OFFLINEFILES_ITEM_TYPE_SERVER = OFFLINEFILES_ITEM_TYPE.SERVER;
+
+pub const OFFLINEFILES_OFFLINE_REASON = enum(i32) {
+    UNKNOWN = 0,
+    NOT_APPLICABLE = 1,
+    CONNECTION_FORCED = 2,
+    CONNECTION_SLOW = 3,
+    CONNECTION_ERROR = 4,
+    ITEM_VERSION_CONFLICT = 5,
+    ITEM_SUSPENDED = 6,
+};
+pub const OFFLINEFILES_OFFLINE_REASON_UNKNOWN = OFFLINEFILES_OFFLINE_REASON.UNKNOWN;
+pub const OFFLINEFILES_OFFLINE_REASON_NOT_APPLICABLE = OFFLINEFILES_OFFLINE_REASON.NOT_APPLICABLE;
+pub const OFFLINEFILES_OFFLINE_REASON_CONNECTION_FORCED = OFFLINEFILES_OFFLINE_REASON.CONNECTION_FORCED;
+pub const OFFLINEFILES_OFFLINE_REASON_CONNECTION_SLOW = OFFLINEFILES_OFFLINE_REASON.CONNECTION_SLOW;
+pub const OFFLINEFILES_OFFLINE_REASON_CONNECTION_ERROR = OFFLINEFILES_OFFLINE_REASON.CONNECTION_ERROR;
+pub const OFFLINEFILES_OFFLINE_REASON_ITEM_VERSION_CONFLICT = OFFLINEFILES_OFFLINE_REASON.ITEM_VERSION_CONFLICT;
+pub const OFFLINEFILES_OFFLINE_REASON_ITEM_SUSPENDED = OFFLINEFILES_OFFLINE_REASON.ITEM_SUSPENDED;
+
+pub const OFFLINEFILES_OP_RESPONSE = enum(i32) {
+    CONTINUE = 0,
+    RETRY = 1,
+    ABORT = 2,
+};
+pub const OFFLINEFILES_OP_CONTINUE = OFFLINEFILES_OP_RESPONSE.CONTINUE;
+pub const OFFLINEFILES_OP_RETRY = OFFLINEFILES_OP_RESPONSE.RETRY;
+pub const OFFLINEFILES_OP_ABORT = OFFLINEFILES_OP_RESPONSE.ABORT;
+
+pub const OFFLINEFILES_PATHFILTER_MATCH = enum(i32) {
+    SELF = 0,
+    CHILD = 1,
+    DESCENDENT = 2,
+    SELFORCHILD = 3,
+    SELFORDESCENDENT = 4,
+};
+pub const OFFLINEFILES_PATHFILTER_SELF = OFFLINEFILES_PATHFILTER_MATCH.SELF;
+pub const OFFLINEFILES_PATHFILTER_CHILD = OFFLINEFILES_PATHFILTER_MATCH.CHILD;
+pub const OFFLINEFILES_PATHFILTER_DESCENDENT = OFFLINEFILES_PATHFILTER_MATCH.DESCENDENT;
+pub const OFFLINEFILES_PATHFILTER_SELFORCHILD = OFFLINEFILES_PATHFILTER_MATCH.SELFORCHILD;
+pub const OFFLINEFILES_PATHFILTER_SELFORDESCENDENT = OFFLINEFILES_PATHFILTER_MATCH.SELFORDESCENDENT;
+
+pub const OFFLINEFILES_SETTING_VALUE_TYPE = enum(i32) {
+    UI4 = 0,
+    BSTR = 1,
+    BSTR_DBLNULTERM = 2,
+    @"2DIM_ARRAY_BSTR_UI4" = 3,
+    @"2DIM_ARRAY_BSTR_BSTR" = 4,
+};
+pub const OFFLINEFILES_SETTING_VALUE_UI4 = OFFLINEFILES_SETTING_VALUE_TYPE.UI4;
+pub const OFFLINEFILES_SETTING_VALUE_BSTR = OFFLINEFILES_SETTING_VALUE_TYPE.BSTR;
+pub const OFFLINEFILES_SETTING_VALUE_BSTR_DBLNULTERM = OFFLINEFILES_SETTING_VALUE_TYPE.BSTR_DBLNULTERM;
+pub const OFFLINEFILES_SETTING_VALUE_2DIM_ARRAY_BSTR_UI4 = OFFLINEFILES_SETTING_VALUE_TYPE.@"2DIM_ARRAY_BSTR_UI4";
+pub const OFFLINEFILES_SETTING_VALUE_2DIM_ARRAY_BSTR_BSTR = OFFLINEFILES_SETTING_VALUE_TYPE.@"2DIM_ARRAY_BSTR_BSTR";
+
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE = enum(i32) {
+    RESOLVE_NONE = 0,
+    RESOLVE_KEEPLOCAL = 1,
+    RESOLVE_KEEPREMOTE = 2,
+    RESOLVE_KEEPALLCHANGES = 3,
+    RESOLVE_KEEPLATEST = 4,
+    RESOLVE_LOG = 5,
+    RESOLVE_SKIP = 6,
+    ABORT = 7,
+    RESOLVE_NUMCODES = 8,
+};
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_NONE = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_NONE;
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPLOCAL = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPLOCAL;
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPREMOTE = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPREMOTE;
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPALLCHANGES = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPALLCHANGES;
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_KEEPLATEST = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_KEEPLATEST;
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_LOG = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_LOG;
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_SKIP = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_SKIP;
+pub const OFFLINEFILES_SYNC_CONFLICT_ABORT = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.ABORT;
+pub const OFFLINEFILES_SYNC_CONFLICT_RESOLVE_NUMCODES = OFFLINEFILES_SYNC_CONFLICT_RESOLVE.RESOLVE_NUMCODES;
+
+pub const OFFLINEFILES_SYNC_OPERATION = enum(i32) {
+    CREATE_COPY_ON_SERVER = 0,
+    CREATE_COPY_ON_CLIENT = 1,
+    SYNC_TO_SERVER = 2,
+    SYNC_TO_CLIENT = 3,
+    DELETE_SERVER_COPY = 4,
+    DELETE_CLIENT_COPY = 5,
+    PIN = 6,
+    PREPARE = 7,
+};
+pub const OFFLINEFILES_SYNC_OPERATION_CREATE_COPY_ON_SERVER = OFFLINEFILES_SYNC_OPERATION.CREATE_COPY_ON_SERVER;
+pub const OFFLINEFILES_SYNC_OPERATION_CREATE_COPY_ON_CLIENT = OFFLINEFILES_SYNC_OPERATION.CREATE_COPY_ON_CLIENT;
+pub const OFFLINEFILES_SYNC_OPERATION_SYNC_TO_SERVER = OFFLINEFILES_SYNC_OPERATION.SYNC_TO_SERVER;
+pub const OFFLINEFILES_SYNC_OPERATION_SYNC_TO_CLIENT = OFFLINEFILES_SYNC_OPERATION.SYNC_TO_CLIENT;
+pub const OFFLINEFILES_SYNC_OPERATION_DELETE_SERVER_COPY = OFFLINEFILES_SYNC_OPERATION.DELETE_SERVER_COPY;
+pub const OFFLINEFILES_SYNC_OPERATION_DELETE_CLIENT_COPY = OFFLINEFILES_SYNC_OPERATION.DELETE_CLIENT_COPY;
+pub const OFFLINEFILES_SYNC_OPERATION_PIN = OFFLINEFILES_SYNC_OPERATION.PIN;
+pub const OFFLINEFILES_SYNC_OPERATION_PREPARE = OFFLINEFILES_SYNC_OPERATION.PREPARE;
+
+pub const OFFLINEFILES_SYNC_STATE = enum(i32) {
+    Stable = 0,
+    FileOnClient_DirOnServer = 1,
+    FileOnClient_NoServerCopy = 2,
+    DirOnClient_FileOnServer = 3,
+    DirOnClient_FileChangedOnServer = 4,
+    DirOnClient_NoServerCopy = 5,
+    FileCreatedOnClient_NoServerCopy = 6,
+    FileCreatedOnClient_FileChangedOnServer = 7,
+    FileCreatedOnClient_DirChangedOnServer = 8,
+    FileCreatedOnClient_FileOnServer = 9,
+    FileCreatedOnClient_DirOnServer = 10,
+    FileCreatedOnClient_DeletedOnServer = 11,
+    FileChangedOnClient_ChangedOnServer = 12,
+    FileChangedOnClient_DirOnServer = 13,
+    FileChangedOnClient_DirChangedOnServer = 14,
+    FileChangedOnClient_DeletedOnServer = 15,
+    FileSparseOnClient_ChangedOnServer = 16,
+    FileSparseOnClient_DeletedOnServer = 17,
+    FileSparseOnClient_DirOnServer = 18,
+    FileSparseOnClient_DirChangedOnServer = 19,
+    DirCreatedOnClient_NoServerCopy = 20,
+    DirCreatedOnClient_DirOnServer = 21,
+    DirCreatedOnClient_FileOnServer = 22,
+    DirCreatedOnClient_FileChangedOnServer = 23,
+    DirCreatedOnClient_DirChangedOnServer = 24,
+    DirCreatedOnClient_DeletedOnServer = 25,
+    DirChangedOnClient_FileOnServer = 26,
+    DirChangedOnClient_FileChangedOnServer = 27,
+    DirChangedOnClient_ChangedOnServer = 28,
+    DirChangedOnClient_DeletedOnServer = 29,
+    NoClientCopy_FileOnServer = 30,
+    NoClientCopy_DirOnServer = 31,
+    NoClientCopy_FileChangedOnServer = 32,
+    NoClientCopy_DirChangedOnServer = 33,
+    DeletedOnClient_FileOnServer = 34,
+    DeletedOnClient_DirOnServer = 35,
+    DeletedOnClient_FileChangedOnServer = 36,
+    DeletedOnClient_DirChangedOnServer = 37,
+    FileSparseOnClient = 38,
+    FileChangedOnClient = 39,
+    FileRenamedOnClient = 40,
+    DirSparseOnClient = 41,
+    DirChangedOnClient = 42,
+    DirRenamedOnClient = 43,
+    FileChangedOnServer = 44,
+    FileRenamedOnServer = 45,
+    FileDeletedOnServer = 46,
+    DirChangedOnServer = 47,
+    DirRenamedOnServer = 48,
+    DirDeletedOnServer = 49,
+    FileReplacedAndDeletedOnClient_FileOnServer = 50,
+    FileReplacedAndDeletedOnClient_FileChangedOnServer = 51,
+    FileReplacedAndDeletedOnClient_DirOnServer = 52,
+    FileReplacedAndDeletedOnClient_DirChangedOnServer = 53,
+    NUMSTATES = 54,
+};
+pub const OFFLINEFILES_SYNC_STATE_Stable = OFFLINEFILES_SYNC_STATE.Stable;
+pub const OFFLINEFILES_SYNC_STATE_FileOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileOnClient_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.FileOnClient_NoServerCopy;
+pub const OFFLINEFILES_SYNC_STATE_DirOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DirOnClient_FileOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DirOnClient_FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.DirOnClient_NoServerCopy;
+pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_NoServerCopy;
+pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_FileOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileCreatedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.FileCreatedOnClient_DeletedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_ChangedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_ChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnClient_DeletedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_ChangedOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_ChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_DeletedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileSparseOnClient_DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_NoServerCopy = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_NoServerCopy;
+pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_FileOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirCreatedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.DirCreatedOnClient_DeletedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_FileOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_ChangedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_ChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient_DeletedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnClient_DeletedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_FileOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_FileOnServer;
+pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_DirOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_NoClientCopy_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.NoClientCopy_DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_FileOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DeletedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.DeletedOnClient_DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileSparseOnClient = OFFLINEFILES_SYNC_STATE.FileSparseOnClient;
+pub const OFFLINEFILES_SYNC_STATE_FileChangedOnClient = OFFLINEFILES_SYNC_STATE.FileChangedOnClient;
+pub const OFFLINEFILES_SYNC_STATE_FileRenamedOnClient = OFFLINEFILES_SYNC_STATE.FileRenamedOnClient;
+pub const OFFLINEFILES_SYNC_STATE_DirSparseOnClient = OFFLINEFILES_SYNC_STATE.DirSparseOnClient;
+pub const OFFLINEFILES_SYNC_STATE_DirChangedOnClient = OFFLINEFILES_SYNC_STATE.DirChangedOnClient;
+pub const OFFLINEFILES_SYNC_STATE_DirRenamedOnClient = OFFLINEFILES_SYNC_STATE.DirRenamedOnClient;
+pub const OFFLINEFILES_SYNC_STATE_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileRenamedOnServer = OFFLINEFILES_SYNC_STATE.FileRenamedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileDeletedOnServer = OFFLINEFILES_SYNC_STATE.FileDeletedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirRenamedOnServer = OFFLINEFILES_SYNC_STATE.DirRenamedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_DirDeletedOnServer = OFFLINEFILES_SYNC_STATE.DirDeletedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_FileOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_FileOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_FileChangedOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_FileChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_DirOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_DirOnServer;
+pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_DirChangedOnServer;
+pub const OFFLINEFILES_SYNC_STATE_NUMSTATES = OFFLINEFILES_SYNC_STATE.NUMSTATES;
+
+const CLSID_OfflineFilesCache_Value = Guid.initString("48c6be7c-3871-43cc-b46f-1449a1bb2ff3");
+pub const CLSID_OfflineFilesCache = &CLSID_OfflineFilesCache_Value;
+
+const CLSID_OfflineFilesSetting_Value = Guid.initString("fd3659e9-a920-4123-ad64-7fc76c7aacdf");
+pub const CLSID_OfflineFilesSetting = &CLSID_OfflineFilesSetting_Value;
 
 
 //--------------------------------------------------------------------------------
@@ -1966,10 +1966,6 @@ pub const IOfflineFilesCache2 = extern union {
 pub extern "cscapi" fn OfflineFilesEnable(
     bEnable: BOOL,
     pbRebootRequired: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cscapi" fn OfflineFilesStart(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1983,6 +1979,10 @@ pub extern "cscapi" fn OfflineFilesQueryStatusEx(
     pbActive: ?*BOOL,
     pbEnabled: ?*BOOL,
     pbAvailable: ?*BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "cscapi" fn OfflineFilesStart(
 ) callconv(.winapi) u32;
 
 

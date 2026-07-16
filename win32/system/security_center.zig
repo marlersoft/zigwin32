@@ -6,49 +6,24 @@
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
-const CLSID_WSCProductList_Value = Guid.initString("17072f7b-9abe-4a74-a261-1eb76b55107a");
-pub const CLSID_WSCProductList = &CLSID_WSCProductList_Value;
-
-const CLSID_WSCDefaultProduct_Value = Guid.initString("2981a36e-f22d-11e5-9ce9-5e5517507c66");
-pub const CLSID_WSCDefaultProduct = &CLSID_WSCDefaultProduct_Value;
-
-pub const WSC_SECURITY_PRODUCT_SUBSTATUS = enum(i32) {
-    NOT_SET = 0,
-    NO_ACTION = 1,
-    ACTION_RECOMMENDED = 2,
-    ACTION_NEEDED = 3,
+const IID_IWSCDefaultProduct_Value = Guid.initString("0476d69c-f21a-11e5-9ce9-5e5517507c66");
+pub const IID_IWSCDefaultProduct = &IID_IWSCDefaultProduct_Value;
+pub const IWSCDefaultProduct = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        SetDefaultProduct: *const fn(
+            self: *const IWSCDefaultProduct,
+            eType: SECURITY_PRODUCT_TYPE,
+            pGuid: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn SetDefaultProduct(self: *const IWSCDefaultProduct, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultProduct(self, eType, pGuid);
+    }
 };
-pub const WSC_SECURITY_PRODUCT_SUBSTATUS_NOT_SET = WSC_SECURITY_PRODUCT_SUBSTATUS.NOT_SET;
-pub const WSC_SECURITY_PRODUCT_SUBSTATUS_NO_ACTION = WSC_SECURITY_PRODUCT_SUBSTATUS.NO_ACTION;
-pub const WSC_SECURITY_PRODUCT_SUBSTATUS_ACTION_RECOMMENDED = WSC_SECURITY_PRODUCT_SUBSTATUS.ACTION_RECOMMENDED;
-pub const WSC_SECURITY_PRODUCT_SUBSTATUS_ACTION_NEEDED = WSC_SECURITY_PRODUCT_SUBSTATUS.ACTION_NEEDED;
-
-pub const WSC_SECURITY_PRODUCT_STATE = enum(i32) {
-    ON = 0,
-    OFF = 1,
-    SNOOZED = 2,
-    EXPIRED = 3,
-};
-pub const WSC_SECURITY_PRODUCT_STATE_ON = WSC_SECURITY_PRODUCT_STATE.ON;
-pub const WSC_SECURITY_PRODUCT_STATE_OFF = WSC_SECURITY_PRODUCT_STATE.OFF;
-pub const WSC_SECURITY_PRODUCT_STATE_SNOOZED = WSC_SECURITY_PRODUCT_STATE.SNOOZED;
-pub const WSC_SECURITY_PRODUCT_STATE_EXPIRED = WSC_SECURITY_PRODUCT_STATE.EXPIRED;
-
-pub const SECURITY_PRODUCT_TYPE = enum(i32) {
-    ANTIVIRUS = 0,
-    FIREWALL = 1,
-    ANTISPYWARE = 2,
-};
-pub const SECURITY_PRODUCT_TYPE_ANTIVIRUS = SECURITY_PRODUCT_TYPE.ANTIVIRUS;
-pub const SECURITY_PRODUCT_TYPE_FIREWALL = SECURITY_PRODUCT_TYPE.FIREWALL;
-pub const SECURITY_PRODUCT_TYPE_ANTISPYWARE = SECURITY_PRODUCT_TYPE.ANTISPYWARE;
-
-pub const WSC_SECURITY_SIGNATURE_STATUS = enum(i32) {
-    OUT_OF_DATE = 0,
-    UP_TO_DATE = 1,
-};
-pub const WSC_SECURITY_PRODUCT_OUT_OF_DATE = WSC_SECURITY_SIGNATURE_STATUS.OUT_OF_DATE;
-pub const WSC_SECURITY_PRODUCT_UP_TO_DATE = WSC_SECURITY_SIGNATURE_STATUS.UP_TO_DATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWscProduct_Value = Guid.initString("8c38232e-3a45-4a27-92b0-1a16a975f669");
@@ -234,24 +209,36 @@ pub const IWSCProductList = extern union {
     }
 };
 
-const IID_IWSCDefaultProduct_Value = Guid.initString("0476d69c-f21a-11e5-9ce9-5e5517507c66");
-pub const IID_IWSCDefaultProduct = &IID_IWSCDefaultProduct_Value;
-pub const IWSCDefaultProduct = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        SetDefaultProduct: *const fn(
-            self: *const IWSCDefaultProduct,
-            eType: SECURITY_PRODUCT_TYPE,
-            pGuid: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn SetDefaultProduct(self: *const IWSCDefaultProduct, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultProduct(self, eType, pGuid);
-    }
+pub const SECURITY_PRODUCT_TYPE = enum(i32) {
+    ANTIVIRUS = 0,
+    FIREWALL = 1,
+    ANTISPYWARE = 2,
 };
+pub const SECURITY_PRODUCT_TYPE_ANTIVIRUS = SECURITY_PRODUCT_TYPE.ANTIVIRUS;
+pub const SECURITY_PRODUCT_TYPE_FIREWALL = SECURITY_PRODUCT_TYPE.FIREWALL;
+pub const SECURITY_PRODUCT_TYPE_ANTISPYWARE = SECURITY_PRODUCT_TYPE.ANTISPYWARE;
+
+pub const WSC_SECURITY_PRODUCT_STATE = enum(i32) {
+    ON = 0,
+    OFF = 1,
+    SNOOZED = 2,
+    EXPIRED = 3,
+};
+pub const WSC_SECURITY_PRODUCT_STATE_ON = WSC_SECURITY_PRODUCT_STATE.ON;
+pub const WSC_SECURITY_PRODUCT_STATE_OFF = WSC_SECURITY_PRODUCT_STATE.OFF;
+pub const WSC_SECURITY_PRODUCT_STATE_SNOOZED = WSC_SECURITY_PRODUCT_STATE.SNOOZED;
+pub const WSC_SECURITY_PRODUCT_STATE_EXPIRED = WSC_SECURITY_PRODUCT_STATE.EXPIRED;
+
+pub const WSC_SECURITY_PRODUCT_SUBSTATUS = enum(i32) {
+    NOT_SET = 0,
+    NO_ACTION = 1,
+    ACTION_RECOMMENDED = 2,
+    ACTION_NEEDED = 3,
+};
+pub const WSC_SECURITY_PRODUCT_SUBSTATUS_NOT_SET = WSC_SECURITY_PRODUCT_SUBSTATUS.NOT_SET;
+pub const WSC_SECURITY_PRODUCT_SUBSTATUS_NO_ACTION = WSC_SECURITY_PRODUCT_SUBSTATUS.NO_ACTION;
+pub const WSC_SECURITY_PRODUCT_SUBSTATUS_ACTION_RECOMMENDED = WSC_SECURITY_PRODUCT_SUBSTATUS.ACTION_RECOMMENDED;
+pub const WSC_SECURITY_PRODUCT_SUBSTATUS_ACTION_NEEDED = WSC_SECURITY_PRODUCT_SUBSTATUS.ACTION_NEEDED;
 
 pub const WSC_SECURITY_PROVIDER = enum(i32) {
     FIREWALL = 1,
@@ -285,24 +272,25 @@ pub const WSC_SECURITY_PROVIDER_HEALTH_NOTMONITORED = WSC_SECURITY_PROVIDER_HEAL
 pub const WSC_SECURITY_PROVIDER_HEALTH_POOR = WSC_SECURITY_PROVIDER_HEALTH.POOR;
 pub const WSC_SECURITY_PROVIDER_HEALTH_SNOOZE = WSC_SECURITY_PROVIDER_HEALTH.SNOOZE;
 
+pub const WSC_SECURITY_SIGNATURE_STATUS = enum(i32) {
+    OUT_OF_DATE = 0,
+    UP_TO_DATE = 1,
+};
+pub const WSC_SECURITY_PRODUCT_OUT_OF_DATE = WSC_SECURITY_SIGNATURE_STATUS.OUT_OF_DATE;
+pub const WSC_SECURITY_PRODUCT_UP_TO_DATE = WSC_SECURITY_SIGNATURE_STATUS.UP_TO_DATE;
+
+const CLSID_WSCDefaultProduct_Value = Guid.initString("2981a36e-f22d-11e5-9ce9-5e5517507c66");
+pub const CLSID_WSCDefaultProduct = &CLSID_WSCDefaultProduct_Value;
+
+const CLSID_WSCProductList_Value = Guid.initString("17072f7b-9abe-4a74-a261-1eb76b55107a");
+pub const CLSID_WSCProductList = &CLSID_WSCProductList_Value;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (6)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wscapi" fn WscRegisterForChanges(
-    Reserved: ?*anyopaque,
-    phCallbackRegistration: ?*?HANDLE,
-    lpCallbackAddress: ?LPTHREAD_START_ROUTINE,
-    pContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wscapi" fn WscUnRegisterChanges(
-    hRegistrationHandle: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "wscapi" fn WscRegisterForUserNotifications(
+pub extern "wscapi" fn WscGetAntiMalwareUri(
+    ppszUri: ?*?PWSTR,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -314,8 +302,20 @@ pub extern "wscapi" fn WscGetSecurityProviderHealth(
 pub extern "wscapi" fn WscQueryAntiMalwareUri(
 ) callconv(.winapi) HRESULT;
 
-pub extern "wscapi" fn WscGetAntiMalwareUri(
-    ppszUri: ?*?PWSTR,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wscapi" fn WscRegisterForChanges(
+    Reserved: ?*anyopaque,
+    phCallbackRegistration: ?*?HANDLE,
+    lpCallbackAddress: ?LPTHREAD_START_ROUTINE,
+    pContext: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "wscapi" fn WscRegisterForUserNotifications(
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wscapi" fn WscUnRegisterChanges(
+    hRegistrationHandle: ?HANDLE,
 ) callconv(.winapi) HRESULT;
 
 

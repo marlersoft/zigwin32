@@ -3,299 +3,131 @@
 // Section: Constants (103)
 //--------------------------------------------------------------------------------
 pub const ARRAY_SEP_CHAR = @as(u32, 9);
-pub const WPCCHANNEL = @as(u32, 16);
-pub const WPC_SETTINGS_LOCATE = @as(u32, 20);
-pub const WPC_SETTINGS_MODIFY = @as(u32, 21);
-pub const WPC_APP_LAUNCH = @as(u32, 22);
-pub const WPC_SYSTEM = @as(u32, 23);
-pub const WPC_WEB = @as(u32, 24);
-pub const WPCPROV_TASK_SettingChange = @as(u32, 1);
-pub const WPCPROV_TASK_GameStart = @as(u32, 2);
-pub const WPCPROV_TASK_UrlVisit = @as(u32, 3);
-pub const WPCPROV_TASK_EmailReceived = @as(u32, 4);
-pub const WPCPROV_TASK_EmailSent = @as(u32, 5);
-pub const WPCPROV_TASK_MediaPlayback = @as(u32, 6);
-pub const WPCPROV_TASK_IMInvitation = @as(u32, 7);
-pub const WPCPROV_TASK_IMJoin = @as(u32, 8);
-pub const WPCPROV_TASK_IMLeave = @as(u32, 9);
-pub const WPCPROV_TASK_FileDownload = @as(u32, 10);
-pub const WPCPROV_TASK_IMFeature = @as(u32, 11);
-pub const WPCPROV_TASK_Custom = @as(u32, 13);
-pub const WPCPROV_TASK_EmailContact = @as(u32, 14);
-pub const WPCPROV_TASK_IMContact = @as(u32, 15);
-pub const WPCPROV_TASK_AppBlocked = @as(u32, 16);
-pub const WPCPROV_TASK_AppOverride = @as(u32, 17);
-pub const WPCPROV_TASK_WebOverride = @as(u32, 18);
-pub const WPCPROV_TASK_WebsiteVisit = @as(u32, 19);
-pub const WPCPROV_TASK_Application = @as(u32, 20);
-pub const WPCPROV_TASK_ComputerUsage = @as(u32, 21);
-pub const WPCPROV_TASK_ContentUsage = @as(u32, 22);
-pub const WPCPROV_KEYWORD_WPC = @as(u32, 16);
-pub const WPCPROV_KEYWORD_ThirdParty = @as(u32, 32);
-pub const WPCEVENT_SYS_SETTINGCHANGE_value = @as(u32, 1);
-pub const WPCEVENT_GAME_START_value = @as(u32, 2);
-pub const WPCEVENT_WEB_URLVISIT_value = @as(u32, 3);
-pub const WPCEVENT_EMAIL_RECEIVED_value = @as(u32, 4);
-pub const WPCEVENT_EMAIL_SENT_value = @as(u32, 5);
-pub const WPCEVENT_MEDIA_PLAYBACK_value = @as(u32, 6);
-pub const WPCEVENT_IM_INVITATION_value = @as(u32, 7);
-pub const WPCEVENT_IM_JOIN_value = @as(u32, 8);
-pub const WPCEVENT_IM_LEAVE_value = @as(u32, 9);
-pub const WPCEVENT_WEB_FILEDOWNLOAD_value = @as(u32, 10);
-pub const WPCEVENT_IM_FEATURE_value = @as(u32, 11);
-pub const WPCEVENT_CUSTOM_value = @as(u32, 13);
-pub const WPCEVENT_EMAIL_CONTACT_value = @as(u32, 14);
-pub const WPCEVENT_IM_CONTACT_value = @as(u32, 15);
-pub const WPCEVENT_SYSTEM_APPBLOCKED_value = @as(u32, 16);
-pub const WPCEVENT_APPOVERRIDE_value = @as(u32, 17);
-pub const WPCEVENT_WEBOVERRIDE_value = @as(u32, 18);
-pub const WPCEVENT_WEB_WEBSITEVISIT_value = @as(u32, 19);
-pub const WPCEVENT_APPLICATION_value = @as(u32, 20);
-pub const WPCEVENT_COMPUTERUSAGE_value = @as(u32, 21);
-pub const WPCEVENT_CONTENTUSAGE_value = @as(u32, 22);
-pub const MSG_Keyword_WPC = @as(i32, 268435461);
-pub const MSG_Keyword_ThirdParty = @as(i32, 268435462);
-pub const MSG_Opcode_Locate = @as(i32, 805306388);
-pub const MSG_Opcode_Modify = @as(i32, 805306389);
-pub const MSG_Opcode_Launch = @as(i32, 805306390);
-pub const MSG_Opcode_System = @as(i32, 805306391);
-pub const MSG_Opcode_Web = @as(i32, 805306392);
-pub const MSG_Task_SettingChange = @as(i32, 1879048193);
-pub const MSG_Task_GameStart = @as(i32, 1879048194);
-pub const MSG_Task_UrlVisit = @as(i32, 1879048195);
-pub const MSG_Task_EmailReceived = @as(i32, 1879048196);
-pub const MSG_Task_EmailSent = @as(i32, 1879048197);
-pub const MSG_Task_MediaPlayback = @as(i32, 1879048198);
-pub const MSG_Task_IMInvitation = @as(i32, 1879048199);
-pub const MSG_Task_IMJoin = @as(i32, 1879048200);
-pub const MSG_Task_IMLeave = @as(i32, 1879048201);
-pub const MSG_Task_FileDownload = @as(i32, 1879048202);
-pub const MSG_Task_IMFeature = @as(i32, 1879048203);
-pub const MSG_Task_Custom = @as(i32, 1879048205);
-pub const MSG_Task_EmailContact = @as(i32, 1879048206);
-pub const MSG_Task_IMContact = @as(i32, 1879048207);
-pub const MSG_Task_AppBlocked = @as(i32, 1879048208);
-pub const MSG_Task_AppOverride = @as(i32, 1879048209);
-pub const MSG_Task_WebOverride = @as(i32, 1879048210);
-pub const MSG_Task_WebsiteVisit = @as(i32, 1879048211);
-pub const MSG_Task_Application = @as(i32, 1879048212);
-pub const MSG_Task_ComputerUsage = @as(i32, 1879048213);
-pub const MSG_Task_ContentUsage = @as(i32, 1879048214);
-pub const MSG_Publisher_Name = @as(i32, -1879048191);
-pub const MSG_Event_SettingChange = @as(i32, -1342177279);
-pub const MSG_Event_GameStart = @as(i32, -1342177278);
-pub const MSG_Event_UrlVisit = @as(i32, -1342177277);
+pub const FACILITY_WPC = @as(u32, 2457);
+pub const MSG_Event_AppBlocked = @as(i32, -1342177264);
+pub const MSG_Event_Application = @as(i32, -1342177260);
+pub const MSG_Event_AppOverride = @as(i32, -1342177263);
+pub const MSG_Event_ComputerUsage = @as(i32, -1342177259);
+pub const MSG_Event_ContentUsage = @as(i32, -1342177258);
+pub const MSG_Event_Custom = @as(i32, -1342177267);
+pub const MSG_Event_EmailContact = @as(i32, -1342177266);
 pub const MSG_Event_EmailReceived = @as(i32, -1342177276);
 pub const MSG_Event_EmailSent = @as(i32, -1342177275);
-pub const MSG_Event_MediaPlayback = @as(i32, -1342177274);
+pub const MSG_Event_FileDownload = @as(i32, -1342177270);
+pub const MSG_Event_GameStart = @as(i32, -1342177278);
+pub const MSG_Event_IMContact = @as(i32, -1342177265);
+pub const MSG_Event_IMFeature = @as(i32, -1342177269);
 pub const MSG_Event_IMInvitation = @as(i32, -1342177273);
 pub const MSG_Event_IMJoin = @as(i32, -1342177272);
 pub const MSG_Event_IMLeave = @as(i32, -1342177271);
-pub const MSG_Event_FileDownload = @as(i32, -1342177270);
-pub const MSG_Event_IMFeature = @as(i32, -1342177269);
-pub const MSG_Event_Custom = @as(i32, -1342177267);
-pub const MSG_Event_EmailContact = @as(i32, -1342177266);
-pub const MSG_Event_IMContact = @as(i32, -1342177265);
-pub const MSG_Event_AppBlocked = @as(i32, -1342177264);
-pub const MSG_Event_AppOverride = @as(i32, -1342177263);
+pub const MSG_Event_MediaPlayback = @as(i32, -1342177274);
+pub const MSG_Event_SettingChange = @as(i32, -1342177279);
+pub const MSG_Event_UrlVisit = @as(i32, -1342177277);
 pub const MSG_Event_WebOverride = @as(i32, -1342177262);
 pub const MSG_Event_WebsiteVisit = @as(i32, -1342177261);
-pub const MSG_Event_Application = @as(i32, -1342177260);
-pub const MSG_Event_ComputerUsage = @as(i32, -1342177259);
-pub const MSG_Event_ContentUsage = @as(i32, -1342177258);
-pub const FACILITY_WPC = @as(u32, 2457);
+pub const MSG_Keyword_ThirdParty = @as(i32, 268435462);
+pub const MSG_Keyword_WPC = @as(i32, 268435461);
+pub const MSG_Opcode_Launch = @as(i32, 805306390);
+pub const MSG_Opcode_Locate = @as(i32, 805306388);
+pub const MSG_Opcode_Modify = @as(i32, 805306389);
+pub const MSG_Opcode_System = @as(i32, 805306391);
+pub const MSG_Opcode_Web = @as(i32, 805306392);
+pub const MSG_Publisher_Name = @as(i32, -1879048191);
+pub const MSG_Task_AppBlocked = @as(i32, 1879048208);
+pub const MSG_Task_Application = @as(i32, 1879048212);
+pub const MSG_Task_AppOverride = @as(i32, 1879048209);
+pub const MSG_Task_ComputerUsage = @as(i32, 1879048213);
+pub const MSG_Task_ContentUsage = @as(i32, 1879048214);
+pub const MSG_Task_Custom = @as(i32, 1879048205);
+pub const MSG_Task_EmailContact = @as(i32, 1879048206);
+pub const MSG_Task_EmailReceived = @as(i32, 1879048196);
+pub const MSG_Task_EmailSent = @as(i32, 1879048197);
+pub const MSG_Task_FileDownload = @as(i32, 1879048202);
+pub const MSG_Task_GameStart = @as(i32, 1879048194);
+pub const MSG_Task_IMContact = @as(i32, 1879048207);
+pub const MSG_Task_IMFeature = @as(i32, 1879048203);
+pub const MSG_Task_IMInvitation = @as(i32, 1879048199);
+pub const MSG_Task_IMJoin = @as(i32, 1879048200);
+pub const MSG_Task_IMLeave = @as(i32, 1879048201);
+pub const MSG_Task_MediaPlayback = @as(i32, 1879048198);
+pub const MSG_Task_SettingChange = @as(i32, 1879048193);
+pub const MSG_Task_UrlVisit = @as(i32, 1879048195);
+pub const MSG_Task_WebOverride = @as(i32, 1879048210);
+pub const MSG_Task_WebsiteVisit = @as(i32, 1879048211);
+pub const WPC_APP_LAUNCH = @as(u32, 22);
+pub const WPC_SETTINGS_LOCATE = @as(u32, 20);
+pub const WPC_SETTINGS_MODIFY = @as(u32, 21);
+pub const WPC_SYSTEM = @as(u32, 23);
+pub const WPC_WEB = @as(u32, 24);
+pub const WPCCHANNEL = @as(u32, 16);
+pub const WPCEVENT_APPLICATION_value = @as(u32, 20);
+pub const WPCEVENT_APPOVERRIDE_value = @as(u32, 17);
+pub const WPCEVENT_COMPUTERUSAGE_value = @as(u32, 21);
+pub const WPCEVENT_CONTENTUSAGE_value = @as(u32, 22);
+pub const WPCEVENT_CUSTOM_value = @as(u32, 13);
+pub const WPCEVENT_EMAIL_CONTACT_value = @as(u32, 14);
+pub const WPCEVENT_EMAIL_RECEIVED_value = @as(u32, 4);
+pub const WPCEVENT_EMAIL_SENT_value = @as(u32, 5);
+pub const WPCEVENT_GAME_START_value = @as(u32, 2);
+pub const WPCEVENT_IM_CONTACT_value = @as(u32, 15);
+pub const WPCEVENT_IM_FEATURE_value = @as(u32, 11);
+pub const WPCEVENT_IM_INVITATION_value = @as(u32, 7);
+pub const WPCEVENT_IM_JOIN_value = @as(u32, 8);
+pub const WPCEVENT_IM_LEAVE_value = @as(u32, 9);
+pub const WPCEVENT_MEDIA_PLAYBACK_value = @as(u32, 6);
+pub const WPCEVENT_SYS_SETTINGCHANGE_value = @as(u32, 1);
+pub const WPCEVENT_SYSTEM_APPBLOCKED_value = @as(u32, 16);
+pub const WPCEVENT_WEB_FILEDOWNLOAD_value = @as(u32, 10);
+pub const WPCEVENT_WEB_URLVISIT_value = @as(u32, 3);
+pub const WPCEVENT_WEB_WEBSITEVISIT_value = @as(u32, 19);
+pub const WPCEVENT_WEBOVERRIDE_value = @as(u32, 18);
 pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
+pub const WPCPROV_KEYWORD_ThirdParty = @as(u32, 32);
+pub const WPCPROV_KEYWORD_WPC = @as(u32, 16);
+pub const WPCPROV_TASK_AppBlocked = @as(u32, 16);
+pub const WPCPROV_TASK_Application = @as(u32, 20);
+pub const WPCPROV_TASK_AppOverride = @as(u32, 17);
+pub const WPCPROV_TASK_ComputerUsage = @as(u32, 21);
+pub const WPCPROV_TASK_ContentUsage = @as(u32, 22);
+pub const WPCPROV_TASK_Custom = @as(u32, 13);
+pub const WPCPROV_TASK_EmailContact = @as(u32, 14);
+pub const WPCPROV_TASK_EmailReceived = @as(u32, 4);
+pub const WPCPROV_TASK_EmailSent = @as(u32, 5);
+pub const WPCPROV_TASK_FileDownload = @as(u32, 10);
+pub const WPCPROV_TASK_GameStart = @as(u32, 2);
+pub const WPCPROV_TASK_IMContact = @as(u32, 15);
+pub const WPCPROV_TASK_IMFeature = @as(u32, 11);
+pub const WPCPROV_TASK_IMInvitation = @as(u32, 7);
+pub const WPCPROV_TASK_IMJoin = @as(u32, 8);
+pub const WPCPROV_TASK_IMLeave = @as(u32, 9);
+pub const WPCPROV_TASK_MediaPlayback = @as(u32, 6);
+pub const WPCPROV_TASK_SettingChange = @as(u32, 1);
+pub const WPCPROV_TASK_UrlVisit = @as(u32, 3);
+pub const WPCPROV_TASK_WebOverride = @as(u32, 18);
+pub const WPCPROV_TASK_WebsiteVisit = @as(u32, 19);
 
 //--------------------------------------------------------------------------------
 // Section: Types (44)
 //--------------------------------------------------------------------------------
-const CLSID_WpcSettingsProvider_Value = Guid.initString("355dffaa-3b9f-435c-b428-5d44290bc5f2");
-pub const CLSID_WpcSettingsProvider = &CLSID_WpcSettingsProvider_Value;
-
-const CLSID_WpcProviderSupport_Value = Guid.initString("bb18c7a0-2186-4be0-97d8-04847b628e02");
-pub const CLSID_WpcProviderSupport = &CLSID_WpcProviderSupport_Value;
-
-const CLSID_WindowsParentalControls_Value = Guid.initString("e77cc89b-7401-4c04-8ced-149db35add04");
-pub const CLSID_WindowsParentalControls = &CLSID_WindowsParentalControls_Value;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWPCProviderState_Value = Guid.initString("50b6a267-c4bd-450b-adb5-759073837c9e");
-pub const IID_IWPCProviderState = &IID_IWPCProviderState_Value;
-pub const IWPCProviderState = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Enable: *const fn(
-            self: *const IWPCProviderState,
-        ) callconv(.winapi) HRESULT,
-        Disable: *const fn(
-            self: *const IWPCProviderState,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Enable(self: *const IWPCProviderState) callconv(.@"inline") HRESULT {
-        return self.vtable.Enable(self);
-    }
-    pub fn Disable(self: *const IWPCProviderState) callconv(.@"inline") HRESULT {
-        return self.vtable.Disable(self);
-    }
-};
-
-pub const WPCFLAG_OVERRIDE = enum(i32) {
-    N = 1,
-};
-pub const WPCFLAG_APPLICATION = WPCFLAG_OVERRIDE.N;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWPCProviderConfig_Value = Guid.initString("bef54196-2d02-4a26-b6e5-d65af295d0f1");
-pub const IID_IWPCProviderConfig = &IID_IWPCProviderConfig_Value;
-pub const IWPCProviderConfig = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetUserSummary: *const fn(
-            self: *const IWPCProviderConfig,
-            bstrSID: ?BSTR,
-            pbstrUserSummary: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Configure: *const fn(
-            self: *const IWPCProviderConfig,
-            hWnd: ?HWND,
-            bstrSID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RequestOverride: *const fn(
-            self: *const IWPCProviderConfig,
-            hWnd: ?HWND,
-            bstrPath: ?BSTR,
-            dwFlags: WPCFLAG_RESTRICTION,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetUserSummary(self: *const IWPCProviderConfig, bstrSID: ?BSTR, pbstrUserSummary: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUserSummary(self, bstrSID, pbstrUserSummary);
-    }
-    pub fn Configure(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrSID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Configure(self, hWnd, bstrSID);
-    }
-    pub fn RequestOverride(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrPath: ?BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestOverride(self, hWnd, bstrPath, dwFlags);
-    }
-};
-
-pub const WPCFLAG_RESTRICTION = enum(i32) {
-    NO_RESTRICTION = 0,
-    LOGGING_REQUIRED = 1,
-    WEB_FILTERED = 2,
-    HOURS_RESTRICTED = 4,
-    GAMES_BLOCKED = 8,
-    APPS_RESTRICTED = 16,
-    TIME_ALLOWANCE_RESTRICTED = 32,
-    GAMES_RESTRICTED = 64,
-};
-pub const WPCFLAG_NO_RESTRICTION = WPCFLAG_RESTRICTION.NO_RESTRICTION;
-pub const WPCFLAG_LOGGING_REQUIRED = WPCFLAG_RESTRICTION.LOGGING_REQUIRED;
-pub const WPCFLAG_WEB_FILTERED = WPCFLAG_RESTRICTION.WEB_FILTERED;
-pub const WPCFLAG_HOURS_RESTRICTED = WPCFLAG_RESTRICTION.HOURS_RESTRICTED;
-pub const WPCFLAG_GAMES_BLOCKED = WPCFLAG_RESTRICTION.GAMES_BLOCKED;
-pub const WPCFLAG_APPS_RESTRICTED = WPCFLAG_RESTRICTION.APPS_RESTRICTED;
-pub const WPCFLAG_TIME_ALLOWANCE_RESTRICTED = WPCFLAG_RESTRICTION.TIME_ALLOWANCE_RESTRICTED;
-pub const WPCFLAG_GAMES_RESTRICTED = WPCFLAG_RESTRICTION.GAMES_RESTRICTED;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWPCSettings_Value = Guid.initString("8fdf6ca1-0189-47e4-b670-1a8a4636e340");
-pub const IID_IWPCSettings = &IID_IWPCSettings_Value;
-pub const IWPCSettings = extern union {
+const IID_IWindowsParentalControls_Value = Guid.initString("28b4d88b-e072-49e6-804d-26edbe21a7b9");
+pub const IID_IWindowsParentalControls = &IID_IWindowsParentalControls_Value;
+pub const IWindowsParentalControls = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsLoggingRequired: *const fn(
-            self: *const IWPCSettings,
-            pfRequired: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetLastSettingsChangeTime: *const fn(
-            self: *const IWPCSettings,
-            pTime: ?*SYSTEMTIME,
-        ) callconv(.winapi) HRESULT,
-        GetRestrictions: *const fn(
-            self: *const IWPCSettings,
-            pdwRestrictions: ?*WPCFLAG_RESTRICTION,
+        base: IWindowsParentalControlsCore.VTable,
+        GetGamesSettings: *const fn(
+            self: *const IWindowsParentalControls,
+            pcszSID: ?[*:0]const u16,
+            ppSettings: ?*?*IWPCGamesSettings,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWindowsParentalControlsCore: IWindowsParentalControlsCore,
     IUnknown: IUnknown,
-    pub fn IsLoggingRequired(self: *const IWPCSettings, pfRequired: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsLoggingRequired(self, pfRequired);
-    }
-    pub fn GetLastSettingsChangeTime(self: *const IWPCSettings, pTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastSettingsChangeTime(self, pTime);
-    }
-    pub fn GetRestrictions(self: *const IWPCSettings, pdwRestrictions: ?*WPCFLAG_RESTRICTION) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRestrictions(self, pdwRestrictions);
+    pub fn GetGamesSettings(self: *const IWindowsParentalControls, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGamesSettings(self, pcszSID, ppSettings);
     }
 };
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWPCGamesSettings_Value = Guid.initString("95e87780-e158-489e-b452-bbb850790715");
-pub const IID_IWPCGamesSettings = &IID_IWPCGamesSettings_Value;
-pub const IWPCGamesSettings = extern union {
-    pub const VTable = extern struct {
-        base: IWPCSettings.VTable,
-        IsBlocked: *const fn(
-            self: *const IWPCGamesSettings,
-            guidAppID: Guid,
-            pdwReasons: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWPCSettings: IWPCSettings,
-    IUnknown: IUnknown,
-    pub fn IsBlocked(self: *const IWPCGamesSettings, guidAppID: Guid, pdwReasons: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.IsBlocked(self, guidAppID, pdwReasons);
-    }
-};
-
-pub const WPCFLAG_WEB_SETTING = enum(i32) {
-    NOTBLOCKED = 0,
-    DOWNLOADSBLOCKED = 1,
-};
-pub const WPCFLAG_WEB_SETTING_NOTBLOCKED = WPCFLAG_WEB_SETTING.NOTBLOCKED;
-pub const WPCFLAG_WEB_SETTING_DOWNLOADSBLOCKED = WPCFLAG_WEB_SETTING.DOWNLOADSBLOCKED;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWPCWebSettings_Value = Guid.initString("ffccbdb8-0992-4c30-b0f1-1cbb09c240aa");
-pub const IID_IWPCWebSettings = &IID_IWPCWebSettings_Value;
-pub const IWPCWebSettings = extern union {
-    pub const VTable = extern struct {
-        base: IWPCSettings.VTable,
-        GetSettings: *const fn(
-            self: *const IWPCWebSettings,
-            pdwSettings: ?*WPCFLAG_WEB_SETTING,
-        ) callconv(.winapi) HRESULT,
-        RequestURLOverride: *const fn(
-            self: *const IWPCWebSettings,
-            hWnd: ?HWND,
-            pcszURL: ?[*:0]const u16,
-            cURLs: u32,
-            ppcszSubURLs: ?[*]?PWSTR,
-            pfChanged: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWPCSettings: IWPCSettings,
-    IUnknown: IUnknown,
-    pub fn GetSettings(self: *const IWPCWebSettings, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSettings(self, pdwSettings);
-    }
-    pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestURLOverride(self, hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
-    }
-};
-
-pub const WPCFLAG_VISIBILITY = enum(i32) {
-    VISIBLE = 0,
-    HIDDEN = 1,
-};
-pub const WPCFLAG_WPC_VISIBLE = WPCFLAG_VISIBILITY.VISIBLE;
-pub const WPCFLAG_WPC_HIDDEN = WPCFLAG_VISIBILITY.HIDDEN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWindowsParentalControlsCore_Value = Guid.initString("4ff40a0f-3f3b-4d7c-a41b-4f39d7b44d05");
@@ -340,22 +172,81 @@ pub const IWindowsParentalControlsCore = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWindowsParentalControls_Value = Guid.initString("28b4d88b-e072-49e6-804d-26edbe21a7b9");
-pub const IID_IWindowsParentalControls = &IID_IWindowsParentalControls_Value;
-pub const IWindowsParentalControls = extern union {
+const IID_IWPCGamesSettings_Value = Guid.initString("95e87780-e158-489e-b452-bbb850790715");
+pub const IID_IWPCGamesSettings = &IID_IWPCGamesSettings_Value;
+pub const IWPCGamesSettings = extern union {
     pub const VTable = extern struct {
-        base: IWindowsParentalControlsCore.VTable,
-        GetGamesSettings: *const fn(
-            self: *const IWindowsParentalControls,
-            pcszSID: ?[*:0]const u16,
-            ppSettings: ?*?*IWPCGamesSettings,
+        base: IWPCSettings.VTable,
+        IsBlocked: *const fn(
+            self: *const IWPCGamesSettings,
+            guidAppID: Guid,
+            pdwReasons: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWindowsParentalControlsCore: IWindowsParentalControlsCore,
+    IWPCSettings: IWPCSettings,
     IUnknown: IUnknown,
-    pub fn GetGamesSettings(self: *const IWindowsParentalControls, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGamesSettings(self, pcszSID, ppSettings);
+    pub fn IsBlocked(self: *const IWPCGamesSettings, guidAppID: Guid, pdwReasons: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.IsBlocked(self, guidAppID, pdwReasons);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWPCProviderConfig_Value = Guid.initString("bef54196-2d02-4a26-b6e5-d65af295d0f1");
+pub const IID_IWPCProviderConfig = &IID_IWPCProviderConfig_Value;
+pub const IWPCProviderConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetUserSummary: *const fn(
+            self: *const IWPCProviderConfig,
+            bstrSID: ?BSTR,
+            pbstrUserSummary: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Configure: *const fn(
+            self: *const IWPCProviderConfig,
+            hWnd: ?HWND,
+            bstrSID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RequestOverride: *const fn(
+            self: *const IWPCProviderConfig,
+            hWnd: ?HWND,
+            bstrPath: ?BSTR,
+            dwFlags: WPCFLAG_RESTRICTION,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetUserSummary(self: *const IWPCProviderConfig, bstrSID: ?BSTR, pbstrUserSummary: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUserSummary(self, bstrSID, pbstrUserSummary);
+    }
+    pub fn Configure(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrSID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Configure(self, hWnd, bstrSID);
+    }
+    pub fn RequestOverride(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrPath: ?BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestOverride(self, hWnd, bstrPath, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWPCProviderState_Value = Guid.initString("50b6a267-c4bd-450b-adb5-759073837c9e");
+pub const IID_IWPCProviderState = &IID_IWPCProviderState_Value;
+pub const IWPCProviderState = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Enable: *const fn(
+            self: *const IWPCProviderState,
+        ) callconv(.winapi) HRESULT,
+        Disable: *const fn(
+            self: *const IWPCProviderState,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Enable(self: *const IWPCProviderState) callconv(.@"inline") HRESULT {
+        return self.vtable.Enable(self);
+    }
+    pub fn Disable(self: *const IWPCProviderState) callconv(.@"inline") HRESULT {
+        return self.vtable.Disable(self);
     }
 };
 
@@ -377,263 +268,124 @@ pub const IWPCProviderSupport = extern union {
     }
 };
 
-pub const WPCFLAG_ISBLOCKED = enum(i32) {
-    NOTBLOCKED = 0,
-    IMBLOCKED = 1,
-    EMAILBLOCKED = 2,
-    MEDIAPLAYBACKBLOCKED = 4,
-    WEBBLOCKED = 8,
-    GAMESBLOCKED = 16,
-    CONTACTBLOCKED = 32,
-    FEATUREBLOCKED = 64,
-    DOWNLOADBLOCKED = 128,
-    RATINGBLOCKED = 256,
-    DESCRIPTORBLOCKED = 512,
-    EXPLICITBLOCK = 1024,
-    BADPASS = 2048,
-    MAXHOURS = 4096,
-    SPECHOURS = 8192,
-    SETTINGSCHANGEBLOCKED = 16384,
-    ATTACHMENTBLOCKED = 32768,
-    SENDERBLOCKED = 65536,
-    RECEIVERBLOCKED = 131072,
-    NOTEXPLICITLYALLOWED = 262144,
-    NOTINLIST = 524288,
-    CATEGORYBLOCKED = 1048576,
-    CATEGORYNOTINLIST = 2097152,
-    NOTKIDS = 4194304,
-    UNRATED = 8388608,
-    NOACCESS = 16777216,
-    INTERNALERROR = -1,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWPCSettings_Value = Guid.initString("8fdf6ca1-0189-47e4-b670-1a8a4636e340");
+pub const IID_IWPCSettings = &IID_IWPCSettings_Value;
+pub const IWPCSettings = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsLoggingRequired: *const fn(
+            self: *const IWPCSettings,
+            pfRequired: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetLastSettingsChangeTime: *const fn(
+            self: *const IWPCSettings,
+            pTime: ?*SYSTEMTIME,
+        ) callconv(.winapi) HRESULT,
+        GetRestrictions: *const fn(
+            self: *const IWPCSettings,
+            pdwRestrictions: ?*WPCFLAG_RESTRICTION,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsLoggingRequired(self: *const IWPCSettings, pfRequired: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsLoggingRequired(self, pfRequired);
+    }
+    pub fn GetLastSettingsChangeTime(self: *const IWPCSettings, pTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastSettingsChangeTime(self, pTime);
+    }
+    pub fn GetRestrictions(self: *const IWPCSettings, pdwRestrictions: ?*WPCFLAG_RESTRICTION) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRestrictions(self, pdwRestrictions);
+    }
 };
-pub const WPCFLAG_ISBLOCKED_NOTBLOCKED = WPCFLAG_ISBLOCKED.NOTBLOCKED;
-pub const WPCFLAG_ISBLOCKED_IMBLOCKED = WPCFLAG_ISBLOCKED.IMBLOCKED;
-pub const WPCFLAG_ISBLOCKED_EMAILBLOCKED = WPCFLAG_ISBLOCKED.EMAILBLOCKED;
-pub const WPCFLAG_ISBLOCKED_MEDIAPLAYBACKBLOCKED = WPCFLAG_ISBLOCKED.MEDIAPLAYBACKBLOCKED;
-pub const WPCFLAG_ISBLOCKED_WEBBLOCKED = WPCFLAG_ISBLOCKED.WEBBLOCKED;
-pub const WPCFLAG_ISBLOCKED_GAMESBLOCKED = WPCFLAG_ISBLOCKED.GAMESBLOCKED;
-pub const WPCFLAG_ISBLOCKED_CONTACTBLOCKED = WPCFLAG_ISBLOCKED.CONTACTBLOCKED;
-pub const WPCFLAG_ISBLOCKED_FEATUREBLOCKED = WPCFLAG_ISBLOCKED.FEATUREBLOCKED;
-pub const WPCFLAG_ISBLOCKED_DOWNLOADBLOCKED = WPCFLAG_ISBLOCKED.DOWNLOADBLOCKED;
-pub const WPCFLAG_ISBLOCKED_RATINGBLOCKED = WPCFLAG_ISBLOCKED.RATINGBLOCKED;
-pub const WPCFLAG_ISBLOCKED_DESCRIPTORBLOCKED = WPCFLAG_ISBLOCKED.DESCRIPTORBLOCKED;
-pub const WPCFLAG_ISBLOCKED_EXPLICITBLOCK = WPCFLAG_ISBLOCKED.EXPLICITBLOCK;
-pub const WPCFLAG_ISBLOCKED_BADPASS = WPCFLAG_ISBLOCKED.BADPASS;
-pub const WPCFLAG_ISBLOCKED_MAXHOURS = WPCFLAG_ISBLOCKED.MAXHOURS;
-pub const WPCFLAG_ISBLOCKED_SPECHOURS = WPCFLAG_ISBLOCKED.SPECHOURS;
-pub const WPCFLAG_ISBLOCKED_SETTINGSCHANGEBLOCKED = WPCFLAG_ISBLOCKED.SETTINGSCHANGEBLOCKED;
-pub const WPCFLAG_ISBLOCKED_ATTACHMENTBLOCKED = WPCFLAG_ISBLOCKED.ATTACHMENTBLOCKED;
-pub const WPCFLAG_ISBLOCKED_SENDERBLOCKED = WPCFLAG_ISBLOCKED.SENDERBLOCKED;
-pub const WPCFLAG_ISBLOCKED_RECEIVERBLOCKED = WPCFLAG_ISBLOCKED.RECEIVERBLOCKED;
-pub const WPCFLAG_ISBLOCKED_NOTEXPLICITLYALLOWED = WPCFLAG_ISBLOCKED.NOTEXPLICITLYALLOWED;
-pub const WPCFLAG_ISBLOCKED_NOTINLIST = WPCFLAG_ISBLOCKED.NOTINLIST;
-pub const WPCFLAG_ISBLOCKED_CATEGORYBLOCKED = WPCFLAG_ISBLOCKED.CATEGORYBLOCKED;
-pub const WPCFLAG_ISBLOCKED_CATEGORYNOTINLIST = WPCFLAG_ISBLOCKED.CATEGORYNOTINLIST;
-pub const WPCFLAG_ISBLOCKED_NOTKIDS = WPCFLAG_ISBLOCKED.NOTKIDS;
-pub const WPCFLAG_ISBLOCKED_UNRATED = WPCFLAG_ISBLOCKED.UNRATED;
-pub const WPCFLAG_ISBLOCKED_NOACCESS = WPCFLAG_ISBLOCKED.NOACCESS;
-pub const WPCFLAG_ISBLOCKED_INTERNALERROR = WPCFLAG_ISBLOCKED.INTERNALERROR;
 
-pub const WPCFLAG_LOGOFF_TYPE = enum(i32) {
-    LOGOUT = 0,
-    RESTART = 1,
-    SHUTDOWN = 2,
-    FUS = 4,
-    FORCEDFUS = 8,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWPCWebSettings_Value = Guid.initString("ffccbdb8-0992-4c30-b0f1-1cbb09c240aa");
+pub const IID_IWPCWebSettings = &IID_IWPCWebSettings_Value;
+pub const IWPCWebSettings = extern union {
+    pub const VTable = extern struct {
+        base: IWPCSettings.VTable,
+        GetSettings: *const fn(
+            self: *const IWPCWebSettings,
+            pdwSettings: ?*WPCFLAG_WEB_SETTING,
+        ) callconv(.winapi) HRESULT,
+        RequestURLOverride: *const fn(
+            self: *const IWPCWebSettings,
+            hWnd: ?HWND,
+            pcszURL: ?[*:0]const u16,
+            cURLs: u32,
+            ppcszSubURLs: ?[*]?PWSTR,
+            pfChanged: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWPCSettings: IWPCSettings,
+    IUnknown: IUnknown,
+    pub fn GetSettings(self: *const IWPCWebSettings, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSettings(self, pdwSettings);
+    }
+    pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestURLOverride(self, hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
+    }
 };
-pub const WPCFLAG_LOGOFF_TYPE_LOGOUT = WPCFLAG_LOGOFF_TYPE.LOGOUT;
-pub const WPCFLAG_LOGOFF_TYPE_RESTART = WPCFLAG_LOGOFF_TYPE.RESTART;
-pub const WPCFLAG_LOGOFF_TYPE_SHUTDOWN = WPCFLAG_LOGOFF_TYPE.SHUTDOWN;
-pub const WPCFLAG_LOGOFF_TYPE_FUS = WPCFLAG_LOGOFF_TYPE.FUS;
-pub const WPCFLAG_LOGOFF_TYPE_FORCEDFUS = WPCFLAG_LOGOFF_TYPE.FORCEDFUS;
 
-pub const WPCFLAG_IM_LEAVE = enum(i32) {
-    NORMAL = 0,
-    FORCED = 1,
-    CONVERSATION_END = 2,
+const CLSID_WindowsParentalControls_Value = Guid.initString("e77cc89b-7401-4c04-8ced-149db35add04");
+pub const CLSID_WindowsParentalControls = &CLSID_WindowsParentalControls_Value;
+
+pub const WPC_ARGS_APPLICATIONEVENT = enum(i32) {
+    SERIALIZEDAPPLICATION = 0,
+    DECISION = 1,
+    PROCESSID = 2,
+    CREATIONTIME = 3,
+    TIMEUSED = 4,
+    CARGS = 5,
 };
-pub const WPCFLAG_IM_LEAVE_NORMAL = WPCFLAG_IM_LEAVE.NORMAL;
-pub const WPCFLAG_IM_LEAVE_FORCED = WPCFLAG_IM_LEAVE.FORCED;
-pub const WPCFLAG_IM_LEAVE_CONVERSATION_END = WPCFLAG_IM_LEAVE.CONVERSATION_END;
+pub const WPC_ARGS_APPLICATIONEVENT_SERIALIZEDAPPLICATION = WPC_ARGS_APPLICATIONEVENT.SERIALIZEDAPPLICATION;
+pub const WPC_ARGS_APPLICATIONEVENT_DECISION = WPC_ARGS_APPLICATIONEVENT.DECISION;
+pub const WPC_ARGS_APPLICATIONEVENT_PROCESSID = WPC_ARGS_APPLICATIONEVENT.PROCESSID;
+pub const WPC_ARGS_APPLICATIONEVENT_CREATIONTIME = WPC_ARGS_APPLICATIONEVENT.CREATIONTIME;
+pub const WPC_ARGS_APPLICATIONEVENT_TIMEUSED = WPC_ARGS_APPLICATIONEVENT.TIMEUSED;
+pub const WPC_ARGS_APPLICATIONEVENT_CARGS = WPC_ARGS_APPLICATIONEVENT.CARGS;
 
-pub const WPC_ARGS_SETTINGSCHANGEEVENT = enum(i32) {
-    CLASS = 0,
-    SETTING = 1,
-    OWNER = 2,
-    OLDVAL = 3,
-    NEWVAL = 4,
-    REASON = 5,
-    OPTIONAL = 6,
+pub const WPC_ARGS_APPOVERRIDEEVENT = enum(i32) {
+    USERID = 0,
+    PATH = 1,
+    REASON = 2,
+    CARGS = 3,
+};
+pub const WPC_ARGS_APPOVERRIDEEVENT_USERID = WPC_ARGS_APPOVERRIDEEVENT.USERID;
+pub const WPC_ARGS_APPOVERRIDEEVENT_PATH = WPC_ARGS_APPOVERRIDEEVENT.PATH;
+pub const WPC_ARGS_APPOVERRIDEEVENT_REASON = WPC_ARGS_APPOVERRIDEEVENT.REASON;
+pub const WPC_ARGS_APPOVERRIDEEVENT_CARGS = WPC_ARGS_APPOVERRIDEEVENT.CARGS;
+
+pub const WPC_ARGS_COMPUTERUSAGEEVENT = enum(i32) {
+    ID = 0,
+    TIMEUSED = 1,
+    CARGS = 2,
+};
+pub const WPC_ARGS_COMPUTERUSAGEEVENT_ID = WPC_ARGS_COMPUTERUSAGEEVENT.ID;
+pub const WPC_ARGS_COMPUTERUSAGEEVENT_TIMEUSED = WPC_ARGS_COMPUTERUSAGEEVENT.TIMEUSED;
+pub const WPC_ARGS_COMPUTERUSAGEEVENT_CARGS = WPC_ARGS_COMPUTERUSAGEEVENT.CARGS;
+
+pub const WPC_ARGS_CONTENTUSAGEEVENT = enum(i32) {
+    CONTENTPROVIDERID = 0,
+    CONTENTPROVIDERTITLE = 1,
+    ID = 2,
+    TITLE = 3,
+    CATEGORY = 4,
+    RATINGS = 5,
+    DECISION = 6,
     CARGS = 7,
 };
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_CLASS = WPC_ARGS_SETTINGSCHANGEEVENT.CLASS;
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_SETTING = WPC_ARGS_SETTINGSCHANGEEVENT.SETTING;
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_OWNER = WPC_ARGS_SETTINGSCHANGEEVENT.OWNER;
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_OLDVAL = WPC_ARGS_SETTINGSCHANGEEVENT.OLDVAL;
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_NEWVAL = WPC_ARGS_SETTINGSCHANGEEVENT.NEWVAL;
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_REASON = WPC_ARGS_SETTINGSCHANGEEVENT.REASON;
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_OPTIONAL = WPC_ARGS_SETTINGSCHANGEEVENT.OPTIONAL;
-pub const WPC_ARGS_SETTINGSCHANGEEVENT_CARGS = WPC_ARGS_SETTINGSCHANGEEVENT.CARGS;
-
-pub const WPC_ARGS_SAFERAPPBLOCKED = enum(i32) {
-    TIMESTAMP = 0,
-    USERID = 1,
-    PATH = 2,
-    RULEID = 3,
-    CARGS = 4,
-};
-pub const WPC_ARGS_SAFERAPPBLOCKED_TIMESTAMP = WPC_ARGS_SAFERAPPBLOCKED.TIMESTAMP;
-pub const WPC_ARGS_SAFERAPPBLOCKED_USERID = WPC_ARGS_SAFERAPPBLOCKED.USERID;
-pub const WPC_ARGS_SAFERAPPBLOCKED_PATH = WPC_ARGS_SAFERAPPBLOCKED.PATH;
-pub const WPC_ARGS_SAFERAPPBLOCKED_RULEID = WPC_ARGS_SAFERAPPBLOCKED.RULEID;
-pub const WPC_ARGS_SAFERAPPBLOCKED_CARGS = WPC_ARGS_SAFERAPPBLOCKED.CARGS;
-
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT = enum(i32) {
-    SENDER = 0,
-    APPNAME = 1,
-    APPVERSION = 2,
-    SUBJECT = 3,
-    REASON = 4,
-    RECIPCOUNT = 5,
-    RECIPIENT = 6,
-    ATTACHCOUNT = 7,
-    ATTACHMENTNAME = 8,
-    RECEIVEDTIME = 9,
-    EMAILACCOUNT = 10,
-    CARGS = 11,
-};
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_SENDER = WPC_ARGS_EMAILRECEIEVEDEVENT.SENDER;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_APPNAME = WPC_ARGS_EMAILRECEIEVEDEVENT.APPNAME;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_APPVERSION = WPC_ARGS_EMAILRECEIEVEDEVENT.APPVERSION;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_SUBJECT = WPC_ARGS_EMAILRECEIEVEDEVENT.SUBJECT;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_REASON = WPC_ARGS_EMAILRECEIEVEDEVENT.REASON;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_RECIPCOUNT = WPC_ARGS_EMAILRECEIEVEDEVENT.RECIPCOUNT;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_RECIPIENT = WPC_ARGS_EMAILRECEIEVEDEVENT.RECIPIENT;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_ATTACHCOUNT = WPC_ARGS_EMAILRECEIEVEDEVENT.ATTACHCOUNT;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_ATTACHMENTNAME = WPC_ARGS_EMAILRECEIEVEDEVENT.ATTACHMENTNAME;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_RECEIVEDTIME = WPC_ARGS_EMAILRECEIEVEDEVENT.RECEIVEDTIME;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_EMAILACCOUNT = WPC_ARGS_EMAILRECEIEVEDEVENT.EMAILACCOUNT;
-pub const WPC_ARGS_EMAILRECEIEVEDEVENT_CARGS = WPC_ARGS_EMAILRECEIEVEDEVENT.CARGS;
-
-pub const WPC_ARGS_EMAILSENTEVENT = enum(i32) {
-    SENDER = 0,
-    APPNAME = 1,
-    APPVERSION = 2,
-    SUBJECT = 3,
-    REASON = 4,
-    RECIPCOUNT = 5,
-    RECIPIENT = 6,
-    ATTACHCOUNT = 7,
-    ATTACHMENTNAME = 8,
-    EMAILACCOUNT = 9,
-    CARGS = 10,
-};
-pub const WPC_ARGS_EMAILSENTEVENT_SENDER = WPC_ARGS_EMAILSENTEVENT.SENDER;
-pub const WPC_ARGS_EMAILSENTEVENT_APPNAME = WPC_ARGS_EMAILSENTEVENT.APPNAME;
-pub const WPC_ARGS_EMAILSENTEVENT_APPVERSION = WPC_ARGS_EMAILSENTEVENT.APPVERSION;
-pub const WPC_ARGS_EMAILSENTEVENT_SUBJECT = WPC_ARGS_EMAILSENTEVENT.SUBJECT;
-pub const WPC_ARGS_EMAILSENTEVENT_REASON = WPC_ARGS_EMAILSENTEVENT.REASON;
-pub const WPC_ARGS_EMAILSENTEVENT_RECIPCOUNT = WPC_ARGS_EMAILSENTEVENT.RECIPCOUNT;
-pub const WPC_ARGS_EMAILSENTEVENT_RECIPIENT = WPC_ARGS_EMAILSENTEVENT.RECIPIENT;
-pub const WPC_ARGS_EMAILSENTEVENT_ATTACHCOUNT = WPC_ARGS_EMAILSENTEVENT.ATTACHCOUNT;
-pub const WPC_ARGS_EMAILSENTEVENT_ATTACHMENTNAME = WPC_ARGS_EMAILSENTEVENT.ATTACHMENTNAME;
-pub const WPC_ARGS_EMAILSENTEVENT_EMAILACCOUNT = WPC_ARGS_EMAILSENTEVENT.EMAILACCOUNT;
-pub const WPC_ARGS_EMAILSENTEVENT_CARGS = WPC_ARGS_EMAILSENTEVENT.CARGS;
-
-pub const WPC_ARGS_EMAILCONTACTEVENT = enum(i32) {
-    APPNAME = 0,
-    APPVERSION = 1,
-    OLDNAME = 2,
-    OLDID = 3,
-    NEWNAME = 4,
-    NEWID = 5,
-    REASON = 6,
-    EMAILACCOUNT = 7,
-    CARGS = 8,
-};
-pub const WPC_ARGS_EMAILCONTACTEVENT_APPNAME = WPC_ARGS_EMAILCONTACTEVENT.APPNAME;
-pub const WPC_ARGS_EMAILCONTACTEVENT_APPVERSION = WPC_ARGS_EMAILCONTACTEVENT.APPVERSION;
-pub const WPC_ARGS_EMAILCONTACTEVENT_OLDNAME = WPC_ARGS_EMAILCONTACTEVENT.OLDNAME;
-pub const WPC_ARGS_EMAILCONTACTEVENT_OLDID = WPC_ARGS_EMAILCONTACTEVENT.OLDID;
-pub const WPC_ARGS_EMAILCONTACTEVENT_NEWNAME = WPC_ARGS_EMAILCONTACTEVENT.NEWNAME;
-pub const WPC_ARGS_EMAILCONTACTEVENT_NEWID = WPC_ARGS_EMAILCONTACTEVENT.NEWID;
-pub const WPC_ARGS_EMAILCONTACTEVENT_REASON = WPC_ARGS_EMAILCONTACTEVENT.REASON;
-pub const WPC_ARGS_EMAILCONTACTEVENT_EMAILACCOUNT = WPC_ARGS_EMAILCONTACTEVENT.EMAILACCOUNT;
-pub const WPC_ARGS_EMAILCONTACTEVENT_CARGS = WPC_ARGS_EMAILCONTACTEVENT.CARGS;
-
-pub const WPC_MEDIA_TYPE = enum(i32) {
-    OTHER = 0,
-    DVD = 1,
-    RECORDED_TV = 2,
-    AUDIO_FILE = 3,
-    CD_AUDIO = 4,
-    VIDEO_FILE = 5,
-    PICTURE_FILE = 6,
-    MAX = 7,
-};
-pub const WPC_MEDIA_TYPE_OTHER = WPC_MEDIA_TYPE.OTHER;
-pub const WPC_MEDIA_TYPE_DVD = WPC_MEDIA_TYPE.DVD;
-pub const WPC_MEDIA_TYPE_RECORDED_TV = WPC_MEDIA_TYPE.RECORDED_TV;
-pub const WPC_MEDIA_TYPE_AUDIO_FILE = WPC_MEDIA_TYPE.AUDIO_FILE;
-pub const WPC_MEDIA_TYPE_CD_AUDIO = WPC_MEDIA_TYPE.CD_AUDIO;
-pub const WPC_MEDIA_TYPE_VIDEO_FILE = WPC_MEDIA_TYPE.VIDEO_FILE;
-pub const WPC_MEDIA_TYPE_PICTURE_FILE = WPC_MEDIA_TYPE.PICTURE_FILE;
-pub const WPC_MEDIA_TYPE_MAX = WPC_MEDIA_TYPE.MAX;
-
-pub const WPC_MEDIA_EXPLICIT = enum(i32) {
-    FALSE = 0,
-    TRUE = 1,
-    UNKNOWN = 2,
-};
-pub const WPC_MEDIA_EXPLICIT_FALSE = WPC_MEDIA_EXPLICIT.FALSE;
-pub const WPC_MEDIA_EXPLICIT_TRUE = WPC_MEDIA_EXPLICIT.TRUE;
-pub const WPC_MEDIA_EXPLICIT_UNKNOWN = WPC_MEDIA_EXPLICIT.UNKNOWN;
-
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT = enum(i32) {
-    APPNAME = 0,
-    APPVERSION = 1,
-    MEDIATYPE = 2,
-    PATH = 3,
-    TITLE = 4,
-    PML = 5,
-    ALBUM = 6,
-    EXPLICIT = 7,
-    REASON = 8,
-    CARGS = 9,
-};
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_APPNAME = WPC_ARGS_MEDIAPLAYBACKEVENT.APPNAME;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_APPVERSION = WPC_ARGS_MEDIAPLAYBACKEVENT.APPVERSION;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_MEDIATYPE = WPC_ARGS_MEDIAPLAYBACKEVENT.MEDIATYPE;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_PATH = WPC_ARGS_MEDIAPLAYBACKEVENT.PATH;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_TITLE = WPC_ARGS_MEDIAPLAYBACKEVENT.TITLE;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_PML = WPC_ARGS_MEDIAPLAYBACKEVENT.PML;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_ALBUM = WPC_ARGS_MEDIAPLAYBACKEVENT.ALBUM;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_EXPLICIT = WPC_ARGS_MEDIAPLAYBACKEVENT.EXPLICIT;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_REASON = WPC_ARGS_MEDIAPLAYBACKEVENT.REASON;
-pub const WPC_ARGS_MEDIAPLAYBACKEVENT_CARGS = WPC_ARGS_MEDIAPLAYBACKEVENT.CARGS;
-
-pub const WPC_ARGS_MEDIADOWNLOADEVENT = enum(i32) {
-    APPNAME = 0,
-    APPVERSION = 1,
-    MEDIATYPE = 2,
-    PATH = 3,
-    TITLE = 4,
-    PML = 5,
-    ALBUM = 6,
-    EXPLICIT = 7,
-    REASON = 8,
-    CARGS = 9,
-};
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_APPNAME = WPC_ARGS_MEDIADOWNLOADEVENT.APPNAME;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_APPVERSION = WPC_ARGS_MEDIADOWNLOADEVENT.APPVERSION;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_MEDIATYPE = WPC_ARGS_MEDIADOWNLOADEVENT.MEDIATYPE;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_PATH = WPC_ARGS_MEDIADOWNLOADEVENT.PATH;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_TITLE = WPC_ARGS_MEDIADOWNLOADEVENT.TITLE;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_PML = WPC_ARGS_MEDIADOWNLOADEVENT.PML;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_ALBUM = WPC_ARGS_MEDIADOWNLOADEVENT.ALBUM;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_EXPLICIT = WPC_ARGS_MEDIADOWNLOADEVENT.EXPLICIT;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_REASON = WPC_ARGS_MEDIADOWNLOADEVENT.REASON;
-pub const WPC_ARGS_MEDIADOWNLOADEVENT_CARGS = WPC_ARGS_MEDIADOWNLOADEVENT.CARGS;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_CONTENTPROVIDERID = WPC_ARGS_CONTENTUSAGEEVENT.CONTENTPROVIDERID;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_CONTENTPROVIDERTITLE = WPC_ARGS_CONTENTUSAGEEVENT.CONTENTPROVIDERTITLE;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_ID = WPC_ARGS_CONTENTUSAGEEVENT.ID;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_TITLE = WPC_ARGS_CONTENTUSAGEEVENT.TITLE;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_CATEGORY = WPC_ARGS_CONTENTUSAGEEVENT.CATEGORY;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_RATINGS = WPC_ARGS_CONTENTUSAGEEVENT.RATINGS;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_DECISION = WPC_ARGS_CONTENTUSAGEEVENT.DECISION;
+pub const WPC_ARGS_CONTENTUSAGEEVENT_CARGS = WPC_ARGS_CONTENTUSAGEEVENT.CARGS;
 
 pub const WPC_ARGS_CONVERSATIONINITEVENT = enum(i32) {
     APPNAME = 0,
@@ -708,26 +460,162 @@ pub const WPC_ARGS_CONVERSATIONLEAVEEVENT_MEMBER = WPC_ARGS_CONVERSATIONLEAVEEVE
 pub const WPC_ARGS_CONVERSATIONLEAVEEVENT_FLAGS = WPC_ARGS_CONVERSATIONLEAVEEVENT.FLAGS;
 pub const WPC_ARGS_CONVERSATIONLEAVEEVENT_CARGS = WPC_ARGS_CONVERSATIONLEAVEEVENT.CARGS;
 
-pub const WPCFLAG_IM_FEATURE = enum(i32) {
-    NONE = 0,
-    VIDEO = 1,
-    AUDIO = 2,
-    GAME = 4,
-    SMS = 8,
-    FILESWAP = 16,
-    URLSWAP = 32,
-    SENDING = -2147483648,
-    ALL = -1,
+pub const WPC_ARGS_CUSTOMEVENT = enum(i32) {
+    PUBLISHER = 0,
+    APPNAME = 1,
+    APPVERSION = 2,
+    EVENT = 3,
+    VALUE1 = 4,
+    VALUE2 = 5,
+    VALUE3 = 6,
+    BLOCKED = 7,
+    REASON = 8,
+    CARGS = 9,
 };
-pub const WPCFLAG_IM_FEATURE_NONE = WPCFLAG_IM_FEATURE.NONE;
-pub const WPCFLAG_IM_FEATURE_VIDEO = WPCFLAG_IM_FEATURE.VIDEO;
-pub const WPCFLAG_IM_FEATURE_AUDIO = WPCFLAG_IM_FEATURE.AUDIO;
-pub const WPCFLAG_IM_FEATURE_GAME = WPCFLAG_IM_FEATURE.GAME;
-pub const WPCFLAG_IM_FEATURE_SMS = WPCFLAG_IM_FEATURE.SMS;
-pub const WPCFLAG_IM_FEATURE_FILESWAP = WPCFLAG_IM_FEATURE.FILESWAP;
-pub const WPCFLAG_IM_FEATURE_URLSWAP = WPCFLAG_IM_FEATURE.URLSWAP;
-pub const WPCFLAG_IM_FEATURE_SENDING = WPCFLAG_IM_FEATURE.SENDING;
-pub const WPCFLAG_IM_FEATURE_ALL = WPCFLAG_IM_FEATURE.ALL;
+pub const WPC_ARGS_CUSTOMEVENT_PUBLISHER = WPC_ARGS_CUSTOMEVENT.PUBLISHER;
+pub const WPC_ARGS_CUSTOMEVENT_APPNAME = WPC_ARGS_CUSTOMEVENT.APPNAME;
+pub const WPC_ARGS_CUSTOMEVENT_APPVERSION = WPC_ARGS_CUSTOMEVENT.APPVERSION;
+pub const WPC_ARGS_CUSTOMEVENT_EVENT = WPC_ARGS_CUSTOMEVENT.EVENT;
+pub const WPC_ARGS_CUSTOMEVENT_VALUE1 = WPC_ARGS_CUSTOMEVENT.VALUE1;
+pub const WPC_ARGS_CUSTOMEVENT_VALUE2 = WPC_ARGS_CUSTOMEVENT.VALUE2;
+pub const WPC_ARGS_CUSTOMEVENT_VALUE3 = WPC_ARGS_CUSTOMEVENT.VALUE3;
+pub const WPC_ARGS_CUSTOMEVENT_BLOCKED = WPC_ARGS_CUSTOMEVENT.BLOCKED;
+pub const WPC_ARGS_CUSTOMEVENT_REASON = WPC_ARGS_CUSTOMEVENT.REASON;
+pub const WPC_ARGS_CUSTOMEVENT_CARGS = WPC_ARGS_CUSTOMEVENT.CARGS;
+
+pub const WPC_ARGS_EMAILCONTACTEVENT = enum(i32) {
+    APPNAME = 0,
+    APPVERSION = 1,
+    OLDNAME = 2,
+    OLDID = 3,
+    NEWNAME = 4,
+    NEWID = 5,
+    REASON = 6,
+    EMAILACCOUNT = 7,
+    CARGS = 8,
+};
+pub const WPC_ARGS_EMAILCONTACTEVENT_APPNAME = WPC_ARGS_EMAILCONTACTEVENT.APPNAME;
+pub const WPC_ARGS_EMAILCONTACTEVENT_APPVERSION = WPC_ARGS_EMAILCONTACTEVENT.APPVERSION;
+pub const WPC_ARGS_EMAILCONTACTEVENT_OLDNAME = WPC_ARGS_EMAILCONTACTEVENT.OLDNAME;
+pub const WPC_ARGS_EMAILCONTACTEVENT_OLDID = WPC_ARGS_EMAILCONTACTEVENT.OLDID;
+pub const WPC_ARGS_EMAILCONTACTEVENT_NEWNAME = WPC_ARGS_EMAILCONTACTEVENT.NEWNAME;
+pub const WPC_ARGS_EMAILCONTACTEVENT_NEWID = WPC_ARGS_EMAILCONTACTEVENT.NEWID;
+pub const WPC_ARGS_EMAILCONTACTEVENT_REASON = WPC_ARGS_EMAILCONTACTEVENT.REASON;
+pub const WPC_ARGS_EMAILCONTACTEVENT_EMAILACCOUNT = WPC_ARGS_EMAILCONTACTEVENT.EMAILACCOUNT;
+pub const WPC_ARGS_EMAILCONTACTEVENT_CARGS = WPC_ARGS_EMAILCONTACTEVENT.CARGS;
+
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT = enum(i32) {
+    SENDER = 0,
+    APPNAME = 1,
+    APPVERSION = 2,
+    SUBJECT = 3,
+    REASON = 4,
+    RECIPCOUNT = 5,
+    RECIPIENT = 6,
+    ATTACHCOUNT = 7,
+    ATTACHMENTNAME = 8,
+    RECEIVEDTIME = 9,
+    EMAILACCOUNT = 10,
+    CARGS = 11,
+};
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_SENDER = WPC_ARGS_EMAILRECEIEVEDEVENT.SENDER;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_APPNAME = WPC_ARGS_EMAILRECEIEVEDEVENT.APPNAME;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_APPVERSION = WPC_ARGS_EMAILRECEIEVEDEVENT.APPVERSION;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_SUBJECT = WPC_ARGS_EMAILRECEIEVEDEVENT.SUBJECT;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_REASON = WPC_ARGS_EMAILRECEIEVEDEVENT.REASON;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_RECIPCOUNT = WPC_ARGS_EMAILRECEIEVEDEVENT.RECIPCOUNT;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_RECIPIENT = WPC_ARGS_EMAILRECEIEVEDEVENT.RECIPIENT;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_ATTACHCOUNT = WPC_ARGS_EMAILRECEIEVEDEVENT.ATTACHCOUNT;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_ATTACHMENTNAME = WPC_ARGS_EMAILRECEIEVEDEVENT.ATTACHMENTNAME;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_RECEIVEDTIME = WPC_ARGS_EMAILRECEIEVEDEVENT.RECEIVEDTIME;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_EMAILACCOUNT = WPC_ARGS_EMAILRECEIEVEDEVENT.EMAILACCOUNT;
+pub const WPC_ARGS_EMAILRECEIEVEDEVENT_CARGS = WPC_ARGS_EMAILRECEIEVEDEVENT.CARGS;
+
+pub const WPC_ARGS_EMAILSENTEVENT = enum(i32) {
+    SENDER = 0,
+    APPNAME = 1,
+    APPVERSION = 2,
+    SUBJECT = 3,
+    REASON = 4,
+    RECIPCOUNT = 5,
+    RECIPIENT = 6,
+    ATTACHCOUNT = 7,
+    ATTACHMENTNAME = 8,
+    EMAILACCOUNT = 9,
+    CARGS = 10,
+};
+pub const WPC_ARGS_EMAILSENTEVENT_SENDER = WPC_ARGS_EMAILSENTEVENT.SENDER;
+pub const WPC_ARGS_EMAILSENTEVENT_APPNAME = WPC_ARGS_EMAILSENTEVENT.APPNAME;
+pub const WPC_ARGS_EMAILSENTEVENT_APPVERSION = WPC_ARGS_EMAILSENTEVENT.APPVERSION;
+pub const WPC_ARGS_EMAILSENTEVENT_SUBJECT = WPC_ARGS_EMAILSENTEVENT.SUBJECT;
+pub const WPC_ARGS_EMAILSENTEVENT_REASON = WPC_ARGS_EMAILSENTEVENT.REASON;
+pub const WPC_ARGS_EMAILSENTEVENT_RECIPCOUNT = WPC_ARGS_EMAILSENTEVENT.RECIPCOUNT;
+pub const WPC_ARGS_EMAILSENTEVENT_RECIPIENT = WPC_ARGS_EMAILSENTEVENT.RECIPIENT;
+pub const WPC_ARGS_EMAILSENTEVENT_ATTACHCOUNT = WPC_ARGS_EMAILSENTEVENT.ATTACHCOUNT;
+pub const WPC_ARGS_EMAILSENTEVENT_ATTACHMENTNAME = WPC_ARGS_EMAILSENTEVENT.ATTACHMENTNAME;
+pub const WPC_ARGS_EMAILSENTEVENT_EMAILACCOUNT = WPC_ARGS_EMAILSENTEVENT.EMAILACCOUNT;
+pub const WPC_ARGS_EMAILSENTEVENT_CARGS = WPC_ARGS_EMAILSENTEVENT.CARGS;
+
+pub const WPC_ARGS_FILEDOWNLOADEVENT = enum(i32) {
+    URL = 0,
+    APPNAME = 1,
+    VERSION = 2,
+    BLOCKED = 3,
+    PATH = 4,
+    CARGS = 5,
+};
+pub const WPC_ARGS_FILEDOWNLOADEVENT_URL = WPC_ARGS_FILEDOWNLOADEVENT.URL;
+pub const WPC_ARGS_FILEDOWNLOADEVENT_APPNAME = WPC_ARGS_FILEDOWNLOADEVENT.APPNAME;
+pub const WPC_ARGS_FILEDOWNLOADEVENT_VERSION = WPC_ARGS_FILEDOWNLOADEVENT.VERSION;
+pub const WPC_ARGS_FILEDOWNLOADEVENT_BLOCKED = WPC_ARGS_FILEDOWNLOADEVENT.BLOCKED;
+pub const WPC_ARGS_FILEDOWNLOADEVENT_PATH = WPC_ARGS_FILEDOWNLOADEVENT.PATH;
+pub const WPC_ARGS_FILEDOWNLOADEVENT_CARGS = WPC_ARGS_FILEDOWNLOADEVENT.CARGS;
+
+pub const WPC_ARGS_GAMESTARTEVENT = enum(i32) {
+    APPID = 0,
+    INSTANCEID = 1,
+    APPVERSION = 2,
+    PATH = 3,
+    RATING = 4,
+    RATINGSYSTEM = 5,
+    REASON = 6,
+    DESCCOUNT = 7,
+    DESCRIPTOR = 8,
+    PID = 9,
+    CARGS = 10,
+};
+pub const WPC_ARGS_GAMESTARTEVENT_APPID = WPC_ARGS_GAMESTARTEVENT.APPID;
+pub const WPC_ARGS_GAMESTARTEVENT_INSTANCEID = WPC_ARGS_GAMESTARTEVENT.INSTANCEID;
+pub const WPC_ARGS_GAMESTARTEVENT_APPVERSION = WPC_ARGS_GAMESTARTEVENT.APPVERSION;
+pub const WPC_ARGS_GAMESTARTEVENT_PATH = WPC_ARGS_GAMESTARTEVENT.PATH;
+pub const WPC_ARGS_GAMESTARTEVENT_RATING = WPC_ARGS_GAMESTARTEVENT.RATING;
+pub const WPC_ARGS_GAMESTARTEVENT_RATINGSYSTEM = WPC_ARGS_GAMESTARTEVENT.RATINGSYSTEM;
+pub const WPC_ARGS_GAMESTARTEVENT_REASON = WPC_ARGS_GAMESTARTEVENT.REASON;
+pub const WPC_ARGS_GAMESTARTEVENT_DESCCOUNT = WPC_ARGS_GAMESTARTEVENT.DESCCOUNT;
+pub const WPC_ARGS_GAMESTARTEVENT_DESCRIPTOR = WPC_ARGS_GAMESTARTEVENT.DESCRIPTOR;
+pub const WPC_ARGS_GAMESTARTEVENT_PID = WPC_ARGS_GAMESTARTEVENT.PID;
+pub const WPC_ARGS_GAMESTARTEVENT_CARGS = WPC_ARGS_GAMESTARTEVENT.CARGS;
+
+pub const WPC_ARGS_IMCONTACTEVENT = enum(i32) {
+    APPNAME = 0,
+    APPVERSION = 1,
+    ACCOUNTNAME = 2,
+    OLDNAME = 3,
+    OLDID = 4,
+    NEWNAME = 5,
+    NEWID = 6,
+    REASON = 7,
+    CARGS = 8,
+};
+pub const WPC_ARGS_IMCONTACTEVENT_APPNAME = WPC_ARGS_IMCONTACTEVENT.APPNAME;
+pub const WPC_ARGS_IMCONTACTEVENT_APPVERSION = WPC_ARGS_IMCONTACTEVENT.APPVERSION;
+pub const WPC_ARGS_IMCONTACTEVENT_ACCOUNTNAME = WPC_ARGS_IMCONTACTEVENT.ACCOUNTNAME;
+pub const WPC_ARGS_IMCONTACTEVENT_OLDNAME = WPC_ARGS_IMCONTACTEVENT.OLDNAME;
+pub const WPC_ARGS_IMCONTACTEVENT_OLDID = WPC_ARGS_IMCONTACTEVENT.OLDID;
+pub const WPC_ARGS_IMCONTACTEVENT_NEWNAME = WPC_ARGS_IMCONTACTEVENT.NEWNAME;
+pub const WPC_ARGS_IMCONTACTEVENT_NEWID = WPC_ARGS_IMCONTACTEVENT.NEWID;
+pub const WPC_ARGS_IMCONTACTEVENT_REASON = WPC_ARGS_IMCONTACTEVENT.REASON;
+pub const WPC_ARGS_IMCONTACTEVENT_CARGS = WPC_ARGS_IMCONTACTEVENT.CARGS;
 
 pub const WPC_ARGS_IMFEATUREEVENT = enum(i32) {
     APPNAME = 0,
@@ -756,66 +644,83 @@ pub const WPC_ARGS_IMFEATUREEVENT_SENDERIP = WPC_ARGS_IMFEATUREEVENT.SENDERIP;
 pub const WPC_ARGS_IMFEATUREEVENT_DATA = WPC_ARGS_IMFEATUREEVENT.DATA;
 pub const WPC_ARGS_IMFEATUREEVENT_CARGS = WPC_ARGS_IMFEATUREEVENT.CARGS;
 
-pub const WPC_ARGS_IMCONTACTEVENT = enum(i32) {
+pub const WPC_ARGS_MEDIADOWNLOADEVENT = enum(i32) {
     APPNAME = 0,
     APPVERSION = 1,
-    ACCOUNTNAME = 2,
-    OLDNAME = 3,
-    OLDID = 4,
-    NEWNAME = 5,
-    NEWID = 6,
-    REASON = 7,
-    CARGS = 8,
-};
-pub const WPC_ARGS_IMCONTACTEVENT_APPNAME = WPC_ARGS_IMCONTACTEVENT.APPNAME;
-pub const WPC_ARGS_IMCONTACTEVENT_APPVERSION = WPC_ARGS_IMCONTACTEVENT.APPVERSION;
-pub const WPC_ARGS_IMCONTACTEVENT_ACCOUNTNAME = WPC_ARGS_IMCONTACTEVENT.ACCOUNTNAME;
-pub const WPC_ARGS_IMCONTACTEVENT_OLDNAME = WPC_ARGS_IMCONTACTEVENT.OLDNAME;
-pub const WPC_ARGS_IMCONTACTEVENT_OLDID = WPC_ARGS_IMCONTACTEVENT.OLDID;
-pub const WPC_ARGS_IMCONTACTEVENT_NEWNAME = WPC_ARGS_IMCONTACTEVENT.NEWNAME;
-pub const WPC_ARGS_IMCONTACTEVENT_NEWID = WPC_ARGS_IMCONTACTEVENT.NEWID;
-pub const WPC_ARGS_IMCONTACTEVENT_REASON = WPC_ARGS_IMCONTACTEVENT.REASON;
-pub const WPC_ARGS_IMCONTACTEVENT_CARGS = WPC_ARGS_IMCONTACTEVENT.CARGS;
-
-pub const WPC_ARGS_GAMESTARTEVENT = enum(i32) {
-    APPID = 0,
-    INSTANCEID = 1,
-    APPVERSION = 2,
+    MEDIATYPE = 2,
     PATH = 3,
-    RATING = 4,
-    RATINGSYSTEM = 5,
-    REASON = 6,
-    DESCCOUNT = 7,
-    DESCRIPTOR = 8,
-    PID = 9,
-    CARGS = 10,
+    TITLE = 4,
+    PML = 5,
+    ALBUM = 6,
+    EXPLICIT = 7,
+    REASON = 8,
+    CARGS = 9,
 };
-pub const WPC_ARGS_GAMESTARTEVENT_APPID = WPC_ARGS_GAMESTARTEVENT.APPID;
-pub const WPC_ARGS_GAMESTARTEVENT_INSTANCEID = WPC_ARGS_GAMESTARTEVENT.INSTANCEID;
-pub const WPC_ARGS_GAMESTARTEVENT_APPVERSION = WPC_ARGS_GAMESTARTEVENT.APPVERSION;
-pub const WPC_ARGS_GAMESTARTEVENT_PATH = WPC_ARGS_GAMESTARTEVENT.PATH;
-pub const WPC_ARGS_GAMESTARTEVENT_RATING = WPC_ARGS_GAMESTARTEVENT.RATING;
-pub const WPC_ARGS_GAMESTARTEVENT_RATINGSYSTEM = WPC_ARGS_GAMESTARTEVENT.RATINGSYSTEM;
-pub const WPC_ARGS_GAMESTARTEVENT_REASON = WPC_ARGS_GAMESTARTEVENT.REASON;
-pub const WPC_ARGS_GAMESTARTEVENT_DESCCOUNT = WPC_ARGS_GAMESTARTEVENT.DESCCOUNT;
-pub const WPC_ARGS_GAMESTARTEVENT_DESCRIPTOR = WPC_ARGS_GAMESTARTEVENT.DESCRIPTOR;
-pub const WPC_ARGS_GAMESTARTEVENT_PID = WPC_ARGS_GAMESTARTEVENT.PID;
-pub const WPC_ARGS_GAMESTARTEVENT_CARGS = WPC_ARGS_GAMESTARTEVENT.CARGS;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_APPNAME = WPC_ARGS_MEDIADOWNLOADEVENT.APPNAME;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_APPVERSION = WPC_ARGS_MEDIADOWNLOADEVENT.APPVERSION;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_MEDIATYPE = WPC_ARGS_MEDIADOWNLOADEVENT.MEDIATYPE;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_PATH = WPC_ARGS_MEDIADOWNLOADEVENT.PATH;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_TITLE = WPC_ARGS_MEDIADOWNLOADEVENT.TITLE;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_PML = WPC_ARGS_MEDIADOWNLOADEVENT.PML;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_ALBUM = WPC_ARGS_MEDIADOWNLOADEVENT.ALBUM;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_EXPLICIT = WPC_ARGS_MEDIADOWNLOADEVENT.EXPLICIT;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_REASON = WPC_ARGS_MEDIADOWNLOADEVENT.REASON;
+pub const WPC_ARGS_MEDIADOWNLOADEVENT_CARGS = WPC_ARGS_MEDIADOWNLOADEVENT.CARGS;
 
-pub const WPC_ARGS_FILEDOWNLOADEVENT = enum(i32) {
-    URL = 0,
-    APPNAME = 1,
-    VERSION = 2,
-    BLOCKED = 3,
-    PATH = 4,
-    CARGS = 5,
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT = enum(i32) {
+    APPNAME = 0,
+    APPVERSION = 1,
+    MEDIATYPE = 2,
+    PATH = 3,
+    TITLE = 4,
+    PML = 5,
+    ALBUM = 6,
+    EXPLICIT = 7,
+    REASON = 8,
+    CARGS = 9,
 };
-pub const WPC_ARGS_FILEDOWNLOADEVENT_URL = WPC_ARGS_FILEDOWNLOADEVENT.URL;
-pub const WPC_ARGS_FILEDOWNLOADEVENT_APPNAME = WPC_ARGS_FILEDOWNLOADEVENT.APPNAME;
-pub const WPC_ARGS_FILEDOWNLOADEVENT_VERSION = WPC_ARGS_FILEDOWNLOADEVENT.VERSION;
-pub const WPC_ARGS_FILEDOWNLOADEVENT_BLOCKED = WPC_ARGS_FILEDOWNLOADEVENT.BLOCKED;
-pub const WPC_ARGS_FILEDOWNLOADEVENT_PATH = WPC_ARGS_FILEDOWNLOADEVENT.PATH;
-pub const WPC_ARGS_FILEDOWNLOADEVENT_CARGS = WPC_ARGS_FILEDOWNLOADEVENT.CARGS;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_APPNAME = WPC_ARGS_MEDIAPLAYBACKEVENT.APPNAME;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_APPVERSION = WPC_ARGS_MEDIAPLAYBACKEVENT.APPVERSION;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_MEDIATYPE = WPC_ARGS_MEDIAPLAYBACKEVENT.MEDIATYPE;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_PATH = WPC_ARGS_MEDIAPLAYBACKEVENT.PATH;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_TITLE = WPC_ARGS_MEDIAPLAYBACKEVENT.TITLE;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_PML = WPC_ARGS_MEDIAPLAYBACKEVENT.PML;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_ALBUM = WPC_ARGS_MEDIAPLAYBACKEVENT.ALBUM;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_EXPLICIT = WPC_ARGS_MEDIAPLAYBACKEVENT.EXPLICIT;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_REASON = WPC_ARGS_MEDIAPLAYBACKEVENT.REASON;
+pub const WPC_ARGS_MEDIAPLAYBACKEVENT_CARGS = WPC_ARGS_MEDIAPLAYBACKEVENT.CARGS;
+
+pub const WPC_ARGS_SAFERAPPBLOCKED = enum(i32) {
+    TIMESTAMP = 0,
+    USERID = 1,
+    PATH = 2,
+    RULEID = 3,
+    CARGS = 4,
+};
+pub const WPC_ARGS_SAFERAPPBLOCKED_TIMESTAMP = WPC_ARGS_SAFERAPPBLOCKED.TIMESTAMP;
+pub const WPC_ARGS_SAFERAPPBLOCKED_USERID = WPC_ARGS_SAFERAPPBLOCKED.USERID;
+pub const WPC_ARGS_SAFERAPPBLOCKED_PATH = WPC_ARGS_SAFERAPPBLOCKED.PATH;
+pub const WPC_ARGS_SAFERAPPBLOCKED_RULEID = WPC_ARGS_SAFERAPPBLOCKED.RULEID;
+pub const WPC_ARGS_SAFERAPPBLOCKED_CARGS = WPC_ARGS_SAFERAPPBLOCKED.CARGS;
+
+pub const WPC_ARGS_SETTINGSCHANGEEVENT = enum(i32) {
+    CLASS = 0,
+    SETTING = 1,
+    OWNER = 2,
+    OLDVAL = 3,
+    NEWVAL = 4,
+    REASON = 5,
+    OPTIONAL = 6,
+    CARGS = 7,
+};
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_CLASS = WPC_ARGS_SETTINGSCHANGEEVENT.CLASS;
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_SETTING = WPC_ARGS_SETTINGSCHANGEEVENT.SETTING;
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_OWNER = WPC_ARGS_SETTINGSCHANGEEVENT.OWNER;
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_OLDVAL = WPC_ARGS_SETTINGSCHANGEEVENT.OLDVAL;
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_NEWVAL = WPC_ARGS_SETTINGSCHANGEEVENT.NEWVAL;
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_REASON = WPC_ARGS_SETTINGSCHANGEEVENT.REASON;
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_OPTIONAL = WPC_ARGS_SETTINGSCHANGEEVENT.OPTIONAL;
+pub const WPC_ARGS_SETTINGSCHANGEEVENT_CARGS = WPC_ARGS_SETTINGSCHANGEEVENT.CARGS;
 
 pub const WPC_ARGS_URLVISITEVENT = enum(i32) {
     URL = 0,
@@ -835,6 +740,17 @@ pub const WPC_ARGS_URLVISITEVENT_RATINGSYSTEMID = WPC_ARGS_URLVISITEVENT.RATINGS
 pub const WPC_ARGS_URLVISITEVENT_CATCOUNT = WPC_ARGS_URLVISITEVENT.CATCOUNT;
 pub const WPC_ARGS_URLVISITEVENT_CATEGORY = WPC_ARGS_URLVISITEVENT.CATEGORY;
 pub const WPC_ARGS_URLVISITEVENT_CARGS = WPC_ARGS_URLVISITEVENT.CARGS;
+
+pub const WPC_ARGS_WEBOVERRIDEEVENT = enum(i32) {
+    USERID = 0,
+    URL = 1,
+    REASON = 2,
+    CARGS = 3,
+};
+pub const WPC_ARGS_WEBOVERRIDEEVENT_USERID = WPC_ARGS_WEBOVERRIDEEVENT.USERID;
+pub const WPC_ARGS_WEBOVERRIDEEVENT_URL = WPC_ARGS_WEBOVERRIDEEVENT.URL;
+pub const WPC_ARGS_WEBOVERRIDEEVENT_REASON = WPC_ARGS_WEBOVERRIDEEVENT.REASON;
+pub const WPC_ARGS_WEBOVERRIDEEVENT_CARGS = WPC_ARGS_WEBOVERRIDEEVENT.CARGS;
 
 pub const WPC_ARGS_WEBSITEVISITEVENT = enum(i32) {
     URL = 0,
@@ -859,93 +775,33 @@ pub const WPC_ARGS_WEBSITEVISITEVENT_REFERRER = WPC_ARGS_WEBSITEVISITEVENT.REFER
 pub const WPC_ARGS_WEBSITEVISITEVENT_TELEMETRY = WPC_ARGS_WEBSITEVISITEVENT.TELEMETRY;
 pub const WPC_ARGS_WEBSITEVISITEVENT_CARGS = WPC_ARGS_WEBSITEVISITEVENT.CARGS;
 
-pub const WPC_ARGS_APPLICATIONEVENT = enum(i32) {
-    SERIALIZEDAPPLICATION = 0,
-    DECISION = 1,
-    PROCESSID = 2,
-    CREATIONTIME = 3,
-    TIMEUSED = 4,
-    CARGS = 5,
+pub const WPC_MEDIA_EXPLICIT = enum(i32) {
+    FALSE = 0,
+    TRUE = 1,
+    UNKNOWN = 2,
 };
-pub const WPC_ARGS_APPLICATIONEVENT_SERIALIZEDAPPLICATION = WPC_ARGS_APPLICATIONEVENT.SERIALIZEDAPPLICATION;
-pub const WPC_ARGS_APPLICATIONEVENT_DECISION = WPC_ARGS_APPLICATIONEVENT.DECISION;
-pub const WPC_ARGS_APPLICATIONEVENT_PROCESSID = WPC_ARGS_APPLICATIONEVENT.PROCESSID;
-pub const WPC_ARGS_APPLICATIONEVENT_CREATIONTIME = WPC_ARGS_APPLICATIONEVENT.CREATIONTIME;
-pub const WPC_ARGS_APPLICATIONEVENT_TIMEUSED = WPC_ARGS_APPLICATIONEVENT.TIMEUSED;
-pub const WPC_ARGS_APPLICATIONEVENT_CARGS = WPC_ARGS_APPLICATIONEVENT.CARGS;
+pub const WPC_MEDIA_EXPLICIT_FALSE = WPC_MEDIA_EXPLICIT.FALSE;
+pub const WPC_MEDIA_EXPLICIT_TRUE = WPC_MEDIA_EXPLICIT.TRUE;
+pub const WPC_MEDIA_EXPLICIT_UNKNOWN = WPC_MEDIA_EXPLICIT.UNKNOWN;
 
-pub const WPC_ARGS_COMPUTERUSAGEEVENT = enum(i32) {
-    ID = 0,
-    TIMEUSED = 1,
-    CARGS = 2,
+pub const WPC_MEDIA_TYPE = enum(i32) {
+    OTHER = 0,
+    DVD = 1,
+    RECORDED_TV = 2,
+    AUDIO_FILE = 3,
+    CD_AUDIO = 4,
+    VIDEO_FILE = 5,
+    PICTURE_FILE = 6,
+    MAX = 7,
 };
-pub const WPC_ARGS_COMPUTERUSAGEEVENT_ID = WPC_ARGS_COMPUTERUSAGEEVENT.ID;
-pub const WPC_ARGS_COMPUTERUSAGEEVENT_TIMEUSED = WPC_ARGS_COMPUTERUSAGEEVENT.TIMEUSED;
-pub const WPC_ARGS_COMPUTERUSAGEEVENT_CARGS = WPC_ARGS_COMPUTERUSAGEEVENT.CARGS;
-
-pub const WPC_ARGS_CONTENTUSAGEEVENT = enum(i32) {
-    CONTENTPROVIDERID = 0,
-    CONTENTPROVIDERTITLE = 1,
-    ID = 2,
-    TITLE = 3,
-    CATEGORY = 4,
-    RATINGS = 5,
-    DECISION = 6,
-    CARGS = 7,
-};
-pub const WPC_ARGS_CONTENTUSAGEEVENT_CONTENTPROVIDERID = WPC_ARGS_CONTENTUSAGEEVENT.CONTENTPROVIDERID;
-pub const WPC_ARGS_CONTENTUSAGEEVENT_CONTENTPROVIDERTITLE = WPC_ARGS_CONTENTUSAGEEVENT.CONTENTPROVIDERTITLE;
-pub const WPC_ARGS_CONTENTUSAGEEVENT_ID = WPC_ARGS_CONTENTUSAGEEVENT.ID;
-pub const WPC_ARGS_CONTENTUSAGEEVENT_TITLE = WPC_ARGS_CONTENTUSAGEEVENT.TITLE;
-pub const WPC_ARGS_CONTENTUSAGEEVENT_CATEGORY = WPC_ARGS_CONTENTUSAGEEVENT.CATEGORY;
-pub const WPC_ARGS_CONTENTUSAGEEVENT_RATINGS = WPC_ARGS_CONTENTUSAGEEVENT.RATINGS;
-pub const WPC_ARGS_CONTENTUSAGEEVENT_DECISION = WPC_ARGS_CONTENTUSAGEEVENT.DECISION;
-pub const WPC_ARGS_CONTENTUSAGEEVENT_CARGS = WPC_ARGS_CONTENTUSAGEEVENT.CARGS;
-
-pub const WPC_ARGS_CUSTOMEVENT = enum(i32) {
-    PUBLISHER = 0,
-    APPNAME = 1,
-    APPVERSION = 2,
-    EVENT = 3,
-    VALUE1 = 4,
-    VALUE2 = 5,
-    VALUE3 = 6,
-    BLOCKED = 7,
-    REASON = 8,
-    CARGS = 9,
-};
-pub const WPC_ARGS_CUSTOMEVENT_PUBLISHER = WPC_ARGS_CUSTOMEVENT.PUBLISHER;
-pub const WPC_ARGS_CUSTOMEVENT_APPNAME = WPC_ARGS_CUSTOMEVENT.APPNAME;
-pub const WPC_ARGS_CUSTOMEVENT_APPVERSION = WPC_ARGS_CUSTOMEVENT.APPVERSION;
-pub const WPC_ARGS_CUSTOMEVENT_EVENT = WPC_ARGS_CUSTOMEVENT.EVENT;
-pub const WPC_ARGS_CUSTOMEVENT_VALUE1 = WPC_ARGS_CUSTOMEVENT.VALUE1;
-pub const WPC_ARGS_CUSTOMEVENT_VALUE2 = WPC_ARGS_CUSTOMEVENT.VALUE2;
-pub const WPC_ARGS_CUSTOMEVENT_VALUE3 = WPC_ARGS_CUSTOMEVENT.VALUE3;
-pub const WPC_ARGS_CUSTOMEVENT_BLOCKED = WPC_ARGS_CUSTOMEVENT.BLOCKED;
-pub const WPC_ARGS_CUSTOMEVENT_REASON = WPC_ARGS_CUSTOMEVENT.REASON;
-pub const WPC_ARGS_CUSTOMEVENT_CARGS = WPC_ARGS_CUSTOMEVENT.CARGS;
-
-pub const WPC_ARGS_WEBOVERRIDEEVENT = enum(i32) {
-    USERID = 0,
-    URL = 1,
-    REASON = 2,
-    CARGS = 3,
-};
-pub const WPC_ARGS_WEBOVERRIDEEVENT_USERID = WPC_ARGS_WEBOVERRIDEEVENT.USERID;
-pub const WPC_ARGS_WEBOVERRIDEEVENT_URL = WPC_ARGS_WEBOVERRIDEEVENT.URL;
-pub const WPC_ARGS_WEBOVERRIDEEVENT_REASON = WPC_ARGS_WEBOVERRIDEEVENT.REASON;
-pub const WPC_ARGS_WEBOVERRIDEEVENT_CARGS = WPC_ARGS_WEBOVERRIDEEVENT.CARGS;
-
-pub const WPC_ARGS_APPOVERRIDEEVENT = enum(i32) {
-    USERID = 0,
-    PATH = 1,
-    REASON = 2,
-    CARGS = 3,
-};
-pub const WPC_ARGS_APPOVERRIDEEVENT_USERID = WPC_ARGS_APPOVERRIDEEVENT.USERID;
-pub const WPC_ARGS_APPOVERRIDEEVENT_PATH = WPC_ARGS_APPOVERRIDEEVENT.PATH;
-pub const WPC_ARGS_APPOVERRIDEEVENT_REASON = WPC_ARGS_APPOVERRIDEEVENT.REASON;
-pub const WPC_ARGS_APPOVERRIDEEVENT_CARGS = WPC_ARGS_APPOVERRIDEEVENT.CARGS;
+pub const WPC_MEDIA_TYPE_OTHER = WPC_MEDIA_TYPE.OTHER;
+pub const WPC_MEDIA_TYPE_DVD = WPC_MEDIA_TYPE.DVD;
+pub const WPC_MEDIA_TYPE_RECORDED_TV = WPC_MEDIA_TYPE.RECORDED_TV;
+pub const WPC_MEDIA_TYPE_AUDIO_FILE = WPC_MEDIA_TYPE.AUDIO_FILE;
+pub const WPC_MEDIA_TYPE_CD_AUDIO = WPC_MEDIA_TYPE.CD_AUDIO;
+pub const WPC_MEDIA_TYPE_VIDEO_FILE = WPC_MEDIA_TYPE.VIDEO_FILE;
+pub const WPC_MEDIA_TYPE_PICTURE_FILE = WPC_MEDIA_TYPE.PICTURE_FILE;
+pub const WPC_MEDIA_TYPE_MAX = WPC_MEDIA_TYPE.MAX;
 
 pub const WPC_SETTINGS = enum(i32) {
     S_WPC_EXTENSION_PATH = 0,
@@ -1025,6 +881,150 @@ pub const WPC_SETTINGS_USER_TIME_ALLOWANCE = WPC_SETTINGS.S_USER_TIME_ALLOWANCE;
 pub const WPC_SETTINGS_USER_TIME_ALLOWANCE_RESTRICTIONS = WPC_SETTINGS.S_USER_TIME_ALLOWANCE_RESTRICTIONS;
 pub const WPC_SETTINGS_GAME_RESTRICTED = WPC_SETTINGS.S_GAME_RESTRICTED;
 pub const WPC_SETTING_COUNT = WPC_SETTINGS._COUNT;
+
+pub const WPCFLAG_IM_FEATURE = enum(i32) {
+    NONE = 0,
+    VIDEO = 1,
+    AUDIO = 2,
+    GAME = 4,
+    SMS = 8,
+    FILESWAP = 16,
+    URLSWAP = 32,
+    SENDING = -2147483648,
+    ALL = -1,
+};
+pub const WPCFLAG_IM_FEATURE_NONE = WPCFLAG_IM_FEATURE.NONE;
+pub const WPCFLAG_IM_FEATURE_VIDEO = WPCFLAG_IM_FEATURE.VIDEO;
+pub const WPCFLAG_IM_FEATURE_AUDIO = WPCFLAG_IM_FEATURE.AUDIO;
+pub const WPCFLAG_IM_FEATURE_GAME = WPCFLAG_IM_FEATURE.GAME;
+pub const WPCFLAG_IM_FEATURE_SMS = WPCFLAG_IM_FEATURE.SMS;
+pub const WPCFLAG_IM_FEATURE_FILESWAP = WPCFLAG_IM_FEATURE.FILESWAP;
+pub const WPCFLAG_IM_FEATURE_URLSWAP = WPCFLAG_IM_FEATURE.URLSWAP;
+pub const WPCFLAG_IM_FEATURE_SENDING = WPCFLAG_IM_FEATURE.SENDING;
+pub const WPCFLAG_IM_FEATURE_ALL = WPCFLAG_IM_FEATURE.ALL;
+
+pub const WPCFLAG_IM_LEAVE = enum(i32) {
+    NORMAL = 0,
+    FORCED = 1,
+    CONVERSATION_END = 2,
+};
+pub const WPCFLAG_IM_LEAVE_NORMAL = WPCFLAG_IM_LEAVE.NORMAL;
+pub const WPCFLAG_IM_LEAVE_FORCED = WPCFLAG_IM_LEAVE.FORCED;
+pub const WPCFLAG_IM_LEAVE_CONVERSATION_END = WPCFLAG_IM_LEAVE.CONVERSATION_END;
+
+pub const WPCFLAG_ISBLOCKED = enum(i32) {
+    NOTBLOCKED = 0,
+    IMBLOCKED = 1,
+    EMAILBLOCKED = 2,
+    MEDIAPLAYBACKBLOCKED = 4,
+    WEBBLOCKED = 8,
+    GAMESBLOCKED = 16,
+    CONTACTBLOCKED = 32,
+    FEATUREBLOCKED = 64,
+    DOWNLOADBLOCKED = 128,
+    RATINGBLOCKED = 256,
+    DESCRIPTORBLOCKED = 512,
+    EXPLICITBLOCK = 1024,
+    BADPASS = 2048,
+    MAXHOURS = 4096,
+    SPECHOURS = 8192,
+    SETTINGSCHANGEBLOCKED = 16384,
+    ATTACHMENTBLOCKED = 32768,
+    SENDERBLOCKED = 65536,
+    RECEIVERBLOCKED = 131072,
+    NOTEXPLICITLYALLOWED = 262144,
+    NOTINLIST = 524288,
+    CATEGORYBLOCKED = 1048576,
+    CATEGORYNOTINLIST = 2097152,
+    NOTKIDS = 4194304,
+    UNRATED = 8388608,
+    NOACCESS = 16777216,
+    INTERNALERROR = -1,
+};
+pub const WPCFLAG_ISBLOCKED_NOTBLOCKED = WPCFLAG_ISBLOCKED.NOTBLOCKED;
+pub const WPCFLAG_ISBLOCKED_IMBLOCKED = WPCFLAG_ISBLOCKED.IMBLOCKED;
+pub const WPCFLAG_ISBLOCKED_EMAILBLOCKED = WPCFLAG_ISBLOCKED.EMAILBLOCKED;
+pub const WPCFLAG_ISBLOCKED_MEDIAPLAYBACKBLOCKED = WPCFLAG_ISBLOCKED.MEDIAPLAYBACKBLOCKED;
+pub const WPCFLAG_ISBLOCKED_WEBBLOCKED = WPCFLAG_ISBLOCKED.WEBBLOCKED;
+pub const WPCFLAG_ISBLOCKED_GAMESBLOCKED = WPCFLAG_ISBLOCKED.GAMESBLOCKED;
+pub const WPCFLAG_ISBLOCKED_CONTACTBLOCKED = WPCFLAG_ISBLOCKED.CONTACTBLOCKED;
+pub const WPCFLAG_ISBLOCKED_FEATUREBLOCKED = WPCFLAG_ISBLOCKED.FEATUREBLOCKED;
+pub const WPCFLAG_ISBLOCKED_DOWNLOADBLOCKED = WPCFLAG_ISBLOCKED.DOWNLOADBLOCKED;
+pub const WPCFLAG_ISBLOCKED_RATINGBLOCKED = WPCFLAG_ISBLOCKED.RATINGBLOCKED;
+pub const WPCFLAG_ISBLOCKED_DESCRIPTORBLOCKED = WPCFLAG_ISBLOCKED.DESCRIPTORBLOCKED;
+pub const WPCFLAG_ISBLOCKED_EXPLICITBLOCK = WPCFLAG_ISBLOCKED.EXPLICITBLOCK;
+pub const WPCFLAG_ISBLOCKED_BADPASS = WPCFLAG_ISBLOCKED.BADPASS;
+pub const WPCFLAG_ISBLOCKED_MAXHOURS = WPCFLAG_ISBLOCKED.MAXHOURS;
+pub const WPCFLAG_ISBLOCKED_SPECHOURS = WPCFLAG_ISBLOCKED.SPECHOURS;
+pub const WPCFLAG_ISBLOCKED_SETTINGSCHANGEBLOCKED = WPCFLAG_ISBLOCKED.SETTINGSCHANGEBLOCKED;
+pub const WPCFLAG_ISBLOCKED_ATTACHMENTBLOCKED = WPCFLAG_ISBLOCKED.ATTACHMENTBLOCKED;
+pub const WPCFLAG_ISBLOCKED_SENDERBLOCKED = WPCFLAG_ISBLOCKED.SENDERBLOCKED;
+pub const WPCFLAG_ISBLOCKED_RECEIVERBLOCKED = WPCFLAG_ISBLOCKED.RECEIVERBLOCKED;
+pub const WPCFLAG_ISBLOCKED_NOTEXPLICITLYALLOWED = WPCFLAG_ISBLOCKED.NOTEXPLICITLYALLOWED;
+pub const WPCFLAG_ISBLOCKED_NOTINLIST = WPCFLAG_ISBLOCKED.NOTINLIST;
+pub const WPCFLAG_ISBLOCKED_CATEGORYBLOCKED = WPCFLAG_ISBLOCKED.CATEGORYBLOCKED;
+pub const WPCFLAG_ISBLOCKED_CATEGORYNOTINLIST = WPCFLAG_ISBLOCKED.CATEGORYNOTINLIST;
+pub const WPCFLAG_ISBLOCKED_NOTKIDS = WPCFLAG_ISBLOCKED.NOTKIDS;
+pub const WPCFLAG_ISBLOCKED_UNRATED = WPCFLAG_ISBLOCKED.UNRATED;
+pub const WPCFLAG_ISBLOCKED_NOACCESS = WPCFLAG_ISBLOCKED.NOACCESS;
+pub const WPCFLAG_ISBLOCKED_INTERNALERROR = WPCFLAG_ISBLOCKED.INTERNALERROR;
+
+pub const WPCFLAG_LOGOFF_TYPE = enum(i32) {
+    LOGOUT = 0,
+    RESTART = 1,
+    SHUTDOWN = 2,
+    FUS = 4,
+    FORCEDFUS = 8,
+};
+pub const WPCFLAG_LOGOFF_TYPE_LOGOUT = WPCFLAG_LOGOFF_TYPE.LOGOUT;
+pub const WPCFLAG_LOGOFF_TYPE_RESTART = WPCFLAG_LOGOFF_TYPE.RESTART;
+pub const WPCFLAG_LOGOFF_TYPE_SHUTDOWN = WPCFLAG_LOGOFF_TYPE.SHUTDOWN;
+pub const WPCFLAG_LOGOFF_TYPE_FUS = WPCFLAG_LOGOFF_TYPE.FUS;
+pub const WPCFLAG_LOGOFF_TYPE_FORCEDFUS = WPCFLAG_LOGOFF_TYPE.FORCEDFUS;
+
+pub const WPCFLAG_OVERRIDE = enum(i32) {
+    N = 1,
+};
+pub const WPCFLAG_APPLICATION = WPCFLAG_OVERRIDE.N;
+
+pub const WPCFLAG_RESTRICTION = enum(i32) {
+    NO_RESTRICTION = 0,
+    LOGGING_REQUIRED = 1,
+    WEB_FILTERED = 2,
+    HOURS_RESTRICTED = 4,
+    GAMES_BLOCKED = 8,
+    APPS_RESTRICTED = 16,
+    TIME_ALLOWANCE_RESTRICTED = 32,
+    GAMES_RESTRICTED = 64,
+};
+pub const WPCFLAG_NO_RESTRICTION = WPCFLAG_RESTRICTION.NO_RESTRICTION;
+pub const WPCFLAG_LOGGING_REQUIRED = WPCFLAG_RESTRICTION.LOGGING_REQUIRED;
+pub const WPCFLAG_WEB_FILTERED = WPCFLAG_RESTRICTION.WEB_FILTERED;
+pub const WPCFLAG_HOURS_RESTRICTED = WPCFLAG_RESTRICTION.HOURS_RESTRICTED;
+pub const WPCFLAG_GAMES_BLOCKED = WPCFLAG_RESTRICTION.GAMES_BLOCKED;
+pub const WPCFLAG_APPS_RESTRICTED = WPCFLAG_RESTRICTION.APPS_RESTRICTED;
+pub const WPCFLAG_TIME_ALLOWANCE_RESTRICTED = WPCFLAG_RESTRICTION.TIME_ALLOWANCE_RESTRICTED;
+pub const WPCFLAG_GAMES_RESTRICTED = WPCFLAG_RESTRICTION.GAMES_RESTRICTED;
+
+pub const WPCFLAG_VISIBILITY = enum(i32) {
+    VISIBLE = 0,
+    HIDDEN = 1,
+};
+pub const WPCFLAG_WPC_VISIBLE = WPCFLAG_VISIBILITY.VISIBLE;
+pub const WPCFLAG_WPC_HIDDEN = WPCFLAG_VISIBILITY.HIDDEN;
+
+pub const WPCFLAG_WEB_SETTING = enum(i32) {
+    NOTBLOCKED = 0,
+    DOWNLOADSBLOCKED = 1,
+};
+pub const WPCFLAG_WEB_SETTING_NOTBLOCKED = WPCFLAG_WEB_SETTING.NOTBLOCKED;
+pub const WPCFLAG_WEB_SETTING_DOWNLOADSBLOCKED = WPCFLAG_WEB_SETTING.DOWNLOADSBLOCKED;
+
+const CLSID_WpcProviderSupport_Value = Guid.initString("bb18c7a0-2186-4be0-97d8-04847b628e02");
+pub const CLSID_WpcProviderSupport = &CLSID_WpcProviderSupport_Value;
+
+const CLSID_WpcSettingsProvider_Value = Guid.initString("355dffaa-3b9f-435c-b428-5d44290bc5f2");
+pub const CLSID_WpcSettingsProvider = &CLSID_WpcSettingsProvider_Value;
 
 
 //--------------------------------------------------------------------------------

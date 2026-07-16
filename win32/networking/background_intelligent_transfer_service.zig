@@ -2,162 +2,41 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (209)
 //--------------------------------------------------------------------------------
-pub const BG_NOTIFY_JOB_TRANSFERRED = @as(u32, 1);
-pub const BG_NOTIFY_JOB_ERROR = @as(u32, 2);
-pub const BG_NOTIFY_DISABLE = @as(u32, 4);
-pub const BG_NOTIFY_JOB_MODIFICATION = @as(u32, 8);
-pub const BG_NOTIFY_FILE_TRANSFERRED = @as(u32, 16);
-pub const BG_NOTIFY_FILE_RANGES_TRANSFERRED = @as(u32, 32);
-pub const BG_JOB_ENUM_ALL_USERS = @as(u32, 1);
-pub const BG_COPY_FILE_OWNER = @as(u32, 1);
-pub const BG_COPY_FILE_GROUP = @as(u32, 2);
-pub const BG_COPY_FILE_DACL = @as(u32, 4);
-pub const BG_COPY_FILE_SACL = @as(u32, 8);
 pub const BG_COPY_FILE_ALL = @as(u32, 15);
-pub const BG_SSL_ENABLE_CRL_CHECK = @as(u32, 1);
-pub const BG_SSL_IGNORE_CERT_CN_INVALID = @as(u32, 2);
-pub const BG_SSL_IGNORE_CERT_DATE_INVALID = @as(u32, 4);
-pub const BG_SSL_IGNORE_UNKNOWN_CA = @as(u32, 8);
-pub const BG_SSL_IGNORE_CERT_WRONG_USAGE = @as(u32, 16);
-pub const BG_HTTP_REDIRECT_POLICY_MASK = @as(u32, 1792);
-pub const BG_HTTP_REDIRECT_POLICY_ALLOW_SILENT = @as(u32, 0);
-pub const BG_HTTP_REDIRECT_POLICY_ALLOW_REPORT = @as(u32, 256);
-pub const BG_HTTP_REDIRECT_POLICY_DISALLOW = @as(u32, 512);
-pub const BG_HTTP_REDIRECT_POLICY_ALLOW_HTTPS_TO_HTTP = @as(u32, 2048);
-pub const BG_ENABLE_PEERCACHING_CLIENT = @as(u32, 1);
-pub const BG_ENABLE_PEERCACHING_SERVER = @as(u32, 2);
+pub const BG_COPY_FILE_DACL = @as(u32, 4);
+pub const BG_COPY_FILE_GROUP = @as(u32, 2);
+pub const BG_COPY_FILE_OWNER = @as(u32, 1);
+pub const BG_COPY_FILE_SACL = @as(u32, 8);
 pub const BG_DISABLE_BRANCH_CACHE = @as(u32, 4);
-pub const BG_JOB_ENABLE_PEERCACHING_CLIENT = @as(u32, 1);
-pub const BG_JOB_ENABLE_PEERCACHING_SERVER = @as(u32, 2);
-pub const BG_JOB_DISABLE_BRANCH_CACHE = @as(u32, 4);
-pub const BITS_COST_STATE_UNRESTRICTED = @as(u32, 1);
-pub const BITS_COST_STATE_CAPPED_USAGE_UNKNOWN = @as(u32, 2);
-pub const BITS_COST_STATE_BELOW_CAP = @as(u32, 4);
-pub const BITS_COST_STATE_NEAR_CAP = @as(u32, 8);
-pub const BITS_COST_STATE_OVERCAP_CHARGED = @as(u32, 16);
-pub const BITS_COST_STATE_OVERCAP_THROTTLED = @as(u32, 32);
-pub const BITS_COST_STATE_USAGE_BASED = @as(u32, 64);
-pub const BITS_COST_STATE_ROAMING = @as(u32, 128);
-pub const BITS_COST_OPTION_IGNORE_CONGESTION = @as(u32, 2147483648);
-pub const BITS_COST_STATE_RESERVED = @as(u32, 1073741824);
-pub const QM_NOTIFY_FILE_DONE = @as(u32, 1);
-pub const QM_NOTIFY_JOB_DONE = @as(u32, 2);
-pub const QM_NOTIFY_GROUP_DONE = @as(u32, 4);
-pub const QM_NOTIFY_DISABLE_NOTIFY = @as(u32, 64);
-pub const QM_NOTIFY_USE_PROGRESSEX = @as(u32, 128);
-pub const QM_STATUS_FILE_COMPLETE = @as(u32, 1);
-pub const QM_STATUS_FILE_INCOMPLETE = @as(u32, 2);
-pub const QM_STATUS_JOB_COMPLETE = @as(u32, 4);
-pub const QM_STATUS_JOB_INCOMPLETE = @as(u32, 8);
-pub const QM_STATUS_JOB_ERROR = @as(u32, 16);
-pub const QM_STATUS_JOB_FOREGROUND = @as(u32, 32);
-pub const QM_STATUS_GROUP_COMPLETE = @as(u32, 64);
-pub const QM_STATUS_GROUP_INCOMPLETE = @as(u32, 128);
-pub const QM_STATUS_GROUP_SUSPENDED = @as(u32, 256);
-pub const QM_STATUS_GROUP_ERROR = @as(u32, 512);
-pub const QM_STATUS_GROUP_FOREGROUND = @as(u32, 1024);
-pub const QM_PROTOCOL_HTTP = @as(u32, 1);
-pub const QM_PROTOCOL_FTP = @as(u32, 2);
-pub const QM_PROTOCOL_SMB = @as(u32, 3);
-pub const QM_PROTOCOL_CUSTOM = @as(u32, 4);
-pub const QM_PROGRESS_PERCENT_DONE = @as(u32, 1);
-pub const QM_PROGRESS_TIME_DONE = @as(u32, 2);
-pub const QM_PROGRESS_SIZE_DONE = @as(u32, 3);
-pub const QM_E_INVALID_STATE = @as(u32, 2164264961);
-pub const QM_E_SERVICE_UNAVAILABLE = @as(u32, 2164264962);
-pub const QM_E_DOWNLOADER_UNAVAILABLE = @as(u32, 2164264963);
-pub const QM_E_ITEM_NOT_FOUND = @as(u32, 2164264964);
-pub const BG_E_NOT_FOUND = @as(i32, -2145386495);
-pub const BG_E_INVALID_STATE = @as(i32, -2145386494);
-pub const BG_E_EMPTY = @as(i32, -2145386493);
-pub const BG_E_FILE_NOT_AVAILABLE = @as(i32, -2145386492);
-pub const BG_E_PROTOCOL_NOT_AVAILABLE = @as(i32, -2145386491);
-pub const BG_S_ERROR_CONTEXT_NONE = @as(i32, 2097158);
-pub const BG_E_ERROR_CONTEXT_UNKNOWN = @as(i32, -2145386489);
-pub const BG_E_ERROR_CONTEXT_GENERAL_QUEUE_MANAGER = @as(i32, -2145386488);
-pub const BG_E_ERROR_CONTEXT_LOCAL_FILE = @as(i32, -2145386487);
-pub const BG_E_ERROR_CONTEXT_REMOTE_FILE = @as(i32, -2145386486);
-pub const BG_E_ERROR_CONTEXT_GENERAL_TRANSPORT = @as(i32, -2145386485);
-pub const BG_E_ERROR_CONTEXT_QUEUE_MANAGER_NOTIFICATION = @as(i32, -2145386484);
-pub const BG_E_DESTINATION_LOCKED = @as(i32, -2145386483);
-pub const BG_E_VOLUME_CHANGED = @as(i32, -2145386482);
-pub const BG_E_ERROR_INFORMATION_UNAVAILABLE = @as(i32, -2145386481);
-pub const BG_E_NETWORK_DISCONNECTED = @as(i32, -2145386480);
-pub const BG_E_MISSING_FILE_SIZE = @as(i32, -2145386479);
-pub const BG_E_INSUFFICIENT_HTTP_SUPPORT = @as(i32, -2145386478);
-pub const BG_E_INSUFFICIENT_RANGE_SUPPORT = @as(i32, -2145386477);
-pub const BG_E_REMOTE_NOT_SUPPORTED = @as(i32, -2145386476);
-pub const BG_E_NEW_OWNER_DIFF_MAPPING = @as(i32, -2145386475);
-pub const BG_E_NEW_OWNER_NO_FILE_ACCESS = @as(i32, -2145386474);
-pub const BG_S_PARTIAL_COMPLETE = @as(i32, 2097175);
-pub const BG_E_PROXY_LIST_TOO_LARGE = @as(i32, -2145386472);
-pub const BG_E_PROXY_BYPASS_LIST_TOO_LARGE = @as(i32, -2145386471);
-pub const BG_S_UNABLE_TO_DELETE_FILES = @as(i32, 2097178);
-pub const BG_E_INVALID_SERVER_RESPONSE = @as(i32, -2145386469);
-pub const BG_E_TOO_MANY_FILES = @as(i32, -2145386468);
-pub const BG_E_LOCAL_FILE_CHANGED = @as(i32, -2145386467);
-pub const BG_E_ERROR_CONTEXT_REMOTE_APPLICATION = @as(i32, -2145386466);
-pub const BG_E_SESSION_NOT_FOUND = @as(i32, -2145386465);
-pub const BG_E_TOO_LARGE = @as(i32, -2145386464);
-pub const BG_E_STRING_TOO_LONG = @as(i32, -2145386463);
-pub const BG_E_CLIENT_SERVER_PROTOCOL_MISMATCH = @as(i32, -2145386462);
-pub const BG_E_SERVER_EXECUTE_ENABLE = @as(i32, -2145386461);
-pub const BG_E_NO_PROGRESS = @as(i32, -2145386460);
-pub const BG_E_USERNAME_TOO_LARGE = @as(i32, -2145386459);
-pub const BG_E_PASSWORD_TOO_LARGE = @as(i32, -2145386458);
-pub const BG_E_INVALID_AUTH_TARGET = @as(i32, -2145386457);
-pub const BG_E_INVALID_AUTH_SCHEME = @as(i32, -2145386456);
-pub const BG_E_FILE_NOT_FOUND = @as(i32, -2145386455);
-pub const BG_S_PROXY_CHANGED = @as(i32, 2097194);
-pub const BG_E_INVALID_RANGE = @as(i32, -2145386453);
-pub const BG_E_OVERLAPPING_RANGES = @as(i32, -2145386452);
-pub const BG_E_CONNECT_FAILURE = @as(i32, -2145386451);
-pub const BG_E_CONNECTION_CLOSED = @as(i32, -2145386450);
-pub const BG_E_BLOCKED_BY_POLICY = @as(i32, -2145386434);
-pub const BG_E_INVALID_PROXY_INFO = @as(i32, -2145386433);
-pub const BG_E_INVALID_CREDENTIALS = @as(i32, -2145386432);
-pub const BG_E_INVALID_HASH_ALGORITHM = @as(i32, -2145386431);
-pub const BG_E_RECORD_DELETED = @as(i32, -2145386430);
-pub const BG_E_COMMIT_IN_PROGRESS = @as(i32, -2145386429);
-pub const BG_E_DISCOVERY_IN_PROGRESS = @as(i32, -2145386428);
-pub const BG_E_UPNP_ERROR = @as(i32, -2145386427);
-pub const BG_E_TEST_OPTION_BLOCKED_DOWNLOAD = @as(i32, -2145386426);
-pub const BG_E_PEERCACHING_DISABLED = @as(i32, -2145386425);
-pub const BG_E_BUSYCACHERECORD = @as(i32, -2145386424);
-pub const BG_E_TOO_MANY_JOBS_PER_USER = @as(i32, -2145386423);
-pub const BG_E_TOO_MANY_JOBS_PER_MACHINE = @as(i32, -2145386416);
-pub const BG_E_TOO_MANY_FILES_IN_JOB = @as(i32, -2145386415);
-pub const BG_E_TOO_MANY_RANGES_IN_FILE = @as(i32, -2145386414);
-pub const BG_E_VALIDATION_FAILED = @as(i32, -2145386413);
-pub const BG_E_MAXDOWNLOAD_TIMEOUT = @as(i32, -2145386412);
-pub const BG_S_OVERRIDDEN_BY_POLICY = @as(i32, 2097237);
-pub const BG_E_TOKEN_REQUIRED = @as(i32, -2145386410);
-pub const BG_E_UNKNOWN_PROPERTY_ID = @as(i32, -2145386409);
-pub const BG_E_READ_ONLY_PROPERTY = @as(i32, -2145386408);
-pub const BG_E_BLOCKED_BY_COST_TRANSFER_POLICY = @as(i32, -2145386407);
-pub const BG_E_PROPERTY_SUPPORTED_FOR_DOWNLOAD_JOBS_ONLY = @as(i32, -2145386400);
-pub const BG_E_READ_ONLY_PROPERTY_AFTER_ADDFILE = @as(i32, -2145386399);
-pub const BG_E_READ_ONLY_PROPERTY_AFTER_RESUME = @as(i32, -2145386398);
-pub const BG_E_MAX_DOWNLOAD_SIZE_INVALID_VALUE = @as(i32, -2145386397);
-pub const BG_E_MAX_DOWNLOAD_SIZE_LIMIT_REACHED = @as(i32, -2145386396);
-pub const BG_E_STANDBY_MODE = @as(i32, -2145386395);
-pub const BG_E_USE_STORED_CREDENTIALS_NOT_SUPPORTED = @as(i32, -2145386394);
-pub const BG_E_BLOCKED_BY_BATTERY_POLICY = @as(i32, -2145386393);
-pub const BG_E_BLOCKED_BY_BATTERY_SAVER = @as(i32, -2145386392);
-pub const BG_E_WATCHDOG_TIMEOUT = @as(i32, -2145386391);
 pub const BG_E_APP_PACKAGE_NOT_FOUND = @as(i32, -2145386390);
 pub const BG_E_APP_PACKAGE_SCENARIO_NOT_SUPPORTED = @as(i32, -2145386389);
-pub const BG_E_DATABASE_CORRUPT = @as(i32, -2145386388);
-pub const BG_E_RANDOM_ACCESS_NOT_SUPPORTED = @as(i32, -2145386387);
 pub const BG_E_BLOCKED_BY_BACKGROUND_ACCESS_POLICY = @as(i32, -2145386386);
+pub const BG_E_BLOCKED_BY_BATTERY_POLICY = @as(i32, -2145386393);
+pub const BG_E_BLOCKED_BY_BATTERY_SAVER = @as(i32, -2145386392);
+pub const BG_E_BLOCKED_BY_COST_TRANSFER_POLICY = @as(i32, -2145386407);
 pub const BG_E_BLOCKED_BY_GAME_MODE = @as(i32, -2145386385);
+pub const BG_E_BLOCKED_BY_POLICY = @as(i32, -2145386434);
 pub const BG_E_BLOCKED_BY_SYSTEM_POLICY = @as(i32, -2145386384);
-pub const BG_E_NOT_SUPPORTED_WITH_CUSTOM_HTTP_METHOD = @as(i32, -2145386383);
-pub const BG_E_UNSUPPORTED_JOB_CONFIGURATION = @as(i32, -2145386382);
-pub const BG_E_REMOTE_FILE_CHANGED = @as(i32, -2145386381);
-pub const BG_E_SERVER_CERT_VALIDATION_INTERFACE_REQUIRED = @as(i32, -2145386380);
-pub const BG_E_READ_ONLY_WHEN_JOB_ACTIVE = @as(i32, -2145386379);
+pub const BG_E_BUSYCACHERECORD = @as(i32, -2145386424);
+pub const BG_E_CLIENT_SERVER_PROTOCOL_MISMATCH = @as(i32, -2145386462);
+pub const BG_E_COMMIT_IN_PROGRESS = @as(i32, -2145386429);
+pub const BG_E_CONNECT_FAILURE = @as(i32, -2145386451);
+pub const BG_E_CONNECTION_CLOSED = @as(i32, -2145386450);
+pub const BG_E_DATABASE_CORRUPT = @as(i32, -2145386388);
+pub const BG_E_DESTINATION_LOCKED = @as(i32, -2145386483);
+pub const BG_E_DISCOVERY_IN_PROGRESS = @as(i32, -2145386428);
+pub const BG_E_EMPTY = @as(i32, -2145386493);
+pub const BG_E_ERROR_CONTEXT_GENERAL_QUEUE_MANAGER = @as(i32, -2145386488);
+pub const BG_E_ERROR_CONTEXT_GENERAL_TRANSPORT = @as(i32, -2145386485);
+pub const BG_E_ERROR_CONTEXT_LOCAL_FILE = @as(i32, -2145386487);
+pub const BG_E_ERROR_CONTEXT_QUEUE_MANAGER_NOTIFICATION = @as(i32, -2145386484);
+pub const BG_E_ERROR_CONTEXT_REMOTE_APPLICATION = @as(i32, -2145386466);
+pub const BG_E_ERROR_CONTEXT_REMOTE_FILE = @as(i32, -2145386486);
 pub const BG_E_ERROR_CONTEXT_SERVER_CERTIFICATE_CALLBACK = @as(i32, -2145386378);
+pub const BG_E_ERROR_CONTEXT_UNKNOWN = @as(i32, -2145386489);
+pub const BG_E_ERROR_INFORMATION_UNAVAILABLE = @as(i32, -2145386481);
+pub const BG_E_FILE_NOT_AVAILABLE = @as(i32, -2145386492);
+pub const BG_E_FILE_NOT_FOUND = @as(i32, -2145386455);
 pub const BG_E_HTTP_ERROR_100 = @as(i32, -2145845148);
 pub const BG_E_HTTP_ERROR_101 = @as(i32, -2145845147);
 pub const BG_E_HTTP_ERROR_200 = @as(i32, -2145845048);
@@ -199,116 +78,280 @@ pub const BG_E_HTTP_ERROR_502 = @as(i32, -2145844746);
 pub const BG_E_HTTP_ERROR_503 = @as(i32, -2145844745);
 pub const BG_E_HTTP_ERROR_504 = @as(i32, -2145844744);
 pub const BG_E_HTTP_ERROR_505 = @as(i32, -2145844743);
-pub const BITS_MC_JOB_CANCELLED = @as(i32, -2145828864);
-pub const BITS_MC_FILE_DELETION_FAILED = @as(i32, -2145828863);
-pub const BITS_MC_FILE_DELETION_FAILED_MORE = @as(i32, -2145828862);
-pub const BITS_MC_JOB_PROPERTY_CHANGE = @as(i32, -2145828861);
-pub const BITS_MC_JOB_TAKE_OWNERSHIP = @as(i32, -2145828860);
-pub const BITS_MC_JOB_SCAVENGED = @as(i32, -2145828859);
-pub const BITS_MC_JOB_NOTIFICATION_FAILURE = @as(i32, -2145828858);
-pub const BITS_MC_STATE_FILE_CORRUPT = @as(i32, -2145828857);
+pub const BG_E_INSUFFICIENT_HTTP_SUPPORT = @as(i32, -2145386478);
+pub const BG_E_INSUFFICIENT_RANGE_SUPPORT = @as(i32, -2145386477);
+pub const BG_E_INVALID_AUTH_SCHEME = @as(i32, -2145386456);
+pub const BG_E_INVALID_AUTH_TARGET = @as(i32, -2145386457);
+pub const BG_E_INVALID_CREDENTIALS = @as(i32, -2145386432);
+pub const BG_E_INVALID_HASH_ALGORITHM = @as(i32, -2145386431);
+pub const BG_E_INVALID_PROXY_INFO = @as(i32, -2145386433);
+pub const BG_E_INVALID_RANGE = @as(i32, -2145386453);
+pub const BG_E_INVALID_SERVER_RESPONSE = @as(i32, -2145386469);
+pub const BG_E_INVALID_STATE = @as(i32, -2145386494);
+pub const BG_E_LOCAL_FILE_CHANGED = @as(i32, -2145386467);
+pub const BG_E_MAX_DOWNLOAD_SIZE_INVALID_VALUE = @as(i32, -2145386397);
+pub const BG_E_MAX_DOWNLOAD_SIZE_LIMIT_REACHED = @as(i32, -2145386396);
+pub const BG_E_MAXDOWNLOAD_TIMEOUT = @as(i32, -2145386412);
+pub const BG_E_MISSING_FILE_SIZE = @as(i32, -2145386479);
+pub const BG_E_NETWORK_DISCONNECTED = @as(i32, -2145386480);
+pub const BG_E_NEW_OWNER_DIFF_MAPPING = @as(i32, -2145386475);
+pub const BG_E_NEW_OWNER_NO_FILE_ACCESS = @as(i32, -2145386474);
+pub const BG_E_NO_PROGRESS = @as(i32, -2145386460);
+pub const BG_E_NOT_FOUND = @as(i32, -2145386495);
+pub const BG_E_NOT_SUPPORTED_WITH_CUSTOM_HTTP_METHOD = @as(i32, -2145386383);
+pub const BG_E_OVERLAPPING_RANGES = @as(i32, -2145386452);
+pub const BG_E_PASSWORD_TOO_LARGE = @as(i32, -2145386458);
+pub const BG_E_PEERCACHING_DISABLED = @as(i32, -2145386425);
+pub const BG_E_PROPERTY_SUPPORTED_FOR_DOWNLOAD_JOBS_ONLY = @as(i32, -2145386400);
+pub const BG_E_PROTOCOL_NOT_AVAILABLE = @as(i32, -2145386491);
+pub const BG_E_PROXY_BYPASS_LIST_TOO_LARGE = @as(i32, -2145386471);
+pub const BG_E_PROXY_LIST_TOO_LARGE = @as(i32, -2145386472);
+pub const BG_E_RANDOM_ACCESS_NOT_SUPPORTED = @as(i32, -2145386387);
+pub const BG_E_READ_ONLY_PROPERTY = @as(i32, -2145386408);
+pub const BG_E_READ_ONLY_PROPERTY_AFTER_ADDFILE = @as(i32, -2145386399);
+pub const BG_E_READ_ONLY_PROPERTY_AFTER_RESUME = @as(i32, -2145386398);
+pub const BG_E_READ_ONLY_WHEN_JOB_ACTIVE = @as(i32, -2145386379);
+pub const BG_E_RECORD_DELETED = @as(i32, -2145386430);
+pub const BG_E_REMOTE_FILE_CHANGED = @as(i32, -2145386381);
+pub const BG_E_REMOTE_NOT_SUPPORTED = @as(i32, -2145386476);
+pub const BG_E_SERVER_CERT_VALIDATION_INTERFACE_REQUIRED = @as(i32, -2145386380);
+pub const BG_E_SERVER_EXECUTE_ENABLE = @as(i32, -2145386461);
+pub const BG_E_SESSION_NOT_FOUND = @as(i32, -2145386465);
+pub const BG_E_STANDBY_MODE = @as(i32, -2145386395);
+pub const BG_E_STRING_TOO_LONG = @as(i32, -2145386463);
+pub const BG_E_TEST_OPTION_BLOCKED_DOWNLOAD = @as(i32, -2145386426);
+pub const BG_E_TOKEN_REQUIRED = @as(i32, -2145386410);
+pub const BG_E_TOO_LARGE = @as(i32, -2145386464);
+pub const BG_E_TOO_MANY_FILES = @as(i32, -2145386468);
+pub const BG_E_TOO_MANY_FILES_IN_JOB = @as(i32, -2145386415);
+pub const BG_E_TOO_MANY_JOBS_PER_MACHINE = @as(i32, -2145386416);
+pub const BG_E_TOO_MANY_JOBS_PER_USER = @as(i32, -2145386423);
+pub const BG_E_TOO_MANY_RANGES_IN_FILE = @as(i32, -2145386414);
+pub const BG_E_UNKNOWN_PROPERTY_ID = @as(i32, -2145386409);
+pub const BG_E_UNSUPPORTED_JOB_CONFIGURATION = @as(i32, -2145386382);
+pub const BG_E_UPNP_ERROR = @as(i32, -2145386427);
+pub const BG_E_USE_STORED_CREDENTIALS_NOT_SUPPORTED = @as(i32, -2145386394);
+pub const BG_E_USERNAME_TOO_LARGE = @as(i32, -2145386459);
+pub const BG_E_VALIDATION_FAILED = @as(i32, -2145386413);
+pub const BG_E_VOLUME_CHANGED = @as(i32, -2145386482);
+pub const BG_E_WATCHDOG_TIMEOUT = @as(i32, -2145386391);
+pub const BG_ENABLE_PEERCACHING_CLIENT = @as(u32, 1);
+pub const BG_ENABLE_PEERCACHING_SERVER = @as(u32, 2);
+pub const BG_HTTP_REDIRECT_POLICY_ALLOW_HTTPS_TO_HTTP = @as(u32, 2048);
+pub const BG_HTTP_REDIRECT_POLICY_ALLOW_REPORT = @as(u32, 256);
+pub const BG_HTTP_REDIRECT_POLICY_ALLOW_SILENT = @as(u32, 0);
+pub const BG_HTTP_REDIRECT_POLICY_DISALLOW = @as(u32, 512);
+pub const BG_HTTP_REDIRECT_POLICY_MASK = @as(u32, 1792);
+pub const BG_JOB_DISABLE_BRANCH_CACHE = @as(u32, 4);
+pub const BG_JOB_ENABLE_PEERCACHING_CLIENT = @as(u32, 1);
+pub const BG_JOB_ENABLE_PEERCACHING_SERVER = @as(u32, 2);
+pub const BG_JOB_ENUM_ALL_USERS = @as(u32, 1);
+pub const BG_NOTIFY_DISABLE = @as(u32, 4);
+pub const BG_NOTIFY_FILE_RANGES_TRANSFERRED = @as(u32, 32);
+pub const BG_NOTIFY_FILE_TRANSFERRED = @as(u32, 16);
+pub const BG_NOTIFY_JOB_ERROR = @as(u32, 2);
+pub const BG_NOTIFY_JOB_MODIFICATION = @as(u32, 8);
+pub const BG_NOTIFY_JOB_TRANSFERRED = @as(u32, 1);
+pub const BG_S_ERROR_CONTEXT_NONE = @as(i32, 2097158);
+pub const BG_S_OVERRIDDEN_BY_POLICY = @as(i32, 2097237);
+pub const BG_S_PARTIAL_COMPLETE = @as(i32, 2097175);
+pub const BG_S_PROXY_CHANGED = @as(i32, 2097194);
+pub const BG_S_UNABLE_TO_DELETE_FILES = @as(i32, 2097178);
+pub const BG_SSL_ENABLE_CRL_CHECK = @as(u32, 1);
+pub const BG_SSL_IGNORE_CERT_CN_INVALID = @as(u32, 2);
+pub const BG_SSL_IGNORE_CERT_DATE_INVALID = @as(u32, 4);
+pub const BG_SSL_IGNORE_CERT_WRONG_USAGE = @as(u32, 16);
+pub const BG_SSL_IGNORE_UNKNOWN_CA = @as(u32, 8);
+pub const BITS_COST_OPTION_IGNORE_CONGESTION = @as(u32, 2147483648);
+pub const BITS_COST_STATE_BELOW_CAP = @as(u32, 4);
+pub const BITS_COST_STATE_CAPPED_USAGE_UNKNOWN = @as(u32, 2);
+pub const BITS_COST_STATE_NEAR_CAP = @as(u32, 8);
+pub const BITS_COST_STATE_OVERCAP_CHARGED = @as(u32, 16);
+pub const BITS_COST_STATE_OVERCAP_THROTTLED = @as(u32, 32);
+pub const BITS_COST_STATE_RESERVED = @as(u32, 1073741824);
+pub const BITS_COST_STATE_ROAMING = @as(u32, 128);
+pub const BITS_COST_STATE_UNRESTRICTED = @as(u32, 1);
+pub const BITS_COST_STATE_USAGE_BASED = @as(u32, 64);
 pub const BITS_MC_FAILED_TO_START = @as(i32, -2145828856);
 pub const BITS_MC_FATAL_IGD_ERROR = @as(i32, -2145828855);
+pub const BITS_MC_FILE_DELETION_FAILED = @as(i32, -2145828863);
+pub const BITS_MC_FILE_DELETION_FAILED_MORE = @as(i32, -2145828862);
+pub const BITS_MC_JOB_CANCELLED = @as(i32, -2145828864);
+pub const BITS_MC_JOB_NOTIFICATION_FAILURE = @as(i32, -2145828858);
+pub const BITS_MC_JOB_PROPERTY_CHANGE = @as(i32, -2145828861);
+pub const BITS_MC_JOB_SCAVENGED = @as(i32, -2145828859);
+pub const BITS_MC_JOB_TAKE_OWNERSHIP = @as(i32, -2145828860);
 pub const BITS_MC_PEERCACHING_PORT = @as(i32, -2145828854);
+pub const BITS_MC_STATE_FILE_CORRUPT = @as(i32, -2145828857);
 pub const BITS_MC_WSD_PORT = @as(i32, -2145828853);
+pub const QM_E_DOWNLOADER_UNAVAILABLE = @as(u32, 2164264963);
+pub const QM_E_INVALID_STATE = @as(u32, 2164264961);
+pub const QM_E_ITEM_NOT_FOUND = @as(u32, 2164264964);
+pub const QM_E_SERVICE_UNAVAILABLE = @as(u32, 2164264962);
+pub const QM_NOTIFY_DISABLE_NOTIFY = @as(u32, 64);
+pub const QM_NOTIFY_FILE_DONE = @as(u32, 1);
+pub const QM_NOTIFY_GROUP_DONE = @as(u32, 4);
+pub const QM_NOTIFY_JOB_DONE = @as(u32, 2);
+pub const QM_NOTIFY_USE_PROGRESSEX = @as(u32, 128);
+pub const QM_PROGRESS_PERCENT_DONE = @as(u32, 1);
+pub const QM_PROGRESS_SIZE_DONE = @as(u32, 3);
+pub const QM_PROGRESS_TIME_DONE = @as(u32, 2);
+pub const QM_PROTOCOL_CUSTOM = @as(u32, 4);
+pub const QM_PROTOCOL_FTP = @as(u32, 2);
+pub const QM_PROTOCOL_HTTP = @as(u32, 1);
+pub const QM_PROTOCOL_SMB = @as(u32, 3);
+pub const QM_STATUS_FILE_COMPLETE = @as(u32, 1);
+pub const QM_STATUS_FILE_INCOMPLETE = @as(u32, 2);
+pub const QM_STATUS_GROUP_COMPLETE = @as(u32, 64);
+pub const QM_STATUS_GROUP_ERROR = @as(u32, 512);
+pub const QM_STATUS_GROUP_FOREGROUND = @as(u32, 1024);
+pub const QM_STATUS_GROUP_INCOMPLETE = @as(u32, 128);
+pub const QM_STATUS_GROUP_SUSPENDED = @as(u32, 256);
+pub const QM_STATUS_JOB_COMPLETE = @as(u32, 4);
+pub const QM_STATUS_JOB_ERROR = @as(u32, 16);
+pub const QM_STATUS_JOB_FOREGROUND = @as(u32, 32);
+pub const QM_STATUS_JOB_INCOMPLETE = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (74)
 //--------------------------------------------------------------------------------
-pub const BG_TOKEN = enum(u32) {
-    LOCAL_FILE = 1,
-    NETWORK = 2,
+const IID_AsyncIBackgroundCopyCallback_Value = Guid.initString("ca29d251-b4bb-4679-a3d9-ae8006119d54");
+pub const IID_AsyncIBackgroundCopyCallback = &IID_AsyncIBackgroundCopyCallback_Value;
+pub const AsyncIBackgroundCopyCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin_JobTransferred: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+        ) callconv(.winapi) HRESULT,
+        Finish_JobTransferred: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+        ) callconv(.winapi) HRESULT,
+        Begin_JobError: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            pError: ?*IBackgroundCopyError,
+        ) callconv(.winapi) HRESULT,
+        Finish_JobError: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+        ) callconv(.winapi) HRESULT,
+        Begin_JobModification: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        Finish_JobModification: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Begin_JobTransferred(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_JobTransferred(self, pJob);
+    }
+    pub fn Finish_JobTransferred(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_JobTransferred(self);
+    }
+    pub fn Begin_JobError(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_JobError(self, pJob, pError);
+    }
+    pub fn Finish_JobError(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_JobError(self);
+    }
+    pub fn Begin_JobModification(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_JobModification(self, pJob, dwReserved);
+    }
+    pub fn Finish_JobModification(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_JobModification(self);
+    }
 };
-pub const BG_TOKEN_LOCAL_FILE = BG_TOKEN.LOCAL_FILE;
-pub const BG_TOKEN_NETWORK = BG_TOKEN.NETWORK;
 
 const CLSID_BackgroundCopyManager_Value = Guid.initString("4991d34b-80a1-4291-83b6-3328366b9097");
 pub const CLSID_BackgroundCopyManager = &CLSID_BackgroundCopyManager_Value;
 
-pub const BG_FILE_PROGRESS = extern struct {
-    BytesTotal: u64,
-    BytesTransferred: u64,
-    Completed: BOOL,
+const CLSID_BackgroundCopyManager10_1_Value = Guid.initString("4bd3e4e1-7bd4-4a2b-9964-496400de5193");
+pub const CLSID_BackgroundCopyManager10_1 = &CLSID_BackgroundCopyManager10_1_Value;
+
+const CLSID_BackgroundCopyManager10_2_Value = Guid.initString("4575438f-a6c8-4976-b0fe-2f26b80d959e");
+pub const CLSID_BackgroundCopyManager10_2 = &CLSID_BackgroundCopyManager10_2_Value;
+
+const CLSID_BackgroundCopyManager10_3_Value = Guid.initString("5fd42ad5-c04e-4d36-adc7-e08ff15737ad");
+pub const CLSID_BackgroundCopyManager10_3 = &CLSID_BackgroundCopyManager10_3_Value;
+
+const CLSID_BackgroundCopyManager1_5_Value = Guid.initString("f087771f-d74f-4c1a-bb8a-e16aca9124ea");
+pub const CLSID_BackgroundCopyManager1_5 = &CLSID_BackgroundCopyManager1_5_Value;
+
+const CLSID_BackgroundCopyManager2_0_Value = Guid.initString("6d18ad12-bde3-4393-b311-099c346e6df9");
+pub const CLSID_BackgroundCopyManager2_0 = &CLSID_BackgroundCopyManager2_0_Value;
+
+const CLSID_BackgroundCopyManager2_5_Value = Guid.initString("03ca98d6-ff5d-49b8-abc6-03dd84127020");
+pub const CLSID_BackgroundCopyManager2_5 = &CLSID_BackgroundCopyManager2_5_Value;
+
+const CLSID_BackgroundCopyManager3_0_Value = Guid.initString("659cdea7-489e-11d9-a9cd-000d56965251");
+pub const CLSID_BackgroundCopyManager3_0 = &CLSID_BackgroundCopyManager3_0_Value;
+
+const CLSID_BackgroundCopyManager4_0_Value = Guid.initString("bb6df56b-cace-11dc-9992-0019b93a3a84");
+pub const CLSID_BackgroundCopyManager4_0 = &CLSID_BackgroundCopyManager4_0_Value;
+
+const CLSID_BackgroundCopyManager5_0_Value = Guid.initString("1ecca34c-e88a-44e3-8d6a-8921bde9e452");
+pub const CLSID_BackgroundCopyManager5_0 = &CLSID_BackgroundCopyManager5_0_Value;
+
+const CLSID_BackgroundCopyQMgr_Value = Guid.initString("69ad4aee-51be-439b-a92c-86ae490e8b30");
+pub const CLSID_BackgroundCopyQMgr = &CLSID_BackgroundCopyQMgr_Value;
+
+pub const BG_AUTH_CREDENTIALS = extern struct {
+    Target: BG_AUTH_TARGET,
+    Scheme: BG_AUTH_SCHEME,
+    Credentials: BG_AUTH_CREDENTIALS_UNION,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IBackgroundCopyFile_Value = Guid.initString("01b7bd23-fb88-4a77-8490-5891d3e4653a");
-pub const IID_IBackgroundCopyFile = &IID_IBackgroundCopyFile_Value;
-pub const IBackgroundCopyFile = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRemoteName: *const fn(
-            self: *const IBackgroundCopyFile,
-            pVal: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetLocalName: *const fn(
-            self: *const IBackgroundCopyFile,
-            pVal: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetProgress: *const fn(
-            self: *const IBackgroundCopyFile,
-            pVal: ?*BG_FILE_PROGRESS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRemoteName(self, pVal);
-    }
-    pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalName(self, pVal);
-    }
-    pub fn GetProgress(self: *const IBackgroundCopyFile, pVal: ?*BG_FILE_PROGRESS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProgress(self, pVal);
-    }
+pub const BG_AUTH_CREDENTIALS_UNION = extern union {
+    Basic: BG_BASIC_CREDENTIALS,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumBackgroundCopyFiles_Value = Guid.initString("ca51e165-c365-424c-8d41-24aaa4ff3c40");
-pub const IID_IEnumBackgroundCopyFiles = &IID_IEnumBackgroundCopyFiles_Value;
-pub const IEnumBackgroundCopyFiles = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumBackgroundCopyFiles,
-            celt: u32,
-            rgelt: ?*?*IBackgroundCopyFile,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumBackgroundCopyFiles,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumBackgroundCopyFiles,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumBackgroundCopyFiles,
-            ppenum: ?*?*IEnumBackgroundCopyFiles,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumBackgroundCopyFiles,
-            puCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBackgroundCopyFiles, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumBackgroundCopyFiles, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumBackgroundCopyFiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumBackgroundCopyFiles, ppenum: ?*?*IEnumBackgroundCopyFiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-    pub fn GetCount(self: *const IEnumBackgroundCopyFiles, puCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, puCount);
-    }
+pub const BG_AUTH_SCHEME = enum(i32) {
+    BASIC = 1,
+    DIGEST = 2,
+    NTLM = 3,
+    NEGOTIATE = 4,
+    PASSPORT = 5,
 };
+pub const BG_AUTH_SCHEME_BASIC = BG_AUTH_SCHEME.BASIC;
+pub const BG_AUTH_SCHEME_DIGEST = BG_AUTH_SCHEME.DIGEST;
+pub const BG_AUTH_SCHEME_NTLM = BG_AUTH_SCHEME.NTLM;
+pub const BG_AUTH_SCHEME_NEGOTIATE = BG_AUTH_SCHEME.NEGOTIATE;
+pub const BG_AUTH_SCHEME_PASSPORT = BG_AUTH_SCHEME.PASSPORT;
+
+pub const BG_AUTH_TARGET = enum(i32) {
+    SERVER = 1,
+    PROXY = 2,
+};
+pub const BG_AUTH_TARGET_SERVER = BG_AUTH_TARGET.SERVER;
+pub const BG_AUTH_TARGET_PROXY = BG_AUTH_TARGET.PROXY;
+
+pub const BG_BASIC_CREDENTIALS = extern struct {
+    UserName: ?PWSTR,
+    Password: ?PWSTR,
+};
+
+pub const BG_CERT_STORE_LOCATION = enum(i32) {
+    CURRENT_USER = 0,
+    LOCAL_MACHINE = 1,
+    CURRENT_SERVICE = 2,
+    SERVICES = 3,
+    USERS = 4,
+    CURRENT_USER_GROUP_POLICY = 5,
+    LOCAL_MACHINE_GROUP_POLICY = 6,
+    LOCAL_MACHINE_ENTERPRISE = 7,
+};
+pub const BG_CERT_STORE_LOCATION_CURRENT_USER = BG_CERT_STORE_LOCATION.CURRENT_USER;
+pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE = BG_CERT_STORE_LOCATION.LOCAL_MACHINE;
+pub const BG_CERT_STORE_LOCATION_CURRENT_SERVICE = BG_CERT_STORE_LOCATION.CURRENT_SERVICE;
+pub const BG_CERT_STORE_LOCATION_SERVICES = BG_CERT_STORE_LOCATION.SERVICES;
+pub const BG_CERT_STORE_LOCATION_USERS = BG_CERT_STORE_LOCATION.USERS;
+pub const BG_CERT_STORE_LOCATION_CURRENT_USER_GROUP_POLICY = BG_CERT_STORE_LOCATION.CURRENT_USER_GROUP_POLICY;
+pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_GROUP_POLICY = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_GROUP_POLICY;
+pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_ENTERPRISE = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_ENTERPRISE;
 
 pub const BG_ERROR_CONTEXT = enum(i32) {
     NONE = 0,
@@ -330,6 +373,311 @@ pub const BG_ERROR_CONTEXT_REMOTE_FILE = BG_ERROR_CONTEXT.REMOTE_FILE;
 pub const BG_ERROR_CONTEXT_GENERAL_TRANSPORT = BG_ERROR_CONTEXT.GENERAL_TRANSPORT;
 pub const BG_ERROR_CONTEXT_REMOTE_APPLICATION = BG_ERROR_CONTEXT.REMOTE_APPLICATION;
 pub const BG_ERROR_CONTEXT_SERVER_CERTIFICATE_CALLBACK = BG_ERROR_CONTEXT.SERVER_CERTIFICATE_CALLBACK;
+
+pub const BG_FILE_INFO = extern struct {
+    RemoteName: ?PWSTR,
+    LocalName: ?PWSTR,
+};
+
+pub const BG_FILE_PROGRESS = extern struct {
+    BytesTotal: u64,
+    BytesTransferred: u64,
+    Completed: BOOL,
+};
+
+pub const BG_FILE_RANGE = extern struct {
+    InitialOffset: u64,
+    Length: u64,
+};
+
+pub const BG_JOB_PRIORITY = enum(i32) {
+    FOREGROUND = 0,
+    HIGH = 1,
+    NORMAL = 2,
+    LOW = 3,
+};
+pub const BG_JOB_PRIORITY_FOREGROUND = BG_JOB_PRIORITY.FOREGROUND;
+pub const BG_JOB_PRIORITY_HIGH = BG_JOB_PRIORITY.HIGH;
+pub const BG_JOB_PRIORITY_NORMAL = BG_JOB_PRIORITY.NORMAL;
+pub const BG_JOB_PRIORITY_LOW = BG_JOB_PRIORITY.LOW;
+
+pub const BG_JOB_PROGRESS = extern struct {
+    BytesTotal: u64,
+    BytesTransferred: u64,
+    FilesTotal: u32,
+    FilesTransferred: u32,
+};
+
+pub const BG_JOB_PROXY_USAGE = enum(i32) {
+    PRECONFIG = 0,
+    NO_PROXY = 1,
+    OVERRIDE = 2,
+    AUTODETECT = 3,
+};
+pub const BG_JOB_PROXY_USAGE_PRECONFIG = BG_JOB_PROXY_USAGE.PRECONFIG;
+pub const BG_JOB_PROXY_USAGE_NO_PROXY = BG_JOB_PROXY_USAGE.NO_PROXY;
+pub const BG_JOB_PROXY_USAGE_OVERRIDE = BG_JOB_PROXY_USAGE.OVERRIDE;
+pub const BG_JOB_PROXY_USAGE_AUTODETECT = BG_JOB_PROXY_USAGE.AUTODETECT;
+
+pub const BG_JOB_REPLY_PROGRESS = extern struct {
+    BytesTotal: u64,
+    BytesTransferred: u64,
+};
+
+pub const BG_JOB_STATE = enum(i32) {
+    QUEUED = 0,
+    CONNECTING = 1,
+    TRANSFERRING = 2,
+    SUSPENDED = 3,
+    ERROR = 4,
+    TRANSIENT_ERROR = 5,
+    TRANSFERRED = 6,
+    ACKNOWLEDGED = 7,
+    CANCELLED = 8,
+};
+pub const BG_JOB_STATE_QUEUED = BG_JOB_STATE.QUEUED;
+pub const BG_JOB_STATE_CONNECTING = BG_JOB_STATE.CONNECTING;
+pub const BG_JOB_STATE_TRANSFERRING = BG_JOB_STATE.TRANSFERRING;
+pub const BG_JOB_STATE_SUSPENDED = BG_JOB_STATE.SUSPENDED;
+pub const BG_JOB_STATE_ERROR = BG_JOB_STATE.ERROR;
+pub const BG_JOB_STATE_TRANSIENT_ERROR = BG_JOB_STATE.TRANSIENT_ERROR;
+pub const BG_JOB_STATE_TRANSFERRED = BG_JOB_STATE.TRANSFERRED;
+pub const BG_JOB_STATE_ACKNOWLEDGED = BG_JOB_STATE.ACKNOWLEDGED;
+pub const BG_JOB_STATE_CANCELLED = BG_JOB_STATE.CANCELLED;
+
+pub const BG_JOB_TIMES = extern struct {
+    CreationTime: FILETIME,
+    ModificationTime: FILETIME,
+    TransferCompletionTime: FILETIME,
+};
+
+pub const BG_JOB_TYPE = enum(i32) {
+    DOWNLOAD = 0,
+    UPLOAD = 1,
+    UPLOAD_REPLY = 2,
+};
+pub const BG_JOB_TYPE_DOWNLOAD = BG_JOB_TYPE.DOWNLOAD;
+pub const BG_JOB_TYPE_UPLOAD = BG_JOB_TYPE.UPLOAD;
+pub const BG_JOB_TYPE_UPLOAD_REPLY = BG_JOB_TYPE.UPLOAD_REPLY;
+
+pub const BG_TOKEN = enum(u32) {
+    LOCAL_FILE = 1,
+    NETWORK = 2,
+};
+pub const BG_TOKEN_LOCAL_FILE = BG_TOKEN.LOCAL_FILE;
+pub const BG_TOKEN_NETWORK = BG_TOKEN.NETWORK;
+
+pub const BITS_FILE_PROPERTY_ID = enum(i32) {
+    S = 1,
+};
+pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.S;
+
+pub const BITS_FILE_PROPERTY_VALUE = extern union {
+    String: ?PWSTR,
+};
+
+pub const BITS_JOB_PROPERTY_ID = enum(i32) {
+    ID_COST_FLAGS = 1,
+    NOTIFICATION_CLSID = 2,
+    DYNAMIC_CONTENT = 3,
+    HIGH_PERFORMANCE = 4,
+    MAX_DOWNLOAD_SIZE = 5,
+    USE_STORED_CREDENTIALS = 7,
+    MINIMUM_NOTIFICATION_INTERVAL_MS = 9,
+    ON_DEMAND_MODE = 10,
+};
+pub const BITS_JOB_PROPERTY_ID_COST_FLAGS = BITS_JOB_PROPERTY_ID.ID_COST_FLAGS;
+pub const BITS_JOB_PROPERTY_NOTIFICATION_CLSID = BITS_JOB_PROPERTY_ID.NOTIFICATION_CLSID;
+pub const BITS_JOB_PROPERTY_DYNAMIC_CONTENT = BITS_JOB_PROPERTY_ID.DYNAMIC_CONTENT;
+pub const BITS_JOB_PROPERTY_HIGH_PERFORMANCE = BITS_JOB_PROPERTY_ID.HIGH_PERFORMANCE;
+pub const BITS_JOB_PROPERTY_MAX_DOWNLOAD_SIZE = BITS_JOB_PROPERTY_ID.MAX_DOWNLOAD_SIZE;
+pub const BITS_JOB_PROPERTY_USE_STORED_CREDENTIALS = BITS_JOB_PROPERTY_ID.USE_STORED_CREDENTIALS;
+pub const BITS_JOB_PROPERTY_MINIMUM_NOTIFICATION_INTERVAL_MS = BITS_JOB_PROPERTY_ID.MINIMUM_NOTIFICATION_INTERVAL_MS;
+pub const BITS_JOB_PROPERTY_ON_DEMAND_MODE = BITS_JOB_PROPERTY_ID.ON_DEMAND_MODE;
+
+pub const BITS_JOB_PROPERTY_VALUE = extern union {
+    Dword: u32,
+    ClsID: Guid,
+    Enable: BOOL,
+    Uint64: u64,
+    Target: BG_AUTH_TARGET,
+};
+
+pub const BITS_JOB_TRANSFER_POLICY = enum(i32) {
+    ALWAYS = -2147483393,
+    NOT_ROAMING = -2147483521,
+    NO_SURCHARGE = -2147483537,
+    STANDARD = -2147483545,
+    UNRESTRICTED = -2147483615,
+};
+pub const BITS_JOB_TRANSFER_POLICY_ALWAYS = BITS_JOB_TRANSFER_POLICY.ALWAYS;
+pub const BITS_JOB_TRANSFER_POLICY_NOT_ROAMING = BITS_JOB_TRANSFER_POLICY.NOT_ROAMING;
+pub const BITS_JOB_TRANSFER_POLICY_NO_SURCHARGE = BITS_JOB_TRANSFER_POLICY.NO_SURCHARGE;
+pub const BITS_JOB_TRANSFER_POLICY_STANDARD = BITS_JOB_TRANSFER_POLICY.STANDARD;
+pub const BITS_JOB_TRANSFER_POLICY_UNRESTRICTED = BITS_JOB_TRANSFER_POLICY.UNRESTRICTED;
+
+const CLSID_BITSExtensionSetupFactory_Value = Guid.initString("efbbab68-7286-4783-94bf-9461d8b7e7e9");
+pub const CLSID_BITSExtensionSetupFactory = &CLSID_BITSExtensionSetupFactory_Value;
+
+pub const FILESETINFO = extern struct {
+    bstrRemoteFile: ?BSTR,
+    bstrLocalFile: ?BSTR,
+    dwSizeHint: u32,
+};
+
+pub const GROUPPROP = enum(i32) {
+    PRIORITY = 0,
+    REMOTEUSERID = 1,
+    REMOTEUSERPWD = 2,
+    LOCALUSERID = 3,
+    LOCALUSERPWD = 4,
+    PROTOCOLFLAGS = 5,
+    NOTIFYFLAGS = 6,
+    NOTIFYCLSID = 7,
+    PROGRESSSIZE = 8,
+    PROGRESSPERCENT = 9,
+    PROGRESSTIME = 10,
+    DISPLAYNAME = 11,
+    DESCRIPTION = 12,
+};
+pub const GROUPPROP_PRIORITY = GROUPPROP.PRIORITY;
+pub const GROUPPROP_REMOTEUSERID = GROUPPROP.REMOTEUSERID;
+pub const GROUPPROP_REMOTEUSERPWD = GROUPPROP.REMOTEUSERPWD;
+pub const GROUPPROP_LOCALUSERID = GROUPPROP.LOCALUSERID;
+pub const GROUPPROP_LOCALUSERPWD = GROUPPROP.LOCALUSERPWD;
+pub const GROUPPROP_PROTOCOLFLAGS = GROUPPROP.PROTOCOLFLAGS;
+pub const GROUPPROP_NOTIFYFLAGS = GROUPPROP.NOTIFYFLAGS;
+pub const GROUPPROP_NOTIFYCLSID = GROUPPROP.NOTIFYCLSID;
+pub const GROUPPROP_PROGRESSSIZE = GROUPPROP.PROGRESSSIZE;
+pub const GROUPPROP_PROGRESSPERCENT = GROUPPROP.PROGRESSPERCENT;
+pub const GROUPPROP_PROGRESSTIME = GROUPPROP.PROGRESSTIME;
+pub const GROUPPROP_DISPLAYNAME = GROUPPROP.DISPLAYNAME;
+pub const GROUPPROP_DESCRIPTION = GROUPPROP.DESCRIPTION;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IBackgroundCopyCallback_Value = Guid.initString("97ea99c7-0186-4ad4-8df9-c5b4e0ed6b22");
+pub const IID_IBackgroundCopyCallback = &IID_IBackgroundCopyCallback_Value;
+pub const IBackgroundCopyCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        JobTransferred: *const fn(
+            self: *const IBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+        ) callconv(.winapi) HRESULT,
+        JobError: *const fn(
+            self: *const IBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            pError: ?*IBackgroundCopyError,
+        ) callconv(.winapi) HRESULT,
+        JobModification: *const fn(
+            self: *const IBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn JobTransferred(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
+        return self.vtable.JobTransferred(self, pJob);
+    }
+    pub fn JobError(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
+        return self.vtable.JobError(self, pJob, pError);
+    }
+    pub fn JobModification(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.JobModification(self, pJob, dwReserved);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IBackgroundCopyCallback1_Value = Guid.initString("084f6593-3800-4e08-9b59-99fa59addf82");
+pub const IID_IBackgroundCopyCallback1 = &IID_IBackgroundCopyCallback1_Value;
+pub const IBackgroundCopyCallback1 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnStatus: *const fn(
+            self: *const IBackgroundCopyCallback1,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
+            dwFileIndex: u32,
+            dwStatus: u32,
+            dwNumOfRetries: u32,
+            dwWin32Result: u32,
+            dwTransportResult: u32,
+        ) callconv(.winapi) HRESULT,
+        OnProgress: *const fn(
+            self: *const IBackgroundCopyCallback1,
+            ProgressType: u32,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
+            dwFileIndex: u32,
+            dwProgressValue: u32,
+        ) callconv(.winapi) HRESULT,
+        OnProgressEx: *const fn(
+            self: *const IBackgroundCopyCallback1,
+            ProgressType: u32,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
+            dwFileIndex: u32,
+            dwProgressValue: u32,
+            dwByteArraySize: u32,
+            pByte: [*:0]u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnStatus(self: *const IBackgroundCopyCallback1, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnStatus(self, pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
+    }
+    pub fn OnProgress(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnProgress(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
+    }
+    pub fn OnProgressEx(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.OnProgressEx(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IBackgroundCopyCallback2_Value = Guid.initString("659cdeac-489e-11d9-a9cd-000d56965251");
+pub const IID_IBackgroundCopyCallback2 = &IID_IBackgroundCopyCallback2_Value;
+pub const IBackgroundCopyCallback2 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyCallback.VTable,
+        FileTransferred: *const fn(
+            self: *const IBackgroundCopyCallback2,
+            pJob: ?*IBackgroundCopyJob,
+            pFile: ?*IBackgroundCopyFile,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyCallback: IBackgroundCopyCallback,
+    IUnknown: IUnknown,
+    pub fn FileTransferred(self: *const IBackgroundCopyCallback2, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) callconv(.@"inline") HRESULT {
+        return self.vtable.FileTransferred(self, pJob, pFile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IBackgroundCopyCallback3_Value = Guid.initString("98c97bd2-e32b-4ad8-a528-95fd8b16bd42");
+pub const IID_IBackgroundCopyCallback3 = &IID_IBackgroundCopyCallback3_Value;
+pub const IBackgroundCopyCallback3 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyCallback2.VTable,
+        FileRangesTransferred: *const fn(
+            self: *const IBackgroundCopyCallback3,
+            job: ?*IBackgroundCopyJob,
+            file: ?*IBackgroundCopyFile,
+            rangeCount: u32,
+            ranges: [*]const BG_FILE_RANGE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyCallback2: IBackgroundCopyCallback2,
+    IBackgroundCopyCallback: IBackgroundCopyCallback,
+    IUnknown: IUnknown,
+    pub fn FileRangesTransferred(self: *const IBackgroundCopyCallback3, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.@"inline") HRESULT {
+        return self.vtable.FileRangesTransferred(self, job, file, rangeCount, ranges);
+    }
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyError_Value = Guid.initString("19c613a0-fcb8-4f28-81ae-897c3d078f81");
@@ -380,75 +728,320 @@ pub const IBackgroundCopyError = extern union {
     }
 };
 
-pub const BG_FILE_INFO = extern struct {
-    RemoteName: ?PWSTR,
-    LocalName: ?PWSTR,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IBackgroundCopyFile_Value = Guid.initString("01b7bd23-fb88-4a77-8490-5891d3e4653a");
+pub const IID_IBackgroundCopyFile = &IID_IBackgroundCopyFile_Value;
+pub const IBackgroundCopyFile = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRemoteName: *const fn(
+            self: *const IBackgroundCopyFile,
+            pVal: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetLocalName: *const fn(
+            self: *const IBackgroundCopyFile,
+            pVal: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetProgress: *const fn(
+            self: *const IBackgroundCopyFile,
+            pVal: ?*BG_FILE_PROGRESS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRemoteName(self, pVal);
+    }
+    pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalName(self, pVal);
+    }
+    pub fn GetProgress(self: *const IBackgroundCopyFile, pVal: ?*BG_FILE_PROGRESS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProgress(self, pVal);
+    }
 };
 
-pub const BG_JOB_PROGRESS = extern struct {
-    BytesTotal: u64,
-    BytesTransferred: u64,
-    FilesTotal: u32,
-    FilesTransferred: u32,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IBackgroundCopyFile2_Value = Guid.initString("83e81b93-0873-474d-8a8c-f2018b1a939c");
+pub const IID_IBackgroundCopyFile2 = &IID_IBackgroundCopyFile2_Value;
+pub const IBackgroundCopyFile2 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyFile.VTable,
+        GetFileRanges: *const fn(
+            self: *const IBackgroundCopyFile2,
+            RangeCount: ?*u32,
+            Ranges: [*]?*BG_FILE_RANGE,
+        ) callconv(.winapi) HRESULT,
+        SetRemoteName: *const fn(
+            self: *const IBackgroundCopyFile2,
+            Val: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn GetFileRanges(self: *const IBackgroundCopyFile2, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileRanges(self, RangeCount, Ranges);
+    }
+    pub fn SetRemoteName(self: *const IBackgroundCopyFile2, Val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRemoteName(self, Val);
+    }
 };
 
-pub const BG_JOB_TIMES = extern struct {
-    CreationTime: FILETIME,
-    ModificationTime: FILETIME,
-    TransferCompletionTime: FILETIME,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IBackgroundCopyFile3_Value = Guid.initString("659cdeaa-489e-11d9-a9cd-000d56965251");
+pub const IID_IBackgroundCopyFile3 = &IID_IBackgroundCopyFile3_Value;
+pub const IBackgroundCopyFile3 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyFile2.VTable,
+        GetTemporaryName: *const fn(
+            self: *const IBackgroundCopyFile3,
+            pFilename: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetValidationState: *const fn(
+            self: *const IBackgroundCopyFile3,
+            state: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetValidationState: *const fn(
+            self: *const IBackgroundCopyFile3,
+            pState: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsDownloadedFromPeer: *const fn(
+            self: *const IBackgroundCopyFile3,
+            pVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTemporaryName(self, pFilename);
+    }
+    pub fn SetValidationState(self: *const IBackgroundCopyFile3, state: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValidationState(self, state);
+    }
+    pub fn GetValidationState(self: *const IBackgroundCopyFile3, pState: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValidationState(self, pState);
+    }
+    pub fn IsDownloadedFromPeer(self: *const IBackgroundCopyFile3, pVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsDownloadedFromPeer(self, pVal);
+    }
 };
 
-pub const BG_JOB_PRIORITY = enum(i32) {
-    FOREGROUND = 0,
-    HIGH = 1,
-    NORMAL = 2,
-    LOW = 3,
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IBackgroundCopyFile4_Value = Guid.initString("ef7e0655-7888-4960-b0e5-730846e03492");
+pub const IID_IBackgroundCopyFile4 = &IID_IBackgroundCopyFile4_Value;
+pub const IBackgroundCopyFile4 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyFile3.VTable,
+        GetPeerDownloadStats: *const fn(
+            self: *const IBackgroundCopyFile4,
+            pFromOrigin: ?*u64,
+            pFromPeers: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyFile3: IBackgroundCopyFile3,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn GetPeerDownloadStats(self: *const IBackgroundCopyFile4, pFromOrigin: ?*u64, pFromPeers: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPeerDownloadStats(self, pFromOrigin, pFromPeers);
+    }
 };
-pub const BG_JOB_PRIORITY_FOREGROUND = BG_JOB_PRIORITY.FOREGROUND;
-pub const BG_JOB_PRIORITY_HIGH = BG_JOB_PRIORITY.HIGH;
-pub const BG_JOB_PRIORITY_NORMAL = BG_JOB_PRIORITY.NORMAL;
-pub const BG_JOB_PRIORITY_LOW = BG_JOB_PRIORITY.LOW;
 
-pub const BG_JOB_STATE = enum(i32) {
-    QUEUED = 0,
-    CONNECTING = 1,
-    TRANSFERRING = 2,
-    SUSPENDED = 3,
-    ERROR = 4,
-    TRANSIENT_ERROR = 5,
-    TRANSFERRED = 6,
-    ACKNOWLEDGED = 7,
-    CANCELLED = 8,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IBackgroundCopyFile5_Value = Guid.initString("85c1657f-dafc-40e8-8834-df18ea25717e");
+pub const IID_IBackgroundCopyFile5 = &IID_IBackgroundCopyFile5_Value;
+pub const IBackgroundCopyFile5 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyFile4.VTable,
+        SetProperty: *const fn(
+            self: *const IBackgroundCopyFile5,
+            PropertyId: BITS_FILE_PROPERTY_ID,
+            PropertyValue: BITS_FILE_PROPERTY_VALUE,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IBackgroundCopyFile5,
+            PropertyId: BITS_FILE_PROPERTY_ID,
+            PropertyValue: ?*BITS_FILE_PROPERTY_VALUE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyFile4: IBackgroundCopyFile4,
+    IBackgroundCopyFile3: IBackgroundCopyFile3,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn SetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
+    }
+    pub fn GetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
+    }
 };
-pub const BG_JOB_STATE_QUEUED = BG_JOB_STATE.QUEUED;
-pub const BG_JOB_STATE_CONNECTING = BG_JOB_STATE.CONNECTING;
-pub const BG_JOB_STATE_TRANSFERRING = BG_JOB_STATE.TRANSFERRING;
-pub const BG_JOB_STATE_SUSPENDED = BG_JOB_STATE.SUSPENDED;
-pub const BG_JOB_STATE_ERROR = BG_JOB_STATE.ERROR;
-pub const BG_JOB_STATE_TRANSIENT_ERROR = BG_JOB_STATE.TRANSIENT_ERROR;
-pub const BG_JOB_STATE_TRANSFERRED = BG_JOB_STATE.TRANSFERRED;
-pub const BG_JOB_STATE_ACKNOWLEDGED = BG_JOB_STATE.ACKNOWLEDGED;
-pub const BG_JOB_STATE_CANCELLED = BG_JOB_STATE.CANCELLED;
 
-pub const BG_JOB_TYPE = enum(i32) {
-    DOWNLOAD = 0,
-    UPLOAD = 1,
-    UPLOAD_REPLY = 2,
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IBackgroundCopyFile6_Value = Guid.initString("cf6784f7-d677-49fd-9368-cb47aee9d1ad");
+pub const IID_IBackgroundCopyFile6 = &IID_IBackgroundCopyFile6_Value;
+pub const IBackgroundCopyFile6 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyFile5.VTable,
+        UpdateDownloadPosition: *const fn(
+            self: *const IBackgroundCopyFile6,
+            offset: u64,
+        ) callconv(.winapi) HRESULT,
+        RequestFileRanges: *const fn(
+            self: *const IBackgroundCopyFile6,
+            rangeCount: u32,
+            ranges: [*]const BG_FILE_RANGE,
+        ) callconv(.winapi) HRESULT,
+        GetFilledFileRanges: *const fn(
+            self: *const IBackgroundCopyFile6,
+            rangeCount: ?*u32,
+            ranges: [*]?*BG_FILE_RANGE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyFile5: IBackgroundCopyFile5,
+    IBackgroundCopyFile4: IBackgroundCopyFile4,
+    IBackgroundCopyFile3: IBackgroundCopyFile3,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn UpdateDownloadPosition(self: *const IBackgroundCopyFile6, offset: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateDownloadPosition(self, offset);
+    }
+    pub fn RequestFileRanges(self: *const IBackgroundCopyFile6, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestFileRanges(self, rangeCount, ranges);
+    }
+    pub fn GetFilledFileRanges(self: *const IBackgroundCopyFile6, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFilledFileRanges(self, rangeCount, ranges);
+    }
 };
-pub const BG_JOB_TYPE_DOWNLOAD = BG_JOB_TYPE.DOWNLOAD;
-pub const BG_JOB_TYPE_UPLOAD = BG_JOB_TYPE.UPLOAD;
-pub const BG_JOB_TYPE_UPLOAD_REPLY = BG_JOB_TYPE.UPLOAD_REPLY;
 
-pub const BG_JOB_PROXY_USAGE = enum(i32) {
-    PRECONFIG = 0,
-    NO_PROXY = 1,
-    OVERRIDE = 2,
-    AUTODETECT = 3,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IBackgroundCopyGroup_Value = Guid.initString("1ded80a7-53ea-424f-8a04-17fea9adc4f5");
+pub const IID_IBackgroundCopyGroup = &IID_IBackgroundCopyGroup_Value;
+pub const IBackgroundCopyGroup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProp: *const fn(
+            self: *const IBackgroundCopyGroup,
+            propID: GROUPPROP,
+            pvarVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetProp: *const fn(
+            self: *const IBackgroundCopyGroup,
+            propID: GROUPPROP,
+            pvarVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetProgress: *const fn(
+            self: *const IBackgroundCopyGroup,
+            dwFlags: u32,
+            pdwProgress: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStatus: *const fn(
+            self: *const IBackgroundCopyGroup,
+            pdwStatus: ?*u32,
+            pdwJobIndex: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetJob: *const fn(
+            self: *const IBackgroundCopyGroup,
+            jobID: Guid,
+            ppJob: ?*?*IBackgroundCopyJob1,
+        ) callconv(.winapi) HRESULT,
+        SuspendGroup: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(.winapi) HRESULT,
+        ResumeGroup: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(.winapi) HRESULT,
+        CancelGroup: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Size: *const fn(
+            self: *const IBackgroundCopyGroup,
+            pdwSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GroupID: *const fn(
+            self: *const IBackgroundCopyGroup,
+            pguidGroupID: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        CreateJob: *const fn(
+            self: *const IBackgroundCopyGroup,
+            guidJobID: Guid,
+            ppJob: ?*?*IBackgroundCopyJob1,
+        ) callconv(.winapi) HRESULT,
+        EnumJobs: *const fn(
+            self: *const IBackgroundCopyGroup,
+            dwFlags: u32,
+            ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1,
+        ) callconv(.winapi) HRESULT,
+        SwitchToForeground: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(.winapi) HRESULT,
+        QueryNewJobInterface: *const fn(
+            self: *const IBackgroundCopyGroup,
+            iid: ?*const Guid,
+            pUnk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        SetNotificationPointer: *const fn(
+            self: *const IBackgroundCopyGroup,
+            iid: ?*const Guid,
+            pUnk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProp(self, propID, pvarVal);
+    }
+    pub fn SetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProp(self, propID, pvarVal);
+    }
+    pub fn GetProgress(self: *const IBackgroundCopyGroup, dwFlags: u32, pdwProgress: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
+    }
+    pub fn GetStatus(self: *const IBackgroundCopyGroup, pdwStatus: ?*u32, pdwJobIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus, pdwJobIndex);
+    }
+    pub fn GetJob(self: *const IBackgroundCopyGroup, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
+        return self.vtable.GetJob(self, jobID, ppJob);
+    }
+    pub fn SuspendGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.SuspendGroup(self);
+    }
+    pub fn ResumeGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.ResumeGroup(self);
+    }
+    pub fn CancelGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelGroup(self);
+    }
+    pub fn get_Size(self: *const IBackgroundCopyGroup, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Size(self, pdwSize);
+    }
+    pub fn get_GroupID(self: *const IBackgroundCopyGroup, pguidGroupID: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GroupID(self, pguidGroupID);
+    }
+    pub fn CreateJob(self: *const IBackgroundCopyGroup, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateJob(self, guidJobID, ppJob);
+    }
+    pub fn EnumJobs(self: *const IBackgroundCopyGroup, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumJobs(self, dwFlags, ppEnumJobs);
+    }
+    pub fn SwitchToForeground(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.SwitchToForeground(self);
+    }
+    pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryNewJobInterface(self, iid, pUnk);
+    }
+    pub fn SetNotificationPointer(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNotificationPointer(self, iid, pUnk);
+    }
 };
-pub const BG_JOB_PROXY_USAGE_PRECONFIG = BG_JOB_PROXY_USAGE.PRECONFIG;
-pub const BG_JOB_PROXY_USAGE_NO_PROXY = BG_JOB_PROXY_USAGE.NO_PROXY;
-pub const BG_JOB_PROXY_USAGE_OVERRIDE = BG_JOB_PROXY_USAGE.OVERRIDE;
-pub const BG_JOB_PROXY_USAGE_AUTODETECT = BG_JOB_PROXY_USAGE.AUTODETECT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyJob_Value = Guid.initString("37668d37-507e-4160-9316-26306d150b12");
@@ -687,224 +1280,75 @@ pub const IBackgroundCopyJob = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumBackgroundCopyJobs_Value = Guid.initString("1af4f612-3b71-466f-8f58-7b6f73ac57ad");
-pub const IID_IEnumBackgroundCopyJobs = &IID_IEnumBackgroundCopyJobs_Value;
-pub const IEnumBackgroundCopyJobs = extern union {
+const IID_IBackgroundCopyJob1_Value = Guid.initString("59f5553c-2031-4629-bb18-2645a6970947");
+pub const IID_IBackgroundCopyJob1 = &IID_IBackgroundCopyJob1_Value;
+pub const IBackgroundCopyJob1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumBackgroundCopyJobs,
-            celt: u32,
-            rgelt: ?*?*IBackgroundCopyJob,
-            pceltFetched: ?*u32,
+        CancelJob: *const fn(
+            self: *const IBackgroundCopyJob1,
         ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumBackgroundCopyJobs,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumBackgroundCopyJobs,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumBackgroundCopyJobs,
-            ppenum: ?*?*IEnumBackgroundCopyJobs,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumBackgroundCopyJobs,
-            puCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBackgroundCopyJobs, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumBackgroundCopyJobs, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumBackgroundCopyJobs, ppenum: ?*?*IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-    pub fn GetCount(self: *const IEnumBackgroundCopyJobs, puCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, puCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IBackgroundCopyCallback_Value = Guid.initString("97ea99c7-0186-4ad4-8df9-c5b4e0ed6b22");
-pub const IID_IBackgroundCopyCallback = &IID_IBackgroundCopyCallback_Value;
-pub const IBackgroundCopyCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        JobTransferred: *const fn(
-            self: *const IBackgroundCopyCallback,
-            pJob: ?*IBackgroundCopyJob,
-        ) callconv(.winapi) HRESULT,
-        JobError: *const fn(
-            self: *const IBackgroundCopyCallback,
-            pJob: ?*IBackgroundCopyJob,
-            pError: ?*IBackgroundCopyError,
-        ) callconv(.winapi) HRESULT,
-        JobModification: *const fn(
-            self: *const IBackgroundCopyCallback,
-            pJob: ?*IBackgroundCopyJob,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn JobTransferred(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
-        return self.vtable.JobTransferred(self, pJob);
-    }
-    pub fn JobError(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
-        return self.vtable.JobError(self, pJob, pError);
-    }
-    pub fn JobModification(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.JobModification(self, pJob, dwReserved);
-    }
-};
-
-const IID_AsyncIBackgroundCopyCallback_Value = Guid.initString("ca29d251-b4bb-4679-a3d9-ae8006119d54");
-pub const IID_AsyncIBackgroundCopyCallback = &IID_AsyncIBackgroundCopyCallback_Value;
-pub const AsyncIBackgroundCopyCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_JobTransferred: *const fn(
-            self: *const AsyncIBackgroundCopyCallback,
-            pJob: ?*IBackgroundCopyJob,
-        ) callconv(.winapi) HRESULT,
-        Finish_JobTransferred: *const fn(
-            self: *const AsyncIBackgroundCopyCallback,
-        ) callconv(.winapi) HRESULT,
-        Begin_JobError: *const fn(
-            self: *const AsyncIBackgroundCopyCallback,
-            pJob: ?*IBackgroundCopyJob,
-            pError: ?*IBackgroundCopyError,
-        ) callconv(.winapi) HRESULT,
-        Finish_JobError: *const fn(
-            self: *const AsyncIBackgroundCopyCallback,
-        ) callconv(.winapi) HRESULT,
-        Begin_JobModification: *const fn(
-            self: *const AsyncIBackgroundCopyCallback,
-            pJob: ?*IBackgroundCopyJob,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        Finish_JobModification: *const fn(
-            self: *const AsyncIBackgroundCopyCallback,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_JobTransferred(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_JobTransferred(self, pJob);
-    }
-    pub fn Finish_JobTransferred(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_JobTransferred(self);
-    }
-    pub fn Begin_JobError(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_JobError(self, pJob, pError);
-    }
-    pub fn Finish_JobError(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_JobError(self);
-    }
-    pub fn Begin_JobModification(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_JobModification(self, pJob, dwReserved);
-    }
-    pub fn Finish_JobModification(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_JobModification(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IBackgroundCopyManager_Value = Guid.initString("5ce34c0d-0dc9-4c1f-897c-daa1b78cee7c");
-pub const IID_IBackgroundCopyManager = &IID_IBackgroundCopyManager_Value;
-pub const IBackgroundCopyManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateJob: *const fn(
-            self: *const IBackgroundCopyManager,
-            DisplayName: ?[*:0]const u16,
-            Type: BG_JOB_TYPE,
-            pJobId: ?*Guid,
-            ppJob: ?*?*IBackgroundCopyJob,
-        ) callconv(.winapi) HRESULT,
-        GetJob: *const fn(
-            self: *const IBackgroundCopyManager,
-            jobID: ?*const Guid,
-            ppJob: ?*?*IBackgroundCopyJob,
-        ) callconv(.winapi) HRESULT,
-        EnumJobs: *const fn(
-            self: *const IBackgroundCopyManager,
+        GetProgress: *const fn(
+            self: *const IBackgroundCopyJob1,
             dwFlags: u32,
-            ppEnum: ?*?*IEnumBackgroundCopyJobs,
+            pdwProgress: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetErrorDescription: *const fn(
-            self: *const IBackgroundCopyManager,
-            hResult: HRESULT,
-            LanguageId: u32,
-            pErrorDescription: ?*?PWSTR,
+        GetStatus: *const fn(
+            self: *const IBackgroundCopyJob1,
+            pdwStatus: ?*u32,
+            pdwWin32Result: ?*u32,
+            pdwTransportResult: ?*u32,
+            pdwNumOfRetries: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        AddFiles: *const fn(
+            self: *const IBackgroundCopyJob1,
+            cFileCount: u32,
+            ppFileSet: [*]?*FILESETINFO,
+        ) callconv(.winapi) HRESULT,
+        GetFile: *const fn(
+            self: *const IBackgroundCopyJob1,
+            cFileIndex: u32,
+            pFileInfo: ?*FILESETINFO,
+        ) callconv(.winapi) HRESULT,
+        GetFileCount: *const fn(
+            self: *const IBackgroundCopyJob1,
+            pdwFileCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SwitchToForeground: *const fn(
+            self: *const IBackgroundCopyJob1,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_JobID: *const fn(
+            self: *const IBackgroundCopyJob1,
+            pguidJobID: ?*Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateJob(self: *const IBackgroundCopyManager, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateJob(self, DisplayName, Type, pJobId, ppJob);
+    pub fn CancelJob(self: *const IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelJob(self);
     }
-    pub fn GetJob(self: *const IBackgroundCopyManager, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
-        return self.vtable.GetJob(self, jobID, ppJob);
+    pub fn GetProgress(self: *const IBackgroundCopyJob1, dwFlags: u32, pdwProgress: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
     }
-    pub fn EnumJobs(self: *const IBackgroundCopyManager, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumJobs(self, dwFlags, ppEnum);
+    pub fn GetStatus(self: *const IBackgroundCopyJob1, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
     }
-    pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetErrorDescription(self, hResult, LanguageId, pErrorDescription);
+    pub fn AddFiles(self: *const IBackgroundCopyJob1, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.AddFiles(self, cFileCount, ppFileSet);
     }
-};
-
-const CLSID_BackgroundCopyManager1_5_Value = Guid.initString("f087771f-d74f-4c1a-bb8a-e16aca9124ea");
-pub const CLSID_BackgroundCopyManager1_5 = &CLSID_BackgroundCopyManager1_5_Value;
-
-pub const BG_JOB_REPLY_PROGRESS = extern struct {
-    BytesTotal: u64,
-    BytesTransferred: u64,
-};
-
-pub const BG_AUTH_TARGET = enum(i32) {
-    SERVER = 1,
-    PROXY = 2,
-};
-pub const BG_AUTH_TARGET_SERVER = BG_AUTH_TARGET.SERVER;
-pub const BG_AUTH_TARGET_PROXY = BG_AUTH_TARGET.PROXY;
-
-pub const BG_AUTH_SCHEME = enum(i32) {
-    BASIC = 1,
-    DIGEST = 2,
-    NTLM = 3,
-    NEGOTIATE = 4,
-    PASSPORT = 5,
-};
-pub const BG_AUTH_SCHEME_BASIC = BG_AUTH_SCHEME.BASIC;
-pub const BG_AUTH_SCHEME_DIGEST = BG_AUTH_SCHEME.DIGEST;
-pub const BG_AUTH_SCHEME_NTLM = BG_AUTH_SCHEME.NTLM;
-pub const BG_AUTH_SCHEME_NEGOTIATE = BG_AUTH_SCHEME.NEGOTIATE;
-pub const BG_AUTH_SCHEME_PASSPORT = BG_AUTH_SCHEME.PASSPORT;
-
-pub const BG_BASIC_CREDENTIALS = extern struct {
-    UserName: ?PWSTR,
-    Password: ?PWSTR,
-};
-
-pub const BG_AUTH_CREDENTIALS_UNION = extern union {
-    Basic: BG_BASIC_CREDENTIALS,
-};
-
-pub const BG_AUTH_CREDENTIALS = extern struct {
-    Target: BG_AUTH_TARGET,
-    Scheme: BG_AUTH_SCHEME,
-    Credentials: BG_AUTH_CREDENTIALS_UNION,
+    pub fn GetFile(self: *const IBackgroundCopyJob1, cFileIndex: u32, pFileInfo: ?*FILESETINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFile(self, cFileIndex, pFileInfo);
+    }
+    pub fn GetFileCount(self: *const IBackgroundCopyJob1, pdwFileCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileCount(self, pdwFileCount);
+    }
+    pub fn SwitchToForeground(self: *const IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
+        return self.vtable.SwitchToForeground(self);
+    }
+    pub fn get_JobID(self: *const IBackgroundCopyJob1, pguidJobID: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.get_JobID(self, pguidJobID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -979,14 +1423,6 @@ pub const IBackgroundCopyJob2 = extern union {
     }
 };
 
-const CLSID_BackgroundCopyManager2_0_Value = Guid.initString("6d18ad12-bde3-4393-b311-099c346e6df9");
-pub const CLSID_BackgroundCopyManager2_0 = &CLSID_BackgroundCopyManager2_0_Value;
-
-pub const BG_FILE_RANGE = extern struct {
-    InitialOffset: u64,
-    Length: u64,
-};
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob3_Value = Guid.initString("443c8934-90ff-48ed-bcde-26f5c7450042");
 pub const IID_IBackgroundCopyJob3 = &IID_IBackgroundCopyJob3_Value;
@@ -1033,53 +1469,91 @@ pub const IBackgroundCopyJob3 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBackgroundCopyFile2_Value = Guid.initString("83e81b93-0873-474d-8a8c-f2018b1a939c");
-pub const IID_IBackgroundCopyFile2 = &IID_IBackgroundCopyFile2_Value;
-pub const IBackgroundCopyFile2 = extern union {
+const IID_IBackgroundCopyJob4_Value = Guid.initString("659cdeae-489e-11d9-a9cd-000d56965251");
+pub const IID_IBackgroundCopyJob4 = &IID_IBackgroundCopyJob4_Value;
+pub const IBackgroundCopyJob4 = extern union {
     pub const VTable = extern struct {
-        base: IBackgroundCopyFile.VTable,
-        GetFileRanges: *const fn(
-            self: *const IBackgroundCopyFile2,
-            RangeCount: ?*u32,
-            Ranges: [*]?*BG_FILE_RANGE,
+        base: IBackgroundCopyJob3.VTable,
+        SetPeerCachingFlags: *const fn(
+            self: *const IBackgroundCopyJob4,
+            Flags: u32,
         ) callconv(.winapi) HRESULT,
-        SetRemoteName: *const fn(
-            self: *const IBackgroundCopyFile2,
-            Val: ?[*:0]const u16,
+        GetPeerCachingFlags: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetOwnerIntegrityLevel: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pLevel: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetOwnerElevationState: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pElevated: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetMaximumDownloadTime: *const fn(
+            self: *const IBackgroundCopyJob4,
+            Timeout: u32,
+        ) callconv(.winapi) HRESULT,
+        GetMaximumDownloadTime: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pTimeout: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IBackgroundCopyFile: IBackgroundCopyFile,
+    IBackgroundCopyJob3: IBackgroundCopyJob3,
+    IBackgroundCopyJob2: IBackgroundCopyJob2,
+    IBackgroundCopyJob: IBackgroundCopyJob,
     IUnknown: IUnknown,
-    pub fn GetFileRanges(self: *const IBackgroundCopyFile2, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileRanges(self, RangeCount, Ranges);
+    pub fn SetPeerCachingFlags(self: *const IBackgroundCopyJob4, Flags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPeerCachingFlags(self, Flags);
     }
-    pub fn SetRemoteName(self: *const IBackgroundCopyFile2, Val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRemoteName(self, Val);
+    pub fn GetPeerCachingFlags(self: *const IBackgroundCopyJob4, pFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPeerCachingFlags(self, pFlags);
+    }
+    pub fn GetOwnerIntegrityLevel(self: *const IBackgroundCopyJob4, pLevel: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOwnerIntegrityLevel(self, pLevel);
+    }
+    pub fn GetOwnerElevationState(self: *const IBackgroundCopyJob4, pElevated: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOwnerElevationState(self, pElevated);
+    }
+    pub fn SetMaximumDownloadTime(self: *const IBackgroundCopyJob4, Timeout: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMaximumDownloadTime(self, Timeout);
+    }
+    pub fn GetMaximumDownloadTime(self: *const IBackgroundCopyJob4, pTimeout: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaximumDownloadTime(self, pTimeout);
     }
 };
 
-const CLSID_BackgroundCopyManager2_5_Value = Guid.initString("03ca98d6-ff5d-49b8-abc6-03dd84127020");
-pub const CLSID_BackgroundCopyManager2_5 = &CLSID_BackgroundCopyManager2_5_Value;
-
-pub const BG_CERT_STORE_LOCATION = enum(i32) {
-    CURRENT_USER = 0,
-    LOCAL_MACHINE = 1,
-    CURRENT_SERVICE = 2,
-    SERVICES = 3,
-    USERS = 4,
-    CURRENT_USER_GROUP_POLICY = 5,
-    LOCAL_MACHINE_GROUP_POLICY = 6,
-    LOCAL_MACHINE_ENTERPRISE = 7,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IBackgroundCopyJob5_Value = Guid.initString("e847030c-bbba-4657-af6d-484aa42bf1fe");
+pub const IID_IBackgroundCopyJob5 = &IID_IBackgroundCopyJob5_Value;
+pub const IBackgroundCopyJob5 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyJob4.VTable,
+        SetProperty: *const fn(
+            self: *const IBackgroundCopyJob5,
+            PropertyId: BITS_JOB_PROPERTY_ID,
+            PropertyValue: BITS_JOB_PROPERTY_VALUE,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IBackgroundCopyJob5,
+            PropertyId: BITS_JOB_PROPERTY_ID,
+            PropertyValue: ?*BITS_JOB_PROPERTY_VALUE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyJob4: IBackgroundCopyJob4,
+    IBackgroundCopyJob3: IBackgroundCopyJob3,
+    IBackgroundCopyJob2: IBackgroundCopyJob2,
+    IBackgroundCopyJob: IBackgroundCopyJob,
+    IUnknown: IUnknown,
+    pub fn SetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
+    }
+    pub fn GetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
+    }
 };
-pub const BG_CERT_STORE_LOCATION_CURRENT_USER = BG_CERT_STORE_LOCATION.CURRENT_USER;
-pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE = BG_CERT_STORE_LOCATION.LOCAL_MACHINE;
-pub const BG_CERT_STORE_LOCATION_CURRENT_SERVICE = BG_CERT_STORE_LOCATION.CURRENT_SERVICE;
-pub const BG_CERT_STORE_LOCATION_SERVICES = BG_CERT_STORE_LOCATION.SERVICES;
-pub const BG_CERT_STORE_LOCATION_USERS = BG_CERT_STORE_LOCATION.USERS;
-pub const BG_CERT_STORE_LOCATION_CURRENT_USER_GROUP_POLICY = BG_CERT_STORE_LOCATION.CURRENT_USER_GROUP_POLICY;
-pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_GROUP_POLICY = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_GROUP_POLICY;
-pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_ENTERPRISE = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_ENTERPRISE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJobHttpOptions_Value = Guid.initString("f1bd1079-9f01-4bdc-8036-f09b70095066");
@@ -1154,113 +1628,217 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
     }
 };
 
-const CLSID_BackgroundCopyManager3_0_Value = Guid.initString("659cdea7-489e-11d9-a9cd-000d56965251");
-pub const CLSID_BackgroundCopyManager3_0 = &CLSID_BackgroundCopyManager3_0_Value;
+// TODO: this type is limited to platform 'windows10.0.17763'
+const IID_IBackgroundCopyJobHttpOptions2_Value = Guid.initString("b591a192-a405-4fc3-8323-4c5c542578fc");
+pub const IID_IBackgroundCopyJobHttpOptions2 = &IID_IBackgroundCopyJobHttpOptions2_Value;
+pub const IBackgroundCopyJobHttpOptions2 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyJobHttpOptions.VTable,
+        SetHttpMethod: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions2,
+            method: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetHttpMethod: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions2,
+            method: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
+    IUnknown: IUnknown,
+    pub fn SetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHttpMethod(self, method);
+    }
+    pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHttpMethod(self, method);
+    }
+};
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBitsPeerCacheRecord_Value = Guid.initString("659cdeaf-489e-11d9-a9cd-000d56965251");
-pub const IID_IBitsPeerCacheRecord = &IID_IBitsPeerCacheRecord_Value;
-pub const IBitsPeerCacheRecord = extern union {
+const IID_IBackgroundCopyJobHttpOptions3_Value = Guid.initString("8a9263d3-fd4c-4eda-9b28-30132a4d4e3c");
+pub const IID_IBackgroundCopyJobHttpOptions3 = &IID_IBackgroundCopyJobHttpOptions3_Value;
+pub const IBackgroundCopyJobHttpOptions3 = extern union {
+    pub const VTable = extern struct {
+        base: IBackgroundCopyJobHttpOptions2.VTable,
+        SetServerCertificateValidationInterface: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions3,
+            certValidationCallback: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        MakeCustomHeadersWriteOnly: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions3,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IBackgroundCopyJobHttpOptions2: IBackgroundCopyJobHttpOptions2,
+    IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
+    IUnknown: IUnknown,
+    pub fn SetServerCertificateValidationInterface(self: *const IBackgroundCopyJobHttpOptions3, certValidationCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetServerCertificateValidationInterface(self, certValidationCallback);
+    }
+    pub fn MakeCustomHeadersWriteOnly(self: *const IBackgroundCopyJobHttpOptions3) callconv(.@"inline") HRESULT {
+        return self.vtable.MakeCustomHeadersWriteOnly(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IBackgroundCopyManager_Value = Guid.initString("5ce34c0d-0dc9-4c1f-897c-daa1b78cee7c");
+pub const IID_IBackgroundCopyManager = &IID_IBackgroundCopyManager_Value;
+pub const IBackgroundCopyManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetId: *const fn(
-            self: *const IBitsPeerCacheRecord,
-            pVal: ?*Guid,
+        CreateJob: *const fn(
+            self: *const IBackgroundCopyManager,
+            DisplayName: ?[*:0]const u16,
+            Type: BG_JOB_TYPE,
+            pJobId: ?*Guid,
+            ppJob: ?*?*IBackgroundCopyJob,
         ) callconv(.winapi) HRESULT,
-        GetOriginUrl: *const fn(
-            self: *const IBitsPeerCacheRecord,
-            pVal: ?*?PWSTR,
+        GetJob: *const fn(
+            self: *const IBackgroundCopyManager,
+            jobID: ?*const Guid,
+            ppJob: ?*?*IBackgroundCopyJob,
         ) callconv(.winapi) HRESULT,
-        GetFileSize: *const fn(
-            self: *const IBitsPeerCacheRecord,
-            pVal: ?*u64,
+        EnumJobs: *const fn(
+            self: *const IBackgroundCopyManager,
+            dwFlags: u32,
+            ppEnum: ?*?*IEnumBackgroundCopyJobs,
         ) callconv(.winapi) HRESULT,
-        GetFileModificationTime: *const fn(
-            self: *const IBitsPeerCacheRecord,
-            pVal: ?*FILETIME,
-        ) callconv(.winapi) HRESULT,
-        GetLastAccessTime: *const fn(
-            self: *const IBitsPeerCacheRecord,
-            pVal: ?*FILETIME,
-        ) callconv(.winapi) HRESULT,
-        IsFileValidated: *const fn(
-            self: *const IBitsPeerCacheRecord,
-        ) callconv(.winapi) HRESULT,
-        GetFileRanges: *const fn(
-            self: *const IBitsPeerCacheRecord,
-            pRangeCount: ?*u32,
-            ppRanges: [*]?*BG_FILE_RANGE,
+        GetErrorDescription: *const fn(
+            self: *const IBackgroundCopyManager,
+            hResult: HRESULT,
+            LanguageId: u32,
+            pErrorDescription: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IBitsPeerCacheRecord, pVal: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetId(self, pVal);
+    pub fn CreateJob(self: *const IBackgroundCopyManager, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateJob(self, DisplayName, Type, pJobId, ppJob);
     }
-    pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOriginUrl(self, pVal);
+    pub fn GetJob(self: *const IBackgroundCopyManager, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
+        return self.vtable.GetJob(self, jobID, ppJob);
     }
-    pub fn GetFileSize(self: *const IBitsPeerCacheRecord, pVal: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileSize(self, pVal);
+    pub fn EnumJobs(self: *const IBackgroundCopyManager, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumJobs(self, dwFlags, ppEnum);
     }
-    pub fn GetFileModificationTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileModificationTime(self, pVal);
+    pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetErrorDescription(self, hResult, LanguageId, pErrorDescription);
     }
-    pub fn GetLastAccessTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastAccessTime(self, pVal);
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IBackgroundCopyQMgr_Value = Guid.initString("16f41c69-09f5-41d2-8cd8-3c08c47bc8a8");
+pub const IID_IBackgroundCopyQMgr = &IID_IBackgroundCopyQMgr_Value;
+pub const IBackgroundCopyQMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateGroup: *const fn(
+            self: *const IBackgroundCopyQMgr,
+            guidGroupID: Guid,
+            ppGroup: ?*?*IBackgroundCopyGroup,
+        ) callconv(.winapi) HRESULT,
+        GetGroup: *const fn(
+            self: *const IBackgroundCopyQMgr,
+            groupID: Guid,
+            ppGroup: ?*?*IBackgroundCopyGroup,
+        ) callconv(.winapi) HRESULT,
+        EnumGroups: *const fn(
+            self: *const IBackgroundCopyQMgr,
+            dwFlags: u32,
+            ppEnumGroups: ?*?*IEnumBackgroundCopyGroups,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateGroup(self: *const IBackgroundCopyQMgr, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateGroup(self, guidGroupID, ppGroup);
     }
-    pub fn IsFileValidated(self: *const IBitsPeerCacheRecord) callconv(.@"inline") HRESULT {
-        return self.vtable.IsFileValidated(self);
+    pub fn GetGroup(self: *const IBackgroundCopyQMgr, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGroup(self, groupID, ppGroup);
     }
-    pub fn GetFileRanges(self: *const IBitsPeerCacheRecord, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileRanges(self, pRangeCount, ppRanges);
+    pub fn EnumGroups(self: *const IBackgroundCopyQMgr, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumGroups(self, dwFlags, ppEnumGroups);
+    }
+};
+
+const IID_IBackgroundCopyServerCertificateValidationCallback_Value = Guid.initString("4cec0d02-def7-4158-813a-c32a46945ff7");
+pub const IID_IBackgroundCopyServerCertificateValidationCallback = &IID_IBackgroundCopyServerCertificateValidationCallback_Value;
+pub const IBackgroundCopyServerCertificateValidationCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ValidateServerCertificate: *const fn(
+            self: *const IBackgroundCopyServerCertificateValidationCallback,
+            job: ?*IBackgroundCopyJob,
+            file: ?*IBackgroundCopyFile,
+            certLength: u32,
+            certData: [*:0]const u8,
+            certEncodingType: u32,
+            certStoreLength: u32,
+            certStoreData: [*:0]const u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ValidateServerCertificate(self: *const IBackgroundCopyServerCertificateValidationCallback, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.@"inline") HRESULT {
+        return self.vtable.ValidateServerCertificate(self, job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumBitsPeerCacheRecords_Value = Guid.initString("659cdea4-489e-11d9-a9cd-000d56965251");
-pub const IID_IEnumBitsPeerCacheRecords = &IID_IEnumBitsPeerCacheRecords_Value;
-pub const IEnumBitsPeerCacheRecords = extern union {
+const IID_IBITSExtensionSetup_Value = Guid.initString("29cfbbf7-09e4-4b97-b0bc-f2287e3d8eb3");
+pub const IID_IBITSExtensionSetup = &IID_IBITSExtensionSetup_Value;
+pub const IBITSExtensionSetup = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumBitsPeerCacheRecords,
-            celt: u32,
-            rgelt: ?*?*IBitsPeerCacheRecord,
-            pceltFetched: ?*u32,
+        base: IDispatch.VTable,
+        EnableBITSUploads: *const fn(
+            self: *const IBITSExtensionSetup,
         ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumBitsPeerCacheRecords,
-            celt: u32,
+        DisableBITSUploads: *const fn(
+            self: *const IBITSExtensionSetup,
         ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumBitsPeerCacheRecords,
+        GetCleanupTaskName: *const fn(
+            self: *const IBITSExtensionSetup,
+            pTaskName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumBitsPeerCacheRecords,
-            ppenum: ?*?*IEnumBitsPeerCacheRecords,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumBitsPeerCacheRecords,
-            puCount: ?*u32,
+        GetCleanupTask: *const fn(
+            self: *const IBITSExtensionSetup,
+            riid: ?*const Guid,
+            ppUnk: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBitsPeerCacheRecords, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    pub fn EnableBITSUploads(self: *const IBITSExtensionSetup) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableBITSUploads(self);
     }
-    pub fn Skip(self: *const IEnumBitsPeerCacheRecords, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
+    pub fn DisableBITSUploads(self: *const IBITSExtensionSetup) callconv(.@"inline") HRESULT {
+        return self.vtable.DisableBITSUploads(self);
     }
-    pub fn Reset(self: *const IEnumBitsPeerCacheRecords) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
+    pub fn GetCleanupTaskName(self: *const IBITSExtensionSetup, pTaskName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCleanupTaskName(self, pTaskName);
     }
-    pub fn Clone(self: *const IEnumBitsPeerCacheRecords, ppenum: ?*?*IEnumBitsPeerCacheRecords) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
+    pub fn GetCleanupTask(self: *const IBITSExtensionSetup, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCleanupTask(self, riid, ppUnk);
     }
-    pub fn GetCount(self: *const IEnumBitsPeerCacheRecords, puCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, puCount);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IBITSExtensionSetupFactory_Value = Guid.initString("d5d2d542-5503-4e64-8b48-72ef91a32ee1");
+pub const IID_IBITSExtensionSetupFactory = &IID_IBITSExtensionSetupFactory_Value;
+pub const IBITSExtensionSetupFactory = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetObject: *const fn(
+            self: *const IBITSExtensionSetupFactory,
+            Path: ?BSTR,
+            ppExtensionSetup: ?*?*IBITSExtensionSetup,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetObject(self: *const IBITSExtensionSetupFactory, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObject(self, Path, ppExtensionSetup);
     }
 };
 
@@ -1293,53 +1871,6 @@ pub const IBitsPeer = extern union {
     }
     pub fn IsAvailable(self: *const IBitsPeer, pOnline: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsAvailable(self, pOnline);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumBitsPeers_Value = Guid.initString("659cdea5-489e-11d9-a9cd-000d56965251");
-pub const IID_IEnumBitsPeers = &IID_IEnumBitsPeers_Value;
-pub const IEnumBitsPeers = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumBitsPeers,
-            celt: u32,
-            rgelt: ?*?*IBitsPeer,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumBitsPeers,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumBitsPeers,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumBitsPeers,
-            ppenum: ?*?*IEnumBitsPeers,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumBitsPeers,
-            puCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBitsPeers, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumBitsPeers, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumBitsPeers) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumBitsPeers, ppenum: ?*?*IEnumBitsPeers) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-    pub fn GetCount(self: *const IEnumBitsPeers, puCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, puCount);
     }
 };
 
@@ -1451,124 +1982,64 @@ pub const IBitsPeerCacheAdministration = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBackgroundCopyJob4_Value = Guid.initString("659cdeae-489e-11d9-a9cd-000d56965251");
-pub const IID_IBackgroundCopyJob4 = &IID_IBackgroundCopyJob4_Value;
-pub const IBackgroundCopyJob4 = extern union {
+const IID_IBitsPeerCacheRecord_Value = Guid.initString("659cdeaf-489e-11d9-a9cd-000d56965251");
+pub const IID_IBitsPeerCacheRecord = &IID_IBitsPeerCacheRecord_Value;
+pub const IBitsPeerCacheRecord = extern union {
     pub const VTable = extern struct {
-        base: IBackgroundCopyJob3.VTable,
-        SetPeerCachingFlags: *const fn(
-            self: *const IBackgroundCopyJob4,
-            Flags: u32,
+        base: IUnknown.VTable,
+        GetId: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*Guid,
         ) callconv(.winapi) HRESULT,
-        GetPeerCachingFlags: *const fn(
-            self: *const IBackgroundCopyJob4,
-            pFlags: ?*u32,
+        GetOriginUrl: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
-        GetOwnerIntegrityLevel: *const fn(
-            self: *const IBackgroundCopyJob4,
-            pLevel: ?*u32,
+        GetFileSize: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*u64,
         ) callconv(.winapi) HRESULT,
-        GetOwnerElevationState: *const fn(
-            self: *const IBackgroundCopyJob4,
-            pElevated: ?*BOOL,
+        GetFileModificationTime: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*FILETIME,
         ) callconv(.winapi) HRESULT,
-        SetMaximumDownloadTime: *const fn(
-            self: *const IBackgroundCopyJob4,
-            Timeout: u32,
+        GetLastAccessTime: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*FILETIME,
         ) callconv(.winapi) HRESULT,
-        GetMaximumDownloadTime: *const fn(
-            self: *const IBackgroundCopyJob4,
-            pTimeout: ?*u32,
+        IsFileValidated: *const fn(
+            self: *const IBitsPeerCacheRecord,
+        ) callconv(.winapi) HRESULT,
+        GetFileRanges: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pRangeCount: ?*u32,
+            ppRanges: [*]?*BG_FILE_RANGE,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IBackgroundCopyJob3: IBackgroundCopyJob3,
-    IBackgroundCopyJob2: IBackgroundCopyJob2,
-    IBackgroundCopyJob: IBackgroundCopyJob,
     IUnknown: IUnknown,
-    pub fn SetPeerCachingFlags(self: *const IBackgroundCopyJob4, Flags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPeerCachingFlags(self, Flags);
+    pub fn GetId(self: *const IBitsPeerCacheRecord, pVal: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetId(self, pVal);
     }
-    pub fn GetPeerCachingFlags(self: *const IBackgroundCopyJob4, pFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPeerCachingFlags(self, pFlags);
+    pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOriginUrl(self, pVal);
     }
-    pub fn GetOwnerIntegrityLevel(self: *const IBackgroundCopyJob4, pLevel: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOwnerIntegrityLevel(self, pLevel);
+    pub fn GetFileSize(self: *const IBitsPeerCacheRecord, pVal: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileSize(self, pVal);
     }
-    pub fn GetOwnerElevationState(self: *const IBackgroundCopyJob4, pElevated: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOwnerElevationState(self, pElevated);
+    pub fn GetFileModificationTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileModificationTime(self, pVal);
     }
-    pub fn SetMaximumDownloadTime(self: *const IBackgroundCopyJob4, Timeout: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMaximumDownloadTime(self, Timeout);
+    pub fn GetLastAccessTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastAccessTime(self, pVal);
     }
-    pub fn GetMaximumDownloadTime(self: *const IBackgroundCopyJob4, pTimeout: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaximumDownloadTime(self, pTimeout);
+    pub fn IsFileValidated(self: *const IBitsPeerCacheRecord) callconv(.@"inline") HRESULT {
+        return self.vtable.IsFileValidated(self);
+    }
+    pub fn GetFileRanges(self: *const IBitsPeerCacheRecord, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileRanges(self, pRangeCount, ppRanges);
     }
 };
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBackgroundCopyFile3_Value = Guid.initString("659cdeaa-489e-11d9-a9cd-000d56965251");
-pub const IID_IBackgroundCopyFile3 = &IID_IBackgroundCopyFile3_Value;
-pub const IBackgroundCopyFile3 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyFile2.VTable,
-        GetTemporaryName: *const fn(
-            self: *const IBackgroundCopyFile3,
-            pFilename: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetValidationState: *const fn(
-            self: *const IBackgroundCopyFile3,
-            state: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetValidationState: *const fn(
-            self: *const IBackgroundCopyFile3,
-            pState: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsDownloadedFromPeer: *const fn(
-            self: *const IBackgroundCopyFile3,
-            pVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyFile2: IBackgroundCopyFile2,
-    IBackgroundCopyFile: IBackgroundCopyFile,
-    IUnknown: IUnknown,
-    pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTemporaryName(self, pFilename);
-    }
-    pub fn SetValidationState(self: *const IBackgroundCopyFile3, state: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValidationState(self, state);
-    }
-    pub fn GetValidationState(self: *const IBackgroundCopyFile3, pState: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValidationState(self, pState);
-    }
-    pub fn IsDownloadedFromPeer(self: *const IBackgroundCopyFile3, pVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsDownloadedFromPeer(self, pVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBackgroundCopyCallback2_Value = Guid.initString("659cdeac-489e-11d9-a9cd-000d56965251");
-pub const IID_IBackgroundCopyCallback2 = &IID_IBackgroundCopyCallback2_Value;
-pub const IBackgroundCopyCallback2 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyCallback.VTable,
-        FileTransferred: *const fn(
-            self: *const IBackgroundCopyCallback2,
-            pJob: ?*IBackgroundCopyJob,
-            pFile: ?*IBackgroundCopyFile,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyCallback: IBackgroundCopyCallback,
-    IUnknown: IUnknown,
-    pub fn FileTransferred(self: *const IBackgroundCopyCallback2, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) callconv(.@"inline") HRESULT {
-        return self.vtable.FileTransferred(self, pJob, pFile);
-    }
-};
-
-const CLSID_BackgroundCopyManager4_0_Value = Guid.initString("bb6df56b-cace-11dc-9992-0019b93a3a84");
-pub const CLSID_BackgroundCopyManager4_0 = &CLSID_BackgroundCopyManager4_0_Value;
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IBitsTokenOptions_Value = Guid.initString("9a2584c3-f7d2-457a-9a5e-22b67bffc7d2");
@@ -1614,626 +2085,50 @@ pub const IBitsTokenOptions = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IBackgroundCopyFile4_Value = Guid.initString("ef7e0655-7888-4960-b0e5-730846e03492");
-pub const IID_IBackgroundCopyFile4 = &IID_IBackgroundCopyFile4_Value;
-pub const IBackgroundCopyFile4 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyFile3.VTable,
-        GetPeerDownloadStats: *const fn(
-            self: *const IBackgroundCopyFile4,
-            pFromOrigin: ?*u64,
-            pFromPeers: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyFile3: IBackgroundCopyFile3,
-    IBackgroundCopyFile2: IBackgroundCopyFile2,
-    IBackgroundCopyFile: IBackgroundCopyFile,
-    IUnknown: IUnknown,
-    pub fn GetPeerDownloadStats(self: *const IBackgroundCopyFile4, pFromOrigin: ?*u64, pFromPeers: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPeerDownloadStats(self, pFromOrigin, pFromPeers);
-    }
-};
-
-const CLSID_BackgroundCopyManager5_0_Value = Guid.initString("1ecca34c-e88a-44e3-8d6a-8921bde9e452");
-pub const CLSID_BackgroundCopyManager5_0 = &CLSID_BackgroundCopyManager5_0_Value;
-
-pub const BITS_JOB_TRANSFER_POLICY = enum(i32) {
-    ALWAYS = -2147483393,
-    NOT_ROAMING = -2147483521,
-    NO_SURCHARGE = -2147483537,
-    STANDARD = -2147483545,
-    UNRESTRICTED = -2147483615,
-};
-pub const BITS_JOB_TRANSFER_POLICY_ALWAYS = BITS_JOB_TRANSFER_POLICY.ALWAYS;
-pub const BITS_JOB_TRANSFER_POLICY_NOT_ROAMING = BITS_JOB_TRANSFER_POLICY.NOT_ROAMING;
-pub const BITS_JOB_TRANSFER_POLICY_NO_SURCHARGE = BITS_JOB_TRANSFER_POLICY.NO_SURCHARGE;
-pub const BITS_JOB_TRANSFER_POLICY_STANDARD = BITS_JOB_TRANSFER_POLICY.STANDARD;
-pub const BITS_JOB_TRANSFER_POLICY_UNRESTRICTED = BITS_JOB_TRANSFER_POLICY.UNRESTRICTED;
-
-pub const BITS_JOB_PROPERTY_ID = enum(i32) {
-    ID_COST_FLAGS = 1,
-    NOTIFICATION_CLSID = 2,
-    DYNAMIC_CONTENT = 3,
-    HIGH_PERFORMANCE = 4,
-    MAX_DOWNLOAD_SIZE = 5,
-    USE_STORED_CREDENTIALS = 7,
-    MINIMUM_NOTIFICATION_INTERVAL_MS = 9,
-    ON_DEMAND_MODE = 10,
-};
-pub const BITS_JOB_PROPERTY_ID_COST_FLAGS = BITS_JOB_PROPERTY_ID.ID_COST_FLAGS;
-pub const BITS_JOB_PROPERTY_NOTIFICATION_CLSID = BITS_JOB_PROPERTY_ID.NOTIFICATION_CLSID;
-pub const BITS_JOB_PROPERTY_DYNAMIC_CONTENT = BITS_JOB_PROPERTY_ID.DYNAMIC_CONTENT;
-pub const BITS_JOB_PROPERTY_HIGH_PERFORMANCE = BITS_JOB_PROPERTY_ID.HIGH_PERFORMANCE;
-pub const BITS_JOB_PROPERTY_MAX_DOWNLOAD_SIZE = BITS_JOB_PROPERTY_ID.MAX_DOWNLOAD_SIZE;
-pub const BITS_JOB_PROPERTY_USE_STORED_CREDENTIALS = BITS_JOB_PROPERTY_ID.USE_STORED_CREDENTIALS;
-pub const BITS_JOB_PROPERTY_MINIMUM_NOTIFICATION_INTERVAL_MS = BITS_JOB_PROPERTY_ID.MINIMUM_NOTIFICATION_INTERVAL_MS;
-pub const BITS_JOB_PROPERTY_ON_DEMAND_MODE = BITS_JOB_PROPERTY_ID.ON_DEMAND_MODE;
-
-pub const BITS_JOB_PROPERTY_VALUE = extern union {
-    Dword: u32,
-    ClsID: Guid,
-    Enable: BOOL,
-    Uint64: u64,
-    Target: BG_AUTH_TARGET,
-};
-
-pub const BITS_FILE_PROPERTY_ID = enum(i32) {
-    S = 1,
-};
-pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.S;
-
-pub const BITS_FILE_PROPERTY_VALUE = extern union {
-    String: ?PWSTR,
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IBackgroundCopyJob5_Value = Guid.initString("e847030c-bbba-4657-af6d-484aa42bf1fe");
-pub const IID_IBackgroundCopyJob5 = &IID_IBackgroundCopyJob5_Value;
-pub const IBackgroundCopyJob5 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyJob4.VTable,
-        SetProperty: *const fn(
-            self: *const IBackgroundCopyJob5,
-            PropertyId: BITS_JOB_PROPERTY_ID,
-            PropertyValue: BITS_JOB_PROPERTY_VALUE,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IBackgroundCopyJob5,
-            PropertyId: BITS_JOB_PROPERTY_ID,
-            PropertyValue: ?*BITS_JOB_PROPERTY_VALUE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyJob4: IBackgroundCopyJob4,
-    IBackgroundCopyJob3: IBackgroundCopyJob3,
-    IBackgroundCopyJob2: IBackgroundCopyJob2,
-    IBackgroundCopyJob: IBackgroundCopyJob,
-    IUnknown: IUnknown,
-    pub fn SetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
-    }
-    pub fn GetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IBackgroundCopyFile5_Value = Guid.initString("85c1657f-dafc-40e8-8834-df18ea25717e");
-pub const IID_IBackgroundCopyFile5 = &IID_IBackgroundCopyFile5_Value;
-pub const IBackgroundCopyFile5 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyFile4.VTable,
-        SetProperty: *const fn(
-            self: *const IBackgroundCopyFile5,
-            PropertyId: BITS_FILE_PROPERTY_ID,
-            PropertyValue: BITS_FILE_PROPERTY_VALUE,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IBackgroundCopyFile5,
-            PropertyId: BITS_FILE_PROPERTY_ID,
-            PropertyValue: ?*BITS_FILE_PROPERTY_VALUE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyFile4: IBackgroundCopyFile4,
-    IBackgroundCopyFile3: IBackgroundCopyFile3,
-    IBackgroundCopyFile2: IBackgroundCopyFile2,
-    IBackgroundCopyFile: IBackgroundCopyFile,
-    IUnknown: IUnknown,
-    pub fn SetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
-    }
-    pub fn GetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
-    }
-};
-
-const CLSID_BackgroundCopyManager10_1_Value = Guid.initString("4bd3e4e1-7bd4-4a2b-9964-496400de5193");
-pub const CLSID_BackgroundCopyManager10_1 = &CLSID_BackgroundCopyManager10_1_Value;
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IBackgroundCopyCallback3_Value = Guid.initString("98c97bd2-e32b-4ad8-a528-95fd8b16bd42");
-pub const IID_IBackgroundCopyCallback3 = &IID_IBackgroundCopyCallback3_Value;
-pub const IBackgroundCopyCallback3 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyCallback2.VTable,
-        FileRangesTransferred: *const fn(
-            self: *const IBackgroundCopyCallback3,
-            job: ?*IBackgroundCopyJob,
-            file: ?*IBackgroundCopyFile,
-            rangeCount: u32,
-            ranges: [*]const BG_FILE_RANGE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyCallback2: IBackgroundCopyCallback2,
-    IBackgroundCopyCallback: IBackgroundCopyCallback,
-    IUnknown: IUnknown,
-    pub fn FileRangesTransferred(self: *const IBackgroundCopyCallback3, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.@"inline") HRESULT {
-        return self.vtable.FileRangesTransferred(self, job, file, rangeCount, ranges);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IBackgroundCopyFile6_Value = Guid.initString("cf6784f7-d677-49fd-9368-cb47aee9d1ad");
-pub const IID_IBackgroundCopyFile6 = &IID_IBackgroundCopyFile6_Value;
-pub const IBackgroundCopyFile6 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyFile5.VTable,
-        UpdateDownloadPosition: *const fn(
-            self: *const IBackgroundCopyFile6,
-            offset: u64,
-        ) callconv(.winapi) HRESULT,
-        RequestFileRanges: *const fn(
-            self: *const IBackgroundCopyFile6,
-            rangeCount: u32,
-            ranges: [*]const BG_FILE_RANGE,
-        ) callconv(.winapi) HRESULT,
-        GetFilledFileRanges: *const fn(
-            self: *const IBackgroundCopyFile6,
-            rangeCount: ?*u32,
-            ranges: [*]?*BG_FILE_RANGE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyFile5: IBackgroundCopyFile5,
-    IBackgroundCopyFile4: IBackgroundCopyFile4,
-    IBackgroundCopyFile3: IBackgroundCopyFile3,
-    IBackgroundCopyFile2: IBackgroundCopyFile2,
-    IBackgroundCopyFile: IBackgroundCopyFile,
-    IUnknown: IUnknown,
-    pub fn UpdateDownloadPosition(self: *const IBackgroundCopyFile6, offset: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateDownloadPosition(self, offset);
-    }
-    pub fn RequestFileRanges(self: *const IBackgroundCopyFile6, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestFileRanges(self, rangeCount, ranges);
-    }
-    pub fn GetFilledFileRanges(self: *const IBackgroundCopyFile6, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFilledFileRanges(self, rangeCount, ranges);
-    }
-};
-
-const CLSID_BackgroundCopyManager10_2_Value = Guid.initString("4575438f-a6c8-4976-b0fe-2f26b80d959e");
-pub const CLSID_BackgroundCopyManager10_2 = &CLSID_BackgroundCopyManager10_2_Value;
-
-// TODO: this type is limited to platform 'windows10.0.17763'
-const IID_IBackgroundCopyJobHttpOptions2_Value = Guid.initString("b591a192-a405-4fc3-8323-4c5c542578fc");
-pub const IID_IBackgroundCopyJobHttpOptions2 = &IID_IBackgroundCopyJobHttpOptions2_Value;
-pub const IBackgroundCopyJobHttpOptions2 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyJobHttpOptions.VTable,
-        SetHttpMethod: *const fn(
-            self: *const IBackgroundCopyJobHttpOptions2,
-            method: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetHttpMethod: *const fn(
-            self: *const IBackgroundCopyJobHttpOptions2,
-            method: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
-    IUnknown: IUnknown,
-    pub fn SetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHttpMethod(self, method);
-    }
-    pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHttpMethod(self, method);
-    }
-};
-
-const CLSID_BackgroundCopyManager10_3_Value = Guid.initString("5fd42ad5-c04e-4d36-adc7-e08ff15737ad");
-pub const CLSID_BackgroundCopyManager10_3 = &CLSID_BackgroundCopyManager10_3_Value;
-
-const IID_IBackgroundCopyServerCertificateValidationCallback_Value = Guid.initString("4cec0d02-def7-4158-813a-c32a46945ff7");
-pub const IID_IBackgroundCopyServerCertificateValidationCallback = &IID_IBackgroundCopyServerCertificateValidationCallback_Value;
-pub const IBackgroundCopyServerCertificateValidationCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ValidateServerCertificate: *const fn(
-            self: *const IBackgroundCopyServerCertificateValidationCallback,
-            job: ?*IBackgroundCopyJob,
-            file: ?*IBackgroundCopyFile,
-            certLength: u32,
-            certData: [*:0]const u8,
-            certEncodingType: u32,
-            certStoreLength: u32,
-            certStoreData: [*:0]const u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ValidateServerCertificate(self: *const IBackgroundCopyServerCertificateValidationCallback, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.@"inline") HRESULT {
-        return self.vtable.ValidateServerCertificate(self, job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
-    }
-};
-
-const IID_IBackgroundCopyJobHttpOptions3_Value = Guid.initString("8a9263d3-fd4c-4eda-9b28-30132a4d4e3c");
-pub const IID_IBackgroundCopyJobHttpOptions3 = &IID_IBackgroundCopyJobHttpOptions3_Value;
-pub const IBackgroundCopyJobHttpOptions3 = extern union {
-    pub const VTable = extern struct {
-        base: IBackgroundCopyJobHttpOptions2.VTable,
-        SetServerCertificateValidationInterface: *const fn(
-            self: *const IBackgroundCopyJobHttpOptions3,
-            certValidationCallback: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        MakeCustomHeadersWriteOnly: *const fn(
-            self: *const IBackgroundCopyJobHttpOptions3,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IBackgroundCopyJobHttpOptions2: IBackgroundCopyJobHttpOptions2,
-    IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
-    IUnknown: IUnknown,
-    pub fn SetServerCertificateValidationInterface(self: *const IBackgroundCopyJobHttpOptions3, certValidationCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetServerCertificateValidationInterface(self, certValidationCallback);
-    }
-    pub fn MakeCustomHeadersWriteOnly(self: *const IBackgroundCopyJobHttpOptions3) callconv(.@"inline") HRESULT {
-        return self.vtable.MakeCustomHeadersWriteOnly(self);
-    }
-};
-
-const CLSID_BITSExtensionSetupFactory_Value = Guid.initString("efbbab68-7286-4783-94bf-9461d8b7e7e9");
-pub const CLSID_BITSExtensionSetupFactory = &CLSID_BITSExtensionSetupFactory_Value;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBITSExtensionSetup_Value = Guid.initString("29cfbbf7-09e4-4b97-b0bc-f2287e3d8eb3");
-pub const IID_IBITSExtensionSetup = &IID_IBITSExtensionSetup_Value;
-pub const IBITSExtensionSetup = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        EnableBITSUploads: *const fn(
-            self: *const IBITSExtensionSetup,
-        ) callconv(.winapi) HRESULT,
-        DisableBITSUploads: *const fn(
-            self: *const IBITSExtensionSetup,
-        ) callconv(.winapi) HRESULT,
-        GetCleanupTaskName: *const fn(
-            self: *const IBITSExtensionSetup,
-            pTaskName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCleanupTask: *const fn(
-            self: *const IBITSExtensionSetup,
-            riid: ?*const Guid,
-            ppUnk: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn EnableBITSUploads(self: *const IBITSExtensionSetup) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableBITSUploads(self);
-    }
-    pub fn DisableBITSUploads(self: *const IBITSExtensionSetup) callconv(.@"inline") HRESULT {
-        return self.vtable.DisableBITSUploads(self);
-    }
-    pub fn GetCleanupTaskName(self: *const IBITSExtensionSetup, pTaskName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCleanupTaskName(self, pTaskName);
-    }
-    pub fn GetCleanupTask(self: *const IBITSExtensionSetup, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCleanupTask(self, riid, ppUnk);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IBITSExtensionSetupFactory_Value = Guid.initString("d5d2d542-5503-4e64-8b48-72ef91a32ee1");
-pub const IID_IBITSExtensionSetupFactory = &IID_IBITSExtensionSetupFactory_Value;
-pub const IBITSExtensionSetupFactory = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        GetObject: *const fn(
-            self: *const IBITSExtensionSetupFactory,
-            Path: ?BSTR,
-            ppExtensionSetup: ?*?*IBITSExtensionSetup,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn GetObject(self: *const IBITSExtensionSetupFactory, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObject(self, Path, ppExtensionSetup);
-    }
-};
-
-const CLSID_BackgroundCopyQMgr_Value = Guid.initString("69ad4aee-51be-439b-a92c-86ae490e8b30");
-pub const CLSID_BackgroundCopyQMgr = &CLSID_BackgroundCopyQMgr_Value;
-
-pub const FILESETINFO = extern struct {
-    bstrRemoteFile: ?BSTR,
-    bstrLocalFile: ?BSTR,
-    dwSizeHint: u32,
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IBackgroundCopyJob1_Value = Guid.initString("59f5553c-2031-4629-bb18-2645a6970947");
-pub const IID_IBackgroundCopyJob1 = &IID_IBackgroundCopyJob1_Value;
-pub const IBackgroundCopyJob1 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CancelJob: *const fn(
-            self: *const IBackgroundCopyJob1,
-        ) callconv(.winapi) HRESULT,
-        GetProgress: *const fn(
-            self: *const IBackgroundCopyJob1,
-            dwFlags: u32,
-            pdwProgress: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStatus: *const fn(
-            self: *const IBackgroundCopyJob1,
-            pdwStatus: ?*u32,
-            pdwWin32Result: ?*u32,
-            pdwTransportResult: ?*u32,
-            pdwNumOfRetries: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        AddFiles: *const fn(
-            self: *const IBackgroundCopyJob1,
-            cFileCount: u32,
-            ppFileSet: [*]?*FILESETINFO,
-        ) callconv(.winapi) HRESULT,
-        GetFile: *const fn(
-            self: *const IBackgroundCopyJob1,
-            cFileIndex: u32,
-            pFileInfo: ?*FILESETINFO,
-        ) callconv(.winapi) HRESULT,
-        GetFileCount: *const fn(
-            self: *const IBackgroundCopyJob1,
-            pdwFileCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SwitchToForeground: *const fn(
-            self: *const IBackgroundCopyJob1,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JobID: *const fn(
-            self: *const IBackgroundCopyJob1,
-            pguidJobID: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CancelJob(self: *const IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelJob(self);
-    }
-    pub fn GetProgress(self: *const IBackgroundCopyJob1, dwFlags: u32, pdwProgress: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
-    }
-    pub fn GetStatus(self: *const IBackgroundCopyJob1, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
-    }
-    pub fn AddFiles(self: *const IBackgroundCopyJob1, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.AddFiles(self, cFileCount, ppFileSet);
-    }
-    pub fn GetFile(self: *const IBackgroundCopyJob1, cFileIndex: u32, pFileInfo: ?*FILESETINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFile(self, cFileIndex, pFileInfo);
-    }
-    pub fn GetFileCount(self: *const IBackgroundCopyJob1, pdwFileCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileCount(self, pdwFileCount);
-    }
-    pub fn SwitchToForeground(self: *const IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
-        return self.vtable.SwitchToForeground(self);
-    }
-    pub fn get_JobID(self: *const IBackgroundCopyJob1, pguidJobID: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.get_JobID(self, pguidJobID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEnumBackgroundCopyJobs1_Value = Guid.initString("8baeba9d-8f1c-42c4-b82c-09ae79980d25");
-pub const IID_IEnumBackgroundCopyJobs1 = &IID_IEnumBackgroundCopyJobs1_Value;
-pub const IEnumBackgroundCopyJobs1 = extern union {
+const IID_IEnumBackgroundCopyFiles_Value = Guid.initString("ca51e165-c365-424c-8d41-24aaa4ff3c40");
+pub const IID_IEnumBackgroundCopyFiles = &IID_IEnumBackgroundCopyFiles_Value;
+pub const IEnumBackgroundCopyFiles = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
-            self: *const IEnumBackgroundCopyJobs1,
+            self: *const IEnumBackgroundCopyFiles,
             celt: u32,
-            rgelt: [*]Guid,
+            rgelt: ?*?*IBackgroundCopyFile,
             pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
         Skip: *const fn(
-            self: *const IEnumBackgroundCopyJobs1,
+            self: *const IEnumBackgroundCopyFiles,
             celt: u32,
         ) callconv(.winapi) HRESULT,
         Reset: *const fn(
-            self: *const IEnumBackgroundCopyJobs1,
+            self: *const IEnumBackgroundCopyFiles,
         ) callconv(.winapi) HRESULT,
         Clone: *const fn(
-            self: *const IEnumBackgroundCopyJobs1,
-            ppenum: ?*?*IEnumBackgroundCopyJobs1,
+            self: *const IEnumBackgroundCopyFiles,
+            ppenum: ?*?*IEnumBackgroundCopyFiles,
         ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
-            self: *const IEnumBackgroundCopyJobs1,
+            self: *const IEnumBackgroundCopyFiles,
             puCount: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBackgroundCopyJobs1, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Next(self: *const IEnumBackgroundCopyFiles, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumBackgroundCopyJobs1, celt: u32) callconv(.@"inline") HRESULT {
+    pub fn Skip(self: *const IEnumBackgroundCopyFiles, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
+    pub fn Reset(self: *const IEnumBackgroundCopyFiles) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumBackgroundCopyJobs1, ppenum: ?*?*IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
+    pub fn Clone(self: *const IEnumBackgroundCopyFiles, ppenum: ?*?*IEnumBackgroundCopyFiles) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
-    pub fn GetCount(self: *const IEnumBackgroundCopyJobs1, puCount: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetCount(self: *const IEnumBackgroundCopyFiles, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puCount);
-    }
-};
-
-pub const GROUPPROP = enum(i32) {
-    PRIORITY = 0,
-    REMOTEUSERID = 1,
-    REMOTEUSERPWD = 2,
-    LOCALUSERID = 3,
-    LOCALUSERPWD = 4,
-    PROTOCOLFLAGS = 5,
-    NOTIFYFLAGS = 6,
-    NOTIFYCLSID = 7,
-    PROGRESSSIZE = 8,
-    PROGRESSPERCENT = 9,
-    PROGRESSTIME = 10,
-    DISPLAYNAME = 11,
-    DESCRIPTION = 12,
-};
-pub const GROUPPROP_PRIORITY = GROUPPROP.PRIORITY;
-pub const GROUPPROP_REMOTEUSERID = GROUPPROP.REMOTEUSERID;
-pub const GROUPPROP_REMOTEUSERPWD = GROUPPROP.REMOTEUSERPWD;
-pub const GROUPPROP_LOCALUSERID = GROUPPROP.LOCALUSERID;
-pub const GROUPPROP_LOCALUSERPWD = GROUPPROP.LOCALUSERPWD;
-pub const GROUPPROP_PROTOCOLFLAGS = GROUPPROP.PROTOCOLFLAGS;
-pub const GROUPPROP_NOTIFYFLAGS = GROUPPROP.NOTIFYFLAGS;
-pub const GROUPPROP_NOTIFYCLSID = GROUPPROP.NOTIFYCLSID;
-pub const GROUPPROP_PROGRESSSIZE = GROUPPROP.PROGRESSSIZE;
-pub const GROUPPROP_PROGRESSPERCENT = GROUPPROP.PROGRESSPERCENT;
-pub const GROUPPROP_PROGRESSTIME = GROUPPROP.PROGRESSTIME;
-pub const GROUPPROP_DISPLAYNAME = GROUPPROP.DISPLAYNAME;
-pub const GROUPPROP_DESCRIPTION = GROUPPROP.DESCRIPTION;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IBackgroundCopyGroup_Value = Guid.initString("1ded80a7-53ea-424f-8a04-17fea9adc4f5");
-pub const IID_IBackgroundCopyGroup = &IID_IBackgroundCopyGroup_Value;
-pub const IBackgroundCopyGroup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProp: *const fn(
-            self: *const IBackgroundCopyGroup,
-            propID: GROUPPROP,
-            pvarVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetProp: *const fn(
-            self: *const IBackgroundCopyGroup,
-            propID: GROUPPROP,
-            pvarVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetProgress: *const fn(
-            self: *const IBackgroundCopyGroup,
-            dwFlags: u32,
-            pdwProgress: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStatus: *const fn(
-            self: *const IBackgroundCopyGroup,
-            pdwStatus: ?*u32,
-            pdwJobIndex: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetJob: *const fn(
-            self: *const IBackgroundCopyGroup,
-            jobID: Guid,
-            ppJob: ?*?*IBackgroundCopyJob1,
-        ) callconv(.winapi) HRESULT,
-        SuspendGroup: *const fn(
-            self: *const IBackgroundCopyGroup,
-        ) callconv(.winapi) HRESULT,
-        ResumeGroup: *const fn(
-            self: *const IBackgroundCopyGroup,
-        ) callconv(.winapi) HRESULT,
-        CancelGroup: *const fn(
-            self: *const IBackgroundCopyGroup,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Size: *const fn(
-            self: *const IBackgroundCopyGroup,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GroupID: *const fn(
-            self: *const IBackgroundCopyGroup,
-            pguidGroupID: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        CreateJob: *const fn(
-            self: *const IBackgroundCopyGroup,
-            guidJobID: Guid,
-            ppJob: ?*?*IBackgroundCopyJob1,
-        ) callconv(.winapi) HRESULT,
-        EnumJobs: *const fn(
-            self: *const IBackgroundCopyGroup,
-            dwFlags: u32,
-            ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1,
-        ) callconv(.winapi) HRESULT,
-        SwitchToForeground: *const fn(
-            self: *const IBackgroundCopyGroup,
-        ) callconv(.winapi) HRESULT,
-        QueryNewJobInterface: *const fn(
-            self: *const IBackgroundCopyGroup,
-            iid: ?*const Guid,
-            pUnk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-        SetNotificationPointer: *const fn(
-            self: *const IBackgroundCopyGroup,
-            iid: ?*const Guid,
-            pUnk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProp(self, propID, pvarVal);
-    }
-    pub fn SetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProp(self, propID, pvarVal);
-    }
-    pub fn GetProgress(self: *const IBackgroundCopyGroup, dwFlags: u32, pdwProgress: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
-    }
-    pub fn GetStatus(self: *const IBackgroundCopyGroup, pdwStatus: ?*u32, pdwJobIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, pdwStatus, pdwJobIndex);
-    }
-    pub fn GetJob(self: *const IBackgroundCopyGroup, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
-        return self.vtable.GetJob(self, jobID, ppJob);
-    }
-    pub fn SuspendGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.SuspendGroup(self);
-    }
-    pub fn ResumeGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.ResumeGroup(self);
-    }
-    pub fn CancelGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelGroup(self);
-    }
-    pub fn get_Size(self: *const IBackgroundCopyGroup, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Size(self, pdwSize);
-    }
-    pub fn get_GroupID(self: *const IBackgroundCopyGroup, pguidGroupID: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GroupID(self, pguidGroupID);
-    }
-    pub fn CreateJob(self: *const IBackgroundCopyGroup, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateJob(self, guidJobID, ppJob);
-    }
-    pub fn EnumJobs(self: *const IBackgroundCopyGroup, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumJobs(self, dwFlags, ppEnumJobs);
-    }
-    pub fn SwitchToForeground(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.SwitchToForeground(self);
-    }
-    pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryNewJobInterface(self, iid, pUnk);
-    }
-    pub fn SetNotificationPointer(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNotificationPointer(self, iid, pUnk);
     }
 };
 
@@ -2285,85 +2180,190 @@ pub const IEnumBackgroundCopyGroups = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IBackgroundCopyCallback1_Value = Guid.initString("084f6593-3800-4e08-9b59-99fa59addf82");
-pub const IID_IBackgroundCopyCallback1 = &IID_IBackgroundCopyCallback1_Value;
-pub const IBackgroundCopyCallback1 = extern union {
+const IID_IEnumBackgroundCopyJobs_Value = Guid.initString("1af4f612-3b71-466f-8f58-7b6f73ac57ad");
+pub const IID_IEnumBackgroundCopyJobs = &IID_IEnumBackgroundCopyJobs_Value;
+pub const IEnumBackgroundCopyJobs = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStatus: *const fn(
-            self: *const IBackgroundCopyCallback1,
-            pGroup: ?*IBackgroundCopyGroup,
-            pJob: ?*IBackgroundCopyJob1,
-            dwFileIndex: u32,
-            dwStatus: u32,
-            dwNumOfRetries: u32,
-            dwWin32Result: u32,
-            dwTransportResult: u32,
+        Next: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            celt: u32,
+            rgelt: ?*?*IBackgroundCopyJob,
+            pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
-        OnProgress: *const fn(
-            self: *const IBackgroundCopyCallback1,
-            ProgressType: u32,
-            pGroup: ?*IBackgroundCopyGroup,
-            pJob: ?*IBackgroundCopyJob1,
-            dwFileIndex: u32,
-            dwProgressValue: u32,
+        Skip: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            celt: u32,
         ) callconv(.winapi) HRESULT,
-        OnProgressEx: *const fn(
-            self: *const IBackgroundCopyCallback1,
-            ProgressType: u32,
-            pGroup: ?*IBackgroundCopyGroup,
-            pJob: ?*IBackgroundCopyJob1,
-            dwFileIndex: u32,
-            dwProgressValue: u32,
-            dwByteArraySize: u32,
-            pByte: [*:0]u8,
+        Reset: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            ppenum: ?*?*IEnumBackgroundCopyJobs,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            puCount: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStatus(self: *const IBackgroundCopyCallback1, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnStatus(self, pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
+    pub fn Next(self: *const IEnumBackgroundCopyJobs, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn OnProgress(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnProgress(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
+    pub fn Skip(self: *const IEnumBackgroundCopyJobs, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
     }
-    pub fn OnProgressEx(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.OnProgressEx(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
+    pub fn Reset(self: *const IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBackgroundCopyJobs, ppenum: ?*?*IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBackgroundCopyJobs, puCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, puCount);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IBackgroundCopyQMgr_Value = Guid.initString("16f41c69-09f5-41d2-8cd8-3c08c47bc8a8");
-pub const IID_IBackgroundCopyQMgr = &IID_IBackgroundCopyQMgr_Value;
-pub const IBackgroundCopyQMgr = extern union {
+const IID_IEnumBackgroundCopyJobs1_Value = Guid.initString("8baeba9d-8f1c-42c4-b82c-09ae79980d25");
+pub const IID_IEnumBackgroundCopyJobs1 = &IID_IEnumBackgroundCopyJobs1_Value;
+pub const IEnumBackgroundCopyJobs1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateGroup: *const fn(
-            self: *const IBackgroundCopyQMgr,
-            guidGroupID: Guid,
-            ppGroup: ?*?*IBackgroundCopyGroup,
+        Next: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            celt: u32,
+            rgelt: [*]Guid,
+            pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetGroup: *const fn(
-            self: *const IBackgroundCopyQMgr,
-            groupID: Guid,
-            ppGroup: ?*?*IBackgroundCopyGroup,
+        Skip: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            celt: u32,
         ) callconv(.winapi) HRESULT,
-        EnumGroups: *const fn(
-            self: *const IBackgroundCopyQMgr,
-            dwFlags: u32,
-            ppEnumGroups: ?*?*IEnumBackgroundCopyGroups,
+        Reset: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            ppenum: ?*?*IEnumBackgroundCopyJobs1,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            puCount: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateGroup(self: *const IBackgroundCopyQMgr, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateGroup(self, guidGroupID, ppGroup);
+    pub fn Next(self: *const IEnumBackgroundCopyJobs1, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn GetGroup(self: *const IBackgroundCopyQMgr, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGroup(self, groupID, ppGroup);
+    pub fn Skip(self: *const IEnumBackgroundCopyJobs1, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
     }
-    pub fn EnumGroups(self: *const IBackgroundCopyQMgr, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumGroups(self, dwFlags, ppEnumGroups);
+    pub fn Reset(self: *const IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBackgroundCopyJobs1, ppenum: ?*?*IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBackgroundCopyJobs1, puCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IEnumBitsPeerCacheRecords_Value = Guid.initString("659cdea4-489e-11d9-a9cd-000d56965251");
+pub const IID_IEnumBitsPeerCacheRecords = &IID_IEnumBitsPeerCacheRecords_Value;
+pub const IEnumBitsPeerCacheRecords = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            celt: u32,
+            rgelt: ?*?*IBitsPeerCacheRecord,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            ppenum: ?*?*IEnumBitsPeerCacheRecords,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            puCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBitsPeerCacheRecords, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumBitsPeerCacheRecords, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBitsPeerCacheRecords) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBitsPeerCacheRecords, ppenum: ?*?*IEnumBitsPeerCacheRecords) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBitsPeerCacheRecords, puCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IEnumBitsPeers_Value = Guid.initString("659cdea5-489e-11d9-a9cd-000d56965251");
+pub const IID_IEnumBitsPeers = &IID_IEnumBitsPeers_Value;
+pub const IEnumBitsPeers = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumBitsPeers,
+            celt: u32,
+            rgelt: ?*?*IBitsPeer,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBitsPeers,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBitsPeers,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBitsPeers,
+            ppenum: ?*?*IEnumBitsPeers,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBitsPeers,
+            puCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBitsPeers, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumBitsPeers, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBitsPeers) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBitsPeers, ppenum: ?*?*IEnumBitsPeers) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBitsPeers, puCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, puCount);
     }
 };
 

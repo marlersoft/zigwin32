@@ -2,23 +2,90 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (13)
 //--------------------------------------------------------------------------------
-pub const MAX_REASON_NAME_LEN = @as(u32, 64);
-pub const MAX_REASON_DESC_LEN = @as(u32, 256);
+pub const MAX_NUM_REASONS = @as(u32, 256);
 pub const MAX_REASON_BUGID_LEN = @as(u32, 32);
 pub const MAX_REASON_COMMENT_LEN = @as(u32, 512);
-pub const SHUTDOWN_TYPE_LEN = @as(u32, 32);
-pub const POLICY_SHOWREASONUI_NEVER = @as(u32, 0);
+pub const MAX_REASON_DESC_LEN = @as(u32, 256);
+pub const MAX_REASON_NAME_LEN = @as(u32, 64);
 pub const POLICY_SHOWREASONUI_ALWAYS = @as(u32, 1);
-pub const POLICY_SHOWREASONUI_WORKSTATIONONLY = @as(u32, 2);
+pub const POLICY_SHOWREASONUI_NEVER = @as(u32, 0);
 pub const POLICY_SHOWREASONUI_SERVERONLY = @as(u32, 3);
-pub const SNAPSHOT_POLICY_NEVER = @as(u32, 0);
+pub const POLICY_SHOWREASONUI_WORKSTATIONONLY = @as(u32, 2);
+pub const SHUTDOWN_TYPE_LEN = @as(u32, 32);
 pub const SNAPSHOT_POLICY_ALWAYS = @as(u32, 1);
+pub const SNAPSHOT_POLICY_NEVER = @as(u32, 0);
 pub const SNAPSHOT_POLICY_UNPLANNED = @as(u32, 2);
-pub const MAX_NUM_REASONS = @as(u32, 256);
 
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
+pub const EXIT_WINDOWS_FLAGS = enum(u32) {
+    HYBRID_SHUTDOWN = 4194304,
+    LOGOFF = 0,
+    POWEROFF = 8,
+    REBOOT = 2,
+    RESTARTAPPS = 64,
+    SHUTDOWN = 1,
+};
+pub const EWX_HYBRID_SHUTDOWN = EXIT_WINDOWS_FLAGS.HYBRID_SHUTDOWN;
+pub const EWX_LOGOFF = EXIT_WINDOWS_FLAGS.LOGOFF;
+pub const EWX_POWEROFF = EXIT_WINDOWS_FLAGS.POWEROFF;
+pub const EWX_REBOOT = EXIT_WINDOWS_FLAGS.REBOOT;
+pub const EWX_RESTARTAPPS = EXIT_WINDOWS_FLAGS.RESTARTAPPS;
+pub const EWX_SHUTDOWN = EXIT_WINDOWS_FLAGS.SHUTDOWN;
+
+pub const SHUTDOWN_FLAGS = packed struct(u32) {
+    FORCE_OTHERS: u1 = 0,
+    FORCE_SELF: u1 = 0,
+    RESTART: u1 = 0,
+    POWEROFF: u1 = 0,
+    NOREBOOT: u1 = 0,
+    GRACE_OVERRIDE: u1 = 0,
+    INSTALL_UPDATES: u1 = 0,
+    RESTARTAPPS: u1 = 0,
+    SKIP_SVC_PRESHUTDOWN: u1 = 0,
+    HYBRID: u1 = 0,
+    RESTART_BOOTOPTIONS: u1 = 0,
+    SOFT_REBOOT: u1 = 0,
+    MOBILE_UI: u1 = 0,
+    ARSO: u1 = 0,
+    CHECK_SAFE_FOR_SERVER: u1 = 0,
+    VAIL_CONTAINER: u1 = 0,
+    SYSTEM_INITIATED: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const SHUTDOWN_FORCE_OTHERS = SHUTDOWN_FLAGS{ .FORCE_OTHERS = 1 };
+pub const SHUTDOWN_FORCE_SELF = SHUTDOWN_FLAGS{ .FORCE_SELF = 1 };
+pub const SHUTDOWN_RESTART = SHUTDOWN_FLAGS{ .RESTART = 1 };
+pub const SHUTDOWN_POWEROFF = SHUTDOWN_FLAGS{ .POWEROFF = 1 };
+pub const SHUTDOWN_NOREBOOT = SHUTDOWN_FLAGS{ .NOREBOOT = 1 };
+pub const SHUTDOWN_GRACE_OVERRIDE = SHUTDOWN_FLAGS{ .GRACE_OVERRIDE = 1 };
+pub const SHUTDOWN_INSTALL_UPDATES = SHUTDOWN_FLAGS{ .INSTALL_UPDATES = 1 };
+pub const SHUTDOWN_RESTARTAPPS = SHUTDOWN_FLAGS{ .RESTARTAPPS = 1 };
+pub const SHUTDOWN_SKIP_SVC_PRESHUTDOWN = SHUTDOWN_FLAGS{ .SKIP_SVC_PRESHUTDOWN = 1 };
+pub const SHUTDOWN_HYBRID = SHUTDOWN_FLAGS{ .HYBRID = 1 };
+pub const SHUTDOWN_RESTART_BOOTOPTIONS = SHUTDOWN_FLAGS{ .RESTART_BOOTOPTIONS = 1 };
+pub const SHUTDOWN_SOFT_REBOOT = SHUTDOWN_FLAGS{ .SOFT_REBOOT = 1 };
+pub const SHUTDOWN_MOBILE_UI = SHUTDOWN_FLAGS{ .MOBILE_UI = 1 };
+pub const SHUTDOWN_ARSO = SHUTDOWN_FLAGS{ .ARSO = 1 };
+pub const SHUTDOWN_CHECK_SAFE_FOR_SERVER = SHUTDOWN_FLAGS{ .CHECK_SAFE_FOR_SERVER = 1 };
+pub const SHUTDOWN_VAIL_CONTAINER = SHUTDOWN_FLAGS{ .VAIL_CONTAINER = 1 };
+pub const SHUTDOWN_SYSTEM_INITIATED = SHUTDOWN_FLAGS{ .SYSTEM_INITIATED = 1 };
+
 pub const SHUTDOWN_REASON = packed struct(u32) {
     MINOR_MAINTENANCE: u1 = 0,
     MINOR_INSTALLATION: u1 = 0,
@@ -250,95 +317,10 @@ pub const SHTDN_REASON_VALID_BIT_MASK = SHUTDOWN_REASON{
     .FLAG_PLANNED = 1,
 };
 
-pub const SHUTDOWN_FLAGS = packed struct(u32) {
-    FORCE_OTHERS: u1 = 0,
-    FORCE_SELF: u1 = 0,
-    RESTART: u1 = 0,
-    POWEROFF: u1 = 0,
-    NOREBOOT: u1 = 0,
-    GRACE_OVERRIDE: u1 = 0,
-    INSTALL_UPDATES: u1 = 0,
-    RESTARTAPPS: u1 = 0,
-    SKIP_SVC_PRESHUTDOWN: u1 = 0,
-    HYBRID: u1 = 0,
-    RESTART_BOOTOPTIONS: u1 = 0,
-    SOFT_REBOOT: u1 = 0,
-    MOBILE_UI: u1 = 0,
-    ARSO: u1 = 0,
-    CHECK_SAFE_FOR_SERVER: u1 = 0,
-    VAIL_CONTAINER: u1 = 0,
-    SYSTEM_INITIATED: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const SHUTDOWN_FORCE_OTHERS = SHUTDOWN_FLAGS{ .FORCE_OTHERS = 1 };
-pub const SHUTDOWN_FORCE_SELF = SHUTDOWN_FLAGS{ .FORCE_SELF = 1 };
-pub const SHUTDOWN_RESTART = SHUTDOWN_FLAGS{ .RESTART = 1 };
-pub const SHUTDOWN_POWEROFF = SHUTDOWN_FLAGS{ .POWEROFF = 1 };
-pub const SHUTDOWN_NOREBOOT = SHUTDOWN_FLAGS{ .NOREBOOT = 1 };
-pub const SHUTDOWN_GRACE_OVERRIDE = SHUTDOWN_FLAGS{ .GRACE_OVERRIDE = 1 };
-pub const SHUTDOWN_INSTALL_UPDATES = SHUTDOWN_FLAGS{ .INSTALL_UPDATES = 1 };
-pub const SHUTDOWN_RESTARTAPPS = SHUTDOWN_FLAGS{ .RESTARTAPPS = 1 };
-pub const SHUTDOWN_SKIP_SVC_PRESHUTDOWN = SHUTDOWN_FLAGS{ .SKIP_SVC_PRESHUTDOWN = 1 };
-pub const SHUTDOWN_HYBRID = SHUTDOWN_FLAGS{ .HYBRID = 1 };
-pub const SHUTDOWN_RESTART_BOOTOPTIONS = SHUTDOWN_FLAGS{ .RESTART_BOOTOPTIONS = 1 };
-pub const SHUTDOWN_SOFT_REBOOT = SHUTDOWN_FLAGS{ .SOFT_REBOOT = 1 };
-pub const SHUTDOWN_MOBILE_UI = SHUTDOWN_FLAGS{ .MOBILE_UI = 1 };
-pub const SHUTDOWN_ARSO = SHUTDOWN_FLAGS{ .ARSO = 1 };
-pub const SHUTDOWN_CHECK_SAFE_FOR_SERVER = SHUTDOWN_FLAGS{ .CHECK_SAFE_FOR_SERVER = 1 };
-pub const SHUTDOWN_VAIL_CONTAINER = SHUTDOWN_FLAGS{ .VAIL_CONTAINER = 1 };
-pub const SHUTDOWN_SYSTEM_INITIATED = SHUTDOWN_FLAGS{ .SYSTEM_INITIATED = 1 };
-
-pub const EXIT_WINDOWS_FLAGS = enum(u32) {
-    HYBRID_SHUTDOWN = 4194304,
-    LOGOFF = 0,
-    POWEROFF = 8,
-    REBOOT = 2,
-    RESTARTAPPS = 64,
-    SHUTDOWN = 1,
-};
-pub const EWX_HYBRID_SHUTDOWN = EXIT_WINDOWS_FLAGS.HYBRID_SHUTDOWN;
-pub const EWX_LOGOFF = EXIT_WINDOWS_FLAGS.LOGOFF;
-pub const EWX_POWEROFF = EXIT_WINDOWS_FLAGS.POWEROFF;
-pub const EWX_REBOOT = EXIT_WINDOWS_FLAGS.REBOOT;
-pub const EWX_RESTARTAPPS = EXIT_WINDOWS_FLAGS.RESTARTAPPS;
-pub const EWX_SHUTDOWN = EXIT_WINDOWS_FLAGS.SHUTDOWN;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn InitiateSystemShutdownA(
-    lpMachineName: ?PSTR,
-    lpMessage: ?PSTR,
-    dwTimeout: u32,
-    bForceAppsClosed: BOOL,
-    bRebootAfterShutdown: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn InitiateSystemShutdownW(
-    lpMachineName: ?PWSTR,
-    lpMessage: ?PWSTR,
-    dwTimeout: u32,
-    bForceAppsClosed: BOOL,
-    bRebootAfterShutdown: BOOL,
-) callconv(.winapi) BOOL;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AbortSystemShutdownA(
     lpMachineName: ?PSTR,
@@ -347,6 +329,44 @@ pub extern "advapi32" fn AbortSystemShutdownA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AbortSystemShutdownW(
     lpMachineName: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+pub extern "advapi32" fn CheckForHiberboot(
+    pHiberboot: ?*BOOLEAN,
+    bClearFlag: BOOLEAN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "user32" fn ExitWindowsEx(
+    uFlags: EXIT_WINDOWS_FLAGS,
+    dwReason: SHUTDOWN_REASON,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn InitiateShutdownA(
+    lpMachineName: ?PSTR,
+    lpMessage: ?PSTR,
+    dwGracePeriod: u32,
+    dwShutdownFlags: SHUTDOWN_FLAGS,
+    dwReason: SHUTDOWN_REASON,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn InitiateShutdownW(
+    lpMachineName: ?PWSTR,
+    lpMessage: ?PWSTR,
+    dwGracePeriod: u32,
+    dwShutdownFlags: SHUTDOWN_FLAGS,
+    dwReason: SHUTDOWN_REASON,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn InitiateSystemShutdownA(
+    lpMachineName: ?PSTR,
+    lpMessage: ?PSTR,
+    dwTimeout: u32,
+    bForceAppsClosed: BOOL,
+    bRebootAfterShutdown: BOOL,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -369,33 +389,13 @@ pub extern "advapi32" fn InitiateSystemShutdownExW(
     dwReason: SHUTDOWN_REASON,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn InitiateShutdownA(
-    lpMachineName: ?PSTR,
-    lpMessage: ?PSTR,
-    dwGracePeriod: u32,
-    dwShutdownFlags: SHUTDOWN_FLAGS,
-    dwReason: SHUTDOWN_REASON,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn InitiateShutdownW(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn InitiateSystemShutdownW(
     lpMachineName: ?PWSTR,
     lpMessage: ?PWSTR,
-    dwGracePeriod: u32,
-    dwShutdownFlags: SHUTDOWN_FLAGS,
-    dwReason: SHUTDOWN_REASON,
-) callconv(.winapi) u32;
-
-pub extern "advapi32" fn CheckForHiberboot(
-    pHiberboot: ?*BOOLEAN,
-    bClearFlag: BOOLEAN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn ExitWindowsEx(
-    uFlags: EXIT_WINDOWS_FLAGS,
-    dwReason: SHUTDOWN_REASON,
+    dwTimeout: u32,
+    bForceAppsClosed: BOOL,
+    bRebootAfterShutdown: BOOL,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -409,28 +409,21 @@ pub extern "user32" fn ShutdownBlockReasonCreate(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "user32" fn ShutdownBlockReasonDestroy(
+    hWnd: ?HWND,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ShutdownBlockReasonQuery(
     hWnd: ?HWND,
     pwszBuff: ?[*:0]u16,
     pcchBuff: ?*u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "user32" fn ShutdownBlockReasonDestroy(
-    hWnd: ?HWND,
-) callconv(.winapi) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
-pub const InitiateSystemShutdown = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().InitiateSystemShutdownA,
-    .wide => @This().InitiateSystemShutdownW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'InitiateSystemShutdown' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const AbortSystemShutdown = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().AbortSystemShutdownA,
     .wide => @This().AbortSystemShutdownW,
@@ -438,18 +431,25 @@ pub const AbortSystemShutdown = switch (@import("../zig.zig").unicode_mode) {
         "'AbortSystemShutdown' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const InitiateSystemShutdownEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().InitiateSystemShutdownExA,
-    .wide => @This().InitiateSystemShutdownExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'InitiateSystemShutdownEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const InitiateShutdown = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().InitiateShutdownA,
     .wide => @This().InitiateShutdownW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'InitiateShutdown' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InitiateSystemShutdown = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InitiateSystemShutdownA,
+    .wide => @This().InitiateSystemShutdownW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InitiateSystemShutdown' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InitiateSystemShutdownEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InitiateSystemShutdownExA,
+    .wide => @This().InitiateSystemShutdownExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InitiateSystemShutdownEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

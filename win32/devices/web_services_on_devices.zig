@@ -2,92 +2,35 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (17)
 //--------------------------------------------------------------------------------
+pub const WSD_DEFAULT_EVENTING_ADDRESS = "http://*:5357/";
 pub const WSD_DEFAULT_HOSTING_ADDRESS = "http://*:5357/";
 pub const WSD_DEFAULT_SECURE_HOSTING_ADDRESS = "https://*:5358/";
-pub const WSD_DEFAULT_EVENTING_ADDRESS = "http://*:5357/";
-pub const WSDAPI_OPTION_MAX_INBOUND_MESSAGE_SIZE = @as(u32, 1);
-pub const WSDAPI_OPTION_TRACE_XML_TO_DEBUGGER = @as(u32, 2);
-pub const WSDAPI_OPTION_TRACE_XML_TO_FILE = @as(u32, 3);
-pub const WSDAPI_SSL_CERT_APPLY_DEFAULT_CHECKS = @as(u32, 0);
-pub const WSDAPI_SSL_CERT_IGNORE_REVOCATION = @as(u32, 1);
-pub const WSDAPI_SSL_CERT_IGNORE_EXPIRY = @as(u32, 2);
-pub const WSDAPI_SSL_CERT_IGNORE_WRONG_USAGE = @as(u32, 4);
-pub const WSDAPI_SSL_CERT_IGNORE_UNKNOWN_CA = @as(u32, 8);
-pub const WSDAPI_SSL_CERT_IGNORE_INVALID_CN = @as(u32, 16);
-pub const WSDAPI_COMPACTSIG_ACCEPT_ALL_MESSAGES = @as(u32, 1);
 pub const WSD_SECURITY_HTTP_AUTH_SCHEME_NEGOTIATE = @as(u32, 1);
 pub const WSD_SECURITY_HTTP_AUTH_SCHEME_NTLM = @as(u32, 2);
 pub const WSDAPI_ADDRESSFAMILY_IPV4 = @as(u32, 1);
 pub const WSDAPI_ADDRESSFAMILY_IPV6 = @as(u32, 2);
+pub const WSDAPI_COMPACTSIG_ACCEPT_ALL_MESSAGES = @as(u32, 1);
+pub const WSDAPI_OPTION_MAX_INBOUND_MESSAGE_SIZE = @as(u32, 1);
+pub const WSDAPI_OPTION_TRACE_XML_TO_DEBUGGER = @as(u32, 2);
+pub const WSDAPI_OPTION_TRACE_XML_TO_FILE = @as(u32, 3);
+pub const WSDAPI_SSL_CERT_APPLY_DEFAULT_CHECKS = @as(u32, 0);
+pub const WSDAPI_SSL_CERT_IGNORE_EXPIRY = @as(u32, 2);
+pub const WSDAPI_SSL_CERT_IGNORE_INVALID_CN = @as(u32, 16);
+pub const WSDAPI_SSL_CERT_IGNORE_REVOCATION = @as(u32, 1);
+pub const WSDAPI_SSL_CERT_IGNORE_UNKNOWN_CA = @as(u32, 8);
+pub const WSDAPI_SSL_CERT_IGNORE_WRONG_USAGE = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const WSD_CONFIG_PARAM_TYPE = enum(i32) {
-    CONFIG_MAX_INBOUND_MESSAGE_SIZE = 1,
-    CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = 2,
-    SECURITY_SSL_CERT_FOR_CLIENT_AUTH = 3,
-    SECURITY_SSL_SERVER_CERT_VALIDATION = 4,
-    SECURITY_SSL_CLIENT_CERT_VALIDATION = 5,
-    SECURITY_SSL_NEGOTIATE_CLIENT_CERT = 6,
-    SECURITY_COMPACTSIG_SIGNING_CERT = 7,
-    SECURITY_COMPACTSIG_VALIDATION = 8,
-    CONFIG_HOSTING_ADDRESSES = 9,
-    CONFIG_DEVICE_ADDRESSES = 10,
-    SECURITY_REQUIRE_HTTP_CLIENT_AUTH = 11,
-    SECURITY_REQUIRE_CLIENT_CERT_OR_HTTP_CLIENT_AUTH = 12,
-    SECURITY_USE_HTTP_CLIENT_AUTH = 13,
+pub const DeviceDiscoveryMechanism = enum(i32) {
+    MulticastDiscovery = 0,
+    DirectedDiscovery = 1,
+    SecureDirectedDiscovery = 2,
 };
-pub const WSD_CONFIG_MAX_INBOUND_MESSAGE_SIZE = WSD_CONFIG_PARAM_TYPE.CONFIG_MAX_INBOUND_MESSAGE_SIZE;
-pub const WSD_CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = WSD_CONFIG_PARAM_TYPE.CONFIG_MAX_OUTBOUND_MESSAGE_SIZE;
-pub const WSD_SECURITY_SSL_CERT_FOR_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_CERT_FOR_CLIENT_AUTH;
-pub const WSD_SECURITY_SSL_SERVER_CERT_VALIDATION = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_SERVER_CERT_VALIDATION;
-pub const WSD_SECURITY_SSL_CLIENT_CERT_VALIDATION = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_CLIENT_CERT_VALIDATION;
-pub const WSD_SECURITY_SSL_NEGOTIATE_CLIENT_CERT = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_NEGOTIATE_CLIENT_CERT;
-pub const WSD_SECURITY_COMPACTSIG_SIGNING_CERT = WSD_CONFIG_PARAM_TYPE.SECURITY_COMPACTSIG_SIGNING_CERT;
-pub const WSD_SECURITY_COMPACTSIG_VALIDATION = WSD_CONFIG_PARAM_TYPE.SECURITY_COMPACTSIG_VALIDATION;
-pub const WSD_CONFIG_HOSTING_ADDRESSES = WSD_CONFIG_PARAM_TYPE.CONFIG_HOSTING_ADDRESSES;
-pub const WSD_CONFIG_DEVICE_ADDRESSES = WSD_CONFIG_PARAM_TYPE.CONFIG_DEVICE_ADDRESSES;
-pub const WSD_SECURITY_REQUIRE_HTTP_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_REQUIRE_HTTP_CLIENT_AUTH;
-pub const WSD_SECURITY_REQUIRE_CLIENT_CERT_OR_HTTP_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_REQUIRE_CLIENT_CERT_OR_HTTP_CLIENT_AUTH;
-pub const WSD_SECURITY_USE_HTTP_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_USE_HTTP_CLIENT_AUTH;
-
-pub const WSD_CONFIG_PARAM = extern struct {
-    configParamType: WSD_CONFIG_PARAM_TYPE,
-    pConfigData: ?*anyopaque,
-    dwConfigDataSize: u32,
-};
-
-pub const WSD_SECURITY_CERT_VALIDATION_V1 = extern struct {
-    certMatchArray: ?*?*CERT_CONTEXT,
-    dwCertMatchArrayCount: u32,
-    hCertMatchStore: ?HCERTSTORE,
-    hCertIssuerStore: ?HCERTSTORE,
-    dwCertCheckOptions: u32,
-};
-
-pub const WSD_SECURITY_CERT_VALIDATION = extern struct {
-    certMatchArray: ?*?*CERT_CONTEXT,
-    dwCertMatchArrayCount: u32,
-    hCertMatchStore: ?HCERTSTORE,
-    hCertIssuerStore: ?HCERTSTORE,
-    dwCertCheckOptions: u32,
-    pszCNGHashAlgId: ?[*:0]const u16,
-    pbCertHash: ?*u8,
-    dwCertHashSize: u32,
-};
-
-pub const WSD_SECURITY_SIGNATURE_VALIDATION = extern struct {
-    signingCertArray: ?*?*CERT_CONTEXT,
-    dwSigningCertArrayCount: u32,
-    hSigningCertStore: ?HCERTSTORE,
-    dwFlags: u32,
-};
-
-pub const WSD_CONFIG_ADDRESSES = extern struct {
-    addresses: ?*?*IWSDAddress,
-    dwAddressCount: u32,
-};
+pub const MulticastDiscovery = DeviceDiscoveryMechanism.MulticastDiscovery;
+pub const DirectedDiscovery = DeviceDiscoveryMechanism.DirectedDiscovery;
+pub const SecureDirectedDiscovery = DeviceDiscoveryMechanism.SecureDirectedDiscovery;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDAddress_Value = Guid.initString("b9574c6c-12a6-4f74-93a1-3318ff605759");
@@ -117,219 +60,472 @@ pub const IWSDAddress = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDTransportAddress_Value = Guid.initString("70d23498-4ee6-4340-a3df-d845d2235467");
-pub const IID_IWSDTransportAddress = &IID_IWSDTransportAddress_Value;
-pub const IWSDTransportAddress = extern union {
-    pub const VTable = extern struct {
-        base: IWSDAddress.VTable,
-        GetPort: *const fn(
-            self: *const IWSDTransportAddress,
-            pwPort: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetPort: *const fn(
-            self: *const IWSDTransportAddress,
-            wPort: u16,
-        ) callconv(.winapi) HRESULT,
-        GetTransportAddress: *const fn(
-            self: *const IWSDTransportAddress,
-            ppszAddress: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetTransportAddressEx: *const fn(
-            self: *const IWSDTransportAddress,
-            fSafe: BOOL,
-            ppszAddress: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetTransportAddress: *const fn(
-            self: *const IWSDTransportAddress,
-            pszAddress: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWSDAddress: IWSDAddress,
-    IUnknown: IUnknown,
-    pub fn GetPort(self: *const IWSDTransportAddress, pwPort: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPort(self, pwPort);
-    }
-    pub fn SetPort(self: *const IWSDTransportAddress, wPort: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPort(self, wPort);
-    }
-    pub fn GetTransportAddress(self: *const IWSDTransportAddress, ppszAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransportAddress(self, ppszAddress);
-    }
-    pub fn GetTransportAddressEx(self: *const IWSDTransportAddress, fSafe: BOOL, ppszAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransportAddressEx(self, fSafe, ppszAddress);
-    }
-    pub fn SetTransportAddress(self: *const IWSDTransportAddress, pszAddress: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTransportAddress(self, pszAddress);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDMessageParameters_Value = Guid.initString("1fafe8a2-e6fc-4b80-b6cf-b7d45c416d7c");
-pub const IID_IWSDMessageParameters = &IID_IWSDMessageParameters_Value;
-pub const IWSDMessageParameters = extern union {
+const IID_IWSDAsyncCallback_Value = Guid.initString("a63e109d-ce72-49e2-ba98-e845f5ee1666");
+pub const IID_IWSDAsyncCallback = &IID_IWSDAsyncCallback_Value;
+pub const IWSDAsyncCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLocalAddress: *const fn(
-            self: *const IWSDMessageParameters,
-            ppAddress: ?*?*IWSDAddress,
-        ) callconv(.winapi) HRESULT,
-        SetLocalAddress: *const fn(
-            self: *const IWSDMessageParameters,
-            pAddress: ?*IWSDAddress,
-        ) callconv(.winapi) HRESULT,
-        GetRemoteAddress: *const fn(
-            self: *const IWSDMessageParameters,
-            ppAddress: ?*?*IWSDAddress,
-        ) callconv(.winapi) HRESULT,
-        SetRemoteAddress: *const fn(
-            self: *const IWSDMessageParameters,
-            pAddress: ?*IWSDAddress,
-        ) callconv(.winapi) HRESULT,
-        GetLowerParameters: *const fn(
-            self: *const IWSDMessageParameters,
-            ppTxParams: ?*?*IWSDMessageParameters,
+        AsyncOperationComplete: *const fn(
+            self: *const IWSDAsyncCallback,
+            pAsyncResult: ?*IWSDAsyncResult,
+            pAsyncState: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLocalAddress(self: *const IWSDMessageParameters, ppAddress: ?*?*IWSDAddress) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalAddress(self, ppAddress);
+    pub fn AsyncOperationComplete(self: *const IWSDAsyncCallback, pAsyncResult: ?*IWSDAsyncResult, pAsyncState: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.AsyncOperationComplete(self, pAsyncResult, pAsyncState);
     }
-    pub fn SetLocalAddress(self: *const IWSDMessageParameters, pAddress: ?*IWSDAddress) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLocalAddress(self, pAddress);
-    }
-    pub fn GetRemoteAddress(self: *const IWSDMessageParameters, ppAddress: ?*?*IWSDAddress) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRemoteAddress(self, ppAddress);
-    }
-    pub fn SetRemoteAddress(self: *const IWSDMessageParameters, pAddress: ?*IWSDAddress) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRemoteAddress(self, pAddress);
-    }
-    pub fn GetLowerParameters(self: *const IWSDMessageParameters, ppTxParams: ?*?*IWSDMessageParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLowerParameters(self, ppTxParams);
-    }
-};
-
-pub const WSDUdpRetransmitParams = extern struct {
-    ulSendDelay: u32,
-    ulRepeat: u32,
-    ulRepeatMinDelay: u32,
-    ulRepeatMaxDelay: u32,
-    ulRepeatUpperDelay: u32,
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDUdpMessageParameters_Value = Guid.initString("9934149f-8f0c-447b-aa0b-73124b0ca7f0");
-pub const IID_IWSDUdpMessageParameters = &IID_IWSDUdpMessageParameters_Value;
-pub const IWSDUdpMessageParameters = extern union {
+const IID_IWSDAsyncResult_Value = Guid.initString("11a9852a-8dd8-423e-b537-9356db4fbfb8");
+pub const IID_IWSDAsyncResult = &IID_IWSDAsyncResult_Value;
+pub const IWSDAsyncResult = extern union {
     pub const VTable = extern struct {
-        base: IWSDMessageParameters.VTable,
-        SetRetransmitParams: *const fn(
-            self: *const IWSDUdpMessageParameters,
-            pParams: ?*const WSDUdpRetransmitParams,
+        base: IUnknown.VTable,
+        SetCallback: *const fn(
+            self: *const IWSDAsyncResult,
+            pCallback: ?*IWSDAsyncCallback,
+            pAsyncState: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        GetRetransmitParams: *const fn(
-            self: *const IWSDUdpMessageParameters,
-            pParams: ?*WSDUdpRetransmitParams,
+        SetWaitHandle: *const fn(
+            self: *const IWSDAsyncResult,
+            hWaitHandle: ?HANDLE,
+        ) callconv(.winapi) HRESULT,
+        HasCompleted: *const fn(
+            self: *const IWSDAsyncResult,
+        ) callconv(.winapi) HRESULT,
+        GetAsyncState: *const fn(
+            self: *const IWSDAsyncResult,
+            ppAsyncState: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Abort: *const fn(
+            self: *const IWSDAsyncResult,
+        ) callconv(.winapi) HRESULT,
+        GetEvent: *const fn(
+            self: *const IWSDAsyncResult,
+            pEvent: ?*WSD_EVENT,
+        ) callconv(.winapi) HRESULT,
+        GetEndpointProxy: *const fn(
+            self: *const IWSDAsyncResult,
+            ppEndpoint: ?*?*IWSDEndpointProxy,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWSDMessageParameters: IWSDMessageParameters,
     IUnknown: IUnknown,
-    pub fn SetRetransmitParams(self: *const IWSDUdpMessageParameters, pParams: ?*const WSDUdpRetransmitParams) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRetransmitParams(self, pParams);
+    pub fn SetCallback(self: *const IWSDAsyncResult, pCallback: ?*IWSDAsyncCallback, pAsyncState: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCallback(self, pCallback, pAsyncState);
     }
-    pub fn GetRetransmitParams(self: *const IWSDUdpMessageParameters, pParams: ?*WSDUdpRetransmitParams) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRetransmitParams(self, pParams);
+    pub fn SetWaitHandle(self: *const IWSDAsyncResult, hWaitHandle: ?HANDLE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWaitHandle(self, hWaitHandle);
+    }
+    pub fn HasCompleted(self: *const IWSDAsyncResult) callconv(.@"inline") HRESULT {
+        return self.vtable.HasCompleted(self);
+    }
+    pub fn GetAsyncState(self: *const IWSDAsyncResult, ppAsyncState: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAsyncState(self, ppAsyncState);
+    }
+    pub fn Abort(self: *const IWSDAsyncResult) callconv(.@"inline") HRESULT {
+        return self.vtable.Abort(self);
+    }
+    pub fn GetEvent(self: *const IWSDAsyncResult, pEvent: ?*WSD_EVENT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEvent(self, pEvent);
+    }
+    pub fn GetEndpointProxy(self: *const IWSDAsyncResult, ppEndpoint: ?*?*IWSDEndpointProxy) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEndpointProxy(self, ppEndpoint);
     }
 };
-
-pub const WSDUdpMessageType = enum(i32) {
-    ONE_WAY = 0,
-    TWO_WAY = 1,
-};
-pub const ONE_WAY = WSDUdpMessageType.ONE_WAY;
-pub const TWO_WAY = WSDUdpMessageType.TWO_WAY;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDUdpAddress_Value = Guid.initString("74d6124a-a441-4f78-a1eb-97a8d1996893");
-pub const IID_IWSDUdpAddress = &IID_IWSDUdpAddress_Value;
-pub const IWSDUdpAddress = extern union {
+const IID_IWSDAttachment_Value = Guid.initString("5d55a616-9df8-4b09-b156-9ba351a48b76");
+pub const IID_IWSDAttachment = &IID_IWSDAttachment_Value;
+pub const IWSDAttachment = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDDeviceHost_Value = Guid.initString("917fe891-3d13-4138-9809-934c8abeb12c");
+pub const IID_IWSDDeviceHost = &IID_IWSDDeviceHost_Value;
+pub const IWSDDeviceHost = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Init: *const fn(
+            self: *const IWSDDeviceHost,
+            pszLocalId: ?[*:0]const u16,
+            pContext: ?*IWSDXMLContext,
+            ppHostAddresses: ?[*]?*IWSDAddress,
+            dwHostAddressCount: u32,
+        ) callconv(.winapi) HRESULT,
+        Start: *const fn(
+            self: *const IWSDDeviceHost,
+            ullInstanceId: u64,
+            pScopeList: ?*const WSD_URI_LIST,
+            pNotificationSink: ?*IWSDDeviceHostNotify,
+        ) callconv(.winapi) HRESULT,
+        Stop: *const fn(
+            self: *const IWSDDeviceHost,
+        ) callconv(.winapi) HRESULT,
+        Terminate: *const fn(
+            self: *const IWSDDeviceHost,
+        ) callconv(.winapi) HRESULT,
+        RegisterPortType: *const fn(
+            self: *const IWSDDeviceHost,
+            pPortType: ?*const WSD_PORT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        SetMetadata: *const fn(
+            self: *const IWSDDeviceHost,
+            pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
+            pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
+            pHostMetadata: ?*const WSD_HOST_METADATA,
+            pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
+        ) callconv(.winapi) HRESULT,
+        RegisterService: *const fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            pService: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        RetireService: *const fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        AddDynamicService: *const fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            pszEndpointAddress: ?[*:0]const u16,
+            pPortType: ?*const WSD_PORT_TYPE,
+            pPortName: ?*const WSDXML_NAME,
+            pAny: ?*const WSDXML_ELEMENT,
+            pService: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        RemoveDynamicService: *const fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetServiceDiscoverable: *const fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            fDiscoverable: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SignalEvent: *const fn(
+            self: *const IWSDDeviceHost,
+            pszServiceId: ?[*:0]const u16,
+            pBody: ?*const anyopaque,
+            pOperation: ?*const WSD_OPERATION,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Init(self: *const IWSDDeviceHost, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]?*IWSDAddress, dwHostAddressCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Init(self, pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
+    }
+    pub fn Start(self: *const IWSDDeviceHost, ullInstanceId: u64, pScopeList: ?*const WSD_URI_LIST, pNotificationSink: ?*IWSDDeviceHostNotify) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self, ullInstanceId, pScopeList, pNotificationSink);
+    }
+    pub fn Stop(self: *const IWSDDeviceHost) callconv(.@"inline") HRESULT {
+        return self.vtable.Stop(self);
+    }
+    pub fn Terminate(self: *const IWSDDeviceHost) callconv(.@"inline") HRESULT {
+        return self.vtable.Terminate(self);
+    }
+    pub fn RegisterPortType(self: *const IWSDDeviceHost, pPortType: ?*const WSD_PORT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterPortType(self, pPortType);
+    }
+    pub fn SetMetadata(self: *const IWSDDeviceHost, pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA, pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA, pHostMetadata: ?*const WSD_HOST_METADATA, pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMetadata(self, pThisModelMetadata, pThisDeviceMetadata, pHostMetadata, pCustomMetadata);
+    }
+    pub fn RegisterService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pService: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterService(self, pszServiceId, pService);
+    }
+    pub fn RetireService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RetireService(self, pszServiceId);
+    }
+    pub fn AddDynamicService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pszEndpointAddress: ?[*:0]const u16, pPortType: ?*const WSD_PORT_TYPE, pPortName: ?*const WSDXML_NAME, pAny: ?*const WSDXML_ELEMENT, pService: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.AddDynamicService(self, pszServiceId, pszEndpointAddress, pPortType, pPortName, pAny, pService);
+    }
+    pub fn RemoveDynamicService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveDynamicService(self, pszServiceId);
+    }
+    pub fn SetServiceDiscoverable(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, fDiscoverable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetServiceDiscoverable(self, pszServiceId, fDiscoverable);
+    }
+    pub fn SignalEvent(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.@"inline") HRESULT {
+        return self.vtable.SignalEvent(self, pszServiceId, pBody, pOperation);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDDeviceHostNotify_Value = Guid.initString("b5bee9f9-eeda-41fe-96f7-f45e14990fb0");
+pub const IID_IWSDDeviceHostNotify = &IID_IWSDDeviceHostNotify_Value;
+pub const IWSDDeviceHostNotify = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetService: *const fn(
+            self: *const IWSDDeviceHostNotify,
+            pszServiceId: ?[*:0]const u16,
+            ppService: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetService(self: *const IWSDDeviceHostNotify, pszServiceId: ?[*:0]const u16, ppService: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetService(self, pszServiceId, ppService);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDDeviceProxy_Value = Guid.initString("eee0c031-c578-4c0e-9a3b-973c35f409db");
+pub const IID_IWSDDeviceProxy = &IID_IWSDDeviceProxy_Value;
+pub const IWSDDeviceProxy = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Init: *const fn(
+            self: *const IWSDDeviceProxy,
+            pszDeviceId: ?[*:0]const u16,
+            pDeviceAddress: ?*IWSDAddress,
+            pszLocalId: ?[*:0]const u16,
+            pContext: ?*IWSDXMLContext,
+            pSponsor: ?*IWSDDeviceProxy,
+        ) callconv(.winapi) HRESULT,
+        BeginGetMetadata: *const fn(
+            self: *const IWSDDeviceProxy,
+            ppResult: ?*?*IWSDAsyncResult,
+        ) callconv(.winapi) HRESULT,
+        EndGetMetadata: *const fn(
+            self: *const IWSDDeviceProxy,
+            pResult: ?*IWSDAsyncResult,
+        ) callconv(.winapi) HRESULT,
+        GetHostMetadata: *const fn(
+            self: *const IWSDDeviceProxy,
+            ppHostMetadata: ?*?*WSD_HOST_METADATA,
+        ) callconv(.winapi) HRESULT,
+        GetThisModelMetadata: *const fn(
+            self: *const IWSDDeviceProxy,
+            ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA,
+        ) callconv(.winapi) HRESULT,
+        GetThisDeviceMetadata: *const fn(
+            self: *const IWSDDeviceProxy,
+            ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA,
+        ) callconv(.winapi) HRESULT,
+        GetAllMetadata: *const fn(
+            self: *const IWSDDeviceProxy,
+            ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
+        ) callconv(.winapi) HRESULT,
+        GetServiceProxyById: *const fn(
+            self: *const IWSDDeviceProxy,
+            pszServiceId: ?[*:0]const u16,
+            ppServiceProxy: ?*?*IWSDServiceProxy,
+        ) callconv(.winapi) HRESULT,
+        GetServiceProxyByType: *const fn(
+            self: *const IWSDDeviceProxy,
+            pType: ?*const WSDXML_NAME,
+            ppServiceProxy: ?*?*IWSDServiceProxy,
+        ) callconv(.winapi) HRESULT,
+        GetEndpointProxy: *const fn(
+            self: *const IWSDDeviceProxy,
+            ppProxy: ?*?*IWSDEndpointProxy,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Init(self: *const IWSDDeviceProxy, pszDeviceId: ?[*:0]const u16, pDeviceAddress: ?*IWSDAddress, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, pSponsor: ?*IWSDDeviceProxy) callconv(.@"inline") HRESULT {
+        return self.vtable.Init(self, pszDeviceId, pDeviceAddress, pszLocalId, pContext, pSponsor);
+    }
+    pub fn BeginGetMetadata(self: *const IWSDDeviceProxy, ppResult: ?*?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginGetMetadata(self, ppResult);
+    }
+    pub fn EndGetMetadata(self: *const IWSDDeviceProxy, pResult: ?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
+        return self.vtable.EndGetMetadata(self, pResult);
+    }
+    pub fn GetHostMetadata(self: *const IWSDDeviceProxy, ppHostMetadata: ?*?*WSD_HOST_METADATA) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHostMetadata(self, ppHostMetadata);
+    }
+    pub fn GetThisModelMetadata(self: *const IWSDDeviceProxy, ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA) callconv(.@"inline") HRESULT {
+        return self.vtable.GetThisModelMetadata(self, ppManufacturerMetadata);
+    }
+    pub fn GetThisDeviceMetadata(self: *const IWSDDeviceProxy, ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA) callconv(.@"inline") HRESULT {
+        return self.vtable.GetThisDeviceMetadata(self, ppThisDeviceMetadata);
+    }
+    pub fn GetAllMetadata(self: *const IWSDDeviceProxy, ppMetadata: ?*?*WSD_METADATA_SECTION_LIST) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllMetadata(self, ppMetadata);
+    }
+    pub fn GetServiceProxyById(self: *const IWSDDeviceProxy, pszServiceId: ?[*:0]const u16, ppServiceProxy: ?*?*IWSDServiceProxy) callconv(.@"inline") HRESULT {
+        return self.vtable.GetServiceProxyById(self, pszServiceId, ppServiceProxy);
+    }
+    pub fn GetServiceProxyByType(self: *const IWSDDeviceProxy, pType: ?*const WSDXML_NAME, ppServiceProxy: ?*?*IWSDServiceProxy) callconv(.@"inline") HRESULT {
+        return self.vtable.GetServiceProxyByType(self, pType, ppServiceProxy);
+    }
+    pub fn GetEndpointProxy(self: *const IWSDDeviceProxy, ppProxy: ?*?*IWSDEndpointProxy) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEndpointProxy(self, ppProxy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDEndpointProxy_Value = Guid.initString("1860d430-b24c-4975-9f90-dbb39baa24ec");
+pub const IID_IWSDEndpointProxy = &IID_IWSDEndpointProxy_Value;
+pub const IWSDEndpointProxy = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SendOneWayRequest: *const fn(
+            self: *const IWSDEndpointProxy,
+            pBody: ?*const anyopaque,
+            pOperation: ?*const WSD_OPERATION,
+        ) callconv(.winapi) HRESULT,
+        SendTwoWayRequest: *const fn(
+            self: *const IWSDEndpointProxy,
+            pBody: ?*const anyopaque,
+            pOperation: ?*const WSD_OPERATION,
+            pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT,
+        ) callconv(.winapi) HRESULT,
+        SendTwoWayRequestAsync: *const fn(
+            self: *const IWSDEndpointProxy,
+            pBody: ?*const anyopaque,
+            pOperation: ?*const WSD_OPERATION,
+            pAsyncState: ?*IUnknown,
+            pCallback: ?*IWSDAsyncCallback,
+            pResult: ?*?*IWSDAsyncResult,
+        ) callconv(.winapi) HRESULT,
+        AbortAsyncOperation: *const fn(
+            self: *const IWSDEndpointProxy,
+            pAsyncResult: ?*IWSDAsyncResult,
+        ) callconv(.winapi) HRESULT,
+        ProcessFault: *const fn(
+            self: *const IWSDEndpointProxy,
+            pFault: ?*const WSD_SOAP_FAULT,
+        ) callconv(.winapi) HRESULT,
+        GetErrorInfo: *const fn(
+            self: *const IWSDEndpointProxy,
+            ppszErrorInfo: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetFaultInfo: *const fn(
+            self: *const IWSDEndpointProxy,
+            ppFault: ?*?*WSD_SOAP_FAULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SendOneWayRequest(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.@"inline") HRESULT {
+        return self.vtable.SendOneWayRequest(self, pBody, pOperation);
+    }
+    pub fn SendTwoWayRequest(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT) callconv(.@"inline") HRESULT {
+        return self.vtable.SendTwoWayRequest(self, pBody, pOperation, pResponseContext);
+    }
+    pub fn SendTwoWayRequestAsync(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pAsyncState: ?*IUnknown, pCallback: ?*IWSDAsyncCallback, pResult: ?*?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
+        return self.vtable.SendTwoWayRequestAsync(self, pBody, pOperation, pAsyncState, pCallback, pResult);
+    }
+    pub fn AbortAsyncOperation(self: *const IWSDEndpointProxy, pAsyncResult: ?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
+        return self.vtable.AbortAsyncOperation(self, pAsyncResult);
+    }
+    pub fn ProcessFault(self: *const IWSDEndpointProxy, pFault: ?*const WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessFault(self, pFault);
+    }
+    pub fn GetErrorInfo(self: *const IWSDEndpointProxy, ppszErrorInfo: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetErrorInfo(self, ppszErrorInfo);
+    }
+    pub fn GetFaultInfo(self: *const IWSDEndpointProxy, ppFault: ?*?*WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFaultInfo(self, ppFault);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDEventingStatus_Value = Guid.initString("49b17f52-637a-407a-ae99-fbe82a4d38c0");
+pub const IID_IWSDEventingStatus = &IID_IWSDEventingStatus_Value;
+pub const IWSDEventingStatus = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SubscriptionRenewed: *const fn(
+            self: *const IWSDEventingStatus,
+            pszSubscriptionAction: ?[*:0]const u16,
+        ) callconv(.winapi) void,
+        SubscriptionRenewalFailed: *const fn(
+            self: *const IWSDEventingStatus,
+            pszSubscriptionAction: ?[*:0]const u16,
+            hr: HRESULT,
+        ) callconv(.winapi) void,
+        SubscriptionEnded: *const fn(
+            self: *const IWSDEventingStatus,
+            pszSubscriptionAction: ?[*:0]const u16,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SubscriptionRenewed(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16) callconv(.@"inline") void {
+        return self.vtable.SubscriptionRenewed(self, pszSubscriptionAction);
+    }
+    pub fn SubscriptionRenewalFailed(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16, hr: HRESULT) callconv(.@"inline") void {
+        return self.vtable.SubscriptionRenewalFailed(self, pszSubscriptionAction, hr);
+    }
+    pub fn SubscriptionEnded(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16) callconv(.@"inline") void {
+        return self.vtable.SubscriptionEnded(self, pszSubscriptionAction);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDHttpAddress_Value = Guid.initString("d09ac7bd-2a3e-4b85-8605-2737ff3e4ea0");
+pub const IID_IWSDHttpAddress = &IID_IWSDHttpAddress_Value;
+pub const IWSDHttpAddress = extern union {
     pub const VTable = extern struct {
         base: IWSDTransportAddress.VTable,
-        SetSockaddr: *const fn(
-            self: *const IWSDUdpAddress,
-            pSockAddr: ?*const SOCKADDR_STORAGE,
+        GetSecure: *const fn(
+            self: *const IWSDHttpAddress,
         ) callconv(.winapi) HRESULT,
-        GetSockaddr: *const fn(
-            self: *const IWSDUdpAddress,
-            pSockAddr: ?*SOCKADDR_STORAGE,
+        SetSecure: *const fn(
+            self: *const IWSDHttpAddress,
+            fSecure: BOOL,
         ) callconv(.winapi) HRESULT,
-        SetExclusive: *const fn(
-            self: *const IWSDUdpAddress,
-            fExclusive: BOOL,
+        GetPath: *const fn(
+            self: *const IWSDHttpAddress,
+            ppszPath: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
-        GetExclusive: *const fn(
-            self: *const IWSDUdpAddress,
-        ) callconv(.winapi) HRESULT,
-        SetMessageType: *const fn(
-            self: *const IWSDUdpAddress,
-            messageType: WSDUdpMessageType,
-        ) callconv(.winapi) HRESULT,
-        GetMessageType: *const fn(
-            self: *const IWSDUdpAddress,
-            pMessageType: ?*WSDUdpMessageType,
-        ) callconv(.winapi) HRESULT,
-        SetTTL: *const fn(
-            self: *const IWSDUdpAddress,
-            dwTTL: u32,
-        ) callconv(.winapi) HRESULT,
-        GetTTL: *const fn(
-            self: *const IWSDUdpAddress,
-            pdwTTL: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetAlias: *const fn(
-            self: *const IWSDUdpAddress,
-            pAlias: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetAlias: *const fn(
-            self: *const IWSDUdpAddress,
-            pAlias: ?*Guid,
+        SetPath: *const fn(
+            self: *const IWSDHttpAddress,
+            pszPath: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSDTransportAddress: IWSDTransportAddress,
     IWSDAddress: IWSDAddress,
     IUnknown: IUnknown,
-    pub fn SetSockaddr(self: *const IWSDUdpAddress, pSockAddr: ?*const SOCKADDR_STORAGE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSockaddr(self, pSockAddr);
+    pub fn GetSecure(self: *const IWSDHttpAddress) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecure(self);
     }
-    pub fn GetSockaddr(self: *const IWSDUdpAddress, pSockAddr: ?*SOCKADDR_STORAGE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSockaddr(self, pSockAddr);
+    pub fn SetSecure(self: *const IWSDHttpAddress, fSecure: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSecure(self, fSecure);
     }
-    pub fn SetExclusive(self: *const IWSDUdpAddress, fExclusive: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetExclusive(self, fExclusive);
+    pub fn GetPath(self: *const IWSDHttpAddress, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPath(self, ppszPath);
     }
-    pub fn GetExclusive(self: *const IWSDUdpAddress) callconv(.@"inline") HRESULT {
-        return self.vtable.GetExclusive(self);
+    pub fn SetPath(self: *const IWSDHttpAddress, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPath(self, pszPath);
     }
-    pub fn SetMessageType(self: *const IWSDUdpAddress, messageType: WSDUdpMessageType) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMessageType(self, messageType);
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWSDHttpAuthParameters_Value = Guid.initString("0b476df0-8dac-480d-b05c-99781a5884aa");
+pub const IID_IWSDHttpAuthParameters = &IID_IWSDHttpAuthParameters_Value;
+pub const IWSDHttpAuthParameters = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetClientAccessToken: *const fn(
+            self: *const IWSDHttpAuthParameters,
+            phToken: ?*?HANDLE,
+        ) callconv(.winapi) HRESULT,
+        GetAuthType: *const fn(
+            self: *const IWSDHttpAuthParameters,
+            pAuthType: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetClientAccessToken(self: *const IWSDHttpAuthParameters, phToken: ?*?HANDLE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClientAccessToken(self, phToken);
     }
-    pub fn GetMessageType(self: *const IWSDUdpAddress, pMessageType: ?*WSDUdpMessageType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMessageType(self, pMessageType);
-    }
-    pub fn SetTTL(self: *const IWSDUdpAddress, dwTTL: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTTL(self, dwTTL);
-    }
-    pub fn GetTTL(self: *const IWSDUdpAddress, pdwTTL: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTTL(self, pdwTTL);
-    }
-    pub fn SetAlias(self: *const IWSDUdpAddress, pAlias: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAlias(self, pAlias);
-    }
-    pub fn GetAlias(self: *const IWSDUdpAddress, pAlias: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAlias(self, pAlias);
+    pub fn GetAuthType(self: *const IWSDHttpAuthParameters, pAuthType: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAuthType(self, pAuthType);
     }
 };
 
@@ -408,192 +604,6 @@ pub const IWSDHttpMessageParameters = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDHttpAddress_Value = Guid.initString("d09ac7bd-2a3e-4b85-8605-2737ff3e4ea0");
-pub const IID_IWSDHttpAddress = &IID_IWSDHttpAddress_Value;
-pub const IWSDHttpAddress = extern union {
-    pub const VTable = extern struct {
-        base: IWSDTransportAddress.VTable,
-        GetSecure: *const fn(
-            self: *const IWSDHttpAddress,
-        ) callconv(.winapi) HRESULT,
-        SetSecure: *const fn(
-            self: *const IWSDHttpAddress,
-            fSecure: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetPath: *const fn(
-            self: *const IWSDHttpAddress,
-            ppszPath: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetPath: *const fn(
-            self: *const IWSDHttpAddress,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWSDTransportAddress: IWSDTransportAddress,
-    IWSDAddress: IWSDAddress,
-    IUnknown: IUnknown,
-    pub fn GetSecure(self: *const IWSDHttpAddress) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecure(self);
-    }
-    pub fn SetSecure(self: *const IWSDHttpAddress, fSecure: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSecure(self, fSecure);
-    }
-    pub fn GetPath(self: *const IWSDHttpAddress, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPath(self, ppszPath);
-    }
-    pub fn SetPath(self: *const IWSDHttpAddress, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPath(self, pszPath);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWSDSSLClientCertificate_Value = Guid.initString("de105e87-a0da-418e-98ad-27b9eed87bdc");
-pub const IID_IWSDSSLClientCertificate = &IID_IWSDSSLClientCertificate_Value;
-pub const IWSDSSLClientCertificate = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetClientCertificate: *const fn(
-            self: *const IWSDSSLClientCertificate,
-            ppCertContext: ?*?*CERT_CONTEXT,
-        ) callconv(.winapi) HRESULT,
-        GetMappedAccessToken: *const fn(
-            self: *const IWSDSSLClientCertificate,
-            phToken: ?*?HANDLE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetClientCertificate(self: *const IWSDSSLClientCertificate, ppCertContext: ?*?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClientCertificate(self, ppCertContext);
-    }
-    pub fn GetMappedAccessToken(self: *const IWSDSSLClientCertificate, phToken: ?*?HANDLE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMappedAccessToken(self, phToken);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWSDHttpAuthParameters_Value = Guid.initString("0b476df0-8dac-480d-b05c-99781a5884aa");
-pub const IID_IWSDHttpAuthParameters = &IID_IWSDHttpAuthParameters_Value;
-pub const IWSDHttpAuthParameters = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetClientAccessToken: *const fn(
-            self: *const IWSDHttpAuthParameters,
-            phToken: ?*?HANDLE,
-        ) callconv(.winapi) HRESULT,
-        GetAuthType: *const fn(
-            self: *const IWSDHttpAuthParameters,
-            pAuthType: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetClientAccessToken(self: *const IWSDHttpAuthParameters, phToken: ?*?HANDLE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClientAccessToken(self, phToken);
-    }
-    pub fn GetAuthType(self: *const IWSDHttpAuthParameters, pAuthType: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAuthType(self, pAuthType);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWSDSignatureProperty_Value = Guid.initString("03ce20aa-71c4-45e2-b32e-3766c61c790f");
-pub const IID_IWSDSignatureProperty = &IID_IWSDSignatureProperty_Value;
-pub const IWSDSignatureProperty = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsMessageSigned: *const fn(
-            self: *const IWSDSignatureProperty,
-            pbSigned: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsMessageSignatureTrusted: *const fn(
-            self: *const IWSDSignatureProperty,
-            pbSignatureTrusted: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetKeyInfo: *const fn(
-            self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
-            pbKeyInfo: ?*u8,
-            pdwKeyInfoSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSignature: *const fn(
-            self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
-            pbSignature: ?*u8,
-            pdwSignatureSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSignedInfoHash: *const fn(
-            self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
-            pbSignedInfoHash: ?*u8,
-            pdwHashSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsMessageSigned(self: *const IWSDSignatureProperty, pbSigned: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsMessageSigned(self, pbSigned);
-    }
-    pub fn IsMessageSignatureTrusted(self: *const IWSDSignatureProperty, pbSignatureTrusted: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsMessageSignatureTrusted(self, pbSignatureTrusted);
-    }
-    pub fn GetKeyInfo(self: *const IWSDSignatureProperty, pbKeyInfo: ?*u8, pdwKeyInfoSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetKeyInfo(self, pbKeyInfo, pdwKeyInfoSize);
-    }
-    pub fn GetSignature(self: *const IWSDSignatureProperty, pbSignature: ?*u8, pdwSignatureSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSignature(self, pbSignature, pdwSignatureSize);
-    }
-    pub fn GetSignedInfoHash(self: *const IWSDSignatureProperty, pbSignedInfoHash: ?*u8, pdwHashSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSignedInfoHash(self, pbSignedInfoHash, pdwHashSize);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAttachment_Value = Guid.initString("5d55a616-9df8-4b09-b156-9ba351a48b76");
-pub const IID_IWSDAttachment = &IID_IWSDAttachment_Value;
-pub const IWSDAttachment = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDOutboundAttachment_Value = Guid.initString("aa302f8d-5a22-4ba5-b392-aa8486f4c15d");
-pub const IID_IWSDOutboundAttachment = &IID_IWSDOutboundAttachment_Value;
-pub const IWSDOutboundAttachment = extern union {
-    pub const VTable = extern struct {
-        base: IWSDAttachment.VTable,
-        Write: *const fn(
-            self: *const IWSDOutboundAttachment,
-            pBuffer: [*:0]const u8,
-            dwBytesToWrite: u32,
-            pdwNumberOfBytesWritten: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWSDOutboundAttachment,
-        ) callconv(.winapi) HRESULT,
-        Abort: *const fn(
-            self: *const IWSDOutboundAttachment,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWSDAttachment: IWSDAttachment,
-    IUnknown: IUnknown,
-    pub fn Write(self: *const IWSDOutboundAttachment, pBuffer: [*:0]const u8, dwBytesToWrite: u32, pdwNumberOfBytesWritten: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Write(self, pBuffer, dwBytesToWrite, pdwNumberOfBytesWritten);
-    }
-    pub fn Close(self: *const IWSDOutboundAttachment) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn Abort(self: *const IWSDOutboundAttachment) callconv(.@"inline") HRESULT {
-        return self.vtable.Abort(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDInboundAttachment_Value = Guid.initString("5bd6ca65-233c-4fb8-9f7a-2641619655c9");
 pub const IID_IWSDInboundAttachment = &IID_IWSDInboundAttachment_Value;
 pub const IWSDInboundAttachment = extern union {
@@ -620,594 +630,93 @@ pub const IWSDInboundAttachment = extern union {
     }
 };
 
-pub const WSD_DATETIME = extern struct {
-    isPositive: BOOL,
-    year: u32,
-    month: u8,
-    day: u8,
-    hour: u8,
-    minute: u8,
-    second: u8,
-    millisecond: u32,
-    TZIsLocal: BOOL,
-    TZIsPositive: BOOL,
-    TZHour: u8,
-    TZMinute: u8,
-};
-
-pub const WSD_DURATION = extern struct {
-    isPositive: BOOL,
-    year: u32,
-    month: u32,
-    day: u32,
-    hour: u32,
-    minute: u32,
-    second: u32,
-    millisecond: u32,
-};
-
-pub const WSDXML_OP = enum(i32) {
-    None = 0,
-    EndOfTable = 1,
-    BeginElement_ = 2,
-    BeginAnyElement = 3,
-    EndElement = 4,
-    Element_ = 5,
-    AnyElement = 6,
-    AnyElements = 7,
-    AnyText = 8,
-    Attribute_ = 9,
-    BeginChoice = 10,
-    EndChoice = 11,
-    BeginSequence = 12,
-    EndSequence = 13,
-    BeginAll = 14,
-    EndAll = 15,
-    Anything = 16,
-    AnyNumber = 17,
-    OneOrMore = 18,
-    Optional = 19,
-    FormatBool_ = 20,
-    FormatInt8_ = 21,
-    FormatInt16_ = 22,
-    FormatInt32_ = 23,
-    FormatInt64_ = 24,
-    FormatUInt8_ = 25,
-    FormatUInt16_ = 26,
-    FormatUInt32_ = 27,
-    FormatUInt64_ = 28,
-    FormatUnicodeString_ = 29,
-    FormatDom_ = 30,
-    FormatStruct_ = 31,
-    FormatUri_ = 32,
-    FormatUuidUri_ = 33,
-    FormatName_ = 34,
-    FormatListInsertTail_ = 35,
-    FormatType_ = 36,
-    FormatDynamicType_ = 37,
-    FormatLookupType_ = 38,
-    FormatDuration_ = 39,
-    FormatDateTime_ = 40,
-    FormatFloat_ = 41,
-    FormatDouble_ = 42,
-    Process_ = 43,
-    QualifiedAttribute_ = 44,
-    FormatXMLDeclaration_ = 45,
-    FormatMax = 46,
-};
-pub const OpNone = WSDXML_OP.None;
-pub const OpEndOfTable = WSDXML_OP.EndOfTable;
-pub const OpBeginElement_ = WSDXML_OP.BeginElement_;
-pub const OpBeginAnyElement = WSDXML_OP.BeginAnyElement;
-pub const OpEndElement = WSDXML_OP.EndElement;
-pub const OpElement_ = WSDXML_OP.Element_;
-pub const OpAnyElement = WSDXML_OP.AnyElement;
-pub const OpAnyElements = WSDXML_OP.AnyElements;
-pub const OpAnyText = WSDXML_OP.AnyText;
-pub const OpAttribute_ = WSDXML_OP.Attribute_;
-pub const OpBeginChoice = WSDXML_OP.BeginChoice;
-pub const OpEndChoice = WSDXML_OP.EndChoice;
-pub const OpBeginSequence = WSDXML_OP.BeginSequence;
-pub const OpEndSequence = WSDXML_OP.EndSequence;
-pub const OpBeginAll = WSDXML_OP.BeginAll;
-pub const OpEndAll = WSDXML_OP.EndAll;
-pub const OpAnything = WSDXML_OP.Anything;
-pub const OpAnyNumber = WSDXML_OP.AnyNumber;
-pub const OpOneOrMore = WSDXML_OP.OneOrMore;
-pub const OpOptional = WSDXML_OP.Optional;
-pub const OpFormatBool_ = WSDXML_OP.FormatBool_;
-pub const OpFormatInt8_ = WSDXML_OP.FormatInt8_;
-pub const OpFormatInt16_ = WSDXML_OP.FormatInt16_;
-pub const OpFormatInt32_ = WSDXML_OP.FormatInt32_;
-pub const OpFormatInt64_ = WSDXML_OP.FormatInt64_;
-pub const OpFormatUInt8_ = WSDXML_OP.FormatUInt8_;
-pub const OpFormatUInt16_ = WSDXML_OP.FormatUInt16_;
-pub const OpFormatUInt32_ = WSDXML_OP.FormatUInt32_;
-pub const OpFormatUInt64_ = WSDXML_OP.FormatUInt64_;
-pub const OpFormatUnicodeString_ = WSDXML_OP.FormatUnicodeString_;
-pub const OpFormatDom_ = WSDXML_OP.FormatDom_;
-pub const OpFormatStruct_ = WSDXML_OP.FormatStruct_;
-pub const OpFormatUri_ = WSDXML_OP.FormatUri_;
-pub const OpFormatUuidUri_ = WSDXML_OP.FormatUuidUri_;
-pub const OpFormatName_ = WSDXML_OP.FormatName_;
-pub const OpFormatListInsertTail_ = WSDXML_OP.FormatListInsertTail_;
-pub const OpFormatType_ = WSDXML_OP.FormatType_;
-pub const OpFormatDynamicType_ = WSDXML_OP.FormatDynamicType_;
-pub const OpFormatLookupType_ = WSDXML_OP.FormatLookupType_;
-pub const OpFormatDuration_ = WSDXML_OP.FormatDuration_;
-pub const OpFormatDateTime_ = WSDXML_OP.FormatDateTime_;
-pub const OpFormatFloat_ = WSDXML_OP.FormatFloat_;
-pub const OpFormatDouble_ = WSDXML_OP.FormatDouble_;
-pub const OpProcess_ = WSDXML_OP.Process_;
-pub const OpQualifiedAttribute_ = WSDXML_OP.QualifiedAttribute_;
-pub const OpFormatXMLDeclaration_ = WSDXML_OP.FormatXMLDeclaration_;
-pub const OpFormatMax = WSDXML_OP.FormatMax;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDXMLContext_Value = Guid.initString("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0");
-pub const IID_IWSDXMLContext = &IID_IWSDXMLContext_Value;
-pub const IWSDXMLContext = extern union {
+const IID_IWSDiscoveredService_Value = Guid.initString("4bad8a3b-b374-4420-9632-aac945b374aa");
+pub const IID_IWSDiscoveredService = &IID_IWSDiscoveredService_Value;
+pub const IWSDiscoveredService = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddNamespace: *const fn(
-            self: *const IWSDXMLContext,
-            pszUri: ?[*:0]const u16,
-            pszSuggestedPrefix: ?[*:0]const u16,
-            ppNamespace: ?*?*WSDXML_NAMESPACE,
+        GetEndpointReference: *const fn(
+            self: *const IWSDiscoveredService,
+            ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
         ) callconv(.winapi) HRESULT,
-        AddNameToNamespace: *const fn(
-            self: *const IWSDXMLContext,
-            pszUri: ?[*:0]const u16,
-            pszName: ?[*:0]const u16,
-            ppName: ?*?*WSDXML_NAME,
+        GetTypes: *const fn(
+            self: *const IWSDiscoveredService,
+            ppTypesList: ?*?*WSD_NAME_LIST,
         ) callconv(.winapi) HRESULT,
-        SetNamespaces: *const fn(
-            self: *const IWSDXMLContext,
-            pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
-            wNamespacesCount: u16,
-            bLayerNumber: u8,
+        GetScopes: *const fn(
+            self: *const IWSDiscoveredService,
+            ppScopesList: ?*?*WSD_URI_LIST,
         ) callconv(.winapi) HRESULT,
-        SetTypes: *const fn(
-            self: *const IWSDXMLContext,
-            pTypes: [*]const ?*const WSDXML_TYPE,
-            dwTypesCount: u32,
-            bLayerNumber: u8,
+        GetXAddrs: *const fn(
+            self: *const IWSDiscoveredService,
+            ppXAddrsList: ?*?*WSD_URI_LIST,
+        ) callconv(.winapi) HRESULT,
+        GetMetadataVersion: *const fn(
+            self: *const IWSDiscoveredService,
+            pullMetadataVersion: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetExtendedDiscoXML: *const fn(
+            self: *const IWSDiscoveredService,
+            ppHeaderAny: ?*?*WSDXML_ELEMENT,
+            ppBodyAny: ?*?*WSDXML_ELEMENT,
+        ) callconv(.winapi) HRESULT,
+        GetProbeResolveTag: *const fn(
+            self: *const IWSDiscoveredService,
+            ppszTag: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetRemoteTransportAddress: *const fn(
+            self: *const IWSDiscoveredService,
+            ppszRemoteTransportAddress: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetLocalTransportAddress: *const fn(
+            self: *const IWSDiscoveredService,
+            ppszLocalTransportAddress: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetLocalInterfaceGUID: *const fn(
+            self: *const IWSDiscoveredService,
+            pGuid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetInstanceId: *const fn(
+            self: *const IWSDiscoveredService,
+            pullInstanceId: ?*u64,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddNamespace(self: *const IWSDXMLContext, pszUri: ?[*:0]const u16, pszSuggestedPrefix: ?[*:0]const u16, ppNamespace: ?*?*WSDXML_NAMESPACE) callconv(.@"inline") HRESULT {
-        return self.vtable.AddNamespace(self, pszUri, pszSuggestedPrefix, ppNamespace);
+    pub fn GetEndpointReference(self: *const IWSDiscoveredService, ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEndpointReference(self, ppEndpointReference);
     }
-    pub fn AddNameToNamespace(self: *const IWSDXMLContext, pszUri: ?[*:0]const u16, pszName: ?[*:0]const u16, ppName: ?*?*WSDXML_NAME) callconv(.@"inline") HRESULT {
-        return self.vtable.AddNameToNamespace(self, pszUri, pszName, ppName);
+    pub fn GetTypes(self: *const IWSDiscoveredService, ppTypesList: ?*?*WSD_NAME_LIST) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTypes(self, ppTypesList);
     }
-    pub fn SetNamespaces(self: *const IWSDXMLContext, pNamespaces: [*]const ?*const WSDXML_NAMESPACE, wNamespacesCount: u16, bLayerNumber: u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNamespaces(self, pNamespaces, wNamespacesCount, bLayerNumber);
+    pub fn GetScopes(self: *const IWSDiscoveredService, ppScopesList: ?*?*WSD_URI_LIST) callconv(.@"inline") HRESULT {
+        return self.vtable.GetScopes(self, ppScopesList);
     }
-    pub fn SetTypes(self: *const IWSDXMLContext, pTypes: [*]const ?*const WSDXML_TYPE, dwTypesCount: u32, bLayerNumber: u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTypes(self, pTypes, dwTypesCount, bLayerNumber);
+    pub fn GetXAddrs(self: *const IWSDiscoveredService, ppXAddrsList: ?*?*WSD_URI_LIST) callconv(.@"inline") HRESULT {
+        return self.vtable.GetXAddrs(self, ppXAddrsList);
     }
-};
-
-pub const WSDXML_NAMESPACE = extern struct {
-    Uri: ?[*:0]const u16,
-    PreferredPrefix: ?[*:0]const u16,
-    Names: ?*WSDXML_NAME,
-    NamesCount: u16,
-    Encoding: u16,
-};
-
-pub const WSDXML_NAME = extern struct {
-    Space: ?*WSDXML_NAMESPACE,
-    LocalName: ?PWSTR,
-};
-
-pub const WSDXML_TYPE = extern struct {
-    Uri: ?[*:0]const u16,
-    Table: ?*const u8,
-};
-
-pub const WSDXML_PREFIX_MAPPING = extern struct {
-    Refs: u32,
-    Next: ?*WSDXML_PREFIX_MAPPING,
-    Space: ?*WSDXML_NAMESPACE,
-    Prefix: ?PWSTR,
-};
-
-pub const WSDXML_ATTRIBUTE = extern struct {
-    Element: ?*WSDXML_ELEMENT,
-    Next: ?*WSDXML_ATTRIBUTE,
-    Name: ?*WSDXML_NAME,
-    Value: ?PWSTR,
-};
-
-pub const WSDXML_NODE = extern struct {
-    Type: i32,
-    Parent: ?*WSDXML_ELEMENT,
-    Next: ?*WSDXML_NODE,
-};
-
-pub const WSDXML_ELEMENT = extern struct {
-    Node: WSDXML_NODE,
-    Name: ?*WSDXML_NAME,
-    FirstAttribute: ?*WSDXML_ATTRIBUTE,
-    FirstChild: ?*WSDXML_NODE,
-    PrefixMappings: ?*WSDXML_PREFIX_MAPPING,
-};
-
-pub const WSDXML_TEXT = extern struct {
-    Node: WSDXML_NODE,
-    Text: ?PWSTR,
-};
-
-pub const WSDXML_ELEMENT_LIST = extern struct {
-    Next: ?*WSDXML_ELEMENT_LIST,
-    Element: ?*WSDXML_ELEMENT,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const WSD_STUB_FUNCTION = *const fn() callconv(.winapi) void;
-
-pub const DeviceDiscoveryMechanism = enum(i32) {
-    MulticastDiscovery = 0,
-    DirectedDiscovery = 1,
-    SecureDirectedDiscovery = 2,
-};
-pub const MulticastDiscovery = DeviceDiscoveryMechanism.MulticastDiscovery;
-pub const DirectedDiscovery = DeviceDiscoveryMechanism.DirectedDiscovery;
-pub const SecureDirectedDiscovery = DeviceDiscoveryMechanism.SecureDirectedDiscovery;
-
-pub const WSD_PROTOCOL_TYPE = enum(i32) {
-    NONE = 0,
-    UDP = 1,
-    HTTP = 2,
-    HTTPS = 4,
-    ALL = 255,
-};
-pub const WSD_PT_NONE = WSD_PROTOCOL_TYPE.NONE;
-pub const WSD_PT_UDP = WSD_PROTOCOL_TYPE.UDP;
-pub const WSD_PT_HTTP = WSD_PROTOCOL_TYPE.HTTP;
-pub const WSD_PT_HTTPS = WSD_PROTOCOL_TYPE.HTTPS;
-pub const WSD_PT_ALL = WSD_PROTOCOL_TYPE.ALL;
-
-pub const WSD_OPERATION = extern struct {
-    RequestType: ?*WSDXML_TYPE,
-    ResponseType: ?*WSDXML_TYPE,
-    RequestStubFunction: ?WSD_STUB_FUNCTION,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PWSD_SOAP_MESSAGE_HANDLER = *const fn() callconv(.winapi) void;
-
-pub const WSD_HANDLER_CONTEXT = extern struct {
-    Handler: ?PWSD_SOAP_MESSAGE_HANDLER,
-    PVoid: ?*anyopaque,
-    Unknown: ?*IUnknown,
-};
-
-pub const WSDEventType = enum(i32) {
-    NONE = 0,
-    INCOMING_MESSAGE = 1,
-    INCOMING_FAULT = 2,
-    TRANSMISSION_FAILURE = 3,
-    RESPONSE_TIMEOUT = 4,
-};
-pub const WSDET_NONE = WSDEventType.NONE;
-pub const WSDET_INCOMING_MESSAGE = WSDEventType.INCOMING_MESSAGE;
-pub const WSDET_INCOMING_FAULT = WSDEventType.INCOMING_FAULT;
-pub const WSDET_TRANSMISSION_FAILURE = WSDEventType.TRANSMISSION_FAILURE;
-pub const WSDET_RESPONSE_TIMEOUT = WSDEventType.RESPONSE_TIMEOUT;
-
-pub const WSD_SYNCHRONOUS_RESPONSE_CONTEXT = extern struct {
-    hr: HRESULT,
-    eventHandle: ?HANDLE,
-    messageParameters: ?*IWSDMessageParameters,
-    results: ?*anyopaque,
-};
-
-pub const WSD_PORT_TYPE = extern struct {
-    EncodedName: u32,
-    OperationCount: u32,
-    Operations: ?*WSD_OPERATION,
-    ProtocolType: WSD_PROTOCOL_TYPE,
-};
-
-pub const WSD_RELATIONSHIP_METADATA = extern struct {
-    Type: ?[*:0]const u16,
-    Data: ?*WSD_HOST_METADATA,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_SERVICE_METADATA_LIST = extern struct {
-    Next: ?*WSD_SERVICE_METADATA_LIST,
-    Element: ?*WSD_SERVICE_METADATA,
-};
-
-pub const WSD_HOST_METADATA = extern struct {
-    Host: ?*WSD_SERVICE_METADATA,
-    Hosted: ?*WSD_SERVICE_METADATA_LIST,
-};
-
-pub const WSD_ENDPOINT_REFERENCE_LIST = extern struct {
-    Next: ?*WSD_ENDPOINT_REFERENCE_LIST,
-    Element: ?*WSD_ENDPOINT_REFERENCE,
-};
-
-pub const WSD_SERVICE_METADATA = extern struct {
-    EndpointReference: ?*WSD_ENDPOINT_REFERENCE_LIST,
-    Types: ?*WSD_NAME_LIST,
-    ServiceId: ?[*:0]const u16,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_THIS_DEVICE_METADATA = extern struct {
-    FriendlyName: ?*WSD_LOCALIZED_STRING_LIST,
-    FirmwareVersion: ?[*:0]const u16,
-    SerialNumber: ?[*:0]const u16,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_THIS_MODEL_METADATA = extern struct {
-    Manufacturer: ?*WSD_LOCALIZED_STRING_LIST,
-    ManufacturerUrl: ?[*:0]const u16,
-    ModelName: ?*WSD_LOCALIZED_STRING_LIST,
-    ModelNumber: ?[*:0]const u16,
-    ModelUrl: ?[*:0]const u16,
-    PresentationUrl: ?[*:0]const u16,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_LOCALIZED_STRING_LIST = extern struct {
-    Next: ?*WSD_LOCALIZED_STRING_LIST,
-    Element: ?*WSD_LOCALIZED_STRING,
-};
-
-pub const WSD_SOAP_FAULT_REASON = extern struct {
-    Text: ?*WSD_LOCALIZED_STRING_LIST,
-};
-
-pub const WSD_SOAP_FAULT_SUBCODE = extern struct {
-    Value: ?*WSDXML_NAME,
-    Subcode: ?*WSD_SOAP_FAULT_SUBCODE,
-};
-
-pub const WSD_SOAP_FAULT_CODE = extern struct {
-    Value: ?*WSDXML_NAME,
-    Subcode: ?*WSD_SOAP_FAULT_SUBCODE,
-};
-
-pub const WSD_SOAP_FAULT = extern struct {
-    Code: ?*WSD_SOAP_FAULT_CODE,
-    Reason: ?*WSD_SOAP_FAULT_REASON,
-    Node: ?[*:0]const u16,
-    Role: ?[*:0]const u16,
-    Detail: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_APP_SEQUENCE = extern struct {
-    InstanceId: u64,
-    SequenceId: ?[*:0]const u16,
-    MessageNumber: u64,
-};
-
-pub const WSD_HEADER_RELATESTO = extern struct {
-    RelationshipType: ?*WSDXML_NAME,
-    MessageID: ?[*:0]const u16,
-};
-
-pub const WSD_SOAP_HEADER = extern struct {
-    To: ?[*:0]const u16,
-    Action: ?[*:0]const u16,
-    MessageID: ?[*:0]const u16,
-    RelatesTo: WSD_HEADER_RELATESTO,
-    ReplyTo: ?*WSD_ENDPOINT_REFERENCE,
-    From: ?*WSD_ENDPOINT_REFERENCE,
-    FaultTo: ?*WSD_ENDPOINT_REFERENCE,
-    AppSequence: ?*WSD_APP_SEQUENCE,
-    AnyHeaders: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_SOAP_MESSAGE = extern struct {
-    Header: WSD_SOAP_HEADER,
-    Body: ?*anyopaque,
-    BodyType: ?*WSDXML_TYPE,
-};
-
-pub const WSD_RESOLVE_MATCHES = extern struct {
-    ResolveMatch: ?*WSD_RESOLVE_MATCH,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_RESOLVE_MATCH = extern struct {
-    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
-    Types: ?*WSD_NAME_LIST,
-    Scopes: ?*WSD_SCOPES,
-    XAddrs: ?*WSD_URI_LIST,
-    MetadataVersion: u64,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_RESOLVE = extern struct {
-    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_PROBE_MATCH = extern struct {
-    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
-    Types: ?*WSD_NAME_LIST,
-    Scopes: ?*WSD_SCOPES,
-    XAddrs: ?*WSD_URI_LIST,
-    MetadataVersion: u64,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_PROBE_MATCH_LIST = extern struct {
-    Next: ?*WSD_PROBE_MATCH_LIST,
-    Element: ?*WSD_PROBE_MATCH,
-};
-
-pub const WSD_PROBE_MATCHES = extern struct {
-    ProbeMatch: ?*WSD_PROBE_MATCH_LIST,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_PROBE = extern struct {
-    Types: ?*WSD_NAME_LIST,
-    Scopes: ?*WSD_SCOPES,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_BYE = extern struct {
-    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_SCOPES = extern struct {
-    MatchBy: ?[*:0]const u16,
-    Scopes: ?*WSD_URI_LIST,
-};
-
-pub const WSD_NAME_LIST = extern struct {
-    Next: ?*WSD_NAME_LIST,
-    Element: ?*WSDXML_NAME,
-};
-
-pub const WSD_HELLO = extern struct {
-    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
-    Types: ?*WSD_NAME_LIST,
-    Scopes: ?*WSD_SCOPES,
-    XAddrs: ?*WSD_URI_LIST,
-    MetadataVersion: u64,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_REFERENCE_PARAMETERS = extern struct {
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_REFERENCE_PROPERTIES = extern struct {
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_ENDPOINT_REFERENCE = extern struct {
-    Address: ?[*:0]const u16,
-    ReferenceProperties: WSD_REFERENCE_PROPERTIES,
-    ReferenceParameters: WSD_REFERENCE_PARAMETERS,
-    PortType: ?*WSDXML_NAME,
-    ServiceName: ?*WSDXML_NAME,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_METADATA_SECTION = extern struct {
-    Dialect: ?[*:0]const u16,
-    Identifier: ?[*:0]const u16,
-    Data: ?*anyopaque,
-    MetadataReference: ?*WSD_ENDPOINT_REFERENCE,
-    Location: ?[*:0]const u16,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_METADATA_SECTION_LIST = extern struct {
-    Next: ?*WSD_METADATA_SECTION_LIST,
-    Element: ?*WSD_METADATA_SECTION,
-};
-
-pub const WSD_URI_LIST = extern struct {
-    Next: ?*WSD_URI_LIST,
-    Element: ?[*:0]const u16,
-};
-
-pub const WSD_EVENTING_FILTER_ACTION = extern struct {
-    Actions: ?*WSD_URI_LIST,
-};
-
-pub const WSD_EVENTING_FILTER = extern struct {
-    Dialect: ?[*:0]const u16,
-    FilterAction: ?*WSD_EVENTING_FILTER_ACTION,
-    Data: ?*anyopaque,
-};
-
-pub const WSD_EVENTING_EXPIRES = extern struct {
-    Duration: ?*WSD_DURATION,
-    DateTime: ?*WSD_DATETIME,
-};
-
-pub const WSD_EVENTING_DELIVERY_MODE_PUSH = extern struct {
-    NotifyTo: ?*WSD_ENDPOINT_REFERENCE,
-};
-
-pub const WSD_EVENTING_DELIVERY_MODE = extern struct {
-    Mode: ?[*:0]const u16,
-    Push: ?*WSD_EVENTING_DELIVERY_MODE_PUSH,
-    Data: ?*anyopaque,
-};
-
-pub const WSD_LOCALIZED_STRING = extern struct {
-    lang: ?[*:0]const u16,
-    String: ?[*:0]const u16,
-};
-
-pub const RESPONSEBODY_GetMetadata = extern struct {
-    Metadata: ?*WSD_METADATA_SECTION_LIST,
-};
-
-pub const REQUESTBODY_Subscribe = extern struct {
-    EndTo: ?*WSD_ENDPOINT_REFERENCE,
-    Delivery: ?*WSD_EVENTING_DELIVERY_MODE,
-    Expires: ?*WSD_EVENTING_EXPIRES,
-    Filter: ?*WSD_EVENTING_FILTER,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const RESPONSEBODY_Subscribe = extern struct {
-    SubscriptionManager: ?*WSD_ENDPOINT_REFERENCE,
-    expires: ?*WSD_EVENTING_EXPIRES,
-    any: ?*WSDXML_ELEMENT,
-};
-
-pub const REQUESTBODY_Renew = extern struct {
-    Expires: ?*WSD_EVENTING_EXPIRES,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const RESPONSEBODY_Renew = extern struct {
-    expires: ?*WSD_EVENTING_EXPIRES,
-    any: ?*WSDXML_ELEMENT,
-};
-
-pub const REQUESTBODY_GetStatus = extern struct {
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const RESPONSEBODY_GetStatus = extern struct {
-    expires: ?*WSD_EVENTING_EXPIRES,
-    any: ?*WSDXML_ELEMENT,
-};
-
-pub const REQUESTBODY_Unsubscribe = extern struct {
-    any: ?*WSDXML_ELEMENT,
-};
-
-pub const RESPONSEBODY_SubscriptionEnd = extern struct {
-    SubscriptionManager: ?*WSD_ENDPOINT_REFERENCE,
-    Status: ?[*:0]const u16,
-    Reason: ?*WSD_LOCALIZED_STRING,
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_UNKNOWN_LOOKUP = extern struct {
-    Any: ?*WSDXML_ELEMENT,
-};
-
-pub const WSD_EVENT = extern struct {
-    Hr: HRESULT,
-    EventType: u32,
-    DispatchTag: ?PWSTR,
-    HandlerContext: WSD_HANDLER_CONTEXT,
-    Soap: ?*WSD_SOAP_MESSAGE,
-    Operation: ?*WSD_OPERATION,
-    MessageParameters: ?*IWSDMessageParameters,
+    pub fn GetMetadataVersion(self: *const IWSDiscoveredService, pullMetadataVersion: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataVersion(self, pullMetadataVersion);
+    }
+    pub fn GetExtendedDiscoXML(self: *const IWSDiscoveredService, ppHeaderAny: ?*?*WSDXML_ELEMENT, ppBodyAny: ?*?*WSDXML_ELEMENT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetExtendedDiscoXML(self, ppHeaderAny, ppBodyAny);
+    }
+    pub fn GetProbeResolveTag(self: *const IWSDiscoveredService, ppszTag: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProbeResolveTag(self, ppszTag);
+    }
+    pub fn GetRemoteTransportAddress(self: *const IWSDiscoveredService, ppszRemoteTransportAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRemoteTransportAddress(self, ppszRemoteTransportAddress);
+    }
+    pub fn GetLocalTransportAddress(self: *const IWSDiscoveredService, ppszLocalTransportAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalTransportAddress(self, ppszLocalTransportAddress);
+    }
+    pub fn GetLocalInterfaceGUID(self: *const IWSDiscoveredService, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalInterfaceGUID(self, pGuid);
+    }
+    pub fn GetInstanceId(self: *const IWSDiscoveredService, pullInstanceId: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInstanceId(self, pullInstanceId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1311,95 +820,6 @@ pub const IWSDiscoveryProviderNotify = extern union {
     }
     pub fn SearchComplete(self: *const IWSDiscoveryProviderNotify, pszTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SearchComplete(self, pszTag);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveredService_Value = Guid.initString("4bad8a3b-b374-4420-9632-aac945b374aa");
-pub const IID_IWSDiscoveredService = &IID_IWSDiscoveredService_Value;
-pub const IWSDiscoveredService = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetEndpointReference: *const fn(
-            self: *const IWSDiscoveredService,
-            ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
-        ) callconv(.winapi) HRESULT,
-        GetTypes: *const fn(
-            self: *const IWSDiscoveredService,
-            ppTypesList: ?*?*WSD_NAME_LIST,
-        ) callconv(.winapi) HRESULT,
-        GetScopes: *const fn(
-            self: *const IWSDiscoveredService,
-            ppScopesList: ?*?*WSD_URI_LIST,
-        ) callconv(.winapi) HRESULT,
-        GetXAddrs: *const fn(
-            self: *const IWSDiscoveredService,
-            ppXAddrsList: ?*?*WSD_URI_LIST,
-        ) callconv(.winapi) HRESULT,
-        GetMetadataVersion: *const fn(
-            self: *const IWSDiscoveredService,
-            pullMetadataVersion: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetExtendedDiscoXML: *const fn(
-            self: *const IWSDiscoveredService,
-            ppHeaderAny: ?*?*WSDXML_ELEMENT,
-            ppBodyAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(.winapi) HRESULT,
-        GetProbeResolveTag: *const fn(
-            self: *const IWSDiscoveredService,
-            ppszTag: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetRemoteTransportAddress: *const fn(
-            self: *const IWSDiscoveredService,
-            ppszRemoteTransportAddress: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetLocalTransportAddress: *const fn(
-            self: *const IWSDiscoveredService,
-            ppszLocalTransportAddress: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetLocalInterfaceGUID: *const fn(
-            self: *const IWSDiscoveredService,
-            pGuid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetInstanceId: *const fn(
-            self: *const IWSDiscoveredService,
-            pullInstanceId: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetEndpointReference(self: *const IWSDiscoveredService, ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEndpointReference(self, ppEndpointReference);
-    }
-    pub fn GetTypes(self: *const IWSDiscoveredService, ppTypesList: ?*?*WSD_NAME_LIST) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTypes(self, ppTypesList);
-    }
-    pub fn GetScopes(self: *const IWSDiscoveredService, ppScopesList: ?*?*WSD_URI_LIST) callconv(.@"inline") HRESULT {
-        return self.vtable.GetScopes(self, ppScopesList);
-    }
-    pub fn GetXAddrs(self: *const IWSDiscoveredService, ppXAddrsList: ?*?*WSD_URI_LIST) callconv(.@"inline") HRESULT {
-        return self.vtable.GetXAddrs(self, ppXAddrsList);
-    }
-    pub fn GetMetadataVersion(self: *const IWSDiscoveredService, pullMetadataVersion: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataVersion(self, pullMetadataVersion);
-    }
-    pub fn GetExtendedDiscoXML(self: *const IWSDiscoveredService, ppHeaderAny: ?*?*WSDXML_ELEMENT, ppBodyAny: ?*?*WSDXML_ELEMENT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetExtendedDiscoXML(self, ppHeaderAny, ppBodyAny);
-    }
-    pub fn GetProbeResolveTag(self: *const IWSDiscoveredService, ppszTag: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProbeResolveTag(self, ppszTag);
-    }
-    pub fn GetRemoteTransportAddress(self: *const IWSDiscoveredService, ppszRemoteTransportAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRemoteTransportAddress(self, ppszRemoteTransportAddress);
-    }
-    pub fn GetLocalTransportAddress(self: *const IWSDiscoveredService, ppszLocalTransportAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalTransportAddress(self, ppszLocalTransportAddress);
-    }
-    pub fn GetLocalInterfaceGUID(self: *const IWSDiscoveredService, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalInterfaceGUID(self, pGuid);
-    }
-    pub fn GetInstanceId(self: *const IWSDiscoveredService, pullInstanceId: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInstanceId(self, pullInstanceId);
     }
 };
 
@@ -1602,6 +1022,103 @@ pub const IWSDiscoveryPublisherNotify = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDMessageParameters_Value = Guid.initString("1fafe8a2-e6fc-4b80-b6cf-b7d45c416d7c");
+pub const IID_IWSDMessageParameters = &IID_IWSDMessageParameters_Value;
+pub const IWSDMessageParameters = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLocalAddress: *const fn(
+            self: *const IWSDMessageParameters,
+            ppAddress: ?*?*IWSDAddress,
+        ) callconv(.winapi) HRESULT,
+        SetLocalAddress: *const fn(
+            self: *const IWSDMessageParameters,
+            pAddress: ?*IWSDAddress,
+        ) callconv(.winapi) HRESULT,
+        GetRemoteAddress: *const fn(
+            self: *const IWSDMessageParameters,
+            ppAddress: ?*?*IWSDAddress,
+        ) callconv(.winapi) HRESULT,
+        SetRemoteAddress: *const fn(
+            self: *const IWSDMessageParameters,
+            pAddress: ?*IWSDAddress,
+        ) callconv(.winapi) HRESULT,
+        GetLowerParameters: *const fn(
+            self: *const IWSDMessageParameters,
+            ppTxParams: ?*?*IWSDMessageParameters,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLocalAddress(self: *const IWSDMessageParameters, ppAddress: ?*?*IWSDAddress) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalAddress(self, ppAddress);
+    }
+    pub fn SetLocalAddress(self: *const IWSDMessageParameters, pAddress: ?*IWSDAddress) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLocalAddress(self, pAddress);
+    }
+    pub fn GetRemoteAddress(self: *const IWSDMessageParameters, ppAddress: ?*?*IWSDAddress) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRemoteAddress(self, ppAddress);
+    }
+    pub fn SetRemoteAddress(self: *const IWSDMessageParameters, pAddress: ?*IWSDAddress) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRemoteAddress(self, pAddress);
+    }
+    pub fn GetLowerParameters(self: *const IWSDMessageParameters, ppTxParams: ?*?*IWSDMessageParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLowerParameters(self, ppTxParams);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDMetadataExchange_Value = Guid.initString("06996d57-1d67-4928-9307-3d7833fdb846");
+pub const IID_IWSDMetadataExchange = &IID_IWSDMetadataExchange_Value;
+pub const IWSDMetadataExchange = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMetadata: *const fn(
+            self: *const IWSDMetadataExchange,
+            MetadataOut: ?*?*WSD_METADATA_SECTION_LIST,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMetadata(self: *const IWSDMetadataExchange, MetadataOut: ?*?*WSD_METADATA_SECTION_LIST) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadata(self, MetadataOut);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IWSDOutboundAttachment_Value = Guid.initString("aa302f8d-5a22-4ba5-b392-aa8486f4c15d");
+pub const IID_IWSDOutboundAttachment = &IID_IWSDOutboundAttachment_Value;
+pub const IWSDOutboundAttachment = extern union {
+    pub const VTable = extern struct {
+        base: IWSDAttachment.VTable,
+        Write: *const fn(
+            self: *const IWSDOutboundAttachment,
+            pBuffer: [*:0]const u8,
+            dwBytesToWrite: u32,
+            pdwNumberOfBytesWritten: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IWSDOutboundAttachment,
+        ) callconv(.winapi) HRESULT,
+        Abort: *const fn(
+            self: *const IWSDOutboundAttachment,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWSDAttachment: IWSDAttachment,
+    IUnknown: IUnknown,
+    pub fn Write(self: *const IWSDOutboundAttachment, pBuffer: [*:0]const u8, dwBytesToWrite: u32, pdwNumberOfBytesWritten: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Write(self, pBuffer, dwBytesToWrite, pdwNumberOfBytesWritten);
+    }
+    pub fn Close(self: *const IWSDOutboundAttachment) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn Abort(self: *const IWSDOutboundAttachment) callconv(.@"inline") HRESULT {
+        return self.vtable.Abort(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWSDScopeMatchingRule_Value = Guid.initString("fcafe424-fef5-481a-bd9f-33ce0574256f");
 pub const IID_IWSDScopeMatchingRule = &IID_IWSDScopeMatchingRule_Value;
 pub const IWSDScopeMatchingRule = extern union {
@@ -1629,87 +1146,31 @@ pub const IWSDScopeMatchingRule = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDEndpointProxy_Value = Guid.initString("1860d430-b24c-4975-9f90-dbb39baa24ec");
-pub const IID_IWSDEndpointProxy = &IID_IWSDEndpointProxy_Value;
-pub const IWSDEndpointProxy = extern union {
+const IID_IWSDServiceMessaging_Value = Guid.initString("94974cf4-0cab-460d-a3f6-7a0ad623c0e6");
+pub const IID_IWSDServiceMessaging = &IID_IWSDServiceMessaging_Value;
+pub const IWSDServiceMessaging = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SendOneWayRequest: *const fn(
-            self: *const IWSDEndpointProxy,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
+        SendResponse: *const fn(
+            self: *const IWSDServiceMessaging,
+            pBody: ?*anyopaque,
+            pOperation: ?*WSD_OPERATION,
+            pMessageParameters: ?*IWSDMessageParameters,
         ) callconv(.winapi) HRESULT,
-        SendTwoWayRequest: *const fn(
-            self: *const IWSDEndpointProxy,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
-            pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT,
-        ) callconv(.winapi) HRESULT,
-        SendTwoWayRequestAsync: *const fn(
-            self: *const IWSDEndpointProxy,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
-            pAsyncState: ?*IUnknown,
-            pCallback: ?*IWSDAsyncCallback,
-            pResult: ?*?*IWSDAsyncResult,
-        ) callconv(.winapi) HRESULT,
-        AbortAsyncOperation: *const fn(
-            self: *const IWSDEndpointProxy,
-            pAsyncResult: ?*IWSDAsyncResult,
-        ) callconv(.winapi) HRESULT,
-        ProcessFault: *const fn(
-            self: *const IWSDEndpointProxy,
-            pFault: ?*const WSD_SOAP_FAULT,
-        ) callconv(.winapi) HRESULT,
-        GetErrorInfo: *const fn(
-            self: *const IWSDEndpointProxy,
-            ppszErrorInfo: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetFaultInfo: *const fn(
-            self: *const IWSDEndpointProxy,
-            ppFault: ?*?*WSD_SOAP_FAULT,
+        FaultRequest: *const fn(
+            self: *const IWSDServiceMessaging,
+            pRequestHeader: ?*WSD_SOAP_HEADER,
+            pMessageParameters: ?*IWSDMessageParameters,
+            pFault: ?*WSD_SOAP_FAULT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SendOneWayRequest(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.@"inline") HRESULT {
-        return self.vtable.SendOneWayRequest(self, pBody, pOperation);
+    pub fn SendResponse(self: *const IWSDServiceMessaging, pBody: ?*anyopaque, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.SendResponse(self, pBody, pOperation, pMessageParameters);
     }
-    pub fn SendTwoWayRequest(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT) callconv(.@"inline") HRESULT {
-        return self.vtable.SendTwoWayRequest(self, pBody, pOperation, pResponseContext);
-    }
-    pub fn SendTwoWayRequestAsync(self: *const IWSDEndpointProxy, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pAsyncState: ?*IUnknown, pCallback: ?*IWSDAsyncCallback, pResult: ?*?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
-        return self.vtable.SendTwoWayRequestAsync(self, pBody, pOperation, pAsyncState, pCallback, pResult);
-    }
-    pub fn AbortAsyncOperation(self: *const IWSDEndpointProxy, pAsyncResult: ?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
-        return self.vtable.AbortAsyncOperation(self, pAsyncResult);
-    }
-    pub fn ProcessFault(self: *const IWSDEndpointProxy, pFault: ?*const WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessFault(self, pFault);
-    }
-    pub fn GetErrorInfo(self: *const IWSDEndpointProxy, ppszErrorInfo: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetErrorInfo(self, ppszErrorInfo);
-    }
-    pub fn GetFaultInfo(self: *const IWSDEndpointProxy, ppFault: ?*?*WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFaultInfo(self, ppFault);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDMetadataExchange_Value = Guid.initString("06996d57-1d67-4928-9307-3d7833fdb846");
-pub const IID_IWSDMetadataExchange = &IID_IWSDMetadataExchange_Value;
-pub const IWSDMetadataExchange = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetMetadata: *const fn(
-            self: *const IWSDMetadataExchange,
-            MetadataOut: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetMetadata(self: *const IWSDMetadataExchange, MetadataOut: ?*?*WSD_METADATA_SECTION_LIST) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadata(self, MetadataOut);
+    pub fn FaultRequest(self: *const IWSDServiceMessaging, pRequestHeader: ?*WSD_SOAP_HEADER, pMessageParameters: ?*IWSDMessageParameters, pFault: ?*WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
+        return self.vtable.FaultRequest(self, pRequestHeader, pMessageParameters, pFault);
     }
 };
 
@@ -1929,360 +1390,899 @@ pub const IWSDServiceProxyEventing = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceProxy_Value = Guid.initString("eee0c031-c578-4c0e-9a3b-973c35f409db");
-pub const IID_IWSDDeviceProxy = &IID_IWSDDeviceProxy_Value;
-pub const IWSDDeviceProxy = extern union {
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWSDSignatureProperty_Value = Guid.initString("03ce20aa-71c4-45e2-b32e-3766c61c790f");
+pub const IID_IWSDSignatureProperty = &IID_IWSDSignatureProperty_Value;
+pub const IWSDSignatureProperty = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: *const fn(
-            self: *const IWSDDeviceProxy,
-            pszDeviceId: ?[*:0]const u16,
-            pDeviceAddress: ?*IWSDAddress,
-            pszLocalId: ?[*:0]const u16,
-            pContext: ?*IWSDXMLContext,
-            pSponsor: ?*IWSDDeviceProxy,
+        IsMessageSigned: *const fn(
+            self: *const IWSDSignatureProperty,
+            pbSigned: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        BeginGetMetadata: *const fn(
-            self: *const IWSDDeviceProxy,
-            ppResult: ?*?*IWSDAsyncResult,
+        IsMessageSignatureTrusted: *const fn(
+            self: *const IWSDSignatureProperty,
+            pbSignatureTrusted: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        EndGetMetadata: *const fn(
-            self: *const IWSDDeviceProxy,
-            pResult: ?*IWSDAsyncResult,
+        GetKeyInfo: *const fn(
+            self: *const IWSDSignatureProperty,
+            // TODO: what to do with BytesParamIndex 1?
+            pbKeyInfo: ?*u8,
+            pdwKeyInfoSize: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetHostMetadata: *const fn(
-            self: *const IWSDDeviceProxy,
-            ppHostMetadata: ?*?*WSD_HOST_METADATA,
+        GetSignature: *const fn(
+            self: *const IWSDSignatureProperty,
+            // TODO: what to do with BytesParamIndex 1?
+            pbSignature: ?*u8,
+            pdwSignatureSize: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetThisModelMetadata: *const fn(
-            self: *const IWSDDeviceProxy,
-            ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA,
-        ) callconv(.winapi) HRESULT,
-        GetThisDeviceMetadata: *const fn(
-            self: *const IWSDDeviceProxy,
-            ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA,
-        ) callconv(.winapi) HRESULT,
-        GetAllMetadata: *const fn(
-            self: *const IWSDDeviceProxy,
-            ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(.winapi) HRESULT,
-        GetServiceProxyById: *const fn(
-            self: *const IWSDDeviceProxy,
-            pszServiceId: ?[*:0]const u16,
-            ppServiceProxy: ?*?*IWSDServiceProxy,
-        ) callconv(.winapi) HRESULT,
-        GetServiceProxyByType: *const fn(
-            self: *const IWSDDeviceProxy,
-            pType: ?*const WSDXML_NAME,
-            ppServiceProxy: ?*?*IWSDServiceProxy,
-        ) callconv(.winapi) HRESULT,
-        GetEndpointProxy: *const fn(
-            self: *const IWSDDeviceProxy,
-            ppProxy: ?*?*IWSDEndpointProxy,
+        GetSignedInfoHash: *const fn(
+            self: *const IWSDSignatureProperty,
+            // TODO: what to do with BytesParamIndex 1?
+            pbSignedInfoHash: ?*u8,
+            pdwHashSize: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IWSDDeviceProxy, pszDeviceId: ?[*:0]const u16, pDeviceAddress: ?*IWSDAddress, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, pSponsor: ?*IWSDDeviceProxy) callconv(.@"inline") HRESULT {
-        return self.vtable.Init(self, pszDeviceId, pDeviceAddress, pszLocalId, pContext, pSponsor);
+    pub fn IsMessageSigned(self: *const IWSDSignatureProperty, pbSigned: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsMessageSigned(self, pbSigned);
     }
-    pub fn BeginGetMetadata(self: *const IWSDDeviceProxy, ppResult: ?*?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginGetMetadata(self, ppResult);
+    pub fn IsMessageSignatureTrusted(self: *const IWSDSignatureProperty, pbSignatureTrusted: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsMessageSignatureTrusted(self, pbSignatureTrusted);
     }
-    pub fn EndGetMetadata(self: *const IWSDDeviceProxy, pResult: ?*IWSDAsyncResult) callconv(.@"inline") HRESULT {
-        return self.vtable.EndGetMetadata(self, pResult);
+    pub fn GetKeyInfo(self: *const IWSDSignatureProperty, pbKeyInfo: ?*u8, pdwKeyInfoSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetKeyInfo(self, pbKeyInfo, pdwKeyInfoSize);
     }
-    pub fn GetHostMetadata(self: *const IWSDDeviceProxy, ppHostMetadata: ?*?*WSD_HOST_METADATA) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHostMetadata(self, ppHostMetadata);
+    pub fn GetSignature(self: *const IWSDSignatureProperty, pbSignature: ?*u8, pdwSignatureSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSignature(self, pbSignature, pdwSignatureSize);
     }
-    pub fn GetThisModelMetadata(self: *const IWSDDeviceProxy, ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA) callconv(.@"inline") HRESULT {
-        return self.vtable.GetThisModelMetadata(self, ppManufacturerMetadata);
+    pub fn GetSignedInfoHash(self: *const IWSDSignatureProperty, pbSignedInfoHash: ?*u8, pdwHashSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSignedInfoHash(self, pbSignedInfoHash, pdwHashSize);
     }
-    pub fn GetThisDeviceMetadata(self: *const IWSDDeviceProxy, ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA) callconv(.@"inline") HRESULT {
-        return self.vtable.GetThisDeviceMetadata(self, ppThisDeviceMetadata);
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWSDSSLClientCertificate_Value = Guid.initString("de105e87-a0da-418e-98ad-27b9eed87bdc");
+pub const IID_IWSDSSLClientCertificate = &IID_IWSDSSLClientCertificate_Value;
+pub const IWSDSSLClientCertificate = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetClientCertificate: *const fn(
+            self: *const IWSDSSLClientCertificate,
+            ppCertContext: ?*?*CERT_CONTEXT,
+        ) callconv(.winapi) HRESULT,
+        GetMappedAccessToken: *const fn(
+            self: *const IWSDSSLClientCertificate,
+            phToken: ?*?HANDLE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetClientCertificate(self: *const IWSDSSLClientCertificate, ppCertContext: ?*?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClientCertificate(self, ppCertContext);
     }
-    pub fn GetAllMetadata(self: *const IWSDDeviceProxy, ppMetadata: ?*?*WSD_METADATA_SECTION_LIST) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllMetadata(self, ppMetadata);
-    }
-    pub fn GetServiceProxyById(self: *const IWSDDeviceProxy, pszServiceId: ?[*:0]const u16, ppServiceProxy: ?*?*IWSDServiceProxy) callconv(.@"inline") HRESULT {
-        return self.vtable.GetServiceProxyById(self, pszServiceId, ppServiceProxy);
-    }
-    pub fn GetServiceProxyByType(self: *const IWSDDeviceProxy, pType: ?*const WSDXML_NAME, ppServiceProxy: ?*?*IWSDServiceProxy) callconv(.@"inline") HRESULT {
-        return self.vtable.GetServiceProxyByType(self, pType, ppServiceProxy);
-    }
-    pub fn GetEndpointProxy(self: *const IWSDDeviceProxy, ppProxy: ?*?*IWSDEndpointProxy) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEndpointProxy(self, ppProxy);
+    pub fn GetMappedAccessToken(self: *const IWSDSSLClientCertificate, phToken: ?*?HANDLE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMappedAccessToken(self, phToken);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAsyncResult_Value = Guid.initString("11a9852a-8dd8-423e-b537-9356db4fbfb8");
-pub const IID_IWSDAsyncResult = &IID_IWSDAsyncResult_Value;
-pub const IWSDAsyncResult = extern union {
+const IID_IWSDTransportAddress_Value = Guid.initString("70d23498-4ee6-4340-a3df-d845d2235467");
+pub const IID_IWSDTransportAddress = &IID_IWSDTransportAddress_Value;
+pub const IWSDTransportAddress = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetCallback: *const fn(
-            self: *const IWSDAsyncResult,
-            pCallback: ?*IWSDAsyncCallback,
-            pAsyncState: ?*IUnknown,
+        base: IWSDAddress.VTable,
+        GetPort: *const fn(
+            self: *const IWSDTransportAddress,
+            pwPort: ?*u16,
         ) callconv(.winapi) HRESULT,
-        SetWaitHandle: *const fn(
-            self: *const IWSDAsyncResult,
-            hWaitHandle: ?HANDLE,
+        SetPort: *const fn(
+            self: *const IWSDTransportAddress,
+            wPort: u16,
         ) callconv(.winapi) HRESULT,
-        HasCompleted: *const fn(
-            self: *const IWSDAsyncResult,
+        GetTransportAddress: *const fn(
+            self: *const IWSDTransportAddress,
+            ppszAddress: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
-        GetAsyncState: *const fn(
-            self: *const IWSDAsyncResult,
-            ppAsyncState: ?*?*IUnknown,
+        GetTransportAddressEx: *const fn(
+            self: *const IWSDTransportAddress,
+            fSafe: BOOL,
+            ppszAddress: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
-        Abort: *const fn(
-            self: *const IWSDAsyncResult,
-        ) callconv(.winapi) HRESULT,
-        GetEvent: *const fn(
-            self: *const IWSDAsyncResult,
-            pEvent: ?*WSD_EVENT,
-        ) callconv(.winapi) HRESULT,
-        GetEndpointProxy: *const fn(
-            self: *const IWSDAsyncResult,
-            ppEndpoint: ?*?*IWSDEndpointProxy,
+        SetTransportAddress: *const fn(
+            self: *const IWSDTransportAddress,
+            pszAddress: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWSDAddress: IWSDAddress,
     IUnknown: IUnknown,
-    pub fn SetCallback(self: *const IWSDAsyncResult, pCallback: ?*IWSDAsyncCallback, pAsyncState: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCallback(self, pCallback, pAsyncState);
+    pub fn GetPort(self: *const IWSDTransportAddress, pwPort: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPort(self, pwPort);
     }
-    pub fn SetWaitHandle(self: *const IWSDAsyncResult, hWaitHandle: ?HANDLE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWaitHandle(self, hWaitHandle);
+    pub fn SetPort(self: *const IWSDTransportAddress, wPort: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPort(self, wPort);
     }
-    pub fn HasCompleted(self: *const IWSDAsyncResult) callconv(.@"inline") HRESULT {
-        return self.vtable.HasCompleted(self);
+    pub fn GetTransportAddress(self: *const IWSDTransportAddress, ppszAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransportAddress(self, ppszAddress);
     }
-    pub fn GetAsyncState(self: *const IWSDAsyncResult, ppAsyncState: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAsyncState(self, ppAsyncState);
+    pub fn GetTransportAddressEx(self: *const IWSDTransportAddress, fSafe: BOOL, ppszAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransportAddressEx(self, fSafe, ppszAddress);
     }
-    pub fn Abort(self: *const IWSDAsyncResult) callconv(.@"inline") HRESULT {
-        return self.vtable.Abort(self);
-    }
-    pub fn GetEvent(self: *const IWSDAsyncResult, pEvent: ?*WSD_EVENT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEvent(self, pEvent);
-    }
-    pub fn GetEndpointProxy(self: *const IWSDAsyncResult, ppEndpoint: ?*?*IWSDEndpointProxy) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEndpointProxy(self, ppEndpoint);
+    pub fn SetTransportAddress(self: *const IWSDTransportAddress, pszAddress: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTransportAddress(self, pszAddress);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAsyncCallback_Value = Guid.initString("a63e109d-ce72-49e2-ba98-e845f5ee1666");
-pub const IID_IWSDAsyncCallback = &IID_IWSDAsyncCallback_Value;
-pub const IWSDAsyncCallback = extern union {
+const IID_IWSDUdpAddress_Value = Guid.initString("74d6124a-a441-4f78-a1eb-97a8d1996893");
+pub const IID_IWSDUdpAddress = &IID_IWSDUdpAddress_Value;
+pub const IWSDUdpAddress = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AsyncOperationComplete: *const fn(
-            self: *const IWSDAsyncCallback,
-            pAsyncResult: ?*IWSDAsyncResult,
-            pAsyncState: ?*IUnknown,
+        base: IWSDTransportAddress.VTable,
+        SetSockaddr: *const fn(
+            self: *const IWSDUdpAddress,
+            pSockAddr: ?*const SOCKADDR_STORAGE,
+        ) callconv(.winapi) HRESULT,
+        GetSockaddr: *const fn(
+            self: *const IWSDUdpAddress,
+            pSockAddr: ?*SOCKADDR_STORAGE,
+        ) callconv(.winapi) HRESULT,
+        SetExclusive: *const fn(
+            self: *const IWSDUdpAddress,
+            fExclusive: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetExclusive: *const fn(
+            self: *const IWSDUdpAddress,
+        ) callconv(.winapi) HRESULT,
+        SetMessageType: *const fn(
+            self: *const IWSDUdpAddress,
+            messageType: WSDUdpMessageType,
+        ) callconv(.winapi) HRESULT,
+        GetMessageType: *const fn(
+            self: *const IWSDUdpAddress,
+            pMessageType: ?*WSDUdpMessageType,
+        ) callconv(.winapi) HRESULT,
+        SetTTL: *const fn(
+            self: *const IWSDUdpAddress,
+            dwTTL: u32,
+        ) callconv(.winapi) HRESULT,
+        GetTTL: *const fn(
+            self: *const IWSDUdpAddress,
+            pdwTTL: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetAlias: *const fn(
+            self: *const IWSDUdpAddress,
+            pAlias: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetAlias: *const fn(
+            self: *const IWSDUdpAddress,
+            pAlias: ?*Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWSDTransportAddress: IWSDTransportAddress,
+    IWSDAddress: IWSDAddress,
     IUnknown: IUnknown,
-    pub fn AsyncOperationComplete(self: *const IWSDAsyncCallback, pAsyncResult: ?*IWSDAsyncResult, pAsyncState: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.AsyncOperationComplete(self, pAsyncResult, pAsyncState);
+    pub fn SetSockaddr(self: *const IWSDUdpAddress, pSockAddr: ?*const SOCKADDR_STORAGE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSockaddr(self, pSockAddr);
+    }
+    pub fn GetSockaddr(self: *const IWSDUdpAddress, pSockAddr: ?*SOCKADDR_STORAGE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSockaddr(self, pSockAddr);
+    }
+    pub fn SetExclusive(self: *const IWSDUdpAddress, fExclusive: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetExclusive(self, fExclusive);
+    }
+    pub fn GetExclusive(self: *const IWSDUdpAddress) callconv(.@"inline") HRESULT {
+        return self.vtable.GetExclusive(self);
+    }
+    pub fn SetMessageType(self: *const IWSDUdpAddress, messageType: WSDUdpMessageType) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMessageType(self, messageType);
+    }
+    pub fn GetMessageType(self: *const IWSDUdpAddress, pMessageType: ?*WSDUdpMessageType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMessageType(self, pMessageType);
+    }
+    pub fn SetTTL(self: *const IWSDUdpAddress, dwTTL: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTTL(self, dwTTL);
+    }
+    pub fn GetTTL(self: *const IWSDUdpAddress, pdwTTL: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTTL(self, pdwTTL);
+    }
+    pub fn SetAlias(self: *const IWSDUdpAddress, pAlias: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAlias(self, pAlias);
+    }
+    pub fn GetAlias(self: *const IWSDUdpAddress, pAlias: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAlias(self, pAlias);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDEventingStatus_Value = Guid.initString("49b17f52-637a-407a-ae99-fbe82a4d38c0");
-pub const IID_IWSDEventingStatus = &IID_IWSDEventingStatus_Value;
-pub const IWSDEventingStatus = extern union {
+const IID_IWSDUdpMessageParameters_Value = Guid.initString("9934149f-8f0c-447b-aa0b-73124b0ca7f0");
+pub const IID_IWSDUdpMessageParameters = &IID_IWSDUdpMessageParameters_Value;
+pub const IWSDUdpMessageParameters = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SubscriptionRenewed: *const fn(
-            self: *const IWSDEventingStatus,
-            pszSubscriptionAction: ?[*:0]const u16,
-        ) callconv(.winapi) void,
-        SubscriptionRenewalFailed: *const fn(
-            self: *const IWSDEventingStatus,
-            pszSubscriptionAction: ?[*:0]const u16,
-            hr: HRESULT,
-        ) callconv(.winapi) void,
-        SubscriptionEnded: *const fn(
-            self: *const IWSDEventingStatus,
-            pszSubscriptionAction: ?[*:0]const u16,
-        ) callconv(.winapi) void,
+        base: IWSDMessageParameters.VTable,
+        SetRetransmitParams: *const fn(
+            self: *const IWSDUdpMessageParameters,
+            pParams: ?*const WSDUdpRetransmitParams,
+        ) callconv(.winapi) HRESULT,
+        GetRetransmitParams: *const fn(
+            self: *const IWSDUdpMessageParameters,
+            pParams: ?*WSDUdpRetransmitParams,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWSDMessageParameters: IWSDMessageParameters,
     IUnknown: IUnknown,
-    pub fn SubscriptionRenewed(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16) callconv(.@"inline") void {
-        return self.vtable.SubscriptionRenewed(self, pszSubscriptionAction);
+    pub fn SetRetransmitParams(self: *const IWSDUdpMessageParameters, pParams: ?*const WSDUdpRetransmitParams) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRetransmitParams(self, pParams);
     }
-    pub fn SubscriptionRenewalFailed(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16, hr: HRESULT) callconv(.@"inline") void {
-        return self.vtable.SubscriptionRenewalFailed(self, pszSubscriptionAction, hr);
-    }
-    pub fn SubscriptionEnded(self: *const IWSDEventingStatus, pszSubscriptionAction: ?[*:0]const u16) callconv(.@"inline") void {
-        return self.vtable.SubscriptionEnded(self, pszSubscriptionAction);
+    pub fn GetRetransmitParams(self: *const IWSDUdpMessageParameters, pParams: ?*WSDUdpRetransmitParams) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRetransmitParams(self, pParams);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceHost_Value = Guid.initString("917fe891-3d13-4138-9809-934c8abeb12c");
-pub const IID_IWSDDeviceHost = &IID_IWSDDeviceHost_Value;
-pub const IWSDDeviceHost = extern union {
+const IID_IWSDXMLContext_Value = Guid.initString("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0");
+pub const IID_IWSDXMLContext = &IID_IWSDXMLContext_Value;
+pub const IWSDXMLContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: *const fn(
-            self: *const IWSDDeviceHost,
-            pszLocalId: ?[*:0]const u16,
-            pContext: ?*IWSDXMLContext,
-            ppHostAddresses: ?[*]?*IWSDAddress,
-            dwHostAddressCount: u32,
+        AddNamespace: *const fn(
+            self: *const IWSDXMLContext,
+            pszUri: ?[*:0]const u16,
+            pszSuggestedPrefix: ?[*:0]const u16,
+            ppNamespace: ?*?*WSDXML_NAMESPACE,
         ) callconv(.winapi) HRESULT,
-        Start: *const fn(
-            self: *const IWSDDeviceHost,
-            ullInstanceId: u64,
-            pScopeList: ?*const WSD_URI_LIST,
-            pNotificationSink: ?*IWSDDeviceHostNotify,
+        AddNameToNamespace: *const fn(
+            self: *const IWSDXMLContext,
+            pszUri: ?[*:0]const u16,
+            pszName: ?[*:0]const u16,
+            ppName: ?*?*WSDXML_NAME,
         ) callconv(.winapi) HRESULT,
-        Stop: *const fn(
-            self: *const IWSDDeviceHost,
+        SetNamespaces: *const fn(
+            self: *const IWSDXMLContext,
+            pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
+            wNamespacesCount: u16,
+            bLayerNumber: u8,
         ) callconv(.winapi) HRESULT,
-        Terminate: *const fn(
-            self: *const IWSDDeviceHost,
-        ) callconv(.winapi) HRESULT,
-        RegisterPortType: *const fn(
-            self: *const IWSDDeviceHost,
-            pPortType: ?*const WSD_PORT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        SetMetadata: *const fn(
-            self: *const IWSDDeviceHost,
-            pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
-            pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
-            pHostMetadata: ?*const WSD_HOST_METADATA,
-            pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
-        ) callconv(.winapi) HRESULT,
-        RegisterService: *const fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pService: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        RetireService: *const fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        AddDynamicService: *const fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pszEndpointAddress: ?[*:0]const u16,
-            pPortType: ?*const WSD_PORT_TYPE,
-            pPortName: ?*const WSDXML_NAME,
-            pAny: ?*const WSDXML_ELEMENT,
-            pService: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        RemoveDynamicService: *const fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetServiceDiscoverable: *const fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            fDiscoverable: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SignalEvent: *const fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
+        SetTypes: *const fn(
+            self: *const IWSDXMLContext,
+            pTypes: [*]const ?*const WSDXML_TYPE,
+            dwTypesCount: u32,
+            bLayerNumber: u8,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IWSDDeviceHost, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]?*IWSDAddress, dwHostAddressCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Init(self, pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
+    pub fn AddNamespace(self: *const IWSDXMLContext, pszUri: ?[*:0]const u16, pszSuggestedPrefix: ?[*:0]const u16, ppNamespace: ?*?*WSDXML_NAMESPACE) callconv(.@"inline") HRESULT {
+        return self.vtable.AddNamespace(self, pszUri, pszSuggestedPrefix, ppNamespace);
     }
-    pub fn Start(self: *const IWSDDeviceHost, ullInstanceId: u64, pScopeList: ?*const WSD_URI_LIST, pNotificationSink: ?*IWSDDeviceHostNotify) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self, ullInstanceId, pScopeList, pNotificationSink);
+    pub fn AddNameToNamespace(self: *const IWSDXMLContext, pszUri: ?[*:0]const u16, pszName: ?[*:0]const u16, ppName: ?*?*WSDXML_NAME) callconv(.@"inline") HRESULT {
+        return self.vtable.AddNameToNamespace(self, pszUri, pszName, ppName);
     }
-    pub fn Stop(self: *const IWSDDeviceHost) callconv(.@"inline") HRESULT {
-        return self.vtable.Stop(self);
+    pub fn SetNamespaces(self: *const IWSDXMLContext, pNamespaces: [*]const ?*const WSDXML_NAMESPACE, wNamespacesCount: u16, bLayerNumber: u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNamespaces(self, pNamespaces, wNamespacesCount, bLayerNumber);
     }
-    pub fn Terminate(self: *const IWSDDeviceHost) callconv(.@"inline") HRESULT {
-        return self.vtable.Terminate(self);
-    }
-    pub fn RegisterPortType(self: *const IWSDDeviceHost, pPortType: ?*const WSD_PORT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterPortType(self, pPortType);
-    }
-    pub fn SetMetadata(self: *const IWSDDeviceHost, pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA, pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA, pHostMetadata: ?*const WSD_HOST_METADATA, pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMetadata(self, pThisModelMetadata, pThisDeviceMetadata, pHostMetadata, pCustomMetadata);
-    }
-    pub fn RegisterService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pService: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterService(self, pszServiceId, pService);
-    }
-    pub fn RetireService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RetireService(self, pszServiceId);
-    }
-    pub fn AddDynamicService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pszEndpointAddress: ?[*:0]const u16, pPortType: ?*const WSD_PORT_TYPE, pPortName: ?*const WSDXML_NAME, pAny: ?*const WSDXML_ELEMENT, pService: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.AddDynamicService(self, pszServiceId, pszEndpointAddress, pPortType, pPortName, pAny, pService);
-    }
-    pub fn RemoveDynamicService(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveDynamicService(self, pszServiceId);
-    }
-    pub fn SetServiceDiscoverable(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, fDiscoverable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetServiceDiscoverable(self, pszServiceId, fDiscoverable);
-    }
-    pub fn SignalEvent(self: *const IWSDDeviceHost, pszServiceId: ?[*:0]const u16, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.@"inline") HRESULT {
-        return self.vtable.SignalEvent(self, pszServiceId, pBody, pOperation);
+    pub fn SetTypes(self: *const IWSDXMLContext, pTypes: [*]const ?*const WSDXML_TYPE, dwTypesCount: u32, bLayerNumber: u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTypes(self, pTypes, dwTypesCount, bLayerNumber);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceHostNotify_Value = Guid.initString("b5bee9f9-eeda-41fe-96f7-f45e14990fb0");
-pub const IID_IWSDDeviceHostNotify = &IID_IWSDDeviceHostNotify_Value;
-pub const IWSDDeviceHostNotify = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetService: *const fn(
-            self: *const IWSDDeviceHostNotify,
-            pszServiceId: ?[*:0]const u16,
-            ppService: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetService(self: *const IWSDDeviceHostNotify, pszServiceId: ?[*:0]const u16, ppService: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetService(self, pszServiceId, ppService);
-    }
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PWSD_SOAP_MESSAGE_HANDLER = *const fn() callconv(.winapi) void;
+
+pub const REQUESTBODY_GetStatus = extern struct {
+    Any: ?*WSDXML_ELEMENT,
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDServiceMessaging_Value = Guid.initString("94974cf4-0cab-460d-a3f6-7a0ad623c0e6");
-pub const IID_IWSDServiceMessaging = &IID_IWSDServiceMessaging_Value;
-pub const IWSDServiceMessaging = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SendResponse: *const fn(
-            self: *const IWSDServiceMessaging,
-            pBody: ?*anyopaque,
-            pOperation: ?*WSD_OPERATION,
-            pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(.winapi) HRESULT,
-        FaultRequest: *const fn(
-            self: *const IWSDServiceMessaging,
-            pRequestHeader: ?*WSD_SOAP_HEADER,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pFault: ?*WSD_SOAP_FAULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SendResponse(self: *const IWSDServiceMessaging, pBody: ?*anyopaque, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.SendResponse(self, pBody, pOperation, pMessageParameters);
-    }
-    pub fn FaultRequest(self: *const IWSDServiceMessaging, pRequestHeader: ?*WSD_SOAP_HEADER, pMessageParameters: ?*IWSDMessageParameters, pFault: ?*WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
-        return self.vtable.FaultRequest(self, pRequestHeader, pMessageParameters, pFault);
-    }
+pub const REQUESTBODY_Renew = extern struct {
+    Expires: ?*WSD_EVENTING_EXPIRES,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const REQUESTBODY_Subscribe = extern struct {
+    EndTo: ?*WSD_ENDPOINT_REFERENCE,
+    Delivery: ?*WSD_EVENTING_DELIVERY_MODE,
+    Expires: ?*WSD_EVENTING_EXPIRES,
+    Filter: ?*WSD_EVENTING_FILTER,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const REQUESTBODY_Unsubscribe = extern struct {
+    any: ?*WSDXML_ELEMENT,
+};
+
+pub const RESPONSEBODY_GetMetadata = extern struct {
+    Metadata: ?*WSD_METADATA_SECTION_LIST,
+};
+
+pub const RESPONSEBODY_GetStatus = extern struct {
+    expires: ?*WSD_EVENTING_EXPIRES,
+    any: ?*WSDXML_ELEMENT,
+};
+
+pub const RESPONSEBODY_Renew = extern struct {
+    expires: ?*WSD_EVENTING_EXPIRES,
+    any: ?*WSDXML_ELEMENT,
+};
+
+pub const RESPONSEBODY_Subscribe = extern struct {
+    SubscriptionManager: ?*WSD_ENDPOINT_REFERENCE,
+    expires: ?*WSD_EVENTING_EXPIRES,
+    any: ?*WSDXML_ELEMENT,
+};
+
+pub const RESPONSEBODY_SubscriptionEnd = extern struct {
+    SubscriptionManager: ?*WSD_ENDPOINT_REFERENCE,
+    Status: ?[*:0]const u16,
+    Reason: ?*WSD_LOCALIZED_STRING,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_APP_SEQUENCE = extern struct {
+    InstanceId: u64,
+    SequenceId: ?[*:0]const u16,
+    MessageNumber: u64,
+};
+
+pub const WSD_BYE = extern struct {
+    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_CONFIG_ADDRESSES = extern struct {
+    addresses: ?*?*IWSDAddress,
+    dwAddressCount: u32,
+};
+
+pub const WSD_CONFIG_PARAM = extern struct {
+    configParamType: WSD_CONFIG_PARAM_TYPE,
+    pConfigData: ?*anyopaque,
+    dwConfigDataSize: u32,
+};
+
+pub const WSD_CONFIG_PARAM_TYPE = enum(i32) {
+    CONFIG_MAX_INBOUND_MESSAGE_SIZE = 1,
+    CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = 2,
+    SECURITY_SSL_CERT_FOR_CLIENT_AUTH = 3,
+    SECURITY_SSL_SERVER_CERT_VALIDATION = 4,
+    SECURITY_SSL_CLIENT_CERT_VALIDATION = 5,
+    SECURITY_SSL_NEGOTIATE_CLIENT_CERT = 6,
+    SECURITY_COMPACTSIG_SIGNING_CERT = 7,
+    SECURITY_COMPACTSIG_VALIDATION = 8,
+    CONFIG_HOSTING_ADDRESSES = 9,
+    CONFIG_DEVICE_ADDRESSES = 10,
+    SECURITY_REQUIRE_HTTP_CLIENT_AUTH = 11,
+    SECURITY_REQUIRE_CLIENT_CERT_OR_HTTP_CLIENT_AUTH = 12,
+    SECURITY_USE_HTTP_CLIENT_AUTH = 13,
+};
+pub const WSD_CONFIG_MAX_INBOUND_MESSAGE_SIZE = WSD_CONFIG_PARAM_TYPE.CONFIG_MAX_INBOUND_MESSAGE_SIZE;
+pub const WSD_CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = WSD_CONFIG_PARAM_TYPE.CONFIG_MAX_OUTBOUND_MESSAGE_SIZE;
+pub const WSD_SECURITY_SSL_CERT_FOR_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_CERT_FOR_CLIENT_AUTH;
+pub const WSD_SECURITY_SSL_SERVER_CERT_VALIDATION = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_SERVER_CERT_VALIDATION;
+pub const WSD_SECURITY_SSL_CLIENT_CERT_VALIDATION = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_CLIENT_CERT_VALIDATION;
+pub const WSD_SECURITY_SSL_NEGOTIATE_CLIENT_CERT = WSD_CONFIG_PARAM_TYPE.SECURITY_SSL_NEGOTIATE_CLIENT_CERT;
+pub const WSD_SECURITY_COMPACTSIG_SIGNING_CERT = WSD_CONFIG_PARAM_TYPE.SECURITY_COMPACTSIG_SIGNING_CERT;
+pub const WSD_SECURITY_COMPACTSIG_VALIDATION = WSD_CONFIG_PARAM_TYPE.SECURITY_COMPACTSIG_VALIDATION;
+pub const WSD_CONFIG_HOSTING_ADDRESSES = WSD_CONFIG_PARAM_TYPE.CONFIG_HOSTING_ADDRESSES;
+pub const WSD_CONFIG_DEVICE_ADDRESSES = WSD_CONFIG_PARAM_TYPE.CONFIG_DEVICE_ADDRESSES;
+pub const WSD_SECURITY_REQUIRE_HTTP_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_REQUIRE_HTTP_CLIENT_AUTH;
+pub const WSD_SECURITY_REQUIRE_CLIENT_CERT_OR_HTTP_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_REQUIRE_CLIENT_CERT_OR_HTTP_CLIENT_AUTH;
+pub const WSD_SECURITY_USE_HTTP_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_USE_HTTP_CLIENT_AUTH;
+
+pub const WSD_DATETIME = extern struct {
+    isPositive: BOOL,
+    year: u32,
+    month: u8,
+    day: u8,
+    hour: u8,
+    minute: u8,
+    second: u8,
+    millisecond: u32,
+    TZIsLocal: BOOL,
+    TZIsPositive: BOOL,
+    TZHour: u8,
+    TZMinute: u8,
+};
+
+pub const WSD_DURATION = extern struct {
+    isPositive: BOOL,
+    year: u32,
+    month: u32,
+    day: u32,
+    hour: u32,
+    minute: u32,
+    second: u32,
+    millisecond: u32,
+};
+
+pub const WSD_ENDPOINT_REFERENCE = extern struct {
+    Address: ?[*:0]const u16,
+    ReferenceProperties: WSD_REFERENCE_PROPERTIES,
+    ReferenceParameters: WSD_REFERENCE_PARAMETERS,
+    PortType: ?*WSDXML_NAME,
+    ServiceName: ?*WSDXML_NAME,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_ENDPOINT_REFERENCE_LIST = extern struct {
+    Next: ?*WSD_ENDPOINT_REFERENCE_LIST,
+    Element: ?*WSD_ENDPOINT_REFERENCE,
+};
+
+pub const WSD_EVENT = extern struct {
+    Hr: HRESULT,
+    EventType: u32,
+    DispatchTag: ?PWSTR,
+    HandlerContext: WSD_HANDLER_CONTEXT,
+    Soap: ?*WSD_SOAP_MESSAGE,
+    Operation: ?*WSD_OPERATION,
+    MessageParameters: ?*IWSDMessageParameters,
+};
+
+pub const WSD_EVENTING_DELIVERY_MODE = extern struct {
+    Mode: ?[*:0]const u16,
+    Push: ?*WSD_EVENTING_DELIVERY_MODE_PUSH,
+    Data: ?*anyopaque,
+};
+
+pub const WSD_EVENTING_DELIVERY_MODE_PUSH = extern struct {
+    NotifyTo: ?*WSD_ENDPOINT_REFERENCE,
+};
+
+pub const WSD_EVENTING_EXPIRES = extern struct {
+    Duration: ?*WSD_DURATION,
+    DateTime: ?*WSD_DATETIME,
+};
+
+pub const WSD_EVENTING_FILTER = extern struct {
+    Dialect: ?[*:0]const u16,
+    FilterAction: ?*WSD_EVENTING_FILTER_ACTION,
+    Data: ?*anyopaque,
+};
+
+pub const WSD_EVENTING_FILTER_ACTION = extern struct {
+    Actions: ?*WSD_URI_LIST,
+};
+
+pub const WSD_HANDLER_CONTEXT = extern struct {
+    Handler: ?PWSD_SOAP_MESSAGE_HANDLER,
+    PVoid: ?*anyopaque,
+    Unknown: ?*IUnknown,
+};
+
+pub const WSD_HEADER_RELATESTO = extern struct {
+    RelationshipType: ?*WSDXML_NAME,
+    MessageID: ?[*:0]const u16,
+};
+
+pub const WSD_HELLO = extern struct {
+    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
+    Types: ?*WSD_NAME_LIST,
+    Scopes: ?*WSD_SCOPES,
+    XAddrs: ?*WSD_URI_LIST,
+    MetadataVersion: u64,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_HOST_METADATA = extern struct {
+    Host: ?*WSD_SERVICE_METADATA,
+    Hosted: ?*WSD_SERVICE_METADATA_LIST,
+};
+
+pub const WSD_LOCALIZED_STRING = extern struct {
+    lang: ?[*:0]const u16,
+    String: ?[*:0]const u16,
+};
+
+pub const WSD_LOCALIZED_STRING_LIST = extern struct {
+    Next: ?*WSD_LOCALIZED_STRING_LIST,
+    Element: ?*WSD_LOCALIZED_STRING,
+};
+
+pub const WSD_METADATA_SECTION = extern struct {
+    Dialect: ?[*:0]const u16,
+    Identifier: ?[*:0]const u16,
+    Data: ?*anyopaque,
+    MetadataReference: ?*WSD_ENDPOINT_REFERENCE,
+    Location: ?[*:0]const u16,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_METADATA_SECTION_LIST = extern struct {
+    Next: ?*WSD_METADATA_SECTION_LIST,
+    Element: ?*WSD_METADATA_SECTION,
+};
+
+pub const WSD_NAME_LIST = extern struct {
+    Next: ?*WSD_NAME_LIST,
+    Element: ?*WSDXML_NAME,
+};
+
+pub const WSD_OPERATION = extern struct {
+    RequestType: ?*WSDXML_TYPE,
+    ResponseType: ?*WSDXML_TYPE,
+    RequestStubFunction: ?WSD_STUB_FUNCTION,
+};
+
+pub const WSD_PORT_TYPE = extern struct {
+    EncodedName: u32,
+    OperationCount: u32,
+    Operations: ?*WSD_OPERATION,
+    ProtocolType: WSD_PROTOCOL_TYPE,
+};
+
+pub const WSD_PROBE = extern struct {
+    Types: ?*WSD_NAME_LIST,
+    Scopes: ?*WSD_SCOPES,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_PROBE_MATCH = extern struct {
+    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
+    Types: ?*WSD_NAME_LIST,
+    Scopes: ?*WSD_SCOPES,
+    XAddrs: ?*WSD_URI_LIST,
+    MetadataVersion: u64,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_PROBE_MATCH_LIST = extern struct {
+    Next: ?*WSD_PROBE_MATCH_LIST,
+    Element: ?*WSD_PROBE_MATCH,
+};
+
+pub const WSD_PROBE_MATCHES = extern struct {
+    ProbeMatch: ?*WSD_PROBE_MATCH_LIST,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_PROTOCOL_TYPE = enum(i32) {
+    NONE = 0,
+    UDP = 1,
+    HTTP = 2,
+    HTTPS = 4,
+    ALL = 255,
+};
+pub const WSD_PT_NONE = WSD_PROTOCOL_TYPE.NONE;
+pub const WSD_PT_UDP = WSD_PROTOCOL_TYPE.UDP;
+pub const WSD_PT_HTTP = WSD_PROTOCOL_TYPE.HTTP;
+pub const WSD_PT_HTTPS = WSD_PROTOCOL_TYPE.HTTPS;
+pub const WSD_PT_ALL = WSD_PROTOCOL_TYPE.ALL;
+
+pub const WSD_REFERENCE_PARAMETERS = extern struct {
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_REFERENCE_PROPERTIES = extern struct {
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_RELATIONSHIP_METADATA = extern struct {
+    Type: ?[*:0]const u16,
+    Data: ?*WSD_HOST_METADATA,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_RESOLVE = extern struct {
+    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_RESOLVE_MATCH = extern struct {
+    EndpointReference: ?*WSD_ENDPOINT_REFERENCE,
+    Types: ?*WSD_NAME_LIST,
+    Scopes: ?*WSD_SCOPES,
+    XAddrs: ?*WSD_URI_LIST,
+    MetadataVersion: u64,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_RESOLVE_MATCHES = extern struct {
+    ResolveMatch: ?*WSD_RESOLVE_MATCH,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_SCOPES = extern struct {
+    MatchBy: ?[*:0]const u16,
+    Scopes: ?*WSD_URI_LIST,
+};
+
+pub const WSD_SECURITY_CERT_VALIDATION = extern struct {
+    certMatchArray: ?*?*CERT_CONTEXT,
+    dwCertMatchArrayCount: u32,
+    hCertMatchStore: ?HCERTSTORE,
+    hCertIssuerStore: ?HCERTSTORE,
+    dwCertCheckOptions: u32,
+    pszCNGHashAlgId: ?[*:0]const u16,
+    pbCertHash: ?*u8,
+    dwCertHashSize: u32,
+};
+
+pub const WSD_SECURITY_CERT_VALIDATION_V1 = extern struct {
+    certMatchArray: ?*?*CERT_CONTEXT,
+    dwCertMatchArrayCount: u32,
+    hCertMatchStore: ?HCERTSTORE,
+    hCertIssuerStore: ?HCERTSTORE,
+    dwCertCheckOptions: u32,
+};
+
+pub const WSD_SECURITY_SIGNATURE_VALIDATION = extern struct {
+    signingCertArray: ?*?*CERT_CONTEXT,
+    dwSigningCertArrayCount: u32,
+    hSigningCertStore: ?HCERTSTORE,
+    dwFlags: u32,
+};
+
+pub const WSD_SERVICE_METADATA = extern struct {
+    EndpointReference: ?*WSD_ENDPOINT_REFERENCE_LIST,
+    Types: ?*WSD_NAME_LIST,
+    ServiceId: ?[*:0]const u16,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_SERVICE_METADATA_LIST = extern struct {
+    Next: ?*WSD_SERVICE_METADATA_LIST,
+    Element: ?*WSD_SERVICE_METADATA,
+};
+
+pub const WSD_SOAP_FAULT = extern struct {
+    Code: ?*WSD_SOAP_FAULT_CODE,
+    Reason: ?*WSD_SOAP_FAULT_REASON,
+    Node: ?[*:0]const u16,
+    Role: ?[*:0]const u16,
+    Detail: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_SOAP_FAULT_CODE = extern struct {
+    Value: ?*WSDXML_NAME,
+    Subcode: ?*WSD_SOAP_FAULT_SUBCODE,
+};
+
+pub const WSD_SOAP_FAULT_REASON = extern struct {
+    Text: ?*WSD_LOCALIZED_STRING_LIST,
+};
+
+pub const WSD_SOAP_FAULT_SUBCODE = extern struct {
+    Value: ?*WSDXML_NAME,
+    Subcode: ?*WSD_SOAP_FAULT_SUBCODE,
+};
+
+pub const WSD_SOAP_HEADER = extern struct {
+    To: ?[*:0]const u16,
+    Action: ?[*:0]const u16,
+    MessageID: ?[*:0]const u16,
+    RelatesTo: WSD_HEADER_RELATESTO,
+    ReplyTo: ?*WSD_ENDPOINT_REFERENCE,
+    From: ?*WSD_ENDPOINT_REFERENCE,
+    FaultTo: ?*WSD_ENDPOINT_REFERENCE,
+    AppSequence: ?*WSD_APP_SEQUENCE,
+    AnyHeaders: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_SOAP_MESSAGE = extern struct {
+    Header: WSD_SOAP_HEADER,
+    Body: ?*anyopaque,
+    BodyType: ?*WSDXML_TYPE,
+};
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const WSD_STUB_FUNCTION = *const fn() callconv(.winapi) void;
+
+pub const WSD_SYNCHRONOUS_RESPONSE_CONTEXT = extern struct {
+    hr: HRESULT,
+    eventHandle: ?HANDLE,
+    messageParameters: ?*IWSDMessageParameters,
+    results: ?*anyopaque,
+};
+
+pub const WSD_THIS_DEVICE_METADATA = extern struct {
+    FriendlyName: ?*WSD_LOCALIZED_STRING_LIST,
+    FirmwareVersion: ?[*:0]const u16,
+    SerialNumber: ?[*:0]const u16,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_THIS_MODEL_METADATA = extern struct {
+    Manufacturer: ?*WSD_LOCALIZED_STRING_LIST,
+    ManufacturerUrl: ?[*:0]const u16,
+    ModelName: ?*WSD_LOCALIZED_STRING_LIST,
+    ModelNumber: ?[*:0]const u16,
+    ModelUrl: ?[*:0]const u16,
+    PresentationUrl: ?[*:0]const u16,
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_UNKNOWN_LOOKUP = extern struct {
+    Any: ?*WSDXML_ELEMENT,
+};
+
+pub const WSD_URI_LIST = extern struct {
+    Next: ?*WSD_URI_LIST,
+    Element: ?[*:0]const u16,
+};
+
+pub const WSDEventType = enum(i32) {
+    NONE = 0,
+    INCOMING_MESSAGE = 1,
+    INCOMING_FAULT = 2,
+    TRANSMISSION_FAILURE = 3,
+    RESPONSE_TIMEOUT = 4,
+};
+pub const WSDET_NONE = WSDEventType.NONE;
+pub const WSDET_INCOMING_MESSAGE = WSDEventType.INCOMING_MESSAGE;
+pub const WSDET_INCOMING_FAULT = WSDEventType.INCOMING_FAULT;
+pub const WSDET_TRANSMISSION_FAILURE = WSDEventType.TRANSMISSION_FAILURE;
+pub const WSDET_RESPONSE_TIMEOUT = WSDEventType.RESPONSE_TIMEOUT;
+
+pub const WSDUdpMessageType = enum(i32) {
+    ONE_WAY = 0,
+    TWO_WAY = 1,
+};
+pub const ONE_WAY = WSDUdpMessageType.ONE_WAY;
+pub const TWO_WAY = WSDUdpMessageType.TWO_WAY;
+
+pub const WSDUdpRetransmitParams = extern struct {
+    ulSendDelay: u32,
+    ulRepeat: u32,
+    ulRepeatMinDelay: u32,
+    ulRepeatMaxDelay: u32,
+    ulRepeatUpperDelay: u32,
+};
+
+pub const WSDXML_ATTRIBUTE = extern struct {
+    Element: ?*WSDXML_ELEMENT,
+    Next: ?*WSDXML_ATTRIBUTE,
+    Name: ?*WSDXML_NAME,
+    Value: ?PWSTR,
+};
+
+pub const WSDXML_ELEMENT = extern struct {
+    Node: WSDXML_NODE,
+    Name: ?*WSDXML_NAME,
+    FirstAttribute: ?*WSDXML_ATTRIBUTE,
+    FirstChild: ?*WSDXML_NODE,
+    PrefixMappings: ?*WSDXML_PREFIX_MAPPING,
+};
+
+pub const WSDXML_ELEMENT_LIST = extern struct {
+    Next: ?*WSDXML_ELEMENT_LIST,
+    Element: ?*WSDXML_ELEMENT,
+};
+
+pub const WSDXML_NAME = extern struct {
+    Space: ?*WSDXML_NAMESPACE,
+    LocalName: ?PWSTR,
+};
+
+pub const WSDXML_NAMESPACE = extern struct {
+    Uri: ?[*:0]const u16,
+    PreferredPrefix: ?[*:0]const u16,
+    Names: ?*WSDXML_NAME,
+    NamesCount: u16,
+    Encoding: u16,
+};
+
+pub const WSDXML_NODE = extern struct {
+    Type: i32,
+    Parent: ?*WSDXML_ELEMENT,
+    Next: ?*WSDXML_NODE,
+};
+
+pub const WSDXML_OP = enum(i32) {
+    None = 0,
+    EndOfTable = 1,
+    BeginElement_ = 2,
+    BeginAnyElement = 3,
+    EndElement = 4,
+    Element_ = 5,
+    AnyElement = 6,
+    AnyElements = 7,
+    AnyText = 8,
+    Attribute_ = 9,
+    BeginChoice = 10,
+    EndChoice = 11,
+    BeginSequence = 12,
+    EndSequence = 13,
+    BeginAll = 14,
+    EndAll = 15,
+    Anything = 16,
+    AnyNumber = 17,
+    OneOrMore = 18,
+    Optional = 19,
+    FormatBool_ = 20,
+    FormatInt8_ = 21,
+    FormatInt16_ = 22,
+    FormatInt32_ = 23,
+    FormatInt64_ = 24,
+    FormatUInt8_ = 25,
+    FormatUInt16_ = 26,
+    FormatUInt32_ = 27,
+    FormatUInt64_ = 28,
+    FormatUnicodeString_ = 29,
+    FormatDom_ = 30,
+    FormatStruct_ = 31,
+    FormatUri_ = 32,
+    FormatUuidUri_ = 33,
+    FormatName_ = 34,
+    FormatListInsertTail_ = 35,
+    FormatType_ = 36,
+    FormatDynamicType_ = 37,
+    FormatLookupType_ = 38,
+    FormatDuration_ = 39,
+    FormatDateTime_ = 40,
+    FormatFloat_ = 41,
+    FormatDouble_ = 42,
+    Process_ = 43,
+    QualifiedAttribute_ = 44,
+    FormatXMLDeclaration_ = 45,
+    FormatMax = 46,
+};
+pub const OpNone = WSDXML_OP.None;
+pub const OpEndOfTable = WSDXML_OP.EndOfTable;
+pub const OpBeginElement_ = WSDXML_OP.BeginElement_;
+pub const OpBeginAnyElement = WSDXML_OP.BeginAnyElement;
+pub const OpEndElement = WSDXML_OP.EndElement;
+pub const OpElement_ = WSDXML_OP.Element_;
+pub const OpAnyElement = WSDXML_OP.AnyElement;
+pub const OpAnyElements = WSDXML_OP.AnyElements;
+pub const OpAnyText = WSDXML_OP.AnyText;
+pub const OpAttribute_ = WSDXML_OP.Attribute_;
+pub const OpBeginChoice = WSDXML_OP.BeginChoice;
+pub const OpEndChoice = WSDXML_OP.EndChoice;
+pub const OpBeginSequence = WSDXML_OP.BeginSequence;
+pub const OpEndSequence = WSDXML_OP.EndSequence;
+pub const OpBeginAll = WSDXML_OP.BeginAll;
+pub const OpEndAll = WSDXML_OP.EndAll;
+pub const OpAnything = WSDXML_OP.Anything;
+pub const OpAnyNumber = WSDXML_OP.AnyNumber;
+pub const OpOneOrMore = WSDXML_OP.OneOrMore;
+pub const OpOptional = WSDXML_OP.Optional;
+pub const OpFormatBool_ = WSDXML_OP.FormatBool_;
+pub const OpFormatInt8_ = WSDXML_OP.FormatInt8_;
+pub const OpFormatInt16_ = WSDXML_OP.FormatInt16_;
+pub const OpFormatInt32_ = WSDXML_OP.FormatInt32_;
+pub const OpFormatInt64_ = WSDXML_OP.FormatInt64_;
+pub const OpFormatUInt8_ = WSDXML_OP.FormatUInt8_;
+pub const OpFormatUInt16_ = WSDXML_OP.FormatUInt16_;
+pub const OpFormatUInt32_ = WSDXML_OP.FormatUInt32_;
+pub const OpFormatUInt64_ = WSDXML_OP.FormatUInt64_;
+pub const OpFormatUnicodeString_ = WSDXML_OP.FormatUnicodeString_;
+pub const OpFormatDom_ = WSDXML_OP.FormatDom_;
+pub const OpFormatStruct_ = WSDXML_OP.FormatStruct_;
+pub const OpFormatUri_ = WSDXML_OP.FormatUri_;
+pub const OpFormatUuidUri_ = WSDXML_OP.FormatUuidUri_;
+pub const OpFormatName_ = WSDXML_OP.FormatName_;
+pub const OpFormatListInsertTail_ = WSDXML_OP.FormatListInsertTail_;
+pub const OpFormatType_ = WSDXML_OP.FormatType_;
+pub const OpFormatDynamicType_ = WSDXML_OP.FormatDynamicType_;
+pub const OpFormatLookupType_ = WSDXML_OP.FormatLookupType_;
+pub const OpFormatDuration_ = WSDXML_OP.FormatDuration_;
+pub const OpFormatDateTime_ = WSDXML_OP.FormatDateTime_;
+pub const OpFormatFloat_ = WSDXML_OP.FormatFloat_;
+pub const OpFormatDouble_ = WSDXML_OP.FormatDouble_;
+pub const OpProcess_ = WSDXML_OP.Process_;
+pub const OpQualifiedAttribute_ = WSDXML_OP.QualifiedAttribute_;
+pub const OpFormatXMLDeclaration_ = WSDXML_OP.FormatXMLDeclaration_;
+pub const OpFormatMax = WSDXML_OP.FormatMax;
+
+pub const WSDXML_PREFIX_MAPPING = extern struct {
+    Refs: u32,
+    Next: ?*WSDXML_PREFIX_MAPPING,
+    Space: ?*WSDXML_NAMESPACE,
+    Prefix: ?PWSTR,
+};
+
+pub const WSDXML_TEXT = extern struct {
+    Node: WSDXML_NODE,
+    Text: ?PWSTR,
+};
+
+pub const WSDXML_TYPE = extern struct {
+    Uri: ?[*:0]const u16,
+    Table: ?*const u8,
 };
 
 
@@ -2290,40 +2290,67 @@ pub const IWSDServiceMessaging = extern union {
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateUdpMessageParameters(
-    ppTxParams: ?*?*IWSDUdpMessageParameters,
+pub extern "wsdapi" fn WSDAllocateLinkedMemory(
+    pParent: ?*anyopaque,
+    cbSize: usize,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDAttachLinkedMemory(
+    pParent: ?*anyopaque,
+    pChild: ?*anyopaque,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDCreateDeviceHost(
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppDeviceHost: ?*?*IWSDDeviceHost,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wsdapi" fn WSDCreateDeviceHost2(
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    pConfigParams: ?[*]WSD_CONFIG_PARAM,
+    dwConfigParamCount: u32,
+    ppDeviceHost: ?*?*IWSDDeviceHost,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateUdpAddress(
-    ppAddress: ?*?*IWSDUdpAddress,
+pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppHostAddresses: ?[*]?*IWSDAddress,
+    dwHostAddressCount: u32,
+    ppDeviceHost: ?*?*IWSDDeviceHost,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateHttpMessageParameters(
-    ppTxParams: ?*?*IWSDHttpMessageParameters,
+pub extern "wsdapi" fn WSDCreateDeviceProxy(
+    pszDeviceId: ?[*:0]const u16,
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppDeviceProxy: ?*?*IWSDDeviceProxy,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wsdapi" fn WSDCreateDeviceProxy2(
+    pszDeviceId: ?[*:0]const u16,
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    pConfigParams: ?[*]WSD_CONFIG_PARAM,
+    dwConfigParamCount: u32,
+    ppDeviceProxy: ?*?*IWSDDeviceProxy,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateHttpAddress(
-    ppAddress: ?*?*IWSDHttpAddress,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateOutboundAttachment(
-    ppAttachment: ?*?*IWSDOutboundAttachment,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLGetNameFromBuiltinNamespace(
-    pszNamespace: ?[*:0]const u16,
-    pszName: ?[*:0]const u16,
-    ppName: ?*?*WSDXML_NAME,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLCreateContext(
-    ppContext: ?*?*IWSDXMLContext,
+pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
+    pszDeviceId: ?[*:0]const u16,
+    pDeviceAddress: ?*IWSDAddress,
+    pszLocalId: ?[*:0]const u16,
+    pContext: ?*IWSDXMLContext,
+    ppDeviceProxy: ?*?*IWSDDeviceProxy,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2355,89 +2382,29 @@ pub extern "wsdapi" fn WSDCreateDiscoveryPublisher2(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceProxy(
-    pszDeviceId: ?[*:0]const u16,
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppDeviceProxy: ?*?*IWSDDeviceProxy,
+pub extern "wsdapi" fn WSDCreateHttpAddress(
+    ppAddress: ?*?*IWSDHttpAddress,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceProxyAdvanced(
-    pszDeviceId: ?[*:0]const u16,
-    pDeviceAddress: ?*IWSDAddress,
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppDeviceProxy: ?*?*IWSDDeviceProxy,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wsdapi" fn WSDCreateDeviceProxy2(
-    pszDeviceId: ?[*:0]const u16,
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    pConfigParams: ?[*]WSD_CONFIG_PARAM,
-    dwConfigParamCount: u32,
-    ppDeviceProxy: ?*?*IWSDDeviceProxy,
+pub extern "wsdapi" fn WSDCreateHttpMessageParameters(
+    ppTxParams: ?*?*IWSDHttpMessageParameters,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceHost(
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppDeviceHost: ?*?*IWSDDeviceHost,
+pub extern "wsdapi" fn WSDCreateOutboundAttachment(
+    ppAttachment: ?*?*IWSDOutboundAttachment,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    ppHostAddresses: ?[*]?*IWSDAddress,
-    dwHostAddressCount: u32,
-    ppDeviceHost: ?*?*IWSDDeviceHost,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wsdapi" fn WSDCreateDeviceHost2(
-    pszLocalId: ?[*:0]const u16,
-    pContext: ?*IWSDXMLContext,
-    pConfigParams: ?[*]WSD_CONFIG_PARAM,
-    dwConfigParamCount: u32,
-    ppDeviceHost: ?*?*IWSDDeviceHost,
+pub extern "wsdapi" fn WSDCreateUdpAddress(
+    ppAddress: ?*?*IWSDUdpAddress,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDSetConfigurationOption(
-    dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pVoid: ?*anyopaque,
-    cbInBuffer: u32,
+pub extern "wsdapi" fn WSDCreateUdpMessageParameters(
+    ppTxParams: ?*?*IWSDUdpMessageParameters,
 ) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDGetConfigurationOption(
-    dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pVoid: ?*anyopaque,
-    cbOutBuffer: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDAllocateLinkedMemory(
-    pParent: ?*anyopaque,
-    cbSize: usize,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDFreeLinkedMemory(
-    pVoid: ?*anyopaque,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDAttachLinkedMemory(
-    pParent: ?*anyopaque,
-    pChild: ?*anyopaque,
-) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDDetachLinkedMemory(
@@ -2445,36 +2412,9 @@ pub extern "wsdapi" fn WSDDetachLinkedMemory(
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLBuildAnyForSingleElement(
-    pElementName: ?*WSDXML_NAME,
-    pszText: ?[*:0]const u16,
-    ppAny: ?*?*WSDXML_ELEMENT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLGetValueFromAny(
-    pszNamespace: ?[*:0]const u16,
-    pszName: ?[*:0]const u16,
-    pAny: ?*WSDXML_ELEMENT,
-    ppszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLAddSibling(
-    pFirst: ?*WSDXML_ELEMENT,
-    pSecond: ?*WSDXML_ELEMENT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLAddChild(
-    pParent: ?*WSDXML_ELEMENT,
-    pChild: ?*WSDXML_ELEMENT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wsdapi" fn WSDXMLCleanupElement(
-    pAny: ?*WSDXML_ELEMENT,
-) callconv(.winapi) HRESULT;
+pub extern "wsdapi" fn WSDFreeLinkedMemory(
+    pVoid: ?*anyopaque,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGenerateFault(
@@ -2495,12 +2435,20 @@ pub extern "wsdapi" fn WSDGenerateFaultEx(
     ppFault: ?*?*WSD_SOAP_FAULT,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wsdapi" fn WSDUriEncode(
-    source: [*:0]const u16,
-    cchSource: u32,
-    destOut: [*]?PWSTR,
-    cchDestOut: ?*u32,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDGetConfigurationOption(
+    dwOption: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    pVoid: ?*anyopaque,
+    cbOutBuffer: u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDSetConfigurationOption(
+    dwOption: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    pVoid: ?*anyopaque,
+    cbInBuffer: u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2509,6 +2457,58 @@ pub extern "wsdapi" fn WSDUriDecode(
     cchSource: u32,
     destOut: [*]?PWSTR,
     cchDestOut: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wsdapi" fn WSDUriEncode(
+    source: [*:0]const u16,
+    cchSource: u32,
+    destOut: [*]?PWSTR,
+    cchDestOut: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLAddChild(
+    pParent: ?*WSDXML_ELEMENT,
+    pChild: ?*WSDXML_ELEMENT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLAddSibling(
+    pFirst: ?*WSDXML_ELEMENT,
+    pSecond: ?*WSDXML_ELEMENT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLBuildAnyForSingleElement(
+    pElementName: ?*WSDXML_NAME,
+    pszText: ?[*:0]const u16,
+    ppAny: ?*?*WSDXML_ELEMENT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLCleanupElement(
+    pAny: ?*WSDXML_ELEMENT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLCreateContext(
+    ppContext: ?*?*IWSDXMLContext,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLGetNameFromBuiltinNamespace(
+    pszNamespace: ?[*:0]const u16,
+    pszName: ?[*:0]const u16,
+    ppName: ?*?*WSDXML_NAME,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wsdapi" fn WSDXMLGetValueFromAny(
+    pszNamespace: ?[*:0]const u16,
+    pszName: ?[*:0]const u16,
+    pAny: ?*WSDXML_ELEMENT,
+    ppszValue: ?*?PWSTR,
 ) callconv(.winapi) HRESULT;
 
 

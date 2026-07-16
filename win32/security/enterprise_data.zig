@@ -6,6 +6,54 @@
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
+pub const ENTERPRISE_DATA_POLICIES = packed struct(u32) {
+    ALLOWED: u1 = 0,
+    ENLIGHTENED: u1 = 0,
+    EXEMPT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const ENTERPRISE_POLICY_NONE = ENTERPRISE_DATA_POLICIES{ };
+pub const ENTERPRISE_POLICY_ALLOWED = ENTERPRISE_DATA_POLICIES{ .ALLOWED = 1 };
+pub const ENTERPRISE_POLICY_ENLIGHTENED = ENTERPRISE_DATA_POLICIES{ .ENLIGHTENED = 1 };
+pub const ENTERPRISE_POLICY_EXEMPT = ENTERPRISE_DATA_POLICIES{ .EXEMPT = 1 };
+
+pub const FILE_UNPROTECT_OPTIONS = extern struct {
+    audit: u8,
+};
+
+pub const HTHREAD_NETWORK_CONTEXT = extern struct {
+    ThreadId: u32,
+    ThreadContext: ?HANDLE,
+};
+
 const IID_IProtectionPolicyManagerInterop_Value = Guid.initString("4652651d-c1fe-4ba1-9f0a-c0f56596f721");
 pub const IID_IProtectionPolicyManagerInterop = &IID_IProtectionPolicyManagerInterop_Value;
 pub const IProtectionPolicyManagerInterop = extern union {
@@ -200,50 +248,6 @@ pub const IProtectionPolicyManagerInterop3 = extern union {
     }
 };
 
-pub const HTHREAD_NETWORK_CONTEXT = extern struct {
-    ThreadId: u32,
-    ThreadContext: ?HANDLE,
-};
-
-pub const ENTERPRISE_DATA_POLICIES = packed struct(u32) {
-    ALLOWED: u1 = 0,
-    ENLIGHTENED: u1 = 0,
-    EXEMPT: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const ENTERPRISE_POLICY_NONE = ENTERPRISE_DATA_POLICIES{ };
-pub const ENTERPRISE_POLICY_ALLOWED = ENTERPRISE_DATA_POLICIES{ .ALLOWED = 1 };
-pub const ENTERPRISE_POLICY_ENLIGHTENED = ENTERPRISE_DATA_POLICIES{ .ENLIGHTENED = 1 };
-pub const ENTERPRISE_POLICY_EXEMPT = ENTERPRISE_DATA_POLICIES{ .EXEMPT = 1 };
-
 pub const SRPHOSTING_TYPE = enum(i32) {
     NONE = 0,
     WINHTTP = 1,
@@ -258,18 +262,14 @@ pub const SRPHOSTING_VERSION = enum(i32) {
 };
 pub const SRPHOSTING_VERSION1 = SRPHOSTING_VERSION.@"1";
 
-pub const FILE_UNPROTECT_OPTIONS = extern struct {
-    audit: u8,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpCreateThreadNetworkContext(
-    enterpriseId: ?[*:0]const u16,
-    threadNetworkContext: ?*HTHREAD_NETWORK_CONTEXT,
+pub extern "efswrt" fn ProtectFileToEnterpriseIdentity(
+    fileOrFolderPath: ?[*:0]const u16,
+    identity: ?[*:0]const u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -278,8 +278,23 @@ pub extern "srpapi" fn SrpCloseThreadNetworkContext(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpSetTokenEnterpriseId(
-    tokenHandle: ?HANDLE,
+pub extern "srpapi" fn SrpCreateThreadNetworkContext(
+    enterpriseId: ?[*:0]const u16,
+    threadNetworkContext: ?*HTHREAD_NETWORK_CONTEXT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "srpapi" fn SrpDisablePermissiveModeFileEncryption(
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "srpapi" fn SrpDoesPolicyAllowAppExecution(
+    packageId: ?*const PACKAGE_ID,
+    isAllowed: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "srpapi" fn SrpEnablePermissiveModeFileEncryption(
     enterpriseId: ?[*:0]const u16,
 ) callconv(.winapi) HRESULT;
 
@@ -293,30 +308,9 @@ pub extern "srpapi" fn SrpGetEnterpriseIds(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpEnablePermissiveModeFileEncryption(
-    enterpriseId: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpDisablePermissiveModeFileEncryption(
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "srpapi" fn SrpGetEnterprisePolicy(
     tokenHandle: ?HANDLE,
     policyFlags: ?*ENTERPRISE_DATA_POLICIES,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpIsTokenService(
-    TokenHandle: ?HANDLE,
-    IsTokenService: ?*u8,
-) callconv(.winapi) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpDoesPolicyAllowAppExecution(
-    packageId: ?*const PACKAGE_ID,
-    isAllowed: ?*BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "srpapi" fn SrpHostingInitialize(
@@ -331,9 +325,15 @@ pub extern "srpapi" fn SrpHostingTerminate(
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "efswrt" fn ProtectFileToEnterpriseIdentity(
-    fileOrFolderPath: ?[*:0]const u16,
-    identity: ?[*:0]const u16,
+pub extern "srpapi" fn SrpIsTokenService(
+    TokenHandle: ?HANDLE,
+    IsTokenService: ?*u8,
+) callconv(.winapi) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "srpapi" fn SrpSetTokenEnterpriseId(
+    tokenHandle: ?HANDLE,
+    enterpriseId: ?[*:0]const u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "efswrt" fn UnprotectFile(

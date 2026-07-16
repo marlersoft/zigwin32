@@ -3,16 +3,25 @@
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
 pub const DAV_AUTHN_SCHEME_BASIC = @as(u32, 1);
+pub const DAV_AUTHN_SCHEME_CERT = @as(u32, 65536);
+pub const DAV_AUTHN_SCHEME_DIGEST = @as(u32, 8);
+pub const DAV_AUTHN_SCHEME_FBA = @as(u32, 1048576);
+pub const DAV_AUTHN_SCHEME_NEGOTIATE = @as(u32, 16);
 pub const DAV_AUTHN_SCHEME_NTLM = @as(u32, 2);
 pub const DAV_AUTHN_SCHEME_PASSPORT = @as(u32, 4);
-pub const DAV_AUTHN_SCHEME_DIGEST = @as(u32, 8);
-pub const DAV_AUTHN_SCHEME_NEGOTIATE = @as(u32, 16);
-pub const DAV_AUTHN_SCHEME_CERT = @as(u32, 65536);
-pub const DAV_AUTHN_SCHEME_FBA = @as(u32, 1048576);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+pub const AUTHNEXTSTEP = enum(i32) {
+    DefaultBehavior = 0,
+    RetryRequest = 1,
+    CancelRequest = 2,
+};
+pub const DefaultBehavior = AUTHNEXTSTEP.DefaultBehavior;
+pub const RetryRequest = AUTHNEXTSTEP.RetryRequest;
+pub const CancelRequest = AUTHNEXTSTEP.CancelRequest;
+
 pub const DAV_CALLBACK_AUTH_BLOB = extern struct {
     pBuffer: ?*anyopaque,
     ulSize: u32,
@@ -33,19 +42,6 @@ pub const DAV_CALLBACK_CRED = extern struct {
     bSave: BOOL,
 };
 
-pub const AUTHNEXTSTEP = enum(i32) {
-    DefaultBehavior = 0,
-    RetryRequest = 1,
-    CancelRequest = 2,
-};
-pub const DefaultBehavior = AUTHNEXTSTEP.DefaultBehavior;
-pub const RetryRequest = AUTHNEXTSTEP.RetryRequest;
-pub const CancelRequest = AUTHNEXTSTEP.CancelRequest;
-
-pub const PFNDAVAUTHCALLBACK_FREECRED = *const fn(
-    pbuffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
 pub const PFNDAVAUTHCALLBACK = *const fn(
     lpwzServerName: ?PWSTR,
     lpwzRemoteName: ?PWSTR,
@@ -54,6 +50,10 @@ pub const PFNDAVAUTHCALLBACK = *const fn(
     pCallbackCred: ?*DAV_CALLBACK_CRED,
     NextStep: ?*AUTHNEXTSTEP,
     pFreeCred: ?*?PFNDAVAUTHCALLBACK_FREECRED,
+) callconv(.winapi) u32;
+
+pub const PFNDAVAUTHCALLBACK_FREECRED = *const fn(
+    pbuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 
@@ -72,15 +72,27 @@ pub extern "netapi32" fn DavAddConnection(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "davclnt" fn DavCancelConnectionsToServer(
+    lpName: ?PWSTR,
+    fForce: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DavDeleteConnection(
     ConnectionHandle: ?HANDLE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavGetUNCFromHTTPPath(
-    Url: ?[*:0]const u16,
-    UncPath: ?[*:0]u16,
-    lpSize: ?*u32,
+pub extern "netapi32" fn DavFlushFile(
+    hFile: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn DavGetExtendedError(
+    hFile: ?HANDLE,
+    ExtError: ?*u32,
+    ExtErrorString: [*:0]u16,
+    cChSize: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -99,27 +111,15 @@ pub extern "davclnt" fn DavGetTheLockOwnerOfTheFile(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavGetExtendedError(
-    hFile: ?HANDLE,
-    ExtError: ?*u32,
-    ExtErrorString: [*:0]u16,
-    cChSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavFlushFile(
-    hFile: ?HANDLE,
+pub extern "netapi32" fn DavGetUNCFromHTTPPath(
+    Url: ?[*:0]const u16,
+    UncPath: ?[*:0]u16,
+    lpSize: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavInvalidateCache(
     URLName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "davclnt" fn DavCancelConnectionsToServer(
-    lpName: ?PWSTR,
-    fForce: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -146,8 +146,8 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNDAVAUTHCALLBACK_FREECRED")) { _ = PFNDAVAUTHCALLBACK_FREECRED; }
     if (@hasDecl(@This(), "PFNDAVAUTHCALLBACK")) { _ = PFNDAVAUTHCALLBACK; }
+    if (@hasDecl(@This(), "PFNDAVAUTHCALLBACK_FREECRED")) { _ = PFNDAVAUTHCALLBACK_FREECRED; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

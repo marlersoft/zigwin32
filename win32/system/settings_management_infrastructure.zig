@@ -2,156 +2,72 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (62)
 //--------------------------------------------------------------------------------
-pub const WCM_SETTINGS_ID_NAME = "name";
-pub const WCM_SETTINGS_ID_VERSION = "version";
-pub const WCM_SETTINGS_ID_LANGUAGE = "language";
-pub const WCM_SETTINGS_ID_ARCHITECTURE = "architecture";
-pub const WCM_SETTINGS_ID_TOKEN = "token";
-pub const WCM_SETTINGS_ID_URI = "uri";
-pub const WCM_SETTINGS_ID_VERSION_SCOPE = "versionScope";
-pub const WCM_SETTINGS_ID_FLAG_REFERENCE = @as(u32, 0);
-pub const WCM_SETTINGS_ID_FLAG_DEFINITION = @as(u32, 1);
-pub const LINK_STORE_TO_ENGINE_INSTANCE = @as(u32, 1);
 pub const LIMITED_VALIDATION_MODE = @as(u32, 1);
-pub const WCM_E_INTERNALERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255424));
-pub const WCM_E_STATENODENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255423));
-pub const WCM_E_STATENODENOTALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255422));
-pub const WCM_E_ATTRIBUTENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255421));
+pub const LINK_STORE_TO_ENGINE_INSTANCE = @as(u32, 1);
+pub const WCM_E_ABORTOPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255384));
+pub const WCM_E_ASSERTIONFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255398));
 pub const WCM_E_ATTRIBUTENOTALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255420));
+pub const WCM_E_ATTRIBUTENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255421));
+pub const WCM_E_CONFLICTINGASSERTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255399));
+pub const WCM_E_CYCLICREFERENCE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255389));
+pub const WCM_E_DUPLICATENAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255397));
+pub const WCM_E_EXPRESSIONNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255408));
+pub const WCM_E_HANDLERNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255394));
+pub const WCM_E_INTERNALERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255424));
+pub const WCM_E_INVALIDATTRIBUTECOMBINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255385));
+pub const WCM_E_INVALIDDATATYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255416));
+pub const WCM_E_INVALIDEXPRESSIONSYNTAX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255401));
+pub const WCM_E_INVALIDHANDLERSYNTAX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255393));
+pub const WCM_E_INVALIDKEY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255396));
+pub const WCM_E_INVALIDLANGUAGEFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255410));
+pub const WCM_E_INVALIDPATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255413));
+pub const WCM_E_INVALIDPROCESSORFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255382));
+pub const WCM_E_INVALIDSTREAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255395));
 pub const WCM_E_INVALIDVALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255419));
 pub const WCM_E_INVALIDVALUEFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255418));
-pub const WCM_E_TYPENOTSPECIFIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255417));
-pub const WCM_E_INVALIDDATATYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255416));
-pub const WCM_E_NOTPOSITIONED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255415));
-pub const WCM_E_READONLYITEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255414));
-pub const WCM_E_INVALIDPATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255413));
-pub const WCM_E_WRONGESCAPESTRING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255412));
 pub const WCM_E_INVALIDVERSIONFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255411));
-pub const WCM_E_INVALIDLANGUAGEFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255410));
 pub const WCM_E_KEYNOTCHANGEABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255409));
-pub const WCM_E_EXPRESSIONNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255408));
+pub const WCM_E_MANIFESTCOMPILATIONFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255390));
+pub const WCM_E_MISSINGCONFIGURATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255383));
+pub const WCM_E_MIXTYPEASSERTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255388));
+pub const WCM_E_NAMESPACEALREADYREGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255403));
+pub const WCM_E_NAMESPACENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255404));
+pub const WCM_E_NOTIFICATIONNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255400));
+pub const WCM_E_NOTPOSITIONED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255415));
+pub const WCM_E_NOTSUPPORTEDFUNCTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255387));
+pub const WCM_E_READONLYITEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255414));
+pub const WCM_E_RESTRICTIONFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255391));
+pub const WCM_E_SOURCEMANEMPTYVALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255381));
+pub const WCM_E_STATENODENOTALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255422));
+pub const WCM_E_STATENODENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255423));
+pub const WCM_E_STORECORRUPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255402));
 pub const WCM_E_SUBSTITUTIONNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255407));
+pub const WCM_E_TYPENOTSPECIFIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255417));
+pub const WCM_E_UNKNOWNRESULT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145251325));
 pub const WCM_E_USERALREADYREGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255406));
 pub const WCM_E_USERNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255405));
-pub const WCM_E_NAMESPACENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255404));
-pub const WCM_E_NAMESPACEALREADYREGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255403));
-pub const WCM_E_STORECORRUPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255402));
-pub const WCM_E_INVALIDEXPRESSIONSYNTAX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255401));
-pub const WCM_E_NOTIFICATIONNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255400));
-pub const WCM_E_CONFLICTINGASSERTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255399));
-pub const WCM_E_ASSERTIONFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255398));
-pub const WCM_E_DUPLICATENAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255397));
-pub const WCM_E_INVALIDKEY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255396));
-pub const WCM_E_INVALIDSTREAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255395));
-pub const WCM_E_HANDLERNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255394));
-pub const WCM_E_INVALIDHANDLERSYNTAX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255393));
 pub const WCM_E_VALIDATIONFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255392));
-pub const WCM_E_RESTRICTIONFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255391));
-pub const WCM_E_MANIFESTCOMPILATIONFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255390));
-pub const WCM_E_CYCLICREFERENCE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255389));
-pub const WCM_E_MIXTYPEASSERTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255388));
-pub const WCM_E_NOTSUPPORTEDFUNCTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255387));
 pub const WCM_E_VALUETOOBIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255386));
-pub const WCM_E_INVALIDATTRIBUTECOMBINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255385));
-pub const WCM_E_ABORTOPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255384));
-pub const WCM_E_MISSINGCONFIGURATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255383));
-pub const WCM_E_INVALIDPROCESSORFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255382));
-pub const WCM_E_SOURCEMANEMPTYVALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255381));
-pub const WCM_S_INTERNALERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232320));
-pub const WCM_S_ATTRIBUTENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232321));
-pub const WCM_S_LEGACYSETTINGWARNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232322));
-pub const WCM_S_INVALIDATTRIBUTECOMBINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232324));
+pub const WCM_E_WRONGESCAPESTRING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145255412));
 pub const WCM_S_ATTRIBUTENOTALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232325));
+pub const WCM_S_ATTRIBUTENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232321));
+pub const WCM_S_INTERNALERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232320));
+pub const WCM_S_INVALIDATTRIBUTECOMBINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232324));
+pub const WCM_S_LEGACYSETTINGWARNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232322));
 pub const WCM_S_NAMESPACENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2232326));
-pub const WCM_E_UNKNOWNRESULT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145251325));
+pub const WCM_SETTINGS_ID_ARCHITECTURE = "architecture";
+pub const WCM_SETTINGS_ID_FLAG_DEFINITION = @as(u32, 1);
+pub const WCM_SETTINGS_ID_FLAG_REFERENCE = @as(u32, 0);
+pub const WCM_SETTINGS_ID_LANGUAGE = "language";
+pub const WCM_SETTINGS_ID_NAME = "name";
+pub const WCM_SETTINGS_ID_TOKEN = "token";
+pub const WCM_SETTINGS_ID_URI = "uri";
+pub const WCM_SETTINGS_ID_VERSION = "version";
+pub const WCM_SETTINGS_ID_VERSION_SCOPE = "versionScope";
 
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-const CLSID_SettingsEngine_Value = Guid.initString("9f7d7bb5-20b3-11da-81a5-0030f1642e3c");
-pub const CLSID_SettingsEngine = &CLSID_SettingsEngine_Value;
-
-pub const WcmTargetMode = enum(i32) {
-    fflineMode = 1,
-    nlineMode = 2,
-};
-pub const OfflineMode = WcmTargetMode.fflineMode;
-pub const OnlineMode = WcmTargetMode.nlineMode;
-
-pub const WcmNamespaceEnumerationFlags = enum(i32) {
-    SharedEnumeration = 1,
-    UserEnumeration = 2,
-    AllEnumeration = 3,
-};
-pub const SharedEnumeration = WcmNamespaceEnumerationFlags.SharedEnumeration;
-pub const UserEnumeration = WcmNamespaceEnumerationFlags.UserEnumeration;
-pub const AllEnumeration = WcmNamespaceEnumerationFlags.AllEnumeration;
-
-pub const WcmDataType = enum(i32) {
-    Byte = 1,
-    SByte = 2,
-    UInt16 = 3,
-    Int16 = 4,
-    UInt32 = 5,
-    Int32 = 6,
-    UInt64 = 7,
-    Int64 = 8,
-    Boolean = 11,
-    String = 12,
-    FlagArray = 32768,
-};
-pub const dataTypeByte = WcmDataType.Byte;
-pub const dataTypeSByte = WcmDataType.SByte;
-pub const dataTypeUInt16 = WcmDataType.UInt16;
-pub const dataTypeInt16 = WcmDataType.Int16;
-pub const dataTypeUInt32 = WcmDataType.UInt32;
-pub const dataTypeInt32 = WcmDataType.Int32;
-pub const dataTypeUInt64 = WcmDataType.UInt64;
-pub const dataTypeInt64 = WcmDataType.Int64;
-pub const dataTypeBoolean = WcmDataType.Boolean;
-pub const dataTypeString = WcmDataType.String;
-pub const dataTypeFlagArray = WcmDataType.FlagArray;
-
-pub const WcmSettingType = enum(i32) {
-    Scalar = 1,
-    Complex = 2,
-    List = 3,
-};
-pub const settingTypeScalar = WcmSettingType.Scalar;
-pub const settingTypeComplex = WcmSettingType.Complex;
-pub const settingTypeList = WcmSettingType.List;
-
-pub const WcmRestrictionFacets = enum(i32) {
-    MaxLength = 1,
-    Enumeration = 2,
-    MaxInclusive = 4,
-    MinInclusive = 8,
-};
-pub const restrictionFacetMaxLength = WcmRestrictionFacets.MaxLength;
-pub const restrictionFacetEnumeration = WcmRestrictionFacets.Enumeration;
-pub const restrictionFacetMaxInclusive = WcmRestrictionFacets.MaxInclusive;
-pub const restrictionFacetMinInclusive = WcmRestrictionFacets.MinInclusive;
-
-pub const WcmUserStatus = enum(i32) {
-    nknownStatus = 0,
-    serRegistered = 1,
-    serUnregistered = 2,
-    serLoaded = 3,
-    serUnloaded = 4,
-};
-pub const UnknownStatus = WcmUserStatus.nknownStatus;
-pub const UserRegistered = WcmUserStatus.serRegistered;
-pub const UserUnregistered = WcmUserStatus.serUnregistered;
-pub const UserLoaded = WcmUserStatus.serLoaded;
-pub const UserUnloaded = WcmUserStatus.serUnloaded;
-
-pub const WcmNamespaceAccess = enum(i32) {
-    OnlyAccess = 1,
-    WriteAccess = 2,
-};
-pub const ReadOnlyAccess = WcmNamespaceAccess.OnlyAccess;
-pub const ReadWriteAccess = WcmNamespaceAccess.WriteAccess;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IItemEnumerator_Value = Guid.initString("9f7d7bb7-20b3-11da-81a5-0030f1642e3c");
 pub const IID_IItemEnumerator = &IID_IItemEnumerator_Value;
@@ -184,216 +100,70 @@ pub const IItemEnumerator = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsIdentity_Value = Guid.initString("9f7d7bb6-20b3-11da-81a5-0030f1642e3c");
-pub const IID_ISettingsIdentity = &IID_ISettingsIdentity_Value;
-pub const ISettingsIdentity = extern union {
+const IID_ISettingsContext_Value = Guid.initString("9f7d7bbd-20b3-11da-81a5-0030f1642e3c");
+pub const IID_ISettingsContext = &IID_ISettingsContext_Value;
+pub const ISettingsContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAttribute: *const fn(
-            self: *const ISettingsIdentity,
-            Reserved: ?*anyopaque,
-            Name: ?[*:0]const u16,
-            Value: ?*?BSTR,
+        Serialize: *const fn(
+            self: *const ISettingsContext,
+            pStream: ?*IStream,
+            pTarget: ?*ITargetInfo,
         ) callconv(.winapi) HRESULT,
-        SetAttribute: *const fn(
-            self: *const ISettingsIdentity,
-            Reserved: ?*anyopaque,
-            Name: ?[*:0]const u16,
-            Value: ?[*:0]const u16,
+        Deserialize: *const fn(
+            self: *const ISettingsContext,
+            pStream: ?*IStream,
+            pTarget: ?*ITargetInfo,
+            pppResults: [*]?*?*ISettingsResult,
+            pcResultCount: ?*usize,
         ) callconv(.winapi) HRESULT,
-        GetFlags: *const fn(
-            self: *const ISettingsIdentity,
-            Flags: ?*u32,
+        SetUserData: *const fn(
+            self: *const ISettingsContext,
+            pUserData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
-        SetFlags: *const fn(
-            self: *const ISettingsIdentity,
-            Flags: u32,
+        GetUserData: *const fn(
+            self: *const ISettingsContext,
+            pUserData: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetNamespaces: *const fn(
+            self: *const ISettingsContext,
+            ppNamespaceIds: ?*?*IItemEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetStoredSettings: *const fn(
+            self: *const ISettingsContext,
+            pIdentity: ?*ISettingsIdentity,
+            ppAddedSettings: ?*?*IItemEnumerator,
+            ppModifiedSettings: ?*?*IItemEnumerator,
+            ppDeletedSettings: ?*?*IItemEnumerator,
+        ) callconv(.winapi) HRESULT,
+        RevertSetting: *const fn(
+            self: *const ISettingsContext,
+            pIdentity: ?*ISettingsIdentity,
+            pwzSetting: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttribute(self, Reserved, Name, Value);
+    pub fn Serialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.Serialize(self, pStream, pTarget);
     }
-    pub fn SetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAttribute(self, Reserved, Name, Value);
+    pub fn Deserialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) callconv(.@"inline") HRESULT {
+        return self.vtable.Deserialize(self, pStream, pTarget, pppResults, pcResultCount);
     }
-    pub fn GetFlags(self: *const ISettingsIdentity, Flags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFlags(self, Flags);
+    pub fn SetUserData(self: *const ISettingsContext, pUserData: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.SetUserData(self, pUserData);
     }
-    pub fn SetFlags(self: *const ISettingsIdentity, Flags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFlags(self, Flags);
+    pub fn GetUserData(self: *const ISettingsContext, pUserData: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUserData(self, pUserData);
     }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITargetInfo_Value = Guid.initString("9f7d7bb8-20b3-11da-81a5-0030f1642e3c");
-pub const IID_ITargetInfo = &IID_ITargetInfo_Value;
-pub const ITargetInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetTargetMode: *const fn(
-            self: *const ITargetInfo,
-            TargetMode: ?*WcmTargetMode,
-        ) callconv(.winapi) HRESULT,
-        SetTargetMode: *const fn(
-            self: *const ITargetInfo,
-            TargetMode: WcmTargetMode,
-        ) callconv(.winapi) HRESULT,
-        GetTemporaryStoreLocation: *const fn(
-            self: *const ITargetInfo,
-            TemporaryStoreLocation: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetTemporaryStoreLocation: *const fn(
-            self: *const ITargetInfo,
-            TemporaryStoreLocation: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetTargetID: *const fn(
-            self: *const ITargetInfo,
-            TargetID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetTargetID: *const fn(
-            self: *const ITargetInfo,
-            TargetID: Guid,
-        ) callconv(.winapi) HRESULT,
-        GetTargetProcessorArchitecture: *const fn(
-            self: *const ITargetInfo,
-            ProcessorArchitecture: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetTargetProcessorArchitecture: *const fn(
-            self: *const ITargetInfo,
-            ProcessorArchitecture: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const ITargetInfo,
-            Offline: BOOL,
-            Property: ?[*:0]const u16,
-            Value: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const ITargetInfo,
-            Offline: BOOL,
-            Property: ?[*:0]const u16,
-            Value: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const ITargetInfo,
-            Enumerator: ?*?*IItemEnumerator,
-        ) callconv(.winapi) HRESULT,
-        ExpandTarget: *const fn(
-            self: *const ITargetInfo,
-            Offline: BOOL,
-            Location: ?[*:0]const u16,
-            ExpandedLocation: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ExpandTargetPath: *const fn(
-            self: *const ITargetInfo,
-            Offline: BOOL,
-            Location: ?[*:0]const u16,
-            ExpandedLocation: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetModulePath: *const fn(
-            self: *const ITargetInfo,
-            Module: ?[*:0]const u16,
-            Path: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        LoadModule: *const fn(
-            self: *const ITargetInfo,
-            Module: ?[*:0]const u16,
-            ModuleHandle: ?*?HINSTANCE,
-        ) callconv(.winapi) HRESULT,
-        SetWow64Context: *const fn(
-            self: *const ITargetInfo,
-            InstallerModule: ?[*:0]const u16,
-            Wow64Context: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        TranslateWow64: *const fn(
-            self: *const ITargetInfo,
-            ClientArchitecture: ?[*:0]const u16,
-            Value: ?[*:0]const u16,
-            TranslatedValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetSchemaHiveLocation: *const fn(
-            self: *const ITargetInfo,
-            pwzHiveDir: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetSchemaHiveLocation: *const fn(
-            self: *const ITargetInfo,
-            pHiveLocation: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetSchemaHiveMountName: *const fn(
-            self: *const ITargetInfo,
-            pwzMountName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetSchemaHiveMountName: *const fn(
-            self: *const ITargetInfo,
-            pMountName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetTargetMode(self: *const ITargetInfo, TargetMode: ?*WcmTargetMode) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTargetMode(self, TargetMode);
+    pub fn GetNamespaces(self: *const ISettingsContext, ppNamespaceIds: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNamespaces(self, ppNamespaceIds);
     }
-    pub fn SetTargetMode(self: *const ITargetInfo, TargetMode: WcmTargetMode) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTargetMode(self, TargetMode);
+    pub fn GetStoredSettings(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStoredSettings(self, pIdentity, ppAddedSettings, ppModifiedSettings, ppDeletedSettings);
     }
-    pub fn GetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTemporaryStoreLocation(self, TemporaryStoreLocation);
-    }
-    pub fn SetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTemporaryStoreLocation(self, TemporaryStoreLocation);
-    }
-    pub fn GetTargetID(self: *const ITargetInfo, TargetID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTargetID(self, TargetID);
-    }
-    pub fn SetTargetID(self: *const ITargetInfo, TargetID: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTargetID(self, TargetID);
-    }
-    pub fn GetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTargetProcessorArchitecture(self, ProcessorArchitecture);
-    }
-    pub fn SetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTargetProcessorArchitecture(self, ProcessorArchitecture);
-    }
-    pub fn GetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, Offline, Property, Value);
-    }
-    pub fn SetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, Offline, Property, Value);
-    }
-    pub fn GetEnumerator(self: *const ITargetInfo, Enumerator: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, Enumerator);
-    }
-    pub fn ExpandTarget(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ExpandTarget(self, Offline, Location, ExpandedLocation);
-    }
-    pub fn ExpandTargetPath(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ExpandTargetPath(self, Offline, Location, ExpandedLocation);
-    }
-    pub fn SetModulePath(self: *const ITargetInfo, Module: ?[*:0]const u16, Path: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetModulePath(self, Module, Path);
-    }
-    pub fn LoadModule(self: *const ITargetInfo, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadModule(self, Module, ModuleHandle);
-    }
-    pub fn SetWow64Context(self: *const ITargetInfo, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWow64Context(self, InstallerModule, Wow64Context);
-    }
-    pub fn TranslateWow64(self: *const ITargetInfo, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.TranslateWow64(self, ClientArchitecture, Value, TranslatedValue);
-    }
-    pub fn SetSchemaHiveLocation(self: *const ITargetInfo, pwzHiveDir: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSchemaHiveLocation(self, pwzHiveDir);
-    }
-    pub fn GetSchemaHiveLocation(self: *const ITargetInfo, pHiveLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSchemaHiveLocation(self, pHiveLocation);
-    }
-    pub fn SetSchemaHiveMountName(self: *const ITargetInfo, pwzMountName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSchemaHiveMountName(self, pwzMountName);
-    }
-    pub fn GetSchemaHiveMountName(self: *const ITargetInfo, pMountName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSchemaHiveMountName(self, pMountName);
+    pub fn RevertSetting(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RevertSetting(self, pIdentity, pwzSetting);
     }
 };
 
@@ -532,6 +302,49 @@ pub const ISettingsEngine = extern union {
     }
     pub fn GetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*?*ISettingsContext) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettingsContext(self, SettingsContext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISettingsIdentity_Value = Guid.initString("9f7d7bb6-20b3-11da-81a5-0030f1642e3c");
+pub const IID_ISettingsIdentity = &IID_ISettingsIdentity_Value;
+pub const ISettingsIdentity = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAttribute: *const fn(
+            self: *const ISettingsIdentity,
+            Reserved: ?*anyopaque,
+            Name: ?[*:0]const u16,
+            Value: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetAttribute: *const fn(
+            self: *const ISettingsIdentity,
+            Reserved: ?*anyopaque,
+            Name: ?[*:0]const u16,
+            Value: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetFlags: *const fn(
+            self: *const ISettingsIdentity,
+            Flags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetFlags: *const fn(
+            self: *const ISettingsIdentity,
+            Flags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttribute(self, Reserved, Name, Value);
+    }
+    pub fn SetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAttribute(self, Reserved, Name, Value);
+    }
+    pub fn GetFlags(self: *const ISettingsIdentity, Flags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFlags(self, Flags);
+    }
+    pub fn SetFlags(self: *const ISettingsIdentity, Flags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFlags(self, Flags);
     }
 };
 
@@ -828,72 +641,259 @@ pub const ISettingsResult = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsContext_Value = Guid.initString("9f7d7bbd-20b3-11da-81a5-0030f1642e3c");
-pub const IID_ISettingsContext = &IID_ISettingsContext_Value;
-pub const ISettingsContext = extern union {
+const IID_ITargetInfo_Value = Guid.initString("9f7d7bb8-20b3-11da-81a5-0030f1642e3c");
+pub const IID_ITargetInfo = &IID_ITargetInfo_Value;
+pub const ITargetInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Serialize: *const fn(
-            self: *const ISettingsContext,
-            pStream: ?*IStream,
-            pTarget: ?*ITargetInfo,
+        GetTargetMode: *const fn(
+            self: *const ITargetInfo,
+            TargetMode: ?*WcmTargetMode,
         ) callconv(.winapi) HRESULT,
-        Deserialize: *const fn(
-            self: *const ISettingsContext,
-            pStream: ?*IStream,
-            pTarget: ?*ITargetInfo,
-            pppResults: [*]?*?*ISettingsResult,
-            pcResultCount: ?*usize,
+        SetTargetMode: *const fn(
+            self: *const ITargetInfo,
+            TargetMode: WcmTargetMode,
         ) callconv(.winapi) HRESULT,
-        SetUserData: *const fn(
-            self: *const ISettingsContext,
-            pUserData: ?*anyopaque,
+        GetTemporaryStoreLocation: *const fn(
+            self: *const ITargetInfo,
+            TemporaryStoreLocation: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        GetUserData: *const fn(
-            self: *const ISettingsContext,
-            pUserData: ?*?*anyopaque,
+        SetTemporaryStoreLocation: *const fn(
+            self: *const ITargetInfo,
+            TemporaryStoreLocation: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
-        GetNamespaces: *const fn(
-            self: *const ISettingsContext,
-            ppNamespaceIds: ?*?*IItemEnumerator,
+        GetTargetID: *const fn(
+            self: *const ITargetInfo,
+            TargetID: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        GetStoredSettings: *const fn(
-            self: *const ISettingsContext,
-            pIdentity: ?*ISettingsIdentity,
-            ppAddedSettings: ?*?*IItemEnumerator,
-            ppModifiedSettings: ?*?*IItemEnumerator,
-            ppDeletedSettings: ?*?*IItemEnumerator,
+        SetTargetID: *const fn(
+            self: *const ITargetInfo,
+            TargetID: Guid,
         ) callconv(.winapi) HRESULT,
-        RevertSetting: *const fn(
-            self: *const ISettingsContext,
-            pIdentity: ?*ISettingsIdentity,
-            pwzSetting: ?[*:0]const u16,
+        GetTargetProcessorArchitecture: *const fn(
+            self: *const ITargetInfo,
+            ProcessorArchitecture: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetTargetProcessorArchitecture: *const fn(
+            self: *const ITargetInfo,
+            ProcessorArchitecture: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Property: ?[*:0]const u16,
+            Value: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Property: ?[*:0]const u16,
+            Value: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const ITargetInfo,
+            Enumerator: ?*?*IItemEnumerator,
+        ) callconv(.winapi) HRESULT,
+        ExpandTarget: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Location: ?[*:0]const u16,
+            ExpandedLocation: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ExpandTargetPath: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Location: ?[*:0]const u16,
+            ExpandedLocation: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetModulePath: *const fn(
+            self: *const ITargetInfo,
+            Module: ?[*:0]const u16,
+            Path: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        LoadModule: *const fn(
+            self: *const ITargetInfo,
+            Module: ?[*:0]const u16,
+            ModuleHandle: ?*?HINSTANCE,
+        ) callconv(.winapi) HRESULT,
+        SetWow64Context: *const fn(
+            self: *const ITargetInfo,
+            InstallerModule: ?[*:0]const u16,
+            Wow64Context: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        TranslateWow64: *const fn(
+            self: *const ITargetInfo,
+            ClientArchitecture: ?[*:0]const u16,
+            Value: ?[*:0]const u16,
+            TranslatedValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetSchemaHiveLocation: *const fn(
+            self: *const ITargetInfo,
+            pwzHiveDir: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetSchemaHiveLocation: *const fn(
+            self: *const ITargetInfo,
+            pHiveLocation: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetSchemaHiveMountName: *const fn(
+            self: *const ITargetInfo,
+            pwzMountName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetSchemaHiveMountName: *const fn(
+            self: *const ITargetInfo,
+            pMountName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Serialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.Serialize(self, pStream, pTarget);
+    pub fn GetTargetMode(self: *const ITargetInfo, TargetMode: ?*WcmTargetMode) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTargetMode(self, TargetMode);
     }
-    pub fn Deserialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) callconv(.@"inline") HRESULT {
-        return self.vtable.Deserialize(self, pStream, pTarget, pppResults, pcResultCount);
+    pub fn SetTargetMode(self: *const ITargetInfo, TargetMode: WcmTargetMode) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTargetMode(self, TargetMode);
     }
-    pub fn SetUserData(self: *const ISettingsContext, pUserData: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.SetUserData(self, pUserData);
+    pub fn GetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTemporaryStoreLocation(self, TemporaryStoreLocation);
     }
-    pub fn GetUserData(self: *const ISettingsContext, pUserData: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUserData(self, pUserData);
+    pub fn SetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTemporaryStoreLocation(self, TemporaryStoreLocation);
     }
-    pub fn GetNamespaces(self: *const ISettingsContext, ppNamespaceIds: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNamespaces(self, ppNamespaceIds);
+    pub fn GetTargetID(self: *const ITargetInfo, TargetID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTargetID(self, TargetID);
     }
-    pub fn GetStoredSettings(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStoredSettings(self, pIdentity, ppAddedSettings, ppModifiedSettings, ppDeletedSettings);
+    pub fn SetTargetID(self: *const ITargetInfo, TargetID: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTargetID(self, TargetID);
     }
-    pub fn RevertSetting(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RevertSetting(self, pIdentity, pwzSetting);
+    pub fn GetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTargetProcessorArchitecture(self, ProcessorArchitecture);
+    }
+    pub fn SetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTargetProcessorArchitecture(self, ProcessorArchitecture);
+    }
+    pub fn GetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, Offline, Property, Value);
+    }
+    pub fn SetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, Offline, Property, Value);
+    }
+    pub fn GetEnumerator(self: *const ITargetInfo, Enumerator: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, Enumerator);
+    }
+    pub fn ExpandTarget(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ExpandTarget(self, Offline, Location, ExpandedLocation);
+    }
+    pub fn ExpandTargetPath(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ExpandTargetPath(self, Offline, Location, ExpandedLocation);
+    }
+    pub fn SetModulePath(self: *const ITargetInfo, Module: ?[*:0]const u16, Path: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetModulePath(self, Module, Path);
+    }
+    pub fn LoadModule(self: *const ITargetInfo, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadModule(self, Module, ModuleHandle);
+    }
+    pub fn SetWow64Context(self: *const ITargetInfo, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWow64Context(self, InstallerModule, Wow64Context);
+    }
+    pub fn TranslateWow64(self: *const ITargetInfo, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.TranslateWow64(self, ClientArchitecture, Value, TranslatedValue);
+    }
+    pub fn SetSchemaHiveLocation(self: *const ITargetInfo, pwzHiveDir: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSchemaHiveLocation(self, pwzHiveDir);
+    }
+    pub fn GetSchemaHiveLocation(self: *const ITargetInfo, pHiveLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSchemaHiveLocation(self, pHiveLocation);
+    }
+    pub fn SetSchemaHiveMountName(self: *const ITargetInfo, pwzMountName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSchemaHiveMountName(self, pwzMountName);
+    }
+    pub fn GetSchemaHiveMountName(self: *const ITargetInfo, pMountName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSchemaHiveMountName(self, pMountName);
     }
 };
+
+const CLSID_SettingsEngine_Value = Guid.initString("9f7d7bb5-20b3-11da-81a5-0030f1642e3c");
+pub const CLSID_SettingsEngine = &CLSID_SettingsEngine_Value;
+
+pub const WcmDataType = enum(i32) {
+    Byte = 1,
+    SByte = 2,
+    UInt16 = 3,
+    Int16 = 4,
+    UInt32 = 5,
+    Int32 = 6,
+    UInt64 = 7,
+    Int64 = 8,
+    Boolean = 11,
+    String = 12,
+    FlagArray = 32768,
+};
+pub const dataTypeByte = WcmDataType.Byte;
+pub const dataTypeSByte = WcmDataType.SByte;
+pub const dataTypeUInt16 = WcmDataType.UInt16;
+pub const dataTypeInt16 = WcmDataType.Int16;
+pub const dataTypeUInt32 = WcmDataType.UInt32;
+pub const dataTypeInt32 = WcmDataType.Int32;
+pub const dataTypeUInt64 = WcmDataType.UInt64;
+pub const dataTypeInt64 = WcmDataType.Int64;
+pub const dataTypeBoolean = WcmDataType.Boolean;
+pub const dataTypeString = WcmDataType.String;
+pub const dataTypeFlagArray = WcmDataType.FlagArray;
+
+pub const WcmNamespaceAccess = enum(i32) {
+    OnlyAccess = 1,
+    WriteAccess = 2,
+};
+pub const ReadOnlyAccess = WcmNamespaceAccess.OnlyAccess;
+pub const ReadWriteAccess = WcmNamespaceAccess.WriteAccess;
+
+pub const WcmNamespaceEnumerationFlags = enum(i32) {
+    SharedEnumeration = 1,
+    UserEnumeration = 2,
+    AllEnumeration = 3,
+};
+pub const SharedEnumeration = WcmNamespaceEnumerationFlags.SharedEnumeration;
+pub const UserEnumeration = WcmNamespaceEnumerationFlags.UserEnumeration;
+pub const AllEnumeration = WcmNamespaceEnumerationFlags.AllEnumeration;
+
+pub const WcmRestrictionFacets = enum(i32) {
+    MaxLength = 1,
+    Enumeration = 2,
+    MaxInclusive = 4,
+    MinInclusive = 8,
+};
+pub const restrictionFacetMaxLength = WcmRestrictionFacets.MaxLength;
+pub const restrictionFacetEnumeration = WcmRestrictionFacets.Enumeration;
+pub const restrictionFacetMaxInclusive = WcmRestrictionFacets.MaxInclusive;
+pub const restrictionFacetMinInclusive = WcmRestrictionFacets.MinInclusive;
+
+pub const WcmSettingType = enum(i32) {
+    Scalar = 1,
+    Complex = 2,
+    List = 3,
+};
+pub const settingTypeScalar = WcmSettingType.Scalar;
+pub const settingTypeComplex = WcmSettingType.Complex;
+pub const settingTypeList = WcmSettingType.List;
+
+pub const WcmTargetMode = enum(i32) {
+    fflineMode = 1,
+    nlineMode = 2,
+};
+pub const OfflineMode = WcmTargetMode.fflineMode;
+pub const OnlineMode = WcmTargetMode.nlineMode;
+
+pub const WcmUserStatus = enum(i32) {
+    nknownStatus = 0,
+    serRegistered = 1,
+    serUnregistered = 2,
+    serLoaded = 3,
+    serUnloaded = 4,
+};
+pub const UnknownStatus = WcmUserStatus.nknownStatus;
+pub const UserRegistered = WcmUserStatus.serRegistered;
+pub const UserUnregistered = WcmUserStatus.serUnregistered;
+pub const UserLoaded = WcmUserStatus.serLoaded;
+pub const UserUnloaded = WcmUserStatus.serUnloaded;
 
 
 //--------------------------------------------------------------------------------

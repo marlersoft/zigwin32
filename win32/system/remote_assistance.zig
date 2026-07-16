@@ -2,50 +2,43 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const DISPID_EVENT_ON_STATE_CHANGED = @as(u32, 5);
-pub const DISPID_EVENT_ON_TERMINATION = @as(u32, 6);
 pub const DISPID_EVENT_ON_CONTEXT_DATA = @as(u32, 7);
 pub const DISPID_EVENT_ON_SEND_ERROR = @as(u32, 8);
+pub const DISPID_EVENT_ON_STATE_CHANGED = @as(u32, 5);
+pub const DISPID_EVENT_ON_TERMINATION = @as(u32, 6);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-const CLSID_RendezvousApplication_Value = Guid.initString("0b7e019a-b5de-47fa-8966-9082f82fb192");
-pub const CLSID_RendezvousApplication = &CLSID_RendezvousApplication_Value;
-
-pub const RENDEZVOUS_SESSION_STATE = enum(i32) {
-    UNKNOWN = 0,
-    READY = 1,
-    INVITATION = 2,
-    ACCEPTED = 3,
-    CONNECTED = 4,
-    CANCELLED = 5,
-    DECLINED = 6,
-    TERMINATED = 7,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_DRendezvousSessionEvents_Value = Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
+pub const IID_DRendezvousSessionEvents = &IID_DRendezvousSessionEvents_Value;
+pub const DRendezvousSessionEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
-pub const RSS_UNKNOWN = RENDEZVOUS_SESSION_STATE.UNKNOWN;
-pub const RSS_READY = RENDEZVOUS_SESSION_STATE.READY;
-pub const RSS_INVITATION = RENDEZVOUS_SESSION_STATE.INVITATION;
-pub const RSS_ACCEPTED = RENDEZVOUS_SESSION_STATE.ACCEPTED;
-pub const RSS_CONNECTED = RENDEZVOUS_SESSION_STATE.CONNECTED;
-pub const RSS_CANCELLED = RENDEZVOUS_SESSION_STATE.CANCELLED;
-pub const RSS_DECLINED = RENDEZVOUS_SESSION_STATE.DECLINED;
-pub const RSS_TERMINATED = RENDEZVOUS_SESSION_STATE.TERMINATED;
 
-pub const RENDEZVOUS_SESSION_FLAGS = enum(i32) {
-    NONE = 0,
-    INVITER = 1,
-    INVITEE = 2,
-    ORIGINAL_INVITER = 4,
-    REMOTE_LEGACYSESSION = 8,
-    REMOTE_WIN7SESSION = 16,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRendezvousApplication_Value = Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
+pub const IID_IRendezvousApplication = &IID_IRendezvousApplication_Value;
+pub const IRendezvousApplication = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetRendezvousSession: *const fn(
+            self: *const IRendezvousApplication,
+            pRendezvousSession: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetRendezvousSession(self: *const IRendezvousApplication, pRendezvousSession: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRendezvousSession(self, pRendezvousSession);
+    }
 };
-pub const RSF_NONE = RENDEZVOUS_SESSION_FLAGS.NONE;
-pub const RSF_INVITER = RENDEZVOUS_SESSION_FLAGS.INVITER;
-pub const RSF_INVITEE = RENDEZVOUS_SESSION_FLAGS.INVITEE;
-pub const RSF_ORIGINAL_INVITER = RENDEZVOUS_SESSION_FLAGS.ORIGINAL_INVITER;
-pub const RSF_REMOTE_LEGACYSESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_LEGACYSESSION;
-pub const RSF_REMOTE_WIN7SESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_WIN7SESSION;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRendezvousSession_Value = Guid.initString("9ba4b1dd-8b0c-48b7-9e7c-2f25857c8df5");
@@ -97,35 +90,42 @@ pub const IRendezvousSession = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_DRendezvousSessionEvents_Value = Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
-pub const IID_DRendezvousSessionEvents = &IID_DRendezvousSessionEvents_Value;
-pub const DRendezvousSessionEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
+pub const RENDEZVOUS_SESSION_FLAGS = enum(i32) {
+    NONE = 0,
+    INVITER = 1,
+    INVITEE = 2,
+    ORIGINAL_INVITER = 4,
+    REMOTE_LEGACYSESSION = 8,
+    REMOTE_WIN7SESSION = 16,
 };
+pub const RSF_NONE = RENDEZVOUS_SESSION_FLAGS.NONE;
+pub const RSF_INVITER = RENDEZVOUS_SESSION_FLAGS.INVITER;
+pub const RSF_INVITEE = RENDEZVOUS_SESSION_FLAGS.INVITEE;
+pub const RSF_ORIGINAL_INVITER = RENDEZVOUS_SESSION_FLAGS.ORIGINAL_INVITER;
+pub const RSF_REMOTE_LEGACYSESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_LEGACYSESSION;
+pub const RSF_REMOTE_WIN7SESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_WIN7SESSION;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRendezvousApplication_Value = Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
-pub const IID_IRendezvousApplication = &IID_IRendezvousApplication_Value;
-pub const IRendezvousApplication = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetRendezvousSession: *const fn(
-            self: *const IRendezvousApplication,
-            pRendezvousSession: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetRendezvousSession(self: *const IRendezvousApplication, pRendezvousSession: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRendezvousSession(self, pRendezvousSession);
-    }
+pub const RENDEZVOUS_SESSION_STATE = enum(i32) {
+    UNKNOWN = 0,
+    READY = 1,
+    INVITATION = 2,
+    ACCEPTED = 3,
+    CONNECTED = 4,
+    CANCELLED = 5,
+    DECLINED = 6,
+    TERMINATED = 7,
 };
+pub const RSS_UNKNOWN = RENDEZVOUS_SESSION_STATE.UNKNOWN;
+pub const RSS_READY = RENDEZVOUS_SESSION_STATE.READY;
+pub const RSS_INVITATION = RENDEZVOUS_SESSION_STATE.INVITATION;
+pub const RSS_ACCEPTED = RENDEZVOUS_SESSION_STATE.ACCEPTED;
+pub const RSS_CONNECTED = RENDEZVOUS_SESSION_STATE.CONNECTED;
+pub const RSS_CANCELLED = RENDEZVOUS_SESSION_STATE.CANCELLED;
+pub const RSS_DECLINED = RENDEZVOUS_SESSION_STATE.DECLINED;
+pub const RSS_TERMINATED = RENDEZVOUS_SESSION_STATE.TERMINATED;
+
+const CLSID_RendezvousApplication_Value = Guid.initString("0b7e019a-b5de-47fa-8966-9082f82fb192");
+pub const CLSID_RendezvousApplication = &CLSID_RendezvousApplication_Value;
 
 
 //--------------------------------------------------------------------------------

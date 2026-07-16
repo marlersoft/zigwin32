@@ -2,93 +2,436 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (83)
 //--------------------------------------------------------------------------------
+pub const ATTRIB_MATTE = @as(u32, 2);
+pub const ATTRIB_TRANSPARENCY = @as(u32, 1);
+pub const BEST_MODE = @as(u32, 3);
 pub const CATID_WcsPlugin = Guid.initString("a0b402e0-8240-405f-8a16-8a5b4df2f0dd");
-pub const MAX_COLOR_CHANNELS = @as(u32, 8);
+pub const CMM_DESCRIPTION = @as(u32, 5);
+pub const CMM_DLL_VERSION = @as(u32, 3);
+pub const CMM_DRIVER_VERSION = @as(u32, 2);
+pub const CMM_FROM_PROFILE = @as(u32, 0);
+pub const CMM_IDENT = @as(u32, 1);
+pub const CMM_LOGOICON = @as(u32, 6);
+pub const CMM_VERSION = @as(u32, 4);
+pub const CMM_WIN_VERSION = @as(u32, 0);
+pub const CMS_BACKWARD = @as(u32, 1);
+pub const CMS_DISABLEICM = @as(u32, 1);
+pub const CMS_DISABLEINTENT = @as(u32, 1024);
+pub const CMS_DISABLERENDERINTENT = @as(u32, 2048);
+pub const CMS_ENABLEPROOFING = @as(u32, 2);
+pub const CMS_FORWARD = @as(u32, 0);
+pub const CMS_MONITOROVERFLOW = @as(i32, -2147483648);
+pub const CMS_PRINTEROVERFLOW = @as(i32, 1073741824);
+pub const CMS_SETMONITORPROFILE = @as(u32, 16);
+pub const CMS_SETPRINTERPROFILE = @as(u32, 32);
+pub const CMS_SETPROOFINTENT = @as(u32, 8);
+pub const CMS_SETRENDERINTENT = @as(u32, 4);
+pub const CMS_SETTARGETPROFILE = @as(u32, 64);
+pub const CMS_TARGETOVERFLOW = @as(i32, 536870912);
+pub const CMS_USEAPPLYCALLBACK = @as(u32, 256);
+pub const CMS_USEDESCRIPTION = @as(u32, 512);
+pub const CMS_USEHOOK = @as(u32, 128);
+pub const COLOR_MATCH_VERSION = @as(u32, 512);
+pub const CSA_A = @as(u32, 1);
+pub const CSA_ABC = @as(u32, 2);
+pub const CSA_CMYK = @as(u32, 7);
+pub const CSA_DEF = @as(u32, 3);
+pub const CSA_DEFG = @as(u32, 4);
+pub const CSA_GRAY = @as(u32, 5);
+pub const CSA_Lab = @as(u32, 8);
+pub const CSA_RGB = @as(u32, 6);
+pub const DONT_USE_EMBEDDED_WCS_PROFILES = @as(i32, 1);
+pub const ENABLE_GAMUT_CHECKING = @as(u32, 65536);
+pub const ENUM_TYPE_VERSION = @as(u32, 768);
+pub const ET_ATTRIBUTES = @as(u32, 8192);
+pub const ET_CLASS = @as(u32, 32);
+pub const ET_CMMTYPE = @as(u32, 16);
+pub const ET_CONNECTIONSPACE = @as(u32, 128);
+pub const ET_CREATOR = @as(u32, 32768);
+pub const ET_DATACOLORSPACE = @as(u32, 64);
+pub const ET_DEVICECLASS = @as(u32, 65536);
+pub const ET_DEVICENAME = @as(u32, 1);
+pub const ET_DITHERMODE = @as(u32, 4);
+pub const ET_EXTENDEDDISPLAYCOLOR = @as(u32, 262144);
+pub const ET_MANUFACTURER = @as(u32, 2048);
+pub const ET_MEDIATYPE = @as(u32, 2);
+pub const ET_MODEL = @as(u32, 4096);
+pub const ET_PLATFORM = @as(u32, 512);
+pub const ET_PROFILEFLAGS = @as(u32, 1024);
+pub const ET_RENDERINGINTENT = @as(u32, 16384);
+pub const ET_RESOLUTION = @as(u32, 8);
+pub const ET_SIGNATURE = @as(u32, 256);
+pub const ET_STANDARDDISPLAYCOLOR = @as(u32, 131072);
+pub const FAST_TRANSLATE = @as(u32, 262144);
+pub const FLAG_DEPENDENTONDATA = @as(u32, 2);
+pub const FLAG_EMBEDDEDPROFILE = @as(u32, 1);
+pub const FLAG_ENABLE_CHROMATIC_ADAPTATION = @as(u32, 33554432);
+pub const INDEX_DONT_CARE = @as(u32, 0);
+pub const INTENT_ABSOLUTE_COLORIMETRIC = @as(u32, 3);
 pub const INTENT_PERCEPTUAL = @as(u32, 0);
 pub const INTENT_RELATIVE_COLORIMETRIC = @as(u32, 1);
 pub const INTENT_SATURATION = @as(u32, 2);
-pub const INTENT_ABSOLUTE_COLORIMETRIC = @as(u32, 3);
-pub const FLAG_EMBEDDEDPROFILE = @as(u32, 1);
-pub const FLAG_DEPENDENTONDATA = @as(u32, 2);
-pub const FLAG_ENABLE_CHROMATIC_ADAPTATION = @as(u32, 33554432);
-pub const ATTRIB_TRANSPARENCY = @as(u32, 1);
-pub const ATTRIB_MATTE = @as(u32, 2);
+pub const MAX_COLOR_CHANNELS = @as(u32, 8);
+pub const NORMAL_MODE = @as(u32, 2);
+pub const PRESERVEBLACK = @as(u32, 1048576);
 pub const PROFILE_FILENAME = @as(u32, 1);
 pub const PROFILE_MEMBUFFER = @as(u32, 2);
 pub const PROFILE_READ = @as(u32, 1);
 pub const PROFILE_READWRITE = @as(u32, 2);
-pub const INDEX_DONT_CARE = @as(u32, 0);
-pub const CMM_FROM_PROFILE = @as(u32, 0);
-pub const ENUM_TYPE_VERSION = @as(u32, 768);
-pub const ET_DEVICENAME = @as(u32, 1);
-pub const ET_MEDIATYPE = @as(u32, 2);
-pub const ET_DITHERMODE = @as(u32, 4);
-pub const ET_RESOLUTION = @as(u32, 8);
-pub const ET_CMMTYPE = @as(u32, 16);
-pub const ET_CLASS = @as(u32, 32);
-pub const ET_DATACOLORSPACE = @as(u32, 64);
-pub const ET_CONNECTIONSPACE = @as(u32, 128);
-pub const ET_SIGNATURE = @as(u32, 256);
-pub const ET_PLATFORM = @as(u32, 512);
-pub const ET_PROFILEFLAGS = @as(u32, 1024);
-pub const ET_MANUFACTURER = @as(u32, 2048);
-pub const ET_MODEL = @as(u32, 4096);
-pub const ET_ATTRIBUTES = @as(u32, 8192);
-pub const ET_RENDERINGINTENT = @as(u32, 16384);
-pub const ET_CREATOR = @as(u32, 32768);
-pub const ET_DEVICECLASS = @as(u32, 65536);
-pub const ET_STANDARDDISPLAYCOLOR = @as(u32, 131072);
-pub const ET_EXTENDEDDISPLAYCOLOR = @as(u32, 262144);
 pub const PROOF_MODE = @as(u32, 1);
-pub const NORMAL_MODE = @as(u32, 2);
-pub const BEST_MODE = @as(u32, 3);
-pub const ENABLE_GAMUT_CHECKING = @as(u32, 65536);
-pub const USE_RELATIVE_COLORIMETRIC = @as(u32, 131072);
-pub const FAST_TRANSLATE = @as(u32, 262144);
-pub const PRESERVEBLACK = @as(u32, 1048576);
-pub const WCS_ALWAYS = @as(u32, 2097152);
-pub const SEQUENTIAL_TRANSFORM = @as(u32, 2155872256);
 pub const RESERVED = @as(u32, 2147483648);
-pub const CSA_A = @as(u32, 1);
-pub const CSA_ABC = @as(u32, 2);
-pub const CSA_DEF = @as(u32, 3);
-pub const CSA_DEFG = @as(u32, 4);
-pub const CSA_GRAY = @as(u32, 5);
-pub const CSA_RGB = @as(u32, 6);
-pub const CSA_CMYK = @as(u32, 7);
-pub const CSA_Lab = @as(u32, 8);
-pub const CMM_WIN_VERSION = @as(u32, 0);
-pub const CMM_IDENT = @as(u32, 1);
-pub const CMM_DRIVER_VERSION = @as(u32, 2);
-pub const CMM_DLL_VERSION = @as(u32, 3);
-pub const CMM_VERSION = @as(u32, 4);
-pub const CMM_DESCRIPTION = @as(u32, 5);
-pub const CMM_LOGOICON = @as(u32, 6);
-pub const CMS_FORWARD = @as(u32, 0);
-pub const CMS_BACKWARD = @as(u32, 1);
-pub const COLOR_MATCH_VERSION = @as(u32, 512);
-pub const CMS_DISABLEICM = @as(u32, 1);
-pub const CMS_ENABLEPROOFING = @as(u32, 2);
-pub const CMS_SETRENDERINTENT = @as(u32, 4);
-pub const CMS_SETPROOFINTENT = @as(u32, 8);
-pub const CMS_SETMONITORPROFILE = @as(u32, 16);
-pub const CMS_SETPRINTERPROFILE = @as(u32, 32);
-pub const CMS_SETTARGETPROFILE = @as(u32, 64);
-pub const CMS_USEHOOK = @as(u32, 128);
-pub const CMS_USEAPPLYCALLBACK = @as(u32, 256);
-pub const CMS_USEDESCRIPTION = @as(u32, 512);
-pub const CMS_DISABLEINTENT = @as(u32, 1024);
-pub const CMS_DISABLERENDERINTENT = @as(u32, 2048);
-pub const CMS_MONITOROVERFLOW = @as(i32, -2147483648);
-pub const CMS_PRINTEROVERFLOW = @as(i32, 1073741824);
-pub const CMS_TARGETOVERFLOW = @as(i32, 536870912);
-pub const DONT_USE_EMBEDDED_WCS_PROFILES = @as(i32, 1);
+pub const SEQUENTIAL_TRANSFORM = @as(u32, 2155872256);
+pub const USE_RELATIVE_COLORIMETRIC = @as(u32, 131072);
+pub const WCS_ALWAYS = @as(u32, 2097152);
 pub const WCS_DEFAULT = @as(i32, 0);
 pub const WCS_ICCONLY = @as(i32, 65536);
 
 //--------------------------------------------------------------------------------
 // Section: Types (50)
 //--------------------------------------------------------------------------------
+pub const BlackInformation = extern struct {
+    fBlackOnly: BOOL,
+    blackWeight: f32,
+};
+
+pub const BMFORMAT = enum(i32) {
+    x555RGB = 0,
+    x555XYZ = 257,
+    x555Yxy = 258,
+    x555Lab = 259,
+    x555G3CH = 260,
+    RGBTRIPLETS = 2,
+    BGRTRIPLETS = 4,
+    XYZTRIPLETS = 513,
+    YxyTRIPLETS = 514,
+    LabTRIPLETS = 515,
+    G3CHTRIPLETS = 516,
+    @"5CHANNEL" = 517,
+    @"6CHANNEL" = 518,
+    @"7CHANNEL" = 519,
+    @"8CHANNEL" = 520,
+    GRAY = 521,
+    xRGBQUADS = 8,
+    xBGRQUADS = 16,
+    xG3CHQUADS = 772,
+    KYMCQUADS = 773,
+    CMYKQUADS = 32,
+    @"10b_RGB" = 9,
+    @"10b_XYZ" = 1025,
+    @"10b_Yxy" = 1026,
+    @"10b_Lab" = 1027,
+    @"10b_G3CH" = 1028,
+    NAMED_INDEX = 1029,
+    @"16b_RGB" = 10,
+    @"16b_XYZ" = 1281,
+    @"16b_Yxy" = 1282,
+    @"16b_Lab" = 1283,
+    @"16b_G3CH" = 1284,
+    @"16b_GRAY" = 1285,
+    @"565RGB" = 1,
+    @"32b_scRGB" = 1537,
+    @"32b_scARGB" = 1538,
+    S2DOT13FIXED_scRGB = 1539,
+    S2DOT13FIXED_scARGB = 1540,
+    R10G10B10A2 = 1793,
+    R10G10B10A2_XR = 1794,
+    R16G16B16A16_FLOAT = 1795,
+};
+pub const BM_x555RGB = BMFORMAT.x555RGB;
+pub const BM_x555XYZ = BMFORMAT.x555XYZ;
+pub const BM_x555Yxy = BMFORMAT.x555Yxy;
+pub const BM_x555Lab = BMFORMAT.x555Lab;
+pub const BM_x555G3CH = BMFORMAT.x555G3CH;
+pub const BM_RGBTRIPLETS = BMFORMAT.RGBTRIPLETS;
+pub const BM_BGRTRIPLETS = BMFORMAT.BGRTRIPLETS;
+pub const BM_XYZTRIPLETS = BMFORMAT.XYZTRIPLETS;
+pub const BM_YxyTRIPLETS = BMFORMAT.YxyTRIPLETS;
+pub const BM_LabTRIPLETS = BMFORMAT.LabTRIPLETS;
+pub const BM_G3CHTRIPLETS = BMFORMAT.G3CHTRIPLETS;
+pub const BM_5CHANNEL = BMFORMAT.@"5CHANNEL";
+pub const BM_6CHANNEL = BMFORMAT.@"6CHANNEL";
+pub const BM_7CHANNEL = BMFORMAT.@"7CHANNEL";
+pub const BM_8CHANNEL = BMFORMAT.@"8CHANNEL";
+pub const BM_GRAY = BMFORMAT.GRAY;
+pub const BM_xRGBQUADS = BMFORMAT.xRGBQUADS;
+pub const BM_xBGRQUADS = BMFORMAT.xBGRQUADS;
+pub const BM_xG3CHQUADS = BMFORMAT.xG3CHQUADS;
+pub const BM_KYMCQUADS = BMFORMAT.KYMCQUADS;
+pub const BM_CMYKQUADS = BMFORMAT.CMYKQUADS;
+pub const BM_10b_RGB = BMFORMAT.@"10b_RGB";
+pub const BM_10b_XYZ = BMFORMAT.@"10b_XYZ";
+pub const BM_10b_Yxy = BMFORMAT.@"10b_Yxy";
+pub const BM_10b_Lab = BMFORMAT.@"10b_Lab";
+pub const BM_10b_G3CH = BMFORMAT.@"10b_G3CH";
+pub const BM_NAMED_INDEX = BMFORMAT.NAMED_INDEX;
+pub const BM_16b_RGB = BMFORMAT.@"16b_RGB";
+pub const BM_16b_XYZ = BMFORMAT.@"16b_XYZ";
+pub const BM_16b_Yxy = BMFORMAT.@"16b_Yxy";
+pub const BM_16b_Lab = BMFORMAT.@"16b_Lab";
+pub const BM_16b_G3CH = BMFORMAT.@"16b_G3CH";
+pub const BM_16b_GRAY = BMFORMAT.@"16b_GRAY";
+pub const BM_565RGB = BMFORMAT.@"565RGB";
+pub const BM_32b_scRGB = BMFORMAT.@"32b_scRGB";
+pub const BM_32b_scARGB = BMFORMAT.@"32b_scARGB";
+pub const BM_S2DOT13FIXED_scRGB = BMFORMAT.S2DOT13FIXED_scRGB;
+pub const BM_S2DOT13FIXED_scARGB = BMFORMAT.S2DOT13FIXED_scARGB;
+pub const BM_R10G10B10A2 = BMFORMAT.R10G10B10A2;
+pub const BM_R10G10B10A2_XR = BMFORMAT.R10G10B10A2_XR;
+pub const BM_R16G16B16A16_FLOAT = BMFORMAT.R16G16B16A16_FLOAT;
+
+pub const CMYKCOLOR = extern struct {
+    cyan: u16,
+    magenta: u16,
+    yellow: u16,
+    black: u16,
+};
+
+pub const COLOR = extern union {
+    gray: GRAYCOLOR,
+    rgb: RGBCOLOR,
+    cmyk: CMYKCOLOR,
+    XYZ: XYZCOLOR,
+    Yxy: YxyCOLOR,
+    Lab: LabCOLOR,
+    gen3ch: GENERIC3CHANNEL,
+    named: NAMEDCOLOR,
+    hifi: HiFiCOLOR,
+    Anonymous: extern struct {
+        reserved1: u32,
+        reserved2: ?*anyopaque,
+    },
+};
+
+pub const COLOR_MATCH_TO_TARGET_ACTION = enum(i32) {
+    ENABLE = 1,
+    DISABLE = 2,
+    DELETE_TRANSFORM = 3,
+};
+pub const CS_ENABLE = COLOR_MATCH_TO_TARGET_ACTION.ENABLE;
+pub const CS_DISABLE = COLOR_MATCH_TO_TARGET_ACTION.DISABLE;
+pub const CS_DELETE_TRANSFORM = COLOR_MATCH_TO_TARGET_ACTION.DELETE_TRANSFORM;
+
+pub const COLORDATATYPE = enum(i32) {
+    BYTE = 1,
+    WORD = 2,
+    FLOAT = 3,
+    S2DOT13FIXED = 4,
+    @"10b_R10G10B10A2" = 5,
+    @"10b_R10G10B10A2_XR" = 6,
+    FLOAT16 = 7,
+};
+pub const COLOR_BYTE = COLORDATATYPE.BYTE;
+pub const COLOR_WORD = COLORDATATYPE.WORD;
+pub const COLOR_FLOAT = COLORDATATYPE.FLOAT;
+pub const COLOR_S2DOT13FIXED = COLORDATATYPE.S2DOT13FIXED;
+pub const COLOR_10b_R10G10B10A2 = COLORDATATYPE.@"10b_R10G10B10A2";
+pub const COLOR_10b_R10G10B10A2_XR = COLORDATATYPE.@"10b_R10G10B10A2_XR";
+pub const COLOR_FLOAT16 = COLORDATATYPE.FLOAT16;
+
+pub const COLORMATCHSETUPA = extern struct {
+    dwSize: u32,
+    dwVersion: u32,
+    dwFlags: u32,
+    hwndOwner: ?HWND,
+    pSourceName: ?[*:0]const u8,
+    pDisplayName: ?[*:0]const u8,
+    pPrinterName: ?[*:0]const u8,
+    dwRenderIntent: u32,
+    dwProofingIntent: u32,
+    pMonitorProfile: ?PSTR,
+    ccMonitorProfile: u32,
+    pPrinterProfile: ?PSTR,
+    ccPrinterProfile: u32,
+    pTargetProfile: ?PSTR,
+    ccTargetProfile: u32,
+    lpfnHook: ?DLGPROC,
+    lParam: LPARAM,
+    lpfnApplyCallback: ?PCMSCALLBACKA,
+    lParamApplyCallback: LPARAM,
+};
+
+pub const COLORMATCHSETUPW = extern struct {
+    dwSize: u32,
+    dwVersion: u32,
+    dwFlags: u32,
+    hwndOwner: ?HWND,
+    pSourceName: ?[*:0]const u16,
+    pDisplayName: ?[*:0]const u16,
+    pPrinterName: ?[*:0]const u16,
+    dwRenderIntent: u32,
+    dwProofingIntent: u32,
+    pMonitorProfile: ?PWSTR,
+    ccMonitorProfile: u32,
+    pPrinterProfile: ?PWSTR,
+    ccPrinterProfile: u32,
+    pTargetProfile: ?PWSTR,
+    ccTargetProfile: u32,
+    lpfnHook: ?DLGPROC,
+    lParam: LPARAM,
+    lpfnApplyCallback: ?PCMSCALLBACKW,
+    lParamApplyCallback: LPARAM,
+};
+
+pub const COLORPROFILESUBTYPE = enum(i32) {
+    PERCEPTUAL = 0,
+    RELATIVE_COLORIMETRIC = 1,
+    SATURATION = 2,
+    ABSOLUTE_COLORIMETRIC = 3,
+    NONE = 4,
+    RGB_WORKING_SPACE = 5,
+    CUSTOM_WORKING_SPACE = 6,
+    STANDARD_DISPLAY_COLOR_MODE = 7,
+    EXTENDED_DISPLAY_COLOR_MODE = 8,
+};
+pub const CPST_PERCEPTUAL = COLORPROFILESUBTYPE.PERCEPTUAL;
+pub const CPST_RELATIVE_COLORIMETRIC = COLORPROFILESUBTYPE.RELATIVE_COLORIMETRIC;
+pub const CPST_SATURATION = COLORPROFILESUBTYPE.SATURATION;
+pub const CPST_ABSOLUTE_COLORIMETRIC = COLORPROFILESUBTYPE.ABSOLUTE_COLORIMETRIC;
+pub const CPST_NONE = COLORPROFILESUBTYPE.NONE;
+pub const CPST_RGB_WORKING_SPACE = COLORPROFILESUBTYPE.RGB_WORKING_SPACE;
+pub const CPST_CUSTOM_WORKING_SPACE = COLORPROFILESUBTYPE.CUSTOM_WORKING_SPACE;
+pub const CPST_STANDARD_DISPLAY_COLOR_MODE = COLORPROFILESUBTYPE.STANDARD_DISPLAY_COLOR_MODE;
+pub const CPST_EXTENDED_DISPLAY_COLOR_MODE = COLORPROFILESUBTYPE.EXTENDED_DISPLAY_COLOR_MODE;
+
+pub const COLORPROFILETYPE = enum(i32) {
+    ICC = 0,
+    DMP = 1,
+    CAMP = 2,
+    GMMP = 3,
+};
+pub const CPT_ICC = COLORPROFILETYPE.ICC;
+pub const CPT_DMP = COLORPROFILETYPE.DMP;
+pub const CPT_CAMP = COLORPROFILETYPE.CAMP;
+pub const CPT_GMMP = COLORPROFILETYPE.GMMP;
+
+pub const COLORTYPE = enum(i32) {
+    GRAY = 1,
+    RGB = 2,
+    XYZ = 3,
+    Yxy = 4,
+    Lab = 5,
+    @"3_CHANNEL" = 6,
+    CMYK = 7,
+    @"5_CHANNEL" = 8,
+    @"6_CHANNEL" = 9,
+    @"7_CHANNEL" = 10,
+    @"8_CHANNEL" = 11,
+    NAMED = 12,
+};
+pub const COLOR_GRAY = COLORTYPE.GRAY;
+pub const COLOR_RGB = COLORTYPE.RGB;
+pub const COLOR_XYZ = COLORTYPE.XYZ;
+pub const COLOR_Yxy = COLORTYPE.Yxy;
+pub const COLOR_Lab = COLORTYPE.Lab;
+pub const COLOR_3_CHANNEL = COLORTYPE.@"3_CHANNEL";
+pub const COLOR_CMYK = COLORTYPE.CMYK;
+pub const COLOR_5_CHANNEL = COLORTYPE.@"5_CHANNEL";
+pub const COLOR_6_CHANNEL = COLORTYPE.@"6_CHANNEL";
+pub const COLOR_7_CHANNEL = COLORTYPE.@"7_CHANNEL";
+pub const COLOR_8_CHANNEL = COLORTYPE.@"8_CHANNEL";
+pub const COLOR_NAMED = COLORTYPE.NAMED;
+
+pub const EMRCREATECOLORSPACE = extern struct {
+    emr: EMR,
+    ihCS: u32,
+    lcs: LOGCOLORSPACEA,
+};
+
+pub const EMRCREATECOLORSPACEW = extern struct {
+    emr: EMR,
+    ihCS: u32,
+    lcs: LOGCOLORSPACEW,
+    dwFlags: u32,
+    cbData: u32,
+    Data: [1]u8,
+};
+
+pub const ENUMTYPEA = extern struct {
+    dwSize: u32,
+    dwVersion: u32,
+    dwFields: u32,
+    pDeviceName: ?[*:0]const u8,
+    dwMediaType: u32,
+    dwDitheringMode: u32,
+    dwResolution: [2]u32,
+    dwCMMType: u32,
+    dwClass: u32,
+    dwDataColorSpace: u32,
+    dwConnectionSpace: u32,
+    dwSignature: u32,
+    dwPlatform: u32,
+    dwProfileFlags: u32,
+    dwManufacturer: u32,
+    dwModel: u32,
+    dwAttributes: [2]u32,
+    dwRenderingIntent: u32,
+    dwCreator: u32,
+    dwDeviceClass: u32,
+};
+
+pub const ENUMTYPEW = extern struct {
+    dwSize: u32,
+    dwVersion: u32,
+    dwFields: u32,
+    pDeviceName: ?[*:0]const u16,
+    dwMediaType: u32,
+    dwDitheringMode: u32,
+    dwResolution: [2]u32,
+    dwCMMType: u32,
+    dwClass: u32,
+    dwDataColorSpace: u32,
+    dwConnectionSpace: u32,
+    dwSignature: u32,
+    dwPlatform: u32,
+    dwProfileFlags: u32,
+    dwManufacturer: u32,
+    dwModel: u32,
+    dwAttributes: [2]u32,
+    dwRenderingIntent: u32,
+    dwCreator: u32,
+    dwDeviceClass: u32,
+};
+
+pub const GamutBoundaryDescription = extern struct {
+    pPrimaries: ?*PrimaryJabColors,
+    cNeutralSamples: u32,
+    pNeutralSamples: ?*JabColorF,
+    pReferenceShell: ?*GamutShell,
+    pPlausibleShell: ?*GamutShell,
+    pPossibleShell: ?*GamutShell,
+};
+
+pub const GamutShell = extern struct {
+    JMin: f32,
+    JMax: f32,
+    cVertices: u32,
+    cTriangles: u32,
+    pVertices: ?*JabColorF,
+    pTriangles: ?*GamutShellTriangle,
+};
+
+pub const GamutShellTriangle = extern struct {
+    aVertexIndex: [3]u32,
+};
+
+pub const GENERIC3CHANNEL = extern struct {
+    ch1: u16,
+    ch2: u16,
+    ch3: u16,
+};
+
+pub const GRAYCOLOR = extern struct {
+    gray: u16,
+};
+
+// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HCOLORSPACE = *opaque{};
+
+pub const HiFiCOLOR = extern struct {
+    channel: [8]u8,
+};
+
 pub const ICM_COMMAND = enum(u32) {
     ADDPROFILE = 1,
     DELETEPROFILE = 2,
@@ -117,45 +460,6 @@ pub const ICM_ON = ICM_MODE.ON;
 pub const ICM_QUERY = ICM_MODE.QUERY;
 pub const ICM_DONE_OUTSIDEDC = ICM_MODE.DONE_OUTSIDEDC;
 
-pub const COLOR_MATCH_TO_TARGET_ACTION = enum(i32) {
-    ENABLE = 1,
-    DISABLE = 2,
-    DELETE_TRANSFORM = 3,
-};
-pub const CS_ENABLE = COLOR_MATCH_TO_TARGET_ACTION.ENABLE;
-pub const CS_DISABLE = COLOR_MATCH_TO_TARGET_ACTION.DISABLE;
-pub const CS_DELETE_TRANSFORM = COLOR_MATCH_TO_TARGET_ACTION.DELETE_TRANSFORM;
-
-// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HCOLORSPACE = *opaque{};
-
-pub const LOGCOLORSPACEA = extern struct {
-    lcsSignature: u32,
-    lcsVersion: u32,
-    lcsSize: u32,
-    lcsCSType: i32,
-    lcsIntent: i32,
-    lcsEndpoints: CIEXYZTRIPLE,
-    lcsGammaRed: u32,
-    lcsGammaGreen: u32,
-    lcsGammaBlue: u32,
-    lcsFilename: [260]CHAR,
-};
-
-pub const LOGCOLORSPACEW = extern struct {
-    lcsSignature: u32,
-    lcsVersion: u32,
-    lcsSize: u32,
-    lcsCSType: i32,
-    lcsIntent: i32,
-    lcsEndpoints: CIEXYZTRIPLE,
-    lcsGammaRed: u32,
-    lcsGammaGreen: u32,
-    lcsGammaBlue: u32,
-    lcsFilename: [260]u16,
-};
-
 pub const ICMENUMPROCA = *const fn(
     param0: ?PSTR,
     param1: LPARAM,
@@ -165,88 +469,6 @@ pub const ICMENUMPROCW = *const fn(
     param0: ?PWSTR,
     param1: LPARAM,
 ) callconv(.winapi) i32;
-
-pub const EMRCREATECOLORSPACE = extern struct {
-    emr: EMR,
-    ihCS: u32,
-    lcs: LOGCOLORSPACEA,
-};
-
-pub const EMRCREATECOLORSPACEW = extern struct {
-    emr: EMR,
-    ihCS: u32,
-    lcs: LOGCOLORSPACEW,
-    dwFlags: u32,
-    cbData: u32,
-    Data: [1]u8,
-};
-
-pub const XYZColorF = extern struct {
-    X: f32,
-    Y: f32,
-    Z: f32,
-};
-
-pub const JChColorF = extern struct {
-    J: f32,
-    C: f32,
-    h: f32,
-};
-
-pub const JabColorF = extern struct {
-    J: f32,
-    a: f32,
-    b: f32,
-};
-
-pub const GamutShellTriangle = extern struct {
-    aVertexIndex: [3]u32,
-};
-
-pub const GamutShell = extern struct {
-    JMin: f32,
-    JMax: f32,
-    cVertices: u32,
-    cTriangles: u32,
-    pVertices: ?*JabColorF,
-    pTriangles: ?*GamutShellTriangle,
-};
-
-pub const PrimaryJabColors = extern struct {
-    red: JabColorF,
-    yellow: JabColorF,
-    green: JabColorF,
-    cyan: JabColorF,
-    blue: JabColorF,
-    magenta: JabColorF,
-    black: JabColorF,
-    white: JabColorF,
-};
-
-pub const PrimaryXYZColors = extern struct {
-    red: XYZColorF,
-    yellow: XYZColorF,
-    green: XYZColorF,
-    cyan: XYZColorF,
-    blue: XYZColorF,
-    magenta: XYZColorF,
-    black: XYZColorF,
-    white: XYZColorF,
-};
-
-pub const GamutBoundaryDescription = extern struct {
-    pPrimaries: ?*PrimaryJabColors,
-    cNeutralSamples: u32,
-    pNeutralSamples: ?*JabColorF,
-    pReferenceShell: ?*GamutShell,
-    pPlausibleShell: ?*GamutShell,
-    pPossibleShell: ?*GamutShell,
-};
-
-pub const BlackInformation = extern struct {
-    fBlackOnly: BOOL,
-    blackWeight: f32,
-};
 
 const IID_IDeviceModelPlugIn_Value = Guid.initString("1cd63475-07c4-46fe-a903-d655316d11fd");
 pub const IID_IDeviceModelPlugIn = &IID_IDeviceModelPlugIn_Value;
@@ -384,41 +606,16 @@ pub const IGamutMapModelPlugIn = extern union {
     }
 };
 
-pub const NAMED_PROFILE_INFO = extern struct {
-    dwFlags: u32,
-    dwCount: u32,
-    dwCountDevCoordinates: u32,
-    szPrefix: [32]i8,
-    szSuffix: [32]i8,
+pub const JabColorF = extern struct {
+    J: f32,
+    a: f32,
+    b: f32,
 };
 
-pub const GRAYCOLOR = extern struct {
-    gray: u16,
-};
-
-pub const RGBCOLOR = extern struct {
-    red: u16,
-    green: u16,
-    blue: u16,
-};
-
-pub const CMYKCOLOR = extern struct {
-    cyan: u16,
-    magenta: u16,
-    yellow: u16,
-    black: u16,
-};
-
-pub const XYZCOLOR = extern struct {
-    X: u16,
-    Y: u16,
-    Z: u16,
-};
-
-pub const YxyCOLOR = extern struct {
-    Y: u16,
-    x: u16,
-    y: u16,
+pub const JChColorF = extern struct {
+    J: f32,
+    C: f32,
+    h: f32,
 };
 
 pub const LabCOLOR = extern struct {
@@ -427,202 +624,83 @@ pub const LabCOLOR = extern struct {
     b: u16,
 };
 
-pub const GENERIC3CHANNEL = extern struct {
-    ch1: u16,
-    ch2: u16,
-    ch3: u16,
+pub const LOGCOLORSPACEA = extern struct {
+    lcsSignature: u32,
+    lcsVersion: u32,
+    lcsSize: u32,
+    lcsCSType: i32,
+    lcsIntent: i32,
+    lcsEndpoints: CIEXYZTRIPLE,
+    lcsGammaRed: u32,
+    lcsGammaGreen: u32,
+    lcsGammaBlue: u32,
+    lcsFilename: [260]CHAR,
 };
 
-pub const NAMEDCOLOR = extern struct {
-    dwIndex: u32,
+pub const LOGCOLORSPACEW = extern struct {
+    lcsSignature: u32,
+    lcsVersion: u32,
+    lcsSize: u32,
+    lcsCSType: i32,
+    lcsIntent: i32,
+    lcsEndpoints: CIEXYZTRIPLE,
+    lcsGammaRed: u32,
+    lcsGammaGreen: u32,
+    lcsGammaBlue: u32,
+    lcsFilename: [260]u16,
 };
-
-pub const HiFiCOLOR = extern struct {
-    channel: [8]u8,
-};
-
-pub const COLOR = extern union {
-    gray: GRAYCOLOR,
-    rgb: RGBCOLOR,
-    cmyk: CMYKCOLOR,
-    XYZ: XYZCOLOR,
-    Yxy: YxyCOLOR,
-    Lab: LabCOLOR,
-    gen3ch: GENERIC3CHANNEL,
-    named: NAMEDCOLOR,
-    hifi: HiFiCOLOR,
-    Anonymous: extern struct {
-        reserved1: u32,
-        reserved2: ?*anyopaque,
-    },
-};
-
-pub const COLORTYPE = enum(i32) {
-    GRAY = 1,
-    RGB = 2,
-    XYZ = 3,
-    Yxy = 4,
-    Lab = 5,
-    @"3_CHANNEL" = 6,
-    CMYK = 7,
-    @"5_CHANNEL" = 8,
-    @"6_CHANNEL" = 9,
-    @"7_CHANNEL" = 10,
-    @"8_CHANNEL" = 11,
-    NAMED = 12,
-};
-pub const COLOR_GRAY = COLORTYPE.GRAY;
-pub const COLOR_RGB = COLORTYPE.RGB;
-pub const COLOR_XYZ = COLORTYPE.XYZ;
-pub const COLOR_Yxy = COLORTYPE.Yxy;
-pub const COLOR_Lab = COLORTYPE.Lab;
-pub const COLOR_3_CHANNEL = COLORTYPE.@"3_CHANNEL";
-pub const COLOR_CMYK = COLORTYPE.CMYK;
-pub const COLOR_5_CHANNEL = COLORTYPE.@"5_CHANNEL";
-pub const COLOR_6_CHANNEL = COLORTYPE.@"6_CHANNEL";
-pub const COLOR_7_CHANNEL = COLORTYPE.@"7_CHANNEL";
-pub const COLOR_8_CHANNEL = COLORTYPE.@"8_CHANNEL";
-pub const COLOR_NAMED = COLORTYPE.NAMED;
-
-pub const COLORPROFILETYPE = enum(i32) {
-    ICC = 0,
-    DMP = 1,
-    CAMP = 2,
-    GMMP = 3,
-};
-pub const CPT_ICC = COLORPROFILETYPE.ICC;
-pub const CPT_DMP = COLORPROFILETYPE.DMP;
-pub const CPT_CAMP = COLORPROFILETYPE.CAMP;
-pub const CPT_GMMP = COLORPROFILETYPE.GMMP;
-
-pub const COLORPROFILESUBTYPE = enum(i32) {
-    PERCEPTUAL = 0,
-    RELATIVE_COLORIMETRIC = 1,
-    SATURATION = 2,
-    ABSOLUTE_COLORIMETRIC = 3,
-    NONE = 4,
-    RGB_WORKING_SPACE = 5,
-    CUSTOM_WORKING_SPACE = 6,
-    STANDARD_DISPLAY_COLOR_MODE = 7,
-    EXTENDED_DISPLAY_COLOR_MODE = 8,
-};
-pub const CPST_PERCEPTUAL = COLORPROFILESUBTYPE.PERCEPTUAL;
-pub const CPST_RELATIVE_COLORIMETRIC = COLORPROFILESUBTYPE.RELATIVE_COLORIMETRIC;
-pub const CPST_SATURATION = COLORPROFILESUBTYPE.SATURATION;
-pub const CPST_ABSOLUTE_COLORIMETRIC = COLORPROFILESUBTYPE.ABSOLUTE_COLORIMETRIC;
-pub const CPST_NONE = COLORPROFILESUBTYPE.NONE;
-pub const CPST_RGB_WORKING_SPACE = COLORPROFILESUBTYPE.RGB_WORKING_SPACE;
-pub const CPST_CUSTOM_WORKING_SPACE = COLORPROFILESUBTYPE.CUSTOM_WORKING_SPACE;
-pub const CPST_STANDARD_DISPLAY_COLOR_MODE = COLORPROFILESUBTYPE.STANDARD_DISPLAY_COLOR_MODE;
-pub const CPST_EXTENDED_DISPLAY_COLOR_MODE = COLORPROFILESUBTYPE.EXTENDED_DISPLAY_COLOR_MODE;
-
-pub const COLORDATATYPE = enum(i32) {
-    BYTE = 1,
-    WORD = 2,
-    FLOAT = 3,
-    S2DOT13FIXED = 4,
-    @"10b_R10G10B10A2" = 5,
-    @"10b_R10G10B10A2_XR" = 6,
-    FLOAT16 = 7,
-};
-pub const COLOR_BYTE = COLORDATATYPE.BYTE;
-pub const COLOR_WORD = COLORDATATYPE.WORD;
-pub const COLOR_FLOAT = COLORDATATYPE.FLOAT;
-pub const COLOR_S2DOT13FIXED = COLORDATATYPE.S2DOT13FIXED;
-pub const COLOR_10b_R10G10B10A2 = COLORDATATYPE.@"10b_R10G10B10A2";
-pub const COLOR_10b_R10G10B10A2_XR = COLORDATATYPE.@"10b_R10G10B10A2_XR";
-pub const COLOR_FLOAT16 = COLORDATATYPE.FLOAT16;
-
-pub const BMFORMAT = enum(i32) {
-    x555RGB = 0,
-    x555XYZ = 257,
-    x555Yxy = 258,
-    x555Lab = 259,
-    x555G3CH = 260,
-    RGBTRIPLETS = 2,
-    BGRTRIPLETS = 4,
-    XYZTRIPLETS = 513,
-    YxyTRIPLETS = 514,
-    LabTRIPLETS = 515,
-    G3CHTRIPLETS = 516,
-    @"5CHANNEL" = 517,
-    @"6CHANNEL" = 518,
-    @"7CHANNEL" = 519,
-    @"8CHANNEL" = 520,
-    GRAY = 521,
-    xRGBQUADS = 8,
-    xBGRQUADS = 16,
-    xG3CHQUADS = 772,
-    KYMCQUADS = 773,
-    CMYKQUADS = 32,
-    @"10b_RGB" = 9,
-    @"10b_XYZ" = 1025,
-    @"10b_Yxy" = 1026,
-    @"10b_Lab" = 1027,
-    @"10b_G3CH" = 1028,
-    NAMED_INDEX = 1029,
-    @"16b_RGB" = 10,
-    @"16b_XYZ" = 1281,
-    @"16b_Yxy" = 1282,
-    @"16b_Lab" = 1283,
-    @"16b_G3CH" = 1284,
-    @"16b_GRAY" = 1285,
-    @"565RGB" = 1,
-    @"32b_scRGB" = 1537,
-    @"32b_scARGB" = 1538,
-    S2DOT13FIXED_scRGB = 1539,
-    S2DOT13FIXED_scARGB = 1540,
-    R10G10B10A2 = 1793,
-    R10G10B10A2_XR = 1794,
-    R16G16B16A16_FLOAT = 1795,
-};
-pub const BM_x555RGB = BMFORMAT.x555RGB;
-pub const BM_x555XYZ = BMFORMAT.x555XYZ;
-pub const BM_x555Yxy = BMFORMAT.x555Yxy;
-pub const BM_x555Lab = BMFORMAT.x555Lab;
-pub const BM_x555G3CH = BMFORMAT.x555G3CH;
-pub const BM_RGBTRIPLETS = BMFORMAT.RGBTRIPLETS;
-pub const BM_BGRTRIPLETS = BMFORMAT.BGRTRIPLETS;
-pub const BM_XYZTRIPLETS = BMFORMAT.XYZTRIPLETS;
-pub const BM_YxyTRIPLETS = BMFORMAT.YxyTRIPLETS;
-pub const BM_LabTRIPLETS = BMFORMAT.LabTRIPLETS;
-pub const BM_G3CHTRIPLETS = BMFORMAT.G3CHTRIPLETS;
-pub const BM_5CHANNEL = BMFORMAT.@"5CHANNEL";
-pub const BM_6CHANNEL = BMFORMAT.@"6CHANNEL";
-pub const BM_7CHANNEL = BMFORMAT.@"7CHANNEL";
-pub const BM_8CHANNEL = BMFORMAT.@"8CHANNEL";
-pub const BM_GRAY = BMFORMAT.GRAY;
-pub const BM_xRGBQUADS = BMFORMAT.xRGBQUADS;
-pub const BM_xBGRQUADS = BMFORMAT.xBGRQUADS;
-pub const BM_xG3CHQUADS = BMFORMAT.xG3CHQUADS;
-pub const BM_KYMCQUADS = BMFORMAT.KYMCQUADS;
-pub const BM_CMYKQUADS = BMFORMAT.CMYKQUADS;
-pub const BM_10b_RGB = BMFORMAT.@"10b_RGB";
-pub const BM_10b_XYZ = BMFORMAT.@"10b_XYZ";
-pub const BM_10b_Yxy = BMFORMAT.@"10b_Yxy";
-pub const BM_10b_Lab = BMFORMAT.@"10b_Lab";
-pub const BM_10b_G3CH = BMFORMAT.@"10b_G3CH";
-pub const BM_NAMED_INDEX = BMFORMAT.NAMED_INDEX;
-pub const BM_16b_RGB = BMFORMAT.@"16b_RGB";
-pub const BM_16b_XYZ = BMFORMAT.@"16b_XYZ";
-pub const BM_16b_Yxy = BMFORMAT.@"16b_Yxy";
-pub const BM_16b_Lab = BMFORMAT.@"16b_Lab";
-pub const BM_16b_G3CH = BMFORMAT.@"16b_G3CH";
-pub const BM_16b_GRAY = BMFORMAT.@"16b_GRAY";
-pub const BM_565RGB = BMFORMAT.@"565RGB";
-pub const BM_32b_scRGB = BMFORMAT.@"32b_scRGB";
-pub const BM_32b_scARGB = BMFORMAT.@"32b_scARGB";
-pub const BM_S2DOT13FIXED_scRGB = BMFORMAT.S2DOT13FIXED_scRGB;
-pub const BM_S2DOT13FIXED_scARGB = BMFORMAT.S2DOT13FIXED_scARGB;
-pub const BM_R10G10B10A2 = BMFORMAT.R10G10B10A2;
-pub const BM_R10G10B10A2_XR = BMFORMAT.R10G10B10A2_XR;
-pub const BM_R16G16B16A16_FLOAT = BMFORMAT.R16G16B16A16_FLOAT;
 
 pub const LPBMCALLBACKFN = *const fn(
     param0: u32,
     param1: u32,
     param2: LPARAM,
 ) callconv(.winapi) BOOL;
+
+pub const NAMED_PROFILE_INFO = extern struct {
+    dwFlags: u32,
+    dwCount: u32,
+    dwCountDevCoordinates: u32,
+    szPrefix: [32]i8,
+    szSuffix: [32]i8,
+};
+
+pub const NAMEDCOLOR = extern struct {
+    dwIndex: u32,
+};
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PCMSCALLBACKA = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PCMSCALLBACKW = *const fn() callconv(.winapi) void;
+
+pub const PrimaryJabColors = extern struct {
+    red: JabColorF,
+    yellow: JabColorF,
+    green: JabColorF,
+    cyan: JabColorF,
+    blue: JabColorF,
+    magenta: JabColorF,
+    black: JabColorF,
+    white: JabColorF,
+};
+
+pub const PrimaryXYZColors = extern struct {
+    red: XYZColorF,
+    yellow: XYZColorF,
+    green: XYZColorF,
+    cyan: XYZColorF,
+    blue: XYZColorF,
+    magenta: XYZColorF,
+    black: XYZColorF,
+    white: XYZColorF,
+};
+
+pub const PROFILE = extern struct {
+    dwType: u32,
+    pProfileData: ?*anyopaque,
+    cbDataSize: u32,
+};
 
 pub const PROFILEHEADER = extern struct {
     phSize: u32,
@@ -644,126 +722,10 @@ pub const PROFILEHEADER = extern struct {
     phReserved: [44]u8,
 };
 
-pub const PROFILE = extern struct {
-    dwType: u32,
-    pProfileData: ?*anyopaque,
-    cbDataSize: u32,
-};
-
-pub const ENUMTYPEA = extern struct {
-    dwSize: u32,
-    dwVersion: u32,
-    dwFields: u32,
-    pDeviceName: ?[*:0]const u8,
-    dwMediaType: u32,
-    dwDitheringMode: u32,
-    dwResolution: [2]u32,
-    dwCMMType: u32,
-    dwClass: u32,
-    dwDataColorSpace: u32,
-    dwConnectionSpace: u32,
-    dwSignature: u32,
-    dwPlatform: u32,
-    dwProfileFlags: u32,
-    dwManufacturer: u32,
-    dwModel: u32,
-    dwAttributes: [2]u32,
-    dwRenderingIntent: u32,
-    dwCreator: u32,
-    dwDeviceClass: u32,
-};
-
-pub const ENUMTYPEW = extern struct {
-    dwSize: u32,
-    dwVersion: u32,
-    dwFields: u32,
-    pDeviceName: ?[*:0]const u16,
-    dwMediaType: u32,
-    dwDitheringMode: u32,
-    dwResolution: [2]u32,
-    dwCMMType: u32,
-    dwClass: u32,
-    dwDataColorSpace: u32,
-    dwConnectionSpace: u32,
-    dwSignature: u32,
-    dwPlatform: u32,
-    dwProfileFlags: u32,
-    dwManufacturer: u32,
-    dwModel: u32,
-    dwAttributes: [2]u32,
-    dwRenderingIntent: u32,
-    dwCreator: u32,
-    dwDeviceClass: u32,
-};
-
-pub const WCS_PROFILE_MANAGEMENT_SCOPE = enum(i32) {
-    SYSTEM_WIDE = 0,
-    CURRENT_USER = 1,
-};
-pub const WCS_PROFILE_MANAGEMENT_SCOPE_SYSTEM_WIDE = WCS_PROFILE_MANAGEMENT_SCOPE.SYSTEM_WIDE;
-pub const WCS_PROFILE_MANAGEMENT_SCOPE_CURRENT_USER = WCS_PROFILE_MANAGEMENT_SCOPE.CURRENT_USER;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PCMSCALLBACKW = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PCMSCALLBACKA = *const fn() callconv(.winapi) void;
-
-pub const COLORMATCHSETUPW = extern struct {
-    dwSize: u32,
-    dwVersion: u32,
-    dwFlags: u32,
-    hwndOwner: ?HWND,
-    pSourceName: ?[*:0]const u16,
-    pDisplayName: ?[*:0]const u16,
-    pPrinterName: ?[*:0]const u16,
-    dwRenderIntent: u32,
-    dwProofingIntent: u32,
-    pMonitorProfile: ?PWSTR,
-    ccMonitorProfile: u32,
-    pPrinterProfile: ?PWSTR,
-    ccPrinterProfile: u32,
-    pTargetProfile: ?PWSTR,
-    ccTargetProfile: u32,
-    lpfnHook: ?DLGPROC,
-    lParam: LPARAM,
-    lpfnApplyCallback: ?PCMSCALLBACKW,
-    lParamApplyCallback: LPARAM,
-};
-
-pub const COLORMATCHSETUPA = extern struct {
-    dwSize: u32,
-    dwVersion: u32,
-    dwFlags: u32,
-    hwndOwner: ?HWND,
-    pSourceName: ?[*:0]const u8,
-    pDisplayName: ?[*:0]const u8,
-    pPrinterName: ?[*:0]const u8,
-    dwRenderIntent: u32,
-    dwProofingIntent: u32,
-    pMonitorProfile: ?PSTR,
-    ccMonitorProfile: u32,
-    pPrinterProfile: ?PSTR,
-    ccPrinterProfile: u32,
-    pTargetProfile: ?PSTR,
-    ccTargetProfile: u32,
-    lpfnHook: ?DLGPROC,
-    lParam: LPARAM,
-    lpfnApplyCallback: ?PCMSCALLBACKA,
-    lParamApplyCallback: LPARAM,
-};
-
-pub const WCS_DEVICE_VCGT_CAPABILITIES = extern struct {
-    Size: u32,
-    SupportsVcgt: BOOL,
-};
-
-pub const WCS_DEVICE_MHC2_CAPABILITIES = extern struct {
-    Size: u32,
-    SupportsMhc2: BOOL,
-    RegammaLutEntryCount: u32,
-    CscXyzMatrixRows: u32,
-    CscXyzMatrixColumns: u32,
+pub const RGBCOLOR = extern struct {
+    red: u16,
+    green: u16,
+    blue: u16,
 };
 
 pub const WCS_DEVICE_CAPABILITIES_TYPE = enum(i32) {
@@ -773,342 +735,58 @@ pub const WCS_DEVICE_CAPABILITIES_TYPE = enum(i32) {
 pub const VideoCardGammaTable = WCS_DEVICE_CAPABILITIES_TYPE.VideoCardGammaTable;
 pub const MicrosoftHardwareColorV2 = WCS_DEVICE_CAPABILITIES_TYPE.MicrosoftHardwareColorV2;
 
+pub const WCS_DEVICE_MHC2_CAPABILITIES = extern struct {
+    Size: u32,
+    SupportsMhc2: BOOL,
+    RegammaLutEntryCount: u32,
+    CscXyzMatrixRows: u32,
+    CscXyzMatrixColumns: u32,
+};
+
+pub const WCS_DEVICE_VCGT_CAPABILITIES = extern struct {
+    Size: u32,
+    SupportsVcgt: BOOL,
+};
+
+pub const WCS_PROFILE_MANAGEMENT_SCOPE = enum(i32) {
+    SYSTEM_WIDE = 0,
+    CURRENT_USER = 1,
+};
+pub const WCS_PROFILE_MANAGEMENT_SCOPE_SYSTEM_WIDE = WCS_PROFILE_MANAGEMENT_SCOPE.SYSTEM_WIDE;
+pub const WCS_PROFILE_MANAGEMENT_SCOPE_CURRENT_USER = WCS_PROFILE_MANAGEMENT_SCOPE.CURRENT_USER;
+
+pub const XYZCOLOR = extern struct {
+    X: u16,
+    Y: u16,
+    Z: u16,
+};
+
+pub const XYZColorF = extern struct {
+    X: f32,
+    Y: f32,
+    Z: f32,
+};
+
+pub const YxyCOLOR = extern struct {
+    Y: u16,
+    x: u16,
+    y: u16,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (121)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn SetICMMode(
-    hdc: ?HDC,
-    mode: ICM_MODE,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn CheckColorsInGamut(
-    hdc: ?HDC,
-    lpRGBTriple: [*]RGBTRIPLE,
-    // TODO: what to do with BytesParamIndex 3?
-    dlpBuffer: ?*anyopaque,
-    nCount: u32,
+pub extern "mscms" fn AssociateColorProfileWithDeviceA(
+    pMachineName: ?[*:0]const u8,
+    pProfileName: ?[*:0]const u8,
+    pDeviceName: ?[*:0]const u8,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetColorSpace(
-    hdc: ?HDC,
-) callconv(.winapi) ?HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetLogColorSpaceA(
-    hColorSpace: ?HCOLORSPACE,
-    // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*LOGCOLORSPACEA,
-    nSize: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetLogColorSpaceW(
-    hColorSpace: ?HCOLORSPACE,
-    // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*LOGCOLORSPACEW,
-    nSize: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn CreateColorSpaceA(
-    lplcs: ?*LOGCOLORSPACEA,
-) callconv(.winapi) ?HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn CreateColorSpaceW(
-    lplcs: ?*LOGCOLORSPACEW,
-) callconv(.winapi) ?HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn SetColorSpace(
-    hdc: ?HDC,
-    hcs: ?HCOLORSPACE,
-) callconv(.winapi) ?HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn DeleteColorSpace(
-    hcs: ?HCOLORSPACE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetICMProfileA(
-    hdc: ?HDC,
-    pBufSize: ?*u32,
-    pszFilename: ?[*:0]u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetICMProfileW(
-    hdc: ?HDC,
-    pBufSize: ?*u32,
-    pszFilename: ?[*:0]u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn SetICMProfileA(
-    hdc: ?HDC,
-    lpFileName: ?PSTR,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn SetICMProfileW(
-    hdc: ?HDC,
-    lpFileName: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetDeviceGammaRamp(
-    hdc: ?HDC,
-    lpRamp: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn SetDeviceGammaRamp(
-    hdc: ?HDC,
-    lpRamp: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn ColorMatchToTarget(
-    hdc: ?HDC,
-    hdcTarget: ?HDC,
-    action: COLOR_MATCH_TO_TARGET_ACTION,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn EnumICMProfilesA(
-    hdc: ?HDC,
-    proc: ?ICMENUMPROCA,
-    param2: LPARAM,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn EnumICMProfilesW(
-    hdc: ?HDC,
-    proc: ?ICMENUMPROCW,
-    param2: LPARAM,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn UpdateICMRegKeyA(
-    reserved: u32,
-    lpszCMID: ?PSTR,
-    lpszFileName: ?PSTR,
-    command: ICM_COMMAND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn UpdateICMRegKeyW(
-    reserved: u32,
-    lpszCMID: ?PWSTR,
-    lpszFileName: ?PWSTR,
-    command: ICM_COMMAND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn ColorCorrectPalette(
-    hdc: ?HDC,
-    hPal: ?HPALETTE,
-    deFirst: u32,
-    num: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn OpenColorProfileA(
-    pProfile: ?*PROFILE,
-    dwDesiredAccess: u32,
-    dwShareMode: u32,
-    dwCreationMode: u32,
-) callconv(.winapi) isize;
-
-pub extern "mscms" fn OpenColorProfileW(
-    pProfile: ?*PROFILE,
-    dwDesiredAccess: u32,
-    dwShareMode: u32,
-    dwCreationMode: u32,
-) callconv(.winapi) isize;
-
-pub extern "mscms" fn CloseColorProfile(
-    hProfile: isize,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetColorProfileFromHandle(
-    hProfile: isize,
-    // TODO: what to do with BytesParamIndex 2?
-    pProfile: ?*u8,
-    pcbProfile: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn IsColorProfileValid(
-    hProfile: isize,
-    pbValid: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn CreateProfileFromLogColorSpaceA(
-    pLogColorSpace: ?*LOGCOLORSPACEA,
-    pProfile: ?*?*u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn CreateProfileFromLogColorSpaceW(
-    pLogColorSpace: ?*LOGCOLORSPACEW,
-    pProfile: ?*?*u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetCountColorProfileElements(
-    hProfile: isize,
-    pnElementCount: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetColorProfileHeader(
-    hProfile: isize,
-    pHeader: ?*PROFILEHEADER,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetColorProfileElementTag(
-    hProfile: isize,
-    dwIndex: u32,
-    pTag: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn IsColorProfileTagPresent(
-    hProfile: isize,
-    tag: u32,
-    pbPresent: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetColorProfileElement(
-    hProfile: isize,
-    tag: u32,
-    dwOffset: u32,
-    pcbElement: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pElement: ?*anyopaque,
-    pbReference: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn SetColorProfileHeader(
-    hProfile: isize,
-    pHeader: ?*PROFILEHEADER,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn SetColorProfileElementSize(
-    hProfile: isize,
-    tagType: u32,
-    pcbElement: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn SetColorProfileElement(
-    hProfile: isize,
-    tag: u32,
-    dwOffset: u32,
-    pcbElement: ?*u32,
-    pElement: [*]u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn SetColorProfileElementReference(
-    hProfile: isize,
-    newTag: u32,
-    refTag: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetPS2ColorSpaceArray(
-    hProfile: isize,
-    dwIntent: u32,
-    dwCSAType: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    pPS2ColorSpaceArray: ?*u8,
-    pcbPS2ColorSpaceArray: ?*u32,
-    pbBinary: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetPS2ColorRenderingIntent(
-    hProfile: isize,
-    dwIntent: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*u8,
-    pcbPS2ColorRenderingIntent: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetPS2ColorRenderingDictionary(
-    hProfile: isize,
-    dwIntent: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pPS2ColorRenderingDictionary: ?*u8,
-    pcbPS2ColorRenderingDictionary: ?*u32,
-    pbBinary: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetNamedProfileInfo(
-    hProfile: isize,
-    pNamedProfileInfo: ?*NAMED_PROFILE_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn ConvertColorNameToIndex(
-    hProfile: isize,
-    paColorName: [*]?*i8,
-    paIndex: [*]u32,
-    dwCount: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn ConvertIndexToColorName(
-    hProfile: isize,
-    paIndex: [*]u32,
-    paColorName: [*]?*i8,
-    dwCount: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn CreateDeviceLinkProfile(
-    hProfile: [*]isize,
-    nProfiles: u32,
-    padwIntent: [*]u32,
-    nIntents: u32,
-    dwFlags: u32,
-    pProfileData: ?*?*u8,
-    indexPreferredCMM: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn CreateColorTransformA(
-    pLogColorSpace: ?*LOGCOLORSPACEA,
-    hDestProfile: isize,
-    hTargetProfile: isize,
-    dwFlags: u32,
-) callconv(.winapi) isize;
-
-pub extern "mscms" fn CreateColorTransformW(
-    pLogColorSpace: ?*LOGCOLORSPACEW,
-    hDestProfile: isize,
-    hTargetProfile: isize,
-    dwFlags: u32,
-) callconv(.winapi) isize;
-
-pub extern "mscms" fn CreateMultiProfileTransform(
-    pahProfiles: [*]isize,
-    nProfiles: u32,
-    padwIntent: [*]u32,
-    nIntents: u32,
-    dwFlags: u32,
-    indexPreferredCMM: u32,
-) callconv(.winapi) isize;
-
-pub extern "mscms" fn DeleteColorTransform(
-    hxform: isize,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn TranslateBitmapBits(
-    hColorTransform: isize,
-    pSrcBits: ?*anyopaque,
-    bmInput: BMFORMAT,
-    dwWidth: u32,
-    dwHeight: u32,
-    dwInputStride: u32,
-    pDestBits: ?*anyopaque,
-    bmOutput: BMFORMAT,
-    dwOutputStride: u32,
-    pfnCallBack: ?LPBMCALLBACKFN,
-    ulCallbackData: LPARAM,
+pub extern "mscms" fn AssociateColorProfileWithDeviceW(
+    pMachineName: ?[*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn CheckBitmapBits(
@@ -1123,15 +801,6 @@ pub extern "mscms" fn CheckBitmapBits(
     lpCallbackData: LPARAM,
 ) callconv(.winapi) BOOL;
 
-pub extern "mscms" fn TranslateColors(
-    hColorTransform: isize,
-    paInputColors: [*]COLOR,
-    nColors: u32,
-    ctInput: COLORTYPE,
-    paOutputColors: [*]COLOR,
-    ctOutput: COLORTYPE,
-) callconv(.winapi) BOOL;
-
 pub extern "mscms" fn CheckColors(
     hColorTransform: isize,
     paInputColors: [*]COLOR,
@@ -1140,253 +809,17 @@ pub extern "mscms" fn CheckColors(
     paResult: [*:0]u8,
 ) callconv(.winapi) BOOL;
 
-pub extern "mscms" fn GetCMMInfo(
-    hColorTransform: isize,
-    param1: u32,
-) callconv(.winapi) u32;
-
-pub extern "mscms" fn RegisterCMMA(
-    pMachineName: ?[*:0]const u8,
-    cmmID: u32,
-    pCMMdll: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn RegisterCMMW(
-    pMachineName: ?[*:0]const u16,
-    cmmID: u32,
-    pCMMdll: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn UnregisterCMMA(
-    pMachineName: ?[*:0]const u8,
-    cmmID: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn UnregisterCMMW(
-    pMachineName: ?[*:0]const u16,
-    cmmID: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn SelectCMM(
-    dwCMMType: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetColorDirectoryA(
-    pMachineName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?PSTR,
-    pdwSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetColorDirectoryW(
-    pMachineName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?PWSTR,
-    pdwSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn InstallColorProfileA(
-    pMachineName: ?[*:0]const u8,
-    pProfileName: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn InstallColorProfileW(
-    pMachineName: ?[*:0]const u16,
-    pProfileName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn UninstallColorProfileA(
-    pMachineName: ?[*:0]const u8,
-    pProfileName: ?[*:0]const u8,
-    bDelete: BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn UninstallColorProfileW(
-    pMachineName: ?[*:0]const u16,
-    pProfileName: ?[*:0]const u16,
-    bDelete: BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn EnumColorProfilesA(
-    pMachineName: ?[*:0]const u8,
-    pEnumRecord: ?*ENUMTYPEA,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn CheckColorsInGamut(
+    hdc: ?HDC,
+    lpRGBTriple: [*]RGBTRIPLE,
     // TODO: what to do with BytesParamIndex 3?
-    pEnumerationBuffer: ?*u8,
-    pdwSizeOfEnumerationBuffer: ?*u32,
-    pnProfiles: ?*u32,
+    dlpBuffer: ?*anyopaque,
+    nCount: u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "mscms" fn EnumColorProfilesW(
-    pMachineName: ?[*:0]const u16,
-    pEnumRecord: ?*ENUMTYPEW,
-    // TODO: what to do with BytesParamIndex 3?
-    pEnumerationBuffer: ?*u8,
-    pdwSizeOfEnumerationBuffer: ?*u32,
-    pnProfiles: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn SetStandardColorSpaceProfileA(
-    pMachineName: ?[*:0]const u8,
-    dwProfileID: u32,
-    pProfilename: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn SetStandardColorSpaceProfileW(
-    pMachineName: ?[*:0]const u16,
-    dwProfileID: u32,
-    pProfileName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetStandardColorSpaceProfileA(
-    pMachineName: ?[*:0]const u8,
-    dwSCS: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?PSTR,
-    pcbSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn GetStandardColorSpaceProfileW(
-    pMachineName: ?[*:0]const u16,
-    dwSCS: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?PWSTR,
-    pcbSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn AssociateColorProfileWithDeviceA(
-    pMachineName: ?[*:0]const u8,
-    pProfileName: ?[*:0]const u8,
-    pDeviceName: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn AssociateColorProfileWithDeviceW(
-    pMachineName: ?[*:0]const u16,
-    pProfileName: ?[*:0]const u16,
-    pDeviceName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn DisassociateColorProfileFromDeviceA(
-    pMachineName: ?[*:0]const u8,
-    pProfileName: ?[*:0]const u8,
-    pDeviceName: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn DisassociateColorProfileFromDeviceW(
-    pMachineName: ?[*:0]const u16,
-    pProfileName: ?[*:0]const u16,
-    pDeviceName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "icmui" fn SetupColorMatchingW(
-    pcms: ?*COLORMATCHSETUPW,
-) callconv(.winapi) BOOL;
-
-pub extern "icmui" fn SetupColorMatchingA(
-    pcms: ?*COLORMATCHSETUPA,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsAssociateColorProfileWithDevice(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pProfileName: ?[*:0]const u16,
-    pDeviceName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsDisassociateColorProfileFromDevice(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pProfileName: ?[*:0]const u16,
-    pDeviceName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsEnumColorProfilesSize(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pEnumRecord: ?*ENUMTYPEW,
-    pdwSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsEnumColorProfiles(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pEnumRecord: ?*ENUMTYPEW,
-    // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*u8,
-    dwSize: u32,
-    pnProfiles: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsGetDefaultColorProfileSize(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pDeviceName: ?[*:0]const u16,
-    cptColorProfileType: COLORPROFILETYPE,
-    cpstColorProfileSubType: COLORPROFILESUBTYPE,
-    dwProfileID: u32,
-    pcbProfileName: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsGetDefaultColorProfile(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pDeviceName: ?[*:0]const u16,
-    cptColorProfileType: COLORPROFILETYPE,
-    cpstColorProfileSubType: COLORPROFILESUBTYPE,
-    dwProfileID: u32,
-    cbProfileName: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    pProfileName: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsSetDefaultColorProfile(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pDeviceName: ?[*:0]const u16,
-    cptColorProfileType: COLORPROFILETYPE,
-    cpstColorProfileSubType: COLORPROFILESUBTYPE,
-    dwProfileID: u32,
-    pProfileName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsSetDefaultRenderingIntent(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    dwRenderingIntent: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsGetDefaultRenderingIntent(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    pdwRenderingIntent: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsGetUsePerUserProfiles(
-    pDeviceName: ?[*:0]const u16,
-    dwDeviceClass: u32,
-    pUsePerUserProfiles: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsSetUsePerUserProfiles(
-    pDeviceName: ?[*:0]const u16,
-    dwDeviceClass: u32,
-    usePerUserProfiles: BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsTranslateColors(
-    hColorTransform: isize,
-    nColors: u32,
-    nInputChannels: u32,
-    cdtInput: COLORDATATYPE,
-    cbInput: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    pInputData: ?*anyopaque,
-    nOutputChannels: u32,
-    cdtOutput: COLORDATATYPE,
-    cbOutput: u32,
-    // TODO: what to do with BytesParamIndex 8?
-    pOutputData: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub extern "mscms" fn WcsCheckColors(
-    hColorTransform: isize,
-    nColors: u32,
-    nInputChannels: u32,
-    cdtInput: COLORDATATYPE,
-    cbInput: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    pInputData: ?*anyopaque,
-    paResult: [*:0]u8,
+pub extern "mscms" fn CloseColorProfile(
+    hProfile: isize,
 ) callconv(.winapi) BOOL;
 
 pub extern "icm32" fn CMCheckColors(
@@ -1395,6 +828,14 @@ pub extern "icm32" fn CMCheckColors(
     nColors: u32,
     ctInput: COLORTYPE,
     lpaResult: [*:0]u8,
+) callconv(.winapi) BOOL;
+
+pub extern "icm32" fn CMCheckColorsInGamut(
+    hcmTransform: isize,
+    lpaRGBTriple: [*]RGBTRIPLE,
+    // TODO: what to do with BytesParamIndex 3?
+    lpaResult: ?*u8,
+    nCount: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "icm32" fn CMCheckRGBs(
@@ -1440,6 +881,11 @@ pub extern "icm32" fn CMCreateMultiProfileTransform(
     dwFlags: u32,
 ) callconv(.winapi) isize;
 
+pub extern "icm32" fn CMCreateProfile(
+    lpColorSpace: ?*LOGCOLORSPACEA,
+    lpProfileData: ?*?*anyopaque,
+) callconv(.winapi) BOOL;
+
 pub extern "icm32" fn CMCreateProfileW(
     lpColorSpace: ?*LOGCOLORSPACEW,
     lpProfileData: ?*?*anyopaque,
@@ -1451,12 +897,6 @@ pub extern "icm32" fn CMCreateTransform(
     lpTargetDevCharacter: ?*anyopaque,
 ) callconv(.winapi) isize;
 
-pub extern "icm32" fn CMCreateTransformW(
-    lpColorSpace: ?*LOGCOLORSPACEW,
-    lpDevCharacter: ?*anyopaque,
-    lpTargetDevCharacter: ?*anyopaque,
-) callconv(.winapi) isize;
-
 pub extern "icm32" fn CMCreateTransformExt(
     lpColorSpace: ?*LOGCOLORSPACEA,
     lpDevCharacter: ?*anyopaque,
@@ -1464,43 +904,17 @@ pub extern "icm32" fn CMCreateTransformExt(
     dwFlags: u32,
 ) callconv(.winapi) isize;
 
-pub extern "icm32" fn CMCheckColorsInGamut(
-    hcmTransform: isize,
-    lpaRGBTriple: [*]RGBTRIPLE,
-    // TODO: what to do with BytesParamIndex 3?
-    lpaResult: ?*u8,
-    nCount: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "icm32" fn CMCreateProfile(
-    lpColorSpace: ?*LOGCOLORSPACEA,
-    lpProfileData: ?*?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub extern "icm32" fn CMTranslateRGB(
-    hcmTransform: isize,
-    ColorRef: COLORREF,
-    lpColorRef: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "icm32" fn CMTranslateRGBs(
-    hcmTransform: isize,
-    lpSrcBits: ?*anyopaque,
-    bmInput: BMFORMAT,
-    dwWidth: u32,
-    dwHeight: u32,
-    dwStride: u32,
-    lpDestBits: ?*anyopaque,
-    bmOutput: BMFORMAT,
-    dwTranslateDirection: u32,
-) callconv(.winapi) BOOL;
-
 pub extern "icm32" fn CMCreateTransformExtW(
     lpColorSpace: ?*LOGCOLORSPACEW,
     lpDevCharacter: ?*anyopaque,
     lpTargetDevCharacter: ?*anyopaque,
     dwFlags: u32,
+) callconv(.winapi) isize;
+
+pub extern "icm32" fn CMCreateTransformW(
+    lpColorSpace: ?*LOGCOLORSPACEW,
+    lpDevCharacter: ?*anyopaque,
+    lpTargetDevCharacter: ?*anyopaque,
 ) callconv(.winapi) isize;
 
 pub extern "icm32" fn CMDeleteTransform(
@@ -1530,6 +944,25 @@ pub extern "icm32" fn CMTranslateColors(
     ctOutput: COLORTYPE,
 ) callconv(.winapi) BOOL;
 
+pub extern "icm32" fn CMTranslateRGB(
+    hcmTransform: isize,
+    ColorRef: COLORREF,
+    lpColorRef: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "icm32" fn CMTranslateRGBs(
+    hcmTransform: isize,
+    lpSrcBits: ?*anyopaque,
+    bmInput: BMFORMAT,
+    dwWidth: u32,
+    dwHeight: u32,
+    dwStride: u32,
+    lpDestBits: ?*anyopaque,
+    bmOutput: BMFORMAT,
+    dwTranslateDirection: u32,
+) callconv(.winapi) BOOL;
+
 pub extern "icm32" fn CMTranslateRGBsExt(
     hcmTransform: isize,
     lpSrcBits: ?*anyopaque,
@@ -1542,6 +975,596 @@ pub extern "icm32" fn CMTranslateRGBsExt(
     dwOutputStride: u32,
     lpfnCallback: ?LPBMCALLBACKFN,
     ulCallbackData: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn ColorCorrectPalette(
+    hdc: ?HDC,
+    hPal: ?HPALETTE,
+    deFirst: u32,
+    num: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn ColorMatchToTarget(
+    hdc: ?HDC,
+    hdcTarget: ?HDC,
+    action: COLOR_MATCH_TO_TARGET_ACTION,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn ColorProfileAddDisplayAssociation(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    profileName: ?[*:0]const u16,
+    targetAdapterID: LUID,
+    sourceID: u32,
+    setAsDefault: BOOL,
+    associateAsAdvancedColor: BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "mscms" fn ColorProfileGetDisplayDefault(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    targetAdapterID: LUID,
+    sourceID: u32,
+    profileType: COLORPROFILETYPE,
+    profileSubType: COLORPROFILESUBTYPE,
+    profileName: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "mscms" fn ColorProfileGetDisplayList(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    targetAdapterID: LUID,
+    sourceID: u32,
+    profileList: ?*?*?PWSTR,
+    profileCount: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "mscms" fn ColorProfileGetDisplayUserScope(
+    targetAdapterID: LUID,
+    sourceID: u32,
+    scope: ?*WCS_PROFILE_MANAGEMENT_SCOPE,
+) callconv(.winapi) HRESULT;
+
+pub extern "mscms" fn ColorProfileRemoveDisplayAssociation(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    profileName: ?[*:0]const u16,
+    targetAdapterID: LUID,
+    sourceID: u32,
+    dissociateAdvancedColor: BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "mscms" fn ColorProfileSetDisplayDefaultAssociation(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    profileName: ?[*:0]const u16,
+    profileType: COLORPROFILETYPE,
+    profileSubType: COLORPROFILESUBTYPE,
+    targetAdapterID: LUID,
+    sourceID: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "mscms" fn ConvertColorNameToIndex(
+    hProfile: isize,
+    paColorName: [*]?*i8,
+    paIndex: [*]u32,
+    dwCount: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn ConvertIndexToColorName(
+    hProfile: isize,
+    paIndex: [*]u32,
+    paColorName: [*]?*i8,
+    dwCount: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn CreateColorSpaceA(
+    lplcs: ?*LOGCOLORSPACEA,
+) callconv(.winapi) ?HCOLORSPACE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn CreateColorSpaceW(
+    lplcs: ?*LOGCOLORSPACEW,
+) callconv(.winapi) ?HCOLORSPACE;
+
+pub extern "mscms" fn CreateColorTransformA(
+    pLogColorSpace: ?*LOGCOLORSPACEA,
+    hDestProfile: isize,
+    hTargetProfile: isize,
+    dwFlags: u32,
+) callconv(.winapi) isize;
+
+pub extern "mscms" fn CreateColorTransformW(
+    pLogColorSpace: ?*LOGCOLORSPACEW,
+    hDestProfile: isize,
+    hTargetProfile: isize,
+    dwFlags: u32,
+) callconv(.winapi) isize;
+
+pub extern "mscms" fn CreateDeviceLinkProfile(
+    hProfile: [*]isize,
+    nProfiles: u32,
+    padwIntent: [*]u32,
+    nIntents: u32,
+    dwFlags: u32,
+    pProfileData: ?*?*u8,
+    indexPreferredCMM: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn CreateMultiProfileTransform(
+    pahProfiles: [*]isize,
+    nProfiles: u32,
+    padwIntent: [*]u32,
+    nIntents: u32,
+    dwFlags: u32,
+    indexPreferredCMM: u32,
+) callconv(.winapi) isize;
+
+pub extern "mscms" fn CreateProfileFromLogColorSpaceA(
+    pLogColorSpace: ?*LOGCOLORSPACEA,
+    pProfile: ?*?*u8,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn CreateProfileFromLogColorSpaceW(
+    pLogColorSpace: ?*LOGCOLORSPACEW,
+    pProfile: ?*?*u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn DeleteColorSpace(
+    hcs: ?HCOLORSPACE,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn DeleteColorTransform(
+    hxform: isize,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn DisassociateColorProfileFromDeviceA(
+    pMachineName: ?[*:0]const u8,
+    pProfileName: ?[*:0]const u8,
+    pDeviceName: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn DisassociateColorProfileFromDeviceW(
+    pMachineName: ?[*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn EnumColorProfilesA(
+    pMachineName: ?[*:0]const u8,
+    pEnumRecord: ?*ENUMTYPEA,
+    // TODO: what to do with BytesParamIndex 3?
+    pEnumerationBuffer: ?*u8,
+    pdwSizeOfEnumerationBuffer: ?*u32,
+    pnProfiles: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn EnumColorProfilesW(
+    pMachineName: ?[*:0]const u16,
+    pEnumRecord: ?*ENUMTYPEW,
+    // TODO: what to do with BytesParamIndex 3?
+    pEnumerationBuffer: ?*u8,
+    pdwSizeOfEnumerationBuffer: ?*u32,
+    pnProfiles: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn EnumICMProfilesA(
+    hdc: ?HDC,
+    proc: ?ICMENUMPROCA,
+    param2: LPARAM,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn EnumICMProfilesW(
+    hdc: ?HDC,
+    proc: ?ICMENUMPROCW,
+    param2: LPARAM,
+) callconv(.winapi) i32;
+
+pub extern "mscms" fn GetCMMInfo(
+    hColorTransform: isize,
+    param1: u32,
+) callconv(.winapi) u32;
+
+pub extern "mscms" fn GetColorDirectoryA(
+    pMachineName: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pBuffer: ?PSTR,
+    pdwSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetColorDirectoryW(
+    pMachineName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 2?
+    pBuffer: ?PWSTR,
+    pdwSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetColorProfileElement(
+    hProfile: isize,
+    tag: u32,
+    dwOffset: u32,
+    pcbElement: ?*u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pElement: ?*anyopaque,
+    pbReference: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetColorProfileElementTag(
+    hProfile: isize,
+    dwIndex: u32,
+    pTag: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetColorProfileFromHandle(
+    hProfile: isize,
+    // TODO: what to do with BytesParamIndex 2?
+    pProfile: ?*u8,
+    pcbProfile: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetColorProfileHeader(
+    hProfile: isize,
+    pHeader: ?*PROFILEHEADER,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetColorSpace(
+    hdc: ?HDC,
+) callconv(.winapi) ?HCOLORSPACE;
+
+pub extern "mscms" fn GetCountColorProfileElements(
+    hProfile: isize,
+    pnElementCount: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetDeviceGammaRamp(
+    hdc: ?HDC,
+    lpRamp: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetICMProfileA(
+    hdc: ?HDC,
+    pBufSize: ?*u32,
+    pszFilename: ?[*:0]u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetICMProfileW(
+    hdc: ?HDC,
+    pBufSize: ?*u32,
+    pszFilename: ?[*:0]u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetLogColorSpaceA(
+    hColorSpace: ?HCOLORSPACE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*LOGCOLORSPACEA,
+    nSize: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetLogColorSpaceW(
+    hColorSpace: ?HCOLORSPACE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*LOGCOLORSPACEW,
+    nSize: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetNamedProfileInfo(
+    hProfile: isize,
+    pNamedProfileInfo: ?*NAMED_PROFILE_INFO,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetPS2ColorRenderingDictionary(
+    hProfile: isize,
+    dwIntent: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pPS2ColorRenderingDictionary: ?*u8,
+    pcbPS2ColorRenderingDictionary: ?*u32,
+    pbBinary: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetPS2ColorRenderingIntent(
+    hProfile: isize,
+    dwIntent: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*u8,
+    pcbPS2ColorRenderingIntent: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetPS2ColorSpaceArray(
+    hProfile: isize,
+    dwIntent: u32,
+    dwCSAType: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    pPS2ColorSpaceArray: ?*u8,
+    pcbPS2ColorSpaceArray: ?*u32,
+    pbBinary: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetStandardColorSpaceProfileA(
+    pMachineName: ?[*:0]const u8,
+    dwSCS: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?PSTR,
+    pcbSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn GetStandardColorSpaceProfileW(
+    pMachineName: ?[*:0]const u16,
+    dwSCS: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?PWSTR,
+    pcbSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn InstallColorProfileA(
+    pMachineName: ?[*:0]const u8,
+    pProfileName: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn InstallColorProfileW(
+    pMachineName: ?[*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn IsColorProfileTagPresent(
+    hProfile: isize,
+    tag: u32,
+    pbPresent: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn IsColorProfileValid(
+    hProfile: isize,
+    pbValid: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn OpenColorProfileA(
+    pProfile: ?*PROFILE,
+    dwDesiredAccess: u32,
+    dwShareMode: u32,
+    dwCreationMode: u32,
+) callconv(.winapi) isize;
+
+pub extern "mscms" fn OpenColorProfileW(
+    pProfile: ?*PROFILE,
+    dwDesiredAccess: u32,
+    dwShareMode: u32,
+    dwCreationMode: u32,
+) callconv(.winapi) isize;
+
+pub extern "mscms" fn RegisterCMMA(
+    pMachineName: ?[*:0]const u8,
+    cmmID: u32,
+    pCMMdll: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn RegisterCMMW(
+    pMachineName: ?[*:0]const u16,
+    cmmID: u32,
+    pCMMdll: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn SelectCMM(
+    dwCMMType: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn SetColorProfileElement(
+    hProfile: isize,
+    tag: u32,
+    dwOffset: u32,
+    pcbElement: ?*u32,
+    pElement: [*]u8,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn SetColorProfileElementReference(
+    hProfile: isize,
+    newTag: u32,
+    refTag: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn SetColorProfileElementSize(
+    hProfile: isize,
+    tagType: u32,
+    pcbElement: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn SetColorProfileHeader(
+    hProfile: isize,
+    pHeader: ?*PROFILEHEADER,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn SetColorSpace(
+    hdc: ?HDC,
+    hcs: ?HCOLORSPACE,
+) callconv(.winapi) ?HCOLORSPACE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn SetDeviceGammaRamp(
+    hdc: ?HDC,
+    lpRamp: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn SetICMMode(
+    hdc: ?HDC,
+    mode: ICM_MODE,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn SetICMProfileA(
+    hdc: ?HDC,
+    lpFileName: ?PSTR,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn SetICMProfileW(
+    hdc: ?HDC,
+    lpFileName: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn SetStandardColorSpaceProfileA(
+    pMachineName: ?[*:0]const u8,
+    dwProfileID: u32,
+    pProfilename: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn SetStandardColorSpaceProfileW(
+    pMachineName: ?[*:0]const u16,
+    dwProfileID: u32,
+    pProfileName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "icmui" fn SetupColorMatchingA(
+    pcms: ?*COLORMATCHSETUPA,
+) callconv(.winapi) BOOL;
+
+pub extern "icmui" fn SetupColorMatchingW(
+    pcms: ?*COLORMATCHSETUPW,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn TranslateBitmapBits(
+    hColorTransform: isize,
+    pSrcBits: ?*anyopaque,
+    bmInput: BMFORMAT,
+    dwWidth: u32,
+    dwHeight: u32,
+    dwInputStride: u32,
+    pDestBits: ?*anyopaque,
+    bmOutput: BMFORMAT,
+    dwOutputStride: u32,
+    pfnCallBack: ?LPBMCALLBACKFN,
+    ulCallbackData: LPARAM,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn TranslateColors(
+    hColorTransform: isize,
+    paInputColors: [*]COLOR,
+    nColors: u32,
+    ctInput: COLORTYPE,
+    paOutputColors: [*]COLOR,
+    ctOutput: COLORTYPE,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn UninstallColorProfileA(
+    pMachineName: ?[*:0]const u8,
+    pProfileName: ?[*:0]const u8,
+    bDelete: BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn UninstallColorProfileW(
+    pMachineName: ?[*:0]const u16,
+    pProfileName: ?[*:0]const u16,
+    bDelete: BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn UnregisterCMMA(
+    pMachineName: ?[*:0]const u8,
+    cmmID: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn UnregisterCMMW(
+    pMachineName: ?[*:0]const u16,
+    cmmID: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn UpdateICMRegKeyA(
+    reserved: u32,
+    lpszCMID: ?PSTR,
+    lpszFileName: ?PSTR,
+    command: ICM_COMMAND,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn UpdateICMRegKeyW(
+    reserved: u32,
+    lpszCMID: ?PWSTR,
+    lpszFileName: ?PWSTR,
+    command: ICM_COMMAND,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsAssociateColorProfileWithDevice(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsCheckColors(
+    hColorTransform: isize,
+    nColors: u32,
+    nInputChannels: u32,
+    cdtInput: COLORDATATYPE,
+    cbInput: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    pInputData: ?*anyopaque,
+    paResult: [*:0]u8,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsCreateIccProfile(
+    hWcsProfile: isize,
+    dwOptions: u32,
+) callconv(.winapi) isize;
+
+pub extern "mscms" fn WcsDisassociateColorProfileFromDevice(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    pProfileName: ?[*:0]const u16,
+    pDeviceName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsEnumColorProfiles(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    pEnumRecord: ?*ENUMTYPEW,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*u8,
+    dwSize: u32,
+    pnProfiles: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsEnumColorProfilesSize(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    pEnumRecord: ?*ENUMTYPEW,
+    pdwSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsGetCalibrationManagementState(
+    pbIsEnabled: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsGetDefaultColorProfile(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    pDeviceName: ?[*:0]const u16,
+    cptColorProfileType: COLORPROFILETYPE,
+    cpstColorProfileSubType: COLORPROFILESUBTYPE,
+    dwProfileID: u32,
+    cbProfileName: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    pProfileName: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsGetDefaultColorProfileSize(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    pDeviceName: ?[*:0]const u16,
+    cptColorProfileType: COLORPROFILETYPE,
+    cpstColorProfileSubType: COLORPROFILESUBTYPE,
+    dwProfileID: u32,
+    pcbProfileName: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsGetDefaultRenderingIntent(
+    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
+    pdwRenderingIntent: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mscms" fn WcsGetUsePerUserProfiles(
+    pDeviceName: ?[*:0]const u16,
+    dwDeviceClass: u32,
+    pUsePerUserProfiles: ?*BOOL,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn WcsOpenColorProfileA(
@@ -1564,84 +1587,54 @@ pub extern "mscms" fn WcsOpenColorProfileW(
     dwFlags: u32,
 ) callconv(.winapi) isize;
 
-pub extern "mscms" fn WcsCreateIccProfile(
-    hWcsProfile: isize,
-    dwOptions: u32,
-) callconv(.winapi) isize;
-
-pub extern "mscms" fn WcsGetCalibrationManagementState(
-    pbIsEnabled: ?*BOOL,
-) callconv(.winapi) BOOL;
-
 pub extern "mscms" fn WcsSetCalibrationManagementState(
     bIsEnabled: BOOL,
 ) callconv(.winapi) BOOL;
 
-pub extern "mscms" fn ColorProfileAddDisplayAssociation(
+pub extern "mscms" fn WcsSetDefaultColorProfile(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    profileName: ?[*:0]const u16,
-    targetAdapterID: LUID,
-    sourceID: u32,
-    setAsDefault: BOOL,
-    associateAsAdvancedColor: BOOL,
-) callconv(.winapi) HRESULT;
+    pDeviceName: ?[*:0]const u16,
+    cptColorProfileType: COLORPROFILETYPE,
+    cpstColorProfileSubType: COLORPROFILESUBTYPE,
+    dwProfileID: u32,
+    pProfileName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
 
-pub extern "mscms" fn ColorProfileRemoveDisplayAssociation(
+pub extern "mscms" fn WcsSetDefaultRenderingIntent(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    profileName: ?[*:0]const u16,
-    targetAdapterID: LUID,
-    sourceID: u32,
-    dissociateAdvancedColor: BOOL,
-) callconv(.winapi) HRESULT;
+    dwRenderingIntent: u32,
+) callconv(.winapi) BOOL;
 
-pub extern "mscms" fn ColorProfileSetDisplayDefaultAssociation(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    profileName: ?[*:0]const u16,
-    profileType: COLORPROFILETYPE,
-    profileSubType: COLORPROFILESUBTYPE,
-    targetAdapterID: LUID,
-    sourceID: u32,
-) callconv(.winapi) HRESULT;
+pub extern "mscms" fn WcsSetUsePerUserProfiles(
+    pDeviceName: ?[*:0]const u16,
+    dwDeviceClass: u32,
+    usePerUserProfiles: BOOL,
+) callconv(.winapi) BOOL;
 
-pub extern "mscms" fn ColorProfileGetDisplayList(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    targetAdapterID: LUID,
-    sourceID: u32,
-    profileList: ?*?*?PWSTR,
-    profileCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "mscms" fn ColorProfileGetDisplayDefault(
-    scope: WCS_PROFILE_MANAGEMENT_SCOPE,
-    targetAdapterID: LUID,
-    sourceID: u32,
-    profileType: COLORPROFILETYPE,
-    profileSubType: COLORPROFILESUBTYPE,
-    profileName: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "mscms" fn ColorProfileGetDisplayUserScope(
-    targetAdapterID: LUID,
-    sourceID: u32,
-    scope: ?*WCS_PROFILE_MANAGEMENT_SCOPE,
-) callconv(.winapi) HRESULT;
+pub extern "mscms" fn WcsTranslateColors(
+    hColorTransform: isize,
+    nColors: u32,
+    nInputChannels: u32,
+    cdtInput: COLORDATATYPE,
+    cbInput: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    pInputData: ?*anyopaque,
+    nOutputChannels: u32,
+    cdtOutput: COLORDATATYPE,
+    cbOutput: u32,
+    // TODO: what to do with BytesParamIndex 8?
+    pOutputData: ?*anyopaque,
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (26)
 //--------------------------------------------------------------------------------
-pub const LOGCOLORSPACE = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LOGCOLORSPACEA,
-    .wide => @This().LOGCOLORSPACEW,
+pub const COLORMATCHSETUP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().COLORMATCHSETUPA,
+    .wide => @This().COLORMATCHSETUPW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LOGCOLORSPACE' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ICMENUMPROC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ICMENUMPROCA,
-    .wide => @This().ICMENUMPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ICMENUMPROC' requires that UNICODE be set to true or false in the root module",
+        "'COLORMATCHSETUP' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ENUMTYPE = switch (@import("../zig.zig").unicode_mode) {
@@ -1651,137 +1644,25 @@ pub const ENUMTYPE = switch (@import("../zig.zig").unicode_mode) {
         "'ENUMTYPE' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const ICMENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ICMENUMPROCA,
+    .wide => @This().ICMENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ICMENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LOGCOLORSPACE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LOGCOLORSPACEA,
+    .wide => @This().LOGCOLORSPACEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LOGCOLORSPACE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const PCMSCALLBACK = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().PCMSCALLBACKA,
     .wide => @This().PCMSCALLBACKW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'PCMSCALLBACK' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const COLORMATCHSETUP = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().COLORMATCHSETUPA,
-    .wide => @This().COLORMATCHSETUPW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'COLORMATCHSETUP' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetLogColorSpace = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetLogColorSpaceA,
-    .wide => @This().GetLogColorSpaceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetLogColorSpace' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CreateColorSpace = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateColorSpaceA,
-    .wide => @This().CreateColorSpaceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateColorSpace' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetICMProfile = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetICMProfileA,
-    .wide => @This().GetICMProfileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetICMProfile' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetICMProfile = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetICMProfileA,
-    .wide => @This().SetICMProfileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetICMProfile' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumICMProfiles = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumICMProfilesA,
-    .wide => @This().EnumICMProfilesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumICMProfiles' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const UpdateICMRegKey = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().UpdateICMRegKeyA,
-    .wide => @This().UpdateICMRegKeyW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'UpdateICMRegKey' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const OpenColorProfile = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenColorProfileA,
-    .wide => @This().OpenColorProfileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenColorProfile' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CreateProfileFromLogColorSpace = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateProfileFromLogColorSpaceA,
-    .wide => @This().CreateProfileFromLogColorSpaceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateProfileFromLogColorSpace' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CreateColorTransform = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateColorTransformA,
-    .wide => @This().CreateColorTransformW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateColorTransform' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RegisterCMM = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RegisterCMMA,
-    .wide => @This().RegisterCMMW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RegisterCMM' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const UnregisterCMM = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().UnregisterCMMA,
-    .wide => @This().UnregisterCMMW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'UnregisterCMM' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetColorDirectory = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetColorDirectoryA,
-    .wide => @This().GetColorDirectoryW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetColorDirectory' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const InstallColorProfile = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().InstallColorProfileA,
-    .wide => @This().InstallColorProfileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'InstallColorProfile' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const UninstallColorProfile = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().UninstallColorProfileA,
-    .wide => @This().UninstallColorProfileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'UninstallColorProfile' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumColorProfiles = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumColorProfilesA,
-    .wide => @This().EnumColorProfilesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumColorProfiles' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetStandardColorSpaceProfile = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetStandardColorSpaceProfileA,
-    .wide => @This().SetStandardColorSpaceProfileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetStandardColorSpaceProfile = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetStandardColorSpaceProfileA,
-    .wide => @This().GetStandardColorSpaceProfileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const AssociateColorProfileWithDevice = switch (@import("../zig.zig").unicode_mode) {
@@ -1791,6 +1672,27 @@ pub const AssociateColorProfileWithDevice = switch (@import("../zig.zig").unicod
         "'AssociateColorProfileWithDevice' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const CreateColorSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateColorSpaceA,
+    .wide => @This().CreateColorSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateColorSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateColorTransform = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateColorTransformA,
+    .wide => @This().CreateColorTransformW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateColorTransform' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateProfileFromLogColorSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateProfileFromLogColorSpaceA,
+    .wide => @This().CreateProfileFromLogColorSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateProfileFromLogColorSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const DisassociateColorProfileFromDevice = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().DisassociateColorProfileFromDeviceA,
     .wide => @This().DisassociateColorProfileFromDeviceW,
@@ -1798,11 +1700,109 @@ pub const DisassociateColorProfileFromDevice = switch (@import("../zig.zig").uni
         "'DisassociateColorProfileFromDevice' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const EnumColorProfiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumColorProfilesA,
+    .wide => @This().EnumColorProfilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumColorProfiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumICMProfiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumICMProfilesA,
+    .wide => @This().EnumICMProfilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumICMProfiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetColorDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetColorDirectoryA,
+    .wide => @This().GetColorDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetColorDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetICMProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetICMProfileA,
+    .wide => @This().GetICMProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetICMProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetLogColorSpace = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetLogColorSpaceA,
+    .wide => @This().GetLogColorSpaceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetLogColorSpace' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStandardColorSpaceProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetStandardColorSpaceProfileA,
+    .wide => @This().GetStandardColorSpaceProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const InstallColorProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().InstallColorProfileA,
+    .wide => @This().InstallColorProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'InstallColorProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenColorProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenColorProfileA,
+    .wide => @This().OpenColorProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenColorProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterCMM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterCMMA,
+    .wide => @This().RegisterCMMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterCMM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetICMProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetICMProfileA,
+    .wide => @This().SetICMProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetICMProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetStandardColorSpaceProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetStandardColorSpaceProfileA,
+    .wide => @This().SetStandardColorSpaceProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetStandardColorSpaceProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const SetupColorMatching = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().SetupColorMatchingA,
     .wide => @This().SetupColorMatchingW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'SetupColorMatching' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UninstallColorProfile = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UninstallColorProfileA,
+    .wide => @This().UninstallColorProfileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UninstallColorProfile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UnregisterCMM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UnregisterCMMA,
+    .wide => @This().UnregisterCMMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UnregisterCMM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdateICMRegKey = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdateICMRegKeyA,
+    .wide => @This().UpdateICMRegKeyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdateICMRegKey' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const WcsOpenColorProfile = switch (@import("../zig.zig").unicode_mode) {

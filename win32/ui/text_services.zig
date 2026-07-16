@@ -2,538 +2,460 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (439)
 //--------------------------------------------------------------------------------
-pub const GUID_PROP_TEXTOWNER = Guid.initString("f1e2d520-0969-11d3-8df0-00105a2799b5");
-pub const GUID_PROP_ATTRIBUTE = Guid.initString("34b45670-7526-11d2-a147-00105a2799b5");
-pub const GUID_PROP_LANGID = Guid.initString("3280ce20-8032-11d2-b603-00105a2799b5");
-pub const GUID_PROP_READING = Guid.initString("5463f7c0-8e31-11d2-bf46-00105a2799b5");
-pub const GUID_PROP_COMPOSING = Guid.initString("e12ac060-af15-11d2-afc5-00105a2799b5");
-pub const GUID_PROP_TKB_ALTERNATES = Guid.initString("70b2a803-968d-462e-b93b-2164c91517f7");
-pub const GUID_SYSTEM_FUNCTIONPROVIDER = Guid.initString("9a698bb0-0f21-11d3-8df1-00105a2799b5");
+pub const CLSID_TF_CategoryMgr = Guid.initString("a4b544a1-438d-4b41-9325-869523e2d6c7");
+pub const CLSID_TF_ClassicLangBar = Guid.initString("3318360c-1afc-4d09-a86b-9f9cb6dceb9c");
+pub const CLSID_TF_DisplayAttributeMgr = Guid.initString("3ce74de4-53d3-4d74-8b83-431b3828ba53");
+pub const CLSID_TF_InputProcessorProfiles = Guid.initString("33c53a50-f456-4884-b049-85fd643ecfed");
+pub const CLSID_TF_LangBarItemMgr = Guid.initString("b9931692-a2b3-4fab-bf33-9ec6f9fb96ac");
+pub const CLSID_TF_LangBarMgr = Guid.initString("ebb08c45-6c4a-4fdc-ae53-4eb8c4c7db8e");
+pub const CLSID_TF_ThreadMgr = Guid.initString("529a9e6b-6587-4f23-ab9e-9c7d683e3c50");
+pub const CLSID_TF_TransitoryExtensionUIEntry = Guid.initString("ae6be008-07fb-400d-8beb-337a64f7051f");
+pub const CLSID_TsfServices = Guid.initString("39aedc00-6b60-46db-8d31-3642be0e4373");
+pub const DCM_FLAGS_CTFMON = @as(u32, 2);
+pub const DCM_FLAGS_LOCALTHREADTSF = @as(u32, 4);
+pub const DCM_FLAGS_TASKENG = @as(u32, 1);
 pub const GUID_APP_FUNCTIONPROVIDER = Guid.initString("4caef01e-12af-4b0e-9db1-a6ec5b881208");
-pub const GUID_TFCAT_CATEGORY_OF_TIP = Guid.initString("534c48c1-0607-4098-a521-4fc899c73e90");
-pub const GUID_TFCAT_TIP_KEYBOARD = Guid.initString("34745c63-b2f0-4784-8b67-5e12c8701a31");
-pub const GUID_TFCAT_TIP_SPEECH = Guid.initString("b5a73cd1-8355-426b-a161-259808f26b14");
-pub const GUID_TFCAT_TIP_HANDWRITING = Guid.initString("246ecb87-c2f2-4abe-905b-c8b38add2c43");
-pub const GUID_TFCAT_PROP_AUDIODATA = Guid.initString("9b7be3a9-e8ab-4d47-a8fe-254fa423436d");
-pub const GUID_TFCAT_PROP_INKDATA = Guid.initString("7c6a82ae-b0d7-4f14-a745-14f28b009d61");
-pub const GUID_COMPARTMENT_SAPI_AUDIO = Guid.initString("51af2086-cc6b-457d-b5aa-8b19dc290ab4");
-pub const GUID_COMPARTMENT_KEYBOARD_DISABLED = Guid.initString("71a5b253-1951-466b-9fbc-9c8808fa84f2");
-pub const GUID_COMPARTMENT_KEYBOARD_OPENCLOSE = Guid.initString("58273aad-01bb-4164-95c6-755ba0b5162d");
-pub const GUID_COMPARTMENT_HANDWRITING_OPENCLOSE = Guid.initString("f9ae2c6b-1866-4361-af72-7aa30948890e");
-pub const GUID_COMPARTMENT_SPEECH_DISABLED = Guid.initString("56c5c607-0703-4e59-8e52-cbc84e8bbe35");
-pub const GUID_COMPARTMENT_SPEECH_OPENCLOSE = Guid.initString("544d6a63-e2e8-4752-bbd1-000960bca083");
-pub const GUID_COMPARTMENT_SPEECH_GLOBALSTATE = Guid.initString("2a54fe8e-0d08-460c-a75d-87035ff436c5");
 pub const GUID_COMPARTMENT_CONVERSIONMODEBIAS = Guid.initString("5497f516-ee91-436e-b946-aa2c05f1ac5b");
-pub const GUID_PROP_MODEBIAS = Guid.initString("372e0716-974f-40ac-a088-08cdc92ebfbc");
-pub const GUID_COMPARTMENT_KEYBOARD_INPUTMODE = Guid.initString("b6592511-bcee-4122-a7c4-09f4b3fa4396");
-pub const GUID_MODEBIAS_NONE = Guid.initString("00000000-0000-0000-0000-000000000000");
-pub const GUID_MODEBIAS_URLHISTORY = Guid.initString("8b0e54d9-63f2-4c68-84d4-79aee7a59f09");
-pub const GUID_MODEBIAS_FILENAME = Guid.initString("d7f707fe-44c6-4fca-8e76-86ab50c7931b");
-pub const GUID_MODEBIAS_READING = Guid.initString("e31643a3-6466-4cbf-8d8b-0bd4d8545461");
-pub const GUID_MODEBIAS_DATETIME = Guid.initString("f2bdb372-7f61-4039-92ef-1c35599f0222");
-pub const GUID_MODEBIAS_NAME = Guid.initString("fddc10f0-d239-49bf-b8fc-5410caaa427e");
-pub const GUID_MODEBIAS_CONVERSATION = Guid.initString("0f4ec104-1790-443b-95f1-e10f939d6546");
-pub const GUID_MODEBIAS_NUMERIC = Guid.initString("4021766c-e872-48fd-9cee-4ec5c75e16c3");
-pub const GUID_MODEBIAS_HIRAGANA = Guid.initString("d73d316e-9b91-46f1-a280-31597f52c694");
-pub const GUID_MODEBIAS_KATAKANA = Guid.initString("2e0eeddd-3a1a-499e-8543-3c7ee7949811");
-pub const GUID_MODEBIAS_HANGUL = Guid.initString("76ef0541-23b3-4d77-a074-691801ccea17");
-pub const GUID_MODEBIAS_CHINESE = Guid.initString("7add26de-4328-489b-83ae-6493750cad5c");
-pub const GUID_MODEBIAS_HALFWIDTHKATAKANA = Guid.initString("005f6b63-78d4-41cc-8859-485ca821a795");
-pub const GUID_MODEBIAS_FULLWIDTHALPHANUMERIC = Guid.initString("81489fb8-b36a-473d-8146-e4a2258b24ae");
-pub const GUID_MODEBIAS_FULLWIDTHHANGUL = Guid.initString("c01ae6c9-45b5-4fd0-9cb1-9f4cebc39fea");
-pub const GUID_TFCAT_PROPSTYLE_STATIC = Guid.initString("565fb8d8-6bd4-4ca1-b223-0f2ccb8f4f96");
-pub const GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER = Guid.initString("046b8c80-1647-40f7-9b21-b93b81aabc1b");
-pub const GUID_TFCAT_DISPLAYATTRIBUTEPROPERTY = Guid.initString("b95f181b-ea4c-4af1-8056-7c321abbb091");
-pub const GUID_COMPARTMENT_SPEECH_UI_STATUS = Guid.initString("d92016f0-9367-4fe7-9abf-bc59dacbe0e3");
 pub const GUID_COMPARTMENT_EMPTYCONTEXT = Guid.initString("d7487dbf-804e-41c5-894d-ad96fd4eea13");
-pub const GUID_COMPARTMENT_TIPUISTATUS = Guid.initString("148ca3ec-0366-401c-8d75-ed978d85fbc9");
-pub const GUID_COMPARTMENT_SPEECH_CFGMENU = Guid.initString("fb6c5c2d-4e83-4bb6-91a2-e019bff6762d");
-pub const GUID_LBI_SAPILAYR_CFGMENUBUTTON = Guid.initString("d02f24a1-942d-422e-8d99-b4f2addee999");
-pub const GUID_TFCAT_TIPCAP_SECUREMODE = Guid.initString("49d2f9ce-1f5e-11d7-a6d3-00065b84435c");
-pub const GUID_TFCAT_TIPCAP_UIELEMENTENABLED = Guid.initString("49d2f9cf-1f5e-11d7-a6d3-00065b84435c");
-pub const GUID_TFCAT_TIPCAP_INPUTMODECOMPARTMENT = Guid.initString("ccf05dd7-4a87-11d7-a6e2-00065b84435c");
-pub const GUID_TFCAT_TIPCAP_COMLESS = Guid.initString("364215d9-75bc-11d7-a6ef-00065b84435c");
-pub const GUID_TFCAT_TIPCAP_WOW16 = Guid.initString("364215da-75bc-11d7-a6ef-00065b84435c");
-pub const GUID_TFCAT_TIPCAP_IMMERSIVESUPPORT = Guid.initString("13a016df-560b-46cd-947a-4c3af1e0e35d");
-pub const GUID_TFCAT_TIPCAP_IMMERSIVEONLY = Guid.initString("3a4259ac-640d-4ad4-89f7-1eb67e7c4ee8");
-pub const GUID_TFCAT_TIPCAP_LOCALSERVER = Guid.initString("74769ee9-4a66-4f9d-90d6-bf8b7c3eb461");
-pub const GUID_TFCAT_TIPCAP_TSF3 = Guid.initString("07dcb4af-98de-4548-bef7-25bd45979a1f");
-pub const GUID_TFCAT_TIPCAP_DUALMODE = Guid.initString("3af314a2-d79f-4b1b-9992-15086d339b05");
-pub const GUID_TFCAT_TIPCAP_SYSTRAYSUPPORT = Guid.initString("25504fb4-7bab-4bc1-9c69-cf81890f0ef5");
+pub const GUID_COMPARTMENT_ENABLED_PROFILES_UPDATED = Guid.initString("92c1fd48-a9ae-4a7c-be08-4329e4723817");
+pub const GUID_COMPARTMENT_HANDWRITING_OPENCLOSE = Guid.initString("f9ae2c6b-1866-4361-af72-7aa30948890e");
+pub const GUID_COMPARTMENT_KEYBOARD_DISABLED = Guid.initString("71a5b253-1951-466b-9fbc-9c8808fa84f2");
+pub const GUID_COMPARTMENT_KEYBOARD_INPUTMODE = Guid.initString("b6592511-bcee-4122-a7c4-09f4b3fa4396");
 pub const GUID_COMPARTMENT_KEYBOARD_INPUTMODE_CONVERSION = Guid.initString("ccf05dd8-4a87-11d7-a6e2-00065b84435c");
 pub const GUID_COMPARTMENT_KEYBOARD_INPUTMODE_SENTENCE = Guid.initString("ccf05dd9-4a87-11d7-a6e2-00065b84435c");
+pub const GUID_COMPARTMENT_KEYBOARD_OPENCLOSE = Guid.initString("58273aad-01bb-4164-95c6-755ba0b5162d");
+pub const GUID_COMPARTMENT_SAPI_AUDIO = Guid.initString("51af2086-cc6b-457d-b5aa-8b19dc290ab4");
+pub const GUID_COMPARTMENT_SPEECH_CFGMENU = Guid.initString("fb6c5c2d-4e83-4bb6-91a2-e019bff6762d");
+pub const GUID_COMPARTMENT_SPEECH_DISABLED = Guid.initString("56c5c607-0703-4e59-8e52-cbc84e8bbe35");
+pub const GUID_COMPARTMENT_SPEECH_GLOBALSTATE = Guid.initString("2a54fe8e-0d08-460c-a75d-87035ff436c5");
+pub const GUID_COMPARTMENT_SPEECH_OPENCLOSE = Guid.initString("544d6a63-e2e8-4752-bbd1-000960bca083");
+pub const GUID_COMPARTMENT_SPEECH_UI_STATUS = Guid.initString("d92016f0-9367-4fe7-9abf-bc59dacbe0e3");
+pub const GUID_COMPARTMENT_TIPUISTATUS = Guid.initString("148ca3ec-0366-401c-8d75-ed978d85fbc9");
 pub const GUID_COMPARTMENT_TRANSITORYEXTENSION = Guid.initString("8be347f5-c7a0-11d7-b408-00065b84435c");
 pub const GUID_COMPARTMENT_TRANSITORYEXTENSION_DOCUMENTMANAGER = Guid.initString("8be347f7-c7a0-11d7-b408-00065b84435c");
 pub const GUID_COMPARTMENT_TRANSITORYEXTENSION_PARENT = Guid.initString("8be347f8-c7a0-11d7-b408-00065b84435c");
-pub const GUID_COMPARTMENT_ENABLED_PROFILES_UPDATED = Guid.initString("92c1fd48-a9ae-4a7c-be08-4329e4723817");
-pub const GUID_TFCAT_TRANSITORYEXTENSIONUI = Guid.initString("6302de22-a5cf-4b02-bfe8-4d72b2bed3c6");
+pub const GUID_INTEGRATIONSTYLE_SEARCHBOX = Guid.initString("e6d1bd11-82f7-4903-ae21-1a6397cde2eb");
 pub const GUID_LBI_INPUTMODE = Guid.initString("2c77a81e-41cc-4178-a3a7-5f8a987568e6");
-pub const CLSID_TF_ThreadMgr = Guid.initString("529a9e6b-6587-4f23-ab9e-9c7d683e3c50");
-pub const CLSID_TF_LangBarMgr = Guid.initString("ebb08c45-6c4a-4fdc-ae53-4eb8c4c7db8e");
-pub const CLSID_TF_DisplayAttributeMgr = Guid.initString("3ce74de4-53d3-4d74-8b83-431b3828ba53");
-pub const CLSID_TF_CategoryMgr = Guid.initString("a4b544a1-438d-4b41-9325-869523e2d6c7");
-pub const CLSID_TF_InputProcessorProfiles = Guid.initString("33c53a50-f456-4884-b049-85fd643ecfed");
-pub const CLSID_TF_LangBarItemMgr = Guid.initString("b9931692-a2b3-4fab-bf33-9ec6f9fb96ac");
-pub const CLSID_TF_ClassicLangBar = Guid.initString("3318360c-1afc-4d09-a86b-9f9cb6dceb9c");
-pub const CLSID_TF_TransitoryExtensionUIEntry = Guid.initString("ae6be008-07fb-400d-8beb-337a64f7051f");
-pub const CLSID_TsfServices = Guid.initString("39aedc00-6b60-46db-8d31-3642be0e4373");
-pub const GUID_TS_SERVICE_DATAOBJECT = Guid.initString("6086fbb5-e225-46ce-a770-c1bbd3e05d7b");
+pub const GUID_LBI_SAPILAYR_CFGMENUBUTTON = Guid.initString("d02f24a1-942d-422e-8d99-b4f2addee999");
+pub const GUID_MODEBIAS_CHINESE = Guid.initString("7add26de-4328-489b-83ae-6493750cad5c");
+pub const GUID_MODEBIAS_CONVERSATION = Guid.initString("0f4ec104-1790-443b-95f1-e10f939d6546");
+pub const GUID_MODEBIAS_DATETIME = Guid.initString("f2bdb372-7f61-4039-92ef-1c35599f0222");
+pub const GUID_MODEBIAS_FILENAME = Guid.initString("d7f707fe-44c6-4fca-8e76-86ab50c7931b");
+pub const GUID_MODEBIAS_FULLWIDTHALPHANUMERIC = Guid.initString("81489fb8-b36a-473d-8146-e4a2258b24ae");
+pub const GUID_MODEBIAS_FULLWIDTHHANGUL = Guid.initString("c01ae6c9-45b5-4fd0-9cb1-9f4cebc39fea");
+pub const GUID_MODEBIAS_HALFWIDTHKATAKANA = Guid.initString("005f6b63-78d4-41cc-8859-485ca821a795");
+pub const GUID_MODEBIAS_HANGUL = Guid.initString("76ef0541-23b3-4d77-a074-691801ccea17");
+pub const GUID_MODEBIAS_HIRAGANA = Guid.initString("d73d316e-9b91-46f1-a280-31597f52c694");
+pub const GUID_MODEBIAS_KATAKANA = Guid.initString("2e0eeddd-3a1a-499e-8543-3c7ee7949811");
+pub const GUID_MODEBIAS_NAME = Guid.initString("fddc10f0-d239-49bf-b8fc-5410caaa427e");
+pub const GUID_MODEBIAS_NONE = Guid.initString("00000000-0000-0000-0000-000000000000");
+pub const GUID_MODEBIAS_NUMERIC = Guid.initString("4021766c-e872-48fd-9cee-4ec5c75e16c3");
+pub const GUID_MODEBIAS_READING = Guid.initString("e31643a3-6466-4cbf-8d8b-0bd4d8545461");
+pub const GUID_MODEBIAS_URLHISTORY = Guid.initString("8b0e54d9-63f2-4c68-84d4-79aee7a59f09");
+pub const GUID_PROP_ATTRIBUTE = Guid.initString("34b45670-7526-11d2-a147-00105a2799b5");
+pub const GUID_PROP_COMPOSING = Guid.initString("e12ac060-af15-11d2-afc5-00105a2799b5");
+pub const GUID_PROP_INPUTSCOPE = Guid.initString("1713dd5a-68e7-4a5b-9af6-592a595c778d");
+pub const GUID_PROP_LANGID = Guid.initString("3280ce20-8032-11d2-b603-00105a2799b5");
+pub const GUID_PROP_MODEBIAS = Guid.initString("372e0716-974f-40ac-a088-08cdc92ebfbc");
+pub const GUID_PROP_READING = Guid.initString("5463f7c0-8e31-11d2-bf46-00105a2799b5");
+pub const GUID_PROP_TEXTOWNER = Guid.initString("f1e2d520-0969-11d3-8df0-00105a2799b5");
+pub const GUID_PROP_TKB_ALTERNATES = Guid.initString("70b2a803-968d-462e-b93b-2164c91517f7");
+pub const GUID_SYSTEM_FUNCTIONPROVIDER = Guid.initString("9a698bb0-0f21-11d3-8df1-00105a2799b5");
+pub const GUID_TFCAT_CATEGORY_OF_TIP = Guid.initString("534c48c1-0607-4098-a521-4fc899c73e90");
+pub const GUID_TFCAT_DISPLAYATTRIBUTEPROPERTY = Guid.initString("b95f181b-ea4c-4af1-8056-7c321abbb091");
+pub const GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER = Guid.initString("046b8c80-1647-40f7-9b21-b93b81aabc1b");
+pub const GUID_TFCAT_PROP_AUDIODATA = Guid.initString("9b7be3a9-e8ab-4d47-a8fe-254fa423436d");
+pub const GUID_TFCAT_PROP_INKDATA = Guid.initString("7c6a82ae-b0d7-4f14-a745-14f28b009d61");
+pub const GUID_TFCAT_PROPSTYLE_STATIC = Guid.initString("565fb8d8-6bd4-4ca1-b223-0f2ccb8f4f96");
+pub const GUID_TFCAT_TIP_HANDWRITING = Guid.initString("246ecb87-c2f2-4abe-905b-c8b38add2c43");
+pub const GUID_TFCAT_TIP_KEYBOARD = Guid.initString("34745c63-b2f0-4784-8b67-5e12c8701a31");
+pub const GUID_TFCAT_TIP_SPEECH = Guid.initString("b5a73cd1-8355-426b-a161-259808f26b14");
+pub const GUID_TFCAT_TIPCAP_COMLESS = Guid.initString("364215d9-75bc-11d7-a6ef-00065b84435c");
+pub const GUID_TFCAT_TIPCAP_DUALMODE = Guid.initString("3af314a2-d79f-4b1b-9992-15086d339b05");
+pub const GUID_TFCAT_TIPCAP_IMMERSIVEONLY = Guid.initString("3a4259ac-640d-4ad4-89f7-1eb67e7c4ee8");
+pub const GUID_TFCAT_TIPCAP_IMMERSIVESUPPORT = Guid.initString("13a016df-560b-46cd-947a-4c3af1e0e35d");
+pub const GUID_TFCAT_TIPCAP_INPUTMODECOMPARTMENT = Guid.initString("ccf05dd7-4a87-11d7-a6e2-00065b84435c");
+pub const GUID_TFCAT_TIPCAP_LOCALSERVER = Guid.initString("74769ee9-4a66-4f9d-90d6-bf8b7c3eb461");
+pub const GUID_TFCAT_TIPCAP_SECUREMODE = Guid.initString("49d2f9ce-1f5e-11d7-a6d3-00065b84435c");
+pub const GUID_TFCAT_TIPCAP_SYSTRAYSUPPORT = Guid.initString("25504fb4-7bab-4bc1-9c69-cf81890f0ef5");
+pub const GUID_TFCAT_TIPCAP_TSF3 = Guid.initString("07dcb4af-98de-4548-bef7-25bd45979a1f");
+pub const GUID_TFCAT_TIPCAP_UIELEMENTENABLED = Guid.initString("49d2f9cf-1f5e-11d7-a6d3-00065b84435c");
+pub const GUID_TFCAT_TIPCAP_WOW16 = Guid.initString("364215da-75bc-11d7-a6ef-00065b84435c");
+pub const GUID_TFCAT_TRANSITORYEXTENSIONUI = Guid.initString("6302de22-a5cf-4b02-bfe8-4d72b2bed3c6");
 pub const GUID_TS_SERVICE_ACCESSIBLE = Guid.initString("f9786200-a5bf-4a0f-8c24-fb16f5d1aabb");
 pub const GUID_TS_SERVICE_ACTIVEX = Guid.initString("ea937a50-c9a6-4b7d-894a-49d99b784834");
-pub const TS_E_INVALIDPOS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
-pub const TS_E_NOLOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
-pub const TS_E_NOOBJECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
-pub const TS_E_NOSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
-pub const TS_E_NOINTERFACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
-pub const TS_E_NOSELECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220987));
-pub const TS_E_NOLAYOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
-pub const TS_E_INVALIDPOINT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220985));
-pub const TS_E_SYNCHRONOUS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220984));
-pub const TS_E_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220983));
-pub const TS_E_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220982));
-pub const TS_S_ASYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262912));
-pub const TS_AS_TEXT_CHANGE = @as(u32, 1);
-pub const TS_AS_SEL_CHANGE = @as(u32, 2);
-pub const TS_AS_LAYOUT_CHANGE = @as(u32, 4);
-pub const TS_AS_ATTR_CHANGE = @as(u32, 8);
-pub const TS_AS_STATUS_CHANGE = @as(u32, 16);
-pub const TS_LF_SYNC = @as(u32, 1);
-pub const TS_SD_READONLY = @as(u32, 1);
-pub const TS_SD_LOADING = @as(u32, 2);
-pub const TS_SD_RESERVED = @as(u32, 4);
-pub const TS_SD_TKBAUTOCORRECTENABLE = @as(u32, 8);
-pub const TS_SD_TKBPREDICTIONENABLE = @as(u32, 16);
-pub const TS_SD_UIINTEGRATIONENABLE = @as(u32, 32);
-pub const TS_SD_INPUTPANEMANUALDISPLAYENABLE = @as(u32, 64);
-pub const TS_SD_EMBEDDEDHANDWRITINGVIEW_ENABLED = @as(u32, 128);
-pub const TS_SD_EMBEDDEDHANDWRITINGVIEW_VISIBLE = @as(u32, 256);
-pub const TS_SS_DISJOINTSEL = @as(u32, 1);
-pub const TS_SS_REGIONS = @as(u32, 2);
-pub const TS_SS_TRANSITORY = @as(u32, 4);
-pub const TS_SS_NOHIDDENTEXT = @as(u32, 8);
-pub const TS_SS_TKBAUTOCORRECTENABLE = @as(u32, 16);
-pub const TS_SS_TKBPREDICTIONENABLE = @as(u32, 32);
-pub const TS_SS_UWPCONTROL = @as(u32, 64);
-pub const TS_IE_CORRECTION = @as(u32, 1);
-pub const TS_IE_COMPOSITION = @as(u32, 2);
-pub const TS_IAS_NOQUERY = @as(u32, 1);
-pub const TS_IAS_QUERYONLY = @as(u32, 2);
-pub const GXFPF_ROUND_NEAREST = @as(u32, 1);
+pub const GUID_TS_SERVICE_DATAOBJECT = Guid.initString("6086fbb5-e225-46ce-a770-c1bbd3e05d7b");
 pub const GXFPF_NEAREST = @as(u32, 2);
-pub const TS_CHAR_EMBEDDED = @as(u32, 65532);
-pub const TS_CHAR_REGION = @as(u32, 0);
-pub const TS_CHAR_REPLACEMENT = @as(u32, 65533);
-pub const TS_ATTR_FIND_BACKWARDS = @as(u32, 1);
-pub const TS_ATTR_FIND_WANT_OFFSET = @as(u32, 2);
-pub const TS_ATTR_FIND_UPDATESTART = @as(u32, 4);
-pub const TS_ATTR_FIND_WANT_VALUE = @as(u32, 8);
-pub const TS_ATTR_FIND_WANT_END = @as(u32, 16);
-pub const TS_ATTR_FIND_HIDDEN = @as(u32, 32);
-pub const TS_VCOOKIE_NUL = @as(u32, 4294967295);
-pub const TS_SHIFT_COUNT_HIDDEN = @as(u32, 1);
-pub const TS_SHIFT_HALT_HIDDEN = @as(u32, 2);
-pub const TS_SHIFT_HALT_VISIBLE = @as(u32, 4);
-pub const TS_SHIFT_COUNT_ONLY = @as(u32, 8);
-pub const TS_GTA_HIDDEN = @as(u32, 1);
-pub const TS_GEA_HIDDEN = @as(u32, 1);
-pub const TF_E_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220224));
-pub const TF_E_STACKFULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220223));
-pub const TF_E_NOTOWNEDRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220222));
-pub const TF_E_NOPROVIDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220221));
-pub const TF_E_DISCONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220220));
-pub const TF_E_INVALIDVIEW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220219));
+pub const GXFPF_ROUND_NEAREST = @as(u32, 1);
+pub const ILMCM_CHECKLAYOUTANDTIPENABLED = @as(u32, 1);
+pub const ILMCM_LANGUAGEBAROFF = @as(u32, 2);
+pub const LIBID_MSAATEXTLib = Guid.initString("150e2d7a-dac1-4582-947d-2a8fd78b82cd");
+pub const TF_CHAR_EMBEDDED = @as(u32, 65532);
+pub const TF_CLUIE_COUNT = @as(u32, 2);
+pub const TF_CLUIE_CURRENTPAGE = @as(u32, 32);
+pub const TF_CLUIE_DOCUMENTMGR = @as(u32, 1);
+pub const TF_CLUIE_PAGEINDEX = @as(u32, 16);
+pub const TF_CLUIE_SELECTION = @as(u32, 4);
+pub const TF_CLUIE_STRING = @as(u32, 8);
+pub const TF_COMMANDING_ENABLED = @as(u32, 4);
+pub const TF_COMMANDING_ON = @as(u32, 8);
+pub const TF_CONVERSIONMODE_ALPHANUMERIC = @as(u32, 0);
+pub const TF_CONVERSIONMODE_CHARCODE = @as(u32, 32);
+pub const TF_CONVERSIONMODE_EUDC = @as(u32, 512);
+pub const TF_CONVERSIONMODE_FIXED = @as(u32, 2048);
+pub const TF_CONVERSIONMODE_FULLSHAPE = @as(u32, 8);
+pub const TF_CONVERSIONMODE_KATAKANA = @as(u32, 2);
+pub const TF_CONVERSIONMODE_NATIVE = @as(u32, 1);
+pub const TF_CONVERSIONMODE_NOCONVERSION = @as(u32, 256);
+pub const TF_CONVERSIONMODE_ROMAN = @as(u32, 16);
+pub const TF_CONVERSIONMODE_SOFTKEYBOARD = @as(u32, 128);
+pub const TF_CONVERSIONMODE_SYMBOL = @as(u32, 1024);
+pub const TF_DICTATION_ENABLED = @as(u32, 2);
+pub const TF_DICTATION_ON = @as(u32, 1);
+pub const TF_DISABLE_BALLOON = @as(u32, 2);
+pub const TF_DISABLE_COMMANDING = @as(u32, 4);
+pub const TF_DISABLE_DICTATION = @as(u32, 2);
+pub const TF_DISABLE_SPEECH = @as(u32, 1);
 pub const TF_E_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220218));
-pub const TF_E_RANGE_NOT_COVERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220217));
 pub const TF_E_COMPOSITION_REJECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220216));
+pub const TF_E_DISCONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220220));
 pub const TF_E_EMPTYCONTEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220215));
+pub const TF_E_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220982));
+pub const TF_E_INVALIDPOINT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220985));
 pub const TF_E_INVALIDPOS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const TF_E_INVALIDVIEW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220219));
+pub const TF_E_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220224));
+pub const TF_E_NOCONVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219968));
+pub const TF_E_NOINTERFACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
+pub const TF_E_NOLAYOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
 pub const TF_E_NOLOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
 pub const TF_E_NOOBJECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
-pub const TF_E_NOSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
-pub const TF_E_NOINTERFACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
+pub const TF_E_NOPROVIDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220221));
 pub const TF_E_NOSELECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220987));
-pub const TF_E_NOLAYOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
-pub const TF_E_INVALIDPOINT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220985));
-pub const TF_E_SYNCHRONOUS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220984));
+pub const TF_E_NOSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
+pub const TF_E_NOTOWNEDRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220222));
+pub const TF_E_RANGE_NOT_COVERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220217));
 pub const TF_E_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220983));
-pub const TF_E_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220982));
-pub const TF_S_ASYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262912));
-pub const TF_RCM_COMLESS = @as(u32, 1);
-pub const TF_RCM_VKEY = @as(u32, 2);
-pub const TF_RCM_HINT_READING_LENGTH = @as(u32, 4);
-pub const TF_RCM_HINT_COLLISION = @as(u32, 8);
-pub const TKB_ALTERNATES_STANDARD = @as(u32, 1);
-pub const TKB_ALTERNATES_FOR_AUTOCORRECTION = @as(u32, 2);
-pub const TKB_ALTERNATES_FOR_PREDICTION = @as(u32, 3);
-pub const TKB_ALTERNATES_AUTOCORRECTION_APPLIED = @as(u32, 4);
-pub const TF_TMAE_NOACTIVATETIP = @as(u32, 1);
-pub const TF_TMAE_SECUREMODE = @as(u32, 2);
-pub const TF_TMAE_UIELEMENTENABLEDONLY = @as(u32, 4);
-pub const TF_TMAE_COMLESS = @as(u32, 8);
-pub const TF_TMAE_WOW16 = @as(u32, 16);
-pub const TF_TMAE_NOACTIVATEKEYBOARDLAYOUT = @as(u32, 32);
-pub const TF_TMAE_CONSOLE = @as(u32, 64);
-pub const TF_TMF_NOACTIVATETIP = @as(u32, 1);
-pub const TF_TMF_SECUREMODE = @as(u32, 2);
-pub const TF_TMF_UIELEMENTENABLEDONLY = @as(u32, 4);
-pub const TF_TMF_COMLESS = @as(u32, 8);
-pub const TF_TMF_WOW16 = @as(u32, 16);
-pub const TF_TMF_CONSOLE = @as(u32, 64);
-pub const TF_TMF_IMMERSIVEMODE = @as(u32, 1073741824);
-pub const TF_TMF_ACTIVATED = @as(u32, 2147483648);
+pub const TF_E_STACKFULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220223));
+pub const TF_E_SYNCHRONOUS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220984));
+pub const TF_ENABLE_PROCESS_ATOM = "_CTF_ENABLE_PROCESS_ATOM_";
+pub const TF_FLOATINGLANGBAR_WNDTITLE = "TF_FloatingLangBar_WndTitle";
+pub const TF_FLOATINGLANGBAR_WNDTITLEA = "TF_FloatingLangBar_WndTitle";
+pub const TF_FLOATINGLANGBAR_WNDTITLEW = "TF_FloatingLangBar_WndTitle";
+pub const TF_HF_OBJECT = @as(u32, 1);
+pub const TF_IE_CORRECTION = @as(u32, 1);
+pub const TF_INVALID_COOKIE = @as(u32, 4294967295);
+pub const TF_INVALID_EDIT_COOKIE = @as(u32, 0);
+pub const TF_IPP_CAPS_COMLESSSUPPORT = @as(u32, 8);
+pub const TF_IPP_CAPS_DISABLEONTRANSITORY = @as(u32, 1);
+pub const TF_IPP_CAPS_IMMERSIVESUPPORT = @as(u32, 65536);
+pub const TF_IPP_CAPS_SECUREMODESUPPORT = @as(u32, 2);
+pub const TF_IPP_CAPS_SYSTRAYSUPPORT = @as(u32, 131072);
+pub const TF_IPP_CAPS_UIELEMENTENABLED = @as(u32, 4);
+pub const TF_IPP_CAPS_WOW16SUPPORT = @as(u32, 16);
+pub const TF_IPP_FLAG_ACTIVE = @as(u32, 1);
+pub const TF_IPP_FLAG_ENABLED = @as(u32, 2);
+pub const TF_IPP_FLAG_SUBSTITUTEDBYINPUTPROCESSOR = @as(u32, 4);
+pub const TF_IPPMF_DISABLEPROFILE = @as(u32, 2);
+pub const TF_IPPMF_DONTCARECURRENTINPUTLANGUAGE = @as(u32, 4);
+pub const TF_IPPMF_ENABLEPROFILE = @as(u32, 1);
+pub const TF_IPPMF_FORPROCESS = @as(u32, 268435456);
+pub const TF_IPPMF_FORSESSION = @as(u32, 536870912);
+pub const TF_IPPMF_FORSYSTEMALL = @as(u32, 1073741824);
+pub const TF_IPSINK_FLAG_ACTIVE = @as(u32, 1);
+pub const TF_LBI_BALLOON = @as(u32, 16);
+pub const TF_LBI_BITMAP = @as(u32, 8);
+pub const TF_LBI_BMPF_VERTICAL = @as(u32, 1);
+pub const TF_LBI_CUSTOMUI = @as(u32, 32);
+pub const TF_LBI_DESC_MAXLEN = @as(u32, 32);
+pub const TF_LBI_ICON = @as(u32, 1);
+pub const TF_LBI_STATUS = @as(u32, 65536);
+pub const TF_LBI_STATUS_BTN_TOGGLED = @as(u32, 65536);
+pub const TF_LBI_STATUS_DISABLED = @as(u32, 2);
+pub const TF_LBI_STATUS_HIDDEN = @as(u32, 1);
+pub const TF_LBI_STYLE_BTN_BUTTON = @as(u32, 65536);
+pub const TF_LBI_STYLE_BTN_MENU = @as(u32, 131072);
+pub const TF_LBI_STYLE_BTN_TOGGLE = @as(u32, 262144);
+pub const TF_LBI_STYLE_HIDDENBYDEFAULT = @as(u32, 16);
+pub const TF_LBI_STYLE_HIDDENSTATUSCONTROL = @as(u32, 1);
+pub const TF_LBI_STYLE_HIDEONNOOTHERITEMS = @as(u32, 4);
+pub const TF_LBI_STYLE_SHOWNINTRAY = @as(u32, 2);
+pub const TF_LBI_STYLE_SHOWNINTRAYONLY = @as(u32, 8);
+pub const TF_LBI_STYLE_TEXTCOLORICON = @as(u32, 32);
+pub const TF_LBI_TEXT = @as(u32, 2);
+pub const TF_LBI_TOOLTIP = @as(u32, 4);
+pub const TF_LBMENUF_CHECKED = @as(u32, 1);
+pub const TF_LBMENUF_GRAYED = @as(u32, 16);
+pub const TF_LBMENUF_RADIOCHECKED = @as(u32, 8);
+pub const TF_LBMENUF_SEPARATOR = @as(u32, 4);
+pub const TF_LBMENUF_SUBMENU = @as(u32, 2);
+pub const TF_MENUREADY = @as(u32, 1);
 pub const TF_MOD_ALT = @as(u32, 1);
 pub const TF_MOD_CONTROL = @as(u32, 2);
-pub const TF_MOD_SHIFT = @as(u32, 4);
-pub const TF_MOD_RALT = @as(u32, 8);
-pub const TF_MOD_RCONTROL = @as(u32, 16);
-pub const TF_MOD_RSHIFT = @as(u32, 32);
+pub const TF_MOD_IGNORE_ALL_MODIFIER = @as(u32, 1024);
 pub const TF_MOD_LALT = @as(u32, 64);
 pub const TF_MOD_LCONTROL = @as(u32, 128);
 pub const TF_MOD_LSHIFT = @as(u32, 256);
 pub const TF_MOD_ON_KEYUP = @as(u32, 512);
-pub const TF_MOD_IGNORE_ALL_MODIFIER = @as(u32, 1024);
-pub const TF_US_HIDETIPUI = @as(u32, 1);
-pub const TF_DISABLE_SPEECH = @as(u32, 1);
-pub const TF_DISABLE_DICTATION = @as(u32, 2);
-pub const TF_DISABLE_COMMANDING = @as(u32, 4);
+pub const TF_MOD_RALT = @as(u32, 8);
+pub const TF_MOD_RCONTROL = @as(u32, 16);
+pub const TF_MOD_RSHIFT = @as(u32, 32);
+pub const TF_MOD_SHIFT = @as(u32, 4);
+pub const TF_POPF_ALL = @as(u32, 1);
 pub const TF_PROCESS_ATOM = "_CTF_PROCESS_ATOM_";
-pub const TF_ENABLE_PROCESS_ATOM = "_CTF_ENABLE_PROCESS_ATOM_";
-pub const TF_CLUIE_DOCUMENTMGR = @as(u32, 1);
-pub const TF_CLUIE_COUNT = @as(u32, 2);
-pub const TF_CLUIE_SELECTION = @as(u32, 4);
-pub const TF_CLUIE_STRING = @as(u32, 8);
-pub const TF_CLUIE_PAGEINDEX = @as(u32, 16);
-pub const TF_CLUIE_CURRENTPAGE = @as(u32, 32);
-pub const TF_RIUIE_CONTEXT = @as(u32, 1);
-pub const TF_RIUIE_STRING = @as(u32, 2);
-pub const TF_RIUIE_MAXREADINGSTRINGLENGTH = @as(u32, 4);
-pub const TF_RIUIE_ERRORINDEX = @as(u32, 8);
-pub const TF_RIUIE_VERTICALORDER = @as(u32, 16);
-pub const TF_CONVERSIONMODE_ALPHANUMERIC = @as(u32, 0);
-pub const TF_CONVERSIONMODE_NATIVE = @as(u32, 1);
-pub const TF_CONVERSIONMODE_KATAKANA = @as(u32, 2);
-pub const TF_CONVERSIONMODE_FULLSHAPE = @as(u32, 8);
-pub const TF_CONVERSIONMODE_ROMAN = @as(u32, 16);
-pub const TF_CONVERSIONMODE_CHARCODE = @as(u32, 32);
-pub const TF_CONVERSIONMODE_SOFTKEYBOARD = @as(u32, 128);
-pub const TF_CONVERSIONMODE_NOCONVERSION = @as(u32, 256);
-pub const TF_CONVERSIONMODE_EUDC = @as(u32, 512);
-pub const TF_CONVERSIONMODE_SYMBOL = @as(u32, 1024);
-pub const TF_CONVERSIONMODE_FIXED = @as(u32, 2048);
-pub const TF_SENTENCEMODE_NONE = @as(u32, 0);
-pub const TF_SENTENCEMODE_PLAURALCLAUSE = @as(u32, 1);
-pub const TF_SENTENCEMODE_SINGLECONVERT = @as(u32, 2);
-pub const TF_SENTENCEMODE_AUTOMATIC = @as(u32, 4);
-pub const TF_SENTENCEMODE_PHRASEPREDICT = @as(u32, 8);
-pub const TF_SENTENCEMODE_CONVERSATION = @as(u32, 16);
-pub const TF_TRANSITORYEXTENSION_NONE = @as(u32, 0);
-pub const TF_TRANSITORYEXTENSION_FLOATING = @as(u32, 1);
-pub const TF_TRANSITORYEXTENSION_ATSELECTION = @as(u32, 2);
+pub const TF_PROFILE_ARRAY = Guid.initString("d38eff65-aa46-4fd5-91a7-67845fb02f5b");
+pub const TF_PROFILE_CANTONESE = Guid.initString("0aec109c-7e96-11d4-b2ef-0080c882687e");
+pub const TF_PROFILE_CHANGJIE = Guid.initString("4bdf9f03-c7d3-11d4-b2ab-0080c882687e");
+pub const TF_PROFILE_DAYI = Guid.initString("037b2c25-480c-4d7f-b027-d6ca6b69788a");
+pub const TF_PROFILE_NEWCHANGJIE = Guid.initString("f3ba907a-6c7e-11d4-97fa-0080c882687e");
+pub const TF_PROFILE_NEWPHONETIC = Guid.initString("b2f9c502-1742-11d4-9790-0080c882687e");
+pub const TF_PROFILE_NEWQUICK = Guid.initString("0b883ba0-c1c7-11d4-87f9-0080c882687e");
+pub const TF_PROFILE_PHONETIC = Guid.initString("761309de-317a-11d4-9b5d-0080c882687e");
+pub const TF_PROFILE_PINYIN = Guid.initString("f3ba9077-6c7e-11d4-97fa-0080c882687e");
+pub const TF_PROFILE_QUICK = Guid.initString("6024b45f-5c54-11d4-b921-0080c882687e");
+pub const TF_PROFILE_SIMPLEFAST = Guid.initString("fa550b04-5ad7-411f-a5ac-ca038ec515d7");
+pub const TF_PROFILE_TIGRINYA = Guid.initString("3cab88b7-cc3e-46a6-9765-b772ad7761ff");
+pub const TF_PROFILE_WUBI = Guid.initString("82590c13-f4dd-44f4-ba1d-8667246fdf8e");
+pub const TF_PROFILE_YI = Guid.initString("409c8376-007b-4357-ae8e-26316ee3fb0d");
 pub const TF_PROFILETYPE_INPUTPROCESSOR = @as(u32, 1);
 pub const TF_PROFILETYPE_KEYBOARDLAYOUT = @as(u32, 2);
+pub const TF_PROPUI_STATUS_SAVETOFILE = @as(u32, 1);
+pub const TF_RCM_COMLESS = @as(u32, 1);
+pub const TF_RCM_HINT_COLLISION = @as(u32, 8);
+pub const TF_RCM_HINT_READING_LENGTH = @as(u32, 4);
+pub const TF_RCM_VKEY = @as(u32, 2);
 pub const TF_RIP_FLAG_FREEUNUSEDLIBRARIES = @as(u32, 1);
-pub const TF_IPP_FLAG_ACTIVE = @as(u32, 1);
-pub const TF_IPP_FLAG_ENABLED = @as(u32, 2);
-pub const TF_IPP_FLAG_SUBSTITUTEDBYINPUTPROCESSOR = @as(u32, 4);
-pub const TF_IPP_CAPS_DISABLEONTRANSITORY = @as(u32, 1);
-pub const TF_IPP_CAPS_SECUREMODESUPPORT = @as(u32, 2);
-pub const TF_IPP_CAPS_UIELEMENTENABLED = @as(u32, 4);
-pub const TF_IPP_CAPS_COMLESSSUPPORT = @as(u32, 8);
-pub const TF_IPP_CAPS_WOW16SUPPORT = @as(u32, 16);
-pub const TF_IPP_CAPS_IMMERSIVESUPPORT = @as(u32, 65536);
-pub const TF_IPP_CAPS_SYSTRAYSUPPORT = @as(u32, 131072);
-pub const TF_IPPMF_FORPROCESS = @as(u32, 268435456);
-pub const TF_IPPMF_FORSESSION = @as(u32, 536870912);
-pub const TF_IPPMF_FORSYSTEMALL = @as(u32, 1073741824);
-pub const TF_IPPMF_ENABLEPROFILE = @as(u32, 1);
-pub const TF_IPPMF_DISABLEPROFILE = @as(u32, 2);
-pub const TF_IPPMF_DONTCARECURRENTINPUTLANGUAGE = @as(u32, 4);
+pub const TF_RIUIE_CONTEXT = @as(u32, 1);
+pub const TF_RIUIE_ERRORINDEX = @as(u32, 8);
+pub const TF_RIUIE_MAXREADINGSTRINGLENGTH = @as(u32, 4);
+pub const TF_RIUIE_STRING = @as(u32, 2);
+pub const TF_RIUIE_VERTICALORDER = @as(u32, 16);
 pub const TF_RP_HIDDENINSETTINGUI = @as(u32, 2);
 pub const TF_RP_LOCALPROCESS = @as(u32, 4);
 pub const TF_RP_LOCALTHREAD = @as(u32, 8);
 pub const TF_RP_SUBITEMINSETTINGUI = @as(u32, 16);
+pub const TF_S_ASYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262912));
+pub const TF_SD_LOADING = @as(u32, 2);
+pub const TF_SD_READONLY = @as(u32, 1);
+pub const TF_SENTENCEMODE_AUTOMATIC = @as(u32, 4);
+pub const TF_SENTENCEMODE_CONVERSATION = @as(u32, 16);
+pub const TF_SENTENCEMODE_NONE = @as(u32, 0);
+pub const TF_SENTENCEMODE_PHRASEPREDICT = @as(u32, 8);
+pub const TF_SENTENCEMODE_PLAURALCLAUSE = @as(u32, 1);
+pub const TF_SENTENCEMODE_SINGLECONVERT = @as(u32, 2);
+pub const TF_SFT_DESKBAND = @as(u32, 2048);
+pub const TF_SFT_DOCK = @as(u32, 2);
+pub const TF_SFT_EXTRAICONSONMINIMIZED = @as(u32, 512);
+pub const TF_SFT_HIDDEN = @as(u32, 8);
+pub const TF_SFT_HIGHTRANSPARENCY = @as(u32, 64);
+pub const TF_SFT_LABELS = @as(u32, 128);
+pub const TF_SFT_LOWTRANSPARENCY = @as(u32, 32);
+pub const TF_SFT_MINIMIZED = @as(u32, 4);
+pub const TF_SFT_NOEXTRAICONSONMINIMIZED = @as(u32, 1024);
+pub const TF_SFT_NOLABELS = @as(u32, 256);
+pub const TF_SFT_NOTRANSPARENCY = @as(u32, 16);
+pub const TF_SFT_SHOWNORMAL = @as(u32, 1);
+pub const TF_SHOW_BALLOON = @as(u32, 1);
+pub const TF_SPEECHUI_SHOWN = @as(u32, 16);
+pub const TF_SS_DISJOINTSEL = @as(u32, 1);
+pub const TF_SS_REGIONS = @as(u32, 2);
+pub const TF_SS_TKBAUTOCORRECTENABLE = @as(u32, 16);
+pub const TF_SS_TKBPREDICTIONENABLE = @as(u32, 32);
+pub const TF_SS_TRANSITORY = @as(u32, 4);
+pub const TF_ST_CORRECTION = @as(u32, 1);
+pub const TF_TF_IGNOREEND = @as(u32, 2);
+pub const TF_TF_MOVESTART = @as(u32, 1);
+pub const TF_TMAE_COMLESS = @as(u32, 8);
+pub const TF_TMAE_CONSOLE = @as(u32, 64);
+pub const TF_TMAE_NOACTIVATEKEYBOARDLAYOUT = @as(u32, 32);
+pub const TF_TMAE_NOACTIVATETIP = @as(u32, 1);
+pub const TF_TMAE_SECUREMODE = @as(u32, 2);
+pub const TF_TMAE_UIELEMENTENABLEDONLY = @as(u32, 4);
+pub const TF_TMAE_WOW16 = @as(u32, 16);
+pub const TF_TMF_ACTIVATED = @as(u32, 2147483648);
+pub const TF_TMF_COMLESS = @as(u32, 8);
+pub const TF_TMF_CONSOLE = @as(u32, 64);
+pub const TF_TMF_IMMERSIVEMODE = @as(u32, 1073741824);
+pub const TF_TMF_NOACTIVATETIP = @as(u32, 1);
+pub const TF_TMF_SECUREMODE = @as(u32, 2);
+pub const TF_TMF_UIELEMENTENABLEDONLY = @as(u32, 4);
+pub const TF_TMF_WOW16 = @as(u32, 16);
+pub const TF_TRANSITORYEXTENSION_ATSELECTION = @as(u32, 2);
+pub const TF_TRANSITORYEXTENSION_FLOATING = @as(u32, 1);
+pub const TF_TRANSITORYEXTENSION_NONE = @as(u32, 0);
+pub const TF_TU_CORRECTION = @as(u32, 1);
 pub const TF_URP_ALLPROFILES = @as(u32, 2);
 pub const TF_URP_LOCALPROCESS = @as(u32, 4);
 pub const TF_URP_LOCALTHREAD = @as(u32, 8);
-pub const TF_IPSINK_FLAG_ACTIVE = @as(u32, 1);
-pub const TF_INVALID_EDIT_COOKIE = @as(u32, 0);
-pub const TF_POPF_ALL = @as(u32, 1);
-pub const TF_SD_READONLY = @as(u32, 1);
-pub const TF_SD_LOADING = @as(u32, 2);
-pub const TF_SS_DISJOINTSEL = @as(u32, 1);
-pub const TF_SS_REGIONS = @as(u32, 2);
-pub const TF_SS_TRANSITORY = @as(u32, 4);
-pub const TF_SS_TKBAUTOCORRECTENABLE = @as(u32, 16);
-pub const TF_SS_TKBPREDICTIONENABLE = @as(u32, 32);
-pub const TF_CHAR_EMBEDDED = @as(u32, 65532);
-pub const TF_HF_OBJECT = @as(u32, 1);
-pub const TF_TF_MOVESTART = @as(u32, 1);
-pub const TF_TF_IGNOREEND = @as(u32, 2);
-pub const TF_ST_CORRECTION = @as(u32, 1);
-pub const TF_IE_CORRECTION = @as(u32, 1);
-pub const TF_TU_CORRECTION = @as(u32, 1);
-pub const TF_INVALID_COOKIE = @as(u32, 4294967295);
-pub const TF_PROFILE_NEWPHONETIC = Guid.initString("b2f9c502-1742-11d4-9790-0080c882687e");
-pub const TF_PROFILE_PHONETIC = Guid.initString("761309de-317a-11d4-9b5d-0080c882687e");
-pub const TF_PROFILE_NEWCHANGJIE = Guid.initString("f3ba907a-6c7e-11d4-97fa-0080c882687e");
-pub const TF_PROFILE_CHANGJIE = Guid.initString("4bdf9f03-c7d3-11d4-b2ab-0080c882687e");
-pub const TF_PROFILE_NEWQUICK = Guid.initString("0b883ba0-c1c7-11d4-87f9-0080c882687e");
-pub const TF_PROFILE_QUICK = Guid.initString("6024b45f-5c54-11d4-b921-0080c882687e");
-pub const TF_PROFILE_CANTONESE = Guid.initString("0aec109c-7e96-11d4-b2ef-0080c882687e");
-pub const TF_PROFILE_PINYIN = Guid.initString("f3ba9077-6c7e-11d4-97fa-0080c882687e");
-pub const TF_PROFILE_SIMPLEFAST = Guid.initString("fa550b04-5ad7-411f-a5ac-ca038ec515d7");
-pub const TF_PROFILE_WUBI = Guid.initString("82590c13-f4dd-44f4-ba1d-8667246fdf8e");
-pub const TF_PROFILE_DAYI = Guid.initString("037b2c25-480c-4d7f-b027-d6ca6b69788a");
-pub const TF_PROFILE_ARRAY = Guid.initString("d38eff65-aa46-4fd5-91a7-67845fb02f5b");
-pub const TF_PROFILE_YI = Guid.initString("409c8376-007b-4357-ae8e-26316ee3fb0d");
-pub const TF_PROFILE_TIGRINYA = Guid.initString("3cab88b7-cc3e-46a6-9765-b772ad7761ff");
-pub const TF_E_NOCONVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219968));
-pub const TF_DICTATION_ON = @as(u32, 1);
-pub const TF_DICTATION_ENABLED = @as(u32, 2);
-pub const TF_COMMANDING_ENABLED = @as(u32, 4);
-pub const TF_COMMANDING_ON = @as(u32, 8);
-pub const TF_SPEECHUI_SHOWN = @as(u32, 16);
-pub const TF_SHOW_BALLOON = @as(u32, 1);
-pub const TF_DISABLE_BALLOON = @as(u32, 2);
-pub const TF_MENUREADY = @as(u32, 1);
-pub const TF_PROPUI_STATUS_SAVETOFILE = @as(u32, 1);
-pub const GUID_INTEGRATIONSTYLE_SEARCHBOX = Guid.initString("e6d1bd11-82f7-4903-ae21-1a6397cde2eb");
-pub const TKBL_UNDEFINED = @as(u32, 0);
-pub const TKBL_CLASSIC_TRADITIONAL_CHINESE_PHONETIC = @as(u32, 1028);
+pub const TF_US_HIDETIPUI = @as(u32, 1);
+pub const TKB_ALTERNATES_AUTOCORRECTION_APPLIED = @as(u32, 4);
+pub const TKB_ALTERNATES_FOR_AUTOCORRECTION = @as(u32, 2);
+pub const TKB_ALTERNATES_FOR_PREDICTION = @as(u32, 3);
+pub const TKB_ALTERNATES_STANDARD = @as(u32, 1);
 pub const TKBL_CLASSIC_TRADITIONAL_CHINESE_CHANGJIE = @as(u32, 61506);
 pub const TKBL_CLASSIC_TRADITIONAL_CHINESE_DAYI = @as(u32, 61507);
+pub const TKBL_CLASSIC_TRADITIONAL_CHINESE_PHONETIC = @as(u32, 1028);
 pub const TKBL_OPT_JAPANESE_ABC = @as(u32, 1041);
 pub const TKBL_OPT_KOREAN_HANGUL_2_BULSIK = @as(u32, 1042);
 pub const TKBL_OPT_SIMPLIFIED_CHINESE_PINYIN = @as(u32, 2052);
 pub const TKBL_OPT_TRADITIONAL_CHINESE_PHONETIC = @as(u32, 1028);
-pub const TF_FLOATINGLANGBAR_WNDTITLEW = "TF_FloatingLangBar_WndTitle";
-pub const TF_FLOATINGLANGBAR_WNDTITLEA = "TF_FloatingLangBar_WndTitle";
-pub const TF_FLOATINGLANGBAR_WNDTITLE = "TF_FloatingLangBar_WndTitle";
-pub const TF_LBI_ICON = @as(u32, 1);
-pub const TF_LBI_TEXT = @as(u32, 2);
-pub const TF_LBI_TOOLTIP = @as(u32, 4);
-pub const TF_LBI_BITMAP = @as(u32, 8);
-pub const TF_LBI_BALLOON = @as(u32, 16);
-pub const TF_LBI_CUSTOMUI = @as(u32, 32);
-pub const TF_LBI_STATUS = @as(u32, 65536);
-pub const TF_LBI_STYLE_HIDDENSTATUSCONTROL = @as(u32, 1);
-pub const TF_LBI_STYLE_SHOWNINTRAY = @as(u32, 2);
-pub const TF_LBI_STYLE_HIDEONNOOTHERITEMS = @as(u32, 4);
-pub const TF_LBI_STYLE_SHOWNINTRAYONLY = @as(u32, 8);
-pub const TF_LBI_STYLE_HIDDENBYDEFAULT = @as(u32, 16);
-pub const TF_LBI_STYLE_TEXTCOLORICON = @as(u32, 32);
-pub const TF_LBI_STYLE_BTN_BUTTON = @as(u32, 65536);
-pub const TF_LBI_STYLE_BTN_MENU = @as(u32, 131072);
-pub const TF_LBI_STYLE_BTN_TOGGLE = @as(u32, 262144);
-pub const TF_LBI_STATUS_HIDDEN = @as(u32, 1);
-pub const TF_LBI_STATUS_DISABLED = @as(u32, 2);
-pub const TF_LBI_STATUS_BTN_TOGGLED = @as(u32, 65536);
-pub const TF_LBI_BMPF_VERTICAL = @as(u32, 1);
-pub const TF_SFT_SHOWNORMAL = @as(u32, 1);
-pub const TF_SFT_DOCK = @as(u32, 2);
-pub const TF_SFT_MINIMIZED = @as(u32, 4);
-pub const TF_SFT_HIDDEN = @as(u32, 8);
-pub const TF_SFT_NOTRANSPARENCY = @as(u32, 16);
-pub const TF_SFT_LOWTRANSPARENCY = @as(u32, 32);
-pub const TF_SFT_HIGHTRANSPARENCY = @as(u32, 64);
-pub const TF_SFT_LABELS = @as(u32, 128);
-pub const TF_SFT_NOLABELS = @as(u32, 256);
-pub const TF_SFT_EXTRAICONSONMINIMIZED = @as(u32, 512);
-pub const TF_SFT_NOEXTRAICONSONMINIMIZED = @as(u32, 1024);
-pub const TF_SFT_DESKBAND = @as(u32, 2048);
-pub const TF_LBI_DESC_MAXLEN = @as(u32, 32);
-pub const TF_LBMENUF_CHECKED = @as(u32, 1);
-pub const TF_LBMENUF_SUBMENU = @as(u32, 2);
-pub const TF_LBMENUF_SEPARATOR = @as(u32, 4);
-pub const TF_LBMENUF_RADIOCHECKED = @as(u32, 8);
-pub const TF_LBMENUF_GRAYED = @as(u32, 16);
-pub const GUID_PROP_INPUTSCOPE = Guid.initString("1713dd5a-68e7-4a5b-9af6-592a595c778d");
-pub const DCM_FLAGS_TASKENG = @as(u32, 1);
-pub const DCM_FLAGS_CTFMON = @as(u32, 2);
-pub const DCM_FLAGS_LOCALTHREADTSF = @as(u32, 4);
-pub const ILMCM_CHECKLAYOUTANDTIPENABLED = @as(u32, 1);
-pub const ILMCM_LANGUAGEBAROFF = @as(u32, 2);
-pub const LIBID_MSAATEXTLib = Guid.initString("150e2d7a-dac1-4582-947d-2a8fd78b82cd");
-pub const TS_STRF_START = @as(u32, 0);
-pub const TS_STRF_MID = @as(u32, 1);
+pub const TKBL_UNDEFINED = @as(u32, 0);
+pub const TS_AS_ATTR_CHANGE = @as(u32, 8);
+pub const TS_AS_LAYOUT_CHANGE = @as(u32, 4);
+pub const TS_AS_SEL_CHANGE = @as(u32, 2);
+pub const TS_AS_STATUS_CHANGE = @as(u32, 16);
+pub const TS_AS_TEXT_CHANGE = @as(u32, 1);
+pub const TS_ATTR_FIND_BACKWARDS = @as(u32, 1);
+pub const TS_ATTR_FIND_HIDDEN = @as(u32, 32);
+pub const TS_ATTR_FIND_UPDATESTART = @as(u32, 4);
+pub const TS_ATTR_FIND_WANT_END = @as(u32, 16);
+pub const TS_ATTR_FIND_WANT_OFFSET = @as(u32, 2);
+pub const TS_ATTR_FIND_WANT_VALUE = @as(u32, 8);
+pub const TS_CHAR_EMBEDDED = @as(u32, 65532);
+pub const TS_CHAR_REGION = @as(u32, 0);
+pub const TS_CHAR_REPLACEMENT = @as(u32, 65533);
+pub const TS_E_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220982));
+pub const TS_E_INVALIDPOINT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220985));
+pub const TS_E_INVALIDPOS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const TS_E_NOINTERFACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
+pub const TS_E_NOLAYOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
+pub const TS_E_NOLOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
+pub const TS_E_NOOBJECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
+pub const TS_E_NOSELECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220987));
+pub const TS_E_NOSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
+pub const TS_E_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220983));
+pub const TS_E_SYNCHRONOUS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220984));
+pub const TS_GEA_HIDDEN = @as(u32, 1);
+pub const TS_GTA_HIDDEN = @as(u32, 1);
+pub const TS_IAS_NOQUERY = @as(u32, 1);
+pub const TS_IAS_QUERYONLY = @as(u32, 2);
+pub const TS_IE_COMPOSITION = @as(u32, 2);
+pub const TS_IE_CORRECTION = @as(u32, 1);
+pub const TS_LF_SYNC = @as(u32, 1);
+pub const TS_S_ASYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262912));
+pub const TS_SD_EMBEDDEDHANDWRITINGVIEW_ENABLED = @as(u32, 128);
+pub const TS_SD_EMBEDDEDHANDWRITINGVIEW_VISIBLE = @as(u32, 256);
+pub const TS_SD_INPUTPANEMANUALDISPLAYENABLE = @as(u32, 64);
+pub const TS_SD_LOADING = @as(u32, 2);
+pub const TS_SD_READONLY = @as(u32, 1);
+pub const TS_SD_RESERVED = @as(u32, 4);
+pub const TS_SD_TKBAUTOCORRECTENABLE = @as(u32, 8);
+pub const TS_SD_TKBPREDICTIONENABLE = @as(u32, 16);
+pub const TS_SD_UIINTEGRATIONENABLE = @as(u32, 32);
+pub const TS_SHIFT_COUNT_HIDDEN = @as(u32, 1);
+pub const TS_SHIFT_COUNT_ONLY = @as(u32, 8);
+pub const TS_SHIFT_HALT_HIDDEN = @as(u32, 2);
+pub const TS_SHIFT_HALT_VISIBLE = @as(u32, 4);
+pub const TS_SS_DISJOINTSEL = @as(u32, 1);
+pub const TS_SS_NOHIDDENTEXT = @as(u32, 8);
+pub const TS_SS_REGIONS = @as(u32, 2);
+pub const TS_SS_TKBAUTOCORRECTENABLE = @as(u32, 16);
+pub const TS_SS_TKBPREDICTIONENABLE = @as(u32, 32);
+pub const TS_SS_TRANSITORY = @as(u32, 4);
+pub const TS_SS_UWPCONTROL = @as(u32, 64);
 pub const TS_STRF_END = @as(u32, 2);
-pub const TSATTRID_OTHERS = Guid.initString("b3c32af9-57d0-46a9-bca8-dac238a13057");
+pub const TS_STRF_MID = @as(u32, 1);
+pub const TS_STRF_START = @as(u32, 0);
+pub const TS_VCOOKIE_NUL = @as(u32, 4294967295);
+pub const TSATTRID_App = Guid.initString("a80f77df-4237-40e5-849c-b5fa51c13ac7");
+pub const TSATTRID_App_IncorrectGrammar = Guid.initString("bd54e398-ad03-4b74-b6b3-5edb19996388");
+pub const TSATTRID_App_IncorrectSpelling = Guid.initString("f42de43c-ef12-430d-944c-9a08970a25d2");
 pub const TSATTRID_Font = Guid.initString("573ea825-749b-4f8a-9cfd-21c3605ca828");
 pub const TSATTRID_Font_FaceName = Guid.initString("b536aeb6-053b-4eb8-b65a-50da1e81e72e");
 pub const TSATTRID_Font_SizePts = Guid.initString("c8493302-a5e9-456d-af04-8005e4130f03");
 pub const TSATTRID_Font_Style = Guid.initString("68b2a77f-6b0e-4f28-8177-571c2f3a42b1");
-pub const TSATTRID_Font_Style_Bold = Guid.initString("48813a43-8a20-4940-8e58-97823f7b268a");
-pub const TSATTRID_Font_Style_Italic = Guid.initString("8740682a-a765-48e1-acfc-d22222b2f810");
-pub const TSATTRID_Font_Style_SmallCaps = Guid.initString("facb6bc6-9100-4cc6-b969-11eea45a86b4");
-pub const TSATTRID_Font_Style_Capitalize = Guid.initString("7d85a3ba-b4fd-43b3-befc-6b985c843141");
-pub const TSATTRID_Font_Style_Uppercase = Guid.initString("33a300e8-e340-4937-b697-8f234045cd9a");
-pub const TSATTRID_Font_Style_Lowercase = Guid.initString("76d8ccb5-ca7b-4498-8ee9-d5c4f6f74c60");
 pub const TSATTRID_Font_Style_Animation = Guid.initString("dcf73d22-e029-47b7-bb36-f263a3d004cc");
-pub const TSATTRID_Font_Style_Animation_LasVegasLights = Guid.initString("f40423d5-0f87-4f8f-bada-e6d60c25e152");
 pub const TSATTRID_Font_Style_Animation_BlinkingBackground = Guid.initString("86e5b104-0104-4b10-b585-00f2527522b5");
-pub const TSATTRID_Font_Style_Animation_SparkleText = Guid.initString("533aad20-962c-4e9f-8c09-b42ea4749711");
+pub const TSATTRID_Font_Style_Animation_LasVegasLights = Guid.initString("f40423d5-0f87-4f8f-bada-e6d60c25e152");
 pub const TSATTRID_Font_Style_Animation_MarchingBlackAnts = Guid.initString("7644e067-f186-4902-bfc6-ec815aa20e9d");
 pub const TSATTRID_Font_Style_Animation_MarchingRedAnts = Guid.initString("78368dad-50fb-4c6f-840b-d486bb6cf781");
 pub const TSATTRID_Font_Style_Animation_Shimmer = Guid.initString("2ce31b58-5293-4c36-8809-bf8bb51a27b3");
+pub const TSATTRID_Font_Style_Animation_SparkleText = Guid.initString("533aad20-962c-4e9f-8c09-b42ea4749711");
 pub const TSATTRID_Font_Style_Animation_WipeDown = Guid.initString("5872e874-367b-4803-b160-c90ff62569d0");
 pub const TSATTRID_Font_Style_Animation_WipeRight = Guid.initString("b855cbe3-3d2c-4600-b1e9-e1c9ce02f842");
+pub const TSATTRID_Font_Style_BackgroundColor = Guid.initString("b50eaa4e-3091-4468-81db-d79ea190c7c7");
+pub const TSATTRID_Font_Style_Blink = Guid.initString("bfb2c036-7acf-4532-b720-b416dd7765a8");
+pub const TSATTRID_Font_Style_Bold = Guid.initString("48813a43-8a20-4940-8e58-97823f7b268a");
+pub const TSATTRID_Font_Style_Capitalize = Guid.initString("7d85a3ba-b4fd-43b3-befc-6b985c843141");
+pub const TSATTRID_Font_Style_Color = Guid.initString("857a7a37-b8af-4e9a-81b4-acf700c8411b");
 pub const TSATTRID_Font_Style_Emboss = Guid.initString("bd8ed742-349e-4e37-82fb-437979cb53a7");
 pub const TSATTRID_Font_Style_Engrave = Guid.initString("9c3371de-8332-4897-be5d-89233223179a");
+pub const TSATTRID_Font_Style_Height = Guid.initString("7e937477-12e6-458b-926a-1fa44ee8f391");
 pub const TSATTRID_Font_Style_Hidden = Guid.initString("b1e28770-881c-475f-863f-887a647b1090");
+pub const TSATTRID_Font_Style_Italic = Guid.initString("8740682a-a765-48e1-acfc-d22222b2f810");
 pub const TSATTRID_Font_Style_Kerning = Guid.initString("cc26e1b4-2f9a-47c8-8bff-bf1eb7cce0dd");
+pub const TSATTRID_Font_Style_Lowercase = Guid.initString("76d8ccb5-ca7b-4498-8ee9-d5c4f6f74c60");
 pub const TSATTRID_Font_Style_Outlined = Guid.initString("10e6db31-db0d-4ac6-a7f5-9c9cff6f2ab4");
+pub const TSATTRID_Font_Style_Overline = Guid.initString("e3989f4a-992b-4301-8ce1-a5b7c6d1f3c8");
+pub const TSATTRID_Font_Style_Overline_Double = Guid.initString("dc46063a-e115-46e3-bcd8-ca6772aa95b4");
+pub const TSATTRID_Font_Style_Overline_Single = Guid.initString("8440d94c-51ce-47b2-8d4c-15751e5f721b");
 pub const TSATTRID_Font_Style_Position = Guid.initString("15cd26ab-f2fb-4062-b5a6-9a49e1a5cc0b");
 pub const TSATTRID_Font_Style_Protected = Guid.initString("1c557cb2-14cf-4554-a574-ecb2f7e7efd4");
 pub const TSATTRID_Font_Style_Shadow = Guid.initString("5f686d2f-c6cd-4c56-8a1a-994a4b9766be");
+pub const TSATTRID_Font_Style_SmallCaps = Guid.initString("facb6bc6-9100-4cc6-b969-11eea45a86b4");
 pub const TSATTRID_Font_Style_Spacing = Guid.initString("98c1200d-8f06-409a-8e49-6a554bf7c153");
-pub const TSATTRID_Font_Style_Weight = Guid.initString("12f3189c-8bb0-461b-b1fa-eaf907047fe0");
-pub const TSATTRID_Font_Style_Height = Guid.initString("7e937477-12e6-458b-926a-1fa44ee8f391");
-pub const TSATTRID_Font_Style_Underline = Guid.initString("c3c9c9f3-7902-444b-9a7b-48e70f4b50f7");
-pub const TSATTRID_Font_Style_Underline_Single = Guid.initString("1b6720e5-0f73-4951-a6b3-6f19e43c9461");
-pub const TSATTRID_Font_Style_Underline_Double = Guid.initString("74d24aa6-1db3-4c69-a176-31120e7586d5");
 pub const TSATTRID_Font_Style_Strikethrough = Guid.initString("0c562193-2d08-4668-9601-ced41309d7af");
-pub const TSATTRID_Font_Style_Strikethrough_Single = Guid.initString("75d736b6-3c8f-4b97-ab78-1877cb990d31");
 pub const TSATTRID_Font_Style_Strikethrough_Double = Guid.initString("62489b31-a3e7-4f94-ac43-ebaf8fcc7a9f");
-pub const TSATTRID_Font_Style_Overline = Guid.initString("e3989f4a-992b-4301-8ce1-a5b7c6d1f3c8");
-pub const TSATTRID_Font_Style_Overline_Single = Guid.initString("8440d94c-51ce-47b2-8d4c-15751e5f721b");
-pub const TSATTRID_Font_Style_Overline_Double = Guid.initString("dc46063a-e115-46e3-bcd8-ca6772aa95b4");
-pub const TSATTRID_Font_Style_Blink = Guid.initString("bfb2c036-7acf-4532-b720-b416dd7765a8");
+pub const TSATTRID_Font_Style_Strikethrough_Single = Guid.initString("75d736b6-3c8f-4b97-ab78-1877cb990d31");
 pub const TSATTRID_Font_Style_Subscript = Guid.initString("5774fb84-389b-43bc-a74b-1568347cf0f4");
 pub const TSATTRID_Font_Style_Superscript = Guid.initString("2ea4993c-563c-49aa-9372-0bef09a9255b");
-pub const TSATTRID_Font_Style_Color = Guid.initString("857a7a37-b8af-4e9a-81b4-acf700c8411b");
-pub const TSATTRID_Font_Style_BackgroundColor = Guid.initString("b50eaa4e-3091-4468-81db-d79ea190c7c7");
-pub const TSATTRID_Text = Guid.initString("7edb8e68-81f9-449d-a15a-87a8388faac0");
-pub const TSATTRID_Text_VerticalWriting = Guid.initString("6bba8195-046f-4ea9-b311-97fd66c4274b");
-pub const TSATTRID_Text_RightToLeft = Guid.initString("ca666e71-1b08-453d-bfdd-28e08c8aaf7a");
-pub const TSATTRID_Text_Orientation = Guid.initString("6bab707f-8785-4c39-8b52-96f878303ffb");
-pub const TSATTRID_Text_Language = Guid.initString("d8c04ef1-5753-4c25-8887-85443fe5f819");
-pub const TSATTRID_Text_ReadOnly = Guid.initString("85836617-de32-4afd-a50f-a2db110e6e4d");
-pub const TSATTRID_Text_EmbeddedObject = Guid.initString("7edb8e68-81f9-449d-a15a-87a8388faac0");
-pub const TSATTRID_Text_Alignment = Guid.initString("139941e6-1767-456d-938e-35ba568b5cd4");
-pub const TSATTRID_Text_Alignment_Left = Guid.initString("16ae95d3-6361-43a2-8495-d00f397f1693");
-pub const TSATTRID_Text_Alignment_Right = Guid.initString("b36f0f98-1b9e-4360-8616-03fb08a78456");
-pub const TSATTRID_Text_Alignment_Center = Guid.initString("a4a95c16-53bf-4d55-8b87-4bdd8d4275fc");
-pub const TSATTRID_Text_Alignment_Justify = Guid.initString("ed350740-a0f7-42d3-8ea8-f81b6488faf0");
-pub const TSATTRID_Text_Link = Guid.initString("47cd9051-3722-4cd8-b7c8-4e17ca1759f5");
-pub const TSATTRID_Text_Hyphenation = Guid.initString("dadf4525-618e-49eb-b1a8-3b68bd7648e3");
-pub const TSATTRID_Text_Para = Guid.initString("5edc5822-99dc-4dd6-aec3-b62baa5b2e7c");
-pub const TSATTRID_Text_Para_FirstLineIndent = Guid.initString("07c97a13-7472-4dd8-90a9-91e3d7e4f29c");
-pub const TSATTRID_Text_Para_LeftIndent = Guid.initString("fb2848e9-7471-41c9-b6b3-8a1450e01897");
-pub const TSATTRID_Text_Para_RightIndent = Guid.initString("2c7f26f9-a5e2-48da-b98a-520cb16513bf");
-pub const TSATTRID_Text_Para_SpaceAfter = Guid.initString("7b0a3f55-22dc-425f-a411-93da1d8f9baa");
-pub const TSATTRID_Text_Para_SpaceBefore = Guid.initString("8df98589-194a-4601-b251-9865a3e906dd");
-pub const TSATTRID_Text_Para_LineSpacing = Guid.initString("699b380d-7f8c-46d6-a73b-dfe3d1538df3");
-pub const TSATTRID_Text_Para_LineSpacing_Single = Guid.initString("ed350740-a0f7-42d3-8ea8-f81b6488faf0");
-pub const TSATTRID_Text_Para_LineSpacing_OnePtFive = Guid.initString("0428a021-0397-4b57-9a17-0795994cd3c5");
-pub const TSATTRID_Text_Para_LineSpacing_Double = Guid.initString("82fb1805-a6c4-4231-ac12-6260af2aba28");
-pub const TSATTRID_Text_Para_LineSpacing_AtLeast = Guid.initString("adfedf31-2d44-4434-a5ff-7f4c4990a905");
-pub const TSATTRID_Text_Para_LineSpacing_Exactly = Guid.initString("3d45ad40-23de-48d7-a6b3-765420c620cc");
-pub const TSATTRID_Text_Para_LineSpacing_Multiple = Guid.initString("910f1e3c-d6d0-4f65-8a3c-42b4b31868c5");
+pub const TSATTRID_Font_Style_Underline = Guid.initString("c3c9c9f3-7902-444b-9a7b-48e70f4b50f7");
+pub const TSATTRID_Font_Style_Underline_Double = Guid.initString("74d24aa6-1db3-4c69-a176-31120e7586d5");
+pub const TSATTRID_Font_Style_Underline_Single = Guid.initString("1b6720e5-0f73-4951-a6b3-6f19e43c9461");
+pub const TSATTRID_Font_Style_Uppercase = Guid.initString("33a300e8-e340-4937-b697-8f234045cd9a");
+pub const TSATTRID_Font_Style_Weight = Guid.initString("12f3189c-8bb0-461b-b1fa-eaf907047fe0");
 pub const TSATTRID_List = Guid.initString("436d673b-26f1-4aee-9e65-8f83a4ed4884");
 pub const TSATTRID_List_LevelIndel = Guid.initString("7f7cc899-311f-487b-ad5d-e2a459e12d42");
 pub const TSATTRID_List_Type = Guid.initString("ae3e665e-4bce-49e3-a0fe-2db47d3a17ae");
-pub const TSATTRID_List_Type_Bullet = Guid.initString("bccd77c5-4c4d-4ce2-b102-559f3b2bfcea");
 pub const TSATTRID_List_Type_Arabic = Guid.initString("1338c5d6-98a3-4fa3-9bd1-7a60eef8e9e0");
+pub const TSATTRID_List_Type_Bullet = Guid.initString("bccd77c5-4c4d-4ce2-b102-559f3b2bfcea");
 pub const TSATTRID_List_Type_LowerLetter = Guid.initString("96372285-f3cf-491e-a925-3832347fd237");
-pub const TSATTRID_List_Type_UpperLetter = Guid.initString("7987b7cd-ce52-428b-9b95-a357f6f10c45");
 pub const TSATTRID_List_Type_LowerRoman = Guid.initString("90466262-3980-4b8e-9368-918bd1218a41");
+pub const TSATTRID_List_Type_UpperLetter = Guid.initString("7987b7cd-ce52-428b-9b95-a357f6f10c45");
 pub const TSATTRID_List_Type_UpperRoman = Guid.initString("0f6ab552-4a80-467f-b2f1-127e2aa3ba9e");
-pub const TSATTRID_App = Guid.initString("a80f77df-4237-40e5-849c-b5fa51c13ac7");
-pub const TSATTRID_App_IncorrectSpelling = Guid.initString("f42de43c-ef12-430d-944c-9a08970a25d2");
-pub const TSATTRID_App_IncorrectGrammar = Guid.initString("bd54e398-ad03-4b74-b6b3-5edb19996388");
+pub const TSATTRID_OTHERS = Guid.initString("b3c32af9-57d0-46a9-bca8-dac238a13057");
+pub const TSATTRID_Text = Guid.initString("7edb8e68-81f9-449d-a15a-87a8388faac0");
+pub const TSATTRID_Text_Alignment = Guid.initString("139941e6-1767-456d-938e-35ba568b5cd4");
+pub const TSATTRID_Text_Alignment_Center = Guid.initString("a4a95c16-53bf-4d55-8b87-4bdd8d4275fc");
+pub const TSATTRID_Text_Alignment_Justify = Guid.initString("ed350740-a0f7-42d3-8ea8-f81b6488faf0");
+pub const TSATTRID_Text_Alignment_Left = Guid.initString("16ae95d3-6361-43a2-8495-d00f397f1693");
+pub const TSATTRID_Text_Alignment_Right = Guid.initString("b36f0f98-1b9e-4360-8616-03fb08a78456");
+pub const TSATTRID_Text_EmbeddedObject = Guid.initString("7edb8e68-81f9-449d-a15a-87a8388faac0");
+pub const TSATTRID_Text_Hyphenation = Guid.initString("dadf4525-618e-49eb-b1a8-3b68bd7648e3");
+pub const TSATTRID_Text_Language = Guid.initString("d8c04ef1-5753-4c25-8887-85443fe5f819");
+pub const TSATTRID_Text_Link = Guid.initString("47cd9051-3722-4cd8-b7c8-4e17ca1759f5");
+pub const TSATTRID_Text_Orientation = Guid.initString("6bab707f-8785-4c39-8b52-96f878303ffb");
+pub const TSATTRID_Text_Para = Guid.initString("5edc5822-99dc-4dd6-aec3-b62baa5b2e7c");
+pub const TSATTRID_Text_Para_FirstLineIndent = Guid.initString("07c97a13-7472-4dd8-90a9-91e3d7e4f29c");
+pub const TSATTRID_Text_Para_LeftIndent = Guid.initString("fb2848e9-7471-41c9-b6b3-8a1450e01897");
+pub const TSATTRID_Text_Para_LineSpacing = Guid.initString("699b380d-7f8c-46d6-a73b-dfe3d1538df3");
+pub const TSATTRID_Text_Para_LineSpacing_AtLeast = Guid.initString("adfedf31-2d44-4434-a5ff-7f4c4990a905");
+pub const TSATTRID_Text_Para_LineSpacing_Double = Guid.initString("82fb1805-a6c4-4231-ac12-6260af2aba28");
+pub const TSATTRID_Text_Para_LineSpacing_Exactly = Guid.initString("3d45ad40-23de-48d7-a6b3-765420c620cc");
+pub const TSATTRID_Text_Para_LineSpacing_Multiple = Guid.initString("910f1e3c-d6d0-4f65-8a3c-42b4b31868c5");
+pub const TSATTRID_Text_Para_LineSpacing_OnePtFive = Guid.initString("0428a021-0397-4b57-9a17-0795994cd3c5");
+pub const TSATTRID_Text_Para_LineSpacing_Single = Guid.initString("ed350740-a0f7-42d3-8ea8-f81b6488faf0");
+pub const TSATTRID_Text_Para_RightIndent = Guid.initString("2c7f26f9-a5e2-48da-b98a-520cb16513bf");
+pub const TSATTRID_Text_Para_SpaceAfter = Guid.initString("7b0a3f55-22dc-425f-a411-93da1d8f9baa");
+pub const TSATTRID_Text_Para_SpaceBefore = Guid.initString("8df98589-194a-4601-b251-9865a3e906dd");
+pub const TSATTRID_Text_ReadOnly = Guid.initString("85836617-de32-4afd-a50f-a2db110e6e4d");
+pub const TSATTRID_Text_RightToLeft = Guid.initString("ca666e71-1b08-453d-bfdd-28e08c8aaf7a");
+pub const TSATTRID_Text_VerticalWriting = Guid.initString("6bba8195-046f-4ea9-b311-97fd66c4274b");
 
 //--------------------------------------------------------------------------------
 // Section: Types (211)
 //--------------------------------------------------------------------------------
-pub const LANG_BAR_ITEM_ICON_MODE_FLAGS = enum(u32) {
-    NONE = 0,
-    USEPROFILEICON = 1,
-};
-pub const TF_DTLBI_NONE = LANG_BAR_ITEM_ICON_MODE_FLAGS.NONE;
-pub const TF_DTLBI_USEPROFILEICON = LANG_BAR_ITEM_ICON_MODE_FLAGS.USEPROFILEICON;
+const CLSID_AccClientDocMgr_Value = Guid.initString("fc48cc30-4f3e-4fa1-803b-ad0e196a83b1");
+pub const CLSID_AccClientDocMgr = &CLSID_AccClientDocMgr_Value;
 
-pub const TEXT_STORE_TEXT_CHANGE_FLAGS = packed struct(u32) {
-    CORRECTION: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const TS_ST_NONE = TEXT_STORE_TEXT_CHANGE_FLAGS{ };
-pub const TS_ST_CORRECTION = TEXT_STORE_TEXT_CHANGE_FLAGS{ .CORRECTION = 1 };
+const CLSID_AccDictionary_Value = Guid.initString("6572ee16-5fe5-4331-bb6d-76a49c56e423");
+pub const CLSID_AccDictionary = &CLSID_AccDictionary_Value;
 
-pub const TEXT_STORE_CHANGE_FLAGS = packed struct(u32) {
-    CORRECTION: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const TS_TC_NONE = TEXT_STORE_CHANGE_FLAGS{ };
-pub const TS_TC_CORRECTION = TEXT_STORE_CHANGE_FLAGS{ .CORRECTION = 1 };
+const CLSID_AccServerDocMgr_Value = Guid.initString("6089a37e-eb8a-482d-bd6f-f9f46904d16d");
+pub const CLSID_AccServerDocMgr = &CLSID_AccServerDocMgr_Value;
 
-pub const INSERT_TEXT_AT_SELECTION_FLAGS = enum(u32) {
-    NOQUERY = 1,
-    QUERYONLY = 2,
-    NO_DEFAULT_COMPOSITION = 2147483648,
-};
-pub const TF_IAS_NOQUERY = INSERT_TEXT_AT_SELECTION_FLAGS.NOQUERY;
-pub const TF_IAS_QUERYONLY = INSERT_TEXT_AT_SELECTION_FLAGS.QUERYONLY;
-pub const TF_IAS_NO_DEFAULT_COMPOSITION = INSERT_TEXT_AT_SELECTION_FLAGS.NO_DEFAULT_COMPOSITION;
+const CLSID_AccStore_Value = Guid.initString("5440837f-4bff-4ae5-a1b1-7722ecc6332a");
+pub const CLSID_AccStore = &CLSID_AccStore_Value;
 
 pub const ANCHOR_CHANGE_HISTORY_FLAGS = packed struct(u32) {
     PRECEDING_DEL: u1 = 0,
@@ -572,12 +494,8 @@ pub const ANCHOR_CHANGE_HISTORY_FLAGS = packed struct(u32) {
 pub const TS_CH_PRECEDING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS{ .PRECEDING_DEL = 1 };
 pub const TS_CH_FOLLOWING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS{ .FOLLOWING_DEL = 1 };
 
-pub const TEXT_STORE_LOCK_FLAGS = enum(u32) {
-    D = 2,
-    WRITE = 6,
-};
-pub const TS_LF_READ = TEXT_STORE_LOCK_FLAGS.D;
-pub const TS_LF_READWRITE = TEXT_STORE_LOCK_FLAGS.WRITE;
+const CLSID_DocWrap_Value = Guid.initString("bf426f7e-7a5e-44d6-830c-a390ea9462a3");
+pub const CLSID_DocWrap = &CLSID_DocWrap_Value;
 
 pub const GET_TEXT_AND_PROPERTY_UPDATES_FLAGS = packed struct(u32) {
     INCL_TEXT: u1 = 0,
@@ -616,116 +534,1229 @@ pub const GET_TEXT_AND_PROPERTY_UPDATES_FLAGS = packed struct(u32) {
 pub const TF_GTP_NONE = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS{ };
 pub const TF_GTP_INCL_TEXT = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS{ .INCL_TEXT = 1 };
 
-pub const TF_CONTEXT_EDIT_CONTEXT_FLAGS = packed struct(u32) {
-    SYNC: u1 = 0,
-    READ: u1 = 0,
-    _2: u1 = 0,
-    ASYNC: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const TF_ES_ASYNCDONTCARE = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ };
-pub const TF_ES_SYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .SYNC = 1 };
-pub const TF_ES_READ = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .READ = 1 };
-pub const TF_ES_READWRITE = TF_CONTEXT_EDIT_CONTEXT_FLAGS{
-    .READ = 1,
-    ._2 = 1,
-};
-pub const TF_ES_ASYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .ASYNC = 1 };
-
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HKL = *opaque{};
 
-pub const TS_STATUS = extern struct {
-    dwDynamicFlags: u32,
-    dwStaticFlags: u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IAccClientDocMgr_Value = Guid.initString("4c896039-7b6d-49e6-a8c1-45116a98292b");
+pub const IID_IAccClientDocMgr = &IID_IAccClientDocMgr_Value;
+pub const IAccClientDocMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDocuments: *const fn(
+            self: *const IAccClientDocMgr,
+            enumUnknown: ?*?*IEnumUnknown,
+        ) callconv(.winapi) HRESULT,
+        LookupByHWND: *const fn(
+            self: *const IAccClientDocMgr,
+            hWnd: ?HWND,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        LookupByPoint: *const fn(
+            self: *const IAccClientDocMgr,
+            pt: POINT,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetFocused: *const fn(
+            self: *const IAccClientDocMgr,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDocuments(self: *const IAccClientDocMgr, enumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDocuments(self, enumUnknown);
+    }
+    pub fn LookupByHWND(self: *const IAccClientDocMgr, hWnd: ?HWND, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupByHWND(self, hWnd, riid, ppunk);
+    }
+    pub fn LookupByPoint(self: *const IAccClientDocMgr, pt: POINT, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupByPoint(self, pt, riid, ppunk);
+    }
+    pub fn GetFocused(self: *const IAccClientDocMgr, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFocused(self, riid, ppunk);
+    }
 };
 
-pub const TS_TEXTCHANGE = extern struct {
-    acpStart: i32,
-    acpOldEnd: i32,
-    acpNewEnd: i32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IAccDictionary_Value = Guid.initString("1dc4cb5f-d737-474d-ade9-5ccfc9bc1cc9");
+pub const IID_IAccDictionary = &IID_IAccDictionary_Value;
+pub const IAccDictionary = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLocalizedString: *const fn(
+            self: *const IAccDictionary,
+            Term: ?*const Guid,
+            lcid: u32,
+            pResult: ?*?BSTR,
+            plcid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetParentTerm: *const fn(
+            self: *const IAccDictionary,
+            Term: ?*const Guid,
+            pParentTerm: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetMnemonicString: *const fn(
+            self: *const IAccDictionary,
+            Term: ?*const Guid,
+            pResult: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        LookupMnemonicTerm: *const fn(
+            self: *const IAccDictionary,
+            bstrMnemonic: ?BSTR,
+            pTerm: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        ConvertValueToString: *const fn(
+            self: *const IAccDictionary,
+            Term: ?*const Guid,
+            lcid: u32,
+            varValue: VARIANT,
+            pbstrResult: ?*?BSTR,
+            plcid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLocalizedString(self: *const IAccDictionary, Term: ?*const Guid, lcid: u32, pResult: ?*?BSTR, plcid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalizedString(self, Term, lcid, pResult, plcid);
+    }
+    pub fn GetParentTerm(self: *const IAccDictionary, Term: ?*const Guid, pParentTerm: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParentTerm(self, Term, pParentTerm);
+    }
+    pub fn GetMnemonicString(self: *const IAccDictionary, Term: ?*const Guid, pResult: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMnemonicString(self, Term, pResult);
+    }
+    pub fn LookupMnemonicTerm(self: *const IAccDictionary, bstrMnemonic: ?BSTR, pTerm: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupMnemonicTerm(self, bstrMnemonic, pTerm);
+    }
+    pub fn ConvertValueToString(self: *const IAccDictionary, Term: ?*const Guid, lcid: u32, varValue: VARIANT, pbstrResult: ?*?BSTR, plcid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertValueToString(self, Term, lcid, varValue, pbstrResult, plcid);
+    }
 };
 
-pub const TsActiveSelEnd = enum(i32) {
-    NONE = 0,
-    START = 1,
-    END = 2,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IAccServerDocMgr_Value = Guid.initString("ad7c73cf-6dd5-4855-abc2-b04bad5b9153");
+pub const IID_IAccServerDocMgr = &IID_IAccServerDocMgr_Value;
+pub const IAccServerDocMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        NewDocument: *const fn(
+            self: *const IAccServerDocMgr,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        RevokeDocument: *const fn(
+            self: *const IAccServerDocMgr,
+            punk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        OnDocumentFocus: *const fn(
+            self: *const IAccServerDocMgr,
+            punk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn NewDocument(self: *const IAccServerDocMgr, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.NewDocument(self, riid, punk);
+    }
+    pub fn RevokeDocument(self: *const IAccServerDocMgr, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.RevokeDocument(self, punk);
+    }
+    pub fn OnDocumentFocus(self: *const IAccServerDocMgr, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDocumentFocus(self, punk);
+    }
 };
-pub const TS_AE_NONE = TsActiveSelEnd.NONE;
-pub const TS_AE_START = TsActiveSelEnd.START;
-pub const TS_AE_END = TsActiveSelEnd.END;
 
-pub const TS_SELECTIONSTYLE = extern struct {
-    ase: TsActiveSelEnd,
-    fInterimChar: BOOL,
+const IID_IAccStore_Value = Guid.initString("e2cd4a63-2b72-4d48-b739-95e4765195ba");
+pub const IID_IAccStore = &IID_IAccStore_Value;
+pub const IAccStore = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Register: *const fn(
+            self: *const IAccStore,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Unregister: *const fn(
+            self: *const IAccStore,
+            punk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetDocuments: *const fn(
+            self: *const IAccStore,
+            enumUnknown: ?*?*IEnumUnknown,
+        ) callconv(.winapi) HRESULT,
+        LookupByHWND: *const fn(
+            self: *const IAccStore,
+            hWnd: ?HWND,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        LookupByPoint: *const fn(
+            self: *const IAccStore,
+            pt: POINT,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        OnDocumentFocus: *const fn(
+            self: *const IAccStore,
+            punk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetFocused: *const fn(
+            self: *const IAccStore,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Register(self: *const IAccStore, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Register(self, riid, punk);
+    }
+    pub fn Unregister(self: *const IAccStore, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Unregister(self, punk);
+    }
+    pub fn GetDocuments(self: *const IAccStore, enumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDocuments(self, enumUnknown);
+    }
+    pub fn LookupByHWND(self: *const IAccStore, hWnd: ?HWND, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupByHWND(self, hWnd, riid, ppunk);
+    }
+    pub fn LookupByPoint(self: *const IAccStore, pt: POINT, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupByPoint(self, pt, riid, ppunk);
+    }
+    pub fn OnDocumentFocus(self: *const IAccStore, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDocumentFocus(self, punk);
+    }
+    pub fn GetFocused(self: *const IAccStore, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFocused(self, riid, ppunk);
+    }
 };
 
-pub const TS_SELECTION_ACP = extern struct {
-    acpStart: i32,
-    acpEnd: i32,
-    style: TS_SELECTIONSTYLE,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IAnchor_Value = Guid.initString("0feb7e34-5a60-4356-8ef7-abdec2ff7cf8");
+pub const IID_IAnchor = &IID_IAnchor_Value;
+pub const IAnchor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetGravity: *const fn(
+            self: *const IAnchor,
+            gravity: TsGravity,
+        ) callconv(.winapi) HRESULT,
+        GetGravity: *const fn(
+            self: *const IAnchor,
+            pgravity: ?*TsGravity,
+        ) callconv(.winapi) HRESULT,
+        IsEqual: *const fn(
+            self: *const IAnchor,
+            paWith: ?*IAnchor,
+            pfEqual: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Compare: *const fn(
+            self: *const IAnchor,
+            paWith: ?*IAnchor,
+            plResult: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Shift: *const fn(
+            self: *const IAnchor,
+            dwFlags: u32,
+            cchReq: i32,
+            pcch: ?*i32,
+            paHaltAnchor: ?*IAnchor,
+        ) callconv(.winapi) HRESULT,
+        ShiftTo: *const fn(
+            self: *const IAnchor,
+            paSite: ?*IAnchor,
+        ) callconv(.winapi) HRESULT,
+        ShiftRegion: *const fn(
+            self: *const IAnchor,
+            dwFlags: u32,
+            dir: TsShiftDir,
+            pfNoRegion: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetChangeHistoryMask: *const fn(
+            self: *const IAnchor,
+            dwMask: u32,
+        ) callconv(.winapi) HRESULT,
+        GetChangeHistory: *const fn(
+            self: *const IAnchor,
+            pdwHistory: ?*ANCHOR_CHANGE_HISTORY_FLAGS,
+        ) callconv(.winapi) HRESULT,
+        ClearChangeHistory: *const fn(
+            self: *const IAnchor,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IAnchor,
+            ppaClone: ?*?*IAnchor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetGravity(self: *const IAnchor, gravity: TsGravity) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGravity(self, gravity);
+    }
+    pub fn GetGravity(self: *const IAnchor, pgravity: ?*TsGravity) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGravity(self, pgravity);
+    }
+    pub fn IsEqual(self: *const IAnchor, paWith: ?*IAnchor, pfEqual: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsEqual(self, paWith, pfEqual);
+    }
+    pub fn Compare(self: *const IAnchor, paWith: ?*IAnchor, plResult: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Compare(self, paWith, plResult);
+    }
+    pub fn Shift(self: *const IAnchor, dwFlags: u32, cchReq: i32, pcch: ?*i32, paHaltAnchor: ?*IAnchor) callconv(.@"inline") HRESULT {
+        return self.vtable.Shift(self, dwFlags, cchReq, pcch, paHaltAnchor);
+    }
+    pub fn ShiftTo(self: *const IAnchor, paSite: ?*IAnchor) callconv(.@"inline") HRESULT {
+        return self.vtable.ShiftTo(self, paSite);
+    }
+    pub fn ShiftRegion(self: *const IAnchor, dwFlags: u32, dir: TsShiftDir, pfNoRegion: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ShiftRegion(self, dwFlags, dir, pfNoRegion);
+    }
+    pub fn SetChangeHistoryMask(self: *const IAnchor, dwMask: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetChangeHistoryMask(self, dwMask);
+    }
+    pub fn GetChangeHistory(self: *const IAnchor, pdwHistory: ?*ANCHOR_CHANGE_HISTORY_FLAGS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChangeHistory(self, pdwHistory);
+    }
+    pub fn ClearChangeHistory(self: *const IAnchor) callconv(.@"inline") HRESULT {
+        return self.vtable.ClearChangeHistory(self);
+    }
+    pub fn Clone(self: *const IAnchor, ppaClone: ?*?*IAnchor) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppaClone);
+    }
 };
 
-pub const TS_SELECTION_ANCHOR = extern struct {
-    paStart: ?*IAnchor,
-    paEnd: ?*IAnchor,
-    style: TS_SELECTIONSTYLE,
+const IID_IClonableWrapper_Value = Guid.initString("b33e75ff-e84c-4dca-a25c-33b8dc003374");
+pub const IID_IClonableWrapper = &IID_IClonableWrapper_Value;
+pub const IClonableWrapper = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CloneNewWrapper: *const fn(
+            self: *const IClonableWrapper,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CloneNewWrapper(self: *const IClonableWrapper, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CloneNewWrapper(self, riid, ppv);
+    }
 };
 
-pub const TS_ATTRVAL = extern struct {
-    idAttr: Guid,
-    dwOverlapId: u32,
-    varValue: VARIANT,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ICoCreatedLocally_Value = Guid.initString("0a53eb6c-1908-4742-8cff-2cee2e93f94c");
+pub const IID_ICoCreatedLocally = &IID_ICoCreatedLocally_Value;
+pub const ICoCreatedLocally = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        LocalInit: *const fn(
+            self: *const ICoCreatedLocally,
+            punkLocalObject: ?*IUnknown,
+            riidParam: ?*const Guid,
+            punkParam: ?*IUnknown,
+            varParam: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn LocalInit(self: *const ICoCreatedLocally, punkLocalObject: ?*IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.LocalInit(self, punkLocalObject, riidParam, punkParam, varParam);
+    }
 };
 
-pub const TsLayoutCode = enum(i32) {
-    CREATE = 0,
-    CHANGE = 1,
-    DESTROY = 2,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ICoCreateLocally_Value = Guid.initString("03de00aa-f272-41e3-99cb-03c5e8114ea0");
+pub const IID_ICoCreateLocally = &IID_ICoCreateLocally_Value;
+pub const ICoCreateLocally = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CoCreateLocally: *const fn(
+            self: *const ICoCreateLocally,
+            rclsid: ?*const Guid,
+            dwClsContext: u32,
+            riid: ?*const Guid,
+            punk: **IUnknown,
+            riidParam: ?*const Guid,
+            punkParam: ?*IUnknown,
+            varParam: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CoCreateLocally(self: *const ICoCreateLocally, rclsid: ?*const Guid, dwClsContext: u32, riid: ?*const Guid, punk: **IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.CoCreateLocally(self, rclsid, dwClsContext, riid, punk, riidParam, punkParam, varParam);
+    }
 };
-pub const TS_LC_CREATE = TsLayoutCode.CREATE;
-pub const TS_LC_CHANGE = TsLayoutCode.CHANGE;
-pub const TS_LC_DESTROY = TsLayoutCode.DESTROY;
 
-pub const TsRunType = enum(i32) {
-    PLAIN = 0,
-    HIDDEN = 1,
-    OPAQUE = 2,
+const IID_IDocWrap_Value = Guid.initString("dcd285fe-0be0-43bd-99c9-aaaec513c555");
+pub const IID_IDocWrap = &IID_IDocWrap_Value;
+pub const IDocWrap = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetDoc: *const fn(
+            self: *const IDocWrap,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetWrappedDoc: *const fn(
+            self: *const IDocWrap,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetDoc(self: *const IDocWrap, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDoc(self, riid, punk);
+    }
+    pub fn GetWrappedDoc(self: *const IDocWrap, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWrappedDoc(self, riid, ppunk);
+    }
 };
-pub const TS_RT_PLAIN = TsRunType.PLAIN;
-pub const TS_RT_HIDDEN = TsRunType.HIDDEN;
-pub const TS_RT_OPAQUE = TsRunType.OPAQUE;
 
-pub const TS_RUNINFO = extern struct {
-    uCount: u32,
-    type: TsRunType,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumITfCompositionView_Value = Guid.initString("5efd22ba-7838-46cb-88e2-cadb14124f8f");
+pub const IID_IEnumITfCompositionView = &IID_IEnumITfCompositionView_Value;
+pub const IEnumITfCompositionView = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumITfCompositionView,
+            ppEnum: ?*?*IEnumITfCompositionView,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumITfCompositionView,
+            ulCount: u32,
+            rgCompositionView: [*]?*ITfCompositionView,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumITfCompositionView,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumITfCompositionView,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumITfCompositionView, ppEnum: ?*?*IEnumITfCompositionView) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumITfCompositionView, ulCount: u32, rgCompositionView: [*]?*ITfCompositionView, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgCompositionView, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumITfCompositionView) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumITfCompositionView, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+const IID_IEnumSpeechCommands_Value = Guid.initString("8c5dac4f-083c-4b85-a4c9-71746048adca");
+pub const IID_IEnumSpeechCommands = &IID_IEnumSpeechCommands_Value;
+pub const IEnumSpeechCommands = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumSpeechCommands,
+            ppEnum: ?*?*IEnumSpeechCommands,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumSpeechCommands,
+            ulCount: u32,
+            pSpCmds: [*]?*u16,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSpeechCommands,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSpeechCommands,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumSpeechCommands, ppEnum: ?*?*IEnumSpeechCommands) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumSpeechCommands, ulCount: u32, pSpCmds: [*]?*u16, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, pSpCmds, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumSpeechCommands) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumSpeechCommands, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfCandidates_Value = Guid.initString("defb1926-6c80-4ce8-87d4-d6b72b812bde");
+pub const IID_IEnumTfCandidates = &IID_IEnumTfCandidates_Value;
+pub const IEnumTfCandidates = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfCandidates,
+            ppEnum: ?*?*IEnumTfCandidates,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfCandidates,
+            ulCount: u32,
+            ppCand: [*]?*ITfCandidateString,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfCandidates,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfCandidates,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfCandidates, ppEnum: ?*?*IEnumTfCandidates) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfCandidates, ulCount: u32, ppCand: [*]?*ITfCandidateString, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, ppCand, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfCandidates) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfCandidates, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfContexts_Value = Guid.initString("8f1a7ea6-1654-4502-a86e-b2902344d507");
+pub const IID_IEnumTfContexts = &IID_IEnumTfContexts_Value;
+pub const IEnumTfContexts = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfContexts,
+            ppEnum: ?*?*IEnumTfContexts,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfContexts,
+            ulCount: u32,
+            rgContext: [*]?*ITfContext,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfContexts,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfContexts,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfContexts, ppEnum: ?*?*IEnumTfContexts) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfContexts, ulCount: u32, rgContext: [*]?*ITfContext, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgContext, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfContexts) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfContexts, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+const IID_IEnumTfContextViews_Value = Guid.initString("f0c0f8dd-cf38-44e1-bb0f-68cf0d551c78");
+pub const IID_IEnumTfContextViews = &IID_IEnumTfContextViews_Value;
+pub const IEnumTfContextViews = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfContextViews,
+            ppEnum: ?*?*IEnumTfContextViews,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfContextViews,
+            ulCount: u32,
+            rgViews: [*]?*ITfContextView,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfContextViews,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfContextViews,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfContextViews, ppEnum: ?*?*IEnumTfContextViews) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfContextViews, ulCount: u32, rgViews: [*]?*ITfContextView, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgViews, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfContextViews) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfContextViews, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfDisplayAttributeInfo_Value = Guid.initString("7cef04d7-cb75-4e80-a7ab-5f5bc7d332de");
+pub const IID_IEnumTfDisplayAttributeInfo = &IID_IEnumTfDisplayAttributeInfo_Value;
+pub const IEnumTfDisplayAttributeInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfDisplayAttributeInfo,
+            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfDisplayAttributeInfo,
+            ulCount: u32,
+            rgInfo: [*]?*ITfDisplayAttributeInfo,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfDisplayAttributeInfo,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfDisplayAttributeInfo,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfDisplayAttributeInfo, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfDisplayAttributeInfo, ulCount: u32, rgInfo: [*]?*ITfDisplayAttributeInfo, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgInfo, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfDisplayAttributeInfo, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfDocumentMgrs_Value = Guid.initString("aa80e808-2021-11d2-93e0-0060b067b86e");
+pub const IID_IEnumTfDocumentMgrs = &IID_IEnumTfDocumentMgrs_Value;
+pub const IEnumTfDocumentMgrs = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfDocumentMgrs,
+            ppEnum: ?*?*IEnumTfDocumentMgrs,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfDocumentMgrs,
+            ulCount: u32,
+            rgDocumentMgr: [*]?*ITfDocumentMgr,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfDocumentMgrs,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfDocumentMgrs,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfDocumentMgrs, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfDocumentMgrs, ulCount: u32, rgDocumentMgr: [*]?*ITfDocumentMgr, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgDocumentMgr, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfDocumentMgrs, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfFunctionProviders_Value = Guid.initString("e4b24db0-0990-11d3-8df0-00105a2799b5");
+pub const IID_IEnumTfFunctionProviders = &IID_IEnumTfFunctionProviders_Value;
+pub const IEnumTfFunctionProviders = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfFunctionProviders,
+            ppEnum: ?*?*IEnumTfFunctionProviders,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfFunctionProviders,
+            ulCount: u32,
+            ppCmdobj: [*]?*ITfFunctionProvider,
+            pcFetch: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfFunctionProviders,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfFunctionProviders,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfFunctionProviders, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfFunctionProviders, ulCount: u32, ppCmdobj: [*]?*ITfFunctionProvider, pcFetch: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, ppCmdobj, pcFetch);
+    }
+    pub fn Reset(self: *const IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfFunctionProviders, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfInputProcessorProfiles_Value = Guid.initString("71c6e74d-0f28-11d8-a82a-00065b84435c");
+pub const IID_IEnumTfInputProcessorProfiles = &IID_IEnumTfInputProcessorProfiles_Value;
+pub const IEnumTfInputProcessorProfiles = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfInputProcessorProfiles,
+            ppEnum: ?*?*IEnumTfInputProcessorProfiles,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfInputProcessorProfiles,
+            ulCount: u32,
+            pProfile: [*]TF_INPUTPROCESSORPROFILE,
+            pcFetch: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfInputProcessorProfiles,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfInputProcessorProfiles,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfInputProcessorProfiles, ppEnum: ?*?*IEnumTfInputProcessorProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfInputProcessorProfiles, ulCount: u32, pProfile: [*]TF_INPUTPROCESSORPROFILE, pcFetch: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, pProfile, pcFetch);
+    }
+    pub fn Reset(self: *const IEnumTfInputProcessorProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfInputProcessorProfiles, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfLangBarItems_Value = Guid.initString("583f34d0-de25-11d2-afdd-00105a2799b5");
+pub const IID_IEnumTfLangBarItems = &IID_IEnumTfLangBarItems_Value;
+pub const IEnumTfLangBarItems = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfLangBarItems,
+            ppEnum: ?*?*IEnumTfLangBarItems,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfLangBarItems,
+            ulCount: u32,
+            ppItem: [*]?*ITfLangBarItem,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfLangBarItems,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfLangBarItems,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfLangBarItems, ppEnum: ?*?*IEnumTfLangBarItems) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfLangBarItems, ulCount: u32, ppItem: [*]?*ITfLangBarItem, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, ppItem, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfLangBarItems) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfLangBarItems, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfLanguageProfiles_Value = Guid.initString("3d61bf11-ac5f-42c8-a4cb-931bcc28c744");
+pub const IID_IEnumTfLanguageProfiles = &IID_IEnumTfLanguageProfiles_Value;
+pub const IEnumTfLanguageProfiles = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfLanguageProfiles,
+            ppEnum: ?*?*IEnumTfLanguageProfiles,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfLanguageProfiles,
+            ulCount: u32,
+            pProfile: [*]TF_LANGUAGEPROFILE,
+            pcFetch: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfLanguageProfiles,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfLanguageProfiles,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfLanguageProfiles, ppEnum: ?*?*IEnumTfLanguageProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfLanguageProfiles, ulCount: u32, pProfile: [*]TF_LANGUAGEPROFILE, pcFetch: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, pProfile, pcFetch);
+    }
+    pub fn Reset(self: *const IEnumTfLanguageProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfLanguageProfiles, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfLatticeElements_Value = Guid.initString("56988052-47da-4a05-911a-e3d941f17145");
+pub const IID_IEnumTfLatticeElements = &IID_IEnumTfLatticeElements_Value;
+pub const IEnumTfLatticeElements = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfLatticeElements,
+            ppEnum: ?*?*IEnumTfLatticeElements,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfLatticeElements,
+            ulCount: u32,
+            rgsElements: [*]TF_LMLATTELEMENT,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfLatticeElements,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfLatticeElements,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfLatticeElements, ppEnum: ?*?*IEnumTfLatticeElements) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfLatticeElements, ulCount: u32, rgsElements: [*]TF_LMLATTELEMENT, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgsElements, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfLatticeElements) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfLatticeElements, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfProperties_Value = Guid.initString("19188cb0-aca9-11d2-afc5-00105a2799b5");
+pub const IID_IEnumTfProperties = &IID_IEnumTfProperties_Value;
+pub const IEnumTfProperties = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfProperties,
+            ppEnum: ?*?*IEnumTfProperties,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfProperties,
+            ulCount: u32,
+            ppProp: [*]?*ITfProperty,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfProperties,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfProperties,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfProperties, ppEnum: ?*?*IEnumTfProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfProperties, ulCount: u32, ppProp: [*]?*ITfProperty, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, ppProp, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfProperties, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfPropertyValue_Value = Guid.initString("8ed8981b-7c10-4d7d-9fb3-ab72e9c75f72");
+pub const IID_IEnumTfPropertyValue = &IID_IEnumTfPropertyValue_Value;
+pub const IEnumTfPropertyValue = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfPropertyValue,
+            ppEnum: ?*?*IEnumTfPropertyValue,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfPropertyValue,
+            ulCount: u32,
+            rgValues: [*]TF_PROPERTYVAL,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfPropertyValue,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfPropertyValue,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfPropertyValue, ppEnum: ?*?*IEnumTfPropertyValue) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfPropertyValue, ulCount: u32, rgValues: [*]TF_PROPERTYVAL, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgValues, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfPropertyValue) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfPropertyValue, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfRanges_Value = Guid.initString("f99d3f40-8e32-11d2-bf46-00105a2799b5");
+pub const IID_IEnumTfRanges = &IID_IEnumTfRanges_Value;
+pub const IEnumTfRanges = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfRanges,
+            ppEnum: ?*?*IEnumTfRanges,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfRanges,
+            ulCount: u32,
+            ppRange: [*]?*ITfRange,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfRanges,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfRanges,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfRanges, ppEnum: ?*?*IEnumTfRanges) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfRanges, ulCount: u32, ppRange: [*]?*ITfRange, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, ppRange, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfRanges) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfRanges, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumTfUIElements_Value = Guid.initString("887aa91e-acba-4931-84da-3c5208cf543f");
+pub const IID_IEnumTfUIElements = &IID_IEnumTfUIElements_Value;
+pub const IEnumTfUIElements = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumTfUIElements,
+            ppEnum: ?*?*IEnumTfUIElements,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumTfUIElements,
+            ulCount: u32,
+            ppElement: [*]?*ITfUIElement,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTfUIElements,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTfUIElements,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumTfUIElements, ppEnum: ?*?*IEnumTfUIElements) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumTfUIElements, ulCount: u32, ppElement: [*]?*ITfUIElement, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, ppElement, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumTfUIElements) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumTfUIElements, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+const IID_IInternalDocWrap_Value = Guid.initString("e1aa6466-9db4-40ba-be03-77c38e8e60b2");
+pub const IID_IInternalDocWrap = &IID_IInternalDocWrap_Value;
+pub const IInternalDocWrap = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        NotifyRevoke: *const fn(
+            self: *const IInternalDocWrap,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn NotifyRevoke(self: *const IInternalDocWrap) callconv(.@"inline") HRESULT {
+        return self.vtable.NotifyRevoke(self);
+    }
+};
+
+pub const InputScope = enum(i32) {
+    DEFAULT = 0,
+    URL = 1,
+    FILE_FULLFILEPATH = 2,
+    FILE_FILENAME = 3,
+    EMAIL_USERNAME = 4,
+    EMAIL_SMTPEMAILADDRESS = 5,
+    LOGINNAME = 6,
+    PERSONALNAME_FULLNAME = 7,
+    PERSONALNAME_PREFIX = 8,
+    PERSONALNAME_GIVENNAME = 9,
+    PERSONALNAME_MIDDLENAME = 10,
+    PERSONALNAME_SURNAME = 11,
+    PERSONALNAME_SUFFIX = 12,
+    ADDRESS_FULLPOSTALADDRESS = 13,
+    ADDRESS_POSTALCODE = 14,
+    ADDRESS_STREET = 15,
+    ADDRESS_STATEORPROVINCE = 16,
+    ADDRESS_CITY = 17,
+    ADDRESS_COUNTRYNAME = 18,
+    ADDRESS_COUNTRYSHORTNAME = 19,
+    CURRENCY_AMOUNTANDSYMBOL = 20,
+    CURRENCY_AMOUNT = 21,
+    DATE_FULLDATE = 22,
+    DATE_MONTH = 23,
+    DATE_DAY = 24,
+    DATE_YEAR = 25,
+    DATE_MONTHNAME = 26,
+    DATE_DAYNAME = 27,
+    DIGITS = 28,
+    NUMBER = 29,
+    ONECHAR = 30,
+    PASSWORD = 31,
+    TELEPHONE_FULLTELEPHONENUMBER = 32,
+    TELEPHONE_COUNTRYCODE = 33,
+    TELEPHONE_AREACODE = 34,
+    TELEPHONE_LOCALNUMBER = 35,
+    TIME_FULLTIME = 36,
+    TIME_HOUR = 37,
+    TIME_MINORSEC = 38,
+    NUMBER_FULLWIDTH = 39,
+    ALPHANUMERIC_HALFWIDTH = 40,
+    ALPHANUMERIC_FULLWIDTH = 41,
+    CURRENCY_CHINESE = 42,
+    BOPOMOFO = 43,
+    HIRAGANA = 44,
+    KATAKANA_HALFWIDTH = 45,
+    KATAKANA_FULLWIDTH = 46,
+    HANJA = 47,
+    HANGUL_HALFWIDTH = 48,
+    HANGUL_FULLWIDTH = 49,
+    SEARCH = 50,
+    FORMULA = 51,
+    SEARCH_INCREMENTAL = 52,
+    CHINESE_HALFWIDTH = 53,
+    CHINESE_FULLWIDTH = 54,
+    NATIVE_SCRIPT = 55,
+    YOMI = 56,
+    TEXT = 57,
+    CHAT = 58,
+    NAME_OR_PHONENUMBER = 59,
+    EMAILNAME_OR_ADDRESS = 60,
+    PRIVATE = 61,
+    MAPS = 62,
+    NUMERIC_PASSWORD = 63,
+    NUMERIC_PIN = 64,
+    ALPHANUMERIC_PIN = 65,
+    ALPHANUMERIC_PIN_SET = 66,
+    FORMULA_NUMBER = 67,
+    CHAT_WITHOUT_EMOJI = 68,
+    PHRASELIST = -1,
+    REGULAREXPRESSION = -2,
+    SRGS = -3,
+    XML = -4,
+    ENUMSTRING = -5,
+};
+pub const IS_DEFAULT = InputScope.DEFAULT;
+pub const IS_URL = InputScope.URL;
+pub const IS_FILE_FULLFILEPATH = InputScope.FILE_FULLFILEPATH;
+pub const IS_FILE_FILENAME = InputScope.FILE_FILENAME;
+pub const IS_EMAIL_USERNAME = InputScope.EMAIL_USERNAME;
+pub const IS_EMAIL_SMTPEMAILADDRESS = InputScope.EMAIL_SMTPEMAILADDRESS;
+pub const IS_LOGINNAME = InputScope.LOGINNAME;
+pub const IS_PERSONALNAME_FULLNAME = InputScope.PERSONALNAME_FULLNAME;
+pub const IS_PERSONALNAME_PREFIX = InputScope.PERSONALNAME_PREFIX;
+pub const IS_PERSONALNAME_GIVENNAME = InputScope.PERSONALNAME_GIVENNAME;
+pub const IS_PERSONALNAME_MIDDLENAME = InputScope.PERSONALNAME_MIDDLENAME;
+pub const IS_PERSONALNAME_SURNAME = InputScope.PERSONALNAME_SURNAME;
+pub const IS_PERSONALNAME_SUFFIX = InputScope.PERSONALNAME_SUFFIX;
+pub const IS_ADDRESS_FULLPOSTALADDRESS = InputScope.ADDRESS_FULLPOSTALADDRESS;
+pub const IS_ADDRESS_POSTALCODE = InputScope.ADDRESS_POSTALCODE;
+pub const IS_ADDRESS_STREET = InputScope.ADDRESS_STREET;
+pub const IS_ADDRESS_STATEORPROVINCE = InputScope.ADDRESS_STATEORPROVINCE;
+pub const IS_ADDRESS_CITY = InputScope.ADDRESS_CITY;
+pub const IS_ADDRESS_COUNTRYNAME = InputScope.ADDRESS_COUNTRYNAME;
+pub const IS_ADDRESS_COUNTRYSHORTNAME = InputScope.ADDRESS_COUNTRYSHORTNAME;
+pub const IS_CURRENCY_AMOUNTANDSYMBOL = InputScope.CURRENCY_AMOUNTANDSYMBOL;
+pub const IS_CURRENCY_AMOUNT = InputScope.CURRENCY_AMOUNT;
+pub const IS_DATE_FULLDATE = InputScope.DATE_FULLDATE;
+pub const IS_DATE_MONTH = InputScope.DATE_MONTH;
+pub const IS_DATE_DAY = InputScope.DATE_DAY;
+pub const IS_DATE_YEAR = InputScope.DATE_YEAR;
+pub const IS_DATE_MONTHNAME = InputScope.DATE_MONTHNAME;
+pub const IS_DATE_DAYNAME = InputScope.DATE_DAYNAME;
+pub const IS_DIGITS = InputScope.DIGITS;
+pub const IS_NUMBER = InputScope.NUMBER;
+pub const IS_ONECHAR = InputScope.ONECHAR;
+pub const IS_PASSWORD = InputScope.PASSWORD;
+pub const IS_TELEPHONE_FULLTELEPHONENUMBER = InputScope.TELEPHONE_FULLTELEPHONENUMBER;
+pub const IS_TELEPHONE_COUNTRYCODE = InputScope.TELEPHONE_COUNTRYCODE;
+pub const IS_TELEPHONE_AREACODE = InputScope.TELEPHONE_AREACODE;
+pub const IS_TELEPHONE_LOCALNUMBER = InputScope.TELEPHONE_LOCALNUMBER;
+pub const IS_TIME_FULLTIME = InputScope.TIME_FULLTIME;
+pub const IS_TIME_HOUR = InputScope.TIME_HOUR;
+pub const IS_TIME_MINORSEC = InputScope.TIME_MINORSEC;
+pub const IS_NUMBER_FULLWIDTH = InputScope.NUMBER_FULLWIDTH;
+pub const IS_ALPHANUMERIC_HALFWIDTH = InputScope.ALPHANUMERIC_HALFWIDTH;
+pub const IS_ALPHANUMERIC_FULLWIDTH = InputScope.ALPHANUMERIC_FULLWIDTH;
+pub const IS_CURRENCY_CHINESE = InputScope.CURRENCY_CHINESE;
+pub const IS_BOPOMOFO = InputScope.BOPOMOFO;
+pub const IS_HIRAGANA = InputScope.HIRAGANA;
+pub const IS_KATAKANA_HALFWIDTH = InputScope.KATAKANA_HALFWIDTH;
+pub const IS_KATAKANA_FULLWIDTH = InputScope.KATAKANA_FULLWIDTH;
+pub const IS_HANJA = InputScope.HANJA;
+pub const IS_HANGUL_HALFWIDTH = InputScope.HANGUL_HALFWIDTH;
+pub const IS_HANGUL_FULLWIDTH = InputScope.HANGUL_FULLWIDTH;
+pub const IS_SEARCH = InputScope.SEARCH;
+pub const IS_FORMULA = InputScope.FORMULA;
+pub const IS_SEARCH_INCREMENTAL = InputScope.SEARCH_INCREMENTAL;
+pub const IS_CHINESE_HALFWIDTH = InputScope.CHINESE_HALFWIDTH;
+pub const IS_CHINESE_FULLWIDTH = InputScope.CHINESE_FULLWIDTH;
+pub const IS_NATIVE_SCRIPT = InputScope.NATIVE_SCRIPT;
+pub const IS_YOMI = InputScope.YOMI;
+pub const IS_TEXT = InputScope.TEXT;
+pub const IS_CHAT = InputScope.CHAT;
+pub const IS_NAME_OR_PHONENUMBER = InputScope.NAME_OR_PHONENUMBER;
+pub const IS_EMAILNAME_OR_ADDRESS = InputScope.EMAILNAME_OR_ADDRESS;
+pub const IS_PRIVATE = InputScope.PRIVATE;
+pub const IS_MAPS = InputScope.MAPS;
+pub const IS_NUMERIC_PASSWORD = InputScope.NUMERIC_PASSWORD;
+pub const IS_NUMERIC_PIN = InputScope.NUMERIC_PIN;
+pub const IS_ALPHANUMERIC_PIN = InputScope.ALPHANUMERIC_PIN;
+pub const IS_ALPHANUMERIC_PIN_SET = InputScope.ALPHANUMERIC_PIN_SET;
+pub const IS_FORMULA_NUMBER = InputScope.FORMULA_NUMBER;
+pub const IS_CHAT_WITHOUT_EMOJI = InputScope.CHAT_WITHOUT_EMOJI;
+pub const IS_PHRASELIST = InputScope.PHRASELIST;
+pub const IS_REGULAREXPRESSION = InputScope.REGULAREXPRESSION;
+pub const IS_SRGS = InputScope.SRGS;
+pub const IS_XML = InputScope.XML;
+pub const IS_ENUMSTRING = InputScope.ENUMSTRING;
+
+pub const INSERT_TEXT_AT_SELECTION_FLAGS = enum(u32) {
+    NOQUERY = 1,
+    QUERYONLY = 2,
+    NO_DEFAULT_COMPOSITION = 2147483648,
+};
+pub const TF_IAS_NOQUERY = INSERT_TEXT_AT_SELECTION_FLAGS.NOQUERY;
+pub const TF_IAS_QUERYONLY = INSERT_TEXT_AT_SELECTION_FLAGS.QUERYONLY;
+pub const TF_IAS_NO_DEFAULT_COMPOSITION = INSERT_TEXT_AT_SELECTION_FLAGS.NO_DEFAULT_COMPOSITION;
+
+const IID_ISpeechCommandProvider_Value = Guid.initString("38e09d4c-586d-435a-b592-c8a86691dec6");
+pub const IID_ISpeechCommandProvider = &IID_ISpeechCommandProvider_Value;
+pub const ISpeechCommandProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumSpeechCommands: *const fn(
+            self: *const ISpeechCommandProvider,
+            langid: u16,
+            ppEnum: ?*?*IEnumSpeechCommands,
+        ) callconv(.winapi) HRESULT,
+        ProcessCommand: *const fn(
+            self: *const ISpeechCommandProvider,
+            pszCommand: [*:0]const u16,
+            cch: u32,
+            langid: u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnumSpeechCommands(self: *const ISpeechCommandProvider, langid: u16, ppEnum: ?*?*IEnumSpeechCommands) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumSpeechCommands(self, langid, ppEnum);
+    }
+    pub fn ProcessCommand(self: *const ISpeechCommandProvider, pszCommand: [*:0]const u16, cch: u32, langid: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessCommand(self, pszCommand, cch, langid);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1246,6 +2277,73 @@ pub const ITextStoreACP2 = extern union {
     }
 };
 
+const IID_ITextStoreACPEx_Value = Guid.initString("a2de3bc2-3d8e-11d3-81a9-f753fbe61a00");
+pub const IID_ITextStoreACPEx = &IID_ITextStoreACPEx_Value;
+pub const ITextStoreACPEx = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ScrollToRect: *const fn(
+            self: *const ITextStoreACPEx,
+            acpStart: i32,
+            acpEnd: i32,
+            rc: RECT,
+            dwPosition: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ScrollToRect(self: *const ITextStoreACPEx, acpStart: i32, acpEnd: i32, rc: RECT, dwPosition: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ScrollToRect(self, acpStart, acpEnd, rc, dwPosition);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITextStoreACPServices_Value = Guid.initString("aa80e901-2021-11d2-93e0-0060b067b86e");
+pub const IID_ITextStoreACPServices = &IID_ITextStoreACPServices_Value;
+pub const ITextStoreACPServices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Serialize: *const fn(
+            self: *const ITextStoreACPServices,
+            pProp: ?*ITfProperty,
+            pRange: ?*ITfRange,
+            pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            pStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        Unserialize: *const fn(
+            self: *const ITextStoreACPServices,
+            pProp: ?*ITfProperty,
+            pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            pStream: ?*IStream,
+            pLoader: ?*ITfPersistentPropertyLoaderACP,
+        ) callconv(.winapi) HRESULT,
+        ForceLoadProperty: *const fn(
+            self: *const ITextStoreACPServices,
+            pProp: ?*ITfProperty,
+        ) callconv(.winapi) HRESULT,
+        CreateRange: *const fn(
+            self: *const ITextStoreACPServices,
+            acpStart: i32,
+            acpEnd: i32,
+            ppRange: ?*?*ITfRangeACP,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Serialize(self: *const ITextStoreACPServices, pProp: ?*ITfProperty, pRange: ?*ITfRange, pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.Serialize(self, pProp, pRange, pHdr, pStream);
+    }
+    pub fn Unserialize(self: *const ITextStoreACPServices, pProp: ?*ITfProperty, pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream, pLoader: ?*ITfPersistentPropertyLoaderACP) callconv(.@"inline") HRESULT {
+        return self.vtable.Unserialize(self, pProp, pHdr, pStream, pLoader);
+    }
+    pub fn ForceLoadProperty(self: *const ITextStoreACPServices, pProp: ?*ITfProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.ForceLoadProperty(self, pProp);
+    }
+    pub fn CreateRange(self: *const ITextStoreACPServices, acpStart: i32, acpEnd: i32, ppRange: ?*?*ITfRangeACP) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRange(self, acpStart, acpEnd, ppRange);
+    }
+};
+
 // TODO: this type is limited to platform 'windows5.0'
 const IID_ITextStoreACPSink_Value = Guid.initString("22d44c94-a419-4542-a272-ae26093ececf");
 pub const IID_ITextStoreACPSink = &IID_ITextStoreACPSink_Value;
@@ -1315,111 +2413,20 @@ pub const ITextStoreACPSink = extern union {
     }
 };
 
-pub const TsGravity = enum(i32) {
-    BACKWARD = 0,
-    FORWARD = 1,
-};
-pub const TS_GR_BACKWARD = TsGravity.BACKWARD;
-pub const TS_GR_FORWARD = TsGravity.FORWARD;
-
-pub const TsShiftDir = enum(i32) {
-    BACKWARD = 0,
-    FORWARD = 1,
-};
-pub const TS_SD_BACKWARD = TsShiftDir.BACKWARD;
-pub const TS_SD_FORWARD = TsShiftDir.FORWARD;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IAnchor_Value = Guid.initString("0feb7e34-5a60-4356-8ef7-abdec2ff7cf8");
-pub const IID_IAnchor = &IID_IAnchor_Value;
-pub const IAnchor = extern union {
+const IID_ITextStoreACPSinkEx_Value = Guid.initString("2bdf9464-41e2-43e3-950c-a6865ba25cd4");
+pub const IID_ITextStoreACPSinkEx = &IID_ITextStoreACPSinkEx_Value;
+pub const ITextStoreACPSinkEx = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetGravity: *const fn(
-            self: *const IAnchor,
-            gravity: TsGravity,
-        ) callconv(.winapi) HRESULT,
-        GetGravity: *const fn(
-            self: *const IAnchor,
-            pgravity: ?*TsGravity,
-        ) callconv(.winapi) HRESULT,
-        IsEqual: *const fn(
-            self: *const IAnchor,
-            paWith: ?*IAnchor,
-            pfEqual: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        Compare: *const fn(
-            self: *const IAnchor,
-            paWith: ?*IAnchor,
-            plResult: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Shift: *const fn(
-            self: *const IAnchor,
-            dwFlags: u32,
-            cchReq: i32,
-            pcch: ?*i32,
-            paHaltAnchor: ?*IAnchor,
-        ) callconv(.winapi) HRESULT,
-        ShiftTo: *const fn(
-            self: *const IAnchor,
-            paSite: ?*IAnchor,
-        ) callconv(.winapi) HRESULT,
-        ShiftRegion: *const fn(
-            self: *const IAnchor,
-            dwFlags: u32,
-            dir: TsShiftDir,
-            pfNoRegion: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetChangeHistoryMask: *const fn(
-            self: *const IAnchor,
-            dwMask: u32,
-        ) callconv(.winapi) HRESULT,
-        GetChangeHistory: *const fn(
-            self: *const IAnchor,
-            pdwHistory: ?*ANCHOR_CHANGE_HISTORY_FLAGS,
-        ) callconv(.winapi) HRESULT,
-        ClearChangeHistory: *const fn(
-            self: *const IAnchor,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IAnchor,
-            ppaClone: ?*?*IAnchor,
+        base: ITextStoreACPSink.VTable,
+        OnDisconnect: *const fn(
+            self: *const ITextStoreACPSinkEx,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    ITextStoreACPSink: ITextStoreACPSink,
     IUnknown: IUnknown,
-    pub fn SetGravity(self: *const IAnchor, gravity: TsGravity) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGravity(self, gravity);
-    }
-    pub fn GetGravity(self: *const IAnchor, pgravity: ?*TsGravity) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGravity(self, pgravity);
-    }
-    pub fn IsEqual(self: *const IAnchor, paWith: ?*IAnchor, pfEqual: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsEqual(self, paWith, pfEqual);
-    }
-    pub fn Compare(self: *const IAnchor, paWith: ?*IAnchor, plResult: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Compare(self, paWith, plResult);
-    }
-    pub fn Shift(self: *const IAnchor, dwFlags: u32, cchReq: i32, pcch: ?*i32, paHaltAnchor: ?*IAnchor) callconv(.@"inline") HRESULT {
-        return self.vtable.Shift(self, dwFlags, cchReq, pcch, paHaltAnchor);
-    }
-    pub fn ShiftTo(self: *const IAnchor, paSite: ?*IAnchor) callconv(.@"inline") HRESULT {
-        return self.vtable.ShiftTo(self, paSite);
-    }
-    pub fn ShiftRegion(self: *const IAnchor, dwFlags: u32, dir: TsShiftDir, pfNoRegion: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ShiftRegion(self, dwFlags, dir, pfNoRegion);
-    }
-    pub fn SetChangeHistoryMask(self: *const IAnchor, dwMask: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetChangeHistoryMask(self, dwMask);
-    }
-    pub fn GetChangeHistory(self: *const IAnchor, pdwHistory: ?*ANCHOR_CHANGE_HISTORY_FLAGS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChangeHistory(self, pdwHistory);
-    }
-    pub fn ClearChangeHistory(self: *const IAnchor) callconv(.@"inline") HRESULT {
-        return self.vtable.ClearChangeHistory(self);
-    }
-    pub fn Clone(self: *const IAnchor, ppaClone: ?*?*IAnchor) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppaClone);
+    pub fn OnDisconnect(self: *const ITextStoreACPSinkEx) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDisconnect(self);
     }
 };
 
@@ -1687,6 +2694,26 @@ pub const ITextStoreAnchor = extern union {
     }
 };
 
+const IID_ITextStoreAnchorEx_Value = Guid.initString("a2de3bc1-3d8e-11d3-81a9-f753fbe61a00");
+pub const IID_ITextStoreAnchorEx = &IID_ITextStoreAnchorEx_Value;
+pub const ITextStoreAnchorEx = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ScrollToRect: *const fn(
+            self: *const ITextStoreAnchorEx,
+            pStart: ?*IAnchor,
+            pEnd: ?*IAnchor,
+            rc: RECT,
+            dwPosition: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ScrollToRect(self: *const ITextStoreAnchorEx, pStart: ?*IAnchor, pEnd: ?*IAnchor, rc: RECT, dwPosition: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ScrollToRect(self, pStart, pEnd, rc, dwPosition);
+    }
+};
+
 // TODO: this type is limited to platform 'windows5.0'
 const IID_ITextStoreAnchorSink_Value = Guid.initString("aa80e905-2021-11d2-93e0-0060b067b86e");
 pub const IID_ITextStoreAnchorSink = &IID_ITextStoreAnchorSink_Value;
@@ -1757,1217 +2784,480 @@ pub const ITextStoreAnchorSink = extern union {
     }
 };
 
+const IID_ITextStoreSinkAnchorEx_Value = Guid.initString("25642426-028d-4474-977b-111bb114fe3e");
+pub const IID_ITextStoreSinkAnchorEx = &IID_ITextStoreSinkAnchorEx_Value;
+pub const ITextStoreSinkAnchorEx = extern union {
+    pub const VTable = extern struct {
+        base: ITextStoreAnchorSink.VTable,
+        OnDisconnect: *const fn(
+            self: *const ITextStoreSinkAnchorEx,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITextStoreAnchorSink: ITextStoreAnchorSink,
+    IUnknown: IUnknown,
+    pub fn OnDisconnect(self: *const ITextStoreSinkAnchorEx) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDisconnect(self);
+    }
+};
+
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarMgr_Value = Guid.initString("87955690-e627-11d2-8ddb-00105a2799b5");
-pub const IID_ITfLangBarMgr = &IID_ITfLangBarMgr_Value;
-pub const ITfLangBarMgr = extern union {
+const IID_ITfActiveLanguageProfileNotifySink_Value = Guid.initString("b246cb75-a93e-4652-bf8c-b3fe0cfd7e57");
+pub const IID_ITfActiveLanguageProfileNotifySink = &IID_ITfActiveLanguageProfileNotifySink_Value;
+pub const ITfActiveLanguageProfileNotifySink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AdviseEventSink: *const fn(
-            self: *const ITfLangBarMgr,
-            pSink: ?*ITfLangBarEventSink,
-            hwnd: ?HWND,
-            dwFlags: u32,
-            pdwCookie: ?*u32,
+        OnActivated: *const fn(
+            self: *const ITfActiveLanguageProfileNotifySink,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            fActivated: BOOL,
         ) callconv(.winapi) HRESULT,
-        UnadviseEventSink: *const fn(
-            self: *const ITfLangBarMgr,
-            dwCookie: u32,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnActivated(self: *const ITfActiveLanguageProfileNotifySink, clsid: ?*const Guid, guidProfile: ?*const Guid, fActivated: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnActivated(self, clsid, guidProfile, fActivated);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfCandidateList_Value = Guid.initString("a3ad50fb-9bdb-49e3-a843-6c76520fbf5d");
+pub const IID_ITfCandidateList = &IID_ITfCandidateList_Value;
+pub const ITfCandidateList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumCandidates: *const fn(
+            self: *const ITfCandidateList,
+            ppEnum: ?*?*IEnumTfCandidates,
         ) callconv(.winapi) HRESULT,
-        GetThreadMarshalInterface: *const fn(
-            self: *const ITfLangBarMgr,
-            dwThreadId: u32,
-            dwType: u32,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
+        GetCandidate: *const fn(
+            self: *const ITfCandidateList,
+            nIndex: u32,
+            ppCand: ?*?*ITfCandidateString,
         ) callconv(.winapi) HRESULT,
-        GetThreadLangBarItemMgr: *const fn(
-            self: *const ITfLangBarMgr,
-            dwThreadId: u32,
-            pplbi: ?*?*ITfLangBarItemMgr,
-            pdwThreadid: ?*u32,
+        GetCandidateNum: *const fn(
+            self: *const ITfCandidateList,
+            pnCnt: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetInputProcessorProfiles: *const fn(
-            self: *const ITfLangBarMgr,
-            dwThreadId: u32,
-            ppaip: ?*?*ITfInputProcessorProfiles,
-            pdwThreadid: ?*u32,
+        SetResult: *const fn(
+            self: *const ITfCandidateList,
+            nIndex: u32,
+            imcr: TfCandidateResult,
         ) callconv(.winapi) HRESULT,
-        RestoreLastFocus: *const fn(
-            self: *const ITfLangBarMgr,
-            pdwThreadId: ?*u32,
-            fPrev: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetModalInput: *const fn(
-            self: *const ITfLangBarMgr,
-            pSink: ?*ITfLangBarEventSink,
-            dwThreadId: u32,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        ShowFloating: *const fn(
-            self: *const ITfLangBarMgr,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetShowFloatingStatus: *const fn(
-            self: *const ITfLangBarMgr,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnumCandidates(self: *const ITfCandidateList, ppEnum: ?*?*IEnumTfCandidates) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumCandidates(self, ppEnum);
+    }
+    pub fn GetCandidate(self: *const ITfCandidateList, nIndex: u32, ppCand: ?*?*ITfCandidateString) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCandidate(self, nIndex, ppCand);
+    }
+    pub fn GetCandidateNum(self: *const ITfCandidateList, pnCnt: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCandidateNum(self, pnCnt);
+    }
+    pub fn SetResult(self: *const ITfCandidateList, nIndex: u32, imcr: TfCandidateResult) callconv(.@"inline") HRESULT {
+        return self.vtable.SetResult(self, nIndex, imcr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfCandidateListUIElement_Value = Guid.initString("ea1ea138-19df-11d7-a6d2-00065b84435c");
+pub const IID_ITfCandidateListUIElement = &IID_ITfCandidateListUIElement_Value;
+pub const ITfCandidateListUIElement = extern union {
+    pub const VTable = extern struct {
+        base: ITfUIElement.VTable,
+        GetUpdatedFlags: *const fn(
+            self: *const ITfCandidateListUIElement,
             pdwFlags: ?*u32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AdviseEventSink(self: *const ITfLangBarMgr, pSink: ?*ITfLangBarEventSink, hwnd: ?HWND, dwFlags: u32, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseEventSink(self, pSink, hwnd, dwFlags, pdwCookie);
-    }
-    pub fn UnadviseEventSink(self: *const ITfLangBarMgr, dwCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnadviseEventSink(self, dwCookie);
-    }
-    pub fn GetThreadMarshalInterface(self: *const ITfLangBarMgr, dwThreadId: u32, dwType: u32, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetThreadMarshalInterface(self, dwThreadId, dwType, riid, ppunk);
-    }
-    pub fn GetThreadLangBarItemMgr(self: *const ITfLangBarMgr, dwThreadId: u32, pplbi: ?*?*ITfLangBarItemMgr, pdwThreadid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetThreadLangBarItemMgr(self, dwThreadId, pplbi, pdwThreadid);
-    }
-    pub fn GetInputProcessorProfiles(self: *const ITfLangBarMgr, dwThreadId: u32, ppaip: ?*?*ITfInputProcessorProfiles, pdwThreadid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputProcessorProfiles(self, dwThreadId, ppaip, pdwThreadid);
-    }
-    pub fn RestoreLastFocus(self: *const ITfLangBarMgr, pdwThreadId: ?*u32, fPrev: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreLastFocus(self, pdwThreadId, fPrev);
-    }
-    pub fn SetModalInput(self: *const ITfLangBarMgr, pSink: ?*ITfLangBarEventSink, dwThreadId: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetModalInput(self, pSink, dwThreadId, dwFlags);
-    }
-    pub fn ShowFloating(self: *const ITfLangBarMgr, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowFloating(self, dwFlags);
-    }
-    pub fn GetShowFloatingStatus(self: *const ITfLangBarMgr, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetShowFloatingStatus(self, pdwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarEventSink_Value = Guid.initString("18a4e900-e0ae-11d2-afdd-00105a2799b5");
-pub const IID_ITfLangBarEventSink = &IID_ITfLangBarEventSink_Value;
-pub const ITfLangBarEventSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnSetFocus: *const fn(
-            self: *const ITfLangBarEventSink,
-            dwThreadId: u32,
-        ) callconv(.winapi) HRESULT,
-        OnThreadTerminate: *const fn(
-            self: *const ITfLangBarEventSink,
-            dwThreadId: u32,
-        ) callconv(.winapi) HRESULT,
-        OnThreadItemChange: *const fn(
-            self: *const ITfLangBarEventSink,
-            dwThreadId: u32,
-        ) callconv(.winapi) HRESULT,
-        OnModalInput: *const fn(
-            self: *const ITfLangBarEventSink,
-            dwThreadId: u32,
-            uMsg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-        ) callconv(.winapi) HRESULT,
-        ShowFloating: *const fn(
-            self: *const ITfLangBarEventSink,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetItemFloatingRect: *const fn(
-            self: *const ITfLangBarEventSink,
-            dwThreadId: u32,
-            rguid: ?*const Guid,
-            prc: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnSetFocus(self: *const ITfLangBarEventSink, dwThreadId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetFocus(self, dwThreadId);
-    }
-    pub fn OnThreadTerminate(self: *const ITfLangBarEventSink, dwThreadId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnThreadTerminate(self, dwThreadId);
-    }
-    pub fn OnThreadItemChange(self: *const ITfLangBarEventSink, dwThreadId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnThreadItemChange(self, dwThreadId);
-    }
-    pub fn OnModalInput(self: *const ITfLangBarEventSink, dwThreadId: u32, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.OnModalInput(self, dwThreadId, uMsg, wParam, lParam);
-    }
-    pub fn ShowFloating(self: *const ITfLangBarEventSink, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowFloating(self, dwFlags);
-    }
-    pub fn GetItemFloatingRect(self: *const ITfLangBarEventSink, dwThreadId: u32, rguid: ?*const Guid, prc: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemFloatingRect(self, dwThreadId, rguid, prc);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarItemSink_Value = Guid.initString("57dbe1a0-de25-11d2-afdd-00105a2799b5");
-pub const IID_ITfLangBarItemSink = &IID_ITfLangBarItemSink_Value;
-pub const ITfLangBarItemSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnUpdate: *const fn(
-            self: *const ITfLangBarItemSink,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnUpdate(self: *const ITfLangBarItemSink, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUpdate(self, dwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfLangBarItems_Value = Guid.initString("583f34d0-de25-11d2-afdd-00105a2799b5");
-pub const IID_IEnumTfLangBarItems = &IID_IEnumTfLangBarItems_Value;
-pub const IEnumTfLangBarItems = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfLangBarItems,
-            ppEnum: ?*?*IEnumTfLangBarItems,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfLangBarItems,
-            ulCount: u32,
-            ppItem: [*]?*ITfLangBarItem,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfLangBarItems,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfLangBarItems,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfLangBarItems, ppEnum: ?*?*IEnumTfLangBarItems) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfLangBarItems, ulCount: u32, ppItem: [*]?*ITfLangBarItem, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, ppItem, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfLangBarItems) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfLangBarItems, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-pub const TF_LANGBARITEMINFO = extern struct {
-    clsidService: Guid,
-    guidItem: Guid,
-    dwStyle: u32,
-    ulSort: u32,
-    szDescription: [32]u16,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarItemMgr_Value = Guid.initString("ba468c55-9956-4fb1-a59d-52a7dd7cc6aa");
-pub const IID_ITfLangBarItemMgr = &IID_ITfLangBarItemMgr_Value;
-pub const ITfLangBarItemMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumItems: *const fn(
-            self: *const ITfLangBarItemMgr,
-            ppEnum: ?*?*IEnumTfLangBarItems,
-        ) callconv(.winapi) HRESULT,
-        GetItem: *const fn(
-            self: *const ITfLangBarItemMgr,
-            rguid: ?*const Guid,
-            ppItem: ?*?*ITfLangBarItem,
-        ) callconv(.winapi) HRESULT,
-        AddItem: *const fn(
-            self: *const ITfLangBarItemMgr,
-            punk: ?*ITfLangBarItem,
-        ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ITfLangBarItemMgr,
-            punk: ?*ITfLangBarItem,
-        ) callconv(.winapi) HRESULT,
-        AdviseItemSink: *const fn(
-            self: *const ITfLangBarItemMgr,
-            punk: ?*ITfLangBarItemSink,
-            pdwCookie: ?*u32,
-            rguidItem: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        UnadviseItemSink: *const fn(
-            self: *const ITfLangBarItemMgr,
-            dwCookie: u32,
-        ) callconv(.winapi) HRESULT,
-        GetItemFloatingRect: *const fn(
-            self: *const ITfLangBarItemMgr,
-            dwThreadId: u32,
-            rguid: ?*const Guid,
-            prc: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        GetItemsStatus: *const fn(
-            self: *const ITfLangBarItemMgr,
-            ulCount: u32,
-            prgguid: [*]const Guid,
-            pdwStatus: [*]u32,
-        ) callconv(.winapi) HRESULT,
-        GetItemNum: *const fn(
-            self: *const ITfLangBarItemMgr,
-            pulCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetItems: *const fn(
-            self: *const ITfLangBarItemMgr,
-            ulCount: u32,
-            ppItem: [*]?*ITfLangBarItem,
-            pInfo: [*]TF_LANGBARITEMINFO,
-            pdwStatus: [*]u32,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        AdviseItemsSink: *const fn(
-            self: *const ITfLangBarItemMgr,
-            ulCount: u32,
-            ppunk: [*]?*ITfLangBarItemSink,
-            pguidItem: [*]const Guid,
-            pdwCookie: [*]u32,
-        ) callconv(.winapi) HRESULT,
-        UnadviseItemsSink: *const fn(
-            self: *const ITfLangBarItemMgr,
-            ulCount: u32,
-            pdwCookie: [*]u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnumItems(self: *const ITfLangBarItemMgr, ppEnum: ?*?*IEnumTfLangBarItems) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumItems(self, ppEnum);
-    }
-    pub fn GetItem(self: *const ITfLangBarItemMgr, rguid: ?*const Guid, ppItem: ?*?*ITfLangBarItem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, rguid, ppItem);
-    }
-    pub fn AddItem(self: *const ITfLangBarItemMgr, punk: ?*ITfLangBarItem) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, punk);
-    }
-    pub fn RemoveItem(self: *const ITfLangBarItemMgr, punk: ?*ITfLangBarItem) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, punk);
-    }
-    pub fn AdviseItemSink(self: *const ITfLangBarItemMgr, punk: ?*ITfLangBarItemSink, pdwCookie: ?*u32, rguidItem: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseItemSink(self, punk, pdwCookie, rguidItem);
-    }
-    pub fn UnadviseItemSink(self: *const ITfLangBarItemMgr, dwCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnadviseItemSink(self, dwCookie);
-    }
-    pub fn GetItemFloatingRect(self: *const ITfLangBarItemMgr, dwThreadId: u32, rguid: ?*const Guid, prc: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemFloatingRect(self, dwThreadId, rguid, prc);
-    }
-    pub fn GetItemsStatus(self: *const ITfLangBarItemMgr, ulCount: u32, prgguid: [*]const Guid, pdwStatus: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemsStatus(self, ulCount, prgguid, pdwStatus);
-    }
-    pub fn GetItemNum(self: *const ITfLangBarItemMgr, pulCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemNum(self, pulCount);
-    }
-    pub fn GetItems(self: *const ITfLangBarItemMgr, ulCount: u32, ppItem: [*]?*ITfLangBarItem, pInfo: [*]TF_LANGBARITEMINFO, pdwStatus: [*]u32, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItems(self, ulCount, ppItem, pInfo, pdwStatus, pcFetched);
-    }
-    pub fn AdviseItemsSink(self: *const ITfLangBarItemMgr, ulCount: u32, ppunk: [*]?*ITfLangBarItemSink, pguidItem: [*]const Guid, pdwCookie: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseItemsSink(self, ulCount, ppunk, pguidItem, pdwCookie);
-    }
-    pub fn UnadviseItemsSink(self: *const ITfLangBarItemMgr, ulCount: u32, pdwCookie: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnadviseItemsSink(self, ulCount, pdwCookie);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarItem_Value = Guid.initString("73540d69-edeb-4ee9-96c9-23aa30b25916");
-pub const IID_ITfLangBarItem = &IID_ITfLangBarItem_Value;
-pub const ITfLangBarItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInfo: *const fn(
-            self: *const ITfLangBarItem,
-            pInfo: ?*TF_LANGBARITEMINFO,
-        ) callconv(.winapi) HRESULT,
-        GetStatus: *const fn(
-            self: *const ITfLangBarItem,
-            pdwStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Show: *const fn(
-            self: *const ITfLangBarItem,
-            fShow: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetTooltipString: *const fn(
-            self: *const ITfLangBarItem,
-            pbstrToolTip: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetInfo(self: *const ITfLangBarItem, pInfo: ?*TF_LANGBARITEMINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInfo(self, pInfo);
-    }
-    pub fn GetStatus(self: *const ITfLangBarItem, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, pdwStatus);
-    }
-    pub fn Show(self: *const ITfLangBarItem, fShow: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, fShow);
-    }
-    pub fn GetTooltipString(self: *const ITfLangBarItem, pbstrToolTip: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTooltipString(self, pbstrToolTip);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfSystemLangBarItemSink_Value = Guid.initString("1449d9ab-13cf-4687-aa3e-8d8b18574396");
-pub const IID_ITfSystemLangBarItemSink = &IID_ITfSystemLangBarItemSink_Value;
-pub const ITfSystemLangBarItemSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitMenu: *const fn(
-            self: *const ITfSystemLangBarItemSink,
-            pMenu: ?*ITfMenu,
-        ) callconv(.winapi) HRESULT,
-        OnMenuSelect: *const fn(
-            self: *const ITfSystemLangBarItemSink,
-            wID: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitMenu(self: *const ITfSystemLangBarItemSink, pMenu: ?*ITfMenu) callconv(.@"inline") HRESULT {
-        return self.vtable.InitMenu(self, pMenu);
-    }
-    pub fn OnMenuSelect(self: *const ITfSystemLangBarItemSink, wID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnMenuSelect(self, wID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfSystemLangBarItem_Value = Guid.initString("1e13e9ec-6b33-4d4a-b5eb-8a92f029f356");
-pub const IID_ITfSystemLangBarItem = &IID_ITfSystemLangBarItem_Value;
-pub const ITfSystemLangBarItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetIcon: *const fn(
-            self: *const ITfSystemLangBarItem,
-            hIcon: ?HICON,
-        ) callconv(.winapi) HRESULT,
-        SetTooltipString: *const fn(
-            self: *const ITfSystemLangBarItem,
-            pchToolTip: [*:0]u16,
-            cch: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetIcon(self: *const ITfSystemLangBarItem, hIcon: ?HICON) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIcon(self, hIcon);
-    }
-    pub fn SetTooltipString(self: *const ITfSystemLangBarItem, pchToolTip: [*:0]u16, cch: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTooltipString(self, pchToolTip, cch);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfSystemLangBarItemText_Value = Guid.initString("5c4ce0e5-ba49-4b52-ac6b-3b397b4f701f");
-pub const IID_ITfSystemLangBarItemText = &IID_ITfSystemLangBarItemText_Value;
-pub const ITfSystemLangBarItemText = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetItemText: *const fn(
-            self: *const ITfSystemLangBarItemText,
-            pch: [*:0]const u16,
-            cch: u32,
-        ) callconv(.winapi) HRESULT,
-        GetItemText: *const fn(
-            self: *const ITfSystemLangBarItemText,
-            pbstrText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetItemText(self: *const ITfSystemLangBarItemText, pch: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetItemText(self, pch, cch);
-    }
-    pub fn GetItemText(self: *const ITfSystemLangBarItemText, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemText(self, pbstrText);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfSystemDeviceTypeLangBarItem_Value = Guid.initString("45672eb9-9059-46a2-838d-4530355f6a77");
-pub const IID_ITfSystemDeviceTypeLangBarItem = &IID_ITfSystemDeviceTypeLangBarItem_Value;
-pub const ITfSystemDeviceTypeLangBarItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetIconMode: *const fn(
-            self: *const ITfSystemDeviceTypeLangBarItem,
-            dwFlags: LANG_BAR_ITEM_ICON_MODE_FLAGS,
-        ) callconv(.winapi) HRESULT,
-        GetIconMode: *const fn(
-            self: *const ITfSystemDeviceTypeLangBarItem,
-            pdwFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetIconMode(self: *const ITfSystemDeviceTypeLangBarItem, dwFlags: LANG_BAR_ITEM_ICON_MODE_FLAGS) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIconMode(self, dwFlags);
-    }
-    pub fn GetIconMode(self: *const ITfSystemDeviceTypeLangBarItem, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIconMode(self, pdwFlags);
-    }
-};
-
-pub const TfLBIClick = enum(i32) {
-    RIGHT = 1,
-    LEFT = 2,
-};
-pub const TF_LBI_CLK_RIGHT = TfLBIClick.RIGHT;
-pub const TF_LBI_CLK_LEFT = TfLBIClick.LEFT;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarItemButton_Value = Guid.initString("28c7f1d0-de25-11d2-afdd-00105a2799b5");
-pub const IID_ITfLangBarItemButton = &IID_ITfLangBarItemButton_Value;
-pub const ITfLangBarItemButton = extern union {
-    pub const VTable = extern struct {
-        base: ITfLangBarItem.VTable,
-        OnClick: *const fn(
-            self: *const ITfLangBarItemButton,
-            click: TfLBIClick,
-            pt: POINT,
-            prcArea: ?*const RECT,
-        ) callconv(.winapi) HRESULT,
-        InitMenu: *const fn(
-            self: *const ITfLangBarItemButton,
-            pMenu: ?*ITfMenu,
-        ) callconv(.winapi) HRESULT,
-        OnMenuSelect: *const fn(
-            self: *const ITfLangBarItemButton,
-            wID: u32,
-        ) callconv(.winapi) HRESULT,
-        GetIcon: *const fn(
-            self: *const ITfLangBarItemButton,
-            phIcon: ?*?HICON,
-        ) callconv(.winapi) HRESULT,
-        GetText: *const fn(
-            self: *const ITfLangBarItemButton,
-            pbstrText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfLangBarItem: ITfLangBarItem,
-    IUnknown: IUnknown,
-    pub fn OnClick(self: *const ITfLangBarItemButton, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnClick(self, click, pt, prcArea);
-    }
-    pub fn InitMenu(self: *const ITfLangBarItemButton, pMenu: ?*ITfMenu) callconv(.@"inline") HRESULT {
-        return self.vtable.InitMenu(self, pMenu);
-    }
-    pub fn OnMenuSelect(self: *const ITfLangBarItemButton, wID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnMenuSelect(self, wID);
-    }
-    pub fn GetIcon(self: *const ITfLangBarItemButton, phIcon: ?*?HICON) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIcon(self, phIcon);
-    }
-    pub fn GetText(self: *const ITfLangBarItemButton, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetText(self, pbstrText);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarItemBitmapButton_Value = Guid.initString("a26a0525-3fae-4fa0-89ee-88a964f9f1b5");
-pub const IID_ITfLangBarItemBitmapButton = &IID_ITfLangBarItemBitmapButton_Value;
-pub const ITfLangBarItemBitmapButton = extern union {
-    pub const VTable = extern struct {
-        base: ITfLangBarItem.VTable,
-        OnClick: *const fn(
-            self: *const ITfLangBarItemBitmapButton,
-            click: TfLBIClick,
-            pt: POINT,
-            prcArea: ?*const RECT,
-        ) callconv(.winapi) HRESULT,
-        InitMenu: *const fn(
-            self: *const ITfLangBarItemBitmapButton,
-            pMenu: ?*ITfMenu,
-        ) callconv(.winapi) HRESULT,
-        OnMenuSelect: *const fn(
-            self: *const ITfLangBarItemBitmapButton,
-            wID: u32,
-        ) callconv(.winapi) HRESULT,
-        GetPreferredSize: *const fn(
-            self: *const ITfLangBarItemBitmapButton,
-            pszDefault: ?*const SIZE,
-            psz: ?*SIZE,
-        ) callconv(.winapi) HRESULT,
-        DrawBitmap: *const fn(
-            self: *const ITfLangBarItemBitmapButton,
-            bmWidth: i32,
-            bmHeight: i32,
-            dwFlags: u32,
-            phbmp: ?*?HBITMAP,
-            phbmpMask: ?*?HBITMAP,
-        ) callconv(.winapi) HRESULT,
-        GetText: *const fn(
-            self: *const ITfLangBarItemBitmapButton,
-            pbstrText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfLangBarItem: ITfLangBarItem,
-    IUnknown: IUnknown,
-    pub fn OnClick(self: *const ITfLangBarItemBitmapButton, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnClick(self, click, pt, prcArea);
-    }
-    pub fn InitMenu(self: *const ITfLangBarItemBitmapButton, pMenu: ?*ITfMenu) callconv(.@"inline") HRESULT {
-        return self.vtable.InitMenu(self, pMenu);
-    }
-    pub fn OnMenuSelect(self: *const ITfLangBarItemBitmapButton, wID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnMenuSelect(self, wID);
-    }
-    pub fn GetPreferredSize(self: *const ITfLangBarItemBitmapButton, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreferredSize(self, pszDefault, psz);
-    }
-    pub fn DrawBitmap(self: *const ITfLangBarItemBitmapButton, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: ?*?HBITMAP, phbmpMask: ?*?HBITMAP) callconv(.@"inline") HRESULT {
-        return self.vtable.DrawBitmap(self, bmWidth, bmHeight, dwFlags, phbmp, phbmpMask);
-    }
-    pub fn GetText(self: *const ITfLangBarItemBitmapButton, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetText(self, pbstrText);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarItemBitmap_Value = Guid.initString("73830352-d722-4179-ada5-f045c98df355");
-pub const IID_ITfLangBarItemBitmap = &IID_ITfLangBarItemBitmap_Value;
-pub const ITfLangBarItemBitmap = extern union {
-    pub const VTable = extern struct {
-        base: ITfLangBarItem.VTable,
-        OnClick: *const fn(
-            self: *const ITfLangBarItemBitmap,
-            click: TfLBIClick,
-            pt: POINT,
-            prcArea: ?*const RECT,
-        ) callconv(.winapi) HRESULT,
-        GetPreferredSize: *const fn(
-            self: *const ITfLangBarItemBitmap,
-            pszDefault: ?*const SIZE,
-            psz: ?*SIZE,
-        ) callconv(.winapi) HRESULT,
-        DrawBitmap: *const fn(
-            self: *const ITfLangBarItemBitmap,
-            bmWidth: i32,
-            bmHeight: i32,
-            dwFlags: u32,
-            phbmp: ?*?HBITMAP,
-            phbmpMask: ?*?HBITMAP,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfLangBarItem: ITfLangBarItem,
-    IUnknown: IUnknown,
-    pub fn OnClick(self: *const ITfLangBarItemBitmap, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnClick(self, click, pt, prcArea);
-    }
-    pub fn GetPreferredSize(self: *const ITfLangBarItemBitmap, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreferredSize(self, pszDefault, psz);
-    }
-    pub fn DrawBitmap(self: *const ITfLangBarItemBitmap, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: ?*?HBITMAP, phbmpMask: ?*?HBITMAP) callconv(.@"inline") HRESULT {
-        return self.vtable.DrawBitmap(self, bmWidth, bmHeight, dwFlags, phbmp, phbmpMask);
-    }
-};
-
-pub const TfLBBalloonStyle = enum(i32) {
-    RECO = 0,
-    SHOW = 1,
-    MISS = 2,
-};
-pub const TF_LB_BALLOON_RECO = TfLBBalloonStyle.RECO;
-pub const TF_LB_BALLOON_SHOW = TfLBBalloonStyle.SHOW;
-pub const TF_LB_BALLOON_MISS = TfLBBalloonStyle.MISS;
-
-pub const TF_LBBALLOONINFO = extern struct {
-    style: TfLBBalloonStyle,
-    bstrText: ?BSTR,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLangBarItemBalloon_Value = Guid.initString("01c2d285-d3c7-4b7b-b5b5-d97411d0c283");
-pub const IID_ITfLangBarItemBalloon = &IID_ITfLangBarItemBalloon_Value;
-pub const ITfLangBarItemBalloon = extern union {
-    pub const VTable = extern struct {
-        base: ITfLangBarItem.VTable,
-        OnClick: *const fn(
-            self: *const ITfLangBarItemBalloon,
-            click: TfLBIClick,
-            pt: POINT,
-            prcArea: ?*const RECT,
-        ) callconv(.winapi) HRESULT,
-        GetPreferredSize: *const fn(
-            self: *const ITfLangBarItemBalloon,
-            pszDefault: ?*const SIZE,
-            psz: ?*SIZE,
-        ) callconv(.winapi) HRESULT,
-        GetBalloonInfo: *const fn(
-            self: *const ITfLangBarItemBalloon,
-            pInfo: ?*TF_LBBALLOONINFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfLangBarItem: ITfLangBarItem,
-    IUnknown: IUnknown,
-    pub fn OnClick(self: *const ITfLangBarItemBalloon, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnClick(self, click, pt, prcArea);
-    }
-    pub fn GetPreferredSize(self: *const ITfLangBarItemBalloon, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreferredSize(self, pszDefault, psz);
-    }
-    pub fn GetBalloonInfo(self: *const ITfLangBarItemBalloon, pInfo: ?*TF_LBBALLOONINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBalloonInfo(self, pInfo);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMenu_Value = Guid.initString("6f8a98e4-aaa0-4f15-8c5b-07e0df0a3dd8");
-pub const IID_ITfMenu = &IID_ITfMenu_Value;
-pub const ITfMenu = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddMenuItem: *const fn(
-            self: *const ITfMenu,
-            uId: u32,
-            dwFlags: u32,
-            hbmp: ?HBITMAP,
-            hbmpMask: ?HBITMAP,
-            pch: [*:0]const u16,
-            cch: u32,
-            ppMenu: ?*?*ITfMenu,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddMenuItem(self: *const ITfMenu, uId: u32, dwFlags: u32, hbmp: ?HBITMAP, hbmpMask: ?HBITMAP, pch: [*:0]const u16, cch: u32, ppMenu: ?*?*ITfMenu) callconv(.@"inline") HRESULT {
-        return self.vtable.AddMenuItem(self, uId, dwFlags, hbmp, hbmpMask, pch, cch, ppMenu);
-    }
-};
-
-pub const TF_PERSISTENT_PROPERTY_HEADER_ACP = extern struct {
-    guidType: Guid,
-    ichStart: i32,
-    cch: i32,
-    cb: u32,
-    dwPrivate: u32,
-    clsidTIP: Guid,
-};
-
-pub const TF_LANGUAGEPROFILE = extern struct {
-    clsid: Guid,
-    langid: u16,
-    catid: Guid,
-    fActive: BOOL,
-    guidProfile: Guid,
-};
-
-pub const TfAnchor = enum(i32) {
-    START = 0,
-    END = 1,
-};
-pub const TF_ANCHOR_START = TfAnchor.START;
-pub const TF_ANCHOR_END = TfAnchor.END;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfThreadMgr_Value = Guid.initString("aa80e801-2021-11d2-93e0-0060b067b86e");
-pub const IID_ITfThreadMgr = &IID_ITfThreadMgr_Value;
-pub const ITfThreadMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Activate: *const fn(
-            self: *const ITfThreadMgr,
-            ptid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Deactivate: *const fn(
-            self: *const ITfThreadMgr,
-        ) callconv(.winapi) HRESULT,
-        CreateDocumentMgr: *const fn(
-            self: *const ITfThreadMgr,
+        GetDocumentMgr: *const fn(
+            self: *const ITfCandidateListUIElement,
             ppdim: ?*?*ITfDocumentMgr,
         ) callconv(.winapi) HRESULT,
-        EnumDocumentMgrs: *const fn(
-            self: *const ITfThreadMgr,
-            ppEnum: ?*?*IEnumTfDocumentMgrs,
+        GetCount: *const fn(
+            self: *const ITfCandidateListUIElement,
+            puCount: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetFocus: *const fn(
-            self: *const ITfThreadMgr,
-            ppdimFocus: ?*?*ITfDocumentMgr,
+        GetSelection: *const fn(
+            self: *const ITfCandidateListUIElement,
+            puIndex: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SetFocus: *const fn(
-            self: *const ITfThreadMgr,
-            pdimFocus: ?*ITfDocumentMgr,
+        GetString: *const fn(
+            self: *const ITfCandidateListUIElement,
+            uIndex: u32,
+            pstr: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        AssociateFocus: *const fn(
-            self: *const ITfThreadMgr,
-            hwnd: ?HWND,
-            pdimNew: ?*ITfDocumentMgr,
-            ppdimPrev: ?*?*ITfDocumentMgr,
+        GetPageIndex: *const fn(
+            self: *const ITfCandidateListUIElement,
+            pIndex: [*]u32,
+            uSize: u32,
+            puPageCnt: ?*u32,
         ) callconv(.winapi) HRESULT,
-        IsThreadFocus: *const fn(
-            self: *const ITfThreadMgr,
-            pfThreadFocus: ?*BOOL,
+        SetPageIndex: *const fn(
+            self: *const ITfCandidateListUIElement,
+            pIndex: [*]u32,
+            uPageCnt: u32,
         ) callconv(.winapi) HRESULT,
-        GetFunctionProvider: *const fn(
-            self: *const ITfThreadMgr,
-            clsid: ?*const Guid,
-            ppFuncProv: ?*?*ITfFunctionProvider,
-        ) callconv(.winapi) HRESULT,
-        EnumFunctionProviders: *const fn(
-            self: *const ITfThreadMgr,
-            ppEnum: ?*?*IEnumTfFunctionProviders,
-        ) callconv(.winapi) HRESULT,
-        GetGlobalCompartment: *const fn(
-            self: *const ITfThreadMgr,
-            ppCompMgr: ?*?*ITfCompartmentMgr,
+        GetCurrentPage: *const fn(
+            self: *const ITfCandidateListUIElement,
+            puPage: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    ITfUIElement: ITfUIElement,
     IUnknown: IUnknown,
-    pub fn Activate(self: *const ITfThreadMgr, ptid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, ptid);
+    pub fn GetUpdatedFlags(self: *const ITfCandidateListUIElement, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUpdatedFlags(self, pdwFlags);
     }
-    pub fn Deactivate(self: *const ITfThreadMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.Deactivate(self);
+    pub fn GetDocumentMgr(self: *const ITfCandidateListUIElement, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDocumentMgr(self, ppdim);
     }
-    pub fn CreateDocumentMgr(self: *const ITfThreadMgr, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDocumentMgr(self, ppdim);
+    pub fn GetCount(self: *const ITfCandidateListUIElement, puCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, puCount);
     }
-    pub fn EnumDocumentMgrs(self: *const ITfThreadMgr, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumDocumentMgrs(self, ppEnum);
+    pub fn GetSelection(self: *const ITfCandidateListUIElement, puIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelection(self, puIndex);
     }
-    pub fn GetFocus(self: *const ITfThreadMgr, ppdimFocus: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFocus(self, ppdimFocus);
+    pub fn GetString(self: *const ITfCandidateListUIElement, uIndex: u32, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetString(self, uIndex, pstr);
     }
-    pub fn SetFocus(self: *const ITfThreadMgr, pdimFocus: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFocus(self, pdimFocus);
+    pub fn GetPageIndex(self: *const ITfCandidateListUIElement, pIndex: [*]u32, uSize: u32, puPageCnt: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPageIndex(self, pIndex, uSize, puPageCnt);
     }
-    pub fn AssociateFocus(self: *const ITfThreadMgr, hwnd: ?HWND, pdimNew: ?*ITfDocumentMgr, ppdimPrev: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.AssociateFocus(self, hwnd, pdimNew, ppdimPrev);
+    pub fn SetPageIndex(self: *const ITfCandidateListUIElement, pIndex: [*]u32, uPageCnt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPageIndex(self, pIndex, uPageCnt);
     }
-    pub fn IsThreadFocus(self: *const ITfThreadMgr, pfThreadFocus: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsThreadFocus(self, pfThreadFocus);
-    }
-    pub fn GetFunctionProvider(self: *const ITfThreadMgr, clsid: ?*const Guid, ppFuncProv: ?*?*ITfFunctionProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFunctionProvider(self, clsid, ppFuncProv);
-    }
-    pub fn EnumFunctionProviders(self: *const ITfThreadMgr, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumFunctionProviders(self, ppEnum);
-    }
-    pub fn GetGlobalCompartment(self: *const ITfThreadMgr, ppCompMgr: ?*?*ITfCompartmentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGlobalCompartment(self, ppCompMgr);
+    pub fn GetCurrentPage(self: *const ITfCandidateListUIElement, puPage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPage(self, puPage);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfThreadMgrEx_Value = Guid.initString("3e90ade3-7594-4cb0-bb58-69628f5f458c");
-pub const IID_ITfThreadMgrEx = &IID_ITfThreadMgrEx_Value;
-pub const ITfThreadMgrEx = extern union {
+const IID_ITfCandidateListUIElementBehavior_Value = Guid.initString("85fad185-58ce-497a-9460-355366b64b9a");
+pub const IID_ITfCandidateListUIElementBehavior = &IID_ITfCandidateListUIElementBehavior_Value;
+pub const ITfCandidateListUIElementBehavior = extern union {
     pub const VTable = extern struct {
-        base: ITfThreadMgr.VTable,
-        ActivateEx: *const fn(
-            self: *const ITfThreadMgrEx,
-            ptid: ?*u32,
-            dwFlags: u32,
+        base: ITfCandidateListUIElement.VTable,
+        SetSelection: *const fn(
+            self: *const ITfCandidateListUIElementBehavior,
+            nIndex: u32,
         ) callconv(.winapi) HRESULT,
-        GetActiveFlags: *const fn(
-            self: *const ITfThreadMgrEx,
-            lpdwFlags: ?*u32,
+        Finalize: *const fn(
+            self: *const ITfCandidateListUIElementBehavior,
+        ) callconv(.winapi) HRESULT,
+        Abort: *const fn(
+            self: *const ITfCandidateListUIElementBehavior,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    ITfThreadMgr: ITfThreadMgr,
+    ITfCandidateListUIElement: ITfCandidateListUIElement,
+    ITfUIElement: ITfUIElement,
     IUnknown: IUnknown,
-    pub fn ActivateEx(self: *const ITfThreadMgrEx, ptid: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateEx(self, ptid, dwFlags);
+    pub fn SetSelection(self: *const ITfCandidateListUIElementBehavior, nIndex: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSelection(self, nIndex);
     }
-    pub fn GetActiveFlags(self: *const ITfThreadMgrEx, lpdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActiveFlags(self, lpdwFlags);
+    pub fn Finalize(self: *const ITfCandidateListUIElementBehavior) callconv(.@"inline") HRESULT {
+        return self.vtable.Finalize(self);
     }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ITfThreadMgr2_Value = Guid.initString("0ab198ef-6477-4ee8-8812-6780edb82d5e");
-pub const IID_ITfThreadMgr2 = &IID_ITfThreadMgr2_Value;
-pub const ITfThreadMgr2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Activate: *const fn(
-            self: *const ITfThreadMgr2,
-            ptid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Deactivate: *const fn(
-            self: *const ITfThreadMgr2,
-        ) callconv(.winapi) HRESULT,
-        CreateDocumentMgr: *const fn(
-            self: *const ITfThreadMgr2,
-            ppdim: ?*?*ITfDocumentMgr,
-        ) callconv(.winapi) HRESULT,
-        EnumDocumentMgrs: *const fn(
-            self: *const ITfThreadMgr2,
-            ppEnum: ?*?*IEnumTfDocumentMgrs,
-        ) callconv(.winapi) HRESULT,
-        GetFocus: *const fn(
-            self: *const ITfThreadMgr2,
-            ppdimFocus: ?*?*ITfDocumentMgr,
-        ) callconv(.winapi) HRESULT,
-        SetFocus: *const fn(
-            self: *const ITfThreadMgr2,
-            pdimFocus: ?*ITfDocumentMgr,
-        ) callconv(.winapi) HRESULT,
-        IsThreadFocus: *const fn(
-            self: *const ITfThreadMgr2,
-            pfThreadFocus: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetFunctionProvider: *const fn(
-            self: *const ITfThreadMgr2,
-            clsid: ?*const Guid,
-            ppFuncProv: ?*?*ITfFunctionProvider,
-        ) callconv(.winapi) HRESULT,
-        EnumFunctionProviders: *const fn(
-            self: *const ITfThreadMgr2,
-            ppEnum: ?*?*IEnumTfFunctionProviders,
-        ) callconv(.winapi) HRESULT,
-        GetGlobalCompartment: *const fn(
-            self: *const ITfThreadMgr2,
-            ppCompMgr: ?*?*ITfCompartmentMgr,
-        ) callconv(.winapi) HRESULT,
-        ActivateEx: *const fn(
-            self: *const ITfThreadMgr2,
-            ptid: ?*u32,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetActiveFlags: *const fn(
-            self: *const ITfThreadMgr2,
-            lpdwFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SuspendKeystrokeHandling: *const fn(
-            self: *const ITfThreadMgr2,
-        ) callconv(.winapi) HRESULT,
-        ResumeKeystrokeHandling: *const fn(
-            self: *const ITfThreadMgr2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Activate(self: *const ITfThreadMgr2, ptid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, ptid);
-    }
-    pub fn Deactivate(self: *const ITfThreadMgr2) callconv(.@"inline") HRESULT {
-        return self.vtable.Deactivate(self);
-    }
-    pub fn CreateDocumentMgr(self: *const ITfThreadMgr2, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDocumentMgr(self, ppdim);
-    }
-    pub fn EnumDocumentMgrs(self: *const ITfThreadMgr2, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumDocumentMgrs(self, ppEnum);
-    }
-    pub fn GetFocus(self: *const ITfThreadMgr2, ppdimFocus: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFocus(self, ppdimFocus);
-    }
-    pub fn SetFocus(self: *const ITfThreadMgr2, pdimFocus: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFocus(self, pdimFocus);
-    }
-    pub fn IsThreadFocus(self: *const ITfThreadMgr2, pfThreadFocus: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsThreadFocus(self, pfThreadFocus);
-    }
-    pub fn GetFunctionProvider(self: *const ITfThreadMgr2, clsid: ?*const Guid, ppFuncProv: ?*?*ITfFunctionProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFunctionProvider(self, clsid, ppFuncProv);
-    }
-    pub fn EnumFunctionProviders(self: *const ITfThreadMgr2, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumFunctionProviders(self, ppEnum);
-    }
-    pub fn GetGlobalCompartment(self: *const ITfThreadMgr2, ppCompMgr: ?*?*ITfCompartmentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGlobalCompartment(self, ppCompMgr);
-    }
-    pub fn ActivateEx(self: *const ITfThreadMgr2, ptid: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateEx(self, ptid, dwFlags);
-    }
-    pub fn GetActiveFlags(self: *const ITfThreadMgr2, lpdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActiveFlags(self, lpdwFlags);
-    }
-    pub fn SuspendKeystrokeHandling(self: *const ITfThreadMgr2) callconv(.@"inline") HRESULT {
-        return self.vtable.SuspendKeystrokeHandling(self);
-    }
-    pub fn ResumeKeystrokeHandling(self: *const ITfThreadMgr2) callconv(.@"inline") HRESULT {
-        return self.vtable.ResumeKeystrokeHandling(self);
+    pub fn Abort(self: *const ITfCandidateListUIElementBehavior) callconv(.@"inline") HRESULT {
+        return self.vtable.Abort(self);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfThreadMgrEventSink_Value = Guid.initString("aa80e80e-2021-11d2-93e0-0060b067b86e");
-pub const IID_ITfThreadMgrEventSink = &IID_ITfThreadMgrEventSink_Value;
-pub const ITfThreadMgrEventSink = extern union {
+const IID_ITfCandidateString_Value = Guid.initString("581f317e-fd9d-443f-b972-ed00467c5d40");
+pub const IID_ITfCandidateString = &IID_ITfCandidateString_Value;
+pub const ITfCandidateString = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnInitDocumentMgr: *const fn(
-            self: *const ITfThreadMgrEventSink,
-            pdim: ?*ITfDocumentMgr,
+        GetString: *const fn(
+            self: *const ITfCandidateString,
+            pbstr: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        OnUninitDocumentMgr: *const fn(
-            self: *const ITfThreadMgrEventSink,
-            pdim: ?*ITfDocumentMgr,
+        GetIndex: *const fn(
+            self: *const ITfCandidateString,
+            pnIndex: ?*u32,
         ) callconv(.winapi) HRESULT,
-        OnSetFocus: *const fn(
-            self: *const ITfThreadMgrEventSink,
-            pdimFocus: ?*ITfDocumentMgr,
-            pdimPrevFocus: ?*ITfDocumentMgr,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetString(self: *const ITfCandidateString, pbstr: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetString(self, pbstr);
+    }
+    pub fn GetIndex(self: *const ITfCandidateString, pnIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIndex(self, pnIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfCategoryMgr_Value = Guid.initString("c3acefb5-f69d-4905-938f-fcadcf4be830");
+pub const IID_ITfCategoryMgr = &IID_ITfCategoryMgr_Value;
+pub const ITfCategoryMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterCategory: *const fn(
+            self: *const ITfCategoryMgr,
+            rclsid: ?*const Guid,
+            rcatid: ?*const Guid,
+            rguid: ?*const Guid,
         ) callconv(.winapi) HRESULT,
-        OnPushContext: *const fn(
-            self: *const ITfThreadMgrEventSink,
+        UnregisterCategory: *const fn(
+            self: *const ITfCategoryMgr,
+            rclsid: ?*const Guid,
+            rcatid: ?*const Guid,
+            rguid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        EnumCategoriesInItem: *const fn(
+            self: *const ITfCategoryMgr,
+            rguid: ?*const Guid,
+            ppEnum: ?*?*IEnumGUID,
+        ) callconv(.winapi) HRESULT,
+        EnumItemsInCategory: *const fn(
+            self: *const ITfCategoryMgr,
+            rcatid: ?*const Guid,
+            ppEnum: ?*?*IEnumGUID,
+        ) callconv(.winapi) HRESULT,
+        FindClosestCategory: *const fn(
+            self: *const ITfCategoryMgr,
+            rguid: ?*const Guid,
+            pcatid: ?*Guid,
+            ppcatidList: [*]const ?*const Guid,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+        RegisterGUIDDescription: *const fn(
+            self: *const ITfCategoryMgr,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
+            pchDesc: [*:0]const u16,
+            cch: u32,
+        ) callconv(.winapi) HRESULT,
+        UnregisterGUIDDescription: *const fn(
+            self: *const ITfCategoryMgr,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetGUIDDescription: *const fn(
+            self: *const ITfCategoryMgr,
+            rguid: ?*const Guid,
+            pbstrDesc: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RegisterGUIDDWORD: *const fn(
+            self: *const ITfCategoryMgr,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
+            dw: u32,
+        ) callconv(.winapi) HRESULT,
+        UnregisterGUIDDWORD: *const fn(
+            self: *const ITfCategoryMgr,
+            rclsid: ?*const Guid,
+            rguid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetGUIDDWORD: *const fn(
+            self: *const ITfCategoryMgr,
+            rguid: ?*const Guid,
+            pdw: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        RegisterGUID: *const fn(
+            self: *const ITfCategoryMgr,
+            rguid: ?*const Guid,
+            pguidatom: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetGUID: *const fn(
+            self: *const ITfCategoryMgr,
+            guidatom: u32,
+            pguid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        IsEqualTfGuidAtom: *const fn(
+            self: *const ITfCategoryMgr,
+            guidatom: u32,
+            rguid: ?*const Guid,
+            pfEqual: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterCategory(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rcatid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterCategory(self, rclsid, rcatid, rguid);
+    }
+    pub fn UnregisterCategory(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rcatid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterCategory(self, rclsid, rcatid, rguid);
+    }
+    pub fn EnumCategoriesInItem(self: *const ITfCategoryMgr, rguid: ?*const Guid, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumCategoriesInItem(self, rguid, ppEnum);
+    }
+    pub fn EnumItemsInCategory(self: *const ITfCategoryMgr, rcatid: ?*const Guid, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumItemsInCategory(self, rcatid, ppEnum);
+    }
+    pub fn FindClosestCategory(self: *const ITfCategoryMgr, rguid: ?*const Guid, pcatid: ?*Guid, ppcatidList: [*]const ?*const Guid, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.FindClosestCategory(self, rguid, pcatid, ppcatidList, ulCount);
+    }
+    pub fn RegisterGUIDDescription(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid, pchDesc: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterGUIDDescription(self, rclsid, rguid, pchDesc, cch);
+    }
+    pub fn UnregisterGUIDDescription(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterGUIDDescription(self, rclsid, rguid);
+    }
+    pub fn GetGUIDDescription(self: *const ITfCategoryMgr, rguid: ?*const Guid, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGUIDDescription(self, rguid, pbstrDesc);
+    }
+    pub fn RegisterGUIDDWORD(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid, dw: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterGUIDDWORD(self, rclsid, rguid, dw);
+    }
+    pub fn UnregisterGUIDDWORD(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterGUIDDWORD(self, rclsid, rguid);
+    }
+    pub fn GetGUIDDWORD(self: *const ITfCategoryMgr, rguid: ?*const Guid, pdw: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGUIDDWORD(self, rguid, pdw);
+    }
+    pub fn RegisterGUID(self: *const ITfCategoryMgr, rguid: ?*const Guid, pguidatom: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterGUID(self, rguid, pguidatom);
+    }
+    pub fn GetGUID(self: *const ITfCategoryMgr, guidatom: u32, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGUID(self, guidatom, pguid);
+    }
+    pub fn IsEqualTfGuidAtom(self: *const ITfCategoryMgr, guidatom: u32, rguid: ?*const Guid, pfEqual: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsEqualTfGuidAtom(self, guidatom, rguid, pfEqual);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfCleanupContextDurationSink_Value = Guid.initString("45c35144-154e-4797-bed8-d33ae7bf8794");
+pub const IID_ITfCleanupContextDurationSink = &IID_ITfCleanupContextDurationSink_Value;
+pub const ITfCleanupContextDurationSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnStartCleanupContext: *const fn(
+            self: *const ITfCleanupContextDurationSink,
+        ) callconv(.winapi) HRESULT,
+        OnEndCleanupContext: *const fn(
+            self: *const ITfCleanupContextDurationSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnStartCleanupContext(self: *const ITfCleanupContextDurationSink) callconv(.@"inline") HRESULT {
+        return self.vtable.OnStartCleanupContext(self);
+    }
+    pub fn OnEndCleanupContext(self: *const ITfCleanupContextDurationSink) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEndCleanupContext(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfCleanupContextSink_Value = Guid.initString("01689689-7acb-4e9b-ab7c-7ea46b12b522");
+pub const IID_ITfCleanupContextSink = &IID_ITfCleanupContextSink_Value;
+pub const ITfCleanupContextSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnCleanupContext: *const fn(
+            self: *const ITfCleanupContextSink,
+            ecWrite: u32,
             pic: ?*ITfContext,
         ) callconv(.winapi) HRESULT,
-        OnPopContext: *const fn(
-            self: *const ITfThreadMgrEventSink,
-            pic: ?*ITfContext,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnInitDocumentMgr(self: *const ITfThreadMgrEventSink, pdim: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.OnInitDocumentMgr(self, pdim);
-    }
-    pub fn OnUninitDocumentMgr(self: *const ITfThreadMgrEventSink, pdim: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUninitDocumentMgr(self, pdim);
-    }
-    pub fn OnSetFocus(self: *const ITfThreadMgrEventSink, pdimFocus: ?*ITfDocumentMgr, pdimPrevFocus: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetFocus(self, pdimFocus, pdimPrevFocus);
-    }
-    pub fn OnPushContext(self: *const ITfThreadMgrEventSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPushContext(self, pic);
-    }
-    pub fn OnPopContext(self: *const ITfThreadMgrEventSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPopContext(self, pic);
+    pub fn OnCleanupContext(self: *const ITfCleanupContextSink, ecWrite: u32, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.OnCleanupContext(self, ecWrite, pic);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfConfigureSystemKeystrokeFeed_Value = Guid.initString("0d2c969a-bc9c-437c-84ee-951c49b1a764");
-pub const IID_ITfConfigureSystemKeystrokeFeed = &IID_ITfConfigureSystemKeystrokeFeed_Value;
-pub const ITfConfigureSystemKeystrokeFeed = extern union {
+const IID_ITfClientId_Value = Guid.initString("d60a7b49-1b9f-4be2-b702-47e9dc05dec3");
+pub const IID_ITfClientId = &IID_ITfClientId_Value;
+pub const ITfClientId = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DisableSystemKeystrokeFeed: *const fn(
-            self: *const ITfConfigureSystemKeystrokeFeed,
-        ) callconv(.winapi) HRESULT,
-        EnableSystemKeystrokeFeed: *const fn(
-            self: *const ITfConfigureSystemKeystrokeFeed,
+        GetClientId: *const fn(
+            self: *const ITfClientId,
+            rclsid: ?*const Guid,
+            ptid: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DisableSystemKeystrokeFeed(self: *const ITfConfigureSystemKeystrokeFeed) callconv(.@"inline") HRESULT {
-        return self.vtable.DisableSystemKeystrokeFeed(self);
-    }
-    pub fn EnableSystemKeystrokeFeed(self: *const ITfConfigureSystemKeystrokeFeed) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableSystemKeystrokeFeed(self);
+    pub fn GetClientId(self: *const ITfClientId, rclsid: ?*const Guid, ptid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClientId(self, rclsid, ptid);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfDocumentMgrs_Value = Guid.initString("aa80e808-2021-11d2-93e0-0060b067b86e");
-pub const IID_IEnumTfDocumentMgrs = &IID_IEnumTfDocumentMgrs_Value;
-pub const IEnumTfDocumentMgrs = extern union {
+const IID_ITfCompartment_Value = Guid.initString("bb08f7a9-607a-4384-8623-056892b64371");
+pub const IID_ITfCompartment = &IID_ITfCompartment_Value;
+pub const ITfCompartment = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfDocumentMgrs,
-            ppEnum: ?*?*IEnumTfDocumentMgrs,
+        SetValue: *const fn(
+            self: *const ITfCompartment,
+            tid: u32,
+            pvarValue: ?*const VARIANT,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfDocumentMgrs,
-            ulCount: u32,
-            rgDocumentMgr: [*]?*ITfDocumentMgr,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfDocumentMgrs,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfDocumentMgrs,
-            ulCount: u32,
+        GetValue: *const fn(
+            self: *const ITfCompartment,
+            pvarValue: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfDocumentMgrs, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
+    pub fn SetValue(self: *const ITfCompartment, tid: u32, pvarValue: ?*const VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, tid, pvarValue);
     }
-    pub fn Next(self: *const IEnumTfDocumentMgrs, ulCount: u32, rgDocumentMgr: [*]?*ITfDocumentMgr, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgDocumentMgr, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfDocumentMgrs, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
+    pub fn GetValue(self: *const ITfCompartment, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, pvarValue);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfDocumentMgr_Value = Guid.initString("aa80e7f4-2021-11d2-93e0-0060b067b86e");
-pub const IID_ITfDocumentMgr = &IID_ITfDocumentMgr_Value;
-pub const ITfDocumentMgr = extern union {
+const IID_ITfCompartmentEventSink_Value = Guid.initString("743abd5f-f26d-48df-8cc5-238492419b64");
+pub const IID_ITfCompartmentEventSink = &IID_ITfCompartmentEventSink_Value;
+pub const ITfCompartmentEventSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateContext: *const fn(
-            self: *const ITfDocumentMgr,
-            tidOwner: u32,
-            dwFlags: u32,
-            punk: ?*IUnknown,
-            ppic: ?*?*ITfContext,
-            pecTextStore: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Push: *const fn(
-            self: *const ITfDocumentMgr,
-            pic: ?*ITfContext,
-        ) callconv(.winapi) HRESULT,
-        Pop: *const fn(
-            self: *const ITfDocumentMgr,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetTop: *const fn(
-            self: *const ITfDocumentMgr,
-            ppic: ?*?*ITfContext,
-        ) callconv(.winapi) HRESULT,
-        GetBase: *const fn(
-            self: *const ITfDocumentMgr,
-            ppic: ?*?*ITfContext,
-        ) callconv(.winapi) HRESULT,
-        EnumContexts: *const fn(
-            self: *const ITfDocumentMgr,
-            ppEnum: ?*?*IEnumTfContexts,
+        OnChange: *const fn(
+            self: *const ITfCompartmentEventSink,
+            rguid: ?*const Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateContext(self: *const ITfDocumentMgr, tidOwner: u32, dwFlags: u32, punk: ?*IUnknown, ppic: ?*?*ITfContext, pecTextStore: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateContext(self, tidOwner, dwFlags, punk, ppic, pecTextStore);
-    }
-    pub fn Push(self: *const ITfDocumentMgr, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Push(self, pic);
-    }
-    pub fn Pop(self: *const ITfDocumentMgr, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Pop(self, dwFlags);
-    }
-    pub fn GetTop(self: *const ITfDocumentMgr, ppic: ?*?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTop(self, ppic);
-    }
-    pub fn GetBase(self: *const ITfDocumentMgr, ppic: ?*?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBase(self, ppic);
-    }
-    pub fn EnumContexts(self: *const ITfDocumentMgr, ppEnum: ?*?*IEnumTfContexts) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumContexts(self, ppEnum);
+    pub fn OnChange(self: *const ITfCompartmentEventSink, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.OnChange(self, rguid);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfContexts_Value = Guid.initString("8f1a7ea6-1654-4502-a86e-b2902344d507");
-pub const IID_IEnumTfContexts = &IID_IEnumTfContexts_Value;
-pub const IEnumTfContexts = extern union {
+const IID_ITfCompartmentMgr_Value = Guid.initString("7dcf57ac-18ad-438b-824d-979bffb74b7c");
+pub const IID_ITfCompartmentMgr = &IID_ITfCompartmentMgr_Value;
+pub const ITfCompartmentMgr = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfContexts,
-            ppEnum: ?*?*IEnumTfContexts,
+        GetCompartment: *const fn(
+            self: *const ITfCompartmentMgr,
+            rguid: ?*const Guid,
+            ppcomp: ?*?*ITfCompartment,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfContexts,
-            ulCount: u32,
-            rgContext: [*]?*ITfContext,
-            pcFetched: ?*u32,
+        ClearCompartment: *const fn(
+            self: *const ITfCompartmentMgr,
+            tid: u32,
+            rguid: ?*const Guid,
         ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfContexts,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfContexts,
-            ulCount: u32,
+        EnumCompartments: *const fn(
+            self: *const ITfCompartmentMgr,
+            ppEnum: ?*?*IEnumGUID,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfContexts, ppEnum: ?*?*IEnumTfContexts) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
+    pub fn GetCompartment(self: *const ITfCompartmentMgr, rguid: ?*const Guid, ppcomp: ?*?*ITfCompartment) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCompartment(self, rguid, ppcomp);
     }
-    pub fn Next(self: *const IEnumTfContexts, ulCount: u32, rgContext: [*]?*ITfContext, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgContext, pcFetched);
+    pub fn ClearCompartment(self: *const ITfCompartmentMgr, tid: u32, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.ClearCompartment(self, tid, rguid);
     }
-    pub fn Reset(self: *const IEnumTfContexts) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfContexts, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCompositionView_Value = Guid.initString("d7540241-f9a1-4364-befc-dbcd2c4395b7");
-pub const IID_ITfCompositionView = &IID_ITfCompositionView_Value;
-pub const ITfCompositionView = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOwnerClsid: *const fn(
-            self: *const ITfCompositionView,
-            pclsid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetRange: *const fn(
-            self: *const ITfCompositionView,
-            ppRange: ?*?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetOwnerClsid(self: *const ITfCompositionView, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOwnerClsid(self, pclsid);
-    }
-    pub fn GetRange(self: *const ITfCompositionView, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRange(self, ppRange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumITfCompositionView_Value = Guid.initString("5efd22ba-7838-46cb-88e2-cadb14124f8f");
-pub const IID_IEnumITfCompositionView = &IID_IEnumITfCompositionView_Value;
-pub const IEnumITfCompositionView = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumITfCompositionView,
-            ppEnum: ?*?*IEnumITfCompositionView,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumITfCompositionView,
-            ulCount: u32,
-            rgCompositionView: [*]?*ITfCompositionView,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumITfCompositionView,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumITfCompositionView,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumITfCompositionView, ppEnum: ?*?*IEnumITfCompositionView) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumITfCompositionView, ulCount: u32, rgCompositionView: [*]?*ITfCompositionView, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgCompositionView, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumITfCompositionView) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumITfCompositionView, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
+    pub fn EnumCompartments(self: *const ITfCompartmentMgr, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumCompartments(self, ppEnum);
     }
 };
 
@@ -3032,206 +3322,51 @@ pub const ITfCompositionSink = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfContextComposition_Value = Guid.initString("d40c8aae-ac92-4fc7-9a11-0ee0e23aa39b");
-pub const IID_ITfContextComposition = &IID_ITfContextComposition_Value;
-pub const ITfContextComposition = extern union {
+const IID_ITfCompositionView_Value = Guid.initString("d7540241-f9a1-4364-befc-dbcd2c4395b7");
+pub const IID_ITfCompositionView = &IID_ITfCompositionView_Value;
+pub const ITfCompositionView = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartComposition: *const fn(
-            self: *const ITfContextComposition,
-            ecWrite: u32,
-            pCompositionRange: ?*ITfRange,
-            pSink: ?*ITfCompositionSink,
-            ppComposition: ?*?*ITfComposition,
+        GetOwnerClsid: *const fn(
+            self: *const ITfCompositionView,
+            pclsid: ?*Guid,
         ) callconv(.winapi) HRESULT,
-        EnumCompositions: *const fn(
-            self: *const ITfContextComposition,
-            ppEnum: ?*?*IEnumITfCompositionView,
-        ) callconv(.winapi) HRESULT,
-        FindComposition: *const fn(
-            self: *const ITfContextComposition,
-            ecRead: u32,
-            pTestRange: ?*ITfRange,
-            ppEnum: ?*?*IEnumITfCompositionView,
-        ) callconv(.winapi) HRESULT,
-        TakeOwnership: *const fn(
-            self: *const ITfContextComposition,
-            ecWrite: u32,
-            pComposition: ?*ITfCompositionView,
-            pSink: ?*ITfCompositionSink,
-            ppComposition: ?*?*ITfComposition,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn StartComposition(self: *const ITfContextComposition, ecWrite: u32, pCompositionRange: ?*ITfRange, pSink: ?*ITfCompositionSink, ppComposition: ?*?*ITfComposition) callconv(.@"inline") HRESULT {
-        return self.vtable.StartComposition(self, ecWrite, pCompositionRange, pSink, ppComposition);
-    }
-    pub fn EnumCompositions(self: *const ITfContextComposition, ppEnum: ?*?*IEnumITfCompositionView) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumCompositions(self, ppEnum);
-    }
-    pub fn FindComposition(self: *const ITfContextComposition, ecRead: u32, pTestRange: ?*ITfRange, ppEnum: ?*?*IEnumITfCompositionView) callconv(.@"inline") HRESULT {
-        return self.vtable.FindComposition(self, ecRead, pTestRange, ppEnum);
-    }
-    pub fn TakeOwnership(self: *const ITfContextComposition, ecWrite: u32, pComposition: ?*ITfCompositionView, pSink: ?*ITfCompositionSink, ppComposition: ?*?*ITfComposition) callconv(.@"inline") HRESULT {
-        return self.vtable.TakeOwnership(self, ecWrite, pComposition, pSink, ppComposition);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfContextOwnerCompositionServices_Value = Guid.initString("86462810-593b-4916-9764-19c08e9ce110");
-pub const IID_ITfContextOwnerCompositionServices = &IID_ITfContextOwnerCompositionServices_Value;
-pub const ITfContextOwnerCompositionServices = extern union {
-    pub const VTable = extern struct {
-        base: ITfContextComposition.VTable,
-        TerminateComposition: *const fn(
-            self: *const ITfContextOwnerCompositionServices,
-            pComposition: ?*ITfCompositionView,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfContextComposition: ITfContextComposition,
-    IUnknown: IUnknown,
-    pub fn TerminateComposition(self: *const ITfContextOwnerCompositionServices, pComposition: ?*ITfCompositionView) callconv(.@"inline") HRESULT {
-        return self.vtable.TerminateComposition(self, pComposition);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfContextOwnerCompositionSink_Value = Guid.initString("5f20aa40-b57a-4f34-96ab-3576f377cc79");
-pub const IID_ITfContextOwnerCompositionSink = &IID_ITfContextOwnerCompositionSink_Value;
-pub const ITfContextOwnerCompositionSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnStartComposition: *const fn(
-            self: *const ITfContextOwnerCompositionSink,
-            pComposition: ?*ITfCompositionView,
-            pfOk: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        OnUpdateComposition: *const fn(
-            self: *const ITfContextOwnerCompositionSink,
-            pComposition: ?*ITfCompositionView,
-            pRangeNew: ?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-        OnEndComposition: *const fn(
-            self: *const ITfContextOwnerCompositionSink,
-            pComposition: ?*ITfCompositionView,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnStartComposition(self: *const ITfContextOwnerCompositionSink, pComposition: ?*ITfCompositionView, pfOk: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnStartComposition(self, pComposition, pfOk);
-    }
-    pub fn OnUpdateComposition(self: *const ITfContextOwnerCompositionSink, pComposition: ?*ITfCompositionView, pRangeNew: ?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUpdateComposition(self, pComposition, pRangeNew);
-    }
-    pub fn OnEndComposition(self: *const ITfContextOwnerCompositionSink, pComposition: ?*ITfCompositionView) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEndComposition(self, pComposition);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfContextView_Value = Guid.initString("2433bf8e-0f9b-435c-ba2c-180611978c30");
-pub const IID_ITfContextView = &IID_ITfContextView_Value;
-pub const ITfContextView = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRangeFromPoint: *const fn(
-            self: *const ITfContextView,
-            ec: u32,
-            ppt: ?*const POINT,
-            dwFlags: u32,
+        GetRange: *const fn(
+            self: *const ITfCompositionView,
             ppRange: ?*?*ITfRange,
         ) callconv(.winapi) HRESULT,
-        GetTextExt: *const fn(
-            self: *const ITfContextView,
-            ec: u32,
-            pRange: ?*ITfRange,
-            prc: ?*RECT,
-            pfClipped: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetScreenExt: *const fn(
-            self: *const ITfContextView,
-            prc: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        GetWnd: *const fn(
-            self: *const ITfContextView,
-            phwnd: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRangeFromPoint(self: *const ITfContextView, ec: u32, ppt: ?*const POINT, dwFlags: u32, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRangeFromPoint(self, ec, ppt, dwFlags, ppRange);
+    pub fn GetOwnerClsid(self: *const ITfCompositionView, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOwnerClsid(self, pclsid);
     }
-    pub fn GetTextExt(self: *const ITfContextView, ec: u32, pRange: ?*ITfRange, prc: ?*RECT, pfClipped: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTextExt(self, ec, pRange, prc, pfClipped);
-    }
-    pub fn GetScreenExt(self: *const ITfContextView, prc: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetScreenExt(self, prc);
-    }
-    pub fn GetWnd(self: *const ITfContextView, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWnd(self, phwnd);
+    pub fn GetRange(self: *const ITfCompositionView, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRange(self, ppRange);
     }
 };
 
-const IID_IEnumTfContextViews_Value = Guid.initString("f0c0f8dd-cf38-44e1-bb0f-68cf0d551c78");
-pub const IID_IEnumTfContextViews = &IID_IEnumTfContextViews_Value;
-pub const IEnumTfContextViews = extern union {
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfConfigureSystemKeystrokeFeed_Value = Guid.initString("0d2c969a-bc9c-437c-84ee-951c49b1a764");
+pub const IID_ITfConfigureSystemKeystrokeFeed = &IID_ITfConfigureSystemKeystrokeFeed_Value;
+pub const ITfConfigureSystemKeystrokeFeed = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfContextViews,
-            ppEnum: ?*?*IEnumTfContextViews,
+        DisableSystemKeystrokeFeed: *const fn(
+            self: *const ITfConfigureSystemKeystrokeFeed,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfContextViews,
-            ulCount: u32,
-            rgViews: [*]?*ITfContextView,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfContextViews,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfContextViews,
-            ulCount: u32,
+        EnableSystemKeystrokeFeed: *const fn(
+            self: *const ITfConfigureSystemKeystrokeFeed,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfContextViews, ppEnum: ?*?*IEnumTfContextViews) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
+    pub fn DisableSystemKeystrokeFeed(self: *const ITfConfigureSystemKeystrokeFeed) callconv(.@"inline") HRESULT {
+        return self.vtable.DisableSystemKeystrokeFeed(self);
     }
-    pub fn Next(self: *const IEnumTfContextViews, ulCount: u32, rgViews: [*]?*ITfContextView, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgViews, pcFetched);
+    pub fn EnableSystemKeystrokeFeed(self: *const ITfConfigureSystemKeystrokeFeed) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableSystemKeystrokeFeed(self);
     }
-    pub fn Reset(self: *const IEnumTfContextViews) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfContextViews, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-pub const TfActiveSelEnd = enum(i32) {
-    NONE = 0,
-    START = 1,
-    END = 2,
-};
-pub const TF_AE_NONE = TfActiveSelEnd.NONE;
-pub const TF_AE_START = TfActiveSelEnd.START;
-pub const TF_AE_END = TfActiveSelEnd.END;
-
-pub const TF_SELECTIONSTYLE = extern struct {
-    ase: TfActiveSelEnd,
-    fInterimChar: BOOL,
-};
-
-pub const TF_SELECTION = extern struct {
-    range: ?*ITfRange,
-    style: TF_SELECTIONSTYLE,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3371,380 +3506,96 @@ pub const ITfContext = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfQueryEmbedded_Value = Guid.initString("0fab9bdb-d250-4169-84e5-6be118fdd7a8");
-pub const IID_ITfQueryEmbedded = &IID_ITfQueryEmbedded_Value;
-pub const ITfQueryEmbedded = extern union {
+const IID_ITfContextComposition_Value = Guid.initString("d40c8aae-ac92-4fc7-9a11-0ee0e23aa39b");
+pub const IID_ITfContextComposition = &IID_ITfContextComposition_Value;
+pub const ITfContextComposition = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryInsertEmbedded: *const fn(
-            self: *const ITfQueryEmbedded,
-            pguidService: ?*const Guid,
-            pFormatEtc: ?*const FORMATETC,
-            pfInsertable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryInsertEmbedded(self: *const ITfQueryEmbedded, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryInsertEmbedded(self, pguidService, pFormatEtc, pfInsertable);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfInsertAtSelection_Value = Guid.initString("55ce16ba-3014-41c1-9ceb-fade1446ac6c");
-pub const IID_ITfInsertAtSelection = &IID_ITfInsertAtSelection_Value;
-pub const ITfInsertAtSelection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InsertTextAtSelection: *const fn(
-            self: *const ITfInsertAtSelection,
-            ec: u32,
-            dwFlags: INSERT_TEXT_AT_SELECTION_FLAGS,
-            pchText: [*:0]const u16,
-            cch: i32,
-            ppRange: ?*?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-        InsertEmbeddedAtSelection: *const fn(
-            self: *const ITfInsertAtSelection,
-            ec: u32,
-            dwFlags: u32,
-            pDataObject: ?*IDataObject,
-            ppRange: ?*?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InsertTextAtSelection(self: *const ITfInsertAtSelection, ec: u32, dwFlags: INSERT_TEXT_AT_SELECTION_FLAGS, pchText: [*:0]const u16, cch: i32, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertTextAtSelection(self, ec, dwFlags, pchText, cch, ppRange);
-    }
-    pub fn InsertEmbeddedAtSelection(self: *const ITfInsertAtSelection, ec: u32, dwFlags: u32, pDataObject: ?*IDataObject, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertEmbeddedAtSelection(self, ec, dwFlags, pDataObject, ppRange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCleanupContextSink_Value = Guid.initString("01689689-7acb-4e9b-ab7c-7ea46b12b522");
-pub const IID_ITfCleanupContextSink = &IID_ITfCleanupContextSink_Value;
-pub const ITfCleanupContextSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnCleanupContext: *const fn(
-            self: *const ITfCleanupContextSink,
+        StartComposition: *const fn(
+            self: *const ITfContextComposition,
             ecWrite: u32,
-            pic: ?*ITfContext,
+            pCompositionRange: ?*ITfRange,
+            pSink: ?*ITfCompositionSink,
+            ppComposition: ?*?*ITfComposition,
+        ) callconv(.winapi) HRESULT,
+        EnumCompositions: *const fn(
+            self: *const ITfContextComposition,
+            ppEnum: ?*?*IEnumITfCompositionView,
+        ) callconv(.winapi) HRESULT,
+        FindComposition: *const fn(
+            self: *const ITfContextComposition,
+            ecRead: u32,
+            pTestRange: ?*ITfRange,
+            ppEnum: ?*?*IEnumITfCompositionView,
+        ) callconv(.winapi) HRESULT,
+        TakeOwnership: *const fn(
+            self: *const ITfContextComposition,
+            ecWrite: u32,
+            pComposition: ?*ITfCompositionView,
+            pSink: ?*ITfCompositionSink,
+            ppComposition: ?*?*ITfComposition,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnCleanupContext(self: *const ITfCleanupContextSink, ecWrite: u32, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.OnCleanupContext(self, ecWrite, pic);
+    pub fn StartComposition(self: *const ITfContextComposition, ecWrite: u32, pCompositionRange: ?*ITfRange, pSink: ?*ITfCompositionSink, ppComposition: ?*?*ITfComposition) callconv(.@"inline") HRESULT {
+        return self.vtable.StartComposition(self, ecWrite, pCompositionRange, pSink, ppComposition);
+    }
+    pub fn EnumCompositions(self: *const ITfContextComposition, ppEnum: ?*?*IEnumITfCompositionView) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumCompositions(self, ppEnum);
+    }
+    pub fn FindComposition(self: *const ITfContextComposition, ecRead: u32, pTestRange: ?*ITfRange, ppEnum: ?*?*IEnumITfCompositionView) callconv(.@"inline") HRESULT {
+        return self.vtable.FindComposition(self, ecRead, pTestRange, ppEnum);
+    }
+    pub fn TakeOwnership(self: *const ITfContextComposition, ecWrite: u32, pComposition: ?*ITfCompositionView, pSink: ?*ITfCompositionSink, ppComposition: ?*?*ITfComposition) callconv(.@"inline") HRESULT {
+        return self.vtable.TakeOwnership(self, ecWrite, pComposition, pSink, ppComposition);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCleanupContextDurationSink_Value = Guid.initString("45c35144-154e-4797-bed8-d33ae7bf8794");
-pub const IID_ITfCleanupContextDurationSink = &IID_ITfCleanupContextDurationSink_Value;
-pub const ITfCleanupContextDurationSink = extern union {
+const IID_ITfContextKeyEventSink_Value = Guid.initString("0552ba5d-c835-4934-bf50-846aaa67432f");
+pub const IID_ITfContextKeyEventSink = &IID_ITfContextKeyEventSink_Value;
+pub const ITfContextKeyEventSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStartCleanupContext: *const fn(
-            self: *const ITfCleanupContextDurationSink,
+        OnKeyDown: *const fn(
+            self: *const ITfContextKeyEventSink,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        OnEndCleanupContext: *const fn(
-            self: *const ITfCleanupContextDurationSink,
+        OnKeyUp: *const fn(
+            self: *const ITfContextKeyEventSink,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnStartCleanupContext(self: *const ITfCleanupContextDurationSink) callconv(.@"inline") HRESULT {
-        return self.vtable.OnStartCleanupContext(self);
-    }
-    pub fn OnEndCleanupContext(self: *const ITfCleanupContextDurationSink) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEndCleanupContext(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfReadOnlyProperty_Value = Guid.initString("17d49a3d-f8b8-4b2f-b254-52319dd64c53");
-pub const IID_ITfReadOnlyProperty = &IID_ITfReadOnlyProperty_Value;
-pub const ITfReadOnlyProperty = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetType: *const fn(
-            self: *const ITfReadOnlyProperty,
-            pguid: ?*Guid,
+        OnTestKeyDown: *const fn(
+            self: *const ITfContextKeyEventSink,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        EnumRanges: *const fn(
-            self: *const ITfReadOnlyProperty,
-            ec: u32,
-            ppEnum: ?*?*IEnumTfRanges,
-            pTargetRange: ?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-        GetValue: *const fn(
-            self: *const ITfReadOnlyProperty,
-            ec: u32,
-            pRange: ?*ITfRange,
-            pvarValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetContext: *const fn(
-            self: *const ITfReadOnlyProperty,
-            ppContext: ?*?*ITfContext,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetType(self: *const ITfReadOnlyProperty, pguid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pguid);
-    }
-    pub fn EnumRanges(self: *const ITfReadOnlyProperty, ec: u32, ppEnum: ?*?*IEnumTfRanges, pTargetRange: ?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumRanges(self, ec, ppEnum, pTargetRange);
-    }
-    pub fn GetValue(self: *const ITfReadOnlyProperty, ec: u32, pRange: ?*ITfRange, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, ec, pRange, pvarValue);
-    }
-    pub fn GetContext(self: *const ITfReadOnlyProperty, ppContext: ?*?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContext(self, ppContext);
-    }
-};
-
-pub const TF_PROPERTYVAL = extern struct {
-    guidId: Guid,
-    varValue: VARIANT,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfPropertyValue_Value = Guid.initString("8ed8981b-7c10-4d7d-9fb3-ab72e9c75f72");
-pub const IID_IEnumTfPropertyValue = &IID_IEnumTfPropertyValue_Value;
-pub const IEnumTfPropertyValue = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfPropertyValue,
-            ppEnum: ?*?*IEnumTfPropertyValue,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfPropertyValue,
-            ulCount: u32,
-            rgValues: [*]TF_PROPERTYVAL,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfPropertyValue,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfPropertyValue,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfPropertyValue, ppEnum: ?*?*IEnumTfPropertyValue) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfPropertyValue, ulCount: u32, rgValues: [*]TF_PROPERTYVAL, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgValues, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfPropertyValue) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfPropertyValue, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMouseTracker_Value = Guid.initString("09d146cd-a544-4132-925b-7afa8ef322d0");
-pub const IID_ITfMouseTracker = &IID_ITfMouseTracker_Value;
-pub const ITfMouseTracker = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AdviseMouseSink: *const fn(
-            self: *const ITfMouseTracker,
-            range: ?*ITfRange,
-            pSink: ?*ITfMouseSink,
-            pdwCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        UnadviseMouseSink: *const fn(
-            self: *const ITfMouseTracker,
-            dwCookie: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AdviseMouseSink(self: *const ITfMouseTracker, range: ?*ITfRange, pSink: ?*ITfMouseSink, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseMouseSink(self, range, pSink, pdwCookie);
-    }
-    pub fn UnadviseMouseSink(self: *const ITfMouseTracker, dwCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnadviseMouseSink(self, dwCookie);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMouseTrackerACP_Value = Guid.initString("3bdd78e2-c16e-47fd-b883-ce6facc1a208");
-pub const IID_ITfMouseTrackerACP = &IID_ITfMouseTrackerACP_Value;
-pub const ITfMouseTrackerACP = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AdviseMouseSink: *const fn(
-            self: *const ITfMouseTrackerACP,
-            range: ?*ITfRangeACP,
-            pSink: ?*ITfMouseSink,
-            pdwCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        UnadviseMouseSink: *const fn(
-            self: *const ITfMouseTrackerACP,
-            dwCookie: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AdviseMouseSink(self: *const ITfMouseTrackerACP, range: ?*ITfRangeACP, pSink: ?*ITfMouseSink, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseMouseSink(self, range, pSink, pdwCookie);
-    }
-    pub fn UnadviseMouseSink(self: *const ITfMouseTrackerACP, dwCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnadviseMouseSink(self, dwCookie);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMouseSink_Value = Guid.initString("a1adaaa2-3a24-449d-ac96-5183e7f5c217");
-pub const IID_ITfMouseSink = &IID_ITfMouseSink_Value;
-pub const ITfMouseSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnMouseEvent: *const fn(
-            self: *const ITfMouseSink,
-            uEdge: u32,
-            uQuadrant: u32,
-            dwBtnStatus: u32,
+        OnTestKeyUp: *const fn(
+            self: *const ITfContextKeyEventSink,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnMouseEvent(self: *const ITfMouseSink, uEdge: u32, uQuadrant: u32, dwBtnStatus: u32, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnMouseEvent(self, uEdge, uQuadrant, dwBtnStatus, pfEaten);
+    pub fn OnKeyDown(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKeyDown(self, wParam, lParam, pfEaten);
     }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfEditRecord_Value = Guid.initString("42d4d099-7c1a-4a89-b836-6c6f22160df0");
-pub const IID_ITfEditRecord = &IID_ITfEditRecord_Value;
-pub const ITfEditRecord = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSelectionStatus: *const fn(
-            self: *const ITfEditRecord,
-            pfChanged: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetTextAndPropertyUpdates: *const fn(
-            self: *const ITfEditRecord,
-            dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS,
-            prgProperties: [*]const ?*const Guid,
-            cProperties: u32,
-            ppEnum: ?*?*IEnumTfRanges,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSelectionStatus(self: *const ITfEditRecord, pfChanged: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelectionStatus(self, pfChanged);
+    pub fn OnKeyUp(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKeyUp(self, wParam, lParam, pfEaten);
     }
-    pub fn GetTextAndPropertyUpdates(self: *const ITfEditRecord, dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS, prgProperties: [*]const ?*const Guid, cProperties: u32, ppEnum: ?*?*IEnumTfRanges) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTextAndPropertyUpdates(self, dwFlags, prgProperties, cProperties, ppEnum);
+    pub fn OnTestKeyDown(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTestKeyDown(self, wParam, lParam, pfEaten);
     }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfTextEditSink_Value = Guid.initString("8127d409-ccd3-4683-967a-b43d5b482bf7");
-pub const IID_ITfTextEditSink = &IID_ITfTextEditSink_Value;
-pub const ITfTextEditSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnEndEdit: *const fn(
-            self: *const ITfTextEditSink,
-            pic: ?*ITfContext,
-            ecReadOnly: u32,
-            pEditRecord: ?*ITfEditRecord,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnEndEdit(self: *const ITfTextEditSink, pic: ?*ITfContext, ecReadOnly: u32, pEditRecord: ?*ITfEditRecord) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEndEdit(self, pic, ecReadOnly, pEditRecord);
-    }
-};
-
-pub const TfLayoutCode = enum(i32) {
-    CREATE = 0,
-    CHANGE = 1,
-    DESTROY = 2,
-};
-pub const TF_LC_CREATE = TfLayoutCode.CREATE;
-pub const TF_LC_CHANGE = TfLayoutCode.CHANGE;
-pub const TF_LC_DESTROY = TfLayoutCode.DESTROY;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfTextLayoutSink_Value = Guid.initString("2af2d06a-dd5b-4927-a0b4-54f19c91fade");
-pub const IID_ITfTextLayoutSink = &IID_ITfTextLayoutSink_Value;
-pub const ITfTextLayoutSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnLayoutChange: *const fn(
-            self: *const ITfTextLayoutSink,
-            pic: ?*ITfContext,
-            lcode: TfLayoutCode,
-            pView: ?*ITfContextView,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnLayoutChange(self: *const ITfTextLayoutSink, pic: ?*ITfContext, lcode: TfLayoutCode, pView: ?*ITfContextView) callconv(.@"inline") HRESULT {
-        return self.vtable.OnLayoutChange(self, pic, lcode, pView);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfStatusSink_Value = Guid.initString("6b7d8d73-b267-4f69-b32e-1ca321ce4f45");
-pub const IID_ITfStatusSink = &IID_ITfStatusSink_Value;
-pub const ITfStatusSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnStatusChange: *const fn(
-            self: *const ITfStatusSink,
-            pic: ?*ITfContext,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnStatusChange(self: *const ITfStatusSink, pic: ?*ITfContext, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnStatusChange(self, pic, dwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfEditTransactionSink_Value = Guid.initString("708fbf70-b520-416b-b06c-2c41ab44f8ba");
-pub const IID_ITfEditTransactionSink = &IID_ITfEditTransactionSink_Value;
-pub const ITfEditTransactionSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnStartEditTransaction: *const fn(
-            self: *const ITfEditTransactionSink,
-            pic: ?*ITfContext,
-        ) callconv(.winapi) HRESULT,
-        OnEndEditTransaction: *const fn(
-            self: *const ITfEditTransactionSink,
-            pic: ?*ITfContext,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnStartEditTransaction(self: *const ITfEditTransactionSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.OnStartEditTransaction(self, pic);
-    }
-    pub fn OnEndEditTransaction(self: *const ITfEditTransactionSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEndEditTransaction(self, pic);
+    pub fn OnTestKeyUp(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTestKeyUp(self, wParam, lParam, pfEaten);
     }
 };
 
@@ -3804,6 +3655,59 @@ pub const ITfContextOwner = extern union {
     }
     pub fn GetAttribute(self: *const ITfContextOwner, rguidAttribute: ?*const Guid, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttribute(self, rguidAttribute, pvarValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfContextOwnerCompositionServices_Value = Guid.initString("86462810-593b-4916-9764-19c08e9ce110");
+pub const IID_ITfContextOwnerCompositionServices = &IID_ITfContextOwnerCompositionServices_Value;
+pub const ITfContextOwnerCompositionServices = extern union {
+    pub const VTable = extern struct {
+        base: ITfContextComposition.VTable,
+        TerminateComposition: *const fn(
+            self: *const ITfContextOwnerCompositionServices,
+            pComposition: ?*ITfCompositionView,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfContextComposition: ITfContextComposition,
+    IUnknown: IUnknown,
+    pub fn TerminateComposition(self: *const ITfContextOwnerCompositionServices, pComposition: ?*ITfCompositionView) callconv(.@"inline") HRESULT {
+        return self.vtable.TerminateComposition(self, pComposition);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfContextOwnerCompositionSink_Value = Guid.initString("5f20aa40-b57a-4f34-96ab-3576f377cc79");
+pub const IID_ITfContextOwnerCompositionSink = &IID_ITfContextOwnerCompositionSink_Value;
+pub const ITfContextOwnerCompositionSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnStartComposition: *const fn(
+            self: *const ITfContextOwnerCompositionSink,
+            pComposition: ?*ITfCompositionView,
+            pfOk: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnUpdateComposition: *const fn(
+            self: *const ITfContextOwnerCompositionSink,
+            pComposition: ?*ITfCompositionView,
+            pRangeNew: ?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+        OnEndComposition: *const fn(
+            self: *const ITfContextOwnerCompositionSink,
+            pComposition: ?*ITfCompositionView,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnStartComposition(self: *const ITfContextOwnerCompositionSink, pComposition: ?*ITfCompositionView, pfOk: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnStartComposition(self, pComposition, pfOk);
+    }
+    pub fn OnUpdateComposition(self: *const ITfContextOwnerCompositionSink, pComposition: ?*ITfCompositionView, pRangeNew: ?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUpdateComposition(self, pComposition, pRangeNew);
+    }
+    pub fn OnEndComposition(self: *const ITfContextOwnerCompositionSink, pComposition: ?*ITfCompositionView) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEndComposition(self, pComposition);
     }
 };
 
@@ -3875,49 +3779,285 @@ pub const ITfContextOwnerServices = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfContextKeyEventSink_Value = Guid.initString("0552ba5d-c835-4934-bf50-846aaa67432f");
-pub const IID_ITfContextKeyEventSink = &IID_ITfContextKeyEventSink_Value;
-pub const ITfContextKeyEventSink = extern union {
+const IID_ITfContextView_Value = Guid.initString("2433bf8e-0f9b-435c-ba2c-180611978c30");
+pub const IID_ITfContextView = &IID_ITfContextView_Value;
+pub const ITfContextView = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnKeyDown: *const fn(
-            self: *const ITfContextKeyEventSink,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
+        GetRangeFromPoint: *const fn(
+            self: *const ITfContextView,
+            ec: u32,
+            ppt: ?*const POINT,
+            dwFlags: u32,
+            ppRange: ?*?*ITfRange,
         ) callconv(.winapi) HRESULT,
-        OnKeyUp: *const fn(
-            self: *const ITfContextKeyEventSink,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
+        GetTextExt: *const fn(
+            self: *const ITfContextView,
+            ec: u32,
+            pRange: ?*ITfRange,
+            prc: ?*RECT,
+            pfClipped: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        OnTestKeyDown: *const fn(
-            self: *const ITfContextKeyEventSink,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
+        GetScreenExt: *const fn(
+            self: *const ITfContextView,
+            prc: ?*RECT,
         ) callconv(.winapi) HRESULT,
-        OnTestKeyUp: *const fn(
-            self: *const ITfContextKeyEventSink,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
+        GetWnd: *const fn(
+            self: *const ITfContextView,
+            phwnd: ?*?HWND,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnKeyDown(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKeyDown(self, wParam, lParam, pfEaten);
+    pub fn GetRangeFromPoint(self: *const ITfContextView, ec: u32, ppt: ?*const POINT, dwFlags: u32, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRangeFromPoint(self, ec, ppt, dwFlags, ppRange);
     }
-    pub fn OnKeyUp(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKeyUp(self, wParam, lParam, pfEaten);
+    pub fn GetTextExt(self: *const ITfContextView, ec: u32, pRange: ?*ITfRange, prc: ?*RECT, pfClipped: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTextExt(self, ec, pRange, prc, pfClipped);
     }
-    pub fn OnTestKeyDown(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTestKeyDown(self, wParam, lParam, pfEaten);
+    pub fn GetScreenExt(self: *const ITfContextView, prc: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetScreenExt(self, prc);
     }
-    pub fn OnTestKeyUp(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTestKeyUp(self, wParam, lParam, pfEaten);
+    pub fn GetWnd(self: *const ITfContextView, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWnd(self, phwnd);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfCreatePropertyStore_Value = Guid.initString("2463fbf0-b0af-11d2-afc5-00105a2799b5");
+pub const IID_ITfCreatePropertyStore = &IID_ITfCreatePropertyStore_Value;
+pub const ITfCreatePropertyStore = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsStoreSerializable: *const fn(
+            self: *const ITfCreatePropertyStore,
+            guidProp: ?*const Guid,
+            pRange: ?*ITfRange,
+            pPropStore: ?*ITfPropertyStore,
+            pfSerializable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        CreatePropertyStore: *const fn(
+            self: *const ITfCreatePropertyStore,
+            guidProp: ?*const Guid,
+            pRange: ?*ITfRange,
+            cb: u32,
+            pStream: ?*IStream,
+            ppStore: ?*?*ITfPropertyStore,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsStoreSerializable(self: *const ITfCreatePropertyStore, guidProp: ?*const Guid, pRange: ?*ITfRange, pPropStore: ?*ITfPropertyStore, pfSerializable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsStoreSerializable(self, guidProp, pRange, pPropStore, pfSerializable);
+    }
+    pub fn CreatePropertyStore(self: *const ITfCreatePropertyStore, guidProp: ?*const Guid, pRange: ?*ITfRange, cb: u32, pStream: ?*IStream, ppStore: ?*?*ITfPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePropertyStore(self, guidProp, pRange, cb, pStream, ppStore);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfDisplayAttributeInfo_Value = Guid.initString("70528852-2f26-4aea-8c96-215150578932");
+pub const IID_ITfDisplayAttributeInfo = &IID_ITfDisplayAttributeInfo_Value;
+pub const ITfDisplayAttributeInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetGUID: *const fn(
+            self: *const ITfDisplayAttributeInfo,
+            pguid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetDescription: *const fn(
+            self: *const ITfDisplayAttributeInfo,
+            pbstrDesc: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetAttributeInfo: *const fn(
+            self: *const ITfDisplayAttributeInfo,
+            pda: ?*TF_DISPLAYATTRIBUTE,
+        ) callconv(.winapi) HRESULT,
+        SetAttributeInfo: *const fn(
+            self: *const ITfDisplayAttributeInfo,
+            pda: ?*const TF_DISPLAYATTRIBUTE,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const ITfDisplayAttributeInfo,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetGUID(self: *const ITfDisplayAttributeInfo, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGUID(self, pguid);
+    }
+    pub fn GetDescription(self: *const ITfDisplayAttributeInfo, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDescription(self, pbstrDesc);
+    }
+    pub fn GetAttributeInfo(self: *const ITfDisplayAttributeInfo, pda: ?*TF_DISPLAYATTRIBUTE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttributeInfo(self, pda);
+    }
+    pub fn SetAttributeInfo(self: *const ITfDisplayAttributeInfo, pda: ?*const TF_DISPLAYATTRIBUTE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAttributeInfo(self, pda);
+    }
+    pub fn Reset(self: *const ITfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfDisplayAttributeMgr_Value = Guid.initString("8ded7393-5db1-475c-9e71-a39111b0ff67");
+pub const IID_ITfDisplayAttributeMgr = &IID_ITfDisplayAttributeMgr_Value;
+pub const ITfDisplayAttributeMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnUpdateInfo: *const fn(
+            self: *const ITfDisplayAttributeMgr,
+        ) callconv(.winapi) HRESULT,
+        EnumDisplayAttributeInfo: *const fn(
+            self: *const ITfDisplayAttributeMgr,
+            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
+        ) callconv(.winapi) HRESULT,
+        GetDisplayAttributeInfo: *const fn(
+            self: *const ITfDisplayAttributeMgr,
+            guid: ?*const Guid,
+            ppInfo: ?*?*ITfDisplayAttributeInfo,
+            pclsidOwner: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnUpdateInfo(self: *const ITfDisplayAttributeMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUpdateInfo(self);
+    }
+    pub fn EnumDisplayAttributeInfo(self: *const ITfDisplayAttributeMgr, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumDisplayAttributeInfo(self, ppEnum);
+    }
+    pub fn GetDisplayAttributeInfo(self: *const ITfDisplayAttributeMgr, guid: ?*const Guid, ppInfo: ?*?*ITfDisplayAttributeInfo, pclsidOwner: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDisplayAttributeInfo(self, guid, ppInfo, pclsidOwner);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfDisplayAttributeNotifySink_Value = Guid.initString("ad56f402-e162-4f25-908f-7d577cf9bda9");
+pub const IID_ITfDisplayAttributeNotifySink = &IID_ITfDisplayAttributeNotifySink_Value;
+pub const ITfDisplayAttributeNotifySink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnUpdateInfo: *const fn(
+            self: *const ITfDisplayAttributeNotifySink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnUpdateInfo(self: *const ITfDisplayAttributeNotifySink) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUpdateInfo(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfDisplayAttributeProvider_Value = Guid.initString("fee47777-163c-4769-996a-6e9c50ad8f54");
+pub const IID_ITfDisplayAttributeProvider = &IID_ITfDisplayAttributeProvider_Value;
+pub const ITfDisplayAttributeProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumDisplayAttributeInfo: *const fn(
+            self: *const ITfDisplayAttributeProvider,
+            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
+        ) callconv(.winapi) HRESULT,
+        GetDisplayAttributeInfo: *const fn(
+            self: *const ITfDisplayAttributeProvider,
+            guid: ?*const Guid,
+            ppInfo: ?*?*ITfDisplayAttributeInfo,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnumDisplayAttributeInfo(self: *const ITfDisplayAttributeProvider, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumDisplayAttributeInfo(self, ppEnum);
+    }
+    pub fn GetDisplayAttributeInfo(self: *const ITfDisplayAttributeProvider, guid: ?*const Guid, ppInfo: ?*?*ITfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDisplayAttributeInfo(self, guid, ppInfo);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfDocumentMgr_Value = Guid.initString("aa80e7f4-2021-11d2-93e0-0060b067b86e");
+pub const IID_ITfDocumentMgr = &IID_ITfDocumentMgr_Value;
+pub const ITfDocumentMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateContext: *const fn(
+            self: *const ITfDocumentMgr,
+            tidOwner: u32,
+            dwFlags: u32,
+            punk: ?*IUnknown,
+            ppic: ?*?*ITfContext,
+            pecTextStore: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Push: *const fn(
+            self: *const ITfDocumentMgr,
+            pic: ?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+        Pop: *const fn(
+            self: *const ITfDocumentMgr,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetTop: *const fn(
+            self: *const ITfDocumentMgr,
+            ppic: ?*?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+        GetBase: *const fn(
+            self: *const ITfDocumentMgr,
+            ppic: ?*?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+        EnumContexts: *const fn(
+            self: *const ITfDocumentMgr,
+            ppEnum: ?*?*IEnumTfContexts,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateContext(self: *const ITfDocumentMgr, tidOwner: u32, dwFlags: u32, punk: ?*IUnknown, ppic: ?*?*ITfContext, pecTextStore: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateContext(self, tidOwner, dwFlags, punk, ppic, pecTextStore);
+    }
+    pub fn Push(self: *const ITfDocumentMgr, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Push(self, pic);
+    }
+    pub fn Pop(self: *const ITfDocumentMgr, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Pop(self, dwFlags);
+    }
+    pub fn GetTop(self: *const ITfDocumentMgr, ppic: ?*?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTop(self, ppic);
+    }
+    pub fn GetBase(self: *const ITfDocumentMgr, ppic: ?*?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBase(self, ppic);
+    }
+    pub fn EnumContexts(self: *const ITfDocumentMgr, ppEnum: ?*?*IEnumTfContexts) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumContexts(self, ppEnum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfEditRecord_Value = Guid.initString("42d4d099-7c1a-4a89-b836-6c6f22160df0");
+pub const IID_ITfEditRecord = &IID_ITfEditRecord_Value;
+pub const ITfEditRecord = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSelectionStatus: *const fn(
+            self: *const ITfEditRecord,
+            pfChanged: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetTextAndPropertyUpdates: *const fn(
+            self: *const ITfEditRecord,
+            dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS,
+            prgProperties: [*]const ?*const Guid,
+            cProperties: u32,
+            ppEnum: ?*?*IEnumTfRanges,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSelectionStatus(self: *const ITfEditRecord, pfChanged: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelectionStatus(self, pfChanged);
+    }
+    pub fn GetTextAndPropertyUpdates(self: *const ITfEditRecord, dwFlags: GET_TEXT_AND_PROPERTY_UPDATES_FLAGS, prgProperties: [*]const ?*const Guid, cProperties: u32, ppEnum: ?*?*IEnumTfRanges) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTextAndPropertyUpdates(self, dwFlags, prgProperties, cProperties, ppEnum);
     }
 };
 
@@ -3939,24 +4079,2159 @@ pub const ITfEditSession = extern union {
     }
 };
 
-pub const TfGravity = enum(i32) {
-    BACKWARD = 0,
-    FORWARD = 1,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfEditTransactionSink_Value = Guid.initString("708fbf70-b520-416b-b06c-2c41ab44f8ba");
+pub const IID_ITfEditTransactionSink = &IID_ITfEditTransactionSink_Value;
+pub const ITfEditTransactionSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnStartEditTransaction: *const fn(
+            self: *const ITfEditTransactionSink,
+            pic: ?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+        OnEndEditTransaction: *const fn(
+            self: *const ITfEditTransactionSink,
+            pic: ?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnStartEditTransaction(self: *const ITfEditTransactionSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.OnStartEditTransaction(self, pic);
+    }
+    pub fn OnEndEditTransaction(self: *const ITfEditTransactionSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEndEditTransaction(self, pic);
+    }
 };
-pub const TF_GRAVITY_BACKWARD = TfGravity.BACKWARD;
-pub const TF_GRAVITY_FORWARD = TfGravity.FORWARD;
 
-pub const TfShiftDir = enum(i32) {
-    BACKWARD = 0,
-    FORWARD = 1,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnAdviseText_Value = Guid.initString("3527268b-7d53-4dd9-92b7-7296ae461249");
+pub const IID_ITfFnAdviseText = &IID_ITfFnAdviseText_Value;
+pub const ITfFnAdviseText = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        OnTextUpdate: *const fn(
+            self: *const ITfFnAdviseText,
+            pRange: ?*ITfRange,
+            pchText: [*:0]const u16,
+            cch: i32,
+        ) callconv(.winapi) HRESULT,
+        OnLatticeUpdate: *const fn(
+            self: *const ITfFnAdviseText,
+            pRange: ?*ITfRange,
+            pLattice: ?*ITfLMLattice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn OnTextUpdate(self: *const ITfFnAdviseText, pRange: ?*ITfRange, pchText: [*:0]const u16, cch: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTextUpdate(self, pRange, pchText, cch);
+    }
+    pub fn OnLatticeUpdate(self: *const ITfFnAdviseText, pRange: ?*ITfRange, pLattice: ?*ITfLMLattice) callconv(.@"inline") HRESULT {
+        return self.vtable.OnLatticeUpdate(self, pRange, pLattice);
+    }
 };
-pub const TF_SD_BACKWARD = TfShiftDir.BACKWARD;
-pub const TF_SD_FORWARD = TfShiftDir.FORWARD;
 
-pub const TF_HALTCOND = extern struct {
-    pHaltRange: ?*ITfRange,
-    aHaltPos: TfAnchor,
-    dwFlags: u32,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnBalloon_Value = Guid.initString("3bab89e4-5fbe-45f4-a5bc-dca36ad225a8");
+pub const IID_ITfFnBalloon = &IID_ITfFnBalloon_Value;
+pub const ITfFnBalloon = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        UpdateBalloon: *const fn(
+            self: *const ITfFnBalloon,
+            style: TfLBBalloonStyle,
+            pch: [*:0]const u16,
+            cch: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn UpdateBalloon(self: *const ITfFnBalloon, style: TfLBBalloonStyle, pch: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateBalloon(self, style, pch, cch);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnConfigure_Value = Guid.initString("88f567c6-1757-49f8-a1b2-89234c1eeff9");
+pub const IID_ITfFnConfigure = &IID_ITfFnConfigure_Value;
+pub const ITfFnConfigure = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        Show: *const fn(
+            self: *const ITfFnConfigure,
+            hwndParent: ?HWND,
+            langid: u16,
+            rguidProfile: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn Show(self: *const ITfFnConfigure, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, hwndParent, langid, rguidProfile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnConfigureRegisterEudc_Value = Guid.initString("b5e26ff5-d7ad-4304-913f-21a2ed95a1b0");
+pub const IID_ITfFnConfigureRegisterEudc = &IID_ITfFnConfigureRegisterEudc_Value;
+pub const ITfFnConfigureRegisterEudc = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        Show: *const fn(
+            self: *const ITfFnConfigureRegisterEudc,
+            hwndParent: ?HWND,
+            langid: u16,
+            rguidProfile: ?*const Guid,
+            bstrRegistered: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn Show(self: *const ITfFnConfigureRegisterEudc, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid, bstrRegistered: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, hwndParent, langid, rguidProfile, bstrRegistered);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnConfigureRegisterWord_Value = Guid.initString("bb95808a-6d8f-4bca-8400-5390b586aedf");
+pub const IID_ITfFnConfigureRegisterWord = &IID_ITfFnConfigureRegisterWord_Value;
+pub const ITfFnConfigureRegisterWord = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        Show: *const fn(
+            self: *const ITfFnConfigureRegisterWord,
+            hwndParent: ?HWND,
+            langid: u16,
+            rguidProfile: ?*const Guid,
+            bstrRegistered: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn Show(self: *const ITfFnConfigureRegisterWord, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid, bstrRegistered: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, hwndParent, langid, rguidProfile, bstrRegistered);
+    }
+};
+
+const IID_ITfFnCustomSpeechCommand_Value = Guid.initString("fca6c349-a12f-43a3-8dd6-5a5a4282577b");
+pub const IID_ITfFnCustomSpeechCommand = &IID_ITfFnCustomSpeechCommand_Value;
+pub const ITfFnCustomSpeechCommand = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        SetSpeechCommandProvider: *const fn(
+            self: *const ITfFnCustomSpeechCommand,
+            pspcmdProvider: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn SetSpeechCommandProvider(self: *const ITfFnCustomSpeechCommand, pspcmdProvider: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSpeechCommandProvider(self, pspcmdProvider);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_ITfFnGetLinguisticAlternates_Value = Guid.initString("ea163ce2-7a65-4506-82a3-c528215da64e");
+pub const IID_ITfFnGetLinguisticAlternates = &IID_ITfFnGetLinguisticAlternates_Value;
+pub const ITfFnGetLinguisticAlternates = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        GetAlternates: *const fn(
+            self: *const ITfFnGetLinguisticAlternates,
+            pRange: ?*ITfRange,
+            ppCandidateList: **ITfCandidateList,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn GetAlternates(self: *const ITfFnGetLinguisticAlternates, pRange: ?*ITfRange, ppCandidateList: **ITfCandidateList) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAlternates(self, pRange, ppCandidateList);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ITfFnGetPreferredTouchKeyboardLayout_Value = Guid.initString("5f309a41-590a-4acc-a97f-d8efff13fdfc");
+pub const IID_ITfFnGetPreferredTouchKeyboardLayout = &IID_ITfFnGetPreferredTouchKeyboardLayout_Value;
+pub const ITfFnGetPreferredTouchKeyboardLayout = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        GetLayout: *const fn(
+            self: *const ITfFnGetPreferredTouchKeyboardLayout,
+            pTKBLayoutType: ?*TKBLayoutType,
+            pwPreferredLayoutId: ?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn GetLayout(self: *const ITfFnGetPreferredTouchKeyboardLayout, pTKBLayoutType: ?*TKBLayoutType, pwPreferredLayoutId: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLayout(self, pTKBLayoutType, pwPreferredLayoutId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnGetSAPIObject_Value = Guid.initString("5c0ab7ea-167d-4f59-bfb5-4693755e90ca");
+pub const IID_ITfFnGetSAPIObject = &IID_ITfFnGetSAPIObject_Value;
+pub const ITfFnGetSAPIObject = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        Get: *const fn(
+            self: *const ITfFnGetSAPIObject,
+            sObj: TfSapiObject,
+            ppunk: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn Get(self: *const ITfFnGetSAPIObject, sObj: TfSapiObject, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Get(self, sObj, ppunk);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnLangProfileUtil_Value = Guid.initString("a87a8574-a6c1-4e15-99f0-3d3965f548eb");
+pub const IID_ITfFnLangProfileUtil = &IID_ITfFnLangProfileUtil_Value;
+pub const ITfFnLangProfileUtil = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        RegisterActiveProfiles: *const fn(
+            self: *const ITfFnLangProfileUtil,
+        ) callconv(.winapi) HRESULT,
+        IsProfileAvailableForLang: *const fn(
+            self: *const ITfFnLangProfileUtil,
+            langid: u16,
+            pfAvailable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn RegisterActiveProfiles(self: *const ITfFnLangProfileUtil) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterActiveProfiles(self);
+    }
+    pub fn IsProfileAvailableForLang(self: *const ITfFnLangProfileUtil, langid: u16, pfAvailable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsProfileAvailableForLang(self, langid, pfAvailable);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnLMInternal_Value = Guid.initString("04b825b1-ac9a-4f7b-b5ad-c7168f1ee445");
+pub const IID_ITfFnLMInternal = &IID_ITfFnLMInternal_Value;
+pub const ITfFnLMInternal = extern union {
+    pub const VTable = extern struct {
+        base: ITfFnLMProcessor.VTable,
+        ProcessLattice: *const fn(
+            self: *const ITfFnLMInternal,
+            pRange: ?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFnLMProcessor: ITfFnLMProcessor,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn ProcessLattice(self: *const ITfFnLMInternal, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessLattice(self, pRange);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnLMProcessor_Value = Guid.initString("7afbf8e7-ac4b-4082-b058-890899d3a010");
+pub const IID_ITfFnLMProcessor = &IID_ITfFnLMProcessor_Value;
+pub const ITfFnLMProcessor = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        QueryRange: *const fn(
+            self: *const ITfFnLMProcessor,
+            pRange: ?*ITfRange,
+            ppNewRange: ?*?*ITfRange,
+            pfAccepted: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        QueryLangID: *const fn(
+            self: *const ITfFnLMProcessor,
+            langid: u16,
+            pfAccepted: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetReconversion: *const fn(
+            self: *const ITfFnLMProcessor,
+            pRange: ?*ITfRange,
+            ppCandList: ?*?*ITfCandidateList,
+        ) callconv(.winapi) HRESULT,
+        Reconvert: *const fn(
+            self: *const ITfFnLMProcessor,
+            pRange: ?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+        QueryKey: *const fn(
+            self: *const ITfFnLMProcessor,
+            fUp: BOOL,
+            vKey: WPARAM,
+            lparamKeydata: LPARAM,
+            pfInterested: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        InvokeKey: *const fn(
+            self: *const ITfFnLMProcessor,
+            fUp: BOOL,
+            vKey: WPARAM,
+            lparamKeyData: LPARAM,
+        ) callconv(.winapi) HRESULT,
+        InvokeFunc: *const fn(
+            self: *const ITfFnLMProcessor,
+            pic: ?*ITfContext,
+            refguidFunc: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn QueryRange(self: *const ITfFnLMProcessor, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfAccepted: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryRange(self, pRange, ppNewRange, pfAccepted);
+    }
+    pub fn QueryLangID(self: *const ITfFnLMProcessor, langid: u16, pfAccepted: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryLangID(self, langid, pfAccepted);
+    }
+    pub fn GetReconversion(self: *const ITfFnLMProcessor, pRange: ?*ITfRange, ppCandList: ?*?*ITfCandidateList) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReconversion(self, pRange, ppCandList);
+    }
+    pub fn Reconvert(self: *const ITfFnLMProcessor, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.Reconvert(self, pRange);
+    }
+    pub fn QueryKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: WPARAM, lparamKeydata: LPARAM, pfInterested: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryKey(self, fUp, vKey, lparamKeydata, pfInterested);
+    }
+    pub fn InvokeKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: WPARAM, lparamKeyData: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.InvokeKey(self, fUp, vKey, lparamKeyData);
+    }
+    pub fn InvokeFunc(self: *const ITfFnLMProcessor, pic: ?*ITfContext, refguidFunc: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.InvokeFunc(self, pic, refguidFunc);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnPlayBack_Value = Guid.initString("a3a416a4-0f64-11d3-b5b7-00c04fc324a1");
+pub const IID_ITfFnPlayBack = &IID_ITfFnPlayBack_Value;
+pub const ITfFnPlayBack = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        QueryRange: *const fn(
+            self: *const ITfFnPlayBack,
+            pRange: ?*ITfRange,
+            ppNewRange: ?*?*ITfRange,
+            pfPlayable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Play: *const fn(
+            self: *const ITfFnPlayBack,
+            pRange: ?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn QueryRange(self: *const ITfFnPlayBack, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfPlayable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryRange(self, pRange, ppNewRange, pfPlayable);
+    }
+    pub fn Play(self: *const ITfFnPlayBack, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.Play(self, pRange);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnPropertyUIStatus_Value = Guid.initString("2338ac6e-2b9d-44c0-a75e-ee64f256b3bd");
+pub const IID_ITfFnPropertyUIStatus = &IID_ITfFnPropertyUIStatus_Value;
+pub const ITfFnPropertyUIStatus = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        GetStatus: *const fn(
+            self: *const ITfFnPropertyUIStatus,
+            refguidProp: ?*const Guid,
+            pdw: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetStatus: *const fn(
+            self: *const ITfFnPropertyUIStatus,
+            refguidProp: ?*const Guid,
+            dw: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn GetStatus(self: *const ITfFnPropertyUIStatus, refguidProp: ?*const Guid, pdw: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, refguidProp, pdw);
+    }
+    pub fn SetStatus(self: *const ITfFnPropertyUIStatus, refguidProp: ?*const Guid, dw: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStatus(self, refguidProp, dw);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnReconversion_Value = Guid.initString("4cea93c0-0a58-11d3-8df0-00105a2799b5");
+pub const IID_ITfFnReconversion = &IID_ITfFnReconversion_Value;
+pub const ITfFnReconversion = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        QueryRange: *const fn(
+            self: *const ITfFnReconversion,
+            pRange: ?*ITfRange,
+            ppNewRange: ?*?*ITfRange,
+            pfConvertable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetReconversion: *const fn(
+            self: *const ITfFnReconversion,
+            pRange: ?*ITfRange,
+            ppCandList: ?*?*ITfCandidateList,
+        ) callconv(.winapi) HRESULT,
+        Reconvert: *const fn(
+            self: *const ITfFnReconversion,
+            pRange: ?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn QueryRange(self: *const ITfFnReconversion, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfConvertable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryRange(self, pRange, ppNewRange, pfConvertable);
+    }
+    pub fn GetReconversion(self: *const ITfFnReconversion, pRange: ?*ITfRange, ppCandList: ?*?*ITfCandidateList) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReconversion(self, pRange, ppCandList);
+    }
+    pub fn Reconvert(self: *const ITfFnReconversion, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.Reconvert(self, pRange);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ITfFnSearchCandidateProvider_Value = Guid.initString("87a2ad8f-f27b-4920-8501-67602280175d");
+pub const IID_ITfFnSearchCandidateProvider = &IID_ITfFnSearchCandidateProvider_Value;
+pub const ITfFnSearchCandidateProvider = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        GetSearchCandidates: *const fn(
+            self: *const ITfFnSearchCandidateProvider,
+            bstrQuery: ?BSTR,
+            bstrApplicationId: ?BSTR,
+            pplist: ?*?*ITfCandidateList,
+        ) callconv(.winapi) HRESULT,
+        SetResult: *const fn(
+            self: *const ITfFnSearchCandidateProvider,
+            bstrQuery: ?BSTR,
+            bstrApplicationID: ?BSTR,
+            bstrResult: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn GetSearchCandidates(self: *const ITfFnSearchCandidateProvider, bstrQuery: ?BSTR, bstrApplicationId: ?BSTR, pplist: ?*?*ITfCandidateList) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSearchCandidates(self, bstrQuery, bstrApplicationId, pplist);
+    }
+    pub fn SetResult(self: *const ITfFnSearchCandidateProvider, bstrQuery: ?BSTR, bstrApplicationID: ?BSTR, bstrResult: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetResult(self, bstrQuery, bstrApplicationID, bstrResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFnShowHelp_Value = Guid.initString("5ab1d30c-094d-4c29-8ea5-0bf59be87bf3");
+pub const IID_ITfFnShowHelp = &IID_ITfFnShowHelp_Value;
+pub const ITfFnShowHelp = extern union {
+    pub const VTable = extern struct {
+        base: ITfFunction.VTable,
+        Show: *const fn(
+            self: *const ITfFnShowHelp,
+            hwndParent: ?HWND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfFunction: ITfFunction,
+    IUnknown: IUnknown,
+    pub fn Show(self: *const ITfFnShowHelp, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, hwndParent);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFunction_Value = Guid.initString("db593490-098f-11d3-8df0-00105a2799b5");
+pub const IID_ITfFunction = &IID_ITfFunction_Value;
+pub const ITfFunction = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDisplayName: *const fn(
+            self: *const ITfFunction,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDisplayName(self: *const ITfFunction, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDisplayName(self, pbstrName);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfFunctionProvider_Value = Guid.initString("101d6610-0990-11d3-8df0-00105a2799b5");
+pub const IID_ITfFunctionProvider = &IID_ITfFunctionProvider_Value;
+pub const ITfFunctionProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetType: *const fn(
+            self: *const ITfFunctionProvider,
+            pguid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetDescription: *const fn(
+            self: *const ITfFunctionProvider,
+            pbstrDesc: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetFunction: *const fn(
+            self: *const ITfFunctionProvider,
+            rguid: ?*const Guid,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetType(self: *const ITfFunctionProvider, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pguid);
+    }
+    pub fn GetDescription(self: *const ITfFunctionProvider, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDescription(self, pbstrDesc);
+    }
+    pub fn GetFunction(self: *const ITfFunctionProvider, rguid: ?*const Guid, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFunction(self, rguid, riid, ppunk);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfInputProcessorProfileActivationSink_Value = Guid.initString("71c6e74e-0f28-11d8-a82a-00065b84435c");
+pub const IID_ITfInputProcessorProfileActivationSink = &IID_ITfInputProcessorProfileActivationSink_Value;
+pub const ITfInputProcessorProfileActivationSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnActivated: *const fn(
+            self: *const ITfInputProcessorProfileActivationSink,
+            dwProfileType: u32,
+            langid: u16,
+            clsid: ?*const Guid,
+            catid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnActivated(self: *const ITfInputProcessorProfileActivationSink, dwProfileType: u32, langid: u16, clsid: ?*const Guid, catid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnActivated(self, dwProfileType, langid, clsid, catid, guidProfile, hkl, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ITfInputProcessorProfileMgr_Value = Guid.initString("71c6e74c-0f28-11d8-a82a-00065b84435c");
+pub const IID_ITfInputProcessorProfileMgr = &IID_ITfInputProcessorProfileMgr_Value;
+pub const ITfInputProcessorProfileMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ActivateProfile: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            dwProfileType: u32,
+            langid: u16,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        DeactivateProfile: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            dwProfileType: u32,
+            langid: u16,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetProfile: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            dwProfileType: u32,
+            langid: u16,
+            clsid: ?*const Guid,
+            guidProfile: ?*const Guid,
+            hkl: ?HKL,
+            pProfile: ?*TF_INPUTPROCESSORPROFILE,
+        ) callconv(.winapi) HRESULT,
+        EnumProfiles: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            langid: u16,
+            ppEnum: ?*?*IEnumTfInputProcessorProfiles,
+        ) callconv(.winapi) HRESULT,
+        ReleaseInputProcessor: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            rclsid: ?*const Guid,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        RegisterProfile: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            pchDesc: [*:0]const u16,
+            cchDesc: u32,
+            pchIconFile: [*:0]const u16,
+            cchFile: u32,
+            uIconIndex: u32,
+            hklsubstitute: ?HKL,
+            dwPreferredLayout: u32,
+            bEnabledByDefault: BOOL,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        UnregisterProfile: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetActiveProfile: *const fn(
+            self: *const ITfInputProcessorProfileMgr,
+            catid: ?*const Guid,
+            pProfile: ?*TF_INPUTPROCESSORPROFILE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ActivateProfile(self: *const ITfInputProcessorProfileMgr, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateProfile(self, dwProfileType, langid, clsid, guidProfile, hkl, dwFlags);
+    }
+    pub fn DeactivateProfile(self: *const ITfInputProcessorProfileMgr, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeactivateProfile(self, dwProfileType, langid, clsid, guidProfile, hkl, dwFlags);
+    }
+    pub fn GetProfile(self: *const ITfInputProcessorProfileMgr, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, pProfile: ?*TF_INPUTPROCESSORPROFILE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProfile(self, dwProfileType, langid, clsid, guidProfile, hkl, pProfile);
+    }
+    pub fn EnumProfiles(self: *const ITfInputProcessorProfileMgr, langid: u16, ppEnum: ?*?*IEnumTfInputProcessorProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumProfiles(self, langid, ppEnum);
+    }
+    pub fn ReleaseInputProcessor(self: *const ITfInputProcessorProfileMgr, rclsid: ?*const Guid, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseInputProcessor(self, rclsid, dwFlags);
+    }
+    pub fn RegisterProfile(self: *const ITfInputProcessorProfileMgr, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32, hklsubstitute: ?HKL, dwPreferredLayout: u32, bEnabledByDefault: BOOL, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterProfile(self, rclsid, langid, guidProfile, pchDesc, cchDesc, pchIconFile, cchFile, uIconIndex, hklsubstitute, dwPreferredLayout, bEnabledByDefault, dwFlags);
+    }
+    pub fn UnregisterProfile(self: *const ITfInputProcessorProfileMgr, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterProfile(self, rclsid, langid, guidProfile, dwFlags);
+    }
+    pub fn GetActiveProfile(self: *const ITfInputProcessorProfileMgr, catid: ?*const Guid, pProfile: ?*TF_INPUTPROCESSORPROFILE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActiveProfile(self, catid, pProfile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfInputProcessorProfiles_Value = Guid.initString("1f02b6c5-7842-4ee6-8a0b-9a24183a95ca");
+pub const IID_ITfInputProcessorProfiles = &IID_ITfInputProcessorProfiles_Value;
+pub const ITfInputProcessorProfiles = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Register: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        Unregister: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        AddLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            pchDesc: [*:0]const u16,
+            cchDesc: u32,
+            pchIconFile: [*:0]const u16,
+            cchFile: u32,
+            uIconIndex: u32,
+        ) callconv(.winapi) HRESULT,
+        RemoveLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        EnumInputProcessorInfo: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            ppEnum: ?*?*IEnumGUID,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            langid: u16,
+            catid: ?*const Guid,
+            pclsid: ?*Guid,
+            pguidProfile: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        SetDefaultLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            langid: u16,
+            rclsid: ?*const Guid,
+            guidProfiles: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        ActivateLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfiles: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetActiveLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            plangid: ?*u16,
+            pguidProfile: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetLanguageProfileDescription: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            pbstrProfile: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentLanguage: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            plangid: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        ChangeCurrentLanguage: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            langid: u16,
+        ) callconv(.winapi) HRESULT,
+        GetLanguageList: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            ppLangId: [*]?*u16,
+            pulCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EnumLanguageProfiles: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            langid: u16,
+            ppEnum: ?*?*IEnumTfLanguageProfiles,
+        ) callconv(.winapi) HRESULT,
+        EnableLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            fEnable: BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsEnabledLanguageProfile: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            pfEnable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        EnableLanguageProfileByDefault: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            fEnable: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SubstituteKeyboardLayout: *const fn(
+            self: *const ITfInputProcessorProfiles,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            hKL: ?HKL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Register(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Register(self, rclsid);
+    }
+    pub fn Unregister(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Unregister(self, rclsid);
+    }
+    pub fn AddLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddLanguageProfile(self, rclsid, langid, guidProfile, pchDesc, cchDesc, pchIconFile, cchFile, uIconIndex);
+    }
+    pub fn RemoveLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveLanguageProfile(self, rclsid, langid, guidProfile);
+    }
+    pub fn EnumInputProcessorInfo(self: *const ITfInputProcessorProfiles, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumInputProcessorInfo(self, ppEnum);
+    }
+    pub fn GetDefaultLanguageProfile(self: *const ITfInputProcessorProfiles, langid: u16, catid: ?*const Guid, pclsid: ?*Guid, pguidProfile: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultLanguageProfile(self, langid, catid, pclsid, pguidProfile);
+    }
+    pub fn SetDefaultLanguageProfile(self: *const ITfInputProcessorProfiles, langid: u16, rclsid: ?*const Guid, guidProfiles: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultLanguageProfile(self, langid, rclsid, guidProfiles);
+    }
+    pub fn ActivateLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfiles: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateLanguageProfile(self, rclsid, langid, guidProfiles);
+    }
+    pub fn GetActiveLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, plangid: ?*u16, pguidProfile: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActiveLanguageProfile(self, rclsid, plangid, pguidProfile);
+    }
+    pub fn GetLanguageProfileDescription(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pbstrProfile: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLanguageProfileDescription(self, rclsid, langid, guidProfile, pbstrProfile);
+    }
+    pub fn GetCurrentLanguage(self: *const ITfInputProcessorProfiles, plangid: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentLanguage(self, plangid);
+    }
+    pub fn ChangeCurrentLanguage(self: *const ITfInputProcessorProfiles, langid: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangeCurrentLanguage(self, langid);
+    }
+    pub fn GetLanguageList(self: *const ITfInputProcessorProfiles, ppLangId: [*]?*u16, pulCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLanguageList(self, ppLangId, pulCount);
+    }
+    pub fn EnumLanguageProfiles(self: *const ITfInputProcessorProfiles, langid: u16, ppEnum: ?*?*IEnumTfLanguageProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumLanguageProfiles(self, langid, ppEnum);
+    }
+    pub fn EnableLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, fEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableLanguageProfile(self, rclsid, langid, guidProfile, fEnable);
+    }
+    pub fn IsEnabledLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pfEnable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsEnabledLanguageProfile(self, rclsid, langid, guidProfile, pfEnable);
+    }
+    pub fn EnableLanguageProfileByDefault(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, fEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableLanguageProfileByDefault(self, rclsid, langid, guidProfile, fEnable);
+    }
+    pub fn SubstituteKeyboardLayout(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, hKL: ?HKL) callconv(.@"inline") HRESULT {
+        return self.vtable.SubstituteKeyboardLayout(self, rclsid, langid, guidProfile, hKL);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfInputProcessorProfilesEx_Value = Guid.initString("892f230f-fe00-4a41-a98e-fcd6de0d35ef");
+pub const IID_ITfInputProcessorProfilesEx = &IID_ITfInputProcessorProfilesEx_Value;
+pub const ITfInputProcessorProfilesEx = extern union {
+    pub const VTable = extern struct {
+        base: ITfInputProcessorProfiles.VTable,
+        SetLanguageProfileDisplayName: *const fn(
+            self: *const ITfInputProcessorProfilesEx,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            pchFile: [*:0]const u16,
+            cchFile: u32,
+            uResId: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfInputProcessorProfiles: ITfInputProcessorProfiles,
+    IUnknown: IUnknown,
+    pub fn SetLanguageProfileDisplayName(self: *const ITfInputProcessorProfilesEx, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchFile: [*:0]const u16, cchFile: u32, uResId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLanguageProfileDisplayName(self, rclsid, langid, guidProfile, pchFile, cchFile, uResId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfInputProcessorProfileSubstituteLayout_Value = Guid.initString("4fd67194-1002-4513-bff2-c0ddf6258552");
+pub const IID_ITfInputProcessorProfileSubstituteLayout = &IID_ITfInputProcessorProfileSubstituteLayout_Value;
+pub const ITfInputProcessorProfileSubstituteLayout = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSubstituteKeyboardLayout: *const fn(
+            self: *const ITfInputProcessorProfileSubstituteLayout,
+            rclsid: ?*const Guid,
+            langid: u16,
+            guidProfile: ?*const Guid,
+            phKL: ?*?HKL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSubstituteKeyboardLayout(self: *const ITfInputProcessorProfileSubstituteLayout, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubstituteKeyboardLayout(self, rclsid, langid, guidProfile, phKL);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ITfInputScope_Value = Guid.initString("fde1eaee-6924-4cdf-91e7-da38cff5559d");
+pub const IID_ITfInputScope = &IID_ITfInputScope_Value;
+pub const ITfInputScope = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInputScopes: *const fn(
+            self: *const ITfInputScope,
+            pprgInputScopes: [*]?*InputScope,
+            pcCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPhrase: *const fn(
+            self: *const ITfInputScope,
+            ppbstrPhrases: [*]?*?BSTR,
+            pcCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetRegularExpression: *const fn(
+            self: *const ITfInputScope,
+            pbstrRegExp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSRGS: *const fn(
+            self: *const ITfInputScope,
+            pbstrSRGS: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetXML: *const fn(
+            self: *const ITfInputScope,
+            pbstrXML: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetInputScopes(self: *const ITfInputScope, pprgInputScopes: [*]?*InputScope, pcCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputScopes(self, pprgInputScopes, pcCount);
+    }
+    pub fn GetPhrase(self: *const ITfInputScope, ppbstrPhrases: [*]?*?BSTR, pcCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPhrase(self, ppbstrPhrases, pcCount);
+    }
+    pub fn GetRegularExpression(self: *const ITfInputScope, pbstrRegExp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRegularExpression(self, pbstrRegExp);
+    }
+    pub fn GetSRGS(self: *const ITfInputScope, pbstrSRGS: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSRGS(self, pbstrSRGS);
+    }
+    pub fn GetXML(self: *const ITfInputScope, pbstrXML: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetXML(self, pbstrXML);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ITfInputScope2_Value = Guid.initString("5731eaa0-6bc2-4681-a532-92fbb74d7c41");
+pub const IID_ITfInputScope2 = &IID_ITfInputScope2_Value;
+pub const ITfInputScope2 = extern union {
+    pub const VTable = extern struct {
+        base: ITfInputScope.VTable,
+        EnumWordList: *const fn(
+            self: *const ITfInputScope2,
+            ppEnumString: ?*?*IEnumString,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfInputScope: ITfInputScope,
+    IUnknown: IUnknown,
+    pub fn EnumWordList(self: *const ITfInputScope2, ppEnumString: ?*?*IEnumString) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumWordList(self, ppEnumString);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfInsertAtSelection_Value = Guid.initString("55ce16ba-3014-41c1-9ceb-fade1446ac6c");
+pub const IID_ITfInsertAtSelection = &IID_ITfInsertAtSelection_Value;
+pub const ITfInsertAtSelection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InsertTextAtSelection: *const fn(
+            self: *const ITfInsertAtSelection,
+            ec: u32,
+            dwFlags: INSERT_TEXT_AT_SELECTION_FLAGS,
+            pchText: [*:0]const u16,
+            cch: i32,
+            ppRange: ?*?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+        InsertEmbeddedAtSelection: *const fn(
+            self: *const ITfInsertAtSelection,
+            ec: u32,
+            dwFlags: u32,
+            pDataObject: ?*IDataObject,
+            ppRange: ?*?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InsertTextAtSelection(self: *const ITfInsertAtSelection, ec: u32, dwFlags: INSERT_TEXT_AT_SELECTION_FLAGS, pchText: [*:0]const u16, cch: i32, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertTextAtSelection(self, ec, dwFlags, pchText, cch, ppRange);
+    }
+    pub fn InsertEmbeddedAtSelection(self: *const ITfInsertAtSelection, ec: u32, dwFlags: u32, pDataObject: ?*IDataObject, ppRange: ?*?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertEmbeddedAtSelection(self, ec, dwFlags, pDataObject, ppRange);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ITfIntegratableCandidateListUIElement_Value = Guid.initString("c7a6f54f-b180-416f-b2bf-7bf2e4683d7b");
+pub const IID_ITfIntegratableCandidateListUIElement = &IID_ITfIntegratableCandidateListUIElement_Value;
+pub const ITfIntegratableCandidateListUIElement = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetIntegrationStyle: *const fn(
+            self: *const ITfIntegratableCandidateListUIElement,
+            guidIntegrationStyle: Guid,
+        ) callconv(.winapi) HRESULT,
+        GetSelectionStyle: *const fn(
+            self: *const ITfIntegratableCandidateListUIElement,
+            ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle,
+        ) callconv(.winapi) HRESULT,
+        OnKeyDown: *const fn(
+            self: *const ITfIntegratableCandidateListUIElement,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        ShowCandidateNumbers: *const fn(
+            self: *const ITfIntegratableCandidateListUIElement,
+            pfShow: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        FinalizeExactCompositionString: *const fn(
+            self: *const ITfIntegratableCandidateListUIElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetIntegrationStyle(self: *const ITfIntegratableCandidateListUIElement, guidIntegrationStyle: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIntegrationStyle(self, guidIntegrationStyle);
+    }
+    pub fn GetSelectionStyle(self: *const ITfIntegratableCandidateListUIElement, ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelectionStyle(self, ptfSelectionStyle);
+    }
+    pub fn OnKeyDown(self: *const ITfIntegratableCandidateListUIElement, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKeyDown(self, wParam, lParam, pfEaten);
+    }
+    pub fn ShowCandidateNumbers(self: *const ITfIntegratableCandidateListUIElement, pfShow: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowCandidateNumbers(self, pfShow);
+    }
+    pub fn FinalizeExactCompositionString(self: *const ITfIntegratableCandidateListUIElement) callconv(.@"inline") HRESULT {
+        return self.vtable.FinalizeExactCompositionString(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfKeyEventSink_Value = Guid.initString("aa80e7f5-2021-11d2-93e0-0060b067b86e");
+pub const IID_ITfKeyEventSink = &IID_ITfKeyEventSink_Value;
+pub const ITfKeyEventSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnSetFocus: *const fn(
+            self: *const ITfKeyEventSink,
+            fForeground: BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnTestKeyDown: *const fn(
+            self: *const ITfKeyEventSink,
+            pic: ?*ITfContext,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnTestKeyUp: *const fn(
+            self: *const ITfKeyEventSink,
+            pic: ?*ITfContext,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnKeyDown: *const fn(
+            self: *const ITfKeyEventSink,
+            pic: ?*ITfContext,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnKeyUp: *const fn(
+            self: *const ITfKeyEventSink,
+            pic: ?*ITfContext,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnPreservedKey: *const fn(
+            self: *const ITfKeyEventSink,
+            pic: ?*ITfContext,
+            rguid: ?*const Guid,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnSetFocus(self: *const ITfKeyEventSink, fForeground: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetFocus(self, fForeground);
+    }
+    pub fn OnTestKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTestKeyDown(self, pic, wParam, lParam, pfEaten);
+    }
+    pub fn OnTestKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTestKeyUp(self, pic, wParam, lParam, pfEaten);
+    }
+    pub fn OnKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKeyDown(self, pic, wParam, lParam, pfEaten);
+    }
+    pub fn OnKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKeyUp(self, pic, wParam, lParam, pfEaten);
+    }
+    pub fn OnPreservedKey(self: *const ITfKeyEventSink, pic: ?*ITfContext, rguid: ?*const Guid, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPreservedKey(self, pic, rguid, pfEaten);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfKeystrokeMgr_Value = Guid.initString("aa80e7f0-2021-11d2-93e0-0060b067b86e");
+pub const IID_ITfKeystrokeMgr = &IID_ITfKeystrokeMgr_Value;
+pub const ITfKeystrokeMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AdviseKeyEventSink: *const fn(
+            self: *const ITfKeystrokeMgr,
+            tid: u32,
+            pSink: ?*ITfKeyEventSink,
+            fForeground: BOOL,
+        ) callconv(.winapi) HRESULT,
+        UnadviseKeyEventSink: *const fn(
+            self: *const ITfKeystrokeMgr,
+            tid: u32,
+        ) callconv(.winapi) HRESULT,
+        GetForeground: *const fn(
+            self: *const ITfKeystrokeMgr,
+            pclsid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        TestKeyDown: *const fn(
+            self: *const ITfKeystrokeMgr,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        TestKeyUp: *const fn(
+            self: *const ITfKeystrokeMgr,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        KeyDown: *const fn(
+            self: *const ITfKeystrokeMgr,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        KeyUp: *const fn(
+            self: *const ITfKeystrokeMgr,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetPreservedKey: *const fn(
+            self: *const ITfKeystrokeMgr,
+            pic: ?*ITfContext,
+            pprekey: ?*const TF_PRESERVEDKEY,
+            pguid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        IsPreservedKey: *const fn(
+            self: *const ITfKeystrokeMgr,
+            rguid: ?*const Guid,
+            pprekey: ?*const TF_PRESERVEDKEY,
+            pfRegistered: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        PreserveKey: *const fn(
+            self: *const ITfKeystrokeMgr,
+            tid: u32,
+            rguid: ?*const Guid,
+            prekey: ?*const TF_PRESERVEDKEY,
+            pchDesc: [*:0]const u16,
+            cchDesc: u32,
+        ) callconv(.winapi) HRESULT,
+        UnpreserveKey: *const fn(
+            self: *const ITfKeystrokeMgr,
+            rguid: ?*const Guid,
+            pprekey: ?*const TF_PRESERVEDKEY,
+        ) callconv(.winapi) HRESULT,
+        SetPreservedKeyDescription: *const fn(
+            self: *const ITfKeystrokeMgr,
+            rguid: ?*const Guid,
+            pchDesc: [*:0]const u16,
+            cchDesc: u32,
+        ) callconv(.winapi) HRESULT,
+        GetPreservedKeyDescription: *const fn(
+            self: *const ITfKeystrokeMgr,
+            rguid: ?*const Guid,
+            pbstrDesc: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SimulatePreservedKey: *const fn(
+            self: *const ITfKeystrokeMgr,
+            pic: ?*ITfContext,
+            rguid: ?*const Guid,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AdviseKeyEventSink(self: *const ITfKeystrokeMgr, tid: u32, pSink: ?*ITfKeyEventSink, fForeground: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseKeyEventSink(self, tid, pSink, fForeground);
+    }
+    pub fn UnadviseKeyEventSink(self: *const ITfKeystrokeMgr, tid: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnadviseKeyEventSink(self, tid);
+    }
+    pub fn GetForeground(self: *const ITfKeystrokeMgr, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetForeground(self, pclsid);
+    }
+    pub fn TestKeyDown(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.TestKeyDown(self, wParam, lParam, pfEaten);
+    }
+    pub fn TestKeyUp(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.TestKeyUp(self, wParam, lParam, pfEaten);
+    }
+    pub fn KeyDown(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.KeyDown(self, wParam, lParam, pfEaten);
+    }
+    pub fn KeyUp(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.KeyUp(self, wParam, lParam, pfEaten);
+    }
+    pub fn GetPreservedKey(self: *const ITfKeystrokeMgr, pic: ?*ITfContext, pprekey: ?*const TF_PRESERVEDKEY, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreservedKey(self, pic, pprekey, pguid);
+    }
+    pub fn IsPreservedKey(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pprekey: ?*const TF_PRESERVEDKEY, pfRegistered: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsPreservedKey(self, rguid, pprekey, pfRegistered);
+    }
+    pub fn PreserveKey(self: *const ITfKeystrokeMgr, tid: u32, rguid: ?*const Guid, prekey: ?*const TF_PRESERVEDKEY, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.PreserveKey(self, tid, rguid, prekey, pchDesc, cchDesc);
+    }
+    pub fn UnpreserveKey(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pprekey: ?*const TF_PRESERVEDKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.UnpreserveKey(self, rguid, pprekey);
+    }
+    pub fn SetPreservedKeyDescription(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPreservedKeyDescription(self, rguid, pchDesc, cchDesc);
+    }
+    pub fn GetPreservedKeyDescription(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreservedKeyDescription(self, rguid, pbstrDesc);
+    }
+    pub fn SimulatePreservedKey(self: *const ITfKeystrokeMgr, pic: ?*ITfContext, rguid: ?*const Guid, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SimulatePreservedKey(self, pic, rguid, pfEaten);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfKeyTraceEventSink_Value = Guid.initString("1cd4c13b-1c36-4191-a70a-7f3e611f367d");
+pub const IID_ITfKeyTraceEventSink = &IID_ITfKeyTraceEventSink_Value;
+pub const ITfKeyTraceEventSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnKeyTraceDown: *const fn(
+            self: *const ITfKeyTraceEventSink,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) HRESULT,
+        OnKeyTraceUp: *const fn(
+            self: *const ITfKeyTraceEventSink,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnKeyTraceDown(self: *const ITfKeyTraceEventSink, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKeyTraceDown(self, wParam, lParam);
+    }
+    pub fn OnKeyTraceUp(self: *const ITfKeyTraceEventSink, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKeyTraceUp(self, wParam, lParam);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarEventSink_Value = Guid.initString("18a4e900-e0ae-11d2-afdd-00105a2799b5");
+pub const IID_ITfLangBarEventSink = &IID_ITfLangBarEventSink_Value;
+pub const ITfLangBarEventSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnSetFocus: *const fn(
+            self: *const ITfLangBarEventSink,
+            dwThreadId: u32,
+        ) callconv(.winapi) HRESULT,
+        OnThreadTerminate: *const fn(
+            self: *const ITfLangBarEventSink,
+            dwThreadId: u32,
+        ) callconv(.winapi) HRESULT,
+        OnThreadItemChange: *const fn(
+            self: *const ITfLangBarEventSink,
+            dwThreadId: u32,
+        ) callconv(.winapi) HRESULT,
+        OnModalInput: *const fn(
+            self: *const ITfLangBarEventSink,
+            dwThreadId: u32,
+            uMsg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) HRESULT,
+        ShowFloating: *const fn(
+            self: *const ITfLangBarEventSink,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetItemFloatingRect: *const fn(
+            self: *const ITfLangBarEventSink,
+            dwThreadId: u32,
+            rguid: ?*const Guid,
+            prc: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnSetFocus(self: *const ITfLangBarEventSink, dwThreadId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetFocus(self, dwThreadId);
+    }
+    pub fn OnThreadTerminate(self: *const ITfLangBarEventSink, dwThreadId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnThreadTerminate(self, dwThreadId);
+    }
+    pub fn OnThreadItemChange(self: *const ITfLangBarEventSink, dwThreadId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnThreadItemChange(self, dwThreadId);
+    }
+    pub fn OnModalInput(self: *const ITfLangBarEventSink, dwThreadId: u32, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.OnModalInput(self, dwThreadId, uMsg, wParam, lParam);
+    }
+    pub fn ShowFloating(self: *const ITfLangBarEventSink, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowFloating(self, dwFlags);
+    }
+    pub fn GetItemFloatingRect(self: *const ITfLangBarEventSink, dwThreadId: u32, rguid: ?*const Guid, prc: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemFloatingRect(self, dwThreadId, rguid, prc);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarItem_Value = Guid.initString("73540d69-edeb-4ee9-96c9-23aa30b25916");
+pub const IID_ITfLangBarItem = &IID_ITfLangBarItem_Value;
+pub const ITfLangBarItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInfo: *const fn(
+            self: *const ITfLangBarItem,
+            pInfo: ?*TF_LANGBARITEMINFO,
+        ) callconv(.winapi) HRESULT,
+        GetStatus: *const fn(
+            self: *const ITfLangBarItem,
+            pdwStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Show: *const fn(
+            self: *const ITfLangBarItem,
+            fShow: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetTooltipString: *const fn(
+            self: *const ITfLangBarItem,
+            pbstrToolTip: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetInfo(self: *const ITfLangBarItem, pInfo: ?*TF_LANGBARITEMINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInfo(self, pInfo);
+    }
+    pub fn GetStatus(self: *const ITfLangBarItem, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus);
+    }
+    pub fn Show(self: *const ITfLangBarItem, fShow: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, fShow);
+    }
+    pub fn GetTooltipString(self: *const ITfLangBarItem, pbstrToolTip: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTooltipString(self, pbstrToolTip);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarItemBalloon_Value = Guid.initString("01c2d285-d3c7-4b7b-b5b5-d97411d0c283");
+pub const IID_ITfLangBarItemBalloon = &IID_ITfLangBarItemBalloon_Value;
+pub const ITfLangBarItemBalloon = extern union {
+    pub const VTable = extern struct {
+        base: ITfLangBarItem.VTable,
+        OnClick: *const fn(
+            self: *const ITfLangBarItemBalloon,
+            click: TfLBIClick,
+            pt: POINT,
+            prcArea: ?*const RECT,
+        ) callconv(.winapi) HRESULT,
+        GetPreferredSize: *const fn(
+            self: *const ITfLangBarItemBalloon,
+            pszDefault: ?*const SIZE,
+            psz: ?*SIZE,
+        ) callconv(.winapi) HRESULT,
+        GetBalloonInfo: *const fn(
+            self: *const ITfLangBarItemBalloon,
+            pInfo: ?*TF_LBBALLOONINFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfLangBarItem: ITfLangBarItem,
+    IUnknown: IUnknown,
+    pub fn OnClick(self: *const ITfLangBarItemBalloon, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnClick(self, click, pt, prcArea);
+    }
+    pub fn GetPreferredSize(self: *const ITfLangBarItemBalloon, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreferredSize(self, pszDefault, psz);
+    }
+    pub fn GetBalloonInfo(self: *const ITfLangBarItemBalloon, pInfo: ?*TF_LBBALLOONINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBalloonInfo(self, pInfo);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarItemBitmap_Value = Guid.initString("73830352-d722-4179-ada5-f045c98df355");
+pub const IID_ITfLangBarItemBitmap = &IID_ITfLangBarItemBitmap_Value;
+pub const ITfLangBarItemBitmap = extern union {
+    pub const VTable = extern struct {
+        base: ITfLangBarItem.VTable,
+        OnClick: *const fn(
+            self: *const ITfLangBarItemBitmap,
+            click: TfLBIClick,
+            pt: POINT,
+            prcArea: ?*const RECT,
+        ) callconv(.winapi) HRESULT,
+        GetPreferredSize: *const fn(
+            self: *const ITfLangBarItemBitmap,
+            pszDefault: ?*const SIZE,
+            psz: ?*SIZE,
+        ) callconv(.winapi) HRESULT,
+        DrawBitmap: *const fn(
+            self: *const ITfLangBarItemBitmap,
+            bmWidth: i32,
+            bmHeight: i32,
+            dwFlags: u32,
+            phbmp: ?*?HBITMAP,
+            phbmpMask: ?*?HBITMAP,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfLangBarItem: ITfLangBarItem,
+    IUnknown: IUnknown,
+    pub fn OnClick(self: *const ITfLangBarItemBitmap, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnClick(self, click, pt, prcArea);
+    }
+    pub fn GetPreferredSize(self: *const ITfLangBarItemBitmap, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreferredSize(self, pszDefault, psz);
+    }
+    pub fn DrawBitmap(self: *const ITfLangBarItemBitmap, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: ?*?HBITMAP, phbmpMask: ?*?HBITMAP) callconv(.@"inline") HRESULT {
+        return self.vtable.DrawBitmap(self, bmWidth, bmHeight, dwFlags, phbmp, phbmpMask);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarItemBitmapButton_Value = Guid.initString("a26a0525-3fae-4fa0-89ee-88a964f9f1b5");
+pub const IID_ITfLangBarItemBitmapButton = &IID_ITfLangBarItemBitmapButton_Value;
+pub const ITfLangBarItemBitmapButton = extern union {
+    pub const VTable = extern struct {
+        base: ITfLangBarItem.VTable,
+        OnClick: *const fn(
+            self: *const ITfLangBarItemBitmapButton,
+            click: TfLBIClick,
+            pt: POINT,
+            prcArea: ?*const RECT,
+        ) callconv(.winapi) HRESULT,
+        InitMenu: *const fn(
+            self: *const ITfLangBarItemBitmapButton,
+            pMenu: ?*ITfMenu,
+        ) callconv(.winapi) HRESULT,
+        OnMenuSelect: *const fn(
+            self: *const ITfLangBarItemBitmapButton,
+            wID: u32,
+        ) callconv(.winapi) HRESULT,
+        GetPreferredSize: *const fn(
+            self: *const ITfLangBarItemBitmapButton,
+            pszDefault: ?*const SIZE,
+            psz: ?*SIZE,
+        ) callconv(.winapi) HRESULT,
+        DrawBitmap: *const fn(
+            self: *const ITfLangBarItemBitmapButton,
+            bmWidth: i32,
+            bmHeight: i32,
+            dwFlags: u32,
+            phbmp: ?*?HBITMAP,
+            phbmpMask: ?*?HBITMAP,
+        ) callconv(.winapi) HRESULT,
+        GetText: *const fn(
+            self: *const ITfLangBarItemBitmapButton,
+            pbstrText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfLangBarItem: ITfLangBarItem,
+    IUnknown: IUnknown,
+    pub fn OnClick(self: *const ITfLangBarItemBitmapButton, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnClick(self, click, pt, prcArea);
+    }
+    pub fn InitMenu(self: *const ITfLangBarItemBitmapButton, pMenu: ?*ITfMenu) callconv(.@"inline") HRESULT {
+        return self.vtable.InitMenu(self, pMenu);
+    }
+    pub fn OnMenuSelect(self: *const ITfLangBarItemBitmapButton, wID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnMenuSelect(self, wID);
+    }
+    pub fn GetPreferredSize(self: *const ITfLangBarItemBitmapButton, pszDefault: ?*const SIZE, psz: ?*SIZE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreferredSize(self, pszDefault, psz);
+    }
+    pub fn DrawBitmap(self: *const ITfLangBarItemBitmapButton, bmWidth: i32, bmHeight: i32, dwFlags: u32, phbmp: ?*?HBITMAP, phbmpMask: ?*?HBITMAP) callconv(.@"inline") HRESULT {
+        return self.vtable.DrawBitmap(self, bmWidth, bmHeight, dwFlags, phbmp, phbmpMask);
+    }
+    pub fn GetText(self: *const ITfLangBarItemBitmapButton, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetText(self, pbstrText);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarItemButton_Value = Guid.initString("28c7f1d0-de25-11d2-afdd-00105a2799b5");
+pub const IID_ITfLangBarItemButton = &IID_ITfLangBarItemButton_Value;
+pub const ITfLangBarItemButton = extern union {
+    pub const VTable = extern struct {
+        base: ITfLangBarItem.VTable,
+        OnClick: *const fn(
+            self: *const ITfLangBarItemButton,
+            click: TfLBIClick,
+            pt: POINT,
+            prcArea: ?*const RECT,
+        ) callconv(.winapi) HRESULT,
+        InitMenu: *const fn(
+            self: *const ITfLangBarItemButton,
+            pMenu: ?*ITfMenu,
+        ) callconv(.winapi) HRESULT,
+        OnMenuSelect: *const fn(
+            self: *const ITfLangBarItemButton,
+            wID: u32,
+        ) callconv(.winapi) HRESULT,
+        GetIcon: *const fn(
+            self: *const ITfLangBarItemButton,
+            phIcon: ?*?HICON,
+        ) callconv(.winapi) HRESULT,
+        GetText: *const fn(
+            self: *const ITfLangBarItemButton,
+            pbstrText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfLangBarItem: ITfLangBarItem,
+    IUnknown: IUnknown,
+    pub fn OnClick(self: *const ITfLangBarItemButton, click: TfLBIClick, pt: POINT, prcArea: ?*const RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnClick(self, click, pt, prcArea);
+    }
+    pub fn InitMenu(self: *const ITfLangBarItemButton, pMenu: ?*ITfMenu) callconv(.@"inline") HRESULT {
+        return self.vtable.InitMenu(self, pMenu);
+    }
+    pub fn OnMenuSelect(self: *const ITfLangBarItemButton, wID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnMenuSelect(self, wID);
+    }
+    pub fn GetIcon(self: *const ITfLangBarItemButton, phIcon: ?*?HICON) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIcon(self, phIcon);
+    }
+    pub fn GetText(self: *const ITfLangBarItemButton, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetText(self, pbstrText);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarItemMgr_Value = Guid.initString("ba468c55-9956-4fb1-a59d-52a7dd7cc6aa");
+pub const IID_ITfLangBarItemMgr = &IID_ITfLangBarItemMgr_Value;
+pub const ITfLangBarItemMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumItems: *const fn(
+            self: *const ITfLangBarItemMgr,
+            ppEnum: ?*?*IEnumTfLangBarItems,
+        ) callconv(.winapi) HRESULT,
+        GetItem: *const fn(
+            self: *const ITfLangBarItemMgr,
+            rguid: ?*const Guid,
+            ppItem: ?*?*ITfLangBarItem,
+        ) callconv(.winapi) HRESULT,
+        AddItem: *const fn(
+            self: *const ITfLangBarItemMgr,
+            punk: ?*ITfLangBarItem,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ITfLangBarItemMgr,
+            punk: ?*ITfLangBarItem,
+        ) callconv(.winapi) HRESULT,
+        AdviseItemSink: *const fn(
+            self: *const ITfLangBarItemMgr,
+            punk: ?*ITfLangBarItemSink,
+            pdwCookie: ?*u32,
+            rguidItem: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        UnadviseItemSink: *const fn(
+            self: *const ITfLangBarItemMgr,
+            dwCookie: u32,
+        ) callconv(.winapi) HRESULT,
+        GetItemFloatingRect: *const fn(
+            self: *const ITfLangBarItemMgr,
+            dwThreadId: u32,
+            rguid: ?*const Guid,
+            prc: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+        GetItemsStatus: *const fn(
+            self: *const ITfLangBarItemMgr,
+            ulCount: u32,
+            prgguid: [*]const Guid,
+            pdwStatus: [*]u32,
+        ) callconv(.winapi) HRESULT,
+        GetItemNum: *const fn(
+            self: *const ITfLangBarItemMgr,
+            pulCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetItems: *const fn(
+            self: *const ITfLangBarItemMgr,
+            ulCount: u32,
+            ppItem: [*]?*ITfLangBarItem,
+            pInfo: [*]TF_LANGBARITEMINFO,
+            pdwStatus: [*]u32,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        AdviseItemsSink: *const fn(
+            self: *const ITfLangBarItemMgr,
+            ulCount: u32,
+            ppunk: [*]?*ITfLangBarItemSink,
+            pguidItem: [*]const Guid,
+            pdwCookie: [*]u32,
+        ) callconv(.winapi) HRESULT,
+        UnadviseItemsSink: *const fn(
+            self: *const ITfLangBarItemMgr,
+            ulCount: u32,
+            pdwCookie: [*]u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnumItems(self: *const ITfLangBarItemMgr, ppEnum: ?*?*IEnumTfLangBarItems) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumItems(self, ppEnum);
+    }
+    pub fn GetItem(self: *const ITfLangBarItemMgr, rguid: ?*const Guid, ppItem: ?*?*ITfLangBarItem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, rguid, ppItem);
+    }
+    pub fn AddItem(self: *const ITfLangBarItemMgr, punk: ?*ITfLangBarItem) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, punk);
+    }
+    pub fn RemoveItem(self: *const ITfLangBarItemMgr, punk: ?*ITfLangBarItem) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, punk);
+    }
+    pub fn AdviseItemSink(self: *const ITfLangBarItemMgr, punk: ?*ITfLangBarItemSink, pdwCookie: ?*u32, rguidItem: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseItemSink(self, punk, pdwCookie, rguidItem);
+    }
+    pub fn UnadviseItemSink(self: *const ITfLangBarItemMgr, dwCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnadviseItemSink(self, dwCookie);
+    }
+    pub fn GetItemFloatingRect(self: *const ITfLangBarItemMgr, dwThreadId: u32, rguid: ?*const Guid, prc: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemFloatingRect(self, dwThreadId, rguid, prc);
+    }
+    pub fn GetItemsStatus(self: *const ITfLangBarItemMgr, ulCount: u32, prgguid: [*]const Guid, pdwStatus: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemsStatus(self, ulCount, prgguid, pdwStatus);
+    }
+    pub fn GetItemNum(self: *const ITfLangBarItemMgr, pulCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemNum(self, pulCount);
+    }
+    pub fn GetItems(self: *const ITfLangBarItemMgr, ulCount: u32, ppItem: [*]?*ITfLangBarItem, pInfo: [*]TF_LANGBARITEMINFO, pdwStatus: [*]u32, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItems(self, ulCount, ppItem, pInfo, pdwStatus, pcFetched);
+    }
+    pub fn AdviseItemsSink(self: *const ITfLangBarItemMgr, ulCount: u32, ppunk: [*]?*ITfLangBarItemSink, pguidItem: [*]const Guid, pdwCookie: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseItemsSink(self, ulCount, ppunk, pguidItem, pdwCookie);
+    }
+    pub fn UnadviseItemsSink(self: *const ITfLangBarItemMgr, ulCount: u32, pdwCookie: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnadviseItemsSink(self, ulCount, pdwCookie);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarItemSink_Value = Guid.initString("57dbe1a0-de25-11d2-afdd-00105a2799b5");
+pub const IID_ITfLangBarItemSink = &IID_ITfLangBarItemSink_Value;
+pub const ITfLangBarItemSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnUpdate: *const fn(
+            self: *const ITfLangBarItemSink,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnUpdate(self: *const ITfLangBarItemSink, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUpdate(self, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLangBarMgr_Value = Guid.initString("87955690-e627-11d2-8ddb-00105a2799b5");
+pub const IID_ITfLangBarMgr = &IID_ITfLangBarMgr_Value;
+pub const ITfLangBarMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AdviseEventSink: *const fn(
+            self: *const ITfLangBarMgr,
+            pSink: ?*ITfLangBarEventSink,
+            hwnd: ?HWND,
+            dwFlags: u32,
+            pdwCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UnadviseEventSink: *const fn(
+            self: *const ITfLangBarMgr,
+            dwCookie: u32,
+        ) callconv(.winapi) HRESULT,
+        GetThreadMarshalInterface: *const fn(
+            self: *const ITfLangBarMgr,
+            dwThreadId: u32,
+            dwType: u32,
+            riid: ?*const Guid,
+            ppunk: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetThreadLangBarItemMgr: *const fn(
+            self: *const ITfLangBarMgr,
+            dwThreadId: u32,
+            pplbi: ?*?*ITfLangBarItemMgr,
+            pdwThreadid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetInputProcessorProfiles: *const fn(
+            self: *const ITfLangBarMgr,
+            dwThreadId: u32,
+            ppaip: ?*?*ITfInputProcessorProfiles,
+            pdwThreadid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        RestoreLastFocus: *const fn(
+            self: *const ITfLangBarMgr,
+            pdwThreadId: ?*u32,
+            fPrev: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetModalInput: *const fn(
+            self: *const ITfLangBarMgr,
+            pSink: ?*ITfLangBarEventSink,
+            dwThreadId: u32,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        ShowFloating: *const fn(
+            self: *const ITfLangBarMgr,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetShowFloatingStatus: *const fn(
+            self: *const ITfLangBarMgr,
+            pdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AdviseEventSink(self: *const ITfLangBarMgr, pSink: ?*ITfLangBarEventSink, hwnd: ?HWND, dwFlags: u32, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseEventSink(self, pSink, hwnd, dwFlags, pdwCookie);
+    }
+    pub fn UnadviseEventSink(self: *const ITfLangBarMgr, dwCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnadviseEventSink(self, dwCookie);
+    }
+    pub fn GetThreadMarshalInterface(self: *const ITfLangBarMgr, dwThreadId: u32, dwType: u32, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetThreadMarshalInterface(self, dwThreadId, dwType, riid, ppunk);
+    }
+    pub fn GetThreadLangBarItemMgr(self: *const ITfLangBarMgr, dwThreadId: u32, pplbi: ?*?*ITfLangBarItemMgr, pdwThreadid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetThreadLangBarItemMgr(self, dwThreadId, pplbi, pdwThreadid);
+    }
+    pub fn GetInputProcessorProfiles(self: *const ITfLangBarMgr, dwThreadId: u32, ppaip: ?*?*ITfInputProcessorProfiles, pdwThreadid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputProcessorProfiles(self, dwThreadId, ppaip, pdwThreadid);
+    }
+    pub fn RestoreLastFocus(self: *const ITfLangBarMgr, pdwThreadId: ?*u32, fPrev: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreLastFocus(self, pdwThreadId, fPrev);
+    }
+    pub fn SetModalInput(self: *const ITfLangBarMgr, pSink: ?*ITfLangBarEventSink, dwThreadId: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetModalInput(self, pSink, dwThreadId, dwFlags);
+    }
+    pub fn ShowFloating(self: *const ITfLangBarMgr, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowFloating(self, dwFlags);
+    }
+    pub fn GetShowFloatingStatus(self: *const ITfLangBarMgr, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetShowFloatingStatus(self, pdwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLanguageProfileNotifySink_Value = Guid.initString("43c9fe15-f494-4c17-9de2-b8a4ac350aa8");
+pub const IID_ITfLanguageProfileNotifySink = &IID_ITfLanguageProfileNotifySink_Value;
+pub const ITfLanguageProfileNotifySink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnLanguageChange: *const fn(
+            self: *const ITfLanguageProfileNotifySink,
+            langid: u16,
+            pfAccept: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnLanguageChanged: *const fn(
+            self: *const ITfLanguageProfileNotifySink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnLanguageChange(self: *const ITfLanguageProfileNotifySink, langid: u16, pfAccept: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnLanguageChange(self, langid, pfAccept);
+    }
+    pub fn OnLanguageChanged(self: *const ITfLanguageProfileNotifySink) callconv(.@"inline") HRESULT {
+        return self.vtable.OnLanguageChanged(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfLMLattice_Value = Guid.initString("d4236675-a5bf-4570-9d42-5d6d7b02d59b");
+pub const IID_ITfLMLattice = &IID_ITfLMLattice_Value;
+pub const ITfLMLattice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryType: *const fn(
+            self: *const ITfLMLattice,
+            rguidType: ?*const Guid,
+            pfSupported: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        EnumLatticeElements: *const fn(
+            self: *const ITfLMLattice,
+            dwFrameStart: u32,
+            rguidType: ?*const Guid,
+            ppEnum: ?*?*IEnumTfLatticeElements,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryType(self: *const ITfLMLattice, rguidType: ?*const Guid, pfSupported: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryType(self, rguidType, pfSupported);
+    }
+    pub fn EnumLatticeElements(self: *const ITfLMLattice, dwFrameStart: u32, rguidType: ?*const Guid, ppEnum: ?*?*IEnumTfLatticeElements) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumLatticeElements(self, dwFrameStart, rguidType, ppEnum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMenu_Value = Guid.initString("6f8a98e4-aaa0-4f15-8c5b-07e0df0a3dd8");
+pub const IID_ITfMenu = &IID_ITfMenu_Value;
+pub const ITfMenu = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddMenuItem: *const fn(
+            self: *const ITfMenu,
+            uId: u32,
+            dwFlags: u32,
+            hbmp: ?HBITMAP,
+            hbmpMask: ?HBITMAP,
+            pch: [*:0]const u16,
+            cch: u32,
+            ppMenu: ?*?*ITfMenu,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddMenuItem(self: *const ITfMenu, uId: u32, dwFlags: u32, hbmp: ?HBITMAP, hbmpMask: ?HBITMAP, pch: [*:0]const u16, cch: u32, ppMenu: ?*?*ITfMenu) callconv(.@"inline") HRESULT {
+        return self.vtable.AddMenuItem(self, uId, dwFlags, hbmp, hbmpMask, pch, cch, ppMenu);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMessagePump_Value = Guid.initString("8f1b8ad8-0b6b-4874-90c5-bd76011e8f7c");
+pub const IID_ITfMessagePump = &IID_ITfMessagePump_Value;
+pub const ITfMessagePump = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PeekMessageA: *const fn(
+            self: *const ITfMessagePump,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
+            wMsgFilterMin: u32,
+            wMsgFilterMax: u32,
+            wRemoveMsg: u32,
+            pfResult: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetMessageA: *const fn(
+            self: *const ITfMessagePump,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
+            wMsgFilterMin: u32,
+            wMsgFilterMax: u32,
+            pfResult: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        PeekMessageW: *const fn(
+            self: *const ITfMessagePump,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
+            wMsgFilterMin: u32,
+            wMsgFilterMax: u32,
+            wRemoveMsg: u32,
+            pfResult: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetMessageW: *const fn(
+            self: *const ITfMessagePump,
+            pMsg: ?*MSG,
+            hwnd: ?HWND,
+            wMsgFilterMin: u32,
+            wMsgFilterMax: u32,
+            pfResult: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PeekMessageA(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.PeekMessageA(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg, pfResult);
+    }
+    pub fn GetMessageA(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMessageA(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, pfResult);
+    }
+    pub fn PeekMessageW(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.PeekMessageW(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg, pfResult);
+    }
+    pub fn GetMessageW(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMessageW(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, pfResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMouseSink_Value = Guid.initString("a1adaaa2-3a24-449d-ac96-5183e7f5c217");
+pub const IID_ITfMouseSink = &IID_ITfMouseSink_Value;
+pub const ITfMouseSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnMouseEvent: *const fn(
+            self: *const ITfMouseSink,
+            uEdge: u32,
+            uQuadrant: u32,
+            dwBtnStatus: u32,
+            pfEaten: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnMouseEvent(self: *const ITfMouseSink, uEdge: u32, uQuadrant: u32, dwBtnStatus: u32, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnMouseEvent(self, uEdge, uQuadrant, dwBtnStatus, pfEaten);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMouseTracker_Value = Guid.initString("09d146cd-a544-4132-925b-7afa8ef322d0");
+pub const IID_ITfMouseTracker = &IID_ITfMouseTracker_Value;
+pub const ITfMouseTracker = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AdviseMouseSink: *const fn(
+            self: *const ITfMouseTracker,
+            range: ?*ITfRange,
+            pSink: ?*ITfMouseSink,
+            pdwCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UnadviseMouseSink: *const fn(
+            self: *const ITfMouseTracker,
+            dwCookie: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AdviseMouseSink(self: *const ITfMouseTracker, range: ?*ITfRange, pSink: ?*ITfMouseSink, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseMouseSink(self, range, pSink, pdwCookie);
+    }
+    pub fn UnadviseMouseSink(self: *const ITfMouseTracker, dwCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnadviseMouseSink(self, dwCookie);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMouseTrackerACP_Value = Guid.initString("3bdd78e2-c16e-47fd-b883-ce6facc1a208");
+pub const IID_ITfMouseTrackerACP = &IID_ITfMouseTrackerACP_Value;
+pub const ITfMouseTrackerACP = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AdviseMouseSink: *const fn(
+            self: *const ITfMouseTrackerACP,
+            range: ?*ITfRangeACP,
+            pSink: ?*ITfMouseSink,
+            pdwCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UnadviseMouseSink: *const fn(
+            self: *const ITfMouseTrackerACP,
+            dwCookie: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AdviseMouseSink(self: *const ITfMouseTrackerACP, range: ?*ITfRangeACP, pSink: ?*ITfMouseSink, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseMouseSink(self, range, pSink, pdwCookie);
+    }
+    pub fn UnadviseMouseSink(self: *const ITfMouseTrackerACP, dwCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnadviseMouseSink(self, dwCookie);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMSAAControl_Value = Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
+pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
+pub const ITfMSAAControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SystemEnableMSAA: *const fn(
+            self: *const ITfMSAAControl,
+        ) callconv(.winapi) HRESULT,
+        SystemDisableMSAA: *const fn(
+            self: *const ITfMSAAControl,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SystemEnableMSAA(self: *const ITfMSAAControl) callconv(.@"inline") HRESULT {
+        return self.vtable.SystemEnableMSAA(self);
+    }
+    pub fn SystemDisableMSAA(self: *const ITfMSAAControl) callconv(.@"inline") HRESULT {
+        return self.vtable.SystemDisableMSAA(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfPersistentPropertyLoaderACP_Value = Guid.initString("4ef89150-0807-11d3-8df0-00105a2799b5");
+pub const IID_ITfPersistentPropertyLoaderACP = &IID_ITfPersistentPropertyLoaderACP_Value;
+pub const ITfPersistentPropertyLoaderACP = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        LoadProperty: *const fn(
+            self: *const ITfPersistentPropertyLoaderACP,
+            pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
+            ppStream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn LoadProperty(self: *const ITfPersistentPropertyLoaderACP, pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP, ppStream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadProperty(self, pHdr, ppStream);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfPreservedKeyNotifySink_Value = Guid.initString("6f77c993-d2b1-446e-853e-5912efc8a286");
+pub const IID_ITfPreservedKeyNotifySink = &IID_ITfPreservedKeyNotifySink_Value;
+pub const ITfPreservedKeyNotifySink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnUpdated: *const fn(
+            self: *const ITfPreservedKeyNotifySink,
+            pprekey: ?*const TF_PRESERVEDKEY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnUpdated(self: *const ITfPreservedKeyNotifySink, pprekey: ?*const TF_PRESERVEDKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUpdated(self, pprekey);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfProperty_Value = Guid.initString("e2449660-9542-11d2-bf46-00105a2799b5");
+pub const IID_ITfProperty = &IID_ITfProperty_Value;
+pub const ITfProperty = extern union {
+    pub const VTable = extern struct {
+        base: ITfReadOnlyProperty.VTable,
+        FindRange: *const fn(
+            self: *const ITfProperty,
+            ec: u32,
+            pRange: ?*ITfRange,
+            ppRange: ?*?*ITfRange,
+            aPos: TfAnchor,
+        ) callconv(.winapi) HRESULT,
+        SetValueStore: *const fn(
+            self: *const ITfProperty,
+            ec: u32,
+            pRange: ?*ITfRange,
+            pPropStore: ?*ITfPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        SetValue: *const fn(
+            self: *const ITfProperty,
+            ec: u32,
+            pRange: ?*ITfRange,
+            pvarValue: ?*const VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const ITfProperty,
+            ec: u32,
+            pRange: ?*ITfRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfReadOnlyProperty: ITfReadOnlyProperty,
+    IUnknown: IUnknown,
+    pub fn FindRange(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange, ppRange: ?*?*ITfRange, aPos: TfAnchor) callconv(.@"inline") HRESULT {
+        return self.vtable.FindRange(self, ec, pRange, ppRange, aPos);
+    }
+    pub fn SetValueStore(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange, pPropStore: ?*ITfPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValueStore(self, ec, pRange, pPropStore);
+    }
+    pub fn SetValue(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange, pvarValue: ?*const VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, ec, pRange, pvarValue);
+    }
+    pub fn Clear(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self, ec, pRange);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfPropertyStore_Value = Guid.initString("6834b120-88cb-11d2-bf45-00105a2799b5");
+pub const IID_ITfPropertyStore = &IID_ITfPropertyStore_Value;
+pub const ITfPropertyStore = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetType: *const fn(
+            self: *const ITfPropertyStore,
+            pguid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetDataType: *const fn(
+            self: *const ITfPropertyStore,
+            pdwReserved: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetData: *const fn(
+            self: *const ITfPropertyStore,
+            pvarValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        OnTextUpdated: *const fn(
+            self: *const ITfPropertyStore,
+            dwFlags: u32,
+            pRangeNew: ?*ITfRange,
+            pfAccept: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Shrink: *const fn(
+            self: *const ITfPropertyStore,
+            pRangeNew: ?*ITfRange,
+            pfFree: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Divide: *const fn(
+            self: *const ITfPropertyStore,
+            pRangeThis: ?*ITfRange,
+            pRangeNew: ?*ITfRange,
+            ppPropStore: ?*?*ITfPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const ITfPropertyStore,
+            pPropStore: ?*?*ITfPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyRangeCreator: *const fn(
+            self: *const ITfPropertyStore,
+            pclsid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        Serialize: *const fn(
+            self: *const ITfPropertyStore,
+            pStream: ?*IStream,
+            pcb: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetType(self: *const ITfPropertyStore, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pguid);
+    }
+    pub fn GetDataType(self: *const ITfPropertyStore, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataType(self, pdwReserved);
+    }
+    pub fn GetData(self: *const ITfPropertyStore, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetData(self, pvarValue);
+    }
+    pub fn OnTextUpdated(self: *const ITfPropertyStore, dwFlags: u32, pRangeNew: ?*ITfRange, pfAccept: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTextUpdated(self, dwFlags, pRangeNew, pfAccept);
+    }
+    pub fn Shrink(self: *const ITfPropertyStore, pRangeNew: ?*ITfRange, pfFree: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Shrink(self, pRangeNew, pfFree);
+    }
+    pub fn Divide(self: *const ITfPropertyStore, pRangeThis: ?*ITfRange, pRangeNew: ?*ITfRange, ppPropStore: ?*?*ITfPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.Divide(self, pRangeThis, pRangeNew, ppPropStore);
+    }
+    pub fn Clone(self: *const ITfPropertyStore, pPropStore: ?*?*ITfPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, pPropStore);
+    }
+    pub fn GetPropertyRangeCreator(self: *const ITfPropertyStore, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyRangeCreator(self, pclsid);
+    }
+    pub fn Serialize(self: *const ITfPropertyStore, pStream: ?*IStream, pcb: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Serialize(self, pStream, pcb);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfQueryEmbedded_Value = Guid.initString("0fab9bdb-d250-4169-84e5-6be118fdd7a8");
+pub const IID_ITfQueryEmbedded = &IID_ITfQueryEmbedded_Value;
+pub const ITfQueryEmbedded = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryInsertEmbedded: *const fn(
+            self: *const ITfQueryEmbedded,
+            pguidService: ?*const Guid,
+            pFormatEtc: ?*const FORMATETC,
+            pfInsertable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryInsertEmbedded(self: *const ITfQueryEmbedded, pguidService: ?*const Guid, pFormatEtc: ?*const FORMATETC, pfInsertable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryInsertEmbedded(self, pguidService, pFormatEtc, pfInsertable);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4199,53 +6474,6 @@ pub const ITfRangeACP = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITextStoreACPServices_Value = Guid.initString("aa80e901-2021-11d2-93e0-0060b067b86e");
-pub const IID_ITextStoreACPServices = &IID_ITextStoreACPServices_Value;
-pub const ITextStoreACPServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Serialize: *const fn(
-            self: *const ITextStoreACPServices,
-            pProp: ?*ITfProperty,
-            pRange: ?*ITfRange,
-            pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            pStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        Unserialize: *const fn(
-            self: *const ITextStoreACPServices,
-            pProp: ?*ITfProperty,
-            pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            pStream: ?*IStream,
-            pLoader: ?*ITfPersistentPropertyLoaderACP,
-        ) callconv(.winapi) HRESULT,
-        ForceLoadProperty: *const fn(
-            self: *const ITextStoreACPServices,
-            pProp: ?*ITfProperty,
-        ) callconv(.winapi) HRESULT,
-        CreateRange: *const fn(
-            self: *const ITextStoreACPServices,
-            acpStart: i32,
-            acpEnd: i32,
-            ppRange: ?*?*ITfRangeACP,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Serialize(self: *const ITextStoreACPServices, pProp: ?*ITfProperty, pRange: ?*ITfRange, pHdr: ?*TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.Serialize(self, pProp, pRange, pHdr, pStream);
-    }
-    pub fn Unserialize(self: *const ITextStoreACPServices, pProp: ?*ITfProperty, pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP, pStream: ?*IStream, pLoader: ?*ITfPersistentPropertyLoaderACP) callconv(.@"inline") HRESULT {
-        return self.vtable.Unserialize(self, pProp, pHdr, pStream, pLoader);
-    }
-    pub fn ForceLoadProperty(self: *const ITextStoreACPServices, pProp: ?*ITfProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.ForceLoadProperty(self, pProp);
-    }
-    pub fn CreateRange(self: *const ITextStoreACPServices, acpStart: i32, acpEnd: i32, ppRange: ?*?*ITfRangeACP) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRange(self, acpStart, acpEnd, ppRange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
 const IID_ITfRangeBackup_Value = Guid.initString("463a506d-6992-49d2-9b88-93d55e70bb16");
 pub const IID_ITfRangeBackup = &IID_ITfRangeBackup_Value;
 pub const ITfRangeBackup = extern union {
@@ -4265,1651 +6493,165 @@ pub const ITfRangeBackup = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ITfPropertyStore_Value = Guid.initString("6834b120-88cb-11d2-bf45-00105a2799b5");
-pub const IID_ITfPropertyStore = &IID_ITfPropertyStore_Value;
-pub const ITfPropertyStore = extern union {
+const IID_ITfReadingInformationUIElement_Value = Guid.initString("ea1ea139-19df-11d7-a6d2-00065b84435c");
+pub const IID_ITfReadingInformationUIElement = &IID_ITfReadingInformationUIElement_Value;
+pub const ITfReadingInformationUIElement = extern union {
+    pub const VTable = extern struct {
+        base: ITfUIElement.VTable,
+        GetUpdatedFlags: *const fn(
+            self: *const ITfReadingInformationUIElement,
+            pdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetContext: *const fn(
+            self: *const ITfReadingInformationUIElement,
+            ppic: ?*?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+        GetString: *const fn(
+            self: *const ITfReadingInformationUIElement,
+            pstr: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetMaxReadingStringLength: *const fn(
+            self: *const ITfReadingInformationUIElement,
+            pcchMax: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetErrorIndex: *const fn(
+            self: *const ITfReadingInformationUIElement,
+            pErrorIndex: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        IsVerticalOrderPreferred: *const fn(
+            self: *const ITfReadingInformationUIElement,
+            pfVertical: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfUIElement: ITfUIElement,
+    IUnknown: IUnknown,
+    pub fn GetUpdatedFlags(self: *const ITfReadingInformationUIElement, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUpdatedFlags(self, pdwFlags);
+    }
+    pub fn GetContext(self: *const ITfReadingInformationUIElement, ppic: ?*?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContext(self, ppic);
+    }
+    pub fn GetString(self: *const ITfReadingInformationUIElement, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetString(self, pstr);
+    }
+    pub fn GetMaxReadingStringLength(self: *const ITfReadingInformationUIElement, pcchMax: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxReadingStringLength(self, pcchMax);
+    }
+    pub fn GetErrorIndex(self: *const ITfReadingInformationUIElement, pErrorIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetErrorIndex(self, pErrorIndex);
+    }
+    pub fn IsVerticalOrderPreferred(self: *const ITfReadingInformationUIElement, pfVertical: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsVerticalOrderPreferred(self, pfVertical);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfReadOnlyProperty_Value = Guid.initString("17d49a3d-f8b8-4b2f-b254-52319dd64c53");
+pub const IID_ITfReadOnlyProperty = &IID_ITfReadOnlyProperty_Value;
+pub const ITfReadOnlyProperty = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetType: *const fn(
-            self: *const ITfPropertyStore,
+            self: *const ITfReadOnlyProperty,
             pguid: ?*Guid,
         ) callconv(.winapi) HRESULT,
-        GetDataType: *const fn(
-            self: *const ITfPropertyStore,
-            pdwReserved: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetData: *const fn(
-            self: *const ITfPropertyStore,
-            pvarValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        OnTextUpdated: *const fn(
-            self: *const ITfPropertyStore,
-            dwFlags: u32,
-            pRangeNew: ?*ITfRange,
-            pfAccept: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        Shrink: *const fn(
-            self: *const ITfPropertyStore,
-            pRangeNew: ?*ITfRange,
-            pfFree: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        Divide: *const fn(
-            self: *const ITfPropertyStore,
-            pRangeThis: ?*ITfRange,
-            pRangeNew: ?*ITfRange,
-            ppPropStore: ?*?*ITfPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const ITfPropertyStore,
-            pPropStore: ?*?*ITfPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyRangeCreator: *const fn(
-            self: *const ITfPropertyStore,
-            pclsid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        Serialize: *const fn(
-            self: *const ITfPropertyStore,
-            pStream: ?*IStream,
-            pcb: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetType(self: *const ITfPropertyStore, pguid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pguid);
-    }
-    pub fn GetDataType(self: *const ITfPropertyStore, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataType(self, pdwReserved);
-    }
-    pub fn GetData(self: *const ITfPropertyStore, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetData(self, pvarValue);
-    }
-    pub fn OnTextUpdated(self: *const ITfPropertyStore, dwFlags: u32, pRangeNew: ?*ITfRange, pfAccept: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTextUpdated(self, dwFlags, pRangeNew, pfAccept);
-    }
-    pub fn Shrink(self: *const ITfPropertyStore, pRangeNew: ?*ITfRange, pfFree: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Shrink(self, pRangeNew, pfFree);
-    }
-    pub fn Divide(self: *const ITfPropertyStore, pRangeThis: ?*ITfRange, pRangeNew: ?*ITfRange, ppPropStore: ?*?*ITfPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.Divide(self, pRangeThis, pRangeNew, ppPropStore);
-    }
-    pub fn Clone(self: *const ITfPropertyStore, pPropStore: ?*?*ITfPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, pPropStore);
-    }
-    pub fn GetPropertyRangeCreator(self: *const ITfPropertyStore, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyRangeCreator(self, pclsid);
-    }
-    pub fn Serialize(self: *const ITfPropertyStore, pStream: ?*IStream, pcb: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Serialize(self, pStream, pcb);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfRanges_Value = Guid.initString("f99d3f40-8e32-11d2-bf46-00105a2799b5");
-pub const IID_IEnumTfRanges = &IID_IEnumTfRanges_Value;
-pub const IEnumTfRanges = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfRanges,
+        EnumRanges: *const fn(
+            self: *const ITfReadOnlyProperty,
+            ec: u32,
             ppEnum: ?*?*IEnumTfRanges,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfRanges,
-            ulCount: u32,
-            ppRange: [*]?*ITfRange,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfRanges,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfRanges,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfRanges, ppEnum: ?*?*IEnumTfRanges) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfRanges, ulCount: u32, ppRange: [*]?*ITfRange, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, ppRange, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfRanges) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfRanges, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCreatePropertyStore_Value = Guid.initString("2463fbf0-b0af-11d2-afc5-00105a2799b5");
-pub const IID_ITfCreatePropertyStore = &IID_ITfCreatePropertyStore_Value;
-pub const ITfCreatePropertyStore = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsStoreSerializable: *const fn(
-            self: *const ITfCreatePropertyStore,
-            guidProp: ?*const Guid,
-            pRange: ?*ITfRange,
-            pPropStore: ?*ITfPropertyStore,
-            pfSerializable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        CreatePropertyStore: *const fn(
-            self: *const ITfCreatePropertyStore,
-            guidProp: ?*const Guid,
-            pRange: ?*ITfRange,
-            cb: u32,
-            pStream: ?*IStream,
-            ppStore: ?*?*ITfPropertyStore,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsStoreSerializable(self: *const ITfCreatePropertyStore, guidProp: ?*const Guid, pRange: ?*ITfRange, pPropStore: ?*ITfPropertyStore, pfSerializable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsStoreSerializable(self, guidProp, pRange, pPropStore, pfSerializable);
-    }
-    pub fn CreatePropertyStore(self: *const ITfCreatePropertyStore, guidProp: ?*const Guid, pRange: ?*ITfRange, cb: u32, pStream: ?*IStream, ppStore: ?*?*ITfPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePropertyStore(self, guidProp, pRange, cb, pStream, ppStore);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfPersistentPropertyLoaderACP_Value = Guid.initString("4ef89150-0807-11d3-8df0-00105a2799b5");
-pub const IID_ITfPersistentPropertyLoaderACP = &IID_ITfPersistentPropertyLoaderACP_Value;
-pub const ITfPersistentPropertyLoaderACP = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LoadProperty: *const fn(
-            self: *const ITfPersistentPropertyLoaderACP,
-            pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP,
-            ppStream: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn LoadProperty(self: *const ITfPersistentPropertyLoaderACP, pHdr: ?*const TF_PERSISTENT_PROPERTY_HEADER_ACP, ppStream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadProperty(self, pHdr, ppStream);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfProperty_Value = Guid.initString("e2449660-9542-11d2-bf46-00105a2799b5");
-pub const IID_ITfProperty = &IID_ITfProperty_Value;
-pub const ITfProperty = extern union {
-    pub const VTable = extern struct {
-        base: ITfReadOnlyProperty.VTable,
-        FindRange: *const fn(
-            self: *const ITfProperty,
-            ec: u32,
-            pRange: ?*ITfRange,
-            ppRange: ?*?*ITfRange,
-            aPos: TfAnchor,
-        ) callconv(.winapi) HRESULT,
-        SetValueStore: *const fn(
-            self: *const ITfProperty,
-            ec: u32,
-            pRange: ?*ITfRange,
-            pPropStore: ?*ITfPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        SetValue: *const fn(
-            self: *const ITfProperty,
-            ec: u32,
-            pRange: ?*ITfRange,
-            pvarValue: ?*const VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const ITfProperty,
-            ec: u32,
-            pRange: ?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfReadOnlyProperty: ITfReadOnlyProperty,
-    IUnknown: IUnknown,
-    pub fn FindRange(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange, ppRange: ?*?*ITfRange, aPos: TfAnchor) callconv(.@"inline") HRESULT {
-        return self.vtable.FindRange(self, ec, pRange, ppRange, aPos);
-    }
-    pub fn SetValueStore(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange, pPropStore: ?*ITfPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValueStore(self, ec, pRange, pPropStore);
-    }
-    pub fn SetValue(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange, pvarValue: ?*const VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, ec, pRange, pvarValue);
-    }
-    pub fn Clear(self: *const ITfProperty, ec: u32, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self, ec, pRange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfProperties_Value = Guid.initString("19188cb0-aca9-11d2-afc5-00105a2799b5");
-pub const IID_IEnumTfProperties = &IID_IEnumTfProperties_Value;
-pub const IEnumTfProperties = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfProperties,
-            ppEnum: ?*?*IEnumTfProperties,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfProperties,
-            ulCount: u32,
-            ppProp: [*]?*ITfProperty,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfProperties,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfProperties,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfProperties, ppEnum: ?*?*IEnumTfProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfProperties, ulCount: u32, ppProp: [*]?*ITfProperty, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, ppProp, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfProperties, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCompartment_Value = Guid.initString("bb08f7a9-607a-4384-8623-056892b64371");
-pub const IID_ITfCompartment = &IID_ITfCompartment_Value;
-pub const ITfCompartment = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetValue: *const fn(
-            self: *const ITfCompartment,
-            tid: u32,
-            pvarValue: ?*const VARIANT,
+            pTargetRange: ?*ITfRange,
         ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
-            self: *const ITfCompartment,
+            self: *const ITfReadOnlyProperty,
+            ec: u32,
+            pRange: ?*ITfRange,
             pvarValue: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetValue(self: *const ITfCompartment, tid: u32, pvarValue: ?*const VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, tid, pvarValue);
-    }
-    pub fn GetValue(self: *const ITfCompartment, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, pvarValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCompartmentEventSink_Value = Guid.initString("743abd5f-f26d-48df-8cc5-238492419b64");
-pub const IID_ITfCompartmentEventSink = &IID_ITfCompartmentEventSink_Value;
-pub const ITfCompartmentEventSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnChange: *const fn(
-            self: *const ITfCompartmentEventSink,
-            rguid: ?*const Guid,
+        GetContext: *const fn(
+            self: *const ITfReadOnlyProperty,
+            ppContext: ?*?*ITfContext,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnChange(self: *const ITfCompartmentEventSink, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.OnChange(self, rguid);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCompartmentMgr_Value = Guid.initString("7dcf57ac-18ad-438b-824d-979bffb74b7c");
-pub const IID_ITfCompartmentMgr = &IID_ITfCompartmentMgr_Value;
-pub const ITfCompartmentMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCompartment: *const fn(
-            self: *const ITfCompartmentMgr,
-            rguid: ?*const Guid,
-            ppcomp: ?*?*ITfCompartment,
-        ) callconv(.winapi) HRESULT,
-        ClearCompartment: *const fn(
-            self: *const ITfCompartmentMgr,
-            tid: u32,
-            rguid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        EnumCompartments: *const fn(
-            self: *const ITfCompartmentMgr,
-            ppEnum: ?*?*IEnumGUID,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCompartment(self: *const ITfCompartmentMgr, rguid: ?*const Guid, ppcomp: ?*?*ITfCompartment) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCompartment(self, rguid, ppcomp);
-    }
-    pub fn ClearCompartment(self: *const ITfCompartmentMgr, tid: u32, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.ClearCompartment(self, tid, rguid);
-    }
-    pub fn EnumCompartments(self: *const ITfCompartmentMgr, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumCompartments(self, ppEnum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFunction_Value = Guid.initString("db593490-098f-11d3-8df0-00105a2799b5");
-pub const IID_ITfFunction = &IID_ITfFunction_Value;
-pub const ITfFunction = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDisplayName: *const fn(
-            self: *const ITfFunction,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDisplayName(self: *const ITfFunction, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDisplayName(self, pbstrName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFunctionProvider_Value = Guid.initString("101d6610-0990-11d3-8df0-00105a2799b5");
-pub const IID_ITfFunctionProvider = &IID_ITfFunctionProvider_Value;
-pub const ITfFunctionProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetType: *const fn(
-            self: *const ITfFunctionProvider,
-            pguid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetDescription: *const fn(
-            self: *const ITfFunctionProvider,
-            pbstrDesc: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetFunction: *const fn(
-            self: *const ITfFunctionProvider,
-            rguid: ?*const Guid,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetType(self: *const ITfFunctionProvider, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+    pub fn GetType(self: *const ITfReadOnlyProperty, pguid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pguid);
     }
-    pub fn GetDescription(self: *const ITfFunctionProvider, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDescription(self, pbstrDesc);
+    pub fn EnumRanges(self: *const ITfReadOnlyProperty, ec: u32, ppEnum: ?*?*IEnumTfRanges, pTargetRange: ?*ITfRange) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumRanges(self, ec, ppEnum, pTargetRange);
     }
-    pub fn GetFunction(self: *const ITfFunctionProvider, rguid: ?*const Guid, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFunction(self, rguid, riid, ppunk);
+    pub fn GetValue(self: *const ITfReadOnlyProperty, ec: u32, pRange: ?*ITfRange, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, ec, pRange, pvarValue);
     }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfFunctionProviders_Value = Guid.initString("e4b24db0-0990-11d3-8df0-00105a2799b5");
-pub const IID_IEnumTfFunctionProviders = &IID_IEnumTfFunctionProviders_Value;
-pub const IEnumTfFunctionProviders = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfFunctionProviders,
-            ppEnum: ?*?*IEnumTfFunctionProviders,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfFunctionProviders,
-            ulCount: u32,
-            ppCmdobj: [*]?*ITfFunctionProvider,
-            pcFetch: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfFunctionProviders,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfFunctionProviders,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfFunctionProviders, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
+    pub fn GetContext(self: *const ITfReadOnlyProperty, ppContext: ?*?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContext(self, ppContext);
     }
-    pub fn Next(self: *const IEnumTfFunctionProviders, ulCount: u32, ppCmdobj: [*]?*ITfFunctionProvider, pcFetch: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, ppCmdobj, pcFetch);
-    }
-    pub fn Reset(self: *const IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfFunctionProviders, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfInputProcessorProfiles_Value = Guid.initString("1f02b6c5-7842-4ee6-8a0b-9a24183a95ca");
-pub const IID_ITfInputProcessorProfiles = &IID_ITfInputProcessorProfiles_Value;
-pub const ITfInputProcessorProfiles = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Register: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        Unregister: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        AddLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            pchDesc: [*:0]const u16,
-            cchDesc: u32,
-            pchIconFile: [*:0]const u16,
-            cchFile: u32,
-            uIconIndex: u32,
-        ) callconv(.winapi) HRESULT,
-        RemoveLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        EnumInputProcessorInfo: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            ppEnum: ?*?*IEnumGUID,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            langid: u16,
-            catid: ?*const Guid,
-            pclsid: ?*Guid,
-            pguidProfile: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        SetDefaultLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            langid: u16,
-            rclsid: ?*const Guid,
-            guidProfiles: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        ActivateLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfiles: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetActiveLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            plangid: ?*u16,
-            pguidProfile: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetLanguageProfileDescription: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            pbstrProfile: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentLanguage: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            plangid: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        ChangeCurrentLanguage: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            langid: u16,
-        ) callconv(.winapi) HRESULT,
-        GetLanguageList: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            ppLangId: [*]?*u16,
-            pulCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumLanguageProfiles: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            langid: u16,
-            ppEnum: ?*?*IEnumTfLanguageProfiles,
-        ) callconv(.winapi) HRESULT,
-        EnableLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            fEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsEnabledLanguageProfile: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            pfEnable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        EnableLanguageProfileByDefault: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            fEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SubstituteKeyboardLayout: *const fn(
-            self: *const ITfInputProcessorProfiles,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            hKL: ?HKL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Register(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Register(self, rclsid);
-    }
-    pub fn Unregister(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Unregister(self, rclsid);
-    }
-    pub fn AddLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddLanguageProfile(self, rclsid, langid, guidProfile, pchDesc, cchDesc, pchIconFile, cchFile, uIconIndex);
-    }
-    pub fn RemoveLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveLanguageProfile(self, rclsid, langid, guidProfile);
-    }
-    pub fn EnumInputProcessorInfo(self: *const ITfInputProcessorProfiles, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumInputProcessorInfo(self, ppEnum);
-    }
-    pub fn GetDefaultLanguageProfile(self: *const ITfInputProcessorProfiles, langid: u16, catid: ?*const Guid, pclsid: ?*Guid, pguidProfile: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultLanguageProfile(self, langid, catid, pclsid, pguidProfile);
-    }
-    pub fn SetDefaultLanguageProfile(self: *const ITfInputProcessorProfiles, langid: u16, rclsid: ?*const Guid, guidProfiles: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultLanguageProfile(self, langid, rclsid, guidProfiles);
-    }
-    pub fn ActivateLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfiles: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateLanguageProfile(self, rclsid, langid, guidProfiles);
-    }
-    pub fn GetActiveLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, plangid: ?*u16, pguidProfile: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActiveLanguageProfile(self, rclsid, plangid, pguidProfile);
-    }
-    pub fn GetLanguageProfileDescription(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pbstrProfile: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLanguageProfileDescription(self, rclsid, langid, guidProfile, pbstrProfile);
-    }
-    pub fn GetCurrentLanguage(self: *const ITfInputProcessorProfiles, plangid: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentLanguage(self, plangid);
-    }
-    pub fn ChangeCurrentLanguage(self: *const ITfInputProcessorProfiles, langid: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangeCurrentLanguage(self, langid);
-    }
-    pub fn GetLanguageList(self: *const ITfInputProcessorProfiles, ppLangId: [*]?*u16, pulCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLanguageList(self, ppLangId, pulCount);
-    }
-    pub fn EnumLanguageProfiles(self: *const ITfInputProcessorProfiles, langid: u16, ppEnum: ?*?*IEnumTfLanguageProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumLanguageProfiles(self, langid, ppEnum);
-    }
-    pub fn EnableLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, fEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableLanguageProfile(self, rclsid, langid, guidProfile, fEnable);
-    }
-    pub fn IsEnabledLanguageProfile(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pfEnable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsEnabledLanguageProfile(self, rclsid, langid, guidProfile, pfEnable);
-    }
-    pub fn EnableLanguageProfileByDefault(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, fEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableLanguageProfileByDefault(self, rclsid, langid, guidProfile, fEnable);
-    }
-    pub fn SubstituteKeyboardLayout(self: *const ITfInputProcessorProfiles, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, hKL: ?HKL) callconv(.@"inline") HRESULT {
-        return self.vtable.SubstituteKeyboardLayout(self, rclsid, langid, guidProfile, hKL);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfInputProcessorProfilesEx_Value = Guid.initString("892f230f-fe00-4a41-a98e-fcd6de0d35ef");
-pub const IID_ITfInputProcessorProfilesEx = &IID_ITfInputProcessorProfilesEx_Value;
-pub const ITfInputProcessorProfilesEx = extern union {
-    pub const VTable = extern struct {
-        base: ITfInputProcessorProfiles.VTable,
-        SetLanguageProfileDisplayName: *const fn(
-            self: *const ITfInputProcessorProfilesEx,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            pchFile: [*:0]const u16,
-            cchFile: u32,
-            uResId: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfInputProcessorProfiles: ITfInputProcessorProfiles,
-    IUnknown: IUnknown,
-    pub fn SetLanguageProfileDisplayName(self: *const ITfInputProcessorProfilesEx, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchFile: [*:0]const u16, cchFile: u32, uResId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLanguageProfileDisplayName(self, rclsid, langid, guidProfile, pchFile, cchFile, uResId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfInputProcessorProfileSubstituteLayout_Value = Guid.initString("4fd67194-1002-4513-bff2-c0ddf6258552");
-pub const IID_ITfInputProcessorProfileSubstituteLayout = &IID_ITfInputProcessorProfileSubstituteLayout_Value;
-pub const ITfInputProcessorProfileSubstituteLayout = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSubstituteKeyboardLayout: *const fn(
-            self: *const ITfInputProcessorProfileSubstituteLayout,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            phKL: ?*?HKL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSubstituteKeyboardLayout(self: *const ITfInputProcessorProfileSubstituteLayout, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubstituteKeyboardLayout(self, rclsid, langid, guidProfile, phKL);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfActiveLanguageProfileNotifySink_Value = Guid.initString("b246cb75-a93e-4652-bf8c-b3fe0cfd7e57");
-pub const IID_ITfActiveLanguageProfileNotifySink = &IID_ITfActiveLanguageProfileNotifySink_Value;
-pub const ITfActiveLanguageProfileNotifySink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnActivated: *const fn(
-            self: *const ITfActiveLanguageProfileNotifySink,
-            clsid: ?*const Guid,
-            guidProfile: ?*const Guid,
-            fActivated: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnActivated(self: *const ITfActiveLanguageProfileNotifySink, clsid: ?*const Guid, guidProfile: ?*const Guid, fActivated: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnActivated(self, clsid, guidProfile, fActivated);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfLanguageProfiles_Value = Guid.initString("3d61bf11-ac5f-42c8-a4cb-931bcc28c744");
-pub const IID_IEnumTfLanguageProfiles = &IID_IEnumTfLanguageProfiles_Value;
-pub const IEnumTfLanguageProfiles = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfLanguageProfiles,
-            ppEnum: ?*?*IEnumTfLanguageProfiles,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfLanguageProfiles,
-            ulCount: u32,
-            pProfile: [*]TF_LANGUAGEPROFILE,
-            pcFetch: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfLanguageProfiles,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfLanguageProfiles,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfLanguageProfiles, ppEnum: ?*?*IEnumTfLanguageProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfLanguageProfiles, ulCount: u32, pProfile: [*]TF_LANGUAGEPROFILE, pcFetch: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, pProfile, pcFetch);
-    }
-    pub fn Reset(self: *const IEnumTfLanguageProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfLanguageProfiles, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLanguageProfileNotifySink_Value = Guid.initString("43c9fe15-f494-4c17-9de2-b8a4ac350aa8");
-pub const IID_ITfLanguageProfileNotifySink = &IID_ITfLanguageProfileNotifySink_Value;
-pub const ITfLanguageProfileNotifySink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnLanguageChange: *const fn(
-            self: *const ITfLanguageProfileNotifySink,
-            langid: u16,
-            pfAccept: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        OnLanguageChanged: *const fn(
-            self: *const ITfLanguageProfileNotifySink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnLanguageChange(self: *const ITfLanguageProfileNotifySink, langid: u16, pfAccept: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnLanguageChange(self, langid, pfAccept);
-    }
-    pub fn OnLanguageChanged(self: *const ITfLanguageProfileNotifySink) callconv(.@"inline") HRESULT {
-        return self.vtable.OnLanguageChanged(self);
-    }
-};
-
-pub const TF_INPUTPROCESSORPROFILE = extern struct {
-    dwProfileType: u32,
-    langid: u16,
-    clsid: Guid,
-    guidProfile: Guid,
-    catid: Guid,
-    hklSubstitute: ?HKL,
-    dwCaps: u32,
-    hkl: ?HKL,
-    dwFlags: u32,
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITfInputProcessorProfileMgr_Value = Guid.initString("71c6e74c-0f28-11d8-a82a-00065b84435c");
-pub const IID_ITfInputProcessorProfileMgr = &IID_ITfInputProcessorProfileMgr_Value;
-pub const ITfInputProcessorProfileMgr = extern union {
+const IID_ITfReverseConversion_Value = Guid.initString("a415e162-157d-417d-8a8c-0ab26c7d2781");
+pub const IID_ITfReverseConversion = &IID_ITfReverseConversion_Value;
+pub const ITfReverseConversion = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ActivateProfile: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            dwProfileType: u32,
-            langid: u16,
-            clsid: ?*const Guid,
-            guidProfile: ?*const Guid,
-            hkl: ?HKL,
-            dwFlags: u32,
+        DoReverseConversion: *const fn(
+            self: *const ITfReverseConversion,
+            lpstr: ?[*:0]const u16,
+            ppList: ?*?*ITfReverseConversionList,
         ) callconv(.winapi) HRESULT,
-        DeactivateProfile: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            dwProfileType: u32,
-            langid: u16,
-            clsid: ?*const Guid,
-            guidProfile: ?*const Guid,
-            hkl: ?HKL,
-            dwFlags: u32,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DoReverseConversion(self: *const ITfReverseConversion, lpstr: ?[*:0]const u16, ppList: ?*?*ITfReverseConversionList) callconv(.@"inline") HRESULT {
+        return self.vtable.DoReverseConversion(self, lpstr, ppList);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ITfReverseConversionList_Value = Guid.initString("151d69f0-86f4-4674-b721-56911e797f47");
+pub const IID_ITfReverseConversionList = &IID_ITfReverseConversionList_Value;
+pub const ITfReverseConversionList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLength: *const fn(
+            self: *const ITfReverseConversionList,
+            puIndex: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetProfile: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            dwProfileType: u32,
-            langid: u16,
-            clsid: ?*const Guid,
-            guidProfile: ?*const Guid,
-            hkl: ?HKL,
-            pProfile: ?*TF_INPUTPROCESSORPROFILE,
+        GetString: *const fn(
+            self: *const ITfReverseConversionList,
+            uIndex: u32,
+            pbstr: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        EnumProfiles: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            langid: u16,
-            ppEnum: ?*?*IEnumTfInputProcessorProfiles,
-        ) callconv(.winapi) HRESULT,
-        ReleaseInputProcessor: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            rclsid: ?*const Guid,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        RegisterProfile: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            rclsid: ?*const Guid,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            pchDesc: [*:0]const u16,
-            cchDesc: u32,
-            pchIconFile: [*:0]const u16,
-            cchFile: u32,
-            uIconIndex: u32,
-            hklsubstitute: ?HKL,
-            dwPreferredLayout: u32,
-            bEnabledByDefault: BOOL,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        UnregisterProfile: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            rclsid: ?*const Guid,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLength(self: *const ITfReverseConversionList, puIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLength(self, puIndex);
+    }
+    pub fn GetString(self: *const ITfReverseConversionList, uIndex: u32, pbstr: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetString(self, uIndex, pbstr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ITfReverseConversionMgr_Value = Guid.initString("b643c236-c493-41b6-abb3-692412775cc4");
+pub const IID_ITfReverseConversionMgr = &IID_ITfReverseConversionMgr_Value;
+pub const ITfReverseConversionMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetReverseConversion: *const fn(
+            self: *const ITfReverseConversionMgr,
             langid: u16,
             guidProfile: ?*const Guid,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetActiveProfile: *const fn(
-            self: *const ITfInputProcessorProfileMgr,
-            catid: ?*const Guid,
-            pProfile: ?*TF_INPUTPROCESSORPROFILE,
+            dwflag: u32,
+            ppReverseConversion: ?*?*ITfReverseConversion,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ActivateProfile(self: *const ITfInputProcessorProfileMgr, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateProfile(self, dwProfileType, langid, clsid, guidProfile, hkl, dwFlags);
-    }
-    pub fn DeactivateProfile(self: *const ITfInputProcessorProfileMgr, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeactivateProfile(self, dwProfileType, langid, clsid, guidProfile, hkl, dwFlags);
-    }
-    pub fn GetProfile(self: *const ITfInputProcessorProfileMgr, dwProfileType: u32, langid: u16, clsid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, pProfile: ?*TF_INPUTPROCESSORPROFILE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProfile(self, dwProfileType, langid, clsid, guidProfile, hkl, pProfile);
-    }
-    pub fn EnumProfiles(self: *const ITfInputProcessorProfileMgr, langid: u16, ppEnum: ?*?*IEnumTfInputProcessorProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumProfiles(self, langid, ppEnum);
-    }
-    pub fn ReleaseInputProcessor(self: *const ITfInputProcessorProfileMgr, rclsid: ?*const Guid, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseInputProcessor(self, rclsid, dwFlags);
-    }
-    pub fn RegisterProfile(self: *const ITfInputProcessorProfileMgr, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32, pchIconFile: [*:0]const u16, cchFile: u32, uIconIndex: u32, hklsubstitute: ?HKL, dwPreferredLayout: u32, bEnabledByDefault: BOOL, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterProfile(self, rclsid, langid, guidProfile, pchDesc, cchDesc, pchIconFile, cchFile, uIconIndex, hklsubstitute, dwPreferredLayout, bEnabledByDefault, dwFlags);
-    }
-    pub fn UnregisterProfile(self: *const ITfInputProcessorProfileMgr, rclsid: ?*const Guid, langid: u16, guidProfile: ?*const Guid, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterProfile(self, rclsid, langid, guidProfile, dwFlags);
-    }
-    pub fn GetActiveProfile(self: *const ITfInputProcessorProfileMgr, catid: ?*const Guid, pProfile: ?*TF_INPUTPROCESSORPROFILE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActiveProfile(self, catid, pProfile);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfInputProcessorProfiles_Value = Guid.initString("71c6e74d-0f28-11d8-a82a-00065b84435c");
-pub const IID_IEnumTfInputProcessorProfiles = &IID_IEnumTfInputProcessorProfiles_Value;
-pub const IEnumTfInputProcessorProfiles = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfInputProcessorProfiles,
-            ppEnum: ?*?*IEnumTfInputProcessorProfiles,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfInputProcessorProfiles,
-            ulCount: u32,
-            pProfile: [*]TF_INPUTPROCESSORPROFILE,
-            pcFetch: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfInputProcessorProfiles,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfInputProcessorProfiles,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfInputProcessorProfiles, ppEnum: ?*?*IEnumTfInputProcessorProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfInputProcessorProfiles, ulCount: u32, pProfile: [*]TF_INPUTPROCESSORPROFILE, pcFetch: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, pProfile, pcFetch);
-    }
-    pub fn Reset(self: *const IEnumTfInputProcessorProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfInputProcessorProfiles, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfInputProcessorProfileActivationSink_Value = Guid.initString("71c6e74e-0f28-11d8-a82a-00065b84435c");
-pub const IID_ITfInputProcessorProfileActivationSink = &IID_ITfInputProcessorProfileActivationSink_Value;
-pub const ITfInputProcessorProfileActivationSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnActivated: *const fn(
-            self: *const ITfInputProcessorProfileActivationSink,
-            dwProfileType: u32,
-            langid: u16,
-            clsid: ?*const Guid,
-            catid: ?*const Guid,
-            guidProfile: ?*const Guid,
-            hkl: ?HKL,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnActivated(self: *const ITfInputProcessorProfileActivationSink, dwProfileType: u32, langid: u16, clsid: ?*const Guid, catid: ?*const Guid, guidProfile: ?*const Guid, hkl: ?HKL, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnActivated(self, dwProfileType, langid, clsid, catid, guidProfile, hkl, dwFlags);
-    }
-};
-
-pub const TF_PRESERVEDKEY = extern struct {
-    uVKey: u32,
-    uModifiers: u32,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfKeystrokeMgr_Value = Guid.initString("aa80e7f0-2021-11d2-93e0-0060b067b86e");
-pub const IID_ITfKeystrokeMgr = &IID_ITfKeystrokeMgr_Value;
-pub const ITfKeystrokeMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AdviseKeyEventSink: *const fn(
-            self: *const ITfKeystrokeMgr,
-            tid: u32,
-            pSink: ?*ITfKeyEventSink,
-            fForeground: BOOL,
-        ) callconv(.winapi) HRESULT,
-        UnadviseKeyEventSink: *const fn(
-            self: *const ITfKeystrokeMgr,
-            tid: u32,
-        ) callconv(.winapi) HRESULT,
-        GetForeground: *const fn(
-            self: *const ITfKeystrokeMgr,
-            pclsid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        TestKeyDown: *const fn(
-            self: *const ITfKeystrokeMgr,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        TestKeyUp: *const fn(
-            self: *const ITfKeystrokeMgr,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        KeyDown: *const fn(
-            self: *const ITfKeystrokeMgr,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        KeyUp: *const fn(
-            self: *const ITfKeystrokeMgr,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetPreservedKey: *const fn(
-            self: *const ITfKeystrokeMgr,
-            pic: ?*ITfContext,
-            pprekey: ?*const TF_PRESERVEDKEY,
-            pguid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        IsPreservedKey: *const fn(
-            self: *const ITfKeystrokeMgr,
-            rguid: ?*const Guid,
-            pprekey: ?*const TF_PRESERVEDKEY,
-            pfRegistered: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        PreserveKey: *const fn(
-            self: *const ITfKeystrokeMgr,
-            tid: u32,
-            rguid: ?*const Guid,
-            prekey: ?*const TF_PRESERVEDKEY,
-            pchDesc: [*:0]const u16,
-            cchDesc: u32,
-        ) callconv(.winapi) HRESULT,
-        UnpreserveKey: *const fn(
-            self: *const ITfKeystrokeMgr,
-            rguid: ?*const Guid,
-            pprekey: ?*const TF_PRESERVEDKEY,
-        ) callconv(.winapi) HRESULT,
-        SetPreservedKeyDescription: *const fn(
-            self: *const ITfKeystrokeMgr,
-            rguid: ?*const Guid,
-            pchDesc: [*:0]const u16,
-            cchDesc: u32,
-        ) callconv(.winapi) HRESULT,
-        GetPreservedKeyDescription: *const fn(
-            self: *const ITfKeystrokeMgr,
-            rguid: ?*const Guid,
-            pbstrDesc: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SimulatePreservedKey: *const fn(
-            self: *const ITfKeystrokeMgr,
-            pic: ?*ITfContext,
-            rguid: ?*const Guid,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AdviseKeyEventSink(self: *const ITfKeystrokeMgr, tid: u32, pSink: ?*ITfKeyEventSink, fForeground: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseKeyEventSink(self, tid, pSink, fForeground);
-    }
-    pub fn UnadviseKeyEventSink(self: *const ITfKeystrokeMgr, tid: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnadviseKeyEventSink(self, tid);
-    }
-    pub fn GetForeground(self: *const ITfKeystrokeMgr, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetForeground(self, pclsid);
-    }
-    pub fn TestKeyDown(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.TestKeyDown(self, wParam, lParam, pfEaten);
-    }
-    pub fn TestKeyUp(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.TestKeyUp(self, wParam, lParam, pfEaten);
-    }
-    pub fn KeyDown(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.KeyDown(self, wParam, lParam, pfEaten);
-    }
-    pub fn KeyUp(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.KeyUp(self, wParam, lParam, pfEaten);
-    }
-    pub fn GetPreservedKey(self: *const ITfKeystrokeMgr, pic: ?*ITfContext, pprekey: ?*const TF_PRESERVEDKEY, pguid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreservedKey(self, pic, pprekey, pguid);
-    }
-    pub fn IsPreservedKey(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pprekey: ?*const TF_PRESERVEDKEY, pfRegistered: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsPreservedKey(self, rguid, pprekey, pfRegistered);
-    }
-    pub fn PreserveKey(self: *const ITfKeystrokeMgr, tid: u32, rguid: ?*const Guid, prekey: ?*const TF_PRESERVEDKEY, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.PreserveKey(self, tid, rguid, prekey, pchDesc, cchDesc);
-    }
-    pub fn UnpreserveKey(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pprekey: ?*const TF_PRESERVEDKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.UnpreserveKey(self, rguid, pprekey);
-    }
-    pub fn SetPreservedKeyDescription(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pchDesc: [*:0]const u16, cchDesc: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPreservedKeyDescription(self, rguid, pchDesc, cchDesc);
-    }
-    pub fn GetPreservedKeyDescription(self: *const ITfKeystrokeMgr, rguid: ?*const Guid, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreservedKeyDescription(self, rguid, pbstrDesc);
-    }
-    pub fn SimulatePreservedKey(self: *const ITfKeystrokeMgr, pic: ?*ITfContext, rguid: ?*const Guid, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SimulatePreservedKey(self, pic, rguid, pfEaten);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfKeyEventSink_Value = Guid.initString("aa80e7f5-2021-11d2-93e0-0060b067b86e");
-pub const IID_ITfKeyEventSink = &IID_ITfKeyEventSink_Value;
-pub const ITfKeyEventSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnSetFocus: *const fn(
-            self: *const ITfKeyEventSink,
-            fForeground: BOOL,
-        ) callconv(.winapi) HRESULT,
-        OnTestKeyDown: *const fn(
-            self: *const ITfKeyEventSink,
-            pic: ?*ITfContext,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        OnTestKeyUp: *const fn(
-            self: *const ITfKeyEventSink,
-            pic: ?*ITfContext,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        OnKeyDown: *const fn(
-            self: *const ITfKeyEventSink,
-            pic: ?*ITfContext,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        OnKeyUp: *const fn(
-            self: *const ITfKeyEventSink,
-            pic: ?*ITfContext,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        OnPreservedKey: *const fn(
-            self: *const ITfKeyEventSink,
-            pic: ?*ITfContext,
-            rguid: ?*const Guid,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnSetFocus(self: *const ITfKeyEventSink, fForeground: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetFocus(self, fForeground);
-    }
-    pub fn OnTestKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTestKeyDown(self, pic, wParam, lParam, pfEaten);
-    }
-    pub fn OnTestKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTestKeyUp(self, pic, wParam, lParam, pfEaten);
-    }
-    pub fn OnKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKeyDown(self, pic, wParam, lParam, pfEaten);
-    }
-    pub fn OnKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKeyUp(self, pic, wParam, lParam, pfEaten);
-    }
-    pub fn OnPreservedKey(self: *const ITfKeyEventSink, pic: ?*ITfContext, rguid: ?*const Guid, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPreservedKey(self, pic, rguid, pfEaten);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfKeyTraceEventSink_Value = Guid.initString("1cd4c13b-1c36-4191-a70a-7f3e611f367d");
-pub const IID_ITfKeyTraceEventSink = &IID_ITfKeyTraceEventSink_Value;
-pub const ITfKeyTraceEventSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnKeyTraceDown: *const fn(
-            self: *const ITfKeyTraceEventSink,
-            wParam: WPARAM,
-            lParam: LPARAM,
-        ) callconv(.winapi) HRESULT,
-        OnKeyTraceUp: *const fn(
-            self: *const ITfKeyTraceEventSink,
-            wParam: WPARAM,
-            lParam: LPARAM,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnKeyTraceDown(self: *const ITfKeyTraceEventSink, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKeyTraceDown(self, wParam, lParam);
-    }
-    pub fn OnKeyTraceUp(self: *const ITfKeyTraceEventSink, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKeyTraceUp(self, wParam, lParam);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfPreservedKeyNotifySink_Value = Guid.initString("6f77c993-d2b1-446e-853e-5912efc8a286");
-pub const IID_ITfPreservedKeyNotifySink = &IID_ITfPreservedKeyNotifySink_Value;
-pub const ITfPreservedKeyNotifySink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnUpdated: *const fn(
-            self: *const ITfPreservedKeyNotifySink,
-            pprekey: ?*const TF_PRESERVEDKEY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnUpdated(self: *const ITfPreservedKeyNotifySink, pprekey: ?*const TF_PRESERVEDKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUpdated(self, pprekey);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMessagePump_Value = Guid.initString("8f1b8ad8-0b6b-4874-90c5-bd76011e8f7c");
-pub const IID_ITfMessagePump = &IID_ITfMessagePump_Value;
-pub const ITfMessagePump = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PeekMessageA: *const fn(
-            self: *const ITfMessagePump,
-            pMsg: ?*MSG,
-            hwnd: ?HWND,
-            wMsgFilterMin: u32,
-            wMsgFilterMax: u32,
-            wRemoveMsg: u32,
-            pfResult: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetMessageA: *const fn(
-            self: *const ITfMessagePump,
-            pMsg: ?*MSG,
-            hwnd: ?HWND,
-            wMsgFilterMin: u32,
-            wMsgFilterMax: u32,
-            pfResult: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        PeekMessageW: *const fn(
-            self: *const ITfMessagePump,
-            pMsg: ?*MSG,
-            hwnd: ?HWND,
-            wMsgFilterMin: u32,
-            wMsgFilterMax: u32,
-            wRemoveMsg: u32,
-            pfResult: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetMessageW: *const fn(
-            self: *const ITfMessagePump,
-            pMsg: ?*MSG,
-            hwnd: ?HWND,
-            wMsgFilterMin: u32,
-            wMsgFilterMax: u32,
-            pfResult: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PeekMessageA(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.PeekMessageA(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg, pfResult);
-    }
-    pub fn GetMessageA(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMessageA(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, pfResult);
-    }
-    pub fn PeekMessageW(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, wRemoveMsg: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.PeekMessageW(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg, pfResult);
-    }
-    pub fn GetMessageW(self: *const ITfMessagePump, pMsg: ?*MSG, hwnd: ?HWND, wMsgFilterMin: u32, wMsgFilterMax: u32, pfResult: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMessageW(self, pMsg, hwnd, wMsgFilterMin, wMsgFilterMax, pfResult);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfThreadFocusSink_Value = Guid.initString("c0f1db0c-3a20-405c-a303-96b6010a885f");
-pub const IID_ITfThreadFocusSink = &IID_ITfThreadFocusSink_Value;
-pub const ITfThreadFocusSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnSetThreadFocus: *const fn(
-            self: *const ITfThreadFocusSink,
-        ) callconv(.winapi) HRESULT,
-        OnKillThreadFocus: *const fn(
-            self: *const ITfThreadFocusSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnSetThreadFocus(self: *const ITfThreadFocusSink) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetThreadFocus(self);
-    }
-    pub fn OnKillThreadFocus(self: *const ITfThreadFocusSink) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKillThreadFocus(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfTextInputProcessor_Value = Guid.initString("aa80e7f7-2021-11d2-93e0-0060b067b86e");
-pub const IID_ITfTextInputProcessor = &IID_ITfTextInputProcessor_Value;
-pub const ITfTextInputProcessor = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Activate: *const fn(
-            self: *const ITfTextInputProcessor,
-            ptim: ?*ITfThreadMgr,
-            tid: u32,
-        ) callconv(.winapi) HRESULT,
-        Deactivate: *const fn(
-            self: *const ITfTextInputProcessor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Activate(self: *const ITfTextInputProcessor, ptim: ?*ITfThreadMgr, tid: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, ptim, tid);
-    }
-    pub fn Deactivate(self: *const ITfTextInputProcessor) callconv(.@"inline") HRESULT {
-        return self.vtable.Deactivate(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfTextInputProcessorEx_Value = Guid.initString("6e4e2102-f9cd-433d-b496-303ce03a6507");
-pub const IID_ITfTextInputProcessorEx = &IID_ITfTextInputProcessorEx_Value;
-pub const ITfTextInputProcessorEx = extern union {
-    pub const VTable = extern struct {
-        base: ITfTextInputProcessor.VTable,
-        ActivateEx: *const fn(
-            self: *const ITfTextInputProcessorEx,
-            ptim: ?*ITfThreadMgr,
-            tid: u32,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfTextInputProcessor: ITfTextInputProcessor,
-    IUnknown: IUnknown,
-    pub fn ActivateEx(self: *const ITfTextInputProcessorEx, ptim: ?*ITfThreadMgr, tid: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateEx(self, ptim, tid, dwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfClientId_Value = Guid.initString("d60a7b49-1b9f-4be2-b702-47e9dc05dec3");
-pub const IID_ITfClientId = &IID_ITfClientId_Value;
-pub const ITfClientId = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetClientId: *const fn(
-            self: *const ITfClientId,
-            rclsid: ?*const Guid,
-            ptid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetClientId(self: *const ITfClientId, rclsid: ?*const Guid, ptid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClientId(self, rclsid, ptid);
-    }
-};
-
-pub const TF_DA_LINESTYLE = enum(i32) {
-    NONE = 0,
-    SOLID = 1,
-    DOT = 2,
-    DASH = 3,
-    SQUIGGLE = 4,
-};
-pub const TF_LS_NONE = TF_DA_LINESTYLE.NONE;
-pub const TF_LS_SOLID = TF_DA_LINESTYLE.SOLID;
-pub const TF_LS_DOT = TF_DA_LINESTYLE.DOT;
-pub const TF_LS_DASH = TF_DA_LINESTYLE.DASH;
-pub const TF_LS_SQUIGGLE = TF_DA_LINESTYLE.SQUIGGLE;
-
-pub const TF_DA_COLORTYPE = enum(i32) {
-    NONE = 0,
-    SYSCOLOR = 1,
-    COLORREF = 2,
-};
-pub const TF_CT_NONE = TF_DA_COLORTYPE.NONE;
-pub const TF_CT_SYSCOLOR = TF_DA_COLORTYPE.SYSCOLOR;
-pub const TF_CT_COLORREF = TF_DA_COLORTYPE.COLORREF;
-
-pub const TF_DA_COLOR = extern struct {
-    type: TF_DA_COLORTYPE,
-    Anonymous: extern union {
-        nIndex: i32,
-        cr: COLORREF,
-    },
-};
-
-pub const TF_DA_ATTR_INFO = enum(i32) {
-    INPUT = 0,
-    TARGET_CONVERTED = 1,
-    CONVERTED = 2,
-    TARGET_NOTCONVERTED = 3,
-    INPUT_ERROR = 4,
-    FIXEDCONVERTED = 5,
-    OTHER = -1,
-};
-pub const TF_ATTR_INPUT = TF_DA_ATTR_INFO.INPUT;
-pub const TF_ATTR_TARGET_CONVERTED = TF_DA_ATTR_INFO.TARGET_CONVERTED;
-pub const TF_ATTR_CONVERTED = TF_DA_ATTR_INFO.CONVERTED;
-pub const TF_ATTR_TARGET_NOTCONVERTED = TF_DA_ATTR_INFO.TARGET_NOTCONVERTED;
-pub const TF_ATTR_INPUT_ERROR = TF_DA_ATTR_INFO.INPUT_ERROR;
-pub const TF_ATTR_FIXEDCONVERTED = TF_DA_ATTR_INFO.FIXEDCONVERTED;
-pub const TF_ATTR_OTHER = TF_DA_ATTR_INFO.OTHER;
-
-pub const TF_DISPLAYATTRIBUTE = extern struct {
-    crText: TF_DA_COLOR,
-    crBk: TF_DA_COLOR,
-    lsStyle: TF_DA_LINESTYLE,
-    fBoldLine: BOOL,
-    crLine: TF_DA_COLOR,
-    bAttr: TF_DA_ATTR_INFO,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfDisplayAttributeInfo_Value = Guid.initString("70528852-2f26-4aea-8c96-215150578932");
-pub const IID_ITfDisplayAttributeInfo = &IID_ITfDisplayAttributeInfo_Value;
-pub const ITfDisplayAttributeInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetGUID: *const fn(
-            self: *const ITfDisplayAttributeInfo,
-            pguid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetDescription: *const fn(
-            self: *const ITfDisplayAttributeInfo,
-            pbstrDesc: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetAttributeInfo: *const fn(
-            self: *const ITfDisplayAttributeInfo,
-            pda: ?*TF_DISPLAYATTRIBUTE,
-        ) callconv(.winapi) HRESULT,
-        SetAttributeInfo: *const fn(
-            self: *const ITfDisplayAttributeInfo,
-            pda: ?*const TF_DISPLAYATTRIBUTE,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const ITfDisplayAttributeInfo,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetGUID(self: *const ITfDisplayAttributeInfo, pguid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGUID(self, pguid);
-    }
-    pub fn GetDescription(self: *const ITfDisplayAttributeInfo, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDescription(self, pbstrDesc);
-    }
-    pub fn GetAttributeInfo(self: *const ITfDisplayAttributeInfo, pda: ?*TF_DISPLAYATTRIBUTE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttributeInfo(self, pda);
-    }
-    pub fn SetAttributeInfo(self: *const ITfDisplayAttributeInfo, pda: ?*const TF_DISPLAYATTRIBUTE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAttributeInfo(self, pda);
-    }
-    pub fn Reset(self: *const ITfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfDisplayAttributeInfo_Value = Guid.initString("7cef04d7-cb75-4e80-a7ab-5f5bc7d332de");
-pub const IID_IEnumTfDisplayAttributeInfo = &IID_IEnumTfDisplayAttributeInfo_Value;
-pub const IEnumTfDisplayAttributeInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfDisplayAttributeInfo,
-            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfDisplayAttributeInfo,
-            ulCount: u32,
-            rgInfo: [*]?*ITfDisplayAttributeInfo,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfDisplayAttributeInfo,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfDisplayAttributeInfo,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfDisplayAttributeInfo, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfDisplayAttributeInfo, ulCount: u32, rgInfo: [*]?*ITfDisplayAttributeInfo, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgInfo, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfDisplayAttributeInfo, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfDisplayAttributeProvider_Value = Guid.initString("fee47777-163c-4769-996a-6e9c50ad8f54");
-pub const IID_ITfDisplayAttributeProvider = &IID_ITfDisplayAttributeProvider_Value;
-pub const ITfDisplayAttributeProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumDisplayAttributeInfo: *const fn(
-            self: *const ITfDisplayAttributeProvider,
-            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
-        ) callconv(.winapi) HRESULT,
-        GetDisplayAttributeInfo: *const fn(
-            self: *const ITfDisplayAttributeProvider,
-            guid: ?*const Guid,
-            ppInfo: ?*?*ITfDisplayAttributeInfo,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnumDisplayAttributeInfo(self: *const ITfDisplayAttributeProvider, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumDisplayAttributeInfo(self, ppEnum);
-    }
-    pub fn GetDisplayAttributeInfo(self: *const ITfDisplayAttributeProvider, guid: ?*const Guid, ppInfo: ?*?*ITfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDisplayAttributeInfo(self, guid, ppInfo);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfDisplayAttributeMgr_Value = Guid.initString("8ded7393-5db1-475c-9e71-a39111b0ff67");
-pub const IID_ITfDisplayAttributeMgr = &IID_ITfDisplayAttributeMgr_Value;
-pub const ITfDisplayAttributeMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnUpdateInfo: *const fn(
-            self: *const ITfDisplayAttributeMgr,
-        ) callconv(.winapi) HRESULT,
-        EnumDisplayAttributeInfo: *const fn(
-            self: *const ITfDisplayAttributeMgr,
-            ppEnum: ?*?*IEnumTfDisplayAttributeInfo,
-        ) callconv(.winapi) HRESULT,
-        GetDisplayAttributeInfo: *const fn(
-            self: *const ITfDisplayAttributeMgr,
-            guid: ?*const Guid,
-            ppInfo: ?*?*ITfDisplayAttributeInfo,
-            pclsidOwner: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnUpdateInfo(self: *const ITfDisplayAttributeMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUpdateInfo(self);
-    }
-    pub fn EnumDisplayAttributeInfo(self: *const ITfDisplayAttributeMgr, ppEnum: ?*?*IEnumTfDisplayAttributeInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumDisplayAttributeInfo(self, ppEnum);
-    }
-    pub fn GetDisplayAttributeInfo(self: *const ITfDisplayAttributeMgr, guid: ?*const Guid, ppInfo: ?*?*ITfDisplayAttributeInfo, pclsidOwner: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDisplayAttributeInfo(self, guid, ppInfo, pclsidOwner);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfDisplayAttributeNotifySink_Value = Guid.initString("ad56f402-e162-4f25-908f-7d577cf9bda9");
-pub const IID_ITfDisplayAttributeNotifySink = &IID_ITfDisplayAttributeNotifySink_Value;
-pub const ITfDisplayAttributeNotifySink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnUpdateInfo: *const fn(
-            self: *const ITfDisplayAttributeNotifySink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnUpdateInfo(self: *const ITfDisplayAttributeNotifySink) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUpdateInfo(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCategoryMgr_Value = Guid.initString("c3acefb5-f69d-4905-938f-fcadcf4be830");
-pub const IID_ITfCategoryMgr = &IID_ITfCategoryMgr_Value;
-pub const ITfCategoryMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterCategory: *const fn(
-            self: *const ITfCategoryMgr,
-            rclsid: ?*const Guid,
-            rcatid: ?*const Guid,
-            rguid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        UnregisterCategory: *const fn(
-            self: *const ITfCategoryMgr,
-            rclsid: ?*const Guid,
-            rcatid: ?*const Guid,
-            rguid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        EnumCategoriesInItem: *const fn(
-            self: *const ITfCategoryMgr,
-            rguid: ?*const Guid,
-            ppEnum: ?*?*IEnumGUID,
-        ) callconv(.winapi) HRESULT,
-        EnumItemsInCategory: *const fn(
-            self: *const ITfCategoryMgr,
-            rcatid: ?*const Guid,
-            ppEnum: ?*?*IEnumGUID,
-        ) callconv(.winapi) HRESULT,
-        FindClosestCategory: *const fn(
-            self: *const ITfCategoryMgr,
-            rguid: ?*const Guid,
-            pcatid: ?*Guid,
-            ppcatidList: [*]const ?*const Guid,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-        RegisterGUIDDescription: *const fn(
-            self: *const ITfCategoryMgr,
-            rclsid: ?*const Guid,
-            rguid: ?*const Guid,
-            pchDesc: [*:0]const u16,
-            cch: u32,
-        ) callconv(.winapi) HRESULT,
-        UnregisterGUIDDescription: *const fn(
-            self: *const ITfCategoryMgr,
-            rclsid: ?*const Guid,
-            rguid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetGUIDDescription: *const fn(
-            self: *const ITfCategoryMgr,
-            rguid: ?*const Guid,
-            pbstrDesc: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RegisterGUIDDWORD: *const fn(
-            self: *const ITfCategoryMgr,
-            rclsid: ?*const Guid,
-            rguid: ?*const Guid,
-            dw: u32,
-        ) callconv(.winapi) HRESULT,
-        UnregisterGUIDDWORD: *const fn(
-            self: *const ITfCategoryMgr,
-            rclsid: ?*const Guid,
-            rguid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetGUIDDWORD: *const fn(
-            self: *const ITfCategoryMgr,
-            rguid: ?*const Guid,
-            pdw: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        RegisterGUID: *const fn(
-            self: *const ITfCategoryMgr,
-            rguid: ?*const Guid,
-            pguidatom: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetGUID: *const fn(
-            self: *const ITfCategoryMgr,
-            guidatom: u32,
-            pguid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        IsEqualTfGuidAtom: *const fn(
-            self: *const ITfCategoryMgr,
-            guidatom: u32,
-            rguid: ?*const Guid,
-            pfEqual: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterCategory(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rcatid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterCategory(self, rclsid, rcatid, rguid);
-    }
-    pub fn UnregisterCategory(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rcatid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterCategory(self, rclsid, rcatid, rguid);
-    }
-    pub fn EnumCategoriesInItem(self: *const ITfCategoryMgr, rguid: ?*const Guid, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumCategoriesInItem(self, rguid, ppEnum);
-    }
-    pub fn EnumItemsInCategory(self: *const ITfCategoryMgr, rcatid: ?*const Guid, ppEnum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumItemsInCategory(self, rcatid, ppEnum);
-    }
-    pub fn FindClosestCategory(self: *const ITfCategoryMgr, rguid: ?*const Guid, pcatid: ?*Guid, ppcatidList: [*]const ?*const Guid, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.FindClosestCategory(self, rguid, pcatid, ppcatidList, ulCount);
-    }
-    pub fn RegisterGUIDDescription(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid, pchDesc: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterGUIDDescription(self, rclsid, rguid, pchDesc, cch);
-    }
-    pub fn UnregisterGUIDDescription(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterGUIDDescription(self, rclsid, rguid);
-    }
-    pub fn GetGUIDDescription(self: *const ITfCategoryMgr, rguid: ?*const Guid, pbstrDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGUIDDescription(self, rguid, pbstrDesc);
-    }
-    pub fn RegisterGUIDDWORD(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid, dw: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterGUIDDWORD(self, rclsid, rguid, dw);
-    }
-    pub fn UnregisterGUIDDWORD(self: *const ITfCategoryMgr, rclsid: ?*const Guid, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterGUIDDWORD(self, rclsid, rguid);
-    }
-    pub fn GetGUIDDWORD(self: *const ITfCategoryMgr, rguid: ?*const Guid, pdw: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGUIDDWORD(self, rguid, pdw);
-    }
-    pub fn RegisterGUID(self: *const ITfCategoryMgr, rguid: ?*const Guid, pguidatom: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterGUID(self, rguid, pguidatom);
-    }
-    pub fn GetGUID(self: *const ITfCategoryMgr, guidatom: u32, pguid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGUID(self, guidatom, pguid);
-    }
-    pub fn IsEqualTfGuidAtom(self: *const ITfCategoryMgr, guidatom: u32, rguid: ?*const Guid, pfEqual: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsEqualTfGuidAtom(self, guidatom, rguid, pfEqual);
+    pub fn GetReverseConversion(self: *const ITfReverseConversionMgr, langid: u16, guidProfile: ?*const Guid, dwflag: u32, ppReverseConversion: ?*?*ITfReverseConversion) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReverseConversion(self, langid, guidProfile, dwflag, ppReverseConversion);
     }
 };
 
@@ -5969,6 +6711,640 @@ pub const ITfSourceSingle = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
+const IID_ITfSpeechUIServer_Value = Guid.initString("90e9a944-9244-489f-a78f-de67afc013a7");
+pub const IID_ITfSpeechUIServer = &IID_ITfSpeechUIServer_Value;
+pub const ITfSpeechUIServer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const ITfSpeechUIServer,
+        ) callconv(.winapi) HRESULT,
+        ShowUI: *const fn(
+            self: *const ITfSpeechUIServer,
+            fShow: BOOL,
+        ) callconv(.winapi) HRESULT,
+        UpdateBalloon: *const fn(
+            self: *const ITfSpeechUIServer,
+            style: TfLBBalloonStyle,
+            pch: [*:0]const u16,
+            cch: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const ITfSpeechUIServer) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self);
+    }
+    pub fn ShowUI(self: *const ITfSpeechUIServer, fShow: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowUI(self, fShow);
+    }
+    pub fn UpdateBalloon(self: *const ITfSpeechUIServer, style: TfLBBalloonStyle, pch: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateBalloon(self, style, pch, cch);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfStatusSink_Value = Guid.initString("6b7d8d73-b267-4f69-b32e-1ca321ce4f45");
+pub const IID_ITfStatusSink = &IID_ITfStatusSink_Value;
+pub const ITfStatusSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnStatusChange: *const fn(
+            self: *const ITfStatusSink,
+            pic: ?*ITfContext,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnStatusChange(self: *const ITfStatusSink, pic: ?*ITfContext, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnStatusChange(self, pic, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfSystemDeviceTypeLangBarItem_Value = Guid.initString("45672eb9-9059-46a2-838d-4530355f6a77");
+pub const IID_ITfSystemDeviceTypeLangBarItem = &IID_ITfSystemDeviceTypeLangBarItem_Value;
+pub const ITfSystemDeviceTypeLangBarItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetIconMode: *const fn(
+            self: *const ITfSystemDeviceTypeLangBarItem,
+            dwFlags: LANG_BAR_ITEM_ICON_MODE_FLAGS,
+        ) callconv(.winapi) HRESULT,
+        GetIconMode: *const fn(
+            self: *const ITfSystemDeviceTypeLangBarItem,
+            pdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetIconMode(self: *const ITfSystemDeviceTypeLangBarItem, dwFlags: LANG_BAR_ITEM_ICON_MODE_FLAGS) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIconMode(self, dwFlags);
+    }
+    pub fn GetIconMode(self: *const ITfSystemDeviceTypeLangBarItem, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIconMode(self, pdwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfSystemLangBarItem_Value = Guid.initString("1e13e9ec-6b33-4d4a-b5eb-8a92f029f356");
+pub const IID_ITfSystemLangBarItem = &IID_ITfSystemLangBarItem_Value;
+pub const ITfSystemLangBarItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetIcon: *const fn(
+            self: *const ITfSystemLangBarItem,
+            hIcon: ?HICON,
+        ) callconv(.winapi) HRESULT,
+        SetTooltipString: *const fn(
+            self: *const ITfSystemLangBarItem,
+            pchToolTip: [*:0]u16,
+            cch: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetIcon(self: *const ITfSystemLangBarItem, hIcon: ?HICON) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIcon(self, hIcon);
+    }
+    pub fn SetTooltipString(self: *const ITfSystemLangBarItem, pchToolTip: [*:0]u16, cch: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTooltipString(self, pchToolTip, cch);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfSystemLangBarItemSink_Value = Guid.initString("1449d9ab-13cf-4687-aa3e-8d8b18574396");
+pub const IID_ITfSystemLangBarItemSink = &IID_ITfSystemLangBarItemSink_Value;
+pub const ITfSystemLangBarItemSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitMenu: *const fn(
+            self: *const ITfSystemLangBarItemSink,
+            pMenu: ?*ITfMenu,
+        ) callconv(.winapi) HRESULT,
+        OnMenuSelect: *const fn(
+            self: *const ITfSystemLangBarItemSink,
+            wID: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitMenu(self: *const ITfSystemLangBarItemSink, pMenu: ?*ITfMenu) callconv(.@"inline") HRESULT {
+        return self.vtable.InitMenu(self, pMenu);
+    }
+    pub fn OnMenuSelect(self: *const ITfSystemLangBarItemSink, wID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnMenuSelect(self, wID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfSystemLangBarItemText_Value = Guid.initString("5c4ce0e5-ba49-4b52-ac6b-3b397b4f701f");
+pub const IID_ITfSystemLangBarItemText = &IID_ITfSystemLangBarItemText_Value;
+pub const ITfSystemLangBarItemText = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetItemText: *const fn(
+            self: *const ITfSystemLangBarItemText,
+            pch: [*:0]const u16,
+            cch: u32,
+        ) callconv(.winapi) HRESULT,
+        GetItemText: *const fn(
+            self: *const ITfSystemLangBarItemText,
+            pbstrText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetItemText(self: *const ITfSystemLangBarItemText, pch: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetItemText(self, pch, cch);
+    }
+    pub fn GetItemText(self: *const ITfSystemLangBarItemText, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemText(self, pbstrText);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfTextEditSink_Value = Guid.initString("8127d409-ccd3-4683-967a-b43d5b482bf7");
+pub const IID_ITfTextEditSink = &IID_ITfTextEditSink_Value;
+pub const ITfTextEditSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnEndEdit: *const fn(
+            self: *const ITfTextEditSink,
+            pic: ?*ITfContext,
+            ecReadOnly: u32,
+            pEditRecord: ?*ITfEditRecord,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnEndEdit(self: *const ITfTextEditSink, pic: ?*ITfContext, ecReadOnly: u32, pEditRecord: ?*ITfEditRecord) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEndEdit(self, pic, ecReadOnly, pEditRecord);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfTextInputProcessor_Value = Guid.initString("aa80e7f7-2021-11d2-93e0-0060b067b86e");
+pub const IID_ITfTextInputProcessor = &IID_ITfTextInputProcessor_Value;
+pub const ITfTextInputProcessor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Activate: *const fn(
+            self: *const ITfTextInputProcessor,
+            ptim: ?*ITfThreadMgr,
+            tid: u32,
+        ) callconv(.winapi) HRESULT,
+        Deactivate: *const fn(
+            self: *const ITfTextInputProcessor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Activate(self: *const ITfTextInputProcessor, ptim: ?*ITfThreadMgr, tid: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, ptim, tid);
+    }
+    pub fn Deactivate(self: *const ITfTextInputProcessor) callconv(.@"inline") HRESULT {
+        return self.vtable.Deactivate(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfTextInputProcessorEx_Value = Guid.initString("6e4e2102-f9cd-433d-b496-303ce03a6507");
+pub const IID_ITfTextInputProcessorEx = &IID_ITfTextInputProcessorEx_Value;
+pub const ITfTextInputProcessorEx = extern union {
+    pub const VTable = extern struct {
+        base: ITfTextInputProcessor.VTable,
+        ActivateEx: *const fn(
+            self: *const ITfTextInputProcessorEx,
+            ptim: ?*ITfThreadMgr,
+            tid: u32,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfTextInputProcessor: ITfTextInputProcessor,
+    IUnknown: IUnknown,
+    pub fn ActivateEx(self: *const ITfTextInputProcessorEx, ptim: ?*ITfThreadMgr, tid: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateEx(self, ptim, tid, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfTextLayoutSink_Value = Guid.initString("2af2d06a-dd5b-4927-a0b4-54f19c91fade");
+pub const IID_ITfTextLayoutSink = &IID_ITfTextLayoutSink_Value;
+pub const ITfTextLayoutSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnLayoutChange: *const fn(
+            self: *const ITfTextLayoutSink,
+            pic: ?*ITfContext,
+            lcode: TfLayoutCode,
+            pView: ?*ITfContextView,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnLayoutChange(self: *const ITfTextLayoutSink, pic: ?*ITfContext, lcode: TfLayoutCode, pView: ?*ITfContextView) callconv(.@"inline") HRESULT {
+        return self.vtable.OnLayoutChange(self, pic, lcode, pView);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfThreadFocusSink_Value = Guid.initString("c0f1db0c-3a20-405c-a303-96b6010a885f");
+pub const IID_ITfThreadFocusSink = &IID_ITfThreadFocusSink_Value;
+pub const ITfThreadFocusSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnSetThreadFocus: *const fn(
+            self: *const ITfThreadFocusSink,
+        ) callconv(.winapi) HRESULT,
+        OnKillThreadFocus: *const fn(
+            self: *const ITfThreadFocusSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnSetThreadFocus(self: *const ITfThreadFocusSink) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetThreadFocus(self);
+    }
+    pub fn OnKillThreadFocus(self: *const ITfThreadFocusSink) callconv(.@"inline") HRESULT {
+        return self.vtable.OnKillThreadFocus(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfThreadMgr_Value = Guid.initString("aa80e801-2021-11d2-93e0-0060b067b86e");
+pub const IID_ITfThreadMgr = &IID_ITfThreadMgr_Value;
+pub const ITfThreadMgr = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Activate: *const fn(
+            self: *const ITfThreadMgr,
+            ptid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Deactivate: *const fn(
+            self: *const ITfThreadMgr,
+        ) callconv(.winapi) HRESULT,
+        CreateDocumentMgr: *const fn(
+            self: *const ITfThreadMgr,
+            ppdim: ?*?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        EnumDocumentMgrs: *const fn(
+            self: *const ITfThreadMgr,
+            ppEnum: ?*?*IEnumTfDocumentMgrs,
+        ) callconv(.winapi) HRESULT,
+        GetFocus: *const fn(
+            self: *const ITfThreadMgr,
+            ppdimFocus: ?*?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        SetFocus: *const fn(
+            self: *const ITfThreadMgr,
+            pdimFocus: ?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        AssociateFocus: *const fn(
+            self: *const ITfThreadMgr,
+            hwnd: ?HWND,
+            pdimNew: ?*ITfDocumentMgr,
+            ppdimPrev: ?*?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        IsThreadFocus: *const fn(
+            self: *const ITfThreadMgr,
+            pfThreadFocus: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetFunctionProvider: *const fn(
+            self: *const ITfThreadMgr,
+            clsid: ?*const Guid,
+            ppFuncProv: ?*?*ITfFunctionProvider,
+        ) callconv(.winapi) HRESULT,
+        EnumFunctionProviders: *const fn(
+            self: *const ITfThreadMgr,
+            ppEnum: ?*?*IEnumTfFunctionProviders,
+        ) callconv(.winapi) HRESULT,
+        GetGlobalCompartment: *const fn(
+            self: *const ITfThreadMgr,
+            ppCompMgr: ?*?*ITfCompartmentMgr,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Activate(self: *const ITfThreadMgr, ptid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, ptid);
+    }
+    pub fn Deactivate(self: *const ITfThreadMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.Deactivate(self);
+    }
+    pub fn CreateDocumentMgr(self: *const ITfThreadMgr, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDocumentMgr(self, ppdim);
+    }
+    pub fn EnumDocumentMgrs(self: *const ITfThreadMgr, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumDocumentMgrs(self, ppEnum);
+    }
+    pub fn GetFocus(self: *const ITfThreadMgr, ppdimFocus: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFocus(self, ppdimFocus);
+    }
+    pub fn SetFocus(self: *const ITfThreadMgr, pdimFocus: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFocus(self, pdimFocus);
+    }
+    pub fn AssociateFocus(self: *const ITfThreadMgr, hwnd: ?HWND, pdimNew: ?*ITfDocumentMgr, ppdimPrev: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.AssociateFocus(self, hwnd, pdimNew, ppdimPrev);
+    }
+    pub fn IsThreadFocus(self: *const ITfThreadMgr, pfThreadFocus: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsThreadFocus(self, pfThreadFocus);
+    }
+    pub fn GetFunctionProvider(self: *const ITfThreadMgr, clsid: ?*const Guid, ppFuncProv: ?*?*ITfFunctionProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFunctionProvider(self, clsid, ppFuncProv);
+    }
+    pub fn EnumFunctionProviders(self: *const ITfThreadMgr, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumFunctionProviders(self, ppEnum);
+    }
+    pub fn GetGlobalCompartment(self: *const ITfThreadMgr, ppCompMgr: ?*?*ITfCompartmentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGlobalCompartment(self, ppCompMgr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ITfThreadMgr2_Value = Guid.initString("0ab198ef-6477-4ee8-8812-6780edb82d5e");
+pub const IID_ITfThreadMgr2 = &IID_ITfThreadMgr2_Value;
+pub const ITfThreadMgr2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Activate: *const fn(
+            self: *const ITfThreadMgr2,
+            ptid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Deactivate: *const fn(
+            self: *const ITfThreadMgr2,
+        ) callconv(.winapi) HRESULT,
+        CreateDocumentMgr: *const fn(
+            self: *const ITfThreadMgr2,
+            ppdim: ?*?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        EnumDocumentMgrs: *const fn(
+            self: *const ITfThreadMgr2,
+            ppEnum: ?*?*IEnumTfDocumentMgrs,
+        ) callconv(.winapi) HRESULT,
+        GetFocus: *const fn(
+            self: *const ITfThreadMgr2,
+            ppdimFocus: ?*?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        SetFocus: *const fn(
+            self: *const ITfThreadMgr2,
+            pdimFocus: ?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        IsThreadFocus: *const fn(
+            self: *const ITfThreadMgr2,
+            pfThreadFocus: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetFunctionProvider: *const fn(
+            self: *const ITfThreadMgr2,
+            clsid: ?*const Guid,
+            ppFuncProv: ?*?*ITfFunctionProvider,
+        ) callconv(.winapi) HRESULT,
+        EnumFunctionProviders: *const fn(
+            self: *const ITfThreadMgr2,
+            ppEnum: ?*?*IEnumTfFunctionProviders,
+        ) callconv(.winapi) HRESULT,
+        GetGlobalCompartment: *const fn(
+            self: *const ITfThreadMgr2,
+            ppCompMgr: ?*?*ITfCompartmentMgr,
+        ) callconv(.winapi) HRESULT,
+        ActivateEx: *const fn(
+            self: *const ITfThreadMgr2,
+            ptid: ?*u32,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetActiveFlags: *const fn(
+            self: *const ITfThreadMgr2,
+            lpdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SuspendKeystrokeHandling: *const fn(
+            self: *const ITfThreadMgr2,
+        ) callconv(.winapi) HRESULT,
+        ResumeKeystrokeHandling: *const fn(
+            self: *const ITfThreadMgr2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Activate(self: *const ITfThreadMgr2, ptid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, ptid);
+    }
+    pub fn Deactivate(self: *const ITfThreadMgr2) callconv(.@"inline") HRESULT {
+        return self.vtable.Deactivate(self);
+    }
+    pub fn CreateDocumentMgr(self: *const ITfThreadMgr2, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDocumentMgr(self, ppdim);
+    }
+    pub fn EnumDocumentMgrs(self: *const ITfThreadMgr2, ppEnum: ?*?*IEnumTfDocumentMgrs) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumDocumentMgrs(self, ppEnum);
+    }
+    pub fn GetFocus(self: *const ITfThreadMgr2, ppdimFocus: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFocus(self, ppdimFocus);
+    }
+    pub fn SetFocus(self: *const ITfThreadMgr2, pdimFocus: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFocus(self, pdimFocus);
+    }
+    pub fn IsThreadFocus(self: *const ITfThreadMgr2, pfThreadFocus: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsThreadFocus(self, pfThreadFocus);
+    }
+    pub fn GetFunctionProvider(self: *const ITfThreadMgr2, clsid: ?*const Guid, ppFuncProv: ?*?*ITfFunctionProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFunctionProvider(self, clsid, ppFuncProv);
+    }
+    pub fn EnumFunctionProviders(self: *const ITfThreadMgr2, ppEnum: ?*?*IEnumTfFunctionProviders) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumFunctionProviders(self, ppEnum);
+    }
+    pub fn GetGlobalCompartment(self: *const ITfThreadMgr2, ppCompMgr: ?*?*ITfCompartmentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGlobalCompartment(self, ppCompMgr);
+    }
+    pub fn ActivateEx(self: *const ITfThreadMgr2, ptid: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateEx(self, ptid, dwFlags);
+    }
+    pub fn GetActiveFlags(self: *const ITfThreadMgr2, lpdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActiveFlags(self, lpdwFlags);
+    }
+    pub fn SuspendKeystrokeHandling(self: *const ITfThreadMgr2) callconv(.@"inline") HRESULT {
+        return self.vtable.SuspendKeystrokeHandling(self);
+    }
+    pub fn ResumeKeystrokeHandling(self: *const ITfThreadMgr2) callconv(.@"inline") HRESULT {
+        return self.vtable.ResumeKeystrokeHandling(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfThreadMgrEventSink_Value = Guid.initString("aa80e80e-2021-11d2-93e0-0060b067b86e");
+pub const IID_ITfThreadMgrEventSink = &IID_ITfThreadMgrEventSink_Value;
+pub const ITfThreadMgrEventSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnInitDocumentMgr: *const fn(
+            self: *const ITfThreadMgrEventSink,
+            pdim: ?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        OnUninitDocumentMgr: *const fn(
+            self: *const ITfThreadMgrEventSink,
+            pdim: ?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        OnSetFocus: *const fn(
+            self: *const ITfThreadMgrEventSink,
+            pdimFocus: ?*ITfDocumentMgr,
+            pdimPrevFocus: ?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+        OnPushContext: *const fn(
+            self: *const ITfThreadMgrEventSink,
+            pic: ?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+        OnPopContext: *const fn(
+            self: *const ITfThreadMgrEventSink,
+            pic: ?*ITfContext,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnInitDocumentMgr(self: *const ITfThreadMgrEventSink, pdim: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.OnInitDocumentMgr(self, pdim);
+    }
+    pub fn OnUninitDocumentMgr(self: *const ITfThreadMgrEventSink, pdim: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUninitDocumentMgr(self, pdim);
+    }
+    pub fn OnSetFocus(self: *const ITfThreadMgrEventSink, pdimFocus: ?*ITfDocumentMgr, pdimPrevFocus: ?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetFocus(self, pdimFocus, pdimPrevFocus);
+    }
+    pub fn OnPushContext(self: *const ITfThreadMgrEventSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPushContext(self, pic);
+    }
+    pub fn OnPopContext(self: *const ITfThreadMgrEventSink, pic: ?*ITfContext) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPopContext(self, pic);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfThreadMgrEx_Value = Guid.initString("3e90ade3-7594-4cb0-bb58-69628f5f458c");
+pub const IID_ITfThreadMgrEx = &IID_ITfThreadMgrEx_Value;
+pub const ITfThreadMgrEx = extern union {
+    pub const VTable = extern struct {
+        base: ITfThreadMgr.VTable,
+        ActivateEx: *const fn(
+            self: *const ITfThreadMgrEx,
+            ptid: ?*u32,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetActiveFlags: *const fn(
+            self: *const ITfThreadMgrEx,
+            lpdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfThreadMgr: ITfThreadMgr,
+    IUnknown: IUnknown,
+    pub fn ActivateEx(self: *const ITfThreadMgrEx, ptid: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateEx(self, ptid, dwFlags);
+    }
+    pub fn GetActiveFlags(self: *const ITfThreadMgrEx, lpdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActiveFlags(self, lpdwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfToolTipUIElement_Value = Guid.initString("52b18b5c-555d-46b2-b00a-fa680144fbdb");
+pub const IID_ITfToolTipUIElement = &IID_ITfToolTipUIElement_Value;
+pub const ITfToolTipUIElement = extern union {
+    pub const VTable = extern struct {
+        base: ITfUIElement.VTable,
+        GetString: *const fn(
+            self: *const ITfToolTipUIElement,
+            pstr: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfUIElement: ITfUIElement,
+    IUnknown: IUnknown,
+    pub fn GetString(self: *const ITfToolTipUIElement, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetString(self, pstr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfTransitoryExtensionSink_Value = Guid.initString("a615096f-1c57-4813-8a15-55ee6e5a839c");
+pub const IID_ITfTransitoryExtensionSink = &IID_ITfTransitoryExtensionSink_Value;
+pub const ITfTransitoryExtensionSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnTransitoryExtensionUpdated: *const fn(
+            self: *const ITfTransitoryExtensionSink,
+            pic: ?*ITfContext,
+            ecReadOnly: u32,
+            pResultRange: ?*ITfRange,
+            pCompositionRange: ?*ITfRange,
+            pfDeleteResultRange: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnTransitoryExtensionUpdated(self: *const ITfTransitoryExtensionSink, pic: ?*ITfContext, ecReadOnly: u32, pResultRange: ?*ITfRange, pCompositionRange: ?*ITfRange, pfDeleteResultRange: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTransitoryExtensionUpdated(self, pic, ecReadOnly, pResultRange, pCompositionRange, pfDeleteResultRange);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfTransitoryExtensionUIElement_Value = Guid.initString("858f956a-972f-42a2-a2f2-0321e1abe209");
+pub const IID_ITfTransitoryExtensionUIElement = &IID_ITfTransitoryExtensionUIElement_Value;
+pub const ITfTransitoryExtensionUIElement = extern union {
+    pub const VTable = extern struct {
+        base: ITfUIElement.VTable,
+        GetDocumentMgr: *const fn(
+            self: *const ITfTransitoryExtensionUIElement,
+            ppdim: ?*?*ITfDocumentMgr,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITfUIElement: ITfUIElement,
+    IUnknown: IUnknown,
+    pub fn GetDocumentMgr(self: *const ITfTransitoryExtensionUIElement, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDocumentMgr(self, ppdim);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfUIElement_Value = Guid.initString("ea1ea137-19df-11d7-a6d2-00065b84435c");
+pub const IID_ITfUIElement = &IID_ITfUIElement_Value;
+pub const ITfUIElement = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDescription: *const fn(
+            self: *const ITfUIElement,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetGUID: *const fn(
+            self: *const ITfUIElement,
+            pguid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        Show: *const fn(
+            self: *const ITfUIElement,
+            bShow: BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsShown: *const fn(
+            self: *const ITfUIElement,
+            pbShow: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDescription(self: *const ITfUIElement, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDescription(self, pbstrDescription);
+    }
+    pub fn GetGUID(self: *const ITfUIElement, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGUID(self, pguid);
+    }
+    pub fn Show(self: *const ITfUIElement, bShow: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, bShow);
+    }
+    pub fn IsShown(self: *const ITfUIElement, pbShow: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsShown(self, pbShow);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ITfUIElementMgr_Value = Guid.initString("ea1ea135-19df-11d7-a6d2-00065b84435c");
 pub const IID_ITfUIElementMgr = &IID_ITfUIElementMgr_Value;
 pub const ITfUIElementMgr = extern union {
@@ -6018,46 +7394,6 @@ pub const ITfUIElementMgr = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfUIElements_Value = Guid.initString("887aa91e-acba-4931-84da-3c5208cf543f");
-pub const IID_IEnumTfUIElements = &IID_IEnumTfUIElements_Value;
-pub const IEnumTfUIElements = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfUIElements,
-            ppEnum: ?*?*IEnumTfUIElements,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfUIElements,
-            ulCount: u32,
-            ppElement: [*]?*ITfUIElement,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfUIElements,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfUIElements,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfUIElements, ppEnum: ?*?*IEnumTfUIElements) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfUIElements, ulCount: u32, ppElement: [*]?*ITfUIElement, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, ppElement, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfUIElements) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfUIElements, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
 const IID_ITfUIElementSink_Value = Guid.initString("ea1ea136-19df-11d7-a6d2-00065b84435c");
 pub const IID_ITfUIElementSink = &IID_ITfUIElementSink_Value;
 pub const ITfUIElementSink = extern union {
@@ -6087,1116 +7423,6 @@ pub const ITfUIElementSink = extern union {
     }
     pub fn EndUIElement(self: *const ITfUIElementSink, dwUIElementId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EndUIElement(self, dwUIElementId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfUIElement_Value = Guid.initString("ea1ea137-19df-11d7-a6d2-00065b84435c");
-pub const IID_ITfUIElement = &IID_ITfUIElement_Value;
-pub const ITfUIElement = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDescription: *const fn(
-            self: *const ITfUIElement,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetGUID: *const fn(
-            self: *const ITfUIElement,
-            pguid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        Show: *const fn(
-            self: *const ITfUIElement,
-            bShow: BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsShown: *const fn(
-            self: *const ITfUIElement,
-            pbShow: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDescription(self: *const ITfUIElement, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDescription(self, pbstrDescription);
-    }
-    pub fn GetGUID(self: *const ITfUIElement, pguid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGUID(self, pguid);
-    }
-    pub fn Show(self: *const ITfUIElement, bShow: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, bShow);
-    }
-    pub fn IsShown(self: *const ITfUIElement, pbShow: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsShown(self, pbShow);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCandidateListUIElement_Value = Guid.initString("ea1ea138-19df-11d7-a6d2-00065b84435c");
-pub const IID_ITfCandidateListUIElement = &IID_ITfCandidateListUIElement_Value;
-pub const ITfCandidateListUIElement = extern union {
-    pub const VTable = extern struct {
-        base: ITfUIElement.VTable,
-        GetUpdatedFlags: *const fn(
-            self: *const ITfCandidateListUIElement,
-            pdwFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDocumentMgr: *const fn(
-            self: *const ITfCandidateListUIElement,
-            ppdim: ?*?*ITfDocumentMgr,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const ITfCandidateListUIElement,
-            puCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSelection: *const fn(
-            self: *const ITfCandidateListUIElement,
-            puIndex: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetString: *const fn(
-            self: *const ITfCandidateListUIElement,
-            uIndex: u32,
-            pstr: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPageIndex: *const fn(
-            self: *const ITfCandidateListUIElement,
-            pIndex: [*]u32,
-            uSize: u32,
-            puPageCnt: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetPageIndex: *const fn(
-            self: *const ITfCandidateListUIElement,
-            pIndex: [*]u32,
-            uPageCnt: u32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPage: *const fn(
-            self: *const ITfCandidateListUIElement,
-            puPage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfUIElement: ITfUIElement,
-    IUnknown: IUnknown,
-    pub fn GetUpdatedFlags(self: *const ITfCandidateListUIElement, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUpdatedFlags(self, pdwFlags);
-    }
-    pub fn GetDocumentMgr(self: *const ITfCandidateListUIElement, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDocumentMgr(self, ppdim);
-    }
-    pub fn GetCount(self: *const ITfCandidateListUIElement, puCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, puCount);
-    }
-    pub fn GetSelection(self: *const ITfCandidateListUIElement, puIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelection(self, puIndex);
-    }
-    pub fn GetString(self: *const ITfCandidateListUIElement, uIndex: u32, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetString(self, uIndex, pstr);
-    }
-    pub fn GetPageIndex(self: *const ITfCandidateListUIElement, pIndex: [*]u32, uSize: u32, puPageCnt: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPageIndex(self, pIndex, uSize, puPageCnt);
-    }
-    pub fn SetPageIndex(self: *const ITfCandidateListUIElement, pIndex: [*]u32, uPageCnt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPageIndex(self, pIndex, uPageCnt);
-    }
-    pub fn GetCurrentPage(self: *const ITfCandidateListUIElement, puPage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPage(self, puPage);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCandidateListUIElementBehavior_Value = Guid.initString("85fad185-58ce-497a-9460-355366b64b9a");
-pub const IID_ITfCandidateListUIElementBehavior = &IID_ITfCandidateListUIElementBehavior_Value;
-pub const ITfCandidateListUIElementBehavior = extern union {
-    pub const VTable = extern struct {
-        base: ITfCandidateListUIElement.VTable,
-        SetSelection: *const fn(
-            self: *const ITfCandidateListUIElementBehavior,
-            nIndex: u32,
-        ) callconv(.winapi) HRESULT,
-        Finalize: *const fn(
-            self: *const ITfCandidateListUIElementBehavior,
-        ) callconv(.winapi) HRESULT,
-        Abort: *const fn(
-            self: *const ITfCandidateListUIElementBehavior,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfCandidateListUIElement: ITfCandidateListUIElement,
-    ITfUIElement: ITfUIElement,
-    IUnknown: IUnknown,
-    pub fn SetSelection(self: *const ITfCandidateListUIElementBehavior, nIndex: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSelection(self, nIndex);
-    }
-    pub fn Finalize(self: *const ITfCandidateListUIElementBehavior) callconv(.@"inline") HRESULT {
-        return self.vtable.Finalize(self);
-    }
-    pub fn Abort(self: *const ITfCandidateListUIElementBehavior) callconv(.@"inline") HRESULT {
-        return self.vtable.Abort(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfReadingInformationUIElement_Value = Guid.initString("ea1ea139-19df-11d7-a6d2-00065b84435c");
-pub const IID_ITfReadingInformationUIElement = &IID_ITfReadingInformationUIElement_Value;
-pub const ITfReadingInformationUIElement = extern union {
-    pub const VTable = extern struct {
-        base: ITfUIElement.VTable,
-        GetUpdatedFlags: *const fn(
-            self: *const ITfReadingInformationUIElement,
-            pdwFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetContext: *const fn(
-            self: *const ITfReadingInformationUIElement,
-            ppic: ?*?*ITfContext,
-        ) callconv(.winapi) HRESULT,
-        GetString: *const fn(
-            self: *const ITfReadingInformationUIElement,
-            pstr: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetMaxReadingStringLength: *const fn(
-            self: *const ITfReadingInformationUIElement,
-            pcchMax: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetErrorIndex: *const fn(
-            self: *const ITfReadingInformationUIElement,
-            pErrorIndex: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        IsVerticalOrderPreferred: *const fn(
-            self: *const ITfReadingInformationUIElement,
-            pfVertical: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfUIElement: ITfUIElement,
-    IUnknown: IUnknown,
-    pub fn GetUpdatedFlags(self: *const ITfReadingInformationUIElement, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUpdatedFlags(self, pdwFlags);
-    }
-    pub fn GetContext(self: *const ITfReadingInformationUIElement, ppic: ?*?*ITfContext) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContext(self, ppic);
-    }
-    pub fn GetString(self: *const ITfReadingInformationUIElement, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetString(self, pstr);
-    }
-    pub fn GetMaxReadingStringLength(self: *const ITfReadingInformationUIElement, pcchMax: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxReadingStringLength(self, pcchMax);
-    }
-    pub fn GetErrorIndex(self: *const ITfReadingInformationUIElement, pErrorIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetErrorIndex(self, pErrorIndex);
-    }
-    pub fn IsVerticalOrderPreferred(self: *const ITfReadingInformationUIElement, pfVertical: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsVerticalOrderPreferred(self, pfVertical);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfTransitoryExtensionUIElement_Value = Guid.initString("858f956a-972f-42a2-a2f2-0321e1abe209");
-pub const IID_ITfTransitoryExtensionUIElement = &IID_ITfTransitoryExtensionUIElement_Value;
-pub const ITfTransitoryExtensionUIElement = extern union {
-    pub const VTable = extern struct {
-        base: ITfUIElement.VTable,
-        GetDocumentMgr: *const fn(
-            self: *const ITfTransitoryExtensionUIElement,
-            ppdim: ?*?*ITfDocumentMgr,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfUIElement: ITfUIElement,
-    IUnknown: IUnknown,
-    pub fn GetDocumentMgr(self: *const ITfTransitoryExtensionUIElement, ppdim: ?*?*ITfDocumentMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDocumentMgr(self, ppdim);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfTransitoryExtensionSink_Value = Guid.initString("a615096f-1c57-4813-8a15-55ee6e5a839c");
-pub const IID_ITfTransitoryExtensionSink = &IID_ITfTransitoryExtensionSink_Value;
-pub const ITfTransitoryExtensionSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnTransitoryExtensionUpdated: *const fn(
-            self: *const ITfTransitoryExtensionSink,
-            pic: ?*ITfContext,
-            ecReadOnly: u32,
-            pResultRange: ?*ITfRange,
-            pCompositionRange: ?*ITfRange,
-            pfDeleteResultRange: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnTransitoryExtensionUpdated(self: *const ITfTransitoryExtensionSink, pic: ?*ITfContext, ecReadOnly: u32, pResultRange: ?*ITfRange, pCompositionRange: ?*ITfRange, pfDeleteResultRange: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTransitoryExtensionUpdated(self, pic, ecReadOnly, pResultRange, pCompositionRange, pfDeleteResultRange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfToolTipUIElement_Value = Guid.initString("52b18b5c-555d-46b2-b00a-fa680144fbdb");
-pub const IID_ITfToolTipUIElement = &IID_ITfToolTipUIElement_Value;
-pub const ITfToolTipUIElement = extern union {
-    pub const VTable = extern struct {
-        base: ITfUIElement.VTable,
-        GetString: *const fn(
-            self: *const ITfToolTipUIElement,
-            pstr: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfUIElement: ITfUIElement,
-    IUnknown: IUnknown,
-    pub fn GetString(self: *const ITfToolTipUIElement, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetString(self, pstr);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITfReverseConversionList_Value = Guid.initString("151d69f0-86f4-4674-b721-56911e797f47");
-pub const IID_ITfReverseConversionList = &IID_ITfReverseConversionList_Value;
-pub const ITfReverseConversionList = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLength: *const fn(
-            self: *const ITfReverseConversionList,
-            puIndex: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetString: *const fn(
-            self: *const ITfReverseConversionList,
-            uIndex: u32,
-            pbstr: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetLength(self: *const ITfReverseConversionList, puIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLength(self, puIndex);
-    }
-    pub fn GetString(self: *const ITfReverseConversionList, uIndex: u32, pbstr: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetString(self, uIndex, pbstr);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITfReverseConversion_Value = Guid.initString("a415e162-157d-417d-8a8c-0ab26c7d2781");
-pub const IID_ITfReverseConversion = &IID_ITfReverseConversion_Value;
-pub const ITfReverseConversion = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DoReverseConversion: *const fn(
-            self: *const ITfReverseConversion,
-            lpstr: ?[*:0]const u16,
-            ppList: ?*?*ITfReverseConversionList,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DoReverseConversion(self: *const ITfReverseConversion, lpstr: ?[*:0]const u16, ppList: ?*?*ITfReverseConversionList) callconv(.@"inline") HRESULT {
-        return self.vtable.DoReverseConversion(self, lpstr, ppList);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITfReverseConversionMgr_Value = Guid.initString("b643c236-c493-41b6-abb3-692412775cc4");
-pub const IID_ITfReverseConversionMgr = &IID_ITfReverseConversionMgr_Value;
-pub const ITfReverseConversionMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetReverseConversion: *const fn(
-            self: *const ITfReverseConversionMgr,
-            langid: u16,
-            guidProfile: ?*const Guid,
-            dwflag: u32,
-            ppReverseConversion: ?*?*ITfReverseConversion,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetReverseConversion(self: *const ITfReverseConversionMgr, langid: u16, guidProfile: ?*const Guid, dwflag: u32, ppReverseConversion: ?*?*ITfReverseConversion) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReverseConversion(self, langid, guidProfile, dwflag, ppReverseConversion);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCandidateString_Value = Guid.initString("581f317e-fd9d-443f-b972-ed00467c5d40");
-pub const IID_ITfCandidateString = &IID_ITfCandidateString_Value;
-pub const ITfCandidateString = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetString: *const fn(
-            self: *const ITfCandidateString,
-            pbstr: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetIndex: *const fn(
-            self: *const ITfCandidateString,
-            pnIndex: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetString(self: *const ITfCandidateString, pbstr: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetString(self, pbstr);
-    }
-    pub fn GetIndex(self: *const ITfCandidateString, pnIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIndex(self, pnIndex);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfCandidates_Value = Guid.initString("defb1926-6c80-4ce8-87d4-d6b72b812bde");
-pub const IID_IEnumTfCandidates = &IID_IEnumTfCandidates_Value;
-pub const IEnumTfCandidates = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfCandidates,
-            ppEnum: ?*?*IEnumTfCandidates,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfCandidates,
-            ulCount: u32,
-            ppCand: [*]?*ITfCandidateString,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfCandidates,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfCandidates,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfCandidates, ppEnum: ?*?*IEnumTfCandidates) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfCandidates, ulCount: u32, ppCand: [*]?*ITfCandidateString, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, ppCand, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfCandidates) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfCandidates, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-pub const TfCandidateResult = enum(i32) {
-    FINALIZED = 0,
-    SELECTED = 1,
-    CANCELED = 2,
-};
-pub const CAND_FINALIZED = TfCandidateResult.FINALIZED;
-pub const CAND_SELECTED = TfCandidateResult.SELECTED;
-pub const CAND_CANCELED = TfCandidateResult.CANCELED;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfCandidateList_Value = Guid.initString("a3ad50fb-9bdb-49e3-a843-6c76520fbf5d");
-pub const IID_ITfCandidateList = &IID_ITfCandidateList_Value;
-pub const ITfCandidateList = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumCandidates: *const fn(
-            self: *const ITfCandidateList,
-            ppEnum: ?*?*IEnumTfCandidates,
-        ) callconv(.winapi) HRESULT,
-        GetCandidate: *const fn(
-            self: *const ITfCandidateList,
-            nIndex: u32,
-            ppCand: ?*?*ITfCandidateString,
-        ) callconv(.winapi) HRESULT,
-        GetCandidateNum: *const fn(
-            self: *const ITfCandidateList,
-            pnCnt: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetResult: *const fn(
-            self: *const ITfCandidateList,
-            nIndex: u32,
-            imcr: TfCandidateResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnumCandidates(self: *const ITfCandidateList, ppEnum: ?*?*IEnumTfCandidates) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumCandidates(self, ppEnum);
-    }
-    pub fn GetCandidate(self: *const ITfCandidateList, nIndex: u32, ppCand: ?*?*ITfCandidateString) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCandidate(self, nIndex, ppCand);
-    }
-    pub fn GetCandidateNum(self: *const ITfCandidateList, pnCnt: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCandidateNum(self, pnCnt);
-    }
-    pub fn SetResult(self: *const ITfCandidateList, nIndex: u32, imcr: TfCandidateResult) callconv(.@"inline") HRESULT {
-        return self.vtable.SetResult(self, nIndex, imcr);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnReconversion_Value = Guid.initString("4cea93c0-0a58-11d3-8df0-00105a2799b5");
-pub const IID_ITfFnReconversion = &IID_ITfFnReconversion_Value;
-pub const ITfFnReconversion = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        QueryRange: *const fn(
-            self: *const ITfFnReconversion,
-            pRange: ?*ITfRange,
-            ppNewRange: ?*?*ITfRange,
-            pfConvertable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetReconversion: *const fn(
-            self: *const ITfFnReconversion,
-            pRange: ?*ITfRange,
-            ppCandList: ?*?*ITfCandidateList,
-        ) callconv(.winapi) HRESULT,
-        Reconvert: *const fn(
-            self: *const ITfFnReconversion,
-            pRange: ?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn QueryRange(self: *const ITfFnReconversion, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfConvertable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryRange(self, pRange, ppNewRange, pfConvertable);
-    }
-    pub fn GetReconversion(self: *const ITfFnReconversion, pRange: ?*ITfRange, ppCandList: ?*?*ITfCandidateList) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReconversion(self, pRange, ppCandList);
-    }
-    pub fn Reconvert(self: *const ITfFnReconversion, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.Reconvert(self, pRange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnPlayBack_Value = Guid.initString("a3a416a4-0f64-11d3-b5b7-00c04fc324a1");
-pub const IID_ITfFnPlayBack = &IID_ITfFnPlayBack_Value;
-pub const ITfFnPlayBack = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        QueryRange: *const fn(
-            self: *const ITfFnPlayBack,
-            pRange: ?*ITfRange,
-            ppNewRange: ?*?*ITfRange,
-            pfPlayable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        Play: *const fn(
-            self: *const ITfFnPlayBack,
-            pRange: ?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn QueryRange(self: *const ITfFnPlayBack, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfPlayable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryRange(self, pRange, ppNewRange, pfPlayable);
-    }
-    pub fn Play(self: *const ITfFnPlayBack, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.Play(self, pRange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnLangProfileUtil_Value = Guid.initString("a87a8574-a6c1-4e15-99f0-3d3965f548eb");
-pub const IID_ITfFnLangProfileUtil = &IID_ITfFnLangProfileUtil_Value;
-pub const ITfFnLangProfileUtil = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        RegisterActiveProfiles: *const fn(
-            self: *const ITfFnLangProfileUtil,
-        ) callconv(.winapi) HRESULT,
-        IsProfileAvailableForLang: *const fn(
-            self: *const ITfFnLangProfileUtil,
-            langid: u16,
-            pfAvailable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn RegisterActiveProfiles(self: *const ITfFnLangProfileUtil) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterActiveProfiles(self);
-    }
-    pub fn IsProfileAvailableForLang(self: *const ITfFnLangProfileUtil, langid: u16, pfAvailable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsProfileAvailableForLang(self, langid, pfAvailable);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnConfigure_Value = Guid.initString("88f567c6-1757-49f8-a1b2-89234c1eeff9");
-pub const IID_ITfFnConfigure = &IID_ITfFnConfigure_Value;
-pub const ITfFnConfigure = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        Show: *const fn(
-            self: *const ITfFnConfigure,
-            hwndParent: ?HWND,
-            langid: u16,
-            rguidProfile: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn Show(self: *const ITfFnConfigure, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, hwndParent, langid, rguidProfile);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnConfigureRegisterWord_Value = Guid.initString("bb95808a-6d8f-4bca-8400-5390b586aedf");
-pub const IID_ITfFnConfigureRegisterWord = &IID_ITfFnConfigureRegisterWord_Value;
-pub const ITfFnConfigureRegisterWord = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        Show: *const fn(
-            self: *const ITfFnConfigureRegisterWord,
-            hwndParent: ?HWND,
-            langid: u16,
-            rguidProfile: ?*const Guid,
-            bstrRegistered: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn Show(self: *const ITfFnConfigureRegisterWord, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid, bstrRegistered: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, hwndParent, langid, rguidProfile, bstrRegistered);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnConfigureRegisterEudc_Value = Guid.initString("b5e26ff5-d7ad-4304-913f-21a2ed95a1b0");
-pub const IID_ITfFnConfigureRegisterEudc = &IID_ITfFnConfigureRegisterEudc_Value;
-pub const ITfFnConfigureRegisterEudc = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        Show: *const fn(
-            self: *const ITfFnConfigureRegisterEudc,
-            hwndParent: ?HWND,
-            langid: u16,
-            rguidProfile: ?*const Guid,
-            bstrRegistered: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn Show(self: *const ITfFnConfigureRegisterEudc, hwndParent: ?HWND, langid: u16, rguidProfile: ?*const Guid, bstrRegistered: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, hwndParent, langid, rguidProfile, bstrRegistered);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnShowHelp_Value = Guid.initString("5ab1d30c-094d-4c29-8ea5-0bf59be87bf3");
-pub const IID_ITfFnShowHelp = &IID_ITfFnShowHelp_Value;
-pub const ITfFnShowHelp = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        Show: *const fn(
-            self: *const ITfFnShowHelp,
-            hwndParent: ?HWND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn Show(self: *const ITfFnShowHelp, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, hwndParent);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnBalloon_Value = Guid.initString("3bab89e4-5fbe-45f4-a5bc-dca36ad225a8");
-pub const IID_ITfFnBalloon = &IID_ITfFnBalloon_Value;
-pub const ITfFnBalloon = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        UpdateBalloon: *const fn(
-            self: *const ITfFnBalloon,
-            style: TfLBBalloonStyle,
-            pch: [*:0]const u16,
-            cch: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn UpdateBalloon(self: *const ITfFnBalloon, style: TfLBBalloonStyle, pch: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateBalloon(self, style, pch, cch);
-    }
-};
-
-pub const TfSapiObject = enum(i32) {
-    RESMGR = 0,
-    RECOCONTEXT = 1,
-    RECOGNIZER = 2,
-    VOICE = 3,
-    DICTGRAM = 4,
-    RECOGNIZERNOINIT = 5,
-};
-pub const GETIF_RESMGR = TfSapiObject.RESMGR;
-pub const GETIF_RECOCONTEXT = TfSapiObject.RECOCONTEXT;
-pub const GETIF_RECOGNIZER = TfSapiObject.RECOGNIZER;
-pub const GETIF_VOICE = TfSapiObject.VOICE;
-pub const GETIF_DICTGRAM = TfSapiObject.DICTGRAM;
-pub const GETIF_RECOGNIZERNOINIT = TfSapiObject.RECOGNIZERNOINIT;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnGetSAPIObject_Value = Guid.initString("5c0ab7ea-167d-4f59-bfb5-4693755e90ca");
-pub const IID_ITfFnGetSAPIObject = &IID_ITfFnGetSAPIObject_Value;
-pub const ITfFnGetSAPIObject = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        Get: *const fn(
-            self: *const ITfFnGetSAPIObject,
-            sObj: TfSapiObject,
-            ppunk: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn Get(self: *const ITfFnGetSAPIObject, sObj: TfSapiObject, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Get(self, sObj, ppunk);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnPropertyUIStatus_Value = Guid.initString("2338ac6e-2b9d-44c0-a75e-ee64f256b3bd");
-pub const IID_ITfFnPropertyUIStatus = &IID_ITfFnPropertyUIStatus_Value;
-pub const ITfFnPropertyUIStatus = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        GetStatus: *const fn(
-            self: *const ITfFnPropertyUIStatus,
-            refguidProp: ?*const Guid,
-            pdw: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetStatus: *const fn(
-            self: *const ITfFnPropertyUIStatus,
-            refguidProp: ?*const Guid,
-            dw: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn GetStatus(self: *const ITfFnPropertyUIStatus, refguidProp: ?*const Guid, pdw: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, refguidProp, pdw);
-    }
-    pub fn SetStatus(self: *const ITfFnPropertyUIStatus, refguidProp: ?*const Guid, dw: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStatus(self, refguidProp, dw);
-    }
-};
-
-const IID_IEnumSpeechCommands_Value = Guid.initString("8c5dac4f-083c-4b85-a4c9-71746048adca");
-pub const IID_IEnumSpeechCommands = &IID_IEnumSpeechCommands_Value;
-pub const IEnumSpeechCommands = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumSpeechCommands,
-            ppEnum: ?*?*IEnumSpeechCommands,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumSpeechCommands,
-            ulCount: u32,
-            pSpCmds: [*]?*u16,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumSpeechCommands,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumSpeechCommands,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumSpeechCommands, ppEnum: ?*?*IEnumSpeechCommands) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumSpeechCommands, ulCount: u32, pSpCmds: [*]?*u16, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, pSpCmds, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumSpeechCommands) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumSpeechCommands, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-const IID_ISpeechCommandProvider_Value = Guid.initString("38e09d4c-586d-435a-b592-c8a86691dec6");
-pub const IID_ISpeechCommandProvider = &IID_ISpeechCommandProvider_Value;
-pub const ISpeechCommandProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumSpeechCommands: *const fn(
-            self: *const ISpeechCommandProvider,
-            langid: u16,
-            ppEnum: ?*?*IEnumSpeechCommands,
-        ) callconv(.winapi) HRESULT,
-        ProcessCommand: *const fn(
-            self: *const ISpeechCommandProvider,
-            pszCommand: [*:0]const u16,
-            cch: u32,
-            langid: u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnumSpeechCommands(self: *const ISpeechCommandProvider, langid: u16, ppEnum: ?*?*IEnumSpeechCommands) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumSpeechCommands(self, langid, ppEnum);
-    }
-    pub fn ProcessCommand(self: *const ISpeechCommandProvider, pszCommand: [*:0]const u16, cch: u32, langid: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessCommand(self, pszCommand, cch, langid);
-    }
-};
-
-const IID_ITfFnCustomSpeechCommand_Value = Guid.initString("fca6c349-a12f-43a3-8dd6-5a5a4282577b");
-pub const IID_ITfFnCustomSpeechCommand = &IID_ITfFnCustomSpeechCommand_Value;
-pub const ITfFnCustomSpeechCommand = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        SetSpeechCommandProvider: *const fn(
-            self: *const ITfFnCustomSpeechCommand,
-            pspcmdProvider: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn SetSpeechCommandProvider(self: *const ITfFnCustomSpeechCommand, pspcmdProvider: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSpeechCommandProvider(self, pspcmdProvider);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnLMProcessor_Value = Guid.initString("7afbf8e7-ac4b-4082-b058-890899d3a010");
-pub const IID_ITfFnLMProcessor = &IID_ITfFnLMProcessor_Value;
-pub const ITfFnLMProcessor = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        QueryRange: *const fn(
-            self: *const ITfFnLMProcessor,
-            pRange: ?*ITfRange,
-            ppNewRange: ?*?*ITfRange,
-            pfAccepted: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        QueryLangID: *const fn(
-            self: *const ITfFnLMProcessor,
-            langid: u16,
-            pfAccepted: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetReconversion: *const fn(
-            self: *const ITfFnLMProcessor,
-            pRange: ?*ITfRange,
-            ppCandList: ?*?*ITfCandidateList,
-        ) callconv(.winapi) HRESULT,
-        Reconvert: *const fn(
-            self: *const ITfFnLMProcessor,
-            pRange: ?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-        QueryKey: *const fn(
-            self: *const ITfFnLMProcessor,
-            fUp: BOOL,
-            vKey: WPARAM,
-            lparamKeydata: LPARAM,
-            pfInterested: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        InvokeKey: *const fn(
-            self: *const ITfFnLMProcessor,
-            fUp: BOOL,
-            vKey: WPARAM,
-            lparamKeyData: LPARAM,
-        ) callconv(.winapi) HRESULT,
-        InvokeFunc: *const fn(
-            self: *const ITfFnLMProcessor,
-            pic: ?*ITfContext,
-            refguidFunc: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn QueryRange(self: *const ITfFnLMProcessor, pRange: ?*ITfRange, ppNewRange: ?*?*ITfRange, pfAccepted: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryRange(self, pRange, ppNewRange, pfAccepted);
-    }
-    pub fn QueryLangID(self: *const ITfFnLMProcessor, langid: u16, pfAccepted: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryLangID(self, langid, pfAccepted);
-    }
-    pub fn GetReconversion(self: *const ITfFnLMProcessor, pRange: ?*ITfRange, ppCandList: ?*?*ITfCandidateList) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReconversion(self, pRange, ppCandList);
-    }
-    pub fn Reconvert(self: *const ITfFnLMProcessor, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.Reconvert(self, pRange);
-    }
-    pub fn QueryKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: WPARAM, lparamKeydata: LPARAM, pfInterested: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryKey(self, fUp, vKey, lparamKeydata, pfInterested);
-    }
-    pub fn InvokeKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: WPARAM, lparamKeyData: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.InvokeKey(self, fUp, vKey, lparamKeyData);
-    }
-    pub fn InvokeFunc(self: *const ITfFnLMProcessor, pic: ?*ITfContext, refguidFunc: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.InvokeFunc(self, pic, refguidFunc);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnLMInternal_Value = Guid.initString("04b825b1-ac9a-4f7b-b5ad-c7168f1ee445");
-pub const IID_ITfFnLMInternal = &IID_ITfFnLMInternal_Value;
-pub const ITfFnLMInternal = extern union {
-    pub const VTable = extern struct {
-        base: ITfFnLMProcessor.VTable,
-        ProcessLattice: *const fn(
-            self: *const ITfFnLMInternal,
-            pRange: ?*ITfRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFnLMProcessor: ITfFnLMProcessor,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn ProcessLattice(self: *const ITfFnLMInternal, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessLattice(self, pRange);
-    }
-};
-
-pub const TF_LMLATTELEMENT = extern struct {
-    dwFrameStart: u32,
-    dwFrameLen: u32,
-    dwFlags: u32,
-    Anonymous: extern union {
-        iCost: i32,
-    },
-    bstrText: ?BSTR,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumTfLatticeElements_Value = Guid.initString("56988052-47da-4a05-911a-e3d941f17145");
-pub const IID_IEnumTfLatticeElements = &IID_IEnumTfLatticeElements_Value;
-pub const IEnumTfLatticeElements = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumTfLatticeElements,
-            ppEnum: ?*?*IEnumTfLatticeElements,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumTfLatticeElements,
-            ulCount: u32,
-            rgsElements: [*]TF_LMLATTELEMENT,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTfLatticeElements,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTfLatticeElements,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumTfLatticeElements, ppEnum: ?*?*IEnumTfLatticeElements) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumTfLatticeElements, ulCount: u32, rgsElements: [*]TF_LMLATTELEMENT, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgsElements, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumTfLatticeElements) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumTfLatticeElements, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfLMLattice_Value = Guid.initString("d4236675-a5bf-4570-9d42-5d6d7b02d59b");
-pub const IID_ITfLMLattice = &IID_ITfLMLattice_Value;
-pub const ITfLMLattice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryType: *const fn(
-            self: *const ITfLMLattice,
-            rguidType: ?*const Guid,
-            pfSupported: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        EnumLatticeElements: *const fn(
-            self: *const ITfLMLattice,
-            dwFrameStart: u32,
-            rguidType: ?*const Guid,
-            ppEnum: ?*?*IEnumTfLatticeElements,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryType(self: *const ITfLMLattice, rguidType: ?*const Guid, pfSupported: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryType(self, rguidType, pfSupported);
-    }
-    pub fn EnumLatticeElements(self: *const ITfLMLattice, dwFrameStart: u32, rguidType: ?*const Guid, ppEnum: ?*?*IEnumTfLatticeElements) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumLatticeElements(self, dwFrameStart, rguidType, ppEnum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfFnAdviseText_Value = Guid.initString("3527268b-7d53-4dd9-92b7-7296ae461249");
-pub const IID_ITfFnAdviseText = &IID_ITfFnAdviseText_Value;
-pub const ITfFnAdviseText = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        OnTextUpdate: *const fn(
-            self: *const ITfFnAdviseText,
-            pRange: ?*ITfRange,
-            pchText: [*:0]const u16,
-            cch: i32,
-        ) callconv(.winapi) HRESULT,
-        OnLatticeUpdate: *const fn(
-            self: *const ITfFnAdviseText,
-            pRange: ?*ITfRange,
-            pLattice: ?*ITfLMLattice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn OnTextUpdate(self: *const ITfFnAdviseText, pRange: ?*ITfRange, pchText: [*:0]const u16, cch: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTextUpdate(self, pRange, pchText, cch);
-    }
-    pub fn OnLatticeUpdate(self: *const ITfFnAdviseText, pRange: ?*ITfRange, pLattice: ?*ITfLMLattice) callconv(.@"inline") HRESULT {
-        return self.vtable.OnLatticeUpdate(self, pRange, pLattice);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ITfFnSearchCandidateProvider_Value = Guid.initString("87a2ad8f-f27b-4920-8501-67602280175d");
-pub const IID_ITfFnSearchCandidateProvider = &IID_ITfFnSearchCandidateProvider_Value;
-pub const ITfFnSearchCandidateProvider = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        GetSearchCandidates: *const fn(
-            self: *const ITfFnSearchCandidateProvider,
-            bstrQuery: ?BSTR,
-            bstrApplicationId: ?BSTR,
-            pplist: ?*?*ITfCandidateList,
-        ) callconv(.winapi) HRESULT,
-        SetResult: *const fn(
-            self: *const ITfFnSearchCandidateProvider,
-            bstrQuery: ?BSTR,
-            bstrApplicationID: ?BSTR,
-            bstrResult: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn GetSearchCandidates(self: *const ITfFnSearchCandidateProvider, bstrQuery: ?BSTR, bstrApplicationId: ?BSTR, pplist: ?*?*ITfCandidateList) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSearchCandidates(self, bstrQuery, bstrApplicationId, pplist);
-    }
-    pub fn SetResult(self: *const ITfFnSearchCandidateProvider, bstrQuery: ?BSTR, bstrApplicationID: ?BSTR, bstrResult: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetResult(self, bstrQuery, bstrApplicationID, bstrResult);
-    }
-};
-
-pub const TfIntegratableCandidateListSelectionStyle = enum(i32) {
-    ACTIVE_SELECTION = 0,
-    IMPLIED_SELECTION = 1,
-};
-pub const STYLE_ACTIVE_SELECTION = TfIntegratableCandidateListSelectionStyle.ACTIVE_SELECTION;
-pub const STYLE_IMPLIED_SELECTION = TfIntegratableCandidateListSelectionStyle.IMPLIED_SELECTION;
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ITfIntegratableCandidateListUIElement_Value = Guid.initString("c7a6f54f-b180-416f-b2bf-7bf2e4683d7b");
-pub const IID_ITfIntegratableCandidateListUIElement = &IID_ITfIntegratableCandidateListUIElement_Value;
-pub const ITfIntegratableCandidateListUIElement = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetIntegrationStyle: *const fn(
-            self: *const ITfIntegratableCandidateListUIElement,
-            guidIntegrationStyle: Guid,
-        ) callconv(.winapi) HRESULT,
-        GetSelectionStyle: *const fn(
-            self: *const ITfIntegratableCandidateListUIElement,
-            ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle,
-        ) callconv(.winapi) HRESULT,
-        OnKeyDown: *const fn(
-            self: *const ITfIntegratableCandidateListUIElement,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pfEaten: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        ShowCandidateNumbers: *const fn(
-            self: *const ITfIntegratableCandidateListUIElement,
-            pfShow: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        FinalizeExactCompositionString: *const fn(
-            self: *const ITfIntegratableCandidateListUIElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetIntegrationStyle(self: *const ITfIntegratableCandidateListUIElement, guidIntegrationStyle: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIntegrationStyle(self, guidIntegrationStyle);
-    }
-    pub fn GetSelectionStyle(self: *const ITfIntegratableCandidateListUIElement, ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelectionStyle(self, ptfSelectionStyle);
-    }
-    pub fn OnKeyDown(self: *const ITfIntegratableCandidateListUIElement, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnKeyDown(self, wParam, lParam, pfEaten);
-    }
-    pub fn ShowCandidateNumbers(self: *const ITfIntegratableCandidateListUIElement, pfShow: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowCandidateNumbers(self, pfShow);
-    }
-    pub fn FinalizeExactCompositionString(self: *const ITfIntegratableCandidateListUIElement) callconv(.@"inline") HRESULT {
-        return self.vtable.FinalizeExactCompositionString(self);
-    }
-};
-
-pub const TKBLayoutType = enum(i32) {
-    UNDEFINED = 0,
-    CLASSIC = 1,
-    OPTIMIZED = 2,
-};
-pub const TKBLT_UNDEFINED = TKBLayoutType.UNDEFINED;
-pub const TKBLT_CLASSIC = TKBLayoutType.CLASSIC;
-pub const TKBLT_OPTIMIZED = TKBLayoutType.OPTIMIZED;
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ITfFnGetPreferredTouchKeyboardLayout_Value = Guid.initString("5f309a41-590a-4acc-a97f-d8efff13fdfc");
-pub const IID_ITfFnGetPreferredTouchKeyboardLayout = &IID_ITfFnGetPreferredTouchKeyboardLayout_Value;
-pub const ITfFnGetPreferredTouchKeyboardLayout = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        GetLayout: *const fn(
-            self: *const ITfFnGetPreferredTouchKeyboardLayout,
-            pTKBLayoutType: ?*TKBLayoutType,
-            pwPreferredLayoutId: ?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn GetLayout(self: *const ITfFnGetPreferredTouchKeyboardLayout, pTKBLayoutType: ?*TKBLayoutType, pwPreferredLayoutId: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLayout(self, pTKBLayoutType, pwPreferredLayoutId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_ITfFnGetLinguisticAlternates_Value = Guid.initString("ea163ce2-7a65-4506-82a3-c528215da64e");
-pub const IID_ITfFnGetLinguisticAlternates = &IID_ITfFnGetLinguisticAlternates_Value;
-pub const ITfFnGetLinguisticAlternates = extern union {
-    pub const VTable = extern struct {
-        base: ITfFunction.VTable,
-        GetAlternates: *const fn(
-            self: *const ITfFnGetLinguisticAlternates,
-            pRange: ?*ITfRange,
-            ppCandidateList: **ITfCandidateList,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfFunction: ITfFunction,
-    IUnknown: IUnknown,
-    pub fn GetAlternates(self: *const ITfFnGetLinguisticAlternates, pRange: ?*ITfRange, ppCandidateList: **ITfCandidateList) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAlternates(self, pRange, ppCandidateList);
     }
 };
 
@@ -7248,411 +7474,6 @@ pub const IUIManagerEventSink = extern union {
     }
     pub fn OnWindowClosed(self: *const IUIManagerEventSink) callconv(.@"inline") HRESULT {
         return self.vtable.OnWindowClosed(self);
-    }
-};
-
-pub const InputScope = enum(i32) {
-    DEFAULT = 0,
-    URL = 1,
-    FILE_FULLFILEPATH = 2,
-    FILE_FILENAME = 3,
-    EMAIL_USERNAME = 4,
-    EMAIL_SMTPEMAILADDRESS = 5,
-    LOGINNAME = 6,
-    PERSONALNAME_FULLNAME = 7,
-    PERSONALNAME_PREFIX = 8,
-    PERSONALNAME_GIVENNAME = 9,
-    PERSONALNAME_MIDDLENAME = 10,
-    PERSONALNAME_SURNAME = 11,
-    PERSONALNAME_SUFFIX = 12,
-    ADDRESS_FULLPOSTALADDRESS = 13,
-    ADDRESS_POSTALCODE = 14,
-    ADDRESS_STREET = 15,
-    ADDRESS_STATEORPROVINCE = 16,
-    ADDRESS_CITY = 17,
-    ADDRESS_COUNTRYNAME = 18,
-    ADDRESS_COUNTRYSHORTNAME = 19,
-    CURRENCY_AMOUNTANDSYMBOL = 20,
-    CURRENCY_AMOUNT = 21,
-    DATE_FULLDATE = 22,
-    DATE_MONTH = 23,
-    DATE_DAY = 24,
-    DATE_YEAR = 25,
-    DATE_MONTHNAME = 26,
-    DATE_DAYNAME = 27,
-    DIGITS = 28,
-    NUMBER = 29,
-    ONECHAR = 30,
-    PASSWORD = 31,
-    TELEPHONE_FULLTELEPHONENUMBER = 32,
-    TELEPHONE_COUNTRYCODE = 33,
-    TELEPHONE_AREACODE = 34,
-    TELEPHONE_LOCALNUMBER = 35,
-    TIME_FULLTIME = 36,
-    TIME_HOUR = 37,
-    TIME_MINORSEC = 38,
-    NUMBER_FULLWIDTH = 39,
-    ALPHANUMERIC_HALFWIDTH = 40,
-    ALPHANUMERIC_FULLWIDTH = 41,
-    CURRENCY_CHINESE = 42,
-    BOPOMOFO = 43,
-    HIRAGANA = 44,
-    KATAKANA_HALFWIDTH = 45,
-    KATAKANA_FULLWIDTH = 46,
-    HANJA = 47,
-    HANGUL_HALFWIDTH = 48,
-    HANGUL_FULLWIDTH = 49,
-    SEARCH = 50,
-    FORMULA = 51,
-    SEARCH_INCREMENTAL = 52,
-    CHINESE_HALFWIDTH = 53,
-    CHINESE_FULLWIDTH = 54,
-    NATIVE_SCRIPT = 55,
-    YOMI = 56,
-    TEXT = 57,
-    CHAT = 58,
-    NAME_OR_PHONENUMBER = 59,
-    EMAILNAME_OR_ADDRESS = 60,
-    PRIVATE = 61,
-    MAPS = 62,
-    NUMERIC_PASSWORD = 63,
-    NUMERIC_PIN = 64,
-    ALPHANUMERIC_PIN = 65,
-    ALPHANUMERIC_PIN_SET = 66,
-    FORMULA_NUMBER = 67,
-    CHAT_WITHOUT_EMOJI = 68,
-    PHRASELIST = -1,
-    REGULAREXPRESSION = -2,
-    SRGS = -3,
-    XML = -4,
-    ENUMSTRING = -5,
-};
-pub const IS_DEFAULT = InputScope.DEFAULT;
-pub const IS_URL = InputScope.URL;
-pub const IS_FILE_FULLFILEPATH = InputScope.FILE_FULLFILEPATH;
-pub const IS_FILE_FILENAME = InputScope.FILE_FILENAME;
-pub const IS_EMAIL_USERNAME = InputScope.EMAIL_USERNAME;
-pub const IS_EMAIL_SMTPEMAILADDRESS = InputScope.EMAIL_SMTPEMAILADDRESS;
-pub const IS_LOGINNAME = InputScope.LOGINNAME;
-pub const IS_PERSONALNAME_FULLNAME = InputScope.PERSONALNAME_FULLNAME;
-pub const IS_PERSONALNAME_PREFIX = InputScope.PERSONALNAME_PREFIX;
-pub const IS_PERSONALNAME_GIVENNAME = InputScope.PERSONALNAME_GIVENNAME;
-pub const IS_PERSONALNAME_MIDDLENAME = InputScope.PERSONALNAME_MIDDLENAME;
-pub const IS_PERSONALNAME_SURNAME = InputScope.PERSONALNAME_SURNAME;
-pub const IS_PERSONALNAME_SUFFIX = InputScope.PERSONALNAME_SUFFIX;
-pub const IS_ADDRESS_FULLPOSTALADDRESS = InputScope.ADDRESS_FULLPOSTALADDRESS;
-pub const IS_ADDRESS_POSTALCODE = InputScope.ADDRESS_POSTALCODE;
-pub const IS_ADDRESS_STREET = InputScope.ADDRESS_STREET;
-pub const IS_ADDRESS_STATEORPROVINCE = InputScope.ADDRESS_STATEORPROVINCE;
-pub const IS_ADDRESS_CITY = InputScope.ADDRESS_CITY;
-pub const IS_ADDRESS_COUNTRYNAME = InputScope.ADDRESS_COUNTRYNAME;
-pub const IS_ADDRESS_COUNTRYSHORTNAME = InputScope.ADDRESS_COUNTRYSHORTNAME;
-pub const IS_CURRENCY_AMOUNTANDSYMBOL = InputScope.CURRENCY_AMOUNTANDSYMBOL;
-pub const IS_CURRENCY_AMOUNT = InputScope.CURRENCY_AMOUNT;
-pub const IS_DATE_FULLDATE = InputScope.DATE_FULLDATE;
-pub const IS_DATE_MONTH = InputScope.DATE_MONTH;
-pub const IS_DATE_DAY = InputScope.DATE_DAY;
-pub const IS_DATE_YEAR = InputScope.DATE_YEAR;
-pub const IS_DATE_MONTHNAME = InputScope.DATE_MONTHNAME;
-pub const IS_DATE_DAYNAME = InputScope.DATE_DAYNAME;
-pub const IS_DIGITS = InputScope.DIGITS;
-pub const IS_NUMBER = InputScope.NUMBER;
-pub const IS_ONECHAR = InputScope.ONECHAR;
-pub const IS_PASSWORD = InputScope.PASSWORD;
-pub const IS_TELEPHONE_FULLTELEPHONENUMBER = InputScope.TELEPHONE_FULLTELEPHONENUMBER;
-pub const IS_TELEPHONE_COUNTRYCODE = InputScope.TELEPHONE_COUNTRYCODE;
-pub const IS_TELEPHONE_AREACODE = InputScope.TELEPHONE_AREACODE;
-pub const IS_TELEPHONE_LOCALNUMBER = InputScope.TELEPHONE_LOCALNUMBER;
-pub const IS_TIME_FULLTIME = InputScope.TIME_FULLTIME;
-pub const IS_TIME_HOUR = InputScope.TIME_HOUR;
-pub const IS_TIME_MINORSEC = InputScope.TIME_MINORSEC;
-pub const IS_NUMBER_FULLWIDTH = InputScope.NUMBER_FULLWIDTH;
-pub const IS_ALPHANUMERIC_HALFWIDTH = InputScope.ALPHANUMERIC_HALFWIDTH;
-pub const IS_ALPHANUMERIC_FULLWIDTH = InputScope.ALPHANUMERIC_FULLWIDTH;
-pub const IS_CURRENCY_CHINESE = InputScope.CURRENCY_CHINESE;
-pub const IS_BOPOMOFO = InputScope.BOPOMOFO;
-pub const IS_HIRAGANA = InputScope.HIRAGANA;
-pub const IS_KATAKANA_HALFWIDTH = InputScope.KATAKANA_HALFWIDTH;
-pub const IS_KATAKANA_FULLWIDTH = InputScope.KATAKANA_FULLWIDTH;
-pub const IS_HANJA = InputScope.HANJA;
-pub const IS_HANGUL_HALFWIDTH = InputScope.HANGUL_HALFWIDTH;
-pub const IS_HANGUL_FULLWIDTH = InputScope.HANGUL_FULLWIDTH;
-pub const IS_SEARCH = InputScope.SEARCH;
-pub const IS_FORMULA = InputScope.FORMULA;
-pub const IS_SEARCH_INCREMENTAL = InputScope.SEARCH_INCREMENTAL;
-pub const IS_CHINESE_HALFWIDTH = InputScope.CHINESE_HALFWIDTH;
-pub const IS_CHINESE_FULLWIDTH = InputScope.CHINESE_FULLWIDTH;
-pub const IS_NATIVE_SCRIPT = InputScope.NATIVE_SCRIPT;
-pub const IS_YOMI = InputScope.YOMI;
-pub const IS_TEXT = InputScope.TEXT;
-pub const IS_CHAT = InputScope.CHAT;
-pub const IS_NAME_OR_PHONENUMBER = InputScope.NAME_OR_PHONENUMBER;
-pub const IS_EMAILNAME_OR_ADDRESS = InputScope.EMAILNAME_OR_ADDRESS;
-pub const IS_PRIVATE = InputScope.PRIVATE;
-pub const IS_MAPS = InputScope.MAPS;
-pub const IS_NUMERIC_PASSWORD = InputScope.NUMERIC_PASSWORD;
-pub const IS_NUMERIC_PIN = InputScope.NUMERIC_PIN;
-pub const IS_ALPHANUMERIC_PIN = InputScope.ALPHANUMERIC_PIN;
-pub const IS_ALPHANUMERIC_PIN_SET = InputScope.ALPHANUMERIC_PIN_SET;
-pub const IS_FORMULA_NUMBER = InputScope.FORMULA_NUMBER;
-pub const IS_CHAT_WITHOUT_EMOJI = InputScope.CHAT_WITHOUT_EMOJI;
-pub const IS_PHRASELIST = InputScope.PHRASELIST;
-pub const IS_REGULAREXPRESSION = InputScope.REGULAREXPRESSION;
-pub const IS_SRGS = InputScope.SRGS;
-pub const IS_XML = InputScope.XML;
-pub const IS_ENUMSTRING = InputScope.ENUMSTRING;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITfInputScope_Value = Guid.initString("fde1eaee-6924-4cdf-91e7-da38cff5559d");
-pub const IID_ITfInputScope = &IID_ITfInputScope_Value;
-pub const ITfInputScope = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInputScopes: *const fn(
-            self: *const ITfInputScope,
-            pprgInputScopes: [*]?*InputScope,
-            pcCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPhrase: *const fn(
-            self: *const ITfInputScope,
-            ppbstrPhrases: [*]?*?BSTR,
-            pcCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetRegularExpression: *const fn(
-            self: *const ITfInputScope,
-            pbstrRegExp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSRGS: *const fn(
-            self: *const ITfInputScope,
-            pbstrSRGS: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetXML: *const fn(
-            self: *const ITfInputScope,
-            pbstrXML: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetInputScopes(self: *const ITfInputScope, pprgInputScopes: [*]?*InputScope, pcCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputScopes(self, pprgInputScopes, pcCount);
-    }
-    pub fn GetPhrase(self: *const ITfInputScope, ppbstrPhrases: [*]?*?BSTR, pcCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPhrase(self, ppbstrPhrases, pcCount);
-    }
-    pub fn GetRegularExpression(self: *const ITfInputScope, pbstrRegExp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRegularExpression(self, pbstrRegExp);
-    }
-    pub fn GetSRGS(self: *const ITfInputScope, pbstrSRGS: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSRGS(self, pbstrSRGS);
-    }
-    pub fn GetXML(self: *const ITfInputScope, pbstrXML: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetXML(self, pbstrXML);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITfInputScope2_Value = Guid.initString("5731eaa0-6bc2-4681-a532-92fbb74d7c41");
-pub const IID_ITfInputScope2 = &IID_ITfInputScope2_Value;
-pub const ITfInputScope2 = extern union {
-    pub const VTable = extern struct {
-        base: ITfInputScope.VTable,
-        EnumWordList: *const fn(
-            self: *const ITfInputScope2,
-            ppEnumString: ?*?*IEnumString,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITfInputScope: ITfInputScope,
-    IUnknown: IUnknown,
-    pub fn EnumWordList(self: *const ITfInputScope2, ppEnumString: ?*?*IEnumString) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumWordList(self, ppEnumString);
-    }
-};
-
-const CLSID_MSAAControl_Value = Guid.initString("08cd963f-7a3e-4f5c-9bd8-d692bb043c5b");
-pub const CLSID_MSAAControl = &CLSID_MSAAControl_Value;
-
-const CLSID_AccStore_Value = Guid.initString("5440837f-4bff-4ae5-a1b1-7722ecc6332a");
-pub const CLSID_AccStore = &CLSID_AccStore_Value;
-
-const CLSID_AccDictionary_Value = Guid.initString("6572ee16-5fe5-4331-bb6d-76a49c56e423");
-pub const CLSID_AccDictionary = &CLSID_AccDictionary_Value;
-
-const CLSID_AccServerDocMgr_Value = Guid.initString("6089a37e-eb8a-482d-bd6f-f9f46904d16d");
-pub const CLSID_AccServerDocMgr = &CLSID_AccServerDocMgr_Value;
-
-const CLSID_AccClientDocMgr_Value = Guid.initString("fc48cc30-4f3e-4fa1-803b-ad0e196a83b1");
-pub const CLSID_AccClientDocMgr = &CLSID_AccClientDocMgr_Value;
-
-const CLSID_DocWrap_Value = Guid.initString("bf426f7e-7a5e-44d6-830c-a390ea9462a3");
-pub const CLSID_DocWrap = &CLSID_DocWrap_Value;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMSAAControl_Value = Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
-pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
-pub const ITfMSAAControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SystemEnableMSAA: *const fn(
-            self: *const ITfMSAAControl,
-        ) callconv(.winapi) HRESULT,
-        SystemDisableMSAA: *const fn(
-            self: *const ITfMSAAControl,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SystemEnableMSAA(self: *const ITfMSAAControl) callconv(.@"inline") HRESULT {
-        return self.vtable.SystemEnableMSAA(self);
-    }
-    pub fn SystemDisableMSAA(self: *const ITfMSAAControl) callconv(.@"inline") HRESULT {
-        return self.vtable.SystemDisableMSAA(self);
-    }
-};
-
-const IID_IInternalDocWrap_Value = Guid.initString("e1aa6466-9db4-40ba-be03-77c38e8e60b2");
-pub const IID_IInternalDocWrap = &IID_IInternalDocWrap_Value;
-pub const IInternalDocWrap = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        NotifyRevoke: *const fn(
-            self: *const IInternalDocWrap,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn NotifyRevoke(self: *const IInternalDocWrap) callconv(.@"inline") HRESULT {
-        return self.vtable.NotifyRevoke(self);
-    }
-};
-
-const IID_ITextStoreACPEx_Value = Guid.initString("a2de3bc2-3d8e-11d3-81a9-f753fbe61a00");
-pub const IID_ITextStoreACPEx = &IID_ITextStoreACPEx_Value;
-pub const ITextStoreACPEx = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ScrollToRect: *const fn(
-            self: *const ITextStoreACPEx,
-            acpStart: i32,
-            acpEnd: i32,
-            rc: RECT,
-            dwPosition: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ScrollToRect(self: *const ITextStoreACPEx, acpStart: i32, acpEnd: i32, rc: RECT, dwPosition: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ScrollToRect(self, acpStart, acpEnd, rc, dwPosition);
-    }
-};
-
-const IID_ITextStoreAnchorEx_Value = Guid.initString("a2de3bc1-3d8e-11d3-81a9-f753fbe61a00");
-pub const IID_ITextStoreAnchorEx = &IID_ITextStoreAnchorEx_Value;
-pub const ITextStoreAnchorEx = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ScrollToRect: *const fn(
-            self: *const ITextStoreAnchorEx,
-            pStart: ?*IAnchor,
-            pEnd: ?*IAnchor,
-            rc: RECT,
-            dwPosition: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ScrollToRect(self: *const ITextStoreAnchorEx, pStart: ?*IAnchor, pEnd: ?*IAnchor, rc: RECT, dwPosition: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ScrollToRect(self, pStart, pEnd, rc, dwPosition);
-    }
-};
-
-const IID_ITextStoreACPSinkEx_Value = Guid.initString("2bdf9464-41e2-43e3-950c-a6865ba25cd4");
-pub const IID_ITextStoreACPSinkEx = &IID_ITextStoreACPSinkEx_Value;
-pub const ITextStoreACPSinkEx = extern union {
-    pub const VTable = extern struct {
-        base: ITextStoreACPSink.VTable,
-        OnDisconnect: *const fn(
-            self: *const ITextStoreACPSinkEx,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITextStoreACPSink: ITextStoreACPSink,
-    IUnknown: IUnknown,
-    pub fn OnDisconnect(self: *const ITextStoreACPSinkEx) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDisconnect(self);
-    }
-};
-
-const IID_ITextStoreSinkAnchorEx_Value = Guid.initString("25642426-028d-4474-977b-111bb114fe3e");
-pub const IID_ITextStoreSinkAnchorEx = &IID_ITextStoreSinkAnchorEx_Value;
-pub const ITextStoreSinkAnchorEx = extern union {
-    pub const VTable = extern struct {
-        base: ITextStoreAnchorSink.VTable,
-        OnDisconnect: *const fn(
-            self: *const ITextStoreSinkAnchorEx,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITextStoreAnchorSink: ITextStoreAnchorSink,
-    IUnknown: IUnknown,
-    pub fn OnDisconnect(self: *const ITextStoreSinkAnchorEx) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDisconnect(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IAccDictionary_Value = Guid.initString("1dc4cb5f-d737-474d-ade9-5ccfc9bc1cc9");
-pub const IID_IAccDictionary = &IID_IAccDictionary_Value;
-pub const IAccDictionary = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLocalizedString: *const fn(
-            self: *const IAccDictionary,
-            Term: ?*const Guid,
-            lcid: u32,
-            pResult: ?*?BSTR,
-            plcid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetParentTerm: *const fn(
-            self: *const IAccDictionary,
-            Term: ?*const Guid,
-            pParentTerm: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetMnemonicString: *const fn(
-            self: *const IAccDictionary,
-            Term: ?*const Guid,
-            pResult: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        LookupMnemonicTerm: *const fn(
-            self: *const IAccDictionary,
-            bstrMnemonic: ?BSTR,
-            pTerm: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        ConvertValueToString: *const fn(
-            self: *const IAccDictionary,
-            Term: ?*const Guid,
-            lcid: u32,
-            varValue: VARIANT,
-            pbstrResult: ?*?BSTR,
-            plcid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetLocalizedString(self: *const IAccDictionary, Term: ?*const Guid, lcid: u32, pResult: ?*?BSTR, plcid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalizedString(self, Term, lcid, pResult, plcid);
-    }
-    pub fn GetParentTerm(self: *const IAccDictionary, Term: ?*const Guid, pParentTerm: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParentTerm(self, Term, pParentTerm);
-    }
-    pub fn GetMnemonicString(self: *const IAccDictionary, Term: ?*const Guid, pResult: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMnemonicString(self, Term, pResult);
-    }
-    pub fn LookupMnemonicTerm(self: *const IAccDictionary, bstrMnemonic: ?BSTR, pTerm: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupMnemonicTerm(self, bstrMnemonic, pTerm);
-    }
-    pub fn ConvertValueToString(self: *const IAccDictionary, Term: ?*const Guid, lcid: u32, varValue: VARIANT, pbstrResult: ?*?BSTR, plcid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertValueToString(self, Term, lcid, varValue, pbstrResult, plcid);
     }
 };
 
@@ -7708,269 +7529,448 @@ pub const IVersionInfo = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICoCreateLocally_Value = Guid.initString("03de00aa-f272-41e3-99cb-03c5e8114ea0");
-pub const IID_ICoCreateLocally = &IID_ICoCreateLocally_Value;
-pub const ICoCreateLocally = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CoCreateLocally: *const fn(
-            self: *const ICoCreateLocally,
-            rclsid: ?*const Guid,
-            dwClsContext: u32,
-            riid: ?*const Guid,
-            punk: **IUnknown,
-            riidParam: ?*const Guid,
-            punkParam: ?*IUnknown,
-            varParam: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CoCreateLocally(self: *const ICoCreateLocally, rclsid: ?*const Guid, dwClsContext: u32, riid: ?*const Guid, punk: **IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.CoCreateLocally(self, rclsid, dwClsContext, riid, punk, riidParam, punkParam, varParam);
-    }
+pub const LANG_BAR_ITEM_ICON_MODE_FLAGS = enum(u32) {
+    NONE = 0,
+    USEPROFILEICON = 1,
+};
+pub const TF_DTLBI_NONE = LANG_BAR_ITEM_ICON_MODE_FLAGS.NONE;
+pub const TF_DTLBI_USEPROFILEICON = LANG_BAR_ITEM_ICON_MODE_FLAGS.USEPROFILEICON;
+
+const CLSID_MSAAControl_Value = Guid.initString("08cd963f-7a3e-4f5c-9bd8-d692bb043c5b");
+pub const CLSID_MSAAControl = &CLSID_MSAAControl_Value;
+
+pub const TEXT_STORE_CHANGE_FLAGS = packed struct(u32) {
+    CORRECTION: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const TS_TC_NONE = TEXT_STORE_CHANGE_FLAGS{ };
+pub const TS_TC_CORRECTION = TEXT_STORE_CHANGE_FLAGS{ .CORRECTION = 1 };
+
+pub const TEXT_STORE_LOCK_FLAGS = enum(u32) {
+    D = 2,
+    WRITE = 6,
+};
+pub const TS_LF_READ = TEXT_STORE_LOCK_FLAGS.D;
+pub const TS_LF_READWRITE = TEXT_STORE_LOCK_FLAGS.WRITE;
+
+pub const TEXT_STORE_TEXT_CHANGE_FLAGS = packed struct(u32) {
+    CORRECTION: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const TS_ST_NONE = TEXT_STORE_TEXT_CHANGE_FLAGS{ };
+pub const TS_ST_CORRECTION = TEXT_STORE_TEXT_CHANGE_FLAGS{ .CORRECTION = 1 };
+
+pub const TF_CONTEXT_EDIT_CONTEXT_FLAGS = packed struct(u32) {
+    SYNC: u1 = 0,
+    READ: u1 = 0,
+    _2: u1 = 0,
+    ASYNC: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const TF_ES_ASYNCDONTCARE = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ };
+pub const TF_ES_SYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .SYNC = 1 };
+pub const TF_ES_READ = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .READ = 1 };
+pub const TF_ES_READWRITE = TF_CONTEXT_EDIT_CONTEXT_FLAGS{
+    .READ = 1,
+    ._2 = 1,
+};
+pub const TF_ES_ASYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .ASYNC = 1 };
+
+pub const TF_DA_ATTR_INFO = enum(i32) {
+    INPUT = 0,
+    TARGET_CONVERTED = 1,
+    CONVERTED = 2,
+    TARGET_NOTCONVERTED = 3,
+    INPUT_ERROR = 4,
+    FIXEDCONVERTED = 5,
+    OTHER = -1,
+};
+pub const TF_ATTR_INPUT = TF_DA_ATTR_INFO.INPUT;
+pub const TF_ATTR_TARGET_CONVERTED = TF_DA_ATTR_INFO.TARGET_CONVERTED;
+pub const TF_ATTR_CONVERTED = TF_DA_ATTR_INFO.CONVERTED;
+pub const TF_ATTR_TARGET_NOTCONVERTED = TF_DA_ATTR_INFO.TARGET_NOTCONVERTED;
+pub const TF_ATTR_INPUT_ERROR = TF_DA_ATTR_INFO.INPUT_ERROR;
+pub const TF_ATTR_FIXEDCONVERTED = TF_DA_ATTR_INFO.FIXEDCONVERTED;
+pub const TF_ATTR_OTHER = TF_DA_ATTR_INFO.OTHER;
+
+pub const TF_DA_COLOR = extern struct {
+    type: TF_DA_COLORTYPE,
+    Anonymous: extern union {
+        nIndex: i32,
+        cr: COLORREF,
+    },
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICoCreatedLocally_Value = Guid.initString("0a53eb6c-1908-4742-8cff-2cee2e93f94c");
-pub const IID_ICoCreatedLocally = &IID_ICoCreatedLocally_Value;
-pub const ICoCreatedLocally = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LocalInit: *const fn(
-            self: *const ICoCreatedLocally,
-            punkLocalObject: ?*IUnknown,
-            riidParam: ?*const Guid,
-            punkParam: ?*IUnknown,
-            varParam: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn LocalInit(self: *const ICoCreatedLocally, punkLocalObject: ?*IUnknown, riidParam: ?*const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.LocalInit(self, punkLocalObject, riidParam, punkParam, varParam);
-    }
+pub const TF_DA_COLORTYPE = enum(i32) {
+    NONE = 0,
+    SYSCOLOR = 1,
+    COLORREF = 2,
+};
+pub const TF_CT_NONE = TF_DA_COLORTYPE.NONE;
+pub const TF_CT_SYSCOLOR = TF_DA_COLORTYPE.SYSCOLOR;
+pub const TF_CT_COLORREF = TF_DA_COLORTYPE.COLORREF;
+
+pub const TF_DA_LINESTYLE = enum(i32) {
+    NONE = 0,
+    SOLID = 1,
+    DOT = 2,
+    DASH = 3,
+    SQUIGGLE = 4,
+};
+pub const TF_LS_NONE = TF_DA_LINESTYLE.NONE;
+pub const TF_LS_SOLID = TF_DA_LINESTYLE.SOLID;
+pub const TF_LS_DOT = TF_DA_LINESTYLE.DOT;
+pub const TF_LS_DASH = TF_DA_LINESTYLE.DASH;
+pub const TF_LS_SQUIGGLE = TF_DA_LINESTYLE.SQUIGGLE;
+
+pub const TF_DISPLAYATTRIBUTE = extern struct {
+    crText: TF_DA_COLOR,
+    crBk: TF_DA_COLOR,
+    lsStyle: TF_DA_LINESTYLE,
+    fBoldLine: BOOL,
+    crLine: TF_DA_COLOR,
+    bAttr: TF_DA_ATTR_INFO,
 };
 
-const IID_IAccStore_Value = Guid.initString("e2cd4a63-2b72-4d48-b739-95e4765195ba");
-pub const IID_IAccStore = &IID_IAccStore_Value;
-pub const IAccStore = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Register: *const fn(
-            self: *const IAccStore,
-            riid: ?*const Guid,
-            punk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Unregister: *const fn(
-            self: *const IAccStore,
-            punk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetDocuments: *const fn(
-            self: *const IAccStore,
-            enumUnknown: ?*?*IEnumUnknown,
-        ) callconv(.winapi) HRESULT,
-        LookupByHWND: *const fn(
-            self: *const IAccStore,
-            hWnd: ?HWND,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-        LookupByPoint: *const fn(
-            self: *const IAccStore,
-            pt: POINT,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-        OnDocumentFocus: *const fn(
-            self: *const IAccStore,
-            punk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetFocused: *const fn(
-            self: *const IAccStore,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Register(self: *const IAccStore, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Register(self, riid, punk);
-    }
-    pub fn Unregister(self: *const IAccStore, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Unregister(self, punk);
-    }
-    pub fn GetDocuments(self: *const IAccStore, enumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDocuments(self, enumUnknown);
-    }
-    pub fn LookupByHWND(self: *const IAccStore, hWnd: ?HWND, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupByHWND(self, hWnd, riid, ppunk);
-    }
-    pub fn LookupByPoint(self: *const IAccStore, pt: POINT, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupByPoint(self, pt, riid, ppunk);
-    }
-    pub fn OnDocumentFocus(self: *const IAccStore, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDocumentFocus(self, punk);
-    }
-    pub fn GetFocused(self: *const IAccStore, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFocused(self, riid, ppunk);
-    }
+pub const TF_HALTCOND = extern struct {
+    pHaltRange: ?*ITfRange,
+    aHaltPos: TfAnchor,
+    dwFlags: u32,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IAccServerDocMgr_Value = Guid.initString("ad7c73cf-6dd5-4855-abc2-b04bad5b9153");
-pub const IID_IAccServerDocMgr = &IID_IAccServerDocMgr_Value;
-pub const IAccServerDocMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        NewDocument: *const fn(
-            self: *const IAccServerDocMgr,
-            riid: ?*const Guid,
-            punk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        RevokeDocument: *const fn(
-            self: *const IAccServerDocMgr,
-            punk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        OnDocumentFocus: *const fn(
-            self: *const IAccServerDocMgr,
-            punk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn NewDocument(self: *const IAccServerDocMgr, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.NewDocument(self, riid, punk);
-    }
-    pub fn RevokeDocument(self: *const IAccServerDocMgr, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.RevokeDocument(self, punk);
-    }
-    pub fn OnDocumentFocus(self: *const IAccServerDocMgr, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDocumentFocus(self, punk);
-    }
+pub const TF_INPUTPROCESSORPROFILE = extern struct {
+    dwProfileType: u32,
+    langid: u16,
+    clsid: Guid,
+    guidProfile: Guid,
+    catid: Guid,
+    hklSubstitute: ?HKL,
+    dwCaps: u32,
+    hkl: ?HKL,
+    dwFlags: u32,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IAccClientDocMgr_Value = Guid.initString("4c896039-7b6d-49e6-a8c1-45116a98292b");
-pub const IID_IAccClientDocMgr = &IID_IAccClientDocMgr_Value;
-pub const IAccClientDocMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDocuments: *const fn(
-            self: *const IAccClientDocMgr,
-            enumUnknown: ?*?*IEnumUnknown,
-        ) callconv(.winapi) HRESULT,
-        LookupByHWND: *const fn(
-            self: *const IAccClientDocMgr,
-            hWnd: ?HWND,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-        LookupByPoint: *const fn(
-            self: *const IAccClientDocMgr,
-            pt: POINT,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetFocused: *const fn(
-            self: *const IAccClientDocMgr,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDocuments(self: *const IAccClientDocMgr, enumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDocuments(self, enumUnknown);
-    }
-    pub fn LookupByHWND(self: *const IAccClientDocMgr, hWnd: ?HWND, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupByHWND(self, hWnd, riid, ppunk);
-    }
-    pub fn LookupByPoint(self: *const IAccClientDocMgr, pt: POINT, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupByPoint(self, pt, riid, ppunk);
-    }
-    pub fn GetFocused(self: *const IAccClientDocMgr, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFocused(self, riid, ppunk);
-    }
+pub const TF_LANGBARITEMINFO = extern struct {
+    clsidService: Guid,
+    guidItem: Guid,
+    dwStyle: u32,
+    ulSort: u32,
+    szDescription: [32]u16,
 };
 
-const IID_IDocWrap_Value = Guid.initString("dcd285fe-0be0-43bd-99c9-aaaec513c555");
-pub const IID_IDocWrap = &IID_IDocWrap_Value;
-pub const IDocWrap = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetDoc: *const fn(
-            self: *const IDocWrap,
-            riid: ?*const Guid,
-            punk: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetWrappedDoc: *const fn(
-            self: *const IDocWrap,
-            riid: ?*const Guid,
-            ppunk: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetDoc(self: *const IDocWrap, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDoc(self, riid, punk);
-    }
-    pub fn GetWrappedDoc(self: *const IDocWrap, riid: ?*const Guid, ppunk: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWrappedDoc(self, riid, ppunk);
-    }
+pub const TF_LANGUAGEPROFILE = extern struct {
+    clsid: Guid,
+    langid: u16,
+    catid: Guid,
+    fActive: BOOL,
+    guidProfile: Guid,
 };
 
-const IID_IClonableWrapper_Value = Guid.initString("b33e75ff-e84c-4dca-a25c-33b8dc003374");
-pub const IID_IClonableWrapper = &IID_IClonableWrapper_Value;
-pub const IClonableWrapper = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CloneNewWrapper: *const fn(
-            self: *const IClonableWrapper,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CloneNewWrapper(self: *const IClonableWrapper, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CloneNewWrapper(self, riid, ppv);
-    }
+pub const TF_LBBALLOONINFO = extern struct {
+    style: TfLBBalloonStyle,
+    bstrText: ?BSTR,
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfSpeechUIServer_Value = Guid.initString("90e9a944-9244-489f-a78f-de67afc013a7");
-pub const IID_ITfSpeechUIServer = &IID_ITfSpeechUIServer_Value;
-pub const ITfSpeechUIServer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const ITfSpeechUIServer,
-        ) callconv(.winapi) HRESULT,
-        ShowUI: *const fn(
-            self: *const ITfSpeechUIServer,
-            fShow: BOOL,
-        ) callconv(.winapi) HRESULT,
-        UpdateBalloon: *const fn(
-            self: *const ITfSpeechUIServer,
-            style: TfLBBalloonStyle,
-            pch: [*:0]const u16,
-            cch: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const ITfSpeechUIServer) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self);
-    }
-    pub fn ShowUI(self: *const ITfSpeechUIServer, fShow: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowUI(self, fShow);
-    }
-    pub fn UpdateBalloon(self: *const ITfSpeechUIServer, style: TfLBBalloonStyle, pch: [*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateBalloon(self, style, pch, cch);
-    }
+pub const TF_LMLATTELEMENT = extern struct {
+    dwFrameStart: u32,
+    dwFrameLen: u32,
+    dwFlags: u32,
+    Anonymous: extern union {
+        iCost: i32,
+    },
+    bstrText: ?BSTR,
 };
+
+pub const TF_PERSISTENT_PROPERTY_HEADER_ACP = extern struct {
+    guidType: Guid,
+    ichStart: i32,
+    cch: i32,
+    cb: u32,
+    dwPrivate: u32,
+    clsidTIP: Guid,
+};
+
+pub const TF_PRESERVEDKEY = extern struct {
+    uVKey: u32,
+    uModifiers: u32,
+};
+
+pub const TF_PROPERTYVAL = extern struct {
+    guidId: Guid,
+    varValue: VARIANT,
+};
+
+pub const TF_SELECTION = extern struct {
+    range: ?*ITfRange,
+    style: TF_SELECTIONSTYLE,
+};
+
+pub const TF_SELECTIONSTYLE = extern struct {
+    ase: TfActiveSelEnd,
+    fInterimChar: BOOL,
+};
+
+pub const TfActiveSelEnd = enum(i32) {
+    NONE = 0,
+    START = 1,
+    END = 2,
+};
+pub const TF_AE_NONE = TfActiveSelEnd.NONE;
+pub const TF_AE_START = TfActiveSelEnd.START;
+pub const TF_AE_END = TfActiveSelEnd.END;
+
+pub const TfAnchor = enum(i32) {
+    START = 0,
+    END = 1,
+};
+pub const TF_ANCHOR_START = TfAnchor.START;
+pub const TF_ANCHOR_END = TfAnchor.END;
+
+pub const TfCandidateResult = enum(i32) {
+    FINALIZED = 0,
+    SELECTED = 1,
+    CANCELED = 2,
+};
+pub const CAND_FINALIZED = TfCandidateResult.FINALIZED;
+pub const CAND_SELECTED = TfCandidateResult.SELECTED;
+pub const CAND_CANCELED = TfCandidateResult.CANCELED;
+
+pub const TfGravity = enum(i32) {
+    BACKWARD = 0,
+    FORWARD = 1,
+};
+pub const TF_GRAVITY_BACKWARD = TfGravity.BACKWARD;
+pub const TF_GRAVITY_FORWARD = TfGravity.FORWARD;
+
+pub const TfIntegratableCandidateListSelectionStyle = enum(i32) {
+    ACTIVE_SELECTION = 0,
+    IMPLIED_SELECTION = 1,
+};
+pub const STYLE_ACTIVE_SELECTION = TfIntegratableCandidateListSelectionStyle.ACTIVE_SELECTION;
+pub const STYLE_IMPLIED_SELECTION = TfIntegratableCandidateListSelectionStyle.IMPLIED_SELECTION;
+
+pub const TfLayoutCode = enum(i32) {
+    CREATE = 0,
+    CHANGE = 1,
+    DESTROY = 2,
+};
+pub const TF_LC_CREATE = TfLayoutCode.CREATE;
+pub const TF_LC_CHANGE = TfLayoutCode.CHANGE;
+pub const TF_LC_DESTROY = TfLayoutCode.DESTROY;
+
+pub const TfLBBalloonStyle = enum(i32) {
+    RECO = 0,
+    SHOW = 1,
+    MISS = 2,
+};
+pub const TF_LB_BALLOON_RECO = TfLBBalloonStyle.RECO;
+pub const TF_LB_BALLOON_SHOW = TfLBBalloonStyle.SHOW;
+pub const TF_LB_BALLOON_MISS = TfLBBalloonStyle.MISS;
+
+pub const TfLBIClick = enum(i32) {
+    RIGHT = 1,
+    LEFT = 2,
+};
+pub const TF_LBI_CLK_RIGHT = TfLBIClick.RIGHT;
+pub const TF_LBI_CLK_LEFT = TfLBIClick.LEFT;
+
+pub const TfSapiObject = enum(i32) {
+    RESMGR = 0,
+    RECOCONTEXT = 1,
+    RECOGNIZER = 2,
+    VOICE = 3,
+    DICTGRAM = 4,
+    RECOGNIZERNOINIT = 5,
+};
+pub const GETIF_RESMGR = TfSapiObject.RESMGR;
+pub const GETIF_RECOCONTEXT = TfSapiObject.RECOCONTEXT;
+pub const GETIF_RECOGNIZER = TfSapiObject.RECOGNIZER;
+pub const GETIF_VOICE = TfSapiObject.VOICE;
+pub const GETIF_DICTGRAM = TfSapiObject.DICTGRAM;
+pub const GETIF_RECOGNIZERNOINIT = TfSapiObject.RECOGNIZERNOINIT;
+
+pub const TfShiftDir = enum(i32) {
+    BACKWARD = 0,
+    FORWARD = 1,
+};
+pub const TF_SD_BACKWARD = TfShiftDir.BACKWARD;
+pub const TF_SD_FORWARD = TfShiftDir.FORWARD;
+
+pub const TKBLayoutType = enum(i32) {
+    UNDEFINED = 0,
+    CLASSIC = 1,
+    OPTIMIZED = 2,
+};
+pub const TKBLT_UNDEFINED = TKBLayoutType.UNDEFINED;
+pub const TKBLT_CLASSIC = TKBLayoutType.CLASSIC;
+pub const TKBLT_OPTIMIZED = TKBLayoutType.OPTIMIZED;
+
+pub const TS_ATTRVAL = extern struct {
+    idAttr: Guid,
+    dwOverlapId: u32,
+    varValue: VARIANT,
+};
+
+pub const TS_RUNINFO = extern struct {
+    uCount: u32,
+    type: TsRunType,
+};
+
+pub const TS_SELECTION_ACP = extern struct {
+    acpStart: i32,
+    acpEnd: i32,
+    style: TS_SELECTIONSTYLE,
+};
+
+pub const TS_SELECTION_ANCHOR = extern struct {
+    paStart: ?*IAnchor,
+    paEnd: ?*IAnchor,
+    style: TS_SELECTIONSTYLE,
+};
+
+pub const TS_SELECTIONSTYLE = extern struct {
+    ase: TsActiveSelEnd,
+    fInterimChar: BOOL,
+};
+
+pub const TS_STATUS = extern struct {
+    dwDynamicFlags: u32,
+    dwStaticFlags: u32,
+};
+
+pub const TS_TEXTCHANGE = extern struct {
+    acpStart: i32,
+    acpOldEnd: i32,
+    acpNewEnd: i32,
+};
+
+pub const TsActiveSelEnd = enum(i32) {
+    NONE = 0,
+    START = 1,
+    END = 2,
+};
+pub const TS_AE_NONE = TsActiveSelEnd.NONE;
+pub const TS_AE_START = TsActiveSelEnd.START;
+pub const TS_AE_END = TsActiveSelEnd.END;
+
+pub const TsGravity = enum(i32) {
+    BACKWARD = 0,
+    FORWARD = 1,
+};
+pub const TS_GR_BACKWARD = TsGravity.BACKWARD;
+pub const TS_GR_FORWARD = TsGravity.FORWARD;
+
+pub const TsLayoutCode = enum(i32) {
+    CREATE = 0,
+    CHANGE = 1,
+    DESTROY = 2,
+};
+pub const TS_LC_CREATE = TsLayoutCode.CREATE;
+pub const TS_LC_CHANGE = TsLayoutCode.CHANGE;
+pub const TS_LC_DESTROY = TsLayoutCode.DESTROY;
+
+pub const TsRunType = enum(i32) {
+    PLAIN = 0,
+    HIDDEN = 1,
+    OPAQUE = 2,
+};
+pub const TS_RT_PLAIN = TsRunType.PLAIN;
+pub const TS_RT_HIDDEN = TsRunType.HIDDEN;
+pub const TS_RT_OPAQUE = TsRunType.OPAQUE;
+
+pub const TsShiftDir = enum(i32) {
+    BACKWARD = 0,
+    FORWARD = 1,
+};
+pub const TS_SD_BACKWARD = TsShiftDir.BACKWARD;
+pub const TS_SD_FORWARD = TsShiftDir.FORWARD;
 
 
 //--------------------------------------------------------------------------------

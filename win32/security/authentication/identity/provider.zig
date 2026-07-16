@@ -3,87 +3,157 @@
 // Section: Constants (12)
 //--------------------------------------------------------------------------------
 pub const IDENTITY_KEYWORD_ASSOCIATED = "associated";
-pub const IDENTITY_KEYWORD_LOCAL = "local";
-pub const IDENTITY_KEYWORD_HOMEGROUP = "homegroup";
 pub const IDENTITY_KEYWORD_CONNECTED = "connected";
+pub const IDENTITY_KEYWORD_HOMEGROUP = "homegroup";
+pub const IDENTITY_KEYWORD_LOCAL = "local";
 pub const OID_OAssociatedIdentityProviderObject = Guid.initString("98c5a3dd-db68-4f1a-8d2b-9079cdfeaf61");
-pub const STR_OUT_OF_BOX_EXPERIENCE = "OutOfBoxExperience";
-pub const STR_MODERN_SETTINGS_ADD_USER = "ModernSettingsAddUser";
-pub const STR_OUT_OF_BOX_UPGRADE_EXPERIENCE = "OutOfBoxUpgradeExperience";
 pub const STR_COMPLETE_ACCOUNT = "CompleteAccount";
+pub const STR_MODERN_SETTINGS_ADD_USER = "ModernSettingsAddUser";
 pub const STR_NTH_USER_FIRST_AUTH = "NthUserFirstAuth";
-pub const STR_USER_NAME = "Username";
+pub const STR_OUT_OF_BOX_EXPERIENCE = "OutOfBoxExperience";
+pub const STR_OUT_OF_BOX_UPGRADE_EXPERIENCE = "OutOfBoxUpgradeExperience";
 pub const STR_PROPERTY_STORE = "PropertyStore";
+pub const STR_USER_NAME = "Username";
 
 //--------------------------------------------------------------------------------
 // Section: Types (20)
 //--------------------------------------------------------------------------------
-pub const IDENTITY_TYPE = enum(i32) {
-    ALL = 0,
-    ME_ONLY = 1,
+pub const ACCOUNT_STATE = enum(i32) {
+    NOT_CONNECTED = 0,
+    CONNECTING = 1,
+    CONNECT_COMPLETED = 2,
 };
-pub const IDENTITIES_ALL = IDENTITY_TYPE.ALL;
-pub const IDENTITIES_ME_ONLY = IDENTITY_TYPE.ME_ONLY;
+pub const NOT_CONNECTED = ACCOUNT_STATE.NOT_CONNECTED;
+pub const CONNECTING = ACCOUNT_STATE.CONNECTING;
+pub const CONNECT_COMPLETED = ACCOUNT_STATE.CONNECT_COMPLETED;
 
-pub const IdentityUpdateEvent = packed struct(u32) {
-    ASSOCIATED: u1 = 0,
-    DISASSOCIATED: u1 = 0,
-    CREATED: u1 = 0,
-    IMPORTED: u1 = 0,
-    DELETED: u1 = 0,
-    PROPCHANGED: u1 = 0,
-    CONNECTED: u1 = 0,
-    DISCONNECTED: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const IDENTITY_ASSOCIATED = IdentityUpdateEvent{ .ASSOCIATED = 1 };
-pub const IDENTITY_DISASSOCIATED = IdentityUpdateEvent{ .DISASSOCIATED = 1 };
-pub const IDENTITY_CREATED = IdentityUpdateEvent{ .CREATED = 1 };
-pub const IDENTITY_IMPORTED = IdentityUpdateEvent{ .IMPORTED = 1 };
-pub const IDENTITY_DELETED = IdentityUpdateEvent{ .DELETED = 1 };
-pub const IDENTITY_PROPCHANGED = IdentityUpdateEvent{ .PROPCHANGED = 1 };
-pub const IDENTITY_CONNECTED = IdentityUpdateEvent{ .CONNECTED = 1 };
-pub const IDENTITY_DISCONNECTED = IdentityUpdateEvent{ .DISCONNECTED = 1 };
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IIdentityAdvise_Value = Guid.initString("4e982fed-d14b-440c-b8d6-bb386453d386");
-pub const IID_IIdentityAdvise = &IID_IIdentityAdvise_Value;
-pub const IIdentityAdvise = extern union {
+const IID_AsyncIAssociatedIdentityProvider_Value = Guid.initString("2834d6ed-297e-4e72-8a51-961e86f05152");
+pub const IID_AsyncIAssociatedIdentityProvider = &IID_AsyncIAssociatedIdentityProvider_Value;
+pub const AsyncIAssociatedIdentityProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IdentityUpdated: *const fn(
-            self: *const IIdentityAdvise,
-            dwIdentityUpdateEvents: IdentityUpdateEvent,
+        Begin_AssociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        Finish_AssociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        Begin_DisassociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Finish_DisassociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+        ) callconv(.winapi) HRESULT,
+        Begin_ChangeCredential: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Finish_ChangeCredential: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IdentityUpdated(self: *const IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
+    pub fn Begin_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_AssociateIdentity(self, hwndParent);
+    }
+    pub fn Finish_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_AssociateIdentity(self, ppPropertyStore);
+    }
+    pub fn Begin_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_DisassociateIdentity(self, hwndParent, lpszUniqueID);
+    }
+    pub fn Finish_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_DisassociateIdentity(self);
+    }
+    pub fn Begin_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_ChangeCredential(self, hwndParent, lpszUniqueID);
+    }
+    pub fn Finish_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_ChangeCredential(self);
+    }
+};
+
+const IID_AsyncIConnectedIdentityProvider_Value = Guid.initString("9ce55141-bce9-4e15-824d-43d79f512f93");
+pub const IID_AsyncIConnectedIdentityProvider = &IID_AsyncIConnectedIdentityProvider_Value;
+pub const AsyncIConnectedIdentityProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin_ConnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            AuthBuffer: [*:0]u8,
+            AuthBufferSize: u32,
+        ) callconv(.winapi) HRESULT,
+        Finish_ConnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(.winapi) HRESULT,
+        Begin_DisconnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(.winapi) HRESULT,
+        Finish_DisconnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(.winapi) HRESULT,
+        Begin_IsConnected: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(.winapi) HRESULT,
+        Finish_IsConnected: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            Connected: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Begin_GetUrl: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            Identifier: IDENTITY_URL,
+            Context: ?*IBindCtx,
+        ) callconv(.winapi) HRESULT,
+        Finish_GetUrl: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            PostData: ?*VARIANT,
+            Url: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        Begin_GetAccountState: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(.winapi) HRESULT,
+        Finish_GetAccountState: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            pState: ?*ACCOUNT_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Begin_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_ConnectIdentity(self, AuthBuffer, AuthBufferSize);
+    }
+    pub fn Finish_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_ConnectIdentity(self);
+    }
+    pub fn Begin_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_DisconnectIdentity(self);
+    }
+    pub fn Finish_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_DisconnectIdentity(self);
+    }
+    pub fn Begin_IsConnected(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_IsConnected(self);
+    }
+    pub fn Finish_IsConnected(self: *const AsyncIConnectedIdentityProvider, Connected: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_IsConnected(self, Connected);
+    }
+    pub fn Begin_GetUrl(self: *const AsyncIConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_GetUrl(self, Identifier, Context);
+    }
+    pub fn Finish_GetUrl(self: *const AsyncIConnectedIdentityProvider, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_GetUrl(self, PostData, Url);
+    }
+    pub fn Begin_GetAccountState(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_GetAccountState(self);
+    }
+    pub fn Finish_GetAccountState(self: *const AsyncIConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_GetAccountState(self, pState);
     }
 };
 
@@ -111,79 +181,43 @@ pub const AsyncIIdentityAdvise = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IIdentityProvider_Value = Guid.initString("0d1b9e0c-e8ba-4f55-a81b-bce934b948f5");
-pub const IID_IIdentityProvider = &IID_IIdentityProvider_Value;
-pub const IIdentityProvider = extern union {
+const IID_AsyncIIdentityAuthentication_Value = Guid.initString("f9a2f918-feca-4e9c-9633-61cbf13ed34d");
+pub const IID_AsyncIIdentityAuthentication = &IID_AsyncIIdentityAuthentication_Value;
+pub const AsyncIIdentityAuthentication = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdentityEnum: *const fn(
-            self: *const IIdentityProvider,
-            eIdentityType: IDENTITY_TYPE,
-            pFilterkey: ?*const PROPERTYKEY,
-            pFilterPropVarValue: ?*const PROPVARIANT,
-            ppIdentityEnum: ?*?*IEnumUnknown,
+        Begin_SetIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
+            CredBuffer: ?[*:0]u8,
+            CredBufferLength: u32,
         ) callconv(.winapi) HRESULT,
-        Create: *const fn(
-            self: *const IIdentityProvider,
-            lpszUserName: ?[*:0]const u16,
-            ppPropertyStore: ?*?*IPropertyStore,
-            pKeywordsToAdd: ?*const PROPVARIANT,
+        Finish_SetIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
         ) callconv(.winapi) HRESULT,
-        Import: *const fn(
-            self: *const IIdentityProvider,
-            pPropertyStore: ?*IPropertyStore,
+        Begin_ValidateIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
+            CredBuffer: [*:0]u8,
+            CredBufferLength: u32,
+            ppIdentityProperties: ?*?*IPropertyStore,
         ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IIdentityProvider,
-            lpszUniqueID: ?[*:0]const u16,
-            pKeywordsToDelete: ?*const PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        FindByUniqueID: *const fn(
-            self: *const IIdentityProvider,
-            lpszUniqueID: ?[*:0]const u16,
-            ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        GetProviderPropertyStore: *const fn(
-            self: *const IIdentityProvider,
-            ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        Advise: *const fn(
-            self: *const IIdentityProvider,
-            pIdentityAdvise: ?*IIdentityAdvise,
-            dwIdentityUpdateEvents: IdentityUpdateEvent,
-            pdwCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        UnAdvise: *const fn(
-            self: *const IIdentityProvider,
-            dwCookie: u32,
+        Finish_ValidateIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
+            ppIdentityProperties: ?*?*IPropertyStore,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIdentityEnum(self: *const IIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
+    pub fn Begin_SetIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_SetIdentityCredential(self, CredBuffer, CredBufferLength);
     }
-    pub fn Create(self: *const IIdentityProvider, lpszUserName: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, lpszUserName, ppPropertyStore, pKeywordsToAdd);
+    pub fn Finish_SetIdentityCredential(self: *const AsyncIIdentityAuthentication) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_SetIdentityCredential(self);
     }
-    pub fn Import(self: *const IIdentityProvider, pPropertyStore: ?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.Import(self, pPropertyStore);
+    pub fn Begin_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
     }
-    pub fn Delete(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, lpszUniqueID, pKeywordsToDelete);
-    }
-    pub fn FindByUniqueID(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.FindByUniqueID(self, lpszUniqueID, ppPropertyStore);
-    }
-    pub fn GetProviderPropertyStore(self: *const IIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProviderPropertyStore(self, ppPropertyStore);
-    }
-    pub fn Advise(self: *const IIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Advise(self, pIdentityAdvise, dwIdentityUpdateEvents, pdwCookie);
-    }
-    pub fn UnAdvise(self: *const IIdentityProvider, dwCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnAdvise(self, dwCookie);
+    pub fn Finish_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, ppIdentityProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_ValidateIdentityCredential(self, ppIdentityProperties);
     }
 };
 
@@ -310,381 +344,6 @@ pub const AsyncIIdentityProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAssociatedIdentityProvider_Value = Guid.initString("2af066b3-4cbb-4cba-a798-204b6af68cc0");
-pub const IID_IAssociatedIdentityProvider = &IID_IAssociatedIdentityProvider_Value;
-pub const IAssociatedIdentityProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AssociateIdentity: *const fn(
-            self: *const IAssociatedIdentityProvider,
-            hwndParent: ?HWND,
-            ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        DisassociateIdentity: *const fn(
-            self: *const IAssociatedIdentityProvider,
-            hwndParent: ?HWND,
-            lpszUniqueID: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        ChangeCredential: *const fn(
-            self: *const IAssociatedIdentityProvider,
-            hwndParent: ?HWND,
-            lpszUniqueID: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AssociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.AssociateIdentity(self, hwndParent, ppPropertyStore);
-    }
-    pub fn DisassociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.DisassociateIdentity(self, hwndParent, lpszUniqueID);
-    }
-    pub fn ChangeCredential(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangeCredential(self, hwndParent, lpszUniqueID);
-    }
-};
-
-const IID_AsyncIAssociatedIdentityProvider_Value = Guid.initString("2834d6ed-297e-4e72-8a51-961e86f05152");
-pub const IID_AsyncIAssociatedIdentityProvider = &IID_AsyncIAssociatedIdentityProvider_Value;
-pub const AsyncIAssociatedIdentityProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_AssociateIdentity: *const fn(
-            self: *const AsyncIAssociatedIdentityProvider,
-            hwndParent: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        Finish_AssociateIdentity: *const fn(
-            self: *const AsyncIAssociatedIdentityProvider,
-            ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        Begin_DisassociateIdentity: *const fn(
-            self: *const AsyncIAssociatedIdentityProvider,
-            hwndParent: ?HWND,
-            lpszUniqueID: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Finish_DisassociateIdentity: *const fn(
-            self: *const AsyncIAssociatedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-        Begin_ChangeCredential: *const fn(
-            self: *const AsyncIAssociatedIdentityProvider,
-            hwndParent: ?HWND,
-            lpszUniqueID: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Finish_ChangeCredential: *const fn(
-            self: *const AsyncIAssociatedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_AssociateIdentity(self, hwndParent);
-    }
-    pub fn Finish_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_AssociateIdentity(self, ppPropertyStore);
-    }
-    pub fn Begin_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_DisassociateIdentity(self, hwndParent, lpszUniqueID);
-    }
-    pub fn Finish_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_DisassociateIdentity(self);
-    }
-    pub fn Begin_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_ChangeCredential(self, hwndParent, lpszUniqueID);
-    }
-    pub fn Finish_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_ChangeCredential(self);
-    }
-};
-
-pub const IDENTITY_URL = enum(i32) {
-    CREATE_ACCOUNT_WIZARD = 0,
-    SIGN_IN_WIZARD = 1,
-    CHANGE_PASSWORD_WIZARD = 2,
-    IFEXISTS_WIZARD = 3,
-    ACCOUNT_SETTINGS = 4,
-    RESTORE_WIZARD = 5,
-    CONNECT_WIZARD = 6,
-};
-pub const IDENTITY_URL_CREATE_ACCOUNT_WIZARD = IDENTITY_URL.CREATE_ACCOUNT_WIZARD;
-pub const IDENTITY_URL_SIGN_IN_WIZARD = IDENTITY_URL.SIGN_IN_WIZARD;
-pub const IDENTITY_URL_CHANGE_PASSWORD_WIZARD = IDENTITY_URL.CHANGE_PASSWORD_WIZARD;
-pub const IDENTITY_URL_IFEXISTS_WIZARD = IDENTITY_URL.IFEXISTS_WIZARD;
-pub const IDENTITY_URL_ACCOUNT_SETTINGS = IDENTITY_URL.ACCOUNT_SETTINGS;
-pub const IDENTITY_URL_RESTORE_WIZARD = IDENTITY_URL.RESTORE_WIZARD;
-pub const IDENTITY_URL_CONNECT_WIZARD = IDENTITY_URL.CONNECT_WIZARD;
-
-pub const ACCOUNT_STATE = enum(i32) {
-    NOT_CONNECTED = 0,
-    CONNECTING = 1,
-    CONNECT_COMPLETED = 2,
-};
-pub const NOT_CONNECTED = ACCOUNT_STATE.NOT_CONNECTED;
-pub const CONNECTING = ACCOUNT_STATE.CONNECTING;
-pub const CONNECT_COMPLETED = ACCOUNT_STATE.CONNECT_COMPLETED;
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IConnectedIdentityProvider_Value = Guid.initString("b7417b54-e08c-429b-96c8-678d1369ecb1");
-pub const IID_IConnectedIdentityProvider = &IID_IConnectedIdentityProvider_Value;
-pub const IConnectedIdentityProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ConnectIdentity: *const fn(
-            self: *const IConnectedIdentityProvider,
-            AuthBuffer: [*:0]u8,
-            AuthBufferSize: u32,
-        ) callconv(.winapi) HRESULT,
-        DisconnectIdentity: *const fn(
-            self: *const IConnectedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-        IsConnected: *const fn(
-            self: *const IConnectedIdentityProvider,
-            Connected: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetUrl: *const fn(
-            self: *const IConnectedIdentityProvider,
-            Identifier: IDENTITY_URL,
-            Context: ?*IBindCtx,
-            PostData: ?*VARIANT,
-            Url: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetAccountState: *const fn(
-            self: *const IConnectedIdentityProvider,
-            pState: ?*ACCOUNT_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ConnectIdentity(self: *const IConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectIdentity(self, AuthBuffer, AuthBufferSize);
-    }
-    pub fn DisconnectIdentity(self: *const IConnectedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.DisconnectIdentity(self);
-    }
-    pub fn IsConnected(self: *const IConnectedIdentityProvider, Connected: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsConnected(self, Connected);
-    }
-    pub fn GetUrl(self: *const IConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUrl(self, Identifier, Context, PostData, Url);
-    }
-    pub fn GetAccountState(self: *const IConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAccountState(self, pState);
-    }
-};
-
-const IID_AsyncIConnectedIdentityProvider_Value = Guid.initString("9ce55141-bce9-4e15-824d-43d79f512f93");
-pub const IID_AsyncIConnectedIdentityProvider = &IID_AsyncIConnectedIdentityProvider_Value;
-pub const AsyncIConnectedIdentityProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_ConnectIdentity: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-            AuthBuffer: [*:0]u8,
-            AuthBufferSize: u32,
-        ) callconv(.winapi) HRESULT,
-        Finish_ConnectIdentity: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-        Begin_DisconnectIdentity: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-        Finish_DisconnectIdentity: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-        Begin_IsConnected: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-        Finish_IsConnected: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-            Connected: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        Begin_GetUrl: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-            Identifier: IDENTITY_URL,
-            Context: ?*IBindCtx,
-        ) callconv(.winapi) HRESULT,
-        Finish_GetUrl: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-            PostData: ?*VARIANT,
-            Url: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        Begin_GetAccountState: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(.winapi) HRESULT,
-        Finish_GetAccountState: *const fn(
-            self: *const AsyncIConnectedIdentityProvider,
-            pState: ?*ACCOUNT_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_ConnectIdentity(self, AuthBuffer, AuthBufferSize);
-    }
-    pub fn Finish_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_ConnectIdentity(self);
-    }
-    pub fn Begin_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_DisconnectIdentity(self);
-    }
-    pub fn Finish_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_DisconnectIdentity(self);
-    }
-    pub fn Begin_IsConnected(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_IsConnected(self);
-    }
-    pub fn Finish_IsConnected(self: *const AsyncIConnectedIdentityProvider, Connected: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_IsConnected(self, Connected);
-    }
-    pub fn Begin_GetUrl(self: *const AsyncIConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_GetUrl(self, Identifier, Context);
-    }
-    pub fn Finish_GetUrl(self: *const AsyncIConnectedIdentityProvider, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_GetUrl(self, PostData, Url);
-    }
-    pub fn Begin_GetAccountState(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_GetAccountState(self);
-    }
-    pub fn Finish_GetAccountState(self: *const AsyncIConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_GetAccountState(self, pState);
-    }
-};
-
-const IID_IIdentityAuthentication_Value = Guid.initString("5e7ef254-979f-43b5-b74e-06e4eb7df0f9");
-pub const IID_IIdentityAuthentication = &IID_IIdentityAuthentication_Value;
-pub const IIdentityAuthentication = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetIdentityCredential: *const fn(
-            self: *const IIdentityAuthentication,
-            CredBuffer: ?[*:0]u8,
-            CredBufferLength: u32,
-        ) callconv(.winapi) HRESULT,
-        ValidateIdentityCredential: *const fn(
-            self: *const IIdentityAuthentication,
-            CredBuffer: [*:0]u8,
-            CredBufferLength: u32,
-            ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIdentityCredential(self, CredBuffer, CredBufferLength);
-    }
-    pub fn ValidateIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
-    }
-};
-
-const IID_AsyncIIdentityAuthentication_Value = Guid.initString("f9a2f918-feca-4e9c-9633-61cbf13ed34d");
-pub const IID_AsyncIIdentityAuthentication = &IID_AsyncIIdentityAuthentication_Value;
-pub const AsyncIIdentityAuthentication = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_SetIdentityCredential: *const fn(
-            self: *const AsyncIIdentityAuthentication,
-            CredBuffer: ?[*:0]u8,
-            CredBufferLength: u32,
-        ) callconv(.winapi) HRESULT,
-        Finish_SetIdentityCredential: *const fn(
-            self: *const AsyncIIdentityAuthentication,
-        ) callconv(.winapi) HRESULT,
-        Begin_ValidateIdentityCredential: *const fn(
-            self: *const AsyncIIdentityAuthentication,
-            CredBuffer: [*:0]u8,
-            CredBufferLength: u32,
-            ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        Finish_ValidateIdentityCredential: *const fn(
-            self: *const AsyncIIdentityAuthentication,
-            ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_SetIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_SetIdentityCredential(self, CredBuffer, CredBufferLength);
-    }
-    pub fn Finish_SetIdentityCredential(self: *const AsyncIIdentityAuthentication) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_SetIdentityCredential(self);
-    }
-    pub fn Begin_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
-    }
-    pub fn Finish_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, ppIdentityProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_ValidateIdentityCredential(self, ppIdentityProperties);
-    }
-};
-
-const CLSID_CoClassIdentityStore_Value = Guid.initString("30d49246-d217-465f-b00b-ac9ddd652eb7");
-pub const CLSID_CoClassIdentityStore = &CLSID_CoClassIdentityStore_Value;
-
-const CLSID_CIdentityProfileHandler_Value = Guid.initString("ecf5bf46-e3b6-449a-b56b-43f58f867814");
-pub const CLSID_CIdentityProfileHandler = &CLSID_CIdentityProfileHandler_Value;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IIdentityStore_Value = Guid.initString("df586fa5-6f35-44f1-b209-b38e169772eb");
-pub const IID_IIdentityStore = &IID_IIdentityStore_Value;
-pub const IIdentityStore = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCount: *const fn(
-            self: *const IIdentityStore,
-            pdwProviders: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetAt: *const fn(
-            self: *const IIdentityStore,
-            dwProvider: u32,
-            pProvGuid: ?*Guid,
-            ppIdentityProvider: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        AddToCache: *const fn(
-            self: *const IIdentityStore,
-            lpszUniqueID: ?[*:0]const u16,
-            ProviderGUID: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        ConvertToSid: *const fn(
-            self: *const IIdentityStore,
-            lpszUniqueID: ?[*:0]const u16,
-            ProviderGUID: ?*const Guid,
-            cbSid: u16,
-            pSid: ?[*:0]u8,
-            pcbRequiredSid: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        EnumerateIdentities: *const fn(
-            self: *const IIdentityStore,
-            eIdentityType: IDENTITY_TYPE,
-            pFilterkey: ?*const PROPERTYKEY,
-            pFilterPropVarValue: ?*const PROPVARIANT,
-            ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IIdentityStore,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCount(self: *const IIdentityStore, pdwProviders: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pdwProviders);
-    }
-    pub fn GetAt(self: *const IIdentityStore, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAt(self, dwProvider, pProvGuid, ppIdentityProvider);
-    }
-    pub fn AddToCache(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.AddToCache(self, lpszUniqueID, ProviderGUID);
-    }
-    pub fn ConvertToSid(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?[*:0]u8, pcbRequiredSid: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertToSid(self, lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
-    }
-    pub fn EnumerateIdentities(self: *const IIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumerateIdentities(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
-    }
-    pub fn Reset(self: *const IIdentityStore) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-};
-
 const IID_AsyncIIdentityStore_Value = Guid.initString("eefa1616-48de-4872-aa64-6e6206535a51");
 pub const IID_AsyncIIdentityStore = &IID_AsyncIIdentityStore_Value;
 pub const AsyncIIdentityStore = extern union {
@@ -784,33 +443,6 @@ pub const AsyncIIdentityStore = extern union {
     }
 };
 
-const IID_IIdentityStoreEx_Value = Guid.initString("f9f9eb98-8f7f-4e38-9577-6980114ce32b");
-pub const IID_IIdentityStoreEx = &IID_IIdentityStoreEx_Value;
-pub const IIdentityStoreEx = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateConnectedIdentity: *const fn(
-            self: *const IIdentityStoreEx,
-            LocalName: ?[*:0]const u16,
-            ConnectedName: ?[*:0]const u16,
-            ProviderGUID: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        DeleteConnectedIdentity: *const fn(
-            self: *const IIdentityStoreEx,
-            ConnectedName: ?[*:0]const u16,
-            ProviderGUID: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateConnectedIdentity(self: *const IIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
-    }
-    pub fn DeleteConnectedIdentity(self: *const IIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteConnectedIdentity(self, ConnectedName, ProviderGUID);
-    }
-};
-
 const IID_AsyncIIdentityStoreEx_Value = Guid.initString("fca3af9a-8a07-4eae-8632-ec3de658a36a");
 pub const IID_AsyncIIdentityStoreEx = &IID_AsyncIIdentityStoreEx_Value;
 pub const AsyncIIdentityStoreEx = extern union {
@@ -847,6 +479,374 @@ pub const AsyncIIdentityStoreEx = extern union {
     }
     pub fn Finish_DeleteConnectedIdentity(self: *const AsyncIIdentityStoreEx) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_DeleteConnectedIdentity(self);
+    }
+};
+
+const CLSID_CIdentityProfileHandler_Value = Guid.initString("ecf5bf46-e3b6-449a-b56b-43f58f867814");
+pub const CLSID_CIdentityProfileHandler = &CLSID_CIdentityProfileHandler_Value;
+
+const CLSID_CoClassIdentityStore_Value = Guid.initString("30d49246-d217-465f-b00b-ac9ddd652eb7");
+pub const CLSID_CoClassIdentityStore = &CLSID_CoClassIdentityStore_Value;
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAssociatedIdentityProvider_Value = Guid.initString("2af066b3-4cbb-4cba-a798-204b6af68cc0");
+pub const IID_IAssociatedIdentityProvider = &IID_IAssociatedIdentityProvider_Value;
+pub const IAssociatedIdentityProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AssociateIdentity: *const fn(
+            self: *const IAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        DisassociateIdentity: *const fn(
+            self: *const IAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        ChangeCredential: *const fn(
+            self: *const IAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AssociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.AssociateIdentity(self, hwndParent, ppPropertyStore);
+    }
+    pub fn DisassociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.DisassociateIdentity(self, hwndParent, lpszUniqueID);
+    }
+    pub fn ChangeCredential(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangeCredential(self, hwndParent, lpszUniqueID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IConnectedIdentityProvider_Value = Guid.initString("b7417b54-e08c-429b-96c8-678d1369ecb1");
+pub const IID_IConnectedIdentityProvider = &IID_IConnectedIdentityProvider_Value;
+pub const IConnectedIdentityProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ConnectIdentity: *const fn(
+            self: *const IConnectedIdentityProvider,
+            AuthBuffer: [*:0]u8,
+            AuthBufferSize: u32,
+        ) callconv(.winapi) HRESULT,
+        DisconnectIdentity: *const fn(
+            self: *const IConnectedIdentityProvider,
+        ) callconv(.winapi) HRESULT,
+        IsConnected: *const fn(
+            self: *const IConnectedIdentityProvider,
+            Connected: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetUrl: *const fn(
+            self: *const IConnectedIdentityProvider,
+            Identifier: IDENTITY_URL,
+            Context: ?*IBindCtx,
+            PostData: ?*VARIANT,
+            Url: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetAccountState: *const fn(
+            self: *const IConnectedIdentityProvider,
+            pState: ?*ACCOUNT_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ConnectIdentity(self: *const IConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectIdentity(self, AuthBuffer, AuthBufferSize);
+    }
+    pub fn DisconnectIdentity(self: *const IConnectedIdentityProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.DisconnectIdentity(self);
+    }
+    pub fn IsConnected(self: *const IConnectedIdentityProvider, Connected: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsConnected(self, Connected);
+    }
+    pub fn GetUrl(self: *const IConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUrl(self, Identifier, Context, PostData, Url);
+    }
+    pub fn GetAccountState(self: *const IConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAccountState(self, pState);
+    }
+};
+
+pub const IDENTITY_TYPE = enum(i32) {
+    ALL = 0,
+    ME_ONLY = 1,
+};
+pub const IDENTITIES_ALL = IDENTITY_TYPE.ALL;
+pub const IDENTITIES_ME_ONLY = IDENTITY_TYPE.ME_ONLY;
+
+pub const IDENTITY_URL = enum(i32) {
+    CREATE_ACCOUNT_WIZARD = 0,
+    SIGN_IN_WIZARD = 1,
+    CHANGE_PASSWORD_WIZARD = 2,
+    IFEXISTS_WIZARD = 3,
+    ACCOUNT_SETTINGS = 4,
+    RESTORE_WIZARD = 5,
+    CONNECT_WIZARD = 6,
+};
+pub const IDENTITY_URL_CREATE_ACCOUNT_WIZARD = IDENTITY_URL.CREATE_ACCOUNT_WIZARD;
+pub const IDENTITY_URL_SIGN_IN_WIZARD = IDENTITY_URL.SIGN_IN_WIZARD;
+pub const IDENTITY_URL_CHANGE_PASSWORD_WIZARD = IDENTITY_URL.CHANGE_PASSWORD_WIZARD;
+pub const IDENTITY_URL_IFEXISTS_WIZARD = IDENTITY_URL.IFEXISTS_WIZARD;
+pub const IDENTITY_URL_ACCOUNT_SETTINGS = IDENTITY_URL.ACCOUNT_SETTINGS;
+pub const IDENTITY_URL_RESTORE_WIZARD = IDENTITY_URL.RESTORE_WIZARD;
+pub const IDENTITY_URL_CONNECT_WIZARD = IDENTITY_URL.CONNECT_WIZARD;
+
+pub const IdentityUpdateEvent = packed struct(u32) {
+    ASSOCIATED: u1 = 0,
+    DISASSOCIATED: u1 = 0,
+    CREATED: u1 = 0,
+    IMPORTED: u1 = 0,
+    DELETED: u1 = 0,
+    PROPCHANGED: u1 = 0,
+    CONNECTED: u1 = 0,
+    DISCONNECTED: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const IDENTITY_ASSOCIATED = IdentityUpdateEvent{ .ASSOCIATED = 1 };
+pub const IDENTITY_DISASSOCIATED = IdentityUpdateEvent{ .DISASSOCIATED = 1 };
+pub const IDENTITY_CREATED = IdentityUpdateEvent{ .CREATED = 1 };
+pub const IDENTITY_IMPORTED = IdentityUpdateEvent{ .IMPORTED = 1 };
+pub const IDENTITY_DELETED = IdentityUpdateEvent{ .DELETED = 1 };
+pub const IDENTITY_PROPCHANGED = IdentityUpdateEvent{ .PROPCHANGED = 1 };
+pub const IDENTITY_CONNECTED = IdentityUpdateEvent{ .CONNECTED = 1 };
+pub const IDENTITY_DISCONNECTED = IdentityUpdateEvent{ .DISCONNECTED = 1 };
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IIdentityAdvise_Value = Guid.initString("4e982fed-d14b-440c-b8d6-bb386453d386");
+pub const IID_IIdentityAdvise = &IID_IIdentityAdvise_Value;
+pub const IIdentityAdvise = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IdentityUpdated: *const fn(
+            self: *const IIdentityAdvise,
+            dwIdentityUpdateEvents: IdentityUpdateEvent,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IdentityUpdated(self: *const IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, lpszUniqueID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
+    }
+};
+
+const IID_IIdentityAuthentication_Value = Guid.initString("5e7ef254-979f-43b5-b74e-06e4eb7df0f9");
+pub const IID_IIdentityAuthentication = &IID_IIdentityAuthentication_Value;
+pub const IIdentityAuthentication = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetIdentityCredential: *const fn(
+            self: *const IIdentityAuthentication,
+            CredBuffer: ?[*:0]u8,
+            CredBufferLength: u32,
+        ) callconv(.winapi) HRESULT,
+        ValidateIdentityCredential: *const fn(
+            self: *const IIdentityAuthentication,
+            CredBuffer: [*:0]u8,
+            CredBufferLength: u32,
+            ppIdentityProperties: ?*?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIdentityCredential(self, CredBuffer, CredBufferLength);
+    }
+    pub fn ValidateIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IIdentityProvider_Value = Guid.initString("0d1b9e0c-e8ba-4f55-a81b-bce934b948f5");
+pub const IID_IIdentityProvider = &IID_IIdentityProvider_Value;
+pub const IIdentityProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetIdentityEnum: *const fn(
+            self: *const IIdentityProvider,
+            eIdentityType: IDENTITY_TYPE,
+            pFilterkey: ?*const PROPERTYKEY,
+            pFilterPropVarValue: ?*const PROPVARIANT,
+            ppIdentityEnum: ?*?*IEnumUnknown,
+        ) callconv(.winapi) HRESULT,
+        Create: *const fn(
+            self: *const IIdentityProvider,
+            lpszUserName: ?[*:0]const u16,
+            ppPropertyStore: ?*?*IPropertyStore,
+            pKeywordsToAdd: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        Import: *const fn(
+            self: *const IIdentityProvider,
+            pPropertyStore: ?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IIdentityProvider,
+            lpszUniqueID: ?[*:0]const u16,
+            pKeywordsToDelete: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        FindByUniqueID: *const fn(
+            self: *const IIdentityProvider,
+            lpszUniqueID: ?[*:0]const u16,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        GetProviderPropertyStore: *const fn(
+            self: *const IIdentityProvider,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        Advise: *const fn(
+            self: *const IIdentityProvider,
+            pIdentityAdvise: ?*IIdentityAdvise,
+            dwIdentityUpdateEvents: IdentityUpdateEvent,
+            pdwCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UnAdvise: *const fn(
+            self: *const IIdentityProvider,
+            dwCookie: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetIdentityEnum(self: *const IIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
+    }
+    pub fn Create(self: *const IIdentityProvider, lpszUserName: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, lpszUserName, ppPropertyStore, pKeywordsToAdd);
+    }
+    pub fn Import(self: *const IIdentityProvider, pPropertyStore: ?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.Import(self, pPropertyStore);
+    }
+    pub fn Delete(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, lpszUniqueID, pKeywordsToDelete);
+    }
+    pub fn FindByUniqueID(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.FindByUniqueID(self, lpszUniqueID, ppPropertyStore);
+    }
+    pub fn GetProviderPropertyStore(self: *const IIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProviderPropertyStore(self, ppPropertyStore);
+    }
+    pub fn Advise(self: *const IIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Advise(self, pIdentityAdvise, dwIdentityUpdateEvents, pdwCookie);
+    }
+    pub fn UnAdvise(self: *const IIdentityProvider, dwCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnAdvise(self, dwCookie);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IIdentityStore_Value = Guid.initString("df586fa5-6f35-44f1-b209-b38e169772eb");
+pub const IID_IIdentityStore = &IID_IIdentityStore_Value;
+pub const IIdentityStore = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCount: *const fn(
+            self: *const IIdentityStore,
+            pdwProviders: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetAt: *const fn(
+            self: *const IIdentityStore,
+            dwProvider: u32,
+            pProvGuid: ?*Guid,
+            ppIdentityProvider: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        AddToCache: *const fn(
+            self: *const IIdentityStore,
+            lpszUniqueID: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        ConvertToSid: *const fn(
+            self: *const IIdentityStore,
+            lpszUniqueID: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+            cbSid: u16,
+            pSid: ?[*:0]u8,
+            pcbRequiredSid: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        EnumerateIdentities: *const fn(
+            self: *const IIdentityStore,
+            eIdentityType: IDENTITY_TYPE,
+            pFilterkey: ?*const PROPERTYKEY,
+            pFilterPropVarValue: ?*const PROPVARIANT,
+            ppIdentityEnum: ?*?*IEnumUnknown,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IIdentityStore,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IIdentityStore, pdwProviders: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pdwProviders);
+    }
+    pub fn GetAt(self: *const IIdentityStore, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAt(self, dwProvider, pProvGuid, ppIdentityProvider);
+    }
+    pub fn AddToCache(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.AddToCache(self, lpszUniqueID, ProviderGUID);
+    }
+    pub fn ConvertToSid(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?[*:0]u8, pcbRequiredSid: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertToSid(self, lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
+    }
+    pub fn EnumerateIdentities(self: *const IIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumerateIdentities(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
+    }
+    pub fn Reset(self: *const IIdentityStore) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+};
+
+const IID_IIdentityStoreEx_Value = Guid.initString("f9f9eb98-8f7f-4e38-9577-6980114ce32b");
+pub const IID_IIdentityStoreEx = &IID_IIdentityStoreEx_Value;
+pub const IIdentityStoreEx = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateConnectedIdentity: *const fn(
+            self: *const IIdentityStoreEx,
+            LocalName: ?[*:0]const u16,
+            ConnectedName: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        DeleteConnectedIdentity: *const fn(
+            self: *const IIdentityStoreEx,
+            ConnectedName: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateConnectedIdentity(self: *const IIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
+    }
+    pub fn DeleteConnectedIdentity(self: *const IIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteConnectedIdentity(self, ConnectedName, ProviderGUID);
     }
 };
 

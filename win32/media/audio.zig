@@ -2,1323 +2,480 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (470)
 //--------------------------------------------------------------------------------
-pub const MIXERCONTROL_CONTROLTYPE_CUSTOM = @as(u32, 0);
-pub const MIXERCONTROL_CONTROLTYPE_BOOLEANMETER = @as(u32, 268500992);
-pub const MIXERCONTROL_CONTROLTYPE_SIGNEDMETER = @as(u32, 268566528);
-pub const MIXERCONTROL_CONTROLTYPE_PEAKMETER = @as(u32, 268566529);
-pub const MIXERCONTROL_CONTROLTYPE_UNSIGNEDMETER = @as(u32, 268632064);
-pub const MIXERCONTROL_CONTROLTYPE_BOOLEAN = @as(u32, 536936448);
-pub const MIXERCONTROL_CONTROLTYPE_ONOFF = @as(u32, 536936449);
-pub const MIXERCONTROL_CONTROLTYPE_MUTE = @as(u32, 536936450);
-pub const MIXERCONTROL_CONTROLTYPE_MONO = @as(u32, 536936451);
-pub const MIXERCONTROL_CONTROLTYPE_LOUDNESS = @as(u32, 536936452);
-pub const MIXERCONTROL_CONTROLTYPE_STEREOENH = @as(u32, 536936453);
-pub const MIXERCONTROL_CONTROLTYPE_BASS_BOOST = @as(u32, 536945271);
-pub const MIXERCONTROL_CONTROLTYPE_BUTTON = @as(u32, 553713664);
-pub const MIXERCONTROL_CONTROLTYPE_DECIBELS = @as(u32, 805568512);
-pub const MIXERCONTROL_CONTROLTYPE_SIGNED = @as(u32, 805437440);
-pub const MIXERCONTROL_CONTROLTYPE_UNSIGNED = @as(u32, 805502976);
-pub const MIXERCONTROL_CONTROLTYPE_PERCENT = @as(u32, 805634048);
-pub const MIXERCONTROL_CONTROLTYPE_SLIDER = @as(u32, 1073872896);
-pub const MIXERCONTROL_CONTROLTYPE_PAN = @as(u32, 1073872897);
-pub const MIXERCONTROL_CONTROLTYPE_QSOUNDPAN = @as(u32, 1073872898);
-pub const MIXERCONTROL_CONTROLTYPE_FADER = @as(u32, 1342373888);
-pub const MIXERCONTROL_CONTROLTYPE_VOLUME = @as(u32, 1342373889);
-pub const MIXERCONTROL_CONTROLTYPE_BASS = @as(u32, 1342373890);
-pub const MIXERCONTROL_CONTROLTYPE_TREBLE = @as(u32, 1342373891);
-pub const MIXERCONTROL_CONTROLTYPE_EQUALIZER = @as(u32, 1342373892);
-pub const MIXERCONTROL_CONTROLTYPE_SINGLESELECT = @as(u32, 1879113728);
-pub const MIXERCONTROL_CONTROLTYPE_MUX = @as(u32, 1879113729);
-pub const MIXERCONTROL_CONTROLTYPE_MULTIPLESELECT = @as(u32, 1895890944);
-pub const MIXERCONTROL_CONTROLTYPE_MIXER = @as(u32, 1895890945);
-pub const MIXERCONTROL_CONTROLTYPE_MICROTIME = @as(u32, 1610809344);
-pub const MIXERCONTROL_CONTROLTYPE_MILLITIME = @as(u32, 1627586560);
-pub const WAVE_MAPPER = @as(u32, 4294967295);
-pub const ENDPOINT_FORMAT_RESET_MIX_ONLY = @as(u32, 1);
-pub const ENDPOINT_HARDWARE_SUPPORT_VOLUME = @as(u32, 1);
-pub const ENDPOINT_HARDWARE_SUPPORT_MUTE = @as(u32, 2);
-pub const ENDPOINT_HARDWARE_SUPPORT_METER = @as(u32, 4);
-pub const AUDIOCLOCK_CHARACTERISTIC_FIXED_FREQ = @as(u32, 1);
+pub const ACM_DRIVERADDF_FUNCTION = @as(i32, 3);
+pub const ACM_DRIVERADDF_GLOBAL = @as(i32, 8);
+pub const ACM_DRIVERADDF_LOCAL = @as(i32, 0);
+pub const ACM_DRIVERADDF_NAME = @as(i32, 1);
+pub const ACM_DRIVERADDF_NOTIFYHWND = @as(i32, 4);
+pub const ACM_DRIVERADDF_TYPEMASK = @as(i32, 7);
+pub const ACM_DRIVERENUMF_DISABLED = @as(i32, -2147483648);
+pub const ACM_DRIVERENUMF_NOLOCAL = @as(i32, 1073741824);
+pub const ACM_DRIVERPRIORITYF_ABLEMASK = @as(i32, 3);
+pub const ACM_DRIVERPRIORITYF_BEGIN = @as(i32, 65536);
+pub const ACM_DRIVERPRIORITYF_DEFERMASK = @as(i32, 196608);
+pub const ACM_DRIVERPRIORITYF_DISABLE = @as(i32, 2);
+pub const ACM_DRIVERPRIORITYF_ENABLE = @as(i32, 1);
+pub const ACM_DRIVERPRIORITYF_END = @as(i32, 131072);
+pub const ACM_FILTERDETAILSF_FILTER = @as(i32, 1);
+pub const ACM_FILTERDETAILSF_INDEX = @as(i32, 0);
+pub const ACM_FILTERDETAILSF_QUERYMASK = @as(i32, 15);
+pub const ACM_FILTERENUMF_DWFILTERTAG = @as(i32, 65536);
+pub const ACM_FILTERTAGDETAILSF_FILTERTAG = @as(i32, 1);
+pub const ACM_FILTERTAGDETAILSF_INDEX = @as(i32, 0);
+pub const ACM_FILTERTAGDETAILSF_LARGESTSIZE = @as(i32, 2);
+pub const ACM_FILTERTAGDETAILSF_QUERYMASK = @as(i32, 15);
+pub const ACM_FORMATDETAILSF_FORMAT = @as(i32, 1);
+pub const ACM_FORMATDETAILSF_INDEX = @as(i32, 0);
+pub const ACM_FORMATDETAILSF_QUERYMASK = @as(i32, 15);
+pub const ACM_FORMATENUMF_CONVERT = @as(i32, 1048576);
+pub const ACM_FORMATENUMF_HARDWARE = @as(i32, 4194304);
+pub const ACM_FORMATENUMF_INPUT = @as(i32, 8388608);
+pub const ACM_FORMATENUMF_NCHANNELS = @as(i32, 131072);
+pub const ACM_FORMATENUMF_NSAMPLESPERSEC = @as(i32, 262144);
+pub const ACM_FORMATENUMF_OUTPUT = @as(i32, 16777216);
+pub const ACM_FORMATENUMF_SUGGEST = @as(i32, 2097152);
+pub const ACM_FORMATENUMF_WBITSPERSAMPLE = @as(i32, 524288);
+pub const ACM_FORMATENUMF_WFORMATTAG = @as(i32, 65536);
+pub const ACM_FORMATSUGGESTF_NCHANNELS = @as(i32, 131072);
+pub const ACM_FORMATSUGGESTF_NSAMPLESPERSEC = @as(i32, 262144);
+pub const ACM_FORMATSUGGESTF_TYPEMASK = @as(i32, 16711680);
+pub const ACM_FORMATSUGGESTF_WBITSPERSAMPLE = @as(i32, 524288);
+pub const ACM_FORMATSUGGESTF_WFORMATTAG = @as(i32, 65536);
+pub const ACM_FORMATTAGDETAILSF_FORMATTAG = @as(i32, 1);
+pub const ACM_FORMATTAGDETAILSF_INDEX = @as(i32, 0);
+pub const ACM_FORMATTAGDETAILSF_LARGESTSIZE = @as(i32, 2);
+pub const ACM_FORMATTAGDETAILSF_QUERYMASK = @as(i32, 15);
+pub const ACM_METRIC_COUNT_CODECS = @as(u32, 2);
+pub const ACM_METRIC_COUNT_CONVERTERS = @as(u32, 3);
+pub const ACM_METRIC_COUNT_DISABLED = @as(u32, 5);
+pub const ACM_METRIC_COUNT_DRIVERS = @as(u32, 1);
+pub const ACM_METRIC_COUNT_FILTERS = @as(u32, 4);
+pub const ACM_METRIC_COUNT_HARDWARE = @as(u32, 6);
+pub const ACM_METRIC_COUNT_LOCAL_CODECS = @as(u32, 21);
+pub const ACM_METRIC_COUNT_LOCAL_CONVERTERS = @as(u32, 22);
+pub const ACM_METRIC_COUNT_LOCAL_DISABLED = @as(u32, 24);
+pub const ACM_METRIC_COUNT_LOCAL_DRIVERS = @as(u32, 20);
+pub const ACM_METRIC_COUNT_LOCAL_FILTERS = @as(u32, 23);
+pub const ACM_METRIC_DRIVER_PRIORITY = @as(u32, 101);
+pub const ACM_METRIC_DRIVER_SUPPORT = @as(u32, 100);
+pub const ACM_METRIC_HARDWARE_WAVE_INPUT = @as(u32, 30);
+pub const ACM_METRIC_HARDWARE_WAVE_OUTPUT = @as(u32, 31);
+pub const ACM_METRIC_MAX_SIZE_FILTER = @as(u32, 51);
+pub const ACM_METRIC_MAX_SIZE_FORMAT = @as(u32, 50);
+pub const ACM_STREAMCONVERTF_BLOCKALIGN = @as(u32, 4);
+pub const ACM_STREAMCONVERTF_END = @as(u32, 32);
+pub const ACM_STREAMCONVERTF_START = @as(u32, 16);
+pub const ACM_STREAMOPENF_ASYNC = @as(u32, 2);
+pub const ACM_STREAMOPENF_NONREALTIME = @as(u32, 4);
+pub const ACM_STREAMOPENF_QUERY = @as(u32, 1);
+pub const ACM_STREAMSIZEF_DESTINATION = @as(i32, 1);
+pub const ACM_STREAMSIZEF_QUERYMASK = @as(i32, 15);
+pub const ACM_STREAMSIZEF_SOURCE = @as(i32, 0);
+pub const ACMDM_DRIVER_ABOUT = @as(u32, 24587);
+pub const ACMDM_DRIVER_DETAILS = @as(u32, 24586);
+pub const ACMDM_DRIVER_NOTIFY = @as(u32, 24577);
+pub const ACMDM_FILTER_DETAILS = @as(u32, 24627);
+pub const ACMDM_FILTERTAG_DETAILS = @as(u32, 24626);
+pub const ACMDM_FORMAT_DETAILS = @as(u32, 24602);
+pub const ACMDM_FORMAT_SUGGEST = @as(u32, 24603);
+pub const ACMDM_FORMATTAG_DETAILS = @as(u32, 24601);
+pub const ACMDM_HARDWARE_WAVE_CAPS_INPUT = @as(u32, 24596);
+pub const ACMDM_HARDWARE_WAVE_CAPS_OUTPUT = @as(u32, 24597);
+pub const ACMDM_RESERVED_HIGH = @as(u32, 28671);
+pub const ACMDM_RESERVED_LOW = @as(u32, 24576);
+pub const ACMDM_STREAM_CLOSE = @as(u32, 24653);
+pub const ACMDM_STREAM_CONVERT = @as(u32, 24655);
+pub const ACMDM_STREAM_OPEN = @as(u32, 24652);
+pub const ACMDM_STREAM_PREPARE = @as(u32, 24657);
+pub const ACMDM_STREAM_RESET = @as(u32, 24656);
+pub const ACMDM_STREAM_SIZE = @as(u32, 24654);
+pub const ACMDM_STREAM_UNPREPARE = @as(u32, 24658);
+pub const ACMDM_STREAM_UPDATE = @as(u32, 24659);
+pub const ACMDM_USER = @as(u32, 16384);
+pub const ACMDRIVERDETAILS_COPYRIGHT_CHARS = @as(u32, 80);
+pub const ACMDRIVERDETAILS_FEATURES_CHARS = @as(u32, 512);
+pub const ACMDRIVERDETAILS_LICENSING_CHARS = @as(u32, 128);
+pub const ACMDRIVERDETAILS_LONGNAME_CHARS = @as(u32, 128);
+pub const ACMDRIVERDETAILS_SHORTNAME_CHARS = @as(u32, 32);
+pub const ACMDRIVERDETAILS_SUPPORTF_ASYNC = @as(i32, 16);
+pub const ACMDRIVERDETAILS_SUPPORTF_CODEC = @as(i32, 1);
+pub const ACMDRIVERDETAILS_SUPPORTF_CONVERTER = @as(i32, 2);
+pub const ACMDRIVERDETAILS_SUPPORTF_DISABLED = @as(i32, -2147483648);
+pub const ACMDRIVERDETAILS_SUPPORTF_FILTER = @as(i32, 4);
+pub const ACMDRIVERDETAILS_SUPPORTF_HARDWARE = @as(i32, 8);
+pub const ACMDRIVERDETAILS_SUPPORTF_LOCAL = @as(i32, 1073741824);
+pub const ACMERR_BASE = @as(u32, 512);
+pub const ACMERR_BUSY = @as(u32, 513);
+pub const ACMERR_CANCELED = @as(u32, 515);
+pub const ACMERR_NOTPOSSIBLE = @as(u32, 512);
+pub const ACMERR_UNPREPARED = @as(u32, 514);
+pub const ACMFILTERCHOOSE_STYLEF_CONTEXTHELP = @as(i32, 128);
+pub const ACMFILTERCHOOSE_STYLEF_ENABLEHOOK = @as(i32, 8);
+pub const ACMFILTERCHOOSE_STYLEF_ENABLETEMPLATE = @as(i32, 16);
+pub const ACMFILTERCHOOSE_STYLEF_ENABLETEMPLATEHANDLE = @as(i32, 32);
+pub const ACMFILTERCHOOSE_STYLEF_INITTOFILTERSTRUCT = @as(i32, 64);
+pub const ACMFILTERCHOOSE_STYLEF_SHOWHELP = @as(i32, 4);
+pub const ACMFILTERDETAILS_FILTER_CHARS = @as(u32, 128);
+pub const ACMFILTERTAGDETAILS_FILTERTAG_CHARS = @as(u32, 48);
+pub const ACMFORMATCHOOSE_STYLEF_CONTEXTHELP = @as(i32, 128);
+pub const ACMFORMATCHOOSE_STYLEF_ENABLEHOOK = @as(i32, 8);
+pub const ACMFORMATCHOOSE_STYLEF_ENABLETEMPLATE = @as(i32, 16);
+pub const ACMFORMATCHOOSE_STYLEF_ENABLETEMPLATEHANDLE = @as(i32, 32);
+pub const ACMFORMATCHOOSE_STYLEF_INITTOWFXSTRUCT = @as(i32, 64);
+pub const ACMFORMATCHOOSE_STYLEF_SHOWHELP = @as(i32, 4);
+pub const ACMFORMATDETAILS_FORMAT_CHARS = @as(u32, 128);
+pub const ACMFORMATTAGDETAILS_FORMATTAG_CHARS = @as(u32, 48);
+pub const ACMHELPMSGCONTEXTHELP = "acmchoose_contexthelp";
+pub const ACMHELPMSGCONTEXTHELPA = "acmchoose_contexthelp";
+pub const ACMHELPMSGCONTEXTHELPW = "acmchoose_contexthelp";
+pub const ACMHELPMSGCONTEXTMENU = "acmchoose_contextmenu";
+pub const ACMHELPMSGCONTEXTMENUA = "acmchoose_contextmenu";
+pub const ACMHELPMSGCONTEXTMENUW = "acmchoose_contextmenu";
+pub const ACMHELPMSGSTRING = "acmchoose_help";
+pub const ACMHELPMSGSTRINGA = "acmchoose_help";
+pub const ACMHELPMSGSTRINGW = "acmchoose_help";
+pub const ACMSTREAMHEADER_STATUSF_DONE = @as(i32, 65536);
+pub const ACMSTREAMHEADER_STATUSF_INQUEUE = @as(i32, 1048576);
+pub const ACMSTREAMHEADER_STATUSF_PREPARED = @as(i32, 131072);
 pub const AMBISONICS_PARAM_VERSION_1 = @as(u32, 1);
-pub const AUDCLNT_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287487));
 pub const AUDCLNT_E_ALREADY_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287486));
-pub const AUDCLNT_E_WRONG_ENDPOINT_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287485));
-pub const AUDCLNT_E_DEVICE_INVALIDATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287484));
-pub const AUDCLNT_E_NOT_STOPPED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287483));
-pub const AUDCLNT_E_BUFFER_TOO_LARGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287482));
-pub const AUDCLNT_E_OUT_OF_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287481));
-pub const AUDCLNT_E_UNSUPPORTED_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287480));
-pub const AUDCLNT_E_INVALID_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287479));
-pub const AUDCLNT_E_DEVICE_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287478));
-pub const AUDCLNT_E_BUFFER_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287477));
-pub const AUDCLNT_E_THREAD_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287476));
-pub const AUDCLNT_E_EXCLUSIVE_MODE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287474));
-pub const AUDCLNT_E_ENDPOINT_CREATE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287473));
-pub const AUDCLNT_E_SERVICE_NOT_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287472));
-pub const AUDCLNT_E_EVENTHANDLE_NOT_EXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287471));
-pub const AUDCLNT_E_EXCLUSIVE_MODE_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287470));
 pub const AUDCLNT_E_BUFDURATION_PERIOD_NOT_EQUAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287469));
-pub const AUDCLNT_E_EVENTHANDLE_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287468));
-pub const AUDCLNT_E_INCORRECT_BUFFER_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287467));
-pub const AUDCLNT_E_BUFFER_SIZE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287466));
-pub const AUDCLNT_E_CPUUSAGE_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287465));
 pub const AUDCLNT_E_BUFFER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287464));
+pub const AUDCLNT_E_BUFFER_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287477));
+pub const AUDCLNT_E_BUFFER_SIZE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287466));
 pub const AUDCLNT_E_BUFFER_SIZE_NOT_ALIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287463));
-pub const AUDCLNT_E_INVALID_DEVICE_PERIOD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287456));
-pub const AUDCLNT_E_INVALID_STREAM_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287455));
-pub const AUDCLNT_E_ENDPOINT_OFFLOAD_NOT_CAPABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287454));
-pub const AUDCLNT_E_OUT_OF_OFFLOAD_RESOURCES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287453));
-pub const AUDCLNT_E_OFFLOAD_MODE_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287452));
-pub const AUDCLNT_E_NONOFFLOAD_MODE_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287451));
-pub const AUDCLNT_E_RESOURCES_INVALIDATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287450));
-pub const AUDCLNT_E_RAW_MODE_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287449));
-pub const AUDCLNT_E_ENGINE_PERIODICITY_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287448));
-pub const AUDCLNT_E_ENGINE_FORMAT_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287447));
-pub const AUDCLNT_E_HEADTRACKING_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287440));
-pub const AUDCLNT_E_HEADTRACKING_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287424));
+pub const AUDCLNT_E_BUFFER_TOO_LARGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287482));
+pub const AUDCLNT_E_CPUUSAGE_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287465));
+pub const AUDCLNT_E_DEVICE_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287478));
+pub const AUDCLNT_E_DEVICE_INVALIDATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287484));
 pub const AUDCLNT_E_EFFECT_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287423));
 pub const AUDCLNT_E_EFFECT_STATE_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287422));
+pub const AUDCLNT_E_ENDPOINT_CREATE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287473));
+pub const AUDCLNT_E_ENDPOINT_OFFLOAD_NOT_CAPABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287454));
+pub const AUDCLNT_E_ENGINE_FORMAT_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287447));
+pub const AUDCLNT_E_ENGINE_PERIODICITY_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287448));
+pub const AUDCLNT_E_EVENTHANDLE_NOT_EXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287471));
+pub const AUDCLNT_E_EVENTHANDLE_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287468));
+pub const AUDCLNT_E_EXCLUSIVE_MODE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287474));
+pub const AUDCLNT_E_EXCLUSIVE_MODE_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287470));
+pub const AUDCLNT_E_HEADTRACKING_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287440));
+pub const AUDCLNT_E_HEADTRACKING_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287424));
+pub const AUDCLNT_E_INCORRECT_BUFFER_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287467));
+pub const AUDCLNT_E_INVALID_DEVICE_PERIOD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287456));
+pub const AUDCLNT_E_INVALID_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287479));
+pub const AUDCLNT_E_INVALID_STREAM_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287455));
+pub const AUDCLNT_E_NONOFFLOAD_MODE_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287451));
+pub const AUDCLNT_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287487));
+pub const AUDCLNT_E_NOT_STOPPED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287483));
+pub const AUDCLNT_E_OFFLOAD_MODE_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287452));
+pub const AUDCLNT_E_OUT_OF_OFFLOAD_RESOURCES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287453));
+pub const AUDCLNT_E_OUT_OF_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287481));
+pub const AUDCLNT_E_RAW_MODE_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287449));
+pub const AUDCLNT_E_RESOURCES_INVALIDATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287450));
+pub const AUDCLNT_E_SERVICE_NOT_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287472));
+pub const AUDCLNT_E_THREAD_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287476));
+pub const AUDCLNT_E_UNSUPPORTED_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287480));
+pub const AUDCLNT_E_WRONG_ENDPOINT_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287485));
 pub const AUDCLNT_S_BUFFER_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 143196161));
-pub const AUDCLNT_S_THREAD_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 143196162));
 pub const AUDCLNT_S_POSITION_STALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 143196163));
+pub const AUDCLNT_S_THREAD_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 143196162));
+pub const AUDCLNT_SESSIONFLAGS_DISPLAY_HIDE = @as(u32, 536870912);
+pub const AUDCLNT_SESSIONFLAGS_DISPLAY_HIDEWHENEXPIRED = @as(u32, 1073741824);
+pub const AUDCLNT_SESSIONFLAGS_EXPIREWHENUNOWNED = @as(u32, 268435456);
+pub const AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM = @as(u32, 2147483648);
 pub const AUDCLNT_STREAMFLAGS_CROSSPROCESS = @as(u32, 65536);
-pub const AUDCLNT_STREAMFLAGS_LOOPBACK = @as(u32, 131072);
 pub const AUDCLNT_STREAMFLAGS_EVENTCALLBACK = @as(u32, 262144);
+pub const AUDCLNT_STREAMFLAGS_LOOPBACK = @as(u32, 131072);
 pub const AUDCLNT_STREAMFLAGS_NOPERSIST = @as(u32, 524288);
 pub const AUDCLNT_STREAMFLAGS_RATEADJUST = @as(u32, 1048576);
 pub const AUDCLNT_STREAMFLAGS_SRC_DEFAULT_QUALITY = @as(u32, 134217728);
-pub const AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM = @as(u32, 2147483648);
-pub const AUDCLNT_SESSIONFLAGS_EXPIREWHENUNOWNED = @as(u32, 268435456);
-pub const AUDCLNT_SESSIONFLAGS_DISPLAY_HIDE = @as(u32, 536870912);
-pub const AUDCLNT_SESSIONFLAGS_DISPLAY_HIDEWHENEXPIRED = @as(u32, 1073741824);
-pub const SPTLAUDCLNT_E_DESTROYED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287232));
-pub const SPTLAUDCLNT_E_OUT_OF_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287231));
-pub const SPTLAUDCLNT_E_RESOURCES_INVALIDATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287230));
-pub const SPTLAUDCLNT_E_NO_MORE_OBJECTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287229));
-pub const SPTLAUDCLNT_E_PROPERTY_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287228));
-pub const SPTLAUDCLNT_E_ERRORS_IN_OBJECT_CALLS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287227));
-pub const SPTLAUDCLNT_E_METADATA_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287226));
-pub const SPTLAUDCLNT_E_STREAM_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287225));
-pub const SPTLAUDCLNT_E_INVALID_LICENSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287224));
-pub const SPTLAUDCLNT_E_STREAM_NOT_STOPPED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287222));
-pub const SPTLAUDCLNT_E_STATIC_OBJECT_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287221));
-pub const SPTLAUDCLNT_E_OBJECT_ALREADY_ACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287220));
-pub const SPTLAUDCLNT_E_INTERNAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287219));
+pub const AUDIOCLOCK_CHARACTERISTIC_FIXED_FREQ = @as(u32, 1);
+pub const AUXCAPS_AUXIN = @as(u32, 2);
+pub const AUXCAPS_CDAUDIO = @as(u32, 1);
+pub const AUXCAPS_LRVOLUME = @as(u32, 2);
+pub const AUXCAPS_VOLUME = @as(u32, 1);
 pub const DEVICE_STATE_ACTIVE = @as(u32, 1);
 pub const DEVICE_STATE_DISABLED = @as(u32, 2);
 pub const DEVICE_STATE_NOTPRESENT = @as(u32, 4);
 pub const DEVICE_STATE_UNPLUGGED = @as(u32, 8);
 pub const DEVICE_STATEMASK_ALL = @as(u32, 15);
-pub const PKEY_AudioEndpoint_FormFactor = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 0 };
-pub const PKEY_AudioEndpoint_ControlPanelPageProvider = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 1 };
-pub const PKEY_AudioEndpoint_Association = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 2 };
-pub const PKEY_AudioEndpoint_PhysicalSpeakers = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 3 };
-pub const PKEY_AudioEndpoint_GUID = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 4 };
-pub const PKEY_AudioEndpoint_Disable_SysFx = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 5 };
-pub const ENDPOINT_SYSFX_ENABLED = @as(u32, 0);
-pub const ENDPOINT_SYSFX_DISABLED = @as(u32, 1);
-pub const PKEY_AudioEndpoint_FullRangeSpeakers = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 6 };
-pub const PKEY_AudioEndpoint_Supports_EventDriven_Mode = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 7 };
-pub const PKEY_AudioEndpoint_JackSubType = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 8 };
-pub const PKEY_AudioEndpoint_Default_VolumeInDb = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 9 };
-pub const PKEY_AudioEngine_DeviceFormat = PROPERTYKEY { .fmtid = Guid.initString("f19f064d-082c-4e27-bc73-6882a1bb8e4c"), .pid = 0 };
-pub const PKEY_AudioEngine_OEMFormat = PROPERTYKEY { .fmtid = Guid.initString("e4870e26-3cc5-4cd2-ba46-ca0a9a70ed04"), .pid = 3 };
-pub const PKEY_AudioEndpointLogo_IconEffects = PROPERTYKEY { .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 0 };
-pub const PKEY_AudioEndpointLogo_IconPath = PROPERTYKEY { .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 1 };
-pub const PKEY_AudioEndpointSettings_MenuText = PROPERTYKEY { .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 0 };
-pub const PKEY_AudioEndpointSettings_LaunchContract = PROPERTYKEY { .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 1 };
-pub const DEVINTERFACE_AUDIO_RENDER = Guid.initString("e6327cad-dcec-4949-ae8a-991e976a79d2");
 pub const DEVINTERFACE_AUDIO_CAPTURE = Guid.initString("2eef81be-33fa-4800-9670-1cd474972c3f");
-pub const DEVINTERFACE_MIDI_OUTPUT = Guid.initString("6dc23320-ab33-4ce4-80d4-bbb3ebbf2814");
+pub const DEVINTERFACE_AUDIO_RENDER = Guid.initString("e6327cad-dcec-4949-ae8a-991e976a79d2");
 pub const DEVINTERFACE_MIDI_INPUT = Guid.initString("504be32c-ccf6-4d2c-b73f-6f8b3747e22b");
-pub const EVENTCONTEXT_VOLUMESLIDER = Guid.initString("e2c2e9de-09b1-4b04-84e5-07931225ee04");
-pub const SPATIAL_AUDIO_STANDARD_COMMANDS_START = @as(u32, 200);
-pub const SPATIAL_AUDIO_POSITION = @as(u32, 200);
-pub const SPTLAUD_MD_CLNT_E_COMMAND_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286976));
-pub const SPTLAUD_MD_CLNT_E_OBJECT_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286975));
-pub const SPTLAUD_MD_CLNT_E_INVALID_ARGS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286974));
-pub const SPTLAUD_MD_CLNT_E_METADATA_FORMAT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286973));
-pub const SPTLAUD_MD_CLNT_E_VALUE_BUFFER_INCORRECT_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286972));
-pub const SPTLAUD_MD_CLNT_E_MEMORY_BOUNDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286971));
-pub const SPTLAUD_MD_CLNT_E_NO_MORE_COMMANDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286970));
-pub const SPTLAUD_MD_CLNT_E_BUFFER_ALREADY_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286969));
-pub const SPTLAUD_MD_CLNT_E_BUFFER_NOT_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286968));
-pub const SPTLAUD_MD_CLNT_E_FRAMECOUNT_OUT_OF_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286967));
-pub const SPTLAUD_MD_CLNT_E_NO_ITEMS_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286960));
-pub const SPTLAUD_MD_CLNT_E_ITEM_COPY_OVERFLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286959));
-pub const SPTLAUD_MD_CLNT_E_NO_ITEMS_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286958));
-pub const SPTLAUD_MD_CLNT_E_ITEMS_ALREADY_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286957));
-pub const SPTLAUD_MD_CLNT_E_ATTACH_FAILED_INTERNAL_BUFFER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286956));
-pub const SPTLAUD_MD_CLNT_E_DETACH_FAILED_INTERNAL_BUFFER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286955));
-pub const SPTLAUD_MD_CLNT_E_NO_BUFFER_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286954));
-pub const SPTLAUD_MD_CLNT_E_NO_MORE_ITEMS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286953));
-pub const SPTLAUD_MD_CLNT_E_FRAMEOFFSET_OUT_OF_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286952));
-pub const SPTLAUD_MD_CLNT_E_ITEM_MUST_HAVE_COMMANDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286951));
-pub const SPTLAUD_MD_CLNT_E_NO_ITEMOFFSET_WRITTEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286944));
-pub const SPTLAUD_MD_CLNT_E_NO_ITEMS_WRITTEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286943));
-pub const SPTLAUD_MD_CLNT_E_COMMAND_ALREADY_WRITTEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286942));
-pub const SPTLAUD_MD_CLNT_E_FORMAT_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286941));
-pub const SPTLAUD_MD_CLNT_E_BUFFER_STILL_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286940));
-pub const SPTLAUD_MD_CLNT_E_ITEMS_LOCKED_FOR_WRITING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286939));
-pub const VIRTUAL_AUDIO_DEVICE_PROCESS_LOOPBACK = "VAD\\Process_Loopback";
-pub const WAVERR_BADFORMAT = @as(u32, 32);
-pub const WAVERR_STILLPLAYING = @as(u32, 33);
-pub const WAVERR_UNPREPARED = @as(u32, 34);
-pub const WAVERR_SYNC = @as(u32, 35);
-pub const WAVERR_LASTERROR = @as(u32, 35);
-pub const WHDR_DONE = @as(u32, 1);
-pub const WHDR_PREPARED = @as(u32, 2);
-pub const WHDR_BEGINLOOP = @as(u32, 4);
-pub const WHDR_ENDLOOP = @as(u32, 8);
-pub const WHDR_INQUEUE = @as(u32, 16);
-pub const WAVECAPS_PITCH = @as(u32, 1);
-pub const WAVECAPS_PLAYBACKRATE = @as(u32, 2);
-pub const WAVECAPS_VOLUME = @as(u32, 4);
-pub const WAVECAPS_LRVOLUME = @as(u32, 8);
-pub const WAVECAPS_SYNC = @as(u32, 16);
-pub const WAVECAPS_SAMPLEACCURATE = @as(u32, 32);
-pub const WAVE_INVALIDFORMAT = @as(u32, 0);
-pub const WAVE_FORMAT_1M08 = @as(u32, 1);
-pub const WAVE_FORMAT_1S08 = @as(u32, 2);
-pub const WAVE_FORMAT_1M16 = @as(u32, 4);
-pub const WAVE_FORMAT_1S16 = @as(u32, 8);
-pub const WAVE_FORMAT_2M08 = @as(u32, 16);
-pub const WAVE_FORMAT_2S08 = @as(u32, 32);
-pub const WAVE_FORMAT_2M16 = @as(u32, 64);
-pub const WAVE_FORMAT_2S16 = @as(u32, 128);
-pub const WAVE_FORMAT_4M08 = @as(u32, 256);
-pub const WAVE_FORMAT_4S08 = @as(u32, 512);
-pub const WAVE_FORMAT_4M16 = @as(u32, 1024);
-pub const WAVE_FORMAT_4S16 = @as(u32, 2048);
-pub const WAVE_FORMAT_44M08 = @as(u32, 256);
-pub const WAVE_FORMAT_44S08 = @as(u32, 512);
-pub const WAVE_FORMAT_44M16 = @as(u32, 1024);
-pub const WAVE_FORMAT_44S16 = @as(u32, 2048);
-pub const WAVE_FORMAT_48M08 = @as(u32, 4096);
-pub const WAVE_FORMAT_48S08 = @as(u32, 8192);
-pub const WAVE_FORMAT_48M16 = @as(u32, 16384);
-pub const WAVE_FORMAT_48S16 = @as(u32, 32768);
-pub const WAVE_FORMAT_96M08 = @as(u32, 65536);
-pub const WAVE_FORMAT_96S08 = @as(u32, 131072);
-pub const WAVE_FORMAT_96M16 = @as(u32, 262144);
-pub const WAVE_FORMAT_96S16 = @as(u32, 524288);
-pub const WAVE_FORMAT_PCM = @as(u32, 1);
-pub const MIDIERR_UNPREPARED = @as(u32, 64);
-pub const MIDIERR_STILLPLAYING = @as(u32, 65);
-pub const MIDIERR_NOMAP = @as(u32, 66);
-pub const MIDIERR_NOTREADY = @as(u32, 67);
-pub const MIDIERR_NODEVICE = @as(u32, 68);
-pub const MIDIERR_INVALIDSETUP = @as(u32, 69);
-pub const MIDIERR_BADOPENMODE = @as(u32, 70);
-pub const MIDIERR_DONT_CONTINUE = @as(u32, 71);
-pub const MIDIERR_LASTERROR = @as(u32, 71);
-pub const MIDIPATCHSIZE = @as(u32, 128);
-pub const MIDI_CACHE_ALL = @as(u32, 1);
-pub const MIDI_CACHE_BESTFIT = @as(u32, 2);
-pub const MIDI_CACHE_QUERY = @as(u32, 3);
-pub const MIDI_UNCACHE = @as(u32, 4);
-pub const MOD_MIDIPORT = @as(u32, 1);
-pub const MOD_SYNTH = @as(u32, 2);
-pub const MOD_SQSYNTH = @as(u32, 3);
-pub const MOD_FMSYNTH = @as(u32, 4);
-pub const MOD_MAPPER = @as(u32, 5);
-pub const MOD_WAVETABLE = @as(u32, 6);
-pub const MOD_SWSYNTH = @as(u32, 7);
-pub const MIDICAPS_VOLUME = @as(u32, 1);
-pub const MIDICAPS_LRVOLUME = @as(u32, 2);
-pub const MIDICAPS_CACHE = @as(u32, 4);
-pub const MIDICAPS_STREAM = @as(u32, 8);
-pub const MHDR_DONE = @as(u32, 1);
-pub const MHDR_PREPARED = @as(u32, 2);
-pub const MHDR_INQUEUE = @as(u32, 4);
-pub const MHDR_ISSTRM = @as(u32, 8);
-pub const MEVT_F_SHORT = @as(i32, 0);
-pub const MEVT_F_LONG = @as(i32, -2147483648);
-pub const MEVT_F_CALLBACK = @as(i32, 1073741824);
-pub const MIDISTRM_ERROR = @as(i32, -2);
-pub const MIDIPROP_SET = @as(i32, -2147483648);
-pub const MIDIPROP_GET = @as(i32, 1073741824);
-pub const MIDIPROP_TIMEDIV = @as(i32, 1);
-pub const MIDIPROP_TEMPO = @as(i32, 2);
-pub const AUXCAPS_CDAUDIO = @as(u32, 1);
-pub const AUXCAPS_AUXIN = @as(u32, 2);
-pub const AUXCAPS_VOLUME = @as(u32, 1);
-pub const AUXCAPS_LRVOLUME = @as(u32, 2);
-pub const MIXER_SHORT_NAME_CHARS = @as(u32, 16);
-pub const MIXER_LONG_NAME_CHARS = @as(u32, 64);
-pub const MIXERR_INVALLINE = @as(u32, 1024);
-pub const MIXERR_INVALCONTROL = @as(u32, 1025);
-pub const MIXERR_INVALVALUE = @as(u32, 1026);
-pub const MIXERR_LASTERROR = @as(u32, 1026);
-pub const MIXER_OBJECTF_HANDLE = @as(i32, -2147483648);
-pub const MIXER_OBJECTF_MIXER = @as(i32, 0);
-pub const MIXER_OBJECTF_WAVEOUT = @as(i32, 268435456);
-pub const MIXER_OBJECTF_WAVEIN = @as(i32, 536870912);
-pub const MIXER_OBJECTF_MIDIOUT = @as(i32, 805306368);
-pub const MIXER_OBJECTF_MIDIIN = @as(i32, 1073741824);
-pub const MIXER_OBJECTF_AUX = @as(i32, 1342177280);
-pub const MIXERLINE_LINEF_ACTIVE = @as(i32, 1);
-pub const MIXERLINE_LINEF_DISCONNECTED = @as(i32, 32768);
-pub const MIXERLINE_LINEF_SOURCE = @as(i32, -2147483648);
-pub const MIXERLINE_COMPONENTTYPE_DST_FIRST = @as(i32, 0);
-pub const MIXERLINE_COMPONENTTYPE_DST_LAST = @as(u32, 8);
-pub const MIXERLINE_COMPONENTTYPE_SRC_FIRST = @as(i32, 4096);
-pub const MIXERLINE_COMPONENTTYPE_SRC_LAST = @as(u32, 4106);
-pub const MIXERLINE_TARGETTYPE_UNDEFINED = @as(u32, 0);
-pub const MIXERLINE_TARGETTYPE_WAVEOUT = @as(u32, 1);
-pub const MIXERLINE_TARGETTYPE_WAVEIN = @as(u32, 2);
-pub const MIXERLINE_TARGETTYPE_MIDIOUT = @as(u32, 3);
-pub const MIXERLINE_TARGETTYPE_MIDIIN = @as(u32, 4);
-pub const MIXERLINE_TARGETTYPE_AUX = @as(u32, 5);
-pub const MIXER_GETLINEINFOF_DESTINATION = @as(i32, 0);
-pub const MIXER_GETLINEINFOF_SOURCE = @as(i32, 1);
-pub const MIXER_GETLINEINFOF_LINEID = @as(i32, 2);
-pub const MIXER_GETLINEINFOF_COMPONENTTYPE = @as(i32, 3);
-pub const MIXER_GETLINEINFOF_TARGETTYPE = @as(i32, 4);
-pub const MIXER_GETLINEINFOF_QUERYMASK = @as(i32, 15);
-pub const MIXERCONTROL_CONTROLF_UNIFORM = @as(i32, 1);
-pub const MIXERCONTROL_CONTROLF_MULTIPLE = @as(i32, 2);
-pub const MIXERCONTROL_CONTROLF_DISABLED = @as(i32, -2147483648);
-pub const MIXERCONTROL_CT_CLASS_MASK = @as(i32, -268435456);
-pub const MIXERCONTROL_CT_CLASS_CUSTOM = @as(i32, 0);
-pub const MIXERCONTROL_CT_CLASS_METER = @as(i32, 268435456);
-pub const MIXERCONTROL_CT_CLASS_SWITCH = @as(i32, 536870912);
-pub const MIXERCONTROL_CT_CLASS_NUMBER = @as(i32, 805306368);
-pub const MIXERCONTROL_CT_CLASS_SLIDER = @as(i32, 1073741824);
-pub const MIXERCONTROL_CT_CLASS_FADER = @as(i32, 1342177280);
-pub const MIXERCONTROL_CT_CLASS_TIME = @as(i32, 1610612736);
-pub const MIXERCONTROL_CT_CLASS_LIST = @as(i32, 1879048192);
-pub const MIXERCONTROL_CT_SUBCLASS_MASK = @as(i32, 251658240);
-pub const MIXERCONTROL_CT_SC_SWITCH_BOOLEAN = @as(i32, 0);
-pub const MIXERCONTROL_CT_SC_SWITCH_BUTTON = @as(i32, 16777216);
-pub const MIXERCONTROL_CT_SC_METER_POLLED = @as(i32, 0);
-pub const MIXERCONTROL_CT_SC_TIME_MICROSECS = @as(i32, 0);
-pub const MIXERCONTROL_CT_SC_TIME_MILLISECS = @as(i32, 16777216);
-pub const MIXERCONTROL_CT_SC_LIST_SINGLE = @as(i32, 0);
-pub const MIXERCONTROL_CT_SC_LIST_MULTIPLE = @as(i32, 16777216);
-pub const MIXERCONTROL_CT_UNITS_MASK = @as(i32, 16711680);
-pub const MIXERCONTROL_CT_UNITS_CUSTOM = @as(i32, 0);
-pub const MIXERCONTROL_CT_UNITS_BOOLEAN = @as(i32, 65536);
-pub const MIXERCONTROL_CT_UNITS_SIGNED = @as(i32, 131072);
-pub const MIXERCONTROL_CT_UNITS_UNSIGNED = @as(i32, 196608);
-pub const MIXERCONTROL_CT_UNITS_DECIBELS = @as(i32, 262144);
-pub const MIXERCONTROL_CT_UNITS_PERCENT = @as(i32, 327680);
-pub const MIXER_GETLINECONTROLSF_ALL = @as(i32, 0);
-pub const MIXER_GETLINECONTROLSF_ONEBYID = @as(i32, 1);
-pub const MIXER_GETLINECONTROLSF_ONEBYTYPE = @as(i32, 2);
-pub const MIXER_GETLINECONTROLSF_QUERYMASK = @as(i32, 15);
-pub const MIXER_GETCONTROLDETAILSF_VALUE = @as(i32, 0);
-pub const MIXER_GETCONTROLDETAILSF_LISTTEXT = @as(i32, 1);
-pub const MIXER_GETCONTROLDETAILSF_QUERYMASK = @as(i32, 15);
-pub const MIXER_SETCONTROLDETAILSF_VALUE = @as(i32, 0);
-pub const MIXER_SETCONTROLDETAILSF_CUSTOM = @as(i32, 1);
-pub const MIXER_SETCONTROLDETAILSF_QUERYMASK = @as(i32, 15);
+pub const DEVINTERFACE_MIDI_OUTPUT = Guid.initString("6dc23320-ab33-4ce4-80d4-bbb3ebbf2814");
 pub const DRV_MAPPER_PREFERRED_INPUT_GET = @as(u32, 16384);
 pub const DRV_MAPPER_PREFERRED_OUTPUT_GET = @as(u32, 16386);
 pub const DRVM_MAPPER = @as(u32, 8192);
 pub const DRVM_MAPPER_STATUS = @as(u32, 8192);
-pub const WIDM_MAPPER_STATUS = @as(u32, 8192);
-pub const WAVEIN_MAPPER_STATUS_DEVICE = @as(u32, 0);
-pub const WAVEIN_MAPPER_STATUS_MAPPED = @as(u32, 1);
-pub const WAVEIN_MAPPER_STATUS_FORMAT = @as(u32, 2);
-pub const WODM_MAPPER_STATUS = @as(u32, 8192);
-pub const WAVEOUT_MAPPER_STATUS_DEVICE = @as(u32, 0);
-pub const WAVEOUT_MAPPER_STATUS_MAPPED = @as(u32, 1);
-pub const WAVEOUT_MAPPER_STATUS_FORMAT = @as(u32, 2);
-pub const ACMERR_BASE = @as(u32, 512);
-pub const ACMERR_NOTPOSSIBLE = @as(u32, 512);
-pub const ACMERR_BUSY = @as(u32, 513);
-pub const ACMERR_UNPREPARED = @as(u32, 514);
-pub const ACMERR_CANCELED = @as(u32, 515);
-pub const ACM_METRIC_COUNT_DRIVERS = @as(u32, 1);
-pub const ACM_METRIC_COUNT_CODECS = @as(u32, 2);
-pub const ACM_METRIC_COUNT_CONVERTERS = @as(u32, 3);
-pub const ACM_METRIC_COUNT_FILTERS = @as(u32, 4);
-pub const ACM_METRIC_COUNT_DISABLED = @as(u32, 5);
-pub const ACM_METRIC_COUNT_HARDWARE = @as(u32, 6);
-pub const ACM_METRIC_COUNT_LOCAL_DRIVERS = @as(u32, 20);
-pub const ACM_METRIC_COUNT_LOCAL_CODECS = @as(u32, 21);
-pub const ACM_METRIC_COUNT_LOCAL_CONVERTERS = @as(u32, 22);
-pub const ACM_METRIC_COUNT_LOCAL_FILTERS = @as(u32, 23);
-pub const ACM_METRIC_COUNT_LOCAL_DISABLED = @as(u32, 24);
-pub const ACM_METRIC_HARDWARE_WAVE_INPUT = @as(u32, 30);
-pub const ACM_METRIC_HARDWARE_WAVE_OUTPUT = @as(u32, 31);
-pub const ACM_METRIC_MAX_SIZE_FORMAT = @as(u32, 50);
-pub const ACM_METRIC_MAX_SIZE_FILTER = @as(u32, 51);
-pub const ACM_METRIC_DRIVER_SUPPORT = @as(u32, 100);
-pub const ACM_METRIC_DRIVER_PRIORITY = @as(u32, 101);
-pub const ACM_DRIVERENUMF_NOLOCAL = @as(i32, 1073741824);
-pub const ACM_DRIVERENUMF_DISABLED = @as(i32, -2147483648);
-pub const ACM_DRIVERADDF_NAME = @as(i32, 1);
-pub const ACM_DRIVERADDF_FUNCTION = @as(i32, 3);
-pub const ACM_DRIVERADDF_NOTIFYHWND = @as(i32, 4);
-pub const ACM_DRIVERADDF_TYPEMASK = @as(i32, 7);
-pub const ACM_DRIVERADDF_LOCAL = @as(i32, 0);
-pub const ACM_DRIVERADDF_GLOBAL = @as(i32, 8);
-pub const ACMDM_USER = @as(u32, 16384);
-pub const ACMDM_RESERVED_LOW = @as(u32, 24576);
-pub const ACMDM_RESERVED_HIGH = @as(u32, 28671);
-pub const ACMDM_DRIVER_ABOUT = @as(u32, 24587);
-pub const ACM_DRIVERPRIORITYF_ENABLE = @as(i32, 1);
-pub const ACM_DRIVERPRIORITYF_DISABLE = @as(i32, 2);
-pub const ACM_DRIVERPRIORITYF_ABLEMASK = @as(i32, 3);
-pub const ACM_DRIVERPRIORITYF_BEGIN = @as(i32, 65536);
-pub const ACM_DRIVERPRIORITYF_END = @as(i32, 131072);
-pub const ACM_DRIVERPRIORITYF_DEFERMASK = @as(i32, 196608);
-pub const ACMDRIVERDETAILS_SHORTNAME_CHARS = @as(u32, 32);
-pub const ACMDRIVERDETAILS_LONGNAME_CHARS = @as(u32, 128);
-pub const ACMDRIVERDETAILS_COPYRIGHT_CHARS = @as(u32, 80);
-pub const ACMDRIVERDETAILS_LICENSING_CHARS = @as(u32, 128);
-pub const ACMDRIVERDETAILS_FEATURES_CHARS = @as(u32, 512);
-pub const ACMDRIVERDETAILS_SUPPORTF_CODEC = @as(i32, 1);
-pub const ACMDRIVERDETAILS_SUPPORTF_CONVERTER = @as(i32, 2);
-pub const ACMDRIVERDETAILS_SUPPORTF_FILTER = @as(i32, 4);
-pub const ACMDRIVERDETAILS_SUPPORTF_HARDWARE = @as(i32, 8);
-pub const ACMDRIVERDETAILS_SUPPORTF_ASYNC = @as(i32, 16);
-pub const ACMDRIVERDETAILS_SUPPORTF_LOCAL = @as(i32, 1073741824);
-pub const ACMDRIVERDETAILS_SUPPORTF_DISABLED = @as(i32, -2147483648);
-pub const ACMFORMATTAGDETAILS_FORMATTAG_CHARS = @as(u32, 48);
-pub const ACM_FORMATTAGDETAILSF_INDEX = @as(i32, 0);
-pub const ACM_FORMATTAGDETAILSF_FORMATTAG = @as(i32, 1);
-pub const ACM_FORMATTAGDETAILSF_LARGESTSIZE = @as(i32, 2);
-pub const ACM_FORMATTAGDETAILSF_QUERYMASK = @as(i32, 15);
-pub const ACMFORMATDETAILS_FORMAT_CHARS = @as(u32, 128);
-pub const ACM_FORMATDETAILSF_INDEX = @as(i32, 0);
-pub const ACM_FORMATDETAILSF_FORMAT = @as(i32, 1);
-pub const ACM_FORMATDETAILSF_QUERYMASK = @as(i32, 15);
-pub const ACM_FORMATENUMF_WFORMATTAG = @as(i32, 65536);
-pub const ACM_FORMATENUMF_NCHANNELS = @as(i32, 131072);
-pub const ACM_FORMATENUMF_NSAMPLESPERSEC = @as(i32, 262144);
-pub const ACM_FORMATENUMF_WBITSPERSAMPLE = @as(i32, 524288);
-pub const ACM_FORMATENUMF_CONVERT = @as(i32, 1048576);
-pub const ACM_FORMATENUMF_SUGGEST = @as(i32, 2097152);
-pub const ACM_FORMATENUMF_HARDWARE = @as(i32, 4194304);
-pub const ACM_FORMATENUMF_INPUT = @as(i32, 8388608);
-pub const ACM_FORMATENUMF_OUTPUT = @as(i32, 16777216);
-pub const ACM_FORMATSUGGESTF_WFORMATTAG = @as(i32, 65536);
-pub const ACM_FORMATSUGGESTF_NCHANNELS = @as(i32, 131072);
-pub const ACM_FORMATSUGGESTF_NSAMPLESPERSEC = @as(i32, 262144);
-pub const ACM_FORMATSUGGESTF_WBITSPERSAMPLE = @as(i32, 524288);
-pub const ACM_FORMATSUGGESTF_TYPEMASK = @as(i32, 16711680);
-pub const ACMHELPMSGSTRINGA = "acmchoose_help";
-pub const ACMHELPMSGSTRINGW = "acmchoose_help";
-pub const ACMHELPMSGCONTEXTMENUA = "acmchoose_contextmenu";
-pub const ACMHELPMSGCONTEXTMENUW = "acmchoose_contextmenu";
-pub const ACMHELPMSGCONTEXTHELPA = "acmchoose_contexthelp";
-pub const ACMHELPMSGCONTEXTHELPW = "acmchoose_contexthelp";
-pub const ACMHELPMSGSTRING = "acmchoose_help";
-pub const ACMHELPMSGCONTEXTMENU = "acmchoose_contextmenu";
-pub const ACMHELPMSGCONTEXTHELP = "acmchoose_contexthelp";
-pub const MM_ACM_FORMATCHOOSE = @as(u32, 32768);
-pub const FORMATCHOOSE_MESSAGE = @as(u32, 0);
-pub const FORMATCHOOSE_FORMATTAG_VERIFY = @as(u32, 0);
-pub const FORMATCHOOSE_FORMAT_VERIFY = @as(u32, 1);
-pub const FORMATCHOOSE_CUSTOM_VERIFY = @as(u32, 2);
-pub const ACMFORMATCHOOSE_STYLEF_SHOWHELP = @as(i32, 4);
-pub const ACMFORMATCHOOSE_STYLEF_ENABLEHOOK = @as(i32, 8);
-pub const ACMFORMATCHOOSE_STYLEF_ENABLETEMPLATE = @as(i32, 16);
-pub const ACMFORMATCHOOSE_STYLEF_ENABLETEMPLATEHANDLE = @as(i32, 32);
-pub const ACMFORMATCHOOSE_STYLEF_INITTOWFXSTRUCT = @as(i32, 64);
-pub const ACMFORMATCHOOSE_STYLEF_CONTEXTHELP = @as(i32, 128);
-pub const ACMFILTERTAGDETAILS_FILTERTAG_CHARS = @as(u32, 48);
-pub const ACM_FILTERTAGDETAILSF_INDEX = @as(i32, 0);
-pub const ACM_FILTERTAGDETAILSF_FILTERTAG = @as(i32, 1);
-pub const ACM_FILTERTAGDETAILSF_LARGESTSIZE = @as(i32, 2);
-pub const ACM_FILTERTAGDETAILSF_QUERYMASK = @as(i32, 15);
-pub const ACMFILTERDETAILS_FILTER_CHARS = @as(u32, 128);
-pub const ACM_FILTERDETAILSF_INDEX = @as(i32, 0);
-pub const ACM_FILTERDETAILSF_FILTER = @as(i32, 1);
-pub const ACM_FILTERDETAILSF_QUERYMASK = @as(i32, 15);
-pub const ACM_FILTERENUMF_DWFILTERTAG = @as(i32, 65536);
-pub const MM_ACM_FILTERCHOOSE = @as(u32, 32768);
-pub const FILTERCHOOSE_MESSAGE = @as(u32, 0);
-pub const FILTERCHOOSE_FILTERTAG_VERIFY = @as(u32, 0);
-pub const FILTERCHOOSE_FILTER_VERIFY = @as(u32, 1);
+pub const ENDPOINT_FORMAT_RESET_MIX_ONLY = @as(u32, 1);
+pub const ENDPOINT_HARDWARE_SUPPORT_METER = @as(u32, 4);
+pub const ENDPOINT_HARDWARE_SUPPORT_MUTE = @as(u32, 2);
+pub const ENDPOINT_HARDWARE_SUPPORT_VOLUME = @as(u32, 1);
+pub const ENDPOINT_SYSFX_DISABLED = @as(u32, 1);
+pub const ENDPOINT_SYSFX_ENABLED = @as(u32, 0);
+pub const EVENTCONTEXT_VOLUMESLIDER = Guid.initString("e2c2e9de-09b1-4b04-84e5-07931225ee04");
 pub const FILTERCHOOSE_CUSTOM_VERIFY = @as(u32, 2);
-pub const ACMFILTERCHOOSE_STYLEF_SHOWHELP = @as(i32, 4);
-pub const ACMFILTERCHOOSE_STYLEF_ENABLEHOOK = @as(i32, 8);
-pub const ACMFILTERCHOOSE_STYLEF_ENABLETEMPLATE = @as(i32, 16);
-pub const ACMFILTERCHOOSE_STYLEF_ENABLETEMPLATEHANDLE = @as(i32, 32);
-pub const ACMFILTERCHOOSE_STYLEF_INITTOFILTERSTRUCT = @as(i32, 64);
-pub const ACMFILTERCHOOSE_STYLEF_CONTEXTHELP = @as(i32, 128);
-pub const ACMSTREAMHEADER_STATUSF_DONE = @as(i32, 65536);
-pub const ACMSTREAMHEADER_STATUSF_PREPARED = @as(i32, 131072);
-pub const ACMSTREAMHEADER_STATUSF_INQUEUE = @as(i32, 1048576);
-pub const ACM_STREAMOPENF_QUERY = @as(u32, 1);
-pub const ACM_STREAMOPENF_ASYNC = @as(u32, 2);
-pub const ACM_STREAMOPENF_NONREALTIME = @as(u32, 4);
-pub const ACM_STREAMSIZEF_SOURCE = @as(i32, 0);
-pub const ACM_STREAMSIZEF_DESTINATION = @as(i32, 1);
-pub const ACM_STREAMSIZEF_QUERYMASK = @as(i32, 15);
-pub const ACM_STREAMCONVERTF_BLOCKALIGN = @as(u32, 4);
-pub const ACM_STREAMCONVERTF_START = @as(u32, 16);
-pub const ACM_STREAMCONVERTF_END = @as(u32, 32);
-pub const SND_RING = @as(i32, 1048576);
+pub const FILTERCHOOSE_FILTER_VERIFY = @as(u32, 1);
+pub const FILTERCHOOSE_FILTERTAG_VERIFY = @as(u32, 0);
+pub const FILTERCHOOSE_MESSAGE = @as(u32, 0);
+pub const FORMATCHOOSE_CUSTOM_VERIFY = @as(u32, 2);
+pub const FORMATCHOOSE_FORMAT_VERIFY = @as(u32, 1);
+pub const FORMATCHOOSE_FORMATTAG_VERIFY = @as(u32, 0);
+pub const FORMATCHOOSE_MESSAGE = @as(u32, 0);
+pub const MEVT_F_CALLBACK = @as(i32, 1073741824);
+pub const MEVT_F_LONG = @as(i32, -2147483648);
+pub const MEVT_F_SHORT = @as(i32, 0);
+pub const MHDR_DONE = @as(u32, 1);
+pub const MHDR_INQUEUE = @as(u32, 4);
+pub const MHDR_ISSTRM = @as(u32, 8);
+pub const MHDR_PREPARED = @as(u32, 2);
+pub const MIDI_CACHE_ALL = @as(u32, 1);
+pub const MIDI_CACHE_BESTFIT = @as(u32, 2);
+pub const MIDI_CACHE_QUERY = @as(u32, 3);
+pub const MIDI_UNCACHE = @as(u32, 4);
+pub const MIDICAPS_CACHE = @as(u32, 4);
+pub const MIDICAPS_LRVOLUME = @as(u32, 2);
+pub const MIDICAPS_STREAM = @as(u32, 8);
+pub const MIDICAPS_VOLUME = @as(u32, 1);
+pub const MIDIERR_BADOPENMODE = @as(u32, 70);
+pub const MIDIERR_DONT_CONTINUE = @as(u32, 71);
+pub const MIDIERR_INVALIDSETUP = @as(u32, 69);
+pub const MIDIERR_LASTERROR = @as(u32, 71);
+pub const MIDIERR_NODEVICE = @as(u32, 68);
+pub const MIDIERR_NOMAP = @as(u32, 66);
+pub const MIDIERR_NOTREADY = @as(u32, 67);
+pub const MIDIERR_STILLPLAYING = @as(u32, 65);
+pub const MIDIERR_UNPREPARED = @as(u32, 64);
+pub const MIDIPATCHSIZE = @as(u32, 128);
+pub const MIDIPROP_GET = @as(i32, 1073741824);
+pub const MIDIPROP_SET = @as(i32, -2147483648);
+pub const MIDIPROP_TEMPO = @as(i32, 2);
+pub const MIDIPROP_TIMEDIV = @as(i32, 1);
+pub const MIDISTRM_ERROR = @as(i32, -2);
+pub const MIXER_GETCONTROLDETAILSF_LISTTEXT = @as(i32, 1);
+pub const MIXER_GETCONTROLDETAILSF_QUERYMASK = @as(i32, 15);
+pub const MIXER_GETCONTROLDETAILSF_VALUE = @as(i32, 0);
+pub const MIXER_GETLINECONTROLSF_ALL = @as(i32, 0);
+pub const MIXER_GETLINECONTROLSF_ONEBYID = @as(i32, 1);
+pub const MIXER_GETLINECONTROLSF_ONEBYTYPE = @as(i32, 2);
+pub const MIXER_GETLINECONTROLSF_QUERYMASK = @as(i32, 15);
+pub const MIXER_GETLINEINFOF_COMPONENTTYPE = @as(i32, 3);
+pub const MIXER_GETLINEINFOF_DESTINATION = @as(i32, 0);
+pub const MIXER_GETLINEINFOF_LINEID = @as(i32, 2);
+pub const MIXER_GETLINEINFOF_QUERYMASK = @as(i32, 15);
+pub const MIXER_GETLINEINFOF_SOURCE = @as(i32, 1);
+pub const MIXER_GETLINEINFOF_TARGETTYPE = @as(i32, 4);
+pub const MIXER_LONG_NAME_CHARS = @as(u32, 64);
+pub const MIXER_OBJECTF_AUX = @as(i32, 1342177280);
+pub const MIXER_OBJECTF_HANDLE = @as(i32, -2147483648);
+pub const MIXER_OBJECTF_MIDIIN = @as(i32, 1073741824);
+pub const MIXER_OBJECTF_MIDIOUT = @as(i32, 805306368);
+pub const MIXER_OBJECTF_MIXER = @as(i32, 0);
+pub const MIXER_OBJECTF_WAVEIN = @as(i32, 536870912);
+pub const MIXER_OBJECTF_WAVEOUT = @as(i32, 268435456);
+pub const MIXER_SETCONTROLDETAILSF_CUSTOM = @as(i32, 1);
+pub const MIXER_SETCONTROLDETAILSF_QUERYMASK = @as(i32, 15);
+pub const MIXER_SETCONTROLDETAILSF_VALUE = @as(i32, 0);
+pub const MIXER_SHORT_NAME_CHARS = @as(u32, 16);
+pub const MIXERCONTROL_CONTROLF_DISABLED = @as(i32, -2147483648);
+pub const MIXERCONTROL_CONTROLF_MULTIPLE = @as(i32, 2);
+pub const MIXERCONTROL_CONTROLF_UNIFORM = @as(i32, 1);
+pub const MIXERCONTROL_CONTROLTYPE_BASS = @as(u32, 1342373890);
+pub const MIXERCONTROL_CONTROLTYPE_BASS_BOOST = @as(u32, 536945271);
+pub const MIXERCONTROL_CONTROLTYPE_BOOLEAN = @as(u32, 536936448);
+pub const MIXERCONTROL_CONTROLTYPE_BOOLEANMETER = @as(u32, 268500992);
+pub const MIXERCONTROL_CONTROLTYPE_BUTTON = @as(u32, 553713664);
+pub const MIXERCONTROL_CONTROLTYPE_CUSTOM = @as(u32, 0);
+pub const MIXERCONTROL_CONTROLTYPE_DECIBELS = @as(u32, 805568512);
+pub const MIXERCONTROL_CONTROLTYPE_EQUALIZER = @as(u32, 1342373892);
+pub const MIXERCONTROL_CONTROLTYPE_FADER = @as(u32, 1342373888);
+pub const MIXERCONTROL_CONTROLTYPE_LOUDNESS = @as(u32, 536936452);
+pub const MIXERCONTROL_CONTROLTYPE_MICROTIME = @as(u32, 1610809344);
+pub const MIXERCONTROL_CONTROLTYPE_MILLITIME = @as(u32, 1627586560);
+pub const MIXERCONTROL_CONTROLTYPE_MIXER = @as(u32, 1895890945);
+pub const MIXERCONTROL_CONTROLTYPE_MONO = @as(u32, 536936451);
+pub const MIXERCONTROL_CONTROLTYPE_MULTIPLESELECT = @as(u32, 1895890944);
+pub const MIXERCONTROL_CONTROLTYPE_MUTE = @as(u32, 536936450);
+pub const MIXERCONTROL_CONTROLTYPE_MUX = @as(u32, 1879113729);
+pub const MIXERCONTROL_CONTROLTYPE_ONOFF = @as(u32, 536936449);
+pub const MIXERCONTROL_CONTROLTYPE_PAN = @as(u32, 1073872897);
+pub const MIXERCONTROL_CONTROLTYPE_PEAKMETER = @as(u32, 268566529);
+pub const MIXERCONTROL_CONTROLTYPE_PERCENT = @as(u32, 805634048);
+pub const MIXERCONTROL_CONTROLTYPE_QSOUNDPAN = @as(u32, 1073872898);
+pub const MIXERCONTROL_CONTROLTYPE_SIGNED = @as(u32, 805437440);
+pub const MIXERCONTROL_CONTROLTYPE_SIGNEDMETER = @as(u32, 268566528);
+pub const MIXERCONTROL_CONTROLTYPE_SINGLESELECT = @as(u32, 1879113728);
+pub const MIXERCONTROL_CONTROLTYPE_SLIDER = @as(u32, 1073872896);
+pub const MIXERCONTROL_CONTROLTYPE_STEREOENH = @as(u32, 536936453);
+pub const MIXERCONTROL_CONTROLTYPE_TREBLE = @as(u32, 1342373891);
+pub const MIXERCONTROL_CONTROLTYPE_UNSIGNED = @as(u32, 805502976);
+pub const MIXERCONTROL_CONTROLTYPE_UNSIGNEDMETER = @as(u32, 268632064);
+pub const MIXERCONTROL_CONTROLTYPE_VOLUME = @as(u32, 1342373889);
+pub const MIXERCONTROL_CT_CLASS_CUSTOM = @as(i32, 0);
+pub const MIXERCONTROL_CT_CLASS_FADER = @as(i32, 1342177280);
+pub const MIXERCONTROL_CT_CLASS_LIST = @as(i32, 1879048192);
+pub const MIXERCONTROL_CT_CLASS_MASK = @as(i32, -268435456);
+pub const MIXERCONTROL_CT_CLASS_METER = @as(i32, 268435456);
+pub const MIXERCONTROL_CT_CLASS_NUMBER = @as(i32, 805306368);
+pub const MIXERCONTROL_CT_CLASS_SLIDER = @as(i32, 1073741824);
+pub const MIXERCONTROL_CT_CLASS_SWITCH = @as(i32, 536870912);
+pub const MIXERCONTROL_CT_CLASS_TIME = @as(i32, 1610612736);
+pub const MIXERCONTROL_CT_SC_LIST_MULTIPLE = @as(i32, 16777216);
+pub const MIXERCONTROL_CT_SC_LIST_SINGLE = @as(i32, 0);
+pub const MIXERCONTROL_CT_SC_METER_POLLED = @as(i32, 0);
+pub const MIXERCONTROL_CT_SC_SWITCH_BOOLEAN = @as(i32, 0);
+pub const MIXERCONTROL_CT_SC_SWITCH_BUTTON = @as(i32, 16777216);
+pub const MIXERCONTROL_CT_SC_TIME_MICROSECS = @as(i32, 0);
+pub const MIXERCONTROL_CT_SC_TIME_MILLISECS = @as(i32, 16777216);
+pub const MIXERCONTROL_CT_SUBCLASS_MASK = @as(i32, 251658240);
+pub const MIXERCONTROL_CT_UNITS_BOOLEAN = @as(i32, 65536);
+pub const MIXERCONTROL_CT_UNITS_CUSTOM = @as(i32, 0);
+pub const MIXERCONTROL_CT_UNITS_DECIBELS = @as(i32, 262144);
+pub const MIXERCONTROL_CT_UNITS_MASK = @as(i32, 16711680);
+pub const MIXERCONTROL_CT_UNITS_PERCENT = @as(i32, 327680);
+pub const MIXERCONTROL_CT_UNITS_SIGNED = @as(i32, 131072);
+pub const MIXERCONTROL_CT_UNITS_UNSIGNED = @as(i32, 196608);
+pub const MIXERLINE_COMPONENTTYPE_DST_FIRST = @as(i32, 0);
+pub const MIXERLINE_COMPONENTTYPE_DST_LAST = @as(u32, 8);
+pub const MIXERLINE_COMPONENTTYPE_SRC_FIRST = @as(i32, 4096);
+pub const MIXERLINE_COMPONENTTYPE_SRC_LAST = @as(u32, 4106);
+pub const MIXERLINE_LINEF_ACTIVE = @as(i32, 1);
+pub const MIXERLINE_LINEF_DISCONNECTED = @as(i32, 32768);
+pub const MIXERLINE_LINEF_SOURCE = @as(i32, -2147483648);
+pub const MIXERLINE_TARGETTYPE_AUX = @as(u32, 5);
+pub const MIXERLINE_TARGETTYPE_MIDIIN = @as(u32, 4);
+pub const MIXERLINE_TARGETTYPE_MIDIOUT = @as(u32, 3);
+pub const MIXERLINE_TARGETTYPE_UNDEFINED = @as(u32, 0);
+pub const MIXERLINE_TARGETTYPE_WAVEIN = @as(u32, 2);
+pub const MIXERLINE_TARGETTYPE_WAVEOUT = @as(u32, 1);
+pub const MIXERR_INVALCONTROL = @as(u32, 1025);
+pub const MIXERR_INVALLINE = @as(u32, 1024);
+pub const MIXERR_INVALVALUE = @as(u32, 1026);
+pub const MIXERR_LASTERROR = @as(u32, 1026);
+pub const MM_ACM_FILTERCHOOSE = @as(u32, 32768);
+pub const MM_ACM_FORMATCHOOSE = @as(u32, 32768);
+pub const MOD_FMSYNTH = @as(u32, 4);
+pub const MOD_MAPPER = @as(u32, 5);
+pub const MOD_MIDIPORT = @as(u32, 1);
+pub const MOD_SQSYNTH = @as(u32, 3);
+pub const MOD_SWSYNTH = @as(u32, 7);
+pub const MOD_SYNTH = @as(u32, 2);
+pub const MOD_WAVETABLE = @as(u32, 6);
+pub const PKEY_AudioEndpoint_Association = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 2 };
+pub const PKEY_AudioEndpoint_ControlPanelPageProvider = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 1 };
+pub const PKEY_AudioEndpoint_Default_VolumeInDb = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 9 };
+pub const PKEY_AudioEndpoint_Disable_SysFx = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 5 };
+pub const PKEY_AudioEndpoint_FormFactor = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 0 };
+pub const PKEY_AudioEndpoint_FullRangeSpeakers = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 6 };
+pub const PKEY_AudioEndpoint_GUID = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 4 };
+pub const PKEY_AudioEndpoint_JackSubType = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 8 };
+pub const PKEY_AudioEndpoint_PhysicalSpeakers = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 3 };
+pub const PKEY_AudioEndpoint_Supports_EventDriven_Mode = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 7 };
+pub const PKEY_AudioEndpointLogo_IconEffects = PROPERTYKEY { .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 0 };
+pub const PKEY_AudioEndpointLogo_IconPath = PROPERTYKEY { .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 1 };
+pub const PKEY_AudioEndpointSettings_LaunchContract = PROPERTYKEY { .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 1 };
+pub const PKEY_AudioEndpointSettings_MenuText = PROPERTYKEY { .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 0 };
+pub const PKEY_AudioEngine_DeviceFormat = PROPERTYKEY { .fmtid = Guid.initString("f19f064d-082c-4e27-bc73-6882a1bb8e4c"), .pid = 0 };
+pub const PKEY_AudioEngine_OEMFormat = PROPERTYKEY { .fmtid = Guid.initString("e4870e26-3cc5-4cd2-ba46-ca0a9a70ed04"), .pid = 3 };
 pub const SND_ALIAS_START = @as(u32, 0);
-pub const ACMDM_DRIVER_NOTIFY = @as(u32, 24577);
-pub const ACMDM_DRIVER_DETAILS = @as(u32, 24586);
-pub const ACMDM_HARDWARE_WAVE_CAPS_INPUT = @as(u32, 24596);
-pub const ACMDM_HARDWARE_WAVE_CAPS_OUTPUT = @as(u32, 24597);
-pub const ACMDM_FORMATTAG_DETAILS = @as(u32, 24601);
-pub const ACMDM_FORMAT_DETAILS = @as(u32, 24602);
-pub const ACMDM_FORMAT_SUGGEST = @as(u32, 24603);
-pub const ACMDM_FILTERTAG_DETAILS = @as(u32, 24626);
-pub const ACMDM_FILTER_DETAILS = @as(u32, 24627);
-pub const ACMDM_STREAM_OPEN = @as(u32, 24652);
-pub const ACMDM_STREAM_CLOSE = @as(u32, 24653);
-pub const ACMDM_STREAM_SIZE = @as(u32, 24654);
-pub const ACMDM_STREAM_CONVERT = @as(u32, 24655);
-pub const ACMDM_STREAM_RESET = @as(u32, 24656);
-pub const ACMDM_STREAM_PREPARE = @as(u32, 24657);
-pub const ACMDM_STREAM_UNPREPARE = @as(u32, 24658);
-pub const ACMDM_STREAM_UPDATE = @as(u32, 24659);
+pub const SND_RING = @as(i32, 1048576);
+pub const SPATIAL_AUDIO_POSITION = @as(u32, 200);
+pub const SPATIAL_AUDIO_STANDARD_COMMANDS_START = @as(u32, 200);
+pub const SPTLAUD_MD_CLNT_E_ATTACH_FAILED_INTERNAL_BUFFER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286956));
+pub const SPTLAUD_MD_CLNT_E_BUFFER_ALREADY_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286969));
+pub const SPTLAUD_MD_CLNT_E_BUFFER_NOT_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286968));
+pub const SPTLAUD_MD_CLNT_E_BUFFER_STILL_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286940));
+pub const SPTLAUD_MD_CLNT_E_COMMAND_ALREADY_WRITTEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286942));
+pub const SPTLAUD_MD_CLNT_E_COMMAND_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286976));
+pub const SPTLAUD_MD_CLNT_E_DETACH_FAILED_INTERNAL_BUFFER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286955));
+pub const SPTLAUD_MD_CLNT_E_FORMAT_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286941));
+pub const SPTLAUD_MD_CLNT_E_FRAMECOUNT_OUT_OF_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286967));
+pub const SPTLAUD_MD_CLNT_E_FRAMEOFFSET_OUT_OF_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286952));
+pub const SPTLAUD_MD_CLNT_E_INVALID_ARGS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286974));
+pub const SPTLAUD_MD_CLNT_E_ITEM_COPY_OVERFLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286959));
+pub const SPTLAUD_MD_CLNT_E_ITEM_MUST_HAVE_COMMANDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286951));
+pub const SPTLAUD_MD_CLNT_E_ITEMS_ALREADY_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286957));
+pub const SPTLAUD_MD_CLNT_E_ITEMS_LOCKED_FOR_WRITING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286939));
+pub const SPTLAUD_MD_CLNT_E_MEMORY_BOUNDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286971));
+pub const SPTLAUD_MD_CLNT_E_METADATA_FORMAT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286973));
+pub const SPTLAUD_MD_CLNT_E_NO_BUFFER_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286954));
+pub const SPTLAUD_MD_CLNT_E_NO_ITEMOFFSET_WRITTEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286944));
+pub const SPTLAUD_MD_CLNT_E_NO_ITEMS_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286960));
+pub const SPTLAUD_MD_CLNT_E_NO_ITEMS_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286958));
+pub const SPTLAUD_MD_CLNT_E_NO_ITEMS_WRITTEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286943));
+pub const SPTLAUD_MD_CLNT_E_NO_MORE_COMMANDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286970));
+pub const SPTLAUD_MD_CLNT_E_NO_MORE_ITEMS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286953));
+pub const SPTLAUD_MD_CLNT_E_OBJECT_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286975));
+pub const SPTLAUD_MD_CLNT_E_VALUE_BUFFER_INCORRECT_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004286972));
+pub const SPTLAUDCLNT_E_DESTROYED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287232));
+pub const SPTLAUDCLNT_E_ERRORS_IN_OBJECT_CALLS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287227));
+pub const SPTLAUDCLNT_E_INTERNAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287219));
+pub const SPTLAUDCLNT_E_INVALID_LICENSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287224));
+pub const SPTLAUDCLNT_E_METADATA_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287226));
+pub const SPTLAUDCLNT_E_NO_MORE_OBJECTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287229));
+pub const SPTLAUDCLNT_E_OBJECT_ALREADY_ACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287220));
+pub const SPTLAUDCLNT_E_OUT_OF_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287231));
+pub const SPTLAUDCLNT_E_PROPERTY_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287228));
+pub const SPTLAUDCLNT_E_RESOURCES_INVALIDATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287230));
+pub const SPTLAUDCLNT_E_STATIC_OBJECT_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287221));
+pub const SPTLAUDCLNT_E_STREAM_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287225));
+pub const SPTLAUDCLNT_E_STREAM_NOT_STOPPED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2004287222));
+pub const VIRTUAL_AUDIO_DEVICE_PROCESS_LOOPBACK = "VAD\\Process_Loopback";
+pub const WAVE_FORMAT_1M08 = @as(u32, 1);
+pub const WAVE_FORMAT_1M16 = @as(u32, 4);
+pub const WAVE_FORMAT_1S08 = @as(u32, 2);
+pub const WAVE_FORMAT_1S16 = @as(u32, 8);
+pub const WAVE_FORMAT_2M08 = @as(u32, 16);
+pub const WAVE_FORMAT_2M16 = @as(u32, 64);
+pub const WAVE_FORMAT_2S08 = @as(u32, 32);
+pub const WAVE_FORMAT_2S16 = @as(u32, 128);
+pub const WAVE_FORMAT_44M08 = @as(u32, 256);
+pub const WAVE_FORMAT_44M16 = @as(u32, 1024);
+pub const WAVE_FORMAT_44S08 = @as(u32, 512);
+pub const WAVE_FORMAT_44S16 = @as(u32, 2048);
+pub const WAVE_FORMAT_48M08 = @as(u32, 4096);
+pub const WAVE_FORMAT_48M16 = @as(u32, 16384);
+pub const WAVE_FORMAT_48S08 = @as(u32, 8192);
+pub const WAVE_FORMAT_48S16 = @as(u32, 32768);
+pub const WAVE_FORMAT_4M08 = @as(u32, 256);
+pub const WAVE_FORMAT_4M16 = @as(u32, 1024);
+pub const WAVE_FORMAT_4S08 = @as(u32, 512);
+pub const WAVE_FORMAT_4S16 = @as(u32, 2048);
+pub const WAVE_FORMAT_96M08 = @as(u32, 65536);
+pub const WAVE_FORMAT_96M16 = @as(u32, 262144);
+pub const WAVE_FORMAT_96S08 = @as(u32, 131072);
+pub const WAVE_FORMAT_96S16 = @as(u32, 524288);
+pub const WAVE_FORMAT_PCM = @as(u32, 1);
+pub const WAVE_INVALIDFORMAT = @as(u32, 0);
+pub const WAVE_MAPPER = @as(u32, 4294967295);
+pub const WAVECAPS_LRVOLUME = @as(u32, 8);
+pub const WAVECAPS_PITCH = @as(u32, 1);
+pub const WAVECAPS_PLAYBACKRATE = @as(u32, 2);
+pub const WAVECAPS_SAMPLEACCURATE = @as(u32, 32);
+pub const WAVECAPS_SYNC = @as(u32, 16);
+pub const WAVECAPS_VOLUME = @as(u32, 4);
+pub const WAVEIN_MAPPER_STATUS_DEVICE = @as(u32, 0);
+pub const WAVEIN_MAPPER_STATUS_FORMAT = @as(u32, 2);
+pub const WAVEIN_MAPPER_STATUS_MAPPED = @as(u32, 1);
+pub const WAVEOUT_MAPPER_STATUS_DEVICE = @as(u32, 0);
+pub const WAVEOUT_MAPPER_STATUS_FORMAT = @as(u32, 2);
+pub const WAVEOUT_MAPPER_STATUS_MAPPED = @as(u32, 1);
+pub const WAVERR_BADFORMAT = @as(u32, 32);
+pub const WAVERR_LASTERROR = @as(u32, 35);
+pub const WAVERR_STILLPLAYING = @as(u32, 33);
+pub const WAVERR_SYNC = @as(u32, 35);
+pub const WAVERR_UNPREPARED = @as(u32, 34);
+pub const WHDR_BEGINLOOP = @as(u32, 4);
+pub const WHDR_DONE = @as(u32, 1);
+pub const WHDR_ENDLOOP = @as(u32, 8);
+pub const WHDR_INQUEUE = @as(u32, 16);
+pub const WHDR_PREPARED = @as(u32, 2);
+pub const WIDM_MAPPER_STATUS = @as(u32, 8192);
+pub const WODM_MAPPER_STATUS = @as(u32, 8192);
 
 //--------------------------------------------------------------------------------
 // Section: Types (230)
 //--------------------------------------------------------------------------------
-pub const LPWAVECALLBACK = *const fn(
-    hdrvr: ?HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(.winapi) void;
-
-pub const LPMIDICALLBACK = *const fn(
-    hdrvr: ?HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(.winapi) void;
-
-pub const MIDI_WAVE_OPEN_TYPE = packed struct(u32) {
-    WAVE_FORMAT_QUERY: u1 = 0,
-    WAVE_ALLOWSYNC: u1 = 0,
-    WAVE_MAPPED: u1 = 0,
-    WAVE_FORMAT_DIRECT: u1 = 0,
-    WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE: u1 = 0,
-    MIDI_IO_STATUS: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    CALLBACK_WINDOW: u1 = 0,
-    CALLBACK_TASK: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-    // CALLBACK_THREAD (bit index 17) conflicts with CALLBACK_TASK
-};
-pub const CALLBACK_TYPEMASK = MIDI_WAVE_OPEN_TYPE{
-    .CALLBACK_WINDOW = 1,
-    .CALLBACK_TASK = 1,
-    ._18 = 1,
-};
-pub const CALLBACK_NULL = MIDI_WAVE_OPEN_TYPE{ };
-pub const CALLBACK_WINDOW = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_WINDOW = 1 };
-pub const CALLBACK_TASK = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_TASK = 1 };
-pub const CALLBACK_FUNCTION = MIDI_WAVE_OPEN_TYPE{
-    .CALLBACK_WINDOW = 1,
-    .CALLBACK_TASK = 1,
-};
-pub const CALLBACK_THREAD = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_TASK = 1 };
-pub const CALLBACK_EVENT = MIDI_WAVE_OPEN_TYPE{
-    .CALLBACK_WINDOW = 1,
-    ._18 = 1,
-};
-pub const WAVE_FORMAT_QUERY = MIDI_WAVE_OPEN_TYPE{ .WAVE_FORMAT_QUERY = 1 };
-pub const WAVE_ALLOWSYNC = MIDI_WAVE_OPEN_TYPE{ .WAVE_ALLOWSYNC = 1 };
-pub const WAVE_MAPPED = MIDI_WAVE_OPEN_TYPE{ .WAVE_MAPPED = 1 };
-pub const WAVE_FORMAT_DIRECT = MIDI_WAVE_OPEN_TYPE{ .WAVE_FORMAT_DIRECT = 1 };
-pub const WAVE_FORMAT_DIRECT_QUERY = MIDI_WAVE_OPEN_TYPE{
-    .WAVE_FORMAT_QUERY = 1,
-    .WAVE_FORMAT_DIRECT = 1,
-};
-pub const WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = MIDI_WAVE_OPEN_TYPE{ .WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = 1 };
-pub const MIDI_IO_STATUS = MIDI_WAVE_OPEN_TYPE{ .MIDI_IO_STATUS = 1 };
-
-pub const SND_FLAGS = packed struct(u32) {
-    ASYNC: u1 = 0,
-    NODEFAULT: u1 = 0,
-    MEMORY: u1 = 0,
-    LOOP: u1 = 0,
-    NOSTOP: u1 = 0,
-    _5: u1 = 0,
-    PURGE: u1 = 0,
-    APPLICATION: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    NOWAIT: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    ALIAS: u1 = 0,
-    FILENAME: u1 = 0,
-    _18: u1 = 0,
-    SENTRY: u1 = 0,
-    _20: u1 = 0,
-    SYSTEM: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const SND_APPLICATION = SND_FLAGS{ .APPLICATION = 1 };
-pub const SND_ALIAS = SND_FLAGS{ .ALIAS = 1 };
-pub const SND_ALIAS_ID = SND_FLAGS{
-    .ALIAS = 1,
-    ._20 = 1,
-};
-pub const SND_FILENAME = SND_FLAGS{ .FILENAME = 1 };
-pub const SND_RESOURCE = SND_FLAGS{
-    .MEMORY = 1,
-    ._18 = 1,
-};
-pub const SND_ASYNC = SND_FLAGS{ .ASYNC = 1 };
-pub const SND_NODEFAULT = SND_FLAGS{ .NODEFAULT = 1 };
-pub const SND_LOOP = SND_FLAGS{ .LOOP = 1 };
-pub const SND_MEMORY = SND_FLAGS{ .MEMORY = 1 };
-pub const SND_NOSTOP = SND_FLAGS{ .NOSTOP = 1 };
-pub const SND_NOWAIT = SND_FLAGS{ .NOWAIT = 1 };
-pub const SND_PURGE = SND_FLAGS{ .PURGE = 1 };
-pub const SND_SENTRY = SND_FLAGS{ .SENTRY = 1 };
-pub const SND_SYNC = SND_FLAGS{ };
-pub const SND_SYSTEM = SND_FLAGS{ .SYSTEM = 1 };
-
-pub const MIXERLINE_COMPONENTTYPE = enum(u32) {
-    DST_DIGITAL = 1,
-    DST_HEADPHONES = 5,
-    DST_LINE = 2,
-    DST_MONITOR = 3,
-    DST_SPEAKERS = 4,
-    DST_TELEPHONE = 6,
-    DST_UNDEFINED = 0,
-    DST_VOICEIN = 8,
-    DST_WAVEIN = 7,
-    SRC_ANALOG = 4106,
-    SRC_AUXILIARY = 4105,
-    SRC_COMPACTDISC = 4101,
-    SRC_DIGITAL = 4097,
-    SRC_LINE = 4098,
-    SRC_MICROPHONE = 4099,
-    SRC_PCSPEAKER = 4103,
-    SRC_SYNTHESIZER = 4100,
-    SRC_TELEPHONE = 4102,
-    SRC_UNDEFINED = 4096,
-    SRC_WAVEOUT = 4104,
-};
-pub const MIXERLINE_COMPONENTTYPE_DST_DIGITAL = MIXERLINE_COMPONENTTYPE.DST_DIGITAL;
-pub const MIXERLINE_COMPONENTTYPE_DST_HEADPHONES = MIXERLINE_COMPONENTTYPE.DST_HEADPHONES;
-pub const MIXERLINE_COMPONENTTYPE_DST_LINE = MIXERLINE_COMPONENTTYPE.DST_LINE;
-pub const MIXERLINE_COMPONENTTYPE_DST_MONITOR = MIXERLINE_COMPONENTTYPE.DST_MONITOR;
-pub const MIXERLINE_COMPONENTTYPE_DST_SPEAKERS = MIXERLINE_COMPONENTTYPE.DST_SPEAKERS;
-pub const MIXERLINE_COMPONENTTYPE_DST_TELEPHONE = MIXERLINE_COMPONENTTYPE.DST_TELEPHONE;
-pub const MIXERLINE_COMPONENTTYPE_DST_UNDEFINED = MIXERLINE_COMPONENTTYPE.DST_UNDEFINED;
-pub const MIXERLINE_COMPONENTTYPE_DST_VOICEIN = MIXERLINE_COMPONENTTYPE.DST_VOICEIN;
-pub const MIXERLINE_COMPONENTTYPE_DST_WAVEIN = MIXERLINE_COMPONENTTYPE.DST_WAVEIN;
-pub const MIXERLINE_COMPONENTTYPE_SRC_ANALOG = MIXERLINE_COMPONENTTYPE.SRC_ANALOG;
-pub const MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY = MIXERLINE_COMPONENTTYPE.SRC_AUXILIARY;
-pub const MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC = MIXERLINE_COMPONENTTYPE.SRC_COMPACTDISC;
-pub const MIXERLINE_COMPONENTTYPE_SRC_DIGITAL = MIXERLINE_COMPONENTTYPE.SRC_DIGITAL;
-pub const MIXERLINE_COMPONENTTYPE_SRC_LINE = MIXERLINE_COMPONENTTYPE.SRC_LINE;
-pub const MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE = MIXERLINE_COMPONENTTYPE.SRC_MICROPHONE;
-pub const MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER = MIXERLINE_COMPONENTTYPE.SRC_PCSPEAKER;
-pub const MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER = MIXERLINE_COMPONENTTYPE.SRC_SYNTHESIZER;
-pub const MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = MIXERLINE_COMPONENTTYPE.SRC_TELEPHONE;
-pub const MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = MIXERLINE_COMPONENTTYPE.SRC_UNDEFINED;
-pub const MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = MIXERLINE_COMPONENTTYPE.SRC_WAVEOUT;
-
-pub const AUDIO_VOLUME_NOTIFICATION_DATA = extern struct {
-    guidEventContext: Guid,
-    bMuted: BOOL,
-    fMasterVolume: f32,
-    nChannels: u32,
-    afChannelVolumes: [1]f32,
-};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HMIDI = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HMIDIIN = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HMIDIOUT = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HMIDISTRM = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HMIXER = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HMIXEROBJ = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HWAVE = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HWAVEOUT = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HWAVEIN = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HACMDRIVERID = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HACMDRIVER = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HACMSTREAM = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HACMOBJ = *opaque{};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IMessageFilter_Value = Guid.initString("00000016-0000-0000-c000-000000000046");
-pub const IID_IMessageFilter = &IID_IMessageFilter_Value;
-pub const IMessageFilter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleInComingCall: *const fn(
-            self: *const IMessageFilter,
-            dwCallType: u32,
-            htaskCaller: ?HTASK,
-            dwTickCount: u32,
-            lpInterfaceInfo: ?*INTERFACEINFO,
-        ) callconv(.winapi) u32,
-        RetryRejectedCall: *const fn(
-            self: *const IMessageFilter,
-            htaskCallee: ?HTASK,
-            dwTickCount: u32,
-            dwRejectType: u32,
-        ) callconv(.winapi) u32,
-        MessagePending: *const fn(
-            self: *const IMessageFilter,
-            htaskCallee: ?HTASK,
-            dwTickCount: u32,
-            dwPendingType: u32,
-        ) callconv(.winapi) u32,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleInComingCall(self: *const IMessageFilter, dwCallType: u32, htaskCaller: ?HTASK, dwTickCount: u32, lpInterfaceInfo: ?*INTERFACEINFO) callconv(.@"inline") u32 {
-        return self.vtable.HandleInComingCall(self, dwCallType, htaskCaller, dwTickCount, lpInterfaceInfo);
-    }
-    pub fn RetryRejectedCall(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwRejectType: u32) callconv(.@"inline") u32 {
-        return self.vtable.RetryRejectedCall(self, htaskCallee, dwTickCount, dwRejectType);
-    }
-    pub fn MessagePending(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwPendingType: u32) callconv(.@"inline") u32 {
-        return self.vtable.MessagePending(self, htaskCallee, dwTickCount, dwPendingType);
-    }
-};
-
-pub const WAVEFORMATEXTENSIBLE = extern struct {
-    Format: WAVEFORMATEX align(1),
-    Samples: extern union {
-        wValidBitsPerSample: u16 align(1),
-        wSamplesPerBlock: u16 align(1),
-        wReserved: u16 align(1),
-    } align(1),
-    dwChannelMask: u32 align(1),
-    SubFormat: Guid align(1),
-};
-
-pub const WAVEFILTER = extern struct {
-    cbStruct: u32 align(1),
-    dwFilterTag: u32 align(1),
-    fdwFilter: u32 align(1),
-    dwReserved: [5]u32 align(1),
-};
-
-pub const VOLUMEWAVEFILTER = extern struct {
-    wfltr: WAVEFILTER align(1),
-    dwVolume: u32 align(1),
-};
-
-pub const ECHOWAVEFILTER = extern struct {
-    wfltr: WAVEFILTER align(1),
-    dwVolume: u32 align(1),
-    dwDelay: u32 align(1),
-};
-
-pub const WAVEHDR = extern struct {
-    lpData: ?[*]u8 align(1),
-    dwBufferLength: u32 align(1),
-    dwBytesRecorded: u32 align(1),
-    dwUser: usize align(1),
-    dwFlags: u32 align(1),
-    dwLoops: u32 align(1),
-    lpNext: ?*WAVEHDR align(1),
-    reserved: usize align(1),
-};
-
-pub const WAVEOUTCAPSA = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const WAVEOUTCAPSW = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const WAVEOUTCAPS2A = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const WAVEOUTCAPS2W = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const WAVEINCAPSA = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-};
-
-pub const WAVEINCAPSW = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-};
-
-pub const WAVEINCAPS2A = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const WAVEINCAPS2W = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    dwFormats: u32 align(1),
-    wChannels: u16 align(1),
-    wReserved1: u16 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const WAVEFORMAT = extern struct {
-    wFormatTag: u16 align(1),
-    nChannels: u16 align(1),
-    nSamplesPerSec: u32 align(1),
-    nAvgBytesPerSec: u32 align(1),
-    nBlockAlign: u16 align(1),
-};
-
-pub const PCMWAVEFORMAT = extern struct {
-    wf: WAVEFORMAT align(1),
-    wBitsPerSample: u16 align(1),
-};
-
-pub const WAVEFORMATEX = extern struct {
-    wFormatTag: u16 align(1),
-    nChannels: u16 align(1),
-    nSamplesPerSec: u32 align(1),
-    nAvgBytesPerSec: u32 align(1),
-    nBlockAlign: u16 align(1),
-    wBitsPerSample: u16 align(1),
-    cbSize: u16 align(1),
-};
-
-pub const MIDIOUTCAPSA = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    wTechnology: u16 align(1),
-    wVoices: u16 align(1),
-    wNotes: u16 align(1),
-    wChannelMask: u16 align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const MIDIOUTCAPSW = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    wTechnology: u16 align(1),
-    wVoices: u16 align(1),
-    wNotes: u16 align(1),
-    wChannelMask: u16 align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const MIDIOUTCAPS2A = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    wTechnology: u16 align(1),
-    wVoices: u16 align(1),
-    wNotes: u16 align(1),
-    wChannelMask: u16 align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const MIDIOUTCAPS2W = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    wTechnology: u16 align(1),
-    wVoices: u16 align(1),
-    wNotes: u16 align(1),
-    wChannelMask: u16 align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const MIDIINCAPSA = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const MIDIINCAPSW = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const MIDIINCAPS2A = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const MIDIINCAPS2W = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const MIDIHDR = extern struct {
-    lpData: ?PSTR align(1),
-    dwBufferLength: u32 align(1),
-    dwBytesRecorded: u32 align(1),
-    dwUser: usize align(1),
-    dwFlags: u32 align(1),
-    lpNext: ?*MIDIHDR align(1),
-    reserved: usize align(1),
-    dwOffset: u32 align(1),
-    dwReserved: [8]usize align(1),
-};
-
-pub const MIDIEVENT = extern struct {
-    dwDeltaTime: u32 align(1),
-    dwStreamID: u32 align(1),
-    dwEvent: u32 align(1),
-    dwParms: [1]u32 align(1),
-};
-
-pub const MIDISTRMBUFFVER = extern struct {
-    dwVersion: u32 align(1),
-    dwMid: u32 align(1),
-    dwOEMVersion: u32 align(1),
-};
-
-pub const MIDIPROPTIMEDIV = extern struct {
-    cbStruct: u32 align(1),
-    dwTimeDiv: u32 align(1),
-};
-
-pub const MIDIPROPTEMPO = extern struct {
-    cbStruct: u32 align(1),
-    dwTempo: u32 align(1),
-};
-
-pub const AUXCAPSA = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    wTechnology: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const AUXCAPSW = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    wTechnology: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-};
-
-pub const AUXCAPS2A = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    wTechnology: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const AUXCAPS2W = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    wTechnology: u16 align(1),
-    wReserved1: u16 align(1),
-    dwSupport: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const MIXERCAPSA = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    fdwSupport: u32 align(1),
-    cDestinations: u32 align(1),
-};
-
-pub const MIXERCAPSW = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    fdwSupport: u32 align(1),
-    cDestinations: u32 align(1),
-};
-
-pub const MIXERCAPS2A = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
-    fdwSupport: u32 align(1),
-    cDestinations: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const MIXERCAPS2W = extern struct {
-    wMid: u16 align(1),
-    wPid: u16 align(1),
-    vDriverVersion: u32 align(1),
-    szPname: [32]u16 align(1),
-    fdwSupport: u32 align(1),
-    cDestinations: u32 align(1),
-    ManufacturerGuid: Guid align(1),
-    ProductGuid: Guid align(1),
-    NameGuid: Guid align(1),
-};
-
-pub const MIXERLINEA = extern struct {
-    cbStruct: u32 align(1),
-    dwDestination: u32 align(1),
-    dwSource: u32 align(1),
-    dwLineID: u32 align(1),
-    fdwLine: u32 align(1),
-    dwUser: usize align(1),
-    dwComponentType: MIXERLINE_COMPONENTTYPE align(1),
-    cChannels: u32 align(1),
-    cConnections: u32 align(1),
-    cControls: u32 align(1),
-    szShortName: [16]CHAR align(1),
-    szName: [64]CHAR align(1),
-    Target: extern struct {
-        dwType: u32 align(1),
-        dwDeviceID: u32 align(1),
-        wMid: u16 align(1),
-        wPid: u16 align(1),
-        vDriverVersion: u32 align(1),
-        szPname: [32]CHAR align(1),
-    } align(1),
-};
-
-pub const MIXERLINEW = extern struct {
-    cbStruct: u32 align(1),
-    dwDestination: u32 align(1),
-    dwSource: u32 align(1),
-    dwLineID: u32 align(1),
-    fdwLine: u32 align(1),
-    dwUser: usize align(1),
-    dwComponentType: MIXERLINE_COMPONENTTYPE align(1),
-    cChannels: u32 align(1),
-    cConnections: u32 align(1),
-    cControls: u32 align(1),
-    szShortName: [16]u16 align(1),
-    szName: [64]u16 align(1),
-    Target: extern struct {
-        dwType: u32 align(1),
-        dwDeviceID: u32 align(1),
-        wMid: u16 align(1),
-        wPid: u16 align(1),
-        vDriverVersion: u32 align(1),
-        szPname: [32]u16 align(1),
-    } align(1),
-};
-
-pub const MIXERCONTROLA = extern struct {
-    cbStruct: u32 align(1),
-    dwControlID: u32 align(1),
-    dwControlType: u32 align(1),
-    fdwControl: u32 align(1),
-    cMultipleItems: u32 align(1),
-    szShortName: [16]CHAR align(1),
-    szName: [64]CHAR align(1),
-    Bounds: extern union {
-        Anonymous1: extern struct {
-            lMinimum: i32 align(1),
-            lMaximum: i32 align(1),
-        } align(1),
-        Anonymous2: extern struct {
-            dwMinimum: u32 align(1),
-            dwMaximum: u32 align(1),
-        } align(1),
-        dwReserved: [6]u32 align(1),
-    } align(1),
-    Metrics: extern union {
-        cSteps: u32 align(1),
-        cbCustomData: u32 align(1),
-        dwReserved: [6]u32 align(1),
-    } align(1),
-};
-
-pub const MIXERCONTROLW = extern struct {
-    cbStruct: u32 align(1),
-    dwControlID: u32 align(1),
-    dwControlType: u32 align(1),
-    fdwControl: u32 align(1),
-    cMultipleItems: u32 align(1),
-    szShortName: [16]u16 align(1),
-    szName: [64]u16 align(1),
-    Bounds: extern union {
-        Anonymous1: extern struct {
-            lMinimum: i32 align(1),
-            lMaximum: i32 align(1),
-        } align(1),
-        Anonymous2: extern struct {
-            dwMinimum: u32 align(1),
-            dwMaximum: u32 align(1),
-        } align(1),
-        dwReserved: [6]u32 align(1),
-    } align(1),
-    Metrics: extern union {
-        cSteps: u32 align(1),
-        cbCustomData: u32 align(1),
-        dwReserved: [6]u32 align(1),
-    } align(1),
-};
-
-pub const MIXERLINECONTROLSA = extern struct {
-    cbStruct: u32 align(1),
-    dwLineID: u32 align(1),
-    Anonymous: extern union {
-        dwControlID: u32 align(1),
-        dwControlType: u32 align(1),
-    } align(1),
-    cControls: u32 align(1),
-    cbmxctrl: u32 align(1),
-    pamxctrl: ?*MIXERCONTROLA align(1),
-};
-
-pub const MIXERLINECONTROLSW = extern struct {
-    cbStruct: u32 align(1),
-    dwLineID: u32 align(1),
-    Anonymous: extern union {
-        dwControlID: u32 align(1),
-        dwControlType: u32 align(1),
-    } align(1),
-    cControls: u32 align(1),
-    cbmxctrl: u32 align(1),
-    pamxctrl: ?*MIXERCONTROLW align(1),
-};
-
-pub const MIXERCONTROLDETAILS = extern struct {
-    cbStruct: u32 align(1),
-    dwControlID: u32 align(1),
-    cChannels: u32 align(1),
-    Anonymous: extern union {
-        hwndOwner: ?HWND align(1),
-        cMultipleItems: u32 align(1),
-    } align(1),
-    cbDetails: u32 align(1),
-    paDetails: ?*anyopaque align(1),
-};
-
-pub const MIXERCONTROLDETAILS_LISTTEXTA = extern struct {
-    dwParam1: u32 align(1),
-    dwParam2: u32 align(1),
-    szName: [64]CHAR align(1),
-};
-
-pub const MIXERCONTROLDETAILS_LISTTEXTW = extern struct {
-    dwParam1: u32 align(1),
-    dwParam2: u32 align(1),
-    szName: [64]u16 align(1),
-};
-
-pub const MIXERCONTROLDETAILS_BOOLEAN = extern struct {
-    fValue: i32 align(1),
-};
-
-pub const MIXERCONTROLDETAILS_SIGNED = extern struct {
-    lValue: i32 align(1),
-};
-
-pub const MIXERCONTROLDETAILS_UNSIGNED = extern struct {
-    dwValue: u32 align(1),
-};
-
-pub const AUDCLNT_SHAREMODE = enum(i32) {
-    SHARED = 0,
-    EXCLUSIVE = 1,
-};
-pub const AUDCLNT_SHAREMODE_SHARED = AUDCLNT_SHAREMODE.SHARED;
-pub const AUDCLNT_SHAREMODE_EXCLUSIVE = AUDCLNT_SHAREMODE.EXCLUSIVE;
-
-pub const AUDIO_STREAM_CATEGORY = enum(i32) {
-    Other = 0,
-    ForegroundOnlyMedia = 1,
-    Communications = 3,
-    Alerts = 4,
-    SoundEffects = 5,
-    GameEffects = 6,
-    GameMedia = 7,
-    GameChat = 8,
-    Speech = 9,
-    Movie = 10,
-    Media = 11,
-    FarFieldSpeech = 12,
-    UniformSpeech = 13,
-    VoiceTyping = 14,
-};
-pub const AudioCategory_Other = AUDIO_STREAM_CATEGORY.Other;
-pub const AudioCategory_ForegroundOnlyMedia = AUDIO_STREAM_CATEGORY.ForegroundOnlyMedia;
-pub const AudioCategory_Communications = AUDIO_STREAM_CATEGORY.Communications;
-pub const AudioCategory_Alerts = AUDIO_STREAM_CATEGORY.Alerts;
-pub const AudioCategory_SoundEffects = AUDIO_STREAM_CATEGORY.SoundEffects;
-pub const AudioCategory_GameEffects = AUDIO_STREAM_CATEGORY.GameEffects;
-pub const AudioCategory_GameMedia = AUDIO_STREAM_CATEGORY.GameMedia;
-pub const AudioCategory_GameChat = AUDIO_STREAM_CATEGORY.GameChat;
-pub const AudioCategory_Speech = AUDIO_STREAM_CATEGORY.Speech;
-pub const AudioCategory_Movie = AUDIO_STREAM_CATEGORY.Movie;
-pub const AudioCategory_Media = AUDIO_STREAM_CATEGORY.Media;
-pub const AudioCategory_FarFieldSpeech = AUDIO_STREAM_CATEGORY.FarFieldSpeech;
-pub const AudioCategory_UniformSpeech = AUDIO_STREAM_CATEGORY.UniformSpeech;
-pub const AudioCategory_VoiceTyping = AUDIO_STREAM_CATEGORY.VoiceTyping;
-
-pub const AudioSessionState = enum(i32) {
-    Inactive = 0,
-    Active = 1,
-    Expired = 2,
-};
-pub const AudioSessionStateInactive = AudioSessionState.Inactive;
-pub const AudioSessionStateActive = AudioSessionState.Active;
-pub const AudioSessionStateExpired = AudioSessionState.Expired;
-
 pub const _AUDCLNT_BUFFERFLAGS = enum(i32) {
     DATA_DISCONTINUITY = 1,
     SILENT = 2,
@@ -1327,6 +484,370 @@ pub const _AUDCLNT_BUFFERFLAGS = enum(i32) {
 pub const AUDCLNT_BUFFERFLAGS_DATA_DISCONTINUITY = _AUDCLNT_BUFFERFLAGS.DATA_DISCONTINUITY;
 pub const AUDCLNT_BUFFERFLAGS_SILENT = _AUDCLNT_BUFFERFLAGS.SILENT;
 pub const AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR = _AUDCLNT_BUFFERFLAGS.TIMESTAMP_ERROR;
+
+pub const ACMDRIVERDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vdwACM: u32 align(1),
+    vdwDriver: u32 align(1),
+    fdwSupport: u32 align(1),
+    cFormatTags: u32 align(1),
+    cFilterTags: u32 align(1),
+    hicon: ?HICON align(1),
+    szShortName: [32]CHAR align(1),
+    szLongName: [128]CHAR align(1),
+    szCopyright: [80]CHAR align(1),
+    szLicensing: [128]CHAR align(1),
+    szFeatures: [512]CHAR align(1),
+};
+
+pub const ACMDRIVERDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vdwACM: u32 align(1),
+    vdwDriver: u32 align(1),
+    fdwSupport: u32 align(1),
+    cFormatTags: u32 align(1),
+    cFilterTags: u32 align(1),
+    hicon: ?HICON align(1),
+    szShortName: [32]u16 align(1),
+    szLongName: [128]u16 align(1),
+    szCopyright: [80]u16 align(1),
+    szLicensing: [128]u16 align(1),
+    szFeatures: [512]u16 align(1),
+};
+
+pub const ACMDRIVERENUMCB = *const fn(
+    hadid: ?HACMDRIVERID,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMDRVFORMATSUGGEST = extern struct {
+    cbStruct: u32 align(1),
+    fdwSuggest: u32 align(1),
+    pwfxSrc: ?*WAVEFORMATEX align(1),
+    cbwfxSrc: u32 align(1),
+    pwfxDst: ?*WAVEFORMATEX align(1),
+    cbwfxDst: u32 align(1),
+};
+
+pub const ACMDRVSTREAMHEADER = extern struct {
+    cbStruct: u32 align(1),
+    fdwStatus: u32 align(1),
+    dwUser: usize align(1),
+    pbSrc: ?*u8 align(1),
+    cbSrcLength: u32 align(1),
+    cbSrcLengthUsed: u32 align(1),
+    dwSrcUser: usize align(1),
+    pbDst: ?*u8 align(1),
+    cbDstLength: u32 align(1),
+    cbDstLengthUsed: u32 align(1),
+    dwDstUser: usize align(1),
+    fdwConvert: u32 align(1),
+    padshNext: ?*ACMDRVSTREAMHEADER align(1),
+    fdwDriver: u32 align(1),
+    dwDriver: usize align(1),
+    fdwPrepared: u32 align(1),
+    dwPrepared: usize align(1),
+    pbPreparedSrc: ?*u8 align(1),
+    cbPreparedSrcLength: u32 align(1),
+    pbPreparedDst: ?*u8 align(1),
+    cbPreparedDstLength: u32 align(1),
+};
+
+pub const ACMDRVSTREAMINSTANCE = extern struct {
+    cbStruct: u32 align(1),
+    pwfxSrc: ?*WAVEFORMATEX align(1),
+    pwfxDst: ?*WAVEFORMATEX align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    dwCallback: usize align(1),
+    dwInstance: usize align(1),
+    fdwOpen: u32 align(1),
+    fdwDriver: u32 align(1),
+    dwDriver: usize align(1),
+    has: ?HACMSTREAM align(1),
+};
+
+pub const ACMDRVSTREAMSIZE = extern struct {
+    cbStruct: u32 align(1),
+    fdwSize: u32 align(1),
+    cbSrcLength: u32 align(1),
+    cbDstLength: u32 align(1),
+};
+
+pub const ACMFILTERCHOOSEA = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    pszTitle: ?[*:0]const u8 align(1),
+    szFilterTag: [48]CHAR align(1),
+    szFilter: [128]CHAR align(1),
+    pszName: ?PSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfltrEnum: ?*WAVEFILTER align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u8 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFILTERCHOOSEHOOKPROCA align(1),
+};
+
+pub const ACMFILTERCHOOSEHOOKPROCA = *const fn(
+    hwnd: ?HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) u32;
+
+pub const ACMFILTERCHOOSEHOOKPROCW = *const fn(
+    hwnd: ?HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) u32;
+
+pub const ACMFILTERCHOOSEW = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    pszTitle: ?[*:0]const u16 align(1),
+    szFilterTag: [48]u16 align(1),
+    szFilter: [128]u16 align(1),
+    pszName: ?PWSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfltrEnum: ?*WAVEFILTER align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u16 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFILTERCHOOSEHOOKPROCW align(1),
+};
+
+pub const ACMFILTERDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    szFilter: [128]CHAR align(1),
+};
+
+pub const ACMFILTERDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    szFilter: [128]u16 align(1),
+};
+
+pub const ACMFILTERENUMCBA = *const fn(
+    hadid: ?HACMDRIVERID,
+    pafd: ?*ACMFILTERDETAILSA,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMFILTERENUMCBW = *const fn(
+    hadid: ?HACMDRIVERID,
+    pafd: ?*ACMFILTERDETAILSW,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMFILTERTAGDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterTagIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    cbFilterSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFilters: u32 align(1),
+    szFilterTag: [48]CHAR align(1),
+};
+
+pub const ACMFILTERTAGDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterTagIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    cbFilterSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFilters: u32 align(1),
+    szFilterTag: [48]u16 align(1),
+};
+
+pub const ACMFILTERTAGENUMCBA = *const fn(
+    hadid: ?HACMDRIVERID,
+    paftd: ?*ACMFILTERTAGDETAILSA,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMFILTERTAGENUMCBW = *const fn(
+    hadid: ?HACMDRIVERID,
+    paftd: ?*ACMFILTERTAGDETAILSW,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMFORMATCHOOSEA = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    pszTitle: ?[*:0]const u8 align(1),
+    szFormatTag: [48]CHAR align(1),
+    szFormat: [128]CHAR align(1),
+    pszName: ?PSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfxEnum: ?*WAVEFORMATEX align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u8 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFORMATCHOOSEHOOKPROCA align(1),
+};
+
+pub const ACMFORMATCHOOSEHOOKPROCA = *const fn(
+    hwnd: ?HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) u32;
+
+pub const ACMFORMATCHOOSEHOOKPROCW = *const fn(
+    hwnd: ?HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) u32;
+
+pub const ACMFORMATCHOOSEW = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    pszTitle: ?[*:0]const u16 align(1),
+    szFormatTag: [48]u16 align(1),
+    szFormat: [128]u16 align(1),
+    pszName: ?PWSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfxEnum: ?*WAVEFORMATEX align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u16 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFORMATCHOOSEHOOKPROCW align(1),
+};
+
+pub const ACMFORMATDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFormatIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    szFormat: [128]CHAR align(1),
+};
+
+pub const ACMFORMATENUMCBA = *const fn(
+    hadid: ?HACMDRIVERID,
+    pafd: ?*ACMFORMATDETAILSA,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMFORMATENUMCBW = *const fn(
+    hadid: ?HACMDRIVERID,
+    pafd: ?*tACMFORMATDETAILSW,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMFORMATTAGDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFormatTagIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    cbFormatSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFormats: u32 align(1),
+    szFormatTag: [48]CHAR align(1),
+};
+
+pub const ACMFORMATTAGDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    dwFormatTagIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    cbFormatSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFormats: u32 align(1),
+    szFormatTag: [48]u16 align(1),
+};
+
+pub const ACMFORMATTAGENUMCBA = *const fn(
+    hadid: ?HACMDRIVERID,
+    paftd: ?*ACMFORMATTAGDETAILSA,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+pub const ACMFORMATTAGENUMCBW = *const fn(
+    hadid: ?HACMDRIVERID,
+    paftd: ?*ACMFORMATTAGDETAILSW,
+    dwInstance: usize,
+    fdwSupport: u32,
+) callconv(.winapi) BOOL;
+
+
+
+pub const AMBISONICS_CHANNEL_ORDERING = enum(i32) {
+    N = 0,
+};
+pub const AMBISONICS_CHANNEL_ORDERING_ACN = AMBISONICS_CHANNEL_ORDERING.N;
+
+pub const AMBISONICS_NORMALIZATION = enum(i32) {
+    SN3D = 0,
+    N3D = 1,
+};
+pub const AMBISONICS_NORMALIZATION_SN3D = AMBISONICS_NORMALIZATION.SN3D;
+pub const AMBISONICS_NORMALIZATION_N3D = AMBISONICS_NORMALIZATION.N3D;
+
+pub const AMBISONICS_PARAMS = extern struct {
+    u32Size: u32,
+    u32Version: u32,
+    u32Type: AMBISONICS_TYPE,
+    u32ChannelOrdering: AMBISONICS_CHANNEL_ORDERING,
+    u32Normalization: AMBISONICS_NORMALIZATION,
+    u32Order: u32,
+    u32NumChannels: u32,
+    pu32ChannelMap: ?*u32,
+};
+
+pub const AMBISONICS_TYPE = enum(i32) {
+    D = 0,
+};
+pub const AMBISONICS_TYPE_FULL3D = AMBISONICS_TYPE.D;
+
+pub const AUDCLNT_SHAREMODE = enum(i32) {
+    SHARED = 0,
+    EXCLUSIVE = 1,
+};
+pub const AUDCLNT_SHAREMODE_SHARED = AUDCLNT_SHAREMODE.SHARED;
+pub const AUDCLNT_SHAREMODE_EXCLUSIVE = AUDCLNT_SHAREMODE.EXCLUSIVE;
 
 pub const AUDCLNT_STREAMOPTIONS = packed struct(u32) {
     RAW: u1 = 0,
@@ -1367,11 +888,573 @@ pub const AUDCLNT_STREAMOPTIONS_RAW = AUDCLNT_STREAMOPTIONS{ .RAW = 1 };
 pub const AUDCLNT_STREAMOPTIONS_MATCH_FORMAT = AUDCLNT_STREAMOPTIONS{ .MATCH_FORMAT = 1 };
 pub const AUDCLNT_STREAMOPTIONS_AMBISONICS = AUDCLNT_STREAMOPTIONS{ .AMBISONICS = 1 };
 
+pub const AUDIO_DUCKING_OPTIONS = packed struct(u32) {
+    O_NOT_DUCK_OTHER_STREAMS: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const AUDIO_DUCKING_OPTIONS_DEFAULT = AUDIO_DUCKING_OPTIONS{ };
+pub const AUDIO_DUCKING_OPTIONS_DO_NOT_DUCK_OTHER_STREAMS = AUDIO_DUCKING_OPTIONS{ .O_NOT_DUCK_OTHER_STREAMS = 1 };
+
+pub const AUDIO_EFFECT = extern struct {
+    id: Guid,
+    canSetState: BOOL,
+    state: AUDIO_EFFECT_STATE,
+};
+
+pub const AUDIO_EFFECT_STATE = enum(i32) {
+    FF = 0,
+    N = 1,
+};
+pub const AUDIO_EFFECT_STATE_OFF = AUDIO_EFFECT_STATE.FF;
+pub const AUDIO_EFFECT_STATE_ON = AUDIO_EFFECT_STATE.N;
+
+pub const AUDIO_STREAM_CATEGORY = enum(i32) {
+    Other = 0,
+    ForegroundOnlyMedia = 1,
+    Communications = 3,
+    Alerts = 4,
+    SoundEffects = 5,
+    GameEffects = 6,
+    GameMedia = 7,
+    GameChat = 8,
+    Speech = 9,
+    Movie = 10,
+    Media = 11,
+    FarFieldSpeech = 12,
+    UniformSpeech = 13,
+    VoiceTyping = 14,
+};
+pub const AudioCategory_Other = AUDIO_STREAM_CATEGORY.Other;
+pub const AudioCategory_ForegroundOnlyMedia = AUDIO_STREAM_CATEGORY.ForegroundOnlyMedia;
+pub const AudioCategory_Communications = AUDIO_STREAM_CATEGORY.Communications;
+pub const AudioCategory_Alerts = AUDIO_STREAM_CATEGORY.Alerts;
+pub const AudioCategory_SoundEffects = AUDIO_STREAM_CATEGORY.SoundEffects;
+pub const AudioCategory_GameEffects = AUDIO_STREAM_CATEGORY.GameEffects;
+pub const AudioCategory_GameMedia = AUDIO_STREAM_CATEGORY.GameMedia;
+pub const AudioCategory_GameChat = AUDIO_STREAM_CATEGORY.GameChat;
+pub const AudioCategory_Speech = AUDIO_STREAM_CATEGORY.Speech;
+pub const AudioCategory_Movie = AUDIO_STREAM_CATEGORY.Movie;
+pub const AudioCategory_Media = AUDIO_STREAM_CATEGORY.Media;
+pub const AudioCategory_FarFieldSpeech = AUDIO_STREAM_CATEGORY.FarFieldSpeech;
+pub const AudioCategory_UniformSpeech = AUDIO_STREAM_CATEGORY.UniformSpeech;
+pub const AudioCategory_VoiceTyping = AUDIO_STREAM_CATEGORY.VoiceTyping;
+
+pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE = enum(i32) {
+    DEFAULT = 0,
+    USER = 1,
+    VOLATILE = 2,
+    ENUM_COUNT = 3,
+};
+pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_DEFAULT = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.DEFAULT;
+pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_USER = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.USER;
+pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_VOLATILE = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.VOLATILE;
+pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_ENUM_COUNT = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.ENUM_COUNT;
+
+pub const AUDIO_VOLUME_NOTIFICATION_DATA = extern struct {
+    guidEventContext: Guid,
+    bMuted: BOOL,
+    fMasterVolume: f32,
+    nChannels: u32,
+    afChannelVolumes: [1]f32,
+};
+
+pub const AudioClient3ActivationParams = extern struct {
+    tracingContextId: Guid,
+};
+
+pub const AUDIOCLIENT_ACTIVATION_PARAMS = extern struct {
+    ActivationType: AUDIOCLIENT_ACTIVATION_TYPE,
+    Anonymous: extern union {
+        ProcessLoopbackParams: AUDIOCLIENT_PROCESS_LOOPBACK_PARAMS,
+    },
+};
+
+pub const AUDIOCLIENT_ACTIVATION_TYPE = enum(i32) {
+    DEFAULT = 0,
+    PROCESS_LOOPBACK = 1,
+};
+pub const AUDIOCLIENT_ACTIVATION_TYPE_DEFAULT = AUDIOCLIENT_ACTIVATION_TYPE.DEFAULT;
+pub const AUDIOCLIENT_ACTIVATION_TYPE_PROCESS_LOOPBACK = AUDIOCLIENT_ACTIVATION_TYPE.PROCESS_LOOPBACK;
+
+pub const AUDIOCLIENT_PROCESS_LOOPBACK_PARAMS = extern struct {
+    TargetProcessId: u32,
+    ProcessLoopbackMode: PROCESS_LOOPBACK_MODE,
+};
+
 pub const AudioClientProperties = extern struct {
     cbSize: u32,
     bIsOffload: BOOL,
     eCategory: AUDIO_STREAM_CATEGORY,
     Options: AUDCLNT_STREAMOPTIONS,
+};
+
+pub const AudioExtensionParams = extern struct {
+    AddPageParam: LPARAM,
+    pEndpoint: ?*IMMDevice,
+    pPnpInterface: ?*IMMDevice,
+    pPnpDevnode: ?*IMMDevice,
+};
+
+pub const AudioObjectType = packed struct(u32) {
+    Dynamic: u1 = 0,
+    FrontLeft: u1 = 0,
+    FrontRight: u1 = 0,
+    FrontCenter: u1 = 0,
+    LowFrequency: u1 = 0,
+    SideLeft: u1 = 0,
+    SideRight: u1 = 0,
+    BackLeft: u1 = 0,
+    BackRight: u1 = 0,
+    TopFrontLeft: u1 = 0,
+    TopFrontRight: u1 = 0,
+    TopBackLeft: u1 = 0,
+    TopBackRight: u1 = 0,
+    BottomFrontLeft: u1 = 0,
+    BottomFrontRight: u1 = 0,
+    BottomBackLeft: u1 = 0,
+    BottomBackRight: u1 = 0,
+    BackCenter: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const AudioObjectType_None = AudioObjectType{ };
+pub const AudioObjectType_Dynamic = AudioObjectType{ .Dynamic = 1 };
+pub const AudioObjectType_FrontLeft = AudioObjectType{ .FrontLeft = 1 };
+pub const AudioObjectType_FrontRight = AudioObjectType{ .FrontRight = 1 };
+pub const AudioObjectType_FrontCenter = AudioObjectType{ .FrontCenter = 1 };
+pub const AudioObjectType_LowFrequency = AudioObjectType{ .LowFrequency = 1 };
+pub const AudioObjectType_SideLeft = AudioObjectType{ .SideLeft = 1 };
+pub const AudioObjectType_SideRight = AudioObjectType{ .SideRight = 1 };
+pub const AudioObjectType_BackLeft = AudioObjectType{ .BackLeft = 1 };
+pub const AudioObjectType_BackRight = AudioObjectType{ .BackRight = 1 };
+pub const AudioObjectType_TopFrontLeft = AudioObjectType{ .TopFrontLeft = 1 };
+pub const AudioObjectType_TopFrontRight = AudioObjectType{ .TopFrontRight = 1 };
+pub const AudioObjectType_TopBackLeft = AudioObjectType{ .TopBackLeft = 1 };
+pub const AudioObjectType_TopBackRight = AudioObjectType{ .TopBackRight = 1 };
+pub const AudioObjectType_BottomFrontLeft = AudioObjectType{ .BottomFrontLeft = 1 };
+pub const AudioObjectType_BottomFrontRight = AudioObjectType{ .BottomFrontRight = 1 };
+pub const AudioObjectType_BottomBackLeft = AudioObjectType{ .BottomBackLeft = 1 };
+pub const AudioObjectType_BottomBackRight = AudioObjectType{ .BottomBackRight = 1 };
+pub const AudioObjectType_BackCenter = AudioObjectType{ .BackCenter = 1 };
+
+pub const AudioSessionDisconnectReason = enum(i32) {
+    DeviceRemoval = 0,
+    ServerShutdown = 1,
+    FormatChanged = 2,
+    SessionLogoff = 3,
+    SessionDisconnected = 4,
+    ExclusiveModeOverride = 5,
+};
+pub const DisconnectReasonDeviceRemoval = AudioSessionDisconnectReason.DeviceRemoval;
+pub const DisconnectReasonServerShutdown = AudioSessionDisconnectReason.ServerShutdown;
+pub const DisconnectReasonFormatChanged = AudioSessionDisconnectReason.FormatChanged;
+pub const DisconnectReasonSessionLogoff = AudioSessionDisconnectReason.SessionLogoff;
+pub const DisconnectReasonSessionDisconnected = AudioSessionDisconnectReason.SessionDisconnected;
+pub const DisconnectReasonExclusiveModeOverride = AudioSessionDisconnectReason.ExclusiveModeOverride;
+
+pub const AudioSessionState = enum(i32) {
+    Inactive = 0,
+    Active = 1,
+    Expired = 2,
+};
+pub const AudioSessionStateInactive = AudioSessionState.Inactive;
+pub const AudioSessionStateActive = AudioSessionState.Active;
+pub const AudioSessionStateExpired = AudioSessionState.Expired;
+
+pub const AudioStateMonitorSoundLevel = enum(i32) {
+    Muted = 0,
+    Low = 1,
+    Full = 2,
+};
+pub const Muted = AudioStateMonitorSoundLevel.Muted;
+pub const Low = AudioStateMonitorSoundLevel.Low;
+pub const Full = AudioStateMonitorSoundLevel.Full;
+
+pub const AUXCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
+};
+
+pub const AUXCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
+};
+
+pub const AUXCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+};
+
+pub const AUXCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+};
+
+pub const ConnectorType = enum(i32) {
+    Unknown_Connector = 0,
+    Physical_Internal = 1,
+    Physical_External = 2,
+    Software_IO = 3,
+    Software_Fixed = 4,
+    Network = 5,
+};
+// NOTE: not creating aliases because this enum is 'Scoped'
+
+pub const DataFlow = enum(i32) {
+    In = 0,
+    Out = 1,
+};
+pub const In = DataFlow.In;
+pub const Out = DataFlow.Out;
+
+const CLSID_DeviceTopology_Value = Guid.initString("1df639d0-5ec1-47aa-9379-828dc1aa8c59");
+pub const CLSID_DeviceTopology = &CLSID_DeviceTopology_Value;
+
+pub const DIRECTX_AUDIO_ACTIVATION_PARAMS = extern struct {
+    cbDirectXAudioActivationParams: u32,
+    guidAudioSession: Guid,
+    dwAudioStreamFlags: u32,
+};
+
+pub const ECHOWAVEFILTER = extern struct {
+    wfltr: WAVEFILTER align(1),
+    dwVolume: u32 align(1),
+    dwDelay: u32 align(1),
+};
+
+pub const EDataFlow = enum(i32) {
+    eRender = 0,
+    eCapture = 1,
+    eAll = 2,
+    EDataFlow_enum_count = 3,
+};
+pub const eRender = EDataFlow.eRender;
+pub const eCapture = EDataFlow.eCapture;
+pub const eAll = EDataFlow.eAll;
+pub const EDataFlow_enum_count = EDataFlow.EDataFlow_enum_count;
+
+pub const EndpointFormFactor = enum(i32) {
+    RemoteNetworkDevice = 0,
+    Speakers = 1,
+    LineLevel = 2,
+    Headphones = 3,
+    Microphone = 4,
+    Headset = 5,
+    Handset = 6,
+    UnknownDigitalPassthrough = 7,
+    SPDIF = 8,
+    DigitalAudioDisplayDevice = 9,
+    UnknownFormFactor = 10,
+    EndpointFormFactor_enum_count = 11,
+};
+pub const RemoteNetworkDevice = EndpointFormFactor.RemoteNetworkDevice;
+pub const Speakers = EndpointFormFactor.Speakers;
+pub const LineLevel = EndpointFormFactor.LineLevel;
+pub const Headphones = EndpointFormFactor.Headphones;
+pub const Microphone = EndpointFormFactor.Microphone;
+pub const Headset = EndpointFormFactor.Headset;
+pub const Handset = EndpointFormFactor.Handset;
+pub const UnknownDigitalPassthrough = EndpointFormFactor.UnknownDigitalPassthrough;
+pub const SPDIF = EndpointFormFactor.SPDIF;
+pub const DigitalAudioDisplayDevice = EndpointFormFactor.DigitalAudioDisplayDevice;
+pub const UnknownFormFactor = EndpointFormFactor.UnknownFormFactor;
+pub const EndpointFormFactor_enum_count = EndpointFormFactor.EndpointFormFactor_enum_count;
+
+pub const ERole = enum(i32) {
+    eConsole = 0,
+    eMultimedia = 1,
+    eCommunications = 2,
+    ERole_enum_count = 3,
+};
+pub const eConsole = ERole.eConsole;
+pub const eMultimedia = ERole.eMultimedia;
+pub const eCommunications = ERole.eCommunications;
+pub const ERole_enum_count = ERole.ERole_enum_count;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HACMDRIVER = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HACMDRIVERID = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HACMOBJ = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HACMSTREAM = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HMIDI = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HMIDIIN = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HMIDIOUT = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HMIDISTRM = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HMIXER = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HMIXEROBJ = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HWAVE = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HWAVEIN = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HWAVEOUT = *opaque{};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IActivateAudioInterfaceAsyncOperation_Value = Guid.initString("72a22d78-cde4-431d-b8cc-843a71199b6d");
+pub const IID_IActivateAudioInterfaceAsyncOperation = &IID_IActivateAudioInterfaceAsyncOperation_Value;
+pub const IActivateAudioInterfaceAsyncOperation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetActivateResult: *const fn(
+            self: *const IActivateAudioInterfaceAsyncOperation,
+            activateResult: ?*HRESULT,
+            activatedInterface: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetActivateResult(self: *const IActivateAudioInterfaceAsyncOperation, activateResult: ?*HRESULT, activatedInterface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActivateResult(self, activateResult, activatedInterface);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IActivateAudioInterfaceCompletionHandler_Value = Guid.initString("41d949ab-9862-444a-80f6-c261334da5eb");
+pub const IID_IActivateAudioInterfaceCompletionHandler = &IID_IActivateAudioInterfaceCompletionHandler_Value;
+pub const IActivateAudioInterfaceCompletionHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ActivateCompleted: *const fn(
+            self: *const IActivateAudioInterfaceCompletionHandler,
+            activateOperation: ?*IActivateAudioInterfaceAsyncOperation,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ActivateCompleted(self: *const IActivateAudioInterfaceCompletionHandler, activateOperation: ?*IActivateAudioInterfaceAsyncOperation) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateCompleted(self, activateOperation);
+    }
+};
+
+const IID_IAudioAmbisonicsControl_Value = Guid.initString("28724c91-df35-4856-9f76-d6a26413f3df");
+pub const IID_IAudioAmbisonicsControl = &IID_IAudioAmbisonicsControl_Value;
+pub const IAudioAmbisonicsControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetData: *const fn(
+            self: *const IAudioAmbisonicsControl,
+            pAmbisonicsParams: [*]const AMBISONICS_PARAMS,
+            cbAmbisonicsParams: u32,
+        ) callconv(.winapi) HRESULT,
+        SetHeadTracking: *const fn(
+            self: *const IAudioAmbisonicsControl,
+            bEnableHeadTracking: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetHeadTracking: *const fn(
+            self: *const IAudioAmbisonicsControl,
+            pbEnableHeadTracking: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetRotation: *const fn(
+            self: *const IAudioAmbisonicsControl,
+            X: f32,
+            Y: f32,
+            Z: f32,
+            W: f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetData(self: *const IAudioAmbisonicsControl, pAmbisonicsParams: [*]const AMBISONICS_PARAMS, cbAmbisonicsParams: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetData(self, pAmbisonicsParams, cbAmbisonicsParams);
+    }
+    pub fn SetHeadTracking(self: *const IAudioAmbisonicsControl, bEnableHeadTracking: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHeadTracking(self, bEnableHeadTracking);
+    }
+    pub fn GetHeadTracking(self: *const IAudioAmbisonicsControl, pbEnableHeadTracking: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHeadTracking(self, pbEnableHeadTracking);
+    }
+    pub fn SetRotation(self: *const IAudioAmbisonicsControl, X: f32, Y: f32, Z: f32, W: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRotation(self, X, Y, Z, W);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioAutoGainControl_Value = Guid.initString("85401fd4-6de4-4b9d-9869-2d6753a82f3c");
+pub const IID_IAudioAutoGainControl = &IID_IAudioAutoGainControl_Value;
+pub const IAudioAutoGainControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetEnabled: *const fn(
+            self: *const IAudioAutoGainControl,
+            pbEnabled: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetEnabled: *const fn(
+            self: *const IAudioAutoGainControl,
+            bEnable: BOOL,
+            pguidEventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetEnabled(self: *const IAudioAutoGainControl, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnabled(self, pbEnabled);
+    }
+    pub fn SetEnabled(self: *const IAudioAutoGainControl, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEnabled(self, bEnable, pguidEventContext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioBass_Value = Guid.initString("a2b1a1d9-4db3-425d-a2b2-bd335cb3e2e5");
+pub const IID_IAudioBass = &IID_IAudioBass_Value;
+pub const IAudioBass = extern union {
+    pub const VTable = extern struct {
+        base: IPerChannelDbLevel.VTable,
+    };
+    vtable: *const VTable,
+    IPerChannelDbLevel: IPerChannelDbLevel,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioCaptureClient_Value = Guid.initString("c8adbd64-e71e-48a0-a4de-185c395cd317");
+pub const IID_IAudioCaptureClient = &IID_IAudioCaptureClient_Value;
+pub const IAudioCaptureClient = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBuffer: *const fn(
+            self: *const IAudioCaptureClient,
+            ppData: ?*?*u8,
+            pNumFramesToRead: ?*u32,
+            pdwFlags: ?*u32,
+            pu64DevicePosition: ?*u64,
+            pu64QPCPosition: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        ReleaseBuffer: *const fn(
+            self: *const IAudioCaptureClient,
+            NumFramesRead: u32,
+        ) callconv(.winapi) HRESULT,
+        GetNextPacketSize: *const fn(
+            self: *const IAudioCaptureClient,
+            pNumFramesInNextPacket: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetBuffer(self: *const IAudioCaptureClient, ppData: ?*?*u8, pNumFramesToRead: ?*u32, pdwFlags: ?*u32, pu64DevicePosition: ?*u64, pu64QPCPosition: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBuffer(self, ppData, pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
+    }
+    pub fn ReleaseBuffer(self: *const IAudioCaptureClient, NumFramesRead: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseBuffer(self, NumFramesRead);
+    }
+    pub fn GetNextPacketSize(self: *const IAudioCaptureClient, pNumFramesInNextPacket: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextPacketSize(self, pNumFramesInNextPacket);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioChannelConfig_Value = Guid.initString("bb11c46f-ec28-493c-b88a-5db88062ce98");
+pub const IID_IAudioChannelConfig = &IID_IAudioChannelConfig_Value;
+pub const IAudioChannelConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetChannelConfig: *const fn(
+            self: *const IAudioChannelConfig,
+            dwConfig: u32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetChannelConfig: *const fn(
+            self: *const IAudioChannelConfig,
+            pdwConfig: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetChannelConfig(self: *const IAudioChannelConfig, dwConfig: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetChannelConfig(self, dwConfig, pguidEventContext);
+    }
+    pub fn GetChannelConfig(self: *const IAudioChannelConfig, pdwConfig: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelConfig(self, pdwConfig);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1512,10 +1595,6 @@ pub const IAudioClient2 = extern union {
     }
 };
 
-pub const AudioClient3ActivationParams = extern struct {
-    tracingContextId: Guid,
-};
-
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IAudioClient3_Value = Guid.initString("7ed4ee07-8e67-4cd4-8c1a-2b7a5987ad42");
 pub const IID_IAudioClient3 = &IID_IAudioClient3_Value;
@@ -1558,66 +1637,20 @@ pub const IAudioClient3 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioRenderClient_Value = Guid.initString("f294acfc-3146-4483-a7bf-addca7c260e2");
-pub const IID_IAudioRenderClient = &IID_IAudioRenderClient_Value;
-pub const IAudioRenderClient = extern union {
+const IID_IAudioClientDuckingControl_Value = Guid.initString("c789d381-a28c-4168-b28f-d3a837924dc3");
+pub const IID_IAudioClientDuckingControl = &IID_IAudioClientDuckingControl_Value;
+pub const IAudioClientDuckingControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBuffer: *const fn(
-            self: *const IAudioRenderClient,
-            NumFramesRequested: u32,
-            ppData: ?*?*u8,
-        ) callconv(.winapi) HRESULT,
-        ReleaseBuffer: *const fn(
-            self: *const IAudioRenderClient,
-            NumFramesWritten: u32,
-            dwFlags: u32,
+        SetDuckingOptionsForCurrentStream: *const fn(
+            self: *const IAudioClientDuckingControl,
+            options: AUDIO_DUCKING_OPTIONS,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IAudioRenderClient, NumFramesRequested: u32, ppData: ?*?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBuffer(self, NumFramesRequested, ppData);
-    }
-    pub fn ReleaseBuffer(self: *const IAudioRenderClient, NumFramesWritten: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseBuffer(self, NumFramesWritten, dwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioCaptureClient_Value = Guid.initString("c8adbd64-e71e-48a0-a4de-185c395cd317");
-pub const IID_IAudioCaptureClient = &IID_IAudioCaptureClient_Value;
-pub const IAudioCaptureClient = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetBuffer: *const fn(
-            self: *const IAudioCaptureClient,
-            ppData: ?*?*u8,
-            pNumFramesToRead: ?*u32,
-            pdwFlags: ?*u32,
-            pu64DevicePosition: ?*u64,
-            pu64QPCPosition: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        ReleaseBuffer: *const fn(
-            self: *const IAudioCaptureClient,
-            NumFramesRead: u32,
-        ) callconv(.winapi) HRESULT,
-        GetNextPacketSize: *const fn(
-            self: *const IAudioCaptureClient,
-            pNumFramesInNextPacket: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IAudioCaptureClient, ppData: ?*?*u8, pNumFramesToRead: ?*u32, pdwFlags: ?*u32, pu64DevicePosition: ?*u64, pu64QPCPosition: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBuffer(self, ppData, pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
-    }
-    pub fn ReleaseBuffer(self: *const IAudioCaptureClient, NumFramesRead: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseBuffer(self, NumFramesRead);
-    }
-    pub fn GetNextPacketSize(self: *const IAudioCaptureClient, pNumFramesInNextPacket: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextPacketSize(self, pNumFramesInNextPacket);
+    pub fn SetDuckingOptionsForCurrentStream(self: *const IAudioClientDuckingControl, options: AUDIO_DUCKING_OPTIONS) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDuckingOptionsForCurrentStream(self, options);
     }
 };
 
@@ -1691,114 +1724,6 @@ pub const IAudioClockAdjustment = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimpleAudioVolume_Value = Guid.initString("87ce5498-68d6-44e5-9215-6da47ef883d8");
-pub const IID_ISimpleAudioVolume = &IID_ISimpleAudioVolume_Value;
-pub const ISimpleAudioVolume = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetMasterVolume: *const fn(
-            self: *const ISimpleAudioVolume,
-            fLevel: f32,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetMasterVolume: *const fn(
-            self: *const ISimpleAudioVolume,
-            pfLevel: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        SetMute: *const fn(
-            self: *const ISimpleAudioVolume,
-            bMute: BOOL,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetMute: *const fn(
-            self: *const ISimpleAudioVolume,
-            pbMute: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetMasterVolume(self: *const ISimpleAudioVolume, fLevel: f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMasterVolume(self, fLevel, EventContext);
-    }
-    pub fn GetMasterVolume(self: *const ISimpleAudioVolume, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMasterVolume(self, pfLevel);
-    }
-    pub fn SetMute(self: *const ISimpleAudioVolume, bMute: BOOL, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMute(self, bMute, EventContext);
-    }
-    pub fn GetMute(self: *const ISimpleAudioVolume, pbMute: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMute(self, pbMute);
-    }
-};
-
-pub const AUDIO_DUCKING_OPTIONS = packed struct(u32) {
-    O_NOT_DUCK_OTHER_STREAMS: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const AUDIO_DUCKING_OPTIONS_DEFAULT = AUDIO_DUCKING_OPTIONS{ };
-pub const AUDIO_DUCKING_OPTIONS_DO_NOT_DUCK_OTHER_STREAMS = AUDIO_DUCKING_OPTIONS{ .O_NOT_DUCK_OTHER_STREAMS = 1 };
-
-const IID_IAudioClientDuckingControl_Value = Guid.initString("c789d381-a28c-4168-b28f-d3a837924dc3");
-pub const IID_IAudioClientDuckingControl = &IID_IAudioClientDuckingControl_Value;
-pub const IAudioClientDuckingControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetDuckingOptionsForCurrentStream: *const fn(
-            self: *const IAudioClientDuckingControl,
-            options: AUDIO_DUCKING_OPTIONS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetDuckingOptionsForCurrentStream(self: *const IAudioClientDuckingControl, options: AUDIO_DUCKING_OPTIONS) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDuckingOptionsForCurrentStream(self, options);
-    }
-};
-
-pub const AUDIO_EFFECT_STATE = enum(i32) {
-    FF = 0,
-    N = 1,
-};
-pub const AUDIO_EFFECT_STATE_OFF = AUDIO_EFFECT_STATE.FF;
-pub const AUDIO_EFFECT_STATE_ON = AUDIO_EFFECT_STATE.N;
-
-pub const AUDIO_EFFECT = extern struct {
-    id: Guid,
-    canSetState: BOOL,
-    state: AUDIO_EFFECT_STATE,
-};
-
 const IID_IAudioEffectsChangedNotificationClient_Value = Guid.initString("a5ded44f-3c5d-4b2b-bd1e-5dc1ee20bbf6");
 pub const IID_IAudioEffectsChangedNotificationClient = &IID_IAudioEffectsChangedNotificationClient_Value;
 pub const IAudioEffectsChangedNotificationClient = extern union {
@@ -1855,290 +1780,6 @@ pub const IAudioEffectsManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioStreamVolume_Value = Guid.initString("93014887-242d-4068-8a15-cf5e93b90fe3");
-pub const IID_IAudioStreamVolume = &IID_IAudioStreamVolume_Value;
-pub const IAudioStreamVolume = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetChannelCount: *const fn(
-            self: *const IAudioStreamVolume,
-            pdwCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetChannelVolume: *const fn(
-            self: *const IAudioStreamVolume,
-            dwIndex: u32,
-            fLevel: f32,
-        ) callconv(.winapi) HRESULT,
-        GetChannelVolume: *const fn(
-            self: *const IAudioStreamVolume,
-            dwIndex: u32,
-            pfLevel: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        SetAllVolumes: *const fn(
-            self: *const IAudioStreamVolume,
-            dwCount: u32,
-            pfVolumes: [*]const f32,
-        ) callconv(.winapi) HRESULT,
-        GetAllVolumes: *const fn(
-            self: *const IAudioStreamVolume,
-            dwCount: u32,
-            pfVolumes: [*]f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetChannelCount(self: *const IAudioStreamVolume, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelCount(self, pdwCount);
-    }
-    pub fn SetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, fLevel: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetChannelVolume(self, dwIndex, fLevel);
-    }
-    pub fn GetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelVolume(self, dwIndex, pfLevel);
-    }
-    pub fn SetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]const f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllVolumes(self, dwCount, pfVolumes);
-    }
-    pub fn GetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllVolumes(self, dwCount, pfVolumes);
-    }
-};
-
-pub const AMBISONICS_TYPE = enum(i32) {
-    D = 0,
-};
-pub const AMBISONICS_TYPE_FULL3D = AMBISONICS_TYPE.D;
-
-pub const AMBISONICS_CHANNEL_ORDERING = enum(i32) {
-    N = 0,
-};
-pub const AMBISONICS_CHANNEL_ORDERING_ACN = AMBISONICS_CHANNEL_ORDERING.N;
-
-pub const AMBISONICS_NORMALIZATION = enum(i32) {
-    SN3D = 0,
-    N3D = 1,
-};
-pub const AMBISONICS_NORMALIZATION_SN3D = AMBISONICS_NORMALIZATION.SN3D;
-pub const AMBISONICS_NORMALIZATION_N3D = AMBISONICS_NORMALIZATION.N3D;
-
-pub const AMBISONICS_PARAMS = extern struct {
-    u32Size: u32,
-    u32Version: u32,
-    u32Type: AMBISONICS_TYPE,
-    u32ChannelOrdering: AMBISONICS_CHANNEL_ORDERING,
-    u32Normalization: AMBISONICS_NORMALIZATION,
-    u32Order: u32,
-    u32NumChannels: u32,
-    pu32ChannelMap: ?*u32,
-};
-
-const IID_IAudioAmbisonicsControl_Value = Guid.initString("28724c91-df35-4856-9f76-d6a26413f3df");
-pub const IID_IAudioAmbisonicsControl = &IID_IAudioAmbisonicsControl_Value;
-pub const IAudioAmbisonicsControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetData: *const fn(
-            self: *const IAudioAmbisonicsControl,
-            pAmbisonicsParams: [*]const AMBISONICS_PARAMS,
-            cbAmbisonicsParams: u32,
-        ) callconv(.winapi) HRESULT,
-        SetHeadTracking: *const fn(
-            self: *const IAudioAmbisonicsControl,
-            bEnableHeadTracking: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetHeadTracking: *const fn(
-            self: *const IAudioAmbisonicsControl,
-            pbEnableHeadTracking: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetRotation: *const fn(
-            self: *const IAudioAmbisonicsControl,
-            X: f32,
-            Y: f32,
-            Z: f32,
-            W: f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetData(self: *const IAudioAmbisonicsControl, pAmbisonicsParams: [*]const AMBISONICS_PARAMS, cbAmbisonicsParams: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetData(self, pAmbisonicsParams, cbAmbisonicsParams);
-    }
-    pub fn SetHeadTracking(self: *const IAudioAmbisonicsControl, bEnableHeadTracking: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHeadTracking(self, bEnableHeadTracking);
-    }
-    pub fn GetHeadTracking(self: *const IAudioAmbisonicsControl, pbEnableHeadTracking: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHeadTracking(self, pbEnableHeadTracking);
-    }
-    pub fn SetRotation(self: *const IAudioAmbisonicsControl, X: f32, Y: f32, Z: f32, W: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRotation(self, X, Y, Z, W);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IChannelAudioVolume_Value = Guid.initString("1c158861-b533-4b30-b1cf-e853e51c59b8");
-pub const IID_IChannelAudioVolume = &IID_IChannelAudioVolume_Value;
-pub const IChannelAudioVolume = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetChannelCount: *const fn(
-            self: *const IChannelAudioVolume,
-            pdwCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetChannelVolume: *const fn(
-            self: *const IChannelAudioVolume,
-            dwIndex: u32,
-            fLevel: f32,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetChannelVolume: *const fn(
-            self: *const IChannelAudioVolume,
-            dwIndex: u32,
-            pfLevel: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        SetAllVolumes: *const fn(
-            self: *const IChannelAudioVolume,
-            dwCount: u32,
-            pfVolumes: [*]const f32,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetAllVolumes: *const fn(
-            self: *const IChannelAudioVolume,
-            dwCount: u32,
-            pfVolumes: [*]f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetChannelCount(self: *const IChannelAudioVolume, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelCount(self, pdwCount);
-    }
-    pub fn SetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, fLevel: f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetChannelVolume(self, dwIndex, fLevel, EventContext);
-    }
-    pub fn GetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelVolume(self, dwIndex, pfLevel);
-    }
-    pub fn SetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]const f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllVolumes(self, dwCount, pfVolumes, EventContext);
-    }
-    pub fn GetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllVolumes(self, dwCount, pfVolumes);
-    }
-};
-
-pub const AudioObjectType = packed struct(u32) {
-    Dynamic: u1 = 0,
-    FrontLeft: u1 = 0,
-    FrontRight: u1 = 0,
-    FrontCenter: u1 = 0,
-    LowFrequency: u1 = 0,
-    SideLeft: u1 = 0,
-    SideRight: u1 = 0,
-    BackLeft: u1 = 0,
-    BackRight: u1 = 0,
-    TopFrontLeft: u1 = 0,
-    TopFrontRight: u1 = 0,
-    TopBackLeft: u1 = 0,
-    TopBackRight: u1 = 0,
-    BottomFrontLeft: u1 = 0,
-    BottomFrontRight: u1 = 0,
-    BottomBackLeft: u1 = 0,
-    BottomBackRight: u1 = 0,
-    BackCenter: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const AudioObjectType_None = AudioObjectType{ };
-pub const AudioObjectType_Dynamic = AudioObjectType{ .Dynamic = 1 };
-pub const AudioObjectType_FrontLeft = AudioObjectType{ .FrontLeft = 1 };
-pub const AudioObjectType_FrontRight = AudioObjectType{ .FrontRight = 1 };
-pub const AudioObjectType_FrontCenter = AudioObjectType{ .FrontCenter = 1 };
-pub const AudioObjectType_LowFrequency = AudioObjectType{ .LowFrequency = 1 };
-pub const AudioObjectType_SideLeft = AudioObjectType{ .SideLeft = 1 };
-pub const AudioObjectType_SideRight = AudioObjectType{ .SideRight = 1 };
-pub const AudioObjectType_BackLeft = AudioObjectType{ .BackLeft = 1 };
-pub const AudioObjectType_BackRight = AudioObjectType{ .BackRight = 1 };
-pub const AudioObjectType_TopFrontLeft = AudioObjectType{ .TopFrontLeft = 1 };
-pub const AudioObjectType_TopFrontRight = AudioObjectType{ .TopFrontRight = 1 };
-pub const AudioObjectType_TopBackLeft = AudioObjectType{ .TopBackLeft = 1 };
-pub const AudioObjectType_TopBackRight = AudioObjectType{ .TopBackRight = 1 };
-pub const AudioObjectType_BottomFrontLeft = AudioObjectType{ .BottomFrontLeft = 1 };
-pub const AudioObjectType_BottomFrontRight = AudioObjectType{ .BottomFrontRight = 1 };
-pub const AudioObjectType_BottomBackLeft = AudioObjectType{ .BottomBackLeft = 1 };
-pub const AudioObjectType_BottomBackRight = AudioObjectType{ .BottomBackRight = 1 };
-pub const AudioObjectType_BackCenter = AudioObjectType{ .BackCenter = 1 };
-
-pub const SPATIAL_AUDIO_STREAM_OPTIONS = packed struct(u32) {
-    OFFLOAD: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const SPATIAL_AUDIO_STREAM_OPTIONS_NONE = SPATIAL_AUDIO_STREAM_OPTIONS{ };
-pub const SPATIAL_AUDIO_STREAM_OPTIONS_OFFLOAD = SPATIAL_AUDIO_STREAM_OPTIONS{ .OFFLOAD = 1 };
-
-pub const SpatialAudioObjectRenderStreamActivationParams = extern struct {
-    ObjectFormat: ?*const WAVEFORMATEX align(1),
-    StaticObjectTypeMask: AudioObjectType align(1),
-    MinDynamicObjectCount: u32 align(1),
-    MaxDynamicObjectCount: u32 align(1),
-    Category: AUDIO_STREAM_CATEGORY align(1),
-    EventHandle: ?HANDLE align(1),
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
-};
-
-pub const SpatialAudioObjectRenderStreamActivationParams2 = extern struct {
-    ObjectFormat: ?*const WAVEFORMATEX align(1),
-    StaticObjectTypeMask: AudioObjectType align(1),
-    MinDynamicObjectCount: u32 align(1),
-    MaxDynamicObjectCount: u32 align(1),
-    Category: AUDIO_STREAM_CATEGORY align(1),
-    EventHandle: ?HANDLE align(1),
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
-    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
-};
-
 const IID_IAudioFormatEnumerator_Value = Guid.initString("dcdaa858-895a-4a22-a5eb-67bda506096d");
 pub const IID_IAudioFormatEnumerator = &IID_IAudioFormatEnumerator_Value;
 pub const IAudioFormatEnumerator = extern union {
@@ -2161,1000 +1802,6 @@ pub const IAudioFormatEnumerator = extern union {
     }
     pub fn GetFormat(self: *const IAudioFormatEnumerator, index: u32, format: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, index, format);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioObjectBase_Value = Guid.initString("cce0b8f2-8d4d-4efb-a8cf-3d6ecf1c30e0");
-pub const IID_ISpatialAudioObjectBase = &IID_ISpatialAudioObjectBase_Value;
-pub const ISpatialAudioObjectBase = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetBuffer: *const fn(
-            self: *const ISpatialAudioObjectBase,
-            buffer: ?*?*u8,
-            bufferLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetEndOfStream: *const fn(
-            self: *const ISpatialAudioObjectBase,
-            frameCount: u32,
-        ) callconv(.winapi) HRESULT,
-        IsActive: *const fn(
-            self: *const ISpatialAudioObjectBase,
-            isActive: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetAudioObjectType: *const fn(
-            self: *const ISpatialAudioObjectBase,
-            audioObjectType: ?*AudioObjectType,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const ISpatialAudioObjectBase, buffer: ?*?*u8, bufferLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBuffer(self, buffer, bufferLength);
-    }
-    pub fn SetEndOfStream(self: *const ISpatialAudioObjectBase, frameCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEndOfStream(self, frameCount);
-    }
-    pub fn IsActive(self: *const ISpatialAudioObjectBase, isActive: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsActive(self, isActive);
-    }
-    pub fn GetAudioObjectType(self: *const ISpatialAudioObjectBase, audioObjectType: ?*AudioObjectType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAudioObjectType(self, audioObjectType);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioObject_Value = Guid.initString("dde28967-521b-46e5-8f00-bd6f2bc8ab1d");
-pub const IID_ISpatialAudioObject = &IID_ISpatialAudioObject_Value;
-pub const ISpatialAudioObject = extern union {
-    pub const VTable = extern struct {
-        base: ISpatialAudioObjectBase.VTable,
-        SetPosition: *const fn(
-            self: *const ISpatialAudioObject,
-            x: f32,
-            y: f32,
-            z: f32,
-        ) callconv(.winapi) HRESULT,
-        SetVolume: *const fn(
-            self: *const ISpatialAudioObject,
-            volume: f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISpatialAudioObjectBase: ISpatialAudioObjectBase,
-    IUnknown: IUnknown,
-    pub fn SetPosition(self: *const ISpatialAudioObject, x: f32, y: f32, z: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPosition(self, x, y, z);
-    }
-    pub fn SetVolume(self: *const ISpatialAudioObject, volume: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVolume(self, volume);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioObjectRenderStreamBase_Value = Guid.initString("feaaf403-c1d8-450d-aa05-e0ccee7502a8");
-pub const IID_ISpatialAudioObjectRenderStreamBase = &IID_ISpatialAudioObjectRenderStreamBase_Value;
-pub const ISpatialAudioObjectRenderStreamBase = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAvailableDynamicObjectCount: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamBase,
-            value: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetService: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamBase,
-            riid: ?*const Guid,
-            service: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Start: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(.winapi) HRESULT,
-        Stop: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(.winapi) HRESULT,
-        BeginUpdatingAudioObjects: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamBase,
-            availableDynamicObjectCount: ?*u32,
-            frameCountPerBuffer: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EndUpdatingAudioObjects: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamBase,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAvailableDynamicObjectCount(self: *const ISpatialAudioObjectRenderStreamBase, value: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAvailableDynamicObjectCount(self, value);
-    }
-    pub fn GetService(self: *const ISpatialAudioObjectRenderStreamBase, riid: ?*const Guid, service: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetService(self, riid, service);
-    }
-    pub fn Start(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self);
-    }
-    pub fn Stop(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
-        return self.vtable.Stop(self);
-    }
-    pub fn Reset(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn BeginUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase, availableDynamicObjectCount: ?*u32, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginUpdatingAudioObjects(self, availableDynamicObjectCount, frameCountPerBuffer);
-    }
-    pub fn EndUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
-        return self.vtable.EndUpdatingAudioObjects(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioObjectRenderStream_Value = Guid.initString("bab5f473-b423-477b-85f5-b5a332a04153");
-pub const IID_ISpatialAudioObjectRenderStream = &IID_ISpatialAudioObjectRenderStream_Value;
-pub const ISpatialAudioObjectRenderStream = extern union {
-    pub const VTable = extern struct {
-        base: ISpatialAudioObjectRenderStreamBase.VTable,
-        ActivateSpatialAudioObject: *const fn(
-            self: *const ISpatialAudioObjectRenderStream,
-            type: AudioObjectType,
-            audioObject: **ISpatialAudioObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
-    IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObject(self: *const ISpatialAudioObjectRenderStream, @"type": AudioObjectType, audioObject: **ISpatialAudioObject) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateSpatialAudioObject(self, @"type", audioObject);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioObjectRenderStreamNotify_Value = Guid.initString("dddf83e6-68d7-4c70-883f-a1836afb4a50");
-pub const IID_ISpatialAudioObjectRenderStreamNotify = &IID_ISpatialAudioObjectRenderStreamNotify_Value;
-pub const ISpatialAudioObjectRenderStreamNotify = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnAvailableDynamicObjectCountChange: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamNotify,
-            sender: ?*ISpatialAudioObjectRenderStreamBase,
-            hnsComplianceDeadlineTime: i64,
-            availableDynamicObjectCountChange: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnAvailableDynamicObjectCountChange(self: *const ISpatialAudioObjectRenderStreamNotify, sender: ?*ISpatialAudioObjectRenderStreamBase, hnsComplianceDeadlineTime: i64, availableDynamicObjectCountChange: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnAvailableDynamicObjectCountChange(self, sender, hnsComplianceDeadlineTime, availableDynamicObjectCountChange);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioClient_Value = Guid.initString("bbf8e066-aaaa-49be-9a4d-fd2a858ea27f");
-pub const IID_ISpatialAudioClient = &IID_ISpatialAudioClient_Value;
-pub const ISpatialAudioClient = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStaticObjectPosition: *const fn(
-            self: *const ISpatialAudioClient,
-            type: AudioObjectType,
-            x: ?*f32,
-            y: ?*f32,
-            z: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetNativeStaticObjectTypeMask: *const fn(
-            self: *const ISpatialAudioClient,
-            mask: ?*AudioObjectType,
-        ) callconv(.winapi) HRESULT,
-        GetMaxDynamicObjectCount: *const fn(
-            self: *const ISpatialAudioClient,
-            value: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSupportedAudioObjectFormatEnumerator: *const fn(
-            self: *const ISpatialAudioClient,
-            enumerator: **IAudioFormatEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetMaxFrameCount: *const fn(
-            self: *const ISpatialAudioClient,
-            objectFormat: ?*const WAVEFORMATEX,
-            frameCountPerBuffer: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        IsAudioObjectFormatSupported: *const fn(
-            self: *const ISpatialAudioClient,
-            objectFormat: ?*const WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        IsSpatialAudioStreamAvailable: *const fn(
-            self: *const ISpatialAudioClient,
-            streamUuid: ?*const Guid,
-            auxiliaryInfo: ?*const PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        ActivateSpatialAudioStream: *const fn(
-            self: *const ISpatialAudioClient,
-            activationParams: ?*const PROPVARIANT,
-            riid: ?*const Guid,
-            stream: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStaticObjectPosition(self: *const ISpatialAudioClient, @"type": AudioObjectType, x: ?*f32, y: ?*f32, z: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStaticObjectPosition(self, @"type", x, y, z);
-    }
-    pub fn GetNativeStaticObjectTypeMask(self: *const ISpatialAudioClient, mask: ?*AudioObjectType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNativeStaticObjectTypeMask(self, mask);
-    }
-    pub fn GetMaxDynamicObjectCount(self: *const ISpatialAudioClient, value: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxDynamicObjectCount(self, value);
-    }
-    pub fn GetSupportedAudioObjectFormatEnumerator(self: *const ISpatialAudioClient, enumerator: **IAudioFormatEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSupportedAudioObjectFormatEnumerator(self, enumerator);
-    }
-    pub fn GetMaxFrameCount(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxFrameCount(self, objectFormat, frameCountPerBuffer);
-    }
-    pub fn IsAudioObjectFormatSupported(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.IsAudioObjectFormatSupported(self, objectFormat);
-    }
-    pub fn IsSpatialAudioStreamAvailable(self: *const ISpatialAudioClient, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSpatialAudioStreamAvailable(self, streamUuid, auxiliaryInfo);
-    }
-    pub fn ActivateSpatialAudioStream(self: *const ISpatialAudioClient, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateSpatialAudioStream(self, activationParams, riid, stream);
-    }
-};
-
-const IID_ISpatialAudioClient2_Value = Guid.initString("caabe452-a66a-4bee-a93e-e320463f6a53");
-pub const IID_ISpatialAudioClient2 = &IID_ISpatialAudioClient2_Value;
-pub const ISpatialAudioClient2 = extern union {
-    pub const VTable = extern struct {
-        base: ISpatialAudioClient.VTable,
-        IsOffloadCapable: *const fn(
-            self: *const ISpatialAudioClient2,
-            category: AUDIO_STREAM_CATEGORY,
-            isOffloadCapable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetMaxFrameCountForCategory: *const fn(
-            self: *const ISpatialAudioClient2,
-            category: AUDIO_STREAM_CATEGORY,
-            offloadEnabled: BOOL,
-            objectFormat: ?*const WAVEFORMATEX,
-            frameCountPerBuffer: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISpatialAudioClient: ISpatialAudioClient,
-    IUnknown: IUnknown,
-    pub fn IsOffloadCapable(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, isOffloadCapable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsOffloadCapable(self, category, isOffloadCapable);
-    }
-    pub fn GetMaxFrameCountForCategory(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, offloadEnabled: BOOL, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxFrameCountForCategory(self, category, offloadEnabled, objectFormat, frameCountPerBuffer);
-    }
-};
-
-pub const SpatialAudioClientActivationParams = extern struct {
-    tracingContextId: Guid,
-    appId: Guid,
-    majorVersion: i32,
-    minorVersion1: i32,
-    minorVersion2: i32,
-    minorVersion3: i32,
-};
-
-pub const SpatialAudioHrtfDirectivityType = enum(i32) {
-    OmniDirectional = 0,
-    Cardioid = 1,
-    Cone = 2,
-};
-pub const SpatialAudioHrtfDirectivity_OmniDirectional = SpatialAudioHrtfDirectivityType.OmniDirectional;
-pub const SpatialAudioHrtfDirectivity_Cardioid = SpatialAudioHrtfDirectivityType.Cardioid;
-pub const SpatialAudioHrtfDirectivity_Cone = SpatialAudioHrtfDirectivityType.Cone;
-
-pub const SpatialAudioHrtfEnvironmentType = enum(i32) {
-    Small = 0,
-    Medium = 1,
-    Large = 2,
-    Outdoors = 3,
-    Average = 4,
-};
-pub const SpatialAudioHrtfEnvironment_Small = SpatialAudioHrtfEnvironmentType.Small;
-pub const SpatialAudioHrtfEnvironment_Medium = SpatialAudioHrtfEnvironmentType.Medium;
-pub const SpatialAudioHrtfEnvironment_Large = SpatialAudioHrtfEnvironmentType.Large;
-pub const SpatialAudioHrtfEnvironment_Outdoors = SpatialAudioHrtfEnvironmentType.Outdoors;
-pub const SpatialAudioHrtfEnvironment_Average = SpatialAudioHrtfEnvironmentType.Average;
-
-pub const SpatialAudioHrtfDistanceDecayType = enum(i32) {
-    NaturalDecay = 0,
-    CustomDecay = 1,
-};
-pub const SpatialAudioHrtfDistanceDecay_NaturalDecay = SpatialAudioHrtfDistanceDecayType.NaturalDecay;
-pub const SpatialAudioHrtfDistanceDecay_CustomDecay = SpatialAudioHrtfDistanceDecayType.CustomDecay;
-
-pub const SpatialAudioHrtfDirectivity = extern struct {
-    Type: SpatialAudioHrtfDirectivityType align(1),
-    Scaling: f32 align(1),
-};
-
-pub const SpatialAudioHrtfDirectivityCardioid = extern struct {
-    directivity: SpatialAudioHrtfDirectivity align(1),
-    Order: f32 align(1),
-};
-
-pub const SpatialAudioHrtfDirectivityCone = extern struct {
-    directivity: SpatialAudioHrtfDirectivity align(1),
-    InnerAngle: f32 align(1),
-    OuterAngle: f32 align(1),
-};
-
-pub const SpatialAudioHrtfDirectivityUnion = extern union {
-    Cone: SpatialAudioHrtfDirectivityCone,
-    Cardiod: SpatialAudioHrtfDirectivityCardioid,
-    Omni: SpatialAudioHrtfDirectivity,
-};
-
-pub const SpatialAudioHrtfDistanceDecay = extern struct {
-    Type: SpatialAudioHrtfDistanceDecayType align(1),
-    MaxGain: f32 align(1),
-    MinGain: f32 align(1),
-    UnityGainDistance: f32 align(1),
-    CutoffDistance: f32 align(1),
-};
-
-pub const SpatialAudioHrtfActivationParams = extern struct {
-    ObjectFormat: ?*const WAVEFORMATEX align(1),
-    StaticObjectTypeMask: AudioObjectType align(1),
-    MinDynamicObjectCount: u32 align(1),
-    MaxDynamicObjectCount: u32 align(1),
-    Category: AUDIO_STREAM_CATEGORY align(1),
-    EventHandle: ?HANDLE align(1),
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
-    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay align(1),
-    Directivity: ?*SpatialAudioHrtfDirectivityUnion align(1),
-    Environment: ?*SpatialAudioHrtfEnvironmentType align(1),
-    Orientation: ?*f32 align(1),
-};
-
-pub const SpatialAudioHrtfActivationParams2 = extern struct {
-    ObjectFormat: ?*const WAVEFORMATEX align(1),
-    StaticObjectTypeMask: AudioObjectType align(1),
-    MinDynamicObjectCount: u32 align(1),
-    MaxDynamicObjectCount: u32 align(1),
-    Category: AUDIO_STREAM_CATEGORY align(1),
-    EventHandle: ?HANDLE align(1),
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
-    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay align(1),
-    Directivity: ?*SpatialAudioHrtfDirectivityUnion align(1),
-    Environment: ?*SpatialAudioHrtfEnvironmentType align(1),
-    Orientation: ?*f32 align(1),
-    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioObjectForHrtf_Value = Guid.initString("d7436ade-1978-4e14-aba0-555bd8eb83b4");
-pub const IID_ISpatialAudioObjectForHrtf = &IID_ISpatialAudioObjectForHrtf_Value;
-pub const ISpatialAudioObjectForHrtf = extern union {
-    pub const VTable = extern struct {
-        base: ISpatialAudioObjectBase.VTable,
-        SetPosition: *const fn(
-            self: *const ISpatialAudioObjectForHrtf,
-            x: f32,
-            y: f32,
-            z: f32,
-        ) callconv(.winapi) HRESULT,
-        SetGain: *const fn(
-            self: *const ISpatialAudioObjectForHrtf,
-            gain: f32,
-        ) callconv(.winapi) HRESULT,
-        SetOrientation: *const fn(
-            self: *const ISpatialAudioObjectForHrtf,
-            orientation: ?*const ?*f32,
-        ) callconv(.winapi) HRESULT,
-        SetEnvironment: *const fn(
-            self: *const ISpatialAudioObjectForHrtf,
-            environment: SpatialAudioHrtfEnvironmentType,
-        ) callconv(.winapi) HRESULT,
-        SetDistanceDecay: *const fn(
-            self: *const ISpatialAudioObjectForHrtf,
-            distanceDecay: ?*SpatialAudioHrtfDistanceDecay,
-        ) callconv(.winapi) HRESULT,
-        SetDirectivity: *const fn(
-            self: *const ISpatialAudioObjectForHrtf,
-            directivity: ?*SpatialAudioHrtfDirectivityUnion,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISpatialAudioObjectBase: ISpatialAudioObjectBase,
-    IUnknown: IUnknown,
-    pub fn SetPosition(self: *const ISpatialAudioObjectForHrtf, x: f32, y: f32, z: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPosition(self, x, y, z);
-    }
-    pub fn SetGain(self: *const ISpatialAudioObjectForHrtf, gain: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGain(self, gain);
-    }
-    pub fn SetOrientation(self: *const ISpatialAudioObjectForHrtf, orientation: ?*const ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOrientation(self, orientation);
-    }
-    pub fn SetEnvironment(self: *const ISpatialAudioObjectForHrtf, environment: SpatialAudioHrtfEnvironmentType) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEnvironment(self, environment);
-    }
-    pub fn SetDistanceDecay(self: *const ISpatialAudioObjectForHrtf, distanceDecay: ?*SpatialAudioHrtfDistanceDecay) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDistanceDecay(self, distanceDecay);
-    }
-    pub fn SetDirectivity(self: *const ISpatialAudioObjectForHrtf, directivity: ?*SpatialAudioHrtfDirectivityUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDirectivity(self, directivity);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioObjectRenderStreamForHrtf_Value = Guid.initString("e08deef9-5363-406e-9fdc-080ee247bbe0");
-pub const IID_ISpatialAudioObjectRenderStreamForHrtf = &IID_ISpatialAudioObjectRenderStreamForHrtf_Value;
-pub const ISpatialAudioObjectRenderStreamForHrtf = extern union {
-    pub const VTable = extern struct {
-        base: ISpatialAudioObjectRenderStreamBase.VTable,
-        ActivateSpatialAudioObjectForHrtf: *const fn(
-            self: *const ISpatialAudioObjectRenderStreamForHrtf,
-            type: AudioObjectType,
-            audioObject: **ISpatialAudioObjectForHrtf,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
-    IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObjectForHrtf(self: *const ISpatialAudioObjectRenderStreamForHrtf, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForHrtf) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateSpatialAudioObjectForHrtf(self, @"type", audioObject);
-    }
-};
-
-const CLSID_MMDeviceEnumerator_Value = Guid.initString("bcde0395-e52f-467c-8e3d-c4579291692e");
-pub const CLSID_MMDeviceEnumerator = &CLSID_MMDeviceEnumerator_Value;
-
-pub const DIRECTX_AUDIO_ACTIVATION_PARAMS = extern struct {
-    cbDirectXAudioActivationParams: u32,
-    guidAudioSession: Guid,
-    dwAudioStreamFlags: u32,
-};
-
-pub const EDataFlow = enum(i32) {
-    eRender = 0,
-    eCapture = 1,
-    eAll = 2,
-    EDataFlow_enum_count = 3,
-};
-pub const eRender = EDataFlow.eRender;
-pub const eCapture = EDataFlow.eCapture;
-pub const eAll = EDataFlow.eAll;
-pub const EDataFlow_enum_count = EDataFlow.EDataFlow_enum_count;
-
-pub const ERole = enum(i32) {
-    eConsole = 0,
-    eMultimedia = 1,
-    eCommunications = 2,
-    ERole_enum_count = 3,
-};
-pub const eConsole = ERole.eConsole;
-pub const eMultimedia = ERole.eMultimedia;
-pub const eCommunications = ERole.eCommunications;
-pub const ERole_enum_count = ERole.ERole_enum_count;
-
-pub const EndpointFormFactor = enum(i32) {
-    RemoteNetworkDevice = 0,
-    Speakers = 1,
-    LineLevel = 2,
-    Headphones = 3,
-    Microphone = 4,
-    Headset = 5,
-    Handset = 6,
-    UnknownDigitalPassthrough = 7,
-    SPDIF = 8,
-    DigitalAudioDisplayDevice = 9,
-    UnknownFormFactor = 10,
-    EndpointFormFactor_enum_count = 11,
-};
-pub const RemoteNetworkDevice = EndpointFormFactor.RemoteNetworkDevice;
-pub const Speakers = EndpointFormFactor.Speakers;
-pub const LineLevel = EndpointFormFactor.LineLevel;
-pub const Headphones = EndpointFormFactor.Headphones;
-pub const Microphone = EndpointFormFactor.Microphone;
-pub const Headset = EndpointFormFactor.Headset;
-pub const Handset = EndpointFormFactor.Handset;
-pub const UnknownDigitalPassthrough = EndpointFormFactor.UnknownDigitalPassthrough;
-pub const SPDIF = EndpointFormFactor.SPDIF;
-pub const DigitalAudioDisplayDevice = EndpointFormFactor.DigitalAudioDisplayDevice;
-pub const UnknownFormFactor = EndpointFormFactor.UnknownFormFactor;
-pub const EndpointFormFactor_enum_count = EndpointFormFactor.EndpointFormFactor_enum_count;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMMNotificationClient_Value = Guid.initString("7991eec9-7e89-4d85-8390-6c703cec60c0");
-pub const IID_IMMNotificationClient = &IID_IMMNotificationClient_Value;
-pub const IMMNotificationClient = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnDeviceStateChanged: *const fn(
-            self: *const IMMNotificationClient,
-            pwstrDeviceId: ?[*:0]const u16,
-            dwNewState: u32,
-        ) callconv(.winapi) HRESULT,
-        OnDeviceAdded: *const fn(
-            self: *const IMMNotificationClient,
-            pwstrDeviceId: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        OnDeviceRemoved: *const fn(
-            self: *const IMMNotificationClient,
-            pwstrDeviceId: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        OnDefaultDeviceChanged: *const fn(
-            self: *const IMMNotificationClient,
-            flow: EDataFlow,
-            role: ERole,
-            pwstrDefaultDeviceId: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        OnPropertyValueChanged: *const fn(
-            self: *const IMMNotificationClient,
-            pwstrDeviceId: ?[*:0]const u16,
-            key: PROPERTYKEY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnDeviceStateChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, dwNewState: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDeviceStateChanged(self, pwstrDeviceId, dwNewState);
-    }
-    pub fn OnDeviceAdded(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDeviceAdded(self, pwstrDeviceId);
-    }
-    pub fn OnDeviceRemoved(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDeviceRemoved(self, pwstrDeviceId);
-    }
-    pub fn OnDefaultDeviceChanged(self: *const IMMNotificationClient, flow: EDataFlow, role: ERole, pwstrDefaultDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDefaultDeviceChanged(self, flow, role, pwstrDefaultDeviceId);
-    }
-    pub fn OnPropertyValueChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, key: PROPERTYKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPropertyValueChanged(self, pwstrDeviceId, key);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMMDevice_Value = Guid.initString("d666063f-1587-4e43-81f1-b948e807363f");
-pub const IID_IMMDevice = &IID_IMMDevice_Value;
-pub const IMMDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Activate: *const fn(
-            self: *const IMMDevice,
-            iid: ?*const Guid,
-            dwClsCtx: CLSCTX,
-            pActivationParams: ?*PROPVARIANT,
-            ppInterface: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        OpenPropertyStore: *const fn(
-            self: *const IMMDevice,
-            stgmAccess: STGM,
-            ppProperties: ?*?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        GetId: *const fn(
-            self: *const IMMDevice,
-            ppstrId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetState: *const fn(
-            self: *const IMMDevice,
-            pdwState: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Activate(self: *const IMMDevice, iid: ?*const Guid, dwClsCtx: CLSCTX, pActivationParams: ?*PROPVARIANT, ppInterface: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, iid, dwClsCtx, pActivationParams, ppInterface);
-    }
-    pub fn OpenPropertyStore(self: *const IMMDevice, stgmAccess: STGM, ppProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenPropertyStore(self, stgmAccess, ppProperties);
-    }
-    pub fn GetId(self: *const IMMDevice, ppstrId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetId(self, ppstrId);
-    }
-    pub fn GetState(self: *const IMMDevice, pdwState: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetState(self, pdwState);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMMDeviceCollection_Value = Guid.initString("0bd7a1be-7a1a-44db-8397-cc5392387b5e");
-pub const IID_IMMDeviceCollection = &IID_IMMDeviceCollection_Value;
-pub const IMMDeviceCollection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCount: *const fn(
-            self: *const IMMDeviceCollection,
-            pcDevices: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IMMDeviceCollection,
-            nDevice: u32,
-            ppDevice: ?*?*IMMDevice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCount(self: *const IMMDeviceCollection, pcDevices: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pcDevices);
-    }
-    pub fn Item(self: *const IMMDeviceCollection, nDevice: u32, ppDevice: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, nDevice, ppDevice);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMMEndpoint_Value = Guid.initString("1be09788-6894-4089-8586-9a2a6c265ac5");
-pub const IID_IMMEndpoint = &IID_IMMEndpoint_Value;
-pub const IMMEndpoint = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDataFlow: *const fn(
-            self: *const IMMEndpoint,
-            pDataFlow: ?*EDataFlow,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDataFlow(self: *const IMMEndpoint, pDataFlow: ?*EDataFlow) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataFlow(self, pDataFlow);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMMDeviceEnumerator_Value = Guid.initString("a95664d2-9614-4f35-a746-de8db63617e6");
-pub const IID_IMMDeviceEnumerator = &IID_IMMDeviceEnumerator_Value;
-pub const IMMDeviceEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumAudioEndpoints: *const fn(
-            self: *const IMMDeviceEnumerator,
-            dataFlow: EDataFlow,
-            dwStateMask: u32,
-            ppDevices: ?*?*IMMDeviceCollection,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultAudioEndpoint: *const fn(
-            self: *const IMMDeviceEnumerator,
-            dataFlow: EDataFlow,
-            role: ERole,
-            ppEndpoint: ?*?*IMMDevice,
-        ) callconv(.winapi) HRESULT,
-        GetDevice: *const fn(
-            self: *const IMMDeviceEnumerator,
-            pwstrId: ?[*:0]const u16,
-            ppDevice: ?*?*IMMDevice,
-        ) callconv(.winapi) HRESULT,
-        RegisterEndpointNotificationCallback: *const fn(
-            self: *const IMMDeviceEnumerator,
-            pClient: ?*IMMNotificationClient,
-        ) callconv(.winapi) HRESULT,
-        UnregisterEndpointNotificationCallback: *const fn(
-            self: *const IMMDeviceEnumerator,
-            pClient: ?*IMMNotificationClient,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnumAudioEndpoints(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, dwStateMask: u32, ppDevices: ?*?*IMMDeviceCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumAudioEndpoints(self, dataFlow, dwStateMask, ppDevices);
-    }
-    pub fn GetDefaultAudioEndpoint(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, role: ERole, ppEndpoint: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultAudioEndpoint(self, dataFlow, role, ppEndpoint);
-    }
-    pub fn GetDevice(self: *const IMMDeviceEnumerator, pwstrId: ?[*:0]const u16, ppDevice: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDevice(self, pwstrId, ppDevice);
-    }
-    pub fn RegisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterEndpointNotificationCallback(self, pClient);
-    }
-    pub fn UnregisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterEndpointNotificationCallback(self, pClient);
-    }
-};
-
-const IID_IMMDeviceActivator_Value = Guid.initString("3b0d0ea4-d0a9-4b0e-935b-09516746fac0");
-pub const IID_IMMDeviceActivator = &IID_IMMDeviceActivator_Value;
-pub const IMMDeviceActivator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Activate: *const fn(
-            self: *const IMMDeviceActivator,
-            iid: ?*const Guid,
-            pDevice: ?*IMMDevice,
-            pActivationParams: ?*PROPVARIANT,
-            ppInterface: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Activate(self: *const IMMDeviceActivator, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, iid, pDevice, pActivationParams, ppInterface);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IActivateAudioInterfaceCompletionHandler_Value = Guid.initString("41d949ab-9862-444a-80f6-c261334da5eb");
-pub const IID_IActivateAudioInterfaceCompletionHandler = &IID_IActivateAudioInterfaceCompletionHandler_Value;
-pub const IActivateAudioInterfaceCompletionHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ActivateCompleted: *const fn(
-            self: *const IActivateAudioInterfaceCompletionHandler,
-            activateOperation: ?*IActivateAudioInterfaceAsyncOperation,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ActivateCompleted(self: *const IActivateAudioInterfaceCompletionHandler, activateOperation: ?*IActivateAudioInterfaceAsyncOperation) callconv(.@"inline") HRESULT {
-        return self.vtable.ActivateCompleted(self, activateOperation);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IActivateAudioInterfaceAsyncOperation_Value = Guid.initString("72a22d78-cde4-431d-b8cc-843a71199b6d");
-pub const IID_IActivateAudioInterfaceAsyncOperation = &IID_IActivateAudioInterfaceAsyncOperation_Value;
-pub const IActivateAudioInterfaceAsyncOperation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetActivateResult: *const fn(
-            self: *const IActivateAudioInterfaceAsyncOperation,
-            activateResult: ?*HRESULT,
-            activatedInterface: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetActivateResult(self: *const IActivateAudioInterfaceAsyncOperation, activateResult: ?*HRESULT, activatedInterface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActivateResult(self, activateResult, activatedInterface);
-    }
-};
-
-pub const AudioExtensionParams = extern struct {
-    AddPageParam: LPARAM,
-    pEndpoint: ?*IMMDevice,
-    pPnpInterface: ?*IMMDevice,
-    pPnpDevnode: ?*IMMDevice,
-};
-
-pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE = enum(i32) {
-    DEFAULT = 0,
-    USER = 1,
-    VOLATILE = 2,
-    ENUM_COUNT = 3,
-};
-pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_DEFAULT = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.DEFAULT;
-pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_USER = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.USER;
-pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_VOLATILE = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.VOLATILE;
-pub const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE_ENUM_COUNT = AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE.ENUM_COUNT;
-
-const IID_IAudioSystemEffectsPropertyChangeNotificationClient_Value = Guid.initString("20049d40-56d5-400e-a2ef-385599feed49");
-pub const IID_IAudioSystemEffectsPropertyChangeNotificationClient = &IID_IAudioSystemEffectsPropertyChangeNotificationClient_Value;
-pub const IAudioSystemEffectsPropertyChangeNotificationClient = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnPropertyChanged: *const fn(
-            self: *const IAudioSystemEffectsPropertyChangeNotificationClient,
-            type: AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE,
-            key: PROPERTYKEY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnPropertyChanged(self: *const IAudioSystemEffectsPropertyChangeNotificationClient, @"type": AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE, key: PROPERTYKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPropertyChanged(self, @"type", key);
-    }
-};
-
-const IID_IAudioSystemEffectsPropertyStore_Value = Guid.initString("302ae7f9-d7e0-43e4-971b-1f8293613d2a");
-pub const IID_IAudioSystemEffectsPropertyStore = &IID_IAudioSystemEffectsPropertyStore_Value;
-pub const IAudioSystemEffectsPropertyStore = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OpenDefaultPropertyStore: *const fn(
-            self: *const IAudioSystemEffectsPropertyStore,
-            stgmAccess: u32,
-            propStore: **IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        OpenUserPropertyStore: *const fn(
-            self: *const IAudioSystemEffectsPropertyStore,
-            stgmAccess: u32,
-            propStore: **IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        OpenVolatilePropertyStore: *const fn(
-            self: *const IAudioSystemEffectsPropertyStore,
-            stgmAccess: u32,
-            propStore: **IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        ResetUserPropertyStore: *const fn(
-            self: *const IAudioSystemEffectsPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        ResetVolatilePropertyStore: *const fn(
-            self: *const IAudioSystemEffectsPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        RegisterPropertyChangeNotification: *const fn(
-            self: *const IAudioSystemEffectsPropertyStore,
-            callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
-        ) callconv(.winapi) HRESULT,
-        UnregisterPropertyChangeNotification: *const fn(
-            self: *const IAudioSystemEffectsPropertyStore,
-            callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OpenDefaultPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenDefaultPropertyStore(self, stgmAccess, propStore);
-    }
-    pub fn OpenUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenUserPropertyStore(self, stgmAccess, propStore);
-    }
-    pub fn OpenVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenVolatilePropertyStore(self, stgmAccess, propStore);
-    }
-    pub fn ResetUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.ResetUserPropertyStore(self);
-    }
-    pub fn ResetVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.ResetVolatilePropertyStore(self);
-    }
-    pub fn RegisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterPropertyChangeNotification(self, callback);
-    }
-    pub fn UnregisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterPropertyChangeNotification(self, callback);
-    }
-};
-
-const CLSID_DeviceTopology_Value = Guid.initString("1df639d0-5ec1-47aa-9379-828dc1aa8c59");
-pub const CLSID_DeviceTopology = &CLSID_DeviceTopology_Value;
-
-pub const DataFlow = enum(i32) {
-    In = 0,
-    Out = 1,
-};
-pub const In = DataFlow.In;
-pub const Out = DataFlow.Out;
-
-pub const PartType = enum(i32) {
-    Connector = 0,
-    Subunit = 1,
-};
-pub const Connector = PartType.Connector;
-pub const Subunit = PartType.Subunit;
-
-pub const ConnectorType = enum(i32) {
-    Unknown_Connector = 0,
-    Physical_Internal = 1,
-    Physical_External = 2,
-    Software_IO = 3,
-    Software_Fixed = 4,
-    Network = 5,
-};
-// NOTE: not creating aliases because this enum is 'Scoped'
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPerChannelDbLevel_Value = Guid.initString("c2f8e001-f205-4bc9-99bc-c13b1e048ccb");
-pub const IID_IPerChannelDbLevel = &IID_IPerChannelDbLevel_Value;
-pub const IPerChannelDbLevel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetChannelCount: *const fn(
-            self: *const IPerChannelDbLevel,
-            pcChannels: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetLevelRange: *const fn(
-            self: *const IPerChannelDbLevel,
-            nChannel: u32,
-            pfMinLevelDB: ?*f32,
-            pfMaxLevelDB: ?*f32,
-            pfStepping: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetLevel: *const fn(
-            self: *const IPerChannelDbLevel,
-            nChannel: u32,
-            pfLevelDB: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        SetLevel: *const fn(
-            self: *const IPerChannelDbLevel,
-            nChannel: u32,
-            fLevelDB: f32,
-            pguidEventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        SetLevelUniform: *const fn(
-            self: *const IPerChannelDbLevel,
-            fLevelDB: f32,
-            pguidEventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        SetLevelAllChannels: *const fn(
-            self: *const IPerChannelDbLevel,
-            aLevelsDB: [*]f32,
-            cChannels: u32,
-            pguidEventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetChannelCount(self: *const IPerChannelDbLevel, pcChannels: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelCount(self, pcChannels);
-    }
-    pub fn GetLevelRange(self: *const IPerChannelDbLevel, nChannel: u32, pfMinLevelDB: ?*f32, pfMaxLevelDB: ?*f32, pfStepping: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLevelRange(self, nChannel, pfMinLevelDB, pfMaxLevelDB, pfStepping);
-    }
-    pub fn GetLevel(self: *const IPerChannelDbLevel, nChannel: u32, pfLevelDB: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLevel(self, nChannel, pfLevelDB);
-    }
-    pub fn SetLevel(self: *const IPerChannelDbLevel, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLevel(self, nChannel, fLevelDB, pguidEventContext);
-    }
-    pub fn SetLevelUniform(self: *const IPerChannelDbLevel, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLevelUniform(self, fLevelDB, pguidEventContext);
-    }
-    pub fn SetLevelAllChannels(self: *const IPerChannelDbLevel, aLevelsDB: [*]f32, cChannels: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLevelAllChannels(self, aLevelsDB, cChannels, pguidEventContext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioVolumeLevel_Value = Guid.initString("7fb7b48f-531d-44a2-bcb3-5ad5a134b3dc");
-pub const IID_IAudioVolumeLevel = &IID_IAudioVolumeLevel_Value;
-pub const IAudioVolumeLevel = extern union {
-    pub const VTable = extern struct {
-        base: IPerChannelDbLevel.VTable,
-    };
-    vtable: *const VTable,
-    IPerChannelDbLevel: IPerChannelDbLevel,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioChannelConfig_Value = Guid.initString("bb11c46f-ec28-493c-b88a-5db88062ce98");
-pub const IID_IAudioChannelConfig = &IID_IAudioChannelConfig_Value;
-pub const IAudioChannelConfig = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetChannelConfig: *const fn(
-            self: *const IAudioChannelConfig,
-            dwConfig: u32,
-            pguidEventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetChannelConfig: *const fn(
-            self: *const IAudioChannelConfig,
-            pdwConfig: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetChannelConfig(self: *const IAudioChannelConfig, dwConfig: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetChannelConfig(self, dwConfig, pguidEventContext);
-    }
-    pub fn GetChannelConfig(self: *const IAudioChannelConfig, pdwConfig: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelConfig(self, pdwConfig);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioLoudness_Value = Guid.initString("7d8b1437-dd53-4350-9c1b-1ee2890bd938");
-pub const IID_IAudioLoudness = &IID_IAudioLoudness_Value;
-pub const IAudioLoudness = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetEnabled: *const fn(
-            self: *const IAudioLoudness,
-            pbEnabled: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetEnabled: *const fn(
-            self: *const IAudioLoudness,
-            bEnable: BOOL,
-            pguidEventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetEnabled(self: *const IAudioLoudness, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnabled(self, pbEnabled);
-    }
-    pub fn SetEnabled(self: *const IAudioLoudness, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEnabled(self, bEnable, pguidEventContext);
     }
 };
 
@@ -3185,29 +1832,41 @@ pub const IAudioInputSelector = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioOutputSelector_Value = Guid.initString("bb515f69-94a7-429e-8b9c-271b3f11a3ab");
-pub const IID_IAudioOutputSelector = &IID_IAudioOutputSelector_Value;
-pub const IAudioOutputSelector = extern union {
+const IID_IAudioLoudness_Value = Guid.initString("7d8b1437-dd53-4350-9c1b-1ee2890bd938");
+pub const IID_IAudioLoudness = &IID_IAudioLoudness_Value;
+pub const IAudioLoudness = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSelection: *const fn(
-            self: *const IAudioOutputSelector,
-            pnIdSelected: ?*u32,
+        GetEnabled: *const fn(
+            self: *const IAudioLoudness,
+            pbEnabled: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        SetSelection: *const fn(
-            self: *const IAudioOutputSelector,
-            nIdSelect: u32,
+        SetEnabled: *const fn(
+            self: *const IAudioLoudness,
+            bEnable: BOOL,
             pguidEventContext: ?*const Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSelection(self: *const IAudioOutputSelector, pnIdSelected: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelection(self, pnIdSelected);
+    pub fn GetEnabled(self: *const IAudioLoudness, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnabled(self, pbEnabled);
     }
-    pub fn SetSelection(self: *const IAudioOutputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSelection(self, nIdSelect, pguidEventContext);
+    pub fn SetEnabled(self: *const IAudioLoudness, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEnabled(self, bEnable, pguidEventContext);
     }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioMidrange_Value = Guid.initString("5e54b6d7-b44b-40d9-9a9e-e691d9ce6edf");
+pub const IID_IAudioMidrange = &IID_IAudioMidrange_Value;
+pub const IAudioMidrange = extern union {
+    pub const VTable = extern struct {
+        base: IPerChannelDbLevel.VTable,
+    };
+    vtable: *const VTable,
+    IPerChannelDbLevel: IPerChannelDbLevel,
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3237,64 +1896,28 @@ pub const IAudioMute = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioBass_Value = Guid.initString("a2b1a1d9-4db3-425d-a2b2-bd335cb3e2e5");
-pub const IID_IAudioBass = &IID_IAudioBass_Value;
-pub const IAudioBass = extern union {
-    pub const VTable = extern struct {
-        base: IPerChannelDbLevel.VTable,
-    };
-    vtable: *const VTable,
-    IPerChannelDbLevel: IPerChannelDbLevel,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioMidrange_Value = Guid.initString("5e54b6d7-b44b-40d9-9a9e-e691d9ce6edf");
-pub const IID_IAudioMidrange = &IID_IAudioMidrange_Value;
-pub const IAudioMidrange = extern union {
-    pub const VTable = extern struct {
-        base: IPerChannelDbLevel.VTable,
-    };
-    vtable: *const VTable,
-    IPerChannelDbLevel: IPerChannelDbLevel,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioTreble_Value = Guid.initString("0a717812-694e-4907-b74b-bafa5cfdca7b");
-pub const IID_IAudioTreble = &IID_IAudioTreble_Value;
-pub const IAudioTreble = extern union {
-    pub const VTable = extern struct {
-        base: IPerChannelDbLevel.VTable,
-    };
-    vtable: *const VTable,
-    IPerChannelDbLevel: IPerChannelDbLevel,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioAutoGainControl_Value = Guid.initString("85401fd4-6de4-4b9d-9869-2d6753a82f3c");
-pub const IID_IAudioAutoGainControl = &IID_IAudioAutoGainControl_Value;
-pub const IAudioAutoGainControl = extern union {
+const IID_IAudioOutputSelector_Value = Guid.initString("bb515f69-94a7-429e-8b9c-271b3f11a3ab");
+pub const IID_IAudioOutputSelector = &IID_IAudioOutputSelector_Value;
+pub const IAudioOutputSelector = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEnabled: *const fn(
-            self: *const IAudioAutoGainControl,
-            pbEnabled: ?*BOOL,
+        GetSelection: *const fn(
+            self: *const IAudioOutputSelector,
+            pnIdSelected: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SetEnabled: *const fn(
-            self: *const IAudioAutoGainControl,
-            bEnable: BOOL,
+        SetSelection: *const fn(
+            self: *const IAudioOutputSelector,
+            nIdSelect: u32,
             pguidEventContext: ?*const Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEnabled(self: *const IAudioAutoGainControl, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnabled(self, pbEnabled);
+    pub fn GetSelection(self: *const IAudioOutputSelector, pnIdSelected: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelection(self, pnIdSelected);
     }
-    pub fn SetEnabled(self: *const IAudioAutoGainControl, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEnabled(self, bEnable, pguidEventContext);
+    pub fn SetSelection(self: *const IAudioOutputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSelection(self, nIdSelect, pguidEventContext);
     }
 };
 
@@ -3325,448 +1948,29 @@ pub const IAudioPeakMeter = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDeviceSpecificProperty_Value = Guid.initString("3b22bcbf-2586-4af0-8583-205d391b807c");
-pub const IID_IDeviceSpecificProperty = &IID_IDeviceSpecificProperty_Value;
-pub const IDeviceSpecificProperty = extern union {
+const IID_IAudioRenderClient_Value = Guid.initString("f294acfc-3146-4483-a7bf-addca7c260e2");
+pub const IID_IAudioRenderClient = &IID_IAudioRenderClient_Value;
+pub const IAudioRenderClient = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetType: *const fn(
-            self: *const IDeviceSpecificProperty,
-            pVType: ?*u16,
+        GetBuffer: *const fn(
+            self: *const IAudioRenderClient,
+            NumFramesRequested: u32,
+            ppData: ?*?*u8,
         ) callconv(.winapi) HRESULT,
-        GetValue: *const fn(
-            self: *const IDeviceSpecificProperty,
-            pvValue: ?*anyopaque,
-            pcbValue: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetValue: *const fn(
-            self: *const IDeviceSpecificProperty,
-            pvValue: ?*anyopaque,
-            cbValue: u32,
-            pguidEventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        Get4BRange: *const fn(
-            self: *const IDeviceSpecificProperty,
-            plMin: ?*i32,
-            plMax: ?*i32,
-            plStepping: ?*i32,
+        ReleaseBuffer: *const fn(
+            self: *const IAudioRenderClient,
+            NumFramesWritten: u32,
+            dwFlags: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetType(self: *const IDeviceSpecificProperty, pVType: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pVType);
+    pub fn GetBuffer(self: *const IAudioRenderClient, NumFramesRequested: u32, ppData: ?*?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBuffer(self, NumFramesRequested, ppData);
     }
-    pub fn GetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, pcbValue: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, pvValue, pcbValue);
-    }
-    pub fn SetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, pvValue, cbValue, pguidEventContext);
-    }
-    pub fn Get4BRange(self: *const IDeviceSpecificProperty, plMin: ?*i32, plMax: ?*i32, plStepping: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Get4BRange(self, plMin, plMax, plStepping);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPartsList_Value = Guid.initString("6daa848c-5eb0-45cc-aea5-998a2cda1ffb");
-pub const IID_IPartsList = &IID_IPartsList_Value;
-pub const IPartsList = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCount: *const fn(
-            self: *const IPartsList,
-            pCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPart: *const fn(
-            self: *const IPartsList,
-            nIndex: u32,
-            ppPart: ?*?*IPart,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCount(self: *const IPartsList, pCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pCount);
-    }
-    pub fn GetPart(self: *const IPartsList, nIndex: u32, ppPart: ?*?*IPart) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPart(self, nIndex, ppPart);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPart_Value = Guid.initString("ae2de0e4-5bca-4f2d-aa46-5d13f8fdb3a9");
-pub const IID_IPart = &IID_IPart_Value;
-pub const IPart = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IPart,
-            ppwstrName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetLocalId: *const fn(
-            self: *const IPart,
-            pnId: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetGlobalId: *const fn(
-            self: *const IPart,
-            ppwstrGlobalId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPartType: *const fn(
-            self: *const IPart,
-            pPartType: ?*PartType,
-        ) callconv(.winapi) HRESULT,
-        GetSubType: *const fn(
-            self: *const IPart,
-            pSubType: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetControlInterfaceCount: *const fn(
-            self: *const IPart,
-            pCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetControlInterface: *const fn(
-            self: *const IPart,
-            nIndex: u32,
-            ppInterfaceDesc: ?*?*IControlInterface,
-        ) callconv(.winapi) HRESULT,
-        EnumPartsIncoming: *const fn(
-            self: *const IPart,
-            ppParts: ?*?*IPartsList,
-        ) callconv(.winapi) HRESULT,
-        EnumPartsOutgoing: *const fn(
-            self: *const IPart,
-            ppParts: ?*?*IPartsList,
-        ) callconv(.winapi) HRESULT,
-        GetTopologyObject: *const fn(
-            self: *const IPart,
-            ppTopology: ?*?*IDeviceTopology,
-        ) callconv(.winapi) HRESULT,
-        Activate: *const fn(
-            self: *const IPart,
-            dwClsContext: u32,
-            refiid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        RegisterControlChangeCallback: *const fn(
-            self: *const IPart,
-            riid: ?*const Guid,
-            pNotify: ?*IControlChangeNotify,
-        ) callconv(.winapi) HRESULT,
-        UnregisterControlChangeCallback: *const fn(
-            self: *const IPart,
-            pNotify: ?*IControlChangeNotify,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IPart, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, ppwstrName);
-    }
-    pub fn GetLocalId(self: *const IPart, pnId: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalId(self, pnId);
-    }
-    pub fn GetGlobalId(self: *const IPart, ppwstrGlobalId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGlobalId(self, ppwstrGlobalId);
-    }
-    pub fn GetPartType(self: *const IPart, pPartType: ?*PartType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPartType(self, pPartType);
-    }
-    pub fn GetSubType(self: *const IPart, pSubType: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubType(self, pSubType);
-    }
-    pub fn GetControlInterfaceCount(self: *const IPart, pCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetControlInterfaceCount(self, pCount);
-    }
-    pub fn GetControlInterface(self: *const IPart, nIndex: u32, ppInterfaceDesc: ?*?*IControlInterface) callconv(.@"inline") HRESULT {
-        return self.vtable.GetControlInterface(self, nIndex, ppInterfaceDesc);
-    }
-    pub fn EnumPartsIncoming(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumPartsIncoming(self, ppParts);
-    }
-    pub fn EnumPartsOutgoing(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumPartsOutgoing(self, ppParts);
-    }
-    pub fn GetTopologyObject(self: *const IPart, ppTopology: ?*?*IDeviceTopology) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTopologyObject(self, ppTopology);
-    }
-    pub fn Activate(self: *const IPart, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, dwClsContext, refiid, ppvObject);
-    }
-    pub fn RegisterControlChangeCallback(self: *const IPart, riid: ?*const Guid, pNotify: ?*IControlChangeNotify) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterControlChangeCallback(self, riid, pNotify);
-    }
-    pub fn UnregisterControlChangeCallback(self: *const IPart, pNotify: ?*IControlChangeNotify) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterControlChangeCallback(self, pNotify);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConnector_Value = Guid.initString("9c2c4058-23f5-41de-877a-df3af236a09e");
-pub const IID_IConnector = &IID_IConnector_Value;
-pub const IConnector = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetType: *const fn(
-            self: *const IConnector,
-            pType: ?*ConnectorType,
-        ) callconv(.winapi) HRESULT,
-        GetDataFlow: *const fn(
-            self: *const IConnector,
-            pFlow: ?*DataFlow,
-        ) callconv(.winapi) HRESULT,
-        ConnectTo: *const fn(
-            self: *const IConnector,
-            pConnectTo: ?*IConnector,
-        ) callconv(.winapi) HRESULT,
-        Disconnect: *const fn(
-            self: *const IConnector,
-        ) callconv(.winapi) HRESULT,
-        IsConnected: *const fn(
-            self: *const IConnector,
-            pbConnected: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetConnectedTo: *const fn(
-            self: *const IConnector,
-            ppConTo: ?*?*IConnector,
-        ) callconv(.winapi) HRESULT,
-        GetConnectorIdConnectedTo: *const fn(
-            self: *const IConnector,
-            ppwstrConnectorId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceIdConnectedTo: *const fn(
-            self: *const IConnector,
-            ppwstrDeviceId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetType(self: *const IConnector, pType: ?*ConnectorType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pType);
-    }
-    pub fn GetDataFlow(self: *const IConnector, pFlow: ?*DataFlow) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataFlow(self, pFlow);
-    }
-    pub fn ConnectTo(self: *const IConnector, pConnectTo: ?*IConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectTo(self, pConnectTo);
-    }
-    pub fn Disconnect(self: *const IConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.Disconnect(self);
-    }
-    pub fn IsConnected(self: *const IConnector, pbConnected: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsConnected(self, pbConnected);
-    }
-    pub fn GetConnectedTo(self: *const IConnector, ppConTo: ?*?*IConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectedTo(self, ppConTo);
-    }
-    pub fn GetConnectorIdConnectedTo(self: *const IConnector, ppwstrConnectorId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectorIdConnectedTo(self, ppwstrConnectorId);
-    }
-    pub fn GetDeviceIdConnectedTo(self: *const IConnector, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceIdConnectedTo(self, ppwstrDeviceId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISubunit_Value = Guid.initString("82149a85-dba6-4487-86bb-ea8f7fefcc71");
-pub const IID_ISubunit = &IID_ISubunit_Value;
-pub const ISubunit = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IControlInterface_Value = Guid.initString("45d37c3f-5140-444a-ae24-400789f3cbf3");
-pub const IID_IControlInterface = &IID_IControlInterface_Value;
-pub const IControlInterface = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IControlInterface,
-            ppwstrName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetIID: *const fn(
-            self: *const IControlInterface,
-            pIID: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IControlInterface, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, ppwstrName);
-    }
-    pub fn GetIID(self: *const IControlInterface, pIID: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIID(self, pIID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IControlChangeNotify_Value = Guid.initString("a09513ed-c709-4d21-bd7b-5f34c47f3947");
-pub const IID_IControlChangeNotify = &IID_IControlChangeNotify_Value;
-pub const IControlChangeNotify = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnNotify: *const fn(
-            self: *const IControlChangeNotify,
-            dwSenderProcessId: u32,
-            pguidEventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnNotify(self: *const IControlChangeNotify, dwSenderProcessId: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.OnNotify(self, dwSenderProcessId, pguidEventContext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDeviceTopology_Value = Guid.initString("2a07407e-6497-4a18-9787-32f79bd0d98f");
-pub const IID_IDeviceTopology = &IID_IDeviceTopology_Value;
-pub const IDeviceTopology = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetConnectorCount: *const fn(
-            self: *const IDeviceTopology,
-            pCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetConnector: *const fn(
-            self: *const IDeviceTopology,
-            nIndex: u32,
-            ppConnector: ?*?*IConnector,
-        ) callconv(.winapi) HRESULT,
-        GetSubunitCount: *const fn(
-            self: *const IDeviceTopology,
-            pCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSubunit: *const fn(
-            self: *const IDeviceTopology,
-            nIndex: u32,
-            ppSubunit: ?*?*ISubunit,
-        ) callconv(.winapi) HRESULT,
-        GetPartById: *const fn(
-            self: *const IDeviceTopology,
-            nId: u32,
-            ppPart: ?*?*IPart,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceId: *const fn(
-            self: *const IDeviceTopology,
-            ppwstrDeviceId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSignalPath: *const fn(
-            self: *const IDeviceTopology,
-            pIPartFrom: ?*IPart,
-            pIPartTo: ?*IPart,
-            bRejectMixedPaths: BOOL,
-            ppParts: ?*?*IPartsList,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetConnectorCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectorCount(self, pCount);
-    }
-    pub fn GetConnector(self: *const IDeviceTopology, nIndex: u32, ppConnector: ?*?*IConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnector(self, nIndex, ppConnector);
-    }
-    pub fn GetSubunitCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubunitCount(self, pCount);
-    }
-    pub fn GetSubunit(self: *const IDeviceTopology, nIndex: u32, ppSubunit: ?*?*ISubunit) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubunit(self, nIndex, ppSubunit);
-    }
-    pub fn GetPartById(self: *const IDeviceTopology, nId: u32, ppPart: ?*?*IPart) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPartById(self, nId, ppPart);
-    }
-    pub fn GetDeviceId(self: *const IDeviceTopology, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceId(self, ppwstrDeviceId);
-    }
-    pub fn GetSignalPath(self: *const IDeviceTopology, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSignalPath(self, pIPartFrom, pIPartTo, bRejectMixedPaths, ppParts);
-    }
-};
-
-pub const AudioSessionDisconnectReason = enum(i32) {
-    DeviceRemoval = 0,
-    ServerShutdown = 1,
-    FormatChanged = 2,
-    SessionLogoff = 3,
-    SessionDisconnected = 4,
-    ExclusiveModeOverride = 5,
-};
-pub const DisconnectReasonDeviceRemoval = AudioSessionDisconnectReason.DeviceRemoval;
-pub const DisconnectReasonServerShutdown = AudioSessionDisconnectReason.ServerShutdown;
-pub const DisconnectReasonFormatChanged = AudioSessionDisconnectReason.FormatChanged;
-pub const DisconnectReasonSessionLogoff = AudioSessionDisconnectReason.SessionLogoff;
-pub const DisconnectReasonSessionDisconnected = AudioSessionDisconnectReason.SessionDisconnected;
-pub const DisconnectReasonExclusiveModeOverride = AudioSessionDisconnectReason.ExclusiveModeOverride;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioSessionEvents_Value = Guid.initString("24918acc-64b3-37c1-8ca9-74a66e9957a8");
-pub const IID_IAudioSessionEvents = &IID_IAudioSessionEvents_Value;
-pub const IAudioSessionEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnDisplayNameChanged: *const fn(
-            self: *const IAudioSessionEvents,
-            NewDisplayName: ?[*:0]const u16,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        OnIconPathChanged: *const fn(
-            self: *const IAudioSessionEvents,
-            NewIconPath: ?[*:0]const u16,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        OnSimpleVolumeChanged: *const fn(
-            self: *const IAudioSessionEvents,
-            NewVolume: f32,
-            NewMute: BOOL,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        OnChannelVolumeChanged: *const fn(
-            self: *const IAudioSessionEvents,
-            ChannelCount: u32,
-            NewChannelVolumeArray: [*]f32,
-            ChangedChannel: u32,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        OnGroupingParamChanged: *const fn(
-            self: *const IAudioSessionEvents,
-            NewGroupingParam: ?*const Guid,
-            EventContext: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        OnStateChanged: *const fn(
-            self: *const IAudioSessionEvents,
-            NewState: AudioSessionState,
-        ) callconv(.winapi) HRESULT,
-        OnSessionDisconnected: *const fn(
-            self: *const IAudioSessionEvents,
-            DisconnectReason: AudioSessionDisconnectReason,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnDisplayNameChanged(self: *const IAudioSessionEvents, NewDisplayName: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDisplayNameChanged(self, NewDisplayName, EventContext);
-    }
-    pub fn OnIconPathChanged(self: *const IAudioSessionEvents, NewIconPath: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIconPathChanged(self, NewIconPath, EventContext);
-    }
-    pub fn OnSimpleVolumeChanged(self: *const IAudioSessionEvents, NewVolume: f32, NewMute: BOOL, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSimpleVolumeChanged(self, NewVolume, NewMute, EventContext);
-    }
-    pub fn OnChannelVolumeChanged(self: *const IAudioSessionEvents, ChannelCount: u32, NewChannelVolumeArray: [*]f32, ChangedChannel: u32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.OnChannelVolumeChanged(self, ChannelCount, NewChannelVolumeArray, ChangedChannel, EventContext);
-    }
-    pub fn OnGroupingParamChanged(self: *const IAudioSessionEvents, NewGroupingParam: ?*const Guid, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.OnGroupingParamChanged(self, NewGroupingParam, EventContext);
-    }
-    pub fn OnStateChanged(self: *const IAudioSessionEvents, NewState: AudioSessionState) callconv(.@"inline") HRESULT {
-        return self.vtable.OnStateChanged(self, NewState);
-    }
-    pub fn OnSessionDisconnected(self: *const IAudioSessionEvents, DisconnectReason: AudioSessionDisconnectReason) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSessionDisconnected(self, DisconnectReason);
+    pub fn ReleaseBuffer(self: *const IAudioRenderClient, NumFramesWritten: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseBuffer(self, NumFramesWritten, dwFlags);
     }
 };
 
@@ -3893,6 +2097,100 @@ pub const IAudioSessionControl2 = extern union {
     }
 };
 
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioSessionEnumerator_Value = Guid.initString("e2f5bb11-0570-40ca-acdd-3aa01277dee8");
+pub const IID_IAudioSessionEnumerator = &IID_IAudioSessionEnumerator_Value;
+pub const IAudioSessionEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCount: *const fn(
+            self: *const IAudioSessionEnumerator,
+            SessionCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetSession: *const fn(
+            self: *const IAudioSessionEnumerator,
+            SessionCount: i32,
+            Session: ?*?*IAudioSessionControl,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IAudioSessionEnumerator, SessionCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, SessionCount);
+    }
+    pub fn GetSession(self: *const IAudioSessionEnumerator, SessionCount: i32, Session: ?*?*IAudioSessionControl) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSession(self, SessionCount, Session);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioSessionEvents_Value = Guid.initString("24918acc-64b3-37c1-8ca9-74a66e9957a8");
+pub const IID_IAudioSessionEvents = &IID_IAudioSessionEvents_Value;
+pub const IAudioSessionEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnDisplayNameChanged: *const fn(
+            self: *const IAudioSessionEvents,
+            NewDisplayName: ?[*:0]const u16,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        OnIconPathChanged: *const fn(
+            self: *const IAudioSessionEvents,
+            NewIconPath: ?[*:0]const u16,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        OnSimpleVolumeChanged: *const fn(
+            self: *const IAudioSessionEvents,
+            NewVolume: f32,
+            NewMute: BOOL,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        OnChannelVolumeChanged: *const fn(
+            self: *const IAudioSessionEvents,
+            ChannelCount: u32,
+            NewChannelVolumeArray: [*]f32,
+            ChangedChannel: u32,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        OnGroupingParamChanged: *const fn(
+            self: *const IAudioSessionEvents,
+            NewGroupingParam: ?*const Guid,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        OnStateChanged: *const fn(
+            self: *const IAudioSessionEvents,
+            NewState: AudioSessionState,
+        ) callconv(.winapi) HRESULT,
+        OnSessionDisconnected: *const fn(
+            self: *const IAudioSessionEvents,
+            DisconnectReason: AudioSessionDisconnectReason,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnDisplayNameChanged(self: *const IAudioSessionEvents, NewDisplayName: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDisplayNameChanged(self, NewDisplayName, EventContext);
+    }
+    pub fn OnIconPathChanged(self: *const IAudioSessionEvents, NewIconPath: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIconPathChanged(self, NewIconPath, EventContext);
+    }
+    pub fn OnSimpleVolumeChanged(self: *const IAudioSessionEvents, NewVolume: f32, NewMute: BOOL, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSimpleVolumeChanged(self, NewVolume, NewMute, EventContext);
+    }
+    pub fn OnChannelVolumeChanged(self: *const IAudioSessionEvents, ChannelCount: u32, NewChannelVolumeArray: [*]f32, ChangedChannel: u32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.OnChannelVolumeChanged(self, ChannelCount, NewChannelVolumeArray, ChangedChannel, EventContext);
+    }
+    pub fn OnGroupingParamChanged(self: *const IAudioSessionEvents, NewGroupingParam: ?*const Guid, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.OnGroupingParamChanged(self, NewGroupingParam, EventContext);
+    }
+    pub fn OnStateChanged(self: *const IAudioSessionEvents, NewState: AudioSessionState) callconv(.@"inline") HRESULT {
+        return self.vtable.OnStateChanged(self, NewState);
+    }
+    pub fn OnSessionDisconnected(self: *const IAudioSessionEvents, DisconnectReason: AudioSessionDisconnectReason) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSessionDisconnected(self, DisconnectReason);
+    }
+};
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioSessionManager_Value = Guid.initString("bfa971f1-4d5e-40bb-935e-967039bfbee4");
 pub const IID_IAudioSessionManager = &IID_IAudioSessionManager_Value;
@@ -3919,76 +2217,6 @@ pub const IAudioSessionManager = extern union {
     }
     pub fn GetSimpleAudioVolume(self: *const IAudioSessionManager, AudioSessionGuid: ?*const Guid, StreamFlags: u32, AudioVolume: ?*?*ISimpleAudioVolume) callconv(.@"inline") HRESULT {
         return self.vtable.GetSimpleAudioVolume(self, AudioSessionGuid, StreamFlags, AudioVolume);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioVolumeDuckNotification_Value = Guid.initString("c3b284d4-6d39-4359-b3cf-b56ddb3bb39c");
-pub const IID_IAudioVolumeDuckNotification = &IID_IAudioVolumeDuckNotification_Value;
-pub const IAudioVolumeDuckNotification = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnVolumeDuckNotification: *const fn(
-            self: *const IAudioVolumeDuckNotification,
-            sessionID: ?[*:0]const u16,
-            countCommunicationSessions: u32,
-        ) callconv(.winapi) HRESULT,
-        OnVolumeUnduckNotification: *const fn(
-            self: *const IAudioVolumeDuckNotification,
-            sessionID: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnVolumeDuckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16, countCommunicationSessions: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnVolumeDuckNotification(self, sessionID, countCommunicationSessions);
-    }
-    pub fn OnVolumeUnduckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnVolumeUnduckNotification(self, sessionID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioSessionNotification_Value = Guid.initString("641dd20b-4d41-49cc-aba3-174b9477bb08");
-pub const IID_IAudioSessionNotification = &IID_IAudioSessionNotification_Value;
-pub const IAudioSessionNotification = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnSessionCreated: *const fn(
-            self: *const IAudioSessionNotification,
-            NewSession: ?*IAudioSessionControl,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnSessionCreated(self: *const IAudioSessionNotification, NewSession: ?*IAudioSessionControl) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSessionCreated(self, NewSession);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioSessionEnumerator_Value = Guid.initString("e2f5bb11-0570-40ca-acdd-3aa01277dee8");
-pub const IID_IAudioSessionEnumerator = &IID_IAudioSessionEnumerator_Value;
-pub const IAudioSessionEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCount: *const fn(
-            self: *const IAudioSessionEnumerator,
-            SessionCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetSession: *const fn(
-            self: *const IAudioSessionEnumerator,
-            SessionCount: i32,
-            Session: ?*?*IAudioSessionControl,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCount(self: *const IAudioSessionEnumerator, SessionCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, SessionCount);
-    }
-    pub fn GetSession(self: *const IAudioSessionEnumerator, SessionCount: i32, Session: ?*?*IAudioSessionControl) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSession(self, SessionCount, Session);
     }
 };
 
@@ -4040,256 +2268,1088 @@ pub const IAudioSessionManager2 = extern union {
     }
 };
 
-pub const SpatialAudioMetadataWriterOverflowMode = enum(i32) {
-    Fail = 0,
-    MergeWithNew = 1,
-    MergeWithLast = 2,
-};
-pub const SpatialAudioMetadataWriterOverflow_Fail = SpatialAudioMetadataWriterOverflowMode.Fail;
-pub const SpatialAudioMetadataWriterOverflow_MergeWithNew = SpatialAudioMetadataWriterOverflowMode.MergeWithNew;
-pub const SpatialAudioMetadataWriterOverflow_MergeWithLast = SpatialAudioMetadataWriterOverflowMode.MergeWithLast;
-
-pub const SpatialAudioMetadataCopyMode = enum(i32) {
-    Overwrite = 0,
-    Append = 1,
-    AppendMergeWithLast = 2,
-    AppendMergeWithFirst = 3,
-};
-pub const SpatialAudioMetadataCopy_Overwrite = SpatialAudioMetadataCopyMode.Overwrite;
-pub const SpatialAudioMetadataCopy_Append = SpatialAudioMetadataCopyMode.Append;
-pub const SpatialAudioMetadataCopy_AppendMergeWithLast = SpatialAudioMetadataCopyMode.AppendMergeWithLast;
-pub const SpatialAudioMetadataCopy_AppendMergeWithFirst = SpatialAudioMetadataCopyMode.AppendMergeWithFirst;
-
-pub const SpatialAudioMetadataItemsInfo = extern struct {
-    FrameCount: u16 align(1),
-    ItemCount: u16 align(1),
-    MaxItemCount: u16 align(1),
-    MaxValueBufferLength: u32 align(1),
-};
-
-pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = extern struct {
-    ObjectFormat: ?*const WAVEFORMATEX align(1),
-    StaticObjectTypeMask: AudioObjectType align(1),
-    MinDynamicObjectCount: u32 align(1),
-    MaxDynamicObjectCount: u32 align(1),
-    Category: AUDIO_STREAM_CATEGORY align(1),
-    EventHandle: ?HANDLE align(1),
-    MetadataFormatId: Guid align(1),
-    MaxMetadataItemCount: u16 align(1),
-    MetadataActivationParams: ?*const PROPVARIANT align(1),
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
-};
-
-pub const SpatialAudioObjectRenderStreamForMetadataActivationParams2 = extern struct {
-    ObjectFormat: ?*const WAVEFORMATEX align(1),
-    StaticObjectTypeMask: AudioObjectType align(1),
-    MinDynamicObjectCount: u32 align(1),
-    MaxDynamicObjectCount: u32 align(1),
-    Category: AUDIO_STREAM_CATEGORY align(1),
-    EventHandle: ?HANDLE align(1),
-    MetadataFormatId: Guid align(1),
-    MaxMetadataItemCount: u32 align(1),
-    MetadataActivationParams: ?*const PROPVARIANT align(1),
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
-    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioMetadataItems_Value = Guid.initString("bcd7c78f-3098-4f22-b547-a2f25a381269");
-pub const IID_ISpatialAudioMetadataItems = &IID_ISpatialAudioMetadataItems_Value;
-pub const ISpatialAudioMetadataItems = extern union {
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioSessionNotification_Value = Guid.initString("641dd20b-4d41-49cc-aba3-174b9477bb08");
+pub const IID_IAudioSessionNotification = &IID_IAudioSessionNotification_Value;
+pub const IAudioSessionNotification = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFrameCount: *const fn(
-            self: *const ISpatialAudioMetadataItems,
-            frameCount: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetItemCount: *const fn(
-            self: *const ISpatialAudioMetadataItems,
-            itemCount: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetMaxItemCount: *const fn(
-            self: *const ISpatialAudioMetadataItems,
-            maxItemCount: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetMaxValueBufferLength: *const fn(
-            self: *const ISpatialAudioMetadataItems,
-            maxValueBufferLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetInfo: *const fn(
-            self: *const ISpatialAudioMetadataItems,
-            info: ?*SpatialAudioMetadataItemsInfo,
+        OnSessionCreated: *const fn(
+            self: *const IAudioSessionNotification,
+            NewSession: ?*IAudioSessionControl,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFrameCount(self: *const ISpatialAudioMetadataItems, frameCount: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFrameCount(self, frameCount);
-    }
-    pub fn GetItemCount(self: *const ISpatialAudioMetadataItems, itemCount: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemCount(self, itemCount);
-    }
-    pub fn GetMaxItemCount(self: *const ISpatialAudioMetadataItems, maxItemCount: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxItemCount(self, maxItemCount);
-    }
-    pub fn GetMaxValueBufferLength(self: *const ISpatialAudioMetadataItems, maxValueBufferLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxValueBufferLength(self, maxValueBufferLength);
-    }
-    pub fn GetInfo(self: *const ISpatialAudioMetadataItems, info: ?*SpatialAudioMetadataItemsInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInfo(self, info);
+    pub fn OnSessionCreated(self: *const IAudioSessionNotification, NewSession: ?*IAudioSessionControl) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSessionCreated(self, NewSession);
     }
 };
 
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioMetadataWriter_Value = Guid.initString("1b17ca01-2955-444d-a430-537dc589a844");
-pub const IID_ISpatialAudioMetadataWriter = &IID_ISpatialAudioMetadataWriter_Value;
-pub const ISpatialAudioMetadataWriter = extern union {
+const IID_IAudioStateMonitor_Value = Guid.initString("63bd8738-e30d-4c77-bf5c-834e87c657e2");
+pub const IID_IAudioStateMonitor = &IID_IAudioStateMonitor_Value;
+pub const IAudioStateMonitor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const ISpatialAudioMetadataWriter,
-            metadataItems: ?*ISpatialAudioMetadataItems,
+        RegisterCallback: *const fn(
+            self: *const IAudioStateMonitor,
+            callback: ?PAudioStateMonitorCallback,
+            context: ?*anyopaque,
+            registration: ?*i64,
         ) callconv(.winapi) HRESULT,
-        WriteNextItem: *const fn(
-            self: *const ISpatialAudioMetadataWriter,
-            frameOffset: u16,
+        UnregisterCallback: *const fn(
+            self: *const IAudioStateMonitor,
+            registration: i64,
+        ) callconv(.winapi) void,
+        GetSoundLevel: *const fn(
+            self: *const IAudioStateMonitor,
+        ) callconv(.winapi) AudioStateMonitorSoundLevel,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterCallback(self: *const IAudioStateMonitor, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterCallback(self, callback, context, registration);
+    }
+    pub fn UnregisterCallback(self: *const IAudioStateMonitor, registration: i64) callconv(.@"inline") void {
+        return self.vtable.UnregisterCallback(self, registration);
+    }
+    pub fn GetSoundLevel(self: *const IAudioStateMonitor) callconv(.@"inline") AudioStateMonitorSoundLevel {
+        return self.vtable.GetSoundLevel(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioStreamVolume_Value = Guid.initString("93014887-242d-4068-8a15-cf5e93b90fe3");
+pub const IID_IAudioStreamVolume = &IID_IAudioStreamVolume_Value;
+pub const IAudioStreamVolume = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetChannelCount: *const fn(
+            self: *const IAudioStreamVolume,
+            pdwCount: ?*u32,
         ) callconv(.winapi) HRESULT,
-        WriteNextItemCommand: *const fn(
-            self: *const ISpatialAudioMetadataWriter,
-            commandID: u8,
-            // TODO: what to do with BytesParamIndex 2?
-            valueBuffer: ?*const anyopaque,
-            valueBufferLength: u32,
+        SetChannelVolume: *const fn(
+            self: *const IAudioStreamVolume,
+            dwIndex: u32,
+            fLevel: f32,
         ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const ISpatialAudioMetadataWriter,
+        GetChannelVolume: *const fn(
+            self: *const IAudioStreamVolume,
+            dwIndex: u32,
+            pfLevel: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        SetAllVolumes: *const fn(
+            self: *const IAudioStreamVolume,
+            dwCount: u32,
+            pfVolumes: [*]const f32,
+        ) callconv(.winapi) HRESULT,
+        GetAllVolumes: *const fn(
+            self: *const IAudioStreamVolume,
+            dwCount: u32,
+            pfVolumes: [*]f32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpatialAudioMetadataWriter, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, metadataItems);
+    pub fn GetChannelCount(self: *const IAudioStreamVolume, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelCount(self, pdwCount);
     }
-    pub fn WriteNextItem(self: *const ISpatialAudioMetadataWriter, frameOffset: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteNextItem(self, frameOffset);
+    pub fn SetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, fLevel: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetChannelVolume(self, dwIndex, fLevel);
     }
-    pub fn WriteNextItemCommand(self: *const ISpatialAudioMetadataWriter, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteNextItemCommand(self, commandID, valueBuffer, valueBufferLength);
+    pub fn GetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelVolume(self, dwIndex, pfLevel);
     }
-    pub fn Close(self: *const ISpatialAudioMetadataWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
+    pub fn SetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]const f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllVolumes(self, dwCount, pfVolumes);
+    }
+    pub fn GetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllVolumes(self, dwCount, pfVolumes);
     }
 };
 
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioMetadataReader_Value = Guid.initString("b78e86a2-31d9-4c32-94d2-7df40fc7ebec");
-pub const IID_ISpatialAudioMetadataReader = &IID_ISpatialAudioMetadataReader_Value;
-pub const ISpatialAudioMetadataReader = extern union {
+const IID_IAudioSystemEffectsPropertyChangeNotificationClient_Value = Guid.initString("20049d40-56d5-400e-a2ef-385599feed49");
+pub const IID_IAudioSystemEffectsPropertyChangeNotificationClient = &IID_IAudioSystemEffectsPropertyChangeNotificationClient_Value;
+pub const IAudioSystemEffectsPropertyChangeNotificationClient = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const ISpatialAudioMetadataReader,
-            metadataItems: ?*ISpatialAudioMetadataItems,
-        ) callconv(.winapi) HRESULT,
-        ReadNextItem: *const fn(
-            self: *const ISpatialAudioMetadataReader,
-            commandCount: ?*u8,
-            frameOffset: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        ReadNextItemCommand: *const fn(
-            self: *const ISpatialAudioMetadataReader,
-            commandID: ?*u8,
-            // TODO: what to do with BytesParamIndex 2?
-            valueBuffer: ?*anyopaque,
-            maxValueBufferLength: u32,
-            valueBufferLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const ISpatialAudioMetadataReader,
+        OnPropertyChanged: *const fn(
+            self: *const IAudioSystemEffectsPropertyChangeNotificationClient,
+            type: AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE,
+            key: PROPERTYKEY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpatialAudioMetadataReader, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, metadataItems);
-    }
-    pub fn ReadNextItem(self: *const ISpatialAudioMetadataReader, commandCount: ?*u8, frameOffset: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadNextItem(self, commandCount, frameOffset);
-    }
-    pub fn ReadNextItemCommand(self: *const ISpatialAudioMetadataReader, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadNextItemCommand(self, commandID, valueBuffer, maxValueBufferLength, valueBufferLength);
-    }
-    pub fn Close(self: *const ISpatialAudioMetadataReader) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
+    pub fn OnPropertyChanged(self: *const IAudioSystemEffectsPropertyChangeNotificationClient, @"type": AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE, key: PROPERTYKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPropertyChanged(self, @"type", key);
     }
 };
 
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioMetadataCopier_Value = Guid.initString("d224b233-e251-4fd0-9ca2-d5ecf9a68404");
-pub const IID_ISpatialAudioMetadataCopier = &IID_ISpatialAudioMetadataCopier_Value;
-pub const ISpatialAudioMetadataCopier = extern union {
+const IID_IAudioSystemEffectsPropertyStore_Value = Guid.initString("302ae7f9-d7e0-43e4-971b-1f8293613d2a");
+pub const IID_IAudioSystemEffectsPropertyStore = &IID_IAudioSystemEffectsPropertyStore_Value;
+pub const IAudioSystemEffectsPropertyStore = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const ISpatialAudioMetadataCopier,
-            metadataItems: ?*ISpatialAudioMetadataItems,
+        OpenDefaultPropertyStore: *const fn(
+            self: *const IAudioSystemEffectsPropertyStore,
+            stgmAccess: u32,
+            propStore: **IPropertyStore,
         ) callconv(.winapi) HRESULT,
-        CopyMetadataForFrames: *const fn(
-            self: *const ISpatialAudioMetadataCopier,
-            copyFrameCount: u16,
-            copyMode: SpatialAudioMetadataCopyMode,
-            dstMetadataItems: ?*ISpatialAudioMetadataItems,
-            itemsCopied: ?*u16,
+        OpenUserPropertyStore: *const fn(
+            self: *const IAudioSystemEffectsPropertyStore,
+            stgmAccess: u32,
+            propStore: **IPropertyStore,
         ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const ISpatialAudioMetadataCopier,
+        OpenVolatilePropertyStore: *const fn(
+            self: *const IAudioSystemEffectsPropertyStore,
+            stgmAccess: u32,
+            propStore: **IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        ResetUserPropertyStore: *const fn(
+            self: *const IAudioSystemEffectsPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        ResetVolatilePropertyStore: *const fn(
+            self: *const IAudioSystemEffectsPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        RegisterPropertyChangeNotification: *const fn(
+            self: *const IAudioSystemEffectsPropertyStore,
+            callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
+        ) callconv(.winapi) HRESULT,
+        UnregisterPropertyChangeNotification: *const fn(
+            self: *const IAudioSystemEffectsPropertyStore,
+            callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpatialAudioMetadataCopier, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, metadataItems);
+    pub fn OpenDefaultPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenDefaultPropertyStore(self, stgmAccess, propStore);
     }
-    pub fn CopyMetadataForFrames(self: *const ISpatialAudioMetadataCopier, copyFrameCount: u16, copyMode: SpatialAudioMetadataCopyMode, dstMetadataItems: ?*ISpatialAudioMetadataItems, itemsCopied: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyMetadataForFrames(self, copyFrameCount, copyMode, dstMetadataItems, itemsCopied);
+    pub fn OpenUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenUserPropertyStore(self, stgmAccess, propStore);
     }
-    pub fn Close(self: *const ISpatialAudioMetadataCopier) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
+    pub fn OpenVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenVolatilePropertyStore(self, stgmAccess, propStore);
+    }
+    pub fn ResetUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.ResetUserPropertyStore(self);
+    }
+    pub fn ResetVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.ResetVolatilePropertyStore(self);
+    }
+    pub fn RegisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterPropertyChangeNotification(self, callback);
+    }
+    pub fn UnregisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterPropertyChangeNotification(self, callback);
     }
 };
 
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_ISpatialAudioMetadataItemsBuffer_Value = Guid.initString("42640a16-e1bd-42d9-9ff6-031ab71a2dba");
-pub const IID_ISpatialAudioMetadataItemsBuffer = &IID_ISpatialAudioMetadataItemsBuffer_Value;
-pub const ISpatialAudioMetadataItemsBuffer = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioTreble_Value = Guid.initString("0a717812-694e-4907-b74b-bafa5cfdca7b");
+pub const IID_IAudioTreble = &IID_IAudioTreble_Value;
+pub const IAudioTreble = extern union {
+    pub const VTable = extern struct {
+        base: IPerChannelDbLevel.VTable,
+    };
+    vtable: *const VTable,
+    IPerChannelDbLevel: IPerChannelDbLevel,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioVolumeDuckNotification_Value = Guid.initString("c3b284d4-6d39-4359-b3cf-b56ddb3bb39c");
+pub const IID_IAudioVolumeDuckNotification = &IID_IAudioVolumeDuckNotification_Value;
+pub const IAudioVolumeDuckNotification = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AttachToBuffer: *const fn(
-            self: *const ISpatialAudioMetadataItemsBuffer,
-            // TODO: what to do with BytesParamIndex 1?
-            buffer: ?*u8,
-            bufferLength: u32,
+        OnVolumeDuckNotification: *const fn(
+            self: *const IAudioVolumeDuckNotification,
+            sessionID: ?[*:0]const u16,
+            countCommunicationSessions: u32,
         ) callconv(.winapi) HRESULT,
-        AttachToPopulatedBuffer: *const fn(
-            self: *const ISpatialAudioMetadataItemsBuffer,
-            // TODO: what to do with BytesParamIndex 1?
-            buffer: ?*u8,
-            bufferLength: u32,
-        ) callconv(.winapi) HRESULT,
-        DetachBuffer: *const fn(
-            self: *const ISpatialAudioMetadataItemsBuffer,
+        OnVolumeUnduckNotification: *const fn(
+            self: *const IAudioVolumeDuckNotification,
+            sessionID: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AttachToBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AttachToBuffer(self, buffer, bufferLength);
+    pub fn OnVolumeDuckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16, countCommunicationSessions: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnVolumeDuckNotification(self, sessionID, countCommunicationSessions);
     }
-    pub fn AttachToPopulatedBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AttachToPopulatedBuffer(self, buffer, bufferLength);
+    pub fn OnVolumeUnduckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.OnVolumeUnduckNotification(self, sessionID);
     }
-    pub fn DetachBuffer(self: *const ISpatialAudioMetadataItemsBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.DetachBuffer(self);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioVolumeLevel_Value = Guid.initString("7fb7b48f-531d-44a2-bcb3-5ad5a134b3dc");
+pub const IID_IAudioVolumeLevel = &IID_IAudioVolumeLevel_Value;
+pub const IAudioVolumeLevel = extern union {
+    pub const VTable = extern struct {
+        base: IPerChannelDbLevel.VTable,
+    };
+    vtable: *const VTable,
+    IPerChannelDbLevel: IPerChannelDbLevel,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IChannelAudioVolume_Value = Guid.initString("1c158861-b533-4b30-b1cf-e853e51c59b8");
+pub const IID_IChannelAudioVolume = &IID_IChannelAudioVolume_Value;
+pub const IChannelAudioVolume = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetChannelCount: *const fn(
+            self: *const IChannelAudioVolume,
+            pdwCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetChannelVolume: *const fn(
+            self: *const IChannelAudioVolume,
+            dwIndex: u32,
+            fLevel: f32,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetChannelVolume: *const fn(
+            self: *const IChannelAudioVolume,
+            dwIndex: u32,
+            pfLevel: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        SetAllVolumes: *const fn(
+            self: *const IChannelAudioVolume,
+            dwCount: u32,
+            pfVolumes: [*]const f32,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetAllVolumes: *const fn(
+            self: *const IChannelAudioVolume,
+            dwCount: u32,
+            pfVolumes: [*]f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetChannelCount(self: *const IChannelAudioVolume, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelCount(self, pdwCount);
+    }
+    pub fn SetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, fLevel: f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetChannelVolume(self, dwIndex, fLevel, EventContext);
+    }
+    pub fn GetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelVolume(self, dwIndex, pfLevel);
+    }
+    pub fn SetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]const f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllVolumes(self, dwCount, pfVolumes, EventContext);
+    }
+    pub fn GetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllVolumes(self, dwCount, pfVolumes);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConnector_Value = Guid.initString("9c2c4058-23f5-41de-877a-df3af236a09e");
+pub const IID_IConnector = &IID_IConnector_Value;
+pub const IConnector = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetType: *const fn(
+            self: *const IConnector,
+            pType: ?*ConnectorType,
+        ) callconv(.winapi) HRESULT,
+        GetDataFlow: *const fn(
+            self: *const IConnector,
+            pFlow: ?*DataFlow,
+        ) callconv(.winapi) HRESULT,
+        ConnectTo: *const fn(
+            self: *const IConnector,
+            pConnectTo: ?*IConnector,
+        ) callconv(.winapi) HRESULT,
+        Disconnect: *const fn(
+            self: *const IConnector,
+        ) callconv(.winapi) HRESULT,
+        IsConnected: *const fn(
+            self: *const IConnector,
+            pbConnected: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetConnectedTo: *const fn(
+            self: *const IConnector,
+            ppConTo: ?*?*IConnector,
+        ) callconv(.winapi) HRESULT,
+        GetConnectorIdConnectedTo: *const fn(
+            self: *const IConnector,
+            ppwstrConnectorId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceIdConnectedTo: *const fn(
+            self: *const IConnector,
+            ppwstrDeviceId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetType(self: *const IConnector, pType: ?*ConnectorType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pType);
+    }
+    pub fn GetDataFlow(self: *const IConnector, pFlow: ?*DataFlow) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataFlow(self, pFlow);
+    }
+    pub fn ConnectTo(self: *const IConnector, pConnectTo: ?*IConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectTo(self, pConnectTo);
+    }
+    pub fn Disconnect(self: *const IConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.Disconnect(self);
+    }
+    pub fn IsConnected(self: *const IConnector, pbConnected: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsConnected(self, pbConnected);
+    }
+    pub fn GetConnectedTo(self: *const IConnector, ppConTo: ?*?*IConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectedTo(self, ppConTo);
+    }
+    pub fn GetConnectorIdConnectedTo(self: *const IConnector, ppwstrConnectorId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectorIdConnectedTo(self, ppwstrConnectorId);
+    }
+    pub fn GetDeviceIdConnectedTo(self: *const IConnector, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceIdConnectedTo(self, ppwstrDeviceId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IControlChangeNotify_Value = Guid.initString("a09513ed-c709-4d21-bd7b-5f34c47f3947");
+pub const IID_IControlChangeNotify = &IID_IControlChangeNotify_Value;
+pub const IControlChangeNotify = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnNotify: *const fn(
+            self: *const IControlChangeNotify,
+            dwSenderProcessId: u32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnNotify(self: *const IControlChangeNotify, dwSenderProcessId: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.OnNotify(self, dwSenderProcessId, pguidEventContext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IControlInterface_Value = Guid.initString("45d37c3f-5140-444a-ae24-400789f3cbf3");
+pub const IID_IControlInterface = &IID_IControlInterface_Value;
+pub const IControlInterface = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IControlInterface,
+            ppwstrName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetIID: *const fn(
+            self: *const IControlInterface,
+            pIID: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IControlInterface, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, ppwstrName);
+    }
+    pub fn GetIID(self: *const IControlInterface, pIID: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIID(self, pIID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDeviceSpecificProperty_Value = Guid.initString("3b22bcbf-2586-4af0-8583-205d391b807c");
+pub const IID_IDeviceSpecificProperty = &IID_IDeviceSpecificProperty_Value;
+pub const IDeviceSpecificProperty = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetType: *const fn(
+            self: *const IDeviceSpecificProperty,
+            pVType: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetValue: *const fn(
+            self: *const IDeviceSpecificProperty,
+            pvValue: ?*anyopaque,
+            pcbValue: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetValue: *const fn(
+            self: *const IDeviceSpecificProperty,
+            pvValue: ?*anyopaque,
+            cbValue: u32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        Get4BRange: *const fn(
+            self: *const IDeviceSpecificProperty,
+            plMin: ?*i32,
+            plMax: ?*i32,
+            plStepping: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetType(self: *const IDeviceSpecificProperty, pVType: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pVType);
+    }
+    pub fn GetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, pcbValue: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, pvValue, pcbValue);
+    }
+    pub fn SetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, pvValue, cbValue, pguidEventContext);
+    }
+    pub fn Get4BRange(self: *const IDeviceSpecificProperty, plMin: ?*i32, plMax: ?*i32, plStepping: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Get4BRange(self, plMin, plMax, plStepping);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDeviceTopology_Value = Guid.initString("2a07407e-6497-4a18-9787-32f79bd0d98f");
+pub const IID_IDeviceTopology = &IID_IDeviceTopology_Value;
+pub const IDeviceTopology = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetConnectorCount: *const fn(
+            self: *const IDeviceTopology,
+            pCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetConnector: *const fn(
+            self: *const IDeviceTopology,
+            nIndex: u32,
+            ppConnector: ?*?*IConnector,
+        ) callconv(.winapi) HRESULT,
+        GetSubunitCount: *const fn(
+            self: *const IDeviceTopology,
+            pCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSubunit: *const fn(
+            self: *const IDeviceTopology,
+            nIndex: u32,
+            ppSubunit: ?*?*ISubunit,
+        ) callconv(.winapi) HRESULT,
+        GetPartById: *const fn(
+            self: *const IDeviceTopology,
+            nId: u32,
+            ppPart: ?*?*IPart,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceId: *const fn(
+            self: *const IDeviceTopology,
+            ppwstrDeviceId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSignalPath: *const fn(
+            self: *const IDeviceTopology,
+            pIPartFrom: ?*IPart,
+            pIPartTo: ?*IPart,
+            bRejectMixedPaths: BOOL,
+            ppParts: ?*?*IPartsList,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetConnectorCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectorCount(self, pCount);
+    }
+    pub fn GetConnector(self: *const IDeviceTopology, nIndex: u32, ppConnector: ?*?*IConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnector(self, nIndex, ppConnector);
+    }
+    pub fn GetSubunitCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubunitCount(self, pCount);
+    }
+    pub fn GetSubunit(self: *const IDeviceTopology, nIndex: u32, ppSubunit: ?*?*ISubunit) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubunit(self, nIndex, ppSubunit);
+    }
+    pub fn GetPartById(self: *const IDeviceTopology, nId: u32, ppPart: ?*?*IPart) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPartById(self, nId, ppPart);
+    }
+    pub fn GetDeviceId(self: *const IDeviceTopology, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceId(self, ppwstrDeviceId);
+    }
+    pub fn GetSignalPath(self: *const IDeviceTopology, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSignalPath(self, pIPartFrom, pIPartTo, bRejectMixedPaths, ppParts);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IMessageFilter_Value = Guid.initString("00000016-0000-0000-c000-000000000046");
+pub const IID_IMessageFilter = &IID_IMessageFilter_Value;
+pub const IMessageFilter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleInComingCall: *const fn(
+            self: *const IMessageFilter,
+            dwCallType: u32,
+            htaskCaller: ?HTASK,
+            dwTickCount: u32,
+            lpInterfaceInfo: ?*INTERFACEINFO,
+        ) callconv(.winapi) u32,
+        RetryRejectedCall: *const fn(
+            self: *const IMessageFilter,
+            htaskCallee: ?HTASK,
+            dwTickCount: u32,
+            dwRejectType: u32,
+        ) callconv(.winapi) u32,
+        MessagePending: *const fn(
+            self: *const IMessageFilter,
+            htaskCallee: ?HTASK,
+            dwTickCount: u32,
+            dwPendingType: u32,
+        ) callconv(.winapi) u32,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleInComingCall(self: *const IMessageFilter, dwCallType: u32, htaskCaller: ?HTASK, dwTickCount: u32, lpInterfaceInfo: ?*INTERFACEINFO) callconv(.@"inline") u32 {
+        return self.vtable.HandleInComingCall(self, dwCallType, htaskCaller, dwTickCount, lpInterfaceInfo);
+    }
+    pub fn RetryRejectedCall(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwRejectType: u32) callconv(.@"inline") u32 {
+        return self.vtable.RetryRejectedCall(self, htaskCallee, dwTickCount, dwRejectType);
+    }
+    pub fn MessagePending(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwPendingType: u32) callconv(.@"inline") u32 {
+        return self.vtable.MessagePending(self, htaskCallee, dwTickCount, dwPendingType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMMDevice_Value = Guid.initString("d666063f-1587-4e43-81f1-b948e807363f");
+pub const IID_IMMDevice = &IID_IMMDevice_Value;
+pub const IMMDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Activate: *const fn(
+            self: *const IMMDevice,
+            iid: ?*const Guid,
+            dwClsCtx: CLSCTX,
+            pActivationParams: ?*PROPVARIANT,
+            ppInterface: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        OpenPropertyStore: *const fn(
+            self: *const IMMDevice,
+            stgmAccess: STGM,
+            ppProperties: ?*?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        GetId: *const fn(
+            self: *const IMMDevice,
+            ppstrId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetState: *const fn(
+            self: *const IMMDevice,
+            pdwState: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Activate(self: *const IMMDevice, iid: ?*const Guid, dwClsCtx: CLSCTX, pActivationParams: ?*PROPVARIANT, ppInterface: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, iid, dwClsCtx, pActivationParams, ppInterface);
+    }
+    pub fn OpenPropertyStore(self: *const IMMDevice, stgmAccess: STGM, ppProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenPropertyStore(self, stgmAccess, ppProperties);
+    }
+    pub fn GetId(self: *const IMMDevice, ppstrId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetId(self, ppstrId);
+    }
+    pub fn GetState(self: *const IMMDevice, pdwState: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetState(self, pdwState);
+    }
+};
+
+const IID_IMMDeviceActivator_Value = Guid.initString("3b0d0ea4-d0a9-4b0e-935b-09516746fac0");
+pub const IID_IMMDeviceActivator = &IID_IMMDeviceActivator_Value;
+pub const IMMDeviceActivator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Activate: *const fn(
+            self: *const IMMDeviceActivator,
+            iid: ?*const Guid,
+            pDevice: ?*IMMDevice,
+            pActivationParams: ?*PROPVARIANT,
+            ppInterface: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Activate(self: *const IMMDeviceActivator, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, iid, pDevice, pActivationParams, ppInterface);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMMDeviceCollection_Value = Guid.initString("0bd7a1be-7a1a-44db-8397-cc5392387b5e");
+pub const IID_IMMDeviceCollection = &IID_IMMDeviceCollection_Value;
+pub const IMMDeviceCollection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCount: *const fn(
+            self: *const IMMDeviceCollection,
+            pcDevices: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IMMDeviceCollection,
+            nDevice: u32,
+            ppDevice: ?*?*IMMDevice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IMMDeviceCollection, pcDevices: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pcDevices);
+    }
+    pub fn Item(self: *const IMMDeviceCollection, nDevice: u32, ppDevice: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, nDevice, ppDevice);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMMDeviceEnumerator_Value = Guid.initString("a95664d2-9614-4f35-a746-de8db63617e6");
+pub const IID_IMMDeviceEnumerator = &IID_IMMDeviceEnumerator_Value;
+pub const IMMDeviceEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumAudioEndpoints: *const fn(
+            self: *const IMMDeviceEnumerator,
+            dataFlow: EDataFlow,
+            dwStateMask: u32,
+            ppDevices: ?*?*IMMDeviceCollection,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultAudioEndpoint: *const fn(
+            self: *const IMMDeviceEnumerator,
+            dataFlow: EDataFlow,
+            role: ERole,
+            ppEndpoint: ?*?*IMMDevice,
+        ) callconv(.winapi) HRESULT,
+        GetDevice: *const fn(
+            self: *const IMMDeviceEnumerator,
+            pwstrId: ?[*:0]const u16,
+            ppDevice: ?*?*IMMDevice,
+        ) callconv(.winapi) HRESULT,
+        RegisterEndpointNotificationCallback: *const fn(
+            self: *const IMMDeviceEnumerator,
+            pClient: ?*IMMNotificationClient,
+        ) callconv(.winapi) HRESULT,
+        UnregisterEndpointNotificationCallback: *const fn(
+            self: *const IMMDeviceEnumerator,
+            pClient: ?*IMMNotificationClient,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnumAudioEndpoints(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, dwStateMask: u32, ppDevices: ?*?*IMMDeviceCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumAudioEndpoints(self, dataFlow, dwStateMask, ppDevices);
+    }
+    pub fn GetDefaultAudioEndpoint(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, role: ERole, ppEndpoint: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultAudioEndpoint(self, dataFlow, role, ppEndpoint);
+    }
+    pub fn GetDevice(self: *const IMMDeviceEnumerator, pwstrId: ?[*:0]const u16, ppDevice: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDevice(self, pwstrId, ppDevice);
+    }
+    pub fn RegisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterEndpointNotificationCallback(self, pClient);
+    }
+    pub fn UnregisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterEndpointNotificationCallback(self, pClient);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMMEndpoint_Value = Guid.initString("1be09788-6894-4089-8586-9a2a6c265ac5");
+pub const IID_IMMEndpoint = &IID_IMMEndpoint_Value;
+pub const IMMEndpoint = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDataFlow: *const fn(
+            self: *const IMMEndpoint,
+            pDataFlow: ?*EDataFlow,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDataFlow(self: *const IMMEndpoint, pDataFlow: ?*EDataFlow) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataFlow(self, pDataFlow);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMMNotificationClient_Value = Guid.initString("7991eec9-7e89-4d85-8390-6c703cec60c0");
+pub const IID_IMMNotificationClient = &IID_IMMNotificationClient_Value;
+pub const IMMNotificationClient = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnDeviceStateChanged: *const fn(
+            self: *const IMMNotificationClient,
+            pwstrDeviceId: ?[*:0]const u16,
+            dwNewState: u32,
+        ) callconv(.winapi) HRESULT,
+        OnDeviceAdded: *const fn(
+            self: *const IMMNotificationClient,
+            pwstrDeviceId: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        OnDeviceRemoved: *const fn(
+            self: *const IMMNotificationClient,
+            pwstrDeviceId: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        OnDefaultDeviceChanged: *const fn(
+            self: *const IMMNotificationClient,
+            flow: EDataFlow,
+            role: ERole,
+            pwstrDefaultDeviceId: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        OnPropertyValueChanged: *const fn(
+            self: *const IMMNotificationClient,
+            pwstrDeviceId: ?[*:0]const u16,
+            key: PROPERTYKEY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnDeviceStateChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, dwNewState: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDeviceStateChanged(self, pwstrDeviceId, dwNewState);
+    }
+    pub fn OnDeviceAdded(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDeviceAdded(self, pwstrDeviceId);
+    }
+    pub fn OnDeviceRemoved(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDeviceRemoved(self, pwstrDeviceId);
+    }
+    pub fn OnDefaultDeviceChanged(self: *const IMMNotificationClient, flow: EDataFlow, role: ERole, pwstrDefaultDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDefaultDeviceChanged(self, flow, role, pwstrDefaultDeviceId);
+    }
+    pub fn OnPropertyValueChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, key: PROPERTYKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPropertyValueChanged(self, pwstrDeviceId, key);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IPart_Value = Guid.initString("ae2de0e4-5bca-4f2d-aa46-5d13f8fdb3a9");
+pub const IID_IPart = &IID_IPart_Value;
+pub const IPart = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IPart,
+            ppwstrName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetLocalId: *const fn(
+            self: *const IPart,
+            pnId: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetGlobalId: *const fn(
+            self: *const IPart,
+            ppwstrGlobalId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPartType: *const fn(
+            self: *const IPart,
+            pPartType: ?*PartType,
+        ) callconv(.winapi) HRESULT,
+        GetSubType: *const fn(
+            self: *const IPart,
+            pSubType: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetControlInterfaceCount: *const fn(
+            self: *const IPart,
+            pCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetControlInterface: *const fn(
+            self: *const IPart,
+            nIndex: u32,
+            ppInterfaceDesc: ?*?*IControlInterface,
+        ) callconv(.winapi) HRESULT,
+        EnumPartsIncoming: *const fn(
+            self: *const IPart,
+            ppParts: ?*?*IPartsList,
+        ) callconv(.winapi) HRESULT,
+        EnumPartsOutgoing: *const fn(
+            self: *const IPart,
+            ppParts: ?*?*IPartsList,
+        ) callconv(.winapi) HRESULT,
+        GetTopologyObject: *const fn(
+            self: *const IPart,
+            ppTopology: ?*?*IDeviceTopology,
+        ) callconv(.winapi) HRESULT,
+        Activate: *const fn(
+            self: *const IPart,
+            dwClsContext: u32,
+            refiid: ?*const Guid,
+            ppvObject: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        RegisterControlChangeCallback: *const fn(
+            self: *const IPart,
+            riid: ?*const Guid,
+            pNotify: ?*IControlChangeNotify,
+        ) callconv(.winapi) HRESULT,
+        UnregisterControlChangeCallback: *const fn(
+            self: *const IPart,
+            pNotify: ?*IControlChangeNotify,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IPart, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, ppwstrName);
+    }
+    pub fn GetLocalId(self: *const IPart, pnId: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalId(self, pnId);
+    }
+    pub fn GetGlobalId(self: *const IPart, ppwstrGlobalId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGlobalId(self, ppwstrGlobalId);
+    }
+    pub fn GetPartType(self: *const IPart, pPartType: ?*PartType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPartType(self, pPartType);
+    }
+    pub fn GetSubType(self: *const IPart, pSubType: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubType(self, pSubType);
+    }
+    pub fn GetControlInterfaceCount(self: *const IPart, pCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetControlInterfaceCount(self, pCount);
+    }
+    pub fn GetControlInterface(self: *const IPart, nIndex: u32, ppInterfaceDesc: ?*?*IControlInterface) callconv(.@"inline") HRESULT {
+        return self.vtable.GetControlInterface(self, nIndex, ppInterfaceDesc);
+    }
+    pub fn EnumPartsIncoming(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumPartsIncoming(self, ppParts);
+    }
+    pub fn EnumPartsOutgoing(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumPartsOutgoing(self, ppParts);
+    }
+    pub fn GetTopologyObject(self: *const IPart, ppTopology: ?*?*IDeviceTopology) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTopologyObject(self, ppTopology);
+    }
+    pub fn Activate(self: *const IPart, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, dwClsContext, refiid, ppvObject);
+    }
+    pub fn RegisterControlChangeCallback(self: *const IPart, riid: ?*const Guid, pNotify: ?*IControlChangeNotify) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterControlChangeCallback(self, riid, pNotify);
+    }
+    pub fn UnregisterControlChangeCallback(self: *const IPart, pNotify: ?*IControlChangeNotify) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterControlChangeCallback(self, pNotify);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IPartsList_Value = Guid.initString("6daa848c-5eb0-45cc-aea5-998a2cda1ffb");
+pub const IID_IPartsList = &IID_IPartsList_Value;
+pub const IPartsList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCount: *const fn(
+            self: *const IPartsList,
+            pCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPart: *const fn(
+            self: *const IPartsList,
+            nIndex: u32,
+            ppPart: ?*?*IPart,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IPartsList, pCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pCount);
+    }
+    pub fn GetPart(self: *const IPartsList, nIndex: u32, ppPart: ?*?*IPart) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPart(self, nIndex, ppPart);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IPerChannelDbLevel_Value = Guid.initString("c2f8e001-f205-4bc9-99bc-c13b1e048ccb");
+pub const IID_IPerChannelDbLevel = &IID_IPerChannelDbLevel_Value;
+pub const IPerChannelDbLevel = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetChannelCount: *const fn(
+            self: *const IPerChannelDbLevel,
+            pcChannels: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetLevelRange: *const fn(
+            self: *const IPerChannelDbLevel,
+            nChannel: u32,
+            pfMinLevelDB: ?*f32,
+            pfMaxLevelDB: ?*f32,
+            pfStepping: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetLevel: *const fn(
+            self: *const IPerChannelDbLevel,
+            nChannel: u32,
+            pfLevelDB: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        SetLevel: *const fn(
+            self: *const IPerChannelDbLevel,
+            nChannel: u32,
+            fLevelDB: f32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        SetLevelUniform: *const fn(
+            self: *const IPerChannelDbLevel,
+            fLevelDB: f32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        SetLevelAllChannels: *const fn(
+            self: *const IPerChannelDbLevel,
+            aLevelsDB: [*]f32,
+            cChannels: u32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetChannelCount(self: *const IPerChannelDbLevel, pcChannels: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelCount(self, pcChannels);
+    }
+    pub fn GetLevelRange(self: *const IPerChannelDbLevel, nChannel: u32, pfMinLevelDB: ?*f32, pfMaxLevelDB: ?*f32, pfStepping: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLevelRange(self, nChannel, pfMinLevelDB, pfMaxLevelDB, pfStepping);
+    }
+    pub fn GetLevel(self: *const IPerChannelDbLevel, nChannel: u32, pfLevelDB: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLevel(self, nChannel, pfLevelDB);
+    }
+    pub fn SetLevel(self: *const IPerChannelDbLevel, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLevel(self, nChannel, fLevelDB, pguidEventContext);
+    }
+    pub fn SetLevelUniform(self: *const IPerChannelDbLevel, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLevelUniform(self, fLevelDB, pguidEventContext);
+    }
+    pub fn SetLevelAllChannels(self: *const IPerChannelDbLevel, aLevelsDB: [*]f32, cChannels: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLevelAllChannels(self, aLevelsDB, cChannels, pguidEventContext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISimpleAudioVolume_Value = Guid.initString("87ce5498-68d6-44e5-9215-6da47ef883d8");
+pub const IID_ISimpleAudioVolume = &IID_ISimpleAudioVolume_Value;
+pub const ISimpleAudioVolume = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetMasterVolume: *const fn(
+            self: *const ISimpleAudioVolume,
+            fLevel: f32,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetMasterVolume: *const fn(
+            self: *const ISimpleAudioVolume,
+            pfLevel: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        SetMute: *const fn(
+            self: *const ISimpleAudioVolume,
+            bMute: BOOL,
+            EventContext: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        GetMute: *const fn(
+            self: *const ISimpleAudioVolume,
+            pbMute: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetMasterVolume(self: *const ISimpleAudioVolume, fLevel: f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMasterVolume(self, fLevel, EventContext);
+    }
+    pub fn GetMasterVolume(self: *const ISimpleAudioVolume, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMasterVolume(self, pfLevel);
+    }
+    pub fn SetMute(self: *const ISimpleAudioVolume, bMute: BOOL, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMute(self, bMute, EventContext);
+    }
+    pub fn GetMute(self: *const ISimpleAudioVolume, pbMute: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMute(self, pbMute);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioClient_Value = Guid.initString("bbf8e066-aaaa-49be-9a4d-fd2a858ea27f");
+pub const IID_ISpatialAudioClient = &IID_ISpatialAudioClient_Value;
+pub const ISpatialAudioClient = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStaticObjectPosition: *const fn(
+            self: *const ISpatialAudioClient,
+            type: AudioObjectType,
+            x: ?*f32,
+            y: ?*f32,
+            z: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetNativeStaticObjectTypeMask: *const fn(
+            self: *const ISpatialAudioClient,
+            mask: ?*AudioObjectType,
+        ) callconv(.winapi) HRESULT,
+        GetMaxDynamicObjectCount: *const fn(
+            self: *const ISpatialAudioClient,
+            value: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSupportedAudioObjectFormatEnumerator: *const fn(
+            self: *const ISpatialAudioClient,
+            enumerator: **IAudioFormatEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetMaxFrameCount: *const fn(
+            self: *const ISpatialAudioClient,
+            objectFormat: ?*const WAVEFORMATEX,
+            frameCountPerBuffer: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        IsAudioObjectFormatSupported: *const fn(
+            self: *const ISpatialAudioClient,
+            objectFormat: ?*const WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        IsSpatialAudioStreamAvailable: *const fn(
+            self: *const ISpatialAudioClient,
+            streamUuid: ?*const Guid,
+            auxiliaryInfo: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        ActivateSpatialAudioStream: *const fn(
+            self: *const ISpatialAudioClient,
+            activationParams: ?*const PROPVARIANT,
+            riid: ?*const Guid,
+            stream: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStaticObjectPosition(self: *const ISpatialAudioClient, @"type": AudioObjectType, x: ?*f32, y: ?*f32, z: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStaticObjectPosition(self, @"type", x, y, z);
+    }
+    pub fn GetNativeStaticObjectTypeMask(self: *const ISpatialAudioClient, mask: ?*AudioObjectType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNativeStaticObjectTypeMask(self, mask);
+    }
+    pub fn GetMaxDynamicObjectCount(self: *const ISpatialAudioClient, value: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxDynamicObjectCount(self, value);
+    }
+    pub fn GetSupportedAudioObjectFormatEnumerator(self: *const ISpatialAudioClient, enumerator: **IAudioFormatEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSupportedAudioObjectFormatEnumerator(self, enumerator);
+    }
+    pub fn GetMaxFrameCount(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxFrameCount(self, objectFormat, frameCountPerBuffer);
+    }
+    pub fn IsAudioObjectFormatSupported(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.IsAudioObjectFormatSupported(self, objectFormat);
+    }
+    pub fn IsSpatialAudioStreamAvailable(self: *const ISpatialAudioClient, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSpatialAudioStreamAvailable(self, streamUuid, auxiliaryInfo);
+    }
+    pub fn ActivateSpatialAudioStream(self: *const ISpatialAudioClient, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateSpatialAudioStream(self, activationParams, riid, stream);
+    }
+};
+
+const IID_ISpatialAudioClient2_Value = Guid.initString("caabe452-a66a-4bee-a93e-e320463f6a53");
+pub const IID_ISpatialAudioClient2 = &IID_ISpatialAudioClient2_Value;
+pub const ISpatialAudioClient2 = extern union {
+    pub const VTable = extern struct {
+        base: ISpatialAudioClient.VTable,
+        IsOffloadCapable: *const fn(
+            self: *const ISpatialAudioClient2,
+            category: AUDIO_STREAM_CATEGORY,
+            isOffloadCapable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetMaxFrameCountForCategory: *const fn(
+            self: *const ISpatialAudioClient2,
+            category: AUDIO_STREAM_CATEGORY,
+            offloadEnabled: BOOL,
+            objectFormat: ?*const WAVEFORMATEX,
+            frameCountPerBuffer: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISpatialAudioClient: ISpatialAudioClient,
+    IUnknown: IUnknown,
+    pub fn IsOffloadCapable(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, isOffloadCapable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsOffloadCapable(self, category, isOffloadCapable);
+    }
+    pub fn GetMaxFrameCountForCategory(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, offloadEnabled: BOOL, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxFrameCountForCategory(self, category, offloadEnabled, objectFormat, frameCountPerBuffer);
     }
 };
 
@@ -4345,6 +3405,329 @@ pub const ISpatialAudioMetadataClient = extern union {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioMetadataCopier_Value = Guid.initString("d224b233-e251-4fd0-9ca2-d5ecf9a68404");
+pub const IID_ISpatialAudioMetadataCopier = &IID_ISpatialAudioMetadataCopier_Value;
+pub const ISpatialAudioMetadataCopier = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const ISpatialAudioMetadataCopier,
+            metadataItems: ?*ISpatialAudioMetadataItems,
+        ) callconv(.winapi) HRESULT,
+        CopyMetadataForFrames: *const fn(
+            self: *const ISpatialAudioMetadataCopier,
+            copyFrameCount: u16,
+            copyMode: SpatialAudioMetadataCopyMode,
+            dstMetadataItems: ?*ISpatialAudioMetadataItems,
+            itemsCopied: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const ISpatialAudioMetadataCopier,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const ISpatialAudioMetadataCopier, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, metadataItems);
+    }
+    pub fn CopyMetadataForFrames(self: *const ISpatialAudioMetadataCopier, copyFrameCount: u16, copyMode: SpatialAudioMetadataCopyMode, dstMetadataItems: ?*ISpatialAudioMetadataItems, itemsCopied: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyMetadataForFrames(self, copyFrameCount, copyMode, dstMetadataItems, itemsCopied);
+    }
+    pub fn Close(self: *const ISpatialAudioMetadataCopier) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioMetadataItems_Value = Guid.initString("bcd7c78f-3098-4f22-b547-a2f25a381269");
+pub const IID_ISpatialAudioMetadataItems = &IID_ISpatialAudioMetadataItems_Value;
+pub const ISpatialAudioMetadataItems = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetFrameCount: *const fn(
+            self: *const ISpatialAudioMetadataItems,
+            frameCount: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetItemCount: *const fn(
+            self: *const ISpatialAudioMetadataItems,
+            itemCount: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetMaxItemCount: *const fn(
+            self: *const ISpatialAudioMetadataItems,
+            maxItemCount: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetMaxValueBufferLength: *const fn(
+            self: *const ISpatialAudioMetadataItems,
+            maxValueBufferLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetInfo: *const fn(
+            self: *const ISpatialAudioMetadataItems,
+            info: ?*SpatialAudioMetadataItemsInfo,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetFrameCount(self: *const ISpatialAudioMetadataItems, frameCount: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFrameCount(self, frameCount);
+    }
+    pub fn GetItemCount(self: *const ISpatialAudioMetadataItems, itemCount: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemCount(self, itemCount);
+    }
+    pub fn GetMaxItemCount(self: *const ISpatialAudioMetadataItems, maxItemCount: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxItemCount(self, maxItemCount);
+    }
+    pub fn GetMaxValueBufferLength(self: *const ISpatialAudioMetadataItems, maxValueBufferLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxValueBufferLength(self, maxValueBufferLength);
+    }
+    pub fn GetInfo(self: *const ISpatialAudioMetadataItems, info: ?*SpatialAudioMetadataItemsInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInfo(self, info);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioMetadataItemsBuffer_Value = Guid.initString("42640a16-e1bd-42d9-9ff6-031ab71a2dba");
+pub const IID_ISpatialAudioMetadataItemsBuffer = &IID_ISpatialAudioMetadataItemsBuffer_Value;
+pub const ISpatialAudioMetadataItemsBuffer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AttachToBuffer: *const fn(
+            self: *const ISpatialAudioMetadataItemsBuffer,
+            // TODO: what to do with BytesParamIndex 1?
+            buffer: ?*u8,
+            bufferLength: u32,
+        ) callconv(.winapi) HRESULT,
+        AttachToPopulatedBuffer: *const fn(
+            self: *const ISpatialAudioMetadataItemsBuffer,
+            // TODO: what to do with BytesParamIndex 1?
+            buffer: ?*u8,
+            bufferLength: u32,
+        ) callconv(.winapi) HRESULT,
+        DetachBuffer: *const fn(
+            self: *const ISpatialAudioMetadataItemsBuffer,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AttachToBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AttachToBuffer(self, buffer, bufferLength);
+    }
+    pub fn AttachToPopulatedBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AttachToPopulatedBuffer(self, buffer, bufferLength);
+    }
+    pub fn DetachBuffer(self: *const ISpatialAudioMetadataItemsBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.DetachBuffer(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioMetadataReader_Value = Guid.initString("b78e86a2-31d9-4c32-94d2-7df40fc7ebec");
+pub const IID_ISpatialAudioMetadataReader = &IID_ISpatialAudioMetadataReader_Value;
+pub const ISpatialAudioMetadataReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const ISpatialAudioMetadataReader,
+            metadataItems: ?*ISpatialAudioMetadataItems,
+        ) callconv(.winapi) HRESULT,
+        ReadNextItem: *const fn(
+            self: *const ISpatialAudioMetadataReader,
+            commandCount: ?*u8,
+            frameOffset: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        ReadNextItemCommand: *const fn(
+            self: *const ISpatialAudioMetadataReader,
+            commandID: ?*u8,
+            // TODO: what to do with BytesParamIndex 2?
+            valueBuffer: ?*anyopaque,
+            maxValueBufferLength: u32,
+            valueBufferLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const ISpatialAudioMetadataReader,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const ISpatialAudioMetadataReader, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, metadataItems);
+    }
+    pub fn ReadNextItem(self: *const ISpatialAudioMetadataReader, commandCount: ?*u8, frameOffset: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadNextItem(self, commandCount, frameOffset);
+    }
+    pub fn ReadNextItemCommand(self: *const ISpatialAudioMetadataReader, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadNextItemCommand(self, commandID, valueBuffer, maxValueBufferLength, valueBufferLength);
+    }
+    pub fn Close(self: *const ISpatialAudioMetadataReader) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioMetadataWriter_Value = Guid.initString("1b17ca01-2955-444d-a430-537dc589a844");
+pub const IID_ISpatialAudioMetadataWriter = &IID_ISpatialAudioMetadataWriter_Value;
+pub const ISpatialAudioMetadataWriter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const ISpatialAudioMetadataWriter,
+            metadataItems: ?*ISpatialAudioMetadataItems,
+        ) callconv(.winapi) HRESULT,
+        WriteNextItem: *const fn(
+            self: *const ISpatialAudioMetadataWriter,
+            frameOffset: u16,
+        ) callconv(.winapi) HRESULT,
+        WriteNextItemCommand: *const fn(
+            self: *const ISpatialAudioMetadataWriter,
+            commandID: u8,
+            // TODO: what to do with BytesParamIndex 2?
+            valueBuffer: ?*const anyopaque,
+            valueBufferLength: u32,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const ISpatialAudioMetadataWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const ISpatialAudioMetadataWriter, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, metadataItems);
+    }
+    pub fn WriteNextItem(self: *const ISpatialAudioMetadataWriter, frameOffset: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteNextItem(self, frameOffset);
+    }
+    pub fn WriteNextItemCommand(self: *const ISpatialAudioMetadataWriter, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteNextItemCommand(self, commandID, valueBuffer, valueBufferLength);
+    }
+    pub fn Close(self: *const ISpatialAudioMetadataWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioObject_Value = Guid.initString("dde28967-521b-46e5-8f00-bd6f2bc8ab1d");
+pub const IID_ISpatialAudioObject = &IID_ISpatialAudioObject_Value;
+pub const ISpatialAudioObject = extern union {
+    pub const VTable = extern struct {
+        base: ISpatialAudioObjectBase.VTable,
+        SetPosition: *const fn(
+            self: *const ISpatialAudioObject,
+            x: f32,
+            y: f32,
+            z: f32,
+        ) callconv(.winapi) HRESULT,
+        SetVolume: *const fn(
+            self: *const ISpatialAudioObject,
+            volume: f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISpatialAudioObjectBase: ISpatialAudioObjectBase,
+    IUnknown: IUnknown,
+    pub fn SetPosition(self: *const ISpatialAudioObject, x: f32, y: f32, z: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPosition(self, x, y, z);
+    }
+    pub fn SetVolume(self: *const ISpatialAudioObject, volume: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVolume(self, volume);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioObjectBase_Value = Guid.initString("cce0b8f2-8d4d-4efb-a8cf-3d6ecf1c30e0");
+pub const IID_ISpatialAudioObjectBase = &IID_ISpatialAudioObjectBase_Value;
+pub const ISpatialAudioObjectBase = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBuffer: *const fn(
+            self: *const ISpatialAudioObjectBase,
+            buffer: ?*?*u8,
+            bufferLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetEndOfStream: *const fn(
+            self: *const ISpatialAudioObjectBase,
+            frameCount: u32,
+        ) callconv(.winapi) HRESULT,
+        IsActive: *const fn(
+            self: *const ISpatialAudioObjectBase,
+            isActive: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetAudioObjectType: *const fn(
+            self: *const ISpatialAudioObjectBase,
+            audioObjectType: ?*AudioObjectType,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetBuffer(self: *const ISpatialAudioObjectBase, buffer: ?*?*u8, bufferLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBuffer(self, buffer, bufferLength);
+    }
+    pub fn SetEndOfStream(self: *const ISpatialAudioObjectBase, frameCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEndOfStream(self, frameCount);
+    }
+    pub fn IsActive(self: *const ISpatialAudioObjectBase, isActive: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsActive(self, isActive);
+    }
+    pub fn GetAudioObjectType(self: *const ISpatialAudioObjectBase, audioObjectType: ?*AudioObjectType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAudioObjectType(self, audioObjectType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioObjectForHrtf_Value = Guid.initString("d7436ade-1978-4e14-aba0-555bd8eb83b4");
+pub const IID_ISpatialAudioObjectForHrtf = &IID_ISpatialAudioObjectForHrtf_Value;
+pub const ISpatialAudioObjectForHrtf = extern union {
+    pub const VTable = extern struct {
+        base: ISpatialAudioObjectBase.VTable,
+        SetPosition: *const fn(
+            self: *const ISpatialAudioObjectForHrtf,
+            x: f32,
+            y: f32,
+            z: f32,
+        ) callconv(.winapi) HRESULT,
+        SetGain: *const fn(
+            self: *const ISpatialAudioObjectForHrtf,
+            gain: f32,
+        ) callconv(.winapi) HRESULT,
+        SetOrientation: *const fn(
+            self: *const ISpatialAudioObjectForHrtf,
+            orientation: ?*const ?*f32,
+        ) callconv(.winapi) HRESULT,
+        SetEnvironment: *const fn(
+            self: *const ISpatialAudioObjectForHrtf,
+            environment: SpatialAudioHrtfEnvironmentType,
+        ) callconv(.winapi) HRESULT,
+        SetDistanceDecay: *const fn(
+            self: *const ISpatialAudioObjectForHrtf,
+            distanceDecay: ?*SpatialAudioHrtfDistanceDecay,
+        ) callconv(.winapi) HRESULT,
+        SetDirectivity: *const fn(
+            self: *const ISpatialAudioObjectForHrtf,
+            directivity: ?*SpatialAudioHrtfDirectivityUnion,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISpatialAudioObjectBase: ISpatialAudioObjectBase,
+    IUnknown: IUnknown,
+    pub fn SetPosition(self: *const ISpatialAudioObjectForHrtf, x: f32, y: f32, z: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPosition(self, x, y, z);
+    }
+    pub fn SetGain(self: *const ISpatialAudioObjectForHrtf, gain: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGain(self, gain);
+    }
+    pub fn SetOrientation(self: *const ISpatialAudioObjectForHrtf, orientation: ?*const ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOrientation(self, orientation);
+    }
+    pub fn SetEnvironment(self: *const ISpatialAudioObjectForHrtf, environment: SpatialAudioHrtfEnvironmentType) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEnvironment(self, environment);
+    }
+    pub fn SetDistanceDecay(self: *const ISpatialAudioObjectForHrtf, distanceDecay: ?*SpatialAudioHrtfDistanceDecay) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDistanceDecay(self, distanceDecay);
+    }
+    pub fn SetDirectivity(self: *const ISpatialAudioObjectForHrtf, directivity: ?*SpatialAudioHrtfDirectivityUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDirectivity(self, directivity);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectForMetadataCommands_Value = Guid.initString("0df2c94b-f5f9-472d-af6b-c46e0ac9cd05");
 pub const IID_ISpatialAudioObjectForMetadataCommands = &IID_ISpatialAudioObjectForMetadataCommands_Value;
 pub const ISpatialAudioObjectForMetadataCommands = extern union {
@@ -4386,6 +3769,104 @@ pub const ISpatialAudioObjectForMetadataItems = extern union {
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioObjectRenderStream_Value = Guid.initString("bab5f473-b423-477b-85f5-b5a332a04153");
+pub const IID_ISpatialAudioObjectRenderStream = &IID_ISpatialAudioObjectRenderStream_Value;
+pub const ISpatialAudioObjectRenderStream = extern union {
+    pub const VTable = extern struct {
+        base: ISpatialAudioObjectRenderStreamBase.VTable,
+        ActivateSpatialAudioObject: *const fn(
+            self: *const ISpatialAudioObjectRenderStream,
+            type: AudioObjectType,
+            audioObject: **ISpatialAudioObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
+    IUnknown: IUnknown,
+    pub fn ActivateSpatialAudioObject(self: *const ISpatialAudioObjectRenderStream, @"type": AudioObjectType, audioObject: **ISpatialAudioObject) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateSpatialAudioObject(self, @"type", audioObject);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioObjectRenderStreamBase_Value = Guid.initString("feaaf403-c1d8-450d-aa05-e0ccee7502a8");
+pub const IID_ISpatialAudioObjectRenderStreamBase = &IID_ISpatialAudioObjectRenderStreamBase_Value;
+pub const ISpatialAudioObjectRenderStreamBase = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAvailableDynamicObjectCount: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamBase,
+            value: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetService: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamBase,
+            riid: ?*const Guid,
+            service: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        Start: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamBase,
+        ) callconv(.winapi) HRESULT,
+        Stop: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamBase,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamBase,
+        ) callconv(.winapi) HRESULT,
+        BeginUpdatingAudioObjects: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamBase,
+            availableDynamicObjectCount: ?*u32,
+            frameCountPerBuffer: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EndUpdatingAudioObjects: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamBase,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAvailableDynamicObjectCount(self: *const ISpatialAudioObjectRenderStreamBase, value: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAvailableDynamicObjectCount(self, value);
+    }
+    pub fn GetService(self: *const ISpatialAudioObjectRenderStreamBase, riid: ?*const Guid, service: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetService(self, riid, service);
+    }
+    pub fn Start(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self);
+    }
+    pub fn Stop(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
+        return self.vtable.Stop(self);
+    }
+    pub fn Reset(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn BeginUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase, availableDynamicObjectCount: ?*u32, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginUpdatingAudioObjects(self, availableDynamicObjectCount, frameCountPerBuffer);
+    }
+    pub fn EndUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
+        return self.vtable.EndUpdatingAudioObjects(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioObjectRenderStreamForHrtf_Value = Guid.initString("e08deef9-5363-406e-9fdc-080ee247bbe0");
+pub const IID_ISpatialAudioObjectRenderStreamForHrtf = &IID_ISpatialAudioObjectRenderStreamForHrtf_Value;
+pub const ISpatialAudioObjectRenderStreamForHrtf = extern union {
+    pub const VTable = extern struct {
+        base: ISpatialAudioObjectRenderStreamBase.VTable,
+        ActivateSpatialAudioObjectForHrtf: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamForHrtf,
+            type: AudioObjectType,
+            audioObject: **ISpatialAudioObjectForHrtf,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
+    IUnknown: IUnknown,
+    pub fn ActivateSpatialAudioObjectForHrtf(self: *const ISpatialAudioObjectRenderStreamForHrtf, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForHrtf) callconv(.@"inline") HRESULT {
+        return self.vtable.ActivateSpatialAudioObjectForHrtf(self, @"type", audioObject);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
 const IID_ISpatialAudioObjectRenderStreamForMetadata_Value = Guid.initString("bbc9c907-48d5-4a2e-a0c7-f7f0d67c1fb1");
 pub const IID_ISpatialAudioObjectRenderStreamForMetadata = &IID_ISpatialAudioObjectRenderStreamForMetadata_Value;
 pub const ISpatialAudioObjectRenderStreamForMetadata = extern union {
@@ -4413,81 +3894,36 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern union {
     }
 };
 
-pub const PROCESS_LOOPBACK_MODE = enum(i32) {
-    INCLUDE_TARGET_PROCESS_TREE = 0,
-    EXCLUDE_TARGET_PROCESS_TREE = 1,
-};
-pub const PROCESS_LOOPBACK_MODE_INCLUDE_TARGET_PROCESS_TREE = PROCESS_LOOPBACK_MODE.INCLUDE_TARGET_PROCESS_TREE;
-pub const PROCESS_LOOPBACK_MODE_EXCLUDE_TARGET_PROCESS_TREE = PROCESS_LOOPBACK_MODE.EXCLUDE_TARGET_PROCESS_TREE;
-
-pub const AUDIOCLIENT_PROCESS_LOOPBACK_PARAMS = extern struct {
-    TargetProcessId: u32,
-    ProcessLoopbackMode: PROCESS_LOOPBACK_MODE,
-};
-
-pub const AUDIOCLIENT_ACTIVATION_TYPE = enum(i32) {
-    DEFAULT = 0,
-    PROCESS_LOOPBACK = 1,
-};
-pub const AUDIOCLIENT_ACTIVATION_TYPE_DEFAULT = AUDIOCLIENT_ACTIVATION_TYPE.DEFAULT;
-pub const AUDIOCLIENT_ACTIVATION_TYPE_PROCESS_LOOPBACK = AUDIOCLIENT_ACTIVATION_TYPE.PROCESS_LOOPBACK;
-
-pub const AUDIOCLIENT_ACTIVATION_PARAMS = extern struct {
-    ActivationType: AUDIOCLIENT_ACTIVATION_TYPE,
-    Anonymous: extern union {
-        ProcessLoopbackParams: AUDIOCLIENT_PROCESS_LOOPBACK_PARAMS,
-    },
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PAudioStateMonitorCallback = *const fn() callconv(.winapi) void;
-
-pub const AudioStateMonitorSoundLevel = enum(i32) {
-    Muted = 0,
-    Low = 1,
-    Full = 2,
-};
-pub const Muted = AudioStateMonitorSoundLevel.Muted;
-pub const Low = AudioStateMonitorSoundLevel.Low;
-pub const Full = AudioStateMonitorSoundLevel.Full;
-
-const IID_IAudioStateMonitor_Value = Guid.initString("63bd8738-e30d-4c77-bf5c-834e87c657e2");
-pub const IID_IAudioStateMonitor = &IID_IAudioStateMonitor_Value;
-pub const IAudioStateMonitor = extern union {
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_ISpatialAudioObjectRenderStreamNotify_Value = Guid.initString("dddf83e6-68d7-4c70-883f-a1836afb4a50");
+pub const IID_ISpatialAudioObjectRenderStreamNotify = &IID_ISpatialAudioObjectRenderStreamNotify_Value;
+pub const ISpatialAudioObjectRenderStreamNotify = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterCallback: *const fn(
-            self: *const IAudioStateMonitor,
-            callback: ?PAudioStateMonitorCallback,
-            context: ?*anyopaque,
-            registration: ?*i64,
+        OnAvailableDynamicObjectCountChange: *const fn(
+            self: *const ISpatialAudioObjectRenderStreamNotify,
+            sender: ?*ISpatialAudioObjectRenderStreamBase,
+            hnsComplianceDeadlineTime: i64,
+            availableDynamicObjectCountChange: u32,
         ) callconv(.winapi) HRESULT,
-        UnregisterCallback: *const fn(
-            self: *const IAudioStateMonitor,
-            registration: i64,
-        ) callconv(.winapi) void,
-        GetSoundLevel: *const fn(
-            self: *const IAudioStateMonitor,
-        ) callconv(.winapi) AudioStateMonitorSoundLevel,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterCallback(self: *const IAudioStateMonitor, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterCallback(self, callback, context, registration);
-    }
-    pub fn UnregisterCallback(self: *const IAudioStateMonitor, registration: i64) callconv(.@"inline") void {
-        return self.vtable.UnregisterCallback(self, registration);
-    }
-    pub fn GetSoundLevel(self: *const IAudioStateMonitor) callconv(.@"inline") AudioStateMonitorSoundLevel {
-        return self.vtable.GetSoundLevel(self);
+    pub fn OnAvailableDynamicObjectCountChange(self: *const ISpatialAudioObjectRenderStreamNotify, sender: ?*ISpatialAudioObjectRenderStreamBase, hnsComplianceDeadlineTime: i64, availableDynamicObjectCountChange: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnAvailableDynamicObjectCountChange(self, sender, hnsComplianceDeadlineTime, availableDynamicObjectCountChange);
     }
 };
 
-pub const ACMDRIVERENUMCB = *const fn(
-    hadid: ?HACMDRIVERID,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISubunit_Value = Guid.initString("82149a85-dba6-4487-86bb-ea8f7fefcc71");
+pub const IID_ISubunit = &IID_ISubunit_Value;
+pub const ISubunit = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+};
 
 pub const LPACMDRIVERPROC = *const fn(
     param0: usize,
@@ -4497,284 +3933,744 @@ pub const LPACMDRIVERPROC = *const fn(
     param4: LPARAM,
 ) callconv(.winapi) LRESULT;
 
-pub const ACMDRIVERDETAILSA = extern struct {
-    cbStruct: u32 align(1),
-    fccType: u32 align(1),
-    fccComp: u32 align(1),
+pub const LPMIDICALLBACK = *const fn(
+    hdrvr: ?HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(.winapi) void;
+
+pub const LPWAVECALLBACK = *const fn(
+    hdrvr: ?HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(.winapi) void;
+
+pub const MIDI_WAVE_OPEN_TYPE = packed struct(u32) {
+    WAVE_FORMAT_QUERY: u1 = 0,
+    WAVE_ALLOWSYNC: u1 = 0,
+    WAVE_MAPPED: u1 = 0,
+    WAVE_FORMAT_DIRECT: u1 = 0,
+    WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE: u1 = 0,
+    MIDI_IO_STATUS: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    CALLBACK_WINDOW: u1 = 0,
+    CALLBACK_TASK: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // CALLBACK_THREAD (bit index 17) conflicts with CALLBACK_TASK
+};
+pub const CALLBACK_TYPEMASK = MIDI_WAVE_OPEN_TYPE{
+    .CALLBACK_WINDOW = 1,
+    .CALLBACK_TASK = 1,
+    ._18 = 1,
+};
+pub const CALLBACK_NULL = MIDI_WAVE_OPEN_TYPE{ };
+pub const CALLBACK_WINDOW = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_WINDOW = 1 };
+pub const CALLBACK_TASK = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_TASK = 1 };
+pub const CALLBACK_FUNCTION = MIDI_WAVE_OPEN_TYPE{
+    .CALLBACK_WINDOW = 1,
+    .CALLBACK_TASK = 1,
+};
+pub const CALLBACK_THREAD = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_TASK = 1 };
+pub const CALLBACK_EVENT = MIDI_WAVE_OPEN_TYPE{
+    .CALLBACK_WINDOW = 1,
+    ._18 = 1,
+};
+pub const WAVE_FORMAT_QUERY = MIDI_WAVE_OPEN_TYPE{ .WAVE_FORMAT_QUERY = 1 };
+pub const WAVE_ALLOWSYNC = MIDI_WAVE_OPEN_TYPE{ .WAVE_ALLOWSYNC = 1 };
+pub const WAVE_MAPPED = MIDI_WAVE_OPEN_TYPE{ .WAVE_MAPPED = 1 };
+pub const WAVE_FORMAT_DIRECT = MIDI_WAVE_OPEN_TYPE{ .WAVE_FORMAT_DIRECT = 1 };
+pub const WAVE_FORMAT_DIRECT_QUERY = MIDI_WAVE_OPEN_TYPE{
+    .WAVE_FORMAT_QUERY = 1,
+    .WAVE_FORMAT_DIRECT = 1,
+};
+pub const WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = MIDI_WAVE_OPEN_TYPE{ .WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = 1 };
+pub const MIDI_IO_STATUS = MIDI_WAVE_OPEN_TYPE{ .MIDI_IO_STATUS = 1 };
+
+pub const MIDIEVENT = extern struct {
+    dwDeltaTime: u32 align(1),
+    dwStreamID: u32 align(1),
+    dwEvent: u32 align(1),
+    dwParms: [1]u32 align(1),
+};
+
+pub const MIDIHDR = extern struct {
+    lpData: ?PSTR align(1),
+    dwBufferLength: u32 align(1),
+    dwBytesRecorded: u32 align(1),
+    dwUser: usize align(1),
+    dwFlags: u32 align(1),
+    lpNext: ?*MIDIHDR align(1),
+    reserved: usize align(1),
+    dwOffset: u32 align(1),
+    dwReserved: [8]usize align(1),
+};
+
+pub const MIDIINCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
-    vdwACM: u32 align(1),
-    vdwDriver: u32 align(1),
-    fdwSupport: u32 align(1),
-    cFormatTags: u32 align(1),
-    cFilterTags: u32 align(1),
-    hicon: ?HICON align(1),
-    szShortName: [32]CHAR align(1),
-    szLongName: [128]CHAR align(1),
-    szCopyright: [80]CHAR align(1),
-    szLicensing: [128]CHAR align(1),
-    szFeatures: [512]CHAR align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const ACMDRIVERDETAILSW = extern struct {
-    cbStruct: u32 align(1),
-    fccType: u32 align(1),
-    fccComp: u32 align(1),
+pub const MIDIINCAPS2W = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
-    vdwACM: u32 align(1),
-    vdwDriver: u32 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
+};
+
+pub const MIDIINCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwSupport: u32 align(1),
+};
+
+pub const MIDIINCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwSupport: u32 align(1),
+};
+
+pub const MIDIOUTCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
+};
+
+pub const MIDIOUTCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
+};
+
+pub const MIDIOUTCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
+};
+
+pub const MIDIOUTCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
+};
+
+pub const MIDIPROPTEMPO = extern struct {
+    cbStruct: u32 align(1),
+    dwTempo: u32 align(1),
+};
+
+pub const MIDIPROPTIMEDIV = extern struct {
+    cbStruct: u32 align(1),
+    dwTimeDiv: u32 align(1),
+};
+
+pub const MIDISTRMBUFFVER = extern struct {
+    dwVersion: u32 align(1),
+    dwMid: u32 align(1),
+    dwOEMVersion: u32 align(1),
+};
+
+pub const MIXERCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
     fdwSupport: u32 align(1),
-    cFormatTags: u32 align(1),
-    cFilterTags: u32 align(1),
-    hicon: ?HICON align(1),
-    szShortName: [32]u16 align(1),
-    szLongName: [128]u16 align(1),
-    szCopyright: [80]u16 align(1),
-    szLicensing: [128]u16 align(1),
-    szFeatures: [512]u16 align(1),
+    cDestinations: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const ACMFORMATTAGDETAILSA = extern struct {
-    cbStruct: u32 align(1),
-    dwFormatTagIndex: u32 align(1),
-    dwFormatTag: u32 align(1),
-    cbFormatSize: u32 align(1),
+pub const MIXERCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
     fdwSupport: u32 align(1),
-    cStandardFormats: u32 align(1),
-    szFormatTag: [48]CHAR align(1),
+    cDestinations: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const ACMFORMATTAGDETAILSW = extern struct {
-    cbStruct: u32 align(1),
-    dwFormatTagIndex: u32 align(1),
-    dwFormatTag: u32 align(1),
-    cbFormatSize: u32 align(1),
+pub const MIXERCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
     fdwSupport: u32 align(1),
-    cStandardFormats: u32 align(1),
-    szFormatTag: [48]u16 align(1),
+    cDestinations: u32 align(1),
 };
 
-pub const ACMFORMATTAGENUMCBA = *const fn(
-    hadid: ?HACMDRIVERID,
-    paftd: ?*ACMFORMATTAGDETAILSA,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
-
-pub const ACMFORMATTAGENUMCBW = *const fn(
-    hadid: ?HACMDRIVERID,
-    paftd: ?*ACMFORMATTAGDETAILSW,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
-
-pub const ACMFORMATDETAILSA = extern struct {
-    cbStruct: u32 align(1),
-    dwFormatIndex: u32 align(1),
-    dwFormatTag: u32 align(1),
+pub const MIXERCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
     fdwSupport: u32 align(1),
-    pwfx: ?*WAVEFORMATEX align(1),
-    cbwfx: u32 align(1),
-    szFormat: [128]CHAR align(1),
+    cDestinations: u32 align(1),
 };
 
-pub const tACMFORMATDETAILSW = extern struct {
+pub const MIXERCONTROLA = extern struct {
     cbStruct: u32 align(1),
-    dwFormatIndex: u32 align(1),
-    dwFormatTag: u32 align(1),
-    fdwSupport: u32 align(1),
-    pwfx: ?*WAVEFORMATEX align(1),
-    cbwfx: u32 align(1),
-    szFormat: [128]u16 align(1),
+    dwControlID: u32 align(1),
+    dwControlType: u32 align(1),
+    fdwControl: u32 align(1),
+    cMultipleItems: u32 align(1),
+    szShortName: [16]CHAR align(1),
+    szName: [64]CHAR align(1),
+    Bounds: extern union {
+        Anonymous1: extern struct {
+            lMinimum: i32 align(1),
+            lMaximum: i32 align(1),
+        } align(1),
+        Anonymous2: extern struct {
+            dwMinimum: u32 align(1),
+            dwMaximum: u32 align(1),
+        } align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
+    Metrics: extern union {
+        cSteps: u32 align(1),
+        cbCustomData: u32 align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
 };
 
-pub const ACMFORMATENUMCBA = *const fn(
-    hadid: ?HACMDRIVERID,
-    pafd: ?*ACMFORMATDETAILSA,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
-
-pub const ACMFORMATENUMCBW = *const fn(
-    hadid: ?HACMDRIVERID,
-    pafd: ?*tACMFORMATDETAILSW,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
-
-pub const ACMFORMATCHOOSEHOOKPROCA = *const fn(
-    hwnd: ?HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) u32;
-
-pub const ACMFORMATCHOOSEHOOKPROCW = *const fn(
-    hwnd: ?HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) u32;
-
-pub const ACMFORMATCHOOSEA = extern struct {
+pub const MIXERCONTROLDETAILS = extern struct {
     cbStruct: u32 align(1),
-    fdwStyle: u32 align(1),
-    hwndOwner: ?HWND align(1),
-    pwfx: ?*WAVEFORMATEX align(1),
-    cbwfx: u32 align(1),
-    pszTitle: ?[*:0]const u8 align(1),
-    szFormatTag: [48]CHAR align(1),
-    szFormat: [128]CHAR align(1),
-    pszName: ?PSTR align(1),
-    cchName: u32 align(1),
-    fdwEnum: u32 align(1),
-    pwfxEnum: ?*WAVEFORMATEX align(1),
-    hInstance: ?HINSTANCE align(1),
-    pszTemplateName: ?[*:0]const u8 align(1),
-    lCustData: LPARAM align(1),
-    pfnHook: ?ACMFORMATCHOOSEHOOKPROCA align(1),
+    dwControlID: u32 align(1),
+    cChannels: u32 align(1),
+    Anonymous: extern union {
+        hwndOwner: ?HWND align(1),
+        cMultipleItems: u32 align(1),
+    } align(1),
+    cbDetails: u32 align(1),
+    paDetails: ?*anyopaque align(1),
 };
 
-pub const ACMFORMATCHOOSEW = extern struct {
+pub const MIXERCONTROLDETAILS_BOOLEAN = extern struct {
+    fValue: i32 align(1),
+};
+
+pub const MIXERCONTROLDETAILS_LISTTEXTA = extern struct {
+    dwParam1: u32 align(1),
+    dwParam2: u32 align(1),
+    szName: [64]CHAR align(1),
+};
+
+pub const MIXERCONTROLDETAILS_LISTTEXTW = extern struct {
+    dwParam1: u32 align(1),
+    dwParam2: u32 align(1),
+    szName: [64]u16 align(1),
+};
+
+pub const MIXERCONTROLDETAILS_SIGNED = extern struct {
+    lValue: i32 align(1),
+};
+
+pub const MIXERCONTROLDETAILS_UNSIGNED = extern struct {
+    dwValue: u32 align(1),
+};
+
+pub const MIXERCONTROLW = extern struct {
     cbStruct: u32 align(1),
-    fdwStyle: u32 align(1),
-    hwndOwner: ?HWND align(1),
-    pwfx: ?*WAVEFORMATEX align(1),
-    cbwfx: u32 align(1),
-    pszTitle: ?[*:0]const u16 align(1),
-    szFormatTag: [48]u16 align(1),
-    szFormat: [128]u16 align(1),
-    pszName: ?PWSTR align(1),
-    cchName: u32 align(1),
-    fdwEnum: u32 align(1),
-    pwfxEnum: ?*WAVEFORMATEX align(1),
-    hInstance: ?HINSTANCE align(1),
-    pszTemplateName: ?[*:0]const u16 align(1),
-    lCustData: LPARAM align(1),
-    pfnHook: ?ACMFORMATCHOOSEHOOKPROCW align(1),
+    dwControlID: u32 align(1),
+    dwControlType: u32 align(1),
+    fdwControl: u32 align(1),
+    cMultipleItems: u32 align(1),
+    szShortName: [16]u16 align(1),
+    szName: [64]u16 align(1),
+    Bounds: extern union {
+        Anonymous1: extern struct {
+            lMinimum: i32 align(1),
+            lMaximum: i32 align(1),
+        } align(1),
+        Anonymous2: extern struct {
+            dwMinimum: u32 align(1),
+            dwMaximum: u32 align(1),
+        } align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
+    Metrics: extern union {
+        cSteps: u32 align(1),
+        cbCustomData: u32 align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
 };
 
-pub const ACMFILTERTAGDETAILSA = extern struct {
+pub const MIXERLINE_COMPONENTTYPE = enum(u32) {
+    DST_DIGITAL = 1,
+    DST_HEADPHONES = 5,
+    DST_LINE = 2,
+    DST_MONITOR = 3,
+    DST_SPEAKERS = 4,
+    DST_TELEPHONE = 6,
+    DST_UNDEFINED = 0,
+    DST_VOICEIN = 8,
+    DST_WAVEIN = 7,
+    SRC_ANALOG = 4106,
+    SRC_AUXILIARY = 4105,
+    SRC_COMPACTDISC = 4101,
+    SRC_DIGITAL = 4097,
+    SRC_LINE = 4098,
+    SRC_MICROPHONE = 4099,
+    SRC_PCSPEAKER = 4103,
+    SRC_SYNTHESIZER = 4100,
+    SRC_TELEPHONE = 4102,
+    SRC_UNDEFINED = 4096,
+    SRC_WAVEOUT = 4104,
+};
+pub const MIXERLINE_COMPONENTTYPE_DST_DIGITAL = MIXERLINE_COMPONENTTYPE.DST_DIGITAL;
+pub const MIXERLINE_COMPONENTTYPE_DST_HEADPHONES = MIXERLINE_COMPONENTTYPE.DST_HEADPHONES;
+pub const MIXERLINE_COMPONENTTYPE_DST_LINE = MIXERLINE_COMPONENTTYPE.DST_LINE;
+pub const MIXERLINE_COMPONENTTYPE_DST_MONITOR = MIXERLINE_COMPONENTTYPE.DST_MONITOR;
+pub const MIXERLINE_COMPONENTTYPE_DST_SPEAKERS = MIXERLINE_COMPONENTTYPE.DST_SPEAKERS;
+pub const MIXERLINE_COMPONENTTYPE_DST_TELEPHONE = MIXERLINE_COMPONENTTYPE.DST_TELEPHONE;
+pub const MIXERLINE_COMPONENTTYPE_DST_UNDEFINED = MIXERLINE_COMPONENTTYPE.DST_UNDEFINED;
+pub const MIXERLINE_COMPONENTTYPE_DST_VOICEIN = MIXERLINE_COMPONENTTYPE.DST_VOICEIN;
+pub const MIXERLINE_COMPONENTTYPE_DST_WAVEIN = MIXERLINE_COMPONENTTYPE.DST_WAVEIN;
+pub const MIXERLINE_COMPONENTTYPE_SRC_ANALOG = MIXERLINE_COMPONENTTYPE.SRC_ANALOG;
+pub const MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY = MIXERLINE_COMPONENTTYPE.SRC_AUXILIARY;
+pub const MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC = MIXERLINE_COMPONENTTYPE.SRC_COMPACTDISC;
+pub const MIXERLINE_COMPONENTTYPE_SRC_DIGITAL = MIXERLINE_COMPONENTTYPE.SRC_DIGITAL;
+pub const MIXERLINE_COMPONENTTYPE_SRC_LINE = MIXERLINE_COMPONENTTYPE.SRC_LINE;
+pub const MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE = MIXERLINE_COMPONENTTYPE.SRC_MICROPHONE;
+pub const MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER = MIXERLINE_COMPONENTTYPE.SRC_PCSPEAKER;
+pub const MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER = MIXERLINE_COMPONENTTYPE.SRC_SYNTHESIZER;
+pub const MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = MIXERLINE_COMPONENTTYPE.SRC_TELEPHONE;
+pub const MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = MIXERLINE_COMPONENTTYPE.SRC_UNDEFINED;
+pub const MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = MIXERLINE_COMPONENTTYPE.SRC_WAVEOUT;
+
+pub const MIXERLINEA = extern struct {
     cbStruct: u32 align(1),
-    dwFilterTagIndex: u32 align(1),
-    dwFilterTag: u32 align(1),
-    cbFilterSize: u32 align(1),
-    fdwSupport: u32 align(1),
-    cStandardFilters: u32 align(1),
-    szFilterTag: [48]CHAR align(1),
+    dwDestination: u32 align(1),
+    dwSource: u32 align(1),
+    dwLineID: u32 align(1),
+    fdwLine: u32 align(1),
+    dwUser: usize align(1),
+    dwComponentType: MIXERLINE_COMPONENTTYPE align(1),
+    cChannels: u32 align(1),
+    cConnections: u32 align(1),
+    cControls: u32 align(1),
+    szShortName: [16]CHAR align(1),
+    szName: [64]CHAR align(1),
+    Target: extern struct {
+        dwType: u32 align(1),
+        dwDeviceID: u32 align(1),
+        wMid: u16 align(1),
+        wPid: u16 align(1),
+        vDriverVersion: u32 align(1),
+        szPname: [32]CHAR align(1),
+    } align(1),
 };
 
-pub const ACMFILTERTAGDETAILSW = extern struct {
+pub const MIXERLINECONTROLSA = extern struct {
     cbStruct: u32 align(1),
-    dwFilterTagIndex: u32 align(1),
-    dwFilterTag: u32 align(1),
-    cbFilterSize: u32 align(1),
-    fdwSupport: u32 align(1),
-    cStandardFilters: u32 align(1),
-    szFilterTag: [48]u16 align(1),
+    dwLineID: u32 align(1),
+    Anonymous: extern union {
+        dwControlID: u32 align(1),
+        dwControlType: u32 align(1),
+    } align(1),
+    cControls: u32 align(1),
+    cbmxctrl: u32 align(1),
+    pamxctrl: ?*MIXERCONTROLA align(1),
 };
 
-pub const ACMFILTERTAGENUMCBA = *const fn(
-    hadid: ?HACMDRIVERID,
-    paftd: ?*ACMFILTERTAGDETAILSA,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
-
-pub const ACMFILTERTAGENUMCBW = *const fn(
-    hadid: ?HACMDRIVERID,
-    paftd: ?*ACMFILTERTAGDETAILSW,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
-
-pub const ACMFILTERDETAILSA = extern struct {
+pub const MIXERLINECONTROLSW = extern struct {
     cbStruct: u32 align(1),
-    dwFilterIndex: u32 align(1),
-    dwFilterTag: u32 align(1),
-    fdwSupport: u32 align(1),
-    pwfltr: ?*WAVEFILTER align(1),
-    cbwfltr: u32 align(1),
-    szFilter: [128]CHAR align(1),
+    dwLineID: u32 align(1),
+    Anonymous: extern union {
+        dwControlID: u32 align(1),
+        dwControlType: u32 align(1),
+    } align(1),
+    cControls: u32 align(1),
+    cbmxctrl: u32 align(1),
+    pamxctrl: ?*MIXERCONTROLW align(1),
 };
 
-pub const ACMFILTERDETAILSW = extern struct {
+pub const MIXERLINEW = extern struct {
     cbStruct: u32 align(1),
-    dwFilterIndex: u32 align(1),
-    dwFilterTag: u32 align(1),
-    fdwSupport: u32 align(1),
-    pwfltr: ?*WAVEFILTER align(1),
-    cbwfltr: u32 align(1),
-    szFilter: [128]u16 align(1),
+    dwDestination: u32 align(1),
+    dwSource: u32 align(1),
+    dwLineID: u32 align(1),
+    fdwLine: u32 align(1),
+    dwUser: usize align(1),
+    dwComponentType: MIXERLINE_COMPONENTTYPE align(1),
+    cChannels: u32 align(1),
+    cConnections: u32 align(1),
+    cControls: u32 align(1),
+    szShortName: [16]u16 align(1),
+    szName: [64]u16 align(1),
+    Target: extern struct {
+        dwType: u32 align(1),
+        dwDeviceID: u32 align(1),
+        wMid: u16 align(1),
+        wPid: u16 align(1),
+        vDriverVersion: u32 align(1),
+        szPname: [32]u16 align(1),
+    } align(1),
 };
 
-pub const ACMFILTERENUMCBA = *const fn(
-    hadid: ?HACMDRIVERID,
-    pafd: ?*ACMFILTERDETAILSA,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
+const CLSID_MMDeviceEnumerator_Value = Guid.initString("bcde0395-e52f-467c-8e3d-c4579291692e");
+pub const CLSID_MMDeviceEnumerator = &CLSID_MMDeviceEnumerator_Value;
 
-pub const ACMFILTERENUMCBW = *const fn(
-    hadid: ?HACMDRIVERID,
-    pafd: ?*ACMFILTERDETAILSW,
-    dwInstance: usize,
-    fdwSupport: u32,
-) callconv(.winapi) BOOL;
+pub const PartType = enum(i32) {
+    Connector = 0,
+    Subunit = 1,
+};
+pub const Connector = PartType.Connector;
+pub const Subunit = PartType.Subunit;
 
-pub const ACMFILTERCHOOSEHOOKPROCA = *const fn(
-    hwnd: ?HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) u32;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PAudioStateMonitorCallback = *const fn() callconv(.winapi) void;
 
-pub const ACMFILTERCHOOSEHOOKPROCW = *const fn(
-    hwnd: ?HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) u32;
-
-pub const ACMFILTERCHOOSEA = extern struct {
-    cbStruct: u32 align(1),
-    fdwStyle: u32 align(1),
-    hwndOwner: ?HWND align(1),
-    pwfltr: ?*WAVEFILTER align(1),
-    cbwfltr: u32 align(1),
-    pszTitle: ?[*:0]const u8 align(1),
-    szFilterTag: [48]CHAR align(1),
-    szFilter: [128]CHAR align(1),
-    pszName: ?PSTR align(1),
-    cchName: u32 align(1),
-    fdwEnum: u32 align(1),
-    pwfltrEnum: ?*WAVEFILTER align(1),
-    hInstance: ?HINSTANCE align(1),
-    pszTemplateName: ?[*:0]const u8 align(1),
-    lCustData: LPARAM align(1),
-    pfnHook: ?ACMFILTERCHOOSEHOOKPROCA align(1),
+pub const PCMWAVEFORMAT = extern struct {
+    wf: WAVEFORMAT align(1),
+    wBitsPerSample: u16 align(1),
 };
 
-pub const ACMFILTERCHOOSEW = extern struct {
-    cbStruct: u32 align(1),
-    fdwStyle: u32 align(1),
-    hwndOwner: ?HWND align(1),
-    pwfltr: ?*WAVEFILTER align(1),
-    cbwfltr: u32 align(1),
-    pszTitle: ?[*:0]const u16 align(1),
-    szFilterTag: [48]u16 align(1),
-    szFilter: [128]u16 align(1),
-    pszName: ?PWSTR align(1),
-    cchName: u32 align(1),
-    fdwEnum: u32 align(1),
-    pwfltrEnum: ?*WAVEFILTER align(1),
-    hInstance: ?HINSTANCE align(1),
-    pszTemplateName: ?[*:0]const u16 align(1),
-    lCustData: LPARAM align(1),
-    pfnHook: ?ACMFILTERCHOOSEHOOKPROCW align(1),
+pub const PROCESS_LOOPBACK_MODE = enum(i32) {
+    INCLUDE_TARGET_PROCESS_TREE = 0,
+    EXCLUDE_TARGET_PROCESS_TREE = 1,
+};
+pub const PROCESS_LOOPBACK_MODE_INCLUDE_TARGET_PROCESS_TREE = PROCESS_LOOPBACK_MODE.INCLUDE_TARGET_PROCESS_TREE;
+pub const PROCESS_LOOPBACK_MODE_EXCLUDE_TARGET_PROCESS_TREE = PROCESS_LOOPBACK_MODE.EXCLUDE_TARGET_PROCESS_TREE;
+
+pub const SND_FLAGS = packed struct(u32) {
+    ASYNC: u1 = 0,
+    NODEFAULT: u1 = 0,
+    MEMORY: u1 = 0,
+    LOOP: u1 = 0,
+    NOSTOP: u1 = 0,
+    _5: u1 = 0,
+    PURGE: u1 = 0,
+    APPLICATION: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    NOWAIT: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    ALIAS: u1 = 0,
+    FILENAME: u1 = 0,
+    _18: u1 = 0,
+    SENTRY: u1 = 0,
+    _20: u1 = 0,
+    SYSTEM: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const SND_APPLICATION = SND_FLAGS{ .APPLICATION = 1 };
+pub const SND_ALIAS = SND_FLAGS{ .ALIAS = 1 };
+pub const SND_ALIAS_ID = SND_FLAGS{
+    .ALIAS = 1,
+    ._20 = 1,
+};
+pub const SND_FILENAME = SND_FLAGS{ .FILENAME = 1 };
+pub const SND_RESOURCE = SND_FLAGS{
+    .MEMORY = 1,
+    ._18 = 1,
+};
+pub const SND_ASYNC = SND_FLAGS{ .ASYNC = 1 };
+pub const SND_NODEFAULT = SND_FLAGS{ .NODEFAULT = 1 };
+pub const SND_LOOP = SND_FLAGS{ .LOOP = 1 };
+pub const SND_MEMORY = SND_FLAGS{ .MEMORY = 1 };
+pub const SND_NOSTOP = SND_FLAGS{ .NOSTOP = 1 };
+pub const SND_NOWAIT = SND_FLAGS{ .NOWAIT = 1 };
+pub const SND_PURGE = SND_FLAGS{ .PURGE = 1 };
+pub const SND_SENTRY = SND_FLAGS{ .SENTRY = 1 };
+pub const SND_SYNC = SND_FLAGS{ };
+pub const SND_SYSTEM = SND_FLAGS{ .SYSTEM = 1 };
+
+pub const SPATIAL_AUDIO_STREAM_OPTIONS = packed struct(u32) {
+    OFFLOAD: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const SPATIAL_AUDIO_STREAM_OPTIONS_NONE = SPATIAL_AUDIO_STREAM_OPTIONS{ };
+pub const SPATIAL_AUDIO_STREAM_OPTIONS_OFFLOAD = SPATIAL_AUDIO_STREAM_OPTIONS{ .OFFLOAD = 1 };
+
+pub const SpatialAudioClientActivationParams = extern struct {
+    tracingContextId: Guid,
+    appId: Guid,
+    majorVersion: i32,
+    minorVersion1: i32,
+    minorVersion2: i32,
+    minorVersion3: i32,
 };
 
+pub const SpatialAudioHrtfActivationParams = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay align(1),
+    Directivity: ?*SpatialAudioHrtfDirectivityUnion align(1),
+    Environment: ?*SpatialAudioHrtfEnvironmentType align(1),
+    Orientation: ?*f32 align(1),
+};
+
+pub const SpatialAudioHrtfActivationParams2 = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay align(1),
+    Directivity: ?*SpatialAudioHrtfDirectivityUnion align(1),
+    Environment: ?*SpatialAudioHrtfEnvironmentType align(1),
+    Orientation: ?*f32 align(1),
+    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
+};
+
+pub const SpatialAudioHrtfDirectivity = extern struct {
+    Type: SpatialAudioHrtfDirectivityType align(1),
+    Scaling: f32 align(1),
+};
+
+pub const SpatialAudioHrtfDirectivityCardioid = extern struct {
+    directivity: SpatialAudioHrtfDirectivity align(1),
+    Order: f32 align(1),
+};
+
+pub const SpatialAudioHrtfDirectivityCone = extern struct {
+    directivity: SpatialAudioHrtfDirectivity align(1),
+    InnerAngle: f32 align(1),
+    OuterAngle: f32 align(1),
+};
+
+pub const SpatialAudioHrtfDirectivityType = enum(i32) {
+    OmniDirectional = 0,
+    Cardioid = 1,
+    Cone = 2,
+};
+pub const SpatialAudioHrtfDirectivity_OmniDirectional = SpatialAudioHrtfDirectivityType.OmniDirectional;
+pub const SpatialAudioHrtfDirectivity_Cardioid = SpatialAudioHrtfDirectivityType.Cardioid;
+pub const SpatialAudioHrtfDirectivity_Cone = SpatialAudioHrtfDirectivityType.Cone;
+
+pub const SpatialAudioHrtfDirectivityUnion = extern union {
+    Cone: SpatialAudioHrtfDirectivityCone,
+    Cardiod: SpatialAudioHrtfDirectivityCardioid,
+    Omni: SpatialAudioHrtfDirectivity,
+};
+
+pub const SpatialAudioHrtfDistanceDecay = extern struct {
+    Type: SpatialAudioHrtfDistanceDecayType align(1),
+    MaxGain: f32 align(1),
+    MinGain: f32 align(1),
+    UnityGainDistance: f32 align(1),
+    CutoffDistance: f32 align(1),
+};
+
+pub const SpatialAudioHrtfDistanceDecayType = enum(i32) {
+    NaturalDecay = 0,
+    CustomDecay = 1,
+};
+pub const SpatialAudioHrtfDistanceDecay_NaturalDecay = SpatialAudioHrtfDistanceDecayType.NaturalDecay;
+pub const SpatialAudioHrtfDistanceDecay_CustomDecay = SpatialAudioHrtfDistanceDecayType.CustomDecay;
+
+pub const SpatialAudioHrtfEnvironmentType = enum(i32) {
+    Small = 0,
+    Medium = 1,
+    Large = 2,
+    Outdoors = 3,
+    Average = 4,
+};
+pub const SpatialAudioHrtfEnvironment_Small = SpatialAudioHrtfEnvironmentType.Small;
+pub const SpatialAudioHrtfEnvironment_Medium = SpatialAudioHrtfEnvironmentType.Medium;
+pub const SpatialAudioHrtfEnvironment_Large = SpatialAudioHrtfEnvironmentType.Large;
+pub const SpatialAudioHrtfEnvironment_Outdoors = SpatialAudioHrtfEnvironmentType.Outdoors;
+pub const SpatialAudioHrtfEnvironment_Average = SpatialAudioHrtfEnvironmentType.Average;
+
+pub const SpatialAudioMetadataCopyMode = enum(i32) {
+    Overwrite = 0,
+    Append = 1,
+    AppendMergeWithLast = 2,
+    AppendMergeWithFirst = 3,
+};
+pub const SpatialAudioMetadataCopy_Overwrite = SpatialAudioMetadataCopyMode.Overwrite;
+pub const SpatialAudioMetadataCopy_Append = SpatialAudioMetadataCopyMode.Append;
+pub const SpatialAudioMetadataCopy_AppendMergeWithLast = SpatialAudioMetadataCopyMode.AppendMergeWithLast;
+pub const SpatialAudioMetadataCopy_AppendMergeWithFirst = SpatialAudioMetadataCopyMode.AppendMergeWithFirst;
+
+pub const SpatialAudioMetadataItemsInfo = extern struct {
+    FrameCount: u16 align(1),
+    ItemCount: u16 align(1),
+    MaxItemCount: u16 align(1),
+    MaxValueBufferLength: u32 align(1),
+};
+
+pub const SpatialAudioMetadataWriterOverflowMode = enum(i32) {
+    Fail = 0,
+    MergeWithNew = 1,
+    MergeWithLast = 2,
+};
+pub const SpatialAudioMetadataWriterOverflow_Fail = SpatialAudioMetadataWriterOverflowMode.Fail;
+pub const SpatialAudioMetadataWriterOverflow_MergeWithNew = SpatialAudioMetadataWriterOverflowMode.MergeWithNew;
+pub const SpatialAudioMetadataWriterOverflow_MergeWithLast = SpatialAudioMetadataWriterOverflowMode.MergeWithLast;
+
+pub const SpatialAudioObjectRenderStreamActivationParams = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+};
+
+pub const SpatialAudioObjectRenderStreamActivationParams2 = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
+};
+
+pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    MetadataFormatId: Guid align(1),
+    MaxMetadataItemCount: u16 align(1),
+    MetadataActivationParams: ?*const PROPVARIANT align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+};
+
+pub const SpatialAudioObjectRenderStreamForMetadataActivationParams2 = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    MetadataFormatId: Guid align(1),
+    MaxMetadataItemCount: u32 align(1),
+    MetadataActivationParams: ?*const PROPVARIANT align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
+};
 
 pub const tACMDRVOPENDESCA = extern struct {
     cbStruct: u32 align(1),
@@ -4800,59 +4696,163 @@ pub const tACMDRVOPENDESCW = extern struct {
     dnDevNode: u32 align(1),
 };
 
-pub const ACMDRVSTREAMINSTANCE = extern struct {
+pub const tACMFORMATDETAILSW = extern struct {
     cbStruct: u32 align(1),
-    pwfxSrc: ?*WAVEFORMATEX align(1),
-    pwfxDst: ?*WAVEFORMATEX align(1),
-    pwfltr: ?*WAVEFILTER align(1),
-    dwCallback: usize align(1),
-    dwInstance: usize align(1),
-    fdwOpen: u32 align(1),
-    fdwDriver: u32 align(1),
-    dwDriver: usize align(1),
-    has: ?HACMSTREAM align(1),
+    dwFormatIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    szFormat: [128]u16 align(1),
 };
 
-pub const ACMDRVSTREAMHEADER = extern struct {
+pub const VOLUMEWAVEFILTER = extern struct {
+    wfltr: WAVEFILTER align(1),
+    dwVolume: u32 align(1),
+};
+
+pub const WAVEFILTER = extern struct {
     cbStruct: u32 align(1),
-    fdwStatus: u32 align(1),
+    dwFilterTag: u32 align(1),
+    fdwFilter: u32 align(1),
+    dwReserved: [5]u32 align(1),
+};
+
+pub const WAVEFORMAT = extern struct {
+    wFormatTag: u16 align(1),
+    nChannels: u16 align(1),
+    nSamplesPerSec: u32 align(1),
+    nAvgBytesPerSec: u32 align(1),
+    nBlockAlign: u16 align(1),
+};
+
+pub const WAVEFORMATEX = extern struct {
+    wFormatTag: u16 align(1),
+    nChannels: u16 align(1),
+    nSamplesPerSec: u32 align(1),
+    nAvgBytesPerSec: u32 align(1),
+    nBlockAlign: u16 align(1),
+    wBitsPerSample: u16 align(1),
+    cbSize: u16 align(1),
+};
+
+pub const WAVEFORMATEXTENSIBLE = extern struct {
+    Format: WAVEFORMATEX align(1),
+    Samples: extern union {
+        wValidBitsPerSample: u16 align(1),
+        wSamplesPerBlock: u16 align(1),
+        wReserved: u16 align(1),
+    } align(1),
+    dwChannelMask: u32 align(1),
+    SubFormat: Guid align(1),
+};
+
+pub const WAVEHDR = extern struct {
+    lpData: ?[*]u8 align(1),
+    dwBufferLength: u32 align(1),
+    dwBytesRecorded: u32 align(1),
     dwUser: usize align(1),
-    pbSrc: ?*u8 align(1),
-    cbSrcLength: u32 align(1),
-    cbSrcLengthUsed: u32 align(1),
-    dwSrcUser: usize align(1),
-    pbDst: ?*u8 align(1),
-    cbDstLength: u32 align(1),
-    cbDstLengthUsed: u32 align(1),
-    dwDstUser: usize align(1),
-    fdwConvert: u32 align(1),
-    padshNext: ?*ACMDRVSTREAMHEADER align(1),
-    fdwDriver: u32 align(1),
-    dwDriver: usize align(1),
-    fdwPrepared: u32 align(1),
-    dwPrepared: usize align(1),
-    pbPreparedSrc: ?*u8 align(1),
-    cbPreparedSrcLength: u32 align(1),
-    pbPreparedDst: ?*u8 align(1),
-    cbPreparedDstLength: u32 align(1),
+    dwFlags: u32 align(1),
+    dwLoops: u32 align(1),
+    lpNext: ?*WAVEHDR align(1),
+    reserved: usize align(1),
 };
 
-pub const ACMDRVSTREAMSIZE = extern struct {
-    cbStruct: u32 align(1),
-    fdwSize: u32 align(1),
-    cbSrcLength: u32 align(1),
-    cbDstLength: u32 align(1),
+pub const WAVEINCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const ACMDRVFORMATSUGGEST = extern struct {
-    cbStruct: u32 align(1),
-    fdwSuggest: u32 align(1),
-    pwfxSrc: ?*WAVEFORMATEX align(1),
-    cbwfxSrc: u32 align(1),
-    pwfxDst: ?*WAVEFORMATEX align(1),
-    cbwfxDst: u32 align(1),
+pub const WAVEINCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
+pub const WAVEINCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+};
+
+pub const WAVEINCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+};
+
+pub const WAVEOUTCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
+};
+
+pub const WAVEOUTCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
+};
+
+pub const WAVEOUTCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+};
+
+pub const WAVEOUTCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+};
 
 pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
@@ -4889,792 +4889,6 @@ pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
 // Section: Functions (158)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn CoRegisterMessageFilter(
-    lpMessageFilter: ?*IMessageFilter,
-    lplpMessageFilter: ?*?*IMessageFilter,
-) callconv(.winapi) HRESULT;
-
-pub extern "winmm" fn sndPlaySoundA(
-    pszSound: ?[*:0]const u8,
-    fuSound: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "winmm" fn sndPlaySoundW(
-    pszSound: ?[*:0]const u16,
-    fuSound: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "winmm" fn PlaySoundA(
-    pszSound: ?[*:0]const u8,
-    hmod: ?HINSTANCE,
-    fdwSound: SND_FLAGS,
-) callconv(.winapi) BOOL;
-
-pub extern "winmm" fn PlaySoundW(
-    pszSound: ?[*:0]const u16,
-    hmod: ?HINSTANCE,
-    fdwSound: SND_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutGetNumDevs(
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveOutGetDevCapsA(
-    uDeviceID: usize,
-    pwoc: ?*WAVEOUTCAPSA,
-    cbwoc: u32,
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveOutGetDevCapsW(
-    uDeviceID: usize,
-    pwoc: ?*WAVEOUTCAPSW,
-    cbwoc: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutGetVolume(
-    hwo: ?HWAVEOUT,
-    pdwVolume: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutSetVolume(
-    hwo: ?HWAVEOUT,
-    dwVolume: u32,
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveOutGetErrorTextA(
-    mmrError: u32,
-    pszText: [*:0]u8,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveOutGetErrorTextW(
-    mmrError: u32,
-    pszText: [*:0]u16,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutOpen(
-    phwo: ?*?HWAVEOUT,
-    uDeviceID: u32,
-    pwfx: ?*WAVEFORMATEX,
-    dwCallback: usize,
-    dwInstance: usize,
-    fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutClose(
-    hwo: ?HWAVEOUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutPrepareHeader(
-    hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutUnprepareHeader(
-    hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutWrite(
-    hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutPause(
-    hwo: ?HWAVEOUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutRestart(
-    hwo: ?HWAVEOUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutReset(
-    hwo: ?HWAVEOUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutBreakLoop(
-    hwo: ?HWAVEOUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutGetPosition(
-    hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pmmt: ?*MMTIME,
-    cbmmt: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutGetPitch(
-    hwo: ?HWAVEOUT,
-    pdwPitch: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutSetPitch(
-    hwo: ?HWAVEOUT,
-    dwPitch: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutGetPlaybackRate(
-    hwo: ?HWAVEOUT,
-    pdwRate: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutSetPlaybackRate(
-    hwo: ?HWAVEOUT,
-    dwRate: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutGetID(
-    hwo: ?HWAVEOUT,
-    puDeviceID: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutMessage(
-    hwo: ?HWAVEOUT,
-    uMsg: u32,
-    dw1: usize,
-    dw2: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInGetNumDevs(
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveInGetDevCapsA(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pwic: ?*WAVEINCAPSA,
-    cbwic: u32,
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveInGetDevCapsW(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pwic: ?*WAVEINCAPSW,
-    cbwic: u32,
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveInGetErrorTextA(
-    mmrError: u32,
-    pszText: [*:0]u8,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn waveInGetErrorTextW(
-    mmrError: u32,
-    pszText: [*:0]u16,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInOpen(
-    phwi: ?*?HWAVEIN,
-    uDeviceID: u32,
-    pwfx: ?*WAVEFORMATEX,
-    dwCallback: usize,
-    dwInstance: usize,
-    fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInClose(
-    hwi: ?HWAVEIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInPrepareHeader(
-    hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInUnprepareHeader(
-    hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInAddBuffer(
-    hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInStart(
-    hwi: ?HWAVEIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInStop(
-    hwi: ?HWAVEIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInReset(
-    hwi: ?HWAVEIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInGetPosition(
-    hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pmmt: ?*MMTIME,
-    cbmmt: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInGetID(
-    hwi: ?HWAVEIN,
-    puDeviceID: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInMessage(
-    hwi: ?HWAVEIN,
-    uMsg: u32,
-    dw1: usize,
-    dw2: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetNumDevs(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamOpen(
-    phms: ?*?HMIDISTRM,
-    puDeviceID: [*]u32,
-    cMidi: u32,
-    dwCallback: usize,
-    dwInstance: usize,
-    fdwOpen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamClose(
-    hms: ?HMIDISTRM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamProperty(
-    hms: ?HMIDISTRM,
-    lppropdata: ?*u8,
-    dwProperty: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamPosition(
-    hms: ?HMIDISTRM,
-    // TODO: what to do with BytesParamIndex 2?
-    lpmmt: ?*MMTIME,
-    cbmmt: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamOut(
-    hms: ?HMIDISTRM,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamPause(
-    hms: ?HMIDISTRM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamRestart(
-    hms: ?HMIDISTRM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiStreamStop(
-    hms: ?HMIDISTRM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiConnect(
-    hmi: ?HMIDI,
-    hmo: ?HMIDIOUT,
-    pReserved: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiDisconnect(
-    hmi: ?HMIDI,
-    hmo: ?HMIDIOUT,
-    pReserved: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetDevCapsA(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pmoc: ?*MIDIOUTCAPSA,
-    cbmoc: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetDevCapsW(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pmoc: ?*MIDIOUTCAPSW,
-    cbmoc: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetVolume(
-    hmo: ?HMIDIOUT,
-    pdwVolume: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutSetVolume(
-    hmo: ?HMIDIOUT,
-    dwVolume: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetErrorTextA(
-    mmrError: u32,
-    pszText: [*:0]u8,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetErrorTextW(
-    mmrError: u32,
-    pszText: [*:0]u16,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutOpen(
-    phmo: ?*?HMIDIOUT,
-    uDeviceID: u32,
-    dwCallback: usize,
-    dwInstance: usize,
-    fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutClose(
-    hmo: ?HMIDIOUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutPrepareHeader(
-    hmo: ?HMIDIOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutUnprepareHeader(
-    hmo: ?HMIDIOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutShortMsg(
-    hmo: ?HMIDIOUT,
-    dwMsg: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutLongMsg(
-    hmo: ?HMIDIOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutReset(
-    hmo: ?HMIDIOUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutCachePatches(
-    hmo: ?HMIDIOUT,
-    uBank: u32,
-    pwpa: *[128]u16,
-    fuCache: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutCacheDrumPatches(
-    hmo: ?HMIDIOUT,
-    uPatch: u32,
-    pwkya: *[128]u16,
-    fuCache: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetID(
-    hmo: ?HMIDIOUT,
-    puDeviceID: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutMessage(
-    hmo: ?HMIDIOUT,
-    uMsg: u32,
-    dw1: usize,
-    dw2: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInGetNumDevs(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInGetDevCapsA(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pmic: ?*MIDIINCAPSA,
-    cbmic: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInGetDevCapsW(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pmic: ?*MIDIINCAPSW,
-    cbmic: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInGetErrorTextA(
-    mmrError: u32,
-    pszText: [*:0]u8,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInGetErrorTextW(
-    mmrError: u32,
-    pszText: [*:0]u16,
-    cchText: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInOpen(
-    phmi: ?*?HMIDIIN,
-    uDeviceID: u32,
-    dwCallback: usize,
-    dwInstance: usize,
-    fdwOpen: MIDI_WAVE_OPEN_TYPE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInClose(
-    hmi: ?HMIDIIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInPrepareHeader(
-    hmi: ?HMIDIIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInUnprepareHeader(
-    hmi: ?HMIDIIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInAddBuffer(
-    hmi: ?HMIDIIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInStart(
-    hmi: ?HMIDIIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInStop(
-    hmi: ?HMIDIIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInReset(
-    hmi: ?HMIDIIN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInGetID(
-    hmi: ?HMIDIIN,
-    puDeviceID: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInMessage(
-    hmi: ?HMIDIIN,
-    uMsg: u32,
-    dw1: usize,
-    dw2: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn auxGetNumDevs(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn auxGetDevCapsA(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pac: ?*AUXCAPSA,
-    cbac: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn auxGetDevCapsW(
-    uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pac: ?*AUXCAPSW,
-    cbac: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn auxSetVolume(
-    uDeviceID: u32,
-    dwVolume: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn auxGetVolume(
-    uDeviceID: u32,
-    pdwVolume: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn auxOutMessage(
-    uDeviceID: u32,
-    uMsg: u32,
-    dw1: usize,
-    dw2: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetNumDevs(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetDevCapsA(
-    uMxId: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pmxcaps: ?*MIXERCAPSA,
-    cbmxcaps: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetDevCapsW(
-    uMxId: usize,
-    // TODO: what to do with BytesParamIndex 2?
-    pmxcaps: ?*MIXERCAPSW,
-    cbmxcaps: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerOpen(
-    phmx: ?*isize,
-    uMxId: u32,
-    dwCallback: usize,
-    dwInstance: usize,
-    fdwOpen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerClose(
-    hmx: ?HMIXER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerMessage(
-    hmx: ?HMIXER,
-    uMsg: u32,
-    dwParam1: usize,
-    dwParam2: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetLineInfoA(
-    hmxobj: ?HMIXEROBJ,
-    pmxl: ?*MIXERLINEA,
-    fdwInfo: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetLineInfoW(
-    hmxobj: ?HMIXEROBJ,
-    pmxl: ?*MIXERLINEW,
-    fdwInfo: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetID(
-    hmxobj: ?HMIXEROBJ,
-    puMxId: ?*u32,
-    fdwId: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetLineControlsA(
-    hmxobj: ?HMIXEROBJ,
-    pmxlc: ?*MIXERLINECONTROLSA,
-    fdwControls: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetLineControlsW(
-    hmxobj: ?HMIXEROBJ,
-    pmxlc: ?*MIXERLINECONTROLSW,
-    fdwControls: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetControlDetailsA(
-    hmxobj: ?HMIXEROBJ,
-    pmxcd: ?*MIXERCONTROLDETAILS,
-    fdwDetails: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetControlDetailsW(
-    hmxobj: ?HMIXEROBJ,
-    pmxcd: ?*MIXERCONTROLDETAILS,
-    fdwDetails: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerSetControlDetails(
-    hmxobj: ?HMIXEROBJ,
-    pmxcd: ?*MIXERCONTROLDETAILS,
-    fdwDetails: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "mmdevapi" fn ActivateAudioInterfaceAsync(
-    deviceInterfacePath: ?[*:0]const u16,
-    riid: ?*const Guid,
-    activationParams: ?*PROPVARIANT,
-    completionHandler: ?*IActivateAudioInterfaceCompletionHandler,
-    activationOperation: **IActivateAudioInterfaceAsyncOperation,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitor(
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategory(
-    category: AUDIO_STREAM_CATEGORY,
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceRole(
-    category: AUDIO_STREAM_CATEGORY,
-    role: ERole,
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceId(
-    category: AUDIO_STREAM_CATEGORY,
-    deviceId: ?[*:0]const u16,
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitor(
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategory(
-    category: AUDIO_STREAM_CATEGORY,
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceRole(
-    category: AUDIO_STREAM_CATEGORY,
-    role: ERole,
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceId(
-    category: AUDIO_STREAM_CATEGORY,
-    deviceId: ?[*:0]const u16,
-    audioStateMonitor: ?*?*IAudioStateMonitor,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmGetVersion(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmMetrics(
-    hao: ?HACMOBJ,
-    uMetric: u32,
-    pMetric: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmDriverEnum(
-    fnCallback: ?ACMDRIVERENUMCB,
-    dwInstance: usize,
-    fdwEnum: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmDriverID(
-    hao: ?HACMOBJ,
-    phadid: ?*isize,
-    fdwDriverID: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverAddA(
     phadid: ?*isize,
     hinstModule: ?HINSTANCE,
@@ -5693,37 +4907,9 @@ pub extern "msacm32" fn acmDriverAddW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmDriverRemove(
-    hadid: ?HACMDRIVERID,
-    fdwRemove: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmDriverOpen(
-    phad: ?*isize,
-    hadid: ?HACMDRIVERID,
-    fdwOpen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverClose(
     had: ?HACMDRIVER,
     fdwClose: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmDriverMessage(
-    had: ?HACMDRIVER,
-    uMsg: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmDriverPriority(
-    hadid: ?HACMDRIVERID,
-    dwPriority: u32,
-    fdwPriority: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5741,35 +4927,129 @@ pub extern "msacm32" fn acmDriverDetailsW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFormatTagDetailsA(
-    had: ?HACMDRIVER,
-    paftd: ?*ACMFORMATTAGDETAILSA,
-    fdwDetails: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFormatTagDetailsW(
-    had: ?HACMDRIVER,
-    paftd: ?*ACMFORMATTAGDETAILSW,
-    fdwDetails: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFormatTagEnumA(
-    had: ?HACMDRIVER,
-    paftd: ?*ACMFORMATTAGDETAILSA,
-    fnCallback: ?ACMFORMATTAGENUMCBA,
+pub extern "msacm32" fn acmDriverEnum(
+    fnCallback: ?ACMDRIVERENUMCB,
     dwInstance: usize,
     fdwEnum: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFormatTagEnumW(
+pub extern "msacm32" fn acmDriverID(
+    hao: ?HACMOBJ,
+    phadid: ?*isize,
+    fdwDriverID: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmDriverMessage(
     had: ?HACMDRIVER,
-    paftd: ?*ACMFORMATTAGDETAILSW,
-    fnCallback: ?ACMFORMATTAGENUMCBW,
+    uMsg: u32,
+    lParam1: LPARAM,
+    lParam2: LPARAM,
+) callconv(.winapi) LRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmDriverOpen(
+    phad: ?*isize,
+    hadid: ?HACMDRIVERID,
+    fdwOpen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmDriverPriority(
+    hadid: ?HACMDRIVERID,
+    dwPriority: u32,
+    fdwPriority: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmDriverRemove(
+    hadid: ?HACMDRIVERID,
+    fdwRemove: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterChooseA(
+    pafltrc: ?*ACMFILTERCHOOSEA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterChooseW(
+    pafltrc: ?*ACMFILTERCHOOSEW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterDetailsA(
+    had: ?HACMDRIVER,
+    pafd: ?*ACMFILTERDETAILSA,
+    fdwDetails: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterDetailsW(
+    had: ?HACMDRIVER,
+    pafd: ?*ACMFILTERDETAILSW,
+    fdwDetails: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterEnumA(
+    had: ?HACMDRIVER,
+    pafd: ?*ACMFILTERDETAILSA,
+    fnCallback: ?ACMFILTERENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterEnumW(
+    had: ?HACMDRIVER,
+    pafd: ?*ACMFILTERDETAILSW,
+    fnCallback: ?ACMFILTERENUMCBW,
+    dwInstance: usize,
+    fdwEnum: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterTagDetailsA(
+    had: ?HACMDRIVER,
+    paftd: ?*ACMFILTERTAGDETAILSA,
+    fdwDetails: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterTagDetailsW(
+    had: ?HACMDRIVER,
+    paftd: ?*ACMFILTERTAGDETAILSW,
+    fdwDetails: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterTagEnumA(
+    had: ?HACMDRIVER,
+    paftd: ?*ACMFILTERTAGDETAILSA,
+    fnCallback: ?ACMFILTERTAGENUMCBA,
+    dwInstance: usize,
+    fdwEnum: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFilterTagEnumW(
+    had: ?HACMDRIVER,
+    paftd: ?*ACMFILTERTAGDETAILSW,
+    fnCallback: ?ACMFILTERTAGENUMCBW,
+    dwInstance: usize,
+    fdwEnum: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFormatChooseA(
+    pafmtc: ?*ACMFORMATCHOOSEA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmFormatChooseW(
+    pafmtc: ?*ACMFORMATCHOOSEW,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5814,87 +5094,67 @@ pub extern "msacm32" fn acmFormatSuggest(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFormatChooseA(
-    pafmtc: ?*ACMFORMATCHOOSEA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFormatChooseW(
-    pafmtc: ?*ACMFORMATCHOOSEW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterTagDetailsA(
+pub extern "msacm32" fn acmFormatTagDetailsA(
     had: ?HACMDRIVER,
-    paftd: ?*ACMFILTERTAGDETAILSA,
+    paftd: ?*ACMFORMATTAGDETAILSA,
     fdwDetails: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterTagDetailsW(
+pub extern "msacm32" fn acmFormatTagDetailsW(
     had: ?HACMDRIVER,
-    paftd: ?*ACMFILTERTAGDETAILSW,
+    paftd: ?*ACMFORMATTAGDETAILSW,
     fdwDetails: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterTagEnumA(
+pub extern "msacm32" fn acmFormatTagEnumA(
     had: ?HACMDRIVER,
-    paftd: ?*ACMFILTERTAGDETAILSA,
-    fnCallback: ?ACMFILTERTAGENUMCBA,
+    paftd: ?*ACMFORMATTAGDETAILSA,
+    fnCallback: ?ACMFORMATTAGENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterTagEnumW(
+pub extern "msacm32" fn acmFormatTagEnumW(
     had: ?HACMDRIVER,
-    paftd: ?*ACMFILTERTAGDETAILSW,
-    fnCallback: ?ACMFILTERTAGENUMCBW,
+    paftd: ?*ACMFORMATTAGDETAILSW,
+    fnCallback: ?ACMFORMATTAGENUMCBW,
     dwInstance: usize,
     fdwEnum: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterDetailsA(
-    had: ?HACMDRIVER,
-    pafd: ?*ACMFILTERDETAILSA,
-    fdwDetails: u32,
+pub extern "msacm32" fn acmGetVersion(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterDetailsW(
-    had: ?HACMDRIVER,
-    pafd: ?*ACMFILTERDETAILSW,
-    fdwDetails: u32,
+pub extern "msacm32" fn acmMetrics(
+    hao: ?HACMOBJ,
+    uMetric: u32,
+    pMetric: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterEnumA(
-    had: ?HACMDRIVER,
-    pafd: ?*ACMFILTERDETAILSA,
-    fnCallback: ?ACMFILTERENUMCBA,
-    dwInstance: usize,
-    fdwEnum: u32,
+pub extern "msacm32" fn acmStreamClose(
+    has: ?HACMSTREAM,
+    fdwClose: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterEnumW(
-    had: ?HACMDRIVER,
-    pafd: ?*ACMFILTERDETAILSW,
-    fnCallback: ?ACMFILTERENUMCBW,
-    dwInstance: usize,
-    fdwEnum: u32,
+pub extern "msacm32" fn acmStreamConvert(
+    has: ?HACMSTREAM,
+    pash: ?*ACMSTREAMHEADER,
+    fdwConvert: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterChooseA(
-    pafltrc: ?*ACMFILTERCHOOSEA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmFilterChooseW(
-    pafltrc: ?*ACMFILTERCHOOSEW,
+pub extern "msacm32" fn acmStreamMessage(
+    has: ?HACMSTREAM,
+    uMsg: u32,
+    lParam1: LPARAM,
+    lParam2: LPARAM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5910,9 +5170,16 @@ pub extern "msacm32" fn acmStreamOpen(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmStreamClose(
+pub extern "msacm32" fn acmStreamPrepareHeader(
     has: ?HACMSTREAM,
-    fdwClose: u32,
+    pash: ?*ACMSTREAMHEADER,
+    fdwPrepare: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "msacm32" fn acmStreamReset(
+    has: ?HACMSTREAM,
+    fdwReset: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5924,156 +5191,777 @@ pub extern "msacm32" fn acmStreamSize(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmStreamReset(
-    has: ?HACMSTREAM,
-    fdwReset: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmStreamMessage(
-    has: ?HACMSTREAM,
-    uMsg: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmStreamConvert(
-    has: ?HACMSTREAM,
-    pash: ?*ACMSTREAMHEADER,
-    fdwConvert: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmStreamPrepareHeader(
-    has: ?HACMSTREAM,
-    pash: ?*ACMSTREAMHEADER,
-    fdwPrepare: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmStreamUnprepareHeader(
     has: ?HACMSTREAM,
     pash: ?*ACMSTREAMHEADER,
     fdwUnprepare: u32,
 ) callconv(.winapi) u32;
 
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "mmdevapi" fn ActivateAudioInterfaceAsync(
+    deviceInterfacePath: ?[*:0]const u16,
+    riid: ?*const Guid,
+    activationParams: ?*PROPVARIANT,
+    completionHandler: ?*IActivateAudioInterfaceCompletionHandler,
+    activationOperation: **IActivateAudioInterfaceAsyncOperation,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn auxGetDevCapsA(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pac: ?*AUXCAPSA,
+    cbac: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn auxGetDevCapsW(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pac: ?*AUXCAPSW,
+    cbac: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn auxGetNumDevs(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn auxGetVolume(
+    uDeviceID: u32,
+    pdwVolume: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn auxOutMessage(
+    uDeviceID: u32,
+    uMsg: u32,
+    dw1: usize,
+    dw2: usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn auxSetVolume(
+    uDeviceID: u32,
+    dwVolume: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn CoRegisterMessageFilter(
+    lpMessageFilter: ?*IMessageFilter,
+    lplpMessageFilter: ?*?*IMessageFilter,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitor(
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategory(
+    category: AUDIO_STREAM_CATEGORY,
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceId(
+    category: AUDIO_STREAM_CATEGORY,
+    deviceId: ?[*:0]const u16,
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceRole(
+    category: AUDIO_STREAM_CATEGORY,
+    role: ERole,
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitor(
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategory(
+    category: AUDIO_STREAM_CATEGORY,
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceId(
+    category: AUDIO_STREAM_CATEGORY,
+    deviceId: ?[*:0]const u16,
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceRole(
+    category: AUDIO_STREAM_CATEGORY,
+    role: ERole,
+    audioStateMonitor: ?*?*IAudioStateMonitor,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiConnect(
+    hmi: ?HMIDI,
+    hmo: ?HMIDIOUT,
+    pReserved: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiDisconnect(
+    hmi: ?HMIDI,
+    hmo: ?HMIDIOUT,
+    pReserved: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInAddBuffer(
+    hmi: ?HMIDIIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInClose(
+    hmi: ?HMIDIIN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInGetDevCapsA(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pmic: ?*MIDIINCAPSA,
+    cbmic: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInGetDevCapsW(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pmic: ?*MIDIINCAPSW,
+    cbmic: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInGetErrorTextA(
+    mmrError: u32,
+    pszText: [*:0]u8,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInGetErrorTextW(
+    mmrError: u32,
+    pszText: [*:0]u16,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInGetID(
+    hmi: ?HMIDIIN,
+    puDeviceID: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInGetNumDevs(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInMessage(
+    hmi: ?HMIDIIN,
+    uMsg: u32,
+    dw1: usize,
+    dw2: usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInOpen(
+    phmi: ?*?HMIDIIN,
+    uDeviceID: u32,
+    dwCallback: usize,
+    dwInstance: usize,
+    fdwOpen: MIDI_WAVE_OPEN_TYPE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInPrepareHeader(
+    hmi: ?HMIDIIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInReset(
+    hmi: ?HMIDIIN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInStart(
+    hmi: ?HMIDIIN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInStop(
+    hmi: ?HMIDIIN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInUnprepareHeader(
+    hmi: ?HMIDIIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutCacheDrumPatches(
+    hmo: ?HMIDIOUT,
+    uPatch: u32,
+    pwkya: *[128]u16,
+    fuCache: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutCachePatches(
+    hmo: ?HMIDIOUT,
+    uBank: u32,
+    pwpa: *[128]u16,
+    fuCache: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutClose(
+    hmo: ?HMIDIOUT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutGetDevCapsA(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pmoc: ?*MIDIOUTCAPSA,
+    cbmoc: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutGetDevCapsW(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pmoc: ?*MIDIOUTCAPSW,
+    cbmoc: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutGetErrorTextA(
+    mmrError: u32,
+    pszText: [*:0]u8,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutGetErrorTextW(
+    mmrError: u32,
+    pszText: [*:0]u16,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutGetID(
+    hmo: ?HMIDIOUT,
+    puDeviceID: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutGetNumDevs(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutGetVolume(
+    hmo: ?HMIDIOUT,
+    pdwVolume: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutLongMsg(
+    hmo: ?HMIDIOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutMessage(
+    hmo: ?HMIDIOUT,
+    uMsg: u32,
+    dw1: usize,
+    dw2: usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutOpen(
+    phmo: ?*?HMIDIOUT,
+    uDeviceID: u32,
+    dwCallback: usize,
+    dwInstance: usize,
+    fdwOpen: MIDI_WAVE_OPEN_TYPE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutPrepareHeader(
+    hmo: ?HMIDIOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutReset(
+    hmo: ?HMIDIOUT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutSetVolume(
+    hmo: ?HMIDIOUT,
+    dwVolume: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutShortMsg(
+    hmo: ?HMIDIOUT,
+    dwMsg: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutUnprepareHeader(
+    hmo: ?HMIDIOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamClose(
+    hms: ?HMIDISTRM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamOpen(
+    phms: ?*?HMIDISTRM,
+    puDeviceID: [*]u32,
+    cMidi: u32,
+    dwCallback: usize,
+    dwInstance: usize,
+    fdwOpen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamOut(
+    hms: ?HMIDISTRM,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamPause(
+    hms: ?HMIDISTRM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamPosition(
+    hms: ?HMIDISTRM,
+    // TODO: what to do with BytesParamIndex 2?
+    lpmmt: ?*MMTIME,
+    cbmmt: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamProperty(
+    hms: ?HMIDISTRM,
+    lppropdata: ?*u8,
+    dwProperty: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamRestart(
+    hms: ?HMIDISTRM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiStreamStop(
+    hms: ?HMIDISTRM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerClose(
+    hmx: ?HMIXER,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetControlDetailsA(
+    hmxobj: ?HMIXEROBJ,
+    pmxcd: ?*MIXERCONTROLDETAILS,
+    fdwDetails: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetControlDetailsW(
+    hmxobj: ?HMIXEROBJ,
+    pmxcd: ?*MIXERCONTROLDETAILS,
+    fdwDetails: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetDevCapsA(
+    uMxId: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pmxcaps: ?*MIXERCAPSA,
+    cbmxcaps: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetDevCapsW(
+    uMxId: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pmxcaps: ?*MIXERCAPSW,
+    cbmxcaps: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetID(
+    hmxobj: ?HMIXEROBJ,
+    puMxId: ?*u32,
+    fdwId: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetLineControlsA(
+    hmxobj: ?HMIXEROBJ,
+    pmxlc: ?*MIXERLINECONTROLSA,
+    fdwControls: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetLineControlsW(
+    hmxobj: ?HMIXEROBJ,
+    pmxlc: ?*MIXERLINECONTROLSW,
+    fdwControls: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetLineInfoA(
+    hmxobj: ?HMIXEROBJ,
+    pmxl: ?*MIXERLINEA,
+    fdwInfo: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetLineInfoW(
+    hmxobj: ?HMIXEROBJ,
+    pmxl: ?*MIXERLINEW,
+    fdwInfo: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerGetNumDevs(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerMessage(
+    hmx: ?HMIXER,
+    uMsg: u32,
+    dwParam1: usize,
+    dwParam2: usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerOpen(
+    phmx: ?*isize,
+    uMxId: u32,
+    dwCallback: usize,
+    dwInstance: usize,
+    fdwOpen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn mixerSetControlDetails(
+    hmxobj: ?HMIXEROBJ,
+    pmxcd: ?*MIXERCONTROLDETAILS,
+    fdwDetails: u32,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn PlaySoundA(
+    pszSound: ?[*:0]const u8,
+    hmod: ?HINSTANCE,
+    fdwSound: SND_FLAGS,
+) callconv(.winapi) BOOL;
+
+pub extern "winmm" fn PlaySoundW(
+    pszSound: ?[*:0]const u16,
+    hmod: ?HINSTANCE,
+    fdwSound: SND_FLAGS,
+) callconv(.winapi) BOOL;
+
+pub extern "winmm" fn sndPlaySoundA(
+    pszSound: ?[*:0]const u8,
+    fuSound: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "winmm" fn sndPlaySoundW(
+    pszSound: ?[*:0]const u16,
+    fuSound: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInAddBuffer(
+    hwi: ?HWAVEIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInClose(
+    hwi: ?HWAVEIN,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveInGetDevCapsA(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pwic: ?*WAVEINCAPSA,
+    cbwic: u32,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveInGetDevCapsW(
+    uDeviceID: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    pwic: ?*WAVEINCAPSW,
+    cbwic: u32,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveInGetErrorTextA(
+    mmrError: u32,
+    pszText: [*:0]u8,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveInGetErrorTextW(
+    mmrError: u32,
+    pszText: [*:0]u16,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInGetID(
+    hwi: ?HWAVEIN,
+    puDeviceID: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInGetNumDevs(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInGetPosition(
+    hwi: ?HWAVEIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pmmt: ?*MMTIME,
+    cbmmt: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInMessage(
+    hwi: ?HWAVEIN,
+    uMsg: u32,
+    dw1: usize,
+    dw2: usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInOpen(
+    phwi: ?*?HWAVEIN,
+    uDeviceID: u32,
+    pwfx: ?*WAVEFORMATEX,
+    dwCallback: usize,
+    dwInstance: usize,
+    fdwOpen: MIDI_WAVE_OPEN_TYPE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInPrepareHeader(
+    hwi: ?HWAVEIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInReset(
+    hwi: ?HWAVEIN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInStart(
+    hwi: ?HWAVEIN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInStop(
+    hwi: ?HWAVEIN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInUnprepareHeader(
+    hwi: ?HWAVEIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutBreakLoop(
+    hwo: ?HWAVEOUT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutClose(
+    hwo: ?HWAVEOUT,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveOutGetDevCapsA(
+    uDeviceID: usize,
+    pwoc: ?*WAVEOUTCAPSA,
+    cbwoc: u32,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveOutGetDevCapsW(
+    uDeviceID: usize,
+    pwoc: ?*WAVEOUTCAPSW,
+    cbwoc: u32,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveOutGetErrorTextA(
+    mmrError: u32,
+    pszText: [*:0]u8,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+pub extern "winmm" fn waveOutGetErrorTextW(
+    mmrError: u32,
+    pszText: [*:0]u16,
+    cchText: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutGetID(
+    hwo: ?HWAVEOUT,
+    puDeviceID: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutGetNumDevs(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutGetPitch(
+    hwo: ?HWAVEOUT,
+    pdwPitch: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutGetPlaybackRate(
+    hwo: ?HWAVEOUT,
+    pdwRate: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutGetPosition(
+    hwo: ?HWAVEOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pmmt: ?*MMTIME,
+    cbmmt: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutGetVolume(
+    hwo: ?HWAVEOUT,
+    pdwVolume: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutMessage(
+    hwo: ?HWAVEOUT,
+    uMsg: u32,
+    dw1: usize,
+    dw2: usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutOpen(
+    phwo: ?*?HWAVEOUT,
+    uDeviceID: u32,
+    pwfx: ?*WAVEFORMATEX,
+    dwCallback: usize,
+    dwInstance: usize,
+    fdwOpen: MIDI_WAVE_OPEN_TYPE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutPause(
+    hwo: ?HWAVEOUT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutPrepareHeader(
+    hwo: ?HWAVEOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutReset(
+    hwo: ?HWAVEOUT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutRestart(
+    hwo: ?HWAVEOUT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutSetPitch(
+    hwo: ?HWAVEOUT,
+    dwPitch: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutSetPlaybackRate(
+    hwo: ?HWAVEOUT,
+    dwRate: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutSetVolume(
+    hwo: ?HWAVEOUT,
+    dwVolume: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutUnprepareHeader(
+    hwo: ?HWAVEOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutWrite(
+    hwo: ?HWAVEOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(.winapi) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (56)
 //--------------------------------------------------------------------------------
-pub const WAVEOUTCAPS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WAVEOUTCAPSA,
-    .wide => @This().WAVEOUTCAPSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WAVEOUTCAPS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WAVEOUTCAPS2 = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WAVEOUTCAPS2A,
-    .wide => @This().WAVEOUTCAPS2W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WAVEOUTCAPS2' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WAVEINCAPS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WAVEINCAPSA,
-    .wide => @This().WAVEINCAPSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WAVEINCAPS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WAVEINCAPS2 = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WAVEINCAPS2A,
-    .wide => @This().WAVEINCAPS2W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WAVEINCAPS2' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIDIOUTCAPS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIDIOUTCAPSA,
-    .wide => @This().MIDIOUTCAPSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIDIOUTCAPS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIDIOUTCAPS2 = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIDIOUTCAPS2A,
-    .wide => @This().MIDIOUTCAPS2W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIDIOUTCAPS2' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIDIINCAPS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIDIINCAPSA,
-    .wide => @This().MIDIINCAPSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIDIINCAPS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIDIINCAPS2 = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIDIINCAPS2A,
-    .wide => @This().MIDIINCAPS2W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIDIINCAPS2' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AUXCAPS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AUXCAPSA,
-    .wide => @This().AUXCAPSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AUXCAPS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AUXCAPS2 = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AUXCAPS2A,
-    .wide => @This().AUXCAPS2W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AUXCAPS2' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIXERCAPS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIXERCAPSA,
-    .wide => @This().MIXERCAPSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIXERCAPS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIXERCAPS2 = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIXERCAPS2A,
-    .wide => @This().MIXERCAPS2W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIXERCAPS2' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIXERLINE = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIXERLINEA,
-    .wide => @This().MIXERLINEW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIXERLINE' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIXERCONTROL = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIXERCONTROLA,
-    .wide => @This().MIXERCONTROLW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIXERCONTROL' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIXERLINECONTROLS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIXERLINECONTROLSA,
-    .wide => @This().MIXERLINECONTROLSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIXERLINECONTROLS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MIXERCONTROLDETAILS_LISTTEXT = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().MIXERCONTROLDETAILS_LISTTEXTA,
-    .wide => @This().MIXERCONTROLDETAILS_LISTTEXTW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MIXERCONTROLDETAILS_LISTTEXT' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const ACMDRIVERDETAILS = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().ACMDRIVERDETAILSA,
     .wide => @This().ACMDRIVERDETAILSW,
@@ -6081,53 +5969,18 @@ pub const ACMDRIVERDETAILS = switch (@import("../zig.zig").unicode_mode) {
         "'ACMDRIVERDETAILS' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ACMFORMATTAGDETAILS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFORMATTAGDETAILSA,
-    .wide => @This().ACMFORMATTAGDETAILSW,
+pub const ACMFILTERCHOOSE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERCHOOSEA,
+    .wide => @This().ACMFILTERCHOOSEW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFORMATTAGDETAILS' requires that UNICODE be set to true or false in the root module",
+        "'ACMFILTERCHOOSE' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ACMFORMATTAGENUMCB = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFORMATTAGENUMCBA,
-    .wide => @This().ACMFORMATTAGENUMCBW,
+pub const ACMFILTERCHOOSEHOOKPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERCHOOSEHOOKPROCA,
+    .wide => @This().ACMFILTERCHOOSEHOOKPROCW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFORMATTAGENUMCB' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACMFORMATENUMCB = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFORMATENUMCBA,
-    .wide => @This().ACMFORMATENUMCBW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFORMATENUMCB' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACMFORMATCHOOSEHOOKPROC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFORMATCHOOSEHOOKPROCA,
-    .wide => @This().ACMFORMATCHOOSEHOOKPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFORMATCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACMFORMATCHOOSE = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFORMATCHOOSEA,
-    .wide => @This().ACMFORMATCHOOSEW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFORMATCHOOSE' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACMFILTERTAGDETAILS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFILTERTAGDETAILSA,
-    .wide => @This().ACMFILTERTAGDETAILSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFILTERTAGDETAILS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACMFILTERTAGENUMCB = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFILTERTAGENUMCBA,
-    .wide => @This().ACMFILTERTAGENUMCBW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFILTERTAGENUMCB' requires that UNICODE be set to true or false in the root module",
+        "'ACMFILTERCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ACMFILTERDETAILS = switch (@import("../zig.zig").unicode_mode) {
@@ -6144,18 +5997,137 @@ pub const ACMFILTERENUMCB = switch (@import("../zig.zig").unicode_mode) {
         "'ACMFILTERENUMCB' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ACMFILTERCHOOSEHOOKPROC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFILTERCHOOSEHOOKPROCA,
-    .wide => @This().ACMFILTERCHOOSEHOOKPROCW,
+pub const ACMFILTERTAGDETAILS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERTAGDETAILSA,
+    .wide => @This().ACMFILTERTAGDETAILSW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFILTERCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module",
+        "'ACMFILTERTAGDETAILS' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ACMFILTERCHOOSE = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACMFILTERCHOOSEA,
-    .wide => @This().ACMFILTERCHOOSEW,
+pub const ACMFILTERTAGENUMCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFILTERTAGENUMCBA,
+    .wide => @This().ACMFILTERTAGENUMCBW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACMFILTERCHOOSE' requires that UNICODE be set to true or false in the root module",
+        "'ACMFILTERTAGENUMCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATCHOOSE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATCHOOSEA,
+    .wide => @This().ACMFORMATCHOOSEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATCHOOSE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATCHOOSEHOOKPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATCHOOSEHOOKPROCA,
+    .wide => @This().ACMFORMATCHOOSEHOOKPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATENUMCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATENUMCBA,
+    .wide => @This().ACMFORMATENUMCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATENUMCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATTAGDETAILS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATTAGDETAILSA,
+    .wide => @This().ACMFORMATTAGDETAILSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATTAGDETAILS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACMFORMATTAGENUMCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMFORMATTAGENUMCBA,
+    .wide => @This().ACMFORMATTAGENUMCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMFORMATTAGENUMCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AUXCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AUXCAPS2A,
+    .wide => @This().AUXCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AUXCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AUXCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AUXCAPSA,
+    .wide => @This().AUXCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AUXCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIINCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIINCAPS2A,
+    .wide => @This().MIDIINCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIINCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIINCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIINCAPSA,
+    .wide => @This().MIDIINCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIINCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIOUTCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIOUTCAPS2A,
+    .wide => @This().MIDIOUTCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIOUTCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIDIOUTCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIDIOUTCAPSA,
+    .wide => @This().MIDIOUTCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIDIOUTCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCAPS2A,
+    .wide => @This().MIXERCAPS2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCAPS2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCAPSA,
+    .wide => @This().MIXERCAPSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCAPS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCONTROL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCONTROLA,
+    .wide => @This().MIXERCONTROLW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCONTROL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERCONTROLDETAILS_LISTTEXT = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERCONTROLDETAILS_LISTTEXTA,
+    .wide => @This().MIXERCONTROLDETAILS_LISTTEXTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERCONTROLDETAILS_LISTTEXT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERLINE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERLINEA,
+    .wide => @This().MIXERLINEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERLINE' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const MIXERLINECONTROLS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().MIXERLINECONTROLSA,
+    .wide => @This().MIXERLINECONTROLSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'MIXERLINECONTROLS' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const tACMDRVOPENDESC = switch (@import("../zig.zig").unicode_mode) {
@@ -6165,109 +6137,32 @@ pub const tACMDRVOPENDESC = switch (@import("../zig.zig").unicode_mode) {
         "'tACMDRVOPENDESC' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const sndPlaySound = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().sndPlaySoundA,
-    .wide => @This().sndPlaySoundW,
+pub const WAVEINCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEINCAPS2A,
+    .wide => @This().WAVEINCAPS2W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'sndPlaySound' requires that UNICODE be set to true or false in the root module",
+        "'WAVEINCAPS2' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PlaySound = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PlaySoundA,
-    .wide => @This().PlaySoundW,
+pub const WAVEINCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEINCAPSA,
+    .wide => @This().WAVEINCAPSW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PlaySound' requires that UNICODE be set to true or false in the root module",
+        "'WAVEINCAPS' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const waveOutGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().waveOutGetDevCapsA,
-    .wide => @This().waveOutGetDevCapsW,
+pub const WAVEOUTCAPS2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEOUTCAPS2A,
+    .wide => @This().WAVEOUTCAPS2W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'waveOutGetDevCaps' requires that UNICODE be set to true or false in the root module",
+        "'WAVEOUTCAPS2' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const waveOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().waveOutGetErrorTextA,
-    .wide => @This().waveOutGetErrorTextW,
+pub const WAVEOUTCAPS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WAVEOUTCAPSA,
+    .wide => @This().WAVEOUTCAPSW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'waveOutGetErrorText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const waveInGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().waveInGetDevCapsA,
-    .wide => @This().waveInGetDevCapsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'waveInGetDevCaps' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const waveInGetErrorText = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().waveInGetErrorTextA,
-    .wide => @This().waveInGetErrorTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'waveInGetErrorText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const midiOutGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().midiOutGetDevCapsA,
-    .wide => @This().midiOutGetDevCapsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'midiOutGetDevCaps' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const midiOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().midiOutGetErrorTextA,
-    .wide => @This().midiOutGetErrorTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'midiOutGetErrorText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const midiInGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().midiInGetDevCapsA,
-    .wide => @This().midiInGetDevCapsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'midiInGetDevCaps' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const midiInGetErrorText = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().midiInGetErrorTextA,
-    .wide => @This().midiInGetErrorTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'midiInGetErrorText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const auxGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().auxGetDevCapsA,
-    .wide => @This().auxGetDevCapsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'auxGetDevCaps' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const mixerGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().mixerGetDevCapsA,
-    .wide => @This().mixerGetDevCapsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'mixerGetDevCaps' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const mixerGetLineInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().mixerGetLineInfoA,
-    .wide => @This().mixerGetLineInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'mixerGetLineInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const mixerGetLineControls = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().mixerGetLineControlsA,
-    .wide => @This().mixerGetLineControlsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'mixerGetLineControls' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const mixerGetControlDetails = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().mixerGetControlDetailsA,
-    .wide => @This().mixerGetControlDetailsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'mixerGetControlDetails' requires that UNICODE be set to true or false in the root module",
+        "'WAVEOUTCAPS' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const acmDriverAdd = switch (@import("../zig.zig").unicode_mode) {
@@ -6284,53 +6179,11 @@ pub const acmDriverDetails = switch (@import("../zig.zig").unicode_mode) {
         "'acmDriverDetails' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const acmFormatTagDetails = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFormatTagDetailsA,
-    .wide => @This().acmFormatTagDetailsW,
+pub const acmFilterChoose = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterChooseA,
+    .wide => @This().acmFilterChooseW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFormatTagDetails' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const acmFormatTagEnum = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFormatTagEnumA,
-    .wide => @This().acmFormatTagEnumW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFormatTagEnum' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const acmFormatDetails = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFormatDetailsA,
-    .wide => @This().acmFormatDetailsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFormatDetails' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const acmFormatEnum = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFormatEnumA,
-    .wide => @This().acmFormatEnumW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFormatEnum' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const acmFormatChoose = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFormatChooseA,
-    .wide => @This().acmFormatChooseW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFormatChoose' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const acmFilterTagDetails = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFilterTagDetailsA,
-    .wide => @This().acmFilterTagDetailsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFilterTagDetails' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const acmFilterTagEnum = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFilterTagEnumA,
-    .wide => @This().acmFilterTagEnumW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFilterTagEnum' requires that UNICODE be set to true or false in the root module",
+        "'acmFilterChoose' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const acmFilterDetails = switch (@import("../zig.zig").unicode_mode) {
@@ -6347,11 +6200,158 @@ pub const acmFilterEnum = switch (@import("../zig.zig").unicode_mode) {
         "'acmFilterEnum' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const acmFilterChoose = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().acmFilterChooseA,
-    .wide => @This().acmFilterChooseW,
+pub const acmFilterTagDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterTagDetailsA,
+    .wide => @This().acmFilterTagDetailsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'acmFilterChoose' requires that UNICODE be set to true or false in the root module",
+        "'acmFilterTagDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFilterTagEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFilterTagEnumA,
+    .wide => @This().acmFilterTagEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFilterTagEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatChoose = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatChooseA,
+    .wide => @This().acmFormatChooseW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatChoose' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatDetailsA,
+    .wide => @This().acmFormatDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatEnumA,
+    .wide => @This().acmFormatEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatTagDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatTagDetailsA,
+    .wide => @This().acmFormatTagDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatTagDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const acmFormatTagEnum = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().acmFormatTagEnumA,
+    .wide => @This().acmFormatTagEnumW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'acmFormatTagEnum' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const auxGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().auxGetDevCapsA,
+    .wide => @This().auxGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'auxGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiInGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiInGetDevCapsA,
+    .wide => @This().midiInGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiInGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiInGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiInGetErrorTextA,
+    .wide => @This().midiInGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiInGetErrorText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiOutGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiOutGetDevCapsA,
+    .wide => @This().midiOutGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiOutGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const midiOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().midiOutGetErrorTextA,
+    .wide => @This().midiOutGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'midiOutGetErrorText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetControlDetails = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetControlDetailsA,
+    .wide => @This().mixerGetControlDetailsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetControlDetails' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetDevCapsA,
+    .wide => @This().mixerGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetLineControls = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetLineControlsA,
+    .wide => @This().mixerGetLineControlsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetLineControls' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const mixerGetLineInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().mixerGetLineInfoA,
+    .wide => @This().mixerGetLineInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'mixerGetLineInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PlaySound = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PlaySoundA,
+    .wide => @This().PlaySoundW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PlaySound' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const sndPlaySound = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().sndPlaySoundA,
+    .wide => @This().sndPlaySoundW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'sndPlaySound' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveInGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveInGetDevCapsA,
+    .wide => @This().waveInGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveInGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveInGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveInGetErrorTextA,
+    .wide => @This().waveInGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveInGetErrorText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveOutGetDevCaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveOutGetDevCapsA,
+    .wide => @This().waveOutGetDevCapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveOutGetDevCaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const waveOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().waveOutGetErrorTextA,
+    .wide => @This().waveOutGetErrorTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'waveOutGetErrorText' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -6383,22 +6383,22 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPWAVECALLBACK")) { _ = LPWAVECALLBACK; }
-    if (@hasDecl(@This(), "LPMIDICALLBACK")) { _ = LPMIDICALLBACK; }
     if (@hasDecl(@This(), "ACMDRIVERENUMCB")) { _ = ACMDRIVERENUMCB; }
-    if (@hasDecl(@This(), "LPACMDRIVERPROC")) { _ = LPACMDRIVERPROC; }
-    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBA")) { _ = ACMFORMATTAGENUMCBA; }
-    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBW")) { _ = ACMFORMATTAGENUMCBW; }
-    if (@hasDecl(@This(), "ACMFORMATENUMCBA")) { _ = ACMFORMATENUMCBA; }
-    if (@hasDecl(@This(), "ACMFORMATENUMCBW")) { _ = ACMFORMATENUMCBW; }
-    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCA")) { _ = ACMFORMATCHOOSEHOOKPROCA; }
-    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCW")) { _ = ACMFORMATCHOOSEHOOKPROCW; }
-    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBA")) { _ = ACMFILTERTAGENUMCBA; }
-    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBW")) { _ = ACMFILTERTAGENUMCBW; }
-    if (@hasDecl(@This(), "ACMFILTERENUMCBA")) { _ = ACMFILTERENUMCBA; }
-    if (@hasDecl(@This(), "ACMFILTERENUMCBW")) { _ = ACMFILTERENUMCBW; }
     if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCA")) { _ = ACMFILTERCHOOSEHOOKPROCA; }
     if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCW")) { _ = ACMFILTERCHOOSEHOOKPROCW; }
+    if (@hasDecl(@This(), "ACMFILTERENUMCBA")) { _ = ACMFILTERENUMCBA; }
+    if (@hasDecl(@This(), "ACMFILTERENUMCBW")) { _ = ACMFILTERENUMCBW; }
+    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBA")) { _ = ACMFILTERTAGENUMCBA; }
+    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBW")) { _ = ACMFILTERTAGENUMCBW; }
+    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCA")) { _ = ACMFORMATCHOOSEHOOKPROCA; }
+    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCW")) { _ = ACMFORMATCHOOSEHOOKPROCW; }
+    if (@hasDecl(@This(), "ACMFORMATENUMCBA")) { _ = ACMFORMATENUMCBA; }
+    if (@hasDecl(@This(), "ACMFORMATENUMCBW")) { _ = ACMFORMATENUMCBW; }
+    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBA")) { _ = ACMFORMATTAGENUMCBA; }
+    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBW")) { _ = ACMFORMATTAGENUMCBW; }
+    if (@hasDecl(@This(), "LPACMDRIVERPROC")) { _ = LPACMDRIVERPROC; }
+    if (@hasDecl(@This(), "LPMIDICALLBACK")) { _ = LPMIDICALLBACK; }
+    if (@hasDecl(@This(), "LPWAVECALLBACK")) { _ = LPWAVECALLBACK; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

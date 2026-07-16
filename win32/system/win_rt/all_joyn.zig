@@ -6,6 +6,27 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
+const IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop_Value = Guid.initString("4b8f7505-b239-4e7b-88af-f6682575d861");
+pub const IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop = &IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop_Value;
+pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern union {
+    pub const VTable = extern struct {
+        base: IInspectable.VTable,
+        CreateFromWin32Handle: *const fn(
+            self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop,
+            win32handle: u64,
+            enableAboutData: u8,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IInspectable: IInspectable,
+    IUnknown: IUnknown,
+    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFromWin32Handle(self, win32handle, enableAboutData, riid, ppv);
+    }
+};
+
 const IID_IWindowsDevicesAllJoynBusAttachmentInterop_Value = Guid.initString("fd89c65b-b50e-4a19-9d0c-b42b783281cd");
 pub const IID_IWindowsDevicesAllJoynBusAttachmentInterop = &IID_IWindowsDevicesAllJoynBusAttachmentInterop_Value;
 pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern union {
@@ -25,15 +46,14 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern union {
     }
 };
 
-const IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop_Value = Guid.initString("4b8f7505-b239-4e7b-88af-f6682575d861");
-pub const IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop = &IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop_Value;
-pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern union {
+const IID_IWindowsDevicesAllJoynBusObjectFactoryInterop_Value = Guid.initString("6174e506-8b95-4e36-95c0-b88fed34938c");
+pub const IID_IWindowsDevicesAllJoynBusObjectFactoryInterop = &IID_IWindowsDevicesAllJoynBusObjectFactoryInterop_Value;
+pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateFromWin32Handle: *const fn(
-            self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop,
+            self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop,
             win32handle: u64,
-            enableAboutData: u8,
             riid: ?*const Guid,
             ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
@@ -41,8 +61,8 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFromWin32Handle(self, win32handle, enableAboutData, riid, ppv);
+    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop, win32handle: u64, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFromWin32Handle(self, win32handle, riid, ppv);
     }
 };
 
@@ -80,26 +100,6 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern union {
     }
     pub fn get_Win32Handle(self: *const IWindowsDevicesAllJoynBusObjectInterop, value: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.get_Win32Handle(self, value);
-    }
-};
-
-const IID_IWindowsDevicesAllJoynBusObjectFactoryInterop_Value = Guid.initString("6174e506-8b95-4e36-95c0-b88fed34938c");
-pub const IID_IWindowsDevicesAllJoynBusObjectFactoryInterop = &IID_IWindowsDevicesAllJoynBusObjectFactoryInterop_Value;
-pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern union {
-    pub const VTable = extern struct {
-        base: IInspectable.VTable,
-        CreateFromWin32Handle: *const fn(
-            self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop,
-            win32handle: u64,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IInspectable: IInspectable,
-    IUnknown: IUnknown,
-    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop, win32handle: u64, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFromWin32Handle(self, win32handle, riid, ppv);
     }
 };
 

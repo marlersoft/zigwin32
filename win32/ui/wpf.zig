@@ -2,85 +2,76 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const MILBITMAPEFFECT_SDK_VERSION = @as(u32, 16777216);
-pub const CLSID_MILBitmapEffectGroup = Guid.initString("ac9c1a9a-7e18-4f64-ac7e-47cf7f051e95");
+pub const CLSID_MILBitmapEffectBevel = Guid.initString("fd361dbe-6c9b-4de0-8290-f6400c2737ed");
 pub const CLSID_MILBitmapEffectBlur = Guid.initString("a924df87-225d-4373-8f5b-b90ec85ae3de");
 pub const CLSID_MILBitmapEffectDropShadow = Guid.initString("459a3fbe-d8ac-4692-874b-7a265715aa16");
-pub const CLSID_MILBitmapEffectOuterGlow = Guid.initString("e2161bdd-7eb6-4725-9c0b-8a2a1b4f0667");
-pub const CLSID_MILBitmapEffectBevel = Guid.initString("fd361dbe-6c9b-4de0-8290-f6400c2737ed");
 pub const CLSID_MILBitmapEffectEmboss = Guid.initString("cd299846-824f-47ec-a007-12aa767f2816");
+pub const CLSID_MILBitmapEffectGroup = Guid.initString("ac9c1a9a-7e18-4f64-ac7e-47cf7f051e95");
+pub const CLSID_MILBitmapEffectOuterGlow = Guid.initString("e2161bdd-7eb6-4725-9c0b-8a2a1b4f0667");
+pub const MILBITMAPEFFECT_SDK_VERSION = @as(u32, 16777216);
 
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-pub const MilRectD = extern struct {
-    left: f64,
-    top: f64,
-    right: f64,
-    bottom: f64,
-};
-
-pub const MilPoint2D = extern struct {
-    X: f64,
-    Y: f64,
-};
-
-pub const MILMatrixF = extern struct {
-    _11: f64,
-    _12: f64,
-    _13: f64,
-    _14: f64,
-    _21: f64,
-    _22: f64,
-    _23: f64,
-    _24: f64,
-    _31: f64,
-    _32: f64,
-    _33: f64,
-    _34: f64,
-    _41: f64,
-    _42: f64,
-    _43: f64,
-    _44: f64,
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectConnectorInfo_Value = Guid.initString("f66d2e4b-b46b-42fc-859e-3da0ecdb3c43");
-pub const IID_IMILBitmapEffectConnectorInfo = &IID_IMILBitmapEffectConnectorInfo_Value;
-pub const IMILBitmapEffectConnectorInfo = extern union {
+const IID_IMILBitmapEffect_Value = Guid.initString("8a6ff321-c944-4a1b-9944-9954af301258");
+pub const IID_IMILBitmapEffect = &IID_IMILBitmapEffect_Value;
+pub const IMILBitmapEffect = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIndex: *const fn(
-            self: *const IMILBitmapEffectConnectorInfo,
-            puiIndex: ?*u32,
+        GetOutput: *const fn(
+            self: *const IMILBitmapEffect,
+            uiIndex: u32,
+            pContext: ?*IMILBitmapEffectRenderContext,
+            ppBitmapSource: ?*?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
-        GetOptimalFormat: *const fn(
-            self: *const IMILBitmapEffectConnectorInfo,
-            pFormat: ?*Guid,
+        GetParentEffect: *const fn(
+            self: *const IMILBitmapEffect,
+            ppParentEffect: ?*?*IMILBitmapEffectGroup,
         ) callconv(.winapi) HRESULT,
-        GetNumberFormats: *const fn(
-            self: *const IMILBitmapEffectConnectorInfo,
-            pulNumberFormats: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetFormat: *const fn(
-            self: *const IMILBitmapEffectConnectorInfo,
-            ulIndex: u32,
-            pFormat: ?*Guid,
+        SetInputSource: *const fn(
+            self: *const IMILBitmapEffect,
+            uiIndex: u32,
+            pBitmapSource: ?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIndex(self: *const IMILBitmapEffectConnectorInfo, puiIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIndex(self, puiIndex);
+    pub fn GetOutput(self: *const IMILBitmapEffect, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutput(self, uiIndex, pContext, ppBitmapSource);
     }
-    pub fn GetOptimalFormat(self: *const IMILBitmapEffectConnectorInfo, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOptimalFormat(self, pFormat);
+    pub fn GetParentEffect(self: *const IMILBitmapEffect, ppParentEffect: ?*?*IMILBitmapEffectGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParentEffect(self, ppParentEffect);
     }
-    pub fn GetNumberFormats(self: *const IMILBitmapEffectConnectorInfo, pulNumberFormats: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumberFormats(self, pulNumberFormats);
+    pub fn SetInputSource(self: *const IMILBitmapEffect, uiIndex: u32, pBitmapSource: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.SetInputSource(self, uiIndex, pBitmapSource);
     }
-    pub fn GetFormat(self: *const IMILBitmapEffectConnectorInfo, ulIndex: u32, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFormat(self, ulIndex, pFormat);
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectConnections_Value = Guid.initString("c2b5d861-9b1a-4374-89b0-dec4874d6a81");
+pub const IID_IMILBitmapEffectConnections = &IID_IMILBitmapEffectConnections_Value;
+pub const IMILBitmapEffectConnections = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInputConnector: *const fn(
+            self: *const IMILBitmapEffectConnections,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectInputConnector,
+        ) callconv(.winapi) HRESULT,
+        GetOutputConnector: *const fn(
+            self: *const IMILBitmapEffectConnections,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectOutputConnector,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetInputConnector(self: *const IMILBitmapEffectConnections, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputConnector(self, uiIndex, ppConnector);
+    }
+    pub fn GetOutputConnector(self: *const IMILBitmapEffectConnections, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputConnector(self, uiIndex, ppConnector);
     }
 };
 
@@ -126,64 +117,194 @@ pub const IMILBitmapEffectConnectionsInfo = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectConnections_Value = Guid.initString("c2b5d861-9b1a-4374-89b0-dec4874d6a81");
-pub const IID_IMILBitmapEffectConnections = &IID_IMILBitmapEffectConnections_Value;
-pub const IMILBitmapEffectConnections = extern union {
+const IID_IMILBitmapEffectConnector_Value = Guid.initString("f59567b3-76c1-4d47-ba1e-79f955e350ef");
+pub const IID_IMILBitmapEffectConnector = &IID_IMILBitmapEffectConnector_Value;
+pub const IMILBitmapEffectConnector = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInputConnector: *const fn(
-            self: *const IMILBitmapEffectConnections,
-            uiIndex: u32,
-            ppConnector: ?*?*IMILBitmapEffectInputConnector,
+        base: IMILBitmapEffectConnectorInfo.VTable,
+        IsConnected: *const fn(
+            self: *const IMILBitmapEffectConnector,
+            pfConnected: ?*i16,
         ) callconv(.winapi) HRESULT,
-        GetOutputConnector: *const fn(
-            self: *const IMILBitmapEffectConnections,
-            uiIndex: u32,
-            ppConnector: ?*?*IMILBitmapEffectOutputConnector,
+        GetBitmapEffect: *const fn(
+            self: *const IMILBitmapEffectConnector,
+            ppEffect: ?*?*IMILBitmapEffect,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
     IUnknown: IUnknown,
-    pub fn GetInputConnector(self: *const IMILBitmapEffectConnections, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputConnector(self, uiIndex, ppConnector);
+    pub fn IsConnected(self: *const IMILBitmapEffectConnector, pfConnected: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsConnected(self, pfConnected);
     }
-    pub fn GetOutputConnector(self: *const IMILBitmapEffectConnections, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputConnector(self, uiIndex, ppConnector);
+    pub fn GetBitmapEffect(self: *const IMILBitmapEffectConnector, ppEffect: ?*?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBitmapEffect(self, ppEffect);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffect_Value = Guid.initString("8a6ff321-c944-4a1b-9944-9954af301258");
-pub const IID_IMILBitmapEffect = &IID_IMILBitmapEffect_Value;
-pub const IMILBitmapEffect = extern union {
+const IID_IMILBitmapEffectConnectorInfo_Value = Guid.initString("f66d2e4b-b46b-42fc-859e-3da0ecdb3c43");
+pub const IID_IMILBitmapEffectConnectorInfo = &IID_IMILBitmapEffectConnectorInfo_Value;
+pub const IMILBitmapEffectConnectorInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOutput: *const fn(
-            self: *const IMILBitmapEffect,
-            uiIndex: u32,
-            pContext: ?*IMILBitmapEffectRenderContext,
-            ppBitmapSource: ?*?*IWICBitmapSource,
+        GetIndex: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            puiIndex: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetParentEffect: *const fn(
-            self: *const IMILBitmapEffect,
-            ppParentEffect: ?*?*IMILBitmapEffectGroup,
+        GetOptimalFormat: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            pFormat: ?*Guid,
         ) callconv(.winapi) HRESULT,
-        SetInputSource: *const fn(
-            self: *const IMILBitmapEffect,
-            uiIndex: u32,
-            pBitmapSource: ?*IWICBitmapSource,
+        GetNumberFormats: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            pulNumberFormats: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetFormat: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            ulIndex: u32,
+            pFormat: ?*Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOutput(self: *const IMILBitmapEffect, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutput(self, uiIndex, pContext, ppBitmapSource);
+    pub fn GetIndex(self: *const IMILBitmapEffectConnectorInfo, puiIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIndex(self, puiIndex);
     }
-    pub fn GetParentEffect(self: *const IMILBitmapEffect, ppParentEffect: ?*?*IMILBitmapEffectGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParentEffect(self, ppParentEffect);
+    pub fn GetOptimalFormat(self: *const IMILBitmapEffectConnectorInfo, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOptimalFormat(self, pFormat);
     }
-    pub fn SetInputSource(self: *const IMILBitmapEffect, uiIndex: u32, pBitmapSource: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.SetInputSource(self, uiIndex, pBitmapSource);
+    pub fn GetNumberFormats(self: *const IMILBitmapEffectConnectorInfo, pulNumberFormats: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumberFormats(self, pulNumberFormats);
+    }
+    pub fn GetFormat(self: *const IMILBitmapEffectConnectorInfo, ulIndex: u32, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFormat(self, ulIndex, pFormat);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectEvents_Value = Guid.initString("2e880dd8-f8ce-457b-8199-d60bb3d7ef98");
+pub const IID_IMILBitmapEffectEvents = &IID_IMILBitmapEffectEvents_Value;
+pub const IMILBitmapEffectEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PropertyChange: *const fn(
+            self: *const IMILBitmapEffectEvents,
+            pEffect: ?*IMILBitmapEffect,
+            bstrPropertyName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        DirtyRegion: *const fn(
+            self: *const IMILBitmapEffectEvents,
+            pEffect: ?*IMILBitmapEffect,
+            pRect: ?*MilRectD,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PropertyChange(self: *const IMILBitmapEffectEvents, pEffect: ?*IMILBitmapEffect, bstrPropertyName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.PropertyChange(self, pEffect, bstrPropertyName);
+    }
+    pub fn DirtyRegion(self: *const IMILBitmapEffectEvents, pEffect: ?*IMILBitmapEffect, pRect: ?*MilRectD) callconv(.@"inline") HRESULT {
+        return self.vtable.DirtyRegion(self, pEffect, pRect);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectFactory_Value = Guid.initString("33a9df34-a403-4ec7-b07e-bc0682370845");
+pub const IID_IMILBitmapEffectFactory = &IID_IMILBitmapEffectFactory_Value;
+pub const IMILBitmapEffectFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateEffect: *const fn(
+            self: *const IMILBitmapEffectFactory,
+            pguidEffect: ?*const Guid,
+            ppEffect: ?*?*IMILBitmapEffect,
+        ) callconv(.winapi) HRESULT,
+        CreateContext: *const fn(
+            self: *const IMILBitmapEffectFactory,
+            ppContext: ?*?*IMILBitmapEffectRenderContext,
+        ) callconv(.winapi) HRESULT,
+        CreateEffectOuter: *const fn(
+            self: *const IMILBitmapEffectFactory,
+            ppEffect: ?*?*IMILBitmapEffect,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateEffect(self: *const IMILBitmapEffectFactory, pguidEffect: ?*const Guid, ppEffect: ?*?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEffect(self, pguidEffect, ppEffect);
+    }
+    pub fn CreateContext(self: *const IMILBitmapEffectFactory, ppContext: ?*?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateContext(self, ppContext);
+    }
+    pub fn CreateEffectOuter(self: *const IMILBitmapEffectFactory, ppEffect: ?*?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEffectOuter(self, ppEffect);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectGroup_Value = Guid.initString("2f952360-698a-4ac6-81a1-bcfdf08eb8e8");
+pub const IID_IMILBitmapEffectGroup = &IID_IMILBitmapEffectGroup_Value;
+pub const IMILBitmapEffectGroup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInteriorInputConnector: *const fn(
+            self: *const IMILBitmapEffectGroup,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectOutputConnector,
+        ) callconv(.winapi) HRESULT,
+        GetInteriorOutputConnector: *const fn(
+            self: *const IMILBitmapEffectGroup,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectInputConnector,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IMILBitmapEffectGroup,
+            pEffect: ?*IMILBitmapEffect,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetInteriorInputConnector(self: *const IMILBitmapEffectGroup, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInteriorInputConnector(self, uiIndex, ppConnector);
+    }
+    pub fn GetInteriorOutputConnector(self: *const IMILBitmapEffectGroup, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInteriorOutputConnector(self, uiIndex, ppConnector);
+    }
+    pub fn Add(self: *const IMILBitmapEffectGroup, pEffect: ?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, pEffect);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectGroupImpl_Value = Guid.initString("78fed518-1cfc-4807-8b85-6b6e51398f62");
+pub const IID_IMILBitmapEffectGroupImpl = &IID_IMILBitmapEffectGroupImpl_Value;
+pub const IMILBitmapEffectGroupImpl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Preprocess: *const fn(
+            self: *const IMILBitmapEffectGroupImpl,
+            pContext: ?*IMILBitmapEffectRenderContext,
+        ) callconv(.winapi) HRESULT,
+        GetNumberChildren: *const fn(
+            self: *const IMILBitmapEffectGroupImpl,
+            puiNumberChildren: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetChildren: *const fn(
+            self: *const IMILBitmapEffectGroupImpl,
+            pChildren: ?*?*IMILBitmapEffects,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Preprocess(self: *const IMILBitmapEffectGroupImpl, pContext: ?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Preprocess(self, pContext);
+    }
+    pub fn GetNumberChildren(self: *const IMILBitmapEffectGroupImpl, puiNumberChildren: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumberChildren(self, puiNumberChildren);
+    }
+    pub fn GetChildren(self: *const IMILBitmapEffectGroupImpl, pChildren: ?*?*IMILBitmapEffects) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildren(self, pChildren);
     }
 };
 
@@ -257,68 +378,211 @@ pub const IMILBitmapEffectImpl = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectGroup_Value = Guid.initString("2f952360-698a-4ac6-81a1-bcfdf08eb8e8");
-pub const IID_IMILBitmapEffectGroup = &IID_IMILBitmapEffectGroup_Value;
-pub const IMILBitmapEffectGroup = extern union {
+const IID_IMILBitmapEffectInputConnector_Value = Guid.initString("a9b4ecaa-7a3c-45e7-8573-f4b81b60dd6c");
+pub const IID_IMILBitmapEffectInputConnector = &IID_IMILBitmapEffectInputConnector_Value;
+pub const IMILBitmapEffectInputConnector = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInteriorInputConnector: *const fn(
-            self: *const IMILBitmapEffectGroup,
-            uiIndex: u32,
+        base: IMILBitmapEffectConnector.VTable,
+        ConnectTo: *const fn(
+            self: *const IMILBitmapEffectInputConnector,
+            pConnector: ?*IMILBitmapEffectOutputConnector,
+        ) callconv(.winapi) HRESULT,
+        GetConnection: *const fn(
+            self: *const IMILBitmapEffectInputConnector,
             ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-        ) callconv(.winapi) HRESULT,
-        GetInteriorOutputConnector: *const fn(
-            self: *const IMILBitmapEffectGroup,
-            uiIndex: u32,
-            ppConnector: ?*?*IMILBitmapEffectInputConnector,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IMILBitmapEffectGroup,
-            pEffect: ?*IMILBitmapEffect,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IMILBitmapEffectConnector: IMILBitmapEffectConnector,
+    IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
     IUnknown: IUnknown,
-    pub fn GetInteriorInputConnector(self: *const IMILBitmapEffectGroup, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInteriorInputConnector(self, uiIndex, ppConnector);
+    pub fn ConnectTo(self: *const IMILBitmapEffectInputConnector, pConnector: ?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectTo(self, pConnector);
     }
-    pub fn GetInteriorOutputConnector(self: *const IMILBitmapEffectGroup, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInteriorOutputConnector(self, uiIndex, ppConnector);
-    }
-    pub fn Add(self: *const IMILBitmapEffectGroup, pEffect: ?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, pEffect);
+    pub fn GetConnection(self: *const IMILBitmapEffectInputConnector, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnection(self, ppConnector);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectGroupImpl_Value = Guid.initString("78fed518-1cfc-4807-8b85-6b6e51398f62");
-pub const IID_IMILBitmapEffectGroupImpl = &IID_IMILBitmapEffectGroupImpl_Value;
-pub const IMILBitmapEffectGroupImpl = extern union {
+const IID_IMILBitmapEffectInteriorInputConnector_Value = Guid.initString("20287e9e-86a2-4e15-953d-eb1438a5b842");
+pub const IID_IMILBitmapEffectInteriorInputConnector = &IID_IMILBitmapEffectInteriorInputConnector_Value;
+pub const IMILBitmapEffectInteriorInputConnector = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Preprocess: *const fn(
-            self: *const IMILBitmapEffectGroupImpl,
-            pContext: ?*IMILBitmapEffectRenderContext,
-        ) callconv(.winapi) HRESULT,
-        GetNumberChildren: *const fn(
-            self: *const IMILBitmapEffectGroupImpl,
-            puiNumberChildren: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetChildren: *const fn(
-            self: *const IMILBitmapEffectGroupImpl,
-            pChildren: ?*?*IMILBitmapEffects,
+        GetInputConnector: *const fn(
+            self: *const IMILBitmapEffectInteriorInputConnector,
+            pInputConnector: ?*?*IMILBitmapEffectInputConnector,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Preprocess(self: *const IMILBitmapEffectGroupImpl, pContext: ?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Preprocess(self, pContext);
+    pub fn GetInputConnector(self: *const IMILBitmapEffectInteriorInputConnector, pInputConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputConnector(self, pInputConnector);
     }
-    pub fn GetNumberChildren(self: *const IMILBitmapEffectGroupImpl, puiNumberChildren: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumberChildren(self, puiNumberChildren);
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectInteriorOutputConnector_Value = Guid.initString("00bbb6dc-acc9-4bfc-b344-8bee383dfefa");
+pub const IID_IMILBitmapEffectInteriorOutputConnector = &IID_IMILBitmapEffectInteriorOutputConnector_Value;
+pub const IMILBitmapEffectInteriorOutputConnector = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOutputConnector: *const fn(
+            self: *const IMILBitmapEffectInteriorOutputConnector,
+            pOutputConnector: ?*?*IMILBitmapEffectOutputConnector,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetOutputConnector(self: *const IMILBitmapEffectInteriorOutputConnector, pOutputConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputConnector(self, pOutputConnector);
     }
-    pub fn GetChildren(self: *const IMILBitmapEffectGroupImpl, pChildren: ?*?*IMILBitmapEffects) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildren(self, pChildren);
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectOutputConnector_Value = Guid.initString("92957aad-841b-4866-82ec-8752468b07fd");
+pub const IID_IMILBitmapEffectOutputConnector = &IID_IMILBitmapEffectOutputConnector_Value;
+pub const IMILBitmapEffectOutputConnector = extern union {
+    pub const VTable = extern struct {
+        base: IMILBitmapEffectConnector.VTable,
+        GetNumberConnections: *const fn(
+            self: *const IMILBitmapEffectOutputConnector,
+            puiNumberConnections: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetConnection: *const fn(
+            self: *const IMILBitmapEffectOutputConnector,
+            uiIndex: u32,
+            ppConnection: ?*?*IMILBitmapEffectInputConnector,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMILBitmapEffectConnector: IMILBitmapEffectConnector,
+    IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
+    IUnknown: IUnknown,
+    pub fn GetNumberConnections(self: *const IMILBitmapEffectOutputConnector, puiNumberConnections: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumberConnections(self, puiNumberConnections);
+    }
+    pub fn GetConnection(self: *const IMILBitmapEffectOutputConnector, uiIndex: u32, ppConnection: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnection(self, uiIndex, ppConnection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectOutputConnectorImpl_Value = Guid.initString("21fae777-8b39-4bfa-9f2d-f3941ed36913");
+pub const IID_IMILBitmapEffectOutputConnectorImpl = &IID_IMILBitmapEffectOutputConnectorImpl_Value;
+pub const IMILBitmapEffectOutputConnectorImpl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddBackLink: *const fn(
+            self: *const IMILBitmapEffectOutputConnectorImpl,
+            pConnection: ?*IMILBitmapEffectInputConnector,
+        ) callconv(.winapi) HRESULT,
+        RemoveBackLink: *const fn(
+            self: *const IMILBitmapEffectOutputConnectorImpl,
+            pConnection: ?*IMILBitmapEffectInputConnector,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddBackLink(self: *const IMILBitmapEffectOutputConnectorImpl, pConnection: ?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.AddBackLink(self, pConnection);
+    }
+    pub fn RemoveBackLink(self: *const IMILBitmapEffectOutputConnectorImpl, pConnection: ?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveBackLink(self, pConnection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectPrimitive_Value = Guid.initString("67e31025-3091-4dfc-98d6-dd494551461d");
+pub const IID_IMILBitmapEffectPrimitive = &IID_IMILBitmapEffectPrimitive_Value;
+pub const IMILBitmapEffectPrimitive = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOutput: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pContext: ?*IMILBitmapEffectRenderContext,
+            pfModifyInPlace: ?*i16,
+            ppBitmapSource: ?*?*IWICBitmapSource,
+        ) callconv(.winapi) HRESULT,
+        TransformPoint: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            p: ?*MilPoint2D,
+            fForwardTransform: i16,
+            pContext: ?*IMILBitmapEffectRenderContext,
+            pfPointTransformed: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        TransformRect: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            p: ?*MilRectD,
+            fForwardTransform: i16,
+            pContext: ?*IMILBitmapEffectRenderContext,
+        ) callconv(.winapi) HRESULT,
+        HasAffineTransform: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pfAffine: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        HasInverseTransform: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pfHasInverse: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetAffineMatrix: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pMatrix: ?*MilMatrix3x2D,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetOutput(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutput(self, uiIndex, pContext, pfModifyInPlace, ppBitmapSource);
+    }
+    pub fn TransformPoint(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilPoint2D, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext, pfPointTransformed: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.TransformPoint(self, uiIndex, p, fForwardTransform, pContext, pfPointTransformed);
+    }
+    pub fn TransformRect(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilRectD, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
+        return self.vtable.TransformRect(self, uiIndex, p, fForwardTransform, pContext);
+    }
+    pub fn HasAffineTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfAffine: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.HasAffineTransform(self, uiIndex, pfAffine);
+    }
+    pub fn HasInverseTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfHasInverse: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.HasInverseTransform(self, uiIndex, pfHasInverse);
+    }
+    pub fn GetAffineMatrix(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pMatrix: ?*MilMatrix3x2D) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAffineMatrix(self, uiIndex, pMatrix);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IMILBitmapEffectPrimitiveImpl_Value = Guid.initString("ce41e00b-efa6-44e7-b007-dd042e3ae126");
+pub const IID_IMILBitmapEffectPrimitiveImpl = &IID_IMILBitmapEffectPrimitiveImpl_Value;
+pub const IMILBitmapEffectPrimitiveImpl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsDirty: *const fn(
+            self: *const IMILBitmapEffectPrimitiveImpl,
+            uiOutputIndex: u32,
+            pfDirty: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        IsVolatile: *const fn(
+            self: *const IMILBitmapEffectPrimitiveImpl,
+            uiOutputIndex: u32,
+            pfVolatile: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsDirty(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfDirty: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsDirty(self, uiOutputIndex, pfDirty);
+    }
+    pub fn IsVolatile(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfVolatile: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsVolatile(self, uiOutputIndex, pfVolatile);
     }
 };
 
@@ -438,132 +702,6 @@ pub const IMILBitmapEffectRenderContextImpl = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectFactory_Value = Guid.initString("33a9df34-a403-4ec7-b07e-bc0682370845");
-pub const IID_IMILBitmapEffectFactory = &IID_IMILBitmapEffectFactory_Value;
-pub const IMILBitmapEffectFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateEffect: *const fn(
-            self: *const IMILBitmapEffectFactory,
-            pguidEffect: ?*const Guid,
-            ppEffect: ?*?*IMILBitmapEffect,
-        ) callconv(.winapi) HRESULT,
-        CreateContext: *const fn(
-            self: *const IMILBitmapEffectFactory,
-            ppContext: ?*?*IMILBitmapEffectRenderContext,
-        ) callconv(.winapi) HRESULT,
-        CreateEffectOuter: *const fn(
-            self: *const IMILBitmapEffectFactory,
-            ppEffect: ?*?*IMILBitmapEffect,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateEffect(self: *const IMILBitmapEffectFactory, pguidEffect: ?*const Guid, ppEffect: ?*?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEffect(self, pguidEffect, ppEffect);
-    }
-    pub fn CreateContext(self: *const IMILBitmapEffectFactory, ppContext: ?*?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateContext(self, ppContext);
-    }
-    pub fn CreateEffectOuter(self: *const IMILBitmapEffectFactory, ppEffect: ?*?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEffectOuter(self, ppEffect);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectPrimitive_Value = Guid.initString("67e31025-3091-4dfc-98d6-dd494551461d");
-pub const IID_IMILBitmapEffectPrimitive = &IID_IMILBitmapEffectPrimitive_Value;
-pub const IMILBitmapEffectPrimitive = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOutput: *const fn(
-            self: *const IMILBitmapEffectPrimitive,
-            uiIndex: u32,
-            pContext: ?*IMILBitmapEffectRenderContext,
-            pfModifyInPlace: ?*i16,
-            ppBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(.winapi) HRESULT,
-        TransformPoint: *const fn(
-            self: *const IMILBitmapEffectPrimitive,
-            uiIndex: u32,
-            p: ?*MilPoint2D,
-            fForwardTransform: i16,
-            pContext: ?*IMILBitmapEffectRenderContext,
-            pfPointTransformed: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        TransformRect: *const fn(
-            self: *const IMILBitmapEffectPrimitive,
-            uiIndex: u32,
-            p: ?*MilRectD,
-            fForwardTransform: i16,
-            pContext: ?*IMILBitmapEffectRenderContext,
-        ) callconv(.winapi) HRESULT,
-        HasAffineTransform: *const fn(
-            self: *const IMILBitmapEffectPrimitive,
-            uiIndex: u32,
-            pfAffine: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        HasInverseTransform: *const fn(
-            self: *const IMILBitmapEffectPrimitive,
-            uiIndex: u32,
-            pfHasInverse: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetAffineMatrix: *const fn(
-            self: *const IMILBitmapEffectPrimitive,
-            uiIndex: u32,
-            pMatrix: ?*MilMatrix3x2D,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetOutput(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutput(self, uiIndex, pContext, pfModifyInPlace, ppBitmapSource);
-    }
-    pub fn TransformPoint(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilPoint2D, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext, pfPointTransformed: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.TransformPoint(self, uiIndex, p, fForwardTransform, pContext, pfPointTransformed);
-    }
-    pub fn TransformRect(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilRectD, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
-        return self.vtable.TransformRect(self, uiIndex, p, fForwardTransform, pContext);
-    }
-    pub fn HasAffineTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfAffine: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.HasAffineTransform(self, uiIndex, pfAffine);
-    }
-    pub fn HasInverseTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfHasInverse: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.HasInverseTransform(self, uiIndex, pfHasInverse);
-    }
-    pub fn GetAffineMatrix(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pMatrix: ?*MilMatrix3x2D) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAffineMatrix(self, uiIndex, pMatrix);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectPrimitiveImpl_Value = Guid.initString("ce41e00b-efa6-44e7-b007-dd042e3ae126");
-pub const IID_IMILBitmapEffectPrimitiveImpl = &IID_IMILBitmapEffectPrimitiveImpl_Value;
-pub const IMILBitmapEffectPrimitiveImpl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsDirty: *const fn(
-            self: *const IMILBitmapEffectPrimitiveImpl,
-            uiOutputIndex: u32,
-            pfDirty: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        IsVolatile: *const fn(
-            self: *const IMILBitmapEffectPrimitiveImpl,
-            uiOutputIndex: u32,
-            pfVolatile: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfDirty: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsDirty(self, uiOutputIndex, pfDirty);
-    }
-    pub fn IsVolatile(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfVolatile: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsVolatile(self, uiOutputIndex, pfVolatile);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMILBitmapEffects_Value = Guid.initString("51ac3dce-67c5-448b-9180-ad3eabddd5dd");
 pub const IID_IMILBitmapEffects = &IID_IMILBitmapEffects_Value;
 pub const IMILBitmapEffects = extern union {
@@ -605,173 +743,35 @@ pub const IMILBitmapEffects = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectConnector_Value = Guid.initString("f59567b3-76c1-4d47-ba1e-79f955e350ef");
-pub const IID_IMILBitmapEffectConnector = &IID_IMILBitmapEffectConnector_Value;
-pub const IMILBitmapEffectConnector = extern union {
-    pub const VTable = extern struct {
-        base: IMILBitmapEffectConnectorInfo.VTable,
-        IsConnected: *const fn(
-            self: *const IMILBitmapEffectConnector,
-            pfConnected: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetBitmapEffect: *const fn(
-            self: *const IMILBitmapEffectConnector,
-            ppEffect: ?*?*IMILBitmapEffect,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
-    IUnknown: IUnknown,
-    pub fn IsConnected(self: *const IMILBitmapEffectConnector, pfConnected: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsConnected(self, pfConnected);
-    }
-    pub fn GetBitmapEffect(self: *const IMILBitmapEffectConnector, ppEffect: ?*?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBitmapEffect(self, ppEffect);
-    }
+pub const MILMatrixF = extern struct {
+    _11: f64,
+    _12: f64,
+    _13: f64,
+    _14: f64,
+    _21: f64,
+    _22: f64,
+    _23: f64,
+    _24: f64,
+    _31: f64,
+    _32: f64,
+    _33: f64,
+    _34: f64,
+    _41: f64,
+    _42: f64,
+    _43: f64,
+    _44: f64,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectInputConnector_Value = Guid.initString("a9b4ecaa-7a3c-45e7-8573-f4b81b60dd6c");
-pub const IID_IMILBitmapEffectInputConnector = &IID_IMILBitmapEffectInputConnector_Value;
-pub const IMILBitmapEffectInputConnector = extern union {
-    pub const VTable = extern struct {
-        base: IMILBitmapEffectConnector.VTable,
-        ConnectTo: *const fn(
-            self: *const IMILBitmapEffectInputConnector,
-            pConnector: ?*IMILBitmapEffectOutputConnector,
-        ) callconv(.winapi) HRESULT,
-        GetConnection: *const fn(
-            self: *const IMILBitmapEffectInputConnector,
-            ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMILBitmapEffectConnector: IMILBitmapEffectConnector,
-    IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
-    IUnknown: IUnknown,
-    pub fn ConnectTo(self: *const IMILBitmapEffectInputConnector, pConnector: ?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectTo(self, pConnector);
-    }
-    pub fn GetConnection(self: *const IMILBitmapEffectInputConnector, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnection(self, ppConnector);
-    }
+pub const MilPoint2D = extern struct {
+    X: f64,
+    Y: f64,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectOutputConnector_Value = Guid.initString("92957aad-841b-4866-82ec-8752468b07fd");
-pub const IID_IMILBitmapEffectOutputConnector = &IID_IMILBitmapEffectOutputConnector_Value;
-pub const IMILBitmapEffectOutputConnector = extern union {
-    pub const VTable = extern struct {
-        base: IMILBitmapEffectConnector.VTable,
-        GetNumberConnections: *const fn(
-            self: *const IMILBitmapEffectOutputConnector,
-            puiNumberConnections: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetConnection: *const fn(
-            self: *const IMILBitmapEffectOutputConnector,
-            uiIndex: u32,
-            ppConnection: ?*?*IMILBitmapEffectInputConnector,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMILBitmapEffectConnector: IMILBitmapEffectConnector,
-    IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
-    IUnknown: IUnknown,
-    pub fn GetNumberConnections(self: *const IMILBitmapEffectOutputConnector, puiNumberConnections: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumberConnections(self, puiNumberConnections);
-    }
-    pub fn GetConnection(self: *const IMILBitmapEffectOutputConnector, uiIndex: u32, ppConnection: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnection(self, uiIndex, ppConnection);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectOutputConnectorImpl_Value = Guid.initString("21fae777-8b39-4bfa-9f2d-f3941ed36913");
-pub const IID_IMILBitmapEffectOutputConnectorImpl = &IID_IMILBitmapEffectOutputConnectorImpl_Value;
-pub const IMILBitmapEffectOutputConnectorImpl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddBackLink: *const fn(
-            self: *const IMILBitmapEffectOutputConnectorImpl,
-            pConnection: ?*IMILBitmapEffectInputConnector,
-        ) callconv(.winapi) HRESULT,
-        RemoveBackLink: *const fn(
-            self: *const IMILBitmapEffectOutputConnectorImpl,
-            pConnection: ?*IMILBitmapEffectInputConnector,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddBackLink(self: *const IMILBitmapEffectOutputConnectorImpl, pConnection: ?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.AddBackLink(self, pConnection);
-    }
-    pub fn RemoveBackLink(self: *const IMILBitmapEffectOutputConnectorImpl, pConnection: ?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveBackLink(self, pConnection);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectInteriorInputConnector_Value = Guid.initString("20287e9e-86a2-4e15-953d-eb1438a5b842");
-pub const IID_IMILBitmapEffectInteriorInputConnector = &IID_IMILBitmapEffectInteriorInputConnector_Value;
-pub const IMILBitmapEffectInteriorInputConnector = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInputConnector: *const fn(
-            self: *const IMILBitmapEffectInteriorInputConnector,
-            pInputConnector: ?*?*IMILBitmapEffectInputConnector,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetInputConnector(self: *const IMILBitmapEffectInteriorInputConnector, pInputConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputConnector(self, pInputConnector);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectInteriorOutputConnector_Value = Guid.initString("00bbb6dc-acc9-4bfc-b344-8bee383dfefa");
-pub const IID_IMILBitmapEffectInteriorOutputConnector = &IID_IMILBitmapEffectInteriorOutputConnector_Value;
-pub const IMILBitmapEffectInteriorOutputConnector = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOutputConnector: *const fn(
-            self: *const IMILBitmapEffectInteriorOutputConnector,
-            pOutputConnector: ?*?*IMILBitmapEffectOutputConnector,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetOutputConnector(self: *const IMILBitmapEffectInteriorOutputConnector, pOutputConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputConnector(self, pOutputConnector);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectEvents_Value = Guid.initString("2e880dd8-f8ce-457b-8199-d60bb3d7ef98");
-pub const IID_IMILBitmapEffectEvents = &IID_IMILBitmapEffectEvents_Value;
-pub const IMILBitmapEffectEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PropertyChange: *const fn(
-            self: *const IMILBitmapEffectEvents,
-            pEffect: ?*IMILBitmapEffect,
-            bstrPropertyName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        DirtyRegion: *const fn(
-            self: *const IMILBitmapEffectEvents,
-            pEffect: ?*IMILBitmapEffect,
-            pRect: ?*MilRectD,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PropertyChange(self: *const IMILBitmapEffectEvents, pEffect: ?*IMILBitmapEffect, bstrPropertyName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.PropertyChange(self, pEffect, bstrPropertyName);
-    }
-    pub fn DirtyRegion(self: *const IMILBitmapEffectEvents, pEffect: ?*IMILBitmapEffect, pRect: ?*MilRectD) callconv(.@"inline") HRESULT {
-        return self.vtable.DirtyRegion(self, pEffect, pRect);
-    }
+pub const MilRectD = extern struct {
+    left: f64,
+    top: f64,
+    right: f64,
+    bottom: f64,
 };
 
 

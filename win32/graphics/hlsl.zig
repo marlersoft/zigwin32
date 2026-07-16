@@ -2,9 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3)
 //--------------------------------------------------------------------------------
-pub const D3DCOMPILER_DLL = "d3dcompiler_47.dll";
-pub const D3DCOMPILE_OPTIMIZATION_LEVEL2 = @as(u32, 49152);
 pub const D3D_COMPILE_STANDARD_FILE_INCLUDE = @as(u32, 1);
+pub const D3DCOMPILE_OPTIMIZATION_LEVEL2 = @as(u32, 49152);
+pub const D3DCOMPILER_DLL = "d3dcompiler_47.dll";
 
 //--------------------------------------------------------------------------------
 // Section: Types (0)

@@ -2,141 +2,145 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (131)
 //--------------------------------------------------------------------------------
-pub const SERVICE_ALL_ACCESS = @as(u32, 983551);
+pub const CUSTOM_SYSTEM_STATE_CHANGE_EVENT_GUID = Guid.initString("2d7a2816-0c5e-45fc-9ce7-570e5ecde9c9");
+pub const DOMAIN_JOIN_GUID = Guid.initString("1ce20aba-9851-4421-9430-1ddeb766e809");
+pub const DOMAIN_LEAVE_GUID = Guid.initString("ddaf516e-58c2-4866-9574-c3b615d42ea1");
+pub const FIREWALL_PORT_CLOSE_GUID = Guid.initString("a144ed38-8e12-4de4-9d96-e64740b1a524");
+pub const FIREWALL_PORT_OPEN_GUID = Guid.initString("b7569e07-8421-4ee0-ad10-86915afdad09");
+pub const MACHINE_POLICY_PRESENT_GUID = Guid.initString("659fcae6-5bdb-4da9-b1ff-ca2a178d46e0");
+pub const NAMED_PIPE_EVENT_GUID = Guid.initString("1f81d131-3fac-4537-9e0c-7e7b0c2f4b55");
+pub const NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID = Guid.initString("4f27f2de-14e2-430b-a549-7cd48cbc8245");
+pub const NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID = Guid.initString("cc4ba62a-162e-4648-847a-b6bdf993e335");
+pub const RPC_INTERFACE_EVENT_GUID = Guid.initString("bc90d167-9470-4139-a9ba-be0bbbf5b74d");
+pub const SC_AGGREGATE_STORAGE_KEY = "System\\CurrentControlSet\\Control\\ServiceAggregatedEvents";
 pub const SC_MANAGER_ALL_ACCESS = @as(u32, 983103);
-pub const SERVICES_ACTIVE_DATABASEW = "ServicesActive";
-pub const SERVICES_FAILED_DATABASEW = "ServicesFailed";
-pub const SERVICES_ACTIVE_DATABASEA = "ServicesActive";
-pub const SERVICES_FAILED_DATABASEA = "ServicesFailed";
-pub const SERVICES_ACTIVE_DATABASE = "ServicesActive";
-pub const SERVICES_FAILED_DATABASE = "ServicesFailed";
-pub const SERVICE_NO_CHANGE = @as(u32, 4294967295);
-pub const SERVICE_CONTROL_STOP = @as(u32, 1);
-pub const SERVICE_CONTROL_PAUSE = @as(u32, 2);
-pub const SERVICE_CONTROL_CONTINUE = @as(u32, 3);
-pub const SERVICE_CONTROL_INTERROGATE = @as(u32, 4);
-pub const SERVICE_CONTROL_SHUTDOWN = @as(u32, 5);
-pub const SERVICE_CONTROL_PARAMCHANGE = @as(u32, 6);
-pub const SERVICE_CONTROL_NETBINDADD = @as(u32, 7);
-pub const SERVICE_CONTROL_NETBINDREMOVE = @as(u32, 8);
-pub const SERVICE_CONTROL_NETBINDENABLE = @as(u32, 9);
-pub const SERVICE_CONTROL_NETBINDDISABLE = @as(u32, 10);
-pub const SERVICE_CONTROL_DEVICEEVENT = @as(u32, 11);
-pub const SERVICE_CONTROL_HARDWAREPROFILECHANGE = @as(u32, 12);
-pub const SERVICE_CONTROL_POWEREVENT = @as(u32, 13);
-pub const SERVICE_CONTROL_SESSIONCHANGE = @as(u32, 14);
-pub const SERVICE_CONTROL_PRESHUTDOWN = @as(u32, 15);
-pub const SERVICE_CONTROL_TIMECHANGE = @as(u32, 16);
-pub const SERVICE_CONTROL_TRIGGEREVENT = @as(u32, 32);
-pub const SERVICE_CONTROL_LOWRESOURCES = @as(u32, 96);
-pub const SERVICE_CONTROL_SYSTEMLOWRESOURCES = @as(u32, 97);
-pub const SERVICE_ACCEPT_STOP = @as(u32, 1);
-pub const SERVICE_ACCEPT_PAUSE_CONTINUE = @as(u32, 2);
-pub const SERVICE_ACCEPT_SHUTDOWN = @as(u32, 4);
-pub const SERVICE_ACCEPT_PARAMCHANGE = @as(u32, 8);
-pub const SERVICE_ACCEPT_NETBINDCHANGE = @as(u32, 16);
-pub const SERVICE_ACCEPT_HARDWAREPROFILECHANGE = @as(u32, 32);
-pub const SERVICE_ACCEPT_POWEREVENT = @as(u32, 64);
-pub const SERVICE_ACCEPT_SESSIONCHANGE = @as(u32, 128);
-pub const SERVICE_ACCEPT_PRESHUTDOWN = @as(u32, 256);
-pub const SERVICE_ACCEPT_TIMECHANGE = @as(u32, 512);
-pub const SERVICE_ACCEPT_TRIGGEREVENT = @as(u32, 1024);
-pub const SERVICE_ACCEPT_USER_LOGOFF = @as(u32, 2048);
-pub const SERVICE_ACCEPT_LOWRESOURCES = @as(u32, 8192);
-pub const SERVICE_ACCEPT_SYSTEMLOWRESOURCES = @as(u32, 16384);
 pub const SC_MANAGER_CONNECT = @as(u32, 1);
 pub const SC_MANAGER_CREATE_SERVICE = @as(u32, 2);
 pub const SC_MANAGER_ENUMERATE_SERVICE = @as(u32, 4);
 pub const SC_MANAGER_LOCK = @as(u32, 8);
-pub const SC_MANAGER_QUERY_LOCK_STATUS = @as(u32, 16);
 pub const SC_MANAGER_MODIFY_BOOT_CONFIG = @as(u32, 32);
-pub const SERVICE_QUERY_CONFIG = @as(u32, 1);
+pub const SC_MANAGER_QUERY_LOCK_STATUS = @as(u32, 16);
+pub const SERVICE_ACCEPT_HARDWAREPROFILECHANGE = @as(u32, 32);
+pub const SERVICE_ACCEPT_LOWRESOURCES = @as(u32, 8192);
+pub const SERVICE_ACCEPT_NETBINDCHANGE = @as(u32, 16);
+pub const SERVICE_ACCEPT_PARAMCHANGE = @as(u32, 8);
+pub const SERVICE_ACCEPT_PAUSE_CONTINUE = @as(u32, 2);
+pub const SERVICE_ACCEPT_POWEREVENT = @as(u32, 64);
+pub const SERVICE_ACCEPT_PRESHUTDOWN = @as(u32, 256);
+pub const SERVICE_ACCEPT_SESSIONCHANGE = @as(u32, 128);
+pub const SERVICE_ACCEPT_SHUTDOWN = @as(u32, 4);
+pub const SERVICE_ACCEPT_STOP = @as(u32, 1);
+pub const SERVICE_ACCEPT_SYSTEMLOWRESOURCES = @as(u32, 16384);
+pub const SERVICE_ACCEPT_TIMECHANGE = @as(u32, 512);
+pub const SERVICE_ACCEPT_TRIGGEREVENT = @as(u32, 1024);
+pub const SERVICE_ACCEPT_USER_LOGOFF = @as(u32, 2048);
+pub const SERVICE_ALL_ACCESS = @as(u32, 983551);
 pub const SERVICE_CHANGE_CONFIG = @as(u32, 2);
-pub const SERVICE_QUERY_STATUS = @as(u32, 4);
-pub const SERVICE_ENUMERATE_DEPENDENTS = @as(u32, 8);
-pub const SERVICE_START = @as(u32, 16);
-pub const SERVICE_STOP = @as(u32, 32);
-pub const SERVICE_PAUSE_CONTINUE = @as(u32, 64);
-pub const SERVICE_INTERROGATE = @as(u32, 128);
-pub const SERVICE_USER_DEFINED_CONTROL = @as(u32, 256);
-pub const SERVICE_NOTIFY_STATUS_CHANGE_1 = @as(u32, 1);
-pub const SERVICE_NOTIFY_STATUS_CHANGE_2 = @as(u32, 2);
-pub const SERVICE_NOTIFY_STATUS_CHANGE = @as(u32, 2);
-pub const SERVICE_STOP_REASON_FLAG_MIN = @as(u32, 0);
-pub const SERVICE_STOP_REASON_FLAG_UNPLANNED = @as(u32, 268435456);
-pub const SERVICE_STOP_REASON_FLAG_CUSTOM = @as(u32, 536870912);
-pub const SERVICE_STOP_REASON_FLAG_PLANNED = @as(u32, 1073741824);
-pub const SERVICE_STOP_REASON_FLAG_MAX = @as(u32, 2147483648);
-pub const SERVICE_STOP_REASON_MAJOR_MIN = @as(u32, 0);
-pub const SERVICE_STOP_REASON_MAJOR_OTHER = @as(u32, 65536);
-pub const SERVICE_STOP_REASON_MAJOR_HARDWARE = @as(u32, 131072);
-pub const SERVICE_STOP_REASON_MAJOR_OPERATINGSYSTEM = @as(u32, 196608);
-pub const SERVICE_STOP_REASON_MAJOR_SOFTWARE = @as(u32, 262144);
-pub const SERVICE_STOP_REASON_MAJOR_APPLICATION = @as(u32, 327680);
-pub const SERVICE_STOP_REASON_MAJOR_NONE = @as(u32, 393216);
-pub const SERVICE_STOP_REASON_MAJOR_MAX = @as(u32, 458752);
-pub const SERVICE_STOP_REASON_MAJOR_MIN_CUSTOM = @as(u32, 4194304);
-pub const SERVICE_STOP_REASON_MAJOR_MAX_CUSTOM = @as(u32, 16711680);
-pub const SERVICE_STOP_REASON_MINOR_MIN = @as(u32, 0);
-pub const SERVICE_STOP_REASON_MINOR_OTHER = @as(u32, 1);
-pub const SERVICE_STOP_REASON_MINOR_MAINTENANCE = @as(u32, 2);
-pub const SERVICE_STOP_REASON_MINOR_INSTALLATION = @as(u32, 3);
-pub const SERVICE_STOP_REASON_MINOR_UPGRADE = @as(u32, 4);
-pub const SERVICE_STOP_REASON_MINOR_RECONFIG = @as(u32, 5);
-pub const SERVICE_STOP_REASON_MINOR_HUNG = @as(u32, 6);
-pub const SERVICE_STOP_REASON_MINOR_UNSTABLE = @as(u32, 7);
-pub const SERVICE_STOP_REASON_MINOR_DISK = @as(u32, 8);
-pub const SERVICE_STOP_REASON_MINOR_NETWORKCARD = @as(u32, 9);
-pub const SERVICE_STOP_REASON_MINOR_ENVIRONMENT = @as(u32, 10);
-pub const SERVICE_STOP_REASON_MINOR_HARDWARE_DRIVER = @as(u32, 11);
-pub const SERVICE_STOP_REASON_MINOR_OTHERDRIVER = @as(u32, 12);
-pub const SERVICE_STOP_REASON_MINOR_SERVICEPACK = @as(u32, 13);
-pub const SERVICE_STOP_REASON_MINOR_SOFTWARE_UPDATE = @as(u32, 14);
-pub const SERVICE_STOP_REASON_MINOR_SECURITYFIX = @as(u32, 15);
-pub const SERVICE_STOP_REASON_MINOR_SECURITY = @as(u32, 16);
-pub const SERVICE_STOP_REASON_MINOR_NETWORK_CONNECTIVITY = @as(u32, 17);
-pub const SERVICE_STOP_REASON_MINOR_WMI = @as(u32, 18);
-pub const SERVICE_STOP_REASON_MINOR_SERVICEPACK_UNINSTALL = @as(u32, 19);
-pub const SERVICE_STOP_REASON_MINOR_SOFTWARE_UPDATE_UNINSTALL = @as(u32, 20);
-pub const SERVICE_STOP_REASON_MINOR_SECURITYFIX_UNINSTALL = @as(u32, 21);
-pub const SERVICE_STOP_REASON_MINOR_MMC = @as(u32, 22);
-pub const SERVICE_STOP_REASON_MINOR_NONE = @as(u32, 23);
-pub const SERVICE_STOP_REASON_MINOR_MEMOTYLIMIT = @as(u32, 24);
-pub const SERVICE_STOP_REASON_MINOR_MAX = @as(u32, 25);
-pub const SERVICE_STOP_REASON_MINOR_MIN_CUSTOM = @as(u32, 256);
-pub const SERVICE_STOP_REASON_MINOR_MAX_CUSTOM = @as(u32, 65535);
+pub const SERVICE_CONTROL_CONTINUE = @as(u32, 3);
+pub const SERVICE_CONTROL_DEVICEEVENT = @as(u32, 11);
+pub const SERVICE_CONTROL_HARDWAREPROFILECHANGE = @as(u32, 12);
+pub const SERVICE_CONTROL_INTERROGATE = @as(u32, 4);
+pub const SERVICE_CONTROL_LOWRESOURCES = @as(u32, 96);
+pub const SERVICE_CONTROL_NETBINDADD = @as(u32, 7);
+pub const SERVICE_CONTROL_NETBINDDISABLE = @as(u32, 10);
+pub const SERVICE_CONTROL_NETBINDENABLE = @as(u32, 9);
+pub const SERVICE_CONTROL_NETBINDREMOVE = @as(u32, 8);
+pub const SERVICE_CONTROL_PARAMCHANGE = @as(u32, 6);
+pub const SERVICE_CONTROL_PAUSE = @as(u32, 2);
+pub const SERVICE_CONTROL_POWEREVENT = @as(u32, 13);
+pub const SERVICE_CONTROL_PRESHUTDOWN = @as(u32, 15);
+pub const SERVICE_CONTROL_SESSIONCHANGE = @as(u32, 14);
+pub const SERVICE_CONTROL_SHUTDOWN = @as(u32, 5);
 pub const SERVICE_CONTROL_STATUS_REASON_INFO = @as(u32, 1);
-pub const SERVICE_SID_TYPE_NONE = @as(u32, 0);
-pub const SERVICE_SID_TYPE_UNRESTRICTED = @as(u32, 1);
-pub const SERVICE_TRIGGER_TYPE_CUSTOM_SYSTEM_STATE_CHANGE = @as(u32, 7);
-pub const SERVICE_TRIGGER_TYPE_AGGREGATE = @as(u32, 30);
-pub const SERVICE_START_REASON_DEMAND = @as(u32, 1);
-pub const SERVICE_START_REASON_AUTO = @as(u32, 2);
-pub const SERVICE_START_REASON_TRIGGER = @as(u32, 4);
-pub const SERVICE_START_REASON_RESTART_ON_FAILURE = @as(u32, 8);
-pub const SERVICE_START_REASON_DELAYEDAUTO = @as(u32, 16);
+pub const SERVICE_CONTROL_STOP = @as(u32, 1);
+pub const SERVICE_CONTROL_SYSTEMLOWRESOURCES = @as(u32, 97);
+pub const SERVICE_CONTROL_TIMECHANGE = @as(u32, 16);
+pub const SERVICE_CONTROL_TRIGGEREVENT = @as(u32, 32);
 pub const SERVICE_DYNAMIC_INFORMATION_LEVEL_START_REASON = @as(u32, 1);
+pub const SERVICE_ENUMERATE_DEPENDENTS = @as(u32, 8);
+pub const SERVICE_INTERROGATE = @as(u32, 128);
+pub const SERVICE_LAUNCH_PROTECTED_ANTIMALWARE_LIGHT = @as(u32, 3);
 pub const SERVICE_LAUNCH_PROTECTED_NONE = @as(u32, 0);
 pub const SERVICE_LAUNCH_PROTECTED_WINDOWS = @as(u32, 1);
 pub const SERVICE_LAUNCH_PROTECTED_WINDOWS_LIGHT = @as(u32, 2);
-pub const SERVICE_LAUNCH_PROTECTED_ANTIMALWARE_LIGHT = @as(u32, 3);
-pub const NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID = Guid.initString("4f27f2de-14e2-430b-a549-7cd48cbc8245");
-pub const NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID = Guid.initString("cc4ba62a-162e-4648-847a-b6bdf993e335");
-pub const DOMAIN_JOIN_GUID = Guid.initString("1ce20aba-9851-4421-9430-1ddeb766e809");
-pub const DOMAIN_LEAVE_GUID = Guid.initString("ddaf516e-58c2-4866-9574-c3b615d42ea1");
-pub const FIREWALL_PORT_OPEN_GUID = Guid.initString("b7569e07-8421-4ee0-ad10-86915afdad09");
-pub const FIREWALL_PORT_CLOSE_GUID = Guid.initString("a144ed38-8e12-4de4-9d96-e64740b1a524");
-pub const MACHINE_POLICY_PRESENT_GUID = Guid.initString("659fcae6-5bdb-4da9-b1ff-ca2a178d46e0");
-pub const USER_POLICY_PRESENT_GUID = Guid.initString("54fb46c8-f089-464c-b1fd-59d1b62c3b50");
-pub const RPC_INTERFACE_EVENT_GUID = Guid.initString("bc90d167-9470-4139-a9ba-be0bbbf5b74d");
-pub const NAMED_PIPE_EVENT_GUID = Guid.initString("1f81d131-3fac-4537-9e0c-7e7b0c2f4b55");
-pub const CUSTOM_SYSTEM_STATE_CHANGE_EVENT_GUID = Guid.initString("2d7a2816-0c5e-45fc-9ce7-570e5ecde9c9");
+pub const SERVICE_NO_CHANGE = @as(u32, 4294967295);
+pub const SERVICE_NOTIFY_STATUS_CHANGE = @as(u32, 2);
+pub const SERVICE_NOTIFY_STATUS_CHANGE_1 = @as(u32, 1);
+pub const SERVICE_NOTIFY_STATUS_CHANGE_2 = @as(u32, 2);
+pub const SERVICE_PAUSE_CONTINUE = @as(u32, 64);
+pub const SERVICE_QUERY_CONFIG = @as(u32, 1);
+pub const SERVICE_QUERY_STATUS = @as(u32, 4);
+pub const SERVICE_SID_TYPE_NONE = @as(u32, 0);
+pub const SERVICE_SID_TYPE_UNRESTRICTED = @as(u32, 1);
+pub const SERVICE_START = @as(u32, 16);
+pub const SERVICE_START_REASON_AUTO = @as(u32, 2);
+pub const SERVICE_START_REASON_DELAYEDAUTO = @as(u32, 16);
+pub const SERVICE_START_REASON_DEMAND = @as(u32, 1);
+pub const SERVICE_START_REASON_RESTART_ON_FAILURE = @as(u32, 8);
+pub const SERVICE_START_REASON_TRIGGER = @as(u32, 4);
+pub const SERVICE_STOP = @as(u32, 32);
+pub const SERVICE_STOP_REASON_FLAG_CUSTOM = @as(u32, 536870912);
+pub const SERVICE_STOP_REASON_FLAG_MAX = @as(u32, 2147483648);
+pub const SERVICE_STOP_REASON_FLAG_MIN = @as(u32, 0);
+pub const SERVICE_STOP_REASON_FLAG_PLANNED = @as(u32, 1073741824);
+pub const SERVICE_STOP_REASON_FLAG_UNPLANNED = @as(u32, 268435456);
+pub const SERVICE_STOP_REASON_MAJOR_APPLICATION = @as(u32, 327680);
+pub const SERVICE_STOP_REASON_MAJOR_HARDWARE = @as(u32, 131072);
+pub const SERVICE_STOP_REASON_MAJOR_MAX = @as(u32, 458752);
+pub const SERVICE_STOP_REASON_MAJOR_MAX_CUSTOM = @as(u32, 16711680);
+pub const SERVICE_STOP_REASON_MAJOR_MIN = @as(u32, 0);
+pub const SERVICE_STOP_REASON_MAJOR_MIN_CUSTOM = @as(u32, 4194304);
+pub const SERVICE_STOP_REASON_MAJOR_NONE = @as(u32, 393216);
+pub const SERVICE_STOP_REASON_MAJOR_OPERATINGSYSTEM = @as(u32, 196608);
+pub const SERVICE_STOP_REASON_MAJOR_OTHER = @as(u32, 65536);
+pub const SERVICE_STOP_REASON_MAJOR_SOFTWARE = @as(u32, 262144);
+pub const SERVICE_STOP_REASON_MINOR_DISK = @as(u32, 8);
+pub const SERVICE_STOP_REASON_MINOR_ENVIRONMENT = @as(u32, 10);
+pub const SERVICE_STOP_REASON_MINOR_HARDWARE_DRIVER = @as(u32, 11);
+pub const SERVICE_STOP_REASON_MINOR_HUNG = @as(u32, 6);
+pub const SERVICE_STOP_REASON_MINOR_INSTALLATION = @as(u32, 3);
+pub const SERVICE_STOP_REASON_MINOR_MAINTENANCE = @as(u32, 2);
+pub const SERVICE_STOP_REASON_MINOR_MAX = @as(u32, 25);
+pub const SERVICE_STOP_REASON_MINOR_MAX_CUSTOM = @as(u32, 65535);
+pub const SERVICE_STOP_REASON_MINOR_MEMOTYLIMIT = @as(u32, 24);
+pub const SERVICE_STOP_REASON_MINOR_MIN = @as(u32, 0);
+pub const SERVICE_STOP_REASON_MINOR_MIN_CUSTOM = @as(u32, 256);
+pub const SERVICE_STOP_REASON_MINOR_MMC = @as(u32, 22);
+pub const SERVICE_STOP_REASON_MINOR_NETWORK_CONNECTIVITY = @as(u32, 17);
+pub const SERVICE_STOP_REASON_MINOR_NETWORKCARD = @as(u32, 9);
+pub const SERVICE_STOP_REASON_MINOR_NONE = @as(u32, 23);
+pub const SERVICE_STOP_REASON_MINOR_OTHER = @as(u32, 1);
+pub const SERVICE_STOP_REASON_MINOR_OTHERDRIVER = @as(u32, 12);
+pub const SERVICE_STOP_REASON_MINOR_RECONFIG = @as(u32, 5);
+pub const SERVICE_STOP_REASON_MINOR_SECURITY = @as(u32, 16);
+pub const SERVICE_STOP_REASON_MINOR_SECURITYFIX = @as(u32, 15);
+pub const SERVICE_STOP_REASON_MINOR_SECURITYFIX_UNINSTALL = @as(u32, 21);
+pub const SERVICE_STOP_REASON_MINOR_SERVICEPACK = @as(u32, 13);
+pub const SERVICE_STOP_REASON_MINOR_SERVICEPACK_UNINSTALL = @as(u32, 19);
+pub const SERVICE_STOP_REASON_MINOR_SOFTWARE_UPDATE = @as(u32, 14);
+pub const SERVICE_STOP_REASON_MINOR_SOFTWARE_UPDATE_UNINSTALL = @as(u32, 20);
+pub const SERVICE_STOP_REASON_MINOR_UNSTABLE = @as(u32, 7);
+pub const SERVICE_STOP_REASON_MINOR_UPGRADE = @as(u32, 4);
+pub const SERVICE_STOP_REASON_MINOR_WMI = @as(u32, 18);
 pub const SERVICE_TRIGGER_STARTED_ARGUMENT = "TriggerStarted";
-pub const SC_AGGREGATE_STORAGE_KEY = "System\\CurrentControlSet\\Control\\ServiceAggregatedEvents";
+pub const SERVICE_TRIGGER_TYPE_AGGREGATE = @as(u32, 30);
+pub const SERVICE_TRIGGER_TYPE_CUSTOM_SYSTEM_STATE_CHANGE = @as(u32, 7);
+pub const SERVICE_USER_DEFINED_CONTROL = @as(u32, 256);
+pub const SERVICES_ACTIVE_DATABASE = "ServicesActive";
+pub const SERVICES_ACTIVE_DATABASEA = "ServicesActive";
+pub const SERVICES_ACTIVE_DATABASEW = "ServicesActive";
+pub const SERVICES_FAILED_DATABASE = "ServicesFailed";
+pub const SERVICES_FAILED_DATABASEA = "ServicesFailed";
+pub const SERVICES_FAILED_DATABASEW = "ServicesFailed";
+pub const USER_POLICY_PRESENT_GUID = Guid.initString("54fb46c8-f089-464c-b1fd-59d1b62c3b50");
 
 //--------------------------------------------------------------------------------
 // Section: Types (68)
 //--------------------------------------------------------------------------------
+pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const ENUM_SERVICE_STATE = enum(u32) {
     ACTIVE = 1,
     INACTIVE = 2,
@@ -146,39 +150,29 @@ pub const SERVICE_ACTIVE = ENUM_SERVICE_STATE.ACTIVE;
 pub const SERVICE_INACTIVE = ENUM_SERVICE_STATE.INACTIVE;
 pub const SERVICE_STATE_ALL = ENUM_SERVICE_STATE.STATE_ALL;
 
-pub const SERVICE_ERROR = enum(u32) {
-    CRITICAL = 3,
-    IGNORE = 0,
-    NORMAL = 1,
-    SEVERE = 2,
+pub const ENUM_SERVICE_STATUS_PROCESSA = extern struct {
+    lpServiceName: ?PSTR,
+    lpDisplayName: ?PSTR,
+    ServiceStatusProcess: SERVICE_STATUS_PROCESS,
 };
-pub const SERVICE_ERROR_CRITICAL = SERVICE_ERROR.CRITICAL;
-pub const SERVICE_ERROR_IGNORE = SERVICE_ERROR.IGNORE;
-pub const SERVICE_ERROR_NORMAL = SERVICE_ERROR.NORMAL;
-pub const SERVICE_ERROR_SEVERE = SERVICE_ERROR.SEVERE;
 
-pub const SERVICE_CONFIG = enum(u32) {
-    DELAYED_AUTO_START_INFO = 3,
-    DESCRIPTION = 1,
-    FAILURE_ACTIONS = 2,
-    FAILURE_ACTIONS_FLAG = 4,
-    PREFERRED_NODE = 9,
-    PRESHUTDOWN_INFO = 7,
-    REQUIRED_PRIVILEGES_INFO = 6,
-    SERVICE_SID_INFO = 5,
-    TRIGGER_INFO = 8,
-    LAUNCH_PROTECTED = 12,
+pub const ENUM_SERVICE_STATUS_PROCESSW = extern struct {
+    lpServiceName: ?PWSTR,
+    lpDisplayName: ?PWSTR,
+    ServiceStatusProcess: SERVICE_STATUS_PROCESS,
 };
-pub const SERVICE_CONFIG_DELAYED_AUTO_START_INFO = SERVICE_CONFIG.DELAYED_AUTO_START_INFO;
-pub const SERVICE_CONFIG_DESCRIPTION = SERVICE_CONFIG.DESCRIPTION;
-pub const SERVICE_CONFIG_FAILURE_ACTIONS = SERVICE_CONFIG.FAILURE_ACTIONS;
-pub const SERVICE_CONFIG_FAILURE_ACTIONS_FLAG = SERVICE_CONFIG.FAILURE_ACTIONS_FLAG;
-pub const SERVICE_CONFIG_PREFERRED_NODE = SERVICE_CONFIG.PREFERRED_NODE;
-pub const SERVICE_CONFIG_PRESHUTDOWN_INFO = SERVICE_CONFIG.PRESHUTDOWN_INFO;
-pub const SERVICE_CONFIG_REQUIRED_PRIVILEGES_INFO = SERVICE_CONFIG.REQUIRED_PRIVILEGES_INFO;
-pub const SERVICE_CONFIG_SERVICE_SID_INFO = SERVICE_CONFIG.SERVICE_SID_INFO;
-pub const SERVICE_CONFIG_TRIGGER_INFO = SERVICE_CONFIG.TRIGGER_INFO;
-pub const SERVICE_CONFIG_LAUNCH_PROTECTED = SERVICE_CONFIG.LAUNCH_PROTECTED;
+
+pub const ENUM_SERVICE_STATUSA = extern struct {
+    lpServiceName: ?PSTR,
+    lpDisplayName: ?PSTR,
+    ServiceStatus: SERVICE_STATUS,
+};
+
+pub const ENUM_SERVICE_STATUSW = extern struct {
+    lpServiceName: ?PWSTR,
+    lpDisplayName: ?PWSTR,
+    ServiceStatus: SERVICE_STATUS,
+};
 
 pub const ENUM_SERVICE_TYPE = packed struct(u32) {
     KERNEL_DRIVER: u1 = 0,
@@ -238,18 +232,228 @@ pub const SERVICE_USER_SHARE_PROCESS = ENUM_SERVICE_TYPE{
     ._6 = 1,
 };
 
-pub const SERVICE_START_TYPE = enum(u32) {
-    AUTO_START = 2,
-    BOOT_START = 0,
-    DEMAND_START = 3,
-    DISABLED = 4,
-    SYSTEM_START = 1,
+pub const HANDLER_FUNCTION = *const fn(
+    dwControl: u32,
+) callconv(.winapi) void;
+
+pub const HANDLER_FUNCTION_EX = *const fn(
+    dwControl: u32,
+    dwEventType: u32,
+    lpEventData: ?*anyopaque,
+    lpContext: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const LPHANDLER_FUNCTION = *const fn(
+    dwControl: u32,
+) callconv(.winapi) void;
+
+pub const LPHANDLER_FUNCTION_EX = *const fn(
+    dwControl: u32,
+    dwEventType: u32,
+    lpEventData: ?*anyopaque,
+    lpContext: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const LPSERVICE_MAIN_FUNCTIONA = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?PSTR,
+) callconv(.winapi) void;
+
+pub const LPSERVICE_MAIN_FUNCTIONW = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?PWSTR,
+) callconv(.winapi) void;
+
+pub const PFN_SC_NOTIFY_CALLBACK = *const fn(
+    pParameter: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const PSC_NOTIFICATION_CALLBACK = *const fn(
+    dwNotify: u32,
+    pCallbackContext: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const QUERY_SERVICE_CONFIGA = extern struct {
+    dwServiceType: ENUM_SERVICE_TYPE,
+    dwStartType: SERVICE_START_TYPE,
+    dwErrorControl: SERVICE_ERROR,
+    lpBinaryPathName: ?PSTR,
+    lpLoadOrderGroup: ?PSTR,
+    dwTagId: u32,
+    lpDependencies: ?PSTR,
+    lpServiceStartName: ?PSTR,
+    lpDisplayName: ?PSTR,
 };
-pub const SERVICE_AUTO_START = SERVICE_START_TYPE.AUTO_START;
-pub const SERVICE_BOOT_START = SERVICE_START_TYPE.BOOT_START;
-pub const SERVICE_DEMAND_START = SERVICE_START_TYPE.DEMAND_START;
-pub const SERVICE_DISABLED = SERVICE_START_TYPE.DISABLED;
-pub const SERVICE_SYSTEM_START = SERVICE_START_TYPE.SYSTEM_START;
+
+pub const QUERY_SERVICE_CONFIGW = extern struct {
+    dwServiceType: ENUM_SERVICE_TYPE,
+    dwStartType: SERVICE_START_TYPE,
+    dwErrorControl: SERVICE_ERROR,
+    lpBinaryPathName: ?PWSTR,
+    lpLoadOrderGroup: ?PWSTR,
+    dwTagId: u32,
+    lpDependencies: ?PWSTR,
+    lpServiceStartName: ?PWSTR,
+    lpDisplayName: ?PWSTR,
+};
+
+pub const QUERY_SERVICE_LOCK_STATUSA = extern struct {
+    fIsLocked: u32,
+    lpLockOwner: ?PSTR,
+    dwLockDuration: u32,
+};
+
+pub const QUERY_SERVICE_LOCK_STATUSW = extern struct {
+    fIsLocked: u32,
+    lpLockOwner: ?PWSTR,
+    dwLockDuration: u32,
+};
+
+pub const SC_ACTION = extern struct {
+    Type: SC_ACTION_TYPE,
+    Delay: u32,
+};
+
+pub const SC_ACTION_TYPE = enum(i32) {
+    NONE = 0,
+    RESTART = 1,
+    REBOOT = 2,
+    RUN_COMMAND = 3,
+    OWN_RESTART = 4,
+};
+pub const SC_ACTION_NONE = SC_ACTION_TYPE.NONE;
+pub const SC_ACTION_RESTART = SC_ACTION_TYPE.RESTART;
+pub const SC_ACTION_REBOOT = SC_ACTION_TYPE.REBOOT;
+pub const SC_ACTION_RUN_COMMAND = SC_ACTION_TYPE.RUN_COMMAND;
+pub const SC_ACTION_OWN_RESTART = SC_ACTION_TYPE.OWN_RESTART;
+
+pub const SC_ENUM_TYPE = enum(i32) {
+    O = 0,
+};
+pub const SC_ENUM_PROCESS_INFO = SC_ENUM_TYPE.O;
+
+pub const SC_EVENT_TYPE = enum(i32) {
+    DATABASE_CHANGE = 0,
+    PROPERTY_CHANGE = 1,
+    STATUS_CHANGE = 2,
+};
+pub const SC_EVENT_DATABASE_CHANGE = SC_EVENT_TYPE.DATABASE_CHANGE;
+pub const SC_EVENT_PROPERTY_CHANGE = SC_EVENT_TYPE.PROPERTY_CHANGE;
+pub const SC_EVENT_STATUS_CHANGE = SC_EVENT_TYPE.STATUS_CHANGE;
+
+pub const SC_STATUS_TYPE = enum(i32) {
+    O = 0,
+};
+pub const SC_STATUS_PROCESS_INFO = SC_STATUS_TYPE.O;
+
+pub const SERVICE_CONFIG = enum(u32) {
+    DELAYED_AUTO_START_INFO = 3,
+    DESCRIPTION = 1,
+    FAILURE_ACTIONS = 2,
+    FAILURE_ACTIONS_FLAG = 4,
+    PREFERRED_NODE = 9,
+    PRESHUTDOWN_INFO = 7,
+    REQUIRED_PRIVILEGES_INFO = 6,
+    SERVICE_SID_INFO = 5,
+    TRIGGER_INFO = 8,
+    LAUNCH_PROTECTED = 12,
+};
+pub const SERVICE_CONFIG_DELAYED_AUTO_START_INFO = SERVICE_CONFIG.DELAYED_AUTO_START_INFO;
+pub const SERVICE_CONFIG_DESCRIPTION = SERVICE_CONFIG.DESCRIPTION;
+pub const SERVICE_CONFIG_FAILURE_ACTIONS = SERVICE_CONFIG.FAILURE_ACTIONS;
+pub const SERVICE_CONFIG_FAILURE_ACTIONS_FLAG = SERVICE_CONFIG.FAILURE_ACTIONS_FLAG;
+pub const SERVICE_CONFIG_PREFERRED_NODE = SERVICE_CONFIG.PREFERRED_NODE;
+pub const SERVICE_CONFIG_PRESHUTDOWN_INFO = SERVICE_CONFIG.PRESHUTDOWN_INFO;
+pub const SERVICE_CONFIG_REQUIRED_PRIVILEGES_INFO = SERVICE_CONFIG.REQUIRED_PRIVILEGES_INFO;
+pub const SERVICE_CONFIG_SERVICE_SID_INFO = SERVICE_CONFIG.SERVICE_SID_INFO;
+pub const SERVICE_CONFIG_TRIGGER_INFO = SERVICE_CONFIG.TRIGGER_INFO;
+pub const SERVICE_CONFIG_LAUNCH_PROTECTED = SERVICE_CONFIG.LAUNCH_PROTECTED;
+
+pub const SERVICE_CONTROL_STATUS_REASON_PARAMSA = extern struct {
+    dwReason: u32,
+    pszComment: ?PSTR,
+    ServiceStatus: SERVICE_STATUS_PROCESS,
+};
+
+pub const SERVICE_CONTROL_STATUS_REASON_PARAMSW = extern struct {
+    dwReason: u32,
+    pszComment: ?PWSTR,
+    ServiceStatus: SERVICE_STATUS_PROCESS,
+};
+
+pub const SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM = extern struct {
+    u: extern union {
+        CustomStateId: SERVICE_TRIGGER_CUSTOM_STATE_ID,
+        s: extern struct {
+            DataOffset: u32,
+            Data: [1]u8,
+        },
+    },
+};
+
+pub const SERVICE_DELAYED_AUTO_START_INFO = extern struct {
+    fDelayedAutostart: BOOL,
+};
+
+pub const SERVICE_DESCRIPTIONA = extern struct {
+    lpDescription: ?PSTR,
+};
+
+pub const SERVICE_DESCRIPTIONW = extern struct {
+    lpDescription: ?PWSTR,
+};
+
+pub const SERVICE_DIRECTORY_TYPE = enum(i32) {
+    PersistentState = 0,
+    TypeMax = 1,
+};
+pub const ServiceDirectoryPersistentState = SERVICE_DIRECTORY_TYPE.PersistentState;
+pub const ServiceDirectoryTypeMax = SERVICE_DIRECTORY_TYPE.TypeMax;
+
+pub const SERVICE_ERROR = enum(u32) {
+    CRITICAL = 3,
+    IGNORE = 0,
+    NORMAL = 1,
+    SEVERE = 2,
+};
+pub const SERVICE_ERROR_CRITICAL = SERVICE_ERROR.CRITICAL;
+pub const SERVICE_ERROR_IGNORE = SERVICE_ERROR.IGNORE;
+pub const SERVICE_ERROR_NORMAL = SERVICE_ERROR.NORMAL;
+pub const SERVICE_ERROR_SEVERE = SERVICE_ERROR.SEVERE;
+
+pub const SERVICE_FAILURE_ACTIONS_FLAG = extern struct {
+    fFailureActionsOnNonCrashFailures: BOOL,
+};
+
+pub const SERVICE_FAILURE_ACTIONSA = extern struct {
+    dwResetPeriod: u32,
+    lpRebootMsg: ?PSTR,
+    lpCommand: ?PSTR,
+    cActions: u32,
+    lpsaActions: ?*SC_ACTION,
+};
+
+pub const SERVICE_FAILURE_ACTIONSW = extern struct {
+    dwResetPeriod: u32,
+    lpRebootMsg: ?PWSTR,
+    lpCommand: ?PWSTR,
+    cActions: u32,
+    lpsaActions: ?*SC_ACTION,
+};
+
+pub const SERVICE_LAUNCH_PROTECTED_INFO = extern struct {
+    dwLaunchProtected: u32,
+};
+
+pub const SERVICE_MAIN_FUNCTIONA = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?*i8,
+) callconv(.winapi) void;
+
+pub const SERVICE_MAIN_FUNCTIONW = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?PWSTR,
+) callconv(.winapi) void;
 
 pub const SERVICE_NOTIFY = packed struct(u32) {
     STOPPED: u1 = 0,
@@ -296,332 +500,6 @@ pub const SERVICE_NOTIFY_START_PENDING = SERVICE_NOTIFY{ .START_PENDING = 1 };
 pub const SERVICE_NOTIFY_STOP_PENDING = SERVICE_NOTIFY{ .STOP_PENDING = 1 };
 pub const SERVICE_NOTIFY_STOPPED = SERVICE_NOTIFY{ .STOPPED = 1 };
 
-pub const SERVICE_RUNS_IN_PROCESS = enum(u32) {
-    NON_SYSTEM_OR_NOT_RUNNING = 0,
-    SYSTEM_PROCESS = 1,
-};
-pub const SERVICE_RUNS_IN_NON_SYSTEM_OR_NOT_RUNNING = SERVICE_RUNS_IN_PROCESS.NON_SYSTEM_OR_NOT_RUNNING;
-pub const SERVICE_RUNS_IN_SYSTEM_PROCESS = SERVICE_RUNS_IN_PROCESS.SYSTEM_PROCESS;
-
-pub const SERVICE_TRIGGER_ACTION = enum(u32) {
-    ART = 1,
-    OP = 2,
-};
-pub const SERVICE_TRIGGER_ACTION_SERVICE_START = SERVICE_TRIGGER_ACTION.ART;
-pub const SERVICE_TRIGGER_ACTION_SERVICE_STOP = SERVICE_TRIGGER_ACTION.OP;
-
-pub const SERVICE_TRIGGER_TYPE = enum(u32) {
-    CUSTOM = 20,
-    DEVICE_INTERFACE_ARRIVAL = 1,
-    DOMAIN_JOIN = 3,
-    FIREWALL_PORT_EVENT = 4,
-    GROUP_POLICY = 5,
-    IP_ADDRESS_AVAILABILITY = 2,
-    NETWORK_ENDPOINT = 6,
-};
-pub const SERVICE_TRIGGER_TYPE_CUSTOM = SERVICE_TRIGGER_TYPE.CUSTOM;
-pub const SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL = SERVICE_TRIGGER_TYPE.DEVICE_INTERFACE_ARRIVAL;
-pub const SERVICE_TRIGGER_TYPE_DOMAIN_JOIN = SERVICE_TRIGGER_TYPE.DOMAIN_JOIN;
-pub const SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT = SERVICE_TRIGGER_TYPE.FIREWALL_PORT_EVENT;
-pub const SERVICE_TRIGGER_TYPE_GROUP_POLICY = SERVICE_TRIGGER_TYPE.GROUP_POLICY;
-pub const SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY = SERVICE_TRIGGER_TYPE.IP_ADDRESS_AVAILABILITY;
-pub const SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT = SERVICE_TRIGGER_TYPE.NETWORK_ENDPOINT;
-
-pub const SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE = enum(u32) {
-    BINARY = 1,
-    STRING = 2,
-    LEVEL = 3,
-    KEYWORD_ANY = 4,
-    KEYWORD_ALL = 5,
-};
-pub const SERVICE_TRIGGER_DATA_TYPE_BINARY = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.BINARY;
-pub const SERVICE_TRIGGER_DATA_TYPE_STRING = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.STRING;
-pub const SERVICE_TRIGGER_DATA_TYPE_LEVEL = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.LEVEL;
-pub const SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ANY = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.KEYWORD_ANY;
-pub const SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ALL = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.KEYWORD_ALL;
-
-pub const SERVICE_STATUS_CURRENT_STATE = enum(u32) {
-    CONTINUE_PENDING = 5,
-    PAUSE_PENDING = 6,
-    PAUSED = 7,
-    RUNNING = 4,
-    START_PENDING = 2,
-    STOP_PENDING = 3,
-    STOPPED = 1,
-};
-pub const SERVICE_CONTINUE_PENDING = SERVICE_STATUS_CURRENT_STATE.CONTINUE_PENDING;
-pub const SERVICE_PAUSE_PENDING = SERVICE_STATUS_CURRENT_STATE.PAUSE_PENDING;
-pub const SERVICE_PAUSED = SERVICE_STATUS_CURRENT_STATE.PAUSED;
-pub const SERVICE_RUNNING = SERVICE_STATUS_CURRENT_STATE.RUNNING;
-pub const SERVICE_START_PENDING = SERVICE_STATUS_CURRENT_STATE.START_PENDING;
-pub const SERVICE_STOP_PENDING = SERVICE_STATUS_CURRENT_STATE.STOP_PENDING;
-pub const SERVICE_STOPPED = SERVICE_STATUS_CURRENT_STATE.STOPPED;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const SERVICE_STATUS_HANDLE = isize;
-
-pub const SERVICE_TRIGGER_CUSTOM_STATE_ID = extern struct {
-    Data: [2]u32,
-};
-
-pub const SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM = extern struct {
-    u: extern union {
-        CustomStateId: SERVICE_TRIGGER_CUSTOM_STATE_ID,
-        s: extern struct {
-            DataOffset: u32,
-            Data: [1]u8,
-        },
-    },
-};
-
-pub const SERVICE_DESCRIPTIONA = extern struct {
-    lpDescription: ?PSTR,
-};
-
-pub const SERVICE_DESCRIPTIONW = extern struct {
-    lpDescription: ?PWSTR,
-};
-
-pub const SC_ACTION_TYPE = enum(i32) {
-    NONE = 0,
-    RESTART = 1,
-    REBOOT = 2,
-    RUN_COMMAND = 3,
-    OWN_RESTART = 4,
-};
-pub const SC_ACTION_NONE = SC_ACTION_TYPE.NONE;
-pub const SC_ACTION_RESTART = SC_ACTION_TYPE.RESTART;
-pub const SC_ACTION_REBOOT = SC_ACTION_TYPE.REBOOT;
-pub const SC_ACTION_RUN_COMMAND = SC_ACTION_TYPE.RUN_COMMAND;
-pub const SC_ACTION_OWN_RESTART = SC_ACTION_TYPE.OWN_RESTART;
-
-pub const SC_ACTION = extern struct {
-    Type: SC_ACTION_TYPE,
-    Delay: u32,
-};
-
-pub const SERVICE_FAILURE_ACTIONSA = extern struct {
-    dwResetPeriod: u32,
-    lpRebootMsg: ?PSTR,
-    lpCommand: ?PSTR,
-    cActions: u32,
-    lpsaActions: ?*SC_ACTION,
-};
-
-pub const SERVICE_FAILURE_ACTIONSW = extern struct {
-    dwResetPeriod: u32,
-    lpRebootMsg: ?PWSTR,
-    lpCommand: ?PWSTR,
-    cActions: u32,
-    lpsaActions: ?*SC_ACTION,
-};
-
-pub const SERVICE_DELAYED_AUTO_START_INFO = extern struct {
-    fDelayedAutostart: BOOL,
-};
-
-pub const SERVICE_FAILURE_ACTIONS_FLAG = extern struct {
-    fFailureActionsOnNonCrashFailures: BOOL,
-};
-
-pub const SERVICE_SID_INFO = extern struct {
-    dwServiceSidType: u32,
-};
-
-pub const SERVICE_REQUIRED_PRIVILEGES_INFOA = extern struct {
-    pmszRequiredPrivileges: ?PSTR,
-};
-
-pub const SERVICE_REQUIRED_PRIVILEGES_INFOW = extern struct {
-    pmszRequiredPrivileges: ?PWSTR,
-};
-
-pub const SERVICE_PRESHUTDOWN_INFO = extern struct {
-    dwPreshutdownTimeout: u32,
-};
-
-pub const SERVICE_TRIGGER_SPECIFIC_DATA_ITEM = extern struct {
-    dwDataType: SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE,
-    cbData: u32,
-    pData: ?*u8,
-};
-
-pub const SERVICE_TRIGGER = extern struct {
-    dwTriggerType: SERVICE_TRIGGER_TYPE,
-    dwAction: SERVICE_TRIGGER_ACTION,
-    pTriggerSubtype: ?*Guid,
-    cDataItems: u32,
-    pDataItems: ?*SERVICE_TRIGGER_SPECIFIC_DATA_ITEM,
-};
-
-pub const SERVICE_TRIGGER_INFO = extern struct {
-    cTriggers: u32,
-    pTriggers: ?*SERVICE_TRIGGER,
-    pReserved: ?*u8,
-};
-
-pub const SERVICE_PREFERRED_NODE_INFO = extern struct {
-    usPreferredNode: u16,
-    fDelete: BOOLEAN,
-};
-
-pub const SERVICE_TIMECHANGE_INFO = extern struct {
-    liNewTime: LARGE_INTEGER,
-    liOldTime: LARGE_INTEGER,
-};
-
-pub const SERVICE_LAUNCH_PROTECTED_INFO = extern struct {
-    dwLaunchProtected: u32,
-};
-
-pub const SC_STATUS_TYPE = enum(i32) {
-    O = 0,
-};
-pub const SC_STATUS_PROCESS_INFO = SC_STATUS_TYPE.O;
-
-pub const SC_ENUM_TYPE = enum(i32) {
-    O = 0,
-};
-pub const SC_ENUM_PROCESS_INFO = SC_ENUM_TYPE.O;
-
-pub const SERVICE_STATUS = extern struct {
-    dwServiceType: ENUM_SERVICE_TYPE,
-    dwCurrentState: SERVICE_STATUS_CURRENT_STATE,
-    dwControlsAccepted: u32,
-    dwWin32ExitCode: u32,
-    dwServiceSpecificExitCode: u32,
-    dwCheckPoint: u32,
-    dwWaitHint: u32,
-};
-
-pub const SERVICE_STATUS_PROCESS = extern struct {
-    dwServiceType: ENUM_SERVICE_TYPE,
-    dwCurrentState: SERVICE_STATUS_CURRENT_STATE,
-    dwControlsAccepted: u32,
-    dwWin32ExitCode: u32,
-    dwServiceSpecificExitCode: u32,
-    dwCheckPoint: u32,
-    dwWaitHint: u32,
-    dwProcessId: u32,
-    dwServiceFlags: SERVICE_RUNS_IN_PROCESS,
-};
-
-pub const ENUM_SERVICE_STATUSA = extern struct {
-    lpServiceName: ?PSTR,
-    lpDisplayName: ?PSTR,
-    ServiceStatus: SERVICE_STATUS,
-};
-
-pub const ENUM_SERVICE_STATUSW = extern struct {
-    lpServiceName: ?PWSTR,
-    lpDisplayName: ?PWSTR,
-    ServiceStatus: SERVICE_STATUS,
-};
-
-pub const ENUM_SERVICE_STATUS_PROCESSA = extern struct {
-    lpServiceName: ?PSTR,
-    lpDisplayName: ?PSTR,
-    ServiceStatusProcess: SERVICE_STATUS_PROCESS,
-};
-
-pub const ENUM_SERVICE_STATUS_PROCESSW = extern struct {
-    lpServiceName: ?PWSTR,
-    lpDisplayName: ?PWSTR,
-    ServiceStatusProcess: SERVICE_STATUS_PROCESS,
-};
-
-pub const QUERY_SERVICE_LOCK_STATUSA = extern struct {
-    fIsLocked: u32,
-    lpLockOwner: ?PSTR,
-    dwLockDuration: u32,
-};
-
-pub const QUERY_SERVICE_LOCK_STATUSW = extern struct {
-    fIsLocked: u32,
-    lpLockOwner: ?PWSTR,
-    dwLockDuration: u32,
-};
-
-pub const QUERY_SERVICE_CONFIGA = extern struct {
-    dwServiceType: ENUM_SERVICE_TYPE,
-    dwStartType: SERVICE_START_TYPE,
-    dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?PSTR,
-    lpLoadOrderGroup: ?PSTR,
-    dwTagId: u32,
-    lpDependencies: ?PSTR,
-    lpServiceStartName: ?PSTR,
-    lpDisplayName: ?PSTR,
-};
-
-pub const QUERY_SERVICE_CONFIGW = extern struct {
-    dwServiceType: ENUM_SERVICE_TYPE,
-    dwStartType: SERVICE_START_TYPE,
-    dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?PWSTR,
-    lpLoadOrderGroup: ?PWSTR,
-    dwTagId: u32,
-    lpDependencies: ?PWSTR,
-    lpServiceStartName: ?PWSTR,
-    lpDisplayName: ?PWSTR,
-};
-
-pub const SERVICE_MAIN_FUNCTIONW = *const fn(
-    dwNumServicesArgs: u32,
-    lpServiceArgVectors: ?*?PWSTR,
-) callconv(.winapi) void;
-
-pub const SERVICE_MAIN_FUNCTIONA = *const fn(
-    dwNumServicesArgs: u32,
-    lpServiceArgVectors: ?*?*i8,
-) callconv(.winapi) void;
-
-pub const LPSERVICE_MAIN_FUNCTIONW = *const fn(
-    dwNumServicesArgs: u32,
-    lpServiceArgVectors: ?*?PWSTR,
-) callconv(.winapi) void;
-
-pub const LPSERVICE_MAIN_FUNCTIONA = *const fn(
-    dwNumServicesArgs: u32,
-    lpServiceArgVectors: ?*?PSTR,
-) callconv(.winapi) void;
-
-pub const SERVICE_TABLE_ENTRYA = extern struct {
-    lpServiceName: ?PSTR,
-    lpServiceProc: ?LPSERVICE_MAIN_FUNCTIONA,
-};
-
-pub const SERVICE_TABLE_ENTRYW = extern struct {
-    lpServiceName: ?PWSTR,
-    lpServiceProc: ?LPSERVICE_MAIN_FUNCTIONW,
-};
-
-pub const HANDLER_FUNCTION = *const fn(
-    dwControl: u32,
-) callconv(.winapi) void;
-
-pub const HANDLER_FUNCTION_EX = *const fn(
-    dwControl: u32,
-    dwEventType: u32,
-    lpEventData: ?*anyopaque,
-    lpContext: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const LPHANDLER_FUNCTION = *const fn(
-    dwControl: u32,
-) callconv(.winapi) void;
-
-pub const LPHANDLER_FUNCTION_EX = *const fn(
-    dwControl: u32,
-    dwEventType: u32,
-    lpEventData: ?*anyopaque,
-    lpContext: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PFN_SC_NOTIFY_CALLBACK = *const fn(
-    pParameter: ?*anyopaque,
-) callconv(.winapi) void;
-
 pub const SERVICE_NOTIFY_1 = extern struct {
     dwVersion: u32,
     pfnNotifyCallback: ?PFN_SC_NOTIFY_CALLBACK,
@@ -650,38 +528,13 @@ pub const SERVICE_NOTIFY_2W = extern struct {
     pszServiceNames: ?PWSTR,
 };
 
-pub const SERVICE_CONTROL_STATUS_REASON_PARAMSA = extern struct {
-    dwReason: u32,
-    pszComment: ?PSTR,
-    ServiceStatus: SERVICE_STATUS_PROCESS,
+pub const SERVICE_PREFERRED_NODE_INFO = extern struct {
+    usPreferredNode: u16,
+    fDelete: BOOLEAN,
 };
 
-pub const SERVICE_CONTROL_STATUS_REASON_PARAMSW = extern struct {
-    dwReason: u32,
-    pszComment: ?PWSTR,
-    ServiceStatus: SERVICE_STATUS_PROCESS,
-};
-
-pub const SERVICE_START_REASON = extern struct {
-    dwReason: u32,
-};
-
-pub const SC_EVENT_TYPE = enum(i32) {
-    DATABASE_CHANGE = 0,
-    PROPERTY_CHANGE = 1,
-    STATUS_CHANGE = 2,
-};
-pub const SC_EVENT_DATABASE_CHANGE = SC_EVENT_TYPE.DATABASE_CHANGE;
-pub const SC_EVENT_PROPERTY_CHANGE = SC_EVENT_TYPE.PROPERTY_CHANGE;
-pub const SC_EVENT_STATUS_CHANGE = SC_EVENT_TYPE.STATUS_CHANGE;
-
-pub const PSC_NOTIFICATION_CALLBACK = *const fn(
-    dwNotify: u32,
-    pCallbackContext: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const SERVICE_PRESHUTDOWN_INFO = extern struct {
+    dwPreshutdownTimeout: u32,
 };
 
 pub const SERVICE_REGISTRY_STATE_TYPE = enum(i32) {
@@ -693,33 +546,186 @@ pub const ServiceRegistryStateParameters = SERVICE_REGISTRY_STATE_TYPE.ServiceRe
 pub const ServiceRegistryStatePersistent = SERVICE_REGISTRY_STATE_TYPE.ServiceRegistryStatePersistent;
 pub const MaxServiceRegistryStateType = SERVICE_REGISTRY_STATE_TYPE.MaxServiceRegistryStateType;
 
-pub const SERVICE_DIRECTORY_TYPE = enum(i32) {
-    PersistentState = 0,
-    TypeMax = 1,
+pub const SERVICE_REQUIRED_PRIVILEGES_INFOA = extern struct {
+    pmszRequiredPrivileges: ?PSTR,
 };
-pub const ServiceDirectoryPersistentState = SERVICE_DIRECTORY_TYPE.PersistentState;
-pub const ServiceDirectoryTypeMax = SERVICE_DIRECTORY_TYPE.TypeMax;
 
-pub const SERVICE_SHARED_REGISTRY_STATE_TYPE = enum(i32) {
-    e = 0,
+pub const SERVICE_REQUIRED_PRIVILEGES_INFOW = extern struct {
+    pmszRequiredPrivileges: ?PWSTR,
 };
-pub const ServiceSharedRegistryPersistentState = SERVICE_SHARED_REGISTRY_STATE_TYPE.e;
+
+pub const SERVICE_RUNS_IN_PROCESS = enum(u32) {
+    NON_SYSTEM_OR_NOT_RUNNING = 0,
+    SYSTEM_PROCESS = 1,
+};
+pub const SERVICE_RUNS_IN_NON_SYSTEM_OR_NOT_RUNNING = SERVICE_RUNS_IN_PROCESS.NON_SYSTEM_OR_NOT_RUNNING;
+pub const SERVICE_RUNS_IN_SYSTEM_PROCESS = SERVICE_RUNS_IN_PROCESS.SYSTEM_PROCESS;
 
 pub const SERVICE_SHARED_DIRECTORY_TYPE = enum(i32) {
     e = 0,
 };
 pub const ServiceSharedDirectoryPersistentState = SERVICE_SHARED_DIRECTORY_TYPE.e;
 
+pub const SERVICE_SHARED_REGISTRY_STATE_TYPE = enum(i32) {
+    e = 0,
+};
+pub const ServiceSharedRegistryPersistentState = SERVICE_SHARED_REGISTRY_STATE_TYPE.e;
+
+pub const SERVICE_SID_INFO = extern struct {
+    dwServiceSidType: u32,
+};
+
+pub const SERVICE_START_REASON = extern struct {
+    dwReason: u32,
+};
+
+pub const SERVICE_START_TYPE = enum(u32) {
+    AUTO_START = 2,
+    BOOT_START = 0,
+    DEMAND_START = 3,
+    DISABLED = 4,
+    SYSTEM_START = 1,
+};
+pub const SERVICE_AUTO_START = SERVICE_START_TYPE.AUTO_START;
+pub const SERVICE_BOOT_START = SERVICE_START_TYPE.BOOT_START;
+pub const SERVICE_DEMAND_START = SERVICE_START_TYPE.DEMAND_START;
+pub const SERVICE_DISABLED = SERVICE_START_TYPE.DISABLED;
+pub const SERVICE_SYSTEM_START = SERVICE_START_TYPE.SYSTEM_START;
+
+pub const SERVICE_STATUS = extern struct {
+    dwServiceType: ENUM_SERVICE_TYPE,
+    dwCurrentState: SERVICE_STATUS_CURRENT_STATE,
+    dwControlsAccepted: u32,
+    dwWin32ExitCode: u32,
+    dwServiceSpecificExitCode: u32,
+    dwCheckPoint: u32,
+    dwWaitHint: u32,
+};
+
+pub const SERVICE_STATUS_CURRENT_STATE = enum(u32) {
+    CONTINUE_PENDING = 5,
+    PAUSE_PENDING = 6,
+    PAUSED = 7,
+    RUNNING = 4,
+    START_PENDING = 2,
+    STOP_PENDING = 3,
+    STOPPED = 1,
+};
+pub const SERVICE_CONTINUE_PENDING = SERVICE_STATUS_CURRENT_STATE.CONTINUE_PENDING;
+pub const SERVICE_PAUSE_PENDING = SERVICE_STATUS_CURRENT_STATE.PAUSE_PENDING;
+pub const SERVICE_PAUSED = SERVICE_STATUS_CURRENT_STATE.PAUSED;
+pub const SERVICE_RUNNING = SERVICE_STATUS_CURRENT_STATE.RUNNING;
+pub const SERVICE_START_PENDING = SERVICE_STATUS_CURRENT_STATE.START_PENDING;
+pub const SERVICE_STOP_PENDING = SERVICE_STATUS_CURRENT_STATE.STOP_PENDING;
+pub const SERVICE_STOPPED = SERVICE_STATUS_CURRENT_STATE.STOPPED;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const SERVICE_STATUS_HANDLE = isize;
+
+pub const SERVICE_STATUS_PROCESS = extern struct {
+    dwServiceType: ENUM_SERVICE_TYPE,
+    dwCurrentState: SERVICE_STATUS_CURRENT_STATE,
+    dwControlsAccepted: u32,
+    dwWin32ExitCode: u32,
+    dwServiceSpecificExitCode: u32,
+    dwCheckPoint: u32,
+    dwWaitHint: u32,
+    dwProcessId: u32,
+    dwServiceFlags: SERVICE_RUNS_IN_PROCESS,
+};
+
+pub const SERVICE_TABLE_ENTRYA = extern struct {
+    lpServiceName: ?PSTR,
+    lpServiceProc: ?LPSERVICE_MAIN_FUNCTIONA,
+};
+
+pub const SERVICE_TABLE_ENTRYW = extern struct {
+    lpServiceName: ?PWSTR,
+    lpServiceProc: ?LPSERVICE_MAIN_FUNCTIONW,
+};
+
+pub const SERVICE_TIMECHANGE_INFO = extern struct {
+    liNewTime: LARGE_INTEGER,
+    liOldTime: LARGE_INTEGER,
+};
+
+pub const SERVICE_TRIGGER = extern struct {
+    dwTriggerType: SERVICE_TRIGGER_TYPE,
+    dwAction: SERVICE_TRIGGER_ACTION,
+    pTriggerSubtype: ?*Guid,
+    cDataItems: u32,
+    pDataItems: ?*SERVICE_TRIGGER_SPECIFIC_DATA_ITEM,
+};
+
+pub const SERVICE_TRIGGER_ACTION = enum(u32) {
+    ART = 1,
+    OP = 2,
+};
+pub const SERVICE_TRIGGER_ACTION_SERVICE_START = SERVICE_TRIGGER_ACTION.ART;
+pub const SERVICE_TRIGGER_ACTION_SERVICE_STOP = SERVICE_TRIGGER_ACTION.OP;
+
+pub const SERVICE_TRIGGER_CUSTOM_STATE_ID = extern struct {
+    Data: [2]u32,
+};
+
+pub const SERVICE_TRIGGER_INFO = extern struct {
+    cTriggers: u32,
+    pTriggers: ?*SERVICE_TRIGGER,
+    pReserved: ?*u8,
+};
+
+pub const SERVICE_TRIGGER_SPECIFIC_DATA_ITEM = extern struct {
+    dwDataType: SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE,
+    cbData: u32,
+    pData: ?*u8,
+};
+
+pub const SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE = enum(u32) {
+    BINARY = 1,
+    STRING = 2,
+    LEVEL = 3,
+    KEYWORD_ANY = 4,
+    KEYWORD_ALL = 5,
+};
+pub const SERVICE_TRIGGER_DATA_TYPE_BINARY = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.BINARY;
+pub const SERVICE_TRIGGER_DATA_TYPE_STRING = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.STRING;
+pub const SERVICE_TRIGGER_DATA_TYPE_LEVEL = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.LEVEL;
+pub const SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ANY = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.KEYWORD_ANY;
+pub const SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ALL = SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE.KEYWORD_ALL;
+
+pub const SERVICE_TRIGGER_TYPE = enum(u32) {
+    CUSTOM = 20,
+    DEVICE_INTERFACE_ARRIVAL = 1,
+    DOMAIN_JOIN = 3,
+    FIREWALL_PORT_EVENT = 4,
+    GROUP_POLICY = 5,
+    IP_ADDRESS_AVAILABILITY = 2,
+    NETWORK_ENDPOINT = 6,
+};
+pub const SERVICE_TRIGGER_TYPE_CUSTOM = SERVICE_TRIGGER_TYPE.CUSTOM;
+pub const SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL = SERVICE_TRIGGER_TYPE.DEVICE_INTERFACE_ARRIVAL;
+pub const SERVICE_TRIGGER_TYPE_DOMAIN_JOIN = SERVICE_TRIGGER_TYPE.DOMAIN_JOIN;
+pub const SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT = SERVICE_TRIGGER_TYPE.FIREWALL_PORT_EVENT;
+pub const SERVICE_TRIGGER_TYPE_GROUP_POLICY = SERVICE_TRIGGER_TYPE.GROUP_POLICY;
+pub const SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY = SERVICE_TRIGGER_TYPE.IP_ADDRESS_AVAILABILITY;
+pub const SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT = SERVICE_TRIGGER_TYPE.NETWORK_ENDPOINT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (56)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SetServiceBits(
-    hServiceStatus: SERVICE_STATUS_HANDLE,
-    dwServiceBits: u32,
-    bSetBitsOn: BOOL,
-    bUpdateImmediately: BOOL,
+pub extern "advapi32" fn ChangeServiceConfig2A(
+    hService: SC_HANDLE,
+    dwInfoLevel: SERVICE_CONFIG,
+    lpInfo: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ChangeServiceConfig2W(
+    hService: SC_HANDLE,
+    dwInfoLevel: SERVICE_CONFIG,
+    lpInfo: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -753,20 +759,6 @@ pub extern "advapi32" fn ChangeServiceConfigW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ChangeServiceConfig2A(
-    hService: SC_HANDLE,
-    dwInfoLevel: SERVICE_CONFIG,
-    lpInfo: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ChangeServiceConfig2W(
-    hService: SC_HANDLE,
-    dwInfoLevel: SERVICE_CONFIG,
-    lpInfo: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn CloseServiceHandle(
     hSCObject: SC_HANDLE,
 ) callconv(.winapi) BOOL;
@@ -776,6 +768,22 @@ pub extern "advapi32" fn ControlService(
     hService: SC_HANDLE,
     dwControl: u32,
     lpServiceStatus: ?*SERVICE_STATUS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn ControlServiceExA(
+    hService: SC_HANDLE,
+    dwControl: u32,
+    dwInfoLevel: u32,
+    pControlParams: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn ControlServiceExW(
+    hService: SC_HANDLE,
+    dwControl: u32,
+    dwInfoLevel: u32,
+    pControlParams: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -853,19 +861,6 @@ pub extern "advapi32" fn EnumServicesStatusA(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn EnumServicesStatusW(
-    hSCManager: SC_HANDLE,
-    dwServiceType: ENUM_SERVICE_TYPE,
-    dwServiceState: ENUM_SERVICE_STATE,
-    // TODO: what to do with BytesParamIndex 4?
-    lpServices: ?*ENUM_SERVICE_STATUSW,
-    cbBufSize: u32,
-    pcbBytesNeeded: ?*u32,
-    lpServicesReturned: ?*u32,
-    lpResumeHandle: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn EnumServicesStatusExA(
     hSCManager: SC_HANDLE,
     InfoLevel: SC_ENUM_TYPE,
@@ -896,20 +891,26 @@ pub extern "advapi32" fn EnumServicesStatusExW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetServiceKeyNameA(
+pub extern "advapi32" fn EnumServicesStatusW(
     hSCManager: SC_HANDLE,
-    lpDisplayName: ?[*:0]const u8,
-    lpServiceName: ?[*:0]u8,
-    lpcchBuffer: ?*u32,
+    dwServiceType: ENUM_SERVICE_TYPE,
+    dwServiceState: ENUM_SERVICE_STATE,
+    // TODO: what to do with BytesParamIndex 4?
+    lpServices: ?*ENUM_SERVICE_STATUSW,
+    cbBufSize: u32,
+    pcbBytesNeeded: ?*u32,
+    lpServicesReturned: ?*u32,
+    lpResumeHandle: ?*u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetServiceKeyNameW(
-    hSCManager: SC_HANDLE,
-    lpDisplayName: ?[*:0]const u16,
-    lpServiceName: ?[*:0]u16,
-    lpcchBuffer: ?*u32,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows10.0.19041'
+pub extern "api-ms-win-service-core-l1-1-4" fn GetServiceDirectory(
+    hServiceStatus: SERVICE_STATUS_HANDLE,
+    eDirectoryType: SERVICE_DIRECTORY_TYPE,
+    lpPathBuffer: ?[*]u16,
+    cchPathBufferLength: u32,
+    lpcchRequiredBufferLength: ?*u32,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetServiceDisplayNameA(
@@ -928,6 +929,45 @@ pub extern "advapi32" fn GetServiceDisplayNameW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetServiceKeyNameA(
+    hSCManager: SC_HANDLE,
+    lpDisplayName: ?[*:0]const u8,
+    lpServiceName: ?[*:0]u8,
+    lpcchBuffer: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetServiceKeyNameW(
+    hSCManager: SC_HANDLE,
+    lpDisplayName: ?[*:0]const u16,
+    lpServiceName: ?[*:0]u16,
+    lpcchBuffer: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.19041'
+pub extern "api-ms-win-service-core-l1-1-3" fn GetServiceRegistryStateKey(
+    ServiceStatusHandle: SERVICE_STATUS_HANDLE,
+    StateType: SERVICE_REGISTRY_STATE_TYPE,
+    AccessMask: u32,
+    ServiceStateKey: ?*?HKEY,
+) callconv(.winapi) u32;
+
+pub extern "api-ms-win-service-core-l1-1-5" fn GetSharedServiceDirectory(
+    ServiceHandle: SC_HANDLE,
+    DirectoryType: SERVICE_SHARED_DIRECTORY_TYPE,
+    PathBuffer: ?[*]u16,
+    PathBufferLength: u32,
+    RequiredBufferLength: ?*u32,
+) callconv(.winapi) u32;
+
+pub extern "api-ms-win-service-core-l1-1-5" fn GetSharedServiceRegistryStateKey(
+    ServiceHandle: SC_HANDLE,
+    StateType: SERVICE_SHARED_REGISTRY_STATE_TYPE,
+    AccessMask: u32,
+    ServiceStateKey: ?*?HKEY,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LockServiceDatabase(
     hSCManager: SC_HANDLE,
 ) callconv(.winapi) ?*anyopaque;
@@ -936,6 +976,20 @@ pub extern "advapi32" fn LockServiceDatabase(
 pub extern "advapi32" fn NotifyBootConfigStatus(
     BootAcceptable: BOOL,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn NotifyServiceStatusChangeA(
+    hService: SC_HANDLE,
+    dwNotifyMask: SERVICE_NOTIFY,
+    pNotifyBuffer: ?*SERVICE_NOTIFY_2A,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn NotifyServiceStatusChangeW(
+    hService: SC_HANDLE,
+    dwNotifyMask: SERVICE_NOTIFY,
+    pNotifyBuffer: ?*SERVICE_NOTIFY_2W,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn OpenSCManagerA(
@@ -966,24 +1020,6 @@ pub extern "advapi32" fn OpenServiceW(
 ) callconv(.winapi) SC_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn QueryServiceConfigA(
-    hService: SC_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    lpServiceConfig: ?*QUERY_SERVICE_CONFIGA,
-    cbBufSize: u32,
-    pcbBytesNeeded: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn QueryServiceConfigW(
-    hService: SC_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    lpServiceConfig: ?*QUERY_SERVICE_CONFIGW,
-    cbBufSize: u32,
-    pcbBytesNeeded: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn QueryServiceConfig2A(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
@@ -1001,6 +1037,31 @@ pub extern "advapi32" fn QueryServiceConfig2W(
     lpBuffer: ?*u8,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn QueryServiceConfigA(
+    hService: SC_HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpServiceConfig: ?*QUERY_SERVICE_CONFIGA,
+    cbBufSize: u32,
+    pcbBytesNeeded: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn QueryServiceConfigW(
+    hService: SC_HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpServiceConfig: ?*QUERY_SERVICE_CONFIGW,
+    cbBufSize: u32,
+    pcbBytesNeeded: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "advapi32" fn QueryServiceDynamicInformation(
+    hServiceStatus: SERVICE_STATUS_HANDLE,
+    dwInfoLevel: u32,
+    ppDynamicInfo: ?*?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1054,12 +1115,6 @@ pub extern "advapi32" fn RegisterServiceCtrlHandlerA(
 ) callconv(.winapi) SERVICE_STATUS_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn RegisterServiceCtrlHandlerW(
-    lpServiceName: ?[*:0]const u16,
-    lpHandlerProc: ?LPHANDLER_FUNCTION,
-) callconv(.winapi) SERVICE_STATUS_HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn RegisterServiceCtrlHandlerExA(
     lpServiceName: ?[*:0]const u8,
     lpHandlerProc: ?LPHANDLER_FUNCTION_EX,
@@ -1072,6 +1127,20 @@ pub extern "advapi32" fn RegisterServiceCtrlHandlerExW(
     lpHandlerProc: ?LPHANDLER_FUNCTION_EX,
     lpContext: ?*anyopaque,
 ) callconv(.winapi) SERVICE_STATUS_HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn RegisterServiceCtrlHandlerW(
+    lpServiceName: ?[*:0]const u16,
+    lpHandlerProc: ?LPHANDLER_FUNCTION,
+) callconv(.winapi) SERVICE_STATUS_HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn SetServiceBits(
+    hServiceStatus: SERVICE_STATUS_HANDLE,
+    dwServiceBits: u32,
+    bSetBitsOn: BOOL,
+    bUpdateImmediately: BOOL,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetServiceObjectSecurity(
@@ -1087,6 +1156,13 @@ pub extern "advapi32" fn SetServiceStatus(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn StartServiceA(
+    hService: SC_HANDLE,
+    dwNumServiceArgs: u32,
+    lpServiceArgVectors: ?[*]?PSTR,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn StartServiceCtrlDispatcherA(
     lpServiceStartTable: ?*const SERVICE_TABLE_ENTRYA,
 ) callconv(.winapi) BOOL;
@@ -1094,13 +1170,6 @@ pub extern "advapi32" fn StartServiceCtrlDispatcherA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn StartServiceCtrlDispatcherW(
     lpServiceStartTable: ?*const SERVICE_TABLE_ENTRYW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn StartServiceA(
-    hService: SC_HANDLE,
-    dwNumServiceArgs: u32,
-    lpServiceArgVectors: ?[*]?PSTR,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1115,43 +1184,6 @@ pub extern "advapi32" fn UnlockServiceDatabase(
     ScLock: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn NotifyServiceStatusChangeA(
-    hService: SC_HANDLE,
-    dwNotifyMask: SERVICE_NOTIFY,
-    pNotifyBuffer: ?*SERVICE_NOTIFY_2A,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn NotifyServiceStatusChangeW(
-    hService: SC_HANDLE,
-    dwNotifyMask: SERVICE_NOTIFY,
-    pNotifyBuffer: ?*SERVICE_NOTIFY_2W,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn ControlServiceExA(
-    hService: SC_HANDLE,
-    dwControl: u32,
-    dwInfoLevel: u32,
-    pControlParams: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn ControlServiceExW(
-    hService: SC_HANDLE,
-    dwControl: u32,
-    dwInfoLevel: u32,
-    pControlParams: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "advapi32" fn QueryServiceDynamicInformation(
-    hServiceStatus: SERVICE_STATUS_HANDLE,
-    dwInfoLevel: u32,
-    ppDynamicInfo: ?*?*anyopaque,
-) callconv(.winapi) BOOL;
-
 pub extern "advapi32" fn WaitServiceState(
     hService: SC_HANDLE,
     dwNotify: u32,
@@ -1159,42 +1191,52 @@ pub extern "advapi32" fn WaitServiceState(
     hCancelEvent: ?HANDLE,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows10.0.19041'
-pub extern "api-ms-win-service-core-l1-1-3" fn GetServiceRegistryStateKey(
-    ServiceStatusHandle: SERVICE_STATUS_HANDLE,
-    StateType: SERVICE_REGISTRY_STATE_TYPE,
-    AccessMask: u32,
-    ServiceStateKey: ?*?HKEY,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.19041'
-pub extern "api-ms-win-service-core-l1-1-4" fn GetServiceDirectory(
-    hServiceStatus: SERVICE_STATUS_HANDLE,
-    eDirectoryType: SERVICE_DIRECTORY_TYPE,
-    lpPathBuffer: ?[*]u16,
-    cchPathBufferLength: u32,
-    lpcchRequiredBufferLength: ?*u32,
-) callconv(.winapi) u32;
-
-pub extern "api-ms-win-service-core-l1-1-5" fn GetSharedServiceRegistryStateKey(
-    ServiceHandle: SC_HANDLE,
-    StateType: SERVICE_SHARED_REGISTRY_STATE_TYPE,
-    AccessMask: u32,
-    ServiceStateKey: ?*?HKEY,
-) callconv(.winapi) u32;
-
-pub extern "api-ms-win-service-core-l1-1-5" fn GetSharedServiceDirectory(
-    ServiceHandle: SC_HANDLE,
-    DirectoryType: SERVICE_SHARED_DIRECTORY_TYPE,
-    PathBuffer: ?[*]u16,
-    PathBufferLength: u32,
-    RequiredBufferLength: ?*u32,
-) callconv(.winapi) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (31)
 //--------------------------------------------------------------------------------
+pub const ENUM_SERVICE_STATUS_PROCESS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUM_SERVICE_STATUS_PROCESSA,
+    .wide => @This().ENUM_SERVICE_STATUS_PROCESSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUM_SERVICE_STATUS_PROCESS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUM_SERVICE_STATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUM_SERVICE_STATUSA,
+    .wide => @This().ENUM_SERVICE_STATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUM_SERVICE_STATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LPSERVICE_MAIN_FUNCTION = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LPSERVICE_MAIN_FUNCTIONA,
+    .wide => @This().LPSERVICE_MAIN_FUNCTIONW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LPSERVICE_MAIN_FUNCTION' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_SERVICE_CONFIG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_SERVICE_CONFIGA,
+    .wide => @This().QUERY_SERVICE_CONFIGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_SERVICE_CONFIG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QUERY_SERVICE_LOCK_STATUS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QUERY_SERVICE_LOCK_STATUSA,
+    .wide => @This().QUERY_SERVICE_LOCK_STATUSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QUERY_SERVICE_LOCK_STATUS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_CONTROL_STATUS_REASON_PARAMSA,
+    .wide => @This().SERVICE_CONTROL_STATUS_REASON_PARAMSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_CONTROL_STATUS_REASON_PARAMS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const SERVICE_DESCRIPTION = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().SERVICE_DESCRIPTIONA,
     .wide => @This().SERVICE_DESCRIPTIONW,
@@ -1209,60 +1251,11 @@ pub const SERVICE_FAILURE_ACTIONS = switch (@import("../zig.zig").unicode_mode) 
         "'SERVICE_FAILURE_ACTIONS' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SERVICE_REQUIRED_PRIVILEGES_INFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SERVICE_REQUIRED_PRIVILEGES_INFOA,
-    .wide => @This().SERVICE_REQUIRED_PRIVILEGES_INFOW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SERVICE_REQUIRED_PRIVILEGES_INFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ENUM_SERVICE_STATUS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ENUM_SERVICE_STATUSA,
-    .wide => @This().ENUM_SERVICE_STATUSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ENUM_SERVICE_STATUS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ENUM_SERVICE_STATUS_PROCESS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ENUM_SERVICE_STATUS_PROCESSA,
-    .wide => @This().ENUM_SERVICE_STATUS_PROCESSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ENUM_SERVICE_STATUS_PROCESS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const QUERY_SERVICE_LOCK_STATUS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().QUERY_SERVICE_LOCK_STATUSA,
-    .wide => @This().QUERY_SERVICE_LOCK_STATUSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'QUERY_SERVICE_LOCK_STATUS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const QUERY_SERVICE_CONFIG = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().QUERY_SERVICE_CONFIGA,
-    .wide => @This().QUERY_SERVICE_CONFIGW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'QUERY_SERVICE_CONFIG' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const SERVICE_MAIN_FUNCTION = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().SERVICE_MAIN_FUNCTIONA,
     .wide => @This().SERVICE_MAIN_FUNCTIONW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'SERVICE_MAIN_FUNCTION' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LPSERVICE_MAIN_FUNCTION = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LPSERVICE_MAIN_FUNCTIONA,
-    .wide => @This().LPSERVICE_MAIN_FUNCTIONW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LPSERVICE_MAIN_FUNCTION' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SERVICE_TABLE_ENTRY = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SERVICE_TABLE_ENTRYA,
-    .wide => @This().SERVICE_TABLE_ENTRYW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SERVICE_TABLE_ENTRY' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const SERVICE_NOTIFY_2 = switch (@import("../zig.zig").unicode_mode) {
@@ -1272,11 +1265,25 @@ pub const SERVICE_NOTIFY_2 = switch (@import("../zig.zig").unicode_mode) {
         "'SERVICE_NOTIFY_2' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SERVICE_CONTROL_STATUS_REASON_PARAMSA,
-    .wide => @This().SERVICE_CONTROL_STATUS_REASON_PARAMSW,
+pub const SERVICE_REQUIRED_PRIVILEGES_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_REQUIRED_PRIVILEGES_INFOA,
+    .wide => @This().SERVICE_REQUIRED_PRIVILEGES_INFOW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SERVICE_CONTROL_STATUS_REASON_PARAMS' requires that UNICODE be set to true or false in the root module",
+        "'SERVICE_REQUIRED_PRIVILEGES_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SERVICE_TABLE_ENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERVICE_TABLE_ENTRYA,
+    .wide => @This().SERVICE_TABLE_ENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERVICE_TABLE_ENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChangeServiceConfig2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ChangeServiceConfig2A,
+    .wide => @This().ChangeServiceConfig2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChangeServiceConfig2' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ChangeServiceConfig = switch (@import("../zig.zig").unicode_mode) {
@@ -1286,11 +1293,11 @@ pub const ChangeServiceConfig = switch (@import("../zig.zig").unicode_mode) {
         "'ChangeServiceConfig' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ChangeServiceConfig2 = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ChangeServiceConfig2A,
-    .wide => @This().ChangeServiceConfig2W,
+pub const ControlServiceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ControlServiceExA,
+    .wide => @This().ControlServiceExW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ChangeServiceConfig2' requires that UNICODE be set to true or false in the root module",
+        "'ControlServiceEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CreateService = switch (@import("../zig.zig").unicode_mode) {
@@ -1321,6 +1328,13 @@ pub const EnumServicesStatusEx = switch (@import("../zig.zig").unicode_mode) {
         "'EnumServicesStatusEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const GetServiceDisplayName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetServiceDisplayNameA,
+    .wide => @This().GetServiceDisplayNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetServiceDisplayName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const GetServiceKeyName = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().GetServiceKeyNameA,
     .wide => @This().GetServiceKeyNameW,
@@ -1328,11 +1342,11 @@ pub const GetServiceKeyName = switch (@import("../zig.zig").unicode_mode) {
         "'GetServiceKeyName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetServiceDisplayName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetServiceDisplayNameA,
-    .wide => @This().GetServiceDisplayNameW,
+pub const NotifyServiceStatusChange = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().NotifyServiceStatusChangeA,
+    .wide => @This().NotifyServiceStatusChangeW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetServiceDisplayName' requires that UNICODE be set to true or false in the root module",
+        "'NotifyServiceStatusChange' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const OpenSCManager = switch (@import("../zig.zig").unicode_mode) {
@@ -1349,18 +1363,18 @@ pub const OpenService = switch (@import("../zig.zig").unicode_mode) {
         "'OpenService' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const QueryServiceConfig = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().QueryServiceConfigA,
-    .wide => @This().QueryServiceConfigW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'QueryServiceConfig' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const QueryServiceConfig2 = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().QueryServiceConfig2A,
     .wide => @This().QueryServiceConfig2W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'QueryServiceConfig2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const QueryServiceConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().QueryServiceConfigA,
+    .wide => @This().QueryServiceConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'QueryServiceConfig' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const QueryServiceLockStatus = switch (@import("../zig.zig").unicode_mode) {
@@ -1384,13 +1398,6 @@ pub const RegisterServiceCtrlHandlerEx = switch (@import("../zig.zig").unicode_m
         "'RegisterServiceCtrlHandlerEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const StartServiceCtrlDispatcher = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().StartServiceCtrlDispatcherA,
-    .wide => @This().StartServiceCtrlDispatcherW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'StartServiceCtrlDispatcher' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const StartService = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().StartServiceA,
     .wide => @This().StartServiceW,
@@ -1398,18 +1405,11 @@ pub const StartService = switch (@import("../zig.zig").unicode_mode) {
         "'StartService' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const NotifyServiceStatusChange = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().NotifyServiceStatusChangeA,
-    .wide => @This().NotifyServiceStatusChangeW,
+pub const StartServiceCtrlDispatcher = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StartServiceCtrlDispatcherA,
+    .wide => @This().StartServiceCtrlDispatcherW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'NotifyServiceStatusChange' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ControlServiceEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ControlServiceExA,
-    .wide => @This().ControlServiceExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ControlServiceEx' requires that UNICODE be set to true or false in the root module",
+        "'StartServiceCtrlDispatcher' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -1429,16 +1429,16 @@ const SC_HANDLE = @import("../security.zig").SC_HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONW")) { _ = SERVICE_MAIN_FUNCTIONW; }
-    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONA")) { _ = SERVICE_MAIN_FUNCTIONA; }
-    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONW")) { _ = LPSERVICE_MAIN_FUNCTIONW; }
-    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONA")) { _ = LPSERVICE_MAIN_FUNCTIONA; }
     if (@hasDecl(@This(), "HANDLER_FUNCTION")) { _ = HANDLER_FUNCTION; }
     if (@hasDecl(@This(), "HANDLER_FUNCTION_EX")) { _ = HANDLER_FUNCTION_EX; }
     if (@hasDecl(@This(), "LPHANDLER_FUNCTION")) { _ = LPHANDLER_FUNCTION; }
     if (@hasDecl(@This(), "LPHANDLER_FUNCTION_EX")) { _ = LPHANDLER_FUNCTION_EX; }
+    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONA")) { _ = LPSERVICE_MAIN_FUNCTIONA; }
+    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONW")) { _ = LPSERVICE_MAIN_FUNCTIONW; }
     if (@hasDecl(@This(), "PFN_SC_NOTIFY_CALLBACK")) { _ = PFN_SC_NOTIFY_CALLBACK; }
     if (@hasDecl(@This(), "PSC_NOTIFICATION_CALLBACK")) { _ = PSC_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONA")) { _ = SERVICE_MAIN_FUNCTIONA; }
+    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONW")) { _ = SERVICE_MAIN_FUNCTIONW; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

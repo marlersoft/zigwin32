@@ -3,100 +3,139 @@
 // Section: Constants (879)
 //--------------------------------------------------------------------------------
 pub const ALL_SERVICE_TYPES = @as(u32, 0);
-pub const HIGHLEVEL_SERVICE_TYPES = @as(u32, 1);
-pub const LOWLEVEL_SERVICE_TYPES = @as(u32, 2);
 pub const ALL_SERVICES = @as(u32, 0);
-pub const ONLINE_SERVICES = @as(u32, 1);
-pub const OFFLINE_SERVICES = @as(u32, 2);
-pub const MAX_LEADBYTES = @as(u32, 12);
-pub const MAX_DEFAULTCHAR = @as(u32, 2);
-pub const HIGH_SURROGATE_START = @as(u32, 55296);
-pub const HIGH_SURROGATE_END = @as(u32, 56319);
-pub const LOW_SURROGATE_START = @as(u32, 56320);
-pub const LOW_SURROGATE_END = @as(u32, 57343);
-pub const WC_COMPOSITECHECK = @as(u32, 512);
-pub const WC_DISCARDNS = @as(u32, 16);
-pub const WC_SEPCHARS = @as(u32, 32);
-pub const WC_DEFAULTCHAR = @as(u32, 64);
-pub const WC_ERR_INVALID_CHARS = @as(u32, 128);
-pub const WC_NO_BEST_FIT_CHARS = @as(u32, 1024);
-pub const CT_CTYPE1 = @as(u32, 1);
-pub const CT_CTYPE2 = @as(u32, 2);
-pub const CT_CTYPE3 = @as(u32, 4);
-pub const C1_UPPER = @as(u32, 1);
-pub const C1_LOWER = @as(u32, 2);
-pub const C1_DIGIT = @as(u32, 4);
-pub const C1_SPACE = @as(u32, 8);
-pub const C1_PUNCT = @as(u32, 16);
-pub const C1_CNTRL = @as(u32, 32);
-pub const C1_BLANK = @as(u32, 64);
-pub const C1_XDIGIT = @as(u32, 128);
 pub const C1_ALPHA = @as(u32, 256);
+pub const C1_BLANK = @as(u32, 64);
+pub const C1_CNTRL = @as(u32, 32);
 pub const C1_DEFINED = @as(u32, 512);
-pub const C2_LEFTTORIGHT = @as(u32, 1);
-pub const C2_RIGHTTOLEFT = @as(u32, 2);
+pub const C1_DIGIT = @as(u32, 4);
+pub const C1_LOWER = @as(u32, 2);
+pub const C1_PUNCT = @as(u32, 16);
+pub const C1_SPACE = @as(u32, 8);
+pub const C1_UPPER = @as(u32, 1);
+pub const C1_XDIGIT = @as(u32, 128);
+pub const C2_ARABICNUMBER = @as(u32, 6);
+pub const C2_BLOCKSEPARATOR = @as(u32, 8);
+pub const C2_COMMONSEPARATOR = @as(u32, 7);
 pub const C2_EUROPENUMBER = @as(u32, 3);
 pub const C2_EUROPESEPARATOR = @as(u32, 4);
 pub const C2_EUROPETERMINATOR = @as(u32, 5);
-pub const C2_ARABICNUMBER = @as(u32, 6);
-pub const C2_COMMONSEPARATOR = @as(u32, 7);
-pub const C2_BLOCKSEPARATOR = @as(u32, 8);
+pub const C2_LEFTTORIGHT = @as(u32, 1);
+pub const C2_NOTAPPLICABLE = @as(u32, 0);
+pub const C2_OTHERNEUTRAL = @as(u32, 11);
+pub const C2_RIGHTTOLEFT = @as(u32, 2);
 pub const C2_SEGMENTSEPARATOR = @as(u32, 9);
 pub const C2_WHITESPACE = @as(u32, 10);
-pub const C2_OTHERNEUTRAL = @as(u32, 11);
-pub const C2_NOTAPPLICABLE = @as(u32, 0);
-pub const C3_NONSPACING = @as(u32, 1);
+pub const C3_ALPHA = @as(u32, 32768);
 pub const C3_DIACRITIC = @as(u32, 2);
-pub const C3_VOWELMARK = @as(u32, 4);
-pub const C3_SYMBOL = @as(u32, 8);
-pub const C3_KATAKANA = @as(u32, 16);
-pub const C3_HIRAGANA = @as(u32, 32);
-pub const C3_HALFWIDTH = @as(u32, 64);
 pub const C3_FULLWIDTH = @as(u32, 128);
+pub const C3_HALFWIDTH = @as(u32, 64);
+pub const C3_HIGHSURROGATE = @as(u32, 2048);
+pub const C3_HIRAGANA = @as(u32, 32);
 pub const C3_IDEOGRAPH = @as(u32, 256);
 pub const C3_KASHIDA = @as(u32, 512);
+pub const C3_KATAKANA = @as(u32, 16);
 pub const C3_LEXICAL = @as(u32, 1024);
-pub const C3_HIGHSURROGATE = @as(u32, 2048);
 pub const C3_LOWSURROGATE = @as(u32, 4096);
-pub const C3_ALPHA = @as(u32, 32768);
+pub const C3_NONSPACING = @as(u32, 1);
 pub const C3_NOTAPPLICABLE = @as(u32, 0);
-pub const LCMAP_LOWERCASE = @as(u32, 256);
-pub const LCMAP_UPPERCASE = @as(u32, 512);
-pub const LCMAP_TITLECASE = @as(u32, 768);
-pub const LCMAP_SORTKEY = @as(u32, 1024);
-pub const LCMAP_BYTEREV = @as(u32, 2048);
-pub const LCMAP_HIRAGANA = @as(u32, 1048576);
-pub const LCMAP_KATAKANA = @as(u32, 2097152);
-pub const LCMAP_HALFWIDTH = @as(u32, 4194304);
-pub const LCMAP_FULLWIDTH = @as(u32, 8388608);
-pub const LCMAP_LINGUISTIC_CASING = @as(u32, 16777216);
-pub const LCMAP_SIMPLIFIED_CHINESE = @as(u32, 33554432);
-pub const LCMAP_TRADITIONAL_CHINESE = @as(u32, 67108864);
-pub const LCMAP_SORTHANDLE = @as(u32, 536870912);
-pub const LCMAP_HASH = @as(u32, 262144);
-pub const FIND_STARTSWITH = @as(u32, 1048576);
-pub const FIND_ENDSWITH = @as(u32, 2097152);
-pub const FIND_FROMSTART = @as(u32, 4194304);
-pub const FIND_FROMEND = @as(u32, 8388608);
-pub const LCID_ALTERNATE_SORTS = @as(u32, 4);
-pub const LOCALE_ALL = @as(u32, 0);
-pub const LOCALE_WINDOWS = @as(u32, 1);
-pub const LOCALE_SUPPLEMENTAL = @as(u32, 2);
-pub const LOCALE_ALTERNATE_SORTS = @as(u32, 4);
-pub const LOCALE_REPLACEMENT = @as(u32, 8);
-pub const LOCALE_NEUTRALDATA = @as(u32, 16);
-pub const LOCALE_SPECIFICDATA = @as(u32, 32);
-pub const CSTR_LESS_THAN = @as(u32, 1);
-pub const CSTR_EQUAL = @as(u32, 2);
-pub const CSTR_GREATER_THAN = @as(u32, 3);
+pub const C3_SYMBOL = @as(u32, 8);
+pub const C3_VOWELMARK = @as(u32, 4);
+pub const CAL_GREGORIAN = @as(u32, 1);
+pub const CAL_GREGORIAN_ARABIC = @as(u32, 10);
+pub const CAL_GREGORIAN_ME_FRENCH = @as(u32, 9);
+pub const CAL_GREGORIAN_US = @as(u32, 2);
+pub const CAL_GREGORIAN_XLIT_ENGLISH = @as(u32, 11);
+pub const CAL_GREGORIAN_XLIT_FRENCH = @as(u32, 12);
+pub const CAL_HEBREW = @as(u32, 8);
+pub const CAL_HIJRI = @as(u32, 6);
+pub const CAL_ICALINTVALUE = @as(u32, 1);
+pub const CAL_ITWODIGITYEARMAX = @as(u32, 48);
+pub const CAL_IYEAROFFSETRANGE = @as(u32, 3);
+pub const CAL_JAPAN = @as(u32, 3);
+pub const CAL_KOREA = @as(u32, 5);
+pub const CAL_NOUSEROVERRIDE = @as(u32, 2147483648);
+pub const CAL_PERSIAN = @as(u32, 22);
+pub const CAL_RETURN_GENITIVE_NAMES = @as(u32, 268435456);
+pub const CAL_RETURN_NUMBER = @as(u32, 536870912);
+pub const CAL_SABBREVDAYNAME1 = @as(u32, 14);
+pub const CAL_SABBREVDAYNAME2 = @as(u32, 15);
+pub const CAL_SABBREVDAYNAME3 = @as(u32, 16);
+pub const CAL_SABBREVDAYNAME4 = @as(u32, 17);
+pub const CAL_SABBREVDAYNAME5 = @as(u32, 18);
+pub const CAL_SABBREVDAYNAME6 = @as(u32, 19);
+pub const CAL_SABBREVDAYNAME7 = @as(u32, 20);
+pub const CAL_SABBREVERASTRING = @as(u32, 57);
+pub const CAL_SABBREVMONTHNAME1 = @as(u32, 34);
+pub const CAL_SABBREVMONTHNAME10 = @as(u32, 43);
+pub const CAL_SABBREVMONTHNAME11 = @as(u32, 44);
+pub const CAL_SABBREVMONTHNAME12 = @as(u32, 45);
+pub const CAL_SABBREVMONTHNAME13 = @as(u32, 46);
+pub const CAL_SABBREVMONTHNAME2 = @as(u32, 35);
+pub const CAL_SABBREVMONTHNAME3 = @as(u32, 36);
+pub const CAL_SABBREVMONTHNAME4 = @as(u32, 37);
+pub const CAL_SABBREVMONTHNAME5 = @as(u32, 38);
+pub const CAL_SABBREVMONTHNAME6 = @as(u32, 39);
+pub const CAL_SABBREVMONTHNAME7 = @as(u32, 40);
+pub const CAL_SABBREVMONTHNAME8 = @as(u32, 41);
+pub const CAL_SABBREVMONTHNAME9 = @as(u32, 42);
+pub const CAL_SCALNAME = @as(u32, 2);
+pub const CAL_SDAYNAME1 = @as(u32, 7);
+pub const CAL_SDAYNAME2 = @as(u32, 8);
+pub const CAL_SDAYNAME3 = @as(u32, 9);
+pub const CAL_SDAYNAME4 = @as(u32, 10);
+pub const CAL_SDAYNAME5 = @as(u32, 11);
+pub const CAL_SDAYNAME6 = @as(u32, 12);
+pub const CAL_SDAYNAME7 = @as(u32, 13);
+pub const CAL_SENGLISHABBREVERANAME = @as(u32, 60);
+pub const CAL_SENGLISHERANAME = @as(u32, 59);
+pub const CAL_SERASTRING = @as(u32, 4);
+pub const CAL_SJAPANESEERAFIRSTYEAR = @as(u32, 61);
+pub const CAL_SLONGDATE = @as(u32, 6);
+pub const CAL_SMONTHDAY = @as(u32, 56);
+pub const CAL_SMONTHNAME1 = @as(u32, 21);
+pub const CAL_SMONTHNAME10 = @as(u32, 30);
+pub const CAL_SMONTHNAME11 = @as(u32, 31);
+pub const CAL_SMONTHNAME12 = @as(u32, 32);
+pub const CAL_SMONTHNAME13 = @as(u32, 33);
+pub const CAL_SMONTHNAME2 = @as(u32, 22);
+pub const CAL_SMONTHNAME3 = @as(u32, 23);
+pub const CAL_SMONTHNAME4 = @as(u32, 24);
+pub const CAL_SMONTHNAME5 = @as(u32, 25);
+pub const CAL_SMONTHNAME6 = @as(u32, 26);
+pub const CAL_SMONTHNAME7 = @as(u32, 27);
+pub const CAL_SMONTHNAME8 = @as(u32, 28);
+pub const CAL_SMONTHNAME9 = @as(u32, 29);
+pub const CAL_SRELATIVELONGDATE = @as(u32, 58);
+pub const CAL_SSHORTDATE = @as(u32, 5);
+pub const CAL_SSHORTESTDAYNAME1 = @as(u32, 49);
+pub const CAL_SSHORTESTDAYNAME2 = @as(u32, 50);
+pub const CAL_SSHORTESTDAYNAME3 = @as(u32, 51);
+pub const CAL_SSHORTESTDAYNAME4 = @as(u32, 52);
+pub const CAL_SSHORTESTDAYNAME5 = @as(u32, 53);
+pub const CAL_SSHORTESTDAYNAME6 = @as(u32, 54);
+pub const CAL_SSHORTESTDAYNAME7 = @as(u32, 55);
+pub const CAL_SYEARMONTH = @as(u32, 47);
+pub const CAL_TAIWAN = @as(u32, 4);
+pub const CAL_THAI = @as(u32, 7);
+pub const CAL_UMALQURA = @as(u32, 23);
+pub const CAL_USE_CP_ACP = @as(u32, 1073741824);
+pub const CANITER_SKIP_ZEROES = @as(u32, 1);
 pub const CP_ACP = @as(u32, 0);
-pub const CP_OEMCP = @as(u32, 1);
 pub const CP_MACCP = @as(u32, 2);
-pub const CP_THREAD_ACP = @as(u32, 3);
+pub const CP_OEMCP = @as(u32, 1);
 pub const CP_SYMBOL = @as(u32, 42);
+pub const CP_THREAD_ACP = @as(u32, 3);
 pub const CP_UTF7 = @as(u32, 65000);
 pub const CP_UTF8 = @as(u32, 65001);
-pub const CTRY_DEFAULT = @as(u32, 0);
+pub const CPIOD_FORCE_PROMPT = @as(i32, -2147483648);
+pub const CPIOD_PEEK = @as(i32, 1073741824);
+pub const CSTR_EQUAL = @as(u32, 2);
+pub const CSTR_GREATER_THAN = @as(u32, 3);
+pub const CSTR_LESS_THAN = @as(u32, 1);
+pub const CT_CTYPE1 = @as(u32, 1);
+pub const CT_CTYPE2 = @as(u32, 2);
+pub const CT_CTYPE3 = @as(u32, 4);
 pub const CTRY_ALBANIA = @as(u32, 355);
 pub const CTRY_ALGERIA = @as(u32, 213);
 pub const CTRY_ARGENTINA = @as(u32, 54);
@@ -119,6 +158,7 @@ pub const CTRY_COLOMBIA = @as(u32, 57);
 pub const CTRY_COSTA_RICA = @as(u32, 506);
 pub const CTRY_CROATIA = @as(u32, 385);
 pub const CTRY_CZECH = @as(u32, 420);
+pub const CTRY_DEFAULT = @as(u32, 0);
 pub const CTRY_DENMARK = @as(u32, 45);
 pub const CTRY_DOMINICAN_REPUBLIC = @as(u32, 1);
 pub const CTRY_ECUADOR = @as(u32, 593);
@@ -208,54 +248,121 @@ pub const CTRY_VENEZUELA = @as(u32, 58);
 pub const CTRY_VIET_NAM = @as(u32, 84);
 pub const CTRY_YEMEN = @as(u32, 967);
 pub const CTRY_ZIMBABWE = @as(u32, 263);
-pub const LOCALE_NOUSEROVERRIDE = @as(u32, 2147483648);
-pub const LOCALE_USE_CP_ACP = @as(u32, 1073741824);
-pub const LOCALE_RETURN_NUMBER = @as(u32, 536870912);
-pub const LOCALE_RETURN_GENITIVE_NAMES = @as(u32, 268435456);
+pub const ELS_GUID_LANGUAGE_DETECTION = Guid.initString("cf7e00b1-909b-4d95-a8f4-611f7c377702");
+pub const ELS_GUID_SCRIPT_DETECTION = Guid.initString("2d64b439-6caf-4f6b-b688-e5d0f4faa7d7");
+pub const ELS_GUID_TRANSLITERATION_BENGALI_TO_LATIN = Guid.initString("f4dfd825-91a4-489f-855e-9ad9bee55727");
+pub const ELS_GUID_TRANSLITERATION_CYRILLIC_TO_LATIN = Guid.initString("3dd12a98-5afd-4903-a13f-e17e6c0bfe01");
+pub const ELS_GUID_TRANSLITERATION_DEVANAGARI_TO_LATIN = Guid.initString("c4a4dcfe-2661-4d02-9835-f48187109803");
+pub const ELS_GUID_TRANSLITERATION_HANGUL_DECOMPOSITION = Guid.initString("4ba2a721-e43d-41b7-b330-536ae1e48863");
+pub const ELS_GUID_TRANSLITERATION_HANS_TO_HANT = Guid.initString("3caccdc8-5590-42dc-9a7b-b5a6b5b3b63b");
+pub const ELS_GUID_TRANSLITERATION_HANT_TO_HANS = Guid.initString("a3a8333b-f4fc-42f6-a0c4-0462fe7317cb");
+pub const ELS_GUID_TRANSLITERATION_MALAYALAM_TO_LATIN = Guid.initString("d8b983b1-f8bf-4a2b-bcd5-5b5ea20613e1");
+pub const ENUM_ALL_CALENDARS = @as(u32, 4294967295);
+pub const FIND_ENDSWITH = @as(u32, 2097152);
+pub const FIND_FROMEND = @as(u32, 8388608);
+pub const FIND_FROMSTART = @as(u32, 4194304);
+pub const FIND_STARTSWITH = @as(u32, 1048576);
+pub const GEOID_NOT_AVAILABLE = @as(i32, -1);
+pub const GSS_ALLOW_INHERITED_COMMON = @as(u32, 1);
+pub const HIGH_SURROGATE_END = @as(u32, 56319);
+pub const HIGH_SURROGATE_START = @as(u32, 55296);
+pub const HIGHLEVEL_SERVICE_TYPES = @as(u32, 1);
+pub const IDN_ALLOW_UNASSIGNED = @as(u32, 1);
+pub const IDN_EMAIL_ADDRESS = @as(u32, 4);
+pub const IDN_RAW_PUNYCODE = @as(u32, 8);
+pub const IDN_USE_STD3_ASCII_RULES = @as(u32, 2);
+pub const LCID_ALTERNATE_SORTS = @as(u32, 4);
+pub const LCMAP_BYTEREV = @as(u32, 2048);
+pub const LCMAP_FULLWIDTH = @as(u32, 8388608);
+pub const LCMAP_HALFWIDTH = @as(u32, 4194304);
+pub const LCMAP_HASH = @as(u32, 262144);
+pub const LCMAP_HIRAGANA = @as(u32, 1048576);
+pub const LCMAP_KATAKANA = @as(u32, 2097152);
+pub const LCMAP_LINGUISTIC_CASING = @as(u32, 16777216);
+pub const LCMAP_LOWERCASE = @as(u32, 256);
+pub const LCMAP_SIMPLIFIED_CHINESE = @as(u32, 33554432);
+pub const LCMAP_SORTHANDLE = @as(u32, 536870912);
+pub const LCMAP_SORTKEY = @as(u32, 1024);
+pub const LCMAP_TITLECASE = @as(u32, 768);
+pub const LCMAP_TRADITIONAL_CHINESE = @as(u32, 67108864);
+pub const LCMAP_UPPERCASE = @as(u32, 512);
+pub const LGRPID_ARABIC = @as(u32, 13);
+pub const LGRPID_ARMENIAN = @as(u32, 17);
+pub const LGRPID_BALTIC = @as(u32, 3);
+pub const LGRPID_CENTRAL_EUROPE = @as(u32, 2);
+pub const LGRPID_CYRILLIC = @as(u32, 5);
+pub const LGRPID_GEORGIAN = @as(u32, 16);
+pub const LGRPID_GREEK = @as(u32, 4);
+pub const LGRPID_HEBREW = @as(u32, 12);
+pub const LGRPID_INDIC = @as(u32, 15);
+pub const LGRPID_JAPANESE = @as(u32, 7);
+pub const LGRPID_KOREAN = @as(u32, 8);
+pub const LGRPID_SIMPLIFIED_CHINESE = @as(u32, 10);
+pub const LGRPID_THAI = @as(u32, 11);
+pub const LGRPID_TRADITIONAL_CHINESE = @as(u32, 9);
+pub const LGRPID_TURKIC = @as(u32, 6);
+pub const LGRPID_TURKISH = @as(u32, 6);
+pub const LGRPID_VIETNAMESE = @as(u32, 14);
+pub const LGRPID_WESTERN_EUROPE = @as(u32, 1);
+pub const LOCALE_ALL = @as(u32, 0);
 pub const LOCALE_ALLOW_NEUTRAL_NAMES = @as(u32, 134217728);
-pub const LOCALE_SLOCALIZEDDISPLAYNAME = @as(u32, 2);
-pub const LOCALE_SENGLISHDISPLAYNAME = @as(u32, 114);
-pub const LOCALE_SNATIVEDISPLAYNAME = @as(u32, 115);
-pub const LOCALE_SLOCALIZEDLANGUAGENAME = @as(u32, 111);
-pub const LOCALE_SENGLISHLANGUAGENAME = @as(u32, 4097);
-pub const LOCALE_SNATIVELANGUAGENAME = @as(u32, 4);
-pub const LOCALE_SLOCALIZEDCOUNTRYNAME = @as(u32, 6);
-pub const LOCALE_SENGLISHCOUNTRYNAME = @as(u32, 4098);
-pub const LOCALE_SNATIVECOUNTRYNAME = @as(u32, 8);
-pub const LOCALE_IDIALINGCODE = @as(u32, 5);
-pub const LOCALE_SLIST = @as(u32, 12);
-pub const LOCALE_IMEASURE = @as(u32, 13);
-pub const LOCALE_SDECIMAL = @as(u32, 14);
-pub const LOCALE_STHOUSAND = @as(u32, 15);
-pub const LOCALE_SGROUPING = @as(u32, 16);
-pub const LOCALE_IDIGITS = @as(u32, 17);
-pub const LOCALE_ILZERO = @as(u32, 18);
-pub const LOCALE_INEGNUMBER = @as(u32, 4112);
-pub const LOCALE_SNATIVEDIGITS = @as(u32, 19);
-pub const LOCALE_SCURRENCY = @as(u32, 20);
-pub const LOCALE_SINTLSYMBOL = @as(u32, 21);
-pub const LOCALE_SMONDECIMALSEP = @as(u32, 22);
-pub const LOCALE_SMONTHOUSANDSEP = @as(u32, 23);
-pub const LOCALE_SMONGROUPING = @as(u32, 24);
+pub const LOCALE_ALTERNATE_SORTS = @as(u32, 4);
+pub const LOCALE_FONTSIGNATURE = @as(u32, 88);
+pub const LOCALE_ICALENDARTYPE = @as(u32, 4105);
+pub const LOCALE_ICENTURY = @as(u32, 36);
+pub const LOCALE_ICONSTRUCTEDLOCALE = @as(u32, 125);
+pub const LOCALE_ICOUNTRY = @as(u32, 5);
 pub const LOCALE_ICURRDIGITS = @as(u32, 25);
 pub const LOCALE_ICURRENCY = @as(u32, 27);
-pub const LOCALE_INEGCURR = @as(u32, 28);
-pub const LOCALE_SSHORTDATE = @as(u32, 31);
-pub const LOCALE_SLONGDATE = @as(u32, 32);
-pub const LOCALE_STIMEFORMAT = @as(u32, 4099);
-pub const LOCALE_SAM = @as(u32, 40);
-pub const LOCALE_SPM = @as(u32, 41);
-pub const LOCALE_ICALENDARTYPE = @as(u32, 4105);
-pub const LOCALE_IOPTIONALCALENDAR = @as(u32, 4107);
+pub const LOCALE_IDATE = @as(u32, 33);
+pub const LOCALE_IDAYLZERO = @as(u32, 38);
+pub const LOCALE_IDEFAULTANSICODEPAGE = @as(u32, 4100);
+pub const LOCALE_IDEFAULTCODEPAGE = @as(u32, 11);
+pub const LOCALE_IDEFAULTCOUNTRY = @as(u32, 10);
+pub const LOCALE_IDEFAULTEBCDICCODEPAGE = @as(u32, 4114);
+pub const LOCALE_IDEFAULTLANGUAGE = @as(u32, 9);
+pub const LOCALE_IDEFAULTMACCODEPAGE = @as(u32, 4113);
+pub const LOCALE_IDIALINGCODE = @as(u32, 5);
+pub const LOCALE_IDIGITS = @as(u32, 17);
+pub const LOCALE_IDIGITSUBSTITUTION = @as(u32, 4116);
 pub const LOCALE_IFIRSTDAYOFWEEK = @as(u32, 4108);
 pub const LOCALE_IFIRSTWEEKOFYEAR = @as(u32, 4109);
-pub const LOCALE_SDAYNAME1 = @as(u32, 42);
-pub const LOCALE_SDAYNAME2 = @as(u32, 43);
-pub const LOCALE_SDAYNAME3 = @as(u32, 44);
-pub const LOCALE_SDAYNAME4 = @as(u32, 45);
-pub const LOCALE_SDAYNAME5 = @as(u32, 46);
-pub const LOCALE_SDAYNAME6 = @as(u32, 47);
-pub const LOCALE_SDAYNAME7 = @as(u32, 48);
+pub const LOCALE_IGEOID = @as(u32, 91);
+pub const LOCALE_IINTLCURRDIGITS = @as(u32, 26);
+pub const LOCALE_ILANGUAGE = @as(u32, 1);
+pub const LOCALE_ILDATE = @as(u32, 34);
+pub const LOCALE_ILZERO = @as(u32, 18);
+pub const LOCALE_IMEASURE = @as(u32, 13);
+pub const LOCALE_IMONLZERO = @as(u32, 39);
+pub const LOCALE_INEGATIVEPERCENT = @as(u32, 116);
+pub const LOCALE_INEGCURR = @as(u32, 28);
+pub const LOCALE_INEGNUMBER = @as(u32, 4112);
+pub const LOCALE_INEGSEPBYSPACE = @as(u32, 87);
+pub const LOCALE_INEGSIGNPOSN = @as(u32, 83);
+pub const LOCALE_INEGSYMPRECEDES = @as(u32, 86);
+pub const LOCALE_INEUTRAL = @as(u32, 113);
+pub const LOCALE_IOPTIONALCALENDAR = @as(u32, 4107);
+pub const LOCALE_IPAPERSIZE = @as(u32, 4106);
+pub const LOCALE_IPOSITIVEPERCENT = @as(u32, 117);
+pub const LOCALE_IPOSSEPBYSPACE = @as(u32, 85);
+pub const LOCALE_IPOSSIGNPOSN = @as(u32, 82);
+pub const LOCALE_IPOSSYMPRECEDES = @as(u32, 84);
+pub const LOCALE_IREADINGLAYOUT = @as(u32, 112);
+pub const LOCALE_ITIME = @as(u32, 35);
+pub const LOCALE_ITIMEMARKPOSN = @as(u32, 4101);
+pub const LOCALE_ITLZERO = @as(u32, 37);
+pub const LOCALE_IUSEUTF8LEGACYACP = @as(u32, 1638);
+pub const LOCALE_IUSEUTF8LEGACYOEMCP = @as(u32, 2457);
+pub const LOCALE_NAME_INVARIANT = null;
+pub const LOCALE_NAME_SYSTEM_DEFAULT = "!x-sys-default-locale";
+pub const LOCALE_NEUTRALDATA = @as(u32, 16);
+pub const LOCALE_NOUSEROVERRIDE = @as(u32, 2147483648);
+pub const LOCALE_REPLACEMENT = @as(u32, 8);
+pub const LOCALE_RETURN_GENITIVE_NAMES = @as(u32, 268435456);
+pub const LOCALE_RETURN_NUMBER = @as(u32, 536870912);
+pub const LOCALE_S1159 = @as(u32, 40);
+pub const LOCALE_S2359 = @as(u32, 41);
+pub const LOCALE_SABBREVCTRYNAME = @as(u32, 7);
 pub const LOCALE_SABBREVDAYNAME1 = @as(u32, 49);
 pub const LOCALE_SABBREVDAYNAME2 = @as(u32, 50);
 pub const LOCALE_SABBREVDAYNAME3 = @as(u32, 51);
@@ -263,20 +370,12 @@ pub const LOCALE_SABBREVDAYNAME4 = @as(u32, 52);
 pub const LOCALE_SABBREVDAYNAME5 = @as(u32, 53);
 pub const LOCALE_SABBREVDAYNAME6 = @as(u32, 54);
 pub const LOCALE_SABBREVDAYNAME7 = @as(u32, 55);
-pub const LOCALE_SMONTHNAME1 = @as(u32, 56);
-pub const LOCALE_SMONTHNAME2 = @as(u32, 57);
-pub const LOCALE_SMONTHNAME3 = @as(u32, 58);
-pub const LOCALE_SMONTHNAME4 = @as(u32, 59);
-pub const LOCALE_SMONTHNAME5 = @as(u32, 60);
-pub const LOCALE_SMONTHNAME6 = @as(u32, 61);
-pub const LOCALE_SMONTHNAME7 = @as(u32, 62);
-pub const LOCALE_SMONTHNAME8 = @as(u32, 63);
-pub const LOCALE_SMONTHNAME9 = @as(u32, 64);
-pub const LOCALE_SMONTHNAME10 = @as(u32, 65);
-pub const LOCALE_SMONTHNAME11 = @as(u32, 66);
-pub const LOCALE_SMONTHNAME12 = @as(u32, 67);
-pub const LOCALE_SMONTHNAME13 = @as(u32, 4110);
+pub const LOCALE_SABBREVLANGNAME = @as(u32, 3);
 pub const LOCALE_SABBREVMONTHNAME1 = @as(u32, 68);
+pub const LOCALE_SABBREVMONTHNAME10 = @as(u32, 77);
+pub const LOCALE_SABBREVMONTHNAME11 = @as(u32, 78);
+pub const LOCALE_SABBREVMONTHNAME12 = @as(u32, 79);
+pub const LOCALE_SABBREVMONTHNAME13 = @as(u32, 4111);
 pub const LOCALE_SABBREVMONTHNAME2 = @as(u32, 69);
 pub const LOCALE_SABBREVMONTHNAME3 = @as(u32, 70);
 pub const LOCALE_SABBREVMONTHNAME4 = @as(u32, 71);
@@ -285,29 +384,80 @@ pub const LOCALE_SABBREVMONTHNAME6 = @as(u32, 73);
 pub const LOCALE_SABBREVMONTHNAME7 = @as(u32, 74);
 pub const LOCALE_SABBREVMONTHNAME8 = @as(u32, 75);
 pub const LOCALE_SABBREVMONTHNAME9 = @as(u32, 76);
-pub const LOCALE_SABBREVMONTHNAME10 = @as(u32, 77);
-pub const LOCALE_SABBREVMONTHNAME11 = @as(u32, 78);
-pub const LOCALE_SABBREVMONTHNAME12 = @as(u32, 79);
-pub const LOCALE_SABBREVMONTHNAME13 = @as(u32, 4111);
-pub const LOCALE_SPOSITIVESIGN = @as(u32, 80);
-pub const LOCALE_SNEGATIVESIGN = @as(u32, 81);
-pub const LOCALE_IPOSSIGNPOSN = @as(u32, 82);
-pub const LOCALE_INEGSIGNPOSN = @as(u32, 83);
-pub const LOCALE_IPOSSYMPRECEDES = @as(u32, 84);
-pub const LOCALE_IPOSSEPBYSPACE = @as(u32, 85);
-pub const LOCALE_INEGSYMPRECEDES = @as(u32, 86);
-pub const LOCALE_INEGSEPBYSPACE = @as(u32, 87);
-pub const LOCALE_FONTSIGNATURE = @as(u32, 88);
-pub const LOCALE_SISO639LANGNAME = @as(u32, 89);
-pub const LOCALE_SISO3166CTRYNAME = @as(u32, 90);
-pub const LOCALE_IPAPERSIZE = @as(u32, 4106);
-pub const LOCALE_SENGCURRNAME = @as(u32, 4103);
-pub const LOCALE_SNATIVECURRNAME = @as(u32, 4104);
-pub const LOCALE_SYEARMONTH = @as(u32, 4102);
-pub const LOCALE_SSORTNAME = @as(u32, 4115);
-pub const LOCALE_IDIGITSUBSTITUTION = @as(u32, 4116);
-pub const LOCALE_SNAME = @as(u32, 92);
+pub const LOCALE_SAM = @as(u32, 40);
+pub const LOCALE_SCONSOLEFALLBACKNAME = @as(u32, 110);
+pub const LOCALE_SCOUNTRY = @as(u32, 6);
+pub const LOCALE_SCURRENCY = @as(u32, 20);
+pub const LOCALE_SDATE = @as(u32, 29);
+pub const LOCALE_SDAYNAME1 = @as(u32, 42);
+pub const LOCALE_SDAYNAME2 = @as(u32, 43);
+pub const LOCALE_SDAYNAME3 = @as(u32, 44);
+pub const LOCALE_SDAYNAME4 = @as(u32, 45);
+pub const LOCALE_SDAYNAME5 = @as(u32, 46);
+pub const LOCALE_SDAYNAME6 = @as(u32, 47);
+pub const LOCALE_SDAYNAME7 = @as(u32, 48);
+pub const LOCALE_SDECIMAL = @as(u32, 14);
 pub const LOCALE_SDURATION = @as(u32, 93);
+pub const LOCALE_SENGCOUNTRY = @as(u32, 4098);
+pub const LOCALE_SENGCURRNAME = @as(u32, 4103);
+pub const LOCALE_SENGLANGUAGE = @as(u32, 4097);
+pub const LOCALE_SENGLISHCOUNTRYNAME = @as(u32, 4098);
+pub const LOCALE_SENGLISHDISPLAYNAME = @as(u32, 114);
+pub const LOCALE_SENGLISHLANGUAGENAME = @as(u32, 4097);
+pub const LOCALE_SGROUPING = @as(u32, 16);
+pub const LOCALE_SINTLSYMBOL = @as(u32, 21);
+pub const LOCALE_SISO3166CTRYNAME = @as(u32, 90);
+pub const LOCALE_SISO3166CTRYNAME2 = @as(u32, 104);
+pub const LOCALE_SISO639LANGNAME = @as(u32, 89);
+pub const LOCALE_SISO639LANGNAME2 = @as(u32, 103);
+pub const LOCALE_SKEYBOARDSTOINSTALL = @as(u32, 94);
+pub const LOCALE_SLANGDISPLAYNAME = @as(u32, 111);
+pub const LOCALE_SLANGUAGE = @as(u32, 2);
+pub const LOCALE_SLIST = @as(u32, 12);
+pub const LOCALE_SLOCALIZEDCOUNTRYNAME = @as(u32, 6);
+pub const LOCALE_SLOCALIZEDDISPLAYNAME = @as(u32, 2);
+pub const LOCALE_SLOCALIZEDLANGUAGENAME = @as(u32, 111);
+pub const LOCALE_SLONGDATE = @as(u32, 32);
+pub const LOCALE_SMONDECIMALSEP = @as(u32, 22);
+pub const LOCALE_SMONGROUPING = @as(u32, 24);
+pub const LOCALE_SMONTHDAY = @as(u32, 120);
+pub const LOCALE_SMONTHNAME1 = @as(u32, 56);
+pub const LOCALE_SMONTHNAME10 = @as(u32, 65);
+pub const LOCALE_SMONTHNAME11 = @as(u32, 66);
+pub const LOCALE_SMONTHNAME12 = @as(u32, 67);
+pub const LOCALE_SMONTHNAME13 = @as(u32, 4110);
+pub const LOCALE_SMONTHNAME2 = @as(u32, 57);
+pub const LOCALE_SMONTHNAME3 = @as(u32, 58);
+pub const LOCALE_SMONTHNAME4 = @as(u32, 59);
+pub const LOCALE_SMONTHNAME5 = @as(u32, 60);
+pub const LOCALE_SMONTHNAME6 = @as(u32, 61);
+pub const LOCALE_SMONTHNAME7 = @as(u32, 62);
+pub const LOCALE_SMONTHNAME8 = @as(u32, 63);
+pub const LOCALE_SMONTHNAME9 = @as(u32, 64);
+pub const LOCALE_SMONTHOUSANDSEP = @as(u32, 23);
+pub const LOCALE_SNAME = @as(u32, 92);
+pub const LOCALE_SNAN = @as(u32, 105);
+pub const LOCALE_SNATIVECOUNTRYNAME = @as(u32, 8);
+pub const LOCALE_SNATIVECTRYNAME = @as(u32, 8);
+pub const LOCALE_SNATIVECURRNAME = @as(u32, 4104);
+pub const LOCALE_SNATIVEDIGITS = @as(u32, 19);
+pub const LOCALE_SNATIVEDISPLAYNAME = @as(u32, 115);
+pub const LOCALE_SNATIVELANGNAME = @as(u32, 4);
+pub const LOCALE_SNATIVELANGUAGENAME = @as(u32, 4);
+pub const LOCALE_SNEGATIVESIGN = @as(u32, 81);
+pub const LOCALE_SNEGINFINITY = @as(u32, 107);
+pub const LOCALE_SOPENTYPELANGUAGETAG = @as(u32, 122);
+pub const LOCALE_SPARENT = @as(u32, 109);
+pub const LOCALE_SPECIFICDATA = @as(u32, 32);
+pub const LOCALE_SPERCENT = @as(u32, 118);
+pub const LOCALE_SPERMILLE = @as(u32, 119);
+pub const LOCALE_SPM = @as(u32, 41);
+pub const LOCALE_SPOSINFINITY = @as(u32, 106);
+pub const LOCALE_SPOSITIVESIGN = @as(u32, 80);
+pub const LOCALE_SRELATIVELONGDATE = @as(u32, 124);
+pub const LOCALE_SSCRIPTS = @as(u32, 108);
+pub const LOCALE_SSHORTDATE = @as(u32, 31);
+pub const LOCALE_SSHORTESTAM = @as(u32, 126);
 pub const LOCALE_SSHORTESTDAYNAME1 = @as(u32, 96);
 pub const LOCALE_SSHORTESTDAYNAME2 = @as(u32, 97);
 pub const LOCALE_SSHORTESTDAYNAME3 = @as(u32, 98);
@@ -315,730 +465,473 @@ pub const LOCALE_SSHORTESTDAYNAME4 = @as(u32, 99);
 pub const LOCALE_SSHORTESTDAYNAME5 = @as(u32, 100);
 pub const LOCALE_SSHORTESTDAYNAME6 = @as(u32, 101);
 pub const LOCALE_SSHORTESTDAYNAME7 = @as(u32, 102);
-pub const LOCALE_SISO639LANGNAME2 = @as(u32, 103);
-pub const LOCALE_SISO3166CTRYNAME2 = @as(u32, 104);
-pub const LOCALE_SNAN = @as(u32, 105);
-pub const LOCALE_SPOSINFINITY = @as(u32, 106);
-pub const LOCALE_SNEGINFINITY = @as(u32, 107);
-pub const LOCALE_SSCRIPTS = @as(u32, 108);
-pub const LOCALE_SPARENT = @as(u32, 109);
-pub const LOCALE_SCONSOLEFALLBACKNAME = @as(u32, 110);
-pub const LOCALE_IREADINGLAYOUT = @as(u32, 112);
-pub const LOCALE_INEUTRAL = @as(u32, 113);
-pub const LOCALE_INEGATIVEPERCENT = @as(u32, 116);
-pub const LOCALE_IPOSITIVEPERCENT = @as(u32, 117);
-pub const LOCALE_SPERCENT = @as(u32, 118);
-pub const LOCALE_SPERMILLE = @as(u32, 119);
-pub const LOCALE_SMONTHDAY = @as(u32, 120);
-pub const LOCALE_SSHORTTIME = @as(u32, 121);
-pub const LOCALE_SOPENTYPELANGUAGETAG = @as(u32, 122);
-pub const LOCALE_SSORTLOCALE = @as(u32, 123);
-pub const LOCALE_SRELATIVELONGDATE = @as(u32, 124);
-pub const LOCALE_ICONSTRUCTEDLOCALE = @as(u32, 125);
-pub const LOCALE_SSHORTESTAM = @as(u32, 126);
 pub const LOCALE_SSHORTESTPM = @as(u32, 127);
-pub const LOCALE_IUSEUTF8LEGACYACP = @as(u32, 1638);
-pub const LOCALE_IUSEUTF8LEGACYOEMCP = @as(u32, 2457);
-pub const LOCALE_IDEFAULTCODEPAGE = @as(u32, 11);
-pub const LOCALE_IDEFAULTANSICODEPAGE = @as(u32, 4100);
-pub const LOCALE_IDEFAULTMACCODEPAGE = @as(u32, 4113);
-pub const LOCALE_IDEFAULTEBCDICCODEPAGE = @as(u32, 4114);
-pub const LOCALE_ILANGUAGE = @as(u32, 1);
-pub const LOCALE_SABBREVLANGNAME = @as(u32, 3);
-pub const LOCALE_SABBREVCTRYNAME = @as(u32, 7);
-pub const LOCALE_IGEOID = @as(u32, 91);
-pub const LOCALE_IDEFAULTLANGUAGE = @as(u32, 9);
-pub const LOCALE_IDEFAULTCOUNTRY = @as(u32, 10);
-pub const LOCALE_IINTLCURRDIGITS = @as(u32, 26);
-pub const LOCALE_SDATE = @as(u32, 29);
+pub const LOCALE_SSHORTTIME = @as(u32, 121);
+pub const LOCALE_SSORTLOCALE = @as(u32, 123);
+pub const LOCALE_SSORTNAME = @as(u32, 4115);
+pub const LOCALE_STHOUSAND = @as(u32, 15);
 pub const LOCALE_STIME = @as(u32, 30);
-pub const LOCALE_IDATE = @as(u32, 33);
-pub const LOCALE_ILDATE = @as(u32, 34);
-pub const LOCALE_ITIME = @as(u32, 35);
-pub const LOCALE_ITIMEMARKPOSN = @as(u32, 4101);
-pub const LOCALE_ICENTURY = @as(u32, 36);
-pub const LOCALE_ITLZERO = @as(u32, 37);
-pub const LOCALE_IDAYLZERO = @as(u32, 38);
-pub const LOCALE_IMONLZERO = @as(u32, 39);
-pub const LOCALE_SKEYBOARDSTOINSTALL = @as(u32, 94);
-pub const LOCALE_SLANGUAGE = @as(u32, 2);
-pub const LOCALE_SLANGDISPLAYNAME = @as(u32, 111);
-pub const LOCALE_SENGLANGUAGE = @as(u32, 4097);
-pub const LOCALE_SNATIVELANGNAME = @as(u32, 4);
-pub const LOCALE_SCOUNTRY = @as(u32, 6);
-pub const LOCALE_SENGCOUNTRY = @as(u32, 4098);
-pub const LOCALE_SNATIVECTRYNAME = @as(u32, 8);
-pub const LOCALE_ICOUNTRY = @as(u32, 5);
-pub const LOCALE_S1159 = @as(u32, 40);
-pub const LOCALE_S2359 = @as(u32, 41);
-pub const CAL_NOUSEROVERRIDE = @as(u32, 2147483648);
-pub const CAL_USE_CP_ACP = @as(u32, 1073741824);
-pub const CAL_RETURN_NUMBER = @as(u32, 536870912);
-pub const CAL_RETURN_GENITIVE_NAMES = @as(u32, 268435456);
-pub const CAL_ICALINTVALUE = @as(u32, 1);
-pub const CAL_SCALNAME = @as(u32, 2);
-pub const CAL_IYEAROFFSETRANGE = @as(u32, 3);
-pub const CAL_SERASTRING = @as(u32, 4);
-pub const CAL_SSHORTDATE = @as(u32, 5);
-pub const CAL_SLONGDATE = @as(u32, 6);
-pub const CAL_SDAYNAME1 = @as(u32, 7);
-pub const CAL_SDAYNAME2 = @as(u32, 8);
-pub const CAL_SDAYNAME3 = @as(u32, 9);
-pub const CAL_SDAYNAME4 = @as(u32, 10);
-pub const CAL_SDAYNAME5 = @as(u32, 11);
-pub const CAL_SDAYNAME6 = @as(u32, 12);
-pub const CAL_SDAYNAME7 = @as(u32, 13);
-pub const CAL_SABBREVDAYNAME1 = @as(u32, 14);
-pub const CAL_SABBREVDAYNAME2 = @as(u32, 15);
-pub const CAL_SABBREVDAYNAME3 = @as(u32, 16);
-pub const CAL_SABBREVDAYNAME4 = @as(u32, 17);
-pub const CAL_SABBREVDAYNAME5 = @as(u32, 18);
-pub const CAL_SABBREVDAYNAME6 = @as(u32, 19);
-pub const CAL_SABBREVDAYNAME7 = @as(u32, 20);
-pub const CAL_SMONTHNAME1 = @as(u32, 21);
-pub const CAL_SMONTHNAME2 = @as(u32, 22);
-pub const CAL_SMONTHNAME3 = @as(u32, 23);
-pub const CAL_SMONTHNAME4 = @as(u32, 24);
-pub const CAL_SMONTHNAME5 = @as(u32, 25);
-pub const CAL_SMONTHNAME6 = @as(u32, 26);
-pub const CAL_SMONTHNAME7 = @as(u32, 27);
-pub const CAL_SMONTHNAME8 = @as(u32, 28);
-pub const CAL_SMONTHNAME9 = @as(u32, 29);
-pub const CAL_SMONTHNAME10 = @as(u32, 30);
-pub const CAL_SMONTHNAME11 = @as(u32, 31);
-pub const CAL_SMONTHNAME12 = @as(u32, 32);
-pub const CAL_SMONTHNAME13 = @as(u32, 33);
-pub const CAL_SABBREVMONTHNAME1 = @as(u32, 34);
-pub const CAL_SABBREVMONTHNAME2 = @as(u32, 35);
-pub const CAL_SABBREVMONTHNAME3 = @as(u32, 36);
-pub const CAL_SABBREVMONTHNAME4 = @as(u32, 37);
-pub const CAL_SABBREVMONTHNAME5 = @as(u32, 38);
-pub const CAL_SABBREVMONTHNAME6 = @as(u32, 39);
-pub const CAL_SABBREVMONTHNAME7 = @as(u32, 40);
-pub const CAL_SABBREVMONTHNAME8 = @as(u32, 41);
-pub const CAL_SABBREVMONTHNAME9 = @as(u32, 42);
-pub const CAL_SABBREVMONTHNAME10 = @as(u32, 43);
-pub const CAL_SABBREVMONTHNAME11 = @as(u32, 44);
-pub const CAL_SABBREVMONTHNAME12 = @as(u32, 45);
-pub const CAL_SABBREVMONTHNAME13 = @as(u32, 46);
-pub const CAL_SYEARMONTH = @as(u32, 47);
-pub const CAL_ITWODIGITYEARMAX = @as(u32, 48);
-pub const CAL_SSHORTESTDAYNAME1 = @as(u32, 49);
-pub const CAL_SSHORTESTDAYNAME2 = @as(u32, 50);
-pub const CAL_SSHORTESTDAYNAME3 = @as(u32, 51);
-pub const CAL_SSHORTESTDAYNAME4 = @as(u32, 52);
-pub const CAL_SSHORTESTDAYNAME5 = @as(u32, 53);
-pub const CAL_SSHORTESTDAYNAME6 = @as(u32, 54);
-pub const CAL_SSHORTESTDAYNAME7 = @as(u32, 55);
-pub const CAL_SMONTHDAY = @as(u32, 56);
-pub const CAL_SABBREVERASTRING = @as(u32, 57);
-pub const CAL_SRELATIVELONGDATE = @as(u32, 58);
-pub const CAL_SENGLISHERANAME = @as(u32, 59);
-pub const CAL_SENGLISHABBREVERANAME = @as(u32, 60);
-pub const CAL_SJAPANESEERAFIRSTYEAR = @as(u32, 61);
-pub const ENUM_ALL_CALENDARS = @as(u32, 4294967295);
-pub const CAL_GREGORIAN = @as(u32, 1);
-pub const CAL_GREGORIAN_US = @as(u32, 2);
-pub const CAL_JAPAN = @as(u32, 3);
-pub const CAL_TAIWAN = @as(u32, 4);
-pub const CAL_KOREA = @as(u32, 5);
-pub const CAL_HIJRI = @as(u32, 6);
-pub const CAL_THAI = @as(u32, 7);
-pub const CAL_HEBREW = @as(u32, 8);
-pub const CAL_GREGORIAN_ME_FRENCH = @as(u32, 9);
-pub const CAL_GREGORIAN_ARABIC = @as(u32, 10);
-pub const CAL_GREGORIAN_XLIT_ENGLISH = @as(u32, 11);
-pub const CAL_GREGORIAN_XLIT_FRENCH = @as(u32, 12);
-pub const CAL_PERSIAN = @as(u32, 22);
-pub const CAL_UMALQURA = @as(u32, 23);
-pub const LGRPID_WESTERN_EUROPE = @as(u32, 1);
-pub const LGRPID_CENTRAL_EUROPE = @as(u32, 2);
-pub const LGRPID_BALTIC = @as(u32, 3);
-pub const LGRPID_GREEK = @as(u32, 4);
-pub const LGRPID_CYRILLIC = @as(u32, 5);
-pub const LGRPID_TURKIC = @as(u32, 6);
-pub const LGRPID_TURKISH = @as(u32, 6);
-pub const LGRPID_JAPANESE = @as(u32, 7);
-pub const LGRPID_KOREAN = @as(u32, 8);
-pub const LGRPID_TRADITIONAL_CHINESE = @as(u32, 9);
-pub const LGRPID_SIMPLIFIED_CHINESE = @as(u32, 10);
-pub const LGRPID_THAI = @as(u32, 11);
-pub const LGRPID_HEBREW = @as(u32, 12);
-pub const LGRPID_ARABIC = @as(u32, 13);
-pub const LGRPID_VIETNAMESE = @as(u32, 14);
-pub const LGRPID_INDIC = @as(u32, 15);
-pub const LGRPID_GEORGIAN = @as(u32, 16);
-pub const LGRPID_ARMENIAN = @as(u32, 17);
-pub const MUI_LANGUAGE_ID = @as(u32, 4);
-pub const MUI_LANGUAGE_NAME = @as(u32, 8);
-pub const MUI_MERGE_SYSTEM_FALLBACK = @as(u32, 16);
-pub const MUI_MERGE_USER_FALLBACK = @as(u32, 32);
-pub const MUI_THREAD_LANGUAGES = @as(u32, 64);
-pub const MUI_CONSOLE_FILTER = @as(u32, 256);
-pub const MUI_COMPLEX_SCRIPT_FILTER = @as(u32, 512);
-pub const MUI_RESET_FILTERS = @as(u32, 1);
-pub const MUI_USER_PREFERRED_UI_LANGUAGES = @as(u32, 16);
-pub const MUI_USE_INSTALLED_LANGUAGES = @as(u32, 32);
-pub const MUI_USE_SEARCH_ALL_LANGUAGES = @as(u32, 64);
-pub const MUI_LANG_NEUTRAL_PE_FILE = @as(u32, 256);
-pub const MUI_NON_LANG_NEUTRAL_FILE = @as(u32, 512);
-pub const MUI_MACHINE_LANGUAGE_SETTINGS = @as(u32, 1024);
-pub const MUI_FILETYPE_NOT_LANGUAGE_NEUTRAL = @as(u32, 1);
-pub const MUI_FILETYPE_LANGUAGE_NEUTRAL_MAIN = @as(u32, 2);
-pub const MUI_FILETYPE_LANGUAGE_NEUTRAL_MUI = @as(u32, 4);
-pub const MUI_QUERY_TYPE = @as(u32, 1);
-pub const MUI_QUERY_CHECKSUM = @as(u32, 2);
-pub const MUI_QUERY_LANGUAGE_NAME = @as(u32, 4);
-pub const MUI_QUERY_RESOURCE_TYPES = @as(u32, 8);
-pub const MUI_FILEINFO_VERSION = @as(u32, 1);
-pub const MUI_FULL_LANGUAGE = @as(u32, 1);
-pub const MUI_PARTIAL_LANGUAGE = @as(u32, 2);
-pub const MUI_LIP_LANGUAGE = @as(u32, 4);
-pub const MUI_LANGUAGE_INSTALLED = @as(u32, 32);
-pub const MUI_LANGUAGE_LICENSED = @as(u32, 64);
-pub const GEOID_NOT_AVAILABLE = @as(i32, -1);
-pub const SORTING_PARADIGM_NLS = @as(u32, 0);
-pub const SORTING_PARADIGM_ICU = @as(u32, 16777216);
-pub const IDN_ALLOW_UNASSIGNED = @as(u32, 1);
-pub const IDN_USE_STD3_ASCII_RULES = @as(u32, 2);
-pub const IDN_EMAIL_ADDRESS = @as(u32, 4);
-pub const IDN_RAW_PUNYCODE = @as(u32, 8);
-pub const VS_ALLOW_LATIN = @as(u32, 1);
-pub const GSS_ALLOW_INHERITED_COMMON = @as(u32, 1);
-pub const MUI_FORMAT_REG_COMPAT = @as(u32, 1);
-pub const MUI_FORMAT_INF_COMPAT = @as(u32, 2);
-pub const MUI_VERIFY_FILE_EXISTS = @as(u32, 4);
-pub const MUI_SKIP_STRING_CACHE = @as(u32, 8);
-pub const MUI_IMMUTABLE_LOOKUP = @as(u32, 16);
-pub const LOCALE_NAME_INVARIANT = null;
-pub const LOCALE_NAME_SYSTEM_DEFAULT = "!x-sys-default-locale";
-pub const MIN_SPELLING_NTDDI = @as(u32, 100794368);
-pub const SCRIPT_UNDEFINED = @as(u32, 0);
-pub const USP_E_SCRIPT_NOT_IN_FONT = @import("zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
-pub const SGCM_RTL = @as(u32, 1);
-pub const SSA_PASSWORD = @as(u32, 1);
-pub const SSA_TAB = @as(u32, 2);
-pub const SSA_CLIP = @as(u32, 4);
-pub const SSA_FIT = @as(u32, 8);
-pub const SSA_DZWG = @as(u32, 16);
-pub const SSA_FALLBACK = @as(u32, 32);
-pub const SSA_BREAK = @as(u32, 64);
-pub const SSA_GLYPHS = @as(u32, 128);
-pub const SSA_RTL = @as(u32, 256);
-pub const SSA_GCP = @as(u32, 512);
-pub const SSA_HOTKEY = @as(u32, 1024);
-pub const SSA_METAFILE = @as(u32, 2048);
-pub const SSA_LINK = @as(u32, 4096);
-pub const SSA_HIDEHOTKEY = @as(u32, 8192);
-pub const SSA_HOTKEYONLY = @as(u32, 9216);
-pub const SSA_FULLMEASURE = @as(u32, 67108864);
-pub const SSA_LPKANSIFALLBACK = @as(u32, 134217728);
-pub const SSA_PIDX = @as(u32, 268435456);
-pub const SSA_LAYOUTRTL = @as(u32, 536870912);
-pub const SSA_DONTGLYPH = @as(u32, 1073741824);
-pub const SSA_NOKASHIDA = @as(u32, 2147483648);
-pub const SCRIPT_DIGITSUBSTITUTE_CONTEXT = @as(u32, 0);
-pub const SCRIPT_DIGITSUBSTITUTE_NONE = @as(u32, 1);
-pub const SCRIPT_DIGITSUBSTITUTE_NATIONAL = @as(u32, 2);
-pub const SCRIPT_DIGITSUBSTITUTE_TRADITIONAL = @as(u32, 3);
-pub const UNISCRIBE_OPENTYPE = @as(u32, 256);
-pub const SCRIPT_TAG_UNKNOWN = @as(u32, 0);
-pub const MUI_LANGUAGE_EXACT = @as(u32, 16);
-pub const NLS_CP_CPINFO = @as(u32, 268435456);
-pub const NLS_CP_MBTOWC = @as(u32, 1073741824);
-pub const NLS_CP_WCTOMB = @as(u32, 2147483648);
-pub const U_DISABLE_RENAMING = @as(u32, 1);
-pub const U_SHOW_CPLUSPLUS_API = @as(u32, 0);
-pub const U_DEFAULT_SHOW_DRAFT = @as(u32, 0);
-pub const U_HIDE_DRAFT_API = @as(u32, 1);
-pub const U_HIDE_DEPRECATED_API = @as(u32, 1);
-pub const U_HIDE_OBSOLETE_API = @as(u32, 1);
-pub const U_HIDE_INTERNAL_API = @as(u32, 1);
-pub const U_NO_DEFAULT_INCLUDE_UTF_HEADERS = @as(u32, 1);
-pub const U_DEBUG = @as(u32, 1);
-pub const UCLN_NO_AUTO_CLEANUP = @as(u32, 1);
-pub const U_OVERRIDE_CXX_ALLOCATION = @as(u32, 1);
-pub const U_ENABLE_TRACING = @as(u32, 0);
-pub const UCONFIG_ENABLE_PLUGINS = @as(u32, 0);
-pub const U_ENABLE_DYLOAD = @as(u32, 1);
-pub const U_CHECK_DYLOAD = @as(u32, 1);
-pub const U_HAVE_LIB_SUFFIX = @as(u32, 1);
-pub const U_LIB_SUFFIX_C_NAME_STRING = null;
-pub const UCONFIG_ONLY_COLLATION = @as(u32, 0);
-pub const UCONFIG_NO_BREAK_ITERATION = @as(u32, 1);
-pub const UCONFIG_NO_IDNA = @as(u32, 1);
-pub const UCONFIG_NO_FORMATTING = @as(u32, 1);
-pub const UCONFIG_NO_TRANSLITERATION = @as(u32, 1);
-pub const UCONFIG_NO_REGULAR_EXPRESSIONS = @as(u32, 1);
-pub const UCONFIG_NO_FILE_IO = @as(u32, 0);
-pub const UCONFIG_NO_CONVERSION = @as(u32, 0);
-pub const UCONFIG_NO_LEGACY_CONVERSION = @as(u32, 1);
-pub const UCONFIG_ONLY_HTML_CONVERSION = @as(u32, 0);
-pub const UCONFIG_NO_NORMALIZATION = @as(u32, 0);
-pub const UCONFIG_NO_COLLATION = @as(u32, 1);
-pub const UCONFIG_NO_SERVICE = @as(u32, 0);
-pub const UCONFIG_HAVE_PARSEALLINPUT = @as(u32, 1);
-pub const UCONFIG_NO_FILTERED_BREAK_ITERATION = @as(u32, 0);
-pub const U_PF_UNKNOWN = @as(u32, 0);
-pub const U_PF_WINDOWS = @as(u32, 1000);
-pub const U_PF_MINGW = @as(u32, 1800);
-pub const U_PF_CYGWIN = @as(u32, 1900);
-pub const U_PF_HPUX = @as(u32, 2100);
-pub const U_PF_SOLARIS = @as(u32, 2600);
-pub const U_PF_BSD = @as(u32, 3000);
-pub const U_PF_AIX = @as(u32, 3100);
-pub const U_PF_IRIX = @as(u32, 3200);
-pub const U_PF_DARWIN = @as(u32, 3500);
-pub const U_PF_IPHONE = @as(u32, 3550);
-pub const U_PF_QNX = @as(u32, 3700);
-pub const U_PF_LINUX = @as(u32, 4000);
-pub const U_PF_BROWSER_NATIVE_CLIENT = @as(u32, 4020);
-pub const U_PF_ANDROID = @as(u32, 4050);
-pub const U_PF_FUCHSIA = @as(u32, 4100);
-pub const U_PF_EMSCRIPTEN = @as(u32, 5010);
-pub const U_PF_OS390 = @as(u32, 9000);
-pub const U_PF_OS400 = @as(u32, 9400);
-pub const U_PLATFORM = @as(u32, 1800);
-pub const U_PLATFORM_USES_ONLY_WIN32_API = @as(u32, 1);
-pub const U_PLATFORM_HAS_WIN32_API = @as(u32, 1);
-pub const U_PLATFORM_IMPLEMENTS_POSIX = @as(u32, 0);
-pub const U_PLATFORM_IS_LINUX_BASED = @as(u32, 1);
-pub const U_PLATFORM_IS_DARWIN_BASED = @as(u32, 1);
-pub const U_HAVE_STDINT_H = @as(u32, 1);
-pub const U_HAVE_INTTYPES_H = @as(u32, 1);
-pub const U_GCC_MAJOR_MINOR = @as(u32, 0);
-pub const U_IS_BIG_ENDIAN = @as(u32, 0);
-pub const U_HAVE_PLACEMENT_NEW = @as(u32, 0);
-pub const U_HAVE_DEBUG_LOCATION_NEW = @as(u32, 1);
-pub const U_CPLUSPLUS_VERSION = @as(u32, 0);
-pub const U_ASCII_FAMILY = @as(u32, 0);
-pub const U_EBCDIC_FAMILY = @as(u32, 1);
-pub const U_CHARSET_FAMILY = @as(u32, 1);
-pub const U_CHARSET_IS_UTF8 = @as(u32, 1);
-pub const U_HAVE_WCHAR_H = @as(u32, 0);
-pub const U_SIZEOF_WCHAR_T = @as(u32, 1);
-pub const U_HAVE_WCSCPY = @as(u32, 0);
-pub const U_HAVE_CHAR16_T = @as(u32, 1);
-pub const U_DEFINE_FALSE_AND_TRUE = @as(u32, 1);
-pub const U_SIZEOF_UCHAR = @as(u32, 2);
-pub const U_CHAR16_IS_TYPEDEF = @as(u32, 1);
-pub const U_SENTINEL = @as(i32, -1);
-pub const U8_LEAD3_T1_BITS = " 000000000000\x1000";
-pub const U8_LEAD4_T1_BITS = "\x00\x00\x00\x00\x00\x00\x00\x00\x1e\x0f\x0f\x0f\x00\x00\x00\x00";
-pub const U8_MAX_LENGTH = @as(u32, 4);
-pub const U16_MAX_LENGTH = @as(u32, 2);
-pub const U_HIDE_OBSOLETE_UTF_OLD_H = @as(u32, 0);
-pub const UTF_SIZE = @as(u32, 16);
-pub const UTF8_ERROR_VALUE_1 = @as(u32, 21);
-pub const UTF8_ERROR_VALUE_2 = @as(u32, 159);
-pub const UTF_ERROR_VALUE = @as(u32, 65535);
-pub const UTF8_MAX_CHAR_LENGTH = @as(u32, 4);
-pub const UTF16_MAX_CHAR_LENGTH = @as(u32, 2);
-pub const UTF32_MAX_CHAR_LENGTH = @as(u32, 1);
-pub const UTF_MAX_CHAR_LENGTH = @as(u32, 2);
-pub const U_COPYRIGHT_STRING_LENGTH = @as(u32, 128);
-pub const U_MAX_VERSION_LENGTH = @as(u32, 4);
-pub const U_MAX_VERSION_STRING_LENGTH = @as(u32, 20);
-pub const U_MILLIS_PER_SECOND = @as(u32, 1000);
-pub const U_MILLIS_PER_MINUTE = @as(u32, 60000);
-pub const U_MILLIS_PER_HOUR = @as(u32, 3600000);
-pub const U_MILLIS_PER_DAY = @as(u32, 86400000);
-pub const U_COMBINED_IMPLEMENTATION = @as(u32, 1);
-pub const U_SHAPE_LENGTH_GROW_SHRINK = @as(u32, 0);
-pub const U_SHAPE_LAMALEF_RESIZE = @as(u32, 0);
-pub const U_SHAPE_LENGTH_FIXED_SPACES_NEAR = @as(u32, 1);
-pub const U_SHAPE_LAMALEF_NEAR = @as(u32, 1);
-pub const U_SHAPE_LENGTH_FIXED_SPACES_AT_END = @as(u32, 2);
-pub const U_SHAPE_LAMALEF_END = @as(u32, 2);
-pub const U_SHAPE_LENGTH_FIXED_SPACES_AT_BEGINNING = @as(u32, 3);
-pub const U_SHAPE_LAMALEF_BEGIN = @as(u32, 3);
-pub const U_SHAPE_LAMALEF_AUTO = @as(u32, 65536);
-pub const U_SHAPE_LENGTH_MASK = @as(u32, 65539);
-pub const U_SHAPE_LAMALEF_MASK = @as(u32, 65539);
-pub const U_SHAPE_TEXT_DIRECTION_LOGICAL = @as(u32, 0);
-pub const U_SHAPE_TEXT_DIRECTION_VISUAL_RTL = @as(u32, 0);
-pub const U_SHAPE_TEXT_DIRECTION_VISUAL_LTR = @as(u32, 4);
-pub const U_SHAPE_TEXT_DIRECTION_MASK = @as(u32, 4);
-pub const U_SHAPE_LETTERS_NOOP = @as(u32, 0);
-pub const U_SHAPE_LETTERS_SHAPE = @as(u32, 8);
-pub const U_SHAPE_LETTERS_UNSHAPE = @as(u32, 16);
-pub const U_SHAPE_LETTERS_SHAPE_TASHKEEL_ISOLATED = @as(u32, 24);
-pub const U_SHAPE_LETTERS_MASK = @as(u32, 24);
-pub const U_SHAPE_DIGITS_NOOP = @as(u32, 0);
-pub const U_SHAPE_DIGITS_EN2AN = @as(u32, 32);
-pub const U_SHAPE_DIGITS_AN2EN = @as(u32, 64);
-pub const U_SHAPE_DIGITS_ALEN2AN_INIT_LR = @as(u32, 96);
-pub const U_SHAPE_DIGITS_ALEN2AN_INIT_AL = @as(u32, 128);
-pub const U_SHAPE_DIGITS_RESERVED = @as(u32, 160);
-pub const U_SHAPE_DIGITS_MASK = @as(u32, 224);
-pub const U_SHAPE_DIGIT_TYPE_AN = @as(u32, 0);
-pub const U_SHAPE_DIGIT_TYPE_AN_EXTENDED = @as(u32, 256);
-pub const U_SHAPE_DIGIT_TYPE_RESERVED = @as(u32, 512);
-pub const U_SHAPE_DIGIT_TYPE_MASK = @as(u32, 768);
-pub const U_SHAPE_AGGREGATE_TASHKEEL = @as(u32, 16384);
-pub const U_SHAPE_AGGREGATE_TASHKEEL_NOOP = @as(u32, 0);
-pub const U_SHAPE_AGGREGATE_TASHKEEL_MASK = @as(u32, 16384);
-pub const U_SHAPE_PRESERVE_PRESENTATION = @as(u32, 32768);
-pub const U_SHAPE_PRESERVE_PRESENTATION_NOOP = @as(u32, 0);
-pub const U_SHAPE_PRESERVE_PRESENTATION_MASK = @as(u32, 32768);
-pub const U_SHAPE_SEEN_TWOCELL_NEAR = @as(u32, 2097152);
-pub const U_SHAPE_SEEN_MASK = @as(u32, 7340032);
-pub const U_SHAPE_YEHHAMZA_TWOCELL_NEAR = @as(u32, 16777216);
-pub const U_SHAPE_YEHHAMZA_MASK = @as(u32, 58720256);
-pub const U_SHAPE_TASHKEEL_BEGIN = @as(u32, 262144);
-pub const U_SHAPE_TASHKEEL_END = @as(u32, 393216);
-pub const U_SHAPE_TASHKEEL_RESIZE = @as(u32, 524288);
-pub const U_SHAPE_TASHKEEL_REPLACE_BY_TATWEEL = @as(u32, 786432);
-pub const U_SHAPE_TASHKEEL_MASK = @as(u32, 917504);
-pub const U_SHAPE_SPACES_RELATIVE_TO_TEXT_BEGIN_END = @as(u32, 67108864);
-pub const U_SHAPE_SPACES_RELATIVE_TO_TEXT_MASK = @as(u32, 67108864);
-pub const U_SHAPE_TAIL_NEW_UNICODE = @as(u32, 134217728);
-pub const U_SHAPE_TAIL_TYPE_MASK = @as(u32, 134217728);
-pub const ULOC_CHINESE = "zh";
-pub const ULOC_ENGLISH = "en";
-pub const ULOC_FRENCH = "fr";
-pub const ULOC_GERMAN = "de";
-pub const ULOC_ITALIAN = "it";
-pub const ULOC_JAPANESE = "ja";
-pub const ULOC_KOREAN = "ko";
-pub const ULOC_SIMPLIFIED_CHINESE = "zh_CN";
-pub const ULOC_TRADITIONAL_CHINESE = "zh_TW";
-pub const ULOC_CANADA = "en_CA";
-pub const ULOC_CANADA_FRENCH = "fr_CA";
-pub const ULOC_CHINA = "zh_CN";
-pub const ULOC_PRC = "zh_CN";
-pub const ULOC_FRANCE = "fr_FR";
-pub const ULOC_GERMANY = "de_DE";
-pub const ULOC_ITALY = "it_IT";
-pub const ULOC_JAPAN = "ja_JP";
-pub const ULOC_KOREA = "ko_KR";
-pub const ULOC_TAIWAN = "zh_TW";
-pub const ULOC_UK = "en_GB";
-pub const ULOC_US = "en_US";
-pub const ULOC_LANG_CAPACITY = @as(u32, 12);
-pub const ULOC_COUNTRY_CAPACITY = @as(u32, 4);
-pub const ULOC_FULLNAME_CAPACITY = @as(u32, 157);
-pub const ULOC_SCRIPT_CAPACITY = @as(u32, 6);
-pub const ULOC_KEYWORDS_CAPACITY = @as(u32, 96);
-pub const ULOC_KEYWORD_AND_VALUES_CAPACITY = @as(u32, 100);
-pub const ULOC_KEYWORD_SEPARATOR_UNICODE = @as(u32, 64);
-pub const ULOC_KEYWORD_ASSIGN_UNICODE = @as(u32, 61);
-pub const ULOC_KEYWORD_ITEM_SEPARATOR_UNICODE = @as(u32, 59);
-pub const UCNV_SUB_STOP_ON_ILLEGAL = "i";
-pub const UCNV_SKIP_STOP_ON_ILLEGAL = "i";
-pub const UCNV_ESCAPE_JAVA = "J";
-pub const UCNV_ESCAPE_C = "C";
-pub const UCNV_ESCAPE_XML_DEC = "D";
-pub const UCNV_ESCAPE_XML_HEX = "X";
-pub const UCNV_ESCAPE_UNICODE = "U";
-pub const UCNV_ESCAPE_CSS2 = "S";
-pub const UCNV_MAX_CONVERTER_NAME_LENGTH = @as(u32, 60);
-pub const UCNV_SI = @as(u32, 15);
-pub const UCNV_SO = @as(u32, 14);
-pub const UCNV_OPTION_SEP_STRING = ",";
-pub const UCNV_VALUE_SEP_STRING = "=";
-pub const UCNV_LOCALE_OPTION_STRING = ",locale=";
-pub const UCNV_VERSION_OPTION_STRING = ",version=";
-pub const UCNV_SWAP_LFNL_OPTION_STRING = ",swaplfnl";
-pub const U_FOLD_CASE_DEFAULT = @as(u32, 0);
-pub const U_FOLD_CASE_EXCLUDE_SPECIAL_I = @as(u32, 1);
-pub const U_TITLECASE_WHOLE_STRING = @as(u32, 32);
-pub const U_TITLECASE_SENTENCES = @as(u32, 64);
-pub const U_TITLECASE_NO_LOWERCASE = @as(u32, 256);
-pub const U_TITLECASE_NO_BREAK_ADJUSTMENT = @as(u32, 512);
-pub const U_TITLECASE_ADJUST_TO_CASED = @as(u32, 1024);
-pub const U_EDITS_NO_RESET = @as(u32, 8192);
-pub const U_OMIT_UNCHANGED_TEXT = @as(u32, 16384);
-pub const U_COMPARE_CODE_POINT_ORDER = @as(u32, 32768);
-pub const U_COMPARE_IGNORE_CASE = @as(u32, 65536);
-pub const UNORM_INPUT_IS_FCD = @as(u32, 131072);
-pub const UCHAR_MIN_VALUE = @as(u32, 0);
-pub const UCHAR_MAX_VALUE = @as(u32, 1114111);
-pub const UBIDI_DEFAULT_LTR = @as(u32, 254);
-pub const UBIDI_DEFAULT_RTL = @as(u32, 255);
-pub const UBIDI_MAX_EXPLICIT_LEVEL = @as(u32, 125);
-pub const UBIDI_LEVEL_OVERRIDE = @as(u32, 128);
-pub const UBIDI_MAP_NOWHERE = @as(i32, -1);
-pub const UBIDI_KEEP_BASE_COMBINING = @as(u32, 1);
-pub const UBIDI_DO_MIRRORING = @as(u32, 2);
-pub const UBIDI_INSERT_LRM_FOR_NUMERIC = @as(u32, 4);
-pub const UBIDI_REMOVE_BIDI_CONTROLS = @as(u32, 8);
-pub const UBIDI_OUTPUT_REVERSE = @as(u32, 16);
-pub const USPREP_DEFAULT = @as(u32, 0);
-pub const USPREP_ALLOW_UNASSIGNED = @as(u32, 1);
-pub const U_ICU_VERSION_BUNDLE = "icuver";
-pub const U_ICU_DATA_KEY = "DataVersion";
-pub const UCAL_UNKNOWN_ZONE_ID = "Etc/Unknown";
-pub const UDAT_YEAR = "y";
-pub const UDAT_QUARTER = "QQQQ";
-pub const UDAT_ABBR_QUARTER = "QQQ";
-pub const UDAT_YEAR_QUARTER = "yQQQQ";
-pub const UDAT_YEAR_ABBR_QUARTER = "yQQQ";
-pub const UDAT_MONTH = "MMMM";
-pub const UDAT_ABBR_MONTH = "MMM";
-pub const UDAT_NUM_MONTH = "M";
-pub const UDAT_YEAR_MONTH = "yMMMM";
-pub const UDAT_YEAR_ABBR_MONTH = "yMMM";
-pub const UDAT_YEAR_NUM_MONTH = "yM";
-pub const UDAT_DAY = "d";
-pub const UDAT_YEAR_MONTH_DAY = "yMMMMd";
-pub const UDAT_YEAR_ABBR_MONTH_DAY = "yMMMd";
-pub const UDAT_YEAR_NUM_MONTH_DAY = "yMd";
-pub const UDAT_WEEKDAY = "EEEE";
-pub const UDAT_ABBR_WEEKDAY = "E";
-pub const UDAT_YEAR_MONTH_WEEKDAY_DAY = "yMMMMEEEEd";
-pub const UDAT_YEAR_ABBR_MONTH_WEEKDAY_DAY = "yMMMEd";
-pub const UDAT_YEAR_NUM_MONTH_WEEKDAY_DAY = "yMEd";
-pub const UDAT_MONTH_DAY = "MMMMd";
-pub const UDAT_ABBR_MONTH_DAY = "MMMd";
-pub const UDAT_NUM_MONTH_DAY = "Md";
-pub const UDAT_MONTH_WEEKDAY_DAY = "MMMMEEEEd";
-pub const UDAT_ABBR_MONTH_WEEKDAY_DAY = "MMMEd";
-pub const UDAT_NUM_MONTH_WEEKDAY_DAY = "MEd";
-pub const UDAT_HOUR = "j";
-pub const UDAT_HOUR24 = "H";
-pub const UDAT_MINUTE = "m";
-pub const UDAT_HOUR_MINUTE = "jm";
-pub const UDAT_HOUR24_MINUTE = "Hm";
-pub const UDAT_SECOND = "s";
-pub const UDAT_HOUR_MINUTE_SECOND = "jms";
-pub const UDAT_HOUR24_MINUTE_SECOND = "Hms";
-pub const UDAT_MINUTE_SECOND = "ms";
-pub const UDAT_LOCATION_TZ = "VVVV";
-pub const UDAT_GENERIC_TZ = "vvvv";
-pub const UDAT_ABBR_GENERIC_TZ = "v";
-pub const UDAT_SPECIFIC_TZ = "zzzz";
-pub const UDAT_ABBR_SPECIFIC_TZ = "z";
-pub const UDAT_ABBR_UTC_TZ = "ZZZZ";
-pub const USEARCH_DONE = @as(i32, -1);
-pub const U_HAVE_STD_STRING = @as(u32, 0);
-pub const UCONFIG_FORMAT_FASTPATHS_49 = @as(u32, 1);
-pub const U_PLATFORM_HAS_WINUWP_API = @as(u32, 0);
-pub const U_IOSTREAM_SOURCE = @as(u32, 199711);
-pub const U_HAVE_RVALUE_REFERENCES = @as(u32, 1);
-pub const U_USING_ICU_NAMESPACE = @as(u32, 1);
-pub const U_ICUDATA_TYPE_LETTER = "e";
-pub const U_UNICODE_VERSION = "8.0";
-pub const CANITER_SKIP_ZEROES = @as(u32, 1);
-pub const NUMSYS_NAME_CAPACITY = @as(u32, 8);
-pub const U_HAVE_RBNF = @as(u32, 0);
+pub const LOCALE_STIMEFORMAT = @as(u32, 4099);
+pub const LOCALE_SUPPLEMENTAL = @as(u32, 2);
+pub const LOCALE_SYEARMONTH = @as(u32, 4102);
+pub const LOCALE_USE_CP_ACP = @as(u32, 1073741824);
+pub const LOCALE_WINDOWS = @as(u32, 1);
+pub const LOW_SURROGATE_END = @as(u32, 57343);
+pub const LOW_SURROGATE_START = @as(u32, 56320);
+pub const LOWLEVEL_SERVICE_TYPES = @as(u32, 2);
+pub const MAX_DEFAULTCHAR = @as(u32, 2);
+pub const MAX_LEADBYTES = @as(u32, 12);
+pub const MAX_LOCALE_NAME = @as(u32, 32);
 pub const MAX_MIMECP_NAME = @as(u32, 64);
 pub const MAX_MIMECSET_NAME = @as(u32, 50);
 pub const MAX_MIMEFACE_NAME = @as(u32, 32);
 pub const MAX_RFC1766_NAME = @as(u32, 6);
-pub const MAX_LOCALE_NAME = @as(u32, 32);
 pub const MAX_SCRIPT_NAME = @as(u32, 48);
-pub const CPIOD_PEEK = @as(i32, 1073741824);
-pub const CPIOD_FORCE_PROMPT = @as(i32, -2147483648);
-pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
-pub const UCPTRIE_FAST_SHIFT = @as(i32, 6);
+pub const MIN_SPELLING_NTDDI = @as(u32, 100794368);
+pub const MUI_COMPLEX_SCRIPT_FILTER = @as(u32, 512);
+pub const MUI_CONSOLE_FILTER = @as(u32, 256);
+pub const MUI_FILEINFO_VERSION = @as(u32, 1);
+pub const MUI_FILETYPE_LANGUAGE_NEUTRAL_MAIN = @as(u32, 2);
+pub const MUI_FILETYPE_LANGUAGE_NEUTRAL_MUI = @as(u32, 4);
+pub const MUI_FILETYPE_NOT_LANGUAGE_NEUTRAL = @as(u32, 1);
+pub const MUI_FORMAT_INF_COMPAT = @as(u32, 2);
+pub const MUI_FORMAT_REG_COMPAT = @as(u32, 1);
+pub const MUI_FULL_LANGUAGE = @as(u32, 1);
+pub const MUI_IMMUTABLE_LOOKUP = @as(u32, 16);
+pub const MUI_LANG_NEUTRAL_PE_FILE = @as(u32, 256);
+pub const MUI_LANGUAGE_EXACT = @as(u32, 16);
+pub const MUI_LANGUAGE_ID = @as(u32, 4);
+pub const MUI_LANGUAGE_INSTALLED = @as(u32, 32);
+pub const MUI_LANGUAGE_LICENSED = @as(u32, 64);
+pub const MUI_LANGUAGE_NAME = @as(u32, 8);
+pub const MUI_LIP_LANGUAGE = @as(u32, 4);
+pub const MUI_MACHINE_LANGUAGE_SETTINGS = @as(u32, 1024);
+pub const MUI_MERGE_SYSTEM_FALLBACK = @as(u32, 16);
+pub const MUI_MERGE_USER_FALLBACK = @as(u32, 32);
+pub const MUI_NON_LANG_NEUTRAL_FILE = @as(u32, 512);
+pub const MUI_PARTIAL_LANGUAGE = @as(u32, 2);
+pub const MUI_QUERY_CHECKSUM = @as(u32, 2);
+pub const MUI_QUERY_LANGUAGE_NAME = @as(u32, 4);
+pub const MUI_QUERY_RESOURCE_TYPES = @as(u32, 8);
+pub const MUI_QUERY_TYPE = @as(u32, 1);
+pub const MUI_RESET_FILTERS = @as(u32, 1);
+pub const MUI_SKIP_STRING_CACHE = @as(u32, 8);
+pub const MUI_THREAD_LANGUAGES = @as(u32, 64);
+pub const MUI_USE_INSTALLED_LANGUAGES = @as(u32, 32);
+pub const MUI_USE_SEARCH_ALL_LANGUAGES = @as(u32, 64);
+pub const MUI_USER_PREFERRED_UI_LANGUAGES = @as(u32, 16);
+pub const MUI_VERIFY_FILE_EXISTS = @as(u32, 4);
+pub const NLS_CP_CPINFO = @as(u32, 268435456);
+pub const NLS_CP_MBTOWC = @as(u32, 1073741824);
+pub const NLS_CP_WCTOMB = @as(u32, 2147483648);
+pub const NUMSYS_NAME_CAPACITY = @as(u32, 8);
+pub const OFFLINE_SERVICES = @as(u32, 2);
+pub const ONLINE_SERVICES = @as(u32, 1);
+pub const SCRIPT_DIGITSUBSTITUTE_CONTEXT = @as(u32, 0);
+pub const SCRIPT_DIGITSUBSTITUTE_NATIONAL = @as(u32, 2);
+pub const SCRIPT_DIGITSUBSTITUTE_NONE = @as(u32, 1);
+pub const SCRIPT_DIGITSUBSTITUTE_TRADITIONAL = @as(u32, 3);
+pub const SCRIPT_TAG_UNKNOWN = @as(u32, 0);
+pub const SCRIPT_UNDEFINED = @as(u32, 0);
+pub const SGCM_RTL = @as(u32, 1);
+pub const SORTING_PARADIGM_ICU = @as(u32, 16777216);
+pub const SORTING_PARADIGM_NLS = @as(u32, 0);
+pub const SSA_BREAK = @as(u32, 64);
+pub const SSA_CLIP = @as(u32, 4);
+pub const SSA_DONTGLYPH = @as(u32, 1073741824);
+pub const SSA_DZWG = @as(u32, 16);
+pub const SSA_FALLBACK = @as(u32, 32);
+pub const SSA_FIT = @as(u32, 8);
+pub const SSA_FULLMEASURE = @as(u32, 67108864);
+pub const SSA_GCP = @as(u32, 512);
+pub const SSA_GLYPHS = @as(u32, 128);
+pub const SSA_HIDEHOTKEY = @as(u32, 8192);
+pub const SSA_HOTKEY = @as(u32, 1024);
+pub const SSA_HOTKEYONLY = @as(u32, 9216);
+pub const SSA_LAYOUTRTL = @as(u32, 536870912);
+pub const SSA_LINK = @as(u32, 4096);
+pub const SSA_LPKANSIFALLBACK = @as(u32, 134217728);
+pub const SSA_METAFILE = @as(u32, 2048);
+pub const SSA_NOKASHIDA = @as(u32, 2147483648);
+pub const SSA_PASSWORD = @as(u32, 1);
+pub const SSA_PIDX = @as(u32, 268435456);
+pub const SSA_RTL = @as(u32, 256);
+pub const SSA_TAB = @as(u32, 2);
+pub const U16_MAX_LENGTH = @as(u32, 2);
+pub const U8_LEAD3_T1_BITS = " 000000000000\x1000";
+pub const U8_LEAD4_T1_BITS = "\x00\x00\x00\x00\x00\x00\x00\x00\x1e\x0f\x0f\x0f\x00\x00\x00\x00";
+pub const U8_MAX_LENGTH = @as(u32, 4);
+pub const U_ASCII_FAMILY = @as(u32, 0);
+pub const U_CHAR16_IS_TYPEDEF = @as(u32, 1);
+pub const U_CHARSET_FAMILY = @as(u32, 1);
+pub const U_CHARSET_IS_UTF8 = @as(u32, 1);
+pub const U_CHECK_DYLOAD = @as(u32, 1);
+pub const U_COMBINED_IMPLEMENTATION = @as(u32, 1);
+pub const U_COMPARE_CODE_POINT_ORDER = @as(u32, 32768);
+pub const U_COMPARE_IGNORE_CASE = @as(u32, 65536);
+pub const U_COPYRIGHT_STRING_LENGTH = @as(u32, 128);
+pub const U_CPLUSPLUS_VERSION = @as(u32, 0);
+pub const U_DEBUG = @as(u32, 1);
+pub const U_DEFAULT_SHOW_DRAFT = @as(u32, 0);
+pub const U_DEFINE_FALSE_AND_TRUE = @as(u32, 1);
+pub const U_DISABLE_RENAMING = @as(u32, 1);
+pub const U_EBCDIC_FAMILY = @as(u32, 1);
+pub const U_EDITS_NO_RESET = @as(u32, 8192);
+pub const U_ENABLE_DYLOAD = @as(u32, 1);
+pub const U_ENABLE_TRACING = @as(u32, 0);
+pub const U_FOLD_CASE_DEFAULT = @as(u32, 0);
+pub const U_FOLD_CASE_EXCLUDE_SPECIAL_I = @as(u32, 1);
+pub const U_GCC_MAJOR_MINOR = @as(u32, 0);
+pub const U_HAVE_CHAR16_T = @as(u32, 1);
+pub const U_HAVE_DEBUG_LOCATION_NEW = @as(u32, 1);
+pub const U_HAVE_INTTYPES_H = @as(u32, 1);
+pub const U_HAVE_LIB_SUFFIX = @as(u32, 1);
+pub const U_HAVE_PLACEMENT_NEW = @as(u32, 0);
+pub const U_HAVE_RBNF = @as(u32, 0);
+pub const U_HAVE_RVALUE_REFERENCES = @as(u32, 1);
+pub const U_HAVE_STD_STRING = @as(u32, 0);
+pub const U_HAVE_STDINT_H = @as(u32, 1);
+pub const U_HAVE_WCHAR_H = @as(u32, 0);
+pub const U_HAVE_WCSCPY = @as(u32, 0);
+pub const U_HIDE_DEPRECATED_API = @as(u32, 1);
+pub const U_HIDE_DRAFT_API = @as(u32, 1);
+pub const U_HIDE_INTERNAL_API = @as(u32, 1);
+pub const U_HIDE_OBSOLETE_API = @as(u32, 1);
+pub const U_HIDE_OBSOLETE_UTF_OLD_H = @as(u32, 0);
+pub const U_ICU_DATA_KEY = "DataVersion";
+pub const U_ICU_VERSION_BUNDLE = "icuver";
+pub const U_ICUDATA_TYPE_LETTER = "e";
+pub const U_IOSTREAM_SOURCE = @as(u32, 199711);
+pub const U_IS_BIG_ENDIAN = @as(u32, 0);
+pub const U_LIB_SUFFIX_C_NAME_STRING = null;
+pub const U_MAX_VERSION_LENGTH = @as(u32, 4);
+pub const U_MAX_VERSION_STRING_LENGTH = @as(u32, 20);
+pub const U_MILLIS_PER_DAY = @as(u32, 86400000);
+pub const U_MILLIS_PER_HOUR = @as(u32, 3600000);
+pub const U_MILLIS_PER_MINUTE = @as(u32, 60000);
+pub const U_MILLIS_PER_SECOND = @as(u32, 1000);
+pub const U_NO_DEFAULT_INCLUDE_UTF_HEADERS = @as(u32, 1);
+pub const U_OMIT_UNCHANGED_TEXT = @as(u32, 16384);
+pub const U_OVERRIDE_CXX_ALLOCATION = @as(u32, 1);
+pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
+pub const U_PF_AIX = @as(u32, 3100);
+pub const U_PF_ANDROID = @as(u32, 4050);
+pub const U_PF_BROWSER_NATIVE_CLIENT = @as(u32, 4020);
+pub const U_PF_BSD = @as(u32, 3000);
+pub const U_PF_CYGWIN = @as(u32, 1900);
+pub const U_PF_DARWIN = @as(u32, 3500);
+pub const U_PF_EMSCRIPTEN = @as(u32, 5010);
+pub const U_PF_FUCHSIA = @as(u32, 4100);
+pub const U_PF_HPUX = @as(u32, 2100);
+pub const U_PF_IPHONE = @as(u32, 3550);
+pub const U_PF_IRIX = @as(u32, 3200);
+pub const U_PF_LINUX = @as(u32, 4000);
+pub const U_PF_MINGW = @as(u32, 1800);
+pub const U_PF_OS390 = @as(u32, 9000);
+pub const U_PF_OS400 = @as(u32, 9400);
+pub const U_PF_QNX = @as(u32, 3700);
+pub const U_PF_SOLARIS = @as(u32, 2600);
+pub const U_PF_UNKNOWN = @as(u32, 0);
+pub const U_PF_WINDOWS = @as(u32, 1000);
+pub const U_PLATFORM = @as(u32, 1800);
+pub const U_PLATFORM_HAS_WIN32_API = @as(u32, 1);
+pub const U_PLATFORM_HAS_WINUWP_API = @as(u32, 0);
+pub const U_PLATFORM_IMPLEMENTS_POSIX = @as(u32, 0);
+pub const U_PLATFORM_IS_DARWIN_BASED = @as(u32, 1);
+pub const U_PLATFORM_IS_LINUX_BASED = @as(u32, 1);
+pub const U_PLATFORM_USES_ONLY_WIN32_API = @as(u32, 1);
+pub const U_SENTINEL = @as(i32, -1);
+pub const U_SHAPE_AGGREGATE_TASHKEEL = @as(u32, 16384);
+pub const U_SHAPE_AGGREGATE_TASHKEEL_MASK = @as(u32, 16384);
+pub const U_SHAPE_AGGREGATE_TASHKEEL_NOOP = @as(u32, 0);
+pub const U_SHAPE_DIGIT_TYPE_AN = @as(u32, 0);
+pub const U_SHAPE_DIGIT_TYPE_AN_EXTENDED = @as(u32, 256);
+pub const U_SHAPE_DIGIT_TYPE_MASK = @as(u32, 768);
+pub const U_SHAPE_DIGIT_TYPE_RESERVED = @as(u32, 512);
+pub const U_SHAPE_DIGITS_ALEN2AN_INIT_AL = @as(u32, 128);
+pub const U_SHAPE_DIGITS_ALEN2AN_INIT_LR = @as(u32, 96);
+pub const U_SHAPE_DIGITS_AN2EN = @as(u32, 64);
+pub const U_SHAPE_DIGITS_EN2AN = @as(u32, 32);
+pub const U_SHAPE_DIGITS_MASK = @as(u32, 224);
+pub const U_SHAPE_DIGITS_NOOP = @as(u32, 0);
+pub const U_SHAPE_DIGITS_RESERVED = @as(u32, 160);
+pub const U_SHAPE_LAMALEF_AUTO = @as(u32, 65536);
+pub const U_SHAPE_LAMALEF_BEGIN = @as(u32, 3);
+pub const U_SHAPE_LAMALEF_END = @as(u32, 2);
+pub const U_SHAPE_LAMALEF_MASK = @as(u32, 65539);
+pub const U_SHAPE_LAMALEF_NEAR = @as(u32, 1);
+pub const U_SHAPE_LAMALEF_RESIZE = @as(u32, 0);
+pub const U_SHAPE_LENGTH_FIXED_SPACES_AT_BEGINNING = @as(u32, 3);
+pub const U_SHAPE_LENGTH_FIXED_SPACES_AT_END = @as(u32, 2);
+pub const U_SHAPE_LENGTH_FIXED_SPACES_NEAR = @as(u32, 1);
+pub const U_SHAPE_LENGTH_GROW_SHRINK = @as(u32, 0);
+pub const U_SHAPE_LENGTH_MASK = @as(u32, 65539);
+pub const U_SHAPE_LETTERS_MASK = @as(u32, 24);
+pub const U_SHAPE_LETTERS_NOOP = @as(u32, 0);
+pub const U_SHAPE_LETTERS_SHAPE = @as(u32, 8);
+pub const U_SHAPE_LETTERS_SHAPE_TASHKEEL_ISOLATED = @as(u32, 24);
+pub const U_SHAPE_LETTERS_UNSHAPE = @as(u32, 16);
+pub const U_SHAPE_PRESERVE_PRESENTATION = @as(u32, 32768);
+pub const U_SHAPE_PRESERVE_PRESENTATION_MASK = @as(u32, 32768);
+pub const U_SHAPE_PRESERVE_PRESENTATION_NOOP = @as(u32, 0);
+pub const U_SHAPE_SEEN_MASK = @as(u32, 7340032);
+pub const U_SHAPE_SEEN_TWOCELL_NEAR = @as(u32, 2097152);
+pub const U_SHAPE_SPACES_RELATIVE_TO_TEXT_BEGIN_END = @as(u32, 67108864);
+pub const U_SHAPE_SPACES_RELATIVE_TO_TEXT_MASK = @as(u32, 67108864);
+pub const U_SHAPE_TAIL_NEW_UNICODE = @as(u32, 134217728);
+pub const U_SHAPE_TAIL_TYPE_MASK = @as(u32, 134217728);
+pub const U_SHAPE_TASHKEEL_BEGIN = @as(u32, 262144);
+pub const U_SHAPE_TASHKEEL_END = @as(u32, 393216);
+pub const U_SHAPE_TASHKEEL_MASK = @as(u32, 917504);
+pub const U_SHAPE_TASHKEEL_REPLACE_BY_TATWEEL = @as(u32, 786432);
+pub const U_SHAPE_TASHKEEL_RESIZE = @as(u32, 524288);
+pub const U_SHAPE_TEXT_DIRECTION_LOGICAL = @as(u32, 0);
+pub const U_SHAPE_TEXT_DIRECTION_MASK = @as(u32, 4);
+pub const U_SHAPE_TEXT_DIRECTION_VISUAL_LTR = @as(u32, 4);
+pub const U_SHAPE_TEXT_DIRECTION_VISUAL_RTL = @as(u32, 0);
+pub const U_SHAPE_YEHHAMZA_MASK = @as(u32, 58720256);
+pub const U_SHAPE_YEHHAMZA_TWOCELL_NEAR = @as(u32, 16777216);
+pub const U_SHOW_CPLUSPLUS_API = @as(u32, 0);
+pub const U_SIZEOF_UCHAR = @as(u32, 2);
+pub const U_SIZEOF_WCHAR_T = @as(u32, 1);
+pub const U_TITLECASE_ADJUST_TO_CASED = @as(u32, 1024);
+pub const U_TITLECASE_NO_BREAK_ADJUSTMENT = @as(u32, 512);
+pub const U_TITLECASE_NO_LOWERCASE = @as(u32, 256);
+pub const U_TITLECASE_SENTENCES = @as(u32, 64);
+pub const U_TITLECASE_WHOLE_STRING = @as(u32, 32);
+pub const U_UNICODE_VERSION = "8.0";
+pub const U_USING_ICU_NAMESPACE = @as(u32, 1);
+pub const UBIDI_DEFAULT_LTR = @as(u32, 254);
+pub const UBIDI_DEFAULT_RTL = @as(u32, 255);
+pub const UBIDI_DO_MIRRORING = @as(u32, 2);
+pub const UBIDI_INSERT_LRM_FOR_NUMERIC = @as(u32, 4);
+pub const UBIDI_KEEP_BASE_COMBINING = @as(u32, 1);
+pub const UBIDI_LEVEL_OVERRIDE = @as(u32, 128);
+pub const UBIDI_MAP_NOWHERE = @as(i32, -1);
+pub const UBIDI_MAX_EXPLICIT_LEVEL = @as(u32, 125);
+pub const UBIDI_OUTPUT_REVERSE = @as(u32, 16);
+pub const UBIDI_REMOVE_BIDI_CONTROLS = @as(u32, 8);
+pub const UCAL_UNKNOWN_ZONE_ID = "Etc/Unknown";
+pub const UCHAR_MAX_VALUE = @as(u32, 1114111);
+pub const UCHAR_MIN_VALUE = @as(u32, 0);
+pub const UCLN_NO_AUTO_CLEANUP = @as(u32, 1);
+pub const UCNV_ESCAPE_C = "C";
+pub const UCNV_ESCAPE_CSS2 = "S";
+pub const UCNV_ESCAPE_JAVA = "J";
+pub const UCNV_ESCAPE_UNICODE = "U";
+pub const UCNV_ESCAPE_XML_DEC = "D";
+pub const UCNV_ESCAPE_XML_HEX = "X";
+pub const UCNV_LOCALE_OPTION_STRING = ",locale=";
+pub const UCNV_MAX_CONVERTER_NAME_LENGTH = @as(u32, 60);
+pub const UCNV_OPTION_SEP_STRING = ",";
+pub const UCNV_SI = @as(u32, 15);
+pub const UCNV_SKIP_STOP_ON_ILLEGAL = "i";
+pub const UCNV_SO = @as(u32, 14);
+pub const UCNV_SUB_STOP_ON_ILLEGAL = "i";
+pub const UCNV_SWAP_LFNL_OPTION_STRING = ",swaplfnl";
+pub const UCNV_VALUE_SEP_STRING = "=";
+pub const UCNV_VERSION_OPTION_STRING = ",version=";
+pub const UCONFIG_ENABLE_PLUGINS = @as(u32, 0);
+pub const UCONFIG_FORMAT_FASTPATHS_49 = @as(u32, 1);
+pub const UCONFIG_HAVE_PARSEALLINPUT = @as(u32, 1);
+pub const UCONFIG_NO_BREAK_ITERATION = @as(u32, 1);
+pub const UCONFIG_NO_COLLATION = @as(u32, 1);
+pub const UCONFIG_NO_CONVERSION = @as(u32, 0);
+pub const UCONFIG_NO_FILE_IO = @as(u32, 0);
+pub const UCONFIG_NO_FILTERED_BREAK_ITERATION = @as(u32, 0);
+pub const UCONFIG_NO_FORMATTING = @as(u32, 1);
+pub const UCONFIG_NO_IDNA = @as(u32, 1);
+pub const UCONFIG_NO_LEGACY_CONVERSION = @as(u32, 1);
+pub const UCONFIG_NO_NORMALIZATION = @as(u32, 0);
+pub const UCONFIG_NO_REGULAR_EXPRESSIONS = @as(u32, 1);
+pub const UCONFIG_NO_SERVICE = @as(u32, 0);
+pub const UCONFIG_NO_TRANSLITERATION = @as(u32, 1);
+pub const UCONFIG_ONLY_COLLATION = @as(u32, 0);
+pub const UCONFIG_ONLY_HTML_CONVERSION = @as(u32, 0);
+pub const UCPTRIE_ERROR_VALUE_NEG_DATA_OFFSET = @as(i32, 1);
 pub const UCPTRIE_FAST_DATA_BLOCK_LENGTH = @as(i32, 64);
 pub const UCPTRIE_FAST_DATA_MASK = @as(i32, 63);
-pub const UCPTRIE_SMALL_MAX = @as(i32, 4095);
-pub const UCPTRIE_ERROR_VALUE_NEG_DATA_OFFSET = @as(i32, 1);
+pub const UCPTRIE_FAST_SHIFT = @as(i32, 6);
 pub const UCPTRIE_HIGH_VALUE_NEG_DATA_OFFSET = @as(i32, 2);
-pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
-pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
-pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
-pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
-pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
-pub const UTEXT_MAGIC = @as(i32, 878368812);
-pub const USET_IGNORE_SPACE = @as(i32, 1);
-pub const USET_CASE_INSENSITIVE = @as(i32, 2);
-pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
-pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
-pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
-pub const UIDNA_DEFAULT = @as(i32, 0);
-pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
+pub const UCPTRIE_SMALL_MAX = @as(i32, 4095);
+pub const UDAT_ABBR_GENERIC_TZ = "v";
+pub const UDAT_ABBR_MONTH = "MMM";
+pub const UDAT_ABBR_MONTH_DAY = "MMMd";
+pub const UDAT_ABBR_MONTH_WEEKDAY_DAY = "MMMEd";
+pub const UDAT_ABBR_QUARTER = "QQQ";
+pub const UDAT_ABBR_SPECIFIC_TZ = "z";
+pub const UDAT_ABBR_UTC_TZ = "ZZZZ";
+pub const UDAT_ABBR_WEEKDAY = "E";
+pub const UDAT_DAY = "d";
+pub const UDAT_GENERIC_TZ = "vvvv";
+pub const UDAT_HOUR = "j";
+pub const UDAT_HOUR24 = "H";
+pub const UDAT_HOUR24_MINUTE = "Hm";
+pub const UDAT_HOUR24_MINUTE_SECOND = "Hms";
+pub const UDAT_HOUR_MINUTE = "jm";
+pub const UDAT_HOUR_MINUTE_SECOND = "jms";
+pub const UDAT_LOCATION_TZ = "VVVV";
+pub const UDAT_MINUTE = "m";
+pub const UDAT_MINUTE_SECOND = "ms";
+pub const UDAT_MONTH = "MMMM";
+pub const UDAT_MONTH_DAY = "MMMMd";
+pub const UDAT_MONTH_WEEKDAY_DAY = "MMMMEEEEd";
+pub const UDAT_NUM_MONTH = "M";
+pub const UDAT_NUM_MONTH_DAY = "Md";
+pub const UDAT_NUM_MONTH_WEEKDAY_DAY = "MEd";
+pub const UDAT_QUARTER = "QQQQ";
+pub const UDAT_SECOND = "s";
+pub const UDAT_SPECIFIC_TZ = "zzzz";
+pub const UDAT_WEEKDAY = "EEEE";
+pub const UDAT_YEAR = "y";
+pub const UDAT_YEAR_ABBR_MONTH = "yMMM";
+pub const UDAT_YEAR_ABBR_MONTH_DAY = "yMMMd";
+pub const UDAT_YEAR_ABBR_MONTH_WEEKDAY_DAY = "yMMMEd";
+pub const UDAT_YEAR_ABBR_QUARTER = "yQQQ";
+pub const UDAT_YEAR_MONTH = "yMMMM";
+pub const UDAT_YEAR_MONTH_DAY = "yMMMMd";
+pub const UDAT_YEAR_MONTH_WEEKDAY_DAY = "yMMMMEEEEd";
+pub const UDAT_YEAR_NUM_MONTH = "yM";
+pub const UDAT_YEAR_NUM_MONTH_DAY = "yMd";
+pub const UDAT_YEAR_NUM_MONTH_WEEKDAY_DAY = "yMEd";
+pub const UDAT_YEAR_QUARTER = "yQQQQ";
 pub const UIDNA_CHECK_BIDI = @as(i32, 4);
 pub const UIDNA_CHECK_CONTEXTJ = @as(i32, 8);
-pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
-pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
 pub const UIDNA_CHECK_CONTEXTO = @as(i32, 64);
-pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
-pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
-pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
-pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
-pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
-pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
-pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
-pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
-pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
-pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
-pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
+pub const UIDNA_DEFAULT = @as(i32, 0);
 pub const UIDNA_ERROR_BIDI = @as(i32, 2048);
 pub const UIDNA_ERROR_CONTEXTJ = @as(i32, 4096);
-pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
 pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
-pub const ELS_GUID_LANGUAGE_DETECTION = Guid.initString("cf7e00b1-909b-4d95-a8f4-611f7c377702");
-pub const ELS_GUID_SCRIPT_DETECTION = Guid.initString("2d64b439-6caf-4f6b-b688-e5d0f4faa7d7");
-pub const ELS_GUID_TRANSLITERATION_HANT_TO_HANS = Guid.initString("a3a8333b-f4fc-42f6-a0c4-0462fe7317cb");
-pub const ELS_GUID_TRANSLITERATION_HANS_TO_HANT = Guid.initString("3caccdc8-5590-42dc-9a7b-b5a6b5b3b63b");
-pub const ELS_GUID_TRANSLITERATION_MALAYALAM_TO_LATIN = Guid.initString("d8b983b1-f8bf-4a2b-bcd5-5b5ea20613e1");
-pub const ELS_GUID_TRANSLITERATION_DEVANAGARI_TO_LATIN = Guid.initString("c4a4dcfe-2661-4d02-9835-f48187109803");
-pub const ELS_GUID_TRANSLITERATION_CYRILLIC_TO_LATIN = Guid.initString("3dd12a98-5afd-4903-a13f-e17e6c0bfe01");
-pub const ELS_GUID_TRANSLITERATION_BENGALI_TO_LATIN = Guid.initString("f4dfd825-91a4-489f-855e-9ad9bee55727");
-pub const ELS_GUID_TRANSLITERATION_HANGUL_DECOMPOSITION = Guid.initString("4ba2a721-e43d-41b7-b330-536ae1e48863");
+pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
+pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
+pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
+pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
+pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
+pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
+pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
+pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
+pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
+pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
+pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
+pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
+pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
+pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
+pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
+pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
+pub const ULOC_CANADA = "en_CA";
+pub const ULOC_CANADA_FRENCH = "fr_CA";
+pub const ULOC_CHINA = "zh_CN";
+pub const ULOC_CHINESE = "zh";
+pub const ULOC_COUNTRY_CAPACITY = @as(u32, 4);
+pub const ULOC_ENGLISH = "en";
+pub const ULOC_FRANCE = "fr_FR";
+pub const ULOC_FRENCH = "fr";
+pub const ULOC_FULLNAME_CAPACITY = @as(u32, 157);
+pub const ULOC_GERMAN = "de";
+pub const ULOC_GERMANY = "de_DE";
+pub const ULOC_ITALIAN = "it";
+pub const ULOC_ITALY = "it_IT";
+pub const ULOC_JAPAN = "ja_JP";
+pub const ULOC_JAPANESE = "ja";
+pub const ULOC_KEYWORD_AND_VALUES_CAPACITY = @as(u32, 100);
+pub const ULOC_KEYWORD_ASSIGN_UNICODE = @as(u32, 61);
+pub const ULOC_KEYWORD_ITEM_SEPARATOR_UNICODE = @as(u32, 59);
+pub const ULOC_KEYWORD_SEPARATOR_UNICODE = @as(u32, 64);
+pub const ULOC_KEYWORDS_CAPACITY = @as(u32, 96);
+pub const ULOC_KOREA = "ko_KR";
+pub const ULOC_KOREAN = "ko";
+pub const ULOC_LANG_CAPACITY = @as(u32, 12);
+pub const ULOC_PRC = "zh_CN";
+pub const ULOC_SCRIPT_CAPACITY = @as(u32, 6);
+pub const ULOC_SIMPLIFIED_CHINESE = "zh_CN";
+pub const ULOC_TAIWAN = "zh_TW";
+pub const ULOC_TRADITIONAL_CHINESE = "zh_TW";
+pub const ULOC_UK = "en_GB";
+pub const ULOC_US = "en_US";
 pub const UMSGPAT_ARG_NAME_NOT_NUMBER = @as(i32, -1);
 pub const UMSGPAT_ARG_NAME_NOT_VALID = @as(i32, -2);
+pub const UNISCRIBE_OPENTYPE = @as(u32, 256);
+pub const UNORM_INPUT_IS_FCD = @as(u32, 131072);
+pub const USEARCH_DONE = @as(i32, -1);
+pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
+pub const USET_CASE_INSENSITIVE = @as(i32, 2);
+pub const USET_IGNORE_SPACE = @as(i32, 1);
+pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
+pub const USP_E_SCRIPT_NOT_IN_FONT = @import("zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const USPREP_ALLOW_UNASSIGNED = @as(u32, 1);
+pub const USPREP_DEFAULT = @as(u32, 0);
+pub const UTEXT_MAGIC = @as(i32, 878368812);
+pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
+pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
+pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
+pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
+pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
+pub const UTF16_MAX_CHAR_LENGTH = @as(u32, 2);
+pub const UTF32_MAX_CHAR_LENGTH = @as(u32, 1);
+pub const UTF8_ERROR_VALUE_1 = @as(u32, 21);
+pub const UTF8_ERROR_VALUE_2 = @as(u32, 159);
+pub const UTF8_MAX_CHAR_LENGTH = @as(u32, 4);
+pub const UTF_ERROR_VALUE = @as(u32, 65535);
+pub const UTF_MAX_CHAR_LENGTH = @as(u32, 2);
+pub const UTF_SIZE = @as(u32, 16);
+pub const VS_ALLOW_LATIN = @as(u32, 1);
+pub const WC_COMPOSITECHECK = @as(u32, 512);
+pub const WC_DEFAULTCHAR = @as(u32, 64);
+pub const WC_DISCARDNS = @as(u32, 16);
+pub const WC_ERR_INVALID_CHARS = @as(u32, 128);
+pub const WC_NO_BEST_FIT_CHARS = @as(u32, 1024);
+pub const WC_SEPCHARS = @as(u32, 32);
 
 //--------------------------------------------------------------------------------
 // Section: Types (359)
 //--------------------------------------------------------------------------------
-pub const FOLD_STRING_MAP_FLAGS = packed struct(u32) {
-    _0: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    FOLDCZONE: u1 = 0,
-    PRECOMPOSED: u1 = 0,
-    COMPOSITE: u1 = 0,
-    FOLDDIGITS: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    EXPAND_LIGATURES: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const MAP_COMPOSITE = FOLD_STRING_MAP_FLAGS{ .COMPOSITE = 1 };
-pub const MAP_EXPAND_LIGATURES = FOLD_STRING_MAP_FLAGS{ .EXPAND_LIGATURES = 1 };
-pub const MAP_FOLDCZONE = FOLD_STRING_MAP_FLAGS{ .FOLDCZONE = 1 };
-pub const MAP_FOLDDIGITS = FOLD_STRING_MAP_FLAGS{ .FOLDDIGITS = 1 };
-pub const MAP_PRECOMPOSED = FOLD_STRING_MAP_FLAGS{ .PRECOMPOSED = 1 };
+pub const CALINFO_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(.winapi) BOOL;
 
-pub const ENUM_DATE_FORMATS_FLAGS = enum(u32) {
-    SHORTDATE = 1,
-    LONGDATE = 2,
-    YEARMONTH = 8,
-    MONTHDAY = 128,
-    AUTOLAYOUT = 64,
-    LTRREADING = 16,
-    RTLREADING = 32,
-    USE_ALT_CALENDAR = 4,
-};
-pub const DATE_SHORTDATE = ENUM_DATE_FORMATS_FLAGS.SHORTDATE;
-pub const DATE_LONGDATE = ENUM_DATE_FORMATS_FLAGS.LONGDATE;
-pub const DATE_YEARMONTH = ENUM_DATE_FORMATS_FLAGS.YEARMONTH;
-pub const DATE_MONTHDAY = ENUM_DATE_FORMATS_FLAGS.MONTHDAY;
-pub const DATE_AUTOLAYOUT = ENUM_DATE_FORMATS_FLAGS.AUTOLAYOUT;
-pub const DATE_LTRREADING = ENUM_DATE_FORMATS_FLAGS.LTRREADING;
-pub const DATE_RTLREADING = ENUM_DATE_FORMATS_FLAGS.RTLREADING;
-pub const DATE_USE_ALT_CALENDAR = ENUM_DATE_FORMATS_FLAGS.USE_ALT_CALENDAR;
+pub const CALINFO_ENUMPROCEXA = *const fn(
+    param0: ?PSTR,
+    param1: u32,
+) callconv(.winapi) BOOL;
 
-pub const TRANSLATE_CHARSET_INFO_FLAGS = enum(u32) {
-    CHARSET = 1,
-    CODEPAGE = 2,
-    FONTSIG = 3,
-    LOCALE = 4096,
-};
-pub const TCI_SRCCHARSET = TRANSLATE_CHARSET_INFO_FLAGS.CHARSET;
-pub const TCI_SRCCODEPAGE = TRANSLATE_CHARSET_INFO_FLAGS.CODEPAGE;
-pub const TCI_SRCFONTSIG = TRANSLATE_CHARSET_INFO_FLAGS.FONTSIG;
-pub const TCI_SRCLOCALE = TRANSLATE_CHARSET_INFO_FLAGS.LOCALE;
+pub const CALINFO_ENUMPROCEXEX = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+    param2: ?PWSTR,
+    param3: LPARAM,
+) callconv(.winapi) BOOL;
 
-pub const TIME_FORMAT_FLAGS = packed struct(u32) {
-    NOMINUTESORSECONDS: u1 = 0,
-    NOSECONDS: u1 = 0,
-    NOTIMEMARKER: u1 = 0,
-    FORCE24HOURFORMAT: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const TIME_NOMINUTESORSECONDS = TIME_FORMAT_FLAGS{ .NOMINUTESORSECONDS = 1 };
-pub const TIME_NOSECONDS = TIME_FORMAT_FLAGS{ .NOSECONDS = 1 };
-pub const TIME_NOTIMEMARKER = TIME_FORMAT_FLAGS{ .NOTIMEMARKER = 1 };
-pub const TIME_FORCE24HOURFORMAT = TIME_FORMAT_FLAGS{ .FORCE24HOURFORMAT = 1 };
+pub const CALINFO_ENUMPROCEXW = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+) callconv(.winapi) BOOL;
 
-pub const ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS = enum(u32) {
-    INSTALLED = 1,
-    SUPPORTED = 2,
-};
-pub const LGRPID_INSTALLED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.INSTALLED;
-pub const LGRPID_SUPPORTED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.SUPPORTED;
+pub const CALINFO_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(.winapi) BOOL;
 
-pub const MULTI_BYTE_TO_WIDE_CHAR_FLAGS = packed struct(u32) {
-    PRECOMPOSED: u1 = 0,
-    COMPOSITE: u1 = 0,
-    USEGLYPHCHARS: u1 = 0,
-    ERR_INVALID_CHARS: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const CHARSETINFO = extern struct {
+    ciCharset: u32,
+    ciACP: u32,
+    fs: FONTSIGNATURE,
 };
-pub const MB_COMPOSITE = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .COMPOSITE = 1 };
-pub const MB_ERR_INVALID_CHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .ERR_INVALID_CHARS = 1 };
-pub const MB_PRECOMPOSED = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .PRECOMPOSED = 1 };
-pub const MB_USEGLYPHCHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .USEGLYPHCHARS = 1 };
+
+const CLSID_CMLangConvertCharset_Value = Guid.initString("d66d6f99-cdaa-11d0-b822-00c04fc9b31f");
+pub const CLSID_CMLangConvertCharset = &CLSID_CMLangConvertCharset_Value;
+
+const CLSID_CMLangString_Value = Guid.initString("c04d65cf-b70d-11d0-b188-00aa0038c969");
+pub const CLSID_CMLangString = &CLSID_CMLangString_Value;
+
+const CLSID_CMultiLanguage_Value = Guid.initString("275c23e2-3747-11d0-9fea-00aa003f8646");
+pub const CLSID_CMultiLanguage = &CLSID_CMultiLanguage_Value;
+
+pub const CODEPAGE_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(.winapi) BOOL;
+
+pub const CODEPAGE_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(.winapi) BOOL;
 
 pub const COMPARE_STRING_FLAGS = packed struct(u32) {
     NORM_IGNORECASE: u1 = 0,
@@ -1085,12 +978,112 @@ pub const NORM_LINGUISTIC_CASING = COMPARE_STRING_FLAGS{ .NORM_LINGUISTIC_CASING
 pub const SORT_DIGITSASNUMBERS = COMPARE_STRING_FLAGS{ .SORT_DIGITSASNUMBERS = 1 };
 pub const SORT_STRINGSORT = COMPARE_STRING_FLAGS{ .SORT_STRINGSORT = 1 };
 
-pub const IS_VALID_LOCALE_FLAGS = enum(u32) {
-    INSTALLED = 1,
-    SUPPORTED = 2,
+pub const CORRECTIVE_ACTION = enum(i32) {
+    NONE = 0,
+    GET_SUGGESTIONS = 1,
+    REPLACE = 2,
+    DELETE = 3,
 };
-pub const LCID_INSTALLED = IS_VALID_LOCALE_FLAGS.INSTALLED;
-pub const LCID_SUPPORTED = IS_VALID_LOCALE_FLAGS.SUPPORTED;
+pub const CORRECTIVE_ACTION_NONE = CORRECTIVE_ACTION.NONE;
+pub const CORRECTIVE_ACTION_GET_SUGGESTIONS = CORRECTIVE_ACTION.GET_SUGGESTIONS;
+pub const CORRECTIVE_ACTION_REPLACE = CORRECTIVE_ACTION.REPLACE;
+pub const CORRECTIVE_ACTION_DELETE = CORRECTIVE_ACTION.DELETE;
+
+pub const CPINFO = extern struct {
+    MaxCharSize: u32,
+    DefaultChar: [2]u8,
+    LeadByte: [12]u8,
+};
+
+pub const CPINFOEXA = extern struct {
+    MaxCharSize: u32,
+    DefaultChar: [2]u8,
+    LeadByte: [12]u8,
+    UnicodeDefaultChar: u16,
+    CodePage: u32,
+    CodePageName: [260]CHAR,
+};
+
+pub const CPINFOEXW = extern struct {
+    MaxCharSize: u32,
+    DefaultChar: [2]u8,
+    LeadByte: [12]u8,
+    UnicodeDefaultChar: u16,
+    CodePage: u32,
+    CodePageName: [260]u16,
+};
+
+pub const CURRENCYFMTA = extern struct {
+    NumDigits: u32,
+    LeadingZero: u32,
+    Grouping: u32,
+    lpDecimalSep: ?PSTR,
+    lpThousandSep: ?PSTR,
+    NegativeOrder: u32,
+    PositiveOrder: u32,
+    lpCurrencySymbol: ?PSTR,
+};
+
+pub const CURRENCYFMTW = extern struct {
+    NumDigits: u32,
+    LeadingZero: u32,
+    Grouping: u32,
+    lpDecimalSep: ?PWSTR,
+    lpThousandSep: ?PWSTR,
+    NegativeOrder: u32,
+    PositiveOrder: u32,
+    lpCurrencySymbol: ?PWSTR,
+};
+
+pub const DATEFMT_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(.winapi) BOOL;
+
+pub const DATEFMT_ENUMPROCEXA = *const fn(
+    param0: ?PSTR,
+    param1: u32,
+) callconv(.winapi) BOOL;
+
+pub const DATEFMT_ENUMPROCEXEX = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+    param2: LPARAM,
+) callconv(.winapi) BOOL;
+
+pub const DATEFMT_ENUMPROCEXW = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+) callconv(.winapi) BOOL;
+
+pub const DATEFMT_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+pub const DetectEncodingInfo = extern struct {
+    nLangID: u32,
+    nCodePage: u32,
+    nDocPercent: i32,
+    nConfidence: i32,
+};
+
+pub const ENUM_DATE_FORMATS_FLAGS = enum(u32) {
+    SHORTDATE = 1,
+    LONGDATE = 2,
+    YEARMONTH = 8,
+    MONTHDAY = 128,
+    AUTOLAYOUT = 64,
+    LTRREADING = 16,
+    RTLREADING = 32,
+    USE_ALT_CALENDAR = 4,
+};
+pub const DATE_SHORTDATE = ENUM_DATE_FORMATS_FLAGS.SHORTDATE;
+pub const DATE_LONGDATE = ENUM_DATE_FORMATS_FLAGS.LONGDATE;
+pub const DATE_YEARMONTH = ENUM_DATE_FORMATS_FLAGS.YEARMONTH;
+pub const DATE_MONTHDAY = ENUM_DATE_FORMATS_FLAGS.MONTHDAY;
+pub const DATE_AUTOLAYOUT = ENUM_DATE_FORMATS_FLAGS.AUTOLAYOUT;
+pub const DATE_LTRREADING = ENUM_DATE_FORMATS_FLAGS.LTRREADING;
+pub const DATE_RTLREADING = ENUM_DATE_FORMATS_FLAGS.RTLREADING;
+pub const DATE_USE_ALT_CALENDAR = ENUM_DATE_FORMATS_FLAGS.USE_ALT_CALENDAR;
 
 pub const ENUM_SYSTEM_CODE_PAGES_FLAGS = enum(u32) {
     INSTALLED = 1,
@@ -1099,14 +1092,1401 @@ pub const ENUM_SYSTEM_CODE_PAGES_FLAGS = enum(u32) {
 pub const CP_INSTALLED = ENUM_SYSTEM_CODE_PAGES_FLAGS.INSTALLED;
 pub const CP_SUPPORTED = ENUM_SYSTEM_CODE_PAGES_FLAGS.SUPPORTED;
 
-pub const SCRIPT_IS_COMPLEX_FLAGS = enum(u32) {
-    ASCIIDIGIT = 2,
-    COMPLEX = 1,
-    NEUTRAL = 4,
+pub const ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS = enum(u32) {
+    INSTALLED = 1,
+    SUPPORTED = 2,
 };
-pub const SIC_ASCIIDIGIT = SCRIPT_IS_COMPLEX_FLAGS.ASCIIDIGIT;
-pub const SIC_COMPLEX = SCRIPT_IS_COMPLEX_FLAGS.COMPLEX;
-pub const SIC_NEUTRAL = SCRIPT_IS_COMPLEX_FLAGS.NEUTRAL;
+pub const LGRPID_INSTALLED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.INSTALLED;
+pub const LGRPID_SUPPORTED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.SUPPORTED;
+
+pub const ENUMTEXTMETRICA = extern struct {
+    etmNewTextMetricEx: NEWTEXTMETRICEXA,
+    etmAxesList: AXESLISTA,
+};
+
+pub const ENUMTEXTMETRICW = extern struct {
+    etmNewTextMetricEx: NEWTEXTMETRICEXW,
+    etmAxesList: AXESLISTW,
+};
+
+pub const FILEMUIINFO = extern struct {
+    dwSize: u32,
+    dwVersion: u32,
+    dwFileType: u32,
+    pChecksum: [16]u8,
+    pServiceChecksum: [16]u8,
+    dwLanguageNameOffset: u32,
+    dwTypeIDMainSize: u32,
+    dwTypeIDMainOffset: u32,
+    dwTypeNameMainOffset: u32,
+    dwTypeIDMUISize: u32,
+    dwTypeIDMUIOffset: u32,
+    dwTypeNameMUIOffset: u32,
+    abBuffer: [8]u8,
+};
+
+pub const FOLD_STRING_MAP_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    FOLDCZONE: u1 = 0,
+    PRECOMPOSED: u1 = 0,
+    COMPOSITE: u1 = 0,
+    FOLDDIGITS: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    EXPAND_LIGATURES: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const MAP_COMPOSITE = FOLD_STRING_MAP_FLAGS{ .COMPOSITE = 1 };
+pub const MAP_EXPAND_LIGATURES = FOLD_STRING_MAP_FLAGS{ .EXPAND_LIGATURES = 1 };
+pub const MAP_FOLDCZONE = FOLD_STRING_MAP_FLAGS{ .FOLDCZONE = 1 };
+pub const MAP_FOLDDIGITS = FOLD_STRING_MAP_FLAGS{ .FOLDDIGITS = 1 };
+pub const MAP_PRECOMPOSED = FOLD_STRING_MAP_FLAGS{ .PRECOMPOSED = 1 };
+
+pub const FONTSIGNATURE = extern struct {
+    fsUsb: [4]u32,
+    fsCsb: [2]u32,
+};
+
+pub const GEO_ENUMNAMEPROC = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(.winapi) BOOL;
+
+pub const GEO_ENUMPROC = *const fn(
+    param0: i32,
+) callconv(.winapi) BOOL;
+
+pub const GOFFSET = extern struct {
+    du: i32,
+    dv: i32,
+};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HIMC = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HIMCC = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HSAVEDUILANGUAGES = *opaque{};
+
+const IID_IComprehensiveSpellCheckProvider_Value = Guid.initString("0c58f8de-8e94-479e-9717-70c42c4ad2c3");
+pub const IID_IComprehensiveSpellCheckProvider = &IID_IComprehensiveSpellCheckProvider_Value;
+pub const IComprehensiveSpellCheckProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ComprehensiveCheck: *const fn(
+            self: *const IComprehensiveSpellCheckProvider,
+            text: ?[*:0]const u16,
+            value: ?*?*IEnumSpellingError,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ComprehensiveCheck(self: *const IComprehensiveSpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
+        return self.vtable.ComprehensiveCheck(self, text, value);
+    }
+};
+
+const IID_IEnumCodePage_Value = Guid.initString("275c23e3-3747-11d0-9fea-00aa003f8646");
+pub const IID_IEnumCodePage = &IID_IEnumCodePage_Value;
+pub const IEnumCodePage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumCodePage,
+            ppEnum: ?*?*IEnumCodePage,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumCodePage,
+            celt: u32,
+            rgelt: ?*MIMECPINFO,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumCodePage,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumCodePage,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumCodePage, ppEnum: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumCodePage, celt: u32, rgelt: ?*MIMECPINFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Reset(self: *const IEnumCodePage) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumCodePage, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+};
+
+const IID_IEnumRfc1766_Value = Guid.initString("3dc39d1d-c030-11d0-b81b-00c04fc9b31f");
+pub const IID_IEnumRfc1766 = &IID_IEnumRfc1766_Value;
+pub const IEnumRfc1766 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumRfc1766,
+            ppEnum: ?*?*IEnumRfc1766,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumRfc1766,
+            celt: u32,
+            rgelt: ?*RFC1766INFO,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRfc1766,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRfc1766,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumRfc1766, ppEnum: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumRfc1766, celt: u32, rgelt: ?*RFC1766INFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Reset(self: *const IEnumRfc1766) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumRfc1766, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+};
+
+const IID_IEnumScript_Value = Guid.initString("ae5f1430-388b-11d2-8380-00c04f8f5da1");
+pub const IID_IEnumScript = &IID_IEnumScript_Value;
+pub const IEnumScript = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumScript,
+            ppEnum: ?*?*IEnumScript,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumScript,
+            celt: u32,
+            rgelt: ?*SCRIPTINFO,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumScript,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumScript,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumScript, ppEnum: ?*?*IEnumScript) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumScript, celt: u32, rgelt: ?*SCRIPTINFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Reset(self: *const IEnumScript) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumScript, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IEnumSpellingError_Value = Guid.initString("803e3bd4-2828-4410-8290-418d1d73c762");
+pub const IID_IEnumSpellingError = &IID_IEnumSpellingError_Value;
+pub const IEnumSpellingError = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumSpellingError,
+            value: ?*?*ISpellingError,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSpellingError, value: ?*?*ISpellingError) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, value);
+    }
+};
+
+const IID_IMLangCodePages_Value = Guid.initString("359f3443-bd4a-11d0-b188-00aa0038c969");
+pub const IID_IMLangCodePages = &IID_IMLangCodePages_Value;
+pub const IMLangCodePages = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCharCodePages: *const fn(
+            self: *const IMLangCodePages,
+            chSrc: u16,
+            pdwCodePages: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStrCodePages: *const fn(
+            self: *const IMLangCodePages,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            dwPriorityCodePages: u32,
+            pdwCodePages: ?*u32,
+            pcchCodePages: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        CodePageToCodePages: *const fn(
+            self: *const IMLangCodePages,
+            uCodePage: u32,
+            pdwCodePages: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        CodePagesToCodePage: *const fn(
+            self: *const IMLangCodePages,
+            dwCodePages: u32,
+            uDefaultCodePage: u32,
+            puCodePage: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCharCodePages(self: *const IMLangCodePages, chSrc: u16, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCharCodePages(self, chSrc, pdwCodePages);
+    }
+    pub fn GetStrCodePages(self: *const IMLangCodePages, pszSrc: [*:0]const u16, cchSrc: i32, dwPriorityCodePages: u32, pdwCodePages: ?*u32, pcchCodePages: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStrCodePages(self, pszSrc, cchSrc, dwPriorityCodePages, pdwCodePages, pcchCodePages);
+    }
+    pub fn CodePageToCodePages(self: *const IMLangCodePages, uCodePage: u32, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CodePageToCodePages(self, uCodePage, pdwCodePages);
+    }
+    pub fn CodePagesToCodePage(self: *const IMLangCodePages, dwCodePages: u32, uDefaultCodePage: u32, puCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CodePagesToCodePage(self, dwCodePages, uDefaultCodePage, puCodePage);
+    }
+};
+
+const IID_IMLangConvertCharset_Value = Guid.initString("d66d6f98-cdaa-11d0-b822-00c04fc9b31f");
+pub const IID_IMLangConvertCharset = &IID_IMLangConvertCharset_Value;
+pub const IMLangConvertCharset = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IMLangConvertCharset,
+            uiSrcCodePage: u32,
+            uiDstCodePage: u32,
+            dwProperty: u32,
+        ) callconv(.winapi) HRESULT,
+        GetSourceCodePage: *const fn(
+            self: *const IMLangConvertCharset,
+            puiSrcCodePage: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetDestinationCodePage: *const fn(
+            self: *const IMLangConvertCharset,
+            puiDstCodePage: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IMLangConvertCharset,
+            pdwProperty: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        DoConversion: *const fn(
+            self: *const IMLangConvertCharset,
+            // TODO: what to do with BytesParamIndex 1?
+            pSrcStr: ?*u8,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pDstStr: ?*u8,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        DoConversionToUnicode: *const fn(
+            self: *const IMLangConvertCharset,
+            // TODO: what to do with BytesParamIndex 1?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: [*:0]u16,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        DoConversionFromUnicode: *const fn(
+            self: *const IMLangConvertCharset,
+            pSrcStr: [*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IMLangConvertCharset, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, uiSrcCodePage, uiDstCodePage, dwProperty);
+    }
+    pub fn GetSourceCodePage(self: *const IMLangConvertCharset, puiSrcCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSourceCodePage(self, puiSrcCodePage);
+    }
+    pub fn GetDestinationCodePage(self: *const IMLangConvertCharset, puiDstCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDestinationCodePage(self, puiDstCodePage);
+    }
+    pub fn GetProperty(self: *const IMLangConvertCharset, pdwProperty: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, pdwProperty);
+    }
+    pub fn DoConversion(self: *const IMLangConvertCharset, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DoConversion(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn DoConversionToUnicode(self: *const IMLangConvertCharset, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DoConversionToUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn DoConversionFromUnicode(self: *const IMLangConvertCharset, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DoConversionFromUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+};
+
+const IID_IMLangFontLink_Value = Guid.initString("359f3441-bd4a-11d0-b188-00aa0038c969");
+pub const IID_IMLangFontLink = &IID_IMLangFontLink_Value;
+pub const IMLangFontLink = extern union {
+    pub const VTable = extern struct {
+        base: IMLangCodePages.VTable,
+        GetFontCodePages: *const fn(
+            self: *const IMLangFontLink,
+            hDC: ?HDC,
+            hFont: ?HFONT,
+            pdwCodePages: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        MapFont: *const fn(
+            self: *const IMLangFontLink,
+            hDC: ?HDC,
+            dwCodePages: u32,
+            hSrcFont: ?HFONT,
+            phDestFont: ?*?HFONT,
+        ) callconv(.winapi) HRESULT,
+        ReleaseFont: *const fn(
+            self: *const IMLangFontLink,
+            hFont: ?HFONT,
+        ) callconv(.winapi) HRESULT,
+        ResetFontMapping: *const fn(
+            self: *const IMLangFontLink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMLangCodePages: IMLangCodePages,
+    IUnknown: IUnknown,
+    pub fn GetFontCodePages(self: *const IMLangFontLink, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
+    }
+    pub fn MapFont(self: *const IMLangFontLink, hDC: ?HDC, dwCodePages: u32, hSrcFont: ?HFONT, phDestFont: ?*?HFONT) callconv(.@"inline") HRESULT {
+        return self.vtable.MapFont(self, hDC, dwCodePages, hSrcFont, phDestFont);
+    }
+    pub fn ReleaseFont(self: *const IMLangFontLink, hFont: ?HFONT) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseFont(self, hFont);
+    }
+    pub fn ResetFontMapping(self: *const IMLangFontLink) callconv(.@"inline") HRESULT {
+        return self.vtable.ResetFontMapping(self);
+    }
+};
+
+const IID_IMLangFontLink2_Value = Guid.initString("dccfc162-2b38-11d2-b7ec-00c04f8f5d9a");
+pub const IID_IMLangFontLink2 = &IID_IMLangFontLink2_Value;
+pub const IMLangFontLink2 = extern union {
+    pub const VTable = extern struct {
+        base: IMLangCodePages.VTable,
+        GetFontCodePages: *const fn(
+            self: *const IMLangFontLink2,
+            hDC: ?HDC,
+            hFont: ?HFONT,
+            pdwCodePages: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ReleaseFont: *const fn(
+            self: *const IMLangFontLink2,
+            hFont: ?HFONT,
+        ) callconv(.winapi) HRESULT,
+        ResetFontMapping: *const fn(
+            self: *const IMLangFontLink2,
+        ) callconv(.winapi) HRESULT,
+        MapFont: *const fn(
+            self: *const IMLangFontLink2,
+            hDC: ?HDC,
+            dwCodePages: u32,
+            chSrc: u16,
+            pFont: ?*?HFONT,
+        ) callconv(.winapi) HRESULT,
+        GetFontUnicodeRanges: *const fn(
+            self: *const IMLangFontLink2,
+            hDC: ?HDC,
+            puiRanges: ?*u32,
+            pUranges: ?*UNICODERANGE,
+        ) callconv(.winapi) HRESULT,
+        GetScriptFontInfo: *const fn(
+            self: *const IMLangFontLink2,
+            sid: u8,
+            dwFlags: u32,
+            puiFonts: ?*u32,
+            pScriptFont: ?*tagSCRIPFONTINFO,
+        ) callconv(.winapi) HRESULT,
+        CodePageToScriptID: *const fn(
+            self: *const IMLangFontLink2,
+            uiCodePage: u32,
+            pSid: ?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMLangCodePages: IMLangCodePages,
+    IUnknown: IUnknown,
+    pub fn GetFontCodePages(self: *const IMLangFontLink2, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
+    }
+    pub fn ReleaseFont(self: *const IMLangFontLink2, hFont: ?HFONT) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseFont(self, hFont);
+    }
+    pub fn ResetFontMapping(self: *const IMLangFontLink2) callconv(.@"inline") HRESULT {
+        return self.vtable.ResetFontMapping(self);
+    }
+    pub fn MapFont(self: *const IMLangFontLink2, hDC: ?HDC, dwCodePages: u32, chSrc: u16, pFont: ?*?HFONT) callconv(.@"inline") HRESULT {
+        return self.vtable.MapFont(self, hDC, dwCodePages, chSrc, pFont);
+    }
+    pub fn GetFontUnicodeRanges(self: *const IMLangFontLink2, hDC: ?HDC, puiRanges: ?*u32, pUranges: ?*UNICODERANGE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFontUnicodeRanges(self, hDC, puiRanges, pUranges);
+    }
+    pub fn GetScriptFontInfo(self: *const IMLangFontLink2, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*tagSCRIPFONTINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetScriptFontInfo(self, sid, dwFlags, puiFonts, pScriptFont);
+    }
+    pub fn CodePageToScriptID(self: *const IMLangFontLink2, uiCodePage: u32, pSid: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.CodePageToScriptID(self, uiCodePage, pSid);
+    }
+};
+
+const IID_IMLangLineBreakConsole_Value = Guid.initString("f5be2ee1-bfd7-11d0-b188-00aa0038c969");
+pub const IID_IMLangLineBreakConsole = &IID_IMLangLineBreakConsole_Value;
+pub const IMLangLineBreakConsole = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BreakLineML: *const fn(
+            self: *const IMLangLineBreakConsole,
+            pSrcMLStr: ?*IMLangString,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            cMinColumns: i32,
+            cMaxColumns: i32,
+            plLineLen: ?*i32,
+            plSkipLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        BreakLineW: *const fn(
+            self: *const IMLangLineBreakConsole,
+            locale: u32,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            cMaxColumns: i32,
+            pcchLine: ?*i32,
+            pcchSkip: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        BreakLineA: *const fn(
+            self: *const IMLangLineBreakConsole,
+            locale: u32,
+            uCodePage: u32,
+            pszSrc: [*:0]const u8,
+            cchSrc: i32,
+            cMaxColumns: i32,
+            pcchLine: ?*i32,
+            pcchSkip: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn BreakLineML(self: *const IMLangLineBreakConsole, pSrcMLStr: ?*IMLangString, lSrcPos: i32, lSrcLen: i32, cMinColumns: i32, cMaxColumns: i32, plLineLen: ?*i32, plSkipLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.BreakLineML(self, pSrcMLStr, lSrcPos, lSrcLen, cMinColumns, cMaxColumns, plLineLen, plSkipLen);
+    }
+    pub fn BreakLineW(self: *const IMLangLineBreakConsole, locale: u32, pszSrc: [*:0]const u16, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.BreakLineW(self, locale, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
+    }
+    pub fn BreakLineA(self: *const IMLangLineBreakConsole, locale: u32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.BreakLineA(self, locale, uCodePage, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
+    }
+};
+
+const IID_IMLangString_Value = Guid.initString("c04d65ce-b70d-11d0-b188-00aa0038c969");
+pub const IID_IMLangString = &IID_IMLangString_Value;
+pub const IMLangString = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Sync: *const fn(
+            self: *const IMLangString,
+            fNoAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetLength: *const fn(
+            self: *const IMLangString,
+            plLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetMLStr: *const fn(
+            self: *const IMLangString,
+            lDestPos: i32,
+            lDestLen: i32,
+            pSrcMLStr: ?*IUnknown,
+            lSrcPos: i32,
+            lSrcLen: i32,
+        ) callconv(.winapi) HRESULT,
+        GetMLStr: *const fn(
+            self: *const IMLangString,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            pUnkOuter: ?*IUnknown,
+            dwClsContext: u32,
+            piid: ?*const Guid,
+            ppDestMLStr: ?*?*IUnknown,
+            plDestPos: ?*i32,
+            plDestLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Sync(self: *const IMLangString, fNoAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Sync(self, fNoAccess);
+    }
+    pub fn GetLength(self: *const IMLangString, plLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLength(self, plLen);
+    }
+    pub fn SetMLStr(self: *const IMLangString, lDestPos: i32, lDestLen: i32, pSrcMLStr: ?*IUnknown, lSrcPos: i32, lSrcLen: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMLStr(self, lDestPos, lDestLen, pSrcMLStr, lSrcPos, lSrcLen);
+    }
+    pub fn GetMLStr(self: *const IMLangString, lSrcPos: i32, lSrcLen: i32, pUnkOuter: ?*IUnknown, dwClsContext: u32, piid: ?*const Guid, ppDestMLStr: ?*?*IUnknown, plDestPos: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMLStr(self, lSrcPos, lSrcLen, pUnkOuter, dwClsContext, piid, ppDestMLStr, plDestPos, plDestLen);
+    }
+};
+
+const IID_IMLangStringAStr_Value = Guid.initString("c04d65d2-b70d-11d0-b188-00aa0038c969");
+pub const IID_IMLangStringAStr = &IID_IMLangStringAStr_Value;
+pub const IMLangStringAStr = extern union {
+    pub const VTable = extern struct {
+        base: IMLangString.VTable,
+        SetAStr: *const fn(
+            self: *const IMLangStringAStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            uCodePage: u32,
+            pszSrc: [*:0]const u8,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetStrBufA: *const fn(
+            self: *const IMLangStringAStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            uCodePage: u32,
+            pSrcBuf: ?*IMLangStringBufA,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetAStr: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            uCodePageIn: u32,
+            puCodePageOut: ?*u32,
+            pszDest: ?[*:0]u8,
+            cchDest: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetStrBufA: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            puDestCodePage: ?*u32,
+            ppDestBuf: ?*?*IMLangStringBufA,
+            plDestLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        LockAStr: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            lFlags: i32,
+            uCodePageIn: u32,
+            cchRequest: i32,
+            puCodePageOut: ?*u32,
+            ppszDest: ?*?PSTR,
+            pcchDest: ?*i32,
+            plDestLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        UnlockAStr: *const fn(
+            self: *const IMLangStringAStr,
+            pszSrc: [*:0]const u8,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetLocale: *const fn(
+            self: *const IMLangStringAStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            locale: u32,
+        ) callconv(.winapi) HRESULT,
+        GetLocale: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            plocale: ?*u32,
+            plLocalePos: ?*i32,
+            plLocaleLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMLangString: IMLangString,
+    IUnknown: IUnknown,
+    pub fn SetAStr(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAStr(self, lDestPos, lDestLen, uCodePage, pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetStrBufA(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pSrcBuf: ?*IMLangStringBufA, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStrBufA(self, lDestPos, lDestLen, uCodePage, pSrcBuf, pcchActual, plActualLen);
+    }
+    pub fn GetAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, uCodePageIn: u32, puCodePageOut: ?*u32, pszDest: ?[*:0]u8, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAStr(self, lSrcPos, lSrcLen, uCodePageIn, puCodePageOut, pszDest, cchDest, pcchActual, plActualLen);
+    }
+    pub fn GetStrBufA(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, puDestCodePage: ?*u32, ppDestBuf: ?*?*IMLangStringBufA, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStrBufA(self, lSrcPos, lSrcMaxLen, puDestCodePage, ppDestBuf, plDestLen);
+    }
+    pub fn LockAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?PSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.LockAStr(self, lSrcPos, lSrcLen, lFlags, uCodePageIn, cchRequest, puCodePageOut, ppszDest, pcchDest, plDestLen);
+    }
+    pub fn UnlockAStr(self: *const IMLangStringAStr, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnlockAStr(self, pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetLocale(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLocale(self, lDestPos, lDestLen, locale);
+    }
+    pub fn GetLocale(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocale(self, lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
+    }
+};
+
+const IID_IMLangStringBufA_Value = Guid.initString("d24acd23-ba72-11d0-b188-00aa0038c969");
+pub const IID_IMLangStringBufA = &IID_IMLangStringBufA_Value;
+pub const IMLangStringBufA = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStatus: *const fn(
+            self: *const IMLangStringBufA,
+            plFlags: ?*i32,
+            pcchBuf: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        LockBuf: *const fn(
+            self: *const IMLangStringBufA,
+            cchOffset: i32,
+            cchMaxLock: i32,
+            ppszBuf: ?*?*CHAR,
+            pcchBuf: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        UnlockBuf: *const fn(
+            self: *const IMLangStringBufA,
+            pszBuf: ?[*:0]const u8,
+            cchOffset: i32,
+            cchWrite: i32,
+        ) callconv(.winapi) HRESULT,
+        Insert: *const fn(
+            self: *const IMLangStringBufA,
+            cchOffset: i32,
+            cchMaxInsert: i32,
+            pcchActual: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IMLangStringBufA,
+            cchOffset: i32,
+            cchDelete: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStatus(self: *const IMLangStringBufA, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, plFlags, pcchBuf);
+    }
+    pub fn LockBuf(self: *const IMLangStringBufA, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*CHAR, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.LockBuf(self, cchOffset, cchMaxLock, ppszBuf, pcchBuf);
+    }
+    pub fn UnlockBuf(self: *const IMLangStringBufA, pszBuf: ?[*:0]const u8, cchOffset: i32, cchWrite: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnlockBuf(self, pszBuf, cchOffset, cchWrite);
+    }
+    pub fn Insert(self: *const IMLangStringBufA, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Insert(self, cchOffset, cchMaxInsert, pcchActual);
+    }
+    pub fn Delete(self: *const IMLangStringBufA, cchOffset: i32, cchDelete: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, cchOffset, cchDelete);
+    }
+};
+
+const IID_IMLangStringBufW_Value = Guid.initString("d24acd21-ba72-11d0-b188-00aa0038c969");
+pub const IID_IMLangStringBufW = &IID_IMLangStringBufW_Value;
+pub const IMLangStringBufW = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStatus: *const fn(
+            self: *const IMLangStringBufW,
+            plFlags: ?*i32,
+            pcchBuf: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        LockBuf: *const fn(
+            self: *const IMLangStringBufW,
+            cchOffset: i32,
+            cchMaxLock: i32,
+            ppszBuf: ?*?*u16,
+            pcchBuf: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        UnlockBuf: *const fn(
+            self: *const IMLangStringBufW,
+            pszBuf: ?[*:0]const u16,
+            cchOffset: i32,
+            cchWrite: i32,
+        ) callconv(.winapi) HRESULT,
+        Insert: *const fn(
+            self: *const IMLangStringBufW,
+            cchOffset: i32,
+            cchMaxInsert: i32,
+            pcchActual: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IMLangStringBufW,
+            cchOffset: i32,
+            cchDelete: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStatus(self: *const IMLangStringBufW, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, plFlags, pcchBuf);
+    }
+    pub fn LockBuf(self: *const IMLangStringBufW, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*u16, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.LockBuf(self, cchOffset, cchMaxLock, ppszBuf, pcchBuf);
+    }
+    pub fn UnlockBuf(self: *const IMLangStringBufW, pszBuf: ?[*:0]const u16, cchOffset: i32, cchWrite: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnlockBuf(self, pszBuf, cchOffset, cchWrite);
+    }
+    pub fn Insert(self: *const IMLangStringBufW, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Insert(self, cchOffset, cchMaxInsert, pcchActual);
+    }
+    pub fn Delete(self: *const IMLangStringBufW, cchOffset: i32, cchDelete: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, cchOffset, cchDelete);
+    }
+};
+
+const IID_IMLangStringWStr_Value = Guid.initString("c04d65d0-b70d-11d0-b188-00aa0038c969");
+pub const IID_IMLangStringWStr = &IID_IMLangStringWStr_Value;
+pub const IMLangStringWStr = extern union {
+    pub const VTable = extern struct {
+        base: IMLangString.VTable,
+        SetWStr: *const fn(
+            self: *const IMLangStringWStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetStrBufW: *const fn(
+            self: *const IMLangStringWStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            pSrcBuf: ?*IMLangStringBufW,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetWStr: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            pszDest: ?[*:0]u16,
+            cchDest: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetStrBufW: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            ppDestBuf: ?*?*IMLangStringBufW,
+            plDestLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        LockWStr: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            lFlags: i32,
+            cchRequest: i32,
+            ppszDest: ?*?PWSTR,
+            pcchDest: ?*i32,
+            plDestLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        UnlockWStr: *const fn(
+            self: *const IMLangStringWStr,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetLocale: *const fn(
+            self: *const IMLangStringWStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            locale: u32,
+        ) callconv(.winapi) HRESULT,
+        GetLocale: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            plocale: ?*u32,
+            plLocalePos: ?*i32,
+            plLocaleLen: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMLangString: IMLangString,
+    IUnknown: IUnknown,
+    pub fn SetWStr(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWStr(self, lDestPos, lDestLen, pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetStrBufW(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pSrcBuf: ?*IMLangStringBufW, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStrBufW(self, lDestPos, lDestLen, pSrcBuf, pcchActual, plActualLen);
+    }
+    pub fn GetWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, pszDest: ?[*:0]u16, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWStr(self, lSrcPos, lSrcLen, pszDest, cchDest, pcchActual, plActualLen);
+    }
+    pub fn GetStrBufW(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, ppDestBuf: ?*?*IMLangStringBufW, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStrBufW(self, lSrcPos, lSrcMaxLen, ppDestBuf, plDestLen);
+    }
+    pub fn LockWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?PWSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.LockWStr(self, lSrcPos, lSrcLen, lFlags, cchRequest, ppszDest, pcchDest, plDestLen);
+    }
+    pub fn UnlockWStr(self: *const IMLangStringWStr, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnlockWStr(self, pszSrc, cchSrc, pcchActual, plActualLen);
+    }
+    pub fn SetLocale(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLocale(self, lDestPos, lDestLen, locale);
+    }
+    pub fn GetLocale(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocale(self, lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
+    }
+};
+
+const IID_IMultiLanguage_Value = Guid.initString("275c23e1-3747-11d0-9fea-00aa003f8646");
+pub const IID_IMultiLanguage = &IID_IMultiLanguage_Value;
+pub const IMultiLanguage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNumberOfCodePageInfo: *const fn(
+            self: *const IMultiLanguage,
+            pcCodePage: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCodePageInfo: *const fn(
+            self: *const IMultiLanguage,
+            uiCodePage: u32,
+            pCodePageInfo: ?*MIMECPINFO,
+        ) callconv(.winapi) HRESULT,
+        GetFamilyCodePage: *const fn(
+            self: *const IMultiLanguage,
+            uiCodePage: u32,
+            puiFamilyCodePage: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EnumCodePages: *const fn(
+            self: *const IMultiLanguage,
+            grfFlags: u32,
+            ppEnumCodePage: ?*?*IEnumCodePage,
+        ) callconv(.winapi) HRESULT,
+        GetCharsetInfo: *const fn(
+            self: *const IMultiLanguage,
+            Charset: ?BSTR,
+            pCharsetInfo: ?*MIMECSETINFO,
+        ) callconv(.winapi) HRESULT,
+        IsConvertible: *const fn(
+            self: *const IMultiLanguage,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertString: *const fn(
+            self: *const IMultiLanguage,
+            pdwMode: ?*u32,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+            // TODO: what to do with BytesParamIndex 4?
+            pSrcStr: ?*u8,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 6?
+            pDstStr: ?*u8,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringToUnicode: *const fn(
+            self: *const IMultiLanguage,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: ?[*:0]u16,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringFromUnicode: *const fn(
+            self: *const IMultiLanguage,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            pSrcStr: ?[*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 5?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringReset: *const fn(
+            self: *const IMultiLanguage,
+        ) callconv(.winapi) HRESULT,
+        GetRfc1766FromLcid: *const fn(
+            self: *const IMultiLanguage,
+            Locale: u32,
+            pbstrRfc1766: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetLcidFromRfc1766: *const fn(
+            self: *const IMultiLanguage,
+            pLocale: ?*u32,
+            bstrRfc1766: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        EnumRfc1766: *const fn(
+            self: *const IMultiLanguage,
+            ppEnumRfc1766: ?*?*IEnumRfc1766,
+        ) callconv(.winapi) HRESULT,
+        GetRfc1766Info: *const fn(
+            self: *const IMultiLanguage,
+            Locale: u32,
+            pRfc1766Info: ?*RFC1766INFO,
+        ) callconv(.winapi) HRESULT,
+        CreateConvertCharset: *const fn(
+            self: *const IMultiLanguage,
+            uiSrcCodePage: u32,
+            uiDstCodePage: u32,
+            dwProperty: u32,
+            ppMLangConvertCharset: ?*?*IMLangConvertCharset,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage, pcCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
+    }
+    pub fn GetCodePageInfo(self: *const IMultiLanguage, uiCodePage: u32, pCodePageInfo: ?*MIMECPINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodePageInfo(self, uiCodePage, pCodePageInfo);
+    }
+    pub fn GetFamilyCodePage(self: *const IMultiLanguage, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFamilyCodePage(self, uiCodePage, puiFamilyCodePage);
+    }
+    pub fn EnumCodePages(self: *const IMultiLanguage, grfFlags: u32, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumCodePages(self, grfFlags, ppEnumCodePage);
+    }
+    pub fn GetCharsetInfo(self: *const IMultiLanguage, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCharsetInfo(self, Charset, pCharsetInfo);
+    }
+    pub fn IsConvertible(self: *const IMultiLanguage, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.IsConvertible(self, dwSrcEncoding, dwDstEncoding);
+    }
+    pub fn ConvertString(self: *const IMultiLanguage, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringReset(self: *const IMultiLanguage) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringReset(self);
+    }
+    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRfc1766FromLcid(self, Locale, pbstrRfc1766);
+    }
+    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLcidFromRfc1766(self, pLocale, bstrRfc1766);
+    }
+    pub fn EnumRfc1766(self: *const IMultiLanguage, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumRfc1766(self, ppEnumRfc1766);
+    }
+    pub fn GetRfc1766Info(self: *const IMultiLanguage, Locale: u32, pRfc1766Info: ?*RFC1766INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRfc1766Info(self, Locale, pRfc1766Info);
+    }
+    pub fn CreateConvertCharset(self: *const IMultiLanguage, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateConvertCharset(self, uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
+    }
+};
+
+const IID_IMultiLanguage2_Value = Guid.initString("dccfc164-2b38-11d2-b7ec-00c04f8f5d9a");
+pub const IID_IMultiLanguage2 = &IID_IMultiLanguage2_Value;
+pub const IMultiLanguage2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNumberOfCodePageInfo: *const fn(
+            self: *const IMultiLanguage2,
+            pcCodePage: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCodePageInfo: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            LangId: u16,
+            pCodePageInfo: ?*MIMECPINFO,
+        ) callconv(.winapi) HRESULT,
+        GetFamilyCodePage: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            puiFamilyCodePage: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EnumCodePages: *const fn(
+            self: *const IMultiLanguage2,
+            grfFlags: u32,
+            LangId: u16,
+            ppEnumCodePage: ?*?*IEnumCodePage,
+        ) callconv(.winapi) HRESULT,
+        GetCharsetInfo: *const fn(
+            self: *const IMultiLanguage2,
+            Charset: ?BSTR,
+            pCharsetInfo: ?*MIMECSETINFO,
+        ) callconv(.winapi) HRESULT,
+        IsConvertible: *const fn(
+            self: *const IMultiLanguage2,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertString: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+            // TODO: what to do with BytesParamIndex 4?
+            pSrcStr: ?*u8,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 6?
+            pDstStr: ?*u8,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringToUnicode: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: ?[*:0]u16,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringFromUnicode: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            pSrcStr: ?[*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 5?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringReset: *const fn(
+            self: *const IMultiLanguage2,
+        ) callconv(.winapi) HRESULT,
+        GetRfc1766FromLcid: *const fn(
+            self: *const IMultiLanguage2,
+            Locale: u32,
+            pbstrRfc1766: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetLcidFromRfc1766: *const fn(
+            self: *const IMultiLanguage2,
+            pLocale: ?*u32,
+            bstrRfc1766: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        EnumRfc1766: *const fn(
+            self: *const IMultiLanguage2,
+            LangId: u16,
+            ppEnumRfc1766: ?*?*IEnumRfc1766,
+        ) callconv(.winapi) HRESULT,
+        GetRfc1766Info: *const fn(
+            self: *const IMultiLanguage2,
+            Locale: u32,
+            LangId: u16,
+            pRfc1766Info: ?*RFC1766INFO,
+        ) callconv(.winapi) HRESULT,
+        CreateConvertCharset: *const fn(
+            self: *const IMultiLanguage2,
+            uiSrcCodePage: u32,
+            uiDstCodePage: u32,
+            dwProperty: u32,
+            ppMLangConvertCharset: ?*?*IMLangConvertCharset,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringInIStream: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwFlag: u32,
+            lpFallBack: ?PWSTR,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+            pstmIn: ?*IStream,
+            pstmOut: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringToUnicodeEx: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: [*:0]u16,
+            pcDstSize: ?*u32,
+            dwFlag: u32,
+            lpFallBack: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        ConvertStringFromUnicodeEx: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            pSrcStr: [*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 5?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+            dwFlag: u32,
+            lpFallBack: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        DetectCodepageInIStream: *const fn(
+            self: *const IMultiLanguage2,
+            dwFlag: u32,
+            dwPrefWinCodePage: u32,
+            pstmIn: ?*IStream,
+            lpEncoding: ?*DetectEncodingInfo,
+            pnScores: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        DetectInputCodepage: *const fn(
+            self: *const IMultiLanguage2,
+            dwFlag: u32,
+            dwPrefWinCodePage: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*i32,
+            lpEncoding: ?*DetectEncodingInfo,
+            pnScores: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        ValidateCodePage: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            hwnd: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        GetCodePageDescription: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            lcid: u32,
+            lpWideCharStr: [*:0]u16,
+            cchWideChar: i32,
+        ) callconv(.winapi) HRESULT,
+        IsCodePageInstallable: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+        ) callconv(.winapi) HRESULT,
+        SetMimeDBSource: *const fn(
+            self: *const IMultiLanguage2,
+            dwSource: MIMECONTF,
+        ) callconv(.winapi) HRESULT,
+        GetNumberOfScripts: *const fn(
+            self: *const IMultiLanguage2,
+            pnScripts: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EnumScripts: *const fn(
+            self: *const IMultiLanguage2,
+            dwFlags: u32,
+            LangId: u16,
+            ppEnumScript: ?*?*IEnumScript,
+        ) callconv(.winapi) HRESULT,
+        ValidateCodePageEx: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            hwnd: ?HWND,
+            dwfIODControl: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage2, pcCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
+    }
+    pub fn GetCodePageInfo(self: *const IMultiLanguage2, uiCodePage: u32, LangId: u16, pCodePageInfo: ?*MIMECPINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodePageInfo(self, uiCodePage, LangId, pCodePageInfo);
+    }
+    pub fn GetFamilyCodePage(self: *const IMultiLanguage2, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFamilyCodePage(self, uiCodePage, puiFamilyCodePage);
+    }
+    pub fn EnumCodePages(self: *const IMultiLanguage2, grfFlags: u32, LangId: u16, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumCodePages(self, grfFlags, LangId, ppEnumCodePage);
+    }
+    pub fn GetCharsetInfo(self: *const IMultiLanguage2, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCharsetInfo(self, Charset, pCharsetInfo);
+    }
+    pub fn IsConvertible(self: *const IMultiLanguage2, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.IsConvertible(self, dwSrcEncoding, dwDstEncoding);
+    }
+    pub fn ConvertString(self: *const IMultiLanguage2, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
+    }
+    pub fn ConvertStringReset(self: *const IMultiLanguage2) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringReset(self);
+    }
+    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage2, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRfc1766FromLcid(self, Locale, pbstrRfc1766);
+    }
+    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage2, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLcidFromRfc1766(self, pLocale, bstrRfc1766);
+    }
+    pub fn EnumRfc1766(self: *const IMultiLanguage2, LangId: u16, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumRfc1766(self, LangId, ppEnumRfc1766);
+    }
+    pub fn GetRfc1766Info(self: *const IMultiLanguage2, Locale: u32, LangId: u16, pRfc1766Info: ?*RFC1766INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRfc1766Info(self, Locale, LangId, pRfc1766Info);
+    }
+    pub fn CreateConvertCharset(self: *const IMultiLanguage2, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateConvertCharset(self, uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
+    }
+    pub fn ConvertStringInIStream(self: *const IMultiLanguage2, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringInIStream(self, pdwMode, dwFlag, lpFallBack, dwSrcEncoding, dwDstEncoding, pstmIn, pstmOut);
+    }
+    pub fn ConvertStringToUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringToUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
+    }
+    pub fn ConvertStringFromUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertStringFromUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
+    }
+    pub fn DetectCodepageInIStream(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pstmIn: ?*IStream, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DetectCodepageInIStream(self, dwFlag, dwPrefWinCodePage, pstmIn, lpEncoding, pnScores);
+    }
+    pub fn DetectInputCodepage(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?PSTR, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DetectInputCodepage(self, dwFlag, dwPrefWinCodePage, pSrcStr, pcSrcSize, lpEncoding, pnScores);
+    }
+    pub fn ValidateCodePage(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.ValidateCodePage(self, uiCodePage, hwnd);
+    }
+    pub fn GetCodePageDescription(self: *const IMultiLanguage2, uiCodePage: u32, lcid: u32, lpWideCharStr: [*:0]u16, cchWideChar: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodePageDescription(self, uiCodePage, lcid, lpWideCharStr, cchWideChar);
+    }
+    pub fn IsCodePageInstallable(self: *const IMultiLanguage2, uiCodePage: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.IsCodePageInstallable(self, uiCodePage);
+    }
+    pub fn SetMimeDBSource(self: *const IMultiLanguage2, dwSource: MIMECONTF) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMimeDBSource(self, dwSource);
+    }
+    pub fn GetNumberOfScripts(self: *const IMultiLanguage2, pnScripts: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumberOfScripts(self, pnScripts);
+    }
+    pub fn EnumScripts(self: *const IMultiLanguage2, dwFlags: u32, LangId: u16, ppEnumScript: ?*?*IEnumScript) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumScripts(self, dwFlags, LangId, ppEnumScript);
+    }
+    pub fn ValidateCodePageEx(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND, dwfIODControl: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ValidateCodePageEx(self, uiCodePage, hwnd, dwfIODControl);
+    }
+};
+
+const IID_IMultiLanguage3_Value = Guid.initString("4e5868ab-b157-4623-9acc-6a1d9caebe04");
+pub const IID_IMultiLanguage3 = &IID_IMultiLanguage3_Value;
+pub const IMultiLanguage3 = extern union {
+    pub const VTable = extern struct {
+        base: IMultiLanguage2.VTable,
+        DetectOutboundCodePage: *const fn(
+            self: *const IMultiLanguage3,
+            dwFlags: u32,
+            lpWideCharStr: [*:0]const u16,
+            cchWideChar: u32,
+            puiPreferredCodePages: ?[*]const u32,
+            nPreferredCodePages: u32,
+            puiDetectedCodePages: [*]u32,
+            pnDetectedCodePages: ?*u32,
+            lpSpecialChar: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        DetectOutboundCodePageInIStream: *const fn(
+            self: *const IMultiLanguage3,
+            dwFlags: u32,
+            pStrIn: ?*IStream,
+            puiPreferredCodePages: ?[*]const u32,
+            nPreferredCodePages: u32,
+            puiDetectedCodePages: [*]u32,
+            pnDetectedCodePages: ?*u32,
+            lpSpecialChar: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMultiLanguage2: IMultiLanguage2,
+    IUnknown: IUnknown,
+    pub fn DetectOutboundCodePage(self: *const IMultiLanguage3, dwFlags: u32, lpWideCharStr: [*:0]const u16, cchWideChar: u32, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.DetectOutboundCodePage(self, dwFlags, lpWideCharStr, cchWideChar, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
+    }
+    pub fn DetectOutboundCodePageInIStream(self: *const IMultiLanguage3, dwFlags: u32, pStrIn: ?*IStream, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.DetectOutboundCodePageInIStream(self, dwFlags, pStrIn, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IOptionDescription_Value = Guid.initString("432e5f85-35cf-4606-a801-6f70277e1d7a");
+pub const IID_IOptionDescription = &IID_IOptionDescription_Value;
+pub const IOptionDescription = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Heading: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Labels: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?*IEnumString,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, value);
+    }
+    pub fn get_Heading(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Heading(self, value);
+    }
+    pub fn get_Description(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, value);
+    }
+    pub fn get_Labels(self: *const IOptionDescription, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Labels(self, value);
+    }
+};
 
 pub const IS_TEXT_UNICODE_RESULT = packed struct(u32) {
     ASCII16: u1 = 0,
@@ -1178,584 +2558,12 @@ pub const IS_TEXT_UNICODE_NOT_ASCII_MASK = IS_TEXT_UNICODE_RESULT{
     ._15 = 1,
 };
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HIMC = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HIMCC = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HSAVEDUILANGUAGES = *opaque{};
-
-pub const FONTSIGNATURE = extern struct {
-    fsUsb: [4]u32,
-    fsCsb: [2]u32,
+pub const IS_VALID_LOCALE_FLAGS = enum(u32) {
+    INSTALLED = 1,
+    SUPPORTED = 2,
 };
-
-pub const CHARSETINFO = extern struct {
-    ciCharset: u32,
-    ciACP: u32,
-    fs: FONTSIGNATURE,
-};
-
-pub const LOCALESIGNATURE = extern struct {
-    lsUsb: [4]u32,
-    lsCsbDefault: [2]u32,
-    lsCsbSupported: [2]u32,
-};
-
-pub const NEWTEXTMETRICEXA = extern struct {
-    ntmTm: NEWTEXTMETRICA,
-    ntmFontSig: FONTSIGNATURE,
-};
-
-pub const NEWTEXTMETRICEXW = extern struct {
-    ntmTm: NEWTEXTMETRICW,
-    ntmFontSig: FONTSIGNATURE,
-};
-
-pub const ENUMTEXTMETRICA = extern struct {
-    etmNewTextMetricEx: NEWTEXTMETRICEXA,
-    etmAxesList: AXESLISTA,
-};
-
-pub const ENUMTEXTMETRICW = extern struct {
-    etmNewTextMetricEx: NEWTEXTMETRICEXW,
-    etmAxesList: AXESLISTW,
-};
-
-pub const CPINFO = extern struct {
-    MaxCharSize: u32,
-    DefaultChar: [2]u8,
-    LeadByte: [12]u8,
-};
-
-pub const CPINFOEXA = extern struct {
-    MaxCharSize: u32,
-    DefaultChar: [2]u8,
-    LeadByte: [12]u8,
-    UnicodeDefaultChar: u16,
-    CodePage: u32,
-    CodePageName: [260]CHAR,
-};
-
-pub const CPINFOEXW = extern struct {
-    MaxCharSize: u32,
-    DefaultChar: [2]u8,
-    LeadByte: [12]u8,
-    UnicodeDefaultChar: u16,
-    CodePage: u32,
-    CodePageName: [260]u16,
-};
-
-pub const NUMBERFMTA = extern struct {
-    NumDigits: u32,
-    LeadingZero: u32,
-    Grouping: u32,
-    lpDecimalSep: ?PSTR,
-    lpThousandSep: ?PSTR,
-    NegativeOrder: u32,
-};
-
-pub const NUMBERFMTW = extern struct {
-    NumDigits: u32,
-    LeadingZero: u32,
-    Grouping: u32,
-    lpDecimalSep: ?PWSTR,
-    lpThousandSep: ?PWSTR,
-    NegativeOrder: u32,
-};
-
-pub const CURRENCYFMTA = extern struct {
-    NumDigits: u32,
-    LeadingZero: u32,
-    Grouping: u32,
-    lpDecimalSep: ?PSTR,
-    lpThousandSep: ?PSTR,
-    NegativeOrder: u32,
-    PositiveOrder: u32,
-    lpCurrencySymbol: ?PSTR,
-};
-
-pub const CURRENCYFMTW = extern struct {
-    NumDigits: u32,
-    LeadingZero: u32,
-    Grouping: u32,
-    lpDecimalSep: ?PWSTR,
-    lpThousandSep: ?PWSTR,
-    NegativeOrder: u32,
-    PositiveOrder: u32,
-    lpCurrencySymbol: ?PWSTR,
-};
-
-pub const SYSNLS_FUNCTION = enum(i32) {
-    G = 1,
-};
-pub const COMPARE_STRING = SYSNLS_FUNCTION.G;
-
-pub const NLSVERSIONINFO = extern struct {
-    dwNLSVersionInfoSize: u32,
-    dwNLSVersion: u32,
-    dwDefinedVersion: u32,
-    dwEffectiveId: u32,
-    guidCustomVersion: Guid,
-};
-
-pub const NLSVERSIONINFOEX = extern struct {
-    dwNLSVersionInfoSize: u32,
-    dwNLSVersion: u32,
-    dwDefinedVersion: u32,
-    dwEffectiveId: u32,
-    guidCustomVersion: Guid,
-};
-
-pub const SYSGEOTYPE = enum(i32) {
-    NATION = 1,
-    LATITUDE = 2,
-    LONGITUDE = 3,
-    ISO2 = 4,
-    ISO3 = 5,
-    RFC1766 = 6,
-    LCID = 7,
-    FRIENDLYNAME = 8,
-    OFFICIALNAME = 9,
-    TIMEZONES = 10,
-    OFFICIALLANGUAGES = 11,
-    ISO_UN_NUMBER = 12,
-    PARENT = 13,
-    DIALINGCODE = 14,
-    CURRENCYCODE = 15,
-    CURRENCYSYMBOL = 16,
-    NAME = 17,
-    ID = 18,
-};
-pub const GEO_NATION = SYSGEOTYPE.NATION;
-pub const GEO_LATITUDE = SYSGEOTYPE.LATITUDE;
-pub const GEO_LONGITUDE = SYSGEOTYPE.LONGITUDE;
-pub const GEO_ISO2 = SYSGEOTYPE.ISO2;
-pub const GEO_ISO3 = SYSGEOTYPE.ISO3;
-pub const GEO_RFC1766 = SYSGEOTYPE.RFC1766;
-pub const GEO_LCID = SYSGEOTYPE.LCID;
-pub const GEO_FRIENDLYNAME = SYSGEOTYPE.FRIENDLYNAME;
-pub const GEO_OFFICIALNAME = SYSGEOTYPE.OFFICIALNAME;
-pub const GEO_TIMEZONES = SYSGEOTYPE.TIMEZONES;
-pub const GEO_OFFICIALLANGUAGES = SYSGEOTYPE.OFFICIALLANGUAGES;
-pub const GEO_ISO_UN_NUMBER = SYSGEOTYPE.ISO_UN_NUMBER;
-pub const GEO_PARENT = SYSGEOTYPE.PARENT;
-pub const GEO_DIALINGCODE = SYSGEOTYPE.DIALINGCODE;
-pub const GEO_CURRENCYCODE = SYSGEOTYPE.CURRENCYCODE;
-pub const GEO_CURRENCYSYMBOL = SYSGEOTYPE.CURRENCYSYMBOL;
-pub const GEO_NAME = SYSGEOTYPE.NAME;
-pub const GEO_ID = SYSGEOTYPE.ID;
-
-pub const SYSGEOCLASS = enum(i32) {
-    NATION = 16,
-    REGION = 14,
-    ALL = 0,
-};
-pub const GEOCLASS_NATION = SYSGEOCLASS.NATION;
-pub const GEOCLASS_REGION = SYSGEOCLASS.REGION;
-pub const GEOCLASS_ALL = SYSGEOCLASS.ALL;
-
-pub const LOCALE_ENUMPROCA = *const fn(
-    param0: ?PSTR,
-) callconv(.winapi) BOOL;
-
-pub const LOCALE_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-pub const NORM_FORM = enum(i32) {
-    Other = 0,
-    C = 1,
-    D = 2,
-    KC = 5,
-    KD = 6,
-};
-pub const NormalizationOther = NORM_FORM.Other;
-pub const NormalizationC = NORM_FORM.C;
-pub const NormalizationD = NORM_FORM.D;
-pub const NormalizationKC = NORM_FORM.KC;
-pub const NormalizationKD = NORM_FORM.KD;
-
-pub const LANGUAGEGROUP_ENUMPROCA = *const fn(
-    param0: u32,
-    param1: ?PSTR,
-    param2: ?PSTR,
-    param3: u32,
-    param4: isize,
-) callconv(.winapi) BOOL;
-
-pub const LANGGROUPLOCALE_ENUMPROCA = *const fn(
-    param0: u32,
-    param1: u32,
-    param2: ?PSTR,
-    param3: isize,
-) callconv(.winapi) BOOL;
-
-pub const UILANGUAGE_ENUMPROCA = *const fn(
-    param0: ?PSTR,
-    param1: isize,
-) callconv(.winapi) BOOL;
-
-pub const CODEPAGE_ENUMPROCA = *const fn(
-    param0: ?PSTR,
-) callconv(.winapi) BOOL;
-
-pub const DATEFMT_ENUMPROCA = *const fn(
-    param0: ?PSTR,
-) callconv(.winapi) BOOL;
-
-pub const DATEFMT_ENUMPROCEXA = *const fn(
-    param0: ?PSTR,
-    param1: u32,
-) callconv(.winapi) BOOL;
-
-pub const TIMEFMT_ENUMPROCA = *const fn(
-    param0: ?PSTR,
-) callconv(.winapi) BOOL;
-
-pub const CALINFO_ENUMPROCA = *const fn(
-    param0: ?PSTR,
-) callconv(.winapi) BOOL;
-
-pub const CALINFO_ENUMPROCEXA = *const fn(
-    param0: ?PSTR,
-    param1: u32,
-) callconv(.winapi) BOOL;
-
-pub const LANGUAGEGROUP_ENUMPROCW = *const fn(
-    param0: u32,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
-    param3: u32,
-    param4: isize,
-) callconv(.winapi) BOOL;
-
-pub const LANGGROUPLOCALE_ENUMPROCW = *const fn(
-    param0: u32,
-    param1: u32,
-    param2: ?PWSTR,
-    param3: isize,
-) callconv(.winapi) BOOL;
-
-pub const UILANGUAGE_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
-    param1: isize,
-) callconv(.winapi) BOOL;
-
-pub const CODEPAGE_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-pub const DATEFMT_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-pub const DATEFMT_ENUMPROCEXW = *const fn(
-    param0: ?PWSTR,
-    param1: u32,
-) callconv(.winapi) BOOL;
-
-pub const TIMEFMT_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-pub const CALINFO_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-pub const CALINFO_ENUMPROCEXW = *const fn(
-    param0: ?PWSTR,
-    param1: u32,
-) callconv(.winapi) BOOL;
-
-pub const GEO_ENUMPROC = *const fn(
-    param0: i32,
-) callconv(.winapi) BOOL;
-
-pub const GEO_ENUMNAMEPROC = *const fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(.winapi) BOOL;
-
-pub const FILEMUIINFO = extern struct {
-    dwSize: u32,
-    dwVersion: u32,
-    dwFileType: u32,
-    pChecksum: [16]u8,
-    pServiceChecksum: [16]u8,
-    dwLanguageNameOffset: u32,
-    dwTypeIDMainSize: u32,
-    dwTypeIDMainOffset: u32,
-    dwTypeNameMainOffset: u32,
-    dwTypeIDMUISize: u32,
-    dwTypeIDMUIOffset: u32,
-    dwTypeNameMUIOffset: u32,
-    abBuffer: [8]u8,
-};
-
-pub const CALINFO_ENUMPROCEXEX = *const fn(
-    param0: ?PWSTR,
-    param1: u32,
-    param2: ?PWSTR,
-    param3: LPARAM,
-) callconv(.winapi) BOOL;
-
-pub const DATEFMT_ENUMPROCEXEX = *const fn(
-    param0: ?PWSTR,
-    param1: u32,
-    param2: LPARAM,
-) callconv(.winapi) BOOL;
-
-pub const TIMEFMT_ENUMPROCEX = *const fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(.winapi) BOOL;
-
-pub const LOCALE_ENUMPROCEX = *const fn(
-    param0: ?PWSTR,
-    param1: u32,
-    param2: LPARAM,
-) callconv(.winapi) BOOL;
-
-pub const PFN_MAPPINGCALLBACKPROC = *const fn(
-    pBag: ?*MAPPING_PROPERTY_BAG,
-    data: ?*anyopaque,
-    dwDataSize: u32,
-    Result: HRESULT,
-) callconv(.winapi) void;
-
-pub const MAPPING_SERVICE_INFO = extern struct {
-    Size: usize,
-    pszCopyright: ?PWSTR,
-    wMajorVersion: u16,
-    wMinorVersion: u16,
-    wBuildVersion: u16,
-    wStepVersion: u16,
-    dwInputContentTypesCount: u32,
-    prgInputContentTypes: ?*?PWSTR,
-    dwOutputContentTypesCount: u32,
-    prgOutputContentTypes: ?*?PWSTR,
-    dwInputLanguagesCount: u32,
-    prgInputLanguages: ?*?PWSTR,
-    dwOutputLanguagesCount: u32,
-    prgOutputLanguages: ?*?PWSTR,
-    dwInputScriptsCount: u32,
-    prgInputScripts: ?*?PWSTR,
-    dwOutputScriptsCount: u32,
-    prgOutputScripts: ?*?PWSTR,
-    guid: Guid,
-    pszCategory: ?PWSTR,
-    pszDescription: ?PWSTR,
-    dwPrivateDataSize: u32,
-    pPrivateData: ?*anyopaque,
-    pContext: ?*anyopaque,
-    _bitfield: u32,
-};
-
-pub const MAPPING_ENUM_OPTIONS = extern struct {
-    Size: usize,
-    pszCategory: ?PWSTR,
-    pszInputLanguage: ?PWSTR,
-    pszOutputLanguage: ?PWSTR,
-    pszInputScript: ?PWSTR,
-    pszOutputScript: ?PWSTR,
-    pszInputContentType: ?PWSTR,
-    pszOutputContentType: ?PWSTR,
-    pGuid: ?*Guid,
-    _bitfield: u32,
-};
-
-pub const MAPPING_OPTIONS = extern struct {
-    Size: usize,
-    pszInputLanguage: ?PWSTR,
-    pszOutputLanguage: ?PWSTR,
-    pszInputScript: ?PWSTR,
-    pszOutputScript: ?PWSTR,
-    pszInputContentType: ?PWSTR,
-    pszOutputContentType: ?PWSTR,
-    pszUILanguage: ?PWSTR,
-    pfnRecognizeCallback: ?PFN_MAPPINGCALLBACKPROC,
-    pRecognizeCallerData: ?*anyopaque,
-    dwRecognizeCallerDataSize: u32,
-    pfnActionCallback: ?PFN_MAPPINGCALLBACKPROC,
-    pActionCallerData: ?*anyopaque,
-    dwActionCallerDataSize: u32,
-    dwServiceFlag: u32,
-    _bitfield: u32,
-};
-
-pub const MAPPING_DATA_RANGE = extern struct {
-    dwStartIndex: u32,
-    dwEndIndex: u32,
-    pszDescription: ?PWSTR,
-    dwDescriptionLength: u32,
-    pData: ?*anyopaque,
-    dwDataSize: u32,
-    pszContentType: ?PWSTR,
-    prgActionIds: ?*?PWSTR,
-    dwActionsCount: u32,
-    prgActionDisplayNames: ?*?PWSTR,
-};
-
-pub const MAPPING_PROPERTY_BAG = extern struct {
-    Size: usize,
-    prgResultRanges: ?*MAPPING_DATA_RANGE,
-    dwRangesCount: u32,
-    pServiceData: ?*anyopaque,
-    dwServiceDataSize: u32,
-    pCallerData: ?*anyopaque,
-    dwCallerDataSize: u32,
-    pContext: ?*anyopaque,
-};
-
-const CLSID_SpellCheckerFactory_Value = Guid.initString("7ab36653-1796-484b-bdfa-e74f1db7c1dc");
-pub const CLSID_SpellCheckerFactory = &CLSID_SpellCheckerFactory_Value;
-
-pub const WORDLIST_TYPE = enum(i32) {
-    IGNORE = 0,
-    ADD = 1,
-    EXCLUDE = 2,
-    AUTOCORRECT = 3,
-};
-pub const WORDLIST_TYPE_IGNORE = WORDLIST_TYPE.IGNORE;
-pub const WORDLIST_TYPE_ADD = WORDLIST_TYPE.ADD;
-pub const WORDLIST_TYPE_EXCLUDE = WORDLIST_TYPE.EXCLUDE;
-pub const WORDLIST_TYPE_AUTOCORRECT = WORDLIST_TYPE.AUTOCORRECT;
-
-pub const CORRECTIVE_ACTION = enum(i32) {
-    NONE = 0,
-    GET_SUGGESTIONS = 1,
-    REPLACE = 2,
-    DELETE = 3,
-};
-pub const CORRECTIVE_ACTION_NONE = CORRECTIVE_ACTION.NONE;
-pub const CORRECTIVE_ACTION_GET_SUGGESTIONS = CORRECTIVE_ACTION.GET_SUGGESTIONS;
-pub const CORRECTIVE_ACTION_REPLACE = CORRECTIVE_ACTION.REPLACE;
-pub const CORRECTIVE_ACTION_DELETE = CORRECTIVE_ACTION.DELETE;
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellingError_Value = Guid.initString("b7c82d61-fbe8-4b47-9b27-6c0d2e0de0a3");
-pub const IID_ISpellingError = &IID_ISpellingError_Value;
-pub const ISpellingError = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StartIndex: *const fn(
-            self: *const ISpellingError,
-            value: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: *const fn(
-            self: *const ISpellingError,
-            value: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CorrectiveAction: *const fn(
-            self: *const ISpellingError,
-            value: ?*CORRECTIVE_ACTION,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Replacement: *const fn(
-            self: *const ISpellingError,
-            value: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_StartIndex(self: *const ISpellingError, value: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StartIndex(self, value);
-    }
-    pub fn get_Length(self: *const ISpellingError, value: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Length(self, value);
-    }
-    pub fn get_CorrectiveAction(self: *const ISpellingError, value: ?*CORRECTIVE_ACTION) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CorrectiveAction(self, value);
-    }
-    pub fn get_Replacement(self: *const ISpellingError, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Replacement(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IEnumSpellingError_Value = Guid.initString("803e3bd4-2828-4410-8290-418d1d73c762");
-pub const IID_IEnumSpellingError = &IID_IEnumSpellingError_Value;
-pub const IEnumSpellingError = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumSpellingError,
-            value: ?*?*ISpellingError,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSpellingError, value: ?*?*ISpellingError) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IOptionDescription_Value = Guid.initString("432e5f85-35cf-4606-a801-6f70277e1d7a");
-pub const IID_IOptionDescription = &IID_IOptionDescription_Value;
-pub const IOptionDescription = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IOptionDescription,
-            value: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Heading: *const fn(
-            self: *const IOptionDescription,
-            value: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IOptionDescription,
-            value: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Labels: *const fn(
-            self: *const IOptionDescription,
-            value: ?*?*IEnumString,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Id(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, value);
-    }
-    pub fn get_Heading(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Heading(self, value);
-    }
-    pub fn get_Description(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, value);
-    }
-    pub fn get_Labels(self: *const IOptionDescription, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Labels(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellCheckerChangedEventHandler_Value = Guid.initString("0b83a5b0-792f-4eab-9799-acf52c5ed08a");
-pub const IID_ISpellCheckerChangedEventHandler = &IID_ISpellCheckerChangedEventHandler_Value;
-pub const ISpellCheckerChangedEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const ISpellCheckerChangedEventHandler,
-            sender: ?*ISpellChecker,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const ISpellCheckerChangedEventHandler, sender: ?*ISpellChecker) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self, sender);
-    }
-};
+pub const LCID_INSTALLED = IS_VALID_LOCALE_FLAGS.INSTALLED;
+pub const LCID_SUPPORTED = IS_VALID_LOCALE_FLAGS.SUPPORTED;
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ISpellChecker_Value = Guid.initString("b6fd0b71-e2bc-4653-8d05-f197e412770b");
@@ -1897,6 +2705,24 @@ pub const ISpellChecker2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+const IID_ISpellCheckerChangedEventHandler_Value = Guid.initString("0b83a5b0-792f-4eab-9799-acf52c5ed08a");
+pub const IID_ISpellCheckerChangedEventHandler = &IID_ISpellCheckerChangedEventHandler_Value;
+pub const ISpellCheckerChangedEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const ISpellCheckerChangedEventHandler,
+            sender: ?*ISpellChecker,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const ISpellCheckerChangedEventHandler, sender: ?*ISpellChecker) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self, sender);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
 const IID_ISpellCheckerFactory_Value = Guid.initString("8e018a9d-2415-4677-bf08-794ea61f94bb");
 pub const IID_ISpellCheckerFactory = &IID_ISpellCheckerFactory_Value;
 pub const ISpellCheckerFactory = extern union {
@@ -1928,33 +2754,6 @@ pub const ISpellCheckerFactory = extern union {
     }
     pub fn CreateSpellChecker(self: *const ISpellCheckerFactory, languageTag: ?[*:0]const u16, value: ?*?*ISpellChecker) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSpellChecker(self, languageTag, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUserDictionariesRegistrar_Value = Guid.initString("aa176b85-0e12-4844-8e1a-eef1da77f586");
-pub const IID_IUserDictionariesRegistrar = &IID_IUserDictionariesRegistrar_Value;
-pub const IUserDictionariesRegistrar = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterUserDictionary: *const fn(
-            self: *const IUserDictionariesRegistrar,
-            dictionaryPath: ?[*:0]const u16,
-            languageTag: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        UnregisterUserDictionary: *const fn(
-            self: *const IUserDictionariesRegistrar,
-            dictionaryPath: ?[*:0]const u16,
-            languageTag: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterUserDictionary(self, dictionaryPath, languageTag);
-    }
-    pub fn UnregisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterUserDictionary(self, dictionaryPath, languageTag);
     }
 };
 
@@ -2049,24 +2848,6 @@ pub const ISpellCheckProvider = extern union {
     }
 };
 
-const IID_IComprehensiveSpellCheckProvider_Value = Guid.initString("0c58f8de-8e94-479e-9717-70c42c4ad2c3");
-pub const IID_IComprehensiveSpellCheckProvider = &IID_IComprehensiveSpellCheckProvider_Value;
-pub const IComprehensiveSpellCheckProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ComprehensiveCheck: *const fn(
-            self: *const IComprehensiveSpellCheckProvider,
-            text: ?[*:0]const u16,
-            value: ?*?*IEnumSpellingError,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ComprehensiveCheck(self: *const IComprehensiveSpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
-        return self.vtable.ComprehensiveCheck(self, text, value);
-    }
-};
-
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ISpellCheckProviderFactory_Value = Guid.initString("9f671e11-77d6-4c92-aefb-615215e3a4be");
 pub const IID_ISpellCheckProviderFactory = &IID_ISpellCheckProviderFactory_Value;
@@ -2102,18 +2883,435 @@ pub const ISpellCheckProviderFactory = extern union {
     }
 };
 
-pub const SCRIPT_CONTROL = extern struct {
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ISpellingError_Value = Guid.initString("b7c82d61-fbe8-4b47-9b27-6c0d2e0de0a3");
+pub const IID_ISpellingError = &IID_ISpellingError_Value;
+pub const ISpellingError = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StartIndex: *const fn(
+            self: *const ISpellingError,
+            value: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Length: *const fn(
+            self: *const ISpellingError,
+            value: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CorrectiveAction: *const fn(
+            self: *const ISpellingError,
+            value: ?*CORRECTIVE_ACTION,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Replacement: *const fn(
+            self: *const ISpellingError,
+            value: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_StartIndex(self: *const ISpellingError, value: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StartIndex(self, value);
+    }
+    pub fn get_Length(self: *const ISpellingError, value: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Length(self, value);
+    }
+    pub fn get_CorrectiveAction(self: *const ISpellingError, value: ?*CORRECTIVE_ACTION) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CorrectiveAction(self, value);
+    }
+    pub fn get_Replacement(self: *const ISpellingError, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Replacement(self, value);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUserDictionariesRegistrar_Value = Guid.initString("aa176b85-0e12-4844-8e1a-eef1da77f586");
+pub const IID_IUserDictionariesRegistrar = &IID_IUserDictionariesRegistrar_Value;
+pub const IUserDictionariesRegistrar = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterUserDictionary: *const fn(
+            self: *const IUserDictionariesRegistrar,
+            dictionaryPath: ?[*:0]const u16,
+            languageTag: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        UnregisterUserDictionary: *const fn(
+            self: *const IUserDictionariesRegistrar,
+            dictionaryPath: ?[*:0]const u16,
+            languageTag: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterUserDictionary(self, dictionaryPath, languageTag);
+    }
+    pub fn UnregisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterUserDictionary(self, dictionaryPath, languageTag);
+    }
+};
+
+pub const LANGGROUPLOCALE_ENUMPROCA = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: ?PSTR,
+    param3: isize,
+) callconv(.winapi) BOOL;
+
+pub const LANGGROUPLOCALE_ENUMPROCW = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: ?PWSTR,
+    param3: isize,
+) callconv(.winapi) BOOL;
+
+pub const LANGUAGEGROUP_ENUMPROCA = *const fn(
+    param0: u32,
+    param1: ?PSTR,
+    param2: ?PSTR,
+    param3: u32,
+    param4: isize,
+) callconv(.winapi) BOOL;
+
+pub const LANGUAGEGROUP_ENUMPROCW = *const fn(
+    param0: u32,
+    param1: ?PWSTR,
+    param2: ?PWSTR,
+    param3: u32,
+    param4: isize,
+) callconv(.winapi) BOOL;
+
+pub const LOCALE_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(.winapi) BOOL;
+
+pub const LOCALE_ENUMPROCEX = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+    param2: LPARAM,
+) callconv(.winapi) BOOL;
+
+pub const LOCALE_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+pub const LOCALESIGNATURE = extern struct {
+    lsUsb: [4]u32,
+    lsCsbDefault: [2]u32,
+    lsCsbSupported: [2]u32,
+};
+
+pub const MAPPING_DATA_RANGE = extern struct {
+    dwStartIndex: u32,
+    dwEndIndex: u32,
+    pszDescription: ?PWSTR,
+    dwDescriptionLength: u32,
+    pData: ?*anyopaque,
+    dwDataSize: u32,
+    pszContentType: ?PWSTR,
+    prgActionIds: ?*?PWSTR,
+    dwActionsCount: u32,
+    prgActionDisplayNames: ?*?PWSTR,
+};
+
+pub const MAPPING_ENUM_OPTIONS = extern struct {
+    Size: usize,
+    pszCategory: ?PWSTR,
+    pszInputLanguage: ?PWSTR,
+    pszOutputLanguage: ?PWSTR,
+    pszInputScript: ?PWSTR,
+    pszOutputScript: ?PWSTR,
+    pszInputContentType: ?PWSTR,
+    pszOutputContentType: ?PWSTR,
+    pGuid: ?*Guid,
     _bitfield: u32,
 };
 
-pub const SCRIPT_STATE = extern struct {
-    _bitfield: u16,
+pub const MAPPING_OPTIONS = extern struct {
+    Size: usize,
+    pszInputLanguage: ?PWSTR,
+    pszOutputLanguage: ?PWSTR,
+    pszInputScript: ?PWSTR,
+    pszOutputScript: ?PWSTR,
+    pszInputContentType: ?PWSTR,
+    pszOutputContentType: ?PWSTR,
+    pszUILanguage: ?PWSTR,
+    pfnRecognizeCallback: ?PFN_MAPPINGCALLBACKPROC,
+    pRecognizeCallerData: ?*anyopaque,
+    dwRecognizeCallerDataSize: u32,
+    pfnActionCallback: ?PFN_MAPPINGCALLBACKPROC,
+    pActionCallerData: ?*anyopaque,
+    dwActionCallerDataSize: u32,
+    dwServiceFlag: u32,
+    _bitfield: u32,
+};
+
+pub const MAPPING_PROPERTY_BAG = extern struct {
+    Size: usize,
+    prgResultRanges: ?*MAPPING_DATA_RANGE,
+    dwRangesCount: u32,
+    pServiceData: ?*anyopaque,
+    dwServiceDataSize: u32,
+    pCallerData: ?*anyopaque,
+    dwCallerDataSize: u32,
+    pContext: ?*anyopaque,
+};
+
+pub const MAPPING_SERVICE_INFO = extern struct {
+    Size: usize,
+    pszCopyright: ?PWSTR,
+    wMajorVersion: u16,
+    wMinorVersion: u16,
+    wBuildVersion: u16,
+    wStepVersion: u16,
+    dwInputContentTypesCount: u32,
+    prgInputContentTypes: ?*?PWSTR,
+    dwOutputContentTypesCount: u32,
+    prgOutputContentTypes: ?*?PWSTR,
+    dwInputLanguagesCount: u32,
+    prgInputLanguages: ?*?PWSTR,
+    dwOutputLanguagesCount: u32,
+    prgOutputLanguages: ?*?PWSTR,
+    dwInputScriptsCount: u32,
+    prgInputScripts: ?*?PWSTR,
+    dwOutputScriptsCount: u32,
+    prgOutputScripts: ?*?PWSTR,
+    guid: Guid,
+    pszCategory: ?PWSTR,
+    pszDescription: ?PWSTR,
+    dwPrivateDataSize: u32,
+    pPrivateData: ?*anyopaque,
+    pContext: ?*anyopaque,
+    _bitfield: u32,
+};
+
+pub const MIMECONTF = enum(i32) {
+    MAILNEWS = 1,
+    BROWSER = 2,
+    MINIMAL = 4,
+    IMPORT = 8,
+    SAVABLE_MAILNEWS = 256,
+    SAVABLE_BROWSER = 512,
+    EXPORT = 1024,
+    PRIVCONVERTER = 65536,
+    VALID = 131072,
+    VALID_NLS = 262144,
+    MIME_IE4 = 268435456,
+    MIME_LATEST = 536870912,
+    MIME_REGISTRY = 1073741824,
+};
+pub const MIMECONTF_MAILNEWS = MIMECONTF.MAILNEWS;
+pub const MIMECONTF_BROWSER = MIMECONTF.BROWSER;
+pub const MIMECONTF_MINIMAL = MIMECONTF.MINIMAL;
+pub const MIMECONTF_IMPORT = MIMECONTF.IMPORT;
+pub const MIMECONTF_SAVABLE_MAILNEWS = MIMECONTF.SAVABLE_MAILNEWS;
+pub const MIMECONTF_SAVABLE_BROWSER = MIMECONTF.SAVABLE_BROWSER;
+pub const MIMECONTF_EXPORT = MIMECONTF.EXPORT;
+pub const MIMECONTF_PRIVCONVERTER = MIMECONTF.PRIVCONVERTER;
+pub const MIMECONTF_VALID = MIMECONTF.VALID;
+pub const MIMECONTF_VALID_NLS = MIMECONTF.VALID_NLS;
+pub const MIMECONTF_MIME_IE4 = MIMECONTF.MIME_IE4;
+pub const MIMECONTF_MIME_LATEST = MIMECONTF.MIME_LATEST;
+pub const MIMECONTF_MIME_REGISTRY = MIMECONTF.MIME_REGISTRY;
+
+pub const MIMECPINFO = extern struct {
+    dwFlags: u32,
+    uiCodePage: u32,
+    uiFamilyCodePage: u32,
+    wszDescription: [64]u16,
+    wszWebCharset: [50]u16,
+    wszHeaderCharset: [50]u16,
+    wszBodyCharset: [50]u16,
+    wszFixedWidthFont: [32]u16,
+    wszProportionalFont: [32]u16,
+    bGDICharset: u8,
+};
+
+pub const MIMECSETINFO = extern struct {
+    uiCodePage: u32,
+    uiInternetEncoding: u32,
+    wszCharset: [50]u16,
+};
+
+pub const MLDETECTCP = enum(i32) {
+    NONE = 0,
+    @"7BIT" = 1,
+    @"8BIT" = 2,
+    DBCS = 4,
+    HTML = 8,
+    NUMBER = 16,
+};
+pub const MLDETECTCP_NONE = MLDETECTCP.NONE;
+pub const MLDETECTCP_7BIT = MLDETECTCP.@"7BIT";
+pub const MLDETECTCP_8BIT = MLDETECTCP.@"8BIT";
+pub const MLDETECTCP_DBCS = MLDETECTCP.DBCS;
+pub const MLDETECTCP_HTML = MLDETECTCP.HTML;
+pub const MLDETECTCP_NUMBER = MLDETECTCP.NUMBER;
+
+pub const MLSTR_FLAGS = enum(i32) {
+    READ = 1,
+    WRITE = 2,
+};
+pub const MLSTR_READ = MLSTR_FLAGS.READ;
+pub const MLSTR_WRITE = MLSTR_FLAGS.WRITE;
+
+pub const MULTI_BYTE_TO_WIDE_CHAR_FLAGS = packed struct(u32) {
+    PRECOMPOSED: u1 = 0,
+    COMPOSITE: u1 = 0,
+    USEGLYPHCHARS: u1 = 0,
+    ERR_INVALID_CHARS: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const MB_COMPOSITE = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .COMPOSITE = 1 };
+pub const MB_ERR_INVALID_CHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .ERR_INVALID_CHARS = 1 };
+pub const MB_PRECOMPOSED = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .PRECOMPOSED = 1 };
+pub const MB_USEGLYPHCHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS{ .USEGLYPHCHARS = 1 };
+
+pub const NEWTEXTMETRICEXA = extern struct {
+    ntmTm: NEWTEXTMETRICA,
+    ntmFontSig: FONTSIGNATURE,
+};
+
+pub const NEWTEXTMETRICEXW = extern struct {
+    ntmTm: NEWTEXTMETRICW,
+    ntmFontSig: FONTSIGNATURE,
+};
+
+pub const NLSVERSIONINFO = extern struct {
+    dwNLSVersionInfoSize: u32,
+    dwNLSVersion: u32,
+    dwDefinedVersion: u32,
+    dwEffectiveId: u32,
+    guidCustomVersion: Guid,
+};
+
+pub const NLSVERSIONINFOEX = extern struct {
+    dwNLSVersionInfoSize: u32,
+    dwNLSVersion: u32,
+    dwDefinedVersion: u32,
+    dwEffectiveId: u32,
+    guidCustomVersion: Guid,
+};
+
+pub const NORM_FORM = enum(i32) {
+    Other = 0,
+    C = 1,
+    D = 2,
+    KC = 5,
+    KD = 6,
+};
+pub const NormalizationOther = NORM_FORM.Other;
+pub const NormalizationC = NORM_FORM.C;
+pub const NormalizationD = NORM_FORM.D;
+pub const NormalizationKC = NORM_FORM.KC;
+pub const NormalizationKD = NORM_FORM.KD;
+
+pub const NUMBERFMTA = extern struct {
+    NumDigits: u32,
+    LeadingZero: u32,
+    Grouping: u32,
+    lpDecimalSep: ?PSTR,
+    lpThousandSep: ?PSTR,
+    NegativeOrder: u32,
+};
+
+pub const NUMBERFMTW = extern struct {
+    NumDigits: u32,
+    LeadingZero: u32,
+    Grouping: u32,
+    lpDecimalSep: ?PWSTR,
+    lpThousandSep: ?PWSTR,
+    NegativeOrder: u32,
+};
+
+pub const opentype_feature_record = extern struct {
+    tagFeature: u32,
+    lParameter: i32,
+};
+
+pub const PFN_MAPPINGCALLBACKPROC = *const fn(
+    pBag: ?*MAPPING_PROPERTY_BAG,
+    data: ?*anyopaque,
+    dwDataSize: u32,
+    Result: HRESULT,
+) callconv(.winapi) void;
+
+pub const RFC1766INFO = extern struct {
+    lcid: u32,
+    wszRfc1766: [6]u16,
+    wszLocaleName: [32]u16,
 };
 
 pub const SCRIPT_ANALYSIS = extern struct {
     _bitfield: u16,
     s: SCRIPT_STATE,
 };
+
+pub const script_charprop = extern struct {
+    _bitfield: u16,
+};
+
+pub const SCRIPT_CONTROL = extern struct {
+    _bitfield: u32,
+};
+
+pub const SCRIPT_DIGITSUBSTITUTE = extern struct {
+    _bitfield1: u32,
+    _bitfield2: u32,
+    dwReserved: u32,
+};
+
+pub const SCRIPT_FONTPROPERTIES = extern struct {
+    cBytes: i32,
+    wgBlank: u16,
+    wgDefault: u16,
+    wgInvalid: u16,
+    wgKashida: u16,
+    iKashidaWidth: i32,
+};
+
+pub const script_glyphprop = extern struct {
+    sva: SCRIPT_VISATTR,
+    reserved: u16,
+};
+
+pub const SCRIPT_IS_COMPLEX_FLAGS = enum(u32) {
+    ASCIIDIGIT = 2,
+    COMPLEX = 1,
+    NEUTRAL = 4,
+};
+pub const SIC_ASCIIDIGIT = SCRIPT_IS_COMPLEX_FLAGS.ASCIIDIGIT;
+pub const SIC_COMPLEX = SCRIPT_IS_COMPLEX_FLAGS.COMPLEX;
+pub const SIC_NEUTRAL = SCRIPT_IS_COMPLEX_FLAGS.NEUTRAL;
 
 pub const SCRIPT_ITEM = extern struct {
     iCharPos: i32,
@@ -2155,15 +3353,6 @@ pub const SCRIPT_JUSTIFY_ARABIC_BARA = SCRIPT_JUSTIFY.ARABIC_BARA;
 pub const SCRIPT_JUSTIFY_ARABIC_SEEN = SCRIPT_JUSTIFY.ARABIC_SEEN;
 pub const SCRIPT_JUSTIFY_ARABIC_SEEN_M = SCRIPT_JUSTIFY.ARABIC_SEEN_M;
 
-pub const SCRIPT_VISATTR = extern struct {
-    _bitfield: u16,
-};
-
-pub const GOFFSET = extern struct {
-    du: i32,
-    dv: i32,
-};
-
 pub const SCRIPT_LOGATTR = extern struct {
     _bitfield: u8,
 };
@@ -2173,13 +3362,8 @@ pub const SCRIPT_PROPERTIES = extern struct {
     _bitfield2: u32,
 };
 
-pub const SCRIPT_FONTPROPERTIES = extern struct {
-    cBytes: i32,
-    wgBlank: u16,
-    wgDefault: u16,
-    wgInvalid: u16,
-    wgKashida: u16,
-    iKashidaWidth: i32,
+pub const SCRIPT_STATE = extern struct {
+    _bitfield: u16,
 };
 
 pub const SCRIPT_TABDEF = extern struct {
@@ -2189,15 +3373,217 @@ pub const SCRIPT_TABDEF = extern struct {
     iTabOrigin: i32,
 };
 
-pub const SCRIPT_DIGITSUBSTITUTE = extern struct {
-    _bitfield1: u32,
-    _bitfield2: u32,
-    dwReserved: u32,
+pub const SCRIPT_VISATTR = extern struct {
+    _bitfield: u16,
 };
 
-pub const opentype_feature_record = extern struct {
-    tagFeature: u32,
-    lParameter: i32,
+pub const SCRIPTCONTF = enum(i32) {
+    Default = 0,
+    Merge = 1,
+    AsciiSym = 2,
+    AsciiLatin = 3,
+    Latin = 4,
+    Greek = 5,
+    Cyrillic = 6,
+    Armenian = 7,
+    Hebrew = 8,
+    Arabic = 9,
+    Devanagari = 10,
+    Bengali = 11,
+    Gurmukhi = 12,
+    Gujarati = 13,
+    Oriya = 14,
+    Tamil = 15,
+    Telugu = 16,
+    Kannada = 17,
+    Malayalam = 18,
+    Thai = 19,
+    Lao = 20,
+    Tibetan = 21,
+    Georgian = 22,
+    Hangul = 23,
+    Kana = 24,
+    Bopomofo = 25,
+    Han = 26,
+    Ethiopic = 27,
+    CanSyllabic = 28,
+    Cherokee = 29,
+    Yi = 30,
+    Braille = 31,
+    Runic = 32,
+    Ogham = 33,
+    Sinhala = 34,
+    Syriac = 35,
+    Burmese = 36,
+    Khmer = 37,
+    Thaana = 38,
+    Mongolian = 39,
+    UserDefined = 40,
+    Lim = 41,
+    pub const FEFirst = .Hangul;
+    pub const FELast = .Han;
+};
+pub const sidDefault = SCRIPTCONTF.Default;
+pub const sidMerge = SCRIPTCONTF.Merge;
+pub const sidAsciiSym = SCRIPTCONTF.AsciiSym;
+pub const sidAsciiLatin = SCRIPTCONTF.AsciiLatin;
+pub const sidLatin = SCRIPTCONTF.Latin;
+pub const sidGreek = SCRIPTCONTF.Greek;
+pub const sidCyrillic = SCRIPTCONTF.Cyrillic;
+pub const sidArmenian = SCRIPTCONTF.Armenian;
+pub const sidHebrew = SCRIPTCONTF.Hebrew;
+pub const sidArabic = SCRIPTCONTF.Arabic;
+pub const sidDevanagari = SCRIPTCONTF.Devanagari;
+pub const sidBengali = SCRIPTCONTF.Bengali;
+pub const sidGurmukhi = SCRIPTCONTF.Gurmukhi;
+pub const sidGujarati = SCRIPTCONTF.Gujarati;
+pub const sidOriya = SCRIPTCONTF.Oriya;
+pub const sidTamil = SCRIPTCONTF.Tamil;
+pub const sidTelugu = SCRIPTCONTF.Telugu;
+pub const sidKannada = SCRIPTCONTF.Kannada;
+pub const sidMalayalam = SCRIPTCONTF.Malayalam;
+pub const sidThai = SCRIPTCONTF.Thai;
+pub const sidLao = SCRIPTCONTF.Lao;
+pub const sidTibetan = SCRIPTCONTF.Tibetan;
+pub const sidGeorgian = SCRIPTCONTF.Georgian;
+pub const sidHangul = SCRIPTCONTF.Hangul;
+pub const sidKana = SCRIPTCONTF.Kana;
+pub const sidBopomofo = SCRIPTCONTF.Bopomofo;
+pub const sidHan = SCRIPTCONTF.Han;
+pub const sidEthiopic = SCRIPTCONTF.Ethiopic;
+pub const sidCanSyllabic = SCRIPTCONTF.CanSyllabic;
+pub const sidCherokee = SCRIPTCONTF.Cherokee;
+pub const sidYi = SCRIPTCONTF.Yi;
+pub const sidBraille = SCRIPTCONTF.Braille;
+pub const sidRunic = SCRIPTCONTF.Runic;
+pub const sidOgham = SCRIPTCONTF.Ogham;
+pub const sidSinhala = SCRIPTCONTF.Sinhala;
+pub const sidSyriac = SCRIPTCONTF.Syriac;
+pub const sidBurmese = SCRIPTCONTF.Burmese;
+pub const sidKhmer = SCRIPTCONTF.Khmer;
+pub const sidThaana = SCRIPTCONTF.Thaana;
+pub const sidMongolian = SCRIPTCONTF.Mongolian;
+pub const sidUserDefined = SCRIPTCONTF.UserDefined;
+pub const sidLim = SCRIPTCONTF.Lim;
+pub const sidFEFirst = SCRIPTCONTF.Hangul;
+pub const sidFELast = SCRIPTCONTF.Han;
+
+pub const SCRIPTFONTCONTF = enum(i32) {
+    FIXED_FONT = 1,
+    PROPORTIONAL_FONT = 2,
+    SCRIPT_USER = 65536,
+    SCRIPT_HIDE = 131072,
+    SCRIPT_SYSTEM = 262144,
+};
+pub const SCRIPTCONTF_FIXED_FONT = SCRIPTFONTCONTF.FIXED_FONT;
+pub const SCRIPTCONTF_PROPORTIONAL_FONT = SCRIPTFONTCONTF.PROPORTIONAL_FONT;
+pub const SCRIPTCONTF_SCRIPT_USER = SCRIPTFONTCONTF.SCRIPT_USER;
+pub const SCRIPTCONTF_SCRIPT_HIDE = SCRIPTFONTCONTF.SCRIPT_HIDE;
+pub const SCRIPTCONTF_SCRIPT_SYSTEM = SCRIPTFONTCONTF.SCRIPT_SYSTEM;
+
+pub const SCRIPTINFO = extern struct {
+    ScriptId: u8,
+    uiCodePage: u32,
+    wszDescription: [48]u16,
+    wszFixedWidthFont: [32]u16,
+    wszProportionalFont: [32]u16,
+};
+
+const CLSID_SpellCheckerFactory_Value = Guid.initString("7ab36653-1796-484b-bdfa-e74f1db7c1dc");
+pub const CLSID_SpellCheckerFactory = &CLSID_SpellCheckerFactory_Value;
+
+pub const SYSGEOCLASS = enum(i32) {
+    NATION = 16,
+    REGION = 14,
+    ALL = 0,
+};
+pub const GEOCLASS_NATION = SYSGEOCLASS.NATION;
+pub const GEOCLASS_REGION = SYSGEOCLASS.REGION;
+pub const GEOCLASS_ALL = SYSGEOCLASS.ALL;
+
+pub const SYSGEOTYPE = enum(i32) {
+    NATION = 1,
+    LATITUDE = 2,
+    LONGITUDE = 3,
+    ISO2 = 4,
+    ISO3 = 5,
+    RFC1766 = 6,
+    LCID = 7,
+    FRIENDLYNAME = 8,
+    OFFICIALNAME = 9,
+    TIMEZONES = 10,
+    OFFICIALLANGUAGES = 11,
+    ISO_UN_NUMBER = 12,
+    PARENT = 13,
+    DIALINGCODE = 14,
+    CURRENCYCODE = 15,
+    CURRENCYSYMBOL = 16,
+    NAME = 17,
+    ID = 18,
+};
+pub const GEO_NATION = SYSGEOTYPE.NATION;
+pub const GEO_LATITUDE = SYSGEOTYPE.LATITUDE;
+pub const GEO_LONGITUDE = SYSGEOTYPE.LONGITUDE;
+pub const GEO_ISO2 = SYSGEOTYPE.ISO2;
+pub const GEO_ISO3 = SYSGEOTYPE.ISO3;
+pub const GEO_RFC1766 = SYSGEOTYPE.RFC1766;
+pub const GEO_LCID = SYSGEOTYPE.LCID;
+pub const GEO_FRIENDLYNAME = SYSGEOTYPE.FRIENDLYNAME;
+pub const GEO_OFFICIALNAME = SYSGEOTYPE.OFFICIALNAME;
+pub const GEO_TIMEZONES = SYSGEOTYPE.TIMEZONES;
+pub const GEO_OFFICIALLANGUAGES = SYSGEOTYPE.OFFICIALLANGUAGES;
+pub const GEO_ISO_UN_NUMBER = SYSGEOTYPE.ISO_UN_NUMBER;
+pub const GEO_PARENT = SYSGEOTYPE.PARENT;
+pub const GEO_DIALINGCODE = SYSGEOTYPE.DIALINGCODE;
+pub const GEO_CURRENCYCODE = SYSGEOTYPE.CURRENCYCODE;
+pub const GEO_CURRENCYSYMBOL = SYSGEOTYPE.CURRENCYSYMBOL;
+pub const GEO_NAME = SYSGEOTYPE.NAME;
+pub const GEO_ID = SYSGEOTYPE.ID;
+
+pub const SYSNLS_FUNCTION = enum(i32) {
+    G = 1,
+};
+pub const COMPARE_STRING = SYSNLS_FUNCTION.G;
+
+pub const tagMLCONVCHARF = enum(i32) {
+    AUTODETECT = 1,
+    ENTITIZE = 2,
+    NAME_ENTITIZE = 4,
+    USEDEFCHAR = 8,
+    NOBESTFITCHARS = 16,
+    DETECTJPN = 32,
+    pub const NCR_ENTITIZE = .ENTITIZE;
+};
+pub const MLCONVCHARF_AUTODETECT = tagMLCONVCHARF.AUTODETECT;
+pub const MLCONVCHARF_ENTITIZE = tagMLCONVCHARF.ENTITIZE;
+pub const MLCONVCHARF_NCR_ENTITIZE = tagMLCONVCHARF.ENTITIZE;
+pub const MLCONVCHARF_NAME_ENTITIZE = tagMLCONVCHARF.NAME_ENTITIZE;
+pub const MLCONVCHARF_USEDEFCHAR = tagMLCONVCHARF.USEDEFCHAR;
+pub const MLCONVCHARF_NOBESTFITCHARS = tagMLCONVCHARF.NOBESTFITCHARS;
+pub const MLCONVCHARF_DETECTJPN = tagMLCONVCHARF.DETECTJPN;
+
+pub const tagMLCPF = enum(i32) {
+    MAILNEWS = 1,
+    BROWSER = 2,
+    VALID = 4,
+    VALID_NLS = 8,
+    PRESERVE_ORDER = 16,
+    PREFERRED_ONLY = 32,
+    FILTER_SPECIALCHAR = 64,
+    EURO_UTF8 = 128,
+};
+pub const MLDETECTF_MAILNEWS = tagMLCPF.MAILNEWS;
+pub const MLDETECTF_BROWSER = tagMLCPF.BROWSER;
+pub const MLDETECTF_VALID = tagMLCPF.VALID;
+pub const MLDETECTF_VALID_NLS = tagMLCPF.VALID_NLS;
+pub const MLDETECTF_PRESERVE_ORDER = tagMLCPF.PRESERVE_ORDER;
+pub const MLDETECTF_PREFERRED_ONLY = tagMLCPF.PREFERRED_ONLY;
+pub const MLDETECTF_FILTER_SPECIALCHAR = tagMLCPF.FILTER_SPECIALCHAR;
+pub const MLDETECTF_EURO_UTF8 = tagMLCPF.EURO_UTF8;
+
+pub const tagSCRIPFONTINFO = extern struct {
+    scripts: i64,
+    wszFont: [32]u16,
 };
 
 pub const textrange_properties = extern struct {
@@ -2205,950 +3591,68 @@ pub const textrange_properties = extern struct {
     cotfRecords: i32,
 };
 
-pub const script_charprop = extern struct {
-    _bitfield: u16,
+pub const TIME_FORMAT_FLAGS = packed struct(u32) {
+    NOMINUTESORSECONDS: u1 = 0,
+    NOSECONDS: u1 = 0,
+    NOTIMEMARKER: u1 = 0,
+    FORCE24HOURFORMAT: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
+pub const TIME_NOMINUTESORSECONDS = TIME_FORMAT_FLAGS{ .NOMINUTESORSECONDS = 1 };
+pub const TIME_NOSECONDS = TIME_FORMAT_FLAGS{ .NOSECONDS = 1 };
+pub const TIME_NOTIMEMARKER = TIME_FORMAT_FLAGS{ .NOTIMEMARKER = 1 };
+pub const TIME_FORCE24HOURFORMAT = TIME_FORMAT_FLAGS{ .FORCE24HOURFORMAT = 1 };
 
-pub const script_glyphprop = extern struct {
-    sva: SCRIPT_VISATTR,
-    reserved: u16,
+pub const TIMEFMT_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(.winapi) BOOL;
+
+pub const TIMEFMT_ENUMPROCEX = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(.winapi) BOOL;
+
+pub const TIMEFMT_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+pub const TRANSLATE_CHARSET_INFO_FLAGS = enum(u32) {
+    CHARSET = 1,
+    CODEPAGE = 2,
+    FONTSIG = 3,
+    LOCALE = 4096,
 };
-
-pub const UErrorCode = enum(i32) {
-    USING_FALLBACK_WARNING = -128,
-    USING_DEFAULT_WARNING = -127,
-    SAFECLONE_ALLOCATED_WARNING = -126,
-    STATE_OLD_WARNING = -125,
-    STRING_NOT_TERMINATED_WARNING = -124,
-    SORT_KEY_TOO_SHORT_WARNING = -123,
-    AMBIGUOUS_ALIAS_WARNING = -122,
-    DIFFERENT_UCA_VERSION = -121,
-    PLUGIN_CHANGED_LEVEL_WARNING = -120,
-    ZERO_ERROR = 0,
-    ILLEGAL_ARGUMENT_ERROR = 1,
-    MISSING_RESOURCE_ERROR = 2,
-    INVALID_FORMAT_ERROR = 3,
-    FILE_ACCESS_ERROR = 4,
-    INTERNAL_PROGRAM_ERROR = 5,
-    MESSAGE_PARSE_ERROR = 6,
-    MEMORY_ALLOCATION_ERROR = 7,
-    INDEX_OUTOFBOUNDS_ERROR = 8,
-    PARSE_ERROR = 9,
-    INVALID_CHAR_FOUND = 10,
-    TRUNCATED_CHAR_FOUND = 11,
-    ILLEGAL_CHAR_FOUND = 12,
-    INVALID_TABLE_FORMAT = 13,
-    INVALID_TABLE_FILE = 14,
-    BUFFER_OVERFLOW_ERROR = 15,
-    UNSUPPORTED_ERROR = 16,
-    RESOURCE_TYPE_MISMATCH = 17,
-    ILLEGAL_ESCAPE_SEQUENCE = 18,
-    UNSUPPORTED_ESCAPE_SEQUENCE = 19,
-    NO_SPACE_AVAILABLE = 20,
-    CE_NOT_FOUND_ERROR = 21,
-    PRIMARY_TOO_LONG_ERROR = 22,
-    STATE_TOO_OLD_ERROR = 23,
-    TOO_MANY_ALIASES_ERROR = 24,
-    ENUM_OUT_OF_SYNC_ERROR = 25,
-    INVARIANT_CONVERSION_ERROR = 26,
-    INVALID_STATE_ERROR = 27,
-    COLLATOR_VERSION_MISMATCH = 28,
-    USELESS_COLLATOR_ERROR = 29,
-    NO_WRITE_PERMISSION = 30,
-    BAD_VARIABLE_DEFINITION = 65536,
-    MALFORMED_RULE = 65537,
-    MALFORMED_SET = 65538,
-    MALFORMED_SYMBOL_REFERENCE = 65539,
-    MALFORMED_UNICODE_ESCAPE = 65540,
-    MALFORMED_VARIABLE_DEFINITION = 65541,
-    MALFORMED_VARIABLE_REFERENCE = 65542,
-    MISMATCHED_SEGMENT_DELIMITERS = 65543,
-    MISPLACED_ANCHOR_START = 65544,
-    MISPLACED_CURSOR_OFFSET = 65545,
-    MISPLACED_QUANTIFIER = 65546,
-    MISSING_OPERATOR = 65547,
-    MISSING_SEGMENT_CLOSE = 65548,
-    MULTIPLE_ANTE_CONTEXTS = 65549,
-    MULTIPLE_CURSORS = 65550,
-    MULTIPLE_POST_CONTEXTS = 65551,
-    TRAILING_BACKSLASH = 65552,
-    UNDEFINED_SEGMENT_REFERENCE = 65553,
-    UNDEFINED_VARIABLE = 65554,
-    UNQUOTED_SPECIAL = 65555,
-    UNTERMINATED_QUOTE = 65556,
-    RULE_MASK_ERROR = 65557,
-    MISPLACED_COMPOUND_FILTER = 65558,
-    MULTIPLE_COMPOUND_FILTERS = 65559,
-    INVALID_RBT_SYNTAX = 65560,
-    INVALID_PROPERTY_PATTERN = 65561,
-    MALFORMED_PRAGMA = 65562,
-    UNCLOSED_SEGMENT = 65563,
-    ILLEGAL_CHAR_IN_SEGMENT = 65564,
-    VARIABLE_RANGE_EXHAUSTED = 65565,
-    VARIABLE_RANGE_OVERLAP = 65566,
-    ILLEGAL_CHARACTER = 65567,
-    INTERNAL_TRANSLITERATOR_ERROR = 65568,
-    INVALID_ID = 65569,
-    INVALID_FUNCTION = 65570,
-    UNEXPECTED_TOKEN = 65792,
-    MULTIPLE_DECIMAL_SEPARATORS = 65793,
-    MULTIPLE_EXPONENTIAL_SYMBOLS = 65794,
-    MALFORMED_EXPONENTIAL_PATTERN = 65795,
-    MULTIPLE_PERCENT_SYMBOLS = 65796,
-    MULTIPLE_PERMILL_SYMBOLS = 65797,
-    MULTIPLE_PAD_SPECIFIERS = 65798,
-    PATTERN_SYNTAX_ERROR = 65799,
-    ILLEGAL_PAD_POSITION = 65800,
-    UNMATCHED_BRACES = 65801,
-    UNSUPPORTED_PROPERTY = 65802,
-    UNSUPPORTED_ATTRIBUTE = 65803,
-    ARGUMENT_TYPE_MISMATCH = 65804,
-    DUPLICATE_KEYWORD = 65805,
-    UNDEFINED_KEYWORD = 65806,
-    DEFAULT_KEYWORD_MISSING = 65807,
-    DECIMAL_NUMBER_SYNTAX_ERROR = 65808,
-    FORMAT_INEXACT_ERROR = 65809,
-    NUMBER_ARG_OUTOFBOUNDS_ERROR = 65810,
-    NUMBER_SKELETON_SYNTAX_ERROR = 65811,
-    BRK_INTERNAL_ERROR = 66048,
-    BRK_HEX_DIGITS_EXPECTED = 66049,
-    BRK_SEMICOLON_EXPECTED = 66050,
-    BRK_RULE_SYNTAX = 66051,
-    BRK_UNCLOSED_SET = 66052,
-    BRK_ASSIGN_ERROR = 66053,
-    BRK_VARIABLE_REDFINITION = 66054,
-    BRK_MISMATCHED_PAREN = 66055,
-    BRK_NEW_LINE_IN_QUOTED_STRING = 66056,
-    BRK_UNDEFINED_VARIABLE = 66057,
-    BRK_INIT_ERROR = 66058,
-    BRK_RULE_EMPTY_SET = 66059,
-    BRK_UNRECOGNIZED_OPTION = 66060,
-    BRK_MALFORMED_RULE_TAG = 66061,
-    REGEX_INTERNAL_ERROR = 66304,
-    REGEX_RULE_SYNTAX = 66305,
-    REGEX_INVALID_STATE = 66306,
-    REGEX_BAD_ESCAPE_SEQUENCE = 66307,
-    REGEX_PROPERTY_SYNTAX = 66308,
-    REGEX_UNIMPLEMENTED = 66309,
-    REGEX_MISMATCHED_PAREN = 66310,
-    REGEX_NUMBER_TOO_BIG = 66311,
-    REGEX_BAD_INTERVAL = 66312,
-    REGEX_MAX_LT_MIN = 66313,
-    REGEX_INVALID_BACK_REF = 66314,
-    REGEX_INVALID_FLAG = 66315,
-    REGEX_LOOK_BEHIND_LIMIT = 66316,
-    REGEX_SET_CONTAINS_STRING = 66317,
-    REGEX_MISSING_CLOSE_BRACKET = 66319,
-    REGEX_INVALID_RANGE = 66320,
-    REGEX_STACK_OVERFLOW = 66321,
-    REGEX_TIME_OUT = 66322,
-    REGEX_STOPPED_BY_CALLER = 66323,
-    REGEX_PATTERN_TOO_BIG = 66324,
-    REGEX_INVALID_CAPTURE_GROUP_NAME = 66325,
-    IDNA_PROHIBITED_ERROR = 66560,
-    IDNA_UNASSIGNED_ERROR = 66561,
-    IDNA_CHECK_BIDI_ERROR = 66562,
-    IDNA_STD3_ASCII_RULES_ERROR = 66563,
-    IDNA_ACE_PREFIX_ERROR = 66564,
-    IDNA_VERIFICATION_ERROR = 66565,
-    IDNA_LABEL_TOO_LONG_ERROR = 66566,
-    IDNA_ZERO_LENGTH_LABEL_ERROR = 66567,
-    IDNA_DOMAIN_NAME_TOO_LONG_ERROR = 66568,
-    PLUGIN_ERROR_START = 66816,
-    PLUGIN_DIDNT_SET_LEVEL = 66817,
-    pub const ERROR_WARNING_START = .USING_FALLBACK_WARNING;
-    pub const PARSE_ERROR_START = .BAD_VARIABLE_DEFINITION;
-    pub const FMT_PARSE_ERROR_START = .UNEXPECTED_TOKEN;
-    pub const MULTIPLE_DECIMAL_SEPERATORS = .MULTIPLE_DECIMAL_SEPARATORS;
-    pub const BRK_ERROR_START = .BRK_INTERNAL_ERROR;
-    pub const REGEX_ERROR_START = .REGEX_INTERNAL_ERROR;
-    pub const IDNA_ERROR_START = .IDNA_PROHIBITED_ERROR;
-    pub const STRINGPREP_PROHIBITED_ERROR = .IDNA_PROHIBITED_ERROR;
-    pub const STRINGPREP_UNASSIGNED_ERROR = .IDNA_UNASSIGNED_ERROR;
-    pub const STRINGPREP_CHECK_BIDI_ERROR = .IDNA_CHECK_BIDI_ERROR;
-    pub const PLUGIN_TOO_HIGH = .PLUGIN_ERROR_START;
-};
-pub const U_USING_FALLBACK_WARNING = UErrorCode.USING_FALLBACK_WARNING;
-pub const U_ERROR_WARNING_START = UErrorCode.USING_FALLBACK_WARNING;
-pub const U_USING_DEFAULT_WARNING = UErrorCode.USING_DEFAULT_WARNING;
-pub const U_SAFECLONE_ALLOCATED_WARNING = UErrorCode.SAFECLONE_ALLOCATED_WARNING;
-pub const U_STATE_OLD_WARNING = UErrorCode.STATE_OLD_WARNING;
-pub const U_STRING_NOT_TERMINATED_WARNING = UErrorCode.STRING_NOT_TERMINATED_WARNING;
-pub const U_SORT_KEY_TOO_SHORT_WARNING = UErrorCode.SORT_KEY_TOO_SHORT_WARNING;
-pub const U_AMBIGUOUS_ALIAS_WARNING = UErrorCode.AMBIGUOUS_ALIAS_WARNING;
-pub const U_DIFFERENT_UCA_VERSION = UErrorCode.DIFFERENT_UCA_VERSION;
-pub const U_PLUGIN_CHANGED_LEVEL_WARNING = UErrorCode.PLUGIN_CHANGED_LEVEL_WARNING;
-pub const U_ZERO_ERROR = UErrorCode.ZERO_ERROR;
-pub const U_ILLEGAL_ARGUMENT_ERROR = UErrorCode.ILLEGAL_ARGUMENT_ERROR;
-pub const U_MISSING_RESOURCE_ERROR = UErrorCode.MISSING_RESOURCE_ERROR;
-pub const U_INVALID_FORMAT_ERROR = UErrorCode.INVALID_FORMAT_ERROR;
-pub const U_FILE_ACCESS_ERROR = UErrorCode.FILE_ACCESS_ERROR;
-pub const U_INTERNAL_PROGRAM_ERROR = UErrorCode.INTERNAL_PROGRAM_ERROR;
-pub const U_MESSAGE_PARSE_ERROR = UErrorCode.MESSAGE_PARSE_ERROR;
-pub const U_MEMORY_ALLOCATION_ERROR = UErrorCode.MEMORY_ALLOCATION_ERROR;
-pub const U_INDEX_OUTOFBOUNDS_ERROR = UErrorCode.INDEX_OUTOFBOUNDS_ERROR;
-pub const U_PARSE_ERROR = UErrorCode.PARSE_ERROR;
-pub const U_INVALID_CHAR_FOUND = UErrorCode.INVALID_CHAR_FOUND;
-pub const U_TRUNCATED_CHAR_FOUND = UErrorCode.TRUNCATED_CHAR_FOUND;
-pub const U_ILLEGAL_CHAR_FOUND = UErrorCode.ILLEGAL_CHAR_FOUND;
-pub const U_INVALID_TABLE_FORMAT = UErrorCode.INVALID_TABLE_FORMAT;
-pub const U_INVALID_TABLE_FILE = UErrorCode.INVALID_TABLE_FILE;
-pub const U_BUFFER_OVERFLOW_ERROR = UErrorCode.BUFFER_OVERFLOW_ERROR;
-pub const U_UNSUPPORTED_ERROR = UErrorCode.UNSUPPORTED_ERROR;
-pub const U_RESOURCE_TYPE_MISMATCH = UErrorCode.RESOURCE_TYPE_MISMATCH;
-pub const U_ILLEGAL_ESCAPE_SEQUENCE = UErrorCode.ILLEGAL_ESCAPE_SEQUENCE;
-pub const U_UNSUPPORTED_ESCAPE_SEQUENCE = UErrorCode.UNSUPPORTED_ESCAPE_SEQUENCE;
-pub const U_NO_SPACE_AVAILABLE = UErrorCode.NO_SPACE_AVAILABLE;
-pub const U_CE_NOT_FOUND_ERROR = UErrorCode.CE_NOT_FOUND_ERROR;
-pub const U_PRIMARY_TOO_LONG_ERROR = UErrorCode.PRIMARY_TOO_LONG_ERROR;
-pub const U_STATE_TOO_OLD_ERROR = UErrorCode.STATE_TOO_OLD_ERROR;
-pub const U_TOO_MANY_ALIASES_ERROR = UErrorCode.TOO_MANY_ALIASES_ERROR;
-pub const U_ENUM_OUT_OF_SYNC_ERROR = UErrorCode.ENUM_OUT_OF_SYNC_ERROR;
-pub const U_INVARIANT_CONVERSION_ERROR = UErrorCode.INVARIANT_CONVERSION_ERROR;
-pub const U_INVALID_STATE_ERROR = UErrorCode.INVALID_STATE_ERROR;
-pub const U_COLLATOR_VERSION_MISMATCH = UErrorCode.COLLATOR_VERSION_MISMATCH;
-pub const U_USELESS_COLLATOR_ERROR = UErrorCode.USELESS_COLLATOR_ERROR;
-pub const U_NO_WRITE_PERMISSION = UErrorCode.NO_WRITE_PERMISSION;
-pub const U_BAD_VARIABLE_DEFINITION = UErrorCode.BAD_VARIABLE_DEFINITION;
-pub const U_PARSE_ERROR_START = UErrorCode.BAD_VARIABLE_DEFINITION;
-pub const U_MALFORMED_RULE = UErrorCode.MALFORMED_RULE;
-pub const U_MALFORMED_SET = UErrorCode.MALFORMED_SET;
-pub const U_MALFORMED_SYMBOL_REFERENCE = UErrorCode.MALFORMED_SYMBOL_REFERENCE;
-pub const U_MALFORMED_UNICODE_ESCAPE = UErrorCode.MALFORMED_UNICODE_ESCAPE;
-pub const U_MALFORMED_VARIABLE_DEFINITION = UErrorCode.MALFORMED_VARIABLE_DEFINITION;
-pub const U_MALFORMED_VARIABLE_REFERENCE = UErrorCode.MALFORMED_VARIABLE_REFERENCE;
-pub const U_MISMATCHED_SEGMENT_DELIMITERS = UErrorCode.MISMATCHED_SEGMENT_DELIMITERS;
-pub const U_MISPLACED_ANCHOR_START = UErrorCode.MISPLACED_ANCHOR_START;
-pub const U_MISPLACED_CURSOR_OFFSET = UErrorCode.MISPLACED_CURSOR_OFFSET;
-pub const U_MISPLACED_QUANTIFIER = UErrorCode.MISPLACED_QUANTIFIER;
-pub const U_MISSING_OPERATOR = UErrorCode.MISSING_OPERATOR;
-pub const U_MISSING_SEGMENT_CLOSE = UErrorCode.MISSING_SEGMENT_CLOSE;
-pub const U_MULTIPLE_ANTE_CONTEXTS = UErrorCode.MULTIPLE_ANTE_CONTEXTS;
-pub const U_MULTIPLE_CURSORS = UErrorCode.MULTIPLE_CURSORS;
-pub const U_MULTIPLE_POST_CONTEXTS = UErrorCode.MULTIPLE_POST_CONTEXTS;
-pub const U_TRAILING_BACKSLASH = UErrorCode.TRAILING_BACKSLASH;
-pub const U_UNDEFINED_SEGMENT_REFERENCE = UErrorCode.UNDEFINED_SEGMENT_REFERENCE;
-pub const U_UNDEFINED_VARIABLE = UErrorCode.UNDEFINED_VARIABLE;
-pub const U_UNQUOTED_SPECIAL = UErrorCode.UNQUOTED_SPECIAL;
-pub const U_UNTERMINATED_QUOTE = UErrorCode.UNTERMINATED_QUOTE;
-pub const U_RULE_MASK_ERROR = UErrorCode.RULE_MASK_ERROR;
-pub const U_MISPLACED_COMPOUND_FILTER = UErrorCode.MISPLACED_COMPOUND_FILTER;
-pub const U_MULTIPLE_COMPOUND_FILTERS = UErrorCode.MULTIPLE_COMPOUND_FILTERS;
-pub const U_INVALID_RBT_SYNTAX = UErrorCode.INVALID_RBT_SYNTAX;
-pub const U_INVALID_PROPERTY_PATTERN = UErrorCode.INVALID_PROPERTY_PATTERN;
-pub const U_MALFORMED_PRAGMA = UErrorCode.MALFORMED_PRAGMA;
-pub const U_UNCLOSED_SEGMENT = UErrorCode.UNCLOSED_SEGMENT;
-pub const U_ILLEGAL_CHAR_IN_SEGMENT = UErrorCode.ILLEGAL_CHAR_IN_SEGMENT;
-pub const U_VARIABLE_RANGE_EXHAUSTED = UErrorCode.VARIABLE_RANGE_EXHAUSTED;
-pub const U_VARIABLE_RANGE_OVERLAP = UErrorCode.VARIABLE_RANGE_OVERLAP;
-pub const U_ILLEGAL_CHARACTER = UErrorCode.ILLEGAL_CHARACTER;
-pub const U_INTERNAL_TRANSLITERATOR_ERROR = UErrorCode.INTERNAL_TRANSLITERATOR_ERROR;
-pub const U_INVALID_ID = UErrorCode.INVALID_ID;
-pub const U_INVALID_FUNCTION = UErrorCode.INVALID_FUNCTION;
-pub const U_UNEXPECTED_TOKEN = UErrorCode.UNEXPECTED_TOKEN;
-pub const U_FMT_PARSE_ERROR_START = UErrorCode.UNEXPECTED_TOKEN;
-pub const U_MULTIPLE_DECIMAL_SEPARATORS = UErrorCode.MULTIPLE_DECIMAL_SEPARATORS;
-pub const U_MULTIPLE_DECIMAL_SEPERATORS = UErrorCode.MULTIPLE_DECIMAL_SEPARATORS;
-pub const U_MULTIPLE_EXPONENTIAL_SYMBOLS = UErrorCode.MULTIPLE_EXPONENTIAL_SYMBOLS;
-pub const U_MALFORMED_EXPONENTIAL_PATTERN = UErrorCode.MALFORMED_EXPONENTIAL_PATTERN;
-pub const U_MULTIPLE_PERCENT_SYMBOLS = UErrorCode.MULTIPLE_PERCENT_SYMBOLS;
-pub const U_MULTIPLE_PERMILL_SYMBOLS = UErrorCode.MULTIPLE_PERMILL_SYMBOLS;
-pub const U_MULTIPLE_PAD_SPECIFIERS = UErrorCode.MULTIPLE_PAD_SPECIFIERS;
-pub const U_PATTERN_SYNTAX_ERROR = UErrorCode.PATTERN_SYNTAX_ERROR;
-pub const U_ILLEGAL_PAD_POSITION = UErrorCode.ILLEGAL_PAD_POSITION;
-pub const U_UNMATCHED_BRACES = UErrorCode.UNMATCHED_BRACES;
-pub const U_UNSUPPORTED_PROPERTY = UErrorCode.UNSUPPORTED_PROPERTY;
-pub const U_UNSUPPORTED_ATTRIBUTE = UErrorCode.UNSUPPORTED_ATTRIBUTE;
-pub const U_ARGUMENT_TYPE_MISMATCH = UErrorCode.ARGUMENT_TYPE_MISMATCH;
-pub const U_DUPLICATE_KEYWORD = UErrorCode.DUPLICATE_KEYWORD;
-pub const U_UNDEFINED_KEYWORD = UErrorCode.UNDEFINED_KEYWORD;
-pub const U_DEFAULT_KEYWORD_MISSING = UErrorCode.DEFAULT_KEYWORD_MISSING;
-pub const U_DECIMAL_NUMBER_SYNTAX_ERROR = UErrorCode.DECIMAL_NUMBER_SYNTAX_ERROR;
-pub const U_FORMAT_INEXACT_ERROR = UErrorCode.FORMAT_INEXACT_ERROR;
-pub const U_NUMBER_ARG_OUTOFBOUNDS_ERROR = UErrorCode.NUMBER_ARG_OUTOFBOUNDS_ERROR;
-pub const U_NUMBER_SKELETON_SYNTAX_ERROR = UErrorCode.NUMBER_SKELETON_SYNTAX_ERROR;
-pub const U_BRK_INTERNAL_ERROR = UErrorCode.BRK_INTERNAL_ERROR;
-pub const U_BRK_ERROR_START = UErrorCode.BRK_INTERNAL_ERROR;
-pub const U_BRK_HEX_DIGITS_EXPECTED = UErrorCode.BRK_HEX_DIGITS_EXPECTED;
-pub const U_BRK_SEMICOLON_EXPECTED = UErrorCode.BRK_SEMICOLON_EXPECTED;
-pub const U_BRK_RULE_SYNTAX = UErrorCode.BRK_RULE_SYNTAX;
-pub const U_BRK_UNCLOSED_SET = UErrorCode.BRK_UNCLOSED_SET;
-pub const U_BRK_ASSIGN_ERROR = UErrorCode.BRK_ASSIGN_ERROR;
-pub const U_BRK_VARIABLE_REDFINITION = UErrorCode.BRK_VARIABLE_REDFINITION;
-pub const U_BRK_MISMATCHED_PAREN = UErrorCode.BRK_MISMATCHED_PAREN;
-pub const U_BRK_NEW_LINE_IN_QUOTED_STRING = UErrorCode.BRK_NEW_LINE_IN_QUOTED_STRING;
-pub const U_BRK_UNDEFINED_VARIABLE = UErrorCode.BRK_UNDEFINED_VARIABLE;
-pub const U_BRK_INIT_ERROR = UErrorCode.BRK_INIT_ERROR;
-pub const U_BRK_RULE_EMPTY_SET = UErrorCode.BRK_RULE_EMPTY_SET;
-pub const U_BRK_UNRECOGNIZED_OPTION = UErrorCode.BRK_UNRECOGNIZED_OPTION;
-pub const U_BRK_MALFORMED_RULE_TAG = UErrorCode.BRK_MALFORMED_RULE_TAG;
-pub const U_REGEX_INTERNAL_ERROR = UErrorCode.REGEX_INTERNAL_ERROR;
-pub const U_REGEX_ERROR_START = UErrorCode.REGEX_INTERNAL_ERROR;
-pub const U_REGEX_RULE_SYNTAX = UErrorCode.REGEX_RULE_SYNTAX;
-pub const U_REGEX_INVALID_STATE = UErrorCode.REGEX_INVALID_STATE;
-pub const U_REGEX_BAD_ESCAPE_SEQUENCE = UErrorCode.REGEX_BAD_ESCAPE_SEQUENCE;
-pub const U_REGEX_PROPERTY_SYNTAX = UErrorCode.REGEX_PROPERTY_SYNTAX;
-pub const U_REGEX_UNIMPLEMENTED = UErrorCode.REGEX_UNIMPLEMENTED;
-pub const U_REGEX_MISMATCHED_PAREN = UErrorCode.REGEX_MISMATCHED_PAREN;
-pub const U_REGEX_NUMBER_TOO_BIG = UErrorCode.REGEX_NUMBER_TOO_BIG;
-pub const U_REGEX_BAD_INTERVAL = UErrorCode.REGEX_BAD_INTERVAL;
-pub const U_REGEX_MAX_LT_MIN = UErrorCode.REGEX_MAX_LT_MIN;
-pub const U_REGEX_INVALID_BACK_REF = UErrorCode.REGEX_INVALID_BACK_REF;
-pub const U_REGEX_INVALID_FLAG = UErrorCode.REGEX_INVALID_FLAG;
-pub const U_REGEX_LOOK_BEHIND_LIMIT = UErrorCode.REGEX_LOOK_BEHIND_LIMIT;
-pub const U_REGEX_SET_CONTAINS_STRING = UErrorCode.REGEX_SET_CONTAINS_STRING;
-pub const U_REGEX_MISSING_CLOSE_BRACKET = UErrorCode.REGEX_MISSING_CLOSE_BRACKET;
-pub const U_REGEX_INVALID_RANGE = UErrorCode.REGEX_INVALID_RANGE;
-pub const U_REGEX_STACK_OVERFLOW = UErrorCode.REGEX_STACK_OVERFLOW;
-pub const U_REGEX_TIME_OUT = UErrorCode.REGEX_TIME_OUT;
-pub const U_REGEX_STOPPED_BY_CALLER = UErrorCode.REGEX_STOPPED_BY_CALLER;
-pub const U_REGEX_PATTERN_TOO_BIG = UErrorCode.REGEX_PATTERN_TOO_BIG;
-pub const U_REGEX_INVALID_CAPTURE_GROUP_NAME = UErrorCode.REGEX_INVALID_CAPTURE_GROUP_NAME;
-pub const U_IDNA_PROHIBITED_ERROR = UErrorCode.IDNA_PROHIBITED_ERROR;
-pub const U_IDNA_ERROR_START = UErrorCode.IDNA_PROHIBITED_ERROR;
-pub const U_IDNA_UNASSIGNED_ERROR = UErrorCode.IDNA_UNASSIGNED_ERROR;
-pub const U_IDNA_CHECK_BIDI_ERROR = UErrorCode.IDNA_CHECK_BIDI_ERROR;
-pub const U_IDNA_STD3_ASCII_RULES_ERROR = UErrorCode.IDNA_STD3_ASCII_RULES_ERROR;
-pub const U_IDNA_ACE_PREFIX_ERROR = UErrorCode.IDNA_ACE_PREFIX_ERROR;
-pub const U_IDNA_VERIFICATION_ERROR = UErrorCode.IDNA_VERIFICATION_ERROR;
-pub const U_IDNA_LABEL_TOO_LONG_ERROR = UErrorCode.IDNA_LABEL_TOO_LONG_ERROR;
-pub const U_IDNA_ZERO_LENGTH_LABEL_ERROR = UErrorCode.IDNA_ZERO_LENGTH_LABEL_ERROR;
-pub const U_IDNA_DOMAIN_NAME_TOO_LONG_ERROR = UErrorCode.IDNA_DOMAIN_NAME_TOO_LONG_ERROR;
-pub const U_STRINGPREP_PROHIBITED_ERROR = UErrorCode.IDNA_PROHIBITED_ERROR;
-pub const U_STRINGPREP_UNASSIGNED_ERROR = UErrorCode.IDNA_UNASSIGNED_ERROR;
-pub const U_STRINGPREP_CHECK_BIDI_ERROR = UErrorCode.IDNA_CHECK_BIDI_ERROR;
-pub const U_PLUGIN_ERROR_START = UErrorCode.PLUGIN_ERROR_START;
-pub const U_PLUGIN_TOO_HIGH = UErrorCode.PLUGIN_ERROR_START;
-pub const U_PLUGIN_DIDNT_SET_LEVEL = UErrorCode.PLUGIN_DIDNT_SET_LEVEL;
-
-pub const UTraceLevel = enum(i32) {
-    OFF = -1,
-    ERROR = 0,
-    WARNING = 3,
-    OPEN_CLOSE = 5,
-    INFO = 7,
-    VERBOSE = 9,
-};
-pub const UTRACE_OFF = UTraceLevel.OFF;
-pub const UTRACE_ERROR = UTraceLevel.ERROR;
-pub const UTRACE_WARNING = UTraceLevel.WARNING;
-pub const UTRACE_OPEN_CLOSE = UTraceLevel.OPEN_CLOSE;
-pub const UTRACE_INFO = UTraceLevel.INFO;
-pub const UTRACE_VERBOSE = UTraceLevel.VERBOSE;
-
-pub const UTraceFunctionNumber = enum(i32) {
-    FUNCTION_START = 0,
-    U_CLEANUP = 1,
-    CONVERSION_START = 4096,
-    UCNV_OPEN_PACKAGE = 4097,
-    UCNV_OPEN_ALGORITHMIC = 4098,
-    UCNV_CLONE = 4099,
-    UCNV_CLOSE = 4100,
-    UCNV_FLUSH_CACHE = 4101,
-    UCNV_LOAD = 4102,
-    UCNV_UNLOAD = 4103,
-    COLLATION_START = 8192,
-    UCOL_CLOSE = 8193,
-    UCOL_STRCOLL = 8194,
-    UCOL_GET_SORTKEY = 8195,
-    UCOL_GETLOCALE = 8196,
-    UCOL_NEXTSORTKEYPART = 8197,
-    UCOL_STRCOLLITER = 8198,
-    UCOL_OPEN_FROM_SHORT_STRING = 8199,
-    UCOL_STRCOLLUTF8 = 8200,
-    UDATA_START = 12288,
-    UDATA_BUNDLE = 12289,
-    UDATA_DATA_FILE = 12290,
-    UDATA_RES_FILE = 12291,
-    pub const U_INIT = .FUNCTION_START;
-    pub const UCNV_OPEN = .CONVERSION_START;
-    pub const UCOL_OPEN = .COLLATION_START;
-    pub const UDATA_RESOURCE = .UDATA_START;
-};
-pub const UTRACE_FUNCTION_START = UTraceFunctionNumber.FUNCTION_START;
-pub const UTRACE_U_INIT = UTraceFunctionNumber.FUNCTION_START;
-pub const UTRACE_U_CLEANUP = UTraceFunctionNumber.U_CLEANUP;
-pub const UTRACE_CONVERSION_START = UTraceFunctionNumber.CONVERSION_START;
-pub const UTRACE_UCNV_OPEN = UTraceFunctionNumber.CONVERSION_START;
-pub const UTRACE_UCNV_OPEN_PACKAGE = UTraceFunctionNumber.UCNV_OPEN_PACKAGE;
-pub const UTRACE_UCNV_OPEN_ALGORITHMIC = UTraceFunctionNumber.UCNV_OPEN_ALGORITHMIC;
-pub const UTRACE_UCNV_CLONE = UTraceFunctionNumber.UCNV_CLONE;
-pub const UTRACE_UCNV_CLOSE = UTraceFunctionNumber.UCNV_CLOSE;
-pub const UTRACE_UCNV_FLUSH_CACHE = UTraceFunctionNumber.UCNV_FLUSH_CACHE;
-pub const UTRACE_UCNV_LOAD = UTraceFunctionNumber.UCNV_LOAD;
-pub const UTRACE_UCNV_UNLOAD = UTraceFunctionNumber.UCNV_UNLOAD;
-pub const UTRACE_COLLATION_START = UTraceFunctionNumber.COLLATION_START;
-pub const UTRACE_UCOL_OPEN = UTraceFunctionNumber.COLLATION_START;
-pub const UTRACE_UCOL_CLOSE = UTraceFunctionNumber.UCOL_CLOSE;
-pub const UTRACE_UCOL_STRCOLL = UTraceFunctionNumber.UCOL_STRCOLL;
-pub const UTRACE_UCOL_GET_SORTKEY = UTraceFunctionNumber.UCOL_GET_SORTKEY;
-pub const UTRACE_UCOL_GETLOCALE = UTraceFunctionNumber.UCOL_GETLOCALE;
-pub const UTRACE_UCOL_NEXTSORTKEYPART = UTraceFunctionNumber.UCOL_NEXTSORTKEYPART;
-pub const UTRACE_UCOL_STRCOLLITER = UTraceFunctionNumber.UCOL_STRCOLLITER;
-pub const UTRACE_UCOL_OPEN_FROM_SHORT_STRING = UTraceFunctionNumber.UCOL_OPEN_FROM_SHORT_STRING;
-pub const UTRACE_UCOL_STRCOLLUTF8 = UTraceFunctionNumber.UCOL_STRCOLLUTF8;
-pub const UTRACE_UDATA_START = UTraceFunctionNumber.UDATA_START;
-pub const UTRACE_UDATA_RESOURCE = UTraceFunctionNumber.UDATA_START;
-pub const UTRACE_UDATA_BUNDLE = UTraceFunctionNumber.UDATA_BUNDLE;
-pub const UTRACE_UDATA_DATA_FILE = UTraceFunctionNumber.UDATA_DATA_FILE;
-pub const UTRACE_UDATA_RES_FILE = UTraceFunctionNumber.UDATA_RES_FILE;
-
-pub const UTraceEntry = *const fn(
-    context: ?*const anyopaque,
-    fnNumber: i32,
-) callconv(.winapi) void;
-
-pub const UTraceExit = *const fn(
-    context: ?*const anyopaque,
-    fnNumber: i32,
-    fmt: ?[*:0]const u8,
-    args: ?*i8,
-) callconv(.winapi) void;
-
-pub const UTraceData = *const fn(
-    context: ?*const anyopaque,
-    fnNumber: i32,
-    level: i32,
-    fmt: ?[*:0]const u8,
-    args: ?*i8,
-) callconv(.winapi) void;
-
-pub const UStringTrieResult = enum(i32) {
-    NO_MATCH = 0,
-    NO_VALUE = 1,
-    FINAL_VALUE = 2,
-    INTERMEDIATE_VALUE = 3,
-};
-pub const USTRINGTRIE_NO_MATCH = UStringTrieResult.NO_MATCH;
-pub const USTRINGTRIE_NO_VALUE = UStringTrieResult.NO_VALUE;
-pub const USTRINGTRIE_FINAL_VALUE = UStringTrieResult.FINAL_VALUE;
-pub const USTRINGTRIE_INTERMEDIATE_VALUE = UStringTrieResult.INTERMEDIATE_VALUE;
-
-pub const UScriptCode = enum(i32) {
-    INVALID_CODE = -1,
-    COMMON = 0,
-    INHERITED = 1,
-    ARABIC = 2,
-    ARMENIAN = 3,
-    BENGALI = 4,
-    BOPOMOFO = 5,
-    CHEROKEE = 6,
-    COPTIC = 7,
-    CYRILLIC = 8,
-    DESERET = 9,
-    DEVANAGARI = 10,
-    ETHIOPIC = 11,
-    GEORGIAN = 12,
-    GOTHIC = 13,
-    GREEK = 14,
-    GUJARATI = 15,
-    GURMUKHI = 16,
-    HAN = 17,
-    HANGUL = 18,
-    HEBREW = 19,
-    HIRAGANA = 20,
-    KANNADA = 21,
-    KATAKANA = 22,
-    KHMER = 23,
-    LAO = 24,
-    LATIN = 25,
-    MALAYALAM = 26,
-    MONGOLIAN = 27,
-    MYANMAR = 28,
-    OGHAM = 29,
-    OLD_ITALIC = 30,
-    ORIYA = 31,
-    RUNIC = 32,
-    SINHALA = 33,
-    SYRIAC = 34,
-    TAMIL = 35,
-    TELUGU = 36,
-    THAANA = 37,
-    THAI = 38,
-    TIBETAN = 39,
-    CANADIAN_ABORIGINAL = 40,
-    YI = 41,
-    TAGALOG = 42,
-    HANUNOO = 43,
-    BUHID = 44,
-    TAGBANWA = 45,
-    BRAILLE = 46,
-    CYPRIOT = 47,
-    LIMBU = 48,
-    LINEAR_B = 49,
-    OSMANYA = 50,
-    SHAVIAN = 51,
-    TAI_LE = 52,
-    UGARITIC = 53,
-    KATAKANA_OR_HIRAGANA = 54,
-    BUGINESE = 55,
-    GLAGOLITIC = 56,
-    KHAROSHTHI = 57,
-    SYLOTI_NAGRI = 58,
-    NEW_TAI_LUE = 59,
-    TIFINAGH = 60,
-    OLD_PERSIAN = 61,
-    BALINESE = 62,
-    BATAK = 63,
-    BLISSYMBOLS = 64,
-    BRAHMI = 65,
-    CHAM = 66,
-    CIRTH = 67,
-    OLD_CHURCH_SLAVONIC_CYRILLIC = 68,
-    DEMOTIC_EGYPTIAN = 69,
-    HIERATIC_EGYPTIAN = 70,
-    EGYPTIAN_HIEROGLYPHS = 71,
-    KHUTSURI = 72,
-    SIMPLIFIED_HAN = 73,
-    TRADITIONAL_HAN = 74,
-    PAHAWH_HMONG = 75,
-    OLD_HUNGARIAN = 76,
-    HARAPPAN_INDUS = 77,
-    JAVANESE = 78,
-    KAYAH_LI = 79,
-    LATIN_FRAKTUR = 80,
-    LATIN_GAELIC = 81,
-    LEPCHA = 82,
-    LINEAR_A = 83,
-    MANDAIC = 84,
-    MAYAN_HIEROGLYPHS = 85,
-    MEROITIC_HIEROGLYPHS = 86,
-    NKO = 87,
-    ORKHON = 88,
-    OLD_PERMIC = 89,
-    PHAGS_PA = 90,
-    PHOENICIAN = 91,
-    MIAO = 92,
-    RONGORONGO = 93,
-    SARATI = 94,
-    ESTRANGELO_SYRIAC = 95,
-    WESTERN_SYRIAC = 96,
-    EASTERN_SYRIAC = 97,
-    TENGWAR = 98,
-    VAI = 99,
-    VISIBLE_SPEECH = 100,
-    CUNEIFORM = 101,
-    UNWRITTEN_LANGUAGES = 102,
-    UNKNOWN = 103,
-    CARIAN = 104,
-    JAPANESE = 105,
-    LANNA = 106,
-    LYCIAN = 107,
-    LYDIAN = 108,
-    OL_CHIKI = 109,
-    REJANG = 110,
-    SAURASHTRA = 111,
-    SIGN_WRITING = 112,
-    SUNDANESE = 113,
-    MOON = 114,
-    MEITEI_MAYEK = 115,
-    IMPERIAL_ARAMAIC = 116,
-    AVESTAN = 117,
-    CHAKMA = 118,
-    KOREAN = 119,
-    KAITHI = 120,
-    MANICHAEAN = 121,
-    INSCRIPTIONAL_PAHLAVI = 122,
-    PSALTER_PAHLAVI = 123,
-    BOOK_PAHLAVI = 124,
-    INSCRIPTIONAL_PARTHIAN = 125,
-    SAMARITAN = 126,
-    TAI_VIET = 127,
-    MATHEMATICAL_NOTATION = 128,
-    SYMBOLS = 129,
-    BAMUM = 130,
-    LISU = 131,
-    NAKHI_GEBA = 132,
-    OLD_SOUTH_ARABIAN = 133,
-    BASSA_VAH = 134,
-    DUPLOYAN = 135,
-    ELBASAN = 136,
-    GRANTHA = 137,
-    KPELLE = 138,
-    LOMA = 139,
-    MENDE = 140,
-    MEROITIC_CURSIVE = 141,
-    OLD_NORTH_ARABIAN = 142,
-    NABATAEAN = 143,
-    PALMYRENE = 144,
-    KHUDAWADI = 145,
-    WARANG_CITI = 146,
-    AFAKA = 147,
-    JURCHEN = 148,
-    MRO = 149,
-    NUSHU = 150,
-    SHARADA = 151,
-    SORA_SOMPENG = 152,
-    TAKRI = 153,
-    TANGUT = 154,
-    WOLEAI = 155,
-    ANATOLIAN_HIEROGLYPHS = 156,
-    KHOJKI = 157,
-    TIRHUTA = 158,
-    CAUCASIAN_ALBANIAN = 159,
-    MAHAJANI = 160,
-    AHOM = 161,
-    HATRAN = 162,
-    MODI = 163,
-    MULTANI = 164,
-    PAU_CIN_HAU = 165,
-    SIDDHAM = 166,
-    ADLAM = 167,
-    BHAIKSUKI = 168,
-    MARCHEN = 169,
-    NEWA = 170,
-    OSAGE = 171,
-    HAN_WITH_BOPOMOFO = 172,
-    JAMO = 173,
-    SYMBOLS_EMOJI = 174,
-    MASARAM_GONDI = 175,
-    SOYOMBO = 176,
-    ZANABAZAR_SQUARE = 177,
-    DOGRA = 178,
-    GUNJALA_GONDI = 179,
-    MAKASAR = 180,
-    MEDEFAIDRIN = 181,
-    HANIFI_ROHINGYA = 182,
-    SOGDIAN = 183,
-    OLD_SOGDIAN = 184,
-    ELYMAIC = 185,
-    NYIAKENG_PUACHUE_HMONG = 186,
-    NANDINAGARI = 187,
-    WANCHO = 188,
-    CHORASMIAN = 189,
-    DIVES_AKURU = 190,
-    KHITAN_SMALL_SCRIPT = 191,
-    YEZIDI = 192,
-    pub const UCAS = .CANADIAN_ABORIGINAL;
-    pub const MANDAEAN = .MANDAIC;
-    pub const MEROITIC = .MEROITIC_HIEROGLYPHS;
-    pub const PHONETIC_POLLARD = .MIAO;
-    pub const SINDHI = .KHUDAWADI;
-};
-pub const USCRIPT_INVALID_CODE = UScriptCode.INVALID_CODE;
-pub const USCRIPT_COMMON = UScriptCode.COMMON;
-pub const USCRIPT_INHERITED = UScriptCode.INHERITED;
-pub const USCRIPT_ARABIC = UScriptCode.ARABIC;
-pub const USCRIPT_ARMENIAN = UScriptCode.ARMENIAN;
-pub const USCRIPT_BENGALI = UScriptCode.BENGALI;
-pub const USCRIPT_BOPOMOFO = UScriptCode.BOPOMOFO;
-pub const USCRIPT_CHEROKEE = UScriptCode.CHEROKEE;
-pub const USCRIPT_COPTIC = UScriptCode.COPTIC;
-pub const USCRIPT_CYRILLIC = UScriptCode.CYRILLIC;
-pub const USCRIPT_DESERET = UScriptCode.DESERET;
-pub const USCRIPT_DEVANAGARI = UScriptCode.DEVANAGARI;
-pub const USCRIPT_ETHIOPIC = UScriptCode.ETHIOPIC;
-pub const USCRIPT_GEORGIAN = UScriptCode.GEORGIAN;
-pub const USCRIPT_GOTHIC = UScriptCode.GOTHIC;
-pub const USCRIPT_GREEK = UScriptCode.GREEK;
-pub const USCRIPT_GUJARATI = UScriptCode.GUJARATI;
-pub const USCRIPT_GURMUKHI = UScriptCode.GURMUKHI;
-pub const USCRIPT_HAN = UScriptCode.HAN;
-pub const USCRIPT_HANGUL = UScriptCode.HANGUL;
-pub const USCRIPT_HEBREW = UScriptCode.HEBREW;
-pub const USCRIPT_HIRAGANA = UScriptCode.HIRAGANA;
-pub const USCRIPT_KANNADA = UScriptCode.KANNADA;
-pub const USCRIPT_KATAKANA = UScriptCode.KATAKANA;
-pub const USCRIPT_KHMER = UScriptCode.KHMER;
-pub const USCRIPT_LAO = UScriptCode.LAO;
-pub const USCRIPT_LATIN = UScriptCode.LATIN;
-pub const USCRIPT_MALAYALAM = UScriptCode.MALAYALAM;
-pub const USCRIPT_MONGOLIAN = UScriptCode.MONGOLIAN;
-pub const USCRIPT_MYANMAR = UScriptCode.MYANMAR;
-pub const USCRIPT_OGHAM = UScriptCode.OGHAM;
-pub const USCRIPT_OLD_ITALIC = UScriptCode.OLD_ITALIC;
-pub const USCRIPT_ORIYA = UScriptCode.ORIYA;
-pub const USCRIPT_RUNIC = UScriptCode.RUNIC;
-pub const USCRIPT_SINHALA = UScriptCode.SINHALA;
-pub const USCRIPT_SYRIAC = UScriptCode.SYRIAC;
-pub const USCRIPT_TAMIL = UScriptCode.TAMIL;
-pub const USCRIPT_TELUGU = UScriptCode.TELUGU;
-pub const USCRIPT_THAANA = UScriptCode.THAANA;
-pub const USCRIPT_THAI = UScriptCode.THAI;
-pub const USCRIPT_TIBETAN = UScriptCode.TIBETAN;
-pub const USCRIPT_CANADIAN_ABORIGINAL = UScriptCode.CANADIAN_ABORIGINAL;
-pub const USCRIPT_UCAS = UScriptCode.CANADIAN_ABORIGINAL;
-pub const USCRIPT_YI = UScriptCode.YI;
-pub const USCRIPT_TAGALOG = UScriptCode.TAGALOG;
-pub const USCRIPT_HANUNOO = UScriptCode.HANUNOO;
-pub const USCRIPT_BUHID = UScriptCode.BUHID;
-pub const USCRIPT_TAGBANWA = UScriptCode.TAGBANWA;
-pub const USCRIPT_BRAILLE = UScriptCode.BRAILLE;
-pub const USCRIPT_CYPRIOT = UScriptCode.CYPRIOT;
-pub const USCRIPT_LIMBU = UScriptCode.LIMBU;
-pub const USCRIPT_LINEAR_B = UScriptCode.LINEAR_B;
-pub const USCRIPT_OSMANYA = UScriptCode.OSMANYA;
-pub const USCRIPT_SHAVIAN = UScriptCode.SHAVIAN;
-pub const USCRIPT_TAI_LE = UScriptCode.TAI_LE;
-pub const USCRIPT_UGARITIC = UScriptCode.UGARITIC;
-pub const USCRIPT_KATAKANA_OR_HIRAGANA = UScriptCode.KATAKANA_OR_HIRAGANA;
-pub const USCRIPT_BUGINESE = UScriptCode.BUGINESE;
-pub const USCRIPT_GLAGOLITIC = UScriptCode.GLAGOLITIC;
-pub const USCRIPT_KHAROSHTHI = UScriptCode.KHAROSHTHI;
-pub const USCRIPT_SYLOTI_NAGRI = UScriptCode.SYLOTI_NAGRI;
-pub const USCRIPT_NEW_TAI_LUE = UScriptCode.NEW_TAI_LUE;
-pub const USCRIPT_TIFINAGH = UScriptCode.TIFINAGH;
-pub const USCRIPT_OLD_PERSIAN = UScriptCode.OLD_PERSIAN;
-pub const USCRIPT_BALINESE = UScriptCode.BALINESE;
-pub const USCRIPT_BATAK = UScriptCode.BATAK;
-pub const USCRIPT_BLISSYMBOLS = UScriptCode.BLISSYMBOLS;
-pub const USCRIPT_BRAHMI = UScriptCode.BRAHMI;
-pub const USCRIPT_CHAM = UScriptCode.CHAM;
-pub const USCRIPT_CIRTH = UScriptCode.CIRTH;
-pub const USCRIPT_OLD_CHURCH_SLAVONIC_CYRILLIC = UScriptCode.OLD_CHURCH_SLAVONIC_CYRILLIC;
-pub const USCRIPT_DEMOTIC_EGYPTIAN = UScriptCode.DEMOTIC_EGYPTIAN;
-pub const USCRIPT_HIERATIC_EGYPTIAN = UScriptCode.HIERATIC_EGYPTIAN;
-pub const USCRIPT_EGYPTIAN_HIEROGLYPHS = UScriptCode.EGYPTIAN_HIEROGLYPHS;
-pub const USCRIPT_KHUTSURI = UScriptCode.KHUTSURI;
-pub const USCRIPT_SIMPLIFIED_HAN = UScriptCode.SIMPLIFIED_HAN;
-pub const USCRIPT_TRADITIONAL_HAN = UScriptCode.TRADITIONAL_HAN;
-pub const USCRIPT_PAHAWH_HMONG = UScriptCode.PAHAWH_HMONG;
-pub const USCRIPT_OLD_HUNGARIAN = UScriptCode.OLD_HUNGARIAN;
-pub const USCRIPT_HARAPPAN_INDUS = UScriptCode.HARAPPAN_INDUS;
-pub const USCRIPT_JAVANESE = UScriptCode.JAVANESE;
-pub const USCRIPT_KAYAH_LI = UScriptCode.KAYAH_LI;
-pub const USCRIPT_LATIN_FRAKTUR = UScriptCode.LATIN_FRAKTUR;
-pub const USCRIPT_LATIN_GAELIC = UScriptCode.LATIN_GAELIC;
-pub const USCRIPT_LEPCHA = UScriptCode.LEPCHA;
-pub const USCRIPT_LINEAR_A = UScriptCode.LINEAR_A;
-pub const USCRIPT_MANDAIC = UScriptCode.MANDAIC;
-pub const USCRIPT_MANDAEAN = UScriptCode.MANDAIC;
-pub const USCRIPT_MAYAN_HIEROGLYPHS = UScriptCode.MAYAN_HIEROGLYPHS;
-pub const USCRIPT_MEROITIC_HIEROGLYPHS = UScriptCode.MEROITIC_HIEROGLYPHS;
-pub const USCRIPT_MEROITIC = UScriptCode.MEROITIC_HIEROGLYPHS;
-pub const USCRIPT_NKO = UScriptCode.NKO;
-pub const USCRIPT_ORKHON = UScriptCode.ORKHON;
-pub const USCRIPT_OLD_PERMIC = UScriptCode.OLD_PERMIC;
-pub const USCRIPT_PHAGS_PA = UScriptCode.PHAGS_PA;
-pub const USCRIPT_PHOENICIAN = UScriptCode.PHOENICIAN;
-pub const USCRIPT_MIAO = UScriptCode.MIAO;
-pub const USCRIPT_PHONETIC_POLLARD = UScriptCode.MIAO;
-pub const USCRIPT_RONGORONGO = UScriptCode.RONGORONGO;
-pub const USCRIPT_SARATI = UScriptCode.SARATI;
-pub const USCRIPT_ESTRANGELO_SYRIAC = UScriptCode.ESTRANGELO_SYRIAC;
-pub const USCRIPT_WESTERN_SYRIAC = UScriptCode.WESTERN_SYRIAC;
-pub const USCRIPT_EASTERN_SYRIAC = UScriptCode.EASTERN_SYRIAC;
-pub const USCRIPT_TENGWAR = UScriptCode.TENGWAR;
-pub const USCRIPT_VAI = UScriptCode.VAI;
-pub const USCRIPT_VISIBLE_SPEECH = UScriptCode.VISIBLE_SPEECH;
-pub const USCRIPT_CUNEIFORM = UScriptCode.CUNEIFORM;
-pub const USCRIPT_UNWRITTEN_LANGUAGES = UScriptCode.UNWRITTEN_LANGUAGES;
-pub const USCRIPT_UNKNOWN = UScriptCode.UNKNOWN;
-pub const USCRIPT_CARIAN = UScriptCode.CARIAN;
-pub const USCRIPT_JAPANESE = UScriptCode.JAPANESE;
-pub const USCRIPT_LANNA = UScriptCode.LANNA;
-pub const USCRIPT_LYCIAN = UScriptCode.LYCIAN;
-pub const USCRIPT_LYDIAN = UScriptCode.LYDIAN;
-pub const USCRIPT_OL_CHIKI = UScriptCode.OL_CHIKI;
-pub const USCRIPT_REJANG = UScriptCode.REJANG;
-pub const USCRIPT_SAURASHTRA = UScriptCode.SAURASHTRA;
-pub const USCRIPT_SIGN_WRITING = UScriptCode.SIGN_WRITING;
-pub const USCRIPT_SUNDANESE = UScriptCode.SUNDANESE;
-pub const USCRIPT_MOON = UScriptCode.MOON;
-pub const USCRIPT_MEITEI_MAYEK = UScriptCode.MEITEI_MAYEK;
-pub const USCRIPT_IMPERIAL_ARAMAIC = UScriptCode.IMPERIAL_ARAMAIC;
-pub const USCRIPT_AVESTAN = UScriptCode.AVESTAN;
-pub const USCRIPT_CHAKMA = UScriptCode.CHAKMA;
-pub const USCRIPT_KOREAN = UScriptCode.KOREAN;
-pub const USCRIPT_KAITHI = UScriptCode.KAITHI;
-pub const USCRIPT_MANICHAEAN = UScriptCode.MANICHAEAN;
-pub const USCRIPT_INSCRIPTIONAL_PAHLAVI = UScriptCode.INSCRIPTIONAL_PAHLAVI;
-pub const USCRIPT_PSALTER_PAHLAVI = UScriptCode.PSALTER_PAHLAVI;
-pub const USCRIPT_BOOK_PAHLAVI = UScriptCode.BOOK_PAHLAVI;
-pub const USCRIPT_INSCRIPTIONAL_PARTHIAN = UScriptCode.INSCRIPTIONAL_PARTHIAN;
-pub const USCRIPT_SAMARITAN = UScriptCode.SAMARITAN;
-pub const USCRIPT_TAI_VIET = UScriptCode.TAI_VIET;
-pub const USCRIPT_MATHEMATICAL_NOTATION = UScriptCode.MATHEMATICAL_NOTATION;
-pub const USCRIPT_SYMBOLS = UScriptCode.SYMBOLS;
-pub const USCRIPT_BAMUM = UScriptCode.BAMUM;
-pub const USCRIPT_LISU = UScriptCode.LISU;
-pub const USCRIPT_NAKHI_GEBA = UScriptCode.NAKHI_GEBA;
-pub const USCRIPT_OLD_SOUTH_ARABIAN = UScriptCode.OLD_SOUTH_ARABIAN;
-pub const USCRIPT_BASSA_VAH = UScriptCode.BASSA_VAH;
-pub const USCRIPT_DUPLOYAN = UScriptCode.DUPLOYAN;
-pub const USCRIPT_ELBASAN = UScriptCode.ELBASAN;
-pub const USCRIPT_GRANTHA = UScriptCode.GRANTHA;
-pub const USCRIPT_KPELLE = UScriptCode.KPELLE;
-pub const USCRIPT_LOMA = UScriptCode.LOMA;
-pub const USCRIPT_MENDE = UScriptCode.MENDE;
-pub const USCRIPT_MEROITIC_CURSIVE = UScriptCode.MEROITIC_CURSIVE;
-pub const USCRIPT_OLD_NORTH_ARABIAN = UScriptCode.OLD_NORTH_ARABIAN;
-pub const USCRIPT_NABATAEAN = UScriptCode.NABATAEAN;
-pub const USCRIPT_PALMYRENE = UScriptCode.PALMYRENE;
-pub const USCRIPT_KHUDAWADI = UScriptCode.KHUDAWADI;
-pub const USCRIPT_SINDHI = UScriptCode.KHUDAWADI;
-pub const USCRIPT_WARANG_CITI = UScriptCode.WARANG_CITI;
-pub const USCRIPT_AFAKA = UScriptCode.AFAKA;
-pub const USCRIPT_JURCHEN = UScriptCode.JURCHEN;
-pub const USCRIPT_MRO = UScriptCode.MRO;
-pub const USCRIPT_NUSHU = UScriptCode.NUSHU;
-pub const USCRIPT_SHARADA = UScriptCode.SHARADA;
-pub const USCRIPT_SORA_SOMPENG = UScriptCode.SORA_SOMPENG;
-pub const USCRIPT_TAKRI = UScriptCode.TAKRI;
-pub const USCRIPT_TANGUT = UScriptCode.TANGUT;
-pub const USCRIPT_WOLEAI = UScriptCode.WOLEAI;
-pub const USCRIPT_ANATOLIAN_HIEROGLYPHS = UScriptCode.ANATOLIAN_HIEROGLYPHS;
-pub const USCRIPT_KHOJKI = UScriptCode.KHOJKI;
-pub const USCRIPT_TIRHUTA = UScriptCode.TIRHUTA;
-pub const USCRIPT_CAUCASIAN_ALBANIAN = UScriptCode.CAUCASIAN_ALBANIAN;
-pub const USCRIPT_MAHAJANI = UScriptCode.MAHAJANI;
-pub const USCRIPT_AHOM = UScriptCode.AHOM;
-pub const USCRIPT_HATRAN = UScriptCode.HATRAN;
-pub const USCRIPT_MODI = UScriptCode.MODI;
-pub const USCRIPT_MULTANI = UScriptCode.MULTANI;
-pub const USCRIPT_PAU_CIN_HAU = UScriptCode.PAU_CIN_HAU;
-pub const USCRIPT_SIDDHAM = UScriptCode.SIDDHAM;
-pub const USCRIPT_ADLAM = UScriptCode.ADLAM;
-pub const USCRIPT_BHAIKSUKI = UScriptCode.BHAIKSUKI;
-pub const USCRIPT_MARCHEN = UScriptCode.MARCHEN;
-pub const USCRIPT_NEWA = UScriptCode.NEWA;
-pub const USCRIPT_OSAGE = UScriptCode.OSAGE;
-pub const USCRIPT_HAN_WITH_BOPOMOFO = UScriptCode.HAN_WITH_BOPOMOFO;
-pub const USCRIPT_JAMO = UScriptCode.JAMO;
-pub const USCRIPT_SYMBOLS_EMOJI = UScriptCode.SYMBOLS_EMOJI;
-pub const USCRIPT_MASARAM_GONDI = UScriptCode.MASARAM_GONDI;
-pub const USCRIPT_SOYOMBO = UScriptCode.SOYOMBO;
-pub const USCRIPT_ZANABAZAR_SQUARE = UScriptCode.ZANABAZAR_SQUARE;
-pub const USCRIPT_DOGRA = UScriptCode.DOGRA;
-pub const USCRIPT_GUNJALA_GONDI = UScriptCode.GUNJALA_GONDI;
-pub const USCRIPT_MAKASAR = UScriptCode.MAKASAR;
-pub const USCRIPT_MEDEFAIDRIN = UScriptCode.MEDEFAIDRIN;
-pub const USCRIPT_HANIFI_ROHINGYA = UScriptCode.HANIFI_ROHINGYA;
-pub const USCRIPT_SOGDIAN = UScriptCode.SOGDIAN;
-pub const USCRIPT_OLD_SOGDIAN = UScriptCode.OLD_SOGDIAN;
-pub const USCRIPT_ELYMAIC = UScriptCode.ELYMAIC;
-pub const USCRIPT_NYIAKENG_PUACHUE_HMONG = UScriptCode.NYIAKENG_PUACHUE_HMONG;
-pub const USCRIPT_NANDINAGARI = UScriptCode.NANDINAGARI;
-pub const USCRIPT_WANCHO = UScriptCode.WANCHO;
-pub const USCRIPT_CHORASMIAN = UScriptCode.CHORASMIAN;
-pub const USCRIPT_DIVES_AKURU = UScriptCode.DIVES_AKURU;
-pub const USCRIPT_KHITAN_SMALL_SCRIPT = UScriptCode.KHITAN_SMALL_SCRIPT;
-pub const USCRIPT_YEZIDI = UScriptCode.YEZIDI;
-
-pub const UScriptUsage = enum(i32) {
-    NOT_ENCODED = 0,
-    UNKNOWN = 1,
-    EXCLUDED = 2,
-    LIMITED_USE = 3,
-    ASPIRATIONAL = 4,
-    RECOMMENDED = 5,
-};
-pub const USCRIPT_USAGE_NOT_ENCODED = UScriptUsage.NOT_ENCODED;
-pub const USCRIPT_USAGE_UNKNOWN = UScriptUsage.UNKNOWN;
-pub const USCRIPT_USAGE_EXCLUDED = UScriptUsage.EXCLUDED;
-pub const USCRIPT_USAGE_LIMITED_USE = UScriptUsage.LIMITED_USE;
-pub const USCRIPT_USAGE_ASPIRATIONAL = UScriptUsage.ASPIRATIONAL;
-pub const USCRIPT_USAGE_RECOMMENDED = UScriptUsage.RECOMMENDED;
-
-pub const UReplaceableCallbacks = extern struct {
-    length: isize,
-    charAt: isize,
-    char32At: isize,
-    replace: isize,
-    extract: isize,
-    copy: isize,
-};
-
-pub const UFieldPosition = extern struct {
-    field: i32,
-    beginIndex: i32,
-    endIndex: i32,
-};
-
-pub const UCharIteratorOrigin = enum(i32) {
-    START = 0,
-    CURRENT = 1,
-    LIMIT = 2,
-    ZERO = 3,
-    LENGTH = 4,
-};
-pub const UITER_START = UCharIteratorOrigin.START;
-pub const UITER_CURRENT = UCharIteratorOrigin.CURRENT;
-pub const UITER_LIMIT = UCharIteratorOrigin.LIMIT;
-pub const UITER_ZERO = UCharIteratorOrigin.ZERO;
-pub const UITER_LENGTH = UCharIteratorOrigin.LENGTH;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorGetIndex = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorMove = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorHasNext = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorHasPrevious = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorCurrent = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorNext = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorPrevious = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorReserved = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorGetState = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorSetState = *const fn() callconv(.winapi) void;
-
-pub const UCharIterator = extern struct {
-    context: ?*const anyopaque,
-    length: i32,
-    start: i32,
-    index: i32,
-    limit: i32,
-    reservedField: i32,
-    getIndex: ?UCharIteratorGetIndex,
-    move: ?UCharIteratorMove,
-    hasNext: ?UCharIteratorHasNext,
-    hasPrevious: ?UCharIteratorHasPrevious,
-    current: ?UCharIteratorCurrent,
-    next: ?UCharIteratorNext,
-    previous: ?UCharIteratorPrevious,
-    reservedFn: ?UCharIteratorReserved,
-    getState: ?UCharIteratorGetState,
-    setState: ?UCharIteratorSetState,
-};
-
-pub const UEnumeration = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const ULocDataLocaleType = enum(i32) {
-    ACTUAL_LOCALE = 0,
-    VALID_LOCALE = 1,
-};
-pub const ULOC_ACTUAL_LOCALE = ULocDataLocaleType.ACTUAL_LOCALE;
-pub const ULOC_VALID_LOCALE = ULocDataLocaleType.VALID_LOCALE;
-
-pub const ULocAvailableType = enum(i32) {
-    DEFAULT = 0,
-    ONLY_LEGACY_ALIASES = 1,
-    WITH_LEGACY_ALIASES = 2,
-};
-pub const ULOC_AVAILABLE_DEFAULT = ULocAvailableType.DEFAULT;
-pub const ULOC_AVAILABLE_ONLY_LEGACY_ALIASES = ULocAvailableType.ONLY_LEGACY_ALIASES;
-pub const ULOC_AVAILABLE_WITH_LEGACY_ALIASES = ULocAvailableType.WITH_LEGACY_ALIASES;
-
-pub const ULayoutType = enum(i32) {
-    LTR = 0,
-    RTL = 1,
-    TTB = 2,
-    BTT = 3,
-    UNKNOWN = 4,
-};
-pub const ULOC_LAYOUT_LTR = ULayoutType.LTR;
-pub const ULOC_LAYOUT_RTL = ULayoutType.RTL;
-pub const ULOC_LAYOUT_TTB = ULayoutType.TTB;
-pub const ULOC_LAYOUT_BTT = ULayoutType.BTT;
-pub const ULOC_LAYOUT_UNKNOWN = ULayoutType.UNKNOWN;
+pub const TCI_SRCCHARSET = TRANSLATE_CHARSET_INFO_FLAGS.CHARSET;
+pub const TCI_SRCCODEPAGE = TRANSLATE_CHARSET_INFO_FLAGS.CODEPAGE;
+pub const TCI_SRCFONTSIG = TRANSLATE_CHARSET_INFO_FLAGS.FONTSIG;
+pub const TCI_SRCLOCALE = TRANSLATE_CHARSET_INFO_FLAGS.LOCALE;
 
 pub const UAcceptResult = enum(i32) {
     FAILED = 0,
@@ -3159,683 +3663,50 @@ pub const ULOC_ACCEPT_FAILED = UAcceptResult.FAILED;
 pub const ULOC_ACCEPT_VALID = UAcceptResult.VALID;
 pub const ULOC_ACCEPT_FALLBACK = UAcceptResult.FALLBACK;
 
-pub const UResourceBundle = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UResType = enum(i32) {
-    NONE = -1,
-    STRING = 0,
-    BINARY = 1,
-    TABLE = 2,
-    ALIAS = 3,
-    INT = 7,
-    ARRAY = 8,
-    INT_VECTOR = 14,
-};
-pub const URES_NONE = UResType.NONE;
-pub const URES_STRING = UResType.STRING;
-pub const URES_BINARY = UResType.BINARY;
-pub const URES_TABLE = UResType.TABLE;
-pub const URES_ALIAS = UResType.ALIAS;
-pub const URES_INT = UResType.INT;
-pub const URES_ARRAY = UResType.ARRAY;
-pub const URES_INT_VECTOR = UResType.INT_VECTOR;
-
-pub const UDisplayContextType = enum(i32) {
-    DIALECT_HANDLING = 0,
-    CAPITALIZATION = 1,
-    DISPLAY_LENGTH = 2,
-    SUBSTITUTE_HANDLING = 3,
-};
-pub const UDISPCTX_TYPE_DIALECT_HANDLING = UDisplayContextType.DIALECT_HANDLING;
-pub const UDISPCTX_TYPE_CAPITALIZATION = UDisplayContextType.CAPITALIZATION;
-pub const UDISPCTX_TYPE_DISPLAY_LENGTH = UDisplayContextType.DISPLAY_LENGTH;
-pub const UDISPCTX_TYPE_SUBSTITUTE_HANDLING = UDisplayContextType.SUBSTITUTE_HANDLING;
-
-pub const UDisplayContext = enum(i32) {
-    STANDARD_NAMES = 0,
-    DIALECT_NAMES = 1,
-    CAPITALIZATION_NONE = 256,
-    CAPITALIZATION_FOR_MIDDLE_OF_SENTENCE = 257,
-    CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE = 258,
-    CAPITALIZATION_FOR_UI_LIST_OR_MENU = 259,
-    CAPITALIZATION_FOR_STANDALONE = 260,
-    LENGTH_FULL = 512,
-    LENGTH_SHORT = 513,
-    SUBSTITUTE = 768,
-    NO_SUBSTITUTE = 769,
-};
-pub const UDISPCTX_STANDARD_NAMES = UDisplayContext.STANDARD_NAMES;
-pub const UDISPCTX_DIALECT_NAMES = UDisplayContext.DIALECT_NAMES;
-pub const UDISPCTX_CAPITALIZATION_NONE = UDisplayContext.CAPITALIZATION_NONE;
-pub const UDISPCTX_CAPITALIZATION_FOR_MIDDLE_OF_SENTENCE = UDisplayContext.CAPITALIZATION_FOR_MIDDLE_OF_SENTENCE;
-pub const UDISPCTX_CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE = UDisplayContext.CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE;
-pub const UDISPCTX_CAPITALIZATION_FOR_UI_LIST_OR_MENU = UDisplayContext.CAPITALIZATION_FOR_UI_LIST_OR_MENU;
-pub const UDISPCTX_CAPITALIZATION_FOR_STANDALONE = UDisplayContext.CAPITALIZATION_FOR_STANDALONE;
-pub const UDISPCTX_LENGTH_FULL = UDisplayContext.LENGTH_FULL;
-pub const UDISPCTX_LENGTH_SHORT = UDisplayContext.LENGTH_SHORT;
-pub const UDISPCTX_SUBSTITUTE = UDisplayContext.SUBSTITUTE;
-pub const UDISPCTX_NO_SUBSTITUTE = UDisplayContext.NO_SUBSTITUTE;
-
-pub const UDialectHandling = enum(i32) {
-    STANDARD_NAMES = 0,
-    DIALECT_NAMES = 1,
-};
-pub const ULDN_STANDARD_NAMES = UDialectHandling.STANDARD_NAMES;
-pub const ULDN_DIALECT_NAMES = UDialectHandling.DIALECT_NAMES;
-
-pub const ULocaleDisplayNames = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCurrencyUsage = enum(i32) {
-    STANDARD = 0,
-    CASH = 1,
-};
-pub const UCURR_USAGE_STANDARD = UCurrencyUsage.STANDARD;
-pub const UCURR_USAGE_CASH = UCurrencyUsage.CASH;
-
-pub const UCurrNameStyle = enum(i32) {
-    SYMBOL_NAME = 0,
-    LONG_NAME = 1,
-    NARROW_SYMBOL_NAME = 2,
-};
-pub const UCURR_SYMBOL_NAME = UCurrNameStyle.SYMBOL_NAME;
-pub const UCURR_LONG_NAME = UCurrNameStyle.LONG_NAME;
-pub const UCURR_NARROW_SYMBOL_NAME = UCurrNameStyle.NARROW_SYMBOL_NAME;
-
-pub const UCurrCurrencyType = enum(i32) {
-    ALL = 2147483647,
-    COMMON = 1,
-    UNCOMMON = 2,
-    DEPRECATED = 4,
-    NON_DEPRECATED = 8,
-};
-pub const UCURR_ALL = UCurrCurrencyType.ALL;
-pub const UCURR_COMMON = UCurrCurrencyType.COMMON;
-pub const UCURR_UNCOMMON = UCurrCurrencyType.UNCOMMON;
-pub const UCURR_DEPRECATED = UCurrCurrencyType.DEPRECATED;
-pub const UCURR_NON_DEPRECATED = UCurrCurrencyType.NON_DEPRECATED;
-
-pub const UCPMap = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCPMapRangeOption = enum(i32) {
+pub const UAlphabeticIndexLabelType = enum(i32) {
     NORMAL = 0,
-    FIXED_LEAD_SURROGATES = 1,
-    FIXED_ALL_SURROGATES = 2,
+    UNDERFLOW = 1,
+    INFLOW = 2,
+    OVERFLOW = 3,
 };
-pub const UCPMAP_RANGE_NORMAL = UCPMapRangeOption.NORMAL;
-pub const UCPMAP_RANGE_FIXED_LEAD_SURROGATES = UCPMapRangeOption.FIXED_LEAD_SURROGATES;
-pub const UCPMAP_RANGE_FIXED_ALL_SURROGATES = UCPMapRangeOption.FIXED_ALL_SURROGATES;
+pub const U_ALPHAINDEX_NORMAL = UAlphabeticIndexLabelType.NORMAL;
+pub const U_ALPHAINDEX_UNDERFLOW = UAlphabeticIndexLabelType.UNDERFLOW;
+pub const U_ALPHAINDEX_INFLOW = UAlphabeticIndexLabelType.INFLOW;
+pub const U_ALPHAINDEX_OVERFLOW = UAlphabeticIndexLabelType.OVERFLOW;
 
-pub const UCPMapValueFilter = *const fn(
-    context: ?*const anyopaque,
-    value: u32,
-) callconv(.winapi) u32;
-
-pub const UCPTrieData = extern union {
-    ptr0: ?*const anyopaque,
-    ptr16: ?*const u16,
-    ptr32: ?*const u32,
-    ptr8: ?*const u8,
-};
-
-pub const UCPTrie = extern struct {
-    index: ?*const u16,
-    data: UCPTrieData,
-    indexLength: i32,
-    dataLength: i32,
-    highStart: i32,
-    shifted12HighStart: u16,
-    type: i8,
-    valueWidth: i8,
-    reserved32: u32,
-    reserved16: u16,
-    index3NullOffset: u16,
-    dataNullOffset: i32,
-    nullValue: u32,
-};
-
-pub const UCPTrieType = enum(i32) {
-    ANY = -1,
-    FAST = 0,
-    SMALL = 1,
-};
-pub const UCPTRIE_TYPE_ANY = UCPTrieType.ANY;
-pub const UCPTRIE_TYPE_FAST = UCPTrieType.FAST;
-pub const UCPTRIE_TYPE_SMALL = UCPTrieType.SMALL;
-
-pub const UCPTrieValueWidth = enum(i32) {
-    ANY = -1,
-    @"16" = 0,
-    @"32" = 1,
-    @"8" = 2,
-};
-pub const UCPTRIE_VALUE_BITS_ANY = UCPTrieValueWidth.ANY;
-pub const UCPTRIE_VALUE_BITS_16 = UCPTrieValueWidth.@"16";
-pub const UCPTRIE_VALUE_BITS_32 = UCPTrieValueWidth.@"32";
-pub const UCPTRIE_VALUE_BITS_8 = UCPTrieValueWidth.@"8";
-
-pub const UMutableCPTrie = extern struct {
+pub const UBiDi = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const UConverter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UConverterCallbackReason = enum(i32) {
-    UNASSIGNED = 0,
-    ILLEGAL = 1,
-    IRREGULAR = 2,
-    RESET = 3,
-    CLOSE = 4,
-    CLONE = 5,
-};
-pub const UCNV_UNASSIGNED = UConverterCallbackReason.UNASSIGNED;
-pub const UCNV_ILLEGAL = UConverterCallbackReason.ILLEGAL;
-pub const UCNV_IRREGULAR = UConverterCallbackReason.IRREGULAR;
-pub const UCNV_RESET = UConverterCallbackReason.RESET;
-pub const UCNV_CLOSE = UConverterCallbackReason.CLOSE;
-pub const UCNV_CLONE = UConverterCallbackReason.CLONE;
-
-pub const UConverterFromUnicodeArgs = extern struct {
-    size: u16,
-    flush: i8,
-    converter: ?*UConverter,
-    source: ?*const u16,
-    sourceLimit: ?*const u16,
-    target: ?PSTR,
-    targetLimit: ?[*:0]const u8,
-    offsets: ?*i32,
-};
-
-pub const UConverterToUnicodeArgs = extern struct {
-    size: u16,
-    flush: i8,
-    converter: ?*UConverter,
-    source: ?[*:0]const u8,
-    sourceLimit: ?[*:0]const u8,
-    target: ?*u16,
-    targetLimit: ?*const u16,
-    offsets: ?*i32,
-};
-
-pub const USet = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UConverterType = enum(i32) {
-    UNSUPPORTED_CONVERTER = -1,
-    SBCS = 0,
-    DBCS = 1,
-    MBCS = 2,
-    LATIN_1 = 3,
-    UTF8 = 4,
-    UTF16_BigEndian = 5,
-    UTF16_LittleEndian = 6,
-    UTF32_BigEndian = 7,
-    UTF32_LittleEndian = 8,
-    EBCDIC_STATEFUL = 9,
-    ISO_2022 = 10,
-    LMBCS_1 = 11,
-    LMBCS_2 = 12,
-    LMBCS_3 = 13,
-    LMBCS_4 = 14,
-    LMBCS_5 = 15,
-    LMBCS_6 = 16,
-    LMBCS_8 = 17,
-    LMBCS_11 = 18,
-    LMBCS_16 = 19,
-    LMBCS_17 = 20,
-    LMBCS_18 = 21,
-    LMBCS_19 = 22,
-    HZ = 23,
-    SCSU = 24,
-    ISCII = 25,
-    US_ASCII = 26,
-    UTF7 = 27,
-    BOCU1 = 28,
-    UTF16 = 29,
-    UTF32 = 30,
-    CESU8 = 31,
-    IMAP_MAILBOX = 32,
-    COMPOUND_TEXT = 33,
-    NUMBER_OF_SUPPORTED_CONVERTER_TYPES = 34,
-    pub const LMBCS_LAST = .LMBCS_19;
-};
-pub const UCNV_UNSUPPORTED_CONVERTER = UConverterType.UNSUPPORTED_CONVERTER;
-pub const UCNV_SBCS = UConverterType.SBCS;
-pub const UCNV_DBCS = UConverterType.DBCS;
-pub const UCNV_MBCS = UConverterType.MBCS;
-pub const UCNV_LATIN_1 = UConverterType.LATIN_1;
-pub const UCNV_UTF8 = UConverterType.UTF8;
-pub const UCNV_UTF16_BigEndian = UConverterType.UTF16_BigEndian;
-pub const UCNV_UTF16_LittleEndian = UConverterType.UTF16_LittleEndian;
-pub const UCNV_UTF32_BigEndian = UConverterType.UTF32_BigEndian;
-pub const UCNV_UTF32_LittleEndian = UConverterType.UTF32_LittleEndian;
-pub const UCNV_EBCDIC_STATEFUL = UConverterType.EBCDIC_STATEFUL;
-pub const UCNV_ISO_2022 = UConverterType.ISO_2022;
-pub const UCNV_LMBCS_1 = UConverterType.LMBCS_1;
-pub const UCNV_LMBCS_2 = UConverterType.LMBCS_2;
-pub const UCNV_LMBCS_3 = UConverterType.LMBCS_3;
-pub const UCNV_LMBCS_4 = UConverterType.LMBCS_4;
-pub const UCNV_LMBCS_5 = UConverterType.LMBCS_5;
-pub const UCNV_LMBCS_6 = UConverterType.LMBCS_6;
-pub const UCNV_LMBCS_8 = UConverterType.LMBCS_8;
-pub const UCNV_LMBCS_11 = UConverterType.LMBCS_11;
-pub const UCNV_LMBCS_16 = UConverterType.LMBCS_16;
-pub const UCNV_LMBCS_17 = UConverterType.LMBCS_17;
-pub const UCNV_LMBCS_18 = UConverterType.LMBCS_18;
-pub const UCNV_LMBCS_19 = UConverterType.LMBCS_19;
-pub const UCNV_LMBCS_LAST = UConverterType.LMBCS_19;
-pub const UCNV_HZ = UConverterType.HZ;
-pub const UCNV_SCSU = UConverterType.SCSU;
-pub const UCNV_ISCII = UConverterType.ISCII;
-pub const UCNV_US_ASCII = UConverterType.US_ASCII;
-pub const UCNV_UTF7 = UConverterType.UTF7;
-pub const UCNV_BOCU1 = UConverterType.BOCU1;
-pub const UCNV_UTF16 = UConverterType.UTF16;
-pub const UCNV_UTF32 = UConverterType.UTF32;
-pub const UCNV_CESU8 = UConverterType.CESU8;
-pub const UCNV_IMAP_MAILBOX = UConverterType.IMAP_MAILBOX;
-pub const UCNV_COMPOUND_TEXT = UConverterType.COMPOUND_TEXT;
-pub const UCNV_NUMBER_OF_SUPPORTED_CONVERTER_TYPES = UConverterType.NUMBER_OF_SUPPORTED_CONVERTER_TYPES;
-
-pub const UConverterPlatform = enum(i32) {
-    UNKNOWN = -1,
-    IBM = 0,
-};
-pub const UCNV_UNKNOWN = UConverterPlatform.UNKNOWN;
-pub const UCNV_IBM = UConverterPlatform.IBM;
-
-pub const UConverterToUCallback = *const fn(
+pub const UBiDiClassCallback = *const fn(
     context: ?*const anyopaque,
-    args: ?*UConverterToUnicodeArgs,
-    codeUnits: ?[*:0]const u8,
-    length: i32,
-    reason: UConverterCallbackReason,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
+    c: i32,
+) callconv(.winapi) UCharDirection;
 
-pub const UConverterFromUCallback = *const fn(
-    context: ?*const anyopaque,
-    args: ?*UConverterFromUnicodeArgs,
-    codeUnits: ?*const u16,
-    length: i32,
-    codePoint: i32,
-    reason: UConverterCallbackReason,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub const UConverterUnicodeSet = enum(i32) {
-    SET = 0,
-    AND_FALLBACK_SET = 1,
+pub const UBiDiDirection = enum(i32) {
+    LTR = 0,
+    RTL = 1,
+    MIXED = 2,
+    NEUTRAL = 3,
 };
-pub const UCNV_ROUNDTRIP_SET = UConverterUnicodeSet.SET;
-pub const UCNV_ROUNDTRIP_AND_FALLBACK_SET = UConverterUnicodeSet.AND_FALLBACK_SET;
+pub const UBIDI_LTR = UBiDiDirection.LTR;
+pub const UBIDI_RTL = UBiDiDirection.RTL;
+pub const UBIDI_MIXED = UBiDiDirection.MIXED;
+pub const UBIDI_NEUTRAL = UBiDiDirection.NEUTRAL;
 
-pub const UMemAllocFn = *const fn(
-    context: ?*const anyopaque,
-    size: usize,
-) callconv(.winapi) ?*anyopaque;
-
-pub const UMemReallocFn = *const fn(
-    context: ?*const anyopaque,
-    mem: ?*anyopaque,
-    size: usize,
-) callconv(.winapi) ?*anyopaque;
-
-pub const UMemFreeFn = *const fn(
-    context: ?*const anyopaque,
-    mem: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const UProperty = enum(i32) {
-    ALPHABETIC = 0,
-    ASCII_HEX_DIGIT = 1,
-    BIDI_CONTROL = 2,
-    BIDI_MIRRORED = 3,
-    DASH = 4,
-    DEFAULT_IGNORABLE_CODE_POINT = 5,
-    DEPRECATED = 6,
-    DIACRITIC = 7,
-    EXTENDER = 8,
-    FULL_COMPOSITION_EXCLUSION = 9,
-    GRAPHEME_BASE = 10,
-    GRAPHEME_EXTEND = 11,
-    GRAPHEME_LINK = 12,
-    HEX_DIGIT = 13,
-    HYPHEN = 14,
-    ID_CONTINUE = 15,
-    ID_START = 16,
-    IDEOGRAPHIC = 17,
-    IDS_BINARY_OPERATOR = 18,
-    IDS_TRINARY_OPERATOR = 19,
-    JOIN_CONTROL = 20,
-    LOGICAL_ORDER_EXCEPTION = 21,
-    LOWERCASE = 22,
-    MATH = 23,
-    NONCHARACTER_CODE_POINT = 24,
-    QUOTATION_MARK = 25,
-    RADICAL = 26,
-    SOFT_DOTTED = 27,
-    TERMINAL_PUNCTUATION = 28,
-    UNIFIED_IDEOGRAPH = 29,
-    UPPERCASE = 30,
-    WHITE_SPACE = 31,
-    XID_CONTINUE = 32,
-    XID_START = 33,
-    CASE_SENSITIVE = 34,
-    S_TERM = 35,
-    VARIATION_SELECTOR = 36,
-    NFD_INERT = 37,
-    NFKD_INERT = 38,
-    NFC_INERT = 39,
-    NFKC_INERT = 40,
-    SEGMENT_STARTER = 41,
-    PATTERN_SYNTAX = 42,
-    PATTERN_WHITE_SPACE = 43,
-    POSIX_ALNUM = 44,
-    POSIX_BLANK = 45,
-    POSIX_GRAPH = 46,
-    POSIX_PRINT = 47,
-    POSIX_XDIGIT = 48,
-    CASED = 49,
-    CASE_IGNORABLE = 50,
-    CHANGES_WHEN_LOWERCASED = 51,
-    CHANGES_WHEN_UPPERCASED = 52,
-    CHANGES_WHEN_TITLECASED = 53,
-    CHANGES_WHEN_CASEFOLDED = 54,
-    CHANGES_WHEN_CASEMAPPED = 55,
-    CHANGES_WHEN_NFKC_CASEFOLDED = 56,
-    EMOJI = 57,
-    EMOJI_PRESENTATION = 58,
-    EMOJI_MODIFIER = 59,
-    EMOJI_MODIFIER_BASE = 60,
-    EMOJI_COMPONENT = 61,
-    REGIONAL_INDICATOR = 62,
-    PREPENDED_CONCATENATION_MARK = 63,
-    EXTENDED_PICTOGRAPHIC = 64,
-    BIDI_CLASS = 4096,
-    BLOCK = 4097,
-    CANONICAL_COMBINING_CLASS = 4098,
-    DECOMPOSITION_TYPE = 4099,
-    EAST_ASIAN_WIDTH = 4100,
-    GENERAL_CATEGORY = 4101,
-    JOINING_GROUP = 4102,
-    JOINING_TYPE = 4103,
-    LINE_BREAK = 4104,
-    NUMERIC_TYPE = 4105,
-    SCRIPT = 4106,
-    HANGUL_SYLLABLE_TYPE = 4107,
-    NFD_QUICK_CHECK = 4108,
-    NFKD_QUICK_CHECK = 4109,
-    NFC_QUICK_CHECK = 4110,
-    NFKC_QUICK_CHECK = 4111,
-    LEAD_CANONICAL_COMBINING_CLASS = 4112,
-    TRAIL_CANONICAL_COMBINING_CLASS = 4113,
-    GRAPHEME_CLUSTER_BREAK = 4114,
-    SENTENCE_BREAK = 4115,
-    WORD_BREAK = 4116,
-    BIDI_PAIRED_BRACKET_TYPE = 4117,
-    INDIC_POSITIONAL_CATEGORY = 4118,
-    INDIC_SYLLABIC_CATEGORY = 4119,
-    VERTICAL_ORIENTATION = 4120,
-    GENERAL_CATEGORY_MASK = 8192,
-    NUMERIC_VALUE = 12288,
-    AGE = 16384,
-    BIDI_MIRRORING_GLYPH = 16385,
-    CASE_FOLDING = 16386,
-    LOWERCASE_MAPPING = 16388,
-    NAME = 16389,
-    SIMPLE_CASE_FOLDING = 16390,
-    SIMPLE_LOWERCASE_MAPPING = 16391,
-    SIMPLE_TITLECASE_MAPPING = 16392,
-    SIMPLE_UPPERCASE_MAPPING = 16393,
-    TITLECASE_MAPPING = 16394,
-    UPPERCASE_MAPPING = 16396,
-    BIDI_PAIRED_BRACKET = 16397,
-    SCRIPT_EXTENSIONS = 28672,
-    INVALID_CODE = -1,
-    pub const BINARY_START = .ALPHABETIC;
-    pub const INT_START = .BIDI_CLASS;
-    pub const MASK_START = .GENERAL_CATEGORY_MASK;
-    pub const DOUBLE_START = .NUMERIC_VALUE;
-    pub const STRING_START = .AGE;
-    pub const OTHER_PROPERTY_START = .SCRIPT_EXTENSIONS;
+pub const UBiDiMirroring = enum(i32) {
+    FF = 0,
+    N = 1,
 };
-pub const UCHAR_ALPHABETIC = UProperty.ALPHABETIC;
-pub const UCHAR_BINARY_START = UProperty.ALPHABETIC;
-pub const UCHAR_ASCII_HEX_DIGIT = UProperty.ASCII_HEX_DIGIT;
-pub const UCHAR_BIDI_CONTROL = UProperty.BIDI_CONTROL;
-pub const UCHAR_BIDI_MIRRORED = UProperty.BIDI_MIRRORED;
-pub const UCHAR_DASH = UProperty.DASH;
-pub const UCHAR_DEFAULT_IGNORABLE_CODE_POINT = UProperty.DEFAULT_IGNORABLE_CODE_POINT;
-pub const UCHAR_DEPRECATED = UProperty.DEPRECATED;
-pub const UCHAR_DIACRITIC = UProperty.DIACRITIC;
-pub const UCHAR_EXTENDER = UProperty.EXTENDER;
-pub const UCHAR_FULL_COMPOSITION_EXCLUSION = UProperty.FULL_COMPOSITION_EXCLUSION;
-pub const UCHAR_GRAPHEME_BASE = UProperty.GRAPHEME_BASE;
-pub const UCHAR_GRAPHEME_EXTEND = UProperty.GRAPHEME_EXTEND;
-pub const UCHAR_GRAPHEME_LINK = UProperty.GRAPHEME_LINK;
-pub const UCHAR_HEX_DIGIT = UProperty.HEX_DIGIT;
-pub const UCHAR_HYPHEN = UProperty.HYPHEN;
-pub const UCHAR_ID_CONTINUE = UProperty.ID_CONTINUE;
-pub const UCHAR_ID_START = UProperty.ID_START;
-pub const UCHAR_IDEOGRAPHIC = UProperty.IDEOGRAPHIC;
-pub const UCHAR_IDS_BINARY_OPERATOR = UProperty.IDS_BINARY_OPERATOR;
-pub const UCHAR_IDS_TRINARY_OPERATOR = UProperty.IDS_TRINARY_OPERATOR;
-pub const UCHAR_JOIN_CONTROL = UProperty.JOIN_CONTROL;
-pub const UCHAR_LOGICAL_ORDER_EXCEPTION = UProperty.LOGICAL_ORDER_EXCEPTION;
-pub const UCHAR_LOWERCASE = UProperty.LOWERCASE;
-pub const UCHAR_MATH = UProperty.MATH;
-pub const UCHAR_NONCHARACTER_CODE_POINT = UProperty.NONCHARACTER_CODE_POINT;
-pub const UCHAR_QUOTATION_MARK = UProperty.QUOTATION_MARK;
-pub const UCHAR_RADICAL = UProperty.RADICAL;
-pub const UCHAR_SOFT_DOTTED = UProperty.SOFT_DOTTED;
-pub const UCHAR_TERMINAL_PUNCTUATION = UProperty.TERMINAL_PUNCTUATION;
-pub const UCHAR_UNIFIED_IDEOGRAPH = UProperty.UNIFIED_IDEOGRAPH;
-pub const UCHAR_UPPERCASE = UProperty.UPPERCASE;
-pub const UCHAR_WHITE_SPACE = UProperty.WHITE_SPACE;
-pub const UCHAR_XID_CONTINUE = UProperty.XID_CONTINUE;
-pub const UCHAR_XID_START = UProperty.XID_START;
-pub const UCHAR_CASE_SENSITIVE = UProperty.CASE_SENSITIVE;
-pub const UCHAR_S_TERM = UProperty.S_TERM;
-pub const UCHAR_VARIATION_SELECTOR = UProperty.VARIATION_SELECTOR;
-pub const UCHAR_NFD_INERT = UProperty.NFD_INERT;
-pub const UCHAR_NFKD_INERT = UProperty.NFKD_INERT;
-pub const UCHAR_NFC_INERT = UProperty.NFC_INERT;
-pub const UCHAR_NFKC_INERT = UProperty.NFKC_INERT;
-pub const UCHAR_SEGMENT_STARTER = UProperty.SEGMENT_STARTER;
-pub const UCHAR_PATTERN_SYNTAX = UProperty.PATTERN_SYNTAX;
-pub const UCHAR_PATTERN_WHITE_SPACE = UProperty.PATTERN_WHITE_SPACE;
-pub const UCHAR_POSIX_ALNUM = UProperty.POSIX_ALNUM;
-pub const UCHAR_POSIX_BLANK = UProperty.POSIX_BLANK;
-pub const UCHAR_POSIX_GRAPH = UProperty.POSIX_GRAPH;
-pub const UCHAR_POSIX_PRINT = UProperty.POSIX_PRINT;
-pub const UCHAR_POSIX_XDIGIT = UProperty.POSIX_XDIGIT;
-pub const UCHAR_CASED = UProperty.CASED;
-pub const UCHAR_CASE_IGNORABLE = UProperty.CASE_IGNORABLE;
-pub const UCHAR_CHANGES_WHEN_LOWERCASED = UProperty.CHANGES_WHEN_LOWERCASED;
-pub const UCHAR_CHANGES_WHEN_UPPERCASED = UProperty.CHANGES_WHEN_UPPERCASED;
-pub const UCHAR_CHANGES_WHEN_TITLECASED = UProperty.CHANGES_WHEN_TITLECASED;
-pub const UCHAR_CHANGES_WHEN_CASEFOLDED = UProperty.CHANGES_WHEN_CASEFOLDED;
-pub const UCHAR_CHANGES_WHEN_CASEMAPPED = UProperty.CHANGES_WHEN_CASEMAPPED;
-pub const UCHAR_CHANGES_WHEN_NFKC_CASEFOLDED = UProperty.CHANGES_WHEN_NFKC_CASEFOLDED;
-pub const UCHAR_EMOJI = UProperty.EMOJI;
-pub const UCHAR_EMOJI_PRESENTATION = UProperty.EMOJI_PRESENTATION;
-pub const UCHAR_EMOJI_MODIFIER = UProperty.EMOJI_MODIFIER;
-pub const UCHAR_EMOJI_MODIFIER_BASE = UProperty.EMOJI_MODIFIER_BASE;
-pub const UCHAR_EMOJI_COMPONENT = UProperty.EMOJI_COMPONENT;
-pub const UCHAR_REGIONAL_INDICATOR = UProperty.REGIONAL_INDICATOR;
-pub const UCHAR_PREPENDED_CONCATENATION_MARK = UProperty.PREPENDED_CONCATENATION_MARK;
-pub const UCHAR_EXTENDED_PICTOGRAPHIC = UProperty.EXTENDED_PICTOGRAPHIC;
-pub const UCHAR_BIDI_CLASS = UProperty.BIDI_CLASS;
-pub const UCHAR_INT_START = UProperty.BIDI_CLASS;
-pub const UCHAR_BLOCK = UProperty.BLOCK;
-pub const UCHAR_CANONICAL_COMBINING_CLASS = UProperty.CANONICAL_COMBINING_CLASS;
-pub const UCHAR_DECOMPOSITION_TYPE = UProperty.DECOMPOSITION_TYPE;
-pub const UCHAR_EAST_ASIAN_WIDTH = UProperty.EAST_ASIAN_WIDTH;
-pub const UCHAR_GENERAL_CATEGORY = UProperty.GENERAL_CATEGORY;
-pub const UCHAR_JOINING_GROUP = UProperty.JOINING_GROUP;
-pub const UCHAR_JOINING_TYPE = UProperty.JOINING_TYPE;
-pub const UCHAR_LINE_BREAK = UProperty.LINE_BREAK;
-pub const UCHAR_NUMERIC_TYPE = UProperty.NUMERIC_TYPE;
-pub const UCHAR_SCRIPT = UProperty.SCRIPT;
-pub const UCHAR_HANGUL_SYLLABLE_TYPE = UProperty.HANGUL_SYLLABLE_TYPE;
-pub const UCHAR_NFD_QUICK_CHECK = UProperty.NFD_QUICK_CHECK;
-pub const UCHAR_NFKD_QUICK_CHECK = UProperty.NFKD_QUICK_CHECK;
-pub const UCHAR_NFC_QUICK_CHECK = UProperty.NFC_QUICK_CHECK;
-pub const UCHAR_NFKC_QUICK_CHECK = UProperty.NFKC_QUICK_CHECK;
-pub const UCHAR_LEAD_CANONICAL_COMBINING_CLASS = UProperty.LEAD_CANONICAL_COMBINING_CLASS;
-pub const UCHAR_TRAIL_CANONICAL_COMBINING_CLASS = UProperty.TRAIL_CANONICAL_COMBINING_CLASS;
-pub const UCHAR_GRAPHEME_CLUSTER_BREAK = UProperty.GRAPHEME_CLUSTER_BREAK;
-pub const UCHAR_SENTENCE_BREAK = UProperty.SENTENCE_BREAK;
-pub const UCHAR_WORD_BREAK = UProperty.WORD_BREAK;
-pub const UCHAR_BIDI_PAIRED_BRACKET_TYPE = UProperty.BIDI_PAIRED_BRACKET_TYPE;
-pub const UCHAR_INDIC_POSITIONAL_CATEGORY = UProperty.INDIC_POSITIONAL_CATEGORY;
-pub const UCHAR_INDIC_SYLLABIC_CATEGORY = UProperty.INDIC_SYLLABIC_CATEGORY;
-pub const UCHAR_VERTICAL_ORIENTATION = UProperty.VERTICAL_ORIENTATION;
-pub const UCHAR_GENERAL_CATEGORY_MASK = UProperty.GENERAL_CATEGORY_MASK;
-pub const UCHAR_MASK_START = UProperty.GENERAL_CATEGORY_MASK;
-pub const UCHAR_NUMERIC_VALUE = UProperty.NUMERIC_VALUE;
-pub const UCHAR_DOUBLE_START = UProperty.NUMERIC_VALUE;
-pub const UCHAR_AGE = UProperty.AGE;
-pub const UCHAR_STRING_START = UProperty.AGE;
-pub const UCHAR_BIDI_MIRRORING_GLYPH = UProperty.BIDI_MIRRORING_GLYPH;
-pub const UCHAR_CASE_FOLDING = UProperty.CASE_FOLDING;
-pub const UCHAR_LOWERCASE_MAPPING = UProperty.LOWERCASE_MAPPING;
-pub const UCHAR_NAME = UProperty.NAME;
-pub const UCHAR_SIMPLE_CASE_FOLDING = UProperty.SIMPLE_CASE_FOLDING;
-pub const UCHAR_SIMPLE_LOWERCASE_MAPPING = UProperty.SIMPLE_LOWERCASE_MAPPING;
-pub const UCHAR_SIMPLE_TITLECASE_MAPPING = UProperty.SIMPLE_TITLECASE_MAPPING;
-pub const UCHAR_SIMPLE_UPPERCASE_MAPPING = UProperty.SIMPLE_UPPERCASE_MAPPING;
-pub const UCHAR_TITLECASE_MAPPING = UProperty.TITLECASE_MAPPING;
-pub const UCHAR_UPPERCASE_MAPPING = UProperty.UPPERCASE_MAPPING;
-pub const UCHAR_BIDI_PAIRED_BRACKET = UProperty.BIDI_PAIRED_BRACKET;
-pub const UCHAR_SCRIPT_EXTENSIONS = UProperty.SCRIPT_EXTENSIONS;
-pub const UCHAR_OTHER_PROPERTY_START = UProperty.SCRIPT_EXTENSIONS;
-pub const UCHAR_INVALID_CODE = UProperty.INVALID_CODE;
+pub const UBIDI_MIRRORING_OFF = UBiDiMirroring.FF;
+pub const UBIDI_MIRRORING_ON = UBiDiMirroring.N;
 
-pub const UCharCategory = enum(i32) {
-    UNASSIGNED = 0,
-    UPPERCASE_LETTER = 1,
-    LOWERCASE_LETTER = 2,
-    TITLECASE_LETTER = 3,
-    MODIFIER_LETTER = 4,
-    OTHER_LETTER = 5,
-    NON_SPACING_MARK = 6,
-    ENCLOSING_MARK = 7,
-    COMBINING_SPACING_MARK = 8,
-    DECIMAL_DIGIT_NUMBER = 9,
-    LETTER_NUMBER = 10,
-    OTHER_NUMBER = 11,
-    SPACE_SEPARATOR = 12,
-    LINE_SEPARATOR = 13,
-    PARAGRAPH_SEPARATOR = 14,
-    CONTROL_CHAR = 15,
-    FORMAT_CHAR = 16,
-    PRIVATE_USE_CHAR = 17,
-    SURROGATE = 18,
-    DASH_PUNCTUATION = 19,
-    START_PUNCTUATION = 20,
-    END_PUNCTUATION = 21,
-    CONNECTOR_PUNCTUATION = 22,
-    OTHER_PUNCTUATION = 23,
-    MATH_SYMBOL = 24,
-    CURRENCY_SYMBOL = 25,
-    MODIFIER_SYMBOL = 26,
-    OTHER_SYMBOL = 27,
-    INITIAL_PUNCTUATION = 28,
-    FINAL_PUNCTUATION = 29,
-    CHAR_CATEGORY_COUNT = 30,
-    pub const GENERAL_OTHER_TYPES = .UNASSIGNED;
+pub const UBiDiOrder = enum(i32) {
+    LOGICAL = 0,
+    VISUAL = 1,
 };
-pub const U_UNASSIGNED = UCharCategory.UNASSIGNED;
-pub const U_GENERAL_OTHER_TYPES = UCharCategory.UNASSIGNED;
-pub const U_UPPERCASE_LETTER = UCharCategory.UPPERCASE_LETTER;
-pub const U_LOWERCASE_LETTER = UCharCategory.LOWERCASE_LETTER;
-pub const U_TITLECASE_LETTER = UCharCategory.TITLECASE_LETTER;
-pub const U_MODIFIER_LETTER = UCharCategory.MODIFIER_LETTER;
-pub const U_OTHER_LETTER = UCharCategory.OTHER_LETTER;
-pub const U_NON_SPACING_MARK = UCharCategory.NON_SPACING_MARK;
-pub const U_ENCLOSING_MARK = UCharCategory.ENCLOSING_MARK;
-pub const U_COMBINING_SPACING_MARK = UCharCategory.COMBINING_SPACING_MARK;
-pub const U_DECIMAL_DIGIT_NUMBER = UCharCategory.DECIMAL_DIGIT_NUMBER;
-pub const U_LETTER_NUMBER = UCharCategory.LETTER_NUMBER;
-pub const U_OTHER_NUMBER = UCharCategory.OTHER_NUMBER;
-pub const U_SPACE_SEPARATOR = UCharCategory.SPACE_SEPARATOR;
-pub const U_LINE_SEPARATOR = UCharCategory.LINE_SEPARATOR;
-pub const U_PARAGRAPH_SEPARATOR = UCharCategory.PARAGRAPH_SEPARATOR;
-pub const U_CONTROL_CHAR = UCharCategory.CONTROL_CHAR;
-pub const U_FORMAT_CHAR = UCharCategory.FORMAT_CHAR;
-pub const U_PRIVATE_USE_CHAR = UCharCategory.PRIVATE_USE_CHAR;
-pub const U_SURROGATE = UCharCategory.SURROGATE;
-pub const U_DASH_PUNCTUATION = UCharCategory.DASH_PUNCTUATION;
-pub const U_START_PUNCTUATION = UCharCategory.START_PUNCTUATION;
-pub const U_END_PUNCTUATION = UCharCategory.END_PUNCTUATION;
-pub const U_CONNECTOR_PUNCTUATION = UCharCategory.CONNECTOR_PUNCTUATION;
-pub const U_OTHER_PUNCTUATION = UCharCategory.OTHER_PUNCTUATION;
-pub const U_MATH_SYMBOL = UCharCategory.MATH_SYMBOL;
-pub const U_CURRENCY_SYMBOL = UCharCategory.CURRENCY_SYMBOL;
-pub const U_MODIFIER_SYMBOL = UCharCategory.MODIFIER_SYMBOL;
-pub const U_OTHER_SYMBOL = UCharCategory.OTHER_SYMBOL;
-pub const U_INITIAL_PUNCTUATION = UCharCategory.INITIAL_PUNCTUATION;
-pub const U_FINAL_PUNCTUATION = UCharCategory.FINAL_PUNCTUATION;
-pub const U_CHAR_CATEGORY_COUNT = UCharCategory.CHAR_CATEGORY_COUNT;
-
-pub const UCharDirection = enum(i32) {
-    LEFT_TO_RIGHT = 0,
-    RIGHT_TO_LEFT = 1,
-    EUROPEAN_NUMBER = 2,
-    EUROPEAN_NUMBER_SEPARATOR = 3,
-    EUROPEAN_NUMBER_TERMINATOR = 4,
-    ARABIC_NUMBER = 5,
-    COMMON_NUMBER_SEPARATOR = 6,
-    BLOCK_SEPARATOR = 7,
-    SEGMENT_SEPARATOR = 8,
-    WHITE_SPACE_NEUTRAL = 9,
-    OTHER_NEUTRAL = 10,
-    LEFT_TO_RIGHT_EMBEDDING = 11,
-    LEFT_TO_RIGHT_OVERRIDE = 12,
-    RIGHT_TO_LEFT_ARABIC = 13,
-    RIGHT_TO_LEFT_EMBEDDING = 14,
-    RIGHT_TO_LEFT_OVERRIDE = 15,
-    POP_DIRECTIONAL_FORMAT = 16,
-    DIR_NON_SPACING_MARK = 17,
-    BOUNDARY_NEUTRAL = 18,
-    FIRST_STRONG_ISOLATE = 19,
-    LEFT_TO_RIGHT_ISOLATE = 20,
-    RIGHT_TO_LEFT_ISOLATE = 21,
-    POP_DIRECTIONAL_ISOLATE = 22,
-};
-pub const U_LEFT_TO_RIGHT = UCharDirection.LEFT_TO_RIGHT;
-pub const U_RIGHT_TO_LEFT = UCharDirection.RIGHT_TO_LEFT;
-pub const U_EUROPEAN_NUMBER = UCharDirection.EUROPEAN_NUMBER;
-pub const U_EUROPEAN_NUMBER_SEPARATOR = UCharDirection.EUROPEAN_NUMBER_SEPARATOR;
-pub const U_EUROPEAN_NUMBER_TERMINATOR = UCharDirection.EUROPEAN_NUMBER_TERMINATOR;
-pub const U_ARABIC_NUMBER = UCharDirection.ARABIC_NUMBER;
-pub const U_COMMON_NUMBER_SEPARATOR = UCharDirection.COMMON_NUMBER_SEPARATOR;
-pub const U_BLOCK_SEPARATOR = UCharDirection.BLOCK_SEPARATOR;
-pub const U_SEGMENT_SEPARATOR = UCharDirection.SEGMENT_SEPARATOR;
-pub const U_WHITE_SPACE_NEUTRAL = UCharDirection.WHITE_SPACE_NEUTRAL;
-pub const U_OTHER_NEUTRAL = UCharDirection.OTHER_NEUTRAL;
-pub const U_LEFT_TO_RIGHT_EMBEDDING = UCharDirection.LEFT_TO_RIGHT_EMBEDDING;
-pub const U_LEFT_TO_RIGHT_OVERRIDE = UCharDirection.LEFT_TO_RIGHT_OVERRIDE;
-pub const U_RIGHT_TO_LEFT_ARABIC = UCharDirection.RIGHT_TO_LEFT_ARABIC;
-pub const U_RIGHT_TO_LEFT_EMBEDDING = UCharDirection.RIGHT_TO_LEFT_EMBEDDING;
-pub const U_RIGHT_TO_LEFT_OVERRIDE = UCharDirection.RIGHT_TO_LEFT_OVERRIDE;
-pub const U_POP_DIRECTIONAL_FORMAT = UCharDirection.POP_DIRECTIONAL_FORMAT;
-pub const U_DIR_NON_SPACING_MARK = UCharDirection.DIR_NON_SPACING_MARK;
-pub const U_BOUNDARY_NEUTRAL = UCharDirection.BOUNDARY_NEUTRAL;
-pub const U_FIRST_STRONG_ISOLATE = UCharDirection.FIRST_STRONG_ISOLATE;
-pub const U_LEFT_TO_RIGHT_ISOLATE = UCharDirection.LEFT_TO_RIGHT_ISOLATE;
-pub const U_RIGHT_TO_LEFT_ISOLATE = UCharDirection.RIGHT_TO_LEFT_ISOLATE;
-pub const U_POP_DIRECTIONAL_ISOLATE = UCharDirection.POP_DIRECTIONAL_ISOLATE;
+pub const UBIDI_LOGICAL = UBiDiOrder.LOGICAL;
+pub const UBIDI_VISUAL = UBiDiOrder.VISUAL;
 
 pub const UBidiPairedBracketType = enum(i32) {
     NONE = 0,
@@ -3845,6 +3716,38 @@ pub const UBidiPairedBracketType = enum(i32) {
 pub const U_BPT_NONE = UBidiPairedBracketType.NONE;
 pub const U_BPT_OPEN = UBidiPairedBracketType.OPEN;
 pub const U_BPT_CLOSE = UBidiPairedBracketType.CLOSE;
+
+pub const UBiDiReorderingMode = enum(i32) {
+    DEFAULT = 0,
+    NUMBERS_SPECIAL = 1,
+    GROUP_NUMBERS_WITH_R = 2,
+    RUNS_ONLY = 3,
+    INVERSE_NUMBERS_AS_L = 4,
+    INVERSE_LIKE_DIRECT = 5,
+    INVERSE_FOR_NUMBERS_SPECIAL = 6,
+};
+pub const UBIDI_REORDER_DEFAULT = UBiDiReorderingMode.DEFAULT;
+pub const UBIDI_REORDER_NUMBERS_SPECIAL = UBiDiReorderingMode.NUMBERS_SPECIAL;
+pub const UBIDI_REORDER_GROUP_NUMBERS_WITH_R = UBiDiReorderingMode.GROUP_NUMBERS_WITH_R;
+pub const UBIDI_REORDER_RUNS_ONLY = UBiDiReorderingMode.RUNS_ONLY;
+pub const UBIDI_REORDER_INVERSE_NUMBERS_AS_L = UBiDiReorderingMode.INVERSE_NUMBERS_AS_L;
+pub const UBIDI_REORDER_INVERSE_LIKE_DIRECT = UBiDiReorderingMode.INVERSE_LIKE_DIRECT;
+pub const UBIDI_REORDER_INVERSE_FOR_NUMBERS_SPECIAL = UBiDiReorderingMode.INVERSE_FOR_NUMBERS_SPECIAL;
+
+pub const UBiDiReorderingOption = enum(i32) {
+    DEFAULT = 0,
+    INSERT_MARKS = 1,
+    REMOVE_CONTROLS = 2,
+    STREAMING = 4,
+};
+pub const UBIDI_OPTION_DEFAULT = UBiDiReorderingOption.DEFAULT;
+pub const UBIDI_OPTION_INSERT_MARKS = UBiDiReorderingOption.INSERT_MARKS;
+pub const UBIDI_OPTION_REMOVE_CONTROLS = UBiDiReorderingOption.REMOVE_CONTROLS;
+pub const UBIDI_OPTION_STREAMING = UBiDiReorderingOption.STREAMING;
+
+pub const UBiDiTransform = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const UBlockCode = enum(i32) {
     NO_BLOCK = 0,
@@ -4473,20 +4376,383 @@ pub const UBLOCK_TANGUT_SUPPLEMENT = UBlockCode.TANGUT_SUPPLEMENT;
 pub const UBLOCK_YEZIDI = UBlockCode.YEZIDI;
 pub const UBLOCK_INVALID_CODE = UBlockCode.INVALID_CODE;
 
-pub const UEastAsianWidth = enum(i32) {
-    NEUTRAL = 0,
-    AMBIGUOUS = 1,
-    HALFWIDTH = 2,
-    FULLWIDTH = 3,
-    NARROW = 4,
-    WIDE = 5,
+pub const UBreakIterator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const U_EA_NEUTRAL = UEastAsianWidth.NEUTRAL;
-pub const U_EA_AMBIGUOUS = UEastAsianWidth.AMBIGUOUS;
-pub const U_EA_HALFWIDTH = UEastAsianWidth.HALFWIDTH;
-pub const U_EA_FULLWIDTH = UEastAsianWidth.FULLWIDTH;
-pub const U_EA_NARROW = UEastAsianWidth.NARROW;
-pub const U_EA_WIDE = UEastAsianWidth.WIDE;
+
+pub const UBreakIteratorType = enum(i32) {
+    CHARACTER = 0,
+    WORD = 1,
+    LINE = 2,
+    SENTENCE = 3,
+};
+pub const UBRK_CHARACTER = UBreakIteratorType.CHARACTER;
+pub const UBRK_WORD = UBreakIteratorType.WORD;
+pub const UBRK_LINE = UBreakIteratorType.LINE;
+pub const UBRK_SENTENCE = UBreakIteratorType.SENTENCE;
+
+pub const UCalendarAMPMs = enum(i32) {
+    AM = 0,
+    PM = 1,
+};
+pub const UCAL_AM = UCalendarAMPMs.AM;
+pub const UCAL_PM = UCalendarAMPMs.PM;
+
+pub const UCalendarAttribute = enum(i32) {
+    LENIENT = 0,
+    FIRST_DAY_OF_WEEK = 1,
+    MINIMAL_DAYS_IN_FIRST_WEEK = 2,
+    REPEATED_WALL_TIME = 3,
+    SKIPPED_WALL_TIME = 4,
+};
+pub const UCAL_LENIENT = UCalendarAttribute.LENIENT;
+pub const UCAL_FIRST_DAY_OF_WEEK = UCalendarAttribute.FIRST_DAY_OF_WEEK;
+pub const UCAL_MINIMAL_DAYS_IN_FIRST_WEEK = UCalendarAttribute.MINIMAL_DAYS_IN_FIRST_WEEK;
+pub const UCAL_REPEATED_WALL_TIME = UCalendarAttribute.REPEATED_WALL_TIME;
+pub const UCAL_SKIPPED_WALL_TIME = UCalendarAttribute.SKIPPED_WALL_TIME;
+
+pub const UCalendarDateFields = enum(i32) {
+    ERA = 0,
+    YEAR = 1,
+    MONTH = 2,
+    WEEK_OF_YEAR = 3,
+    WEEK_OF_MONTH = 4,
+    DATE = 5,
+    DAY_OF_YEAR = 6,
+    DAY_OF_WEEK = 7,
+    DAY_OF_WEEK_IN_MONTH = 8,
+    AM_PM = 9,
+    HOUR = 10,
+    HOUR_OF_DAY = 11,
+    MINUTE = 12,
+    SECOND = 13,
+    MILLISECOND = 14,
+    ZONE_OFFSET = 15,
+    DST_OFFSET = 16,
+    YEAR_WOY = 17,
+    DOW_LOCAL = 18,
+    EXTENDED_YEAR = 19,
+    JULIAN_DAY = 20,
+    MILLISECONDS_IN_DAY = 21,
+    IS_LEAP_MONTH = 22,
+    FIELD_COUNT = 23,
+    pub const DAY_OF_MONTH = .DATE;
+};
+pub const UCAL_ERA = UCalendarDateFields.ERA;
+pub const UCAL_YEAR = UCalendarDateFields.YEAR;
+pub const UCAL_MONTH = UCalendarDateFields.MONTH;
+pub const UCAL_WEEK_OF_YEAR = UCalendarDateFields.WEEK_OF_YEAR;
+pub const UCAL_WEEK_OF_MONTH = UCalendarDateFields.WEEK_OF_MONTH;
+pub const UCAL_DATE = UCalendarDateFields.DATE;
+pub const UCAL_DAY_OF_YEAR = UCalendarDateFields.DAY_OF_YEAR;
+pub const UCAL_DAY_OF_WEEK = UCalendarDateFields.DAY_OF_WEEK;
+pub const UCAL_DAY_OF_WEEK_IN_MONTH = UCalendarDateFields.DAY_OF_WEEK_IN_MONTH;
+pub const UCAL_AM_PM = UCalendarDateFields.AM_PM;
+pub const UCAL_HOUR = UCalendarDateFields.HOUR;
+pub const UCAL_HOUR_OF_DAY = UCalendarDateFields.HOUR_OF_DAY;
+pub const UCAL_MINUTE = UCalendarDateFields.MINUTE;
+pub const UCAL_SECOND = UCalendarDateFields.SECOND;
+pub const UCAL_MILLISECOND = UCalendarDateFields.MILLISECOND;
+pub const UCAL_ZONE_OFFSET = UCalendarDateFields.ZONE_OFFSET;
+pub const UCAL_DST_OFFSET = UCalendarDateFields.DST_OFFSET;
+pub const UCAL_YEAR_WOY = UCalendarDateFields.YEAR_WOY;
+pub const UCAL_DOW_LOCAL = UCalendarDateFields.DOW_LOCAL;
+pub const UCAL_EXTENDED_YEAR = UCalendarDateFields.EXTENDED_YEAR;
+pub const UCAL_JULIAN_DAY = UCalendarDateFields.JULIAN_DAY;
+pub const UCAL_MILLISECONDS_IN_DAY = UCalendarDateFields.MILLISECONDS_IN_DAY;
+pub const UCAL_IS_LEAP_MONTH = UCalendarDateFields.IS_LEAP_MONTH;
+pub const UCAL_FIELD_COUNT = UCalendarDateFields.FIELD_COUNT;
+pub const UCAL_DAY_OF_MONTH = UCalendarDateFields.DATE;
+
+pub const UCalendarDaysOfWeek = enum(i32) {
+    SUNDAY = 1,
+    MONDAY = 2,
+    TUESDAY = 3,
+    WEDNESDAY = 4,
+    THURSDAY = 5,
+    FRIDAY = 6,
+    SATURDAY = 7,
+};
+pub const UCAL_SUNDAY = UCalendarDaysOfWeek.SUNDAY;
+pub const UCAL_MONDAY = UCalendarDaysOfWeek.MONDAY;
+pub const UCAL_TUESDAY = UCalendarDaysOfWeek.TUESDAY;
+pub const UCAL_WEDNESDAY = UCalendarDaysOfWeek.WEDNESDAY;
+pub const UCAL_THURSDAY = UCalendarDaysOfWeek.THURSDAY;
+pub const UCAL_FRIDAY = UCalendarDaysOfWeek.FRIDAY;
+pub const UCAL_SATURDAY = UCalendarDaysOfWeek.SATURDAY;
+
+pub const UCalendarDisplayNameType = enum(i32) {
+    STANDARD = 0,
+    SHORT_STANDARD = 1,
+    DST = 2,
+    SHORT_DST = 3,
+};
+pub const UCAL_STANDARD = UCalendarDisplayNameType.STANDARD;
+pub const UCAL_SHORT_STANDARD = UCalendarDisplayNameType.SHORT_STANDARD;
+pub const UCAL_DST = UCalendarDisplayNameType.DST;
+pub const UCAL_SHORT_DST = UCalendarDisplayNameType.SHORT_DST;
+
+pub const UCalendarLimitType = enum(i32) {
+    MINIMUM = 0,
+    MAXIMUM = 1,
+    GREATEST_MINIMUM = 2,
+    LEAST_MAXIMUM = 3,
+    ACTUAL_MINIMUM = 4,
+    ACTUAL_MAXIMUM = 5,
+};
+pub const UCAL_MINIMUM = UCalendarLimitType.MINIMUM;
+pub const UCAL_MAXIMUM = UCalendarLimitType.MAXIMUM;
+pub const UCAL_GREATEST_MINIMUM = UCalendarLimitType.GREATEST_MINIMUM;
+pub const UCAL_LEAST_MAXIMUM = UCalendarLimitType.LEAST_MAXIMUM;
+pub const UCAL_ACTUAL_MINIMUM = UCalendarLimitType.ACTUAL_MINIMUM;
+pub const UCAL_ACTUAL_MAXIMUM = UCalendarLimitType.ACTUAL_MAXIMUM;
+
+pub const UCalendarMonths = enum(i32) {
+    JANUARY = 0,
+    FEBRUARY = 1,
+    MARCH = 2,
+    APRIL = 3,
+    MAY = 4,
+    JUNE = 5,
+    JULY = 6,
+    AUGUST = 7,
+    SEPTEMBER = 8,
+    OCTOBER = 9,
+    NOVEMBER = 10,
+    DECEMBER = 11,
+    UNDECIMBER = 12,
+};
+pub const UCAL_JANUARY = UCalendarMonths.JANUARY;
+pub const UCAL_FEBRUARY = UCalendarMonths.FEBRUARY;
+pub const UCAL_MARCH = UCalendarMonths.MARCH;
+pub const UCAL_APRIL = UCalendarMonths.APRIL;
+pub const UCAL_MAY = UCalendarMonths.MAY;
+pub const UCAL_JUNE = UCalendarMonths.JUNE;
+pub const UCAL_JULY = UCalendarMonths.JULY;
+pub const UCAL_AUGUST = UCalendarMonths.AUGUST;
+pub const UCAL_SEPTEMBER = UCalendarMonths.SEPTEMBER;
+pub const UCAL_OCTOBER = UCalendarMonths.OCTOBER;
+pub const UCAL_NOVEMBER = UCalendarMonths.NOVEMBER;
+pub const UCAL_DECEMBER = UCalendarMonths.DECEMBER;
+pub const UCAL_UNDECIMBER = UCalendarMonths.UNDECIMBER;
+
+pub const UCalendarType = enum(i32) {
+    TRADITIONAL = 0,
+    GREGORIAN = 1,
+    pub const DEFAULT = .TRADITIONAL;
+};
+pub const UCAL_TRADITIONAL = UCalendarType.TRADITIONAL;
+pub const UCAL_DEFAULT = UCalendarType.TRADITIONAL;
+pub const UCAL_GREGORIAN = UCalendarType.GREGORIAN;
+
+pub const UCalendarWallTimeOption = enum(i32) {
+    LAST = 0,
+    FIRST = 1,
+    NEXT_VALID = 2,
+};
+pub const UCAL_WALLTIME_LAST = UCalendarWallTimeOption.LAST;
+pub const UCAL_WALLTIME_FIRST = UCalendarWallTimeOption.FIRST;
+pub const UCAL_WALLTIME_NEXT_VALID = UCalendarWallTimeOption.NEXT_VALID;
+
+pub const UCalendarWeekdayType = enum(i32) {
+    DAY = 0,
+    END = 1,
+    END_ONSET = 2,
+    END_CEASE = 3,
+};
+pub const UCAL_WEEKDAY = UCalendarWeekdayType.DAY;
+pub const UCAL_WEEKEND = UCalendarWeekdayType.END;
+pub const UCAL_WEEKEND_ONSET = UCalendarWeekdayType.END_ONSET;
+pub const UCAL_WEEKEND_CEASE = UCalendarWeekdayType.END_CEASE;
+
+pub const UCaseMap = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCharCategory = enum(i32) {
+    UNASSIGNED = 0,
+    UPPERCASE_LETTER = 1,
+    LOWERCASE_LETTER = 2,
+    TITLECASE_LETTER = 3,
+    MODIFIER_LETTER = 4,
+    OTHER_LETTER = 5,
+    NON_SPACING_MARK = 6,
+    ENCLOSING_MARK = 7,
+    COMBINING_SPACING_MARK = 8,
+    DECIMAL_DIGIT_NUMBER = 9,
+    LETTER_NUMBER = 10,
+    OTHER_NUMBER = 11,
+    SPACE_SEPARATOR = 12,
+    LINE_SEPARATOR = 13,
+    PARAGRAPH_SEPARATOR = 14,
+    CONTROL_CHAR = 15,
+    FORMAT_CHAR = 16,
+    PRIVATE_USE_CHAR = 17,
+    SURROGATE = 18,
+    DASH_PUNCTUATION = 19,
+    START_PUNCTUATION = 20,
+    END_PUNCTUATION = 21,
+    CONNECTOR_PUNCTUATION = 22,
+    OTHER_PUNCTUATION = 23,
+    MATH_SYMBOL = 24,
+    CURRENCY_SYMBOL = 25,
+    MODIFIER_SYMBOL = 26,
+    OTHER_SYMBOL = 27,
+    INITIAL_PUNCTUATION = 28,
+    FINAL_PUNCTUATION = 29,
+    CHAR_CATEGORY_COUNT = 30,
+    pub const GENERAL_OTHER_TYPES = .UNASSIGNED;
+};
+pub const U_UNASSIGNED = UCharCategory.UNASSIGNED;
+pub const U_GENERAL_OTHER_TYPES = UCharCategory.UNASSIGNED;
+pub const U_UPPERCASE_LETTER = UCharCategory.UPPERCASE_LETTER;
+pub const U_LOWERCASE_LETTER = UCharCategory.LOWERCASE_LETTER;
+pub const U_TITLECASE_LETTER = UCharCategory.TITLECASE_LETTER;
+pub const U_MODIFIER_LETTER = UCharCategory.MODIFIER_LETTER;
+pub const U_OTHER_LETTER = UCharCategory.OTHER_LETTER;
+pub const U_NON_SPACING_MARK = UCharCategory.NON_SPACING_MARK;
+pub const U_ENCLOSING_MARK = UCharCategory.ENCLOSING_MARK;
+pub const U_COMBINING_SPACING_MARK = UCharCategory.COMBINING_SPACING_MARK;
+pub const U_DECIMAL_DIGIT_NUMBER = UCharCategory.DECIMAL_DIGIT_NUMBER;
+pub const U_LETTER_NUMBER = UCharCategory.LETTER_NUMBER;
+pub const U_OTHER_NUMBER = UCharCategory.OTHER_NUMBER;
+pub const U_SPACE_SEPARATOR = UCharCategory.SPACE_SEPARATOR;
+pub const U_LINE_SEPARATOR = UCharCategory.LINE_SEPARATOR;
+pub const U_PARAGRAPH_SEPARATOR = UCharCategory.PARAGRAPH_SEPARATOR;
+pub const U_CONTROL_CHAR = UCharCategory.CONTROL_CHAR;
+pub const U_FORMAT_CHAR = UCharCategory.FORMAT_CHAR;
+pub const U_PRIVATE_USE_CHAR = UCharCategory.PRIVATE_USE_CHAR;
+pub const U_SURROGATE = UCharCategory.SURROGATE;
+pub const U_DASH_PUNCTUATION = UCharCategory.DASH_PUNCTUATION;
+pub const U_START_PUNCTUATION = UCharCategory.START_PUNCTUATION;
+pub const U_END_PUNCTUATION = UCharCategory.END_PUNCTUATION;
+pub const U_CONNECTOR_PUNCTUATION = UCharCategory.CONNECTOR_PUNCTUATION;
+pub const U_OTHER_PUNCTUATION = UCharCategory.OTHER_PUNCTUATION;
+pub const U_MATH_SYMBOL = UCharCategory.MATH_SYMBOL;
+pub const U_CURRENCY_SYMBOL = UCharCategory.CURRENCY_SYMBOL;
+pub const U_MODIFIER_SYMBOL = UCharCategory.MODIFIER_SYMBOL;
+pub const U_OTHER_SYMBOL = UCharCategory.OTHER_SYMBOL;
+pub const U_INITIAL_PUNCTUATION = UCharCategory.INITIAL_PUNCTUATION;
+pub const U_FINAL_PUNCTUATION = UCharCategory.FINAL_PUNCTUATION;
+pub const U_CHAR_CATEGORY_COUNT = UCharCategory.CHAR_CATEGORY_COUNT;
+
+pub const UCharDirection = enum(i32) {
+    LEFT_TO_RIGHT = 0,
+    RIGHT_TO_LEFT = 1,
+    EUROPEAN_NUMBER = 2,
+    EUROPEAN_NUMBER_SEPARATOR = 3,
+    EUROPEAN_NUMBER_TERMINATOR = 4,
+    ARABIC_NUMBER = 5,
+    COMMON_NUMBER_SEPARATOR = 6,
+    BLOCK_SEPARATOR = 7,
+    SEGMENT_SEPARATOR = 8,
+    WHITE_SPACE_NEUTRAL = 9,
+    OTHER_NEUTRAL = 10,
+    LEFT_TO_RIGHT_EMBEDDING = 11,
+    LEFT_TO_RIGHT_OVERRIDE = 12,
+    RIGHT_TO_LEFT_ARABIC = 13,
+    RIGHT_TO_LEFT_EMBEDDING = 14,
+    RIGHT_TO_LEFT_OVERRIDE = 15,
+    POP_DIRECTIONAL_FORMAT = 16,
+    DIR_NON_SPACING_MARK = 17,
+    BOUNDARY_NEUTRAL = 18,
+    FIRST_STRONG_ISOLATE = 19,
+    LEFT_TO_RIGHT_ISOLATE = 20,
+    RIGHT_TO_LEFT_ISOLATE = 21,
+    POP_DIRECTIONAL_ISOLATE = 22,
+};
+pub const U_LEFT_TO_RIGHT = UCharDirection.LEFT_TO_RIGHT;
+pub const U_RIGHT_TO_LEFT = UCharDirection.RIGHT_TO_LEFT;
+pub const U_EUROPEAN_NUMBER = UCharDirection.EUROPEAN_NUMBER;
+pub const U_EUROPEAN_NUMBER_SEPARATOR = UCharDirection.EUROPEAN_NUMBER_SEPARATOR;
+pub const U_EUROPEAN_NUMBER_TERMINATOR = UCharDirection.EUROPEAN_NUMBER_TERMINATOR;
+pub const U_ARABIC_NUMBER = UCharDirection.ARABIC_NUMBER;
+pub const U_COMMON_NUMBER_SEPARATOR = UCharDirection.COMMON_NUMBER_SEPARATOR;
+pub const U_BLOCK_SEPARATOR = UCharDirection.BLOCK_SEPARATOR;
+pub const U_SEGMENT_SEPARATOR = UCharDirection.SEGMENT_SEPARATOR;
+pub const U_WHITE_SPACE_NEUTRAL = UCharDirection.WHITE_SPACE_NEUTRAL;
+pub const U_OTHER_NEUTRAL = UCharDirection.OTHER_NEUTRAL;
+pub const U_LEFT_TO_RIGHT_EMBEDDING = UCharDirection.LEFT_TO_RIGHT_EMBEDDING;
+pub const U_LEFT_TO_RIGHT_OVERRIDE = UCharDirection.LEFT_TO_RIGHT_OVERRIDE;
+pub const U_RIGHT_TO_LEFT_ARABIC = UCharDirection.RIGHT_TO_LEFT_ARABIC;
+pub const U_RIGHT_TO_LEFT_EMBEDDING = UCharDirection.RIGHT_TO_LEFT_EMBEDDING;
+pub const U_RIGHT_TO_LEFT_OVERRIDE = UCharDirection.RIGHT_TO_LEFT_OVERRIDE;
+pub const U_POP_DIRECTIONAL_FORMAT = UCharDirection.POP_DIRECTIONAL_FORMAT;
+pub const U_DIR_NON_SPACING_MARK = UCharDirection.DIR_NON_SPACING_MARK;
+pub const U_BOUNDARY_NEUTRAL = UCharDirection.BOUNDARY_NEUTRAL;
+pub const U_FIRST_STRONG_ISOLATE = UCharDirection.FIRST_STRONG_ISOLATE;
+pub const U_LEFT_TO_RIGHT_ISOLATE = UCharDirection.LEFT_TO_RIGHT_ISOLATE;
+pub const U_RIGHT_TO_LEFT_ISOLATE = UCharDirection.RIGHT_TO_LEFT_ISOLATE;
+pub const U_POP_DIRECTIONAL_ISOLATE = UCharDirection.POP_DIRECTIONAL_ISOLATE;
+
+pub const UCharEnumTypeRange = *const fn(
+    context: ?*const anyopaque,
+    start: i32,
+    limit: i32,
+    type: UCharCategory,
+) callconv(.winapi) i8;
+
+pub const UCharIterator = extern struct {
+    context: ?*const anyopaque,
+    length: i32,
+    start: i32,
+    index: i32,
+    limit: i32,
+    reservedField: i32,
+    getIndex: ?UCharIteratorGetIndex,
+    move: ?UCharIteratorMove,
+    hasNext: ?UCharIteratorHasNext,
+    hasPrevious: ?UCharIteratorHasPrevious,
+    current: ?UCharIteratorCurrent,
+    next: ?UCharIteratorNext,
+    previous: ?UCharIteratorPrevious,
+    reservedFn: ?UCharIteratorReserved,
+    getState: ?UCharIteratorGetState,
+    setState: ?UCharIteratorSetState,
+};
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorCurrent = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorGetIndex = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorGetState = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorHasNext = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorHasPrevious = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorMove = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorNext = *const fn() callconv(.winapi) void;
+
+pub const UCharIteratorOrigin = enum(i32) {
+    START = 0,
+    CURRENT = 1,
+    LIMIT = 2,
+    ZERO = 3,
+    LENGTH = 4,
+};
+pub const UITER_START = UCharIteratorOrigin.START;
+pub const UITER_CURRENT = UCharIteratorOrigin.CURRENT;
+pub const UITER_LIMIT = UCharIteratorOrigin.LIMIT;
+pub const UITER_ZERO = UCharIteratorOrigin.ZERO;
+pub const UITER_LENGTH = UCharIteratorOrigin.LENGTH;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorPrevious = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorReserved = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorSetState = *const fn() callconv(.winapi) void;
 
 pub const UCharNameChoice = enum(i32) {
     UNICODE_CHAR_NAME = 0,
@@ -4497,12 +4763,724 @@ pub const U_UNICODE_CHAR_NAME = UCharNameChoice.UNICODE_CHAR_NAME;
 pub const U_EXTENDED_CHAR_NAME = UCharNameChoice.EXTENDED_CHAR_NAME;
 pub const U_CHAR_NAME_ALIAS = UCharNameChoice.CHAR_NAME_ALIAS;
 
-pub const UPropertyNameChoice = enum(i32) {
-    SHORT_PROPERTY_NAME = 0,
-    LONG_PROPERTY_NAME = 1,
+pub const UCharsetDetector = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const U_SHORT_PROPERTY_NAME = UPropertyNameChoice.SHORT_PROPERTY_NAME;
-pub const U_LONG_PROPERTY_NAME = UPropertyNameChoice.LONG_PROPERTY_NAME;
+
+pub const UCharsetMatch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UColAttribute = enum(i32) {
+    FRENCH_COLLATION = 0,
+    ALTERNATE_HANDLING = 1,
+    CASE_FIRST = 2,
+    CASE_LEVEL = 3,
+    NORMALIZATION_MODE = 4,
+    STRENGTH = 5,
+    NUMERIC_COLLATION = 7,
+    ATTRIBUTE_COUNT = 8,
+    pub const DECOMPOSITION_MODE = .NORMALIZATION_MODE;
+};
+pub const UCOL_FRENCH_COLLATION = UColAttribute.FRENCH_COLLATION;
+pub const UCOL_ALTERNATE_HANDLING = UColAttribute.ALTERNATE_HANDLING;
+pub const UCOL_CASE_FIRST = UColAttribute.CASE_FIRST;
+pub const UCOL_CASE_LEVEL = UColAttribute.CASE_LEVEL;
+pub const UCOL_NORMALIZATION_MODE = UColAttribute.NORMALIZATION_MODE;
+pub const UCOL_DECOMPOSITION_MODE = UColAttribute.NORMALIZATION_MODE;
+pub const UCOL_STRENGTH = UColAttribute.STRENGTH;
+pub const UCOL_NUMERIC_COLLATION = UColAttribute.NUMERIC_COLLATION;
+pub const UCOL_ATTRIBUTE_COUNT = UColAttribute.ATTRIBUTE_COUNT;
+
+pub const UColAttributeValue = enum(i32) {
+    DEFAULT = -1,
+    PRIMARY = 0,
+    SECONDARY = 1,
+    TERTIARY = 2,
+    CE_STRENGTH_LIMIT = 3,
+    IDENTICAL = 15,
+    STRENGTH_LIMIT = 16,
+    ON = 17,
+    SHIFTED = 20,
+    NON_IGNORABLE = 21,
+    LOWER_FIRST = 24,
+    UPPER_FIRST = 25,
+    pub const DEFAULT_STRENGTH = .TERTIARY;
+    pub const QUATERNARY = .CE_STRENGTH_LIMIT;
+    pub const OFF = .STRENGTH_LIMIT;
+};
+pub const UCOL_DEFAULT = UColAttributeValue.DEFAULT;
+pub const UCOL_PRIMARY = UColAttributeValue.PRIMARY;
+pub const UCOL_SECONDARY = UColAttributeValue.SECONDARY;
+pub const UCOL_TERTIARY = UColAttributeValue.TERTIARY;
+pub const UCOL_DEFAULT_STRENGTH = UColAttributeValue.TERTIARY;
+pub const UCOL_CE_STRENGTH_LIMIT = UColAttributeValue.CE_STRENGTH_LIMIT;
+pub const UCOL_QUATERNARY = UColAttributeValue.CE_STRENGTH_LIMIT;
+pub const UCOL_IDENTICAL = UColAttributeValue.IDENTICAL;
+pub const UCOL_STRENGTH_LIMIT = UColAttributeValue.STRENGTH_LIMIT;
+pub const UCOL_OFF = UColAttributeValue.STRENGTH_LIMIT;
+pub const UCOL_ON = UColAttributeValue.ON;
+pub const UCOL_SHIFTED = UColAttributeValue.SHIFTED;
+pub const UCOL_NON_IGNORABLE = UColAttributeValue.NON_IGNORABLE;
+pub const UCOL_LOWER_FIRST = UColAttributeValue.LOWER_FIRST;
+pub const UCOL_UPPER_FIRST = UColAttributeValue.UPPER_FIRST;
+
+pub const UColBoundMode = enum(i32) {
+    LOWER = 0,
+    UPPER = 1,
+    UPPER_LONG = 2,
+};
+pub const UCOL_BOUND_LOWER = UColBoundMode.LOWER;
+pub const UCOL_BOUND_UPPER = UColBoundMode.UPPER;
+pub const UCOL_BOUND_UPPER_LONG = UColBoundMode.UPPER_LONG;
+
+pub const UCollationElements = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCollationResult = enum(i32) {
+    EQUAL = 0,
+    GREATER = 1,
+    LESS = -1,
+};
+pub const UCOL_EQUAL = UCollationResult.EQUAL;
+pub const UCOL_GREATER = UCollationResult.GREATER;
+pub const UCOL_LESS = UCollationResult.LESS;
+
+pub const UCollator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UColReorderCode = enum(i32) {
+    DEFAULT = -1,
+    NONE = 103,
+    SPACE = 4096,
+    PUNCTUATION = 4097,
+    SYMBOL = 4098,
+    CURRENCY = 4099,
+    DIGIT = 4100,
+    pub const OTHERS = .NONE;
+    pub const FIRST = .SPACE;
+};
+pub const UCOL_REORDER_CODE_DEFAULT = UColReorderCode.DEFAULT;
+pub const UCOL_REORDER_CODE_NONE = UColReorderCode.NONE;
+pub const UCOL_REORDER_CODE_OTHERS = UColReorderCode.NONE;
+pub const UCOL_REORDER_CODE_SPACE = UColReorderCode.SPACE;
+pub const UCOL_REORDER_CODE_FIRST = UColReorderCode.SPACE;
+pub const UCOL_REORDER_CODE_PUNCTUATION = UColReorderCode.PUNCTUATION;
+pub const UCOL_REORDER_CODE_SYMBOL = UColReorderCode.SYMBOL;
+pub const UCOL_REORDER_CODE_CURRENCY = UColReorderCode.CURRENCY;
+pub const UCOL_REORDER_CODE_DIGIT = UColReorderCode.DIGIT;
+
+pub const UColRuleOption = enum(i32) {
+    TAILORING_ONLY = 0,
+    FULL_RULES = 1,
+};
+pub const UCOL_TAILORING_ONLY = UColRuleOption.TAILORING_ONLY;
+pub const UCOL_FULL_RULES = UColRuleOption.FULL_RULES;
+
+pub const UConstrainedFieldPosition = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UConverter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UConverterCallbackReason = enum(i32) {
+    UNASSIGNED = 0,
+    ILLEGAL = 1,
+    IRREGULAR = 2,
+    RESET = 3,
+    CLOSE = 4,
+    CLONE = 5,
+};
+pub const UCNV_UNASSIGNED = UConverterCallbackReason.UNASSIGNED;
+pub const UCNV_ILLEGAL = UConverterCallbackReason.ILLEGAL;
+pub const UCNV_IRREGULAR = UConverterCallbackReason.IRREGULAR;
+pub const UCNV_RESET = UConverterCallbackReason.RESET;
+pub const UCNV_CLOSE = UConverterCallbackReason.CLOSE;
+pub const UCNV_CLONE = UConverterCallbackReason.CLONE;
+
+pub const UConverterFromUCallback = *const fn(
+    context: ?*const anyopaque,
+    args: ?*UConverterFromUnicodeArgs,
+    codeUnits: ?*const u16,
+    length: i32,
+    codePoint: i32,
+    reason: UConverterCallbackReason,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub const UConverterFromUnicodeArgs = extern struct {
+    size: u16,
+    flush: i8,
+    converter: ?*UConverter,
+    source: ?*const u16,
+    sourceLimit: ?*const u16,
+    target: ?PSTR,
+    targetLimit: ?[*:0]const u8,
+    offsets: ?*i32,
+};
+
+pub const UConverterPlatform = enum(i32) {
+    UNKNOWN = -1,
+    IBM = 0,
+};
+pub const UCNV_UNKNOWN = UConverterPlatform.UNKNOWN;
+pub const UCNV_IBM = UConverterPlatform.IBM;
+
+pub const UConverterSelector = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UConverterToUCallback = *const fn(
+    context: ?*const anyopaque,
+    args: ?*UConverterToUnicodeArgs,
+    codeUnits: ?[*:0]const u8,
+    length: i32,
+    reason: UConverterCallbackReason,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub const UConverterToUnicodeArgs = extern struct {
+    size: u16,
+    flush: i8,
+    converter: ?*UConverter,
+    source: ?[*:0]const u8,
+    sourceLimit: ?[*:0]const u8,
+    target: ?*u16,
+    targetLimit: ?*const u16,
+    offsets: ?*i32,
+};
+
+pub const UConverterType = enum(i32) {
+    UNSUPPORTED_CONVERTER = -1,
+    SBCS = 0,
+    DBCS = 1,
+    MBCS = 2,
+    LATIN_1 = 3,
+    UTF8 = 4,
+    UTF16_BigEndian = 5,
+    UTF16_LittleEndian = 6,
+    UTF32_BigEndian = 7,
+    UTF32_LittleEndian = 8,
+    EBCDIC_STATEFUL = 9,
+    ISO_2022 = 10,
+    LMBCS_1 = 11,
+    LMBCS_2 = 12,
+    LMBCS_3 = 13,
+    LMBCS_4 = 14,
+    LMBCS_5 = 15,
+    LMBCS_6 = 16,
+    LMBCS_8 = 17,
+    LMBCS_11 = 18,
+    LMBCS_16 = 19,
+    LMBCS_17 = 20,
+    LMBCS_18 = 21,
+    LMBCS_19 = 22,
+    HZ = 23,
+    SCSU = 24,
+    ISCII = 25,
+    US_ASCII = 26,
+    UTF7 = 27,
+    BOCU1 = 28,
+    UTF16 = 29,
+    UTF32 = 30,
+    CESU8 = 31,
+    IMAP_MAILBOX = 32,
+    COMPOUND_TEXT = 33,
+    NUMBER_OF_SUPPORTED_CONVERTER_TYPES = 34,
+    pub const LMBCS_LAST = .LMBCS_19;
+};
+pub const UCNV_UNSUPPORTED_CONVERTER = UConverterType.UNSUPPORTED_CONVERTER;
+pub const UCNV_SBCS = UConverterType.SBCS;
+pub const UCNV_DBCS = UConverterType.DBCS;
+pub const UCNV_MBCS = UConverterType.MBCS;
+pub const UCNV_LATIN_1 = UConverterType.LATIN_1;
+pub const UCNV_UTF8 = UConverterType.UTF8;
+pub const UCNV_UTF16_BigEndian = UConverterType.UTF16_BigEndian;
+pub const UCNV_UTF16_LittleEndian = UConverterType.UTF16_LittleEndian;
+pub const UCNV_UTF32_BigEndian = UConverterType.UTF32_BigEndian;
+pub const UCNV_UTF32_LittleEndian = UConverterType.UTF32_LittleEndian;
+pub const UCNV_EBCDIC_STATEFUL = UConverterType.EBCDIC_STATEFUL;
+pub const UCNV_ISO_2022 = UConverterType.ISO_2022;
+pub const UCNV_LMBCS_1 = UConverterType.LMBCS_1;
+pub const UCNV_LMBCS_2 = UConverterType.LMBCS_2;
+pub const UCNV_LMBCS_3 = UConverterType.LMBCS_3;
+pub const UCNV_LMBCS_4 = UConverterType.LMBCS_4;
+pub const UCNV_LMBCS_5 = UConverterType.LMBCS_5;
+pub const UCNV_LMBCS_6 = UConverterType.LMBCS_6;
+pub const UCNV_LMBCS_8 = UConverterType.LMBCS_8;
+pub const UCNV_LMBCS_11 = UConverterType.LMBCS_11;
+pub const UCNV_LMBCS_16 = UConverterType.LMBCS_16;
+pub const UCNV_LMBCS_17 = UConverterType.LMBCS_17;
+pub const UCNV_LMBCS_18 = UConverterType.LMBCS_18;
+pub const UCNV_LMBCS_19 = UConverterType.LMBCS_19;
+pub const UCNV_LMBCS_LAST = UConverterType.LMBCS_19;
+pub const UCNV_HZ = UConverterType.HZ;
+pub const UCNV_SCSU = UConverterType.SCSU;
+pub const UCNV_ISCII = UConverterType.ISCII;
+pub const UCNV_US_ASCII = UConverterType.US_ASCII;
+pub const UCNV_UTF7 = UConverterType.UTF7;
+pub const UCNV_BOCU1 = UConverterType.BOCU1;
+pub const UCNV_UTF16 = UConverterType.UTF16;
+pub const UCNV_UTF32 = UConverterType.UTF32;
+pub const UCNV_CESU8 = UConverterType.CESU8;
+pub const UCNV_IMAP_MAILBOX = UConverterType.IMAP_MAILBOX;
+pub const UCNV_COMPOUND_TEXT = UConverterType.COMPOUND_TEXT;
+pub const UCNV_NUMBER_OF_SUPPORTED_CONVERTER_TYPES = UConverterType.NUMBER_OF_SUPPORTED_CONVERTER_TYPES;
+
+pub const UConverterUnicodeSet = enum(i32) {
+    SET = 0,
+    AND_FALLBACK_SET = 1,
+};
+pub const UCNV_ROUNDTRIP_SET = UConverterUnicodeSet.SET;
+pub const UCNV_ROUNDTRIP_AND_FALLBACK_SET = UConverterUnicodeSet.AND_FALLBACK_SET;
+
+pub const UCPMap = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCPMapRangeOption = enum(i32) {
+    NORMAL = 0,
+    FIXED_LEAD_SURROGATES = 1,
+    FIXED_ALL_SURROGATES = 2,
+};
+pub const UCPMAP_RANGE_NORMAL = UCPMapRangeOption.NORMAL;
+pub const UCPMAP_RANGE_FIXED_LEAD_SURROGATES = UCPMapRangeOption.FIXED_LEAD_SURROGATES;
+pub const UCPMAP_RANGE_FIXED_ALL_SURROGATES = UCPMapRangeOption.FIXED_ALL_SURROGATES;
+
+pub const UCPMapValueFilter = *const fn(
+    context: ?*const anyopaque,
+    value: u32,
+) callconv(.winapi) u32;
+
+pub const UCPTrie = extern struct {
+    index: ?*const u16,
+    data: UCPTrieData,
+    indexLength: i32,
+    dataLength: i32,
+    highStart: i32,
+    shifted12HighStart: u16,
+    type: i8,
+    valueWidth: i8,
+    reserved32: u32,
+    reserved16: u16,
+    index3NullOffset: u16,
+    dataNullOffset: i32,
+    nullValue: u32,
+};
+
+pub const UCPTrieData = extern union {
+    ptr0: ?*const anyopaque,
+    ptr16: ?*const u16,
+    ptr32: ?*const u32,
+    ptr8: ?*const u8,
+};
+
+pub const UCPTrieType = enum(i32) {
+    ANY = -1,
+    FAST = 0,
+    SMALL = 1,
+};
+pub const UCPTRIE_TYPE_ANY = UCPTrieType.ANY;
+pub const UCPTRIE_TYPE_FAST = UCPTrieType.FAST;
+pub const UCPTRIE_TYPE_SMALL = UCPTrieType.SMALL;
+
+pub const UCPTrieValueWidth = enum(i32) {
+    ANY = -1,
+    @"16" = 0,
+    @"32" = 1,
+    @"8" = 2,
+};
+pub const UCPTRIE_VALUE_BITS_ANY = UCPTrieValueWidth.ANY;
+pub const UCPTRIE_VALUE_BITS_16 = UCPTrieValueWidth.@"16";
+pub const UCPTRIE_VALUE_BITS_32 = UCPTrieValueWidth.@"32";
+pub const UCPTRIE_VALUE_BITS_8 = UCPTrieValueWidth.@"8";
+
+pub const UCurrCurrencyType = enum(i32) {
+    ALL = 2147483647,
+    COMMON = 1,
+    UNCOMMON = 2,
+    DEPRECATED = 4,
+    NON_DEPRECATED = 8,
+};
+pub const UCURR_ALL = UCurrCurrencyType.ALL;
+pub const UCURR_COMMON = UCurrCurrencyType.COMMON;
+pub const UCURR_UNCOMMON = UCurrCurrencyType.UNCOMMON;
+pub const UCURR_DEPRECATED = UCurrCurrencyType.DEPRECATED;
+pub const UCURR_NON_DEPRECATED = UCurrCurrencyType.NON_DEPRECATED;
+
+pub const UCurrencySpacing = enum(i32) {
+    MATCH = 0,
+    SURROUNDING_MATCH = 1,
+    INSERT = 2,
+    SPACING_COUNT = 3,
+};
+pub const UNUM_CURRENCY_MATCH = UCurrencySpacing.MATCH;
+pub const UNUM_CURRENCY_SURROUNDING_MATCH = UCurrencySpacing.SURROUNDING_MATCH;
+pub const UNUM_CURRENCY_INSERT = UCurrencySpacing.INSERT;
+pub const UNUM_CURRENCY_SPACING_COUNT = UCurrencySpacing.SPACING_COUNT;
+
+pub const UCurrencyUsage = enum(i32) {
+    STANDARD = 0,
+    CASH = 1,
+};
+pub const UCURR_USAGE_STANDARD = UCurrencyUsage.STANDARD;
+pub const UCURR_USAGE_CASH = UCurrencyUsage.CASH;
+
+pub const UCurrNameStyle = enum(i32) {
+    SYMBOL_NAME = 0,
+    LONG_NAME = 1,
+    NARROW_SYMBOL_NAME = 2,
+};
+pub const UCURR_SYMBOL_NAME = UCurrNameStyle.SYMBOL_NAME;
+pub const UCURR_LONG_NAME = UCurrNameStyle.LONG_NAME;
+pub const UCURR_NARROW_SYMBOL_NAME = UCurrNameStyle.NARROW_SYMBOL_NAME;
+
+pub const UDateAbsoluteUnit = enum(i32) {
+    SUNDAY = 0,
+    MONDAY = 1,
+    TUESDAY = 2,
+    WEDNESDAY = 3,
+    THURSDAY = 4,
+    FRIDAY = 5,
+    SATURDAY = 6,
+    DAY = 7,
+    WEEK = 8,
+    MONTH = 9,
+    YEAR = 10,
+    NOW = 11,
+    UNIT_COUNT = 12,
+};
+pub const UDAT_ABSOLUTE_SUNDAY = UDateAbsoluteUnit.SUNDAY;
+pub const UDAT_ABSOLUTE_MONDAY = UDateAbsoluteUnit.MONDAY;
+pub const UDAT_ABSOLUTE_TUESDAY = UDateAbsoluteUnit.TUESDAY;
+pub const UDAT_ABSOLUTE_WEDNESDAY = UDateAbsoluteUnit.WEDNESDAY;
+pub const UDAT_ABSOLUTE_THURSDAY = UDateAbsoluteUnit.THURSDAY;
+pub const UDAT_ABSOLUTE_FRIDAY = UDateAbsoluteUnit.FRIDAY;
+pub const UDAT_ABSOLUTE_SATURDAY = UDateAbsoluteUnit.SATURDAY;
+pub const UDAT_ABSOLUTE_DAY = UDateAbsoluteUnit.DAY;
+pub const UDAT_ABSOLUTE_WEEK = UDateAbsoluteUnit.WEEK;
+pub const UDAT_ABSOLUTE_MONTH = UDateAbsoluteUnit.MONTH;
+pub const UDAT_ABSOLUTE_YEAR = UDateAbsoluteUnit.YEAR;
+pub const UDAT_ABSOLUTE_NOW = UDateAbsoluteUnit.NOW;
+pub const UDAT_ABSOLUTE_UNIT_COUNT = UDateAbsoluteUnit.UNIT_COUNT;
+
+pub const UDateDirection = enum(i32) {
+    LAST_2 = 0,
+    LAST = 1,
+    THIS = 2,
+    NEXT = 3,
+    NEXT_2 = 4,
+    PLAIN = 5,
+    COUNT = 6,
+};
+pub const UDAT_DIRECTION_LAST_2 = UDateDirection.LAST_2;
+pub const UDAT_DIRECTION_LAST = UDateDirection.LAST;
+pub const UDAT_DIRECTION_THIS = UDateDirection.THIS;
+pub const UDAT_DIRECTION_NEXT = UDateDirection.NEXT;
+pub const UDAT_DIRECTION_NEXT_2 = UDateDirection.NEXT_2;
+pub const UDAT_DIRECTION_PLAIN = UDateDirection.PLAIN;
+pub const UDAT_DIRECTION_COUNT = UDateDirection.COUNT;
+
+pub const UDateFormatBooleanAttribute = enum(i32) {
+    PARSE_ALLOW_WHITESPACE = 0,
+    PARSE_ALLOW_NUMERIC = 1,
+    PARSE_PARTIAL_LITERAL_MATCH = 2,
+    PARSE_MULTIPLE_PATTERNS_FOR_MATCH = 3,
+    BOOLEAN_ATTRIBUTE_COUNT = 4,
+};
+pub const UDAT_PARSE_ALLOW_WHITESPACE = UDateFormatBooleanAttribute.PARSE_ALLOW_WHITESPACE;
+pub const UDAT_PARSE_ALLOW_NUMERIC = UDateFormatBooleanAttribute.PARSE_ALLOW_NUMERIC;
+pub const UDAT_PARSE_PARTIAL_LITERAL_MATCH = UDateFormatBooleanAttribute.PARSE_PARTIAL_LITERAL_MATCH;
+pub const UDAT_PARSE_MULTIPLE_PATTERNS_FOR_MATCH = UDateFormatBooleanAttribute.PARSE_MULTIPLE_PATTERNS_FOR_MATCH;
+pub const UDAT_BOOLEAN_ATTRIBUTE_COUNT = UDateFormatBooleanAttribute.BOOLEAN_ATTRIBUTE_COUNT;
+
+pub const UDateFormatField = enum(i32) {
+    ERA_FIELD = 0,
+    YEAR_FIELD = 1,
+    MONTH_FIELD = 2,
+    DATE_FIELD = 3,
+    HOUR_OF_DAY1_FIELD = 4,
+    HOUR_OF_DAY0_FIELD = 5,
+    MINUTE_FIELD = 6,
+    SECOND_FIELD = 7,
+    FRACTIONAL_SECOND_FIELD = 8,
+    DAY_OF_WEEK_FIELD = 9,
+    DAY_OF_YEAR_FIELD = 10,
+    DAY_OF_WEEK_IN_MONTH_FIELD = 11,
+    WEEK_OF_YEAR_FIELD = 12,
+    WEEK_OF_MONTH_FIELD = 13,
+    AM_PM_FIELD = 14,
+    HOUR1_FIELD = 15,
+    HOUR0_FIELD = 16,
+    TIMEZONE_FIELD = 17,
+    YEAR_WOY_FIELD = 18,
+    DOW_LOCAL_FIELD = 19,
+    EXTENDED_YEAR_FIELD = 20,
+    JULIAN_DAY_FIELD = 21,
+    MILLISECONDS_IN_DAY_FIELD = 22,
+    TIMEZONE_RFC_FIELD = 23,
+    TIMEZONE_GENERIC_FIELD = 24,
+    STANDALONE_DAY_FIELD = 25,
+    STANDALONE_MONTH_FIELD = 26,
+    QUARTER_FIELD = 27,
+    STANDALONE_QUARTER_FIELD = 28,
+    TIMEZONE_SPECIAL_FIELD = 29,
+    YEAR_NAME_FIELD = 30,
+    TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD = 31,
+    TIMEZONE_ISO_FIELD = 32,
+    TIMEZONE_ISO_LOCAL_FIELD = 33,
+    AM_PM_MIDNIGHT_NOON_FIELD = 35,
+    FLEXIBLE_DAY_PERIOD_FIELD = 36,
+};
+pub const UDAT_ERA_FIELD = UDateFormatField.ERA_FIELD;
+pub const UDAT_YEAR_FIELD = UDateFormatField.YEAR_FIELD;
+pub const UDAT_MONTH_FIELD = UDateFormatField.MONTH_FIELD;
+pub const UDAT_DATE_FIELD = UDateFormatField.DATE_FIELD;
+pub const UDAT_HOUR_OF_DAY1_FIELD = UDateFormatField.HOUR_OF_DAY1_FIELD;
+pub const UDAT_HOUR_OF_DAY0_FIELD = UDateFormatField.HOUR_OF_DAY0_FIELD;
+pub const UDAT_MINUTE_FIELD = UDateFormatField.MINUTE_FIELD;
+pub const UDAT_SECOND_FIELD = UDateFormatField.SECOND_FIELD;
+pub const UDAT_FRACTIONAL_SECOND_FIELD = UDateFormatField.FRACTIONAL_SECOND_FIELD;
+pub const UDAT_DAY_OF_WEEK_FIELD = UDateFormatField.DAY_OF_WEEK_FIELD;
+pub const UDAT_DAY_OF_YEAR_FIELD = UDateFormatField.DAY_OF_YEAR_FIELD;
+pub const UDAT_DAY_OF_WEEK_IN_MONTH_FIELD = UDateFormatField.DAY_OF_WEEK_IN_MONTH_FIELD;
+pub const UDAT_WEEK_OF_YEAR_FIELD = UDateFormatField.WEEK_OF_YEAR_FIELD;
+pub const UDAT_WEEK_OF_MONTH_FIELD = UDateFormatField.WEEK_OF_MONTH_FIELD;
+pub const UDAT_AM_PM_FIELD = UDateFormatField.AM_PM_FIELD;
+pub const UDAT_HOUR1_FIELD = UDateFormatField.HOUR1_FIELD;
+pub const UDAT_HOUR0_FIELD = UDateFormatField.HOUR0_FIELD;
+pub const UDAT_TIMEZONE_FIELD = UDateFormatField.TIMEZONE_FIELD;
+pub const UDAT_YEAR_WOY_FIELD = UDateFormatField.YEAR_WOY_FIELD;
+pub const UDAT_DOW_LOCAL_FIELD = UDateFormatField.DOW_LOCAL_FIELD;
+pub const UDAT_EXTENDED_YEAR_FIELD = UDateFormatField.EXTENDED_YEAR_FIELD;
+pub const UDAT_JULIAN_DAY_FIELD = UDateFormatField.JULIAN_DAY_FIELD;
+pub const UDAT_MILLISECONDS_IN_DAY_FIELD = UDateFormatField.MILLISECONDS_IN_DAY_FIELD;
+pub const UDAT_TIMEZONE_RFC_FIELD = UDateFormatField.TIMEZONE_RFC_FIELD;
+pub const UDAT_TIMEZONE_GENERIC_FIELD = UDateFormatField.TIMEZONE_GENERIC_FIELD;
+pub const UDAT_STANDALONE_DAY_FIELD = UDateFormatField.STANDALONE_DAY_FIELD;
+pub const UDAT_STANDALONE_MONTH_FIELD = UDateFormatField.STANDALONE_MONTH_FIELD;
+pub const UDAT_QUARTER_FIELD = UDateFormatField.QUARTER_FIELD;
+pub const UDAT_STANDALONE_QUARTER_FIELD = UDateFormatField.STANDALONE_QUARTER_FIELD;
+pub const UDAT_TIMEZONE_SPECIAL_FIELD = UDateFormatField.TIMEZONE_SPECIAL_FIELD;
+pub const UDAT_YEAR_NAME_FIELD = UDateFormatField.YEAR_NAME_FIELD;
+pub const UDAT_TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD = UDateFormatField.TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD;
+pub const UDAT_TIMEZONE_ISO_FIELD = UDateFormatField.TIMEZONE_ISO_FIELD;
+pub const UDAT_TIMEZONE_ISO_LOCAL_FIELD = UDateFormatField.TIMEZONE_ISO_LOCAL_FIELD;
+pub const UDAT_AM_PM_MIDNIGHT_NOON_FIELD = UDateFormatField.AM_PM_MIDNIGHT_NOON_FIELD;
+pub const UDAT_FLEXIBLE_DAY_PERIOD_FIELD = UDateFormatField.FLEXIBLE_DAY_PERIOD_FIELD;
+
+pub const UDateFormatStyle = enum(i32) {
+    FULL = 0,
+    LONG = 1,
+    MEDIUM = 2,
+    SHORT = 3,
+    RELATIVE = 128,
+    LONG_RELATIVE = 129,
+    MEDIUM_RELATIVE = 130,
+    SHORT_RELATIVE = 131,
+    NONE = -1,
+    PATTERN = -2,
+    pub const DEFAULT = .MEDIUM;
+    pub const FULL_RELATIVE = .RELATIVE;
+};
+pub const UDAT_FULL = UDateFormatStyle.FULL;
+pub const UDAT_LONG = UDateFormatStyle.LONG;
+pub const UDAT_MEDIUM = UDateFormatStyle.MEDIUM;
+pub const UDAT_SHORT = UDateFormatStyle.SHORT;
+pub const UDAT_DEFAULT = UDateFormatStyle.MEDIUM;
+pub const UDAT_RELATIVE = UDateFormatStyle.RELATIVE;
+pub const UDAT_FULL_RELATIVE = UDateFormatStyle.RELATIVE;
+pub const UDAT_LONG_RELATIVE = UDateFormatStyle.LONG_RELATIVE;
+pub const UDAT_MEDIUM_RELATIVE = UDateFormatStyle.MEDIUM_RELATIVE;
+pub const UDAT_SHORT_RELATIVE = UDateFormatStyle.SHORT_RELATIVE;
+pub const UDAT_NONE = UDateFormatStyle.NONE;
+pub const UDAT_PATTERN = UDateFormatStyle.PATTERN;
+
+pub const UDateFormatSymbols = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UDateFormatSymbolType = enum(i32) {
+    ERAS = 0,
+    MONTHS = 1,
+    SHORT_MONTHS = 2,
+    WEEKDAYS = 3,
+    SHORT_WEEKDAYS = 4,
+    AM_PMS = 5,
+    LOCALIZED_CHARS = 6,
+    ERA_NAMES = 7,
+    NARROW_MONTHS = 8,
+    NARROW_WEEKDAYS = 9,
+    STANDALONE_MONTHS = 10,
+    STANDALONE_SHORT_MONTHS = 11,
+    STANDALONE_NARROW_MONTHS = 12,
+    STANDALONE_WEEKDAYS = 13,
+    STANDALONE_SHORT_WEEKDAYS = 14,
+    STANDALONE_NARROW_WEEKDAYS = 15,
+    QUARTERS = 16,
+    SHORT_QUARTERS = 17,
+    STANDALONE_QUARTERS = 18,
+    STANDALONE_SHORT_QUARTERS = 19,
+    SHORTER_WEEKDAYS = 20,
+    STANDALONE_SHORTER_WEEKDAYS = 21,
+    CYCLIC_YEARS_WIDE = 22,
+    CYCLIC_YEARS_ABBREVIATED = 23,
+    CYCLIC_YEARS_NARROW = 24,
+    ZODIAC_NAMES_WIDE = 25,
+    ZODIAC_NAMES_ABBREVIATED = 26,
+    ZODIAC_NAMES_NARROW = 27,
+};
+pub const UDAT_ERAS = UDateFormatSymbolType.ERAS;
+pub const UDAT_MONTHS = UDateFormatSymbolType.MONTHS;
+pub const UDAT_SHORT_MONTHS = UDateFormatSymbolType.SHORT_MONTHS;
+pub const UDAT_WEEKDAYS = UDateFormatSymbolType.WEEKDAYS;
+pub const UDAT_SHORT_WEEKDAYS = UDateFormatSymbolType.SHORT_WEEKDAYS;
+pub const UDAT_AM_PMS = UDateFormatSymbolType.AM_PMS;
+pub const UDAT_LOCALIZED_CHARS = UDateFormatSymbolType.LOCALIZED_CHARS;
+pub const UDAT_ERA_NAMES = UDateFormatSymbolType.ERA_NAMES;
+pub const UDAT_NARROW_MONTHS = UDateFormatSymbolType.NARROW_MONTHS;
+pub const UDAT_NARROW_WEEKDAYS = UDateFormatSymbolType.NARROW_WEEKDAYS;
+pub const UDAT_STANDALONE_MONTHS = UDateFormatSymbolType.STANDALONE_MONTHS;
+pub const UDAT_STANDALONE_SHORT_MONTHS = UDateFormatSymbolType.STANDALONE_SHORT_MONTHS;
+pub const UDAT_STANDALONE_NARROW_MONTHS = UDateFormatSymbolType.STANDALONE_NARROW_MONTHS;
+pub const UDAT_STANDALONE_WEEKDAYS = UDateFormatSymbolType.STANDALONE_WEEKDAYS;
+pub const UDAT_STANDALONE_SHORT_WEEKDAYS = UDateFormatSymbolType.STANDALONE_SHORT_WEEKDAYS;
+pub const UDAT_STANDALONE_NARROW_WEEKDAYS = UDateFormatSymbolType.STANDALONE_NARROW_WEEKDAYS;
+pub const UDAT_QUARTERS = UDateFormatSymbolType.QUARTERS;
+pub const UDAT_SHORT_QUARTERS = UDateFormatSymbolType.SHORT_QUARTERS;
+pub const UDAT_STANDALONE_QUARTERS = UDateFormatSymbolType.STANDALONE_QUARTERS;
+pub const UDAT_STANDALONE_SHORT_QUARTERS = UDateFormatSymbolType.STANDALONE_SHORT_QUARTERS;
+pub const UDAT_SHORTER_WEEKDAYS = UDateFormatSymbolType.SHORTER_WEEKDAYS;
+pub const UDAT_STANDALONE_SHORTER_WEEKDAYS = UDateFormatSymbolType.STANDALONE_SHORTER_WEEKDAYS;
+pub const UDAT_CYCLIC_YEARS_WIDE = UDateFormatSymbolType.CYCLIC_YEARS_WIDE;
+pub const UDAT_CYCLIC_YEARS_ABBREVIATED = UDateFormatSymbolType.CYCLIC_YEARS_ABBREVIATED;
+pub const UDAT_CYCLIC_YEARS_NARROW = UDateFormatSymbolType.CYCLIC_YEARS_NARROW;
+pub const UDAT_ZODIAC_NAMES_WIDE = UDateFormatSymbolType.ZODIAC_NAMES_WIDE;
+pub const UDAT_ZODIAC_NAMES_ABBREVIATED = UDateFormatSymbolType.ZODIAC_NAMES_ABBREVIATED;
+pub const UDAT_ZODIAC_NAMES_NARROW = UDateFormatSymbolType.ZODIAC_NAMES_NARROW;
+
+pub const UDateIntervalFormat = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UDateRelativeDateTimeFormatterStyle = enum(i32) {
+    LONG = 0,
+    SHORT = 1,
+    NARROW = 2,
+};
+pub const UDAT_STYLE_LONG = UDateRelativeDateTimeFormatterStyle.LONG;
+pub const UDAT_STYLE_SHORT = UDateRelativeDateTimeFormatterStyle.SHORT;
+pub const UDAT_STYLE_NARROW = UDateRelativeDateTimeFormatterStyle.NARROW;
+
+pub const UDateRelativeUnit = enum(i32) {
+    SECONDS = 0,
+    MINUTES = 1,
+    HOURS = 2,
+    DAYS = 3,
+    WEEKS = 4,
+    MONTHS = 5,
+    YEARS = 6,
+    UNIT_COUNT = 7,
+};
+pub const UDAT_RELATIVE_SECONDS = UDateRelativeUnit.SECONDS;
+pub const UDAT_RELATIVE_MINUTES = UDateRelativeUnit.MINUTES;
+pub const UDAT_RELATIVE_HOURS = UDateRelativeUnit.HOURS;
+pub const UDAT_RELATIVE_DAYS = UDateRelativeUnit.DAYS;
+pub const UDAT_RELATIVE_WEEKS = UDateRelativeUnit.WEEKS;
+pub const UDAT_RELATIVE_MONTHS = UDateRelativeUnit.MONTHS;
+pub const UDAT_RELATIVE_YEARS = UDateRelativeUnit.YEARS;
+pub const UDAT_RELATIVE_UNIT_COUNT = UDateRelativeUnit.UNIT_COUNT;
+
+pub const UDateTimePatternConflict = enum(i32) {
+    NO_CONFLICT = 0,
+    BASE_CONFLICT = 1,
+    CONFLICT = 2,
+};
+pub const UDATPG_NO_CONFLICT = UDateTimePatternConflict.NO_CONFLICT;
+pub const UDATPG_BASE_CONFLICT = UDateTimePatternConflict.BASE_CONFLICT;
+pub const UDATPG_CONFLICT = UDateTimePatternConflict.CONFLICT;
+
+pub const UDateTimePatternField = enum(i32) {
+    ERA_FIELD = 0,
+    YEAR_FIELD = 1,
+    QUARTER_FIELD = 2,
+    MONTH_FIELD = 3,
+    WEEK_OF_YEAR_FIELD = 4,
+    WEEK_OF_MONTH_FIELD = 5,
+    WEEKDAY_FIELD = 6,
+    DAY_OF_YEAR_FIELD = 7,
+    DAY_OF_WEEK_IN_MONTH_FIELD = 8,
+    DAY_FIELD = 9,
+    DAYPERIOD_FIELD = 10,
+    HOUR_FIELD = 11,
+    MINUTE_FIELD = 12,
+    SECOND_FIELD = 13,
+    FRACTIONAL_SECOND_FIELD = 14,
+    ZONE_FIELD = 15,
+    FIELD_COUNT = 16,
+};
+pub const UDATPG_ERA_FIELD = UDateTimePatternField.ERA_FIELD;
+pub const UDATPG_YEAR_FIELD = UDateTimePatternField.YEAR_FIELD;
+pub const UDATPG_QUARTER_FIELD = UDateTimePatternField.QUARTER_FIELD;
+pub const UDATPG_MONTH_FIELD = UDateTimePatternField.MONTH_FIELD;
+pub const UDATPG_WEEK_OF_YEAR_FIELD = UDateTimePatternField.WEEK_OF_YEAR_FIELD;
+pub const UDATPG_WEEK_OF_MONTH_FIELD = UDateTimePatternField.WEEK_OF_MONTH_FIELD;
+pub const UDATPG_WEEKDAY_FIELD = UDateTimePatternField.WEEKDAY_FIELD;
+pub const UDATPG_DAY_OF_YEAR_FIELD = UDateTimePatternField.DAY_OF_YEAR_FIELD;
+pub const UDATPG_DAY_OF_WEEK_IN_MONTH_FIELD = UDateTimePatternField.DAY_OF_WEEK_IN_MONTH_FIELD;
+pub const UDATPG_DAY_FIELD = UDateTimePatternField.DAY_FIELD;
+pub const UDATPG_DAYPERIOD_FIELD = UDateTimePatternField.DAYPERIOD_FIELD;
+pub const UDATPG_HOUR_FIELD = UDateTimePatternField.HOUR_FIELD;
+pub const UDATPG_MINUTE_FIELD = UDateTimePatternField.MINUTE_FIELD;
+pub const UDATPG_SECOND_FIELD = UDateTimePatternField.SECOND_FIELD;
+pub const UDATPG_FRACTIONAL_SECOND_FIELD = UDateTimePatternField.FRACTIONAL_SECOND_FIELD;
+pub const UDATPG_ZONE_FIELD = UDateTimePatternField.ZONE_FIELD;
+pub const UDATPG_FIELD_COUNT = UDateTimePatternField.FIELD_COUNT;
+
+pub const UDateTimePatternMatchOptions = enum(i32) {
+    NO_OPTIONS = 0,
+    HOUR_FIELD_LENGTH = 2048,
+    ALL_FIELDS_LENGTH = 65535,
+};
+pub const UDATPG_MATCH_NO_OPTIONS = UDateTimePatternMatchOptions.NO_OPTIONS;
+pub const UDATPG_MATCH_HOUR_FIELD_LENGTH = UDateTimePatternMatchOptions.HOUR_FIELD_LENGTH;
+pub const UDATPG_MATCH_ALL_FIELDS_LENGTH = UDateTimePatternMatchOptions.ALL_FIELDS_LENGTH;
+
+pub const UDateTimePGDisplayWidth = enum(i32) {
+    WIDE = 0,
+    ABBREVIATED = 1,
+    NARROW = 2,
+};
+pub const UDATPG_WIDE = UDateTimePGDisplayWidth.WIDE;
+pub const UDATPG_ABBREVIATED = UDateTimePGDisplayWidth.ABBREVIATED;
+pub const UDATPG_NARROW = UDateTimePGDisplayWidth.NARROW;
+
+pub const UDateTimeScale = enum(i32) {
+    JAVA_TIME = 0,
+    UNIX_TIME = 1,
+    ICU4C_TIME = 2,
+    WINDOWS_FILE_TIME = 3,
+    DOTNET_DATE_TIME = 4,
+    MAC_OLD_TIME = 5,
+    MAC_TIME = 6,
+    EXCEL_TIME = 7,
+    DB2_TIME = 8,
+    UNIX_MICROSECONDS_TIME = 9,
+};
+pub const UDTS_JAVA_TIME = UDateTimeScale.JAVA_TIME;
+pub const UDTS_UNIX_TIME = UDateTimeScale.UNIX_TIME;
+pub const UDTS_ICU4C_TIME = UDateTimeScale.ICU4C_TIME;
+pub const UDTS_WINDOWS_FILE_TIME = UDateTimeScale.WINDOWS_FILE_TIME;
+pub const UDTS_DOTNET_DATE_TIME = UDateTimeScale.DOTNET_DATE_TIME;
+pub const UDTS_MAC_OLD_TIME = UDateTimeScale.MAC_OLD_TIME;
+pub const UDTS_MAC_TIME = UDateTimeScale.MAC_TIME;
+pub const UDTS_EXCEL_TIME = UDateTimeScale.EXCEL_TIME;
+pub const UDTS_DB2_TIME = UDateTimeScale.DB2_TIME;
+pub const UDTS_UNIX_MICROSECONDS_TIME = UDateTimeScale.UNIX_MICROSECONDS_TIME;
 
 pub const UDecompositionType = enum(i32) {
     NONE = 0,
@@ -4543,20 +5521,656 @@ pub const U_DT_SUPER = UDecompositionType.SUPER;
 pub const U_DT_VERTICAL = UDecompositionType.VERTICAL;
 pub const U_DT_WIDE = UDecompositionType.WIDE;
 
-pub const UJoiningType = enum(i32) {
-    NON_JOINING = 0,
-    JOIN_CAUSING = 1,
-    DUAL_JOINING = 2,
-    LEFT_JOINING = 3,
-    RIGHT_JOINING = 4,
-    TRANSPARENT = 5,
+pub const UDialectHandling = enum(i32) {
+    STANDARD_NAMES = 0,
+    DIALECT_NAMES = 1,
 };
-pub const U_JT_NON_JOINING = UJoiningType.NON_JOINING;
-pub const U_JT_JOIN_CAUSING = UJoiningType.JOIN_CAUSING;
-pub const U_JT_DUAL_JOINING = UJoiningType.DUAL_JOINING;
-pub const U_JT_LEFT_JOINING = UJoiningType.LEFT_JOINING;
-pub const U_JT_RIGHT_JOINING = UJoiningType.RIGHT_JOINING;
-pub const U_JT_TRANSPARENT = UJoiningType.TRANSPARENT;
+pub const ULDN_STANDARD_NAMES = UDialectHandling.STANDARD_NAMES;
+pub const ULDN_DIALECT_NAMES = UDialectHandling.DIALECT_NAMES;
+
+pub const UDisplayContext = enum(i32) {
+    STANDARD_NAMES = 0,
+    DIALECT_NAMES = 1,
+    CAPITALIZATION_NONE = 256,
+    CAPITALIZATION_FOR_MIDDLE_OF_SENTENCE = 257,
+    CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE = 258,
+    CAPITALIZATION_FOR_UI_LIST_OR_MENU = 259,
+    CAPITALIZATION_FOR_STANDALONE = 260,
+    LENGTH_FULL = 512,
+    LENGTH_SHORT = 513,
+    SUBSTITUTE = 768,
+    NO_SUBSTITUTE = 769,
+};
+pub const UDISPCTX_STANDARD_NAMES = UDisplayContext.STANDARD_NAMES;
+pub const UDISPCTX_DIALECT_NAMES = UDisplayContext.DIALECT_NAMES;
+pub const UDISPCTX_CAPITALIZATION_NONE = UDisplayContext.CAPITALIZATION_NONE;
+pub const UDISPCTX_CAPITALIZATION_FOR_MIDDLE_OF_SENTENCE = UDisplayContext.CAPITALIZATION_FOR_MIDDLE_OF_SENTENCE;
+pub const UDISPCTX_CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE = UDisplayContext.CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE;
+pub const UDISPCTX_CAPITALIZATION_FOR_UI_LIST_OR_MENU = UDisplayContext.CAPITALIZATION_FOR_UI_LIST_OR_MENU;
+pub const UDISPCTX_CAPITALIZATION_FOR_STANDALONE = UDisplayContext.CAPITALIZATION_FOR_STANDALONE;
+pub const UDISPCTX_LENGTH_FULL = UDisplayContext.LENGTH_FULL;
+pub const UDISPCTX_LENGTH_SHORT = UDisplayContext.LENGTH_SHORT;
+pub const UDISPCTX_SUBSTITUTE = UDisplayContext.SUBSTITUTE;
+pub const UDISPCTX_NO_SUBSTITUTE = UDisplayContext.NO_SUBSTITUTE;
+
+pub const UDisplayContextType = enum(i32) {
+    DIALECT_HANDLING = 0,
+    CAPITALIZATION = 1,
+    DISPLAY_LENGTH = 2,
+    SUBSTITUTE_HANDLING = 3,
+};
+pub const UDISPCTX_TYPE_DIALECT_HANDLING = UDisplayContextType.DIALECT_HANDLING;
+pub const UDISPCTX_TYPE_CAPITALIZATION = UDisplayContextType.CAPITALIZATION;
+pub const UDISPCTX_TYPE_DISPLAY_LENGTH = UDisplayContextType.DISPLAY_LENGTH;
+pub const UDISPCTX_TYPE_SUBSTITUTE_HANDLING = UDisplayContextType.SUBSTITUTE_HANDLING;
+
+pub const UEastAsianWidth = enum(i32) {
+    NEUTRAL = 0,
+    AMBIGUOUS = 1,
+    HALFWIDTH = 2,
+    FULLWIDTH = 3,
+    NARROW = 4,
+    WIDE = 5,
+};
+pub const U_EA_NEUTRAL = UEastAsianWidth.NEUTRAL;
+pub const U_EA_AMBIGUOUS = UEastAsianWidth.AMBIGUOUS;
+pub const U_EA_HALFWIDTH = UEastAsianWidth.HALFWIDTH;
+pub const U_EA_FULLWIDTH = UEastAsianWidth.FULLWIDTH;
+pub const U_EA_NARROW = UEastAsianWidth.NARROW;
+pub const U_EA_WIDE = UEastAsianWidth.WIDE;
+
+pub const UEnumCharNamesFn = *const fn(
+    context: ?*anyopaque,
+    code: i32,
+    nameChoice: UCharNameChoice,
+    name: ?[*:0]const u8,
+    length: i32,
+) callconv(.winapi) i8;
+
+pub const UEnumeration = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UErrorCode = enum(i32) {
+    USING_FALLBACK_WARNING = -128,
+    USING_DEFAULT_WARNING = -127,
+    SAFECLONE_ALLOCATED_WARNING = -126,
+    STATE_OLD_WARNING = -125,
+    STRING_NOT_TERMINATED_WARNING = -124,
+    SORT_KEY_TOO_SHORT_WARNING = -123,
+    AMBIGUOUS_ALIAS_WARNING = -122,
+    DIFFERENT_UCA_VERSION = -121,
+    PLUGIN_CHANGED_LEVEL_WARNING = -120,
+    ZERO_ERROR = 0,
+    ILLEGAL_ARGUMENT_ERROR = 1,
+    MISSING_RESOURCE_ERROR = 2,
+    INVALID_FORMAT_ERROR = 3,
+    FILE_ACCESS_ERROR = 4,
+    INTERNAL_PROGRAM_ERROR = 5,
+    MESSAGE_PARSE_ERROR = 6,
+    MEMORY_ALLOCATION_ERROR = 7,
+    INDEX_OUTOFBOUNDS_ERROR = 8,
+    PARSE_ERROR = 9,
+    INVALID_CHAR_FOUND = 10,
+    TRUNCATED_CHAR_FOUND = 11,
+    ILLEGAL_CHAR_FOUND = 12,
+    INVALID_TABLE_FORMAT = 13,
+    INVALID_TABLE_FILE = 14,
+    BUFFER_OVERFLOW_ERROR = 15,
+    UNSUPPORTED_ERROR = 16,
+    RESOURCE_TYPE_MISMATCH = 17,
+    ILLEGAL_ESCAPE_SEQUENCE = 18,
+    UNSUPPORTED_ESCAPE_SEQUENCE = 19,
+    NO_SPACE_AVAILABLE = 20,
+    CE_NOT_FOUND_ERROR = 21,
+    PRIMARY_TOO_LONG_ERROR = 22,
+    STATE_TOO_OLD_ERROR = 23,
+    TOO_MANY_ALIASES_ERROR = 24,
+    ENUM_OUT_OF_SYNC_ERROR = 25,
+    INVARIANT_CONVERSION_ERROR = 26,
+    INVALID_STATE_ERROR = 27,
+    COLLATOR_VERSION_MISMATCH = 28,
+    USELESS_COLLATOR_ERROR = 29,
+    NO_WRITE_PERMISSION = 30,
+    BAD_VARIABLE_DEFINITION = 65536,
+    MALFORMED_RULE = 65537,
+    MALFORMED_SET = 65538,
+    MALFORMED_SYMBOL_REFERENCE = 65539,
+    MALFORMED_UNICODE_ESCAPE = 65540,
+    MALFORMED_VARIABLE_DEFINITION = 65541,
+    MALFORMED_VARIABLE_REFERENCE = 65542,
+    MISMATCHED_SEGMENT_DELIMITERS = 65543,
+    MISPLACED_ANCHOR_START = 65544,
+    MISPLACED_CURSOR_OFFSET = 65545,
+    MISPLACED_QUANTIFIER = 65546,
+    MISSING_OPERATOR = 65547,
+    MISSING_SEGMENT_CLOSE = 65548,
+    MULTIPLE_ANTE_CONTEXTS = 65549,
+    MULTIPLE_CURSORS = 65550,
+    MULTIPLE_POST_CONTEXTS = 65551,
+    TRAILING_BACKSLASH = 65552,
+    UNDEFINED_SEGMENT_REFERENCE = 65553,
+    UNDEFINED_VARIABLE = 65554,
+    UNQUOTED_SPECIAL = 65555,
+    UNTERMINATED_QUOTE = 65556,
+    RULE_MASK_ERROR = 65557,
+    MISPLACED_COMPOUND_FILTER = 65558,
+    MULTIPLE_COMPOUND_FILTERS = 65559,
+    INVALID_RBT_SYNTAX = 65560,
+    INVALID_PROPERTY_PATTERN = 65561,
+    MALFORMED_PRAGMA = 65562,
+    UNCLOSED_SEGMENT = 65563,
+    ILLEGAL_CHAR_IN_SEGMENT = 65564,
+    VARIABLE_RANGE_EXHAUSTED = 65565,
+    VARIABLE_RANGE_OVERLAP = 65566,
+    ILLEGAL_CHARACTER = 65567,
+    INTERNAL_TRANSLITERATOR_ERROR = 65568,
+    INVALID_ID = 65569,
+    INVALID_FUNCTION = 65570,
+    UNEXPECTED_TOKEN = 65792,
+    MULTIPLE_DECIMAL_SEPARATORS = 65793,
+    MULTIPLE_EXPONENTIAL_SYMBOLS = 65794,
+    MALFORMED_EXPONENTIAL_PATTERN = 65795,
+    MULTIPLE_PERCENT_SYMBOLS = 65796,
+    MULTIPLE_PERMILL_SYMBOLS = 65797,
+    MULTIPLE_PAD_SPECIFIERS = 65798,
+    PATTERN_SYNTAX_ERROR = 65799,
+    ILLEGAL_PAD_POSITION = 65800,
+    UNMATCHED_BRACES = 65801,
+    UNSUPPORTED_PROPERTY = 65802,
+    UNSUPPORTED_ATTRIBUTE = 65803,
+    ARGUMENT_TYPE_MISMATCH = 65804,
+    DUPLICATE_KEYWORD = 65805,
+    UNDEFINED_KEYWORD = 65806,
+    DEFAULT_KEYWORD_MISSING = 65807,
+    DECIMAL_NUMBER_SYNTAX_ERROR = 65808,
+    FORMAT_INEXACT_ERROR = 65809,
+    NUMBER_ARG_OUTOFBOUNDS_ERROR = 65810,
+    NUMBER_SKELETON_SYNTAX_ERROR = 65811,
+    BRK_INTERNAL_ERROR = 66048,
+    BRK_HEX_DIGITS_EXPECTED = 66049,
+    BRK_SEMICOLON_EXPECTED = 66050,
+    BRK_RULE_SYNTAX = 66051,
+    BRK_UNCLOSED_SET = 66052,
+    BRK_ASSIGN_ERROR = 66053,
+    BRK_VARIABLE_REDFINITION = 66054,
+    BRK_MISMATCHED_PAREN = 66055,
+    BRK_NEW_LINE_IN_QUOTED_STRING = 66056,
+    BRK_UNDEFINED_VARIABLE = 66057,
+    BRK_INIT_ERROR = 66058,
+    BRK_RULE_EMPTY_SET = 66059,
+    BRK_UNRECOGNIZED_OPTION = 66060,
+    BRK_MALFORMED_RULE_TAG = 66061,
+    REGEX_INTERNAL_ERROR = 66304,
+    REGEX_RULE_SYNTAX = 66305,
+    REGEX_INVALID_STATE = 66306,
+    REGEX_BAD_ESCAPE_SEQUENCE = 66307,
+    REGEX_PROPERTY_SYNTAX = 66308,
+    REGEX_UNIMPLEMENTED = 66309,
+    REGEX_MISMATCHED_PAREN = 66310,
+    REGEX_NUMBER_TOO_BIG = 66311,
+    REGEX_BAD_INTERVAL = 66312,
+    REGEX_MAX_LT_MIN = 66313,
+    REGEX_INVALID_BACK_REF = 66314,
+    REGEX_INVALID_FLAG = 66315,
+    REGEX_LOOK_BEHIND_LIMIT = 66316,
+    REGEX_SET_CONTAINS_STRING = 66317,
+    REGEX_MISSING_CLOSE_BRACKET = 66319,
+    REGEX_INVALID_RANGE = 66320,
+    REGEX_STACK_OVERFLOW = 66321,
+    REGEX_TIME_OUT = 66322,
+    REGEX_STOPPED_BY_CALLER = 66323,
+    REGEX_PATTERN_TOO_BIG = 66324,
+    REGEX_INVALID_CAPTURE_GROUP_NAME = 66325,
+    IDNA_PROHIBITED_ERROR = 66560,
+    IDNA_UNASSIGNED_ERROR = 66561,
+    IDNA_CHECK_BIDI_ERROR = 66562,
+    IDNA_STD3_ASCII_RULES_ERROR = 66563,
+    IDNA_ACE_PREFIX_ERROR = 66564,
+    IDNA_VERIFICATION_ERROR = 66565,
+    IDNA_LABEL_TOO_LONG_ERROR = 66566,
+    IDNA_ZERO_LENGTH_LABEL_ERROR = 66567,
+    IDNA_DOMAIN_NAME_TOO_LONG_ERROR = 66568,
+    PLUGIN_ERROR_START = 66816,
+    PLUGIN_DIDNT_SET_LEVEL = 66817,
+    pub const ERROR_WARNING_START = .USING_FALLBACK_WARNING;
+    pub const PARSE_ERROR_START = .BAD_VARIABLE_DEFINITION;
+    pub const FMT_PARSE_ERROR_START = .UNEXPECTED_TOKEN;
+    pub const MULTIPLE_DECIMAL_SEPERATORS = .MULTIPLE_DECIMAL_SEPARATORS;
+    pub const BRK_ERROR_START = .BRK_INTERNAL_ERROR;
+    pub const REGEX_ERROR_START = .REGEX_INTERNAL_ERROR;
+    pub const IDNA_ERROR_START = .IDNA_PROHIBITED_ERROR;
+    pub const STRINGPREP_PROHIBITED_ERROR = .IDNA_PROHIBITED_ERROR;
+    pub const STRINGPREP_UNASSIGNED_ERROR = .IDNA_UNASSIGNED_ERROR;
+    pub const STRINGPREP_CHECK_BIDI_ERROR = .IDNA_CHECK_BIDI_ERROR;
+    pub const PLUGIN_TOO_HIGH = .PLUGIN_ERROR_START;
+};
+pub const U_USING_FALLBACK_WARNING = UErrorCode.USING_FALLBACK_WARNING;
+pub const U_ERROR_WARNING_START = UErrorCode.USING_FALLBACK_WARNING;
+pub const U_USING_DEFAULT_WARNING = UErrorCode.USING_DEFAULT_WARNING;
+pub const U_SAFECLONE_ALLOCATED_WARNING = UErrorCode.SAFECLONE_ALLOCATED_WARNING;
+pub const U_STATE_OLD_WARNING = UErrorCode.STATE_OLD_WARNING;
+pub const U_STRING_NOT_TERMINATED_WARNING = UErrorCode.STRING_NOT_TERMINATED_WARNING;
+pub const U_SORT_KEY_TOO_SHORT_WARNING = UErrorCode.SORT_KEY_TOO_SHORT_WARNING;
+pub const U_AMBIGUOUS_ALIAS_WARNING = UErrorCode.AMBIGUOUS_ALIAS_WARNING;
+pub const U_DIFFERENT_UCA_VERSION = UErrorCode.DIFFERENT_UCA_VERSION;
+pub const U_PLUGIN_CHANGED_LEVEL_WARNING = UErrorCode.PLUGIN_CHANGED_LEVEL_WARNING;
+pub const U_ZERO_ERROR = UErrorCode.ZERO_ERROR;
+pub const U_ILLEGAL_ARGUMENT_ERROR = UErrorCode.ILLEGAL_ARGUMENT_ERROR;
+pub const U_MISSING_RESOURCE_ERROR = UErrorCode.MISSING_RESOURCE_ERROR;
+pub const U_INVALID_FORMAT_ERROR = UErrorCode.INVALID_FORMAT_ERROR;
+pub const U_FILE_ACCESS_ERROR = UErrorCode.FILE_ACCESS_ERROR;
+pub const U_INTERNAL_PROGRAM_ERROR = UErrorCode.INTERNAL_PROGRAM_ERROR;
+pub const U_MESSAGE_PARSE_ERROR = UErrorCode.MESSAGE_PARSE_ERROR;
+pub const U_MEMORY_ALLOCATION_ERROR = UErrorCode.MEMORY_ALLOCATION_ERROR;
+pub const U_INDEX_OUTOFBOUNDS_ERROR = UErrorCode.INDEX_OUTOFBOUNDS_ERROR;
+pub const U_PARSE_ERROR = UErrorCode.PARSE_ERROR;
+pub const U_INVALID_CHAR_FOUND = UErrorCode.INVALID_CHAR_FOUND;
+pub const U_TRUNCATED_CHAR_FOUND = UErrorCode.TRUNCATED_CHAR_FOUND;
+pub const U_ILLEGAL_CHAR_FOUND = UErrorCode.ILLEGAL_CHAR_FOUND;
+pub const U_INVALID_TABLE_FORMAT = UErrorCode.INVALID_TABLE_FORMAT;
+pub const U_INVALID_TABLE_FILE = UErrorCode.INVALID_TABLE_FILE;
+pub const U_BUFFER_OVERFLOW_ERROR = UErrorCode.BUFFER_OVERFLOW_ERROR;
+pub const U_UNSUPPORTED_ERROR = UErrorCode.UNSUPPORTED_ERROR;
+pub const U_RESOURCE_TYPE_MISMATCH = UErrorCode.RESOURCE_TYPE_MISMATCH;
+pub const U_ILLEGAL_ESCAPE_SEQUENCE = UErrorCode.ILLEGAL_ESCAPE_SEQUENCE;
+pub const U_UNSUPPORTED_ESCAPE_SEQUENCE = UErrorCode.UNSUPPORTED_ESCAPE_SEQUENCE;
+pub const U_NO_SPACE_AVAILABLE = UErrorCode.NO_SPACE_AVAILABLE;
+pub const U_CE_NOT_FOUND_ERROR = UErrorCode.CE_NOT_FOUND_ERROR;
+pub const U_PRIMARY_TOO_LONG_ERROR = UErrorCode.PRIMARY_TOO_LONG_ERROR;
+pub const U_STATE_TOO_OLD_ERROR = UErrorCode.STATE_TOO_OLD_ERROR;
+pub const U_TOO_MANY_ALIASES_ERROR = UErrorCode.TOO_MANY_ALIASES_ERROR;
+pub const U_ENUM_OUT_OF_SYNC_ERROR = UErrorCode.ENUM_OUT_OF_SYNC_ERROR;
+pub const U_INVARIANT_CONVERSION_ERROR = UErrorCode.INVARIANT_CONVERSION_ERROR;
+pub const U_INVALID_STATE_ERROR = UErrorCode.INVALID_STATE_ERROR;
+pub const U_COLLATOR_VERSION_MISMATCH = UErrorCode.COLLATOR_VERSION_MISMATCH;
+pub const U_USELESS_COLLATOR_ERROR = UErrorCode.USELESS_COLLATOR_ERROR;
+pub const U_NO_WRITE_PERMISSION = UErrorCode.NO_WRITE_PERMISSION;
+pub const U_BAD_VARIABLE_DEFINITION = UErrorCode.BAD_VARIABLE_DEFINITION;
+pub const U_PARSE_ERROR_START = UErrorCode.BAD_VARIABLE_DEFINITION;
+pub const U_MALFORMED_RULE = UErrorCode.MALFORMED_RULE;
+pub const U_MALFORMED_SET = UErrorCode.MALFORMED_SET;
+pub const U_MALFORMED_SYMBOL_REFERENCE = UErrorCode.MALFORMED_SYMBOL_REFERENCE;
+pub const U_MALFORMED_UNICODE_ESCAPE = UErrorCode.MALFORMED_UNICODE_ESCAPE;
+pub const U_MALFORMED_VARIABLE_DEFINITION = UErrorCode.MALFORMED_VARIABLE_DEFINITION;
+pub const U_MALFORMED_VARIABLE_REFERENCE = UErrorCode.MALFORMED_VARIABLE_REFERENCE;
+pub const U_MISMATCHED_SEGMENT_DELIMITERS = UErrorCode.MISMATCHED_SEGMENT_DELIMITERS;
+pub const U_MISPLACED_ANCHOR_START = UErrorCode.MISPLACED_ANCHOR_START;
+pub const U_MISPLACED_CURSOR_OFFSET = UErrorCode.MISPLACED_CURSOR_OFFSET;
+pub const U_MISPLACED_QUANTIFIER = UErrorCode.MISPLACED_QUANTIFIER;
+pub const U_MISSING_OPERATOR = UErrorCode.MISSING_OPERATOR;
+pub const U_MISSING_SEGMENT_CLOSE = UErrorCode.MISSING_SEGMENT_CLOSE;
+pub const U_MULTIPLE_ANTE_CONTEXTS = UErrorCode.MULTIPLE_ANTE_CONTEXTS;
+pub const U_MULTIPLE_CURSORS = UErrorCode.MULTIPLE_CURSORS;
+pub const U_MULTIPLE_POST_CONTEXTS = UErrorCode.MULTIPLE_POST_CONTEXTS;
+pub const U_TRAILING_BACKSLASH = UErrorCode.TRAILING_BACKSLASH;
+pub const U_UNDEFINED_SEGMENT_REFERENCE = UErrorCode.UNDEFINED_SEGMENT_REFERENCE;
+pub const U_UNDEFINED_VARIABLE = UErrorCode.UNDEFINED_VARIABLE;
+pub const U_UNQUOTED_SPECIAL = UErrorCode.UNQUOTED_SPECIAL;
+pub const U_UNTERMINATED_QUOTE = UErrorCode.UNTERMINATED_QUOTE;
+pub const U_RULE_MASK_ERROR = UErrorCode.RULE_MASK_ERROR;
+pub const U_MISPLACED_COMPOUND_FILTER = UErrorCode.MISPLACED_COMPOUND_FILTER;
+pub const U_MULTIPLE_COMPOUND_FILTERS = UErrorCode.MULTIPLE_COMPOUND_FILTERS;
+pub const U_INVALID_RBT_SYNTAX = UErrorCode.INVALID_RBT_SYNTAX;
+pub const U_INVALID_PROPERTY_PATTERN = UErrorCode.INVALID_PROPERTY_PATTERN;
+pub const U_MALFORMED_PRAGMA = UErrorCode.MALFORMED_PRAGMA;
+pub const U_UNCLOSED_SEGMENT = UErrorCode.UNCLOSED_SEGMENT;
+pub const U_ILLEGAL_CHAR_IN_SEGMENT = UErrorCode.ILLEGAL_CHAR_IN_SEGMENT;
+pub const U_VARIABLE_RANGE_EXHAUSTED = UErrorCode.VARIABLE_RANGE_EXHAUSTED;
+pub const U_VARIABLE_RANGE_OVERLAP = UErrorCode.VARIABLE_RANGE_OVERLAP;
+pub const U_ILLEGAL_CHARACTER = UErrorCode.ILLEGAL_CHARACTER;
+pub const U_INTERNAL_TRANSLITERATOR_ERROR = UErrorCode.INTERNAL_TRANSLITERATOR_ERROR;
+pub const U_INVALID_ID = UErrorCode.INVALID_ID;
+pub const U_INVALID_FUNCTION = UErrorCode.INVALID_FUNCTION;
+pub const U_UNEXPECTED_TOKEN = UErrorCode.UNEXPECTED_TOKEN;
+pub const U_FMT_PARSE_ERROR_START = UErrorCode.UNEXPECTED_TOKEN;
+pub const U_MULTIPLE_DECIMAL_SEPARATORS = UErrorCode.MULTIPLE_DECIMAL_SEPARATORS;
+pub const U_MULTIPLE_DECIMAL_SEPERATORS = UErrorCode.MULTIPLE_DECIMAL_SEPARATORS;
+pub const U_MULTIPLE_EXPONENTIAL_SYMBOLS = UErrorCode.MULTIPLE_EXPONENTIAL_SYMBOLS;
+pub const U_MALFORMED_EXPONENTIAL_PATTERN = UErrorCode.MALFORMED_EXPONENTIAL_PATTERN;
+pub const U_MULTIPLE_PERCENT_SYMBOLS = UErrorCode.MULTIPLE_PERCENT_SYMBOLS;
+pub const U_MULTIPLE_PERMILL_SYMBOLS = UErrorCode.MULTIPLE_PERMILL_SYMBOLS;
+pub const U_MULTIPLE_PAD_SPECIFIERS = UErrorCode.MULTIPLE_PAD_SPECIFIERS;
+pub const U_PATTERN_SYNTAX_ERROR = UErrorCode.PATTERN_SYNTAX_ERROR;
+pub const U_ILLEGAL_PAD_POSITION = UErrorCode.ILLEGAL_PAD_POSITION;
+pub const U_UNMATCHED_BRACES = UErrorCode.UNMATCHED_BRACES;
+pub const U_UNSUPPORTED_PROPERTY = UErrorCode.UNSUPPORTED_PROPERTY;
+pub const U_UNSUPPORTED_ATTRIBUTE = UErrorCode.UNSUPPORTED_ATTRIBUTE;
+pub const U_ARGUMENT_TYPE_MISMATCH = UErrorCode.ARGUMENT_TYPE_MISMATCH;
+pub const U_DUPLICATE_KEYWORD = UErrorCode.DUPLICATE_KEYWORD;
+pub const U_UNDEFINED_KEYWORD = UErrorCode.UNDEFINED_KEYWORD;
+pub const U_DEFAULT_KEYWORD_MISSING = UErrorCode.DEFAULT_KEYWORD_MISSING;
+pub const U_DECIMAL_NUMBER_SYNTAX_ERROR = UErrorCode.DECIMAL_NUMBER_SYNTAX_ERROR;
+pub const U_FORMAT_INEXACT_ERROR = UErrorCode.FORMAT_INEXACT_ERROR;
+pub const U_NUMBER_ARG_OUTOFBOUNDS_ERROR = UErrorCode.NUMBER_ARG_OUTOFBOUNDS_ERROR;
+pub const U_NUMBER_SKELETON_SYNTAX_ERROR = UErrorCode.NUMBER_SKELETON_SYNTAX_ERROR;
+pub const U_BRK_INTERNAL_ERROR = UErrorCode.BRK_INTERNAL_ERROR;
+pub const U_BRK_ERROR_START = UErrorCode.BRK_INTERNAL_ERROR;
+pub const U_BRK_HEX_DIGITS_EXPECTED = UErrorCode.BRK_HEX_DIGITS_EXPECTED;
+pub const U_BRK_SEMICOLON_EXPECTED = UErrorCode.BRK_SEMICOLON_EXPECTED;
+pub const U_BRK_RULE_SYNTAX = UErrorCode.BRK_RULE_SYNTAX;
+pub const U_BRK_UNCLOSED_SET = UErrorCode.BRK_UNCLOSED_SET;
+pub const U_BRK_ASSIGN_ERROR = UErrorCode.BRK_ASSIGN_ERROR;
+pub const U_BRK_VARIABLE_REDFINITION = UErrorCode.BRK_VARIABLE_REDFINITION;
+pub const U_BRK_MISMATCHED_PAREN = UErrorCode.BRK_MISMATCHED_PAREN;
+pub const U_BRK_NEW_LINE_IN_QUOTED_STRING = UErrorCode.BRK_NEW_LINE_IN_QUOTED_STRING;
+pub const U_BRK_UNDEFINED_VARIABLE = UErrorCode.BRK_UNDEFINED_VARIABLE;
+pub const U_BRK_INIT_ERROR = UErrorCode.BRK_INIT_ERROR;
+pub const U_BRK_RULE_EMPTY_SET = UErrorCode.BRK_RULE_EMPTY_SET;
+pub const U_BRK_UNRECOGNIZED_OPTION = UErrorCode.BRK_UNRECOGNIZED_OPTION;
+pub const U_BRK_MALFORMED_RULE_TAG = UErrorCode.BRK_MALFORMED_RULE_TAG;
+pub const U_REGEX_INTERNAL_ERROR = UErrorCode.REGEX_INTERNAL_ERROR;
+pub const U_REGEX_ERROR_START = UErrorCode.REGEX_INTERNAL_ERROR;
+pub const U_REGEX_RULE_SYNTAX = UErrorCode.REGEX_RULE_SYNTAX;
+pub const U_REGEX_INVALID_STATE = UErrorCode.REGEX_INVALID_STATE;
+pub const U_REGEX_BAD_ESCAPE_SEQUENCE = UErrorCode.REGEX_BAD_ESCAPE_SEQUENCE;
+pub const U_REGEX_PROPERTY_SYNTAX = UErrorCode.REGEX_PROPERTY_SYNTAX;
+pub const U_REGEX_UNIMPLEMENTED = UErrorCode.REGEX_UNIMPLEMENTED;
+pub const U_REGEX_MISMATCHED_PAREN = UErrorCode.REGEX_MISMATCHED_PAREN;
+pub const U_REGEX_NUMBER_TOO_BIG = UErrorCode.REGEX_NUMBER_TOO_BIG;
+pub const U_REGEX_BAD_INTERVAL = UErrorCode.REGEX_BAD_INTERVAL;
+pub const U_REGEX_MAX_LT_MIN = UErrorCode.REGEX_MAX_LT_MIN;
+pub const U_REGEX_INVALID_BACK_REF = UErrorCode.REGEX_INVALID_BACK_REF;
+pub const U_REGEX_INVALID_FLAG = UErrorCode.REGEX_INVALID_FLAG;
+pub const U_REGEX_LOOK_BEHIND_LIMIT = UErrorCode.REGEX_LOOK_BEHIND_LIMIT;
+pub const U_REGEX_SET_CONTAINS_STRING = UErrorCode.REGEX_SET_CONTAINS_STRING;
+pub const U_REGEX_MISSING_CLOSE_BRACKET = UErrorCode.REGEX_MISSING_CLOSE_BRACKET;
+pub const U_REGEX_INVALID_RANGE = UErrorCode.REGEX_INVALID_RANGE;
+pub const U_REGEX_STACK_OVERFLOW = UErrorCode.REGEX_STACK_OVERFLOW;
+pub const U_REGEX_TIME_OUT = UErrorCode.REGEX_TIME_OUT;
+pub const U_REGEX_STOPPED_BY_CALLER = UErrorCode.REGEX_STOPPED_BY_CALLER;
+pub const U_REGEX_PATTERN_TOO_BIG = UErrorCode.REGEX_PATTERN_TOO_BIG;
+pub const U_REGEX_INVALID_CAPTURE_GROUP_NAME = UErrorCode.REGEX_INVALID_CAPTURE_GROUP_NAME;
+pub const U_IDNA_PROHIBITED_ERROR = UErrorCode.IDNA_PROHIBITED_ERROR;
+pub const U_IDNA_ERROR_START = UErrorCode.IDNA_PROHIBITED_ERROR;
+pub const U_IDNA_UNASSIGNED_ERROR = UErrorCode.IDNA_UNASSIGNED_ERROR;
+pub const U_IDNA_CHECK_BIDI_ERROR = UErrorCode.IDNA_CHECK_BIDI_ERROR;
+pub const U_IDNA_STD3_ASCII_RULES_ERROR = UErrorCode.IDNA_STD3_ASCII_RULES_ERROR;
+pub const U_IDNA_ACE_PREFIX_ERROR = UErrorCode.IDNA_ACE_PREFIX_ERROR;
+pub const U_IDNA_VERIFICATION_ERROR = UErrorCode.IDNA_VERIFICATION_ERROR;
+pub const U_IDNA_LABEL_TOO_LONG_ERROR = UErrorCode.IDNA_LABEL_TOO_LONG_ERROR;
+pub const U_IDNA_ZERO_LENGTH_LABEL_ERROR = UErrorCode.IDNA_ZERO_LENGTH_LABEL_ERROR;
+pub const U_IDNA_DOMAIN_NAME_TOO_LONG_ERROR = UErrorCode.IDNA_DOMAIN_NAME_TOO_LONG_ERROR;
+pub const U_STRINGPREP_PROHIBITED_ERROR = UErrorCode.IDNA_PROHIBITED_ERROR;
+pub const U_STRINGPREP_UNASSIGNED_ERROR = UErrorCode.IDNA_UNASSIGNED_ERROR;
+pub const U_STRINGPREP_CHECK_BIDI_ERROR = UErrorCode.IDNA_CHECK_BIDI_ERROR;
+pub const U_PLUGIN_ERROR_START = UErrorCode.PLUGIN_ERROR_START;
+pub const U_PLUGIN_TOO_HIGH = UErrorCode.PLUGIN_ERROR_START;
+pub const U_PLUGIN_DIDNT_SET_LEVEL = UErrorCode.PLUGIN_DIDNT_SET_LEVEL;
+
+pub const UFieldCategory = enum(i32) {
+    UNDEFINED = 0,
+    DATE = 1,
+    NUMBER = 2,
+    LIST = 3,
+    RELATIVE_DATETIME = 4,
+    DATE_INTERVAL = 5,
+    LIST_SPAN = 4099,
+    DATE_INTERVAL_SPAN = 4101,
+};
+pub const UFIELD_CATEGORY_UNDEFINED = UFieldCategory.UNDEFINED;
+pub const UFIELD_CATEGORY_DATE = UFieldCategory.DATE;
+pub const UFIELD_CATEGORY_NUMBER = UFieldCategory.NUMBER;
+pub const UFIELD_CATEGORY_LIST = UFieldCategory.LIST;
+pub const UFIELD_CATEGORY_RELATIVE_DATETIME = UFieldCategory.RELATIVE_DATETIME;
+pub const UFIELD_CATEGORY_DATE_INTERVAL = UFieldCategory.DATE_INTERVAL;
+pub const UFIELD_CATEGORY_LIST_SPAN = UFieldCategory.LIST_SPAN;
+pub const UFIELD_CATEGORY_DATE_INTERVAL_SPAN = UFieldCategory.DATE_INTERVAL_SPAN;
+
+pub const UFieldPosition = extern struct {
+    field: i32,
+    beginIndex: i32,
+    endIndex: i32,
+};
+
+pub const UFieldPositionIterator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattableType = enum(i32) {
+    DATE = 0,
+    DOUBLE = 1,
+    LONG = 2,
+    STRING = 3,
+    ARRAY = 4,
+    INT64 = 5,
+    OBJECT = 6,
+};
+pub const UFMT_DATE = UFormattableType.DATE;
+pub const UFMT_DOUBLE = UFormattableType.DOUBLE;
+pub const UFMT_LONG = UFormattableType.LONG;
+pub const UFMT_STRING = UFormattableType.STRING;
+pub const UFMT_ARRAY = UFormattableType.ARRAY;
+pub const UFMT_INT64 = UFormattableType.INT64;
+pub const UFMT_OBJECT = UFormattableType.OBJECT;
+
+pub const UFormattedDateInterval = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattedList = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattedNumber = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattedNumberRange = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattedRelativeDateTime = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattedValue = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UGender = enum(i32) {
+    MALE = 0,
+    FEMALE = 1,
+    OTHER = 2,
+};
+pub const UGENDER_MALE = UGender.MALE;
+pub const UGENDER_FEMALE = UGender.FEMALE;
+pub const UGENDER_OTHER = UGender.OTHER;
+
+pub const UGenderInfo = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UGraphemeClusterBreak = enum(i32) {
+    OTHER = 0,
+    CONTROL = 1,
+    CR = 2,
+    EXTEND = 3,
+    L = 4,
+    LF = 5,
+    LV = 6,
+    LVT = 7,
+    T = 8,
+    V = 9,
+    SPACING_MARK = 10,
+    PREPEND = 11,
+    REGIONAL_INDICATOR = 12,
+    E_BASE = 13,
+    E_BASE_GAZ = 14,
+    E_MODIFIER = 15,
+    GLUE_AFTER_ZWJ = 16,
+    ZWJ = 17,
+};
+pub const U_GCB_OTHER = UGraphemeClusterBreak.OTHER;
+pub const U_GCB_CONTROL = UGraphemeClusterBreak.CONTROL;
+pub const U_GCB_CR = UGraphemeClusterBreak.CR;
+pub const U_GCB_EXTEND = UGraphemeClusterBreak.EXTEND;
+pub const U_GCB_L = UGraphemeClusterBreak.L;
+pub const U_GCB_LF = UGraphemeClusterBreak.LF;
+pub const U_GCB_LV = UGraphemeClusterBreak.LV;
+pub const U_GCB_LVT = UGraphemeClusterBreak.LVT;
+pub const U_GCB_T = UGraphemeClusterBreak.T;
+pub const U_GCB_V = UGraphemeClusterBreak.V;
+pub const U_GCB_SPACING_MARK = UGraphemeClusterBreak.SPACING_MARK;
+pub const U_GCB_PREPEND = UGraphemeClusterBreak.PREPEND;
+pub const U_GCB_REGIONAL_INDICATOR = UGraphemeClusterBreak.REGIONAL_INDICATOR;
+pub const U_GCB_E_BASE = UGraphemeClusterBreak.E_BASE;
+pub const U_GCB_E_BASE_GAZ = UGraphemeClusterBreak.E_BASE_GAZ;
+pub const U_GCB_E_MODIFIER = UGraphemeClusterBreak.E_MODIFIER;
+pub const U_GCB_GLUE_AFTER_ZWJ = UGraphemeClusterBreak.GLUE_AFTER_ZWJ;
+pub const U_GCB_ZWJ = UGraphemeClusterBreak.ZWJ;
+
+pub const UHangulSyllableType = enum(i32) {
+    NOT_APPLICABLE = 0,
+    LEADING_JAMO = 1,
+    VOWEL_JAMO = 2,
+    TRAILING_JAMO = 3,
+    LV_SYLLABLE = 4,
+    LVT_SYLLABLE = 5,
+};
+pub const U_HST_NOT_APPLICABLE = UHangulSyllableType.NOT_APPLICABLE;
+pub const U_HST_LEADING_JAMO = UHangulSyllableType.LEADING_JAMO;
+pub const U_HST_VOWEL_JAMO = UHangulSyllableType.VOWEL_JAMO;
+pub const U_HST_TRAILING_JAMO = UHangulSyllableType.TRAILING_JAMO;
+pub const U_HST_LV_SYLLABLE = UHangulSyllableType.LV_SYLLABLE;
+pub const U_HST_LVT_SYLLABLE = UHangulSyllableType.LVT_SYLLABLE;
+
+pub const UHashtable = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UIDNA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UIDNAInfo = extern struct {
+    size: i16,
+    isTransitionalDifferent: i8,
+    reservedB3: i8,
+    errors: u32,
+    reservedI2: i32,
+    reservedI3: i32,
+};
+
+pub const UILANGUAGE_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+    param1: isize,
+) callconv(.winapi) BOOL;
+
+pub const UILANGUAGE_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+    param1: isize,
+) callconv(.winapi) BOOL;
+
+pub const UIndicPositionalCategory = enum(i32) {
+    NA = 0,
+    BOTTOM = 1,
+    BOTTOM_AND_LEFT = 2,
+    BOTTOM_AND_RIGHT = 3,
+    LEFT = 4,
+    LEFT_AND_RIGHT = 5,
+    OVERSTRUCK = 6,
+    RIGHT = 7,
+    TOP = 8,
+    TOP_AND_BOTTOM = 9,
+    TOP_AND_BOTTOM_AND_RIGHT = 10,
+    TOP_AND_LEFT = 11,
+    TOP_AND_LEFT_AND_RIGHT = 12,
+    TOP_AND_RIGHT = 13,
+    VISUAL_ORDER_LEFT = 14,
+    TOP_AND_BOTTOM_AND_LEFT = 15,
+};
+pub const U_INPC_NA = UIndicPositionalCategory.NA;
+pub const U_INPC_BOTTOM = UIndicPositionalCategory.BOTTOM;
+pub const U_INPC_BOTTOM_AND_LEFT = UIndicPositionalCategory.BOTTOM_AND_LEFT;
+pub const U_INPC_BOTTOM_AND_RIGHT = UIndicPositionalCategory.BOTTOM_AND_RIGHT;
+pub const U_INPC_LEFT = UIndicPositionalCategory.LEFT;
+pub const U_INPC_LEFT_AND_RIGHT = UIndicPositionalCategory.LEFT_AND_RIGHT;
+pub const U_INPC_OVERSTRUCK = UIndicPositionalCategory.OVERSTRUCK;
+pub const U_INPC_RIGHT = UIndicPositionalCategory.RIGHT;
+pub const U_INPC_TOP = UIndicPositionalCategory.TOP;
+pub const U_INPC_TOP_AND_BOTTOM = UIndicPositionalCategory.TOP_AND_BOTTOM;
+pub const U_INPC_TOP_AND_BOTTOM_AND_RIGHT = UIndicPositionalCategory.TOP_AND_BOTTOM_AND_RIGHT;
+pub const U_INPC_TOP_AND_LEFT = UIndicPositionalCategory.TOP_AND_LEFT;
+pub const U_INPC_TOP_AND_LEFT_AND_RIGHT = UIndicPositionalCategory.TOP_AND_LEFT_AND_RIGHT;
+pub const U_INPC_TOP_AND_RIGHT = UIndicPositionalCategory.TOP_AND_RIGHT;
+pub const U_INPC_VISUAL_ORDER_LEFT = UIndicPositionalCategory.VISUAL_ORDER_LEFT;
+pub const U_INPC_TOP_AND_BOTTOM_AND_LEFT = UIndicPositionalCategory.TOP_AND_BOTTOM_AND_LEFT;
+
+pub const UIndicSyllabicCategory = enum(i32) {
+    OTHER = 0,
+    AVAGRAHA = 1,
+    BINDU = 2,
+    BRAHMI_JOINING_NUMBER = 3,
+    CANTILLATION_MARK = 4,
+    CONSONANT = 5,
+    CONSONANT_DEAD = 6,
+    CONSONANT_FINAL = 7,
+    CONSONANT_HEAD_LETTER = 8,
+    CONSONANT_INITIAL_POSTFIXED = 9,
+    CONSONANT_KILLER = 10,
+    CONSONANT_MEDIAL = 11,
+    CONSONANT_PLACEHOLDER = 12,
+    CONSONANT_PRECEDING_REPHA = 13,
+    CONSONANT_PREFIXED = 14,
+    CONSONANT_SUBJOINED = 15,
+    CONSONANT_SUCCEEDING_REPHA = 16,
+    CONSONANT_WITH_STACKER = 17,
+    GEMINATION_MARK = 18,
+    INVISIBLE_STACKER = 19,
+    JOINER = 20,
+    MODIFYING_LETTER = 21,
+    NON_JOINER = 22,
+    NUKTA = 23,
+    NUMBER = 24,
+    NUMBER_JOINER = 25,
+    PURE_KILLER = 26,
+    REGISTER_SHIFTER = 27,
+    SYLLABLE_MODIFIER = 28,
+    TONE_LETTER = 29,
+    TONE_MARK = 30,
+    VIRAMA = 31,
+    VISARGA = 32,
+    VOWEL = 33,
+    VOWEL_DEPENDENT = 34,
+    VOWEL_INDEPENDENT = 35,
+};
+pub const U_INSC_OTHER = UIndicSyllabicCategory.OTHER;
+pub const U_INSC_AVAGRAHA = UIndicSyllabicCategory.AVAGRAHA;
+pub const U_INSC_BINDU = UIndicSyllabicCategory.BINDU;
+pub const U_INSC_BRAHMI_JOINING_NUMBER = UIndicSyllabicCategory.BRAHMI_JOINING_NUMBER;
+pub const U_INSC_CANTILLATION_MARK = UIndicSyllabicCategory.CANTILLATION_MARK;
+pub const U_INSC_CONSONANT = UIndicSyllabicCategory.CONSONANT;
+pub const U_INSC_CONSONANT_DEAD = UIndicSyllabicCategory.CONSONANT_DEAD;
+pub const U_INSC_CONSONANT_FINAL = UIndicSyllabicCategory.CONSONANT_FINAL;
+pub const U_INSC_CONSONANT_HEAD_LETTER = UIndicSyllabicCategory.CONSONANT_HEAD_LETTER;
+pub const U_INSC_CONSONANT_INITIAL_POSTFIXED = UIndicSyllabicCategory.CONSONANT_INITIAL_POSTFIXED;
+pub const U_INSC_CONSONANT_KILLER = UIndicSyllabicCategory.CONSONANT_KILLER;
+pub const U_INSC_CONSONANT_MEDIAL = UIndicSyllabicCategory.CONSONANT_MEDIAL;
+pub const U_INSC_CONSONANT_PLACEHOLDER = UIndicSyllabicCategory.CONSONANT_PLACEHOLDER;
+pub const U_INSC_CONSONANT_PRECEDING_REPHA = UIndicSyllabicCategory.CONSONANT_PRECEDING_REPHA;
+pub const U_INSC_CONSONANT_PREFIXED = UIndicSyllabicCategory.CONSONANT_PREFIXED;
+pub const U_INSC_CONSONANT_SUBJOINED = UIndicSyllabicCategory.CONSONANT_SUBJOINED;
+pub const U_INSC_CONSONANT_SUCCEEDING_REPHA = UIndicSyllabicCategory.CONSONANT_SUCCEEDING_REPHA;
+pub const U_INSC_CONSONANT_WITH_STACKER = UIndicSyllabicCategory.CONSONANT_WITH_STACKER;
+pub const U_INSC_GEMINATION_MARK = UIndicSyllabicCategory.GEMINATION_MARK;
+pub const U_INSC_INVISIBLE_STACKER = UIndicSyllabicCategory.INVISIBLE_STACKER;
+pub const U_INSC_JOINER = UIndicSyllabicCategory.JOINER;
+pub const U_INSC_MODIFYING_LETTER = UIndicSyllabicCategory.MODIFYING_LETTER;
+pub const U_INSC_NON_JOINER = UIndicSyllabicCategory.NON_JOINER;
+pub const U_INSC_NUKTA = UIndicSyllabicCategory.NUKTA;
+pub const U_INSC_NUMBER = UIndicSyllabicCategory.NUMBER;
+pub const U_INSC_NUMBER_JOINER = UIndicSyllabicCategory.NUMBER_JOINER;
+pub const U_INSC_PURE_KILLER = UIndicSyllabicCategory.PURE_KILLER;
+pub const U_INSC_REGISTER_SHIFTER = UIndicSyllabicCategory.REGISTER_SHIFTER;
+pub const U_INSC_SYLLABLE_MODIFIER = UIndicSyllabicCategory.SYLLABLE_MODIFIER;
+pub const U_INSC_TONE_LETTER = UIndicSyllabicCategory.TONE_LETTER;
+pub const U_INSC_TONE_MARK = UIndicSyllabicCategory.TONE_MARK;
+pub const U_INSC_VIRAMA = UIndicSyllabicCategory.VIRAMA;
+pub const U_INSC_VISARGA = UIndicSyllabicCategory.VISARGA;
+pub const U_INSC_VOWEL = UIndicSyllabicCategory.VOWEL;
+pub const U_INSC_VOWEL_DEPENDENT = UIndicSyllabicCategory.VOWEL_DEPENDENT;
+pub const U_INSC_VOWEL_INDEPENDENT = UIndicSyllabicCategory.VOWEL_INDEPENDENT;
 
 pub const UJoiningGroup = enum(i32) {
     NO_JOINING_GROUP = 0,
@@ -4767,126 +6381,33 @@ pub const U_JG_MALAYALAM_TTA = UJoiningGroup.MALAYALAM_TTA;
 pub const U_JG_HANIFI_ROHINGYA_KINNA_YA = UJoiningGroup.HANIFI_ROHINGYA_KINNA_YA;
 pub const U_JG_HANIFI_ROHINGYA_PA = UJoiningGroup.HANIFI_ROHINGYA_PA;
 
-pub const UGraphemeClusterBreak = enum(i32) {
-    OTHER = 0,
-    CONTROL = 1,
-    CR = 2,
-    EXTEND = 3,
-    L = 4,
-    LF = 5,
-    LV = 6,
-    LVT = 7,
-    T = 8,
-    V = 9,
-    SPACING_MARK = 10,
-    PREPEND = 11,
-    REGIONAL_INDICATOR = 12,
-    E_BASE = 13,
-    E_BASE_GAZ = 14,
-    E_MODIFIER = 15,
-    GLUE_AFTER_ZWJ = 16,
-    ZWJ = 17,
+pub const UJoiningType = enum(i32) {
+    NON_JOINING = 0,
+    JOIN_CAUSING = 1,
+    DUAL_JOINING = 2,
+    LEFT_JOINING = 3,
+    RIGHT_JOINING = 4,
+    TRANSPARENT = 5,
 };
-pub const U_GCB_OTHER = UGraphemeClusterBreak.OTHER;
-pub const U_GCB_CONTROL = UGraphemeClusterBreak.CONTROL;
-pub const U_GCB_CR = UGraphemeClusterBreak.CR;
-pub const U_GCB_EXTEND = UGraphemeClusterBreak.EXTEND;
-pub const U_GCB_L = UGraphemeClusterBreak.L;
-pub const U_GCB_LF = UGraphemeClusterBreak.LF;
-pub const U_GCB_LV = UGraphemeClusterBreak.LV;
-pub const U_GCB_LVT = UGraphemeClusterBreak.LVT;
-pub const U_GCB_T = UGraphemeClusterBreak.T;
-pub const U_GCB_V = UGraphemeClusterBreak.V;
-pub const U_GCB_SPACING_MARK = UGraphemeClusterBreak.SPACING_MARK;
-pub const U_GCB_PREPEND = UGraphemeClusterBreak.PREPEND;
-pub const U_GCB_REGIONAL_INDICATOR = UGraphemeClusterBreak.REGIONAL_INDICATOR;
-pub const U_GCB_E_BASE = UGraphemeClusterBreak.E_BASE;
-pub const U_GCB_E_BASE_GAZ = UGraphemeClusterBreak.E_BASE_GAZ;
-pub const U_GCB_E_MODIFIER = UGraphemeClusterBreak.E_MODIFIER;
-pub const U_GCB_GLUE_AFTER_ZWJ = UGraphemeClusterBreak.GLUE_AFTER_ZWJ;
-pub const U_GCB_ZWJ = UGraphemeClusterBreak.ZWJ;
+pub const U_JT_NON_JOINING = UJoiningType.NON_JOINING;
+pub const U_JT_JOIN_CAUSING = UJoiningType.JOIN_CAUSING;
+pub const U_JT_DUAL_JOINING = UJoiningType.DUAL_JOINING;
+pub const U_JT_LEFT_JOINING = UJoiningType.LEFT_JOINING;
+pub const U_JT_RIGHT_JOINING = UJoiningType.RIGHT_JOINING;
+pub const U_JT_TRANSPARENT = UJoiningType.TRANSPARENT;
 
-pub const UWordBreakValues = enum(i32) {
-    OTHER = 0,
-    ALETTER = 1,
-    FORMAT = 2,
-    KATAKANA = 3,
-    MIDLETTER = 4,
-    MIDNUM = 5,
-    NUMERIC = 6,
-    EXTENDNUMLET = 7,
-    CR = 8,
-    EXTEND = 9,
-    LF = 10,
-    MIDNUMLET = 11,
-    NEWLINE = 12,
-    REGIONAL_INDICATOR = 13,
-    HEBREW_LETTER = 14,
-    SINGLE_QUOTE = 15,
-    DOUBLE_QUOTE = 16,
-    E_BASE = 17,
-    E_BASE_GAZ = 18,
-    E_MODIFIER = 19,
-    GLUE_AFTER_ZWJ = 20,
-    ZWJ = 21,
-    WSEGSPACE = 22,
+pub const ULayoutType = enum(i32) {
+    LTR = 0,
+    RTL = 1,
+    TTB = 2,
+    BTT = 3,
+    UNKNOWN = 4,
 };
-pub const U_WB_OTHER = UWordBreakValues.OTHER;
-pub const U_WB_ALETTER = UWordBreakValues.ALETTER;
-pub const U_WB_FORMAT = UWordBreakValues.FORMAT;
-pub const U_WB_KATAKANA = UWordBreakValues.KATAKANA;
-pub const U_WB_MIDLETTER = UWordBreakValues.MIDLETTER;
-pub const U_WB_MIDNUM = UWordBreakValues.MIDNUM;
-pub const U_WB_NUMERIC = UWordBreakValues.NUMERIC;
-pub const U_WB_EXTENDNUMLET = UWordBreakValues.EXTENDNUMLET;
-pub const U_WB_CR = UWordBreakValues.CR;
-pub const U_WB_EXTEND = UWordBreakValues.EXTEND;
-pub const U_WB_LF = UWordBreakValues.LF;
-pub const U_WB_MIDNUMLET = UWordBreakValues.MIDNUMLET;
-pub const U_WB_NEWLINE = UWordBreakValues.NEWLINE;
-pub const U_WB_REGIONAL_INDICATOR = UWordBreakValues.REGIONAL_INDICATOR;
-pub const U_WB_HEBREW_LETTER = UWordBreakValues.HEBREW_LETTER;
-pub const U_WB_SINGLE_QUOTE = UWordBreakValues.SINGLE_QUOTE;
-pub const U_WB_DOUBLE_QUOTE = UWordBreakValues.DOUBLE_QUOTE;
-pub const U_WB_E_BASE = UWordBreakValues.E_BASE;
-pub const U_WB_E_BASE_GAZ = UWordBreakValues.E_BASE_GAZ;
-pub const U_WB_E_MODIFIER = UWordBreakValues.E_MODIFIER;
-pub const U_WB_GLUE_AFTER_ZWJ = UWordBreakValues.GLUE_AFTER_ZWJ;
-pub const U_WB_ZWJ = UWordBreakValues.ZWJ;
-pub const U_WB_WSEGSPACE = UWordBreakValues.WSEGSPACE;
-
-pub const USentenceBreak = enum(i32) {
-    OTHER = 0,
-    ATERM = 1,
-    CLOSE = 2,
-    FORMAT = 3,
-    LOWER = 4,
-    NUMERIC = 5,
-    OLETTER = 6,
-    SEP = 7,
-    SP = 8,
-    STERM = 9,
-    UPPER = 10,
-    CR = 11,
-    EXTEND = 12,
-    LF = 13,
-    SCONTINUE = 14,
-};
-pub const U_SB_OTHER = USentenceBreak.OTHER;
-pub const U_SB_ATERM = USentenceBreak.ATERM;
-pub const U_SB_CLOSE = USentenceBreak.CLOSE;
-pub const U_SB_FORMAT = USentenceBreak.FORMAT;
-pub const U_SB_LOWER = USentenceBreak.LOWER;
-pub const U_SB_NUMERIC = USentenceBreak.NUMERIC;
-pub const U_SB_OLETTER = USentenceBreak.OLETTER;
-pub const U_SB_SEP = USentenceBreak.SEP;
-pub const U_SB_SP = USentenceBreak.SP;
-pub const U_SB_STERM = USentenceBreak.STERM;
-pub const U_SB_UPPER = USentenceBreak.UPPER;
-pub const U_SB_CR = USentenceBreak.CR;
-pub const U_SB_EXTEND = USentenceBreak.EXTEND;
-pub const U_SB_LF = USentenceBreak.LF;
-pub const U_SB_SCONTINUE = USentenceBreak.SCONTINUE;
+pub const ULOC_LAYOUT_LTR = ULayoutType.LTR;
+pub const ULOC_LAYOUT_RTL = ULayoutType.RTL;
+pub const ULOC_LAYOUT_TTB = ULayoutType.TTB;
+pub const ULOC_LAYOUT_BTT = ULayoutType.BTT;
+pub const ULOC_LAYOUT_UNKNOWN = ULayoutType.UNKNOWN;
 
 pub const ULineBreak = enum(i32) {
     UNKNOWN = 0,
@@ -4979,472 +6500,6 @@ pub const U_LB_E_BASE = ULineBreak.E_BASE;
 pub const U_LB_E_MODIFIER = ULineBreak.E_MODIFIER;
 pub const U_LB_ZWJ = ULineBreak.ZWJ;
 
-pub const UNumericType = enum(i32) {
-    NONE = 0,
-    DECIMAL = 1,
-    DIGIT = 2,
-    NUMERIC = 3,
-};
-pub const U_NT_NONE = UNumericType.NONE;
-pub const U_NT_DECIMAL = UNumericType.DECIMAL;
-pub const U_NT_DIGIT = UNumericType.DIGIT;
-pub const U_NT_NUMERIC = UNumericType.NUMERIC;
-
-pub const UHangulSyllableType = enum(i32) {
-    NOT_APPLICABLE = 0,
-    LEADING_JAMO = 1,
-    VOWEL_JAMO = 2,
-    TRAILING_JAMO = 3,
-    LV_SYLLABLE = 4,
-    LVT_SYLLABLE = 5,
-};
-pub const U_HST_NOT_APPLICABLE = UHangulSyllableType.NOT_APPLICABLE;
-pub const U_HST_LEADING_JAMO = UHangulSyllableType.LEADING_JAMO;
-pub const U_HST_VOWEL_JAMO = UHangulSyllableType.VOWEL_JAMO;
-pub const U_HST_TRAILING_JAMO = UHangulSyllableType.TRAILING_JAMO;
-pub const U_HST_LV_SYLLABLE = UHangulSyllableType.LV_SYLLABLE;
-pub const U_HST_LVT_SYLLABLE = UHangulSyllableType.LVT_SYLLABLE;
-
-pub const UIndicPositionalCategory = enum(i32) {
-    NA = 0,
-    BOTTOM = 1,
-    BOTTOM_AND_LEFT = 2,
-    BOTTOM_AND_RIGHT = 3,
-    LEFT = 4,
-    LEFT_AND_RIGHT = 5,
-    OVERSTRUCK = 6,
-    RIGHT = 7,
-    TOP = 8,
-    TOP_AND_BOTTOM = 9,
-    TOP_AND_BOTTOM_AND_RIGHT = 10,
-    TOP_AND_LEFT = 11,
-    TOP_AND_LEFT_AND_RIGHT = 12,
-    TOP_AND_RIGHT = 13,
-    VISUAL_ORDER_LEFT = 14,
-    TOP_AND_BOTTOM_AND_LEFT = 15,
-};
-pub const U_INPC_NA = UIndicPositionalCategory.NA;
-pub const U_INPC_BOTTOM = UIndicPositionalCategory.BOTTOM;
-pub const U_INPC_BOTTOM_AND_LEFT = UIndicPositionalCategory.BOTTOM_AND_LEFT;
-pub const U_INPC_BOTTOM_AND_RIGHT = UIndicPositionalCategory.BOTTOM_AND_RIGHT;
-pub const U_INPC_LEFT = UIndicPositionalCategory.LEFT;
-pub const U_INPC_LEFT_AND_RIGHT = UIndicPositionalCategory.LEFT_AND_RIGHT;
-pub const U_INPC_OVERSTRUCK = UIndicPositionalCategory.OVERSTRUCK;
-pub const U_INPC_RIGHT = UIndicPositionalCategory.RIGHT;
-pub const U_INPC_TOP = UIndicPositionalCategory.TOP;
-pub const U_INPC_TOP_AND_BOTTOM = UIndicPositionalCategory.TOP_AND_BOTTOM;
-pub const U_INPC_TOP_AND_BOTTOM_AND_RIGHT = UIndicPositionalCategory.TOP_AND_BOTTOM_AND_RIGHT;
-pub const U_INPC_TOP_AND_LEFT = UIndicPositionalCategory.TOP_AND_LEFT;
-pub const U_INPC_TOP_AND_LEFT_AND_RIGHT = UIndicPositionalCategory.TOP_AND_LEFT_AND_RIGHT;
-pub const U_INPC_TOP_AND_RIGHT = UIndicPositionalCategory.TOP_AND_RIGHT;
-pub const U_INPC_VISUAL_ORDER_LEFT = UIndicPositionalCategory.VISUAL_ORDER_LEFT;
-pub const U_INPC_TOP_AND_BOTTOM_AND_LEFT = UIndicPositionalCategory.TOP_AND_BOTTOM_AND_LEFT;
-
-pub const UIndicSyllabicCategory = enum(i32) {
-    OTHER = 0,
-    AVAGRAHA = 1,
-    BINDU = 2,
-    BRAHMI_JOINING_NUMBER = 3,
-    CANTILLATION_MARK = 4,
-    CONSONANT = 5,
-    CONSONANT_DEAD = 6,
-    CONSONANT_FINAL = 7,
-    CONSONANT_HEAD_LETTER = 8,
-    CONSONANT_INITIAL_POSTFIXED = 9,
-    CONSONANT_KILLER = 10,
-    CONSONANT_MEDIAL = 11,
-    CONSONANT_PLACEHOLDER = 12,
-    CONSONANT_PRECEDING_REPHA = 13,
-    CONSONANT_PREFIXED = 14,
-    CONSONANT_SUBJOINED = 15,
-    CONSONANT_SUCCEEDING_REPHA = 16,
-    CONSONANT_WITH_STACKER = 17,
-    GEMINATION_MARK = 18,
-    INVISIBLE_STACKER = 19,
-    JOINER = 20,
-    MODIFYING_LETTER = 21,
-    NON_JOINER = 22,
-    NUKTA = 23,
-    NUMBER = 24,
-    NUMBER_JOINER = 25,
-    PURE_KILLER = 26,
-    REGISTER_SHIFTER = 27,
-    SYLLABLE_MODIFIER = 28,
-    TONE_LETTER = 29,
-    TONE_MARK = 30,
-    VIRAMA = 31,
-    VISARGA = 32,
-    VOWEL = 33,
-    VOWEL_DEPENDENT = 34,
-    VOWEL_INDEPENDENT = 35,
-};
-pub const U_INSC_OTHER = UIndicSyllabicCategory.OTHER;
-pub const U_INSC_AVAGRAHA = UIndicSyllabicCategory.AVAGRAHA;
-pub const U_INSC_BINDU = UIndicSyllabicCategory.BINDU;
-pub const U_INSC_BRAHMI_JOINING_NUMBER = UIndicSyllabicCategory.BRAHMI_JOINING_NUMBER;
-pub const U_INSC_CANTILLATION_MARK = UIndicSyllabicCategory.CANTILLATION_MARK;
-pub const U_INSC_CONSONANT = UIndicSyllabicCategory.CONSONANT;
-pub const U_INSC_CONSONANT_DEAD = UIndicSyllabicCategory.CONSONANT_DEAD;
-pub const U_INSC_CONSONANT_FINAL = UIndicSyllabicCategory.CONSONANT_FINAL;
-pub const U_INSC_CONSONANT_HEAD_LETTER = UIndicSyllabicCategory.CONSONANT_HEAD_LETTER;
-pub const U_INSC_CONSONANT_INITIAL_POSTFIXED = UIndicSyllabicCategory.CONSONANT_INITIAL_POSTFIXED;
-pub const U_INSC_CONSONANT_KILLER = UIndicSyllabicCategory.CONSONANT_KILLER;
-pub const U_INSC_CONSONANT_MEDIAL = UIndicSyllabicCategory.CONSONANT_MEDIAL;
-pub const U_INSC_CONSONANT_PLACEHOLDER = UIndicSyllabicCategory.CONSONANT_PLACEHOLDER;
-pub const U_INSC_CONSONANT_PRECEDING_REPHA = UIndicSyllabicCategory.CONSONANT_PRECEDING_REPHA;
-pub const U_INSC_CONSONANT_PREFIXED = UIndicSyllabicCategory.CONSONANT_PREFIXED;
-pub const U_INSC_CONSONANT_SUBJOINED = UIndicSyllabicCategory.CONSONANT_SUBJOINED;
-pub const U_INSC_CONSONANT_SUCCEEDING_REPHA = UIndicSyllabicCategory.CONSONANT_SUCCEEDING_REPHA;
-pub const U_INSC_CONSONANT_WITH_STACKER = UIndicSyllabicCategory.CONSONANT_WITH_STACKER;
-pub const U_INSC_GEMINATION_MARK = UIndicSyllabicCategory.GEMINATION_MARK;
-pub const U_INSC_INVISIBLE_STACKER = UIndicSyllabicCategory.INVISIBLE_STACKER;
-pub const U_INSC_JOINER = UIndicSyllabicCategory.JOINER;
-pub const U_INSC_MODIFYING_LETTER = UIndicSyllabicCategory.MODIFYING_LETTER;
-pub const U_INSC_NON_JOINER = UIndicSyllabicCategory.NON_JOINER;
-pub const U_INSC_NUKTA = UIndicSyllabicCategory.NUKTA;
-pub const U_INSC_NUMBER = UIndicSyllabicCategory.NUMBER;
-pub const U_INSC_NUMBER_JOINER = UIndicSyllabicCategory.NUMBER_JOINER;
-pub const U_INSC_PURE_KILLER = UIndicSyllabicCategory.PURE_KILLER;
-pub const U_INSC_REGISTER_SHIFTER = UIndicSyllabicCategory.REGISTER_SHIFTER;
-pub const U_INSC_SYLLABLE_MODIFIER = UIndicSyllabicCategory.SYLLABLE_MODIFIER;
-pub const U_INSC_TONE_LETTER = UIndicSyllabicCategory.TONE_LETTER;
-pub const U_INSC_TONE_MARK = UIndicSyllabicCategory.TONE_MARK;
-pub const U_INSC_VIRAMA = UIndicSyllabicCategory.VIRAMA;
-pub const U_INSC_VISARGA = UIndicSyllabicCategory.VISARGA;
-pub const U_INSC_VOWEL = UIndicSyllabicCategory.VOWEL;
-pub const U_INSC_VOWEL_DEPENDENT = UIndicSyllabicCategory.VOWEL_DEPENDENT;
-pub const U_INSC_VOWEL_INDEPENDENT = UIndicSyllabicCategory.VOWEL_INDEPENDENT;
-
-pub const UVerticalOrientation = enum(i32) {
-    ROTATED = 0,
-    TRANSFORMED_ROTATED = 1,
-    TRANSFORMED_UPRIGHT = 2,
-    UPRIGHT = 3,
-};
-pub const U_VO_ROTATED = UVerticalOrientation.ROTATED;
-pub const U_VO_TRANSFORMED_ROTATED = UVerticalOrientation.TRANSFORMED_ROTATED;
-pub const U_VO_TRANSFORMED_UPRIGHT = UVerticalOrientation.TRANSFORMED_UPRIGHT;
-pub const U_VO_UPRIGHT = UVerticalOrientation.UPRIGHT;
-
-pub const UCharEnumTypeRange = *const fn(
-    context: ?*const anyopaque,
-    start: i32,
-    limit: i32,
-    type: UCharCategory,
-) callconv(.winapi) i8;
-
-pub const UEnumCharNamesFn = *const fn(
-    context: ?*anyopaque,
-    code: i32,
-    nameChoice: UCharNameChoice,
-    name: ?[*:0]const u8,
-    length: i32,
-) callconv(.winapi) i8;
-
-pub const UBiDiDirection = enum(i32) {
-    LTR = 0,
-    RTL = 1,
-    MIXED = 2,
-    NEUTRAL = 3,
-};
-pub const UBIDI_LTR = UBiDiDirection.LTR;
-pub const UBIDI_RTL = UBiDiDirection.RTL;
-pub const UBIDI_MIXED = UBiDiDirection.MIXED;
-pub const UBIDI_NEUTRAL = UBiDiDirection.NEUTRAL;
-
-pub const UBiDi = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBiDiReorderingMode = enum(i32) {
-    DEFAULT = 0,
-    NUMBERS_SPECIAL = 1,
-    GROUP_NUMBERS_WITH_R = 2,
-    RUNS_ONLY = 3,
-    INVERSE_NUMBERS_AS_L = 4,
-    INVERSE_LIKE_DIRECT = 5,
-    INVERSE_FOR_NUMBERS_SPECIAL = 6,
-};
-pub const UBIDI_REORDER_DEFAULT = UBiDiReorderingMode.DEFAULT;
-pub const UBIDI_REORDER_NUMBERS_SPECIAL = UBiDiReorderingMode.NUMBERS_SPECIAL;
-pub const UBIDI_REORDER_GROUP_NUMBERS_WITH_R = UBiDiReorderingMode.GROUP_NUMBERS_WITH_R;
-pub const UBIDI_REORDER_RUNS_ONLY = UBiDiReorderingMode.RUNS_ONLY;
-pub const UBIDI_REORDER_INVERSE_NUMBERS_AS_L = UBiDiReorderingMode.INVERSE_NUMBERS_AS_L;
-pub const UBIDI_REORDER_INVERSE_LIKE_DIRECT = UBiDiReorderingMode.INVERSE_LIKE_DIRECT;
-pub const UBIDI_REORDER_INVERSE_FOR_NUMBERS_SPECIAL = UBiDiReorderingMode.INVERSE_FOR_NUMBERS_SPECIAL;
-
-pub const UBiDiReorderingOption = enum(i32) {
-    DEFAULT = 0,
-    INSERT_MARKS = 1,
-    REMOVE_CONTROLS = 2,
-    STREAMING = 4,
-};
-pub const UBIDI_OPTION_DEFAULT = UBiDiReorderingOption.DEFAULT;
-pub const UBIDI_OPTION_INSERT_MARKS = UBiDiReorderingOption.INSERT_MARKS;
-pub const UBIDI_OPTION_REMOVE_CONTROLS = UBiDiReorderingOption.REMOVE_CONTROLS;
-pub const UBIDI_OPTION_STREAMING = UBiDiReorderingOption.STREAMING;
-
-pub const UBiDiClassCallback = *const fn(
-    context: ?*const anyopaque,
-    c: i32,
-) callconv(.winapi) UCharDirection;
-
-pub const UBiDiOrder = enum(i32) {
-    LOGICAL = 0,
-    VISUAL = 1,
-};
-pub const UBIDI_LOGICAL = UBiDiOrder.LOGICAL;
-pub const UBIDI_VISUAL = UBiDiOrder.VISUAL;
-
-pub const UBiDiMirroring = enum(i32) {
-    FF = 0,
-    N = 1,
-};
-pub const UBIDI_MIRRORING_OFF = UBiDiMirroring.FF;
-pub const UBIDI_MIRRORING_ON = UBiDiMirroring.N;
-
-pub const UBiDiTransform = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextClone = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextNativeLength = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextAccess = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextExtract = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextReplace = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextCopy = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextMapOffsetToNative = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextMapNativeIndexToUTF16 = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextClose = *const fn() callconv(.winapi) void;
-
-pub const UTextFuncs = extern struct {
-    tableSize: i32,
-    reserved1: i32,
-    reserved2: i32,
-    reserved3: i32,
-    clone: ?UTextClone,
-    nativeLength: ?UTextNativeLength,
-    access: ?UTextAccess,
-    extract: ?UTextExtract,
-    replace: ?UTextReplace,
-    copy: ?UTextCopy,
-    mapOffsetToNative: ?UTextMapOffsetToNative,
-    mapNativeIndexToUTF16: ?UTextMapNativeIndexToUTF16,
-    close: ?UTextClose,
-    spare1: ?UTextClose,
-    spare2: ?UTextClose,
-    spare3: ?UTextClose,
-};
-
-pub const UText = extern struct {
-    magic: u32,
-    flags: i32,
-    providerProperties: i32,
-    sizeOfStruct: i32,
-    chunkNativeLimit: i64,
-    extraSize: i32,
-    nativeIndexingLimit: i32,
-    chunkNativeStart: i64,
-    chunkOffset: i32,
-    chunkLength: i32,
-    chunkContents: ?*const u16,
-    pFuncs: ?*const UTextFuncs,
-    pExtra: ?*anyopaque,
-    context: ?*const anyopaque,
-    p: ?*const anyopaque,
-    q: ?*const anyopaque,
-    r: ?*const anyopaque,
-    privP: ?*anyopaque,
-    a: i64,
-    b: i32,
-    c: i32,
-    privA: i64,
-    privB: i32,
-    privC: i32,
-};
-
-pub const USetSpanCondition = enum(i32) {
-    NOT_CONTAINED = 0,
-    CONTAINED = 1,
-    SIMPLE = 2,
-};
-pub const USET_SPAN_NOT_CONTAINED = USetSpanCondition.NOT_CONTAINED;
-pub const USET_SPAN_CONTAINED = USetSpanCondition.CONTAINED;
-pub const USET_SPAN_SIMPLE = USetSpanCondition.SIMPLE;
-
-pub const USerializedSet = extern struct {
-    array: ?*const u16,
-    bmpLength: i32,
-    length: i32,
-    staticArray: [8]u16,
-};
-
-pub const UNormalization2Mode = enum(i32) {
-    COMPOSE = 0,
-    DECOMPOSE = 1,
-    FCD = 2,
-    COMPOSE_CONTIGUOUS = 3,
-};
-pub const UNORM2_COMPOSE = UNormalization2Mode.COMPOSE;
-pub const UNORM2_DECOMPOSE = UNormalization2Mode.DECOMPOSE;
-pub const UNORM2_FCD = UNormalization2Mode.FCD;
-pub const UNORM2_COMPOSE_CONTIGUOUS = UNormalization2Mode.COMPOSE_CONTIGUOUS;
-
-pub const UNormalizationCheckResult = enum(i32) {
-    NO = 0,
-    YES = 1,
-    MAYBE = 2,
-};
-pub const UNORM_NO = UNormalizationCheckResult.NO;
-pub const UNORM_YES = UNormalizationCheckResult.YES;
-pub const UNORM_MAYBE = UNormalizationCheckResult.MAYBE;
-
-pub const UNormalizer2 = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNormalizationMode = enum(i32) {
-    NONE = 1,
-    NFD = 2,
-    NFKD = 3,
-    NFC = 4,
-    NFKC = 5,
-    FCD = 6,
-    MODE_COUNT = 7,
-    pub const DEFAULT = .NFC;
-};
-pub const UNORM_NONE = UNormalizationMode.NONE;
-pub const UNORM_NFD = UNormalizationMode.NFD;
-pub const UNORM_NFKD = UNormalizationMode.NFKD;
-pub const UNORM_NFC = UNormalizationMode.NFC;
-pub const UNORM_DEFAULT = UNormalizationMode.NFC;
-pub const UNORM_NFKC = UNormalizationMode.NFKC;
-pub const UNORM_FCD = UNormalizationMode.FCD;
-pub const UNORM_MODE_COUNT = UNormalizationMode.MODE_COUNT;
-
-pub const UConverterSelector = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBreakIterator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNESCAPE_CHAR_AT = *const fn(
-    offset: i32,
-    context: ?*anyopaque,
-) callconv(.winapi) u16;
-
-pub const UCaseMap = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UParseError = extern struct {
-    line: i32,
-    offset: i32,
-    preContext: [16]u16,
-    postContext: [16]u16,
-};
-
-pub const UStringPrepProfile = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UStringPrepProfileType = enum(i32) {
-    @"3491_NAMEPREP" = 0,
-    @"3530_NFS4_CS_PREP" = 1,
-    @"3530_NFS4_CS_PREP_CI" = 2,
-    @"3530_NFS4_CIS_PREP" = 3,
-    @"3530_NFS4_MIXED_PREP_PREFIX" = 4,
-    @"3530_NFS4_MIXED_PREP_SUFFIX" = 5,
-    @"3722_ISCSI" = 6,
-    @"3920_NODEPREP" = 7,
-    @"3920_RESOURCEPREP" = 8,
-    @"4011_MIB" = 9,
-    @"4013_SASLPREP" = 10,
-    @"4505_TRACE" = 11,
-    @"4518_LDAP" = 12,
-    @"4518_LDAP_CI" = 13,
-};
-pub const USPREP_RFC3491_NAMEPREP = UStringPrepProfileType.@"3491_NAMEPREP";
-pub const USPREP_RFC3530_NFS4_CS_PREP = UStringPrepProfileType.@"3530_NFS4_CS_PREP";
-pub const USPREP_RFC3530_NFS4_CS_PREP_CI = UStringPrepProfileType.@"3530_NFS4_CS_PREP_CI";
-pub const USPREP_RFC3530_NFS4_CIS_PREP = UStringPrepProfileType.@"3530_NFS4_CIS_PREP";
-pub const USPREP_RFC3530_NFS4_MIXED_PREP_PREFIX = UStringPrepProfileType.@"3530_NFS4_MIXED_PREP_PREFIX";
-pub const USPREP_RFC3530_NFS4_MIXED_PREP_SUFFIX = UStringPrepProfileType.@"3530_NFS4_MIXED_PREP_SUFFIX";
-pub const USPREP_RFC3722_ISCSI = UStringPrepProfileType.@"3722_ISCSI";
-pub const USPREP_RFC3920_NODEPREP = UStringPrepProfileType.@"3920_NODEPREP";
-pub const USPREP_RFC3920_RESOURCEPREP = UStringPrepProfileType.@"3920_RESOURCEPREP";
-pub const USPREP_RFC4011_MIB = UStringPrepProfileType.@"4011_MIB";
-pub const USPREP_RFC4013_SASLPREP = UStringPrepProfileType.@"4013_SASLPREP";
-pub const USPREP_RFC4505_TRACE = UStringPrepProfileType.@"4505_TRACE";
-pub const USPREP_RFC4518_LDAP = UStringPrepProfileType.@"4518_LDAP";
-pub const USPREP_RFC4518_LDAP_CI = UStringPrepProfileType.@"4518_LDAP_CI";
-
-pub const UIDNA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UIDNAInfo = extern struct {
-    size: i16,
-    isTransitionalDifferent: i8,
-    reservedB3: i8,
-    errors: u32,
-    reservedI2: i32,
-    reservedI3: i32,
-};
-
-pub const UBreakIteratorType = enum(i32) {
-    CHARACTER = 0,
-    WORD = 1,
-    LINE = 2,
-    SENTENCE = 3,
-};
-pub const UBRK_CHARACTER = UBreakIteratorType.CHARACTER;
-pub const UBRK_WORD = UBreakIteratorType.WORD;
-pub const UBRK_LINE = UBreakIteratorType.LINE;
-pub const UBRK_SENTENCE = UBreakIteratorType.SENTENCE;
-
-pub const UWordBreak = enum(i32) {
-    NONE = 0,
-    NONE_LIMIT = 100,
-    NUMBER_LIMIT = 200,
-    LETTER_LIMIT = 300,
-    KANA_LIMIT = 400,
-    IDEO_LIMIT = 500,
-    pub const NUMBER = .NONE_LIMIT;
-    pub const LETTER = .NUMBER_LIMIT;
-    pub const KANA = .LETTER_LIMIT;
-    pub const IDEO = .KANA_LIMIT;
-};
-pub const UBRK_WORD_NONE = UWordBreak.NONE;
-pub const UBRK_WORD_NONE_LIMIT = UWordBreak.NONE_LIMIT;
-pub const UBRK_WORD_NUMBER = UWordBreak.NONE_LIMIT;
-pub const UBRK_WORD_NUMBER_LIMIT = UWordBreak.NUMBER_LIMIT;
-pub const UBRK_WORD_LETTER = UWordBreak.NUMBER_LIMIT;
-pub const UBRK_WORD_LETTER_LIMIT = UWordBreak.LETTER_LIMIT;
-pub const UBRK_WORD_KANA = UWordBreak.LETTER_LIMIT;
-pub const UBRK_WORD_KANA_LIMIT = UWordBreak.KANA_LIMIT;
-pub const UBRK_WORD_IDEO = UWordBreak.KANA_LIMIT;
-pub const UBRK_WORD_IDEO_LIMIT = UWordBreak.IDEO_LIMIT;
-
 pub const ULineBreakTag = enum(i32) {
     SOFT = 0,
     SOFT_LIMIT = 100,
@@ -5456,401 +6511,7 @@ pub const UBRK_LINE_SOFT_LIMIT = ULineBreakTag.SOFT_LIMIT;
 pub const UBRK_LINE_HARD = ULineBreakTag.SOFT_LIMIT;
 pub const UBRK_LINE_HARD_LIMIT = ULineBreakTag.HARD_LIMIT;
 
-pub const USentenceBreakTag = enum(i32) {
-    TERM = 0,
-    TERM_LIMIT = 100,
-    SEP_LIMIT = 200,
-    pub const SEP = .TERM_LIMIT;
-};
-pub const UBRK_SENTENCE_TERM = USentenceBreakTag.TERM;
-pub const UBRK_SENTENCE_TERM_LIMIT = USentenceBreakTag.TERM_LIMIT;
-pub const UBRK_SENTENCE_SEP = USentenceBreakTag.TERM_LIMIT;
-pub const UBRK_SENTENCE_SEP_LIMIT = USentenceBreakTag.SEP_LIMIT;
-
-pub const UCalendarType = enum(i32) {
-    TRADITIONAL = 0,
-    GREGORIAN = 1,
-    pub const DEFAULT = .TRADITIONAL;
-};
-pub const UCAL_TRADITIONAL = UCalendarType.TRADITIONAL;
-pub const UCAL_DEFAULT = UCalendarType.TRADITIONAL;
-pub const UCAL_GREGORIAN = UCalendarType.GREGORIAN;
-
-pub const UCalendarDateFields = enum(i32) {
-    ERA = 0,
-    YEAR = 1,
-    MONTH = 2,
-    WEEK_OF_YEAR = 3,
-    WEEK_OF_MONTH = 4,
-    DATE = 5,
-    DAY_OF_YEAR = 6,
-    DAY_OF_WEEK = 7,
-    DAY_OF_WEEK_IN_MONTH = 8,
-    AM_PM = 9,
-    HOUR = 10,
-    HOUR_OF_DAY = 11,
-    MINUTE = 12,
-    SECOND = 13,
-    MILLISECOND = 14,
-    ZONE_OFFSET = 15,
-    DST_OFFSET = 16,
-    YEAR_WOY = 17,
-    DOW_LOCAL = 18,
-    EXTENDED_YEAR = 19,
-    JULIAN_DAY = 20,
-    MILLISECONDS_IN_DAY = 21,
-    IS_LEAP_MONTH = 22,
-    FIELD_COUNT = 23,
-    pub const DAY_OF_MONTH = .DATE;
-};
-pub const UCAL_ERA = UCalendarDateFields.ERA;
-pub const UCAL_YEAR = UCalendarDateFields.YEAR;
-pub const UCAL_MONTH = UCalendarDateFields.MONTH;
-pub const UCAL_WEEK_OF_YEAR = UCalendarDateFields.WEEK_OF_YEAR;
-pub const UCAL_WEEK_OF_MONTH = UCalendarDateFields.WEEK_OF_MONTH;
-pub const UCAL_DATE = UCalendarDateFields.DATE;
-pub const UCAL_DAY_OF_YEAR = UCalendarDateFields.DAY_OF_YEAR;
-pub const UCAL_DAY_OF_WEEK = UCalendarDateFields.DAY_OF_WEEK;
-pub const UCAL_DAY_OF_WEEK_IN_MONTH = UCalendarDateFields.DAY_OF_WEEK_IN_MONTH;
-pub const UCAL_AM_PM = UCalendarDateFields.AM_PM;
-pub const UCAL_HOUR = UCalendarDateFields.HOUR;
-pub const UCAL_HOUR_OF_DAY = UCalendarDateFields.HOUR_OF_DAY;
-pub const UCAL_MINUTE = UCalendarDateFields.MINUTE;
-pub const UCAL_SECOND = UCalendarDateFields.SECOND;
-pub const UCAL_MILLISECOND = UCalendarDateFields.MILLISECOND;
-pub const UCAL_ZONE_OFFSET = UCalendarDateFields.ZONE_OFFSET;
-pub const UCAL_DST_OFFSET = UCalendarDateFields.DST_OFFSET;
-pub const UCAL_YEAR_WOY = UCalendarDateFields.YEAR_WOY;
-pub const UCAL_DOW_LOCAL = UCalendarDateFields.DOW_LOCAL;
-pub const UCAL_EXTENDED_YEAR = UCalendarDateFields.EXTENDED_YEAR;
-pub const UCAL_JULIAN_DAY = UCalendarDateFields.JULIAN_DAY;
-pub const UCAL_MILLISECONDS_IN_DAY = UCalendarDateFields.MILLISECONDS_IN_DAY;
-pub const UCAL_IS_LEAP_MONTH = UCalendarDateFields.IS_LEAP_MONTH;
-pub const UCAL_FIELD_COUNT = UCalendarDateFields.FIELD_COUNT;
-pub const UCAL_DAY_OF_MONTH = UCalendarDateFields.DATE;
-
-pub const UCalendarDaysOfWeek = enum(i32) {
-    SUNDAY = 1,
-    MONDAY = 2,
-    TUESDAY = 3,
-    WEDNESDAY = 4,
-    THURSDAY = 5,
-    FRIDAY = 6,
-    SATURDAY = 7,
-};
-pub const UCAL_SUNDAY = UCalendarDaysOfWeek.SUNDAY;
-pub const UCAL_MONDAY = UCalendarDaysOfWeek.MONDAY;
-pub const UCAL_TUESDAY = UCalendarDaysOfWeek.TUESDAY;
-pub const UCAL_WEDNESDAY = UCalendarDaysOfWeek.WEDNESDAY;
-pub const UCAL_THURSDAY = UCalendarDaysOfWeek.THURSDAY;
-pub const UCAL_FRIDAY = UCalendarDaysOfWeek.FRIDAY;
-pub const UCAL_SATURDAY = UCalendarDaysOfWeek.SATURDAY;
-
-pub const UCalendarMonths = enum(i32) {
-    JANUARY = 0,
-    FEBRUARY = 1,
-    MARCH = 2,
-    APRIL = 3,
-    MAY = 4,
-    JUNE = 5,
-    JULY = 6,
-    AUGUST = 7,
-    SEPTEMBER = 8,
-    OCTOBER = 9,
-    NOVEMBER = 10,
-    DECEMBER = 11,
-    UNDECIMBER = 12,
-};
-pub const UCAL_JANUARY = UCalendarMonths.JANUARY;
-pub const UCAL_FEBRUARY = UCalendarMonths.FEBRUARY;
-pub const UCAL_MARCH = UCalendarMonths.MARCH;
-pub const UCAL_APRIL = UCalendarMonths.APRIL;
-pub const UCAL_MAY = UCalendarMonths.MAY;
-pub const UCAL_JUNE = UCalendarMonths.JUNE;
-pub const UCAL_JULY = UCalendarMonths.JULY;
-pub const UCAL_AUGUST = UCalendarMonths.AUGUST;
-pub const UCAL_SEPTEMBER = UCalendarMonths.SEPTEMBER;
-pub const UCAL_OCTOBER = UCalendarMonths.OCTOBER;
-pub const UCAL_NOVEMBER = UCalendarMonths.NOVEMBER;
-pub const UCAL_DECEMBER = UCalendarMonths.DECEMBER;
-pub const UCAL_UNDECIMBER = UCalendarMonths.UNDECIMBER;
-
-pub const UCalendarAMPMs = enum(i32) {
-    AM = 0,
-    PM = 1,
-};
-pub const UCAL_AM = UCalendarAMPMs.AM;
-pub const UCAL_PM = UCalendarAMPMs.PM;
-
-pub const USystemTimeZoneType = enum(i32) {
-    ANY = 0,
-    CANONICAL = 1,
-    CANONICAL_LOCATION = 2,
-};
-pub const UCAL_ZONE_TYPE_ANY = USystemTimeZoneType.ANY;
-pub const UCAL_ZONE_TYPE_CANONICAL = USystemTimeZoneType.CANONICAL;
-pub const UCAL_ZONE_TYPE_CANONICAL_LOCATION = USystemTimeZoneType.CANONICAL_LOCATION;
-
-pub const UCalendarDisplayNameType = enum(i32) {
-    STANDARD = 0,
-    SHORT_STANDARD = 1,
-    DST = 2,
-    SHORT_DST = 3,
-};
-pub const UCAL_STANDARD = UCalendarDisplayNameType.STANDARD;
-pub const UCAL_SHORT_STANDARD = UCalendarDisplayNameType.SHORT_STANDARD;
-pub const UCAL_DST = UCalendarDisplayNameType.DST;
-pub const UCAL_SHORT_DST = UCalendarDisplayNameType.SHORT_DST;
-
-pub const UCalendarAttribute = enum(i32) {
-    LENIENT = 0,
-    FIRST_DAY_OF_WEEK = 1,
-    MINIMAL_DAYS_IN_FIRST_WEEK = 2,
-    REPEATED_WALL_TIME = 3,
-    SKIPPED_WALL_TIME = 4,
-};
-pub const UCAL_LENIENT = UCalendarAttribute.LENIENT;
-pub const UCAL_FIRST_DAY_OF_WEEK = UCalendarAttribute.FIRST_DAY_OF_WEEK;
-pub const UCAL_MINIMAL_DAYS_IN_FIRST_WEEK = UCalendarAttribute.MINIMAL_DAYS_IN_FIRST_WEEK;
-pub const UCAL_REPEATED_WALL_TIME = UCalendarAttribute.REPEATED_WALL_TIME;
-pub const UCAL_SKIPPED_WALL_TIME = UCalendarAttribute.SKIPPED_WALL_TIME;
-
-pub const UCalendarWallTimeOption = enum(i32) {
-    LAST = 0,
-    FIRST = 1,
-    NEXT_VALID = 2,
-};
-pub const UCAL_WALLTIME_LAST = UCalendarWallTimeOption.LAST;
-pub const UCAL_WALLTIME_FIRST = UCalendarWallTimeOption.FIRST;
-pub const UCAL_WALLTIME_NEXT_VALID = UCalendarWallTimeOption.NEXT_VALID;
-
-pub const UCalendarLimitType = enum(i32) {
-    MINIMUM = 0,
-    MAXIMUM = 1,
-    GREATEST_MINIMUM = 2,
-    LEAST_MAXIMUM = 3,
-    ACTUAL_MINIMUM = 4,
-    ACTUAL_MAXIMUM = 5,
-};
-pub const UCAL_MINIMUM = UCalendarLimitType.MINIMUM;
-pub const UCAL_MAXIMUM = UCalendarLimitType.MAXIMUM;
-pub const UCAL_GREATEST_MINIMUM = UCalendarLimitType.GREATEST_MINIMUM;
-pub const UCAL_LEAST_MAXIMUM = UCalendarLimitType.LEAST_MAXIMUM;
-pub const UCAL_ACTUAL_MINIMUM = UCalendarLimitType.ACTUAL_MINIMUM;
-pub const UCAL_ACTUAL_MAXIMUM = UCalendarLimitType.ACTUAL_MAXIMUM;
-
-pub const UCalendarWeekdayType = enum(i32) {
-    DAY = 0,
-    END = 1,
-    END_ONSET = 2,
-    END_CEASE = 3,
-};
-pub const UCAL_WEEKDAY = UCalendarWeekdayType.DAY;
-pub const UCAL_WEEKEND = UCalendarWeekdayType.END;
-pub const UCAL_WEEKEND_ONSET = UCalendarWeekdayType.END_ONSET;
-pub const UCAL_WEEKEND_CEASE = UCalendarWeekdayType.END_CEASE;
-
-pub const UTimeZoneTransitionType = enum(i32) {
-    NEXT = 0,
-    NEXT_INCLUSIVE = 1,
-    PREVIOUS = 2,
-    PREVIOUS_INCLUSIVE = 3,
-};
-pub const UCAL_TZ_TRANSITION_NEXT = UTimeZoneTransitionType.NEXT;
-pub const UCAL_TZ_TRANSITION_NEXT_INCLUSIVE = UTimeZoneTransitionType.NEXT_INCLUSIVE;
-pub const UCAL_TZ_TRANSITION_PREVIOUS = UTimeZoneTransitionType.PREVIOUS;
-pub const UCAL_TZ_TRANSITION_PREVIOUS_INCLUSIVE = UTimeZoneTransitionType.PREVIOUS_INCLUSIVE;
-
-pub const UCollator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCollationResult = enum(i32) {
-    EQUAL = 0,
-    GREATER = 1,
-    LESS = -1,
-};
-pub const UCOL_EQUAL = UCollationResult.EQUAL;
-pub const UCOL_GREATER = UCollationResult.GREATER;
-pub const UCOL_LESS = UCollationResult.LESS;
-
-pub const UColAttributeValue = enum(i32) {
-    DEFAULT = -1,
-    PRIMARY = 0,
-    SECONDARY = 1,
-    TERTIARY = 2,
-    CE_STRENGTH_LIMIT = 3,
-    IDENTICAL = 15,
-    STRENGTH_LIMIT = 16,
-    ON = 17,
-    SHIFTED = 20,
-    NON_IGNORABLE = 21,
-    LOWER_FIRST = 24,
-    UPPER_FIRST = 25,
-    pub const DEFAULT_STRENGTH = .TERTIARY;
-    pub const QUATERNARY = .CE_STRENGTH_LIMIT;
-    pub const OFF = .STRENGTH_LIMIT;
-};
-pub const UCOL_DEFAULT = UColAttributeValue.DEFAULT;
-pub const UCOL_PRIMARY = UColAttributeValue.PRIMARY;
-pub const UCOL_SECONDARY = UColAttributeValue.SECONDARY;
-pub const UCOL_TERTIARY = UColAttributeValue.TERTIARY;
-pub const UCOL_DEFAULT_STRENGTH = UColAttributeValue.TERTIARY;
-pub const UCOL_CE_STRENGTH_LIMIT = UColAttributeValue.CE_STRENGTH_LIMIT;
-pub const UCOL_QUATERNARY = UColAttributeValue.CE_STRENGTH_LIMIT;
-pub const UCOL_IDENTICAL = UColAttributeValue.IDENTICAL;
-pub const UCOL_STRENGTH_LIMIT = UColAttributeValue.STRENGTH_LIMIT;
-pub const UCOL_OFF = UColAttributeValue.STRENGTH_LIMIT;
-pub const UCOL_ON = UColAttributeValue.ON;
-pub const UCOL_SHIFTED = UColAttributeValue.SHIFTED;
-pub const UCOL_NON_IGNORABLE = UColAttributeValue.NON_IGNORABLE;
-pub const UCOL_LOWER_FIRST = UColAttributeValue.LOWER_FIRST;
-pub const UCOL_UPPER_FIRST = UColAttributeValue.UPPER_FIRST;
-
-pub const UColReorderCode = enum(i32) {
-    DEFAULT = -1,
-    NONE = 103,
-    SPACE = 4096,
-    PUNCTUATION = 4097,
-    SYMBOL = 4098,
-    CURRENCY = 4099,
-    DIGIT = 4100,
-    pub const OTHERS = .NONE;
-    pub const FIRST = .SPACE;
-};
-pub const UCOL_REORDER_CODE_DEFAULT = UColReorderCode.DEFAULT;
-pub const UCOL_REORDER_CODE_NONE = UColReorderCode.NONE;
-pub const UCOL_REORDER_CODE_OTHERS = UColReorderCode.NONE;
-pub const UCOL_REORDER_CODE_SPACE = UColReorderCode.SPACE;
-pub const UCOL_REORDER_CODE_FIRST = UColReorderCode.SPACE;
-pub const UCOL_REORDER_CODE_PUNCTUATION = UColReorderCode.PUNCTUATION;
-pub const UCOL_REORDER_CODE_SYMBOL = UColReorderCode.SYMBOL;
-pub const UCOL_REORDER_CODE_CURRENCY = UColReorderCode.CURRENCY;
-pub const UCOL_REORDER_CODE_DIGIT = UColReorderCode.DIGIT;
-
-pub const UColAttribute = enum(i32) {
-    FRENCH_COLLATION = 0,
-    ALTERNATE_HANDLING = 1,
-    CASE_FIRST = 2,
-    CASE_LEVEL = 3,
-    NORMALIZATION_MODE = 4,
-    STRENGTH = 5,
-    NUMERIC_COLLATION = 7,
-    ATTRIBUTE_COUNT = 8,
-    pub const DECOMPOSITION_MODE = .NORMALIZATION_MODE;
-};
-pub const UCOL_FRENCH_COLLATION = UColAttribute.FRENCH_COLLATION;
-pub const UCOL_ALTERNATE_HANDLING = UColAttribute.ALTERNATE_HANDLING;
-pub const UCOL_CASE_FIRST = UColAttribute.CASE_FIRST;
-pub const UCOL_CASE_LEVEL = UColAttribute.CASE_LEVEL;
-pub const UCOL_NORMALIZATION_MODE = UColAttribute.NORMALIZATION_MODE;
-pub const UCOL_DECOMPOSITION_MODE = UColAttribute.NORMALIZATION_MODE;
-pub const UCOL_STRENGTH = UColAttribute.STRENGTH;
-pub const UCOL_NUMERIC_COLLATION = UColAttribute.NUMERIC_COLLATION;
-pub const UCOL_ATTRIBUTE_COUNT = UColAttribute.ATTRIBUTE_COUNT;
-
-pub const UColRuleOption = enum(i32) {
-    TAILORING_ONLY = 0,
-    FULL_RULES = 1,
-};
-pub const UCOL_TAILORING_ONLY = UColRuleOption.TAILORING_ONLY;
-pub const UCOL_FULL_RULES = UColRuleOption.FULL_RULES;
-
-pub const UColBoundMode = enum(i32) {
-    LOWER = 0,
-    UPPER = 1,
-    UPPER_LONG = 2,
-};
-pub const UCOL_BOUND_LOWER = UColBoundMode.LOWER;
-pub const UCOL_BOUND_UPPER = UColBoundMode.UPPER;
-pub const UCOL_BOUND_UPPER_LONG = UColBoundMode.UPPER_LONG;
-
-pub const UCollationElements = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCharsetDetector = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCharsetMatch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFieldPositionIterator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFormattableType = enum(i32) {
-    DATE = 0,
-    DOUBLE = 1,
-    LONG = 2,
-    STRING = 3,
-    ARRAY = 4,
-    INT64 = 5,
-    OBJECT = 6,
-};
-pub const UFMT_DATE = UFormattableType.DATE;
-pub const UFMT_DOUBLE = UFormattableType.DOUBLE;
-pub const UFMT_LONG = UFormattableType.LONG;
-pub const UFMT_STRING = UFormattableType.STRING;
-pub const UFMT_ARRAY = UFormattableType.ARRAY;
-pub const UFMT_INT64 = UFormattableType.INT64;
-pub const UFMT_OBJECT = UFormattableType.OBJECT;
-
-pub const UFieldCategory = enum(i32) {
-    UNDEFINED = 0,
-    DATE = 1,
-    NUMBER = 2,
-    LIST = 3,
-    RELATIVE_DATETIME = 4,
-    DATE_INTERVAL = 5,
-    LIST_SPAN = 4099,
-    DATE_INTERVAL_SPAN = 4101,
-};
-pub const UFIELD_CATEGORY_UNDEFINED = UFieldCategory.UNDEFINED;
-pub const UFIELD_CATEGORY_DATE = UFieldCategory.DATE;
-pub const UFIELD_CATEGORY_NUMBER = UFieldCategory.NUMBER;
-pub const UFIELD_CATEGORY_LIST = UFieldCategory.LIST;
-pub const UFIELD_CATEGORY_RELATIVE_DATETIME = UFieldCategory.RELATIVE_DATETIME;
-pub const UFIELD_CATEGORY_DATE_INTERVAL = UFieldCategory.DATE_INTERVAL;
-pub const UFIELD_CATEGORY_LIST_SPAN = UFieldCategory.LIST_SPAN;
-pub const UFIELD_CATEGORY_DATE_INTERVAL_SPAN = UFieldCategory.DATE_INTERVAL_SPAN;
-
-pub const UConstrainedFieldPosition = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFormattedValue = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UDateIntervalFormat = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFormattedDateInterval = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UGender = enum(i32) {
-    MALE = 0,
-    FEMALE = 1,
-    OTHER = 2,
-};
-pub const UGENDER_MALE = UGender.MALE;
-pub const UGENDER_FEMALE = UGender.FEMALE;
-pub const UGENDER_OTHER = UGender.OTHER;
-
-pub const UGenderInfo = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const UListFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFormattedList = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
@@ -5883,17 +6544,6 @@ pub const ULocaleData = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const ULocaleDataExemplarSetType = enum(i32) {
-    STANDARD = 0,
-    AUXILIARY = 1,
-    INDEX = 2,
-    PUNCTUATION = 3,
-};
-pub const ULOCDATA_ES_STANDARD = ULocaleDataExemplarSetType.STANDARD;
-pub const ULOCDATA_ES_AUXILIARY = ULocaleDataExemplarSetType.AUXILIARY;
-pub const ULOCDATA_ES_INDEX = ULocaleDataExemplarSetType.INDEX;
-pub const ULOCDATA_ES_PUNCTUATION = ULocaleDataExemplarSetType.PUNCTUATION;
-
 pub const ULocaleDataDelimiterType = enum(i32) {
     QUOTATION_START = 0,
     QUOTATION_END = 1,
@@ -5905,6 +6555,50 @@ pub const ULOCDATA_QUOTATION_END = ULocaleDataDelimiterType.QUOTATION_END;
 pub const ULOCDATA_ALT_QUOTATION_START = ULocaleDataDelimiterType.ALT_QUOTATION_START;
 pub const ULOCDATA_ALT_QUOTATION_END = ULocaleDataDelimiterType.ALT_QUOTATION_END;
 
+pub const ULocaleDataExemplarSetType = enum(i32) {
+    STANDARD = 0,
+    AUXILIARY = 1,
+    INDEX = 2,
+    PUNCTUATION = 3,
+};
+pub const ULOCDATA_ES_STANDARD = ULocaleDataExemplarSetType.STANDARD;
+pub const ULOCDATA_ES_AUXILIARY = ULocaleDataExemplarSetType.AUXILIARY;
+pub const ULOCDATA_ES_INDEX = ULocaleDataExemplarSetType.INDEX;
+pub const ULOCDATA_ES_PUNCTUATION = ULocaleDataExemplarSetType.PUNCTUATION;
+
+pub const ULocaleDisplayNames = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const ULocAvailableType = enum(i32) {
+    DEFAULT = 0,
+    ONLY_LEGACY_ALIASES = 1,
+    WITH_LEGACY_ALIASES = 2,
+};
+pub const ULOC_AVAILABLE_DEFAULT = ULocAvailableType.DEFAULT;
+pub const ULOC_AVAILABLE_ONLY_LEGACY_ALIASES = ULocAvailableType.ONLY_LEGACY_ALIASES;
+pub const ULOC_AVAILABLE_WITH_LEGACY_ALIASES = ULocAvailableType.WITH_LEGACY_ALIASES;
+
+pub const ULocDataLocaleType = enum(i32) {
+    ACTUAL_LOCALE = 0,
+    VALID_LOCALE = 1,
+};
+pub const ULOC_ACTUAL_LOCALE = ULocDataLocaleType.ACTUAL_LOCALE;
+pub const ULOC_VALID_LOCALE = ULocDataLocaleType.VALID_LOCALE;
+
+pub const UMeasureFormatWidth = enum(i32) {
+    WIDE = 0,
+    SHORT = 1,
+    NARROW = 2,
+    NUMERIC = 3,
+    COUNT = 4,
+};
+pub const UMEASFMT_WIDTH_WIDE = UMeasureFormatWidth.WIDE;
+pub const UMEASFMT_WIDTH_SHORT = UMeasureFormatWidth.SHORT;
+pub const UMEASFMT_WIDTH_NARROW = UMeasureFormatWidth.NARROW;
+pub const UMEASFMT_WIDTH_NUMERIC = UMeasureFormatWidth.NUMERIC;
+pub const UMEASFMT_WIDTH_COUNT = UMeasureFormatWidth.COUNT;
+
 pub const UMeasurementSystem = enum(i32) {
     SI = 0,
     US = 1,
@@ -5914,76 +6608,131 @@ pub const UMS_SI = UMeasurementSystem.SI;
 pub const UMS_US = UMeasurementSystem.US;
 pub const UMS_UK = UMeasurementSystem.UK;
 
-pub const UNumberFormatStyle = enum(i32) {
-    PATTERN_DECIMAL = 0,
-    DECIMAL = 1,
-    CURRENCY = 2,
-    PERCENT = 3,
-    SCIENTIFIC = 4,
-    SPELLOUT = 5,
-    ORDINAL = 6,
-    DURATION = 7,
-    NUMBERING_SYSTEM = 8,
-    PATTERN_RULEBASED = 9,
-    CURRENCY_ISO = 10,
-    CURRENCY_PLURAL = 11,
-    CURRENCY_ACCOUNTING = 12,
-    CASH_CURRENCY = 13,
-    DECIMAL_COMPACT_SHORT = 14,
-    DECIMAL_COMPACT_LONG = 15,
-    CURRENCY_STANDARD = 16,
-    pub const DEFAULT = .DECIMAL;
-    pub const IGNORE = .PATTERN_DECIMAL;
-};
-pub const UNUM_PATTERN_DECIMAL = UNumberFormatStyle.PATTERN_DECIMAL;
-pub const UNUM_DECIMAL = UNumberFormatStyle.DECIMAL;
-pub const UNUM_CURRENCY = UNumberFormatStyle.CURRENCY;
-pub const UNUM_PERCENT = UNumberFormatStyle.PERCENT;
-pub const UNUM_SCIENTIFIC = UNumberFormatStyle.SCIENTIFIC;
-pub const UNUM_SPELLOUT = UNumberFormatStyle.SPELLOUT;
-pub const UNUM_ORDINAL = UNumberFormatStyle.ORDINAL;
-pub const UNUM_DURATION = UNumberFormatStyle.DURATION;
-pub const UNUM_NUMBERING_SYSTEM = UNumberFormatStyle.NUMBERING_SYSTEM;
-pub const UNUM_PATTERN_RULEBASED = UNumberFormatStyle.PATTERN_RULEBASED;
-pub const UNUM_CURRENCY_ISO = UNumberFormatStyle.CURRENCY_ISO;
-pub const UNUM_CURRENCY_PLURAL = UNumberFormatStyle.CURRENCY_PLURAL;
-pub const UNUM_CURRENCY_ACCOUNTING = UNumberFormatStyle.CURRENCY_ACCOUNTING;
-pub const UNUM_CASH_CURRENCY = UNumberFormatStyle.CASH_CURRENCY;
-pub const UNUM_DECIMAL_COMPACT_SHORT = UNumberFormatStyle.DECIMAL_COMPACT_SHORT;
-pub const UNUM_DECIMAL_COMPACT_LONG = UNumberFormatStyle.DECIMAL_COMPACT_LONG;
-pub const UNUM_CURRENCY_STANDARD = UNumberFormatStyle.CURRENCY_STANDARD;
-pub const UNUM_DEFAULT = UNumberFormatStyle.DECIMAL;
-pub const UNUM_IGNORE = UNumberFormatStyle.PATTERN_DECIMAL;
+pub const UMemAllocFn = *const fn(
+    context: ?*const anyopaque,
+    size: usize,
+) callconv(.winapi) ?*anyopaque;
 
-pub const UNumberFormatRoundingMode = enum(i32) {
-    CEILING = 0,
-    FLOOR = 1,
-    DOWN = 2,
-    UP = 3,
-    HALFEVEN = 4,
-    HALFDOWN = 5,
-    HALFUP = 6,
-    UNNECESSARY = 7,
-};
-pub const UNUM_ROUND_CEILING = UNumberFormatRoundingMode.CEILING;
-pub const UNUM_ROUND_FLOOR = UNumberFormatRoundingMode.FLOOR;
-pub const UNUM_ROUND_DOWN = UNumberFormatRoundingMode.DOWN;
-pub const UNUM_ROUND_UP = UNumberFormatRoundingMode.UP;
-pub const UNUM_ROUND_HALFEVEN = UNumberFormatRoundingMode.HALFEVEN;
-pub const UNUM_ROUND_HALFDOWN = UNumberFormatRoundingMode.HALFDOWN;
-pub const UNUM_ROUND_HALFUP = UNumberFormatRoundingMode.HALFUP;
-pub const UNUM_ROUND_UNNECESSARY = UNumberFormatRoundingMode.UNNECESSARY;
+pub const UMemFreeFn = *const fn(
+    context: ?*const anyopaque,
+    mem: ?*anyopaque,
+) callconv(.winapi) void;
 
-pub const UNumberFormatPadPosition = enum(i32) {
-    BEFORE_PREFIX = 0,
-    AFTER_PREFIX = 1,
-    BEFORE_SUFFIX = 2,
-    AFTER_SUFFIX = 3,
+pub const UMemReallocFn = *const fn(
+    context: ?*const anyopaque,
+    mem: ?*anyopaque,
+    size: usize,
+) callconv(.winapi) ?*anyopaque;
+
+pub const UMessagePatternApostropheMode = enum(i32) {
+    OPTIONAL = 0,
+    REQUIRED = 1,
 };
-pub const UNUM_PAD_BEFORE_PREFIX = UNumberFormatPadPosition.BEFORE_PREFIX;
-pub const UNUM_PAD_AFTER_PREFIX = UNumberFormatPadPosition.AFTER_PREFIX;
-pub const UNUM_PAD_BEFORE_SUFFIX = UNumberFormatPadPosition.BEFORE_SUFFIX;
-pub const UNUM_PAD_AFTER_SUFFIX = UNumberFormatPadPosition.AFTER_SUFFIX;
+pub const UMSGPAT_APOS_DOUBLE_OPTIONAL = UMessagePatternApostropheMode.OPTIONAL;
+pub const UMSGPAT_APOS_DOUBLE_REQUIRED = UMessagePatternApostropheMode.REQUIRED;
+
+pub const UMessagePatternArgType = enum(i32) {
+    NONE = 0,
+    SIMPLE = 1,
+    CHOICE = 2,
+    PLURAL = 3,
+    SELECT = 4,
+    SELECTORDINAL = 5,
+};
+pub const UMSGPAT_ARG_TYPE_NONE = UMessagePatternArgType.NONE;
+pub const UMSGPAT_ARG_TYPE_SIMPLE = UMessagePatternArgType.SIMPLE;
+pub const UMSGPAT_ARG_TYPE_CHOICE = UMessagePatternArgType.CHOICE;
+pub const UMSGPAT_ARG_TYPE_PLURAL = UMessagePatternArgType.PLURAL;
+pub const UMSGPAT_ARG_TYPE_SELECT = UMessagePatternArgType.SELECT;
+pub const UMSGPAT_ARG_TYPE_SELECTORDINAL = UMessagePatternArgType.SELECTORDINAL;
+
+pub const UMessagePatternPartType = enum(i32) {
+    MSG_START = 0,
+    MSG_LIMIT = 1,
+    SKIP_SYNTAX = 2,
+    INSERT_CHAR = 3,
+    REPLACE_NUMBER = 4,
+    ARG_START = 5,
+    ARG_LIMIT = 6,
+    ARG_NUMBER = 7,
+    ARG_NAME = 8,
+    ARG_TYPE = 9,
+    ARG_STYLE = 10,
+    ARG_SELECTOR = 11,
+    ARG_INT = 12,
+    ARG_DOUBLE = 13,
+};
+pub const UMSGPAT_PART_TYPE_MSG_START = UMessagePatternPartType.MSG_START;
+pub const UMSGPAT_PART_TYPE_MSG_LIMIT = UMessagePatternPartType.MSG_LIMIT;
+pub const UMSGPAT_PART_TYPE_SKIP_SYNTAX = UMessagePatternPartType.SKIP_SYNTAX;
+pub const UMSGPAT_PART_TYPE_INSERT_CHAR = UMessagePatternPartType.INSERT_CHAR;
+pub const UMSGPAT_PART_TYPE_REPLACE_NUMBER = UMessagePatternPartType.REPLACE_NUMBER;
+pub const UMSGPAT_PART_TYPE_ARG_START = UMessagePatternPartType.ARG_START;
+pub const UMSGPAT_PART_TYPE_ARG_LIMIT = UMessagePatternPartType.ARG_LIMIT;
+pub const UMSGPAT_PART_TYPE_ARG_NUMBER = UMessagePatternPartType.ARG_NUMBER;
+pub const UMSGPAT_PART_TYPE_ARG_NAME = UMessagePatternPartType.ARG_NAME;
+pub const UMSGPAT_PART_TYPE_ARG_TYPE = UMessagePatternPartType.ARG_TYPE;
+pub const UMSGPAT_PART_TYPE_ARG_STYLE = UMessagePatternPartType.ARG_STYLE;
+pub const UMSGPAT_PART_TYPE_ARG_SELECTOR = UMessagePatternPartType.ARG_SELECTOR;
+pub const UMSGPAT_PART_TYPE_ARG_INT = UMessagePatternPartType.ARG_INT;
+pub const UMSGPAT_PART_TYPE_ARG_DOUBLE = UMessagePatternPartType.ARG_DOUBLE;
+
+pub const UMutableCPTrie = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UNESCAPE_CHAR_AT = *const fn(
+    offset: i32,
+    context: ?*anyopaque,
+) callconv(.winapi) u16;
+
+pub const UNICODERANGE = extern struct {
+    wcFrom: u16,
+    wcTo: u16,
+};
+
+pub const UNormalization2Mode = enum(i32) {
+    COMPOSE = 0,
+    DECOMPOSE = 1,
+    FCD = 2,
+    COMPOSE_CONTIGUOUS = 3,
+};
+pub const UNORM2_COMPOSE = UNormalization2Mode.COMPOSE;
+pub const UNORM2_DECOMPOSE = UNormalization2Mode.DECOMPOSE;
+pub const UNORM2_FCD = UNormalization2Mode.FCD;
+pub const UNORM2_COMPOSE_CONTIGUOUS = UNormalization2Mode.COMPOSE_CONTIGUOUS;
+
+pub const UNormalizationCheckResult = enum(i32) {
+    NO = 0,
+    YES = 1,
+    MAYBE = 2,
+};
+pub const UNORM_NO = UNormalizationCheckResult.NO;
+pub const UNORM_YES = UNormalizationCheckResult.YES;
+pub const UNORM_MAYBE = UNormalizationCheckResult.MAYBE;
+
+pub const UNormalizationMode = enum(i32) {
+    NONE = 1,
+    NFD = 2,
+    NFKD = 3,
+    NFC = 4,
+    NFKC = 5,
+    FCD = 6,
+    MODE_COUNT = 7,
+    pub const DEFAULT = .NFC;
+};
+pub const UNORM_NONE = UNormalizationMode.NONE;
+pub const UNORM_NFD = UNormalizationMode.NFD;
+pub const UNORM_NFKD = UNormalizationMode.NFKD;
+pub const UNORM_NFC = UNormalizationMode.NFC;
+pub const UNORM_DEFAULT = UNormalizationMode.NFC;
+pub const UNORM_NFKC = UNormalizationMode.NFKC;
+pub const UNORM_FCD = UNormalizationMode.FCD;
+pub const UNORM_MODE_COUNT = UNormalizationMode.MODE_COUNT;
+
+pub const UNormalizer2 = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const UNumberCompactStyle = enum(i32) {
     SHORT = 0,
@@ -5992,50 +6741,14 @@ pub const UNumberCompactStyle = enum(i32) {
 pub const UNUM_SHORT = UNumberCompactStyle.SHORT;
 pub const UNUM_LONG = UNumberCompactStyle.LONG;
 
-pub const UCurrencySpacing = enum(i32) {
-    MATCH = 0,
-    SURROUNDING_MATCH = 1,
-    INSERT = 2,
-    SPACING_COUNT = 3,
+pub const UNumberDecimalSeparatorDisplay = enum(i32) {
+    AUTO = 0,
+    ALWAYS = 1,
+    COUNT = 2,
 };
-pub const UNUM_CURRENCY_MATCH = UCurrencySpacing.MATCH;
-pub const UNUM_CURRENCY_SURROUNDING_MATCH = UCurrencySpacing.SURROUNDING_MATCH;
-pub const UNUM_CURRENCY_INSERT = UCurrencySpacing.INSERT;
-pub const UNUM_CURRENCY_SPACING_COUNT = UCurrencySpacing.SPACING_COUNT;
-
-pub const UNumberFormatFields = enum(i32) {
-    INTEGER_FIELD = 0,
-    FRACTION_FIELD = 1,
-    DECIMAL_SEPARATOR_FIELD = 2,
-    EXPONENT_SYMBOL_FIELD = 3,
-    EXPONENT_SIGN_FIELD = 4,
-    EXPONENT_FIELD = 5,
-    GROUPING_SEPARATOR_FIELD = 6,
-    CURRENCY_FIELD = 7,
-    PERCENT_FIELD = 8,
-    PERMILL_FIELD = 9,
-    SIGN_FIELD = 10,
-    MEASURE_UNIT_FIELD = 11,
-    COMPACT_FIELD = 12,
-};
-pub const UNUM_INTEGER_FIELD = UNumberFormatFields.INTEGER_FIELD;
-pub const UNUM_FRACTION_FIELD = UNumberFormatFields.FRACTION_FIELD;
-pub const UNUM_DECIMAL_SEPARATOR_FIELD = UNumberFormatFields.DECIMAL_SEPARATOR_FIELD;
-pub const UNUM_EXPONENT_SYMBOL_FIELD = UNumberFormatFields.EXPONENT_SYMBOL_FIELD;
-pub const UNUM_EXPONENT_SIGN_FIELD = UNumberFormatFields.EXPONENT_SIGN_FIELD;
-pub const UNUM_EXPONENT_FIELD = UNumberFormatFields.EXPONENT_FIELD;
-pub const UNUM_GROUPING_SEPARATOR_FIELD = UNumberFormatFields.GROUPING_SEPARATOR_FIELD;
-pub const UNUM_CURRENCY_FIELD = UNumberFormatFields.CURRENCY_FIELD;
-pub const UNUM_PERCENT_FIELD = UNumberFormatFields.PERCENT_FIELD;
-pub const UNUM_PERMILL_FIELD = UNumberFormatFields.PERMILL_FIELD;
-pub const UNUM_SIGN_FIELD = UNumberFormatFields.SIGN_FIELD;
-pub const UNUM_MEASURE_UNIT_FIELD = UNumberFormatFields.MEASURE_UNIT_FIELD;
-pub const UNUM_COMPACT_FIELD = UNumberFormatFields.COMPACT_FIELD;
-
-pub const UNumberFormatAttributeValue = enum(i32) {
-    N = 0,
-};
-pub const UNUM_FORMAT_ATTRIBUTE_VALUE_HIDDEN = UNumberFormatAttributeValue.N;
+pub const UNUM_DECIMAL_SEPARATOR_AUTO = UNumberDecimalSeparatorDisplay.AUTO;
+pub const UNUM_DECIMAL_SEPARATOR_ALWAYS = UNumberDecimalSeparatorDisplay.ALWAYS;
+pub const UNUM_DECIMAL_SEPARATOR_COUNT = UNumberDecimalSeparatorDisplay.COUNT;
 
 pub const UNumberFormatAttribute = enum(i32) {
     PARSE_INT_ONLY = 0,
@@ -6098,24 +6811,110 @@ pub const UNUM_PARSE_DECIMAL_MARK_REQUIRED = UNumberFormatAttribute.PARSE_DECIMA
 pub const UNUM_PARSE_CASE_SENSITIVE = UNumberFormatAttribute.PARSE_CASE_SENSITIVE;
 pub const UNUM_SIGN_ALWAYS_SHOWN = UNumberFormatAttribute.SIGN_ALWAYS_SHOWN;
 
-pub const UNumberFormatTextAttribute = enum(i32) {
-    POSITIVE_PREFIX = 0,
-    POSITIVE_SUFFIX = 1,
-    NEGATIVE_PREFIX = 2,
-    NEGATIVE_SUFFIX = 3,
-    PADDING_CHARACTER = 4,
-    CURRENCY_CODE = 5,
-    DEFAULT_RULESET = 6,
-    PUBLIC_RULESETS = 7,
+pub const UNumberFormatAttributeValue = enum(i32) {
+    N = 0,
 };
-pub const UNUM_POSITIVE_PREFIX = UNumberFormatTextAttribute.POSITIVE_PREFIX;
-pub const UNUM_POSITIVE_SUFFIX = UNumberFormatTextAttribute.POSITIVE_SUFFIX;
-pub const UNUM_NEGATIVE_PREFIX = UNumberFormatTextAttribute.NEGATIVE_PREFIX;
-pub const UNUM_NEGATIVE_SUFFIX = UNumberFormatTextAttribute.NEGATIVE_SUFFIX;
-pub const UNUM_PADDING_CHARACTER = UNumberFormatTextAttribute.PADDING_CHARACTER;
-pub const UNUM_CURRENCY_CODE = UNumberFormatTextAttribute.CURRENCY_CODE;
-pub const UNUM_DEFAULT_RULESET = UNumberFormatTextAttribute.DEFAULT_RULESET;
-pub const UNUM_PUBLIC_RULESETS = UNumberFormatTextAttribute.PUBLIC_RULESETS;
+pub const UNUM_FORMAT_ATTRIBUTE_VALUE_HIDDEN = UNumberFormatAttributeValue.N;
+
+pub const UNumberFormatFields = enum(i32) {
+    INTEGER_FIELD = 0,
+    FRACTION_FIELD = 1,
+    DECIMAL_SEPARATOR_FIELD = 2,
+    EXPONENT_SYMBOL_FIELD = 3,
+    EXPONENT_SIGN_FIELD = 4,
+    EXPONENT_FIELD = 5,
+    GROUPING_SEPARATOR_FIELD = 6,
+    CURRENCY_FIELD = 7,
+    PERCENT_FIELD = 8,
+    PERMILL_FIELD = 9,
+    SIGN_FIELD = 10,
+    MEASURE_UNIT_FIELD = 11,
+    COMPACT_FIELD = 12,
+};
+pub const UNUM_INTEGER_FIELD = UNumberFormatFields.INTEGER_FIELD;
+pub const UNUM_FRACTION_FIELD = UNumberFormatFields.FRACTION_FIELD;
+pub const UNUM_DECIMAL_SEPARATOR_FIELD = UNumberFormatFields.DECIMAL_SEPARATOR_FIELD;
+pub const UNUM_EXPONENT_SYMBOL_FIELD = UNumberFormatFields.EXPONENT_SYMBOL_FIELD;
+pub const UNUM_EXPONENT_SIGN_FIELD = UNumberFormatFields.EXPONENT_SIGN_FIELD;
+pub const UNUM_EXPONENT_FIELD = UNumberFormatFields.EXPONENT_FIELD;
+pub const UNUM_GROUPING_SEPARATOR_FIELD = UNumberFormatFields.GROUPING_SEPARATOR_FIELD;
+pub const UNUM_CURRENCY_FIELD = UNumberFormatFields.CURRENCY_FIELD;
+pub const UNUM_PERCENT_FIELD = UNumberFormatFields.PERCENT_FIELD;
+pub const UNUM_PERMILL_FIELD = UNumberFormatFields.PERMILL_FIELD;
+pub const UNUM_SIGN_FIELD = UNumberFormatFields.SIGN_FIELD;
+pub const UNUM_MEASURE_UNIT_FIELD = UNumberFormatFields.MEASURE_UNIT_FIELD;
+pub const UNUM_COMPACT_FIELD = UNumberFormatFields.COMPACT_FIELD;
+
+pub const UNumberFormatPadPosition = enum(i32) {
+    BEFORE_PREFIX = 0,
+    AFTER_PREFIX = 1,
+    BEFORE_SUFFIX = 2,
+    AFTER_SUFFIX = 3,
+};
+pub const UNUM_PAD_BEFORE_PREFIX = UNumberFormatPadPosition.BEFORE_PREFIX;
+pub const UNUM_PAD_AFTER_PREFIX = UNumberFormatPadPosition.AFTER_PREFIX;
+pub const UNUM_PAD_BEFORE_SUFFIX = UNumberFormatPadPosition.BEFORE_SUFFIX;
+pub const UNUM_PAD_AFTER_SUFFIX = UNumberFormatPadPosition.AFTER_SUFFIX;
+
+pub const UNumberFormatRoundingMode = enum(i32) {
+    CEILING = 0,
+    FLOOR = 1,
+    DOWN = 2,
+    UP = 3,
+    HALFEVEN = 4,
+    HALFDOWN = 5,
+    HALFUP = 6,
+    UNNECESSARY = 7,
+};
+pub const UNUM_ROUND_CEILING = UNumberFormatRoundingMode.CEILING;
+pub const UNUM_ROUND_FLOOR = UNumberFormatRoundingMode.FLOOR;
+pub const UNUM_ROUND_DOWN = UNumberFormatRoundingMode.DOWN;
+pub const UNUM_ROUND_UP = UNumberFormatRoundingMode.UP;
+pub const UNUM_ROUND_HALFEVEN = UNumberFormatRoundingMode.HALFEVEN;
+pub const UNUM_ROUND_HALFDOWN = UNumberFormatRoundingMode.HALFDOWN;
+pub const UNUM_ROUND_HALFUP = UNumberFormatRoundingMode.HALFUP;
+pub const UNUM_ROUND_UNNECESSARY = UNumberFormatRoundingMode.UNNECESSARY;
+
+pub const UNumberFormatStyle = enum(i32) {
+    PATTERN_DECIMAL = 0,
+    DECIMAL = 1,
+    CURRENCY = 2,
+    PERCENT = 3,
+    SCIENTIFIC = 4,
+    SPELLOUT = 5,
+    ORDINAL = 6,
+    DURATION = 7,
+    NUMBERING_SYSTEM = 8,
+    PATTERN_RULEBASED = 9,
+    CURRENCY_ISO = 10,
+    CURRENCY_PLURAL = 11,
+    CURRENCY_ACCOUNTING = 12,
+    CASH_CURRENCY = 13,
+    DECIMAL_COMPACT_SHORT = 14,
+    DECIMAL_COMPACT_LONG = 15,
+    CURRENCY_STANDARD = 16,
+    pub const DEFAULT = .DECIMAL;
+    pub const IGNORE = .PATTERN_DECIMAL;
+};
+pub const UNUM_PATTERN_DECIMAL = UNumberFormatStyle.PATTERN_DECIMAL;
+pub const UNUM_DECIMAL = UNumberFormatStyle.DECIMAL;
+pub const UNUM_CURRENCY = UNumberFormatStyle.CURRENCY;
+pub const UNUM_PERCENT = UNumberFormatStyle.PERCENT;
+pub const UNUM_SCIENTIFIC = UNumberFormatStyle.SCIENTIFIC;
+pub const UNUM_SPELLOUT = UNumberFormatStyle.SPELLOUT;
+pub const UNUM_ORDINAL = UNumberFormatStyle.ORDINAL;
+pub const UNUM_DURATION = UNumberFormatStyle.DURATION;
+pub const UNUM_NUMBERING_SYSTEM = UNumberFormatStyle.NUMBERING_SYSTEM;
+pub const UNUM_PATTERN_RULEBASED = UNumberFormatStyle.PATTERN_RULEBASED;
+pub const UNUM_CURRENCY_ISO = UNumberFormatStyle.CURRENCY_ISO;
+pub const UNUM_CURRENCY_PLURAL = UNumberFormatStyle.CURRENCY_PLURAL;
+pub const UNUM_CURRENCY_ACCOUNTING = UNumberFormatStyle.CURRENCY_ACCOUNTING;
+pub const UNUM_CASH_CURRENCY = UNumberFormatStyle.CASH_CURRENCY;
+pub const UNUM_DECIMAL_COMPACT_SHORT = UNumberFormatStyle.DECIMAL_COMPACT_SHORT;
+pub const UNUM_DECIMAL_COMPACT_LONG = UNumberFormatStyle.DECIMAL_COMPACT_LONG;
+pub const UNUM_CURRENCY_STANDARD = UNumberFormatStyle.CURRENCY_STANDARD;
+pub const UNUM_DEFAULT = UNumberFormatStyle.DECIMAL;
+pub const UNUM_IGNORE = UNumberFormatStyle.PATTERN_DECIMAL;
 
 pub const UNumberFormatSymbol = enum(i32) {
     DECIMAL_SEPARATOR_SYMBOL = 0,
@@ -6176,262 +6975,28 @@ pub const UNUM_EIGHT_DIGIT_SYMBOL = UNumberFormatSymbol.EIGHT_DIGIT_SYMBOL;
 pub const UNUM_NINE_DIGIT_SYMBOL = UNumberFormatSymbol.NINE_DIGIT_SYMBOL;
 pub const UNUM_EXPONENT_MULTIPLICATION_SYMBOL = UNumberFormatSymbol.EXPONENT_MULTIPLICATION_SYMBOL;
 
-pub const UDateFormatStyle = enum(i32) {
-    FULL = 0,
-    LONG = 1,
-    MEDIUM = 2,
-    SHORT = 3,
-    RELATIVE = 128,
-    LONG_RELATIVE = 129,
-    MEDIUM_RELATIVE = 130,
-    SHORT_RELATIVE = 131,
-    NONE = -1,
-    PATTERN = -2,
-    pub const DEFAULT = .MEDIUM;
-    pub const FULL_RELATIVE = .RELATIVE;
-};
-pub const UDAT_FULL = UDateFormatStyle.FULL;
-pub const UDAT_LONG = UDateFormatStyle.LONG;
-pub const UDAT_MEDIUM = UDateFormatStyle.MEDIUM;
-pub const UDAT_SHORT = UDateFormatStyle.SHORT;
-pub const UDAT_DEFAULT = UDateFormatStyle.MEDIUM;
-pub const UDAT_RELATIVE = UDateFormatStyle.RELATIVE;
-pub const UDAT_FULL_RELATIVE = UDateFormatStyle.RELATIVE;
-pub const UDAT_LONG_RELATIVE = UDateFormatStyle.LONG_RELATIVE;
-pub const UDAT_MEDIUM_RELATIVE = UDateFormatStyle.MEDIUM_RELATIVE;
-pub const UDAT_SHORT_RELATIVE = UDateFormatStyle.SHORT_RELATIVE;
-pub const UDAT_NONE = UDateFormatStyle.NONE;
-pub const UDAT_PATTERN = UDateFormatStyle.PATTERN;
-
-pub const UDateFormatField = enum(i32) {
-    ERA_FIELD = 0,
-    YEAR_FIELD = 1,
-    MONTH_FIELD = 2,
-    DATE_FIELD = 3,
-    HOUR_OF_DAY1_FIELD = 4,
-    HOUR_OF_DAY0_FIELD = 5,
-    MINUTE_FIELD = 6,
-    SECOND_FIELD = 7,
-    FRACTIONAL_SECOND_FIELD = 8,
-    DAY_OF_WEEK_FIELD = 9,
-    DAY_OF_YEAR_FIELD = 10,
-    DAY_OF_WEEK_IN_MONTH_FIELD = 11,
-    WEEK_OF_YEAR_FIELD = 12,
-    WEEK_OF_MONTH_FIELD = 13,
-    AM_PM_FIELD = 14,
-    HOUR1_FIELD = 15,
-    HOUR0_FIELD = 16,
-    TIMEZONE_FIELD = 17,
-    YEAR_WOY_FIELD = 18,
-    DOW_LOCAL_FIELD = 19,
-    EXTENDED_YEAR_FIELD = 20,
-    JULIAN_DAY_FIELD = 21,
-    MILLISECONDS_IN_DAY_FIELD = 22,
-    TIMEZONE_RFC_FIELD = 23,
-    TIMEZONE_GENERIC_FIELD = 24,
-    STANDALONE_DAY_FIELD = 25,
-    STANDALONE_MONTH_FIELD = 26,
-    QUARTER_FIELD = 27,
-    STANDALONE_QUARTER_FIELD = 28,
-    TIMEZONE_SPECIAL_FIELD = 29,
-    YEAR_NAME_FIELD = 30,
-    TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD = 31,
-    TIMEZONE_ISO_FIELD = 32,
-    TIMEZONE_ISO_LOCAL_FIELD = 33,
-    AM_PM_MIDNIGHT_NOON_FIELD = 35,
-    FLEXIBLE_DAY_PERIOD_FIELD = 36,
-};
-pub const UDAT_ERA_FIELD = UDateFormatField.ERA_FIELD;
-pub const UDAT_YEAR_FIELD = UDateFormatField.YEAR_FIELD;
-pub const UDAT_MONTH_FIELD = UDateFormatField.MONTH_FIELD;
-pub const UDAT_DATE_FIELD = UDateFormatField.DATE_FIELD;
-pub const UDAT_HOUR_OF_DAY1_FIELD = UDateFormatField.HOUR_OF_DAY1_FIELD;
-pub const UDAT_HOUR_OF_DAY0_FIELD = UDateFormatField.HOUR_OF_DAY0_FIELD;
-pub const UDAT_MINUTE_FIELD = UDateFormatField.MINUTE_FIELD;
-pub const UDAT_SECOND_FIELD = UDateFormatField.SECOND_FIELD;
-pub const UDAT_FRACTIONAL_SECOND_FIELD = UDateFormatField.FRACTIONAL_SECOND_FIELD;
-pub const UDAT_DAY_OF_WEEK_FIELD = UDateFormatField.DAY_OF_WEEK_FIELD;
-pub const UDAT_DAY_OF_YEAR_FIELD = UDateFormatField.DAY_OF_YEAR_FIELD;
-pub const UDAT_DAY_OF_WEEK_IN_MONTH_FIELD = UDateFormatField.DAY_OF_WEEK_IN_MONTH_FIELD;
-pub const UDAT_WEEK_OF_YEAR_FIELD = UDateFormatField.WEEK_OF_YEAR_FIELD;
-pub const UDAT_WEEK_OF_MONTH_FIELD = UDateFormatField.WEEK_OF_MONTH_FIELD;
-pub const UDAT_AM_PM_FIELD = UDateFormatField.AM_PM_FIELD;
-pub const UDAT_HOUR1_FIELD = UDateFormatField.HOUR1_FIELD;
-pub const UDAT_HOUR0_FIELD = UDateFormatField.HOUR0_FIELD;
-pub const UDAT_TIMEZONE_FIELD = UDateFormatField.TIMEZONE_FIELD;
-pub const UDAT_YEAR_WOY_FIELD = UDateFormatField.YEAR_WOY_FIELD;
-pub const UDAT_DOW_LOCAL_FIELD = UDateFormatField.DOW_LOCAL_FIELD;
-pub const UDAT_EXTENDED_YEAR_FIELD = UDateFormatField.EXTENDED_YEAR_FIELD;
-pub const UDAT_JULIAN_DAY_FIELD = UDateFormatField.JULIAN_DAY_FIELD;
-pub const UDAT_MILLISECONDS_IN_DAY_FIELD = UDateFormatField.MILLISECONDS_IN_DAY_FIELD;
-pub const UDAT_TIMEZONE_RFC_FIELD = UDateFormatField.TIMEZONE_RFC_FIELD;
-pub const UDAT_TIMEZONE_GENERIC_FIELD = UDateFormatField.TIMEZONE_GENERIC_FIELD;
-pub const UDAT_STANDALONE_DAY_FIELD = UDateFormatField.STANDALONE_DAY_FIELD;
-pub const UDAT_STANDALONE_MONTH_FIELD = UDateFormatField.STANDALONE_MONTH_FIELD;
-pub const UDAT_QUARTER_FIELD = UDateFormatField.QUARTER_FIELD;
-pub const UDAT_STANDALONE_QUARTER_FIELD = UDateFormatField.STANDALONE_QUARTER_FIELD;
-pub const UDAT_TIMEZONE_SPECIAL_FIELD = UDateFormatField.TIMEZONE_SPECIAL_FIELD;
-pub const UDAT_YEAR_NAME_FIELD = UDateFormatField.YEAR_NAME_FIELD;
-pub const UDAT_TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD = UDateFormatField.TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD;
-pub const UDAT_TIMEZONE_ISO_FIELD = UDateFormatField.TIMEZONE_ISO_FIELD;
-pub const UDAT_TIMEZONE_ISO_LOCAL_FIELD = UDateFormatField.TIMEZONE_ISO_LOCAL_FIELD;
-pub const UDAT_AM_PM_MIDNIGHT_NOON_FIELD = UDateFormatField.AM_PM_MIDNIGHT_NOON_FIELD;
-pub const UDAT_FLEXIBLE_DAY_PERIOD_FIELD = UDateFormatField.FLEXIBLE_DAY_PERIOD_FIELD;
-
-pub const UDateFormatBooleanAttribute = enum(i32) {
-    PARSE_ALLOW_WHITESPACE = 0,
-    PARSE_ALLOW_NUMERIC = 1,
-    PARSE_PARTIAL_LITERAL_MATCH = 2,
-    PARSE_MULTIPLE_PATTERNS_FOR_MATCH = 3,
-    BOOLEAN_ATTRIBUTE_COUNT = 4,
-};
-pub const UDAT_PARSE_ALLOW_WHITESPACE = UDateFormatBooleanAttribute.PARSE_ALLOW_WHITESPACE;
-pub const UDAT_PARSE_ALLOW_NUMERIC = UDateFormatBooleanAttribute.PARSE_ALLOW_NUMERIC;
-pub const UDAT_PARSE_PARTIAL_LITERAL_MATCH = UDateFormatBooleanAttribute.PARSE_PARTIAL_LITERAL_MATCH;
-pub const UDAT_PARSE_MULTIPLE_PATTERNS_FOR_MATCH = UDateFormatBooleanAttribute.PARSE_MULTIPLE_PATTERNS_FOR_MATCH;
-pub const UDAT_BOOLEAN_ATTRIBUTE_COUNT = UDateFormatBooleanAttribute.BOOLEAN_ATTRIBUTE_COUNT;
-
-pub const UDateFormatSymbolType = enum(i32) {
-    ERAS = 0,
-    MONTHS = 1,
-    SHORT_MONTHS = 2,
-    WEEKDAYS = 3,
-    SHORT_WEEKDAYS = 4,
-    AM_PMS = 5,
-    LOCALIZED_CHARS = 6,
-    ERA_NAMES = 7,
-    NARROW_MONTHS = 8,
-    NARROW_WEEKDAYS = 9,
-    STANDALONE_MONTHS = 10,
-    STANDALONE_SHORT_MONTHS = 11,
-    STANDALONE_NARROW_MONTHS = 12,
-    STANDALONE_WEEKDAYS = 13,
-    STANDALONE_SHORT_WEEKDAYS = 14,
-    STANDALONE_NARROW_WEEKDAYS = 15,
-    QUARTERS = 16,
-    SHORT_QUARTERS = 17,
-    STANDALONE_QUARTERS = 18,
-    STANDALONE_SHORT_QUARTERS = 19,
-    SHORTER_WEEKDAYS = 20,
-    STANDALONE_SHORTER_WEEKDAYS = 21,
-    CYCLIC_YEARS_WIDE = 22,
-    CYCLIC_YEARS_ABBREVIATED = 23,
-    CYCLIC_YEARS_NARROW = 24,
-    ZODIAC_NAMES_WIDE = 25,
-    ZODIAC_NAMES_ABBREVIATED = 26,
-    ZODIAC_NAMES_NARROW = 27,
-};
-pub const UDAT_ERAS = UDateFormatSymbolType.ERAS;
-pub const UDAT_MONTHS = UDateFormatSymbolType.MONTHS;
-pub const UDAT_SHORT_MONTHS = UDateFormatSymbolType.SHORT_MONTHS;
-pub const UDAT_WEEKDAYS = UDateFormatSymbolType.WEEKDAYS;
-pub const UDAT_SHORT_WEEKDAYS = UDateFormatSymbolType.SHORT_WEEKDAYS;
-pub const UDAT_AM_PMS = UDateFormatSymbolType.AM_PMS;
-pub const UDAT_LOCALIZED_CHARS = UDateFormatSymbolType.LOCALIZED_CHARS;
-pub const UDAT_ERA_NAMES = UDateFormatSymbolType.ERA_NAMES;
-pub const UDAT_NARROW_MONTHS = UDateFormatSymbolType.NARROW_MONTHS;
-pub const UDAT_NARROW_WEEKDAYS = UDateFormatSymbolType.NARROW_WEEKDAYS;
-pub const UDAT_STANDALONE_MONTHS = UDateFormatSymbolType.STANDALONE_MONTHS;
-pub const UDAT_STANDALONE_SHORT_MONTHS = UDateFormatSymbolType.STANDALONE_SHORT_MONTHS;
-pub const UDAT_STANDALONE_NARROW_MONTHS = UDateFormatSymbolType.STANDALONE_NARROW_MONTHS;
-pub const UDAT_STANDALONE_WEEKDAYS = UDateFormatSymbolType.STANDALONE_WEEKDAYS;
-pub const UDAT_STANDALONE_SHORT_WEEKDAYS = UDateFormatSymbolType.STANDALONE_SHORT_WEEKDAYS;
-pub const UDAT_STANDALONE_NARROW_WEEKDAYS = UDateFormatSymbolType.STANDALONE_NARROW_WEEKDAYS;
-pub const UDAT_QUARTERS = UDateFormatSymbolType.QUARTERS;
-pub const UDAT_SHORT_QUARTERS = UDateFormatSymbolType.SHORT_QUARTERS;
-pub const UDAT_STANDALONE_QUARTERS = UDateFormatSymbolType.STANDALONE_QUARTERS;
-pub const UDAT_STANDALONE_SHORT_QUARTERS = UDateFormatSymbolType.STANDALONE_SHORT_QUARTERS;
-pub const UDAT_SHORTER_WEEKDAYS = UDateFormatSymbolType.SHORTER_WEEKDAYS;
-pub const UDAT_STANDALONE_SHORTER_WEEKDAYS = UDateFormatSymbolType.STANDALONE_SHORTER_WEEKDAYS;
-pub const UDAT_CYCLIC_YEARS_WIDE = UDateFormatSymbolType.CYCLIC_YEARS_WIDE;
-pub const UDAT_CYCLIC_YEARS_ABBREVIATED = UDateFormatSymbolType.CYCLIC_YEARS_ABBREVIATED;
-pub const UDAT_CYCLIC_YEARS_NARROW = UDateFormatSymbolType.CYCLIC_YEARS_NARROW;
-pub const UDAT_ZODIAC_NAMES_WIDE = UDateFormatSymbolType.ZODIAC_NAMES_WIDE;
-pub const UDAT_ZODIAC_NAMES_ABBREVIATED = UDateFormatSymbolType.ZODIAC_NAMES_ABBREVIATED;
-pub const UDAT_ZODIAC_NAMES_NARROW = UDateFormatSymbolType.ZODIAC_NAMES_NARROW;
-
-pub const UDateFormatSymbols = extern struct {
+pub const UNumberFormatter = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const UDateTimePatternField = enum(i32) {
-    ERA_FIELD = 0,
-    YEAR_FIELD = 1,
-    QUARTER_FIELD = 2,
-    MONTH_FIELD = 3,
-    WEEK_OF_YEAR_FIELD = 4,
-    WEEK_OF_MONTH_FIELD = 5,
-    WEEKDAY_FIELD = 6,
-    DAY_OF_YEAR_FIELD = 7,
-    DAY_OF_WEEK_IN_MONTH_FIELD = 8,
-    DAY_FIELD = 9,
-    DAYPERIOD_FIELD = 10,
-    HOUR_FIELD = 11,
-    MINUTE_FIELD = 12,
-    SECOND_FIELD = 13,
-    FRACTIONAL_SECOND_FIELD = 14,
-    ZONE_FIELD = 15,
-    FIELD_COUNT = 16,
+pub const UNumberFormatTextAttribute = enum(i32) {
+    POSITIVE_PREFIX = 0,
+    POSITIVE_SUFFIX = 1,
+    NEGATIVE_PREFIX = 2,
+    NEGATIVE_SUFFIX = 3,
+    PADDING_CHARACTER = 4,
+    CURRENCY_CODE = 5,
+    DEFAULT_RULESET = 6,
+    PUBLIC_RULESETS = 7,
 };
-pub const UDATPG_ERA_FIELD = UDateTimePatternField.ERA_FIELD;
-pub const UDATPG_YEAR_FIELD = UDateTimePatternField.YEAR_FIELD;
-pub const UDATPG_QUARTER_FIELD = UDateTimePatternField.QUARTER_FIELD;
-pub const UDATPG_MONTH_FIELD = UDateTimePatternField.MONTH_FIELD;
-pub const UDATPG_WEEK_OF_YEAR_FIELD = UDateTimePatternField.WEEK_OF_YEAR_FIELD;
-pub const UDATPG_WEEK_OF_MONTH_FIELD = UDateTimePatternField.WEEK_OF_MONTH_FIELD;
-pub const UDATPG_WEEKDAY_FIELD = UDateTimePatternField.WEEKDAY_FIELD;
-pub const UDATPG_DAY_OF_YEAR_FIELD = UDateTimePatternField.DAY_OF_YEAR_FIELD;
-pub const UDATPG_DAY_OF_WEEK_IN_MONTH_FIELD = UDateTimePatternField.DAY_OF_WEEK_IN_MONTH_FIELD;
-pub const UDATPG_DAY_FIELD = UDateTimePatternField.DAY_FIELD;
-pub const UDATPG_DAYPERIOD_FIELD = UDateTimePatternField.DAYPERIOD_FIELD;
-pub const UDATPG_HOUR_FIELD = UDateTimePatternField.HOUR_FIELD;
-pub const UDATPG_MINUTE_FIELD = UDateTimePatternField.MINUTE_FIELD;
-pub const UDATPG_SECOND_FIELD = UDateTimePatternField.SECOND_FIELD;
-pub const UDATPG_FRACTIONAL_SECOND_FIELD = UDateTimePatternField.FRACTIONAL_SECOND_FIELD;
-pub const UDATPG_ZONE_FIELD = UDateTimePatternField.ZONE_FIELD;
-pub const UDATPG_FIELD_COUNT = UDateTimePatternField.FIELD_COUNT;
-
-pub const UDateTimePGDisplayWidth = enum(i32) {
-    WIDE = 0,
-    ABBREVIATED = 1,
-    NARROW = 2,
-};
-pub const UDATPG_WIDE = UDateTimePGDisplayWidth.WIDE;
-pub const UDATPG_ABBREVIATED = UDateTimePGDisplayWidth.ABBREVIATED;
-pub const UDATPG_NARROW = UDateTimePGDisplayWidth.NARROW;
-
-pub const UDateTimePatternMatchOptions = enum(i32) {
-    NO_OPTIONS = 0,
-    HOUR_FIELD_LENGTH = 2048,
-    ALL_FIELDS_LENGTH = 65535,
-};
-pub const UDATPG_MATCH_NO_OPTIONS = UDateTimePatternMatchOptions.NO_OPTIONS;
-pub const UDATPG_MATCH_HOUR_FIELD_LENGTH = UDateTimePatternMatchOptions.HOUR_FIELD_LENGTH;
-pub const UDATPG_MATCH_ALL_FIELDS_LENGTH = UDateTimePatternMatchOptions.ALL_FIELDS_LENGTH;
-
-pub const UDateTimePatternConflict = enum(i32) {
-    NO_CONFLICT = 0,
-    BASE_CONFLICT = 1,
-    CONFLICT = 2,
-};
-pub const UDATPG_NO_CONFLICT = UDateTimePatternConflict.NO_CONFLICT;
-pub const UDATPG_BASE_CONFLICT = UDateTimePatternConflict.BASE_CONFLICT;
-pub const UDATPG_CONFLICT = UDateTimePatternConflict.CONFLICT;
-
-pub const UNumberUnitWidth = enum(i32) {
-    NARROW = 0,
-    SHORT = 1,
-    FULL_NAME = 2,
-    ISO_CODE = 3,
-    HIDDEN = 4,
-    COUNT = 5,
-};
-pub const UNUM_UNIT_WIDTH_NARROW = UNumberUnitWidth.NARROW;
-pub const UNUM_UNIT_WIDTH_SHORT = UNumberUnitWidth.SHORT;
-pub const UNUM_UNIT_WIDTH_FULL_NAME = UNumberUnitWidth.FULL_NAME;
-pub const UNUM_UNIT_WIDTH_ISO_CODE = UNumberUnitWidth.ISO_CODE;
-pub const UNUM_UNIT_WIDTH_HIDDEN = UNumberUnitWidth.HIDDEN;
-pub const UNUM_UNIT_WIDTH_COUNT = UNumberUnitWidth.COUNT;
+pub const UNUM_POSITIVE_PREFIX = UNumberFormatTextAttribute.POSITIVE_PREFIX;
+pub const UNUM_POSITIVE_SUFFIX = UNumberFormatTextAttribute.POSITIVE_SUFFIX;
+pub const UNUM_NEGATIVE_PREFIX = UNumberFormatTextAttribute.NEGATIVE_PREFIX;
+pub const UNUM_NEGATIVE_SUFFIX = UNumberFormatTextAttribute.NEGATIVE_SUFFIX;
+pub const UNUM_PADDING_CHARACTER = UNumberFormatTextAttribute.PADDING_CHARACTER;
+pub const UNUM_CURRENCY_CODE = UNumberFormatTextAttribute.CURRENCY_CODE;
+pub const UNUM_DEFAULT_RULESET = UNumberFormatTextAttribute.DEFAULT_RULESET;
+pub const UNUM_PUBLIC_RULESETS = UNumberFormatTextAttribute.PUBLIC_RULESETS;
 
 pub const UNumberGroupingStrategy = enum(i32) {
     OFF = 0,
@@ -6446,39 +7011,7 @@ pub const UNUM_GROUPING_AUTO = UNumberGroupingStrategy.AUTO;
 pub const UNUM_GROUPING_ON_ALIGNED = UNumberGroupingStrategy.ON_ALIGNED;
 pub const UNUM_GROUPING_THOUSANDS = UNumberGroupingStrategy.THOUSANDS;
 
-pub const UNumberSignDisplay = enum(i32) {
-    AUTO = 0,
-    ALWAYS = 1,
-    NEVER = 2,
-    ACCOUNTING = 3,
-    ACCOUNTING_ALWAYS = 4,
-    EXCEPT_ZERO = 5,
-    ACCOUNTING_EXCEPT_ZERO = 6,
-    COUNT = 7,
-};
-pub const UNUM_SIGN_AUTO = UNumberSignDisplay.AUTO;
-pub const UNUM_SIGN_ALWAYS = UNumberSignDisplay.ALWAYS;
-pub const UNUM_SIGN_NEVER = UNumberSignDisplay.NEVER;
-pub const UNUM_SIGN_ACCOUNTING = UNumberSignDisplay.ACCOUNTING;
-pub const UNUM_SIGN_ACCOUNTING_ALWAYS = UNumberSignDisplay.ACCOUNTING_ALWAYS;
-pub const UNUM_SIGN_EXCEPT_ZERO = UNumberSignDisplay.EXCEPT_ZERO;
-pub const UNUM_SIGN_ACCOUNTING_EXCEPT_ZERO = UNumberSignDisplay.ACCOUNTING_EXCEPT_ZERO;
-pub const UNUM_SIGN_COUNT = UNumberSignDisplay.COUNT;
-
-pub const UNumberDecimalSeparatorDisplay = enum(i32) {
-    AUTO = 0,
-    ALWAYS = 1,
-    COUNT = 2,
-};
-pub const UNUM_DECIMAL_SEPARATOR_AUTO = UNumberDecimalSeparatorDisplay.AUTO;
-pub const UNUM_DECIMAL_SEPARATOR_ALWAYS = UNumberDecimalSeparatorDisplay.ALWAYS;
-pub const UNUM_DECIMAL_SEPARATOR_COUNT = UNumberDecimalSeparatorDisplay.COUNT;
-
-pub const UNumberFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFormattedNumber = extern struct {
+pub const UNumberingSystem = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
@@ -6513,11 +7046,59 @@ pub const UNUM_IDENTITY_RESULT_EQUAL_BEFORE_ROUNDING = UNumberRangeIdentityResul
 pub const UNUM_IDENTITY_RESULT_EQUAL_AFTER_ROUNDING = UNumberRangeIdentityResult.EQUAL_AFTER_ROUNDING;
 pub const UNUM_IDENTITY_RESULT_NOT_EQUAL = UNumberRangeIdentityResult.NOT_EQUAL;
 
-pub const UNumberingSystem = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const UNumberSignDisplay = enum(i32) {
+    AUTO = 0,
+    ALWAYS = 1,
+    NEVER = 2,
+    ACCOUNTING = 3,
+    ACCOUNTING_ALWAYS = 4,
+    EXCEPT_ZERO = 5,
+    ACCOUNTING_EXCEPT_ZERO = 6,
+    COUNT = 7,
+};
+pub const UNUM_SIGN_AUTO = UNumberSignDisplay.AUTO;
+pub const UNUM_SIGN_ALWAYS = UNumberSignDisplay.ALWAYS;
+pub const UNUM_SIGN_NEVER = UNumberSignDisplay.NEVER;
+pub const UNUM_SIGN_ACCOUNTING = UNumberSignDisplay.ACCOUNTING;
+pub const UNUM_SIGN_ACCOUNTING_ALWAYS = UNumberSignDisplay.ACCOUNTING_ALWAYS;
+pub const UNUM_SIGN_EXCEPT_ZERO = UNumberSignDisplay.EXCEPT_ZERO;
+pub const UNUM_SIGN_ACCOUNTING_EXCEPT_ZERO = UNumberSignDisplay.ACCOUNTING_EXCEPT_ZERO;
+pub const UNUM_SIGN_COUNT = UNumberSignDisplay.COUNT;
+
+pub const UNumberUnitWidth = enum(i32) {
+    NARROW = 0,
+    SHORT = 1,
+    FULL_NAME = 2,
+    ISO_CODE = 3,
+    HIDDEN = 4,
+    COUNT = 5,
+};
+pub const UNUM_UNIT_WIDTH_NARROW = UNumberUnitWidth.NARROW;
+pub const UNUM_UNIT_WIDTH_SHORT = UNumberUnitWidth.SHORT;
+pub const UNUM_UNIT_WIDTH_FULL_NAME = UNumberUnitWidth.FULL_NAME;
+pub const UNUM_UNIT_WIDTH_ISO_CODE = UNumberUnitWidth.ISO_CODE;
+pub const UNUM_UNIT_WIDTH_HIDDEN = UNumberUnitWidth.HIDDEN;
+pub const UNUM_UNIT_WIDTH_COUNT = UNumberUnitWidth.COUNT;
+
+pub const UNumericType = enum(i32) {
+    NONE = 0,
+    DECIMAL = 1,
+    DIGIT = 2,
+    NUMERIC = 3,
+};
+pub const U_NT_NONE = UNumericType.NONE;
+pub const U_NT_DECIMAL = UNumericType.DECIMAL;
+pub const U_NT_DIGIT = UNumericType.DIGIT;
+pub const U_NT_NUMERIC = UNumericType.NUMERIC;
+
+pub const UParseError = extern struct {
+    line: i32,
+    offset: i32,
+    preContext: [16]u16,
+    postContext: [16]u16,
 };
 
-pub const UFormattedNumberRange = extern struct {
+pub const UPluralRules = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
@@ -6528,13 +7109,249 @@ pub const UPluralType = enum(i32) {
 pub const UPLURAL_TYPE_CARDINAL = UPluralType.CARDINAL;
 pub const UPLURAL_TYPE_ORDINAL = UPluralType.ORDINAL;
 
-pub const UPluralRules = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const UProperty = enum(i32) {
+    ALPHABETIC = 0,
+    ASCII_HEX_DIGIT = 1,
+    BIDI_CONTROL = 2,
+    BIDI_MIRRORED = 3,
+    DASH = 4,
+    DEFAULT_IGNORABLE_CODE_POINT = 5,
+    DEPRECATED = 6,
+    DIACRITIC = 7,
+    EXTENDER = 8,
+    FULL_COMPOSITION_EXCLUSION = 9,
+    GRAPHEME_BASE = 10,
+    GRAPHEME_EXTEND = 11,
+    GRAPHEME_LINK = 12,
+    HEX_DIGIT = 13,
+    HYPHEN = 14,
+    ID_CONTINUE = 15,
+    ID_START = 16,
+    IDEOGRAPHIC = 17,
+    IDS_BINARY_OPERATOR = 18,
+    IDS_TRINARY_OPERATOR = 19,
+    JOIN_CONTROL = 20,
+    LOGICAL_ORDER_EXCEPTION = 21,
+    LOWERCASE = 22,
+    MATH = 23,
+    NONCHARACTER_CODE_POINT = 24,
+    QUOTATION_MARK = 25,
+    RADICAL = 26,
+    SOFT_DOTTED = 27,
+    TERMINAL_PUNCTUATION = 28,
+    UNIFIED_IDEOGRAPH = 29,
+    UPPERCASE = 30,
+    WHITE_SPACE = 31,
+    XID_CONTINUE = 32,
+    XID_START = 33,
+    CASE_SENSITIVE = 34,
+    S_TERM = 35,
+    VARIATION_SELECTOR = 36,
+    NFD_INERT = 37,
+    NFKD_INERT = 38,
+    NFC_INERT = 39,
+    NFKC_INERT = 40,
+    SEGMENT_STARTER = 41,
+    PATTERN_SYNTAX = 42,
+    PATTERN_WHITE_SPACE = 43,
+    POSIX_ALNUM = 44,
+    POSIX_BLANK = 45,
+    POSIX_GRAPH = 46,
+    POSIX_PRINT = 47,
+    POSIX_XDIGIT = 48,
+    CASED = 49,
+    CASE_IGNORABLE = 50,
+    CHANGES_WHEN_LOWERCASED = 51,
+    CHANGES_WHEN_UPPERCASED = 52,
+    CHANGES_WHEN_TITLECASED = 53,
+    CHANGES_WHEN_CASEFOLDED = 54,
+    CHANGES_WHEN_CASEMAPPED = 55,
+    CHANGES_WHEN_NFKC_CASEFOLDED = 56,
+    EMOJI = 57,
+    EMOJI_PRESENTATION = 58,
+    EMOJI_MODIFIER = 59,
+    EMOJI_MODIFIER_BASE = 60,
+    EMOJI_COMPONENT = 61,
+    REGIONAL_INDICATOR = 62,
+    PREPENDED_CONCATENATION_MARK = 63,
+    EXTENDED_PICTOGRAPHIC = 64,
+    BIDI_CLASS = 4096,
+    BLOCK = 4097,
+    CANONICAL_COMBINING_CLASS = 4098,
+    DECOMPOSITION_TYPE = 4099,
+    EAST_ASIAN_WIDTH = 4100,
+    GENERAL_CATEGORY = 4101,
+    JOINING_GROUP = 4102,
+    JOINING_TYPE = 4103,
+    LINE_BREAK = 4104,
+    NUMERIC_TYPE = 4105,
+    SCRIPT = 4106,
+    HANGUL_SYLLABLE_TYPE = 4107,
+    NFD_QUICK_CHECK = 4108,
+    NFKD_QUICK_CHECK = 4109,
+    NFC_QUICK_CHECK = 4110,
+    NFKC_QUICK_CHECK = 4111,
+    LEAD_CANONICAL_COMBINING_CLASS = 4112,
+    TRAIL_CANONICAL_COMBINING_CLASS = 4113,
+    GRAPHEME_CLUSTER_BREAK = 4114,
+    SENTENCE_BREAK = 4115,
+    WORD_BREAK = 4116,
+    BIDI_PAIRED_BRACKET_TYPE = 4117,
+    INDIC_POSITIONAL_CATEGORY = 4118,
+    INDIC_SYLLABIC_CATEGORY = 4119,
+    VERTICAL_ORIENTATION = 4120,
+    GENERAL_CATEGORY_MASK = 8192,
+    NUMERIC_VALUE = 12288,
+    AGE = 16384,
+    BIDI_MIRRORING_GLYPH = 16385,
+    CASE_FOLDING = 16386,
+    LOWERCASE_MAPPING = 16388,
+    NAME = 16389,
+    SIMPLE_CASE_FOLDING = 16390,
+    SIMPLE_LOWERCASE_MAPPING = 16391,
+    SIMPLE_TITLECASE_MAPPING = 16392,
+    SIMPLE_UPPERCASE_MAPPING = 16393,
+    TITLECASE_MAPPING = 16394,
+    UPPERCASE_MAPPING = 16396,
+    BIDI_PAIRED_BRACKET = 16397,
+    SCRIPT_EXTENSIONS = 28672,
+    INVALID_CODE = -1,
+    pub const BINARY_START = .ALPHABETIC;
+    pub const INT_START = .BIDI_CLASS;
+    pub const MASK_START = .GENERAL_CATEGORY_MASK;
+    pub const DOUBLE_START = .NUMERIC_VALUE;
+    pub const STRING_START = .AGE;
+    pub const OTHER_PROPERTY_START = .SCRIPT_EXTENSIONS;
 };
+pub const UCHAR_ALPHABETIC = UProperty.ALPHABETIC;
+pub const UCHAR_BINARY_START = UProperty.ALPHABETIC;
+pub const UCHAR_ASCII_HEX_DIGIT = UProperty.ASCII_HEX_DIGIT;
+pub const UCHAR_BIDI_CONTROL = UProperty.BIDI_CONTROL;
+pub const UCHAR_BIDI_MIRRORED = UProperty.BIDI_MIRRORED;
+pub const UCHAR_DASH = UProperty.DASH;
+pub const UCHAR_DEFAULT_IGNORABLE_CODE_POINT = UProperty.DEFAULT_IGNORABLE_CODE_POINT;
+pub const UCHAR_DEPRECATED = UProperty.DEPRECATED;
+pub const UCHAR_DIACRITIC = UProperty.DIACRITIC;
+pub const UCHAR_EXTENDER = UProperty.EXTENDER;
+pub const UCHAR_FULL_COMPOSITION_EXCLUSION = UProperty.FULL_COMPOSITION_EXCLUSION;
+pub const UCHAR_GRAPHEME_BASE = UProperty.GRAPHEME_BASE;
+pub const UCHAR_GRAPHEME_EXTEND = UProperty.GRAPHEME_EXTEND;
+pub const UCHAR_GRAPHEME_LINK = UProperty.GRAPHEME_LINK;
+pub const UCHAR_HEX_DIGIT = UProperty.HEX_DIGIT;
+pub const UCHAR_HYPHEN = UProperty.HYPHEN;
+pub const UCHAR_ID_CONTINUE = UProperty.ID_CONTINUE;
+pub const UCHAR_ID_START = UProperty.ID_START;
+pub const UCHAR_IDEOGRAPHIC = UProperty.IDEOGRAPHIC;
+pub const UCHAR_IDS_BINARY_OPERATOR = UProperty.IDS_BINARY_OPERATOR;
+pub const UCHAR_IDS_TRINARY_OPERATOR = UProperty.IDS_TRINARY_OPERATOR;
+pub const UCHAR_JOIN_CONTROL = UProperty.JOIN_CONTROL;
+pub const UCHAR_LOGICAL_ORDER_EXCEPTION = UProperty.LOGICAL_ORDER_EXCEPTION;
+pub const UCHAR_LOWERCASE = UProperty.LOWERCASE;
+pub const UCHAR_MATH = UProperty.MATH;
+pub const UCHAR_NONCHARACTER_CODE_POINT = UProperty.NONCHARACTER_CODE_POINT;
+pub const UCHAR_QUOTATION_MARK = UProperty.QUOTATION_MARK;
+pub const UCHAR_RADICAL = UProperty.RADICAL;
+pub const UCHAR_SOFT_DOTTED = UProperty.SOFT_DOTTED;
+pub const UCHAR_TERMINAL_PUNCTUATION = UProperty.TERMINAL_PUNCTUATION;
+pub const UCHAR_UNIFIED_IDEOGRAPH = UProperty.UNIFIED_IDEOGRAPH;
+pub const UCHAR_UPPERCASE = UProperty.UPPERCASE;
+pub const UCHAR_WHITE_SPACE = UProperty.WHITE_SPACE;
+pub const UCHAR_XID_CONTINUE = UProperty.XID_CONTINUE;
+pub const UCHAR_XID_START = UProperty.XID_START;
+pub const UCHAR_CASE_SENSITIVE = UProperty.CASE_SENSITIVE;
+pub const UCHAR_S_TERM = UProperty.S_TERM;
+pub const UCHAR_VARIATION_SELECTOR = UProperty.VARIATION_SELECTOR;
+pub const UCHAR_NFD_INERT = UProperty.NFD_INERT;
+pub const UCHAR_NFKD_INERT = UProperty.NFKD_INERT;
+pub const UCHAR_NFC_INERT = UProperty.NFC_INERT;
+pub const UCHAR_NFKC_INERT = UProperty.NFKC_INERT;
+pub const UCHAR_SEGMENT_STARTER = UProperty.SEGMENT_STARTER;
+pub const UCHAR_PATTERN_SYNTAX = UProperty.PATTERN_SYNTAX;
+pub const UCHAR_PATTERN_WHITE_SPACE = UProperty.PATTERN_WHITE_SPACE;
+pub const UCHAR_POSIX_ALNUM = UProperty.POSIX_ALNUM;
+pub const UCHAR_POSIX_BLANK = UProperty.POSIX_BLANK;
+pub const UCHAR_POSIX_GRAPH = UProperty.POSIX_GRAPH;
+pub const UCHAR_POSIX_PRINT = UProperty.POSIX_PRINT;
+pub const UCHAR_POSIX_XDIGIT = UProperty.POSIX_XDIGIT;
+pub const UCHAR_CASED = UProperty.CASED;
+pub const UCHAR_CASE_IGNORABLE = UProperty.CASE_IGNORABLE;
+pub const UCHAR_CHANGES_WHEN_LOWERCASED = UProperty.CHANGES_WHEN_LOWERCASED;
+pub const UCHAR_CHANGES_WHEN_UPPERCASED = UProperty.CHANGES_WHEN_UPPERCASED;
+pub const UCHAR_CHANGES_WHEN_TITLECASED = UProperty.CHANGES_WHEN_TITLECASED;
+pub const UCHAR_CHANGES_WHEN_CASEFOLDED = UProperty.CHANGES_WHEN_CASEFOLDED;
+pub const UCHAR_CHANGES_WHEN_CASEMAPPED = UProperty.CHANGES_WHEN_CASEMAPPED;
+pub const UCHAR_CHANGES_WHEN_NFKC_CASEFOLDED = UProperty.CHANGES_WHEN_NFKC_CASEFOLDED;
+pub const UCHAR_EMOJI = UProperty.EMOJI;
+pub const UCHAR_EMOJI_PRESENTATION = UProperty.EMOJI_PRESENTATION;
+pub const UCHAR_EMOJI_MODIFIER = UProperty.EMOJI_MODIFIER;
+pub const UCHAR_EMOJI_MODIFIER_BASE = UProperty.EMOJI_MODIFIER_BASE;
+pub const UCHAR_EMOJI_COMPONENT = UProperty.EMOJI_COMPONENT;
+pub const UCHAR_REGIONAL_INDICATOR = UProperty.REGIONAL_INDICATOR;
+pub const UCHAR_PREPENDED_CONCATENATION_MARK = UProperty.PREPENDED_CONCATENATION_MARK;
+pub const UCHAR_EXTENDED_PICTOGRAPHIC = UProperty.EXTENDED_PICTOGRAPHIC;
+pub const UCHAR_BIDI_CLASS = UProperty.BIDI_CLASS;
+pub const UCHAR_INT_START = UProperty.BIDI_CLASS;
+pub const UCHAR_BLOCK = UProperty.BLOCK;
+pub const UCHAR_CANONICAL_COMBINING_CLASS = UProperty.CANONICAL_COMBINING_CLASS;
+pub const UCHAR_DECOMPOSITION_TYPE = UProperty.DECOMPOSITION_TYPE;
+pub const UCHAR_EAST_ASIAN_WIDTH = UProperty.EAST_ASIAN_WIDTH;
+pub const UCHAR_GENERAL_CATEGORY = UProperty.GENERAL_CATEGORY;
+pub const UCHAR_JOINING_GROUP = UProperty.JOINING_GROUP;
+pub const UCHAR_JOINING_TYPE = UProperty.JOINING_TYPE;
+pub const UCHAR_LINE_BREAK = UProperty.LINE_BREAK;
+pub const UCHAR_NUMERIC_TYPE = UProperty.NUMERIC_TYPE;
+pub const UCHAR_SCRIPT = UProperty.SCRIPT;
+pub const UCHAR_HANGUL_SYLLABLE_TYPE = UProperty.HANGUL_SYLLABLE_TYPE;
+pub const UCHAR_NFD_QUICK_CHECK = UProperty.NFD_QUICK_CHECK;
+pub const UCHAR_NFKD_QUICK_CHECK = UProperty.NFKD_QUICK_CHECK;
+pub const UCHAR_NFC_QUICK_CHECK = UProperty.NFC_QUICK_CHECK;
+pub const UCHAR_NFKC_QUICK_CHECK = UProperty.NFKC_QUICK_CHECK;
+pub const UCHAR_LEAD_CANONICAL_COMBINING_CLASS = UProperty.LEAD_CANONICAL_COMBINING_CLASS;
+pub const UCHAR_TRAIL_CANONICAL_COMBINING_CLASS = UProperty.TRAIL_CANONICAL_COMBINING_CLASS;
+pub const UCHAR_GRAPHEME_CLUSTER_BREAK = UProperty.GRAPHEME_CLUSTER_BREAK;
+pub const UCHAR_SENTENCE_BREAK = UProperty.SENTENCE_BREAK;
+pub const UCHAR_WORD_BREAK = UProperty.WORD_BREAK;
+pub const UCHAR_BIDI_PAIRED_BRACKET_TYPE = UProperty.BIDI_PAIRED_BRACKET_TYPE;
+pub const UCHAR_INDIC_POSITIONAL_CATEGORY = UProperty.INDIC_POSITIONAL_CATEGORY;
+pub const UCHAR_INDIC_SYLLABIC_CATEGORY = UProperty.INDIC_SYLLABIC_CATEGORY;
+pub const UCHAR_VERTICAL_ORIENTATION = UProperty.VERTICAL_ORIENTATION;
+pub const UCHAR_GENERAL_CATEGORY_MASK = UProperty.GENERAL_CATEGORY_MASK;
+pub const UCHAR_MASK_START = UProperty.GENERAL_CATEGORY_MASK;
+pub const UCHAR_NUMERIC_VALUE = UProperty.NUMERIC_VALUE;
+pub const UCHAR_DOUBLE_START = UProperty.NUMERIC_VALUE;
+pub const UCHAR_AGE = UProperty.AGE;
+pub const UCHAR_STRING_START = UProperty.AGE;
+pub const UCHAR_BIDI_MIRRORING_GLYPH = UProperty.BIDI_MIRRORING_GLYPH;
+pub const UCHAR_CASE_FOLDING = UProperty.CASE_FOLDING;
+pub const UCHAR_LOWERCASE_MAPPING = UProperty.LOWERCASE_MAPPING;
+pub const UCHAR_NAME = UProperty.NAME;
+pub const UCHAR_SIMPLE_CASE_FOLDING = UProperty.SIMPLE_CASE_FOLDING;
+pub const UCHAR_SIMPLE_LOWERCASE_MAPPING = UProperty.SIMPLE_LOWERCASE_MAPPING;
+pub const UCHAR_SIMPLE_TITLECASE_MAPPING = UProperty.SIMPLE_TITLECASE_MAPPING;
+pub const UCHAR_SIMPLE_UPPERCASE_MAPPING = UProperty.SIMPLE_UPPERCASE_MAPPING;
+pub const UCHAR_TITLECASE_MAPPING = UProperty.TITLECASE_MAPPING;
+pub const UCHAR_UPPERCASE_MAPPING = UProperty.UPPERCASE_MAPPING;
+pub const UCHAR_BIDI_PAIRED_BRACKET = UProperty.BIDI_PAIRED_BRACKET;
+pub const UCHAR_SCRIPT_EXTENSIONS = UProperty.SCRIPT_EXTENSIONS;
+pub const UCHAR_OTHER_PROPERTY_START = UProperty.SCRIPT_EXTENSIONS;
+pub const UCHAR_INVALID_CODE = UProperty.INVALID_CODE;
 
-pub const URegularExpression = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const UPropertyNameChoice = enum(i32) {
+    SHORT_PROPERTY_NAME = 0,
+    LONG_PROPERTY_NAME = 1,
 };
+pub const U_SHORT_PROPERTY_NAME = UPropertyNameChoice.SHORT_PROPERTY_NAME;
+pub const U_LONG_PROPERTY_NAME = UPropertyNameChoice.LONG_PROPERTY_NAME;
+
+pub const URegexFindProgressCallback = *const fn(
+    context: ?*const anyopaque,
+    matchIndex: i64,
+) callconv(.winapi) i8;
+
+pub const URegexMatchCallback = *const fn(
+    context: ?*const anyopaque,
+    steps: i32,
+) callconv(.winapi) i8;
 
 pub const URegexpFlag = enum(i32) {
     CASE_INSENSITIVE = 2,
@@ -6555,15 +7372,9 @@ pub const UREGEX_UNIX_LINES = URegexpFlag.UNIX_LINES;
 pub const UREGEX_UWORD = URegexpFlag.UWORD;
 pub const UREGEX_ERROR_ON_UNKNOWN_ESCAPES = URegexpFlag.ERROR_ON_UNKNOWN_ESCAPES;
 
-pub const URegexMatchCallback = *const fn(
-    context: ?*const anyopaque,
-    steps: i32,
-) callconv(.winapi) i8;
-
-pub const URegexFindProgressCallback = *const fn(
-    context: ?*const anyopaque,
-    matchIndex: i64,
-) callconv(.winapi) i8;
+pub const URegion = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const URegionType = enum(i32) {
     UNKNOWN = 0,
@@ -6582,18 +7393,20 @@ pub const URGN_SUBCONTINENT = URegionType.SUBCONTINENT;
 pub const URGN_GROUPING = URegionType.GROUPING;
 pub const URGN_DEPRECATED = URegionType.DEPRECATED;
 
-pub const URegion = extern struct {
+pub const URegularExpression = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const UDateRelativeDateTimeFormatterStyle = enum(i32) {
-    LONG = 0,
-    SHORT = 1,
-    NARROW = 2,
+pub const URelativeDateTimeFormatter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const UDAT_STYLE_LONG = UDateRelativeDateTimeFormatterStyle.LONG;
-pub const UDAT_STYLE_SHORT = UDateRelativeDateTimeFormatterStyle.SHORT;
-pub const UDAT_STYLE_NARROW = UDateRelativeDateTimeFormatterStyle.NARROW;
+
+pub const URelativeDateTimeFormatterField = enum(i32) {
+    LITERAL_FIELD = 0,
+    NUMERIC_FIELD = 1,
+};
+pub const UDAT_REL_LITERAL_FIELD = URelativeDateTimeFormatterField.LITERAL_FIELD;
+pub const UDAT_REL_NUMERIC_FIELD = URelativeDateTimeFormatterField.NUMERIC_FIELD;
 
 pub const URelativeDateTimeUnit = enum(i32) {
     YEAR = 0,
@@ -6628,22 +7441,472 @@ pub const UDAT_REL_UNIT_THURSDAY = URelativeDateTimeUnit.THURSDAY;
 pub const UDAT_REL_UNIT_FRIDAY = URelativeDateTimeUnit.FRIDAY;
 pub const UDAT_REL_UNIT_SATURDAY = URelativeDateTimeUnit.SATURDAY;
 
-pub const URelativeDateTimeFormatterField = enum(i32) {
-    LITERAL_FIELD = 0,
-    NUMERIC_FIELD = 1,
+pub const UReplaceableCallbacks = extern struct {
+    length: isize,
+    charAt: isize,
+    char32At: isize,
+    replace: isize,
+    extract: isize,
+    copy: isize,
 };
-pub const UDAT_REL_LITERAL_FIELD = URelativeDateTimeFormatterField.LITERAL_FIELD;
-pub const UDAT_REL_NUMERIC_FIELD = URelativeDateTimeFormatterField.NUMERIC_FIELD;
 
-pub const URelativeDateTimeFormatter = extern struct {
+pub const UResourceBundle = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const UFormattedRelativeDateTime = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const URestrictionLevel = enum(i32) {
+    ASCII = 268435456,
+    SINGLE_SCRIPT_RESTRICTIVE = 536870912,
+    HIGHLY_RESTRICTIVE = 805306368,
+    MODERATELY_RESTRICTIVE = 1073741824,
+    MINIMALLY_RESTRICTIVE = 1342177280,
+    UNRESTRICTIVE = 1610612736,
+    RESTRICTION_LEVEL_MASK = 2130706432,
 };
+pub const USPOOF_ASCII = URestrictionLevel.ASCII;
+pub const USPOOF_SINGLE_SCRIPT_RESTRICTIVE = URestrictionLevel.SINGLE_SCRIPT_RESTRICTIVE;
+pub const USPOOF_HIGHLY_RESTRICTIVE = URestrictionLevel.HIGHLY_RESTRICTIVE;
+pub const USPOOF_MODERATELY_RESTRICTIVE = URestrictionLevel.MODERATELY_RESTRICTIVE;
+pub const USPOOF_MINIMALLY_RESTRICTIVE = URestrictionLevel.MINIMALLY_RESTRICTIVE;
+pub const USPOOF_UNRESTRICTIVE = URestrictionLevel.UNRESTRICTIVE;
+pub const USPOOF_RESTRICTION_LEVEL_MASK = URestrictionLevel.RESTRICTION_LEVEL_MASK;
 
-pub const UStringSearch = extern struct {
+pub const UResType = enum(i32) {
+    NONE = -1,
+    STRING = 0,
+    BINARY = 1,
+    TABLE = 2,
+    ALIAS = 3,
+    INT = 7,
+    ARRAY = 8,
+    INT_VECTOR = 14,
+};
+pub const URES_NONE = UResType.NONE;
+pub const URES_STRING = UResType.STRING;
+pub const URES_BINARY = UResType.BINARY;
+pub const URES_TABLE = UResType.TABLE;
+pub const URES_ALIAS = UResType.ALIAS;
+pub const URES_INT = UResType.INT;
+pub const URES_ARRAY = UResType.ARRAY;
+pub const URES_INT_VECTOR = UResType.INT_VECTOR;
+
+pub const UScriptCode = enum(i32) {
+    INVALID_CODE = -1,
+    COMMON = 0,
+    INHERITED = 1,
+    ARABIC = 2,
+    ARMENIAN = 3,
+    BENGALI = 4,
+    BOPOMOFO = 5,
+    CHEROKEE = 6,
+    COPTIC = 7,
+    CYRILLIC = 8,
+    DESERET = 9,
+    DEVANAGARI = 10,
+    ETHIOPIC = 11,
+    GEORGIAN = 12,
+    GOTHIC = 13,
+    GREEK = 14,
+    GUJARATI = 15,
+    GURMUKHI = 16,
+    HAN = 17,
+    HANGUL = 18,
+    HEBREW = 19,
+    HIRAGANA = 20,
+    KANNADA = 21,
+    KATAKANA = 22,
+    KHMER = 23,
+    LAO = 24,
+    LATIN = 25,
+    MALAYALAM = 26,
+    MONGOLIAN = 27,
+    MYANMAR = 28,
+    OGHAM = 29,
+    OLD_ITALIC = 30,
+    ORIYA = 31,
+    RUNIC = 32,
+    SINHALA = 33,
+    SYRIAC = 34,
+    TAMIL = 35,
+    TELUGU = 36,
+    THAANA = 37,
+    THAI = 38,
+    TIBETAN = 39,
+    CANADIAN_ABORIGINAL = 40,
+    YI = 41,
+    TAGALOG = 42,
+    HANUNOO = 43,
+    BUHID = 44,
+    TAGBANWA = 45,
+    BRAILLE = 46,
+    CYPRIOT = 47,
+    LIMBU = 48,
+    LINEAR_B = 49,
+    OSMANYA = 50,
+    SHAVIAN = 51,
+    TAI_LE = 52,
+    UGARITIC = 53,
+    KATAKANA_OR_HIRAGANA = 54,
+    BUGINESE = 55,
+    GLAGOLITIC = 56,
+    KHAROSHTHI = 57,
+    SYLOTI_NAGRI = 58,
+    NEW_TAI_LUE = 59,
+    TIFINAGH = 60,
+    OLD_PERSIAN = 61,
+    BALINESE = 62,
+    BATAK = 63,
+    BLISSYMBOLS = 64,
+    BRAHMI = 65,
+    CHAM = 66,
+    CIRTH = 67,
+    OLD_CHURCH_SLAVONIC_CYRILLIC = 68,
+    DEMOTIC_EGYPTIAN = 69,
+    HIERATIC_EGYPTIAN = 70,
+    EGYPTIAN_HIEROGLYPHS = 71,
+    KHUTSURI = 72,
+    SIMPLIFIED_HAN = 73,
+    TRADITIONAL_HAN = 74,
+    PAHAWH_HMONG = 75,
+    OLD_HUNGARIAN = 76,
+    HARAPPAN_INDUS = 77,
+    JAVANESE = 78,
+    KAYAH_LI = 79,
+    LATIN_FRAKTUR = 80,
+    LATIN_GAELIC = 81,
+    LEPCHA = 82,
+    LINEAR_A = 83,
+    MANDAIC = 84,
+    MAYAN_HIEROGLYPHS = 85,
+    MEROITIC_HIEROGLYPHS = 86,
+    NKO = 87,
+    ORKHON = 88,
+    OLD_PERMIC = 89,
+    PHAGS_PA = 90,
+    PHOENICIAN = 91,
+    MIAO = 92,
+    RONGORONGO = 93,
+    SARATI = 94,
+    ESTRANGELO_SYRIAC = 95,
+    WESTERN_SYRIAC = 96,
+    EASTERN_SYRIAC = 97,
+    TENGWAR = 98,
+    VAI = 99,
+    VISIBLE_SPEECH = 100,
+    CUNEIFORM = 101,
+    UNWRITTEN_LANGUAGES = 102,
+    UNKNOWN = 103,
+    CARIAN = 104,
+    JAPANESE = 105,
+    LANNA = 106,
+    LYCIAN = 107,
+    LYDIAN = 108,
+    OL_CHIKI = 109,
+    REJANG = 110,
+    SAURASHTRA = 111,
+    SIGN_WRITING = 112,
+    SUNDANESE = 113,
+    MOON = 114,
+    MEITEI_MAYEK = 115,
+    IMPERIAL_ARAMAIC = 116,
+    AVESTAN = 117,
+    CHAKMA = 118,
+    KOREAN = 119,
+    KAITHI = 120,
+    MANICHAEAN = 121,
+    INSCRIPTIONAL_PAHLAVI = 122,
+    PSALTER_PAHLAVI = 123,
+    BOOK_PAHLAVI = 124,
+    INSCRIPTIONAL_PARTHIAN = 125,
+    SAMARITAN = 126,
+    TAI_VIET = 127,
+    MATHEMATICAL_NOTATION = 128,
+    SYMBOLS = 129,
+    BAMUM = 130,
+    LISU = 131,
+    NAKHI_GEBA = 132,
+    OLD_SOUTH_ARABIAN = 133,
+    BASSA_VAH = 134,
+    DUPLOYAN = 135,
+    ELBASAN = 136,
+    GRANTHA = 137,
+    KPELLE = 138,
+    LOMA = 139,
+    MENDE = 140,
+    MEROITIC_CURSIVE = 141,
+    OLD_NORTH_ARABIAN = 142,
+    NABATAEAN = 143,
+    PALMYRENE = 144,
+    KHUDAWADI = 145,
+    WARANG_CITI = 146,
+    AFAKA = 147,
+    JURCHEN = 148,
+    MRO = 149,
+    NUSHU = 150,
+    SHARADA = 151,
+    SORA_SOMPENG = 152,
+    TAKRI = 153,
+    TANGUT = 154,
+    WOLEAI = 155,
+    ANATOLIAN_HIEROGLYPHS = 156,
+    KHOJKI = 157,
+    TIRHUTA = 158,
+    CAUCASIAN_ALBANIAN = 159,
+    MAHAJANI = 160,
+    AHOM = 161,
+    HATRAN = 162,
+    MODI = 163,
+    MULTANI = 164,
+    PAU_CIN_HAU = 165,
+    SIDDHAM = 166,
+    ADLAM = 167,
+    BHAIKSUKI = 168,
+    MARCHEN = 169,
+    NEWA = 170,
+    OSAGE = 171,
+    HAN_WITH_BOPOMOFO = 172,
+    JAMO = 173,
+    SYMBOLS_EMOJI = 174,
+    MASARAM_GONDI = 175,
+    SOYOMBO = 176,
+    ZANABAZAR_SQUARE = 177,
+    DOGRA = 178,
+    GUNJALA_GONDI = 179,
+    MAKASAR = 180,
+    MEDEFAIDRIN = 181,
+    HANIFI_ROHINGYA = 182,
+    SOGDIAN = 183,
+    OLD_SOGDIAN = 184,
+    ELYMAIC = 185,
+    NYIAKENG_PUACHUE_HMONG = 186,
+    NANDINAGARI = 187,
+    WANCHO = 188,
+    CHORASMIAN = 189,
+    DIVES_AKURU = 190,
+    KHITAN_SMALL_SCRIPT = 191,
+    YEZIDI = 192,
+    pub const UCAS = .CANADIAN_ABORIGINAL;
+    pub const MANDAEAN = .MANDAIC;
+    pub const MEROITIC = .MEROITIC_HIEROGLYPHS;
+    pub const PHONETIC_POLLARD = .MIAO;
+    pub const SINDHI = .KHUDAWADI;
+};
+pub const USCRIPT_INVALID_CODE = UScriptCode.INVALID_CODE;
+pub const USCRIPT_COMMON = UScriptCode.COMMON;
+pub const USCRIPT_INHERITED = UScriptCode.INHERITED;
+pub const USCRIPT_ARABIC = UScriptCode.ARABIC;
+pub const USCRIPT_ARMENIAN = UScriptCode.ARMENIAN;
+pub const USCRIPT_BENGALI = UScriptCode.BENGALI;
+pub const USCRIPT_BOPOMOFO = UScriptCode.BOPOMOFO;
+pub const USCRIPT_CHEROKEE = UScriptCode.CHEROKEE;
+pub const USCRIPT_COPTIC = UScriptCode.COPTIC;
+pub const USCRIPT_CYRILLIC = UScriptCode.CYRILLIC;
+pub const USCRIPT_DESERET = UScriptCode.DESERET;
+pub const USCRIPT_DEVANAGARI = UScriptCode.DEVANAGARI;
+pub const USCRIPT_ETHIOPIC = UScriptCode.ETHIOPIC;
+pub const USCRIPT_GEORGIAN = UScriptCode.GEORGIAN;
+pub const USCRIPT_GOTHIC = UScriptCode.GOTHIC;
+pub const USCRIPT_GREEK = UScriptCode.GREEK;
+pub const USCRIPT_GUJARATI = UScriptCode.GUJARATI;
+pub const USCRIPT_GURMUKHI = UScriptCode.GURMUKHI;
+pub const USCRIPT_HAN = UScriptCode.HAN;
+pub const USCRIPT_HANGUL = UScriptCode.HANGUL;
+pub const USCRIPT_HEBREW = UScriptCode.HEBREW;
+pub const USCRIPT_HIRAGANA = UScriptCode.HIRAGANA;
+pub const USCRIPT_KANNADA = UScriptCode.KANNADA;
+pub const USCRIPT_KATAKANA = UScriptCode.KATAKANA;
+pub const USCRIPT_KHMER = UScriptCode.KHMER;
+pub const USCRIPT_LAO = UScriptCode.LAO;
+pub const USCRIPT_LATIN = UScriptCode.LATIN;
+pub const USCRIPT_MALAYALAM = UScriptCode.MALAYALAM;
+pub const USCRIPT_MONGOLIAN = UScriptCode.MONGOLIAN;
+pub const USCRIPT_MYANMAR = UScriptCode.MYANMAR;
+pub const USCRIPT_OGHAM = UScriptCode.OGHAM;
+pub const USCRIPT_OLD_ITALIC = UScriptCode.OLD_ITALIC;
+pub const USCRIPT_ORIYA = UScriptCode.ORIYA;
+pub const USCRIPT_RUNIC = UScriptCode.RUNIC;
+pub const USCRIPT_SINHALA = UScriptCode.SINHALA;
+pub const USCRIPT_SYRIAC = UScriptCode.SYRIAC;
+pub const USCRIPT_TAMIL = UScriptCode.TAMIL;
+pub const USCRIPT_TELUGU = UScriptCode.TELUGU;
+pub const USCRIPT_THAANA = UScriptCode.THAANA;
+pub const USCRIPT_THAI = UScriptCode.THAI;
+pub const USCRIPT_TIBETAN = UScriptCode.TIBETAN;
+pub const USCRIPT_CANADIAN_ABORIGINAL = UScriptCode.CANADIAN_ABORIGINAL;
+pub const USCRIPT_UCAS = UScriptCode.CANADIAN_ABORIGINAL;
+pub const USCRIPT_YI = UScriptCode.YI;
+pub const USCRIPT_TAGALOG = UScriptCode.TAGALOG;
+pub const USCRIPT_HANUNOO = UScriptCode.HANUNOO;
+pub const USCRIPT_BUHID = UScriptCode.BUHID;
+pub const USCRIPT_TAGBANWA = UScriptCode.TAGBANWA;
+pub const USCRIPT_BRAILLE = UScriptCode.BRAILLE;
+pub const USCRIPT_CYPRIOT = UScriptCode.CYPRIOT;
+pub const USCRIPT_LIMBU = UScriptCode.LIMBU;
+pub const USCRIPT_LINEAR_B = UScriptCode.LINEAR_B;
+pub const USCRIPT_OSMANYA = UScriptCode.OSMANYA;
+pub const USCRIPT_SHAVIAN = UScriptCode.SHAVIAN;
+pub const USCRIPT_TAI_LE = UScriptCode.TAI_LE;
+pub const USCRIPT_UGARITIC = UScriptCode.UGARITIC;
+pub const USCRIPT_KATAKANA_OR_HIRAGANA = UScriptCode.KATAKANA_OR_HIRAGANA;
+pub const USCRIPT_BUGINESE = UScriptCode.BUGINESE;
+pub const USCRIPT_GLAGOLITIC = UScriptCode.GLAGOLITIC;
+pub const USCRIPT_KHAROSHTHI = UScriptCode.KHAROSHTHI;
+pub const USCRIPT_SYLOTI_NAGRI = UScriptCode.SYLOTI_NAGRI;
+pub const USCRIPT_NEW_TAI_LUE = UScriptCode.NEW_TAI_LUE;
+pub const USCRIPT_TIFINAGH = UScriptCode.TIFINAGH;
+pub const USCRIPT_OLD_PERSIAN = UScriptCode.OLD_PERSIAN;
+pub const USCRIPT_BALINESE = UScriptCode.BALINESE;
+pub const USCRIPT_BATAK = UScriptCode.BATAK;
+pub const USCRIPT_BLISSYMBOLS = UScriptCode.BLISSYMBOLS;
+pub const USCRIPT_BRAHMI = UScriptCode.BRAHMI;
+pub const USCRIPT_CHAM = UScriptCode.CHAM;
+pub const USCRIPT_CIRTH = UScriptCode.CIRTH;
+pub const USCRIPT_OLD_CHURCH_SLAVONIC_CYRILLIC = UScriptCode.OLD_CHURCH_SLAVONIC_CYRILLIC;
+pub const USCRIPT_DEMOTIC_EGYPTIAN = UScriptCode.DEMOTIC_EGYPTIAN;
+pub const USCRIPT_HIERATIC_EGYPTIAN = UScriptCode.HIERATIC_EGYPTIAN;
+pub const USCRIPT_EGYPTIAN_HIEROGLYPHS = UScriptCode.EGYPTIAN_HIEROGLYPHS;
+pub const USCRIPT_KHUTSURI = UScriptCode.KHUTSURI;
+pub const USCRIPT_SIMPLIFIED_HAN = UScriptCode.SIMPLIFIED_HAN;
+pub const USCRIPT_TRADITIONAL_HAN = UScriptCode.TRADITIONAL_HAN;
+pub const USCRIPT_PAHAWH_HMONG = UScriptCode.PAHAWH_HMONG;
+pub const USCRIPT_OLD_HUNGARIAN = UScriptCode.OLD_HUNGARIAN;
+pub const USCRIPT_HARAPPAN_INDUS = UScriptCode.HARAPPAN_INDUS;
+pub const USCRIPT_JAVANESE = UScriptCode.JAVANESE;
+pub const USCRIPT_KAYAH_LI = UScriptCode.KAYAH_LI;
+pub const USCRIPT_LATIN_FRAKTUR = UScriptCode.LATIN_FRAKTUR;
+pub const USCRIPT_LATIN_GAELIC = UScriptCode.LATIN_GAELIC;
+pub const USCRIPT_LEPCHA = UScriptCode.LEPCHA;
+pub const USCRIPT_LINEAR_A = UScriptCode.LINEAR_A;
+pub const USCRIPT_MANDAIC = UScriptCode.MANDAIC;
+pub const USCRIPT_MANDAEAN = UScriptCode.MANDAIC;
+pub const USCRIPT_MAYAN_HIEROGLYPHS = UScriptCode.MAYAN_HIEROGLYPHS;
+pub const USCRIPT_MEROITIC_HIEROGLYPHS = UScriptCode.MEROITIC_HIEROGLYPHS;
+pub const USCRIPT_MEROITIC = UScriptCode.MEROITIC_HIEROGLYPHS;
+pub const USCRIPT_NKO = UScriptCode.NKO;
+pub const USCRIPT_ORKHON = UScriptCode.ORKHON;
+pub const USCRIPT_OLD_PERMIC = UScriptCode.OLD_PERMIC;
+pub const USCRIPT_PHAGS_PA = UScriptCode.PHAGS_PA;
+pub const USCRIPT_PHOENICIAN = UScriptCode.PHOENICIAN;
+pub const USCRIPT_MIAO = UScriptCode.MIAO;
+pub const USCRIPT_PHONETIC_POLLARD = UScriptCode.MIAO;
+pub const USCRIPT_RONGORONGO = UScriptCode.RONGORONGO;
+pub const USCRIPT_SARATI = UScriptCode.SARATI;
+pub const USCRIPT_ESTRANGELO_SYRIAC = UScriptCode.ESTRANGELO_SYRIAC;
+pub const USCRIPT_WESTERN_SYRIAC = UScriptCode.WESTERN_SYRIAC;
+pub const USCRIPT_EASTERN_SYRIAC = UScriptCode.EASTERN_SYRIAC;
+pub const USCRIPT_TENGWAR = UScriptCode.TENGWAR;
+pub const USCRIPT_VAI = UScriptCode.VAI;
+pub const USCRIPT_VISIBLE_SPEECH = UScriptCode.VISIBLE_SPEECH;
+pub const USCRIPT_CUNEIFORM = UScriptCode.CUNEIFORM;
+pub const USCRIPT_UNWRITTEN_LANGUAGES = UScriptCode.UNWRITTEN_LANGUAGES;
+pub const USCRIPT_UNKNOWN = UScriptCode.UNKNOWN;
+pub const USCRIPT_CARIAN = UScriptCode.CARIAN;
+pub const USCRIPT_JAPANESE = UScriptCode.JAPANESE;
+pub const USCRIPT_LANNA = UScriptCode.LANNA;
+pub const USCRIPT_LYCIAN = UScriptCode.LYCIAN;
+pub const USCRIPT_LYDIAN = UScriptCode.LYDIAN;
+pub const USCRIPT_OL_CHIKI = UScriptCode.OL_CHIKI;
+pub const USCRIPT_REJANG = UScriptCode.REJANG;
+pub const USCRIPT_SAURASHTRA = UScriptCode.SAURASHTRA;
+pub const USCRIPT_SIGN_WRITING = UScriptCode.SIGN_WRITING;
+pub const USCRIPT_SUNDANESE = UScriptCode.SUNDANESE;
+pub const USCRIPT_MOON = UScriptCode.MOON;
+pub const USCRIPT_MEITEI_MAYEK = UScriptCode.MEITEI_MAYEK;
+pub const USCRIPT_IMPERIAL_ARAMAIC = UScriptCode.IMPERIAL_ARAMAIC;
+pub const USCRIPT_AVESTAN = UScriptCode.AVESTAN;
+pub const USCRIPT_CHAKMA = UScriptCode.CHAKMA;
+pub const USCRIPT_KOREAN = UScriptCode.KOREAN;
+pub const USCRIPT_KAITHI = UScriptCode.KAITHI;
+pub const USCRIPT_MANICHAEAN = UScriptCode.MANICHAEAN;
+pub const USCRIPT_INSCRIPTIONAL_PAHLAVI = UScriptCode.INSCRIPTIONAL_PAHLAVI;
+pub const USCRIPT_PSALTER_PAHLAVI = UScriptCode.PSALTER_PAHLAVI;
+pub const USCRIPT_BOOK_PAHLAVI = UScriptCode.BOOK_PAHLAVI;
+pub const USCRIPT_INSCRIPTIONAL_PARTHIAN = UScriptCode.INSCRIPTIONAL_PARTHIAN;
+pub const USCRIPT_SAMARITAN = UScriptCode.SAMARITAN;
+pub const USCRIPT_TAI_VIET = UScriptCode.TAI_VIET;
+pub const USCRIPT_MATHEMATICAL_NOTATION = UScriptCode.MATHEMATICAL_NOTATION;
+pub const USCRIPT_SYMBOLS = UScriptCode.SYMBOLS;
+pub const USCRIPT_BAMUM = UScriptCode.BAMUM;
+pub const USCRIPT_LISU = UScriptCode.LISU;
+pub const USCRIPT_NAKHI_GEBA = UScriptCode.NAKHI_GEBA;
+pub const USCRIPT_OLD_SOUTH_ARABIAN = UScriptCode.OLD_SOUTH_ARABIAN;
+pub const USCRIPT_BASSA_VAH = UScriptCode.BASSA_VAH;
+pub const USCRIPT_DUPLOYAN = UScriptCode.DUPLOYAN;
+pub const USCRIPT_ELBASAN = UScriptCode.ELBASAN;
+pub const USCRIPT_GRANTHA = UScriptCode.GRANTHA;
+pub const USCRIPT_KPELLE = UScriptCode.KPELLE;
+pub const USCRIPT_LOMA = UScriptCode.LOMA;
+pub const USCRIPT_MENDE = UScriptCode.MENDE;
+pub const USCRIPT_MEROITIC_CURSIVE = UScriptCode.MEROITIC_CURSIVE;
+pub const USCRIPT_OLD_NORTH_ARABIAN = UScriptCode.OLD_NORTH_ARABIAN;
+pub const USCRIPT_NABATAEAN = UScriptCode.NABATAEAN;
+pub const USCRIPT_PALMYRENE = UScriptCode.PALMYRENE;
+pub const USCRIPT_KHUDAWADI = UScriptCode.KHUDAWADI;
+pub const USCRIPT_SINDHI = UScriptCode.KHUDAWADI;
+pub const USCRIPT_WARANG_CITI = UScriptCode.WARANG_CITI;
+pub const USCRIPT_AFAKA = UScriptCode.AFAKA;
+pub const USCRIPT_JURCHEN = UScriptCode.JURCHEN;
+pub const USCRIPT_MRO = UScriptCode.MRO;
+pub const USCRIPT_NUSHU = UScriptCode.NUSHU;
+pub const USCRIPT_SHARADA = UScriptCode.SHARADA;
+pub const USCRIPT_SORA_SOMPENG = UScriptCode.SORA_SOMPENG;
+pub const USCRIPT_TAKRI = UScriptCode.TAKRI;
+pub const USCRIPT_TANGUT = UScriptCode.TANGUT;
+pub const USCRIPT_WOLEAI = UScriptCode.WOLEAI;
+pub const USCRIPT_ANATOLIAN_HIEROGLYPHS = UScriptCode.ANATOLIAN_HIEROGLYPHS;
+pub const USCRIPT_KHOJKI = UScriptCode.KHOJKI;
+pub const USCRIPT_TIRHUTA = UScriptCode.TIRHUTA;
+pub const USCRIPT_CAUCASIAN_ALBANIAN = UScriptCode.CAUCASIAN_ALBANIAN;
+pub const USCRIPT_MAHAJANI = UScriptCode.MAHAJANI;
+pub const USCRIPT_AHOM = UScriptCode.AHOM;
+pub const USCRIPT_HATRAN = UScriptCode.HATRAN;
+pub const USCRIPT_MODI = UScriptCode.MODI;
+pub const USCRIPT_MULTANI = UScriptCode.MULTANI;
+pub const USCRIPT_PAU_CIN_HAU = UScriptCode.PAU_CIN_HAU;
+pub const USCRIPT_SIDDHAM = UScriptCode.SIDDHAM;
+pub const USCRIPT_ADLAM = UScriptCode.ADLAM;
+pub const USCRIPT_BHAIKSUKI = UScriptCode.BHAIKSUKI;
+pub const USCRIPT_MARCHEN = UScriptCode.MARCHEN;
+pub const USCRIPT_NEWA = UScriptCode.NEWA;
+pub const USCRIPT_OSAGE = UScriptCode.OSAGE;
+pub const USCRIPT_HAN_WITH_BOPOMOFO = UScriptCode.HAN_WITH_BOPOMOFO;
+pub const USCRIPT_JAMO = UScriptCode.JAMO;
+pub const USCRIPT_SYMBOLS_EMOJI = UScriptCode.SYMBOLS_EMOJI;
+pub const USCRIPT_MASARAM_GONDI = UScriptCode.MASARAM_GONDI;
+pub const USCRIPT_SOYOMBO = UScriptCode.SOYOMBO;
+pub const USCRIPT_ZANABAZAR_SQUARE = UScriptCode.ZANABAZAR_SQUARE;
+pub const USCRIPT_DOGRA = UScriptCode.DOGRA;
+pub const USCRIPT_GUNJALA_GONDI = UScriptCode.GUNJALA_GONDI;
+pub const USCRIPT_MAKASAR = UScriptCode.MAKASAR;
+pub const USCRIPT_MEDEFAIDRIN = UScriptCode.MEDEFAIDRIN;
+pub const USCRIPT_HANIFI_ROHINGYA = UScriptCode.HANIFI_ROHINGYA;
+pub const USCRIPT_SOGDIAN = UScriptCode.SOGDIAN;
+pub const USCRIPT_OLD_SOGDIAN = UScriptCode.OLD_SOGDIAN;
+pub const USCRIPT_ELYMAIC = UScriptCode.ELYMAIC;
+pub const USCRIPT_NYIAKENG_PUACHUE_HMONG = UScriptCode.NYIAKENG_PUACHUE_HMONG;
+pub const USCRIPT_NANDINAGARI = UScriptCode.NANDINAGARI;
+pub const USCRIPT_WANCHO = UScriptCode.WANCHO;
+pub const USCRIPT_CHORASMIAN = UScriptCode.CHORASMIAN;
+pub const USCRIPT_DIVES_AKURU = UScriptCode.DIVES_AKURU;
+pub const USCRIPT_KHITAN_SMALL_SCRIPT = UScriptCode.KHITAN_SMALL_SCRIPT;
+pub const USCRIPT_YEZIDI = UScriptCode.YEZIDI;
+
+pub const UScriptUsage = enum(i32) {
+    NOT_ENCODED = 0,
+    UNKNOWN = 1,
+    EXCLUDED = 2,
+    LIMITED_USE = 3,
+    ASPIRATIONAL = 4,
+    RECOMMENDED = 5,
+};
+pub const USCRIPT_USAGE_NOT_ENCODED = UScriptUsage.NOT_ENCODED;
+pub const USCRIPT_USAGE_UNKNOWN = UScriptUsage.UNKNOWN;
+pub const USCRIPT_USAGE_EXCLUDED = UScriptUsage.EXCLUDED;
+pub const USCRIPT_USAGE_LIMITED_USE = UScriptUsage.LIMITED_USE;
+pub const USCRIPT_USAGE_ASPIRATIONAL = UScriptUsage.ASPIRATIONAL;
+pub const USCRIPT_USAGE_RECOMMENDED = UScriptUsage.RECOMMENDED;
+
+pub const USearch = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
@@ -6668,6 +7931,70 @@ pub const USEARCH_ON = USearchAttributeValue.ON;
 pub const USEARCH_STANDARD_ELEMENT_COMPARISON = USearchAttributeValue.STANDARD_ELEMENT_COMPARISON;
 pub const USEARCH_PATTERN_BASE_WEIGHT_IS_WILDCARD = USearchAttributeValue.PATTERN_BASE_WEIGHT_IS_WILDCARD;
 pub const USEARCH_ANY_BASE_WEIGHT_IS_WILDCARD = USearchAttributeValue.ANY_BASE_WEIGHT_IS_WILDCARD;
+
+pub const USentenceBreak = enum(i32) {
+    OTHER = 0,
+    ATERM = 1,
+    CLOSE = 2,
+    FORMAT = 3,
+    LOWER = 4,
+    NUMERIC = 5,
+    OLETTER = 6,
+    SEP = 7,
+    SP = 8,
+    STERM = 9,
+    UPPER = 10,
+    CR = 11,
+    EXTEND = 12,
+    LF = 13,
+    SCONTINUE = 14,
+};
+pub const U_SB_OTHER = USentenceBreak.OTHER;
+pub const U_SB_ATERM = USentenceBreak.ATERM;
+pub const U_SB_CLOSE = USentenceBreak.CLOSE;
+pub const U_SB_FORMAT = USentenceBreak.FORMAT;
+pub const U_SB_LOWER = USentenceBreak.LOWER;
+pub const U_SB_NUMERIC = USentenceBreak.NUMERIC;
+pub const U_SB_OLETTER = USentenceBreak.OLETTER;
+pub const U_SB_SEP = USentenceBreak.SEP;
+pub const U_SB_SP = USentenceBreak.SP;
+pub const U_SB_STERM = USentenceBreak.STERM;
+pub const U_SB_UPPER = USentenceBreak.UPPER;
+pub const U_SB_CR = USentenceBreak.CR;
+pub const U_SB_EXTEND = USentenceBreak.EXTEND;
+pub const U_SB_LF = USentenceBreak.LF;
+pub const U_SB_SCONTINUE = USentenceBreak.SCONTINUE;
+
+pub const USentenceBreakTag = enum(i32) {
+    TERM = 0,
+    TERM_LIMIT = 100,
+    SEP_LIMIT = 200,
+    pub const SEP = .TERM_LIMIT;
+};
+pub const UBRK_SENTENCE_TERM = USentenceBreakTag.TERM;
+pub const UBRK_SENTENCE_TERM_LIMIT = USentenceBreakTag.TERM_LIMIT;
+pub const UBRK_SENTENCE_SEP = USentenceBreakTag.TERM_LIMIT;
+pub const UBRK_SENTENCE_SEP_LIMIT = USentenceBreakTag.SEP_LIMIT;
+
+pub const USerializedSet = extern struct {
+    array: ?*const u16,
+    bmpLength: i32,
+    length: i32,
+    staticArray: [8]u16,
+};
+
+pub const USet = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const USetSpanCondition = enum(i32) {
+    NOT_CONTAINED = 0,
+    CONTAINED = 1,
+    SIMPLE = 2,
+};
+pub const USET_SPAN_NOT_CONTAINED = USetSpanCondition.NOT_CONTAINED;
+pub const USET_SPAN_CONTAINED = USetSpanCondition.CONTAINED;
+pub const USET_SPAN_SIMPLE = USetSpanCondition.SIMPLE;
 
 pub const USpoofChecker = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -6702,45 +8029,153 @@ pub const USPOOF_HIDDEN_OVERLAY = USpoofChecks.HIDDEN_OVERLAY;
 pub const USPOOF_ALL_CHECKS = USpoofChecks.ALL_CHECKS;
 pub const USPOOF_AUX_INFO = USpoofChecks.AUX_INFO;
 
-pub const URestrictionLevel = enum(i32) {
-    ASCII = 268435456,
-    SINGLE_SCRIPT_RESTRICTIVE = 536870912,
-    HIGHLY_RESTRICTIVE = 805306368,
-    MODERATELY_RESTRICTIVE = 1073741824,
-    MINIMALLY_RESTRICTIVE = 1342177280,
-    UNRESTRICTIVE = 1610612736,
-    RESTRICTION_LEVEL_MASK = 2130706432,
-};
-pub const USPOOF_ASCII = URestrictionLevel.ASCII;
-pub const USPOOF_SINGLE_SCRIPT_RESTRICTIVE = URestrictionLevel.SINGLE_SCRIPT_RESTRICTIVE;
-pub const USPOOF_HIGHLY_RESTRICTIVE = URestrictionLevel.HIGHLY_RESTRICTIVE;
-pub const USPOOF_MODERATELY_RESTRICTIVE = URestrictionLevel.MODERATELY_RESTRICTIVE;
-pub const USPOOF_MINIMALLY_RESTRICTIVE = URestrictionLevel.MINIMALLY_RESTRICTIVE;
-pub const USPOOF_UNRESTRICTIVE = URestrictionLevel.UNRESTRICTIVE;
-pub const USPOOF_RESTRICTION_LEVEL_MASK = URestrictionLevel.RESTRICTION_LEVEL_MASK;
+pub const UStringCaseMapper = *const fn(
+    csm: ?*const UCaseMap,
+    dest: ?*u16,
+    destCapacity: i32,
+    src: ?*const u16,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
 
-pub const UDateTimeScale = enum(i32) {
-    JAVA_TIME = 0,
-    UNIX_TIME = 1,
-    ICU4C_TIME = 2,
-    WINDOWS_FILE_TIME = 3,
-    DOTNET_DATE_TIME = 4,
-    MAC_OLD_TIME = 5,
-    MAC_TIME = 6,
-    EXCEL_TIME = 7,
-    DB2_TIME = 8,
-    UNIX_MICROSECONDS_TIME = 9,
+pub const UStringPrepProfile = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const UDTS_JAVA_TIME = UDateTimeScale.JAVA_TIME;
-pub const UDTS_UNIX_TIME = UDateTimeScale.UNIX_TIME;
-pub const UDTS_ICU4C_TIME = UDateTimeScale.ICU4C_TIME;
-pub const UDTS_WINDOWS_FILE_TIME = UDateTimeScale.WINDOWS_FILE_TIME;
-pub const UDTS_DOTNET_DATE_TIME = UDateTimeScale.DOTNET_DATE_TIME;
-pub const UDTS_MAC_OLD_TIME = UDateTimeScale.MAC_OLD_TIME;
-pub const UDTS_MAC_TIME = UDateTimeScale.MAC_TIME;
-pub const UDTS_EXCEL_TIME = UDateTimeScale.EXCEL_TIME;
-pub const UDTS_DB2_TIME = UDateTimeScale.DB2_TIME;
-pub const UDTS_UNIX_MICROSECONDS_TIME = UDateTimeScale.UNIX_MICROSECONDS_TIME;
+
+pub const UStringPrepProfileType = enum(i32) {
+    @"3491_NAMEPREP" = 0,
+    @"3530_NFS4_CS_PREP" = 1,
+    @"3530_NFS4_CS_PREP_CI" = 2,
+    @"3530_NFS4_CIS_PREP" = 3,
+    @"3530_NFS4_MIXED_PREP_PREFIX" = 4,
+    @"3530_NFS4_MIXED_PREP_SUFFIX" = 5,
+    @"3722_ISCSI" = 6,
+    @"3920_NODEPREP" = 7,
+    @"3920_RESOURCEPREP" = 8,
+    @"4011_MIB" = 9,
+    @"4013_SASLPREP" = 10,
+    @"4505_TRACE" = 11,
+    @"4518_LDAP" = 12,
+    @"4518_LDAP_CI" = 13,
+};
+pub const USPREP_RFC3491_NAMEPREP = UStringPrepProfileType.@"3491_NAMEPREP";
+pub const USPREP_RFC3530_NFS4_CS_PREP = UStringPrepProfileType.@"3530_NFS4_CS_PREP";
+pub const USPREP_RFC3530_NFS4_CS_PREP_CI = UStringPrepProfileType.@"3530_NFS4_CS_PREP_CI";
+pub const USPREP_RFC3530_NFS4_CIS_PREP = UStringPrepProfileType.@"3530_NFS4_CIS_PREP";
+pub const USPREP_RFC3530_NFS4_MIXED_PREP_PREFIX = UStringPrepProfileType.@"3530_NFS4_MIXED_PREP_PREFIX";
+pub const USPREP_RFC3530_NFS4_MIXED_PREP_SUFFIX = UStringPrepProfileType.@"3530_NFS4_MIXED_PREP_SUFFIX";
+pub const USPREP_RFC3722_ISCSI = UStringPrepProfileType.@"3722_ISCSI";
+pub const USPREP_RFC3920_NODEPREP = UStringPrepProfileType.@"3920_NODEPREP";
+pub const USPREP_RFC3920_RESOURCEPREP = UStringPrepProfileType.@"3920_RESOURCEPREP";
+pub const USPREP_RFC4011_MIB = UStringPrepProfileType.@"4011_MIB";
+pub const USPREP_RFC4013_SASLPREP = UStringPrepProfileType.@"4013_SASLPREP";
+pub const USPREP_RFC4505_TRACE = UStringPrepProfileType.@"4505_TRACE";
+pub const USPREP_RFC4518_LDAP = UStringPrepProfileType.@"4518_LDAP";
+pub const USPREP_RFC4518_LDAP_CI = UStringPrepProfileType.@"4518_LDAP_CI";
+
+pub const UStringSearch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UStringTrieBuildOption = enum(i32) {
+    FAST = 0,
+    SMALL = 1,
+};
+pub const USTRINGTRIE_BUILD_FAST = UStringTrieBuildOption.FAST;
+pub const USTRINGTRIE_BUILD_SMALL = UStringTrieBuildOption.SMALL;
+
+pub const UStringTrieResult = enum(i32) {
+    NO_MATCH = 0,
+    NO_VALUE = 1,
+    FINAL_VALUE = 2,
+    INTERMEDIATE_VALUE = 3,
+};
+pub const USTRINGTRIE_NO_MATCH = UStringTrieResult.NO_MATCH;
+pub const USTRINGTRIE_NO_VALUE = UStringTrieResult.NO_VALUE;
+pub const USTRINGTRIE_FINAL_VALUE = UStringTrieResult.FINAL_VALUE;
+pub const USTRINGTRIE_INTERMEDIATE_VALUE = UStringTrieResult.INTERMEDIATE_VALUE;
+
+pub const USystemTimeZoneType = enum(i32) {
+    ANY = 0,
+    CANONICAL = 1,
+    CANONICAL_LOCATION = 2,
+};
+pub const UCAL_ZONE_TYPE_ANY = USystemTimeZoneType.ANY;
+pub const UCAL_ZONE_TYPE_CANONICAL = USystemTimeZoneType.CANONICAL;
+pub const UCAL_ZONE_TYPE_CANONICAL_LOCATION = USystemTimeZoneType.CANONICAL_LOCATION;
+
+pub const UText = extern struct {
+    magic: u32,
+    flags: i32,
+    providerProperties: i32,
+    sizeOfStruct: i32,
+    chunkNativeLimit: i64,
+    extraSize: i32,
+    nativeIndexingLimit: i32,
+    chunkNativeStart: i64,
+    chunkOffset: i32,
+    chunkLength: i32,
+    chunkContents: ?*const u16,
+    pFuncs: ?*const UTextFuncs,
+    pExtra: ?*anyopaque,
+    context: ?*const anyopaque,
+    p: ?*const anyopaque,
+    q: ?*const anyopaque,
+    r: ?*const anyopaque,
+    privP: ?*anyopaque,
+    a: i64,
+    b: i32,
+    c: i32,
+    privA: i64,
+    privB: i32,
+    privC: i32,
+};
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextAccess = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextClone = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextClose = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextCopy = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextExtract = *const fn() callconv(.winapi) void;
+
+pub const UTextFuncs = extern struct {
+    tableSize: i32,
+    reserved1: i32,
+    reserved2: i32,
+    reserved3: i32,
+    clone: ?UTextClone,
+    nativeLength: ?UTextNativeLength,
+    access: ?UTextAccess,
+    extract: ?UTextExtract,
+    replace: ?UTextReplace,
+    copy: ?UTextCopy,
+    mapOffsetToNative: ?UTextMapOffsetToNative,
+    mapNativeIndexToUTF16: ?UTextMapNativeIndexToUTF16,
+    close: ?UTextClose,
+    spare1: ?UTextClose,
+    spare2: ?UTextClose,
+    spare3: ?UTextClose,
+};
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextMapNativeIndexToUTF16 = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextMapOffsetToNative = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextNativeLength = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextReplace = *const fn() callconv(.winapi) void;
 
 pub const UTimeScaleValue = enum(i32) {
     UNITS_VALUE = 0,
@@ -6757,122 +8192,31 @@ pub const UTSV_FROM_MAX_VALUE = UTimeScaleValue.FROM_MAX_VALUE;
 pub const UTSV_TO_MIN_VALUE = UTimeScaleValue.TO_MIN_VALUE;
 pub const UTSV_TO_MAX_VALUE = UTimeScaleValue.TO_MAX_VALUE;
 
-pub const UTransDirection = enum(i32) {
-    FORWARD = 0,
-    REVERSE = 1,
+pub const UTimeZoneFormatGMTOffsetPatternType = enum(i32) {
+    POSITIVE_HM = 0,
+    POSITIVE_HMS = 1,
+    NEGATIVE_HM = 2,
+    NEGATIVE_HMS = 3,
+    POSITIVE_H = 4,
+    NEGATIVE_H = 5,
+    COUNT = 6,
 };
-pub const UTRANS_FORWARD = UTransDirection.FORWARD;
-pub const UTRANS_REVERSE = UTransDirection.REVERSE;
+pub const UTZFMT_PAT_POSITIVE_HM = UTimeZoneFormatGMTOffsetPatternType.POSITIVE_HM;
+pub const UTZFMT_PAT_POSITIVE_HMS = UTimeZoneFormatGMTOffsetPatternType.POSITIVE_HMS;
+pub const UTZFMT_PAT_NEGATIVE_HM = UTimeZoneFormatGMTOffsetPatternType.NEGATIVE_HM;
+pub const UTZFMT_PAT_NEGATIVE_HMS = UTimeZoneFormatGMTOffsetPatternType.NEGATIVE_HMS;
+pub const UTZFMT_PAT_POSITIVE_H = UTimeZoneFormatGMTOffsetPatternType.POSITIVE_H;
+pub const UTZFMT_PAT_NEGATIVE_H = UTimeZoneFormatGMTOffsetPatternType.NEGATIVE_H;
+pub const UTZFMT_PAT_COUNT = UTimeZoneFormatGMTOffsetPatternType.COUNT;
 
-pub const UTransPosition = extern struct {
-    contextStart: i32,
-    contextLimit: i32,
-    start: i32,
-    limit: i32,
-};
-
-pub const UHashtable = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UStringTrieBuildOption = enum(i32) {
-    FAST = 0,
-    SMALL = 1,
-};
-pub const USTRINGTRIE_BUILD_FAST = UStringTrieBuildOption.FAST;
-pub const USTRINGTRIE_BUILD_SMALL = UStringTrieBuildOption.SMALL;
-
-pub const UStringCaseMapper = *const fn(
-    csm: ?*const UCaseMap,
-    dest: ?*u16,
-    destCapacity: i32,
-    src: ?*const u16,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub const UMessagePatternApostropheMode = enum(i32) {
-    OPTIONAL = 0,
-    REQUIRED = 1,
-};
-pub const UMSGPAT_APOS_DOUBLE_OPTIONAL = UMessagePatternApostropheMode.OPTIONAL;
-pub const UMSGPAT_APOS_DOUBLE_REQUIRED = UMessagePatternApostropheMode.REQUIRED;
-
-pub const UMessagePatternPartType = enum(i32) {
-    MSG_START = 0,
-    MSG_LIMIT = 1,
-    SKIP_SYNTAX = 2,
-    INSERT_CHAR = 3,
-    REPLACE_NUMBER = 4,
-    ARG_START = 5,
-    ARG_LIMIT = 6,
-    ARG_NUMBER = 7,
-    ARG_NAME = 8,
-    ARG_TYPE = 9,
-    ARG_STYLE = 10,
-    ARG_SELECTOR = 11,
-    ARG_INT = 12,
-    ARG_DOUBLE = 13,
-};
-pub const UMSGPAT_PART_TYPE_MSG_START = UMessagePatternPartType.MSG_START;
-pub const UMSGPAT_PART_TYPE_MSG_LIMIT = UMessagePatternPartType.MSG_LIMIT;
-pub const UMSGPAT_PART_TYPE_SKIP_SYNTAX = UMessagePatternPartType.SKIP_SYNTAX;
-pub const UMSGPAT_PART_TYPE_INSERT_CHAR = UMessagePatternPartType.INSERT_CHAR;
-pub const UMSGPAT_PART_TYPE_REPLACE_NUMBER = UMessagePatternPartType.REPLACE_NUMBER;
-pub const UMSGPAT_PART_TYPE_ARG_START = UMessagePatternPartType.ARG_START;
-pub const UMSGPAT_PART_TYPE_ARG_LIMIT = UMessagePatternPartType.ARG_LIMIT;
-pub const UMSGPAT_PART_TYPE_ARG_NUMBER = UMessagePatternPartType.ARG_NUMBER;
-pub const UMSGPAT_PART_TYPE_ARG_NAME = UMessagePatternPartType.ARG_NAME;
-pub const UMSGPAT_PART_TYPE_ARG_TYPE = UMessagePatternPartType.ARG_TYPE;
-pub const UMSGPAT_PART_TYPE_ARG_STYLE = UMessagePatternPartType.ARG_STYLE;
-pub const UMSGPAT_PART_TYPE_ARG_SELECTOR = UMessagePatternPartType.ARG_SELECTOR;
-pub const UMSGPAT_PART_TYPE_ARG_INT = UMessagePatternPartType.ARG_INT;
-pub const UMSGPAT_PART_TYPE_ARG_DOUBLE = UMessagePatternPartType.ARG_DOUBLE;
-
-pub const UMessagePatternArgType = enum(i32) {
+pub const UTimeZoneFormatParseOption = enum(i32) {
     NONE = 0,
-    SIMPLE = 1,
-    CHOICE = 2,
-    PLURAL = 3,
-    SELECT = 4,
-    SELECTORDINAL = 5,
+    ALL_STYLES = 1,
+    TZ_DATABASE_ABBREVIATIONS = 2,
 };
-pub const UMSGPAT_ARG_TYPE_NONE = UMessagePatternArgType.NONE;
-pub const UMSGPAT_ARG_TYPE_SIMPLE = UMessagePatternArgType.SIMPLE;
-pub const UMSGPAT_ARG_TYPE_CHOICE = UMessagePatternArgType.CHOICE;
-pub const UMSGPAT_ARG_TYPE_PLURAL = UMessagePatternArgType.PLURAL;
-pub const UMSGPAT_ARG_TYPE_SELECT = UMessagePatternArgType.SELECT;
-pub const UMSGPAT_ARG_TYPE_SELECTORDINAL = UMessagePatternArgType.SELECTORDINAL;
-
-pub const UAlphabeticIndexLabelType = enum(i32) {
-    NORMAL = 0,
-    UNDERFLOW = 1,
-    INFLOW = 2,
-    OVERFLOW = 3,
-};
-pub const U_ALPHAINDEX_NORMAL = UAlphabeticIndexLabelType.NORMAL;
-pub const U_ALPHAINDEX_UNDERFLOW = UAlphabeticIndexLabelType.UNDERFLOW;
-pub const U_ALPHAINDEX_INFLOW = UAlphabeticIndexLabelType.INFLOW;
-pub const U_ALPHAINDEX_OVERFLOW = UAlphabeticIndexLabelType.OVERFLOW;
-
-pub const UTimeZoneNameType = enum(i32) {
-    UNKNOWN = 0,
-    LONG_GENERIC = 1,
-    LONG_STANDARD = 2,
-    LONG_DAYLIGHT = 4,
-    SHORT_GENERIC = 8,
-    SHORT_STANDARD = 16,
-    SHORT_DAYLIGHT = 32,
-    EXEMPLAR_LOCATION = 64,
-};
-pub const UTZNM_UNKNOWN = UTimeZoneNameType.UNKNOWN;
-pub const UTZNM_LONG_GENERIC = UTimeZoneNameType.LONG_GENERIC;
-pub const UTZNM_LONG_STANDARD = UTimeZoneNameType.LONG_STANDARD;
-pub const UTZNM_LONG_DAYLIGHT = UTimeZoneNameType.LONG_DAYLIGHT;
-pub const UTZNM_SHORT_GENERIC = UTimeZoneNameType.SHORT_GENERIC;
-pub const UTZNM_SHORT_STANDARD = UTimeZoneNameType.SHORT_STANDARD;
-pub const UTZNM_SHORT_DAYLIGHT = UTimeZoneNameType.SHORT_DAYLIGHT;
-pub const UTZNM_EXEMPLAR_LOCATION = UTimeZoneNameType.EXEMPLAR_LOCATION;
+pub const UTZFMT_PARSE_OPTION_NONE = UTimeZoneFormatParseOption.NONE;
+pub const UTZFMT_PARSE_OPTION_ALL_STYLES = UTimeZoneFormatParseOption.ALL_STYLES;
+pub const UTZFMT_PARSE_OPTION_TZ_DATABASE_ABBREVIATIONS = UTimeZoneFormatParseOption.TZ_DATABASE_ABBREVIATIONS;
 
 pub const UTimeZoneFormatStyle = enum(i32) {
     GENERIC_LOCATION = 0,
@@ -6917,23 +8261,6 @@ pub const UTZFMT_STYLE_ZONE_ID = UTimeZoneFormatStyle.ZONE_ID;
 pub const UTZFMT_STYLE_ZONE_ID_SHORT = UTimeZoneFormatStyle.ZONE_ID_SHORT;
 pub const UTZFMT_STYLE_EXEMPLAR_LOCATION = UTimeZoneFormatStyle.EXEMPLAR_LOCATION;
 
-pub const UTimeZoneFormatGMTOffsetPatternType = enum(i32) {
-    POSITIVE_HM = 0,
-    POSITIVE_HMS = 1,
-    NEGATIVE_HM = 2,
-    NEGATIVE_HMS = 3,
-    POSITIVE_H = 4,
-    NEGATIVE_H = 5,
-    COUNT = 6,
-};
-pub const UTZFMT_PAT_POSITIVE_HM = UTimeZoneFormatGMTOffsetPatternType.POSITIVE_HM;
-pub const UTZFMT_PAT_POSITIVE_HMS = UTimeZoneFormatGMTOffsetPatternType.POSITIVE_HMS;
-pub const UTZFMT_PAT_NEGATIVE_HM = UTimeZoneFormatGMTOffsetPatternType.NEGATIVE_HM;
-pub const UTZFMT_PAT_NEGATIVE_HMS = UTimeZoneFormatGMTOffsetPatternType.NEGATIVE_HMS;
-pub const UTZFMT_PAT_POSITIVE_H = UTimeZoneFormatGMTOffsetPatternType.POSITIVE_H;
-pub const UTZFMT_PAT_NEGATIVE_H = UTimeZoneFormatGMTOffsetPatternType.NEGATIVE_H;
-pub const UTZFMT_PAT_COUNT = UTimeZoneFormatGMTOffsetPatternType.COUNT;
-
 pub const UTimeZoneFormatTimeType = enum(i32) {
     UNKNOWN = 0,
     STANDARD = 1,
@@ -6943,1656 +8270,248 @@ pub const UTZFMT_TIME_TYPE_UNKNOWN = UTimeZoneFormatTimeType.UNKNOWN;
 pub const UTZFMT_TIME_TYPE_STANDARD = UTimeZoneFormatTimeType.STANDARD;
 pub const UTZFMT_TIME_TYPE_DAYLIGHT = UTimeZoneFormatTimeType.DAYLIGHT;
 
-pub const UTimeZoneFormatParseOption = enum(i32) {
+pub const UTimeZoneNameType = enum(i32) {
+    UNKNOWN = 0,
+    LONG_GENERIC = 1,
+    LONG_STANDARD = 2,
+    LONG_DAYLIGHT = 4,
+    SHORT_GENERIC = 8,
+    SHORT_STANDARD = 16,
+    SHORT_DAYLIGHT = 32,
+    EXEMPLAR_LOCATION = 64,
+};
+pub const UTZNM_UNKNOWN = UTimeZoneNameType.UNKNOWN;
+pub const UTZNM_LONG_GENERIC = UTimeZoneNameType.LONG_GENERIC;
+pub const UTZNM_LONG_STANDARD = UTimeZoneNameType.LONG_STANDARD;
+pub const UTZNM_LONG_DAYLIGHT = UTimeZoneNameType.LONG_DAYLIGHT;
+pub const UTZNM_SHORT_GENERIC = UTimeZoneNameType.SHORT_GENERIC;
+pub const UTZNM_SHORT_STANDARD = UTimeZoneNameType.SHORT_STANDARD;
+pub const UTZNM_SHORT_DAYLIGHT = UTimeZoneNameType.SHORT_DAYLIGHT;
+pub const UTZNM_EXEMPLAR_LOCATION = UTimeZoneNameType.EXEMPLAR_LOCATION;
+
+pub const UTimeZoneTransitionType = enum(i32) {
+    NEXT = 0,
+    NEXT_INCLUSIVE = 1,
+    PREVIOUS = 2,
+    PREVIOUS_INCLUSIVE = 3,
+};
+pub const UCAL_TZ_TRANSITION_NEXT = UTimeZoneTransitionType.NEXT;
+pub const UCAL_TZ_TRANSITION_NEXT_INCLUSIVE = UTimeZoneTransitionType.NEXT_INCLUSIVE;
+pub const UCAL_TZ_TRANSITION_PREVIOUS = UTimeZoneTransitionType.PREVIOUS;
+pub const UCAL_TZ_TRANSITION_PREVIOUS_INCLUSIVE = UTimeZoneTransitionType.PREVIOUS_INCLUSIVE;
+
+pub const UTraceData = *const fn(
+    context: ?*const anyopaque,
+    fnNumber: i32,
+    level: i32,
+    fmt: ?[*:0]const u8,
+    args: ?*i8,
+) callconv(.winapi) void;
+
+pub const UTraceEntry = *const fn(
+    context: ?*const anyopaque,
+    fnNumber: i32,
+) callconv(.winapi) void;
+
+pub const UTraceExit = *const fn(
+    context: ?*const anyopaque,
+    fnNumber: i32,
+    fmt: ?[*:0]const u8,
+    args: ?*i8,
+) callconv(.winapi) void;
+
+pub const UTraceFunctionNumber = enum(i32) {
+    FUNCTION_START = 0,
+    U_CLEANUP = 1,
+    CONVERSION_START = 4096,
+    UCNV_OPEN_PACKAGE = 4097,
+    UCNV_OPEN_ALGORITHMIC = 4098,
+    UCNV_CLONE = 4099,
+    UCNV_CLOSE = 4100,
+    UCNV_FLUSH_CACHE = 4101,
+    UCNV_LOAD = 4102,
+    UCNV_UNLOAD = 4103,
+    COLLATION_START = 8192,
+    UCOL_CLOSE = 8193,
+    UCOL_STRCOLL = 8194,
+    UCOL_GET_SORTKEY = 8195,
+    UCOL_GETLOCALE = 8196,
+    UCOL_NEXTSORTKEYPART = 8197,
+    UCOL_STRCOLLITER = 8198,
+    UCOL_OPEN_FROM_SHORT_STRING = 8199,
+    UCOL_STRCOLLUTF8 = 8200,
+    UDATA_START = 12288,
+    UDATA_BUNDLE = 12289,
+    UDATA_DATA_FILE = 12290,
+    UDATA_RES_FILE = 12291,
+    pub const U_INIT = .FUNCTION_START;
+    pub const UCNV_OPEN = .CONVERSION_START;
+    pub const UCOL_OPEN = .COLLATION_START;
+    pub const UDATA_RESOURCE = .UDATA_START;
+};
+pub const UTRACE_FUNCTION_START = UTraceFunctionNumber.FUNCTION_START;
+pub const UTRACE_U_INIT = UTraceFunctionNumber.FUNCTION_START;
+pub const UTRACE_U_CLEANUP = UTraceFunctionNumber.U_CLEANUP;
+pub const UTRACE_CONVERSION_START = UTraceFunctionNumber.CONVERSION_START;
+pub const UTRACE_UCNV_OPEN = UTraceFunctionNumber.CONVERSION_START;
+pub const UTRACE_UCNV_OPEN_PACKAGE = UTraceFunctionNumber.UCNV_OPEN_PACKAGE;
+pub const UTRACE_UCNV_OPEN_ALGORITHMIC = UTraceFunctionNumber.UCNV_OPEN_ALGORITHMIC;
+pub const UTRACE_UCNV_CLONE = UTraceFunctionNumber.UCNV_CLONE;
+pub const UTRACE_UCNV_CLOSE = UTraceFunctionNumber.UCNV_CLOSE;
+pub const UTRACE_UCNV_FLUSH_CACHE = UTraceFunctionNumber.UCNV_FLUSH_CACHE;
+pub const UTRACE_UCNV_LOAD = UTraceFunctionNumber.UCNV_LOAD;
+pub const UTRACE_UCNV_UNLOAD = UTraceFunctionNumber.UCNV_UNLOAD;
+pub const UTRACE_COLLATION_START = UTraceFunctionNumber.COLLATION_START;
+pub const UTRACE_UCOL_OPEN = UTraceFunctionNumber.COLLATION_START;
+pub const UTRACE_UCOL_CLOSE = UTraceFunctionNumber.UCOL_CLOSE;
+pub const UTRACE_UCOL_STRCOLL = UTraceFunctionNumber.UCOL_STRCOLL;
+pub const UTRACE_UCOL_GET_SORTKEY = UTraceFunctionNumber.UCOL_GET_SORTKEY;
+pub const UTRACE_UCOL_GETLOCALE = UTraceFunctionNumber.UCOL_GETLOCALE;
+pub const UTRACE_UCOL_NEXTSORTKEYPART = UTraceFunctionNumber.UCOL_NEXTSORTKEYPART;
+pub const UTRACE_UCOL_STRCOLLITER = UTraceFunctionNumber.UCOL_STRCOLLITER;
+pub const UTRACE_UCOL_OPEN_FROM_SHORT_STRING = UTraceFunctionNumber.UCOL_OPEN_FROM_SHORT_STRING;
+pub const UTRACE_UCOL_STRCOLLUTF8 = UTraceFunctionNumber.UCOL_STRCOLLUTF8;
+pub const UTRACE_UDATA_START = UTraceFunctionNumber.UDATA_START;
+pub const UTRACE_UDATA_RESOURCE = UTraceFunctionNumber.UDATA_START;
+pub const UTRACE_UDATA_BUNDLE = UTraceFunctionNumber.UDATA_BUNDLE;
+pub const UTRACE_UDATA_DATA_FILE = UTraceFunctionNumber.UDATA_DATA_FILE;
+pub const UTRACE_UDATA_RES_FILE = UTraceFunctionNumber.UDATA_RES_FILE;
+
+pub const UTraceLevel = enum(i32) {
+    OFF = -1,
+    ERROR = 0,
+    WARNING = 3,
+    OPEN_CLOSE = 5,
+    INFO = 7,
+    VERBOSE = 9,
+};
+pub const UTRACE_OFF = UTraceLevel.OFF;
+pub const UTRACE_ERROR = UTraceLevel.ERROR;
+pub const UTRACE_WARNING = UTraceLevel.WARNING;
+pub const UTRACE_OPEN_CLOSE = UTraceLevel.OPEN_CLOSE;
+pub const UTRACE_INFO = UTraceLevel.INFO;
+pub const UTRACE_VERBOSE = UTraceLevel.VERBOSE;
+
+pub const UTransDirection = enum(i32) {
+    FORWARD = 0,
+    REVERSE = 1,
+};
+pub const UTRANS_FORWARD = UTransDirection.FORWARD;
+pub const UTRANS_REVERSE = UTransDirection.REVERSE;
+
+pub const UTransPosition = extern struct {
+    contextStart: i32,
+    contextLimit: i32,
+    start: i32,
+    limit: i32,
+};
+
+pub const UVerticalOrientation = enum(i32) {
+    ROTATED = 0,
+    TRANSFORMED_ROTATED = 1,
+    TRANSFORMED_UPRIGHT = 2,
+    UPRIGHT = 3,
+};
+pub const U_VO_ROTATED = UVerticalOrientation.ROTATED;
+pub const U_VO_TRANSFORMED_ROTATED = UVerticalOrientation.TRANSFORMED_ROTATED;
+pub const U_VO_TRANSFORMED_UPRIGHT = UVerticalOrientation.TRANSFORMED_UPRIGHT;
+pub const U_VO_UPRIGHT = UVerticalOrientation.UPRIGHT;
+
+pub const UWordBreak = enum(i32) {
     NONE = 0,
-    ALL_STYLES = 1,
-    TZ_DATABASE_ABBREVIATIONS = 2,
+    NONE_LIMIT = 100,
+    NUMBER_LIMIT = 200,
+    LETTER_LIMIT = 300,
+    KANA_LIMIT = 400,
+    IDEO_LIMIT = 500,
+    pub const NUMBER = .NONE_LIMIT;
+    pub const LETTER = .NUMBER_LIMIT;
+    pub const KANA = .LETTER_LIMIT;
+    pub const IDEO = .KANA_LIMIT;
 };
-pub const UTZFMT_PARSE_OPTION_NONE = UTimeZoneFormatParseOption.NONE;
-pub const UTZFMT_PARSE_OPTION_ALL_STYLES = UTimeZoneFormatParseOption.ALL_STYLES;
-pub const UTZFMT_PARSE_OPTION_TZ_DATABASE_ABBREVIATIONS = UTimeZoneFormatParseOption.TZ_DATABASE_ABBREVIATIONS;
+pub const UBRK_WORD_NONE = UWordBreak.NONE;
+pub const UBRK_WORD_NONE_LIMIT = UWordBreak.NONE_LIMIT;
+pub const UBRK_WORD_NUMBER = UWordBreak.NONE_LIMIT;
+pub const UBRK_WORD_NUMBER_LIMIT = UWordBreak.NUMBER_LIMIT;
+pub const UBRK_WORD_LETTER = UWordBreak.NUMBER_LIMIT;
+pub const UBRK_WORD_LETTER_LIMIT = UWordBreak.LETTER_LIMIT;
+pub const UBRK_WORD_KANA = UWordBreak.LETTER_LIMIT;
+pub const UBRK_WORD_KANA_LIMIT = UWordBreak.KANA_LIMIT;
+pub const UBRK_WORD_IDEO = UWordBreak.KANA_LIMIT;
+pub const UBRK_WORD_IDEO_LIMIT = UWordBreak.IDEO_LIMIT;
 
-pub const UMeasureFormatWidth = enum(i32) {
-    WIDE = 0,
-    SHORT = 1,
-    NARROW = 2,
-    NUMERIC = 3,
-    COUNT = 4,
+pub const UWordBreakValues = enum(i32) {
+    OTHER = 0,
+    ALETTER = 1,
+    FORMAT = 2,
+    KATAKANA = 3,
+    MIDLETTER = 4,
+    MIDNUM = 5,
+    NUMERIC = 6,
+    EXTENDNUMLET = 7,
+    CR = 8,
+    EXTEND = 9,
+    LF = 10,
+    MIDNUMLET = 11,
+    NEWLINE = 12,
+    REGIONAL_INDICATOR = 13,
+    HEBREW_LETTER = 14,
+    SINGLE_QUOTE = 15,
+    DOUBLE_QUOTE = 16,
+    E_BASE = 17,
+    E_BASE_GAZ = 18,
+    E_MODIFIER = 19,
+    GLUE_AFTER_ZWJ = 20,
+    ZWJ = 21,
+    WSEGSPACE = 22,
 };
-pub const UMEASFMT_WIDTH_WIDE = UMeasureFormatWidth.WIDE;
-pub const UMEASFMT_WIDTH_SHORT = UMeasureFormatWidth.SHORT;
-pub const UMEASFMT_WIDTH_NARROW = UMeasureFormatWidth.NARROW;
-pub const UMEASFMT_WIDTH_NUMERIC = UMeasureFormatWidth.NUMERIC;
-pub const UMEASFMT_WIDTH_COUNT = UMeasureFormatWidth.COUNT;
+pub const U_WB_OTHER = UWordBreakValues.OTHER;
+pub const U_WB_ALETTER = UWordBreakValues.ALETTER;
+pub const U_WB_FORMAT = UWordBreakValues.FORMAT;
+pub const U_WB_KATAKANA = UWordBreakValues.KATAKANA;
+pub const U_WB_MIDLETTER = UWordBreakValues.MIDLETTER;
+pub const U_WB_MIDNUM = UWordBreakValues.MIDNUM;
+pub const U_WB_NUMERIC = UWordBreakValues.NUMERIC;
+pub const U_WB_EXTENDNUMLET = UWordBreakValues.EXTENDNUMLET;
+pub const U_WB_CR = UWordBreakValues.CR;
+pub const U_WB_EXTEND = UWordBreakValues.EXTEND;
+pub const U_WB_LF = UWordBreakValues.LF;
+pub const U_WB_MIDNUMLET = UWordBreakValues.MIDNUMLET;
+pub const U_WB_NEWLINE = UWordBreakValues.NEWLINE;
+pub const U_WB_REGIONAL_INDICATOR = UWordBreakValues.REGIONAL_INDICATOR;
+pub const U_WB_HEBREW_LETTER = UWordBreakValues.HEBREW_LETTER;
+pub const U_WB_SINGLE_QUOTE = UWordBreakValues.SINGLE_QUOTE;
+pub const U_WB_DOUBLE_QUOTE = UWordBreakValues.DOUBLE_QUOTE;
+pub const U_WB_E_BASE = UWordBreakValues.E_BASE;
+pub const U_WB_E_BASE_GAZ = UWordBreakValues.E_BASE_GAZ;
+pub const U_WB_E_MODIFIER = UWordBreakValues.E_MODIFIER;
+pub const U_WB_GLUE_AFTER_ZWJ = UWordBreakValues.GLUE_AFTER_ZWJ;
+pub const U_WB_ZWJ = UWordBreakValues.ZWJ;
+pub const U_WB_WSEGSPACE = UWordBreakValues.WSEGSPACE;
 
-pub const UDateRelativeUnit = enum(i32) {
-    SECONDS = 0,
-    MINUTES = 1,
-    HOURS = 2,
-    DAYS = 3,
-    WEEKS = 4,
-    MONTHS = 5,
-    YEARS = 6,
-    UNIT_COUNT = 7,
+pub const WORDLIST_TYPE = enum(i32) {
+    IGNORE = 0,
+    ADD = 1,
+    EXCLUDE = 2,
+    AUTOCORRECT = 3,
 };
-pub const UDAT_RELATIVE_SECONDS = UDateRelativeUnit.SECONDS;
-pub const UDAT_RELATIVE_MINUTES = UDateRelativeUnit.MINUTES;
-pub const UDAT_RELATIVE_HOURS = UDateRelativeUnit.HOURS;
-pub const UDAT_RELATIVE_DAYS = UDateRelativeUnit.DAYS;
-pub const UDAT_RELATIVE_WEEKS = UDateRelativeUnit.WEEKS;
-pub const UDAT_RELATIVE_MONTHS = UDateRelativeUnit.MONTHS;
-pub const UDAT_RELATIVE_YEARS = UDateRelativeUnit.YEARS;
-pub const UDAT_RELATIVE_UNIT_COUNT = UDateRelativeUnit.UNIT_COUNT;
-
-pub const UDateAbsoluteUnit = enum(i32) {
-    SUNDAY = 0,
-    MONDAY = 1,
-    TUESDAY = 2,
-    WEDNESDAY = 3,
-    THURSDAY = 4,
-    FRIDAY = 5,
-    SATURDAY = 6,
-    DAY = 7,
-    WEEK = 8,
-    MONTH = 9,
-    YEAR = 10,
-    NOW = 11,
-    UNIT_COUNT = 12,
-};
-pub const UDAT_ABSOLUTE_SUNDAY = UDateAbsoluteUnit.SUNDAY;
-pub const UDAT_ABSOLUTE_MONDAY = UDateAbsoluteUnit.MONDAY;
-pub const UDAT_ABSOLUTE_TUESDAY = UDateAbsoluteUnit.TUESDAY;
-pub const UDAT_ABSOLUTE_WEDNESDAY = UDateAbsoluteUnit.WEDNESDAY;
-pub const UDAT_ABSOLUTE_THURSDAY = UDateAbsoluteUnit.THURSDAY;
-pub const UDAT_ABSOLUTE_FRIDAY = UDateAbsoluteUnit.FRIDAY;
-pub const UDAT_ABSOLUTE_SATURDAY = UDateAbsoluteUnit.SATURDAY;
-pub const UDAT_ABSOLUTE_DAY = UDateAbsoluteUnit.DAY;
-pub const UDAT_ABSOLUTE_WEEK = UDateAbsoluteUnit.WEEK;
-pub const UDAT_ABSOLUTE_MONTH = UDateAbsoluteUnit.MONTH;
-pub const UDAT_ABSOLUTE_YEAR = UDateAbsoluteUnit.YEAR;
-pub const UDAT_ABSOLUTE_NOW = UDateAbsoluteUnit.NOW;
-pub const UDAT_ABSOLUTE_UNIT_COUNT = UDateAbsoluteUnit.UNIT_COUNT;
-
-pub const UDateDirection = enum(i32) {
-    LAST_2 = 0,
-    LAST = 1,
-    THIS = 2,
-    NEXT = 3,
-    NEXT_2 = 4,
-    PLAIN = 5,
-    COUNT = 6,
-};
-pub const UDAT_DIRECTION_LAST_2 = UDateDirection.LAST_2;
-pub const UDAT_DIRECTION_LAST = UDateDirection.LAST;
-pub const UDAT_DIRECTION_THIS = UDateDirection.THIS;
-pub const UDAT_DIRECTION_NEXT = UDateDirection.NEXT;
-pub const UDAT_DIRECTION_NEXT_2 = UDateDirection.NEXT_2;
-pub const UDAT_DIRECTION_PLAIN = UDateDirection.PLAIN;
-pub const UDAT_DIRECTION_COUNT = UDateDirection.COUNT;
-
-pub const USearch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-const CLSID_CMLangString_Value = Guid.initString("c04d65cf-b70d-11d0-b188-00aa0038c969");
-pub const CLSID_CMLangString = &CLSID_CMLangString_Value;
-
-const CLSID_CMLangConvertCharset_Value = Guid.initString("d66d6f99-cdaa-11d0-b822-00c04fc9b31f");
-pub const CLSID_CMLangConvertCharset = &CLSID_CMLangConvertCharset_Value;
-
-const CLSID_CMultiLanguage_Value = Guid.initString("275c23e2-3747-11d0-9fea-00aa003f8646");
-pub const CLSID_CMultiLanguage = &CLSID_CMultiLanguage_Value;
-
-const IID_IMLangStringBufW_Value = Guid.initString("d24acd21-ba72-11d0-b188-00aa0038c969");
-pub const IID_IMLangStringBufW = &IID_IMLangStringBufW_Value;
-pub const IMLangStringBufW = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStatus: *const fn(
-            self: *const IMLangStringBufW,
-            plFlags: ?*i32,
-            pcchBuf: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        LockBuf: *const fn(
-            self: *const IMLangStringBufW,
-            cchOffset: i32,
-            cchMaxLock: i32,
-            ppszBuf: ?*?*u16,
-            pcchBuf: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        UnlockBuf: *const fn(
-            self: *const IMLangStringBufW,
-            pszBuf: ?[*:0]const u16,
-            cchOffset: i32,
-            cchWrite: i32,
-        ) callconv(.winapi) HRESULT,
-        Insert: *const fn(
-            self: *const IMLangStringBufW,
-            cchOffset: i32,
-            cchMaxInsert: i32,
-            pcchActual: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IMLangStringBufW,
-            cchOffset: i32,
-            cchDelete: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IMLangStringBufW, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, plFlags, pcchBuf);
-    }
-    pub fn LockBuf(self: *const IMLangStringBufW, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*u16, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.LockBuf(self, cchOffset, cchMaxLock, ppszBuf, pcchBuf);
-    }
-    pub fn UnlockBuf(self: *const IMLangStringBufW, pszBuf: ?[*:0]const u16, cchOffset: i32, cchWrite: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnlockBuf(self, pszBuf, cchOffset, cchWrite);
-    }
-    pub fn Insert(self: *const IMLangStringBufW, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Insert(self, cchOffset, cchMaxInsert, pcchActual);
-    }
-    pub fn Delete(self: *const IMLangStringBufW, cchOffset: i32, cchDelete: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, cchOffset, cchDelete);
-    }
-};
-
-const IID_IMLangStringBufA_Value = Guid.initString("d24acd23-ba72-11d0-b188-00aa0038c969");
-pub const IID_IMLangStringBufA = &IID_IMLangStringBufA_Value;
-pub const IMLangStringBufA = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStatus: *const fn(
-            self: *const IMLangStringBufA,
-            plFlags: ?*i32,
-            pcchBuf: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        LockBuf: *const fn(
-            self: *const IMLangStringBufA,
-            cchOffset: i32,
-            cchMaxLock: i32,
-            ppszBuf: ?*?*CHAR,
-            pcchBuf: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        UnlockBuf: *const fn(
-            self: *const IMLangStringBufA,
-            pszBuf: ?[*:0]const u8,
-            cchOffset: i32,
-            cchWrite: i32,
-        ) callconv(.winapi) HRESULT,
-        Insert: *const fn(
-            self: *const IMLangStringBufA,
-            cchOffset: i32,
-            cchMaxInsert: i32,
-            pcchActual: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IMLangStringBufA,
-            cchOffset: i32,
-            cchDelete: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IMLangStringBufA, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, plFlags, pcchBuf);
-    }
-    pub fn LockBuf(self: *const IMLangStringBufA, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*CHAR, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.LockBuf(self, cchOffset, cchMaxLock, ppszBuf, pcchBuf);
-    }
-    pub fn UnlockBuf(self: *const IMLangStringBufA, pszBuf: ?[*:0]const u8, cchOffset: i32, cchWrite: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnlockBuf(self, pszBuf, cchOffset, cchWrite);
-    }
-    pub fn Insert(self: *const IMLangStringBufA, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Insert(self, cchOffset, cchMaxInsert, pcchActual);
-    }
-    pub fn Delete(self: *const IMLangStringBufA, cchOffset: i32, cchDelete: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, cchOffset, cchDelete);
-    }
-};
-
-const IID_IMLangString_Value = Guid.initString("c04d65ce-b70d-11d0-b188-00aa0038c969");
-pub const IID_IMLangString = &IID_IMLangString_Value;
-pub const IMLangString = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Sync: *const fn(
-            self: *const IMLangString,
-            fNoAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetLength: *const fn(
-            self: *const IMLangString,
-            plLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        SetMLStr: *const fn(
-            self: *const IMLangString,
-            lDestPos: i32,
-            lDestLen: i32,
-            pSrcMLStr: ?*IUnknown,
-            lSrcPos: i32,
-            lSrcLen: i32,
-        ) callconv(.winapi) HRESULT,
-        GetMLStr: *const fn(
-            self: *const IMLangString,
-            lSrcPos: i32,
-            lSrcLen: i32,
-            pUnkOuter: ?*IUnknown,
-            dwClsContext: u32,
-            piid: ?*const Guid,
-            ppDestMLStr: ?*?*IUnknown,
-            plDestPos: ?*i32,
-            plDestLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Sync(self: *const IMLangString, fNoAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Sync(self, fNoAccess);
-    }
-    pub fn GetLength(self: *const IMLangString, plLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLength(self, plLen);
-    }
-    pub fn SetMLStr(self: *const IMLangString, lDestPos: i32, lDestLen: i32, pSrcMLStr: ?*IUnknown, lSrcPos: i32, lSrcLen: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMLStr(self, lDestPos, lDestLen, pSrcMLStr, lSrcPos, lSrcLen);
-    }
-    pub fn GetMLStr(self: *const IMLangString, lSrcPos: i32, lSrcLen: i32, pUnkOuter: ?*IUnknown, dwClsContext: u32, piid: ?*const Guid, ppDestMLStr: ?*?*IUnknown, plDestPos: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMLStr(self, lSrcPos, lSrcLen, pUnkOuter, dwClsContext, piid, ppDestMLStr, plDestPos, plDestLen);
-    }
-};
-
-const IID_IMLangStringWStr_Value = Guid.initString("c04d65d0-b70d-11d0-b188-00aa0038c969");
-pub const IID_IMLangStringWStr = &IID_IMLangStringWStr_Value;
-pub const IMLangStringWStr = extern union {
-    pub const VTable = extern struct {
-        base: IMLangString.VTable,
-        SetWStr: *const fn(
-            self: *const IMLangStringWStr,
-            lDestPos: i32,
-            lDestLen: i32,
-            pszSrc: [*:0]const u16,
-            cchSrc: i32,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        SetStrBufW: *const fn(
-            self: *const IMLangStringWStr,
-            lDestPos: i32,
-            lDestLen: i32,
-            pSrcBuf: ?*IMLangStringBufW,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetWStr: *const fn(
-            self: *const IMLangStringWStr,
-            lSrcPos: i32,
-            lSrcLen: i32,
-            pszDest: ?[*:0]u16,
-            cchDest: i32,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetStrBufW: *const fn(
-            self: *const IMLangStringWStr,
-            lSrcPos: i32,
-            lSrcMaxLen: i32,
-            ppDestBuf: ?*?*IMLangStringBufW,
-            plDestLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        LockWStr: *const fn(
-            self: *const IMLangStringWStr,
-            lSrcPos: i32,
-            lSrcLen: i32,
-            lFlags: i32,
-            cchRequest: i32,
-            ppszDest: ?*?PWSTR,
-            pcchDest: ?*i32,
-            plDestLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        UnlockWStr: *const fn(
-            self: *const IMLangStringWStr,
-            pszSrc: [*:0]const u16,
-            cchSrc: i32,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        SetLocale: *const fn(
-            self: *const IMLangStringWStr,
-            lDestPos: i32,
-            lDestLen: i32,
-            locale: u32,
-        ) callconv(.winapi) HRESULT,
-        GetLocale: *const fn(
-            self: *const IMLangStringWStr,
-            lSrcPos: i32,
-            lSrcMaxLen: i32,
-            plocale: ?*u32,
-            plLocalePos: ?*i32,
-            plLocaleLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMLangString: IMLangString,
-    IUnknown: IUnknown,
-    pub fn SetWStr(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWStr(self, lDestPos, lDestLen, pszSrc, cchSrc, pcchActual, plActualLen);
-    }
-    pub fn SetStrBufW(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pSrcBuf: ?*IMLangStringBufW, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStrBufW(self, lDestPos, lDestLen, pSrcBuf, pcchActual, plActualLen);
-    }
-    pub fn GetWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, pszDest: ?[*:0]u16, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWStr(self, lSrcPos, lSrcLen, pszDest, cchDest, pcchActual, plActualLen);
-    }
-    pub fn GetStrBufW(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, ppDestBuf: ?*?*IMLangStringBufW, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStrBufW(self, lSrcPos, lSrcMaxLen, ppDestBuf, plDestLen);
-    }
-    pub fn LockWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?PWSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.LockWStr(self, lSrcPos, lSrcLen, lFlags, cchRequest, ppszDest, pcchDest, plDestLen);
-    }
-    pub fn UnlockWStr(self: *const IMLangStringWStr, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnlockWStr(self, pszSrc, cchSrc, pcchActual, plActualLen);
-    }
-    pub fn SetLocale(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLocale(self, lDestPos, lDestLen, locale);
-    }
-    pub fn GetLocale(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocale(self, lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
-    }
-};
-
-const IID_IMLangStringAStr_Value = Guid.initString("c04d65d2-b70d-11d0-b188-00aa0038c969");
-pub const IID_IMLangStringAStr = &IID_IMLangStringAStr_Value;
-pub const IMLangStringAStr = extern union {
-    pub const VTable = extern struct {
-        base: IMLangString.VTable,
-        SetAStr: *const fn(
-            self: *const IMLangStringAStr,
-            lDestPos: i32,
-            lDestLen: i32,
-            uCodePage: u32,
-            pszSrc: [*:0]const u8,
-            cchSrc: i32,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        SetStrBufA: *const fn(
-            self: *const IMLangStringAStr,
-            lDestPos: i32,
-            lDestLen: i32,
-            uCodePage: u32,
-            pSrcBuf: ?*IMLangStringBufA,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetAStr: *const fn(
-            self: *const IMLangStringAStr,
-            lSrcPos: i32,
-            lSrcLen: i32,
-            uCodePageIn: u32,
-            puCodePageOut: ?*u32,
-            pszDest: ?[*:0]u8,
-            cchDest: i32,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetStrBufA: *const fn(
-            self: *const IMLangStringAStr,
-            lSrcPos: i32,
-            lSrcMaxLen: i32,
-            puDestCodePage: ?*u32,
-            ppDestBuf: ?*?*IMLangStringBufA,
-            plDestLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        LockAStr: *const fn(
-            self: *const IMLangStringAStr,
-            lSrcPos: i32,
-            lSrcLen: i32,
-            lFlags: i32,
-            uCodePageIn: u32,
-            cchRequest: i32,
-            puCodePageOut: ?*u32,
-            ppszDest: ?*?PSTR,
-            pcchDest: ?*i32,
-            plDestLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        UnlockAStr: *const fn(
-            self: *const IMLangStringAStr,
-            pszSrc: [*:0]const u8,
-            cchSrc: i32,
-            pcchActual: ?*i32,
-            plActualLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        SetLocale: *const fn(
-            self: *const IMLangStringAStr,
-            lDestPos: i32,
-            lDestLen: i32,
-            locale: u32,
-        ) callconv(.winapi) HRESULT,
-        GetLocale: *const fn(
-            self: *const IMLangStringAStr,
-            lSrcPos: i32,
-            lSrcMaxLen: i32,
-            plocale: ?*u32,
-            plLocalePos: ?*i32,
-            plLocaleLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMLangString: IMLangString,
-    IUnknown: IUnknown,
-    pub fn SetAStr(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAStr(self, lDestPos, lDestLen, uCodePage, pszSrc, cchSrc, pcchActual, plActualLen);
-    }
-    pub fn SetStrBufA(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pSrcBuf: ?*IMLangStringBufA, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStrBufA(self, lDestPos, lDestLen, uCodePage, pSrcBuf, pcchActual, plActualLen);
-    }
-    pub fn GetAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, uCodePageIn: u32, puCodePageOut: ?*u32, pszDest: ?[*:0]u8, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAStr(self, lSrcPos, lSrcLen, uCodePageIn, puCodePageOut, pszDest, cchDest, pcchActual, plActualLen);
-    }
-    pub fn GetStrBufA(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, puDestCodePage: ?*u32, ppDestBuf: ?*?*IMLangStringBufA, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStrBufA(self, lSrcPos, lSrcMaxLen, puDestCodePage, ppDestBuf, plDestLen);
-    }
-    pub fn LockAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?PSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.LockAStr(self, lSrcPos, lSrcLen, lFlags, uCodePageIn, cchRequest, puCodePageOut, ppszDest, pcchDest, plDestLen);
-    }
-    pub fn UnlockAStr(self: *const IMLangStringAStr, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnlockAStr(self, pszSrc, cchSrc, pcchActual, plActualLen);
-    }
-    pub fn SetLocale(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLocale(self, lDestPos, lDestLen, locale);
-    }
-    pub fn GetLocale(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocale(self, lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
-    }
-};
-
-const IID_IMLangLineBreakConsole_Value = Guid.initString("f5be2ee1-bfd7-11d0-b188-00aa0038c969");
-pub const IID_IMLangLineBreakConsole = &IID_IMLangLineBreakConsole_Value;
-pub const IMLangLineBreakConsole = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BreakLineML: *const fn(
-            self: *const IMLangLineBreakConsole,
-            pSrcMLStr: ?*IMLangString,
-            lSrcPos: i32,
-            lSrcLen: i32,
-            cMinColumns: i32,
-            cMaxColumns: i32,
-            plLineLen: ?*i32,
-            plSkipLen: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        BreakLineW: *const fn(
-            self: *const IMLangLineBreakConsole,
-            locale: u32,
-            pszSrc: [*:0]const u16,
-            cchSrc: i32,
-            cMaxColumns: i32,
-            pcchLine: ?*i32,
-            pcchSkip: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        BreakLineA: *const fn(
-            self: *const IMLangLineBreakConsole,
-            locale: u32,
-            uCodePage: u32,
-            pszSrc: [*:0]const u8,
-            cchSrc: i32,
-            cMaxColumns: i32,
-            pcchLine: ?*i32,
-            pcchSkip: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn BreakLineML(self: *const IMLangLineBreakConsole, pSrcMLStr: ?*IMLangString, lSrcPos: i32, lSrcLen: i32, cMinColumns: i32, cMaxColumns: i32, plLineLen: ?*i32, plSkipLen: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.BreakLineML(self, pSrcMLStr, lSrcPos, lSrcLen, cMinColumns, cMaxColumns, plLineLen, plSkipLen);
-    }
-    pub fn BreakLineW(self: *const IMLangLineBreakConsole, locale: u32, pszSrc: [*:0]const u16, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.BreakLineW(self, locale, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
-    }
-    pub fn BreakLineA(self: *const IMLangLineBreakConsole, locale: u32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.BreakLineA(self, locale, uCodePage, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
-    }
-};
-
-pub const MIMECONTF = enum(i32) {
-    MAILNEWS = 1,
-    BROWSER = 2,
-    MINIMAL = 4,
-    IMPORT = 8,
-    SAVABLE_MAILNEWS = 256,
-    SAVABLE_BROWSER = 512,
-    EXPORT = 1024,
-    PRIVCONVERTER = 65536,
-    VALID = 131072,
-    VALID_NLS = 262144,
-    MIME_IE4 = 268435456,
-    MIME_LATEST = 536870912,
-    MIME_REGISTRY = 1073741824,
-};
-pub const MIMECONTF_MAILNEWS = MIMECONTF.MAILNEWS;
-pub const MIMECONTF_BROWSER = MIMECONTF.BROWSER;
-pub const MIMECONTF_MINIMAL = MIMECONTF.MINIMAL;
-pub const MIMECONTF_IMPORT = MIMECONTF.IMPORT;
-pub const MIMECONTF_SAVABLE_MAILNEWS = MIMECONTF.SAVABLE_MAILNEWS;
-pub const MIMECONTF_SAVABLE_BROWSER = MIMECONTF.SAVABLE_BROWSER;
-pub const MIMECONTF_EXPORT = MIMECONTF.EXPORT;
-pub const MIMECONTF_PRIVCONVERTER = MIMECONTF.PRIVCONVERTER;
-pub const MIMECONTF_VALID = MIMECONTF.VALID;
-pub const MIMECONTF_VALID_NLS = MIMECONTF.VALID_NLS;
-pub const MIMECONTF_MIME_IE4 = MIMECONTF.MIME_IE4;
-pub const MIMECONTF_MIME_LATEST = MIMECONTF.MIME_LATEST;
-pub const MIMECONTF_MIME_REGISTRY = MIMECONTF.MIME_REGISTRY;
-
-pub const MIMECPINFO = extern struct {
-    dwFlags: u32,
-    uiCodePage: u32,
-    uiFamilyCodePage: u32,
-    wszDescription: [64]u16,
-    wszWebCharset: [50]u16,
-    wszHeaderCharset: [50]u16,
-    wszBodyCharset: [50]u16,
-    wszFixedWidthFont: [32]u16,
-    wszProportionalFont: [32]u16,
-    bGDICharset: u8,
-};
-
-pub const MIMECSETINFO = extern struct {
-    uiCodePage: u32,
-    uiInternetEncoding: u32,
-    wszCharset: [50]u16,
-};
-
-const IID_IEnumCodePage_Value = Guid.initString("275c23e3-3747-11d0-9fea-00aa003f8646");
-pub const IID_IEnumCodePage = &IID_IEnumCodePage_Value;
-pub const IEnumCodePage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumCodePage,
-            ppEnum: ?*?*IEnumCodePage,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumCodePage,
-            celt: u32,
-            rgelt: ?*MIMECPINFO,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumCodePage,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumCodePage,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumCodePage, ppEnum: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumCodePage, celt: u32, rgelt: ?*MIMECPINFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Reset(self: *const IEnumCodePage) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumCodePage, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-};
-
-pub const RFC1766INFO = extern struct {
-    lcid: u32,
-    wszRfc1766: [6]u16,
-    wszLocaleName: [32]u16,
-};
-
-const IID_IEnumRfc1766_Value = Guid.initString("3dc39d1d-c030-11d0-b81b-00c04fc9b31f");
-pub const IID_IEnumRfc1766 = &IID_IEnumRfc1766_Value;
-pub const IEnumRfc1766 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumRfc1766,
-            ppEnum: ?*?*IEnumRfc1766,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumRfc1766,
-            celt: u32,
-            rgelt: ?*RFC1766INFO,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumRfc1766,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumRfc1766,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumRfc1766, ppEnum: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumRfc1766, celt: u32, rgelt: ?*RFC1766INFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Reset(self: *const IEnumRfc1766) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumRfc1766, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-};
-
-pub const SCRIPTCONTF = enum(i32) {
-    Default = 0,
-    Merge = 1,
-    AsciiSym = 2,
-    AsciiLatin = 3,
-    Latin = 4,
-    Greek = 5,
-    Cyrillic = 6,
-    Armenian = 7,
-    Hebrew = 8,
-    Arabic = 9,
-    Devanagari = 10,
-    Bengali = 11,
-    Gurmukhi = 12,
-    Gujarati = 13,
-    Oriya = 14,
-    Tamil = 15,
-    Telugu = 16,
-    Kannada = 17,
-    Malayalam = 18,
-    Thai = 19,
-    Lao = 20,
-    Tibetan = 21,
-    Georgian = 22,
-    Hangul = 23,
-    Kana = 24,
-    Bopomofo = 25,
-    Han = 26,
-    Ethiopic = 27,
-    CanSyllabic = 28,
-    Cherokee = 29,
-    Yi = 30,
-    Braille = 31,
-    Runic = 32,
-    Ogham = 33,
-    Sinhala = 34,
-    Syriac = 35,
-    Burmese = 36,
-    Khmer = 37,
-    Thaana = 38,
-    Mongolian = 39,
-    UserDefined = 40,
-    Lim = 41,
-    pub const FEFirst = .Hangul;
-    pub const FELast = .Han;
-};
-pub const sidDefault = SCRIPTCONTF.Default;
-pub const sidMerge = SCRIPTCONTF.Merge;
-pub const sidAsciiSym = SCRIPTCONTF.AsciiSym;
-pub const sidAsciiLatin = SCRIPTCONTF.AsciiLatin;
-pub const sidLatin = SCRIPTCONTF.Latin;
-pub const sidGreek = SCRIPTCONTF.Greek;
-pub const sidCyrillic = SCRIPTCONTF.Cyrillic;
-pub const sidArmenian = SCRIPTCONTF.Armenian;
-pub const sidHebrew = SCRIPTCONTF.Hebrew;
-pub const sidArabic = SCRIPTCONTF.Arabic;
-pub const sidDevanagari = SCRIPTCONTF.Devanagari;
-pub const sidBengali = SCRIPTCONTF.Bengali;
-pub const sidGurmukhi = SCRIPTCONTF.Gurmukhi;
-pub const sidGujarati = SCRIPTCONTF.Gujarati;
-pub const sidOriya = SCRIPTCONTF.Oriya;
-pub const sidTamil = SCRIPTCONTF.Tamil;
-pub const sidTelugu = SCRIPTCONTF.Telugu;
-pub const sidKannada = SCRIPTCONTF.Kannada;
-pub const sidMalayalam = SCRIPTCONTF.Malayalam;
-pub const sidThai = SCRIPTCONTF.Thai;
-pub const sidLao = SCRIPTCONTF.Lao;
-pub const sidTibetan = SCRIPTCONTF.Tibetan;
-pub const sidGeorgian = SCRIPTCONTF.Georgian;
-pub const sidHangul = SCRIPTCONTF.Hangul;
-pub const sidKana = SCRIPTCONTF.Kana;
-pub const sidBopomofo = SCRIPTCONTF.Bopomofo;
-pub const sidHan = SCRIPTCONTF.Han;
-pub const sidEthiopic = SCRIPTCONTF.Ethiopic;
-pub const sidCanSyllabic = SCRIPTCONTF.CanSyllabic;
-pub const sidCherokee = SCRIPTCONTF.Cherokee;
-pub const sidYi = SCRIPTCONTF.Yi;
-pub const sidBraille = SCRIPTCONTF.Braille;
-pub const sidRunic = SCRIPTCONTF.Runic;
-pub const sidOgham = SCRIPTCONTF.Ogham;
-pub const sidSinhala = SCRIPTCONTF.Sinhala;
-pub const sidSyriac = SCRIPTCONTF.Syriac;
-pub const sidBurmese = SCRIPTCONTF.Burmese;
-pub const sidKhmer = SCRIPTCONTF.Khmer;
-pub const sidThaana = SCRIPTCONTF.Thaana;
-pub const sidMongolian = SCRIPTCONTF.Mongolian;
-pub const sidUserDefined = SCRIPTCONTF.UserDefined;
-pub const sidLim = SCRIPTCONTF.Lim;
-pub const sidFEFirst = SCRIPTCONTF.Hangul;
-pub const sidFELast = SCRIPTCONTF.Han;
-
-pub const SCRIPTINFO = extern struct {
-    ScriptId: u8,
-    uiCodePage: u32,
-    wszDescription: [48]u16,
-    wszFixedWidthFont: [32]u16,
-    wszProportionalFont: [32]u16,
-};
-
-const IID_IEnumScript_Value = Guid.initString("ae5f1430-388b-11d2-8380-00c04f8f5da1");
-pub const IID_IEnumScript = &IID_IEnumScript_Value;
-pub const IEnumScript = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumScript,
-            ppEnum: ?*?*IEnumScript,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumScript,
-            celt: u32,
-            rgelt: ?*SCRIPTINFO,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumScript,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumScript,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumScript, ppEnum: ?*?*IEnumScript) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumScript, celt: u32, rgelt: ?*SCRIPTINFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Reset(self: *const IEnumScript) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumScript, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-};
-
-pub const tagMLCONVCHARF = enum(i32) {
-    AUTODETECT = 1,
-    ENTITIZE = 2,
-    NAME_ENTITIZE = 4,
-    USEDEFCHAR = 8,
-    NOBESTFITCHARS = 16,
-    DETECTJPN = 32,
-    pub const NCR_ENTITIZE = .ENTITIZE;
-};
-pub const MLCONVCHARF_AUTODETECT = tagMLCONVCHARF.AUTODETECT;
-pub const MLCONVCHARF_ENTITIZE = tagMLCONVCHARF.ENTITIZE;
-pub const MLCONVCHARF_NCR_ENTITIZE = tagMLCONVCHARF.ENTITIZE;
-pub const MLCONVCHARF_NAME_ENTITIZE = tagMLCONVCHARF.NAME_ENTITIZE;
-pub const MLCONVCHARF_USEDEFCHAR = tagMLCONVCHARF.USEDEFCHAR;
-pub const MLCONVCHARF_NOBESTFITCHARS = tagMLCONVCHARF.NOBESTFITCHARS;
-pub const MLCONVCHARF_DETECTJPN = tagMLCONVCHARF.DETECTJPN;
-
-pub const tagMLCPF = enum(i32) {
-    MAILNEWS = 1,
-    BROWSER = 2,
-    VALID = 4,
-    VALID_NLS = 8,
-    PRESERVE_ORDER = 16,
-    PREFERRED_ONLY = 32,
-    FILTER_SPECIALCHAR = 64,
-    EURO_UTF8 = 128,
-};
-pub const MLDETECTF_MAILNEWS = tagMLCPF.MAILNEWS;
-pub const MLDETECTF_BROWSER = tagMLCPF.BROWSER;
-pub const MLDETECTF_VALID = tagMLCPF.VALID;
-pub const MLDETECTF_VALID_NLS = tagMLCPF.VALID_NLS;
-pub const MLDETECTF_PRESERVE_ORDER = tagMLCPF.PRESERVE_ORDER;
-pub const MLDETECTF_PREFERRED_ONLY = tagMLCPF.PREFERRED_ONLY;
-pub const MLDETECTF_FILTER_SPECIALCHAR = tagMLCPF.FILTER_SPECIALCHAR;
-pub const MLDETECTF_EURO_UTF8 = tagMLCPF.EURO_UTF8;
-
-const IID_IMLangConvertCharset_Value = Guid.initString("d66d6f98-cdaa-11d0-b822-00c04fc9b31f");
-pub const IID_IMLangConvertCharset = &IID_IMLangConvertCharset_Value;
-pub const IMLangConvertCharset = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IMLangConvertCharset,
-            uiSrcCodePage: u32,
-            uiDstCodePage: u32,
-            dwProperty: u32,
-        ) callconv(.winapi) HRESULT,
-        GetSourceCodePage: *const fn(
-            self: *const IMLangConvertCharset,
-            puiSrcCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDestinationCodePage: *const fn(
-            self: *const IMLangConvertCharset,
-            puiDstCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IMLangConvertCharset,
-            pdwProperty: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        DoConversion: *const fn(
-            self: *const IMLangConvertCharset,
-            // TODO: what to do with BytesParamIndex 1?
-            pSrcStr: ?*u8,
-            pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pDstStr: ?*u8,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        DoConversionToUnicode: *const fn(
-            self: *const IMLangConvertCharset,
-            // TODO: what to do with BytesParamIndex 1?
-            pSrcStr: ?PSTR,
-            pcSrcSize: ?*u32,
-            pDstStr: [*:0]u16,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        DoConversionFromUnicode: *const fn(
-            self: *const IMLangConvertCharset,
-            pSrcStr: [*:0]u16,
-            pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pDstStr: ?PSTR,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IMLangConvertCharset, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, uiSrcCodePage, uiDstCodePage, dwProperty);
-    }
-    pub fn GetSourceCodePage(self: *const IMLangConvertCharset, puiSrcCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSourceCodePage(self, puiSrcCodePage);
-    }
-    pub fn GetDestinationCodePage(self: *const IMLangConvertCharset, puiDstCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDestinationCodePage(self, puiDstCodePage);
-    }
-    pub fn GetProperty(self: *const IMLangConvertCharset, pdwProperty: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, pdwProperty);
-    }
-    pub fn DoConversion(self: *const IMLangConvertCharset, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DoConversion(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn DoConversionToUnicode(self: *const IMLangConvertCharset, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DoConversionToUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn DoConversionFromUnicode(self: *const IMLangConvertCharset, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DoConversionFromUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-};
-
-const IID_IMultiLanguage_Value = Guid.initString("275c23e1-3747-11d0-9fea-00aa003f8646");
-pub const IID_IMultiLanguage = &IID_IMultiLanguage_Value;
-pub const IMultiLanguage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNumberOfCodePageInfo: *const fn(
-            self: *const IMultiLanguage,
-            pcCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCodePageInfo: *const fn(
-            self: *const IMultiLanguage,
-            uiCodePage: u32,
-            pCodePageInfo: ?*MIMECPINFO,
-        ) callconv(.winapi) HRESULT,
-        GetFamilyCodePage: *const fn(
-            self: *const IMultiLanguage,
-            uiCodePage: u32,
-            puiFamilyCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumCodePages: *const fn(
-            self: *const IMultiLanguage,
-            grfFlags: u32,
-            ppEnumCodePage: ?*?*IEnumCodePage,
-        ) callconv(.winapi) HRESULT,
-        GetCharsetInfo: *const fn(
-            self: *const IMultiLanguage,
-            Charset: ?BSTR,
-            pCharsetInfo: ?*MIMECSETINFO,
-        ) callconv(.winapi) HRESULT,
-        IsConvertible: *const fn(
-            self: *const IMultiLanguage,
-            dwSrcEncoding: u32,
-            dwDstEncoding: u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertString: *const fn(
-            self: *const IMultiLanguage,
-            pdwMode: ?*u32,
-            dwSrcEncoding: u32,
-            dwDstEncoding: u32,
-            // TODO: what to do with BytesParamIndex 4?
-            pSrcStr: ?*u8,
-            pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 6?
-            pDstStr: ?*u8,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringToUnicode: *const fn(
-            self: *const IMultiLanguage,
-            pdwMode: ?*u32,
-            dwEncoding: u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pSrcStr: ?PSTR,
-            pcSrcSize: ?*u32,
-            pDstStr: ?[*:0]u16,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringFromUnicode: *const fn(
-            self: *const IMultiLanguage,
-            pdwMode: ?*u32,
-            dwEncoding: u32,
-            pSrcStr: ?[*:0]u16,
-            pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 5?
-            pDstStr: ?PSTR,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringReset: *const fn(
-            self: *const IMultiLanguage,
-        ) callconv(.winapi) HRESULT,
-        GetRfc1766FromLcid: *const fn(
-            self: *const IMultiLanguage,
-            Locale: u32,
-            pbstrRfc1766: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetLcidFromRfc1766: *const fn(
-            self: *const IMultiLanguage,
-            pLocale: ?*u32,
-            bstrRfc1766: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        EnumRfc1766: *const fn(
-            self: *const IMultiLanguage,
-            ppEnumRfc1766: ?*?*IEnumRfc1766,
-        ) callconv(.winapi) HRESULT,
-        GetRfc1766Info: *const fn(
-            self: *const IMultiLanguage,
-            Locale: u32,
-            pRfc1766Info: ?*RFC1766INFO,
-        ) callconv(.winapi) HRESULT,
-        CreateConvertCharset: *const fn(
-            self: *const IMultiLanguage,
-            uiSrcCodePage: u32,
-            uiDstCodePage: u32,
-            dwProperty: u32,
-            ppMLangConvertCharset: ?*?*IMLangConvertCharset,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage, pcCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
-    }
-    pub fn GetCodePageInfo(self: *const IMultiLanguage, uiCodePage: u32, pCodePageInfo: ?*MIMECPINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodePageInfo(self, uiCodePage, pCodePageInfo);
-    }
-    pub fn GetFamilyCodePage(self: *const IMultiLanguage, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFamilyCodePage(self, uiCodePage, puiFamilyCodePage);
-    }
-    pub fn EnumCodePages(self: *const IMultiLanguage, grfFlags: u32, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumCodePages(self, grfFlags, ppEnumCodePage);
-    }
-    pub fn GetCharsetInfo(self: *const IMultiLanguage, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCharsetInfo(self, Charset, pCharsetInfo);
-    }
-    pub fn IsConvertible(self: *const IMultiLanguage, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.IsConvertible(self, dwSrcEncoding, dwDstEncoding);
-    }
-    pub fn ConvertString(self: *const IMultiLanguage, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn ConvertStringToUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn ConvertStringReset(self: *const IMultiLanguage) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringReset(self);
-    }
-    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRfc1766FromLcid(self, Locale, pbstrRfc1766);
-    }
-    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLcidFromRfc1766(self, pLocale, bstrRfc1766);
-    }
-    pub fn EnumRfc1766(self: *const IMultiLanguage, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumRfc1766(self, ppEnumRfc1766);
-    }
-    pub fn GetRfc1766Info(self: *const IMultiLanguage, Locale: u32, pRfc1766Info: ?*RFC1766INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRfc1766Info(self, Locale, pRfc1766Info);
-    }
-    pub fn CreateConvertCharset(self: *const IMultiLanguage, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateConvertCharset(self, uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
-    }
-};
-
-pub const MLDETECTCP = enum(i32) {
-    NONE = 0,
-    @"7BIT" = 1,
-    @"8BIT" = 2,
-    DBCS = 4,
-    HTML = 8,
-    NUMBER = 16,
-};
-pub const MLDETECTCP_NONE = MLDETECTCP.NONE;
-pub const MLDETECTCP_7BIT = MLDETECTCP.@"7BIT";
-pub const MLDETECTCP_8BIT = MLDETECTCP.@"8BIT";
-pub const MLDETECTCP_DBCS = MLDETECTCP.DBCS;
-pub const MLDETECTCP_HTML = MLDETECTCP.HTML;
-pub const MLDETECTCP_NUMBER = MLDETECTCP.NUMBER;
-
-pub const DetectEncodingInfo = extern struct {
-    nLangID: u32,
-    nCodePage: u32,
-    nDocPercent: i32,
-    nConfidence: i32,
-};
-
-pub const SCRIPTFONTCONTF = enum(i32) {
-    FIXED_FONT = 1,
-    PROPORTIONAL_FONT = 2,
-    SCRIPT_USER = 65536,
-    SCRIPT_HIDE = 131072,
-    SCRIPT_SYSTEM = 262144,
-};
-pub const SCRIPTCONTF_FIXED_FONT = SCRIPTFONTCONTF.FIXED_FONT;
-pub const SCRIPTCONTF_PROPORTIONAL_FONT = SCRIPTFONTCONTF.PROPORTIONAL_FONT;
-pub const SCRIPTCONTF_SCRIPT_USER = SCRIPTFONTCONTF.SCRIPT_USER;
-pub const SCRIPTCONTF_SCRIPT_HIDE = SCRIPTFONTCONTF.SCRIPT_HIDE;
-pub const SCRIPTCONTF_SCRIPT_SYSTEM = SCRIPTFONTCONTF.SCRIPT_SYSTEM;
-
-pub const tagSCRIPFONTINFO = extern struct {
-    scripts: i64,
-    wszFont: [32]u16,
-};
-
-const IID_IMultiLanguage2_Value = Guid.initString("dccfc164-2b38-11d2-b7ec-00c04f8f5d9a");
-pub const IID_IMultiLanguage2 = &IID_IMultiLanguage2_Value;
-pub const IMultiLanguage2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNumberOfCodePageInfo: *const fn(
-            self: *const IMultiLanguage2,
-            pcCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCodePageInfo: *const fn(
-            self: *const IMultiLanguage2,
-            uiCodePage: u32,
-            LangId: u16,
-            pCodePageInfo: ?*MIMECPINFO,
-        ) callconv(.winapi) HRESULT,
-        GetFamilyCodePage: *const fn(
-            self: *const IMultiLanguage2,
-            uiCodePage: u32,
-            puiFamilyCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumCodePages: *const fn(
-            self: *const IMultiLanguage2,
-            grfFlags: u32,
-            LangId: u16,
-            ppEnumCodePage: ?*?*IEnumCodePage,
-        ) callconv(.winapi) HRESULT,
-        GetCharsetInfo: *const fn(
-            self: *const IMultiLanguage2,
-            Charset: ?BSTR,
-            pCharsetInfo: ?*MIMECSETINFO,
-        ) callconv(.winapi) HRESULT,
-        IsConvertible: *const fn(
-            self: *const IMultiLanguage2,
-            dwSrcEncoding: u32,
-            dwDstEncoding: u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertString: *const fn(
-            self: *const IMultiLanguage2,
-            pdwMode: ?*u32,
-            dwSrcEncoding: u32,
-            dwDstEncoding: u32,
-            // TODO: what to do with BytesParamIndex 4?
-            pSrcStr: ?*u8,
-            pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 6?
-            pDstStr: ?*u8,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringToUnicode: *const fn(
-            self: *const IMultiLanguage2,
-            pdwMode: ?*u32,
-            dwEncoding: u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pSrcStr: ?PSTR,
-            pcSrcSize: ?*u32,
-            pDstStr: ?[*:0]u16,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringFromUnicode: *const fn(
-            self: *const IMultiLanguage2,
-            pdwMode: ?*u32,
-            dwEncoding: u32,
-            pSrcStr: ?[*:0]u16,
-            pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 5?
-            pDstStr: ?PSTR,
-            pcDstSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringReset: *const fn(
-            self: *const IMultiLanguage2,
-        ) callconv(.winapi) HRESULT,
-        GetRfc1766FromLcid: *const fn(
-            self: *const IMultiLanguage2,
-            Locale: u32,
-            pbstrRfc1766: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetLcidFromRfc1766: *const fn(
-            self: *const IMultiLanguage2,
-            pLocale: ?*u32,
-            bstrRfc1766: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        EnumRfc1766: *const fn(
-            self: *const IMultiLanguage2,
-            LangId: u16,
-            ppEnumRfc1766: ?*?*IEnumRfc1766,
-        ) callconv(.winapi) HRESULT,
-        GetRfc1766Info: *const fn(
-            self: *const IMultiLanguage2,
-            Locale: u32,
-            LangId: u16,
-            pRfc1766Info: ?*RFC1766INFO,
-        ) callconv(.winapi) HRESULT,
-        CreateConvertCharset: *const fn(
-            self: *const IMultiLanguage2,
-            uiSrcCodePage: u32,
-            uiDstCodePage: u32,
-            dwProperty: u32,
-            ppMLangConvertCharset: ?*?*IMLangConvertCharset,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringInIStream: *const fn(
-            self: *const IMultiLanguage2,
-            pdwMode: ?*u32,
-            dwFlag: u32,
-            lpFallBack: ?PWSTR,
-            dwSrcEncoding: u32,
-            dwDstEncoding: u32,
-            pstmIn: ?*IStream,
-            pstmOut: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringToUnicodeEx: *const fn(
-            self: *const IMultiLanguage2,
-            pdwMode: ?*u32,
-            dwEncoding: u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pSrcStr: ?PSTR,
-            pcSrcSize: ?*u32,
-            pDstStr: [*:0]u16,
-            pcDstSize: ?*u32,
-            dwFlag: u32,
-            lpFallBack: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        ConvertStringFromUnicodeEx: *const fn(
-            self: *const IMultiLanguage2,
-            pdwMode: ?*u32,
-            dwEncoding: u32,
-            pSrcStr: [*:0]u16,
-            pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 5?
-            pDstStr: ?PSTR,
-            pcDstSize: ?*u32,
-            dwFlag: u32,
-            lpFallBack: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        DetectCodepageInIStream: *const fn(
-            self: *const IMultiLanguage2,
-            dwFlag: u32,
-            dwPrefWinCodePage: u32,
-            pstmIn: ?*IStream,
-            lpEncoding: ?*DetectEncodingInfo,
-            pnScores: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        DetectInputCodepage: *const fn(
-            self: *const IMultiLanguage2,
-            dwFlag: u32,
-            dwPrefWinCodePage: u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pSrcStr: ?PSTR,
-            pcSrcSize: ?*i32,
-            lpEncoding: ?*DetectEncodingInfo,
-            pnScores: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        ValidateCodePage: *const fn(
-            self: *const IMultiLanguage2,
-            uiCodePage: u32,
-            hwnd: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        GetCodePageDescription: *const fn(
-            self: *const IMultiLanguage2,
-            uiCodePage: u32,
-            lcid: u32,
-            lpWideCharStr: [*:0]u16,
-            cchWideChar: i32,
-        ) callconv(.winapi) HRESULT,
-        IsCodePageInstallable: *const fn(
-            self: *const IMultiLanguage2,
-            uiCodePage: u32,
-        ) callconv(.winapi) HRESULT,
-        SetMimeDBSource: *const fn(
-            self: *const IMultiLanguage2,
-            dwSource: MIMECONTF,
-        ) callconv(.winapi) HRESULT,
-        GetNumberOfScripts: *const fn(
-            self: *const IMultiLanguage2,
-            pnScripts: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumScripts: *const fn(
-            self: *const IMultiLanguage2,
-            dwFlags: u32,
-            LangId: u16,
-            ppEnumScript: ?*?*IEnumScript,
-        ) callconv(.winapi) HRESULT,
-        ValidateCodePageEx: *const fn(
-            self: *const IMultiLanguage2,
-            uiCodePage: u32,
-            hwnd: ?HWND,
-            dwfIODControl: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage2, pcCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
-    }
-    pub fn GetCodePageInfo(self: *const IMultiLanguage2, uiCodePage: u32, LangId: u16, pCodePageInfo: ?*MIMECPINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodePageInfo(self, uiCodePage, LangId, pCodePageInfo);
-    }
-    pub fn GetFamilyCodePage(self: *const IMultiLanguage2, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFamilyCodePage(self, uiCodePage, puiFamilyCodePage);
-    }
-    pub fn EnumCodePages(self: *const IMultiLanguage2, grfFlags: u32, LangId: u16, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumCodePages(self, grfFlags, LangId, ppEnumCodePage);
-    }
-    pub fn GetCharsetInfo(self: *const IMultiLanguage2, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCharsetInfo(self, Charset, pCharsetInfo);
-    }
-    pub fn IsConvertible(self: *const IMultiLanguage2, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.IsConvertible(self, dwSrcEncoding, dwDstEncoding);
-    }
-    pub fn ConvertString(self: *const IMultiLanguage2, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn ConvertStringToUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
-    }
-    pub fn ConvertStringReset(self: *const IMultiLanguage2) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringReset(self);
-    }
-    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage2, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRfc1766FromLcid(self, Locale, pbstrRfc1766);
-    }
-    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage2, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLcidFromRfc1766(self, pLocale, bstrRfc1766);
-    }
-    pub fn EnumRfc1766(self: *const IMultiLanguage2, LangId: u16, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumRfc1766(self, LangId, ppEnumRfc1766);
-    }
-    pub fn GetRfc1766Info(self: *const IMultiLanguage2, Locale: u32, LangId: u16, pRfc1766Info: ?*RFC1766INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRfc1766Info(self, Locale, LangId, pRfc1766Info);
-    }
-    pub fn CreateConvertCharset(self: *const IMultiLanguage2, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateConvertCharset(self, uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
-    }
-    pub fn ConvertStringInIStream(self: *const IMultiLanguage2, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringInIStream(self, pdwMode, dwFlag, lpFallBack, dwSrcEncoding, dwDstEncoding, pstmIn, pstmOut);
-    }
-    pub fn ConvertStringToUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringToUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
-    }
-    pub fn ConvertStringFromUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertStringFromUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
-    }
-    pub fn DetectCodepageInIStream(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pstmIn: ?*IStream, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DetectCodepageInIStream(self, dwFlag, dwPrefWinCodePage, pstmIn, lpEncoding, pnScores);
-    }
-    pub fn DetectInputCodepage(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?PSTR, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DetectInputCodepage(self, dwFlag, dwPrefWinCodePage, pSrcStr, pcSrcSize, lpEncoding, pnScores);
-    }
-    pub fn ValidateCodePage(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.ValidateCodePage(self, uiCodePage, hwnd);
-    }
-    pub fn GetCodePageDescription(self: *const IMultiLanguage2, uiCodePage: u32, lcid: u32, lpWideCharStr: [*:0]u16, cchWideChar: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodePageDescription(self, uiCodePage, lcid, lpWideCharStr, cchWideChar);
-    }
-    pub fn IsCodePageInstallable(self: *const IMultiLanguage2, uiCodePage: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.IsCodePageInstallable(self, uiCodePage);
-    }
-    pub fn SetMimeDBSource(self: *const IMultiLanguage2, dwSource: MIMECONTF) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMimeDBSource(self, dwSource);
-    }
-    pub fn GetNumberOfScripts(self: *const IMultiLanguage2, pnScripts: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumberOfScripts(self, pnScripts);
-    }
-    pub fn EnumScripts(self: *const IMultiLanguage2, dwFlags: u32, LangId: u16, ppEnumScript: ?*?*IEnumScript) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumScripts(self, dwFlags, LangId, ppEnumScript);
-    }
-    pub fn ValidateCodePageEx(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND, dwfIODControl: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ValidateCodePageEx(self, uiCodePage, hwnd, dwfIODControl);
-    }
-};
-
-const IID_IMLangCodePages_Value = Guid.initString("359f3443-bd4a-11d0-b188-00aa0038c969");
-pub const IID_IMLangCodePages = &IID_IMLangCodePages_Value;
-pub const IMLangCodePages = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCharCodePages: *const fn(
-            self: *const IMLangCodePages,
-            chSrc: u16,
-            pdwCodePages: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStrCodePages: *const fn(
-            self: *const IMLangCodePages,
-            pszSrc: [*:0]const u16,
-            cchSrc: i32,
-            dwPriorityCodePages: u32,
-            pdwCodePages: ?*u32,
-            pcchCodePages: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        CodePageToCodePages: *const fn(
-            self: *const IMLangCodePages,
-            uCodePage: u32,
-            pdwCodePages: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        CodePagesToCodePage: *const fn(
-            self: *const IMLangCodePages,
-            dwCodePages: u32,
-            uDefaultCodePage: u32,
-            puCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCharCodePages(self: *const IMLangCodePages, chSrc: u16, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCharCodePages(self, chSrc, pdwCodePages);
-    }
-    pub fn GetStrCodePages(self: *const IMLangCodePages, pszSrc: [*:0]const u16, cchSrc: i32, dwPriorityCodePages: u32, pdwCodePages: ?*u32, pcchCodePages: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStrCodePages(self, pszSrc, cchSrc, dwPriorityCodePages, pdwCodePages, pcchCodePages);
-    }
-    pub fn CodePageToCodePages(self: *const IMLangCodePages, uCodePage: u32, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CodePageToCodePages(self, uCodePage, pdwCodePages);
-    }
-    pub fn CodePagesToCodePage(self: *const IMLangCodePages, dwCodePages: u32, uDefaultCodePage: u32, puCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CodePagesToCodePage(self, dwCodePages, uDefaultCodePage, puCodePage);
-    }
-};
-
-const IID_IMLangFontLink_Value = Guid.initString("359f3441-bd4a-11d0-b188-00aa0038c969");
-pub const IID_IMLangFontLink = &IID_IMLangFontLink_Value;
-pub const IMLangFontLink = extern union {
-    pub const VTable = extern struct {
-        base: IMLangCodePages.VTable,
-        GetFontCodePages: *const fn(
-            self: *const IMLangFontLink,
-            hDC: ?HDC,
-            hFont: ?HFONT,
-            pdwCodePages: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        MapFont: *const fn(
-            self: *const IMLangFontLink,
-            hDC: ?HDC,
-            dwCodePages: u32,
-            hSrcFont: ?HFONT,
-            phDestFont: ?*?HFONT,
-        ) callconv(.winapi) HRESULT,
-        ReleaseFont: *const fn(
-            self: *const IMLangFontLink,
-            hFont: ?HFONT,
-        ) callconv(.winapi) HRESULT,
-        ResetFontMapping: *const fn(
-            self: *const IMLangFontLink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMLangCodePages: IMLangCodePages,
-    IUnknown: IUnknown,
-    pub fn GetFontCodePages(self: *const IMLangFontLink, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
-    }
-    pub fn MapFont(self: *const IMLangFontLink, hDC: ?HDC, dwCodePages: u32, hSrcFont: ?HFONT, phDestFont: ?*?HFONT) callconv(.@"inline") HRESULT {
-        return self.vtable.MapFont(self, hDC, dwCodePages, hSrcFont, phDestFont);
-    }
-    pub fn ReleaseFont(self: *const IMLangFontLink, hFont: ?HFONT) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseFont(self, hFont);
-    }
-    pub fn ResetFontMapping(self: *const IMLangFontLink) callconv(.@"inline") HRESULT {
-        return self.vtable.ResetFontMapping(self);
-    }
-};
-
-pub const UNICODERANGE = extern struct {
-    wcFrom: u16,
-    wcTo: u16,
-};
-
-const IID_IMLangFontLink2_Value = Guid.initString("dccfc162-2b38-11d2-b7ec-00c04f8f5d9a");
-pub const IID_IMLangFontLink2 = &IID_IMLangFontLink2_Value;
-pub const IMLangFontLink2 = extern union {
-    pub const VTable = extern struct {
-        base: IMLangCodePages.VTable,
-        GetFontCodePages: *const fn(
-            self: *const IMLangFontLink2,
-            hDC: ?HDC,
-            hFont: ?HFONT,
-            pdwCodePages: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ReleaseFont: *const fn(
-            self: *const IMLangFontLink2,
-            hFont: ?HFONT,
-        ) callconv(.winapi) HRESULT,
-        ResetFontMapping: *const fn(
-            self: *const IMLangFontLink2,
-        ) callconv(.winapi) HRESULT,
-        MapFont: *const fn(
-            self: *const IMLangFontLink2,
-            hDC: ?HDC,
-            dwCodePages: u32,
-            chSrc: u16,
-            pFont: ?*?HFONT,
-        ) callconv(.winapi) HRESULT,
-        GetFontUnicodeRanges: *const fn(
-            self: *const IMLangFontLink2,
-            hDC: ?HDC,
-            puiRanges: ?*u32,
-            pUranges: ?*UNICODERANGE,
-        ) callconv(.winapi) HRESULT,
-        GetScriptFontInfo: *const fn(
-            self: *const IMLangFontLink2,
-            sid: u8,
-            dwFlags: u32,
-            puiFonts: ?*u32,
-            pScriptFont: ?*tagSCRIPFONTINFO,
-        ) callconv(.winapi) HRESULT,
-        CodePageToScriptID: *const fn(
-            self: *const IMLangFontLink2,
-            uiCodePage: u32,
-            pSid: ?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMLangCodePages: IMLangCodePages,
-    IUnknown: IUnknown,
-    pub fn GetFontCodePages(self: *const IMLangFontLink2, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
-    }
-    pub fn ReleaseFont(self: *const IMLangFontLink2, hFont: ?HFONT) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseFont(self, hFont);
-    }
-    pub fn ResetFontMapping(self: *const IMLangFontLink2) callconv(.@"inline") HRESULT {
-        return self.vtable.ResetFontMapping(self);
-    }
-    pub fn MapFont(self: *const IMLangFontLink2, hDC: ?HDC, dwCodePages: u32, chSrc: u16, pFont: ?*?HFONT) callconv(.@"inline") HRESULT {
-        return self.vtable.MapFont(self, hDC, dwCodePages, chSrc, pFont);
-    }
-    pub fn GetFontUnicodeRanges(self: *const IMLangFontLink2, hDC: ?HDC, puiRanges: ?*u32, pUranges: ?*UNICODERANGE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFontUnicodeRanges(self, hDC, puiRanges, pUranges);
-    }
-    pub fn GetScriptFontInfo(self: *const IMLangFontLink2, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*tagSCRIPFONTINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetScriptFontInfo(self, sid, dwFlags, puiFonts, pScriptFont);
-    }
-    pub fn CodePageToScriptID(self: *const IMLangFontLink2, uiCodePage: u32, pSid: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.CodePageToScriptID(self, uiCodePage, pSid);
-    }
-};
-
-const IID_IMultiLanguage3_Value = Guid.initString("4e5868ab-b157-4623-9acc-6a1d9caebe04");
-pub const IID_IMultiLanguage3 = &IID_IMultiLanguage3_Value;
-pub const IMultiLanguage3 = extern union {
-    pub const VTable = extern struct {
-        base: IMultiLanguage2.VTable,
-        DetectOutboundCodePage: *const fn(
-            self: *const IMultiLanguage3,
-            dwFlags: u32,
-            lpWideCharStr: [*:0]const u16,
-            cchWideChar: u32,
-            puiPreferredCodePages: ?[*]const u32,
-            nPreferredCodePages: u32,
-            puiDetectedCodePages: [*]u32,
-            pnDetectedCodePages: ?*u32,
-            lpSpecialChar: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        DetectOutboundCodePageInIStream: *const fn(
-            self: *const IMultiLanguage3,
-            dwFlags: u32,
-            pStrIn: ?*IStream,
-            puiPreferredCodePages: ?[*]const u32,
-            nPreferredCodePages: u32,
-            puiDetectedCodePages: [*]u32,
-            pnDetectedCodePages: ?*u32,
-            lpSpecialChar: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMultiLanguage2: IMultiLanguage2,
-    IUnknown: IUnknown,
-    pub fn DetectOutboundCodePage(self: *const IMultiLanguage3, dwFlags: u32, lpWideCharStr: [*:0]const u16, cchWideChar: u32, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.DetectOutboundCodePage(self, dwFlags, lpWideCharStr, cchWideChar, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
-    }
-    pub fn DetectOutboundCodePageInIStream(self: *const IMultiLanguage3, dwFlags: u32, pStrIn: ?*IStream, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.DetectOutboundCodePageInIStream(self, dwFlags, pStrIn, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
-    }
-};
-
-pub const MLSTR_FLAGS = enum(i32) {
-    READ = 1,
-    WRITE = 2,
-};
-pub const MLSTR_READ = MLSTR_FLAGS.READ;
-pub const MLSTR_WRITE = MLSTR_FLAGS.WRITE;
+pub const WORDLIST_TYPE_IGNORE = WORDLIST_TYPE.IGNORE;
+pub const WORDLIST_TYPE_ADD = WORDLIST_TYPE.ADD;
+pub const WORDLIST_TYPE_EXCLUDE = WORDLIST_TYPE.EXCLUDE;
+pub const WORDLIST_TYPE_AUTOCORRECT = WORDLIST_TYPE.AUTOCORRECT;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1213)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetTextCharset(
-    hdc: ?HDC,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GetTextCharsetInfo(
-    hdc: ?HDC,
-    lpSig: ?*FONTSIGNATURE,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn TranslateCharsetInfo(
-    lpSrc: ?*u32,
-    lpCs: ?*CHARSETINFO,
-    dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetDateFormatA(
+pub extern "kernel32" fn CompareStringA(
     Locale: u32,
-    dwFlags: u32,
-    lpDate: ?*const SYSTEMTIME,
-    lpFormat: ?[*:0]const u8,
-    lpDateStr: ?[*:0]u8,
-    cchDate: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetDateFormatW(
-    Locale: u32,
-    dwFlags: u32,
-    lpDate: ?*const SYSTEMTIME,
-    lpFormat: ?[*:0]const u16,
-    lpDateStr: ?[*:0]u16,
-    cchDate: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetTimeFormatA(
-    Locale: u32,
-    dwFlags: u32,
-    lpTime: ?*const SYSTEMTIME,
-    lpFormat: ?[*:0]const u8,
-    lpTimeStr: ?[*:0]u8,
-    cchTime: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetTimeFormatW(
-    Locale: u32,
-    dwFlags: u32,
-    lpTime: ?*const SYSTEMTIME,
-    lpFormat: ?[*:0]const u16,
-    lpTimeStr: ?[*:0]u16,
-    cchTime: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetTimeFormatEx(
-    lpLocaleName: ?[*:0]const u16,
-    dwFlags: TIME_FORMAT_FLAGS,
-    lpTime: ?*const SYSTEMTIME,
-    lpFormat: ?[*:0]const u16,
-    lpTimeStr: ?[*:0]u16,
-    cchTime: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetDateFormatEx(
-    lpLocaleName: ?[*:0]const u16,
-    dwFlags: ENUM_DATE_FORMATS_FLAGS,
-    lpDate: ?*const SYSTEMTIME,
-    lpFormat: ?[*:0]const u16,
-    lpDateStr: ?[*:0]u16,
-    cchDate: i32,
-    lpCalendar: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetDurationFormatEx(
-    lpLocaleName: ?[*:0]const u16,
-    dwFlags: u32,
-    lpDuration: ?*const SYSTEMTIME,
-    ullDuration: u64,
-    lpFormat: ?[*:0]const u16,
-    lpDurationStr: ?[*:0]u16,
-    cchDuration: i32,
+    dwCmpFlags: u32,
+    lpString1: [*]i8,
+    cchCount1: i32,
+    lpString2: [*]i8,
+    cchCount2: i32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8628,6 +8547,245 @@ pub extern "kernel32" fn CompareStringW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn ConvertDefaultLocale(
+    Locale: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumCalendarInfoA(
+    lpCalInfoEnumProc: ?CALINFO_ENUMPROCA,
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumCalendarInfoExA(
+    lpCalInfoEnumProcEx: ?CALINFO_ENUMPROCEXA,
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn EnumCalendarInfoExEx(
+    pCalInfoEnumProcExEx: ?CALINFO_ENUMPROCEXEX,
+    lpLocaleName: ?[*:0]const u16,
+    Calendar: u32,
+    lpReserved: ?[*:0]const u16,
+    CalType: u32,
+    lParam: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumCalendarInfoExW(
+    lpCalInfoEnumProcEx: ?CALINFO_ENUMPROCEXW,
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumCalendarInfoW(
+    lpCalInfoEnumProc: ?CALINFO_ENUMPROCW,
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumDateFormatsA(
+    lpDateFmtEnumProc: ?DATEFMT_ENUMPROCA,
+    Locale: u32,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumDateFormatsExA(
+    lpDateFmtEnumProcEx: ?DATEFMT_ENUMPROCEXA,
+    Locale: u32,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn EnumDateFormatsExEx(
+    lpDateFmtEnumProcExEx: ?DATEFMT_ENUMPROCEXEX,
+    lpLocaleName: ?[*:0]const u16,
+    dwFlags: ENUM_DATE_FORMATS_FLAGS,
+    lParam: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumDateFormatsExW(
+    lpDateFmtEnumProcEx: ?DATEFMT_ENUMPROCEXW,
+    Locale: u32,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumDateFormatsW(
+    lpDateFmtEnumProc: ?DATEFMT_ENUMPROCW,
+    Locale: u32,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumLanguageGroupLocalesA(
+    lpLangGroupLocaleEnumProc: ?LANGGROUPLOCALE_ENUMPROCA,
+    LanguageGroup: u32,
+    dwFlags: u32,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumLanguageGroupLocalesW(
+    lpLangGroupLocaleEnumProc: ?LANGGROUPLOCALE_ENUMPROCW,
+    LanguageGroup: u32,
+    dwFlags: u32,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumSystemCodePagesA(
+    lpCodePageEnumProc: ?CODEPAGE_ENUMPROCA,
+    dwFlags: ENUM_SYSTEM_CODE_PAGES_FLAGS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumSystemCodePagesW(
+    lpCodePageEnumProc: ?CODEPAGE_ENUMPROCW,
+    dwFlags: ENUM_SYSTEM_CODE_PAGES_FLAGS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn EnumSystemGeoID(
+    GeoClass: u32,
+    ParentGeoId: i32,
+    lpGeoEnumProc: ?GEO_ENUMPROC,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.16299'
+pub extern "kernel32" fn EnumSystemGeoNames(
+    geoClass: u32,
+    geoEnumProc: ?GEO_ENUMNAMEPROC,
+    data: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumSystemLanguageGroupsA(
+    lpLanguageGroupEnumProc: ?LANGUAGEGROUP_ENUMPROCA,
+    dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumSystemLanguageGroupsW(
+    lpLanguageGroupEnumProc: ?LANGUAGEGROUP_ENUMPROCW,
+    dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumSystemLocalesA(
+    lpLocaleEnumProc: ?LOCALE_ENUMPROCA,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn EnumSystemLocalesEx(
+    lpLocaleEnumProcEx: ?LOCALE_ENUMPROCEX,
+    dwFlags: u32,
+    lParam: LPARAM,
+    lpReserved: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumSystemLocalesW(
+    lpLocaleEnumProc: ?LOCALE_ENUMPROCW,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumTimeFormatsA(
+    lpTimeFmtEnumProc: ?TIMEFMT_ENUMPROCA,
+    Locale: u32,
+    dwFlags: TIME_FORMAT_FLAGS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn EnumTimeFormatsEx(
+    lpTimeFmtEnumProcEx: ?TIMEFMT_ENUMPROCEX,
+    lpLocaleName: ?[*:0]const u16,
+    dwFlags: u32,
+    lParam: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumTimeFormatsW(
+    lpTimeFmtEnumProc: ?TIMEFMT_ENUMPROCW,
+    Locale: u32,
+    dwFlags: TIME_FORMAT_FLAGS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumUILanguagesA(
+    lpUILanguageEnumProc: ?UILANGUAGE_ENUMPROCA,
+    dwFlags: u32,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumUILanguagesW(
+    lpUILanguageEnumProc: ?UILANGUAGE_ENUMPROCW,
+    dwFlags: u32,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn FindNLSString(
+    Locale: u32,
+    dwFindNLSStringFlags: u32,
+    lpStringSource: [*:0]const u16,
+    cchSource: i32,
+    lpStringValue: [*:0]const u16,
+    cchValue: i32,
+    pcchFound: ?*i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn FindNLSStringEx(
+    lpLocaleName: ?[*:0]const u16,
+    dwFindNLSStringFlags: u32,
+    lpStringSource: [*:0]const u16,
+    cchSource: i32,
+    lpStringValue: [*:0]const u16,
+    cchValue: i32,
+    pcchFound: ?*i32,
+    lpVersionInformation: ?*NLSVERSIONINFO,
+    lpReserved: ?*anyopaque,
+    sortHandle: LPARAM,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn FindStringOrdinal(
+    dwFindStringOrdinalFlags: u32,
+    lpStringSource: [*:0]const u16,
+    cchSource: i32,
+    lpStringValue: [*:0]const u16,
+    cchValue: i32,
+    bIgnoreCase: BOOL,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn FoldStringA(
+    dwMapFlags: FOLD_STRING_MAP_FLAGS,
+    lpSrcStr: [*:0]const u8,
+    cchSrc: i32,
+    lpDestStr: ?[*:0]u8,
+    cchDest: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn FoldStringW(
     dwMapFlags: FOLD_STRING_MAP_FLAGS,
     lpSrcStr: [*:0]const u16,
@@ -8637,57 +8795,39 @@ pub extern "kernel32" fn FoldStringW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetStringTypeExW(
-    Locale: u32,
-    dwInfoType: u32,
-    lpSrcStr: [*:0]const u16,
-    cchSrc: i32,
-    lpCharType: [*:0]u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetStringTypeW(
-    dwInfoType: u32,
-    lpSrcStr: [*:0]const u16,
-    cchSrc: i32,
-    lpCharType: ?*u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn MultiByteToWideChar(
-    CodePage: u32,
-    dwFlags: MULTI_BYTE_TO_WIDE_CHAR_FLAGS,
-    lpMultiByteStr: [*]const u8,
-    cbMultiByte: i32,
-    lpWideCharStr: ?[*:0]u16,
-    cchWideChar: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn WideCharToMultiByte(
-    CodePage: u32,
-    dwFlags: u32,
-    lpWideCharStr: [*:0]const u16,
-    cchWideChar: i32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpMultiByteStr: ?PSTR,
-    cbMultiByte: i32,
-    lpDefaultChar: ?[*]const u8,
-    lpUsedDefaultChar: ?*i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn IsValidCodePage(
-    CodePage: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetACP(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetOEMCP(
-) callconv(.winapi) u32;
+pub extern "kernel32" fn GetCalendarInfoA(
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+    lpCalData: ?[*:0]u8,
+    cchData: i32,
+    lpValue: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetCalendarInfoEx(
+    lpLocaleName: ?[*:0]const u16,
+    Calendar: u32,
+    lpReserved: ?[*:0]const u16,
+    CalType: u32,
+    lpCalData: ?[*:0]u16,
+    cchData: i32,
+    lpValue: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetCalendarInfoW(
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+    lpCalData: ?[*:0]u16,
+    cchData: i32,
+    lpValue: ?*u32,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetCPInfo(
@@ -8710,175 +8850,22 @@ pub extern "kernel32" fn GetCPInfoExW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn CompareStringA(
-    Locale: u32,
-    dwCmpFlags: u32,
-    lpString1: [*]i8,
-    cchCount1: i32,
-    lpString2: [*]i8,
-    cchCount2: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn FindNLSString(
-    Locale: u32,
-    dwFindNLSStringFlags: u32,
-    lpStringSource: [*:0]const u16,
-    cchSource: i32,
-    lpStringValue: [*:0]const u16,
-    cchValue: i32,
-    pcchFound: ?*i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn LCMapStringW(
-    Locale: u32,
-    dwMapFlags: u32,
-    lpSrcStr: [*:0]const u16,
-    cchSrc: i32,
-    lpDestStr: ?PWSTR,
-    cchDest: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn LCMapStringA(
-    Locale: u32,
-    dwMapFlags: u32,
-    lpSrcStr: [*:0]const u8,
-    cchSrc: i32,
-    lpDestStr: ?PSTR,
-    cchDest: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetLocaleInfoW(
-    Locale: u32,
-    LCType: u32,
-    lpLCData: ?[*:0]u16,
-    cchData: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetLocaleInfoA(
-    Locale: u32,
-    LCType: u32,
-    lpLCData: ?[*:0]u8,
-    cchData: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetLocaleInfoA(
-    Locale: u32,
-    LCType: u32,
-    lpLCData: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetLocaleInfoW(
-    Locale: u32,
-    LCType: u32,
-    lpLCData: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetCalendarInfoA(
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-    lpCalData: ?[*:0]u8,
-    cchData: i32,
-    lpValue: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetCalendarInfoW(
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-    lpCalData: ?[*:0]u16,
-    cchData: i32,
-    lpValue: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetCalendarInfoA(
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-    lpCalData: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetCalendarInfoW(
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-    lpCalData: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn IsDBCSLeadByte(
-    TestChar: u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn IsDBCSLeadByteEx(
-    CodePage: u32,
-    TestChar: u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn LocaleNameToLCID(
-    lpName: ?[*:0]const u16,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn LCIDToLocaleName(
-    Locale: u32,
-    lpName: ?[*:0]u16,
-    cchName: i32,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetDurationFormat(
-    Locale: u32,
-    dwFlags: u32,
-    lpDuration: ?*const SYSTEMTIME,
-    ullDuration: u64,
-    lpFormat: ?[*:0]const u16,
-    lpDurationStr: ?[*:0]u16,
-    cchDuration: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetNumberFormatA(
-    Locale: u32,
-    dwFlags: u32,
-    lpValue: ?[*:0]const u8,
-    lpFormat: ?*const NUMBERFMTA,
-    lpNumberStr: ?[*:0]u8,
-    cchNumber: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetNumberFormatW(
-    Locale: u32,
-    dwFlags: u32,
-    lpValue: ?[*:0]const u16,
-    lpFormat: ?*const NUMBERFMTW,
-    lpNumberStr: ?[*:0]u16,
-    cchNumber: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetCurrencyFormatA(
     Locale: u32,
     dwFlags: u32,
     lpValue: ?[*:0]const u8,
     lpFormat: ?*const CURRENCYFMTA,
     lpCurrencyStr: ?[*:0]u8,
+    cchCurrency: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetCurrencyFormatEx(
+    lpLocaleName: ?[*:0]const u16,
+    dwFlags: u32,
+    lpValue: ?[*:0]const u16,
+    lpFormat: ?*const CURRENCYFMTW,
+    lpCurrencyStr: ?[*:0]u16,
     cchCurrency: i32,
 ) callconv(.winapi) i32;
 
@@ -8893,251 +8880,64 @@ pub extern "kernel32" fn GetCurrencyFormatW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumCalendarInfoA(
-    lpCalInfoEnumProc: ?CALINFO_ENUMPROCA,
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumCalendarInfoW(
-    lpCalInfoEnumProc: ?CALINFO_ENUMPROCW,
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumCalendarInfoExA(
-    lpCalInfoEnumProcEx: ?CALINFO_ENUMPROCEXA,
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumCalendarInfoExW(
-    lpCalInfoEnumProcEx: ?CALINFO_ENUMPROCEXW,
-    Locale: u32,
-    Calendar: u32,
-    CalType: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumTimeFormatsA(
-    lpTimeFmtEnumProc: ?TIMEFMT_ENUMPROCA,
-    Locale: u32,
-    dwFlags: TIME_FORMAT_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumTimeFormatsW(
-    lpTimeFmtEnumProc: ?TIMEFMT_ENUMPROCW,
-    Locale: u32,
-    dwFlags: TIME_FORMAT_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumDateFormatsA(
-    lpDateFmtEnumProc: ?DATEFMT_ENUMPROCA,
+pub extern "kernel32" fn GetDateFormatA(
     Locale: u32,
     dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumDateFormatsW(
-    lpDateFmtEnumProc: ?DATEFMT_ENUMPROCW,
-    Locale: u32,
-    dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumDateFormatsExA(
-    lpDateFmtEnumProcEx: ?DATEFMT_ENUMPROCEXA,
-    Locale: u32,
-    dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumDateFormatsExW(
-    lpDateFmtEnumProcEx: ?DATEFMT_ENUMPROCEXW,
-    Locale: u32,
-    dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn IsValidLanguageGroup(
-    LanguageGroup: u32,
-    dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetNLSVersion(
-    Function: u32,
-    Locale: u32,
-    lpVersionInformation: ?*NLSVERSIONINFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn IsValidLocale(
-    Locale: u32,
-    dwFlags: IS_VALID_LOCALE_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetGeoInfoA(
-    Location: i32,
-    GeoType: u32,
-    lpGeoData: ?[*:0]u8,
-    cchData: i32,
-    LangId: u16,
+    lpDate: ?*const SYSTEMTIME,
+    lpFormat: ?[*:0]const u8,
+    lpDateStr: ?[*:0]u8,
+    cchDate: i32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetGeoInfoW(
-    Location: i32,
-    GeoType: u32,
-    lpGeoData: ?[*:0]u16,
-    cchData: i32,
-    LangId: u16,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetDateFormatEx(
+    lpLocaleName: ?[*:0]const u16,
+    dwFlags: ENUM_DATE_FORMATS_FLAGS,
+    lpDate: ?*const SYSTEMTIME,
+    lpFormat: ?[*:0]const u16,
+    lpDateStr: ?[*:0]u16,
+    cchDate: i32,
+    lpCalendar: ?[*:0]const u16,
 ) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "kernel32" fn GetGeoInfoEx(
-    location: ?PWSTR,
-    geoType: u32,
-    geoData: ?[*:0]u16,
-    geoDataCount: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn EnumSystemGeoID(
-    GeoClass: u32,
-    ParentGeoId: i32,
-    lpGeoEnumProc: ?GEO_ENUMPROC,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "kernel32" fn EnumSystemGeoNames(
-    geoClass: u32,
-    geoEnumProc: ?GEO_ENUMNAMEPROC,
-    data: LPARAM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetUserGeoID(
-    GeoClass: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "kernel32" fn GetUserDefaultGeoName(
-    geoName: [*:0]u16,
-    geoNameCount: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SetUserGeoID(
-    GeoId: i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "kernel32" fn SetUserGeoName(
-    geoName: ?PWSTR,
-) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn ConvertDefaultLocale(
+pub extern "kernel32" fn GetDateFormatW(
     Locale: u32,
-) callconv(.winapi) u32;
+    dwFlags: u32,
+    lpDate: ?*const SYSTEMTIME,
+    lpFormat: ?[*:0]const u16,
+    lpDateStr: ?[*:0]u16,
+    cchDate: i32,
+) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetSystemDefaultUILanguage(
-) callconv(.winapi) u16;
+pub extern "bcp47mrm" fn GetDistanceOfClosestLanguageInList(
+    pszLanguage: ?[*:0]const u16,
+    pszLanguagesList: ?[*:0]const u16,
+    wchListDelimiter: u16,
+    pClosestDistance: ?*f64,
+) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetThreadLocale(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetThreadLocale(
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetDurationFormat(
     Locale: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetUserDefaultUILanguage(
-) callconv(.winapi) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetUserDefaultLangID(
-) callconv(.winapi) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetSystemDefaultLangID(
-) callconv(.winapi) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetSystemDefaultLCID(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetUserDefaultLCID(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SetThreadUILanguage(
-    LangId: u16,
-) callconv(.winapi) u16;
+    dwFlags: u32,
+    lpDuration: ?*const SYSTEMTIME,
+    ullDuration: u64,
+    lpFormat: ?[*:0]const u16,
+    lpDurationStr: ?[*:0]u16,
+    cchDuration: i32,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetThreadUILanguage(
-) callconv(.winapi) u16;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn GetProcessPreferredUILanguages(
+pub extern "kernel32" fn GetDurationFormatEx(
+    lpLocaleName: ?[*:0]const u16,
     dwFlags: u32,
-    pulNumLanguages: ?*u32,
-    pwszLanguagesBuffer: ?[*]u16,
-    pcchLanguagesBuffer: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn SetProcessPreferredUILanguages(
-    dwFlags: u32,
-    pwszLanguagesBuffer: ?[*]const u16,
-    pulNumLanguages: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetUserPreferredUILanguages(
-    dwFlags: u32,
-    pulNumLanguages: ?*u32,
-    pwszLanguagesBuffer: ?[*]u16,
-    pcchLanguagesBuffer: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetSystemPreferredUILanguages(
-    dwFlags: u32,
-    pulNumLanguages: ?*u32,
-    pwszLanguagesBuffer: ?[*]u16,
-    pcchLanguagesBuffer: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetThreadPreferredUILanguages(
-    dwFlags: u32,
-    pulNumLanguages: ?*u32,
-    pwszLanguagesBuffer: ?[*]u16,
-    pcchLanguagesBuffer: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn SetThreadPreferredUILanguages(
-    dwFlags: u32,
-    pwszLanguagesBuffer: ?[*]const u16,
-    pulNumLanguages: ?*u32,
-) callconv(.winapi) BOOL;
+    lpDuration: ?*const SYSTEMTIME,
+    ullDuration: u64,
+    lpFormat: ?[*:0]const u16,
+    lpDurationStr: ?[*:0]u16,
+    cchDuration: i32,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetFileMUIInfo(
@@ -9159,188 +8959,38 @@ pub extern "kernel32" fn GetFileMUIPath(
     pululEnumerator: ?*u64,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetUILanguageInfo(
-    dwFlags: u32,
-    pwmszLanguage: ?[*]const u16,
-    pwszFallbackLanguages: ?[*]u16,
-    pcchFallbackLanguages: ?*u32,
-    pAttributes: ?*u32,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetGeoInfoA(
+    Location: i32,
+    GeoType: u32,
+    lpGeoData: ?[*:0]u8,
+    cchData: i32,
+    LangId: u16,
+) callconv(.winapi) i32;
 
-pub extern "kernel32" fn SetThreadPreferredUILanguages2(
-    flags: u32,
-    languages: ?[*]const u16,
-    numLanguagesSet: ?*u32,
-    snapshot: ?*?HSAVEDUILANGUAGES,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows10.0.16299'
+pub extern "kernel32" fn GetGeoInfoEx(
+    location: ?PWSTR,
+    geoType: u32,
+    geoData: ?[*:0]u16,
+    geoDataCount: i32,
+) callconv(.winapi) i32;
 
-pub extern "kernel32" fn RestoreThreadPreferredUILanguages(
-    snapshot: ?HSAVEDUILANGUAGES,
-) callconv(.winapi) void;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetGeoInfoW(
+    Location: i32,
+    GeoType: u32,
+    lpGeoData: ?[*:0]u16,
+    cchData: i32,
+    LangId: u16,
+) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn NotifyUILanguageChange(
-    dwFlags: u32,
-    pcwstrNewLanguage: ?[*:0]const u16,
-    pcwstrPreviousLanguage: ?[*:0]const u16,
-    dwReserved: u32,
-    pdwStatusRtrn: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetStringTypeExA(
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetLocaleInfoA(
     Locale: u32,
-    dwInfoType: u32,
-    lpSrcStr: [*:0]const u8,
-    cchSrc: i32,
-    lpCharType: [*:0]u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetStringTypeA(
-    Locale: u32,
-    dwInfoType: u32,
-    lpSrcStr: [*:0]const u8,
-    cchSrc: i32,
-    lpCharType: ?*u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn FoldStringA(
-    dwMapFlags: FOLD_STRING_MAP_FLAGS,
-    lpSrcStr: [*:0]const u8,
-    cchSrc: i32,
-    lpDestStr: ?[*:0]u8,
-    cchDest: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumSystemLocalesA(
-    lpLocaleEnumProc: ?LOCALE_ENUMPROCA,
-    dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumSystemLocalesW(
-    lpLocaleEnumProc: ?LOCALE_ENUMPROCW,
-    dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumSystemLanguageGroupsA(
-    lpLanguageGroupEnumProc: ?LANGUAGEGROUP_ENUMPROCA,
-    dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumSystemLanguageGroupsW(
-    lpLanguageGroupEnumProc: ?LANGUAGEGROUP_ENUMPROCW,
-    dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumLanguageGroupLocalesA(
-    lpLangGroupLocaleEnumProc: ?LANGGROUPLOCALE_ENUMPROCA,
-    LanguageGroup: u32,
-    dwFlags: u32,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumLanguageGroupLocalesW(
-    lpLangGroupLocaleEnumProc: ?LANGGROUPLOCALE_ENUMPROCW,
-    LanguageGroup: u32,
-    dwFlags: u32,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumUILanguagesA(
-    lpUILanguageEnumProc: ?UILANGUAGE_ENUMPROCA,
-    dwFlags: u32,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumUILanguagesW(
-    lpUILanguageEnumProc: ?UILANGUAGE_ENUMPROCW,
-    dwFlags: u32,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumSystemCodePagesA(
-    lpCodePageEnumProc: ?CODEPAGE_ENUMPROCA,
-    dwFlags: ENUM_SYSTEM_CODE_PAGES_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumSystemCodePagesW(
-    lpCodePageEnumProc: ?CODEPAGE_ENUMPROCW,
-    dwFlags: ENUM_SYSTEM_CODE_PAGES_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "normaliz" fn IdnToAscii(
-    dwFlags: u32,
-    lpUnicodeCharStr: [*:0]const u16,
-    cchUnicodeChar: i32,
-    lpASCIICharStr: ?[*:0]u16,
-    cchASCIIChar: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "normaliz" fn IdnToUnicode(
-    dwFlags: u32,
-    lpASCIICharStr: [*:0]const u16,
-    cchASCIIChar: i32,
-    lpUnicodeCharStr: ?[*:0]u16,
-    cchUnicodeChar: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn IdnToNameprepUnicode(
-    dwFlags: u32,
-    lpUnicodeCharStr: [*:0]const u16,
-    cchUnicodeChar: i32,
-    lpNameprepCharStr: ?[*:0]u16,
-    cchNameprepChar: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn NormalizeString(
-    NormForm: NORM_FORM,
-    lpSrcString: [*:0]const u16,
-    cwSrcLength: i32,
-    lpDstString: ?[*:0]u16,
-    cwDstLength: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn IsNormalizedString(
-    NormForm: NORM_FORM,
-    lpString: [*:0]const u16,
-    cwLength: i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn VerifyScripts(
-    dwFlags: u32,
-    lpLocaleScripts: ?[*:0]const u16,
-    cchLocaleScripts: i32,
-    lpTestScripts: ?[*:0]const u16,
-    cchTestScripts: i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetStringScripts(
-    dwFlags: u32,
-    lpString: ?[*:0]const u16,
-    cchString: i32,
-    lpScripts: ?[*:0]u16,
-    cchScripts: i32,
+    LCType: u32,
+    lpLCData: ?[*:0]u8,
+    cchData: i32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9351,15 +9001,36 @@ pub extern "kernel32" fn GetLocaleInfoEx(
     cchData: i32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetCalendarInfoEx(
-    lpLocaleName: ?[*:0]const u16,
-    Calendar: u32,
-    lpReserved: ?[*:0]const u16,
-    CalType: u32,
-    lpCalData: ?[*:0]u16,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetLocaleInfoW(
+    Locale: u32,
+    LCType: u32,
+    lpLCData: ?[*:0]u16,
     cchData: i32,
-    lpValue: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetNLSVersion(
+    Function: u32,
+    Locale: u32,
+    lpVersionInformation: ?*NLSVERSIONINFO,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetNLSVersionEx(
+    function: u32,
+    lpLocaleName: ?[*:0]const u16,
+    lpVersionInformation: ?*NLSVERSIONINFOEX,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetNumberFormatA(
+    Locale: u32,
+    dwFlags: u32,
+    lpValue: ?[*:0]const u8,
+    lpFormat: ?*const NUMBERFMTA,
+    lpNumberStr: ?[*:0]u8,
+    cchNumber: i32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9373,14 +9044,176 @@ pub extern "kernel32" fn GetNumberFormatEx(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetCurrencyFormatEx(
-    lpLocaleName: ?[*:0]const u16,
+pub extern "kernel32" fn GetNumberFormatW(
+    Locale: u32,
     dwFlags: u32,
     lpValue: ?[*:0]const u16,
-    lpFormat: ?*const CURRENCYFMTW,
-    lpCurrencyStr: ?[*:0]u16,
-    cchCurrency: i32,
+    lpFormat: ?*const NUMBERFMTW,
+    lpNumberStr: ?[*:0]u16,
+    cchNumber: i32,
 ) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetOEMCP(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn GetProcessPreferredUILanguages(
+    dwFlags: u32,
+    pulNumLanguages: ?*u32,
+    pwszLanguagesBuffer: ?[*]u16,
+    pcchLanguagesBuffer: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetStringScripts(
+    dwFlags: u32,
+    lpString: ?[*:0]const u16,
+    cchString: i32,
+    lpScripts: ?[*:0]u16,
+    cchScripts: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetStringTypeA(
+    Locale: u32,
+    dwInfoType: u32,
+    lpSrcStr: [*:0]const u8,
+    cchSrc: i32,
+    lpCharType: ?*u16,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetStringTypeExA(
+    Locale: u32,
+    dwInfoType: u32,
+    lpSrcStr: [*:0]const u8,
+    cchSrc: i32,
+    lpCharType: [*:0]u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetStringTypeExW(
+    Locale: u32,
+    dwInfoType: u32,
+    lpSrcStr: [*:0]const u16,
+    cchSrc: i32,
+    lpCharType: [*:0]u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetStringTypeW(
+    dwInfoType: u32,
+    lpSrcStr: [*:0]const u16,
+    cchSrc: i32,
+    lpCharType: ?*u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetSystemDefaultLangID(
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetSystemDefaultLCID(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetSystemDefaultLocaleName(
+    lpLocaleName: [*:0]u16,
+    cchLocaleName: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetSystemDefaultUILanguage(
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetSystemPreferredUILanguages(
+    dwFlags: u32,
+    pulNumLanguages: ?*u32,
+    pwszLanguagesBuffer: ?[*]u16,
+    pcchLanguagesBuffer: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetTextCharset(
+    hdc: ?HDC,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn GetTextCharsetInfo(
+    hdc: ?HDC,
+    lpSig: ?*FONTSIGNATURE,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetThreadLocale(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetThreadPreferredUILanguages(
+    dwFlags: u32,
+    pulNumLanguages: ?*u32,
+    pwszLanguagesBuffer: ?[*]u16,
+    pcchLanguagesBuffer: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetThreadUILanguage(
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetTimeFormatA(
+    Locale: u32,
+    dwFlags: u32,
+    lpTime: ?*const SYSTEMTIME,
+    lpFormat: ?[*:0]const u8,
+    lpTimeStr: ?[*:0]u8,
+    cchTime: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetTimeFormatEx(
+    lpLocaleName: ?[*:0]const u16,
+    dwFlags: TIME_FORMAT_FLAGS,
+    lpTime: ?*const SYSTEMTIME,
+    lpFormat: ?[*:0]const u16,
+    lpTimeStr: ?[*:0]u16,
+    cchTime: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetTimeFormatW(
+    Locale: u32,
+    dwFlags: u32,
+    lpTime: ?*const SYSTEMTIME,
+    lpFormat: ?[*:0]const u16,
+    lpTimeStr: ?[*:0]u16,
+    cchTime: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetUILanguageInfo(
+    dwFlags: u32,
+    pwmszLanguage: ?[*]const u16,
+    pwszFallbackLanguages: ?[*]u16,
+    pcchFallbackLanguages: ?*u32,
+    pAttributes: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.16299'
+pub extern "kernel32" fn GetUserDefaultGeoName(
+    geoName: [*:0]u16,
+    geoNameCount: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetUserDefaultLangID(
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetUserDefaultLCID(
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetUserDefaultLocaleName(
@@ -9388,11 +9221,60 @@ pub extern "kernel32" fn GetUserDefaultLocaleName(
     cchLocaleName: i32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetSystemDefaultLocaleName(
-    lpLocaleName: [*:0]u16,
-    cchLocaleName: i32,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetUserDefaultUILanguage(
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetUserGeoID(
+    GeoClass: u32,
 ) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetUserPreferredUILanguages(
+    dwFlags: u32,
+    pulNumLanguages: ?*u32,
+    pwszLanguagesBuffer: ?[*]u16,
+    pcchLanguagesBuffer: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "normaliz" fn IdnToAscii(
+    dwFlags: u32,
+    lpUnicodeCharStr: [*:0]const u16,
+    cchUnicodeChar: i32,
+    lpASCIICharStr: ?[*:0]u16,
+    cchASCIIChar: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn IdnToNameprepUnicode(
+    dwFlags: u32,
+    lpUnicodeCharStr: [*:0]const u16,
+    cchUnicodeChar: i32,
+    lpNameprepCharStr: ?[*:0]u16,
+    cchNameprepChar: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "normaliz" fn IdnToUnicode(
+    dwFlags: u32,
+    lpASCIICharStr: [*:0]const u16,
+    cchASCIIChar: i32,
+    lpUnicodeCharStr: ?[*:0]u16,
+    cchUnicodeChar: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn IsDBCSLeadByte(
+    TestChar: u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn IsDBCSLeadByteEx(
+    CodePage: u32,
+    TestChar: u8,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn IsNLSDefinedString(
@@ -9404,10 +9286,40 @@ pub extern "kernel32" fn IsNLSDefinedString(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetNLSVersionEx(
-    function: u32,
+pub extern "kernel32" fn IsNormalizedString(
+    NormForm: NORM_FORM,
+    lpString: [*:0]const u16,
+    cwLength: i32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn IsTextUnicode(
+    // TODO: what to do with BytesParamIndex 1?
+    lpv: ?*const anyopaque,
+    iSize: i32,
+    lpiResult: ?*IS_TEXT_UNICODE_RESULT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn IsValidCodePage(
+    CodePage: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn IsValidLanguageGroup(
+    LanguageGroup: u32,
+    dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn IsValidLocale(
+    Locale: u32,
+    dwFlags: IS_VALID_LOCALE_FLAGS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn IsValidLocaleName(
     lpLocaleName: ?[*:0]const u16,
-    lpVersionInformation: ?*NLSVERSIONINFOEX,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -9417,18 +9329,26 @@ pub extern "kernel32" fn IsValidNLSVersion(
     lpVersionInformation: ?*NLSVERSIONINFOEX,
 ) callconv(.winapi) u32;
 
+pub extern "bcp47mrm" fn IsWellFormedTag(
+    pszTag: ?[*:0]const u16,
+) callconv(.winapi) u8;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn FindNLSStringEx(
-    lpLocaleName: ?[*:0]const u16,
-    dwFindNLSStringFlags: u32,
-    lpStringSource: [*:0]const u16,
-    cchSource: i32,
-    lpStringValue: [*:0]const u16,
-    cchValue: i32,
-    pcchFound: ?*i32,
-    lpVersionInformation: ?*NLSVERSIONINFO,
-    lpReserved: ?*anyopaque,
-    sortHandle: LPARAM,
+pub extern "kernel32" fn LCIDToLocaleName(
+    Locale: u32,
+    lpName: ?[*:0]u16,
+    cchName: i32,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn LCMapStringA(
+    Locale: u32,
+    dwMapFlags: u32,
+    lpSrcStr: [*:0]const u8,
+    cchSrc: i32,
+    lpDestStr: ?PSTR,
+    cchDest: i32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9444,73 +9364,93 @@ pub extern "kernel32" fn LCMapStringEx(
     sortHandle: LPARAM,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn IsValidLocaleName(
-    lpLocaleName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn EnumCalendarInfoExEx(
-    pCalInfoEnumProcExEx: ?CALINFO_ENUMPROCEXEX,
-    lpLocaleName: ?[*:0]const u16,
-    Calendar: u32,
-    lpReserved: ?[*:0]const u16,
-    CalType: u32,
-    lParam: LPARAM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn EnumDateFormatsExEx(
-    lpDateFmtEnumProcExEx: ?DATEFMT_ENUMPROCEXEX,
-    lpLocaleName: ?[*:0]const u16,
-    dwFlags: ENUM_DATE_FORMATS_FLAGS,
-    lParam: LPARAM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn EnumTimeFormatsEx(
-    lpTimeFmtEnumProcEx: ?TIMEFMT_ENUMPROCEX,
-    lpLocaleName: ?[*:0]const u16,
-    dwFlags: u32,
-    lParam: LPARAM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn EnumSystemLocalesEx(
-    lpLocaleEnumProcEx: ?LOCALE_ENUMPROCEX,
-    dwFlags: u32,
-    lParam: LPARAM,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn ResolveLocaleName(
-    lpNameToResolve: ?[*:0]const u16,
-    lpLocaleName: ?[*:0]u16,
-    cchLocaleName: i32,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn LCMapStringW(
+    Locale: u32,
+    dwMapFlags: u32,
+    lpSrcStr: [*:0]const u16,
+    cchSrc: i32,
+    lpDestStr: ?PWSTR,
+    cchDest: i32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "elscore" fn MappingGetServices(
-    pOptions: ?*MAPPING_ENUM_OPTIONS,
-    prgServices: ?*?*MAPPING_SERVICE_INFO,
-    pdwServicesCount: ?*u32,
-) callconv(.winapi) HRESULT;
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn LocaleNameToLCID(
+    lpName: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "elscore" fn MappingFreeServices(
-    pServiceInfo: ?*MAPPING_SERVICE_INFO,
-) callconv(.winapi) HRESULT;
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcatA(
+    lpString1: ?PSTR,
+    lpString2: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "elscore" fn MappingRecognizeText(
-    pServiceInfo: ?*MAPPING_SERVICE_INFO,
-    pszText: [*:0]const u16,
-    dwLength: u32,
-    dwIndex: u32,
-    pOptions: ?*MAPPING_OPTIONS,
-    pbag: ?*MAPPING_PROPERTY_BAG,
-) callconv(.winapi) HRESULT;
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcatW(
+    lpString1: ?PWSTR,
+    lpString2: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcmpA(
+    lpString1: ?[*:0]const u8,
+    lpString2: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcmpiA(
+    lpString1: ?[*:0]const u8,
+    lpString2: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcmpiW(
+    lpString1: ?[*:0]const u16,
+    lpString2: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcmpW(
+    lpString1: ?[*:0]const u16,
+    lpString2: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcpyA(
+    lpString1: ?PSTR,
+    lpString2: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcpynA(
+    lpString1: [*:0]u8,
+    lpString2: ?[*:0]const u8,
+    iMaxLength: i32,
+) callconv(.winapi) ?PSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcpynW(
+    lpString1: [*:0]u16,
+    lpString2: ?[*:0]const u16,
+    iMaxLength: i32,
+) callconv(.winapi) ?PWSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrcpyW(
+    lpString1: ?PWSTR,
+    lpString2: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrlenA(
+    lpString: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn lstrlenW(
+    lpString: ?[*:0]const u16,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "elscore" fn MappingDoAction(
@@ -9524,128 +9464,72 @@ pub extern "elscore" fn MappingFreePropertyBag(
     pBag: ?*MAPPING_PROPERTY_BAG,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptFreeCache(
-    psc: ?*?*anyopaque,
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "elscore" fn MappingFreeServices(
+    pServiceInfo: ?*MAPPING_SERVICE_INFO,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "elscore" fn MappingGetServices(
+    pOptions: ?*MAPPING_ENUM_OPTIONS,
+    prgServices: ?*?*MAPPING_SERVICE_INFO,
+    pdwServicesCount: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "elscore" fn MappingRecognizeText(
+    pServiceInfo: ?*MAPPING_SERVICE_INFO,
+    pszText: [*:0]const u16,
+    dwLength: u32,
+    dwIndex: u32,
+    pOptions: ?*MAPPING_OPTIONS,
+    pbag: ?*MAPPING_PROPERTY_BAG,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptItemize(
-    pwcInChars: [*:0]const u16,
-    cInChars: i32,
-    cMaxItems: i32,
-    psControl: ?*const SCRIPT_CONTROL,
-    psState: ?*const SCRIPT_STATE,
-    pItems: [*]SCRIPT_ITEM,
-    pcItems: ?*i32,
-) callconv(.winapi) HRESULT;
+pub extern "kernel32" fn MultiByteToWideChar(
+    CodePage: u32,
+    dwFlags: MULTI_BYTE_TO_WIDE_CHAR_FLAGS,
+    lpMultiByteStr: [*]const u8,
+    cbMultiByte: i32,
+    lpWideCharStr: ?[*:0]u16,
+    cchWideChar: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn NormalizeString(
+    NormForm: NORM_FORM,
+    lpSrcString: [*:0]const u16,
+    cwSrcLength: i32,
+    lpDstString: ?[*:0]u16,
+    cwDstLength: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn NotifyUILanguageChange(
+    dwFlags: u32,
+    pcwstrNewLanguage: ?[*:0]const u16,
+    pcwstrPreviousLanguage: ?[*:0]const u16,
+    dwReserved: u32,
+    pdwStatusRtrn: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn ResolveLocaleName(
+    lpNameToResolve: ?[*:0]const u16,
+    lpLocaleName: ?[*:0]u16,
+    cchLocaleName: i32,
+) callconv(.winapi) i32;
+
+pub extern "kernel32" fn RestoreThreadPreferredUILanguages(
+    snapshot: ?HSAVEDUILANGUAGES,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptLayout(
-    cRuns: i32,
-    pbLevel: [*:0]const u8,
-    piVisualToLogical: ?[*]i32,
-    piLogicalToVisual: ?[*]i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptShape(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    pwcChars: [*:0]const u16,
-    cChars: i32,
-    cMaxGlyphs: i32,
-    psa: ?*SCRIPT_ANALYSIS,
-    pwOutGlyphs: [*:0]u16,
-    pwLogClust: [*:0]u16,
-    psva: [*]SCRIPT_VISATTR,
-    pcGlyphs: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptPlace(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    pwGlyphs: [*:0]const u16,
-    cGlyphs: i32,
-    psva: [*]const SCRIPT_VISATTR,
-    psa: ?*SCRIPT_ANALYSIS,
-    piAdvance: [*]i32,
-    pGoffset: ?[*]GOFFSET,
-    pABC: ?*ABC,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptTextOut(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    x: i32,
-    y: i32,
-    fuOptions: u32,
-    lprc: ?*const RECT,
-    psa: ?*const SCRIPT_ANALYSIS,
-    pwcReserved: ?[*:0]const u16,
-    iReserved: i32,
-    pwGlyphs: [*:0]const u16,
-    cGlyphs: i32,
-    piAdvance: [*]const i32,
-    piJustify: ?[*]const i32,
-    pGoffset: [*]const GOFFSET,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptJustify(
-    psva: [*]const SCRIPT_VISATTR,
-    piAdvance: [*]const i32,
-    cGlyphs: i32,
-    iDx: i32,
-    iMinKashida: i32,
-    piJustify: [*]i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptBreak(
-    pwcChars: [*:0]const u16,
-    cChars: i32,
-    psa: ?*const SCRIPT_ANALYSIS,
-    psla: [*]SCRIPT_LOGATTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptCPtoX(
-    iCP: i32,
-    fTrailing: BOOL,
-    cChars: i32,
-    cGlyphs: i32,
-    pwLogClust: [*:0]const u16,
-    psva: [*]const SCRIPT_VISATTR,
-    piAdvance: [*]const i32,
-    psa: ?*const SCRIPT_ANALYSIS,
-    piX: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptXtoCP(
-    iX: i32,
-    cChars: i32,
-    cGlyphs: i32,
-    pwLogClust: [*:0]const u16,
-    psva: [*]const SCRIPT_VISATTR,
-    piAdvance: [*]const i32,
-    psa: ?*const SCRIPT_ANALYSIS,
-    piCP: ?*i32,
-    piTrailing: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptGetLogicalWidths(
-    psa: ?*const SCRIPT_ANALYSIS,
-    cChars: i32,
-    cGlyphs: i32,
-    piGlyphWidth: [*]const i32,
-    pwLogClust: [*:0]const u16,
-    psva: [*]const SCRIPT_VISATTR,
-    piDx: [*]i32,
+pub extern "usp10" fn ScriptApplyDigitSubstitution(
+    psds: ?*const SCRIPT_DIGITSUBSTITUTE,
+    psc: ?*SCRIPT_CONTROL,
+    pss: ?*SCRIPT_STATE,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9662,6 +9546,39 @@ pub extern "usp10" fn ScriptApplyLogicalWidth(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptBreak(
+    pwcChars: [*:0]const u16,
+    cChars: i32,
+    psa: ?*const SCRIPT_ANALYSIS,
+    psla: [*]SCRIPT_LOGATTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptCacheGetHeight(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    tmHeight: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptCPtoX(
+    iCP: i32,
+    fTrailing: BOOL,
+    cChars: i32,
+    cGlyphs: i32,
+    pwLogClust: [*:0]const u16,
+    psva: [*]const SCRIPT_VISATTR,
+    piAdvance: [*]const i32,
+    psa: ?*const SCRIPT_ANALYSIS,
+    piX: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptFreeCache(
+    psc: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "usp10" fn ScriptGetCMap(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
@@ -9669,6 +9586,60 @@ pub extern "usp10" fn ScriptGetCMap(
     cChars: i32,
     dwFlags: u32,
     pwOutGlyphs: [*:0]u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "usp10" fn ScriptGetFontAlternateGlyphs(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    psa: ?*SCRIPT_ANALYSIS,
+    tagScript: u32,
+    tagLangSys: u32,
+    tagFeature: u32,
+    wGlyphId: u16,
+    cMaxAlternates: i32,
+    pAlternateGlyphs: [*:0]u16,
+    pcAlternates: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "usp10" fn ScriptGetFontFeatureTags(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    psa: ?*SCRIPT_ANALYSIS,
+    tagScript: u32,
+    tagLangSys: u32,
+    cMaxTags: i32,
+    pFeatureTags: [*]u32,
+    pcTags: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "usp10" fn ScriptGetFontLanguageTags(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    psa: ?*SCRIPT_ANALYSIS,
+    tagScript: u32,
+    cMaxTags: i32,
+    pLangsysTags: [*]u32,
+    pcTags: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptGetFontProperties(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    sfp: ?*SCRIPT_FONTPROPERTIES,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "usp10" fn ScriptGetFontScriptTags(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    psa: ?*SCRIPT_ANALYSIS,
+    cMaxTags: i32,
+    pScriptTags: [*]u32,
+    pcTags: ?*i32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9680,105 +9651,20 @@ pub extern "usp10" fn ScriptGetGlyphABCWidth(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptGetLogicalWidths(
+    psa: ?*const SCRIPT_ANALYSIS,
+    cChars: i32,
+    cGlyphs: i32,
+    piGlyphWidth: [*]const i32,
+    pwLogClust: [*:0]const u16,
+    psva: [*]const SCRIPT_VISATTR,
+    piDx: [*]i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "usp10" fn ScriptGetProperties(
     ppSp: ?*const ?*?*SCRIPT_PROPERTIES,
     piNumScripts: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptGetFontProperties(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    sfp: ?*SCRIPT_FONTPROPERTIES,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptCacheGetHeight(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    tmHeight: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringAnalyse(
-    hdc: ?HDC,
-    pString: ?*const anyopaque,
-    cString: i32,
-    cGlyphs: i32,
-    iCharset: i32,
-    dwFlags: u32,
-    iReqWidth: i32,
-    psControl: ?*SCRIPT_CONTROL,
-    psState: ?*SCRIPT_STATE,
-    piDx: ?[*]const i32,
-    pTabdef: ?*SCRIPT_TABDEF,
-    pbInClass: ?*const u8,
-    pssa: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringFree(
-    pssa: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptString_pSize(
-    ssa: ?*anyopaque,
-) callconv(.winapi) ?*SIZE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptString_pcOutChars(
-    ssa: ?*anyopaque,
-) callconv(.winapi) ?*i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptString_pLogAttr(
-    ssa: ?*anyopaque,
-) callconv(.winapi) ?*SCRIPT_LOGATTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringGetOrder(
-    ssa: ?*anyopaque,
-    puOrder: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringCPtoX(
-    ssa: ?*anyopaque,
-    icp: i32,
-    fTrailing: BOOL,
-    pX: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringXtoCP(
-    ssa: ?*anyopaque,
-    iX: i32,
-    piCh: ?*i32,
-    piTrailing: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringGetLogicalWidths(
-    ssa: ?*anyopaque,
-    piDx: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringValidate(
-    ssa: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptStringOut(
-    ssa: ?*anyopaque,
-    iX: i32,
-    iY: i32,
-    uOptions: ETO_OPTIONS,
-    prc: ?*const RECT,
-    iMinSel: i32,
-    iMaxSel: i32,
-    fDisabled: BOOL,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9789,36 +9675,57 @@ pub extern "usp10" fn ScriptIsComplex(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptRecordDigitSubstitution(
-    Locale: u32,
-    psds: ?*SCRIPT_DIGITSUBSTITUTE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "usp10" fn ScriptApplyDigitSubstitution(
-    psds: ?*const SCRIPT_DIGITSUBSTITUTE,
-    psc: ?*SCRIPT_CONTROL,
-    pss: ?*SCRIPT_STATE,
+pub extern "usp10" fn ScriptItemize(
+    pwcInChars: [*:0]const u16,
+    cInChars: i32,
+    cMaxItems: i32,
+    psControl: ?*const SCRIPT_CONTROL,
+    psState: ?*const SCRIPT_STATE,
+    pItems: [*]SCRIPT_ITEM,
+    pcItems: ?*i32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "usp10" fn ScriptShapeOpenType(
+pub extern "usp10" fn ScriptItemizeOpenType(
+    pwcInChars: [*:0]const u16,
+    cInChars: i32,
+    cMaxItems: i32,
+    psControl: ?*const SCRIPT_CONTROL,
+    psState: ?*const SCRIPT_STATE,
+    pItems: [*]SCRIPT_ITEM,
+    pScriptTags: [*]u32,
+    pcItems: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptJustify(
+    psva: [*]const SCRIPT_VISATTR,
+    piAdvance: [*]const i32,
+    cGlyphs: i32,
+    iDx: i32,
+    iMinKashida: i32,
+    piJustify: [*]i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptLayout(
+    cRuns: i32,
+    pbLevel: [*:0]const u8,
+    piVisualToLogical: ?[*]i32,
+    piLogicalToVisual: ?[*]i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptPlace(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
+    pwGlyphs: [*:0]const u16,
+    cGlyphs: i32,
+    psva: [*]const SCRIPT_VISATTR,
     psa: ?*SCRIPT_ANALYSIS,
-    tagScript: u32,
-    tagLangSys: u32,
-    rcRangeChars: ?[*]i32,
-    rpRangeProperties: ?[*]?*textrange_properties,
-    cRanges: i32,
-    pwcChars: [*:0]const u16,
-    cChars: i32,
-    cMaxGlyphs: i32,
-    pwLogClust: [*:0]u16,
-    pCharProps: [*]script_charprop,
-    pwOutGlyphs: [*:0]u16,
-    pOutGlyphProps: [*]script_glyphprop,
-    pcGlyphs: ?*i32,
+    piAdvance: [*]i32,
+    pGoffset: ?[*]GOFFSET,
+    pABC: ?*ABC,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9844,78 +9751,6 @@ pub extern "usp10" fn ScriptPlaceOpenType(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "usp10" fn ScriptItemizeOpenType(
-    pwcInChars: [*:0]const u16,
-    cInChars: i32,
-    cMaxItems: i32,
-    psControl: ?*const SCRIPT_CONTROL,
-    psState: ?*const SCRIPT_STATE,
-    pItems: [*]SCRIPT_ITEM,
-    pScriptTags: [*]u32,
-    pcItems: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "usp10" fn ScriptGetFontScriptTags(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    psa: ?*SCRIPT_ANALYSIS,
-    cMaxTags: i32,
-    pScriptTags: [*]u32,
-    pcTags: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "usp10" fn ScriptGetFontLanguageTags(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    psa: ?*SCRIPT_ANALYSIS,
-    tagScript: u32,
-    cMaxTags: i32,
-    pLangsysTags: [*]u32,
-    pcTags: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "usp10" fn ScriptGetFontFeatureTags(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    psa: ?*SCRIPT_ANALYSIS,
-    tagScript: u32,
-    tagLangSys: u32,
-    cMaxTags: i32,
-    pFeatureTags: [*]u32,
-    pcTags: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "usp10" fn ScriptGetFontAlternateGlyphs(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    psa: ?*SCRIPT_ANALYSIS,
-    tagScript: u32,
-    tagLangSys: u32,
-    tagFeature: u32,
-    wGlyphId: u16,
-    cMaxAlternates: i32,
-    pAlternateGlyphs: [*:0]u16,
-    pcAlternates: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "usp10" fn ScriptSubstituteSingleGlyph(
-    hdc: ?HDC,
-    psc: ?*?*anyopaque,
-    psa: ?*SCRIPT_ANALYSIS,
-    tagScript: u32,
-    tagLangSys: u32,
-    tagFeature: u32,
-    lParameter: i32,
-    wGlyphId: u16,
-    pwOutGlyphId: ?*u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "usp10" fn ScriptPositionSingleGlyph(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
@@ -9931,1478 +9766,260 @@ pub extern "usp10" fn ScriptPositionSingleGlyph(
     pOutGoffset: ?*GOFFSET,
 ) callconv(.winapi) HRESULT;
 
-pub extern "icu" fn utf8_nextCharSafeBody(
-    s: ?*const u8,
-    pi: ?*i32,
-    length: i32,
-    c: i32,
-    strict: i8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utf8_appendCharSafeBody(
-    s: ?*u8,
-    i: i32,
-    length: i32,
-    c: i32,
-    pIsError: ?*i8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utf8_prevCharSafeBody(
-    s: ?*const u8,
-    start: i32,
-    pi: ?*i32,
-    c: i32,
-    strict: i8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utf8_back1SafeBody(
-    s: ?*const u8,
-    start: i32,
-    i: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_versionFromString(
-    versionArray: ?*u8,
-    versionString: ?[*:0]const u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_versionFromUString(
-    versionArray: ?*u8,
-    versionString: ?*const u16,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_versionToString(
-    versionArray: ?*const u8,
-    versionString: ?PSTR,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_getVersion(
-    versionArray: ?*u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_errorName(
-    code: UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn utrace_setLevel(
-    traceLevel: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn utrace_getLevel(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utrace_setFunctions(
-    context: ?*const anyopaque,
-    e: ?UTraceEntry,
-    x: ?UTraceExit,
-    d: ?UTraceData,
-) callconv(.winapi) void;
-
-pub extern "icu" fn utrace_getFunctions(
-    context: ?*const ?*anyopaque,
-    e: ?*?UTraceEntry,
-    x: ?*?UTraceExit,
-    d: ?*?UTraceData,
-) callconv(.winapi) void;
-
-pub extern "icu" fn utrace_vformat(
-    outBuf: ?PSTR,
-    capacity: i32,
-    indent: i32,
-    fmt: ?[*:0]const u8,
-    args: ?*i8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utrace_format(
-    outBuf: ?PSTR,
-    capacity: i32,
-    indent: i32,
-    fmt: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utrace_functionName(
-    fnNumber: i32,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn u_shapeArabic(
-    source: ?*const u16,
-    sourceLength: i32,
-    dest: ?*u16,
-    destSize: i32,
-    options: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uscript_getCode(
-    nameOrAbbrOrLocale: ?[*:0]const u8,
-    fillIn: ?*UScriptCode,
-    capacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uscript_getName(
-    scriptCode: UScriptCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uscript_getShortName(
-    scriptCode: UScriptCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uscript_getScript(
-    codepoint: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) UScriptCode;
-
-pub extern "icu" fn uscript_hasScript(
-    c: i32,
-    sc: UScriptCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uscript_getScriptExtensions(
-    c: i32,
-    scripts: ?*UScriptCode,
-    capacity: i32,
-    errorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uscript_getSampleString(
-    script: UScriptCode,
-    dest: ?*u16,
-    capacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uscript_getUsage(
-    script: UScriptCode,
-) callconv(.winapi) UScriptUsage;
-
-pub extern "icu" fn uscript_isRightToLeft(
-    script: UScriptCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uscript_breaksBetweenLetters(
-    script: UScriptCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uscript_isCased(
-    script: UScriptCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uiter_current32(
-    iter: ?*UCharIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uiter_next32(
-    iter: ?*UCharIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uiter_previous32(
-    iter: ?*UCharIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uiter_getState(
-    iter: ?*const UCharIterator,
-) callconv(.winapi) u32;
-
-pub extern "icu" fn uiter_setState(
-    iter: ?*UCharIterator,
-    state: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uiter_setString(
-    iter: ?*UCharIterator,
-    s: ?*const u16,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uiter_setUTF16BE(
-    iter: ?*UCharIterator,
-    s: ?[*:0]const u8,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uiter_setUTF8(
-    iter: ?*UCharIterator,
-    s: ?[*:0]const u8,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uenum_close(
-    en: ?*UEnumeration,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uenum_count(
-    en: ?*UEnumeration,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uenum_unext(
-    en: ?*UEnumeration,
-    resultLength: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn uenum_next(
-    en: ?*UEnumeration,
-    resultLength: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uenum_reset(
-    en: ?*UEnumeration,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uenum_openUCharStringsEnumeration(
-    strings: ?*const ?*u16,
-    count: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn uenum_openCharStringsEnumeration(
-    strings: ?*const ?*i8,
-    count: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn uloc_getDefault(
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uloc_setDefault(
-    localeID: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uloc_getLanguage(
-    localeID: ?[*:0]const u8,
-    language: ?PSTR,
-    languageCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getScript(
-    localeID: ?[*:0]const u8,
-    script: ?PSTR,
-    scriptCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getCountry(
-    localeID: ?[*:0]const u8,
-    country: ?PSTR,
-    countryCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getVariant(
-    localeID: ?[*:0]const u8,
-    variant: ?PSTR,
-    variantCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getName(
-    localeID: ?[*:0]const u8,
-    name: ?PSTR,
-    nameCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_canonicalize(
-    localeID: ?[*:0]const u8,
-    name: ?PSTR,
-    nameCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getISO3Language(
-    localeID: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uloc_getISO3Country(
-    localeID: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uloc_getLCID(
-    localeID: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-pub extern "icu" fn uloc_getDisplayLanguage(
-    locale: ?[*:0]const u8,
-    displayLocale: ?[*:0]const u8,
-    language: ?*u16,
-    languageCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getDisplayScript(
-    locale: ?[*:0]const u8,
-    displayLocale: ?[*:0]const u8,
-    script: ?*u16,
-    scriptCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getDisplayCountry(
-    locale: ?[*:0]const u8,
-    displayLocale: ?[*:0]const u8,
-    country: ?*u16,
-    countryCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getDisplayVariant(
-    locale: ?[*:0]const u8,
-    displayLocale: ?[*:0]const u8,
-    variant: ?*u16,
-    variantCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getDisplayKeyword(
-    keyword: ?[*:0]const u8,
-    displayLocale: ?[*:0]const u8,
-    dest: ?*u16,
-    destCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getDisplayKeywordValue(
-    locale: ?[*:0]const u8,
-    keyword: ?[*:0]const u8,
-    displayLocale: ?[*:0]const u8,
-    dest: ?*u16,
-    destCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getDisplayName(
-    localeID: ?[*:0]const u8,
-    inLocaleID: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getAvailable(
-    n: i32,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uloc_countAvailable(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_openAvailableByType(
-    type: ULocAvailableType,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn uloc_getISOLanguages(
-) callconv(.winapi) ?*?*i8;
-
-pub extern "icu" fn uloc_getISOCountries(
-) callconv(.winapi) ?*?*i8;
-
-pub extern "icu" fn uloc_getParent(
-    localeID: ?[*:0]const u8,
-    parent: ?PSTR,
-    parentCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getBaseName(
-    localeID: ?[*:0]const u8,
-    name: ?PSTR,
-    nameCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_openKeywords(
-    localeID: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn uloc_getKeywordValue(
-    localeID: ?[*:0]const u8,
-    keywordName: ?[*:0]const u8,
-    buffer: ?PSTR,
-    bufferCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_setKeywordValue(
-    keywordName: ?[*:0]const u8,
-    keywordValue: ?[*:0]const u8,
-    buffer: ?PSTR,
-    bufferCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_isRightToLeft(
-    locale: ?[*:0]const u8,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uloc_getCharacterOrientation(
-    localeId: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ULayoutType;
-
-pub extern "icu" fn uloc_getLineOrientation(
-    localeId: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ULayoutType;
-
-pub extern "icu" fn uloc_acceptLanguageFromHTTP(
-    result: ?PSTR,
-    resultAvailable: i32,
-    outResult: ?*UAcceptResult,
-    httpAcceptLanguage: ?[*:0]const u8,
-    availableLocales: ?*UEnumeration,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_acceptLanguage(
-    result: ?PSTR,
-    resultAvailable: i32,
-    outResult: ?*UAcceptResult,
-    acceptList: ?*const ?*i8,
-    acceptListCount: i32,
-    availableLocales: ?*UEnumeration,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_getLocaleForLCID(
-    hostID: u32,
-    locale: ?PSTR,
-    localeCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_addLikelySubtags(
-    localeID: ?[*:0]const u8,
-    maximizedLocaleID: ?PSTR,
-    maximizedLocaleIDCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_minimizeSubtags(
-    localeID: ?[*:0]const u8,
-    minimizedLocaleID: ?PSTR,
-    minimizedLocaleIDCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_forLanguageTag(
-    langtag: ?[*:0]const u8,
-    localeID: ?PSTR,
-    localeIDCapacity: i32,
-    parsedLength: ?*i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_toLanguageTag(
-    localeID: ?[*:0]const u8,
-    langtag: ?PSTR,
-    langtagCapacity: i32,
-    strict: i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uloc_toUnicodeLocaleKey(
-    keyword: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uloc_toUnicodeLocaleType(
-    keyword: ?[*:0]const u8,
-    value: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uloc_toLegacyKey(
-    keyword: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uloc_toLegacyType(
-    keyword: ?[*:0]const u8,
-    value: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ures_open(
-    packageName: ?[*:0]const u8,
-    locale: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UResourceBundle;
-
-pub extern "icu" fn ures_openDirect(
-    packageName: ?[*:0]const u8,
-    locale: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UResourceBundle;
-
-pub extern "icu" fn ures_openU(
-    packageName: ?*const u16,
-    locale: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UResourceBundle;
-
-pub extern "icu" fn ures_close(
-    resourceBundle: ?*UResourceBundle,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ures_getVersion(
-    resB: ?*const UResourceBundle,
-    versionInfo: ?*u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ures_getLocaleByType(
-    resourceBundle: ?*const UResourceBundle,
-    type: ULocDataLocaleType,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ures_getString(
-    resourceBundle: ?*const UResourceBundle,
-    len: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ures_getUTF8String(
-    resB: ?*const UResourceBundle,
-    dest: ?PSTR,
-    length: ?*i32,
-    forceCopy: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ures_getBinary(
-    resourceBundle: ?*const UResourceBundle,
-    len: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u8;
-
-pub extern "icu" fn ures_getIntVector(
-    resourceBundle: ?*const UResourceBundle,
-    len: ?*i32,
-    status: ?*UErrorCode,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptRecordDigitSubstitution(
+    Locale: u32,
+    psds: ?*SCRIPT_DIGITSUBSTITUTE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptShape(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    pwcChars: [*:0]const u16,
+    cChars: i32,
+    cMaxGlyphs: i32,
+    psa: ?*SCRIPT_ANALYSIS,
+    pwOutGlyphs: [*:0]u16,
+    pwLogClust: [*:0]u16,
+    psva: [*]SCRIPT_VISATTR,
+    pcGlyphs: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "usp10" fn ScriptShapeOpenType(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    psa: ?*SCRIPT_ANALYSIS,
+    tagScript: u32,
+    tagLangSys: u32,
+    rcRangeChars: ?[*]i32,
+    rpRangeProperties: ?[*]?*textrange_properties,
+    cRanges: i32,
+    pwcChars: [*:0]const u16,
+    cChars: i32,
+    cMaxGlyphs: i32,
+    pwLogClust: [*:0]u16,
+    pCharProps: [*]script_charprop,
+    pwOutGlyphs: [*:0]u16,
+    pOutGlyphProps: [*]script_glyphprop,
+    pcGlyphs: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptString_pcOutChars(
+    ssa: ?*anyopaque,
 ) callconv(.winapi) ?*i32;
 
-pub extern "icu" fn ures_getUInt(
-    resourceBundle: ?*const UResourceBundle,
-    status: ?*UErrorCode,
-) callconv(.winapi) u32;
-
-pub extern "icu" fn ures_getInt(
-    resourceBundle: ?*const UResourceBundle,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ures_getSize(
-    resourceBundle: ?*const UResourceBundle,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ures_getType(
-    resourceBundle: ?*const UResourceBundle,
-) callconv(.winapi) UResType;
-
-pub extern "icu" fn ures_getKey(
-    resourceBundle: ?*const UResourceBundle,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ures_resetIterator(
-    resourceBundle: ?*UResourceBundle,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ures_hasNext(
-    resourceBundle: ?*const UResourceBundle,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ures_getNextResource(
-    resourceBundle: ?*UResourceBundle,
-    fillIn: ?*UResourceBundle,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UResourceBundle;
-
-pub extern "icu" fn ures_getNextString(
-    resourceBundle: ?*UResourceBundle,
-    len: ?*i32,
-    key: ?*const ?*i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ures_getByIndex(
-    resourceBundle: ?*const UResourceBundle,
-    indexR: i32,
-    fillIn: ?*UResourceBundle,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UResourceBundle;
-
-pub extern "icu" fn ures_getStringByIndex(
-    resourceBundle: ?*const UResourceBundle,
-    indexS: i32,
-    len: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ures_getUTF8StringByIndex(
-    resB: ?*const UResourceBundle,
-    stringIndex: i32,
-    dest: ?PSTR,
-    pLength: ?*i32,
-    forceCopy: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ures_getByKey(
-    resourceBundle: ?*const UResourceBundle,
-    key: ?[*:0]const u8,
-    fillIn: ?*UResourceBundle,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UResourceBundle;
-
-pub extern "icu" fn ures_getStringByKey(
-    resB: ?*const UResourceBundle,
-    key: ?[*:0]const u8,
-    len: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ures_getUTF8StringByKey(
-    resB: ?*const UResourceBundle,
-    key: ?[*:0]const u8,
-    dest: ?PSTR,
-    pLength: ?*i32,
-    forceCopy: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ures_openAvailableLocales(
-    packageName: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn uldn_open(
-    locale: ?[*:0]const u8,
-    dialectHandling: UDialectHandling,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*ULocaleDisplayNames;
-
-pub extern "icu" fn uldn_close(
-    ldn: ?*ULocaleDisplayNames,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uldn_getLocale(
-    ldn: ?*const ULocaleDisplayNames,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uldn_getDialectHandling(
-    ldn: ?*const ULocaleDisplayNames,
-) callconv(.winapi) UDialectHandling;
-
-pub extern "icu" fn uldn_localeDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    locale: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_languageDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    lang: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_scriptDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    script: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_scriptCodeDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    scriptCode: UScriptCode,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_regionDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    region: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_variantDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    variant: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_keyDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    key: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_keyValueDisplayName(
-    ldn: ?*const ULocaleDisplayNames,
-    key: ?[*:0]const u8,
-    value: ?[*:0]const u8,
-    result: ?*u16,
-    maxResultSize: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uldn_openForContext(
-    locale: ?[*:0]const u8,
-    contexts: ?*UDisplayContext,
-    length: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*ULocaleDisplayNames;
-
-pub extern "icu" fn uldn_getContext(
-    ldn: ?*const ULocaleDisplayNames,
-    type: UDisplayContextType,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) UDisplayContext;
-
-pub extern "icu" fn ucurr_forLocale(
-    locale: ?[*:0]const u8,
-    buff: ?*u16,
-    buffCapacity: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucurr_register(
-    isoCode: ?*const u16,
-    locale: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*anyopaque;
-
-pub extern "icu" fn ucurr_unregister(
-    key: ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucurr_getName(
-    currency: ?*const u16,
-    locale: ?[*:0]const u8,
-    nameStyle: UCurrNameStyle,
-    isChoiceFormat: ?*i8,
-    len: ?*i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ucurr_getPluralName(
-    currency: ?*const u16,
-    locale: ?[*:0]const u8,
-    isChoiceFormat: ?*i8,
-    pluralCount: ?[*:0]const u8,
-    len: ?*i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ucurr_getDefaultFractionDigits(
-    currency: ?*const u16,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucurr_getDefaultFractionDigitsForUsage(
-    currency: ?*const u16,
-    usage: UCurrencyUsage,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucurr_getRoundingIncrement(
-    currency: ?*const u16,
-    ec: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn ucurr_getRoundingIncrementForUsage(
-    currency: ?*const u16,
-    usage: UCurrencyUsage,
-    ec: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn ucurr_openISOCurrencies(
-    currType: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucurr_isAvailable(
-    isoCode: ?*const u16,
-    from: f64,
-    to: f64,
-    errorCode: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucurr_countCurrencies(
-    locale: ?[*:0]const u8,
-    date: f64,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucurr_forLocaleAndDate(
-    locale: ?[*:0]const u8,
-    date: f64,
-    index: i32,
-    buff: ?*u16,
-    buffCapacity: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucurr_getKeywordValuesForLocale(
-    key: ?[*:0]const u8,
-    locale: ?[*:0]const u8,
-    commonlyUsed: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucurr_getNumericCode(
-    currency: ?*const u16,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucpmap_get(
-    map: ?*const UCPMap,
-    c: i32,
-) callconv(.winapi) u32;
-
-pub extern "icu" fn ucpmap_getRange(
-    map: ?*const UCPMap,
-    start: i32,
-    option: UCPMapRangeOption,
-    surrogateValue: u32,
-    filter: ?*?UCPMapValueFilter,
-    context: ?*const anyopaque,
-    pValue: ?*u32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucptrie_openFromBinary(
-    type: UCPTrieType,
-    valueWidth: UCPTrieValueWidth,
-    data: ?*const anyopaque,
-    length: i32,
-    pActualLength: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UCPTrie;
-
-pub extern "icu" fn ucptrie_close(
-    trie: ?*UCPTrie,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucptrie_getType(
-    trie: ?*const UCPTrie,
-) callconv(.winapi) UCPTrieType;
-
-pub extern "icu" fn ucptrie_getValueWidth(
-    trie: ?*const UCPTrie,
-) callconv(.winapi) UCPTrieValueWidth;
-
-pub extern "icu" fn ucptrie_get(
-    trie: ?*const UCPTrie,
-    c: i32,
-) callconv(.winapi) u32;
-
-pub extern "icu" fn ucptrie_getRange(
-    trie: ?*const UCPTrie,
-    start: i32,
-    option: UCPMapRangeOption,
-    surrogateValue: u32,
-    filter: ?*?UCPMapValueFilter,
-    context: ?*const anyopaque,
-    pValue: ?*u32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucptrie_toBinary(
-    trie: ?*const UCPTrie,
-    data: ?*anyopaque,
-    capacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucptrie_internalSmallIndex(
-    trie: ?*const UCPTrie,
-    c: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucptrie_internalSmallU8Index(
-    trie: ?*const UCPTrie,
-    lt1: i32,
-    t2: u8,
-    t3: u8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucptrie_internalU8PrevIndex(
-    trie: ?*const UCPTrie,
-    c: i32,
-    start: ?*const u8,
-    src: ?*const u8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn umutablecptrie_open(
-    initialValue: u32,
-    errorValue: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UMutableCPTrie;
-
-pub extern "icu" fn umutablecptrie_clone(
-    other: ?*const UMutableCPTrie,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UMutableCPTrie;
-
-pub extern "icu" fn umutablecptrie_close(
-    trie: ?*UMutableCPTrie,
-) callconv(.winapi) void;
-
-pub extern "icu" fn umutablecptrie_fromUCPMap(
-    map: ?*const UCPMap,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UMutableCPTrie;
-
-pub extern "icu" fn umutablecptrie_fromUCPTrie(
-    trie: ?*const UCPTrie,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UMutableCPTrie;
-
-pub extern "icu" fn umutablecptrie_get(
-    trie: ?*const UMutableCPTrie,
-    c: i32,
-) callconv(.winapi) u32;
-
-pub extern "icu" fn umutablecptrie_getRange(
-    trie: ?*const UMutableCPTrie,
-    start: i32,
-    option: UCPMapRangeOption,
-    surrogateValue: u32,
-    filter: ?*?UCPMapValueFilter,
-    context: ?*const anyopaque,
-    pValue: ?*u32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn umutablecptrie_set(
-    trie: ?*UMutableCPTrie,
-    c: i32,
-    value: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn umutablecptrie_setRange(
-    trie: ?*UMutableCPTrie,
-    start: i32,
-    end: i32,
-    value: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn umutablecptrie_buildImmutable(
-    trie: ?*UMutableCPTrie,
-    type: UCPTrieType,
-    valueWidth: UCPTrieValueWidth,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UCPTrie;
-
-pub extern "icu" fn UCNV_FROM_U_CALLBACK_STOP(
-    context: ?*const anyopaque,
-    fromUArgs: ?*UConverterFromUnicodeArgs,
-    codeUnits: ?*const u16,
-    length: i32,
-    codePoint: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn UCNV_TO_U_CALLBACK_STOP(
-    context: ?*const anyopaque,
-    toUArgs: ?*UConverterToUnicodeArgs,
-    codeUnits: ?[*:0]const u8,
-    length: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn UCNV_FROM_U_CALLBACK_SKIP(
-    context: ?*const anyopaque,
-    fromUArgs: ?*UConverterFromUnicodeArgs,
-    codeUnits: ?*const u16,
-    length: i32,
-    codePoint: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn UCNV_FROM_U_CALLBACK_SUBSTITUTE(
-    context: ?*const anyopaque,
-    fromUArgs: ?*UConverterFromUnicodeArgs,
-    codeUnits: ?*const u16,
-    length: i32,
-    codePoint: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn UCNV_FROM_U_CALLBACK_ESCAPE(
-    context: ?*const anyopaque,
-    fromUArgs: ?*UConverterFromUnicodeArgs,
-    codeUnits: ?*const u16,
-    length: i32,
-    codePoint: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn UCNV_TO_U_CALLBACK_SKIP(
-    context: ?*const anyopaque,
-    toUArgs: ?*UConverterToUnicodeArgs,
-    codeUnits: ?[*:0]const u8,
-    length: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn UCNV_TO_U_CALLBACK_SUBSTITUTE(
-    context: ?*const anyopaque,
-    toUArgs: ?*UConverterToUnicodeArgs,
-    codeUnits: ?[*:0]const u8,
-    length: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn UCNV_TO_U_CALLBACK_ESCAPE(
-    context: ?*const anyopaque,
-    toUArgs: ?*UConverterToUnicodeArgs,
-    codeUnits: ?[*:0]const u8,
-    length: i32,
-    reason: UConverterCallbackReason,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_compareNames(
-    name1: ?[*:0]const u8,
-    name2: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_open(
-    converterName: ?[*:0]const u8,
-    err: ?*UErrorCode,
-) callconv(.winapi) ?*UConverter;
-
-pub extern "icu" fn ucnv_openU(
-    name: ?*const u16,
-    err: ?*UErrorCode,
-) callconv(.winapi) ?*UConverter;
-
-pub extern "icu" fn ucnv_openCCSID(
-    codepage: i32,
-    platform: UConverterPlatform,
-    err: ?*UErrorCode,
-) callconv(.winapi) ?*UConverter;
-
-pub extern "icu" fn ucnv_openPackage(
-    packageName: ?[*:0]const u8,
-    converterName: ?[*:0]const u8,
-    err: ?*UErrorCode,
-) callconv(.winapi) ?*UConverter;
-
-pub extern "icu" fn ucnv_safeClone(
-    cnv: ?*const UConverter,
-    stackBuffer: ?*anyopaque,
-    pBufferSize: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UConverter;
-
-pub extern "icu" fn ucnv_close(
-    converter: ?*UConverter,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_getSubstChars(
-    converter: ?*const UConverter,
-    subChars: ?PSTR,
-    len: ?*i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_setSubstChars(
-    converter: ?*UConverter,
-    subChars: ?[*:0]const u8,
-    len: i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_setSubstString(
-    cnv: ?*UConverter,
-    s: ?*const u16,
-    length: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_getInvalidChars(
-    converter: ?*const UConverter,
-    errBytes: ?PSTR,
-    len: ?*i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_getInvalidUChars(
-    converter: ?*const UConverter,
-    errUChars: ?*u16,
-    len: ?*i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_reset(
-    converter: ?*UConverter,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_resetToUnicode(
-    converter: ?*UConverter,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_resetFromUnicode(
-    converter: ?*UConverter,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_getMaxCharSize(
-    converter: ?*const UConverter,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucnv_getMinCharSize(
-    converter: ?*const UConverter,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucnv_getDisplayName(
-    converter: ?*const UConverter,
-    displayLocale: ?[*:0]const u8,
-    displayName: ?*u16,
-    displayNameCapacity: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_getName(
-    converter: ?*const UConverter,
-    err: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_getCCSID(
-    converter: ?*const UConverter,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_getPlatform(
-    converter: ?*const UConverter,
-    err: ?*UErrorCode,
-) callconv(.winapi) UConverterPlatform;
-
-pub extern "icu" fn ucnv_getType(
-    converter: ?*const UConverter,
-) callconv(.winapi) UConverterType;
-
-pub extern "icu" fn ucnv_getStarters(
-    converter: ?*const UConverter,
-    starters: ?*i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_getUnicodeSet(
-    cnv: ?*const UConverter,
-    setFillIn: ?*USet,
-    whichSet: UConverterUnicodeSet,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_getToUCallBack(
-    converter: ?*const UConverter,
-    action: ?*?UConverterToUCallback,
-    context: ?*const ?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_getFromUCallBack(
-    converter: ?*const UConverter,
-    action: ?*?UConverterFromUCallback,
-    context: ?*const ?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_setToUCallBack(
-    converter: ?*UConverter,
-    newAction: ?UConverterToUCallback,
-    newContext: ?*const anyopaque,
-    oldAction: ?*?UConverterToUCallback,
-    oldContext: ?*const ?*anyopaque,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_setFromUCallBack(
-    converter: ?*UConverter,
-    newAction: ?UConverterFromUCallback,
-    newContext: ?*const anyopaque,
-    oldAction: ?*?UConverterFromUCallback,
-    oldContext: ?*const ?*anyopaque,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_fromUnicode(
-    converter: ?*UConverter,
-    target: ?*?*i8,
-    targetLimit: ?[*:0]const u8,
-    source: ?*const ?*u16,
-    sourceLimit: ?*const u16,
-    offsets: ?*i32,
-    flush: i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_toUnicode(
-    converter: ?*UConverter,
-    target: ?*?*u16,
-    targetLimit: ?*const u16,
-    source: ?*const ?*i8,
-    sourceLimit: ?[*:0]const u8,
-    offsets: ?*i32,
-    flush: i8,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_fromUChars(
-    cnv: ?*UConverter,
-    dest: ?PSTR,
-    destCapacity: i32,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptString_pLogAttr(
+    ssa: ?*anyopaque,
+) callconv(.winapi) ?*SCRIPT_LOGATTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptString_pSize(
+    ssa: ?*anyopaque,
+) callconv(.winapi) ?*SIZE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringAnalyse(
+    hdc: ?HDC,
+    pString: ?*const anyopaque,
+    cString: i32,
+    cGlyphs: i32,
+    iCharset: i32,
+    dwFlags: u32,
+    iReqWidth: i32,
+    psControl: ?*SCRIPT_CONTROL,
+    psState: ?*SCRIPT_STATE,
+    piDx: ?[*]const i32,
+    pTabdef: ?*SCRIPT_TABDEF,
+    pbInClass: ?*const u8,
+    pssa: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringCPtoX(
+    ssa: ?*anyopaque,
+    icp: i32,
+    fTrailing: BOOL,
+    pX: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringFree(
+    pssa: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringGetLogicalWidths(
+    ssa: ?*anyopaque,
+    piDx: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringGetOrder(
+    ssa: ?*anyopaque,
+    puOrder: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringOut(
+    ssa: ?*anyopaque,
+    iX: i32,
+    iY: i32,
+    uOptions: ETO_OPTIONS,
+    prc: ?*const RECT,
+    iMinSel: i32,
+    iMaxSel: i32,
+    fDisabled: BOOL,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringValidate(
+    ssa: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptStringXtoCP(
+    ssa: ?*anyopaque,
+    iX: i32,
+    piCh: ?*i32,
+    piTrailing: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "usp10" fn ScriptSubstituteSingleGlyph(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    psa: ?*SCRIPT_ANALYSIS,
+    tagScript: u32,
+    tagLangSys: u32,
+    tagFeature: u32,
+    lParameter: i32,
+    wGlyphId: u16,
+    pwOutGlyphId: ?*u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptTextOut(
+    hdc: ?HDC,
+    psc: ?*?*anyopaque,
+    x: i32,
+    y: i32,
+    fuOptions: u32,
+    lprc: ?*const RECT,
+    psa: ?*const SCRIPT_ANALYSIS,
+    pwcReserved: ?[*:0]const u16,
+    iReserved: i32,
+    pwGlyphs: [*:0]const u16,
+    cGlyphs: i32,
+    piAdvance: [*]const i32,
+    piJustify: ?[*]const i32,
+    pGoffset: [*]const GOFFSET,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "usp10" fn ScriptXtoCP(
+    iX: i32,
+    cChars: i32,
+    cGlyphs: i32,
+    pwLogClust: [*:0]const u16,
+    psva: [*]const SCRIPT_VISATTR,
+    piAdvance: [*]const i32,
+    psa: ?*const SCRIPT_ANALYSIS,
+    piCP: ?*i32,
+    piTrailing: ?*i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SetCalendarInfoA(
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+    lpCalData: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SetCalendarInfoW(
+    Locale: u32,
+    Calendar: u32,
+    CalType: u32,
+    lpCalData: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SetLocaleInfoA(
+    Locale: u32,
+    LCType: u32,
+    lpLCData: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SetLocaleInfoW(
+    Locale: u32,
+    LCType: u32,
+    lpLCData: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn SetProcessPreferredUILanguages(
+    dwFlags: u32,
+    pwszLanguagesBuffer: ?[*]const u16,
+    pulNumLanguages: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SetThreadLocale(
+    Locale: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn SetThreadPreferredUILanguages(
+    dwFlags: u32,
+    pwszLanguagesBuffer: ?[*]const u16,
+    pulNumLanguages: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn SetThreadPreferredUILanguages2(
+    flags: u32,
+    languages: ?[*]const u16,
+    numLanguagesSet: ?*u32,
+    snapshot: ?*?HSAVEDUILANGUAGES,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn SetThreadUILanguage(
+    LangId: u16,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn SetUserGeoID(
+    GeoId: i32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.16299'
+pub extern "kernel32" fn SetUserGeoName(
+    geoName: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn TranslateCharsetInfo(
+    lpSrc: ?*u32,
+    lpCs: ?*CHARSETINFO,
+    dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
+) callconv(.winapi) BOOL;
+
+pub extern "icu" fn u_austrcpy(
+    dst: ?PSTR,
     src: ?*const u16,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn ucnv_toUChars(
-    cnv: ?*UConverter,
-    dest: ?*u16,
-    destCapacity: i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_getNextUChar(
-    converter: ?*UConverter,
-    source: ?*const ?*i8,
-    sourceLimit: ?[*:0]const u8,
-    err: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_convertEx(
-    targetCnv: ?*UConverter,
-    sourceCnv: ?*UConverter,
-    target: ?*?*i8,
-    targetLimit: ?[*:0]const u8,
-    source: ?*const ?*i8,
-    sourceLimit: ?[*:0]const u8,
-    pivotStart: ?*u16,
-    pivotSource: ?*?*u16,
-    pivotTarget: ?*?*u16,
-    pivotLimit: ?*const u16,
-    reset: i8,
-    flush: i8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_convert(
-    toConverterName: ?[*:0]const u8,
-    fromConverterName: ?[*:0]const u8,
-    target: ?PSTR,
-    targetCapacity: i32,
-    source: ?[*:0]const u8,
-    sourceLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_toAlgorithmic(
-    algorithmicType: UConverterType,
-    cnv: ?*UConverter,
-    target: ?PSTR,
-    targetCapacity: i32,
-    source: ?[*:0]const u8,
-    sourceLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_fromAlgorithmic(
-    cnv: ?*UConverter,
-    algorithmicType: UConverterType,
-    target: ?PSTR,
-    targetCapacity: i32,
-    source: ?[*:0]const u8,
-    sourceLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_flushCache(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_countAvailable(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_getAvailableName(
+pub extern "icu" fn u_austrncpy(
+    dst: ?PSTR,
+    src: ?*const u16,
     n: i32,
 ) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_openAllNames(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucnv_countAliases(
-    alias: ?[*:0]const u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) u16;
-
-pub extern "icu" fn ucnv_getAlias(
-    alias: ?[*:0]const u8,
-    n: u16,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_getAliases(
-    alias: ?[*:0]const u8,
-    aliases: ?*const ?*i8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_openStandardNames(
-    convName: ?[*:0]const u8,
-    standard: ?[*:0]const u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucnv_countStandards(
-) callconv(.winapi) u16;
-
-pub extern "icu" fn ucnv_getStandard(
-    n: u16,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_getStandardName(
-    name: ?[*:0]const u8,
-    standard: ?[*:0]const u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_getCanonicalName(
-    alias: ?[*:0]const u8,
-    standard: ?[*:0]const u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_getDefaultName(
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_setDefaultName(
-    name: ?[*:0]const u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_fixFileSeparator(
-    cnv: ?*const UConverter,
-    source: ?*u16,
-    sourceLen: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_isAmbiguous(
-    cnv: ?*const UConverter,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucnv_setFallback(
-    cnv: ?*UConverter,
-    usesFallback: i8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_usesFallback(
-    cnv: ?*const UConverter,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucnv_detectUnicodeSignature(
-    source: ?[*:0]const u8,
-    sourceLength: i32,
-    signatureLength: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucnv_fromUCountPending(
-    cnv: ?*const UConverter,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_toUCountPending(
-    cnv: ?*const UConverter,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnv_isFixedWidth(
-    cnv: ?*UConverter,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucnv_cbFromUWriteBytes(
-    args: ?*UConverterFromUnicodeArgs,
-    source: ?[*:0]const u8,
-    length: i32,
-    offsetIndex: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_cbFromUWriteSub(
-    args: ?*UConverterFromUnicodeArgs,
-    offsetIndex: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_cbFromUWriteUChars(
-    args: ?*UConverterFromUnicodeArgs,
-    source: ?*const ?*u16,
-    sourceLimit: ?*const u16,
-    offsetIndex: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_cbToUWriteUChars(
-    args: ?*UConverterToUnicodeArgs,
-    source: ?*const u16,
-    length: i32,
-    offsetIndex: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnv_cbToUWriteSub(
-    args: ?*UConverterToUnicodeArgs,
-    offsetIndex: i32,
-    err: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_init(
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_cleanup(
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_setMemoryFunctions(
-    context: ?*const anyopaque,
-    a: ?*?UMemAllocFn,
-    r: ?*?UMemReallocFn,
-    f: ?*?UMemFreeFn,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_catopen(
-    name: ?[*:0]const u8,
-    locale: ?[*:0]const u8,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UResourceBundle;
 
 pub extern "icu" fn u_catclose(
     catd: ?*UResourceBundle,
@@ -11417,162 +10034,34 @@ pub extern "icu" fn u_catgets(
     ec: ?*UErrorCode,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn u_hasBinaryProperty(
+pub extern "icu" fn u_catopen(
+    name: ?[*:0]const u8,
+    locale: ?[*:0]const u8,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UResourceBundle;
+
+pub extern "icu" fn u_charAge(
     c: i32,
-    which: UProperty,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_getBinaryPropertySet(
-    property: UProperty,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn u_isUAlphabetic(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isULowercase(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isUUppercase(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isUWhiteSpace(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_getIntPropertyValue(
-    c: i32,
-    which: UProperty,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_getIntPropertyMinValue(
-    which: UProperty,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_getIntPropertyMaxValue(
-    which: UProperty,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_getIntPropertyMap(
-    property: UProperty,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UCPMap;
-
-pub extern "icu" fn u_getNumericValue(
-    c: i32,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn u_islower(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isupper(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_istitle(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isdigit(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isalpha(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isalnum(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isxdigit(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_ispunct(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isgraph(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isblank(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isdefined(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isspace(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isJavaSpaceChar(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isWhitespace(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_iscntrl(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isISOControl(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isprint(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isbase(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_charDirection(
-    c: i32,
-) callconv(.winapi) UCharDirection;
-
-pub extern "icu" fn u_isMirrored(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_charMirror(
-    c: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_getBidiPairedBracket(
-    c: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_charType(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_enumCharTypes(
-    enumRange: ?*?UCharEnumTypeRange,
-    context: ?*const anyopaque,
+    versionArray: ?*u8,
 ) callconv(.winapi) void;
-
-pub extern "icu" fn u_getCombiningClass(
-    c: i32,
-) callconv(.winapi) u8;
 
 pub extern "icu" fn u_charDigitValue(
     c: i32,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ublock_getCode(
+pub extern "icu" fn u_charDirection(
     c: i32,
-) callconv(.winapi) UBlockCode;
+) callconv(.winapi) UCharDirection;
+
+pub extern "icu" fn u_charFromName(
+    nameChoice: UCharNameChoice,
+    name: ?[*:0]const u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_charMirror(
+    c: i32,
+) callconv(.winapi) i32;
 
 pub extern "icu" fn u_charName(
     code: i32,
@@ -11582,10 +10071,27 @@ pub extern "icu" fn u_charName(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_charFromName(
-    nameChoice: UCharNameChoice,
-    name: ?[*:0]const u8,
-    pErrorCode: ?*UErrorCode,
+pub extern "icu" fn u_charsToUChars(
+    cs: ?[*:0]const u8,
+    us: ?*u16,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn u_charType(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_cleanup(
+) callconv(.winapi) void;
+
+pub extern "icu" fn u_countChar32(
+    s: ?*const u16,
+    length: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_digit(
+    ch: i32,
+    radix: i8,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn u_enumCharNames(
@@ -11597,66 +10103,18 @@ pub extern "icu" fn u_enumCharNames(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn u_getPropertyName(
-    property: UProperty,
-    nameChoice: UPropertyNameChoice,
+pub extern "icu" fn u_enumCharTypes(
+    enumRange: ?*?UCharEnumTypeRange,
+    context: ?*const anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn u_errorName(
+    code: UErrorCode,
 ) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn u_getPropertyEnum(
-    alias: ?[*:0]const u8,
-) callconv(.winapi) UProperty;
-
-pub extern "icu" fn u_getPropertyValueName(
-    property: UProperty,
-    value: i32,
-    nameChoice: UPropertyNameChoice,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn u_getPropertyValueEnum(
-    property: UProperty,
-    alias: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_isIDStart(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isIDPart(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isIDIgnorable(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isJavaIDStart(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_isJavaIDPart(
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn u_tolower(
-    c: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_toupper(
-    c: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_totitle(
-    c: i32,
-) callconv(.winapi) i32;
 
 pub extern "icu" fn u_foldCase(
     c: i32,
     options: u32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_digit(
-    ch: i32,
-    radix: i8,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn u_forDigit(
@@ -11664,13 +10122,41 @@ pub extern "icu" fn u_forDigit(
     radix: i8,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_charAge(
-    c: i32,
-    versionArray: ?*u8,
-) callconv(.winapi) void;
+pub extern "icu" fn u_formatMessage(
+    locale: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    result: ?*u16,
+    resultLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
 
-pub extern "icu" fn u_getUnicodeVersion(
-    versionArray: ?*u8,
+pub extern "icu" fn u_formatMessageWithError(
+    locale: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    result: ?*u16,
+    resultLength: i32,
+    parseError: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_getBidiPairedBracket(
+    c: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_getBinaryPropertySet(
+    property: UProperty,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn u_getCombiningClass(
+    c: i32,
+) callconv(.winapi) u8;
+
+pub extern "icu" fn u_getDataVersion(
+    dataVersionFillin: ?*u8,
+    status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
 pub extern "icu" fn u_getFC_NFKC_Closure(
@@ -11680,831 +10166,281 @@ pub extern "icu" fn u_getFC_NFKC_Closure(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ubidi_open(
-) callconv(.winapi) ?*UBiDi;
-
-pub extern "icu" fn ubidi_openSized(
-    maxLength: i32,
-    maxRunCount: i32,
+pub extern "icu" fn u_getIntPropertyMap(
+    property: UProperty,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UBiDi;
+) callconv(.winapi) ?*UCPMap;
 
-pub extern "icu" fn ubidi_close(
-    pBiDi: ?*UBiDi,
+pub extern "icu" fn u_getIntPropertyMaxValue(
+    which: UProperty,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_getIntPropertyMinValue(
+    which: UProperty,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_getIntPropertyValue(
+    c: i32,
+    which: UProperty,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_getNumericValue(
+    c: i32,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn u_getPropertyEnum(
+    alias: ?[*:0]const u8,
+) callconv(.winapi) UProperty;
+
+pub extern "icu" fn u_getPropertyName(
+    property: UProperty,
+    nameChoice: UPropertyNameChoice,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn u_getPropertyValueEnum(
+    property: UProperty,
+    alias: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_getPropertyValueName(
+    property: UProperty,
+    value: i32,
+    nameChoice: UPropertyNameChoice,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn u_getUnicodeVersion(
+    versionArray: ?*u8,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ubidi_setInverse(
-    pBiDi: ?*UBiDi,
-    isInverse: i8,
+pub extern "icu" fn u_getVersion(
+    versionArray: ?*u8,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ubidi_isInverse(
-    pBiDi: ?*UBiDi,
+pub extern "icu" fn u_hasBinaryProperty(
+    c: i32,
+    which: UProperty,
 ) callconv(.winapi) i8;
 
-pub extern "icu" fn ubidi_orderParagraphsLTR(
-    pBiDi: ?*UBiDi,
-    orderParagraphsLTR: i8,
+pub extern "icu" fn u_init(
+    status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ubidi_isOrderParagraphsLTR(
-    pBiDi: ?*UBiDi,
+pub extern "icu" fn u_isalnum(
+    c: i32,
 ) callconv(.winapi) i8;
 
-pub extern "icu" fn ubidi_setReorderingMode(
-    pBiDi: ?*UBiDi,
-    reorderingMode: UBiDiReorderingMode,
-) callconv(.winapi) void;
+pub extern "icu" fn u_isalpha(
+    c: i32,
+) callconv(.winapi) i8;
 
-pub extern "icu" fn ubidi_getReorderingMode(
-    pBiDi: ?*UBiDi,
-) callconv(.winapi) UBiDiReorderingMode;
+pub extern "icu" fn u_isbase(
+    c: i32,
+) callconv(.winapi) i8;
 
-pub extern "icu" fn ubidi_setReorderingOptions(
-    pBiDi: ?*UBiDi,
-    reorderingOptions: u32,
-) callconv(.winapi) void;
+pub extern "icu" fn u_isblank(
+    c: i32,
+) callconv(.winapi) i8;
 
-pub extern "icu" fn ubidi_getReorderingOptions(
-    pBiDi: ?*UBiDi,
-) callconv(.winapi) u32;
+pub extern "icu" fn u_iscntrl(
+    c: i32,
+) callconv(.winapi) i8;
 
-pub extern "icu" fn ubidi_setContext(
-    pBiDi: ?*UBiDi,
-    prologue: ?*const u16,
-    proLength: i32,
-    epilogue: ?*const u16,
-    epiLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
+pub extern "icu" fn u_isdefined(
+    c: i32,
+) callconv(.winapi) i8;
 
-pub extern "icu" fn ubidi_setPara(
-    pBiDi: ?*UBiDi,
-    text: ?*const u16,
+pub extern "icu" fn u_isdigit(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isgraph(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isIDIgnorable(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isIDPart(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isIDStart(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isISOControl(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isJavaIDPart(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isJavaIDStart(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isJavaSpaceChar(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_islower(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isMirrored(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isprint(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_ispunct(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isspace(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_istitle(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isUAlphabetic(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isULowercase(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isupper(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isUUppercase(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isUWhiteSpace(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isWhitespace(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_isxdigit(
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_memcasecmp(
+    s1: ?*const u16,
+    s2: ?*const u16,
     length: i32,
-    paraLevel: u8,
-    embeddingLevels: ?*u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
+    options: u32,
+) callconv(.winapi) i32;
 
-pub extern "icu" fn ubidi_setLine(
-    pParaBiDi: ?*const UBiDi,
-    start: i32,
-    limit: i32,
-    pLineBiDi: ?*UBiDi,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_getDirection(
-    pBiDi: ?*const UBiDi,
-) callconv(.winapi) UBiDiDirection;
-
-pub extern "icu" fn ubidi_getBaseDirection(
-    text: ?*const u16,
-    length: i32,
-) callconv(.winapi) UBiDiDirection;
-
-pub extern "icu" fn ubidi_getText(
-    pBiDi: ?*const UBiDi,
+pub extern "icu" fn u_memchr(
+    s: ?*const u16,
+    c: u16,
+    count: i32,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn ubidi_getLength(
-    pBiDi: ?*const UBiDi,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getParaLevel(
-    pBiDi: ?*const UBiDi,
-) callconv(.winapi) u8;
-
-pub extern "icu" fn ubidi_countParagraphs(
-    pBiDi: ?*UBiDi,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getParagraph(
-    pBiDi: ?*const UBiDi,
-    charIndex: i32,
-    pParaStart: ?*i32,
-    pParaLimit: ?*i32,
-    pParaLevel: ?*u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getParagraphByIndex(
-    pBiDi: ?*const UBiDi,
-    paraIndex: i32,
-    pParaStart: ?*i32,
-    pParaLimit: ?*i32,
-    pParaLevel: ?*u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_getLevelAt(
-    pBiDi: ?*const UBiDi,
-    charIndex: i32,
-) callconv(.winapi) u8;
-
-pub extern "icu" fn ubidi_getLevels(
-    pBiDi: ?*UBiDi,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u8;
-
-pub extern "icu" fn ubidi_getLogicalRun(
-    pBiDi: ?*const UBiDi,
-    logicalPosition: i32,
-    pLogicalLimit: ?*i32,
-    pLevel: ?*u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_countRuns(
-    pBiDi: ?*UBiDi,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getVisualRun(
-    pBiDi: ?*UBiDi,
-    runIndex: i32,
-    pLogicalStart: ?*i32,
-    pLength: ?*i32,
-) callconv(.winapi) UBiDiDirection;
-
-pub extern "icu" fn ubidi_getVisualIndex(
-    pBiDi: ?*UBiDi,
-    logicalIndex: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getLogicalIndex(
-    pBiDi: ?*UBiDi,
-    visualIndex: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getLogicalMap(
-    pBiDi: ?*UBiDi,
-    indexMap: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_getVisualMap(
-    pBiDi: ?*UBiDi,
-    indexMap: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_reorderLogical(
-    levels: ?*const u8,
-    length: i32,
-    indexMap: ?*i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_reorderVisual(
-    levels: ?*const u8,
-    length: i32,
-    indexMap: ?*i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_invertMap(
-    srcMap: ?*const i32,
-    destMap: ?*i32,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_getProcessedLength(
-    pBiDi: ?*const UBiDi,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getResultLength(
-    pBiDi: ?*const UBiDi,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_getCustomizedClass(
-    pBiDi: ?*UBiDi,
-    c: i32,
-) callconv(.winapi) UCharDirection;
-
-pub extern "icu" fn ubidi_setClassCallback(
-    pBiDi: ?*UBiDi,
-    newFn: ?UBiDiClassCallback,
-    newContext: ?*const anyopaque,
-    oldFn: ?*?UBiDiClassCallback,
-    oldContext: ?*const ?*anyopaque,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_getClassCallback(
-    pBiDi: ?*UBiDi,
-    @"fn": ?*?UBiDiClassCallback,
-    context: ?*const ?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ubidi_writeReordered(
-    pBiDi: ?*UBiDi,
-    dest: ?*u16,
-    destSize: i32,
-    options: u16,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubidi_writeReverse(
-    src: ?*const u16,
-    srcLength: i32,
-    dest: ?*u16,
-    destSize: i32,
-    options: u16,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubiditransform_transform(
-    pBiDiTransform: ?*UBiDiTransform,
-    src: ?*const u16,
-    srcLength: i32,
-    dest: ?*u16,
-    destSize: i32,
-    inParaLevel: u8,
-    inOrder: UBiDiOrder,
-    outParaLevel: u8,
-    outOrder: UBiDiOrder,
-    doMirroring: UBiDiMirroring,
-    shapingOptions: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) u32;
-
-pub extern "icu" fn ubiditransform_open(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UBiDiTransform;
-
-pub extern "icu" fn ubiditransform_close(
-    pBidiTransform: ?*UBiDiTransform,
-) callconv(.winapi) void;
-
-pub extern "icu" fn utext_close(
-    ut: ?*UText,
-) callconv(.winapi) ?*UText;
-
-pub extern "icu" fn utext_openUTF8(
-    ut: ?*UText,
-    s: ?[*:0]const u8,
-    length: i64,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UText;
-
-pub extern "icu" fn utext_openUChars(
-    ut: ?*UText,
+pub extern "icu" fn u_memchr32(
     s: ?*const u16,
-    length: i64,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UText;
+    c: i32,
+    count: i32,
+) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn utext_clone(
-    dest: ?*UText,
-    src: ?*const UText,
-    deep: i8,
-    readOnly: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UText;
-
-pub extern "icu" fn utext_equals(
-    a: ?*const UText,
-    b: ?*const UText,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn utext_nativeLength(
-    ut: ?*UText,
-) callconv(.winapi) i64;
-
-pub extern "icu" fn utext_isLengthExpensive(
-    ut: ?*const UText,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn utext_char32At(
-    ut: ?*UText,
-    nativeIndex: i64,
+pub extern "icu" fn u_memcmp(
+    buf1: ?*const u16,
+    buf2: ?*const u16,
+    count: i32,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn utext_current32(
-    ut: ?*UText,
+pub extern "icu" fn u_memcmpCodePointOrder(
+    s1: ?*const u16,
+    s2: ?*const u16,
+    count: i32,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn utext_next32(
-    ut: ?*UText,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utext_previous32(
-    ut: ?*UText,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utext_next32From(
-    ut: ?*UText,
-    nativeIndex: i64,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utext_previous32From(
-    ut: ?*UText,
-    nativeIndex: i64,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utext_getNativeIndex(
-    ut: ?*const UText,
-) callconv(.winapi) i64;
-
-pub extern "icu" fn utext_setNativeIndex(
-    ut: ?*UText,
-    nativeIndex: i64,
-) callconv(.winapi) void;
-
-pub extern "icu" fn utext_moveIndex32(
-    ut: ?*UText,
-    delta: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn utext_getPreviousNativeIndex(
-    ut: ?*UText,
-) callconv(.winapi) i64;
-
-pub extern "icu" fn utext_extract(
-    ut: ?*UText,
-    nativeStart: i64,
-    nativeLimit: i64,
+pub extern "icu" fn u_memcpy(
     dest: ?*u16,
-    destCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
+    src: ?*const u16,
+    count: i32,
+) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn utext_isWritable(
-    ut: ?*const UText,
-) callconv(.winapi) i8;
+pub extern "icu" fn u_memmove(
+    dest: ?*u16,
+    src: ?*const u16,
+    count: i32,
+) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn utext_hasMetaData(
-    ut: ?*const UText,
-) callconv(.winapi) i8;
+pub extern "icu" fn u_memrchr(
+    s: ?*const u16,
+    c: u16,
+    count: i32,
+) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn utext_replace(
-    ut: ?*UText,
-    nativeStart: i64,
-    nativeLimit: i64,
-    replacementText: ?*const u16,
-    replacementLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
+pub extern "icu" fn u_memrchr32(
+    s: ?*const u16,
+    c: i32,
+    count: i32,
+) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn utext_copy(
-    ut: ?*UText,
-    nativeStart: i64,
-    nativeLimit: i64,
-    destIndex: i64,
-    move: i8,
+pub extern "icu" fn u_memset(
+    dest: ?*u16,
+    c: u16,
+    count: i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_parseMessage(
+    locale: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    source: ?*const u16,
+    sourceLength: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn utext_freeze(
-    ut: ?*UText,
+pub extern "icu" fn u_parseMessageWithError(
+    locale: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    source: ?*const u16,
+    sourceLength: i32,
+    parseError: ?*UParseError,
+    status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn utext_setup(
-    ut: ?*UText,
-    extraSpace: i32,
+pub extern "icu" fn u_setMemoryFunctions(
+    context: ?*const anyopaque,
+    a: ?*?UMemAllocFn,
+    r: ?*?UMemReallocFn,
+    f: ?*?UMemFreeFn,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*UText;
+) callconv(.winapi) void;
 
-pub extern "icu" fn uset_openEmpty(
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn uset_open(
-    start: i32,
-    end: i32,
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn uset_openPattern(
-    pattern: ?*const u16,
-    patternLength: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn uset_openPatternOptions(
-    pattern: ?*const u16,
-    patternLength: i32,
+pub extern "icu" fn u_shapeArabic(
+    source: ?*const u16,
+    sourceLength: i32,
+    dest: ?*u16,
+    destSize: i32,
     options: u32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
 
-pub extern "icu" fn uset_close(
-    set: ?*USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_clone(
-    set: ?*const USet,
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn uset_isFrozen(
-    set: ?*const USet,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_freeze(
-    set: ?*USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_cloneAsThawed(
-    set: ?*const USet,
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn uset_set(
-    set: ?*USet,
-    start: i32,
-    end: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_applyPattern(
-    set: ?*USet,
-    pattern: ?*const u16,
-    patternLength: i32,
+pub extern "icu" fn u_strcasecmp(
+    s1: ?*const u16,
+    s2: ?*const u16,
     options: u32,
-    status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uset_applyIntPropertyValue(
-    set: ?*USet,
-    prop: UProperty,
-    value: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_applyPropertyAlias(
-    set: ?*USet,
-    prop: ?*const u16,
-    propLength: i32,
-    value: ?*const u16,
-    valueLength: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_resemblesPattern(
-    pattern: ?*const u16,
-    patternLength: i32,
-    pos: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_toPattern(
-    set: ?*const USet,
-    result: ?*u16,
-    resultCapacity: i32,
-    escapeUnprintable: i8,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_add(
-    set: ?*USet,
-    c: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_addAll(
-    set: ?*USet,
-    additionalSet: ?*const USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_addRange(
-    set: ?*USet,
-    start: i32,
-    end: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_addString(
-    set: ?*USet,
-    str: ?*const u16,
-    strLen: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_addAllCodePoints(
-    set: ?*USet,
-    str: ?*const u16,
-    strLen: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_remove(
-    set: ?*USet,
-    c: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_removeRange(
-    set: ?*USet,
-    start: i32,
-    end: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_removeString(
-    set: ?*USet,
-    str: ?*const u16,
-    strLen: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_removeAll(
-    set: ?*USet,
-    removeSet: ?*const USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_retain(
-    set: ?*USet,
-    start: i32,
-    end: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_retainAll(
-    set: ?*USet,
-    retain: ?*const USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_compact(
-    set: ?*USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_complement(
-    set: ?*USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_complementAll(
-    set: ?*USet,
-    complement: ?*const USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_clear(
-    set: ?*USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_closeOver(
-    set: ?*USet,
-    attributes: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_removeAllStrings(
-    set: ?*USet,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_isEmpty(
-    set: ?*const USet,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_contains(
-    set: ?*const USet,
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_containsRange(
-    set: ?*const USet,
-    start: i32,
-    end: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_containsString(
-    set: ?*const USet,
-    str: ?*const u16,
-    strLen: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_indexOf(
-    set: ?*const USet,
-    c: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_charAt(
-    set: ?*const USet,
-    charIndex: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_size(
-    set: ?*const USet,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_getItemCount(
-    set: ?*const USet,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_getItem(
-    set: ?*const USet,
-    itemIndex: i32,
-    start: ?*i32,
-    end: ?*i32,
-    str: ?*u16,
-    strCapacity: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_containsAll(
-    set1: ?*const USet,
-    set2: ?*const USet,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_containsAllCodePoints(
-    set: ?*const USet,
-    str: ?*const u16,
-    strLen: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_containsNone(
-    set1: ?*const USet,
-    set2: ?*const USet,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_containsSome(
-    set1: ?*const USet,
-    set2: ?*const USet,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_span(
-    set: ?*const USet,
-    s: ?*const u16,
-    length: i32,
-    spanCondition: USetSpanCondition,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_spanBack(
-    set: ?*const USet,
-    s: ?*const u16,
-    length: i32,
-    spanCondition: USetSpanCondition,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_spanUTF8(
-    set: ?*const USet,
-    s: ?[*:0]const u8,
-    length: i32,
-    spanCondition: USetSpanCondition,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_spanBackUTF8(
-    set: ?*const USet,
-    s: ?[*:0]const u8,
-    length: i32,
-    spanCondition: USetSpanCondition,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_equals(
-    set1: ?*const USet,
-    set2: ?*const USet,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_serialize(
-    set: ?*const USet,
-    dest: ?*u16,
-    destCapacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_getSerializedSet(
-    fillSet: ?*USerializedSet,
-    src: ?*const u16,
-    srcLength: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_setSerializedToOne(
-    fillSet: ?*USerializedSet,
-    c: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uset_serializedContains(
-    set: ?*const USerializedSet,
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uset_getSerializedRangeCount(
-    set: ?*const USerializedSet,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uset_getSerializedRange(
-    set: ?*const USerializedSet,
-    rangeIndex: i32,
-    pStart: ?*i32,
-    pEnd: ?*i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn unorm2_getNFCInstance(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UNormalizer2;
-
-pub extern "icu" fn unorm2_getNFDInstance(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UNormalizer2;
-
-pub extern "icu" fn unorm2_getNFKCInstance(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UNormalizer2;
-
-pub extern "icu" fn unorm2_getNFKDInstance(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UNormalizer2;
-
-pub extern "icu" fn unorm2_getNFKCCasefoldInstance(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UNormalizer2;
-
-pub extern "icu" fn unorm2_getInstance(
-    packageName: ?[*:0]const u8,
-    name: ?[*:0]const u8,
-    mode: UNormalization2Mode,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UNormalizer2;
-
-pub extern "icu" fn unorm2_openFiltered(
-    norm2: ?*const UNormalizer2,
-    filterSet: ?*const USet,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UNormalizer2;
-
-pub extern "icu" fn unorm2_close(
-    norm2: ?*UNormalizer2,
-) callconv(.winapi) void;
-
-pub extern "icu" fn unorm2_normalize(
-    norm2: ?*const UNormalizer2,
-    src: ?*const u16,
-    length: i32,
-    dest: ?*u16,
-    capacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unorm2_normalizeSecondAndAppend(
-    norm2: ?*const UNormalizer2,
-    first: ?*u16,
-    firstLength: i32,
-    firstCapacity: i32,
-    second: ?*const u16,
-    secondLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unorm2_append(
-    norm2: ?*const UNormalizer2,
-    first: ?*u16,
-    firstLength: i32,
-    firstCapacity: i32,
-    second: ?*const u16,
-    secondLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unorm2_getDecomposition(
-    norm2: ?*const UNormalizer2,
-    c: i32,
-    decomposition: ?*u16,
-    capacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unorm2_getRawDecomposition(
-    norm2: ?*const UNormalizer2,
-    c: i32,
-    decomposition: ?*u16,
-    capacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unorm2_composePair(
-    norm2: ?*const UNormalizer2,
-    a: i32,
-    b: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unorm2_getCombiningClass(
-    norm2: ?*const UNormalizer2,
-    c: i32,
-) callconv(.winapi) u8;
-
-pub extern "icu" fn unorm2_isNormalized(
-    norm2: ?*const UNormalizer2,
-    s: ?*const u16,
-    length: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn unorm2_quickCheck(
-    norm2: ?*const UNormalizer2,
-    s: ?*const u16,
-    length: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) UNormalizationCheckResult;
-
-pub extern "icu" fn unorm2_spanQuickCheckYes(
-    norm2: ?*const UNormalizer2,
-    s: ?*const u16,
-    length: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unorm2_hasBoundaryBefore(
-    norm2: ?*const UNormalizer2,
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn unorm2_hasBoundaryAfter(
-    norm2: ?*const UNormalizer2,
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn unorm2_isInert(
-    norm2: ?*const UNormalizer2,
-    c: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn unorm_compare(
+pub extern "icu" fn u_strCaseCompare(
     s1: ?*const u16,
     length1: i32,
     s2: ?*const u16,
@@ -12513,93 +10449,9 @@ pub extern "icu" fn unorm_compare(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ucnvsel_open(
-    converterList: ?*const ?*i8,
-    converterListSize: i32,
-    excludedCodePoints: ?*const USet,
-    whichSet: UConverterUnicodeSet,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UConverterSelector;
-
-pub extern "icu" fn ucnvsel_close(
-    sel: ?*UConverterSelector,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucnvsel_openFromSerialized(
-    buffer: ?*const anyopaque,
-    length: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UConverterSelector;
-
-pub extern "icu" fn ucnvsel_serialize(
-    sel: ?*const UConverterSelector,
-    buffer: ?*anyopaque,
-    bufferCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucnvsel_selectForString(
-    sel: ?*const UConverterSelector,
-    s: ?*const u16,
-    length: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucnvsel_selectForUTF8(
-    sel: ?*const UConverterSelector,
-    s: ?[*:0]const u8,
-    length: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn u_charsToUChars(
-    cs: ?[*:0]const u8,
-    us: ?*u16,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_UCharsToChars(
-    us: ?*const u16,
-    cs: ?PSTR,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_strlen(
-    s: ?*const u16,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_countChar32(
-    s: ?*const u16,
-    length: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_strHasMoreChar32Than(
-    s: ?*const u16,
-    length: i32,
-    number: i32,
-) callconv(.winapi) i8;
-
 pub extern "icu" fn u_strcat(
     dst: ?*u16,
     src: ?*const u16,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strncat(
-    dst: ?*u16,
-    src: ?*const u16,
-    n: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strstr(
-    s: ?*const u16,
-    substring: ?*const u16,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strFindFirst(
-    s: ?*const u16,
-    length: i32,
-    substring: ?*const u16,
-    subLength: i32,
 ) callconv(.winapi) ?*u16;
 
 pub extern "icu" fn u_strchr(
@@ -12610,49 +10462,6 @@ pub extern "icu" fn u_strchr(
 pub extern "icu" fn u_strchr32(
     s: ?*const u16,
     c: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strrstr(
-    s: ?*const u16,
-    substring: ?*const u16,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strFindLast(
-    s: ?*const u16,
-    length: i32,
-    substring: ?*const u16,
-    subLength: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strrchr(
-    s: ?*const u16,
-    c: u16,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strrchr32(
-    s: ?*const u16,
-    c: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strpbrk(
-    string: ?*const u16,
-    matchSet: ?*const u16,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strcspn(
-    string: ?*const u16,
-    matchSet: ?*const u16,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_strspn(
-    string: ?*const u16,
-    matchSet: ?*const u16,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_strtok_r(
-    src: ?*u16,
-    delim: ?*const u16,
-    saveState: ?*?*u16,
 ) callconv(.winapi) ?*u16;
 
 pub extern "icu" fn u_strcmp(
@@ -12679,14 +10488,130 @@ pub extern "icu" fn u_strCompareIter(
     codePointOrder: i8,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_strCaseCompare(
-    s1: ?*const u16,
-    length1: i32,
-    s2: ?*const u16,
-    length2: i32,
+pub extern "icu" fn u_strcpy(
+    dst: ?*u16,
+    src: ?*const u16,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strcspn(
+    string: ?*const u16,
+    matchSet: ?*const u16,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_strFindFirst(
+    s: ?*const u16,
+    length: i32,
+    substring: ?*const u16,
+    subLength: i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFindLast(
+    s: ?*const u16,
+    length: i32,
+    substring: ?*const u16,
+    subLength: i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFoldCase(
+    dest: ?*u16,
+    destCapacity: i32,
+    src: ?*const u16,
+    srcLength: i32,
     options: u32,
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
+
+pub extern "icu" fn u_strFromJavaModifiedUTF8WithSub(
+    dest: ?*u16,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    subchar: i32,
+    pNumSubstitutions: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFromUTF32(
+    dest: ?*u16,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?*const i32,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFromUTF32WithSub(
+    dest: ?*u16,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?*const i32,
+    srcLength: i32,
+    subchar: i32,
+    pNumSubstitutions: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFromUTF8(
+    dest: ?*u16,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFromUTF8Lenient(
+    dest: ?*u16,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFromUTF8WithSub(
+    dest: ?*u16,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    subchar: i32,
+    pNumSubstitutions: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strFromWCS(
+    dest: ?*u16,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?[*:0]const u16,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_strHasMoreChar32Than(
+    s: ?*const u16,
+    length: i32,
+    number: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn u_strlen(
+    s: ?*const u16,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_strncasecmp(
+    s1: ?*const u16,
+    s2: ?*const u16,
+    n: i32,
+    options: u32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_strncat(
+    dst: ?*u16,
+    src: ?*const u16,
+    n: i32,
+) callconv(.winapi) ?*u16;
 
 pub extern "icu" fn u_strncmp(
     ucs1: ?*const u16,
@@ -12700,134 +10625,56 @@ pub extern "icu" fn u_strncmpCodePointOrder(
     n: i32,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_strcasecmp(
-    s1: ?*const u16,
-    s2: ?*const u16,
-    options: u32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_strncasecmp(
-    s1: ?*const u16,
-    s2: ?*const u16,
-    n: i32,
-    options: u32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_memcasecmp(
-    s1: ?*const u16,
-    s2: ?*const u16,
-    length: i32,
-    options: u32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_strcpy(
-    dst: ?*u16,
-    src: ?*const u16,
-) callconv(.winapi) ?*u16;
-
 pub extern "icu" fn u_strncpy(
     dst: ?*u16,
     src: ?*const u16,
     n: i32,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn u_uastrcpy(
-    dst: ?*u16,
-    src: ?[*:0]const u8,
+pub extern "icu" fn u_strpbrk(
+    string: ?*const u16,
+    matchSet: ?*const u16,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn u_uastrncpy(
-    dst: ?*u16,
-    src: ?[*:0]const u8,
-    n: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_austrcpy(
-    dst: ?PSTR,
-    src: ?*const u16,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn u_austrncpy(
-    dst: ?PSTR,
-    src: ?*const u16,
-    n: i32,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn u_memcpy(
-    dest: ?*u16,
-    src: ?*const u16,
-    count: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_memmove(
-    dest: ?*u16,
-    src: ?*const u16,
-    count: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_memset(
-    dest: ?*u16,
-    c: u16,
-    count: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_memcmp(
-    buf1: ?*const u16,
-    buf2: ?*const u16,
-    count: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_memcmpCodePointOrder(
-    s1: ?*const u16,
-    s2: ?*const u16,
-    count: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_memchr(
+pub extern "icu" fn u_strrchr(
     s: ?*const u16,
     c: u16,
-    count: i32,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn u_memchr32(
+pub extern "icu" fn u_strrchr32(
     s: ?*const u16,
     c: i32,
-    count: i32,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn u_memrchr(
+pub extern "icu" fn u_strrstr(
     s: ?*const u16,
-    c: u16,
-    count: i32,
+    substring: ?*const u16,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn u_memrchr32(
-    s: ?*const u16,
-    c: i32,
-    count: i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_unescape(
-    src: ?[*:0]const u8,
-    dest: ?*u16,
-    destCapacity: i32,
+pub extern "icu" fn u_strspn(
+    string: ?*const u16,
+    matchSet: ?*const u16,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_unescapeAt(
-    charAt: ?UNESCAPE_CHAR_AT,
-    offset: ?*i32,
-    length: i32,
-    context: ?*anyopaque,
-) callconv(.winapi) i32;
+pub extern "icu" fn u_strstr(
+    s: ?*const u16,
+    substring: ?*const u16,
+) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn u_strToUpper(
-    dest: ?*u16,
+pub extern "icu" fn u_strToJavaModifiedUTF8(
+    dest: ?PSTR,
     destCapacity: i32,
+    pDestLength: ?*i32,
     src: ?*const u16,
     srcLength: i32,
-    locale: ?[*:0]const u8,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn u_strtok_r(
+    src: ?*u16,
+    delim: ?*const u16,
+    saveState: ?*?*u16,
+) callconv(.winapi) ?*u16;
 
 pub extern "icu" fn u_strToLower(
     dest: ?*u16,
@@ -12848,81 +10695,14 @@ pub extern "icu" fn u_strToTitle(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_strFoldCase(
+pub extern "icu" fn u_strToUpper(
     dest: ?*u16,
     destCapacity: i32,
     src: ?*const u16,
     srcLength: i32,
-    options: u32,
+    locale: ?[*:0]const u8,
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
-
-pub extern "icu" fn u_strToWCS(
-    dest: ?PWSTR,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?*const u16,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PWSTR;
-
-pub extern "icu" fn u_strFromWCS(
-    dest: ?*u16,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?[*:0]const u16,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strToUTF8(
-    dest: ?PSTR,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?*const u16,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn u_strFromUTF8(
-    dest: ?*u16,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strToUTF8WithSub(
-    dest: ?PSTR,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?*const u16,
-    srcLength: i32,
-    subchar: i32,
-    pNumSubstitutions: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn u_strFromUTF8WithSub(
-    dest: ?*u16,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    subchar: i32,
-    pNumSubstitutions: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strFromUTF8Lenient(
-    dest: ?*u16,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
 
 pub extern "icu" fn u_strToUTF32(
     dest: ?*i32,
@@ -12932,15 +10712,6 @@ pub extern "icu" fn u_strToUTF32(
     srcLength: i32,
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) ?*i32;
-
-pub extern "icu" fn u_strFromUTF32(
-    dest: ?*u16,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?*const i32,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
 
 pub extern "icu" fn u_strToUTF32WithSub(
     dest: ?*i32,
@@ -12953,18 +10724,7 @@ pub extern "icu" fn u_strToUTF32WithSub(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) ?*i32;
 
-pub extern "icu" fn u_strFromUTF32WithSub(
-    dest: ?*u16,
-    destCapacity: i32,
-    pDestLength: ?*i32,
-    src: ?*const i32,
-    srcLength: i32,
-    subchar: i32,
-    pNumSubstitutions: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn u_strToJavaModifiedUTF8(
+pub extern "icu" fn u_strToUTF8(
     dest: ?PSTR,
     destCapacity: i32,
     pDestLength: ?*i32,
@@ -12973,220 +10733,458 @@ pub extern "icu" fn u_strToJavaModifiedUTF8(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn u_strFromJavaModifiedUTF8WithSub(
-    dest: ?*u16,
+pub extern "icu" fn u_strToUTF8WithSub(
+    dest: ?PSTR,
     destCapacity: i32,
     pDestLength: ?*i32,
-    src: ?[*:0]const u8,
+    src: ?*const u16,
     srcLength: i32,
     subchar: i32,
     pNumSubstitutions: ?*i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ucasemap_open(
-    locale: ?[*:0]const u8,
-    options: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UCaseMap;
-
-pub extern "icu" fn ucasemap_close(
-    csm: ?*UCaseMap,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucasemap_getLocale(
-    csm: ?*const UCaseMap,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn ucasemap_getOptions(
-    csm: ?*const UCaseMap,
-) callconv(.winapi) u32;
+pub extern "icu" fn u_strToWCS(
+    dest: ?PWSTR,
+    destCapacity: i32,
+    pDestLength: ?*i32,
+    src: ?*const u16,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?PWSTR;
 
-pub extern "icu" fn ucasemap_setLocale(
-    csm: ?*UCaseMap,
+pub extern "icu" fn u_tolower(
+    c: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_totitle(
+    c: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_toupper(
+    c: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_uastrcpy(
+    dst: ?*u16,
+    src: ?[*:0]const u8,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_uastrncpy(
+    dst: ?*u16,
+    src: ?[*:0]const u8,
+    n: i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn u_UCharsToChars(
+    us: ?*const u16,
+    cs: ?PSTR,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn u_unescape(
+    src: ?[*:0]const u8,
+    dest: ?*u16,
+    destCapacity: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_unescapeAt(
+    charAt: ?UNESCAPE_CHAR_AT,
+    offset: ?*i32,
+    length: i32,
+    context: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn u_versionFromString(
+    versionArray: ?*u8,
+    versionString: ?[*:0]const u8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn u_versionFromUString(
+    versionArray: ?*u8,
+    versionString: ?*const u16,
+) callconv(.winapi) void;
+
+pub extern "icu" fn u_versionToString(
+    versionArray: ?*const u8,
+    versionString: ?PSTR,
+) callconv(.winapi) void;
+
+pub extern "icu" fn u_vformatMessage(
     locale: ?[*:0]const u8,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucasemap_setOptions(
-    csm: ?*UCaseMap,
-    options: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucasemap_getBreakIterator(
-    csm: ?*const UCaseMap,
-) callconv(.winapi) ?*UBreakIterator;
-
-pub extern "icu" fn ucasemap_setBreakIterator(
-    csm: ?*UCaseMap,
-    iterToAdopt: ?*UBreakIterator,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucasemap_toTitle(
-    csm: ?*UCaseMap,
-    dest: ?*u16,
-    destCapacity: i32,
-    src: ?*const u16,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucasemap_utf8ToLower(
-    csm: ?*const UCaseMap,
-    dest: ?PSTR,
-    destCapacity: i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucasemap_utf8ToUpper(
-    csm: ?*const UCaseMap,
-    dest: ?PSTR,
-    destCapacity: i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucasemap_utf8ToTitle(
-    csm: ?*UCaseMap,
-    dest: ?PSTR,
-    destCapacity: i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucasemap_utf8FoldCase(
-    csm: ?*const UCaseMap,
-    dest: ?PSTR,
-    destCapacity: i32,
-    src: ?[*:0]const u8,
-    srcLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usprep_open(
-    path: ?[*:0]const u8,
-    fileName: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    result: ?*u16,
+    resultLength: i32,
+    ap: ?*i8,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*UStringPrepProfile;
+) callconv(.winapi) i32;
 
-pub extern "icu" fn usprep_openByType(
-    type: UStringPrepProfileType,
+pub extern "icu" fn u_vformatMessageWithError(
+    locale: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    result: ?*u16,
+    resultLength: i32,
+    parseError: ?*UParseError,
+    ap: ?*i8,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*UStringPrepProfile;
+) callconv(.winapi) i32;
 
-pub extern "icu" fn usprep_close(
-    profile: ?*UStringPrepProfile,
+pub extern "icu" fn u_vparseMessage(
+    locale: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    source: ?*const u16,
+    sourceLength: i32,
+    ap: ?*i8,
+    status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn usprep_prepare(
-    prep: ?*const UStringPrepProfile,
-    src: ?*const u16,
-    srcLength: i32,
-    dest: ?*u16,
-    destCapacity: i32,
-    options: i32,
+pub extern "icu" fn u_vparseMessageWithError(
+    locale: ?[*:0]const u8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    source: ?*const u16,
+    sourceLength: i32,
+    ap: ?*i8,
     parseError: ?*UParseError,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uidna_openUTS46(
-    options: u32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UIDNA;
-
-pub extern "icu" fn uidna_close(
-    idna: ?*UIDNA,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uidna_labelToASCII(
-    idna: ?*const UIDNA,
-    label: ?*const u16,
+pub extern "icu" fn ubidi_close(
+    pBiDi: ?*UBiDi,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_countParagraphs(
+    pBiDi: ?*UBiDi,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_countRuns(
+    pBiDi: ?*UBiDi,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_getBaseDirection(
+    text: ?*const u16,
     length: i32,
+) callconv(.winapi) UBiDiDirection;
+
+pub extern "icu" fn ubidi_getClassCallback(
+    pBiDi: ?*UBiDi,
+    @"fn": ?*?UBiDiClassCallback,
+    context: ?*const ?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_getCustomizedClass(
+    pBiDi: ?*UBiDi,
+    c: i32,
+) callconv(.winapi) UCharDirection;
+
+pub extern "icu" fn ubidi_getDirection(
+    pBiDi: ?*const UBiDi,
+) callconv(.winapi) UBiDiDirection;
+
+pub extern "icu" fn ubidi_getLength(
+    pBiDi: ?*const UBiDi,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_getLevelAt(
+    pBiDi: ?*const UBiDi,
+    charIndex: i32,
+) callconv(.winapi) u8;
+
+pub extern "icu" fn ubidi_getLevels(
+    pBiDi: ?*UBiDi,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*u8;
+
+pub extern "icu" fn ubidi_getLogicalIndex(
+    pBiDi: ?*UBiDi,
+    visualIndex: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_getLogicalMap(
+    pBiDi: ?*UBiDi,
+    indexMap: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_getLogicalRun(
+    pBiDi: ?*const UBiDi,
+    logicalPosition: i32,
+    pLogicalLimit: ?*i32,
+    pLevel: ?*u8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_getParagraph(
+    pBiDi: ?*const UBiDi,
+    charIndex: i32,
+    pParaStart: ?*i32,
+    pParaLimit: ?*i32,
+    pParaLevel: ?*u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_getParagraphByIndex(
+    pBiDi: ?*const UBiDi,
+    paraIndex: i32,
+    pParaStart: ?*i32,
+    pParaLimit: ?*i32,
+    pParaLevel: ?*u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_getParaLevel(
+    pBiDi: ?*const UBiDi,
+) callconv(.winapi) u8;
+
+pub extern "icu" fn ubidi_getProcessedLength(
+    pBiDi: ?*const UBiDi,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_getReorderingMode(
+    pBiDi: ?*UBiDi,
+) callconv(.winapi) UBiDiReorderingMode;
+
+pub extern "icu" fn ubidi_getReorderingOptions(
+    pBiDi: ?*UBiDi,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn ubidi_getResultLength(
+    pBiDi: ?*const UBiDi,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_getText(
+    pBiDi: ?*const UBiDi,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ubidi_getVisualIndex(
+    pBiDi: ?*UBiDi,
+    logicalIndex: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubidi_getVisualMap(
+    pBiDi: ?*UBiDi,
+    indexMap: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_getVisualRun(
+    pBiDi: ?*UBiDi,
+    runIndex: i32,
+    pLogicalStart: ?*i32,
+    pLength: ?*i32,
+) callconv(.winapi) UBiDiDirection;
+
+pub extern "icu" fn ubidi_invertMap(
+    srcMap: ?*const i32,
+    destMap: ?*i32,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_isInverse(
+    pBiDi: ?*UBiDi,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ubidi_isOrderParagraphsLTR(
+    pBiDi: ?*UBiDi,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ubidi_open(
+) callconv(.winapi) ?*UBiDi;
+
+pub extern "icu" fn ubidi_openSized(
+    maxLength: i32,
+    maxRunCount: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UBiDi;
+
+pub extern "icu" fn ubidi_orderParagraphsLTR(
+    pBiDi: ?*UBiDi,
+    orderParagraphsLTR: i8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_reorderLogical(
+    levels: ?*const u8,
+    length: i32,
+    indexMap: ?*i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_reorderVisual(
+    levels: ?*const u8,
+    length: i32,
+    indexMap: ?*i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_setClassCallback(
+    pBiDi: ?*UBiDi,
+    newFn: ?UBiDiClassCallback,
+    newContext: ?*const anyopaque,
+    oldFn: ?*?UBiDiClassCallback,
+    oldContext: ?*const ?*anyopaque,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_setContext(
+    pBiDi: ?*UBiDi,
+    prologue: ?*const u16,
+    proLength: i32,
+    epilogue: ?*const u16,
+    epiLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_setInverse(
+    pBiDi: ?*UBiDi,
+    isInverse: i8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_setLine(
+    pParaBiDi: ?*const UBiDi,
+    start: i32,
+    limit: i32,
+    pLineBiDi: ?*UBiDi,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_setPara(
+    pBiDi: ?*UBiDi,
+    text: ?*const u16,
+    length: i32,
+    paraLevel: u8,
+    embeddingLevels: ?*u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_setReorderingMode(
+    pBiDi: ?*UBiDi,
+    reorderingMode: UBiDiReorderingMode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_setReorderingOptions(
+    pBiDi: ?*UBiDi,
+    reorderingOptions: u32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubidi_writeReordered(
+    pBiDi: ?*UBiDi,
     dest: ?*u16,
-    capacity: i32,
-    pInfo: ?*UIDNAInfo,
+    destSize: i32,
+    options: u16,
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uidna_labelToUnicode(
-    idna: ?*const UIDNA,
-    label: ?*const u16,
-    length: i32,
+pub extern "icu" fn ubidi_writeReverse(
+    src: ?*const u16,
+    srcLength: i32,
     dest: ?*u16,
-    capacity: i32,
-    pInfo: ?*UIDNAInfo,
+    destSize: i32,
+    options: u16,
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uidna_nameToASCII(
-    idna: ?*const UIDNA,
-    name: ?*const u16,
-    length: i32,
+pub extern "icu" fn ubiditransform_close(
+    pBidiTransform: ?*UBiDiTransform,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubiditransform_open(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UBiDiTransform;
+
+pub extern "icu" fn ubiditransform_transform(
+    pBiDiTransform: ?*UBiDiTransform,
+    src: ?*const u16,
+    srcLength: i32,
     dest: ?*u16,
-    capacity: i32,
-    pInfo: ?*UIDNAInfo,
+    destSize: i32,
+    inParaLevel: u8,
+    inOrder: UBiDiOrder,
+    outParaLevel: u8,
+    outOrder: UBiDiOrder,
+    doMirroring: UBiDiMirroring,
+    shapingOptions: u32,
     pErrorCode: ?*UErrorCode,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn ublock_getCode(
+    c: i32,
+) callconv(.winapi) UBlockCode;
+
+pub extern "icu" fn ubrk_close(
+    bi: ?*UBreakIterator,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ubrk_countAvailable(
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uidna_nameToUnicode(
-    idna: ?*const UIDNA,
-    name: ?*const u16,
-    length: i32,
-    dest: ?*u16,
-    capacity: i32,
-    pInfo: ?*UIDNAInfo,
-    pErrorCode: ?*UErrorCode,
+pub extern "icu" fn ubrk_current(
+    bi: ?*const UBreakIterator,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uidna_labelToASCII_UTF8(
-    idna: ?*const UIDNA,
-    label: ?[*:0]const u8,
-    length: i32,
-    dest: ?PSTR,
-    capacity: i32,
-    pInfo: ?*UIDNAInfo,
-    pErrorCode: ?*UErrorCode,
+pub extern "icu" fn ubrk_first(
+    bi: ?*UBreakIterator,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uidna_labelToUnicodeUTF8(
-    idna: ?*const UIDNA,
-    label: ?[*:0]const u8,
-    length: i32,
-    dest: ?PSTR,
-    capacity: i32,
-    pInfo: ?*UIDNAInfo,
-    pErrorCode: ?*UErrorCode,
+pub extern "icu" fn ubrk_following(
+    bi: ?*UBreakIterator,
+    offset: i32,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uidna_nameToASCII_UTF8(
-    idna: ?*const UIDNA,
-    name: ?[*:0]const u8,
-    length: i32,
-    dest: ?PSTR,
-    capacity: i32,
-    pInfo: ?*UIDNAInfo,
-    pErrorCode: ?*UErrorCode,
+pub extern "icu" fn ubrk_getAvailable(
+    index: i32,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ubrk_getBinaryRules(
+    bi: ?*UBreakIterator,
+    binaryRules: ?*u8,
+    rulesCapacity: i32,
+    status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uidna_nameToUnicodeUTF8(
-    idna: ?*const UIDNA,
-    name: ?[*:0]const u8,
-    length: i32,
-    dest: ?PSTR,
+pub extern "icu" fn ubrk_getLocaleByType(
+    bi: ?*const UBreakIterator,
+    type: ULocDataLocaleType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ubrk_getRuleStatus(
+    bi: ?*UBreakIterator,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubrk_getRuleStatusVec(
+    bi: ?*UBreakIterator,
+    fillInVec: ?*i32,
     capacity: i32,
-    pInfo: ?*UIDNAInfo,
-    pErrorCode: ?*UErrorCode,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubrk_isBoundary(
+    bi: ?*UBreakIterator,
+    offset: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ubrk_last(
+    bi: ?*UBreakIterator,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubrk_next(
+    bi: ?*UBreakIterator,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn ubrk_open(
     type: UBreakIteratorType,
     locale: ?[*:0]const u8,
+    text: ?*const u16,
+    textLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UBreakIterator;
+
+pub extern "icu" fn ubrk_openBinaryRules(
+    binaryRules: ?*const u8,
+    rulesLength: i32,
     text: ?*const u16,
     textLength: i32,
     status: ?*UErrorCode,
@@ -13201,13 +11199,20 @@ pub extern "icu" fn ubrk_openRules(
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*UBreakIterator;
 
-pub extern "icu" fn ubrk_openBinaryRules(
-    binaryRules: ?*const u8,
-    rulesLength: i32,
-    text: ?*const u16,
-    textLength: i32,
+pub extern "icu" fn ubrk_preceding(
+    bi: ?*UBreakIterator,
+    offset: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubrk_previous(
+    bi: ?*UBreakIterator,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ubrk_refreshUText(
+    bi: ?*UBreakIterator,
+    text: ?*UText,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*UBreakIterator;
+) callconv(.winapi) void;
 
 pub extern "icu" fn ubrk_safeClone(
     bi: ?*const UBreakIterator,
@@ -13215,10 +11220,6 @@ pub extern "icu" fn ubrk_safeClone(
     pBufferSize: ?*i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*UBreakIterator;
-
-pub extern "icu" fn ubrk_close(
-    bi: ?*UBreakIterator,
-) callconv(.winapi) void;
 
 pub extern "icu" fn ubrk_setText(
     bi: ?*UBreakIterator,
@@ -13233,82 +11234,209 @@ pub extern "icu" fn ubrk_setUText(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ubrk_current(
-    bi: ?*const UBreakIterator,
+pub extern "icu" fn ucal_add(
+    cal: ?*?*anyopaque,
+    field: UCalendarDateFields,
+    amount: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucal_clear(
+    calendar: ?*?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucal_clearField(
+    cal: ?*?*anyopaque,
+    field: UCalendarDateFields,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucal_clone(
+    cal: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn ucal_close(
+    cal: ?*?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucal_countAvailable(
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ubrk_next(
-    bi: ?*UBreakIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_previous(
-    bi: ?*UBreakIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_first(
-    bi: ?*UBreakIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_last(
-    bi: ?*UBreakIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_preceding(
-    bi: ?*UBreakIterator,
-    offset: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_following(
-    bi: ?*UBreakIterator,
-    offset: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_getAvailable(
-    index: i32,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ubrk_countAvailable(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_isBoundary(
-    bi: ?*UBreakIterator,
-    offset: i32,
+pub extern "icu" fn ucal_equivalentTo(
+    cal1: ?*const ?*anyopaque,
+    cal2: ?*const ?*anyopaque,
 ) callconv(.winapi) i8;
 
-pub extern "icu" fn ubrk_getRuleStatus(
-    bi: ?*UBreakIterator,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ubrk_getRuleStatusVec(
-    bi: ?*UBreakIterator,
-    fillInVec: ?*i32,
-    capacity: i32,
+pub extern "icu" fn ucal_get(
+    cal: ?*const ?*anyopaque,
+    field: UCalendarDateFields,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ubrk_getLocaleByType(
-    bi: ?*const UBreakIterator,
+pub extern "icu" fn ucal_getAttribute(
+    cal: ?*const ?*anyopaque,
+    attr: UCalendarAttribute,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getAvailable(
+    localeIndex: i32,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucal_getCanonicalTimeZoneID(
+    id: ?*const u16,
+    len: i32,
+    result: ?*u16,
+    resultCapacity: i32,
+    isSystemID: ?*i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getDayOfWeekType(
+    cal: ?*const ?*anyopaque,
+    dayOfWeek: UCalendarDaysOfWeek,
+    status: ?*UErrorCode,
+) callconv(.winapi) UCalendarWeekdayType;
+
+pub extern "icu" fn ucal_getDefaultTimeZone(
+    result: ?*u16,
+    resultCapacity: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getDSTSavings(
+    zoneID: ?*const u16,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getFieldDifference(
+    cal: ?*?*anyopaque,
+    target: f64,
+    field: UCalendarDateFields,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getGregorianChange(
+    cal: ?*const ?*anyopaque,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn ucal_getHostTimeZone(
+    result: ?*u16,
+    resultCapacity: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getKeywordValuesForLocale(
+    key: ?[*:0]const u8,
+    locale: ?[*:0]const u8,
+    commonlyUsed: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucal_getLimit(
+    cal: ?*const ?*anyopaque,
+    field: UCalendarDateFields,
+    type: UCalendarLimitType,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getLocaleByType(
+    cal: ?*const ?*anyopaque,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn ubrk_refreshUText(
-    bi: ?*UBreakIterator,
-    text: ?*UText,
+pub extern "icu" fn ucal_getMillis(
+    cal: ?*const ?*anyopaque,
     status: ?*UErrorCode,
-) callconv(.winapi) void;
+) callconv(.winapi) f64;
 
-pub extern "icu" fn ubrk_getBinaryRules(
-    bi: ?*UBreakIterator,
-    binaryRules: ?*u8,
-    rulesCapacity: i32,
+pub extern "icu" fn ucal_getNow(
+) callconv(.winapi) f64;
+
+pub extern "icu" fn ucal_getTimeZoneDisplayName(
+    cal: ?*const ?*anyopaque,
+    type: UCalendarDisplayNameType,
+    locale: ?[*:0]const u8,
+    result: ?*u16,
+    resultLength: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_getDataVersion(
-    dataVersionFillin: ?*u8,
+pub extern "icu" fn ucal_getTimeZoneID(
+    cal: ?*const ?*anyopaque,
+    result: ?*u16,
+    resultLength: i32,
     status: ?*UErrorCode,
-) callconv(.winapi) void;
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getTimeZoneIDForWindowsID(
+    winid: ?*const u16,
+    len: i32,
+    region: ?[*:0]const u8,
+    id: ?*u16,
+    idCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getTimeZoneTransitionDate(
+    cal: ?*const ?*anyopaque,
+    type: UTimeZoneTransitionType,
+    transition: ?*f64,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucal_getType(
+    cal: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucal_getTZDataVersion(
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucal_getWeekendTransition(
+    cal: ?*const ?*anyopaque,
+    dayOfWeek: UCalendarDaysOfWeek,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_getWindowsTimeZoneID(
+    id: ?*const u16,
+    len: i32,
+    winid: ?*u16,
+    winidCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucal_inDaylightTime(
+    cal: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucal_isSet(
+    cal: ?*const ?*anyopaque,
+    field: UCalendarDateFields,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucal_isWeekend(
+    cal: ?*const ?*anyopaque,
+    date: f64,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucal_open(
+    zoneID: ?*const u16,
+    len: i32,
+    locale: ?[*:0]const u8,
+    type: UCalendarType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn ucal_openCountryTimeZones(
+    country: ?[*:0]const u8,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
 
 pub extern "icu" fn ucal_openTimeZoneIDEnumeration(
     zoneType: USystemTimeZoneType,
@@ -13321,119 +11449,23 @@ pub extern "icu" fn ucal_openTimeZones(
     ec: ?*UErrorCode,
 ) callconv(.winapi) ?*UEnumeration;
 
-pub extern "icu" fn ucal_openCountryTimeZones(
-    country: ?[*:0]const u8,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucal_getDefaultTimeZone(
-    result: ?*u16,
-    resultCapacity: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_setDefaultTimeZone(
-    zoneID: ?*const u16,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_getHostTimeZone(
-    result: ?*u16,
-    resultCapacity: i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_getDSTSavings(
-    zoneID: ?*const u16,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_getNow(
-) callconv(.winapi) f64;
-
-pub extern "icu" fn ucal_open(
-    zoneID: ?*const u16,
-    len: i32,
-    locale: ?[*:0]const u8,
-    type: UCalendarType,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn ucal_close(
+pub extern "icu" fn ucal_roll(
     cal: ?*?*anyopaque,
+    field: UCalendarDateFields,
+    amount: i32,
+    status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ucal_clone(
-    cal: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn ucal_setTimeZone(
+pub extern "icu" fn ucal_set(
     cal: ?*?*anyopaque,
-    zoneID: ?*const u16,
-    len: i32,
-    status: ?*UErrorCode,
+    field: UCalendarDateFields,
+    value: i32,
 ) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_getTimeZoneID(
-    cal: ?*const ?*anyopaque,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_getTimeZoneDisplayName(
-    cal: ?*const ?*anyopaque,
-    type: UCalendarDisplayNameType,
-    locale: ?[*:0]const u8,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_inDaylightTime(
-    cal: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucal_setGregorianChange(
-    cal: ?*?*anyopaque,
-    date: f64,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_getGregorianChange(
-    cal: ?*const ?*anyopaque,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn ucal_getAttribute(
-    cal: ?*const ?*anyopaque,
-    attr: UCalendarAttribute,
-) callconv(.winapi) i32;
 
 pub extern "icu" fn ucal_setAttribute(
     cal: ?*?*anyopaque,
     attr: UCalendarAttribute,
     newValue: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_getAvailable(
-    localeIndex: i32,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucal_countAvailable(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_getMillis(
-    cal: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn ucal_setMillis(
-    cal: ?*?*anyopaque,
-    dateTime: f64,
-    status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
 pub extern "icu" fn ucal_setDate(
@@ -13455,624 +11487,114 @@ pub extern "icu" fn ucal_setDateTime(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ucal_equivalentTo(
-    cal1: ?*const ?*anyopaque,
-    cal2: ?*const ?*anyopaque,
-) callconv(.winapi) i8;
+pub extern "icu" fn ucal_setDefaultTimeZone(
+    zoneID: ?*const u16,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
 
-pub extern "icu" fn ucal_add(
+pub extern "icu" fn ucal_setGregorianChange(
     cal: ?*?*anyopaque,
-    field: UCalendarDateFields,
-    amount: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_roll(
-    cal: ?*?*anyopaque,
-    field: UCalendarDateFields,
-    amount: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_get(
-    cal: ?*const ?*anyopaque,
-    field: UCalendarDateFields,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_set(
-    cal: ?*?*anyopaque,
-    field: UCalendarDateFields,
-    value: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_isSet(
-    cal: ?*const ?*anyopaque,
-    field: UCalendarDateFields,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucal_clearField(
-    cal: ?*?*anyopaque,
-    field: UCalendarDateFields,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_clear(
-    calendar: ?*?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucal_getLimit(
-    cal: ?*const ?*anyopaque,
-    field: UCalendarDateFields,
-    type: UCalendarLimitType,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_getLocaleByType(
-    cal: ?*const ?*anyopaque,
-    type: ULocDataLocaleType,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucal_getTZDataVersion(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucal_getCanonicalTimeZoneID(
-    id: ?*const u16,
-    len: i32,
-    result: ?*u16,
-    resultCapacity: i32,
-    isSystemID: ?*i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_getType(
-    cal: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucal_getKeywordValuesForLocale(
-    key: ?[*:0]const u8,
-    locale: ?[*:0]const u8,
-    commonlyUsed: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucal_getDayOfWeekType(
-    cal: ?*const ?*anyopaque,
-    dayOfWeek: UCalendarDaysOfWeek,
-    status: ?*UErrorCode,
-) callconv(.winapi) UCalendarWeekdayType;
-
-pub extern "icu" fn ucal_getWeekendTransition(
-    cal: ?*const ?*anyopaque,
-    dayOfWeek: UCalendarDaysOfWeek,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_isWeekend(
-    cal: ?*const ?*anyopaque,
     date: f64,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
 
-pub extern "icu" fn ucal_getFieldDifference(
+pub extern "icu" fn ucal_setMillis(
     cal: ?*?*anyopaque,
-    target: f64,
-    field: UCalendarDateFields,
+    dateTime: f64,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) void;
 
-pub extern "icu" fn ucal_getTimeZoneTransitionDate(
-    cal: ?*const ?*anyopaque,
-    type: UTimeZoneTransitionType,
-    transition: ?*f64,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucal_getWindowsTimeZoneID(
-    id: ?*const u16,
+pub extern "icu" fn ucal_setTimeZone(
+    cal: ?*?*anyopaque,
+    zoneID: ?*const u16,
     len: i32,
-    winid: ?*u16,
-    winidCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucal_getTimeZoneIDForWindowsID(
-    winid: ?*const u16,
-    len: i32,
-    region: ?[*:0]const u8,
-    id: ?*u16,
-    idCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_open(
-    loc: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UCollator;
-
-pub extern "icu" fn ucol_openRules(
-    rules: ?*const u16,
-    rulesLength: i32,
-    normalizationMode: UColAttributeValue,
-    strength: UColAttributeValue,
-    parseError: ?*UParseError,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UCollator;
-
-pub extern "icu" fn ucol_getContractionsAndExpansions(
-    coll: ?*const UCollator,
-    contractions: ?*USet,
-    expansions: ?*USet,
-    addPrefixes: i8,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ucol_close(
-    coll: ?*UCollator,
+pub extern "icu" fn ucasemap_close(
+    csm: ?*UCaseMap,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ucol_strcoll(
-    coll: ?*const UCollator,
-    source: ?*const u16,
-    sourceLength: i32,
-    target: ?*const u16,
-    targetLength: i32,
-) callconv(.winapi) UCollationResult;
+pub extern "icu" fn ucasemap_getBreakIterator(
+    csm: ?*const UCaseMap,
+) callconv(.winapi) ?*UBreakIterator;
 
-pub extern "icu" fn ucol_strcollUTF8(
-    coll: ?*const UCollator,
-    source: ?[*:0]const u8,
-    sourceLength: i32,
-    target: ?[*:0]const u8,
-    targetLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) UCollationResult;
-
-pub extern "icu" fn ucol_greater(
-    coll: ?*const UCollator,
-    source: ?*const u16,
-    sourceLength: i32,
-    target: ?*const u16,
-    targetLength: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucol_greaterOrEqual(
-    coll: ?*const UCollator,
-    source: ?*const u16,
-    sourceLength: i32,
-    target: ?*const u16,
-    targetLength: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucol_equal(
-    coll: ?*const UCollator,
-    source: ?*const u16,
-    sourceLength: i32,
-    target: ?*const u16,
-    targetLength: i32,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucol_strcollIter(
-    coll: ?*const UCollator,
-    sIter: ?*UCharIterator,
-    tIter: ?*UCharIterator,
-    status: ?*UErrorCode,
-) callconv(.winapi) UCollationResult;
-
-pub extern "icu" fn ucol_getStrength(
-    coll: ?*const UCollator,
-) callconv(.winapi) UColAttributeValue;
-
-pub extern "icu" fn ucol_setStrength(
-    coll: ?*UCollator,
-    strength: UColAttributeValue,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucol_getReorderCodes(
-    coll: ?*const UCollator,
-    dest: ?*i32,
-    destCapacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_setReorderCodes(
-    coll: ?*UCollator,
-    reorderCodes: ?*const i32,
-    reorderCodesLength: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucol_getEquivalentReorderCodes(
-    reorderCode: i32,
-    dest: ?*i32,
-    destCapacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_getDisplayName(
-    objLoc: ?[*:0]const u8,
-    dispLoc: ?[*:0]const u8,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_getAvailable(
-    localeIndex: i32,
+pub extern "icu" fn ucasemap_getLocale(
+    csm: ?*const UCaseMap,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn ucol_countAvailable(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_openAvailableLocales(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucol_getKeywords(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucol_getKeywordValues(
-    keyword: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucol_getKeywordValuesForLocale(
-    key: ?[*:0]const u8,
-    locale: ?[*:0]const u8,
-    commonlyUsed: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucol_getFunctionalEquivalent(
-    result: ?PSTR,
-    resultCapacity: i32,
-    keyword: ?[*:0]const u8,
-    locale: ?[*:0]const u8,
-    isAvailable: ?*i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_getRules(
-    coll: ?*const UCollator,
-    length: ?*i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ucol_getSortKey(
-    coll: ?*const UCollator,
-    source: ?*const u16,
-    sourceLength: i32,
-    result: ?*u8,
-    resultLength: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_nextSortKeyPart(
-    coll: ?*const UCollator,
-    iter: ?*UCharIterator,
-    state: ?*u32,
-    dest: ?*u8,
-    count: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_getBound(
-    source: ?*const u8,
-    sourceLength: i32,
-    boundType: UColBoundMode,
-    noOfLevels: u32,
-    result: ?*u8,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_getVersion(
-    coll: ?*const UCollator,
-    info: ?*u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucol_getUCAVersion(
-    coll: ?*const UCollator,
-    info: ?*u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucol_mergeSortkeys(
-    src1: ?*const u8,
-    src1Length: i32,
-    src2: ?*const u8,
-    src2Length: i32,
-    dest: ?*u8,
-    destCapacity: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_setAttribute(
-    coll: ?*UCollator,
-    attr: UColAttribute,
-    value: UColAttributeValue,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucol_getAttribute(
-    coll: ?*const UCollator,
-    attr: UColAttribute,
-    status: ?*UErrorCode,
-) callconv(.winapi) UColAttributeValue;
-
-pub extern "icu" fn ucol_setMaxVariable(
-    coll: ?*UCollator,
-    group: UColReorderCode,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucol_getMaxVariable(
-    coll: ?*const UCollator,
-) callconv(.winapi) UColReorderCode;
-
-pub extern "icu" fn ucol_getVariableTop(
-    coll: ?*const UCollator,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucasemap_getOptions(
+    csm: ?*const UCaseMap,
 ) callconv(.winapi) u32;
 
-pub extern "icu" fn ucol_safeClone(
-    coll: ?*const UCollator,
-    stackBuffer: ?*anyopaque,
-    pBufferSize: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UCollator;
+pub extern "icu" fn ucasemap_open(
+    locale: ?[*:0]const u8,
+    options: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UCaseMap;
 
-pub extern "icu" fn ucol_getRulesEx(
-    coll: ?*const UCollator,
-    delta: UColRuleOption,
-    buffer: ?*u16,
-    bufferLen: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_getLocaleByType(
-    coll: ?*const UCollator,
-    type: ULocDataLocaleType,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucol_getTailoredSet(
-    coll: ?*const UCollator,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn ucol_cloneBinary(
-    coll: ?*const UCollator,
-    buffer: ?*u8,
-    capacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_openBinary(
-    bin: ?*const u8,
-    length: i32,
-    base: ?*const UCollator,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UCollator;
-
-pub extern "icu" fn ucol_openElements(
-    coll: ?*const UCollator,
-    text: ?*const u16,
-    textLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UCollationElements;
-
-pub extern "icu" fn ucol_keyHashCode(
-    key: ?*const u8,
-    length: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_closeElements(
-    elems: ?*UCollationElements,
+pub extern "icu" fn ucasemap_setBreakIterator(
+    csm: ?*UCaseMap,
+    iterToAdopt: ?*UBreakIterator,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ucol_reset(
-    elems: ?*UCollationElements,
+pub extern "icu" fn ucasemap_setLocale(
+    csm: ?*UCaseMap,
+    locale: ?[*:0]const u8,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ucol_next(
-    elems: ?*UCollationElements,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_previous(
-    elems: ?*UCollationElements,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_getMaxExpansion(
-    elems: ?*const UCollationElements,
-    order: i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucol_setText(
-    elems: ?*UCollationElements,
-    text: ?*const u16,
-    textLength: i32,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucasemap_setOptions(
+    csm: ?*UCaseMap,
+    options: u32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ucol_getOffset(
-    elems: ?*const UCollationElements,
+pub extern "icu" fn ucasemap_toTitle(
+    csm: ?*UCaseMap,
+    dest: ?*u16,
+    destCapacity: i32,
+    src: ?*const u16,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ucol_setOffset(
-    elems: ?*UCollationElements,
-    offset: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucol_primaryOrder(
-    order: i32,
+pub extern "icu" fn ucasemap_utf8FoldCase(
+    csm: ?*const UCaseMap,
+    dest: ?PSTR,
+    destCapacity: i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ucol_secondaryOrder(
-    order: i32,
+pub extern "icu" fn ucasemap_utf8ToLower(
+    csm: ?*const UCaseMap,
+    dest: ?PSTR,
+    destCapacity: i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ucol_tertiaryOrder(
-    order: i32,
+pub extern "icu" fn ucasemap_utf8ToTitle(
+    csm: ?*UCaseMap,
+    dest: ?PSTR,
+    destCapacity: i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn ucsdet_open(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UCharsetDetector;
-
-pub extern "icu" fn ucsdet_close(
-    ucsd: ?*UCharsetDetector,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucsdet_setText(
-    ucsd: ?*UCharsetDetector,
-    textIn: ?[*:0]const u8,
-    len: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucsdet_setDeclaredEncoding(
-    ucsd: ?*UCharsetDetector,
-    encoding: ?[*:0]const u8,
-    length: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ucsdet_detect(
-    ucsd: ?*UCharsetDetector,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UCharsetMatch;
-
-pub extern "icu" fn ucsdet_detectAll(
-    ucsd: ?*UCharsetDetector,
-    matchesFound: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*UCharsetMatch;
-
-pub extern "icu" fn ucsdet_getName(
-    ucsm: ?*const UCharsetMatch,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucsdet_getConfidence(
-    ucsm: ?*const UCharsetMatch,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucasemap_utf8ToUpper(
+    csm: ?*const UCaseMap,
+    dest: ?PSTR,
+    destCapacity: i32,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
-
-pub extern "icu" fn ucsdet_getLanguage(
-    ucsm: ?*const UCharsetMatch,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucsdet_getUChars(
-    ucsm: ?*const UCharsetMatch,
-    buf: ?*u16,
-    cap: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ucsdet_getAllDetectableCharsets(
-    ucsd: ?*const UCharsetDetector,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn ucsdet_isInputFilterEnabled(
-    ucsd: ?*const UCharsetDetector,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ucsdet_enableInputFilter(
-    ucsd: ?*UCharsetDetector,
-    filter: i8,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ufieldpositer_open(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UFieldPositionIterator;
-
-pub extern "icu" fn ufieldpositer_close(
-    fpositer: ?*UFieldPositionIterator,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ufieldpositer_next(
-    fpositer: ?*UFieldPositionIterator,
-    beginIndex: ?*i32,
-    endIndex: ?*i32,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ufmt_open(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn ufmt_close(
-    fmt: ?*?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ufmt_getType(
-    fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) UFormattableType;
-
-pub extern "icu" fn ufmt_isNumeric(
-    fmt: ?*const ?*anyopaque,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ufmt_getDate(
-    fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn ufmt_getDouble(
-    fmt: ?*?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn ufmt_getLong(
-    fmt: ?*?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ufmt_getInt64(
-    fmt: ?*?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) i64;
-
-pub extern "icu" fn ufmt_getObject(
-    fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*anyopaque;
-
-pub extern "icu" fn ufmt_getUChars(
-    fmt: ?*?*anyopaque,
-    len: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ufmt_getArrayLength(
-    fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ufmt_getArrayItemByIndex(
-    fmt: ?*?*anyopaque,
-    n: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn ufmt_getDecNumChars(
-    fmt: ?*?*anyopaque,
-    len: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn ucfpos_open(
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UConstrainedFieldPosition;
-
-pub extern "icu" fn ucfpos_reset(
-    ucfpos: ?*UConstrainedFieldPosition,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
 
 pub extern "icu" fn ucfpos_close(
     ucfpos: ?*UConstrainedFieldPosition,
@@ -14113,18 +11635,27 @@ pub extern "icu" fn ucfpos_getInt64IterationContext(
     ec: ?*UErrorCode,
 ) callconv(.winapi) i64;
 
-pub extern "icu" fn ucfpos_setInt64IterationContext(
-    ucfpos: ?*UConstrainedFieldPosition,
-    context: i64,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
 pub extern "icu" fn ucfpos_matchesField(
     ucfpos: ?*const UConstrainedFieldPosition,
     category: i32,
     field: i32,
     ec: ?*UErrorCode,
 ) callconv(.winapi) i8;
+
+pub extern "icu" fn ucfpos_open(
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UConstrainedFieldPosition;
+
+pub extern "icu" fn ucfpos_reset(
+    ucfpos: ?*UConstrainedFieldPosition,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucfpos_setInt64IterationContext(
+    ucfpos: ?*UConstrainedFieldPosition,
+    context: i64,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
 
 pub extern "icu" fn ucfpos_setState(
     ucfpos: ?*UConstrainedFieldPosition,
@@ -14135,583 +11666,1111 @@ pub extern "icu" fn ucfpos_setState(
     ec: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ufmtval_getString(
-    ufmtval: ?*const UFormattedValue,
-    pLength: ?*i32,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn ufmtval_nextPosition(
-    ufmtval: ?*const UFormattedValue,
-    ucfpos: ?*UConstrainedFieldPosition,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn udtitvfmt_open(
-    locale: ?[*:0]const u8,
-    skeleton: ?*const u16,
-    skeletonLength: i32,
-    tzID: ?*const u16,
-    tzIDLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UDateIntervalFormat;
-
-pub extern "icu" fn udtitvfmt_close(
-    formatter: ?*UDateIntervalFormat,
+pub extern "icu" fn ucnv_cbFromUWriteBytes(
+    args: ?*UConverterFromUnicodeArgs,
+    source: ?[*:0]const u8,
+    length: i32,
+    offsetIndex: i32,
+    err: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udtitvfmt_openResult(
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UFormattedDateInterval;
-
-pub extern "icu" fn udtitvfmt_resultAsValue(
-    uresult: ?*const UFormattedDateInterval,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UFormattedValue;
-
-pub extern "icu" fn udtitvfmt_closeResult(
-    uresult: ?*UFormattedDateInterval,
+pub extern "icu" fn ucnv_cbFromUWriteSub(
+    args: ?*UConverterFromUnicodeArgs,
+    offsetIndex: i32,
+    err: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udtitvfmt_format(
-    formatter: ?*const UDateIntervalFormat,
-    fromDate: f64,
-    toDate: f64,
-    result: ?*u16,
-    resultCapacity: i32,
-    position: ?*UFieldPosition,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ugender_getInstance(
-    locale: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UGenderInfo;
-
-pub extern "icu" fn ugender_getListGender(
-    genderInfo: ?*const UGenderInfo,
-    genders: ?*const UGender,
-    size: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) UGender;
-
-pub extern "icu" fn ulistfmt_open(
-    locale: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UListFormatter;
-
-pub extern "icu" fn ulistfmt_openForType(
-    locale: ?[*:0]const u8,
-    type: UListFormatterType,
-    width: UListFormatterWidth,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UListFormatter;
-
-pub extern "icu" fn ulistfmt_close(
-    listfmt: ?*UListFormatter,
+pub extern "icu" fn ucnv_cbFromUWriteUChars(
+    args: ?*UConverterFromUnicodeArgs,
+    source: ?*const ?*u16,
+    sourceLimit: ?*const u16,
+    offsetIndex: i32,
+    err: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ulistfmt_openResult(
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UFormattedList;
-
-pub extern "icu" fn ulistfmt_resultAsValue(
-    uresult: ?*const UFormattedList,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UFormattedValue;
-
-pub extern "icu" fn ulistfmt_closeResult(
-    uresult: ?*UFormattedList,
+pub extern "icu" fn ucnv_cbToUWriteSub(
+    args: ?*UConverterToUnicodeArgs,
+    offsetIndex: i32,
+    err: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ulistfmt_format(
-    listfmt: ?*const UListFormatter,
-    strings: ?*const ?*u16,
-    stringLengths: ?*const i32,
-    stringCount: i32,
-    result: ?*u16,
-    resultCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ulistfmt_formatStringsToResult(
-    listfmt: ?*const UListFormatter,
-    strings: ?*const ?*u16,
-    stringLengths: ?*const i32,
-    stringCount: i32,
-    uresult: ?*UFormattedList,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ulocdata_open(
-    localeID: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*ULocaleData;
-
-pub extern "icu" fn ulocdata_close(
-    uld: ?*ULocaleData,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ulocdata_setNoSubstitute(
-    uld: ?*ULocaleData,
-    setting: i8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ulocdata_getNoSubstitute(
-    uld: ?*ULocaleData,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn ulocdata_getExemplarSet(
-    uld: ?*ULocaleData,
-    fillIn: ?*USet,
-    options: u32,
-    extype: ULocaleDataExemplarSetType,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
-
-pub extern "icu" fn ulocdata_getDelimiter(
-    uld: ?*ULocaleData,
-    type: ULocaleDataDelimiterType,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ulocdata_getMeasurementSystem(
-    localeID: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) UMeasurementSystem;
-
-pub extern "icu" fn ulocdata_getPaperSize(
-    localeID: ?[*:0]const u8,
-    height: ?*i32,
-    width: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ulocdata_getCLDRVersion(
-    versionArray: ?*u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn ulocdata_getLocaleDisplayPattern(
-    uld: ?*ULocaleData,
-    pattern: ?*u16,
-    patternCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn ulocdata_getLocaleSeparator(
-    uld: ?*ULocaleData,
-    separator: ?*u16,
-    separatorCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_formatMessage(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_vformatMessage(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    result: ?*u16,
-    resultLength: i32,
-    ap: ?*i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn u_parseMessage(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
+pub extern "icu" fn ucnv_cbToUWriteUChars(
+    args: ?*UConverterToUnicodeArgs,
     source: ?*const u16,
-    sourceLength: i32,
-    status: ?*UErrorCode,
+    length: i32,
+    offsetIndex: i32,
+    err: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn u_vparseMessage(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    source: ?*const u16,
-    sourceLength: i32,
-    ap: ?*i8,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucnv_close(
+    converter: ?*UConverter,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn u_formatMessageWithError(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    result: ?*u16,
-    resultLength: i32,
-    parseError: ?*UParseError,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucnv_compareNames(
+    name1: ?[*:0]const u8,
+    name2: ?[*:0]const u8,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_vformatMessageWithError(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    result: ?*u16,
-    resultLength: i32,
-    parseError: ?*UParseError,
-    ap: ?*i8,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucnv_convert(
+    toConverterName: ?[*:0]const u8,
+    fromConverterName: ?[*:0]const u8,
+    target: ?PSTR,
+    targetCapacity: i32,
+    source: ?[*:0]const u8,
+    sourceLength: i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn u_parseMessageWithError(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    source: ?*const u16,
+pub extern "icu" fn ucnv_convertEx(
+    targetCnv: ?*UConverter,
+    sourceCnv: ?*UConverter,
+    target: ?*?*i8,
+    targetLimit: ?[*:0]const u8,
+    source: ?*const ?*i8,
+    sourceLimit: ?[*:0]const u8,
+    pivotStart: ?*u16,
+    pivotSource: ?*?*u16,
+    pivotTarget: ?*?*u16,
+    pivotLimit: ?*const u16,
+    reset: i8,
+    flush: i8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_countAliases(
+    alias: ?[*:0]const u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) u16;
+
+pub extern "icu" fn ucnv_countAvailable(
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucnv_countStandards(
+) callconv(.winapi) u16;
+
+pub extern "icu" fn ucnv_detectUnicodeSignature(
+    source: ?[*:0]const u8,
     sourceLength: i32,
-    parseError: ?*UParseError,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn u_vparseMessageWithError(
-    locale: ?[*:0]const u8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    source: ?*const u16,
-    sourceLength: i32,
-    ap: ?*i8,
-    parseError: ?*UParseError,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn umsg_open(
-    pattern: ?*const u16,
-    patternLength: i32,
-    locale: ?[*:0]const u8,
-    parseError: ?*UParseError,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn umsg_close(
-    format: ?*?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn umsg_clone(
-    fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*anyopaque;
-
-pub extern "icu" fn umsg_setLocale(
-    fmt: ?*?*anyopaque,
-    locale: ?[*:0]const u8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn umsg_getLocale(
-    fmt: ?*const ?*anyopaque,
+    signatureLength: ?*i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn umsg_applyPattern(
-    fmt: ?*?*anyopaque,
-    pattern: ?*const u16,
-    patternLength: i32,
-    parseError: ?*UParseError,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucnv_fixFileSeparator(
+    cnv: ?*const UConverter,
+    source: ?*u16,
+    sourceLen: i32,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn umsg_toPattern(
-    fmt: ?*const ?*anyopaque,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucnv_flushCache(
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn umsg_format(
-    fmt: ?*const ?*anyopaque,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
+pub extern "icu" fn UCNV_FROM_U_CALLBACK_ESCAPE(
+    context: ?*const anyopaque,
+    fromUArgs: ?*UConverterFromUnicodeArgs,
+    codeUnits: ?*const u16,
+    length: i32,
+    codePoint: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
 
-pub extern "icu" fn umsg_vformat(
-    fmt: ?*const ?*anyopaque,
-    result: ?*u16,
-    resultLength: i32,
-    ap: ?*i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
+pub extern "icu" fn UCNV_FROM_U_CALLBACK_SKIP(
+    context: ?*const anyopaque,
+    fromUArgs: ?*UConverterFromUnicodeArgs,
+    codeUnits: ?*const u16,
+    length: i32,
+    codePoint: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
 
-pub extern "icu" fn umsg_parse(
-    fmt: ?*const ?*anyopaque,
-    source: ?*const u16,
+pub extern "icu" fn UCNV_FROM_U_CALLBACK_STOP(
+    context: ?*const anyopaque,
+    fromUArgs: ?*UConverterFromUnicodeArgs,
+    codeUnits: ?*const u16,
+    length: i32,
+    codePoint: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn UCNV_FROM_U_CALLBACK_SUBSTITUTE(
+    context: ?*const anyopaque,
+    fromUArgs: ?*UConverterFromUnicodeArgs,
+    codeUnits: ?*const u16,
+    length: i32,
+    codePoint: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_fromAlgorithmic(
+    cnv: ?*UConverter,
+    algorithmicType: UConverterType,
+    target: ?PSTR,
+    targetCapacity: i32,
+    source: ?[*:0]const u8,
     sourceLength: i32,
-    count: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucnv_fromUChars(
+    cnv: ?*UConverter,
+    dest: ?PSTR,
+    destCapacity: i32,
+    src: ?*const u16,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucnv_fromUCountPending(
+    cnv: ?*const UConverter,
     status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucnv_fromUnicode(
+    converter: ?*UConverter,
+    target: ?*?*i8,
+    targetLimit: ?[*:0]const u8,
+    source: ?*const ?*u16,
+    sourceLimit: ?*const u16,
+    offsets: ?*i32,
+    flush: i8,
+    err: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn umsg_vparse(
-    fmt: ?*const ?*anyopaque,
-    source: ?*const u16,
+pub extern "icu" fn ucnv_getAlias(
+    alias: ?[*:0]const u8,
+    n: u16,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucnv_getAliases(
+    alias: ?[*:0]const u8,
+    aliases: ?*const ?*i8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_getAvailableName(
+    n: i32,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucnv_getCanonicalName(
+    alias: ?[*:0]const u8,
+    standard: ?[*:0]const u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucnv_getCCSID(
+    converter: ?*const UConverter,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucnv_getDefaultName(
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucnv_getDisplayName(
+    converter: ?*const UConverter,
+    displayLocale: ?[*:0]const u8,
+    displayName: ?*u16,
+    displayNameCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucnv_getFromUCallBack(
+    converter: ?*const UConverter,
+    action: ?*?UConverterFromUCallback,
+    context: ?*const ?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_getInvalidChars(
+    converter: ?*const UConverter,
+    errBytes: ?PSTR,
+    len: ?*i8,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_getInvalidUChars(
+    converter: ?*const UConverter,
+    errUChars: ?*u16,
+    len: ?*i8,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_getMaxCharSize(
+    converter: ?*const UConverter,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucnv_getMinCharSize(
+    converter: ?*const UConverter,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucnv_getName(
+    converter: ?*const UConverter,
+    err: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucnv_getNextUChar(
+    converter: ?*UConverter,
+    source: ?*const ?*i8,
+    sourceLimit: ?[*:0]const u8,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucnv_getPlatform(
+    converter: ?*const UConverter,
+    err: ?*UErrorCode,
+) callconv(.winapi) UConverterPlatform;
+
+pub extern "icu" fn ucnv_getStandard(
+    n: u16,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucnv_getStandardName(
+    name: ?[*:0]const u8,
+    standard: ?[*:0]const u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucnv_getStarters(
+    converter: ?*const UConverter,
+    starters: ?*i8,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_getSubstChars(
+    converter: ?*const UConverter,
+    subChars: ?PSTR,
+    len: ?*i8,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_getToUCallBack(
+    converter: ?*const UConverter,
+    action: ?*?UConverterToUCallback,
+    context: ?*const ?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_getType(
+    converter: ?*const UConverter,
+) callconv(.winapi) UConverterType;
+
+pub extern "icu" fn ucnv_getUnicodeSet(
+    cnv: ?*const UConverter,
+    setFillIn: ?*USet,
+    whichSet: UConverterUnicodeSet,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_isAmbiguous(
+    cnv: ?*const UConverter,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucnv_isFixedWidth(
+    cnv: ?*UConverter,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucnv_open(
+    converterName: ?[*:0]const u8,
+    err: ?*UErrorCode,
+) callconv(.winapi) ?*UConverter;
+
+pub extern "icu" fn ucnv_openAllNames(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucnv_openCCSID(
+    codepage: i32,
+    platform: UConverterPlatform,
+    err: ?*UErrorCode,
+) callconv(.winapi) ?*UConverter;
+
+pub extern "icu" fn ucnv_openPackage(
+    packageName: ?[*:0]const u8,
+    converterName: ?[*:0]const u8,
+    err: ?*UErrorCode,
+) callconv(.winapi) ?*UConverter;
+
+pub extern "icu" fn ucnv_openStandardNames(
+    convName: ?[*:0]const u8,
+    standard: ?[*:0]const u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucnv_openU(
+    name: ?*const u16,
+    err: ?*UErrorCode,
+) callconv(.winapi) ?*UConverter;
+
+pub extern "icu" fn ucnv_reset(
+    converter: ?*UConverter,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_resetFromUnicode(
+    converter: ?*UConverter,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_resetToUnicode(
+    converter: ?*UConverter,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_safeClone(
+    cnv: ?*const UConverter,
+    stackBuffer: ?*anyopaque,
+    pBufferSize: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UConverter;
+
+pub extern "icu" fn ucnv_setDefaultName(
+    name: ?[*:0]const u8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_setFallback(
+    cnv: ?*UConverter,
+    usesFallback: i8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_setFromUCallBack(
+    converter: ?*UConverter,
+    newAction: ?UConverterFromUCallback,
+    newContext: ?*const anyopaque,
+    oldAction: ?*?UConverterFromUCallback,
+    oldContext: ?*const ?*anyopaque,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_setSubstChars(
+    converter: ?*UConverter,
+    subChars: ?[*:0]const u8,
+    len: i8,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_setSubstString(
+    cnv: ?*UConverter,
+    s: ?*const u16,
+    length: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_setToUCallBack(
+    converter: ?*UConverter,
+    newAction: ?UConverterToUCallback,
+    newContext: ?*const anyopaque,
+    oldAction: ?*?UConverterToUCallback,
+    oldContext: ?*const ?*anyopaque,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn UCNV_TO_U_CALLBACK_ESCAPE(
+    context: ?*const anyopaque,
+    toUArgs: ?*UConverterToUnicodeArgs,
+    codeUnits: ?[*:0]const u8,
+    length: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn UCNV_TO_U_CALLBACK_SKIP(
+    context: ?*const anyopaque,
+    toUArgs: ?*UConverterToUnicodeArgs,
+    codeUnits: ?[*:0]const u8,
+    length: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn UCNV_TO_U_CALLBACK_STOP(
+    context: ?*const anyopaque,
+    toUArgs: ?*UConverterToUnicodeArgs,
+    codeUnits: ?[*:0]const u8,
+    length: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn UCNV_TO_U_CALLBACK_SUBSTITUTE(
+    context: ?*const anyopaque,
+    toUArgs: ?*UConverterToUnicodeArgs,
+    codeUnits: ?[*:0]const u8,
+    length: i32,
+    reason: UConverterCallbackReason,
+    err: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucnv_toAlgorithmic(
+    algorithmicType: UConverterType,
+    cnv: ?*UConverter,
+    target: ?PSTR,
+    targetCapacity: i32,
+    source: ?[*:0]const u8,
     sourceLength: i32,
-    count: ?*i32,
-    ap: ?*i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
 
-pub extern "icu" fn umsg_autoQuoteApostrophe(
-    pattern: ?*const u16,
-    patternLength: i32,
+pub extern "icu" fn ucnv_toUChars(
+    cnv: ?*UConverter,
     dest: ?*u16,
     destCapacity: i32,
-    ec: ?*UErrorCode,
+    src: ?[*:0]const u8,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_open(
-    style: UNumberFormatStyle,
-    pattern: ?*const u16,
-    patternLength: i32,
-    locale: ?[*:0]const u8,
-    parseErr: ?*UParseError,
+pub extern "icu" fn ucnv_toUCountPending(
+    cnv: ?*const UConverter,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
+) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_close(
-    fmt: ?*?*anyopaque,
+pub extern "icu" fn ucnv_toUnicode(
+    converter: ?*UConverter,
+    target: ?*?*u16,
+    targetLimit: ?*const u16,
+    source: ?*const ?*i8,
+    sourceLimit: ?[*:0]const u8,
+    offsets: ?*i32,
+    flush: i8,
+    err: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn unum_clone(
-    fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
+pub extern "icu" fn ucnv_usesFallback(
+    cnv: ?*const UConverter,
+) callconv(.winapi) i8;
 
-pub extern "icu" fn unum_format(
-    fmt: ?*const ?*anyopaque,
-    number: i32,
-    result: ?*u16,
-    resultLength: i32,
-    pos: ?*UFieldPosition,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
+pub extern "icu" fn ucnvsel_close(
+    sel: ?*UConverterSelector,
+) callconv(.winapi) void;
 
-pub extern "icu" fn unum_formatInt64(
-    fmt: ?*const ?*anyopaque,
-    number: i64,
-    result: ?*u16,
-    resultLength: i32,
-    pos: ?*UFieldPosition,
+pub extern "icu" fn ucnvsel_open(
+    converterList: ?*const ?*i8,
+    converterListSize: i32,
+    excludedCodePoints: ?*const USet,
+    whichSet: UConverterUnicodeSet,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) ?*UConverterSelector;
 
-pub extern "icu" fn unum_formatDouble(
-    fmt: ?*const ?*anyopaque,
-    number: f64,
-    result: ?*u16,
-    resultLength: i32,
-    pos: ?*UFieldPosition,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unum_formatDoubleForFields(
-    format: ?*const ?*anyopaque,
-    number: f64,
-    result: ?*u16,
-    resultLength: i32,
-    fpositer: ?*UFieldPositionIterator,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unum_formatDecimal(
-    fmt: ?*const ?*anyopaque,
-    number: ?[*:0]const u8,
+pub extern "icu" fn ucnvsel_openFromSerialized(
+    buffer: ?*const anyopaque,
     length: i32,
-    result: ?*u16,
-    resultLength: i32,
-    pos: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UConverterSelector;
+
+pub extern "icu" fn ucnvsel_selectForString(
+    sel: ?*const UConverterSelector,
+    s: ?*const u16,
+    length: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucnvsel_selectForUTF8(
+    sel: ?*const UConverterSelector,
+    s: ?[*:0]const u8,
+    length: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucnvsel_serialize(
+    sel: ?*const UConverterSelector,
+    buffer: ?*anyopaque,
+    bufferCapacity: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_formatDoubleCurrency(
-    fmt: ?*const ?*anyopaque,
-    number: f64,
-    currency: ?*u16,
-    result: ?*u16,
-    resultLength: i32,
-    pos: ?*UFieldPosition,
+pub extern "icu" fn ucol_cloneBinary(
+    coll: ?*const UCollator,
+    buffer: ?*u8,
+    capacity: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_formatUFormattable(
-    fmt: ?*const ?*anyopaque,
-    number: ?*const ?*anyopaque,
-    result: ?*u16,
-    resultLength: i32,
-    pos: ?*UFieldPosition,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unum_parse(
-    fmt: ?*const ?*anyopaque,
-    text: ?*const u16,
-    textLength: i32,
-    parsePos: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unum_parseInt64(
-    fmt: ?*const ?*anyopaque,
-    text: ?*const u16,
-    textLength: i32,
-    parsePos: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i64;
-
-pub extern "icu" fn unum_parseDouble(
-    fmt: ?*const ?*anyopaque,
-    text: ?*const u16,
-    textLength: i32,
-    parsePos: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn unum_parseDecimal(
-    fmt: ?*const ?*anyopaque,
-    text: ?*const u16,
-    textLength: i32,
-    parsePos: ?*i32,
-    outBuf: ?PSTR,
-    outBufLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unum_parseDoubleCurrency(
-    fmt: ?*const ?*anyopaque,
-    text: ?*const u16,
-    textLength: i32,
-    parsePos: ?*i32,
-    currency: ?*u16,
-    status: ?*UErrorCode,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn unum_parseToUFormattable(
-    fmt: ?*const ?*anyopaque,
-    result: ?*?*anyopaque,
-    text: ?*const u16,
-    textLength: i32,
-    parsePos: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn unum_applyPattern(
-    format: ?*?*anyopaque,
-    localized: i8,
-    pattern: ?*const u16,
-    patternLength: i32,
-    parseError: ?*UParseError,
-    status: ?*UErrorCode,
+pub extern "icu" fn ucol_close(
+    coll: ?*UCollator,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn unum_getAvailable(
+pub extern "icu" fn ucol_closeElements(
+    elems: ?*UCollationElements,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucol_countAvailable(
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_equal(
+    coll: ?*const UCollator,
+    source: ?*const u16,
+    sourceLength: i32,
+    target: ?*const u16,
+    targetLength: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucol_getAttribute(
+    coll: ?*const UCollator,
+    attr: UColAttribute,
+    status: ?*UErrorCode,
+) callconv(.winapi) UColAttributeValue;
+
+pub extern "icu" fn ucol_getAvailable(
     localeIndex: i32,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn unum_countAvailable(
+pub extern "icu" fn ucol_getBound(
+    source: ?*const u8,
+    sourceLength: i32,
+    boundType: UColBoundMode,
+    noOfLevels: u32,
+    result: ?*u8,
+    resultLength: i32,
+    status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_getAttribute(
-    fmt: ?*const ?*anyopaque,
-    attr: UNumberFormatAttribute,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn unum_setAttribute(
-    fmt: ?*?*anyopaque,
-    attr: UNumberFormatAttribute,
-    newValue: i32,
+pub extern "icu" fn ucol_getContractionsAndExpansions(
+    coll: ?*const UCollator,
+    contractions: ?*USet,
+    expansions: ?*USet,
+    addPrefixes: i8,
+    status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn unum_getDoubleAttribute(
-    fmt: ?*const ?*anyopaque,
-    attr: UNumberFormatAttribute,
-) callconv(.winapi) f64;
-
-pub extern "icu" fn unum_setDoubleAttribute(
-    fmt: ?*?*anyopaque,
-    attr: UNumberFormatAttribute,
-    newValue: f64,
-) callconv(.winapi) void;
-
-pub extern "icu" fn unum_getTextAttribute(
-    fmt: ?*const ?*anyopaque,
-    tag: UNumberFormatTextAttribute,
+pub extern "icu" fn ucol_getDisplayName(
+    objLoc: ?[*:0]const u8,
+    dispLoc: ?[*:0]const u8,
     result: ?*u16,
     resultLength: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_setTextAttribute(
-    fmt: ?*?*anyopaque,
-    tag: UNumberFormatTextAttribute,
-    newValue: ?*const u16,
-    newValueLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
+pub extern "icu" fn ucol_getEquivalentReorderCodes(
+    reorderCode: i32,
+    dest: ?*i32,
+    destCapacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_toPattern(
-    fmt: ?*const ?*anyopaque,
-    isPatternLocalized: i8,
-    result: ?*u16,
-    resultLength: i32,
+pub extern "icu" fn ucol_getFunctionalEquivalent(
+    result: ?PSTR,
+    resultCapacity: i32,
+    keyword: ?[*:0]const u8,
+    locale: ?[*:0]const u8,
+    isAvailable: ?*i8,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn unum_getSymbol(
-    fmt: ?*const ?*anyopaque,
-    symbol: UNumberFormatSymbol,
-    buffer: ?*u16,
-    size: i32,
+pub extern "icu" fn ucol_getKeywords(
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) ?*UEnumeration;
 
-pub extern "icu" fn unum_setSymbol(
-    fmt: ?*?*anyopaque,
-    symbol: UNumberFormatSymbol,
-    value: ?*const u16,
-    length: i32,
+pub extern "icu" fn ucol_getKeywordValues(
+    keyword: ?[*:0]const u8,
     status: ?*UErrorCode,
-) callconv(.winapi) void;
+) callconv(.winapi) ?*UEnumeration;
 
-pub extern "icu" fn unum_getLocaleByType(
-    fmt: ?*const ?*anyopaque,
+pub extern "icu" fn ucol_getKeywordValuesForLocale(
+    key: ?[*:0]const u8,
+    locale: ?[*:0]const u8,
+    commonlyUsed: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucol_getLocaleByType(
+    coll: ?*const UCollator,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn unum_setContext(
-    fmt: ?*?*anyopaque,
-    value: UDisplayContext,
+pub extern "icu" fn ucol_getMaxExpansion(
+    elems: ?*const UCollationElements,
+    order: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_getMaxVariable(
+    coll: ?*const UCollator,
+) callconv(.winapi) UColReorderCode;
+
+pub extern "icu" fn ucol_getOffset(
+    elems: ?*const UCollationElements,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_getReorderCodes(
+    coll: ?*const UCollator,
+    dest: ?*i32,
+    destCapacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_getRules(
+    coll: ?*const UCollator,
+    length: ?*i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ucol_getRulesEx(
+    coll: ?*const UCollator,
+    delta: UColRuleOption,
+    buffer: ?*u16,
+    bufferLen: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_getSortKey(
+    coll: ?*const UCollator,
+    source: ?*const u16,
+    sourceLength: i32,
+    result: ?*u8,
+    resultLength: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_getStrength(
+    coll: ?*const UCollator,
+) callconv(.winapi) UColAttributeValue;
+
+pub extern "icu" fn ucol_getTailoredSet(
+    coll: ?*const UCollator,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn ucol_getUCAVersion(
+    coll: ?*const UCollator,
+    info: ?*u8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucol_getVariableTop(
+    coll: ?*const UCollator,
+    status: ?*UErrorCode,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn ucol_getVersion(
+    coll: ?*const UCollator,
+    info: ?*u8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucol_greater(
+    coll: ?*const UCollator,
+    source: ?*const u16,
+    sourceLength: i32,
+    target: ?*const u16,
+    targetLength: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucol_greaterOrEqual(
+    coll: ?*const UCollator,
+    source: ?*const u16,
+    sourceLength: i32,
+    target: ?*const u16,
+    targetLength: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucol_keyHashCode(
+    key: ?*const u8,
+    length: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_mergeSortkeys(
+    src1: ?*const u8,
+    src1Length: i32,
+    src2: ?*const u8,
+    src2Length: i32,
+    dest: ?*u8,
+    destCapacity: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_next(
+    elems: ?*UCollationElements,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_nextSortKeyPart(
+    coll: ?*const UCollator,
+    iter: ?*UCharIterator,
+    state: ?*u32,
+    dest: ?*u8,
+    count: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_open(
+    loc: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UCollator;
+
+pub extern "icu" fn ucol_openAvailableLocales(
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucol_openBinary(
+    bin: ?*const u8,
+    length: i32,
+    base: ?*const UCollator,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UCollator;
+
+pub extern "icu" fn ucol_openElements(
+    coll: ?*const UCollator,
+    text: ?*const u16,
+    textLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UCollationElements;
+
+pub extern "icu" fn ucol_openRules(
+    rules: ?*const u16,
+    rulesLength: i32,
+    normalizationMode: UColAttributeValue,
+    strength: UColAttributeValue,
+    parseError: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UCollator;
+
+pub extern "icu" fn ucol_previous(
+    elems: ?*UCollationElements,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_primaryOrder(
+    order: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_reset(
+    elems: ?*UCollationElements,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucol_safeClone(
+    coll: ?*const UCollator,
+    stackBuffer: ?*anyopaque,
+    pBufferSize: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UCollator;
+
+pub extern "icu" fn ucol_secondaryOrder(
+    order: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucol_setAttribute(
+    coll: ?*UCollator,
+    attr: UColAttribute,
+    value: UColAttributeValue,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn unum_getContext(
-    fmt: ?*const ?*anyopaque,
-    type: UDisplayContextType,
+pub extern "icu" fn ucol_setMaxVariable(
+    coll: ?*UCollator,
+    group: UColReorderCode,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucol_setOffset(
+    elems: ?*UCollationElements,
+    offset: i32,
     status: ?*UErrorCode,
-) callconv(.winapi) UDisplayContext;
+) callconv(.winapi) void;
 
-pub extern "icu" fn udat_toCalendarDateField(
-    field: UDateFormatField,
-) callconv(.winapi) UCalendarDateFields;
+pub extern "icu" fn ucol_setReorderCodes(
+    coll: ?*UCollator,
+    reorderCodes: ?*const i32,
+    reorderCodesLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
 
-pub extern "icu" fn udat_open(
-    timeStyle: UDateFormatStyle,
-    dateStyle: UDateFormatStyle,
+pub extern "icu" fn ucol_setStrength(
+    coll: ?*UCollator,
+    strength: UColAttributeValue,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucol_setText(
+    elems: ?*UCollationElements,
+    text: ?*const u16,
+    textLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucol_strcoll(
+    coll: ?*const UCollator,
+    source: ?*const u16,
+    sourceLength: i32,
+    target: ?*const u16,
+    targetLength: i32,
+) callconv(.winapi) UCollationResult;
+
+pub extern "icu" fn ucol_strcollIter(
+    coll: ?*const UCollator,
+    sIter: ?*UCharIterator,
+    tIter: ?*UCharIterator,
+    status: ?*UErrorCode,
+) callconv(.winapi) UCollationResult;
+
+pub extern "icu" fn ucol_strcollUTF8(
+    coll: ?*const UCollator,
+    source: ?[*:0]const u8,
+    sourceLength: i32,
+    target: ?[*:0]const u8,
+    targetLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) UCollationResult;
+
+pub extern "icu" fn ucol_tertiaryOrder(
+    order: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucpmap_get(
+    map: ?*const UCPMap,
+    c: i32,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn ucpmap_getRange(
+    map: ?*const UCPMap,
+    start: i32,
+    option: UCPMapRangeOption,
+    surrogateValue: u32,
+    filter: ?*?UCPMapValueFilter,
+    context: ?*const anyopaque,
+    pValue: ?*u32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucptrie_close(
+    trie: ?*UCPTrie,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucptrie_get(
+    trie: ?*const UCPTrie,
+    c: i32,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn ucptrie_getRange(
+    trie: ?*const UCPTrie,
+    start: i32,
+    option: UCPMapRangeOption,
+    surrogateValue: u32,
+    filter: ?*?UCPMapValueFilter,
+    context: ?*const anyopaque,
+    pValue: ?*u32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucptrie_getType(
+    trie: ?*const UCPTrie,
+) callconv(.winapi) UCPTrieType;
+
+pub extern "icu" fn ucptrie_getValueWidth(
+    trie: ?*const UCPTrie,
+) callconv(.winapi) UCPTrieValueWidth;
+
+pub extern "icu" fn ucptrie_internalSmallIndex(
+    trie: ?*const UCPTrie,
+    c: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucptrie_internalSmallU8Index(
+    trie: ?*const UCPTrie,
+    lt1: i32,
+    t2: u8,
+    t3: u8,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucptrie_internalU8PrevIndex(
+    trie: ?*const UCPTrie,
+    c: i32,
+    start: ?*const u8,
+    src: ?*const u8,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucptrie_openFromBinary(
+    type: UCPTrieType,
+    valueWidth: UCPTrieValueWidth,
+    data: ?*const anyopaque,
+    length: i32,
+    pActualLength: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UCPTrie;
+
+pub extern "icu" fn ucptrie_toBinary(
+    trie: ?*const UCPTrie,
+    data: ?*anyopaque,
+    capacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucsdet_close(
+    ucsd: ?*UCharsetDetector,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucsdet_detect(
+    ucsd: ?*UCharsetDetector,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UCharsetMatch;
+
+pub extern "icu" fn ucsdet_detectAll(
+    ucsd: ?*UCharsetDetector,
+    matchesFound: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*UCharsetMatch;
+
+pub extern "icu" fn ucsdet_enableInputFilter(
+    ucsd: ?*UCharsetDetector,
+    filter: i8,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucsdet_getAllDetectableCharsets(
+    ucsd: ?*const UCharsetDetector,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucsdet_getConfidence(
+    ucsm: ?*const UCharsetMatch,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucsdet_getLanguage(
+    ucsm: ?*const UCharsetMatch,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucsdet_getName(
+    ucsm: ?*const UCharsetMatch,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ucsdet_getUChars(
+    ucsm: ?*const UCharsetMatch,
+    buf: ?*u16,
+    cap: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucsdet_isInputFilterEnabled(
+    ucsd: ?*const UCharsetDetector,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucsdet_open(
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UCharsetDetector;
+
+pub extern "icu" fn ucsdet_setDeclaredEncoding(
+    ucsd: ?*UCharsetDetector,
+    encoding: ?[*:0]const u8,
+    length: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucsdet_setText(
+    ucsd: ?*UCharsetDetector,
+    textIn: ?[*:0]const u8,
+    len: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ucurr_countCurrencies(
     locale: ?[*:0]const u8,
-    tzID: ?*const u16,
-    tzIDLength: i32,
+    date: f64,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucurr_forLocale(
+    locale: ?[*:0]const u8,
+    buff: ?*u16,
+    buffCapacity: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucurr_forLocaleAndDate(
+    locale: ?[*:0]const u8,
+    date: f64,
+    index: i32,
+    buff: ?*u16,
+    buffCapacity: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucurr_getDefaultFractionDigits(
+    currency: ?*const u16,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucurr_getDefaultFractionDigitsForUsage(
+    currency: ?*const u16,
+    usage: UCurrencyUsage,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucurr_getKeywordValuesForLocale(
+    key: ?[*:0]const u8,
+    locale: ?[*:0]const u8,
+    commonlyUsed: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucurr_getName(
+    currency: ?*const u16,
+    locale: ?[*:0]const u8,
+    nameStyle: UCurrNameStyle,
+    isChoiceFormat: ?*i8,
+    len: ?*i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ucurr_getNumericCode(
+    currency: ?*const u16,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ucurr_getPluralName(
+    currency: ?*const u16,
+    locale: ?[*:0]const u8,
+    isChoiceFormat: ?*i8,
+    pluralCount: ?[*:0]const u8,
+    len: ?*i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ucurr_getRoundingIncrement(
+    currency: ?*const u16,
+    ec: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn ucurr_getRoundingIncrementForUsage(
+    currency: ?*const u16,
+    usage: UCurrencyUsage,
+    ec: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn ucurr_isAvailable(
+    isoCode: ?*const u16,
+    from: f64,
+    to: f64,
+    errorCode: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ucurr_openISOCurrencies(
+    currType: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ucurr_register(
+    isoCode: ?*const u16,
+    locale: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*anyopaque;
+
+pub extern "icu" fn ucurr_unregister(
+    key: ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn udat_adoptNumberFormat(
+    fmt: ?*?*anyopaque,
+    numberFormatToAdopt: ?*?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udat_adoptNumberFormatForFields(
+    fmt: ?*?*anyopaque,
+    fields: ?*const u16,
+    numberFormatToSet: ?*?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udat_applyPattern(
+    format: ?*?*anyopaque,
+    localized: i8,
     pattern: ?*const u16,
     patternLength: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udat_clone(
+    fmt: ?*const ?*anyopaque,
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*?*anyopaque;
 
@@ -14719,23 +12778,13 @@ pub extern "icu" fn udat_close(
     format: ?*?*anyopaque,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udat_getBooleanAttribute(
-    fmt: ?*const ?*anyopaque,
-    attr: UDateFormatBooleanAttribute,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
+pub extern "icu" fn udat_countAvailable(
+) callconv(.winapi) i32;
 
-pub extern "icu" fn udat_setBooleanAttribute(
-    fmt: ?*?*anyopaque,
-    attr: UDateFormatBooleanAttribute,
-    newValue: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udat_clone(
+pub extern "icu" fn udat_countSymbols(
     fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
+    type: UDateFormatSymbolType,
+) callconv(.winapi) i32;
 
 pub extern "icu" fn udat_format(
     format: ?*const ?*anyopaque,
@@ -14755,6 +12804,15 @@ pub extern "icu" fn udat_formatCalendar(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
+pub extern "icu" fn udat_formatCalendarForFields(
+    format: ?*const ?*anyopaque,
+    calendar: ?*?*anyopaque,
+    result: ?*u16,
+    capacity: i32,
+    fpositer: ?*UFieldPositionIterator,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
 pub extern "icu" fn udat_formatForFields(
     format: ?*const ?*anyopaque,
     dateToFormat: f64,
@@ -14764,14 +12822,69 @@ pub extern "icu" fn udat_formatForFields(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn udat_formatCalendarForFields(
-    format: ?*const ?*anyopaque,
-    calendar: ?*?*anyopaque,
+pub extern "icu" fn udat_get2DigitYearStart(
+    fmt: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn udat_getAvailable(
+    localeIndex: i32,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn udat_getBooleanAttribute(
+    fmt: ?*const ?*anyopaque,
+    attr: UDateFormatBooleanAttribute,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn udat_getCalendar(
+    fmt: ?*const ?*anyopaque,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn udat_getContext(
+    fmt: ?*const ?*anyopaque,
+    type: UDisplayContextType,
+    status: ?*UErrorCode,
+) callconv(.winapi) UDisplayContext;
+
+pub extern "icu" fn udat_getLocaleByType(
+    fmt: ?*const ?*anyopaque,
+    type: ULocDataLocaleType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn udat_getNumberFormat(
+    fmt: ?*const ?*anyopaque,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn udat_getNumberFormatForField(
+    fmt: ?*const ?*anyopaque,
+    field: u16,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn udat_getSymbols(
+    fmt: ?*const ?*anyopaque,
+    type: UDateFormatSymbolType,
+    symbolIndex: i32,
     result: ?*u16,
-    capacity: i32,
-    fpositer: ?*UFieldPositionIterator,
+    resultLength: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
+
+pub extern "icu" fn udat_isLenient(
+    fmt: ?*const ?*anyopaque,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn udat_open(
+    timeStyle: UDateFormatStyle,
+    dateStyle: UDateFormatStyle,
+    locale: ?[*:0]const u8,
+    tzID: ?*const u16,
+    tzIDLength: i32,
+    pattern: ?*const u16,
+    patternLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
 
 pub extern "icu" fn udat_parse(
     format: ?*const ?*anyopaque,
@@ -14790,96 +12903,39 @@ pub extern "icu" fn udat_parseCalendar(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udat_isLenient(
-    fmt: ?*const ?*anyopaque,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn udat_setLenient(
-    fmt: ?*?*anyopaque,
-    isLenient: i8,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udat_getCalendar(
-    fmt: ?*const ?*anyopaque,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn udat_setCalendar(
-    fmt: ?*?*anyopaque,
-    calendarToSet: ?*const ?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udat_getNumberFormat(
-    fmt: ?*const ?*anyopaque,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn udat_getNumberFormatForField(
-    fmt: ?*const ?*anyopaque,
-    field: u16,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn udat_adoptNumberFormatForFields(
-    fmt: ?*?*anyopaque,
-    fields: ?*const u16,
-    numberFormatToSet: ?*?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udat_setNumberFormat(
-    fmt: ?*?*anyopaque,
-    numberFormatToSet: ?*const ?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udat_adoptNumberFormat(
-    fmt: ?*?*anyopaque,
-    numberFormatToAdopt: ?*?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udat_getAvailable(
-    localeIndex: i32,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn udat_countAvailable(
-) callconv(.winapi) i32;
-
-pub extern "icu" fn udat_get2DigitYearStart(
-    fmt: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) f64;
-
 pub extern "icu" fn udat_set2DigitYearStart(
     fmt: ?*?*anyopaque,
     d: f64,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udat_toPattern(
-    fmt: ?*const ?*anyopaque,
-    localized: i8,
-    result: ?*u16,
-    resultLength: i32,
+pub extern "icu" fn udat_setBooleanAttribute(
+    fmt: ?*?*anyopaque,
+    attr: UDateFormatBooleanAttribute,
+    newValue: i8,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn udat_applyPattern(
-    format: ?*?*anyopaque,
-    localized: i8,
-    pattern: ?*const u16,
-    patternLength: i32,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udat_getSymbols(
-    fmt: ?*const ?*anyopaque,
-    type: UDateFormatSymbolType,
-    symbolIndex: i32,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
+pub extern "icu" fn udat_setCalendar(
+    fmt: ?*?*anyopaque,
+    calendarToSet: ?*const ?*anyopaque,
+) callconv(.winapi) void;
 
-pub extern "icu" fn udat_countSymbols(
-    fmt: ?*const ?*anyopaque,
-    type: UDateFormatSymbolType,
-) callconv(.winapi) i32;
+pub extern "icu" fn udat_setContext(
+    fmt: ?*?*anyopaque,
+    value: UDisplayContext,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udat_setLenient(
+    fmt: ?*?*anyopaque,
+    isLenient: i8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udat_setNumberFormat(
+    fmt: ?*?*anyopaque,
+    numberFormatToSet: ?*const ?*anyopaque,
+) callconv(.winapi) void;
 
 pub extern "icu" fn udat_setSymbols(
     format: ?*?*anyopaque,
@@ -14890,30 +12946,31 @@ pub extern "icu" fn udat_setSymbols(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udat_getLocaleByType(
+pub extern "icu" fn udat_toCalendarDateField(
+    field: UDateFormatField,
+) callconv(.winapi) UCalendarDateFields;
+
+pub extern "icu" fn udat_toPattern(
     fmt: ?*const ?*anyopaque,
-    type: ULocDataLocaleType,
+    localized: i8,
+    result: ?*u16,
+    resultLength: i32,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) i32;
 
-pub extern "icu" fn udat_setContext(
-    fmt: ?*?*anyopaque,
-    value: UDisplayContext,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udat_getContext(
-    fmt: ?*const ?*anyopaque,
-    type: UDisplayContextType,
-    status: ?*UErrorCode,
-) callconv(.winapi) UDisplayContext;
-
-pub extern "icu" fn udatpg_open(
-    locale: ?[*:0]const u8,
+pub extern "icu" fn udatpg_addPattern(
+    dtpg: ?*?*anyopaque,
+    pattern: ?*const u16,
+    patternLength: i32,
+    override: i8,
+    conflictingPattern: ?*u16,
+    capacity: i32,
+    pLength: ?*i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
+) callconv(.winapi) UDateTimePatternConflict;
 
-pub extern "icu" fn udatpg_openEmpty(
+pub extern "icu" fn udatpg_clone(
+    dtpg: ?*const ?*anyopaque,
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) ?*?*anyopaque;
 
@@ -14921,10 +12978,26 @@ pub extern "icu" fn udatpg_close(
     dtpg: ?*?*anyopaque,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn udatpg_clone(
+pub extern "icu" fn udatpg_getAppendItemFormat(
     dtpg: ?*const ?*anyopaque,
+    field: UDateTimePatternField,
+    pLength: ?*i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn udatpg_getAppendItemName(
+    dtpg: ?*const ?*anyopaque,
+    field: UDateTimePatternField,
+    pLength: ?*i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn udatpg_getBaseSkeleton(
+    unusedDtpg: ?*?*anyopaque,
+    pattern: ?*const u16,
+    length: i32,
+    baseSkeleton: ?*u16,
+    capacity: i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
+) callconv(.winapi) i32;
 
 pub extern "icu" fn udatpg_getBestPattern(
     dtpg: ?*?*anyopaque,
@@ -14945,58 +13018,13 @@ pub extern "icu" fn udatpg_getBestPatternWithOptions(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn udatpg_getSkeleton(
-    unusedDtpg: ?*?*anyopaque,
-    pattern: ?*const u16,
-    length: i32,
-    skeleton: ?*u16,
-    capacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn udatpg_getBaseSkeleton(
-    unusedDtpg: ?*?*anyopaque,
-    pattern: ?*const u16,
-    length: i32,
-    baseSkeleton: ?*u16,
-    capacity: i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn udatpg_addPattern(
-    dtpg: ?*?*anyopaque,
-    pattern: ?*const u16,
-    patternLength: i32,
-    override: i8,
-    conflictingPattern: ?*u16,
-    capacity: i32,
-    pLength: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) UDateTimePatternConflict;
-
-pub extern "icu" fn udatpg_setAppendItemFormat(
-    dtpg: ?*?*anyopaque,
-    field: UDateTimePatternField,
-    value: ?*const u16,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udatpg_getAppendItemFormat(
+pub extern "icu" fn udatpg_getDateTimeFormat(
     dtpg: ?*const ?*anyopaque,
-    field: UDateTimePatternField,
     pLength: ?*i32,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn udatpg_setAppendItemName(
-    dtpg: ?*?*anyopaque,
-    field: UDateTimePatternField,
-    value: ?*const u16,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udatpg_getAppendItemName(
+pub extern "icu" fn udatpg_getDecimal(
     dtpg: ?*const ?*anyopaque,
-    field: UDateTimePatternField,
     pLength: ?*i32,
 ) callconv(.winapi) ?*u16;
 
@@ -15009,27 +13037,40 @@ pub extern "icu" fn udatpg_getFieldDisplayName(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn udatpg_setDateTimeFormat(
+pub extern "icu" fn udatpg_getPatternForSkeleton(
     dtpg: ?*const ?*anyopaque,
-    dtFormat: ?*const u16,
-    length: i32,
-) callconv(.winapi) void;
-
-pub extern "icu" fn udatpg_getDateTimeFormat(
-    dtpg: ?*const ?*anyopaque,
+    skeleton: ?*const u16,
+    skeletonLength: i32,
     pLength: ?*i32,
 ) callconv(.winapi) ?*u16;
 
-pub extern "icu" fn udatpg_setDecimal(
-    dtpg: ?*?*anyopaque,
-    decimal: ?*const u16,
+pub extern "icu" fn udatpg_getSkeleton(
+    unusedDtpg: ?*?*anyopaque,
+    pattern: ?*const u16,
     length: i32,
-) callconv(.winapi) void;
+    skeleton: ?*u16,
+    capacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
 
-pub extern "icu" fn udatpg_getDecimal(
+pub extern "icu" fn udatpg_open(
+    locale: ?[*:0]const u8,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn udatpg_openBaseSkeletons(
     dtpg: ?*const ?*anyopaque,
-    pLength: ?*i32,
-) callconv(.winapi) ?*u16;
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn udatpg_openEmpty(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn udatpg_openSkeletons(
+    dtpg: ?*const ?*anyopaque,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
 
 pub extern "icu" fn udatpg_replaceFieldTypes(
     dtpg: ?*?*anyopaque,
@@ -15054,22 +13095,1348 @@ pub extern "icu" fn udatpg_replaceFieldTypesWithOptions(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn udatpg_openSkeletons(
-    dtpg: ?*const ?*anyopaque,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
+pub extern "icu" fn udatpg_setAppendItemFormat(
+    dtpg: ?*?*anyopaque,
+    field: UDateTimePatternField,
+    value: ?*const u16,
+    length: i32,
+) callconv(.winapi) void;
 
-pub extern "icu" fn udatpg_openBaseSkeletons(
-    dtpg: ?*const ?*anyopaque,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
+pub extern "icu" fn udatpg_setAppendItemName(
+    dtpg: ?*?*anyopaque,
+    field: UDateTimePatternField,
+    value: ?*const u16,
+    length: i32,
+) callconv(.winapi) void;
 
-pub extern "icu" fn udatpg_getPatternForSkeleton(
+pub extern "icu" fn udatpg_setDateTimeFormat(
     dtpg: ?*const ?*anyopaque,
+    dtFormat: ?*const u16,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udatpg_setDecimal(
+    dtpg: ?*?*anyopaque,
+    decimal: ?*const u16,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udtitvfmt_close(
+    formatter: ?*UDateIntervalFormat,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udtitvfmt_closeResult(
+    uresult: ?*UFormattedDateInterval,
+) callconv(.winapi) void;
+
+pub extern "icu" fn udtitvfmt_format(
+    formatter: ?*const UDateIntervalFormat,
+    fromDate: f64,
+    toDate: f64,
+    result: ?*u16,
+    resultCapacity: i32,
+    position: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn udtitvfmt_open(
+    locale: ?[*:0]const u8,
     skeleton: ?*const u16,
     skeletonLength: i32,
-    pLength: ?*i32,
+    tzID: ?*const u16,
+    tzIDLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UDateIntervalFormat;
+
+pub extern "icu" fn udtitvfmt_openResult(
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UFormattedDateInterval;
+
+pub extern "icu" fn udtitvfmt_resultAsValue(
+    uresult: ?*const UFormattedDateInterval,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UFormattedValue;
+
+pub extern "icu" fn uenum_close(
+    en: ?*UEnumeration,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uenum_count(
+    en: ?*UEnumeration,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uenum_next(
+    en: ?*UEnumeration,
+    resultLength: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uenum_openCharStringsEnumeration(
+    strings: ?*const ?*i8,
+    count: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn uenum_openUCharStringsEnumeration(
+    strings: ?*const ?*u16,
+    count: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn uenum_reset(
+    en: ?*UEnumeration,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uenum_unext(
+    en: ?*UEnumeration,
+    resultLength: ?*i32,
+    status: ?*UErrorCode,
 ) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ufieldpositer_close(
+    fpositer: ?*UFieldPositionIterator,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ufieldpositer_next(
+    fpositer: ?*UFieldPositionIterator,
+    beginIndex: ?*i32,
+    endIndex: ?*i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ufieldpositer_open(
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UFieldPositionIterator;
+
+pub extern "icu" fn ufmt_close(
+    fmt: ?*?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ufmt_getArrayItemByIndex(
+    fmt: ?*?*anyopaque,
+    n: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn ufmt_getArrayLength(
+    fmt: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ufmt_getDate(
+    fmt: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn ufmt_getDecNumChars(
+    fmt: ?*?*anyopaque,
+    len: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ufmt_getDouble(
+    fmt: ?*?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn ufmt_getInt64(
+    fmt: ?*?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) i64;
+
+pub extern "icu" fn ufmt_getLong(
+    fmt: ?*?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ufmt_getObject(
+    fmt: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*anyopaque;
+
+pub extern "icu" fn ufmt_getType(
+    fmt: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) UFormattableType;
+
+pub extern "icu" fn ufmt_getUChars(
+    fmt: ?*?*anyopaque,
+    len: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ufmt_isNumeric(
+    fmt: ?*const ?*anyopaque,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ufmt_open(
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn ufmtval_getString(
+    ufmtval: ?*const UFormattedValue,
+    pLength: ?*i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ufmtval_nextPosition(
+    ufmtval: ?*const UFormattedValue,
+    ucfpos: ?*UConstrainedFieldPosition,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ugender_getInstance(
+    locale: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UGenderInfo;
+
+pub extern "icu" fn ugender_getListGender(
+    genderInfo: ?*const UGenderInfo,
+    genders: ?*const UGender,
+    size: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) UGender;
+
+pub extern "icu" fn uidna_close(
+    idna: ?*UIDNA,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uidna_labelToASCII(
+    idna: ?*const UIDNA,
+    label: ?*const u16,
+    length: i32,
+    dest: ?*u16,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_labelToASCII_UTF8(
+    idna: ?*const UIDNA,
+    label: ?[*:0]const u8,
+    length: i32,
+    dest: ?PSTR,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_labelToUnicode(
+    idna: ?*const UIDNA,
+    label: ?*const u16,
+    length: i32,
+    dest: ?*u16,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_labelToUnicodeUTF8(
+    idna: ?*const UIDNA,
+    label: ?[*:0]const u8,
+    length: i32,
+    dest: ?PSTR,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_nameToASCII(
+    idna: ?*const UIDNA,
+    name: ?*const u16,
+    length: i32,
+    dest: ?*u16,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_nameToASCII_UTF8(
+    idna: ?*const UIDNA,
+    name: ?[*:0]const u8,
+    length: i32,
+    dest: ?PSTR,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_nameToUnicode(
+    idna: ?*const UIDNA,
+    name: ?*const u16,
+    length: i32,
+    dest: ?*u16,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_nameToUnicodeUTF8(
+    idna: ?*const UIDNA,
+    name: ?[*:0]const u8,
+    length: i32,
+    dest: ?PSTR,
+    capacity: i32,
+    pInfo: ?*UIDNAInfo,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uidna_openUTS46(
+    options: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UIDNA;
+
+pub extern "icu" fn uiter_current32(
+    iter: ?*UCharIterator,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uiter_getState(
+    iter: ?*const UCharIterator,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn uiter_next32(
+    iter: ?*UCharIterator,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uiter_previous32(
+    iter: ?*UCharIterator,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uiter_setState(
+    iter: ?*UCharIterator,
+    state: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uiter_setString(
+    iter: ?*UCharIterator,
+    s: ?*const u16,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uiter_setUTF16BE(
+    iter: ?*UCharIterator,
+    s: ?[*:0]const u8,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uiter_setUTF8(
+    iter: ?*UCharIterator,
+    s: ?[*:0]const u8,
+    length: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uldn_close(
+    ldn: ?*ULocaleDisplayNames,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uldn_getContext(
+    ldn: ?*const ULocaleDisplayNames,
+    type: UDisplayContextType,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) UDisplayContext;
+
+pub extern "icu" fn uldn_getDialectHandling(
+    ldn: ?*const ULocaleDisplayNames,
+) callconv(.winapi) UDialectHandling;
+
+pub extern "icu" fn uldn_getLocale(
+    ldn: ?*const ULocaleDisplayNames,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uldn_keyDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    key: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uldn_keyValueDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    key: ?[*:0]const u8,
+    value: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uldn_languageDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    lang: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uldn_localeDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    locale: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uldn_open(
+    locale: ?[*:0]const u8,
+    dialectHandling: UDialectHandling,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*ULocaleDisplayNames;
+
+pub extern "icu" fn uldn_openForContext(
+    locale: ?[*:0]const u8,
+    contexts: ?*UDisplayContext,
+    length: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*ULocaleDisplayNames;
+
+pub extern "icu" fn uldn_regionDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    region: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uldn_scriptCodeDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    scriptCode: UScriptCode,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uldn_scriptDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    script: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uldn_variantDisplayName(
+    ldn: ?*const ULocaleDisplayNames,
+    variant: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ulistfmt_close(
+    listfmt: ?*UListFormatter,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ulistfmt_closeResult(
+    uresult: ?*UFormattedList,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ulistfmt_format(
+    listfmt: ?*const UListFormatter,
+    strings: ?*const ?*u16,
+    stringLengths: ?*const i32,
+    stringCount: i32,
+    result: ?*u16,
+    resultCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ulistfmt_formatStringsToResult(
+    listfmt: ?*const UListFormatter,
+    strings: ?*const ?*u16,
+    stringLengths: ?*const i32,
+    stringCount: i32,
+    uresult: ?*UFormattedList,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ulistfmt_open(
+    locale: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UListFormatter;
+
+pub extern "icu" fn ulistfmt_openForType(
+    locale: ?[*:0]const u8,
+    type: UListFormatterType,
+    width: UListFormatterWidth,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UListFormatter;
+
+pub extern "icu" fn ulistfmt_openResult(
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UFormattedList;
+
+pub extern "icu" fn ulistfmt_resultAsValue(
+    uresult: ?*const UFormattedList,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UFormattedValue;
+
+pub extern "icu" fn uloc_acceptLanguage(
+    result: ?PSTR,
+    resultAvailable: i32,
+    outResult: ?*UAcceptResult,
+    acceptList: ?*const ?*i8,
+    acceptListCount: i32,
+    availableLocales: ?*UEnumeration,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_acceptLanguageFromHTTP(
+    result: ?PSTR,
+    resultAvailable: i32,
+    outResult: ?*UAcceptResult,
+    httpAcceptLanguage: ?[*:0]const u8,
+    availableLocales: ?*UEnumeration,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_addLikelySubtags(
+    localeID: ?[*:0]const u8,
+    maximizedLocaleID: ?PSTR,
+    maximizedLocaleIDCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_canonicalize(
+    localeID: ?[*:0]const u8,
+    name: ?PSTR,
+    nameCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_countAvailable(
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_forLanguageTag(
+    langtag: ?[*:0]const u8,
+    localeID: ?PSTR,
+    localeIDCapacity: i32,
+    parsedLength: ?*i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getAvailable(
+    n: i32,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uloc_getBaseName(
+    localeID: ?[*:0]const u8,
+    name: ?PSTR,
+    nameCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getCharacterOrientation(
+    localeId: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ULayoutType;
+
+pub extern "icu" fn uloc_getCountry(
+    localeID: ?[*:0]const u8,
+    country: ?PSTR,
+    countryCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getDefault(
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uloc_getDisplayCountry(
+    locale: ?[*:0]const u8,
+    displayLocale: ?[*:0]const u8,
+    country: ?*u16,
+    countryCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getDisplayKeyword(
+    keyword: ?[*:0]const u8,
+    displayLocale: ?[*:0]const u8,
+    dest: ?*u16,
+    destCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getDisplayKeywordValue(
+    locale: ?[*:0]const u8,
+    keyword: ?[*:0]const u8,
+    displayLocale: ?[*:0]const u8,
+    dest: ?*u16,
+    destCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getDisplayLanguage(
+    locale: ?[*:0]const u8,
+    displayLocale: ?[*:0]const u8,
+    language: ?*u16,
+    languageCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getDisplayName(
+    localeID: ?[*:0]const u8,
+    inLocaleID: ?[*:0]const u8,
+    result: ?*u16,
+    maxResultSize: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getDisplayScript(
+    locale: ?[*:0]const u8,
+    displayLocale: ?[*:0]const u8,
+    script: ?*u16,
+    scriptCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getDisplayVariant(
+    locale: ?[*:0]const u8,
+    displayLocale: ?[*:0]const u8,
+    variant: ?*u16,
+    variantCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getISO3Country(
+    localeID: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uloc_getISO3Language(
+    localeID: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uloc_getISOCountries(
+) callconv(.winapi) ?*?*i8;
+
+pub extern "icu" fn uloc_getISOLanguages(
+) callconv(.winapi) ?*?*i8;
+
+pub extern "icu" fn uloc_getKeywordValue(
+    localeID: ?[*:0]const u8,
+    keywordName: ?[*:0]const u8,
+    buffer: ?PSTR,
+    bufferCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getLanguage(
+    localeID: ?[*:0]const u8,
+    language: ?PSTR,
+    languageCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getLCID(
+    localeID: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn uloc_getLineOrientation(
+    localeId: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ULayoutType;
+
+pub extern "icu" fn uloc_getLocaleForLCID(
+    hostID: u32,
+    locale: ?PSTR,
+    localeCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getName(
+    localeID: ?[*:0]const u8,
+    name: ?PSTR,
+    nameCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getParent(
+    localeID: ?[*:0]const u8,
+    parent: ?PSTR,
+    parentCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getScript(
+    localeID: ?[*:0]const u8,
+    script: ?PSTR,
+    scriptCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_getVariant(
+    localeID: ?[*:0]const u8,
+    variant: ?PSTR,
+    variantCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_isRightToLeft(
+    locale: ?[*:0]const u8,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uloc_minimizeSubtags(
+    localeID: ?[*:0]const u8,
+    minimizedLocaleID: ?PSTR,
+    minimizedLocaleIDCapacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_openAvailableByType(
+    type: ULocAvailableType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn uloc_openKeywords(
+    localeID: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn uloc_setDefault(
+    localeID: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uloc_setKeywordValue(
+    keywordName: ?[*:0]const u8,
+    keywordValue: ?[*:0]const u8,
+    buffer: ?PSTR,
+    bufferCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_toLanguageTag(
+    localeID: ?[*:0]const u8,
+    langtag: ?PSTR,
+    langtagCapacity: i32,
+    strict: i8,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uloc_toLegacyKey(
+    keyword: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uloc_toLegacyType(
+    keyword: ?[*:0]const u8,
+    value: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uloc_toUnicodeLocaleKey(
+    keyword: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uloc_toUnicodeLocaleType(
+    keyword: ?[*:0]const u8,
+    value: ?[*:0]const u8,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ulocdata_close(
+    uld: ?*ULocaleData,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ulocdata_getCLDRVersion(
+    versionArray: ?*u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ulocdata_getDelimiter(
+    uld: ?*ULocaleData,
+    type: ULocaleDataDelimiterType,
+    result: ?*u16,
+    resultLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ulocdata_getExemplarSet(
+    uld: ?*ULocaleData,
+    fillIn: ?*USet,
+    options: u32,
+    extype: ULocaleDataExemplarSetType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn ulocdata_getLocaleDisplayPattern(
+    uld: ?*ULocaleData,
+    pattern: ?*u16,
+    patternCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ulocdata_getLocaleSeparator(
+    uld: ?*ULocaleData,
+    separator: ?*u16,
+    separatorCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ulocdata_getMeasurementSystem(
+    localeID: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) UMeasurementSystem;
+
+pub extern "icu" fn ulocdata_getNoSubstitute(
+    uld: ?*ULocaleData,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ulocdata_getPaperSize(
+    localeID: ?[*:0]const u8,
+    height: ?*i32,
+    width: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ulocdata_open(
+    localeID: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*ULocaleData;
+
+pub extern "icu" fn ulocdata_setNoSubstitute(
+    uld: ?*ULocaleData,
+    setting: i8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umsg_applyPattern(
+    fmt: ?*?*anyopaque,
+    pattern: ?*const u16,
+    patternLength: i32,
+    parseError: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umsg_autoQuoteApostrophe(
+    pattern: ?*const u16,
+    patternLength: i32,
+    dest: ?*u16,
+    destCapacity: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn umsg_clone(
+    fmt: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*anyopaque;
+
+pub extern "icu" fn umsg_close(
+    format: ?*?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umsg_format(
+    fmt: ?*const ?*anyopaque,
+    result: ?*u16,
+    resultLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn umsg_getLocale(
+    fmt: ?*const ?*anyopaque,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn umsg_open(
+    pattern: ?*const u16,
+    patternLength: i32,
+    locale: ?[*:0]const u8,
+    parseError: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn umsg_parse(
+    fmt: ?*const ?*anyopaque,
+    source: ?*const u16,
+    sourceLength: i32,
+    count: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umsg_setLocale(
+    fmt: ?*?*anyopaque,
+    locale: ?[*:0]const u8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umsg_toPattern(
+    fmt: ?*const ?*anyopaque,
+    result: ?*u16,
+    resultLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn umsg_vformat(
+    fmt: ?*const ?*anyopaque,
+    result: ?*u16,
+    resultLength: i32,
+    ap: ?*i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn umsg_vparse(
+    fmt: ?*const ?*anyopaque,
+    source: ?*const u16,
+    sourceLength: i32,
+    count: ?*i32,
+    ap: ?*i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umutablecptrie_buildImmutable(
+    trie: ?*UMutableCPTrie,
+    type: UCPTrieType,
+    valueWidth: UCPTrieValueWidth,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UCPTrie;
+
+pub extern "icu" fn umutablecptrie_clone(
+    other: ?*const UMutableCPTrie,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UMutableCPTrie;
+
+pub extern "icu" fn umutablecptrie_close(
+    trie: ?*UMutableCPTrie,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umutablecptrie_fromUCPMap(
+    map: ?*const UCPMap,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UMutableCPTrie;
+
+pub extern "icu" fn umutablecptrie_fromUCPTrie(
+    trie: ?*const UCPTrie,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UMutableCPTrie;
+
+pub extern "icu" fn umutablecptrie_get(
+    trie: ?*const UMutableCPTrie,
+    c: i32,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn umutablecptrie_getRange(
+    trie: ?*const UMutableCPTrie,
+    start: i32,
+    option: UCPMapRangeOption,
+    surrogateValue: u32,
+    filter: ?*?UCPMapValueFilter,
+    context: ?*const anyopaque,
+    pValue: ?*u32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn umutablecptrie_open(
+    initialValue: u32,
+    errorValue: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UMutableCPTrie;
+
+pub extern "icu" fn umutablecptrie_set(
+    trie: ?*UMutableCPTrie,
+    c: i32,
+    value: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn umutablecptrie_setRange(
+    trie: ?*UMutableCPTrie,
+    start: i32,
+    end: i32,
+    value: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unorm2_append(
+    norm2: ?*const UNormalizer2,
+    first: ?*u16,
+    firstLength: i32,
+    firstCapacity: i32,
+    second: ?*const u16,
+    secondLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unorm2_close(
+    norm2: ?*UNormalizer2,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unorm2_composePair(
+    norm2: ?*const UNormalizer2,
+    a: i32,
+    b: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unorm2_getCombiningClass(
+    norm2: ?*const UNormalizer2,
+    c: i32,
+) callconv(.winapi) u8;
+
+pub extern "icu" fn unorm2_getDecomposition(
+    norm2: ?*const UNormalizer2,
+    c: i32,
+    decomposition: ?*u16,
+    capacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unorm2_getInstance(
+    packageName: ?[*:0]const u8,
+    name: ?[*:0]const u8,
+    mode: UNormalization2Mode,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UNormalizer2;
+
+pub extern "icu" fn unorm2_getNFCInstance(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UNormalizer2;
+
+pub extern "icu" fn unorm2_getNFDInstance(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UNormalizer2;
+
+pub extern "icu" fn unorm2_getNFKCCasefoldInstance(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UNormalizer2;
+
+pub extern "icu" fn unorm2_getNFKCInstance(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UNormalizer2;
+
+pub extern "icu" fn unorm2_getNFKDInstance(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UNormalizer2;
+
+pub extern "icu" fn unorm2_getRawDecomposition(
+    norm2: ?*const UNormalizer2,
+    c: i32,
+    decomposition: ?*u16,
+    capacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unorm2_hasBoundaryAfter(
+    norm2: ?*const UNormalizer2,
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn unorm2_hasBoundaryBefore(
+    norm2: ?*const UNormalizer2,
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn unorm2_isInert(
+    norm2: ?*const UNormalizer2,
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn unorm2_isNormalized(
+    norm2: ?*const UNormalizer2,
+    s: ?*const u16,
+    length: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn unorm2_normalize(
+    norm2: ?*const UNormalizer2,
+    src: ?*const u16,
+    length: i32,
+    dest: ?*u16,
+    capacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unorm2_normalizeSecondAndAppend(
+    norm2: ?*const UNormalizer2,
+    first: ?*u16,
+    firstLength: i32,
+    firstCapacity: i32,
+    second: ?*const u16,
+    secondLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unorm2_openFiltered(
+    norm2: ?*const UNormalizer2,
+    filterSet: ?*const USet,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UNormalizer2;
+
+pub extern "icu" fn unorm2_quickCheck(
+    norm2: ?*const UNormalizer2,
+    s: ?*const u16,
+    length: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) UNormalizationCheckResult;
+
+pub extern "icu" fn unorm2_spanQuickCheckYes(
+    norm2: ?*const UNormalizer2,
+    s: ?*const u16,
+    length: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unorm_compare(
+    s1: ?*const u16,
+    length1: i32,
+    s2: ?*const u16,
+    length2: i32,
+    options: u32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_applyPattern(
+    format: ?*?*anyopaque,
+    localized: i8,
+    pattern: ?*const u16,
+    patternLength: i32,
+    parseError: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unum_clone(
+    fmt: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn unum_close(
+    fmt: ?*?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unum_countAvailable(
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_format(
+    fmt: ?*const ?*anyopaque,
+    number: i32,
+    result: ?*u16,
+    resultLength: i32,
+    pos: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_formatDecimal(
+    fmt: ?*const ?*anyopaque,
+    number: ?[*:0]const u8,
+    length: i32,
+    result: ?*u16,
+    resultLength: i32,
+    pos: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_formatDouble(
+    fmt: ?*const ?*anyopaque,
+    number: f64,
+    result: ?*u16,
+    resultLength: i32,
+    pos: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_formatDoubleCurrency(
+    fmt: ?*const ?*anyopaque,
+    number: f64,
+    currency: ?*u16,
+    result: ?*u16,
+    resultLength: i32,
+    pos: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_formatDoubleForFields(
+    format: ?*const ?*anyopaque,
+    number: f64,
+    result: ?*u16,
+    resultLength: i32,
+    fpositer: ?*UFieldPositionIterator,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_formatInt64(
+    fmt: ?*const ?*anyopaque,
+    number: i64,
+    result: ?*u16,
+    resultLength: i32,
+    pos: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_formatUFormattable(
+    fmt: ?*const ?*anyopaque,
+    number: ?*const ?*anyopaque,
+    result: ?*u16,
+    resultLength: i32,
+    pos: ?*UFieldPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_getAttribute(
+    fmt: ?*const ?*anyopaque,
+    attr: UNumberFormatAttribute,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_getAvailable(
+    localeIndex: i32,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn unum_getContext(
+    fmt: ?*const ?*anyopaque,
+    type: UDisplayContextType,
+    status: ?*UErrorCode,
+) callconv(.winapi) UDisplayContext;
+
+pub extern "icu" fn unum_getDoubleAttribute(
+    fmt: ?*const ?*anyopaque,
+    attr: UNumberFormatAttribute,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn unum_getLocaleByType(
+    fmt: ?*const ?*anyopaque,
+    type: ULocDataLocaleType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn unum_getSymbol(
+    fmt: ?*const ?*anyopaque,
+    symbol: UNumberFormatSymbol,
+    buffer: ?*u16,
+    size: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_getTextAttribute(
+    fmt: ?*const ?*anyopaque,
+    tag: UNumberFormatTextAttribute,
+    result: ?*u16,
+    resultLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_open(
+    style: UNumberFormatStyle,
+    pattern: ?*const u16,
+    patternLength: i32,
+    locale: ?[*:0]const u8,
+    parseErr: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn unum_parse(
+    fmt: ?*const ?*anyopaque,
+    text: ?*const u16,
+    textLength: i32,
+    parsePos: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_parseDecimal(
+    fmt: ?*const ?*anyopaque,
+    text: ?*const u16,
+    textLength: i32,
+    parsePos: ?*i32,
+    outBuf: ?PSTR,
+    outBufLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unum_parseDouble(
+    fmt: ?*const ?*anyopaque,
+    text: ?*const u16,
+    textLength: i32,
+    parsePos: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn unum_parseDoubleCurrency(
+    fmt: ?*const ?*anyopaque,
+    text: ?*const u16,
+    textLength: i32,
+    parsePos: ?*i32,
+    currency: ?*u16,
+    status: ?*UErrorCode,
+) callconv(.winapi) f64;
+
+pub extern "icu" fn unum_parseInt64(
+    fmt: ?*const ?*anyopaque,
+    text: ?*const u16,
+    textLength: i32,
+    parsePos: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i64;
+
+pub extern "icu" fn unum_parseToUFormattable(
+    fmt: ?*const ?*anyopaque,
+    result: ?*?*anyopaque,
+    text: ?*const u16,
+    textLength: i32,
+    parsePos: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn unum_setAttribute(
+    fmt: ?*?*anyopaque,
+    attr: UNumberFormatAttribute,
+    newValue: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unum_setContext(
+    fmt: ?*?*anyopaque,
+    value: UDisplayContext,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unum_setDoubleAttribute(
+    fmt: ?*?*anyopaque,
+    attr: UNumberFormatAttribute,
+    newValue: f64,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unum_setSymbol(
+    fmt: ?*?*anyopaque,
+    symbol: UNumberFormatSymbol,
+    value: ?*const u16,
+    length: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unum_setTextAttribute(
+    fmt: ?*?*anyopaque,
+    tag: UNumberFormatTextAttribute,
+    newValue: ?*const u16,
+    newValueLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unum_toPattern(
+    fmt: ?*const ?*anyopaque,
+    isPatternLocalized: i8,
+    result: ?*u16,
+    resultLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unumf_close(
+    uformatter: ?*UNumberFormatter,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unumf_closeResult(
+    uresult: ?*UFormattedNumber,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unumf_formatDecimal(
+    uformatter: ?*const UNumberFormatter,
+    value: ?[*:0]const u8,
+    valueLen: i32,
+    uresult: ?*UFormattedNumber,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unumf_formatDouble(
+    uformatter: ?*const UNumberFormatter,
+    value: f64,
+    uresult: ?*UFormattedNumber,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unumf_formatInt(
+    uformatter: ?*const UNumberFormatter,
+    value: i64,
+    uresult: ?*UFormattedNumber,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
 
 pub extern "icu" fn unumf_openForSkeletonAndLocale(
     skeleton: ?*const u16,
@@ -15090,32 +14457,22 @@ pub extern "icu" fn unumf_openResult(
     ec: ?*UErrorCode,
 ) callconv(.winapi) ?*UFormattedNumber;
 
-pub extern "icu" fn unumf_formatInt(
-    uformatter: ?*const UNumberFormatter,
-    value: i64,
-    uresult: ?*UFormattedNumber,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn unumf_formatDouble(
-    uformatter: ?*const UNumberFormatter,
-    value: f64,
-    uresult: ?*UFormattedNumber,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn unumf_formatDecimal(
-    uformatter: ?*const UNumberFormatter,
-    value: ?[*:0]const u8,
-    valueLen: i32,
-    uresult: ?*UFormattedNumber,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
 pub extern "icu" fn unumf_resultAsValue(
     uresult: ?*const UFormattedNumber,
     ec: ?*UErrorCode,
 ) callconv(.winapi) ?*UFormattedValue;
+
+pub extern "icu" fn unumf_resultGetAllFieldPositions(
+    uresult: ?*const UFormattedNumber,
+    ufpositer: ?*UFieldPositionIterator,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn unumf_resultNextFieldPosition(
+    uresult: ?*const UFormattedNumber,
+    ufpos: ?*UFieldPosition,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i8;
 
 pub extern "icu" fn unumf_resultToString(
     uresult: ?*const UFormattedNumber,
@@ -15124,55 +14481,9 @@ pub extern "icu" fn unumf_resultToString(
     ec: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn unumf_resultNextFieldPosition(
-    uresult: ?*const UFormattedNumber,
-    ufpos: ?*UFieldPosition,
-    ec: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn unumf_resultGetAllFieldPositions(
-    uresult: ?*const UFormattedNumber,
-    ufpositer: ?*UFieldPositionIterator,
-    ec: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn unumf_close(
-    uformatter: ?*UNumberFormatter,
-) callconv(.winapi) void;
-
-pub extern "icu" fn unumf_closeResult(
-    uresult: ?*UFormattedNumber,
-) callconv(.winapi) void;
-
-pub extern "icu" fn unumsys_open(
-    locale: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UNumberingSystem;
-
-pub extern "icu" fn unumsys_openByName(
-    name: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UNumberingSystem;
-
 pub extern "icu" fn unumsys_close(
     unumsys: ?*UNumberingSystem,
 ) callconv(.winapi) void;
-
-pub extern "icu" fn unumsys_openAvailableNames(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
-
-pub extern "icu" fn unumsys_getName(
-    unumsys: ?*const UNumberingSystem,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn unumsys_isAlgorithmic(
-    unumsys: ?*const UNumberingSystem,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn unumsys_getRadix(
-    unumsys: ?*const UNumberingSystem,
-) callconv(.winapi) i32;
 
 pub extern "icu" fn unumsys_getDescription(
     unumsys: ?*const UNumberingSystem,
@@ -15180,6 +14491,41 @@ pub extern "icu" fn unumsys_getDescription(
     resultLength: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
+
+pub extern "icu" fn unumsys_getName(
+    unumsys: ?*const UNumberingSystem,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn unumsys_getRadix(
+    unumsys: ?*const UNumberingSystem,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn unumsys_isAlgorithmic(
+    unumsys: ?*const UNumberingSystem,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn unumsys_open(
+    locale: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UNumberingSystem;
+
+pub extern "icu" fn unumsys_openAvailableNames(
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn unumsys_openByName(
+    name: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UNumberingSystem;
+
+pub extern "icu" fn uplrules_close(
+    uplrules: ?*UPluralRules,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uplrules_getKeywords(
+    uplrules: ?*const UPluralRules,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
 
 pub extern "icu" fn uplrules_open(
     locale: ?[*:0]const u8,
@@ -15191,10 +14537,6 @@ pub extern "icu" fn uplrules_openForType(
     type: UPluralType,
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*UPluralRules;
-
-pub extern "icu" fn uplrules_close(
-    uplrules: ?*UPluralRules,
-) callconv(.winapi) void;
 
 pub extern "icu" fn uplrules_select(
     uplrules: ?*const UPluralRules,
@@ -15212,30 +14554,37 @@ pub extern "icu" fn uplrules_selectFormatted(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uplrules_getKeywords(
-    uplrules: ?*const UPluralRules,
+pub extern "icu" fn uregex_appendReplacement(
+    regexp: ?*URegularExpression,
+    replacementText: ?*const u16,
+    replacementLength: i32,
+    destBuf: ?*?*u16,
+    destCapacity: ?*i32,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
+) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_open(
-    pattern: ?*const u16,
-    patternLength: i32,
-    flags: u32,
-    pe: ?*UParseError,
+pub extern "icu" fn uregex_appendReplacementUText(
+    regexp: ?*URegularExpression,
+    replacementText: ?*UText,
+    dest: ?*UText,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*URegularExpression;
+) callconv(.winapi) void;
 
-pub extern "icu" fn uregex_openUText(
-    pattern: ?*UText,
-    flags: u32,
-    pe: ?*UParseError,
+pub extern "icu" fn uregex_appendTail(
+    regexp: ?*URegularExpression,
+    destBuf: ?*?*u16,
+    destCapacity: ?*i32,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*URegularExpression;
+) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_openC(
-    pattern: ?[*:0]const u8,
-    flags: u32,
-    pe: ?*UParseError,
+pub extern "icu" fn uregex_appendTailUText(
+    regexp: ?*URegularExpression,
+    dest: ?*UText,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn uregex_clone(
+    regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*URegularExpression;
 
@@ -15243,81 +14592,17 @@ pub extern "icu" fn uregex_close(
     regexp: ?*URegularExpression,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uregex_clone(
-    regexp: ?*const URegularExpression,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*URegularExpression;
-
-pub extern "icu" fn uregex_pattern(
-    regexp: ?*const URegularExpression,
-    patLength: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn uregex_patternUText(
-    regexp: ?*const URegularExpression,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UText;
-
-pub extern "icu" fn uregex_flags(
-    regexp: ?*const URegularExpression,
+pub extern "icu" fn uregex_end(
+    regexp: ?*URegularExpression,
+    groupNum: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_setText(
+pub extern "icu" fn uregex_end64(
     regexp: ?*URegularExpression,
-    text: ?*const u16,
-    textLength: i32,
+    groupNum: i32,
     status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_setUText(
-    regexp: ?*URegularExpression,
-    text: ?*UText,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_getText(
-    regexp: ?*URegularExpression,
-    textLength: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn uregex_getUText(
-    regexp: ?*URegularExpression,
-    dest: ?*UText,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UText;
-
-pub extern "icu" fn uregex_refreshUText(
-    regexp: ?*URegularExpression,
-    text: ?*UText,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_matches(
-    regexp: ?*URegularExpression,
-    startIndex: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uregex_matches64(
-    regexp: ?*URegularExpression,
-    startIndex: i64,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uregex_lookingAt(
-    regexp: ?*URegularExpression,
-    startIndex: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uregex_lookingAt64(
-    regexp: ?*URegularExpression,
-    startIndex: i64,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
+) callconv(.winapi) i64;
 
 pub extern "icu" fn uregex_find(
     regexp: ?*URegularExpression,
@@ -15336,15 +14621,57 @@ pub extern "icu" fn uregex_findNext(
     status: ?*UErrorCode,
 ) callconv(.winapi) i8;
 
-pub extern "icu" fn uregex_groupCount(
-    regexp: ?*URegularExpression,
+pub extern "icu" fn uregex_flags(
+    regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_groupNumberFromName(
+pub extern "icu" fn uregex_getFindProgressCallback(
+    regexp: ?*const URegularExpression,
+    callback: ?*?URegexFindProgressCallback,
+    context: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_getMatchCallback(
+    regexp: ?*const URegularExpression,
+    callback: ?*?URegexMatchCallback,
+    context: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_getStackLimit(
+    regexp: ?*const URegularExpression,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uregex_getText(
     regexp: ?*URegularExpression,
-    groupName: ?*const u16,
-    nameLength: i32,
+    textLength: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn uregex_getTimeLimit(
+    regexp: ?*const URegularExpression,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uregex_getUText(
+    regexp: ?*URegularExpression,
+    dest: ?*UText,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn uregex_group(
+    regexp: ?*URegularExpression,
+    groupNum: i32,
+    dest: ?*u16,
+    destCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uregex_groupCount(
+    regexp: ?*URegularExpression,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
@@ -15355,11 +14682,10 @@ pub extern "icu" fn uregex_groupNumberFromCName(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_group(
+pub extern "icu" fn uregex_groupNumberFromName(
     regexp: ?*URegularExpression,
-    groupNum: i32,
-    dest: ?*u16,
-    destCapacity: i32,
+    groupName: ?*const u16,
+    nameLength: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
@@ -15371,73 +14697,83 @@ pub extern "icu" fn uregex_groupUText(
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*UText;
 
-pub extern "icu" fn uregex_start(
-    regexp: ?*URegularExpression,
-    groupNum: i32,
+pub extern "icu" fn uregex_hasAnchoringBounds(
+    regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) i8;
 
-pub extern "icu" fn uregex_start64(
-    regexp: ?*URegularExpression,
-    groupNum: i32,
+pub extern "icu" fn uregex_hasTransparentBounds(
+    regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
-) callconv(.winapi) i64;
+) callconv(.winapi) i8;
 
-pub extern "icu" fn uregex_end(
-    regexp: ?*URegularExpression,
-    groupNum: i32,
+pub extern "icu" fn uregex_hitEnd(
+    regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) i8;
 
-pub extern "icu" fn uregex_end64(
+pub extern "icu" fn uregex_lookingAt(
     regexp: ?*URegularExpression,
-    groupNum: i32,
+    startIndex: i32,
     status: ?*UErrorCode,
-) callconv(.winapi) i64;
+) callconv(.winapi) i8;
 
-pub extern "icu" fn uregex_reset(
+pub extern "icu" fn uregex_lookingAt64(
     regexp: ?*URegularExpression,
-    index: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_reset64(
-    regexp: ?*URegularExpression,
-    index: i64,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_setRegion(
-    regexp: ?*URegularExpression,
-    regionStart: i32,
-    regionLimit: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_setRegion64(
-    regexp: ?*URegularExpression,
-    regionStart: i64,
-    regionLimit: i64,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_setRegionAndStart(
-    regexp: ?*URegularExpression,
-    regionStart: i64,
-    regionLimit: i64,
     startIndex: i64,
     status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uregex_matches(
+    regexp: ?*URegularExpression,
+    startIndex: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uregex_matches64(
+    regexp: ?*URegularExpression,
+    startIndex: i64,
+    status: ?*UErrorCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uregex_open(
+    pattern: ?*const u16,
+    patternLength: i32,
+    flags: u32,
+    pe: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*URegularExpression;
+
+pub extern "icu" fn uregex_openC(
+    pattern: ?[*:0]const u8,
+    flags: u32,
+    pe: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*URegularExpression;
+
+pub extern "icu" fn uregex_openUText(
+    pattern: ?*UText,
+    flags: u32,
+    pe: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*URegularExpression;
+
+pub extern "icu" fn uregex_pattern(
+    regexp: ?*const URegularExpression,
+    patLength: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn uregex_patternUText(
+    regexp: ?*const URegularExpression,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn uregex_refreshUText(
+    regexp: ?*URegularExpression,
+    text: ?*UText,
+    status: ?*UErrorCode,
 ) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_regionStart(
-    regexp: ?*const URegularExpression,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uregex_regionStart64(
-    regexp: ?*const URegularExpression,
-    status: ?*UErrorCode,
-) callconv(.winapi) i64;
 
 pub extern "icu" fn uregex_regionEnd(
     regexp: ?*const URegularExpression,
@@ -15449,37 +14785,15 @@ pub extern "icu" fn uregex_regionEnd64(
     status: ?*UErrorCode,
 ) callconv(.winapi) i64;
 
-pub extern "icu" fn uregex_hasTransparentBounds(
+pub extern "icu" fn uregex_regionStart(
     regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
-) callconv(.winapi) i8;
+) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_useTransparentBounds(
-    regexp: ?*URegularExpression,
-    b: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_hasAnchoringBounds(
+pub extern "icu" fn uregex_regionStart64(
     regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uregex_useAnchoringBounds(
-    regexp: ?*URegularExpression,
-    b: i8,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_hitEnd(
-    regexp: ?*const URegularExpression,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
-
-pub extern "icu" fn uregex_requireEnd(
-    regexp: ?*const URegularExpression,
-    status: ?*UErrorCode,
-) callconv(.winapi) i8;
+) callconv(.winapi) i64;
 
 pub extern "icu" fn uregex_replaceAll(
     regexp: ?*URegularExpression,
@@ -15513,34 +14827,83 @@ pub extern "icu" fn uregex_replaceFirstUText(
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*UText;
 
-pub extern "icu" fn uregex_appendReplacement(
-    regexp: ?*URegularExpression,
-    replacementText: ?*const u16,
-    replacementLength: i32,
-    destBuf: ?*?*u16,
-    destCapacity: ?*i32,
+pub extern "icu" fn uregex_requireEnd(
+    regexp: ?*const URegularExpression,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) i8;
 
-pub extern "icu" fn uregex_appendReplacementUText(
+pub extern "icu" fn uregex_reset(
     regexp: ?*URegularExpression,
-    replacementText: ?*UText,
-    dest: ?*UText,
+    index: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uregex_appendTail(
+pub extern "icu" fn uregex_reset64(
     regexp: ?*URegularExpression,
-    destBuf: ?*?*u16,
-    destCapacity: ?*i32,
+    index: i64,
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) void;
 
-pub extern "icu" fn uregex_appendTailUText(
+pub extern "icu" fn uregex_setFindProgressCallback(
     regexp: ?*URegularExpression,
-    dest: ?*UText,
+    callback: ?URegexFindProgressCallback,
+    context: ?*const anyopaque,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*UText;
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setMatchCallback(
+    regexp: ?*URegularExpression,
+    callback: ?URegexMatchCallback,
+    context: ?*const anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setRegion(
+    regexp: ?*URegularExpression,
+    regionStart: i32,
+    regionLimit: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setRegion64(
+    regexp: ?*URegularExpression,
+    regionStart: i64,
+    regionLimit: i64,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setRegionAndStart(
+    regexp: ?*URegularExpression,
+    regionStart: i64,
+    regionLimit: i64,
+    startIndex: i64,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setStackLimit(
+    regexp: ?*URegularExpression,
+    limit: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setText(
+    regexp: ?*URegularExpression,
+    text: ?*const u16,
+    textLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setTimeLimit(
+    regexp: ?*URegularExpression,
+    limit: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uregex_setUText(
+    regexp: ?*URegularExpression,
+    text: ?*UText,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
 
 pub extern "icu" fn uregex_split(
     regexp: ?*URegularExpression,
@@ -15559,84 +14922,44 @@ pub extern "icu" fn uregex_splitUText(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_setTimeLimit(
+pub extern "icu" fn uregex_start(
     regexp: ?*URegularExpression,
-    limit: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_getTimeLimit(
-    regexp: ?*const URegularExpression,
+    groupNum: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uregex_setStackLimit(
+pub extern "icu" fn uregex_start64(
     regexp: ?*URegularExpression,
-    limit: i32,
+    groupNum: i32,
     status: ?*UErrorCode,
-) callconv(.winapi) void;
+) callconv(.winapi) i64;
 
-pub extern "icu" fn uregex_getStackLimit(
-    regexp: ?*const URegularExpression,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uregex_setMatchCallback(
+pub extern "icu" fn uregex_useAnchoringBounds(
     regexp: ?*URegularExpression,
-    callback: ?URegexMatchCallback,
-    context: ?*const anyopaque,
+    b: i8,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uregex_getMatchCallback(
-    regexp: ?*const URegularExpression,
-    callback: ?*?URegexMatchCallback,
-    context: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_setFindProgressCallback(
+pub extern "icu" fn uregex_useTransparentBounds(
     regexp: ?*URegularExpression,
-    callback: ?URegexFindProgressCallback,
-    context: ?*const anyopaque,
+    b: i8,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
-
-pub extern "icu" fn uregex_getFindProgressCallback(
-    regexp: ?*const URegularExpression,
-    callback: ?*?URegexFindProgressCallback,
-    context: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uregion_getRegionFromCode(
-    regionCode: ?[*:0]const u8,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*URegion;
-
-pub extern "icu" fn uregion_getRegionFromNumericCode(
-    code: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*URegion;
-
-pub extern "icu" fn uregion_getAvailable(
-    type: URegionType,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
 
 pub extern "icu" fn uregion_areEqual(
     uregion: ?*const URegion,
     otherRegion: ?*const URegion,
 ) callconv(.winapi) i8;
 
-pub extern "icu" fn uregion_getContainingRegion(
+pub extern "icu" fn uregion_contains(
     uregion: ?*const URegion,
-) callconv(.winapi) ?*URegion;
+    otherRegion: ?*const URegion,
+) callconv(.winapi) i8;
 
-pub extern "icu" fn uregion_getContainingRegionOfType(
-    uregion: ?*const URegion,
+pub extern "icu" fn uregion_getAvailable(
     type: URegionType,
-) callconv(.winapi) ?*URegion;
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
 
 pub extern "icu" fn uregion_getContainedRegions(
     uregion: ?*const URegion,
@@ -15649,10 +14972,18 @@ pub extern "icu" fn uregion_getContainedRegionsOfType(
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*UEnumeration;
 
-pub extern "icu" fn uregion_contains(
+pub extern "icu" fn uregion_getContainingRegion(
     uregion: ?*const URegion,
-    otherRegion: ?*const URegion,
-) callconv(.winapi) i8;
+) callconv(.winapi) ?*URegion;
+
+pub extern "icu" fn uregion_getContainingRegionOfType(
+    uregion: ?*const URegion,
+    type: URegionType,
+) callconv(.winapi) ?*URegion;
+
+pub extern "icu" fn uregion_getNumericCode(
+    uregion: ?*const URegion,
+) callconv(.winapi) i32;
 
 pub extern "icu" fn uregion_getPreferredValues(
     uregion: ?*const URegion,
@@ -15663,38 +14994,47 @@ pub extern "icu" fn uregion_getRegionCode(
     uregion: ?*const URegion,
 ) callconv(.winapi) ?PSTR;
 
-pub extern "icu" fn uregion_getNumericCode(
-    uregion: ?*const URegion,
-) callconv(.winapi) i32;
+pub extern "icu" fn uregion_getRegionFromCode(
+    regionCode: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*URegion;
+
+pub extern "icu" fn uregion_getRegionFromNumericCode(
+    code: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*URegion;
 
 pub extern "icu" fn uregion_getType(
     uregion: ?*const URegion,
 ) callconv(.winapi) URegionType;
 
-pub extern "icu" fn ureldatefmt_open(
-    locale: ?[*:0]const u8,
-    nfToAdopt: ?*?*anyopaque,
-    width: UDateRelativeDateTimeFormatterStyle,
-    capitalizationContext: UDisplayContext,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*URelativeDateTimeFormatter;
-
 pub extern "icu" fn ureldatefmt_close(
     reldatefmt: ?*URelativeDateTimeFormatter,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ureldatefmt_openResult(
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UFormattedRelativeDateTime;
-
-pub extern "icu" fn ureldatefmt_resultAsValue(
-    ufrdt: ?*const UFormattedRelativeDateTime,
-    ec: ?*UErrorCode,
-) callconv(.winapi) ?*UFormattedValue;
-
 pub extern "icu" fn ureldatefmt_closeResult(
     ufrdt: ?*UFormattedRelativeDateTime,
 ) callconv(.winapi) void;
+
+pub extern "icu" fn ureldatefmt_combineDateAndTime(
+    reldatefmt: ?*const URelativeDateTimeFormatter,
+    relativeDateString: ?*const u16,
+    relativeDateStringLen: i32,
+    timeString: ?*const u16,
+    timeStringLen: i32,
+    result: ?*u16,
+    resultCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ureldatefmt_format(
+    reldatefmt: ?*const URelativeDateTimeFormatter,
+    offset: f64,
+    unit: URelativeDateTimeUnit,
+    result: ?*u16,
+    resultCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
 
 pub extern "icu" fn ureldatefmt_formatNumeric(
     reldatefmt: ?*const URelativeDateTimeFormatter,
@@ -15713,15 +15053,6 @@ pub extern "icu" fn ureldatefmt_formatNumericToResult(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ureldatefmt_format(
-    reldatefmt: ?*const URelativeDateTimeFormatter,
-    offset: f64,
-    unit: URelativeDateTimeUnit,
-    result: ?*u16,
-    resultCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
 pub extern "icu" fn ureldatefmt_formatToResult(
     reldatefmt: ?*const URelativeDateTimeFormatter,
     offset: f64,
@@ -15730,14 +15061,295 @@ pub extern "icu" fn ureldatefmt_formatToResult(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn ureldatefmt_combineDateAndTime(
-    reldatefmt: ?*const URelativeDateTimeFormatter,
-    relativeDateString: ?*const u16,
-    relativeDateStringLen: i32,
-    timeString: ?*const u16,
-    timeStringLen: i32,
+pub extern "icu" fn ureldatefmt_open(
+    locale: ?[*:0]const u8,
+    nfToAdopt: ?*?*anyopaque,
+    width: UDateRelativeDateTimeFormatterStyle,
+    capitalizationContext: UDisplayContext,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*URelativeDateTimeFormatter;
+
+pub extern "icu" fn ureldatefmt_openResult(
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UFormattedRelativeDateTime;
+
+pub extern "icu" fn ureldatefmt_resultAsValue(
+    ufrdt: ?*const UFormattedRelativeDateTime,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*UFormattedValue;
+
+pub extern "icu" fn ures_close(
+    resourceBundle: ?*UResourceBundle,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ures_getBinary(
+    resourceBundle: ?*const UResourceBundle,
+    len: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u8;
+
+pub extern "icu" fn ures_getByIndex(
+    resourceBundle: ?*const UResourceBundle,
+    indexR: i32,
+    fillIn: ?*UResourceBundle,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UResourceBundle;
+
+pub extern "icu" fn ures_getByKey(
+    resourceBundle: ?*const UResourceBundle,
+    key: ?[*:0]const u8,
+    fillIn: ?*UResourceBundle,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UResourceBundle;
+
+pub extern "icu" fn ures_getInt(
+    resourceBundle: ?*const UResourceBundle,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ures_getIntVector(
+    resourceBundle: ?*const UResourceBundle,
+    len: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*i32;
+
+pub extern "icu" fn ures_getKey(
+    resourceBundle: ?*const UResourceBundle,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ures_getLocaleByType(
+    resourceBundle: ?*const UResourceBundle,
+    type: ULocDataLocaleType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ures_getNextResource(
+    resourceBundle: ?*UResourceBundle,
+    fillIn: ?*UResourceBundle,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UResourceBundle;
+
+pub extern "icu" fn ures_getNextString(
+    resourceBundle: ?*UResourceBundle,
+    len: ?*i32,
+    key: ?*const ?*i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ures_getSize(
+    resourceBundle: ?*const UResourceBundle,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn ures_getString(
+    resourceBundle: ?*const UResourceBundle,
+    len: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ures_getStringByIndex(
+    resourceBundle: ?*const UResourceBundle,
+    indexS: i32,
+    len: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ures_getStringByKey(
+    resB: ?*const UResourceBundle,
+    key: ?[*:0]const u8,
+    len: ?*i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn ures_getType(
+    resourceBundle: ?*const UResourceBundle,
+) callconv(.winapi) UResType;
+
+pub extern "icu" fn ures_getUInt(
+    resourceBundle: ?*const UResourceBundle,
+    status: ?*UErrorCode,
+) callconv(.winapi) u32;
+
+pub extern "icu" fn ures_getUTF8String(
+    resB: ?*const UResourceBundle,
+    dest: ?PSTR,
+    length: ?*i32,
+    forceCopy: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ures_getUTF8StringByIndex(
+    resB: ?*const UResourceBundle,
+    stringIndex: i32,
+    dest: ?PSTR,
+    pLength: ?*i32,
+    forceCopy: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ures_getUTF8StringByKey(
+    resB: ?*const UResourceBundle,
+    key: ?[*:0]const u8,
+    dest: ?PSTR,
+    pLength: ?*i32,
+    forceCopy: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn ures_getVersion(
+    resB: ?*const UResourceBundle,
+    versionInfo: ?*u8,
+) callconv(.winapi) void;
+
+pub extern "icu" fn ures_hasNext(
+    resourceBundle: ?*const UResourceBundle,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn ures_open(
+    packageName: ?[*:0]const u8,
+    locale: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UResourceBundle;
+
+pub extern "icu" fn ures_openAvailableLocales(
+    packageName: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn ures_openDirect(
+    packageName: ?[*:0]const u8,
+    locale: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UResourceBundle;
+
+pub extern "icu" fn ures_openU(
+    packageName: ?*const u16,
+    locale: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UResourceBundle;
+
+pub extern "icu" fn ures_resetIterator(
+    resourceBundle: ?*UResourceBundle,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uscript_breaksBetweenLetters(
+    script: UScriptCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uscript_getCode(
+    nameOrAbbrOrLocale: ?[*:0]const u8,
+    fillIn: ?*UScriptCode,
+    capacity: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uscript_getName(
+    scriptCode: UScriptCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uscript_getSampleString(
+    script: UScriptCode,
+    dest: ?*u16,
+    capacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uscript_getScript(
+    codepoint: i32,
+    err: ?*UErrorCode,
+) callconv(.winapi) UScriptCode;
+
+pub extern "icu" fn uscript_getScriptExtensions(
+    c: i32,
+    scripts: ?*UScriptCode,
+    capacity: i32,
+    errorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uscript_getShortName(
+    scriptCode: UScriptCode,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn uscript_getUsage(
+    script: UScriptCode,
+) callconv(.winapi) UScriptUsage;
+
+pub extern "icu" fn uscript_hasScript(
+    c: i32,
+    sc: UScriptCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uscript_isCased(
+    script: UScriptCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uscript_isRightToLeft(
+    script: UScriptCode,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn usearch_close(
+    searchiter: ?*UStringSearch,
+) callconv(.winapi) void;
+
+pub extern "icu" fn usearch_first(
+    strsrch: ?*UStringSearch,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn usearch_following(
+    strsrch: ?*UStringSearch,
+    position: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn usearch_getAttribute(
+    strsrch: ?*const UStringSearch,
+    attribute: USearchAttribute,
+) callconv(.winapi) USearchAttributeValue;
+
+pub extern "icu" fn usearch_getBreakIterator(
+    strsrch: ?*const UStringSearch,
+) callconv(.winapi) ?*UBreakIterator;
+
+pub extern "icu" fn usearch_getCollator(
+    strsrch: ?*const UStringSearch,
+) callconv(.winapi) ?*UCollator;
+
+pub extern "icu" fn usearch_getMatchedLength(
+    strsrch: ?*const UStringSearch,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn usearch_getMatchedStart(
+    strsrch: ?*const UStringSearch,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn usearch_getMatchedText(
+    strsrch: ?*const UStringSearch,
     result: ?*u16,
     resultCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn usearch_getOffset(
+    strsrch: ?*const UStringSearch,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn usearch_getPattern(
+    strsrch: ?*const UStringSearch,
+    length: ?*i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn usearch_getText(
+    strsrch: ?*const UStringSearch,
+    length: ?*i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn usearch_last(
+    strsrch: ?*UStringSearch,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn usearch_next(
+    strsrch: ?*UStringSearch,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
@@ -15761,115 +15373,9 @@ pub extern "icu" fn usearch_openFromCollator(
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*UStringSearch;
 
-pub extern "icu" fn usearch_close(
-    searchiter: ?*UStringSearch,
-) callconv(.winapi) void;
-
-pub extern "icu" fn usearch_setOffset(
-    strsrch: ?*UStringSearch,
-    position: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn usearch_getOffset(
-    strsrch: ?*const UStringSearch,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usearch_setAttribute(
-    strsrch: ?*UStringSearch,
-    attribute: USearchAttribute,
-    value: USearchAttributeValue,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn usearch_getAttribute(
-    strsrch: ?*const UStringSearch,
-    attribute: USearchAttribute,
-) callconv(.winapi) USearchAttributeValue;
-
-pub extern "icu" fn usearch_getMatchedStart(
-    strsrch: ?*const UStringSearch,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usearch_getMatchedLength(
-    strsrch: ?*const UStringSearch,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usearch_getMatchedText(
-    strsrch: ?*const UStringSearch,
-    result: ?*u16,
-    resultCapacity: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usearch_setBreakIterator(
-    strsrch: ?*UStringSearch,
-    breakiter: ?*UBreakIterator,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn usearch_getBreakIterator(
-    strsrch: ?*const UStringSearch,
-) callconv(.winapi) ?*UBreakIterator;
-
-pub extern "icu" fn usearch_setText(
-    strsrch: ?*UStringSearch,
-    text: ?*const u16,
-    textlength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn usearch_getText(
-    strsrch: ?*const UStringSearch,
-    length: ?*i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn usearch_getCollator(
-    strsrch: ?*const UStringSearch,
-) callconv(.winapi) ?*UCollator;
-
-pub extern "icu" fn usearch_setCollator(
-    strsrch: ?*UStringSearch,
-    collator: ?*const UCollator,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn usearch_setPattern(
-    strsrch: ?*UStringSearch,
-    pattern: ?*const u16,
-    patternlength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn usearch_getPattern(
-    strsrch: ?*const UStringSearch,
-    length: ?*i32,
-) callconv(.winapi) ?*u16;
-
-pub extern "icu" fn usearch_first(
-    strsrch: ?*UStringSearch,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usearch_following(
-    strsrch: ?*UStringSearch,
-    position: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usearch_last(
-    strsrch: ?*UStringSearch,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
 pub extern "icu" fn usearch_preceding(
     strsrch: ?*UStringSearch,
     position: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn usearch_next(
-    strsrch: ?*UStringSearch,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
@@ -15882,89 +15388,375 @@ pub extern "icu" fn usearch_reset(
     strsrch: ?*UStringSearch,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uspoof_open(
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*USpoofChecker;
-
-pub extern "icu" fn uspoof_openFromSerialized(
-    data: ?*const anyopaque,
-    length: i32,
-    pActualLength: ?*i32,
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*USpoofChecker;
-
-pub extern "icu" fn uspoof_openFromSource(
-    confusables: ?[*:0]const u8,
-    confusablesLen: i32,
-    confusablesWholeScript: ?[*:0]const u8,
-    confusablesWholeScriptLen: i32,
-    errType: ?*i32,
-    pe: ?*UParseError,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*USpoofChecker;
-
-pub extern "icu" fn uspoof_close(
-    sc: ?*USpoofChecker,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uspoof_clone(
-    sc: ?*const USpoofChecker,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*USpoofChecker;
-
-pub extern "icu" fn uspoof_setChecks(
-    sc: ?*USpoofChecker,
-    checks: i32,
+pub extern "icu" fn usearch_setAttribute(
+    strsrch: ?*UStringSearch,
+    attribute: USearchAttribute,
+    value: USearchAttributeValue,
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uspoof_getChecks(
-    sc: ?*const USpoofChecker,
+pub extern "icu" fn usearch_setBreakIterator(
+    strsrch: ?*UStringSearch,
+    breakiter: ?*UBreakIterator,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn usearch_setCollator(
+    strsrch: ?*UStringSearch,
+    collator: ?*const UCollator,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn usearch_setOffset(
+    strsrch: ?*UStringSearch,
+    position: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn usearch_setPattern(
+    strsrch: ?*UStringSearch,
+    pattern: ?*const u16,
+    patternlength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn usearch_setText(
+    strsrch: ?*UStringSearch,
+    text: ?*const u16,
+    textlength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_add(
+    set: ?*USet,
+    c: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_addAll(
+    set: ?*USet,
+    additionalSet: ?*const USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_addAllCodePoints(
+    set: ?*USet,
+    str: ?*const u16,
+    strLen: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_addRange(
+    set: ?*USet,
+    start: i32,
+    end: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_addString(
+    set: ?*USet,
+    str: ?*const u16,
+    strLen: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_applyIntPropertyValue(
+    set: ?*USet,
+    prop: UProperty,
+    value: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_applyPattern(
+    set: ?*USet,
+    pattern: ?*const u16,
+    patternLength: i32,
+    options: u32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uspoof_setRestrictionLevel(
-    sc: ?*USpoofChecker,
-    restrictionLevel: URestrictionLevel,
+pub extern "icu" fn uset_applyPropertyAlias(
+    set: ?*USet,
+    prop: ?*const u16,
+    propLength: i32,
+    value: ?*const u16,
+    valueLength: i32,
+    ec: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uspoof_getRestrictionLevel(
-    sc: ?*const USpoofChecker,
-) callconv(.winapi) URestrictionLevel;
+pub extern "icu" fn uset_charAt(
+    set: ?*const USet,
+    charIndex: i32,
+) callconv(.winapi) i32;
 
-pub extern "icu" fn uspoof_setAllowedLocales(
-    sc: ?*USpoofChecker,
-    localesList: ?[*:0]const u8,
-    status: ?*UErrorCode,
+pub extern "icu" fn uset_clear(
+    set: ?*USet,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn uspoof_getAllowedLocales(
-    sc: ?*USpoofChecker,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
-
-pub extern "icu" fn uspoof_setAllowedChars(
-    sc: ?*USpoofChecker,
-    chars: ?*const USet,
-    status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn uspoof_getAllowedChars(
-    sc: ?*const USpoofChecker,
-    status: ?*UErrorCode,
+pub extern "icu" fn uset_clone(
+    set: ?*const USet,
 ) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uset_cloneAsThawed(
+    set: ?*const USet,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uset_close(
+    set: ?*USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_closeOver(
+    set: ?*USet,
+    attributes: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_compact(
+    set: ?*USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_complement(
+    set: ?*USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_complementAll(
+    set: ?*USet,
+    complement: ?*const USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_contains(
+    set: ?*const USet,
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_containsAll(
+    set1: ?*const USet,
+    set2: ?*const USet,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_containsAllCodePoints(
+    set: ?*const USet,
+    str: ?*const u16,
+    strLen: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_containsNone(
+    set1: ?*const USet,
+    set2: ?*const USet,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_containsRange(
+    set: ?*const USet,
+    start: i32,
+    end: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_containsSome(
+    set1: ?*const USet,
+    set2: ?*const USet,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_containsString(
+    set: ?*const USet,
+    str: ?*const u16,
+    strLen: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_equals(
+    set1: ?*const USet,
+    set2: ?*const USet,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_freeze(
+    set: ?*USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_getItem(
+    set: ?*const USet,
+    itemIndex: i32,
+    start: ?*i32,
+    end: ?*i32,
+    str: ?*u16,
+    strCapacity: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_getItemCount(
+    set: ?*const USet,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_getSerializedRange(
+    set: ?*const USerializedSet,
+    rangeIndex: i32,
+    pStart: ?*i32,
+    pEnd: ?*i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_getSerializedRangeCount(
+    set: ?*const USerializedSet,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_getSerializedSet(
+    fillSet: ?*USerializedSet,
+    src: ?*const u16,
+    srcLength: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_indexOf(
+    set: ?*const USet,
+    c: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_isEmpty(
+    set: ?*const USet,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_isFrozen(
+    set: ?*const USet,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_open(
+    start: i32,
+    end: i32,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uset_openEmpty(
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uset_openPattern(
+    pattern: ?*const u16,
+    patternLength: i32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uset_openPatternOptions(
+    pattern: ?*const u16,
+    patternLength: i32,
+    options: u32,
+    ec: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uset_remove(
+    set: ?*USet,
+    c: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_removeAll(
+    set: ?*USet,
+    removeSet: ?*const USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_removeAllStrings(
+    set: ?*USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_removeRange(
+    set: ?*USet,
+    start: i32,
+    end: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_removeString(
+    set: ?*USet,
+    str: ?*const u16,
+    strLen: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_resemblesPattern(
+    pattern: ?*const u16,
+    patternLength: i32,
+    pos: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_retain(
+    set: ?*USet,
+    start: i32,
+    end: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_retainAll(
+    set: ?*USet,
+    retain: ?*const USet,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_serialize(
+    set: ?*const USet,
+    dest: ?*u16,
+    destCapacity: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_serializedContains(
+    set: ?*const USerializedSet,
+    c: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn uset_set(
+    set: ?*USet,
+    start: i32,
+    end: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_setSerializedToOne(
+    fillSet: ?*USerializedSet,
+    c: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uset_size(
+    set: ?*const USet,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_span(
+    set: ?*const USet,
+    s: ?*const u16,
+    length: i32,
+    spanCondition: USetSpanCondition,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_spanBack(
+    set: ?*const USet,
+    s: ?*const u16,
+    length: i32,
+    spanCondition: USetSpanCondition,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_spanBackUTF8(
+    set: ?*const USet,
+    s: ?[*:0]const u8,
+    length: i32,
+    spanCondition: USetSpanCondition,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_spanUTF8(
+    set: ?*const USet,
+    s: ?[*:0]const u8,
+    length: i32,
+    spanCondition: USetSpanCondition,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uset_toPattern(
+    set: ?*const USet,
+    result: ?*u16,
+    resultCapacity: i32,
+    escapeUnprintable: i8,
+    ec: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uspoof_areConfusable(
+    sc: ?*const USpoofChecker,
+    id1: ?*const u16,
+    length1: i32,
+    id2: ?*const u16,
+    length2: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uspoof_areConfusableUTF8(
+    sc: ?*const USpoofChecker,
+    id1: ?[*:0]const u8,
+    length1: i32,
+    id2: ?[*:0]const u8,
+    length2: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
 
 pub extern "icu" fn uspoof_check(
     sc: ?*const USpoofChecker,
     id: ?*const u16,
-    length: i32,
-    position: ?*i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn uspoof_checkUTF8(
-    sc: ?*const USpoofChecker,
-    id: ?[*:0]const u8,
     length: i32,
     position: ?*i32,
     status: ?*UErrorCode,
@@ -15986,46 +15778,68 @@ pub extern "icu" fn uspoof_check2UTF8(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uspoof_openCheckResult(
+pub extern "icu" fn uspoof_checkUTF8(
+    sc: ?*const USpoofChecker,
+    id: ?[*:0]const u8,
+    length: i32,
+    position: ?*i32,
     status: ?*UErrorCode,
-) callconv(.winapi) ?*USpoofCheckResult;
+) callconv(.winapi) i32;
+
+pub extern "icu" fn uspoof_clone(
+    sc: ?*const USpoofChecker,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*USpoofChecker;
+
+pub extern "icu" fn uspoof_close(
+    sc: ?*USpoofChecker,
+) callconv(.winapi) void;
 
 pub extern "icu" fn uspoof_closeCheckResult(
     checkResult: ?*USpoofCheckResult,
 ) callconv(.winapi) void;
+
+pub extern "icu" fn uspoof_getAllowedChars(
+    sc: ?*const USpoofChecker,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uspoof_getAllowedLocales(
+    sc: ?*USpoofChecker,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?PSTR;
 
 pub extern "icu" fn uspoof_getCheckResultChecks(
     checkResult: ?*const USpoofCheckResult,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uspoof_getCheckResultRestrictionLevel(
-    checkResult: ?*const USpoofCheckResult,
-    status: ?*UErrorCode,
-) callconv(.winapi) URestrictionLevel;
-
 pub extern "icu" fn uspoof_getCheckResultNumerics(
     checkResult: ?*const USpoofCheckResult,
     status: ?*UErrorCode,
 ) callconv(.winapi) ?*USet;
 
-pub extern "icu" fn uspoof_areConfusable(
+pub extern "icu" fn uspoof_getCheckResultRestrictionLevel(
+    checkResult: ?*const USpoofCheckResult,
+    status: ?*UErrorCode,
+) callconv(.winapi) URestrictionLevel;
+
+pub extern "icu" fn uspoof_getChecks(
     sc: ?*const USpoofChecker,
-    id1: ?*const u16,
-    length1: i32,
-    id2: ?*const u16,
-    length2: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uspoof_areConfusableUTF8(
-    sc: ?*const USpoofChecker,
-    id1: ?[*:0]const u8,
-    length1: i32,
-    id2: ?[*:0]const u8,
-    length2: i32,
+pub extern "icu" fn uspoof_getInclusionSet(
     status: ?*UErrorCode,
-) callconv(.winapi) i32;
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uspoof_getRecommendedSet(
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn uspoof_getRestrictionLevel(
+    sc: ?*const USpoofChecker,
+) callconv(.winapi) URestrictionLevel;
 
 pub extern "icu" fn uspoof_getSkeleton(
     sc: ?*const USpoofChecker,
@@ -16047,13 +15861,30 @@ pub extern "icu" fn uspoof_getSkeletonUTF8(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn uspoof_getInclusionSet(
+pub extern "icu" fn uspoof_open(
     status: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
+) callconv(.winapi) ?*USpoofChecker;
 
-pub extern "icu" fn uspoof_getRecommendedSet(
+pub extern "icu" fn uspoof_openCheckResult(
     status: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
+) callconv(.winapi) ?*USpoofCheckResult;
+
+pub extern "icu" fn uspoof_openFromSerialized(
+    data: ?*const anyopaque,
+    length: i32,
+    pActualLength: ?*i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*USpoofChecker;
+
+pub extern "icu" fn uspoof_openFromSource(
+    confusables: ?[*:0]const u8,
+    confusablesLen: i32,
+    confusablesWholeScript: ?[*:0]const u8,
+    confusablesWholeScriptLen: i32,
+    errType: ?*i32,
+    pe: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*USpoofChecker;
 
 pub extern "icu" fn uspoof_serialize(
     sc: ?*USpoofChecker,
@@ -16062,15 +15893,223 @@ pub extern "icu" fn uspoof_serialize(
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
-pub extern "icu" fn utmscale_getTimeScaleValue(
-    timeScale: UDateTimeScale,
-    value: UTimeScaleValue,
+pub extern "icu" fn uspoof_setAllowedChars(
+    sc: ?*USpoofChecker,
+    chars: ?*const USet,
     status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uspoof_setAllowedLocales(
+    sc: ?*USpoofChecker,
+    localesList: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uspoof_setChecks(
+    sc: ?*USpoofChecker,
+    checks: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn uspoof_setRestrictionLevel(
+    sc: ?*USpoofChecker,
+    restrictionLevel: URestrictionLevel,
+) callconv(.winapi) void;
+
+pub extern "icu" fn usprep_close(
+    profile: ?*UStringPrepProfile,
+) callconv(.winapi) void;
+
+pub extern "icu" fn usprep_open(
+    path: ?[*:0]const u8,
+    fileName: ?[*:0]const u8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UStringPrepProfile;
+
+pub extern "icu" fn usprep_openByType(
+    type: UStringPrepProfileType,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UStringPrepProfile;
+
+pub extern "icu" fn usprep_prepare(
+    prep: ?*const UStringPrepProfile,
+    src: ?*const u16,
+    srcLength: i32,
+    dest: ?*u16,
+    destCapacity: i32,
+    options: i32,
+    parseError: ?*UParseError,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_char32At(
+    ut: ?*UText,
+    nativeIndex: i64,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_clone(
+    dest: ?*UText,
+    src: ?*const UText,
+    deep: i8,
+    readOnly: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn utext_close(
+    ut: ?*UText,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn utext_copy(
+    ut: ?*UText,
+    nativeStart: i64,
+    nativeLimit: i64,
+    destIndex: i64,
+    move: i8,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
+pub extern "icu" fn utext_current32(
+    ut: ?*UText,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_equals(
+    a: ?*const UText,
+    b: ?*const UText,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn utext_extract(
+    ut: ?*UText,
+    nativeStart: i64,
+    nativeLimit: i64,
+    dest: ?*u16,
+    destCapacity: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_freeze(
+    ut: ?*UText,
+) callconv(.winapi) void;
+
+pub extern "icu" fn utext_getNativeIndex(
+    ut: ?*const UText,
 ) callconv(.winapi) i64;
+
+pub extern "icu" fn utext_getPreviousNativeIndex(
+    ut: ?*UText,
+) callconv(.winapi) i64;
+
+pub extern "icu" fn utext_hasMetaData(
+    ut: ?*const UText,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn utext_isLengthExpensive(
+    ut: ?*const UText,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn utext_isWritable(
+    ut: ?*const UText,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn utext_moveIndex32(
+    ut: ?*UText,
+    delta: i32,
+) callconv(.winapi) i8;
+
+pub extern "icu" fn utext_nativeLength(
+    ut: ?*UText,
+) callconv(.winapi) i64;
+
+pub extern "icu" fn utext_next32(
+    ut: ?*UText,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_next32From(
+    ut: ?*UText,
+    nativeIndex: i64,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_openUChars(
+    ut: ?*UText,
+    s: ?*const u16,
+    length: i64,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn utext_openUTF8(
+    ut: ?*UText,
+    s: ?[*:0]const u8,
+    length: i64,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn utext_previous32(
+    ut: ?*UText,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_previous32From(
+    ut: ?*UText,
+    nativeIndex: i64,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_replace(
+    ut: ?*UText,
+    nativeStart: i64,
+    nativeLimit: i64,
+    replacementText: ?*const u16,
+    replacementLength: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utext_setNativeIndex(
+    ut: ?*UText,
+    nativeIndex: i64,
+) callconv(.winapi) void;
+
+pub extern "icu" fn utext_setup(
+    ut: ?*UText,
+    extraSpace: i32,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*UText;
+
+pub extern "icu" fn utf8_appendCharSafeBody(
+    s: ?*u8,
+    i: i32,
+    length: i32,
+    c: i32,
+    pIsError: ?*i8,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utf8_back1SafeBody(
+    s: ?*const u8,
+    start: i32,
+    i: i32,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utf8_nextCharSafeBody(
+    s: ?*const u8,
+    pi: ?*i32,
+    length: i32,
+    c: i32,
+    strict: i8,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utf8_prevCharSafeBody(
+    s: ?*const u8,
+    start: i32,
+    pi: ?*i32,
+    c: i32,
+    strict: i8,
+) callconv(.winapi) i32;
 
 pub extern "icu" fn utmscale_fromInt64(
     otherTime: i64,
     timeScale: UDateTimeScale,
+    status: ?*UErrorCode,
+) callconv(.winapi) i64;
+
+pub extern "icu" fn utmscale_getTimeScaleValue(
+    timeScale: UDateTimeScale,
+    value: UTimeScaleValue,
     status: ?*UErrorCode,
 ) callconv(.winapi) i64;
 
@@ -16079,6 +16118,79 @@ pub extern "icu" fn utmscale_toInt64(
     timeScale: UDateTimeScale,
     status: ?*UErrorCode,
 ) callconv(.winapi) i64;
+
+pub extern "icu" fn utrace_format(
+    outBuf: ?PSTR,
+    capacity: i32,
+    indent: i32,
+    fmt: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utrace_functionName(
+    fnNumber: i32,
+) callconv(.winapi) ?PSTR;
+
+pub extern "icu" fn utrace_getFunctions(
+    context: ?*const ?*anyopaque,
+    e: ?*?UTraceEntry,
+    x: ?*?UTraceExit,
+    d: ?*?UTraceData,
+) callconv(.winapi) void;
+
+pub extern "icu" fn utrace_getLevel(
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utrace_setFunctions(
+    context: ?*const anyopaque,
+    e: ?UTraceEntry,
+    x: ?UTraceExit,
+    d: ?UTraceData,
+) callconv(.winapi) void;
+
+pub extern "icu" fn utrace_setLevel(
+    traceLevel: i32,
+) callconv(.winapi) void;
+
+pub extern "icu" fn utrace_vformat(
+    outBuf: ?PSTR,
+    capacity: i32,
+    indent: i32,
+    fmt: ?[*:0]const u8,
+    args: ?*i8,
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utrans_clone(
+    trans: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
+
+pub extern "icu" fn utrans_close(
+    trans: ?*?*anyopaque,
+) callconv(.winapi) void;
+
+pub extern "icu" fn utrans_countAvailableIDs(
+) callconv(.winapi) i32;
+
+pub extern "icu" fn utrans_getSourceSet(
+    trans: ?*const ?*anyopaque,
+    ignoreFilter: i8,
+    fillIn: ?*USet,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*USet;
+
+pub extern "icu" fn utrans_getUnicodeID(
+    trans: ?*const ?*anyopaque,
+    resultLength: ?*i32,
+) callconv(.winapi) ?*u16;
+
+pub extern "icu" fn utrans_openIDs(
+    pErrorCode: ?*UErrorCode,
+) callconv(.winapi) ?*UEnumeration;
+
+pub extern "icu" fn utrans_openInverse(
+    trans: ?*const ?*anyopaque,
+    status: ?*UErrorCode,
+) callconv(.winapi) ?*?*anyopaque;
 
 pub extern "icu" fn utrans_openU(
     id: ?*const u16,
@@ -16090,33 +16202,9 @@ pub extern "icu" fn utrans_openU(
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) ?*?*anyopaque;
 
-pub extern "icu" fn utrans_openInverse(
-    trans: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn utrans_clone(
-    trans: ?*const ?*anyopaque,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*?*anyopaque;
-
-pub extern "icu" fn utrans_close(
-    trans: ?*?*anyopaque,
-) callconv(.winapi) void;
-
-pub extern "icu" fn utrans_getUnicodeID(
-    trans: ?*const ?*anyopaque,
-    resultLength: ?*i32,
-) callconv(.winapi) ?*u16;
-
 pub extern "icu" fn utrans_register(
     adoptedTrans: ?*?*anyopaque,
     status: ?*UErrorCode,
-) callconv(.winapi) void;
-
-pub extern "icu" fn utrans_unregisterID(
-    id: ?*const u16,
-    idLength: i32,
 ) callconv(.winapi) void;
 
 pub extern "icu" fn utrans_setFilter(
@@ -16126,12 +16214,13 @@ pub extern "icu" fn utrans_setFilter(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn utrans_countAvailableIDs(
+pub extern "icu" fn utrans_toRules(
+    trans: ?*const ?*anyopaque,
+    escapeUnprintable: i8,
+    result: ?*u16,
+    resultLength: i32,
+    status: ?*UErrorCode,
 ) callconv(.winapi) i32;
-
-pub extern "icu" fn utrans_openIDs(
-    pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?*UEnumeration;
 
 pub extern "icu" fn utrans_trans(
     trans: ?*const ?*anyopaque,
@@ -16150,6 +16239,15 @@ pub extern "icu" fn utrans_transIncremental(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
+pub extern "icu" fn utrans_transIncrementalUChars(
+    trans: ?*const ?*anyopaque,
+    text: ?*u16,
+    textLength: ?*i32,
+    textCapacity: i32,
+    pos: ?*UTransPosition,
+    status: ?*UErrorCode,
+) callconv(.winapi) void;
+
 pub extern "icu" fn utrans_transUChars(
     trans: ?*const ?*anyopaque,
     text: ?*u16,
@@ -16160,147 +16258,56 @@ pub extern "icu" fn utrans_transUChars(
     status: ?*UErrorCode,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn utrans_transIncrementalUChars(
-    trans: ?*const ?*anyopaque,
-    text: ?*u16,
-    textLength: ?*i32,
-    textCapacity: i32,
-    pos: ?*UTransPosition,
-    status: ?*UErrorCode,
+pub extern "icu" fn utrans_unregisterID(
+    id: ?*const u16,
+    idLength: i32,
 ) callconv(.winapi) void;
 
-pub extern "icu" fn utrans_toRules(
-    trans: ?*const ?*anyopaque,
-    escapeUnprintable: i8,
-    result: ?*u16,
-    resultLength: i32,
-    status: ?*UErrorCode,
-) callconv(.winapi) i32;
-
-pub extern "icu" fn utrans_getSourceSet(
-    trans: ?*const ?*anyopaque,
-    ignoreFilter: i8,
-    fillIn: ?*USet,
-    status: ?*UErrorCode,
-) callconv(.winapi) ?*USet;
-
-pub extern "bcp47mrm" fn GetDistanceOfClosestLanguageInList(
-    pszLanguage: ?[*:0]const u16,
-    pszLanguagesList: ?[*:0]const u16,
-    wchListDelimiter: u16,
-    pClosestDistance: ?*f64,
-) callconv(.winapi) HRESULT;
-
-pub extern "bcp47mrm" fn IsWellFormedTag(
-    pszTag: ?[*:0]const u16,
-) callconv(.winapi) u8;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn FindStringOrdinal(
-    dwFindStringOrdinalFlags: u32,
-    lpStringSource: [*:0]const u16,
-    cchSource: i32,
-    lpStringValue: [*:0]const u16,
-    cchValue: i32,
-    bIgnoreCase: BOOL,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcmpA(
-    lpString1: ?[*:0]const u8,
-    lpString2: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcmpW(
-    lpString1: ?[*:0]const u16,
-    lpString2: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcmpiA(
-    lpString1: ?[*:0]const u8,
-    lpString2: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcmpiW(
-    lpString1: ?[*:0]const u16,
-    lpString2: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcpynA(
-    lpString1: [*:0]u8,
-    lpString2: ?[*:0]const u8,
-    iMaxLength: i32,
-) callconv(.winapi) ?PSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcpynW(
-    lpString1: [*:0]u16,
-    lpString2: ?[*:0]const u16,
-    iMaxLength: i32,
-) callconv(.winapi) ?PWSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcpyA(
-    lpString1: ?PSTR,
-    lpString2: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcpyW(
-    lpString1: ?PWSTR,
-    lpString2: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcatA(
-    lpString1: ?PSTR,
-    lpString2: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrcatW(
-    lpString1: ?PWSTR,
-    lpString2: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrlenA(
-    lpString: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn lstrlenW(
-    lpString: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn IsTextUnicode(
-    // TODO: what to do with BytesParamIndex 1?
-    lpv: ?*const anyopaque,
-    iSize: i32,
-    lpiResult: ?*IS_TEXT_UNICODE_RESULT,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn VerifyScripts(
+    dwFlags: u32,
+    lpLocaleScripts: ?[*:0]const u16,
+    cchLocaleScripts: i32,
+    lpTestScripts: ?[*:0]const u16,
+    cchTestScripts: i32,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn WideCharToMultiByte(
+    CodePage: u32,
+    dwFlags: u32,
+    lpWideCharStr: [*:0]const u16,
+    cchWideChar: i32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpMultiByteStr: ?PSTR,
+    cbMultiByte: i32,
+    lpDefaultChar: ?[*]const u8,
+    lpUsedDefaultChar: ?*i32,
+) callconv(.winapi) i32;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (47)
 //--------------------------------------------------------------------------------
-pub const NEWTEXTMETRICEX = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().NEWTEXTMETRICEXA,
-    .wide => @This().NEWTEXTMETRICEXW,
+pub const CALINFO_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CALINFO_ENUMPROCA,
+    .wide => @This().CALINFO_ENUMPROCW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'NEWTEXTMETRICEX' requires that UNICODE be set to true or false in the root module",
+        "'CALINFO_ENUMPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ENUMTEXTMETRIC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().ENUMTEXTMETRICA,
-    .wide => @This().ENUMTEXTMETRICW,
+pub const CALINFO_ENUMPROCEX = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CALINFO_ENUMPROCEXA,
+    .wide => @This().CALINFO_ENUMPROCEXW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ENUMTEXTMETRIC' requires that UNICODE be set to true or false in the root module",
+        "'CALINFO_ENUMPROCEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CODEPAGE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().CODEPAGE_ENUMPROCA,
+    .wide => @This().CODEPAGE_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CODEPAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CPINFOEX = switch (@import("zig.zig").unicode_mode) {
@@ -16310,53 +16317,11 @@ pub const CPINFOEX = switch (@import("zig.zig").unicode_mode) {
         "'CPINFOEX' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const NUMBERFMT = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().NUMBERFMTA,
-    .wide => @This().NUMBERFMTW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'NUMBERFMT' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const CURRENCYFMT = switch (@import("zig.zig").unicode_mode) {
     .ansi => @This().CURRENCYFMTA,
     .wide => @This().CURRENCYFMTW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'CURRENCYFMT' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LOCALE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LOCALE_ENUMPROCA,
-    .wide => @This().LOCALE_ENUMPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LANGUAGEGROUP_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LANGUAGEGROUP_ENUMPROCA,
-    .wide => @This().LANGUAGEGROUP_ENUMPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LANGUAGEGROUP_ENUMPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LANGGROUPLOCALE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LANGGROUPLOCALE_ENUMPROCA,
-    .wide => @This().LANGGROUPLOCALE_ENUMPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LANGGROUPLOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const UILANGUAGE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().UILANGUAGE_ENUMPROCA,
-    .wide => @This().UILANGUAGE_ENUMPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'UILANGUAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CODEPAGE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().CODEPAGE_ENUMPROCA,
-    .wide => @This().CODEPAGE_ENUMPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CODEPAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const DATEFMT_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
@@ -16373,25 +16338,11 @@ pub const DATEFMT_ENUMPROCEX = switch (@import("zig.zig").unicode_mode) {
         "'DATEFMT_ENUMPROCEX' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const TIMEFMT_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().TIMEFMT_ENUMPROCA,
-    .wide => @This().TIMEFMT_ENUMPROCW,
+pub const ENUMTEXTMETRIC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().ENUMTEXTMETRICA,
+    .wide => @This().ENUMTEXTMETRICW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TIMEFMT_ENUMPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CALINFO_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().CALINFO_ENUMPROCA,
-    .wide => @This().CALINFO_ENUMPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CALINFO_ENUMPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CALINFO_ENUMPROCEX = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().CALINFO_ENUMPROCEXA,
-    .wide => @This().CALINFO_ENUMPROCEXW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CALINFO_ENUMPROCEX' requires that UNICODE be set to true or false in the root module",
+        "'ENUMTEXTMETRIC' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const IMLangStringBuf = switch (@import("zig.zig").unicode_mode) {
@@ -16401,18 +16352,53 @@ pub const IMLangStringBuf = switch (@import("zig.zig").unicode_mode) {
         "'IMLangStringBuf' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetDateFormat = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetDateFormatA,
-    .wide => @This().GetDateFormatW,
+pub const LANGGROUPLOCALE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LANGGROUPLOCALE_ENUMPROCA,
+    .wide => @This().LANGGROUPLOCALE_ENUMPROCW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetDateFormat' requires that UNICODE be set to true or false in the root module",
+        "'LANGGROUPLOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetTimeFormat = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetTimeFormatA,
-    .wide => @This().GetTimeFormatW,
+pub const LANGUAGEGROUP_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LANGUAGEGROUP_ENUMPROCA,
+    .wide => @This().LANGUAGEGROUP_ENUMPROCW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetTimeFormat' requires that UNICODE be set to true or false in the root module",
+        "'LANGUAGEGROUP_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LOCALE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LOCALE_ENUMPROCA,
+    .wide => @This().LOCALE_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LOCALE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NEWTEXTMETRICEX = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().NEWTEXTMETRICEXA,
+    .wide => @This().NEWTEXTMETRICEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NEWTEXTMETRICEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const NUMBERFMT = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().NUMBERFMTA,
+    .wide => @This().NUMBERFMTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'NUMBERFMT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TIMEFMT_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().TIMEFMT_ENUMPROCA,
+    .wide => @This().TIMEFMT_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TIMEFMT_ENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UILANGUAGE_ENUMPROC = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().UILANGUAGE_ENUMPROCA,
+    .wide => @This().UILANGUAGE_ENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UILANGUAGE_ENUMPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CompareString = switch (@import("zig.zig").unicode_mode) {
@@ -16420,83 +16406,6 @@ pub const CompareString = switch (@import("zig.zig").unicode_mode) {
     .wide => @This().CompareStringW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'CompareString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FoldString = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().FoldStringA,
-    .wide => @This().FoldStringW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FoldString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetStringTypeEx = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetStringTypeExA,
-    .wide => @This().GetStringTypeExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetStringTypeEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetStringType = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetStringTypeA,
-    .wide => @This().GetStringTypeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetStringType' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetCPInfoEx = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetCPInfoExA,
-    .wide => @This().GetCPInfoExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetCPInfoEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LCMapString = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LCMapStringA,
-    .wide => @This().LCMapStringW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LCMapString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetLocaleInfoA,
-    .wide => @This().GetLocaleInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetLocaleInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().SetLocaleInfoA,
-    .wide => @This().SetLocaleInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetLocaleInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetCalendarInfo = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetCalendarInfoA,
-    .wide => @This().GetCalendarInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetCalendarInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetCalendarInfo = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().SetCalendarInfoA,
-    .wide => @This().SetCalendarInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetCalendarInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetNumberFormat = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetNumberFormatA,
-    .wide => @This().GetNumberFormatW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetNumberFormat' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetCurrencyFormat = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetCurrencyFormatA,
-    .wide => @This().GetCurrencyFormatW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetCurrencyFormat' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const EnumCalendarInfo = switch (@import("zig.zig").unicode_mode) {
@@ -16513,13 +16422,6 @@ pub const EnumCalendarInfoEx = switch (@import("zig.zig").unicode_mode) {
         "'EnumCalendarInfoEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const EnumTimeFormats = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().EnumTimeFormatsA,
-    .wide => @This().EnumTimeFormatsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumTimeFormats' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const EnumDateFormats = switch (@import("zig.zig").unicode_mode) {
     .ansi => @This().EnumDateFormatsA,
     .wide => @This().EnumDateFormatsW,
@@ -16534,18 +16436,18 @@ pub const EnumDateFormatsEx = switch (@import("zig.zig").unicode_mode) {
         "'EnumDateFormatsEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetGeoInfo = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().GetGeoInfoA,
-    .wide => @This().GetGeoInfoW,
+pub const EnumLanguageGroupLocales = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumLanguageGroupLocalesA,
+    .wide => @This().EnumLanguageGroupLocalesW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetGeoInfo' requires that UNICODE be set to true or false in the root module",
+        "'EnumLanguageGroupLocales' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const EnumSystemLocales = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().EnumSystemLocalesA,
-    .wide => @This().EnumSystemLocalesW,
+pub const EnumSystemCodePages = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumSystemCodePagesA,
+    .wide => @This().EnumSystemCodePagesW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumSystemLocales' requires that UNICODE be set to true or false in the root module",
+        "'EnumSystemCodePages' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const EnumSystemLanguageGroups = switch (@import("zig.zig").unicode_mode) {
@@ -16555,11 +16457,18 @@ pub const EnumSystemLanguageGroups = switch (@import("zig.zig").unicode_mode) {
         "'EnumSystemLanguageGroups' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const EnumLanguageGroupLocales = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().EnumLanguageGroupLocalesA,
-    .wide => @This().EnumLanguageGroupLocalesW,
+pub const EnumSystemLocales = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumSystemLocalesA,
+    .wide => @This().EnumSystemLocalesW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumLanguageGroupLocales' requires that UNICODE be set to true or false in the root module",
+        "'EnumSystemLocales' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumTimeFormats = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().EnumTimeFormatsA,
+    .wide => @This().EnumTimeFormatsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumTimeFormats' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const EnumUILanguages = switch (@import("zig.zig").unicode_mode) {
@@ -16569,11 +16478,95 @@ pub const EnumUILanguages = switch (@import("zig.zig").unicode_mode) {
         "'EnumUILanguages' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const EnumSystemCodePages = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().EnumSystemCodePagesA,
-    .wide => @This().EnumSystemCodePagesW,
+pub const FoldString = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().FoldStringA,
+    .wide => @This().FoldStringW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumSystemCodePages' requires that UNICODE be set to true or false in the root module",
+        "'FoldString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCalendarInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetCalendarInfoA,
+    .wide => @This().GetCalendarInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCalendarInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCPInfoEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetCPInfoExA,
+    .wide => @This().GetCPInfoExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCPInfoEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetCurrencyFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetCurrencyFormatA,
+    .wide => @This().GetCurrencyFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetCurrencyFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDateFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetDateFormatA,
+    .wide => @This().GetDateFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDateFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetGeoInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetGeoInfoA,
+    .wide => @This().GetGeoInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetGeoInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetLocaleInfoA,
+    .wide => @This().GetLocaleInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetLocaleInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetNumberFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetNumberFormatA,
+    .wide => @This().GetNumberFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetNumberFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStringType = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetStringTypeA,
+    .wide => @This().GetStringTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStringType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetStringTypeEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetStringTypeExA,
+    .wide => @This().GetStringTypeExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetStringTypeEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTimeFormat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().GetTimeFormatA,
+    .wide => @This().GetTimeFormatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTimeFormat' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LCMapString = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LCMapStringA,
+    .wide => @This().LCMapStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LCMapString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const lstrcat = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrcatA,
+    .wide => @This().lstrcatW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'lstrcat' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const lstrcmp = switch (@import("zig.zig").unicode_mode) {
@@ -16590,13 +16583,6 @@ pub const lstrcmpi = switch (@import("zig.zig").unicode_mode) {
         "'lstrcmpi' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const lstrcpyn = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().lstrcpynA,
-    .wide => @This().lstrcpynW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'lstrcpyn' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const lstrcpy = switch (@import("zig.zig").unicode_mode) {
     .ansi => @This().lstrcpyA,
     .wide => @This().lstrcpyW,
@@ -16604,11 +16590,11 @@ pub const lstrcpy = switch (@import("zig.zig").unicode_mode) {
         "'lstrcpy' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const lstrcat = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().lstrcatA,
-    .wide => @This().lstrcatW,
+pub const lstrcpyn = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().lstrcpynA,
+    .wide => @This().lstrcpynW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'lstrcat' requires that UNICODE be set to true or false in the root module",
+        "'lstrcpyn' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const lstrlen = switch (@import("zig.zig").unicode_mode) {
@@ -16616,6 +16602,20 @@ pub const lstrlen = switch (@import("zig.zig").unicode_mode) {
     .wide => @This().lstrlenW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'lstrlen' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetCalendarInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().SetCalendarInfoA,
+    .wide => @This().SetCalendarInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetCalendarInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().SetLocaleInfoA,
+    .wide => @This().SetLocaleInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetLocaleInfo' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -16647,49 +16647,49 @@ const SYSTEMTIME = @import("foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LOCALE_ENUMPROCA")) { _ = LOCALE_ENUMPROCA; }
-    if (@hasDecl(@This(), "LOCALE_ENUMPROCW")) { _ = LOCALE_ENUMPROCW; }
-    if (@hasDecl(@This(), "LANGUAGEGROUP_ENUMPROCA")) { _ = LANGUAGEGROUP_ENUMPROCA; }
-    if (@hasDecl(@This(), "LANGGROUPLOCALE_ENUMPROCA")) { _ = LANGGROUPLOCALE_ENUMPROCA; }
-    if (@hasDecl(@This(), "UILANGUAGE_ENUMPROCA")) { _ = UILANGUAGE_ENUMPROCA; }
-    if (@hasDecl(@This(), "CODEPAGE_ENUMPROCA")) { _ = CODEPAGE_ENUMPROCA; }
-    if (@hasDecl(@This(), "DATEFMT_ENUMPROCA")) { _ = DATEFMT_ENUMPROCA; }
-    if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXA")) { _ = DATEFMT_ENUMPROCEXA; }
-    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCA")) { _ = TIMEFMT_ENUMPROCA; }
     if (@hasDecl(@This(), "CALINFO_ENUMPROCA")) { _ = CALINFO_ENUMPROCA; }
     if (@hasDecl(@This(), "CALINFO_ENUMPROCEXA")) { _ = CALINFO_ENUMPROCEXA; }
-    if (@hasDecl(@This(), "LANGUAGEGROUP_ENUMPROCW")) { _ = LANGUAGEGROUP_ENUMPROCW; }
-    if (@hasDecl(@This(), "LANGGROUPLOCALE_ENUMPROCW")) { _ = LANGGROUPLOCALE_ENUMPROCW; }
-    if (@hasDecl(@This(), "UILANGUAGE_ENUMPROCW")) { _ = UILANGUAGE_ENUMPROCW; }
-    if (@hasDecl(@This(), "CODEPAGE_ENUMPROCW")) { _ = CODEPAGE_ENUMPROCW; }
-    if (@hasDecl(@This(), "DATEFMT_ENUMPROCW")) { _ = DATEFMT_ENUMPROCW; }
-    if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXW")) { _ = DATEFMT_ENUMPROCEXW; }
-    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCW")) { _ = TIMEFMT_ENUMPROCW; }
-    if (@hasDecl(@This(), "CALINFO_ENUMPROCW")) { _ = CALINFO_ENUMPROCW; }
-    if (@hasDecl(@This(), "CALINFO_ENUMPROCEXW")) { _ = CALINFO_ENUMPROCEXW; }
-    if (@hasDecl(@This(), "GEO_ENUMPROC")) { _ = GEO_ENUMPROC; }
-    if (@hasDecl(@This(), "GEO_ENUMNAMEPROC")) { _ = GEO_ENUMNAMEPROC; }
     if (@hasDecl(@This(), "CALINFO_ENUMPROCEXEX")) { _ = CALINFO_ENUMPROCEXEX; }
+    if (@hasDecl(@This(), "CALINFO_ENUMPROCEXW")) { _ = CALINFO_ENUMPROCEXW; }
+    if (@hasDecl(@This(), "CALINFO_ENUMPROCW")) { _ = CALINFO_ENUMPROCW; }
+    if (@hasDecl(@This(), "CODEPAGE_ENUMPROCA")) { _ = CODEPAGE_ENUMPROCA; }
+    if (@hasDecl(@This(), "CODEPAGE_ENUMPROCW")) { _ = CODEPAGE_ENUMPROCW; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCA")) { _ = DATEFMT_ENUMPROCA; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXA")) { _ = DATEFMT_ENUMPROCEXA; }
     if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXEX")) { _ = DATEFMT_ENUMPROCEXEX; }
-    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCEX")) { _ = TIMEFMT_ENUMPROCEX; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXW")) { _ = DATEFMT_ENUMPROCEXW; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCW")) { _ = DATEFMT_ENUMPROCW; }
+    if (@hasDecl(@This(), "GEO_ENUMNAMEPROC")) { _ = GEO_ENUMNAMEPROC; }
+    if (@hasDecl(@This(), "GEO_ENUMPROC")) { _ = GEO_ENUMPROC; }
+    if (@hasDecl(@This(), "LANGGROUPLOCALE_ENUMPROCA")) { _ = LANGGROUPLOCALE_ENUMPROCA; }
+    if (@hasDecl(@This(), "LANGGROUPLOCALE_ENUMPROCW")) { _ = LANGGROUPLOCALE_ENUMPROCW; }
+    if (@hasDecl(@This(), "LANGUAGEGROUP_ENUMPROCA")) { _ = LANGUAGEGROUP_ENUMPROCA; }
+    if (@hasDecl(@This(), "LANGUAGEGROUP_ENUMPROCW")) { _ = LANGUAGEGROUP_ENUMPROCW; }
+    if (@hasDecl(@This(), "LOCALE_ENUMPROCA")) { _ = LOCALE_ENUMPROCA; }
     if (@hasDecl(@This(), "LOCALE_ENUMPROCEX")) { _ = LOCALE_ENUMPROCEX; }
+    if (@hasDecl(@This(), "LOCALE_ENUMPROCW")) { _ = LOCALE_ENUMPROCW; }
     if (@hasDecl(@This(), "PFN_MAPPINGCALLBACKPROC")) { _ = PFN_MAPPINGCALLBACKPROC; }
+    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCA")) { _ = TIMEFMT_ENUMPROCA; }
+    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCEX")) { _ = TIMEFMT_ENUMPROCEX; }
+    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCW")) { _ = TIMEFMT_ENUMPROCW; }
+    if (@hasDecl(@This(), "UBiDiClassCallback")) { _ = UBiDiClassCallback; }
+    if (@hasDecl(@This(), "UCharEnumTypeRange")) { _ = UCharEnumTypeRange; }
+    if (@hasDecl(@This(), "UConverterFromUCallback")) { _ = UConverterFromUCallback; }
+    if (@hasDecl(@This(), "UConverterToUCallback")) { _ = UConverterToUCallback; }
+    if (@hasDecl(@This(), "UCPMapValueFilter")) { _ = UCPMapValueFilter; }
+    if (@hasDecl(@This(), "UEnumCharNamesFn")) { _ = UEnumCharNamesFn; }
+    if (@hasDecl(@This(), "UILANGUAGE_ENUMPROCA")) { _ = UILANGUAGE_ENUMPROCA; }
+    if (@hasDecl(@This(), "UILANGUAGE_ENUMPROCW")) { _ = UILANGUAGE_ENUMPROCW; }
+    if (@hasDecl(@This(), "UMemAllocFn")) { _ = UMemAllocFn; }
+    if (@hasDecl(@This(), "UMemFreeFn")) { _ = UMemFreeFn; }
+    if (@hasDecl(@This(), "UMemReallocFn")) { _ = UMemReallocFn; }
+    if (@hasDecl(@This(), "UNESCAPE_CHAR_AT")) { _ = UNESCAPE_CHAR_AT; }
+    if (@hasDecl(@This(), "URegexFindProgressCallback")) { _ = URegexFindProgressCallback; }
+    if (@hasDecl(@This(), "URegexMatchCallback")) { _ = URegexMatchCallback; }
+    if (@hasDecl(@This(), "UStringCaseMapper")) { _ = UStringCaseMapper; }
+    if (@hasDecl(@This(), "UTraceData")) { _ = UTraceData; }
     if (@hasDecl(@This(), "UTraceEntry")) { _ = UTraceEntry; }
     if (@hasDecl(@This(), "UTraceExit")) { _ = UTraceExit; }
-    if (@hasDecl(@This(), "UTraceData")) { _ = UTraceData; }
-    if (@hasDecl(@This(), "UCPMapValueFilter")) { _ = UCPMapValueFilter; }
-    if (@hasDecl(@This(), "UConverterToUCallback")) { _ = UConverterToUCallback; }
-    if (@hasDecl(@This(), "UConverterFromUCallback")) { _ = UConverterFromUCallback; }
-    if (@hasDecl(@This(), "UMemAllocFn")) { _ = UMemAllocFn; }
-    if (@hasDecl(@This(), "UMemReallocFn")) { _ = UMemReallocFn; }
-    if (@hasDecl(@This(), "UMemFreeFn")) { _ = UMemFreeFn; }
-    if (@hasDecl(@This(), "UCharEnumTypeRange")) { _ = UCharEnumTypeRange; }
-    if (@hasDecl(@This(), "UEnumCharNamesFn")) { _ = UEnumCharNamesFn; }
-    if (@hasDecl(@This(), "UBiDiClassCallback")) { _ = UBiDiClassCallback; }
-    if (@hasDecl(@This(), "UNESCAPE_CHAR_AT")) { _ = UNESCAPE_CHAR_AT; }
-    if (@hasDecl(@This(), "URegexMatchCallback")) { _ = URegexMatchCallback; }
-    if (@hasDecl(@This(), "URegexFindProgressCallback")) { _ = URegexFindProgressCallback; }
-    if (@hasDecl(@This(), "UStringCaseMapper")) { _ = UStringCaseMapper; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

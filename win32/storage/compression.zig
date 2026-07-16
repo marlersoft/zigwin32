@@ -3,8 +3,8 @@
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
 pub const COMPRESS_ALGORITHM_INVALID = @as(u32, 0);
-pub const COMPRESS_ALGORITHM_NULL = @as(u32, 1);
 pub const COMPRESS_ALGORITHM_MAX = @as(u32, 6);
+pub const COMPRESS_ALGORITHM_NULL = @as(u32, 1);
 pub const COMPRESS_RAW = @as(u32, 536870912);
 
 //--------------------------------------------------------------------------------
@@ -21,20 +21,6 @@ pub const COMPRESS_ALGORITHM_XPRESS = COMPRESS_ALGORITHM.XPRESS;
 pub const COMPRESS_ALGORITHM_XPRESS_HUFF = COMPRESS_ALGORITHM.XPRESS_HUFF;
 pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
 
-// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const COMPRESSOR_HANDLE = isize;
-
-pub const PFN_COMPRESS_ALLOCATE = *const fn(
-    UserContext: ?*anyopaque,
-    Size: usize,
-) callconv(.winapi) ?*anyopaque;
-
-pub const PFN_COMPRESS_FREE = *const fn(
-    UserContext: ?*anyopaque,
-    Memory: ?*anyopaque,
-) callconv(.winapi) void;
-
 pub const COMPRESS_ALLOCATION_ROUTINES = extern struct {
     Allocate: ?PFN_COMPRESS_ALLOCATE,
     Free: ?PFN_COMPRESS_FREE,
@@ -50,33 +36,32 @@ pub const COMPRESS_INFORMATION_CLASS_INVALID = COMPRESS_INFORMATION_CLASS.INVALI
 pub const COMPRESS_INFORMATION_CLASS_BLOCK_SIZE = COMPRESS_INFORMATION_CLASS.BLOCK_SIZE;
 pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
 
+// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const COMPRESSOR_HANDLE = isize;
+
+pub const PFN_COMPRESS_ALLOCATE = *const fn(
+    UserContext: ?*anyopaque,
+    Size: usize,
+) callconv(.winapi) ?*anyopaque;
+
+pub const PFN_COMPRESS_FREE = *const fn(
+    UserContext: ?*anyopaque,
+    Memory: ?*anyopaque,
+) callconv(.winapi) void;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (12)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn CreateCompressor(
-    Algorithm: COMPRESS_ALGORITHM,
-    AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
-    CompressorHandle: ?*isize,
+pub extern "cabinet" fn CloseCompressor(
+    CompressorHandle: COMPRESSOR_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn SetCompressorInformation(
-    CompressorHandle: COMPRESSOR_HANDLE,
-    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: ?*const anyopaque,
-    CompressInformationSize: usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn QueryCompressorInformation(
-    CompressorHandle: COMPRESSOR_HANDLE,
-    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: ?*anyopaque,
-    CompressInformationSize: usize,
+pub extern "cabinet" fn CloseDecompressor(
+    DecompressorHandle: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -92,13 +77,10 @@ pub extern "cabinet" fn Compress(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn ResetCompressor(
-    CompressorHandle: COMPRESSOR_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn CloseCompressor(
-    CompressorHandle: COMPRESSOR_HANDLE,
+pub extern "cabinet" fn CreateCompressor(
+    Algorithm: COMPRESS_ALGORITHM,
+    AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
+    CompressorHandle: ?*isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -106,24 +88,6 @@ pub extern "cabinet" fn CreateDecompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
     DecompressorHandle: ?*isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn SetDecompressorInformation(
-    DecompressorHandle: isize,
-    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: ?*const anyopaque,
-    CompressInformationSize: usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn QueryDecompressorInformation(
-    DecompressorHandle: isize,
-    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    CompressInformation: ?*anyopaque,
-    CompressInformationSize: usize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -139,13 +103,49 @@ pub extern "cabinet" fn Decompress(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
+pub extern "cabinet" fn QueryCompressorInformation(
+    CompressorHandle: COMPRESSOR_HANDLE,
+    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: ?*anyopaque,
+    CompressInformationSize: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "cabinet" fn QueryDecompressorInformation(
+    DecompressorHandle: isize,
+    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: ?*anyopaque,
+    CompressInformationSize: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "cabinet" fn ResetCompressor(
+    CompressorHandle: COMPRESSOR_HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn ResetDecompressor(
     DecompressorHandle: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cabinet" fn CloseDecompressor(
+pub extern "cabinet" fn SetCompressorInformation(
+    CompressorHandle: COMPRESSOR_HANDLE,
+    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: ?*const anyopaque,
+    CompressInformationSize: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "cabinet" fn SetDecompressorInformation(
     DecompressorHandle: isize,
+    CompressInformationClass: COMPRESS_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: ?*const anyopaque,
+    CompressInformationSize: usize,
 ) callconv(.winapi) BOOL;
 
 

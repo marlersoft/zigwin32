@@ -15,19 +15,6 @@ pub const D3D9ON12_ARGS = extern struct {
     NodeMask: u32,
 };
 
-pub const PFN_Direct3DCreate9On12Ex = *const fn(
-    SDKVersion: u32,
-    pOverrideList: ?*D3D9ON12_ARGS,
-    NumOverrideEntries: u32,
-    ppOutputInterface: ?*?*IDirect3D9Ex,
-) callconv(.winapi) HRESULT;
-
-pub const PFN_Direct3DCreate9On12 = *const fn(
-    SDKVersion: u32,
-    pOverrideList: ?*D3D9ON12_ARGS,
-    NumOverrideEntries: u32,
-) callconv(.winapi) ?*IDirect3D9;
-
 const IID_IDirect3DDevice9On12_Value = Guid.initString("e7fda234-b589-4049-940d-8878977531c8");
 pub const IID_IDirect3DDevice9On12 = &IID_IDirect3DDevice9On12_Value;
 pub const IDirect3DDevice9On12 = extern union {
@@ -66,22 +53,35 @@ pub const IDirect3DDevice9On12 = extern union {
     }
 };
 
+pub const PFN_Direct3DCreate9On12 = *const fn(
+    SDKVersion: u32,
+    pOverrideList: ?*D3D9ON12_ARGS,
+    NumOverrideEntries: u32,
+) callconv(.winapi) ?*IDirect3D9;
 
-//--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "d3d9" fn Direct3DCreate9On12Ex(
+pub const PFN_Direct3DCreate9On12Ex = *const fn(
     SDKVersion: u32,
     pOverrideList: ?*D3D9ON12_ARGS,
     NumOverrideEntries: u32,
     ppOutputInterface: ?*?*IDirect3D9Ex,
 ) callconv(.winapi) HRESULT;
 
+
+//--------------------------------------------------------------------------------
+// Section: Functions (2)
+//--------------------------------------------------------------------------------
 pub extern "d3d9" fn Direct3DCreate9On12(
     SDKVersion: u32,
     pOverrideList: ?*D3D9ON12_ARGS,
     NumOverrideEntries: u32,
 ) callconv(.winapi) ?*IDirect3D9;
+
+pub extern "d3d9" fn Direct3DCreate9On12Ex(
+    SDKVersion: u32,
+    pOverrideList: ?*D3D9ON12_ARGS,
+    NumOverrideEntries: u32,
+    ppOutputInterface: ?*?*IDirect3D9Ex,
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -102,8 +102,8 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_Direct3DCreate9On12Ex")) { _ = PFN_Direct3DCreate9On12Ex; }
     if (@hasDecl(@This(), "PFN_Direct3DCreate9On12")) { _ = PFN_Direct3DCreate9On12; }
+    if (@hasDecl(@This(), "PFN_Direct3DCreate9On12Ex")) { _ = PFN_Direct3DCreate9On12Ex; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

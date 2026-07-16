@@ -7,6 +7,96 @@ pub const AVRF_MAX_TRACES = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
+pub const AVRF_BACKTRACE_INFORMATION = extern struct {
+    Depth: u32,
+    Index: u32,
+    ReturnAddresses: [32]u64,
+};
+
+pub const AVRF_HANDLE_OPERATION = extern struct {
+    Handle: u64,
+    ProcessId: u32,
+    ThreadId: u32,
+    OperationType: u32,
+    Spare0: u32,
+    BackTraceInformation: AVRF_BACKTRACE_INFORMATION,
+};
+
+pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = *const fn(
+    HandleOperation: ?*AVRF_HANDLE_OPERATION,
+    EnumerationContext: ?*anyopaque,
+    EnumerationLevel: ?*u32,
+) callconv(.winapi) u32;
+
+pub const AVRF_HEAP_ALLOCATION = extern struct {
+    HeapHandle: u64,
+    UserAllocation: u64,
+    UserAllocationSize: u64,
+    Allocation: u64,
+    AllocationSize: u64,
+    UserAllocationState: u32,
+    HeapState: u32,
+    HeapContext: u64,
+    BackTraceInformation: ?*AVRF_BACKTRACE_INFORMATION,
+};
+
+pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = *const fn(
+    HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
+    EnumerationContext: ?*anyopaque,
+    EnumerationLevel: ?*u32,
+) callconv(.winapi) u32;
+
+pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = *const fn(
+    ResourceDescription: ?*anyopaque,
+    EnumerationContext: ?*anyopaque,
+    EnumerationLevel: ?*u32,
+) callconv(.winapi) u32;
+
+pub const eAvrfResourceTypes = enum(i32) {
+    HeapAllocation = 0,
+    HandleTrace = 1,
+    Max = 2,
+};
+pub const AvrfResourceHeapAllocation = eAvrfResourceTypes.HeapAllocation;
+pub const AvrfResourceHandleTrace = eAvrfResourceTypes.HandleTrace;
+pub const AvrfResourceMax = eAvrfResourceTypes.Max;
+
+pub const eHANDLE_TRACE_OPERATIONS = enum(i32) {
+    Unused = 0,
+    OPEN = 1,
+    CLOSE = 2,
+    BADREF = 3,
+};
+pub const OperationDbUnused = eHANDLE_TRACE_OPERATIONS.Unused;
+pub const OperationDbOPEN = eHANDLE_TRACE_OPERATIONS.OPEN;
+pub const OperationDbCLOSE = eHANDLE_TRACE_OPERATIONS.CLOSE;
+pub const OperationDbBADREF = eHANDLE_TRACE_OPERATIONS.BADREF;
+
+pub const eHeapAllocationState = enum(i32) {
+    FullPageHeap = 1073741824,
+    Metadata = -2147483648,
+    StateMask = -65536,
+};
+pub const HeapFullPageHeap = eHeapAllocationState.FullPageHeap;
+pub const HeapMetadata = eHeapAllocationState.Metadata;
+pub const HeapStateMask = eHeapAllocationState.StateMask;
+
+pub const eHeapEnumerationLevel = enum(i32) {
+    Everything = 0,
+    Stop = -1,
+};
+pub const HeapEnumerationEverything = eHeapEnumerationLevel.Everything;
+pub const HeapEnumerationStop = eHeapEnumerationLevel.Stop;
+
+pub const eUserAllocationState = enum(i32) {
+    Unknown = 0,
+    Busy = 1,
+    Free = 2,
+};
+pub const AllocationStateUnknown = eUserAllocationState.Unknown;
+pub const AllocationStateBusy = eUserAllocationState.Busy;
+pub const AllocationStateFree = eUserAllocationState.Free;
+
 pub const VERIFIER_ENUM_RESOURCE_FLAGS = packed struct(u32) {
     SUSPEND: u1 = 0,
     DONT_RESOLVE_TRACES: u1 = 0,
@@ -44,96 +134,6 @@ pub const VERIFIER_ENUM_RESOURCE_FLAGS = packed struct(u32) {
 pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS{ .DONT_RESOLVE_TRACES = 1 };
 pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS{ .SUSPEND = 1 };
 
-pub const AVRF_BACKTRACE_INFORMATION = extern struct {
-    Depth: u32,
-    Index: u32,
-    ReturnAddresses: [32]u64,
-};
-
-pub const eUserAllocationState = enum(i32) {
-    Unknown = 0,
-    Busy = 1,
-    Free = 2,
-};
-pub const AllocationStateUnknown = eUserAllocationState.Unknown;
-pub const AllocationStateBusy = eUserAllocationState.Busy;
-pub const AllocationStateFree = eUserAllocationState.Free;
-
-pub const eHeapAllocationState = enum(i32) {
-    FullPageHeap = 1073741824,
-    Metadata = -2147483648,
-    StateMask = -65536,
-};
-pub const HeapFullPageHeap = eHeapAllocationState.FullPageHeap;
-pub const HeapMetadata = eHeapAllocationState.Metadata;
-pub const HeapStateMask = eHeapAllocationState.StateMask;
-
-pub const eHeapEnumerationLevel = enum(i32) {
-    Everything = 0,
-    Stop = -1,
-};
-pub const HeapEnumerationEverything = eHeapEnumerationLevel.Everything;
-pub const HeapEnumerationStop = eHeapEnumerationLevel.Stop;
-
-pub const AVRF_HEAP_ALLOCATION = extern struct {
-    HeapHandle: u64,
-    UserAllocation: u64,
-    UserAllocationSize: u64,
-    Allocation: u64,
-    AllocationSize: u64,
-    UserAllocationState: u32,
-    HeapState: u32,
-    HeapContext: u64,
-    BackTraceInformation: ?*AVRF_BACKTRACE_INFORMATION,
-};
-
-pub const eHANDLE_TRACE_OPERATIONS = enum(i32) {
-    Unused = 0,
-    OPEN = 1,
-    CLOSE = 2,
-    BADREF = 3,
-};
-pub const OperationDbUnused = eHANDLE_TRACE_OPERATIONS.Unused;
-pub const OperationDbOPEN = eHANDLE_TRACE_OPERATIONS.OPEN;
-pub const OperationDbCLOSE = eHANDLE_TRACE_OPERATIONS.CLOSE;
-pub const OperationDbBADREF = eHANDLE_TRACE_OPERATIONS.BADREF;
-
-pub const AVRF_HANDLE_OPERATION = extern struct {
-    Handle: u64,
-    ProcessId: u32,
-    ThreadId: u32,
-    OperationType: u32,
-    Spare0: u32,
-    BackTraceInformation: AVRF_BACKTRACE_INFORMATION,
-};
-
-pub const eAvrfResourceTypes = enum(i32) {
-    HeapAllocation = 0,
-    HandleTrace = 1,
-    Max = 2,
-};
-pub const AvrfResourceHeapAllocation = eAvrfResourceTypes.HeapAllocation;
-pub const AvrfResourceHandleTrace = eAvrfResourceTypes.HandleTrace;
-pub const AvrfResourceMax = eAvrfResourceTypes.Max;
-
-pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = *const fn(
-    ResourceDescription: ?*anyopaque,
-    EnumerationContext: ?*anyopaque,
-    EnumerationLevel: ?*u32,
-) callconv(.winapi) u32;
-
-pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = *const fn(
-    HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
-    EnumerationContext: ?*anyopaque,
-    EnumerationLevel: ?*u32,
-) callconv(.winapi) u32;
-
-pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = *const fn(
-    HandleOperation: ?*AVRF_HANDLE_OPERATION,
-    EnumerationContext: ?*anyopaque,
-    EnumerationLevel: ?*u32,
-) callconv(.winapi) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -157,9 +157,9 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "AVRF_RESOURCE_ENUMERATE_CALLBACK")) { _ = AVRF_RESOURCE_ENUMERATE_CALLBACK; }
-    if (@hasDecl(@This(), "AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK")) { _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK; }
     if (@hasDecl(@This(), "AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK")) { _ = AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK")) { _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "AVRF_RESOURCE_ENUMERATE_CALLBACK")) { _ = AVRF_RESOURCE_ENUMERATE_CALLBACK; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

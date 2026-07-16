@@ -2,317 +2,98 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (88)
 //--------------------------------------------------------------------------------
-pub const MMC_VER = @as(u32, 512);
+pub const AUTO_WIDTH = @as(i32, -1);
+pub const HDI_HIDDEN = @as(u32, 1);
+pub const HIDE_COLUMN = @as(i32, -4);
+pub const ILSIF_LEAVE_LARGE_ICON = @as(u32, 1073741824);
+pub const ILSIF_LEAVE_SMALL_ICON = @as(u32, 536870912);
+pub const MMC_DEFAULT_OPERATION_COPY = @as(u32, 1);
+pub const MMC_IMAGECALLBACK = @as(i32, -1);
+pub const MMC_ITEM_OVERLAY_STATE_MASK = @as(u32, 3840);
+pub const MMC_ITEM_OVERLAY_STATE_SHIFT = @as(u32, 8);
+pub const MMC_ITEM_STATE_MASK = @as(u32, 255);
+pub const MMC_MULTI_SELECT_COOKIE = @as(i32, -2);
+pub const MMC_NODEID_SLOW_RETRIEVAL = @as(u32, 1);
+pub const MMC_NW_OPTION_CUSTOMTITLE = @as(u32, 8);
+pub const MMC_NW_OPTION_NOACTIONPANE = @as(u32, 32);
+pub const MMC_NW_OPTION_NONE = @as(u32, 0);
+pub const MMC_NW_OPTION_NOPERSIST = @as(u32, 16);
+pub const MMC_NW_OPTION_NOSCOPEPANE = @as(u32, 1);
+pub const MMC_NW_OPTION_NOTOOLBARS = @as(u32, 2);
+pub const MMC_NW_OPTION_SHORTTITLE = @as(u32, 4);
 pub const MMC_PROP_CHANGEAFFECTSUI = @as(u32, 1);
 pub const MMC_PROP_MODIFIABLE = @as(u32, 2);
-pub const MMC_PROP_REMOVABLE = @as(u32, 4);
 pub const MMC_PROP_PERSIST = @as(u32, 8);
-pub const MMCLV_AUTO = @as(i32, -1);
-pub const MMCLV_NOPARAM = @as(i32, -2);
-pub const MMCLV_NOICON = @as(i32, -1);
-pub const MMCLV_VIEWSTYLE_ICON = @as(u32, 0);
-pub const MMCLV_VIEWSTYLE_SMALLICON = @as(u32, 2);
-pub const MMCLV_VIEWSTYLE_LIST = @as(u32, 3);
-pub const MMCLV_VIEWSTYLE_REPORT = @as(u32, 1);
-pub const MMCLV_VIEWSTYLE_FILTERED = @as(u32, 4);
-pub const MMCLV_NOPTR = @as(u32, 0);
-pub const MMCLV_UPDATE_NOINVALIDATEALL = @as(u32, 1);
-pub const MMCLV_UPDATE_NOSCROLL = @as(u32, 2);
-pub const MMC_IMAGECALLBACK = @as(i32, -1);
-pub const RDI_STR = @as(u32, 2);
-pub const RDI_IMAGE = @as(u32, 4);
-pub const RDI_STATE = @as(u32, 8);
-pub const RDI_PARAM = @as(u32, 16);
-pub const RDI_INDEX = @as(u32, 32);
-pub const RDI_INDENT = @as(u32, 64);
-pub const MMC_VIEW_OPTIONS_NONE = @as(u32, 0);
-pub const MMC_VIEW_OPTIONS_NOLISTVIEWS = @as(u32, 1);
-pub const MMC_VIEW_OPTIONS_MULTISELECT = @as(u32, 2);
-pub const MMC_VIEW_OPTIONS_OWNERDATALIST = @as(u32, 4);
-pub const MMC_VIEW_OPTIONS_FILTERED = @as(u32, 8);
-pub const MMC_VIEW_OPTIONS_CREATENEW = @as(u32, 16);
-pub const MMC_VIEW_OPTIONS_USEFONTLINKING = @as(u32, 32);
-pub const MMC_VIEW_OPTIONS_EXCLUDE_SCOPE_ITEMS_FROM_LIST = @as(u32, 64);
-pub const MMC_VIEW_OPTIONS_LEXICAL_SORT = @as(u32, 128);
-pub const MMC_PSO_NOAPPLYNOW = @as(u32, 1);
+pub const MMC_PROP_REMOVABLE = @as(u32, 4);
 pub const MMC_PSO_HASHELP = @as(u32, 2);
 pub const MMC_PSO_NEWWIZARDTYPE = @as(u32, 4);
 pub const MMC_PSO_NO_PROPTITLE = @as(u32, 8);
+pub const MMC_PSO_NOAPPLYNOW = @as(u32, 1);
+pub const MMC_VER = @as(u32, 512);
+pub const MMC_VIEW_OPTIONS_CREATENEW = @as(u32, 16);
+pub const MMC_VIEW_OPTIONS_EXCLUDE_SCOPE_ITEMS_FROM_LIST = @as(u32, 64);
+pub const MMC_VIEW_OPTIONS_FILTERED = @as(u32, 8);
+pub const MMC_VIEW_OPTIONS_LEXICAL_SORT = @as(u32, 128);
+pub const MMC_VIEW_OPTIONS_MULTISELECT = @as(u32, 2);
+pub const MMC_VIEW_OPTIONS_NOLISTVIEWS = @as(u32, 1);
+pub const MMC_VIEW_OPTIONS_NONE = @as(u32, 0);
+pub const MMC_VIEW_OPTIONS_OWNERDATALIST = @as(u32, 4);
+pub const MMC_VIEW_OPTIONS_USEFONTLINKING = @as(u32, 32);
+pub const MMC_WINDOW_COOKIE = @as(i32, -3);
+pub const MMCLV_AUTO = @as(i32, -1);
+pub const MMCLV_NOICON = @as(i32, -1);
+pub const MMCLV_NOPARAM = @as(i32, -2);
+pub const MMCLV_NOPTR = @as(u32, 0);
+pub const MMCLV_UPDATE_NOINVALIDATEALL = @as(u32, 1);
+pub const MMCLV_UPDATE_NOSCROLL = @as(u32, 2);
+pub const MMCLV_VIEWSTYLE_FILTERED = @as(u32, 4);
+pub const MMCLV_VIEWSTYLE_ICON = @as(u32, 0);
+pub const MMCLV_VIEWSTYLE_LIST = @as(u32, 3);
+pub const MMCLV_VIEWSTYLE_REPORT = @as(u32, 1);
+pub const MMCLV_VIEWSTYLE_SMALLICON = @as(u32, 2);
+pub const RDCI_ScopeItem = @as(u32, 2147483648);
+pub const RDI_IMAGE = @as(u32, 4);
+pub const RDI_INDENT = @as(u32, 64);
+pub const RDI_INDEX = @as(u32, 32);
+pub const RDI_PARAM = @as(u32, 16);
+pub const RDI_STATE = @as(u32, 8);
+pub const RDI_STR = @as(u32, 2);
 pub const RFI_PARTIAL = @as(u32, 1);
 pub const RFI_WRAP = @as(u32, 2);
 pub const RSI_DESCENDING = @as(u32, 1);
 pub const RSI_NOSORTICON = @as(u32, 2);
-pub const SDI_STR = @as(u32, 2);
-pub const SDI_IMAGE = @as(u32, 4);
-pub const SDI_OPENIMAGE = @as(u32, 8);
-pub const SDI_STATE = @as(u32, 16);
-pub const SDI_PARAM = @as(u32, 32);
-pub const SDI_CHILDREN = @as(u32, 64);
-pub const SDI_PARENT = @as(u32, 0);
-pub const SDI_PREVIOUS = @as(u32, 268435456);
-pub const SDI_NEXT = @as(u32, 536870912);
-pub const SDI_FIRST = @as(u32, 134217728);
-pub const MMC_MULTI_SELECT_COOKIE = @as(i32, -2);
-pub const MMC_WINDOW_COOKIE = @as(i32, -3);
-pub const SPECIAL_COOKIE_MIN = @as(i32, -10);
-pub const SPECIAL_COOKIE_MAX = @as(i32, -1);
-pub const MMC_NW_OPTION_NONE = @as(u32, 0);
-pub const MMC_NW_OPTION_NOSCOPEPANE = @as(u32, 1);
-pub const MMC_NW_OPTION_NOTOOLBARS = @as(u32, 2);
-pub const MMC_NW_OPTION_SHORTTITLE = @as(u32, 4);
-pub const MMC_NW_OPTION_CUSTOMTITLE = @as(u32, 8);
-pub const MMC_NW_OPTION_NOPERSIST = @as(u32, 16);
-pub const MMC_NW_OPTION_NOACTIONPANE = @as(u32, 32);
-pub const MMC_NODEID_SLOW_RETRIEVAL = @as(u32, 1);
-pub const SPECIAL_DOBJ_MIN = @as(i32, -10);
-pub const SPECIAL_DOBJ_MAX = @as(u32, 0);
-pub const AUTO_WIDTH = @as(i32, -1);
-pub const HIDE_COLUMN = @as(i32, -4);
-pub const ILSIF_LEAVE_LARGE_ICON = @as(u32, 1073741824);
-pub const ILSIF_LEAVE_SMALL_ICON = @as(u32, 536870912);
-pub const HDI_HIDDEN = @as(u32, 1);
-pub const RDCI_ScopeItem = @as(u32, 2147483648);
-pub const RVTI_MISC_OPTIONS_NOLISTVIEWS = @as(u32, 1);
+pub const RVTI_HTML_OPTIONS_NOLISTVIEW = @as(u32, 1);
+pub const RVTI_HTML_OPTIONS_NONE = @as(u32, 0);
+pub const RVTI_LIST_OPTIONS_ALLOWPASTE = @as(u32, 256);
+pub const RVTI_LIST_OPTIONS_EXCLUDE_SCOPE_ITEMS_FROM_LIST = @as(u32, 64);
+pub const RVTI_LIST_OPTIONS_FILTERED = @as(u32, 8);
+pub const RVTI_LIST_OPTIONS_LEXICAL_SORT = @as(u32, 128);
+pub const RVTI_LIST_OPTIONS_MULTISELECT = @as(u32, 4);
 pub const RVTI_LIST_OPTIONS_NONE = @as(u32, 0);
 pub const RVTI_LIST_OPTIONS_OWNERDATALIST = @as(u32, 2);
-pub const RVTI_LIST_OPTIONS_MULTISELECT = @as(u32, 4);
-pub const RVTI_LIST_OPTIONS_FILTERED = @as(u32, 8);
 pub const RVTI_LIST_OPTIONS_USEFONTLINKING = @as(u32, 32);
-pub const RVTI_LIST_OPTIONS_EXCLUDE_SCOPE_ITEMS_FROM_LIST = @as(u32, 64);
-pub const RVTI_LIST_OPTIONS_LEXICAL_SORT = @as(u32, 128);
-pub const RVTI_LIST_OPTIONS_ALLOWPASTE = @as(u32, 256);
-pub const RVTI_HTML_OPTIONS_NONE = @as(u32, 0);
-pub const RVTI_HTML_OPTIONS_NOLISTVIEW = @as(u32, 1);
-pub const RVTI_OCX_OPTIONS_NONE = @as(u32, 0);
-pub const RVTI_OCX_OPTIONS_NOLISTVIEW = @as(u32, 1);
+pub const RVTI_MISC_OPTIONS_NOLISTVIEWS = @as(u32, 1);
 pub const RVTI_OCX_OPTIONS_CACHE_OCX = @as(u32, 2);
-pub const MMC_DEFAULT_OPERATION_COPY = @as(u32, 1);
-pub const MMC_ITEM_OVERLAY_STATE_MASK = @as(u32, 3840);
-pub const MMC_ITEM_OVERLAY_STATE_SHIFT = @as(u32, 8);
-pub const MMC_ITEM_STATE_MASK = @as(u32, 255);
+pub const RVTI_OCX_OPTIONS_NOLISTVIEW = @as(u32, 1);
+pub const RVTI_OCX_OPTIONS_NONE = @as(u32, 0);
+pub const SDI_CHILDREN = @as(u32, 64);
+pub const SDI_FIRST = @as(u32, 134217728);
+pub const SDI_IMAGE = @as(u32, 4);
+pub const SDI_NEXT = @as(u32, 536870912);
+pub const SDI_OPENIMAGE = @as(u32, 8);
+pub const SDI_PARAM = @as(u32, 32);
+pub const SDI_PARENT = @as(u32, 0);
+pub const SDI_PREVIOUS = @as(u32, 268435456);
+pub const SDI_STATE = @as(u32, 16);
+pub const SDI_STR = @as(u32, 2);
+pub const SPECIAL_COOKIE_MAX = @as(i32, -1);
+pub const SPECIAL_COOKIE_MIN = @as(i32, -10);
+pub const SPECIAL_DOBJ_MAX = @as(u32, 0);
+pub const SPECIAL_DOBJ_MIN = @as(i32, -10);
 
 //--------------------------------------------------------------------------------
 // Section: Types (127)
 //--------------------------------------------------------------------------------
-const CLSID_Application_Value = Guid.initString("49b2791a-b1ae-4c90-9b8e-e860ba07f889");
-pub const CLSID_Application = &CLSID_Application_Value;
-
-const CLSID_AppEventsDHTMLConnector_Value = Guid.initString("ade6444b-c91f-4e37-92a4-5bb430a33340");
-pub const CLSID_AppEventsDHTMLConnector = &CLSID_AppEventsDHTMLConnector_Value;
-
-pub const MMC_PROPERTY_ACTION = enum(i32) {
-    DELETING = 1,
-    CHANGING = 2,
-    INITIALIZED = 3,
-};
-pub const MMC_PROPACT_DELETING = MMC_PROPERTY_ACTION.DELETING;
-pub const MMC_PROPACT_CHANGING = MMC_PROPERTY_ACTION.CHANGING;
-pub const MMC_PROPACT_INITIALIZED = MMC_PROPERTY_ACTION.INITIALIZED;
-
-pub const MMC_SNAPIN_PROPERTY = extern struct {
-    pszPropName: ?[*:0]const u16,
-    varValue: VARIANT,
-    eAction: MMC_PROPERTY_ACTION,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISnapinProperties_Value = Guid.initString("f7889da9-4a02-4837-bf89-1a6f2a021010");
-pub const IID_ISnapinProperties = &IID_ISnapinProperties_Value;
-pub const ISnapinProperties = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const ISnapinProperties,
-            pProperties: ?*Properties,
-        ) callconv(.winapi) HRESULT,
-        QueryPropertyNames: *const fn(
-            self: *const ISnapinProperties,
-            pCallback: ?*ISnapinPropertiesCallback,
-        ) callconv(.winapi) HRESULT,
-        PropertiesChanged: *const fn(
-            self: *const ISnapinProperties,
-            cProperties: i32,
-            pProperties: [*]MMC_SNAPIN_PROPERTY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const ISnapinProperties, pProperties: ?*Properties) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pProperties);
-    }
-    pub fn QueryPropertyNames(self: *const ISnapinProperties, pCallback: ?*ISnapinPropertiesCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryPropertyNames(self, pCallback);
-    }
-    pub fn PropertiesChanged(self: *const ISnapinProperties, cProperties: i32, pProperties: [*]MMC_SNAPIN_PROPERTY) callconv(.@"inline") HRESULT {
-        return self.vtable.PropertiesChanged(self, cProperties, pProperties);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISnapinPropertiesCallback_Value = Guid.initString("a50fa2e5-7e61-45eb-a8d4-9a07b3e851a8");
-pub const IID_ISnapinPropertiesCallback = &IID_ISnapinPropertiesCallback_Value;
-pub const ISnapinPropertiesCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPropertyName: *const fn(
-            self: *const ISnapinPropertiesCallback,
-            pszPropName: ?[*:0]const u16,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPropertyName(self: *const ISnapinPropertiesCallback, pszPropName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPropertyName(self, pszPropName, dwFlags);
-    }
-};
-
-pub const _DocumentMode = enum(i32) {
-    Author = 0,
-    User = 1,
-    User_MDI = 2,
-    User_SDI = 3,
-};
-pub const DocumentMode_Author = _DocumentMode.Author;
-pub const DocumentMode_User = _DocumentMode.User;
-pub const DocumentMode_User_MDI = _DocumentMode.User_MDI;
-pub const DocumentMode_User_SDI = _DocumentMode.User_SDI;
-
-pub const _ListViewMode = enum(i32) {
-    Small_Icons = 0,
-    Large_Icons = 1,
-    List = 2,
-    Detail = 3,
-    Filtered = 4,
-};
-pub const ListMode_Small_Icons = _ListViewMode.Small_Icons;
-pub const ListMode_Large_Icons = _ListViewMode.Large_Icons;
-pub const ListMode_List = _ListViewMode.List;
-pub const ListMode_Detail = _ListViewMode.Detail;
-pub const ListMode_Filtered = _ListViewMode.Filtered;
-
-pub const _ViewOptions = enum(i32) {
-    Default = 0,
-    ScopeTreeHidden = 1,
-    NoToolBars = 2,
-    NotPersistable = 4,
-    ActionPaneHidden = 8,
-};
-pub const ViewOption_Default = _ViewOptions.Default;
-pub const ViewOption_ScopeTreeHidden = _ViewOptions.ScopeTreeHidden;
-pub const ViewOption_NoToolBars = _ViewOptions.NoToolBars;
-pub const ViewOption_NotPersistable = _ViewOptions.NotPersistable;
-pub const ViewOption_ActionPaneHidden = _ViewOptions.ActionPaneHidden;
-
-pub const _ExportListOptions = enum(i32) {
-    Default = 0,
-    Unicode = 1,
-    TabDelimited = 2,
-    SelectedItemsOnly = 4,
-};
-pub const ExportListOptions_Default = _ExportListOptions.Default;
-pub const ExportListOptions_Unicode = _ExportListOptions.Unicode;
-pub const ExportListOptions_TabDelimited = _ExportListOptions.TabDelimited;
-pub const ExportListOptions_SelectedItemsOnly = _ExportListOptions.SelectedItemsOnly;
-
-const IID__Application_Value = Guid.initString("a3afb9cc-b653-4741-86ab-f0470ec1384c");
-pub const IID__Application = &IID__Application_Value;
-pub const _Application = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Help: *const fn(
-            self: *const _Application,
-        ) callconv(.winapi) void,
-        Quit: *const fn(
-            self: *const _Application,
-        ) callconv(.winapi) void,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Document: *const fn(
-            self: *const _Application,
-            Document: ?*?*Document,
-        ) callconv(.winapi) HRESULT,
-        Load: *const fn(
-            self: *const _Application,
-            Filename: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Frame: *const fn(
-            self: *const _Application,
-            Frame: ?*?*Frame,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Visible: *const fn(
-            self: *const _Application,
-            Visible: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        Show: *const fn(
-            self: *const _Application,
-        ) callconv(.winapi) HRESULT,
-        Hide: *const fn(
-            self: *const _Application,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserControl: *const fn(
-            self: *const _Application,
-            UserControl: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UserControl: *const fn(
-            self: *const _Application,
-            UserControl: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VersionMajor: *const fn(
-            self: *const _Application,
-            VersionMajor: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VersionMinor: *const fn(
-            self: *const _Application,
-            VersionMinor: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Help(self: *const _Application) callconv(.@"inline") void {
-        return self.vtable.Help(self);
-    }
-    pub fn Quit(self: *const _Application) callconv(.@"inline") void {
-        return self.vtable.Quit(self);
-    }
-    pub fn get_Document(self: *const _Application, _param_Document: ?*?*Document) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Document(self, _param_Document);
-    }
-    pub fn Load(self: *const _Application, Filename: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Load(self, Filename);
-    }
-    pub fn get_Frame(self: *const _Application, _param_Frame: ?*?*Frame) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Frame(self, _param_Frame);
-    }
-    pub fn get_Visible(self: *const _Application, Visible: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Visible(self, Visible);
-    }
-    pub fn Show(self: *const _Application) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self);
-    }
-    pub fn Hide(self: *const _Application) callconv(.@"inline") HRESULT {
-        return self.vtable.Hide(self);
-    }
-    pub fn get_UserControl(self: *const _Application, UserControl: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserControl(self, UserControl);
-    }
-    pub fn put_UserControl(self: *const _Application, UserControl: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UserControl(self, UserControl);
-    }
-    pub fn get_VersionMajor(self: *const _Application, VersionMajor: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_VersionMajor(self, VersionMajor);
-    }
-    pub fn get_VersionMinor(self: *const _Application, VersionMinor: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_VersionMinor(self, VersionMinor);
-    }
-};
-
 const IID__AppEvents_Value = Guid.initString("de46cbdd-53f5-4635-af54-4fe71e923d3f");
 pub const IID__AppEvents = &IID__AppEvents_Value;
 pub const _AppEvents = extern union {
@@ -412,16 +193,121 @@ pub const _AppEvents = extern union {
     }
 };
 
-const IID_AppEvents_Value = Guid.initString("fc7a4252-78ac-4532-8c5a-563cfe138863");
-pub const IID_AppEvents = &IID_AppEvents_Value;
-pub const AppEvents = extern union {
+const IID__Application_Value = Guid.initString("a3afb9cc-b653-4741-86ab-f0470ec1384c");
+pub const IID__Application = &IID__Application_Value;
+pub const _Application = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        Help: *const fn(
+            self: *const _Application,
+        ) callconv(.winapi) void,
+        Quit: *const fn(
+            self: *const _Application,
+        ) callconv(.winapi) void,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Document: *const fn(
+            self: *const _Application,
+            Document: ?*?*Document,
+        ) callconv(.winapi) HRESULT,
+        Load: *const fn(
+            self: *const _Application,
+            Filename: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Frame: *const fn(
+            self: *const _Application,
+            Frame: ?*?*Frame,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Visible: *const fn(
+            self: *const _Application,
+            Visible: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Show: *const fn(
+            self: *const _Application,
+        ) callconv(.winapi) HRESULT,
+        Hide: *const fn(
+            self: *const _Application,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserControl: *const fn(
+            self: *const _Application,
+            UserControl: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_UserControl: *const fn(
+            self: *const _Application,
+            UserControl: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_VersionMajor: *const fn(
+            self: *const _Application,
+            VersionMajor: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_VersionMinor: *const fn(
+            self: *const _Application,
+            VersionMinor: ?*i32,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
+    pub fn Help(self: *const _Application) callconv(.@"inline") void {
+        return self.vtable.Help(self);
+    }
+    pub fn Quit(self: *const _Application) callconv(.@"inline") void {
+        return self.vtable.Quit(self);
+    }
+    pub fn get_Document(self: *const _Application, _param_Document: ?*?*Document) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Document(self, _param_Document);
+    }
+    pub fn Load(self: *const _Application, Filename: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Load(self, Filename);
+    }
+    pub fn get_Frame(self: *const _Application, _param_Frame: ?*?*Frame) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Frame(self, _param_Frame);
+    }
+    pub fn get_Visible(self: *const _Application, Visible: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Visible(self, Visible);
+    }
+    pub fn Show(self: *const _Application) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self);
+    }
+    pub fn Hide(self: *const _Application) callconv(.@"inline") HRESULT {
+        return self.vtable.Hide(self);
+    }
+    pub fn get_UserControl(self: *const _Application, UserControl: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserControl(self, UserControl);
+    }
+    pub fn put_UserControl(self: *const _Application, UserControl: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UserControl(self, UserControl);
+    }
+    pub fn get_VersionMajor(self: *const _Application, VersionMajor: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_VersionMajor(self, VersionMajor);
+    }
+    pub fn get_VersionMinor(self: *const _Application, VersionMinor: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_VersionMinor(self, VersionMinor);
+    }
 };
+
+pub const _ColumnSortOrder = enum(i32) {
+    Ascending = 0,
+    Descending = 1,
+};
+pub const SortOrder_Ascending = _ColumnSortOrder.Ascending;
+pub const SortOrder_Descending = _ColumnSortOrder.Descending;
+
+pub const _DocumentMode = enum(i32) {
+    Author = 0,
+    User = 1,
+    User_MDI = 2,
+    User_SDI = 3,
+};
+pub const DocumentMode_Author = _DocumentMode.Author;
+pub const DocumentMode_User = _DocumentMode.User;
+pub const DocumentMode_User_MDI = _DocumentMode.User_MDI;
+pub const DocumentMode_User_SDI = _DocumentMode.User_SDI;
 
 const IID__EventConnector_Value = Guid.initString("c0bccd30-de44-4528-8403-a05a6a1cc8ea");
 pub const IID__EventConnector = &IID__EventConnector_Value;
@@ -447,197 +333,304 @@ pub const _EventConnector = extern union {
     }
 };
 
-const IID_Frame_Value = Guid.initString("e5e2d970-5bb3-4306-8804-b0968a31c8e6");
-pub const IID_Frame = &IID_Frame_Value;
-pub const Frame = extern union {
+pub const _ExportListOptions = enum(i32) {
+    Default = 0,
+    Unicode = 1,
+    TabDelimited = 2,
+    SelectedItemsOnly = 4,
+};
+pub const ExportListOptions_Default = _ExportListOptions.Default;
+pub const ExportListOptions_Unicode = _ExportListOptions.Unicode;
+pub const ExportListOptions_TabDelimited = _ExportListOptions.TabDelimited;
+pub const ExportListOptions_SelectedItemsOnly = _ExportListOptions.SelectedItemsOnly;
+
+pub const _ListViewMode = enum(i32) {
+    Small_Icons = 0,
+    Large_Icons = 1,
+    List = 2,
+    Detail = 3,
+    Filtered = 4,
+};
+pub const ListMode_Small_Icons = _ListViewMode.Small_Icons;
+pub const ListMode_Large_Icons = _ListViewMode.Large_Icons;
+pub const ListMode_List = _ListViewMode.List;
+pub const ListMode_Detail = _ListViewMode.Detail;
+pub const ListMode_Filtered = _ListViewMode.Filtered;
+
+pub const _ViewOptions = enum(i32) {
+    Default = 0,
+    ScopeTreeHidden = 1,
+    NoToolBars = 2,
+    NotPersistable = 4,
+    ActionPaneHidden = 8,
+};
+pub const ViewOption_Default = _ViewOptions.Default;
+pub const ViewOption_ScopeTreeHidden = _ViewOptions.ScopeTreeHidden;
+pub const ViewOption_NoToolBars = _ViewOptions.NoToolBars;
+pub const ViewOption_NotPersistable = _ViewOptions.NotPersistable;
+pub const ViewOption_ActionPaneHidden = _ViewOptions.ActionPaneHidden;
+
+const IID_AppEvents_Value = Guid.initString("fc7a4252-78ac-4532-8c5a-563cfe138863");
+pub const IID_AppEvents = &IID_AppEvents_Value;
+pub const AppEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Maximize: *const fn(
-            self: *const Frame,
-        ) callconv(.winapi) HRESULT,
-        Minimize: *const fn(
-            self: *const Frame,
-        ) callconv(.winapi) HRESULT,
-        Restore: *const fn(
-            self: *const Frame,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+const CLSID_AppEventsDHTMLConnector_Value = Guid.initString("ade6444b-c91f-4e37-92a4-5bb430a33340");
+pub const CLSID_AppEventsDHTMLConnector = &CLSID_AppEventsDHTMLConnector_Value;
+
+const CLSID_Application_Value = Guid.initString("49b2791a-b1ae-4c90-9b8e-e860ba07f889");
+pub const CLSID_Application = &CLSID_Application_Value;
+
+pub const CCM_COMMANDID_MASK_CONSTANTS = enum(u32) {
+    D = 4294901760,
+};
+pub const CCM_COMMANDID_MASK_RESERVED = CCM_COMMANDID_MASK_CONSTANTS.D;
+
+pub const CCM_INSERTIONALLOWED = enum(i32) {
+    TOP = 1,
+    NEW = 2,
+    TASK = 4,
+    VIEW = 8,
+};
+pub const CCM_INSERTIONALLOWED_TOP = CCM_INSERTIONALLOWED.TOP;
+pub const CCM_INSERTIONALLOWED_NEW = CCM_INSERTIONALLOWED.NEW;
+pub const CCM_INSERTIONALLOWED_TASK = CCM_INSERTIONALLOWED.TASK;
+pub const CCM_INSERTIONALLOWED_VIEW = CCM_INSERTIONALLOWED.VIEW;
+
+pub const CCM_INSERTIONPOINTID = enum(i32) {
+    MASK_SPECIAL = -65536,
+    MASK_SHARED = -2147483648,
+    MASK_CREATE_PRIMARY = 1073741824,
+    MASK_ADD_PRIMARY = 536870912,
+    MASK_ADD_3RDPARTY = 268435456,
+    MASK_RESERVED = 268369920,
+    MASK_FLAGINDEX = 31,
+    PRIMARY_TOP = -1610612736,
+    PRIMARY_NEW = -1610612735,
+    PRIMARY_TASK = -1610612734,
+    PRIMARY_VIEW = -1610612733,
+    PRIMARY_HELP = -1610612732,
+    @"3RDPARTY_NEW" = -1879048191,
+    @"3RDPARTY_TASK" = -1879048190,
+    pub const ROOT_MENU = .MASK_SHARED;
+};
+pub const CCM_INSERTIONPOINTID_MASK_SPECIAL = CCM_INSERTIONPOINTID.MASK_SPECIAL;
+pub const CCM_INSERTIONPOINTID_MASK_SHARED = CCM_INSERTIONPOINTID.MASK_SHARED;
+pub const CCM_INSERTIONPOINTID_MASK_CREATE_PRIMARY = CCM_INSERTIONPOINTID.MASK_CREATE_PRIMARY;
+pub const CCM_INSERTIONPOINTID_MASK_ADD_PRIMARY = CCM_INSERTIONPOINTID.MASK_ADD_PRIMARY;
+pub const CCM_INSERTIONPOINTID_MASK_ADD_3RDPARTY = CCM_INSERTIONPOINTID.MASK_ADD_3RDPARTY;
+pub const CCM_INSERTIONPOINTID_MASK_RESERVED = CCM_INSERTIONPOINTID.MASK_RESERVED;
+pub const CCM_INSERTIONPOINTID_MASK_FLAGINDEX = CCM_INSERTIONPOINTID.MASK_FLAGINDEX;
+pub const CCM_INSERTIONPOINTID_PRIMARY_TOP = CCM_INSERTIONPOINTID.PRIMARY_TOP;
+pub const CCM_INSERTIONPOINTID_PRIMARY_NEW = CCM_INSERTIONPOINTID.PRIMARY_NEW;
+pub const CCM_INSERTIONPOINTID_PRIMARY_TASK = CCM_INSERTIONPOINTID.PRIMARY_TASK;
+pub const CCM_INSERTIONPOINTID_PRIMARY_VIEW = CCM_INSERTIONPOINTID.PRIMARY_VIEW;
+pub const CCM_INSERTIONPOINTID_PRIMARY_HELP = CCM_INSERTIONPOINTID.PRIMARY_HELP;
+pub const CCM_INSERTIONPOINTID_3RDPARTY_NEW = CCM_INSERTIONPOINTID.@"3RDPARTY_NEW";
+pub const CCM_INSERTIONPOINTID_3RDPARTY_TASK = CCM_INSERTIONPOINTID.@"3RDPARTY_TASK";
+pub const CCM_INSERTIONPOINTID_ROOT_MENU = CCM_INSERTIONPOINTID.MASK_SHARED;
+
+pub const CCM_SPECIAL = enum(i32) {
+    SEPARATOR = 1,
+    SUBMENU = 2,
+    DEFAULT_ITEM = 4,
+    INSERTION_POINT = 8,
+    TESTONLY = 16,
+};
+pub const CCM_SPECIAL_SEPARATOR = CCM_SPECIAL.SEPARATOR;
+pub const CCM_SPECIAL_SUBMENU = CCM_SPECIAL.SUBMENU;
+pub const CCM_SPECIAL_DEFAULT_ITEM = CCM_SPECIAL.DEFAULT_ITEM;
+pub const CCM_SPECIAL_INSERTION_POINT = CCM_SPECIAL.INSERTION_POINT;
+pub const CCM_SPECIAL_TESTONLY = CCM_SPECIAL.TESTONLY;
+
+const IID_Column_Value = Guid.initString("fd1c5f63-2b16-4d06-9ab3-f45350b940ab");
+pub const IID_Column = &IID_Column_Value;
+pub const Column = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Name: *const fn(
+            self: *const Column,
+            Name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Top: *const fn(
-            self: *const Frame,
-            Top: ?*i32,
+        get_Width: *const fn(
+            self: *const Column,
+            Width: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Top: *const fn(
-            self: *const Frame,
-            top: i32,
+        put_Width: *const fn(
+            self: *const Column,
+            Width: i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Bottom: *const fn(
-            self: *const Frame,
-            Bottom: ?*i32,
+        get_DisplayPosition: *const fn(
+            self: *const Column,
+            DisplayPosition: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Bottom: *const fn(
-            self: *const Frame,
-            bottom: i32,
+        put_DisplayPosition: *const fn(
+            self: *const Column,
+            Index: i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Left: *const fn(
-            self: *const Frame,
-            Left: ?*i32,
+        get_Hidden: *const fn(
+            self: *const Column,
+            Hidden: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Left: *const fn(
-            self: *const Frame,
-            left: i32,
+        put_Hidden: *const fn(
+            self: *const Column,
+            Hidden: BOOL,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Right: *const fn(
-            self: *const Frame,
-            Right: ?*i32,
+        SetAsSortColumn: *const fn(
+            self: *const Column,
+            SortOrder: _ColumnSortOrder,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Right: *const fn(
-            self: *const Frame,
-            right: i32,
+        IsSortColumn: *const fn(
+            self: *const Column,
+            IsSortColumn: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Maximize(self: *const Frame) callconv(.@"inline") HRESULT {
-        return self.vtable.Maximize(self);
+    pub fn Name(self: *const Column, _param_Name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Name(self, _param_Name);
     }
-    pub fn Minimize(self: *const Frame) callconv(.@"inline") HRESULT {
-        return self.vtable.Minimize(self);
+    pub fn get_Width(self: *const Column, Width: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Width(self, Width);
     }
-    pub fn Restore(self: *const Frame) callconv(.@"inline") HRESULT {
-        return self.vtable.Restore(self);
+    pub fn put_Width(self: *const Column, Width: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Width(self, Width);
     }
-    pub fn get_Top(self: *const Frame, Top: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Top(self, Top);
+    pub fn get_DisplayPosition(self: *const Column, DisplayPosition: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayPosition(self, DisplayPosition);
     }
-    pub fn put_Top(self: *const Frame, top: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Top(self, top);
+    pub fn put_DisplayPosition(self: *const Column, Index: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisplayPosition(self, Index);
     }
-    pub fn get_Bottom(self: *const Frame, Bottom: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Bottom(self, Bottom);
+    pub fn get_Hidden(self: *const Column, Hidden: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Hidden(self, Hidden);
     }
-    pub fn put_Bottom(self: *const Frame, bottom: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Bottom(self, bottom);
+    pub fn put_Hidden(self: *const Column, Hidden: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Hidden(self, Hidden);
     }
-    pub fn get_Left(self: *const Frame, Left: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Left(self, Left);
+    pub fn SetAsSortColumn(self: *const Column, SortOrder: _ColumnSortOrder) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAsSortColumn(self, SortOrder);
     }
-    pub fn put_Left(self: *const Frame, left: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Left(self, left);
-    }
-    pub fn get_Right(self: *const Frame, Right: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Right(self, Right);
-    }
-    pub fn put_Right(self: *const Frame, right: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Right(self, right);
+    pub fn IsSortColumn(self: *const Column, _param_IsSortColumn: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSortColumn(self, _param_IsSortColumn);
     }
 };
 
-const IID_Node_Value = Guid.initString("f81ed800-7839-4447-945d-8e15da59ca55");
-pub const IID_Node = &IID_Node_Value;
-pub const Node = extern union {
+const IID_Columns_Value = Guid.initString("383d4d97-fc44-478b-b139-6323dc48611c");
+pub const IID_Columns = &IID_Columns_Value;
+pub const Columns = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const Node,
-            Name: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        get_Property: *const fn(
-            self: *const Node,
-            PropertyName: ?BSTR,
-            PropertyValue: ?*?*u16,
+        Item: *const fn(
+            self: *const Columns,
+            Index: i32,
+            Column: ?*?*Column,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Bookmark: *const fn(
-            self: *const Node,
-            Bookmark: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        IsScopeNode: *const fn(
-            self: *const Node,
-            IsScopeNode: ?*BOOL,
+        get_Count: *const fn(
+            self: *const Columns,
+            Count: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Nodetype: *const fn(
-            self: *const Node,
-            Nodetype: ?*?*u16,
+        get__NewEnum: *const fn(
+            self: *const Columns,
+            retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const Node, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, _param_Name);
+    pub fn Item(self: *const Columns, Index: i32, _param_Column: ?*?*Column) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, _param_Column);
     }
-    pub fn get_Property(self: *const Node, PropertyName: ?BSTR, PropertyValue: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Property(self, PropertyName, PropertyValue);
+    pub fn get_Count(self: *const Columns, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
     }
-    pub fn get_Bookmark(self: *const Node, Bookmark: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Bookmark(self, Bookmark);
-    }
-    pub fn IsScopeNode(self: *const Node, _param_IsScopeNode: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsScopeNode(self, _param_IsScopeNode);
-    }
-    pub fn get_Nodetype(self: *const Node, Nodetype: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Nodetype(self, Nodetype);
+    pub fn get__NewEnum(self: *const Columns, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
 };
 
-const IID_ScopeNamespace_Value = Guid.initString("ebbb48dc-1a3b-4d86-b786-c21b28389012");
-pub const IID_ScopeNamespace = &IID_ScopeNamespace_Value;
-pub const ScopeNamespace = extern union {
+const CLSID_ConsolePower_Value = Guid.initString("f0285374-dff1-11d3-b433-00c04f8ecd78");
+pub const CLSID_ConsolePower = &CLSID_ConsolePower_Value;
+
+const IID_ContextMenu_Value = Guid.initString("dab39ce0-25e6-4e07-8362-ba9c95706545");
+pub const IID_ContextMenu = &IID_ContextMenu_Value;
+pub const ContextMenu = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetParent: *const fn(
-            self: *const ScopeNamespace,
-            Node: ?*Node,
-            Parent: ?*?*Node,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ContextMenu,
+            retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        GetChild: *const fn(
-            self: *const ScopeNamespace,
-            Node: ?*Node,
-            Child: ?*?*Node,
+        get_Item: *const fn(
+            self: *const ContextMenu,
+            IndexOrPath: VARIANT,
+            MenuItem: ?*?*MenuItem,
         ) callconv(.winapi) HRESULT,
-        GetNext: *const fn(
-            self: *const ScopeNamespace,
-            Node: ?*Node,
-            Next: ?*?*Node,
-        ) callconv(.winapi) HRESULT,
-        GetRoot: *const fn(
-            self: *const ScopeNamespace,
-            Root: ?*?*Node,
-        ) callconv(.winapi) HRESULT,
-        Expand: *const fn(
-            self: *const ScopeNamespace,
-            Node: ?*Node,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ContextMenu,
+            Count: ?*i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetParent(self: *const ScopeNamespace, _param_Node: ?*Node, Parent: ?*?*Node) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParent(self, _param_Node, Parent);
+    pub fn get__NewEnum(self: *const ContextMenu, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn GetChild(self: *const ScopeNamespace, _param_Node: ?*Node, Child: ?*?*Node) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChild(self, _param_Node, Child);
+    pub fn get_Item(self: *const ContextMenu, IndexOrPath: VARIANT, _param_MenuItem: ?*?*MenuItem) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, IndexOrPath, _param_MenuItem);
     }
-    pub fn GetNext(self: *const ScopeNamespace, _param_Node: ?*Node, Next: ?*?*Node) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNext(self, _param_Node, Next);
-    }
-    pub fn GetRoot(self: *const ScopeNamespace, Root: ?*?*Node) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRoot(self, Root);
-    }
-    pub fn Expand(self: *const ScopeNamespace, _param_Node: ?*Node) callconv(.@"inline") HRESULT {
-        return self.vtable.Expand(self, _param_Node);
+    pub fn get_Count(self: *const ContextMenu, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
     }
 };
+
+pub const CONTEXTMENUITEM = extern struct {
+    strName: ?PWSTR,
+    strStatusBarText: ?PWSTR,
+    lCommandID: i32,
+    lInsertionPointID: i32,
+    fFlags: i32,
+    fSpecialFlags: i32,
+};
+
+pub const CONTEXTMENUITEM2 = extern struct {
+    strName: ?PWSTR,
+    strStatusBarText: ?PWSTR,
+    lCommandID: i32,
+    lInsertionPointID: i32,
+    fFlags: i32,
+    fSpecialFlags: i32,
+    strLanguageIndependentName: ?PWSTR,
+};
+
+pub const DATA_OBJECT_TYPES = enum(i32) {
+    SCOPE = 32768,
+    RESULT = 32769,
+    SNAPIN_MANAGER = 32770,
+    UNINITIALIZED = 65535,
+};
+pub const CCT_SCOPE = DATA_OBJECT_TYPES.SCOPE;
+pub const CCT_RESULT = DATA_OBJECT_TYPES.RESULT;
+pub const CCT_SNAPIN_MANAGER = DATA_OBJECT_TYPES.SNAPIN_MANAGER;
+pub const CCT_UNINITIALIZED = DATA_OBJECT_TYPES.UNINITIALIZED;
 
 const IID_Document_Value = Guid.initString("225120d6-1e0f-40a3-93fe-1079e6a8017b");
 pub const IID_Document = &IID_Document_Value;
@@ -773,6 +766,2666 @@ pub const Document = extern union {
     }
 };
 
+const IID_Extension_Value = Guid.initString("ad4d6ca6-912f-409b-a26e-7fd234aef542");
+pub const IID_Extension = &IID_Extension_Value;
+pub const Extension = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const Extension,
+            Name: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Vendor: *const fn(
+            self: *const Extension,
+            Vendor: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Version: *const fn(
+            self: *const Extension,
+            Version: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Extensions: *const fn(
+            self: *const Extension,
+            Extensions: ?*?*Extensions,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SnapinCLSID: *const fn(
+            self: *const Extension,
+            SnapinCLSID: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        EnableAllExtensions: *const fn(
+            self: *const Extension,
+            Enable: BOOL,
+        ) callconv(.winapi) HRESULT,
+        Enable: *const fn(
+            self: *const Extension,
+            Enable: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const Extension, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, _param_Name);
+    }
+    pub fn get_Vendor(self: *const Extension, Vendor: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Vendor(self, Vendor);
+    }
+    pub fn get_Version(self: *const Extension, Version: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Version(self, Version);
+    }
+    pub fn get_Extensions(self: *const Extension, _param_Extensions: ?*?*Extensions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Extensions(self, _param_Extensions);
+    }
+    pub fn get_SnapinCLSID(self: *const Extension, SnapinCLSID: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SnapinCLSID(self, SnapinCLSID);
+    }
+    pub fn EnableAllExtensions(self: *const Extension, _param_Enable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableAllExtensions(self, _param_Enable);
+    }
+    pub fn Enable(self: *const Extension, _param_Enable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Enable(self, _param_Enable);
+    }
+};
+
+const IID_Extensions_Value = Guid.initString("82dbea43-8ca4-44bc-a2ca-d18741059ec8");
+pub const IID_Extensions = &IID_Extensions_Value;
+pub const Extensions = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const Extensions,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const Extensions,
+            Index: i32,
+            Extension: ?*?*Extension,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const Extensions,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const Extensions, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Item(self: *const Extensions, Index: i32, _param_Extension: ?*?*Extension) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, _param_Extension);
+    }
+    pub fn get_Count(self: *const Extensions, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+};
+
+const IID_Frame_Value = Guid.initString("e5e2d970-5bb3-4306-8804-b0968a31c8e6");
+pub const IID_Frame = &IID_Frame_Value;
+pub const Frame = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Maximize: *const fn(
+            self: *const Frame,
+        ) callconv(.winapi) HRESULT,
+        Minimize: *const fn(
+            self: *const Frame,
+        ) callconv(.winapi) HRESULT,
+        Restore: *const fn(
+            self: *const Frame,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Top: *const fn(
+            self: *const Frame,
+            Top: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Top: *const fn(
+            self: *const Frame,
+            top: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Bottom: *const fn(
+            self: *const Frame,
+            Bottom: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Bottom: *const fn(
+            self: *const Frame,
+            bottom: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Left: *const fn(
+            self: *const Frame,
+            Left: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Left: *const fn(
+            self: *const Frame,
+            left: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Right: *const fn(
+            self: *const Frame,
+            Right: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Right: *const fn(
+            self: *const Frame,
+            right: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Maximize(self: *const Frame) callconv(.@"inline") HRESULT {
+        return self.vtable.Maximize(self);
+    }
+    pub fn Minimize(self: *const Frame) callconv(.@"inline") HRESULT {
+        return self.vtable.Minimize(self);
+    }
+    pub fn Restore(self: *const Frame) callconv(.@"inline") HRESULT {
+        return self.vtable.Restore(self);
+    }
+    pub fn get_Top(self: *const Frame, Top: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Top(self, Top);
+    }
+    pub fn put_Top(self: *const Frame, top: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Top(self, top);
+    }
+    pub fn get_Bottom(self: *const Frame, Bottom: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Bottom(self, Bottom);
+    }
+    pub fn put_Bottom(self: *const Frame, bottom: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Bottom(self, bottom);
+    }
+    pub fn get_Left(self: *const Frame, Left: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Left(self, Left);
+    }
+    pub fn put_Left(self: *const Frame, left: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Left(self, left);
+    }
+    pub fn get_Right(self: *const Frame, Right: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Right(self, Right);
+    }
+    pub fn put_Right(self: *const Frame, right: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Right(self, right);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IColumnData_Value = Guid.initString("547c1354-024d-11d3-a707-00c04f8ef4cb");
+pub const IID_IColumnData = &IID_IColumnData_Value;
+pub const IColumnData = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetColumnConfigData: *const fn(
+            self: *const IColumnData,
+            pColID: ?*SColumnSetID,
+            pColSetData: ?*MMC_COLUMN_SET_DATA,
+        ) callconv(.winapi) HRESULT,
+        GetColumnConfigData: *const fn(
+            self: *const IColumnData,
+            pColID: ?*SColumnSetID,
+            ppColSetData: ?*?*MMC_COLUMN_SET_DATA,
+        ) callconv(.winapi) HRESULT,
+        SetColumnSortData: *const fn(
+            self: *const IColumnData,
+            pColID: ?*SColumnSetID,
+            pColSortData: ?*MMC_SORT_SET_DATA,
+        ) callconv(.winapi) HRESULT,
+        GetColumnSortData: *const fn(
+            self: *const IColumnData,
+            pColID: ?*SColumnSetID,
+            ppColSortData: ?*?*MMC_SORT_SET_DATA,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetColumnConfigData(self: *const IColumnData, pColID: ?*SColumnSetID, pColSetData: ?*MMC_COLUMN_SET_DATA) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColumnConfigData(self, pColID, pColSetData);
+    }
+    pub fn GetColumnConfigData(self: *const IColumnData, pColID: ?*SColumnSetID, ppColSetData: ?*?*MMC_COLUMN_SET_DATA) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColumnConfigData(self, pColID, ppColSetData);
+    }
+    pub fn SetColumnSortData(self: *const IColumnData, pColID: ?*SColumnSetID, pColSortData: ?*MMC_SORT_SET_DATA) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColumnSortData(self, pColID, pColSortData);
+    }
+    pub fn GetColumnSortData(self: *const IColumnData, pColID: ?*SColumnSetID, ppColSortData: ?*?*MMC_SORT_SET_DATA) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColumnSortData(self, pColID, ppColSortData);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IComponent_Value = Guid.initString("43136eb2-d36c-11cf-adbc-00aa00a80033");
+pub const IID_IComponent = &IID_IComponent_Value;
+pub const IComponent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IComponent,
+            lpConsole: ?*IConsole,
+        ) callconv(.winapi) HRESULT,
+        Notify: *const fn(
+            self: *const IComponent,
+            lpDataObject: ?*IDataObject,
+            event: MMC_NOTIFY_TYPE,
+            arg: LPARAM,
+            param3: LPARAM,
+        ) callconv(.winapi) HRESULT,
+        Destroy: *const fn(
+            self: *const IComponent,
+            cookie: isize,
+        ) callconv(.winapi) HRESULT,
+        QueryDataObject: *const fn(
+            self: *const IComponent,
+            cookie: isize,
+            type: DATA_OBJECT_TYPES,
+            ppDataObject: ?*?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+        GetResultViewType: *const fn(
+            self: *const IComponent,
+            cookie: isize,
+            ppViewType: ?*?PWSTR,
+            pViewOptions: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetDisplayInfo: *const fn(
+            self: *const IComponent,
+            pResultDataItem: ?*RESULTDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        CompareObjects: *const fn(
+            self: *const IComponent,
+            lpDataObjectA: ?*IDataObject,
+            lpDataObjectB: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IComponent, lpConsole: ?*IConsole) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, lpConsole);
+    }
+    pub fn Notify(self: *const IComponent, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: LPARAM, param3: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, lpDataObject, event, arg, param3);
+    }
+    pub fn Destroy(self: *const IComponent, cookie: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.Destroy(self, cookie);
+    }
+    pub fn QueryDataObject(self: *const IComponent, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryDataObject(self, cookie, @"type", ppDataObject);
+    }
+    pub fn GetResultViewType(self: *const IComponent, cookie: isize, ppViewType: ?*?PWSTR, pViewOptions: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetResultViewType(self, cookie, ppViewType, pViewOptions);
+    }
+    pub fn GetDisplayInfo(self: *const IComponent, pResultDataItem: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDisplayInfo(self, pResultDataItem);
+    }
+    pub fn CompareObjects(self: *const IComponent, lpDataObjectA: ?*IDataObject, lpDataObjectB: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.CompareObjects(self, lpDataObjectA, lpDataObjectB);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IComponent2_Value = Guid.initString("79a2d615-4a10-4ed4-8c65-8633f9335095");
+pub const IID_IComponent2 = &IID_IComponent2_Value;
+pub const IComponent2 = extern union {
+    pub const VTable = extern struct {
+        base: IComponent.VTable,
+        QueryDispatch: *const fn(
+            self: *const IComponent2,
+            cookie: isize,
+            type: DATA_OBJECT_TYPES,
+            ppDispatch: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        GetResultViewType2: *const fn(
+            self: *const IComponent2,
+            cookie: isize,
+            pResultViewType: ?*RESULT_VIEW_TYPE_INFO,
+        ) callconv(.winapi) HRESULT,
+        RestoreResultView: *const fn(
+            self: *const IComponent2,
+            cookie: isize,
+            pResultViewType: ?*RESULT_VIEW_TYPE_INFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IComponent: IComponent,
+    IUnknown: IUnknown,
+    pub fn QueryDispatch(self: *const IComponent2, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryDispatch(self, cookie, @"type", ppDispatch);
+    }
+    pub fn GetResultViewType2(self: *const IComponent2, cookie: isize, pResultViewType: ?*RESULT_VIEW_TYPE_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetResultViewType2(self, cookie, pResultViewType);
+    }
+    pub fn RestoreResultView(self: *const IComponent2, cookie: isize, pResultViewType: ?*RESULT_VIEW_TYPE_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreResultView(self, cookie, pResultViewType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IComponentData_Value = Guid.initString("955ab28a-5218-11d0-a985-00c04fd8d565");
+pub const IID_IComponentData = &IID_IComponentData_Value;
+pub const IComponentData = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IComponentData,
+            pUnknown: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        CreateComponent: *const fn(
+            self: *const IComponentData,
+            ppComponent: ?*?*IComponent,
+        ) callconv(.winapi) HRESULT,
+        Notify: *const fn(
+            self: *const IComponentData,
+            lpDataObject: ?*IDataObject,
+            event: MMC_NOTIFY_TYPE,
+            arg: LPARAM,
+            param3: LPARAM,
+        ) callconv(.winapi) HRESULT,
+        Destroy: *const fn(
+            self: *const IComponentData,
+        ) callconv(.winapi) HRESULT,
+        QueryDataObject: *const fn(
+            self: *const IComponentData,
+            cookie: isize,
+            type: DATA_OBJECT_TYPES,
+            ppDataObject: ?*?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+        GetDisplayInfo: *const fn(
+            self: *const IComponentData,
+            pScopeDataItem: ?*SCOPEDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        CompareObjects: *const fn(
+            self: *const IComponentData,
+            lpDataObjectA: ?*IDataObject,
+            lpDataObjectB: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IComponentData, pUnknown: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pUnknown);
+    }
+    pub fn CreateComponent(self: *const IComponentData, ppComponent: ?*?*IComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateComponent(self, ppComponent);
+    }
+    pub fn Notify(self: *const IComponentData, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: LPARAM, param3: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, lpDataObject, event, arg, param3);
+    }
+    pub fn Destroy(self: *const IComponentData) callconv(.@"inline") HRESULT {
+        return self.vtable.Destroy(self);
+    }
+    pub fn QueryDataObject(self: *const IComponentData, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryDataObject(self, cookie, @"type", ppDataObject);
+    }
+    pub fn GetDisplayInfo(self: *const IComponentData, pScopeDataItem: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDisplayInfo(self, pScopeDataItem);
+    }
+    pub fn CompareObjects(self: *const IComponentData, lpDataObjectA: ?*IDataObject, lpDataObjectB: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.CompareObjects(self, lpDataObjectA, lpDataObjectB);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IComponentData2_Value = Guid.initString("cca0f2d2-82de-41b5-bf47-3b2076273d5c");
+pub const IID_IComponentData2 = &IID_IComponentData2_Value;
+pub const IComponentData2 = extern union {
+    pub const VTable = extern struct {
+        base: IComponentData.VTable,
+        QueryDispatch: *const fn(
+            self: *const IComponentData2,
+            cookie: isize,
+            type: DATA_OBJECT_TYPES,
+            ppDispatch: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IComponentData: IComponentData,
+    IUnknown: IUnknown,
+    pub fn QueryDispatch(self: *const IComponentData2, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryDispatch(self, cookie, @"type", ppDispatch);
+    }
+};
+
+pub const IconIdentifier = enum(i32) {
+    None = 0,
+    Error = 32513,
+    Question = 32514,
+    Warning = 32515,
+    Information = 32516,
+    pub const First = .Error;
+    pub const Last = .Information;
+};
+pub const Icon_None = IconIdentifier.None;
+pub const Icon_Error = IconIdentifier.Error;
+pub const Icon_Question = IconIdentifier.Question;
+pub const Icon_Warning = IconIdentifier.Warning;
+pub const Icon_Information = IconIdentifier.Information;
+pub const Icon_First = IconIdentifier.Error;
+pub const Icon_Last = IconIdentifier.Information;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsole_Value = Guid.initString("43136eb1-d36c-11cf-adbc-00aa00a80033");
+pub const IID_IConsole = &IID_IConsole_Value;
+pub const IConsole = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetHeader: *const fn(
+            self: *const IConsole,
+            pHeader: ?*IHeaderCtrl,
+        ) callconv(.winapi) HRESULT,
+        SetToolbar: *const fn(
+            self: *const IConsole,
+            pToolbar: ?*IToolbar,
+        ) callconv(.winapi) HRESULT,
+        QueryResultView: *const fn(
+            self: *const IConsole,
+            pUnknown: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        QueryScopeImageList: *const fn(
+            self: *const IConsole,
+            ppImageList: ?*?*IImageList,
+        ) callconv(.winapi) HRESULT,
+        QueryResultImageList: *const fn(
+            self: *const IConsole,
+            ppImageList: ?*?*IImageList,
+        ) callconv(.winapi) HRESULT,
+        UpdateAllViews: *const fn(
+            self: *const IConsole,
+            lpDataObject: ?*IDataObject,
+            data: LPARAM,
+            hint: isize,
+        ) callconv(.winapi) HRESULT,
+        MessageBox: *const fn(
+            self: *const IConsole,
+            lpszText: ?[*:0]const u16,
+            lpszTitle: ?[*:0]const u16,
+            fuStyle: u32,
+            piRetval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        QueryConsoleVerb: *const fn(
+            self: *const IConsole,
+            ppConsoleVerb: ?*?*IConsoleVerb,
+        ) callconv(.winapi) HRESULT,
+        SelectScopeItem: *const fn(
+            self: *const IConsole,
+            hScopeItem: isize,
+        ) callconv(.winapi) HRESULT,
+        GetMainWindow: *const fn(
+            self: *const IConsole,
+            phwnd: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+        NewWindow: *const fn(
+            self: *const IConsole,
+            hScopeItem: isize,
+            lOptions: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetHeader(self: *const IConsole, pHeader: ?*IHeaderCtrl) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHeader(self, pHeader);
+    }
+    pub fn SetToolbar(self: *const IConsole, pToolbar: ?*IToolbar) callconv(.@"inline") HRESULT {
+        return self.vtable.SetToolbar(self, pToolbar);
+    }
+    pub fn QueryResultView(self: *const IConsole, pUnknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryResultView(self, pUnknown);
+    }
+    pub fn QueryScopeImageList(self: *const IConsole, ppImageList: ?*?*IImageList) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryScopeImageList(self, ppImageList);
+    }
+    pub fn QueryResultImageList(self: *const IConsole, ppImageList: ?*?*IImageList) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryResultImageList(self, ppImageList);
+    }
+    pub fn UpdateAllViews(self: *const IConsole, lpDataObject: ?*IDataObject, data: LPARAM, hint: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateAllViews(self, lpDataObject, data, hint);
+    }
+    pub fn MessageBox(self: *const IConsole, lpszText: ?[*:0]const u16, lpszTitle: ?[*:0]const u16, fuStyle: u32, piRetval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.MessageBox(self, lpszText, lpszTitle, fuStyle, piRetval);
+    }
+    pub fn QueryConsoleVerb(self: *const IConsole, ppConsoleVerb: ?*?*IConsoleVerb) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryConsoleVerb(self, ppConsoleVerb);
+    }
+    pub fn SelectScopeItem(self: *const IConsole, hScopeItem: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.SelectScopeItem(self, hScopeItem);
+    }
+    pub fn GetMainWindow(self: *const IConsole, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMainWindow(self, phwnd);
+    }
+    pub fn NewWindow(self: *const IConsole, hScopeItem: isize, lOptions: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.NewWindow(self, hScopeItem, lOptions);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsole2_Value = Guid.initString("103d842a-aa63-11d1-a7e1-00c04fd8d565");
+pub const IID_IConsole2 = &IID_IConsole2_Value;
+pub const IConsole2 = extern union {
+    pub const VTable = extern struct {
+        base: IConsole.VTable,
+        Expand: *const fn(
+            self: *const IConsole2,
+            hItem: isize,
+            bExpand: BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsTaskpadViewPreferred: *const fn(
+            self: *const IConsole2,
+        ) callconv(.winapi) HRESULT,
+        SetStatusText: *const fn(
+            self: *const IConsole2,
+            pszStatusText: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IConsole: IConsole,
+    IUnknown: IUnknown,
+    pub fn Expand(self: *const IConsole2, hItem: isize, bExpand: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Expand(self, hItem, bExpand);
+    }
+    pub fn IsTaskpadViewPreferred(self: *const IConsole2) callconv(.@"inline") HRESULT {
+        return self.vtable.IsTaskpadViewPreferred(self);
+    }
+    pub fn SetStatusText(self: *const IConsole2, pszStatusText: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStatusText(self, pszStatusText);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsole3_Value = Guid.initString("4f85efdb-d0e1-498c-8d4a-d010dfdd404f");
+pub const IID_IConsole3 = &IID_IConsole3_Value;
+pub const IConsole3 = extern union {
+    pub const VTable = extern struct {
+        base: IConsole2.VTable,
+        RenameScopeItem: *const fn(
+            self: *const IConsole3,
+            hScopeItem: isize,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IConsole2: IConsole2,
+    IConsole: IConsole,
+    IUnknown: IUnknown,
+    pub fn RenameScopeItem(self: *const IConsole3, hScopeItem: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.RenameScopeItem(self, hScopeItem);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsoleNameSpace_Value = Guid.initString("bedeb620-f24d-11cf-8afc-00aa003ca9f6");
+pub const IID_IConsoleNameSpace = &IID_IConsoleNameSpace_Value;
+pub const IConsoleNameSpace = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InsertItem: *const fn(
+            self: *const IConsoleNameSpace,
+            item: ?*SCOPEDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        DeleteItem: *const fn(
+            self: *const IConsoleNameSpace,
+            hItem: isize,
+            fDeleteThis: i32,
+        ) callconv(.winapi) HRESULT,
+        SetItem: *const fn(
+            self: *const IConsoleNameSpace,
+            item: ?*SCOPEDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        GetItem: *const fn(
+            self: *const IConsoleNameSpace,
+            item: ?*SCOPEDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        GetChildItem: *const fn(
+            self: *const IConsoleNameSpace,
+            item: isize,
+            pItemChild: ?*isize,
+            pCookie: ?*isize,
+        ) callconv(.winapi) HRESULT,
+        GetNextItem: *const fn(
+            self: *const IConsoleNameSpace,
+            item: isize,
+            pItemNext: ?*isize,
+            pCookie: ?*isize,
+        ) callconv(.winapi) HRESULT,
+        GetParentItem: *const fn(
+            self: *const IConsoleNameSpace,
+            item: isize,
+            pItemParent: ?*isize,
+            pCookie: ?*isize,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InsertItem(self: *const IConsoleNameSpace, item: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertItem(self, item);
+    }
+    pub fn DeleteItem(self: *const IConsoleNameSpace, hItem: isize, fDeleteThis: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItem(self, hItem, fDeleteThis);
+    }
+    pub fn SetItem(self: *const IConsoleNameSpace, item: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.SetItem(self, item);
+    }
+    pub fn GetItem(self: *const IConsoleNameSpace, item: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, item);
+    }
+    pub fn GetChildItem(self: *const IConsoleNameSpace, item: isize, pItemChild: ?*isize, pCookie: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildItem(self, item, pItemChild, pCookie);
+    }
+    pub fn GetNextItem(self: *const IConsoleNameSpace, item: isize, pItemNext: ?*isize, pCookie: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextItem(self, item, pItemNext, pCookie);
+    }
+    pub fn GetParentItem(self: *const IConsoleNameSpace, item: isize, pItemParent: ?*isize, pCookie: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParentItem(self, item, pItemParent, pCookie);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsoleNameSpace2_Value = Guid.initString("255f18cc-65db-11d1-a7dc-00c04fd8d565");
+pub const IID_IConsoleNameSpace2 = &IID_IConsoleNameSpace2_Value;
+pub const IConsoleNameSpace2 = extern union {
+    pub const VTable = extern struct {
+        base: IConsoleNameSpace.VTable,
+        Expand: *const fn(
+            self: *const IConsoleNameSpace2,
+            hItem: isize,
+        ) callconv(.winapi) HRESULT,
+        AddExtension: *const fn(
+            self: *const IConsoleNameSpace2,
+            hItem: isize,
+            lpClsid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IConsoleNameSpace: IConsoleNameSpace,
+    IUnknown: IUnknown,
+    pub fn Expand(self: *const IConsoleNameSpace2, hItem: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.Expand(self, hItem);
+    }
+    pub fn AddExtension(self: *const IConsoleNameSpace2, hItem: isize, lpClsid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExtension(self, hItem, lpClsid);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsolePower_Value = Guid.initString("1cfbdd0e-62ca-49ce-a3af-dbb2de61b068");
+pub const IID_IConsolePower = &IID_IConsolePower_Value;
+pub const IConsolePower = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetExecutionState: *const fn(
+            self: *const IConsolePower,
+            dwAdd: u32,
+            dwRemove: u32,
+        ) callconv(.winapi) HRESULT,
+        ResetIdleTimer: *const fn(
+            self: *const IConsolePower,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetExecutionState(self: *const IConsolePower, dwAdd: u32, dwRemove: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetExecutionState(self, dwAdd, dwRemove);
+    }
+    pub fn ResetIdleTimer(self: *const IConsolePower, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ResetIdleTimer(self, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsolePowerSink_Value = Guid.initString("3333759f-fe4f-4975-b143-fec0a5dd6d65");
+pub const IID_IConsolePowerSink = &IID_IConsolePowerSink_Value;
+pub const IConsolePowerSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnPowerBroadcast: *const fn(
+            self: *const IConsolePowerSink,
+            nEvent: u32,
+            lParam: LPARAM,
+            plReturn: ?*LRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnPowerBroadcast(self: *const IConsolePowerSink, nEvent: u32, lParam: LPARAM, plReturn: ?*LRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPowerBroadcast(self, nEvent, lParam, plReturn);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConsoleVerb_Value = Guid.initString("e49f7a60-74af-11d0-a286-00c04fd8fe93");
+pub const IID_IConsoleVerb = &IID_IConsoleVerb_Value;
+pub const IConsoleVerb = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetVerbState: *const fn(
+            self: *const IConsoleVerb,
+            eCmdID: MMC_CONSOLE_VERB,
+            nState: MMC_BUTTON_STATE,
+            pState: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetVerbState: *const fn(
+            self: *const IConsoleVerb,
+            eCmdID: MMC_CONSOLE_VERB,
+            nState: MMC_BUTTON_STATE,
+            bState: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetDefaultVerb: *const fn(
+            self: *const IConsoleVerb,
+            eCmdID: MMC_CONSOLE_VERB,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultVerb: *const fn(
+            self: *const IConsoleVerb,
+            peCmdID: ?*MMC_CONSOLE_VERB,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetVerbState(self: *const IConsoleVerb, eCmdID: MMC_CONSOLE_VERB, nState: MMC_BUTTON_STATE, pState: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVerbState(self, eCmdID, nState, pState);
+    }
+    pub fn SetVerbState(self: *const IConsoleVerb, eCmdID: MMC_CONSOLE_VERB, nState: MMC_BUTTON_STATE, bState: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVerbState(self, eCmdID, nState, bState);
+    }
+    pub fn SetDefaultVerb(self: *const IConsoleVerb, eCmdID: MMC_CONSOLE_VERB) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultVerb(self, eCmdID);
+    }
+    pub fn GetDefaultVerb(self: *const IConsoleVerb, peCmdID: ?*MMC_CONSOLE_VERB) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultVerb(self, peCmdID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IContextMenuCallback_Value = Guid.initString("43136eb7-d36c-11cf-adbc-00aa00a80033");
+pub const IID_IContextMenuCallback = &IID_IContextMenuCallback_Value;
+pub const IContextMenuCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddItem: *const fn(
+            self: *const IContextMenuCallback,
+            pItem: ?*CONTEXTMENUITEM,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddItem(self: *const IContextMenuCallback, pItem: ?*CONTEXTMENUITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, pItem);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IContextMenuCallback2_Value = Guid.initString("e178bc0e-2ed0-4b5e-8097-42c9087e8b33");
+pub const IID_IContextMenuCallback2 = &IID_IContextMenuCallback2_Value;
+pub const IContextMenuCallback2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddItem: *const fn(
+            self: *const IContextMenuCallback2,
+            pItem: ?*CONTEXTMENUITEM2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddItem(self: *const IContextMenuCallback2, pItem: ?*CONTEXTMENUITEM2) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, pItem);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IContextMenuProvider_Value = Guid.initString("43136eb6-d36c-11cf-adbc-00aa00a80033");
+pub const IID_IContextMenuProvider = &IID_IContextMenuProvider_Value;
+pub const IContextMenuProvider = extern union {
+    pub const VTable = extern struct {
+        base: IContextMenuCallback.VTable,
+        EmptyMenuList: *const fn(
+            self: *const IContextMenuProvider,
+        ) callconv(.winapi) HRESULT,
+        AddPrimaryExtensionItems: *const fn(
+            self: *const IContextMenuProvider,
+            piExtension: ?*IUnknown,
+            piDataObject: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+        AddThirdPartyExtensionItems: *const fn(
+            self: *const IContextMenuProvider,
+            piDataObject: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+        ShowContextMenu: *const fn(
+            self: *const IContextMenuProvider,
+            hwndParent: ?HWND,
+            xPos: i32,
+            yPos: i32,
+            plSelected: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IContextMenuCallback: IContextMenuCallback,
+    IUnknown: IUnknown,
+    pub fn EmptyMenuList(self: *const IContextMenuProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.EmptyMenuList(self);
+    }
+    pub fn AddPrimaryExtensionItems(self: *const IContextMenuProvider, piExtension: ?*IUnknown, piDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPrimaryExtensionItems(self, piExtension, piDataObject);
+    }
+    pub fn AddThirdPartyExtensionItems(self: *const IContextMenuProvider, piDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.AddThirdPartyExtensionItems(self, piDataObject);
+    }
+    pub fn ShowContextMenu(self: *const IContextMenuProvider, hwndParent: ?HWND, xPos: i32, yPos: i32, plSelected: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowContextMenu(self, hwndParent, xPos, yPos, plSelected);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IControlbar_Value = Guid.initString("69fb811e-6c1c-11d0-a2cb-00c04fd909dd");
+pub const IID_IControlbar = &IID_IControlbar_Value;
+pub const IControlbar = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IControlbar,
+            nType: MMC_CONTROL_TYPE,
+            pExtendControlbar: ?*IExtendControlbar,
+            ppUnknown: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Attach: *const fn(
+            self: *const IControlbar,
+            nType: MMC_CONTROL_TYPE,
+            lpUnknown: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Detach: *const fn(
+            self: *const IControlbar,
+            lpUnknown: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IControlbar, nType: MMC_CONTROL_TYPE, pExtendControlbar: ?*IExtendControlbar, ppUnknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, nType, pExtendControlbar, ppUnknown);
+    }
+    pub fn Attach(self: *const IControlbar, nType: MMC_CONTROL_TYPE, lpUnknown: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Attach(self, nType, lpUnknown);
+    }
+    pub fn Detach(self: *const IControlbar, lpUnknown: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Detach(self, lpUnknown);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDisplayHelp_Value = Guid.initString("cc593830-b926-11d1-8063-0000f875a9ce");
+pub const IID_IDisplayHelp = &IID_IDisplayHelp_Value;
+pub const IDisplayHelp = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ShowTopic: *const fn(
+            self: *const IDisplayHelp,
+            pszHelpTopic: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ShowTopic(self: *const IDisplayHelp, pszHelpTopic: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowTopic(self, pszHelpTopic);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IEnumTASK_Value = Guid.initString("338698b1-5a02-11d1-9fec-00600832db4a");
+pub const IID_IEnumTASK = &IID_IEnumTASK_Value;
+pub const IEnumTASK = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumTASK,
+            celt: u32,
+            rgelt: [*]MMC_TASK,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumTASK,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumTASK,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumTASK,
+            ppenum: ?*?*IEnumTASK,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumTASK, celt: u32, rgelt: [*]MMC_TASK, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumTASK, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumTASK) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumTASK, ppenum: ?*?*IEnumTASK) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IExtendContextMenu_Value = Guid.initString("4f3b7a4f-cfac-11cf-b8e3-00c04fd8d5b0");
+pub const IID_IExtendContextMenu = &IID_IExtendContextMenu_Value;
+pub const IExtendContextMenu = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddMenuItems: *const fn(
+            self: *const IExtendContextMenu,
+            piDataObject: ?*IDataObject,
+            piCallback: ?*IContextMenuCallback,
+            pInsertionAllowed: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Command: *const fn(
+            self: *const IExtendContextMenu,
+            lCommandID: i32,
+            piDataObject: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddMenuItems(self: *const IExtendContextMenu, piDataObject: ?*IDataObject, piCallback: ?*IContextMenuCallback, pInsertionAllowed: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddMenuItems(self, piDataObject, piCallback, pInsertionAllowed);
+    }
+    pub fn Command(self: *const IExtendContextMenu, lCommandID: i32, piDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Command(self, lCommandID, piDataObject);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IExtendControlbar_Value = Guid.initString("49506520-6f40-11d0-a98b-00c04fd8d565");
+pub const IID_IExtendControlbar = &IID_IExtendControlbar_Value;
+pub const IExtendControlbar = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetControlbar: *const fn(
+            self: *const IExtendControlbar,
+            pControlbar: ?*IControlbar,
+        ) callconv(.winapi) HRESULT,
+        ControlbarNotify: *const fn(
+            self: *const IExtendControlbar,
+            event: MMC_NOTIFY_TYPE,
+            arg: LPARAM,
+            param2: LPARAM,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetControlbar(self: *const IExtendControlbar, pControlbar: ?*IControlbar) callconv(.@"inline") HRESULT {
+        return self.vtable.SetControlbar(self, pControlbar);
+    }
+    pub fn ControlbarNotify(self: *const IExtendControlbar, event: MMC_NOTIFY_TYPE, arg: LPARAM, param2: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.ControlbarNotify(self, event, arg, param2);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IExtendPropertySheet_Value = Guid.initString("85de64dc-ef21-11cf-a285-00c04fd8dbe6");
+pub const IID_IExtendPropertySheet = &IID_IExtendPropertySheet_Value;
+pub const IExtendPropertySheet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreatePropertyPages: *const fn(
+            self: *const IExtendPropertySheet,
+            lpProvider: ?*IPropertySheetCallback,
+            handle: isize,
+            lpIDataObject: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+        QueryPagesFor: *const fn(
+            self: *const IExtendPropertySheet,
+            lpDataObject: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreatePropertyPages(self: *const IExtendPropertySheet, lpProvider: ?*IPropertySheetCallback, handle: isize, lpIDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePropertyPages(self, lpProvider, handle, lpIDataObject);
+    }
+    pub fn QueryPagesFor(self: *const IExtendPropertySheet, lpDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryPagesFor(self, lpDataObject);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IExtendPropertySheet2_Value = Guid.initString("b7a87232-4a51-11d1-a7ea-00c04fd909dd");
+pub const IID_IExtendPropertySheet2 = &IID_IExtendPropertySheet2_Value;
+pub const IExtendPropertySheet2 = extern union {
+    pub const VTable = extern struct {
+        base: IExtendPropertySheet.VTable,
+        GetWatermarks: *const fn(
+            self: *const IExtendPropertySheet2,
+            lpIDataObject: ?*IDataObject,
+            lphWatermark: ?*?HBITMAP,
+            lphHeader: ?*?HBITMAP,
+            lphPalette: ?*?HPALETTE,
+            bStretch: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IExtendPropertySheet: IExtendPropertySheet,
+    IUnknown: IUnknown,
+    pub fn GetWatermarks(self: *const IExtendPropertySheet2, lpIDataObject: ?*IDataObject, lphWatermark: ?*?HBITMAP, lphHeader: ?*?HBITMAP, lphPalette: ?*?HPALETTE, bStretch: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWatermarks(self, lpIDataObject, lphWatermark, lphHeader, lphPalette, bStretch);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IExtendTaskPad_Value = Guid.initString("8dee6511-554d-11d1-9fea-00600832db4a");
+pub const IID_IExtendTaskPad = &IID_IExtendTaskPad_Value;
+pub const IExtendTaskPad = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        TaskNotify: *const fn(
+            self: *const IExtendTaskPad,
+            pdo: ?*IDataObject,
+            arg: ?*VARIANT,
+            param2: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        EnumTasks: *const fn(
+            self: *const IExtendTaskPad,
+            pdo: ?*IDataObject,
+            szTaskGroup: ?PWSTR,
+            ppEnumTASK: ?*?*IEnumTASK,
+        ) callconv(.winapi) HRESULT,
+        GetTitle: *const fn(
+            self: *const IExtendTaskPad,
+            pszGroup: ?PWSTR,
+            pszTitle: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDescriptiveText: *const fn(
+            self: *const IExtendTaskPad,
+            pszGroup: ?PWSTR,
+            pszDescriptiveText: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetBackground: *const fn(
+            self: *const IExtendTaskPad,
+            pszGroup: ?PWSTR,
+            pTDO: ?*MMC_TASK_DISPLAY_OBJECT,
+        ) callconv(.winapi) HRESULT,
+        GetListPadInfo: *const fn(
+            self: *const IExtendTaskPad,
+            pszGroup: ?PWSTR,
+            lpListPadInfo: ?*MMC_LISTPAD_INFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn TaskNotify(self: *const IExtendTaskPad, pdo: ?*IDataObject, arg: ?*VARIANT, param2: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.TaskNotify(self, pdo, arg, param2);
+    }
+    pub fn EnumTasks(self: *const IExtendTaskPad, pdo: ?*IDataObject, szTaskGroup: ?PWSTR, ppEnumTASK: ?*?*IEnumTASK) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumTasks(self, pdo, szTaskGroup, ppEnumTASK);
+    }
+    pub fn GetTitle(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTitle(self, pszGroup, pszTitle);
+    }
+    pub fn GetDescriptiveText(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pszDescriptiveText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDescriptiveText(self, pszGroup, pszDescriptiveText);
+    }
+    pub fn GetBackground(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pTDO: ?*MMC_TASK_DISPLAY_OBJECT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBackground(self, pszGroup, pTDO);
+    }
+    pub fn GetListPadInfo(self: *const IExtendTaskPad, pszGroup: ?PWSTR, lpListPadInfo: ?*MMC_LISTPAD_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetListPadInfo(self, pszGroup, lpListPadInfo);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IExtendView_Value = Guid.initString("89995cee-d2ed-4c0e-ae5e-df7e76f3fa53");
+pub const IID_IExtendView = &IID_IExtendView_Value;
+pub const IExtendView = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetViews: *const fn(
+            self: *const IExtendView,
+            pDataObject: ?*IDataObject,
+            pViewExtensionCallback: ?*IViewExtensionCallback,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetViews(self: *const IExtendView, pDataObject: ?*IDataObject, pViewExtensionCallback: ?*IViewExtensionCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.GetViews(self, pDataObject, pViewExtensionCallback);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IHeaderCtrl_Value = Guid.initString("43136eb3-d36c-11cf-adbc-00aa00a80033");
+pub const IID_IHeaderCtrl = &IID_IHeaderCtrl_Value;
+pub const IHeaderCtrl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InsertColumn: *const fn(
+            self: *const IHeaderCtrl,
+            nCol: i32,
+            title: ?[*:0]const u16,
+            nFormat: i32,
+            nWidth: i32,
+        ) callconv(.winapi) HRESULT,
+        DeleteColumn: *const fn(
+            self: *const IHeaderCtrl,
+            nCol: i32,
+        ) callconv(.winapi) HRESULT,
+        SetColumnText: *const fn(
+            self: *const IHeaderCtrl,
+            nCol: i32,
+            title: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetColumnText: *const fn(
+            self: *const IHeaderCtrl,
+            nCol: i32,
+            pText: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetColumnWidth: *const fn(
+            self: *const IHeaderCtrl,
+            nCol: i32,
+            nWidth: i32,
+        ) callconv(.winapi) HRESULT,
+        GetColumnWidth: *const fn(
+            self: *const IHeaderCtrl,
+            nCol: i32,
+            pWidth: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InsertColumn(self: *const IHeaderCtrl, nCol: i32, title: ?[*:0]const u16, nFormat: i32, nWidth: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertColumn(self, nCol, title, nFormat, nWidth);
+    }
+    pub fn DeleteColumn(self: *const IHeaderCtrl, nCol: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteColumn(self, nCol);
+    }
+    pub fn SetColumnText(self: *const IHeaderCtrl, nCol: i32, title: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColumnText(self, nCol, title);
+    }
+    pub fn GetColumnText(self: *const IHeaderCtrl, nCol: i32, pText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColumnText(self, nCol, pText);
+    }
+    pub fn SetColumnWidth(self: *const IHeaderCtrl, nCol: i32, nWidth: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColumnWidth(self, nCol, nWidth);
+    }
+    pub fn GetColumnWidth(self: *const IHeaderCtrl, nCol: i32, pWidth: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColumnWidth(self, nCol, pWidth);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IHeaderCtrl2_Value = Guid.initString("9757abb8-1b32-11d1-a7ce-00c04fd8d565");
+pub const IID_IHeaderCtrl2 = &IID_IHeaderCtrl2_Value;
+pub const IHeaderCtrl2 = extern union {
+    pub const VTable = extern struct {
+        base: IHeaderCtrl.VTable,
+        SetChangeTimeOut: *const fn(
+            self: *const IHeaderCtrl2,
+            uTimeout: u32,
+        ) callconv(.winapi) HRESULT,
+        SetColumnFilter: *const fn(
+            self: *const IHeaderCtrl2,
+            nColumn: u32,
+            dwType: u32,
+            pFilterData: ?*MMC_FILTERDATA,
+        ) callconv(.winapi) HRESULT,
+        GetColumnFilter: *const fn(
+            self: *const IHeaderCtrl2,
+            nColumn: u32,
+            pdwType: ?*u32,
+            pFilterData: ?*MMC_FILTERDATA,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IHeaderCtrl: IHeaderCtrl,
+    IUnknown: IUnknown,
+    pub fn SetChangeTimeOut(self: *const IHeaderCtrl2, uTimeout: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetChangeTimeOut(self, uTimeout);
+    }
+    pub fn SetColumnFilter(self: *const IHeaderCtrl2, nColumn: u32, dwType: u32, pFilterData: ?*MMC_FILTERDATA) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColumnFilter(self, nColumn, dwType, pFilterData);
+    }
+    pub fn GetColumnFilter(self: *const IHeaderCtrl2, nColumn: u32, pdwType: ?*u32, pFilterData: ?*MMC_FILTERDATA) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColumnFilter(self, nColumn, pdwType, pFilterData);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IImageList_Value = Guid.initString("43136eb8-d36c-11cf-adbc-00aa00a80033");
+pub const IID_IImageList = &IID_IImageList_Value;
+pub const IImageList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ImageListSetIcon: *const fn(
+            self: *const IImageList,
+            pIcon: ?*isize,
+            nLoc: i32,
+        ) callconv(.winapi) HRESULT,
+        ImageListSetStrip: *const fn(
+            self: *const IImageList,
+            pBMapSm: ?*isize,
+            pBMapLg: ?*isize,
+            nStartLoc: i32,
+            cMask: COLORREF,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ImageListSetIcon(self: *const IImageList, pIcon: ?*isize, nLoc: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ImageListSetIcon(self, pIcon, nLoc);
+    }
+    pub fn ImageListSetStrip(self: *const IImageList, pBMapSm: ?*isize, pBMapLg: ?*isize, nStartLoc: i32, cMask: COLORREF) callconv(.@"inline") HRESULT {
+        return self.vtable.ImageListSetStrip(self, pBMapSm, pBMapLg, nStartLoc, cMask);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMenuButton_Value = Guid.initString("951ed750-d080-11d0-b197-000000000000");
+pub const IID_IMenuButton = &IID_IMenuButton_Value;
+pub const IMenuButton = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddButton: *const fn(
+            self: *const IMenuButton,
+            idCommand: i32,
+            lpButtonText: ?PWSTR,
+            lpTooltipText: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetButton: *const fn(
+            self: *const IMenuButton,
+            idCommand: i32,
+            lpButtonText: ?PWSTR,
+            lpTooltipText: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetButtonState: *const fn(
+            self: *const IMenuButton,
+            idCommand: i32,
+            nState: MMC_BUTTON_STATE,
+            bState: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?PWSTR, lpTooltipText: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddButton(self, idCommand, lpButtonText, lpTooltipText);
+    }
+    pub fn SetButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?PWSTR, lpTooltipText: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetButton(self, idCommand, lpButtonText, lpTooltipText);
+    }
+    pub fn SetButtonState(self: *const IMenuButton, idCommand: i32, nState: MMC_BUTTON_STATE, bState: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetButtonState(self, idCommand, nState, bState);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMessageView_Value = Guid.initString("80f94174-fccc-11d2-b991-00c04f8ecd78");
+pub const IID_IMessageView = &IID_IMessageView_Value;
+pub const IMessageView = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetTitleText: *const fn(
+            self: *const IMessageView,
+            pszTitleText: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetBodyText: *const fn(
+            self: *const IMessageView,
+            pszBodyText: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetIcon: *const fn(
+            self: *const IMessageView,
+            id: IconIdentifier,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IMessageView,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetTitleText(self: *const IMessageView, pszTitleText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTitleText(self, pszTitleText);
+    }
+    pub fn SetBodyText(self: *const IMessageView, pszBodyText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetBodyText(self, pszBodyText);
+    }
+    pub fn SetIcon(self: *const IMessageView, id: IconIdentifier) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIcon(self, id);
+    }
+    pub fn Clear(self: *const IMessageView) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IMMCVersionInfo_Value = Guid.initString("a8d2c5fe-cdcb-4b9d-bde5-a27343ff54bc");
+pub const IID_IMMCVersionInfo = &IID_IMMCVersionInfo_Value;
+pub const IMMCVersionInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMMCVersion: *const fn(
+            self: *const IMMCVersionInfo,
+            pVersionMajor: ?*i32,
+            pVersionMinor: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMMCVersion(self: *const IMMCVersionInfo, pVersionMajor: ?*i32, pVersionMinor: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMMCVersion(self, pVersionMajor, pVersionMinor);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INodeProperties_Value = Guid.initString("15bc4d24-a522-4406-aa55-0749537a6865");
+pub const IID_INodeProperties = &IID_INodeProperties_Value;
+pub const INodeProperties = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperty: *const fn(
+            self: *const INodeProperties,
+            pDataObject: ?*IDataObject,
+            szPropertyName: ?BSTR,
+            pbstrProperty: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProperty(self: *const INodeProperties, pDataObject: ?*IDataObject, szPropertyName: ?BSTR, pbstrProperty: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, pDataObject, szPropertyName, pbstrProperty);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IPropertySheetCallback_Value = Guid.initString("85de64dd-ef21-11cf-a285-00c04fd8dbe6");
+pub const IID_IPropertySheetCallback = &IID_IPropertySheetCallback_Value;
+pub const IPropertySheetCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPage: *const fn(
+            self: *const IPropertySheetCallback,
+            hPage: ?HPROPSHEETPAGE,
+        ) callconv(.winapi) HRESULT,
+        RemovePage: *const fn(
+            self: *const IPropertySheetCallback,
+            hPage: ?HPROPSHEETPAGE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPage(self: *const IPropertySheetCallback, hPage: ?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPage(self, hPage);
+    }
+    pub fn RemovePage(self: *const IPropertySheetCallback, hPage: ?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
+        return self.vtable.RemovePage(self, hPage);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IPropertySheetProvider_Value = Guid.initString("85de64de-ef21-11cf-a285-00c04fd8dbe6");
+pub const IID_IPropertySheetProvider = &IID_IPropertySheetProvider_Value;
+pub const IPropertySheetProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreatePropertySheet: *const fn(
+            self: *const IPropertySheetProvider,
+            title: ?[*:0]const u16,
+            type: u8,
+            cookie: isize,
+            pIDataObjectm: ?*IDataObject,
+            dwOptions: u32,
+        ) callconv(.winapi) HRESULT,
+        FindPropertySheet: *const fn(
+            self: *const IPropertySheetProvider,
+            hItem: isize,
+            lpComponent: ?*IComponent,
+            lpDataObject: ?*IDataObject,
+        ) callconv(.winapi) HRESULT,
+        AddPrimaryPages: *const fn(
+            self: *const IPropertySheetProvider,
+            lpUnknown: ?*IUnknown,
+            bCreateHandle: BOOL,
+            hNotifyWindow: ?HWND,
+            bScopePane: BOOL,
+        ) callconv(.winapi) HRESULT,
+        AddExtensionPages: *const fn(
+            self: *const IPropertySheetProvider,
+        ) callconv(.winapi) HRESULT,
+        Show: *const fn(
+            self: *const IPropertySheetProvider,
+            window: isize,
+            page: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreatePropertySheet(self: *const IPropertySheetProvider, title: ?[*:0]const u16, @"type": u8, cookie: isize, pIDataObjectm: ?*IDataObject, dwOptions: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePropertySheet(self, title, @"type", cookie, pIDataObjectm, dwOptions);
+    }
+    pub fn FindPropertySheet(self: *const IPropertySheetProvider, hItem: isize, lpComponent: ?*IComponent, lpDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.FindPropertySheet(self, hItem, lpComponent, lpDataObject);
+    }
+    pub fn AddPrimaryPages(self: *const IPropertySheetProvider, lpUnknown: ?*IUnknown, bCreateHandle: BOOL, hNotifyWindow: ?HWND, bScopePane: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPrimaryPages(self, lpUnknown, bCreateHandle, hNotifyWindow, bScopePane);
+    }
+    pub fn AddExtensionPages(self: *const IPropertySheetProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExtensionPages(self);
+    }
+    pub fn Show(self: *const IPropertySheetProvider, window: isize, page: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, window, page);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRequiredExtensions_Value = Guid.initString("72782d7a-a4a0-11d1-af0f-00c04fb6dd2c");
+pub const IID_IRequiredExtensions = &IID_IRequiredExtensions_Value;
+pub const IRequiredExtensions = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnableAllExtensions: *const fn(
+            self: *const IRequiredExtensions,
+        ) callconv(.winapi) HRESULT,
+        GetFirstExtension: *const fn(
+            self: *const IRequiredExtensions,
+            pExtCLSID: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetNextExtension: *const fn(
+            self: *const IRequiredExtensions,
+            pExtCLSID: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnableAllExtensions(self: *const IRequiredExtensions) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableAllExtensions(self);
+    }
+    pub fn GetFirstExtension(self: *const IRequiredExtensions, pExtCLSID: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFirstExtension(self, pExtCLSID);
+    }
+    pub fn GetNextExtension(self: *const IRequiredExtensions, pExtCLSID: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextExtension(self, pExtCLSID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IResultData_Value = Guid.initString("31da5fa0-e0eb-11cf-9f21-00aa003ca9f6");
+pub const IID_IResultData = &IID_IResultData_Value;
+pub const IResultData = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InsertItem: *const fn(
+            self: *const IResultData,
+            item: ?*RESULTDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        DeleteItem: *const fn(
+            self: *const IResultData,
+            itemID: isize,
+            nCol: i32,
+        ) callconv(.winapi) HRESULT,
+        FindItemByLParam: *const fn(
+            self: *const IResultData,
+            lParam: LPARAM,
+            pItemID: ?*isize,
+        ) callconv(.winapi) HRESULT,
+        DeleteAllRsltItems: *const fn(
+            self: *const IResultData,
+        ) callconv(.winapi) HRESULT,
+        SetItem: *const fn(
+            self: *const IResultData,
+            item: ?*RESULTDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        GetItem: *const fn(
+            self: *const IResultData,
+            item: ?*RESULTDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        GetNextItem: *const fn(
+            self: *const IResultData,
+            item: ?*RESULTDATAITEM,
+        ) callconv(.winapi) HRESULT,
+        ModifyItemState: *const fn(
+            self: *const IResultData,
+            nIndex: i32,
+            itemID: isize,
+            uAdd: u32,
+            uRemove: u32,
+        ) callconv(.winapi) HRESULT,
+        ModifyViewStyle: *const fn(
+            self: *const IResultData,
+            add: MMC_RESULT_VIEW_STYLE,
+            remove: MMC_RESULT_VIEW_STYLE,
+        ) callconv(.winapi) HRESULT,
+        SetViewMode: *const fn(
+            self: *const IResultData,
+            lViewMode: i32,
+        ) callconv(.winapi) HRESULT,
+        GetViewMode: *const fn(
+            self: *const IResultData,
+            lViewMode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        UpdateItem: *const fn(
+            self: *const IResultData,
+            itemID: isize,
+        ) callconv(.winapi) HRESULT,
+        Sort: *const fn(
+            self: *const IResultData,
+            nColumn: i32,
+            dwSortOptions: u32,
+            lUserParam: LPARAM,
+        ) callconv(.winapi) HRESULT,
+        SetDescBarText: *const fn(
+            self: *const IResultData,
+            DescText: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetItemCount: *const fn(
+            self: *const IResultData,
+            nItemCount: i32,
+            dwOptions: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InsertItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertItem(self, item);
+    }
+    pub fn DeleteItem(self: *const IResultData, itemID: isize, nCol: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItem(self, itemID, nCol);
+    }
+    pub fn FindItemByLParam(self: *const IResultData, lParam: LPARAM, pItemID: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.FindItemByLParam(self, lParam, pItemID);
+    }
+    pub fn DeleteAllRsltItems(self: *const IResultData) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteAllRsltItems(self);
+    }
+    pub fn SetItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.SetItem(self, item);
+    }
+    pub fn GetItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, item);
+    }
+    pub fn GetNextItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextItem(self, item);
+    }
+    pub fn ModifyItemState(self: *const IResultData, nIndex: i32, itemID: isize, uAdd: u32, uRemove: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ModifyItemState(self, nIndex, itemID, uAdd, uRemove);
+    }
+    pub fn ModifyViewStyle(self: *const IResultData, add: MMC_RESULT_VIEW_STYLE, remove: MMC_RESULT_VIEW_STYLE) callconv(.@"inline") HRESULT {
+        return self.vtable.ModifyViewStyle(self, add, remove);
+    }
+    pub fn SetViewMode(self: *const IResultData, lViewMode: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetViewMode(self, lViewMode);
+    }
+    pub fn GetViewMode(self: *const IResultData, lViewMode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetViewMode(self, lViewMode);
+    }
+    pub fn UpdateItem(self: *const IResultData, itemID: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateItem(self, itemID);
+    }
+    pub fn Sort(self: *const IResultData, nColumn: i32, dwSortOptions: u32, lUserParam: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.Sort(self, nColumn, dwSortOptions, lUserParam);
+    }
+    pub fn SetDescBarText(self: *const IResultData, DescText: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDescBarText(self, DescText);
+    }
+    pub fn SetItemCount(self: *const IResultData, nItemCount: i32, dwOptions: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetItemCount(self, nItemCount, dwOptions);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IResultData2_Value = Guid.initString("0f36e0eb-a7f1-4a81-be5a-9247f7de4b1b");
+pub const IID_IResultData2 = &IID_IResultData2_Value;
+pub const IResultData2 = extern union {
+    pub const VTable = extern struct {
+        base: IResultData.VTable,
+        RenameResultItem: *const fn(
+            self: *const IResultData2,
+            itemID: isize,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IResultData: IResultData,
+    IUnknown: IUnknown,
+    pub fn RenameResultItem(self: *const IResultData2, itemID: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.RenameResultItem(self, itemID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IResultDataCompare_Value = Guid.initString("e8315a52-7a1a-11d0-a2d2-00c04fd909dd");
+pub const IID_IResultDataCompare = &IID_IResultDataCompare_Value;
+pub const IResultDataCompare = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Compare: *const fn(
+            self: *const IResultDataCompare,
+            lUserParam: LPARAM,
+            cookieA: isize,
+            cookieB: isize,
+            pnResult: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Compare(self: *const IResultDataCompare, lUserParam: LPARAM, cookieA: isize, cookieB: isize, pnResult: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Compare(self, lUserParam, cookieA, cookieB, pnResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IResultDataCompareEx_Value = Guid.initString("96933476-0251-11d3-aeb0-00c04f8ecd78");
+pub const IID_IResultDataCompareEx = &IID_IResultDataCompareEx_Value;
+pub const IResultDataCompareEx = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Compare: *const fn(
+            self: *const IResultDataCompareEx,
+            prdc: ?*RDCOMPARE,
+            pnResult: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Compare(self: *const IResultDataCompareEx, prdc: ?*RDCOMPARE, pnResult: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Compare(self, prdc, pnResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IResultOwnerData_Value = Guid.initString("9cb396d8-ea83-11d0-aef1-00c04fb6dd2c");
+pub const IID_IResultOwnerData = &IID_IResultOwnerData_Value;
+pub const IResultOwnerData = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FindItem: *const fn(
+            self: *const IResultOwnerData,
+            pFindInfo: ?*RESULTFINDINFO,
+            pnFoundIndex: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        CacheHint: *const fn(
+            self: *const IResultOwnerData,
+            nStartIndex: i32,
+            nEndIndex: i32,
+        ) callconv(.winapi) HRESULT,
+        SortItems: *const fn(
+            self: *const IResultOwnerData,
+            nColumn: i32,
+            dwSortOptions: u32,
+            lUserParam: LPARAM,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn FindItem(self: *const IResultOwnerData, pFindInfo: ?*RESULTFINDINFO, pnFoundIndex: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.FindItem(self, pFindInfo, pnFoundIndex);
+    }
+    pub fn CacheHint(self: *const IResultOwnerData, nStartIndex: i32, nEndIndex: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.CacheHint(self, nStartIndex, nEndIndex);
+    }
+    pub fn SortItems(self: *const IResultOwnerData, nColumn: i32, dwSortOptions: u32, lUserParam: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.SortItems(self, nColumn, dwSortOptions, lUserParam);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISnapinAbout_Value = Guid.initString("1245208c-a151-11d0-a7d7-00c04fd909dd");
+pub const IID_ISnapinAbout = &IID_ISnapinAbout_Value;
+pub const ISnapinAbout = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSnapinDescription: *const fn(
+            self: *const ISnapinAbout,
+            lpDescription: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetProvider: *const fn(
+            self: *const ISnapinAbout,
+            lpName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSnapinVersion: *const fn(
+            self: *const ISnapinAbout,
+            lpVersion: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSnapinImage: *const fn(
+            self: *const ISnapinAbout,
+            hAppIcon: ?*?HICON,
+        ) callconv(.winapi) HRESULT,
+        GetStaticFolderImage: *const fn(
+            self: *const ISnapinAbout,
+            hSmallImage: ?*?HBITMAP,
+            hSmallImageOpen: ?*?HBITMAP,
+            hLargeImage: ?*?HBITMAP,
+            cMask: ?*COLORREF,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSnapinDescription(self: *const ISnapinAbout, lpDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSnapinDescription(self, lpDescription);
+    }
+    pub fn GetProvider(self: *const ISnapinAbout, lpName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProvider(self, lpName);
+    }
+    pub fn GetSnapinVersion(self: *const ISnapinAbout, lpVersion: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSnapinVersion(self, lpVersion);
+    }
+    pub fn GetSnapinImage(self: *const ISnapinAbout, hAppIcon: ?*?HICON) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSnapinImage(self, hAppIcon);
+    }
+    pub fn GetStaticFolderImage(self: *const ISnapinAbout, hSmallImage: ?*?HBITMAP, hSmallImageOpen: ?*?HBITMAP, hLargeImage: ?*?HBITMAP, cMask: ?*COLORREF) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStaticFolderImage(self, hSmallImage, hSmallImageOpen, hLargeImage, cMask);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISnapinHelp_Value = Guid.initString("a6b15ace-df59-11d0-a7dd-00c04fd909dd");
+pub const IID_ISnapinHelp = &IID_ISnapinHelp_Value;
+pub const ISnapinHelp = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetHelpTopic: *const fn(
+            self: *const ISnapinHelp,
+            lpCompiledHelpFile: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetHelpTopic(self: *const ISnapinHelp, lpCompiledHelpFile: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHelpTopic(self, lpCompiledHelpFile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISnapinHelp2_Value = Guid.initString("4861a010-20f9-11d2-a510-00c04fb6dd2c");
+pub const IID_ISnapinHelp2 = &IID_ISnapinHelp2_Value;
+pub const ISnapinHelp2 = extern union {
+    pub const VTable = extern struct {
+        base: ISnapinHelp.VTable,
+        GetLinkedTopics: *const fn(
+            self: *const ISnapinHelp2,
+            lpCompiledHelpFiles: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISnapinHelp: ISnapinHelp,
+    IUnknown: IUnknown,
+    pub fn GetLinkedTopics(self: *const ISnapinHelp2, lpCompiledHelpFiles: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLinkedTopics(self, lpCompiledHelpFiles);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISnapinProperties_Value = Guid.initString("f7889da9-4a02-4837-bf89-1a6f2a021010");
+pub const IID_ISnapinProperties = &IID_ISnapinProperties_Value;
+pub const ISnapinProperties = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const ISnapinProperties,
+            pProperties: ?*Properties,
+        ) callconv(.winapi) HRESULT,
+        QueryPropertyNames: *const fn(
+            self: *const ISnapinProperties,
+            pCallback: ?*ISnapinPropertiesCallback,
+        ) callconv(.winapi) HRESULT,
+        PropertiesChanged: *const fn(
+            self: *const ISnapinProperties,
+            cProperties: i32,
+            pProperties: [*]MMC_SNAPIN_PROPERTY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const ISnapinProperties, pProperties: ?*Properties) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pProperties);
+    }
+    pub fn QueryPropertyNames(self: *const ISnapinProperties, pCallback: ?*ISnapinPropertiesCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryPropertyNames(self, pCallback);
+    }
+    pub fn PropertiesChanged(self: *const ISnapinProperties, cProperties: i32, pProperties: [*]MMC_SNAPIN_PROPERTY) callconv(.@"inline") HRESULT {
+        return self.vtable.PropertiesChanged(self, cProperties, pProperties);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISnapinPropertiesCallback_Value = Guid.initString("a50fa2e5-7e61-45eb-a8d4-9a07b3e851a8");
+pub const IID_ISnapinPropertiesCallback = &IID_ISnapinPropertiesCallback_Value;
+pub const ISnapinPropertiesCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPropertyName: *const fn(
+            self: *const ISnapinPropertiesCallback,
+            pszPropName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPropertyName(self: *const ISnapinPropertiesCallback, pszPropName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPropertyName(self, pszPropName, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IStringTable_Value = Guid.initString("de40b7a4-0f65-11d2-8e25-00c04f8ecd78");
+pub const IID_IStringTable = &IID_IStringTable_Value;
+pub const IStringTable = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddString: *const fn(
+            self: *const IStringTable,
+            pszAdd: ?[*:0]const u16,
+            pStringID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetString: *const fn(
+            self: *const IStringTable,
+            StringID: u32,
+            cchBuffer: u32,
+            lpBuffer: [*:0]u16,
+            pcchOut: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStringLength: *const fn(
+            self: *const IStringTable,
+            StringID: u32,
+            pcchString: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteString: *const fn(
+            self: *const IStringTable,
+            StringID: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteAllStrings: *const fn(
+            self: *const IStringTable,
+        ) callconv(.winapi) HRESULT,
+        FindString: *const fn(
+            self: *const IStringTable,
+            pszFind: ?[*:0]const u16,
+            pStringID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Enumerate: *const fn(
+            self: *const IStringTable,
+            ppEnum: ?*?*IEnumString,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddString(self: *const IStringTable, pszAdd: ?[*:0]const u16, pStringID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddString(self, pszAdd, pStringID);
+    }
+    pub fn GetString(self: *const IStringTable, StringID: u32, cchBuffer: u32, lpBuffer: [*:0]u16, pcchOut: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetString(self, StringID, cchBuffer, lpBuffer, pcchOut);
+    }
+    pub fn GetStringLength(self: *const IStringTable, StringID: u32, pcchString: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringLength(self, StringID, pcchString);
+    }
+    pub fn DeleteString(self: *const IStringTable, StringID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteString(self, StringID);
+    }
+    pub fn DeleteAllStrings(self: *const IStringTable) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteAllStrings(self);
+    }
+    pub fn FindString(self: *const IStringTable, pszFind: ?[*:0]const u16, pStringID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.FindString(self, pszFind, pStringID);
+    }
+    pub fn Enumerate(self: *const IStringTable, ppEnum: ?*?*IEnumString) callconv(.@"inline") HRESULT {
+        return self.vtable.Enumerate(self, ppEnum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IToolbar_Value = Guid.initString("43136eb9-d36c-11cf-adbc-00aa00a80033");
+pub const IID_IToolbar = &IID_IToolbar_Value;
+pub const IToolbar = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddBitmap: *const fn(
+            self: *const IToolbar,
+            nImages: i32,
+            hbmp: ?HBITMAP,
+            cxSize: i32,
+            cySize: i32,
+            crMask: COLORREF,
+        ) callconv(.winapi) HRESULT,
+        AddButtons: *const fn(
+            self: *const IToolbar,
+            nButtons: i32,
+            lpButtons: ?*MMCBUTTON,
+        ) callconv(.winapi) HRESULT,
+        InsertButton: *const fn(
+            self: *const IToolbar,
+            nIndex: i32,
+            lpButton: ?*MMCBUTTON,
+        ) callconv(.winapi) HRESULT,
+        DeleteButton: *const fn(
+            self: *const IToolbar,
+            nIndex: i32,
+        ) callconv(.winapi) HRESULT,
+        GetButtonState: *const fn(
+            self: *const IToolbar,
+            idCommand: i32,
+            nState: MMC_BUTTON_STATE,
+            pState: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetButtonState: *const fn(
+            self: *const IToolbar,
+            idCommand: i32,
+            nState: MMC_BUTTON_STATE,
+            bState: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddBitmap(self: *const IToolbar, nImages: i32, hbmp: ?HBITMAP, cxSize: i32, cySize: i32, crMask: COLORREF) callconv(.@"inline") HRESULT {
+        return self.vtable.AddBitmap(self, nImages, hbmp, cxSize, cySize, crMask);
+    }
+    pub fn AddButtons(self: *const IToolbar, nButtons: i32, lpButtons: ?*MMCBUTTON) callconv(.@"inline") HRESULT {
+        return self.vtable.AddButtons(self, nButtons, lpButtons);
+    }
+    pub fn InsertButton(self: *const IToolbar, nIndex: i32, lpButton: ?*MMCBUTTON) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertButton(self, nIndex, lpButton);
+    }
+    pub fn DeleteButton(self: *const IToolbar, nIndex: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteButton(self, nIndex);
+    }
+    pub fn GetButtonState(self: *const IToolbar, idCommand: i32, nState: MMC_BUTTON_STATE, pState: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetButtonState(self, idCommand, nState, pState);
+    }
+    pub fn SetButtonState(self: *const IToolbar, idCommand: i32, nState: MMC_BUTTON_STATE, bState: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetButtonState(self, idCommand, nState, bState);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IViewExtensionCallback_Value = Guid.initString("34dd928a-7599-41e5-9f5e-d6bc3062c2da");
+pub const IID_IViewExtensionCallback = &IID_IViewExtensionCallback_Value;
+pub const IViewExtensionCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddView: *const fn(
+            self: *const IViewExtensionCallback,
+            pExtViewData: ?*MMC_EXT_VIEW_DATA,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddView(self: *const IViewExtensionCallback, pExtViewData: ?*MMC_EXT_VIEW_DATA) callconv(.@"inline") HRESULT {
+        return self.vtable.AddView(self, pExtViewData);
+    }
+};
+
+pub const MENUBUTTONDATA = extern struct {
+    idCommand: i32,
+    x: i32,
+    y: i32,
+};
+
+const IID_MenuItem_Value = Guid.initString("0178fad1-b361-4b27-96ad-67c57ebf2e1d");
+pub const IID_MenuItem = &IID_MenuItem_Value;
+pub const MenuItem = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayName: *const fn(
+            self: *const MenuItem,
+            DisplayName: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LanguageIndependentName: *const fn(
+            self: *const MenuItem,
+            LanguageIndependentName: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const MenuItem,
+            Path: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LanguageIndependentPath: *const fn(
+            self: *const MenuItem,
+            LanguageIndependentPath: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        Execute: *const fn(
+            self: *const MenuItem,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const MenuItem,
+            Enabled: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DisplayName(self: *const MenuItem, DisplayName: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayName(self, DisplayName);
+    }
+    pub fn get_LanguageIndependentName(self: *const MenuItem, LanguageIndependentName: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LanguageIndependentName(self, LanguageIndependentName);
+    }
+    pub fn get_Path(self: *const MenuItem, Path: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, Path);
+    }
+    pub fn get_LanguageIndependentPath(self: *const MenuItem, LanguageIndependentPath: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LanguageIndependentPath(self, LanguageIndependentPath);
+    }
+    pub fn Execute(self: *const MenuItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Execute(self);
+    }
+    pub fn get_Enabled(self: *const MenuItem, Enabled: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, Enabled);
+    }
+};
+
+pub const MMC_ACTION_TYPE = enum(i32) {
+    UNINITIALIZED = -1,
+    ID = 0,
+    LINK = 1,
+    SCRIPT = 2,
+};
+pub const MMC_ACTION_UNINITIALIZED = MMC_ACTION_TYPE.UNINITIALIZED;
+pub const MMC_ACTION_ID = MMC_ACTION_TYPE.ID;
+pub const MMC_ACTION_LINK = MMC_ACTION_TYPE.LINK;
+pub const MMC_ACTION_SCRIPT = MMC_ACTION_TYPE.SCRIPT;
+
+pub const MMC_BUTTON_STATE = enum(i32) {
+    ENABLED = 1,
+    CHECKED = 2,
+    HIDDEN = 4,
+    INDETERMINATE = 8,
+    BUTTONPRESSED = 16,
+};
+pub const ENABLED = MMC_BUTTON_STATE.ENABLED;
+pub const CHECKED = MMC_BUTTON_STATE.CHECKED;
+pub const HIDDEN = MMC_BUTTON_STATE.HIDDEN;
+pub const INDETERMINATE = MMC_BUTTON_STATE.INDETERMINATE;
+pub const BUTTONPRESSED = MMC_BUTTON_STATE.BUTTONPRESSED;
+
+pub const MMC_COLUMN_DATA = extern struct {
+    nColIndex: i32,
+    dwFlags: u32,
+    nWidth: i32,
+    ulReserved: usize,
+};
+
+pub const MMC_COLUMN_SET_DATA = extern struct {
+    cbSize: i32,
+    nNumCols: i32,
+    pColData: ?*MMC_COLUMN_DATA,
+};
+
+pub const MMC_CONSOLE_VERB = enum(i32) {
+    NONE = 0,
+    OPEN = 32768,
+    COPY = 32769,
+    PASTE = 32770,
+    DELETE = 32771,
+    PROPERTIES = 32772,
+    RENAME = 32773,
+    REFRESH = 32774,
+    PRINT = 32775,
+    CUT = 32776,
+    MAX = 32777,
+    pub const FIRST = .OPEN;
+    pub const LAST = .CUT;
+};
+pub const MMC_VERB_NONE = MMC_CONSOLE_VERB.NONE;
+pub const MMC_VERB_OPEN = MMC_CONSOLE_VERB.OPEN;
+pub const MMC_VERB_COPY = MMC_CONSOLE_VERB.COPY;
+pub const MMC_VERB_PASTE = MMC_CONSOLE_VERB.PASTE;
+pub const MMC_VERB_DELETE = MMC_CONSOLE_VERB.DELETE;
+pub const MMC_VERB_PROPERTIES = MMC_CONSOLE_VERB.PROPERTIES;
+pub const MMC_VERB_RENAME = MMC_CONSOLE_VERB.RENAME;
+pub const MMC_VERB_REFRESH = MMC_CONSOLE_VERB.REFRESH;
+pub const MMC_VERB_PRINT = MMC_CONSOLE_VERB.PRINT;
+pub const MMC_VERB_CUT = MMC_CONSOLE_VERB.CUT;
+pub const MMC_VERB_MAX = MMC_CONSOLE_VERB.MAX;
+pub const MMC_VERB_FIRST = MMC_CONSOLE_VERB.OPEN;
+pub const MMC_VERB_LAST = MMC_CONSOLE_VERB.CUT;
+
+pub const MMC_CONTROL_TYPE = enum(i32) {
+    TOOLBAR = 0,
+    MENUBUTTON = 1,
+    COMBOBOXBAR = 2,
+};
+pub const TOOLBAR = MMC_CONTROL_TYPE.TOOLBAR;
+pub const MENUBUTTON = MMC_CONTROL_TYPE.MENUBUTTON;
+pub const COMBOBOXBAR = MMC_CONTROL_TYPE.COMBOBOXBAR;
+
+pub const MMC_EXPANDSYNC_STRUCT = extern struct {
+    bHandled: BOOL,
+    bExpanding: BOOL,
+    hItem: isize,
+};
+
+pub const MMC_EXT_VIEW_DATA = extern struct {
+    viewID: Guid,
+    pszURL: ?[*:0]const u16,
+    pszViewTitle: ?[*:0]const u16,
+    pszTooltipText: ?[*:0]const u16,
+    bReplacesDefaultView: BOOL,
+};
+
+pub const MMC_FILTER_CHANGE_CODE = enum(i32) {
+    DISABLE = 0,
+    ENABLE = 1,
+    VALUE_CHANGE = 2,
+};
+pub const MFCC_DISABLE = MMC_FILTER_CHANGE_CODE.DISABLE;
+pub const MFCC_ENABLE = MMC_FILTER_CHANGE_CODE.ENABLE;
+pub const MFCC_VALUE_CHANGE = MMC_FILTER_CHANGE_CODE.VALUE_CHANGE;
+
+pub const MMC_FILTER_TYPE = enum(i32) {
+    STRING_FILTER = 0,
+    INT_FILTER = 1,
+    FILTER_NOVALUE = 32768,
+};
+pub const MMC_STRING_FILTER = MMC_FILTER_TYPE.STRING_FILTER;
+pub const MMC_INT_FILTER = MMC_FILTER_TYPE.INT_FILTER;
+pub const MMC_FILTER_NOVALUE = MMC_FILTER_TYPE.FILTER_NOVALUE;
+
+pub const MMC_FILTERDATA = extern struct {
+    pszText: ?PWSTR,
+    cchTextMax: i32,
+    lValue: i32,
+};
+
+pub const MMC_LISTPAD_INFO = extern struct {
+    szTitle: ?PWSTR,
+    szButtonText: ?PWSTR,
+    nCommandID: isize,
+};
+
+pub const MMC_MENU_COMMAND_IDS = enum(i32) {
+    T = -1,
+};
+pub const MMCC_STANDARD_VIEW_SELECT = MMC_MENU_COMMAND_IDS.T;
+
+pub const MMC_NOTIFY_TYPE = enum(i32) {
+    ACTIVATE = 32769,
+    ADD_IMAGES = 32770,
+    BTN_CLICK = 32771,
+    CLICK = 32772,
+    COLUMN_CLICK = 32773,
+    CONTEXTMENU = 32774,
+    CUTORMOVE = 32775,
+    DBLCLICK = 32776,
+    DELETE = 32777,
+    DESELECT_ALL = 32778,
+    EXPAND = 32779,
+    HELP = 32780,
+    MENU_BTNCLICK = 32781,
+    MINIMIZED = 32782,
+    PASTE = 32783,
+    PROPERTY_CHANGE = 32784,
+    QUERY_PASTE = 32785,
+    REFRESH = 32786,
+    REMOVE_CHILDREN = 32787,
+    RENAME = 32788,
+    SELECT = 32789,
+    SHOW = 32790,
+    VIEW_CHANGE = 32791,
+    SNAPINHELP = 32792,
+    CONTEXTHELP = 32793,
+    INITOCX = 32794,
+    FILTER_CHANGE = 32795,
+    FILTERBTN_CLICK = 32796,
+    RESTORE_VIEW = 32797,
+    PRINT = 32798,
+    PRELOAD = 32799,
+    LISTPAD = 32800,
+    EXPANDSYNC = 32801,
+    COLUMNS_CHANGED = 32802,
+    CANPASTE_OUTOFPROC = 32803,
+};
+pub const MMCN_ACTIVATE = MMC_NOTIFY_TYPE.ACTIVATE;
+pub const MMCN_ADD_IMAGES = MMC_NOTIFY_TYPE.ADD_IMAGES;
+pub const MMCN_BTN_CLICK = MMC_NOTIFY_TYPE.BTN_CLICK;
+pub const MMCN_CLICK = MMC_NOTIFY_TYPE.CLICK;
+pub const MMCN_COLUMN_CLICK = MMC_NOTIFY_TYPE.COLUMN_CLICK;
+pub const MMCN_CONTEXTMENU = MMC_NOTIFY_TYPE.CONTEXTMENU;
+pub const MMCN_CUTORMOVE = MMC_NOTIFY_TYPE.CUTORMOVE;
+pub const MMCN_DBLCLICK = MMC_NOTIFY_TYPE.DBLCLICK;
+pub const MMCN_DELETE = MMC_NOTIFY_TYPE.DELETE;
+pub const MMCN_DESELECT_ALL = MMC_NOTIFY_TYPE.DESELECT_ALL;
+pub const MMCN_EXPAND = MMC_NOTIFY_TYPE.EXPAND;
+pub const MMCN_HELP = MMC_NOTIFY_TYPE.HELP;
+pub const MMCN_MENU_BTNCLICK = MMC_NOTIFY_TYPE.MENU_BTNCLICK;
+pub const MMCN_MINIMIZED = MMC_NOTIFY_TYPE.MINIMIZED;
+pub const MMCN_PASTE = MMC_NOTIFY_TYPE.PASTE;
+pub const MMCN_PROPERTY_CHANGE = MMC_NOTIFY_TYPE.PROPERTY_CHANGE;
+pub const MMCN_QUERY_PASTE = MMC_NOTIFY_TYPE.QUERY_PASTE;
+pub const MMCN_REFRESH = MMC_NOTIFY_TYPE.REFRESH;
+pub const MMCN_REMOVE_CHILDREN = MMC_NOTIFY_TYPE.REMOVE_CHILDREN;
+pub const MMCN_RENAME = MMC_NOTIFY_TYPE.RENAME;
+pub const MMCN_SELECT = MMC_NOTIFY_TYPE.SELECT;
+pub const MMCN_SHOW = MMC_NOTIFY_TYPE.SHOW;
+pub const MMCN_VIEW_CHANGE = MMC_NOTIFY_TYPE.VIEW_CHANGE;
+pub const MMCN_SNAPINHELP = MMC_NOTIFY_TYPE.SNAPINHELP;
+pub const MMCN_CONTEXTHELP = MMC_NOTIFY_TYPE.CONTEXTHELP;
+pub const MMCN_INITOCX = MMC_NOTIFY_TYPE.INITOCX;
+pub const MMCN_FILTER_CHANGE = MMC_NOTIFY_TYPE.FILTER_CHANGE;
+pub const MMCN_FILTERBTN_CLICK = MMC_NOTIFY_TYPE.FILTERBTN_CLICK;
+pub const MMCN_RESTORE_VIEW = MMC_NOTIFY_TYPE.RESTORE_VIEW;
+pub const MMCN_PRINT = MMC_NOTIFY_TYPE.PRINT;
+pub const MMCN_PRELOAD = MMC_NOTIFY_TYPE.PRELOAD;
+pub const MMCN_LISTPAD = MMC_NOTIFY_TYPE.LISTPAD;
+pub const MMCN_EXPANDSYNC = MMC_NOTIFY_TYPE.EXPANDSYNC;
+pub const MMCN_COLUMNS_CHANGED = MMC_NOTIFY_TYPE.COLUMNS_CHANGED;
+pub const MMCN_CANPASTE_OUTOFPROC = MMC_NOTIFY_TYPE.CANPASTE_OUTOFPROC;
+
+pub const MMC_PROPERTY_ACTION = enum(i32) {
+    DELETING = 1,
+    CHANGING = 2,
+    INITIALIZED = 3,
+};
+pub const MMC_PROPACT_DELETING = MMC_PROPERTY_ACTION.DELETING;
+pub const MMC_PROPACT_CHANGING = MMC_PROPERTY_ACTION.CHANGING;
+pub const MMC_PROPACT_INITIALIZED = MMC_PROPERTY_ACTION.INITIALIZED;
+
+pub const MMC_RESTORE_VIEW = extern struct {
+    dwSize: u32,
+    cookie: isize,
+    pViewType: ?PWSTR,
+    lViewOptions: i32,
+};
+
+pub const MMC_RESULT_VIEW_STYLE = enum(i32) {
+    SINGLESEL = 1,
+    SHOWSELALWAYS = 2,
+    NOSORTHEADER = 4,
+    ENSUREFOCUSVISIBLE = 8,
+};
+pub const MMC_SINGLESEL = MMC_RESULT_VIEW_STYLE.SINGLESEL;
+pub const MMC_SHOWSELALWAYS = MMC_RESULT_VIEW_STYLE.SHOWSELALWAYS;
+pub const MMC_NOSORTHEADER = MMC_RESULT_VIEW_STYLE.NOSORTHEADER;
+pub const MMC_ENSUREFOCUSVISIBLE = MMC_RESULT_VIEW_STYLE.ENSUREFOCUSVISIBLE;
+
+pub const MMC_SCOPE_ITEM_STATE = enum(i32) {
+    NORMAL = 1,
+    BOLD = 2,
+    EXPANDEDONCE = 3,
+};
+pub const MMC_SCOPE_ITEM_STATE_NORMAL = MMC_SCOPE_ITEM_STATE.NORMAL;
+pub const MMC_SCOPE_ITEM_STATE_BOLD = MMC_SCOPE_ITEM_STATE.BOLD;
+pub const MMC_SCOPE_ITEM_STATE_EXPANDEDONCE = MMC_SCOPE_ITEM_STATE.EXPANDEDONCE;
+
+pub const MMC_SNAPIN_PROPERTY = extern struct {
+    pszPropName: ?[*:0]const u16,
+    varValue: VARIANT,
+    eAction: MMC_PROPERTY_ACTION,
+};
+
+pub const MMC_SORT_DATA = extern struct {
+    nColIndex: i32,
+    dwSortOptions: u32,
+    ulReserved: usize,
+};
+
+pub const MMC_SORT_SET_DATA = extern struct {
+    cbSize: i32,
+    nNumItems: i32,
+    pSortData: ?*MMC_SORT_DATA,
+};
+
+pub const MMC_TASK = extern struct {
+    sDisplayObject: MMC_TASK_DISPLAY_OBJECT,
+    szText: ?PWSTR,
+    szHelpString: ?PWSTR,
+    eActionType: MMC_ACTION_TYPE,
+    Anonymous: extern union {
+        nCommandID: isize,
+        szActionURL: ?PWSTR,
+        szScript: ?PWSTR,
+    },
+};
+
+pub const MMC_TASK_DISPLAY_BITMAP = extern struct {
+    szMouseOverBitmap: ?PWSTR,
+    szMouseOffBitmap: ?PWSTR,
+};
+
+pub const MMC_TASK_DISPLAY_OBJECT = extern struct {
+    eDisplayType: MMC_TASK_DISPLAY_TYPE,
+    Anonymous: extern union {
+        uBitmap: MMC_TASK_DISPLAY_BITMAP,
+        uSymbol: MMC_TASK_DISPLAY_SYMBOL,
+    },
+};
+
+pub const MMC_TASK_DISPLAY_SYMBOL = extern struct {
+    szFontFamilyName: ?PWSTR,
+    szURLtoEOT: ?PWSTR,
+    szSymbolString: ?PWSTR,
+};
+
+pub const MMC_TASK_DISPLAY_TYPE = enum(i32) {
+    UNINITIALIZED = 0,
+    TYPE_SYMBOL = 1,
+    TYPE_VANILLA_GIF = 2,
+    TYPE_CHOCOLATE_GIF = 3,
+    TYPE_BITMAP = 4,
+};
+pub const MMC_TASK_DISPLAY_UNINITIALIZED = MMC_TASK_DISPLAY_TYPE.UNINITIALIZED;
+pub const MMC_TASK_DISPLAY_TYPE_SYMBOL = MMC_TASK_DISPLAY_TYPE.TYPE_SYMBOL;
+pub const MMC_TASK_DISPLAY_TYPE_VANILLA_GIF = MMC_TASK_DISPLAY_TYPE.TYPE_VANILLA_GIF;
+pub const MMC_TASK_DISPLAY_TYPE_CHOCOLATE_GIF = MMC_TASK_DISPLAY_TYPE.TYPE_CHOCOLATE_GIF;
+pub const MMC_TASK_DISPLAY_TYPE_BITMAP = MMC_TASK_DISPLAY_TYPE.TYPE_BITMAP;
+
+pub const MMC_VIEW_TYPE = enum(i32) {
+    LIST = 0,
+    HTML = 1,
+    OCX = 2,
+};
+pub const MMC_VIEW_TYPE_LIST = MMC_VIEW_TYPE.LIST;
+pub const MMC_VIEW_TYPE_HTML = MMC_VIEW_TYPE.HTML;
+pub const MMC_VIEW_TYPE_OCX = MMC_VIEW_TYPE.OCX;
+
+pub const MMC_VISIBLE_COLUMNS = extern struct {
+    nVisibleColumns: i32,
+    rgVisibleCols: [1]i32,
+};
+
+pub const MMCBUTTON = extern struct {
+    nBitmap: i32,
+    idCommand: i32,
+    fsState: u8,
+    fsType: u8,
+    lpButtonText: ?PWSTR,
+    lpTooltipText: ?PWSTR,
+};
+
+const CLSID_MMCVersionInfo_Value = Guid.initString("d6fedb1d-cf21-4bd9-af3b-c5468e9c6684");
+pub const CLSID_MMCVersionInfo = &CLSID_MMCVersionInfo_Value;
+
+const IID_Node_Value = Guid.initString("f81ed800-7839-4447-945d-8e15da59ca55");
+pub const IID_Node = &IID_Node_Value;
+pub const Node = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const Node,
+            Name: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        get_Property: *const fn(
+            self: *const Node,
+            PropertyName: ?BSTR,
+            PropertyValue: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Bookmark: *const fn(
+            self: *const Node,
+            Bookmark: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+        IsScopeNode: *const fn(
+            self: *const Node,
+            IsScopeNode: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Nodetype: *const fn(
+            self: *const Node,
+            Nodetype: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const Node, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, _param_Name);
+    }
+    pub fn get_Property(self: *const Node, PropertyName: ?BSTR, PropertyValue: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Property(self, PropertyName, PropertyValue);
+    }
+    pub fn get_Bookmark(self: *const Node, Bookmark: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Bookmark(self, Bookmark);
+    }
+    pub fn IsScopeNode(self: *const Node, _param_IsScopeNode: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsScopeNode(self, _param_IsScopeNode);
+    }
+    pub fn get_Nodetype(self: *const Node, Nodetype: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Nodetype(self, Nodetype);
+    }
+};
+
+const IID_Nodes_Value = Guid.initString("313b01df-b22f-4d42-b1b8-483cdcf51d35");
+pub const IID_Nodes = &IID_Nodes_Value;
+pub const Nodes = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const Nodes,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const Nodes,
+            Index: i32,
+            Node: ?*?*Node,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const Nodes,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const Nodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Item(self: *const Nodes, Index: i32, _param_Node: ?*?*Node) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, _param_Node);
+    }
+    pub fn get_Count(self: *const Nodes, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+};
+
+const IID_Properties_Value = Guid.initString("2886abc2-a425-42b2-91c6-e25c0e04581c");
+pub const IID_Properties = &IID_Properties_Value;
+pub const Properties = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const Properties,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const Properties,
+            Name: ?BSTR,
+            Property: ?*?*Property,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const Properties,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const Properties,
+            Name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const Properties, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Item(self: *const Properties, _param_Name: ?BSTR, _param_Property: ?*?*Property) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, _param_Name, _param_Property);
+    }
+    pub fn get_Count(self: *const Properties, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn Remove(self: *const Properties, _param_Name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, _param_Name);
+    }
+};
+
+const IID_Property_Value = Guid.initString("4600c3a5-e301-41d8-b6d0-ef2e4212e0ca");
+pub const IID_Property = &IID_Property_Value;
+pub const Property = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const Property,
+            Value: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const Property,
+            Value: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const Property,
+            Name: ?*?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Value(self: *const Property, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, Value);
+    }
+    pub fn put_Value(self: *const Property, Value: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, Value);
+    }
+    pub fn get_Name(self: *const Property, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, _param_Name);
+    }
+};
+
+pub const RDCOMPARE = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    nColumn: i32,
+    lUserParam: LPARAM,
+    prdch1: ?*RDITEMHDR,
+    prdch2: ?*RDITEMHDR,
+};
+
+pub const RDITEMHDR = extern struct {
+    dwFlags: u32,
+    cookie: isize,
+    lpReserved: LPARAM,
+};
+
+pub const RESULT_VIEW_TYPE_INFO = extern struct {
+    pstrPersistableViewDescription: ?PWSTR,
+    eViewType: MMC_VIEW_TYPE,
+    dwMiscOptions: u32,
+    Anonymous: extern union {
+        dwListOptions: u32,
+        Anonymous1: extern struct {
+            dwHTMLOptions: u32,
+            pstrURL: ?PWSTR,
+        },
+        Anonymous2: extern struct {
+            dwOCXOptions: u32,
+            pUnkControl: ?*IUnknown,
+        },
+    },
+};
+
+pub const RESULTDATAITEM = extern struct {
+    mask: u32,
+    bScopeItem: BOOL,
+    itemID: isize,
+    nIndex: i32,
+    nCol: i32,
+    str: ?PWSTR,
+    nImage: i32,
+    nState: u32,
+    lParam: LPARAM,
+    iIndent: i32,
+};
+
+pub const RESULTFINDINFO = extern struct {
+    psz: ?PWSTR,
+    nStart: i32,
+    dwOptions: u32,
+};
+
+pub const SColumnSetID = extern struct {
+    dwFlags: u32,
+    cBytes: u32,
+    id: [1]u8,
+};
+
+pub const SCOPEDATAITEM = extern struct {
+    mask: u32,
+    displayname: ?PWSTR,
+    nImage: i32,
+    nOpenImage: i32,
+    nState: u32,
+    cChildren: i32,
+    lParam: LPARAM,
+    relativeID: isize,
+    ID: isize,
+};
+
+const IID_ScopeNamespace_Value = Guid.initString("ebbb48dc-1a3b-4d86-b786-c21b28389012");
+pub const IID_ScopeNamespace = &IID_ScopeNamespace_Value;
+pub const ScopeNamespace = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetParent: *const fn(
+            self: *const ScopeNamespace,
+            Node: ?*Node,
+            Parent: ?*?*Node,
+        ) callconv(.winapi) HRESULT,
+        GetChild: *const fn(
+            self: *const ScopeNamespace,
+            Node: ?*Node,
+            Child: ?*?*Node,
+        ) callconv(.winapi) HRESULT,
+        GetNext: *const fn(
+            self: *const ScopeNamespace,
+            Node: ?*Node,
+            Next: ?*?*Node,
+        ) callconv(.winapi) HRESULT,
+        GetRoot: *const fn(
+            self: *const ScopeNamespace,
+            Root: ?*?*Node,
+        ) callconv(.winapi) HRESULT,
+        Expand: *const fn(
+            self: *const ScopeNamespace,
+            Node: ?*Node,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetParent(self: *const ScopeNamespace, _param_Node: ?*Node, Parent: ?*?*Node) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParent(self, _param_Node, Parent);
+    }
+    pub fn GetChild(self: *const ScopeNamespace, _param_Node: ?*Node, Child: ?*?*Node) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChild(self, _param_Node, Child);
+    }
+    pub fn GetNext(self: *const ScopeNamespace, _param_Node: ?*Node, Next: ?*?*Node) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNext(self, _param_Node, Next);
+    }
+    pub fn GetRoot(self: *const ScopeNamespace, Root: ?*?*Node) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRoot(self, Root);
+    }
+    pub fn Expand(self: *const ScopeNamespace, _param_Node: ?*Node) callconv(.@"inline") HRESULT {
+        return self.vtable.Expand(self, _param_Node);
+    }
+};
+
+pub const SMMCDataObjects = extern struct {
+    count: u32,
+    lpDataObject: [1]?*IDataObject,
+};
+
+pub const SMMCObjectTypes = extern struct {
+    count: u32,
+    guid: [1]Guid,
+};
+
 const IID_SnapIn_Value = Guid.initString("3be910f6-3459-49c6-a1bb-41e6be9df3ea");
 pub const IID_SnapIn = &IID_SnapIn_Value;
 pub const SnapIn = extern union {
@@ -891,269 +3544,15 @@ pub const SnapIns = extern union {
     }
 };
 
-const IID_Extension_Value = Guid.initString("ad4d6ca6-912f-409b-a26e-7fd234aef542");
-pub const IID_Extension = &IID_Extension_Value;
-pub const Extension = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const Extension,
-            Name: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Vendor: *const fn(
-            self: *const Extension,
-            Vendor: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: *const fn(
-            self: *const Extension,
-            Version: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Extensions: *const fn(
-            self: *const Extension,
-            Extensions: ?*?*Extensions,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SnapinCLSID: *const fn(
-            self: *const Extension,
-            SnapinCLSID: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        EnableAllExtensions: *const fn(
-            self: *const Extension,
-            Enable: BOOL,
-        ) callconv(.winapi) HRESULT,
-        Enable: *const fn(
-            self: *const Extension,
-            Enable: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const Extension, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, _param_Name);
-    }
-    pub fn get_Vendor(self: *const Extension, Vendor: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Vendor(self, Vendor);
-    }
-    pub fn get_Version(self: *const Extension, Version: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Version(self, Version);
-    }
-    pub fn get_Extensions(self: *const Extension, _param_Extensions: ?*?*Extensions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Extensions(self, _param_Extensions);
-    }
-    pub fn get_SnapinCLSID(self: *const Extension, SnapinCLSID: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SnapinCLSID(self, SnapinCLSID);
-    }
-    pub fn EnableAllExtensions(self: *const Extension, _param_Enable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableAllExtensions(self, _param_Enable);
-    }
-    pub fn Enable(self: *const Extension, _param_Enable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Enable(self, _param_Enable);
-    }
+pub const SNodeID = extern struct {
+    cBytes: u32,
+    id: [1]u8,
 };
 
-const IID_Extensions_Value = Guid.initString("82dbea43-8ca4-44bc-a2ca-d18741059ec8");
-pub const IID_Extensions = &IID_Extensions_Value;
-pub const Extensions = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const Extensions,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const Extensions,
-            Index: i32,
-            Extension: ?*?*Extension,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const Extensions,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const Extensions, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Item(self: *const Extensions, Index: i32, _param_Extension: ?*?*Extension) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, _param_Extension);
-    }
-    pub fn get_Count(self: *const Extensions, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-};
-
-const IID_Columns_Value = Guid.initString("383d4d97-fc44-478b-b139-6323dc48611c");
-pub const IID_Columns = &IID_Columns_Value;
-pub const Columns = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Item: *const fn(
-            self: *const Columns,
-            Index: i32,
-            Column: ?*?*Column,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const Columns,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const Columns,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Item(self: *const Columns, Index: i32, _param_Column: ?*?*Column) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, _param_Column);
-    }
-    pub fn get_Count(self: *const Columns, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const Columns, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-};
-
-pub const _ColumnSortOrder = enum(i32) {
-    Ascending = 0,
-    Descending = 1,
-};
-pub const SortOrder_Ascending = _ColumnSortOrder.Ascending;
-pub const SortOrder_Descending = _ColumnSortOrder.Descending;
-
-const IID_Column_Value = Guid.initString("fd1c5f63-2b16-4d06-9ab3-f45350b940ab");
-pub const IID_Column = &IID_Column_Value;
-pub const Column = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Name: *const fn(
-            self: *const Column,
-            Name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: *const fn(
-            self: *const Column,
-            Width: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Width: *const fn(
-            self: *const Column,
-            Width: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayPosition: *const fn(
-            self: *const Column,
-            DisplayPosition: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayPosition: *const fn(
-            self: *const Column,
-            Index: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Hidden: *const fn(
-            self: *const Column,
-            Hidden: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Hidden: *const fn(
-            self: *const Column,
-            Hidden: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetAsSortColumn: *const fn(
-            self: *const Column,
-            SortOrder: _ColumnSortOrder,
-        ) callconv(.winapi) HRESULT,
-        IsSortColumn: *const fn(
-            self: *const Column,
-            IsSortColumn: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Name(self: *const Column, _param_Name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Name(self, _param_Name);
-    }
-    pub fn get_Width(self: *const Column, Width: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Width(self, Width);
-    }
-    pub fn put_Width(self: *const Column, Width: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Width(self, Width);
-    }
-    pub fn get_DisplayPosition(self: *const Column, DisplayPosition: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayPosition(self, DisplayPosition);
-    }
-    pub fn put_DisplayPosition(self: *const Column, Index: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisplayPosition(self, Index);
-    }
-    pub fn get_Hidden(self: *const Column, Hidden: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Hidden(self, Hidden);
-    }
-    pub fn put_Hidden(self: *const Column, Hidden: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Hidden(self, Hidden);
-    }
-    pub fn SetAsSortColumn(self: *const Column, SortOrder: _ColumnSortOrder) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAsSortColumn(self, SortOrder);
-    }
-    pub fn IsSortColumn(self: *const Column, _param_IsSortColumn: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSortColumn(self, _param_IsSortColumn);
-    }
-};
-
-const IID_Views_Value = Guid.initString("d6b8c29d-a1ff-4d72-aab0-e381e9b9338d");
-pub const IID_Views = &IID_Views_Value;
-pub const Views = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Item: *const fn(
-            self: *const Views,
-            Index: i32,
-            View: ?*?*View,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const Views,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const Views,
-            Node: ?*Node,
-            viewOptions: _ViewOptions,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const Views,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Item(self: *const Views, Index: i32, _param_View: ?*?*View) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, _param_View);
-    }
-    pub fn get_Count(self: *const Views, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn Add(self: *const Views, _param_Node: ?*Node, viewOptions: _ViewOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, _param_Node, viewOptions);
-    }
-    pub fn get__NewEnum(self: *const Views, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
+pub const SNodeID2 = extern struct {
+    dwFlags: u32,
+    cBytes: u32,
+    id: [1]u8,
 };
 
 const IID_View_Value = Guid.initString("6efc2da2-b38c-457e-9abb-ed2d189b8c38");
@@ -1480,2445 +3879,46 @@ pub const View = extern union {
     }
 };
 
-const IID_Nodes_Value = Guid.initString("313b01df-b22f-4d42-b1b8-483cdcf51d35");
-pub const IID_Nodes = &IID_Nodes_Value;
-pub const Nodes = extern union {
+const IID_Views_Value = Guid.initString("d6b8c29d-a1ff-4d72-aab0-e381e9b9338d");
+pub const IID_Views = &IID_Views_Value;
+pub const Views = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const Nodes,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
         Item: *const fn(
-            self: *const Nodes,
+            self: *const Views,
             Index: i32,
-            Node: ?*?*Node,
+            View: ?*?*View,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const Nodes,
+            self: *const Views,
             Count: ?*i32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const Nodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Item(self: *const Nodes, Index: i32, _param_Node: ?*?*Node) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, _param_Node);
-    }
-    pub fn get_Count(self: *const Nodes, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-};
-
-const IID_ContextMenu_Value = Guid.initString("dab39ce0-25e6-4e07-8362-ba9c95706545");
-pub const IID_ContextMenu = &IID_ContextMenu_Value;
-pub const ContextMenu = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
+        Add: *const fn(
+            self: *const Views,
+            Node: ?*Node,
+            viewOptions: _ViewOptions,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const ContextMenu,
+            self: *const Views,
             retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ContextMenu,
-            IndexOrPath: VARIANT,
-            MenuItem: ?*?*MenuItem,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ContextMenu,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ContextMenu, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
+    pub fn Item(self: *const Views, Index: i32, _param_View: ?*?*View) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, _param_View);
     }
-    pub fn get_Item(self: *const ContextMenu, IndexOrPath: VARIANT, _param_MenuItem: ?*?*MenuItem) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, IndexOrPath, _param_MenuItem);
-    }
-    pub fn get_Count(self: *const ContextMenu, Count: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const Views, Count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-};
-
-const IID_MenuItem_Value = Guid.initString("0178fad1-b361-4b27-96ad-67c57ebf2e1d");
-pub const IID_MenuItem = &IID_MenuItem_Value;
-pub const MenuItem = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: *const fn(
-            self: *const MenuItem,
-            DisplayName: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LanguageIndependentName: *const fn(
-            self: *const MenuItem,
-            LanguageIndependentName: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const MenuItem,
-            Path: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LanguageIndependentPath: *const fn(
-            self: *const MenuItem,
-            LanguageIndependentPath: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-        Execute: *const fn(
-            self: *const MenuItem,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const MenuItem,
-            Enabled: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_DisplayName(self: *const MenuItem, DisplayName: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayName(self, DisplayName);
+    pub fn Add(self: *const Views, _param_Node: ?*Node, viewOptions: _ViewOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, _param_Node, viewOptions);
     }
-    pub fn get_LanguageIndependentName(self: *const MenuItem, LanguageIndependentName: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LanguageIndependentName(self, LanguageIndependentName);
-    }
-    pub fn get_Path(self: *const MenuItem, Path: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, Path);
-    }
-    pub fn get_LanguageIndependentPath(self: *const MenuItem, LanguageIndependentPath: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LanguageIndependentPath(self, LanguageIndependentPath);
-    }
-    pub fn Execute(self: *const MenuItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Execute(self);
-    }
-    pub fn get_Enabled(self: *const MenuItem, Enabled: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, Enabled);
-    }
-};
-
-const IID_Properties_Value = Guid.initString("2886abc2-a425-42b2-91c6-e25c0e04581c");
-pub const IID_Properties = &IID_Properties_Value;
-pub const Properties = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const Properties,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const Properties,
-            Name: ?BSTR,
-            Property: ?*?*Property,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const Properties,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const Properties,
-            Name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const Properties, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const Views, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Item(self: *const Properties, _param_Name: ?BSTR, _param_Property: ?*?*Property) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, _param_Name, _param_Property);
-    }
-    pub fn get_Count(self: *const Properties, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn Remove(self: *const Properties, _param_Name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, _param_Name);
-    }
-};
-
-const IID_Property_Value = Guid.initString("4600c3a5-e301-41d8-b6d0-ef2e4212e0ca");
-pub const IID_Property = &IID_Property_Value;
-pub const Property = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const Property,
-            Value: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const Property,
-            Value: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const Property,
-            Name: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Value(self: *const Property, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, Value);
-    }
-    pub fn put_Value(self: *const Property, Value: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, Value);
-    }
-    pub fn get_Name(self: *const Property, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, _param_Name);
-    }
-};
-
-const CLSID_MMCVersionInfo_Value = Guid.initString("d6fedb1d-cf21-4bd9-af3b-c5468e9c6684");
-pub const CLSID_MMCVersionInfo = &CLSID_MMCVersionInfo_Value;
-
-const CLSID_ConsolePower_Value = Guid.initString("f0285374-dff1-11d3-b433-00c04f8ecd78");
-pub const CLSID_ConsolePower = &CLSID_ConsolePower_Value;
-
-pub const MMC_RESULT_VIEW_STYLE = enum(i32) {
-    SINGLESEL = 1,
-    SHOWSELALWAYS = 2,
-    NOSORTHEADER = 4,
-    ENSUREFOCUSVISIBLE = 8,
-};
-pub const MMC_SINGLESEL = MMC_RESULT_VIEW_STYLE.SINGLESEL;
-pub const MMC_SHOWSELALWAYS = MMC_RESULT_VIEW_STYLE.SHOWSELALWAYS;
-pub const MMC_NOSORTHEADER = MMC_RESULT_VIEW_STYLE.NOSORTHEADER;
-pub const MMC_ENSUREFOCUSVISIBLE = MMC_RESULT_VIEW_STYLE.ENSUREFOCUSVISIBLE;
-
-pub const MMC_CONTROL_TYPE = enum(i32) {
-    TOOLBAR = 0,
-    MENUBUTTON = 1,
-    COMBOBOXBAR = 2,
-};
-pub const TOOLBAR = MMC_CONTROL_TYPE.TOOLBAR;
-pub const MENUBUTTON = MMC_CONTROL_TYPE.MENUBUTTON;
-pub const COMBOBOXBAR = MMC_CONTROL_TYPE.COMBOBOXBAR;
-
-pub const MMC_CONSOLE_VERB = enum(i32) {
-    NONE = 0,
-    OPEN = 32768,
-    COPY = 32769,
-    PASTE = 32770,
-    DELETE = 32771,
-    PROPERTIES = 32772,
-    RENAME = 32773,
-    REFRESH = 32774,
-    PRINT = 32775,
-    CUT = 32776,
-    MAX = 32777,
-    pub const FIRST = .OPEN;
-    pub const LAST = .CUT;
-};
-pub const MMC_VERB_NONE = MMC_CONSOLE_VERB.NONE;
-pub const MMC_VERB_OPEN = MMC_CONSOLE_VERB.OPEN;
-pub const MMC_VERB_COPY = MMC_CONSOLE_VERB.COPY;
-pub const MMC_VERB_PASTE = MMC_CONSOLE_VERB.PASTE;
-pub const MMC_VERB_DELETE = MMC_CONSOLE_VERB.DELETE;
-pub const MMC_VERB_PROPERTIES = MMC_CONSOLE_VERB.PROPERTIES;
-pub const MMC_VERB_RENAME = MMC_CONSOLE_VERB.RENAME;
-pub const MMC_VERB_REFRESH = MMC_CONSOLE_VERB.REFRESH;
-pub const MMC_VERB_PRINT = MMC_CONSOLE_VERB.PRINT;
-pub const MMC_VERB_CUT = MMC_CONSOLE_VERB.CUT;
-pub const MMC_VERB_MAX = MMC_CONSOLE_VERB.MAX;
-pub const MMC_VERB_FIRST = MMC_CONSOLE_VERB.OPEN;
-pub const MMC_VERB_LAST = MMC_CONSOLE_VERB.CUT;
-
-pub const MMCBUTTON = extern struct {
-    nBitmap: i32,
-    idCommand: i32,
-    fsState: u8,
-    fsType: u8,
-    lpButtonText: ?PWSTR,
-    lpTooltipText: ?PWSTR,
-};
-
-pub const MMC_BUTTON_STATE = enum(i32) {
-    ENABLED = 1,
-    CHECKED = 2,
-    HIDDEN = 4,
-    INDETERMINATE = 8,
-    BUTTONPRESSED = 16,
-};
-pub const ENABLED = MMC_BUTTON_STATE.ENABLED;
-pub const CHECKED = MMC_BUTTON_STATE.CHECKED;
-pub const HIDDEN = MMC_BUTTON_STATE.HIDDEN;
-pub const INDETERMINATE = MMC_BUTTON_STATE.INDETERMINATE;
-pub const BUTTONPRESSED = MMC_BUTTON_STATE.BUTTONPRESSED;
-
-pub const RESULTDATAITEM = extern struct {
-    mask: u32,
-    bScopeItem: BOOL,
-    itemID: isize,
-    nIndex: i32,
-    nCol: i32,
-    str: ?PWSTR,
-    nImage: i32,
-    nState: u32,
-    lParam: LPARAM,
-    iIndent: i32,
-};
-
-pub const RESULTFINDINFO = extern struct {
-    psz: ?PWSTR,
-    nStart: i32,
-    dwOptions: u32,
-};
-
-pub const SCOPEDATAITEM = extern struct {
-    mask: u32,
-    displayname: ?PWSTR,
-    nImage: i32,
-    nOpenImage: i32,
-    nState: u32,
-    cChildren: i32,
-    lParam: LPARAM,
-    relativeID: isize,
-    ID: isize,
-};
-
-pub const MMC_SCOPE_ITEM_STATE = enum(i32) {
-    NORMAL = 1,
-    BOLD = 2,
-    EXPANDEDONCE = 3,
-};
-pub const MMC_SCOPE_ITEM_STATE_NORMAL = MMC_SCOPE_ITEM_STATE.NORMAL;
-pub const MMC_SCOPE_ITEM_STATE_BOLD = MMC_SCOPE_ITEM_STATE.BOLD;
-pub const MMC_SCOPE_ITEM_STATE_EXPANDEDONCE = MMC_SCOPE_ITEM_STATE.EXPANDEDONCE;
-
-pub const CONTEXTMENUITEM = extern struct {
-    strName: ?PWSTR,
-    strStatusBarText: ?PWSTR,
-    lCommandID: i32,
-    lInsertionPointID: i32,
-    fFlags: i32,
-    fSpecialFlags: i32,
-};
-
-pub const MMC_MENU_COMMAND_IDS = enum(i32) {
-    T = -1,
-};
-pub const MMCC_STANDARD_VIEW_SELECT = MMC_MENU_COMMAND_IDS.T;
-
-pub const MENUBUTTONDATA = extern struct {
-    idCommand: i32,
-    x: i32,
-    y: i32,
-};
-
-pub const MMC_FILTER_TYPE = enum(i32) {
-    STRING_FILTER = 0,
-    INT_FILTER = 1,
-    FILTER_NOVALUE = 32768,
-};
-pub const MMC_STRING_FILTER = MMC_FILTER_TYPE.STRING_FILTER;
-pub const MMC_INT_FILTER = MMC_FILTER_TYPE.INT_FILTER;
-pub const MMC_FILTER_NOVALUE = MMC_FILTER_TYPE.FILTER_NOVALUE;
-
-pub const MMC_FILTERDATA = extern struct {
-    pszText: ?PWSTR,
-    cchTextMax: i32,
-    lValue: i32,
-};
-
-pub const MMC_FILTER_CHANGE_CODE = enum(i32) {
-    DISABLE = 0,
-    ENABLE = 1,
-    VALUE_CHANGE = 2,
-};
-pub const MFCC_DISABLE = MMC_FILTER_CHANGE_CODE.DISABLE;
-pub const MFCC_ENABLE = MMC_FILTER_CHANGE_CODE.ENABLE;
-pub const MFCC_VALUE_CHANGE = MMC_FILTER_CHANGE_CODE.VALUE_CHANGE;
-
-pub const MMC_RESTORE_VIEW = extern struct {
-    dwSize: u32,
-    cookie: isize,
-    pViewType: ?PWSTR,
-    lViewOptions: i32,
-};
-
-pub const MMC_EXPANDSYNC_STRUCT = extern struct {
-    bHandled: BOOL,
-    bExpanding: BOOL,
-    hItem: isize,
-};
-
-pub const MMC_VISIBLE_COLUMNS = extern struct {
-    nVisibleColumns: i32,
-    rgVisibleCols: [1]i32,
-};
-
-pub const MMC_NOTIFY_TYPE = enum(i32) {
-    ACTIVATE = 32769,
-    ADD_IMAGES = 32770,
-    BTN_CLICK = 32771,
-    CLICK = 32772,
-    COLUMN_CLICK = 32773,
-    CONTEXTMENU = 32774,
-    CUTORMOVE = 32775,
-    DBLCLICK = 32776,
-    DELETE = 32777,
-    DESELECT_ALL = 32778,
-    EXPAND = 32779,
-    HELP = 32780,
-    MENU_BTNCLICK = 32781,
-    MINIMIZED = 32782,
-    PASTE = 32783,
-    PROPERTY_CHANGE = 32784,
-    QUERY_PASTE = 32785,
-    REFRESH = 32786,
-    REMOVE_CHILDREN = 32787,
-    RENAME = 32788,
-    SELECT = 32789,
-    SHOW = 32790,
-    VIEW_CHANGE = 32791,
-    SNAPINHELP = 32792,
-    CONTEXTHELP = 32793,
-    INITOCX = 32794,
-    FILTER_CHANGE = 32795,
-    FILTERBTN_CLICK = 32796,
-    RESTORE_VIEW = 32797,
-    PRINT = 32798,
-    PRELOAD = 32799,
-    LISTPAD = 32800,
-    EXPANDSYNC = 32801,
-    COLUMNS_CHANGED = 32802,
-    CANPASTE_OUTOFPROC = 32803,
-};
-pub const MMCN_ACTIVATE = MMC_NOTIFY_TYPE.ACTIVATE;
-pub const MMCN_ADD_IMAGES = MMC_NOTIFY_TYPE.ADD_IMAGES;
-pub const MMCN_BTN_CLICK = MMC_NOTIFY_TYPE.BTN_CLICK;
-pub const MMCN_CLICK = MMC_NOTIFY_TYPE.CLICK;
-pub const MMCN_COLUMN_CLICK = MMC_NOTIFY_TYPE.COLUMN_CLICK;
-pub const MMCN_CONTEXTMENU = MMC_NOTIFY_TYPE.CONTEXTMENU;
-pub const MMCN_CUTORMOVE = MMC_NOTIFY_TYPE.CUTORMOVE;
-pub const MMCN_DBLCLICK = MMC_NOTIFY_TYPE.DBLCLICK;
-pub const MMCN_DELETE = MMC_NOTIFY_TYPE.DELETE;
-pub const MMCN_DESELECT_ALL = MMC_NOTIFY_TYPE.DESELECT_ALL;
-pub const MMCN_EXPAND = MMC_NOTIFY_TYPE.EXPAND;
-pub const MMCN_HELP = MMC_NOTIFY_TYPE.HELP;
-pub const MMCN_MENU_BTNCLICK = MMC_NOTIFY_TYPE.MENU_BTNCLICK;
-pub const MMCN_MINIMIZED = MMC_NOTIFY_TYPE.MINIMIZED;
-pub const MMCN_PASTE = MMC_NOTIFY_TYPE.PASTE;
-pub const MMCN_PROPERTY_CHANGE = MMC_NOTIFY_TYPE.PROPERTY_CHANGE;
-pub const MMCN_QUERY_PASTE = MMC_NOTIFY_TYPE.QUERY_PASTE;
-pub const MMCN_REFRESH = MMC_NOTIFY_TYPE.REFRESH;
-pub const MMCN_REMOVE_CHILDREN = MMC_NOTIFY_TYPE.REMOVE_CHILDREN;
-pub const MMCN_RENAME = MMC_NOTIFY_TYPE.RENAME;
-pub const MMCN_SELECT = MMC_NOTIFY_TYPE.SELECT;
-pub const MMCN_SHOW = MMC_NOTIFY_TYPE.SHOW;
-pub const MMCN_VIEW_CHANGE = MMC_NOTIFY_TYPE.VIEW_CHANGE;
-pub const MMCN_SNAPINHELP = MMC_NOTIFY_TYPE.SNAPINHELP;
-pub const MMCN_CONTEXTHELP = MMC_NOTIFY_TYPE.CONTEXTHELP;
-pub const MMCN_INITOCX = MMC_NOTIFY_TYPE.INITOCX;
-pub const MMCN_FILTER_CHANGE = MMC_NOTIFY_TYPE.FILTER_CHANGE;
-pub const MMCN_FILTERBTN_CLICK = MMC_NOTIFY_TYPE.FILTERBTN_CLICK;
-pub const MMCN_RESTORE_VIEW = MMC_NOTIFY_TYPE.RESTORE_VIEW;
-pub const MMCN_PRINT = MMC_NOTIFY_TYPE.PRINT;
-pub const MMCN_PRELOAD = MMC_NOTIFY_TYPE.PRELOAD;
-pub const MMCN_LISTPAD = MMC_NOTIFY_TYPE.LISTPAD;
-pub const MMCN_EXPANDSYNC = MMC_NOTIFY_TYPE.EXPANDSYNC;
-pub const MMCN_COLUMNS_CHANGED = MMC_NOTIFY_TYPE.COLUMNS_CHANGED;
-pub const MMCN_CANPASTE_OUTOFPROC = MMC_NOTIFY_TYPE.CANPASTE_OUTOFPROC;
-
-pub const DATA_OBJECT_TYPES = enum(i32) {
-    SCOPE = 32768,
-    RESULT = 32769,
-    SNAPIN_MANAGER = 32770,
-    UNINITIALIZED = 65535,
-};
-pub const CCT_SCOPE = DATA_OBJECT_TYPES.SCOPE;
-pub const CCT_RESULT = DATA_OBJECT_TYPES.RESULT;
-pub const CCT_SNAPIN_MANAGER = DATA_OBJECT_TYPES.SNAPIN_MANAGER;
-pub const CCT_UNINITIALIZED = DATA_OBJECT_TYPES.UNINITIALIZED;
-
-pub const SMMCDataObjects = extern struct {
-    count: u32,
-    lpDataObject: [1]?*IDataObject,
-};
-
-pub const SMMCObjectTypes = extern struct {
-    count: u32,
-    guid: [1]Guid,
-};
-
-pub const SNodeID = extern struct {
-    cBytes: u32,
-    id: [1]u8,
-};
-
-pub const SNodeID2 = extern struct {
-    dwFlags: u32,
-    cBytes: u32,
-    id: [1]u8,
-};
-
-pub const SColumnSetID = extern struct {
-    dwFlags: u32,
-    cBytes: u32,
-    id: [1]u8,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IComponentData_Value = Guid.initString("955ab28a-5218-11d0-a985-00c04fd8d565");
-pub const IID_IComponentData = &IID_IComponentData_Value;
-pub const IComponentData = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IComponentData,
-            pUnknown: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        CreateComponent: *const fn(
-            self: *const IComponentData,
-            ppComponent: ?*?*IComponent,
-        ) callconv(.winapi) HRESULT,
-        Notify: *const fn(
-            self: *const IComponentData,
-            lpDataObject: ?*IDataObject,
-            event: MMC_NOTIFY_TYPE,
-            arg: LPARAM,
-            param3: LPARAM,
-        ) callconv(.winapi) HRESULT,
-        Destroy: *const fn(
-            self: *const IComponentData,
-        ) callconv(.winapi) HRESULT,
-        QueryDataObject: *const fn(
-            self: *const IComponentData,
-            cookie: isize,
-            type: DATA_OBJECT_TYPES,
-            ppDataObject: ?*?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        GetDisplayInfo: *const fn(
-            self: *const IComponentData,
-            pScopeDataItem: ?*SCOPEDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        CompareObjects: *const fn(
-            self: *const IComponentData,
-            lpDataObjectA: ?*IDataObject,
-            lpDataObjectB: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IComponentData, pUnknown: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pUnknown);
-    }
-    pub fn CreateComponent(self: *const IComponentData, ppComponent: ?*?*IComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateComponent(self, ppComponent);
-    }
-    pub fn Notify(self: *const IComponentData, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: LPARAM, param3: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, lpDataObject, event, arg, param3);
-    }
-    pub fn Destroy(self: *const IComponentData) callconv(.@"inline") HRESULT {
-        return self.vtable.Destroy(self);
-    }
-    pub fn QueryDataObject(self: *const IComponentData, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryDataObject(self, cookie, @"type", ppDataObject);
-    }
-    pub fn GetDisplayInfo(self: *const IComponentData, pScopeDataItem: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDisplayInfo(self, pScopeDataItem);
-    }
-    pub fn CompareObjects(self: *const IComponentData, lpDataObjectA: ?*IDataObject, lpDataObjectB: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.CompareObjects(self, lpDataObjectA, lpDataObjectB);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IComponent_Value = Guid.initString("43136eb2-d36c-11cf-adbc-00aa00a80033");
-pub const IID_IComponent = &IID_IComponent_Value;
-pub const IComponent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IComponent,
-            lpConsole: ?*IConsole,
-        ) callconv(.winapi) HRESULT,
-        Notify: *const fn(
-            self: *const IComponent,
-            lpDataObject: ?*IDataObject,
-            event: MMC_NOTIFY_TYPE,
-            arg: LPARAM,
-            param3: LPARAM,
-        ) callconv(.winapi) HRESULT,
-        Destroy: *const fn(
-            self: *const IComponent,
-            cookie: isize,
-        ) callconv(.winapi) HRESULT,
-        QueryDataObject: *const fn(
-            self: *const IComponent,
-            cookie: isize,
-            type: DATA_OBJECT_TYPES,
-            ppDataObject: ?*?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        GetResultViewType: *const fn(
-            self: *const IComponent,
-            cookie: isize,
-            ppViewType: ?*?PWSTR,
-            pViewOptions: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetDisplayInfo: *const fn(
-            self: *const IComponent,
-            pResultDataItem: ?*RESULTDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        CompareObjects: *const fn(
-            self: *const IComponent,
-            lpDataObjectA: ?*IDataObject,
-            lpDataObjectB: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IComponent, lpConsole: ?*IConsole) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, lpConsole);
-    }
-    pub fn Notify(self: *const IComponent, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: LPARAM, param3: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, lpDataObject, event, arg, param3);
-    }
-    pub fn Destroy(self: *const IComponent, cookie: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.Destroy(self, cookie);
-    }
-    pub fn QueryDataObject(self: *const IComponent, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryDataObject(self, cookie, @"type", ppDataObject);
-    }
-    pub fn GetResultViewType(self: *const IComponent, cookie: isize, ppViewType: ?*?PWSTR, pViewOptions: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetResultViewType(self, cookie, ppViewType, pViewOptions);
-    }
-    pub fn GetDisplayInfo(self: *const IComponent, pResultDataItem: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDisplayInfo(self, pResultDataItem);
-    }
-    pub fn CompareObjects(self: *const IComponent, lpDataObjectA: ?*IDataObject, lpDataObjectB: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.CompareObjects(self, lpDataObjectA, lpDataObjectB);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IResultDataCompare_Value = Guid.initString("e8315a52-7a1a-11d0-a2d2-00c04fd909dd");
-pub const IID_IResultDataCompare = &IID_IResultDataCompare_Value;
-pub const IResultDataCompare = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Compare: *const fn(
-            self: *const IResultDataCompare,
-            lUserParam: LPARAM,
-            cookieA: isize,
-            cookieB: isize,
-            pnResult: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Compare(self: *const IResultDataCompare, lUserParam: LPARAM, cookieA: isize, cookieB: isize, pnResult: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Compare(self, lUserParam, cookieA, cookieB, pnResult);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IResultOwnerData_Value = Guid.initString("9cb396d8-ea83-11d0-aef1-00c04fb6dd2c");
-pub const IID_IResultOwnerData = &IID_IResultOwnerData_Value;
-pub const IResultOwnerData = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        FindItem: *const fn(
-            self: *const IResultOwnerData,
-            pFindInfo: ?*RESULTFINDINFO,
-            pnFoundIndex: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        CacheHint: *const fn(
-            self: *const IResultOwnerData,
-            nStartIndex: i32,
-            nEndIndex: i32,
-        ) callconv(.winapi) HRESULT,
-        SortItems: *const fn(
-            self: *const IResultOwnerData,
-            nColumn: i32,
-            dwSortOptions: u32,
-            lUserParam: LPARAM,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn FindItem(self: *const IResultOwnerData, pFindInfo: ?*RESULTFINDINFO, pnFoundIndex: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.FindItem(self, pFindInfo, pnFoundIndex);
-    }
-    pub fn CacheHint(self: *const IResultOwnerData, nStartIndex: i32, nEndIndex: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.CacheHint(self, nStartIndex, nEndIndex);
-    }
-    pub fn SortItems(self: *const IResultOwnerData, nColumn: i32, dwSortOptions: u32, lUserParam: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.SortItems(self, nColumn, dwSortOptions, lUserParam);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsole_Value = Guid.initString("43136eb1-d36c-11cf-adbc-00aa00a80033");
-pub const IID_IConsole = &IID_IConsole_Value;
-pub const IConsole = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetHeader: *const fn(
-            self: *const IConsole,
-            pHeader: ?*IHeaderCtrl,
-        ) callconv(.winapi) HRESULT,
-        SetToolbar: *const fn(
-            self: *const IConsole,
-            pToolbar: ?*IToolbar,
-        ) callconv(.winapi) HRESULT,
-        QueryResultView: *const fn(
-            self: *const IConsole,
-            pUnknown: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        QueryScopeImageList: *const fn(
-            self: *const IConsole,
-            ppImageList: ?*?*IImageList,
-        ) callconv(.winapi) HRESULT,
-        QueryResultImageList: *const fn(
-            self: *const IConsole,
-            ppImageList: ?*?*IImageList,
-        ) callconv(.winapi) HRESULT,
-        UpdateAllViews: *const fn(
-            self: *const IConsole,
-            lpDataObject: ?*IDataObject,
-            data: LPARAM,
-            hint: isize,
-        ) callconv(.winapi) HRESULT,
-        MessageBox: *const fn(
-            self: *const IConsole,
-            lpszText: ?[*:0]const u16,
-            lpszTitle: ?[*:0]const u16,
-            fuStyle: u32,
-            piRetval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        QueryConsoleVerb: *const fn(
-            self: *const IConsole,
-            ppConsoleVerb: ?*?*IConsoleVerb,
-        ) callconv(.winapi) HRESULT,
-        SelectScopeItem: *const fn(
-            self: *const IConsole,
-            hScopeItem: isize,
-        ) callconv(.winapi) HRESULT,
-        GetMainWindow: *const fn(
-            self: *const IConsole,
-            phwnd: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        NewWindow: *const fn(
-            self: *const IConsole,
-            hScopeItem: isize,
-            lOptions: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetHeader(self: *const IConsole, pHeader: ?*IHeaderCtrl) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHeader(self, pHeader);
-    }
-    pub fn SetToolbar(self: *const IConsole, pToolbar: ?*IToolbar) callconv(.@"inline") HRESULT {
-        return self.vtable.SetToolbar(self, pToolbar);
-    }
-    pub fn QueryResultView(self: *const IConsole, pUnknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryResultView(self, pUnknown);
-    }
-    pub fn QueryScopeImageList(self: *const IConsole, ppImageList: ?*?*IImageList) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryScopeImageList(self, ppImageList);
-    }
-    pub fn QueryResultImageList(self: *const IConsole, ppImageList: ?*?*IImageList) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryResultImageList(self, ppImageList);
-    }
-    pub fn UpdateAllViews(self: *const IConsole, lpDataObject: ?*IDataObject, data: LPARAM, hint: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateAllViews(self, lpDataObject, data, hint);
-    }
-    pub fn MessageBox(self: *const IConsole, lpszText: ?[*:0]const u16, lpszTitle: ?[*:0]const u16, fuStyle: u32, piRetval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.MessageBox(self, lpszText, lpszTitle, fuStyle, piRetval);
-    }
-    pub fn QueryConsoleVerb(self: *const IConsole, ppConsoleVerb: ?*?*IConsoleVerb) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryConsoleVerb(self, ppConsoleVerb);
-    }
-    pub fn SelectScopeItem(self: *const IConsole, hScopeItem: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.SelectScopeItem(self, hScopeItem);
-    }
-    pub fn GetMainWindow(self: *const IConsole, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMainWindow(self, phwnd);
-    }
-    pub fn NewWindow(self: *const IConsole, hScopeItem: isize, lOptions: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.NewWindow(self, hScopeItem, lOptions);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IHeaderCtrl_Value = Guid.initString("43136eb3-d36c-11cf-adbc-00aa00a80033");
-pub const IID_IHeaderCtrl = &IID_IHeaderCtrl_Value;
-pub const IHeaderCtrl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InsertColumn: *const fn(
-            self: *const IHeaderCtrl,
-            nCol: i32,
-            title: ?[*:0]const u16,
-            nFormat: i32,
-            nWidth: i32,
-        ) callconv(.winapi) HRESULT,
-        DeleteColumn: *const fn(
-            self: *const IHeaderCtrl,
-            nCol: i32,
-        ) callconv(.winapi) HRESULT,
-        SetColumnText: *const fn(
-            self: *const IHeaderCtrl,
-            nCol: i32,
-            title: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetColumnText: *const fn(
-            self: *const IHeaderCtrl,
-            nCol: i32,
-            pText: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetColumnWidth: *const fn(
-            self: *const IHeaderCtrl,
-            nCol: i32,
-            nWidth: i32,
-        ) callconv(.winapi) HRESULT,
-        GetColumnWidth: *const fn(
-            self: *const IHeaderCtrl,
-            nCol: i32,
-            pWidth: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InsertColumn(self: *const IHeaderCtrl, nCol: i32, title: ?[*:0]const u16, nFormat: i32, nWidth: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertColumn(self, nCol, title, nFormat, nWidth);
-    }
-    pub fn DeleteColumn(self: *const IHeaderCtrl, nCol: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteColumn(self, nCol);
-    }
-    pub fn SetColumnText(self: *const IHeaderCtrl, nCol: i32, title: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColumnText(self, nCol, title);
-    }
-    pub fn GetColumnText(self: *const IHeaderCtrl, nCol: i32, pText: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColumnText(self, nCol, pText);
-    }
-    pub fn SetColumnWidth(self: *const IHeaderCtrl, nCol: i32, nWidth: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColumnWidth(self, nCol, nWidth);
-    }
-    pub fn GetColumnWidth(self: *const IHeaderCtrl, nCol: i32, pWidth: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColumnWidth(self, nCol, pWidth);
-    }
-};
-
-pub const CCM_INSERTIONPOINTID = enum(i32) {
-    MASK_SPECIAL = -65536,
-    MASK_SHARED = -2147483648,
-    MASK_CREATE_PRIMARY = 1073741824,
-    MASK_ADD_PRIMARY = 536870912,
-    MASK_ADD_3RDPARTY = 268435456,
-    MASK_RESERVED = 268369920,
-    MASK_FLAGINDEX = 31,
-    PRIMARY_TOP = -1610612736,
-    PRIMARY_NEW = -1610612735,
-    PRIMARY_TASK = -1610612734,
-    PRIMARY_VIEW = -1610612733,
-    PRIMARY_HELP = -1610612732,
-    @"3RDPARTY_NEW" = -1879048191,
-    @"3RDPARTY_TASK" = -1879048190,
-    pub const ROOT_MENU = .MASK_SHARED;
-};
-pub const CCM_INSERTIONPOINTID_MASK_SPECIAL = CCM_INSERTIONPOINTID.MASK_SPECIAL;
-pub const CCM_INSERTIONPOINTID_MASK_SHARED = CCM_INSERTIONPOINTID.MASK_SHARED;
-pub const CCM_INSERTIONPOINTID_MASK_CREATE_PRIMARY = CCM_INSERTIONPOINTID.MASK_CREATE_PRIMARY;
-pub const CCM_INSERTIONPOINTID_MASK_ADD_PRIMARY = CCM_INSERTIONPOINTID.MASK_ADD_PRIMARY;
-pub const CCM_INSERTIONPOINTID_MASK_ADD_3RDPARTY = CCM_INSERTIONPOINTID.MASK_ADD_3RDPARTY;
-pub const CCM_INSERTIONPOINTID_MASK_RESERVED = CCM_INSERTIONPOINTID.MASK_RESERVED;
-pub const CCM_INSERTIONPOINTID_MASK_FLAGINDEX = CCM_INSERTIONPOINTID.MASK_FLAGINDEX;
-pub const CCM_INSERTIONPOINTID_PRIMARY_TOP = CCM_INSERTIONPOINTID.PRIMARY_TOP;
-pub const CCM_INSERTIONPOINTID_PRIMARY_NEW = CCM_INSERTIONPOINTID.PRIMARY_NEW;
-pub const CCM_INSERTIONPOINTID_PRIMARY_TASK = CCM_INSERTIONPOINTID.PRIMARY_TASK;
-pub const CCM_INSERTIONPOINTID_PRIMARY_VIEW = CCM_INSERTIONPOINTID.PRIMARY_VIEW;
-pub const CCM_INSERTIONPOINTID_PRIMARY_HELP = CCM_INSERTIONPOINTID.PRIMARY_HELP;
-pub const CCM_INSERTIONPOINTID_3RDPARTY_NEW = CCM_INSERTIONPOINTID.@"3RDPARTY_NEW";
-pub const CCM_INSERTIONPOINTID_3RDPARTY_TASK = CCM_INSERTIONPOINTID.@"3RDPARTY_TASK";
-pub const CCM_INSERTIONPOINTID_ROOT_MENU = CCM_INSERTIONPOINTID.MASK_SHARED;
-
-pub const CCM_INSERTIONALLOWED = enum(i32) {
-    TOP = 1,
-    NEW = 2,
-    TASK = 4,
-    VIEW = 8,
-};
-pub const CCM_INSERTIONALLOWED_TOP = CCM_INSERTIONALLOWED.TOP;
-pub const CCM_INSERTIONALLOWED_NEW = CCM_INSERTIONALLOWED.NEW;
-pub const CCM_INSERTIONALLOWED_TASK = CCM_INSERTIONALLOWED.TASK;
-pub const CCM_INSERTIONALLOWED_VIEW = CCM_INSERTIONALLOWED.VIEW;
-
-pub const CCM_COMMANDID_MASK_CONSTANTS = enum(u32) {
-    D = 4294901760,
-};
-pub const CCM_COMMANDID_MASK_RESERVED = CCM_COMMANDID_MASK_CONSTANTS.D;
-
-pub const CCM_SPECIAL = enum(i32) {
-    SEPARATOR = 1,
-    SUBMENU = 2,
-    DEFAULT_ITEM = 4,
-    INSERTION_POINT = 8,
-    TESTONLY = 16,
-};
-pub const CCM_SPECIAL_SEPARATOR = CCM_SPECIAL.SEPARATOR;
-pub const CCM_SPECIAL_SUBMENU = CCM_SPECIAL.SUBMENU;
-pub const CCM_SPECIAL_DEFAULT_ITEM = CCM_SPECIAL.DEFAULT_ITEM;
-pub const CCM_SPECIAL_INSERTION_POINT = CCM_SPECIAL.INSERTION_POINT;
-pub const CCM_SPECIAL_TESTONLY = CCM_SPECIAL.TESTONLY;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IContextMenuCallback_Value = Guid.initString("43136eb7-d36c-11cf-adbc-00aa00a80033");
-pub const IID_IContextMenuCallback = &IID_IContextMenuCallback_Value;
-pub const IContextMenuCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddItem: *const fn(
-            self: *const IContextMenuCallback,
-            pItem: ?*CONTEXTMENUITEM,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddItem(self: *const IContextMenuCallback, pItem: ?*CONTEXTMENUITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, pItem);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IContextMenuProvider_Value = Guid.initString("43136eb6-d36c-11cf-adbc-00aa00a80033");
-pub const IID_IContextMenuProvider = &IID_IContextMenuProvider_Value;
-pub const IContextMenuProvider = extern union {
-    pub const VTable = extern struct {
-        base: IContextMenuCallback.VTable,
-        EmptyMenuList: *const fn(
-            self: *const IContextMenuProvider,
-        ) callconv(.winapi) HRESULT,
-        AddPrimaryExtensionItems: *const fn(
-            self: *const IContextMenuProvider,
-            piExtension: ?*IUnknown,
-            piDataObject: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        AddThirdPartyExtensionItems: *const fn(
-            self: *const IContextMenuProvider,
-            piDataObject: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        ShowContextMenu: *const fn(
-            self: *const IContextMenuProvider,
-            hwndParent: ?HWND,
-            xPos: i32,
-            yPos: i32,
-            plSelected: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IContextMenuCallback: IContextMenuCallback,
-    IUnknown: IUnknown,
-    pub fn EmptyMenuList(self: *const IContextMenuProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.EmptyMenuList(self);
-    }
-    pub fn AddPrimaryExtensionItems(self: *const IContextMenuProvider, piExtension: ?*IUnknown, piDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPrimaryExtensionItems(self, piExtension, piDataObject);
-    }
-    pub fn AddThirdPartyExtensionItems(self: *const IContextMenuProvider, piDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.AddThirdPartyExtensionItems(self, piDataObject);
-    }
-    pub fn ShowContextMenu(self: *const IContextMenuProvider, hwndParent: ?HWND, xPos: i32, yPos: i32, plSelected: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowContextMenu(self, hwndParent, xPos, yPos, plSelected);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IExtendContextMenu_Value = Guid.initString("4f3b7a4f-cfac-11cf-b8e3-00c04fd8d5b0");
-pub const IID_IExtendContextMenu = &IID_IExtendContextMenu_Value;
-pub const IExtendContextMenu = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddMenuItems: *const fn(
-            self: *const IExtendContextMenu,
-            piDataObject: ?*IDataObject,
-            piCallback: ?*IContextMenuCallback,
-            pInsertionAllowed: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Command: *const fn(
-            self: *const IExtendContextMenu,
-            lCommandID: i32,
-            piDataObject: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddMenuItems(self: *const IExtendContextMenu, piDataObject: ?*IDataObject, piCallback: ?*IContextMenuCallback, pInsertionAllowed: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddMenuItems(self, piDataObject, piCallback, pInsertionAllowed);
-    }
-    pub fn Command(self: *const IExtendContextMenu, lCommandID: i32, piDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Command(self, lCommandID, piDataObject);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IImageList_Value = Guid.initString("43136eb8-d36c-11cf-adbc-00aa00a80033");
-pub const IID_IImageList = &IID_IImageList_Value;
-pub const IImageList = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ImageListSetIcon: *const fn(
-            self: *const IImageList,
-            pIcon: ?*isize,
-            nLoc: i32,
-        ) callconv(.winapi) HRESULT,
-        ImageListSetStrip: *const fn(
-            self: *const IImageList,
-            pBMapSm: ?*isize,
-            pBMapLg: ?*isize,
-            nStartLoc: i32,
-            cMask: COLORREF,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ImageListSetIcon(self: *const IImageList, pIcon: ?*isize, nLoc: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ImageListSetIcon(self, pIcon, nLoc);
-    }
-    pub fn ImageListSetStrip(self: *const IImageList, pBMapSm: ?*isize, pBMapLg: ?*isize, nStartLoc: i32, cMask: COLORREF) callconv(.@"inline") HRESULT {
-        return self.vtable.ImageListSetStrip(self, pBMapSm, pBMapLg, nStartLoc, cMask);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IResultData_Value = Guid.initString("31da5fa0-e0eb-11cf-9f21-00aa003ca9f6");
-pub const IID_IResultData = &IID_IResultData_Value;
-pub const IResultData = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InsertItem: *const fn(
-            self: *const IResultData,
-            item: ?*RESULTDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        DeleteItem: *const fn(
-            self: *const IResultData,
-            itemID: isize,
-            nCol: i32,
-        ) callconv(.winapi) HRESULT,
-        FindItemByLParam: *const fn(
-            self: *const IResultData,
-            lParam: LPARAM,
-            pItemID: ?*isize,
-        ) callconv(.winapi) HRESULT,
-        DeleteAllRsltItems: *const fn(
-            self: *const IResultData,
-        ) callconv(.winapi) HRESULT,
-        SetItem: *const fn(
-            self: *const IResultData,
-            item: ?*RESULTDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        GetItem: *const fn(
-            self: *const IResultData,
-            item: ?*RESULTDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        GetNextItem: *const fn(
-            self: *const IResultData,
-            item: ?*RESULTDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        ModifyItemState: *const fn(
-            self: *const IResultData,
-            nIndex: i32,
-            itemID: isize,
-            uAdd: u32,
-            uRemove: u32,
-        ) callconv(.winapi) HRESULT,
-        ModifyViewStyle: *const fn(
-            self: *const IResultData,
-            add: MMC_RESULT_VIEW_STYLE,
-            remove: MMC_RESULT_VIEW_STYLE,
-        ) callconv(.winapi) HRESULT,
-        SetViewMode: *const fn(
-            self: *const IResultData,
-            lViewMode: i32,
-        ) callconv(.winapi) HRESULT,
-        GetViewMode: *const fn(
-            self: *const IResultData,
-            lViewMode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        UpdateItem: *const fn(
-            self: *const IResultData,
-            itemID: isize,
-        ) callconv(.winapi) HRESULT,
-        Sort: *const fn(
-            self: *const IResultData,
-            nColumn: i32,
-            dwSortOptions: u32,
-            lUserParam: LPARAM,
-        ) callconv(.winapi) HRESULT,
-        SetDescBarText: *const fn(
-            self: *const IResultData,
-            DescText: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetItemCount: *const fn(
-            self: *const IResultData,
-            nItemCount: i32,
-            dwOptions: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InsertItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertItem(self, item);
-    }
-    pub fn DeleteItem(self: *const IResultData, itemID: isize, nCol: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItem(self, itemID, nCol);
-    }
-    pub fn FindItemByLParam(self: *const IResultData, lParam: LPARAM, pItemID: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.FindItemByLParam(self, lParam, pItemID);
-    }
-    pub fn DeleteAllRsltItems(self: *const IResultData) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteAllRsltItems(self);
-    }
-    pub fn SetItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.SetItem(self, item);
-    }
-    pub fn GetItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, item);
-    }
-    pub fn GetNextItem(self: *const IResultData, item: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextItem(self, item);
-    }
-    pub fn ModifyItemState(self: *const IResultData, nIndex: i32, itemID: isize, uAdd: u32, uRemove: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ModifyItemState(self, nIndex, itemID, uAdd, uRemove);
-    }
-    pub fn ModifyViewStyle(self: *const IResultData, add: MMC_RESULT_VIEW_STYLE, remove: MMC_RESULT_VIEW_STYLE) callconv(.@"inline") HRESULT {
-        return self.vtable.ModifyViewStyle(self, add, remove);
-    }
-    pub fn SetViewMode(self: *const IResultData, lViewMode: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetViewMode(self, lViewMode);
-    }
-    pub fn GetViewMode(self: *const IResultData, lViewMode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetViewMode(self, lViewMode);
-    }
-    pub fn UpdateItem(self: *const IResultData, itemID: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateItem(self, itemID);
-    }
-    pub fn Sort(self: *const IResultData, nColumn: i32, dwSortOptions: u32, lUserParam: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.Sort(self, nColumn, dwSortOptions, lUserParam);
-    }
-    pub fn SetDescBarText(self: *const IResultData, DescText: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDescBarText(self, DescText);
-    }
-    pub fn SetItemCount(self: *const IResultData, nItemCount: i32, dwOptions: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetItemCount(self, nItemCount, dwOptions);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsoleNameSpace_Value = Guid.initString("bedeb620-f24d-11cf-8afc-00aa003ca9f6");
-pub const IID_IConsoleNameSpace = &IID_IConsoleNameSpace_Value;
-pub const IConsoleNameSpace = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InsertItem: *const fn(
-            self: *const IConsoleNameSpace,
-            item: ?*SCOPEDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        DeleteItem: *const fn(
-            self: *const IConsoleNameSpace,
-            hItem: isize,
-            fDeleteThis: i32,
-        ) callconv(.winapi) HRESULT,
-        SetItem: *const fn(
-            self: *const IConsoleNameSpace,
-            item: ?*SCOPEDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        GetItem: *const fn(
-            self: *const IConsoleNameSpace,
-            item: ?*SCOPEDATAITEM,
-        ) callconv(.winapi) HRESULT,
-        GetChildItem: *const fn(
-            self: *const IConsoleNameSpace,
-            item: isize,
-            pItemChild: ?*isize,
-            pCookie: ?*isize,
-        ) callconv(.winapi) HRESULT,
-        GetNextItem: *const fn(
-            self: *const IConsoleNameSpace,
-            item: isize,
-            pItemNext: ?*isize,
-            pCookie: ?*isize,
-        ) callconv(.winapi) HRESULT,
-        GetParentItem: *const fn(
-            self: *const IConsoleNameSpace,
-            item: isize,
-            pItemParent: ?*isize,
-            pCookie: ?*isize,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InsertItem(self: *const IConsoleNameSpace, item: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertItem(self, item);
-    }
-    pub fn DeleteItem(self: *const IConsoleNameSpace, hItem: isize, fDeleteThis: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItem(self, hItem, fDeleteThis);
-    }
-    pub fn SetItem(self: *const IConsoleNameSpace, item: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.SetItem(self, item);
-    }
-    pub fn GetItem(self: *const IConsoleNameSpace, item: ?*SCOPEDATAITEM) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, item);
-    }
-    pub fn GetChildItem(self: *const IConsoleNameSpace, item: isize, pItemChild: ?*isize, pCookie: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildItem(self, item, pItemChild, pCookie);
-    }
-    pub fn GetNextItem(self: *const IConsoleNameSpace, item: isize, pItemNext: ?*isize, pCookie: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextItem(self, item, pItemNext, pCookie);
-    }
-    pub fn GetParentItem(self: *const IConsoleNameSpace, item: isize, pItemParent: ?*isize, pCookie: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParentItem(self, item, pItemParent, pCookie);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsoleNameSpace2_Value = Guid.initString("255f18cc-65db-11d1-a7dc-00c04fd8d565");
-pub const IID_IConsoleNameSpace2 = &IID_IConsoleNameSpace2_Value;
-pub const IConsoleNameSpace2 = extern union {
-    pub const VTable = extern struct {
-        base: IConsoleNameSpace.VTable,
-        Expand: *const fn(
-            self: *const IConsoleNameSpace2,
-            hItem: isize,
-        ) callconv(.winapi) HRESULT,
-        AddExtension: *const fn(
-            self: *const IConsoleNameSpace2,
-            hItem: isize,
-            lpClsid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IConsoleNameSpace: IConsoleNameSpace,
-    IUnknown: IUnknown,
-    pub fn Expand(self: *const IConsoleNameSpace2, hItem: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.Expand(self, hItem);
-    }
-    pub fn AddExtension(self: *const IConsoleNameSpace2, hItem: isize, lpClsid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExtension(self, hItem, lpClsid);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertySheetCallback_Value = Guid.initString("85de64dd-ef21-11cf-a285-00c04fd8dbe6");
-pub const IID_IPropertySheetCallback = &IID_IPropertySheetCallback_Value;
-pub const IPropertySheetCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPage: *const fn(
-            self: *const IPropertySheetCallback,
-            hPage: ?HPROPSHEETPAGE,
-        ) callconv(.winapi) HRESULT,
-        RemovePage: *const fn(
-            self: *const IPropertySheetCallback,
-            hPage: ?HPROPSHEETPAGE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPage(self: *const IPropertySheetCallback, hPage: ?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPage(self, hPage);
-    }
-    pub fn RemovePage(self: *const IPropertySheetCallback, hPage: ?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
-        return self.vtable.RemovePage(self, hPage);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPropertySheetProvider_Value = Guid.initString("85de64de-ef21-11cf-a285-00c04fd8dbe6");
-pub const IID_IPropertySheetProvider = &IID_IPropertySheetProvider_Value;
-pub const IPropertySheetProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreatePropertySheet: *const fn(
-            self: *const IPropertySheetProvider,
-            title: ?[*:0]const u16,
-            type: u8,
-            cookie: isize,
-            pIDataObjectm: ?*IDataObject,
-            dwOptions: u32,
-        ) callconv(.winapi) HRESULT,
-        FindPropertySheet: *const fn(
-            self: *const IPropertySheetProvider,
-            hItem: isize,
-            lpComponent: ?*IComponent,
-            lpDataObject: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        AddPrimaryPages: *const fn(
-            self: *const IPropertySheetProvider,
-            lpUnknown: ?*IUnknown,
-            bCreateHandle: BOOL,
-            hNotifyWindow: ?HWND,
-            bScopePane: BOOL,
-        ) callconv(.winapi) HRESULT,
-        AddExtensionPages: *const fn(
-            self: *const IPropertySheetProvider,
-        ) callconv(.winapi) HRESULT,
-        Show: *const fn(
-            self: *const IPropertySheetProvider,
-            window: isize,
-            page: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreatePropertySheet(self: *const IPropertySheetProvider, title: ?[*:0]const u16, @"type": u8, cookie: isize, pIDataObjectm: ?*IDataObject, dwOptions: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePropertySheet(self, title, @"type", cookie, pIDataObjectm, dwOptions);
-    }
-    pub fn FindPropertySheet(self: *const IPropertySheetProvider, hItem: isize, lpComponent: ?*IComponent, lpDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.FindPropertySheet(self, hItem, lpComponent, lpDataObject);
-    }
-    pub fn AddPrimaryPages(self: *const IPropertySheetProvider, lpUnknown: ?*IUnknown, bCreateHandle: BOOL, hNotifyWindow: ?HWND, bScopePane: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPrimaryPages(self, lpUnknown, bCreateHandle, hNotifyWindow, bScopePane);
-    }
-    pub fn AddExtensionPages(self: *const IPropertySheetProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExtensionPages(self);
-    }
-    pub fn Show(self: *const IPropertySheetProvider, window: isize, page: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, window, page);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IExtendPropertySheet_Value = Guid.initString("85de64dc-ef21-11cf-a285-00c04fd8dbe6");
-pub const IID_IExtendPropertySheet = &IID_IExtendPropertySheet_Value;
-pub const IExtendPropertySheet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreatePropertyPages: *const fn(
-            self: *const IExtendPropertySheet,
-            lpProvider: ?*IPropertySheetCallback,
-            handle: isize,
-            lpIDataObject: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        QueryPagesFor: *const fn(
-            self: *const IExtendPropertySheet,
-            lpDataObject: ?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreatePropertyPages(self: *const IExtendPropertySheet, lpProvider: ?*IPropertySheetCallback, handle: isize, lpIDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePropertyPages(self, lpProvider, handle, lpIDataObject);
-    }
-    pub fn QueryPagesFor(self: *const IExtendPropertySheet, lpDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryPagesFor(self, lpDataObject);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IControlbar_Value = Guid.initString("69fb811e-6c1c-11d0-a2cb-00c04fd909dd");
-pub const IID_IControlbar = &IID_IControlbar_Value;
-pub const IControlbar = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IControlbar,
-            nType: MMC_CONTROL_TYPE,
-            pExtendControlbar: ?*IExtendControlbar,
-            ppUnknown: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Attach: *const fn(
-            self: *const IControlbar,
-            nType: MMC_CONTROL_TYPE,
-            lpUnknown: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Detach: *const fn(
-            self: *const IControlbar,
-            lpUnknown: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IControlbar, nType: MMC_CONTROL_TYPE, pExtendControlbar: ?*IExtendControlbar, ppUnknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, nType, pExtendControlbar, ppUnknown);
-    }
-    pub fn Attach(self: *const IControlbar, nType: MMC_CONTROL_TYPE, lpUnknown: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Attach(self, nType, lpUnknown);
-    }
-    pub fn Detach(self: *const IControlbar, lpUnknown: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Detach(self, lpUnknown);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IExtendControlbar_Value = Guid.initString("49506520-6f40-11d0-a98b-00c04fd8d565");
-pub const IID_IExtendControlbar = &IID_IExtendControlbar_Value;
-pub const IExtendControlbar = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetControlbar: *const fn(
-            self: *const IExtendControlbar,
-            pControlbar: ?*IControlbar,
-        ) callconv(.winapi) HRESULT,
-        ControlbarNotify: *const fn(
-            self: *const IExtendControlbar,
-            event: MMC_NOTIFY_TYPE,
-            arg: LPARAM,
-            param2: LPARAM,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetControlbar(self: *const IExtendControlbar, pControlbar: ?*IControlbar) callconv(.@"inline") HRESULT {
-        return self.vtable.SetControlbar(self, pControlbar);
-    }
-    pub fn ControlbarNotify(self: *const IExtendControlbar, event: MMC_NOTIFY_TYPE, arg: LPARAM, param2: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.ControlbarNotify(self, event, arg, param2);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IToolbar_Value = Guid.initString("43136eb9-d36c-11cf-adbc-00aa00a80033");
-pub const IID_IToolbar = &IID_IToolbar_Value;
-pub const IToolbar = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddBitmap: *const fn(
-            self: *const IToolbar,
-            nImages: i32,
-            hbmp: ?HBITMAP,
-            cxSize: i32,
-            cySize: i32,
-            crMask: COLORREF,
-        ) callconv(.winapi) HRESULT,
-        AddButtons: *const fn(
-            self: *const IToolbar,
-            nButtons: i32,
-            lpButtons: ?*MMCBUTTON,
-        ) callconv(.winapi) HRESULT,
-        InsertButton: *const fn(
-            self: *const IToolbar,
-            nIndex: i32,
-            lpButton: ?*MMCBUTTON,
-        ) callconv(.winapi) HRESULT,
-        DeleteButton: *const fn(
-            self: *const IToolbar,
-            nIndex: i32,
-        ) callconv(.winapi) HRESULT,
-        GetButtonState: *const fn(
-            self: *const IToolbar,
-            idCommand: i32,
-            nState: MMC_BUTTON_STATE,
-            pState: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetButtonState: *const fn(
-            self: *const IToolbar,
-            idCommand: i32,
-            nState: MMC_BUTTON_STATE,
-            bState: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddBitmap(self: *const IToolbar, nImages: i32, hbmp: ?HBITMAP, cxSize: i32, cySize: i32, crMask: COLORREF) callconv(.@"inline") HRESULT {
-        return self.vtable.AddBitmap(self, nImages, hbmp, cxSize, cySize, crMask);
-    }
-    pub fn AddButtons(self: *const IToolbar, nButtons: i32, lpButtons: ?*MMCBUTTON) callconv(.@"inline") HRESULT {
-        return self.vtable.AddButtons(self, nButtons, lpButtons);
-    }
-    pub fn InsertButton(self: *const IToolbar, nIndex: i32, lpButton: ?*MMCBUTTON) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertButton(self, nIndex, lpButton);
-    }
-    pub fn DeleteButton(self: *const IToolbar, nIndex: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteButton(self, nIndex);
-    }
-    pub fn GetButtonState(self: *const IToolbar, idCommand: i32, nState: MMC_BUTTON_STATE, pState: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetButtonState(self, idCommand, nState, pState);
-    }
-    pub fn SetButtonState(self: *const IToolbar, idCommand: i32, nState: MMC_BUTTON_STATE, bState: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetButtonState(self, idCommand, nState, bState);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsoleVerb_Value = Guid.initString("e49f7a60-74af-11d0-a286-00c04fd8fe93");
-pub const IID_IConsoleVerb = &IID_IConsoleVerb_Value;
-pub const IConsoleVerb = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetVerbState: *const fn(
-            self: *const IConsoleVerb,
-            eCmdID: MMC_CONSOLE_VERB,
-            nState: MMC_BUTTON_STATE,
-            pState: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetVerbState: *const fn(
-            self: *const IConsoleVerb,
-            eCmdID: MMC_CONSOLE_VERB,
-            nState: MMC_BUTTON_STATE,
-            bState: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetDefaultVerb: *const fn(
-            self: *const IConsoleVerb,
-            eCmdID: MMC_CONSOLE_VERB,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultVerb: *const fn(
-            self: *const IConsoleVerb,
-            peCmdID: ?*MMC_CONSOLE_VERB,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetVerbState(self: *const IConsoleVerb, eCmdID: MMC_CONSOLE_VERB, nState: MMC_BUTTON_STATE, pState: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVerbState(self, eCmdID, nState, pState);
-    }
-    pub fn SetVerbState(self: *const IConsoleVerb, eCmdID: MMC_CONSOLE_VERB, nState: MMC_BUTTON_STATE, bState: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVerbState(self, eCmdID, nState, bState);
-    }
-    pub fn SetDefaultVerb(self: *const IConsoleVerb, eCmdID: MMC_CONSOLE_VERB) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultVerb(self, eCmdID);
-    }
-    pub fn GetDefaultVerb(self: *const IConsoleVerb, peCmdID: ?*MMC_CONSOLE_VERB) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultVerb(self, peCmdID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISnapinAbout_Value = Guid.initString("1245208c-a151-11d0-a7d7-00c04fd909dd");
-pub const IID_ISnapinAbout = &IID_ISnapinAbout_Value;
-pub const ISnapinAbout = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSnapinDescription: *const fn(
-            self: *const ISnapinAbout,
-            lpDescription: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetProvider: *const fn(
-            self: *const ISnapinAbout,
-            lpName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSnapinVersion: *const fn(
-            self: *const ISnapinAbout,
-            lpVersion: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSnapinImage: *const fn(
-            self: *const ISnapinAbout,
-            hAppIcon: ?*?HICON,
-        ) callconv(.winapi) HRESULT,
-        GetStaticFolderImage: *const fn(
-            self: *const ISnapinAbout,
-            hSmallImage: ?*?HBITMAP,
-            hSmallImageOpen: ?*?HBITMAP,
-            hLargeImage: ?*?HBITMAP,
-            cMask: ?*COLORREF,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSnapinDescription(self: *const ISnapinAbout, lpDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSnapinDescription(self, lpDescription);
-    }
-    pub fn GetProvider(self: *const ISnapinAbout, lpName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProvider(self, lpName);
-    }
-    pub fn GetSnapinVersion(self: *const ISnapinAbout, lpVersion: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSnapinVersion(self, lpVersion);
-    }
-    pub fn GetSnapinImage(self: *const ISnapinAbout, hAppIcon: ?*?HICON) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSnapinImage(self, hAppIcon);
-    }
-    pub fn GetStaticFolderImage(self: *const ISnapinAbout, hSmallImage: ?*?HBITMAP, hSmallImageOpen: ?*?HBITMAP, hLargeImage: ?*?HBITMAP, cMask: ?*COLORREF) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStaticFolderImage(self, hSmallImage, hSmallImageOpen, hLargeImage, cMask);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMenuButton_Value = Guid.initString("951ed750-d080-11d0-b197-000000000000");
-pub const IID_IMenuButton = &IID_IMenuButton_Value;
-pub const IMenuButton = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddButton: *const fn(
-            self: *const IMenuButton,
-            idCommand: i32,
-            lpButtonText: ?PWSTR,
-            lpTooltipText: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetButton: *const fn(
-            self: *const IMenuButton,
-            idCommand: i32,
-            lpButtonText: ?PWSTR,
-            lpTooltipText: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetButtonState: *const fn(
-            self: *const IMenuButton,
-            idCommand: i32,
-            nState: MMC_BUTTON_STATE,
-            bState: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?PWSTR, lpTooltipText: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddButton(self, idCommand, lpButtonText, lpTooltipText);
-    }
-    pub fn SetButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?PWSTR, lpTooltipText: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetButton(self, idCommand, lpButtonText, lpTooltipText);
-    }
-    pub fn SetButtonState(self: *const IMenuButton, idCommand: i32, nState: MMC_BUTTON_STATE, bState: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetButtonState(self, idCommand, nState, bState);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISnapinHelp_Value = Guid.initString("a6b15ace-df59-11d0-a7dd-00c04fd909dd");
-pub const IID_ISnapinHelp = &IID_ISnapinHelp_Value;
-pub const ISnapinHelp = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetHelpTopic: *const fn(
-            self: *const ISnapinHelp,
-            lpCompiledHelpFile: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetHelpTopic(self: *const ISnapinHelp, lpCompiledHelpFile: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHelpTopic(self, lpCompiledHelpFile);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IExtendPropertySheet2_Value = Guid.initString("b7a87232-4a51-11d1-a7ea-00c04fd909dd");
-pub const IID_IExtendPropertySheet2 = &IID_IExtendPropertySheet2_Value;
-pub const IExtendPropertySheet2 = extern union {
-    pub const VTable = extern struct {
-        base: IExtendPropertySheet.VTable,
-        GetWatermarks: *const fn(
-            self: *const IExtendPropertySheet2,
-            lpIDataObject: ?*IDataObject,
-            lphWatermark: ?*?HBITMAP,
-            lphHeader: ?*?HBITMAP,
-            lphPalette: ?*?HPALETTE,
-            bStretch: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IExtendPropertySheet: IExtendPropertySheet,
-    IUnknown: IUnknown,
-    pub fn GetWatermarks(self: *const IExtendPropertySheet2, lpIDataObject: ?*IDataObject, lphWatermark: ?*?HBITMAP, lphHeader: ?*?HBITMAP, lphPalette: ?*?HPALETTE, bStretch: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWatermarks(self, lpIDataObject, lphWatermark, lphHeader, lphPalette, bStretch);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IHeaderCtrl2_Value = Guid.initString("9757abb8-1b32-11d1-a7ce-00c04fd8d565");
-pub const IID_IHeaderCtrl2 = &IID_IHeaderCtrl2_Value;
-pub const IHeaderCtrl2 = extern union {
-    pub const VTable = extern struct {
-        base: IHeaderCtrl.VTable,
-        SetChangeTimeOut: *const fn(
-            self: *const IHeaderCtrl2,
-            uTimeout: u32,
-        ) callconv(.winapi) HRESULT,
-        SetColumnFilter: *const fn(
-            self: *const IHeaderCtrl2,
-            nColumn: u32,
-            dwType: u32,
-            pFilterData: ?*MMC_FILTERDATA,
-        ) callconv(.winapi) HRESULT,
-        GetColumnFilter: *const fn(
-            self: *const IHeaderCtrl2,
-            nColumn: u32,
-            pdwType: ?*u32,
-            pFilterData: ?*MMC_FILTERDATA,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IHeaderCtrl: IHeaderCtrl,
-    IUnknown: IUnknown,
-    pub fn SetChangeTimeOut(self: *const IHeaderCtrl2, uTimeout: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetChangeTimeOut(self, uTimeout);
-    }
-    pub fn SetColumnFilter(self: *const IHeaderCtrl2, nColumn: u32, dwType: u32, pFilterData: ?*MMC_FILTERDATA) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColumnFilter(self, nColumn, dwType, pFilterData);
-    }
-    pub fn GetColumnFilter(self: *const IHeaderCtrl2, nColumn: u32, pdwType: ?*u32, pFilterData: ?*MMC_FILTERDATA) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColumnFilter(self, nColumn, pdwType, pFilterData);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISnapinHelp2_Value = Guid.initString("4861a010-20f9-11d2-a510-00c04fb6dd2c");
-pub const IID_ISnapinHelp2 = &IID_ISnapinHelp2_Value;
-pub const ISnapinHelp2 = extern union {
-    pub const VTable = extern struct {
-        base: ISnapinHelp.VTable,
-        GetLinkedTopics: *const fn(
-            self: *const ISnapinHelp2,
-            lpCompiledHelpFiles: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISnapinHelp: ISnapinHelp,
-    IUnknown: IUnknown,
-    pub fn GetLinkedTopics(self: *const ISnapinHelp2, lpCompiledHelpFiles: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLinkedTopics(self, lpCompiledHelpFiles);
-    }
-};
-
-pub const MMC_TASK_DISPLAY_TYPE = enum(i32) {
-    UNINITIALIZED = 0,
-    TYPE_SYMBOL = 1,
-    TYPE_VANILLA_GIF = 2,
-    TYPE_CHOCOLATE_GIF = 3,
-    TYPE_BITMAP = 4,
-};
-pub const MMC_TASK_DISPLAY_UNINITIALIZED = MMC_TASK_DISPLAY_TYPE.UNINITIALIZED;
-pub const MMC_TASK_DISPLAY_TYPE_SYMBOL = MMC_TASK_DISPLAY_TYPE.TYPE_SYMBOL;
-pub const MMC_TASK_DISPLAY_TYPE_VANILLA_GIF = MMC_TASK_DISPLAY_TYPE.TYPE_VANILLA_GIF;
-pub const MMC_TASK_DISPLAY_TYPE_CHOCOLATE_GIF = MMC_TASK_DISPLAY_TYPE.TYPE_CHOCOLATE_GIF;
-pub const MMC_TASK_DISPLAY_TYPE_BITMAP = MMC_TASK_DISPLAY_TYPE.TYPE_BITMAP;
-
-pub const MMC_TASK_DISPLAY_SYMBOL = extern struct {
-    szFontFamilyName: ?PWSTR,
-    szURLtoEOT: ?PWSTR,
-    szSymbolString: ?PWSTR,
-};
-
-pub const MMC_TASK_DISPLAY_BITMAP = extern struct {
-    szMouseOverBitmap: ?PWSTR,
-    szMouseOffBitmap: ?PWSTR,
-};
-
-pub const MMC_TASK_DISPLAY_OBJECT = extern struct {
-    eDisplayType: MMC_TASK_DISPLAY_TYPE,
-    Anonymous: extern union {
-        uBitmap: MMC_TASK_DISPLAY_BITMAP,
-        uSymbol: MMC_TASK_DISPLAY_SYMBOL,
-    },
-};
-
-pub const MMC_ACTION_TYPE = enum(i32) {
-    UNINITIALIZED = -1,
-    ID = 0,
-    LINK = 1,
-    SCRIPT = 2,
-};
-pub const MMC_ACTION_UNINITIALIZED = MMC_ACTION_TYPE.UNINITIALIZED;
-pub const MMC_ACTION_ID = MMC_ACTION_TYPE.ID;
-pub const MMC_ACTION_LINK = MMC_ACTION_TYPE.LINK;
-pub const MMC_ACTION_SCRIPT = MMC_ACTION_TYPE.SCRIPT;
-
-pub const MMC_TASK = extern struct {
-    sDisplayObject: MMC_TASK_DISPLAY_OBJECT,
-    szText: ?PWSTR,
-    szHelpString: ?PWSTR,
-    eActionType: MMC_ACTION_TYPE,
-    Anonymous: extern union {
-        nCommandID: isize,
-        szActionURL: ?PWSTR,
-        szScript: ?PWSTR,
-    },
-};
-
-pub const MMC_LISTPAD_INFO = extern struct {
-    szTitle: ?PWSTR,
-    szButtonText: ?PWSTR,
-    nCommandID: isize,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumTASK_Value = Guid.initString("338698b1-5a02-11d1-9fec-00600832db4a");
-pub const IID_IEnumTASK = &IID_IEnumTASK_Value;
-pub const IEnumTASK = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumTASK,
-            celt: u32,
-            rgelt: [*]MMC_TASK,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumTASK,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumTASK,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumTASK,
-            ppenum: ?*?*IEnumTASK,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumTASK, celt: u32, rgelt: [*]MMC_TASK, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumTASK, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumTASK) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumTASK, ppenum: ?*?*IEnumTASK) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IExtendTaskPad_Value = Guid.initString("8dee6511-554d-11d1-9fea-00600832db4a");
-pub const IID_IExtendTaskPad = &IID_IExtendTaskPad_Value;
-pub const IExtendTaskPad = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        TaskNotify: *const fn(
-            self: *const IExtendTaskPad,
-            pdo: ?*IDataObject,
-            arg: ?*VARIANT,
-            param2: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        EnumTasks: *const fn(
-            self: *const IExtendTaskPad,
-            pdo: ?*IDataObject,
-            szTaskGroup: ?PWSTR,
-            ppEnumTASK: ?*?*IEnumTASK,
-        ) callconv(.winapi) HRESULT,
-        GetTitle: *const fn(
-            self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
-            pszTitle: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDescriptiveText: *const fn(
-            self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
-            pszDescriptiveText: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetBackground: *const fn(
-            self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
-            pTDO: ?*MMC_TASK_DISPLAY_OBJECT,
-        ) callconv(.winapi) HRESULT,
-        GetListPadInfo: *const fn(
-            self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
-            lpListPadInfo: ?*MMC_LISTPAD_INFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn TaskNotify(self: *const IExtendTaskPad, pdo: ?*IDataObject, arg: ?*VARIANT, param2: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.TaskNotify(self, pdo, arg, param2);
-    }
-    pub fn EnumTasks(self: *const IExtendTaskPad, pdo: ?*IDataObject, szTaskGroup: ?PWSTR, ppEnumTASK: ?*?*IEnumTASK) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumTasks(self, pdo, szTaskGroup, ppEnumTASK);
-    }
-    pub fn GetTitle(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTitle(self, pszGroup, pszTitle);
-    }
-    pub fn GetDescriptiveText(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pszDescriptiveText: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDescriptiveText(self, pszGroup, pszDescriptiveText);
-    }
-    pub fn GetBackground(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pTDO: ?*MMC_TASK_DISPLAY_OBJECT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBackground(self, pszGroup, pTDO);
-    }
-    pub fn GetListPadInfo(self: *const IExtendTaskPad, pszGroup: ?PWSTR, lpListPadInfo: ?*MMC_LISTPAD_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetListPadInfo(self, pszGroup, lpListPadInfo);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsole2_Value = Guid.initString("103d842a-aa63-11d1-a7e1-00c04fd8d565");
-pub const IID_IConsole2 = &IID_IConsole2_Value;
-pub const IConsole2 = extern union {
-    pub const VTable = extern struct {
-        base: IConsole.VTable,
-        Expand: *const fn(
-            self: *const IConsole2,
-            hItem: isize,
-            bExpand: BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsTaskpadViewPreferred: *const fn(
-            self: *const IConsole2,
-        ) callconv(.winapi) HRESULT,
-        SetStatusText: *const fn(
-            self: *const IConsole2,
-            pszStatusText: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IConsole: IConsole,
-    IUnknown: IUnknown,
-    pub fn Expand(self: *const IConsole2, hItem: isize, bExpand: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Expand(self, hItem, bExpand);
-    }
-    pub fn IsTaskpadViewPreferred(self: *const IConsole2) callconv(.@"inline") HRESULT {
-        return self.vtable.IsTaskpadViewPreferred(self);
-    }
-    pub fn SetStatusText(self: *const IConsole2, pszStatusText: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStatusText(self, pszStatusText);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDisplayHelp_Value = Guid.initString("cc593830-b926-11d1-8063-0000f875a9ce");
-pub const IID_IDisplayHelp = &IID_IDisplayHelp_Value;
-pub const IDisplayHelp = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ShowTopic: *const fn(
-            self: *const IDisplayHelp,
-            pszHelpTopic: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ShowTopic(self: *const IDisplayHelp, pszHelpTopic: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowTopic(self, pszHelpTopic);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRequiredExtensions_Value = Guid.initString("72782d7a-a4a0-11d1-af0f-00c04fb6dd2c");
-pub const IID_IRequiredExtensions = &IID_IRequiredExtensions_Value;
-pub const IRequiredExtensions = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnableAllExtensions: *const fn(
-            self: *const IRequiredExtensions,
-        ) callconv(.winapi) HRESULT,
-        GetFirstExtension: *const fn(
-            self: *const IRequiredExtensions,
-            pExtCLSID: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetNextExtension: *const fn(
-            self: *const IRequiredExtensions,
-            pExtCLSID: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnableAllExtensions(self: *const IRequiredExtensions) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableAllExtensions(self);
-    }
-    pub fn GetFirstExtension(self: *const IRequiredExtensions, pExtCLSID: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFirstExtension(self, pExtCLSID);
-    }
-    pub fn GetNextExtension(self: *const IRequiredExtensions, pExtCLSID: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextExtension(self, pExtCLSID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IStringTable_Value = Guid.initString("de40b7a4-0f65-11d2-8e25-00c04f8ecd78");
-pub const IID_IStringTable = &IID_IStringTable_Value;
-pub const IStringTable = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddString: *const fn(
-            self: *const IStringTable,
-            pszAdd: ?[*:0]const u16,
-            pStringID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetString: *const fn(
-            self: *const IStringTable,
-            StringID: u32,
-            cchBuffer: u32,
-            lpBuffer: [*:0]u16,
-            pcchOut: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStringLength: *const fn(
-            self: *const IStringTable,
-            StringID: u32,
-            pcchString: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteString: *const fn(
-            self: *const IStringTable,
-            StringID: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteAllStrings: *const fn(
-            self: *const IStringTable,
-        ) callconv(.winapi) HRESULT,
-        FindString: *const fn(
-            self: *const IStringTable,
-            pszFind: ?[*:0]const u16,
-            pStringID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Enumerate: *const fn(
-            self: *const IStringTable,
-            ppEnum: ?*?*IEnumString,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddString(self: *const IStringTable, pszAdd: ?[*:0]const u16, pStringID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddString(self, pszAdd, pStringID);
-    }
-    pub fn GetString(self: *const IStringTable, StringID: u32, cchBuffer: u32, lpBuffer: [*:0]u16, pcchOut: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetString(self, StringID, cchBuffer, lpBuffer, pcchOut);
-    }
-    pub fn GetStringLength(self: *const IStringTable, StringID: u32, pcchString: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringLength(self, StringID, pcchString);
-    }
-    pub fn DeleteString(self: *const IStringTable, StringID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteString(self, StringID);
-    }
-    pub fn DeleteAllStrings(self: *const IStringTable) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteAllStrings(self);
-    }
-    pub fn FindString(self: *const IStringTable, pszFind: ?[*:0]const u16, pStringID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.FindString(self, pszFind, pStringID);
-    }
-    pub fn Enumerate(self: *const IStringTable, ppEnum: ?*?*IEnumString) callconv(.@"inline") HRESULT {
-        return self.vtable.Enumerate(self, ppEnum);
-    }
-};
-
-pub const MMC_COLUMN_DATA = extern struct {
-    nColIndex: i32,
-    dwFlags: u32,
-    nWidth: i32,
-    ulReserved: usize,
-};
-
-pub const MMC_COLUMN_SET_DATA = extern struct {
-    cbSize: i32,
-    nNumCols: i32,
-    pColData: ?*MMC_COLUMN_DATA,
-};
-
-pub const MMC_SORT_DATA = extern struct {
-    nColIndex: i32,
-    dwSortOptions: u32,
-    ulReserved: usize,
-};
-
-pub const MMC_SORT_SET_DATA = extern struct {
-    cbSize: i32,
-    nNumItems: i32,
-    pSortData: ?*MMC_SORT_DATA,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IColumnData_Value = Guid.initString("547c1354-024d-11d3-a707-00c04f8ef4cb");
-pub const IID_IColumnData = &IID_IColumnData_Value;
-pub const IColumnData = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetColumnConfigData: *const fn(
-            self: *const IColumnData,
-            pColID: ?*SColumnSetID,
-            pColSetData: ?*MMC_COLUMN_SET_DATA,
-        ) callconv(.winapi) HRESULT,
-        GetColumnConfigData: *const fn(
-            self: *const IColumnData,
-            pColID: ?*SColumnSetID,
-            ppColSetData: ?*?*MMC_COLUMN_SET_DATA,
-        ) callconv(.winapi) HRESULT,
-        SetColumnSortData: *const fn(
-            self: *const IColumnData,
-            pColID: ?*SColumnSetID,
-            pColSortData: ?*MMC_SORT_SET_DATA,
-        ) callconv(.winapi) HRESULT,
-        GetColumnSortData: *const fn(
-            self: *const IColumnData,
-            pColID: ?*SColumnSetID,
-            ppColSortData: ?*?*MMC_SORT_SET_DATA,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetColumnConfigData(self: *const IColumnData, pColID: ?*SColumnSetID, pColSetData: ?*MMC_COLUMN_SET_DATA) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColumnConfigData(self, pColID, pColSetData);
-    }
-    pub fn GetColumnConfigData(self: *const IColumnData, pColID: ?*SColumnSetID, ppColSetData: ?*?*MMC_COLUMN_SET_DATA) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColumnConfigData(self, pColID, ppColSetData);
-    }
-    pub fn SetColumnSortData(self: *const IColumnData, pColID: ?*SColumnSetID, pColSortData: ?*MMC_SORT_SET_DATA) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColumnSortData(self, pColID, pColSortData);
-    }
-    pub fn GetColumnSortData(self: *const IColumnData, pColID: ?*SColumnSetID, ppColSortData: ?*?*MMC_SORT_SET_DATA) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColumnSortData(self, pColID, ppColSortData);
-    }
-};
-
-pub const IconIdentifier = enum(i32) {
-    None = 0,
-    Error = 32513,
-    Question = 32514,
-    Warning = 32515,
-    Information = 32516,
-    pub const First = .Error;
-    pub const Last = .Information;
-};
-pub const Icon_None = IconIdentifier.None;
-pub const Icon_Error = IconIdentifier.Error;
-pub const Icon_Question = IconIdentifier.Question;
-pub const Icon_Warning = IconIdentifier.Warning;
-pub const Icon_Information = IconIdentifier.Information;
-pub const Icon_First = IconIdentifier.Error;
-pub const Icon_Last = IconIdentifier.Information;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMessageView_Value = Guid.initString("80f94174-fccc-11d2-b991-00c04f8ecd78");
-pub const IID_IMessageView = &IID_IMessageView_Value;
-pub const IMessageView = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetTitleText: *const fn(
-            self: *const IMessageView,
-            pszTitleText: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetBodyText: *const fn(
-            self: *const IMessageView,
-            pszBodyText: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetIcon: *const fn(
-            self: *const IMessageView,
-            id: IconIdentifier,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IMessageView,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetTitleText(self: *const IMessageView, pszTitleText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTitleText(self, pszTitleText);
-    }
-    pub fn SetBodyText(self: *const IMessageView, pszBodyText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetBodyText(self, pszBodyText);
-    }
-    pub fn SetIcon(self: *const IMessageView, id: IconIdentifier) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIcon(self, id);
-    }
-    pub fn Clear(self: *const IMessageView) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-};
-
-pub const RDITEMHDR = extern struct {
-    dwFlags: u32,
-    cookie: isize,
-    lpReserved: LPARAM,
-};
-
-pub const RDCOMPARE = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    nColumn: i32,
-    lUserParam: LPARAM,
-    prdch1: ?*RDITEMHDR,
-    prdch2: ?*RDITEMHDR,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IResultDataCompareEx_Value = Guid.initString("96933476-0251-11d3-aeb0-00c04f8ecd78");
-pub const IID_IResultDataCompareEx = &IID_IResultDataCompareEx_Value;
-pub const IResultDataCompareEx = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Compare: *const fn(
-            self: *const IResultDataCompareEx,
-            prdc: ?*RDCOMPARE,
-            pnResult: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Compare(self: *const IResultDataCompareEx, prdc: ?*RDCOMPARE, pnResult: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Compare(self, prdc, pnResult);
-    }
-};
-
-pub const MMC_VIEW_TYPE = enum(i32) {
-    LIST = 0,
-    HTML = 1,
-    OCX = 2,
-};
-pub const MMC_VIEW_TYPE_LIST = MMC_VIEW_TYPE.LIST;
-pub const MMC_VIEW_TYPE_HTML = MMC_VIEW_TYPE.HTML;
-pub const MMC_VIEW_TYPE_OCX = MMC_VIEW_TYPE.OCX;
-
-pub const RESULT_VIEW_TYPE_INFO = extern struct {
-    pstrPersistableViewDescription: ?PWSTR,
-    eViewType: MMC_VIEW_TYPE,
-    dwMiscOptions: u32,
-    Anonymous: extern union {
-        dwListOptions: u32,
-        Anonymous1: extern struct {
-            dwHTMLOptions: u32,
-            pstrURL: ?PWSTR,
-        },
-        Anonymous2: extern struct {
-            dwOCXOptions: u32,
-            pUnkControl: ?*IUnknown,
-        },
-    },
-};
-
-pub const CONTEXTMENUITEM2 = extern struct {
-    strName: ?PWSTR,
-    strStatusBarText: ?PWSTR,
-    lCommandID: i32,
-    lInsertionPointID: i32,
-    fFlags: i32,
-    fSpecialFlags: i32,
-    strLanguageIndependentName: ?PWSTR,
-};
-
-pub const MMC_EXT_VIEW_DATA = extern struct {
-    viewID: Guid,
-    pszURL: ?[*:0]const u16,
-    pszViewTitle: ?[*:0]const u16,
-    pszTooltipText: ?[*:0]const u16,
-    bReplacesDefaultView: BOOL,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IComponentData2_Value = Guid.initString("cca0f2d2-82de-41b5-bf47-3b2076273d5c");
-pub const IID_IComponentData2 = &IID_IComponentData2_Value;
-pub const IComponentData2 = extern union {
-    pub const VTable = extern struct {
-        base: IComponentData.VTable,
-        QueryDispatch: *const fn(
-            self: *const IComponentData2,
-            cookie: isize,
-            type: DATA_OBJECT_TYPES,
-            ppDispatch: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IComponentData: IComponentData,
-    IUnknown: IUnknown,
-    pub fn QueryDispatch(self: *const IComponentData2, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryDispatch(self, cookie, @"type", ppDispatch);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IComponent2_Value = Guid.initString("79a2d615-4a10-4ed4-8c65-8633f9335095");
-pub const IID_IComponent2 = &IID_IComponent2_Value;
-pub const IComponent2 = extern union {
-    pub const VTable = extern struct {
-        base: IComponent.VTable,
-        QueryDispatch: *const fn(
-            self: *const IComponent2,
-            cookie: isize,
-            type: DATA_OBJECT_TYPES,
-            ppDispatch: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        GetResultViewType2: *const fn(
-            self: *const IComponent2,
-            cookie: isize,
-            pResultViewType: ?*RESULT_VIEW_TYPE_INFO,
-        ) callconv(.winapi) HRESULT,
-        RestoreResultView: *const fn(
-            self: *const IComponent2,
-            cookie: isize,
-            pResultViewType: ?*RESULT_VIEW_TYPE_INFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IComponent: IComponent,
-    IUnknown: IUnknown,
-    pub fn QueryDispatch(self: *const IComponent2, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryDispatch(self, cookie, @"type", ppDispatch);
-    }
-    pub fn GetResultViewType2(self: *const IComponent2, cookie: isize, pResultViewType: ?*RESULT_VIEW_TYPE_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetResultViewType2(self, cookie, pResultViewType);
-    }
-    pub fn RestoreResultView(self: *const IComponent2, cookie: isize, pResultViewType: ?*RESULT_VIEW_TYPE_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreResultView(self, cookie, pResultViewType);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IContextMenuCallback2_Value = Guid.initString("e178bc0e-2ed0-4b5e-8097-42c9087e8b33");
-pub const IID_IContextMenuCallback2 = &IID_IContextMenuCallback2_Value;
-pub const IContextMenuCallback2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddItem: *const fn(
-            self: *const IContextMenuCallback2,
-            pItem: ?*CONTEXTMENUITEM2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddItem(self: *const IContextMenuCallback2, pItem: ?*CONTEXTMENUITEM2) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, pItem);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMMCVersionInfo_Value = Guid.initString("a8d2c5fe-cdcb-4b9d-bde5-a27343ff54bc");
-pub const IID_IMMCVersionInfo = &IID_IMMCVersionInfo_Value;
-pub const IMMCVersionInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetMMCVersion: *const fn(
-            self: *const IMMCVersionInfo,
-            pVersionMajor: ?*i32,
-            pVersionMinor: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetMMCVersion(self: *const IMMCVersionInfo, pVersionMajor: ?*i32, pVersionMinor: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMMCVersion(self, pVersionMajor, pVersionMinor);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IExtendView_Value = Guid.initString("89995cee-d2ed-4c0e-ae5e-df7e76f3fa53");
-pub const IID_IExtendView = &IID_IExtendView_Value;
-pub const IExtendView = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetViews: *const fn(
-            self: *const IExtendView,
-            pDataObject: ?*IDataObject,
-            pViewExtensionCallback: ?*IViewExtensionCallback,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetViews(self: *const IExtendView, pDataObject: ?*IDataObject, pViewExtensionCallback: ?*IViewExtensionCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.GetViews(self, pDataObject, pViewExtensionCallback);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IViewExtensionCallback_Value = Guid.initString("34dd928a-7599-41e5-9f5e-d6bc3062c2da");
-pub const IID_IViewExtensionCallback = &IID_IViewExtensionCallback_Value;
-pub const IViewExtensionCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddView: *const fn(
-            self: *const IViewExtensionCallback,
-            pExtViewData: ?*MMC_EXT_VIEW_DATA,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddView(self: *const IViewExtensionCallback, pExtViewData: ?*MMC_EXT_VIEW_DATA) callconv(.@"inline") HRESULT {
-        return self.vtable.AddView(self, pExtViewData);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsolePower_Value = Guid.initString("1cfbdd0e-62ca-49ce-a3af-dbb2de61b068");
-pub const IID_IConsolePower = &IID_IConsolePower_Value;
-pub const IConsolePower = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetExecutionState: *const fn(
-            self: *const IConsolePower,
-            dwAdd: u32,
-            dwRemove: u32,
-        ) callconv(.winapi) HRESULT,
-        ResetIdleTimer: *const fn(
-            self: *const IConsolePower,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetExecutionState(self: *const IConsolePower, dwAdd: u32, dwRemove: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetExecutionState(self, dwAdd, dwRemove);
-    }
-    pub fn ResetIdleTimer(self: *const IConsolePower, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ResetIdleTimer(self, dwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsolePowerSink_Value = Guid.initString("3333759f-fe4f-4975-b143-fec0a5dd6d65");
-pub const IID_IConsolePowerSink = &IID_IConsolePowerSink_Value;
-pub const IConsolePowerSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnPowerBroadcast: *const fn(
-            self: *const IConsolePowerSink,
-            nEvent: u32,
-            lParam: LPARAM,
-            plReturn: ?*LRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnPowerBroadcast(self: *const IConsolePowerSink, nEvent: u32, lParam: LPARAM, plReturn: ?*LRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPowerBroadcast(self, nEvent, lParam, plReturn);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INodeProperties_Value = Guid.initString("15bc4d24-a522-4406-aa55-0749537a6865");
-pub const IID_INodeProperties = &IID_INodeProperties_Value;
-pub const INodeProperties = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperty: *const fn(
-            self: *const INodeProperties,
-            pDataObject: ?*IDataObject,
-            szPropertyName: ?BSTR,
-            pbstrProperty: ?*?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProperty(self: *const INodeProperties, pDataObject: ?*IDataObject, szPropertyName: ?BSTR, pbstrProperty: ?*?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, pDataObject, szPropertyName, pbstrProperty);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConsole3_Value = Guid.initString("4f85efdb-d0e1-498c-8d4a-d010dfdd404f");
-pub const IID_IConsole3 = &IID_IConsole3_Value;
-pub const IConsole3 = extern union {
-    pub const VTable = extern struct {
-        base: IConsole2.VTable,
-        RenameScopeItem: *const fn(
-            self: *const IConsole3,
-            hScopeItem: isize,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IConsole2: IConsole2,
-    IConsole: IConsole,
-    IUnknown: IUnknown,
-    pub fn RenameScopeItem(self: *const IConsole3, hScopeItem: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.RenameScopeItem(self, hScopeItem);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IResultData2_Value = Guid.initString("0f36e0eb-a7f1-4a81-be5a-9247f7de4b1b");
-pub const IID_IResultData2 = &IID_IResultData2_Value;
-pub const IResultData2 = extern union {
-    pub const VTable = extern struct {
-        base: IResultData.VTable,
-        RenameResultItem: *const fn(
-            self: *const IResultData2,
-            itemID: isize,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IResultData: IResultData,
-    IUnknown: IUnknown,
-    pub fn RenameResultItem(self: *const IResultData2, itemID: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.RenameResultItem(self, itemID);
     }
 };
 

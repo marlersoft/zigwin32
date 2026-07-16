@@ -2,38 +2,808 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (25)
 //--------------------------------------------------------------------------------
-pub const HVSOCKET_CONNECT_TIMEOUT = @as(u32, 1);
-pub const HVSOCKET_CONNECT_TIMEOUT_MAX = @as(u32, 300000);
-pub const HVSOCKET_CONTAINER_PASSTHRU = @as(u32, 2);
-pub const HVSOCKET_CONNECTED_SUSPEND = @as(u32, 4);
-pub const HV_PROTOCOL_RAW = @as(u32, 1);
-pub const HVSOCKET_ADDRESS_FLAG_PASSTHRU = @as(u32, 1);
-pub const WHV_PROCESSOR_FEATURES_BANKS_COUNT = @as(u32, 2);
-pub const WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS_COUNT = @as(u32, 1);
-pub const WHV_READ_WRITE_GPA_RANGE_MAX_SIZE = @as(u32, 16);
-pub const WHV_HYPERCALL_CONTEXT_MAX_XMM_REGISTERS = @as(u32, 6);
-pub const WHV_MAX_DEVICE_ID_SIZE_IN_CHARS = @as(u32, 200);
-pub const WHV_VPCI_TYPE0_BAR_COUNT = @as(u32, 6);
-pub const WHV_ANY_VP = @as(u32, 4294967295);
-pub const WHV_SYNIC_MESSAGE_SIZE = @as(u32, 256);
-pub const VM_GENCOUNTER_SYMBOLIC_LINK_NAME = "\\VmGenerationCounter";
-pub const IOCTL_VMGENCOUNTER_READ = @as(u32, 3325956);
+pub const GUID_DEVINTERFACE_VM_GENCOUNTER = Guid.initString("3ff2c92b-6598-4e60-8e1c-0ccf4927e319");
 pub const HDV_PCI_BAR_COUNT = @as(u32, 6);
-pub const HV_GUID_ZERO = Guid.initString("00000000-0000-0000-0000-000000000000");
 pub const HV_GUID_BROADCAST = Guid.initString("ffffffff-ffff-ffff-ffff-ffffffffffff");
 pub const HV_GUID_CHILDREN = Guid.initString("90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd");
 pub const HV_GUID_LOOPBACK = Guid.initString("e0e16197-dd56-4a10-9195-5ee7a155a838");
 pub const HV_GUID_PARENT = Guid.initString("a42e7cda-d03f-480c-9cc2-a4de20abb878");
 pub const HV_GUID_SILOHOST = Guid.initString("36bd0c5c-7276-4223-88ba-7d03b654c568");
 pub const HV_GUID_VSOCK_TEMPLATE = Guid.initString("00000000-facb-11e6-bd58-64006a7986d3");
-pub const GUID_DEVINTERFACE_VM_GENCOUNTER = Guid.initString("3ff2c92b-6598-4e60-8e1c-0ccf4927e319");
+pub const HV_GUID_ZERO = Guid.initString("00000000-0000-0000-0000-000000000000");
+pub const HV_PROTOCOL_RAW = @as(u32, 1);
+pub const HVSOCKET_ADDRESS_FLAG_PASSTHRU = @as(u32, 1);
+pub const HVSOCKET_CONNECT_TIMEOUT = @as(u32, 1);
+pub const HVSOCKET_CONNECT_TIMEOUT_MAX = @as(u32, 300000);
+pub const HVSOCKET_CONNECTED_SUSPEND = @as(u32, 4);
+pub const HVSOCKET_CONTAINER_PASSTHRU = @as(u32, 2);
+pub const IOCTL_VMGENCOUNTER_READ = @as(u32, 3325956);
+pub const VM_GENCOUNTER_SYMBOLIC_LINK_NAME = "\\VmGenerationCounter";
+pub const WHV_ANY_VP = @as(u32, 4294967295);
+pub const WHV_HYPERCALL_CONTEXT_MAX_XMM_REGISTERS = @as(u32, 6);
+pub const WHV_MAX_DEVICE_ID_SIZE_IN_CHARS = @as(u32, 200);
+pub const WHV_PROCESSOR_FEATURES_BANKS_COUNT = @as(u32, 2);
+pub const WHV_READ_WRITE_GPA_RANGE_MAX_SIZE = @as(u32, 16);
+pub const WHV_SYNIC_MESSAGE_SIZE = @as(u32, 256);
+pub const WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS_COUNT = @as(u32, 1);
+pub const WHV_VPCI_TYPE0_BAR_COUNT = @as(u32, 6);
 
 //--------------------------------------------------------------------------------
 // Section: Types (162)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'WHvDeletePartition', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const WHV_PARTITION_HANDLE = isize;
+pub const DOS_IMAGE_INFO = extern struct {
+    PdbName: ?[*:0]const u8,
+    ImageBaseAddress: u64,
+    ImageSize: u32,
+    Timestamp: u32,
+};
+
+pub const FOUND_IMAGE_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    ImageInfo: ?*DOS_IMAGE_INFO,
+) callconv(.winapi) BOOL;
+
+pub const GPA_MEMORY_CHUNK = extern struct {
+    GuestPhysicalStartPageIndex: u64,
+    PageCount: u64,
+};
+
+pub const GUEST_OS_INFO = extern union {
+    AsUINT64: u64,
+    ClosedSource: extern struct {
+        _bitfield: u64,
+    },
+    OpenSource: extern struct {
+        _bitfield: u64,
+    },
+};
+
+pub const GUEST_OS_MICROSOFT_IDS = enum(i32) {
+    Undefined = 0,
+    MSDOS = 1,
+    Windows3x = 2,
+    Windows9x = 3,
+    WindowsNT = 4,
+    WindowsCE = 5,
+};
+pub const GuestOsMicrosoftUndefined = GUEST_OS_MICROSOFT_IDS.Undefined;
+pub const GuestOsMicrosoftMSDOS = GUEST_OS_MICROSOFT_IDS.MSDOS;
+pub const GuestOsMicrosoftWindows3x = GUEST_OS_MICROSOFT_IDS.Windows3x;
+pub const GuestOsMicrosoftWindows9x = GUEST_OS_MICROSOFT_IDS.Windows9x;
+pub const GuestOsMicrosoftWindowsNT = GUEST_OS_MICROSOFT_IDS.WindowsNT;
+pub const GuestOsMicrosoftWindowsCE = GUEST_OS_MICROSOFT_IDS.WindowsCE;
+
+pub const GUEST_OS_OPENSOURCE_IDS = enum(i32) {
+    Undefined = 0,
+    Linux = 1,
+    FreeBSD = 2,
+    Xen = 3,
+    Illumos = 4,
+};
+pub const GuestOsOpenSourceUndefined = GUEST_OS_OPENSOURCE_IDS.Undefined;
+pub const GuestOsOpenSourceLinux = GUEST_OS_OPENSOURCE_IDS.Linux;
+pub const GuestOsOpenSourceFreeBSD = GUEST_OS_OPENSOURCE_IDS.FreeBSD;
+pub const GuestOsOpenSourceXen = GUEST_OS_OPENSOURCE_IDS.Xen;
+pub const GuestOsOpenSourceIllumos = GUEST_OS_OPENSOURCE_IDS.Illumos;
+
+pub const GUEST_OS_VENDOR = enum(i32) {
+    Undefined = 0,
+    Microsoft = 1,
+    HPE = 2,
+    LANCOM = 512,
+};
+pub const GuestOsVendorUndefined = GUEST_OS_VENDOR.Undefined;
+pub const GuestOsVendorMicrosoft = GUEST_OS_VENDOR.Microsoft;
+pub const GuestOsVendorHPE = GUEST_OS_VENDOR.HPE;
+pub const GuestOsVendorLANCOM = GUEST_OS_VENDOR.LANCOM;
+
+pub const GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK = *const fn(
+    InfoMessage: ?[*:0]const u8,
+) callconv(.winapi) void;
+
+pub const HDV_DEVICE_TYPE = enum(i32) {
+    Undefined = 0,
+    PCI = 1,
+};
+pub const HdvDeviceTypeUndefined = HDV_DEVICE_TYPE.Undefined;
+pub const HdvDeviceTypePCI = HDV_DEVICE_TYPE.PCI;
+
+pub const HDV_DOORBELL_FLAGS = enum(i32) {
+    SIZE_ANY = 0,
+    SIZE_BYTE = 1,
+    SIZE_WORD = 2,
+    SIZE_DWORD = 3,
+    SIZE_QWORD = 4,
+    ANY_VALUE = -2147483648,
+};
+pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_ANY = HDV_DOORBELL_FLAGS.SIZE_ANY;
+pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_BYTE = HDV_DOORBELL_FLAGS.SIZE_BYTE;
+pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_WORD = HDV_DOORBELL_FLAGS.SIZE_WORD;
+pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_DWORD = HDV_DOORBELL_FLAGS.SIZE_DWORD;
+pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_QWORD = HDV_DOORBELL_FLAGS.SIZE_QWORD;
+pub const HDV_DOORBELL_FLAG_TRIGGER_ANY_VALUE = HDV_DOORBELL_FLAGS.ANY_VALUE;
+
+pub const HDV_MMIO_MAPPING_FLAGS = packed struct(u32) {
+    Writeable: u1 = 0,
+    Executable: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const HdvMmioMappingFlagNone = HDV_MMIO_MAPPING_FLAGS{ };
+pub const HdvMmioMappingFlagWriteable = HDV_MMIO_MAPPING_FLAGS{ .Writeable = 1 };
+pub const HdvMmioMappingFlagExecutable = HDV_MMIO_MAPPING_FLAGS{ .Executable = 1 };
+
+pub const HDV_PCI_BAR_SELECTOR = enum(i32) {
+    @"0" = 0,
+    @"1" = 1,
+    @"2" = 2,
+    @"3" = 3,
+    @"4" = 4,
+    @"5" = 5,
+};
+pub const HDV_PCI_BAR0 = HDV_PCI_BAR_SELECTOR.@"0";
+pub const HDV_PCI_BAR1 = HDV_PCI_BAR_SELECTOR.@"1";
+pub const HDV_PCI_BAR2 = HDV_PCI_BAR_SELECTOR.@"2";
+pub const HDV_PCI_BAR3 = HDV_PCI_BAR_SELECTOR.@"3";
+pub const HDV_PCI_BAR4 = HDV_PCI_BAR_SELECTOR.@"4";
+pub const HDV_PCI_BAR5 = HDV_PCI_BAR_SELECTOR.@"5";
+
+pub const HDV_PCI_DEVICE_GET_DETAILS = *const fn(
+    deviceContext: ?*anyopaque,
+    pnpId: ?*HDV_PCI_PNP_ID,
+    probedBarsCount: u32,
+    probedBars: [*]u32,
+) callconv(.winapi) HRESULT;
+
+pub const HDV_PCI_DEVICE_INITIALIZE = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const HDV_PCI_DEVICE_INTERFACE = extern struct {
+    Version: HDV_PCI_INTERFACE_VERSION,
+    Initialize: ?HDV_PCI_DEVICE_INITIALIZE,
+    Teardown: ?HDV_PCI_DEVICE_TEARDOWN,
+    SetConfiguration: ?HDV_PCI_DEVICE_SET_CONFIGURATION,
+    GetDetails: ?HDV_PCI_DEVICE_GET_DETAILS,
+    Start: ?HDV_PCI_DEVICE_START,
+    Stop: ?HDV_PCI_DEVICE_STOP,
+    ReadConfigSpace: ?HDV_PCI_READ_CONFIG_SPACE,
+    WriteConfigSpace: ?HDV_PCI_WRITE_CONFIG_SPACE,
+    ReadInterceptedMemory: ?HDV_PCI_READ_INTERCEPTED_MEMORY,
+    WriteInterceptedMemory: ?HDV_PCI_WRITE_INTERCEPTED_MEMORY,
+};
+
+pub const HDV_PCI_DEVICE_SET_CONFIGURATION = *const fn(
+    deviceContext: ?*anyopaque,
+    configurationValueCount: u32,
+    configurationValues: [*]const ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub const HDV_PCI_DEVICE_START = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const HDV_PCI_DEVICE_STOP = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const HDV_PCI_DEVICE_TEARDOWN = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const HDV_PCI_INTERFACE_VERSION = enum(i32) {
+    Invalid = 0,
+    @"1" = 1,
+};
+pub const HdvPciDeviceInterfaceVersionInvalid = HDV_PCI_INTERFACE_VERSION.Invalid;
+pub const HdvPciDeviceInterfaceVersion1 = HDV_PCI_INTERFACE_VERSION.@"1";
+
+pub const HDV_PCI_PNP_ID = extern struct {
+    VendorID: u16,
+    DeviceID: u16,
+    RevisionID: u8,
+    ProgIf: u8,
+    SubClass: u8,
+    BaseClass: u8,
+    SubVendorID: u16,
+    SubSystemID: u16,
+};
+
+pub const HDV_PCI_READ_CONFIG_SPACE = *const fn(
+    deviceContext: ?*anyopaque,
+    offset: u32,
+    value: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub const HDV_PCI_READ_INTERCEPTED_MEMORY = *const fn(
+    deviceContext: ?*anyopaque,
+    barIndex: HDV_PCI_BAR_SELECTOR,
+    offset: u64,
+    length: u64,
+    value: [*:0]u8,
+) callconv(.winapi) HRESULT;
+
+pub const HDV_PCI_WRITE_CONFIG_SPACE = *const fn(
+    deviceContext: ?*anyopaque,
+    offset: u32,
+    value: u32,
+) callconv(.winapi) HRESULT;
+
+pub const HDV_PCI_WRITE_INTERCEPTED_MEMORY = *const fn(
+    deviceContext: ?*anyopaque,
+    barIndex: HDV_PCI_BAR_SELECTOR,
+    offset: u64,
+    length: u64,
+    value: [*:0]const u8,
+) callconv(.winapi) HRESULT;
+
+pub const HVSOCKET_ADDRESS_INFO = extern struct {
+    SystemId: Guid,
+    VirtualMachineId: Guid,
+    SiloId: Guid,
+    Flags: u32,
+};
+
+pub const MODULE_INFO = extern struct {
+    ProcessImageName: ?[*:0]const u8,
+    Image: DOS_IMAGE_INFO,
+};
+
+pub const PAGING_MODE = enum(i32) {
+    Invalid = 0,
+    NonPaged = 1,
+    @"32Bit" = 2,
+    Pae = 3,
+    Long = 4,
+    Armv8 = 5,
+};
+pub const Paging_Invalid = PAGING_MODE.Invalid;
+pub const Paging_NonPaged = PAGING_MODE.NonPaged;
+pub const Paging_32Bit = PAGING_MODE.@"32Bit";
+pub const Paging_Pae = PAGING_MODE.Pae;
+pub const Paging_Long = PAGING_MODE.Long;
+pub const Paging_Armv8 = PAGING_MODE.Armv8;
+
+pub const REGISTER_ID = enum(i32) {
+    X64_RegisterRax = 0,
+    X64_RegisterRcx = 1,
+    X64_RegisterRdx = 2,
+    X64_RegisterRbx = 3,
+    X64_RegisterRsp = 4,
+    X64_RegisterRbp = 5,
+    X64_RegisterRsi = 6,
+    X64_RegisterRdi = 7,
+    X64_RegisterR8 = 8,
+    X64_RegisterR9 = 9,
+    X64_RegisterR10 = 10,
+    X64_RegisterR11 = 11,
+    X64_RegisterR12 = 12,
+    X64_RegisterR13 = 13,
+    X64_RegisterR14 = 14,
+    X64_RegisterR15 = 15,
+    X64_RegisterRip = 16,
+    X64_RegisterRFlags = 17,
+    X64_RegisterXmm0 = 18,
+    X64_RegisterXmm1 = 19,
+    X64_RegisterXmm2 = 20,
+    X64_RegisterXmm3 = 21,
+    X64_RegisterXmm4 = 22,
+    X64_RegisterXmm5 = 23,
+    X64_RegisterXmm6 = 24,
+    X64_RegisterXmm7 = 25,
+    X64_RegisterXmm8 = 26,
+    X64_RegisterXmm9 = 27,
+    X64_RegisterXmm10 = 28,
+    X64_RegisterXmm11 = 29,
+    X64_RegisterXmm12 = 30,
+    X64_RegisterXmm13 = 31,
+    X64_RegisterXmm14 = 32,
+    X64_RegisterXmm15 = 33,
+    X64_RegisterFpMmx0 = 34,
+    X64_RegisterFpMmx1 = 35,
+    X64_RegisterFpMmx2 = 36,
+    X64_RegisterFpMmx3 = 37,
+    X64_RegisterFpMmx4 = 38,
+    X64_RegisterFpMmx5 = 39,
+    X64_RegisterFpMmx6 = 40,
+    X64_RegisterFpMmx7 = 41,
+    X64_RegisterFpControlStatus = 42,
+    X64_RegisterXmmControlStatus = 43,
+    X64_RegisterCr0 = 44,
+    X64_RegisterCr2 = 45,
+    X64_RegisterCr3 = 46,
+    X64_RegisterCr4 = 47,
+    X64_RegisterCr8 = 48,
+    X64_RegisterEfer = 49,
+    X64_RegisterDr0 = 50,
+    X64_RegisterDr1 = 51,
+    X64_RegisterDr2 = 52,
+    X64_RegisterDr3 = 53,
+    X64_RegisterDr6 = 54,
+    X64_RegisterDr7 = 55,
+    X64_RegisterEs = 56,
+    X64_RegisterCs = 57,
+    X64_RegisterSs = 58,
+    X64_RegisterDs = 59,
+    X64_RegisterFs = 60,
+    X64_RegisterGs = 61,
+    X64_RegisterLdtr = 62,
+    X64_RegisterTr = 63,
+    X64_RegisterIdtr = 64,
+    X64_RegisterGdtr = 65,
+    X64_RegisterMax = 66,
+    ARM64_RegisterX0 = 67,
+    ARM64_RegisterX1 = 68,
+    ARM64_RegisterX2 = 69,
+    ARM64_RegisterX3 = 70,
+    ARM64_RegisterX4 = 71,
+    ARM64_RegisterX5 = 72,
+    ARM64_RegisterX6 = 73,
+    ARM64_RegisterX7 = 74,
+    ARM64_RegisterX8 = 75,
+    ARM64_RegisterX9 = 76,
+    ARM64_RegisterX10 = 77,
+    ARM64_RegisterX11 = 78,
+    ARM64_RegisterX12 = 79,
+    ARM64_RegisterX13 = 80,
+    ARM64_RegisterX14 = 81,
+    ARM64_RegisterX15 = 82,
+    ARM64_RegisterX16 = 83,
+    ARM64_RegisterX17 = 84,
+    ARM64_RegisterX18 = 85,
+    ARM64_RegisterX19 = 86,
+    ARM64_RegisterX20 = 87,
+    ARM64_RegisterX21 = 88,
+    ARM64_RegisterX22 = 89,
+    ARM64_RegisterX23 = 90,
+    ARM64_RegisterX24 = 91,
+    ARM64_RegisterX25 = 92,
+    ARM64_RegisterX26 = 93,
+    ARM64_RegisterX27 = 94,
+    ARM64_RegisterX28 = 95,
+    ARM64_RegisterXFp = 96,
+    ARM64_RegisterXLr = 97,
+    ARM64_RegisterPc = 98,
+    ARM64_RegisterSpEl0 = 99,
+    ARM64_RegisterSpEl1 = 100,
+    ARM64_RegisterCpsr = 101,
+    ARM64_RegisterQ0 = 102,
+    ARM64_RegisterQ1 = 103,
+    ARM64_RegisterQ2 = 104,
+    ARM64_RegisterQ3 = 105,
+    ARM64_RegisterQ4 = 106,
+    ARM64_RegisterQ5 = 107,
+    ARM64_RegisterQ6 = 108,
+    ARM64_RegisterQ7 = 109,
+    ARM64_RegisterQ8 = 110,
+    ARM64_RegisterQ9 = 111,
+    ARM64_RegisterQ10 = 112,
+    ARM64_RegisterQ11 = 113,
+    ARM64_RegisterQ12 = 114,
+    ARM64_RegisterQ13 = 115,
+    ARM64_RegisterQ14 = 116,
+    ARM64_RegisterQ15 = 117,
+    ARM64_RegisterQ16 = 118,
+    ARM64_RegisterQ17 = 119,
+    ARM64_RegisterQ18 = 120,
+    ARM64_RegisterQ19 = 121,
+    ARM64_RegisterQ20 = 122,
+    ARM64_RegisterQ21 = 123,
+    ARM64_RegisterQ22 = 124,
+    ARM64_RegisterQ23 = 125,
+    ARM64_RegisterQ24 = 126,
+    ARM64_RegisterQ25 = 127,
+    ARM64_RegisterQ26 = 128,
+    ARM64_RegisterQ27 = 129,
+    ARM64_RegisterQ28 = 130,
+    ARM64_RegisterQ29 = 131,
+    ARM64_RegisterQ30 = 132,
+    ARM64_RegisterQ31 = 133,
+    ARM64_RegisterFpStatus = 134,
+    ARM64_RegisterFpControl = 135,
+    ARM64_RegisterEsrEl1 = 136,
+    ARM64_RegisterSpsrEl1 = 137,
+    ARM64_RegisterFarEl1 = 138,
+    ARM64_RegisterParEl1 = 139,
+    ARM64_RegisterElrEl1 = 140,
+    ARM64_RegisterTtbr0El1 = 141,
+    ARM64_RegisterTtbr1El1 = 142,
+    ARM64_RegisterVbarEl1 = 143,
+    ARM64_RegisterSctlrEl1 = 144,
+    ARM64_RegisterActlrEl1 = 145,
+    ARM64_RegisterTcrEl1 = 146,
+    ARM64_RegisterMairEl1 = 147,
+    ARM64_RegisterAmairEl1 = 148,
+    ARM64_RegisterTpidrEl0 = 149,
+    ARM64_RegisterTpidrroEl0 = 150,
+    ARM64_RegisterTpidrEl1 = 151,
+    ARM64_RegisterContextIdrEl1 = 152,
+    ARM64_RegisterCpacrEl1 = 153,
+    ARM64_RegisterCsselrEl1 = 154,
+    ARM64_RegisterCntkctlEl1 = 155,
+    ARM64_RegisterCntvCvalEl0 = 156,
+    ARM64_RegisterCntvCtlEl0 = 157,
+    ARM64_RegisterMax = 158,
+};
+pub const X64_RegisterRax = REGISTER_ID.X64_RegisterRax;
+pub const X64_RegisterRcx = REGISTER_ID.X64_RegisterRcx;
+pub const X64_RegisterRdx = REGISTER_ID.X64_RegisterRdx;
+pub const X64_RegisterRbx = REGISTER_ID.X64_RegisterRbx;
+pub const X64_RegisterRsp = REGISTER_ID.X64_RegisterRsp;
+pub const X64_RegisterRbp = REGISTER_ID.X64_RegisterRbp;
+pub const X64_RegisterRsi = REGISTER_ID.X64_RegisterRsi;
+pub const X64_RegisterRdi = REGISTER_ID.X64_RegisterRdi;
+pub const X64_RegisterR8 = REGISTER_ID.X64_RegisterR8;
+pub const X64_RegisterR9 = REGISTER_ID.X64_RegisterR9;
+pub const X64_RegisterR10 = REGISTER_ID.X64_RegisterR10;
+pub const X64_RegisterR11 = REGISTER_ID.X64_RegisterR11;
+pub const X64_RegisterR12 = REGISTER_ID.X64_RegisterR12;
+pub const X64_RegisterR13 = REGISTER_ID.X64_RegisterR13;
+pub const X64_RegisterR14 = REGISTER_ID.X64_RegisterR14;
+pub const X64_RegisterR15 = REGISTER_ID.X64_RegisterR15;
+pub const X64_RegisterRip = REGISTER_ID.X64_RegisterRip;
+pub const X64_RegisterRFlags = REGISTER_ID.X64_RegisterRFlags;
+pub const X64_RegisterXmm0 = REGISTER_ID.X64_RegisterXmm0;
+pub const X64_RegisterXmm1 = REGISTER_ID.X64_RegisterXmm1;
+pub const X64_RegisterXmm2 = REGISTER_ID.X64_RegisterXmm2;
+pub const X64_RegisterXmm3 = REGISTER_ID.X64_RegisterXmm3;
+pub const X64_RegisterXmm4 = REGISTER_ID.X64_RegisterXmm4;
+pub const X64_RegisterXmm5 = REGISTER_ID.X64_RegisterXmm5;
+pub const X64_RegisterXmm6 = REGISTER_ID.X64_RegisterXmm6;
+pub const X64_RegisterXmm7 = REGISTER_ID.X64_RegisterXmm7;
+pub const X64_RegisterXmm8 = REGISTER_ID.X64_RegisterXmm8;
+pub const X64_RegisterXmm9 = REGISTER_ID.X64_RegisterXmm9;
+pub const X64_RegisterXmm10 = REGISTER_ID.X64_RegisterXmm10;
+pub const X64_RegisterXmm11 = REGISTER_ID.X64_RegisterXmm11;
+pub const X64_RegisterXmm12 = REGISTER_ID.X64_RegisterXmm12;
+pub const X64_RegisterXmm13 = REGISTER_ID.X64_RegisterXmm13;
+pub const X64_RegisterXmm14 = REGISTER_ID.X64_RegisterXmm14;
+pub const X64_RegisterXmm15 = REGISTER_ID.X64_RegisterXmm15;
+pub const X64_RegisterFpMmx0 = REGISTER_ID.X64_RegisterFpMmx0;
+pub const X64_RegisterFpMmx1 = REGISTER_ID.X64_RegisterFpMmx1;
+pub const X64_RegisterFpMmx2 = REGISTER_ID.X64_RegisterFpMmx2;
+pub const X64_RegisterFpMmx3 = REGISTER_ID.X64_RegisterFpMmx3;
+pub const X64_RegisterFpMmx4 = REGISTER_ID.X64_RegisterFpMmx4;
+pub const X64_RegisterFpMmx5 = REGISTER_ID.X64_RegisterFpMmx5;
+pub const X64_RegisterFpMmx6 = REGISTER_ID.X64_RegisterFpMmx6;
+pub const X64_RegisterFpMmx7 = REGISTER_ID.X64_RegisterFpMmx7;
+pub const X64_RegisterFpControlStatus = REGISTER_ID.X64_RegisterFpControlStatus;
+pub const X64_RegisterXmmControlStatus = REGISTER_ID.X64_RegisterXmmControlStatus;
+pub const X64_RegisterCr0 = REGISTER_ID.X64_RegisterCr0;
+pub const X64_RegisterCr2 = REGISTER_ID.X64_RegisterCr2;
+pub const X64_RegisterCr3 = REGISTER_ID.X64_RegisterCr3;
+pub const X64_RegisterCr4 = REGISTER_ID.X64_RegisterCr4;
+pub const X64_RegisterCr8 = REGISTER_ID.X64_RegisterCr8;
+pub const X64_RegisterEfer = REGISTER_ID.X64_RegisterEfer;
+pub const X64_RegisterDr0 = REGISTER_ID.X64_RegisterDr0;
+pub const X64_RegisterDr1 = REGISTER_ID.X64_RegisterDr1;
+pub const X64_RegisterDr2 = REGISTER_ID.X64_RegisterDr2;
+pub const X64_RegisterDr3 = REGISTER_ID.X64_RegisterDr3;
+pub const X64_RegisterDr6 = REGISTER_ID.X64_RegisterDr6;
+pub const X64_RegisterDr7 = REGISTER_ID.X64_RegisterDr7;
+pub const X64_RegisterEs = REGISTER_ID.X64_RegisterEs;
+pub const X64_RegisterCs = REGISTER_ID.X64_RegisterCs;
+pub const X64_RegisterSs = REGISTER_ID.X64_RegisterSs;
+pub const X64_RegisterDs = REGISTER_ID.X64_RegisterDs;
+pub const X64_RegisterFs = REGISTER_ID.X64_RegisterFs;
+pub const X64_RegisterGs = REGISTER_ID.X64_RegisterGs;
+pub const X64_RegisterLdtr = REGISTER_ID.X64_RegisterLdtr;
+pub const X64_RegisterTr = REGISTER_ID.X64_RegisterTr;
+pub const X64_RegisterIdtr = REGISTER_ID.X64_RegisterIdtr;
+pub const X64_RegisterGdtr = REGISTER_ID.X64_RegisterGdtr;
+pub const X64_RegisterMax = REGISTER_ID.X64_RegisterMax;
+pub const ARM64_RegisterX0 = REGISTER_ID.ARM64_RegisterX0;
+pub const ARM64_RegisterX1 = REGISTER_ID.ARM64_RegisterX1;
+pub const ARM64_RegisterX2 = REGISTER_ID.ARM64_RegisterX2;
+pub const ARM64_RegisterX3 = REGISTER_ID.ARM64_RegisterX3;
+pub const ARM64_RegisterX4 = REGISTER_ID.ARM64_RegisterX4;
+pub const ARM64_RegisterX5 = REGISTER_ID.ARM64_RegisterX5;
+pub const ARM64_RegisterX6 = REGISTER_ID.ARM64_RegisterX6;
+pub const ARM64_RegisterX7 = REGISTER_ID.ARM64_RegisterX7;
+pub const ARM64_RegisterX8 = REGISTER_ID.ARM64_RegisterX8;
+pub const ARM64_RegisterX9 = REGISTER_ID.ARM64_RegisterX9;
+pub const ARM64_RegisterX10 = REGISTER_ID.ARM64_RegisterX10;
+pub const ARM64_RegisterX11 = REGISTER_ID.ARM64_RegisterX11;
+pub const ARM64_RegisterX12 = REGISTER_ID.ARM64_RegisterX12;
+pub const ARM64_RegisterX13 = REGISTER_ID.ARM64_RegisterX13;
+pub const ARM64_RegisterX14 = REGISTER_ID.ARM64_RegisterX14;
+pub const ARM64_RegisterX15 = REGISTER_ID.ARM64_RegisterX15;
+pub const ARM64_RegisterX16 = REGISTER_ID.ARM64_RegisterX16;
+pub const ARM64_RegisterX17 = REGISTER_ID.ARM64_RegisterX17;
+pub const ARM64_RegisterX18 = REGISTER_ID.ARM64_RegisterX18;
+pub const ARM64_RegisterX19 = REGISTER_ID.ARM64_RegisterX19;
+pub const ARM64_RegisterX20 = REGISTER_ID.ARM64_RegisterX20;
+pub const ARM64_RegisterX21 = REGISTER_ID.ARM64_RegisterX21;
+pub const ARM64_RegisterX22 = REGISTER_ID.ARM64_RegisterX22;
+pub const ARM64_RegisterX23 = REGISTER_ID.ARM64_RegisterX23;
+pub const ARM64_RegisterX24 = REGISTER_ID.ARM64_RegisterX24;
+pub const ARM64_RegisterX25 = REGISTER_ID.ARM64_RegisterX25;
+pub const ARM64_RegisterX26 = REGISTER_ID.ARM64_RegisterX26;
+pub const ARM64_RegisterX27 = REGISTER_ID.ARM64_RegisterX27;
+pub const ARM64_RegisterX28 = REGISTER_ID.ARM64_RegisterX28;
+pub const ARM64_RegisterXFp = REGISTER_ID.ARM64_RegisterXFp;
+pub const ARM64_RegisterXLr = REGISTER_ID.ARM64_RegisterXLr;
+pub const ARM64_RegisterPc = REGISTER_ID.ARM64_RegisterPc;
+pub const ARM64_RegisterSpEl0 = REGISTER_ID.ARM64_RegisterSpEl0;
+pub const ARM64_RegisterSpEl1 = REGISTER_ID.ARM64_RegisterSpEl1;
+pub const ARM64_RegisterCpsr = REGISTER_ID.ARM64_RegisterCpsr;
+pub const ARM64_RegisterQ0 = REGISTER_ID.ARM64_RegisterQ0;
+pub const ARM64_RegisterQ1 = REGISTER_ID.ARM64_RegisterQ1;
+pub const ARM64_RegisterQ2 = REGISTER_ID.ARM64_RegisterQ2;
+pub const ARM64_RegisterQ3 = REGISTER_ID.ARM64_RegisterQ3;
+pub const ARM64_RegisterQ4 = REGISTER_ID.ARM64_RegisterQ4;
+pub const ARM64_RegisterQ5 = REGISTER_ID.ARM64_RegisterQ5;
+pub const ARM64_RegisterQ6 = REGISTER_ID.ARM64_RegisterQ6;
+pub const ARM64_RegisterQ7 = REGISTER_ID.ARM64_RegisterQ7;
+pub const ARM64_RegisterQ8 = REGISTER_ID.ARM64_RegisterQ8;
+pub const ARM64_RegisterQ9 = REGISTER_ID.ARM64_RegisterQ9;
+pub const ARM64_RegisterQ10 = REGISTER_ID.ARM64_RegisterQ10;
+pub const ARM64_RegisterQ11 = REGISTER_ID.ARM64_RegisterQ11;
+pub const ARM64_RegisterQ12 = REGISTER_ID.ARM64_RegisterQ12;
+pub const ARM64_RegisterQ13 = REGISTER_ID.ARM64_RegisterQ13;
+pub const ARM64_RegisterQ14 = REGISTER_ID.ARM64_RegisterQ14;
+pub const ARM64_RegisterQ15 = REGISTER_ID.ARM64_RegisterQ15;
+pub const ARM64_RegisterQ16 = REGISTER_ID.ARM64_RegisterQ16;
+pub const ARM64_RegisterQ17 = REGISTER_ID.ARM64_RegisterQ17;
+pub const ARM64_RegisterQ18 = REGISTER_ID.ARM64_RegisterQ18;
+pub const ARM64_RegisterQ19 = REGISTER_ID.ARM64_RegisterQ19;
+pub const ARM64_RegisterQ20 = REGISTER_ID.ARM64_RegisterQ20;
+pub const ARM64_RegisterQ21 = REGISTER_ID.ARM64_RegisterQ21;
+pub const ARM64_RegisterQ22 = REGISTER_ID.ARM64_RegisterQ22;
+pub const ARM64_RegisterQ23 = REGISTER_ID.ARM64_RegisterQ23;
+pub const ARM64_RegisterQ24 = REGISTER_ID.ARM64_RegisterQ24;
+pub const ARM64_RegisterQ25 = REGISTER_ID.ARM64_RegisterQ25;
+pub const ARM64_RegisterQ26 = REGISTER_ID.ARM64_RegisterQ26;
+pub const ARM64_RegisterQ27 = REGISTER_ID.ARM64_RegisterQ27;
+pub const ARM64_RegisterQ28 = REGISTER_ID.ARM64_RegisterQ28;
+pub const ARM64_RegisterQ29 = REGISTER_ID.ARM64_RegisterQ29;
+pub const ARM64_RegisterQ30 = REGISTER_ID.ARM64_RegisterQ30;
+pub const ARM64_RegisterQ31 = REGISTER_ID.ARM64_RegisterQ31;
+pub const ARM64_RegisterFpStatus = REGISTER_ID.ARM64_RegisterFpStatus;
+pub const ARM64_RegisterFpControl = REGISTER_ID.ARM64_RegisterFpControl;
+pub const ARM64_RegisterEsrEl1 = REGISTER_ID.ARM64_RegisterEsrEl1;
+pub const ARM64_RegisterSpsrEl1 = REGISTER_ID.ARM64_RegisterSpsrEl1;
+pub const ARM64_RegisterFarEl1 = REGISTER_ID.ARM64_RegisterFarEl1;
+pub const ARM64_RegisterParEl1 = REGISTER_ID.ARM64_RegisterParEl1;
+pub const ARM64_RegisterElrEl1 = REGISTER_ID.ARM64_RegisterElrEl1;
+pub const ARM64_RegisterTtbr0El1 = REGISTER_ID.ARM64_RegisterTtbr0El1;
+pub const ARM64_RegisterTtbr1El1 = REGISTER_ID.ARM64_RegisterTtbr1El1;
+pub const ARM64_RegisterVbarEl1 = REGISTER_ID.ARM64_RegisterVbarEl1;
+pub const ARM64_RegisterSctlrEl1 = REGISTER_ID.ARM64_RegisterSctlrEl1;
+pub const ARM64_RegisterActlrEl1 = REGISTER_ID.ARM64_RegisterActlrEl1;
+pub const ARM64_RegisterTcrEl1 = REGISTER_ID.ARM64_RegisterTcrEl1;
+pub const ARM64_RegisterMairEl1 = REGISTER_ID.ARM64_RegisterMairEl1;
+pub const ARM64_RegisterAmairEl1 = REGISTER_ID.ARM64_RegisterAmairEl1;
+pub const ARM64_RegisterTpidrEl0 = REGISTER_ID.ARM64_RegisterTpidrEl0;
+pub const ARM64_RegisterTpidrroEl0 = REGISTER_ID.ARM64_RegisterTpidrroEl0;
+pub const ARM64_RegisterTpidrEl1 = REGISTER_ID.ARM64_RegisterTpidrEl1;
+pub const ARM64_RegisterContextIdrEl1 = REGISTER_ID.ARM64_RegisterContextIdrEl1;
+pub const ARM64_RegisterCpacrEl1 = REGISTER_ID.ARM64_RegisterCpacrEl1;
+pub const ARM64_RegisterCsselrEl1 = REGISTER_ID.ARM64_RegisterCsselrEl1;
+pub const ARM64_RegisterCntkctlEl1 = REGISTER_ID.ARM64_RegisterCntkctlEl1;
+pub const ARM64_RegisterCntvCvalEl0 = REGISTER_ID.ARM64_RegisterCntvCvalEl0;
+pub const ARM64_RegisterCntvCtlEl0 = REGISTER_ID.ARM64_RegisterCntvCtlEl0;
+pub const ARM64_RegisterMax = REGISTER_ID.ARM64_RegisterMax;
+
+pub const SOCKADDR_HV = extern struct {
+    Family: u16,
+    Reserved: u16,
+    VmId: Guid,
+    ServiceId: Guid,
+};
+
+pub const VIRTUAL_PROCESSOR_ARCH = enum(i32) {
+    Unknown = 0,
+    x86 = 1,
+    x64 = 2,
+    Armv8 = 3,
+};
+pub const Arch_Unknown = VIRTUAL_PROCESSOR_ARCH.Unknown;
+pub const Arch_x86 = VIRTUAL_PROCESSOR_ARCH.x86;
+pub const Arch_x64 = VIRTUAL_PROCESSOR_ARCH.x64;
+pub const Arch_Armv8 = VIRTUAL_PROCESSOR_ARCH.Armv8;
+
+pub const VIRTUAL_PROCESSOR_REGISTER = extern union {
+    Reg64: u64,
+    Reg32: u32,
+    Reg16: u16,
+    Reg8: u8,
+    Reg128: extern struct {
+        Low64: u64,
+        High64: u64,
+    },
+    X64: extern union {
+        Segment: extern struct {
+            Base: u64,
+            Limit: u32,
+            Selector: u16,
+            Anonymous: extern union {
+                Attributes: u16,
+                Anonymous: extern struct {
+                    _bitfield: u16,
+                },
+            },
+        },
+        Table: extern struct {
+            Limit: u16,
+            Base: u64,
+        },
+        FpControlStatus: extern struct {
+            FpControl: u16,
+            FpStatus: u16,
+            FpTag: u8,
+            Reserved: u8,
+            LastFpOp: u16,
+            Anonymous: extern union {
+                LastFpRip: u64,
+                Anonymous: extern struct {
+                    LastFpEip: u32,
+                    LastFpCs: u16,
+                },
+            },
+        },
+        XmmControlStatus: extern struct {
+            Anonymous: extern union {
+                LastFpRdp: u64,
+                Anonymous: extern struct {
+                    LastFpDp: u32,
+                    LastFpDs: u16,
+                },
+            },
+            XmmStatusControl: u32,
+            XmmStatusControlMask: u32,
+        },
+    },
+};
+
+pub const VIRTUAL_PROCESSOR_VENDOR = enum(i32) {
+    Unknown = 0,
+    Amd = 1,
+    Intel = 2,
+    Hygon = 3,
+    Arm = 4,
+};
+pub const ProcessorVendor_Unknown = VIRTUAL_PROCESSOR_VENDOR.Unknown;
+pub const ProcessorVendor_Amd = VIRTUAL_PROCESSOR_VENDOR.Amd;
+pub const ProcessorVendor_Intel = VIRTUAL_PROCESSOR_VENDOR.Intel;
+pub const ProcessorVendor_Hygon = VIRTUAL_PROCESSOR_VENDOR.Hygon;
+pub const ProcessorVendor_Arm = VIRTUAL_PROCESSOR_VENDOR.Arm;
+
+pub const VM_GENCOUNTER = extern struct {
+    GenerationCount: u64,
+    GenerationCountHigh: u64,
+};
+
+pub const WHV_ACCESS_GPA_CONTROLS = extern union {
+    AsUINT64: u64,
+    Anonymous: extern struct {
+        CacheType: WHV_CACHE_TYPE,
+        Reserved: u32,
+    },
+};
+
+pub const WHV_ADVISE_GPA_RANGE = extern union {
+    Populate: WHV_ADVISE_GPA_RANGE_POPULATE,
+};
+
+pub const WHV_ADVISE_GPA_RANGE_CODE = enum(i32) {
+    Populate = 0,
+    Pin = 1,
+    Unpin = 2,
+};
+pub const WHvAdviseGpaRangeCodePopulate = WHV_ADVISE_GPA_RANGE_CODE.Populate;
+pub const WHvAdviseGpaRangeCodePin = WHV_ADVISE_GPA_RANGE_CODE.Pin;
+pub const WHvAdviseGpaRangeCodeUnpin = WHV_ADVISE_GPA_RANGE_CODE.Unpin;
+
+pub const WHV_ADVISE_GPA_RANGE_POPULATE = extern struct {
+    Flags: WHV_ADVISE_GPA_RANGE_POPULATE_FLAGS,
+    AccessType: WHV_MEMORY_ACCESS_TYPE,
+};
+
+pub const WHV_ADVISE_GPA_RANGE_POPULATE_FLAGS = extern union {
+    AsUINT32: u32,
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
+};
+
+pub const WHV_ALLOCATE_VPCI_RESOURCE_FLAGS = packed struct(u32) {
+    AllowDirectP2P: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const WHvAllocateVpciResourceFlagNone = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS{ };
+pub const WHvAllocateVpciResourceFlagAllowDirectP2P = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS{ .AllowDirectP2P = 1 };
+
+pub const WHV_CACHE_TYPE = enum(i32) {
+    Uncached = 0,
+    WriteCombining = 1,
+    WriteThrough = 4,
+    WriteProtected = 5,
+    WriteBack = 6,
+};
+pub const WHvCacheTypeUncached = WHV_CACHE_TYPE.Uncached;
+pub const WHvCacheTypeWriteCombining = WHV_CACHE_TYPE.WriteCombining;
+pub const WHvCacheTypeWriteThrough = WHV_CACHE_TYPE.WriteThrough;
+pub const WHvCacheTypeWriteProtected = WHV_CACHE_TYPE.WriteProtected;
+pub const WHvCacheTypeWriteBack = WHV_CACHE_TYPE.WriteBack;
+
+pub const WHV_CAPABILITY = extern union {
+    HypervisorPresent: BOOL,
+    Features: WHV_CAPABILITY_FEATURES,
+    ExtendedVmExits: WHV_EXTENDED_VM_EXITS,
+    ProcessorVendor: WHV_PROCESSOR_VENDOR,
+    ProcessorFeatures: WHV_PROCESSOR_FEATURES,
+    SyntheticProcessorFeaturesBanks: WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS,
+    ProcessorXsaveFeatures: WHV_PROCESSOR_XSAVE_FEATURES,
+    ProcessorClFlushSize: u8,
+    ExceptionExitBitmap: u64,
+    X64MsrExitBitmap: WHV_X64_MSR_EXIT_BITMAP,
+    ProcessorClockFrequency: u64,
+    InterruptClockFrequency: u64,
+    ProcessorFeaturesBanks: WHV_PROCESSOR_FEATURES_BANKS,
+    GpaRangePopulateFlags: WHV_ADVISE_GPA_RANGE_POPULATE_FLAGS,
+    ProcessorFrequencyCap: WHV_CAPABILITY_PROCESSOR_FREQUENCY_CAP,
+    ProcessorPerfmonFeatures: WHV_PROCESSOR_PERFMON_FEATURES,
+    SchedulerFeatures: WHV_SCHEDULER_FEATURES,
+};
 
 pub const WHV_CAPABILITY_CODE = enum(i32) {
     HypervisorPresent = 0,
@@ -79,6 +849,166 @@ pub const WHV_CAPABILITY_FEATURES = extern union {
     AsUINT64: u64,
 };
 
+pub const WHV_CAPABILITY_PROCESSOR_FREQUENCY_CAP = extern struct {
+    _bitfield: u32,
+    HighestFrequencyMhz: u32,
+    NominalFrequencyMhz: u32,
+    LowestFrequencyMhz: u32,
+    FrequencyStepMhz: u32,
+};
+
+pub const WHV_CPUID_OUTPUT = extern struct {
+    Eax: u32,
+    Ebx: u32,
+    Ecx: u32,
+    Edx: u32,
+};
+
+pub const WHV_CREATE_VPCI_DEVICE_FLAGS = packed struct(u32) {
+    PhysicallyBacked: u1 = 0,
+    UseLogicalInterrupts: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const WHvCreateVpciDeviceFlagNone = WHV_CREATE_VPCI_DEVICE_FLAGS{ };
+pub const WHvCreateVpciDeviceFlagPhysicallyBacked = WHV_CREATE_VPCI_DEVICE_FLAGS{ .PhysicallyBacked = 1 };
+pub const WHvCreateVpciDeviceFlagUseLogicalInterrupts = WHV_CREATE_VPCI_DEVICE_FLAGS{ .UseLogicalInterrupts = 1 };
+
+pub const WHV_DOORBELL_MATCH_DATA = extern struct {
+    GuestAddress: u64,
+    Value: u64,
+    Length: u32,
+    _bitfield: u32,
+};
+
+pub const WHV_EMULATOR_CALLBACKS = extern struct {
+    Size: u32,
+    Reserved: u32,
+    WHvEmulatorIoPortCallback: ?WHV_EMULATOR_IO_PORT_CALLBACK,
+    WHvEmulatorMemoryCallback: ?WHV_EMULATOR_MEMORY_CALLBACK,
+    WHvEmulatorGetVirtualProcessorRegisters: ?WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
+    WHvEmulatorSetVirtualProcessorRegisters: ?WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
+    WHvEmulatorTranslateGvaPage: ?WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK,
+};
+
+pub const WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    RegisterNames: [*]const WHV_REGISTER_NAME,
+    RegisterCount: u32,
+    RegisterValues: [*]WHV_REGISTER_VALUE,
+) callconv(.winapi) HRESULT;
+
+pub const WHV_EMULATOR_IO_ACCESS_INFO = extern struct {
+    Direction: u8,
+    Port: u16,
+    AccessSize: u16,
+    Data: u32,
+};
+
+pub const WHV_EMULATOR_IO_PORT_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
+) callconv(.winapi) HRESULT;
+
+pub const WHV_EMULATOR_MEMORY_ACCESS_INFO = extern struct {
+    GpaAddress: u64,
+    Direction: u8,
+    AccessSize: u8,
+    Data: [8]u8,
+};
+
+pub const WHV_EMULATOR_MEMORY_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
+) callconv(.winapi) HRESULT;
+
+pub const WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    RegisterNames: [*]const WHV_REGISTER_NAME,
+    RegisterCount: u32,
+    RegisterValues: [*]const WHV_REGISTER_VALUE,
+) callconv(.winapi) HRESULT;
+
+pub const WHV_EMULATOR_STATUS = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
+    AsUINT32: u32,
+};
+
+pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    Gva: u64,
+    TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
+    TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
+    Gpa: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub const WHV_EXCEPTION_TYPE = enum(i32) {
+    DivideErrorFault = 0,
+    DebugTrapOrFault = 1,
+    BreakpointTrap = 3,
+    OverflowTrap = 4,
+    BoundRangeFault = 5,
+    InvalidOpcodeFault = 6,
+    DeviceNotAvailableFault = 7,
+    DoubleFaultAbort = 8,
+    InvalidTaskStateSegmentFault = 10,
+    SegmentNotPresentFault = 11,
+    StackFault = 12,
+    GeneralProtectionFault = 13,
+    PageFault = 14,
+    FloatingPointErrorFault = 16,
+    AlignmentCheckFault = 17,
+    MachineCheckAbort = 18,
+    SimdFloatingPointFault = 19,
+};
+pub const WHvX64ExceptionTypeDivideErrorFault = WHV_EXCEPTION_TYPE.DivideErrorFault;
+pub const WHvX64ExceptionTypeDebugTrapOrFault = WHV_EXCEPTION_TYPE.DebugTrapOrFault;
+pub const WHvX64ExceptionTypeBreakpointTrap = WHV_EXCEPTION_TYPE.BreakpointTrap;
+pub const WHvX64ExceptionTypeOverflowTrap = WHV_EXCEPTION_TYPE.OverflowTrap;
+pub const WHvX64ExceptionTypeBoundRangeFault = WHV_EXCEPTION_TYPE.BoundRangeFault;
+pub const WHvX64ExceptionTypeInvalidOpcodeFault = WHV_EXCEPTION_TYPE.InvalidOpcodeFault;
+pub const WHvX64ExceptionTypeDeviceNotAvailableFault = WHV_EXCEPTION_TYPE.DeviceNotAvailableFault;
+pub const WHvX64ExceptionTypeDoubleFaultAbort = WHV_EXCEPTION_TYPE.DoubleFaultAbort;
+pub const WHvX64ExceptionTypeInvalidTaskStateSegmentFault = WHV_EXCEPTION_TYPE.InvalidTaskStateSegmentFault;
+pub const WHvX64ExceptionTypeSegmentNotPresentFault = WHV_EXCEPTION_TYPE.SegmentNotPresentFault;
+pub const WHvX64ExceptionTypeStackFault = WHV_EXCEPTION_TYPE.StackFault;
+pub const WHvX64ExceptionTypeGeneralProtectionFault = WHV_EXCEPTION_TYPE.GeneralProtectionFault;
+pub const WHvX64ExceptionTypePageFault = WHV_EXCEPTION_TYPE.PageFault;
+pub const WHvX64ExceptionTypeFloatingPointErrorFault = WHV_EXCEPTION_TYPE.FloatingPointErrorFault;
+pub const WHvX64ExceptionTypeAlignmentCheckFault = WHV_EXCEPTION_TYPE.AlignmentCheckFault;
+pub const WHvX64ExceptionTypeMachineCheckAbort = WHV_EXCEPTION_TYPE.MachineCheckAbort;
+pub const WHvX64ExceptionTypeSimdFloatingPointFault = WHV_EXCEPTION_TYPE.SimdFloatingPointFault;
+
 pub const WHV_EXTENDED_VM_EXITS = extern union {
     Anonymous: extern struct {
         _bitfield: u64,
@@ -86,57 +1016,218 @@ pub const WHV_EXTENDED_VM_EXITS = extern union {
     AsUINT64: u64,
 };
 
-pub const WHV_PROCESSOR_VENDOR = enum(i32) {
-    Amd = 0,
-    Intel = 1,
-    Hygon = 2,
+pub const WHV_HYPERCALL_CONTEXT = extern struct {
+    Rax: u64,
+    Rbx: u64,
+    Rcx: u64,
+    Rdx: u64,
+    R8: u64,
+    Rsi: u64,
+    Rdi: u64,
+    Reserved0: u64,
+    XmmRegisters: [6]WHV_UINT128,
+    Reserved1: [2]u64,
 };
-pub const WHvProcessorVendorAmd = WHV_PROCESSOR_VENDOR.Amd;
-pub const WHvProcessorVendorIntel = WHV_PROCESSOR_VENDOR.Intel;
-pub const WHvProcessorVendorHygon = WHV_PROCESSOR_VENDOR.Hygon;
 
-pub const WHV_PROCESSOR_FEATURES = extern union {
+pub const WHV_INTERNAL_ACTIVITY_REGISTER = extern union {
     Anonymous: extern struct {
         _bitfield: u64,
     },
     AsUINT64: u64,
 };
 
-pub const WHV_PROCESSOR_FEATURES1 = extern union {
-    Anonymous: extern struct {
-        _bitfield: u64,
-    },
-    AsUINT64: u64,
+pub const WHV_INTERRUPT_CONTROL = extern struct {
+    _bitfield: u64,
+    Destination: u32,
+    Vector: u32,
 };
 
-pub const WHV_PROCESSOR_FEATURES_BANKS = extern struct {
-    BanksCount: u32,
-    Reserved0: u32,
+pub const WHV_INTERRUPT_DESTINATION_MODE = enum(i32) {
+    Physical = 0,
+    Logical = 1,
+};
+pub const WHvX64InterruptDestinationModePhysical = WHV_INTERRUPT_DESTINATION_MODE.Physical;
+pub const WHvX64InterruptDestinationModeLogical = WHV_INTERRUPT_DESTINATION_MODE.Logical;
+
+pub const WHV_INTERRUPT_TRIGGER_MODE = enum(i32) {
+    Edge = 0,
+    Level = 1,
+};
+pub const WHvX64InterruptTriggerModeEdge = WHV_INTERRUPT_TRIGGER_MODE.Edge;
+pub const WHvX64InterruptTriggerModeLevel = WHV_INTERRUPT_TRIGGER_MODE.Level;
+
+pub const WHV_INTERRUPT_TYPE = enum(i32) {
+    Fixed = 0,
+    LowestPriority = 1,
+    Nmi = 4,
+    Init = 5,
+    Sipi = 6,
+    LocalInt1 = 9,
+};
+pub const WHvX64InterruptTypeFixed = WHV_INTERRUPT_TYPE.Fixed;
+pub const WHvX64InterruptTypeLowestPriority = WHV_INTERRUPT_TYPE.LowestPriority;
+pub const WHvX64InterruptTypeNmi = WHV_INTERRUPT_TYPE.Nmi;
+pub const WHvX64InterruptTypeInit = WHV_INTERRUPT_TYPE.Init;
+pub const WHvX64InterruptTypeSipi = WHV_INTERRUPT_TYPE.Sipi;
+pub const WHvX64InterruptTypeLocalInt1 = WHV_INTERRUPT_TYPE.LocalInt1;
+
+pub const WHV_MAP_GPA_RANGE_FLAGS = packed struct(u32) {
+    Read: u1 = 0,
+    Write: u1 = 0,
+    Execute: u1 = 0,
+    TrackDirtyPages: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const WHvMapGpaRangeFlagNone = WHV_MAP_GPA_RANGE_FLAGS{ };
+pub const WHvMapGpaRangeFlagRead = WHV_MAP_GPA_RANGE_FLAGS{ .Read = 1 };
+pub const WHvMapGpaRangeFlagWrite = WHV_MAP_GPA_RANGE_FLAGS{ .Write = 1 };
+pub const WHvMapGpaRangeFlagExecute = WHV_MAP_GPA_RANGE_FLAGS{ .Execute = 1 };
+pub const WHvMapGpaRangeFlagTrackDirtyPages = WHV_MAP_GPA_RANGE_FLAGS{ .TrackDirtyPages = 1 };
+
+pub const WHV_MEMORY_ACCESS_CONTEXT = extern struct {
+    InstructionByteCount: u8,
+    Reserved: [3]u8,
+    InstructionBytes: [16]u8,
+    AccessInfo: WHV_MEMORY_ACCESS_INFO,
+    Gpa: u64,
+    Gva: u64,
+};
+
+pub const WHV_MEMORY_ACCESS_INFO = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
+    AsUINT32: u32,
+};
+
+pub const WHV_MEMORY_ACCESS_TYPE = enum(i32) {
+    Read = 0,
+    Write = 1,
+    Execute = 2,
+};
+pub const WHvMemoryAccessRead = WHV_MEMORY_ACCESS_TYPE.Read;
+pub const WHvMemoryAccessWrite = WHV_MEMORY_ACCESS_TYPE.Write;
+pub const WHvMemoryAccessExecute = WHV_MEMORY_ACCESS_TYPE.Execute;
+
+pub const WHV_MEMORY_RANGE_ENTRY = extern struct {
+    GuestAddress: u64,
+    SizeInBytes: u64,
+};
+
+pub const WHV_MSR_ACTION = enum(i32) {
+    ArchitectureDefault = 0,
+    IgnoreWriteReadZero = 1,
+    Exit = 2,
+};
+pub const WHvMsrActionArchitectureDefault = WHV_MSR_ACTION.ArchitectureDefault;
+pub const WHvMsrActionIgnoreWriteReadZero = WHV_MSR_ACTION.IgnoreWriteReadZero;
+pub const WHvMsrActionExit = WHV_MSR_ACTION.Exit;
+
+pub const WHV_MSR_ACTION_ENTRY = extern struct {
+    Index: u32,
+    ReadAction: u8,
+    WriteAction: u8,
+    Reserved: u16,
+};
+
+pub const WHV_NOTIFICATION_PORT_PARAMETERS = extern struct {
+    NotificationPortType: WHV_NOTIFICATION_PORT_TYPE,
+    Reserved: u32,
     Anonymous: extern union {
-        Anonymous: extern struct {
-            Bank0: WHV_PROCESSOR_FEATURES,
-            Bank1: WHV_PROCESSOR_FEATURES1,
+        Doorbell: WHV_DOORBELL_MATCH_DATA,
+        Event: extern struct {
+            ConnectionId: u32,
         },
-        AsUINT64: [2]u64,
     },
 };
 
-pub const WHV_SYNTHETIC_PROCESSOR_FEATURES = extern union {
-    Anonymous: extern struct {
-        _bitfield: u64,
-    },
-    AsUINT64: u64,
+pub const WHV_NOTIFICATION_PORT_PROPERTY_CODE = enum(i32) {
+    Vp = 1,
+    Duration = 5,
+};
+pub const WHvNotificationPortPropertyPreferredTargetVp = WHV_NOTIFICATION_PORT_PROPERTY_CODE.Vp;
+pub const WHvNotificationPortPropertyPreferredTargetDuration = WHV_NOTIFICATION_PORT_PROPERTY_CODE.Duration;
+
+pub const WHV_NOTIFICATION_PORT_TYPE = enum(i32) {
+    Event = 2,
+    Doorbell = 4,
+};
+pub const WHvNotificationPortTypeEvent = WHV_NOTIFICATION_PORT_TYPE.Event;
+pub const WHvNotificationPortTypeDoorbell = WHV_NOTIFICATION_PORT_TYPE.Doorbell;
+
+pub const WHV_PARTITION_COUNTER_SET = enum(i32) {
+    y = 0,
+};
+pub const WHvPartitionCounterSetMemory = WHV_PARTITION_COUNTER_SET.y;
+
+// TODO: this type has a FreeFunc 'WHvDeletePartition', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const WHV_PARTITION_HANDLE = isize;
+
+pub const WHV_PARTITION_MEMORY_COUNTERS = extern struct {
+    Mapped4KPageCount: u64,
+    Mapped2MPageCount: u64,
+    Mapped1GPageCount: u64,
 };
 
-pub const WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS = extern struct {
-    BanksCount: u32,
-    Reserved0: u32,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            Bank0: WHV_SYNTHETIC_PROCESSOR_FEATURES,
-        },
-        AsUINT64: [1]u64,
-    },
+pub const WHV_PARTITION_PROPERTY = extern union {
+    ExtendedVmExits: WHV_EXTENDED_VM_EXITS,
+    ProcessorFeatures: WHV_PROCESSOR_FEATURES,
+    SyntheticProcessorFeaturesBanks: WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS,
+    ProcessorXsaveFeatures: WHV_PROCESSOR_XSAVE_FEATURES,
+    ProcessorClFlushSize: u8,
+    ProcessorCount: u32,
+    CpuidExitList: [1]u32,
+    CpuidResultList: [1]WHV_X64_CPUID_RESULT,
+    CpuidResultList2: [1]WHV_X64_CPUID_RESULT2,
+    MsrActionList: [1]WHV_MSR_ACTION_ENTRY,
+    UnimplementedMsrAction: WHV_MSR_ACTION,
+    ExceptionExitBitmap: u64,
+    LocalApicEmulationMode: WHV_X64_LOCAL_APIC_EMULATION_MODE,
+    SeparateSecurityDomain: BOOL,
+    NestedVirtualization: BOOL,
+    X64MsrExitBitmap: WHV_X64_MSR_EXIT_BITMAP,
+    ProcessorClockFrequency: u64,
+    InterruptClockFrequency: u64,
+    ApicRemoteRead: BOOL,
+    ProcessorFeaturesBanks: WHV_PROCESSOR_FEATURES_BANKS,
+    ReferenceTime: u64,
+    PrimaryNumaNode: u16,
+    CpuReserve: u32,
+    CpuCap: u32,
+    CpuWeight: u32,
+    CpuGroupId: u64,
+    ProcessorFrequencyCap: u32,
+    AllowDeviceAssignment: BOOL,
+    ProcessorPerfmonFeatures: WHV_PROCESSOR_PERFMON_FEATURES,
+    DisableSmt: BOOL,
 };
 
 pub const WHV_PARTITION_PROPERTY_CODE = enum(i32) {
@@ -202,11 +1293,79 @@ pub const WHvPartitionPropertyCodeMsrActionList = WHV_PARTITION_PROPERTY_CODE.Ms
 pub const WHvPartitionPropertyCodeUnimplementedMsrAction = WHV_PARTITION_PROPERTY_CODE.UnimplementedMsrAction;
 pub const WHvPartitionPropertyCodeProcessorCount = WHV_PARTITION_PROPERTY_CODE.ProcessorCount;
 
-pub const WHV_PROCESSOR_XSAVE_FEATURES = extern union {
+pub const WHV_PROCESSOR_APIC_COUNTERS = extern struct {
+    MmioAccessCount: u64,
+    EoiAccessCount: u64,
+    TprAccessCount: u64,
+    SentIpiCount: u64,
+    SelfIpiCount: u64,
+};
+
+pub const WHV_PROCESSOR_COUNTER_SET = enum(i32) {
+    Runtime = 0,
+    Intercepts = 1,
+    Events = 2,
+    Apic = 3,
+    SyntheticFeatures = 4,
+};
+pub const WHvProcessorCounterSetRuntime = WHV_PROCESSOR_COUNTER_SET.Runtime;
+pub const WHvProcessorCounterSetIntercepts = WHV_PROCESSOR_COUNTER_SET.Intercepts;
+pub const WHvProcessorCounterSetEvents = WHV_PROCESSOR_COUNTER_SET.Events;
+pub const WHvProcessorCounterSetApic = WHV_PROCESSOR_COUNTER_SET.Apic;
+pub const WHvProcessorCounterSetSyntheticFeatures = WHV_PROCESSOR_COUNTER_SET.SyntheticFeatures;
+
+pub const WHV_PROCESSOR_EVENT_COUNTERS = extern struct {
+    PageFaultCount: u64,
+    ExceptionCount: u64,
+    InterruptCount: u64,
+};
+
+pub const WHV_PROCESSOR_FEATURES = extern union {
     Anonymous: extern struct {
         _bitfield: u64,
     },
     AsUINT64: u64,
+};
+
+pub const WHV_PROCESSOR_FEATURES1 = extern union {
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
+    AsUINT64: u64,
+};
+
+pub const WHV_PROCESSOR_FEATURES_BANKS = extern struct {
+    BanksCount: u32,
+    Reserved0: u32,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            Bank0: WHV_PROCESSOR_FEATURES,
+            Bank1: WHV_PROCESSOR_FEATURES1,
+        },
+        AsUINT64: [2]u64,
+    },
+};
+
+pub const WHV_PROCESSOR_INTERCEPT_COUNTER = extern struct {
+    Count: u64,
+    Time100ns: u64,
+};
+
+pub const WHV_PROCESSOR_INTERCEPT_COUNTERS = extern struct {
+    PageInvalidations: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    ControlRegisterAccesses: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    IoInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    HaltInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    CpuidInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    MsrAccesses: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    OtherIntercepts: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    PendingInterrupts: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    EmulatedInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    DebugRegisterAccesses: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    PageFaultIntercepts: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    NestedPageFaultIntercepts: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    Hypercalls: WHV_PROCESSOR_INTERCEPT_COUNTER,
+    RdpmcInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
 };
 
 pub const WHV_PROCESSOR_PERFMON_FEATURES = extern union {
@@ -216,363 +1375,34 @@ pub const WHV_PROCESSOR_PERFMON_FEATURES = extern union {
     AsUINT64: u64,
 };
 
-pub const WHV_X64_MSR_EXIT_BITMAP = extern union {
-    AsUINT64: u64,
-    Anonymous: extern struct {
-        _bitfield: u64,
-    },
+pub const WHV_PROCESSOR_RUNTIME_COUNTERS = extern struct {
+    TotalRuntime100ns: u64,
+    HypervisorRuntime100ns: u64,
 };
 
-pub const WHV_MEMORY_RANGE_ENTRY = extern struct {
-    GuestAddress: u64,
-    SizeInBytes: u64,
+pub const WHV_PROCESSOR_SYNTHETIC_FEATURES_COUNTERS = extern struct {
+    SyntheticInterruptsCount: u64,
+    LongSpinWaitHypercallsCount: u64,
+    OtherHypercallsCount: u64,
+    SyntheticInterruptHypercallsCount: u64,
+    VirtualInterruptHypercallsCount: u64,
+    VirtualMmuHypercallsCount: u64,
 };
 
-pub const WHV_ADVISE_GPA_RANGE_POPULATE_FLAGS = extern union {
-    AsUINT32: u32,
-    Anonymous: extern struct {
-        _bitfield: u32,
-    },
+pub const WHV_PROCESSOR_VENDOR = enum(i32) {
+    Amd = 0,
+    Intel = 1,
+    Hygon = 2,
 };
+pub const WHvProcessorVendorAmd = WHV_PROCESSOR_VENDOR.Amd;
+pub const WHvProcessorVendorIntel = WHV_PROCESSOR_VENDOR.Intel;
+pub const WHvProcessorVendorHygon = WHV_PROCESSOR_VENDOR.Hygon;
 
-pub const WHV_MEMORY_ACCESS_TYPE = enum(i32) {
-    Read = 0,
-    Write = 1,
-    Execute = 2,
-};
-pub const WHvMemoryAccessRead = WHV_MEMORY_ACCESS_TYPE.Read;
-pub const WHvMemoryAccessWrite = WHV_MEMORY_ACCESS_TYPE.Write;
-pub const WHvMemoryAccessExecute = WHV_MEMORY_ACCESS_TYPE.Execute;
-
-pub const WHV_ADVISE_GPA_RANGE_POPULATE = extern struct {
-    Flags: WHV_ADVISE_GPA_RANGE_POPULATE_FLAGS,
-    AccessType: WHV_MEMORY_ACCESS_TYPE,
-};
-
-pub const WHV_CAPABILITY_PROCESSOR_FREQUENCY_CAP = extern struct {
-    _bitfield: u32,
-    HighestFrequencyMhz: u32,
-    NominalFrequencyMhz: u32,
-    LowestFrequencyMhz: u32,
-    FrequencyStepMhz: u32,
-};
-
-pub const WHV_SCHEDULER_FEATURES = extern union {
+pub const WHV_PROCESSOR_XSAVE_FEATURES = extern union {
     Anonymous: extern struct {
         _bitfield: u64,
     },
     AsUINT64: u64,
-};
-
-pub const WHV_CAPABILITY = extern union {
-    HypervisorPresent: BOOL,
-    Features: WHV_CAPABILITY_FEATURES,
-    ExtendedVmExits: WHV_EXTENDED_VM_EXITS,
-    ProcessorVendor: WHV_PROCESSOR_VENDOR,
-    ProcessorFeatures: WHV_PROCESSOR_FEATURES,
-    SyntheticProcessorFeaturesBanks: WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS,
-    ProcessorXsaveFeatures: WHV_PROCESSOR_XSAVE_FEATURES,
-    ProcessorClFlushSize: u8,
-    ExceptionExitBitmap: u64,
-    X64MsrExitBitmap: WHV_X64_MSR_EXIT_BITMAP,
-    ProcessorClockFrequency: u64,
-    InterruptClockFrequency: u64,
-    ProcessorFeaturesBanks: WHV_PROCESSOR_FEATURES_BANKS,
-    GpaRangePopulateFlags: WHV_ADVISE_GPA_RANGE_POPULATE_FLAGS,
-    ProcessorFrequencyCap: WHV_CAPABILITY_PROCESSOR_FREQUENCY_CAP,
-    ProcessorPerfmonFeatures: WHV_PROCESSOR_PERFMON_FEATURES,
-    SchedulerFeatures: WHV_SCHEDULER_FEATURES,
-};
-
-pub const WHV_X64_CPUID_RESULT = extern struct {
-    Function: u32,
-    Reserved: [3]u32,
-    Eax: u32,
-    Ebx: u32,
-    Ecx: u32,
-    Edx: u32,
-};
-
-pub const WHV_X64_CPUID_RESULT2_FLAGS = packed struct(u32) {
-    SubleafSpecific: u1 = 0,
-    VpSpecific: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const WHvX64CpuidResult2FlagSubleafSpecific = WHV_X64_CPUID_RESULT2_FLAGS{ .SubleafSpecific = 1 };
-pub const WHvX64CpuidResult2FlagVpSpecific = WHV_X64_CPUID_RESULT2_FLAGS{ .VpSpecific = 1 };
-
-pub const WHV_CPUID_OUTPUT = extern struct {
-    Eax: u32,
-    Ebx: u32,
-    Ecx: u32,
-    Edx: u32,
-};
-
-pub const WHV_X64_CPUID_RESULT2 = extern struct {
-    Function: u32,
-    Index: u32,
-    VpIndex: u32,
-    Flags: WHV_X64_CPUID_RESULT2_FLAGS,
-    Output: WHV_CPUID_OUTPUT,
-    Mask: WHV_CPUID_OUTPUT,
-};
-
-pub const WHV_MSR_ACTION_ENTRY = extern struct {
-    Index: u32,
-    ReadAction: u8,
-    WriteAction: u8,
-    Reserved: u16,
-};
-
-pub const WHV_MSR_ACTION = enum(i32) {
-    ArchitectureDefault = 0,
-    IgnoreWriteReadZero = 1,
-    Exit = 2,
-};
-pub const WHvMsrActionArchitectureDefault = WHV_MSR_ACTION.ArchitectureDefault;
-pub const WHvMsrActionIgnoreWriteReadZero = WHV_MSR_ACTION.IgnoreWriteReadZero;
-pub const WHvMsrActionExit = WHV_MSR_ACTION.Exit;
-
-pub const WHV_EXCEPTION_TYPE = enum(i32) {
-    DivideErrorFault = 0,
-    DebugTrapOrFault = 1,
-    BreakpointTrap = 3,
-    OverflowTrap = 4,
-    BoundRangeFault = 5,
-    InvalidOpcodeFault = 6,
-    DeviceNotAvailableFault = 7,
-    DoubleFaultAbort = 8,
-    InvalidTaskStateSegmentFault = 10,
-    SegmentNotPresentFault = 11,
-    StackFault = 12,
-    GeneralProtectionFault = 13,
-    PageFault = 14,
-    FloatingPointErrorFault = 16,
-    AlignmentCheckFault = 17,
-    MachineCheckAbort = 18,
-    SimdFloatingPointFault = 19,
-};
-pub const WHvX64ExceptionTypeDivideErrorFault = WHV_EXCEPTION_TYPE.DivideErrorFault;
-pub const WHvX64ExceptionTypeDebugTrapOrFault = WHV_EXCEPTION_TYPE.DebugTrapOrFault;
-pub const WHvX64ExceptionTypeBreakpointTrap = WHV_EXCEPTION_TYPE.BreakpointTrap;
-pub const WHvX64ExceptionTypeOverflowTrap = WHV_EXCEPTION_TYPE.OverflowTrap;
-pub const WHvX64ExceptionTypeBoundRangeFault = WHV_EXCEPTION_TYPE.BoundRangeFault;
-pub const WHvX64ExceptionTypeInvalidOpcodeFault = WHV_EXCEPTION_TYPE.InvalidOpcodeFault;
-pub const WHvX64ExceptionTypeDeviceNotAvailableFault = WHV_EXCEPTION_TYPE.DeviceNotAvailableFault;
-pub const WHvX64ExceptionTypeDoubleFaultAbort = WHV_EXCEPTION_TYPE.DoubleFaultAbort;
-pub const WHvX64ExceptionTypeInvalidTaskStateSegmentFault = WHV_EXCEPTION_TYPE.InvalidTaskStateSegmentFault;
-pub const WHvX64ExceptionTypeSegmentNotPresentFault = WHV_EXCEPTION_TYPE.SegmentNotPresentFault;
-pub const WHvX64ExceptionTypeStackFault = WHV_EXCEPTION_TYPE.StackFault;
-pub const WHvX64ExceptionTypeGeneralProtectionFault = WHV_EXCEPTION_TYPE.GeneralProtectionFault;
-pub const WHvX64ExceptionTypePageFault = WHV_EXCEPTION_TYPE.PageFault;
-pub const WHvX64ExceptionTypeFloatingPointErrorFault = WHV_EXCEPTION_TYPE.FloatingPointErrorFault;
-pub const WHvX64ExceptionTypeAlignmentCheckFault = WHV_EXCEPTION_TYPE.AlignmentCheckFault;
-pub const WHvX64ExceptionTypeMachineCheckAbort = WHV_EXCEPTION_TYPE.MachineCheckAbort;
-pub const WHvX64ExceptionTypeSimdFloatingPointFault = WHV_EXCEPTION_TYPE.SimdFloatingPointFault;
-
-pub const WHV_X64_LOCAL_APIC_EMULATION_MODE = enum(i32) {
-    None = 0,
-    XApic = 1,
-    X2Apic = 2,
-};
-pub const WHvX64LocalApicEmulationModeNone = WHV_X64_LOCAL_APIC_EMULATION_MODE.None;
-pub const WHvX64LocalApicEmulationModeXApic = WHV_X64_LOCAL_APIC_EMULATION_MODE.XApic;
-pub const WHvX64LocalApicEmulationModeX2Apic = WHV_X64_LOCAL_APIC_EMULATION_MODE.X2Apic;
-
-pub const WHV_PARTITION_PROPERTY = extern union {
-    ExtendedVmExits: WHV_EXTENDED_VM_EXITS,
-    ProcessorFeatures: WHV_PROCESSOR_FEATURES,
-    SyntheticProcessorFeaturesBanks: WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS,
-    ProcessorXsaveFeatures: WHV_PROCESSOR_XSAVE_FEATURES,
-    ProcessorClFlushSize: u8,
-    ProcessorCount: u32,
-    CpuidExitList: [1]u32,
-    CpuidResultList: [1]WHV_X64_CPUID_RESULT,
-    CpuidResultList2: [1]WHV_X64_CPUID_RESULT2,
-    MsrActionList: [1]WHV_MSR_ACTION_ENTRY,
-    UnimplementedMsrAction: WHV_MSR_ACTION,
-    ExceptionExitBitmap: u64,
-    LocalApicEmulationMode: WHV_X64_LOCAL_APIC_EMULATION_MODE,
-    SeparateSecurityDomain: BOOL,
-    NestedVirtualization: BOOL,
-    X64MsrExitBitmap: WHV_X64_MSR_EXIT_BITMAP,
-    ProcessorClockFrequency: u64,
-    InterruptClockFrequency: u64,
-    ApicRemoteRead: BOOL,
-    ProcessorFeaturesBanks: WHV_PROCESSOR_FEATURES_BANKS,
-    ReferenceTime: u64,
-    PrimaryNumaNode: u16,
-    CpuReserve: u32,
-    CpuCap: u32,
-    CpuWeight: u32,
-    CpuGroupId: u64,
-    ProcessorFrequencyCap: u32,
-    AllowDeviceAssignment: BOOL,
-    ProcessorPerfmonFeatures: WHV_PROCESSOR_PERFMON_FEATURES,
-    DisableSmt: BOOL,
-};
-
-pub const WHV_MAP_GPA_RANGE_FLAGS = packed struct(u32) {
-    Read: u1 = 0,
-    Write: u1 = 0,
-    Execute: u1 = 0,
-    TrackDirtyPages: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const WHvMapGpaRangeFlagNone = WHV_MAP_GPA_RANGE_FLAGS{ };
-pub const WHvMapGpaRangeFlagRead = WHV_MAP_GPA_RANGE_FLAGS{ .Read = 1 };
-pub const WHvMapGpaRangeFlagWrite = WHV_MAP_GPA_RANGE_FLAGS{ .Write = 1 };
-pub const WHvMapGpaRangeFlagExecute = WHV_MAP_GPA_RANGE_FLAGS{ .Execute = 1 };
-pub const WHvMapGpaRangeFlagTrackDirtyPages = WHV_MAP_GPA_RANGE_FLAGS{ .TrackDirtyPages = 1 };
-
-pub const WHV_TRANSLATE_GVA_FLAGS = packed struct(u32) {
-    ValidateRead: u1 = 0,
-    ValidateWrite: u1 = 0,
-    ValidateExecute: u1 = 0,
-    PrivilegeExempt: u1 = 0,
-    SetPageTableBits: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    EnforceSmap: u1 = 0,
-    OverrideSmap: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const WHvTranslateGvaFlagNone = WHV_TRANSLATE_GVA_FLAGS{ };
-pub const WHvTranslateGvaFlagValidateRead = WHV_TRANSLATE_GVA_FLAGS{ .ValidateRead = 1 };
-pub const WHvTranslateGvaFlagValidateWrite = WHV_TRANSLATE_GVA_FLAGS{ .ValidateWrite = 1 };
-pub const WHvTranslateGvaFlagValidateExecute = WHV_TRANSLATE_GVA_FLAGS{ .ValidateExecute = 1 };
-pub const WHvTranslateGvaFlagPrivilegeExempt = WHV_TRANSLATE_GVA_FLAGS{ .PrivilegeExempt = 1 };
-pub const WHvTranslateGvaFlagSetPageTableBits = WHV_TRANSLATE_GVA_FLAGS{ .SetPageTableBits = 1 };
-pub const WHvTranslateGvaFlagEnforceSmap = WHV_TRANSLATE_GVA_FLAGS{ .EnforceSmap = 1 };
-pub const WHvTranslateGvaFlagOverrideSmap = WHV_TRANSLATE_GVA_FLAGS{ .OverrideSmap = 1 };
-
-pub const WHV_TRANSLATE_GVA_RESULT_CODE = enum(i32) {
-    Success = 0,
-    PageNotPresent = 1,
-    PrivilegeViolation = 2,
-    InvalidPageTableFlags = 3,
-    GpaUnmapped = 4,
-    GpaNoReadAccess = 5,
-    GpaNoWriteAccess = 6,
-    GpaIllegalOverlayAccess = 7,
-    Intercept = 8,
-};
-pub const WHvTranslateGvaResultSuccess = WHV_TRANSLATE_GVA_RESULT_CODE.Success;
-pub const WHvTranslateGvaResultPageNotPresent = WHV_TRANSLATE_GVA_RESULT_CODE.PageNotPresent;
-pub const WHvTranslateGvaResultPrivilegeViolation = WHV_TRANSLATE_GVA_RESULT_CODE.PrivilegeViolation;
-pub const WHvTranslateGvaResultInvalidPageTableFlags = WHV_TRANSLATE_GVA_RESULT_CODE.InvalidPageTableFlags;
-pub const WHvTranslateGvaResultGpaUnmapped = WHV_TRANSLATE_GVA_RESULT_CODE.GpaUnmapped;
-pub const WHvTranslateGvaResultGpaNoReadAccess = WHV_TRANSLATE_GVA_RESULT_CODE.GpaNoReadAccess;
-pub const WHvTranslateGvaResultGpaNoWriteAccess = WHV_TRANSLATE_GVA_RESULT_CODE.GpaNoWriteAccess;
-pub const WHvTranslateGvaResultGpaIllegalOverlayAccess = WHV_TRANSLATE_GVA_RESULT_CODE.GpaIllegalOverlayAccess;
-pub const WHvTranslateGvaResultIntercept = WHV_TRANSLATE_GVA_RESULT_CODE.Intercept;
-
-pub const WHV_TRANSLATE_GVA_RESULT = extern struct {
-    ResultCode: WHV_TRANSLATE_GVA_RESULT_CODE,
-    Reserved: u32,
-};
-
-pub const WHV_ADVISE_GPA_RANGE = extern union {
-    Populate: WHV_ADVISE_GPA_RANGE_POPULATE,
-};
-
-pub const WHV_CACHE_TYPE = enum(i32) {
-    Uncached = 0,
-    WriteCombining = 1,
-    WriteThrough = 4,
-    WriteProtected = 5,
-    WriteBack = 6,
-};
-pub const WHvCacheTypeUncached = WHV_CACHE_TYPE.Uncached;
-pub const WHvCacheTypeWriteCombining = WHV_CACHE_TYPE.WriteCombining;
-pub const WHvCacheTypeWriteThrough = WHV_CACHE_TYPE.WriteThrough;
-pub const WHvCacheTypeWriteProtected = WHV_CACHE_TYPE.WriteProtected;
-pub const WHvCacheTypeWriteBack = WHV_CACHE_TYPE.WriteBack;
-
-pub const WHV_ACCESS_GPA_CONTROLS = extern union {
-    AsUINT64: u64,
-    Anonymous: extern struct {
-        CacheType: WHV_CACHE_TYPE,
-        Reserved: u32,
-    },
 };
 
 pub const WHV_REGISTER_NAME = enum(i32) {
@@ -1030,141 +1860,6 @@ pub const WHvX64RegisterDeliverabilityNotifications = WHV_REGISTER_NAME.X64Regis
 pub const WHvRegisterInternalActivityState = WHV_REGISTER_NAME.RegisterInternalActivityState;
 pub const WHvX64RegisterPendingDebugException = WHV_REGISTER_NAME.X64RegisterPendingDebugException;
 
-pub const WHV_UINT128 = extern union {
-    Anonymous: extern struct {
-        Low64: u64,
-        High64: u64,
-    },
-    Dword: [4]u32,
-};
-
-pub const WHV_X64_FP_REGISTER = extern union {
-    Anonymous: extern struct {
-        Mantissa: u64,
-        _bitfield: u64,
-    },
-    AsUINT128: WHV_UINT128,
-};
-
-pub const WHV_X64_FP_CONTROL_STATUS_REGISTER = extern union {
-    Anonymous: extern struct {
-        FpControl: u16,
-        FpStatus: u16,
-        FpTag: u8,
-        Reserved: u8,
-        LastFpOp: u16,
-        Anonymous: extern union {
-            LastFpRip: u64,
-            Anonymous: extern struct {
-                LastFpEip: u32,
-                LastFpCs: u16,
-                Reserved2: u16,
-            },
-        },
-    },
-    AsUINT128: WHV_UINT128,
-};
-
-pub const WHV_X64_XMM_CONTROL_STATUS_REGISTER = extern union {
-    Anonymous: extern struct {
-        Anonymous: extern union {
-            LastFpRdp: u64,
-            Anonymous: extern struct {
-                LastFpDp: u32,
-                LastFpDs: u16,
-                Reserved: u16,
-            },
-        },
-        XmmStatusControl: u32,
-        XmmStatusControlMask: u32,
-    },
-    AsUINT128: WHV_UINT128,
-};
-
-pub const WHV_X64_SEGMENT_REGISTER = extern struct {
-    Base: u64,
-    Limit: u32,
-    Selector: u16,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _bitfield: u16,
-        },
-        Attributes: u16,
-    },
-};
-
-pub const WHV_X64_TABLE_REGISTER = extern struct {
-    Pad: [3]u16,
-    Limit: u16,
-    Base: u64,
-};
-
-pub const WHV_X64_INTERRUPT_STATE_REGISTER = extern union {
-    Anonymous: extern struct {
-        _bitfield: u64,
-    },
-    AsUINT64: u64,
-};
-
-pub const WHV_X64_PENDING_INTERRUPTION_REGISTER = extern union {
-    Anonymous: extern struct {
-        _bitfield: u32,
-        ErrorCode: u32,
-    },
-    AsUINT64: u64,
-};
-
-pub const WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER = extern union {
-    Anonymous: extern struct {
-        _bitfield: u64,
-    },
-    AsUINT64: u64,
-};
-
-pub const WHV_X64_PENDING_EVENT_TYPE = enum(i32) {
-    ception = 0,
-    tInt = 5,
-};
-pub const WHvX64PendingEventException = WHV_X64_PENDING_EVENT_TYPE.ception;
-pub const WHvX64PendingEventExtInt = WHV_X64_PENDING_EVENT_TYPE.tInt;
-
-pub const WHV_X64_PENDING_EXCEPTION_EVENT = extern union {
-    Anonymous: extern struct {
-        _bitfield: u32,
-        ErrorCode: u32,
-        ExceptionParameter: u64,
-    },
-    AsUINT128: WHV_UINT128,
-};
-
-pub const WHV_X64_PENDING_EXT_INT_EVENT = extern union {
-    Anonymous: extern struct {
-        _bitfield: u64,
-        Reserved2: u64,
-    },
-    AsUINT128: WHV_UINT128,
-};
-
-pub const WHV_INTERNAL_ACTIVITY_REGISTER = extern union {
-    Anonymous: extern struct {
-        _bitfield: u64,
-    },
-    AsUINT64: u64,
-};
-
-pub const WHV_X64_PENDING_DEBUG_EXCEPTION = extern union {
-    AsUINT64: u64,
-    Anonymous: extern struct {
-        _bitfield: u64,
-    },
-};
-
-pub const WHV_SYNIC_SINT_DELIVERABLE_CONTEXT = extern struct {
-    DeliverableSints: u16,
-    Reserved1: u16,
-    Reserved2: u32,
-};
-
 pub const WHV_REGISTER_VALUE = extern union {
     Reg128: WHV_UINT128,
     Reg64: u64,
@@ -1183,6 +1878,38 @@ pub const WHV_REGISTER_VALUE = extern union {
     ExtIntEvent: WHV_X64_PENDING_EXT_INT_EVENT,
     InternalActivity: WHV_INTERNAL_ACTIVITY_REGISTER,
     PendingDebugException: WHV_X64_PENDING_DEBUG_EXCEPTION,
+};
+
+pub const WHV_RUN_VP_CANCEL_REASON = enum(i32) {
+    r = 0,
+};
+pub const WHvRunVpCancelReasonUser = WHV_RUN_VP_CANCEL_REASON.r;
+
+pub const WHV_RUN_VP_CANCELED_CONTEXT = extern struct {
+    CancelReason: WHV_RUN_VP_CANCEL_REASON,
+};
+
+pub const WHV_RUN_VP_EXIT_CONTEXT = extern struct {
+    ExitReason: WHV_RUN_VP_EXIT_REASON,
+    Reserved: u32,
+    VpContext: WHV_VP_EXIT_CONTEXT,
+    Anonymous: extern union {
+        MemoryAccess: WHV_MEMORY_ACCESS_CONTEXT,
+        IoPortAccess: WHV_X64_IO_PORT_ACCESS_CONTEXT,
+        MsrAccess: WHV_X64_MSR_ACCESS_CONTEXT,
+        CpuidAccess: WHV_X64_CPUID_ACCESS_CONTEXT,
+        VpException: WHV_VP_EXCEPTION_CONTEXT,
+        InterruptWindow: WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT,
+        UnsupportedFeature: WHV_X64_UNSUPPORTED_FEATURE_CONTEXT,
+        CancelReason: WHV_RUN_VP_CANCELED_CONTEXT,
+        ApicEoi: WHV_X64_APIC_EOI_CONTEXT,
+        ReadTsc: WHV_X64_RDTSC_CONTEXT,
+        ApicSmi: WHV_X64_APIC_SMI_CONTEXT,
+        Hypercall: WHV_HYPERCALL_CONTEXT,
+        ApicInitSipi: WHV_X64_APIC_INIT_SIPI_CONTEXT,
+        ApicWrite: WHV_X64_APIC_WRITE_CONTEXT,
+        SynicSintDeliverable: WHV_SYNIC_SINT_DELIVERABLE_CONTEXT,
+    },
 };
 
 pub const WHV_RUN_VP_EXIT_REASON = enum(i32) {
@@ -1226,345 +1953,165 @@ pub const WHvRunVpExitReasonX64ApicInitSipiTrap = WHV_RUN_VP_EXIT_REASON.X64Apic
 pub const WHvRunVpExitReasonX64ApicWriteTrap = WHV_RUN_VP_EXIT_REASON.X64ApicWriteTrap;
 pub const WHvRunVpExitReasonCanceled = WHV_RUN_VP_EXIT_REASON.Canceled;
 
-pub const WHV_X64_VP_EXECUTION_STATE = extern union {
-    Anonymous: extern struct {
-        _bitfield: u16,
-    },
-    AsUINT16: u16,
-};
-
-pub const WHV_VP_EXIT_CONTEXT = extern struct {
-    ExecutionState: WHV_X64_VP_EXECUTION_STATE,
-    _bitfield: u8,
-    Reserved: u8,
-    Reserved2: u32,
-    Cs: WHV_X64_SEGMENT_REGISTER,
-    Rip: u64,
-    Rflags: u64,
-};
-
-pub const WHV_MEMORY_ACCESS_INFO = extern union {
-    Anonymous: extern struct {
-        _bitfield: u32,
-    },
-    AsUINT32: u32,
-};
-
-pub const WHV_MEMORY_ACCESS_CONTEXT = extern struct {
-    InstructionByteCount: u8,
-    Reserved: [3]u8,
-    InstructionBytes: [16]u8,
-    AccessInfo: WHV_MEMORY_ACCESS_INFO,
-    Gpa: u64,
-    Gva: u64,
-};
-
-pub const WHV_X64_IO_PORT_ACCESS_INFO = extern union {
-    Anonymous: extern struct {
-        _bitfield: u32,
-    },
-    AsUINT32: u32,
-};
-
-pub const WHV_X64_IO_PORT_ACCESS_CONTEXT = extern struct {
-    InstructionByteCount: u8,
-    Reserved: [3]u8,
-    InstructionBytes: [16]u8,
-    AccessInfo: WHV_X64_IO_PORT_ACCESS_INFO,
-    PortNumber: u16,
-    Reserved2: [3]u16,
-    Rax: u64,
-    Rcx: u64,
-    Rsi: u64,
-    Rdi: u64,
-    Ds: WHV_X64_SEGMENT_REGISTER,
-    Es: WHV_X64_SEGMENT_REGISTER,
-};
-
-pub const WHV_X64_MSR_ACCESS_INFO = extern union {
-    Anonymous: extern struct {
-        _bitfield: u32,
-    },
-    AsUINT32: u32,
-};
-
-pub const WHV_X64_MSR_ACCESS_CONTEXT = extern struct {
-    AccessInfo: WHV_X64_MSR_ACCESS_INFO,
-    MsrNumber: u32,
-    Rax: u64,
-    Rdx: u64,
-};
-
-pub const WHV_X64_CPUID_ACCESS_CONTEXT = extern struct {
-    Rax: u64,
-    Rcx: u64,
-    Rdx: u64,
-    Rbx: u64,
-    DefaultResultRax: u64,
-    DefaultResultRcx: u64,
-    DefaultResultRdx: u64,
-    DefaultResultRbx: u64,
-};
-
-pub const WHV_VP_EXCEPTION_INFO = extern union {
-    Anonymous: extern struct {
-        _bitfield: u32,
-    },
-    AsUINT32: u32,
-};
-
-pub const WHV_VP_EXCEPTION_CONTEXT = extern struct {
-    InstructionByteCount: u8,
-    Reserved: [3]u8,
-    InstructionBytes: [16]u8,
-    ExceptionInfo: WHV_VP_EXCEPTION_INFO,
-    ExceptionType: u8,
-    Reserved2: [3]u8,
-    ErrorCode: u32,
-    ExceptionParameter: u64,
-};
-
-pub const WHV_X64_UNSUPPORTED_FEATURE_CODE = enum(i32) {
-    Intercept = 1,
-    TaskSwitchTss = 2,
-};
-pub const WHvUnsupportedFeatureIntercept = WHV_X64_UNSUPPORTED_FEATURE_CODE.Intercept;
-pub const WHvUnsupportedFeatureTaskSwitchTss = WHV_X64_UNSUPPORTED_FEATURE_CODE.TaskSwitchTss;
-
-pub const WHV_X64_UNSUPPORTED_FEATURE_CONTEXT = extern struct {
-    FeatureCode: WHV_X64_UNSUPPORTED_FEATURE_CODE,
-    Reserved: u32,
-    FeatureParameter: u64,
-};
-
-pub const WHV_RUN_VP_CANCEL_REASON = enum(i32) {
-    r = 0,
-};
-pub const WHvRunVpCancelReasonUser = WHV_RUN_VP_CANCEL_REASON.r;
-
-pub const WHV_RUN_VP_CANCELED_CONTEXT = extern struct {
-    CancelReason: WHV_RUN_VP_CANCEL_REASON,
-};
-
-pub const WHV_X64_PENDING_INTERRUPTION_TYPE = enum(i32) {
-    Interrupt = 0,
-    Nmi = 2,
-    Exception = 3,
-};
-pub const WHvX64PendingInterrupt = WHV_X64_PENDING_INTERRUPTION_TYPE.Interrupt;
-pub const WHvX64PendingNmi = WHV_X64_PENDING_INTERRUPTION_TYPE.Nmi;
-pub const WHvX64PendingException = WHV_X64_PENDING_INTERRUPTION_TYPE.Exception;
-
-pub const WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT = extern struct {
-    DeliverableType: WHV_X64_PENDING_INTERRUPTION_TYPE,
-};
-
-pub const WHV_X64_APIC_EOI_CONTEXT = extern struct {
-    InterruptVector: u32,
-};
-
-pub const WHV_X64_RDTSC_INFO = extern union {
+pub const WHV_SCHEDULER_FEATURES = extern union {
     Anonymous: extern struct {
         _bitfield: u64,
     },
     AsUINT64: u64,
 };
 
-pub const WHV_X64_RDTSC_CONTEXT = extern struct {
-    TscAux: u64,
-    VirtualOffset: u64,
-    Tsc: u64,
-    ReferenceTime: u64,
-    RdtscInfo: WHV_X64_RDTSC_INFO,
+pub const WHV_SRIOV_RESOURCE_DESCRIPTOR = extern struct {
+    PnpInstanceId: [200]u16,
+    VirtualFunctionId: LUID,
+    VirtualFunctionIndex: u16,
+    Reserved: u16,
 };
 
-pub const WHV_X64_APIC_SMI_CONTEXT = extern struct {
-    ApicIcr: u64,
+pub const WHV_SYNIC_EVENT_PARAMETERS = extern struct {
+    VpIndex: u32,
+    TargetSint: u8,
+    Reserved: u8,
+    FlagNumber: u16,
 };
 
-pub const WHV_HYPERCALL_CONTEXT = extern struct {
-    Rax: u64,
-    Rbx: u64,
-    Rcx: u64,
-    Rdx: u64,
-    R8: u64,
-    Rsi: u64,
-    Rdi: u64,
-    Reserved0: u64,
-    XmmRegisters: [6]WHV_UINT128,
-    Reserved1: [2]u64,
+pub const WHV_SYNIC_SINT_DELIVERABLE_CONTEXT = extern struct {
+    DeliverableSints: u16,
+    Reserved1: u16,
+    Reserved2: u32,
 };
 
-pub const WHV_X64_APIC_INIT_SIPI_CONTEXT = extern struct {
-    ApicIcr: u64,
+pub const WHV_SYNTHETIC_PROCESSOR_FEATURES = extern union {
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
+    AsUINT64: u64,
 };
 
-pub const WHV_X64_APIC_WRITE_TYPE = enum(i32) {
-    Ldr = 208,
-    Dfr = 224,
-    Svr = 240,
-    Lint0 = 848,
-    Lint1 = 864,
-};
-pub const WHvX64ApicWriteTypeLdr = WHV_X64_APIC_WRITE_TYPE.Ldr;
-pub const WHvX64ApicWriteTypeDfr = WHV_X64_APIC_WRITE_TYPE.Dfr;
-pub const WHvX64ApicWriteTypeSvr = WHV_X64_APIC_WRITE_TYPE.Svr;
-pub const WHvX64ApicWriteTypeLint0 = WHV_X64_APIC_WRITE_TYPE.Lint0;
-pub const WHvX64ApicWriteTypeLint1 = WHV_X64_APIC_WRITE_TYPE.Lint1;
-
-pub const WHV_X64_APIC_WRITE_CONTEXT = extern struct {
-    Type: WHV_X64_APIC_WRITE_TYPE,
-    Reserved: u32,
-    WriteValue: u64,
-};
-
-pub const WHV_RUN_VP_EXIT_CONTEXT = extern struct {
-    ExitReason: WHV_RUN_VP_EXIT_REASON,
-    Reserved: u32,
-    VpContext: WHV_VP_EXIT_CONTEXT,
+pub const WHV_SYNTHETIC_PROCESSOR_FEATURES_BANKS = extern struct {
+    BanksCount: u32,
+    Reserved0: u32,
     Anonymous: extern union {
-        MemoryAccess: WHV_MEMORY_ACCESS_CONTEXT,
-        IoPortAccess: WHV_X64_IO_PORT_ACCESS_CONTEXT,
-        MsrAccess: WHV_X64_MSR_ACCESS_CONTEXT,
-        CpuidAccess: WHV_X64_CPUID_ACCESS_CONTEXT,
-        VpException: WHV_VP_EXCEPTION_CONTEXT,
-        InterruptWindow: WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT,
-        UnsupportedFeature: WHV_X64_UNSUPPORTED_FEATURE_CONTEXT,
-        CancelReason: WHV_RUN_VP_CANCELED_CONTEXT,
-        ApicEoi: WHV_X64_APIC_EOI_CONTEXT,
-        ReadTsc: WHV_X64_RDTSC_CONTEXT,
-        ApicSmi: WHV_X64_APIC_SMI_CONTEXT,
-        Hypercall: WHV_HYPERCALL_CONTEXT,
-        ApicInitSipi: WHV_X64_APIC_INIT_SIPI_CONTEXT,
-        ApicWrite: WHV_X64_APIC_WRITE_CONTEXT,
-        SynicSintDeliverable: WHV_SYNIC_SINT_DELIVERABLE_CONTEXT,
+        Anonymous: extern struct {
+            Bank0: WHV_SYNTHETIC_PROCESSOR_FEATURES,
+        },
+        AsUINT64: [1]u64,
     },
 };
 
-pub const WHV_INTERRUPT_TYPE = enum(i32) {
-    Fixed = 0,
-    LowestPriority = 1,
-    Nmi = 4,
-    Init = 5,
-    Sipi = 6,
-    LocalInt1 = 9,
+pub const WHV_TRANSLATE_GVA_FLAGS = packed struct(u32) {
+    ValidateRead: u1 = 0,
+    ValidateWrite: u1 = 0,
+    ValidateExecute: u1 = 0,
+    PrivilegeExempt: u1 = 0,
+    SetPageTableBits: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    EnforceSmap: u1 = 0,
+    OverrideSmap: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvX64InterruptTypeFixed = WHV_INTERRUPT_TYPE.Fixed;
-pub const WHvX64InterruptTypeLowestPriority = WHV_INTERRUPT_TYPE.LowestPriority;
-pub const WHvX64InterruptTypeNmi = WHV_INTERRUPT_TYPE.Nmi;
-pub const WHvX64InterruptTypeInit = WHV_INTERRUPT_TYPE.Init;
-pub const WHvX64InterruptTypeSipi = WHV_INTERRUPT_TYPE.Sipi;
-pub const WHvX64InterruptTypeLocalInt1 = WHV_INTERRUPT_TYPE.LocalInt1;
+pub const WHvTranslateGvaFlagNone = WHV_TRANSLATE_GVA_FLAGS{ };
+pub const WHvTranslateGvaFlagValidateRead = WHV_TRANSLATE_GVA_FLAGS{ .ValidateRead = 1 };
+pub const WHvTranslateGvaFlagValidateWrite = WHV_TRANSLATE_GVA_FLAGS{ .ValidateWrite = 1 };
+pub const WHvTranslateGvaFlagValidateExecute = WHV_TRANSLATE_GVA_FLAGS{ .ValidateExecute = 1 };
+pub const WHvTranslateGvaFlagPrivilegeExempt = WHV_TRANSLATE_GVA_FLAGS{ .PrivilegeExempt = 1 };
+pub const WHvTranslateGvaFlagSetPageTableBits = WHV_TRANSLATE_GVA_FLAGS{ .SetPageTableBits = 1 };
+pub const WHvTranslateGvaFlagEnforceSmap = WHV_TRANSLATE_GVA_FLAGS{ .EnforceSmap = 1 };
+pub const WHvTranslateGvaFlagOverrideSmap = WHV_TRANSLATE_GVA_FLAGS{ .OverrideSmap = 1 };
 
-pub const WHV_INTERRUPT_DESTINATION_MODE = enum(i32) {
-    Physical = 0,
-    Logical = 1,
-};
-pub const WHvX64InterruptDestinationModePhysical = WHV_INTERRUPT_DESTINATION_MODE.Physical;
-pub const WHvX64InterruptDestinationModeLogical = WHV_INTERRUPT_DESTINATION_MODE.Logical;
-
-pub const WHV_INTERRUPT_TRIGGER_MODE = enum(i32) {
-    Edge = 0,
-    Level = 1,
-};
-pub const WHvX64InterruptTriggerModeEdge = WHV_INTERRUPT_TRIGGER_MODE.Edge;
-pub const WHvX64InterruptTriggerModeLevel = WHV_INTERRUPT_TRIGGER_MODE.Level;
-
-pub const WHV_INTERRUPT_CONTROL = extern struct {
-    _bitfield: u64,
-    Destination: u32,
-    Vector: u32,
-};
-
-pub const WHV_DOORBELL_MATCH_DATA = extern struct {
-    GuestAddress: u64,
-    Value: u64,
-    Length: u32,
-    _bitfield: u32,
-};
-
-pub const WHV_PARTITION_COUNTER_SET = enum(i32) {
-    y = 0,
-};
-pub const WHvPartitionCounterSetMemory = WHV_PARTITION_COUNTER_SET.y;
-
-pub const WHV_PARTITION_MEMORY_COUNTERS = extern struct {
-    Mapped4KPageCount: u64,
-    Mapped2MPageCount: u64,
-    Mapped1GPageCount: u64,
+pub const WHV_TRANSLATE_GVA_RESULT = extern struct {
+    ResultCode: WHV_TRANSLATE_GVA_RESULT_CODE,
+    Reserved: u32,
 };
 
-pub const WHV_PROCESSOR_COUNTER_SET = enum(i32) {
-    Runtime = 0,
-    Intercepts = 1,
-    Events = 2,
-    Apic = 3,
-    SyntheticFeatures = 4,
+pub const WHV_TRANSLATE_GVA_RESULT_CODE = enum(i32) {
+    Success = 0,
+    PageNotPresent = 1,
+    PrivilegeViolation = 2,
+    InvalidPageTableFlags = 3,
+    GpaUnmapped = 4,
+    GpaNoReadAccess = 5,
+    GpaNoWriteAccess = 6,
+    GpaIllegalOverlayAccess = 7,
+    Intercept = 8,
 };
-pub const WHvProcessorCounterSetRuntime = WHV_PROCESSOR_COUNTER_SET.Runtime;
-pub const WHvProcessorCounterSetIntercepts = WHV_PROCESSOR_COUNTER_SET.Intercepts;
-pub const WHvProcessorCounterSetEvents = WHV_PROCESSOR_COUNTER_SET.Events;
-pub const WHvProcessorCounterSetApic = WHV_PROCESSOR_COUNTER_SET.Apic;
-pub const WHvProcessorCounterSetSyntheticFeatures = WHV_PROCESSOR_COUNTER_SET.SyntheticFeatures;
+pub const WHvTranslateGvaResultSuccess = WHV_TRANSLATE_GVA_RESULT_CODE.Success;
+pub const WHvTranslateGvaResultPageNotPresent = WHV_TRANSLATE_GVA_RESULT_CODE.PageNotPresent;
+pub const WHvTranslateGvaResultPrivilegeViolation = WHV_TRANSLATE_GVA_RESULT_CODE.PrivilegeViolation;
+pub const WHvTranslateGvaResultInvalidPageTableFlags = WHV_TRANSLATE_GVA_RESULT_CODE.InvalidPageTableFlags;
+pub const WHvTranslateGvaResultGpaUnmapped = WHV_TRANSLATE_GVA_RESULT_CODE.GpaUnmapped;
+pub const WHvTranslateGvaResultGpaNoReadAccess = WHV_TRANSLATE_GVA_RESULT_CODE.GpaNoReadAccess;
+pub const WHvTranslateGvaResultGpaNoWriteAccess = WHV_TRANSLATE_GVA_RESULT_CODE.GpaNoWriteAccess;
+pub const WHvTranslateGvaResultGpaIllegalOverlayAccess = WHV_TRANSLATE_GVA_RESULT_CODE.GpaIllegalOverlayAccess;
+pub const WHvTranslateGvaResultIntercept = WHV_TRANSLATE_GVA_RESULT_CODE.Intercept;
 
-pub const WHV_PROCESSOR_RUNTIME_COUNTERS = extern struct {
-    TotalRuntime100ns: u64,
-    HypervisorRuntime100ns: u64,
-};
-
-pub const WHV_PROCESSOR_INTERCEPT_COUNTER = extern struct {
-    Count: u64,
-    Time100ns: u64,
-};
-
-pub const WHV_PROCESSOR_INTERCEPT_COUNTERS = extern struct {
-    PageInvalidations: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    ControlRegisterAccesses: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    IoInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    HaltInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    CpuidInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    MsrAccesses: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    OtherIntercepts: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    PendingInterrupts: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    EmulatedInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    DebugRegisterAccesses: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    PageFaultIntercepts: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    NestedPageFaultIntercepts: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    Hypercalls: WHV_PROCESSOR_INTERCEPT_COUNTER,
-    RdpmcInstructions: WHV_PROCESSOR_INTERCEPT_COUNTER,
+pub const WHV_TRIGGER_PARAMETERS = extern struct {
+    TriggerType: WHV_TRIGGER_TYPE,
+    Reserved: u32,
+    Anonymous: extern union {
+        Interrupt: WHV_INTERRUPT_CONTROL,
+        SynicEvent: WHV_SYNIC_EVENT_PARAMETERS,
+        DeviceInterrupt: extern struct {
+            LogicalDeviceId: u64,
+            MsiAddress: u64,
+            MsiData: u32,
+            Reserved: u32,
+        },
+    },
 };
 
-pub const WHV_PROCESSOR_EVENT_COUNTERS = extern struct {
-    PageFaultCount: u64,
-    ExceptionCount: u64,
-    InterruptCount: u64,
+pub const WHV_TRIGGER_TYPE = enum(i32) {
+    Interrupt = 0,
+    SynicEvent = 1,
+    DeviceInterrupt = 2,
+};
+pub const WHvTriggerTypeInterrupt = WHV_TRIGGER_TYPE.Interrupt;
+pub const WHvTriggerTypeSynicEvent = WHV_TRIGGER_TYPE.SynicEvent;
+pub const WHvTriggerTypeDeviceInterrupt = WHV_TRIGGER_TYPE.DeviceInterrupt;
+
+pub const WHV_UINT128 = extern union {
+    Anonymous: extern struct {
+        Low64: u64,
+        High64: u64,
+    },
+    Dword: [4]u32,
 };
 
-pub const WHV_PROCESSOR_APIC_COUNTERS = extern struct {
-    MmioAccessCount: u64,
-    EoiAccessCount: u64,
-    TprAccessCount: u64,
-    SentIpiCount: u64,
-    SelfIpiCount: u64,
+pub const WHV_VIRTUAL_PROCESSOR_PROPERTY = extern struct {
+    PropertyCode: WHV_VIRTUAL_PROCESSOR_PROPERTY_CODE,
+    Reserved: u32,
+    Anonymous: extern union {
+        NumaNode: u16,
+        Padding: u64,
+    },
 };
 
-pub const WHV_PROCESSOR_SYNTHETIC_FEATURES_COUNTERS = extern struct {
-    SyntheticInterruptsCount: u64,
-    LongSpinWaitHypercallsCount: u64,
-    OtherHypercallsCount: u64,
-    SyntheticInterruptHypercallsCount: u64,
-    VirtualInterruptHypercallsCount: u64,
-    VirtualMmuHypercallsCount: u64,
+pub const WHV_VIRTUAL_PROCESSOR_PROPERTY_CODE = enum(i32) {
+    e = 0,
 };
-
-pub const WHV_ADVISE_GPA_RANGE_CODE = enum(i32) {
-    Populate = 0,
-    Pin = 1,
-    Unpin = 2,
-};
-pub const WHvAdviseGpaRangeCodePopulate = WHV_ADVISE_GPA_RANGE_CODE.Populate;
-pub const WHvAdviseGpaRangeCodePin = WHV_ADVISE_GPA_RANGE_CODE.Pin;
-pub const WHvAdviseGpaRangeCodeUnpin = WHV_ADVISE_GPA_RANGE_CODE.Unpin;
+pub const WHvVirtualProcessorPropertyCodeNumaNode = WHV_VIRTUAL_PROCESSOR_PROPERTY_CODE.e;
 
 pub const WHV_VIRTUAL_PROCESSOR_STATE_TYPE = enum(i32) {
     SynicMessagePage = 0,
@@ -1579,55 +2126,40 @@ pub const WHvVirtualProcessorStateTypeSynicTimerState = WHV_VIRTUAL_PROCESSOR_ST
 pub const WHvVirtualProcessorStateTypeInterruptControllerState2 = WHV_VIRTUAL_PROCESSOR_STATE_TYPE.InterruptControllerState2;
 pub const WHvVirtualProcessorStateTypeXsaveState = WHV_VIRTUAL_PROCESSOR_STATE_TYPE.XsaveState;
 
-pub const WHV_SYNIC_EVENT_PARAMETERS = extern struct {
-    VpIndex: u32,
-    TargetSint: u8,
+pub const WHV_VP_EXCEPTION_CONTEXT = extern struct {
+    InstructionByteCount: u8,
+    Reserved: [3]u8,
+    InstructionBytes: [16]u8,
+    ExceptionInfo: WHV_VP_EXCEPTION_INFO,
+    ExceptionType: u8,
+    Reserved2: [3]u8,
+    ErrorCode: u32,
+    ExceptionParameter: u64,
+};
+
+pub const WHV_VP_EXCEPTION_INFO = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
+    AsUINT32: u32,
+};
+
+pub const WHV_VP_EXIT_CONTEXT = extern struct {
+    ExecutionState: WHV_X64_VP_EXECUTION_STATE,
+    _bitfield: u8,
     Reserved: u8,
-    FlagNumber: u16,
+    Reserved2: u32,
+    Cs: WHV_X64_SEGMENT_REGISTER,
+    Rip: u64,
+    Rflags: u64,
 };
 
-pub const WHV_ALLOCATE_VPCI_RESOURCE_FLAGS = packed struct(u32) {
-    AllowDirectP2P: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const WHvAllocateVpciResourceFlagNone = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS{ };
-pub const WHvAllocateVpciResourceFlagAllowDirectP2P = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS{ .AllowDirectP2P = 1 };
-
-pub const WHV_SRIOV_RESOURCE_DESCRIPTOR = extern struct {
-    PnpInstanceId: [200]u16,
-    VirtualFunctionId: LUID,
-    VirtualFunctionIndex: u16,
-    Reserved: u16,
+pub const WHV_VPCI_DEVICE_NOTIFICATION = extern struct {
+    NotificationType: WHV_VPCI_DEVICE_NOTIFICATION_TYPE,
+    Reserved1: u32,
+    Anonymous: extern union {
+        Reserved2: u64,
+    },
 };
 
 pub const WHV_VPCI_DEVICE_NOTIFICATION_TYPE = enum(i32) {
@@ -1639,52 +2171,6 @@ pub const WHvVpciDeviceNotificationUndefined = WHV_VPCI_DEVICE_NOTIFICATION_TYPE
 pub const WHvVpciDeviceNotificationMmioRemapping = WHV_VPCI_DEVICE_NOTIFICATION_TYPE.MmioRemapping;
 pub const WHvVpciDeviceNotificationSurpriseRemoval = WHV_VPCI_DEVICE_NOTIFICATION_TYPE.SurpriseRemoval;
 
-pub const WHV_VPCI_DEVICE_NOTIFICATION = extern struct {
-    NotificationType: WHV_VPCI_DEVICE_NOTIFICATION_TYPE,
-    Reserved1: u32,
-    Anonymous: extern union {
-        Reserved2: u64,
-    },
-};
-
-pub const WHV_CREATE_VPCI_DEVICE_FLAGS = packed struct(u32) {
-    PhysicallyBacked: u1 = 0,
-    UseLogicalInterrupts: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const WHvCreateVpciDeviceFlagNone = WHV_CREATE_VPCI_DEVICE_FLAGS{ };
-pub const WHvCreateVpciDeviceFlagPhysicallyBacked = WHV_CREATE_VPCI_DEVICE_FLAGS{ .PhysicallyBacked = 1 };
-pub const WHvCreateVpciDeviceFlagUseLogicalInterrupts = WHV_CREATE_VPCI_DEVICE_FLAGS{ .UseLogicalInterrupts = 1 };
-
 pub const WHV_VPCI_DEVICE_PROPERTY_CODE = enum(i32) {
     Undefined = 0,
     HardwareIDs = 1,
@@ -1694,57 +2180,11 @@ pub const WHvVpciDevicePropertyCodeUndefined = WHV_VPCI_DEVICE_PROPERTY_CODE.Und
 pub const WHvVpciDevicePropertyCodeHardwareIDs = WHV_VPCI_DEVICE_PROPERTY_CODE.HardwareIDs;
 pub const WHvVpciDevicePropertyCodeProbedBARs = WHV_VPCI_DEVICE_PROPERTY_CODE.ProbedBARs;
 
-pub const WHV_VPCI_HARDWARE_IDS = extern struct {
-    VendorID: u16,
-    DeviceID: u16,
-    RevisionID: u8,
-    ProgIf: u8,
-    SubClass: u8,
-    BaseClass: u8,
-    SubVendorID: u16,
-    SubSystemID: u16,
+pub const WHV_VPCI_DEVICE_REGISTER = extern struct {
+    Location: WHV_VPCI_DEVICE_REGISTER_SPACE,
+    SizeInBytes: u32,
+    OffsetInBytes: u64,
 };
-
-pub const WHV_VPCI_PROBED_BARS = extern struct {
-    Value: [6]u32,
-};
-
-pub const WHV_VPCI_MMIO_RANGE_FLAGS = packed struct(u32) {
-    ReadAccess: u1 = 0,
-    WriteAccess: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const WHvVpciMmioRangeFlagReadAccess = WHV_VPCI_MMIO_RANGE_FLAGS{ .ReadAccess = 1 };
-pub const WHvVpciMmioRangeFlagWriteAccess = WHV_VPCI_MMIO_RANGE_FLAGS{ .WriteAccess = 1 };
 
 pub const WHV_VPCI_DEVICE_REGISTER_SPACE = enum(i32) {
     ConfigSpace = -1,
@@ -1763,18 +2203,22 @@ pub const WHvVpciBar3 = WHV_VPCI_DEVICE_REGISTER_SPACE.Bar3;
 pub const WHvVpciBar4 = WHV_VPCI_DEVICE_REGISTER_SPACE.Bar4;
 pub const WHvVpciBar5 = WHV_VPCI_DEVICE_REGISTER_SPACE.Bar5;
 
-pub const WHV_VPCI_MMIO_MAPPING = extern struct {
-    Location: WHV_VPCI_DEVICE_REGISTER_SPACE,
-    Flags: WHV_VPCI_MMIO_RANGE_FLAGS,
-    SizeInBytes: u64,
-    OffsetInBytes: u64,
-    VirtualAddress: ?*anyopaque,
+pub const WHV_VPCI_HARDWARE_IDS = extern struct {
+    VendorID: u16,
+    DeviceID: u16,
+    RevisionID: u8,
+    ProgIf: u8,
+    SubClass: u8,
+    BaseClass: u8,
+    SubVendorID: u16,
+    SubSystemID: u16,
 };
 
-pub const WHV_VPCI_DEVICE_REGISTER = extern struct {
-    Location: WHV_VPCI_DEVICE_REGISTER_SPACE,
-    SizeInBytes: u32,
-    OffsetInBytes: u64,
+pub const WHV_VPCI_INTERRUPT_TARGET = extern struct {
+    Vector: u32,
+    Flags: WHV_VPCI_INTERRUPT_TARGET_FLAGS,
+    ProcessorCount: u32,
+    Processors: [1]u32,
 };
 
 pub const WHV_VPCI_INTERRUPT_TARGET_FLAGS = packed struct(u32) {
@@ -1814,209 +2258,17 @@ pub const WHV_VPCI_INTERRUPT_TARGET_FLAGS = packed struct(u32) {
 pub const WHvVpciInterruptTargetFlagNone = WHV_VPCI_INTERRUPT_TARGET_FLAGS{ };
 pub const WHvVpciInterruptTargetFlagMulticast = WHV_VPCI_INTERRUPT_TARGET_FLAGS{ .Multicast = 1 };
 
-pub const WHV_VPCI_INTERRUPT_TARGET = extern struct {
-    Vector: u32,
-    Flags: WHV_VPCI_INTERRUPT_TARGET_FLAGS,
-    ProcessorCount: u32,
-    Processors: [1]u32,
+pub const WHV_VPCI_MMIO_MAPPING = extern struct {
+    Location: WHV_VPCI_DEVICE_REGISTER_SPACE,
+    Flags: WHV_VPCI_MMIO_RANGE_FLAGS,
+    SizeInBytes: u64,
+    OffsetInBytes: u64,
+    VirtualAddress: ?*anyopaque,
 };
 
-pub const WHV_TRIGGER_TYPE = enum(i32) {
-    Interrupt = 0,
-    SynicEvent = 1,
-    DeviceInterrupt = 2,
-};
-pub const WHvTriggerTypeInterrupt = WHV_TRIGGER_TYPE.Interrupt;
-pub const WHvTriggerTypeSynicEvent = WHV_TRIGGER_TYPE.SynicEvent;
-pub const WHvTriggerTypeDeviceInterrupt = WHV_TRIGGER_TYPE.DeviceInterrupt;
-
-pub const WHV_TRIGGER_PARAMETERS = extern struct {
-    TriggerType: WHV_TRIGGER_TYPE,
-    Reserved: u32,
-    Anonymous: extern union {
-        Interrupt: WHV_INTERRUPT_CONTROL,
-        SynicEvent: WHV_SYNIC_EVENT_PARAMETERS,
-        DeviceInterrupt: extern struct {
-            LogicalDeviceId: u64,
-            MsiAddress: u64,
-            MsiData: u32,
-            Reserved: u32,
-        },
-    },
-};
-
-pub const WHV_VIRTUAL_PROCESSOR_PROPERTY_CODE = enum(i32) {
-    e = 0,
-};
-pub const WHvVirtualProcessorPropertyCodeNumaNode = WHV_VIRTUAL_PROCESSOR_PROPERTY_CODE.e;
-
-pub const WHV_VIRTUAL_PROCESSOR_PROPERTY = extern struct {
-    PropertyCode: WHV_VIRTUAL_PROCESSOR_PROPERTY_CODE,
-    Reserved: u32,
-    Anonymous: extern union {
-        NumaNode: u16,
-        Padding: u64,
-    },
-};
-
-pub const WHV_NOTIFICATION_PORT_TYPE = enum(i32) {
-    Event = 2,
-    Doorbell = 4,
-};
-pub const WHvNotificationPortTypeEvent = WHV_NOTIFICATION_PORT_TYPE.Event;
-pub const WHvNotificationPortTypeDoorbell = WHV_NOTIFICATION_PORT_TYPE.Doorbell;
-
-pub const WHV_NOTIFICATION_PORT_PARAMETERS = extern struct {
-    NotificationPortType: WHV_NOTIFICATION_PORT_TYPE,
-    Reserved: u32,
-    Anonymous: extern union {
-        Doorbell: WHV_DOORBELL_MATCH_DATA,
-        Event: extern struct {
-            ConnectionId: u32,
-        },
-    },
-};
-
-pub const WHV_NOTIFICATION_PORT_PROPERTY_CODE = enum(i32) {
-    Vp = 1,
-    Duration = 5,
-};
-pub const WHvNotificationPortPropertyPreferredTargetVp = WHV_NOTIFICATION_PORT_PROPERTY_CODE.Vp;
-pub const WHvNotificationPortPropertyPreferredTargetDuration = WHV_NOTIFICATION_PORT_PROPERTY_CODE.Duration;
-
-pub const WHV_EMULATOR_STATUS = extern union {
-    Anonymous: extern struct {
-        _bitfield: u32,
-    },
-    AsUINT32: u32,
-};
-
-pub const WHV_EMULATOR_MEMORY_ACCESS_INFO = extern struct {
-    GpaAddress: u64,
-    Direction: u8,
-    AccessSize: u8,
-    Data: [8]u8,
-};
-
-pub const WHV_EMULATOR_IO_ACCESS_INFO = extern struct {
-    Direction: u8,
-    Port: u16,
-    AccessSize: u16,
-    Data: u32,
-};
-
-pub const WHV_EMULATOR_IO_PORT_CALLBACK = *const fn(
-    Context: ?*anyopaque,
-    IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
-) callconv(.winapi) HRESULT;
-
-pub const WHV_EMULATOR_MEMORY_CALLBACK = *const fn(
-    Context: ?*anyopaque,
-    MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
-) callconv(.winapi) HRESULT;
-
-pub const WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
-    Context: ?*anyopaque,
-    RegisterNames: [*]const WHV_REGISTER_NAME,
-    RegisterCount: u32,
-    RegisterValues: [*]WHV_REGISTER_VALUE,
-) callconv(.winapi) HRESULT;
-
-pub const WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
-    Context: ?*anyopaque,
-    RegisterNames: [*]const WHV_REGISTER_NAME,
-    RegisterCount: u32,
-    RegisterValues: [*]const WHV_REGISTER_VALUE,
-) callconv(.winapi) HRESULT;
-
-pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = *const fn(
-    Context: ?*anyopaque,
-    Gva: u64,
-    TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
-    TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
-    Gpa: ?*u64,
-) callconv(.winapi) HRESULT;
-
-pub const WHV_EMULATOR_CALLBACKS = extern struct {
-    Size: u32,
-    Reserved: u32,
-    WHvEmulatorIoPortCallback: ?WHV_EMULATOR_IO_PORT_CALLBACK,
-    WHvEmulatorMemoryCallback: ?WHV_EMULATOR_MEMORY_CALLBACK,
-    WHvEmulatorGetVirtualProcessorRegisters: ?WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
-    WHvEmulatorSetVirtualProcessorRegisters: ?WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK,
-    WHvEmulatorTranslateGvaPage: ?WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK,
-};
-
-pub const SOCKADDR_HV = extern struct {
-    Family: u16,
-    Reserved: u16,
-    VmId: Guid,
-    ServiceId: Guid,
-};
-
-pub const HVSOCKET_ADDRESS_INFO = extern struct {
-    SystemId: Guid,
-    VirtualMachineId: Guid,
-    SiloId: Guid,
-    Flags: u32,
-};
-
-pub const VM_GENCOUNTER = extern struct {
-    GenerationCount: u64,
-    GenerationCountHigh: u64,
-};
-
-pub const HDV_DEVICE_TYPE = enum(i32) {
-    Undefined = 0,
-    PCI = 1,
-};
-pub const HdvDeviceTypeUndefined = HDV_DEVICE_TYPE.Undefined;
-pub const HdvDeviceTypePCI = HDV_DEVICE_TYPE.PCI;
-
-pub const HDV_PCI_PNP_ID = extern struct {
-    VendorID: u16,
-    DeviceID: u16,
-    RevisionID: u8,
-    ProgIf: u8,
-    SubClass: u8,
-    BaseClass: u8,
-    SubVendorID: u16,
-    SubSystemID: u16,
-};
-
-pub const HDV_PCI_BAR_SELECTOR = enum(i32) {
-    @"0" = 0,
-    @"1" = 1,
-    @"2" = 2,
-    @"3" = 3,
-    @"4" = 4,
-    @"5" = 5,
-};
-pub const HDV_PCI_BAR0 = HDV_PCI_BAR_SELECTOR.@"0";
-pub const HDV_PCI_BAR1 = HDV_PCI_BAR_SELECTOR.@"1";
-pub const HDV_PCI_BAR2 = HDV_PCI_BAR_SELECTOR.@"2";
-pub const HDV_PCI_BAR3 = HDV_PCI_BAR_SELECTOR.@"3";
-pub const HDV_PCI_BAR4 = HDV_PCI_BAR_SELECTOR.@"4";
-pub const HDV_PCI_BAR5 = HDV_PCI_BAR_SELECTOR.@"5";
-
-pub const HDV_DOORBELL_FLAGS = enum(i32) {
-    SIZE_ANY = 0,
-    SIZE_BYTE = 1,
-    SIZE_WORD = 2,
-    SIZE_DWORD = 3,
-    SIZE_QWORD = 4,
-    ANY_VALUE = -2147483648,
-};
-pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_ANY = HDV_DOORBELL_FLAGS.SIZE_ANY;
-pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_BYTE = HDV_DOORBELL_FLAGS.SIZE_BYTE;
-pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_WORD = HDV_DOORBELL_FLAGS.SIZE_WORD;
-pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_DWORD = HDV_DOORBELL_FLAGS.SIZE_DWORD;
-pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_QWORD = HDV_DOORBELL_FLAGS.SIZE_QWORD;
-pub const HDV_DOORBELL_FLAG_TRIGGER_ANY_VALUE = HDV_DOORBELL_FLAGS.ANY_VALUE;
-
-pub const HDV_MMIO_MAPPING_FLAGS = packed struct(u32) {
-    Writeable: u1 = 0,
-    Executable: u1 = 0,
+pub const WHV_VPCI_MMIO_RANGE_FLAGS = packed struct(u32) {
+    ReadAccess: u1 = 0,
+    WriteAccess: u1 = 0,
     _2: u1 = 0,
     _3: u1 = 0,
     _4: u1 = 0,
@@ -2048,659 +2300,745 @@ pub const HDV_MMIO_MAPPING_FLAGS = packed struct(u32) {
     _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const HdvMmioMappingFlagNone = HDV_MMIO_MAPPING_FLAGS{ };
-pub const HdvMmioMappingFlagWriteable = HDV_MMIO_MAPPING_FLAGS{ .Writeable = 1 };
-pub const HdvMmioMappingFlagExecutable = HDV_MMIO_MAPPING_FLAGS{ .Executable = 1 };
+pub const WHvVpciMmioRangeFlagReadAccess = WHV_VPCI_MMIO_RANGE_FLAGS{ .ReadAccess = 1 };
+pub const WHvVpciMmioRangeFlagWriteAccess = WHV_VPCI_MMIO_RANGE_FLAGS{ .WriteAccess = 1 };
 
-pub const HDV_PCI_DEVICE_INITIALIZE = *const fn(
-    deviceContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_DEVICE_TEARDOWN = *const fn(
-    deviceContext: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const HDV_PCI_DEVICE_SET_CONFIGURATION = *const fn(
-    deviceContext: ?*anyopaque,
-    configurationValueCount: u32,
-    configurationValues: [*]const ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_DEVICE_GET_DETAILS = *const fn(
-    deviceContext: ?*anyopaque,
-    pnpId: ?*HDV_PCI_PNP_ID,
-    probedBarsCount: u32,
-    probedBars: [*]u32,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_DEVICE_START = *const fn(
-    deviceContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_DEVICE_STOP = *const fn(
-    deviceContext: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const HDV_PCI_READ_CONFIG_SPACE = *const fn(
-    deviceContext: ?*anyopaque,
-    offset: u32,
-    value: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_WRITE_CONFIG_SPACE = *const fn(
-    deviceContext: ?*anyopaque,
-    offset: u32,
-    value: u32,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_READ_INTERCEPTED_MEMORY = *const fn(
-    deviceContext: ?*anyopaque,
-    barIndex: HDV_PCI_BAR_SELECTOR,
-    offset: u64,
-    length: u64,
-    value: [*:0]u8,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_WRITE_INTERCEPTED_MEMORY = *const fn(
-    deviceContext: ?*anyopaque,
-    barIndex: HDV_PCI_BAR_SELECTOR,
-    offset: u64,
-    length: u64,
-    value: [*:0]const u8,
-) callconv(.winapi) HRESULT;
-
-pub const HDV_PCI_INTERFACE_VERSION = enum(i32) {
-    Invalid = 0,
-    @"1" = 1,
-};
-pub const HdvPciDeviceInterfaceVersionInvalid = HDV_PCI_INTERFACE_VERSION.Invalid;
-pub const HdvPciDeviceInterfaceVersion1 = HDV_PCI_INTERFACE_VERSION.@"1";
-
-pub const HDV_PCI_DEVICE_INTERFACE = extern struct {
-    Version: HDV_PCI_INTERFACE_VERSION,
-    Initialize: ?HDV_PCI_DEVICE_INITIALIZE,
-    Teardown: ?HDV_PCI_DEVICE_TEARDOWN,
-    SetConfiguration: ?HDV_PCI_DEVICE_SET_CONFIGURATION,
-    GetDetails: ?HDV_PCI_DEVICE_GET_DETAILS,
-    Start: ?HDV_PCI_DEVICE_START,
-    Stop: ?HDV_PCI_DEVICE_STOP,
-    ReadConfigSpace: ?HDV_PCI_READ_CONFIG_SPACE,
-    WriteConfigSpace: ?HDV_PCI_WRITE_CONFIG_SPACE,
-    ReadInterceptedMemory: ?HDV_PCI_READ_INTERCEPTED_MEMORY,
-    WriteInterceptedMemory: ?HDV_PCI_WRITE_INTERCEPTED_MEMORY,
+pub const WHV_VPCI_PROBED_BARS = extern struct {
+    Value: [6]u32,
 };
 
-pub const PAGING_MODE = enum(i32) {
-    Invalid = 0,
-    NonPaged = 1,
-    @"32Bit" = 2,
-    Pae = 3,
-    Long = 4,
-    Armv8 = 5,
-};
-pub const Paging_Invalid = PAGING_MODE.Invalid;
-pub const Paging_NonPaged = PAGING_MODE.NonPaged;
-pub const Paging_32Bit = PAGING_MODE.@"32Bit";
-pub const Paging_Pae = PAGING_MODE.Pae;
-pub const Paging_Long = PAGING_MODE.Long;
-pub const Paging_Armv8 = PAGING_MODE.Armv8;
-
-pub const GPA_MEMORY_CHUNK = extern struct {
-    GuestPhysicalStartPageIndex: u64,
-    PageCount: u64,
+pub const WHV_X64_APIC_EOI_CONTEXT = extern struct {
+    InterruptVector: u32,
 };
 
-pub const VIRTUAL_PROCESSOR_ARCH = enum(i32) {
-    Unknown = 0,
-    x86 = 1,
-    x64 = 2,
-    Armv8 = 3,
+pub const WHV_X64_APIC_INIT_SIPI_CONTEXT = extern struct {
+    ApicIcr: u64,
 };
-pub const Arch_Unknown = VIRTUAL_PROCESSOR_ARCH.Unknown;
-pub const Arch_x86 = VIRTUAL_PROCESSOR_ARCH.x86;
-pub const Arch_x64 = VIRTUAL_PROCESSOR_ARCH.x64;
-pub const Arch_Armv8 = VIRTUAL_PROCESSOR_ARCH.Armv8;
 
-pub const VIRTUAL_PROCESSOR_VENDOR = enum(i32) {
-    Unknown = 0,
-    Amd = 1,
-    Intel = 2,
-    Hygon = 3,
-    Arm = 4,
+pub const WHV_X64_APIC_SMI_CONTEXT = extern struct {
+    ApicIcr: u64,
 };
-pub const ProcessorVendor_Unknown = VIRTUAL_PROCESSOR_VENDOR.Unknown;
-pub const ProcessorVendor_Amd = VIRTUAL_PROCESSOR_VENDOR.Amd;
-pub const ProcessorVendor_Intel = VIRTUAL_PROCESSOR_VENDOR.Intel;
-pub const ProcessorVendor_Hygon = VIRTUAL_PROCESSOR_VENDOR.Hygon;
-pub const ProcessorVendor_Arm = VIRTUAL_PROCESSOR_VENDOR.Arm;
 
-pub const GUEST_OS_VENDOR = enum(i32) {
-    Undefined = 0,
-    Microsoft = 1,
-    HPE = 2,
-    LANCOM = 512,
+pub const WHV_X64_APIC_WRITE_CONTEXT = extern struct {
+    Type: WHV_X64_APIC_WRITE_TYPE,
+    Reserved: u32,
+    WriteValue: u64,
 };
-pub const GuestOsVendorUndefined = GUEST_OS_VENDOR.Undefined;
-pub const GuestOsVendorMicrosoft = GUEST_OS_VENDOR.Microsoft;
-pub const GuestOsVendorHPE = GUEST_OS_VENDOR.HPE;
-pub const GuestOsVendorLANCOM = GUEST_OS_VENDOR.LANCOM;
 
-pub const GUEST_OS_MICROSOFT_IDS = enum(i32) {
-    Undefined = 0,
-    MSDOS = 1,
-    Windows3x = 2,
-    Windows9x = 3,
-    WindowsNT = 4,
-    WindowsCE = 5,
+pub const WHV_X64_APIC_WRITE_TYPE = enum(i32) {
+    Ldr = 208,
+    Dfr = 224,
+    Svr = 240,
+    Lint0 = 848,
+    Lint1 = 864,
 };
-pub const GuestOsMicrosoftUndefined = GUEST_OS_MICROSOFT_IDS.Undefined;
-pub const GuestOsMicrosoftMSDOS = GUEST_OS_MICROSOFT_IDS.MSDOS;
-pub const GuestOsMicrosoftWindows3x = GUEST_OS_MICROSOFT_IDS.Windows3x;
-pub const GuestOsMicrosoftWindows9x = GUEST_OS_MICROSOFT_IDS.Windows9x;
-pub const GuestOsMicrosoftWindowsNT = GUEST_OS_MICROSOFT_IDS.WindowsNT;
-pub const GuestOsMicrosoftWindowsCE = GUEST_OS_MICROSOFT_IDS.WindowsCE;
+pub const WHvX64ApicWriteTypeLdr = WHV_X64_APIC_WRITE_TYPE.Ldr;
+pub const WHvX64ApicWriteTypeDfr = WHV_X64_APIC_WRITE_TYPE.Dfr;
+pub const WHvX64ApicWriteTypeSvr = WHV_X64_APIC_WRITE_TYPE.Svr;
+pub const WHvX64ApicWriteTypeLint0 = WHV_X64_APIC_WRITE_TYPE.Lint0;
+pub const WHvX64ApicWriteTypeLint1 = WHV_X64_APIC_WRITE_TYPE.Lint1;
 
-pub const GUEST_OS_OPENSOURCE_IDS = enum(i32) {
-    Undefined = 0,
-    Linux = 1,
-    FreeBSD = 2,
-    Xen = 3,
-    Illumos = 4,
+pub const WHV_X64_CPUID_ACCESS_CONTEXT = extern struct {
+    Rax: u64,
+    Rcx: u64,
+    Rdx: u64,
+    Rbx: u64,
+    DefaultResultRax: u64,
+    DefaultResultRcx: u64,
+    DefaultResultRdx: u64,
+    DefaultResultRbx: u64,
 };
-pub const GuestOsOpenSourceUndefined = GUEST_OS_OPENSOURCE_IDS.Undefined;
-pub const GuestOsOpenSourceLinux = GUEST_OS_OPENSOURCE_IDS.Linux;
-pub const GuestOsOpenSourceFreeBSD = GUEST_OS_OPENSOURCE_IDS.FreeBSD;
-pub const GuestOsOpenSourceXen = GUEST_OS_OPENSOURCE_IDS.Xen;
-pub const GuestOsOpenSourceIllumos = GUEST_OS_OPENSOURCE_IDS.Illumos;
 
-pub const GUEST_OS_INFO = extern union {
+pub const WHV_X64_CPUID_RESULT = extern struct {
+    Function: u32,
+    Reserved: [3]u32,
+    Eax: u32,
+    Ebx: u32,
+    Ecx: u32,
+    Edx: u32,
+};
+
+pub const WHV_X64_CPUID_RESULT2 = extern struct {
+    Function: u32,
+    Index: u32,
+    VpIndex: u32,
+    Flags: WHV_X64_CPUID_RESULT2_FLAGS,
+    Output: WHV_CPUID_OUTPUT,
+    Mask: WHV_CPUID_OUTPUT,
+};
+
+pub const WHV_X64_CPUID_RESULT2_FLAGS = packed struct(u32) {
+    SubleafSpecific: u1 = 0,
+    VpSpecific: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const WHvX64CpuidResult2FlagSubleafSpecific = WHV_X64_CPUID_RESULT2_FLAGS{ .SubleafSpecific = 1 };
+pub const WHvX64CpuidResult2FlagVpSpecific = WHV_X64_CPUID_RESULT2_FLAGS{ .VpSpecific = 1 };
+
+pub const WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER = extern union {
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    ClosedSource: extern struct {
+};
+
+pub const WHV_X64_FP_CONTROL_STATUS_REGISTER = extern union {
+    Anonymous: extern struct {
+        FpControl: u16,
+        FpStatus: u16,
+        FpTag: u8,
+        Reserved: u8,
+        LastFpOp: u16,
+        Anonymous: extern union {
+            LastFpRip: u64,
+            Anonymous: extern struct {
+                LastFpEip: u32,
+                LastFpCs: u16,
+                Reserved2: u16,
+            },
+        },
+    },
+    AsUINT128: WHV_UINT128,
+};
+
+pub const WHV_X64_FP_REGISTER = extern union {
+    Anonymous: extern struct {
+        Mantissa: u64,
         _bitfield: u64,
     },
-    OpenSource: extern struct {
+    AsUINT128: WHV_UINT128,
+};
+
+pub const WHV_X64_INTERRUPT_STATE_REGISTER = extern union {
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
+    AsUINT64: u64,
+};
+
+pub const WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT = extern struct {
+    DeliverableType: WHV_X64_PENDING_INTERRUPTION_TYPE,
+};
+
+pub const WHV_X64_IO_PORT_ACCESS_CONTEXT = extern struct {
+    InstructionByteCount: u8,
+    Reserved: [3]u8,
+    InstructionBytes: [16]u8,
+    AccessInfo: WHV_X64_IO_PORT_ACCESS_INFO,
+    PortNumber: u16,
+    Reserved2: [3]u16,
+    Rax: u64,
+    Rcx: u64,
+    Rsi: u64,
+    Rdi: u64,
+    Ds: WHV_X64_SEGMENT_REGISTER,
+    Es: WHV_X64_SEGMENT_REGISTER,
+};
+
+pub const WHV_X64_IO_PORT_ACCESS_INFO = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
+    AsUINT32: u32,
+};
+
+pub const WHV_X64_LOCAL_APIC_EMULATION_MODE = enum(i32) {
+    None = 0,
+    XApic = 1,
+    X2Apic = 2,
+};
+pub const WHvX64LocalApicEmulationModeNone = WHV_X64_LOCAL_APIC_EMULATION_MODE.None;
+pub const WHvX64LocalApicEmulationModeXApic = WHV_X64_LOCAL_APIC_EMULATION_MODE.XApic;
+pub const WHvX64LocalApicEmulationModeX2Apic = WHV_X64_LOCAL_APIC_EMULATION_MODE.X2Apic;
+
+pub const WHV_X64_MSR_ACCESS_CONTEXT = extern struct {
+    AccessInfo: WHV_X64_MSR_ACCESS_INFO,
+    MsrNumber: u32,
+    Rax: u64,
+    Rdx: u64,
+};
+
+pub const WHV_X64_MSR_ACCESS_INFO = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
+    AsUINT32: u32,
+};
+
+pub const WHV_X64_MSR_EXIT_BITMAP = extern union {
+    AsUINT64: u64,
+    Anonymous: extern struct {
         _bitfield: u64,
     },
 };
 
-pub const REGISTER_ID = enum(i32) {
-    X64_RegisterRax = 0,
-    X64_RegisterRcx = 1,
-    X64_RegisterRdx = 2,
-    X64_RegisterRbx = 3,
-    X64_RegisterRsp = 4,
-    X64_RegisterRbp = 5,
-    X64_RegisterRsi = 6,
-    X64_RegisterRdi = 7,
-    X64_RegisterR8 = 8,
-    X64_RegisterR9 = 9,
-    X64_RegisterR10 = 10,
-    X64_RegisterR11 = 11,
-    X64_RegisterR12 = 12,
-    X64_RegisterR13 = 13,
-    X64_RegisterR14 = 14,
-    X64_RegisterR15 = 15,
-    X64_RegisterRip = 16,
-    X64_RegisterRFlags = 17,
-    X64_RegisterXmm0 = 18,
-    X64_RegisterXmm1 = 19,
-    X64_RegisterXmm2 = 20,
-    X64_RegisterXmm3 = 21,
-    X64_RegisterXmm4 = 22,
-    X64_RegisterXmm5 = 23,
-    X64_RegisterXmm6 = 24,
-    X64_RegisterXmm7 = 25,
-    X64_RegisterXmm8 = 26,
-    X64_RegisterXmm9 = 27,
-    X64_RegisterXmm10 = 28,
-    X64_RegisterXmm11 = 29,
-    X64_RegisterXmm12 = 30,
-    X64_RegisterXmm13 = 31,
-    X64_RegisterXmm14 = 32,
-    X64_RegisterXmm15 = 33,
-    X64_RegisterFpMmx0 = 34,
-    X64_RegisterFpMmx1 = 35,
-    X64_RegisterFpMmx2 = 36,
-    X64_RegisterFpMmx3 = 37,
-    X64_RegisterFpMmx4 = 38,
-    X64_RegisterFpMmx5 = 39,
-    X64_RegisterFpMmx6 = 40,
-    X64_RegisterFpMmx7 = 41,
-    X64_RegisterFpControlStatus = 42,
-    X64_RegisterXmmControlStatus = 43,
-    X64_RegisterCr0 = 44,
-    X64_RegisterCr2 = 45,
-    X64_RegisterCr3 = 46,
-    X64_RegisterCr4 = 47,
-    X64_RegisterCr8 = 48,
-    X64_RegisterEfer = 49,
-    X64_RegisterDr0 = 50,
-    X64_RegisterDr1 = 51,
-    X64_RegisterDr2 = 52,
-    X64_RegisterDr3 = 53,
-    X64_RegisterDr6 = 54,
-    X64_RegisterDr7 = 55,
-    X64_RegisterEs = 56,
-    X64_RegisterCs = 57,
-    X64_RegisterSs = 58,
-    X64_RegisterDs = 59,
-    X64_RegisterFs = 60,
-    X64_RegisterGs = 61,
-    X64_RegisterLdtr = 62,
-    X64_RegisterTr = 63,
-    X64_RegisterIdtr = 64,
-    X64_RegisterGdtr = 65,
-    X64_RegisterMax = 66,
-    ARM64_RegisterX0 = 67,
-    ARM64_RegisterX1 = 68,
-    ARM64_RegisterX2 = 69,
-    ARM64_RegisterX3 = 70,
-    ARM64_RegisterX4 = 71,
-    ARM64_RegisterX5 = 72,
-    ARM64_RegisterX6 = 73,
-    ARM64_RegisterX7 = 74,
-    ARM64_RegisterX8 = 75,
-    ARM64_RegisterX9 = 76,
-    ARM64_RegisterX10 = 77,
-    ARM64_RegisterX11 = 78,
-    ARM64_RegisterX12 = 79,
-    ARM64_RegisterX13 = 80,
-    ARM64_RegisterX14 = 81,
-    ARM64_RegisterX15 = 82,
-    ARM64_RegisterX16 = 83,
-    ARM64_RegisterX17 = 84,
-    ARM64_RegisterX18 = 85,
-    ARM64_RegisterX19 = 86,
-    ARM64_RegisterX20 = 87,
-    ARM64_RegisterX21 = 88,
-    ARM64_RegisterX22 = 89,
-    ARM64_RegisterX23 = 90,
-    ARM64_RegisterX24 = 91,
-    ARM64_RegisterX25 = 92,
-    ARM64_RegisterX26 = 93,
-    ARM64_RegisterX27 = 94,
-    ARM64_RegisterX28 = 95,
-    ARM64_RegisterXFp = 96,
-    ARM64_RegisterXLr = 97,
-    ARM64_RegisterPc = 98,
-    ARM64_RegisterSpEl0 = 99,
-    ARM64_RegisterSpEl1 = 100,
-    ARM64_RegisterCpsr = 101,
-    ARM64_RegisterQ0 = 102,
-    ARM64_RegisterQ1 = 103,
-    ARM64_RegisterQ2 = 104,
-    ARM64_RegisterQ3 = 105,
-    ARM64_RegisterQ4 = 106,
-    ARM64_RegisterQ5 = 107,
-    ARM64_RegisterQ6 = 108,
-    ARM64_RegisterQ7 = 109,
-    ARM64_RegisterQ8 = 110,
-    ARM64_RegisterQ9 = 111,
-    ARM64_RegisterQ10 = 112,
-    ARM64_RegisterQ11 = 113,
-    ARM64_RegisterQ12 = 114,
-    ARM64_RegisterQ13 = 115,
-    ARM64_RegisterQ14 = 116,
-    ARM64_RegisterQ15 = 117,
-    ARM64_RegisterQ16 = 118,
-    ARM64_RegisterQ17 = 119,
-    ARM64_RegisterQ18 = 120,
-    ARM64_RegisterQ19 = 121,
-    ARM64_RegisterQ20 = 122,
-    ARM64_RegisterQ21 = 123,
-    ARM64_RegisterQ22 = 124,
-    ARM64_RegisterQ23 = 125,
-    ARM64_RegisterQ24 = 126,
-    ARM64_RegisterQ25 = 127,
-    ARM64_RegisterQ26 = 128,
-    ARM64_RegisterQ27 = 129,
-    ARM64_RegisterQ28 = 130,
-    ARM64_RegisterQ29 = 131,
-    ARM64_RegisterQ30 = 132,
-    ARM64_RegisterQ31 = 133,
-    ARM64_RegisterFpStatus = 134,
-    ARM64_RegisterFpControl = 135,
-    ARM64_RegisterEsrEl1 = 136,
-    ARM64_RegisterSpsrEl1 = 137,
-    ARM64_RegisterFarEl1 = 138,
-    ARM64_RegisterParEl1 = 139,
-    ARM64_RegisterElrEl1 = 140,
-    ARM64_RegisterTtbr0El1 = 141,
-    ARM64_RegisterTtbr1El1 = 142,
-    ARM64_RegisterVbarEl1 = 143,
-    ARM64_RegisterSctlrEl1 = 144,
-    ARM64_RegisterActlrEl1 = 145,
-    ARM64_RegisterTcrEl1 = 146,
-    ARM64_RegisterMairEl1 = 147,
-    ARM64_RegisterAmairEl1 = 148,
-    ARM64_RegisterTpidrEl0 = 149,
-    ARM64_RegisterTpidrroEl0 = 150,
-    ARM64_RegisterTpidrEl1 = 151,
-    ARM64_RegisterContextIdrEl1 = 152,
-    ARM64_RegisterCpacrEl1 = 153,
-    ARM64_RegisterCsselrEl1 = 154,
-    ARM64_RegisterCntkctlEl1 = 155,
-    ARM64_RegisterCntvCvalEl0 = 156,
-    ARM64_RegisterCntvCtlEl0 = 157,
-    ARM64_RegisterMax = 158,
-};
-pub const X64_RegisterRax = REGISTER_ID.X64_RegisterRax;
-pub const X64_RegisterRcx = REGISTER_ID.X64_RegisterRcx;
-pub const X64_RegisterRdx = REGISTER_ID.X64_RegisterRdx;
-pub const X64_RegisterRbx = REGISTER_ID.X64_RegisterRbx;
-pub const X64_RegisterRsp = REGISTER_ID.X64_RegisterRsp;
-pub const X64_RegisterRbp = REGISTER_ID.X64_RegisterRbp;
-pub const X64_RegisterRsi = REGISTER_ID.X64_RegisterRsi;
-pub const X64_RegisterRdi = REGISTER_ID.X64_RegisterRdi;
-pub const X64_RegisterR8 = REGISTER_ID.X64_RegisterR8;
-pub const X64_RegisterR9 = REGISTER_ID.X64_RegisterR9;
-pub const X64_RegisterR10 = REGISTER_ID.X64_RegisterR10;
-pub const X64_RegisterR11 = REGISTER_ID.X64_RegisterR11;
-pub const X64_RegisterR12 = REGISTER_ID.X64_RegisterR12;
-pub const X64_RegisterR13 = REGISTER_ID.X64_RegisterR13;
-pub const X64_RegisterR14 = REGISTER_ID.X64_RegisterR14;
-pub const X64_RegisterR15 = REGISTER_ID.X64_RegisterR15;
-pub const X64_RegisterRip = REGISTER_ID.X64_RegisterRip;
-pub const X64_RegisterRFlags = REGISTER_ID.X64_RegisterRFlags;
-pub const X64_RegisterXmm0 = REGISTER_ID.X64_RegisterXmm0;
-pub const X64_RegisterXmm1 = REGISTER_ID.X64_RegisterXmm1;
-pub const X64_RegisterXmm2 = REGISTER_ID.X64_RegisterXmm2;
-pub const X64_RegisterXmm3 = REGISTER_ID.X64_RegisterXmm3;
-pub const X64_RegisterXmm4 = REGISTER_ID.X64_RegisterXmm4;
-pub const X64_RegisterXmm5 = REGISTER_ID.X64_RegisterXmm5;
-pub const X64_RegisterXmm6 = REGISTER_ID.X64_RegisterXmm6;
-pub const X64_RegisterXmm7 = REGISTER_ID.X64_RegisterXmm7;
-pub const X64_RegisterXmm8 = REGISTER_ID.X64_RegisterXmm8;
-pub const X64_RegisterXmm9 = REGISTER_ID.X64_RegisterXmm9;
-pub const X64_RegisterXmm10 = REGISTER_ID.X64_RegisterXmm10;
-pub const X64_RegisterXmm11 = REGISTER_ID.X64_RegisterXmm11;
-pub const X64_RegisterXmm12 = REGISTER_ID.X64_RegisterXmm12;
-pub const X64_RegisterXmm13 = REGISTER_ID.X64_RegisterXmm13;
-pub const X64_RegisterXmm14 = REGISTER_ID.X64_RegisterXmm14;
-pub const X64_RegisterXmm15 = REGISTER_ID.X64_RegisterXmm15;
-pub const X64_RegisterFpMmx0 = REGISTER_ID.X64_RegisterFpMmx0;
-pub const X64_RegisterFpMmx1 = REGISTER_ID.X64_RegisterFpMmx1;
-pub const X64_RegisterFpMmx2 = REGISTER_ID.X64_RegisterFpMmx2;
-pub const X64_RegisterFpMmx3 = REGISTER_ID.X64_RegisterFpMmx3;
-pub const X64_RegisterFpMmx4 = REGISTER_ID.X64_RegisterFpMmx4;
-pub const X64_RegisterFpMmx5 = REGISTER_ID.X64_RegisterFpMmx5;
-pub const X64_RegisterFpMmx6 = REGISTER_ID.X64_RegisterFpMmx6;
-pub const X64_RegisterFpMmx7 = REGISTER_ID.X64_RegisterFpMmx7;
-pub const X64_RegisterFpControlStatus = REGISTER_ID.X64_RegisterFpControlStatus;
-pub const X64_RegisterXmmControlStatus = REGISTER_ID.X64_RegisterXmmControlStatus;
-pub const X64_RegisterCr0 = REGISTER_ID.X64_RegisterCr0;
-pub const X64_RegisterCr2 = REGISTER_ID.X64_RegisterCr2;
-pub const X64_RegisterCr3 = REGISTER_ID.X64_RegisterCr3;
-pub const X64_RegisterCr4 = REGISTER_ID.X64_RegisterCr4;
-pub const X64_RegisterCr8 = REGISTER_ID.X64_RegisterCr8;
-pub const X64_RegisterEfer = REGISTER_ID.X64_RegisterEfer;
-pub const X64_RegisterDr0 = REGISTER_ID.X64_RegisterDr0;
-pub const X64_RegisterDr1 = REGISTER_ID.X64_RegisterDr1;
-pub const X64_RegisterDr2 = REGISTER_ID.X64_RegisterDr2;
-pub const X64_RegisterDr3 = REGISTER_ID.X64_RegisterDr3;
-pub const X64_RegisterDr6 = REGISTER_ID.X64_RegisterDr6;
-pub const X64_RegisterDr7 = REGISTER_ID.X64_RegisterDr7;
-pub const X64_RegisterEs = REGISTER_ID.X64_RegisterEs;
-pub const X64_RegisterCs = REGISTER_ID.X64_RegisterCs;
-pub const X64_RegisterSs = REGISTER_ID.X64_RegisterSs;
-pub const X64_RegisterDs = REGISTER_ID.X64_RegisterDs;
-pub const X64_RegisterFs = REGISTER_ID.X64_RegisterFs;
-pub const X64_RegisterGs = REGISTER_ID.X64_RegisterGs;
-pub const X64_RegisterLdtr = REGISTER_ID.X64_RegisterLdtr;
-pub const X64_RegisterTr = REGISTER_ID.X64_RegisterTr;
-pub const X64_RegisterIdtr = REGISTER_ID.X64_RegisterIdtr;
-pub const X64_RegisterGdtr = REGISTER_ID.X64_RegisterGdtr;
-pub const X64_RegisterMax = REGISTER_ID.X64_RegisterMax;
-pub const ARM64_RegisterX0 = REGISTER_ID.ARM64_RegisterX0;
-pub const ARM64_RegisterX1 = REGISTER_ID.ARM64_RegisterX1;
-pub const ARM64_RegisterX2 = REGISTER_ID.ARM64_RegisterX2;
-pub const ARM64_RegisterX3 = REGISTER_ID.ARM64_RegisterX3;
-pub const ARM64_RegisterX4 = REGISTER_ID.ARM64_RegisterX4;
-pub const ARM64_RegisterX5 = REGISTER_ID.ARM64_RegisterX5;
-pub const ARM64_RegisterX6 = REGISTER_ID.ARM64_RegisterX6;
-pub const ARM64_RegisterX7 = REGISTER_ID.ARM64_RegisterX7;
-pub const ARM64_RegisterX8 = REGISTER_ID.ARM64_RegisterX8;
-pub const ARM64_RegisterX9 = REGISTER_ID.ARM64_RegisterX9;
-pub const ARM64_RegisterX10 = REGISTER_ID.ARM64_RegisterX10;
-pub const ARM64_RegisterX11 = REGISTER_ID.ARM64_RegisterX11;
-pub const ARM64_RegisterX12 = REGISTER_ID.ARM64_RegisterX12;
-pub const ARM64_RegisterX13 = REGISTER_ID.ARM64_RegisterX13;
-pub const ARM64_RegisterX14 = REGISTER_ID.ARM64_RegisterX14;
-pub const ARM64_RegisterX15 = REGISTER_ID.ARM64_RegisterX15;
-pub const ARM64_RegisterX16 = REGISTER_ID.ARM64_RegisterX16;
-pub const ARM64_RegisterX17 = REGISTER_ID.ARM64_RegisterX17;
-pub const ARM64_RegisterX18 = REGISTER_ID.ARM64_RegisterX18;
-pub const ARM64_RegisterX19 = REGISTER_ID.ARM64_RegisterX19;
-pub const ARM64_RegisterX20 = REGISTER_ID.ARM64_RegisterX20;
-pub const ARM64_RegisterX21 = REGISTER_ID.ARM64_RegisterX21;
-pub const ARM64_RegisterX22 = REGISTER_ID.ARM64_RegisterX22;
-pub const ARM64_RegisterX23 = REGISTER_ID.ARM64_RegisterX23;
-pub const ARM64_RegisterX24 = REGISTER_ID.ARM64_RegisterX24;
-pub const ARM64_RegisterX25 = REGISTER_ID.ARM64_RegisterX25;
-pub const ARM64_RegisterX26 = REGISTER_ID.ARM64_RegisterX26;
-pub const ARM64_RegisterX27 = REGISTER_ID.ARM64_RegisterX27;
-pub const ARM64_RegisterX28 = REGISTER_ID.ARM64_RegisterX28;
-pub const ARM64_RegisterXFp = REGISTER_ID.ARM64_RegisterXFp;
-pub const ARM64_RegisterXLr = REGISTER_ID.ARM64_RegisterXLr;
-pub const ARM64_RegisterPc = REGISTER_ID.ARM64_RegisterPc;
-pub const ARM64_RegisterSpEl0 = REGISTER_ID.ARM64_RegisterSpEl0;
-pub const ARM64_RegisterSpEl1 = REGISTER_ID.ARM64_RegisterSpEl1;
-pub const ARM64_RegisterCpsr = REGISTER_ID.ARM64_RegisterCpsr;
-pub const ARM64_RegisterQ0 = REGISTER_ID.ARM64_RegisterQ0;
-pub const ARM64_RegisterQ1 = REGISTER_ID.ARM64_RegisterQ1;
-pub const ARM64_RegisterQ2 = REGISTER_ID.ARM64_RegisterQ2;
-pub const ARM64_RegisterQ3 = REGISTER_ID.ARM64_RegisterQ3;
-pub const ARM64_RegisterQ4 = REGISTER_ID.ARM64_RegisterQ4;
-pub const ARM64_RegisterQ5 = REGISTER_ID.ARM64_RegisterQ5;
-pub const ARM64_RegisterQ6 = REGISTER_ID.ARM64_RegisterQ6;
-pub const ARM64_RegisterQ7 = REGISTER_ID.ARM64_RegisterQ7;
-pub const ARM64_RegisterQ8 = REGISTER_ID.ARM64_RegisterQ8;
-pub const ARM64_RegisterQ9 = REGISTER_ID.ARM64_RegisterQ9;
-pub const ARM64_RegisterQ10 = REGISTER_ID.ARM64_RegisterQ10;
-pub const ARM64_RegisterQ11 = REGISTER_ID.ARM64_RegisterQ11;
-pub const ARM64_RegisterQ12 = REGISTER_ID.ARM64_RegisterQ12;
-pub const ARM64_RegisterQ13 = REGISTER_ID.ARM64_RegisterQ13;
-pub const ARM64_RegisterQ14 = REGISTER_ID.ARM64_RegisterQ14;
-pub const ARM64_RegisterQ15 = REGISTER_ID.ARM64_RegisterQ15;
-pub const ARM64_RegisterQ16 = REGISTER_ID.ARM64_RegisterQ16;
-pub const ARM64_RegisterQ17 = REGISTER_ID.ARM64_RegisterQ17;
-pub const ARM64_RegisterQ18 = REGISTER_ID.ARM64_RegisterQ18;
-pub const ARM64_RegisterQ19 = REGISTER_ID.ARM64_RegisterQ19;
-pub const ARM64_RegisterQ20 = REGISTER_ID.ARM64_RegisterQ20;
-pub const ARM64_RegisterQ21 = REGISTER_ID.ARM64_RegisterQ21;
-pub const ARM64_RegisterQ22 = REGISTER_ID.ARM64_RegisterQ22;
-pub const ARM64_RegisterQ23 = REGISTER_ID.ARM64_RegisterQ23;
-pub const ARM64_RegisterQ24 = REGISTER_ID.ARM64_RegisterQ24;
-pub const ARM64_RegisterQ25 = REGISTER_ID.ARM64_RegisterQ25;
-pub const ARM64_RegisterQ26 = REGISTER_ID.ARM64_RegisterQ26;
-pub const ARM64_RegisterQ27 = REGISTER_ID.ARM64_RegisterQ27;
-pub const ARM64_RegisterQ28 = REGISTER_ID.ARM64_RegisterQ28;
-pub const ARM64_RegisterQ29 = REGISTER_ID.ARM64_RegisterQ29;
-pub const ARM64_RegisterQ30 = REGISTER_ID.ARM64_RegisterQ30;
-pub const ARM64_RegisterQ31 = REGISTER_ID.ARM64_RegisterQ31;
-pub const ARM64_RegisterFpStatus = REGISTER_ID.ARM64_RegisterFpStatus;
-pub const ARM64_RegisterFpControl = REGISTER_ID.ARM64_RegisterFpControl;
-pub const ARM64_RegisterEsrEl1 = REGISTER_ID.ARM64_RegisterEsrEl1;
-pub const ARM64_RegisterSpsrEl1 = REGISTER_ID.ARM64_RegisterSpsrEl1;
-pub const ARM64_RegisterFarEl1 = REGISTER_ID.ARM64_RegisterFarEl1;
-pub const ARM64_RegisterParEl1 = REGISTER_ID.ARM64_RegisterParEl1;
-pub const ARM64_RegisterElrEl1 = REGISTER_ID.ARM64_RegisterElrEl1;
-pub const ARM64_RegisterTtbr0El1 = REGISTER_ID.ARM64_RegisterTtbr0El1;
-pub const ARM64_RegisterTtbr1El1 = REGISTER_ID.ARM64_RegisterTtbr1El1;
-pub const ARM64_RegisterVbarEl1 = REGISTER_ID.ARM64_RegisterVbarEl1;
-pub const ARM64_RegisterSctlrEl1 = REGISTER_ID.ARM64_RegisterSctlrEl1;
-pub const ARM64_RegisterActlrEl1 = REGISTER_ID.ARM64_RegisterActlrEl1;
-pub const ARM64_RegisterTcrEl1 = REGISTER_ID.ARM64_RegisterTcrEl1;
-pub const ARM64_RegisterMairEl1 = REGISTER_ID.ARM64_RegisterMairEl1;
-pub const ARM64_RegisterAmairEl1 = REGISTER_ID.ARM64_RegisterAmairEl1;
-pub const ARM64_RegisterTpidrEl0 = REGISTER_ID.ARM64_RegisterTpidrEl0;
-pub const ARM64_RegisterTpidrroEl0 = REGISTER_ID.ARM64_RegisterTpidrroEl0;
-pub const ARM64_RegisterTpidrEl1 = REGISTER_ID.ARM64_RegisterTpidrEl1;
-pub const ARM64_RegisterContextIdrEl1 = REGISTER_ID.ARM64_RegisterContextIdrEl1;
-pub const ARM64_RegisterCpacrEl1 = REGISTER_ID.ARM64_RegisterCpacrEl1;
-pub const ARM64_RegisterCsselrEl1 = REGISTER_ID.ARM64_RegisterCsselrEl1;
-pub const ARM64_RegisterCntkctlEl1 = REGISTER_ID.ARM64_RegisterCntkctlEl1;
-pub const ARM64_RegisterCntvCvalEl0 = REGISTER_ID.ARM64_RegisterCntvCvalEl0;
-pub const ARM64_RegisterCntvCtlEl0 = REGISTER_ID.ARM64_RegisterCntvCtlEl0;
-pub const ARM64_RegisterMax = REGISTER_ID.ARM64_RegisterMax;
-
-pub const VIRTUAL_PROCESSOR_REGISTER = extern union {
-    Reg64: u64,
-    Reg32: u32,
-    Reg16: u16,
-    Reg8: u8,
-    Reg128: extern struct {
-        Low64: u64,
-        High64: u64,
-    },
-    X64: extern union {
-        Segment: extern struct {
-            Base: u64,
-            Limit: u32,
-            Selector: u16,
-            Anonymous: extern union {
-                Attributes: u16,
-                Anonymous: extern struct {
-                    _bitfield: u16,
-                },
-            },
-        },
-        Table: extern struct {
-            Limit: u16,
-            Base: u64,
-        },
-        FpControlStatus: extern struct {
-            FpControl: u16,
-            FpStatus: u16,
-            FpTag: u8,
-            Reserved: u8,
-            LastFpOp: u16,
-            Anonymous: extern union {
-                LastFpRip: u64,
-                Anonymous: extern struct {
-                    LastFpEip: u32,
-                    LastFpCs: u16,
-                },
-            },
-        },
-        XmmControlStatus: extern struct {
-            Anonymous: extern union {
-                LastFpRdp: u64,
-                Anonymous: extern struct {
-                    LastFpDp: u32,
-                    LastFpDs: u16,
-                },
-            },
-            XmmStatusControl: u32,
-            XmmStatusControlMask: u32,
-        },
+pub const WHV_X64_PENDING_DEBUG_EXCEPTION = extern union {
+    AsUINT64: u64,
+    Anonymous: extern struct {
+        _bitfield: u64,
     },
 };
 
-pub const DOS_IMAGE_INFO = extern struct {
-    PdbName: ?[*:0]const u8,
-    ImageBaseAddress: u64,
-    ImageSize: u32,
-    Timestamp: u32,
+pub const WHV_X64_PENDING_EVENT_TYPE = enum(i32) {
+    ception = 0,
+    tInt = 5,
+};
+pub const WHvX64PendingEventException = WHV_X64_PENDING_EVENT_TYPE.ception;
+pub const WHvX64PendingEventExtInt = WHV_X64_PENDING_EVENT_TYPE.tInt;
+
+pub const WHV_X64_PENDING_EXCEPTION_EVENT = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32,
+        ErrorCode: u32,
+        ExceptionParameter: u64,
+    },
+    AsUINT128: WHV_UINT128,
 };
 
-pub const GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK = *const fn(
-    InfoMessage: ?[*:0]const u8,
-) callconv(.winapi) void;
+pub const WHV_X64_PENDING_EXT_INT_EVENT = extern union {
+    Anonymous: extern struct {
+        _bitfield: u64,
+        Reserved2: u64,
+    },
+    AsUINT128: WHV_UINT128,
+};
 
-pub const FOUND_IMAGE_CALLBACK = *const fn(
-    Context: ?*anyopaque,
-    ImageInfo: ?*DOS_IMAGE_INFO,
-) callconv(.winapi) BOOL;
+pub const WHV_X64_PENDING_INTERRUPTION_REGISTER = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32,
+        ErrorCode: u32,
+    },
+    AsUINT64: u64,
+};
 
-pub const MODULE_INFO = extern struct {
-    ProcessImageName: ?[*:0]const u8,
-    Image: DOS_IMAGE_INFO,
+pub const WHV_X64_PENDING_INTERRUPTION_TYPE = enum(i32) {
+    Interrupt = 0,
+    Nmi = 2,
+    Exception = 3,
+};
+pub const WHvX64PendingInterrupt = WHV_X64_PENDING_INTERRUPTION_TYPE.Interrupt;
+pub const WHvX64PendingNmi = WHV_X64_PENDING_INTERRUPTION_TYPE.Nmi;
+pub const WHvX64PendingException = WHV_X64_PENDING_INTERRUPTION_TYPE.Exception;
+
+pub const WHV_X64_RDTSC_CONTEXT = extern struct {
+    TscAux: u64,
+    VirtualOffset: u64,
+    Tsc: u64,
+    ReferenceTime: u64,
+    RdtscInfo: WHV_X64_RDTSC_INFO,
+};
+
+pub const WHV_X64_RDTSC_INFO = extern union {
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
+    AsUINT64: u64,
+};
+
+pub const WHV_X64_SEGMENT_REGISTER = extern struct {
+    Base: u64,
+    Limit: u32,
+    Selector: u16,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u16,
+        },
+        Attributes: u16,
+    },
+};
+
+pub const WHV_X64_TABLE_REGISTER = extern struct {
+    Pad: [3]u16,
+    Limit: u16,
+    Base: u64,
+};
+
+pub const WHV_X64_UNSUPPORTED_FEATURE_CODE = enum(i32) {
+    Intercept = 1,
+    TaskSwitchTss = 2,
+};
+pub const WHvUnsupportedFeatureIntercept = WHV_X64_UNSUPPORTED_FEATURE_CODE.Intercept;
+pub const WHvUnsupportedFeatureTaskSwitchTss = WHV_X64_UNSUPPORTED_FEATURE_CODE.TaskSwitchTss;
+
+pub const WHV_X64_UNSUPPORTED_FEATURE_CONTEXT = extern struct {
+    FeatureCode: WHV_X64_UNSUPPORTED_FEATURE_CODE,
+    Reserved: u32,
+    FeatureParameter: u64,
+};
+
+pub const WHV_X64_VP_EXECUTION_STATE = extern union {
+    Anonymous: extern struct {
+        _bitfield: u16,
+    },
+    AsUINT16: u16,
+};
+
+pub const WHV_X64_XMM_CONTROL_STATUS_REGISTER = extern union {
+    Anonymous: extern struct {
+        Anonymous: extern union {
+            LastFpRdp: u64,
+            Anonymous: extern struct {
+                LastFpDp: u32,
+                LastFpDs: u16,
+                Reserved: u16,
+            },
+        },
+        XmmStatusControl: u32,
+        XmmStatusControlMask: u32,
+    },
+    AsUINT128: WHV_UINT128,
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (125)
 //--------------------------------------------------------------------------------
-pub extern "winhvplatform" fn WHvGetCapability(
-    CapabilityCode: WHV_CAPABILITY_CODE,
-    // TODO: what to do with BytesParamIndex 2?
-    CapabilityBuffer: ?*anyopaque,
-    CapabilityBufferSizeInBytes: u32,
-    WrittenSizeInBytes: ?*u32,
+pub extern "vmsavedstatedumpprovider" fn ApplyGuestMemoryFix(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    virtualAddress: u64,
+    fixBuffer: ?*anyopaque,
+    fixBufferSize: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ApplyPendingSavedStateFileReplayLog(
+    vmrsFile: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn CallStackUnwind(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    imageInfo: ?*MODULE_INFO,
+    imageInfoCount: u32,
+    frameCount: u32,
+    callStack: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn FindSavedStateSymbolFieldInType(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    typeName: ?[*:0]const u8,
+    fieldName: ?[*:0]const u16,
+    offset: ?*u32,
+    found: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ForceActiveVirtualTrustLevel(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    virtualTrustLevel: u8,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ForceArchitecture(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    architecture: VIRTUAL_PROCESSOR_ARCH,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ForceNestedHostMode(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    hostMode: BOOL,
+    oldMode: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ForcePagingMode(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    pagingMode: PAGING_MODE,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetActiveVirtualTrustLevel(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    virtualTrustLevel: ?*u8,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetArchitecture(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    architecture: ?*VIRTUAL_PROCESSOR_ARCH,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetEnabledVirtualTrustLevels(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    virtualTrustLevels: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetGuestEnabledVirtualTrustLevels(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    virtualTrustLevels: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetGuestOsInfo(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    virtualTrustLevel: u8,
+    guestOsInfo: ?*GUEST_OS_INFO,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetGuestPhysicalMemoryChunks(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    memoryChunkPageSize: ?*u64,
+    memoryChunks: ?*GPA_MEMORY_CHUNK,
+    memoryChunkCount: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetGuestRawSavedMemorySize(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    guestRawSavedMemorySize: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetMemoryBlockCacheLimit(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    memoryBlockCacheLimit: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetNestedVirtualizationMode(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    enabled: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetPagingMode(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    pagingMode: ?*PAGING_MODE,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetRegisterValue(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    registerId: u32,
+    registerValue: ?*VIRTUAL_PROCESSOR_REGISTER,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolFieldInfo(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    typeName: ?[*:0]const u8,
+    typeFieldInfoMap: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolProviderHandle(
+    vmSavedStateDumpHandle: ?*anyopaque,
+) callconv(.winapi) ?HANDLE;
+
+pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolTypeSize(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    typeName: ?[*:0]const u8,
+    size: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GetVpCount(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpCount: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GuestPhysicalAddressToRawSavedMemoryOffset(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    physicalAddress: u64,
+    rawSavedMemoryOffset: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn GuestVirtualAddressToPhysicalAddress(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    virtualAddress: u64,
+    physicalAddress: ?*u64,
+    unmappedRegionSize: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvCreateDeviceInstance(
+    deviceHostHandle: ?*anyopaque,
+    deviceType: HDV_DEVICE_TYPE,
+    deviceClassId: ?*const Guid,
+    deviceInstanceId: ?*const Guid,
+    deviceInterface: ?*const anyopaque,
+    deviceContext: ?*anyopaque,
+    deviceHandle: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvCreateGuestMemoryAperture(
+    requestor: ?*anyopaque,
+    guestPhysicalAddress: u64,
+    byteCount: u32,
+    writeProtected: BOOL,
+    mappedAddress: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvCreateSectionBackedMmioRange(
+    requestor: ?*anyopaque,
+    barIndex: HDV_PCI_BAR_SELECTOR,
+    offsetInPages: u64,
+    lengthInPages: u64,
+    MappingFlags: HDV_MMIO_MAPPING_FLAGS,
+    sectionHandle: ?HANDLE,
+    sectionOffsetInPages: u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvDeliverGuestInterrupt(
+    requestor: ?*anyopaque,
+    msiAddress: u64,
+    msiData: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvDestroyGuestMemoryAperture(
+    requestor: ?*anyopaque,
+    mappedAddress: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvDestroySectionBackedMmioRange(
+    requestor: ?*anyopaque,
+    barIndex: HDV_PCI_BAR_SELECTOR,
+    offsetInPages: u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvInitializeDeviceHost(
+    computeSystem: HCS_SYSTEM,
+    deviceHostHandle: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvReadGuestMemory(
+    requestor: ?*anyopaque,
+    guestPhysicalAddress: u64,
+    byteCount: u32,
+    buffer: [*:0]u8,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvRegisterDoorbell(
+    requestor: ?*anyopaque,
+    BarIndex: HDV_PCI_BAR_SELECTOR,
+    BarOffset: u64,
+    TriggerValue: u64,
+    Flags: u64,
+    DoorbellEvent: ?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvTeardownDeviceHost(
+    deviceHostHandle: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvUnregisterDoorbell(
+    requestor: ?*anyopaque,
+    BarIndex: HDV_PCI_BAR_SELECTOR,
+    BarOffset: u64,
+    TriggerValue: u64,
+    Flags: u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmdevicehost" fn HdvWriteGuestMemory(
+    requestor: ?*anyopaque,
+    guestPhysicalAddress: u64,
+    byteCount: u32,
+    buffer: [*:0]const u8,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn InKernelSpace(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    inKernelSpace: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn IsActiveVirtualTrustLevelEnabled(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    activeVirtualTrustLevelEnabled: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn IsNestedVirtualizationEnabled(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    enabled: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn LoadSavedStateFile(
+    vmrsFile: ?[*:0]const u16,
+    vmSavedStateDumpHandle: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn LoadSavedStateFiles(
+    binFile: ?[*:0]const u16,
+    vsvFile: ?[*:0]const u16,
+    vmSavedStateDumpHandle: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbols(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    imageName: ?[*:0]const u8,
+    moduleName: ?[*:0]const u8,
+    baseAddress: u64,
+    sizeOfBase: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbolsEx(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    imageName: ?[*:0]const u8,
+    imageTimestamp: u32,
+    moduleName: ?[*:0]const u8,
+    baseAddress: u64,
+    sizeOfBase: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn LoadSavedStateSymbolProvider(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    userSymbols: ?[*:0]const u16,
+    force: BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn LocateSavedStateFiles(
+    vmName: ?[*:0]const u16,
+    snapshotName: ?[*:0]const u16,
+    binPath: ?*?PWSTR,
+    vsvPath: ?*?PWSTR,
+    vmrsPath: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ReadGuestPhysicalAddress(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    physicalAddress: u64,
+    // TODO: what to do with BytesParamIndex 3?
+    buffer: ?*anyopaque,
+    bufferSize: u32,
+    bytesRead: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ReadGuestRawSavedMemory(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    rawSavedMemoryOffset: u64,
+    // TODO: what to do with BytesParamIndex 3?
+    buffer: ?*anyopaque,
+    bufferSize: u32,
+    bytesRead: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ReadSavedStateGlobalVariable(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    globalName: ?[*:0]const u8,
+    buffer: ?*anyopaque,
+    bufferSize: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ReleaseSavedStateFiles(
+    vmSavedStateDumpHandle: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ReleaseSavedStateSymbolProvider(
+    vmSavedStateDumpHandle: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ResolveSavedStateGlobalVariableAddress(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    globalName: ?[*:0]const u8,
+    virtualAddress: ?*u64,
+    size: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn ScanMemoryForDosImages(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    vpId: u32,
+    startAddress: u64,
+    endAddress: u64,
+    callbackContext: ?*anyopaque,
+    foundImageCallback: ?FOUND_IMAGE_CALLBACK,
+    standaloneAddress: ?*u64,
+    standaloneAddressCount: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn SetMemoryBlockCacheLimit(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    memoryBlockCacheLimit: u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "vmsavedstatedumpprovider" fn SetSavedStateSymbolProviderDebugInfoCallback(
+    vmSavedStateDumpHandle: ?*anyopaque,
+    Callback: ?GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvAcceptPartitionMigration(
+    MigrationHandle: ?HANDLE,
+    Partition: ?*WHV_PARTITION_HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvAdviseGpaRange(
+    Partition: WHV_PARTITION_HANDLE,
+    GpaRanges: [*]const WHV_MEMORY_RANGE_ENTRY,
+    GpaRangesCount: u32,
+    Advice: WHV_ADVISE_GPA_RANGE_CODE,
+    // TODO: what to do with BytesParamIndex 5?
+    AdviceBuffer: ?*const anyopaque,
+    AdviceBufferSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvAllocateVpciResource(
+    ProviderId: ?*const Guid,
+    Flags: WHV_ALLOCATE_VPCI_RESOURCE_FLAGS,
+    ResourceDescriptor: ?[*]const u8,
+    ResourceDescriptorSizeInBytes: u32,
+    VpciResource: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvCancelPartitionMigration(
+    Partition: WHV_PARTITION_HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvCancelRunVirtualProcessor(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    Flags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvCompletePartitionMigration(
+    Partition: WHV_PARTITION_HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvCreateNotificationPort(
+    Partition: WHV_PARTITION_HANDLE,
+    Parameters: ?*const WHV_NOTIFICATION_PORT_PARAMETERS,
+    EventHandle: ?HANDLE,
+    PortHandle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreatePartition(
     Partition: ?*WHV_PARTITION_HANDLE,
 ) callconv(.winapi) HRESULT;
 
-pub extern "winhvplatform" fn WHvSetupPartition(
+pub extern "winhvplatform" fn WHvCreateTrigger(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvResetPartition(
-    Partition: WHV_PARTITION_HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvDeletePartition(
-    Partition: WHV_PARTITION_HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetPartitionProperty(
-    Partition: WHV_PARTITION_HANDLE,
-    PropertyCode: WHV_PARTITION_PROPERTY_CODE,
-    // TODO: what to do with BytesParamIndex 3?
-    PropertyBuffer: ?*anyopaque,
-    PropertyBufferSizeInBytes: u32,
-    WrittenSizeInBytes: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetPartitionProperty(
-    Partition: WHV_PARTITION_HANDLE,
-    PropertyCode: WHV_PARTITION_PROPERTY_CODE,
-    // TODO: what to do with BytesParamIndex 3?
-    PropertyBuffer: ?*const anyopaque,
-    PropertyBufferSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSuspendPartitionTime(
-    Partition: WHV_PARTITION_HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvResumePartitionTime(
-    Partition: WHV_PARTITION_HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvMapGpaRange(
-    Partition: WHV_PARTITION_HANDLE,
-    SourceAddress: ?*anyopaque,
-    GuestAddress: u64,
-    SizeInBytes: u64,
-    Flags: WHV_MAP_GPA_RANGE_FLAGS,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvMapGpaRange2(
-    Partition: WHV_PARTITION_HANDLE,
-    Process: ?HANDLE,
-    SourceAddress: ?*anyopaque,
-    GuestAddress: u64,
-    SizeInBytes: u64,
-    Flags: WHV_MAP_GPA_RANGE_FLAGS,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvUnmapGpaRange(
-    Partition: WHV_PARTITION_HANDLE,
-    GuestAddress: u64,
-    SizeInBytes: u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvTranslateGva(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    Gva: u64,
-    TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
-    TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT,
-    Gpa: ?*u64,
+    Parameters: ?*const WHV_TRIGGER_PARAMETERS,
+    TriggerHandle: ?*?*anyopaque,
+    EventHandle: ?*?HANDLE,
 ) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreateVirtualProcessor(
@@ -2716,200 +3054,6 @@ pub extern "winhvplatform" fn WHvCreateVirtualProcessor2(
     PropertyCount: u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "winhvplatform" fn WHvDeleteVirtualProcessor(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvRunVirtualProcessor(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    ExitContext: ?*anyopaque,
-    ExitContextSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvCancelRunVirtualProcessor(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    Flags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVirtualProcessorRegisters(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    RegisterNames: [*]const WHV_REGISTER_NAME,
-    RegisterCount: u32,
-    RegisterValues: [*]WHV_REGISTER_VALUE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetVirtualProcessorRegisters(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    RegisterNames: [*]const WHV_REGISTER_NAME,
-    RegisterCount: u32,
-    RegisterValues: [*]const WHV_REGISTER_VALUE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    State: ?*anyopaque,
-    StateSize: u32,
-    WrittenSize: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    State: ?*const anyopaque,
-    StateSize: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvRequestInterrupt(
-    Partition: WHV_PARTITION_HANDLE,
-    Interrupt: ?*const WHV_INTERRUPT_CONTROL,
-    InterruptControlSize: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVirtualProcessorXsaveState(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*anyopaque,
-    BufferSizeInBytes: u32,
-    BytesWritten: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetVirtualProcessorXsaveState(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*const anyopaque,
-    BufferSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvQueryGpaRangeDirtyBitmap(
-    Partition: WHV_PARTITION_HANDLE,
-    GuestAddress: u64,
-    RangeSizeInBytes: u64,
-    // TODO: what to do with BytesParamIndex 4?
-    Bitmap: ?*u64,
-    BitmapSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetPartitionCounters(
-    Partition: WHV_PARTITION_HANDLE,
-    CounterSet: WHV_PARTITION_COUNTER_SET,
-    // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*anyopaque,
-    BufferSizeInBytes: u32,
-    BytesWritten: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVirtualProcessorCounters(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    CounterSet: WHV_PROCESSOR_COUNTER_SET,
-    // TODO: what to do with BytesParamIndex 4?
-    Buffer: ?*anyopaque,
-    BufferSizeInBytes: u32,
-    BytesWritten: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState2(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    State: ?*anyopaque,
-    StateSize: u32,
-    WrittenSize: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState2(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    State: ?*const anyopaque,
-    StateSize: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvRegisterPartitionDoorbellEvent(
-    Partition: WHV_PARTITION_HANDLE,
-    MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
-    EventHandle: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvUnregisterPartitionDoorbellEvent(
-    Partition: WHV_PARTITION_HANDLE,
-    MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvAdviseGpaRange(
-    Partition: WHV_PARTITION_HANDLE,
-    GpaRanges: [*]const WHV_MEMORY_RANGE_ENTRY,
-    GpaRangesCount: u32,
-    Advice: WHV_ADVISE_GPA_RANGE_CODE,
-    // TODO: what to do with BytesParamIndex 5?
-    AdviceBuffer: ?*const anyopaque,
-    AdviceBufferSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvReadGpaRange(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    GuestAddress: u64,
-    Controls: WHV_ACCESS_GPA_CONTROLS,
-    // TODO: what to do with BytesParamIndex 5?
-    Data: ?*anyopaque,
-    DataSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvWriteGpaRange(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    GuestAddress: u64,
-    Controls: WHV_ACCESS_GPA_CONTROLS,
-    // TODO: what to do with BytesParamIndex 5?
-    Data: ?*const anyopaque,
-    DataSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSignalVirtualProcessorSynicEvent(
-    Partition: WHV_PARTITION_HANDLE,
-    SynicEvent: WHV_SYNIC_EVENT_PARAMETERS,
-    NewlySignaled: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVirtualProcessorState(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    StateType: WHV_VIRTUAL_PROCESSOR_STATE_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
-    Buffer: ?*anyopaque,
-    BufferSizeInBytes: u32,
-    BytesWritten: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetVirtualProcessorState(
-    Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    StateType: WHV_VIRTUAL_PROCESSOR_STATE_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
-    Buffer: ?*const anyopaque,
-    BufferSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvAllocateVpciResource(
-    ProviderId: ?*const Guid,
-    Flags: WHV_ALLOCATE_VPCI_RESOURCE_FLAGS,
-    ResourceDescriptor: ?[*]const u8,
-    ResourceDescriptorSizeInBytes: u32,
-    VpciResource: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
 pub extern "winhvplatform" fn WHvCreateVpciDevice(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
@@ -2918,114 +3062,13 @@ pub extern "winhvplatform" fn WHvCreateVpciDevice(
     NotificationEventHandle: ?HANDLE,
 ) callconv(.winapi) HRESULT;
 
-pub extern "winhvplatform" fn WHvDeleteVpciDevice(
+pub extern "winhvplatform" fn WHvDeleteNotificationPort(
     Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
+    PortHandle: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub extern "winhvplatform" fn WHvGetVpciDeviceProperty(
+pub extern "winhvplatform" fn WHvDeletePartition(
     Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    PropertyCode: WHV_VPCI_DEVICE_PROPERTY_CODE,
-    // TODO: what to do with BytesParamIndex 4?
-    PropertyBuffer: ?*anyopaque,
-    PropertyBufferSizeInBytes: u32,
-    WrittenSizeInBytes: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVpciDeviceNotification(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    // TODO: what to do with BytesParamIndex 3?
-    Notification: ?*WHV_VPCI_DEVICE_NOTIFICATION,
-    NotificationSizeInBytes: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvMapVpciDeviceMmioRanges(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    MappingCount: ?*u32,
-    Mappings: ?*?*WHV_VPCI_MMIO_MAPPING,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvUnmapVpciDeviceMmioRanges(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetVpciDevicePowerState(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    PowerState: DEVICE_POWER_STATE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvReadVpciDeviceRegister(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    Register: ?*const WHV_VPCI_DEVICE_REGISTER,
-    Data: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvWriteVpciDeviceRegister(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    Register: ?*const WHV_VPCI_DEVICE_REGISTER,
-    Data: ?*const anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvMapVpciDeviceInterrupt(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    Index: u32,
-    MessageCount: u32,
-    Target: ?*const WHV_VPCI_INTERRUPT_TARGET,
-    MsiAddress: ?*u64,
-    MsiData: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvUnmapVpciDeviceInterrupt(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    Index: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvRetargetVpciDeviceInterrupt(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    MsiAddress: u64,
-    MsiData: u32,
-    Target: ?*const WHV_VPCI_INTERRUPT_TARGET,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvRequestVpciDeviceInterrupt(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    MsiAddress: u64,
-    MsiData: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetVpciDeviceInterruptTarget(
-    Partition: WHV_PARTITION_HANDLE,
-    LogicalDeviceId: u64,
-    Index: u32,
-    MultiMessageNumber: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    Target: ?*WHV_VPCI_INTERRUPT_TARGET,
-    TargetSizeInBytes: u32,
-    BytesWritten: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvCreateTrigger(
-    Partition: WHV_PARTITION_HANDLE,
-    Parameters: ?*const WHV_TRIGGER_PARAMETERS,
-    TriggerHandle: ?*?*anyopaque,
-    EventHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvUpdateTriggerParameters(
-    Partition: WHV_PARTITION_HANDLE,
-    Parameters: ?*const WHV_TRIGGER_PARAMETERS,
-    TriggerHandle: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvDeleteTrigger(
@@ -3033,67 +3076,14 @@ pub extern "winhvplatform" fn WHvDeleteTrigger(
     TriggerHandle: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub extern "winhvplatform" fn WHvCreateNotificationPort(
-    Partition: WHV_PARTITION_HANDLE,
-    Parameters: ?*const WHV_NOTIFICATION_PORT_PARAMETERS,
-    EventHandle: ?HANDLE,
-    PortHandle: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvSetNotificationPortProperty(
-    Partition: WHV_PARTITION_HANDLE,
-    PortHandle: ?*anyopaque,
-    PropertyCode: WHV_NOTIFICATION_PORT_PROPERTY_CODE,
-    PropertyValue: u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvDeleteNotificationPort(
-    Partition: WHV_PARTITION_HANDLE,
-    PortHandle: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvPostVirtualProcessorSynicMessage(
+pub extern "winhvplatform" fn WHvDeleteVirtualProcessor(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    SintIndex: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    Message: ?*const anyopaque,
-    MessageSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "winhvplatform" fn WHvGetVirtualProcessorCpuidOutput(
+pub extern "winhvplatform" fn WHvDeleteVpciDevice(
     Partition: WHV_PARTITION_HANDLE,
-    VpIndex: u32,
-    Eax: u32,
-    Ecx: u32,
-    CpuidOutput: ?*WHV_CPUID_OUTPUT,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvGetInterruptTargetVpSet(
-    Partition: WHV_PARTITION_HANDLE,
-    Destination: u64,
-    DestinationMode: WHV_INTERRUPT_DESTINATION_MODE,
-    TargetVps: [*]u32,
-    VpCount: u32,
-    TargetVpCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvStartPartitionMigration(
-    Partition: WHV_PARTITION_HANDLE,
-    MigrationHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvCancelPartitionMigration(
-    Partition: WHV_PARTITION_HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvCompletePartitionMigration(
-    Partition: WHV_PARTITION_HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "winhvplatform" fn WHvAcceptPartitionMigration(
-    MigrationHandle: ?HANDLE,
-    Partition: ?*WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
 ) callconv(.winapi) HRESULT;
 
 pub extern "winhvemulation" fn WHvEmulatorCreateEmulator(
@@ -3121,368 +3111,378 @@ pub extern "winhvemulation" fn WHvEmulatorTryMmioEmulation(
     EmulatorReturnStatus: ?*WHV_EMULATOR_STATUS,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmdevicehost" fn HdvInitializeDeviceHost(
-    computeSystem: HCS_SYSTEM,
-    deviceHostHandle: ?*?*anyopaque,
+pub extern "winhvplatform" fn WHvGetCapability(
+    CapabilityCode: WHV_CAPABILITY_CODE,
+    // TODO: what to do with BytesParamIndex 2?
+    CapabilityBuffer: ?*anyopaque,
+    CapabilityBufferSizeInBytes: u32,
+    WrittenSizeInBytes: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmdevicehost" fn HdvTeardownDeviceHost(
-    deviceHostHandle: ?*anyopaque,
+pub extern "winhvplatform" fn WHvGetInterruptTargetVpSet(
+    Partition: WHV_PARTITION_HANDLE,
+    Destination: u64,
+    DestinationMode: WHV_INTERRUPT_DESTINATION_MODE,
+    TargetVps: [*]u32,
+    VpCount: u32,
+    TargetVpCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmdevicehost" fn HdvCreateDeviceInstance(
-    deviceHostHandle: ?*anyopaque,
-    deviceType: HDV_DEVICE_TYPE,
-    deviceClassId: ?*const Guid,
-    deviceInstanceId: ?*const Guid,
-    deviceInterface: ?*const anyopaque,
-    deviceContext: ?*anyopaque,
-    deviceHandle: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvReadGuestMemory(
-    requestor: ?*anyopaque,
-    guestPhysicalAddress: u64,
-    byteCount: u32,
-    buffer: [*:0]u8,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvWriteGuestMemory(
-    requestor: ?*anyopaque,
-    guestPhysicalAddress: u64,
-    byteCount: u32,
-    buffer: [*:0]const u8,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvCreateGuestMemoryAperture(
-    requestor: ?*anyopaque,
-    guestPhysicalAddress: u64,
-    byteCount: u32,
-    writeProtected: BOOL,
-    mappedAddress: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvDestroyGuestMemoryAperture(
-    requestor: ?*anyopaque,
-    mappedAddress: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvDeliverGuestInterrupt(
-    requestor: ?*anyopaque,
-    msiAddress: u64,
-    msiData: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvRegisterDoorbell(
-    requestor: ?*anyopaque,
-    BarIndex: HDV_PCI_BAR_SELECTOR,
-    BarOffset: u64,
-    TriggerValue: u64,
-    Flags: u64,
-    DoorbellEvent: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvUnregisterDoorbell(
-    requestor: ?*anyopaque,
-    BarIndex: HDV_PCI_BAR_SELECTOR,
-    BarOffset: u64,
-    TriggerValue: u64,
-    Flags: u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvCreateSectionBackedMmioRange(
-    requestor: ?*anyopaque,
-    barIndex: HDV_PCI_BAR_SELECTOR,
-    offsetInPages: u64,
-    lengthInPages: u64,
-    MappingFlags: HDV_MMIO_MAPPING_FLAGS,
-    sectionHandle: ?HANDLE,
-    sectionOffsetInPages: u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmdevicehost" fn HdvDestroySectionBackedMmioRange(
-    requestor: ?*anyopaque,
-    barIndex: HDV_PCI_BAR_SELECTOR,
-    offsetInPages: u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn LocateSavedStateFiles(
-    vmName: ?[*:0]const u16,
-    snapshotName: ?[*:0]const u16,
-    binPath: ?*?PWSTR,
-    vsvPath: ?*?PWSTR,
-    vmrsPath: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn LoadSavedStateFile(
-    vmrsFile: ?[*:0]const u16,
-    vmSavedStateDumpHandle: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ApplyPendingSavedStateFileReplayLog(
-    vmrsFile: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn LoadSavedStateFiles(
-    binFile: ?[*:0]const u16,
-    vsvFile: ?[*:0]const u16,
-    vmSavedStateDumpHandle: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ReleaseSavedStateFiles(
-    vmSavedStateDumpHandle: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetGuestEnabledVirtualTrustLevels(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    virtualTrustLevels: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetGuestOsInfo(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    virtualTrustLevel: u8,
-    guestOsInfo: ?*GUEST_OS_INFO,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetVpCount(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetArchitecture(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    architecture: ?*VIRTUAL_PROCESSOR_ARCH,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ForceArchitecture(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    architecture: VIRTUAL_PROCESSOR_ARCH,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetActiveVirtualTrustLevel(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    virtualTrustLevel: ?*u8,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetEnabledVirtualTrustLevels(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    virtualTrustLevels: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ForceActiveVirtualTrustLevel(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    virtualTrustLevel: u8,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn IsActiveVirtualTrustLevelEnabled(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    activeVirtualTrustLevelEnabled: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn IsNestedVirtualizationEnabled(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    enabled: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetNestedVirtualizationMode(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    enabled: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ForceNestedHostMode(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    hostMode: BOOL,
-    oldMode: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn InKernelSpace(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    inKernelSpace: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetRegisterValue(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    registerId: u32,
-    registerValue: ?*VIRTUAL_PROCESSOR_REGISTER,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetPagingMode(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    pagingMode: ?*PAGING_MODE,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ForcePagingMode(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    pagingMode: PAGING_MODE,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ReadGuestPhysicalAddress(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    physicalAddress: u64,
+pub extern "winhvplatform" fn WHvGetPartitionCounters(
+    Partition: WHV_PARTITION_HANDLE,
+    CounterSet: WHV_PARTITION_COUNTER_SET,
     // TODO: what to do with BytesParamIndex 3?
-    buffer: ?*anyopaque,
-    bufferSize: u32,
-    bytesRead: ?*u32,
+    Buffer: ?*anyopaque,
+    BufferSizeInBytes: u32,
+    BytesWritten: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn GuestVirtualAddressToPhysicalAddress(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    virtualAddress: u64,
-    physicalAddress: ?*u64,
-    unmappedRegionSize: ?*u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GetGuestPhysicalMemoryChunks(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    memoryChunkPageSize: ?*u64,
-    memoryChunks: ?*GPA_MEMORY_CHUNK,
-    memoryChunkCount: ?*u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn GuestPhysicalAddressToRawSavedMemoryOffset(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    physicalAddress: u64,
-    rawSavedMemoryOffset: ?*u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "vmsavedstatedumpprovider" fn ReadGuestRawSavedMemory(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    rawSavedMemoryOffset: u64,
+pub extern "winhvplatform" fn WHvGetPartitionProperty(
+    Partition: WHV_PARTITION_HANDLE,
+    PropertyCode: WHV_PARTITION_PROPERTY_CODE,
     // TODO: what to do with BytesParamIndex 3?
-    buffer: ?*anyopaque,
-    bufferSize: u32,
-    bytesRead: ?*u32,
+    PropertyBuffer: ?*anyopaque,
+    PropertyBufferSizeInBytes: u32,
+    WrittenSizeInBytes: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn GetGuestRawSavedMemorySize(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    guestRawSavedMemorySize: ?*u64,
+pub extern "winhvplatform" fn WHvGetVirtualProcessorCounters(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    CounterSet: WHV_PROCESSOR_COUNTER_SET,
+    // TODO: what to do with BytesParamIndex 4?
+    Buffer: ?*anyopaque,
+    BufferSizeInBytes: u32,
+    BytesWritten: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn SetMemoryBlockCacheLimit(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    memoryBlockCacheLimit: u64,
+pub extern "winhvplatform" fn WHvGetVirtualProcessorCpuidOutput(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    Eax: u32,
+    Ecx: u32,
+    CpuidOutput: ?*WHV_CPUID_OUTPUT,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn GetMemoryBlockCacheLimit(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    memoryBlockCacheLimit: ?*u64,
+pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    State: ?*anyopaque,
+    StateSize: u32,
+    WrittenSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn ApplyGuestMemoryFix(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    virtualAddress: u64,
-    fixBuffer: ?*anyopaque,
-    fixBufferSize: u32,
+pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState2(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    State: ?*anyopaque,
+    StateSize: u32,
+    WrittenSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn LoadSavedStateSymbolProvider(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    userSymbols: ?[*:0]const u16,
-    force: BOOL,
+pub extern "winhvplatform" fn WHvGetVirtualProcessorRegisters(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    RegisterNames: [*]const WHV_REGISTER_NAME,
+    RegisterCount: u32,
+    RegisterValues: [*]WHV_REGISTER_VALUE,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn ReleaseSavedStateSymbolProvider(
-    vmSavedStateDumpHandle: ?*anyopaque,
+pub extern "winhvplatform" fn WHvGetVirtualProcessorState(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    StateType: WHV_VIRTUAL_PROCESSOR_STATE_TYPE,
+    // TODO: what to do with BytesParamIndex 4?
+    Buffer: ?*anyopaque,
+    BufferSizeInBytes: u32,
+    BytesWritten: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolProviderHandle(
-    vmSavedStateDumpHandle: ?*anyopaque,
-) callconv(.winapi) ?HANDLE;
-
-pub extern "vmsavedstatedumpprovider" fn SetSavedStateSymbolProviderDebugInfoCallback(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    Callback: ?GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK,
+pub extern "winhvplatform" fn WHvGetVirtualProcessorXsaveState(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*anyopaque,
+    BufferSizeInBytes: u32,
+    BytesWritten: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbols(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    imageName: ?[*:0]const u8,
-    moduleName: ?[*:0]const u8,
-    baseAddress: u64,
-    sizeOfBase: u32,
+pub extern "winhvplatform" fn WHvGetVpciDeviceInterruptTarget(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    Index: u32,
+    MultiMessageNumber: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    Target: ?*WHV_VPCI_INTERRUPT_TARGET,
+    TargetSizeInBytes: u32,
+    BytesWritten: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbolsEx(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    imageName: ?[*:0]const u8,
-    imageTimestamp: u32,
-    moduleName: ?[*:0]const u8,
-    baseAddress: u64,
-    sizeOfBase: u32,
+pub extern "winhvplatform" fn WHvGetVpciDeviceNotification(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    // TODO: what to do with BytesParamIndex 3?
+    Notification: ?*WHV_VPCI_DEVICE_NOTIFICATION,
+    NotificationSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn ResolveSavedStateGlobalVariableAddress(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    globalName: ?[*:0]const u8,
-    virtualAddress: ?*u64,
-    size: ?*u32,
+pub extern "winhvplatform" fn WHvGetVpciDeviceProperty(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    PropertyCode: WHV_VPCI_DEVICE_PROPERTY_CODE,
+    // TODO: what to do with BytesParamIndex 4?
+    PropertyBuffer: ?*anyopaque,
+    PropertyBufferSizeInBytes: u32,
+    WrittenSizeInBytes: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn ReadSavedStateGlobalVariable(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    globalName: ?[*:0]const u8,
-    buffer: ?*anyopaque,
-    bufferSize: u32,
+pub extern "winhvplatform" fn WHvMapGpaRange(
+    Partition: WHV_PARTITION_HANDLE,
+    SourceAddress: ?*anyopaque,
+    GuestAddress: u64,
+    SizeInBytes: u64,
+    Flags: WHV_MAP_GPA_RANGE_FLAGS,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolTypeSize(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    typeName: ?[*:0]const u8,
-    size: ?*u32,
+pub extern "winhvplatform" fn WHvMapGpaRange2(
+    Partition: WHV_PARTITION_HANDLE,
+    Process: ?HANDLE,
+    SourceAddress: ?*anyopaque,
+    GuestAddress: u64,
+    SizeInBytes: u64,
+    Flags: WHV_MAP_GPA_RANGE_FLAGS,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn FindSavedStateSymbolFieldInType(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    typeName: ?[*:0]const u8,
-    fieldName: ?[*:0]const u16,
-    offset: ?*u32,
-    found: ?*BOOL,
+pub extern "winhvplatform" fn WHvMapVpciDeviceInterrupt(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    Index: u32,
+    MessageCount: u32,
+    Target: ?*const WHV_VPCI_INTERRUPT_TARGET,
+    MsiAddress: ?*u64,
+    MsiData: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolFieldInfo(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    typeName: ?[*:0]const u8,
-    typeFieldInfoMap: ?*?PWSTR,
+pub extern "winhvplatform" fn WHvMapVpciDeviceMmioRanges(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    MappingCount: ?*u32,
+    Mappings: ?*?*WHV_VPCI_MMIO_MAPPING,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn ScanMemoryForDosImages(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    startAddress: u64,
-    endAddress: u64,
-    callbackContext: ?*anyopaque,
-    foundImageCallback: ?FOUND_IMAGE_CALLBACK,
-    standaloneAddress: ?*u64,
-    standaloneAddressCount: u32,
+pub extern "winhvplatform" fn WHvPostVirtualProcessorSynicMessage(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    SintIndex: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    Message: ?*const anyopaque,
+    MessageSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "vmsavedstatedumpprovider" fn CallStackUnwind(
-    vmSavedStateDumpHandle: ?*anyopaque,
-    vpId: u32,
-    imageInfo: ?*MODULE_INFO,
-    imageInfoCount: u32,
-    frameCount: u32,
-    callStack: ?*?PWSTR,
+pub extern "winhvplatform" fn WHvQueryGpaRangeDirtyBitmap(
+    Partition: WHV_PARTITION_HANDLE,
+    GuestAddress: u64,
+    RangeSizeInBytes: u64,
+    // TODO: what to do with BytesParamIndex 4?
+    Bitmap: ?*u64,
+    BitmapSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvReadGpaRange(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    GuestAddress: u64,
+    Controls: WHV_ACCESS_GPA_CONTROLS,
+    // TODO: what to do with BytesParamIndex 5?
+    Data: ?*anyopaque,
+    DataSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvReadVpciDeviceRegister(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    Register: ?*const WHV_VPCI_DEVICE_REGISTER,
+    Data: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvRegisterPartitionDoorbellEvent(
+    Partition: WHV_PARTITION_HANDLE,
+    MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
+    EventHandle: ?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvRequestInterrupt(
+    Partition: WHV_PARTITION_HANDLE,
+    Interrupt: ?*const WHV_INTERRUPT_CONTROL,
+    InterruptControlSize: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvRequestVpciDeviceInterrupt(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    MsiAddress: u64,
+    MsiData: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvResetPartition(
+    Partition: WHV_PARTITION_HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvResumePartitionTime(
+    Partition: WHV_PARTITION_HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvRetargetVpciDeviceInterrupt(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    MsiAddress: u64,
+    MsiData: u32,
+    Target: ?*const WHV_VPCI_INTERRUPT_TARGET,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvRunVirtualProcessor(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    ExitContext: ?*anyopaque,
+    ExitContextSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetNotificationPortProperty(
+    Partition: WHV_PARTITION_HANDLE,
+    PortHandle: ?*anyopaque,
+    PropertyCode: WHV_NOTIFICATION_PORT_PROPERTY_CODE,
+    PropertyValue: u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetPartitionProperty(
+    Partition: WHV_PARTITION_HANDLE,
+    PropertyCode: WHV_PARTITION_PROPERTY_CODE,
+    // TODO: what to do with BytesParamIndex 3?
+    PropertyBuffer: ?*const anyopaque,
+    PropertyBufferSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetupPartition(
+    Partition: WHV_PARTITION_HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    State: ?*const anyopaque,
+    StateSize: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState2(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    State: ?*const anyopaque,
+    StateSize: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetVirtualProcessorRegisters(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    RegisterNames: [*]const WHV_REGISTER_NAME,
+    RegisterCount: u32,
+    RegisterValues: [*]const WHV_REGISTER_VALUE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetVirtualProcessorState(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    StateType: WHV_VIRTUAL_PROCESSOR_STATE_TYPE,
+    // TODO: what to do with BytesParamIndex 4?
+    Buffer: ?*const anyopaque,
+    BufferSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetVirtualProcessorXsaveState(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*const anyopaque,
+    BufferSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSetVpciDevicePowerState(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    PowerState: DEVICE_POWER_STATE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSignalVirtualProcessorSynicEvent(
+    Partition: WHV_PARTITION_HANDLE,
+    SynicEvent: WHV_SYNIC_EVENT_PARAMETERS,
+    NewlySignaled: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvStartPartitionMigration(
+    Partition: WHV_PARTITION_HANDLE,
+    MigrationHandle: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvSuspendPartitionTime(
+    Partition: WHV_PARTITION_HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvTranslateGva(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    Gva: u64,
+    TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
+    TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT,
+    Gpa: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvUnmapGpaRange(
+    Partition: WHV_PARTITION_HANDLE,
+    GuestAddress: u64,
+    SizeInBytes: u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvUnmapVpciDeviceInterrupt(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    Index: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvUnmapVpciDeviceMmioRanges(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvUnregisterPartitionDoorbellEvent(
+    Partition: WHV_PARTITION_HANDLE,
+    MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvUpdateTriggerParameters(
+    Partition: WHV_PARTITION_HANDLE,
+    Parameters: ?*const WHV_TRIGGER_PARAMETERS,
+    TriggerHandle: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvWriteGpaRange(
+    Partition: WHV_PARTITION_HANDLE,
+    VpIndex: u32,
+    GuestAddress: u64,
+    Controls: WHV_ACCESS_GPA_CONTROLS,
+    // TODO: what to do with BytesParamIndex 5?
+    Data: ?*const anyopaque,
+    DataSizeInBytes: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "winhvplatform" fn WHvWriteVpciDeviceRegister(
+    Partition: WHV_PARTITION_HANDLE,
+    LogicalDeviceId: u64,
+    Register: ?*const WHV_VPCI_DEVICE_REGISTER,
+    Data: ?*const anyopaque,
 ) callconv(.winapi) HRESULT;
 
 
@@ -3504,23 +3504,23 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WHV_EMULATOR_IO_PORT_CALLBACK")) { _ = WHV_EMULATOR_IO_PORT_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_MEMORY_CALLBACK")) { _ = WHV_EMULATOR_MEMORY_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) { _ = WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) { _ = WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK")) { _ = WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_INITIALIZE")) { _ = HDV_PCI_DEVICE_INITIALIZE; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_TEARDOWN")) { _ = HDV_PCI_DEVICE_TEARDOWN; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_SET_CONFIGURATION")) { _ = HDV_PCI_DEVICE_SET_CONFIGURATION; }
+    if (@hasDecl(@This(), "FOUND_IMAGE_CALLBACK")) { _ = FOUND_IMAGE_CALLBACK; }
+    if (@hasDecl(@This(), "GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK")) { _ = GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK; }
     if (@hasDecl(@This(), "HDV_PCI_DEVICE_GET_DETAILS")) { _ = HDV_PCI_DEVICE_GET_DETAILS; }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_INITIALIZE")) { _ = HDV_PCI_DEVICE_INITIALIZE; }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_SET_CONFIGURATION")) { _ = HDV_PCI_DEVICE_SET_CONFIGURATION; }
     if (@hasDecl(@This(), "HDV_PCI_DEVICE_START")) { _ = HDV_PCI_DEVICE_START; }
     if (@hasDecl(@This(), "HDV_PCI_DEVICE_STOP")) { _ = HDV_PCI_DEVICE_STOP; }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_TEARDOWN")) { _ = HDV_PCI_DEVICE_TEARDOWN; }
     if (@hasDecl(@This(), "HDV_PCI_READ_CONFIG_SPACE")) { _ = HDV_PCI_READ_CONFIG_SPACE; }
-    if (@hasDecl(@This(), "HDV_PCI_WRITE_CONFIG_SPACE")) { _ = HDV_PCI_WRITE_CONFIG_SPACE; }
     if (@hasDecl(@This(), "HDV_PCI_READ_INTERCEPTED_MEMORY")) { _ = HDV_PCI_READ_INTERCEPTED_MEMORY; }
+    if (@hasDecl(@This(), "HDV_PCI_WRITE_CONFIG_SPACE")) { _ = HDV_PCI_WRITE_CONFIG_SPACE; }
     if (@hasDecl(@This(), "HDV_PCI_WRITE_INTERCEPTED_MEMORY")) { _ = HDV_PCI_WRITE_INTERCEPTED_MEMORY; }
-    if (@hasDecl(@This(), "GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK")) { _ = GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK; }
-    if (@hasDecl(@This(), "FOUND_IMAGE_CALLBACK")) { _ = FOUND_IMAGE_CALLBACK; }
+    if (@hasDecl(@This(), "WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) { _ = WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK; }
+    if (@hasDecl(@This(), "WHV_EMULATOR_IO_PORT_CALLBACK")) { _ = WHV_EMULATOR_IO_PORT_CALLBACK; }
+    if (@hasDecl(@This(), "WHV_EMULATOR_MEMORY_CALLBACK")) { _ = WHV_EMULATOR_MEMORY_CALLBACK; }
+    if (@hasDecl(@This(), "WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) { _ = WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK; }
+    if (@hasDecl(@This(), "WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK")) { _ = WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

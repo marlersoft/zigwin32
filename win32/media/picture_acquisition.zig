@@ -2,65 +2,162 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (38)
 //--------------------------------------------------------------------------------
-pub const PKEY_PhotoAcquire_RelativePathname = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 2 };
-pub const PKEY_PhotoAcquire_FinalFilename = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 3 };
-pub const PKEY_PhotoAcquire_GroupTag = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 4 };
-pub const PKEY_PhotoAcquire_TransferResult = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 5 };
-pub const PKEY_PhotoAcquire_OriginalFilename = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 6 };
-pub const PKEY_PhotoAcquire_CameraSequenceNumber = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 7 };
-pub const PKEY_PhotoAcquire_IntermediateFile = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 8 };
-pub const PKEY_PhotoAcquire_SkipImport = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 9 };
-pub const PKEY_PhotoAcquire_DuplicateDetectionID = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 10 };
-pub const PROGRESS_INDETERMINATE = @as(i32, -1);
-pub const PHOTOACQ_ERROR_RESTART_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180543));
-pub const PHOTOACQ_RUN_DEFAULT = @as(u32, 0);
-pub const PHOTOACQ_NO_GALLERY_LAUNCH = @as(u32, 1);
-pub const PHOTOACQ_DISABLE_AUTO_ROTATE = @as(u32, 2);
-pub const PHOTOACQ_DISABLE_PLUGINS = @as(u32, 4);
-pub const PHOTOACQ_DISABLE_GROUP_TAG_PROMPT = @as(u32, 8);
-pub const PHOTOACQ_DISABLE_DB_INTEGRATION = @as(u32, 16);
-pub const PHOTOACQ_DELETE_AFTER_ACQUIRE = @as(u32, 32);
-pub const PHOTOACQ_DISABLE_DUPLICATE_DETECTION = @as(u32, 64);
-pub const PHOTOACQ_ENABLE_THUMBNAIL_CACHING = @as(u32, 128);
-pub const PHOTOACQ_DISABLE_METADATA_WRITE = @as(u32, 256);
-pub const PHOTOACQ_DISABLE_THUMBNAIL_PROGRESS = @as(u32, 512);
-pub const PHOTOACQ_DISABLE_SETTINGS_LINK = @as(u32, 1024);
-pub const PHOTOACQ_ABORT_ON_SETTINGS_UPDATE = @as(u32, 2048);
-pub const PHOTOACQ_IMPORT_VIDEO_AS_MULTIPLE_FILES = @as(u32, 4096);
-pub const DSF_WPD_DEVICES = @as(u32, 1);
-pub const DSF_WIA_CAMERAS = @as(u32, 2);
-pub const DSF_WIA_SCANNERS = @as(u32, 4);
-pub const DSF_STI_DEVICES = @as(u32, 8);
-pub const DSF_TWAIN_DEVICES = @as(u32, 16);
-pub const DSF_FS_DEVICES = @as(u32, 32);
-pub const DSF_DV_DEVICES = @as(u32, 64);
 pub const DSF_ALL_DEVICES = @as(u32, 65535);
 pub const DSF_CPL_MODE = @as(u32, 65536);
+pub const DSF_DV_DEVICES = @as(u32, 64);
+pub const DSF_FS_DEVICES = @as(u32, 32);
 pub const DSF_SHOW_OFFLINE = @as(u32, 131072);
-pub const PAPS_PRESAVE = @as(u32, 0);
-pub const PAPS_POSTSAVE = @as(u32, 1);
+pub const DSF_STI_DEVICES = @as(u32, 8);
+pub const DSF_TWAIN_DEVICES = @as(u32, 16);
+pub const DSF_WIA_CAMERAS = @as(u32, 2);
+pub const DSF_WIA_SCANNERS = @as(u32, 4);
+pub const DSF_WPD_DEVICES = @as(u32, 1);
 pub const PAPS_CLEANUP = @as(u32, 2);
+pub const PAPS_POSTSAVE = @as(u32, 1);
+pub const PAPS_PRESAVE = @as(u32, 0);
+pub const PHOTOACQ_ABORT_ON_SETTINGS_UPDATE = @as(u32, 2048);
+pub const PHOTOACQ_DELETE_AFTER_ACQUIRE = @as(u32, 32);
+pub const PHOTOACQ_DISABLE_AUTO_ROTATE = @as(u32, 2);
+pub const PHOTOACQ_DISABLE_DB_INTEGRATION = @as(u32, 16);
+pub const PHOTOACQ_DISABLE_DUPLICATE_DETECTION = @as(u32, 64);
+pub const PHOTOACQ_DISABLE_GROUP_TAG_PROMPT = @as(u32, 8);
+pub const PHOTOACQ_DISABLE_METADATA_WRITE = @as(u32, 256);
+pub const PHOTOACQ_DISABLE_PLUGINS = @as(u32, 4);
+pub const PHOTOACQ_DISABLE_SETTINGS_LINK = @as(u32, 1024);
+pub const PHOTOACQ_DISABLE_THUMBNAIL_PROGRESS = @as(u32, 512);
+pub const PHOTOACQ_ENABLE_THUMBNAIL_CACHING = @as(u32, 128);
+pub const PHOTOACQ_ERROR_RESTART_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180543));
+pub const PHOTOACQ_IMPORT_VIDEO_AS_MULTIPLE_FILES = @as(u32, 4096);
+pub const PHOTOACQ_NO_GALLERY_LAUNCH = @as(u32, 1);
+pub const PHOTOACQ_RUN_DEFAULT = @as(u32, 0);
+pub const PKEY_PhotoAcquire_CameraSequenceNumber = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 7 };
+pub const PKEY_PhotoAcquire_DuplicateDetectionID = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 10 };
+pub const PKEY_PhotoAcquire_FinalFilename = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 3 };
+pub const PKEY_PhotoAcquire_GroupTag = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 4 };
+pub const PKEY_PhotoAcquire_IntermediateFile = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 8 };
+pub const PKEY_PhotoAcquire_OriginalFilename = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 6 };
+pub const PKEY_PhotoAcquire_RelativePathname = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 2 };
+pub const PKEY_PhotoAcquire_SkipImport = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 9 };
+pub const PKEY_PhotoAcquire_TransferResult = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 5 };
+pub const PROGRESS_INDETERMINATE = @as(i32, -1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-const CLSID_PhotoAcquire_Value = Guid.initString("00f26e02-e9f2-4a9f-9fdd-5a962fb26a98");
-pub const CLSID_PhotoAcquire = &CLSID_PhotoAcquire_Value;
+pub const DEVICE_SELECTION_DEVICE_TYPE = enum(i32) {
+    T_UNKNOWN_DEVICE = 0,
+    T_WPD_DEVICE = 1,
+    T_WIA_DEVICE = 2,
+    T_STI_DEVICE = 3,
+    F_TWAIN_DEVICE = 4,
+    T_FS_DEVICE = 5,
+    T_DV_DEVICE = 6,
+};
+pub const DST_UNKNOWN_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_UNKNOWN_DEVICE;
+pub const DST_WPD_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_WPD_DEVICE;
+pub const DST_WIA_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_WIA_DEVICE;
+pub const DST_STI_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_STI_DEVICE;
+pub const DSF_TWAIN_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.F_TWAIN_DEVICE;
+pub const DST_FS_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_FS_DEVICE;
+pub const DST_DV_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_DV_DEVICE;
 
-const CLSID_PhotoAcquireAutoPlayDropTarget_Value = Guid.initString("00f20eb5-8fd6-4d9d-b75e-36801766c8f1");
-pub const CLSID_PhotoAcquireAutoPlayDropTarget = &CLSID_PhotoAcquireAutoPlayDropTarget_Value;
+pub const ERROR_ADVISE_MESSAGE_TYPE = enum(i32) {
+    SKIPRETRYCANCEL = 0,
+    RETRYCANCEL = 1,
+    YESNO = 2,
+    OK = 3,
+};
+pub const PHOTOACQUIRE_ERROR_SKIPRETRYCANCEL = ERROR_ADVISE_MESSAGE_TYPE.SKIPRETRYCANCEL;
+pub const PHOTOACQUIRE_ERROR_RETRYCANCEL = ERROR_ADVISE_MESSAGE_TYPE.RETRYCANCEL;
+pub const PHOTOACQUIRE_ERROR_YESNO = ERROR_ADVISE_MESSAGE_TYPE.YESNO;
+pub const PHOTOACQUIRE_ERROR_OK = ERROR_ADVISE_MESSAGE_TYPE.OK;
 
-const CLSID_PhotoAcquireAutoPlayHWEventHandler_Value = Guid.initString("00f2b433-44e4-4d88-b2b0-2698a0a91dba");
-pub const CLSID_PhotoAcquireAutoPlayHWEventHandler = &CLSID_PhotoAcquireAutoPlayHWEventHandler_Value;
+pub const ERROR_ADVISE_RESULT = enum(i32) {
+    YES = 0,
+    NO = 1,
+    OK = 2,
+    SKIP = 3,
+    SKIP_ALL = 4,
+    RETRY = 5,
+    ABORT = 6,
+};
+pub const PHOTOACQUIRE_RESULT_YES = ERROR_ADVISE_RESULT.YES;
+pub const PHOTOACQUIRE_RESULT_NO = ERROR_ADVISE_RESULT.NO;
+pub const PHOTOACQUIRE_RESULT_OK = ERROR_ADVISE_RESULT.OK;
+pub const PHOTOACQUIRE_RESULT_SKIP = ERROR_ADVISE_RESULT.SKIP;
+pub const PHOTOACQUIRE_RESULT_SKIP_ALL = ERROR_ADVISE_RESULT.SKIP_ALL;
+pub const PHOTOACQUIRE_RESULT_RETRY = ERROR_ADVISE_RESULT.RETRY;
+pub const PHOTOACQUIRE_RESULT_ABORT = ERROR_ADVISE_RESULT.ABORT;
 
-const CLSID_PhotoAcquireOptionsDialog_Value = Guid.initString("00f210a1-62f0-438b-9f7e-9618d72a1831");
-pub const CLSID_PhotoAcquireOptionsDialog = &CLSID_PhotoAcquireOptionsDialog_Value;
+const IID_IPhotoAcquire_Value = Guid.initString("00f23353-e31b-4955-a8ad-ca5ebf31e2ce");
+pub const IID_IPhotoAcquire = &IID_IPhotoAcquire_Value;
+pub const IPhotoAcquire = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreatePhotoSource: *const fn(
+            self: *const IPhotoAcquire,
+            pszDevice: ?[*:0]const u16,
+            ppPhotoAcquireSource: ?*?*IPhotoAcquireSource,
+        ) callconv(.winapi) HRESULT,
+        Acquire: *const fn(
+            self: *const IPhotoAcquire,
+            pPhotoAcquireSource: ?*IPhotoAcquireSource,
+            fShowProgress: BOOL,
+            hWndParent: ?HWND,
+            pszApplicationName: ?[*:0]const u16,
+            pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
+        ) callconv(.winapi) HRESULT,
+        EnumResults: *const fn(
+            self: *const IPhotoAcquire,
+            ppEnumFilePaths: ?*?*IEnumString,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreatePhotoSource(self: *const IPhotoAcquire, pszDevice: ?[*:0]const u16, ppPhotoAcquireSource: ?*?*IPhotoAcquireSource) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePhotoSource(self, pszDevice, ppPhotoAcquireSource);
+    }
+    pub fn Acquire(self: *const IPhotoAcquire, pPhotoAcquireSource: ?*IPhotoAcquireSource, fShowProgress: BOOL, hWndParent: ?HWND, pszApplicationName: ?[*:0]const u16, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.@"inline") HRESULT {
+        return self.vtable.Acquire(self, pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
+    }
+    pub fn EnumResults(self: *const IPhotoAcquire, ppEnumFilePaths: ?*?*IEnumString) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumResults(self, ppEnumFilePaths);
+    }
+};
 
-const CLSID_PhotoProgressDialog_Value = Guid.initString("00f24ca0-748f-4e8a-894f-0e0357c6799f");
-pub const CLSID_PhotoProgressDialog = &CLSID_PhotoProgressDialog_Value;
-
-const CLSID_PhotoAcquireDeviceSelectionDialog_Value = Guid.initString("00f29a34-b8a1-482c-bcf8-3ac7b0fe8f62");
-pub const CLSID_PhotoAcquireDeviceSelectionDialog = &CLSID_PhotoAcquireDeviceSelectionDialog_Value;
+const IID_IPhotoAcquireDeviceSelectionDialog_Value = Guid.initString("00f28837-55dd-4f37-aaf5-6855a9640467");
+pub const IID_IPhotoAcquireDeviceSelectionDialog = &IID_IPhotoAcquireDeviceSelectionDialog_Value;
+pub const IPhotoAcquireDeviceSelectionDialog = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetTitle: *const fn(
+            self: *const IPhotoAcquireDeviceSelectionDialog,
+            pszTitle: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetSubmitButtonText: *const fn(
+            self: *const IPhotoAcquireDeviceSelectionDialog,
+            pszSubmitButtonText: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        DoModal: *const fn(
+            self: *const IPhotoAcquireDeviceSelectionDialog,
+            hWndParent: ?HWND,
+            dwDeviceFlags: u32,
+            pbstrDeviceId: ?*?BSTR,
+            pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetTitle(self: *const IPhotoAcquireDeviceSelectionDialog, pszTitle: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTitle(self, pszTitle);
+    }
+    pub fn SetSubmitButtonText(self: *const IPhotoAcquireDeviceSelectionDialog, pszSubmitButtonText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSubmitButtonText(self, pszSubmitButtonText);
+    }
+    pub fn DoModal(self: *const IPhotoAcquireDeviceSelectionDialog, hWndParent: ?HWND, dwDeviceFlags: u32, pbstrDeviceId: ?*?BSTR, pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.DoModal(self, hWndParent, dwDeviceFlags, pbstrDeviceId, pnDeviceType);
+    }
+};
 
 const IID_IPhotoAcquireItem_Value = Guid.initString("00f21c97-28bf-4c02-b842-5e4e90139a30");
 pub const IID_IPhotoAcquireItem = &IID_IPhotoAcquireItem_Value;
@@ -138,123 +235,93 @@ pub const IPhotoAcquireItem = extern union {
     }
 };
 
-pub const USER_INPUT_STRING_TYPE = enum(i32) {
-    DEFAULT = 0,
-    PATH_ELEMENT = 1,
-};
-pub const USER_INPUT_DEFAULT = USER_INPUT_STRING_TYPE.DEFAULT;
-pub const USER_INPUT_PATH_ELEMENT = USER_INPUT_STRING_TYPE.PATH_ELEMENT;
-
-const IID_IUserInputString_Value = Guid.initString("00f243a1-205b-45ba-ae26-abbc53aa7a6f");
-pub const IID_IUserInputString = &IID_IUserInputString_Value;
-pub const IUserInputString = extern union {
+const IID_IPhotoAcquireOptionsDialog_Value = Guid.initString("00f2b3ee-bf64-47ee-89f4-4dedd79643f2");
+pub const IID_IPhotoAcquireOptionsDialog = &IID_IPhotoAcquireOptionsDialog_Value;
+pub const IPhotoAcquireOptionsDialog = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSubmitButtonText: *const fn(
-            self: *const IUserInputString,
-            pbstrSubmitButtonText: ?*?BSTR,
+        Initialize: *const fn(
+            self: *const IPhotoAcquireOptionsDialog,
+            pszRegistryRoot: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
-        GetPrompt: *const fn(
-            self: *const IUserInputString,
-            pbstrPromptTitle: ?*?BSTR,
+        Create: *const fn(
+            self: *const IPhotoAcquireOptionsDialog,
+            hWndParent: ?HWND,
+            phWndDialog: ?*?HWND,
         ) callconv(.winapi) HRESULT,
-        GetStringId: *const fn(
-            self: *const IUserInputString,
-            pbstrStringId: ?*?BSTR,
+        Destroy: *const fn(
+            self: *const IPhotoAcquireOptionsDialog,
         ) callconv(.winapi) HRESULT,
-        GetStringType: *const fn(
-            self: *const IUserInputString,
-            pnStringType: ?*USER_INPUT_STRING_TYPE,
+        DoModal: *const fn(
+            self: *const IPhotoAcquireOptionsDialog,
+            hWndParent: ?HWND,
+            ppnReturnCode: ?*isize,
         ) callconv(.winapi) HRESULT,
-        GetTooltipText: *const fn(
-            self: *const IUserInputString,
-            pbstrTooltipText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetMaxLength: *const fn(
-            self: *const IUserInputString,
-            pcchMaxLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDefault: *const fn(
-            self: *const IUserInputString,
-            pbstrDefault: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetMruCount: *const fn(
-            self: *const IUserInputString,
-            pnMruCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetMruEntryAt: *const fn(
-            self: *const IUserInputString,
-            nIndex: u32,
-            pbstrMruEntry: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetImage: *const fn(
-            self: *const IUserInputString,
-            nSize: u32,
-            phBitmap: ?*?HBITMAP,
-            phIcon: ?*?HICON,
+        SaveData: *const fn(
+            self: *const IPhotoAcquireOptionsDialog,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSubmitButtonText(self: *const IUserInputString, pbstrSubmitButtonText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubmitButtonText(self, pbstrSubmitButtonText);
+    pub fn Initialize(self: *const IPhotoAcquireOptionsDialog, pszRegistryRoot: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pszRegistryRoot);
     }
-    pub fn GetPrompt(self: *const IUserInputString, pbstrPromptTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrompt(self, pbstrPromptTitle);
+    pub fn Create(self: *const IPhotoAcquireOptionsDialog, hWndParent: ?HWND, phWndDialog: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, hWndParent, phWndDialog);
     }
-    pub fn GetStringId(self: *const IUserInputString, pbstrStringId: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringId(self, pbstrStringId);
+    pub fn Destroy(self: *const IPhotoAcquireOptionsDialog) callconv(.@"inline") HRESULT {
+        return self.vtable.Destroy(self);
     }
-    pub fn GetStringType(self: *const IUserInputString, pnStringType: ?*USER_INPUT_STRING_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringType(self, pnStringType);
+    pub fn DoModal(self: *const IPhotoAcquireOptionsDialog, hWndParent: ?HWND, ppnReturnCode: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.DoModal(self, hWndParent, ppnReturnCode);
     }
-    pub fn GetTooltipText(self: *const IUserInputString, pbstrTooltipText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTooltipText(self, pbstrTooltipText);
-    }
-    pub fn GetMaxLength(self: *const IUserInputString, pcchMaxLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxLength(self, pcchMaxLength);
-    }
-    pub fn GetDefault(self: *const IUserInputString, pbstrDefault: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefault(self, pbstrDefault);
-    }
-    pub fn GetMruCount(self: *const IUserInputString, pnMruCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMruCount(self, pnMruCount);
-    }
-    pub fn GetMruEntryAt(self: *const IUserInputString, nIndex: u32, pbstrMruEntry: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMruEntryAt(self, nIndex, pbstrMruEntry);
-    }
-    pub fn GetImage(self: *const IUserInputString, nSize: u32, phBitmap: ?*?HBITMAP, phIcon: ?*?HICON) callconv(.@"inline") HRESULT {
-        return self.vtable.GetImage(self, nSize, phBitmap, phIcon);
+    pub fn SaveData(self: *const IPhotoAcquireOptionsDialog) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveData(self);
     }
 };
 
-pub const ERROR_ADVISE_MESSAGE_TYPE = enum(i32) {
-    SKIPRETRYCANCEL = 0,
-    RETRYCANCEL = 1,
-    YESNO = 2,
-    OK = 3,
+const IID_IPhotoAcquirePlugin_Value = Guid.initString("00f2dceb-ecb8-4f77-8e47-e7a987c83dd0");
+pub const IID_IPhotoAcquirePlugin = &IID_IPhotoAcquirePlugin_Value;
+pub const IPhotoAcquirePlugin = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IPhotoAcquirePlugin,
+            pPhotoAcquireSource: ?*IPhotoAcquireSource,
+            pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
+        ) callconv(.winapi) HRESULT,
+        ProcessItem: *const fn(
+            self: *const IPhotoAcquirePlugin,
+            dwAcquireStage: u32,
+            pPhotoAcquireItem: ?*IPhotoAcquireItem,
+            pOriginalItemStream: ?*IStream,
+            pszFinalFilename: ?[*:0]const u16,
+            pPropertyStore: ?*IPropertyStore,
+        ) callconv(.winapi) HRESULT,
+        TransferComplete: *const fn(
+            self: *const IPhotoAcquirePlugin,
+            hr: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        DisplayConfigureDialog: *const fn(
+            self: *const IPhotoAcquirePlugin,
+            hWndParent: ?HWND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IPhotoAcquirePlugin, pPhotoAcquireSource: ?*IPhotoAcquireSource, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pPhotoAcquireSource, pPhotoAcquireProgressCB);
+    }
+    pub fn ProcessItem(self: *const IPhotoAcquirePlugin, dwAcquireStage: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, pOriginalItemStream: ?*IStream, pszFinalFilename: ?[*:0]const u16, pPropertyStore: ?*IPropertyStore) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessItem(self, dwAcquireStage, pPhotoAcquireItem, pOriginalItemStream, pszFinalFilename, pPropertyStore);
+    }
+    pub fn TransferComplete(self: *const IPhotoAcquirePlugin, hr: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.TransferComplete(self, hr);
+    }
+    pub fn DisplayConfigureDialog(self: *const IPhotoAcquirePlugin, hWndParent: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.DisplayConfigureDialog(self, hWndParent);
+    }
 };
-pub const PHOTOACQUIRE_ERROR_SKIPRETRYCANCEL = ERROR_ADVISE_MESSAGE_TYPE.SKIPRETRYCANCEL;
-pub const PHOTOACQUIRE_ERROR_RETRYCANCEL = ERROR_ADVISE_MESSAGE_TYPE.RETRYCANCEL;
-pub const PHOTOACQUIRE_ERROR_YESNO = ERROR_ADVISE_MESSAGE_TYPE.YESNO;
-pub const PHOTOACQUIRE_ERROR_OK = ERROR_ADVISE_MESSAGE_TYPE.OK;
-
-pub const ERROR_ADVISE_RESULT = enum(i32) {
-    YES = 0,
-    NO = 1,
-    OK = 2,
-    SKIP = 3,
-    SKIP_ALL = 4,
-    RETRY = 5,
-    ABORT = 6,
-};
-pub const PHOTOACQUIRE_RESULT_YES = ERROR_ADVISE_RESULT.YES;
-pub const PHOTOACQUIRE_RESULT_NO = ERROR_ADVISE_RESULT.NO;
-pub const PHOTOACQUIRE_RESULT_OK = ERROR_ADVISE_RESULT.OK;
-pub const PHOTOACQUIRE_RESULT_SKIP = ERROR_ADVISE_RESULT.SKIP;
-pub const PHOTOACQUIRE_RESULT_SKIP_ALL = ERROR_ADVISE_RESULT.SKIP_ALL;
-pub const PHOTOACQUIRE_RESULT_RETRY = ERROR_ADVISE_RESULT.RETRY;
-pub const PHOTOACQUIRE_RESULT_ABORT = ERROR_ADVISE_RESULT.ABORT;
 
 const IID_IPhotoAcquireProgressCB_Value = Guid.initString("00f2ce1e-935e-4248-892c-130f32c45cb4");
 pub const IID_IPhotoAcquireProgressCB = &IID_IPhotoAcquireProgressCB_Value;
@@ -412,6 +479,179 @@ pub const IPhotoAcquireProgressCB = extern union {
     }
 };
 
+const IID_IPhotoAcquireSettings_Value = Guid.initString("00f2b868-dd67-487c-9553-049240767e91");
+pub const IID_IPhotoAcquireSettings = &IID_IPhotoAcquireSettings_Value;
+pub const IPhotoAcquireSettings = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitializeFromRegistry: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pszRegistryKey: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetFlags: *const fn(
+            self: *const IPhotoAcquireSettings,
+            dwPhotoAcquireFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        SetOutputFilenameTemplate: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pszTemplate: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetSequencePaddingWidth: *const fn(
+            self: *const IPhotoAcquireSettings,
+            dwWidth: u32,
+        ) callconv(.winapi) HRESULT,
+        SetSequenceZeroPadding: *const fn(
+            self: *const IPhotoAcquireSettings,
+            fZeroPad: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetGroupTag: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pszGroupTag: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetAcquisitionTime: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pftAcquisitionTime: ?*const FILETIME,
+        ) callconv(.winapi) HRESULT,
+        GetFlags: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pdwPhotoAcquireFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetOutputFilenameTemplate: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pbstrTemplate: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSequencePaddingWidth: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pdwWidth: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSequenceZeroPadding: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pfZeroPad: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetGroupTag: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pbstrGroupTag: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetAcquisitionTime: *const fn(
+            self: *const IPhotoAcquireSettings,
+            pftAcquisitionTime: ?*FILETIME,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitializeFromRegistry(self: *const IPhotoAcquireSettings, pszRegistryKey: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromRegistry(self, pszRegistryKey);
+    }
+    pub fn SetFlags(self: *const IPhotoAcquireSettings, dwPhotoAcquireFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFlags(self, dwPhotoAcquireFlags);
+    }
+    pub fn SetOutputFilenameTemplate(self: *const IPhotoAcquireSettings, pszTemplate: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOutputFilenameTemplate(self, pszTemplate);
+    }
+    pub fn SetSequencePaddingWidth(self: *const IPhotoAcquireSettings, dwWidth: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSequencePaddingWidth(self, dwWidth);
+    }
+    pub fn SetSequenceZeroPadding(self: *const IPhotoAcquireSettings, fZeroPad: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSequenceZeroPadding(self, fZeroPad);
+    }
+    pub fn SetGroupTag(self: *const IPhotoAcquireSettings, pszGroupTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGroupTag(self, pszGroupTag);
+    }
+    pub fn SetAcquisitionTime(self: *const IPhotoAcquireSettings, pftAcquisitionTime: ?*const FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAcquisitionTime(self, pftAcquisitionTime);
+    }
+    pub fn GetFlags(self: *const IPhotoAcquireSettings, pdwPhotoAcquireFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFlags(self, pdwPhotoAcquireFlags);
+    }
+    pub fn GetOutputFilenameTemplate(self: *const IPhotoAcquireSettings, pbstrTemplate: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputFilenameTemplate(self, pbstrTemplate);
+    }
+    pub fn GetSequencePaddingWidth(self: *const IPhotoAcquireSettings, pdwWidth: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSequencePaddingWidth(self, pdwWidth);
+    }
+    pub fn GetSequenceZeroPadding(self: *const IPhotoAcquireSettings, pfZeroPad: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSequenceZeroPadding(self, pfZeroPad);
+    }
+    pub fn GetGroupTag(self: *const IPhotoAcquireSettings, pbstrGroupTag: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGroupTag(self, pbstrGroupTag);
+    }
+    pub fn GetAcquisitionTime(self: *const IPhotoAcquireSettings, pftAcquisitionTime: ?*FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAcquisitionTime(self, pftAcquisitionTime);
+    }
+};
+
+const IID_IPhotoAcquireSource_Value = Guid.initString("00f2c703-8613-4282-a53b-6ec59c5883ac");
+pub const IID_IPhotoAcquireSource = &IID_IPhotoAcquireSource_Value;
+pub const IPhotoAcquireSource = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetFriendlyName: *const fn(
+            self: *const IPhotoAcquireSource,
+            pbstrFriendlyName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceIcons: *const fn(
+            self: *const IPhotoAcquireSource,
+            nSize: u32,
+            phLargeIcon: ?*?HICON,
+            phSmallIcon: ?*?HICON,
+        ) callconv(.winapi) HRESULT,
+        InitializeItemList: *const fn(
+            self: *const IPhotoAcquireSource,
+            fForceEnumeration: BOOL,
+            pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
+            pnItemCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetItemCount: *const fn(
+            self: *const IPhotoAcquireSource,
+            pnItemCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetItemAt: *const fn(
+            self: *const IPhotoAcquireSource,
+            nIndex: u32,
+            ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
+        ) callconv(.winapi) HRESULT,
+        GetPhotoAcquireSettings: *const fn(
+            self: *const IPhotoAcquireSource,
+            ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceId: *const fn(
+            self: *const IPhotoAcquireSource,
+            pbstrDeviceId: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        BindToObject: *const fn(
+            self: *const IPhotoAcquireSource,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetFriendlyName(self: *const IPhotoAcquireSource, pbstrFriendlyName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFriendlyName(self, pbstrFriendlyName);
+    }
+    pub fn GetDeviceIcons(self: *const IPhotoAcquireSource, nSize: u32, phLargeIcon: ?*?HICON, phSmallIcon: ?*?HICON) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceIcons(self, nSize, phLargeIcon, phSmallIcon);
+    }
+    pub fn InitializeItemList(self: *const IPhotoAcquireSource, fForceEnumeration: BOOL, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB, pnItemCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeItemList(self, fForceEnumeration, pPhotoAcquireProgressCB, pnItemCount);
+    }
+    pub fn GetItemCount(self: *const IPhotoAcquireSource, pnItemCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemCount(self, pnItemCount);
+    }
+    pub fn GetItemAt(self: *const IPhotoAcquireSource, nIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemAt(self, nIndex, ppPhotoAcquireItem);
+    }
+    pub fn GetPhotoAcquireSettings(self: *const IPhotoAcquireSource, ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPhotoAcquireSettings(self, ppPhotoAcquireSettings);
+    }
+    pub fn GetDeviceId(self: *const IPhotoAcquireSource, pbstrDeviceId: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceId(self, pbstrDeviceId);
+    }
+    pub fn BindToObject(self: *const IPhotoAcquireSource, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.BindToObject(self, riid, ppv);
+    }
+};
+
 const IID_IPhotoProgressActionCB_Value = Guid.initString("00f242d0-b206-4e7d-b4c1-4755bcbb9c9f");
 pub const IID_IPhotoProgressActionCB = &IID_IPhotoProgressActionCB_Value;
 pub const IPhotoProgressActionCB = extern union {
@@ -428,22 +668,6 @@ pub const IPhotoProgressActionCB = extern union {
         return self.vtable.DoAction(self, hWndParent);
     }
 };
-
-pub const PROGRESS_DIALOG_IMAGE_TYPE = enum(i32) {
-    ICON_SMALL = 0,
-    ICON_LARGE = 1,
-    ICON_THUMBNAIL = 2,
-    BITMAP_THUMBNAIL = 3,
-};
-pub const PROGRESS_DIALOG_ICON_SMALL = PROGRESS_DIALOG_IMAGE_TYPE.ICON_SMALL;
-pub const PROGRESS_DIALOG_ICON_LARGE = PROGRESS_DIALOG_IMAGE_TYPE.ICON_LARGE;
-pub const PROGRESS_DIALOG_ICON_THUMBNAIL = PROGRESS_DIALOG_IMAGE_TYPE.ICON_THUMBNAIL;
-pub const PROGRESS_DIALOG_BITMAP_THUMBNAIL = PROGRESS_DIALOG_IMAGE_TYPE.BITMAP_THUMBNAIL;
-
-pub const PROGRESS_DIALOG_CHECKBOX_ID = enum(i32) {
-    T = 0,
-};
-pub const PROGRESS_DIALOG_CHECKBOX_ID_DEFAULT = PROGRESS_DIALOG_CHECKBOX_ID.T;
 
 const IID_IPhotoProgressDialog_Value = Guid.initString("00f246f9-0750-4f08-9381-2cd8e906a4ae");
 pub const IID_IPhotoProgressDialog = &IID_IPhotoProgressDialog_Value;
@@ -590,353 +814,129 @@ pub const IPhotoProgressDialog = extern union {
     }
 };
 
-const IID_IPhotoAcquireSource_Value = Guid.initString("00f2c703-8613-4282-a53b-6ec59c5883ac");
-pub const IID_IPhotoAcquireSource = &IID_IPhotoAcquireSource_Value;
-pub const IPhotoAcquireSource = extern union {
+const IID_IUserInputString_Value = Guid.initString("00f243a1-205b-45ba-ae26-abbc53aa7a6f");
+pub const IID_IUserInputString = &IID_IUserInputString_Value;
+pub const IUserInputString = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFriendlyName: *const fn(
-            self: *const IPhotoAcquireSource,
-            pbstrFriendlyName: ?*?BSTR,
+        GetSubmitButtonText: *const fn(
+            self: *const IUserInputString,
+            pbstrSubmitButtonText: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        GetDeviceIcons: *const fn(
-            self: *const IPhotoAcquireSource,
-            nSize: u32,
-            phLargeIcon: ?*?HICON,
-            phSmallIcon: ?*?HICON,
+        GetPrompt: *const fn(
+            self: *const IUserInputString,
+            pbstrPromptTitle: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        InitializeItemList: *const fn(
-            self: *const IPhotoAcquireSource,
-            fForceEnumeration: BOOL,
-            pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
-            pnItemCount: ?*u32,
+        GetStringId: *const fn(
+            self: *const IUserInputString,
+            pbstrStringId: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        GetItemCount: *const fn(
-            self: *const IPhotoAcquireSource,
-            pnItemCount: ?*u32,
+        GetStringType: *const fn(
+            self: *const IUserInputString,
+            pnStringType: ?*USER_INPUT_STRING_TYPE,
         ) callconv(.winapi) HRESULT,
-        GetItemAt: *const fn(
-            self: *const IPhotoAcquireSource,
+        GetTooltipText: *const fn(
+            self: *const IUserInputString,
+            pbstrTooltipText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetMaxLength: *const fn(
+            self: *const IUserInputString,
+            pcchMaxLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetDefault: *const fn(
+            self: *const IUserInputString,
+            pbstrDefault: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetMruCount: *const fn(
+            self: *const IUserInputString,
+            pnMruCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetMruEntryAt: *const fn(
+            self: *const IUserInputString,
             nIndex: u32,
-            ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
+            pbstrMruEntry: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        GetPhotoAcquireSettings: *const fn(
-            self: *const IPhotoAcquireSource,
-            ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceId: *const fn(
-            self: *const IPhotoAcquireSource,
-            pbstrDeviceId: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        BindToObject: *const fn(
-            self: *const IPhotoAcquireSource,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
+        GetImage: *const fn(
+            self: *const IUserInputString,
+            nSize: u32,
+            phBitmap: ?*?HBITMAP,
+            phIcon: ?*?HICON,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFriendlyName(self: *const IPhotoAcquireSource, pbstrFriendlyName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFriendlyName(self, pbstrFriendlyName);
+    pub fn GetSubmitButtonText(self: *const IUserInputString, pbstrSubmitButtonText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubmitButtonText(self, pbstrSubmitButtonText);
     }
-    pub fn GetDeviceIcons(self: *const IPhotoAcquireSource, nSize: u32, phLargeIcon: ?*?HICON, phSmallIcon: ?*?HICON) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceIcons(self, nSize, phLargeIcon, phSmallIcon);
+    pub fn GetPrompt(self: *const IUserInputString, pbstrPromptTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrompt(self, pbstrPromptTitle);
     }
-    pub fn InitializeItemList(self: *const IPhotoAcquireSource, fForceEnumeration: BOOL, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB, pnItemCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeItemList(self, fForceEnumeration, pPhotoAcquireProgressCB, pnItemCount);
+    pub fn GetStringId(self: *const IUserInputString, pbstrStringId: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringId(self, pbstrStringId);
     }
-    pub fn GetItemCount(self: *const IPhotoAcquireSource, pnItemCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemCount(self, pnItemCount);
+    pub fn GetStringType(self: *const IUserInputString, pnStringType: ?*USER_INPUT_STRING_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringType(self, pnStringType);
     }
-    pub fn GetItemAt(self: *const IPhotoAcquireSource, nIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemAt(self, nIndex, ppPhotoAcquireItem);
+    pub fn GetTooltipText(self: *const IUserInputString, pbstrTooltipText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTooltipText(self, pbstrTooltipText);
     }
-    pub fn GetPhotoAcquireSettings(self: *const IPhotoAcquireSource, ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPhotoAcquireSettings(self, ppPhotoAcquireSettings);
+    pub fn GetMaxLength(self: *const IUserInputString, pcchMaxLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxLength(self, pcchMaxLength);
     }
-    pub fn GetDeviceId(self: *const IPhotoAcquireSource, pbstrDeviceId: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceId(self, pbstrDeviceId);
+    pub fn GetDefault(self: *const IUserInputString, pbstrDefault: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefault(self, pbstrDefault);
     }
-    pub fn BindToObject(self: *const IPhotoAcquireSource, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.BindToObject(self, riid, ppv);
+    pub fn GetMruCount(self: *const IUserInputString, pnMruCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMruCount(self, pnMruCount);
     }
-};
-
-const IID_IPhotoAcquire_Value = Guid.initString("00f23353-e31b-4955-a8ad-ca5ebf31e2ce");
-pub const IID_IPhotoAcquire = &IID_IPhotoAcquire_Value;
-pub const IPhotoAcquire = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreatePhotoSource: *const fn(
-            self: *const IPhotoAcquire,
-            pszDevice: ?[*:0]const u16,
-            ppPhotoAcquireSource: ?*?*IPhotoAcquireSource,
-        ) callconv(.winapi) HRESULT,
-        Acquire: *const fn(
-            self: *const IPhotoAcquire,
-            pPhotoAcquireSource: ?*IPhotoAcquireSource,
-            fShowProgress: BOOL,
-            hWndParent: ?HWND,
-            pszApplicationName: ?[*:0]const u16,
-            pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
-        ) callconv(.winapi) HRESULT,
-        EnumResults: *const fn(
-            self: *const IPhotoAcquire,
-            ppEnumFilePaths: ?*?*IEnumString,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreatePhotoSource(self: *const IPhotoAcquire, pszDevice: ?[*:0]const u16, ppPhotoAcquireSource: ?*?*IPhotoAcquireSource) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePhotoSource(self, pszDevice, ppPhotoAcquireSource);
+    pub fn GetMruEntryAt(self: *const IUserInputString, nIndex: u32, pbstrMruEntry: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMruEntryAt(self, nIndex, pbstrMruEntry);
     }
-    pub fn Acquire(self: *const IPhotoAcquire, pPhotoAcquireSource: ?*IPhotoAcquireSource, fShowProgress: BOOL, hWndParent: ?HWND, pszApplicationName: ?[*:0]const u16, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.@"inline") HRESULT {
-        return self.vtable.Acquire(self, pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
-    }
-    pub fn EnumResults(self: *const IPhotoAcquire, ppEnumFilePaths: ?*?*IEnumString) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumResults(self, ppEnumFilePaths);
+    pub fn GetImage(self: *const IUserInputString, nSize: u32, phBitmap: ?*?HBITMAP, phIcon: ?*?HICON) callconv(.@"inline") HRESULT {
+        return self.vtable.GetImage(self, nSize, phBitmap, phIcon);
     }
 };
 
-const IID_IPhotoAcquireSettings_Value = Guid.initString("00f2b868-dd67-487c-9553-049240767e91");
-pub const IID_IPhotoAcquireSettings = &IID_IPhotoAcquireSettings_Value;
-pub const IPhotoAcquireSettings = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitializeFromRegistry: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pszRegistryKey: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetFlags: *const fn(
-            self: *const IPhotoAcquireSettings,
-            dwPhotoAcquireFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        SetOutputFilenameTemplate: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pszTemplate: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetSequencePaddingWidth: *const fn(
-            self: *const IPhotoAcquireSettings,
-            dwWidth: u32,
-        ) callconv(.winapi) HRESULT,
-        SetSequenceZeroPadding: *const fn(
-            self: *const IPhotoAcquireSettings,
-            fZeroPad: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetGroupTag: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pszGroupTag: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetAcquisitionTime: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pftAcquisitionTime: ?*const FILETIME,
-        ) callconv(.winapi) HRESULT,
-        GetFlags: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pdwPhotoAcquireFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetOutputFilenameTemplate: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pbstrTemplate: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSequencePaddingWidth: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pdwWidth: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSequenceZeroPadding: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pfZeroPad: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetGroupTag: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pbstrGroupTag: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetAcquisitionTime: *const fn(
-            self: *const IPhotoAcquireSettings,
-            pftAcquisitionTime: ?*FILETIME,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitializeFromRegistry(self: *const IPhotoAcquireSettings, pszRegistryKey: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromRegistry(self, pszRegistryKey);
-    }
-    pub fn SetFlags(self: *const IPhotoAcquireSettings, dwPhotoAcquireFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFlags(self, dwPhotoAcquireFlags);
-    }
-    pub fn SetOutputFilenameTemplate(self: *const IPhotoAcquireSettings, pszTemplate: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOutputFilenameTemplate(self, pszTemplate);
-    }
-    pub fn SetSequencePaddingWidth(self: *const IPhotoAcquireSettings, dwWidth: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSequencePaddingWidth(self, dwWidth);
-    }
-    pub fn SetSequenceZeroPadding(self: *const IPhotoAcquireSettings, fZeroPad: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSequenceZeroPadding(self, fZeroPad);
-    }
-    pub fn SetGroupTag(self: *const IPhotoAcquireSettings, pszGroupTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGroupTag(self, pszGroupTag);
-    }
-    pub fn SetAcquisitionTime(self: *const IPhotoAcquireSettings, pftAcquisitionTime: ?*const FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAcquisitionTime(self, pftAcquisitionTime);
-    }
-    pub fn GetFlags(self: *const IPhotoAcquireSettings, pdwPhotoAcquireFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFlags(self, pdwPhotoAcquireFlags);
-    }
-    pub fn GetOutputFilenameTemplate(self: *const IPhotoAcquireSettings, pbstrTemplate: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputFilenameTemplate(self, pbstrTemplate);
-    }
-    pub fn GetSequencePaddingWidth(self: *const IPhotoAcquireSettings, pdwWidth: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSequencePaddingWidth(self, pdwWidth);
-    }
-    pub fn GetSequenceZeroPadding(self: *const IPhotoAcquireSettings, pfZeroPad: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSequenceZeroPadding(self, pfZeroPad);
-    }
-    pub fn GetGroupTag(self: *const IPhotoAcquireSettings, pbstrGroupTag: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGroupTag(self, pbstrGroupTag);
-    }
-    pub fn GetAcquisitionTime(self: *const IPhotoAcquireSettings, pftAcquisitionTime: ?*FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAcquisitionTime(self, pftAcquisitionTime);
-    }
-};
+const CLSID_PhotoAcquire_Value = Guid.initString("00f26e02-e9f2-4a9f-9fdd-5a962fb26a98");
+pub const CLSID_PhotoAcquire = &CLSID_PhotoAcquire_Value;
 
-const IID_IPhotoAcquireOptionsDialog_Value = Guid.initString("00f2b3ee-bf64-47ee-89f4-4dedd79643f2");
-pub const IID_IPhotoAcquireOptionsDialog = &IID_IPhotoAcquireOptionsDialog_Value;
-pub const IPhotoAcquireOptionsDialog = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IPhotoAcquireOptionsDialog,
-            pszRegistryRoot: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Create: *const fn(
-            self: *const IPhotoAcquireOptionsDialog,
-            hWndParent: ?HWND,
-            phWndDialog: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        Destroy: *const fn(
-            self: *const IPhotoAcquireOptionsDialog,
-        ) callconv(.winapi) HRESULT,
-        DoModal: *const fn(
-            self: *const IPhotoAcquireOptionsDialog,
-            hWndParent: ?HWND,
-            ppnReturnCode: ?*isize,
-        ) callconv(.winapi) HRESULT,
-        SaveData: *const fn(
-            self: *const IPhotoAcquireOptionsDialog,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IPhotoAcquireOptionsDialog, pszRegistryRoot: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pszRegistryRoot);
-    }
-    pub fn Create(self: *const IPhotoAcquireOptionsDialog, hWndParent: ?HWND, phWndDialog: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, hWndParent, phWndDialog);
-    }
-    pub fn Destroy(self: *const IPhotoAcquireOptionsDialog) callconv(.@"inline") HRESULT {
-        return self.vtable.Destroy(self);
-    }
-    pub fn DoModal(self: *const IPhotoAcquireOptionsDialog, hWndParent: ?HWND, ppnReturnCode: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.DoModal(self, hWndParent, ppnReturnCode);
-    }
-    pub fn SaveData(self: *const IPhotoAcquireOptionsDialog) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveData(self);
-    }
-};
+const CLSID_PhotoAcquireAutoPlayDropTarget_Value = Guid.initString("00f20eb5-8fd6-4d9d-b75e-36801766c8f1");
+pub const CLSID_PhotoAcquireAutoPlayDropTarget = &CLSID_PhotoAcquireAutoPlayDropTarget_Value;
 
-pub const DEVICE_SELECTION_DEVICE_TYPE = enum(i32) {
-    T_UNKNOWN_DEVICE = 0,
-    T_WPD_DEVICE = 1,
-    T_WIA_DEVICE = 2,
-    T_STI_DEVICE = 3,
-    F_TWAIN_DEVICE = 4,
-    T_FS_DEVICE = 5,
-    T_DV_DEVICE = 6,
-};
-pub const DST_UNKNOWN_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_UNKNOWN_DEVICE;
-pub const DST_WPD_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_WPD_DEVICE;
-pub const DST_WIA_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_WIA_DEVICE;
-pub const DST_STI_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_STI_DEVICE;
-pub const DSF_TWAIN_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.F_TWAIN_DEVICE;
-pub const DST_FS_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_FS_DEVICE;
-pub const DST_DV_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.T_DV_DEVICE;
+const CLSID_PhotoAcquireAutoPlayHWEventHandler_Value = Guid.initString("00f2b433-44e4-4d88-b2b0-2698a0a91dba");
+pub const CLSID_PhotoAcquireAutoPlayHWEventHandler = &CLSID_PhotoAcquireAutoPlayHWEventHandler_Value;
 
-const IID_IPhotoAcquireDeviceSelectionDialog_Value = Guid.initString("00f28837-55dd-4f37-aaf5-6855a9640467");
-pub const IID_IPhotoAcquireDeviceSelectionDialog = &IID_IPhotoAcquireDeviceSelectionDialog_Value;
-pub const IPhotoAcquireDeviceSelectionDialog = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetTitle: *const fn(
-            self: *const IPhotoAcquireDeviceSelectionDialog,
-            pszTitle: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetSubmitButtonText: *const fn(
-            self: *const IPhotoAcquireDeviceSelectionDialog,
-            pszSubmitButtonText: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        DoModal: *const fn(
-            self: *const IPhotoAcquireDeviceSelectionDialog,
-            hWndParent: ?HWND,
-            dwDeviceFlags: u32,
-            pbstrDeviceId: ?*?BSTR,
-            pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetTitle(self: *const IPhotoAcquireDeviceSelectionDialog, pszTitle: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTitle(self, pszTitle);
-    }
-    pub fn SetSubmitButtonText(self: *const IPhotoAcquireDeviceSelectionDialog, pszSubmitButtonText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSubmitButtonText(self, pszSubmitButtonText);
-    }
-    pub fn DoModal(self: *const IPhotoAcquireDeviceSelectionDialog, hWndParent: ?HWND, dwDeviceFlags: u32, pbstrDeviceId: ?*?BSTR, pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.DoModal(self, hWndParent, dwDeviceFlags, pbstrDeviceId, pnDeviceType);
-    }
-};
+const CLSID_PhotoAcquireDeviceSelectionDialog_Value = Guid.initString("00f29a34-b8a1-482c-bcf8-3ac7b0fe8f62");
+pub const CLSID_PhotoAcquireDeviceSelectionDialog = &CLSID_PhotoAcquireDeviceSelectionDialog_Value;
 
-const IID_IPhotoAcquirePlugin_Value = Guid.initString("00f2dceb-ecb8-4f77-8e47-e7a987c83dd0");
-pub const IID_IPhotoAcquirePlugin = &IID_IPhotoAcquirePlugin_Value;
-pub const IPhotoAcquirePlugin = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IPhotoAcquirePlugin,
-            pPhotoAcquireSource: ?*IPhotoAcquireSource,
-            pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
-        ) callconv(.winapi) HRESULT,
-        ProcessItem: *const fn(
-            self: *const IPhotoAcquirePlugin,
-            dwAcquireStage: u32,
-            pPhotoAcquireItem: ?*IPhotoAcquireItem,
-            pOriginalItemStream: ?*IStream,
-            pszFinalFilename: ?[*:0]const u16,
-            pPropertyStore: ?*IPropertyStore,
-        ) callconv(.winapi) HRESULT,
-        TransferComplete: *const fn(
-            self: *const IPhotoAcquirePlugin,
-            hr: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        DisplayConfigureDialog: *const fn(
-            self: *const IPhotoAcquirePlugin,
-            hWndParent: ?HWND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IPhotoAcquirePlugin, pPhotoAcquireSource: ?*IPhotoAcquireSource, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pPhotoAcquireSource, pPhotoAcquireProgressCB);
-    }
-    pub fn ProcessItem(self: *const IPhotoAcquirePlugin, dwAcquireStage: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, pOriginalItemStream: ?*IStream, pszFinalFilename: ?[*:0]const u16, pPropertyStore: ?*IPropertyStore) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessItem(self, dwAcquireStage, pPhotoAcquireItem, pOriginalItemStream, pszFinalFilename, pPropertyStore);
-    }
-    pub fn TransferComplete(self: *const IPhotoAcquirePlugin, hr: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.TransferComplete(self, hr);
-    }
-    pub fn DisplayConfigureDialog(self: *const IPhotoAcquirePlugin, hWndParent: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.DisplayConfigureDialog(self, hWndParent);
-    }
+const CLSID_PhotoAcquireOptionsDialog_Value = Guid.initString("00f210a1-62f0-438b-9f7e-9618d72a1831");
+pub const CLSID_PhotoAcquireOptionsDialog = &CLSID_PhotoAcquireOptionsDialog_Value;
+
+const CLSID_PhotoProgressDialog_Value = Guid.initString("00f24ca0-748f-4e8a-894f-0e0357c6799f");
+pub const CLSID_PhotoProgressDialog = &CLSID_PhotoProgressDialog_Value;
+
+pub const PROGRESS_DIALOG_CHECKBOX_ID = enum(i32) {
+    T = 0,
 };
+pub const PROGRESS_DIALOG_CHECKBOX_ID_DEFAULT = PROGRESS_DIALOG_CHECKBOX_ID.T;
+
+pub const PROGRESS_DIALOG_IMAGE_TYPE = enum(i32) {
+    ICON_SMALL = 0,
+    ICON_LARGE = 1,
+    ICON_THUMBNAIL = 2,
+    BITMAP_THUMBNAIL = 3,
+};
+pub const PROGRESS_DIALOG_ICON_SMALL = PROGRESS_DIALOG_IMAGE_TYPE.ICON_SMALL;
+pub const PROGRESS_DIALOG_ICON_LARGE = PROGRESS_DIALOG_IMAGE_TYPE.ICON_LARGE;
+pub const PROGRESS_DIALOG_ICON_THUMBNAIL = PROGRESS_DIALOG_IMAGE_TYPE.ICON_THUMBNAIL;
+pub const PROGRESS_DIALOG_BITMAP_THUMBNAIL = PROGRESS_DIALOG_IMAGE_TYPE.BITMAP_THUMBNAIL;
+
+pub const USER_INPUT_STRING_TYPE = enum(i32) {
+    DEFAULT = 0,
+    PATH_ELEMENT = 1,
+};
+pub const USER_INPUT_DEFAULT = USER_INPUT_STRING_TYPE.DEFAULT;
+pub const USER_INPUT_PATH_ELEMENT = USER_INPUT_STRING_TYPE.PATH_ELEMENT;
 
 
 //--------------------------------------------------------------------------------

@@ -7,30 +7,88 @@
 // Section: Types (9)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationScriptEvents_Value = Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
-pub const IID_IWebApplicationScriptEvents = &IID_IWebApplicationScriptEvents_Value;
-pub const IWebApplicationScriptEvents = extern union {
+const IID_IWebApplicationActivation_Value = Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
+pub const IID_IWebApplicationActivation = &IID_IWebApplicationActivation_Value;
+pub const IWebApplicationActivation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeforeScriptExecute: *const fn(
-            self: *const IWebApplicationScriptEvents,
-            htmlWindow: ?*IHTMLWindow2,
-        ) callconv(.winapi) HRESULT,
-        ScriptError: *const fn(
-            self: *const IWebApplicationScriptEvents,
-            htmlWindow: ?*IHTMLWindow2,
-            scriptError: ?*IActiveScriptError,
-            url: ?[*:0]const u16,
-            errorHandled: BOOL,
+        CancelPendingActivation: *const fn(
+            self: *const IWebApplicationActivation,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeforeScriptExecute(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2) callconv(.@"inline") HRESULT {
-        return self.vtable.BeforeScriptExecute(self, htmlWindow);
+    pub fn CancelPendingActivation(self: *const IWebApplicationActivation) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelPendingActivation(self);
     }
-    pub fn ScriptError(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ScriptError(self, htmlWindow, scriptError, url, errorHandled);
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationAuthoringMode_Value = Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
+pub const IID_IWebApplicationAuthoringMode = &IID_IWebApplicationAuthoringMode_Value;
+pub const IWebApplicationAuthoringMode = extern union {
+    pub const VTable = extern struct {
+        base: IServiceProvider.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AuthoringClientBinary: *const fn(
+            self: *const IWebApplicationAuthoringMode,
+            designModeDllPath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IServiceProvider: IServiceProvider,
+    IUnknown: IUnknown,
+    pub fn get_AuthoringClientBinary(self: *const IWebApplicationAuthoringMode, designModeDllPath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AuthoringClientBinary(self, designModeDllPath);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationHost_Value = Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
+pub const IID_IWebApplicationHost = &IID_IWebApplicationHost_Value;
+pub const IWebApplicationHost = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HWND: *const fn(
+            self: *const IWebApplicationHost,
+            hwnd: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Document: *const fn(
+            self: *const IWebApplicationHost,
+            htmlDocument: ?*?*IHTMLDocument2,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const IWebApplicationHost,
+        ) callconv(.winapi) HRESULT,
+        Advise: *const fn(
+            self: *const IWebApplicationHost,
+            interfaceId: ?*const Guid,
+            callback: ?*IUnknown,
+            cookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Unadvise: *const fn(
+            self: *const IWebApplicationHost,
+            cookie: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_HWND(self: *const IWebApplicationHost, hwnd: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HWND(self, hwnd);
+    }
+    pub fn get_Document(self: *const IWebApplicationHost, htmlDocument: ?*?*IHTMLDocument2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Document(self, htmlDocument);
+    }
+    pub fn Refresh(self: *const IWebApplicationHost) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn Advise(self: *const IWebApplicationHost, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Advise(self, interfaceId, callback, cookie);
+    }
+    pub fn Unadvise(self: *const IWebApplicationHost, cookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Unadvise(self, cookie);
     }
 };
 
@@ -94,6 +152,34 @@ pub const IWebApplicationNavigationEvents = extern union {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationScriptEvents_Value = Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
+pub const IID_IWebApplicationScriptEvents = &IID_IWebApplicationScriptEvents_Value;
+pub const IWebApplicationScriptEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BeforeScriptExecute: *const fn(
+            self: *const IWebApplicationScriptEvents,
+            htmlWindow: ?*IHTMLWindow2,
+        ) callconv(.winapi) HRESULT,
+        ScriptError: *const fn(
+            self: *const IWebApplicationScriptEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            scriptError: ?*IActiveScriptError,
+            url: ?[*:0]const u16,
+            errorHandled: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn BeforeScriptExecute(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2) callconv(.@"inline") HRESULT {
+        return self.vtable.BeforeScriptExecute(self, htmlWindow);
+    }
+    pub fn ScriptError(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ScriptError(self, htmlWindow, scriptError, url, errorHandled);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationUIEvents_Value = Guid.initString("5b2b3f99-328c-41d5-a6f7-7483ed8e71dd");
 pub const IID_IWebApplicationUIEvents = &IID_IWebApplicationUIEvents_Value;
 pub const IWebApplicationUIEvents = extern union {
@@ -132,92 +218,6 @@ pub const IWebApplicationUpdateEvents = extern union {
     }
     pub fn OnCssChanged(self: *const IWebApplicationUpdateEvents) callconv(.@"inline") HRESULT {
         return self.vtable.OnCssChanged(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationHost_Value = Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
-pub const IID_IWebApplicationHost = &IID_IWebApplicationHost_Value;
-pub const IWebApplicationHost = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HWND: *const fn(
-            self: *const IWebApplicationHost,
-            hwnd: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Document: *const fn(
-            self: *const IWebApplicationHost,
-            htmlDocument: ?*?*IHTMLDocument2,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const IWebApplicationHost,
-        ) callconv(.winapi) HRESULT,
-        Advise: *const fn(
-            self: *const IWebApplicationHost,
-            interfaceId: ?*const Guid,
-            callback: ?*IUnknown,
-            cookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Unadvise: *const fn(
-            self: *const IWebApplicationHost,
-            cookie: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_HWND(self: *const IWebApplicationHost, hwnd: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HWND(self, hwnd);
-    }
-    pub fn get_Document(self: *const IWebApplicationHost, htmlDocument: ?*?*IHTMLDocument2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Document(self, htmlDocument);
-    }
-    pub fn Refresh(self: *const IWebApplicationHost) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn Advise(self: *const IWebApplicationHost, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Advise(self, interfaceId, callback, cookie);
-    }
-    pub fn Unadvise(self: *const IWebApplicationHost, cookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Unadvise(self, cookie);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationActivation_Value = Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
-pub const IID_IWebApplicationActivation = &IID_IWebApplicationActivation_Value;
-pub const IWebApplicationActivation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CancelPendingActivation: *const fn(
-            self: *const IWebApplicationActivation,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CancelPendingActivation(self: *const IWebApplicationActivation) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelPendingActivation(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationAuthoringMode_Value = Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
-pub const IID_IWebApplicationAuthoringMode = &IID_IWebApplicationAuthoringMode_Value;
-pub const IWebApplicationAuthoringMode = extern union {
-    pub const VTable = extern struct {
-        base: IServiceProvider.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthoringClientBinary: *const fn(
-            self: *const IWebApplicationAuthoringMode,
-            designModeDllPath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IServiceProvider: IServiceProvider,
-    IUnknown: IUnknown,
-    pub fn get_AuthoringClientBinary(self: *const IWebApplicationAuthoringMode, designModeDllPath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AuthoringClientBinary(self, designModeDllPath);
     }
 };
 

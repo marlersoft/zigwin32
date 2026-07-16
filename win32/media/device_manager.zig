@@ -2,283 +2,283 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (277)
 //--------------------------------------------------------------------------------
+pub const ALLOW_OUTOFBAND_NOTIFICATION = @as(u32, 2);
+pub const DO_NOT_VIRTUALIZE_STORAGES_AS_DEVICES = @as(u32, 1);
+pub const EVENT_WMDM_CONTENT_TRANSFER = Guid.initString("339c9bf4-bcfe-4ed8-94df-eaf8c26ab61b");
+pub const g_wszAudioWAVECodec = "WMDM/AudioWAVECodec";
+pub const g_wszVideoFourCCCodec = "WMDM/VideoFourCCCodec";
+pub const g_wszWMDMAlbumArt = "WMDM/AlbumArt";
+pub const g_wszWMDMAlbumArtist = "WMDM/AlbumArtist";
+pub const g_wszWMDMAlbumCoverData = "WMDM/AlbumCoverData";
+pub const g_wszWMDMAlbumCoverDuration = "WMDM/AlbumCoverDuration";
+pub const g_wszWMDMAlbumCoverFormat = "WMDM/AlbumCoverFormat";
+pub const g_wszWMDMAlbumCoverHeight = "WMDM/AlbumCoverHeight";
+pub const g_wszWMDMAlbumCoverSize = "WMDM/AlbumCoverSize";
+pub const g_wszWMDMAlbumCoverWidth = "WMDM/AlbumCoverWidth";
+pub const g_wszWMDMAlbumTitle = "WMDM/AlbumTitle";
+pub const g_wszWMDMAudioBitDepth = "WMDM/AudioBitDepth";
+pub const g_wszWMDMAuthor = "WMDM/Author";
+pub const g_wszWMDMAuthorDate = "WMDM/AuthorDate";
+pub const g_wszWMDMBitrate = "WMDM/Bitrate";
+pub const g_wszWMDMBitRateType = "WMDM/BitRateType";
+pub const g_wszWMDMBlockAlignment = "WMDM/BlockAlignment";
+pub const g_wszWMDMBufferSize = "WMDM/BufferSize";
+pub const g_wszWMDMBuyNow = "WMDM/BuyNow";
+pub const g_wszWMDMByteBookmark = "WMDM/ByteBookmark";
+pub const g_wszWMDMCategory = "WMDM/Category";
+pub const g_wszWMDMCodec = "WMDM/Codec";
+pub const g_wszWMDMCollectionID = "WMDM/CollectionID";
+pub const g_wszWMDMComposer = "WMDM/Composer";
+pub const g_wszWMDMDataLength = "WMDM/DataLength";
+pub const g_wszWMDMDataOffset = "WMDM/DataOffset";
+pub const g_wszWMDMDataUnits = "WMDM/DataUnits";
+pub const g_wszWMDMDescription = "WMDM/Description";
+pub const g_wszWMDMDestinationURL = "WMDM/DestinationURL";
+pub const g_wszWMDMDeviceFirmwareVersion = "WMDM/DeviceFirmwareVersion";
+pub const g_wszWMDMDeviceFriendlyName = "WMDM/DeviceFriendlyName";
+pub const g_wszWMDMDeviceModelName = "WMDM/DeviceModelName";
+pub const g_wszWMDMDevicePlayCount = "WMDM/DevicePlayCount";
+pub const g_wszWMDMDeviceProtocol = "WMDM/DeviceProtocol";
+pub const g_wszWMDMDeviceRevocationInfo = "WMDM/DeviceRevocationInfo";
+pub const g_wszWMDMDeviceServiceProviderVendor = "WMDM/DeviceServiceProviderVendor";
+pub const g_wszWMDMDeviceVendorExtension = "WMDM/DeviceVendorExtension";
+pub const g_wszWMDMDRMId = "WMDM/DRMId";
+pub const g_wszWMDMDuration = "WMDM/Duration";
+pub const g_wszWMDMediaClassPrimaryID = "WMDM/MediaClassPrimaryID";
+pub const g_wszWMDMEditor = "WMDM/Editor";
+pub const g_wszWMDMEncodingProfile = "WMDM/EncodingProfile";
+pub const g_wszWMDMFileAttributes = "WMDM/FileAttributes";
+pub const g_wszWMDMFileCreationDate = "WMDM/FileCreationDate";
+pub const g_wszWMDMFileName = "WMDM/FileName";
+pub const g_wszWMDMFileSize = "WMDM/FileSize";
+pub const g_wszWMDMFormatCode = "WMDM/FormatCode";
+pub const g_wszWMDMFormatsSupported = "WMDM/FormatsSupported";
+pub const g_wszWMDMFormatsSupportedAreOrdered = "WMDM/FormatsSupportedAreOrdered";
+pub const g_wszWMDMFrameRate = "WMDM/FrameRate";
+pub const g_wszWMDMGenre = "WMDM/Genre";
+pub const g_wszWMDMHeight = "WMDM/Height";
+pub const g_wszWMDMIsProtected = "WMDM/IsProtected";
+pub const g_wszWMDMIsRepeat = "WMDM/IsRepeat";
+pub const g_wszWMDMKeyFrameDistance = "WMDM/KeyFrameDistance";
+pub const g_wszWMDMLastModifiedDate = "WMDM/LastModifiedDate";
+pub const g_wszWMDMMediaClassSecondaryID = "WMDM/MediaClassSecondaryID";
+pub const g_wszWMDMMediaCredits = "WMDM/MediaCredits";
+pub const g_wszWMDMMediaGuid = "WMDM/MediaGuid";
+pub const g_wszWMDMMediaOriginalBroadcastDateTime = "WMDM/MediaOriginalBroadcastDateTime";
+pub const g_wszWMDMMediaOriginalChannel = "WMDM/MediaOriginalChannel";
+pub const g_wszWMDMMediaStationName = "WMDM/MediaStationName";
+pub const g_wszWMDMMetaGenre = "WMDM/MetaGenre";
+pub const g_wszWMDMNonConsumable = "WMDM/NonConsumable";
+pub const g_wszWMDMNumChannels = "WMDM/NumChannels";
+pub const g_wszWMDMObjectBookmark = "WMDM/ObjectBookmark";
+pub const g_wszWMDMOwner = "WMDM/Owner";
+pub const g_wszWMDMParentalRating = "WMDM/ParentalRating";
+pub const g_wszWMDMPersistentUniqueID = "WMDM/PersistentUniqueID";
+pub const g_wszWMDMPlayCount = "WMDM/PlayCount";
+pub const g_wszWMDMProviderCopyright = "WMDM/ProviderCopyright";
+pub const g_wszWMDMQualitySetting = "WMDM/QualitySetting";
+pub const g_wszWMDMSampleRate = "WMDM/SampleRate";
+pub const g_wszWMDMScanType = "WMDM/ScanType";
+pub const g_wszWMDMSourceURL = "WMDM/SourceURL";
+pub const g_wszWMDMSubTitle = "WMDM/SubTitle";
+pub const g_wszWMDMSubTitleDescription = "WMDM/SubTitleDescription";
+pub const g_wszWMDMSupportedDeviceProperties = "WMDM/SupportedDeviceProperties";
+pub const g_wszWMDMSyncID = "WMDM/SyncID";
+pub const g_wszWMDMSyncRelationshipID = "WMDM/SyncRelationshipID";
+pub const g_wszWMDMSyncTime = "WMDM/SyncTime";
+pub const g_wszWMDMTimeBookmark = "WMDM/TimeBookmark";
+pub const g_wszWMDMTimeToLive = "WMDM/TimeToLive";
+pub const g_wszWMDMTitle = "WMDM/Title";
+pub const g_wszWMDMTotalBitrate = "WMDM/TotalBitrate";
+pub const g_wszWMDMTrack = "WMDM/Track";
+pub const g_wszWMDMTrackMood = "WMDM/TrackMood";
+pub const g_wszWMDMUserEffectiveRating = "WMDM/UserEffectiveRating";
+pub const g_wszWMDMUserLastPlayTime = "WMDM/UserLastPlayTime";
+pub const g_wszWMDMUserRating = "WMDM/UserRating";
+pub const g_wszWMDMUserRatingOnDevice = "WMDM/UserRatingOnDevice";
+pub const g_wszWMDMVideoBitrate = "WMDM/VideoBitrate";
+pub const g_wszWMDMWebmaster = "WMDM/Webmaster";
+pub const g_wszWMDMWidth = "WMDM/Width";
+pub const g_wszWMDMYear = "WMDM/Year";
+pub const g_wszWPDPassthroughPropertyValues = "WPD/PassthroughPropertyValues";
 pub const IOCTL_MTP_CUSTOM_COMMAND = @as(u32, 827348045);
+pub const MDSP_READ = @as(u32, 1);
+pub const MDSP_SEEK_BOF = @as(u32, 1);
+pub const MDSP_SEEK_CUR = @as(u32, 2);
+pub const MDSP_SEEK_EOF = @as(u32, 4);
+pub const MDSP_WRITE = @as(u32, 2);
+pub const MTP_COMMAND_MAX_PARAMS = @as(u32, 5);
+pub const MTP_NEXTPHASE_NO_DATA = @as(u32, 3);
 pub const MTP_NEXTPHASE_READ_DATA = @as(u32, 1);
 pub const MTP_NEXTPHASE_WRITE_DATA = @as(u32, 2);
-pub const MTP_NEXTPHASE_NO_DATA = @as(u32, 3);
+pub const MTP_RESPONSE_MAX_PARAMS = @as(u32, 5);
+pub const MTP_RESPONSE_OK = @as(u16, 8193);
 pub const RSA_KEY_LEN = @as(u32, 64);
-pub const SAC_SESSION_KEYLEN = @as(u32, 8);
-pub const SAC_PROTOCOL_WMDM = @as(u32, 1);
-pub const SAC_PROTOCOL_V1 = @as(u32, 2);
-pub const SAC_CERT_X509 = @as(u32, 1);
 pub const SAC_CERT_V1 = @as(u32, 2);
+pub const SAC_CERT_X509 = @as(u32, 1);
+pub const SAC_MAC_LEN = @as(u32, 8);
+pub const SAC_PROTOCOL_V1 = @as(u32, 2);
+pub const SAC_PROTOCOL_WMDM = @as(u32, 1);
+pub const SAC_SESSION_KEYLEN = @as(u32, 8);
+pub const SCP_EVENTID_ACQSECURECLOCK = Guid.initString("86248cc9-4a59-43e2-9146-48a7f3f4140c");
+pub const SCP_EVENTID_DRMINFO = Guid.initString("213dd287-41d2-432b-9e3f-3b4f7b3581dd");
+pub const SCP_EVENTID_NEEDTOINDIV = Guid.initString("87a507c7-b469-4386-b976-d5d1ce538a6f");
+pub const SCP_PARAMID_DRMVERSION = Guid.initString("41d0155d-7cc7-4217-ada9-005074624da4");
+pub const WMDM_APP_REVOKED = @as(u32, 2);
+pub const WMDM_CONTENT_FILE = @as(u32, 4);
+pub const WMDM_CONTENT_FOLDER = @as(u32, 8);
+pub const WMDM_CONTENT_OPERATIONINTERFACE = @as(u32, 16);
+pub const WMDM_DEVICE_PROTOCOL_MSC = Guid.initString("a4d2c26c-a881-44bb-bd5d-1f703c71f7a9");
 pub const WMDM_DEVICE_PROTOCOL_MTP = Guid.initString("979e54e5-0afc-4604-8d93-dc798a4bcf45");
 pub const WMDM_DEVICE_PROTOCOL_RAPI = Guid.initString("2a11ed91-8c8f-41e4-82d1-8386e003561c");
-pub const WMDM_DEVICE_PROTOCOL_MSC = Guid.initString("a4d2c26c-a881-44bb-bd5d-1f703c71f7a9");
-pub const WMDM_SERVICE_PROVIDER_VENDOR_MICROSOFT = Guid.initString("7de8686d-78ee-43ea-a496-c625ac91cc5d");
-pub const WMDMID_LENGTH = @as(u32, 128);
-pub const WMDM_MAC_LENGTH = @as(u32, 8);
-pub const WMDM_S_NOT_ALL_PROPERTIES_APPLIED = @as(i32, 282625);
-pub const WMDM_S_NOT_ALL_PROPERTIES_RETRIEVED = @as(i32, 282626);
-pub const WMDM_E_BUSY = @as(i32, -2147201024);
-pub const WMDM_E_INTERFACEDEAD = @as(i32, -2147201023);
-pub const WMDM_E_INVALIDTYPE = @as(i32, -2147201022);
-pub const WMDM_E_PROCESSFAILED = @as(i32, -2147201021);
-pub const WMDM_E_NOTSUPPORTED = @as(i32, -2147201020);
-pub const WMDM_E_NOTCERTIFIED = @as(i32, -2147201019);
-pub const WMDM_E_NORIGHTS = @as(i32, -2147201018);
-pub const WMDM_E_CALL_OUT_OF_SEQUENCE = @as(i32, -2147201017);
-pub const WMDM_E_BUFFERTOOSMALL = @as(i32, -2147201016);
-pub const WMDM_E_MOREDATA = @as(i32, -2147201015);
-pub const WMDM_E_MAC_CHECK_FAILED = @as(i32, -2147201014);
-pub const WMDM_E_USER_CANCELLED = @as(i32, -2147201013);
-pub const WMDM_E_SDMI_TRIGGER = @as(i32, -2147201012);
-pub const WMDM_E_SDMI_NOMORECOPIES = @as(i32, -2147201011);
-pub const WMDM_E_REVOKED = @as(i32, -2147201010);
-pub const WMDM_E_LICENSE_NOTEXIST = @as(i32, -2147201009);
-pub const WMDM_E_INCORRECT_APPSEC = @as(i32, -2147201008);
-pub const WMDM_E_INCORRECT_RIGHTS = @as(i32, -2147201007);
-pub const WMDM_E_LICENSE_EXPIRED = @as(i32, -2147201006);
-pub const WMDM_E_CANTOPEN_PMSN_SERVICE_PIPE = @as(i32, -2147201005);
-pub const WMDM_E_TOO_MANY_SESSIONS = @as(i32, -2147201005);
-pub const WMDM_WMDM_REVOKED = @as(u32, 1);
-pub const WMDM_APP_REVOKED = @as(u32, 2);
-pub const WMDM_SP_REVOKED = @as(u32, 4);
-pub const WMDM_SCP_REVOKED = @as(u32, 8);
-pub const WMDM_GET_FORMAT_SUPPORT_AUDIO = @as(u32, 1);
-pub const WMDM_GET_FORMAT_SUPPORT_VIDEO = @as(u32, 2);
-pub const WMDM_GET_FORMAT_SUPPORT_FILE = @as(u32, 4);
-pub const WMDM_RIGHTS_PLAYBACKCOUNT = @as(u32, 1);
-pub const WMDM_RIGHTS_EXPIRATIONDATE = @as(u32, 2);
-pub const WMDM_RIGHTS_GROUPID = @as(u32, 4);
-pub const WMDM_RIGHTS_FREESERIALIDS = @as(u32, 8);
-pub const WMDM_RIGHTS_NAMEDSERIALIDS = @as(u32, 16);
-pub const WMDM_DEVICE_TYPE_PLAYBACK = @as(u32, 1);
-pub const WMDM_DEVICE_TYPE_RECORD = @as(u32, 2);
 pub const WMDM_DEVICE_TYPE_DECODE = @as(u32, 4);
 pub const WMDM_DEVICE_TYPE_ENCODE = @as(u32, 8);
-pub const WMDM_DEVICE_TYPE_STORAGE = @as(u32, 16);
-pub const WMDM_DEVICE_TYPE_VIRTUAL = @as(u32, 32);
-pub const WMDM_DEVICE_TYPE_SDMI = @as(u32, 64);
-pub const WMDM_DEVICE_TYPE_NONSDMI = @as(u32, 128);
-pub const WMDM_DEVICE_TYPE_NONREENTRANT = @as(u32, 256);
 pub const WMDM_DEVICE_TYPE_FILELISTRESYNC = @as(u32, 512);
+pub const WMDM_DEVICE_TYPE_NONREENTRANT = @as(u32, 256);
+pub const WMDM_DEVICE_TYPE_NONSDMI = @as(u32, 128);
+pub const WMDM_DEVICE_TYPE_PLAYBACK = @as(u32, 1);
+pub const WMDM_DEVICE_TYPE_RECORD = @as(u32, 2);
+pub const WMDM_DEVICE_TYPE_SDMI = @as(u32, 64);
+pub const WMDM_DEVICE_TYPE_STORAGE = @as(u32, 16);
 pub const WMDM_DEVICE_TYPE_VIEW_PREF_METADATAVIEW = @as(u32, 1024);
+pub const WMDM_DEVICE_TYPE_VIRTUAL = @as(u32, 32);
+pub const WMDM_DEVICECAP_CANPAUSE = @as(u32, 16);
+pub const WMDM_DEVICECAP_CANPLAY = @as(u32, 1);
+pub const WMDM_DEVICECAP_CANRECORD = @as(u32, 4);
+pub const WMDM_DEVICECAP_CANRESUME = @as(u32, 32);
+pub const WMDM_DEVICECAP_CANSEEK = @as(u32, 128);
+pub const WMDM_DEVICECAP_CANSTOP = @as(u32, 64);
+pub const WMDM_DEVICECAP_CANSTREAMPLAY = @as(u32, 2);
+pub const WMDM_DEVICECAP_CANSTREAMRECORD = @as(u32, 8);
+pub const WMDM_DEVICECAP_HASSECURECLOCK = @as(u32, 256);
+pub const WMDM_E_BUFFERTOOSMALL = @as(i32, -2147201016);
+pub const WMDM_E_BUSY = @as(i32, -2147201024);
+pub const WMDM_E_CALL_OUT_OF_SEQUENCE = @as(i32, -2147201017);
+pub const WMDM_E_CANTOPEN_PMSN_SERVICE_PIPE = @as(i32, -2147201005);
+pub const WMDM_E_INCORRECT_APPSEC = @as(i32, -2147201008);
+pub const WMDM_E_INCORRECT_RIGHTS = @as(i32, -2147201007);
+pub const WMDM_E_INTERFACEDEAD = @as(i32, -2147201023);
+pub const WMDM_E_INVALIDTYPE = @as(i32, -2147201022);
+pub const WMDM_E_LICENSE_EXPIRED = @as(i32, -2147201006);
+pub const WMDM_E_LICENSE_NOTEXIST = @as(i32, -2147201009);
+pub const WMDM_E_MAC_CHECK_FAILED = @as(i32, -2147201014);
+pub const WMDM_E_MOREDATA = @as(i32, -2147201015);
+pub const WMDM_E_NORIGHTS = @as(i32, -2147201018);
+pub const WMDM_E_NOTCERTIFIED = @as(i32, -2147201019);
+pub const WMDM_E_NOTSUPPORTED = @as(i32, -2147201020);
+pub const WMDM_E_PROCESSFAILED = @as(i32, -2147201021);
+pub const WMDM_E_REVOKED = @as(i32, -2147201010);
+pub const WMDM_E_SDMI_NOMORECOPIES = @as(i32, -2147201011);
+pub const WMDM_E_SDMI_TRIGGER = @as(i32, -2147201012);
+pub const WMDM_E_TOO_MANY_SESSIONS = @as(i32, -2147201005);
+pub const WMDM_E_USER_CANCELLED = @as(i32, -2147201013);
+pub const WMDM_FILE_ATTR_AUDIO = @as(u32, 4096);
+pub const WMDM_FILE_ATTR_AUDIOBOOK = @as(u32, 2097152);
+pub const WMDM_FILE_ATTR_CANDELETE = @as(u32, 32768);
+pub const WMDM_FILE_ATTR_CANMOVE = @as(u32, 65536);
+pub const WMDM_FILE_ATTR_CANPLAY = @as(u32, 16384);
+pub const WMDM_FILE_ATTR_CANREAD = @as(u32, 262144);
+pub const WMDM_FILE_ATTR_CANRENAME = @as(u32, 131072);
+pub const WMDM_FILE_ATTR_DATA = @as(u32, 8192);
+pub const WMDM_FILE_ATTR_FILE = @as(u32, 32);
+pub const WMDM_FILE_ATTR_FOLDER = @as(u32, 8);
+pub const WMDM_FILE_ATTR_HIDDEN = @as(u32, 4194304);
+pub const WMDM_FILE_ATTR_LINK = @as(u32, 16);
+pub const WMDM_FILE_ATTR_MUSIC = @as(u32, 524288);
+pub const WMDM_FILE_ATTR_READONLY = @as(u32, 16777216);
+pub const WMDM_FILE_ATTR_SYSTEM = @as(u32, 8388608);
+pub const WMDM_FILE_ATTR_VIDEO = @as(u32, 64);
+pub const WMDM_FILE_CREATE_OVERWRITE = @as(u32, 1048576);
+pub const WMDM_GET_FORMAT_SUPPORT_AUDIO = @as(u32, 1);
+pub const WMDM_GET_FORMAT_SUPPORT_FILE = @as(u32, 4);
+pub const WMDM_GET_FORMAT_SUPPORT_VIDEO = @as(u32, 2);
+pub const WMDM_LOG_NOTIMESTAMP = @as(u32, 16);
+pub const WMDM_LOG_SEV_ERROR = @as(u32, 4);
+pub const WMDM_LOG_SEV_INFO = @as(u32, 1);
+pub const WMDM_LOG_SEV_WARN = @as(u32, 2);
+pub const WMDM_MAC_LENGTH = @as(u32, 8);
+pub const WMDM_MODE_BLOCK = @as(u32, 1);
+pub const WMDM_MODE_PROGRESS = @as(u32, 64);
+pub const WMDM_MODE_QUERY = @as(u32, 32);
+pub const WMDM_MODE_RECURSIVE = @as(u32, 4096);
+pub const WMDM_MODE_THREAD = @as(u32, 2);
+pub const WMDM_MODE_TRANSFER_PROTECTED = @as(u32, 128);
+pub const WMDM_MODE_TRANSFER_UNPROTECTED = @as(u32, 256);
 pub const WMDM_POWER_CAP_BATTERY = @as(u32, 1);
 pub const WMDM_POWER_CAP_EXTERNAL = @as(u32, 2);
 pub const WMDM_POWER_IS_BATTERY = @as(u32, 4);
 pub const WMDM_POWER_IS_EXTERNAL = @as(u32, 8);
 pub const WMDM_POWER_PERCENT_AVAILABLE = @as(u32, 16);
-pub const WMDM_STATUS_READY = @as(u32, 1);
-pub const WMDM_STATUS_BUSY = @as(u32, 2);
-pub const WMDM_STATUS_DEVICE_NOTPRESENT = @as(u32, 4);
-pub const WMDM_STATUS_DEVICECONTROL_PLAYING = @as(u32, 8);
-pub const WMDM_STATUS_DEVICECONTROL_RECORDING = @as(u32, 16);
-pub const WMDM_STATUS_DEVICECONTROL_PAUSED = @as(u32, 32);
-pub const WMDM_STATUS_DEVICECONTROL_REMOTE = @as(u32, 64);
-pub const WMDM_STATUS_DEVICECONTROL_STREAM = @as(u32, 128);
-pub const WMDM_STATUS_STORAGE_NOTPRESENT = @as(u32, 256);
-pub const WMDM_STATUS_STORAGE_INITIALIZING = @as(u32, 512);
-pub const WMDM_STATUS_STORAGE_BROKEN = @as(u32, 1024);
-pub const WMDM_STATUS_STORAGE_NOTSUPPORTED = @as(u32, 2048);
-pub const WMDM_STATUS_STORAGE_UNFORMATTED = @as(u32, 4096);
-pub const WMDM_STATUS_STORAGECONTROL_INSERTING = @as(u32, 8192);
-pub const WMDM_STATUS_STORAGECONTROL_DELETING = @as(u32, 16384);
-pub const WMDM_STATUS_STORAGECONTROL_APPENDING = @as(u32, 32768);
-pub const WMDM_STATUS_STORAGECONTROL_MOVING = @as(u32, 65536);
-pub const WMDM_STATUS_STORAGECONTROL_READING = @as(u32, 131072);
-pub const WMDM_DEVICECAP_CANPLAY = @as(u32, 1);
-pub const WMDM_DEVICECAP_CANSTREAMPLAY = @as(u32, 2);
-pub const WMDM_DEVICECAP_CANRECORD = @as(u32, 4);
-pub const WMDM_DEVICECAP_CANSTREAMRECORD = @as(u32, 8);
-pub const WMDM_DEVICECAP_CANPAUSE = @as(u32, 16);
-pub const WMDM_DEVICECAP_CANRESUME = @as(u32, 32);
-pub const WMDM_DEVICECAP_CANSTOP = @as(u32, 64);
-pub const WMDM_DEVICECAP_CANSEEK = @as(u32, 128);
-pub const WMDM_DEVICECAP_HASSECURECLOCK = @as(u32, 256);
-pub const WMDM_SEEK_REMOTECONTROL = @as(u32, 1);
-pub const WMDM_SEEK_STREAMINGAUDIO = @as(u32, 2);
-pub const WMDM_STORAGE_ATTR_FILESYSTEM = @as(u32, 1);
-pub const WMDM_STORAGE_ATTR_REMOVABLE = @as(u32, 2);
-pub const WMDM_STORAGE_ATTR_NONREMOVABLE = @as(u32, 4);
-pub const WMDM_FILE_ATTR_FOLDER = @as(u32, 8);
-pub const WMDM_FILE_ATTR_LINK = @as(u32, 16);
-pub const WMDM_FILE_ATTR_FILE = @as(u32, 32);
-pub const WMDM_FILE_ATTR_VIDEO = @as(u32, 64);
-pub const WMDM_STORAGE_ATTR_CANEDITMETADATA = @as(u32, 128);
-pub const WMDM_STORAGE_ATTR_FOLDERS = @as(u32, 256);
-pub const WMDM_FILE_ATTR_AUDIO = @as(u32, 4096);
-pub const WMDM_FILE_ATTR_DATA = @as(u32, 8192);
-pub const WMDM_FILE_ATTR_CANPLAY = @as(u32, 16384);
-pub const WMDM_FILE_ATTR_CANDELETE = @as(u32, 32768);
-pub const WMDM_FILE_ATTR_CANMOVE = @as(u32, 65536);
-pub const WMDM_FILE_ATTR_CANRENAME = @as(u32, 131072);
-pub const WMDM_FILE_ATTR_CANREAD = @as(u32, 262144);
-pub const WMDM_FILE_ATTR_MUSIC = @as(u32, 524288);
-pub const WMDM_FILE_CREATE_OVERWRITE = @as(u32, 1048576);
-pub const WMDM_FILE_ATTR_AUDIOBOOK = @as(u32, 2097152);
-pub const WMDM_FILE_ATTR_HIDDEN = @as(u32, 4194304);
-pub const WMDM_FILE_ATTR_SYSTEM = @as(u32, 8388608);
-pub const WMDM_FILE_ATTR_READONLY = @as(u32, 16777216);
-pub const WMDM_STORAGE_ATTR_HAS_FOLDERS = @as(u32, 33554432);
-pub const WMDM_STORAGE_ATTR_HAS_FILES = @as(u32, 67108864);
-pub const WMDM_STORAGE_IS_DEFAULT = @as(u32, 134217728);
-pub const WMDM_STORAGE_CONTAINS_DEFAULT = @as(u32, 268435456);
-pub const WMDM_STORAGE_ATTR_VIRTUAL = @as(u32, 536870912);
-pub const WMDM_STORAGECAP_FOLDERSINROOT = @as(u32, 1);
-pub const WMDM_STORAGECAP_FILESINROOT = @as(u32, 2);
-pub const WMDM_STORAGECAP_FOLDERSINFOLDERS = @as(u32, 4);
-pub const WMDM_STORAGECAP_FILESINFOLDERS = @as(u32, 8);
-pub const WMDM_STORAGECAP_FOLDERLIMITEXISTS = @as(u32, 16);
-pub const WMDM_STORAGECAP_FILELIMITEXISTS = @as(u32, 32);
-pub const WMDM_STORAGECAP_NOT_INITIALIZABLE = @as(u32, 64);
-pub const WMDM_MODE_BLOCK = @as(u32, 1);
-pub const WMDM_MODE_THREAD = @as(u32, 2);
-pub const WMDM_CONTENT_FILE = @as(u32, 4);
-pub const WMDM_CONTENT_FOLDER = @as(u32, 8);
-pub const WMDM_CONTENT_OPERATIONINTERFACE = @as(u32, 16);
-pub const WMDM_MODE_QUERY = @as(u32, 32);
-pub const WMDM_MODE_PROGRESS = @as(u32, 64);
-pub const WMDM_MODE_TRANSFER_PROTECTED = @as(u32, 128);
-pub const WMDM_MODE_TRANSFER_UNPROTECTED = @as(u32, 256);
-pub const WMDM_STORAGECONTROL_INSERTBEFORE = @as(u32, 512);
-pub const WMDM_STORAGECONTROL_INSERTAFTER = @as(u32, 1024);
-pub const WMDM_STORAGECONTROL_INSERTINTO = @as(u32, 2048);
-pub const WMDM_MODE_RECURSIVE = @as(u32, 4096);
-pub const WMDM_RIGHTS_PLAY_ON_PC = @as(u32, 1);
-pub const WMDM_RIGHTS_COPY_TO_NON_SDMI_DEVICE = @as(u32, 2);
 pub const WMDM_RIGHTS_COPY_TO_CD = @as(u32, 8);
+pub const WMDM_RIGHTS_COPY_TO_NON_SDMI_DEVICE = @as(u32, 2);
 pub const WMDM_RIGHTS_COPY_TO_SDMI_DEVICE = @as(u32, 16);
-pub const WMDM_SEEK_BEGIN = @as(u32, 1);
-pub const WMDM_SEEK_CURRENT = @as(u32, 2);
-pub const WMDM_SEEK_END = @as(u32, 8);
-pub const DO_NOT_VIRTUALIZE_STORAGES_AS_DEVICES = @as(u32, 1);
-pub const ALLOW_OUTOFBAND_NOTIFICATION = @as(u32, 2);
-pub const MDSP_READ = @as(u32, 1);
-pub const MDSP_WRITE = @as(u32, 2);
-pub const MDSP_SEEK_BOF = @as(u32, 1);
-pub const MDSP_SEEK_CUR = @as(u32, 2);
-pub const MDSP_SEEK_EOF = @as(u32, 4);
-pub const WMDM_SCP_EXAMINE_EXTENSION = @as(i32, 1);
-pub const WMDM_SCP_EXAMINE_DATA = @as(i32, 2);
+pub const WMDM_RIGHTS_EXPIRATIONDATE = @as(u32, 2);
+pub const WMDM_RIGHTS_FREESERIALIDS = @as(u32, 8);
+pub const WMDM_RIGHTS_GROUPID = @as(u32, 4);
+pub const WMDM_RIGHTS_NAMEDSERIALIDS = @as(u32, 16);
+pub const WMDM_RIGHTS_PLAY_ON_PC = @as(u32, 1);
+pub const WMDM_RIGHTS_PLAYBACKCOUNT = @as(u32, 1);
+pub const WMDM_S_NOT_ALL_PROPERTIES_APPLIED = @as(i32, 282625);
+pub const WMDM_S_NOT_ALL_PROPERTIES_RETRIEVED = @as(i32, 282626);
 pub const WMDM_SCP_DECIDE_DATA = @as(i32, 8);
-pub const WMDM_SCP_PROTECTED_OUTPUT = @as(i32, 16);
-pub const WMDM_SCP_UNPROTECTED_OUTPUT = @as(i32, 32);
-pub const WMDM_SCP_RIGHTS_DATA = @as(i32, 64);
-pub const WMDM_SCP_TRANSFER_OBJECTDATA = @as(i32, 32);
-pub const WMDM_SCP_NO_MORE_CHANGES = @as(i32, 64);
 pub const WMDM_SCP_DRMINFO_NOT_DRMPROTECTED = @as(i32, 0);
 pub const WMDM_SCP_DRMINFO_V1HEADER = @as(i32, 1);
 pub const WMDM_SCP_DRMINFO_V2HEADER = @as(i32, 2);
-pub const SCP_EVENTID_ACQSECURECLOCK = Guid.initString("86248cc9-4a59-43e2-9146-48a7f3f4140c");
-pub const SCP_EVENTID_NEEDTOINDIV = Guid.initString("87a507c7-b469-4386-b976-d5d1ce538a6f");
-pub const SCP_EVENTID_DRMINFO = Guid.initString("213dd287-41d2-432b-9e3f-3b4f7b3581dd");
-pub const SCP_PARAMID_DRMVERSION = Guid.initString("41d0155d-7cc7-4217-ada9-005074624da4");
-pub const SAC_MAC_LEN = @as(u32, 8);
-pub const WMDM_LOG_SEV_INFO = @as(u32, 1);
-pub const WMDM_LOG_SEV_WARN = @as(u32, 2);
-pub const WMDM_LOG_SEV_ERROR = @as(u32, 4);
-pub const WMDM_LOG_NOTIMESTAMP = @as(u32, 16);
-pub const g_wszWMDMFileName = "WMDM/FileName";
-pub const g_wszWMDMFormatCode = "WMDM/FormatCode";
-pub const g_wszWMDMLastModifiedDate = "WMDM/LastModifiedDate";
-pub const g_wszWMDMFileCreationDate = "WMDM/FileCreationDate";
-pub const g_wszWMDMFileSize = "WMDM/FileSize";
-pub const g_wszWMDMFileAttributes = "WMDM/FileAttributes";
-pub const g_wszAudioWAVECodec = "WMDM/AudioWAVECodec";
-pub const g_wszVideoFourCCCodec = "WMDM/VideoFourCCCodec";
-pub const g_wszWMDMTitle = "WMDM/Title";
-pub const g_wszWMDMAuthor = "WMDM/Author";
-pub const g_wszWMDMDescription = "WMDM/Description";
-pub const g_wszWMDMIsProtected = "WMDM/IsProtected";
-pub const g_wszWMDMAlbumTitle = "WMDM/AlbumTitle";
-pub const g_wszWMDMAlbumArtist = "WMDM/AlbumArtist";
-pub const g_wszWMDMTrack = "WMDM/Track";
-pub const g_wszWMDMGenre = "WMDM/Genre";
-pub const g_wszWMDMTrackMood = "WMDM/TrackMood";
-pub const g_wszWMDMAlbumCoverFormat = "WMDM/AlbumCoverFormat";
-pub const g_wszWMDMAlbumCoverSize = "WMDM/AlbumCoverSize";
-pub const g_wszWMDMAlbumCoverHeight = "WMDM/AlbumCoverHeight";
-pub const g_wszWMDMAlbumCoverWidth = "WMDM/AlbumCoverWidth";
-pub const g_wszWMDMAlbumCoverDuration = "WMDM/AlbumCoverDuration";
-pub const g_wszWMDMAlbumCoverData = "WMDM/AlbumCoverData";
-pub const g_wszWMDMYear = "WMDM/Year";
-pub const g_wszWMDMComposer = "WMDM/Composer";
-pub const g_wszWMDMCodec = "WMDM/Codec";
-pub const g_wszWMDMDRMId = "WMDM/DRMId";
-pub const g_wszWMDMBitrate = "WMDM/Bitrate";
-pub const g_wszWMDMBitRateType = "WMDM/BitRateType";
-pub const g_wszWMDMSampleRate = "WMDM/SampleRate";
-pub const g_wszWMDMNumChannels = "WMDM/NumChannels";
-pub const g_wszWMDMBlockAlignment = "WMDM/BlockAlignment";
-pub const g_wszWMDMAudioBitDepth = "WMDM/AudioBitDepth";
-pub const g_wszWMDMTotalBitrate = "WMDM/TotalBitrate";
-pub const g_wszWMDMVideoBitrate = "WMDM/VideoBitrate";
-pub const g_wszWMDMFrameRate = "WMDM/FrameRate";
-pub const g_wszWMDMScanType = "WMDM/ScanType";
-pub const g_wszWMDMKeyFrameDistance = "WMDM/KeyFrameDistance";
-pub const g_wszWMDMBufferSize = "WMDM/BufferSize";
-pub const g_wszWMDMQualitySetting = "WMDM/QualitySetting";
-pub const g_wszWMDMEncodingProfile = "WMDM/EncodingProfile";
-pub const g_wszWMDMDuration = "WMDM/Duration";
-pub const g_wszWMDMAlbumArt = "WMDM/AlbumArt";
-pub const g_wszWMDMBuyNow = "WMDM/BuyNow";
-pub const g_wszWMDMNonConsumable = "WMDM/NonConsumable";
-pub const g_wszWMDMediaClassPrimaryID = "WMDM/MediaClassPrimaryID";
-pub const g_wszWMDMMediaClassSecondaryID = "WMDM/MediaClassSecondaryID";
-pub const g_wszWMDMUserEffectiveRating = "WMDM/UserEffectiveRating";
-pub const g_wszWMDMUserRating = "WMDM/UserRating";
-pub const g_wszWMDMUserRatingOnDevice = "WMDM/UserRatingOnDevice";
-pub const g_wszWMDMPlayCount = "WMDM/PlayCount";
-pub const g_wszWMDMDevicePlayCount = "WMDM/DevicePlayCount";
-pub const g_wszWMDMAuthorDate = "WMDM/AuthorDate";
-pub const g_wszWMDMUserLastPlayTime = "WMDM/UserLastPlayTime";
-pub const g_wszWMDMSubTitle = "WMDM/SubTitle";
-pub const g_wszWMDMSubTitleDescription = "WMDM/SubTitleDescription";
-pub const g_wszWMDMMediaCredits = "WMDM/MediaCredits";
-pub const g_wszWMDMMediaStationName = "WMDM/MediaStationName";
-pub const g_wszWMDMMediaOriginalChannel = "WMDM/MediaOriginalChannel";
-pub const g_wszWMDMMediaOriginalBroadcastDateTime = "WMDM/MediaOriginalBroadcastDateTime";
-pub const g_wszWMDMProviderCopyright = "WMDM/ProviderCopyright";
-pub const g_wszWMDMSyncID = "WMDM/SyncID";
-pub const g_wszWMDMPersistentUniqueID = "WMDM/PersistentUniqueID";
-pub const g_wszWMDMWidth = "WMDM/Width";
-pub const g_wszWMDMHeight = "WMDM/Height";
-pub const g_wszWMDMSyncTime = "WMDM/SyncTime";
-pub const g_wszWMDMParentalRating = "WMDM/ParentalRating";
-pub const g_wszWMDMMetaGenre = "WMDM/MetaGenre";
-pub const g_wszWMDMIsRepeat = "WMDM/IsRepeat";
-pub const g_wszWMDMSupportedDeviceProperties = "WMDM/SupportedDeviceProperties";
-pub const g_wszWMDMDeviceFriendlyName = "WMDM/DeviceFriendlyName";
-pub const g_wszWMDMFormatsSupported = "WMDM/FormatsSupported";
-pub const g_wszWMDMFormatsSupportedAreOrdered = "WMDM/FormatsSupportedAreOrdered";
-pub const g_wszWMDMSyncRelationshipID = "WMDM/SyncRelationshipID";
-pub const g_wszWMDMDeviceModelName = "WMDM/DeviceModelName";
-pub const g_wszWMDMDeviceFirmwareVersion = "WMDM/DeviceFirmwareVersion";
-pub const g_wszWMDMDeviceVendorExtension = "WMDM/DeviceVendorExtension";
-pub const g_wszWMDMDeviceProtocol = "WMDM/DeviceProtocol";
-pub const g_wszWMDMDeviceServiceProviderVendor = "WMDM/DeviceServiceProviderVendor";
-pub const g_wszWMDMDeviceRevocationInfo = "WMDM/DeviceRevocationInfo";
-pub const g_wszWMDMCollectionID = "WMDM/CollectionID";
-pub const g_wszWMDMOwner = "WMDM/Owner";
-pub const g_wszWMDMEditor = "WMDM/Editor";
-pub const g_wszWMDMWebmaster = "WMDM/Webmaster";
-pub const g_wszWMDMSourceURL = "WMDM/SourceURL";
-pub const g_wszWMDMDestinationURL = "WMDM/DestinationURL";
-pub const g_wszWMDMCategory = "WMDM/Category";
-pub const g_wszWMDMTimeBookmark = "WMDM/TimeBookmark";
-pub const g_wszWMDMObjectBookmark = "WMDM/ObjectBookmark";
-pub const g_wszWMDMByteBookmark = "WMDM/ByteBookmark";
-pub const g_wszWMDMDataOffset = "WMDM/DataOffset";
-pub const g_wszWMDMDataLength = "WMDM/DataLength";
-pub const g_wszWMDMDataUnits = "WMDM/DataUnits";
-pub const g_wszWMDMTimeToLive = "WMDM/TimeToLive";
-pub const g_wszWMDMMediaGuid = "WMDM/MediaGuid";
-pub const g_wszWPDPassthroughPropertyValues = "WPD/PassthroughPropertyValues";
-pub const EVENT_WMDM_CONTENT_TRANSFER = Guid.initString("339c9bf4-bcfe-4ed8-94df-eaf8c26ab61b");
-pub const MTP_COMMAND_MAX_PARAMS = @as(u32, 5);
-pub const MTP_RESPONSE_MAX_PARAMS = @as(u32, 5);
-pub const MTP_RESPONSE_OK = @as(u16, 8193);
+pub const WMDM_SCP_EXAMINE_DATA = @as(i32, 2);
+pub const WMDM_SCP_EXAMINE_EXTENSION = @as(i32, 1);
+pub const WMDM_SCP_NO_MORE_CHANGES = @as(i32, 64);
+pub const WMDM_SCP_PROTECTED_OUTPUT = @as(i32, 16);
+pub const WMDM_SCP_REVOKED = @as(u32, 8);
+pub const WMDM_SCP_RIGHTS_DATA = @as(i32, 64);
+pub const WMDM_SCP_TRANSFER_OBJECTDATA = @as(i32, 32);
+pub const WMDM_SCP_UNPROTECTED_OUTPUT = @as(i32, 32);
+pub const WMDM_SEEK_BEGIN = @as(u32, 1);
+pub const WMDM_SEEK_CURRENT = @as(u32, 2);
+pub const WMDM_SEEK_END = @as(u32, 8);
+pub const WMDM_SEEK_REMOTECONTROL = @as(u32, 1);
+pub const WMDM_SEEK_STREAMINGAUDIO = @as(u32, 2);
+pub const WMDM_SERVICE_PROVIDER_VENDOR_MICROSOFT = Guid.initString("7de8686d-78ee-43ea-a496-c625ac91cc5d");
+pub const WMDM_SP_REVOKED = @as(u32, 4);
+pub const WMDM_STATUS_BUSY = @as(u32, 2);
+pub const WMDM_STATUS_DEVICE_NOTPRESENT = @as(u32, 4);
+pub const WMDM_STATUS_DEVICECONTROL_PAUSED = @as(u32, 32);
+pub const WMDM_STATUS_DEVICECONTROL_PLAYING = @as(u32, 8);
+pub const WMDM_STATUS_DEVICECONTROL_RECORDING = @as(u32, 16);
+pub const WMDM_STATUS_DEVICECONTROL_REMOTE = @as(u32, 64);
+pub const WMDM_STATUS_DEVICECONTROL_STREAM = @as(u32, 128);
+pub const WMDM_STATUS_READY = @as(u32, 1);
+pub const WMDM_STATUS_STORAGE_BROKEN = @as(u32, 1024);
+pub const WMDM_STATUS_STORAGE_INITIALIZING = @as(u32, 512);
+pub const WMDM_STATUS_STORAGE_NOTPRESENT = @as(u32, 256);
+pub const WMDM_STATUS_STORAGE_NOTSUPPORTED = @as(u32, 2048);
+pub const WMDM_STATUS_STORAGE_UNFORMATTED = @as(u32, 4096);
+pub const WMDM_STATUS_STORAGECONTROL_APPENDING = @as(u32, 32768);
+pub const WMDM_STATUS_STORAGECONTROL_DELETING = @as(u32, 16384);
+pub const WMDM_STATUS_STORAGECONTROL_INSERTING = @as(u32, 8192);
+pub const WMDM_STATUS_STORAGECONTROL_MOVING = @as(u32, 65536);
+pub const WMDM_STATUS_STORAGECONTROL_READING = @as(u32, 131072);
+pub const WMDM_STORAGE_ATTR_CANEDITMETADATA = @as(u32, 128);
+pub const WMDM_STORAGE_ATTR_FILESYSTEM = @as(u32, 1);
+pub const WMDM_STORAGE_ATTR_FOLDERS = @as(u32, 256);
+pub const WMDM_STORAGE_ATTR_HAS_FILES = @as(u32, 67108864);
+pub const WMDM_STORAGE_ATTR_HAS_FOLDERS = @as(u32, 33554432);
+pub const WMDM_STORAGE_ATTR_NONREMOVABLE = @as(u32, 4);
+pub const WMDM_STORAGE_ATTR_REMOVABLE = @as(u32, 2);
+pub const WMDM_STORAGE_ATTR_VIRTUAL = @as(u32, 536870912);
+pub const WMDM_STORAGE_CONTAINS_DEFAULT = @as(u32, 268435456);
+pub const WMDM_STORAGE_IS_DEFAULT = @as(u32, 134217728);
+pub const WMDM_STORAGECAP_FILELIMITEXISTS = @as(u32, 32);
+pub const WMDM_STORAGECAP_FILESINFOLDERS = @as(u32, 8);
+pub const WMDM_STORAGECAP_FILESINROOT = @as(u32, 2);
+pub const WMDM_STORAGECAP_FOLDERLIMITEXISTS = @as(u32, 16);
+pub const WMDM_STORAGECAP_FOLDERSINFOLDERS = @as(u32, 4);
+pub const WMDM_STORAGECAP_FOLDERSINROOT = @as(u32, 1);
+pub const WMDM_STORAGECAP_NOT_INITIALIZABLE = @as(u32, 64);
+pub const WMDM_STORAGECONTROL_INSERTAFTER = @as(u32, 1024);
+pub const WMDM_STORAGECONTROL_INSERTBEFORE = @as(u32, 512);
+pub const WMDM_STORAGECONTROL_INSERTINTO = @as(u32, 2048);
+pub const WMDM_WMDM_REVOKED = @as(u32, 1);
+pub const WMDMID_LENGTH = @as(u32, 128);
 
 //--------------------------------------------------------------------------------
 // Section: Types (88)
@@ -288,1661 +288,34 @@ pub const __MACINFO = extern struct {
     abMacState: [36]u8,
 };
 
-const CLSID_MediaDevMgrClassFactory_Value = Guid.initString("50040c1d-bdbf-4924-b873-f14d6c5bfd66");
-pub const CLSID_MediaDevMgrClassFactory = &CLSID_MediaDevMgrClassFactory_Value;
-
-const CLSID_MediaDevMgr_Value = Guid.initString("25baad81-3560-11d3-8471-00c04f79dbc0");
-pub const CLSID_MediaDevMgr = &CLSID_MediaDevMgr_Value;
-
-const CLSID_WMDMDevice_Value = Guid.initString("807b3cdf-357a-11d3-8471-00c04f79dbc0");
-pub const CLSID_WMDMDevice = &CLSID_WMDMDevice_Value;
-
-const CLSID_WMDMStorage_Value = Guid.initString("807b3ce0-357a-11d3-8471-00c04f79dbc0");
-pub const CLSID_WMDMStorage = &CLSID_WMDMStorage_Value;
-
-const CLSID_WMDMStorageGlobal_Value = Guid.initString("807b3ce1-357a-11d3-8471-00c04f79dbc0");
-pub const CLSID_WMDMStorageGlobal = &CLSID_WMDMStorageGlobal_Value;
-
-const CLSID_WMDMDeviceEnum_Value = Guid.initString("430e35af-3971-11d3-8474-00c04f79dbc0");
-pub const CLSID_WMDMDeviceEnum = &CLSID_WMDMDeviceEnum_Value;
-
-const CLSID_WMDMStorageEnum_Value = Guid.initString("eb401a3b-3af7-11d3-8474-00c04f79dbc0");
-pub const CLSID_WMDMStorageEnum = &CLSID_WMDMStorageEnum_Value;
-
-pub const WMDM_TAG_DATATYPE = enum(i32) {
-    DWORD = 0,
-    STRING = 1,
-    BINARY = 2,
-    BOOL = 3,
-    QWORD = 4,
-    WORD = 5,
-    GUID = 6,
-    DATE = 7,
-};
-pub const WMDM_TYPE_DWORD = WMDM_TAG_DATATYPE.DWORD;
-pub const WMDM_TYPE_STRING = WMDM_TAG_DATATYPE.STRING;
-pub const WMDM_TYPE_BINARY = WMDM_TAG_DATATYPE.BINARY;
-pub const WMDM_TYPE_BOOL = WMDM_TAG_DATATYPE.BOOL;
-pub const WMDM_TYPE_QWORD = WMDM_TAG_DATATYPE.QWORD;
-pub const WMDM_TYPE_WORD = WMDM_TAG_DATATYPE.WORD;
-pub const WMDM_TYPE_GUID = WMDM_TAG_DATATYPE.GUID;
-pub const WMDM_TYPE_DATE = WMDM_TAG_DATATYPE.DATE;
-
-pub const WMDM_SESSION_TYPE = enum(i32) {
-    NONE = 0,
-    TRANSFER_TO_DEVICE = 1,
-    TRANSFER_FROM_DEVICE = 16,
-    DELETE = 256,
-    CUSTOM = 4096,
-};
-pub const WMDM_SESSION_NONE = WMDM_SESSION_TYPE.NONE;
-pub const WMDM_SESSION_TRANSFER_TO_DEVICE = WMDM_SESSION_TYPE.TRANSFER_TO_DEVICE;
-pub const WMDM_SESSION_TRANSFER_FROM_DEVICE = WMDM_SESSION_TYPE.TRANSFER_FROM_DEVICE;
-pub const WMDM_SESSION_DELETE = WMDM_SESSION_TYPE.DELETE;
-pub const WMDM_SESSION_CUSTOM = WMDM_SESSION_TYPE.CUSTOM;
-
-pub const WMFILECAPABILITIES = extern struct {
-    pwszMimeType: ?PWSTR,
-    dwReserved: u32,
-};
-
-pub const OPAQUECOMMAND = extern struct {
-    guidCommand: Guid,
-    dwDataLen: u32,
-    pData: ?*u8,
-    abMAC: [20]u8,
-};
-
-pub const WMDMID = extern struct {
-    cbSize: u32,
-    dwVendorID: u32,
-    pID: [128]u8,
-    SerialNumberLength: u32,
-};
-
-pub const WMDMDATETIME = extern struct {
-    wYear: u16,
-    wMonth: u16,
-    wDay: u16,
-    wHour: u16,
-    wMinute: u16,
-    wSecond: u16,
-};
-
-pub const WMDMRIGHTS = extern struct {
-    cbSize: u32,
-    dwContentType: u32,
-    fuFlags: u32,
-    fuRights: u32,
-    dwAppSec: u32,
-    dwPlaybackCount: u32,
-    ExpirationDate: WMDMDATETIME,
-};
-
-pub const WMDMMetadataView = extern struct {
-    pwszViewName: ?PWSTR,
-    nDepth: u32,
-    ppwszTags: ?*?*u16,
-};
-
-pub const WMDM_STORAGE_ENUM_MODE = enum(i32) {
-    RAW = 0,
-    USE_DEVICE_PREF = 1,
-    METADATA_VIEWS = 2,
-};
-pub const ENUM_MODE_RAW = WMDM_STORAGE_ENUM_MODE.RAW;
-pub const ENUM_MODE_USE_DEVICE_PREF = WMDM_STORAGE_ENUM_MODE.USE_DEVICE_PREF;
-pub const ENUM_MODE_METADATA_VIEWS = WMDM_STORAGE_ENUM_MODE.METADATA_VIEWS;
-
-pub const WMDM_FORMATCODE = enum(i32) {
-    NOTUSED = 0,
-    ALLIMAGES = -1,
-    UNDEFINED = 12288,
-    ASSOCIATION = 12289,
-    SCRIPT = 12290,
-    EXECUTABLE = 12291,
-    TEXT = 12292,
-    HTML = 12293,
-    DPOF = 12294,
-    AIFF = 12295,
-    WAVE = 12296,
-    MP3 = 12297,
-    AVI = 12298,
-    MPEG = 12299,
-    ASF = 12300,
-    RESERVED_FIRST = 12301,
-    RESERVED_LAST = 14335,
-    IMAGE_UNDEFINED = 14336,
-    IMAGE_EXIF = 14337,
-    IMAGE_TIFFEP = 14338,
-    IMAGE_FLASHPIX = 14339,
-    IMAGE_BMP = 14340,
-    IMAGE_CIFF = 14341,
-    IMAGE_GIF = 14343,
-    IMAGE_JFIF = 14344,
-    IMAGE_PCD = 14345,
-    IMAGE_PICT = 14346,
-    IMAGE_PNG = 14347,
-    IMAGE_TIFF = 14349,
-    IMAGE_TIFFIT = 14350,
-    IMAGE_JP2 = 14351,
-    IMAGE_JPX = 14352,
-    IMAGE_RESERVED_FIRST = 14353,
-    IMAGE_RESERVED_LAST = 16383,
-    UNDEFINEDFIRMWARE = 47106,
-    WBMP = 47107,
-    JPEGXR = 47108,
-    WINDOWSIMAGEFORMAT = 47233,
-    UNDEFINEDAUDIO = 47360,
-    WMA = 47361,
-    OGG = 47362,
-    AAC = 47363,
-    AUDIBLE = 47364,
-    FLAC = 47366,
-    QCELP = 47367,
-    AMR = 47368,
-    UNDEFINEDVIDEO = 47488,
-    WMV = 47489,
-    MP4 = 47490,
-    MP2 = 47491,
-    @"3GP" = 47492,
-    @"3G2" = 47493,
-    AVCHD = 47494,
-    ATSCTS = 47495,
-    DVBTS = 47496,
-    MKV = 47497,
-    MKA = 47498,
-    MK3D = 47499,
-    UNDEFINEDCOLLECTION = 47616,
-    ABSTRACTMULTIMEDIAALBUM = 47617,
-    ABSTRACTIMAGEALBUM = 47618,
-    ABSTRACTAUDIOALBUM = 47619,
-    ABSTRACTVIDEOALBUM = 47620,
-    ABSTRACTAUDIOVIDEOPLAYLIST = 47621,
-    ABSTRACTCONTACTGROUP = 47622,
-    ABSTRACTMESSAGEFOLDER = 47623,
-    ABSTRACTCHAPTEREDPRODUCTION = 47624,
-    MEDIA_CAST = 47627,
-    WPLPLAYLIST = 47632,
-    M3UPLAYLIST = 47633,
-    MPLPLAYLIST = 47634,
-    ASXPLAYLIST = 47635,
-    PLSPLAYLIST = 47636,
-    UNDEFINEDDOCUMENT = 47744,
-    ABSTRACTDOCUMENT = 47745,
-    XMLDOCUMENT = 47746,
-    MICROSOFTWORDDOCUMENT = 47747,
-    MHTCOMPILEDHTMLDOCUMENT = 47748,
-    MICROSOFTEXCELSPREADSHEET = 47749,
-    MICROSOFTPOWERPOINTDOCUMENT = 47750,
-    UNDEFINEDMESSAGE = 47872,
-    ABSTRACTMESSAGE = 47873,
-    UNDEFINEDCONTACT = 48000,
-    ABSTRACTCONTACT = 48001,
-    VCARD2 = 48002,
-    VCARD3 = 48003,
-    UNDEFINEDCALENDARITEM = 48640,
-    ABSTRACTCALENDARITEM = 48641,
-    VCALENDAR1 = 48642,
-    VCALENDAR2 = 48643,
-    UNDEFINEDWINDOWSEXECUTABLE = 48768,
-    M4A = 1297101889,
-    @"3GPA" = 860311617,
-    @"3G2A" = 860303937,
-    SECTION = 48770,
-};
-pub const WMDM_FORMATCODE_NOTUSED = WMDM_FORMATCODE.NOTUSED;
-pub const WMDM_FORMATCODE_ALLIMAGES = WMDM_FORMATCODE.ALLIMAGES;
-pub const WMDM_FORMATCODE_UNDEFINED = WMDM_FORMATCODE.UNDEFINED;
-pub const WMDM_FORMATCODE_ASSOCIATION = WMDM_FORMATCODE.ASSOCIATION;
-pub const WMDM_FORMATCODE_SCRIPT = WMDM_FORMATCODE.SCRIPT;
-pub const WMDM_FORMATCODE_EXECUTABLE = WMDM_FORMATCODE.EXECUTABLE;
-pub const WMDM_FORMATCODE_TEXT = WMDM_FORMATCODE.TEXT;
-pub const WMDM_FORMATCODE_HTML = WMDM_FORMATCODE.HTML;
-pub const WMDM_FORMATCODE_DPOF = WMDM_FORMATCODE.DPOF;
-pub const WMDM_FORMATCODE_AIFF = WMDM_FORMATCODE.AIFF;
-pub const WMDM_FORMATCODE_WAVE = WMDM_FORMATCODE.WAVE;
-pub const WMDM_FORMATCODE_MP3 = WMDM_FORMATCODE.MP3;
-pub const WMDM_FORMATCODE_AVI = WMDM_FORMATCODE.AVI;
-pub const WMDM_FORMATCODE_MPEG = WMDM_FORMATCODE.MPEG;
-pub const WMDM_FORMATCODE_ASF = WMDM_FORMATCODE.ASF;
-pub const WMDM_FORMATCODE_RESERVED_FIRST = WMDM_FORMATCODE.RESERVED_FIRST;
-pub const WMDM_FORMATCODE_RESERVED_LAST = WMDM_FORMATCODE.RESERVED_LAST;
-pub const WMDM_FORMATCODE_IMAGE_UNDEFINED = WMDM_FORMATCODE.IMAGE_UNDEFINED;
-pub const WMDM_FORMATCODE_IMAGE_EXIF = WMDM_FORMATCODE.IMAGE_EXIF;
-pub const WMDM_FORMATCODE_IMAGE_TIFFEP = WMDM_FORMATCODE.IMAGE_TIFFEP;
-pub const WMDM_FORMATCODE_IMAGE_FLASHPIX = WMDM_FORMATCODE.IMAGE_FLASHPIX;
-pub const WMDM_FORMATCODE_IMAGE_BMP = WMDM_FORMATCODE.IMAGE_BMP;
-pub const WMDM_FORMATCODE_IMAGE_CIFF = WMDM_FORMATCODE.IMAGE_CIFF;
-pub const WMDM_FORMATCODE_IMAGE_GIF = WMDM_FORMATCODE.IMAGE_GIF;
-pub const WMDM_FORMATCODE_IMAGE_JFIF = WMDM_FORMATCODE.IMAGE_JFIF;
-pub const WMDM_FORMATCODE_IMAGE_PCD = WMDM_FORMATCODE.IMAGE_PCD;
-pub const WMDM_FORMATCODE_IMAGE_PICT = WMDM_FORMATCODE.IMAGE_PICT;
-pub const WMDM_FORMATCODE_IMAGE_PNG = WMDM_FORMATCODE.IMAGE_PNG;
-pub const WMDM_FORMATCODE_IMAGE_TIFF = WMDM_FORMATCODE.IMAGE_TIFF;
-pub const WMDM_FORMATCODE_IMAGE_TIFFIT = WMDM_FORMATCODE.IMAGE_TIFFIT;
-pub const WMDM_FORMATCODE_IMAGE_JP2 = WMDM_FORMATCODE.IMAGE_JP2;
-pub const WMDM_FORMATCODE_IMAGE_JPX = WMDM_FORMATCODE.IMAGE_JPX;
-pub const WMDM_FORMATCODE_IMAGE_RESERVED_FIRST = WMDM_FORMATCODE.IMAGE_RESERVED_FIRST;
-pub const WMDM_FORMATCODE_IMAGE_RESERVED_LAST = WMDM_FORMATCODE.IMAGE_RESERVED_LAST;
-pub const WMDM_FORMATCODE_UNDEFINEDFIRMWARE = WMDM_FORMATCODE.UNDEFINEDFIRMWARE;
-pub const WMDM_FORMATCODE_WBMP = WMDM_FORMATCODE.WBMP;
-pub const WMDM_FORMATCODE_JPEGXR = WMDM_FORMATCODE.JPEGXR;
-pub const WMDM_FORMATCODE_WINDOWSIMAGEFORMAT = WMDM_FORMATCODE.WINDOWSIMAGEFORMAT;
-pub const WMDM_FORMATCODE_UNDEFINEDAUDIO = WMDM_FORMATCODE.UNDEFINEDAUDIO;
-pub const WMDM_FORMATCODE_WMA = WMDM_FORMATCODE.WMA;
-pub const WMDM_FORMATCODE_OGG = WMDM_FORMATCODE.OGG;
-pub const WMDM_FORMATCODE_AAC = WMDM_FORMATCODE.AAC;
-pub const WMDM_FORMATCODE_AUDIBLE = WMDM_FORMATCODE.AUDIBLE;
-pub const WMDM_FORMATCODE_FLAC = WMDM_FORMATCODE.FLAC;
-pub const WMDM_FORMATCODE_QCELP = WMDM_FORMATCODE.QCELP;
-pub const WMDM_FORMATCODE_AMR = WMDM_FORMATCODE.AMR;
-pub const WMDM_FORMATCODE_UNDEFINEDVIDEO = WMDM_FORMATCODE.UNDEFINEDVIDEO;
-pub const WMDM_FORMATCODE_WMV = WMDM_FORMATCODE.WMV;
-pub const WMDM_FORMATCODE_MP4 = WMDM_FORMATCODE.MP4;
-pub const WMDM_FORMATCODE_MP2 = WMDM_FORMATCODE.MP2;
-pub const WMDM_FORMATCODE_3GP = WMDM_FORMATCODE.@"3GP";
-pub const WMDM_FORMATCODE_3G2 = WMDM_FORMATCODE.@"3G2";
-pub const WMDM_FORMATCODE_AVCHD = WMDM_FORMATCODE.AVCHD;
-pub const WMDM_FORMATCODE_ATSCTS = WMDM_FORMATCODE.ATSCTS;
-pub const WMDM_FORMATCODE_DVBTS = WMDM_FORMATCODE.DVBTS;
-pub const WMDM_FORMATCODE_MKV = WMDM_FORMATCODE.MKV;
-pub const WMDM_FORMATCODE_MKA = WMDM_FORMATCODE.MKA;
-pub const WMDM_FORMATCODE_MK3D = WMDM_FORMATCODE.MK3D;
-pub const WMDM_FORMATCODE_UNDEFINEDCOLLECTION = WMDM_FORMATCODE.UNDEFINEDCOLLECTION;
-pub const WMDM_FORMATCODE_ABSTRACTMULTIMEDIAALBUM = WMDM_FORMATCODE.ABSTRACTMULTIMEDIAALBUM;
-pub const WMDM_FORMATCODE_ABSTRACTIMAGEALBUM = WMDM_FORMATCODE.ABSTRACTIMAGEALBUM;
-pub const WMDM_FORMATCODE_ABSTRACTAUDIOALBUM = WMDM_FORMATCODE.ABSTRACTAUDIOALBUM;
-pub const WMDM_FORMATCODE_ABSTRACTVIDEOALBUM = WMDM_FORMATCODE.ABSTRACTVIDEOALBUM;
-pub const WMDM_FORMATCODE_ABSTRACTAUDIOVIDEOPLAYLIST = WMDM_FORMATCODE.ABSTRACTAUDIOVIDEOPLAYLIST;
-pub const WMDM_FORMATCODE_ABSTRACTCONTACTGROUP = WMDM_FORMATCODE.ABSTRACTCONTACTGROUP;
-pub const WMDM_FORMATCODE_ABSTRACTMESSAGEFOLDER = WMDM_FORMATCODE.ABSTRACTMESSAGEFOLDER;
-pub const WMDM_FORMATCODE_ABSTRACTCHAPTEREDPRODUCTION = WMDM_FORMATCODE.ABSTRACTCHAPTEREDPRODUCTION;
-pub const WMDM_FORMATCODE_MEDIA_CAST = WMDM_FORMATCODE.MEDIA_CAST;
-pub const WMDM_FORMATCODE_WPLPLAYLIST = WMDM_FORMATCODE.WPLPLAYLIST;
-pub const WMDM_FORMATCODE_M3UPLAYLIST = WMDM_FORMATCODE.M3UPLAYLIST;
-pub const WMDM_FORMATCODE_MPLPLAYLIST = WMDM_FORMATCODE.MPLPLAYLIST;
-pub const WMDM_FORMATCODE_ASXPLAYLIST = WMDM_FORMATCODE.ASXPLAYLIST;
-pub const WMDM_FORMATCODE_PLSPLAYLIST = WMDM_FORMATCODE.PLSPLAYLIST;
-pub const WMDM_FORMATCODE_UNDEFINEDDOCUMENT = WMDM_FORMATCODE.UNDEFINEDDOCUMENT;
-pub const WMDM_FORMATCODE_ABSTRACTDOCUMENT = WMDM_FORMATCODE.ABSTRACTDOCUMENT;
-pub const WMDM_FORMATCODE_XMLDOCUMENT = WMDM_FORMATCODE.XMLDOCUMENT;
-pub const WMDM_FORMATCODE_MICROSOFTWORDDOCUMENT = WMDM_FORMATCODE.MICROSOFTWORDDOCUMENT;
-pub const WMDM_FORMATCODE_MHTCOMPILEDHTMLDOCUMENT = WMDM_FORMATCODE.MHTCOMPILEDHTMLDOCUMENT;
-pub const WMDM_FORMATCODE_MICROSOFTEXCELSPREADSHEET = WMDM_FORMATCODE.MICROSOFTEXCELSPREADSHEET;
-pub const WMDM_FORMATCODE_MICROSOFTPOWERPOINTDOCUMENT = WMDM_FORMATCODE.MICROSOFTPOWERPOINTDOCUMENT;
-pub const WMDM_FORMATCODE_UNDEFINEDMESSAGE = WMDM_FORMATCODE.UNDEFINEDMESSAGE;
-pub const WMDM_FORMATCODE_ABSTRACTMESSAGE = WMDM_FORMATCODE.ABSTRACTMESSAGE;
-pub const WMDM_FORMATCODE_UNDEFINEDCONTACT = WMDM_FORMATCODE.UNDEFINEDCONTACT;
-pub const WMDM_FORMATCODE_ABSTRACTCONTACT = WMDM_FORMATCODE.ABSTRACTCONTACT;
-pub const WMDM_FORMATCODE_VCARD2 = WMDM_FORMATCODE.VCARD2;
-pub const WMDM_FORMATCODE_VCARD3 = WMDM_FORMATCODE.VCARD3;
-pub const WMDM_FORMATCODE_UNDEFINEDCALENDARITEM = WMDM_FORMATCODE.UNDEFINEDCALENDARITEM;
-pub const WMDM_FORMATCODE_ABSTRACTCALENDARITEM = WMDM_FORMATCODE.ABSTRACTCALENDARITEM;
-pub const WMDM_FORMATCODE_VCALENDAR1 = WMDM_FORMATCODE.VCALENDAR1;
-pub const WMDM_FORMATCODE_VCALENDAR2 = WMDM_FORMATCODE.VCALENDAR2;
-pub const WMDM_FORMATCODE_UNDEFINEDWINDOWSEXECUTABLE = WMDM_FORMATCODE.UNDEFINEDWINDOWSEXECUTABLE;
-pub const WMDM_FORMATCODE_M4A = WMDM_FORMATCODE.M4A;
-pub const WMDM_FORMATCODE_3GPA = WMDM_FORMATCODE.@"3GPA";
-pub const WMDM_FORMATCODE_3G2A = WMDM_FORMATCODE.@"3G2A";
-pub const WMDM_FORMATCODE_SECTION = WMDM_FORMATCODE.SECTION;
-
-pub const WMDM_ENUM_PROP_VALID_VALUES_FORM = enum(i32) {
-    ANY = 0,
-    RANGE = 1,
-    ENUM = 2,
-};
-pub const WMDM_ENUM_PROP_VALID_VALUES_ANY = WMDM_ENUM_PROP_VALID_VALUES_FORM.ANY;
-pub const WMDM_ENUM_PROP_VALID_VALUES_RANGE = WMDM_ENUM_PROP_VALID_VALUES_FORM.RANGE;
-pub const WMDM_ENUM_PROP_VALID_VALUES_ENUM = WMDM_ENUM_PROP_VALID_VALUES_FORM.ENUM;
-
-pub const WMDM_PROP_VALUES_RANGE = extern struct {
-    rangeMin: PROPVARIANT,
-    rangeMax: PROPVARIANT,
-    rangeStep: PROPVARIANT,
-};
-
-pub const WMDM_PROP_VALUES_ENUM = extern struct {
-    cEnumValues: u32,
-    pValues: ?*PROPVARIANT,
-};
-
-pub const WMDM_PROP_DESC = extern struct {
-    pwszPropName: ?PWSTR,
-    ValidValuesForm: WMDM_ENUM_PROP_VALID_VALUES_FORM,
-    ValidValues: extern union {
-        ValidValuesRange: WMDM_PROP_VALUES_RANGE,
-        EnumeratedValidValues: WMDM_PROP_VALUES_ENUM,
-    },
-};
-
-pub const WMDM_PROP_CONFIG = extern struct {
-    nPreference: u32,
-    nPropDesc: u32,
-    pPropDesc: ?*WMDM_PROP_DESC,
-};
-
-pub const WMDM_FORMAT_CAPABILITY = extern struct {
-    nPropConfig: u32,
-    pConfigs: ?*WMDM_PROP_CONFIG,
-};
-
-pub const WMDM_FIND_SCOPE = enum(i32) {
-    GLOBAL = 0,
-    IMMEDIATE_CHILDREN = 1,
-};
-pub const WMDM_FIND_SCOPE_GLOBAL = WMDM_FIND_SCOPE.GLOBAL;
-pub const WMDM_FIND_SCOPE_IMMEDIATE_CHILDREN = WMDM_FIND_SCOPE.IMMEDIATE_CHILDREN;
-
-pub const WMDMMessage = enum(i32) {
-    DEVICE_ARRIVAL = 0,
-    DEVICE_REMOVAL = 1,
-    MEDIA_ARRIVAL = 2,
-    MEDIA_REMOVAL = 3,
-};
-pub const WMDM_MSG_DEVICE_ARRIVAL = WMDMMessage.DEVICE_ARRIVAL;
-pub const WMDM_MSG_DEVICE_REMOVAL = WMDMMessage.DEVICE_REMOVAL;
-pub const WMDM_MSG_MEDIA_ARRIVAL = WMDMMessage.MEDIA_ARRIVAL;
-pub const WMDM_MSG_MEDIA_REMOVAL = WMDMMessage.MEDIA_REMOVAL;
-
-const IID_IWMDMMetaData_Value = Guid.initString("ec3b0663-0951-460a-9a80-0dceed3c043c");
-pub const IID_IWMDMMetaData = &IID_IWMDMMetaData_Value;
-pub const IWMDMMetaData = extern union {
+const IID_IComponentAuthenticate_Value = Guid.initString("a9889c00-6d2b-11d3-8496-00c04f79dbc0");
+pub const IID_IComponentAuthenticate = &IID_IComponentAuthenticate_Value;
+pub const IComponentAuthenticate = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddItem: *const fn(
-            self: *const IWMDMMetaData,
-            Type: WMDM_TAG_DATATYPE,
-            pwszTagName: ?[*:0]const u16,
-            pValue: ?[*:0]u8,
-            iLength: u32,
+        SACAuth: *const fn(
+            self: *const IComponentAuthenticate,
+            dwProtocolID: u32,
+            dwPass: u32,
+            pbDataIn: [*:0]u8,
+            dwDataInLen: u32,
+            ppbDataOut: [*]?*u8,
+            pdwDataOutLen: ?*u32,
         ) callconv(.winapi) HRESULT,
-        QueryByName: *const fn(
-            self: *const IWMDMMetaData,
-            pwszTagName: ?[*:0]const u16,
-            pType: ?*WMDM_TAG_DATATYPE,
-            pValue: [*]?*u8,
-            pcbLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        QueryByIndex: *const fn(
-            self: *const IWMDMMetaData,
-            iIndex: u32,
-            ppwszName: ?*?*u16,
-            pType: ?*WMDM_TAG_DATATYPE,
-            ppValue: [*]?*u8,
-            pcbLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetItemCount: *const fn(
-            self: *const IWMDMMetaData,
-            iCount: ?*u32,
+        SACGetProtocols: *const fn(
+            self: *const IComponentAuthenticate,
+            ppdwProtocols: [*]?*u32,
+            pdwProtocolCount: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddItem(self: *const IWMDMMetaData, Type: WMDM_TAG_DATATYPE, pwszTagName: ?[*:0]const u16, pValue: ?[*:0]u8, iLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, Type, pwszTagName, pValue, iLength);
+    pub fn SACAuth(self: *const IComponentAuthenticate, dwProtocolID: u32, dwPass: u32, pbDataIn: [*:0]u8, dwDataInLen: u32, ppbDataOut: [*]?*u8, pdwDataOutLen: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SACAuth(self, dwProtocolID, dwPass, pbDataIn, dwDataInLen, ppbDataOut, pdwDataOutLen);
     }
-    pub fn QueryByName(self: *const IWMDMMetaData, pwszTagName: ?[*:0]const u16, pType: ?*WMDM_TAG_DATATYPE, pValue: [*]?*u8, pcbLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryByName(self, pwszTagName, pType, pValue, pcbLength);
+    pub fn SACGetProtocols(self: *const IComponentAuthenticate, ppdwProtocols: [*]?*u32, pdwProtocolCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SACGetProtocols(self, ppdwProtocols, pdwProtocolCount);
     }
-    pub fn QueryByIndex(self: *const IWMDMMetaData, iIndex: u32, ppwszName: ?*?*u16, pType: ?*WMDM_TAG_DATATYPE, ppValue: [*]?*u8, pcbLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryByIndex(self, iIndex, ppwszName, pType, ppValue, pcbLength);
-    }
-    pub fn GetItemCount(self: *const IWMDMMetaData, iCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemCount(self, iCount);
-    }
-};
-
-const IID_IWMDeviceManager_Value = Guid.initString("1dcb3a00-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDeviceManager = &IID_IWMDeviceManager_Value;
-pub const IWMDeviceManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRevision: *const fn(
-            self: *const IWMDeviceManager,
-            pdwRevision: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceCount: *const fn(
-            self: *const IWMDeviceManager,
-            pdwCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumDevices: *const fn(
-            self: *const IWMDeviceManager,
-            ppEnumDevice: ?*?*IWMDMEnumDevice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRevision(self: *const IWMDeviceManager, pdwRevision: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRevision(self, pdwRevision);
-    }
-    pub fn GetDeviceCount(self: *const IWMDeviceManager, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceCount(self, pdwCount);
-    }
-    pub fn EnumDevices(self: *const IWMDeviceManager, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumDevices(self, ppEnumDevice);
-    }
-};
-
-const IID_IWMDeviceManager2_Value = Guid.initString("923e5249-8731-4c5b-9b1c-b8b60b6e46af");
-pub const IID_IWMDeviceManager2 = &IID_IWMDeviceManager2_Value;
-pub const IWMDeviceManager2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDeviceManager.VTable,
-        GetDeviceFromCanonicalName: *const fn(
-            self: *const IWMDeviceManager2,
-            pwszCanonicalName: ?[*:0]const u16,
-            ppDevice: ?*?*IWMDMDevice,
-        ) callconv(.winapi) HRESULT,
-        EnumDevices2: *const fn(
-            self: *const IWMDeviceManager2,
-            ppEnumDevice: ?*?*IWMDMEnumDevice,
-        ) callconv(.winapi) HRESULT,
-        Reinitialize: *const fn(
-            self: *const IWMDeviceManager2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDeviceManager: IWMDeviceManager,
-    IUnknown: IUnknown,
-    pub fn GetDeviceFromCanonicalName(self: *const IWMDeviceManager2, pwszCanonicalName: ?[*:0]const u16, ppDevice: ?*?*IWMDMDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceFromCanonicalName(self, pwszCanonicalName, ppDevice);
-    }
-    pub fn EnumDevices2(self: *const IWMDeviceManager2, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumDevices2(self, ppEnumDevice);
-    }
-    pub fn Reinitialize(self: *const IWMDeviceManager2) callconv(.@"inline") HRESULT {
-        return self.vtable.Reinitialize(self);
-    }
-};
-
-const IID_IWMDeviceManager3_Value = Guid.initString("af185c41-100d-46ed-be2e-9ce8c44594ef");
-pub const IID_IWMDeviceManager3 = &IID_IWMDeviceManager3_Value;
-pub const IWMDeviceManager3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDeviceManager2.VTable,
-        SetDeviceEnumPreference: *const fn(
-            self: *const IWMDeviceManager3,
-            dwEnumPref: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDeviceManager2: IWMDeviceManager2,
-    IWMDeviceManager: IWMDeviceManager,
-    IUnknown: IUnknown,
-    pub fn SetDeviceEnumPreference(self: *const IWMDeviceManager3, dwEnumPref: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDeviceEnumPreference(self, dwEnumPref);
-    }
-};
-
-const IID_IWMDMStorageGlobals_Value = Guid.initString("1dcb3a07-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMStorageGlobals = &IID_IWMDMStorageGlobals_Value;
-pub const IWMDMStorageGlobals = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCapabilities: *const fn(
-            self: *const IWMDMStorageGlobals,
-            pdwCapabilities: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSerialNumber: *const fn(
-            self: *const IWMDMStorageGlobals,
-            pSerialNum: ?*WMDMID,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        GetTotalSize: *const fn(
-            self: *const IWMDMStorageGlobals,
-            pdwTotalSizeLow: ?*u32,
-            pdwTotalSizeHigh: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTotalFree: *const fn(
-            self: *const IWMDMStorageGlobals,
-            pdwFreeLow: ?*u32,
-            pdwFreeHigh: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTotalBad: *const fn(
-            self: *const IWMDMStorageGlobals,
-            pdwBadLow: ?*u32,
-            pdwBadHigh: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStatus: *const fn(
-            self: *const IWMDMStorageGlobals,
-            pdwStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Initialize: *const fn(
-            self: *const IWMDMStorageGlobals,
-            fuMode: u32,
-            pProgress: ?*IWMDMProgress,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const IWMDMStorageGlobals, pdwCapabilities: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCapabilities(self, pdwCapabilities);
-    }
-    pub fn GetSerialNumber(self: *const IWMDMStorageGlobals, pSerialNum: ?*WMDMID, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSerialNumber(self, pSerialNum, abMac);
-    }
-    pub fn GetTotalSize(self: *const IWMDMStorageGlobals, pdwTotalSizeLow: ?*u32, pdwTotalSizeHigh: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTotalSize(self, pdwTotalSizeLow, pdwTotalSizeHigh);
-    }
-    pub fn GetTotalFree(self: *const IWMDMStorageGlobals, pdwFreeLow: ?*u32, pdwFreeHigh: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTotalFree(self, pdwFreeLow, pdwFreeHigh);
-    }
-    pub fn GetTotalBad(self: *const IWMDMStorageGlobals, pdwBadLow: ?*u32, pdwBadHigh: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTotalBad(self, pdwBadLow, pdwBadHigh);
-    }
-    pub fn GetStatus(self: *const IWMDMStorageGlobals, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, pdwStatus);
-    }
-    pub fn Initialize(self: *const IWMDMStorageGlobals, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, fuMode, pProgress);
-    }
-};
-
-const IID_IWMDMStorage_Value = Guid.initString("1dcb3a06-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMStorage = &IID_IWMDMStorage_Value;
-pub const IWMDMStorage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAttributes: *const fn(
-            self: *const IWMDMStorage,
-            dwAttributes: u32,
-            pFormat: ?*WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        GetStorageGlobals: *const fn(
-            self: *const IWMDMStorage,
-            ppStorageGlobals: ?*?*IWMDMStorageGlobals,
-        ) callconv(.winapi) HRESULT,
-        GetAttributes: *const fn(
-            self: *const IWMDMStorage,
-            pdwAttributes: ?*u32,
-            pFormat: ?*WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        GetName: *const fn(
-            self: *const IWMDMStorage,
-            pwszName: [*:0]u16,
-            nMaxChars: u32,
-        ) callconv(.winapi) HRESULT,
-        GetDate: *const fn(
-            self: *const IWMDMStorage,
-            pDateTimeUTC: ?*WMDMDATETIME,
-        ) callconv(.winapi) HRESULT,
-        GetSize: *const fn(
-            self: *const IWMDMStorage,
-            pdwSizeLow: ?*u32,
-            pdwSizeHigh: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetRights: *const fn(
-            self: *const IWMDMStorage,
-            ppRights: [*]?*WMDMRIGHTS,
-            pnRightsCount: ?*u32,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        EnumStorage: *const fn(
-            self: *const IWMDMStorage,
-            pEnumStorage: ?*?*IWMDMEnumStorage,
-        ) callconv(.winapi) HRESULT,
-        SendOpaqueCommand: *const fn(
-            self: *const IWMDMStorage,
-            pCommand: ?*OPAQUECOMMAND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAttributes(self: *const IWMDMStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAttributes(self, dwAttributes, pFormat);
-    }
-    pub fn GetStorageGlobals(self: *const IWMDMStorage, ppStorageGlobals: ?*?*IWMDMStorageGlobals) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStorageGlobals(self, ppStorageGlobals);
-    }
-    pub fn GetAttributes(self: *const IWMDMStorage, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttributes(self, pdwAttributes, pFormat);
-    }
-    pub fn GetName(self: *const IWMDMStorage, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, pwszName, nMaxChars);
-    }
-    pub fn GetDate(self: *const IWMDMStorage, pDateTimeUTC: ?*WMDMDATETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDate(self, pDateTimeUTC);
-    }
-    pub fn GetSize(self: *const IWMDMStorage, pdwSizeLow: ?*u32, pdwSizeHigh: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSize(self, pdwSizeLow, pdwSizeHigh);
-    }
-    pub fn GetRights(self: *const IWMDMStorage, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRights(self, ppRights, pnRightsCount, abMac);
-    }
-    pub fn EnumStorage(self: *const IWMDMStorage, pEnumStorage: ?*?*IWMDMEnumStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumStorage(self, pEnumStorage);
-    }
-    pub fn SendOpaqueCommand(self: *const IWMDMStorage, pCommand: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
-        return self.vtable.SendOpaqueCommand(self, pCommand);
-    }
-};
-
-const IID_IWMDMStorage2_Value = Guid.initString("1ed5a144-5cd5-4683-9eff-72cbdb2d9533");
-pub const IID_IWMDMStorage2 = &IID_IWMDMStorage2_Value;
-pub const IWMDMStorage2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMStorage.VTable,
-        GetStorage: *const fn(
-            self: *const IWMDMStorage2,
-            pszStorageName: ?[*:0]const u16,
-            ppStorage: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-        SetAttributes2: *const fn(
-            self: *const IWMDMStorage2,
-            dwAttributes: u32,
-            dwAttributesEx: u32,
-            pFormat: ?*WAVEFORMATEX,
-            pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(.winapi) HRESULT,
-        GetAttributes2: *const fn(
-            self: *const IWMDMStorage2,
-            pdwAttributes: ?*u32,
-            pdwAttributesEx: ?*u32,
-            pAudioFormat: ?*WAVEFORMATEX,
-            pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMStorage: IWMDMStorage,
-    IUnknown: IUnknown,
-    pub fn GetStorage(self: *const IWMDMStorage2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStorage(self, pszStorageName, ppStorage);
-    }
-    pub fn SetAttributes2(self: *const IWMDMStorage2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAttributes2(self, dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
-    }
-    pub fn GetAttributes2(self: *const IWMDMStorage2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttributes2(self, pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
-    }
-};
-
-const IID_IWMDMStorage3_Value = Guid.initString("97717eea-926a-464e-96a4-247b0216026e");
-pub const IID_IWMDMStorage3 = &IID_IWMDMStorage3_Value;
-pub const IWMDMStorage3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMStorage2.VTable,
-        GetMetadata: *const fn(
-            self: *const IWMDMStorage3,
-            ppMetadata: ?*?*IWMDMMetaData,
-        ) callconv(.winapi) HRESULT,
-        SetMetadata: *const fn(
-            self: *const IWMDMStorage3,
-            pMetadata: ?*IWMDMMetaData,
-        ) callconv(.winapi) HRESULT,
-        CreateEmptyMetadataObject: *const fn(
-            self: *const IWMDMStorage3,
-            ppMetadata: ?*?*IWMDMMetaData,
-        ) callconv(.winapi) HRESULT,
-        SetEnumPreference: *const fn(
-            self: *const IWMDMStorage3,
-            pMode: ?*WMDM_STORAGE_ENUM_MODE,
-            nViews: u32,
-            pViews: ?[*]WMDMMetadataView,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMStorage2: IWMDMStorage2,
-    IWMDMStorage: IWMDMStorage,
-    IUnknown: IUnknown,
-    pub fn GetMetadata(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadata(self, ppMetadata);
-    }
-    pub fn SetMetadata(self: *const IWMDMStorage3, pMetadata: ?*IWMDMMetaData) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMetadata(self, pMetadata);
-    }
-    pub fn CreateEmptyMetadataObject(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEmptyMetadataObject(self, ppMetadata);
-    }
-    pub fn SetEnumPreference(self: *const IWMDMStorage3, pMode: ?*WMDM_STORAGE_ENUM_MODE, nViews: u32, pViews: ?[*]WMDMMetadataView) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEnumPreference(self, pMode, nViews, pViews);
-    }
-};
-
-const IID_IWMDMStorage4_Value = Guid.initString("c225bac5-a03a-40b8-9a23-91cf478c64a6");
-pub const IID_IWMDMStorage4 = &IID_IWMDMStorage4_Value;
-pub const IWMDMStorage4 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMStorage3.VTable,
-        SetReferences: *const fn(
-            self: *const IWMDMStorage4,
-            dwRefs: u32,
-            ppIWMDMStorage: ?[*]?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-        GetReferences: *const fn(
-            self: *const IWMDMStorage4,
-            pdwRefs: ?*u32,
-            pppIWMDMStorage: [*]?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-        GetRightsWithProgress: *const fn(
-            self: *const IWMDMStorage4,
-            pIProgressCallback: ?*IWMDMProgress3,
-            ppRights: [*]?*WMDMRIGHTS,
-            pnRightsCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSpecifiedMetadata: *const fn(
-            self: *const IWMDMStorage4,
-            cProperties: u32,
-            ppwszPropNames: [*]?PWSTR,
-            ppMetadata: ?*?*IWMDMMetaData,
-        ) callconv(.winapi) HRESULT,
-        FindStorage: *const fn(
-            self: *const IWMDMStorage4,
-            findScope: WMDM_FIND_SCOPE,
-            pwszUniqueID: ?[*:0]const u16,
-            ppStorage: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-        GetParent: *const fn(
-            self: *const IWMDMStorage4,
-            ppStorage: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMStorage3: IWMDMStorage3,
-    IWMDMStorage2: IWMDMStorage2,
-    IWMDMStorage: IWMDMStorage,
-    IUnknown: IUnknown,
-    pub fn SetReferences(self: *const IWMDMStorage4, dwRefs: u32, ppIWMDMStorage: ?[*]?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReferences(self, dwRefs, ppIWMDMStorage);
-    }
-    pub fn GetReferences(self: *const IWMDMStorage4, pdwRefs: ?*u32, pppIWMDMStorage: [*]?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReferences(self, pdwRefs, pppIWMDMStorage);
-    }
-    pub fn GetRightsWithProgress(self: *const IWMDMStorage4, pIProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRightsWithProgress(self, pIProgressCallback, ppRights, pnRightsCount);
-    }
-    pub fn GetSpecifiedMetadata(self: *const IWMDMStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSpecifiedMetadata(self, cProperties, ppwszPropNames, ppMetadata);
-    }
-    pub fn FindStorage(self: *const IWMDMStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
-    }
-    pub fn GetParent(self: *const IWMDMStorage4, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParent(self, ppStorage);
-    }
-};
-
-const IID_IWMDMOperation_Value = Guid.initString("1dcb3a0b-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMOperation = &IID_IWMDMOperation_Value;
-pub const IWMDMOperation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BeginRead: *const fn(
-            self: *const IWMDMOperation,
-        ) callconv(.winapi) HRESULT,
-        BeginWrite: *const fn(
-            self: *const IWMDMOperation,
-        ) callconv(.winapi) HRESULT,
-        GetObjectName: *const fn(
-            self: *const IWMDMOperation,
-            pwszName: [*:0]u16,
-            nMaxChars: u32,
-        ) callconv(.winapi) HRESULT,
-        SetObjectName: *const fn(
-            self: *const IWMDMOperation,
-            pwszName: [*:0]u16,
-            nMaxChars: u32,
-        ) callconv(.winapi) HRESULT,
-        GetObjectAttributes: *const fn(
-            self: *const IWMDMOperation,
-            pdwAttributes: ?*u32,
-            pFormat: ?*WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        SetObjectAttributes: *const fn(
-            self: *const IWMDMOperation,
-            dwAttributes: u32,
-            pFormat: ?*WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        GetObjectTotalSize: *const fn(
-            self: *const IWMDMOperation,
-            pdwSize: ?*u32,
-            pdwSizeHigh: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetObjectTotalSize: *const fn(
-            self: *const IWMDMOperation,
-            dwSize: u32,
-            dwSizeHigh: u32,
-        ) callconv(.winapi) HRESULT,
-        TransferObjectData: *const fn(
-            self: *const IWMDMOperation,
-            pData: [*:0]u8,
-            pdwSize: ?*u32,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        End: *const fn(
-            self: *const IWMDMOperation,
-            phCompletionCode: ?*HRESULT,
-            pNewObject: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn BeginRead(self: *const IWMDMOperation) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginRead(self);
-    }
-    pub fn BeginWrite(self: *const IWMDMOperation) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginWrite(self);
-    }
-    pub fn GetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectName(self, pwszName, nMaxChars);
-    }
-    pub fn SetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetObjectName(self, pwszName, nMaxChars);
-    }
-    pub fn GetObjectAttributes(self: *const IWMDMOperation, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectAttributes(self, pdwAttributes, pFormat);
-    }
-    pub fn SetObjectAttributes(self: *const IWMDMOperation, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.SetObjectAttributes(self, dwAttributes, pFormat);
-    }
-    pub fn GetObjectTotalSize(self: *const IWMDMOperation, pdwSize: ?*u32, pdwSizeHigh: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectTotalSize(self, pdwSize, pdwSizeHigh);
-    }
-    pub fn SetObjectTotalSize(self: *const IWMDMOperation, dwSize: u32, dwSizeHigh: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetObjectTotalSize(self, dwSize, dwSizeHigh);
-    }
-    pub fn TransferObjectData(self: *const IWMDMOperation, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.TransferObjectData(self, pData, pdwSize, abMac);
-    }
-    pub fn End(self: *const IWMDMOperation, phCompletionCode: ?*HRESULT, pNewObject: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.End(self, phCompletionCode, pNewObject);
-    }
-};
-
-const IID_IWMDMOperation2_Value = Guid.initString("33445b48-7df7-425c-ad8f-0fc6d82f9f75");
-pub const IID_IWMDMOperation2 = &IID_IWMDMOperation2_Value;
-pub const IWMDMOperation2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMOperation.VTable,
-        SetObjectAttributes2: *const fn(
-            self: *const IWMDMOperation2,
-            dwAttributes: u32,
-            dwAttributesEx: u32,
-            pFormat: ?*WAVEFORMATEX,
-            pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(.winapi) HRESULT,
-        GetObjectAttributes2: *const fn(
-            self: *const IWMDMOperation2,
-            pdwAttributes: ?*u32,
-            pdwAttributesEx: ?*u32,
-            pAudioFormat: ?*WAVEFORMATEX,
-            pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMOperation: IWMDMOperation,
-    IUnknown: IUnknown,
-    pub fn SetObjectAttributes2(self: *const IWMDMOperation2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
-        return self.vtable.SetObjectAttributes2(self, dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
-    }
-    pub fn GetObjectAttributes2(self: *const IWMDMOperation2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectAttributes2(self, pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
-    }
-};
-
-const IID_IWMDMOperation3_Value = Guid.initString("d1f9b46a-9ca8-46d8-9d0f-1ec9bae54919");
-pub const IID_IWMDMOperation3 = &IID_IWMDMOperation3_Value;
-pub const IWMDMOperation3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMOperation.VTable,
-        TransferObjectDataOnClearChannel: *const fn(
-            self: *const IWMDMOperation3,
-            pData: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMOperation: IWMDMOperation,
-    IUnknown: IUnknown,
-    pub fn TransferObjectDataOnClearChannel(self: *const IWMDMOperation3, pData: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.TransferObjectDataOnClearChannel(self, pData, pdwSize);
-    }
-};
-
-const IID_IWMDMProgress_Value = Guid.initString("1dcb3a0c-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMProgress = &IID_IWMDMProgress_Value;
-pub const IWMDMProgress = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin: *const fn(
-            self: *const IWMDMProgress,
-            dwEstimatedTicks: u32,
-        ) callconv(.winapi) HRESULT,
-        Progress: *const fn(
-            self: *const IWMDMProgress,
-            dwTranspiredTicks: u32,
-        ) callconv(.winapi) HRESULT,
-        End: *const fn(
-            self: *const IWMDMProgress,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin(self: *const IWMDMProgress, dwEstimatedTicks: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin(self, dwEstimatedTicks);
-    }
-    pub fn Progress(self: *const IWMDMProgress, dwTranspiredTicks: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Progress(self, dwTranspiredTicks);
-    }
-    pub fn End(self: *const IWMDMProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.End(self);
-    }
-};
-
-const IID_IWMDMProgress2_Value = Guid.initString("3a43f550-b383-4e92-b04a-e6bbc660fefc");
-pub const IID_IWMDMProgress2 = &IID_IWMDMProgress2_Value;
-pub const IWMDMProgress2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMProgress.VTable,
-        End2: *const fn(
-            self: *const IWMDMProgress2,
-            hrCompletionCode: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMProgress: IWMDMProgress,
-    IUnknown: IUnknown,
-    pub fn End2(self: *const IWMDMProgress2, hrCompletionCode: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.End2(self, hrCompletionCode);
-    }
-};
-
-const IID_IWMDMProgress3_Value = Guid.initString("21de01cb-3bb4-4929-b21a-17af3f80f658");
-pub const IID_IWMDMProgress3 = &IID_IWMDMProgress3_Value;
-pub const IWMDMProgress3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMProgress2.VTable,
-        Begin3: *const fn(
-            self: *const IWMDMProgress3,
-            EventId: Guid,
-            dwEstimatedTicks: u32,
-            pContext: ?*OPAQUECOMMAND,
-        ) callconv(.winapi) HRESULT,
-        Progress3: *const fn(
-            self: *const IWMDMProgress3,
-            EventId: Guid,
-            dwTranspiredTicks: u32,
-            pContext: ?*OPAQUECOMMAND,
-        ) callconv(.winapi) HRESULT,
-        End3: *const fn(
-            self: *const IWMDMProgress3,
-            EventId: Guid,
-            hrCompletionCode: HRESULT,
-            pContext: ?*OPAQUECOMMAND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMProgress2: IWMDMProgress2,
-    IWMDMProgress: IWMDMProgress,
-    IUnknown: IUnknown,
-    pub fn Begin3(self: *const IWMDMProgress3, EventId: Guid, dwEstimatedTicks: u32, pContext: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin3(self, EventId, dwEstimatedTicks, pContext);
-    }
-    pub fn Progress3(self: *const IWMDMProgress3, EventId: Guid, dwTranspiredTicks: u32, pContext: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
-        return self.vtable.Progress3(self, EventId, dwTranspiredTicks, pContext);
-    }
-    pub fn End3(self: *const IWMDMProgress3, EventId: Guid, hrCompletionCode: HRESULT, pContext: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
-        return self.vtable.End3(self, EventId, hrCompletionCode, pContext);
-    }
-};
-
-const IID_IWMDMDevice_Value = Guid.initString("1dcb3a02-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMDevice = &IID_IWMDMDevice_Value;
-pub const IWMDMDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IWMDMDevice,
-            pwszName: [*:0]u16,
-            nMaxChars: u32,
-        ) callconv(.winapi) HRESULT,
-        GetManufacturer: *const fn(
-            self: *const IWMDMDevice,
-            pwszName: [*:0]u16,
-            nMaxChars: u32,
-        ) callconv(.winapi) HRESULT,
-        GetVersion: *const fn(
-            self: *const IWMDMDevice,
-            pdwVersion: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetType: *const fn(
-            self: *const IWMDMDevice,
-            pdwType: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSerialNumber: *const fn(
-            self: *const IWMDMDevice,
-            pSerialNumber: ?*WMDMID,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        GetPowerSource: *const fn(
-            self: *const IWMDMDevice,
-            pdwPowerSource: ?*u32,
-            pdwPercentRemaining: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStatus: *const fn(
-            self: *const IWMDMDevice,
-            pdwStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceIcon: *const fn(
-            self: *const IWMDMDevice,
-            hIcon: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumStorage: *const fn(
-            self: *const IWMDMDevice,
-            ppEnumStorage: ?*?*IWMDMEnumStorage,
-        ) callconv(.winapi) HRESULT,
-        GetFormatSupport: *const fn(
-            self: *const IWMDMDevice,
-            ppFormatEx: [*]?*WAVEFORMATEX,
-            pnFormatCount: ?*u32,
-            pppwszMimeType: [*]?*?PWSTR,
-            pnMimeTypeCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SendOpaqueCommand: *const fn(
-            self: *const IWMDMDevice,
-            pCommand: ?*OPAQUECOMMAND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, pwszName, nMaxChars);
-    }
-    pub fn GetManufacturer(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetManufacturer(self, pwszName, nMaxChars);
-    }
-    pub fn GetVersion(self: *const IWMDMDevice, pdwVersion: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVersion(self, pdwVersion);
-    }
-    pub fn GetType(self: *const IWMDMDevice, pdwType: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pdwType);
-    }
-    pub fn GetSerialNumber(self: *const IWMDMDevice, pSerialNumber: ?*WMDMID, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSerialNumber(self, pSerialNumber, abMac);
-    }
-    pub fn GetPowerSource(self: *const IWMDMDevice, pdwPowerSource: ?*u32, pdwPercentRemaining: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPowerSource(self, pdwPowerSource, pdwPercentRemaining);
-    }
-    pub fn GetStatus(self: *const IWMDMDevice, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, pdwStatus);
-    }
-    pub fn GetDeviceIcon(self: *const IWMDMDevice, hIcon: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceIcon(self, hIcon);
-    }
-    pub fn EnumStorage(self: *const IWMDMDevice, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumStorage(self, ppEnumStorage);
-    }
-    pub fn GetFormatSupport(self: *const IWMDMDevice, ppFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFormatSupport(self, ppFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
-    }
-    pub fn SendOpaqueCommand(self: *const IWMDMDevice, pCommand: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
-        return self.vtable.SendOpaqueCommand(self, pCommand);
-    }
-};
-
-const IID_IWMDMDevice2_Value = Guid.initString("e34f3d37-9d67-4fc1-9252-62d28b2f8b55");
-pub const IID_IWMDMDevice2 = &IID_IWMDMDevice2_Value;
-pub const IWMDMDevice2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMDevice.VTable,
-        GetStorage: *const fn(
-            self: *const IWMDMDevice2,
-            pszStorageName: ?[*:0]const u16,
-            ppStorage: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-        GetFormatSupport2: *const fn(
-            self: *const IWMDMDevice2,
-            dwFlags: u32,
-            ppAudioFormatEx: [*]?*WAVEFORMATEX,
-            pnAudioFormatCount: ?*u32,
-            ppVideoFormatEx: [*]?*VIDEOINFOHEADER,
-            pnVideoFormatCount: ?*u32,
-            ppFileType: [*]?*WMFILECAPABILITIES,
-            pnFileTypeCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSpecifyPropertyPages: *const fn(
-            self: *const IWMDMDevice2,
-            ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
-            pppUnknowns: [*]?*?*IUnknown,
-            pcUnks: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCanonicalName: *const fn(
-            self: *const IWMDMDevice2,
-            pwszPnPName: [*:0]u16,
-            nMaxChars: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMDevice: IWMDMDevice,
-    IUnknown: IUnknown,
-    pub fn GetStorage(self: *const IWMDMDevice2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStorage(self, pszStorageName, ppStorage);
-    }
-    pub fn GetFormatSupport2(self: *const IWMDMDevice2, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFormatSupport2(self, dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
-    }
-    pub fn GetSpecifyPropertyPages(self: *const IWMDMDevice2, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSpecifyPropertyPages(self, ppSpecifyPropPages, pppUnknowns, pcUnks);
-    }
-    pub fn GetCanonicalName(self: *const IWMDMDevice2, pwszPnPName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCanonicalName(self, pwszPnPName, nMaxChars);
-    }
-};
-
-const IID_IWMDMDevice3_Value = Guid.initString("6c03e4fe-05db-4dda-9e3c-06233a6d5d65");
-pub const IID_IWMDMDevice3 = &IID_IWMDMDevice3_Value;
-pub const IWMDMDevice3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMDevice2.VTable,
-        GetProperty: *const fn(
-            self: *const IWMDMDevice3,
-            pwszPropName: ?[*:0]const u16,
-            pValue: ?*PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const IWMDMDevice3,
-            pwszPropName: ?[*:0]const u16,
-            pValue: ?*const PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetFormatCapability: *const fn(
-            self: *const IWMDMDevice3,
-            format: WMDM_FORMATCODE,
-            pFormatSupport: ?*WMDM_FORMAT_CAPABILITY,
-        ) callconv(.winapi) HRESULT,
-        DeviceIoControl: *const fn(
-            self: *const IWMDMDevice3,
-            dwIoControlCode: u32,
-            lpInBuffer: [*:0]u8,
-            nInBufferSize: u32,
-            lpOutBuffer: [*:0]u8,
-            pnOutBufferSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        FindStorage: *const fn(
-            self: *const IWMDMDevice3,
-            findScope: WMDM_FIND_SCOPE,
-            pwszUniqueID: ?[*:0]const u16,
-            ppStorage: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMDevice2: IWMDMDevice2,
-    IWMDMDevice: IWMDMDevice,
-    IUnknown: IUnknown,
-    pub fn GetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, pwszPropName, pValue);
-    }
-    pub fn SetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, pwszPropName, pValue);
-    }
-    pub fn GetFormatCapability(self: *const IWMDMDevice3, format: WMDM_FORMATCODE, pFormatSupport: ?*WMDM_FORMAT_CAPABILITY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFormatCapability(self, format, pFormatSupport);
-    }
-    pub fn DeviceIoControl(self: *const IWMDMDevice3, dwIoControlCode: u32, lpInBuffer: [*:0]u8, nInBufferSize: u32, lpOutBuffer: [*:0]u8, pnOutBufferSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceIoControl(self, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, pnOutBufferSize);
-    }
-    pub fn FindStorage(self: *const IWMDMDevice3, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
-    }
-};
-
-const IID_IWMDMDeviceSession_Value = Guid.initString("82af0a65-9d96-412c-83e5-3c43e4b06cc7");
-pub const IID_IWMDMDeviceSession = &IID_IWMDMDeviceSession_Value;
-pub const IWMDMDeviceSession = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BeginSession: *const fn(
-            self: *const IWMDMDeviceSession,
-            type: WMDM_SESSION_TYPE,
-            pCtx: ?[*:0]u8,
-            dwSizeCtx: u32,
-        ) callconv(.winapi) HRESULT,
-        EndSession: *const fn(
-            self: *const IWMDMDeviceSession,
-            type: WMDM_SESSION_TYPE,
-            pCtx: ?[*:0]u8,
-            dwSizeCtx: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn BeginSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginSession(self, @"type", pCtx, dwSizeCtx);
-    }
-    pub fn EndSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.EndSession(self, @"type", pCtx, dwSizeCtx);
-    }
-};
-
-const IID_IWMDMEnumDevice_Value = Guid.initString("1dcb3a01-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMEnumDevice = &IID_IWMDMEnumDevice_Value;
-pub const IWMDMEnumDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IWMDMEnumDevice,
-            celt: u32,
-            ppDevice: [*]?*IWMDMDevice,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IWMDMEnumDevice,
-            celt: u32,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IWMDMEnumDevice,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IWMDMEnumDevice,
-            ppEnumDevice: ?*?*IWMDMEnumDevice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IWMDMEnumDevice, celt: u32, ppDevice: [*]?*IWMDMDevice, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppDevice, pceltFetched);
-    }
-    pub fn Skip(self: *const IWMDMEnumDevice, celt: u32, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt, pceltFetched);
-    }
-    pub fn Reset(self: *const IWMDMEnumDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IWMDMEnumDevice, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnumDevice);
-    }
-};
-
-const IID_IWMDMDeviceControl_Value = Guid.initString("1dcb3a04-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMDeviceControl = &IID_IWMDMDeviceControl_Value;
-pub const IWMDMDeviceControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStatus: *const fn(
-            self: *const IWMDMDeviceControl,
-            pdwStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCapabilities: *const fn(
-            self: *const IWMDMDeviceControl,
-            pdwCapabilitiesMask: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Play: *const fn(
-            self: *const IWMDMDeviceControl,
-        ) callconv(.winapi) HRESULT,
-        Record: *const fn(
-            self: *const IWMDMDeviceControl,
-            pFormat: ?*WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        Pause: *const fn(
-            self: *const IWMDMDeviceControl,
-        ) callconv(.winapi) HRESULT,
-        Resume: *const fn(
-            self: *const IWMDMDeviceControl,
-        ) callconv(.winapi) HRESULT,
-        Stop: *const fn(
-            self: *const IWMDMDeviceControl,
-        ) callconv(.winapi) HRESULT,
-        Seek: *const fn(
-            self: *const IWMDMDeviceControl,
-            fuMode: u32,
-            nOffset: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IWMDMDeviceControl, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, pdwStatus);
-    }
-    pub fn GetCapabilities(self: *const IWMDMDeviceControl, pdwCapabilitiesMask: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCapabilities(self, pdwCapabilitiesMask);
-    }
-    pub fn Play(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
-        return self.vtable.Play(self);
-    }
-    pub fn Record(self: *const IWMDMDeviceControl, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.Record(self, pFormat);
-    }
-    pub fn Pause(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
-        return self.vtable.Pause(self);
-    }
-    pub fn Resume(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
-        return self.vtable.Resume(self);
-    }
-    pub fn Stop(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
-        return self.vtable.Stop(self);
-    }
-    pub fn Seek(self: *const IWMDMDeviceControl, fuMode: u32, nOffset: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Seek(self, fuMode, nOffset);
-    }
-};
-
-const IID_IWMDMEnumStorage_Value = Guid.initString("1dcb3a05-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMEnumStorage = &IID_IWMDMEnumStorage_Value;
-pub const IWMDMEnumStorage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IWMDMEnumStorage,
-            celt: u32,
-            ppStorage: [*]?*IWMDMStorage,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IWMDMEnumStorage,
-            celt: u32,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IWMDMEnumStorage,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IWMDMEnumStorage,
-            ppEnumStorage: ?*?*IWMDMEnumStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IWMDMEnumStorage, celt: u32, ppStorage: [*]?*IWMDMStorage, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppStorage, pceltFetched);
-    }
-    pub fn Skip(self: *const IWMDMEnumStorage, celt: u32, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt, pceltFetched);
-    }
-    pub fn Reset(self: *const IWMDMEnumStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IWMDMEnumStorage, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnumStorage);
-    }
-};
-
-const IID_IWMDMStorageControl_Value = Guid.initString("1dcb3a08-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMStorageControl = &IID_IWMDMStorageControl_Value;
-pub const IWMDMStorageControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Insert: *const fn(
-            self: *const IWMDMStorageControl,
-            fuMode: u32,
-            pwszFile: ?PWSTR,
-            pOperation: ?*IWMDMOperation,
-            pProgress: ?*IWMDMProgress,
-            ppNewObject: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IWMDMStorageControl,
-            fuMode: u32,
-            pProgress: ?*IWMDMProgress,
-        ) callconv(.winapi) HRESULT,
-        Rename: *const fn(
-            self: *const IWMDMStorageControl,
-            fuMode: u32,
-            pwszNewName: ?PWSTR,
-            pProgress: ?*IWMDMProgress,
-        ) callconv(.winapi) HRESULT,
-        Read: *const fn(
-            self: *const IWMDMStorageControl,
-            fuMode: u32,
-            pwszFile: ?PWSTR,
-            pProgress: ?*IWMDMProgress,
-            pOperation: ?*IWMDMOperation,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IWMDMStorageControl,
-            fuMode: u32,
-            pTargetObject: ?*IWMDMStorage,
-            pProgress: ?*IWMDMProgress,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Insert(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Insert(self, fuMode, pwszFile, pOperation, pProgress, ppNewObject);
-    }
-    pub fn Delete(self: *const IWMDMStorageControl, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, fuMode, pProgress);
-    }
-    pub fn Rename(self: *const IWMDMStorageControl, fuMode: u32, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Rename(self, fuMode, pwszNewName, pProgress);
-    }
-    pub fn Read(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pProgress: ?*IWMDMProgress, pOperation: ?*IWMDMOperation) callconv(.@"inline") HRESULT {
-        return self.vtable.Read(self, fuMode, pwszFile, pProgress, pOperation);
-    }
-    pub fn Move(self: *const IWMDMStorageControl, fuMode: u32, pTargetObject: ?*IWMDMStorage, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, fuMode, pTargetObject, pProgress);
-    }
-};
-
-const IID_IWMDMStorageControl2_Value = Guid.initString("972c2e88-bd6c-4125-8e09-84f837e637b6");
-pub const IID_IWMDMStorageControl2 = &IID_IWMDMStorageControl2_Value;
-pub const IWMDMStorageControl2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMStorageControl.VTable,
-        Insert2: *const fn(
-            self: *const IWMDMStorageControl2,
-            fuMode: u32,
-            pwszFileSource: ?PWSTR,
-            pwszFileDest: ?PWSTR,
-            pOperation: ?*IWMDMOperation,
-            pProgress: ?*IWMDMProgress,
-            pUnknown: ?*IUnknown,
-            ppNewObject: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMStorageControl: IWMDMStorageControl,
-    IUnknown: IUnknown,
-    pub fn Insert2(self: *const IWMDMStorageControl2, fuMode: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Insert2(self, fuMode, pwszFileSource, pwszFileDest, pOperation, pProgress, pUnknown, ppNewObject);
-    }
-};
-
-const IID_IWMDMStorageControl3_Value = Guid.initString("b3266365-d4f3-4696-8d53-bd27ec60993a");
-pub const IID_IWMDMStorageControl3 = &IID_IWMDMStorageControl3_Value;
-pub const IWMDMStorageControl3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDMStorageControl2.VTable,
-        Insert3: *const fn(
-            self: *const IWMDMStorageControl3,
-            fuMode: u32,
-            fuType: u32,
-            pwszFileSource: ?PWSTR,
-            pwszFileDest: ?PWSTR,
-            pOperation: ?*IWMDMOperation,
-            pProgress: ?*IWMDMProgress,
-            pMetaData: ?*IWMDMMetaData,
-            pUnknown: ?*IUnknown,
-            ppNewObject: ?*?*IWMDMStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDMStorageControl2: IWMDMStorageControl2,
-    IWMDMStorageControl: IWMDMStorageControl,
-    IUnknown: IUnknown,
-    pub fn Insert3(self: *const IWMDMStorageControl3, fuMode: u32, fuType: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pMetaData: ?*IWMDMMetaData, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Insert3(self, fuMode, fuType, pwszFileSource, pwszFileDest, pOperation, pProgress, pMetaData, pUnknown, ppNewObject);
-    }
-};
-
-const IID_IWMDMObjectInfo_Value = Guid.initString("1dcb3a09-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IWMDMObjectInfo = &IID_IWMDMObjectInfo_Value;
-pub const IWMDMObjectInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPlayLength: *const fn(
-            self: *const IWMDMObjectInfo,
-            pdwLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetPlayLength: *const fn(
-            self: *const IWMDMObjectInfo,
-            dwLength: u32,
-        ) callconv(.winapi) HRESULT,
-        GetPlayOffset: *const fn(
-            self: *const IWMDMObjectInfo,
-            pdwOffset: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetPlayOffset: *const fn(
-            self: *const IWMDMObjectInfo,
-            dwOffset: u32,
-        ) callconv(.winapi) HRESULT,
-        GetTotalLength: *const fn(
-            self: *const IWMDMObjectInfo,
-            pdwLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetLastPlayPosition: *const fn(
-            self: *const IWMDMObjectInfo,
-            pdwLastPos: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetLongestPlayPosition: *const fn(
-            self: *const IWMDMObjectInfo,
-            pdwLongestPos: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPlayLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPlayLength(self, pdwLength);
-    }
-    pub fn SetPlayLength(self: *const IWMDMObjectInfo, dwLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPlayLength(self, dwLength);
-    }
-    pub fn GetPlayOffset(self: *const IWMDMObjectInfo, pdwOffset: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPlayOffset(self, pdwOffset);
-    }
-    pub fn SetPlayOffset(self: *const IWMDMObjectInfo, dwOffset: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPlayOffset(self, dwOffset);
-    }
-    pub fn GetTotalLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTotalLength(self, pdwLength);
-    }
-    pub fn GetLastPlayPosition(self: *const IWMDMObjectInfo, pdwLastPos: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastPlayPosition(self, pdwLastPos);
-    }
-    pub fn GetLongestPlayPosition(self: *const IWMDMObjectInfo, pdwLongestPos: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLongestPlayPosition(self, pdwLongestPos);
-    }
-};
-
-const IID_IWMDMRevoked_Value = Guid.initString("ebeccedb-88ee-4e55-b6a4-8d9f07d696aa");
-pub const IID_IWMDMRevoked = &IID_IWMDMRevoked_Value;
-pub const IWMDMRevoked = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRevocationURL: *const fn(
-            self: *const IWMDMRevoked,
-            ppwszRevocationURL: [*]?PWSTR,
-            pdwBufferLen: ?*u32,
-            pdwRevokedBitFlag: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRevocationURL(self: *const IWMDMRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen, pdwRevokedBitFlag);
-    }
-};
-
-const IID_IWMDMNotification_Value = Guid.initString("3f5e95c0-0f43-4ed4-93d2-c89a45d59b81");
-pub const IID_IWMDMNotification = &IID_IWMDMNotification_Value;
-pub const IWMDMNotification = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        WMDMMessage: *const fn(
-            self: *const IWMDMNotification,
-            dwMessageType: u32,
-            pwszCanonicalName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn WMDMMessage(self: *const IWMDMNotification, dwMessageType: u32, pwszCanonicalName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.WMDMMessage(self, dwMessageType, pwszCanonicalName);
-    }
-};
-
-pub const WMDMDetermineMaxPropStringLen = extern union {
-    sz001: [27]u16,
-    sz002: [31]u16,
-    sz003: [14]u16,
-    sz004: [16]u16,
-    sz005: [22]u16,
-    sz006: [14]u16,
-    sz007: [20]u16,
-    sz008: [20]u16,
-    sz009: [22]u16,
-    sz010: [11]u16,
-    sz011: [12]u16,
-    sz012: [17]u16,
-    sz013: [17]u16,
-    sz014: [16]u16,
-    sz015: [17]u16,
-    sz016: [11]u16,
-    sz017: [11]u16,
-    sz018: [15]u16,
-    sz019: [22]u16,
-    sz020: [20]u16,
-    sz021: [22]u16,
-    sz022: [21]u16,
-    sz023: [24]u16,
-    sz024: [20]u16,
-    sz025: [10]u16,
-    sz026: [14]u16,
-    sz027: [11]u16,
-    sz028: [11]u16,
-    sz029: [13]u16,
-    sz030: [17]u16,
-    sz031: [16]u16,
-    sz032: [17]u16,
-    sz033: [20]u16,
-    sz034: [19]u16,
-    sz035: [18]u16,
-    sz036: [18]u16,
-    sz037: [15]u16,
-    sz041: [14]u16,
-    sz043: [22]u16,
-    sz044: [16]u16,
-    sz045: [20]u16,
-    sz046: [14]u16,
-    sz047: [14]u16,
-    sz048: [12]u16,
-    sz049: [25]u16,
-    sz050: [26]u16,
-    sz051: [25]u16,
-    sz052: [16]u16,
-    sz053: [24]u16,
-    sz054: [15]u16,
-    sz055: [21]u16,
-    sz056: [16]u16,
-    sz057: [22]u16,
-    sz058: [14]u16,
-    sz059: [25]u16,
-    sz060: [18]u16,
-    sz061: [22]u16,
-    sz062: [26]u16,
-    sz063: [36]u16,
-    sz064: [23]u16,
-    sz065: [12]u16,
-    sz066: [24]u16,
-    sz067: [11]u16,
-    sz068: [12]u16,
-    sz069: [14]u16,
-    sz070: [20]u16,
-    sz071: [15]u16,
-    sz072: [14]u16,
-    sz073: [31]u16,
-    sz074: [24]u16,
-    sz075: [22]u16,
-    sz076: [24]u16,
-    sz077: [21]u16,
-    sz078: [27]u16,
-    sz079: [27]u16,
-    sz080: [20]u16,
-    sz081: [33]u16,
-    sz082: [21]u16,
-    sz083: [32]u16,
-    sz084: [26]u16,
-    sz085: [18]u16,
-    sz086: [30]u16,
 };
 
 const IID_IMDServiceProvider_Value = Guid.initString("1dcb3a10-33ed-11d3-8470-00c04f79dbc0");
@@ -2005,46 +378,6 @@ pub const IMDServiceProvider3 = extern union {
     IUnknown: IUnknown,
     pub fn SetDeviceEnumPreference(self: *const IMDServiceProvider3, dwEnumPref: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDeviceEnumPreference(self, dwEnumPref);
-    }
-};
-
-const IID_IMDSPEnumDevice_Value = Guid.initString("1dcb3a11-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IMDSPEnumDevice = &IID_IMDSPEnumDevice_Value;
-pub const IMDSPEnumDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IMDSPEnumDevice,
-            celt: u32,
-            ppDevice: [*]?*IMDSPDevice,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IMDSPEnumDevice,
-            celt: u32,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IMDSPEnumDevice,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IMDSPEnumDevice,
-            ppEnumDevice: ?*?*IMDSPEnumDevice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IMDSPEnumDevice, celt: u32, ppDevice: [*]?*IMDSPDevice, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppDevice, pceltFetched);
-    }
-    pub fn Skip(self: *const IMDSPEnumDevice, celt: u32, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt, pceltFetched);
-    }
-    pub fn Reset(self: *const IMDSPEnumDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IMDSPEnumDevice, ppEnumDevice: ?*?*IMDSPEnumDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnumDevice);
     }
 };
 
@@ -2310,6 +643,69 @@ pub const IMDSPDeviceControl = extern union {
     }
 };
 
+const IID_IMDSPDirectTransfer_Value = Guid.initString("c2fe57a8-9304-478c-9ee4-47e397b912d7");
+pub const IID_IMDSPDirectTransfer = &IID_IMDSPDirectTransfer_Value;
+pub const IMDSPDirectTransfer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        TransferToDevice: *const fn(
+            self: *const IMDSPDirectTransfer,
+            pwszSourceFilePath: ?[*:0]const u16,
+            pSourceOperation: ?*IWMDMOperation,
+            fuFlags: u32,
+            pwszDestinationName: ?PWSTR,
+            pSourceMetaData: ?*IWMDMMetaData,
+            pTransferProgress: ?*IWMDMProgress,
+            ppNewObject: ?*?*IMDSPStorage,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn TransferToDevice(self: *const IMDSPDirectTransfer, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?PWSTR, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.TransferToDevice(self, pwszSourceFilePath, pSourceOperation, fuFlags, pwszDestinationName, pSourceMetaData, pTransferProgress, ppNewObject);
+    }
+};
+
+const IID_IMDSPEnumDevice_Value = Guid.initString("1dcb3a11-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IMDSPEnumDevice = &IID_IMDSPEnumDevice_Value;
+pub const IMDSPEnumDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IMDSPEnumDevice,
+            celt: u32,
+            ppDevice: [*]?*IMDSPDevice,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IMDSPEnumDevice,
+            celt: u32,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IMDSPEnumDevice,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IMDSPEnumDevice,
+            ppEnumDevice: ?*?*IMDSPEnumDevice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IMDSPEnumDevice, celt: u32, ppDevice: [*]?*IMDSPDevice, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppDevice, pceltFetched);
+    }
+    pub fn Skip(self: *const IMDSPEnumDevice, celt: u32, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt, pceltFetched);
+    }
+    pub fn Reset(self: *const IMDSPEnumDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IMDSPEnumDevice, ppEnumDevice: ?*?*IMDSPEnumDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnumDevice);
+    }
+};
+
 const IID_IMDSPEnumStorage_Value = Guid.initString("1dcb3a15-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPEnumStorage = &IID_IMDSPEnumStorage_Value;
 pub const IMDSPEnumStorage = extern union {
@@ -2347,6 +743,184 @@ pub const IMDSPEnumStorage = extern union {
     }
     pub fn Clone(self: *const IMDSPEnumStorage, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnumStorage);
+    }
+};
+
+const IID_IMDSPObject_Value = Guid.initString("1dcb3a18-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IMDSPObject = &IID_IMDSPObject_Value;
+pub const IMDSPObject = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IMDSPObject,
+            fuMode: u32,
+        ) callconv(.winapi) HRESULT,
+        Read: *const fn(
+            self: *const IMDSPObject,
+            pData: [*:0]u8,
+            pdwSize: ?*u32,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        Write: *const fn(
+            self: *const IMDSPObject,
+            pData: [*:0]u8,
+            pdwSize: ?*u32,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IMDSPObject,
+            fuMode: u32,
+            pProgress: ?*IWMDMProgress,
+        ) callconv(.winapi) HRESULT,
+        Seek: *const fn(
+            self: *const IMDSPObject,
+            fuFlags: u32,
+            dwOffset: u32,
+        ) callconv(.winapi) HRESULT,
+        Rename: *const fn(
+            self: *const IMDSPObject,
+            pwszNewName: ?PWSTR,
+            pProgress: ?*IWMDMProgress,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IMDSPObject,
+            fuMode: u32,
+            pProgress: ?*IWMDMProgress,
+            pTarget: ?*IMDSPStorage,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IMDSPObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IMDSPObject, fuMode: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, fuMode);
+    }
+    pub fn Read(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.Read(self, pData, pdwSize, abMac);
+    }
+    pub fn Write(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.Write(self, pData, pdwSize, abMac);
+    }
+    pub fn Delete(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, fuMode, pProgress);
+    }
+    pub fn Seek(self: *const IMDSPObject, fuFlags: u32, dwOffset: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Seek(self, fuFlags, dwOffset);
+    }
+    pub fn Rename(self: *const IMDSPObject, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Rename(self, pwszNewName, pProgress);
+    }
+    pub fn Move(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress, pTarget: ?*IMDSPStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, fuMode, pProgress, pTarget);
+    }
+    pub fn Close(self: *const IMDSPObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+const IID_IMDSPObject2_Value = Guid.initString("3f34cd3e-5907-4341-9af9-97f4187c3aa5");
+pub const IID_IMDSPObject2 = &IID_IMDSPObject2_Value;
+pub const IMDSPObject2 = extern union {
+    pub const VTable = extern struct {
+        base: IMDSPObject.VTable,
+        ReadOnClearChannel: *const fn(
+            self: *const IMDSPObject2,
+            pData: [*:0]u8,
+            pdwSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        WriteOnClearChannel: *const fn(
+            self: *const IMDSPObject2,
+            pData: [*:0]u8,
+            pdwSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMDSPObject: IMDSPObject,
+    IUnknown: IUnknown,
+    pub fn ReadOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadOnClearChannel(self, pData, pdwSize);
+    }
+    pub fn WriteOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteOnClearChannel(self, pData, pdwSize);
+    }
+};
+
+const IID_IMDSPObjectInfo_Value = Guid.initString("1dcb3a19-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IMDSPObjectInfo = &IID_IMDSPObjectInfo_Value;
+pub const IMDSPObjectInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPlayLength: *const fn(
+            self: *const IMDSPObjectInfo,
+            pdwLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetPlayLength: *const fn(
+            self: *const IMDSPObjectInfo,
+            dwLength: u32,
+        ) callconv(.winapi) HRESULT,
+        GetPlayOffset: *const fn(
+            self: *const IMDSPObjectInfo,
+            pdwOffset: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetPlayOffset: *const fn(
+            self: *const IMDSPObjectInfo,
+            dwOffset: u32,
+        ) callconv(.winapi) HRESULT,
+        GetTotalLength: *const fn(
+            self: *const IMDSPObjectInfo,
+            pdwLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetLastPlayPosition: *const fn(
+            self: *const IMDSPObjectInfo,
+            pdwLastPos: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetLongestPlayPosition: *const fn(
+            self: *const IMDSPObjectInfo,
+            pdwLongestPos: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPlayLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPlayLength(self, pdwLength);
+    }
+    pub fn SetPlayLength(self: *const IMDSPObjectInfo, dwLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPlayLength(self, dwLength);
+    }
+    pub fn GetPlayOffset(self: *const IMDSPObjectInfo, pdwOffset: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPlayOffset(self, pdwOffset);
+    }
+    pub fn SetPlayOffset(self: *const IMDSPObjectInfo, dwOffset: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPlayOffset(self, dwOffset);
+    }
+    pub fn GetTotalLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTotalLength(self, pdwLength);
+    }
+    pub fn GetLastPlayPosition(self: *const IMDSPObjectInfo, pdwLastPos: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastPlayPosition(self, pdwLastPos);
+    }
+    pub fn GetLongestPlayPosition(self: *const IMDSPObjectInfo, pdwLongestPos: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLongestPlayPosition(self, pdwLongestPos);
+    }
+};
+
+const IID_IMDSPRevoked_Value = Guid.initString("a4e8f2d4-3f31-464d-b53d-4fc335998184");
+pub const IID_IMDSPRevoked = &IID_IMDSPRevoked_Value;
+pub const IMDSPRevoked = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRevocationURL: *const fn(
+            self: *const IMDSPRevoked,
+            ppwszRevocationURL: [*]?PWSTR,
+            pdwBufferLen: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRevocationURL(self: *const IMDSPRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen);
     }
 };
 
@@ -2660,207 +1234,6 @@ pub const IMDSPStorageGlobals = extern union {
     }
 };
 
-const IID_IMDSPObjectInfo_Value = Guid.initString("1dcb3a19-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IMDSPObjectInfo = &IID_IMDSPObjectInfo_Value;
-pub const IMDSPObjectInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPlayLength: *const fn(
-            self: *const IMDSPObjectInfo,
-            pdwLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetPlayLength: *const fn(
-            self: *const IMDSPObjectInfo,
-            dwLength: u32,
-        ) callconv(.winapi) HRESULT,
-        GetPlayOffset: *const fn(
-            self: *const IMDSPObjectInfo,
-            pdwOffset: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetPlayOffset: *const fn(
-            self: *const IMDSPObjectInfo,
-            dwOffset: u32,
-        ) callconv(.winapi) HRESULT,
-        GetTotalLength: *const fn(
-            self: *const IMDSPObjectInfo,
-            pdwLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetLastPlayPosition: *const fn(
-            self: *const IMDSPObjectInfo,
-            pdwLastPos: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetLongestPlayPosition: *const fn(
-            self: *const IMDSPObjectInfo,
-            pdwLongestPos: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPlayLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPlayLength(self, pdwLength);
-    }
-    pub fn SetPlayLength(self: *const IMDSPObjectInfo, dwLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPlayLength(self, dwLength);
-    }
-    pub fn GetPlayOffset(self: *const IMDSPObjectInfo, pdwOffset: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPlayOffset(self, pdwOffset);
-    }
-    pub fn SetPlayOffset(self: *const IMDSPObjectInfo, dwOffset: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPlayOffset(self, dwOffset);
-    }
-    pub fn GetTotalLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTotalLength(self, pdwLength);
-    }
-    pub fn GetLastPlayPosition(self: *const IMDSPObjectInfo, pdwLastPos: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastPlayPosition(self, pdwLastPos);
-    }
-    pub fn GetLongestPlayPosition(self: *const IMDSPObjectInfo, pdwLongestPos: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLongestPlayPosition(self, pdwLongestPos);
-    }
-};
-
-const IID_IMDSPObject_Value = Guid.initString("1dcb3a18-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_IMDSPObject = &IID_IMDSPObject_Value;
-pub const IMDSPObject = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IMDSPObject,
-            fuMode: u32,
-        ) callconv(.winapi) HRESULT,
-        Read: *const fn(
-            self: *const IMDSPObject,
-            pData: [*:0]u8,
-            pdwSize: ?*u32,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        Write: *const fn(
-            self: *const IMDSPObject,
-            pData: [*:0]u8,
-            pdwSize: ?*u32,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IMDSPObject,
-            fuMode: u32,
-            pProgress: ?*IWMDMProgress,
-        ) callconv(.winapi) HRESULT,
-        Seek: *const fn(
-            self: *const IMDSPObject,
-            fuFlags: u32,
-            dwOffset: u32,
-        ) callconv(.winapi) HRESULT,
-        Rename: *const fn(
-            self: *const IMDSPObject,
-            pwszNewName: ?PWSTR,
-            pProgress: ?*IWMDMProgress,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IMDSPObject,
-            fuMode: u32,
-            pProgress: ?*IWMDMProgress,
-            pTarget: ?*IMDSPStorage,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IMDSPObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IMDSPObject, fuMode: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, fuMode);
-    }
-    pub fn Read(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.Read(self, pData, pdwSize, abMac);
-    }
-    pub fn Write(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.Write(self, pData, pdwSize, abMac);
-    }
-    pub fn Delete(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, fuMode, pProgress);
-    }
-    pub fn Seek(self: *const IMDSPObject, fuFlags: u32, dwOffset: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Seek(self, fuFlags, dwOffset);
-    }
-    pub fn Rename(self: *const IMDSPObject, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.Rename(self, pwszNewName, pProgress);
-    }
-    pub fn Move(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress, pTarget: ?*IMDSPStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, fuMode, pProgress, pTarget);
-    }
-    pub fn Close(self: *const IMDSPObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-};
-
-const IID_IMDSPObject2_Value = Guid.initString("3f34cd3e-5907-4341-9af9-97f4187c3aa5");
-pub const IID_IMDSPObject2 = &IID_IMDSPObject2_Value;
-pub const IMDSPObject2 = extern union {
-    pub const VTable = extern struct {
-        base: IMDSPObject.VTable,
-        ReadOnClearChannel: *const fn(
-            self: *const IMDSPObject2,
-            pData: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        WriteOnClearChannel: *const fn(
-            self: *const IMDSPObject2,
-            pData: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMDSPObject: IMDSPObject,
-    IUnknown: IUnknown,
-    pub fn ReadOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadOnClearChannel(self, pData, pdwSize);
-    }
-    pub fn WriteOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteOnClearChannel(self, pData, pdwSize);
-    }
-};
-
-const IID_IMDSPDirectTransfer_Value = Guid.initString("c2fe57a8-9304-478c-9ee4-47e397b912d7");
-pub const IID_IMDSPDirectTransfer = &IID_IMDSPDirectTransfer_Value;
-pub const IMDSPDirectTransfer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        TransferToDevice: *const fn(
-            self: *const IMDSPDirectTransfer,
-            pwszSourceFilePath: ?[*:0]const u16,
-            pSourceOperation: ?*IWMDMOperation,
-            fuFlags: u32,
-            pwszDestinationName: ?PWSTR,
-            pSourceMetaData: ?*IWMDMMetaData,
-            pTransferProgress: ?*IWMDMProgress,
-            ppNewObject: ?*?*IMDSPStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn TransferToDevice(self: *const IMDSPDirectTransfer, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?PWSTR, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.TransferToDevice(self, pwszSourceFilePath, pSourceOperation, fuFlags, pwszDestinationName, pSourceMetaData, pTransferProgress, ppNewObject);
-    }
-};
-
-const IID_IMDSPRevoked_Value = Guid.initString("a4e8f2d4-3f31-464d-b53d-4fc335998184");
-pub const IID_IMDSPRevoked = &IID_IMDSPRevoked_Value;
-pub const IMDSPRevoked = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRevocationURL: *const fn(
-            self: *const IMDSPRevoked,
-            ppwszRevocationURL: [*]?PWSTR,
-            pdwBufferLen: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRevocationURL(self: *const IMDSPRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen);
-    }
-};
-
 const IID_ISCPSecureAuthenticate_Value = Guid.initString("1dcb3a0f-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_ISCPSecureAuthenticate = &IID_ISCPSecureAuthenticate_Value;
 pub const ISCPSecureAuthenticate = extern union {
@@ -2893,102 +1266,6 @@ pub const ISCPSecureAuthenticate2 = extern union {
     IUnknown: IUnknown,
     pub fn GetSCPSession(self: *const ISCPSecureAuthenticate2, ppSCPSession: ?*?*ISCPSession) callconv(.@"inline") HRESULT {
         return self.vtable.GetSCPSession(self, ppSCPSession);
-    }
-};
-
-const IID_ISCPSecureQuery_Value = Guid.initString("1dcb3a0d-33ed-11d3-8470-00c04f79dbc0");
-pub const IID_ISCPSecureQuery = &IID_ISCPSecureQuery_Value;
-pub const ISCPSecureQuery = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDataDemands: *const fn(
-            self: *const ISCPSecureQuery,
-            pfuFlags: ?*u32,
-            pdwMinRightsData: ?*u32,
-            pdwMinExamineData: ?*u32,
-            pdwMinDecideData: ?*u32,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        ExamineData: *const fn(
-            self: *const ISCPSecureQuery,
-            fuFlags: u32,
-            pwszExtension: ?PWSTR,
-            pData: [*:0]u8,
-            dwSize: u32,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        MakeDecision: *const fn(
-            self: *const ISCPSecureQuery,
-            fuFlags: u32,
-            pData: [*:0]u8,
-            dwSize: u32,
-            dwAppSec: u32,
-            pbSPSessionKey: [*:0]u8,
-            dwSessionKeyLen: u32,
-            pStorageGlobals: ?*IMDSPStorageGlobals,
-            ppExchange: ?*?*ISCPSecureExchange,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        GetRights: *const fn(
-            self: *const ISCPSecureQuery,
-            pData: [*:0]u8,
-            dwSize: u32,
-            pbSPSessionKey: [*:0]u8,
-            dwSessionKeyLen: u32,
-            pStgGlobals: ?*IMDSPStorageGlobals,
-            ppRights: [*]?*WMDMRIGHTS,
-            pnRightsCount: ?*u32,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDataDemands(self: *const ISCPSecureQuery, pfuFlags: ?*u32, pdwMinRightsData: ?*u32, pdwMinExamineData: ?*u32, pdwMinDecideData: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataDemands(self, pfuFlags, pdwMinRightsData, pdwMinExamineData, pdwMinDecideData, abMac);
-    }
-    pub fn ExamineData(self: *const ISCPSecureQuery, fuFlags: u32, pwszExtension: ?PWSTR, pData: [*:0]u8, dwSize: u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.ExamineData(self, fuFlags, pwszExtension, pData, dwSize, abMac);
-    }
-    pub fn MakeDecision(self: *const ISCPSecureQuery, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.MakeDecision(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, ppExchange, abMac);
-    }
-    pub fn GetRights(self: *const ISCPSecureQuery, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRights(self, pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, ppRights, pnRightsCount, abMac);
-    }
-};
-
-const IID_ISCPSecureQuery2_Value = Guid.initString("ebe17e25-4fd7-4632-af46-6d93d4fcc72e");
-pub const IID_ISCPSecureQuery2 = &IID_ISCPSecureQuery2_Value;
-pub const ISCPSecureQuery2 = extern union {
-    pub const VTable = extern struct {
-        base: ISCPSecureQuery.VTable,
-        MakeDecision2: *const fn(
-            self: *const ISCPSecureQuery2,
-            fuFlags: u32,
-            pData: [*:0]u8,
-            dwSize: u32,
-            dwAppSec: u32,
-            pbSPSessionKey: [*:0]u8,
-            dwSessionKeyLen: u32,
-            pStorageGlobals: ?*IMDSPStorageGlobals,
-            pAppCertApp: [*:0]u8,
-            dwAppCertAppLen: u32,
-            pAppCertSP: [*:0]u8,
-            dwAppCertSPLen: u32,
-            pszRevocationURL: [*]?PWSTR,
-            pdwRevocationURLLen: ?*u32,
-            pdwRevocationBitFlag: ?*u32,
-            pqwFileSize: ?*u64,
-            pUnknown: ?*IUnknown,
-            ppExchange: ?*?*ISCPSecureExchange,
-            abMac: ?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISCPSecureQuery: ISCPSecureQuery,
-    IUnknown: IUnknown,
-    pub fn MakeDecision2(self: *const ISCPSecureQuery2, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.MakeDecision2(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange, abMac);
     }
 };
 
@@ -3088,37 +1365,99 @@ pub const ISCPSecureExchange3 = extern union {
     }
 };
 
-const IID_ISCPSession_Value = Guid.initString("88a3e6ed-eee4-4619-bbb3-fd4fb62715d1");
-pub const IID_ISCPSession = &IID_ISCPSession_Value;
-pub const ISCPSession = extern union {
+const IID_ISCPSecureQuery_Value = Guid.initString("1dcb3a0d-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_ISCPSecureQuery = &IID_ISCPSecureQuery_Value;
+pub const ISCPSecureQuery = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeginSession: *const fn(
-            self: *const ISCPSession,
-            pIDevice: ?*IMDSPDevice,
-            pCtx: [*:0]u8,
-            dwSizeCtx: u32,
+        GetDataDemands: *const fn(
+            self: *const ISCPSecureQuery,
+            pfuFlags: ?*u32,
+            pdwMinRightsData: ?*u32,
+            pdwMinExamineData: ?*u32,
+            pdwMinDecideData: ?*u32,
+            abMac: ?*u8,
         ) callconv(.winapi) HRESULT,
-        EndSession: *const fn(
-            self: *const ISCPSession,
-            pCtx: [*:0]u8,
-            dwSizeCtx: u32,
+        ExamineData: *const fn(
+            self: *const ISCPSecureQuery,
+            fuFlags: u32,
+            pwszExtension: ?PWSTR,
+            pData: [*:0]u8,
+            dwSize: u32,
+            abMac: ?*u8,
         ) callconv(.winapi) HRESULT,
-        GetSecureQuery: *const fn(
-            self: *const ISCPSession,
-            ppSecureQuery: ?*?*ISCPSecureQuery,
+        MakeDecision: *const fn(
+            self: *const ISCPSecureQuery,
+            fuFlags: u32,
+            pData: [*:0]u8,
+            dwSize: u32,
+            dwAppSec: u32,
+            pbSPSessionKey: [*:0]u8,
+            dwSessionKeyLen: u32,
+            pStorageGlobals: ?*IMDSPStorageGlobals,
+            ppExchange: ?*?*ISCPSecureExchange,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        GetRights: *const fn(
+            self: *const ISCPSecureQuery,
+            pData: [*:0]u8,
+            dwSize: u32,
+            pbSPSessionKey: [*:0]u8,
+            dwSessionKeyLen: u32,
+            pStgGlobals: ?*IMDSPStorageGlobals,
+            ppRights: [*]?*WMDMRIGHTS,
+            pnRightsCount: ?*u32,
+            abMac: ?*u8,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginSession(self: *const ISCPSession, pIDevice: ?*IMDSPDevice, pCtx: [*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginSession(self, pIDevice, pCtx, dwSizeCtx);
+    pub fn GetDataDemands(self: *const ISCPSecureQuery, pfuFlags: ?*u32, pdwMinRightsData: ?*u32, pdwMinExamineData: ?*u32, pdwMinDecideData: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataDemands(self, pfuFlags, pdwMinRightsData, pdwMinExamineData, pdwMinDecideData, abMac);
     }
-    pub fn EndSession(self: *const ISCPSession, pCtx: [*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.EndSession(self, pCtx, dwSizeCtx);
+    pub fn ExamineData(self: *const ISCPSecureQuery, fuFlags: u32, pwszExtension: ?PWSTR, pData: [*:0]u8, dwSize: u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.ExamineData(self, fuFlags, pwszExtension, pData, dwSize, abMac);
     }
-    pub fn GetSecureQuery(self: *const ISCPSession, ppSecureQuery: ?*?*ISCPSecureQuery) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecureQuery(self, ppSecureQuery);
+    pub fn MakeDecision(self: *const ISCPSecureQuery, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.MakeDecision(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, ppExchange, abMac);
+    }
+    pub fn GetRights(self: *const ISCPSecureQuery, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRights(self, pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, ppRights, pnRightsCount, abMac);
+    }
+};
+
+const IID_ISCPSecureQuery2_Value = Guid.initString("ebe17e25-4fd7-4632-af46-6d93d4fcc72e");
+pub const IID_ISCPSecureQuery2 = &IID_ISCPSecureQuery2_Value;
+pub const ISCPSecureQuery2 = extern union {
+    pub const VTable = extern struct {
+        base: ISCPSecureQuery.VTable,
+        MakeDecision2: *const fn(
+            self: *const ISCPSecureQuery2,
+            fuFlags: u32,
+            pData: [*:0]u8,
+            dwSize: u32,
+            dwAppSec: u32,
+            pbSPSessionKey: [*:0]u8,
+            dwSessionKeyLen: u32,
+            pStorageGlobals: ?*IMDSPStorageGlobals,
+            pAppCertApp: [*:0]u8,
+            dwAppCertAppLen: u32,
+            pAppCertSP: [*:0]u8,
+            dwAppCertSPLen: u32,
+            pszRevocationURL: [*]?PWSTR,
+            pdwRevocationURLLen: ?*u32,
+            pdwRevocationBitFlag: ?*u32,
+            pqwFileSize: ?*u64,
+            pUnknown: ?*IUnknown,
+            ppExchange: ?*?*ISCPSecureExchange,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISCPSecureQuery: ISCPSecureQuery,
+    IUnknown: IUnknown,
+    pub fn MakeDecision2(self: *const ISCPSecureQuery2, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.MakeDecision2(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange, abMac);
     }
 };
 
@@ -3172,38 +1511,491 @@ pub const ISCPSecureQuery3 = extern union {
     }
 };
 
-const IID_IComponentAuthenticate_Value = Guid.initString("a9889c00-6d2b-11d3-8496-00c04f79dbc0");
-pub const IID_IComponentAuthenticate = &IID_IComponentAuthenticate_Value;
-pub const IComponentAuthenticate = extern union {
+const IID_ISCPSession_Value = Guid.initString("88a3e6ed-eee4-4619-bbb3-fd4fb62715d1");
+pub const IID_ISCPSession = &IID_ISCPSession_Value;
+pub const ISCPSession = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SACAuth: *const fn(
-            self: *const IComponentAuthenticate,
-            dwProtocolID: u32,
-            dwPass: u32,
-            pbDataIn: [*:0]u8,
-            dwDataInLen: u32,
-            ppbDataOut: [*]?*u8,
-            pdwDataOutLen: ?*u32,
+        BeginSession: *const fn(
+            self: *const ISCPSession,
+            pIDevice: ?*IMDSPDevice,
+            pCtx: [*:0]u8,
+            dwSizeCtx: u32,
         ) callconv(.winapi) HRESULT,
-        SACGetProtocols: *const fn(
-            self: *const IComponentAuthenticate,
-            ppdwProtocols: [*]?*u32,
-            pdwProtocolCount: ?*u32,
+        EndSession: *const fn(
+            self: *const ISCPSession,
+            pCtx: [*:0]u8,
+            dwSizeCtx: u32,
+        ) callconv(.winapi) HRESULT,
+        GetSecureQuery: *const fn(
+            self: *const ISCPSession,
+            ppSecureQuery: ?*?*ISCPSecureQuery,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SACAuth(self: *const IComponentAuthenticate, dwProtocolID: u32, dwPass: u32, pbDataIn: [*:0]u8, dwDataInLen: u32, ppbDataOut: [*]?*u8, pdwDataOutLen: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SACAuth(self, dwProtocolID, dwPass, pbDataIn, dwDataInLen, ppbDataOut, pdwDataOutLen);
+    pub fn BeginSession(self: *const ISCPSession, pIDevice: ?*IMDSPDevice, pCtx: [*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginSession(self, pIDevice, pCtx, dwSizeCtx);
     }
-    pub fn SACGetProtocols(self: *const IComponentAuthenticate, ppdwProtocols: [*]?*u32, pdwProtocolCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SACGetProtocols(self, ppdwProtocols, pdwProtocolCount);
+    pub fn EndSession(self: *const ISCPSession, pCtx: [*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.EndSession(self, pCtx, dwSizeCtx);
+    }
+    pub fn GetSecureQuery(self: *const ISCPSession, ppSecureQuery: ?*?*ISCPSecureQuery) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecureQuery(self, ppSecureQuery);
     }
 };
 
-const CLSID_WMDMLogger_Value = Guid.initString("110a3202-5a79-11d3-8d78-444553540000");
-pub const CLSID_WMDMLogger = &CLSID_WMDMLogger_Value;
+const IID_IWMDeviceManager_Value = Guid.initString("1dcb3a00-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDeviceManager = &IID_IWMDeviceManager_Value;
+pub const IWMDeviceManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRevision: *const fn(
+            self: *const IWMDeviceManager,
+            pdwRevision: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceCount: *const fn(
+            self: *const IWMDeviceManager,
+            pdwCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EnumDevices: *const fn(
+            self: *const IWMDeviceManager,
+            ppEnumDevice: ?*?*IWMDMEnumDevice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRevision(self: *const IWMDeviceManager, pdwRevision: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRevision(self, pdwRevision);
+    }
+    pub fn GetDeviceCount(self: *const IWMDeviceManager, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceCount(self, pdwCount);
+    }
+    pub fn EnumDevices(self: *const IWMDeviceManager, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumDevices(self, ppEnumDevice);
+    }
+};
+
+const IID_IWMDeviceManager2_Value = Guid.initString("923e5249-8731-4c5b-9b1c-b8b60b6e46af");
+pub const IID_IWMDeviceManager2 = &IID_IWMDeviceManager2_Value;
+pub const IWMDeviceManager2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDeviceManager.VTable,
+        GetDeviceFromCanonicalName: *const fn(
+            self: *const IWMDeviceManager2,
+            pwszCanonicalName: ?[*:0]const u16,
+            ppDevice: ?*?*IWMDMDevice,
+        ) callconv(.winapi) HRESULT,
+        EnumDevices2: *const fn(
+            self: *const IWMDeviceManager2,
+            ppEnumDevice: ?*?*IWMDMEnumDevice,
+        ) callconv(.winapi) HRESULT,
+        Reinitialize: *const fn(
+            self: *const IWMDeviceManager2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDeviceManager: IWMDeviceManager,
+    IUnknown: IUnknown,
+    pub fn GetDeviceFromCanonicalName(self: *const IWMDeviceManager2, pwszCanonicalName: ?[*:0]const u16, ppDevice: ?*?*IWMDMDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceFromCanonicalName(self, pwszCanonicalName, ppDevice);
+    }
+    pub fn EnumDevices2(self: *const IWMDeviceManager2, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumDevices2(self, ppEnumDevice);
+    }
+    pub fn Reinitialize(self: *const IWMDeviceManager2) callconv(.@"inline") HRESULT {
+        return self.vtable.Reinitialize(self);
+    }
+};
+
+const IID_IWMDeviceManager3_Value = Guid.initString("af185c41-100d-46ed-be2e-9ce8c44594ef");
+pub const IID_IWMDeviceManager3 = &IID_IWMDeviceManager3_Value;
+pub const IWMDeviceManager3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDeviceManager2.VTable,
+        SetDeviceEnumPreference: *const fn(
+            self: *const IWMDeviceManager3,
+            dwEnumPref: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDeviceManager2: IWMDeviceManager2,
+    IWMDeviceManager: IWMDeviceManager,
+    IUnknown: IUnknown,
+    pub fn SetDeviceEnumPreference(self: *const IWMDeviceManager3, dwEnumPref: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDeviceEnumPreference(self, dwEnumPref);
+    }
+};
+
+const IID_IWMDMDevice_Value = Guid.initString("1dcb3a02-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMDevice = &IID_IWMDMDevice_Value;
+pub const IWMDMDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IWMDMDevice,
+            pwszName: [*:0]u16,
+            nMaxChars: u32,
+        ) callconv(.winapi) HRESULT,
+        GetManufacturer: *const fn(
+            self: *const IWMDMDevice,
+            pwszName: [*:0]u16,
+            nMaxChars: u32,
+        ) callconv(.winapi) HRESULT,
+        GetVersion: *const fn(
+            self: *const IWMDMDevice,
+            pdwVersion: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetType: *const fn(
+            self: *const IWMDMDevice,
+            pdwType: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSerialNumber: *const fn(
+            self: *const IWMDMDevice,
+            pSerialNumber: ?*WMDMID,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        GetPowerSource: *const fn(
+            self: *const IWMDMDevice,
+            pdwPowerSource: ?*u32,
+            pdwPercentRemaining: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStatus: *const fn(
+            self: *const IWMDMDevice,
+            pdwStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceIcon: *const fn(
+            self: *const IWMDMDevice,
+            hIcon: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EnumStorage: *const fn(
+            self: *const IWMDMDevice,
+            ppEnumStorage: ?*?*IWMDMEnumStorage,
+        ) callconv(.winapi) HRESULT,
+        GetFormatSupport: *const fn(
+            self: *const IWMDMDevice,
+            ppFormatEx: [*]?*WAVEFORMATEX,
+            pnFormatCount: ?*u32,
+            pppwszMimeType: [*]?*?PWSTR,
+            pnMimeTypeCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SendOpaqueCommand: *const fn(
+            self: *const IWMDMDevice,
+            pCommand: ?*OPAQUECOMMAND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, pwszName, nMaxChars);
+    }
+    pub fn GetManufacturer(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetManufacturer(self, pwszName, nMaxChars);
+    }
+    pub fn GetVersion(self: *const IWMDMDevice, pdwVersion: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVersion(self, pdwVersion);
+    }
+    pub fn GetType(self: *const IWMDMDevice, pdwType: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pdwType);
+    }
+    pub fn GetSerialNumber(self: *const IWMDMDevice, pSerialNumber: ?*WMDMID, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSerialNumber(self, pSerialNumber, abMac);
+    }
+    pub fn GetPowerSource(self: *const IWMDMDevice, pdwPowerSource: ?*u32, pdwPercentRemaining: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPowerSource(self, pdwPowerSource, pdwPercentRemaining);
+    }
+    pub fn GetStatus(self: *const IWMDMDevice, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus);
+    }
+    pub fn GetDeviceIcon(self: *const IWMDMDevice, hIcon: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceIcon(self, hIcon);
+    }
+    pub fn EnumStorage(self: *const IWMDMDevice, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumStorage(self, ppEnumStorage);
+    }
+    pub fn GetFormatSupport(self: *const IWMDMDevice, ppFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFormatSupport(self, ppFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
+    }
+    pub fn SendOpaqueCommand(self: *const IWMDMDevice, pCommand: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
+        return self.vtable.SendOpaqueCommand(self, pCommand);
+    }
+};
+
+const IID_IWMDMDevice2_Value = Guid.initString("e34f3d37-9d67-4fc1-9252-62d28b2f8b55");
+pub const IID_IWMDMDevice2 = &IID_IWMDMDevice2_Value;
+pub const IWMDMDevice2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMDevice.VTable,
+        GetStorage: *const fn(
+            self: *const IWMDMDevice2,
+            pszStorageName: ?[*:0]const u16,
+            ppStorage: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+        GetFormatSupport2: *const fn(
+            self: *const IWMDMDevice2,
+            dwFlags: u32,
+            ppAudioFormatEx: [*]?*WAVEFORMATEX,
+            pnAudioFormatCount: ?*u32,
+            ppVideoFormatEx: [*]?*VIDEOINFOHEADER,
+            pnVideoFormatCount: ?*u32,
+            ppFileType: [*]?*WMFILECAPABILITIES,
+            pnFileTypeCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSpecifyPropertyPages: *const fn(
+            self: *const IWMDMDevice2,
+            ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
+            pppUnknowns: [*]?*?*IUnknown,
+            pcUnks: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCanonicalName: *const fn(
+            self: *const IWMDMDevice2,
+            pwszPnPName: [*:0]u16,
+            nMaxChars: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMDevice: IWMDMDevice,
+    IUnknown: IUnknown,
+    pub fn GetStorage(self: *const IWMDMDevice2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStorage(self, pszStorageName, ppStorage);
+    }
+    pub fn GetFormatSupport2(self: *const IWMDMDevice2, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFormatSupport2(self, dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
+    }
+    pub fn GetSpecifyPropertyPages(self: *const IWMDMDevice2, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSpecifyPropertyPages(self, ppSpecifyPropPages, pppUnknowns, pcUnks);
+    }
+    pub fn GetCanonicalName(self: *const IWMDMDevice2, pwszPnPName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCanonicalName(self, pwszPnPName, nMaxChars);
+    }
+};
+
+const IID_IWMDMDevice3_Value = Guid.initString("6c03e4fe-05db-4dda-9e3c-06233a6d5d65");
+pub const IID_IWMDMDevice3 = &IID_IWMDMDevice3_Value;
+pub const IWMDMDevice3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMDevice2.VTable,
+        GetProperty: *const fn(
+            self: *const IWMDMDevice3,
+            pwszPropName: ?[*:0]const u16,
+            pValue: ?*PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetProperty: *const fn(
+            self: *const IWMDMDevice3,
+            pwszPropName: ?[*:0]const u16,
+            pValue: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetFormatCapability: *const fn(
+            self: *const IWMDMDevice3,
+            format: WMDM_FORMATCODE,
+            pFormatSupport: ?*WMDM_FORMAT_CAPABILITY,
+        ) callconv(.winapi) HRESULT,
+        DeviceIoControl: *const fn(
+            self: *const IWMDMDevice3,
+            dwIoControlCode: u32,
+            lpInBuffer: [*:0]u8,
+            nInBufferSize: u32,
+            lpOutBuffer: [*:0]u8,
+            pnOutBufferSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        FindStorage: *const fn(
+            self: *const IWMDMDevice3,
+            findScope: WMDM_FIND_SCOPE,
+            pwszUniqueID: ?[*:0]const u16,
+            ppStorage: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMDevice2: IWMDMDevice2,
+    IWMDMDevice: IWMDMDevice,
+    IUnknown: IUnknown,
+    pub fn GetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, pwszPropName, pValue);
+    }
+    pub fn SetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, pwszPropName, pValue);
+    }
+    pub fn GetFormatCapability(self: *const IWMDMDevice3, format: WMDM_FORMATCODE, pFormatSupport: ?*WMDM_FORMAT_CAPABILITY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFormatCapability(self, format, pFormatSupport);
+    }
+    pub fn DeviceIoControl(self: *const IWMDMDevice3, dwIoControlCode: u32, lpInBuffer: [*:0]u8, nInBufferSize: u32, lpOutBuffer: [*:0]u8, pnOutBufferSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceIoControl(self, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, pnOutBufferSize);
+    }
+    pub fn FindStorage(self: *const IWMDMDevice3, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
+    }
+};
+
+const IID_IWMDMDeviceControl_Value = Guid.initString("1dcb3a04-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMDeviceControl = &IID_IWMDMDeviceControl_Value;
+pub const IWMDMDeviceControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStatus: *const fn(
+            self: *const IWMDMDeviceControl,
+            pdwStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCapabilities: *const fn(
+            self: *const IWMDMDeviceControl,
+            pdwCapabilitiesMask: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Play: *const fn(
+            self: *const IWMDMDeviceControl,
+        ) callconv(.winapi) HRESULT,
+        Record: *const fn(
+            self: *const IWMDMDeviceControl,
+            pFormat: ?*WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        Pause: *const fn(
+            self: *const IWMDMDeviceControl,
+        ) callconv(.winapi) HRESULT,
+        Resume: *const fn(
+            self: *const IWMDMDeviceControl,
+        ) callconv(.winapi) HRESULT,
+        Stop: *const fn(
+            self: *const IWMDMDeviceControl,
+        ) callconv(.winapi) HRESULT,
+        Seek: *const fn(
+            self: *const IWMDMDeviceControl,
+            fuMode: u32,
+            nOffset: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStatus(self: *const IWMDMDeviceControl, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus);
+    }
+    pub fn GetCapabilities(self: *const IWMDMDeviceControl, pdwCapabilitiesMask: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCapabilities(self, pdwCapabilitiesMask);
+    }
+    pub fn Play(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
+        return self.vtable.Play(self);
+    }
+    pub fn Record(self: *const IWMDMDeviceControl, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.Record(self, pFormat);
+    }
+    pub fn Pause(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
+        return self.vtable.Pause(self);
+    }
+    pub fn Resume(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
+        return self.vtable.Resume(self);
+    }
+    pub fn Stop(self: *const IWMDMDeviceControl) callconv(.@"inline") HRESULT {
+        return self.vtable.Stop(self);
+    }
+    pub fn Seek(self: *const IWMDMDeviceControl, fuMode: u32, nOffset: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Seek(self, fuMode, nOffset);
+    }
+};
+
+const IID_IWMDMDeviceSession_Value = Guid.initString("82af0a65-9d96-412c-83e5-3c43e4b06cc7");
+pub const IID_IWMDMDeviceSession = &IID_IWMDMDeviceSession_Value;
+pub const IWMDMDeviceSession = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BeginSession: *const fn(
+            self: *const IWMDMDeviceSession,
+            type: WMDM_SESSION_TYPE,
+            pCtx: ?[*:0]u8,
+            dwSizeCtx: u32,
+        ) callconv(.winapi) HRESULT,
+        EndSession: *const fn(
+            self: *const IWMDMDeviceSession,
+            type: WMDM_SESSION_TYPE,
+            pCtx: ?[*:0]u8,
+            dwSizeCtx: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn BeginSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginSession(self, @"type", pCtx, dwSizeCtx);
+    }
+    pub fn EndSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.EndSession(self, @"type", pCtx, dwSizeCtx);
+    }
+};
+
+const IID_IWMDMEnumDevice_Value = Guid.initString("1dcb3a01-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMEnumDevice = &IID_IWMDMEnumDevice_Value;
+pub const IWMDMEnumDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IWMDMEnumDevice,
+            celt: u32,
+            ppDevice: [*]?*IWMDMDevice,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IWMDMEnumDevice,
+            celt: u32,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IWMDMEnumDevice,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IWMDMEnumDevice,
+            ppEnumDevice: ?*?*IWMDMEnumDevice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IWMDMEnumDevice, celt: u32, ppDevice: [*]?*IWMDMDevice, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppDevice, pceltFetched);
+    }
+    pub fn Skip(self: *const IWMDMEnumDevice, celt: u32, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt, pceltFetched);
+    }
+    pub fn Reset(self: *const IWMDMEnumDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IWMDMEnumDevice, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnumDevice);
+    }
+};
+
+const IID_IWMDMEnumStorage_Value = Guid.initString("1dcb3a05-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMEnumStorage = &IID_IWMDMEnumStorage_Value;
+pub const IWMDMEnumStorage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IWMDMEnumStorage,
+            celt: u32,
+            ppStorage: [*]?*IWMDMStorage,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IWMDMEnumStorage,
+            celt: u32,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IWMDMEnumStorage,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IWMDMEnumStorage,
+            ppEnumStorage: ?*?*IWMDMEnumStorage,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IWMDMEnumStorage, celt: u32, ppStorage: [*]?*IWMDMStorage, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppStorage, pceltFetched);
+    }
+    pub fn Skip(self: *const IWMDMEnumStorage, celt: u32, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt, pceltFetched);
+    }
+    pub fn Reset(self: *const IWMDMEnumStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IWMDMEnumStorage, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnumStorage);
+    }
+};
 
 const IID_IWMDMLogger_Value = Guid.initString("110a3200-5a79-11d3-8d78-444553540000");
 pub const IID_IWMDMLogger = &IID_IWMDMLogger_Value;
@@ -3285,6 +2077,775 @@ pub const IWMDMLogger = extern union {
     }
 };
 
+const IID_IWMDMMetaData_Value = Guid.initString("ec3b0663-0951-460a-9a80-0dceed3c043c");
+pub const IID_IWMDMMetaData = &IID_IWMDMMetaData_Value;
+pub const IWMDMMetaData = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddItem: *const fn(
+            self: *const IWMDMMetaData,
+            Type: WMDM_TAG_DATATYPE,
+            pwszTagName: ?[*:0]const u16,
+            pValue: ?[*:0]u8,
+            iLength: u32,
+        ) callconv(.winapi) HRESULT,
+        QueryByName: *const fn(
+            self: *const IWMDMMetaData,
+            pwszTagName: ?[*:0]const u16,
+            pType: ?*WMDM_TAG_DATATYPE,
+            pValue: [*]?*u8,
+            pcbLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        QueryByIndex: *const fn(
+            self: *const IWMDMMetaData,
+            iIndex: u32,
+            ppwszName: ?*?*u16,
+            pType: ?*WMDM_TAG_DATATYPE,
+            ppValue: [*]?*u8,
+            pcbLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetItemCount: *const fn(
+            self: *const IWMDMMetaData,
+            iCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddItem(self: *const IWMDMMetaData, Type: WMDM_TAG_DATATYPE, pwszTagName: ?[*:0]const u16, pValue: ?[*:0]u8, iLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, Type, pwszTagName, pValue, iLength);
+    }
+    pub fn QueryByName(self: *const IWMDMMetaData, pwszTagName: ?[*:0]const u16, pType: ?*WMDM_TAG_DATATYPE, pValue: [*]?*u8, pcbLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryByName(self, pwszTagName, pType, pValue, pcbLength);
+    }
+    pub fn QueryByIndex(self: *const IWMDMMetaData, iIndex: u32, ppwszName: ?*?*u16, pType: ?*WMDM_TAG_DATATYPE, ppValue: [*]?*u8, pcbLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryByIndex(self, iIndex, ppwszName, pType, ppValue, pcbLength);
+    }
+    pub fn GetItemCount(self: *const IWMDMMetaData, iCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemCount(self, iCount);
+    }
+};
+
+const IID_IWMDMNotification_Value = Guid.initString("3f5e95c0-0f43-4ed4-93d2-c89a45d59b81");
+pub const IID_IWMDMNotification = &IID_IWMDMNotification_Value;
+pub const IWMDMNotification = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        WMDMMessage: *const fn(
+            self: *const IWMDMNotification,
+            dwMessageType: u32,
+            pwszCanonicalName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn WMDMMessage(self: *const IWMDMNotification, dwMessageType: u32, pwszCanonicalName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.WMDMMessage(self, dwMessageType, pwszCanonicalName);
+    }
+};
+
+const IID_IWMDMObjectInfo_Value = Guid.initString("1dcb3a09-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMObjectInfo = &IID_IWMDMObjectInfo_Value;
+pub const IWMDMObjectInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPlayLength: *const fn(
+            self: *const IWMDMObjectInfo,
+            pdwLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetPlayLength: *const fn(
+            self: *const IWMDMObjectInfo,
+            dwLength: u32,
+        ) callconv(.winapi) HRESULT,
+        GetPlayOffset: *const fn(
+            self: *const IWMDMObjectInfo,
+            pdwOffset: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetPlayOffset: *const fn(
+            self: *const IWMDMObjectInfo,
+            dwOffset: u32,
+        ) callconv(.winapi) HRESULT,
+        GetTotalLength: *const fn(
+            self: *const IWMDMObjectInfo,
+            pdwLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetLastPlayPosition: *const fn(
+            self: *const IWMDMObjectInfo,
+            pdwLastPos: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetLongestPlayPosition: *const fn(
+            self: *const IWMDMObjectInfo,
+            pdwLongestPos: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPlayLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPlayLength(self, pdwLength);
+    }
+    pub fn SetPlayLength(self: *const IWMDMObjectInfo, dwLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPlayLength(self, dwLength);
+    }
+    pub fn GetPlayOffset(self: *const IWMDMObjectInfo, pdwOffset: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPlayOffset(self, pdwOffset);
+    }
+    pub fn SetPlayOffset(self: *const IWMDMObjectInfo, dwOffset: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPlayOffset(self, dwOffset);
+    }
+    pub fn GetTotalLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTotalLength(self, pdwLength);
+    }
+    pub fn GetLastPlayPosition(self: *const IWMDMObjectInfo, pdwLastPos: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastPlayPosition(self, pdwLastPos);
+    }
+    pub fn GetLongestPlayPosition(self: *const IWMDMObjectInfo, pdwLongestPos: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLongestPlayPosition(self, pdwLongestPos);
+    }
+};
+
+const IID_IWMDMOperation_Value = Guid.initString("1dcb3a0b-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMOperation = &IID_IWMDMOperation_Value;
+pub const IWMDMOperation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BeginRead: *const fn(
+            self: *const IWMDMOperation,
+        ) callconv(.winapi) HRESULT,
+        BeginWrite: *const fn(
+            self: *const IWMDMOperation,
+        ) callconv(.winapi) HRESULT,
+        GetObjectName: *const fn(
+            self: *const IWMDMOperation,
+            pwszName: [*:0]u16,
+            nMaxChars: u32,
+        ) callconv(.winapi) HRESULT,
+        SetObjectName: *const fn(
+            self: *const IWMDMOperation,
+            pwszName: [*:0]u16,
+            nMaxChars: u32,
+        ) callconv(.winapi) HRESULT,
+        GetObjectAttributes: *const fn(
+            self: *const IWMDMOperation,
+            pdwAttributes: ?*u32,
+            pFormat: ?*WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        SetObjectAttributes: *const fn(
+            self: *const IWMDMOperation,
+            dwAttributes: u32,
+            pFormat: ?*WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        GetObjectTotalSize: *const fn(
+            self: *const IWMDMOperation,
+            pdwSize: ?*u32,
+            pdwSizeHigh: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetObjectTotalSize: *const fn(
+            self: *const IWMDMOperation,
+            dwSize: u32,
+            dwSizeHigh: u32,
+        ) callconv(.winapi) HRESULT,
+        TransferObjectData: *const fn(
+            self: *const IWMDMOperation,
+            pData: [*:0]u8,
+            pdwSize: ?*u32,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        End: *const fn(
+            self: *const IWMDMOperation,
+            phCompletionCode: ?*HRESULT,
+            pNewObject: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn BeginRead(self: *const IWMDMOperation) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginRead(self);
+    }
+    pub fn BeginWrite(self: *const IWMDMOperation) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginWrite(self);
+    }
+    pub fn GetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectName(self, pwszName, nMaxChars);
+    }
+    pub fn SetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetObjectName(self, pwszName, nMaxChars);
+    }
+    pub fn GetObjectAttributes(self: *const IWMDMOperation, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectAttributes(self, pdwAttributes, pFormat);
+    }
+    pub fn SetObjectAttributes(self: *const IWMDMOperation, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.SetObjectAttributes(self, dwAttributes, pFormat);
+    }
+    pub fn GetObjectTotalSize(self: *const IWMDMOperation, pdwSize: ?*u32, pdwSizeHigh: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectTotalSize(self, pdwSize, pdwSizeHigh);
+    }
+    pub fn SetObjectTotalSize(self: *const IWMDMOperation, dwSize: u32, dwSizeHigh: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetObjectTotalSize(self, dwSize, dwSizeHigh);
+    }
+    pub fn TransferObjectData(self: *const IWMDMOperation, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.TransferObjectData(self, pData, pdwSize, abMac);
+    }
+    pub fn End(self: *const IWMDMOperation, phCompletionCode: ?*HRESULT, pNewObject: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.End(self, phCompletionCode, pNewObject);
+    }
+};
+
+const IID_IWMDMOperation2_Value = Guid.initString("33445b48-7df7-425c-ad8f-0fc6d82f9f75");
+pub const IID_IWMDMOperation2 = &IID_IWMDMOperation2_Value;
+pub const IWMDMOperation2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMOperation.VTable,
+        SetObjectAttributes2: *const fn(
+            self: *const IWMDMOperation2,
+            dwAttributes: u32,
+            dwAttributesEx: u32,
+            pFormat: ?*WAVEFORMATEX,
+            pVideoFormat: ?*VIDEOINFOHEADER,
+        ) callconv(.winapi) HRESULT,
+        GetObjectAttributes2: *const fn(
+            self: *const IWMDMOperation2,
+            pdwAttributes: ?*u32,
+            pdwAttributesEx: ?*u32,
+            pAudioFormat: ?*WAVEFORMATEX,
+            pVideoFormat: ?*VIDEOINFOHEADER,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMOperation: IWMDMOperation,
+    IUnknown: IUnknown,
+    pub fn SetObjectAttributes2(self: *const IWMDMOperation2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
+        return self.vtable.SetObjectAttributes2(self, dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
+    }
+    pub fn GetObjectAttributes2(self: *const IWMDMOperation2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectAttributes2(self, pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
+    }
+};
+
+const IID_IWMDMOperation3_Value = Guid.initString("d1f9b46a-9ca8-46d8-9d0f-1ec9bae54919");
+pub const IID_IWMDMOperation3 = &IID_IWMDMOperation3_Value;
+pub const IWMDMOperation3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMOperation.VTable,
+        TransferObjectDataOnClearChannel: *const fn(
+            self: *const IWMDMOperation3,
+            pData: [*:0]u8,
+            pdwSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMOperation: IWMDMOperation,
+    IUnknown: IUnknown,
+    pub fn TransferObjectDataOnClearChannel(self: *const IWMDMOperation3, pData: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.TransferObjectDataOnClearChannel(self, pData, pdwSize);
+    }
+};
+
+const IID_IWMDMProgress_Value = Guid.initString("1dcb3a0c-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMProgress = &IID_IWMDMProgress_Value;
+pub const IWMDMProgress = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin: *const fn(
+            self: *const IWMDMProgress,
+            dwEstimatedTicks: u32,
+        ) callconv(.winapi) HRESULT,
+        Progress: *const fn(
+            self: *const IWMDMProgress,
+            dwTranspiredTicks: u32,
+        ) callconv(.winapi) HRESULT,
+        End: *const fn(
+            self: *const IWMDMProgress,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Begin(self: *const IWMDMProgress, dwEstimatedTicks: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin(self, dwEstimatedTicks);
+    }
+    pub fn Progress(self: *const IWMDMProgress, dwTranspiredTicks: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Progress(self, dwTranspiredTicks);
+    }
+    pub fn End(self: *const IWMDMProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.End(self);
+    }
+};
+
+const IID_IWMDMProgress2_Value = Guid.initString("3a43f550-b383-4e92-b04a-e6bbc660fefc");
+pub const IID_IWMDMProgress2 = &IID_IWMDMProgress2_Value;
+pub const IWMDMProgress2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMProgress.VTable,
+        End2: *const fn(
+            self: *const IWMDMProgress2,
+            hrCompletionCode: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMProgress: IWMDMProgress,
+    IUnknown: IUnknown,
+    pub fn End2(self: *const IWMDMProgress2, hrCompletionCode: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.End2(self, hrCompletionCode);
+    }
+};
+
+const IID_IWMDMProgress3_Value = Guid.initString("21de01cb-3bb4-4929-b21a-17af3f80f658");
+pub const IID_IWMDMProgress3 = &IID_IWMDMProgress3_Value;
+pub const IWMDMProgress3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMProgress2.VTable,
+        Begin3: *const fn(
+            self: *const IWMDMProgress3,
+            EventId: Guid,
+            dwEstimatedTicks: u32,
+            pContext: ?*OPAQUECOMMAND,
+        ) callconv(.winapi) HRESULT,
+        Progress3: *const fn(
+            self: *const IWMDMProgress3,
+            EventId: Guid,
+            dwTranspiredTicks: u32,
+            pContext: ?*OPAQUECOMMAND,
+        ) callconv(.winapi) HRESULT,
+        End3: *const fn(
+            self: *const IWMDMProgress3,
+            EventId: Guid,
+            hrCompletionCode: HRESULT,
+            pContext: ?*OPAQUECOMMAND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMProgress2: IWMDMProgress2,
+    IWMDMProgress: IWMDMProgress,
+    IUnknown: IUnknown,
+    pub fn Begin3(self: *const IWMDMProgress3, EventId: Guid, dwEstimatedTicks: u32, pContext: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin3(self, EventId, dwEstimatedTicks, pContext);
+    }
+    pub fn Progress3(self: *const IWMDMProgress3, EventId: Guid, dwTranspiredTicks: u32, pContext: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
+        return self.vtable.Progress3(self, EventId, dwTranspiredTicks, pContext);
+    }
+    pub fn End3(self: *const IWMDMProgress3, EventId: Guid, hrCompletionCode: HRESULT, pContext: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
+        return self.vtable.End3(self, EventId, hrCompletionCode, pContext);
+    }
+};
+
+const IID_IWMDMRevoked_Value = Guid.initString("ebeccedb-88ee-4e55-b6a4-8d9f07d696aa");
+pub const IID_IWMDMRevoked = &IID_IWMDMRevoked_Value;
+pub const IWMDMRevoked = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRevocationURL: *const fn(
+            self: *const IWMDMRevoked,
+            ppwszRevocationURL: [*]?PWSTR,
+            pdwBufferLen: ?*u32,
+            pdwRevokedBitFlag: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRevocationURL(self: *const IWMDMRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen, pdwRevokedBitFlag);
+    }
+};
+
+const IID_IWMDMStorage_Value = Guid.initString("1dcb3a06-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMStorage = &IID_IWMDMStorage_Value;
+pub const IWMDMStorage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAttributes: *const fn(
+            self: *const IWMDMStorage,
+            dwAttributes: u32,
+            pFormat: ?*WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        GetStorageGlobals: *const fn(
+            self: *const IWMDMStorage,
+            ppStorageGlobals: ?*?*IWMDMStorageGlobals,
+        ) callconv(.winapi) HRESULT,
+        GetAttributes: *const fn(
+            self: *const IWMDMStorage,
+            pdwAttributes: ?*u32,
+            pFormat: ?*WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        GetName: *const fn(
+            self: *const IWMDMStorage,
+            pwszName: [*:0]u16,
+            nMaxChars: u32,
+        ) callconv(.winapi) HRESULT,
+        GetDate: *const fn(
+            self: *const IWMDMStorage,
+            pDateTimeUTC: ?*WMDMDATETIME,
+        ) callconv(.winapi) HRESULT,
+        GetSize: *const fn(
+            self: *const IWMDMStorage,
+            pdwSizeLow: ?*u32,
+            pdwSizeHigh: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetRights: *const fn(
+            self: *const IWMDMStorage,
+            ppRights: [*]?*WMDMRIGHTS,
+            pnRightsCount: ?*u32,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        EnumStorage: *const fn(
+            self: *const IWMDMStorage,
+            pEnumStorage: ?*?*IWMDMEnumStorage,
+        ) callconv(.winapi) HRESULT,
+        SendOpaqueCommand: *const fn(
+            self: *const IWMDMStorage,
+            pCommand: ?*OPAQUECOMMAND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAttributes(self: *const IWMDMStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAttributes(self, dwAttributes, pFormat);
+    }
+    pub fn GetStorageGlobals(self: *const IWMDMStorage, ppStorageGlobals: ?*?*IWMDMStorageGlobals) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStorageGlobals(self, ppStorageGlobals);
+    }
+    pub fn GetAttributes(self: *const IWMDMStorage, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttributes(self, pdwAttributes, pFormat);
+    }
+    pub fn GetName(self: *const IWMDMStorage, pwszName: [*:0]u16, nMaxChars: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, pwszName, nMaxChars);
+    }
+    pub fn GetDate(self: *const IWMDMStorage, pDateTimeUTC: ?*WMDMDATETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDate(self, pDateTimeUTC);
+    }
+    pub fn GetSize(self: *const IWMDMStorage, pdwSizeLow: ?*u32, pdwSizeHigh: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSize(self, pdwSizeLow, pdwSizeHigh);
+    }
+    pub fn GetRights(self: *const IWMDMStorage, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRights(self, ppRights, pnRightsCount, abMac);
+    }
+    pub fn EnumStorage(self: *const IWMDMStorage, pEnumStorage: ?*?*IWMDMEnumStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumStorage(self, pEnumStorage);
+    }
+    pub fn SendOpaqueCommand(self: *const IWMDMStorage, pCommand: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
+        return self.vtable.SendOpaqueCommand(self, pCommand);
+    }
+};
+
+const IID_IWMDMStorage2_Value = Guid.initString("1ed5a144-5cd5-4683-9eff-72cbdb2d9533");
+pub const IID_IWMDMStorage2 = &IID_IWMDMStorage2_Value;
+pub const IWMDMStorage2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMStorage.VTable,
+        GetStorage: *const fn(
+            self: *const IWMDMStorage2,
+            pszStorageName: ?[*:0]const u16,
+            ppStorage: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+        SetAttributes2: *const fn(
+            self: *const IWMDMStorage2,
+            dwAttributes: u32,
+            dwAttributesEx: u32,
+            pFormat: ?*WAVEFORMATEX,
+            pVideoFormat: ?*VIDEOINFOHEADER,
+        ) callconv(.winapi) HRESULT,
+        GetAttributes2: *const fn(
+            self: *const IWMDMStorage2,
+            pdwAttributes: ?*u32,
+            pdwAttributesEx: ?*u32,
+            pAudioFormat: ?*WAVEFORMATEX,
+            pVideoFormat: ?*VIDEOINFOHEADER,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMStorage: IWMDMStorage,
+    IUnknown: IUnknown,
+    pub fn GetStorage(self: *const IWMDMStorage2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStorage(self, pszStorageName, ppStorage);
+    }
+    pub fn SetAttributes2(self: *const IWMDMStorage2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAttributes2(self, dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
+    }
+    pub fn GetAttributes2(self: *const IWMDMStorage2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttributes2(self, pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
+    }
+};
+
+const IID_IWMDMStorage3_Value = Guid.initString("97717eea-926a-464e-96a4-247b0216026e");
+pub const IID_IWMDMStorage3 = &IID_IWMDMStorage3_Value;
+pub const IWMDMStorage3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMStorage2.VTable,
+        GetMetadata: *const fn(
+            self: *const IWMDMStorage3,
+            ppMetadata: ?*?*IWMDMMetaData,
+        ) callconv(.winapi) HRESULT,
+        SetMetadata: *const fn(
+            self: *const IWMDMStorage3,
+            pMetadata: ?*IWMDMMetaData,
+        ) callconv(.winapi) HRESULT,
+        CreateEmptyMetadataObject: *const fn(
+            self: *const IWMDMStorage3,
+            ppMetadata: ?*?*IWMDMMetaData,
+        ) callconv(.winapi) HRESULT,
+        SetEnumPreference: *const fn(
+            self: *const IWMDMStorage3,
+            pMode: ?*WMDM_STORAGE_ENUM_MODE,
+            nViews: u32,
+            pViews: ?[*]WMDMMetadataView,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMStorage2: IWMDMStorage2,
+    IWMDMStorage: IWMDMStorage,
+    IUnknown: IUnknown,
+    pub fn GetMetadata(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadata(self, ppMetadata);
+    }
+    pub fn SetMetadata(self: *const IWMDMStorage3, pMetadata: ?*IWMDMMetaData) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMetadata(self, pMetadata);
+    }
+    pub fn CreateEmptyMetadataObject(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEmptyMetadataObject(self, ppMetadata);
+    }
+    pub fn SetEnumPreference(self: *const IWMDMStorage3, pMode: ?*WMDM_STORAGE_ENUM_MODE, nViews: u32, pViews: ?[*]WMDMMetadataView) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEnumPreference(self, pMode, nViews, pViews);
+    }
+};
+
+const IID_IWMDMStorage4_Value = Guid.initString("c225bac5-a03a-40b8-9a23-91cf478c64a6");
+pub const IID_IWMDMStorage4 = &IID_IWMDMStorage4_Value;
+pub const IWMDMStorage4 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMStorage3.VTable,
+        SetReferences: *const fn(
+            self: *const IWMDMStorage4,
+            dwRefs: u32,
+            ppIWMDMStorage: ?[*]?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+        GetReferences: *const fn(
+            self: *const IWMDMStorage4,
+            pdwRefs: ?*u32,
+            pppIWMDMStorage: [*]?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+        GetRightsWithProgress: *const fn(
+            self: *const IWMDMStorage4,
+            pIProgressCallback: ?*IWMDMProgress3,
+            ppRights: [*]?*WMDMRIGHTS,
+            pnRightsCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSpecifiedMetadata: *const fn(
+            self: *const IWMDMStorage4,
+            cProperties: u32,
+            ppwszPropNames: [*]?PWSTR,
+            ppMetadata: ?*?*IWMDMMetaData,
+        ) callconv(.winapi) HRESULT,
+        FindStorage: *const fn(
+            self: *const IWMDMStorage4,
+            findScope: WMDM_FIND_SCOPE,
+            pwszUniqueID: ?[*:0]const u16,
+            ppStorage: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+        GetParent: *const fn(
+            self: *const IWMDMStorage4,
+            ppStorage: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMStorage3: IWMDMStorage3,
+    IWMDMStorage2: IWMDMStorage2,
+    IWMDMStorage: IWMDMStorage,
+    IUnknown: IUnknown,
+    pub fn SetReferences(self: *const IWMDMStorage4, dwRefs: u32, ppIWMDMStorage: ?[*]?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReferences(self, dwRefs, ppIWMDMStorage);
+    }
+    pub fn GetReferences(self: *const IWMDMStorage4, pdwRefs: ?*u32, pppIWMDMStorage: [*]?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReferences(self, pdwRefs, pppIWMDMStorage);
+    }
+    pub fn GetRightsWithProgress(self: *const IWMDMStorage4, pIProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRightsWithProgress(self, pIProgressCallback, ppRights, pnRightsCount);
+    }
+    pub fn GetSpecifiedMetadata(self: *const IWMDMStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSpecifiedMetadata(self, cProperties, ppwszPropNames, ppMetadata);
+    }
+    pub fn FindStorage(self: *const IWMDMStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
+    }
+    pub fn GetParent(self: *const IWMDMStorage4, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParent(self, ppStorage);
+    }
+};
+
+const IID_IWMDMStorageControl_Value = Guid.initString("1dcb3a08-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMStorageControl = &IID_IWMDMStorageControl_Value;
+pub const IWMDMStorageControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Insert: *const fn(
+            self: *const IWMDMStorageControl,
+            fuMode: u32,
+            pwszFile: ?PWSTR,
+            pOperation: ?*IWMDMOperation,
+            pProgress: ?*IWMDMProgress,
+            ppNewObject: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IWMDMStorageControl,
+            fuMode: u32,
+            pProgress: ?*IWMDMProgress,
+        ) callconv(.winapi) HRESULT,
+        Rename: *const fn(
+            self: *const IWMDMStorageControl,
+            fuMode: u32,
+            pwszNewName: ?PWSTR,
+            pProgress: ?*IWMDMProgress,
+        ) callconv(.winapi) HRESULT,
+        Read: *const fn(
+            self: *const IWMDMStorageControl,
+            fuMode: u32,
+            pwszFile: ?PWSTR,
+            pProgress: ?*IWMDMProgress,
+            pOperation: ?*IWMDMOperation,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IWMDMStorageControl,
+            fuMode: u32,
+            pTargetObject: ?*IWMDMStorage,
+            pProgress: ?*IWMDMProgress,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Insert(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Insert(self, fuMode, pwszFile, pOperation, pProgress, ppNewObject);
+    }
+    pub fn Delete(self: *const IWMDMStorageControl, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, fuMode, pProgress);
+    }
+    pub fn Rename(self: *const IWMDMStorageControl, fuMode: u32, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Rename(self, fuMode, pwszNewName, pProgress);
+    }
+    pub fn Read(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pProgress: ?*IWMDMProgress, pOperation: ?*IWMDMOperation) callconv(.@"inline") HRESULT {
+        return self.vtable.Read(self, fuMode, pwszFile, pProgress, pOperation);
+    }
+    pub fn Move(self: *const IWMDMStorageControl, fuMode: u32, pTargetObject: ?*IWMDMStorage, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, fuMode, pTargetObject, pProgress);
+    }
+};
+
+const IID_IWMDMStorageControl2_Value = Guid.initString("972c2e88-bd6c-4125-8e09-84f837e637b6");
+pub const IID_IWMDMStorageControl2 = &IID_IWMDMStorageControl2_Value;
+pub const IWMDMStorageControl2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMStorageControl.VTable,
+        Insert2: *const fn(
+            self: *const IWMDMStorageControl2,
+            fuMode: u32,
+            pwszFileSource: ?PWSTR,
+            pwszFileDest: ?PWSTR,
+            pOperation: ?*IWMDMOperation,
+            pProgress: ?*IWMDMProgress,
+            pUnknown: ?*IUnknown,
+            ppNewObject: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMStorageControl: IWMDMStorageControl,
+    IUnknown: IUnknown,
+    pub fn Insert2(self: *const IWMDMStorageControl2, fuMode: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Insert2(self, fuMode, pwszFileSource, pwszFileDest, pOperation, pProgress, pUnknown, ppNewObject);
+    }
+};
+
+const IID_IWMDMStorageControl3_Value = Guid.initString("b3266365-d4f3-4696-8d53-bd27ec60993a");
+pub const IID_IWMDMStorageControl3 = &IID_IWMDMStorageControl3_Value;
+pub const IWMDMStorageControl3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDMStorageControl2.VTable,
+        Insert3: *const fn(
+            self: *const IWMDMStorageControl3,
+            fuMode: u32,
+            fuType: u32,
+            pwszFileSource: ?PWSTR,
+            pwszFileDest: ?PWSTR,
+            pOperation: ?*IWMDMOperation,
+            pProgress: ?*IWMDMProgress,
+            pMetaData: ?*IWMDMMetaData,
+            pUnknown: ?*IUnknown,
+            ppNewObject: ?*?*IWMDMStorage,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDMStorageControl2: IWMDMStorageControl2,
+    IWMDMStorageControl: IWMDMStorageControl,
+    IUnknown: IUnknown,
+    pub fn Insert3(self: *const IWMDMStorageControl3, fuMode: u32, fuType: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pMetaData: ?*IWMDMMetaData, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Insert3(self, fuMode, fuType, pwszFileSource, pwszFileDest, pOperation, pProgress, pMetaData, pUnknown, ppNewObject);
+    }
+};
+
+const IID_IWMDMStorageGlobals_Value = Guid.initString("1dcb3a07-33ed-11d3-8470-00c04f79dbc0");
+pub const IID_IWMDMStorageGlobals = &IID_IWMDMStorageGlobals_Value;
+pub const IWMDMStorageGlobals = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCapabilities: *const fn(
+            self: *const IWMDMStorageGlobals,
+            pdwCapabilities: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSerialNumber: *const fn(
+            self: *const IWMDMStorageGlobals,
+            pSerialNum: ?*WMDMID,
+            abMac: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        GetTotalSize: *const fn(
+            self: *const IWMDMStorageGlobals,
+            pdwTotalSizeLow: ?*u32,
+            pdwTotalSizeHigh: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetTotalFree: *const fn(
+            self: *const IWMDMStorageGlobals,
+            pdwFreeLow: ?*u32,
+            pdwFreeHigh: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetTotalBad: *const fn(
+            self: *const IWMDMStorageGlobals,
+            pdwBadLow: ?*u32,
+            pdwBadHigh: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStatus: *const fn(
+            self: *const IWMDMStorageGlobals,
+            pdwStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Initialize: *const fn(
+            self: *const IWMDMStorageGlobals,
+            fuMode: u32,
+            pProgress: ?*IWMDMProgress,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCapabilities(self: *const IWMDMStorageGlobals, pdwCapabilities: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCapabilities(self, pdwCapabilities);
+    }
+    pub fn GetSerialNumber(self: *const IWMDMStorageGlobals, pSerialNum: ?*WMDMID, abMac: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSerialNumber(self, pSerialNum, abMac);
+    }
+    pub fn GetTotalSize(self: *const IWMDMStorageGlobals, pdwTotalSizeLow: ?*u32, pdwTotalSizeHigh: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTotalSize(self, pdwTotalSizeLow, pdwTotalSizeHigh);
+    }
+    pub fn GetTotalFree(self: *const IWMDMStorageGlobals, pdwFreeLow: ?*u32, pdwFreeHigh: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTotalFree(self, pdwFreeLow, pdwFreeHigh);
+    }
+    pub fn GetTotalBad(self: *const IWMDMStorageGlobals, pdwBadLow: ?*u32, pdwBadHigh: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTotalBad(self, pdwBadLow, pdwBadHigh);
+    }
+    pub fn GetStatus(self: *const IWMDMStorageGlobals, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus);
+    }
+    pub fn Initialize(self: *const IWMDMStorageGlobals, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, fuMode, pProgress);
+    }
+};
+
+const CLSID_MediaDevMgr_Value = Guid.initString("25baad81-3560-11d3-8471-00c04f79dbc0");
+pub const CLSID_MediaDevMgr = &CLSID_MediaDevMgr_Value;
+
+const CLSID_MediaDevMgrClassFactory_Value = Guid.initString("50040c1d-bdbf-4924-b873-f14d6c5bfd66");
+pub const CLSID_MediaDevMgrClassFactory = &CLSID_MediaDevMgrClassFactory_Value;
+
 pub const MTP_COMMAND_DATA_IN = extern struct {
     OpCode: u16 align(1),
     NumParams: u32 align(1),
@@ -3300,6 +2861,445 @@ pub const MTP_COMMAND_DATA_OUT = extern struct {
     Params: [5]u32 align(1),
     CommandReadDataSize: u32 align(1),
     CommandReadData: [1]u8 align(1),
+};
+
+pub const OPAQUECOMMAND = extern struct {
+    guidCommand: Guid,
+    dwDataLen: u32,
+    pData: ?*u8,
+    abMAC: [20]u8,
+};
+
+pub const WMDM_ENUM_PROP_VALID_VALUES_FORM = enum(i32) {
+    ANY = 0,
+    RANGE = 1,
+    ENUM = 2,
+};
+pub const WMDM_ENUM_PROP_VALID_VALUES_ANY = WMDM_ENUM_PROP_VALID_VALUES_FORM.ANY;
+pub const WMDM_ENUM_PROP_VALID_VALUES_RANGE = WMDM_ENUM_PROP_VALID_VALUES_FORM.RANGE;
+pub const WMDM_ENUM_PROP_VALID_VALUES_ENUM = WMDM_ENUM_PROP_VALID_VALUES_FORM.ENUM;
+
+pub const WMDM_FIND_SCOPE = enum(i32) {
+    GLOBAL = 0,
+    IMMEDIATE_CHILDREN = 1,
+};
+pub const WMDM_FIND_SCOPE_GLOBAL = WMDM_FIND_SCOPE.GLOBAL;
+pub const WMDM_FIND_SCOPE_IMMEDIATE_CHILDREN = WMDM_FIND_SCOPE.IMMEDIATE_CHILDREN;
+
+pub const WMDM_FORMAT_CAPABILITY = extern struct {
+    nPropConfig: u32,
+    pConfigs: ?*WMDM_PROP_CONFIG,
+};
+
+pub const WMDM_FORMATCODE = enum(i32) {
+    NOTUSED = 0,
+    ALLIMAGES = -1,
+    UNDEFINED = 12288,
+    ASSOCIATION = 12289,
+    SCRIPT = 12290,
+    EXECUTABLE = 12291,
+    TEXT = 12292,
+    HTML = 12293,
+    DPOF = 12294,
+    AIFF = 12295,
+    WAVE = 12296,
+    MP3 = 12297,
+    AVI = 12298,
+    MPEG = 12299,
+    ASF = 12300,
+    RESERVED_FIRST = 12301,
+    RESERVED_LAST = 14335,
+    IMAGE_UNDEFINED = 14336,
+    IMAGE_EXIF = 14337,
+    IMAGE_TIFFEP = 14338,
+    IMAGE_FLASHPIX = 14339,
+    IMAGE_BMP = 14340,
+    IMAGE_CIFF = 14341,
+    IMAGE_GIF = 14343,
+    IMAGE_JFIF = 14344,
+    IMAGE_PCD = 14345,
+    IMAGE_PICT = 14346,
+    IMAGE_PNG = 14347,
+    IMAGE_TIFF = 14349,
+    IMAGE_TIFFIT = 14350,
+    IMAGE_JP2 = 14351,
+    IMAGE_JPX = 14352,
+    IMAGE_RESERVED_FIRST = 14353,
+    IMAGE_RESERVED_LAST = 16383,
+    UNDEFINEDFIRMWARE = 47106,
+    WBMP = 47107,
+    JPEGXR = 47108,
+    WINDOWSIMAGEFORMAT = 47233,
+    UNDEFINEDAUDIO = 47360,
+    WMA = 47361,
+    OGG = 47362,
+    AAC = 47363,
+    AUDIBLE = 47364,
+    FLAC = 47366,
+    QCELP = 47367,
+    AMR = 47368,
+    UNDEFINEDVIDEO = 47488,
+    WMV = 47489,
+    MP4 = 47490,
+    MP2 = 47491,
+    @"3GP" = 47492,
+    @"3G2" = 47493,
+    AVCHD = 47494,
+    ATSCTS = 47495,
+    DVBTS = 47496,
+    MKV = 47497,
+    MKA = 47498,
+    MK3D = 47499,
+    UNDEFINEDCOLLECTION = 47616,
+    ABSTRACTMULTIMEDIAALBUM = 47617,
+    ABSTRACTIMAGEALBUM = 47618,
+    ABSTRACTAUDIOALBUM = 47619,
+    ABSTRACTVIDEOALBUM = 47620,
+    ABSTRACTAUDIOVIDEOPLAYLIST = 47621,
+    ABSTRACTCONTACTGROUP = 47622,
+    ABSTRACTMESSAGEFOLDER = 47623,
+    ABSTRACTCHAPTEREDPRODUCTION = 47624,
+    MEDIA_CAST = 47627,
+    WPLPLAYLIST = 47632,
+    M3UPLAYLIST = 47633,
+    MPLPLAYLIST = 47634,
+    ASXPLAYLIST = 47635,
+    PLSPLAYLIST = 47636,
+    UNDEFINEDDOCUMENT = 47744,
+    ABSTRACTDOCUMENT = 47745,
+    XMLDOCUMENT = 47746,
+    MICROSOFTWORDDOCUMENT = 47747,
+    MHTCOMPILEDHTMLDOCUMENT = 47748,
+    MICROSOFTEXCELSPREADSHEET = 47749,
+    MICROSOFTPOWERPOINTDOCUMENT = 47750,
+    UNDEFINEDMESSAGE = 47872,
+    ABSTRACTMESSAGE = 47873,
+    UNDEFINEDCONTACT = 48000,
+    ABSTRACTCONTACT = 48001,
+    VCARD2 = 48002,
+    VCARD3 = 48003,
+    UNDEFINEDCALENDARITEM = 48640,
+    ABSTRACTCALENDARITEM = 48641,
+    VCALENDAR1 = 48642,
+    VCALENDAR2 = 48643,
+    UNDEFINEDWINDOWSEXECUTABLE = 48768,
+    M4A = 1297101889,
+    @"3GPA" = 860311617,
+    @"3G2A" = 860303937,
+    SECTION = 48770,
+};
+pub const WMDM_FORMATCODE_NOTUSED = WMDM_FORMATCODE.NOTUSED;
+pub const WMDM_FORMATCODE_ALLIMAGES = WMDM_FORMATCODE.ALLIMAGES;
+pub const WMDM_FORMATCODE_UNDEFINED = WMDM_FORMATCODE.UNDEFINED;
+pub const WMDM_FORMATCODE_ASSOCIATION = WMDM_FORMATCODE.ASSOCIATION;
+pub const WMDM_FORMATCODE_SCRIPT = WMDM_FORMATCODE.SCRIPT;
+pub const WMDM_FORMATCODE_EXECUTABLE = WMDM_FORMATCODE.EXECUTABLE;
+pub const WMDM_FORMATCODE_TEXT = WMDM_FORMATCODE.TEXT;
+pub const WMDM_FORMATCODE_HTML = WMDM_FORMATCODE.HTML;
+pub const WMDM_FORMATCODE_DPOF = WMDM_FORMATCODE.DPOF;
+pub const WMDM_FORMATCODE_AIFF = WMDM_FORMATCODE.AIFF;
+pub const WMDM_FORMATCODE_WAVE = WMDM_FORMATCODE.WAVE;
+pub const WMDM_FORMATCODE_MP3 = WMDM_FORMATCODE.MP3;
+pub const WMDM_FORMATCODE_AVI = WMDM_FORMATCODE.AVI;
+pub const WMDM_FORMATCODE_MPEG = WMDM_FORMATCODE.MPEG;
+pub const WMDM_FORMATCODE_ASF = WMDM_FORMATCODE.ASF;
+pub const WMDM_FORMATCODE_RESERVED_FIRST = WMDM_FORMATCODE.RESERVED_FIRST;
+pub const WMDM_FORMATCODE_RESERVED_LAST = WMDM_FORMATCODE.RESERVED_LAST;
+pub const WMDM_FORMATCODE_IMAGE_UNDEFINED = WMDM_FORMATCODE.IMAGE_UNDEFINED;
+pub const WMDM_FORMATCODE_IMAGE_EXIF = WMDM_FORMATCODE.IMAGE_EXIF;
+pub const WMDM_FORMATCODE_IMAGE_TIFFEP = WMDM_FORMATCODE.IMAGE_TIFFEP;
+pub const WMDM_FORMATCODE_IMAGE_FLASHPIX = WMDM_FORMATCODE.IMAGE_FLASHPIX;
+pub const WMDM_FORMATCODE_IMAGE_BMP = WMDM_FORMATCODE.IMAGE_BMP;
+pub const WMDM_FORMATCODE_IMAGE_CIFF = WMDM_FORMATCODE.IMAGE_CIFF;
+pub const WMDM_FORMATCODE_IMAGE_GIF = WMDM_FORMATCODE.IMAGE_GIF;
+pub const WMDM_FORMATCODE_IMAGE_JFIF = WMDM_FORMATCODE.IMAGE_JFIF;
+pub const WMDM_FORMATCODE_IMAGE_PCD = WMDM_FORMATCODE.IMAGE_PCD;
+pub const WMDM_FORMATCODE_IMAGE_PICT = WMDM_FORMATCODE.IMAGE_PICT;
+pub const WMDM_FORMATCODE_IMAGE_PNG = WMDM_FORMATCODE.IMAGE_PNG;
+pub const WMDM_FORMATCODE_IMAGE_TIFF = WMDM_FORMATCODE.IMAGE_TIFF;
+pub const WMDM_FORMATCODE_IMAGE_TIFFIT = WMDM_FORMATCODE.IMAGE_TIFFIT;
+pub const WMDM_FORMATCODE_IMAGE_JP2 = WMDM_FORMATCODE.IMAGE_JP2;
+pub const WMDM_FORMATCODE_IMAGE_JPX = WMDM_FORMATCODE.IMAGE_JPX;
+pub const WMDM_FORMATCODE_IMAGE_RESERVED_FIRST = WMDM_FORMATCODE.IMAGE_RESERVED_FIRST;
+pub const WMDM_FORMATCODE_IMAGE_RESERVED_LAST = WMDM_FORMATCODE.IMAGE_RESERVED_LAST;
+pub const WMDM_FORMATCODE_UNDEFINEDFIRMWARE = WMDM_FORMATCODE.UNDEFINEDFIRMWARE;
+pub const WMDM_FORMATCODE_WBMP = WMDM_FORMATCODE.WBMP;
+pub const WMDM_FORMATCODE_JPEGXR = WMDM_FORMATCODE.JPEGXR;
+pub const WMDM_FORMATCODE_WINDOWSIMAGEFORMAT = WMDM_FORMATCODE.WINDOWSIMAGEFORMAT;
+pub const WMDM_FORMATCODE_UNDEFINEDAUDIO = WMDM_FORMATCODE.UNDEFINEDAUDIO;
+pub const WMDM_FORMATCODE_WMA = WMDM_FORMATCODE.WMA;
+pub const WMDM_FORMATCODE_OGG = WMDM_FORMATCODE.OGG;
+pub const WMDM_FORMATCODE_AAC = WMDM_FORMATCODE.AAC;
+pub const WMDM_FORMATCODE_AUDIBLE = WMDM_FORMATCODE.AUDIBLE;
+pub const WMDM_FORMATCODE_FLAC = WMDM_FORMATCODE.FLAC;
+pub const WMDM_FORMATCODE_QCELP = WMDM_FORMATCODE.QCELP;
+pub const WMDM_FORMATCODE_AMR = WMDM_FORMATCODE.AMR;
+pub const WMDM_FORMATCODE_UNDEFINEDVIDEO = WMDM_FORMATCODE.UNDEFINEDVIDEO;
+pub const WMDM_FORMATCODE_WMV = WMDM_FORMATCODE.WMV;
+pub const WMDM_FORMATCODE_MP4 = WMDM_FORMATCODE.MP4;
+pub const WMDM_FORMATCODE_MP2 = WMDM_FORMATCODE.MP2;
+pub const WMDM_FORMATCODE_3GP = WMDM_FORMATCODE.@"3GP";
+pub const WMDM_FORMATCODE_3G2 = WMDM_FORMATCODE.@"3G2";
+pub const WMDM_FORMATCODE_AVCHD = WMDM_FORMATCODE.AVCHD;
+pub const WMDM_FORMATCODE_ATSCTS = WMDM_FORMATCODE.ATSCTS;
+pub const WMDM_FORMATCODE_DVBTS = WMDM_FORMATCODE.DVBTS;
+pub const WMDM_FORMATCODE_MKV = WMDM_FORMATCODE.MKV;
+pub const WMDM_FORMATCODE_MKA = WMDM_FORMATCODE.MKA;
+pub const WMDM_FORMATCODE_MK3D = WMDM_FORMATCODE.MK3D;
+pub const WMDM_FORMATCODE_UNDEFINEDCOLLECTION = WMDM_FORMATCODE.UNDEFINEDCOLLECTION;
+pub const WMDM_FORMATCODE_ABSTRACTMULTIMEDIAALBUM = WMDM_FORMATCODE.ABSTRACTMULTIMEDIAALBUM;
+pub const WMDM_FORMATCODE_ABSTRACTIMAGEALBUM = WMDM_FORMATCODE.ABSTRACTIMAGEALBUM;
+pub const WMDM_FORMATCODE_ABSTRACTAUDIOALBUM = WMDM_FORMATCODE.ABSTRACTAUDIOALBUM;
+pub const WMDM_FORMATCODE_ABSTRACTVIDEOALBUM = WMDM_FORMATCODE.ABSTRACTVIDEOALBUM;
+pub const WMDM_FORMATCODE_ABSTRACTAUDIOVIDEOPLAYLIST = WMDM_FORMATCODE.ABSTRACTAUDIOVIDEOPLAYLIST;
+pub const WMDM_FORMATCODE_ABSTRACTCONTACTGROUP = WMDM_FORMATCODE.ABSTRACTCONTACTGROUP;
+pub const WMDM_FORMATCODE_ABSTRACTMESSAGEFOLDER = WMDM_FORMATCODE.ABSTRACTMESSAGEFOLDER;
+pub const WMDM_FORMATCODE_ABSTRACTCHAPTEREDPRODUCTION = WMDM_FORMATCODE.ABSTRACTCHAPTEREDPRODUCTION;
+pub const WMDM_FORMATCODE_MEDIA_CAST = WMDM_FORMATCODE.MEDIA_CAST;
+pub const WMDM_FORMATCODE_WPLPLAYLIST = WMDM_FORMATCODE.WPLPLAYLIST;
+pub const WMDM_FORMATCODE_M3UPLAYLIST = WMDM_FORMATCODE.M3UPLAYLIST;
+pub const WMDM_FORMATCODE_MPLPLAYLIST = WMDM_FORMATCODE.MPLPLAYLIST;
+pub const WMDM_FORMATCODE_ASXPLAYLIST = WMDM_FORMATCODE.ASXPLAYLIST;
+pub const WMDM_FORMATCODE_PLSPLAYLIST = WMDM_FORMATCODE.PLSPLAYLIST;
+pub const WMDM_FORMATCODE_UNDEFINEDDOCUMENT = WMDM_FORMATCODE.UNDEFINEDDOCUMENT;
+pub const WMDM_FORMATCODE_ABSTRACTDOCUMENT = WMDM_FORMATCODE.ABSTRACTDOCUMENT;
+pub const WMDM_FORMATCODE_XMLDOCUMENT = WMDM_FORMATCODE.XMLDOCUMENT;
+pub const WMDM_FORMATCODE_MICROSOFTWORDDOCUMENT = WMDM_FORMATCODE.MICROSOFTWORDDOCUMENT;
+pub const WMDM_FORMATCODE_MHTCOMPILEDHTMLDOCUMENT = WMDM_FORMATCODE.MHTCOMPILEDHTMLDOCUMENT;
+pub const WMDM_FORMATCODE_MICROSOFTEXCELSPREADSHEET = WMDM_FORMATCODE.MICROSOFTEXCELSPREADSHEET;
+pub const WMDM_FORMATCODE_MICROSOFTPOWERPOINTDOCUMENT = WMDM_FORMATCODE.MICROSOFTPOWERPOINTDOCUMENT;
+pub const WMDM_FORMATCODE_UNDEFINEDMESSAGE = WMDM_FORMATCODE.UNDEFINEDMESSAGE;
+pub const WMDM_FORMATCODE_ABSTRACTMESSAGE = WMDM_FORMATCODE.ABSTRACTMESSAGE;
+pub const WMDM_FORMATCODE_UNDEFINEDCONTACT = WMDM_FORMATCODE.UNDEFINEDCONTACT;
+pub const WMDM_FORMATCODE_ABSTRACTCONTACT = WMDM_FORMATCODE.ABSTRACTCONTACT;
+pub const WMDM_FORMATCODE_VCARD2 = WMDM_FORMATCODE.VCARD2;
+pub const WMDM_FORMATCODE_VCARD3 = WMDM_FORMATCODE.VCARD3;
+pub const WMDM_FORMATCODE_UNDEFINEDCALENDARITEM = WMDM_FORMATCODE.UNDEFINEDCALENDARITEM;
+pub const WMDM_FORMATCODE_ABSTRACTCALENDARITEM = WMDM_FORMATCODE.ABSTRACTCALENDARITEM;
+pub const WMDM_FORMATCODE_VCALENDAR1 = WMDM_FORMATCODE.VCALENDAR1;
+pub const WMDM_FORMATCODE_VCALENDAR2 = WMDM_FORMATCODE.VCALENDAR2;
+pub const WMDM_FORMATCODE_UNDEFINEDWINDOWSEXECUTABLE = WMDM_FORMATCODE.UNDEFINEDWINDOWSEXECUTABLE;
+pub const WMDM_FORMATCODE_M4A = WMDM_FORMATCODE.M4A;
+pub const WMDM_FORMATCODE_3GPA = WMDM_FORMATCODE.@"3GPA";
+pub const WMDM_FORMATCODE_3G2A = WMDM_FORMATCODE.@"3G2A";
+pub const WMDM_FORMATCODE_SECTION = WMDM_FORMATCODE.SECTION;
+
+pub const WMDM_PROP_CONFIG = extern struct {
+    nPreference: u32,
+    nPropDesc: u32,
+    pPropDesc: ?*WMDM_PROP_DESC,
+};
+
+pub const WMDM_PROP_DESC = extern struct {
+    pwszPropName: ?PWSTR,
+    ValidValuesForm: WMDM_ENUM_PROP_VALID_VALUES_FORM,
+    ValidValues: extern union {
+        ValidValuesRange: WMDM_PROP_VALUES_RANGE,
+        EnumeratedValidValues: WMDM_PROP_VALUES_ENUM,
+    },
+};
+
+pub const WMDM_PROP_VALUES_ENUM = extern struct {
+    cEnumValues: u32,
+    pValues: ?*PROPVARIANT,
+};
+
+pub const WMDM_PROP_VALUES_RANGE = extern struct {
+    rangeMin: PROPVARIANT,
+    rangeMax: PROPVARIANT,
+    rangeStep: PROPVARIANT,
+};
+
+pub const WMDM_SESSION_TYPE = enum(i32) {
+    NONE = 0,
+    TRANSFER_TO_DEVICE = 1,
+    TRANSFER_FROM_DEVICE = 16,
+    DELETE = 256,
+    CUSTOM = 4096,
+};
+pub const WMDM_SESSION_NONE = WMDM_SESSION_TYPE.NONE;
+pub const WMDM_SESSION_TRANSFER_TO_DEVICE = WMDM_SESSION_TYPE.TRANSFER_TO_DEVICE;
+pub const WMDM_SESSION_TRANSFER_FROM_DEVICE = WMDM_SESSION_TYPE.TRANSFER_FROM_DEVICE;
+pub const WMDM_SESSION_DELETE = WMDM_SESSION_TYPE.DELETE;
+pub const WMDM_SESSION_CUSTOM = WMDM_SESSION_TYPE.CUSTOM;
+
+pub const WMDM_STORAGE_ENUM_MODE = enum(i32) {
+    RAW = 0,
+    USE_DEVICE_PREF = 1,
+    METADATA_VIEWS = 2,
+};
+pub const ENUM_MODE_RAW = WMDM_STORAGE_ENUM_MODE.RAW;
+pub const ENUM_MODE_USE_DEVICE_PREF = WMDM_STORAGE_ENUM_MODE.USE_DEVICE_PREF;
+pub const ENUM_MODE_METADATA_VIEWS = WMDM_STORAGE_ENUM_MODE.METADATA_VIEWS;
+
+pub const WMDM_TAG_DATATYPE = enum(i32) {
+    DWORD = 0,
+    STRING = 1,
+    BINARY = 2,
+    BOOL = 3,
+    QWORD = 4,
+    WORD = 5,
+    GUID = 6,
+    DATE = 7,
+};
+pub const WMDM_TYPE_DWORD = WMDM_TAG_DATATYPE.DWORD;
+pub const WMDM_TYPE_STRING = WMDM_TAG_DATATYPE.STRING;
+pub const WMDM_TYPE_BINARY = WMDM_TAG_DATATYPE.BINARY;
+pub const WMDM_TYPE_BOOL = WMDM_TAG_DATATYPE.BOOL;
+pub const WMDM_TYPE_QWORD = WMDM_TAG_DATATYPE.QWORD;
+pub const WMDM_TYPE_WORD = WMDM_TAG_DATATYPE.WORD;
+pub const WMDM_TYPE_GUID = WMDM_TAG_DATATYPE.GUID;
+pub const WMDM_TYPE_DATE = WMDM_TAG_DATATYPE.DATE;
+
+pub const WMDMDATETIME = extern struct {
+    wYear: u16,
+    wMonth: u16,
+    wDay: u16,
+    wHour: u16,
+    wMinute: u16,
+    wSecond: u16,
+};
+
+pub const WMDMDetermineMaxPropStringLen = extern union {
+    sz001: [27]u16,
+    sz002: [31]u16,
+    sz003: [14]u16,
+    sz004: [16]u16,
+    sz005: [22]u16,
+    sz006: [14]u16,
+    sz007: [20]u16,
+    sz008: [20]u16,
+    sz009: [22]u16,
+    sz010: [11]u16,
+    sz011: [12]u16,
+    sz012: [17]u16,
+    sz013: [17]u16,
+    sz014: [16]u16,
+    sz015: [17]u16,
+    sz016: [11]u16,
+    sz017: [11]u16,
+    sz018: [15]u16,
+    sz019: [22]u16,
+    sz020: [20]u16,
+    sz021: [22]u16,
+    sz022: [21]u16,
+    sz023: [24]u16,
+    sz024: [20]u16,
+    sz025: [10]u16,
+    sz026: [14]u16,
+    sz027: [11]u16,
+    sz028: [11]u16,
+    sz029: [13]u16,
+    sz030: [17]u16,
+    sz031: [16]u16,
+    sz032: [17]u16,
+    sz033: [20]u16,
+    sz034: [19]u16,
+    sz035: [18]u16,
+    sz036: [18]u16,
+    sz037: [15]u16,
+    sz041: [14]u16,
+    sz043: [22]u16,
+    sz044: [16]u16,
+    sz045: [20]u16,
+    sz046: [14]u16,
+    sz047: [14]u16,
+    sz048: [12]u16,
+    sz049: [25]u16,
+    sz050: [26]u16,
+    sz051: [25]u16,
+    sz052: [16]u16,
+    sz053: [24]u16,
+    sz054: [15]u16,
+    sz055: [21]u16,
+    sz056: [16]u16,
+    sz057: [22]u16,
+    sz058: [14]u16,
+    sz059: [25]u16,
+    sz060: [18]u16,
+    sz061: [22]u16,
+    sz062: [26]u16,
+    sz063: [36]u16,
+    sz064: [23]u16,
+    sz065: [12]u16,
+    sz066: [24]u16,
+    sz067: [11]u16,
+    sz068: [12]u16,
+    sz069: [14]u16,
+    sz070: [20]u16,
+    sz071: [15]u16,
+    sz072: [14]u16,
+    sz073: [31]u16,
+    sz074: [24]u16,
+    sz075: [22]u16,
+    sz076: [24]u16,
+    sz077: [21]u16,
+    sz078: [27]u16,
+    sz079: [27]u16,
+    sz080: [20]u16,
+    sz081: [33]u16,
+    sz082: [21]u16,
+    sz083: [32]u16,
+    sz084: [26]u16,
+    sz085: [18]u16,
+    sz086: [30]u16,
+};
+
+const CLSID_WMDMDevice_Value = Guid.initString("807b3cdf-357a-11d3-8471-00c04f79dbc0");
+pub const CLSID_WMDMDevice = &CLSID_WMDMDevice_Value;
+
+const CLSID_WMDMDeviceEnum_Value = Guid.initString("430e35af-3971-11d3-8474-00c04f79dbc0");
+pub const CLSID_WMDMDeviceEnum = &CLSID_WMDMDeviceEnum_Value;
+
+pub const WMDMID = extern struct {
+    cbSize: u32,
+    dwVendorID: u32,
+    pID: [128]u8,
+    SerialNumberLength: u32,
+};
+
+const CLSID_WMDMLogger_Value = Guid.initString("110a3202-5a79-11d3-8d78-444553540000");
+pub const CLSID_WMDMLogger = &CLSID_WMDMLogger_Value;
+
+pub const WMDMMessage = enum(i32) {
+    DEVICE_ARRIVAL = 0,
+    DEVICE_REMOVAL = 1,
+    MEDIA_ARRIVAL = 2,
+    MEDIA_REMOVAL = 3,
+};
+pub const WMDM_MSG_DEVICE_ARRIVAL = WMDMMessage.DEVICE_ARRIVAL;
+pub const WMDM_MSG_DEVICE_REMOVAL = WMDMMessage.DEVICE_REMOVAL;
+pub const WMDM_MSG_MEDIA_ARRIVAL = WMDMMessage.MEDIA_ARRIVAL;
+pub const WMDM_MSG_MEDIA_REMOVAL = WMDMMessage.MEDIA_REMOVAL;
+
+pub const WMDMMetadataView = extern struct {
+    pwszViewName: ?PWSTR,
+    nDepth: u32,
+    ppwszTags: ?*?*u16,
+};
+
+pub const WMDMRIGHTS = extern struct {
+    cbSize: u32,
+    dwContentType: u32,
+    fuFlags: u32,
+    fuRights: u32,
+    dwAppSec: u32,
+    dwPlaybackCount: u32,
+    ExpirationDate: WMDMDATETIME,
+};
+
+const CLSID_WMDMStorage_Value = Guid.initString("807b3ce0-357a-11d3-8471-00c04f79dbc0");
+pub const CLSID_WMDMStorage = &CLSID_WMDMStorage_Value;
+
+const CLSID_WMDMStorageEnum_Value = Guid.initString("eb401a3b-3af7-11d3-8474-00c04f79dbc0");
+pub const CLSID_WMDMStorageEnum = &CLSID_WMDMStorageEnum_Value;
+
+const CLSID_WMDMStorageGlobal_Value = Guid.initString("807b3ce1-357a-11d3-8471-00c04f79dbc0");
+pub const CLSID_WMDMStorageGlobal = &CLSID_WMDMStorageGlobal_Value;
+
+pub const WMFILECAPABILITIES = extern struct {
+    pwszMimeType: ?PWSTR,
+    dwReserved: u32,
 };
 
 

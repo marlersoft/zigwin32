@@ -2,39 +2,15 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (5)
 //--------------------------------------------------------------------------------
-pub const CCH_RM_SESSION_KEY = @as(u32, 32);
 pub const CCH_RM_MAX_APP_NAME = @as(u32, 255);
 pub const CCH_RM_MAX_SVC_NAME = @as(u32, 63);
-pub const RM_INVALID_TS_SESSION = @as(i32, -1);
+pub const CCH_RM_SESSION_KEY = @as(u32, 32);
 pub const RM_INVALID_PROCESS = @as(i32, -1);
+pub const RM_INVALID_TS_SESSION = @as(i32, -1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
-pub const RM_APP_TYPE = enum(i32) {
-    UnknownApp = 0,
-    MainWindow = 1,
-    OtherWindow = 2,
-    Service = 3,
-    Explorer = 4,
-    Console = 5,
-    Critical = 1000,
-};
-pub const RmUnknownApp = RM_APP_TYPE.UnknownApp;
-pub const RmMainWindow = RM_APP_TYPE.MainWindow;
-pub const RmOtherWindow = RM_APP_TYPE.OtherWindow;
-pub const RmService = RM_APP_TYPE.Service;
-pub const RmExplorer = RM_APP_TYPE.Explorer;
-pub const RmConsole = RM_APP_TYPE.Console;
-pub const RmCritical = RM_APP_TYPE.Critical;
-
-pub const RM_SHUTDOWN_TYPE = enum(i32) {
-    ForceShutdown = 1,
-    ShutdownOnlyRegistered = 16,
-};
-pub const RmForceShutdown = RM_SHUTDOWN_TYPE.ForceShutdown;
-pub const RmShutdownOnlyRegistered = RM_SHUTDOWN_TYPE.ShutdownOnlyRegistered;
-
 pub const RM_APP_STATUS = enum(i32) {
     Unknown = 0,
     Running = 1,
@@ -56,46 +32,22 @@ pub const RmStatusErrorOnRestart = RM_APP_STATUS.ErrorOnRestart;
 pub const RmStatusShutdownMasked = RM_APP_STATUS.ShutdownMasked;
 pub const RmStatusRestartMasked = RM_APP_STATUS.RestartMasked;
 
-pub const RM_REBOOT_REASON = enum(i32) {
-    None = 0,
-    PermissionDenied = 1,
-    SessionMismatch = 2,
-    CriticalProcess = 4,
-    CriticalService = 8,
-    DetectedSelf = 16,
-};
-pub const RmRebootReasonNone = RM_REBOOT_REASON.None;
-pub const RmRebootReasonPermissionDenied = RM_REBOOT_REASON.PermissionDenied;
-pub const RmRebootReasonSessionMismatch = RM_REBOOT_REASON.SessionMismatch;
-pub const RmRebootReasonCriticalProcess = RM_REBOOT_REASON.CriticalProcess;
-pub const RmRebootReasonCriticalService = RM_REBOOT_REASON.CriticalService;
-pub const RmRebootReasonDetectedSelf = RM_REBOOT_REASON.DetectedSelf;
-
-pub const RM_UNIQUE_PROCESS = extern struct {
-    dwProcessId: u32,
-    ProcessStartTime: FILETIME,
-};
-
-pub const RM_PROCESS_INFO = extern struct {
-    Process: RM_UNIQUE_PROCESS,
-    strAppName: [256]u16,
-    strServiceShortName: [64]u16,
-    ApplicationType: RM_APP_TYPE,
-    AppStatus: u32,
-    TSSessionId: u32,
-    bRestartable: BOOL,
-};
-
-pub const RM_FILTER_TRIGGER = enum(i32) {
-    Invalid = 0,
-    File = 1,
-    Process = 2,
+pub const RM_APP_TYPE = enum(i32) {
+    UnknownApp = 0,
+    MainWindow = 1,
+    OtherWindow = 2,
     Service = 3,
+    Explorer = 4,
+    Console = 5,
+    Critical = 1000,
 };
-pub const RmFilterTriggerInvalid = RM_FILTER_TRIGGER.Invalid;
-pub const RmFilterTriggerFile = RM_FILTER_TRIGGER.File;
-pub const RmFilterTriggerProcess = RM_FILTER_TRIGGER.Process;
-pub const RmFilterTriggerService = RM_FILTER_TRIGGER.Service;
+pub const RmUnknownApp = RM_APP_TYPE.UnknownApp;
+pub const RmMainWindow = RM_APP_TYPE.MainWindow;
+pub const RmOtherWindow = RM_APP_TYPE.OtherWindow;
+pub const RmService = RM_APP_TYPE.Service;
+pub const RmExplorer = RM_APP_TYPE.Explorer;
+pub const RmConsole = RM_APP_TYPE.Console;
+pub const RmCritical = RM_APP_TYPE.Critical;
 
 pub const RM_FILTER_ACTION = enum(i32) {
     InvalidFilterAction = 0,
@@ -117,6 +69,54 @@ pub const RM_FILTER_INFO = extern struct {
     },
 };
 
+pub const RM_FILTER_TRIGGER = enum(i32) {
+    Invalid = 0,
+    File = 1,
+    Process = 2,
+    Service = 3,
+};
+pub const RmFilterTriggerInvalid = RM_FILTER_TRIGGER.Invalid;
+pub const RmFilterTriggerFile = RM_FILTER_TRIGGER.File;
+pub const RmFilterTriggerProcess = RM_FILTER_TRIGGER.Process;
+pub const RmFilterTriggerService = RM_FILTER_TRIGGER.Service;
+
+pub const RM_PROCESS_INFO = extern struct {
+    Process: RM_UNIQUE_PROCESS,
+    strAppName: [256]u16,
+    strServiceShortName: [64]u16,
+    ApplicationType: RM_APP_TYPE,
+    AppStatus: u32,
+    TSSessionId: u32,
+    bRestartable: BOOL,
+};
+
+pub const RM_REBOOT_REASON = enum(i32) {
+    None = 0,
+    PermissionDenied = 1,
+    SessionMismatch = 2,
+    CriticalProcess = 4,
+    CriticalService = 8,
+    DetectedSelf = 16,
+};
+pub const RmRebootReasonNone = RM_REBOOT_REASON.None;
+pub const RmRebootReasonPermissionDenied = RM_REBOOT_REASON.PermissionDenied;
+pub const RmRebootReasonSessionMismatch = RM_REBOOT_REASON.SessionMismatch;
+pub const RmRebootReasonCriticalProcess = RM_REBOOT_REASON.CriticalProcess;
+pub const RmRebootReasonCriticalService = RM_REBOOT_REASON.CriticalService;
+pub const RmRebootReasonDetectedSelf = RM_REBOOT_REASON.DetectedSelf;
+
+pub const RM_SHUTDOWN_TYPE = enum(i32) {
+    ForceShutdown = 1,
+    ShutdownOnlyRegistered = 16,
+};
+pub const RmForceShutdown = RM_SHUTDOWN_TYPE.ForceShutdown;
+pub const RmShutdownOnlyRegistered = RM_SHUTDOWN_TYPE.ShutdownOnlyRegistered;
+
+pub const RM_UNIQUE_PROCESS = extern struct {
+    dwProcessId: u32,
+    ProcessStartTime: FILETIME,
+};
+
 pub const RM_WRITE_STATUS_CALLBACK = *const fn(
     nPercentComplete: u32,
 ) callconv(.winapi) void;
@@ -126,21 +126,46 @@ pub const RM_WRITE_STATUS_CALLBACK = *const fn(
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmStartSession(
-    pSessionHandle: ?*u32,
-    dwSessionFlags: u32,
-    strSessionKey: ?PWSTR,
+pub extern "rstrtmgr" fn RmAddFilter(
+    dwSessionHandle: u32,
+    strModuleName: ?[*:0]const u16,
+    pProcess: ?*RM_UNIQUE_PROCESS,
+    strServiceShortName: ?[*:0]const u16,
+    FilterAction: RM_FILTER_ACTION,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "rstrtmgr" fn RmCancelCurrentTask(
+    dwSessionHandle: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "rstrtmgr" fn RmEndSession(
+    dwSessionHandle: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "rstrtmgr" fn RmGetFilterList(
+    dwSessionHandle: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    pbFilterBuf: ?*u8,
+    cbFilterBuf: u32,
+    cbFilterBufNeeded: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "rstrtmgr" fn RmGetList(
+    dwSessionHandle: u32,
+    pnProcInfoNeeded: ?*u32,
+    pnProcInfo: ?*u32,
+    rgAffectedApps: ?[*]RM_PROCESS_INFO,
+    lpdwRebootReasons: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmJoinSession(
     pSessionHandle: ?*u32,
     strSessionKey: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmEndSession(
-    dwSessionHandle: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -155,19 +180,11 @@ pub extern "rstrtmgr" fn RmRegisterResources(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmGetList(
+pub extern "rstrtmgr" fn RmRemoveFilter(
     dwSessionHandle: u32,
-    pnProcInfoNeeded: ?*u32,
-    pnProcInfo: ?*u32,
-    rgAffectedApps: ?[*]RM_PROCESS_INFO,
-    lpdwRebootReasons: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmShutdown(
-    dwSessionHandle: u32,
-    lActionFlags: u32,
-    fnStatus: ?RM_WRITE_STATUS_CALLBACK,
+    strModuleName: ?[*:0]const u16,
+    pProcess: ?*RM_UNIQUE_PROCESS,
+    strServiceShortName: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -178,34 +195,17 @@ pub extern "rstrtmgr" fn RmRestart(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmCancelCurrentTask(
+pub extern "rstrtmgr" fn RmShutdown(
     dwSessionHandle: u32,
+    lActionFlags: u32,
+    fnStatus: ?RM_WRITE_STATUS_CALLBACK,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmAddFilter(
-    dwSessionHandle: u32,
-    strModuleName: ?[*:0]const u16,
-    pProcess: ?*RM_UNIQUE_PROCESS,
-    strServiceShortName: ?[*:0]const u16,
-    FilterAction: RM_FILTER_ACTION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmRemoveFilter(
-    dwSessionHandle: u32,
-    strModuleName: ?[*:0]const u16,
-    pProcess: ?*RM_UNIQUE_PROCESS,
-    strServiceShortName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "rstrtmgr" fn RmGetFilterList(
-    dwSessionHandle: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pbFilterBuf: ?*u8,
-    cbFilterBuf: u32,
-    cbFilterBufNeeded: ?*u32,
+pub extern "rstrtmgr" fn RmStartSession(
+    pSessionHandle: ?*u32,
+    dwSessionFlags: u32,
+    strSessionKey: ?PWSTR,
 ) callconv(.winapi) u32;
 
 

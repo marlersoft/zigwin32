@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const COMDB_MIN_PORTS_ARBITRATED = @as(u32, 256);
-pub const COMDB_MAX_PORTS_ARBITRATED = @as(u32, 4096);
 pub const CDB_REPORT_BITS = @as(u32, 0);
 pub const CDB_REPORT_BYTES = @as(u32, 1);
+pub const COMDB_MAX_PORTS_ARBITRATED = @as(u32, 4096);
+pub const COMDB_MIN_PORTS_ARBITRATED = @as(u32, 256);
 
 //--------------------------------------------------------------------------------
 // Section: Types (1)
@@ -17,8 +17,16 @@ pub const HCOMDB = *opaque{};
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub extern "msports" fn ComDBOpen(
-    PHComDB: ?*isize,
+pub extern "msports" fn ComDBClaimNextFreePort(
+    HComDB: ?HCOMDB,
+    ComNumber: ?*u32,
+) callconv(.winapi) i32;
+
+pub extern "msports" fn ComDBClaimPort(
+    HComDB: ?HCOMDB,
+    ComNumber: u32,
+    ForceClaim: BOOL,
+    Forced: ?*BOOL,
 ) callconv(.winapi) i32;
 
 pub extern "msports" fn ComDBClose(
@@ -34,16 +42,8 @@ pub extern "msports" fn ComDBGetCurrentPortUsage(
     MaxPortsReported: ?*u32,
 ) callconv(.winapi) i32;
 
-pub extern "msports" fn ComDBClaimNextFreePort(
-    HComDB: ?HCOMDB,
-    ComNumber: ?*u32,
-) callconv(.winapi) i32;
-
-pub extern "msports" fn ComDBClaimPort(
-    HComDB: ?HCOMDB,
-    ComNumber: u32,
-    ForceClaim: BOOL,
-    Forced: ?*BOOL,
+pub extern "msports" fn ComDBOpen(
+    PHComDB: ?*isize,
 ) callconv(.winapi) i32;
 
 pub extern "msports" fn ComDBReleasePort(

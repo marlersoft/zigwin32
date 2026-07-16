@@ -2,78 +2,72 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (237)
 //--------------------------------------------------------------------------------
-pub const DMUS_MAX_DESCRIPTION = @as(u32, 128);
-pub const DMUS_MAX_DRIVER = @as(u32, 128);
-pub const DMUS_EFFECT_NONE = @as(u32, 0);
-pub const DMUS_EFFECT_REVERB = @as(u32, 1);
-pub const DMUS_EFFECT_CHORUS = @as(u32, 2);
-pub const DMUS_EFFECT_DELAY = @as(u32, 4);
-pub const DMUS_PC_INPUTCLASS = @as(u32, 0);
-pub const DMUS_PC_OUTPUTCLASS = @as(u32, 1);
-pub const DMUS_PC_DLS = @as(u32, 1);
-pub const DMUS_PC_EXTERNAL = @as(u32, 2);
-pub const DMUS_PC_SOFTWARESYNTH = @as(u32, 4);
-pub const DMUS_PC_MEMORYSIZEFIXED = @as(u32, 8);
-pub const DMUS_PC_GMINHARDWARE = @as(u32, 16);
-pub const DMUS_PC_GSINHARDWARE = @as(u32, 32);
-pub const DMUS_PC_XGINHARDWARE = @as(u32, 64);
-pub const DMUS_PC_DIRECTSOUND = @as(u32, 128);
-pub const DMUS_PC_SHAREABLE = @as(u32, 256);
-pub const DMUS_PC_DLS2 = @as(u32, 512);
-pub const DMUS_PC_AUDIOPATH = @as(u32, 1024);
-pub const DMUS_PC_WAVE = @as(u32, 2048);
-pub const DMUS_PC_SYSTEMMEMORY = @as(u32, 2147483647);
-pub const DMUS_PORT_WINMM_DRIVER = @as(u32, 0);
-pub const DMUS_PORT_USER_MODE_SYNTH = @as(u32, 1);
-pub const DMUS_PORT_KERNEL_MODE = @as(u32, 2);
-pub const DMUS_PORTPARAMS_VOICES = @as(u32, 1);
-pub const DMUS_PORTPARAMS_CHANNELGROUPS = @as(u32, 2);
-pub const DMUS_PORTPARAMS_AUDIOCHANNELS = @as(u32, 4);
-pub const DMUS_PORTPARAMS_SAMPLERATE = @as(u32, 8);
-pub const DMUS_PORTPARAMS_EFFECTS = @as(u32, 32);
-pub const DMUS_PORTPARAMS_SHARE = @as(u32, 64);
-pub const DMUS_PORTPARAMS_FEATURES = @as(u32, 128);
-pub const DMUS_PORT_FEATURE_AUDIOPATH = @as(u32, 1);
-pub const DMUS_PORT_FEATURE_STREAMING = @as(u32, 2);
-pub const DMUS_SYNTHSTATS_VOICES = @as(u32, 1);
-pub const DMUS_SYNTHSTATS_TOTAL_CPU = @as(u32, 2);
-pub const DMUS_SYNTHSTATS_CPU_PER_VOICE = @as(u32, 4);
-pub const DMUS_SYNTHSTATS_LOST_NOTES = @as(u32, 8);
-pub const DMUS_SYNTHSTATS_PEAK_VOLUME = @as(u32, 16);
-pub const DMUS_SYNTHSTATS_FREE_MEMORY = @as(u32, 32);
-pub const DMUS_SYNTHSTATS_SYSTEMMEMORY = @as(u32, 2147483647);
-pub const DMUS_CLOCKF_GLOBAL = @as(u32, 1);
-pub const DSBUSID_FIRST_SPKR_LOC = @as(u32, 0);
-pub const DSBUSID_FRONT_LEFT = @as(u32, 0);
-pub const DSBUSID_LEFT = @as(u32, 0);
-pub const DSBUSID_FRONT_RIGHT = @as(u32, 1);
-pub const DSBUSID_RIGHT = @as(u32, 1);
-pub const DSBUSID_FRONT_CENTER = @as(u32, 2);
-pub const DSBUSID_LOW_FREQUENCY = @as(u32, 3);
-pub const DSBUSID_BACK_LEFT = @as(u32, 4);
-pub const DSBUSID_BACK_RIGHT = @as(u32, 5);
-pub const DSBUSID_FRONT_LEFT_OF_CENTER = @as(u32, 6);
-pub const DSBUSID_FRONT_RIGHT_OF_CENTER = @as(u32, 7);
-pub const DSBUSID_BACK_CENTER = @as(u32, 8);
-pub const DSBUSID_SIDE_LEFT = @as(u32, 9);
-pub const DSBUSID_SIDE_RIGHT = @as(u32, 10);
-pub const DSBUSID_TOP_CENTER = @as(u32, 11);
-pub const DSBUSID_TOP_FRONT_LEFT = @as(u32, 12);
-pub const DSBUSID_TOP_FRONT_CENTER = @as(u32, 13);
-pub const DSBUSID_TOP_FRONT_RIGHT = @as(u32, 14);
-pub const DSBUSID_TOP_BACK_LEFT = @as(u32, 15);
-pub const DSBUSID_TOP_BACK_CENTER = @as(u32, 16);
-pub const DSBUSID_TOP_BACK_RIGHT = @as(u32, 17);
-pub const DSBUSID_LAST_SPKR_LOC = @as(u32, 17);
-pub const DSBUSID_REVERB_SEND = @as(u32, 64);
-pub const DSBUSID_CHORUS_SEND = @as(u32, 65);
-pub const DSBUSID_DYNAMIC_0 = @as(u32, 512);
-pub const DSBUSID_NULL = @as(u32, 4294967295);
-pub const DAUD_CRITICAL_VOICE_PRIORITY = @as(u32, 4026531840);
-pub const DAUD_HIGH_VOICE_PRIORITY = @as(u32, 3221225472);
-pub const DAUD_STANDARD_VOICE_PRIORITY = @as(u32, 2147483648);
-pub const DAUD_LOW_VOICE_PRIORITY = @as(u32, 1073741824);
-pub const DAUD_PERSIST_VOICE_PRIORITY = @as(u32, 268435456);
+pub const CLSID_DirectMusic = Guid.initString("636b9f10-0c7d-11d1-95b2-0020afdc7421");
+pub const CLSID_DirectMusicCollection = Guid.initString("480ff4b0-28b2-11d1-bef7-00c04fbf8fef");
+pub const CLSID_DirectMusicSynth = Guid.initString("58c2b4d0-46e7-11d1-89ac-00a0c9054129");
+pub const CLSID_DirectMusicSynthSink = Guid.initString("aec17ce3-a514-11d1-afa6-00aa0024d8b6");
+pub const CLSID_DirectSoundPrivate = Guid.initString("11ab3ec0-25ec-11d1-a4d8-00c04fc28aca");
+pub const CONN_DST_ATTENUATION = @as(u32, 1);
+pub const CONN_DST_CENTER = @as(u32, 18);
+pub const CONN_DST_CHORUS = @as(u32, 128);
+pub const CONN_DST_EG1_ATTACKTIME = @as(u32, 518);
+pub const CONN_DST_EG1_DECAYTIME = @as(u32, 519);
+pub const CONN_DST_EG1_DELAYTIME = @as(u32, 523);
+pub const CONN_DST_EG1_HOLDTIME = @as(u32, 524);
+pub const CONN_DST_EG1_RELEASETIME = @as(u32, 521);
+pub const CONN_DST_EG1_SHUTDOWNTIME = @as(u32, 525);
+pub const CONN_DST_EG1_SUSTAINLEVEL = @as(u32, 522);
+pub const CONN_DST_EG2_ATTACKTIME = @as(u32, 778);
+pub const CONN_DST_EG2_DECAYTIME = @as(u32, 779);
+pub const CONN_DST_EG2_DELAYTIME = @as(u32, 783);
+pub const CONN_DST_EG2_HOLDTIME = @as(u32, 784);
+pub const CONN_DST_EG2_RELEASETIME = @as(u32, 781);
+pub const CONN_DST_EG2_SUSTAINLEVEL = @as(u32, 782);
+pub const CONN_DST_FILTER_CUTOFF = @as(u32, 1280);
+pub const CONN_DST_FILTER_Q = @as(u32, 1281);
+pub const CONN_DST_GAIN = @as(u32, 1);
+pub const CONN_DST_KEYNUMBER = @as(u32, 5);
+pub const CONN_DST_LEFT = @as(u32, 16);
+pub const CONN_DST_LEFTREAR = @as(u32, 19);
+pub const CONN_DST_LFE_CHANNEL = @as(u32, 21);
+pub const CONN_DST_LFO_FREQUENCY = @as(u32, 260);
+pub const CONN_DST_LFO_STARTDELAY = @as(u32, 261);
+pub const CONN_DST_NONE = @as(u32, 0);
+pub const CONN_DST_PAN = @as(u32, 4);
+pub const CONN_DST_PITCH = @as(u32, 3);
+pub const CONN_DST_REVERB = @as(u32, 129);
+pub const CONN_DST_RIGHT = @as(u32, 17);
+pub const CONN_DST_RIGHTREAR = @as(u32, 20);
+pub const CONN_DST_VIB_FREQUENCY = @as(u32, 276);
+pub const CONN_DST_VIB_STARTDELAY = @as(u32, 277);
+pub const CONN_SRC_CC1 = @as(u32, 129);
+pub const CONN_SRC_CC10 = @as(u32, 138);
+pub const CONN_SRC_CC11 = @as(u32, 139);
+pub const CONN_SRC_CC7 = @as(u32, 135);
+pub const CONN_SRC_CC91 = @as(u32, 219);
+pub const CONN_SRC_CC93 = @as(u32, 221);
+pub const CONN_SRC_CHANNELPRESSURE = @as(u32, 8);
+pub const CONN_SRC_EG1 = @as(u32, 4);
+pub const CONN_SRC_EG2 = @as(u32, 5);
+pub const CONN_SRC_KEYNUMBER = @as(u32, 3);
+pub const CONN_SRC_KEYONVELOCITY = @as(u32, 2);
+pub const CONN_SRC_LFO = @as(u32, 1);
+pub const CONN_SRC_MONOPRESSURE = @as(u32, 10);
+pub const CONN_SRC_NONE = @as(u32, 0);
+pub const CONN_SRC_PITCHWHEEL = @as(u32, 6);
+pub const CONN_SRC_POLYPRESSURE = @as(u32, 7);
+pub const CONN_SRC_VIBRATO = @as(u32, 9);
+pub const CONN_TRN_CONCAVE = @as(u32, 1);
+pub const CONN_TRN_CONVEX = @as(u32, 2);
+pub const CONN_TRN_NONE = @as(u32, 0);
+pub const CONN_TRN_SWITCH = @as(u32, 3);
+pub const DAUD_CHAN10_VOICE_PRIORITY_OFFSET = @as(u32, 15);
+pub const DAUD_CHAN11_VOICE_PRIORITY_OFFSET = @as(u32, 5);
+pub const DAUD_CHAN12_VOICE_PRIORITY_OFFSET = @as(u32, 4);
+pub const DAUD_CHAN13_VOICE_PRIORITY_OFFSET = @as(u32, 3);
+pub const DAUD_CHAN14_VOICE_PRIORITY_OFFSET = @as(u32, 2);
+pub const DAUD_CHAN15_VOICE_PRIORITY_OFFSET = @as(u32, 1);
+pub const DAUD_CHAN16_VOICE_PRIORITY_OFFSET = @as(u32, 0);
 pub const DAUD_CHAN1_VOICE_PRIORITY_OFFSET = @as(u32, 14);
 pub const DAUD_CHAN2_VOICE_PRIORITY_OFFSET = @as(u32, 13);
 pub const DAUD_CHAN3_VOICE_PRIORITY_OFFSET = @as(u32, 12);
@@ -83,176 +77,197 @@ pub const DAUD_CHAN6_VOICE_PRIORITY_OFFSET = @as(u32, 9);
 pub const DAUD_CHAN7_VOICE_PRIORITY_OFFSET = @as(u32, 8);
 pub const DAUD_CHAN8_VOICE_PRIORITY_OFFSET = @as(u32, 7);
 pub const DAUD_CHAN9_VOICE_PRIORITY_OFFSET = @as(u32, 6);
-pub const DAUD_CHAN10_VOICE_PRIORITY_OFFSET = @as(u32, 15);
-pub const DAUD_CHAN11_VOICE_PRIORITY_OFFSET = @as(u32, 5);
-pub const DAUD_CHAN12_VOICE_PRIORITY_OFFSET = @as(u32, 4);
-pub const DAUD_CHAN13_VOICE_PRIORITY_OFFSET = @as(u32, 3);
-pub const DAUD_CHAN14_VOICE_PRIORITY_OFFSET = @as(u32, 2);
-pub const DAUD_CHAN15_VOICE_PRIORITY_OFFSET = @as(u32, 1);
-pub const DAUD_CHAN16_VOICE_PRIORITY_OFFSET = @as(u32, 0);
-pub const CLSID_DirectMusic = Guid.initString("636b9f10-0c7d-11d1-95b2-0020afdc7421");
-pub const CLSID_DirectMusicCollection = Guid.initString("480ff4b0-28b2-11d1-bef7-00c04fbf8fef");
-pub const CLSID_DirectMusicSynth = Guid.initString("58c2b4d0-46e7-11d1-89ac-00a0c9054129");
-pub const GUID_DMUS_PROP_GM_Hardware = Guid.initString("178f2f24-c364-11d1-a760-0000f875ac12");
-pub const GUID_DMUS_PROP_GS_Hardware = Guid.initString("178f2f25-c364-11d1-a760-0000f875ac12");
-pub const GUID_DMUS_PROP_XG_Hardware = Guid.initString("178f2f26-c364-11d1-a760-0000f875ac12");
-pub const GUID_DMUS_PROP_XG_Capable = Guid.initString("6496aba1-61b0-11d2-afa6-00aa0024d8b6");
-pub const GUID_DMUS_PROP_GS_Capable = Guid.initString("6496aba2-61b0-11d2-afa6-00aa0024d8b6");
-pub const GUID_DMUS_PROP_DLS1 = Guid.initString("178f2f27-c364-11d1-a760-0000f875ac12");
-pub const GUID_DMUS_PROP_DLS2 = Guid.initString("f14599e5-4689-11d2-afa6-00aa0024d8b6");
-pub const GUID_DMUS_PROP_INSTRUMENT2 = Guid.initString("865fd372-9f67-11d2-872a-00600893b1bd");
-pub const GUID_DMUS_PROP_SynthSink_DSOUND = Guid.initString("0aa97844-c877-11d1-870c-00600893b1bd");
-pub const GUID_DMUS_PROP_SynthSink_WAVE = Guid.initString("0aa97845-c877-11d1-870c-00600893b1bd");
-pub const GUID_DMUS_PROP_SampleMemorySize = Guid.initString("178f2f28-c364-11d1-a760-0000f875ac12");
-pub const GUID_DMUS_PROP_SamplePlaybackRate = Guid.initString("2a91f713-a4bf-11d2-bbdf-00600833dbd8");
-pub const GUID_DMUS_PROP_WriteLatency = Guid.initString("268a0fa0-60f2-11d2-afa6-00aa0024d8b6");
-pub const GUID_DMUS_PROP_WritePeriod = Guid.initString("268a0fa1-60f2-11d2-afa6-00aa0024d8b6");
-pub const GUID_DMUS_PROP_MemorySize = Guid.initString("178f2f28-c364-11d1-a760-0000f875ac12");
-pub const GUID_DMUS_PROP_WavesReverb = Guid.initString("04cb5622-32e5-11d2-afa6-00aa0024d8b6");
-pub const GUID_DMUS_PROP_Effects = Guid.initString("cda8d611-684a-11d2-871e-00600893b1bd");
-pub const GUID_DMUS_PROP_LegacyCaps = Guid.initString("cfa7cdc2-00a1-11d2-aad5-0000f875ac12");
-pub const GUID_DMUS_PROP_Volume = Guid.initString("fedfae25-e46e-11d1-aace-0000f875ac12");
-pub const DMUS_VOLUME_MAX = @as(u32, 2000);
-pub const DMUS_VOLUME_MIN = @as(i32, -20000);
-pub const DMUS_EVENT_STRUCTURED = @as(u32, 1);
-pub const DMUS_DOWNLOADINFO_INSTRUMENT = @as(u32, 1);
-pub const DMUS_DOWNLOADINFO_WAVE = @as(u32, 2);
-pub const DMUS_DOWNLOADINFO_INSTRUMENT2 = @as(u32, 3);
-pub const DMUS_DOWNLOADINFO_WAVEARTICULATION = @as(u32, 4);
-pub const DMUS_DOWNLOADINFO_STREAMINGWAVE = @as(u32, 5);
-pub const DMUS_DOWNLOADINFO_ONESHOTWAVE = @as(u32, 6);
-pub const DMUS_DEFAULT_SIZE_OFFSETTABLE = @as(u32, 1);
-pub const DMUS_INSTRUMENT_GM_INSTRUMENT = @as(u32, 1);
-pub const DMUS_MIN_DATA_SIZE = @as(u32, 4);
-pub const CONN_SRC_NONE = @as(u32, 0);
-pub const CONN_SRC_LFO = @as(u32, 1);
-pub const CONN_SRC_KEYONVELOCITY = @as(u32, 2);
-pub const CONN_SRC_KEYNUMBER = @as(u32, 3);
-pub const CONN_SRC_EG1 = @as(u32, 4);
-pub const CONN_SRC_EG2 = @as(u32, 5);
-pub const CONN_SRC_PITCHWHEEL = @as(u32, 6);
-pub const CONN_SRC_CC1 = @as(u32, 129);
-pub const CONN_SRC_CC7 = @as(u32, 135);
-pub const CONN_SRC_CC10 = @as(u32, 138);
-pub const CONN_SRC_CC11 = @as(u32, 139);
-pub const CONN_DST_NONE = @as(u32, 0);
-pub const CONN_DST_ATTENUATION = @as(u32, 1);
-pub const CONN_DST_PITCH = @as(u32, 3);
-pub const CONN_DST_PAN = @as(u32, 4);
-pub const CONN_DST_LFO_FREQUENCY = @as(u32, 260);
-pub const CONN_DST_LFO_STARTDELAY = @as(u32, 261);
-pub const CONN_DST_EG1_ATTACKTIME = @as(u32, 518);
-pub const CONN_DST_EG1_DECAYTIME = @as(u32, 519);
-pub const CONN_DST_EG1_RELEASETIME = @as(u32, 521);
-pub const CONN_DST_EG1_SUSTAINLEVEL = @as(u32, 522);
-pub const CONN_DST_EG2_ATTACKTIME = @as(u32, 778);
-pub const CONN_DST_EG2_DECAYTIME = @as(u32, 779);
-pub const CONN_DST_EG2_RELEASETIME = @as(u32, 781);
-pub const CONN_DST_EG2_SUSTAINLEVEL = @as(u32, 782);
-pub const CONN_TRN_NONE = @as(u32, 0);
-pub const CONN_TRN_CONCAVE = @as(u32, 1);
-pub const F_INSTRUMENT_DRUMS = @as(u32, 2147483648);
-pub const F_RGN_OPTION_SELFNONEXCLUSIVE = @as(u32, 1);
-pub const WAVELINK_CHANNEL_LEFT = @as(i32, 1);
-pub const WAVELINK_CHANNEL_RIGHT = @as(i32, 2);
-pub const F_WAVELINK_PHASE_MASTER = @as(u32, 1);
-pub const POOL_CUE_NULL = @as(i32, -1);
-pub const F_WSMP_NO_TRUNCATION = @as(i32, 1);
-pub const F_WSMP_NO_COMPRESSION = @as(i32, 2);
-pub const WLOOP_TYPE_FORWARD = @as(u32, 0);
-pub const CONN_SRC_POLYPRESSURE = @as(u32, 7);
-pub const CONN_SRC_CHANNELPRESSURE = @as(u32, 8);
-pub const CONN_SRC_VIBRATO = @as(u32, 9);
-pub const CONN_SRC_MONOPRESSURE = @as(u32, 10);
-pub const CONN_SRC_CC91 = @as(u32, 219);
-pub const CONN_SRC_CC93 = @as(u32, 221);
-pub const CONN_DST_GAIN = @as(u32, 1);
-pub const CONN_DST_KEYNUMBER = @as(u32, 5);
-pub const CONN_DST_LEFT = @as(u32, 16);
-pub const CONN_DST_RIGHT = @as(u32, 17);
-pub const CONN_DST_CENTER = @as(u32, 18);
-pub const CONN_DST_LEFTREAR = @as(u32, 19);
-pub const CONN_DST_RIGHTREAR = @as(u32, 20);
-pub const CONN_DST_LFE_CHANNEL = @as(u32, 21);
-pub const CONN_DST_CHORUS = @as(u32, 128);
-pub const CONN_DST_REVERB = @as(u32, 129);
-pub const CONN_DST_VIB_FREQUENCY = @as(u32, 276);
-pub const CONN_DST_VIB_STARTDELAY = @as(u32, 277);
-pub const CONN_DST_EG1_DELAYTIME = @as(u32, 523);
-pub const CONN_DST_EG1_HOLDTIME = @as(u32, 524);
-pub const CONN_DST_EG1_SHUTDOWNTIME = @as(u32, 525);
-pub const CONN_DST_EG2_DELAYTIME = @as(u32, 783);
-pub const CONN_DST_EG2_HOLDTIME = @as(u32, 784);
-pub const CONN_DST_FILTER_CUTOFF = @as(u32, 1280);
-pub const CONN_DST_FILTER_Q = @as(u32, 1281);
-pub const CONN_TRN_CONVEX = @as(u32, 2);
-pub const CONN_TRN_SWITCH = @as(u32, 3);
-pub const DLS_CDL_AND = @as(u32, 1);
-pub const DLS_CDL_OR = @as(u32, 2);
-pub const DLS_CDL_XOR = @as(u32, 3);
+pub const DAUD_CRITICAL_VOICE_PRIORITY = @as(u32, 4026531840);
+pub const DAUD_HIGH_VOICE_PRIORITY = @as(u32, 3221225472);
+pub const DAUD_LOW_VOICE_PRIORITY = @as(u32, 1073741824);
+pub const DAUD_PERSIST_VOICE_PRIORITY = @as(u32, 268435456);
+pub const DAUD_STANDARD_VOICE_PRIORITY = @as(u32, 2147483648);
 pub const DLS_CDL_ADD = @as(u32, 4);
-pub const DLS_CDL_SUBTRACT = @as(u32, 5);
-pub const DLS_CDL_MULTIPLY = @as(u32, 6);
+pub const DLS_CDL_AND = @as(u32, 1);
+pub const DLS_CDL_CONST = @as(u32, 16);
 pub const DLS_CDL_DIVIDE = @as(u32, 7);
+pub const DLS_CDL_EQ = @as(u32, 14);
+pub const DLS_CDL_GE = @as(u32, 13);
+pub const DLS_CDL_GT = @as(u32, 12);
+pub const DLS_CDL_LE = @as(u32, 11);
 pub const DLS_CDL_LOGICAL_AND = @as(u32, 8);
 pub const DLS_CDL_LOGICAL_OR = @as(u32, 9);
 pub const DLS_CDL_LT = @as(u32, 10);
-pub const DLS_CDL_LE = @as(u32, 11);
-pub const DLS_CDL_GT = @as(u32, 12);
-pub const DLS_CDL_GE = @as(u32, 13);
-pub const DLS_CDL_EQ = @as(u32, 14);
+pub const DLS_CDL_MULTIPLY = @as(u32, 6);
 pub const DLS_CDL_NOT = @as(u32, 15);
-pub const DLS_CDL_CONST = @as(u32, 16);
+pub const DLS_CDL_OR = @as(u32, 2);
 pub const DLS_CDL_QUERY = @as(u32, 17);
 pub const DLS_CDL_QUERYSUPPORTED = @as(u32, 18);
-pub const WLOOP_TYPE_RELEASE = @as(u32, 2);
-pub const F_WAVELINK_MULTICHANNEL = @as(u32, 2);
+pub const DLS_CDL_SUBTRACT = @as(u32, 5);
+pub const DLS_CDL_XOR = @as(u32, 3);
 pub const DLSID_GMInHardware = Guid.initString("178f2f24-c364-11d1-a760-0000f875ac12");
 pub const DLSID_GSInHardware = Guid.initString("178f2f25-c364-11d1-a760-0000f875ac12");
-pub const DLSID_XGInHardware = Guid.initString("178f2f26-c364-11d1-a760-0000f875ac12");
-pub const DLSID_SupportsDLS1 = Guid.initString("178f2f27-c364-11d1-a760-0000f875ac12");
-pub const DLSID_SupportsDLS2 = Guid.initString("f14599e5-4689-11d2-afa6-00aa0024d8b6");
-pub const DLSID_SampleMemorySize = Guid.initString("178f2f28-c364-11d1-a760-0000f875ac12");
 pub const DLSID_ManufacturersID = Guid.initString("b03e1181-8095-11d2-a1ef-00600833dbd8");
 pub const DLSID_ProductID = Guid.initString("b03e1182-8095-11d2-a1ef-00600833dbd8");
+pub const DLSID_SampleMemorySize = Guid.initString("178f2f28-c364-11d1-a760-0000f875ac12");
 pub const DLSID_SamplePlaybackRate = Guid.initString("2a91f713-a4bf-11d2-bbdf-00600833dbd8");
-pub const REGSTR_PATH_SOFTWARESYNTHS = "Software\\Microsoft\\DirectMusic\\SoftwareSynths";
-pub const REFRESH_F_LASTBUFFER = @as(u32, 1);
-pub const CLSID_DirectMusicSynthSink = Guid.initString("aec17ce3-a514-11d1-afa6-00aa0024d8b6");
-pub const GUID_DMUS_PROP_SetSynthSink = Guid.initString("0a3a5ba5-37b6-11d2-b9f9-0000f875ac12");
-pub const GUID_DMUS_PROP_SinkUsesDSound = Guid.initString("be208857-8952-11d2-ba1c-0000f875ac12");
-pub const CLSID_DirectSoundPrivate = Guid.initString("11ab3ec0-25ec-11d1-a4d8-00c04fc28aca");
+pub const DLSID_SupportsDLS1 = Guid.initString("178f2f27-c364-11d1-a760-0000f875ac12");
+pub const DLSID_SupportsDLS2 = Guid.initString("f14599e5-4689-11d2-afa6-00aa0024d8b6");
+pub const DLSID_XGInHardware = Guid.initString("178f2f26-c364-11d1-a760-0000f875ac12");
+pub const DMUS_CLOCKF_GLOBAL = @as(u32, 1);
+pub const DMUS_DEFAULT_SIZE_OFFSETTABLE = @as(u32, 1);
+pub const DMUS_DOWNLOADINFO_INSTRUMENT = @as(u32, 1);
+pub const DMUS_DOWNLOADINFO_INSTRUMENT2 = @as(u32, 3);
+pub const DMUS_DOWNLOADINFO_ONESHOTWAVE = @as(u32, 6);
+pub const DMUS_DOWNLOADINFO_STREAMINGWAVE = @as(u32, 5);
+pub const DMUS_DOWNLOADINFO_WAVE = @as(u32, 2);
+pub const DMUS_DOWNLOADINFO_WAVEARTICULATION = @as(u32, 4);
+pub const DMUS_EFFECT_CHORUS = @as(u32, 2);
+pub const DMUS_EFFECT_DELAY = @as(u32, 4);
+pub const DMUS_EFFECT_NONE = @as(u32, 0);
+pub const DMUS_EFFECT_REVERB = @as(u32, 1);
+pub const DMUS_EVENT_STRUCTURED = @as(u32, 1);
+pub const DMUS_INSTRUMENT_GM_INSTRUMENT = @as(u32, 1);
+pub const DMUS_MAX_DESCRIPTION = @as(u32, 128);
+pub const DMUS_MAX_DRIVER = @as(u32, 128);
+pub const DMUS_MIN_DATA_SIZE = @as(u32, 4);
+pub const DMUS_PC_AUDIOPATH = @as(u32, 1024);
+pub const DMUS_PC_DIRECTSOUND = @as(u32, 128);
+pub const DMUS_PC_DLS = @as(u32, 1);
+pub const DMUS_PC_DLS2 = @as(u32, 512);
+pub const DMUS_PC_EXTERNAL = @as(u32, 2);
+pub const DMUS_PC_GMINHARDWARE = @as(u32, 16);
+pub const DMUS_PC_GSINHARDWARE = @as(u32, 32);
+pub const DMUS_PC_INPUTCLASS = @as(u32, 0);
+pub const DMUS_PC_MEMORYSIZEFIXED = @as(u32, 8);
+pub const DMUS_PC_OUTPUTCLASS = @as(u32, 1);
+pub const DMUS_PC_SHAREABLE = @as(u32, 256);
+pub const DMUS_PC_SOFTWARESYNTH = @as(u32, 4);
+pub const DMUS_PC_SYSTEMMEMORY = @as(u32, 2147483647);
+pub const DMUS_PC_WAVE = @as(u32, 2048);
+pub const DMUS_PC_XGINHARDWARE = @as(u32, 64);
+pub const DMUS_PORT_FEATURE_AUDIOPATH = @as(u32, 1);
+pub const DMUS_PORT_FEATURE_STREAMING = @as(u32, 2);
+pub const DMUS_PORT_KERNEL_MODE = @as(u32, 2);
+pub const DMUS_PORT_USER_MODE_SYNTH = @as(u32, 1);
+pub const DMUS_PORT_WINMM_DRIVER = @as(u32, 0);
+pub const DMUS_PORTPARAMS_AUDIOCHANNELS = @as(u32, 4);
+pub const DMUS_PORTPARAMS_CHANNELGROUPS = @as(u32, 2);
+pub const DMUS_PORTPARAMS_EFFECTS = @as(u32, 32);
+pub const DMUS_PORTPARAMS_FEATURES = @as(u32, 128);
+pub const DMUS_PORTPARAMS_SAMPLERATE = @as(u32, 8);
+pub const DMUS_PORTPARAMS_SHARE = @as(u32, 64);
+pub const DMUS_PORTPARAMS_VOICES = @as(u32, 1);
+pub const DMUS_SYNTHSTATS_CPU_PER_VOICE = @as(u32, 4);
+pub const DMUS_SYNTHSTATS_FREE_MEMORY = @as(u32, 32);
+pub const DMUS_SYNTHSTATS_LOST_NOTES = @as(u32, 8);
+pub const DMUS_SYNTHSTATS_PEAK_VOLUME = @as(u32, 16);
+pub const DMUS_SYNTHSTATS_SYSTEMMEMORY = @as(u32, 2147483647);
+pub const DMUS_SYNTHSTATS_TOTAL_CPU = @as(u32, 2);
+pub const DMUS_SYNTHSTATS_VOICES = @as(u32, 1);
+pub const DMUS_VOLUME_MAX = @as(u32, 2000);
+pub const DMUS_VOLUME_MIN = @as(i32, -20000);
+pub const DSBUSID_BACK_CENTER = @as(u32, 8);
+pub const DSBUSID_BACK_LEFT = @as(u32, 4);
+pub const DSBUSID_BACK_RIGHT = @as(u32, 5);
+pub const DSBUSID_CHORUS_SEND = @as(u32, 65);
+pub const DSBUSID_DYNAMIC_0 = @as(u32, 512);
+pub const DSBUSID_FIRST_SPKR_LOC = @as(u32, 0);
+pub const DSBUSID_FRONT_CENTER = @as(u32, 2);
+pub const DSBUSID_FRONT_LEFT = @as(u32, 0);
+pub const DSBUSID_FRONT_LEFT_OF_CENTER = @as(u32, 6);
+pub const DSBUSID_FRONT_RIGHT = @as(u32, 1);
+pub const DSBUSID_FRONT_RIGHT_OF_CENTER = @as(u32, 7);
+pub const DSBUSID_LAST_SPKR_LOC = @as(u32, 17);
+pub const DSBUSID_LEFT = @as(u32, 0);
+pub const DSBUSID_LOW_FREQUENCY = @as(u32, 3);
+pub const DSBUSID_NULL = @as(u32, 4294967295);
+pub const DSBUSID_REVERB_SEND = @as(u32, 64);
+pub const DSBUSID_RIGHT = @as(u32, 1);
+pub const DSBUSID_SIDE_LEFT = @as(u32, 9);
+pub const DSBUSID_SIDE_RIGHT = @as(u32, 10);
+pub const DSBUSID_TOP_BACK_CENTER = @as(u32, 16);
+pub const DSBUSID_TOP_BACK_LEFT = @as(u32, 15);
+pub const DSBUSID_TOP_BACK_RIGHT = @as(u32, 17);
+pub const DSBUSID_TOP_CENTER = @as(u32, 11);
+pub const DSBUSID_TOP_FRONT_CENTER = @as(u32, 13);
+pub const DSBUSID_TOP_FRONT_LEFT = @as(u32, 12);
+pub const DSBUSID_TOP_FRONT_RIGHT = @as(u32, 14);
 pub const DSPROPSETID_DirectSoundDevice = Guid.initString("84624f82-25ec-11d1-a4d8-00c04fc28aca");
+pub const DV_AUDIOMODE = @as(u32, 3840);
+pub const DV_AUDIOQU = @as(u32, 117440512);
+pub const DV_AUDIOSMP = @as(u32, 939524096);
+pub const DV_CAP_AUD12Bits = @as(u32, 1);
+pub const DV_CAP_AUD16Bits = @as(u32, 0);
 pub const DV_DVSD_NTSC_FRAMESIZE = @as(i32, 120000);
 pub const DV_DVSD_PAL_FRAMESIZE = @as(i32, 144000);
-pub const DV_SMCHN = @as(u32, 57344);
-pub const DV_AUDIOMODE = @as(u32, 3840);
-pub const DV_AUDIOSMP = @as(u32, 939524096);
-pub const DV_AUDIOQU = @as(u32, 117440512);
-pub const DV_NTSCPAL = @as(u32, 2097152);
-pub const DV_STYPE = @as(u32, 2031616);
+pub const DV_HD = @as(u32, 1);
 pub const DV_NTSC = @as(u32, 0);
+pub const DV_NTSCPAL = @as(u32, 2097152);
 pub const DV_PAL = @as(u32, 1);
 pub const DV_SD = @as(u32, 0);
-pub const DV_HD = @as(u32, 1);
 pub const DV_SL = @as(u32, 2);
-pub const DV_CAP_AUD16Bits = @as(u32, 0);
-pub const DV_CAP_AUD12Bits = @as(u32, 1);
+pub const DV_SMCHN = @as(u32, 57344);
+pub const DV_STYPE = @as(u32, 2031616);
+pub const F_INSTRUMENT_DRUMS = @as(u32, 2147483648);
+pub const F_RGN_OPTION_SELFNONEXCLUSIVE = @as(u32, 1);
+pub const F_WAVELINK_MULTICHANNEL = @as(u32, 2);
+pub const F_WAVELINK_PHASE_MASTER = @as(u32, 1);
+pub const F_WSMP_NO_COMPRESSION = @as(i32, 2);
+pub const F_WSMP_NO_TRUNCATION = @as(i32, 1);
+pub const GUID_DMUS_PROP_DLS1 = Guid.initString("178f2f27-c364-11d1-a760-0000f875ac12");
+pub const GUID_DMUS_PROP_DLS2 = Guid.initString("f14599e5-4689-11d2-afa6-00aa0024d8b6");
+pub const GUID_DMUS_PROP_Effects = Guid.initString("cda8d611-684a-11d2-871e-00600893b1bd");
+pub const GUID_DMUS_PROP_GM_Hardware = Guid.initString("178f2f24-c364-11d1-a760-0000f875ac12");
+pub const GUID_DMUS_PROP_GS_Capable = Guid.initString("6496aba2-61b0-11d2-afa6-00aa0024d8b6");
+pub const GUID_DMUS_PROP_GS_Hardware = Guid.initString("178f2f25-c364-11d1-a760-0000f875ac12");
+pub const GUID_DMUS_PROP_INSTRUMENT2 = Guid.initString("865fd372-9f67-11d2-872a-00600893b1bd");
+pub const GUID_DMUS_PROP_LegacyCaps = Guid.initString("cfa7cdc2-00a1-11d2-aad5-0000f875ac12");
+pub const GUID_DMUS_PROP_MemorySize = Guid.initString("178f2f28-c364-11d1-a760-0000f875ac12");
+pub const GUID_DMUS_PROP_SampleMemorySize = Guid.initString("178f2f28-c364-11d1-a760-0000f875ac12");
+pub const GUID_DMUS_PROP_SamplePlaybackRate = Guid.initString("2a91f713-a4bf-11d2-bbdf-00600833dbd8");
+pub const GUID_DMUS_PROP_SetSynthSink = Guid.initString("0a3a5ba5-37b6-11d2-b9f9-0000f875ac12");
+pub const GUID_DMUS_PROP_SinkUsesDSound = Guid.initString("be208857-8952-11d2-ba1c-0000f875ac12");
+pub const GUID_DMUS_PROP_SynthSink_DSOUND = Guid.initString("0aa97844-c877-11d1-870c-00600893b1bd");
+pub const GUID_DMUS_PROP_SynthSink_WAVE = Guid.initString("0aa97845-c877-11d1-870c-00600893b1bd");
+pub const GUID_DMUS_PROP_Volume = Guid.initString("fedfae25-e46e-11d1-aace-0000f875ac12");
+pub const GUID_DMUS_PROP_WavesReverb = Guid.initString("04cb5622-32e5-11d2-afa6-00aa0024d8b6");
+pub const GUID_DMUS_PROP_WriteLatency = Guid.initString("268a0fa0-60f2-11d2-afa6-00aa0024d8b6");
+pub const GUID_DMUS_PROP_WritePeriod = Guid.initString("268a0fa1-60f2-11d2-afa6-00aa0024d8b6");
+pub const GUID_DMUS_PROP_XG_Capable = Guid.initString("6496aba1-61b0-11d2-afa6-00aa0024d8b6");
+pub const GUID_DMUS_PROP_XG_Hardware = Guid.initString("178f2f26-c364-11d1-a760-0000f875ac12");
+pub const POOL_CUE_NULL = @as(i32, -1);
+pub const REFRESH_F_LASTBUFFER = @as(u32, 1);
+pub const REGSTR_PATH_SOFTWARESYNTHS = "Software\\Microsoft\\DirectMusic\\SoftwareSynths";
 pub const SIZE_DVINFO = @as(u32, 32);
+pub const WAVELINK_CHANNEL_LEFT = @as(i32, 1);
+pub const WAVELINK_CHANNEL_RIGHT = @as(i32, 2);
+pub const WLOOP_TYPE_FORWARD = @as(u32, 0);
+pub const WLOOP_TYPE_RELEASE = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (74)
 //--------------------------------------------------------------------------------
-pub const DLSID = extern struct {
-    ulData1: u32,
-    usData2: u16,
-    usData3: u16,
-    abData4: [8]u8,
+pub const _DMUS_PORTPARAMS = extern struct {
+    dwSize: u32,
+    dwValidParams: u32,
+    dwVoices: u32,
+    dwChannelGroups: u32,
+    dwAudioChannels: u32,
+    dwSampleRate: u32,
+    dwEffectFlags: u32,
+    fShare: BOOL,
 };
 
-pub const DLSVERSION = extern struct {
-    dwVersionMS: u32,
-    dwVersionLS: u32,
+pub const _rloop = extern struct {
+    cbSize: u32,
+    ulType: u32,
+    ulStart: u32,
+    ulLength: u32,
+};
+
+pub const _rwsmp = extern struct {
+    cbSize: u32,
+    usUnityNote: u16,
+    sFineTune: i16,
+    lAttenuation: i32,
+    fulOptions: u32,
+    cSampleLoops: u32,
 };
 
 pub const CONNECTION = extern struct {
@@ -268,127 +283,36 @@ pub const CONNECTIONLIST = extern struct {
     cConnections: u32,
 };
 
-pub const RGNRANGE = extern struct {
-    usLow: u16,
-    usHigh: u16,
+pub const DIRECTSOUNDDEVICE_DATAFLOW = enum(i32) {
+    RENDER = 0,
+    CAPTURE = 1,
 };
+pub const DIRECTSOUNDDEVICE_DATAFLOW_RENDER = DIRECTSOUNDDEVICE_DATAFLOW.RENDER;
+pub const DIRECTSOUNDDEVICE_DATAFLOW_CAPTURE = DIRECTSOUNDDEVICE_DATAFLOW.CAPTURE;
 
-pub const MIDILOCALE = extern struct {
-    ulBank: u32,
-    ulInstrument: u32,
+pub const DIRECTSOUNDDEVICE_TYPE = enum(i32) {
+    EMULATED = 0,
+    VXD = 1,
+    WDM = 2,
 };
-
-pub const RGNHEADER = extern struct {
-    RangeKey: RGNRANGE,
-    RangeVelocity: RGNRANGE,
-    fusOptions: u16,
-    usKeyGroup: u16,
-};
-
-pub const INSTHEADER = extern struct {
-    cRegions: u32,
-    Locale: MIDILOCALE,
-};
+pub const DIRECTSOUNDDEVICE_TYPE_EMULATED = DIRECTSOUNDDEVICE_TYPE.EMULATED;
+pub const DIRECTSOUNDDEVICE_TYPE_VXD = DIRECTSOUNDDEVICE_TYPE.VXD;
+pub const DIRECTSOUNDDEVICE_TYPE_WDM = DIRECTSOUNDDEVICE_TYPE.WDM;
 
 pub const DLSHEADER = extern struct {
     cInstruments: u32,
 };
 
-pub const WAVELINK = extern struct {
-    fusOptions: u16,
-    usPhaseGroup: u16,
-    ulChannel: u32,
-    ulTableIndex: u32,
+pub const DLSID = extern struct {
+    ulData1: u32,
+    usData2: u16,
+    usData3: u16,
+    abData4: [8]u8,
 };
 
-pub const POOLCUE = extern struct {
-    ulOffset: u32,
-};
-
-pub const POOLTABLE = extern struct {
-    cbSize: u32,
-    cCues: u32,
-};
-
-pub const _rwsmp = extern struct {
-    cbSize: u32,
-    usUnityNote: u16,
-    sFineTune: i16,
-    lAttenuation: i32,
-    fulOptions: u32,
-    cSampleLoops: u32,
-};
-
-pub const _rloop = extern struct {
-    cbSize: u32,
-    ulType: u32,
-    ulStart: u32,
-    ulLength: u32,
-};
-
-pub const DMUS_DOWNLOADINFO = extern struct {
-    dwDLType: u32,
-    dwDLId: u32,
-    dwNumOffsetTableEntries: u32,
-    cbSize: u32,
-};
-
-pub const DMUS_OFFSETTABLE = extern struct {
-    ulOffsetTable: [1]u32,
-};
-
-pub const DMUS_INSTRUMENT = extern struct {
-    ulPatch: u32,
-    ulFirstRegionIdx: u32,
-    ulGlobalArtIdx: u32,
-    ulFirstExtCkIdx: u32,
-    ulCopyrightIdx: u32,
-    ulFlags: u32,
-};
-
-pub const DMUS_REGION = extern struct {
-    RangeKey: RGNRANGE,
-    RangeVelocity: RGNRANGE,
-    fusOptions: u16,
-    usKeyGroup: u16,
-    ulRegionArtIdx: u32,
-    ulNextRegionIdx: u32,
-    ulFirstExtCkIdx: u32,
-    WaveLink: WAVELINK,
-    WSMP: _rwsmp,
-    WLOOP: [1]_rloop,
-};
-
-pub const DMUS_LFOPARAMS = extern struct {
-    pcFrequency: i32,
-    tcDelay: i32,
-    gcVolumeScale: i32,
-    pcPitchScale: i32,
-    gcMWToVolume: i32,
-    pcMWToPitch: i32,
-};
-
-pub const DMUS_VEGPARAMS = extern struct {
-    tcAttack: i32,
-    tcDecay: i32,
-    ptSustain: i32,
-    tcRelease: i32,
-    tcVel2Attack: i32,
-    tcKey2Decay: i32,
-};
-
-pub const DMUS_PEGPARAMS = extern struct {
-    tcAttack: i32,
-    tcDecay: i32,
-    ptSustain: i32,
-    tcRelease: i32,
-    tcVel2Attack: i32,
-    tcKey2Decay: i32,
-    pcRange: i32,
-};
-
-pub const DMUS_MSCPARAMS = extern struct {
-    ptDefaultPan: i32,
+pub const DLSVERSION = extern struct {
+    dwVersionMS: u32,
+    dwVersionLS: u32,
 };
 
 pub const DMUS_ARTICPARAMS = extern struct {
@@ -409,45 +333,45 @@ pub const DMUS_ARTICULATION2 = extern struct {
     ulNextArtIdx: u32,
 };
 
-pub const DMUS_EXTENSIONCHUNK = extern struct {
-    cbSize: u32,
-    ulNextExtCkIdx: u32,
-    ExtCkID: u32,
-    byExtCk: [4]u8,
+pub const DMUS_BUFFERDESC = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    guidBufferFormat: Guid,
+    cbBuffer: u32,
 };
+
+pub const DMUS_CLOCKINFO7 = extern struct {
+    dwSize: u32,
+    ctType: DMUS_CLOCKTYPE,
+    guidClock: Guid,
+    wszDescription: [128]u16,
+};
+
+pub const DMUS_CLOCKINFO8 = extern struct {
+    dwSize: u32,
+    ctType: DMUS_CLOCKTYPE,
+    guidClock: Guid,
+    wszDescription: [128]u16,
+    dwFlags: u32,
+};
+
+pub const DMUS_CLOCKTYPE = enum(i32) {
+    SYSTEM = 0,
+    WAVE = 1,
+};
+pub const DMUS_CLOCK_SYSTEM = DMUS_CLOCKTYPE.SYSTEM;
+pub const DMUS_CLOCK_WAVE = DMUS_CLOCKTYPE.WAVE;
 
 pub const DMUS_COPYRIGHT = extern struct {
     cbSize: u32,
     byCopyright: [4]u8,
 };
 
-pub const DMUS_WAVEDATA = extern struct {
+pub const DMUS_DOWNLOADINFO = extern struct {
+    dwDLType: u32,
+    dwDLId: u32,
+    dwNumOffsetTableEntries: u32,
     cbSize: u32,
-    byData: [4]u8,
-};
-
-pub const DMUS_WAVE = extern struct {
-    ulFirstExtCkIdx: u32,
-    ulCopyrightIdx: u32,
-    ulWaveDataIdx: u32,
-    WaveformatEx: WAVEFORMATEX,
-};
-
-pub const DMUS_NOTERANGE = extern struct {
-    dwLowNote: u32,
-    dwHighNote: u32,
-};
-
-pub const DMUS_WAVEARTDL = extern struct {
-    ulDownloadIdIdx: u32,
-    ulBus: u32,
-    ulBuffers: u32,
-    ulMasterDLId: u32,
-    usOptions: u16,
-};
-
-pub const DMUS_WAVEDL = extern struct {
-    cbWaveData: u32,
 };
 
 pub const DMUS_EVENTHEADER = extern struct {
@@ -457,11 +381,52 @@ pub const DMUS_EVENTHEADER = extern struct {
     dwFlags: u32 align(4),
 };
 
-pub const DMUS_BUFFERDESC = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    guidBufferFormat: Guid,
-    cbBuffer: u32,
+pub const DMUS_EXTENSIONCHUNK = extern struct {
+    cbSize: u32,
+    ulNextExtCkIdx: u32,
+    ExtCkID: u32,
+    byExtCk: [4]u8,
+};
+
+pub const DMUS_INSTRUMENT = extern struct {
+    ulPatch: u32,
+    ulFirstRegionIdx: u32,
+    ulGlobalArtIdx: u32,
+    ulFirstExtCkIdx: u32,
+    ulCopyrightIdx: u32,
+    ulFlags: u32,
+};
+
+pub const DMUS_LFOPARAMS = extern struct {
+    pcFrequency: i32,
+    tcDelay: i32,
+    gcVolumeScale: i32,
+    pcPitchScale: i32,
+    gcMWToVolume: i32,
+    pcMWToPitch: i32,
+};
+
+pub const DMUS_MSCPARAMS = extern struct {
+    ptDefaultPan: i32,
+};
+
+pub const DMUS_NOTERANGE = extern struct {
+    dwLowNote: u32,
+    dwHighNote: u32,
+};
+
+pub const DMUS_OFFSETTABLE = extern struct {
+    ulOffsetTable: [1]u32,
+};
+
+pub const DMUS_PEGPARAMS = extern struct {
+    tcAttack: i32,
+    tcDecay: i32,
+    ptSustain: i32,
+    tcRelease: i32,
+    tcVel2Attack: i32,
+    tcKey2Decay: i32,
+    pcRange: i32,
 };
 
 pub const DMUS_PORTCAPS = extern struct {
@@ -478,17 +443,6 @@ pub const DMUS_PORTCAPS = extern struct {
     wszDescription: [128]u16,
 };
 
-pub const _DMUS_PORTPARAMS = extern struct {
-    dwSize: u32,
-    dwValidParams: u32,
-    dwVoices: u32,
-    dwChannelGroups: u32,
-    dwAudioChannels: u32,
-    dwSampleRate: u32,
-    dwEffectFlags: u32,
-    fShare: BOOL,
-};
-
 pub const DMUS_PORTPARAMS8 = extern struct {
     dwSize: u32,
     dwValidParams: u32,
@@ -499,6 +453,19 @@ pub const DMUS_PORTPARAMS8 = extern struct {
     dwEffectFlags: u32,
     fShare: BOOL,
     dwFeatures: u32,
+};
+
+pub const DMUS_REGION = extern struct {
+    RangeKey: RGNRANGE,
+    RangeVelocity: RGNRANGE,
+    fusOptions: u16,
+    usKeyGroup: u16,
+    ulRegionArtIdx: u32,
+    ulNextRegionIdx: u32,
+    ulFirstExtCkIdx: u32,
+    WaveLink: WAVELINK,
+    WSMP: _rwsmp,
+    WLOOP: [1]_rloop,
 };
 
 pub const DMUS_SYNTHSTATS = extern struct {
@@ -524,6 +491,44 @@ pub const DMUS_SYNTHSTATS8 = extern struct {
     dwSynthMemUse: u32,
 };
 
+pub const DMUS_VEGPARAMS = extern struct {
+    tcAttack: i32,
+    tcDecay: i32,
+    ptSustain: i32,
+    tcRelease: i32,
+    tcVel2Attack: i32,
+    tcKey2Decay: i32,
+};
+
+pub const DMUS_VOICE_STATE = extern struct {
+    bExists: BOOL,
+    spPosition: u64,
+};
+
+pub const DMUS_WAVE = extern struct {
+    ulFirstExtCkIdx: u32,
+    ulCopyrightIdx: u32,
+    ulWaveDataIdx: u32,
+    WaveformatEx: WAVEFORMATEX,
+};
+
+pub const DMUS_WAVEARTDL = extern struct {
+    ulDownloadIdIdx: u32,
+    ulBus: u32,
+    ulBuffers: u32,
+    ulMasterDLId: u32,
+    usOptions: u16,
+};
+
+pub const DMUS_WAVEDATA = extern struct {
+    cbSize: u32,
+    byData: [4]u8,
+};
+
+pub const DMUS_WAVEDL = extern struct {
+    cbWaveData: u32,
+};
+
 pub const DMUS_WAVES_REVERB_PARAMS = extern struct {
     fInGain: f32,
     fReverbMix: f32,
@@ -531,26 +536,82 @@ pub const DMUS_WAVES_REVERB_PARAMS = extern struct {
     fHighFreqRTRatio: f32,
 };
 
-pub const DMUS_CLOCKTYPE = enum(i32) {
-    SYSTEM = 0,
-    WAVE = 1,
+pub const DSPROPERTY_DIRECTSOUNDDEVICE = enum(i32) {
+    WAVEDEVICEMAPPING_A = 1,
+    DESCRIPTION_1 = 2,
+    ENUMERATE_1 = 3,
+    WAVEDEVICEMAPPING_W = 4,
+    DESCRIPTION_A = 5,
+    DESCRIPTION_W = 6,
+    ENUMERATE_A = 7,
+    ENUMERATE_W = 8,
 };
-pub const DMUS_CLOCK_SYSTEM = DMUS_CLOCKTYPE.SYSTEM;
-pub const DMUS_CLOCK_WAVE = DMUS_CLOCKTYPE.WAVE;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_A = DSPROPERTY_DIRECTSOUNDDEVICE.WAVEDEVICEMAPPING_A;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1 = DSPROPERTY_DIRECTSOUNDDEVICE.DESCRIPTION_1;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1 = DSPROPERTY_DIRECTSOUNDDEVICE.ENUMERATE_1;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_W = DSPROPERTY_DIRECTSOUNDDEVICE.WAVEDEVICEMAPPING_W;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A = DSPROPERTY_DIRECTSOUNDDEVICE.DESCRIPTION_A;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W = DSPROPERTY_DIRECTSOUNDDEVICE.DESCRIPTION_W;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A = DSPROPERTY_DIRECTSOUNDDEVICE.ENUMERATE_A;
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W = DSPROPERTY_DIRECTSOUNDDEVICE.ENUMERATE_W;
 
-pub const DMUS_CLOCKINFO7 = extern struct {
-    dwSize: u32,
-    ctType: DMUS_CLOCKTYPE,
-    guidClock: Guid,
-    wszDescription: [128]u16,
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1_DATA = extern struct {
+    DeviceId: Guid,
+    DescriptionA: [256]CHAR,
+    DescriptionW: [256]u16,
+    ModuleA: [260]CHAR,
+    ModuleW: [260]u16,
+    Type: DIRECTSOUNDDEVICE_TYPE,
+    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
+    WaveDeviceId: u32,
+    Devnode: u32,
 };
 
-pub const DMUS_CLOCKINFO8 = extern struct {
-    dwSize: u32,
-    ctType: DMUS_CLOCKTYPE,
-    guidClock: Guid,
-    wszDescription: [128]u16,
-    dwFlags: u32,
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A_DATA = extern struct {
+    Type: DIRECTSOUNDDEVICE_TYPE,
+    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
+    DeviceId: Guid,
+    Description: ?PSTR,
+    Module: ?PSTR,
+    Interface: ?PSTR,
+    WaveDeviceId: u32,
+};
+
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA = extern struct {
+    Type: DIRECTSOUNDDEVICE_TYPE,
+    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
+    DeviceId: Guid,
+    Description: ?PWSTR,
+    Module: ?PWSTR,
+    Interface: ?PWSTR,
+    WaveDeviceId: u32,
+};
+
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA = extern struct {
+    Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1,
+    Context: ?*anyopaque,
+};
+
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A_DATA = extern struct {
+    Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA,
+    Context: ?*anyopaque,
+};
+
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W_DATA = extern struct {
+    Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW,
+    Context: ?*anyopaque,
+};
+
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_A_DATA = extern struct {
+    DeviceName: ?PSTR,
+    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
+    DeviceId: Guid,
+};
+
+pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_W_DATA = extern struct {
+    DeviceName: ?PWSTR,
+    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
+    DeviceId: Guid,
 };
 
 const IID_IDirectMusic_Value = Guid.initString("6536115a-7b2d-11d2-ba18-0000f875ac12");
@@ -760,40 +821,6 @@ pub const IDirectMusicBuffer = extern union {
     }
 };
 
-const IID_IDirectMusicInstrument_Value = Guid.initString("d2ac287d-b39b-11d1-8704-00600893b1bd");
-pub const IID_IDirectMusicInstrument = &IID_IDirectMusicInstrument_Value;
-pub const IDirectMusicInstrument = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPatch: *const fn(
-            self: *const IDirectMusicInstrument,
-            pdwPatch: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetPatch: *const fn(
-            self: *const IDirectMusicInstrument,
-            dwPatch: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPatch(self: *const IDirectMusicInstrument, pdwPatch: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPatch(self, pdwPatch);
-    }
-    pub fn SetPatch(self: *const IDirectMusicInstrument, dwPatch: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPatch(self, dwPatch);
-    }
-};
-
-const IID_IDirectMusicDownloadedInstrument_Value = Guid.initString("d2ac287e-b39b-11d1-8704-00600893b1bd");
-pub const IID_IDirectMusicDownloadedInstrument = &IID_IDirectMusicDownloadedInstrument_Value;
-pub const IDirectMusicDownloadedInstrument = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-};
-
 const IID_IDirectMusicCollection_Value = Guid.initString("d2ac287c-b39b-11d1-8704-00600893b1bd");
 pub const IID_IDirectMusicCollection = &IID_IDirectMusicCollection_Value;
 pub const IDirectMusicCollection = extern union {
@@ -840,58 +867,37 @@ pub const IDirectMusicDownload = extern union {
     }
 };
 
-const IID_IDirectMusicPortDownload_Value = Guid.initString("d2ac287a-b39b-11d1-8704-00600893b1bd");
-pub const IID_IDirectMusicPortDownload = &IID_IDirectMusicPortDownload_Value;
-pub const IDirectMusicPortDownload = extern union {
+const IID_IDirectMusicDownloadedInstrument_Value = Guid.initString("d2ac287e-b39b-11d1-8704-00600893b1bd");
+pub const IID_IDirectMusicDownloadedInstrument = &IID_IDirectMusicDownloadedInstrument_Value;
+pub const IDirectMusicDownloadedInstrument = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBuffer: *const fn(
-            self: *const IDirectMusicPortDownload,
-            dwDLId: u32,
-            ppIDMDownload: ?*?*IDirectMusicDownload,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+};
+
+const IID_IDirectMusicInstrument_Value = Guid.initString("d2ac287d-b39b-11d1-8704-00600893b1bd");
+pub const IID_IDirectMusicInstrument = &IID_IDirectMusicInstrument_Value;
+pub const IDirectMusicInstrument = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPatch: *const fn(
+            self: *const IDirectMusicInstrument,
+            pdwPatch: ?*u32,
         ) callconv(.winapi) HRESULT,
-        AllocateBuffer: *const fn(
-            self: *const IDirectMusicPortDownload,
-            dwSize: u32,
-            ppIDMDownload: ?*?*IDirectMusicDownload,
-        ) callconv(.winapi) HRESULT,
-        GetDLId: *const fn(
-            self: *const IDirectMusicPortDownload,
-            pdwStartDLId: ?*u32,
-            dwCount: u32,
-        ) callconv(.winapi) HRESULT,
-        GetAppend: *const fn(
-            self: *const IDirectMusicPortDownload,
-            pdwAppend: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Download: *const fn(
-            self: *const IDirectMusicPortDownload,
-            pIDMDownload: ?*IDirectMusicDownload,
-        ) callconv(.winapi) HRESULT,
-        Unload: *const fn(
-            self: *const IDirectMusicPortDownload,
-            pIDMDownload: ?*IDirectMusicDownload,
+        SetPatch: *const fn(
+            self: *const IDirectMusicInstrument,
+            dwPatch: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IDirectMusicPortDownload, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBuffer(self, dwDLId, ppIDMDownload);
+    pub fn GetPatch(self: *const IDirectMusicInstrument, pdwPatch: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPatch(self, pdwPatch);
     }
-    pub fn AllocateBuffer(self: *const IDirectMusicPortDownload, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocateBuffer(self, dwSize, ppIDMDownload);
-    }
-    pub fn GetDLId(self: *const IDirectMusicPortDownload, pdwStartDLId: ?*u32, dwCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDLId(self, pdwStartDLId, dwCount);
-    }
-    pub fn GetAppend(self: *const IDirectMusicPortDownload, pdwAppend: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAppend(self, pdwAppend);
-    }
-    pub fn Download(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
-        return self.vtable.Download(self, pIDMDownload);
-    }
-    pub fn Unload(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
-        return self.vtable.Unload(self, pIDMDownload);
+    pub fn SetPatch(self: *const IDirectMusicInstrument, dwPatch: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPatch(self, dwPatch);
     }
 };
 
@@ -1039,30 +1045,59 @@ pub const IDirectMusicPort = extern union {
     }
 };
 
-const IID_IDirectMusicThru_Value = Guid.initString("ced153e7-3606-11d2-b9f9-0000f875ac12");
-pub const IID_IDirectMusicThru = &IID_IDirectMusicThru_Value;
-pub const IDirectMusicThru = extern union {
+const IID_IDirectMusicPortDownload_Value = Guid.initString("d2ac287a-b39b-11d1-8704-00600893b1bd");
+pub const IID_IDirectMusicPortDownload = &IID_IDirectMusicPortDownload_Value;
+pub const IDirectMusicPortDownload = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ThruChannel: *const fn(
-            self: *const IDirectMusicThru,
-            dwSourceChannelGroup: u32,
-            dwSourceChannel: u32,
-            dwDestinationChannelGroup: u32,
-            dwDestinationChannel: u32,
-            pDestinationPort: ?*IDirectMusicPort,
+        GetBuffer: *const fn(
+            self: *const IDirectMusicPortDownload,
+            dwDLId: u32,
+            ppIDMDownload: ?*?*IDirectMusicDownload,
+        ) callconv(.winapi) HRESULT,
+        AllocateBuffer: *const fn(
+            self: *const IDirectMusicPortDownload,
+            dwSize: u32,
+            ppIDMDownload: ?*?*IDirectMusicDownload,
+        ) callconv(.winapi) HRESULT,
+        GetDLId: *const fn(
+            self: *const IDirectMusicPortDownload,
+            pdwStartDLId: ?*u32,
+            dwCount: u32,
+        ) callconv(.winapi) HRESULT,
+        GetAppend: *const fn(
+            self: *const IDirectMusicPortDownload,
+            pdwAppend: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Download: *const fn(
+            self: *const IDirectMusicPortDownload,
+            pIDMDownload: ?*IDirectMusicDownload,
+        ) callconv(.winapi) HRESULT,
+        Unload: *const fn(
+            self: *const IDirectMusicPortDownload,
+            pIDMDownload: ?*IDirectMusicDownload,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ThruChannel(self: *const IDirectMusicThru, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.@"inline") HRESULT {
-        return self.vtable.ThruChannel(self, dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
+    pub fn GetBuffer(self: *const IDirectMusicPortDownload, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBuffer(self, dwDLId, ppIDMDownload);
     }
-};
-
-pub const DMUS_VOICE_STATE = extern struct {
-    bExists: BOOL,
-    spPosition: u64,
+    pub fn AllocateBuffer(self: *const IDirectMusicPortDownload, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocateBuffer(self, dwSize, ppIDMDownload);
+    }
+    pub fn GetDLId(self: *const IDirectMusicPortDownload, pdwStartDLId: ?*u32, dwCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDLId(self, pdwStartDLId, dwCount);
+    }
+    pub fn GetAppend(self: *const IDirectMusicPortDownload, pdwAppend: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAppend(self, pdwAppend);
+    }
+    pub fn Download(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
+        return self.vtable.Download(self, pIDMDownload);
+    }
+    pub fn Unload(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
+        return self.vtable.Unload(self, pIDMDownload);
+    }
 };
 
 const IID_IDirectMusicSynth_Value = Guid.initString("09823661-5c85-11d2-afa6-00aa0024d8b6");
@@ -1337,83 +1372,30 @@ pub const IDirectMusicSynthSink = extern union {
     }
 };
 
-pub const DSPROPERTY_DIRECTSOUNDDEVICE = enum(i32) {
-    WAVEDEVICEMAPPING_A = 1,
-    DESCRIPTION_1 = 2,
-    ENUMERATE_1 = 3,
-    WAVEDEVICEMAPPING_W = 4,
-    DESCRIPTION_A = 5,
-    DESCRIPTION_W = 6,
-    ENUMERATE_A = 7,
-    ENUMERATE_W = 8,
-};
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_A = DSPROPERTY_DIRECTSOUNDDEVICE.WAVEDEVICEMAPPING_A;
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1 = DSPROPERTY_DIRECTSOUNDDEVICE.DESCRIPTION_1;
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1 = DSPROPERTY_DIRECTSOUNDDEVICE.ENUMERATE_1;
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_W = DSPROPERTY_DIRECTSOUNDDEVICE.WAVEDEVICEMAPPING_W;
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A = DSPROPERTY_DIRECTSOUNDDEVICE.DESCRIPTION_A;
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W = DSPROPERTY_DIRECTSOUNDDEVICE.DESCRIPTION_W;
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A = DSPROPERTY_DIRECTSOUNDDEVICE.ENUMERATE_A;
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W = DSPROPERTY_DIRECTSOUNDDEVICE.ENUMERATE_W;
-
-pub const DIRECTSOUNDDEVICE_TYPE = enum(i32) {
-    EMULATED = 0,
-    VXD = 1,
-    WDM = 2,
-};
-pub const DIRECTSOUNDDEVICE_TYPE_EMULATED = DIRECTSOUNDDEVICE_TYPE.EMULATED;
-pub const DIRECTSOUNDDEVICE_TYPE_VXD = DIRECTSOUNDDEVICE_TYPE.VXD;
-pub const DIRECTSOUNDDEVICE_TYPE_WDM = DIRECTSOUNDDEVICE_TYPE.WDM;
-
-pub const DIRECTSOUNDDEVICE_DATAFLOW = enum(i32) {
-    RENDER = 0,
-    CAPTURE = 1,
-};
-pub const DIRECTSOUNDDEVICE_DATAFLOW_RENDER = DIRECTSOUNDDEVICE_DATAFLOW.RENDER;
-pub const DIRECTSOUNDDEVICE_DATAFLOW_CAPTURE = DIRECTSOUNDDEVICE_DATAFLOW.CAPTURE;
-
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_A_DATA = extern struct {
-    DeviceName: ?PSTR,
-    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
-    DeviceId: Guid,
+const IID_IDirectMusicThru_Value = Guid.initString("ced153e7-3606-11d2-b9f9-0000f875ac12");
+pub const IID_IDirectMusicThru = &IID_IDirectMusicThru_Value;
+pub const IDirectMusicThru = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ThruChannel: *const fn(
+            self: *const IDirectMusicThru,
+            dwSourceChannelGroup: u32,
+            dwSourceChannel: u32,
+            dwDestinationChannelGroup: u32,
+            dwDestinationChannel: u32,
+            pDestinationPort: ?*IDirectMusicPort,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ThruChannel(self: *const IDirectMusicThru, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.@"inline") HRESULT {
+        return self.vtable.ThruChannel(self, dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
+    }
 };
 
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_W_DATA = extern struct {
-    DeviceName: ?PWSTR,
-    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
-    DeviceId: Guid,
-};
-
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1_DATA = extern struct {
-    DeviceId: Guid,
-    DescriptionA: [256]CHAR,
-    DescriptionW: [256]u16,
-    ModuleA: [260]CHAR,
-    ModuleW: [260]u16,
-    Type: DIRECTSOUNDDEVICE_TYPE,
-    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
-    WaveDeviceId: u32,
-    Devnode: u32,
-};
-
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A_DATA = extern struct {
-    Type: DIRECTSOUNDDEVICE_TYPE,
-    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
-    DeviceId: Guid,
-    Description: ?PSTR,
-    Module: ?PSTR,
-    Interface: ?PSTR,
-    WaveDeviceId: u32,
-};
-
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA = extern struct {
-    Type: DIRECTSOUNDDEVICE_TYPE,
-    DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
-    DeviceId: Guid,
-    Description: ?PWSTR,
-    Module: ?PWSTR,
-    Interface: ?PWSTR,
-    WaveDeviceId: u32,
+pub const INSTHEADER = extern struct {
+    cRegions: u32,
+    Locale: MIDILOCALE,
 };
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1 = *const fn(
@@ -1431,19 +1413,44 @@ pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW = *const fn(
     param1: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA = extern struct {
-    Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1,
-    Context: ?*anyopaque,
+pub const MDEVICECAPSEX = extern struct {
+    cbSize: u32 align(1),
+    pCaps: ?*anyopaque align(1),
 };
 
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A_DATA = extern struct {
-    Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA,
-    Context: ?*anyopaque,
+pub const MIDILOCALE = extern struct {
+    ulBank: u32,
+    ulInstrument: u32,
 };
 
-pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W_DATA = extern struct {
-    Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW,
-    Context: ?*anyopaque,
+pub const MIDIOPENDESC = extern struct {
+    hMidi: ?HMIDI align(1),
+    dwCallback: usize align(1),
+    dwInstance: usize align(1),
+    dnDevNode: usize align(1),
+    cIds: u32 align(1),
+    rgIds: [1]MIDIOPENSTRMID align(1),
+};
+
+pub const POOLCUE = extern struct {
+    ulOffset: u32,
+};
+
+pub const POOLTABLE = extern struct {
+    cbSize: u32,
+    cCues: u32,
+};
+
+pub const RGNHEADER = extern struct {
+    RangeKey: RGNRANGE,
+    RangeVelocity: RGNRANGE,
+    fusOptions: u16,
+    usKeyGroup: u16,
+};
+
+pub const RGNRANGE = extern struct {
+    usLow: u16,
+    usHigh: u16,
 };
 
 pub const Tag_DVAudInfo = extern struct {
@@ -1456,18 +1463,11 @@ pub const Tag_DVAudInfo = extern struct {
     wBlkDiv: u16,
 };
 
-pub const MDEVICECAPSEX = extern struct {
-    cbSize: u32 align(1),
-    pCaps: ?*anyopaque align(1),
-};
-
-pub const MIDIOPENDESC = extern struct {
-    hMidi: ?HMIDI align(1),
-    dwCallback: usize align(1),
-    dwInstance: usize align(1),
-    dnDevNode: usize align(1),
-    cIds: u32 align(1),
-    rgIds: [1]MIDIOPENSTRMID align(1),
+pub const WAVELINK = extern struct {
+    fusOptions: u16,
+    usPhaseGroup: u16,
+    ulChannel: u32,
+    ulTableIndex: u32,
 };
 
 

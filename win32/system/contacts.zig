@@ -2,111 +2,111 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (105)
 //--------------------------------------------------------------------------------
-pub const CGD_DEFAULT = @as(u32, 0);
-pub const CGD_UNKNOWN_PROPERTY = @as(u32, 0);
-pub const CGD_STRING_PROPERTY = @as(u32, 1);
-pub const CGD_DATE_PROPERTY = @as(u32, 2);
-pub const CGD_BINARY_PROPERTY = @as(u32, 4);
 pub const CGD_ARRAY_NODE = @as(u32, 8);
+pub const CGD_BINARY_PROPERTY = @as(u32, 4);
+pub const CGD_DATE_PROPERTY = @as(u32, 2);
+pub const CGD_DEFAULT = @as(u32, 0);
+pub const CGD_STRING_PROPERTY = @as(u32, 1);
+pub const CGD_UNKNOWN_PROPERTY = @as(u32, 0);
 pub const CLSID_ContactAggregationManager = Guid.initString("96c8ad95-c199-44de-b34e-ac33c442df39");
-pub const CONTACTPROP_PUB_NOTES = "Notes";
-pub const CONTACTPROP_PUB_MAILER = "Mailer";
-pub const CONTACTPROP_PUB_PROGID = "ProgID";
-pub const CONTACTPROP_PUB_GENDER = "Gender";
-pub const CONTACTPROP_PUB_GENDER_UNSPECIFIED = "Unspecified";
-pub const CONTACTPROP_PUB_GENDER_MALE = "Male";
-pub const CONTACTPROP_PUB_GENDER_FEMALE = "Female";
-pub const CONTACTPROP_PUB_CREATIONDATE = "CreationDate";
-pub const CONTACTPROP_PUB_L1_CONTACTIDCOLLECTION = "ContactIDCollection";
-pub const CONTACTPROP_PUB_L2_CONTACTID = "/ContactID";
-pub const CONTACTPROP_PUB_L3_VALUE = "/Value";
-pub const CONTACTPROP_PUB_L1_NAMECOLLECTION = "NameCollection";
-pub const CONTACTPROP_PUB_L2_NAME = "/Name";
-pub const CONTACTPROP_PUB_L3_FORMATTEDNAME = "/FormattedName";
-pub const CONTACTPROP_PUB_L3_PHONETIC = "/Phonetic";
-pub const CONTACTPROP_PUB_L3_PREFIX = "/Prefix";
-pub const CONTACTPROP_PUB_L3_TITLE = "/Title";
-pub const CONTACTPROP_PUB_L3_GIVENNAME = "/GivenName";
-pub const CONTACTPROP_PUB_L3_FAMILYNAME = "/FamilyName";
-pub const CONTACTPROP_PUB_L3_MIDDLENAME = "/MiddleName";
-pub const CONTACTPROP_PUB_L3_GENERATION = "/Generation";
-pub const CONTACTPROP_PUB_L3_SUFFIX = "/Suffix";
-pub const CONTACTPROP_PUB_L3_NICKNAME = "/NickName";
-pub const CONTACTPROP_PUB_L1_POSITIONCOLLECTION = "PositionCollection";
-pub const CONTACTPROP_PUB_L2_POSITION = "/Position";
-pub const CONTACTPROP_PUB_L3_ORGANIZATION = "/Organization";
-pub const CONTACTPROP_PUB_L3_COMPANY = "/Company";
-pub const CONTACTPROP_PUB_L3_DEPARTMENT = "/Department";
-pub const CONTACTPROP_PUB_L3_OFFICE = "/Office";
-pub const CONTACTPROP_PUB_L3_JOB_TITLE = "/JobTitle";
-pub const CONTACTPROP_PUB_L3_PROFESSION = "/Profession";
-pub const CONTACTPROP_PUB_L3_ROLE = "/Role";
-pub const CONTACTPROP_PUB_L1_PERSONCOLLECTION = "PersonCollection";
-pub const CONTACTPROP_PUB_L2_PERSON = "/Person";
-pub const CONTACTPROP_PUB_L3_PERSONID = "/PersonID";
-pub const CONTACTPROP_PUB_L1_DATECOLLECTION = "DateCollection";
-pub const CONTACTPROP_PUB_L2_DATE = "/Date";
-pub const CONTACTPROP_PUB_L1_EMAILADDRESSCOLLECTION = "EmailAddressCollection";
-pub const CONTACTPROP_PUB_L2_EMAILADDRESS = "/EmailAddress";
-pub const CONTACTPROP_PUB_L3_ADDRESS = "/Address";
-pub const CONTACTPROP_PUB_L3_TYPE = "/Type";
-pub const CONTACTPROP_PUB_L1_CERTIFICATECOLLECTION = "CertificateCollection";
-pub const CONTACTPROP_PUB_L2_CERTIFICATE = "/Certificate";
-pub const CONTACTPROP_PUB_L3_THUMBPRINT = "/ThumbPrint";
-pub const CONTACTPROP_PUB_L1_PHONENUMBERCOLLECTION = "PhoneNumberCollection";
-pub const CONTACTPROP_PUB_L2_PHONENUMBER = "/PhoneNumber";
-pub const CONTACTPROP_PUB_L3_NUMBER = "/Number";
-pub const CONTACTPROP_PUB_L3_ALTERNATE = "/Alternate";
-pub const CONTACTPROP_PUB_L1_PHYSICALADDRESSCOLLECTION = "PhysicalAddressCollection";
-pub const CONTACTPROP_PUB_L2_PHYSICALADDRESS = "/PhysicalAddress";
-pub const CONTACTPROP_PUB_L3_ADDRESSLABEL = "/AddressLabel";
-pub const CONTACTPROP_PUB_L3_STREET = "/Street";
-pub const CONTACTPROP_PUB_L3_LOCALITY = "/Locality";
-pub const CONTACTPROP_PUB_L3_REGION = "/Region";
-pub const CONTACTPROP_PUB_L3_POSTALCODE = "/PostalCode";
-pub const CONTACTPROP_PUB_L3_COUNTRY = "/Country";
-pub const CONTACTPROP_PUB_L3_POBOX = "/POBox";
-pub const CONTACTPROP_PUB_L3_EXTENDEDADDRESS = "/ExtendedAddress";
-pub const CONTACTPROP_PUB_L1_IMADDRESSCOLLECTION = "IMAddressCollection";
-pub const CONTACTPROP_PUB_L2_IMADDRESSENTRY = "/IMAddress";
-pub const CONTACTPROP_PUB_L3_PROTOCOL = "/Protocol";
-pub const CONTACTPROP_PUB_L1_URLCOLLECTION = "UrlCollection";
-pub const CONTACTPROP_PUB_L2_URL = "/Url";
-pub const CONTACTPROP_PUB_L1_PHOTOCOLLECTION = "PhotoCollection";
-pub const CONTACTPROP_PUB_L2_PHOTO = "/Photo";
-pub const CONTACTPROP_PUB_L3_URL = "/Url";
-pub const CONTACTLABEL_PUB_PREFERRED = "Preferred";
-pub const CONTACTLABEL_PUB_PERSONAL = "Personal";
-pub const CONTACTLABEL_PUB_BUSINESS = "Business";
-pub const CONTACTLABEL_PUB_OTHER = "Other";
-pub const CONTACTLABEL_PUB_VOICE = "Voice";
-pub const CONTACTLABEL_PUB_MOBILE = "Mobile";
-pub const CONTACTLABEL_PUB_PCS = "PCS";
-pub const CONTACTLABEL_PUB_CELLULAR = "Cellular";
-pub const CONTACTLABEL_PUB_CAR = "Car";
-pub const CONTACTLABEL_PUB_PAGER = "Pager";
-pub const CONTACTLABEL_PUB_TTY = "TTY";
-pub const CONTACTLABEL_PUB_FAX = "Fax";
-pub const CONTACTLABEL_PUB_VIDEO = "Video";
-pub const CONTACTLABEL_PUB_MODEM = "Modem";
-pub const CONTACTLABEL_PUB_BBS = "BBS";
-pub const CONTACTLABEL_PUB_ISDN = "ISDN";
 pub const CONTACTLABEL_PUB_AGENT = "Agent";
+pub const CONTACTLABEL_PUB_BBS = "BBS";
+pub const CONTACTLABEL_PUB_BUSINESS = "Business";
+pub const CONTACTLABEL_PUB_CAR = "Car";
+pub const CONTACTLABEL_PUB_CELLULAR = "Cellular";
 pub const CONTACTLABEL_PUB_DOMESTIC = "Domestic";
+pub const CONTACTLABEL_PUB_FAX = "Fax";
 pub const CONTACTLABEL_PUB_INTERNATIONAL = "International";
-pub const CONTACTLABEL_PUB_POSTAL = "Postal";
-pub const CONTACTLABEL_PUB_PARCEL = "Parcel";
-pub const CONTACTLABEL_PUB_USERTILE = "UserTile";
+pub const CONTACTLABEL_PUB_ISDN = "ISDN";
 pub const CONTACTLABEL_PUB_LOGO = "Logo";
-pub const CONTACTLABEL_WAB_SPOUSE = "wab:Spouse";
-pub const CONTACTLABEL_WAB_CHILD = "wab:Child";
-pub const CONTACTLABEL_WAB_MANAGER = "wab:Manager";
+pub const CONTACTLABEL_PUB_MOBILE = "Mobile";
+pub const CONTACTLABEL_PUB_MODEM = "Modem";
+pub const CONTACTLABEL_PUB_OTHER = "Other";
+pub const CONTACTLABEL_PUB_PAGER = "Pager";
+pub const CONTACTLABEL_PUB_PARCEL = "Parcel";
+pub const CONTACTLABEL_PUB_PCS = "PCS";
+pub const CONTACTLABEL_PUB_PERSONAL = "Personal";
+pub const CONTACTLABEL_PUB_POSTAL = "Postal";
+pub const CONTACTLABEL_PUB_PREFERRED = "Preferred";
+pub const CONTACTLABEL_PUB_TTY = "TTY";
+pub const CONTACTLABEL_PUB_USERTILE = "UserTile";
+pub const CONTACTLABEL_PUB_VIDEO = "Video";
+pub const CONTACTLABEL_PUB_VOICE = "Voice";
+pub const CONTACTLABEL_WAB_ANNIVERSARY = "wab:Anniversary";
 pub const CONTACTLABEL_WAB_ASSISTANT = "wab:Assistant";
 pub const CONTACTLABEL_WAB_BIRTHDAY = "wab:Birthday";
-pub const CONTACTLABEL_WAB_ANNIVERSARY = "wab:Anniversary";
-pub const CONTACTLABEL_WAB_SOCIALNETWORK = "wab:SocialNetwork";
+pub const CONTACTLABEL_WAB_CHILD = "wab:Child";
+pub const CONTACTLABEL_WAB_MANAGER = "wab:Manager";
 pub const CONTACTLABEL_WAB_SCHOOL = "wab:School";
+pub const CONTACTLABEL_WAB_SOCIALNETWORK = "wab:SocialNetwork";
+pub const CONTACTLABEL_WAB_SPOUSE = "wab:Spouse";
 pub const CONTACTLABEL_WAB_WISHLIST = "wab:WishList";
+pub const CONTACTPROP_PUB_CREATIONDATE = "CreationDate";
+pub const CONTACTPROP_PUB_GENDER = "Gender";
+pub const CONTACTPROP_PUB_GENDER_FEMALE = "Female";
+pub const CONTACTPROP_PUB_GENDER_MALE = "Male";
+pub const CONTACTPROP_PUB_GENDER_UNSPECIFIED = "Unspecified";
+pub const CONTACTPROP_PUB_L1_CERTIFICATECOLLECTION = "CertificateCollection";
+pub const CONTACTPROP_PUB_L1_CONTACTIDCOLLECTION = "ContactIDCollection";
+pub const CONTACTPROP_PUB_L1_DATECOLLECTION = "DateCollection";
+pub const CONTACTPROP_PUB_L1_EMAILADDRESSCOLLECTION = "EmailAddressCollection";
+pub const CONTACTPROP_PUB_L1_IMADDRESSCOLLECTION = "IMAddressCollection";
+pub const CONTACTPROP_PUB_L1_NAMECOLLECTION = "NameCollection";
+pub const CONTACTPROP_PUB_L1_PERSONCOLLECTION = "PersonCollection";
+pub const CONTACTPROP_PUB_L1_PHONENUMBERCOLLECTION = "PhoneNumberCollection";
+pub const CONTACTPROP_PUB_L1_PHOTOCOLLECTION = "PhotoCollection";
+pub const CONTACTPROP_PUB_L1_PHYSICALADDRESSCOLLECTION = "PhysicalAddressCollection";
+pub const CONTACTPROP_PUB_L1_POSITIONCOLLECTION = "PositionCollection";
+pub const CONTACTPROP_PUB_L1_URLCOLLECTION = "UrlCollection";
+pub const CONTACTPROP_PUB_L2_CERTIFICATE = "/Certificate";
+pub const CONTACTPROP_PUB_L2_CONTACTID = "/ContactID";
+pub const CONTACTPROP_PUB_L2_DATE = "/Date";
+pub const CONTACTPROP_PUB_L2_EMAILADDRESS = "/EmailAddress";
+pub const CONTACTPROP_PUB_L2_IMADDRESSENTRY = "/IMAddress";
+pub const CONTACTPROP_PUB_L2_NAME = "/Name";
+pub const CONTACTPROP_PUB_L2_PERSON = "/Person";
+pub const CONTACTPROP_PUB_L2_PHONENUMBER = "/PhoneNumber";
+pub const CONTACTPROP_PUB_L2_PHOTO = "/Photo";
+pub const CONTACTPROP_PUB_L2_PHYSICALADDRESS = "/PhysicalAddress";
+pub const CONTACTPROP_PUB_L2_POSITION = "/Position";
+pub const CONTACTPROP_PUB_L2_URL = "/Url";
+pub const CONTACTPROP_PUB_L3_ADDRESS = "/Address";
+pub const CONTACTPROP_PUB_L3_ADDRESSLABEL = "/AddressLabel";
+pub const CONTACTPROP_PUB_L3_ALTERNATE = "/Alternate";
+pub const CONTACTPROP_PUB_L3_COMPANY = "/Company";
+pub const CONTACTPROP_PUB_L3_COUNTRY = "/Country";
+pub const CONTACTPROP_PUB_L3_DEPARTMENT = "/Department";
+pub const CONTACTPROP_PUB_L3_EXTENDEDADDRESS = "/ExtendedAddress";
+pub const CONTACTPROP_PUB_L3_FAMILYNAME = "/FamilyName";
+pub const CONTACTPROP_PUB_L3_FORMATTEDNAME = "/FormattedName";
+pub const CONTACTPROP_PUB_L3_GENERATION = "/Generation";
+pub const CONTACTPROP_PUB_L3_GIVENNAME = "/GivenName";
+pub const CONTACTPROP_PUB_L3_JOB_TITLE = "/JobTitle";
+pub const CONTACTPROP_PUB_L3_LOCALITY = "/Locality";
+pub const CONTACTPROP_PUB_L3_MIDDLENAME = "/MiddleName";
+pub const CONTACTPROP_PUB_L3_NICKNAME = "/NickName";
+pub const CONTACTPROP_PUB_L3_NUMBER = "/Number";
+pub const CONTACTPROP_PUB_L3_OFFICE = "/Office";
+pub const CONTACTPROP_PUB_L3_ORGANIZATION = "/Organization";
+pub const CONTACTPROP_PUB_L3_PERSONID = "/PersonID";
+pub const CONTACTPROP_PUB_L3_PHONETIC = "/Phonetic";
+pub const CONTACTPROP_PUB_L3_POBOX = "/POBox";
+pub const CONTACTPROP_PUB_L3_POSTALCODE = "/PostalCode";
+pub const CONTACTPROP_PUB_L3_PREFIX = "/Prefix";
+pub const CONTACTPROP_PUB_L3_PROFESSION = "/Profession";
+pub const CONTACTPROP_PUB_L3_PROTOCOL = "/Protocol";
+pub const CONTACTPROP_PUB_L3_REGION = "/Region";
+pub const CONTACTPROP_PUB_L3_ROLE = "/Role";
+pub const CONTACTPROP_PUB_L3_STREET = "/Street";
+pub const CONTACTPROP_PUB_L3_SUFFIX = "/Suffix";
+pub const CONTACTPROP_PUB_L3_THUMBPRINT = "/ThumbPrint";
+pub const CONTACTPROP_PUB_L3_TITLE = "/Title";
+pub const CONTACTPROP_PUB_L3_TYPE = "/Type";
+pub const CONTACTPROP_PUB_L3_URL = "/Url";
+pub const CONTACTPROP_PUB_L3_VALUE = "/Value";
+pub const CONTACTPROP_PUB_MAILER = "Mailer";
+pub const CONTACTPROP_PUB_NOTES = "Notes";
+pub const CONTACTPROP_PUB_PROGID = "ProgID";
 
 //--------------------------------------------------------------------------------
 // Section: Types (21)
@@ -114,234 +114,29 @@ pub const CONTACTLABEL_WAB_WISHLIST = "wab:WishList";
 const CLSID_Contact_Value = Guid.initString("61b68808-8eee-4fd1-acb8-3d804c8db056");
 pub const CLSID_Contact = &CLSID_Contact_Value;
 
+pub const CONTACT_AGGREGATION_BLOB = extern struct {
+    dwCount: u32,
+    lpb: ?*u8,
+};
+
+pub const CONTACT_AGGREGATION_COLLECTION_OPTIONS = enum(i32) {
+    DEFAULT = 0,
+    INCLUDE_EXTERNAL = 1,
+    EXTERNAL_ONLY = 2,
+};
+pub const CACO_DEFAULT = CONTACT_AGGREGATION_COLLECTION_OPTIONS.DEFAULT;
+pub const CACO_INCLUDE_EXTERNAL = CONTACT_AGGREGATION_COLLECTION_OPTIONS.INCLUDE_EXTERNAL;
+pub const CACO_EXTERNAL_ONLY = CONTACT_AGGREGATION_COLLECTION_OPTIONS.EXTERNAL_ONLY;
+
+pub const CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS = enum(i32) {
+    LOCAL = 0,
+    EXTERNAL = 1,
+};
+pub const CA_CREATE_LOCAL = CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS.LOCAL;
+pub const CA_CREATE_EXTERNAL = CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS.EXTERNAL;
+
 const CLSID_ContactManager_Value = Guid.initString("7165c8ab-af88-42bd-86fd-5310b4285a02");
 pub const CLSID_ContactManager = &CLSID_ContactManager_Value;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IContactManager_Value = Guid.initString("ad553d98-deb1-474a-8e17-fc0c2075b738");
-pub const IID_IContactManager = &IID_IContactManager_Value;
-pub const IContactManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IContactManager,
-            pszAppName: ?[*:0]const u16,
-            pszAppVersion: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Load: *const fn(
-            self: *const IContactManager,
-            pszContactID: ?[*:0]const u16,
-            ppContact: ?*?*IContact,
-        ) callconv(.winapi) HRESULT,
-        MergeContactIDs: *const fn(
-            self: *const IContactManager,
-            pszNewContactID: ?[*:0]const u16,
-            pszOldContactID: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetMeContact: *const fn(
-            self: *const IContactManager,
-            ppMeContact: ?*?*IContact,
-        ) callconv(.winapi) HRESULT,
-        SetMeContact: *const fn(
-            self: *const IContactManager,
-            pMeContact: ?*IContact,
-        ) callconv(.winapi) HRESULT,
-        GetContactCollection: *const fn(
-            self: *const IContactManager,
-            ppContactCollection: ?*?*IContactCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IContactManager, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pszAppName, pszAppVersion);
-    }
-    pub fn Load(self: *const IContactManager, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) callconv(.@"inline") HRESULT {
-        return self.vtable.Load(self, pszContactID, ppContact);
-    }
-    pub fn MergeContactIDs(self: *const IContactManager, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.MergeContactIDs(self, pszNewContactID, pszOldContactID);
-    }
-    pub fn GetMeContact(self: *const IContactManager, ppMeContact: ?*?*IContact) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMeContact(self, ppMeContact);
-    }
-    pub fn SetMeContact(self: *const IContactManager, pMeContact: ?*IContact) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMeContact(self, pMeContact);
-    }
-    pub fn GetContactCollection(self: *const IContactManager, ppContactCollection: ?*?*IContactCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContactCollection(self, ppContactCollection);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IContactCollection_Value = Guid.initString("b6afa338-d779-11d9-8bde-f66bad1e3f3a");
-pub const IID_IContactCollection = &IID_IContactCollection_Value;
-pub const IContactCollection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Reset: *const fn(
-            self: *const IContactCollection,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IContactCollection,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IContactCollection,
-            ppContact: ?*?*IContact,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Reset(self: *const IContactCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Next(self: *const IContactCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self);
-    }
-    pub fn GetCurrent(self: *const IContactCollection, ppContact: ?*?*IContact) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, ppContact);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IContactProperties_Value = Guid.initString("70dd27dd-5cbd-46e8-bef0-23b6b346288f");
-pub const IID_IContactProperties = &IID_IContactProperties_Value;
-pub const IContactProperties = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetString: *const fn(
-            self: *const IContactProperties,
-            pszPropertyName: ?[*:0]const u16,
-            dwFlags: u32,
-            pszValue: [*:0]u16,
-            cchValue: u32,
-            pdwcchPropertyValueRequired: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDate: *const fn(
-            self: *const IContactProperties,
-            pszPropertyName: ?[*:0]const u16,
-            dwFlags: u32,
-            pftDateTime: ?*FILETIME,
-        ) callconv(.winapi) HRESULT,
-        GetBinary: *const fn(
-            self: *const IContactProperties,
-            pszPropertyName: ?[*:0]const u16,
-            dwFlags: u32,
-            pszContentType: [*:0]u16,
-            cchContentType: u32,
-            pdwcchContentTypeRequired: ?*u32,
-            ppStream: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-        GetLabels: *const fn(
-            self: *const IContactProperties,
-            pszArrayElementName: ?[*:0]const u16,
-            dwFlags: u32,
-            pszLabels: [*:0]u16,
-            cchLabels: u32,
-            pdwcchLabelsRequired: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetString: *const fn(
-            self: *const IContactProperties,
-            pszPropertyName: ?[*:0]const u16,
-            dwFlags: u32,
-            pszValue: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetDate: *const fn(
-            self: *const IContactProperties,
-            pszPropertyName: ?[*:0]const u16,
-            dwFlags: u32,
-            ftDateTime: FILETIME,
-        ) callconv(.winapi) HRESULT,
-        SetBinary: *const fn(
-            self: *const IContactProperties,
-            pszPropertyName: ?[*:0]const u16,
-            dwFlags: u32,
-            pszContentType: ?[*:0]const u16,
-            pStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        SetLabels: *const fn(
-            self: *const IContactProperties,
-            pszArrayElementName: ?[*:0]const u16,
-            dwFlags: u32,
-            dwLabelCount: u32,
-            ppszLabels: [*]?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        CreateArrayNode: *const fn(
-            self: *const IContactProperties,
-            pszArrayName: ?[*:0]const u16,
-            dwFlags: u32,
-            fAppend: BOOL,
-            pszNewArrayElementName: [*:0]u16,
-            cchNewArrayElementName: u32,
-            pdwcchNewArrayElementNameRequired: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteProperty: *const fn(
-            self: *const IContactProperties,
-            pszPropertyName: ?[*:0]const u16,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteArrayNode: *const fn(
-            self: *const IContactProperties,
-            pszArrayElementName: ?[*:0]const u16,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteLabels: *const fn(
-            self: *const IContactProperties,
-            pszArrayElementName: ?[*:0]const u16,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyCollection: *const fn(
-            self: *const IContactProperties,
-            ppPropertyCollection: ?*?*IContactPropertyCollection,
-            dwFlags: u32,
-            pszMultiValueName: ?[*:0]const u16,
-            dwLabelCount: u32,
-            ppszLabels: [*]?PWSTR,
-            fAnyLabelMatches: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetString(self, pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
-    }
-    pub fn GetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDate(self, pszPropertyName, dwFlags, pftDateTime);
-    }
-    pub fn GetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBinary(self, pszPropertyName, dwFlags, pszContentType, cchContentType, pdwcchContentTypeRequired, ppStream);
-    }
-    pub fn GetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLabels(self, pszArrayElementName, dwFlags, pszLabels, cchLabels, pdwcchLabelsRequired);
-    }
-    pub fn SetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetString(self, pszPropertyName, dwFlags, pszValue);
-    }
-    pub fn SetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDate(self, pszPropertyName, dwFlags, ftDateTime);
-    }
-    pub fn SetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.SetBinary(self, pszPropertyName, dwFlags, pszContentType, pStream);
-    }
-    pub fn SetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLabels(self, pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
-    }
-    pub fn CreateArrayNode(self: *const IContactProperties, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateArrayNode(self, pszArrayName, dwFlags, fAppend, pszNewArrayElementName, cchNewArrayElementName, pdwcchNewArrayElementNameRequired);
-    }
-    pub fn DeleteProperty(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteProperty(self, pszPropertyName, dwFlags);
-    }
-    pub fn DeleteArrayNode(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteArrayNode(self, pszArrayElementName, dwFlags);
-    }
-    pub fn DeleteLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteLabels(self, pszArrayElementName, dwFlags);
-    }
-    pub fn GetPropertyCollection(self: *const IContactProperties, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyCollection(self, ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
-    }
-};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IContact_Value = Guid.initString("f941b671-bda7-4f77-884a-f46462f226a7");
@@ -379,213 +174,121 @@ pub const IContact = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IContactPropertyCollection_Value = Guid.initString("ffd3adf8-fa64-4328-b1b6-2e0db509cb3c");
-pub const IID_IContactPropertyCollection = &IID_IContactPropertyCollection_Value;
-pub const IContactPropertyCollection = extern union {
+const IID_IContactAggregationAggregate_Value = Guid.initString("7ed1c814-cd30-43c8-9b8d-2e489e53d54b");
+pub const IID_IContactAggregationAggregate = &IID_IContactAggregationAggregate_Value;
+pub const IContactAggregationAggregate = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Reset: *const fn(
-            self: *const IContactPropertyCollection,
+        Save: *const fn(
+            self: *const IContactAggregationAggregate,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IContactPropertyCollection,
+        GetComponentItems: *const fn(
+            self: *const IContactAggregationAggregate,
+            pComponentItems: ?*?*IContactAggregationContactCollection,
         ) callconv(.winapi) HRESULT,
-        GetPropertyName: *const fn(
-            self: *const IContactPropertyCollection,
-            pszPropertyName: [*:0]u16,
-            cchPropertyName: u32,
-            pdwcchPropertyNameRequired: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyType: *const fn(
-            self: *const IContactPropertyCollection,
-            pdwType: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyVersion: *const fn(
-            self: *const IContactPropertyCollection,
-            pdwVersion: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyModificationDate: *const fn(
-            self: *const IContactPropertyCollection,
-            pftModificationDate: ?*FILETIME,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyArrayElementID: *const fn(
-            self: *const IContactPropertyCollection,
-            pszArrayElementID: [*:0]u16,
-            cchArrayElementID: u32,
-            pdwcchArrayElementIDRequired: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Reset(self: *const IContactPropertyCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Next(self: *const IContactPropertyCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self);
-    }
-    pub fn GetPropertyName(self: *const IContactPropertyCollection, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyName(self, pszPropertyName, cchPropertyName, pdwcchPropertyNameRequired);
-    }
-    pub fn GetPropertyType(self: *const IContactPropertyCollection, pdwType: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyType(self, pdwType);
-    }
-    pub fn GetPropertyVersion(self: *const IContactPropertyCollection, pdwVersion: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyVersion(self, pdwVersion);
-    }
-    pub fn GetPropertyModificationDate(self: *const IContactPropertyCollection, pftModificationDate: ?*FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyModificationDate(self, pftModificationDate);
-    }
-    pub fn GetPropertyArrayElementID(self: *const IContactPropertyCollection, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyArrayElementID(self, pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
-    }
-};
-
-pub const CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS = enum(i32) {
-    LOCAL = 0,
-    EXTERNAL = 1,
-};
-pub const CA_CREATE_LOCAL = CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS.LOCAL;
-pub const CA_CREATE_EXTERNAL = CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS.EXTERNAL;
-
-pub const CONTACT_AGGREGATION_COLLECTION_OPTIONS = enum(i32) {
-    DEFAULT = 0,
-    INCLUDE_EXTERNAL = 1,
-    EXTERNAL_ONLY = 2,
-};
-pub const CACO_DEFAULT = CONTACT_AGGREGATION_COLLECTION_OPTIONS.DEFAULT;
-pub const CACO_INCLUDE_EXTERNAL = CONTACT_AGGREGATION_COLLECTION_OPTIONS.INCLUDE_EXTERNAL;
-pub const CACO_EXTERNAL_ONLY = CONTACT_AGGREGATION_COLLECTION_OPTIONS.EXTERNAL_ONLY;
-
-pub const CONTACT_AGGREGATION_BLOB = extern struct {
-    dwCount: u32,
-    lpb: ?*u8,
-};
-
-const IID_IContactAggregationManager_Value = Guid.initString("1d865989-4b1f-4b60-8f34-c2ad468b2b50");
-pub const IID_IContactAggregationManager = &IID_IContactAggregationManager_Value;
-pub const IContactAggregationManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetVersionInfo: *const fn(
-            self: *const IContactAggregationManager,
-            plMajorVersion: ?*i32,
-            plMinorVersion: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        CreateOrOpenGroup: *const fn(
-            self: *const IContactAggregationManager,
-            pGroupName: ?[*:0]const u16,
-            options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
-            pCreatedGroup: ?*BOOL,
-            ppGroup: ?*?*IContactAggregationGroup,
-        ) callconv(.winapi) HRESULT,
-        CreateExternalContact: *const fn(
-            self: *const IContactAggregationManager,
-            ppItem: ?*?*IContactAggregationContact,
-        ) callconv(.winapi) HRESULT,
-        CreateServerPerson: *const fn(
-            self: *const IContactAggregationManager,
-            ppServerPerson: ?*?*IContactAggregationServerPerson,
-        ) callconv(.winapi) HRESULT,
-        CreateServerContactLink: *const fn(
-            self: *const IContactAggregationManager,
-            ppServerContactLink: ?*?*IContactAggregationLink,
-        ) callconv(.winapi) HRESULT,
-        Flush: *const fn(
-            self: *const IContactAggregationManager,
-        ) callconv(.winapi) HRESULT,
-        OpenAggregateContact: *const fn(
-            self: *const IContactAggregationManager,
-            pItemId: ?[*:0]const u16,
-            ppItem: ?*?*IContactAggregationAggregate,
-        ) callconv(.winapi) HRESULT,
-        OpenContact: *const fn(
-            self: *const IContactAggregationManager,
-            pItemId: ?[*:0]const u16,
-            ppItem: ?*?*IContactAggregationContact,
-        ) callconv(.winapi) HRESULT,
-        OpenServerContactLink: *const fn(
-            self: *const IContactAggregationManager,
-            pItemId: ?[*:0]const u16,
-            ppItem: ?*?*IContactAggregationLink,
-        ) callconv(.winapi) HRESULT,
-        OpenServerPerson: *const fn(
-            self: *const IContactAggregationManager,
-            pItemId: ?[*:0]const u16,
-            ppItem: ?*?*IContactAggregationServerPerson,
-        ) callconv(.winapi) HRESULT,
-        get_Contacts: *const fn(
-            self: *const IContactAggregationManager,
-            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-            ppItems: ?*?*IContactAggregationContactCollection,
-        ) callconv(.winapi) HRESULT,
-        get_AggregateContacts: *const fn(
-            self: *const IContactAggregationManager,
-            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-            ppAggregates: ?*?*IContactAggregationAggregateCollection,
+        Link: *const fn(
+            self: *const IContactAggregationAggregate,
+            pAggregateId: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
         get_Groups: *const fn(
-            self: *const IContactAggregationManager,
+            self: *const IContactAggregationAggregate,
             options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
             ppGroups: ?*?*IContactAggregationGroupCollection,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServerPersons: *const fn(
-            self: *const IContactAggregationManager,
-            ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
+        get_AntiLink: *const fn(
+            self: *const IContactAggregationAggregate,
+            ppAntiLink: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
-        get_ServerContactLinks: *const fn(
-            self: *const IContactAggregationManager,
-            pPersonItemId: ?[*:0]const u16,
-            ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AntiLink: *const fn(
+            self: *const IContactAggregationAggregate,
+            pAntiLink: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FavoriteOrder: *const fn(
+            self: *const IContactAggregationAggregate,
+            pFavoriteOrder: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FavoriteOrder: *const fn(
+            self: *const IContactAggregationAggregate,
+            favoriteOrder: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IContactAggregationAggregate,
+            ppItemId: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetVersionInfo(self: *const IContactAggregationManager, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVersionInfo(self, plMajorVersion, plMinorVersion);
+    pub fn Save(self: *const IContactAggregationAggregate) callconv(.@"inline") HRESULT {
+        return self.vtable.Save(self);
     }
-    pub fn CreateOrOpenGroup(self: *const IContactAggregationManager, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateOrOpenGroup(self, pGroupName, options, pCreatedGroup, ppGroup);
+    pub fn GetComponentItems(self: *const IContactAggregationAggregate, pComponentItems: ?*?*IContactAggregationContactCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetComponentItems(self, pComponentItems);
     }
-    pub fn CreateExternalContact(self: *const IContactAggregationManager, ppItem: ?*?*IContactAggregationContact) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateExternalContact(self, ppItem);
+    pub fn Link(self: *const IContactAggregationAggregate, pAggregateId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Link(self, pAggregateId);
     }
-    pub fn CreateServerPerson(self: *const IContactAggregationManager, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateServerPerson(self, ppServerPerson);
-    }
-    pub fn CreateServerContactLink(self: *const IContactAggregationManager, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateServerContactLink(self, ppServerContactLink);
-    }
-    pub fn Flush(self: *const IContactAggregationManager) callconv(.@"inline") HRESULT {
-        return self.vtable.Flush(self);
-    }
-    pub fn OpenAggregateContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenAggregateContact(self, pItemId, ppItem);
-    }
-    pub fn OpenContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenContact(self, pItemId, ppItem);
-    }
-    pub fn OpenServerContactLink(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenServerContactLink(self, pItemId, ppItem);
-    }
-    pub fn OpenServerPerson(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenServerPerson(self, pItemId, ppItem);
-    }
-    pub fn get_Contacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Contacts(self, options, ppItems);
-    }
-    pub fn get_AggregateContacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AggregateContacts(self, options, ppAggregates);
-    }
-    pub fn get_Groups(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.@"inline") HRESULT {
+    pub fn get_Groups(self: *const IContactAggregationAggregate, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_Groups(self, options, ppGroups);
     }
-    pub fn get_ServerPersons(self: *const IContactAggregationManager, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServerPersons(self, ppServerPersonCollection);
+    pub fn get_AntiLink(self: *const IContactAggregationAggregate, ppAntiLink: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AntiLink(self, ppAntiLink);
     }
-    pub fn get_ServerContactLinks(self: *const IContactAggregationManager, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServerContactLinks(self, pPersonItemId, ppServerContactLinkCollection);
+    pub fn put_AntiLink(self: *const IContactAggregationAggregate, pAntiLink: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AntiLink(self, pAntiLink);
+    }
+    pub fn get_FavoriteOrder(self: *const IContactAggregationAggregate, pFavoriteOrder: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FavoriteOrder(self, pFavoriteOrder);
+    }
+    pub fn put_FavoriteOrder(self: *const IContactAggregationAggregate, favoriteOrder: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FavoriteOrder(self, favoriteOrder);
+    }
+    pub fn get_Id(self: *const IContactAggregationAggregate, ppItemId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, ppItemId);
+    }
+};
+
+const IID_IContactAggregationAggregateCollection_Value = Guid.initString("2359f3a6-3a68-40af-98db-0f9eb143c3bb");
+pub const IID_IContactAggregationAggregateCollection = &IID_IContactAggregationAggregateCollection_Value;
+pub const IContactAggregationAggregateCollection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FindFirst: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            ppAggregate: ?*?*IContactAggregationAggregate,
+        ) callconv(.winapi) HRESULT,
+        FindFirstByAntiLinkId: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            pAntiLinkId: ?[*:0]const u16,
+            ppAggregate: ?*?*IContactAggregationAggregate,
+        ) callconv(.winapi) HRESULT,
+        FindNext: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            ppAggregate: ?*?*IContactAggregationAggregate,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            pCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn FindFirst(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
+        return self.vtable.FindFirst(self, ppAggregate);
+    }
+    pub fn FindFirstByAntiLinkId(self: *const IContactAggregationAggregateCollection, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
+        return self.vtable.FindFirstByAntiLinkId(self, pAntiLinkId, ppAggregate);
+    }
+    pub fn FindNext(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
+        return self.vtable.FindNext(self, ppAggregate);
+    }
+    pub fn get_Count(self: *const IContactAggregationAggregateCollection, pCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pCount);
     }
 };
 
@@ -785,124 +488,6 @@ pub const IContactAggregationContactCollection = extern union {
     }
     pub fn FindFirstByRemoteId(self: *const IContactAggregationContactCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.@"inline") HRESULT {
         return self.vtable.FindFirstByRemoteId(self, pSourceType, pAccountId, pRemoteObjectId, ppItem);
-    }
-};
-
-const IID_IContactAggregationAggregate_Value = Guid.initString("7ed1c814-cd30-43c8-9b8d-2e489e53d54b");
-pub const IID_IContactAggregationAggregate = &IID_IContactAggregationAggregate_Value;
-pub const IContactAggregationAggregate = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Save: *const fn(
-            self: *const IContactAggregationAggregate,
-        ) callconv(.winapi) HRESULT,
-        GetComponentItems: *const fn(
-            self: *const IContactAggregationAggregate,
-            pComponentItems: ?*?*IContactAggregationContactCollection,
-        ) callconv(.winapi) HRESULT,
-        Link: *const fn(
-            self: *const IContactAggregationAggregate,
-            pAggregateId: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        get_Groups: *const fn(
-            self: *const IContactAggregationAggregate,
-            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-            ppGroups: ?*?*IContactAggregationGroupCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntiLink: *const fn(
-            self: *const IContactAggregationAggregate,
-            ppAntiLink: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AntiLink: *const fn(
-            self: *const IContactAggregationAggregate,
-            pAntiLink: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FavoriteOrder: *const fn(
-            self: *const IContactAggregationAggregate,
-            pFavoriteOrder: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FavoriteOrder: *const fn(
-            self: *const IContactAggregationAggregate,
-            favoriteOrder: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IContactAggregationAggregate,
-            ppItemId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Save(self: *const IContactAggregationAggregate) callconv(.@"inline") HRESULT {
-        return self.vtable.Save(self);
-    }
-    pub fn GetComponentItems(self: *const IContactAggregationAggregate, pComponentItems: ?*?*IContactAggregationContactCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetComponentItems(self, pComponentItems);
-    }
-    pub fn Link(self: *const IContactAggregationAggregate, pAggregateId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Link(self, pAggregateId);
-    }
-    pub fn get_Groups(self: *const IContactAggregationAggregate, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Groups(self, options, ppGroups);
-    }
-    pub fn get_AntiLink(self: *const IContactAggregationAggregate, ppAntiLink: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AntiLink(self, ppAntiLink);
-    }
-    pub fn put_AntiLink(self: *const IContactAggregationAggregate, pAntiLink: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AntiLink(self, pAntiLink);
-    }
-    pub fn get_FavoriteOrder(self: *const IContactAggregationAggregate, pFavoriteOrder: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FavoriteOrder(self, pFavoriteOrder);
-    }
-    pub fn put_FavoriteOrder(self: *const IContactAggregationAggregate, favoriteOrder: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FavoriteOrder(self, favoriteOrder);
-    }
-    pub fn get_Id(self: *const IContactAggregationAggregate, ppItemId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, ppItemId);
-    }
-};
-
-const IID_IContactAggregationAggregateCollection_Value = Guid.initString("2359f3a6-3a68-40af-98db-0f9eb143c3bb");
-pub const IID_IContactAggregationAggregateCollection = &IID_IContactAggregationAggregateCollection_Value;
-pub const IContactAggregationAggregateCollection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        FindFirst: *const fn(
-            self: *const IContactAggregationAggregateCollection,
-            ppAggregate: ?*?*IContactAggregationAggregate,
-        ) callconv(.winapi) HRESULT,
-        FindFirstByAntiLinkId: *const fn(
-            self: *const IContactAggregationAggregateCollection,
-            pAntiLinkId: ?[*:0]const u16,
-            ppAggregate: ?*?*IContactAggregationAggregate,
-        ) callconv(.winapi) HRESULT,
-        FindNext: *const fn(
-            self: *const IContactAggregationAggregateCollection,
-            ppAggregate: ?*?*IContactAggregationAggregate,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IContactAggregationAggregateCollection,
-            pCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn FindFirst(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
-        return self.vtable.FindFirst(self, ppAggregate);
-    }
-    pub fn FindFirstByAntiLinkId(self: *const IContactAggregationAggregateCollection, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
-        return self.vtable.FindFirstByAntiLinkId(self, pAntiLinkId, ppAggregate);
-    }
-    pub fn FindNext(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
-        return self.vtable.FindNext(self, ppAggregate);
-    }
-    pub fn get_Count(self: *const IContactAggregationAggregateCollection, pCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pCount);
     }
 };
 
@@ -1214,6 +799,133 @@ pub const IContactAggregationLinkCollection = extern union {
     }
 };
 
+const IID_IContactAggregationManager_Value = Guid.initString("1d865989-4b1f-4b60-8f34-c2ad468b2b50");
+pub const IID_IContactAggregationManager = &IID_IContactAggregationManager_Value;
+pub const IContactAggregationManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetVersionInfo: *const fn(
+            self: *const IContactAggregationManager,
+            plMajorVersion: ?*i32,
+            plMinorVersion: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        CreateOrOpenGroup: *const fn(
+            self: *const IContactAggregationManager,
+            pGroupName: ?[*:0]const u16,
+            options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
+            pCreatedGroup: ?*BOOL,
+            ppGroup: ?*?*IContactAggregationGroup,
+        ) callconv(.winapi) HRESULT,
+        CreateExternalContact: *const fn(
+            self: *const IContactAggregationManager,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(.winapi) HRESULT,
+        CreateServerPerson: *const fn(
+            self: *const IContactAggregationManager,
+            ppServerPerson: ?*?*IContactAggregationServerPerson,
+        ) callconv(.winapi) HRESULT,
+        CreateServerContactLink: *const fn(
+            self: *const IContactAggregationManager,
+            ppServerContactLink: ?*?*IContactAggregationLink,
+        ) callconv(.winapi) HRESULT,
+        Flush: *const fn(
+            self: *const IContactAggregationManager,
+        ) callconv(.winapi) HRESULT,
+        OpenAggregateContact: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationAggregate,
+        ) callconv(.winapi) HRESULT,
+        OpenContact: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(.winapi) HRESULT,
+        OpenServerContactLink: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationLink,
+        ) callconv(.winapi) HRESULT,
+        OpenServerPerson: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationServerPerson,
+        ) callconv(.winapi) HRESULT,
+        get_Contacts: *const fn(
+            self: *const IContactAggregationManager,
+            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
+            ppItems: ?*?*IContactAggregationContactCollection,
+        ) callconv(.winapi) HRESULT,
+        get_AggregateContacts: *const fn(
+            self: *const IContactAggregationManager,
+            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
+            ppAggregates: ?*?*IContactAggregationAggregateCollection,
+        ) callconv(.winapi) HRESULT,
+        get_Groups: *const fn(
+            self: *const IContactAggregationManager,
+            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
+            ppGroups: ?*?*IContactAggregationGroupCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ServerPersons: *const fn(
+            self: *const IContactAggregationManager,
+            ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
+        ) callconv(.winapi) HRESULT,
+        get_ServerContactLinks: *const fn(
+            self: *const IContactAggregationManager,
+            pPersonItemId: ?[*:0]const u16,
+            ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetVersionInfo(self: *const IContactAggregationManager, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVersionInfo(self, plMajorVersion, plMinorVersion);
+    }
+    pub fn CreateOrOpenGroup(self: *const IContactAggregationManager, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateOrOpenGroup(self, pGroupName, options, pCreatedGroup, ppGroup);
+    }
+    pub fn CreateExternalContact(self: *const IContactAggregationManager, ppItem: ?*?*IContactAggregationContact) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateExternalContact(self, ppItem);
+    }
+    pub fn CreateServerPerson(self: *const IContactAggregationManager, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateServerPerson(self, ppServerPerson);
+    }
+    pub fn CreateServerContactLink(self: *const IContactAggregationManager, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateServerContactLink(self, ppServerContactLink);
+    }
+    pub fn Flush(self: *const IContactAggregationManager) callconv(.@"inline") HRESULT {
+        return self.vtable.Flush(self);
+    }
+    pub fn OpenAggregateContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenAggregateContact(self, pItemId, ppItem);
+    }
+    pub fn OpenContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenContact(self, pItemId, ppItem);
+    }
+    pub fn OpenServerContactLink(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenServerContactLink(self, pItemId, ppItem);
+    }
+    pub fn OpenServerPerson(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenServerPerson(self, pItemId, ppItem);
+    }
+    pub fn get_Contacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Contacts(self, options, ppItems);
+    }
+    pub fn get_AggregateContacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AggregateContacts(self, options, ppAggregates);
+    }
+    pub fn get_Groups(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Groups(self, options, ppGroups);
+    }
+    pub fn get_ServerPersons(self: *const IContactAggregationManager, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServerPersons(self, ppServerPersonCollection);
+    }
+    pub fn get_ServerContactLinks(self: *const IContactAggregationManager, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServerContactLinks(self, pPersonItemId, ppServerContactLinkCollection);
+    }
+};
+
 const IID_IContactAggregationServerPerson_Value = Guid.initString("7fdc3d4b-1b82-4334-85c5-25184ee5a5f2");
 pub const IID_IContactAggregationServerPerson = &IID_IContactAggregationServerPerson_Value;
 pub const IContactAggregationServerPerson = extern union {
@@ -1457,6 +1169,294 @@ pub const IContactAggregationServerPersonCollection = extern union {
     }
     pub fn get_Count(self: *const IContactAggregationServerPersonCollection, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IContactCollection_Value = Guid.initString("b6afa338-d779-11d9-8bde-f66bad1e3f3a");
+pub const IID_IContactCollection = &IID_IContactCollection_Value;
+pub const IContactCollection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Reset: *const fn(
+            self: *const IContactCollection,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IContactCollection,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IContactCollection,
+            ppContact: ?*?*IContact,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Reset(self: *const IContactCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Next(self: *const IContactCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self);
+    }
+    pub fn GetCurrent(self: *const IContactCollection, ppContact: ?*?*IContact) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, ppContact);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IContactManager_Value = Guid.initString("ad553d98-deb1-474a-8e17-fc0c2075b738");
+pub const IID_IContactManager = &IID_IContactManager_Value;
+pub const IContactManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IContactManager,
+            pszAppName: ?[*:0]const u16,
+            pszAppVersion: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Load: *const fn(
+            self: *const IContactManager,
+            pszContactID: ?[*:0]const u16,
+            ppContact: ?*?*IContact,
+        ) callconv(.winapi) HRESULT,
+        MergeContactIDs: *const fn(
+            self: *const IContactManager,
+            pszNewContactID: ?[*:0]const u16,
+            pszOldContactID: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetMeContact: *const fn(
+            self: *const IContactManager,
+            ppMeContact: ?*?*IContact,
+        ) callconv(.winapi) HRESULT,
+        SetMeContact: *const fn(
+            self: *const IContactManager,
+            pMeContact: ?*IContact,
+        ) callconv(.winapi) HRESULT,
+        GetContactCollection: *const fn(
+            self: *const IContactManager,
+            ppContactCollection: ?*?*IContactCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IContactManager, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pszAppName, pszAppVersion);
+    }
+    pub fn Load(self: *const IContactManager, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) callconv(.@"inline") HRESULT {
+        return self.vtable.Load(self, pszContactID, ppContact);
+    }
+    pub fn MergeContactIDs(self: *const IContactManager, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.MergeContactIDs(self, pszNewContactID, pszOldContactID);
+    }
+    pub fn GetMeContact(self: *const IContactManager, ppMeContact: ?*?*IContact) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMeContact(self, ppMeContact);
+    }
+    pub fn SetMeContact(self: *const IContactManager, pMeContact: ?*IContact) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMeContact(self, pMeContact);
+    }
+    pub fn GetContactCollection(self: *const IContactManager, ppContactCollection: ?*?*IContactCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContactCollection(self, ppContactCollection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IContactProperties_Value = Guid.initString("70dd27dd-5cbd-46e8-bef0-23b6b346288f");
+pub const IID_IContactProperties = &IID_IContactProperties_Value;
+pub const IContactProperties = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetString: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszValue: [*:0]u16,
+            cchValue: u32,
+            pdwcchPropertyValueRequired: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetDate: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pftDateTime: ?*FILETIME,
+        ) callconv(.winapi) HRESULT,
+        GetBinary: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszContentType: [*:0]u16,
+            cchContentType: u32,
+            pdwcchContentTypeRequired: ?*u32,
+            ppStream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+        GetLabels: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszLabels: [*:0]u16,
+            cchLabels: u32,
+            pdwcchLabelsRequired: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetString: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszValue: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetDate: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            ftDateTime: FILETIME,
+        ) callconv(.winapi) HRESULT,
+        SetBinary: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszContentType: ?[*:0]const u16,
+            pStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        SetLabels: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+            dwLabelCount: u32,
+            ppszLabels: [*]?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        CreateArrayNode: *const fn(
+            self: *const IContactProperties,
+            pszArrayName: ?[*:0]const u16,
+            dwFlags: u32,
+            fAppend: BOOL,
+            pszNewArrayElementName: [*:0]u16,
+            cchNewArrayElementName: u32,
+            pdwcchNewArrayElementNameRequired: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteProperty: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteArrayNode: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteLabels: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyCollection: *const fn(
+            self: *const IContactProperties,
+            ppPropertyCollection: ?*?*IContactPropertyCollection,
+            dwFlags: u32,
+            pszMultiValueName: ?[*:0]const u16,
+            dwLabelCount: u32,
+            ppszLabels: [*]?PWSTR,
+            fAnyLabelMatches: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetString(self, pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
+    }
+    pub fn GetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDate(self, pszPropertyName, dwFlags, pftDateTime);
+    }
+    pub fn GetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBinary(self, pszPropertyName, dwFlags, pszContentType, cchContentType, pdwcchContentTypeRequired, ppStream);
+    }
+    pub fn GetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLabels(self, pszArrayElementName, dwFlags, pszLabels, cchLabels, pdwcchLabelsRequired);
+    }
+    pub fn SetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetString(self, pszPropertyName, dwFlags, pszValue);
+    }
+    pub fn SetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDate(self, pszPropertyName, dwFlags, ftDateTime);
+    }
+    pub fn SetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.SetBinary(self, pszPropertyName, dwFlags, pszContentType, pStream);
+    }
+    pub fn SetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLabels(self, pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
+    }
+    pub fn CreateArrayNode(self: *const IContactProperties, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateArrayNode(self, pszArrayName, dwFlags, fAppend, pszNewArrayElementName, cchNewArrayElementName, pdwcchNewArrayElementNameRequired);
+    }
+    pub fn DeleteProperty(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteProperty(self, pszPropertyName, dwFlags);
+    }
+    pub fn DeleteArrayNode(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteArrayNode(self, pszArrayElementName, dwFlags);
+    }
+    pub fn DeleteLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteLabels(self, pszArrayElementName, dwFlags);
+    }
+    pub fn GetPropertyCollection(self: *const IContactProperties, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyCollection(self, ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IContactPropertyCollection_Value = Guid.initString("ffd3adf8-fa64-4328-b1b6-2e0db509cb3c");
+pub const IID_IContactPropertyCollection = &IID_IContactPropertyCollection_Value;
+pub const IContactPropertyCollection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Reset: *const fn(
+            self: *const IContactPropertyCollection,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IContactPropertyCollection,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyName: *const fn(
+            self: *const IContactPropertyCollection,
+            pszPropertyName: [*:0]u16,
+            cchPropertyName: u32,
+            pdwcchPropertyNameRequired: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyType: *const fn(
+            self: *const IContactPropertyCollection,
+            pdwType: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyVersion: *const fn(
+            self: *const IContactPropertyCollection,
+            pdwVersion: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyModificationDate: *const fn(
+            self: *const IContactPropertyCollection,
+            pftModificationDate: ?*FILETIME,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyArrayElementID: *const fn(
+            self: *const IContactPropertyCollection,
+            pszArrayElementID: [*:0]u16,
+            cchArrayElementID: u32,
+            pdwcchArrayElementIDRequired: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Reset(self: *const IContactPropertyCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Next(self: *const IContactPropertyCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self);
+    }
+    pub fn GetPropertyName(self: *const IContactPropertyCollection, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyName(self, pszPropertyName, cchPropertyName, pdwcchPropertyNameRequired);
+    }
+    pub fn GetPropertyType(self: *const IContactPropertyCollection, pdwType: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyType(self, pdwType);
+    }
+    pub fn GetPropertyVersion(self: *const IContactPropertyCollection, pdwVersion: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyVersion(self, pdwVersion);
+    }
+    pub fn GetPropertyModificationDate(self: *const IContactPropertyCollection, pftModificationDate: ?*FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyModificationDate(self, pftModificationDate);
+    }
+    pub fn GetPropertyArrayElementID(self: *const IContactPropertyCollection, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyArrayElementID(self, pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
     }
 };
 

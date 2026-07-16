@@ -4,35 +4,30 @@
 //--------------------------------------------------------------------------------
 pub const DMO_E_INVALIDSTREAMINDEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
 pub const DMO_E_INVALIDTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
-pub const DMO_E_TYPE_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
+pub const DMO_E_NO_MORE_ITEMS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
 pub const DMO_E_NOTACCEPTING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
 pub const DMO_E_TYPE_NOT_ACCEPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220987));
-pub const DMO_E_NO_MORE_ITEMS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
-pub const DMOCATEGORY_AUDIO_DECODER = Guid.initString("57f2db8b-e6bb-4513-9d43-dcd2a6593125");
-pub const DMOCATEGORY_AUDIO_ENCODER = Guid.initString("33d9a761-90c8-11d0-bd43-00a0c911ce86");
-pub const DMOCATEGORY_VIDEO_DECODER = Guid.initString("4a69b442-28be-4991-969c-b500adf5d8a8");
-pub const DMOCATEGORY_VIDEO_ENCODER = Guid.initString("33d9a760-90c8-11d0-bd43-00a0c911ce86");
-pub const DMOCATEGORY_AUDIO_EFFECT = Guid.initString("f3602b3f-0592-48df-a4cd-674721e7ebeb");
-pub const DMOCATEGORY_VIDEO_EFFECT = Guid.initString("d990ee14-776c-4723-be46-3da2f56f10b9");
-pub const DMOCATEGORY_AUDIO_CAPTURE_EFFECT = Guid.initString("f665aaba-3e09-4920-aa5f-219811148f09");
+pub const DMO_E_TYPE_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
 pub const DMOCATEGORY_ACOUSTIC_ECHO_CANCEL = Guid.initString("bf963d80-c559-11d0-8a2b-00a0c9255ac1");
-pub const DMOCATEGORY_AUDIO_NOISE_SUPPRESS = Guid.initString("e07f903f-62fd-4e60-8cdd-dea7236665b5");
 pub const DMOCATEGORY_AGC = Guid.initString("e88c9ba0-c557-11d0-8a2b-00a0c9255ac1");
+pub const DMOCATEGORY_AUDIO_CAPTURE_EFFECT = Guid.initString("f665aaba-3e09-4920-aa5f-219811148f09");
+pub const DMOCATEGORY_AUDIO_DECODER = Guid.initString("57f2db8b-e6bb-4513-9d43-dcd2a6593125");
+pub const DMOCATEGORY_AUDIO_EFFECT = Guid.initString("f3602b3f-0592-48df-a4cd-674721e7ebeb");
+pub const DMOCATEGORY_AUDIO_ENCODER = Guid.initString("33d9a761-90c8-11d0-bd43-00a0c911ce86");
+pub const DMOCATEGORY_AUDIO_NOISE_SUPPRESS = Guid.initString("e07f903f-62fd-4e60-8cdd-dea7236665b5");
+pub const DMOCATEGORY_VIDEO_DECODER = Guid.initString("4a69b442-28be-4991-969c-b500adf5d8a8");
+pub const DMOCATEGORY_VIDEO_EFFECT = Guid.initString("d990ee14-776c-4723-be46-3da2f56f10b9");
+pub const DMOCATEGORY_VIDEO_ENCODER = Guid.initString("33d9a760-90c8-11d0-bd43-00a0c911ce86");
 
 //--------------------------------------------------------------------------------
 // Section: Types (21)
 //--------------------------------------------------------------------------------
-pub const DMO_MEDIA_TYPE = extern struct {
-    majortype: Guid,
-    subtype: Guid,
-    bFixedSizeSamples: BOOL,
-    bTemporalCompression: BOOL,
-    lSampleSize: u32,
-    formattype: Guid,
-    pUnk: ?*IUnknown,
-    cbFormat: u32,
-    pbFormat: ?*u8,
+pub const _DMO_INPLACE_PROCESS_FLAGS = enum(i32) {
+    NORMAL = 0,
+    ZERO = 1,
 };
+pub const DMO_INPLACE_NORMAL = _DMO_INPLACE_PROCESS_FLAGS.NORMAL;
+pub const DMO_INPLACE_ZERO = _DMO_INPLACE_PROCESS_FLAGS.ZERO;
 
 pub const _DMO_INPUT_DATA_BUFFER_FLAGS = enum(i32) {
     SYNCPOINT = 1,
@@ -44,19 +39,6 @@ pub const DMO_INPUT_DATA_BUFFERF_SYNCPOINT = _DMO_INPUT_DATA_BUFFER_FLAGS.SYNCPO
 pub const DMO_INPUT_DATA_BUFFERF_TIME = _DMO_INPUT_DATA_BUFFER_FLAGS.TIME;
 pub const DMO_INPUT_DATA_BUFFERF_TIMELENGTH = _DMO_INPUT_DATA_BUFFER_FLAGS.TIMELENGTH;
 pub const DMO_INPUT_DATA_BUFFERF_DISCONTINUITY = _DMO_INPUT_DATA_BUFFER_FLAGS.DISCONTINUITY;
-
-pub const _DMO_OUTPUT_DATA_BUFFER_FLAGS = enum(i32) {
-    SYNCPOINT = 1,
-    TIME = 2,
-    TIMELENGTH = 4,
-    DISCONTINUITY = 8,
-    INCOMPLETE = 16777216,
-};
-pub const DMO_OUTPUT_DATA_BUFFERF_SYNCPOINT = _DMO_OUTPUT_DATA_BUFFER_FLAGS.SYNCPOINT;
-pub const DMO_OUTPUT_DATA_BUFFERF_TIME = _DMO_OUTPUT_DATA_BUFFER_FLAGS.TIME;
-pub const DMO_OUTPUT_DATA_BUFFERF_TIMELENGTH = _DMO_OUTPUT_DATA_BUFFER_FLAGS.TIMELENGTH;
-pub const DMO_OUTPUT_DATA_BUFFERF_DISCONTINUITY = _DMO_OUTPUT_DATA_BUFFER_FLAGS.DISCONTINUITY;
-pub const DMO_OUTPUT_DATA_BUFFERF_INCOMPLETE = _DMO_OUTPUT_DATA_BUFFER_FLAGS.INCOMPLETE;
 
 pub const _DMO_INPUT_STATUS_FLAGS = enum(i32) {
     A = 1,
@@ -74,6 +56,19 @@ pub const DMO_INPUT_STREAMF_SINGLE_SAMPLE_PER_BUFFER = _DMO_INPUT_STREAM_INFO_FL
 pub const DMO_INPUT_STREAMF_FIXED_SAMPLE_SIZE = _DMO_INPUT_STREAM_INFO_FLAGS.FIXED_SAMPLE_SIZE;
 pub const DMO_INPUT_STREAMF_HOLDS_BUFFERS = _DMO_INPUT_STREAM_INFO_FLAGS.HOLDS_BUFFERS;
 
+pub const _DMO_OUTPUT_DATA_BUFFER_FLAGS = enum(i32) {
+    SYNCPOINT = 1,
+    TIME = 2,
+    TIMELENGTH = 4,
+    DISCONTINUITY = 8,
+    INCOMPLETE = 16777216,
+};
+pub const DMO_OUTPUT_DATA_BUFFERF_SYNCPOINT = _DMO_OUTPUT_DATA_BUFFER_FLAGS.SYNCPOINT;
+pub const DMO_OUTPUT_DATA_BUFFERF_TIME = _DMO_OUTPUT_DATA_BUFFER_FLAGS.TIME;
+pub const DMO_OUTPUT_DATA_BUFFERF_TIMELENGTH = _DMO_OUTPUT_DATA_BUFFER_FLAGS.TIMELENGTH;
+pub const DMO_OUTPUT_DATA_BUFFERF_DISCONTINUITY = _DMO_OUTPUT_DATA_BUFFER_FLAGS.DISCONTINUITY;
+pub const DMO_OUTPUT_DATA_BUFFERF_INCOMPLETE = _DMO_OUTPUT_DATA_BUFFER_FLAGS.INCOMPLETE;
+
 pub const _DMO_OUTPUT_STREAM_INFO_FLAGS = enum(i32) {
     WHOLE_SAMPLES = 1,
     SINGLE_SAMPLE_PER_BUFFER = 2,
@@ -87,6 +82,16 @@ pub const DMO_OUTPUT_STREAMF_FIXED_SAMPLE_SIZE = _DMO_OUTPUT_STREAM_INFO_FLAGS.F
 pub const DMO_OUTPUT_STREAMF_DISCARDABLE = _DMO_OUTPUT_STREAM_INFO_FLAGS.DISCARDABLE;
 pub const DMO_OUTPUT_STREAMF_OPTIONAL = _DMO_OUTPUT_STREAM_INFO_FLAGS.OPTIONAL;
 
+pub const _DMO_PROCESS_OUTPUT_FLAGS = enum(i32) {
+    R = 1,
+};
+pub const DMO_PROCESS_OUTPUT_DISCARD_WHEN_NO_BUFFER = _DMO_PROCESS_OUTPUT_FLAGS.R;
+
+pub const _DMO_QUALITY_STATUS_FLAGS = enum(i32) {
+    D = 1,
+};
+pub const DMO_QUALITY_STATUS_ENABLED = _DMO_QUALITY_STATUS_FLAGS.D;
+
 pub const _DMO_SET_TYPE_FLAGS = enum(i32) {
     TEST_ONLY = 1,
     CLEAR = 2,
@@ -94,10 +99,157 @@ pub const _DMO_SET_TYPE_FLAGS = enum(i32) {
 pub const DMO_SET_TYPEF_TEST_ONLY = _DMO_SET_TYPE_FLAGS.TEST_ONLY;
 pub const DMO_SET_TYPEF_CLEAR = _DMO_SET_TYPE_FLAGS.CLEAR;
 
-pub const _DMO_PROCESS_OUTPUT_FLAGS = enum(i32) {
-    R = 1,
+pub const _DMO_VIDEO_OUTPUT_STREAM_FLAGS = enum(i32) {
+    E = 1,
 };
-pub const DMO_PROCESS_OUTPUT_DISCARD_WHEN_NO_BUFFER = _DMO_PROCESS_OUTPUT_FLAGS.R;
+pub const DMO_VOSF_NEEDS_PREVIOUS_SAMPLE = _DMO_VIDEO_OUTPUT_STREAM_FLAGS.E;
+
+pub const DMO_ENUM_FLAGS = enum(i32) {
+    D = 1,
+};
+pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
+
+pub const DMO_MEDIA_TYPE = extern struct {
+    majortype: Guid,
+    subtype: Guid,
+    bFixedSizeSamples: BOOL,
+    bTemporalCompression: BOOL,
+    lSampleSize: u32,
+    formattype: Guid,
+    pUnk: ?*IUnknown,
+    cbFormat: u32,
+    pbFormat: ?*u8,
+};
+
+pub const DMO_OUTPUT_DATA_BUFFER = extern struct {
+    pBuffer: ?*IMediaBuffer,
+    dwStatus: u32,
+    rtTimestamp: i64,
+    rtTimelength: i64,
+};
+
+pub const DMO_PARTIAL_MEDIATYPE = extern struct {
+    type: Guid,
+    subtype: Guid,
+};
+
+pub const DMO_REGISTER_FLAGS = enum(i32) {
+    D = 1,
+};
+pub const DMO_REGISTERF_IS_KEYED = DMO_REGISTER_FLAGS.D;
+
+const IID_IDMOQualityControl_Value = Guid.initString("65abea96-cf36-453f-af8a-705e98f16260");
+pub const IID_IDMOQualityControl = &IID_IDMOQualityControl_Value;
+pub const IDMOQualityControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetNow: *const fn(
+            self: *const IDMOQualityControl,
+            rtNow: i64,
+        ) callconv(.winapi) HRESULT,
+        SetStatus: *const fn(
+            self: *const IDMOQualityControl,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetStatus: *const fn(
+            self: *const IDMOQualityControl,
+            pdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetNow(self: *const IDMOQualityControl, rtNow: i64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNow(self, rtNow);
+    }
+    pub fn SetStatus(self: *const IDMOQualityControl, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStatus(self, dwFlags);
+    }
+    pub fn GetStatus(self: *const IDMOQualityControl, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, pdwFlags);
+    }
+};
+
+const IID_IDMOVideoOutputOptimizations_Value = Guid.initString("be8f4f4e-5b16-4d29-b350-7f6b5d9298ac");
+pub const IID_IDMOVideoOutputOptimizations = &IID_IDMOVideoOutputOptimizations_Value;
+pub const IDMOVideoOutputOptimizations = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryOperationModePreferences: *const fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwRequestedCapabilities: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetOperationMode: *const fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            dwEnabledFeatures: u32,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentOperationMode: *const fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwEnabledFeatures: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentSampleRequirements: *const fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwRequestedFeatures: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryOperationModePreferences(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwRequestedCapabilities: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryOperationModePreferences(self, ulOutputStreamIndex, pdwRequestedCapabilities);
+    }
+    pub fn SetOperationMode(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOperationMode(self, ulOutputStreamIndex, dwEnabledFeatures);
+    }
+    pub fn GetCurrentOperationMode(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwEnabledFeatures: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentOperationMode(self, ulOutputStreamIndex, pdwEnabledFeatures);
+    }
+    pub fn GetCurrentSampleRequirements(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwRequestedFeatures: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentSampleRequirements(self, ulOutputStreamIndex, pdwRequestedFeatures);
+    }
+};
+
+const IID_IEnumDMO_Value = Guid.initString("2c3cd98a-2bfa-4a53-9c27-5249ba64ba0f");
+pub const IID_IEnumDMO = &IID_IEnumDMO_Value;
+pub const IEnumDMO = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumDMO,
+            cItemsToFetch: u32,
+            pCLSID: [*]Guid,
+            Names: [*]?PWSTR,
+            pcItemsFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumDMO,
+            cItemsToSkip: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumDMO,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumDMO,
+            ppEnum: ?*?*IEnumDMO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumDMO, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]?PWSTR, pcItemsFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, cItemsToFetch, pCLSID, Names, pcItemsFetched);
+    }
+    pub fn Skip(self: *const IEnumDMO, cItemsToSkip: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, cItemsToSkip);
+    }
+    pub fn Reset(self: *const IEnumDMO) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumDMO, ppEnum: ?*?*IEnumDMO) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
 
 const IID_IMediaBuffer_Value = Guid.initString("59eff8b9-938c-4a26-82f2-95cb84cdc837");
 pub const IID_IMediaBuffer = &IID_IMediaBuffer_Value;
@@ -129,13 +281,6 @@ pub const IMediaBuffer = extern union {
     pub fn GetBufferAndLength(self: *const IMediaBuffer, ppBuffer: ?*?*u8, pcbLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBufferAndLength(self, ppBuffer, pcbLength);
     }
-};
-
-pub const DMO_OUTPUT_DATA_BUFFER = extern struct {
-    pBuffer: ?*IMediaBuffer,
-    dwStatus: u32,
-    rtTimestamp: i64,
-    rtTimelength: i64,
 };
 
 const IID_IMediaObject_Value = Guid.initString("d8ad0f58-5494-4102-97c5-ec798e59bcf4");
@@ -320,53 +465,6 @@ pub const IMediaObject = extern union {
     }
 };
 
-const IID_IEnumDMO_Value = Guid.initString("2c3cd98a-2bfa-4a53-9c27-5249ba64ba0f");
-pub const IID_IEnumDMO = &IID_IEnumDMO_Value;
-pub const IEnumDMO = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumDMO,
-            cItemsToFetch: u32,
-            pCLSID: [*]Guid,
-            Names: [*]?PWSTR,
-            pcItemsFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumDMO,
-            cItemsToSkip: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumDMO,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumDMO,
-            ppEnum: ?*?*IEnumDMO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDMO, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]?PWSTR, pcItemsFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, cItemsToFetch, pCLSID, Names, pcItemsFetched);
-    }
-    pub fn Skip(self: *const IEnumDMO, cItemsToSkip: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, cItemsToSkip);
-    }
-    pub fn Reset(self: *const IEnumDMO) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumDMO, ppEnum: ?*?*IEnumDMO) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
-pub const _DMO_INPLACE_PROCESS_FLAGS = enum(i32) {
-    NORMAL = 0,
-    ZERO = 1,
-};
-pub const DMO_INPLACE_NORMAL = _DMO_INPLACE_PROCESS_FLAGS.NORMAL;
-pub const DMO_INPLACE_ZERO = _DMO_INPLACE_PROCESS_FLAGS.ZERO;
-
 const IID_IMediaObjectInPlace_Value = Guid.initString("651b9ad0-0fc7-4aa9-9538-d89931010741");
 pub const IID_IMediaObjectInPlace = &IID_IMediaObjectInPlace_Value;
 pub const IMediaObjectInPlace = extern union {
@@ -402,108 +500,35 @@ pub const IMediaObjectInPlace = extern union {
     }
 };
 
-pub const _DMO_QUALITY_STATUS_FLAGS = enum(i32) {
-    D = 1,
-};
-pub const DMO_QUALITY_STATUS_ENABLED = _DMO_QUALITY_STATUS_FLAGS.D;
-
-const IID_IDMOQualityControl_Value = Guid.initString("65abea96-cf36-453f-af8a-705e98f16260");
-pub const IID_IDMOQualityControl = &IID_IDMOQualityControl_Value;
-pub const IDMOQualityControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetNow: *const fn(
-            self: *const IDMOQualityControl,
-            rtNow: i64,
-        ) callconv(.winapi) HRESULT,
-        SetStatus: *const fn(
-            self: *const IDMOQualityControl,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetStatus: *const fn(
-            self: *const IDMOQualityControl,
-            pdwFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetNow(self: *const IDMOQualityControl, rtNow: i64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNow(self, rtNow);
-    }
-    pub fn SetStatus(self: *const IDMOQualityControl, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStatus(self, dwFlags);
-    }
-    pub fn GetStatus(self: *const IDMOQualityControl, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, pdwFlags);
-    }
-};
-
-pub const _DMO_VIDEO_OUTPUT_STREAM_FLAGS = enum(i32) {
-    E = 1,
-};
-pub const DMO_VOSF_NEEDS_PREVIOUS_SAMPLE = _DMO_VIDEO_OUTPUT_STREAM_FLAGS.E;
-
-const IID_IDMOVideoOutputOptimizations_Value = Guid.initString("be8f4f4e-5b16-4d29-b350-7f6b5d9298ac");
-pub const IID_IDMOVideoOutputOptimizations = &IID_IDMOVideoOutputOptimizations_Value;
-pub const IDMOVideoOutputOptimizations = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryOperationModePreferences: *const fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedCapabilities: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetOperationMode: *const fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            dwEnabledFeatures: u32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentOperationMode: *const fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwEnabledFeatures: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentSampleRequirements: *const fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedFeatures: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryOperationModePreferences(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwRequestedCapabilities: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryOperationModePreferences(self, ulOutputStreamIndex, pdwRequestedCapabilities);
-    }
-    pub fn SetOperationMode(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOperationMode(self, ulOutputStreamIndex, dwEnabledFeatures);
-    }
-    pub fn GetCurrentOperationMode(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwEnabledFeatures: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentOperationMode(self, ulOutputStreamIndex, pdwEnabledFeatures);
-    }
-    pub fn GetCurrentSampleRequirements(self: *const IDMOVideoOutputOptimizations, ulOutputStreamIndex: u32, pdwRequestedFeatures: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentSampleRequirements(self, ulOutputStreamIndex, pdwRequestedFeatures);
-    }
-};
-
-pub const DMO_PARTIAL_MEDIATYPE = extern struct {
-    type: Guid,
-    subtype: Guid,
-};
-
-pub const DMO_REGISTER_FLAGS = enum(i32) {
-    D = 1,
-};
-pub const DMO_REGISTERF_IS_KEYED = DMO_REGISTER_FLAGS.D;
-
-pub const DMO_ENUM_FLAGS = enum(i32) {
-    D = 1,
-};
-pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
+pub extern "msdmo" fn DMOEnum(
+    guidCategory: ?*const Guid,
+    dwFlags: u32,
+    cInTypes: u32,
+    pInTypes: ?*const DMO_PARTIAL_MEDIATYPE,
+    cOutTypes: u32,
+    pOutTypes: ?*const DMO_PARTIAL_MEDIATYPE,
+    ppEnum: ?*?*IEnumDMO,
+) callconv(.winapi) HRESULT;
+
+pub extern "msdmo" fn DMOGetName(
+    clsidDMO: ?*const Guid,
+    szName: *[80]u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "msdmo" fn DMOGetTypes(
+    clsidDMO: ?*const Guid,
+    ulInputTypesRequested: u32,
+    pulInputTypesSupplied: ?*u32,
+    pInputTypes: ?*DMO_PARTIAL_MEDIATYPE,
+    ulOutputTypesRequested: u32,
+    pulOutputTypesSupplied: ?*u32,
+    pOutputTypes: ?*DMO_PARTIAL_MEDIATYPE,
+) callconv(.winapi) HRESULT;
+
 pub extern "msdmo" fn DMORegister(
     szName: ?[*:0]const u16,
     clsidDMO: ?*const Guid,
@@ -518,40 +543,6 @@ pub extern "msdmo" fn DMORegister(
 pub extern "msdmo" fn DMOUnregister(
     clsidDMO: ?*const Guid,
     guidCategory: ?*const Guid,
-) callconv(.winapi) HRESULT;
-
-pub extern "msdmo" fn DMOEnum(
-    guidCategory: ?*const Guid,
-    dwFlags: u32,
-    cInTypes: u32,
-    pInTypes: ?*const DMO_PARTIAL_MEDIATYPE,
-    cOutTypes: u32,
-    pOutTypes: ?*const DMO_PARTIAL_MEDIATYPE,
-    ppEnum: ?*?*IEnumDMO,
-) callconv(.winapi) HRESULT;
-
-pub extern "msdmo" fn DMOGetTypes(
-    clsidDMO: ?*const Guid,
-    ulInputTypesRequested: u32,
-    pulInputTypesSupplied: ?*u32,
-    pInputTypes: ?*DMO_PARTIAL_MEDIATYPE,
-    ulOutputTypesRequested: u32,
-    pulOutputTypesSupplied: ?*u32,
-    pOutputTypes: ?*DMO_PARTIAL_MEDIATYPE,
-) callconv(.winapi) HRESULT;
-
-pub extern "msdmo" fn DMOGetName(
-    clsidDMO: ?*const Guid,
-    szName: *[80]u16,
-) callconv(.winapi) HRESULT;
-
-pub extern "msdmo" fn MoInitMediaType(
-    pmt: ?*DMO_MEDIA_TYPE,
-    cbFormat: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "msdmo" fn MoFreeMediaType(
-    pmt: ?*DMO_MEDIA_TYPE,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdmo" fn MoCopyMediaType(
@@ -571,6 +562,15 @@ pub extern "msdmo" fn MoDeleteMediaType(
 pub extern "msdmo" fn MoDuplicateMediaType(
     ppmtDest: ?*?*DMO_MEDIA_TYPE,
     pmtSrc: ?*const DMO_MEDIA_TYPE,
+) callconv(.winapi) HRESULT;
+
+pub extern "msdmo" fn MoFreeMediaType(
+    pmt: ?*DMO_MEDIA_TYPE,
+) callconv(.winapi) HRESULT;
+
+pub extern "msdmo" fn MoInitMediaType(
+    pmt: ?*DMO_MEDIA_TYPE,
+    cbFormat: u32,
 ) callconv(.winapi) HRESULT;
 
 

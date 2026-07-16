@@ -4,524 +4,166 @@
 //--------------------------------------------------------------------------------
 pub const VSS_ASSOC_NO_MAX_SPACE = @as(i32, -1);
 pub const VSS_ASSOC_REMOVE = @as(u32, 0);
+pub const VSS_E_ASRERROR_CRITICAL_DISK_CANNOT_BE_EXCLUDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212267));
+pub const VSS_E_ASRERROR_CRITICAL_DISKS_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212280));
+pub const VSS_E_ASRERROR_DATADISK_RDISK0 = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212282));
+pub const VSS_E_ASRERROR_DISK_ASSIGNMENT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212287));
+pub const VSS_E_ASRERROR_DISK_RECREATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212286));
+pub const VSS_E_ASRERROR_DYNAMIC_VHD_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212278));
+pub const VSS_E_ASRERROR_FIXED_PHYSICAL_DISK_AVAILABLE_AFTER_DISK_EXCLUSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212268));
+pub const VSS_E_ASRERROR_MISSING_DYNDISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212284));
+pub const VSS_E_ASRERROR_NO_ARCPATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212285));
+pub const VSS_E_ASRERROR_NO_PHYSICAL_DISK_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212269));
+pub const VSS_E_ASRERROR_RDISK0_TOOSMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212281));
+pub const VSS_E_ASRERROR_RDISK_FOR_SYSTEM_DISK_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212270));
+pub const VSS_E_ASRERROR_SHARED_CRIDISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212283));
+pub const VSS_E_ASRERROR_SYSTEM_PARTITION_HIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212266));
+pub const VSS_E_AUTORECOVERY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212293));
 pub const VSS_E_BAD_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212543));
-pub const VSS_E_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212542));
-pub const VSS_E_PROVIDER_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212541));
-pub const VSS_E_PROVIDER_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212540));
-pub const VSS_E_PROVIDER_VETO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212538));
-pub const VSS_E_PROVIDER_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212537));
-pub const VSS_E_OBJECT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212536));
-pub const VSS_S_ASYNC_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271113));
-pub const VSS_S_ASYNC_FINISHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271114));
-pub const VSS_S_ASYNC_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271115));
-pub const VSS_E_VOLUME_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212532));
-pub const VSS_E_VOLUME_NOT_SUPPORTED_BY_PROVIDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212530));
-pub const VSS_E_OBJECT_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212531));
-pub const VSS_E_UNEXPECTED_PROVIDER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212529));
-pub const VSS_E_CORRUPT_XML_DOCUMENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212528));
-pub const VSS_E_INVALID_XML_DOCUMENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212527));
-pub const VSS_E_MAXIMUM_NUMBER_OF_VOLUMES_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212526));
-pub const VSS_E_FLUSH_WRITES_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212525));
-pub const VSS_E_HOLD_WRITES_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212524));
-pub const VSS_E_UNEXPECTED_WRITER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212523));
-pub const VSS_E_SNAPSHOT_SET_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212522));
-pub const VSS_E_MAXIMUM_NUMBER_OF_SNAPSHOTS_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212521));
-pub const VSS_E_WRITER_INFRASTRUCTURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212520));
-pub const VSS_E_WRITER_NOT_RESPONDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212519));
-pub const VSS_E_WRITER_ALREADY_SUBSCRIBED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212518));
-pub const VSS_E_UNSUPPORTED_CONTEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212517));
-pub const VSS_E_VOLUME_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212515));
-pub const VSS_E_MAXIMUM_DIFFAREA_ASSOCIATIONS_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212514));
-pub const VSS_E_INSUFFICIENT_STORAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212513));
-pub const VSS_E_NO_SNAPSHOTS_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212512));
-pub const VSS_S_SOME_SNAPSHOTS_NOT_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271137));
-pub const VSS_E_SOME_SNAPSHOTS_NOT_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212511));
-pub const VSS_E_MAXIMUM_NUMBER_OF_REMOTE_MACHINES_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212510));
-pub const VSS_E_REMOTE_SERVER_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212509));
-pub const VSS_E_REMOTE_SERVER_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212508));
-pub const VSS_E_REVERT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212507));
-pub const VSS_E_REVERT_VOLUME_LOST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212506));
-pub const VSS_E_REBOOT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212505));
-pub const VSS_E_TRANSACTION_FREEZE_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212504));
-pub const VSS_E_TRANSACTION_THAW_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212503));
-pub const VSS_E_VOLUME_NOT_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212499));
-pub const VSS_E_CLUSTER_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212498));
-pub const VSS_E_WRITERERROR_INCONSISTENTSNAPSHOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212304));
-pub const VSS_E_WRITERERROR_OUTOFRESOURCES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212303));
-pub const VSS_E_WRITERERROR_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212302));
-pub const VSS_E_WRITERERROR_RETRYABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212301));
-pub const VSS_E_WRITERERROR_NONRETRYABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212300));
-pub const VSS_E_WRITERERROR_RECOVERY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212299));
 pub const VSS_E_BREAK_REVERT_ID_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212298));
+pub const VSS_E_CANNOT_REVERT_DISKID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212290));
+pub const VSS_E_CLUSTER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212288));
+pub const VSS_E_CLUSTER_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212498));
+pub const VSS_E_CORRUPT_XML_DOCUMENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212528));
+pub const VSS_E_CRITICAL_VOLUME_ON_INVALID_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212271));
+pub const VSS_E_DYNAMIC_DISK_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212292));
+pub const VSS_E_FLUSH_WRITES_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212525));
+pub const VSS_E_FSS_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212265));
+pub const VSS_E_HOLD_WRITES_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212524));
+pub const VSS_E_INSUFFICIENT_STORAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212513));
+pub const VSS_E_INVALID_XML_DOCUMENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212527));
 pub const VSS_E_LEGACY_PROVIDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212297));
+pub const VSS_E_MAXIMUM_DIFFAREA_ASSOCIATIONS_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212514));
+pub const VSS_E_MAXIMUM_NUMBER_OF_REMOTE_MACHINES_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212510));
+pub const VSS_E_MAXIMUM_NUMBER_OF_SNAPSHOTS_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212521));
+pub const VSS_E_MAXIMUM_NUMBER_OF_VOLUMES_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212526));
 pub const VSS_E_MISSING_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212296));
 pub const VSS_E_MISSING_HIDDEN_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212295));
 pub const VSS_E_MISSING_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212294));
-pub const VSS_E_AUTORECOVERY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212293));
-pub const VSS_E_DYNAMIC_DISK_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212292));
-pub const VSS_E_NONTRANSPORTABLE_BCD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212291));
-pub const VSS_E_CANNOT_REVERT_DISKID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212290));
-pub const VSS_E_RESYNC_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212289));
-pub const VSS_E_CLUSTER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212288));
-pub const VSS_E_UNSELECTED_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212502));
-pub const VSS_E_SNAPSHOT_NOT_IN_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212501));
 pub const VSS_E_NESTED_VOLUME_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212500));
+pub const VSS_E_NO_SNAPSHOTS_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212512));
+pub const VSS_E_NONTRANSPORTABLE_BCD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212291));
 pub const VSS_E_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212497));
-pub const VSS_E_WRITERERROR_PARTIAL_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212490));
-pub const VSS_E_ASRERROR_DISK_ASSIGNMENT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212287));
-pub const VSS_E_ASRERROR_DISK_RECREATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212286));
-pub const VSS_E_ASRERROR_NO_ARCPATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212285));
-pub const VSS_E_ASRERROR_MISSING_DYNDISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212284));
-pub const VSS_E_ASRERROR_SHARED_CRIDISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212283));
-pub const VSS_E_ASRERROR_DATADISK_RDISK0 = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212282));
-pub const VSS_E_ASRERROR_RDISK0_TOOSMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212281));
-pub const VSS_E_ASRERROR_CRITICAL_DISKS_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212280));
+pub const VSS_E_OBJECT_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212531));
+pub const VSS_E_OBJECT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212536));
+pub const VSS_E_PROVIDER_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212541));
+pub const VSS_E_PROVIDER_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212537));
+pub const VSS_E_PROVIDER_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212540));
+pub const VSS_E_PROVIDER_VETO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212538));
+pub const VSS_E_REBOOT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212505));
+pub const VSS_E_REMOTE_SERVER_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212509));
+pub const VSS_E_REMOTE_SERVER_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212508));
+pub const VSS_E_RESYNC_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212289));
+pub const VSS_E_REVERT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212507));
+pub const VSS_E_REVERT_VOLUME_LOST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212506));
+pub const VSS_E_SNAPSHOT_NOT_IN_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212501));
+pub const VSS_E_SNAPSHOT_SET_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212522));
+pub const VSS_E_SOME_SNAPSHOTS_NOT_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212511));
+pub const VSS_E_TRANSACTION_FREEZE_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212504));
+pub const VSS_E_TRANSACTION_THAW_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212503));
+pub const VSS_E_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212542));
+pub const VSS_E_UNEXPECTED_PROVIDER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212529));
+pub const VSS_E_UNEXPECTED_WRITER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212523));
+pub const VSS_E_UNSELECTED_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212502));
+pub const VSS_E_UNSUPPORTED_CONTEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212517));
+pub const VSS_E_VOLUME_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212515));
+pub const VSS_E_VOLUME_NOT_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212499));
+pub const VSS_E_VOLUME_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212532));
+pub const VSS_E_VOLUME_NOT_SUPPORTED_BY_PROVIDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212530));
+pub const VSS_E_WRITER_ALREADY_SUBSCRIBED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212518));
+pub const VSS_E_WRITER_INFRASTRUCTURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212520));
+pub const VSS_E_WRITER_NOT_RESPONDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212519));
 pub const VSS_E_WRITER_STATUS_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212279));
-pub const VSS_E_ASRERROR_DYNAMIC_VHD_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212278));
-pub const VSS_E_CRITICAL_VOLUME_ON_INVALID_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212271));
-pub const VSS_E_ASRERROR_RDISK_FOR_SYSTEM_DISK_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212270));
-pub const VSS_E_ASRERROR_NO_PHYSICAL_DISK_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212269));
-pub const VSS_E_ASRERROR_FIXED_PHYSICAL_DISK_AVAILABLE_AFTER_DISK_EXCLUSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212268));
-pub const VSS_E_ASRERROR_CRITICAL_DISK_CANNOT_BE_EXCLUDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212267));
-pub const VSS_E_ASRERROR_SYSTEM_PARTITION_HIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212266));
-pub const VSS_E_FSS_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212265));
+pub const VSS_E_WRITERERROR_INCONSISTENTSNAPSHOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212304));
+pub const VSS_E_WRITERERROR_NONRETRYABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212300));
+pub const VSS_E_WRITERERROR_OUTOFRESOURCES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212303));
+pub const VSS_E_WRITERERROR_PARTIAL_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212490));
+pub const VSS_E_WRITERERROR_RECOVERY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212299));
+pub const VSS_E_WRITERERROR_RETRYABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212301));
+pub const VSS_E_WRITERERROR_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212302));
+pub const VSS_S_ASYNC_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271115));
+pub const VSS_S_ASYNC_FINISHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271114));
+pub const VSS_S_ASYNC_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271113));
+pub const VSS_S_SOME_SNAPSHOTS_NOT_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271137));
 
 //--------------------------------------------------------------------------------
 // Section: Types (69)
 //--------------------------------------------------------------------------------
-pub const VSS_OBJECT_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    NONE = 1,
-    SNAPSHOT_SET = 2,
-    SNAPSHOT = 3,
-    PROVIDER = 4,
-    TYPE_COUNT = 5,
-};
-pub const VSS_OBJECT_UNKNOWN = VSS_OBJECT_TYPE.UNKNOWN;
-pub const VSS_OBJECT_NONE = VSS_OBJECT_TYPE.NONE;
-pub const VSS_OBJECT_SNAPSHOT_SET = VSS_OBJECT_TYPE.SNAPSHOT_SET;
-pub const VSS_OBJECT_SNAPSHOT = VSS_OBJECT_TYPE.SNAPSHOT;
-pub const VSS_OBJECT_PROVIDER = VSS_OBJECT_TYPE.PROVIDER;
-pub const VSS_OBJECT_TYPE_COUNT = VSS_OBJECT_TYPE.TYPE_COUNT;
-
-pub const VSS_SNAPSHOT_STATE = enum(i32) {
-    UNKNOWN = 0,
-    PREPARING = 1,
-    PROCESSING_PREPARE = 2,
-    PREPARED = 3,
-    PROCESSING_PRECOMMIT = 4,
-    PRECOMMITTED = 5,
-    PROCESSING_COMMIT = 6,
-    COMMITTED = 7,
-    PROCESSING_POSTCOMMIT = 8,
-    PROCESSING_PREFINALCOMMIT = 9,
-    PREFINALCOMMITTED = 10,
-    PROCESSING_POSTFINALCOMMIT = 11,
-    CREATED = 12,
-    ABORTED = 13,
-    DELETED = 14,
-    POSTCOMMITTED = 15,
-    COUNT = 16,
-};
-pub const VSS_SS_UNKNOWN = VSS_SNAPSHOT_STATE.UNKNOWN;
-pub const VSS_SS_PREPARING = VSS_SNAPSHOT_STATE.PREPARING;
-pub const VSS_SS_PROCESSING_PREPARE = VSS_SNAPSHOT_STATE.PROCESSING_PREPARE;
-pub const VSS_SS_PREPARED = VSS_SNAPSHOT_STATE.PREPARED;
-pub const VSS_SS_PROCESSING_PRECOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_PRECOMMIT;
-pub const VSS_SS_PRECOMMITTED = VSS_SNAPSHOT_STATE.PRECOMMITTED;
-pub const VSS_SS_PROCESSING_COMMIT = VSS_SNAPSHOT_STATE.PROCESSING_COMMIT;
-pub const VSS_SS_COMMITTED = VSS_SNAPSHOT_STATE.COMMITTED;
-pub const VSS_SS_PROCESSING_POSTCOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_POSTCOMMIT;
-pub const VSS_SS_PROCESSING_PREFINALCOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_PREFINALCOMMIT;
-pub const VSS_SS_PREFINALCOMMITTED = VSS_SNAPSHOT_STATE.PREFINALCOMMITTED;
-pub const VSS_SS_PROCESSING_POSTFINALCOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_POSTFINALCOMMIT;
-pub const VSS_SS_CREATED = VSS_SNAPSHOT_STATE.CREATED;
-pub const VSS_SS_ABORTED = VSS_SNAPSHOT_STATE.ABORTED;
-pub const VSS_SS_DELETED = VSS_SNAPSHOT_STATE.DELETED;
-pub const VSS_SS_POSTCOMMITTED = VSS_SNAPSHOT_STATE.POSTCOMMITTED;
-pub const VSS_SS_COUNT = VSS_SNAPSHOT_STATE.COUNT;
-
-pub const VSS_VOLUME_SNAPSHOT_ATTRIBUTES = enum(i32) {
-    PERSISTENT = 1,
-    NO_AUTORECOVERY = 2,
-    CLIENT_ACCESSIBLE = 4,
-    NO_AUTO_RELEASE = 8,
-    NO_WRITERS = 16,
-    TRANSPORTABLE = 32,
-    NOT_SURFACED = 64,
-    NOT_TRANSACTED = 128,
-    HARDWARE_ASSISTED = 65536,
-    DIFFERENTIAL = 131072,
-    PLEX = 262144,
-    IMPORTED = 524288,
-    EXPOSED_LOCALLY = 1048576,
-    EXPOSED_REMOTELY = 2097152,
-    AUTORECOVER = 4194304,
-    ROLLBACK_RECOVERY = 8388608,
-    DELAYED_POSTSNAPSHOT = 16777216,
-    TXF_RECOVERY = 33554432,
-    FILE_SHARE = 67108864,
-};
-pub const VSS_VOLSNAP_ATTR_PERSISTENT = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.PERSISTENT;
-pub const VSS_VOLSNAP_ATTR_NO_AUTORECOVERY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NO_AUTORECOVERY;
-pub const VSS_VOLSNAP_ATTR_CLIENT_ACCESSIBLE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.CLIENT_ACCESSIBLE;
-pub const VSS_VOLSNAP_ATTR_NO_AUTO_RELEASE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NO_AUTO_RELEASE;
-pub const VSS_VOLSNAP_ATTR_NO_WRITERS = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NO_WRITERS;
-pub const VSS_VOLSNAP_ATTR_TRANSPORTABLE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.TRANSPORTABLE;
-pub const VSS_VOLSNAP_ATTR_NOT_SURFACED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NOT_SURFACED;
-pub const VSS_VOLSNAP_ATTR_NOT_TRANSACTED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NOT_TRANSACTED;
-pub const VSS_VOLSNAP_ATTR_HARDWARE_ASSISTED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.HARDWARE_ASSISTED;
-pub const VSS_VOLSNAP_ATTR_DIFFERENTIAL = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.DIFFERENTIAL;
-pub const VSS_VOLSNAP_ATTR_PLEX = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.PLEX;
-pub const VSS_VOLSNAP_ATTR_IMPORTED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.IMPORTED;
-pub const VSS_VOLSNAP_ATTR_EXPOSED_LOCALLY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.EXPOSED_LOCALLY;
-pub const VSS_VOLSNAP_ATTR_EXPOSED_REMOTELY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.EXPOSED_REMOTELY;
-pub const VSS_VOLSNAP_ATTR_AUTORECOVER = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.AUTORECOVER;
-pub const VSS_VOLSNAP_ATTR_ROLLBACK_RECOVERY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.ROLLBACK_RECOVERY;
-pub const VSS_VOLSNAP_ATTR_DELAYED_POSTSNAPSHOT = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.DELAYED_POSTSNAPSHOT;
-pub const VSS_VOLSNAP_ATTR_TXF_RECOVERY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.TXF_RECOVERY;
-pub const VSS_VOLSNAP_ATTR_FILE_SHARE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.FILE_SHARE;
-
-pub const VSS_SNAPSHOT_CONTEXT = enum(i32) {
-    BACKUP = 0,
-    FILE_SHARE_BACKUP = 16,
-    NAS_ROLLBACK = 25,
-    APP_ROLLBACK = 9,
-    CLIENT_ACCESSIBLE = 29,
-    CLIENT_ACCESSIBLE_WRITERS = 13,
-    ALL = -1,
-};
-pub const VSS_CTX_BACKUP = VSS_SNAPSHOT_CONTEXT.BACKUP;
-pub const VSS_CTX_FILE_SHARE_BACKUP = VSS_SNAPSHOT_CONTEXT.FILE_SHARE_BACKUP;
-pub const VSS_CTX_NAS_ROLLBACK = VSS_SNAPSHOT_CONTEXT.NAS_ROLLBACK;
-pub const VSS_CTX_APP_ROLLBACK = VSS_SNAPSHOT_CONTEXT.APP_ROLLBACK;
-pub const VSS_CTX_CLIENT_ACCESSIBLE = VSS_SNAPSHOT_CONTEXT.CLIENT_ACCESSIBLE;
-pub const VSS_CTX_CLIENT_ACCESSIBLE_WRITERS = VSS_SNAPSHOT_CONTEXT.CLIENT_ACCESSIBLE_WRITERS;
-pub const VSS_CTX_ALL = VSS_SNAPSHOT_CONTEXT.ALL;
-
-pub const VSS_PROVIDER_CAPABILITIES = enum(i32) {
-    LEGACY = 1,
-    COMPLIANT = 2,
-    LUN_REPOINT = 4,
-    LUN_RESYNC = 8,
-    OFFLINE_CREATION = 16,
-    MULTIPLE_IMPORT = 32,
-    RECYCLING = 64,
-    PLEX = 128,
-    DIFFERENTIAL = 256,
-    CLUSTERED = 512,
-};
-pub const VSS_PRV_CAPABILITY_LEGACY = VSS_PROVIDER_CAPABILITIES.LEGACY;
-pub const VSS_PRV_CAPABILITY_COMPLIANT = VSS_PROVIDER_CAPABILITIES.COMPLIANT;
-pub const VSS_PRV_CAPABILITY_LUN_REPOINT = VSS_PROVIDER_CAPABILITIES.LUN_REPOINT;
-pub const VSS_PRV_CAPABILITY_LUN_RESYNC = VSS_PROVIDER_CAPABILITIES.LUN_RESYNC;
-pub const VSS_PRV_CAPABILITY_OFFLINE_CREATION = VSS_PROVIDER_CAPABILITIES.OFFLINE_CREATION;
-pub const VSS_PRV_CAPABILITY_MULTIPLE_IMPORT = VSS_PROVIDER_CAPABILITIES.MULTIPLE_IMPORT;
-pub const VSS_PRV_CAPABILITY_RECYCLING = VSS_PROVIDER_CAPABILITIES.RECYCLING;
-pub const VSS_PRV_CAPABILITY_PLEX = VSS_PROVIDER_CAPABILITIES.PLEX;
-pub const VSS_PRV_CAPABILITY_DIFFERENTIAL = VSS_PROVIDER_CAPABILITIES.DIFFERENTIAL;
-pub const VSS_PRV_CAPABILITY_CLUSTERED = VSS_PROVIDER_CAPABILITIES.CLUSTERED;
-
-pub const VSS_HARDWARE_OPTIONS = enum(i32) {
-    BREAKEX_FLAG_MASK_LUNS = 1,
-    BREAKEX_FLAG_MAKE_READ_WRITE = 2,
-    BREAKEX_FLAG_REVERT_IDENTITY_ALL = 4,
-    BREAKEX_FLAG_REVERT_IDENTITY_NONE = 8,
-    ONLUNSTATECHANGE_NOTIFY_READ_WRITE = 256,
-    ONLUNSTATECHANGE_NOTIFY_LUN_PRE_RECOVERY = 512,
-    ONLUNSTATECHANGE_NOTIFY_LUN_POST_RECOVERY = 1024,
-    ONLUNSTATECHANGE_DO_MASK_LUNS = 2048,
-};
-pub const VSS_BREAKEX_FLAG_MASK_LUNS = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_MASK_LUNS;
-pub const VSS_BREAKEX_FLAG_MAKE_READ_WRITE = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_MAKE_READ_WRITE;
-pub const VSS_BREAKEX_FLAG_REVERT_IDENTITY_ALL = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_REVERT_IDENTITY_ALL;
-pub const VSS_BREAKEX_FLAG_REVERT_IDENTITY_NONE = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_REVERT_IDENTITY_NONE;
-pub const VSS_ONLUNSTATECHANGE_NOTIFY_READ_WRITE = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_NOTIFY_READ_WRITE;
-pub const VSS_ONLUNSTATECHANGE_NOTIFY_LUN_PRE_RECOVERY = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_NOTIFY_LUN_PRE_RECOVERY;
-pub const VSS_ONLUNSTATECHANGE_NOTIFY_LUN_POST_RECOVERY = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_NOTIFY_LUN_POST_RECOVERY;
-pub const VSS_ONLUNSTATECHANGE_DO_MASK_LUNS = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_DO_MASK_LUNS;
-
-pub const VSS_RECOVERY_OPTIONS = enum(i32) {
-    REVERT_IDENTITY_ALL = 256,
-    NO_VOLUME_CHECK = 512,
-};
-pub const VSS_RECOVERY_REVERT_IDENTITY_ALL = VSS_RECOVERY_OPTIONS.REVERT_IDENTITY_ALL;
-pub const VSS_RECOVERY_NO_VOLUME_CHECK = VSS_RECOVERY_OPTIONS.NO_VOLUME_CHECK;
-
-pub const VSS_WRITER_STATE = enum(i32) {
-    UNKNOWN = 0,
-    STABLE = 1,
-    WAITING_FOR_FREEZE = 2,
-    WAITING_FOR_THAW = 3,
-    WAITING_FOR_POST_SNAPSHOT = 4,
-    WAITING_FOR_BACKUP_COMPLETE = 5,
-    FAILED_AT_IDENTIFY = 6,
-    FAILED_AT_PREPARE_BACKUP = 7,
-    FAILED_AT_PREPARE_SNAPSHOT = 8,
-    FAILED_AT_FREEZE = 9,
-    FAILED_AT_THAW = 10,
-    FAILED_AT_POST_SNAPSHOT = 11,
-    FAILED_AT_BACKUP_COMPLETE = 12,
-    FAILED_AT_PRE_RESTORE = 13,
-    FAILED_AT_POST_RESTORE = 14,
-    FAILED_AT_BACKUPSHUTDOWN = 15,
-    COUNT = 16,
-};
-pub const VSS_WS_UNKNOWN = VSS_WRITER_STATE.UNKNOWN;
-pub const VSS_WS_STABLE = VSS_WRITER_STATE.STABLE;
-pub const VSS_WS_WAITING_FOR_FREEZE = VSS_WRITER_STATE.WAITING_FOR_FREEZE;
-pub const VSS_WS_WAITING_FOR_THAW = VSS_WRITER_STATE.WAITING_FOR_THAW;
-pub const VSS_WS_WAITING_FOR_POST_SNAPSHOT = VSS_WRITER_STATE.WAITING_FOR_POST_SNAPSHOT;
-pub const VSS_WS_WAITING_FOR_BACKUP_COMPLETE = VSS_WRITER_STATE.WAITING_FOR_BACKUP_COMPLETE;
-pub const VSS_WS_FAILED_AT_IDENTIFY = VSS_WRITER_STATE.FAILED_AT_IDENTIFY;
-pub const VSS_WS_FAILED_AT_PREPARE_BACKUP = VSS_WRITER_STATE.FAILED_AT_PREPARE_BACKUP;
-pub const VSS_WS_FAILED_AT_PREPARE_SNAPSHOT = VSS_WRITER_STATE.FAILED_AT_PREPARE_SNAPSHOT;
-pub const VSS_WS_FAILED_AT_FREEZE = VSS_WRITER_STATE.FAILED_AT_FREEZE;
-pub const VSS_WS_FAILED_AT_THAW = VSS_WRITER_STATE.FAILED_AT_THAW;
-pub const VSS_WS_FAILED_AT_POST_SNAPSHOT = VSS_WRITER_STATE.FAILED_AT_POST_SNAPSHOT;
-pub const VSS_WS_FAILED_AT_BACKUP_COMPLETE = VSS_WRITER_STATE.FAILED_AT_BACKUP_COMPLETE;
-pub const VSS_WS_FAILED_AT_PRE_RESTORE = VSS_WRITER_STATE.FAILED_AT_PRE_RESTORE;
-pub const VSS_WS_FAILED_AT_POST_RESTORE = VSS_WRITER_STATE.FAILED_AT_POST_RESTORE;
-pub const VSS_WS_FAILED_AT_BACKUPSHUTDOWN = VSS_WRITER_STATE.FAILED_AT_BACKUPSHUTDOWN;
-pub const VSS_WS_COUNT = VSS_WRITER_STATE.COUNT;
-
-pub const VSS_BACKUP_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    FULL = 1,
-    INCREMENTAL = 2,
-    DIFFERENTIAL = 3,
-    LOG = 4,
-    COPY = 5,
-    OTHER = 6,
-};
-pub const VSS_BT_UNDEFINED = VSS_BACKUP_TYPE.UNDEFINED;
-pub const VSS_BT_FULL = VSS_BACKUP_TYPE.FULL;
-pub const VSS_BT_INCREMENTAL = VSS_BACKUP_TYPE.INCREMENTAL;
-pub const VSS_BT_DIFFERENTIAL = VSS_BACKUP_TYPE.DIFFERENTIAL;
-pub const VSS_BT_LOG = VSS_BACKUP_TYPE.LOG;
-pub const VSS_BT_COPY = VSS_BACKUP_TYPE.COPY;
-pub const VSS_BT_OTHER = VSS_BACKUP_TYPE.OTHER;
-
-pub const VSS_RESTORE_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    BY_COPY = 1,
-    IMPORT = 2,
-    OTHER = 3,
-};
-pub const VSS_RTYPE_UNDEFINED = VSS_RESTORE_TYPE.UNDEFINED;
-pub const VSS_RTYPE_BY_COPY = VSS_RESTORE_TYPE.BY_COPY;
-pub const VSS_RTYPE_IMPORT = VSS_RESTORE_TYPE.IMPORT;
-pub const VSS_RTYPE_OTHER = VSS_RESTORE_TYPE.OTHER;
-
-pub const VSS_ROLLFORWARD_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    NONE = 1,
-    ALL = 2,
-    PARTIAL = 3,
-};
-pub const VSS_RF_UNDEFINED = VSS_ROLLFORWARD_TYPE.UNDEFINED;
-pub const VSS_RF_NONE = VSS_ROLLFORWARD_TYPE.NONE;
-pub const VSS_RF_ALL = VSS_ROLLFORWARD_TYPE.ALL;
-pub const VSS_RF_PARTIAL = VSS_ROLLFORWARD_TYPE.PARTIAL;
-
-pub const VSS_PROVIDER_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    SYSTEM = 1,
-    SOFTWARE = 2,
-    HARDWARE = 3,
-    FILESHARE = 4,
-};
-pub const VSS_PROV_UNKNOWN = VSS_PROVIDER_TYPE.UNKNOWN;
-pub const VSS_PROV_SYSTEM = VSS_PROVIDER_TYPE.SYSTEM;
-pub const VSS_PROV_SOFTWARE = VSS_PROVIDER_TYPE.SOFTWARE;
-pub const VSS_PROV_HARDWARE = VSS_PROVIDER_TYPE.HARDWARE;
-pub const VSS_PROV_FILESHARE = VSS_PROVIDER_TYPE.FILESHARE;
-
-pub const VSS_APPLICATION_LEVEL = enum(i32) {
-    UNKNOWN = 0,
-    SYSTEM = 1,
-    BACK_END = 2,
-    FRONT_END = 3,
-    SYSTEM_RM = 4,
-    AUTO = -1,
-};
-pub const VSS_APP_UNKNOWN = VSS_APPLICATION_LEVEL.UNKNOWN;
-pub const VSS_APP_SYSTEM = VSS_APPLICATION_LEVEL.SYSTEM;
-pub const VSS_APP_BACK_END = VSS_APPLICATION_LEVEL.BACK_END;
-pub const VSS_APP_FRONT_END = VSS_APPLICATION_LEVEL.FRONT_END;
-pub const VSS_APP_SYSTEM_RM = VSS_APPLICATION_LEVEL.SYSTEM_RM;
-pub const VSS_APP_AUTO = VSS_APPLICATION_LEVEL.AUTO;
-
-pub const VSS_SNAPSHOT_COMPATIBILITY = enum(i32) {
-    DEFRAG = 1,
-    CONTENTINDEX = 2,
-};
-pub const VSS_SC_DISABLE_DEFRAG = VSS_SNAPSHOT_COMPATIBILITY.DEFRAG;
-pub const VSS_SC_DISABLE_CONTENTINDEX = VSS_SNAPSHOT_COMPATIBILITY.CONTENTINDEX;
-
-pub const VSS_SNAPSHOT_PROPERTY_ID = enum(i32) {
-    UNKNOWN = 0,
-    SNAPSHOT_ID = 1,
-    SNAPSHOT_SET_ID = 2,
-    SNAPSHOTS_COUNT = 3,
-    SNAPSHOT_DEVICE = 4,
-    ORIGINAL_VOLUME = 5,
-    ORIGINATING_MACHINE = 6,
-    SERVICE_MACHINE = 7,
-    EXPOSED_NAME = 8,
-    EXPOSED_PATH = 9,
-    PROVIDER_ID = 10,
-    SNAPSHOT_ATTRIBUTES = 11,
-    CREATION_TIMESTAMP = 12,
-    STATUS = 13,
-};
-pub const VSS_SPROPID_UNKNOWN = VSS_SNAPSHOT_PROPERTY_ID.UNKNOWN;
-pub const VSS_SPROPID_SNAPSHOT_ID = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_ID;
-pub const VSS_SPROPID_SNAPSHOT_SET_ID = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_SET_ID;
-pub const VSS_SPROPID_SNAPSHOTS_COUNT = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOTS_COUNT;
-pub const VSS_SPROPID_SNAPSHOT_DEVICE = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_DEVICE;
-pub const VSS_SPROPID_ORIGINAL_VOLUME = VSS_SNAPSHOT_PROPERTY_ID.ORIGINAL_VOLUME;
-pub const VSS_SPROPID_ORIGINATING_MACHINE = VSS_SNAPSHOT_PROPERTY_ID.ORIGINATING_MACHINE;
-pub const VSS_SPROPID_SERVICE_MACHINE = VSS_SNAPSHOT_PROPERTY_ID.SERVICE_MACHINE;
-pub const VSS_SPROPID_EXPOSED_NAME = VSS_SNAPSHOT_PROPERTY_ID.EXPOSED_NAME;
-pub const VSS_SPROPID_EXPOSED_PATH = VSS_SNAPSHOT_PROPERTY_ID.EXPOSED_PATH;
-pub const VSS_SPROPID_PROVIDER_ID = VSS_SNAPSHOT_PROPERTY_ID.PROVIDER_ID;
-pub const VSS_SPROPID_SNAPSHOT_ATTRIBUTES = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_ATTRIBUTES;
-pub const VSS_SPROPID_CREATION_TIMESTAMP = VSS_SNAPSHOT_PROPERTY_ID.CREATION_TIMESTAMP;
-pub const VSS_SPROPID_STATUS = VSS_SNAPSHOT_PROPERTY_ID.STATUS;
-
-pub const VSS_FILE_SPEC_BACKUP_TYPE = enum(i32) {
-    FULL_BACKUP_REQUIRED = 1,
-    DIFFERENTIAL_BACKUP_REQUIRED = 2,
-    INCREMENTAL_BACKUP_REQUIRED = 4,
-    LOG_BACKUP_REQUIRED = 8,
-    FULL_SNAPSHOT_REQUIRED = 256,
-    DIFFERENTIAL_SNAPSHOT_REQUIRED = 512,
-    INCREMENTAL_SNAPSHOT_REQUIRED = 1024,
-    LOG_SNAPSHOT_REQUIRED = 2048,
-    CREATED_DURING_BACKUP = 65536,
-    ALL_BACKUP_REQUIRED = 15,
-    ALL_SNAPSHOT_REQUIRED = 3840,
-};
-pub const VSS_FSBT_FULL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.FULL_BACKUP_REQUIRED;
-pub const VSS_FSBT_DIFFERENTIAL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.DIFFERENTIAL_BACKUP_REQUIRED;
-pub const VSS_FSBT_INCREMENTAL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.INCREMENTAL_BACKUP_REQUIRED;
-pub const VSS_FSBT_LOG_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.LOG_BACKUP_REQUIRED;
-pub const VSS_FSBT_FULL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.FULL_SNAPSHOT_REQUIRED;
-pub const VSS_FSBT_DIFFERENTIAL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.DIFFERENTIAL_SNAPSHOT_REQUIRED;
-pub const VSS_FSBT_INCREMENTAL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.INCREMENTAL_SNAPSHOT_REQUIRED;
-pub const VSS_FSBT_LOG_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.LOG_SNAPSHOT_REQUIRED;
-pub const VSS_FSBT_CREATED_DURING_BACKUP = VSS_FILE_SPEC_BACKUP_TYPE.CREATED_DURING_BACKUP;
-pub const VSS_FSBT_ALL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.ALL_BACKUP_REQUIRED;
-pub const VSS_FSBT_ALL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.ALL_SNAPSHOT_REQUIRED;
-
-pub const VSS_BACKUP_SCHEMA = enum(i32) {
-    UNDEFINED = 0,
-    DIFFERENTIAL = 1,
-    INCREMENTAL = 2,
-    EXCLUSIVE_INCREMENTAL_DIFFERENTIAL = 4,
-    LOG = 8,
-    COPY = 16,
-    TIMESTAMPED = 32,
-    LAST_MODIFY = 64,
-    LSN = 128,
-    WRITER_SUPPORTS_NEW_TARGET = 256,
-    WRITER_SUPPORTS_RESTORE_WITH_MOVE = 512,
-    INDEPENDENT_SYSTEM_STATE = 1024,
-    ROLLFORWARD_RESTORE = 4096,
-    RESTORE_RENAME = 8192,
-    AUTHORITATIVE_RESTORE = 16384,
-    WRITER_SUPPORTS_PARALLEL_RESTORES = 32768,
-};
-pub const VSS_BS_UNDEFINED = VSS_BACKUP_SCHEMA.UNDEFINED;
-pub const VSS_BS_DIFFERENTIAL = VSS_BACKUP_SCHEMA.DIFFERENTIAL;
-pub const VSS_BS_INCREMENTAL = VSS_BACKUP_SCHEMA.INCREMENTAL;
-pub const VSS_BS_EXCLUSIVE_INCREMENTAL_DIFFERENTIAL = VSS_BACKUP_SCHEMA.EXCLUSIVE_INCREMENTAL_DIFFERENTIAL;
-pub const VSS_BS_LOG = VSS_BACKUP_SCHEMA.LOG;
-pub const VSS_BS_COPY = VSS_BACKUP_SCHEMA.COPY;
-pub const VSS_BS_TIMESTAMPED = VSS_BACKUP_SCHEMA.TIMESTAMPED;
-pub const VSS_BS_LAST_MODIFY = VSS_BACKUP_SCHEMA.LAST_MODIFY;
-pub const VSS_BS_LSN = VSS_BACKUP_SCHEMA.LSN;
-pub const VSS_BS_WRITER_SUPPORTS_NEW_TARGET = VSS_BACKUP_SCHEMA.WRITER_SUPPORTS_NEW_TARGET;
-pub const VSS_BS_WRITER_SUPPORTS_RESTORE_WITH_MOVE = VSS_BACKUP_SCHEMA.WRITER_SUPPORTS_RESTORE_WITH_MOVE;
-pub const VSS_BS_INDEPENDENT_SYSTEM_STATE = VSS_BACKUP_SCHEMA.INDEPENDENT_SYSTEM_STATE;
-pub const VSS_BS_ROLLFORWARD_RESTORE = VSS_BACKUP_SCHEMA.ROLLFORWARD_RESTORE;
-pub const VSS_BS_RESTORE_RENAME = VSS_BACKUP_SCHEMA.RESTORE_RENAME;
-pub const VSS_BS_AUTHORITATIVE_RESTORE = VSS_BACKUP_SCHEMA.AUTHORITATIVE_RESTORE;
-pub const VSS_BS_WRITER_SUPPORTS_PARALLEL_RESTORES = VSS_BACKUP_SCHEMA.WRITER_SUPPORTS_PARALLEL_RESTORES;
-
-pub const VSS_SNAPSHOT_PROP = extern struct {
-    m_SnapshotId: Guid,
-    m_SnapshotSetId: Guid,
-    m_lSnapshotsCount: i32,
-    m_pwszSnapshotDeviceObject: ?*u16,
-    m_pwszOriginalVolumeName: ?*u16,
-    m_pwszOriginatingMachine: ?*u16,
-    m_pwszServiceMachine: ?*u16,
-    m_pwszExposedName: ?*u16,
-    m_pwszExposedPath: ?*u16,
-    m_ProviderId: Guid,
-    m_lSnapshotAttributes: i32,
-    m_tsCreationTimestamp: i64,
-    m_eStatus: VSS_SNAPSHOT_STATE,
-};
-
-pub const VSS_PROVIDER_PROP = extern struct {
-    m_ProviderId: Guid,
-    m_pwszProviderName: ?*u16,
-    m_eProviderType: VSS_PROVIDER_TYPE,
-    m_pwszProviderVersion: ?*u16,
-    m_ProviderVersionId: Guid,
-    m_ClassId: Guid,
-};
-
-pub const VSS_OBJECT_UNION = extern union {
-    Snap: VSS_SNAPSHOT_PROP,
-    Prov: VSS_PROVIDER_PROP,
-};
-
-pub const VSS_OBJECT_PROP = extern struct {
-    Type: VSS_OBJECT_TYPE,
-    Obj: VSS_OBJECT_UNION,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IVssEnumObject_Value = Guid.initString("ae1c7110-2f60-11d3-8a39-00c04f72d8e3");
-pub const IID_IVssEnumObject = &IID_IVssEnumObject_Value;
-pub const IVssEnumObject = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVssAdmin_Value = Guid.initString("77ed5996-2f63-11d3-8a39-00c04f72d8e3");
+pub const IID_IVssAdmin = &IID_IVssAdmin_Value;
+pub const IVssAdmin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IVssEnumObject,
-            celt: u32,
-            rgelt: [*]VSS_OBJECT_PROP,
-            pceltFetched: ?*u32,
+        RegisterProvider: *const fn(
+            self: *const IVssAdmin,
+            pProviderId: Guid,
+            ClassId: Guid,
+            pwszProviderName: ?*u16,
+            eProviderType: VSS_PROVIDER_TYPE,
+            pwszProviderVersion: ?*u16,
+            ProviderVersionId: Guid,
         ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IVssEnumObject,
-            celt: u32,
+        UnregisterProvider: *const fn(
+            self: *const IVssAdmin,
+            ProviderId: Guid,
         ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IVssEnumObject,
+        QueryProviders: *const fn(
+            self: *const IVssAdmin,
+            ppEnum: ?*?*IVssEnumObject,
         ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IVssEnumObject,
-            ppenum: ?*?*IVssEnumObject,
+        AbortAllSnapshotsInProgress: *const fn(
+            self: *const IVssAdmin,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IVssEnumObject, celt: u32, rgelt: [*]VSS_OBJECT_PROP, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    pub fn RegisterProvider(self: *const IVssAdmin, pProviderId: Guid, ClassId: Guid, pwszProviderName: ?*u16, eProviderType: VSS_PROVIDER_TYPE, pwszProviderVersion: ?*u16, ProviderVersionId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterProvider(self, pProviderId, ClassId, pwszProviderName, eProviderType, pwszProviderVersion, ProviderVersionId);
     }
-    pub fn Skip(self: *const IVssEnumObject, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
+    pub fn UnregisterProvider(self: *const IVssAdmin, ProviderId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterProvider(self, ProviderId);
     }
-    pub fn Reset(self: *const IVssEnumObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
+    pub fn QueryProviders(self: *const IVssAdmin, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryProviders(self, ppEnum);
     }
-    pub fn Clone(self: *const IVssEnumObject, ppenum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
+    pub fn AbortAllSnapshotsInProgress(self: *const IVssAdmin) callconv(.@"inline") HRESULT {
+        return self.vtable.AbortAllSnapshotsInProgress(self);
+    }
+};
+
+const IID_IVssAdminEx_Value = Guid.initString("7858a9f8-b1fa-41a6-964f-b9b36b8cd8d8");
+pub const IID_IVssAdminEx = &IID_IVssAdminEx_Value;
+pub const IVssAdminEx = extern union {
+    pub const VTable = extern struct {
+        base: IVssAdmin.VTable,
+        GetProviderCapability: *const fn(
+            self: *const IVssAdminEx,
+            pProviderId: Guid,
+            pllOriginalCapabilityMask: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetProviderContext: *const fn(
+            self: *const IVssAdminEx,
+            ProviderId: Guid,
+            plContext: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetProviderContext: *const fn(
+            self: *const IVssAdminEx,
+            ProviderId: Guid,
+            lContext: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IVssAdmin: IVssAdmin,
+    IUnknown: IUnknown,
+    pub fn GetProviderCapability(self: *const IVssAdminEx, pProviderId: Guid, pllOriginalCapabilityMask: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProviderCapability(self, pProviderId, pllOriginalCapabilityMask);
+    }
+    pub fn GetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, plContext: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProviderContext(self, ProviderId, plContext);
+    }
+    pub fn SetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, lContext: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProviderContext(self, ProviderId, lContext);
     }
 };
 
@@ -554,204 +196,6 @@ pub const IVssAsync = extern union {
     }
     pub fn QueryStatus(self: *const IVssAsync, pHrResult: ?*HRESULT, pReserved: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryStatus(self, pHrResult, pReserved);
-    }
-};
-
-pub const VSS_USAGE_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    BOOTABLESYSTEMSTATE = 1,
-    SYSTEMSERVICE = 2,
-    USERDATA = 3,
-    OTHER = 4,
-};
-pub const VSS_UT_UNDEFINED = VSS_USAGE_TYPE.UNDEFINED;
-pub const VSS_UT_BOOTABLESYSTEMSTATE = VSS_USAGE_TYPE.BOOTABLESYSTEMSTATE;
-pub const VSS_UT_SYSTEMSERVICE = VSS_USAGE_TYPE.SYSTEMSERVICE;
-pub const VSS_UT_USERDATA = VSS_USAGE_TYPE.USERDATA;
-pub const VSS_UT_OTHER = VSS_USAGE_TYPE.OTHER;
-
-pub const VSS_SOURCE_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    TRANSACTEDDB = 1,
-    NONTRANSACTEDDB = 2,
-    OTHER = 3,
-};
-pub const VSS_ST_UNDEFINED = VSS_SOURCE_TYPE.UNDEFINED;
-pub const VSS_ST_TRANSACTEDDB = VSS_SOURCE_TYPE.TRANSACTEDDB;
-pub const VSS_ST_NONTRANSACTEDDB = VSS_SOURCE_TYPE.NONTRANSACTEDDB;
-pub const VSS_ST_OTHER = VSS_SOURCE_TYPE.OTHER;
-
-pub const VSS_RESTOREMETHOD_ENUM = enum(i32) {
-    UNDEFINED = 0,
-    RESTORE_IF_NOT_THERE = 1,
-    RESTORE_IF_CAN_REPLACE = 2,
-    STOP_RESTORE_START = 3,
-    RESTORE_TO_ALTERNATE_LOCATION = 4,
-    RESTORE_AT_REBOOT = 5,
-    RESTORE_AT_REBOOT_IF_CANNOT_REPLACE = 6,
-    CUSTOM = 7,
-    RESTORE_STOP_START = 8,
-};
-pub const VSS_RME_UNDEFINED = VSS_RESTOREMETHOD_ENUM.UNDEFINED;
-pub const VSS_RME_RESTORE_IF_NOT_THERE = VSS_RESTOREMETHOD_ENUM.RESTORE_IF_NOT_THERE;
-pub const VSS_RME_RESTORE_IF_CAN_REPLACE = VSS_RESTOREMETHOD_ENUM.RESTORE_IF_CAN_REPLACE;
-pub const VSS_RME_STOP_RESTORE_START = VSS_RESTOREMETHOD_ENUM.STOP_RESTORE_START;
-pub const VSS_RME_RESTORE_TO_ALTERNATE_LOCATION = VSS_RESTOREMETHOD_ENUM.RESTORE_TO_ALTERNATE_LOCATION;
-pub const VSS_RME_RESTORE_AT_REBOOT = VSS_RESTOREMETHOD_ENUM.RESTORE_AT_REBOOT;
-pub const VSS_RME_RESTORE_AT_REBOOT_IF_CANNOT_REPLACE = VSS_RESTOREMETHOD_ENUM.RESTORE_AT_REBOOT_IF_CANNOT_REPLACE;
-pub const VSS_RME_CUSTOM = VSS_RESTOREMETHOD_ENUM.CUSTOM;
-pub const VSS_RME_RESTORE_STOP_START = VSS_RESTOREMETHOD_ENUM.RESTORE_STOP_START;
-
-pub const VSS_WRITERRESTORE_ENUM = enum(i32) {
-    UNDEFINED = 0,
-    NEVER = 1,
-    IF_REPLACE_FAILS = 2,
-    ALWAYS = 3,
-};
-pub const VSS_WRE_UNDEFINED = VSS_WRITERRESTORE_ENUM.UNDEFINED;
-pub const VSS_WRE_NEVER = VSS_WRITERRESTORE_ENUM.NEVER;
-pub const VSS_WRE_IF_REPLACE_FAILS = VSS_WRITERRESTORE_ENUM.IF_REPLACE_FAILS;
-pub const VSS_WRE_ALWAYS = VSS_WRITERRESTORE_ENUM.ALWAYS;
-
-pub const VSS_COMPONENT_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    DATABASE = 1,
-    FILEGROUP = 2,
-};
-pub const VSS_CT_UNDEFINED = VSS_COMPONENT_TYPE.UNDEFINED;
-pub const VSS_CT_DATABASE = VSS_COMPONENT_TYPE.DATABASE;
-pub const VSS_CT_FILEGROUP = VSS_COMPONENT_TYPE.FILEGROUP;
-
-pub const VSS_ALTERNATE_WRITER_STATE = enum(i32) {
-    UNDEFINED = 0,
-    NO_ALTERNATE_WRITER = 1,
-    ALTERNATE_WRITER_EXISTS = 2,
-    THIS_IS_ALTERNATE_WRITER = 3,
-};
-pub const VSS_AWS_UNDEFINED = VSS_ALTERNATE_WRITER_STATE.UNDEFINED;
-pub const VSS_AWS_NO_ALTERNATE_WRITER = VSS_ALTERNATE_WRITER_STATE.NO_ALTERNATE_WRITER;
-pub const VSS_AWS_ALTERNATE_WRITER_EXISTS = VSS_ALTERNATE_WRITER_STATE.ALTERNATE_WRITER_EXISTS;
-pub const VSS_AWS_THIS_IS_ALTERNATE_WRITER = VSS_ALTERNATE_WRITER_STATE.THIS_IS_ALTERNATE_WRITER;
-
-pub const VSS_SUBSCRIBE_MASK = enum(i32) {
-    POST_SNAPSHOT_FLAG = 1,
-    BACKUP_EVENTS_FLAG = 2,
-    RESTORE_EVENTS_FLAG = 4,
-    IO_THROTTLING_FLAG = 8,
-    ALL_FLAGS = -1,
-};
-pub const VSS_SM_POST_SNAPSHOT_FLAG = VSS_SUBSCRIBE_MASK.POST_SNAPSHOT_FLAG;
-pub const VSS_SM_BACKUP_EVENTS_FLAG = VSS_SUBSCRIBE_MASK.BACKUP_EVENTS_FLAG;
-pub const VSS_SM_RESTORE_EVENTS_FLAG = VSS_SUBSCRIBE_MASK.RESTORE_EVENTS_FLAG;
-pub const VSS_SM_IO_THROTTLING_FLAG = VSS_SUBSCRIBE_MASK.IO_THROTTLING_FLAG;
-pub const VSS_SM_ALL_FLAGS = VSS_SUBSCRIBE_MASK.ALL_FLAGS;
-
-pub const VSS_RESTORE_TARGET = enum(i32) {
-    UNDEFINED = 0,
-    ORIGINAL = 1,
-    ALTERNATE = 2,
-    DIRECTED = 3,
-    ORIGINAL_LOCATION = 4,
-};
-pub const VSS_RT_UNDEFINED = VSS_RESTORE_TARGET.UNDEFINED;
-pub const VSS_RT_ORIGINAL = VSS_RESTORE_TARGET.ORIGINAL;
-pub const VSS_RT_ALTERNATE = VSS_RESTORE_TARGET.ALTERNATE;
-pub const VSS_RT_DIRECTED = VSS_RESTORE_TARGET.DIRECTED;
-pub const VSS_RT_ORIGINAL_LOCATION = VSS_RESTORE_TARGET.ORIGINAL_LOCATION;
-
-pub const VSS_FILE_RESTORE_STATUS = enum(i32) {
-    UNDEFINED = 0,
-    NONE = 1,
-    ALL = 2,
-    FAILED = 3,
-};
-pub const VSS_RS_UNDEFINED = VSS_FILE_RESTORE_STATUS.UNDEFINED;
-pub const VSS_RS_NONE = VSS_FILE_RESTORE_STATUS.NONE;
-pub const VSS_RS_ALL = VSS_FILE_RESTORE_STATUS.ALL;
-pub const VSS_RS_FAILED = VSS_FILE_RESTORE_STATUS.FAILED;
-
-pub const VSS_COMPONENT_FLAGS = enum(i32) {
-    BACKUP_RECOVERY = 1,
-    APP_ROLLBACK_RECOVERY = 2,
-    NOT_SYSTEM_STATE = 4,
-};
-pub const VSS_CF_BACKUP_RECOVERY = VSS_COMPONENT_FLAGS.BACKUP_RECOVERY;
-pub const VSS_CF_APP_ROLLBACK_RECOVERY = VSS_COMPONENT_FLAGS.APP_ROLLBACK_RECOVERY;
-pub const VSS_CF_NOT_SYSTEM_STATE = VSS_COMPONENT_FLAGS.NOT_SYSTEM_STATE;
-
-pub const IVssExamineWriterMetadata = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IVssWMFiledesc = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPath: *const fn(
-            self: *const IVssWMFiledesc,
-            pbstrPath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetFilespec: *const fn(
-            self: *const IVssWMFiledesc,
-            pbstrFilespec: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetRecursive: *const fn(
-            self: *const IVssWMFiledesc,
-            pbRecursive: ?*bool,
-        ) callconv(.winapi) HRESULT,
-        GetAlternateLocation: *const fn(
-            self: *const IVssWMFiledesc,
-            pbstrAlternateLocation: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetBackupTypeMask: *const fn(
-            self: *const IVssWMFiledesc,
-            pdwTypeMask: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPath(self: *const IVssWMFiledesc, pbstrPath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPath(self, pbstrPath);
-    }
-    pub fn GetFilespec(self: *const IVssWMFiledesc, pbstrFilespec: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFilespec(self, pbstrFilespec);
-    }
-    pub fn GetRecursive(self: *const IVssWMFiledesc, pbRecursive: ?*bool) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRecursive(self, pbRecursive);
-    }
-    pub fn GetAlternateLocation(self: *const IVssWMFiledesc, pbstrAlternateLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAlternateLocation(self, pbstrAlternateLocation);
-    }
-    pub fn GetBackupTypeMask(self: *const IVssWMFiledesc, pdwTypeMask: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBackupTypeMask(self, pdwTypeMask);
-    }
-};
-
-pub const IVssWMDependency = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWriterId: *const fn(
-            self: *const IVssWMDependency,
-            pWriterId: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetLogicalPath: *const fn(
-            self: *const IVssWMDependency,
-            pbstrLogicalPath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetComponentName: *const fn(
-            self: *const IVssWMDependency,
-            pbstrComponentName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetWriterId(self: *const IVssWMDependency, pWriterId: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWriterId(self, pWriterId);
-    }
-    pub fn GetLogicalPath(self: *const IVssWMDependency, pbstrLogicalPath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLogicalPath(self, pbstrLogicalPath);
-    }
-    pub fn GetComponentName(self: *const IVssWMDependency, pbstrComponentName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetComponentName(self, pbstrComponentName);
     }
 };
 
@@ -1065,35 +509,6 @@ pub const IVssComponent = extern union {
     }
 };
 
-pub const IVssWriterComponents = extern union {
-    pub const VTable = extern struct {
-        GetComponentCount: *const fn(
-            self: *const IVssWriterComponents,
-            pcComponents: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetWriterInfo: *const fn(
-            self: *const IVssWriterComponents,
-            pidInstance: ?*Guid,
-            pidWriter: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetComponent: *const fn(
-            self: *const IVssWriterComponents,
-            iComponent: u32,
-            ppComponent: ?*?*IVssComponent,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn GetComponentCount(self: *const IVssWriterComponents, pcComponents: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetComponentCount(self, pcComponents);
-    }
-    pub fn GetWriterInfo(self: *const IVssWriterComponents, pidInstance: ?*Guid, pidWriter: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWriterInfo(self, pidInstance, pidWriter);
-    }
-    pub fn GetComponent(self: *const IVssWriterComponents, iComponent: u32, ppComponent: ?*?*IVssComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.GetComponent(self, iComponent, ppComponent);
-    }
-};
-
 const IID_IVssComponentEx_Value = Guid.initString("156c8b5e-f131-4bd7-9c97-d1923be7e1fa");
 pub const IID_IVssComponentEx = &IID_IVssComponentEx_Value;
 pub const IVssComponentEx = extern union {
@@ -1184,6 +599,91 @@ pub const IVssComponentEx2 = extern union {
     }
     pub fn GetFailure(self: *const IVssComponentEx2, phr: ?*HRESULT, phrApplication: ?*HRESULT, pbstrApplicationMessage: ?*?BSTR, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFailure(self, phr, phrApplication, pbstrApplicationMessage, pdwReserved);
+    }
+};
+
+const IID_IVssCreateExpressWriterMetadata_Value = Guid.initString("9c772e77-b26e-427f-92dd-c996f41ea5e3");
+pub const IID_IVssCreateExpressWriterMetadata = &IID_IVssCreateExpressWriterMetadata_Value;
+pub const IVssCreateExpressWriterMetadata = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddExcludeFiles: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+        ) callconv(.winapi) HRESULT,
+        AddComponent: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            ct: VSS_COMPONENT_TYPE,
+            wszLogicalPath: ?[*:0]const u16,
+            wszComponentName: ?[*:0]const u16,
+            wszCaption: ?[*:0]const u16,
+            pbIcon: ?*const u8,
+            cbIcon: u32,
+            bRestoreMetadata: u8,
+            bNotifyOnBackupComplete: u8,
+            bSelectable: u8,
+            bSelectableForRestore: u8,
+            dwComponentFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        AddFilesToFileGroup: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            wszLogicalPath: ?[*:0]const u16,
+            wszGroupName: ?[*:0]const u16,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+            wszAlternateLocation: ?[*:0]const u16,
+            dwBackupTypeMask: u32,
+        ) callconv(.winapi) HRESULT,
+        SetRestoreMethod: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            method: VSS_RESTOREMETHOD_ENUM,
+            wszService: ?[*:0]const u16,
+            wszUserProcedure: ?[*:0]const u16,
+            writerRestore: VSS_WRITERRESTORE_ENUM,
+            bRebootRequired: u8,
+        ) callconv(.winapi) HRESULT,
+        AddComponentDependency: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            wszForLogicalPath: ?[*:0]const u16,
+            wszForComponentName: ?[*:0]const u16,
+            onWriterId: Guid,
+            wszOnLogicalPath: ?[*:0]const u16,
+            wszOnComponentName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        SetBackupSchema: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            dwSchemaMask: u32,
+        ) callconv(.winapi) HRESULT,
+        SaveAsXML: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            pbstrXML: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddExcludeFiles(self: *const IVssCreateExpressWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExcludeFiles(self, wszPath, wszFilespec, bRecursive);
+    }
+    pub fn AddComponent(self: *const IVssCreateExpressWriterMetadata, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddComponent(self, ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
+    }
+    pub fn AddFilesToFileGroup(self: *const IVssCreateExpressWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddFilesToFileGroup(self, wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
+    }
+    pub fn SetRestoreMethod(self: *const IVssCreateExpressWriterMetadata, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRestoreMethod(self, method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
+    }
+    pub fn AddComponentDependency(self: *const IVssCreateExpressWriterMetadata, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.AddComponentDependency(self, wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
+    }
+    pub fn SetBackupSchema(self: *const IVssCreateExpressWriterMetadata, dwSchemaMask: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetBackupSchema(self, dwSchemaMask);
+    }
+    pub fn SaveAsXML(self: *const IVssCreateExpressWriterMetadata, pbstrXML: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveAsXML(self, pbstrXML);
     }
 };
 
@@ -1314,452 +814,6 @@ pub const IVssCreateWriterMetadata = extern union {
     }
     pub fn SaveAsXML(self: *const IVssCreateWriterMetadata, pbstrXML: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SaveAsXML(self, pbstrXML);
-    }
-};
-
-pub const IVssWriterImpl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IVssWriterImpl,
-            writerId: Guid,
-            wszWriterName: ?[*:0]const u16,
-            wszWriterInstanceName: ?[*:0]const u16,
-            dwMajorVersion: u32,
-            dwMinorVersion: u32,
-            ut: VSS_USAGE_TYPE,
-            st: VSS_SOURCE_TYPE,
-            nLevel: VSS_APPLICATION_LEVEL,
-            dwTimeout: u32,
-            aws: VSS_ALTERNATE_WRITER_STATE,
-            bIOThrottlingOnly: u8,
-        ) callconv(.winapi) HRESULT,
-        Subscribe: *const fn(
-            self: *const IVssWriterImpl,
-            dwSubscribeTimeout: u32,
-            dwEventFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        Unsubscribe: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) HRESULT,
-        Uninitialize: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) void,
-        GetCurrentVolumeArray: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) ?*?PWSTR,
-        GetCurrentVolumeCount: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) u32,
-        GetSnapshotDeviceName: *const fn(
-            self: *const IVssWriterImpl,
-            wszOriginalVolume: ?[*:0]const u16,
-            ppwszSnapshotDevice: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentSnapshotSetId: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) Guid,
-        GetContext: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) i32,
-        GetCurrentLevel: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) VSS_APPLICATION_LEVEL,
-        IsPathAffected: *const fn(
-            self: *const IVssWriterImpl,
-            wszPath: ?[*:0]const u16,
-        ) callconv(.winapi) bool,
-        IsBootableSystemStateBackedUp: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) bool,
-        AreComponentsSelected: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) bool,
-        GetBackupType: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) VSS_BACKUP_TYPE,
-        GetRestoreType: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) VSS_RESTORE_TYPE,
-        SetWriterFailure: *const fn(
-            self: *const IVssWriterImpl,
-            hr: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        IsPartialFileSupportEnabled: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) bool,
-        InstallAlternateWriter: *const fn(
-            self: *const IVssWriterImpl,
-            idWriter: Guid,
-            clsid: Guid,
-        ) callconv(.winapi) HRESULT,
-        GetIdentityInformation: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) ?*IVssExamineWriterMetadata,
-        SetWriterFailureEx: *const fn(
-            self: *const IVssWriterImpl,
-            hr: HRESULT,
-            hrApplication: HRESULT,
-            wszApplicationMessage: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetSessionId: *const fn(
-            self: *const IVssWriterImpl,
-            idSession: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        IsWriterShuttingDown: *const fn(
-            self: *const IVssWriterImpl,
-        ) callconv(.winapi) bool,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IVssWriterImpl, writerId: Guid, wszWriterName: ?[*:0]const u16, wszWriterInstanceName: ?[*:0]const u16, dwMajorVersion: u32, dwMinorVersion: u32, ut: VSS_USAGE_TYPE, st: VSS_SOURCE_TYPE, nLevel: VSS_APPLICATION_LEVEL, dwTimeout: u32, aws: VSS_ALTERNATE_WRITER_STATE, bIOThrottlingOnly: u8) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, writerId, wszWriterName, wszWriterInstanceName, dwMajorVersion, dwMinorVersion, ut, st, nLevel, dwTimeout, aws, bIOThrottlingOnly);
-    }
-    pub fn Subscribe(self: *const IVssWriterImpl, dwSubscribeTimeout: u32, dwEventFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Subscribe(self, dwSubscribeTimeout, dwEventFlags);
-    }
-    pub fn Unsubscribe(self: *const IVssWriterImpl) callconv(.@"inline") HRESULT {
-        return self.vtable.Unsubscribe(self);
-    }
-    pub fn Uninitialize(self: *const IVssWriterImpl) callconv(.@"inline") void {
-        return self.vtable.Uninitialize(self);
-    }
-    pub fn GetCurrentVolumeArray(self: *const IVssWriterImpl) callconv(.@"inline") ?*?PWSTR {
-        return self.vtable.GetCurrentVolumeArray(self);
-    }
-    pub fn GetCurrentVolumeCount(self: *const IVssWriterImpl) callconv(.@"inline") u32 {
-        return self.vtable.GetCurrentVolumeCount(self);
-    }
-    pub fn GetSnapshotDeviceName(self: *const IVssWriterImpl, wszOriginalVolume: ?[*:0]const u16, ppwszSnapshotDevice: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSnapshotDeviceName(self, wszOriginalVolume, ppwszSnapshotDevice);
-    }
-    pub fn GetCurrentSnapshotSetId(self: *const IVssWriterImpl) callconv(.@"inline") Guid {
-        return self.vtable.GetCurrentSnapshotSetId(self);
-    }
-    pub fn GetContext(self: *const IVssWriterImpl) callconv(.@"inline") i32 {
-        return self.vtable.GetContext(self);
-    }
-    pub fn GetCurrentLevel(self: *const IVssWriterImpl) callconv(.@"inline") VSS_APPLICATION_LEVEL {
-        return self.vtable.GetCurrentLevel(self);
-    }
-    pub fn IsPathAffected(self: *const IVssWriterImpl, wszPath: ?[*:0]const u16) callconv(.@"inline") bool {
-        return self.vtable.IsPathAffected(self, wszPath);
-    }
-    pub fn IsBootableSystemStateBackedUp(self: *const IVssWriterImpl) callconv(.@"inline") bool {
-        return self.vtable.IsBootableSystemStateBackedUp(self);
-    }
-    pub fn AreComponentsSelected(self: *const IVssWriterImpl) callconv(.@"inline") bool {
-        return self.vtable.AreComponentsSelected(self);
-    }
-    pub fn GetBackupType(self: *const IVssWriterImpl) callconv(.@"inline") VSS_BACKUP_TYPE {
-        return self.vtable.GetBackupType(self);
-    }
-    pub fn GetRestoreType(self: *const IVssWriterImpl) callconv(.@"inline") VSS_RESTORE_TYPE {
-        return self.vtable.GetRestoreType(self);
-    }
-    pub fn SetWriterFailure(self: *const IVssWriterImpl, hr: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWriterFailure(self, hr);
-    }
-    pub fn IsPartialFileSupportEnabled(self: *const IVssWriterImpl) callconv(.@"inline") bool {
-        return self.vtable.IsPartialFileSupportEnabled(self);
-    }
-    pub fn InstallAlternateWriter(self: *const IVssWriterImpl, idWriter: Guid, clsid: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.InstallAlternateWriter(self, idWriter, clsid);
-    }
-    pub fn GetIdentityInformation(self: *const IVssWriterImpl) callconv(.@"inline") ?*IVssExamineWriterMetadata {
-        return self.vtable.GetIdentityInformation(self);
-    }
-    pub fn SetWriterFailureEx(self: *const IVssWriterImpl, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWriterFailureEx(self, hr, hrApplication, wszApplicationMessage);
-    }
-    pub fn GetSessionId(self: *const IVssWriterImpl, idSession: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSessionId(self, idSession);
-    }
-    pub fn IsWriterShuttingDown(self: *const IVssWriterImpl) callconv(.@"inline") bool {
-        return self.vtable.IsWriterShuttingDown(self);
-    }
-};
-
-const IID_IVssCreateExpressWriterMetadata_Value = Guid.initString("9c772e77-b26e-427f-92dd-c996f41ea5e3");
-pub const IID_IVssCreateExpressWriterMetadata = &IID_IVssCreateExpressWriterMetadata_Value;
-pub const IVssCreateExpressWriterMetadata = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddExcludeFiles: *const fn(
-            self: *const IVssCreateExpressWriterMetadata,
-            wszPath: ?[*:0]const u16,
-            wszFilespec: ?[*:0]const u16,
-            bRecursive: u8,
-        ) callconv(.winapi) HRESULT,
-        AddComponent: *const fn(
-            self: *const IVssCreateExpressWriterMetadata,
-            ct: VSS_COMPONENT_TYPE,
-            wszLogicalPath: ?[*:0]const u16,
-            wszComponentName: ?[*:0]const u16,
-            wszCaption: ?[*:0]const u16,
-            pbIcon: ?*const u8,
-            cbIcon: u32,
-            bRestoreMetadata: u8,
-            bNotifyOnBackupComplete: u8,
-            bSelectable: u8,
-            bSelectableForRestore: u8,
-            dwComponentFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        AddFilesToFileGroup: *const fn(
-            self: *const IVssCreateExpressWriterMetadata,
-            wszLogicalPath: ?[*:0]const u16,
-            wszGroupName: ?[*:0]const u16,
-            wszPath: ?[*:0]const u16,
-            wszFilespec: ?[*:0]const u16,
-            bRecursive: u8,
-            wszAlternateLocation: ?[*:0]const u16,
-            dwBackupTypeMask: u32,
-        ) callconv(.winapi) HRESULT,
-        SetRestoreMethod: *const fn(
-            self: *const IVssCreateExpressWriterMetadata,
-            method: VSS_RESTOREMETHOD_ENUM,
-            wszService: ?[*:0]const u16,
-            wszUserProcedure: ?[*:0]const u16,
-            writerRestore: VSS_WRITERRESTORE_ENUM,
-            bRebootRequired: u8,
-        ) callconv(.winapi) HRESULT,
-        AddComponentDependency: *const fn(
-            self: *const IVssCreateExpressWriterMetadata,
-            wszForLogicalPath: ?[*:0]const u16,
-            wszForComponentName: ?[*:0]const u16,
-            onWriterId: Guid,
-            wszOnLogicalPath: ?[*:0]const u16,
-            wszOnComponentName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        SetBackupSchema: *const fn(
-            self: *const IVssCreateExpressWriterMetadata,
-            dwSchemaMask: u32,
-        ) callconv(.winapi) HRESULT,
-        SaveAsXML: *const fn(
-            self: *const IVssCreateExpressWriterMetadata,
-            pbstrXML: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddExcludeFiles(self: *const IVssCreateExpressWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExcludeFiles(self, wszPath, wszFilespec, bRecursive);
-    }
-    pub fn AddComponent(self: *const IVssCreateExpressWriterMetadata, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddComponent(self, ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
-    }
-    pub fn AddFilesToFileGroup(self: *const IVssCreateExpressWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddFilesToFileGroup(self, wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
-    }
-    pub fn SetRestoreMethod(self: *const IVssCreateExpressWriterMetadata, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRestoreMethod(self, method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
-    }
-    pub fn AddComponentDependency(self: *const IVssCreateExpressWriterMetadata, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.AddComponentDependency(self, wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
-    }
-    pub fn SetBackupSchema(self: *const IVssCreateExpressWriterMetadata, dwSchemaMask: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetBackupSchema(self, dwSchemaMask);
-    }
-    pub fn SaveAsXML(self: *const IVssCreateExpressWriterMetadata, pbstrXML: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveAsXML(self, pbstrXML);
-    }
-};
-
-const IID_IVssExpressWriter_Value = Guid.initString("e33affdc-59c7-47b1-97d5-4266598f6235");
-pub const IID_IVssExpressWriter = &IID_IVssExpressWriter_Value;
-pub const IVssExpressWriter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateMetadata: *const fn(
-            self: *const IVssExpressWriter,
-            writerId: Guid,
-            writerName: ?[*:0]const u16,
-            usageType: VSS_USAGE_TYPE,
-            versionMajor: u32,
-            versionMinor: u32,
-            reserved: u32,
-            ppMetadata: ?*?*IVssCreateExpressWriterMetadata,
-        ) callconv(.winapi) HRESULT,
-        LoadMetadata: *const fn(
-            self: *const IVssExpressWriter,
-            metadata: ?[*:0]const u16,
-            reserved: u32,
-        ) callconv(.winapi) HRESULT,
-        Register: *const fn(
-            self: *const IVssExpressWriter,
-        ) callconv(.winapi) HRESULT,
-        Unregister: *const fn(
-            self: *const IVssExpressWriter,
-            writerId: Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateMetadata(self: *const IVssExpressWriter, writerId: Guid, writerName: ?[*:0]const u16, usageType: VSS_USAGE_TYPE, versionMajor: u32, versionMinor: u32, reserved: u32, ppMetadata: ?*?*IVssCreateExpressWriterMetadata) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateMetadata(self, writerId, writerName, usageType, versionMajor, versionMinor, reserved, ppMetadata);
-    }
-    pub fn LoadMetadata(self: *const IVssExpressWriter, metadata: ?[*:0]const u16, reserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadMetadata(self, metadata, reserved);
-    }
-    pub fn Register(self: *const IVssExpressWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.Register(self);
-    }
-    pub fn Unregister(self: *const IVssExpressWriter, writerId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Unregister(self, writerId);
-    }
-};
-
-const CLSID_VssSnapshotMgmt_Value = Guid.initString("0b5a2c52-3eb9-470a-96e2-6c6d4570e40f");
-pub const CLSID_VssSnapshotMgmt = &CLSID_VssSnapshotMgmt_Value;
-
-pub const VSS_MGMT_OBJECT_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    VOLUME = 1,
-    DIFF_VOLUME = 2,
-    DIFF_AREA = 3,
-};
-pub const VSS_MGMT_OBJECT_UNKNOWN = VSS_MGMT_OBJECT_TYPE.UNKNOWN;
-pub const VSS_MGMT_OBJECT_VOLUME = VSS_MGMT_OBJECT_TYPE.VOLUME;
-pub const VSS_MGMT_OBJECT_DIFF_VOLUME = VSS_MGMT_OBJECT_TYPE.DIFF_VOLUME;
-pub const VSS_MGMT_OBJECT_DIFF_AREA = VSS_MGMT_OBJECT_TYPE.DIFF_AREA;
-
-pub const VSS_VOLUME_PROP = extern struct {
-    m_pwszVolumeName: ?*u16,
-    m_pwszVolumeDisplayName: ?*u16,
-};
-
-pub const VSS_DIFF_VOLUME_PROP = extern struct {
-    m_pwszVolumeName: ?*u16,
-    m_pwszVolumeDisplayName: ?*u16,
-    m_llVolumeFreeSpace: i64,
-    m_llVolumeTotalSpace: i64,
-};
-
-pub const VSS_DIFF_AREA_PROP = extern struct {
-    m_pwszVolumeName: ?*u16,
-    m_pwszDiffAreaVolumeName: ?*u16,
-    m_llMaximumDiffSpace: i64,
-    m_llAllocatedDiffSpace: i64,
-    m_llUsedDiffSpace: i64,
-};
-
-pub const VSS_MGMT_OBJECT_UNION = extern union {
-    Vol: VSS_VOLUME_PROP,
-    DiffVol: VSS_DIFF_VOLUME_PROP,
-    DiffArea: VSS_DIFF_AREA_PROP,
-};
-
-pub const VSS_MGMT_OBJECT_PROP = extern struct {
-    Type: VSS_MGMT_OBJECT_TYPE,
-    Obj: VSS_MGMT_OBJECT_UNION,
-};
-
-pub const VSS_PROTECTION_LEVEL = enum(i32) {
-    ORIGINAL_VOLUME = 0,
-    SNAPSHOT = 1,
-};
-pub const VSS_PROTECTION_LEVEL_ORIGINAL_VOLUME = VSS_PROTECTION_LEVEL.ORIGINAL_VOLUME;
-pub const VSS_PROTECTION_LEVEL_SNAPSHOT = VSS_PROTECTION_LEVEL.SNAPSHOT;
-
-pub const VSS_PROTECTION_FAULT = enum(i32) {
-    NONE = 0,
-    DIFF_AREA_MISSING = 1,
-    IO_FAILURE_DURING_ONLINE = 2,
-    META_DATA_CORRUPTION = 3,
-    MEMORY_ALLOCATION_FAILURE = 4,
-    MAPPED_MEMORY_FAILURE = 5,
-    COW_READ_FAILURE = 6,
-    COW_WRITE_FAILURE = 7,
-    DIFF_AREA_FULL = 8,
-    GROW_TOO_SLOW = 9,
-    GROW_FAILED = 10,
-    DESTROY_ALL_SNAPSHOTS = 11,
-    FILE_SYSTEM_FAILURE = 12,
-    IO_FAILURE = 13,
-    DIFF_AREA_REMOVED = 14,
-    EXTERNAL_WRITER_TO_DIFF_AREA = 15,
-    MOUNT_DURING_CLUSTER_OFFLINE = 16,
-};
-pub const VSS_PROTECTION_FAULT_NONE = VSS_PROTECTION_FAULT.NONE;
-pub const VSS_PROTECTION_FAULT_DIFF_AREA_MISSING = VSS_PROTECTION_FAULT.DIFF_AREA_MISSING;
-pub const VSS_PROTECTION_FAULT_IO_FAILURE_DURING_ONLINE = VSS_PROTECTION_FAULT.IO_FAILURE_DURING_ONLINE;
-pub const VSS_PROTECTION_FAULT_META_DATA_CORRUPTION = VSS_PROTECTION_FAULT.META_DATA_CORRUPTION;
-pub const VSS_PROTECTION_FAULT_MEMORY_ALLOCATION_FAILURE = VSS_PROTECTION_FAULT.MEMORY_ALLOCATION_FAILURE;
-pub const VSS_PROTECTION_FAULT_MAPPED_MEMORY_FAILURE = VSS_PROTECTION_FAULT.MAPPED_MEMORY_FAILURE;
-pub const VSS_PROTECTION_FAULT_COW_READ_FAILURE = VSS_PROTECTION_FAULT.COW_READ_FAILURE;
-pub const VSS_PROTECTION_FAULT_COW_WRITE_FAILURE = VSS_PROTECTION_FAULT.COW_WRITE_FAILURE;
-pub const VSS_PROTECTION_FAULT_DIFF_AREA_FULL = VSS_PROTECTION_FAULT.DIFF_AREA_FULL;
-pub const VSS_PROTECTION_FAULT_GROW_TOO_SLOW = VSS_PROTECTION_FAULT.GROW_TOO_SLOW;
-pub const VSS_PROTECTION_FAULT_GROW_FAILED = VSS_PROTECTION_FAULT.GROW_FAILED;
-pub const VSS_PROTECTION_FAULT_DESTROY_ALL_SNAPSHOTS = VSS_PROTECTION_FAULT.DESTROY_ALL_SNAPSHOTS;
-pub const VSS_PROTECTION_FAULT_FILE_SYSTEM_FAILURE = VSS_PROTECTION_FAULT.FILE_SYSTEM_FAILURE;
-pub const VSS_PROTECTION_FAULT_IO_FAILURE = VSS_PROTECTION_FAULT.IO_FAILURE;
-pub const VSS_PROTECTION_FAULT_DIFF_AREA_REMOVED = VSS_PROTECTION_FAULT.DIFF_AREA_REMOVED;
-pub const VSS_PROTECTION_FAULT_EXTERNAL_WRITER_TO_DIFF_AREA = VSS_PROTECTION_FAULT.EXTERNAL_WRITER_TO_DIFF_AREA;
-pub const VSS_PROTECTION_FAULT_MOUNT_DURING_CLUSTER_OFFLINE = VSS_PROTECTION_FAULT.MOUNT_DURING_CLUSTER_OFFLINE;
-
-pub const VSS_VOLUME_PROTECTION_INFO = extern struct {
-    m_protectionLevel: VSS_PROTECTION_LEVEL,
-    m_volumeIsOfflineForProtection: BOOL,
-    m_protectionFault: VSS_PROTECTION_FAULT,
-    m_failureStatus: i32,
-    m_volumeHasUnusedDiffArea: BOOL,
-    m_reserved: u32,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVssSnapshotMgmt_Value = Guid.initString("fa7df749-66e7-4986-a27f-e2f04ae53772");
-pub const IID_IVssSnapshotMgmt = &IID_IVssSnapshotMgmt_Value;
-pub const IVssSnapshotMgmt = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProviderMgmtInterface: *const fn(
-            self: *const IVssSnapshotMgmt,
-            ProviderId: Guid,
-            InterfaceId: ?*const Guid,
-            ppItf: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-        QueryVolumesSupportedForSnapshots: *const fn(
-            self: *const IVssSnapshotMgmt,
-            ProviderId: Guid,
-            lContext: i32,
-            ppEnum: ?*?*IVssEnumMgmtObject,
-        ) callconv(.winapi) HRESULT,
-        QuerySnapshotsByVolume: *const fn(
-            self: *const IVssSnapshotMgmt,
-            pwszVolumeName: ?*u16,
-            ProviderId: Guid,
-            ppEnum: ?*?*IVssEnumObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProviderMgmtInterface(self: *const IVssSnapshotMgmt, ProviderId: Guid, InterfaceId: ?*const Guid, ppItf: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProviderMgmtInterface(self, ProviderId, InterfaceId, ppItf);
-    }
-    pub fn QueryVolumesSupportedForSnapshots(self: *const IVssSnapshotMgmt, ProviderId: Guid, lContext: i32, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryVolumesSupportedForSnapshots(self, ProviderId, lContext, ppEnum);
-    }
-    pub fn QuerySnapshotsByVolume(self: *const IVssSnapshotMgmt, pwszVolumeName: ?*u16, ProviderId: Guid, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QuerySnapshotsByVolume(self, pwszVolumeName, ProviderId, ppEnum);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVssSnapshotMgmt2_Value = Guid.initString("0f61ec39-fe82-45f2-a3f0-768b5d427102");
-pub const IID_IVssSnapshotMgmt2 = &IID_IVssSnapshotMgmt2_Value;
-pub const IVssSnapshotMgmt2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetMinDiffAreaSize: *const fn(
-            self: *const IVssSnapshotMgmt2,
-            pllMinDiffAreaSize: ?*i64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetMinDiffAreaSize(self: *const IVssSnapshotMgmt2, pllMinDiffAreaSize: ?*i64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMinDiffAreaSize(self, pllMinDiffAreaSize);
     }
 };
 
@@ -1966,111 +1020,118 @@ pub const IVssEnumMgmtObject = extern union {
     }
 };
 
-const CLSID_VSSCoordinator_Value = Guid.initString("e579ab5f-1cc4-44b4-bed9-de0991ff0623");
-pub const CLSID_VSSCoordinator = &CLSID_VSSCoordinator_Value;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVssAdmin_Value = Guid.initString("77ed5996-2f63-11d3-8a39-00c04f72d8e3");
-pub const IID_IVssAdmin = &IID_IVssAdmin_Value;
-pub const IVssAdmin = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IVssEnumObject_Value = Guid.initString("ae1c7110-2f60-11d3-8a39-00c04f72d8e3");
+pub const IID_IVssEnumObject = &IID_IVssEnumObject_Value;
+pub const IVssEnumObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterProvider: *const fn(
-            self: *const IVssAdmin,
-            pProviderId: Guid,
-            ClassId: Guid,
-            pwszProviderName: ?*u16,
-            eProviderType: VSS_PROVIDER_TYPE,
-            pwszProviderVersion: ?*u16,
-            ProviderVersionId: Guid,
+        Next: *const fn(
+            self: *const IVssEnumObject,
+            celt: u32,
+            rgelt: [*]VSS_OBJECT_PROP,
+            pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
-        UnregisterProvider: *const fn(
-            self: *const IVssAdmin,
-            ProviderId: Guid,
+        Skip: *const fn(
+            self: *const IVssEnumObject,
+            celt: u32,
         ) callconv(.winapi) HRESULT,
-        QueryProviders: *const fn(
-            self: *const IVssAdmin,
-            ppEnum: ?*?*IVssEnumObject,
+        Reset: *const fn(
+            self: *const IVssEnumObject,
         ) callconv(.winapi) HRESULT,
-        AbortAllSnapshotsInProgress: *const fn(
-            self: *const IVssAdmin,
+        Clone: *const fn(
+            self: *const IVssEnumObject,
+            ppenum: ?*?*IVssEnumObject,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterProvider(self: *const IVssAdmin, pProviderId: Guid, ClassId: Guid, pwszProviderName: ?*u16, eProviderType: VSS_PROVIDER_TYPE, pwszProviderVersion: ?*u16, ProviderVersionId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterProvider(self, pProviderId, ClassId, pwszProviderName, eProviderType, pwszProviderVersion, ProviderVersionId);
+    pub fn Next(self: *const IVssEnumObject, celt: u32, rgelt: [*]VSS_OBJECT_PROP, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn UnregisterProvider(self: *const IVssAdmin, ProviderId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterProvider(self, ProviderId);
+    pub fn Skip(self: *const IVssEnumObject, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
     }
-    pub fn QueryProviders(self: *const IVssAdmin, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryProviders(self, ppEnum);
+    pub fn Reset(self: *const IVssEnumObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
     }
-    pub fn AbortAllSnapshotsInProgress(self: *const IVssAdmin) callconv(.@"inline") HRESULT {
-        return self.vtable.AbortAllSnapshotsInProgress(self);
+    pub fn Clone(self: *const IVssEnumObject, ppenum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
-const IID_IVssAdminEx_Value = Guid.initString("7858a9f8-b1fa-41a6-964f-b9b36b8cd8d8");
-pub const IID_IVssAdminEx = &IID_IVssAdminEx_Value;
-pub const IVssAdminEx = extern union {
+pub const IVssExamineWriterMetadata = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+const IID_IVssExpressWriter_Value = Guid.initString("e33affdc-59c7-47b1-97d5-4266598f6235");
+pub const IID_IVssExpressWriter = &IID_IVssExpressWriter_Value;
+pub const IVssExpressWriter = extern union {
     pub const VTable = extern struct {
-        base: IVssAdmin.VTable,
-        GetProviderCapability: *const fn(
-            self: *const IVssAdminEx,
-            pProviderId: Guid,
-            pllOriginalCapabilityMask: ?*u64,
+        base: IUnknown.VTable,
+        CreateMetadata: *const fn(
+            self: *const IVssExpressWriter,
+            writerId: Guid,
+            writerName: ?[*:0]const u16,
+            usageType: VSS_USAGE_TYPE,
+            versionMajor: u32,
+            versionMinor: u32,
+            reserved: u32,
+            ppMetadata: ?*?*IVssCreateExpressWriterMetadata,
         ) callconv(.winapi) HRESULT,
-        GetProviderContext: *const fn(
-            self: *const IVssAdminEx,
-            ProviderId: Guid,
-            plContext: ?*i32,
+        LoadMetadata: *const fn(
+            self: *const IVssExpressWriter,
+            metadata: ?[*:0]const u16,
+            reserved: u32,
         ) callconv(.winapi) HRESULT,
-        SetProviderContext: *const fn(
-            self: *const IVssAdminEx,
-            ProviderId: Guid,
-            lContext: i32,
+        Register: *const fn(
+            self: *const IVssExpressWriter,
+        ) callconv(.winapi) HRESULT,
+        Unregister: *const fn(
+            self: *const IVssExpressWriter,
+            writerId: Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IVssAdmin: IVssAdmin,
     IUnknown: IUnknown,
-    pub fn GetProviderCapability(self: *const IVssAdminEx, pProviderId: Guid, pllOriginalCapabilityMask: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProviderCapability(self, pProviderId, pllOriginalCapabilityMask);
+    pub fn CreateMetadata(self: *const IVssExpressWriter, writerId: Guid, writerName: ?[*:0]const u16, usageType: VSS_USAGE_TYPE, versionMajor: u32, versionMinor: u32, reserved: u32, ppMetadata: ?*?*IVssCreateExpressWriterMetadata) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateMetadata(self, writerId, writerName, usageType, versionMajor, versionMinor, reserved, ppMetadata);
     }
-    pub fn GetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, plContext: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProviderContext(self, ProviderId, plContext);
+    pub fn LoadMetadata(self: *const IVssExpressWriter, metadata: ?[*:0]const u16, reserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadMetadata(self, metadata, reserved);
     }
-    pub fn SetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, lContext: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProviderContext(self, ProviderId, lContext);
+    pub fn Register(self: *const IVssExpressWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.Register(self);
+    }
+    pub fn Unregister(self: *const IVssExpressWriter, writerId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Unregister(self, writerId);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVssSoftwareSnapshotProvider_Value = Guid.initString("609e123e-2c5a-44d3-8f01-0b1d9a47d1ff");
-pub const IID_IVssSoftwareSnapshotProvider = &IID_IVssSoftwareSnapshotProvider_Value;
-pub const IVssSoftwareSnapshotProvider = extern union {
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IVssFileShareSnapshotProvider_Value = Guid.initString("c8636060-7c2e-11df-8c4a-0800200c9a66");
+pub const IID_IVssFileShareSnapshotProvider = &IID_IVssFileShareSnapshotProvider_Value;
+pub const IVssFileShareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetContext: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
+            self: *const IVssFileShareSnapshotProvider,
             lContext: i32,
         ) callconv(.winapi) HRESULT,
         GetSnapshotProperties: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
+            self: *const IVssFileShareSnapshotProvider,
             SnapshotId: Guid,
             pProp: ?*VSS_SNAPSHOT_PROP,
         ) callconv(.winapi) HRESULT,
         Query: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
+            self: *const IVssFileShareSnapshotProvider,
             QueriedObjectId: Guid,
             eQueriedObjectType: VSS_OBJECT_TYPE,
             eReturnedObjectsType: VSS_OBJECT_TYPE,
             ppEnum: ?*?*IVssEnumObject,
         ) callconv(.winapi) HRESULT,
         DeleteSnapshots: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
+            self: *const IVssFileShareSnapshotProvider,
             SourceObjectId: Guid,
             eSourceObjectType: VSS_OBJECT_TYPE,
             bForceDelete: BOOL,
@@ -2078,156 +1139,56 @@ pub const IVssSoftwareSnapshotProvider = extern union {
             pNondeletedSnapshotID: ?*Guid,
         ) callconv(.winapi) HRESULT,
         BeginPrepareSnapshot: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
+            self: *const IVssFileShareSnapshotProvider,
             SnapshotSetId: Guid,
             SnapshotId: Guid,
-            pwszVolumeName: ?*u16,
+            pwszSharePath: ?*u16,
             lNewContext: i32,
+            ProviderId: Guid,
         ) callconv(.winapi) HRESULT,
-        IsVolumeSupported: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
-            pwszVolumeName: ?*u16,
+        IsPathSupported: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            pwszSharePath: ?*u16,
             pbSupportedByThisProvider: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        IsVolumeSnapshotted: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
-            pwszVolumeName: ?*u16,
+        IsPathSnapshotted: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            pwszSharePath: ?*u16,
             pbSnapshotsPresent: ?*BOOL,
             plSnapshotCompatibility: ?*i32,
         ) callconv(.winapi) HRESULT,
         SetSnapshotProperty: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
+            self: *const IVssFileShareSnapshotProvider,
             SnapshotId: Guid,
             eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
             vProperty: VARIANT,
         ) callconv(.winapi) HRESULT,
-        RevertToSnapshot: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
-            SnapshotId: Guid,
-        ) callconv(.winapi) HRESULT,
-        QueryRevertStatus: *const fn(
-            self: *const IVssSoftwareSnapshotProvider,
-            pwszVolume: ?*u16,
-            ppAsync: ?*?*IVssAsync,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetContext(self: *const IVssSoftwareSnapshotProvider, lContext: i32) callconv(.@"inline") HRESULT {
+    pub fn SetContext(self: *const IVssFileShareSnapshotProvider, lContext: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetContext(self, lContext);
     }
-    pub fn GetSnapshotProperties(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.@"inline") HRESULT {
+    pub fn GetSnapshotProperties(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.@"inline") HRESULT {
         return self.vtable.GetSnapshotProperties(self, SnapshotId, pProp);
     }
-    pub fn Query(self: *const IVssSoftwareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
+    pub fn Query(self: *const IVssFileShareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
         return self.vtable.Query(self, QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
     }
-    pub fn DeleteSnapshots(self: *const IVssSoftwareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.@"inline") HRESULT {
+    pub fn DeleteSnapshots(self: *const IVssFileShareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteSnapshots(self, SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
     }
-    pub fn BeginPrepareSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszVolumeName: ?*u16, lNewContext: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszVolumeName, lNewContext);
+    pub fn BeginPrepareSnapshot(self: *const IVssFileShareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszSharePath: ?*u16, lNewContext: i32, ProviderId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszSharePath, lNewContext, ProviderId);
     }
-    pub fn IsVolumeSupported(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsVolumeSupported(self, pwszVolumeName, pbSupportedByThisProvider);
+    pub fn IsPathSupported(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsPathSupported(self, pwszSharePath, pbSupportedByThisProvider);
     }
-    pub fn IsVolumeSnapshotted(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.IsVolumeSnapshotted(self, pwszVolumeName, pbSnapshotsPresent, plSnapshotCompatibility);
+    pub fn IsPathSnapshotted(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.IsPathSnapshotted(self, pwszSharePath, pbSnapshotsPresent, plSnapshotCompatibility);
     }
-    pub fn SetSnapshotProperty(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.@"inline") HRESULT {
+    pub fn SetSnapshotProperty(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetSnapshotProperty(self, SnapshotId, eSnapshotPropertyId, vProperty);
-    }
-    pub fn RevertToSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RevertToSnapshot(self, SnapshotId);
-    }
-    pub fn QueryRevertStatus(self: *const IVssSoftwareSnapshotProvider, pwszVolume: ?*u16, ppAsync: ?*?*IVssAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryRevertStatus(self, pwszVolume, ppAsync);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVssProviderCreateSnapshotSet_Value = Guid.initString("5f894e5b-1e39-4778-8e23-9abad9f0e08c");
-pub const IID_IVssProviderCreateSnapshotSet = &IID_IVssProviderCreateSnapshotSet_Value;
-pub const IVssProviderCreateSnapshotSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EndPrepareSnapshots: *const fn(
-            self: *const IVssProviderCreateSnapshotSet,
-            SnapshotSetId: Guid,
-        ) callconv(.winapi) HRESULT,
-        PreCommitSnapshots: *const fn(
-            self: *const IVssProviderCreateSnapshotSet,
-            SnapshotSetId: Guid,
-        ) callconv(.winapi) HRESULT,
-        CommitSnapshots: *const fn(
-            self: *const IVssProviderCreateSnapshotSet,
-            SnapshotSetId: Guid,
-        ) callconv(.winapi) HRESULT,
-        PostCommitSnapshots: *const fn(
-            self: *const IVssProviderCreateSnapshotSet,
-            SnapshotSetId: Guid,
-            lSnapshotsCount: i32,
-        ) callconv(.winapi) HRESULT,
-        PreFinalCommitSnapshots: *const fn(
-            self: *const IVssProviderCreateSnapshotSet,
-            SnapshotSetId: Guid,
-        ) callconv(.winapi) HRESULT,
-        PostFinalCommitSnapshots: *const fn(
-            self: *const IVssProviderCreateSnapshotSet,
-            SnapshotSetId: Guid,
-        ) callconv(.winapi) HRESULT,
-        AbortSnapshots: *const fn(
-            self: *const IVssProviderCreateSnapshotSet,
-            SnapshotSetId: Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EndPrepareSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.EndPrepareSnapshots(self, SnapshotSetId);
-    }
-    pub fn PreCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.PreCommitSnapshots(self, SnapshotSetId);
-    }
-    pub fn CommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitSnapshots(self, SnapshotSetId);
-    }
-    pub fn PostCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid, lSnapshotsCount: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.PostCommitSnapshots(self, SnapshotSetId, lSnapshotsCount);
-    }
-    pub fn PreFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.PreFinalCommitSnapshots(self, SnapshotSetId);
-    }
-    pub fn PostFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.PostFinalCommitSnapshots(self, SnapshotSetId);
-    }
-    pub fn AbortSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.AbortSnapshots(self, SnapshotSetId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVssProviderNotifications_Value = Guid.initString("e561901f-03a5-4afe-86d0-72baeece7004");
-pub const IID_IVssProviderNotifications = &IID_IVssProviderNotifications_Value;
-pub const IVssProviderNotifications = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnLoad: *const fn(
-            self: *const IVssProviderNotifications,
-            pCallback: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        OnUnload: *const fn(
-            self: *const IVssProviderNotifications,
-            bForceUnload: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnLoad(self: *const IVssProviderNotifications, pCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.OnLoad(self, pCallback);
-    }
-    pub fn OnUnload(self: *const IVssProviderNotifications, bForceUnload: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUnload(self, bForceUnload);
     }
 };
 
@@ -2348,30 +1309,172 @@ pub const IVssHardwareSnapshotProviderEx = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IVssFileShareSnapshotProvider_Value = Guid.initString("c8636060-7c2e-11df-8c4a-0800200c9a66");
-pub const IID_IVssFileShareSnapshotProvider = &IID_IVssFileShareSnapshotProvider_Value;
-pub const IVssFileShareSnapshotProvider = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVssProviderCreateSnapshotSet_Value = Guid.initString("5f894e5b-1e39-4778-8e23-9abad9f0e08c");
+pub const IID_IVssProviderCreateSnapshotSet = &IID_IVssProviderCreateSnapshotSet_Value;
+pub const IVssProviderCreateSnapshotSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EndPrepareSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(.winapi) HRESULT,
+        PreCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(.winapi) HRESULT,
+        CommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(.winapi) HRESULT,
+        PostCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+            lSnapshotsCount: i32,
+        ) callconv(.winapi) HRESULT,
+        PreFinalCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(.winapi) HRESULT,
+        PostFinalCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(.winapi) HRESULT,
+        AbortSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EndPrepareSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.EndPrepareSnapshots(self, SnapshotSetId);
+    }
+    pub fn PreCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.PreCommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn CommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn PostCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid, lSnapshotsCount: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.PostCommitSnapshots(self, SnapshotSetId, lSnapshotsCount);
+    }
+    pub fn PreFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.PreFinalCommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn PostFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.PostFinalCommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn AbortSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.AbortSnapshots(self, SnapshotSetId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVssProviderNotifications_Value = Guid.initString("e561901f-03a5-4afe-86d0-72baeece7004");
+pub const IID_IVssProviderNotifications = &IID_IVssProviderNotifications_Value;
+pub const IVssProviderNotifications = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnLoad: *const fn(
+            self: *const IVssProviderNotifications,
+            pCallback: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        OnUnload: *const fn(
+            self: *const IVssProviderNotifications,
+            bForceUnload: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnLoad(self: *const IVssProviderNotifications, pCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.OnLoad(self, pCallback);
+    }
+    pub fn OnUnload(self: *const IVssProviderNotifications, bForceUnload: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUnload(self, bForceUnload);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVssSnapshotMgmt_Value = Guid.initString("fa7df749-66e7-4986-a27f-e2f04ae53772");
+pub const IID_IVssSnapshotMgmt = &IID_IVssSnapshotMgmt_Value;
+pub const IVssSnapshotMgmt = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProviderMgmtInterface: *const fn(
+            self: *const IVssSnapshotMgmt,
+            ProviderId: Guid,
+            InterfaceId: ?*const Guid,
+            ppItf: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        QueryVolumesSupportedForSnapshots: *const fn(
+            self: *const IVssSnapshotMgmt,
+            ProviderId: Guid,
+            lContext: i32,
+            ppEnum: ?*?*IVssEnumMgmtObject,
+        ) callconv(.winapi) HRESULT,
+        QuerySnapshotsByVolume: *const fn(
+            self: *const IVssSnapshotMgmt,
+            pwszVolumeName: ?*u16,
+            ProviderId: Guid,
+            ppEnum: ?*?*IVssEnumObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProviderMgmtInterface(self: *const IVssSnapshotMgmt, ProviderId: Guid, InterfaceId: ?*const Guid, ppItf: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProviderMgmtInterface(self, ProviderId, InterfaceId, ppItf);
+    }
+    pub fn QueryVolumesSupportedForSnapshots(self: *const IVssSnapshotMgmt, ProviderId: Guid, lContext: i32, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryVolumesSupportedForSnapshots(self, ProviderId, lContext, ppEnum);
+    }
+    pub fn QuerySnapshotsByVolume(self: *const IVssSnapshotMgmt, pwszVolumeName: ?*u16, ProviderId: Guid, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QuerySnapshotsByVolume(self, pwszVolumeName, ProviderId, ppEnum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVssSnapshotMgmt2_Value = Guid.initString("0f61ec39-fe82-45f2-a3f0-768b5d427102");
+pub const IID_IVssSnapshotMgmt2 = &IID_IVssSnapshotMgmt2_Value;
+pub const IVssSnapshotMgmt2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMinDiffAreaSize: *const fn(
+            self: *const IVssSnapshotMgmt2,
+            pllMinDiffAreaSize: ?*i64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMinDiffAreaSize(self: *const IVssSnapshotMgmt2, pllMinDiffAreaSize: ?*i64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMinDiffAreaSize(self, pllMinDiffAreaSize);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVssSoftwareSnapshotProvider_Value = Guid.initString("609e123e-2c5a-44d3-8f01-0b1d9a47d1ff");
+pub const IID_IVssSoftwareSnapshotProvider = &IID_IVssSoftwareSnapshotProvider_Value;
+pub const IVssSoftwareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetContext: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
+            self: *const IVssSoftwareSnapshotProvider,
             lContext: i32,
         ) callconv(.winapi) HRESULT,
         GetSnapshotProperties: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
+            self: *const IVssSoftwareSnapshotProvider,
             SnapshotId: Guid,
             pProp: ?*VSS_SNAPSHOT_PROP,
         ) callconv(.winapi) HRESULT,
         Query: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
+            self: *const IVssSoftwareSnapshotProvider,
             QueriedObjectId: Guid,
             eQueriedObjectType: VSS_OBJECT_TYPE,
             eReturnedObjectsType: VSS_OBJECT_TYPE,
             ppEnum: ?*?*IVssEnumObject,
         ) callconv(.winapi) HRESULT,
         DeleteSnapshots: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
+            self: *const IVssSoftwareSnapshotProvider,
             SourceObjectId: Guid,
             eSourceObjectType: VSS_OBJECT_TYPE,
             bForceDelete: BOOL,
@@ -2379,58 +1482,955 @@ pub const IVssFileShareSnapshotProvider = extern union {
             pNondeletedSnapshotID: ?*Guid,
         ) callconv(.winapi) HRESULT,
         BeginPrepareSnapshot: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
+            self: *const IVssSoftwareSnapshotProvider,
             SnapshotSetId: Guid,
             SnapshotId: Guid,
-            pwszSharePath: ?*u16,
+            pwszVolumeName: ?*u16,
             lNewContext: i32,
-            ProviderId: Guid,
         ) callconv(.winapi) HRESULT,
-        IsPathSupported: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
-            pwszSharePath: ?*u16,
+        IsVolumeSupported: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            pwszVolumeName: ?*u16,
             pbSupportedByThisProvider: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        IsPathSnapshotted: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
-            pwszSharePath: ?*u16,
+        IsVolumeSnapshotted: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            pwszVolumeName: ?*u16,
             pbSnapshotsPresent: ?*BOOL,
             plSnapshotCompatibility: ?*i32,
         ) callconv(.winapi) HRESULT,
         SetSnapshotProperty: *const fn(
-            self: *const IVssFileShareSnapshotProvider,
+            self: *const IVssSoftwareSnapshotProvider,
             SnapshotId: Guid,
             eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
             vProperty: VARIANT,
         ) callconv(.winapi) HRESULT,
+        RevertToSnapshot: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            SnapshotId: Guid,
+        ) callconv(.winapi) HRESULT,
+        QueryRevertStatus: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            pwszVolume: ?*u16,
+            ppAsync: ?*?*IVssAsync,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetContext(self: *const IVssFileShareSnapshotProvider, lContext: i32) callconv(.@"inline") HRESULT {
+    pub fn SetContext(self: *const IVssSoftwareSnapshotProvider, lContext: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetContext(self, lContext);
     }
-    pub fn GetSnapshotProperties(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.@"inline") HRESULT {
+    pub fn GetSnapshotProperties(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.@"inline") HRESULT {
         return self.vtable.GetSnapshotProperties(self, SnapshotId, pProp);
     }
-    pub fn Query(self: *const IVssFileShareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
+    pub fn Query(self: *const IVssSoftwareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.@"inline") HRESULT {
         return self.vtable.Query(self, QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
     }
-    pub fn DeleteSnapshots(self: *const IVssFileShareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.@"inline") HRESULT {
+    pub fn DeleteSnapshots(self: *const IVssSoftwareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteSnapshots(self, SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
     }
-    pub fn BeginPrepareSnapshot(self: *const IVssFileShareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszSharePath: ?*u16, lNewContext: i32, ProviderId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszSharePath, lNewContext, ProviderId);
+    pub fn BeginPrepareSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszVolumeName: ?*u16, lNewContext: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszVolumeName, lNewContext);
     }
-    pub fn IsPathSupported(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsPathSupported(self, pwszSharePath, pbSupportedByThisProvider);
+    pub fn IsVolumeSupported(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsVolumeSupported(self, pwszVolumeName, pbSupportedByThisProvider);
     }
-    pub fn IsPathSnapshotted(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.IsPathSnapshotted(self, pwszSharePath, pbSnapshotsPresent, plSnapshotCompatibility);
+    pub fn IsVolumeSnapshotted(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.IsVolumeSnapshotted(self, pwszVolumeName, pbSnapshotsPresent, plSnapshotCompatibility);
     }
-    pub fn SetSnapshotProperty(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.@"inline") HRESULT {
+    pub fn SetSnapshotProperty(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetSnapshotProperty(self, SnapshotId, eSnapshotPropertyId, vProperty);
     }
+    pub fn RevertToSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RevertToSnapshot(self, SnapshotId);
+    }
+    pub fn QueryRevertStatus(self: *const IVssSoftwareSnapshotProvider, pwszVolume: ?*u16, ppAsync: ?*?*IVssAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryRevertStatus(self, pwszVolume, ppAsync);
+    }
 };
+
+pub const IVssWMDependency = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetWriterId: *const fn(
+            self: *const IVssWMDependency,
+            pWriterId: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetLogicalPath: *const fn(
+            self: *const IVssWMDependency,
+            pbstrLogicalPath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetComponentName: *const fn(
+            self: *const IVssWMDependency,
+            pbstrComponentName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetWriterId(self: *const IVssWMDependency, pWriterId: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWriterId(self, pWriterId);
+    }
+    pub fn GetLogicalPath(self: *const IVssWMDependency, pbstrLogicalPath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLogicalPath(self, pbstrLogicalPath);
+    }
+    pub fn GetComponentName(self: *const IVssWMDependency, pbstrComponentName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetComponentName(self, pbstrComponentName);
+    }
+};
+
+pub const IVssWMFiledesc = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPath: *const fn(
+            self: *const IVssWMFiledesc,
+            pbstrPath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetFilespec: *const fn(
+            self: *const IVssWMFiledesc,
+            pbstrFilespec: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetRecursive: *const fn(
+            self: *const IVssWMFiledesc,
+            pbRecursive: ?*bool,
+        ) callconv(.winapi) HRESULT,
+        GetAlternateLocation: *const fn(
+            self: *const IVssWMFiledesc,
+            pbstrAlternateLocation: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetBackupTypeMask: *const fn(
+            self: *const IVssWMFiledesc,
+            pdwTypeMask: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPath(self: *const IVssWMFiledesc, pbstrPath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPath(self, pbstrPath);
+    }
+    pub fn GetFilespec(self: *const IVssWMFiledesc, pbstrFilespec: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFilespec(self, pbstrFilespec);
+    }
+    pub fn GetRecursive(self: *const IVssWMFiledesc, pbRecursive: ?*bool) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRecursive(self, pbRecursive);
+    }
+    pub fn GetAlternateLocation(self: *const IVssWMFiledesc, pbstrAlternateLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAlternateLocation(self, pbstrAlternateLocation);
+    }
+    pub fn GetBackupTypeMask(self: *const IVssWMFiledesc, pdwTypeMask: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBackupTypeMask(self, pdwTypeMask);
+    }
+};
+
+pub const IVssWriterComponents = extern union {
+    pub const VTable = extern struct {
+        GetComponentCount: *const fn(
+            self: *const IVssWriterComponents,
+            pcComponents: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetWriterInfo: *const fn(
+            self: *const IVssWriterComponents,
+            pidInstance: ?*Guid,
+            pidWriter: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetComponent: *const fn(
+            self: *const IVssWriterComponents,
+            iComponent: u32,
+            ppComponent: ?*?*IVssComponent,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn GetComponentCount(self: *const IVssWriterComponents, pcComponents: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetComponentCount(self, pcComponents);
+    }
+    pub fn GetWriterInfo(self: *const IVssWriterComponents, pidInstance: ?*Guid, pidWriter: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWriterInfo(self, pidInstance, pidWriter);
+    }
+    pub fn GetComponent(self: *const IVssWriterComponents, iComponent: u32, ppComponent: ?*?*IVssComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.GetComponent(self, iComponent, ppComponent);
+    }
+};
+
+pub const IVssWriterImpl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IVssWriterImpl,
+            writerId: Guid,
+            wszWriterName: ?[*:0]const u16,
+            wszWriterInstanceName: ?[*:0]const u16,
+            dwMajorVersion: u32,
+            dwMinorVersion: u32,
+            ut: VSS_USAGE_TYPE,
+            st: VSS_SOURCE_TYPE,
+            nLevel: VSS_APPLICATION_LEVEL,
+            dwTimeout: u32,
+            aws: VSS_ALTERNATE_WRITER_STATE,
+            bIOThrottlingOnly: u8,
+        ) callconv(.winapi) HRESULT,
+        Subscribe: *const fn(
+            self: *const IVssWriterImpl,
+            dwSubscribeTimeout: u32,
+            dwEventFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        Unsubscribe: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) HRESULT,
+        Uninitialize: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) void,
+        GetCurrentVolumeArray: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) ?*?PWSTR,
+        GetCurrentVolumeCount: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) u32,
+        GetSnapshotDeviceName: *const fn(
+            self: *const IVssWriterImpl,
+            wszOriginalVolume: ?[*:0]const u16,
+            ppwszSnapshotDevice: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentSnapshotSetId: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) Guid,
+        GetContext: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) i32,
+        GetCurrentLevel: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) VSS_APPLICATION_LEVEL,
+        IsPathAffected: *const fn(
+            self: *const IVssWriterImpl,
+            wszPath: ?[*:0]const u16,
+        ) callconv(.winapi) bool,
+        IsBootableSystemStateBackedUp: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) bool,
+        AreComponentsSelected: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) bool,
+        GetBackupType: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) VSS_BACKUP_TYPE,
+        GetRestoreType: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) VSS_RESTORE_TYPE,
+        SetWriterFailure: *const fn(
+            self: *const IVssWriterImpl,
+            hr: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        IsPartialFileSupportEnabled: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) bool,
+        InstallAlternateWriter: *const fn(
+            self: *const IVssWriterImpl,
+            idWriter: Guid,
+            clsid: Guid,
+        ) callconv(.winapi) HRESULT,
+        GetIdentityInformation: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) ?*IVssExamineWriterMetadata,
+        SetWriterFailureEx: *const fn(
+            self: *const IVssWriterImpl,
+            hr: HRESULT,
+            hrApplication: HRESULT,
+            wszApplicationMessage: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetSessionId: *const fn(
+            self: *const IVssWriterImpl,
+            idSession: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        IsWriterShuttingDown: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(.winapi) bool,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IVssWriterImpl, writerId: Guid, wszWriterName: ?[*:0]const u16, wszWriterInstanceName: ?[*:0]const u16, dwMajorVersion: u32, dwMinorVersion: u32, ut: VSS_USAGE_TYPE, st: VSS_SOURCE_TYPE, nLevel: VSS_APPLICATION_LEVEL, dwTimeout: u32, aws: VSS_ALTERNATE_WRITER_STATE, bIOThrottlingOnly: u8) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, writerId, wszWriterName, wszWriterInstanceName, dwMajorVersion, dwMinorVersion, ut, st, nLevel, dwTimeout, aws, bIOThrottlingOnly);
+    }
+    pub fn Subscribe(self: *const IVssWriterImpl, dwSubscribeTimeout: u32, dwEventFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Subscribe(self, dwSubscribeTimeout, dwEventFlags);
+    }
+    pub fn Unsubscribe(self: *const IVssWriterImpl) callconv(.@"inline") HRESULT {
+        return self.vtable.Unsubscribe(self);
+    }
+    pub fn Uninitialize(self: *const IVssWriterImpl) callconv(.@"inline") void {
+        return self.vtable.Uninitialize(self);
+    }
+    pub fn GetCurrentVolumeArray(self: *const IVssWriterImpl) callconv(.@"inline") ?*?PWSTR {
+        return self.vtable.GetCurrentVolumeArray(self);
+    }
+    pub fn GetCurrentVolumeCount(self: *const IVssWriterImpl) callconv(.@"inline") u32 {
+        return self.vtable.GetCurrentVolumeCount(self);
+    }
+    pub fn GetSnapshotDeviceName(self: *const IVssWriterImpl, wszOriginalVolume: ?[*:0]const u16, ppwszSnapshotDevice: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSnapshotDeviceName(self, wszOriginalVolume, ppwszSnapshotDevice);
+    }
+    pub fn GetCurrentSnapshotSetId(self: *const IVssWriterImpl) callconv(.@"inline") Guid {
+        return self.vtable.GetCurrentSnapshotSetId(self);
+    }
+    pub fn GetContext(self: *const IVssWriterImpl) callconv(.@"inline") i32 {
+        return self.vtable.GetContext(self);
+    }
+    pub fn GetCurrentLevel(self: *const IVssWriterImpl) callconv(.@"inline") VSS_APPLICATION_LEVEL {
+        return self.vtable.GetCurrentLevel(self);
+    }
+    pub fn IsPathAffected(self: *const IVssWriterImpl, wszPath: ?[*:0]const u16) callconv(.@"inline") bool {
+        return self.vtable.IsPathAffected(self, wszPath);
+    }
+    pub fn IsBootableSystemStateBackedUp(self: *const IVssWriterImpl) callconv(.@"inline") bool {
+        return self.vtable.IsBootableSystemStateBackedUp(self);
+    }
+    pub fn AreComponentsSelected(self: *const IVssWriterImpl) callconv(.@"inline") bool {
+        return self.vtable.AreComponentsSelected(self);
+    }
+    pub fn GetBackupType(self: *const IVssWriterImpl) callconv(.@"inline") VSS_BACKUP_TYPE {
+        return self.vtable.GetBackupType(self);
+    }
+    pub fn GetRestoreType(self: *const IVssWriterImpl) callconv(.@"inline") VSS_RESTORE_TYPE {
+        return self.vtable.GetRestoreType(self);
+    }
+    pub fn SetWriterFailure(self: *const IVssWriterImpl, hr: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWriterFailure(self, hr);
+    }
+    pub fn IsPartialFileSupportEnabled(self: *const IVssWriterImpl) callconv(.@"inline") bool {
+        return self.vtable.IsPartialFileSupportEnabled(self);
+    }
+    pub fn InstallAlternateWriter(self: *const IVssWriterImpl, idWriter: Guid, clsid: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.InstallAlternateWriter(self, idWriter, clsid);
+    }
+    pub fn GetIdentityInformation(self: *const IVssWriterImpl) callconv(.@"inline") ?*IVssExamineWriterMetadata {
+        return self.vtable.GetIdentityInformation(self);
+    }
+    pub fn SetWriterFailureEx(self: *const IVssWriterImpl, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWriterFailureEx(self, hr, hrApplication, wszApplicationMessage);
+    }
+    pub fn GetSessionId(self: *const IVssWriterImpl, idSession: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSessionId(self, idSession);
+    }
+    pub fn IsWriterShuttingDown(self: *const IVssWriterImpl) callconv(.@"inline") bool {
+        return self.vtable.IsWriterShuttingDown(self);
+    }
+};
+
+pub const VSS_ALTERNATE_WRITER_STATE = enum(i32) {
+    UNDEFINED = 0,
+    NO_ALTERNATE_WRITER = 1,
+    ALTERNATE_WRITER_EXISTS = 2,
+    THIS_IS_ALTERNATE_WRITER = 3,
+};
+pub const VSS_AWS_UNDEFINED = VSS_ALTERNATE_WRITER_STATE.UNDEFINED;
+pub const VSS_AWS_NO_ALTERNATE_WRITER = VSS_ALTERNATE_WRITER_STATE.NO_ALTERNATE_WRITER;
+pub const VSS_AWS_ALTERNATE_WRITER_EXISTS = VSS_ALTERNATE_WRITER_STATE.ALTERNATE_WRITER_EXISTS;
+pub const VSS_AWS_THIS_IS_ALTERNATE_WRITER = VSS_ALTERNATE_WRITER_STATE.THIS_IS_ALTERNATE_WRITER;
+
+pub const VSS_APPLICATION_LEVEL = enum(i32) {
+    UNKNOWN = 0,
+    SYSTEM = 1,
+    BACK_END = 2,
+    FRONT_END = 3,
+    SYSTEM_RM = 4,
+    AUTO = -1,
+};
+pub const VSS_APP_UNKNOWN = VSS_APPLICATION_LEVEL.UNKNOWN;
+pub const VSS_APP_SYSTEM = VSS_APPLICATION_LEVEL.SYSTEM;
+pub const VSS_APP_BACK_END = VSS_APPLICATION_LEVEL.BACK_END;
+pub const VSS_APP_FRONT_END = VSS_APPLICATION_LEVEL.FRONT_END;
+pub const VSS_APP_SYSTEM_RM = VSS_APPLICATION_LEVEL.SYSTEM_RM;
+pub const VSS_APP_AUTO = VSS_APPLICATION_LEVEL.AUTO;
+
+pub const VSS_BACKUP_SCHEMA = enum(i32) {
+    UNDEFINED = 0,
+    DIFFERENTIAL = 1,
+    INCREMENTAL = 2,
+    EXCLUSIVE_INCREMENTAL_DIFFERENTIAL = 4,
+    LOG = 8,
+    COPY = 16,
+    TIMESTAMPED = 32,
+    LAST_MODIFY = 64,
+    LSN = 128,
+    WRITER_SUPPORTS_NEW_TARGET = 256,
+    WRITER_SUPPORTS_RESTORE_WITH_MOVE = 512,
+    INDEPENDENT_SYSTEM_STATE = 1024,
+    ROLLFORWARD_RESTORE = 4096,
+    RESTORE_RENAME = 8192,
+    AUTHORITATIVE_RESTORE = 16384,
+    WRITER_SUPPORTS_PARALLEL_RESTORES = 32768,
+};
+pub const VSS_BS_UNDEFINED = VSS_BACKUP_SCHEMA.UNDEFINED;
+pub const VSS_BS_DIFFERENTIAL = VSS_BACKUP_SCHEMA.DIFFERENTIAL;
+pub const VSS_BS_INCREMENTAL = VSS_BACKUP_SCHEMA.INCREMENTAL;
+pub const VSS_BS_EXCLUSIVE_INCREMENTAL_DIFFERENTIAL = VSS_BACKUP_SCHEMA.EXCLUSIVE_INCREMENTAL_DIFFERENTIAL;
+pub const VSS_BS_LOG = VSS_BACKUP_SCHEMA.LOG;
+pub const VSS_BS_COPY = VSS_BACKUP_SCHEMA.COPY;
+pub const VSS_BS_TIMESTAMPED = VSS_BACKUP_SCHEMA.TIMESTAMPED;
+pub const VSS_BS_LAST_MODIFY = VSS_BACKUP_SCHEMA.LAST_MODIFY;
+pub const VSS_BS_LSN = VSS_BACKUP_SCHEMA.LSN;
+pub const VSS_BS_WRITER_SUPPORTS_NEW_TARGET = VSS_BACKUP_SCHEMA.WRITER_SUPPORTS_NEW_TARGET;
+pub const VSS_BS_WRITER_SUPPORTS_RESTORE_WITH_MOVE = VSS_BACKUP_SCHEMA.WRITER_SUPPORTS_RESTORE_WITH_MOVE;
+pub const VSS_BS_INDEPENDENT_SYSTEM_STATE = VSS_BACKUP_SCHEMA.INDEPENDENT_SYSTEM_STATE;
+pub const VSS_BS_ROLLFORWARD_RESTORE = VSS_BACKUP_SCHEMA.ROLLFORWARD_RESTORE;
+pub const VSS_BS_RESTORE_RENAME = VSS_BACKUP_SCHEMA.RESTORE_RENAME;
+pub const VSS_BS_AUTHORITATIVE_RESTORE = VSS_BACKUP_SCHEMA.AUTHORITATIVE_RESTORE;
+pub const VSS_BS_WRITER_SUPPORTS_PARALLEL_RESTORES = VSS_BACKUP_SCHEMA.WRITER_SUPPORTS_PARALLEL_RESTORES;
+
+pub const VSS_BACKUP_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    FULL = 1,
+    INCREMENTAL = 2,
+    DIFFERENTIAL = 3,
+    LOG = 4,
+    COPY = 5,
+    OTHER = 6,
+};
+pub const VSS_BT_UNDEFINED = VSS_BACKUP_TYPE.UNDEFINED;
+pub const VSS_BT_FULL = VSS_BACKUP_TYPE.FULL;
+pub const VSS_BT_INCREMENTAL = VSS_BACKUP_TYPE.INCREMENTAL;
+pub const VSS_BT_DIFFERENTIAL = VSS_BACKUP_TYPE.DIFFERENTIAL;
+pub const VSS_BT_LOG = VSS_BACKUP_TYPE.LOG;
+pub const VSS_BT_COPY = VSS_BACKUP_TYPE.COPY;
+pub const VSS_BT_OTHER = VSS_BACKUP_TYPE.OTHER;
+
+pub const VSS_COMPONENT_FLAGS = enum(i32) {
+    BACKUP_RECOVERY = 1,
+    APP_ROLLBACK_RECOVERY = 2,
+    NOT_SYSTEM_STATE = 4,
+};
+pub const VSS_CF_BACKUP_RECOVERY = VSS_COMPONENT_FLAGS.BACKUP_RECOVERY;
+pub const VSS_CF_APP_ROLLBACK_RECOVERY = VSS_COMPONENT_FLAGS.APP_ROLLBACK_RECOVERY;
+pub const VSS_CF_NOT_SYSTEM_STATE = VSS_COMPONENT_FLAGS.NOT_SYSTEM_STATE;
+
+pub const VSS_COMPONENT_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    DATABASE = 1,
+    FILEGROUP = 2,
+};
+pub const VSS_CT_UNDEFINED = VSS_COMPONENT_TYPE.UNDEFINED;
+pub const VSS_CT_DATABASE = VSS_COMPONENT_TYPE.DATABASE;
+pub const VSS_CT_FILEGROUP = VSS_COMPONENT_TYPE.FILEGROUP;
+
+pub const VSS_DIFF_AREA_PROP = extern struct {
+    m_pwszVolumeName: ?*u16,
+    m_pwszDiffAreaVolumeName: ?*u16,
+    m_llMaximumDiffSpace: i64,
+    m_llAllocatedDiffSpace: i64,
+    m_llUsedDiffSpace: i64,
+};
+
+pub const VSS_DIFF_VOLUME_PROP = extern struct {
+    m_pwszVolumeName: ?*u16,
+    m_pwszVolumeDisplayName: ?*u16,
+    m_llVolumeFreeSpace: i64,
+    m_llVolumeTotalSpace: i64,
+};
+
+pub const VSS_FILE_RESTORE_STATUS = enum(i32) {
+    UNDEFINED = 0,
+    NONE = 1,
+    ALL = 2,
+    FAILED = 3,
+};
+pub const VSS_RS_UNDEFINED = VSS_FILE_RESTORE_STATUS.UNDEFINED;
+pub const VSS_RS_NONE = VSS_FILE_RESTORE_STATUS.NONE;
+pub const VSS_RS_ALL = VSS_FILE_RESTORE_STATUS.ALL;
+pub const VSS_RS_FAILED = VSS_FILE_RESTORE_STATUS.FAILED;
+
+pub const VSS_FILE_SPEC_BACKUP_TYPE = enum(i32) {
+    FULL_BACKUP_REQUIRED = 1,
+    DIFFERENTIAL_BACKUP_REQUIRED = 2,
+    INCREMENTAL_BACKUP_REQUIRED = 4,
+    LOG_BACKUP_REQUIRED = 8,
+    FULL_SNAPSHOT_REQUIRED = 256,
+    DIFFERENTIAL_SNAPSHOT_REQUIRED = 512,
+    INCREMENTAL_SNAPSHOT_REQUIRED = 1024,
+    LOG_SNAPSHOT_REQUIRED = 2048,
+    CREATED_DURING_BACKUP = 65536,
+    ALL_BACKUP_REQUIRED = 15,
+    ALL_SNAPSHOT_REQUIRED = 3840,
+};
+pub const VSS_FSBT_FULL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.FULL_BACKUP_REQUIRED;
+pub const VSS_FSBT_DIFFERENTIAL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.DIFFERENTIAL_BACKUP_REQUIRED;
+pub const VSS_FSBT_INCREMENTAL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.INCREMENTAL_BACKUP_REQUIRED;
+pub const VSS_FSBT_LOG_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.LOG_BACKUP_REQUIRED;
+pub const VSS_FSBT_FULL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.FULL_SNAPSHOT_REQUIRED;
+pub const VSS_FSBT_DIFFERENTIAL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.DIFFERENTIAL_SNAPSHOT_REQUIRED;
+pub const VSS_FSBT_INCREMENTAL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.INCREMENTAL_SNAPSHOT_REQUIRED;
+pub const VSS_FSBT_LOG_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.LOG_SNAPSHOT_REQUIRED;
+pub const VSS_FSBT_CREATED_DURING_BACKUP = VSS_FILE_SPEC_BACKUP_TYPE.CREATED_DURING_BACKUP;
+pub const VSS_FSBT_ALL_BACKUP_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.ALL_BACKUP_REQUIRED;
+pub const VSS_FSBT_ALL_SNAPSHOT_REQUIRED = VSS_FILE_SPEC_BACKUP_TYPE.ALL_SNAPSHOT_REQUIRED;
+
+pub const VSS_HARDWARE_OPTIONS = enum(i32) {
+    BREAKEX_FLAG_MASK_LUNS = 1,
+    BREAKEX_FLAG_MAKE_READ_WRITE = 2,
+    BREAKEX_FLAG_REVERT_IDENTITY_ALL = 4,
+    BREAKEX_FLAG_REVERT_IDENTITY_NONE = 8,
+    ONLUNSTATECHANGE_NOTIFY_READ_WRITE = 256,
+    ONLUNSTATECHANGE_NOTIFY_LUN_PRE_RECOVERY = 512,
+    ONLUNSTATECHANGE_NOTIFY_LUN_POST_RECOVERY = 1024,
+    ONLUNSTATECHANGE_DO_MASK_LUNS = 2048,
+};
+pub const VSS_BREAKEX_FLAG_MASK_LUNS = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_MASK_LUNS;
+pub const VSS_BREAKEX_FLAG_MAKE_READ_WRITE = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_MAKE_READ_WRITE;
+pub const VSS_BREAKEX_FLAG_REVERT_IDENTITY_ALL = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_REVERT_IDENTITY_ALL;
+pub const VSS_BREAKEX_FLAG_REVERT_IDENTITY_NONE = VSS_HARDWARE_OPTIONS.BREAKEX_FLAG_REVERT_IDENTITY_NONE;
+pub const VSS_ONLUNSTATECHANGE_NOTIFY_READ_WRITE = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_NOTIFY_READ_WRITE;
+pub const VSS_ONLUNSTATECHANGE_NOTIFY_LUN_PRE_RECOVERY = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_NOTIFY_LUN_PRE_RECOVERY;
+pub const VSS_ONLUNSTATECHANGE_NOTIFY_LUN_POST_RECOVERY = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_NOTIFY_LUN_POST_RECOVERY;
+pub const VSS_ONLUNSTATECHANGE_DO_MASK_LUNS = VSS_HARDWARE_OPTIONS.ONLUNSTATECHANGE_DO_MASK_LUNS;
+
+pub const VSS_MGMT_OBJECT_PROP = extern struct {
+    Type: VSS_MGMT_OBJECT_TYPE,
+    Obj: VSS_MGMT_OBJECT_UNION,
+};
+
+pub const VSS_MGMT_OBJECT_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    VOLUME = 1,
+    DIFF_VOLUME = 2,
+    DIFF_AREA = 3,
+};
+pub const VSS_MGMT_OBJECT_UNKNOWN = VSS_MGMT_OBJECT_TYPE.UNKNOWN;
+pub const VSS_MGMT_OBJECT_VOLUME = VSS_MGMT_OBJECT_TYPE.VOLUME;
+pub const VSS_MGMT_OBJECT_DIFF_VOLUME = VSS_MGMT_OBJECT_TYPE.DIFF_VOLUME;
+pub const VSS_MGMT_OBJECT_DIFF_AREA = VSS_MGMT_OBJECT_TYPE.DIFF_AREA;
+
+pub const VSS_MGMT_OBJECT_UNION = extern union {
+    Vol: VSS_VOLUME_PROP,
+    DiffVol: VSS_DIFF_VOLUME_PROP,
+    DiffArea: VSS_DIFF_AREA_PROP,
+};
+
+pub const VSS_OBJECT_PROP = extern struct {
+    Type: VSS_OBJECT_TYPE,
+    Obj: VSS_OBJECT_UNION,
+};
+
+pub const VSS_OBJECT_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    NONE = 1,
+    SNAPSHOT_SET = 2,
+    SNAPSHOT = 3,
+    PROVIDER = 4,
+    TYPE_COUNT = 5,
+};
+pub const VSS_OBJECT_UNKNOWN = VSS_OBJECT_TYPE.UNKNOWN;
+pub const VSS_OBJECT_NONE = VSS_OBJECT_TYPE.NONE;
+pub const VSS_OBJECT_SNAPSHOT_SET = VSS_OBJECT_TYPE.SNAPSHOT_SET;
+pub const VSS_OBJECT_SNAPSHOT = VSS_OBJECT_TYPE.SNAPSHOT;
+pub const VSS_OBJECT_PROVIDER = VSS_OBJECT_TYPE.PROVIDER;
+pub const VSS_OBJECT_TYPE_COUNT = VSS_OBJECT_TYPE.TYPE_COUNT;
+
+pub const VSS_OBJECT_UNION = extern union {
+    Snap: VSS_SNAPSHOT_PROP,
+    Prov: VSS_PROVIDER_PROP,
+};
+
+pub const VSS_PROTECTION_FAULT = enum(i32) {
+    NONE = 0,
+    DIFF_AREA_MISSING = 1,
+    IO_FAILURE_DURING_ONLINE = 2,
+    META_DATA_CORRUPTION = 3,
+    MEMORY_ALLOCATION_FAILURE = 4,
+    MAPPED_MEMORY_FAILURE = 5,
+    COW_READ_FAILURE = 6,
+    COW_WRITE_FAILURE = 7,
+    DIFF_AREA_FULL = 8,
+    GROW_TOO_SLOW = 9,
+    GROW_FAILED = 10,
+    DESTROY_ALL_SNAPSHOTS = 11,
+    FILE_SYSTEM_FAILURE = 12,
+    IO_FAILURE = 13,
+    DIFF_AREA_REMOVED = 14,
+    EXTERNAL_WRITER_TO_DIFF_AREA = 15,
+    MOUNT_DURING_CLUSTER_OFFLINE = 16,
+};
+pub const VSS_PROTECTION_FAULT_NONE = VSS_PROTECTION_FAULT.NONE;
+pub const VSS_PROTECTION_FAULT_DIFF_AREA_MISSING = VSS_PROTECTION_FAULT.DIFF_AREA_MISSING;
+pub const VSS_PROTECTION_FAULT_IO_FAILURE_DURING_ONLINE = VSS_PROTECTION_FAULT.IO_FAILURE_DURING_ONLINE;
+pub const VSS_PROTECTION_FAULT_META_DATA_CORRUPTION = VSS_PROTECTION_FAULT.META_DATA_CORRUPTION;
+pub const VSS_PROTECTION_FAULT_MEMORY_ALLOCATION_FAILURE = VSS_PROTECTION_FAULT.MEMORY_ALLOCATION_FAILURE;
+pub const VSS_PROTECTION_FAULT_MAPPED_MEMORY_FAILURE = VSS_PROTECTION_FAULT.MAPPED_MEMORY_FAILURE;
+pub const VSS_PROTECTION_FAULT_COW_READ_FAILURE = VSS_PROTECTION_FAULT.COW_READ_FAILURE;
+pub const VSS_PROTECTION_FAULT_COW_WRITE_FAILURE = VSS_PROTECTION_FAULT.COW_WRITE_FAILURE;
+pub const VSS_PROTECTION_FAULT_DIFF_AREA_FULL = VSS_PROTECTION_FAULT.DIFF_AREA_FULL;
+pub const VSS_PROTECTION_FAULT_GROW_TOO_SLOW = VSS_PROTECTION_FAULT.GROW_TOO_SLOW;
+pub const VSS_PROTECTION_FAULT_GROW_FAILED = VSS_PROTECTION_FAULT.GROW_FAILED;
+pub const VSS_PROTECTION_FAULT_DESTROY_ALL_SNAPSHOTS = VSS_PROTECTION_FAULT.DESTROY_ALL_SNAPSHOTS;
+pub const VSS_PROTECTION_FAULT_FILE_SYSTEM_FAILURE = VSS_PROTECTION_FAULT.FILE_SYSTEM_FAILURE;
+pub const VSS_PROTECTION_FAULT_IO_FAILURE = VSS_PROTECTION_FAULT.IO_FAILURE;
+pub const VSS_PROTECTION_FAULT_DIFF_AREA_REMOVED = VSS_PROTECTION_FAULT.DIFF_AREA_REMOVED;
+pub const VSS_PROTECTION_FAULT_EXTERNAL_WRITER_TO_DIFF_AREA = VSS_PROTECTION_FAULT.EXTERNAL_WRITER_TO_DIFF_AREA;
+pub const VSS_PROTECTION_FAULT_MOUNT_DURING_CLUSTER_OFFLINE = VSS_PROTECTION_FAULT.MOUNT_DURING_CLUSTER_OFFLINE;
+
+pub const VSS_PROTECTION_LEVEL = enum(i32) {
+    ORIGINAL_VOLUME = 0,
+    SNAPSHOT = 1,
+};
+pub const VSS_PROTECTION_LEVEL_ORIGINAL_VOLUME = VSS_PROTECTION_LEVEL.ORIGINAL_VOLUME;
+pub const VSS_PROTECTION_LEVEL_SNAPSHOT = VSS_PROTECTION_LEVEL.SNAPSHOT;
+
+pub const VSS_PROVIDER_CAPABILITIES = enum(i32) {
+    LEGACY = 1,
+    COMPLIANT = 2,
+    LUN_REPOINT = 4,
+    LUN_RESYNC = 8,
+    OFFLINE_CREATION = 16,
+    MULTIPLE_IMPORT = 32,
+    RECYCLING = 64,
+    PLEX = 128,
+    DIFFERENTIAL = 256,
+    CLUSTERED = 512,
+};
+pub const VSS_PRV_CAPABILITY_LEGACY = VSS_PROVIDER_CAPABILITIES.LEGACY;
+pub const VSS_PRV_CAPABILITY_COMPLIANT = VSS_PROVIDER_CAPABILITIES.COMPLIANT;
+pub const VSS_PRV_CAPABILITY_LUN_REPOINT = VSS_PROVIDER_CAPABILITIES.LUN_REPOINT;
+pub const VSS_PRV_CAPABILITY_LUN_RESYNC = VSS_PROVIDER_CAPABILITIES.LUN_RESYNC;
+pub const VSS_PRV_CAPABILITY_OFFLINE_CREATION = VSS_PROVIDER_CAPABILITIES.OFFLINE_CREATION;
+pub const VSS_PRV_CAPABILITY_MULTIPLE_IMPORT = VSS_PROVIDER_CAPABILITIES.MULTIPLE_IMPORT;
+pub const VSS_PRV_CAPABILITY_RECYCLING = VSS_PROVIDER_CAPABILITIES.RECYCLING;
+pub const VSS_PRV_CAPABILITY_PLEX = VSS_PROVIDER_CAPABILITIES.PLEX;
+pub const VSS_PRV_CAPABILITY_DIFFERENTIAL = VSS_PROVIDER_CAPABILITIES.DIFFERENTIAL;
+pub const VSS_PRV_CAPABILITY_CLUSTERED = VSS_PROVIDER_CAPABILITIES.CLUSTERED;
+
+pub const VSS_PROVIDER_PROP = extern struct {
+    m_ProviderId: Guid,
+    m_pwszProviderName: ?*u16,
+    m_eProviderType: VSS_PROVIDER_TYPE,
+    m_pwszProviderVersion: ?*u16,
+    m_ProviderVersionId: Guid,
+    m_ClassId: Guid,
+};
+
+pub const VSS_PROVIDER_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    SYSTEM = 1,
+    SOFTWARE = 2,
+    HARDWARE = 3,
+    FILESHARE = 4,
+};
+pub const VSS_PROV_UNKNOWN = VSS_PROVIDER_TYPE.UNKNOWN;
+pub const VSS_PROV_SYSTEM = VSS_PROVIDER_TYPE.SYSTEM;
+pub const VSS_PROV_SOFTWARE = VSS_PROVIDER_TYPE.SOFTWARE;
+pub const VSS_PROV_HARDWARE = VSS_PROVIDER_TYPE.HARDWARE;
+pub const VSS_PROV_FILESHARE = VSS_PROVIDER_TYPE.FILESHARE;
+
+pub const VSS_RECOVERY_OPTIONS = enum(i32) {
+    REVERT_IDENTITY_ALL = 256,
+    NO_VOLUME_CHECK = 512,
+};
+pub const VSS_RECOVERY_REVERT_IDENTITY_ALL = VSS_RECOVERY_OPTIONS.REVERT_IDENTITY_ALL;
+pub const VSS_RECOVERY_NO_VOLUME_CHECK = VSS_RECOVERY_OPTIONS.NO_VOLUME_CHECK;
+
+pub const VSS_RESTORE_TARGET = enum(i32) {
+    UNDEFINED = 0,
+    ORIGINAL = 1,
+    ALTERNATE = 2,
+    DIRECTED = 3,
+    ORIGINAL_LOCATION = 4,
+};
+pub const VSS_RT_UNDEFINED = VSS_RESTORE_TARGET.UNDEFINED;
+pub const VSS_RT_ORIGINAL = VSS_RESTORE_TARGET.ORIGINAL;
+pub const VSS_RT_ALTERNATE = VSS_RESTORE_TARGET.ALTERNATE;
+pub const VSS_RT_DIRECTED = VSS_RESTORE_TARGET.DIRECTED;
+pub const VSS_RT_ORIGINAL_LOCATION = VSS_RESTORE_TARGET.ORIGINAL_LOCATION;
+
+pub const VSS_RESTORE_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    BY_COPY = 1,
+    IMPORT = 2,
+    OTHER = 3,
+};
+pub const VSS_RTYPE_UNDEFINED = VSS_RESTORE_TYPE.UNDEFINED;
+pub const VSS_RTYPE_BY_COPY = VSS_RESTORE_TYPE.BY_COPY;
+pub const VSS_RTYPE_IMPORT = VSS_RESTORE_TYPE.IMPORT;
+pub const VSS_RTYPE_OTHER = VSS_RESTORE_TYPE.OTHER;
+
+pub const VSS_RESTOREMETHOD_ENUM = enum(i32) {
+    UNDEFINED = 0,
+    RESTORE_IF_NOT_THERE = 1,
+    RESTORE_IF_CAN_REPLACE = 2,
+    STOP_RESTORE_START = 3,
+    RESTORE_TO_ALTERNATE_LOCATION = 4,
+    RESTORE_AT_REBOOT = 5,
+    RESTORE_AT_REBOOT_IF_CANNOT_REPLACE = 6,
+    CUSTOM = 7,
+    RESTORE_STOP_START = 8,
+};
+pub const VSS_RME_UNDEFINED = VSS_RESTOREMETHOD_ENUM.UNDEFINED;
+pub const VSS_RME_RESTORE_IF_NOT_THERE = VSS_RESTOREMETHOD_ENUM.RESTORE_IF_NOT_THERE;
+pub const VSS_RME_RESTORE_IF_CAN_REPLACE = VSS_RESTOREMETHOD_ENUM.RESTORE_IF_CAN_REPLACE;
+pub const VSS_RME_STOP_RESTORE_START = VSS_RESTOREMETHOD_ENUM.STOP_RESTORE_START;
+pub const VSS_RME_RESTORE_TO_ALTERNATE_LOCATION = VSS_RESTOREMETHOD_ENUM.RESTORE_TO_ALTERNATE_LOCATION;
+pub const VSS_RME_RESTORE_AT_REBOOT = VSS_RESTOREMETHOD_ENUM.RESTORE_AT_REBOOT;
+pub const VSS_RME_RESTORE_AT_REBOOT_IF_CANNOT_REPLACE = VSS_RESTOREMETHOD_ENUM.RESTORE_AT_REBOOT_IF_CANNOT_REPLACE;
+pub const VSS_RME_CUSTOM = VSS_RESTOREMETHOD_ENUM.CUSTOM;
+pub const VSS_RME_RESTORE_STOP_START = VSS_RESTOREMETHOD_ENUM.RESTORE_STOP_START;
+
+pub const VSS_ROLLFORWARD_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    NONE = 1,
+    ALL = 2,
+    PARTIAL = 3,
+};
+pub const VSS_RF_UNDEFINED = VSS_ROLLFORWARD_TYPE.UNDEFINED;
+pub const VSS_RF_NONE = VSS_ROLLFORWARD_TYPE.NONE;
+pub const VSS_RF_ALL = VSS_ROLLFORWARD_TYPE.ALL;
+pub const VSS_RF_PARTIAL = VSS_ROLLFORWARD_TYPE.PARTIAL;
+
+pub const VSS_SNAPSHOT_COMPATIBILITY = enum(i32) {
+    DEFRAG = 1,
+    CONTENTINDEX = 2,
+};
+pub const VSS_SC_DISABLE_DEFRAG = VSS_SNAPSHOT_COMPATIBILITY.DEFRAG;
+pub const VSS_SC_DISABLE_CONTENTINDEX = VSS_SNAPSHOT_COMPATIBILITY.CONTENTINDEX;
+
+pub const VSS_SNAPSHOT_CONTEXT = enum(i32) {
+    BACKUP = 0,
+    FILE_SHARE_BACKUP = 16,
+    NAS_ROLLBACK = 25,
+    APP_ROLLBACK = 9,
+    CLIENT_ACCESSIBLE = 29,
+    CLIENT_ACCESSIBLE_WRITERS = 13,
+    ALL = -1,
+};
+pub const VSS_CTX_BACKUP = VSS_SNAPSHOT_CONTEXT.BACKUP;
+pub const VSS_CTX_FILE_SHARE_BACKUP = VSS_SNAPSHOT_CONTEXT.FILE_SHARE_BACKUP;
+pub const VSS_CTX_NAS_ROLLBACK = VSS_SNAPSHOT_CONTEXT.NAS_ROLLBACK;
+pub const VSS_CTX_APP_ROLLBACK = VSS_SNAPSHOT_CONTEXT.APP_ROLLBACK;
+pub const VSS_CTX_CLIENT_ACCESSIBLE = VSS_SNAPSHOT_CONTEXT.CLIENT_ACCESSIBLE;
+pub const VSS_CTX_CLIENT_ACCESSIBLE_WRITERS = VSS_SNAPSHOT_CONTEXT.CLIENT_ACCESSIBLE_WRITERS;
+pub const VSS_CTX_ALL = VSS_SNAPSHOT_CONTEXT.ALL;
+
+pub const VSS_SNAPSHOT_PROP = extern struct {
+    m_SnapshotId: Guid,
+    m_SnapshotSetId: Guid,
+    m_lSnapshotsCount: i32,
+    m_pwszSnapshotDeviceObject: ?*u16,
+    m_pwszOriginalVolumeName: ?*u16,
+    m_pwszOriginatingMachine: ?*u16,
+    m_pwszServiceMachine: ?*u16,
+    m_pwszExposedName: ?*u16,
+    m_pwszExposedPath: ?*u16,
+    m_ProviderId: Guid,
+    m_lSnapshotAttributes: i32,
+    m_tsCreationTimestamp: i64,
+    m_eStatus: VSS_SNAPSHOT_STATE,
+};
+
+pub const VSS_SNAPSHOT_PROPERTY_ID = enum(i32) {
+    UNKNOWN = 0,
+    SNAPSHOT_ID = 1,
+    SNAPSHOT_SET_ID = 2,
+    SNAPSHOTS_COUNT = 3,
+    SNAPSHOT_DEVICE = 4,
+    ORIGINAL_VOLUME = 5,
+    ORIGINATING_MACHINE = 6,
+    SERVICE_MACHINE = 7,
+    EXPOSED_NAME = 8,
+    EXPOSED_PATH = 9,
+    PROVIDER_ID = 10,
+    SNAPSHOT_ATTRIBUTES = 11,
+    CREATION_TIMESTAMP = 12,
+    STATUS = 13,
+};
+pub const VSS_SPROPID_UNKNOWN = VSS_SNAPSHOT_PROPERTY_ID.UNKNOWN;
+pub const VSS_SPROPID_SNAPSHOT_ID = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_ID;
+pub const VSS_SPROPID_SNAPSHOT_SET_ID = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_SET_ID;
+pub const VSS_SPROPID_SNAPSHOTS_COUNT = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOTS_COUNT;
+pub const VSS_SPROPID_SNAPSHOT_DEVICE = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_DEVICE;
+pub const VSS_SPROPID_ORIGINAL_VOLUME = VSS_SNAPSHOT_PROPERTY_ID.ORIGINAL_VOLUME;
+pub const VSS_SPROPID_ORIGINATING_MACHINE = VSS_SNAPSHOT_PROPERTY_ID.ORIGINATING_MACHINE;
+pub const VSS_SPROPID_SERVICE_MACHINE = VSS_SNAPSHOT_PROPERTY_ID.SERVICE_MACHINE;
+pub const VSS_SPROPID_EXPOSED_NAME = VSS_SNAPSHOT_PROPERTY_ID.EXPOSED_NAME;
+pub const VSS_SPROPID_EXPOSED_PATH = VSS_SNAPSHOT_PROPERTY_ID.EXPOSED_PATH;
+pub const VSS_SPROPID_PROVIDER_ID = VSS_SNAPSHOT_PROPERTY_ID.PROVIDER_ID;
+pub const VSS_SPROPID_SNAPSHOT_ATTRIBUTES = VSS_SNAPSHOT_PROPERTY_ID.SNAPSHOT_ATTRIBUTES;
+pub const VSS_SPROPID_CREATION_TIMESTAMP = VSS_SNAPSHOT_PROPERTY_ID.CREATION_TIMESTAMP;
+pub const VSS_SPROPID_STATUS = VSS_SNAPSHOT_PROPERTY_ID.STATUS;
+
+pub const VSS_SNAPSHOT_STATE = enum(i32) {
+    UNKNOWN = 0,
+    PREPARING = 1,
+    PROCESSING_PREPARE = 2,
+    PREPARED = 3,
+    PROCESSING_PRECOMMIT = 4,
+    PRECOMMITTED = 5,
+    PROCESSING_COMMIT = 6,
+    COMMITTED = 7,
+    PROCESSING_POSTCOMMIT = 8,
+    PROCESSING_PREFINALCOMMIT = 9,
+    PREFINALCOMMITTED = 10,
+    PROCESSING_POSTFINALCOMMIT = 11,
+    CREATED = 12,
+    ABORTED = 13,
+    DELETED = 14,
+    POSTCOMMITTED = 15,
+    COUNT = 16,
+};
+pub const VSS_SS_UNKNOWN = VSS_SNAPSHOT_STATE.UNKNOWN;
+pub const VSS_SS_PREPARING = VSS_SNAPSHOT_STATE.PREPARING;
+pub const VSS_SS_PROCESSING_PREPARE = VSS_SNAPSHOT_STATE.PROCESSING_PREPARE;
+pub const VSS_SS_PREPARED = VSS_SNAPSHOT_STATE.PREPARED;
+pub const VSS_SS_PROCESSING_PRECOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_PRECOMMIT;
+pub const VSS_SS_PRECOMMITTED = VSS_SNAPSHOT_STATE.PRECOMMITTED;
+pub const VSS_SS_PROCESSING_COMMIT = VSS_SNAPSHOT_STATE.PROCESSING_COMMIT;
+pub const VSS_SS_COMMITTED = VSS_SNAPSHOT_STATE.COMMITTED;
+pub const VSS_SS_PROCESSING_POSTCOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_POSTCOMMIT;
+pub const VSS_SS_PROCESSING_PREFINALCOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_PREFINALCOMMIT;
+pub const VSS_SS_PREFINALCOMMITTED = VSS_SNAPSHOT_STATE.PREFINALCOMMITTED;
+pub const VSS_SS_PROCESSING_POSTFINALCOMMIT = VSS_SNAPSHOT_STATE.PROCESSING_POSTFINALCOMMIT;
+pub const VSS_SS_CREATED = VSS_SNAPSHOT_STATE.CREATED;
+pub const VSS_SS_ABORTED = VSS_SNAPSHOT_STATE.ABORTED;
+pub const VSS_SS_DELETED = VSS_SNAPSHOT_STATE.DELETED;
+pub const VSS_SS_POSTCOMMITTED = VSS_SNAPSHOT_STATE.POSTCOMMITTED;
+pub const VSS_SS_COUNT = VSS_SNAPSHOT_STATE.COUNT;
+
+pub const VSS_SOURCE_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    TRANSACTEDDB = 1,
+    NONTRANSACTEDDB = 2,
+    OTHER = 3,
+};
+pub const VSS_ST_UNDEFINED = VSS_SOURCE_TYPE.UNDEFINED;
+pub const VSS_ST_TRANSACTEDDB = VSS_SOURCE_TYPE.TRANSACTEDDB;
+pub const VSS_ST_NONTRANSACTEDDB = VSS_SOURCE_TYPE.NONTRANSACTEDDB;
+pub const VSS_ST_OTHER = VSS_SOURCE_TYPE.OTHER;
+
+pub const VSS_SUBSCRIBE_MASK = enum(i32) {
+    POST_SNAPSHOT_FLAG = 1,
+    BACKUP_EVENTS_FLAG = 2,
+    RESTORE_EVENTS_FLAG = 4,
+    IO_THROTTLING_FLAG = 8,
+    ALL_FLAGS = -1,
+};
+pub const VSS_SM_POST_SNAPSHOT_FLAG = VSS_SUBSCRIBE_MASK.POST_SNAPSHOT_FLAG;
+pub const VSS_SM_BACKUP_EVENTS_FLAG = VSS_SUBSCRIBE_MASK.BACKUP_EVENTS_FLAG;
+pub const VSS_SM_RESTORE_EVENTS_FLAG = VSS_SUBSCRIBE_MASK.RESTORE_EVENTS_FLAG;
+pub const VSS_SM_IO_THROTTLING_FLAG = VSS_SUBSCRIBE_MASK.IO_THROTTLING_FLAG;
+pub const VSS_SM_ALL_FLAGS = VSS_SUBSCRIBE_MASK.ALL_FLAGS;
+
+pub const VSS_USAGE_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    BOOTABLESYSTEMSTATE = 1,
+    SYSTEMSERVICE = 2,
+    USERDATA = 3,
+    OTHER = 4,
+};
+pub const VSS_UT_UNDEFINED = VSS_USAGE_TYPE.UNDEFINED;
+pub const VSS_UT_BOOTABLESYSTEMSTATE = VSS_USAGE_TYPE.BOOTABLESYSTEMSTATE;
+pub const VSS_UT_SYSTEMSERVICE = VSS_USAGE_TYPE.SYSTEMSERVICE;
+pub const VSS_UT_USERDATA = VSS_USAGE_TYPE.USERDATA;
+pub const VSS_UT_OTHER = VSS_USAGE_TYPE.OTHER;
+
+pub const VSS_VOLUME_PROP = extern struct {
+    m_pwszVolumeName: ?*u16,
+    m_pwszVolumeDisplayName: ?*u16,
+};
+
+pub const VSS_VOLUME_PROTECTION_INFO = extern struct {
+    m_protectionLevel: VSS_PROTECTION_LEVEL,
+    m_volumeIsOfflineForProtection: BOOL,
+    m_protectionFault: VSS_PROTECTION_FAULT,
+    m_failureStatus: i32,
+    m_volumeHasUnusedDiffArea: BOOL,
+    m_reserved: u32,
+};
+
+pub const VSS_VOLUME_SNAPSHOT_ATTRIBUTES = enum(i32) {
+    PERSISTENT = 1,
+    NO_AUTORECOVERY = 2,
+    CLIENT_ACCESSIBLE = 4,
+    NO_AUTO_RELEASE = 8,
+    NO_WRITERS = 16,
+    TRANSPORTABLE = 32,
+    NOT_SURFACED = 64,
+    NOT_TRANSACTED = 128,
+    HARDWARE_ASSISTED = 65536,
+    DIFFERENTIAL = 131072,
+    PLEX = 262144,
+    IMPORTED = 524288,
+    EXPOSED_LOCALLY = 1048576,
+    EXPOSED_REMOTELY = 2097152,
+    AUTORECOVER = 4194304,
+    ROLLBACK_RECOVERY = 8388608,
+    DELAYED_POSTSNAPSHOT = 16777216,
+    TXF_RECOVERY = 33554432,
+    FILE_SHARE = 67108864,
+};
+pub const VSS_VOLSNAP_ATTR_PERSISTENT = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.PERSISTENT;
+pub const VSS_VOLSNAP_ATTR_NO_AUTORECOVERY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NO_AUTORECOVERY;
+pub const VSS_VOLSNAP_ATTR_CLIENT_ACCESSIBLE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.CLIENT_ACCESSIBLE;
+pub const VSS_VOLSNAP_ATTR_NO_AUTO_RELEASE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NO_AUTO_RELEASE;
+pub const VSS_VOLSNAP_ATTR_NO_WRITERS = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NO_WRITERS;
+pub const VSS_VOLSNAP_ATTR_TRANSPORTABLE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.TRANSPORTABLE;
+pub const VSS_VOLSNAP_ATTR_NOT_SURFACED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NOT_SURFACED;
+pub const VSS_VOLSNAP_ATTR_NOT_TRANSACTED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.NOT_TRANSACTED;
+pub const VSS_VOLSNAP_ATTR_HARDWARE_ASSISTED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.HARDWARE_ASSISTED;
+pub const VSS_VOLSNAP_ATTR_DIFFERENTIAL = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.DIFFERENTIAL;
+pub const VSS_VOLSNAP_ATTR_PLEX = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.PLEX;
+pub const VSS_VOLSNAP_ATTR_IMPORTED = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.IMPORTED;
+pub const VSS_VOLSNAP_ATTR_EXPOSED_LOCALLY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.EXPOSED_LOCALLY;
+pub const VSS_VOLSNAP_ATTR_EXPOSED_REMOTELY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.EXPOSED_REMOTELY;
+pub const VSS_VOLSNAP_ATTR_AUTORECOVER = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.AUTORECOVER;
+pub const VSS_VOLSNAP_ATTR_ROLLBACK_RECOVERY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.ROLLBACK_RECOVERY;
+pub const VSS_VOLSNAP_ATTR_DELAYED_POSTSNAPSHOT = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.DELAYED_POSTSNAPSHOT;
+pub const VSS_VOLSNAP_ATTR_TXF_RECOVERY = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.TXF_RECOVERY;
+pub const VSS_VOLSNAP_ATTR_FILE_SHARE = VSS_VOLUME_SNAPSHOT_ATTRIBUTES.FILE_SHARE;
+
+pub const VSS_WRITER_STATE = enum(i32) {
+    UNKNOWN = 0,
+    STABLE = 1,
+    WAITING_FOR_FREEZE = 2,
+    WAITING_FOR_THAW = 3,
+    WAITING_FOR_POST_SNAPSHOT = 4,
+    WAITING_FOR_BACKUP_COMPLETE = 5,
+    FAILED_AT_IDENTIFY = 6,
+    FAILED_AT_PREPARE_BACKUP = 7,
+    FAILED_AT_PREPARE_SNAPSHOT = 8,
+    FAILED_AT_FREEZE = 9,
+    FAILED_AT_THAW = 10,
+    FAILED_AT_POST_SNAPSHOT = 11,
+    FAILED_AT_BACKUP_COMPLETE = 12,
+    FAILED_AT_PRE_RESTORE = 13,
+    FAILED_AT_POST_RESTORE = 14,
+    FAILED_AT_BACKUPSHUTDOWN = 15,
+    COUNT = 16,
+};
+pub const VSS_WS_UNKNOWN = VSS_WRITER_STATE.UNKNOWN;
+pub const VSS_WS_STABLE = VSS_WRITER_STATE.STABLE;
+pub const VSS_WS_WAITING_FOR_FREEZE = VSS_WRITER_STATE.WAITING_FOR_FREEZE;
+pub const VSS_WS_WAITING_FOR_THAW = VSS_WRITER_STATE.WAITING_FOR_THAW;
+pub const VSS_WS_WAITING_FOR_POST_SNAPSHOT = VSS_WRITER_STATE.WAITING_FOR_POST_SNAPSHOT;
+pub const VSS_WS_WAITING_FOR_BACKUP_COMPLETE = VSS_WRITER_STATE.WAITING_FOR_BACKUP_COMPLETE;
+pub const VSS_WS_FAILED_AT_IDENTIFY = VSS_WRITER_STATE.FAILED_AT_IDENTIFY;
+pub const VSS_WS_FAILED_AT_PREPARE_BACKUP = VSS_WRITER_STATE.FAILED_AT_PREPARE_BACKUP;
+pub const VSS_WS_FAILED_AT_PREPARE_SNAPSHOT = VSS_WRITER_STATE.FAILED_AT_PREPARE_SNAPSHOT;
+pub const VSS_WS_FAILED_AT_FREEZE = VSS_WRITER_STATE.FAILED_AT_FREEZE;
+pub const VSS_WS_FAILED_AT_THAW = VSS_WRITER_STATE.FAILED_AT_THAW;
+pub const VSS_WS_FAILED_AT_POST_SNAPSHOT = VSS_WRITER_STATE.FAILED_AT_POST_SNAPSHOT;
+pub const VSS_WS_FAILED_AT_BACKUP_COMPLETE = VSS_WRITER_STATE.FAILED_AT_BACKUP_COMPLETE;
+pub const VSS_WS_FAILED_AT_PRE_RESTORE = VSS_WRITER_STATE.FAILED_AT_PRE_RESTORE;
+pub const VSS_WS_FAILED_AT_POST_RESTORE = VSS_WRITER_STATE.FAILED_AT_POST_RESTORE;
+pub const VSS_WS_FAILED_AT_BACKUPSHUTDOWN = VSS_WRITER_STATE.FAILED_AT_BACKUPSHUTDOWN;
+pub const VSS_WS_COUNT = VSS_WRITER_STATE.COUNT;
+
+pub const VSS_WRITERRESTORE_ENUM = enum(i32) {
+    UNDEFINED = 0,
+    NEVER = 1,
+    IF_REPLACE_FAILS = 2,
+    ALWAYS = 3,
+};
+pub const VSS_WRE_UNDEFINED = VSS_WRITERRESTORE_ENUM.UNDEFINED;
+pub const VSS_WRE_NEVER = VSS_WRITERRESTORE_ENUM.NEVER;
+pub const VSS_WRE_IF_REPLACE_FAILS = VSS_WRITERRESTORE_ENUM.IF_REPLACE_FAILS;
+pub const VSS_WRE_ALWAYS = VSS_WRITERRESTORE_ENUM.ALWAYS;
+
+const CLSID_VSSCoordinator_Value = Guid.initString("e579ab5f-1cc4-44b4-bed9-de0991ff0623");
+pub const CLSID_VSSCoordinator = &CLSID_VSSCoordinator_Value;
+
+const CLSID_VssSnapshotMgmt_Value = Guid.initString("0b5a2c52-3eb9-470a-96e2-6c6d4570e40f");
+pub const CLSID_VssSnapshotMgmt = &CLSID_VssSnapshotMgmt_Value;
 
 
 //--------------------------------------------------------------------------------

@@ -2,1955 +2,1382 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2068)
 //--------------------------------------------------------------------------------
-pub const NERR_BASE = @as(u32, 2100);
-pub const NERR_PasswordExpired = @as(u32, 2242);
-pub const CNLEN = @as(u32, 15);
-pub const LM20_CNLEN = @as(u32, 15);
-pub const DNLEN = @as(u32, 15);
-pub const LM20_DNLEN = @as(u32, 15);
-pub const UNCLEN = @as(u32, 17);
-pub const LM20_UNCLEN = @as(u32, 17);
-pub const LM20_NNLEN = @as(u32, 12);
-pub const SNLEN = @as(u32, 80);
-pub const LM20_SNLEN = @as(u32, 15);
-pub const STXTLEN = @as(u32, 256);
-pub const LM20_STXTLEN = @as(u32, 63);
-pub const PATHLEN = @as(u32, 256);
-pub const LM20_PATHLEN = @as(u32, 256);
-pub const DEVLEN = @as(u32, 80);
-pub const LM20_DEVLEN = @as(u32, 8);
-pub const EVLEN = @as(u32, 16);
-pub const UNLEN = @as(u32, 256);
-pub const LM20_UNLEN = @as(u32, 20);
-pub const GNLEN = @as(u32, 256);
-pub const LM20_GNLEN = @as(u32, 20);
-pub const PWLEN = @as(u32, 256);
-pub const LM20_PWLEN = @as(u32, 14);
-pub const SHPWLEN = @as(u32, 8);
-pub const CLTYPE_LEN = @as(u32, 12);
-pub const MAXCOMMENTSZ = @as(u32, 256);
-pub const LM20_MAXCOMMENTSZ = @as(u32, 48);
-pub const QNLEN = @as(u32, 80);
-pub const LM20_QNLEN = @as(u32, 12);
-pub const ALERTSZ = @as(u32, 128);
-pub const NETBIOS_NAME_LEN = @as(u32, 16);
-pub const MAX_PREFERRED_LENGTH = @as(u32, 4294967295);
-pub const CRYPT_KEY_LEN = @as(u32, 7);
-pub const CRYPT_TXT_LEN = @as(u32, 8);
-pub const ENCRYPTED_PWLEN = @as(u32, 16);
-pub const SESSION_PWLEN = @as(u32, 24);
-pub const SESSION_CRYPT_KLEN = @as(u32, 21);
-pub const PARMNUM_ALL = @as(u32, 0);
-pub const PARM_ERROR_UNKNOWN = @as(u32, 4294967295);
-pub const PARM_ERROR_NONE = @as(u32, 0);
-pub const PARMNUM_BASE_INFOLEVEL = @as(u32, 1000);
-pub const MESSAGE_FILENAME = "NETMSG";
-pub const OS2MSG_FILENAME = "BASE";
-pub const HELP_MSG_FILENAME = "NETH";
-pub const BACKUP_MSG_FILENAME = "BAK.MSG";
-pub const PLATFORM_ID_DOS = @as(u32, 300);
-pub const PLATFORM_ID_OS2 = @as(u32, 400);
-pub const PLATFORM_ID_NT = @as(u32, 500);
-pub const PLATFORM_ID_OSF = @as(u32, 600);
-pub const PLATFORM_ID_VMS = @as(u32, 700);
-pub const MIN_LANMAN_MESSAGE_ID = @as(u32, 2100);
-pub const MAX_LANMAN_MESSAGE_ID = @as(u32, 5899);
-pub const NERR_Success = @as(u32, 0);
-pub const NERR_NetNotStarted = @as(u32, 2102);
-pub const NERR_UnknownServer = @as(u32, 2103);
-pub const NERR_ShareMem = @as(u32, 2104);
-pub const NERR_NoNetworkResource = @as(u32, 2105);
-pub const NERR_RemoteOnly = @as(u32, 2106);
-pub const NERR_DevNotRedirected = @as(u32, 2107);
-pub const NERR_ServerNotStarted = @as(u32, 2114);
-pub const NERR_ItemNotFound = @as(u32, 2115);
-pub const NERR_UnknownDevDir = @as(u32, 2116);
-pub const NERR_RedirectedPath = @as(u32, 2117);
-pub const NERR_DuplicateShare = @as(u32, 2118);
-pub const NERR_NoRoom = @as(u32, 2119);
-pub const NERR_TooManyItems = @as(u32, 2121);
-pub const NERR_InvalidMaxUsers = @as(u32, 2122);
-pub const NERR_BufTooSmall = @as(u32, 2123);
-pub const NERR_RemoteErr = @as(u32, 2127);
-pub const NERR_LanmanIniError = @as(u32, 2131);
-pub const NERR_NetworkError = @as(u32, 2136);
-pub const NERR_WkstaInconsistentState = @as(u32, 2137);
-pub const NERR_WkstaNotStarted = @as(u32, 2138);
-pub const NERR_BrowserNotStarted = @as(u32, 2139);
-pub const NERR_InternalError = @as(u32, 2140);
-pub const NERR_BadTransactConfig = @as(u32, 2141);
-pub const NERR_InvalidAPI = @as(u32, 2142);
-pub const NERR_BadEventName = @as(u32, 2143);
-pub const NERR_DupNameReboot = @as(u32, 2144);
-pub const NERR_CfgCompNotFound = @as(u32, 2146);
-pub const NERR_CfgParamNotFound = @as(u32, 2147);
-pub const NERR_LineTooLong = @as(u32, 2149);
-pub const NERR_QNotFound = @as(u32, 2150);
-pub const NERR_JobNotFound = @as(u32, 2151);
-pub const NERR_DestNotFound = @as(u32, 2152);
-pub const NERR_DestExists = @as(u32, 2153);
-pub const NERR_QExists = @as(u32, 2154);
-pub const NERR_QNoRoom = @as(u32, 2155);
-pub const NERR_JobNoRoom = @as(u32, 2156);
-pub const NERR_DestNoRoom = @as(u32, 2157);
-pub const NERR_DestIdle = @as(u32, 2158);
-pub const NERR_DestInvalidOp = @as(u32, 2159);
-pub const NERR_ProcNoRespond = @as(u32, 2160);
-pub const NERR_SpoolerNotLoaded = @as(u32, 2161);
-pub const NERR_DestInvalidState = @as(u32, 2162);
-pub const NERR_QInvalidState = @as(u32, 2163);
-pub const NERR_JobInvalidState = @as(u32, 2164);
-pub const NERR_SpoolNoMemory = @as(u32, 2165);
-pub const NERR_DriverNotFound = @as(u32, 2166);
-pub const NERR_DataTypeInvalid = @as(u32, 2167);
-pub const NERR_ProcNotFound = @as(u32, 2168);
-pub const NERR_ServiceTableLocked = @as(u32, 2180);
-pub const NERR_ServiceTableFull = @as(u32, 2181);
-pub const NERR_ServiceInstalled = @as(u32, 2182);
-pub const NERR_ServiceEntryLocked = @as(u32, 2183);
-pub const NERR_ServiceNotInstalled = @as(u32, 2184);
-pub const NERR_BadServiceName = @as(u32, 2185);
-pub const NERR_ServiceCtlTimeout = @as(u32, 2186);
-pub const NERR_ServiceCtlBusy = @as(u32, 2187);
-pub const NERR_BadServiceProgName = @as(u32, 2188);
-pub const NERR_ServiceNotCtrl = @as(u32, 2189);
-pub const NERR_ServiceKillProc = @as(u32, 2190);
-pub const NERR_ServiceCtlNotValid = @as(u32, 2191);
-pub const NERR_NotInDispatchTbl = @as(u32, 2192);
-pub const NERR_BadControlRecv = @as(u32, 2193);
-pub const NERR_ServiceNotStarting = @as(u32, 2194);
-pub const NERR_AlreadyLoggedOn = @as(u32, 2200);
-pub const NERR_NotLoggedOn = @as(u32, 2201);
-pub const NERR_BadUsername = @as(u32, 2202);
-pub const NERR_BadPassword = @as(u32, 2203);
-pub const NERR_UnableToAddName_W = @as(u32, 2204);
-pub const NERR_UnableToAddName_F = @as(u32, 2205);
-pub const NERR_UnableToDelName_W = @as(u32, 2206);
-pub const NERR_UnableToDelName_F = @as(u32, 2207);
-pub const NERR_LogonsPaused = @as(u32, 2209);
-pub const NERR_LogonServerConflict = @as(u32, 2210);
-pub const NERR_LogonNoUserPath = @as(u32, 2211);
-pub const NERR_LogonScriptError = @as(u32, 2212);
-pub const NERR_StandaloneLogon = @as(u32, 2214);
-pub const NERR_LogonServerNotFound = @as(u32, 2215);
-pub const NERR_LogonDomainExists = @as(u32, 2216);
-pub const NERR_NonValidatedLogon = @as(u32, 2217);
-pub const NERR_ACFNotFound = @as(u32, 2219);
-pub const NERR_GroupNotFound = @as(u32, 2220);
-pub const NERR_UserNotFound = @as(u32, 2221);
-pub const NERR_ResourceNotFound = @as(u32, 2222);
-pub const NERR_GroupExists = @as(u32, 2223);
-pub const NERR_UserExists = @as(u32, 2224);
-pub const NERR_ResourceExists = @as(u32, 2225);
-pub const NERR_NotPrimary = @as(u32, 2226);
-pub const NERR_ACFNotLoaded = @as(u32, 2227);
-pub const NERR_ACFNoRoom = @as(u32, 2228);
-pub const NERR_ACFFileIOFail = @as(u32, 2229);
-pub const NERR_ACFTooManyLists = @as(u32, 2230);
-pub const NERR_UserLogon = @as(u32, 2231);
-pub const NERR_ACFNoParent = @as(u32, 2232);
-pub const NERR_CanNotGrowSegment = @as(u32, 2233);
-pub const NERR_SpeGroupOp = @as(u32, 2234);
-pub const NERR_NotInCache = @as(u32, 2235);
-pub const NERR_UserInGroup = @as(u32, 2236);
-pub const NERR_UserNotInGroup = @as(u32, 2237);
-pub const NERR_AccountUndefined = @as(u32, 2238);
-pub const NERR_AccountExpired = @as(u32, 2239);
-pub const NERR_InvalidWorkstation = @as(u32, 2240);
-pub const NERR_InvalidLogonHours = @as(u32, 2241);
-pub const NERR_PasswordCantChange = @as(u32, 2243);
-pub const NERR_PasswordHistConflict = @as(u32, 2244);
-pub const NERR_PasswordTooShort = @as(u32, 2245);
-pub const NERR_PasswordTooRecent = @as(u32, 2246);
-pub const NERR_InvalidDatabase = @as(u32, 2247);
-pub const NERR_DatabaseUpToDate = @as(u32, 2248);
-pub const NERR_SyncRequired = @as(u32, 2249);
-pub const NERR_UseNotFound = @as(u32, 2250);
-pub const NERR_BadAsgType = @as(u32, 2251);
-pub const NERR_DeviceIsShared = @as(u32, 2252);
-pub const NERR_SameAsComputerName = @as(u32, 2253);
-pub const NERR_NoComputerName = @as(u32, 2270);
-pub const NERR_MsgAlreadyStarted = @as(u32, 2271);
-pub const NERR_MsgInitFailed = @as(u32, 2272);
-pub const NERR_NameNotFound = @as(u32, 2273);
-pub const NERR_AlreadyForwarded = @as(u32, 2274);
-pub const NERR_AddForwarded = @as(u32, 2275);
-pub const NERR_AlreadyExists = @as(u32, 2276);
-pub const NERR_TooManyNames = @as(u32, 2277);
-pub const NERR_DelComputerName = @as(u32, 2278);
-pub const NERR_LocalForward = @as(u32, 2279);
-pub const NERR_GrpMsgProcessor = @as(u32, 2280);
-pub const NERR_PausedRemote = @as(u32, 2281);
-pub const NERR_BadReceive = @as(u32, 2282);
-pub const NERR_NameInUse = @as(u32, 2283);
-pub const NERR_MsgNotStarted = @as(u32, 2284);
-pub const NERR_NotLocalName = @as(u32, 2285);
-pub const NERR_NoForwardName = @as(u32, 2286);
-pub const NERR_RemoteFull = @as(u32, 2287);
-pub const NERR_NameNotForwarded = @as(u32, 2288);
-pub const NERR_TruncatedBroadcast = @as(u32, 2289);
-pub const NERR_InvalidDevice = @as(u32, 2294);
-pub const NERR_WriteFault = @as(u32, 2295);
-pub const NERR_DuplicateName = @as(u32, 2297);
-pub const NERR_DeleteLater = @as(u32, 2298);
-pub const NERR_IncompleteDel = @as(u32, 2299);
-pub const NERR_MultipleNets = @as(u32, 2300);
-pub const NERR_NetNameNotFound = @as(u32, 2310);
-pub const NERR_DeviceNotShared = @as(u32, 2311);
-pub const NERR_ClientNameNotFound = @as(u32, 2312);
-pub const NERR_FileIdNotFound = @as(u32, 2314);
-pub const NERR_ExecFailure = @as(u32, 2315);
-pub const NERR_TmpFile = @as(u32, 2316);
-pub const NERR_TooMuchData = @as(u32, 2317);
-pub const NERR_DeviceShareConflict = @as(u32, 2318);
-pub const NERR_BrowserTableIncomplete = @as(u32, 2319);
-pub const NERR_NotLocalDomain = @as(u32, 2320);
-pub const NERR_IsDfsShare = @as(u32, 2321);
-pub const NERR_DevInvalidOpCode = @as(u32, 2331);
-pub const NERR_DevNotFound = @as(u32, 2332);
-pub const NERR_DevNotOpen = @as(u32, 2333);
-pub const NERR_BadQueueDevString = @as(u32, 2334);
-pub const NERR_BadQueuePriority = @as(u32, 2335);
-pub const NERR_NoCommDevs = @as(u32, 2337);
-pub const NERR_QueueNotFound = @as(u32, 2338);
-pub const NERR_BadDevString = @as(u32, 2340);
-pub const NERR_BadDev = @as(u32, 2341);
-pub const NERR_InUseBySpooler = @as(u32, 2342);
-pub const NERR_CommDevInUse = @as(u32, 2343);
-pub const NERR_InvalidComputer = @as(u32, 2351);
-pub const NERR_MaxLenExceeded = @as(u32, 2354);
-pub const NERR_BadComponent = @as(u32, 2356);
-pub const NERR_CantType = @as(u32, 2357);
-pub const NERR_TooManyEntries = @as(u32, 2362);
-pub const NERR_ProfileFileTooBig = @as(u32, 2370);
-pub const NERR_ProfileOffset = @as(u32, 2371);
-pub const NERR_ProfileCleanup = @as(u32, 2372);
-pub const NERR_ProfileUnknownCmd = @as(u32, 2373);
-pub const NERR_ProfileLoadErr = @as(u32, 2374);
-pub const NERR_ProfileSaveErr = @as(u32, 2375);
-pub const NERR_LogOverflow = @as(u32, 2377);
-pub const NERR_LogFileChanged = @as(u32, 2378);
-pub const NERR_LogFileCorrupt = @as(u32, 2379);
-pub const NERR_SourceIsDir = @as(u32, 2380);
-pub const NERR_BadSource = @as(u32, 2381);
-pub const NERR_BadDest = @as(u32, 2382);
-pub const NERR_DifferentServers = @as(u32, 2383);
-pub const NERR_RunSrvPaused = @as(u32, 2385);
-pub const NERR_ErrCommRunSrv = @as(u32, 2389);
-pub const NERR_ErrorExecingGhost = @as(u32, 2391);
-pub const NERR_ShareNotFound = @as(u32, 2392);
-pub const NERR_InvalidLana = @as(u32, 2400);
-pub const NERR_OpenFiles = @as(u32, 2401);
-pub const NERR_ActiveConns = @as(u32, 2402);
-pub const NERR_BadPasswordCore = @as(u32, 2403);
-pub const NERR_DevInUse = @as(u32, 2404);
-pub const NERR_LocalDrive = @as(u32, 2405);
-pub const NERR_AlertExists = @as(u32, 2430);
-pub const NERR_TooManyAlerts = @as(u32, 2431);
-pub const NERR_NoSuchAlert = @as(u32, 2432);
-pub const NERR_BadRecipient = @as(u32, 2433);
-pub const NERR_AcctLimitExceeded = @as(u32, 2434);
-pub const NERR_InvalidLogSeek = @as(u32, 2440);
-pub const NERR_BadUasConfig = @as(u32, 2450);
-pub const NERR_InvalidUASOp = @as(u32, 2451);
-pub const NERR_LastAdmin = @as(u32, 2452);
-pub const NERR_DCNotFound = @as(u32, 2453);
-pub const NERR_LogonTrackingError = @as(u32, 2454);
-pub const NERR_NetlogonNotStarted = @as(u32, 2455);
-pub const NERR_CanNotGrowUASFile = @as(u32, 2456);
-pub const NERR_TimeDiffAtDC = @as(u32, 2457);
-pub const NERR_PasswordMismatch = @as(u32, 2458);
-pub const NERR_NoSuchServer = @as(u32, 2460);
-pub const NERR_NoSuchSession = @as(u32, 2461);
-pub const NERR_NoSuchConnection = @as(u32, 2462);
-pub const NERR_TooManyServers = @as(u32, 2463);
-pub const NERR_TooManySessions = @as(u32, 2464);
-pub const NERR_TooManyConnections = @as(u32, 2465);
-pub const NERR_TooManyFiles = @as(u32, 2466);
-pub const NERR_NoAlternateServers = @as(u32, 2467);
-pub const NERR_TryDownLevel = @as(u32, 2470);
-pub const NERR_UPSDriverNotStarted = @as(u32, 2480);
-pub const NERR_UPSInvalidConfig = @as(u32, 2481);
-pub const NERR_UPSInvalidCommPort = @as(u32, 2482);
-pub const NERR_UPSSignalAsserted = @as(u32, 2483);
-pub const NERR_UPSShutdownFailed = @as(u32, 2484);
-pub const NERR_BadDosRetCode = @as(u32, 2500);
-pub const NERR_ProgNeedsExtraMem = @as(u32, 2501);
-pub const NERR_BadDosFunction = @as(u32, 2502);
-pub const NERR_RemoteBootFailed = @as(u32, 2503);
-pub const NERR_BadFileCheckSum = @as(u32, 2504);
-pub const NERR_NoRplBootSystem = @as(u32, 2505);
-pub const NERR_RplLoadrNetBiosErr = @as(u32, 2506);
-pub const NERR_RplLoadrDiskErr = @as(u32, 2507);
-pub const NERR_ImageParamErr = @as(u32, 2508);
-pub const NERR_TooManyImageParams = @as(u32, 2509);
-pub const NERR_NonDosFloppyUsed = @as(u32, 2510);
-pub const NERR_RplBootRestart = @as(u32, 2511);
-pub const NERR_RplSrvrCallFailed = @as(u32, 2512);
-pub const NERR_CantConnectRplSrvr = @as(u32, 2513);
-pub const NERR_CantOpenImageFile = @as(u32, 2514);
-pub const NERR_CallingRplSrvr = @as(u32, 2515);
-pub const NERR_StartingRplBoot = @as(u32, 2516);
-pub const NERR_RplBootServiceTerm = @as(u32, 2517);
-pub const NERR_RplBootStartFailed = @as(u32, 2518);
-pub const NERR_RPL_CONNECTED = @as(u32, 2519);
-pub const NERR_BrowserConfiguredToNotRun = @as(u32, 2550);
-pub const NERR_RplNoAdaptersStarted = @as(u32, 2610);
-pub const NERR_RplBadRegistry = @as(u32, 2611);
-pub const NERR_RplBadDatabase = @as(u32, 2612);
-pub const NERR_RplRplfilesShare = @as(u32, 2613);
-pub const NERR_RplNotRplServer = @as(u32, 2614);
-pub const NERR_RplCannotEnum = @as(u32, 2615);
-pub const NERR_RplWkstaInfoCorrupted = @as(u32, 2616);
-pub const NERR_RplWkstaNotFound = @as(u32, 2617);
-pub const NERR_RplWkstaNameUnavailable = @as(u32, 2618);
-pub const NERR_RplProfileInfoCorrupted = @as(u32, 2619);
-pub const NERR_RplProfileNotFound = @as(u32, 2620);
-pub const NERR_RplProfileNameUnavailable = @as(u32, 2621);
-pub const NERR_RplProfileNotEmpty = @as(u32, 2622);
-pub const NERR_RplConfigInfoCorrupted = @as(u32, 2623);
-pub const NERR_RplConfigNotFound = @as(u32, 2624);
-pub const NERR_RplAdapterInfoCorrupted = @as(u32, 2625);
-pub const NERR_RplInternal = @as(u32, 2626);
-pub const NERR_RplVendorInfoCorrupted = @as(u32, 2627);
-pub const NERR_RplBootInfoCorrupted = @as(u32, 2628);
-pub const NERR_RplWkstaNeedsUserAcct = @as(u32, 2629);
-pub const NERR_RplNeedsRPLUSERAcct = @as(u32, 2630);
-pub const NERR_RplBootNotFound = @as(u32, 2631);
-pub const NERR_RplIncompatibleProfile = @as(u32, 2632);
-pub const NERR_RplAdapterNameUnavailable = @as(u32, 2633);
-pub const NERR_RplConfigNotEmpty = @as(u32, 2634);
-pub const NERR_RplBootInUse = @as(u32, 2635);
-pub const NERR_RplBackupDatabase = @as(u32, 2636);
-pub const NERR_RplAdapterNotFound = @as(u32, 2637);
-pub const NERR_RplVendorNotFound = @as(u32, 2638);
-pub const NERR_RplVendorNameUnavailable = @as(u32, 2639);
-pub const NERR_RplBootNameUnavailable = @as(u32, 2640);
-pub const NERR_RplConfigNameUnavailable = @as(u32, 2641);
-pub const NERR_DfsInternalCorruption = @as(u32, 2660);
-pub const NERR_DfsVolumeDataCorrupt = @as(u32, 2661);
-pub const NERR_DfsNoSuchVolume = @as(u32, 2662);
-pub const NERR_DfsVolumeAlreadyExists = @as(u32, 2663);
-pub const NERR_DfsAlreadyShared = @as(u32, 2664);
-pub const NERR_DfsNoSuchShare = @as(u32, 2665);
-pub const NERR_DfsNotALeafVolume = @as(u32, 2666);
-pub const NERR_DfsLeafVolume = @as(u32, 2667);
-pub const NERR_DfsVolumeHasMultipleServers = @as(u32, 2668);
-pub const NERR_DfsCantCreateJunctionPoint = @as(u32, 2669);
-pub const NERR_DfsServerNotDfsAware = @as(u32, 2670);
-pub const NERR_DfsBadRenamePath = @as(u32, 2671);
-pub const NERR_DfsVolumeIsOffline = @as(u32, 2672);
-pub const NERR_DfsNoSuchServer = @as(u32, 2673);
-pub const NERR_DfsCyclicalName = @as(u32, 2674);
-pub const NERR_DfsNotSupportedInServerDfs = @as(u32, 2675);
-pub const NERR_DfsDuplicateService = @as(u32, 2676);
-pub const NERR_DfsCantRemoveLastServerShare = @as(u32, 2677);
-pub const NERR_DfsVolumeIsInterDfs = @as(u32, 2678);
-pub const NERR_DfsInconsistent = @as(u32, 2679);
-pub const NERR_DfsServerUpgraded = @as(u32, 2680);
-pub const NERR_DfsDataIsIdentical = @as(u32, 2681);
-pub const NERR_DfsCantRemoveDfsRoot = @as(u32, 2682);
-pub const NERR_DfsChildOrParentInDfs = @as(u32, 2683);
-pub const NERR_DfsInternalError = @as(u32, 2690);
-pub const NERR_SetupAlreadyJoined = @as(u32, 2691);
-pub const NERR_SetupNotJoined = @as(u32, 2692);
-pub const NERR_SetupDomainController = @as(u32, 2693);
-pub const NERR_DefaultJoinRequired = @as(u32, 2694);
-pub const NERR_InvalidWorkgroupName = @as(u32, 2695);
-pub const NERR_NameUsesIncompatibleCodePage = @as(u32, 2696);
-pub const NERR_ComputerAccountNotFound = @as(u32, 2697);
-pub const NERR_PersonalSku = @as(u32, 2698);
-pub const NERR_SetupCheckDNSConfig = @as(u32, 2699);
-pub const NERR_AlreadyCloudDomainJoined = @as(u32, 2700);
-pub const NERR_PasswordMustChange = @as(u32, 2701);
-pub const NERR_AccountLockedOut = @as(u32, 2702);
-pub const NERR_PasswordTooLong = @as(u32, 2703);
-pub const NERR_PasswordNotComplexEnough = @as(u32, 2704);
-pub const NERR_PasswordFilterError = @as(u32, 2705);
-pub const NERR_NoOfflineJoinInfo = @as(u32, 2709);
-pub const NERR_BadOfflineJoinInfo = @as(u32, 2710);
-pub const NERR_CantCreateJoinInfo = @as(u32, 2711);
-pub const NERR_BadDomainJoinInfo = @as(u32, 2712);
-pub const NERR_JoinPerformedMustRestart = @as(u32, 2713);
-pub const NERR_NoJoinPending = @as(u32, 2714);
-pub const NERR_ValuesNotSet = @as(u32, 2715);
-pub const NERR_CantVerifyHostname = @as(u32, 2716);
-pub const NERR_CantLoadOfflineHive = @as(u32, 2717);
-pub const NERR_ConnectionInsecure = @as(u32, 2718);
-pub const NERR_ProvisioningBlobUnsupported = @as(u32, 2719);
-pub const NERR_DS8DCRequired = @as(u32, 2720);
-pub const NERR_LDAPCapableDCRequired = @as(u32, 2721);
-pub const NERR_DS8DCNotFound = @as(u32, 2722);
-pub const NERR_TargetVersionUnsupported = @as(u32, 2723);
-pub const NERR_InvalidMachineNameForJoin = @as(u32, 2724);
-pub const NERR_DS9DCNotFound = @as(u32, 2725);
-pub const NERR_PlainTextSecretsRequired = @as(u32, 2726);
-pub const NERR_CannotUnjoinAadDomain = @as(u32, 2727);
-pub const MAX_NERR = @as(u32, 2999);
-pub const UF_TEMP_DUPLICATE_ACCOUNT = @as(u32, 256);
-pub const UF_NORMAL_ACCOUNT = @as(u32, 512);
-pub const UF_INTERDOMAIN_TRUST_ACCOUNT = @as(u32, 2048);
-pub const UF_WORKSTATION_TRUST_ACCOUNT = @as(u32, 4096);
-pub const UF_SERVER_TRUST_ACCOUNT = @as(u32, 8192);
-pub const UF_MNS_LOGON_ACCOUNT = @as(u32, 131072);
-pub const UF_NO_AUTH_DATA_REQUIRED = @as(u32, 33554432);
-pub const UF_PARTIAL_SECRETS_ACCOUNT = @as(u32, 67108864);
-pub const UF_USE_AES_KEYS = @as(u32, 134217728);
-pub const LG_INCLUDE_INDIRECT = @as(u32, 1);
-pub const USER_NAME_PARMNUM = @as(u32, 1);
-pub const USER_PASSWORD_PARMNUM = @as(u32, 3);
-pub const USER_PASSWORD_AGE_PARMNUM = @as(u32, 4);
-pub const USER_PRIV_PARMNUM = @as(u32, 5);
-pub const USER_HOME_DIR_PARMNUM = @as(u32, 6);
-pub const USER_COMMENT_PARMNUM = @as(u32, 7);
-pub const USER_FLAGS_PARMNUM = @as(u32, 8);
-pub const USER_SCRIPT_PATH_PARMNUM = @as(u32, 9);
-pub const USER_AUTH_FLAGS_PARMNUM = @as(u32, 10);
-pub const USER_FULL_NAME_PARMNUM = @as(u32, 11);
-pub const USER_USR_COMMENT_PARMNUM = @as(u32, 12);
-pub const USER_PARMS_PARMNUM = @as(u32, 13);
-pub const USER_WORKSTATIONS_PARMNUM = @as(u32, 14);
-pub const USER_LAST_LOGON_PARMNUM = @as(u32, 15);
-pub const USER_LAST_LOGOFF_PARMNUM = @as(u32, 16);
-pub const USER_ACCT_EXPIRES_PARMNUM = @as(u32, 17);
-pub const USER_MAX_STORAGE_PARMNUM = @as(u32, 18);
-pub const USER_UNITS_PER_WEEK_PARMNUM = @as(u32, 19);
-pub const USER_LOGON_HOURS_PARMNUM = @as(u32, 20);
-pub const USER_PAD_PW_COUNT_PARMNUM = @as(u32, 21);
-pub const USER_NUM_LOGONS_PARMNUM = @as(u32, 22);
-pub const USER_LOGON_SERVER_PARMNUM = @as(u32, 23);
-pub const USER_COUNTRY_CODE_PARMNUM = @as(u32, 24);
-pub const USER_CODE_PAGE_PARMNUM = @as(u32, 25);
-pub const USER_PRIMARY_GROUP_PARMNUM = @as(u32, 51);
-pub const USER_PROFILE = @as(u32, 52);
-pub const USER_PROFILE_PARMNUM = @as(u32, 52);
-pub const USER_HOME_DIR_DRIVE_PARMNUM = @as(u32, 53);
-pub const NULL_USERSETINFO_PASSWD = "              ";
-pub const UNITS_PER_DAY = @as(u32, 24);
-pub const USER_PRIV_MASK = @as(u32, 3);
-pub const MAX_PASSWD_LEN = @as(u32, 256);
-pub const DEF_MIN_PWLEN = @as(u32, 6);
-pub const DEF_PWUNIQUENESS = @as(u32, 5);
-pub const DEF_MAX_PWHIST = @as(u32, 8);
-pub const DEF_MAX_BADPW = @as(u32, 0);
-pub const VALIDATED_LOGON = @as(u32, 0);
-pub const PASSWORD_EXPIRED = @as(u32, 2);
-pub const NON_VALIDATED_LOGON = @as(u32, 3);
-pub const VALID_LOGOFF = @as(u32, 1);
-pub const MODALS_MIN_PASSWD_LEN_PARMNUM = @as(u32, 1);
-pub const MODALS_MAX_PASSWD_AGE_PARMNUM = @as(u32, 2);
-pub const MODALS_MIN_PASSWD_AGE_PARMNUM = @as(u32, 3);
-pub const MODALS_FORCE_LOGOFF_PARMNUM = @as(u32, 4);
-pub const MODALS_PASSWD_HIST_LEN_PARMNUM = @as(u32, 5);
-pub const MODALS_ROLE_PARMNUM = @as(u32, 6);
-pub const MODALS_PRIMARY_PARMNUM = @as(u32, 7);
-pub const MODALS_DOMAIN_NAME_PARMNUM = @as(u32, 8);
-pub const MODALS_DOMAIN_ID_PARMNUM = @as(u32, 9);
-pub const MODALS_LOCKOUT_DURATION_PARMNUM = @as(u32, 10);
-pub const MODALS_LOCKOUT_OBSERVATION_WINDOW_PARMNUM = @as(u32, 11);
-pub const MODALS_LOCKOUT_THRESHOLD_PARMNUM = @as(u32, 12);
-pub const GROUPIDMASK = @as(u32, 32768);
-pub const GROUP_SPECIALGRP_USERS = "USERS";
-pub const GROUP_SPECIALGRP_ADMINS = "ADMINS";
-pub const GROUP_SPECIALGRP_GUESTS = "GUESTS";
-pub const GROUP_SPECIALGRP_LOCAL = "LOCAL";
-pub const GROUP_ALL_PARMNUM = @as(u32, 0);
-pub const GROUP_NAME_PARMNUM = @as(u32, 1);
-pub const GROUP_COMMENT_PARMNUM = @as(u32, 2);
-pub const GROUP_ATTRIBUTES_PARMNUM = @as(u32, 3);
-pub const LOCALGROUP_NAME_PARMNUM = @as(u32, 1);
-pub const LOCALGROUP_COMMENT_PARMNUM = @as(u32, 2);
-pub const MAXPERMENTRIES = @as(u32, 64);
-pub const ACCESS_NONE = @as(u32, 0);
-pub const ACCESS_GROUP = @as(u32, 32768);
-pub const ACCESS_AUDIT = @as(u32, 1);
-pub const ACCESS_SUCCESS_OPEN = @as(u32, 16);
-pub const ACCESS_SUCCESS_WRITE = @as(u32, 32);
-pub const ACCESS_SUCCESS_DELETE = @as(u32, 64);
-pub const ACCESS_SUCCESS_ACL = @as(u32, 128);
-pub const ACCESS_SUCCESS_MASK = @as(u32, 240);
-pub const ACCESS_FAIL_OPEN = @as(u32, 256);
-pub const ACCESS_FAIL_WRITE = @as(u32, 512);
-pub const ACCESS_FAIL_DELETE = @as(u32, 1024);
-pub const ACCESS_FAIL_ACL = @as(u32, 2048);
-pub const ACCESS_FAIL_MASK = @as(u32, 3840);
-pub const ACCESS_FAIL_SHIFT = @as(u32, 4);
-pub const ACCESS_RESOURCE_NAME_PARMNUM = @as(u32, 1);
-pub const ACCESS_ATTR_PARMNUM = @as(u32, 2);
-pub const ACCESS_COUNT_PARMNUM = @as(u32, 3);
-pub const ACCESS_ACCESS_LIST_PARMNUM = @as(u32, 4);
-pub const ACCESS_LETTERS = "RWCXDAP         ";
-pub const NET_VALIDATE_PASSWORD_LAST_SET = @as(u32, 1);
-pub const NET_VALIDATE_BAD_PASSWORD_TIME = @as(u32, 2);
-pub const NET_VALIDATE_LOCKOUT_TIME = @as(u32, 4);
-pub const NET_VALIDATE_BAD_PASSWORD_COUNT = @as(u32, 8);
-pub const NET_VALIDATE_PASSWORD_HISTORY_LENGTH = @as(u32, 16);
-pub const NET_VALIDATE_PASSWORD_HISTORY = @as(u32, 32);
-pub const NETLOGON_CONTROL_QUERY = @as(u32, 1);
-pub const NETLOGON_CONTROL_REPLICATE = @as(u32, 2);
-pub const NETLOGON_CONTROL_SYNCHRONIZE = @as(u32, 3);
-pub const NETLOGON_CONTROL_PDC_REPLICATE = @as(u32, 4);
-pub const NETLOGON_CONTROL_REDISCOVER = @as(u32, 5);
-pub const NETLOGON_CONTROL_TC_QUERY = @as(u32, 6);
-pub const NETLOGON_CONTROL_TRANSPORT_NOTIFY = @as(u32, 7);
-pub const NETLOGON_CONTROL_FIND_USER = @as(u32, 8);
-pub const NETLOGON_CONTROL_CHANGE_PASSWORD = @as(u32, 9);
-pub const NETLOGON_CONTROL_TC_VERIFY = @as(u32, 10);
-pub const NETLOGON_CONTROL_FORCE_DNS_REG = @as(u32, 11);
-pub const NETLOGON_CONTROL_QUERY_DNS_REG = @as(u32, 12);
-pub const NETLOGON_CONTROL_QUERY_ENC_TYPES = @as(u32, 13);
-pub const NETLOGON_CONTROL_UNLOAD_NETLOGON_DLL = @as(u32, 65531);
-pub const NETLOGON_CONTROL_BACKUP_CHANGE_LOG = @as(u32, 65532);
-pub const NETLOGON_CONTROL_TRUNCATE_LOG = @as(u32, 65533);
-pub const NETLOGON_CONTROL_SET_DBFLAG = @as(u32, 65534);
-pub const NETLOGON_CONTROL_BREAKPOINT = @as(u32, 65535);
-pub const NETLOGON_REPLICATION_NEEDED = @as(u32, 1);
-pub const NETLOGON_REPLICATION_IN_PROGRESS = @as(u32, 2);
-pub const NETLOGON_FULL_SYNC_REPLICATION = @as(u32, 4);
-pub const NETLOGON_REDO_NEEDED = @as(u32, 8);
-pub const NETLOGON_HAS_IP = @as(u32, 16);
-pub const NETLOGON_HAS_TIMESERV = @as(u32, 32);
-pub const NETLOGON_DNS_UPDATE_FAILURE = @as(u32, 64);
-pub const NETLOGON_VERIFY_STATUS_RETURNED = @as(u32, 128);
-pub const SERVICE_ACCOUNT_PASSWORD = "_SA_{262E99C9-6160-4871-ACEC-4E61736B6F21}";
-pub const SERVICE_ACCOUNT_SECRET_PREFIX = "_SC_{262E99C9-6160-4871-ACEC-4E61736B6F21}_";
-pub const ServiceAccountPasswordGUID = Guid.initString("262e99c9-6160-4871-acec-4e61736b6f21");
-pub const SERVICE_ACCOUNT_FLAG_LINK_TO_HOST_ONLY = @as(i32, 1);
-pub const SERVICE_ACCOUNT_FLAG_ADD_AGAINST_RODC = @as(i32, 2);
-pub const SERVICE_ACCOUNT_FLAG_UNLINK_FROM_HOST_ONLY = @as(i32, 1);
-pub const SERVICE_ACCOUNT_FLAG_REMOVE_OFFLINE = @as(i32, 2);
-pub const ALERTER_MAILSLOT = "\\\\.\\MAILSLOT\\Alerter";
-pub const ALERT_PRINT_EVENT = "PRINTING";
-pub const ALERT_MESSAGE_EVENT = "MESSAGE";
-pub const ALERT_ERRORLOG_EVENT = "ERRORLOG";
-pub const ALERT_ADMIN_EVENT = "ADMIN";
-pub const ALERT_USER_EVENT = "USER";
-pub const PRJOB_QSTATUS = @as(u32, 3);
-pub const PRJOB_DEVSTATUS = @as(u32, 508);
-pub const PRJOB_COMPLETE = @as(u32, 4);
-pub const PRJOB_INTERV = @as(u32, 8);
-pub const PRJOB_ERROR = @as(u32, 16);
-pub const PRJOB_DESTOFFLINE = @as(u32, 32);
-pub const PRJOB_DESTPAUSED = @as(u32, 64);
-pub const PRJOB_NOTIFY = @as(u32, 128);
-pub const PRJOB_DESTNOPAPER = @as(u32, 256);
-pub const PRJOB_DELETED = @as(u32, 32768);
-pub const PRJOB_QS_QUEUED = @as(u32, 0);
-pub const PRJOB_QS_PAUSED = @as(u32, 1);
-pub const PRJOB_QS_SPOOLING = @as(u32, 2);
-pub const PRJOB_QS_PRINTING = @as(u32, 3);
-pub const JOB_RUN_PERIODICALLY = @as(u32, 1);
-pub const JOB_EXEC_ERROR = @as(u32, 2);
-pub const JOB_RUNS_TODAY = @as(u32, 4);
-pub const JOB_ADD_CURRENT_DATE = @as(u32, 8);
-pub const JOB_NONINTERACTIVE = @as(u32, 16);
-pub const LOGFLAGS_FORWARD = @as(u32, 0);
-pub const LOGFLAGS_BACKWARD = @as(u32, 1);
-pub const LOGFLAGS_SEEK = @as(u32, 2);
-pub const ACTION_LOCKOUT = @as(u32, 0);
-pub const ACTION_ADMINUNLOCK = @as(u32, 1);
-pub const AE_SRVSTATUS = @as(u32, 0);
-pub const AE_SESSLOGON = @as(u32, 1);
-pub const AE_SESSLOGOFF = @as(u32, 2);
-pub const AE_SESSPWERR = @as(u32, 3);
-pub const AE_CONNSTART = @as(u32, 4);
-pub const AE_CONNSTOP = @as(u32, 5);
-pub const AE_CONNREJ = @as(u32, 6);
-pub const AE_RESACCESS = @as(u32, 7);
-pub const AE_RESACCESSREJ = @as(u32, 8);
-pub const AE_CLOSEFILE = @as(u32, 9);
-pub const AE_SERVICESTAT = @as(u32, 11);
-pub const AE_ACLMOD = @as(u32, 12);
-pub const AE_UASMOD = @as(u32, 13);
-pub const AE_NETLOGON = @as(u32, 14);
-pub const AE_NETLOGOFF = @as(u32, 15);
-pub const AE_NETLOGDENIED = @as(u32, 16);
-pub const AE_ACCLIMITEXCD = @as(u32, 17);
-pub const AE_RESACCESS2 = @as(u32, 18);
-pub const AE_ACLMODFAIL = @as(u32, 19);
-pub const AE_LOCKOUT = @as(u32, 20);
-pub const AE_GENERIC_TYPE = @as(u32, 21);
-pub const AE_SRVSTART = @as(u32, 0);
-pub const AE_SRVPAUSED = @as(u32, 1);
-pub const AE_SRVCONT = @as(u32, 2);
-pub const AE_SRVSTOP = @as(u32, 3);
-pub const AE_GUEST = @as(u32, 0);
-pub const AE_USER = @as(u32, 1);
-pub const AE_ADMIN = @as(u32, 2);
-pub const AE_NORMAL = @as(u32, 0);
-pub const AE_USERLIMIT = @as(u32, 0);
-pub const AE_GENERAL = @as(u32, 0);
-pub const AE_ERROR = @as(u32, 1);
-pub const AE_SESSDIS = @as(u32, 1);
-pub const AE_BADPW = @as(u32, 1);
-pub const AE_AUTODIS = @as(u32, 2);
-pub const AE_UNSHARE = @as(u32, 2);
-pub const AE_ADMINPRIVREQD = @as(u32, 2);
-pub const AE_ADMINDIS = @as(u32, 3);
-pub const AE_NOACCESSPERM = @as(u32, 3);
-pub const AE_ACCRESTRICT = @as(u32, 4);
-pub const AE_NORMAL_CLOSE = @as(u32, 0);
-pub const AE_SES_CLOSE = @as(u32, 1);
-pub const AE_ADMIN_CLOSE = @as(u32, 2);
-pub const AE_LIM_UNKNOWN = @as(u32, 0);
-pub const AE_LIM_LOGONHOURS = @as(u32, 1);
-pub const AE_LIM_EXPIRED = @as(u32, 2);
-pub const AE_LIM_INVAL_WKSTA = @as(u32, 3);
-pub const AE_LIM_DISABLED = @as(u32, 4);
-pub const AE_LIM_DELETED = @as(u32, 5);
-pub const AE_MOD = @as(u32, 0);
-pub const AE_DELETE = @as(u32, 1);
-pub const AE_ADD = @as(u32, 2);
-pub const AE_UAS_USER = @as(u32, 0);
-pub const AE_UAS_GROUP = @as(u32, 1);
-pub const AE_UAS_MODALS = @as(u32, 2);
-pub const SVAUD_SERVICE = @as(u32, 1);
-pub const SVAUD_GOODSESSLOGON = @as(u32, 6);
-pub const SVAUD_BADSESSLOGON = @as(u32, 24);
-pub const SVAUD_GOODNETLOGON = @as(u32, 96);
-pub const SVAUD_BADNETLOGON = @as(u32, 384);
-pub const SVAUD_GOODUSE = @as(u32, 1536);
-pub const SVAUD_BADUSE = @as(u32, 6144);
-pub const SVAUD_USERLIST = @as(u32, 8192);
-pub const SVAUD_PERMISSIONS = @as(u32, 16384);
-pub const SVAUD_RESOURCE = @as(u32, 32768);
-pub const SVAUD_LOGONLIM = @as(u32, 65536);
-pub const AA_AUDIT_ALL = @as(u32, 1);
-pub const AA_A_OWNER = @as(u32, 4);
-pub const AA_CLOSE = @as(u32, 8);
-pub const AA_S_OPEN = @as(u32, 16);
-pub const AA_S_WRITE = @as(u32, 32);
-pub const AA_S_CREATE = @as(u32, 32);
-pub const AA_S_DELETE = @as(u32, 64);
-pub const AA_S_ACL = @as(u32, 128);
-pub const AA_F_OPEN = @as(u32, 256);
-pub const AA_F_WRITE = @as(u32, 512);
-pub const AA_F_CREATE = @as(u32, 512);
-pub const AA_F_DELETE = @as(u32, 1024);
-pub const AA_F_ACL = @as(u32, 2048);
-pub const AA_A_OPEN = @as(u32, 4096);
-pub const AA_A_WRITE = @as(u32, 8192);
+pub const AA_A_ACL = @as(u32, 32768);
 pub const AA_A_CREATE = @as(u32, 8192);
 pub const AA_A_DELETE = @as(u32, 16384);
-pub const AA_A_ACL = @as(u32, 32768);
-pub const ERRLOG_BASE = @as(u32, 3100);
-pub const NELOG_Internal_Error = @as(u32, 3100);
-pub const NELOG_Resource_Shortage = @as(u32, 3101);
-pub const NELOG_Unable_To_Lock_Segment = @as(u32, 3102);
-pub const NELOG_Unable_To_Unlock_Segment = @as(u32, 3103);
-pub const NELOG_Uninstall_Service = @as(u32, 3104);
-pub const NELOG_Init_Exec_Fail = @as(u32, 3105);
-pub const NELOG_Ncb_Error = @as(u32, 3106);
-pub const NELOG_Net_Not_Started = @as(u32, 3107);
-pub const NELOG_Ioctl_Error = @as(u32, 3108);
-pub const NELOG_System_Semaphore = @as(u32, 3109);
-pub const NELOG_Init_OpenCreate_Err = @as(u32, 3110);
-pub const NELOG_NetBios = @as(u32, 3111);
-pub const NELOG_SMB_Illegal = @as(u32, 3112);
-pub const NELOG_Service_Fail = @as(u32, 3113);
-pub const NELOG_Entries_Lost = @as(u32, 3114);
-pub const NELOG_Init_Seg_Overflow = @as(u32, 3120);
-pub const NELOG_Srv_No_Mem_Grow = @as(u32, 3121);
-pub const NELOG_Access_File_Bad = @as(u32, 3122);
-pub const NELOG_Srvnet_Not_Started = @as(u32, 3123);
-pub const NELOG_Init_Chardev_Err = @as(u32, 3124);
-pub const NELOG_Remote_API = @as(u32, 3125);
-pub const NELOG_Ncb_TooManyErr = @as(u32, 3126);
-pub const NELOG_Mailslot_err = @as(u32, 3127);
-pub const NELOG_ReleaseMem_Alert = @as(u32, 3128);
-pub const NELOG_AT_cannot_write = @as(u32, 3129);
-pub const NELOG_Cant_Make_Msg_File = @as(u32, 3130);
-pub const NELOG_Exec_Netservr_NoMem = @as(u32, 3131);
-pub const NELOG_Server_Lock_Failure = @as(u32, 3132);
-pub const NELOG_Msg_Shutdown = @as(u32, 3140);
-pub const NELOG_Msg_Sem_Shutdown = @as(u32, 3141);
-pub const NELOG_Msg_Log_Err = @as(u32, 3150);
-pub const NELOG_VIO_POPUP_ERR = @as(u32, 3151);
-pub const NELOG_Msg_Unexpected_SMB_Type = @as(u32, 3152);
-pub const NELOG_Wksta_Infoseg = @as(u32, 3160);
-pub const NELOG_Wksta_Compname = @as(u32, 3161);
-pub const NELOG_Wksta_BiosThreadFailure = @as(u32, 3162);
-pub const NELOG_Wksta_IniSeg = @as(u32, 3163);
-pub const NELOG_Wksta_HostTab_Full = @as(u32, 3164);
-pub const NELOG_Wksta_Bad_Mailslot_SMB = @as(u32, 3165);
-pub const NELOG_Wksta_UASInit = @as(u32, 3166);
-pub const NELOG_Wksta_SSIRelogon = @as(u32, 3167);
-pub const NELOG_Build_Name = @as(u32, 3170);
-pub const NELOG_Name_Expansion = @as(u32, 3171);
-pub const NELOG_Message_Send = @as(u32, 3172);
-pub const NELOG_Mail_Slt_Err = @as(u32, 3173);
-pub const NELOG_AT_cannot_read = @as(u32, 3174);
-pub const NELOG_AT_sched_err = @as(u32, 3175);
-pub const NELOG_AT_schedule_file_created = @as(u32, 3176);
-pub const NELOG_Srvnet_NB_Open = @as(u32, 3177);
-pub const NELOG_AT_Exec_Err = @as(u32, 3178);
-pub const NELOG_Lazy_Write_Err = @as(u32, 3180);
-pub const NELOG_HotFix = @as(u32, 3181);
-pub const NELOG_HardErr_From_Server = @as(u32, 3182);
-pub const NELOG_LocalSecFail1 = @as(u32, 3183);
-pub const NELOG_LocalSecFail2 = @as(u32, 3184);
-pub const NELOG_LocalSecFail3 = @as(u32, 3185);
-pub const NELOG_LocalSecGeneralFail = @as(u32, 3186);
-pub const NELOG_NetWkSta_Internal_Error = @as(u32, 3190);
-pub const NELOG_NetWkSta_No_Resource = @as(u32, 3191);
-pub const NELOG_NetWkSta_SMB_Err = @as(u32, 3192);
-pub const NELOG_NetWkSta_VC_Err = @as(u32, 3193);
-pub const NELOG_NetWkSta_Stuck_VC_Err = @as(u32, 3194);
-pub const NELOG_NetWkSta_NCB_Err = @as(u32, 3195);
-pub const NELOG_NetWkSta_Write_Behind_Err = @as(u32, 3196);
-pub const NELOG_NetWkSta_Reset_Err = @as(u32, 3197);
-pub const NELOG_NetWkSta_Too_Many = @as(u32, 3198);
-pub const NELOG_Srv_Thread_Failure = @as(u32, 3204);
-pub const NELOG_Srv_Close_Failure = @as(u32, 3205);
-pub const NELOG_ReplUserCurDir = @as(u32, 3206);
-pub const NELOG_ReplCannotMasterDir = @as(u32, 3207);
-pub const NELOG_ReplUpdateError = @as(u32, 3208);
-pub const NELOG_ReplLostMaster = @as(u32, 3209);
-pub const NELOG_NetlogonAuthDCFail = @as(u32, 3210);
-pub const NELOG_ReplLogonFailed = @as(u32, 3211);
-pub const NELOG_ReplNetErr = @as(u32, 3212);
-pub const NELOG_ReplMaxFiles = @as(u32, 3213);
-pub const NELOG_ReplMaxTreeDepth = @as(u32, 3214);
-pub const NELOG_ReplBadMsg = @as(u32, 3215);
-pub const NELOG_ReplSysErr = @as(u32, 3216);
-pub const NELOG_ReplUserLoged = @as(u32, 3217);
-pub const NELOG_ReplBadImport = @as(u32, 3218);
-pub const NELOG_ReplBadExport = @as(u32, 3219);
-pub const NELOG_ReplSignalFileErr = @as(u32, 3220);
-pub const NELOG_DiskFT = @as(u32, 3221);
-pub const NELOG_ReplAccessDenied = @as(u32, 3222);
-pub const NELOG_NetlogonFailedPrimary = @as(u32, 3223);
-pub const NELOG_NetlogonPasswdSetFailed = @as(u32, 3224);
-pub const NELOG_NetlogonTrackingError = @as(u32, 3225);
-pub const NELOG_NetlogonSyncError = @as(u32, 3226);
-pub const NELOG_NetlogonRequireSignOrSealError = @as(u32, 3227);
-pub const NELOG_UPS_PowerOut = @as(u32, 3230);
-pub const NELOG_UPS_Shutdown = @as(u32, 3231);
-pub const NELOG_UPS_CmdFileError = @as(u32, 3232);
-pub const NELOG_UPS_CannotOpenDriver = @as(u32, 3233);
-pub const NELOG_UPS_PowerBack = @as(u32, 3234);
-pub const NELOG_UPS_CmdFileConfig = @as(u32, 3235);
-pub const NELOG_UPS_CmdFileExec = @as(u32, 3236);
-pub const NELOG_Missing_Parameter = @as(u32, 3250);
-pub const NELOG_Invalid_Config_Line = @as(u32, 3251);
-pub const NELOG_Invalid_Config_File = @as(u32, 3252);
-pub const NELOG_File_Changed = @as(u32, 3253);
-pub const NELOG_Files_Dont_Fit = @as(u32, 3254);
-pub const NELOG_Wrong_DLL_Version = @as(u32, 3255);
-pub const NELOG_Error_in_DLL = @as(u32, 3256);
-pub const NELOG_System_Error = @as(u32, 3257);
-pub const NELOG_FT_ErrLog_Too_Large = @as(u32, 3258);
-pub const NELOG_FT_Update_In_Progress = @as(u32, 3259);
-pub const NELOG_Joined_Domain = @as(u32, 3260);
-pub const NELOG_Joined_Workgroup = @as(u32, 3261);
-pub const NELOG_OEM_Code = @as(u32, 3299);
-pub const ERRLOG2_BASE = @as(u32, 5700);
-pub const NELOG_NetlogonSSIInitError = @as(u32, 5700);
-pub const NELOG_NetlogonFailedToUpdateTrustList = @as(u32, 5701);
-pub const NELOG_NetlogonFailedToAddRpcInterface = @as(u32, 5702);
-pub const NELOG_NetlogonFailedToReadMailslot = @as(u32, 5703);
-pub const NELOG_NetlogonFailedToRegisterSC = @as(u32, 5704);
-pub const NELOG_NetlogonChangeLogCorrupt = @as(u32, 5705);
-pub const NELOG_NetlogonFailedToCreateShare = @as(u32, 5706);
-pub const NELOG_NetlogonDownLevelLogonFailed = @as(u32, 5707);
-pub const NELOG_NetlogonDownLevelLogoffFailed = @as(u32, 5708);
-pub const NELOG_NetlogonNTLogonFailed = @as(u32, 5709);
-pub const NELOG_NetlogonNTLogoffFailed = @as(u32, 5710);
-pub const NELOG_NetlogonPartialSyncCallSuccess = @as(u32, 5711);
-pub const NELOG_NetlogonPartialSyncCallFailed = @as(u32, 5712);
-pub const NELOG_NetlogonFullSyncCallSuccess = @as(u32, 5713);
-pub const NELOG_NetlogonFullSyncCallFailed = @as(u32, 5714);
-pub const NELOG_NetlogonPartialSyncSuccess = @as(u32, 5715);
-pub const NELOG_NetlogonPartialSyncFailed = @as(u32, 5716);
-pub const NELOG_NetlogonFullSyncSuccess = @as(u32, 5717);
-pub const NELOG_NetlogonFullSyncFailed = @as(u32, 5718);
-pub const NELOG_NetlogonAuthNoDomainController = @as(u32, 5719);
-pub const NELOG_NetlogonAuthNoTrustLsaSecret = @as(u32, 5720);
-pub const NELOG_NetlogonAuthNoTrustSamAccount = @as(u32, 5721);
-pub const NELOG_NetlogonServerAuthFailed = @as(u32, 5722);
-pub const NELOG_NetlogonServerAuthNoTrustSamAccount = @as(u32, 5723);
-pub const NELOG_FailedToRegisterSC = @as(u32, 5724);
-pub const NELOG_FailedToSetServiceStatus = @as(u32, 5725);
-pub const NELOG_FailedToGetComputerName = @as(u32, 5726);
-pub const NELOG_DriverNotLoaded = @as(u32, 5727);
-pub const NELOG_NoTranportLoaded = @as(u32, 5728);
-pub const NELOG_NetlogonFailedDomainDelta = @as(u32, 5729);
-pub const NELOG_NetlogonFailedGlobalGroupDelta = @as(u32, 5730);
-pub const NELOG_NetlogonFailedLocalGroupDelta = @as(u32, 5731);
-pub const NELOG_NetlogonFailedUserDelta = @as(u32, 5732);
-pub const NELOG_NetlogonFailedPolicyDelta = @as(u32, 5733);
-pub const NELOG_NetlogonFailedTrustedDomainDelta = @as(u32, 5734);
-pub const NELOG_NetlogonFailedAccountDelta = @as(u32, 5735);
-pub const NELOG_NetlogonFailedSecretDelta = @as(u32, 5736);
-pub const NELOG_NetlogonSystemError = @as(u32, 5737);
-pub const NELOG_NetlogonDuplicateMachineAccounts = @as(u32, 5738);
-pub const NELOG_NetlogonTooManyGlobalGroups = @as(u32, 5739);
-pub const NELOG_NetlogonBrowserDriver = @as(u32, 5740);
-pub const NELOG_NetlogonAddNameFailure = @as(u32, 5741);
-pub const NELOG_RplMessages = @as(u32, 5742);
-pub const NELOG_RplXnsBoot = @as(u32, 5743);
-pub const NELOG_RplSystem = @as(u32, 5744);
-pub const NELOG_RplWkstaTimeout = @as(u32, 5745);
-pub const NELOG_RplWkstaFileOpen = @as(u32, 5746);
-pub const NELOG_RplWkstaFileRead = @as(u32, 5747);
-pub const NELOG_RplWkstaMemory = @as(u32, 5748);
-pub const NELOG_RplWkstaFileChecksum = @as(u32, 5749);
-pub const NELOG_RplWkstaFileLineCount = @as(u32, 5750);
-pub const NELOG_RplWkstaBbcFile = @as(u32, 5751);
-pub const NELOG_RplWkstaFileSize = @as(u32, 5752);
-pub const NELOG_RplWkstaInternal = @as(u32, 5753);
-pub const NELOG_RplWkstaWrongVersion = @as(u32, 5754);
-pub const NELOG_RplWkstaNetwork = @as(u32, 5755);
-pub const NELOG_RplAdapterResource = @as(u32, 5756);
-pub const NELOG_RplFileCopy = @as(u32, 5757);
-pub const NELOG_RplFileDelete = @as(u32, 5758);
-pub const NELOG_RplFilePerms = @as(u32, 5759);
-pub const NELOG_RplCheckConfigs = @as(u32, 5760);
-pub const NELOG_RplCreateProfiles = @as(u32, 5761);
-pub const NELOG_RplRegistry = @as(u32, 5762);
-pub const NELOG_RplReplaceRPLDISK = @as(u32, 5763);
-pub const NELOG_RplCheckSecurity = @as(u32, 5764);
-pub const NELOG_RplBackupDatabase = @as(u32, 5765);
-pub const NELOG_RplInitDatabase = @as(u32, 5766);
-pub const NELOG_RplRestoreDatabaseFailure = @as(u32, 5767);
-pub const NELOG_RplRestoreDatabaseSuccess = @as(u32, 5768);
-pub const NELOG_RplInitRestoredDatabase = @as(u32, 5769);
-pub const NELOG_NetlogonSessionTypeWrong = @as(u32, 5770);
-pub const NELOG_RplUpgradeDBTo40 = @as(u32, 5771);
-pub const NELOG_NetlogonLanmanBdcsNotAllowed = @as(u32, 5772);
-pub const NELOG_NetlogonNoDynamicDns = @as(u32, 5773);
-pub const NELOG_NetlogonDynamicDnsRegisterFailure = @as(u32, 5774);
-pub const NELOG_NetlogonDynamicDnsDeregisterFailure = @as(u32, 5775);
-pub const NELOG_NetlogonFailedFileCreate = @as(u32, 5776);
-pub const NELOG_NetlogonGetSubnetToSite = @as(u32, 5777);
-pub const NELOG_NetlogonNoSiteForClient = @as(u32, 5778);
-pub const NELOG_NetlogonBadSiteName = @as(u32, 5779);
-pub const NELOG_NetlogonBadSubnetName = @as(u32, 5780);
-pub const NELOG_NetlogonDynamicDnsServerFailure = @as(u32, 5781);
-pub const NELOG_NetlogonDynamicDnsFailure = @as(u32, 5782);
-pub const NELOG_NetlogonRpcCallCancelled = @as(u32, 5783);
-pub const NELOG_NetlogonDcSiteCovered = @as(u32, 5784);
-pub const NELOG_NetlogonDcSiteNotCovered = @as(u32, 5785);
-pub const NELOG_NetlogonGcSiteCovered = @as(u32, 5786);
-pub const NELOG_NetlogonGcSiteNotCovered = @as(u32, 5787);
-pub const NELOG_NetlogonFailedSpnUpdate = @as(u32, 5788);
-pub const NELOG_NetlogonFailedDnsHostNameUpdate = @as(u32, 5789);
-pub const NELOG_NetlogonAuthNoUplevelDomainController = @as(u32, 5790);
-pub const NELOG_NetlogonAuthDomainDowngraded = @as(u32, 5791);
-pub const NELOG_NetlogonNdncSiteCovered = @as(u32, 5792);
-pub const NELOG_NetlogonNdncSiteNotCovered = @as(u32, 5793);
-pub const NELOG_NetlogonDcOldSiteCovered = @as(u32, 5794);
-pub const NELOG_NetlogonDcSiteNotCoveredAuto = @as(u32, 5795);
-pub const NELOG_NetlogonGcOldSiteCovered = @as(u32, 5796);
-pub const NELOG_NetlogonGcSiteNotCoveredAuto = @as(u32, 5797);
-pub const NELOG_NetlogonNdncOldSiteCovered = @as(u32, 5798);
-pub const NELOG_NetlogonNdncSiteNotCoveredAuto = @as(u32, 5799);
-pub const NELOG_NetlogonSpnMultipleSamAccountNames = @as(u32, 5800);
-pub const NELOG_NetlogonSpnCrackNamesFailure = @as(u32, 5801);
-pub const NELOG_NetlogonNoAddressToSiteMapping = @as(u32, 5802);
-pub const NELOG_NetlogonInvalidGenericParameterValue = @as(u32, 5803);
-pub const NELOG_NetlogonInvalidDwordParameterValue = @as(u32, 5804);
-pub const NELOG_NetlogonServerAuthFailedNoAccount = @as(u32, 5805);
-pub const NELOG_NetlogonNoDynamicDnsManual = @as(u32, 5806);
-pub const NELOG_NetlogonNoSiteForClients = @as(u32, 5807);
-pub const NELOG_NetlogonDnsDeregAborted = @as(u32, 5808);
-pub const NELOG_NetlogonRpcPortRequestFailure = @as(u32, 5809);
-pub const NELOG_NetlogonPartialSiteMappingForClients = @as(u32, 5810);
-pub const NELOG_NetlogonRemoteDynamicDnsRegisterFailure = @as(u32, 5811);
-pub const NELOG_NetlogonRemoteDynamicDnsDeregisterFailure = @as(u32, 5812);
-pub const NELOG_NetlogonRejectedRemoteDynamicDnsRegister = @as(u32, 5813);
-pub const NELOG_NetlogonRejectedRemoteDynamicDnsDeregister = @as(u32, 5814);
-pub const NELOG_NetlogonRemoteDynamicDnsUpdateRequestFailure = @as(u32, 5815);
-pub const NELOG_NetlogonUserValidationReqInitialTimeOut = @as(u32, 5816);
-pub const NELOG_NetlogonUserValidationReqRecurringTimeOut = @as(u32, 5817);
-pub const NELOG_NetlogonUserValidationReqWaitInitialWarning = @as(u32, 5818);
-pub const NELOG_NetlogonUserValidationReqWaitRecurringWarning = @as(u32, 5819);
-pub const NELOG_NetlogonFailedToAddAuthzRpcInterface = @as(u32, 5820);
-pub const NELOG_NetLogonFailedToInitializeAuthzRm = @as(u32, 5821);
-pub const NELOG_NetLogonFailedToInitializeRPCSD = @as(u32, 5822);
-pub const NELOG_NetlogonMachinePasswdSetSucceeded = @as(u32, 5823);
-pub const NELOG_NetlogonMsaPasswdSetSucceeded = @as(u32, 5824);
-pub const NELOG_NetlogonDnsHostNameLowerCasingFailed = @as(u32, 5825);
-pub const NETLOG_NetlogonNonWindowsSupportsSecureRpc = @as(u32, 5826);
-pub const NETLOG_NetlogonUnsecureRpcClient = @as(u32, 5827);
-pub const NETLOG_NetlogonUnsecureRpcTrust = @as(u32, 5828);
-pub const NETLOG_NetlogonUnsecuredRpcMachineTemporarilyAllowed = @as(u32, 5829);
-pub const NETLOG_NetlogonUnsecureRpcMachineAllowedBySsdl = @as(u32, 5830);
-pub const NETLOG_NetlogonUnsecureRpcTrustAllowedBySsdl = @as(u32, 5831);
-pub const NETSETUP_ACCT_DELETE = @as(u32, 4);
-pub const NETSETUP_DNS_NAME_CHANGES_ONLY = @as(u32, 4096);
-pub const NETSETUP_INSTALL_INVOCATION = @as(u32, 262144);
-pub const NETSETUP_ALT_SAMACCOUNTNAME = @as(u32, 131072);
-pub const NET_IGNORE_UNSUPPORTED_FLAGS = @as(u32, 1);
-pub const NETSETUP_PROVISION_PERSISTENTSITE = @as(u32, 32);
-pub const NETSETUP_PROVISION_CHECK_PWD_ONLY = @as(u32, 2147483648);
-pub const NETSETUP_PROVISIONING_PARAMS_WIN8_VERSION = @as(u32, 1);
-pub const NETSETUP_PROVISIONING_PARAMS_CURRENT_VERSION = @as(u32, 2);
-pub const MSGNAME_NOT_FORWARDED = @as(u32, 0);
-pub const MSGNAME_FORWARDED_TO = @as(u32, 4);
-pub const MSGNAME_FORWARDED_FROM = @as(u32, 16);
-pub const SUPPORTS_ANY = @as(i32, -1);
-pub const NO_PERMISSION_REQUIRED = @as(u32, 1);
+pub const AA_A_OPEN = @as(u32, 4096);
+pub const AA_A_OWNER = @as(u32, 4);
+pub const AA_A_WRITE = @as(u32, 8192);
+pub const AA_AUDIT_ALL = @as(u32, 1);
+pub const AA_CLOSE = @as(u32, 8);
+pub const AA_F_ACL = @as(u32, 2048);
+pub const AA_F_CREATE = @as(u32, 512);
+pub const AA_F_DELETE = @as(u32, 1024);
+pub const AA_F_OPEN = @as(u32, 256);
+pub const AA_F_WRITE = @as(u32, 512);
+pub const AA_S_ACL = @as(u32, 128);
+pub const AA_S_CREATE = @as(u32, 32);
+pub const AA_S_DELETE = @as(u32, 64);
+pub const AA_S_OPEN = @as(u32, 16);
+pub const AA_S_WRITE = @as(u32, 32);
+pub const ACCESS_ACCESS_LIST_PARMNUM = @as(u32, 4);
+pub const ACCESS_ATTR_PARMNUM = @as(u32, 2);
+pub const ACCESS_AUDIT = @as(u32, 1);
+pub const ACCESS_COUNT_PARMNUM = @as(u32, 3);
+pub const ACCESS_FAIL_ACL = @as(u32, 2048);
+pub const ACCESS_FAIL_DELETE = @as(u32, 1024);
+pub const ACCESS_FAIL_MASK = @as(u32, 3840);
+pub const ACCESS_FAIL_OPEN = @as(u32, 256);
+pub const ACCESS_FAIL_SHIFT = @as(u32, 4);
+pub const ACCESS_FAIL_WRITE = @as(u32, 512);
+pub const ACCESS_GROUP = @as(u32, 32768);
+pub const ACCESS_LETTERS = "RWCXDAP         ";
+pub const ACCESS_NONE = @as(u32, 0);
+pub const ACCESS_RESOURCE_NAME_PARMNUM = @as(u32, 1);
+pub const ACCESS_SUCCESS_ACL = @as(u32, 128);
+pub const ACCESS_SUCCESS_DELETE = @as(u32, 64);
+pub const ACCESS_SUCCESS_MASK = @as(u32, 240);
+pub const ACCESS_SUCCESS_OPEN = @as(u32, 16);
+pub const ACCESS_SUCCESS_WRITE = @as(u32, 32);
+pub const ACTION_ADMINUNLOCK = @as(u32, 1);
+pub const ACTION_LOCKOUT = @as(u32, 0);
+pub const AE_ACCLIMITEXCD = @as(u32, 17);
+pub const AE_ACCRESTRICT = @as(u32, 4);
+pub const AE_ACLMOD = @as(u32, 12);
+pub const AE_ACLMODFAIL = @as(u32, 19);
+pub const AE_ADD = @as(u32, 2);
+pub const AE_ADMIN = @as(u32, 2);
+pub const AE_ADMIN_CLOSE = @as(u32, 2);
+pub const AE_ADMINDIS = @as(u32, 3);
+pub const AE_ADMINPRIVREQD = @as(u32, 2);
+pub const AE_AUTODIS = @as(u32, 2);
+pub const AE_BADPW = @as(u32, 1);
+pub const AE_CLOSEFILE = @as(u32, 9);
+pub const AE_CONNREJ = @as(u32, 6);
+pub const AE_CONNSTART = @as(u32, 4);
+pub const AE_CONNSTOP = @as(u32, 5);
+pub const AE_DELETE = @as(u32, 1);
+pub const AE_ERROR = @as(u32, 1);
+pub const AE_GENERAL = @as(u32, 0);
+pub const AE_GENERIC_TYPE = @as(u32, 21);
+pub const AE_GUEST = @as(u32, 0);
+pub const AE_LIM_DELETED = @as(u32, 5);
+pub const AE_LIM_DISABLED = @as(u32, 4);
+pub const AE_LIM_EXPIRED = @as(u32, 2);
+pub const AE_LIM_INVAL_WKSTA = @as(u32, 3);
+pub const AE_LIM_LOGONHOURS = @as(u32, 1);
+pub const AE_LIM_UNKNOWN = @as(u32, 0);
+pub const AE_LOCKOUT = @as(u32, 20);
+pub const AE_MOD = @as(u32, 0);
+pub const AE_NETLOGDENIED = @as(u32, 16);
+pub const AE_NETLOGOFF = @as(u32, 15);
+pub const AE_NETLOGON = @as(u32, 14);
+pub const AE_NOACCESSPERM = @as(u32, 3);
+pub const AE_NORMAL = @as(u32, 0);
+pub const AE_NORMAL_CLOSE = @as(u32, 0);
+pub const AE_RESACCESS = @as(u32, 7);
+pub const AE_RESACCESS2 = @as(u32, 18);
+pub const AE_RESACCESSREJ = @as(u32, 8);
+pub const AE_SERVICESTAT = @as(u32, 11);
+pub const AE_SES_CLOSE = @as(u32, 1);
+pub const AE_SESSDIS = @as(u32, 1);
+pub const AE_SESSLOGOFF = @as(u32, 2);
+pub const AE_SESSLOGON = @as(u32, 1);
+pub const AE_SESSPWERR = @as(u32, 3);
+pub const AE_SRVCONT = @as(u32, 2);
+pub const AE_SRVPAUSED = @as(u32, 1);
+pub const AE_SRVSTART = @as(u32, 0);
+pub const AE_SRVSTATUS = @as(u32, 0);
+pub const AE_SRVSTOP = @as(u32, 3);
+pub const AE_UAS_GROUP = @as(u32, 1);
+pub const AE_UAS_MODALS = @as(u32, 2);
+pub const AE_UAS_USER = @as(u32, 0);
+pub const AE_UASMOD = @as(u32, 13);
+pub const AE_UNSHARE = @as(u32, 2);
+pub const AE_USER = @as(u32, 1);
+pub const AE_USERLIMIT = @as(u32, 0);
+pub const ALERT_ADMIN_EVENT = "ADMIN";
+pub const ALERT_ERRORLOG_EVENT = "ERRORLOG";
+pub const ALERT_MESSAGE_EVENT = "MESSAGE";
+pub const ALERT_PRINT_EVENT = "PRINTING";
+pub const ALERT_USER_EVENT = "USER";
+pub const ALERTER_MAILSLOT = "\\\\.\\MAILSLOT\\Alerter";
+pub const ALERTSZ = @as(u32, 128);
+pub const ALIGN_SIZE = @as(u32, 8);
 pub const ALLOCATE_RESPONSE = @as(u32, 2);
-pub const USE_SPECIFIC_TRANSPORT = @as(u32, 2147483648);
-pub const SV_PLATFORM_ID_OS2 = @as(u32, 400);
-pub const SV_PLATFORM_ID_NT = @as(u32, 500);
-pub const MAJOR_VERSION_MASK = @as(u32, 15);
-pub const SV_NODISC = @as(i32, -1);
-pub const SV_PLATFORM_ID_PARMNUM = @as(u32, 101);
-pub const SV_NAME_PARMNUM = @as(u32, 102);
-pub const SV_VERSION_MAJOR_PARMNUM = @as(u32, 103);
-pub const SV_VERSION_MINOR_PARMNUM = @as(u32, 104);
-pub const SV_TYPE_PARMNUM = @as(u32, 105);
-pub const SV_COMMENT_PARMNUM = @as(u32, 5);
-pub const SV_USERS_PARMNUM = @as(u32, 107);
-pub const SV_DISC_PARMNUM = @as(u32, 10);
-pub const SV_HIDDEN_PARMNUM = @as(u32, 16);
-pub const SV_ANNOUNCE_PARMNUM = @as(u32, 17);
-pub const SV_ANNDELTA_PARMNUM = @as(u32, 18);
-pub const SV_USERPATH_PARMNUM = @as(u32, 112);
-pub const SV_ULIST_MTIME_PARMNUM = @as(u32, 401);
-pub const SV_GLIST_MTIME_PARMNUM = @as(u32, 402);
-pub const SV_ALIST_MTIME_PARMNUM = @as(u32, 403);
-pub const SV_ALERTS_PARMNUM = @as(u32, 11);
-pub const SV_SECURITY_PARMNUM = @as(u32, 405);
-pub const SV_NUMADMIN_PARMNUM = @as(u32, 406);
-pub const SV_LANMASK_PARMNUM = @as(u32, 407);
-pub const SV_GUESTACC_PARMNUM = @as(u32, 408);
-pub const SV_CHDEVQ_PARMNUM = @as(u32, 410);
-pub const SV_CHDEVJOBS_PARMNUM = @as(u32, 411);
-pub const SV_CONNECTIONS_PARMNUM = @as(u32, 412);
-pub const SV_SHARES_PARMNUM = @as(u32, 413);
-pub const SV_OPENFILES_PARMNUM = @as(u32, 414);
-pub const SV_SESSREQS_PARMNUM = @as(u32, 417);
-pub const SV_ACTIVELOCKS_PARMNUM = @as(u32, 419);
-pub const SV_NUMREQBUF_PARMNUM = @as(u32, 420);
-pub const SV_NUMBIGBUF_PARMNUM = @as(u32, 422);
-pub const SV_NUMFILETASKS_PARMNUM = @as(u32, 423);
-pub const SV_ALERTSCHED_PARMNUM = @as(u32, 37);
-pub const SV_ERRORALERT_PARMNUM = @as(u32, 38);
-pub const SV_LOGONALERT_PARMNUM = @as(u32, 39);
-pub const SV_ACCESSALERT_PARMNUM = @as(u32, 40);
-pub const SV_DISKALERT_PARMNUM = @as(u32, 41);
-pub const SV_NETIOALERT_PARMNUM = @as(u32, 42);
-pub const SV_MAXAUDITSZ_PARMNUM = @as(u32, 43);
-pub const SV_SRVHEURISTICS_PARMNUM = @as(u32, 431);
-pub const SV_SESSOPENS_PARMNUM = @as(u32, 501);
-pub const SV_SESSVCS_PARMNUM = @as(u32, 502);
-pub const SV_OPENSEARCH_PARMNUM = @as(u32, 503);
-pub const SV_SIZREQBUF_PARMNUM = @as(u32, 504);
-pub const SV_INITWORKITEMS_PARMNUM = @as(u32, 505);
-pub const SV_MAXWORKITEMS_PARMNUM = @as(u32, 506);
-pub const SV_RAWWORKITEMS_PARMNUM = @as(u32, 507);
-pub const SV_IRPSTACKSIZE_PARMNUM = @as(u32, 508);
-pub const SV_MAXRAWBUFLEN_PARMNUM = @as(u32, 509);
-pub const SV_SESSUSERS_PARMNUM = @as(u32, 510);
-pub const SV_SESSCONNS_PARMNUM = @as(u32, 511);
-pub const SV_MAXNONPAGEDMEMORYUSAGE_PARMNUM = @as(u32, 512);
-pub const SV_MAXPAGEDMEMORYUSAGE_PARMNUM = @as(u32, 513);
-pub const SV_ENABLESOFTCOMPAT_PARMNUM = @as(u32, 514);
-pub const SV_ENABLEFORCEDLOGOFF_PARMNUM = @as(u32, 515);
-pub const SV_TIMESOURCE_PARMNUM = @as(u32, 516);
-pub const SV_ACCEPTDOWNLEVELAPIS_PARMNUM = @as(u32, 517);
-pub const SV_LMANNOUNCE_PARMNUM = @as(u32, 518);
-pub const SV_DOMAIN_PARMNUM = @as(u32, 519);
-pub const SV_MAXCOPYREADLEN_PARMNUM = @as(u32, 520);
-pub const SV_MAXCOPYWRITELEN_PARMNUM = @as(u32, 521);
-pub const SV_MINKEEPSEARCH_PARMNUM = @as(u32, 522);
-pub const SV_MAXKEEPSEARCH_PARMNUM = @as(u32, 523);
-pub const SV_MINKEEPCOMPLSEARCH_PARMNUM = @as(u32, 524);
-pub const SV_MAXKEEPCOMPLSEARCH_PARMNUM = @as(u32, 525);
-pub const SV_THREADCOUNTADD_PARMNUM = @as(u32, 526);
-pub const SV_NUMBLOCKTHREADS_PARMNUM = @as(u32, 527);
-pub const SV_SCAVTIMEOUT_PARMNUM = @as(u32, 528);
-pub const SV_MINRCVQUEUE_PARMNUM = @as(u32, 529);
-pub const SV_MINFREEWORKITEMS_PARMNUM = @as(u32, 530);
-pub const SV_XACTMEMSIZE_PARMNUM = @as(u32, 531);
-pub const SV_THREADPRIORITY_PARMNUM = @as(u32, 532);
-pub const SV_MAXMPXCT_PARMNUM = @as(u32, 533);
-pub const SV_OPLOCKBREAKWAIT_PARMNUM = @as(u32, 534);
-pub const SV_OPLOCKBREAKRESPONSEWAIT_PARMNUM = @as(u32, 535);
-pub const SV_ENABLEOPLOCKS_PARMNUM = @as(u32, 536);
-pub const SV_ENABLEOPLOCKFORCECLOSE_PARMNUM = @as(u32, 537);
-pub const SV_ENABLEFCBOPENS_PARMNUM = @as(u32, 538);
-pub const SV_ENABLERAW_PARMNUM = @as(u32, 539);
-pub const SV_ENABLESHAREDNETDRIVES_PARMNUM = @as(u32, 540);
-pub const SV_MINFREECONNECTIONS_PARMNUM = @as(u32, 541);
-pub const SV_MAXFREECONNECTIONS_PARMNUM = @as(u32, 542);
-pub const SV_INITSESSTABLE_PARMNUM = @as(u32, 543);
-pub const SV_INITCONNTABLE_PARMNUM = @as(u32, 544);
-pub const SV_INITFILETABLE_PARMNUM = @as(u32, 545);
-pub const SV_INITSEARCHTABLE_PARMNUM = @as(u32, 546);
-pub const SV_ALERTSCHEDULE_PARMNUM = @as(u32, 547);
-pub const SV_ERRORTHRESHOLD_PARMNUM = @as(u32, 548);
-pub const SV_NETWORKERRORTHRESHOLD_PARMNUM = @as(u32, 549);
-pub const SV_DISKSPACETHRESHOLD_PARMNUM = @as(u32, 550);
-pub const SV_MAXLINKDELAY_PARMNUM = @as(u32, 552);
-pub const SV_MINLINKTHROUGHPUT_PARMNUM = @as(u32, 553);
-pub const SV_LINKINFOVALIDTIME_PARMNUM = @as(u32, 554);
-pub const SV_SCAVQOSINFOUPDATETIME_PARMNUM = @as(u32, 555);
-pub const SV_MAXWORKITEMIDLETIME_PARMNUM = @as(u32, 556);
-pub const SV_MAXRAWWORKITEMS_PARMNUM = @as(u32, 557);
-pub const SV_PRODUCTTYPE_PARMNUM = @as(u32, 560);
-pub const SV_SERVERSIZE_PARMNUM = @as(u32, 561);
-pub const SV_CONNECTIONLESSAUTODISC_PARMNUM = @as(u32, 562);
-pub const SV_SHARINGVIOLATIONRETRIES_PARMNUM = @as(u32, 563);
-pub const SV_SHARINGVIOLATIONDELAY_PARMNUM = @as(u32, 564);
-pub const SV_MAXGLOBALOPENSEARCH_PARMNUM = @as(u32, 565);
-pub const SV_REMOVEDUPLICATESEARCHES_PARMNUM = @as(u32, 566);
-pub const SV_LOCKVIOLATIONRETRIES_PARMNUM = @as(u32, 567);
-pub const SV_LOCKVIOLATIONOFFSET_PARMNUM = @as(u32, 568);
-pub const SV_LOCKVIOLATIONDELAY_PARMNUM = @as(u32, 569);
-pub const SV_MDLREADSWITCHOVER_PARMNUM = @as(u32, 570);
-pub const SV_CACHEDOPENLIMIT_PARMNUM = @as(u32, 571);
-pub const SV_CRITICALTHREADS_PARMNUM = @as(u32, 572);
-pub const SV_RESTRICTNULLSESSACCESS_PARMNUM = @as(u32, 573);
-pub const SV_ENABLEWFW311DIRECTIPX_PARMNUM = @as(u32, 574);
-pub const SV_OTHERQUEUEAFFINITY_PARMNUM = @as(u32, 575);
-pub const SV_QUEUESAMPLESECS_PARMNUM = @as(u32, 576);
-pub const SV_BALANCECOUNT_PARMNUM = @as(u32, 577);
-pub const SV_PREFERREDAFFINITY_PARMNUM = @as(u32, 578);
-pub const SV_MAXFREERFCBS_PARMNUM = @as(u32, 579);
-pub const SV_MAXFREEMFCBS_PARMNUM = @as(u32, 580);
-pub const SV_MAXFREELFCBS_PARMNUM = @as(u32, 581);
-pub const SV_MAXFREEPAGEDPOOLCHUNKS_PARMNUM = @as(u32, 582);
-pub const SV_MINPAGEDPOOLCHUNKSIZE_PARMNUM = @as(u32, 583);
-pub const SV_MAXPAGEDPOOLCHUNKSIZE_PARMNUM = @as(u32, 584);
-pub const SV_SENDSFROMPREFERREDPROCESSOR_PARMNUM = @as(u32, 585);
-pub const SV_MAXTHREADSPERQUEUE_PARMNUM = @as(u32, 586);
-pub const SV_CACHEDDIRECTORYLIMIT_PARMNUM = @as(u32, 587);
-pub const SV_MAXCOPYLENGTH_PARMNUM = @as(u32, 588);
-pub const SV_ENABLECOMPRESSION_PARMNUM = @as(u32, 590);
-pub const SV_AUTOSHAREWKS_PARMNUM = @as(u32, 591);
-pub const SV_AUTOSHARESERVER_PARMNUM = @as(u32, 592);
-pub const SV_ENABLESECURITYSIGNATURE_PARMNUM = @as(u32, 593);
-pub const SV_REQUIRESECURITYSIGNATURE_PARMNUM = @as(u32, 594);
-pub const SV_MINCLIENTBUFFERSIZE_PARMNUM = @as(u32, 595);
-pub const SV_CONNECTIONNOSESSIONSTIMEOUT_PARMNUM = @as(u32, 596);
-pub const SV_IDLETHREADTIMEOUT_PARMNUM = @as(u32, 597);
-pub const SV_ENABLEW9XSECURITYSIGNATURE_PARMNUM = @as(u32, 598);
-pub const SV_ENFORCEKERBEROSREAUTHENTICATION_PARMNUM = @as(u32, 599);
-pub const SV_DISABLEDOS_PARMNUM = @as(u32, 600);
-pub const SV_LOWDISKSPACEMINIMUM_PARMNUM = @as(u32, 601);
-pub const SV_DISABLESTRICTNAMECHECKING_PARMNUM = @as(u32, 602);
-pub const SV_ENABLEAUTHENTICATEUSERSHARING_PARMNUM = @as(u32, 603);
-pub const SVI1_NUM_ELEMENTS = @as(u32, 5);
-pub const SVI2_NUM_ELEMENTS = @as(u32, 40);
-pub const SVI3_NUM_ELEMENTS = @as(u32, 44);
-pub const SV_MAX_CMD_LEN = @as(u32, 256);
-pub const SW_AUTOPROF_LOAD_MASK = @as(u32, 1);
-pub const SW_AUTOPROF_SAVE_MASK = @as(u32, 2);
-pub const SV_MAX_SRV_HEUR_LEN = @as(u32, 32);
-pub const SV_USERS_PER_LICENSE = @as(u32, 5);
-pub const SVTI2_REMAP_PIPE_NAMES = @as(u32, 2);
-pub const SVTI2_SCOPED_NAME = @as(u32, 4);
-pub const SVTI2_CLUSTER_NAME = @as(u32, 8);
-pub const SVTI2_CLUSTER_DNN_NAME = @as(u32, 16);
-pub const SVTI2_UNICODE_TRANSPORT_ADDRESS = @as(u32, 32);
-pub const SVTI2_RESERVED1 = @as(u32, 4096);
-pub const SVTI2_RESERVED2 = @as(u32, 8192);
-pub const SVTI2_RESERVED3 = @as(u32, 16384);
-pub const SRV_SUPPORT_HASH_GENERATION = @as(u32, 1);
-pub const SRV_HASH_GENERATION_ACTIVE = @as(u32, 2);
-pub const SERVICE_INSTALL_STATE = @as(u32, 3);
-pub const SERVICE_UNINSTALLED = @as(u32, 0);
-pub const SERVICE_INSTALL_PENDING = @as(u32, 1);
-pub const SERVICE_UNINSTALL_PENDING = @as(u32, 2);
-pub const SERVICE_INSTALLED = @as(u32, 3);
-pub const SERVICE_PAUSE_STATE = @as(u32, 12);
-pub const LM20_SERVICE_ACTIVE = @as(u32, 0);
-pub const LM20_SERVICE_CONTINUE_PENDING = @as(u32, 4);
-pub const LM20_SERVICE_PAUSE_PENDING = @as(u32, 8);
-pub const LM20_SERVICE_PAUSED = @as(u32, 12);
-pub const SERVICE_NOT_UNINSTALLABLE = @as(u32, 0);
-pub const SERVICE_UNINSTALLABLE = @as(u32, 16);
-pub const SERVICE_NOT_PAUSABLE = @as(u32, 0);
-pub const SERVICE_PAUSABLE = @as(u32, 32);
-pub const SERVICE_REDIR_PAUSED = @as(u32, 1792);
-pub const SERVICE_REDIR_DISK_PAUSED = @as(u32, 256);
-pub const SERVICE_REDIR_PRINT_PAUSED = @as(u32, 512);
-pub const SERVICE_REDIR_COMM_PAUSED = @as(u32, 1024);
-pub const SERVICE_DOS_ENCRYPTION = "ENCRYPT";
-pub const SERVICE_CTRL_INTERROGATE = @as(u32, 0);
-pub const SERVICE_CTRL_PAUSE = @as(u32, 1);
-pub const SERVICE_CTRL_CONTINUE = @as(u32, 2);
-pub const SERVICE_CTRL_UNINSTALL = @as(u32, 3);
-pub const SERVICE_CTRL_REDIR_DISK = @as(u32, 1);
-pub const SERVICE_CTRL_REDIR_PRINT = @as(u32, 2);
-pub const SERVICE_CTRL_REDIR_COMM = @as(u32, 4);
-pub const SERVICE_IP_NO_HINT = @as(u32, 0);
-pub const SERVICE_CCP_NO_HINT = @as(u32, 0);
-pub const SERVICE_IP_QUERY_HINT = @as(u32, 65536);
-pub const SERVICE_CCP_QUERY_HINT = @as(u32, 65536);
-pub const SERVICE_IP_CHKPT_NUM = @as(u32, 255);
-pub const SERVICE_CCP_CHKPT_NUM = @as(u32, 255);
-pub const SERVICE_IP_WAIT_TIME = @as(u32, 65280);
-pub const SERVICE_CCP_WAIT_TIME = @as(u32, 65280);
-pub const SERVICE_IP_WAITTIME_SHIFT = @as(u32, 8);
-pub const SERVICE_NTIP_WAITTIME_SHIFT = @as(u32, 12);
-pub const UPPER_HINT_MASK = @as(u32, 65280);
-pub const LOWER_HINT_MASK = @as(u32, 255);
-pub const UPPER_GET_HINT_MASK = @as(u32, 267386880);
-pub const LOWER_GET_HINT_MASK = @as(u32, 65280);
-pub const SERVICE_NT_MAXTIME = @as(u32, 65535);
-pub const SERVICE_RESRV_MASK = @as(u32, 131071);
-pub const SERVICE_MAXTIME = @as(u32, 255);
-pub const SERVICE_BASE = @as(u32, 3050);
-pub const SERVICE_UIC_NORMAL = @as(u32, 0);
-pub const SERVICE_UIC_BADPARMVAL = @as(u32, 3051);
-pub const SERVICE_UIC_MISSPARM = @as(u32, 3052);
-pub const SERVICE_UIC_UNKPARM = @as(u32, 3053);
-pub const SERVICE_UIC_RESOURCE = @as(u32, 3054);
-pub const SERVICE_UIC_CONFIG = @as(u32, 3055);
-pub const SERVICE_UIC_SYSTEM = @as(u32, 3056);
-pub const SERVICE_UIC_INTERNAL = @as(u32, 3057);
-pub const SERVICE_UIC_AMBIGPARM = @as(u32, 3058);
-pub const SERVICE_UIC_DUPPARM = @as(u32, 3059);
-pub const SERVICE_UIC_KILL = @as(u32, 3060);
-pub const SERVICE_UIC_EXEC = @as(u32, 3061);
-pub const SERVICE_UIC_SUBSERV = @as(u32, 3062);
-pub const SERVICE_UIC_CONFLPARM = @as(u32, 3063);
-pub const SERVICE_UIC_FILE = @as(u32, 3064);
-pub const SERVICE_UIC_M_NULL = @as(u32, 0);
-pub const SERVICE_UIC_M_MEMORY = @as(u32, 3070);
-pub const SERVICE_UIC_M_DISK = @as(u32, 3071);
-pub const SERVICE_UIC_M_THREADS = @as(u32, 3072);
-pub const SERVICE_UIC_M_PROCESSES = @as(u32, 3073);
-pub const SERVICE_UIC_M_SECURITY = @as(u32, 3074);
-pub const SERVICE_UIC_M_LANROOT = @as(u32, 3075);
-pub const SERVICE_UIC_M_REDIR = @as(u32, 3076);
-pub const SERVICE_UIC_M_SERVER = @as(u32, 3077);
-pub const SERVICE_UIC_M_SEC_FILE_ERR = @as(u32, 3078);
-pub const SERVICE_UIC_M_FILES = @as(u32, 3079);
-pub const SERVICE_UIC_M_LOGS = @as(u32, 3080);
-pub const SERVICE_UIC_M_LANGROUP = @as(u32, 3081);
-pub const SERVICE_UIC_M_MSGNAME = @as(u32, 3082);
-pub const SERVICE_UIC_M_ANNOUNCE = @as(u32, 3083);
-pub const SERVICE_UIC_M_UAS = @as(u32, 3084);
-pub const SERVICE_UIC_M_SERVER_SEC_ERR = @as(u32, 3085);
-pub const SERVICE_UIC_M_WKSTA = @as(u32, 3087);
-pub const SERVICE_UIC_M_ERRLOG = @as(u32, 3088);
-pub const SERVICE_UIC_M_FILE_UW = @as(u32, 3089);
-pub const SERVICE_UIC_M_ADDPAK = @as(u32, 3090);
-pub const SERVICE_UIC_M_LAZY = @as(u32, 3091);
-pub const SERVICE_UIC_M_UAS_MACHINE_ACCT = @as(u32, 3092);
-pub const SERVICE_UIC_M_UAS_SERVERS_NMEMB = @as(u32, 3093);
-pub const SERVICE_UIC_M_UAS_SERVERS_NOGRP = @as(u32, 3094);
-pub const SERVICE_UIC_M_UAS_INVALID_ROLE = @as(u32, 3095);
-pub const SERVICE_UIC_M_NETLOGON_NO_DC = @as(u32, 3096);
-pub const SERVICE_UIC_M_NETLOGON_DC_CFLCT = @as(u32, 3097);
-pub const SERVICE_UIC_M_NETLOGON_AUTH = @as(u32, 3098);
-pub const SERVICE_UIC_M_UAS_PROLOG = @as(u32, 3099);
-pub const SERVICE2_BASE = @as(u32, 5600);
-pub const SERVICE_UIC_M_NETLOGON_MPATH = @as(u32, 5600);
-pub const SERVICE_UIC_M_LSA_MACHINE_ACCT = @as(u32, 5601);
-pub const SERVICE_UIC_M_DATABASE_ERROR = @as(u32, 5602);
-pub const USE_FLAG_GLOBAL_MAPPING = @as(u32, 65536);
-pub const USE_LOCAL_PARMNUM = @as(u32, 1);
-pub const USE_REMOTE_PARMNUM = @as(u32, 2);
-pub const USE_PASSWORD_PARMNUM = @as(u32, 3);
-pub const USE_ASGTYPE_PARMNUM = @as(u32, 4);
-pub const USE_USERNAME_PARMNUM = @as(u32, 5);
-pub const USE_DOMAINNAME_PARMNUM = @as(u32, 6);
-pub const USE_FLAGS_PARMNUM = @as(u32, 7);
-pub const USE_AUTHIDENTITY_PARMNUM = @as(u32, 8);
-pub const USE_SD_PARMNUM = @as(u32, 9);
-pub const USE_OPTIONS_PARMNUM = @as(u32, 10);
-pub const USE_OK = @as(u32, 0);
-pub const USE_PAUSED = @as(u32, 1);
-pub const USE_SESSLOST = @as(u32, 2);
-pub const USE_DISCONN = @as(u32, 2);
-pub const USE_NETERR = @as(u32, 3);
-pub const USE_CONN = @as(u32, 4);
-pub const USE_RECONN = @as(u32, 5);
-pub const USE_CHARDEV = @as(u32, 2);
-pub const CREATE_NO_CONNECT = @as(u32, 1);
+pub const BACKUP_MSG_FILENAME = "BAK.MSG";
+pub const CLTYPE_LEN = @as(u32, 12);
+pub const CNLEN = @as(u32, 15);
+pub const COULD_NOT_VERIFY_VOLUMES = @as(i32, -1073727512);
 pub const CREATE_BYPASS_CSC = @as(u32, 2);
 pub const CREATE_CRED_RESET = @as(u32, 4);
-pub const USE_DEFAULT_CREDENTIALS = @as(u32, 4);
+pub const CREATE_GLOBAL_MAPPING = @as(u32, 256);
+pub const CREATE_NO_CONNECT = @as(u32, 1);
+pub const CREATE_PERSIST_MAPPING = @as(u32, 32);
 pub const CREATE_REQUIRE_CONNECTION_INTEGRITY = @as(u32, 8);
 pub const CREATE_REQUIRE_CONNECTION_PRIVACY = @as(u32, 16);
-pub const CREATE_PERSIST_MAPPING = @as(u32, 32);
 pub const CREATE_WRITE_THROUGH_SEMANTICS = @as(u32, 64);
-pub const CREATE_GLOBAL_MAPPING = @as(u32, 256);
-pub const WKSTA_PLATFORM_ID_PARMNUM = @as(u32, 100);
-pub const WKSTA_COMPUTERNAME_PARMNUM = @as(u32, 1);
-pub const WKSTA_LANGROUP_PARMNUM = @as(u32, 2);
-pub const WKSTA_VER_MAJOR_PARMNUM = @as(u32, 4);
-pub const WKSTA_VER_MINOR_PARMNUM = @as(u32, 5);
-pub const WKSTA_LOGGED_ON_USERS_PARMNUM = @as(u32, 6);
-pub const WKSTA_LANROOT_PARMNUM = @as(u32, 7);
-pub const WKSTA_LOGON_DOMAIN_PARMNUM = @as(u32, 8);
-pub const WKSTA_LOGON_SERVER_PARMNUM = @as(u32, 9);
-pub const WKSTA_CHARWAIT_PARMNUM = @as(u32, 10);
-pub const WKSTA_CHARTIME_PARMNUM = @as(u32, 11);
-pub const WKSTA_CHARCOUNT_PARMNUM = @as(u32, 12);
-pub const WKSTA_KEEPCONN_PARMNUM = @as(u32, 13);
-pub const WKSTA_KEEPSEARCH_PARMNUM = @as(u32, 14);
-pub const WKSTA_MAXCMDS_PARMNUM = @as(u32, 15);
-pub const WKSTA_NUMWORKBUF_PARMNUM = @as(u32, 16);
-pub const WKSTA_MAXWRKCACHE_PARMNUM = @as(u32, 17);
-pub const WKSTA_SESSTIMEOUT_PARMNUM = @as(u32, 18);
-pub const WKSTA_SIZERROR_PARMNUM = @as(u32, 19);
-pub const WKSTA_NUMALERTS_PARMNUM = @as(u32, 20);
-pub const WKSTA_NUMSERVICES_PARMNUM = @as(u32, 21);
-pub const WKSTA_NUMCHARBUF_PARMNUM = @as(u32, 22);
-pub const WKSTA_SIZCHARBUF_PARMNUM = @as(u32, 23);
-pub const WKSTA_ERRLOGSZ_PARMNUM = @as(u32, 27);
-pub const WKSTA_PRINTBUFTIME_PARMNUM = @as(u32, 28);
-pub const WKSTA_SIZWORKBUF_PARMNUM = @as(u32, 29);
-pub const WKSTA_MAILSLOTS_PARMNUM = @as(u32, 30);
-pub const WKSTA_NUMDGRAMBUF_PARMNUM = @as(u32, 31);
-pub const WKSTA_WRKHEURISTICS_PARMNUM = @as(u32, 32);
-pub const WKSTA_MAXTHREADS_PARMNUM = @as(u32, 33);
-pub const WKSTA_LOCKQUOTA_PARMNUM = @as(u32, 41);
-pub const WKSTA_LOCKINCREMENT_PARMNUM = @as(u32, 42);
-pub const WKSTA_LOCKMAXIMUM_PARMNUM = @as(u32, 43);
-pub const WKSTA_PIPEINCREMENT_PARMNUM = @as(u32, 44);
-pub const WKSTA_PIPEMAXIMUM_PARMNUM = @as(u32, 45);
-pub const WKSTA_DORMANTFILELIMIT_PARMNUM = @as(u32, 46);
-pub const WKSTA_CACHEFILETIMEOUT_PARMNUM = @as(u32, 47);
-pub const WKSTA_USEOPPORTUNISTICLOCKING_PARMNUM = @as(u32, 48);
-pub const WKSTA_USEUNLOCKBEHIND_PARMNUM = @as(u32, 49);
-pub const WKSTA_USECLOSEBEHIND_PARMNUM = @as(u32, 50);
-pub const WKSTA_BUFFERNAMEDPIPES_PARMNUM = @as(u32, 51);
-pub const WKSTA_USELOCKANDREADANDUNLOCK_PARMNUM = @as(u32, 52);
-pub const WKSTA_UTILIZENTCACHING_PARMNUM = @as(u32, 53);
-pub const WKSTA_USERAWREAD_PARMNUM = @as(u32, 54);
-pub const WKSTA_USERAWWRITE_PARMNUM = @as(u32, 55);
-pub const WKSTA_USEWRITERAWWITHDATA_PARMNUM = @as(u32, 56);
-pub const WKSTA_USEENCRYPTION_PARMNUM = @as(u32, 57);
-pub const WKSTA_BUFFILESWITHDENYWRITE_PARMNUM = @as(u32, 58);
-pub const WKSTA_BUFFERREADONLYFILES_PARMNUM = @as(u32, 59);
-pub const WKSTA_FORCECORECREATEMODE_PARMNUM = @as(u32, 60);
-pub const WKSTA_USE512BYTESMAXTRANSFER_PARMNUM = @as(u32, 61);
-pub const WKSTA_READAHEADTHRUPUT_PARMNUM = @as(u32, 62);
-pub const WKSTA_OTH_DOMAINS_PARMNUM = @as(u32, 101);
-pub const TRANSPORT_QUALITYOFSERVICE_PARMNUM = @as(u32, 201);
-pub const TRANSPORT_NAME_PARMNUM = @as(u32, 202);
-pub const EVENT_SRV_SERVICE_FAILED = @as(i32, -1073739824);
-pub const EVENT_SRV_RESOURCE_SHORTAGE = @as(i32, -1073739823);
+pub const CRYPT_KEY_LEN = @as(u32, 7);
+pub const CRYPT_TXT_LEN = @as(u32, 8);
+pub const DEF_MAX_BADPW = @as(u32, 0);
+pub const DEF_MAX_PWHIST = @as(u32, 8);
+pub const DEF_MIN_PWLEN = @as(u32, 6);
+pub const DEF_PWUNIQUENESS = @as(u32, 5);
+pub const DEVLEN = @as(u32, 80);
+pub const DFS_CONNECTION_FAILURE = @as(i32, 1073756226);
+pub const DFS_ERROR_ACTIVEDIRECTORY_OFFLINE = @as(i32, -1073727301);
+pub const DFS_ERROR_CLUSTERINFO_FAILED = @as(i32, -1073727307);
+pub const DFS_ERROR_COMPUTERINFO_FAILED = @as(i32, -1073727308);
+pub const DFS_ERROR_CREATE_REPARSEPOINT_FAILURE = @as(i32, -1073727321);
+pub const DFS_ERROR_CREATE_REPARSEPOINT_SUCCESS = @as(i32, 1073756370);
+pub const DFS_ERROR_CREATEEVENT_FAILED = @as(i32, -1073727309);
+pub const DFS_ERROR_CROSS_FOREST_TRUST_INFO_FAILED = @as(i32, -1073727274);
+pub const DFS_ERROR_DCINFO_FAILED = @as(i32, -1073727306);
+pub const DFS_ERROR_DSCONNECT_FAILED = @as(i32, -2147469122);
+pub const DFS_ERROR_DUPLICATE_LINK = @as(i32, -1073727277);
+pub const DFS_ERROR_HANDLENAMESPACE_FAILED = @as(i32, -1073727304);
+pub const DFS_ERROR_LINK_OVERLAP = @as(i32, -1073727279);
+pub const DFS_ERROR_LINKS_OVERLAP = @as(i32, -1073727280);
+pub const DFS_ERROR_MUTLIPLE_ROOTS_NOT_SUPPORTED = @as(i32, -1073727289);
+pub const DFS_ERROR_NO_DFS_DATA = @as(i32, -1073727294);
+pub const DFS_ERROR_ON_ROOT = @as(i32, -2147469114);
+pub const DFS_ERROR_OVERLAPPING_DIRECTORIES = @as(i32, -1073727319);
+pub const DFS_ERROR_PREFIXTABLE_FAILED = @as(i32, -1073727305);
+pub const DFS_ERROR_REFLECTIONENGINE_FAILED = @as(i32, -1073727302);
+pub const DFS_ERROR_REGISTERSTORE_FAILED = @as(i32, -1073727303);
+pub const DFS_ERROR_REMOVE_LINK_FAILED = @as(i32, -1073727284);
+pub const DFS_ERROR_RESYNCHRONIZE_FAILED = @as(i32, -1073727285);
+pub const DFS_ERROR_ROOTSYNCINIT_FAILED = @as(i32, -1073727310);
+pub const DFS_ERROR_SECURITYINIT_FAILED = @as(i32, -1073727313);
+pub const DFS_ERROR_SITECACHEINIT_FAILED = @as(i32, -1073727311);
+pub const DFS_ERROR_SITESUPPOR_FAILED = @as(i32, -1073727300);
+pub const DFS_ERROR_TARGET_LIST_INCORRECT = @as(i32, -1073727281);
+pub const DFS_ERROR_THREADINIT_FAILED = @as(i32, -1073727312);
+pub const DFS_ERROR_TOO_MANY_ERRORS = @as(i32, -1073727315);
+pub const DFS_ERROR_TRUSTED_DOMAIN_INFO_FAILED = @as(i32, -1073727276);
+pub const DFS_ERROR_UNSUPPORTED_FILESYSTEM = @as(i32, -1073727320);
+pub const DFS_ERROR_WINSOCKINIT_FAILED = @as(i32, -1073727314);
+pub const DFS_INFO_ACTIVEDIRECTORY_ONLINE = @as(i32, 1073756332);
+pub const DFS_INFO_CROSS_FOREST_TRUST_INFO_SUCCESS = @as(i32, 1073756375);
+pub const DFS_INFO_DOMAIN_REFERRAL_MIN_OVERFLOW = @as(i32, 1073756361);
+pub const DFS_INFO_DS_RECONNECTED = @as(i32, 1073756353);
+pub const DFS_INFO_FINISH_BUILDING_NAMESPACE = @as(i32, 1073756357);
+pub const DFS_INFO_FINISH_INIT = @as(i32, 1073756355);
+pub const DFS_INFO_RECONNECT_DATA = @as(i32, 1073756356);
+pub const DFS_INFO_TRUSTED_DOMAIN_INFO_SUCCESS = @as(i32, 1073756373);
+pub const DFS_INIT_SUCCESS = @as(i32, 1073756376);
+pub const DFS_MAX_DNR_ATTEMPTS = @as(i32, 1073756229);
+pub const DFS_OPEN_FAILURE = @as(i32, 1073756231);
+pub const DFS_REFERRAL_FAILURE = @as(i32, 1073756227);
+pub const DFS_REFERRAL_REQUEST = @as(i32, 1073756142);
+pub const DFS_REFERRAL_SUCCESS = @as(i32, 1073756228);
+pub const DFS_ROOT_SHARE_ACQUIRE_FAILED = @as(i32, -2147469095);
+pub const DFS_ROOT_SHARE_ACQUIRE_SUCCESS = @as(i32, 1073756378);
+pub const DFS_SPECIAL_REFERRAL_FAILURE = @as(i32, 1073756230);
+pub const DFS_WARN_DOMAIN_REFERRAL_OVERFLOW = @as(i32, -2147469112);
+pub const DFS_WARN_INCOMPLETE_MOVE = @as(i32, -2147469110);
+pub const DFS_WARN_METADATA_LINK_INFO_INVALID = @as(i32, -2147469106);
+pub const DFS_WARN_METADATA_LINK_TYPE_INCORRECT = @as(i32, -2147469107);
+pub const DNLEN = @as(u32, 15);
+pub const ENCRYPTED_PWLEN = @as(u32, 16);
+pub const ERRLOG2_BASE = @as(u32, 5700);
+pub const ERRLOG_BASE = @as(u32, 3100);
+pub const EVENT_BAD_ACCOUNT_NAME = @as(i32, -1073734816);
+pub const EVENT_BAD_SERVICE_STATE = @as(i32, -1073734808);
+pub const EVENT_BOOT_SYSTEM_DRIVERS_FAILED = @as(i32, -1073734798);
+pub const EVENT_BOWSER_CANT_READ_REGISTRY = @as(i32, 1073749853);
+pub const EVENT_BOWSER_ELECTION_RECEIVED = @as(i32, 8012);
+pub const EVENT_BOWSER_ELECTION_SENT_FIND_MASTER_FAILED = @as(i32, 1073749838);
+pub const EVENT_BOWSER_ELECTION_SENT_GETBLIST_FAILED = @as(i32, 1073749837);
+pub const EVENT_BOWSER_GETBROWSERLIST_THRESHOLD_EXCEEDED = @as(i32, 1073749855);
+pub const EVENT_BOWSER_ILLEGAL_DATAGRAM = @as(i32, -2147475642);
+pub const EVENT_BOWSER_ILLEGAL_DATAGRAM_THRESHOLD = @as(i32, -1073733808);
+pub const EVENT_BOWSER_MAILSLOT_DATAGRAM_THRESHOLD_EXCEEDED = @as(i32, 1073749854);
+pub const EVENT_BOWSER_NAME_CONVERSION_FAILED = @as(i32, -1073733814);
+pub const EVENT_BOWSER_NON_MASTER_MASTER_ANNOUNCE = @as(i32, -2147475643);
+pub const EVENT_BOWSER_NON_PDC_WON_ELECTION = @as(i32, 1073749852);
+pub const EVENT_BOWSER_OLD_BACKUP_FOUND = @as(i32, 1073749848);
+pub const EVENT_BOWSER_OTHER_MASTER_ON_NET = @as(i32, -1073733821);
+pub const EVENT_BOWSER_PDC_LOST_ELECTION = @as(i32, 1073749851);
+pub const EVENT_BOWSER_PROMOTED_WHILE_ALREADY_MASTER = @as(i32, -2147475644);
+pub const EVENT_BRIDGE_ADAPTER_BIND_FAILED = @as(i32, -1073727120);
+pub const EVENT_BRIDGE_ADAPTER_FILTER_FAILED = @as(i32, -1073727122);
+pub const EVENT_BRIDGE_ADAPTER_LINK_SPEED_QUERY_FAILED = @as(i32, -1073727124);
+pub const EVENT_BRIDGE_ADAPTER_MAC_ADDR_QUERY_FAILED = @as(i32, -1073727123);
+pub const EVENT_BRIDGE_ADAPTER_NAME_QUERY_FAILED = @as(i32, -1073727121);
+pub const EVENT_BRIDGE_BUFFER_POOL_CREATION_FAILED = @as(i32, -1073727214);
+pub const EVENT_BRIDGE_DEVICE_CREATION_FAILED = @as(i32, -1073727221);
+pub const EVENT_BRIDGE_ETHERNET_NOT_OFFERED = @as(i32, -1073727218);
+pub const EVENT_BRIDGE_INIT_MALLOC_FAILED = @as(i32, -1073727213);
+pub const EVENT_BRIDGE_MINIPORT_INIT_FAILED = @as(i32, -1073727219);
+pub const EVENT_BRIDGE_MINIPORT_REGISTER_FAILED = @as(i32, -1073727222);
+pub const EVENT_BRIDGE_MINIPROT_DEVNAME_MISSING = @as(i32, -1073727223);
+pub const EVENT_BRIDGE_NO_BRIDGE_MAC_ADDR = @as(i32, -1073727220);
+pub const EVENT_BRIDGE_PACKET_POOL_CREATION_FAILED = @as(i32, -1073727215);
+pub const EVENT_BRIDGE_PROTOCOL_REGISTER_FAILED = @as(i32, -1073727224);
+pub const EVENT_BRIDGE_THREAD_CREATION_FAILED = @as(i32, -1073727217);
+pub const EVENT_BRIDGE_THREAD_REF_FAILED = @as(i32, -1073727216);
+pub const EVENT_BROWSER_BACKUP_STOPPED = @as(i32, -1073733792);
+pub const EVENT_BROWSER_DEPENDANT_SERVICE_FAILED = @as(i32, -1073733807);
+pub const EVENT_BROWSER_DOMAIN_LIST_FAILED = @as(i32, -2147475626);
+pub const EVENT_BROWSER_DOMAIN_LIST_RETRIEVED = @as(i32, 8026);
+pub const EVENT_BROWSER_ELECTION_SENT_LANMAN_NT_STARTED = @as(i32, 1073749839);
+pub const EVENT_BROWSER_ELECTION_SENT_LANMAN_NT_STOPPED = @as(i32, 1073749857);
+pub const EVENT_BROWSER_ELECTION_SENT_ROLE_CHANGED = @as(i32, 1073749859);
+pub const EVENT_BROWSER_GETBLIST_RECEIVED_NOT_MASTER = @as(i32, -1073733790);
+pub const EVENT_BROWSER_ILLEGAL_CONFIG = @as(i32, -2147475625);
+pub const EVENT_BROWSER_MASTER_PROMOTION_FAILED = @as(i32, -1073733815);
+pub const EVENT_BROWSER_MASTER_PROMOTION_FAILED_NO_MASTER = @as(i32, -1073733804);
+pub const EVENT_BROWSER_MASTER_PROMOTION_FAILED_STOPPING = @as(i32, -1073733805);
+pub const EVENT_BROWSER_NOT_STARTED_IPX_CONFIG_MISMATCH = @as(i32, -1073733788);
+pub const EVENT_BROWSER_OTHERDOMAIN_ADD_FAILED = @as(i32, -1073733813);
+pub const EVENT_BROWSER_ROLE_CHANGE_FAILED = @as(i32, -1073733816);
+pub const EVENT_BROWSER_SERVER_LIST_FAILED = @as(i32, -2147475627);
+pub const EVENT_BROWSER_SERVER_LIST_RETRIEVED = @as(i32, 8025);
+pub const EVENT_BROWSER_STATUS_BITS_UPDATE_FAILED = @as(i32, -1073733817);
+pub const EVENT_CALL_TO_FUNCTION_FAILED = @as(i32, -1073734819);
+pub const EVENT_CALL_TO_FUNCTION_FAILED_II = @as(i32, -1073734818);
+pub const EVENT_CIRCULAR_DEPENDENCY_AUTO = @as(i32, -1073734806);
+pub const EVENT_CIRCULAR_DEPENDENCY_DEMAND = @as(i32, -1073734807);
+pub const EVENT_COMMAND_NOT_INTERACTIVE = @as(i32, -1073733924);
+pub const EVENT_COMMAND_START_FAILED = @as(i32, -1073733923);
+pub const EVENT_ComputerNameChange = @as(i32, -2147477637);
+pub const EVENT_CONNECTION_TIMEOUT = @as(i32, -1073734815);
+pub const EVENT_DAV_REDIR_DELAYED_WRITE_FAILED = @as(i32, -2147468848);
+pub const EVENT_DCOM_ASSERTION_FAILURE = @as(i32, -1073731812);
+pub const EVENT_DCOM_COMPLUS_DISABLED = @as(i32, -1073731810);
+pub const EVENT_DCOM_INVALID_ENDPOINT_DATA = @as(i32, -1073731811);
+pub const EVENT_DEPEND_ON_LATER_GROUP = @as(i32, -1073734804);
+pub const EVENT_DEPEND_ON_LATER_SERVICE = @as(i32, -1073734805);
+pub const EVENT_DNS_CACHE_NETWORK_PERF_WARNING = @as(i32, -2147472598);
+pub const EVENT_DNS_CACHE_START_FAILURE_LOW_MEMORY = @as(i32, -1073730817);
+pub const EVENT_DNS_CACHE_START_FAILURE_NO_CONTROL = @as(i32, -1073730822);
+pub const EVENT_DNS_CACHE_START_FAILURE_NO_DLL = @as(i32, -1073730824);
+pub const EVENT_DNS_CACHE_START_FAILURE_NO_DONE_EVENT = @as(i32, -1073730821);
+pub const EVENT_DNS_CACHE_START_FAILURE_NO_ENTRY = @as(i32, -1073730823);
+pub const EVENT_DNS_CACHE_START_FAILURE_NO_RPC = @as(i32, -1073730820);
+pub const EVENT_DNS_CACHE_START_FAILURE_NO_SHUTDOWN_NOTIFY = @as(i32, -1073730819);
+pub const EVENT_DNS_CACHE_START_FAILURE_NO_UPDATE = @as(i32, -1073730818);
+pub const EVENT_DNS_CACHE_UNABLE_TO_REACH_SERVER_WARNING = @as(i32, -2147472597);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472466);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_NOTSUPP_PRIMARY_DN = @as(i32, -2147472454);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_OTHER = @as(i32, -2147472463);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_OTHER_PRIMARY_DN = @as(i32, -2147472451);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_REFUSED = @as(i32, -2147472465);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_REFUSED_PRIMARY_DN = @as(i32, -2147472453);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SECURITY = @as(i32, -2147472464);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SECURITY_PRIMARY_DN = @as(i32, -2147472452);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472467);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SERVERFAIL_PRIMARY_DN = @as(i32, -2147472455);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472468);
+pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_TIMEOUT_PRIMARY_DN = @as(i32, -2147472456);
+pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472460);
+pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_OTHER = @as(i32, -2147472457);
+pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_REFUSED = @as(i32, -2147472459);
+pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_SECURITY = @as(i32, -2147472458);
+pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472461);
+pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472462);
+pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472490);
+pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_OTHER = @as(i32, -2147472487);
+pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_REFUSED = @as(i32, -2147472489);
+pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_SECURITY = @as(i32, -2147472488);
+pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472491);
+pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472492);
+pub const EVENT_DNSAPI_REGISTERED_ADAPTER = @as(i32, 1073753024);
+pub const EVENT_DNSAPI_REGISTERED_ADAPTER_PRIMARY_DN = @as(i32, 1073753026);
+pub const EVENT_DNSAPI_REGISTERED_PTR = @as(i32, 1073753025);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472496);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_NOTSUPP_PRIMARY_DN = @as(i32, -2147472484);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_OTHER = @as(i32, -2147472493);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_OTHER_PRIMARY_DN = @as(i32, -2147472481);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_REFUSED = @as(i32, -2147472495);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_REFUSED_PRIMARY_DN = @as(i32, -2147472483);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_SECURITY = @as(i32, -2147472494);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_SECURITY_PRIMARY_DN = @as(i32, -2147472482);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472497);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_SERVERFAIL_PRIMARY_DN = @as(i32, -2147472485);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472498);
+pub const EVENT_DNSAPI_REGISTRATION_FAILED_TIMEOUT_PRIMARY_DN = @as(i32, -2147472486);
+pub const EVENT_DNSDomainNameChange = @as(i32, -2147477636);
+pub const EVENT_EQOS_ERROR_MACHINE_POLICY_KEYNAME_SIZE_ZERO = @as(i32, -1073725118);
+pub const EVENT_EQOS_ERROR_MACHINE_POLICY_KEYNAME_TOO_LONG = @as(i32, -1073725120);
+pub const EVENT_EQOS_ERROR_MACHINE_POLICY_REFERESH = @as(i32, -1073725124);
+pub const EVENT_EQOS_ERROR_OPENING_MACHINE_POLICY_ROOT_KEY = @as(i32, -1073725122);
+pub const EVENT_EQOS_ERROR_OPENING_MACHINE_POLICY_SUBKEY = @as(i32, -1073725116);
+pub const EVENT_EQOS_ERROR_OPENING_USER_POLICY_ROOT_KEY = @as(i32, -1073725121);
+pub const EVENT_EQOS_ERROR_OPENING_USER_POLICY_SUBKEY = @as(i32, -1073725115);
+pub const EVENT_EQOS_ERROR_PROCESSING_MACHINE_POLICY_FIELD = @as(i32, -1073725114);
+pub const EVENT_EQOS_ERROR_PROCESSING_USER_POLICY_FIELD = @as(i32, -1073725113);
+pub const EVENT_EQOS_ERROR_SETTING_APP_MARKING = @as(i32, -1073725111);
+pub const EVENT_EQOS_ERROR_SETTING_TCP_AUTOTUNING = @as(i32, -1073725112);
+pub const EVENT_EQOS_ERROR_USER_POLICY_KEYNAME_SIZE_ZERO = @as(i32, -1073725117);
+pub const EVENT_EQOS_ERROR_USER_POLICY_KEYNAME_TOO_LONG = @as(i32, -1073725119);
+pub const EVENT_EQOS_ERROR_USER_POLICY_REFERESH = @as(i32, -1073725123);
+pub const EVENT_EQOS_INFO_APP_MARKING_ALLOWED = @as(i32, 1073758335);
+pub const EVENT_EQOS_INFO_APP_MARKING_IGNORED = @as(i32, 1073758334);
+pub const EVENT_EQOS_INFO_APP_MARKING_NOT_CONFIGURED = @as(i32, 1073758333);
+pub const EVENT_EQOS_INFO_LOCAL_SETTING_DONT_USE_NLA = @as(i32, 1073758336);
+pub const EVENT_EQOS_INFO_MACHINE_POLICY_REFRESH_NO_CHANGE = @as(i32, 1073758324);
+pub const EVENT_EQOS_INFO_MACHINE_POLICY_REFRESH_WITH_CHANGE = @as(i32, 1073758325);
+pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_HIGHLY_RESTRICTED = @as(i32, 1073758330);
+pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_NORMAL = @as(i32, 1073758332);
+pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_NOT_CONFIGURED = @as(i32, 1073758328);
+pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_OFF = @as(i32, 1073758329);
+pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_RESTRICTED = @as(i32, 1073758331);
+pub const EVENT_EQOS_INFO_USER_POLICY_REFRESH_NO_CHANGE = @as(i32, 1073758326);
+pub const EVENT_EQOS_INFO_USER_POLICY_REFRESH_WITH_CHANGE = @as(i32, 1073758327);
+pub const EVENT_EQOS_URL_QOS_APPLICATION_CONFLICT = @as(i32, 1073758337);
+pub const EVENT_EQOS_WARNING_MACHINE_POLICY_CONFLICT = @as(i32, -2147467040);
+pub const EVENT_EQOS_WARNING_MACHINE_POLICY_NO_FULLPATH_APPNAME = @as(i32, -2147467038);
+pub const EVENT_EQOS_WARNING_MACHINE_POLICY_PROFILE_NOT_SPECIFIED = @as(i32, -2147467044);
+pub const EVENT_EQOS_WARNING_MACHINE_POLICY_QUOTA_EXCEEDED = @as(i32, -2147467042);
+pub const EVENT_EQOS_WARNING_MACHINE_POLICY_VERSION = @as(i32, -2147467046);
+pub const EVENT_EQOS_WARNING_TEST_1 = @as(i32, -2147467048);
+pub const EVENT_EQOS_WARNING_TEST_2 = @as(i32, -2147467047);
+pub const EVENT_EQOS_WARNING_USER_POLICY_CONFLICT = @as(i32, -2147467039);
+pub const EVENT_EQOS_WARNING_USER_POLICY_NO_FULLPATH_APPNAME = @as(i32, -2147467037);
+pub const EVENT_EQOS_WARNING_USER_POLICY_PROFILE_NOT_SPECIFIED = @as(i32, -2147467043);
+pub const EVENT_EQOS_WARNING_USER_POLICY_QUOTA_EXCEEDED = @as(i32, -2147467041);
+pub const EVENT_EQOS_WARNING_USER_POLICY_VERSION = @as(i32, -2147467045);
+pub const EVENT_EventlogAbnormalShutdown = @as(i32, -2147477640);
+pub const EVENT_EventLogProductInfo = @as(i32, -2147477639);
+pub const EVENT_EventlogStarted = @as(i32, -2147477643);
+pub const EVENT_EventlogStopped = @as(i32, -2147477642);
+pub const EVENT_EventlogUptime = @as(i32, -2147477635);
+pub const EVENT_FIRST_LOGON_FAILED = @as(i32, -1073734811);
+pub const EVENT_FIRST_LOGON_FAILED_II = @as(i32, -1073734786);
+pub const EVENT_FRS_ACCESS_CHECKS_DISABLED = @as(i32, -2147470131);
+pub const EVENT_FRS_ACCESS_CHECKS_FAILED_UNKNOWN = @as(i32, -1073728305);
+pub const EVENT_FRS_ACCESS_CHECKS_FAILED_USER = @as(i32, -2147470130);
+pub const EVENT_FRS_ASSERT = @as(i32, -1073728318);
+pub const EVENT_FRS_BAD_REG_DATA = @as(i32, -2147470101);
+pub const EVENT_FRS_CANNOT_COMMUNICATE = @as(i32, -1073728314);
+pub const EVENT_FRS_CANNOT_CREATE_UUID = @as(i32, -1073728300);
+pub const EVENT_FRS_CANNOT_START_BACKUP_RESTORE_IN_PROGRESS = @as(i32, -1073728303);
+pub const EVENT_FRS_CANT_OPEN_PREINSTALL = @as(i32, -1073728273);
+pub const EVENT_FRS_CANT_OPEN_STAGE = @as(i32, -1073728274);
+pub const EVENT_FRS_DATABASE_SPACE = @as(i32, -1073728313);
+pub const EVENT_FRS_DISK_WRITE_CACHE_ENABLED = @as(i32, -2147470136);
+pub const EVENT_FRS_DS_POLL_ERROR_SUMMARY = @as(i32, -2147470086);
+pub const EVENT_FRS_DUPLICATE_IN_CXTION = @as(i32, -1073728266);
+pub const EVENT_FRS_DUPLICATE_IN_CXTION_SYSVOL = @as(i32, -1073728267);
+pub const EVENT_FRS_ERROR = @as(i32, -1073728324);
+pub const EVENT_FRS_ERROR_REPLICA_SET_DELETED = @as(i32, -2147470088);
+pub const EVENT_FRS_HUGE_FILE = @as(i32, -2147470125);
+pub const EVENT_FRS_IN_ERROR_STATE = @as(i32, -1073728269);
+pub const EVENT_FRS_JET_1414 = @as(i32, -1073728311);
+pub const EVENT_FRS_JOIN_FAIL_TIME_SKEW = @as(i32, -1073728276);
+pub const EVENT_FRS_LONG_JOIN = @as(i32, -2147470140);
+pub const EVENT_FRS_LONG_JOIN_DONE = @as(i32, -2147470139);
+pub const EVENT_FRS_MOVED_PREEXISTING = @as(i32, -2147470128);
+pub const EVENT_FRS_NO_DNS_ATTRIBUTE = @as(i32, -2147470123);
+pub const EVENT_FRS_NO_SID = @as(i32, -1073728298);
+pub const EVENT_FRS_OVERLAPS_LOGGING = @as(i32, -1073728283);
+pub const EVENT_FRS_OVERLAPS_OTHER_STAGE = @as(i32, -1073728279);
+pub const EVENT_FRS_OVERLAPS_ROOT = @as(i32, -1073728280);
+pub const EVENT_FRS_OVERLAPS_STAGE = @as(i32, -1073728281);
+pub const EVENT_FRS_OVERLAPS_WORKING = @as(i32, -1073728282);
+pub const EVENT_FRS_PREPARE_ROOT_FAILED = @as(i32, -1073728278);
+pub const EVENT_FRS_REPLICA_IN_JRNL_WRAP_ERROR = @as(i32, -1073728263);
+pub const EVENT_FRS_REPLICA_NO_ROOT_CHANGE = @as(i32, -1073728268);
+pub const EVENT_FRS_REPLICA_SET_CREATE_FAIL = @as(i32, -1073728272);
+pub const EVENT_FRS_REPLICA_SET_CREATE_OK = @as(i32, 1073755377);
+pub const EVENT_FRS_REPLICA_SET_CXTIONS = @as(i32, 1073755378);
+pub const EVENT_FRS_RMTCO_TIME_SKEW = @as(i32, -1073728275);
+pub const EVENT_FRS_ROOT_HAS_MOVED = @as(i32, -1073728265);
+pub const EVENT_FRS_ROOT_NOT_VALID = @as(i32, -1073728285);
+pub const EVENT_FRS_STAGE_NOT_VALID = @as(i32, -1073728284);
+pub const EVENT_FRS_STAGING_AREA_FULL = @as(i32, -2147470126);
+pub const EVENT_FRS_STARTING = @as(i32, 1073755325);
+pub const EVENT_FRS_STOPPED = @as(i32, 1073755327);
+pub const EVENT_FRS_STOPPED_ASSERT = @as(i32, -1073728319);
+pub const EVENT_FRS_STOPPED_FORCE = @as(i32, -1073728320);
+pub const EVENT_FRS_STOPPING = @as(i32, 1073755326);
+pub const EVENT_FRS_SYSVOL_NOT_READY = @as(i32, -2147470134);
+pub const EVENT_FRS_SYSVOL_NOT_READY_PRIMARY = @as(i32, -2147470133);
+pub const EVENT_FRS_SYSVOL_READY = @as(i32, 1073755340);
+pub const EVENT_FRS_VOLUME_NOT_SUPPORTED = @as(i32, -1073728317);
+pub const EVENT_INVALID_DRIVER_DEPENDENCY = @as(i32, -1073734809);
+pub const EVENT_IPX_CREATE_DEVICE = @as(i32, -1073732318);
+pub const EVENT_IPX_ILLEGAL_CONFIG = @as(i32, -2147474145);
+pub const EVENT_IPX_INTERNAL_NET_INVALID = @as(i32, -1073732320);
+pub const EVENT_IPX_NEW_DEFAULT_TYPE = @as(i32, 1073751325);
+pub const EVENT_IPX_NO_ADAPTERS = @as(i32, -1073732317);
+pub const EVENT_IPX_NO_FRAME_TYPES = @as(i32, -1073732319);
+pub const EVENT_IPX_SAP_ANNOUNCE = @as(i32, -2147474146);
+pub const EVENT_NBT_BAD_BACKUP_WINS_ADDR = @as(i32, -2147479344);
+pub const EVENT_NBT_BAD_PRIMARY_WINS_ADDR = @as(i32, -2147479343);
+pub const EVENT_NBT_CREATE_ADDRESS = @as(i32, -1073737517);
+pub const EVENT_NBT_CREATE_CONNECTION = @as(i32, -1073737516);
+pub const EVENT_NBT_CREATE_DEVICE = @as(i32, -1073737513);
+pub const EVENT_NBT_CREATE_DRIVER = @as(i32, -1073737524);
+pub const EVENT_NBT_DUPLICATE_NAME = @as(i32, -1073737505);
+pub const EVENT_NBT_DUPLICATE_NAME_ERROR = @as(i32, -1073737503);
+pub const EVENT_NBT_NAME_RELEASE = @as(i32, -1073737504);
+pub const EVENT_NBT_NAME_SERVER_ADDRS = @as(i32, -1073737518);
+pub const EVENT_NBT_NO_BACKUP_WINS = @as(i32, -2147479346);
+pub const EVENT_NBT_NO_DEVICES = @as(i32, -2147479336);
+pub const EVENT_NBT_NO_RESOURCES = @as(i32, -1073737502);
+pub const EVENT_NBT_NO_WINS = @as(i32, -2147479345);
+pub const EVENT_NBT_NON_OS_INIT = @as(i32, -1073737515);
+pub const EVENT_NBT_OPEN_REG_LINKAGE = @as(i32, -1073737511);
+pub const EVENT_NBT_OPEN_REG_NAMESERVER = @as(i32, -2147479332);
+pub const EVENT_NBT_OPEN_REG_PARAMS = @as(i32, -1073737523);
+pub const EVENT_NBT_READ_BIND = @as(i32, -1073737510);
+pub const EVENT_NBT_READ_EXPORT = @as(i32, -1073737509);
+pub const EVENT_NBT_TIMERS = @as(i32, -1073737514);
+pub const EVENT_NDIS_ADAPTER_CHECK_ERROR = @as(i32, -1073736793);
+pub const EVENT_NDIS_ADAPTER_DISABLED = @as(i32, -2147478634);
+pub const EVENT_NDIS_ADAPTER_NOT_FOUND = @as(i32, -1073736821);
+pub const EVENT_NDIS_BAD_IO_BASE_ADDRESS = @as(i32, -1073736812);
+pub const EVENT_NDIS_BAD_VERSION = @as(i32, -1073736818);
+pub const EVENT_NDIS_CABLE_DISCONNECTED_ERROR = @as(i32, -2147478615);
+pub const EVENT_NDIS_DMA_CONFLICT = @as(i32, -2147478629);
+pub const EVENT_NDIS_DRIVER_FAILURE = @as(i32, -1073736819);
+pub const EVENT_NDIS_HARDWARE_FAILURE = @as(i32, -1073736822);
+pub const EVENT_NDIS_INTERRUPT_CONFLICT = @as(i32, -2147478630);
+pub const EVENT_NDIS_INTERRUPT_CONNECT = @as(i32, -1073736820);
+pub const EVENT_NDIS_INVALID_DOWNLOAD_FILE_ERROR = @as(i32, -1073736804);
+pub const EVENT_NDIS_INVALID_VALUE_FROM_ADAPTER = @as(i32, -1073736814);
+pub const EVENT_NDIS_IO_PORT_CONFLICT = @as(i32, -2147478633);
+pub const EVENT_NDIS_LOBE_FAILUE_ERROR = @as(i32, -2147478621);
+pub const EVENT_NDIS_MAXFRAMESIZE_ERROR = @as(i32, -2147478625);
+pub const EVENT_NDIS_MAXINTERNALBUFS_ERROR = @as(i32, -2147478624);
+pub const EVENT_NDIS_MAXMULTICAST_ERROR = @as(i32, -2147478623);
+pub const EVENT_NDIS_MAXRECEIVES_ERROR = @as(i32, -2147478627);
+pub const EVENT_NDIS_MAXTRANSMITS_ERROR = @as(i32, -2147478626);
+pub const EVENT_NDIS_MEMORY_CONFLICT = @as(i32, -2147478631);
+pub const EVENT_NDIS_MISSING_CONFIGURATION_PARAMETER = @as(i32, -1073736813);
+pub const EVENT_NDIS_NETWORK_ADDRESS = @as(i32, -1073736816);
+pub const EVENT_NDIS_OUT_OF_RESOURCE = @as(i32, -1073736823);
+pub const EVENT_NDIS_PORT_OR_DMA_CONFLICT = @as(i32, -2147478632);
+pub const EVENT_NDIS_PRODUCTID_ERROR = @as(i32, -2147478622);
+pub const EVENT_NDIS_RECEIVE_SPACE_SMALL = @as(i32, 1073746837);
+pub const EVENT_NDIS_REMOVE_RECEIVED_ERROR = @as(i32, -2147478619);
+pub const EVENT_NDIS_RESET_FAILURE_CORRECTION = @as(i32, -2147478614);
+pub const EVENT_NDIS_RESET_FAILURE_ERROR = @as(i32, -2147478616);
+pub const EVENT_NDIS_RESOURCE_CONFLICT = @as(i32, -1073736824);
+pub const EVENT_NDIS_SIGNAL_LOSS_ERROR = @as(i32, -2147478620);
+pub const EVENT_NDIS_TIMEOUT = @as(i32, -2147478641);
+pub const EVENT_NDIS_TOKEN_RING_CORRECTION = @as(i32, 1073746854);
+pub const EVENT_NDIS_UNSUPPORTED_CONFIGURATION = @as(i32, -1073736815);
+pub const EVENT_PS_ADMISSIONCONTROL_OVERFLOW = @as(i32, -2147469537);
+pub const EVENT_PS_BAD_BESTEFFORT_LIMIT = @as(i32, -2147469548);
+pub const EVENT_PS_BINDING_FAILED = @as(i32, -1073727720);
+pub const EVENT_PS_GPC_REGISTER_FAILED = @as(i32, -1073727824);
+pub const EVENT_PS_INIT_DEVICE_FAILED = @as(i32, -1073727717);
+pub const EVENT_PS_MISSING_ADAPTER_REGISTRY_DATA = @as(i32, -1073727719);
+pub const EVENT_PS_NETWORK_ADDRESS_FAIL = @as(i32, -1073727712);
+pub const EVENT_PS_NO_RESOURCES_FOR_INIT = @as(i32, -1073727823);
+pub const EVENT_PS_QUERY_OID_GEN_LINK_SPEED = @as(i32, -1073727721);
+pub const EVENT_PS_QUERY_OID_GEN_MAXIMUM_FRAME_SIZE = @as(i32, -1073727723);
+pub const EVENT_PS_QUERY_OID_GEN_MAXIMUM_TOTAL_SIZE = @as(i32, -1073727722);
+pub const EVENT_PS_REGISTER_ADDRESS_FAMILY_FAILED = @as(i32, -1073727718);
+pub const EVENT_PS_REGISTER_MINIPORT_FAILED = @as(i32, -1073727821);
+pub const EVENT_PS_REGISTER_PROTOCOL_FAILED = @as(i32, -1073727822);
+pub const EVENT_PS_RESOURCE_POOL = @as(i32, -1073727714);
+pub const EVENT_PS_WAN_LIMITED_BESTEFFORT = @as(i32, -2147469539);
+pub const EVENT_PS_WMI_INSTANCE_NAME_FAILED = @as(i32, -1073727716);
+pub const EVENT_RDR_AT_THREAD_MAX = @as(i32, -2147480622);
+pub const EVENT_RDR_CANT_BIND_TRANSPORT = @as(i32, -2147480616);
+pub const EVENT_RDR_CANT_BUILD_SMB_HEADER = @as(i32, -2147480613);
+pub const EVENT_RDR_CANT_CREATE_DEVICE = @as(i32, -2147480646);
+pub const EVENT_RDR_CANT_CREATE_THREAD = @as(i32, -2147480645);
+pub const EVENT_RDR_CANT_GET_SECURITY_CONTEXT = @as(i32, -2147480614);
+pub const EVENT_RDR_CANT_READ_REGISTRY = @as(i32, -2147480621);
+pub const EVENT_RDR_CANT_REGISTER_ADDRESS = @as(i32, -2147480615);
+pub const EVENT_RDR_CANT_SET_THREAD = @as(i32, -2147480644);
+pub const EVENT_RDR_CLOSE_BEHIND = @as(i32, -2147480637);
+pub const EVENT_RDR_CONNECTION = @as(i32, -2147480629);
+pub const EVENT_RDR_CONNECTION_REFERENCE = @as(i32, -2147480633);
+pub const EVENT_RDR_CONTEXTS = @as(i32, -2147480624);
+pub const EVENT_RDR_DELAYED_SET_ATTRIBUTES_FAILED = @as(i32, -2147480618);
+pub const EVENT_RDR_DELETEONCLOSE_FAILED = @as(i32, -2147480617);
+pub const EVENT_RDR_DISPOSITION = @as(i32, -2147480625);
+pub const EVENT_RDR_ENCRYPT = @as(i32, -2147480630);
+pub const EVENT_RDR_FAILED_UNLOCK = @as(i32, -2147480639);
+pub const EVENT_RDR_INVALID_LOCK_REPLY = @as(i32, -2147480641);
+pub const EVENT_RDR_INVALID_OPLOCK = @as(i32, -2147480634);
+pub const EVENT_RDR_INVALID_REPLY = @as(i32, -2147480643);
+pub const EVENT_RDR_INVALID_SMB = @as(i32, -2147480642);
+pub const EVENT_RDR_MAXCMDS = @as(i32, -2147480627);
+pub const EVENT_RDR_OPLOCK_SMB = @as(i32, -2147480626);
+pub const EVENT_RDR_PRIMARY_TRANSPORT_CONNECT_FAILED = @as(i32, -2147480619);
+pub const EVENT_RDR_RESOURCE_SHORTAGE = @as(i32, -2147480647);
+pub const EVENT_RDR_SECURITY_SIGNATURE_MISMATCH = @as(i32, -2147480612);
+pub const EVENT_RDR_SERVER_REFERENCE = @as(i32, -2147480632);
+pub const EVENT_RDR_SMB_REFERENCE = @as(i32, -2147480631);
+pub const EVENT_RDR_TIMEOUT = @as(i32, -2147480635);
+pub const EVENT_RDR_TIMEZONE_BIAS_TOO_LARGE = @as(i32, -2147480620);
+pub const EVENT_RDR_UNEXPECTED_ERROR = @as(i32, -2147480636);
+pub const EVENT_RDR_WRITE_BEHIND_FLUSH_FAILED = @as(i32, -2147480623);
+pub const EVENT_READFILE_TIMEOUT = @as(i32, -1073734814);
+pub const EVENT_REVERTED_TO_LASTKNOWNGOOD = @as(i32, -1073734817);
+pub const EVENT_RPCSS_ACTIVATION_ERROR = @as(i32, -1073731817);
+pub const EVENT_RPCSS_CREATEDEBUGGERPROCESS_FAILURE = @as(i32, -1073731794);
+pub const EVENT_RPCSS_CREATEPROCESS_FAILURE = @as(i32, -1073731824);
+pub const EVENT_RPCSS_DEFAULT_LAUNCH_ACCESS_DENIED = @as(i32, -1073731821);
+pub const EVENT_RPCSS_LAUNCH_ACCESS_DENIED = @as(i32, -1073731822);
+pub const EVENT_RPCSS_REMOTE_SIDE_ERROR = @as(i32, -1073731818);
+pub const EVENT_RPCSS_REMOTE_SIDE_ERROR_WITH_FILE = @as(i32, -1073731816);
+pub const EVENT_RPCSS_REMOTE_SIDE_UNAVAILABLE = @as(i32, -1073731815);
+pub const EVENT_RPCSS_RUNAS_CANT_LOGIN = @as(i32, -1073731820);
+pub const EVENT_RPCSS_RUNAS_CREATEPROCESS_FAILURE = @as(i32, -1073731823);
+pub const EVENT_RPCSS_SERVER_NOT_RESPONDING = @as(i32, -1073731813);
+pub const EVENT_RPCSS_SERVER_START_TIMEOUT = @as(i32, -1073731814);
+pub const EVENT_RPCSS_START_SERVICE_FAILURE = @as(i32, -1073731819);
+pub const EVENT_RPCSS_STOP_SERVICE_FAILURE = @as(i32, -1073731795);
+pub const EVENT_RUNNING_LASTKNOWNGOOD = @as(i32, -1073734797);
+pub const EVENT_SCOPE_LABEL_TOO_LONG = @as(i32, -2147479331);
+pub const EVENT_SCOPE_TOO_LONG = @as(i32, -2147479330);
+pub const EVENT_SECOND_LOGON_FAILED = @as(i32, -1073734810);
+pub const EVENT_SERVICE_CONFIG_BACKOUT_FAILED = @as(i32, -1073734787);
+pub const EVENT_SERVICE_CONTROL_SUCCESS = @as(i32, 1073748859);
+pub const EVENT_SERVICE_CRASH = @as(i32, -1073734793);
+pub const EVENT_SERVICE_CRASH_NO_ACTION = @as(i32, -1073734790);
+pub const EVENT_SERVICE_DIFFERENT_PID_CONNECTED = @as(i32, -2147476609);
+pub const EVENT_SERVICE_EXIT_FAILED = @as(i32, -1073734801);
+pub const EVENT_SERVICE_EXIT_FAILED_SPECIFIC = @as(i32, -1073734800);
+pub const EVENT_SERVICE_LOGON_TYPE_NOT_GRANTED = @as(i32, -1073734783);
+pub const EVENT_SERVICE_NOT_INTERACTIVE = @as(i32, -1073734794);
+pub const EVENT_SERVICE_RECOVERY_FAILED = @as(i32, -1073734792);
+pub const EVENT_SERVICE_SCESRV_FAILED = @as(i32, -1073734791);
+pub const EVENT_SERVICE_SHUTDOWN_FAILED = @as(i32, -1073734781);
+pub const EVENT_SERVICE_START_AT_BOOT_FAILED = @as(i32, -1073734799);
+pub const EVENT_SERVICE_START_FAILED = @as(i32, -1073734824);
+pub const EVENT_SERVICE_START_FAILED_GROUP = @as(i32, -1073734822);
+pub const EVENT_SERVICE_START_FAILED_II = @as(i32, -1073734823);
+pub const EVENT_SERVICE_START_FAILED_NONE = @as(i32, -1073734821);
+pub const EVENT_SERVICE_START_HUNG = @as(i32, -1073734802);
+pub const EVENT_SERVICE_START_TYPE_CHANGED = @as(i32, 1073748864);
+pub const EVENT_SERVICE_STATUS_SUCCESS = @as(i32, 1073748860);
+pub const EVENT_SERVICE_STOP_SUCCESS_WITH_REASON = @as(i32, 1073748866);
+pub const EVENT_SEVERE_SERVICE_FAILED = @as(i32, -1073734803);
+pub const EVENT_SRV_CANT_BIND_DUP_NAME = @as(i32, -1073739319);
+pub const EVENT_SRV_CANT_BIND_TO_TRANSPORT = @as(i32, -2147481144);
+pub const EVENT_SRV_CANT_CHANGE_DOMAIN_NAME = @as(i32, -2147481136);
 pub const EVENT_SRV_CANT_CREATE_DEVICE = @as(i32, -1073739822);
 pub const EVENT_SRV_CANT_CREATE_PROCESS = @as(i32, -1073739821);
 pub const EVENT_SRV_CANT_CREATE_THREAD = @as(i32, -1073739820);
-pub const EVENT_SRV_UNEXPECTED_DISC = @as(i32, -1073739819);
-pub const EVENT_SRV_INVALID_REQUEST = @as(i32, -1073739818);
-pub const EVENT_SRV_CANT_OPEN_NPFS = @as(i32, -1073739817);
 pub const EVENT_SRV_CANT_GROW_TABLE = @as(i32, -2147481639);
+pub const EVENT_SRV_CANT_LOAD_DRIVER = @as(i32, -2147481140);
+pub const EVENT_SRV_CANT_MAP_ERROR = @as(i32, -2147481138);
+pub const EVENT_SRV_CANT_OPEN_NPFS = @as(i32, -1073739817);
+pub const EVENT_SRV_CANT_RECREATE_SHARE = @as(i32, -2147481137);
 pub const EVENT_SRV_CANT_START_SCAVENGER = @as(i32, -1073739814);
-pub const EVENT_SRV_IRP_STACK_SIZE = @as(i32, -1073739813);
-pub const EVENT_SRV_NETWORK_ERROR = @as(i32, -2147481636);
+pub const EVENT_SRV_CANT_UNLOAD_DRIVER = @as(i32, -2147481139);
 pub const EVENT_SRV_DISK_FULL = @as(i32, -2147481635);
-pub const EVENT_SRV_NO_VIRTUAL_MEMORY = @as(i32, -1073739808);
-pub const EVENT_SRV_NONPAGED_POOL_LIMIT = @as(i32, -1073739807);
-pub const EVENT_SRV_PAGED_POOL_LIMIT = @as(i32, -1073739806);
-pub const EVENT_SRV_NO_NONPAGED_POOL = @as(i32, -1073739805);
-pub const EVENT_SRV_NO_PAGED_POOL = @as(i32, -1073739804);
-pub const EVENT_SRV_NO_WORK_ITEM = @as(i32, -2147481627);
+pub const EVENT_SRV_DOS_ATTACK_DETECTED = @as(i32, -2147481623);
+pub const EVENT_SRV_INVALID_REGISTRY_VALUE = @as(i32, -2147481142);
+pub const EVENT_SRV_INVALID_REQUEST = @as(i32, -1073739818);
+pub const EVENT_SRV_INVALID_SD = @as(i32, -2147481141);
+pub const EVENT_SRV_IRP_STACK_SIZE = @as(i32, -1073739813);
+pub const EVENT_SRV_KEY_NOT_CREATED = @as(i32, -1073739322);
+pub const EVENT_SRV_KEY_NOT_FOUND = @as(i32, -1073739323);
+pub const EVENT_SRV_NETWORK_ERROR = @as(i32, -2147481636);
+pub const EVENT_SRV_NO_BLOCKING_IO = @as(i32, -2147481624);
 pub const EVENT_SRV_NO_FREE_CONNECTIONS = @as(i32, -2147481626);
 pub const EVENT_SRV_NO_FREE_RAW_WORK_ITEM = @as(i32, -2147481625);
-pub const EVENT_SRV_NO_BLOCKING_IO = @as(i32, -2147481624);
-pub const EVENT_SRV_DOS_ATTACK_DETECTED = @as(i32, -2147481623);
-pub const EVENT_SRV_TOO_MANY_DOS = @as(i32, -2147481622);
-pub const EVENT_SRV_OUT_OF_WORK_ITEM_DOS = @as(i32, -2147481621);
-pub const EVENT_SRV_KEY_NOT_FOUND = @as(i32, -1073739323);
-pub const EVENT_SRV_KEY_NOT_CREATED = @as(i32, -1073739322);
+pub const EVENT_SRV_NO_NONPAGED_POOL = @as(i32, -1073739805);
+pub const EVENT_SRV_NO_PAGED_POOL = @as(i32, -1073739804);
 pub const EVENT_SRV_NO_TRANSPORTS_BOUND = @as(i32, -1073739321);
-pub const EVENT_SRV_CANT_BIND_TO_TRANSPORT = @as(i32, -2147481144);
-pub const EVENT_SRV_CANT_BIND_DUP_NAME = @as(i32, -1073739319);
-pub const EVENT_SRV_INVALID_REGISTRY_VALUE = @as(i32, -2147481142);
-pub const EVENT_SRV_INVALID_SD = @as(i32, -2147481141);
-pub const EVENT_SRV_CANT_LOAD_DRIVER = @as(i32, -2147481140);
-pub const EVENT_SRV_CANT_UNLOAD_DRIVER = @as(i32, -2147481139);
-pub const EVENT_SRV_CANT_MAP_ERROR = @as(i32, -2147481138);
-pub const EVENT_SRV_CANT_RECREATE_SHARE = @as(i32, -2147481137);
-pub const EVENT_SRV_CANT_CHANGE_DOMAIN_NAME = @as(i32, -2147481136);
+pub const EVENT_SRV_NO_VIRTUAL_MEMORY = @as(i32, -1073739808);
+pub const EVENT_SRV_NO_WORK_ITEM = @as(i32, -2147481627);
+pub const EVENT_SRV_NONPAGED_POOL_LIMIT = @as(i32, -1073739807);
+pub const EVENT_SRV_OUT_OF_WORK_ITEM_DOS = @as(i32, -2147481621);
+pub const EVENT_SRV_PAGED_POOL_LIMIT = @as(i32, -1073739806);
+pub const EVENT_SRV_RESOURCE_SHORTAGE = @as(i32, -1073739823);
+pub const EVENT_SRV_SERVICE_FAILED = @as(i32, -1073739824);
+pub const EVENT_SRV_TOO_MANY_DOS = @as(i32, -2147481622);
 pub const EVENT_SRV_TXF_INIT_FAILED = @as(i32, -2147481135);
-pub const EVENT_RDR_RESOURCE_SHORTAGE = @as(i32, -2147480647);
-pub const EVENT_RDR_CANT_CREATE_DEVICE = @as(i32, -2147480646);
-pub const EVENT_RDR_CANT_CREATE_THREAD = @as(i32, -2147480645);
-pub const EVENT_RDR_CANT_SET_THREAD = @as(i32, -2147480644);
-pub const EVENT_RDR_INVALID_REPLY = @as(i32, -2147480643);
-pub const EVENT_RDR_INVALID_SMB = @as(i32, -2147480642);
-pub const EVENT_RDR_INVALID_LOCK_REPLY = @as(i32, -2147480641);
-pub const EVENT_RDR_FAILED_UNLOCK = @as(i32, -2147480639);
-pub const EVENT_RDR_CLOSE_BEHIND = @as(i32, -2147480637);
-pub const EVENT_RDR_UNEXPECTED_ERROR = @as(i32, -2147480636);
-pub const EVENT_RDR_TIMEOUT = @as(i32, -2147480635);
-pub const EVENT_RDR_INVALID_OPLOCK = @as(i32, -2147480634);
-pub const EVENT_RDR_CONNECTION_REFERENCE = @as(i32, -2147480633);
-pub const EVENT_RDR_SERVER_REFERENCE = @as(i32, -2147480632);
-pub const EVENT_RDR_SMB_REFERENCE = @as(i32, -2147480631);
-pub const EVENT_RDR_ENCRYPT = @as(i32, -2147480630);
-pub const EVENT_RDR_CONNECTION = @as(i32, -2147480629);
-pub const EVENT_RDR_MAXCMDS = @as(i32, -2147480627);
-pub const EVENT_RDR_OPLOCK_SMB = @as(i32, -2147480626);
-pub const EVENT_RDR_DISPOSITION = @as(i32, -2147480625);
-pub const EVENT_RDR_CONTEXTS = @as(i32, -2147480624);
-pub const EVENT_RDR_WRITE_BEHIND_FLUSH_FAILED = @as(i32, -2147480623);
-pub const EVENT_RDR_AT_THREAD_MAX = @as(i32, -2147480622);
-pub const EVENT_RDR_CANT_READ_REGISTRY = @as(i32, -2147480621);
-pub const EVENT_RDR_TIMEZONE_BIAS_TOO_LARGE = @as(i32, -2147480620);
-pub const EVENT_RDR_PRIMARY_TRANSPORT_CONNECT_FAILED = @as(i32, -2147480619);
-pub const EVENT_RDR_DELAYED_SET_ATTRIBUTES_FAILED = @as(i32, -2147480618);
-pub const EVENT_RDR_DELETEONCLOSE_FAILED = @as(i32, -2147480617);
-pub const EVENT_RDR_CANT_BIND_TRANSPORT = @as(i32, -2147480616);
-pub const EVENT_RDR_CANT_REGISTER_ADDRESS = @as(i32, -2147480615);
-pub const EVENT_RDR_CANT_GET_SECURITY_CONTEXT = @as(i32, -2147480614);
-pub const EVENT_RDR_CANT_BUILD_SMB_HEADER = @as(i32, -2147480613);
-pub const EVENT_RDR_SECURITY_SIGNATURE_MISMATCH = @as(i32, -2147480612);
-pub const EVENT_TCPIP6_STARTED = @as(i32, 1073744924);
-pub const EVENT_STREAMS_STRLOG = @as(i32, -1073737824);
+pub const EVENT_SRV_UNEXPECTED_DISC = @as(i32, -1073739819);
 pub const EVENT_STREAMS_ALLOCB_FAILURE = @as(i32, -2147479647);
 pub const EVENT_STREAMS_ALLOCB_FAILURE_CNT = @as(i32, -2147479646);
 pub const EVENT_STREAMS_ESBALLOC_FAILURE = @as(i32, -2147479645);
 pub const EVENT_STREAMS_ESBALLOC_FAILURE_CNT = @as(i32, -2147479644);
-pub const EVENT_TCPIP_CREATE_DEVICE_FAILED = @as(i32, -1073737724);
-pub const EVENT_TCPIP_NO_RESOURCES_FOR_INIT = @as(i32, -1073737723);
-pub const EVENT_TCPIP_TOO_MANY_NETS = @as(i32, -1073737639);
-pub const EVENT_TCPIP_NO_MASK = @as(i32, -1073737638);
-pub const EVENT_TCPIP_INVALID_ADDRESS = @as(i32, -1073737637);
-pub const EVENT_TCPIP_INVALID_MASK = @as(i32, -1073737636);
-pub const EVENT_TCPIP_NO_ADAPTER_RESOURCES = @as(i32, -1073737635);
-pub const EVENT_TCPIP_DHCP_INIT_FAILED = @as(i32, -2147479458);
+pub const EVENT_STREAMS_STRLOG = @as(i32, -1073737824);
+pub const EVENT_TAKE_OWNERSHIP = @as(i32, -1073734796);
+pub const EVENT_TCPIP6_STARTED = @as(i32, 1073744924);
 pub const EVENT_TCPIP_ADAPTER_REG_FAILURE = @as(i32, -1073737633);
-pub const EVENT_TCPIP_INVALID_DEFAULT_GATEWAY = @as(i32, -2147479456);
-pub const EVENT_TCPIP_NO_ADDRESS_LIST = @as(i32, -1073737631);
-pub const EVENT_TCPIP_NO_MASK_LIST = @as(i32, -1073737630);
-pub const EVENT_TCPIP_NO_BINDINGS = @as(i32, -1073737629);
-pub const EVENT_TCPIP_IP_INIT_FAILED = @as(i32, -1073737628);
-pub const EVENT_TCPIP_TOO_MANY_GATEWAYS = @as(i32, -2147479451);
 pub const EVENT_TCPIP_ADDRESS_CONFLICT1 = @as(i32, -1073737626);
 pub const EVENT_TCPIP_ADDRESS_CONFLICT2 = @as(i32, -1073737625);
-pub const EVENT_TCPIP_NTE_CONTEXT_LIST_FAILURE = @as(i32, -1073737624);
-pub const EVENT_TCPIP_MEDIA_CONNECT = @as(i32, 1073746025);
-pub const EVENT_TCPIP_MEDIA_DISCONNECT = @as(i32, 1073746026);
-pub const EVENT_TCPIP_IPV4_UNINSTALLED = @as(i32, 1073746027);
 pub const EVENT_TCPIP_AUTOCONFIGURED_ADDRESS_LIMIT_REACHED = @as(i32, -2147479444);
 pub const EVENT_TCPIP_AUTOCONFIGURED_ROUTE_LIMIT_REACHED = @as(i32, -2147479443);
-pub const EVENT_TCPIP_OUT_OF_ORDER_FRAGMENTS_EXCEEDED = @as(i32, -2147479442);
+pub const EVENT_TCPIP_CREATE_DEVICE_FAILED = @as(i32, -1073737724);
+pub const EVENT_TCPIP_DHCP_INIT_FAILED = @as(i32, -2147479458);
 pub const EVENT_TCPIP_INTERFACE_BIND_FAILURE = @as(i32, -1073737617);
-pub const EVENT_TCPIP_TCP_INIT_FAILED = @as(i32, -1073737599);
+pub const EVENT_TCPIP_INVALID_ADDRESS = @as(i32, -1073737637);
+pub const EVENT_TCPIP_INVALID_DEFAULT_GATEWAY = @as(i32, -2147479456);
+pub const EVENT_TCPIP_INVALID_MASK = @as(i32, -1073737636);
+pub const EVENT_TCPIP_IP_INIT_FAILED = @as(i32, -1073737628);
+pub const EVENT_TCPIP_IPV4_UNINSTALLED = @as(i32, 1073746027);
+pub const EVENT_TCPIP_MEDIA_CONNECT = @as(i32, 1073746025);
+pub const EVENT_TCPIP_MEDIA_DISCONNECT = @as(i32, 1073746026);
+pub const EVENT_TCPIP_NO_ADAPTER_RESOURCES = @as(i32, -1073737635);
+pub const EVENT_TCPIP_NO_ADDRESS_LIST = @as(i32, -1073737631);
+pub const EVENT_TCPIP_NO_BINDINGS = @as(i32, -1073737629);
+pub const EVENT_TCPIP_NO_MASK = @as(i32, -1073737638);
+pub const EVENT_TCPIP_NO_MASK_LIST = @as(i32, -1073737630);
+pub const EVENT_TCPIP_NO_RESOURCES_FOR_INIT = @as(i32, -1073737723);
+pub const EVENT_TCPIP_NTE_CONTEXT_LIST_FAILURE = @as(i32, -1073737624);
+pub const EVENT_TCPIP_OUT_OF_ORDER_FRAGMENTS_EXCEEDED = @as(i32, -2147479442);
+pub const EVENT_TCPIP_PCF_CLEAR_FILTER_FAILURE = @as(i32, -1073737530);
+pub const EVENT_TCPIP_PCF_MISSING_CAPABILITY = @as(i32, -2147479357);
+pub const EVENT_TCPIP_PCF_MULTICAST_OID_ISSUE = @as(i32, -2147479358);
+pub const EVENT_TCPIP_PCF_NO_ARP_FILTER = @as(i32, -2147479355);
+pub const EVENT_TCPIP_PCF_SET_FILTER_FAILURE = @as(i32, -2147479356);
 pub const EVENT_TCPIP_TCP_CONNECT_LIMIT_REACHED = @as(i32, -2147479422);
-pub const EVENT_TCPIP_TCP_TIME_WAIT_COLLISION = @as(i32, -2147479421);
-pub const EVENT_TCPIP_TCP_WSD_WS_RESTRICTED = @as(i32, -2147479420);
-pub const EVENT_TCPIP_TCP_MPP_ATTACKS_DETECTED = @as(i32, -2147479419);
 pub const EVENT_TCPIP_TCP_CONNECTIONS_PERF_IMPACTED = @as(i32, -2147479418);
 pub const EVENT_TCPIP_TCP_GLOBAL_EPHEMERAL_PORT_SPACE_EXHAUSTED = @as(i32, -2147479417);
-pub const EVENT_TCPIP_UDP_LIMIT_REACHED = @as(i32, -2147479383);
+pub const EVENT_TCPIP_TCP_INIT_FAILED = @as(i32, -1073737599);
+pub const EVENT_TCPIP_TCP_MPP_ATTACKS_DETECTED = @as(i32, -2147479419);
+pub const EVENT_TCPIP_TCP_TIME_WAIT_COLLISION = @as(i32, -2147479421);
+pub const EVENT_TCPIP_TCP_WSD_WS_RESTRICTED = @as(i32, -2147479420);
+pub const EVENT_TCPIP_TOO_MANY_GATEWAYS = @as(i32, -2147479451);
+pub const EVENT_TCPIP_TOO_MANY_NETS = @as(i32, -1073737639);
 pub const EVENT_TCPIP_UDP_GLOBAL_EPHEMERAL_PORT_SPACE_EXHAUSTED = @as(i32, -2147479382);
-pub const EVENT_TCPIP_PCF_MULTICAST_OID_ISSUE = @as(i32, -2147479358);
-pub const EVENT_TCPIP_PCF_MISSING_CAPABILITY = @as(i32, -2147479357);
-pub const EVENT_TCPIP_PCF_SET_FILTER_FAILURE = @as(i32, -2147479356);
-pub const EVENT_TCPIP_PCF_NO_ARP_FILTER = @as(i32, -2147479355);
-pub const EVENT_TCPIP_PCF_CLEAR_FILTER_FAILURE = @as(i32, -1073737530);
-pub const EVENT_NBT_CREATE_DRIVER = @as(i32, -1073737524);
-pub const EVENT_NBT_OPEN_REG_PARAMS = @as(i32, -1073737523);
-pub const EVENT_NBT_NO_BACKUP_WINS = @as(i32, -2147479346);
-pub const EVENT_NBT_NO_WINS = @as(i32, -2147479345);
-pub const EVENT_NBT_BAD_BACKUP_WINS_ADDR = @as(i32, -2147479344);
-pub const EVENT_NBT_BAD_PRIMARY_WINS_ADDR = @as(i32, -2147479343);
-pub const EVENT_NBT_NAME_SERVER_ADDRS = @as(i32, -1073737518);
-pub const EVENT_NBT_CREATE_ADDRESS = @as(i32, -1073737517);
-pub const EVENT_NBT_CREATE_CONNECTION = @as(i32, -1073737516);
-pub const EVENT_NBT_NON_OS_INIT = @as(i32, -1073737515);
-pub const EVENT_NBT_TIMERS = @as(i32, -1073737514);
-pub const EVENT_NBT_CREATE_DEVICE = @as(i32, -1073737513);
-pub const EVENT_NBT_NO_DEVICES = @as(i32, -2147479336);
-pub const EVENT_NBT_OPEN_REG_LINKAGE = @as(i32, -1073737511);
-pub const EVENT_NBT_READ_BIND = @as(i32, -1073737510);
-pub const EVENT_NBT_READ_EXPORT = @as(i32, -1073737509);
-pub const EVENT_NBT_OPEN_REG_NAMESERVER = @as(i32, -2147479332);
-pub const EVENT_SCOPE_LABEL_TOO_LONG = @as(i32, -2147479331);
-pub const EVENT_SCOPE_TOO_LONG = @as(i32, -2147479330);
-pub const EVENT_NBT_DUPLICATE_NAME = @as(i32, -1073737505);
-pub const EVENT_NBT_NAME_RELEASE = @as(i32, -1073737504);
-pub const EVENT_NBT_DUPLICATE_NAME_ERROR = @as(i32, -1073737503);
-pub const EVENT_NBT_NO_RESOURCES = @as(i32, -1073737502);
-pub const EVENT_NDIS_RESOURCE_CONFLICT = @as(i32, -1073736824);
-pub const EVENT_NDIS_OUT_OF_RESOURCE = @as(i32, -1073736823);
-pub const EVENT_NDIS_HARDWARE_FAILURE = @as(i32, -1073736822);
-pub const EVENT_NDIS_ADAPTER_NOT_FOUND = @as(i32, -1073736821);
-pub const EVENT_NDIS_INTERRUPT_CONNECT = @as(i32, -1073736820);
-pub const EVENT_NDIS_DRIVER_FAILURE = @as(i32, -1073736819);
-pub const EVENT_NDIS_BAD_VERSION = @as(i32, -1073736818);
-pub const EVENT_NDIS_TIMEOUT = @as(i32, -2147478641);
-pub const EVENT_NDIS_NETWORK_ADDRESS = @as(i32, -1073736816);
-pub const EVENT_NDIS_UNSUPPORTED_CONFIGURATION = @as(i32, -1073736815);
-pub const EVENT_NDIS_INVALID_VALUE_FROM_ADAPTER = @as(i32, -1073736814);
-pub const EVENT_NDIS_MISSING_CONFIGURATION_PARAMETER = @as(i32, -1073736813);
-pub const EVENT_NDIS_BAD_IO_BASE_ADDRESS = @as(i32, -1073736812);
-pub const EVENT_NDIS_RECEIVE_SPACE_SMALL = @as(i32, 1073746837);
-pub const EVENT_NDIS_ADAPTER_DISABLED = @as(i32, -2147478634);
-pub const EVENT_NDIS_IO_PORT_CONFLICT = @as(i32, -2147478633);
-pub const EVENT_NDIS_PORT_OR_DMA_CONFLICT = @as(i32, -2147478632);
-pub const EVENT_NDIS_MEMORY_CONFLICT = @as(i32, -2147478631);
-pub const EVENT_NDIS_INTERRUPT_CONFLICT = @as(i32, -2147478630);
-pub const EVENT_NDIS_DMA_CONFLICT = @as(i32, -2147478629);
-pub const EVENT_NDIS_INVALID_DOWNLOAD_FILE_ERROR = @as(i32, -1073736804);
-pub const EVENT_NDIS_MAXRECEIVES_ERROR = @as(i32, -2147478627);
-pub const EVENT_NDIS_MAXTRANSMITS_ERROR = @as(i32, -2147478626);
-pub const EVENT_NDIS_MAXFRAMESIZE_ERROR = @as(i32, -2147478625);
-pub const EVENT_NDIS_MAXINTERNALBUFS_ERROR = @as(i32, -2147478624);
-pub const EVENT_NDIS_MAXMULTICAST_ERROR = @as(i32, -2147478623);
-pub const EVENT_NDIS_PRODUCTID_ERROR = @as(i32, -2147478622);
-pub const EVENT_NDIS_LOBE_FAILUE_ERROR = @as(i32, -2147478621);
-pub const EVENT_NDIS_SIGNAL_LOSS_ERROR = @as(i32, -2147478620);
-pub const EVENT_NDIS_REMOVE_RECEIVED_ERROR = @as(i32, -2147478619);
-pub const EVENT_NDIS_TOKEN_RING_CORRECTION = @as(i32, 1073746854);
-pub const EVENT_NDIS_ADAPTER_CHECK_ERROR = @as(i32, -1073736793);
-pub const EVENT_NDIS_RESET_FAILURE_ERROR = @as(i32, -2147478616);
-pub const EVENT_NDIS_CABLE_DISCONNECTED_ERROR = @as(i32, -2147478615);
-pub const EVENT_NDIS_RESET_FAILURE_CORRECTION = @as(i32, -2147478614);
-pub const EVENT_EventlogStarted = @as(i32, -2147477643);
-pub const EVENT_EventlogStopped = @as(i32, -2147477642);
-pub const EVENT_EventlogAbnormalShutdown = @as(i32, -2147477640);
-pub const EVENT_EventLogProductInfo = @as(i32, -2147477639);
-pub const EVENT_ComputerNameChange = @as(i32, -2147477637);
-pub const EVENT_DNSDomainNameChange = @as(i32, -2147477636);
-pub const EVENT_EventlogUptime = @as(i32, -2147477635);
-pub const EVENT_UP_DRIVER_ON_MP = @as(i32, -1073735724);
-pub const EVENT_SERVICE_START_FAILED = @as(i32, -1073734824);
-pub const EVENT_SERVICE_START_FAILED_II = @as(i32, -1073734823);
-pub const EVENT_SERVICE_START_FAILED_GROUP = @as(i32, -1073734822);
-pub const EVENT_SERVICE_START_FAILED_NONE = @as(i32, -1073734821);
-pub const EVENT_CALL_TO_FUNCTION_FAILED = @as(i32, -1073734819);
-pub const EVENT_CALL_TO_FUNCTION_FAILED_II = @as(i32, -1073734818);
-pub const EVENT_REVERTED_TO_LASTKNOWNGOOD = @as(i32, -1073734817);
-pub const EVENT_BAD_ACCOUNT_NAME = @as(i32, -1073734816);
-pub const EVENT_CONNECTION_TIMEOUT = @as(i32, -1073734815);
-pub const EVENT_READFILE_TIMEOUT = @as(i32, -1073734814);
-pub const EVENT_TRANSACT_TIMEOUT = @as(i32, -1073734813);
+pub const EVENT_TCPIP_UDP_LIMIT_REACHED = @as(i32, -2147479383);
 pub const EVENT_TRANSACT_INVALID = @as(i32, -1073734812);
-pub const EVENT_FIRST_LOGON_FAILED = @as(i32, -1073734811);
-pub const EVENT_SECOND_LOGON_FAILED = @as(i32, -1073734810);
-pub const EVENT_INVALID_DRIVER_DEPENDENCY = @as(i32, -1073734809);
-pub const EVENT_BAD_SERVICE_STATE = @as(i32, -1073734808);
-pub const EVENT_CIRCULAR_DEPENDENCY_DEMAND = @as(i32, -1073734807);
-pub const EVENT_CIRCULAR_DEPENDENCY_AUTO = @as(i32, -1073734806);
-pub const EVENT_DEPEND_ON_LATER_SERVICE = @as(i32, -1073734805);
-pub const EVENT_DEPEND_ON_LATER_GROUP = @as(i32, -1073734804);
-pub const EVENT_SEVERE_SERVICE_FAILED = @as(i32, -1073734803);
-pub const EVENT_SERVICE_START_HUNG = @as(i32, -1073734802);
-pub const EVENT_SERVICE_EXIT_FAILED = @as(i32, -1073734801);
-pub const EVENT_SERVICE_EXIT_FAILED_SPECIFIC = @as(i32, -1073734800);
-pub const EVENT_SERVICE_START_AT_BOOT_FAILED = @as(i32, -1073734799);
-pub const EVENT_BOOT_SYSTEM_DRIVERS_FAILED = @as(i32, -1073734798);
-pub const EVENT_RUNNING_LASTKNOWNGOOD = @as(i32, -1073734797);
-pub const EVENT_TAKE_OWNERSHIP = @as(i32, -1073734796);
-pub const TITLE_SC_MESSAGE_BOX = @as(i32, -1073734795);
-pub const EVENT_SERVICE_NOT_INTERACTIVE = @as(i32, -1073734794);
-pub const EVENT_SERVICE_CRASH = @as(i32, -1073734793);
-pub const EVENT_SERVICE_RECOVERY_FAILED = @as(i32, -1073734792);
-pub const EVENT_SERVICE_SCESRV_FAILED = @as(i32, -1073734791);
-pub const EVENT_SERVICE_CRASH_NO_ACTION = @as(i32, -1073734790);
-pub const EVENT_SERVICE_CONTROL_SUCCESS = @as(i32, 1073748859);
-pub const EVENT_SERVICE_STATUS_SUCCESS = @as(i32, 1073748860);
-pub const EVENT_SERVICE_CONFIG_BACKOUT_FAILED = @as(i32, -1073734787);
-pub const EVENT_FIRST_LOGON_FAILED_II = @as(i32, -1073734786);
-pub const EVENT_SERVICE_DIFFERENT_PID_CONNECTED = @as(i32, -2147476609);
-pub const EVENT_SERVICE_START_TYPE_CHANGED = @as(i32, 1073748864);
-pub const EVENT_SERVICE_LOGON_TYPE_NOT_GRANTED = @as(i32, -1073734783);
-pub const EVENT_SERVICE_STOP_SUCCESS_WITH_REASON = @as(i32, 1073748866);
-pub const EVENT_SERVICE_SHUTDOWN_FAILED = @as(i32, -1073734781);
-pub const EVENT_COMMAND_NOT_INTERACTIVE = @as(i32, -1073733924);
-pub const EVENT_COMMAND_START_FAILED = @as(i32, -1073733923);
-pub const EVENT_BOWSER_OTHER_MASTER_ON_NET = @as(i32, -1073733821);
-pub const EVENT_BOWSER_PROMOTED_WHILE_ALREADY_MASTER = @as(i32, -2147475644);
-pub const EVENT_BOWSER_NON_MASTER_MASTER_ANNOUNCE = @as(i32, -2147475643);
-pub const EVENT_BOWSER_ILLEGAL_DATAGRAM = @as(i32, -2147475642);
-pub const EVENT_BROWSER_STATUS_BITS_UPDATE_FAILED = @as(i32, -1073733817);
-pub const EVENT_BROWSER_ROLE_CHANGE_FAILED = @as(i32, -1073733816);
-pub const EVENT_BROWSER_MASTER_PROMOTION_FAILED = @as(i32, -1073733815);
-pub const EVENT_BOWSER_NAME_CONVERSION_FAILED = @as(i32, -1073733814);
-pub const EVENT_BROWSER_OTHERDOMAIN_ADD_FAILED = @as(i32, -1073733813);
-pub const EVENT_BOWSER_ELECTION_RECEIVED = @as(i32, 8012);
-pub const EVENT_BOWSER_ELECTION_SENT_GETBLIST_FAILED = @as(i32, 1073749837);
-pub const EVENT_BOWSER_ELECTION_SENT_FIND_MASTER_FAILED = @as(i32, 1073749838);
-pub const EVENT_BROWSER_ELECTION_SENT_LANMAN_NT_STARTED = @as(i32, 1073749839);
-pub const EVENT_BOWSER_ILLEGAL_DATAGRAM_THRESHOLD = @as(i32, -1073733808);
-pub const EVENT_BROWSER_DEPENDANT_SERVICE_FAILED = @as(i32, -1073733807);
-pub const EVENT_BROWSER_MASTER_PROMOTION_FAILED_STOPPING = @as(i32, -1073733805);
-pub const EVENT_BROWSER_MASTER_PROMOTION_FAILED_NO_MASTER = @as(i32, -1073733804);
-pub const EVENT_BROWSER_SERVER_LIST_FAILED = @as(i32, -2147475627);
-pub const EVENT_BROWSER_DOMAIN_LIST_FAILED = @as(i32, -2147475626);
-pub const EVENT_BROWSER_ILLEGAL_CONFIG = @as(i32, -2147475625);
-pub const EVENT_BOWSER_OLD_BACKUP_FOUND = @as(i32, 1073749848);
-pub const EVENT_BROWSER_SERVER_LIST_RETRIEVED = @as(i32, 8025);
-pub const EVENT_BROWSER_DOMAIN_LIST_RETRIEVED = @as(i32, 8026);
-pub const EVENT_BOWSER_PDC_LOST_ELECTION = @as(i32, 1073749851);
-pub const EVENT_BOWSER_NON_PDC_WON_ELECTION = @as(i32, 1073749852);
-pub const EVENT_BOWSER_CANT_READ_REGISTRY = @as(i32, 1073749853);
-pub const EVENT_BOWSER_MAILSLOT_DATAGRAM_THRESHOLD_EXCEEDED = @as(i32, 1073749854);
-pub const EVENT_BOWSER_GETBROWSERLIST_THRESHOLD_EXCEEDED = @as(i32, 1073749855);
-pub const EVENT_BROWSER_BACKUP_STOPPED = @as(i32, -1073733792);
-pub const EVENT_BROWSER_ELECTION_SENT_LANMAN_NT_STOPPED = @as(i32, 1073749857);
-pub const EVENT_BROWSER_GETBLIST_RECEIVED_NOT_MASTER = @as(i32, -1073733790);
-pub const EVENT_BROWSER_ELECTION_SENT_ROLE_CHANGED = @as(i32, 1073749859);
-pub const EVENT_BROWSER_NOT_STARTED_IPX_CONFIG_MISMATCH = @as(i32, -1073733788);
-pub const NWSAP_EVENT_KEY_NOT_FOUND = @as(i32, -1073733324);
-pub const NWSAP_EVENT_WSASTARTUP_FAILED = @as(i32, -1073733323);
-pub const NWSAP_EVENT_SOCKET_FAILED = @as(i32, -1073733322);
-pub const NWSAP_EVENT_SETOPTBCAST_FAILED = @as(i32, -1073733321);
-pub const NWSAP_EVENT_BIND_FAILED = @as(i32, -1073733320);
-pub const NWSAP_EVENT_GETSOCKNAME_FAILED = @as(i32, -1073733319);
-pub const NWSAP_EVENT_OPTEXTENDEDADDR_FAILED = @as(i32, -1073733318);
-pub const NWSAP_EVENT_OPTBCASTINADDR_FAILED = @as(i32, -1073733317);
-pub const NWSAP_EVENT_CARDMALLOC_FAILED = @as(i32, -1073733316);
-pub const NWSAP_EVENT_NOCARDS = @as(i32, -1073733315);
-pub const NWSAP_EVENT_THREADEVENT_FAIL = @as(i32, -1073733314);
-pub const NWSAP_EVENT_RECVSEM_FAIL = @as(i32, -1073733313);
-pub const NWSAP_EVENT_SENDEVENT_FAIL = @as(i32, -1073733312);
-pub const NWSAP_EVENT_STARTRECEIVE_ERROR = @as(i32, -1073733311);
-pub const NWSAP_EVENT_STARTWORKER_ERROR = @as(i32, -1073733310);
-pub const NWSAP_EVENT_TABLE_MALLOC_FAILED = @as(i32, -1073733309);
-pub const NWSAP_EVENT_HASHTABLE_MALLOC_FAILED = @as(i32, -1073733308);
-pub const NWSAP_EVENT_STARTLPCWORKER_ERROR = @as(i32, -1073733307);
-pub const NWSAP_EVENT_CREATELPCPORT_ERROR = @as(i32, -1073733306);
-pub const NWSAP_EVENT_CREATELPCEVENT_ERROR = @as(i32, -1073733305);
-pub const NWSAP_EVENT_LPCLISTENMEMORY_ERROR = @as(i32, -1073733304);
-pub const NWSAP_EVENT_LPCHANDLEMEMORY_ERROR = @as(i32, -1073733303);
-pub const NWSAP_EVENT_BADWANFILTER_VALUE = @as(i32, -1073733302);
-pub const NWSAP_EVENT_CARDLISTEVENT_FAIL = @as(i32, -1073733301);
-pub const NWSAP_EVENT_SDMDEVENT_FAIL = @as(i32, -1073733300);
-pub const NWSAP_EVENT_INVALID_FILTERNAME = @as(i32, -2147475123);
-pub const NWSAP_EVENT_WANSEM_FAIL = @as(i32, -1073733298);
-pub const NWSAP_EVENT_WANSOCKET_FAILED = @as(i32, -1073733297);
-pub const NWSAP_EVENT_WANBIND_FAILED = @as(i32, -1073733296);
-pub const NWSAP_EVENT_STARTWANWORKER_ERROR = @as(i32, -1073733295);
-pub const NWSAP_EVENT_STARTWANCHECK_ERROR = @as(i32, -1073733294);
-pub const NWSAP_EVENT_OPTMAXADAPTERNUM_ERROR = @as(i32, -1073733293);
-pub const NWSAP_EVENT_WANHANDLEMEMORY_ERROR = @as(i32, -1073733292);
-pub const NWSAP_EVENT_WANEVENT_ERROR = @as(i32, -1073733291);
-pub const EVENT_TRANSPORT_RESOURCE_POOL = @as(i32, -2147474647);
-pub const EVENT_TRANSPORT_RESOURCE_LIMIT = @as(i32, -2147474646);
-pub const EVENT_TRANSPORT_RESOURCE_SPECIFIC = @as(i32, -2147474645);
-pub const EVENT_TRANSPORT_REGISTER_FAILED = @as(i32, -1073732820);
-pub const EVENT_TRANSPORT_BINDING_FAILED = @as(i32, -1073732819);
+pub const EVENT_TRANSACT_TIMEOUT = @as(i32, -1073734813);
 pub const EVENT_TRANSPORT_ADAPTER_NOT_FOUND = @as(i32, -1073732818);
-pub const EVENT_TRANSPORT_SET_OID_FAILED = @as(i32, -1073732817);
-pub const EVENT_TRANSPORT_QUERY_OID_FAILED = @as(i32, -1073732816);
-pub const EVENT_TRANSPORT_TRANSFER_DATA = @as(i32, 1073750833);
-pub const EVENT_TRANSPORT_TOO_MANY_LINKS = @as(i32, 1073750834);
 pub const EVENT_TRANSPORT_BAD_PROTOCOL = @as(i32, 1073750835);
-pub const EVENT_IPX_NEW_DEFAULT_TYPE = @as(i32, 1073751325);
-pub const EVENT_IPX_SAP_ANNOUNCE = @as(i32, -2147474146);
-pub const EVENT_IPX_ILLEGAL_CONFIG = @as(i32, -2147474145);
-pub const EVENT_IPX_INTERNAL_NET_INVALID = @as(i32, -1073732320);
-pub const EVENT_IPX_NO_FRAME_TYPES = @as(i32, -1073732319);
-pub const EVENT_IPX_CREATE_DEVICE = @as(i32, -1073732318);
-pub const EVENT_IPX_NO_ADAPTERS = @as(i32, -1073732317);
-pub const EVENT_RPCSS_CREATEPROCESS_FAILURE = @as(i32, -1073731824);
-pub const EVENT_RPCSS_RUNAS_CREATEPROCESS_FAILURE = @as(i32, -1073731823);
-pub const EVENT_RPCSS_LAUNCH_ACCESS_DENIED = @as(i32, -1073731822);
-pub const EVENT_RPCSS_DEFAULT_LAUNCH_ACCESS_DENIED = @as(i32, -1073731821);
-pub const EVENT_RPCSS_RUNAS_CANT_LOGIN = @as(i32, -1073731820);
-pub const EVENT_RPCSS_START_SERVICE_FAILURE = @as(i32, -1073731819);
-pub const EVENT_RPCSS_REMOTE_SIDE_ERROR = @as(i32, -1073731818);
-pub const EVENT_RPCSS_ACTIVATION_ERROR = @as(i32, -1073731817);
-pub const EVENT_RPCSS_REMOTE_SIDE_ERROR_WITH_FILE = @as(i32, -1073731816);
-pub const EVENT_RPCSS_REMOTE_SIDE_UNAVAILABLE = @as(i32, -1073731815);
-pub const EVENT_RPCSS_SERVER_START_TIMEOUT = @as(i32, -1073731814);
-pub const EVENT_RPCSS_SERVER_NOT_RESPONDING = @as(i32, -1073731813);
-pub const EVENT_DCOM_ASSERTION_FAILURE = @as(i32, -1073731812);
-pub const EVENT_DCOM_INVALID_ENDPOINT_DATA = @as(i32, -1073731811);
-pub const EVENT_DCOM_COMPLUS_DISABLED = @as(i32, -1073731810);
-pub const EVENT_RPCSS_STOP_SERVICE_FAILURE = @as(i32, -1073731795);
-pub const EVENT_RPCSS_CREATEDEBUGGERPROCESS_FAILURE = @as(i32, -1073731794);
-pub const EVENT_DNS_CACHE_START_FAILURE_NO_DLL = @as(i32, -1073730824);
-pub const EVENT_DNS_CACHE_START_FAILURE_NO_ENTRY = @as(i32, -1073730823);
-pub const EVENT_DNS_CACHE_START_FAILURE_NO_CONTROL = @as(i32, -1073730822);
-pub const EVENT_DNS_CACHE_START_FAILURE_NO_DONE_EVENT = @as(i32, -1073730821);
-pub const EVENT_DNS_CACHE_START_FAILURE_NO_RPC = @as(i32, -1073730820);
-pub const EVENT_DNS_CACHE_START_FAILURE_NO_SHUTDOWN_NOTIFY = @as(i32, -1073730819);
-pub const EVENT_DNS_CACHE_START_FAILURE_NO_UPDATE = @as(i32, -1073730818);
-pub const EVENT_DNS_CACHE_START_FAILURE_LOW_MEMORY = @as(i32, -1073730817);
-pub const EVENT_DNS_CACHE_NETWORK_PERF_WARNING = @as(i32, -2147472598);
-pub const EVENT_DNS_CACHE_UNABLE_TO_REACH_SERVER_WARNING = @as(i32, -2147472597);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472498);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472497);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472496);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_REFUSED = @as(i32, -2147472495);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_SECURITY = @as(i32, -2147472494);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_OTHER = @as(i32, -2147472493);
-pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472492);
-pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472491);
-pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472490);
-pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_REFUSED = @as(i32, -2147472489);
-pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_SECURITY = @as(i32, -2147472488);
-pub const EVENT_DNSAPI_PTR_REGISTRATION_FAILED_OTHER = @as(i32, -2147472487);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_TIMEOUT_PRIMARY_DN = @as(i32, -2147472486);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_SERVERFAIL_PRIMARY_DN = @as(i32, -2147472485);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_NOTSUPP_PRIMARY_DN = @as(i32, -2147472484);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_REFUSED_PRIMARY_DN = @as(i32, -2147472483);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_SECURITY_PRIMARY_DN = @as(i32, -2147472482);
-pub const EVENT_DNSAPI_REGISTRATION_FAILED_OTHER_PRIMARY_DN = @as(i32, -2147472481);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472468);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472467);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472466);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_REFUSED = @as(i32, -2147472465);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SECURITY = @as(i32, -2147472464);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_OTHER = @as(i32, -2147472463);
-pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_TIMEOUT = @as(i32, -2147472462);
-pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_SERVERFAIL = @as(i32, -2147472461);
-pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_NOTSUPP = @as(i32, -2147472460);
-pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_REFUSED = @as(i32, -2147472459);
-pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_SECURITY = @as(i32, -2147472458);
-pub const EVENT_DNSAPI_PTR_DEREGISTRATION_FAILED_OTHER = @as(i32, -2147472457);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_TIMEOUT_PRIMARY_DN = @as(i32, -2147472456);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SERVERFAIL_PRIMARY_DN = @as(i32, -2147472455);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_NOTSUPP_PRIMARY_DN = @as(i32, -2147472454);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_REFUSED_PRIMARY_DN = @as(i32, -2147472453);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_SECURITY_PRIMARY_DN = @as(i32, -2147472452);
-pub const EVENT_DNSAPI_DEREGISTRATION_FAILED_OTHER_PRIMARY_DN = @as(i32, -2147472451);
-pub const EVENT_DNSAPI_REGISTERED_ADAPTER = @as(i32, 1073753024);
-pub const EVENT_DNSAPI_REGISTERED_PTR = @as(i32, 1073753025);
-pub const EVENT_DNSAPI_REGISTERED_ADAPTER_PRIMARY_DN = @as(i32, 1073753026);
+pub const EVENT_TRANSPORT_BINDING_FAILED = @as(i32, -1073732819);
+pub const EVENT_TRANSPORT_QUERY_OID_FAILED = @as(i32, -1073732816);
+pub const EVENT_TRANSPORT_REGISTER_FAILED = @as(i32, -1073732820);
+pub const EVENT_TRANSPORT_RESOURCE_LIMIT = @as(i32, -2147474646);
+pub const EVENT_TRANSPORT_RESOURCE_POOL = @as(i32, -2147474647);
+pub const EVENT_TRANSPORT_RESOURCE_SPECIFIC = @as(i32, -2147474645);
+pub const EVENT_TRANSPORT_SET_OID_FAILED = @as(i32, -1073732817);
+pub const EVENT_TRANSPORT_TOO_MANY_LINKS = @as(i32, 1073750834);
+pub const EVENT_TRANSPORT_TRANSFER_DATA = @as(i32, 1073750833);
 pub const EVENT_TRK_INTERNAL_ERROR = @as(i32, -1073729324);
-pub const EVENT_TRK_SERVICE_START_SUCCESS = @as(i32, 1073754325);
-pub const EVENT_TRK_SERVICE_START_FAILURE = @as(i32, -1073729322);
 pub const EVENT_TRK_SERVICE_CORRUPT_LOG = @as(i32, -1073729321);
-pub const EVENT_TRK_SERVICE_VOL_QUOTA_EXCEEDED = @as(i32, -2147471144);
-pub const EVENT_TRK_SERVICE_VOLUME_CREATE = @as(i32, 1073754329);
-pub const EVENT_TRK_SERVICE_VOLUME_CLAIM = @as(i32, 1073754330);
 pub const EVENT_TRK_SERVICE_DUPLICATE_VOLIDS = @as(i32, 1073754331);
 pub const EVENT_TRK_SERVICE_MOVE_QUOTA_EXCEEDED = @as(i32, -2147471140);
-pub const EVENT_FRS_ERROR = @as(i32, -1073728324);
-pub const EVENT_FRS_STARTING = @as(i32, 1073755325);
-pub const EVENT_FRS_STOPPING = @as(i32, 1073755326);
-pub const EVENT_FRS_STOPPED = @as(i32, 1073755327);
-pub const EVENT_FRS_STOPPED_FORCE = @as(i32, -1073728320);
-pub const EVENT_FRS_STOPPED_ASSERT = @as(i32, -1073728319);
-pub const EVENT_FRS_ASSERT = @as(i32, -1073728318);
-pub const EVENT_FRS_VOLUME_NOT_SUPPORTED = @as(i32, -1073728317);
-pub const EVENT_FRS_LONG_JOIN = @as(i32, -2147470140);
-pub const EVENT_FRS_LONG_JOIN_DONE = @as(i32, -2147470139);
-pub const EVENT_FRS_CANNOT_COMMUNICATE = @as(i32, -1073728314);
-pub const EVENT_FRS_DATABASE_SPACE = @as(i32, -1073728313);
-pub const EVENT_FRS_DISK_WRITE_CACHE_ENABLED = @as(i32, -2147470136);
-pub const EVENT_FRS_JET_1414 = @as(i32, -1073728311);
-pub const EVENT_FRS_SYSVOL_NOT_READY = @as(i32, -2147470134);
-pub const EVENT_FRS_SYSVOL_NOT_READY_PRIMARY = @as(i32, -2147470133);
-pub const EVENT_FRS_SYSVOL_READY = @as(i32, 1073755340);
-pub const EVENT_FRS_ACCESS_CHECKS_DISABLED = @as(i32, -2147470131);
-pub const EVENT_FRS_ACCESS_CHECKS_FAILED_USER = @as(i32, -2147470130);
-pub const EVENT_FRS_ACCESS_CHECKS_FAILED_UNKNOWN = @as(i32, -1073728305);
-pub const EVENT_FRS_MOVED_PREEXISTING = @as(i32, -2147470128);
-pub const EVENT_FRS_CANNOT_START_BACKUP_RESTORE_IN_PROGRESS = @as(i32, -1073728303);
-pub const EVENT_FRS_STAGING_AREA_FULL = @as(i32, -2147470126);
-pub const EVENT_FRS_HUGE_FILE = @as(i32, -2147470125);
-pub const EVENT_FRS_CANNOT_CREATE_UUID = @as(i32, -1073728300);
-pub const EVENT_FRS_NO_DNS_ATTRIBUTE = @as(i32, -2147470123);
-pub const EVENT_FRS_NO_SID = @as(i32, -1073728298);
-pub const NTFRSPRF_OPEN_RPC_BINDING_ERROR_SET = @as(i32, -1073728297);
-pub const NTFRSPRF_OPEN_RPC_BINDING_ERROR_CONN = @as(i32, -1073728296);
-pub const NTFRSPRF_OPEN_RPC_CALL_ERROR_SET = @as(i32, -1073728295);
-pub const NTFRSPRF_OPEN_RPC_CALL_ERROR_CONN = @as(i32, -1073728294);
-pub const NTFRSPRF_COLLECT_RPC_BINDING_ERROR_SET = @as(i32, -1073728293);
-pub const NTFRSPRF_COLLECT_RPC_BINDING_ERROR_CONN = @as(i32, -1073728292);
-pub const NTFRSPRF_COLLECT_RPC_CALL_ERROR_SET = @as(i32, -1073728291);
-pub const NTFRSPRF_COLLECT_RPC_CALL_ERROR_CONN = @as(i32, -1073728290);
-pub const NTFRSPRF_VIRTUALALLOC_ERROR_SET = @as(i32, -1073728289);
-pub const NTFRSPRF_VIRTUALALLOC_ERROR_CONN = @as(i32, -1073728288);
-pub const NTFRSPRF_REGISTRY_ERROR_SET = @as(i32, -1073728287);
-pub const NTFRSPRF_REGISTRY_ERROR_CONN = @as(i32, -1073728286);
-pub const EVENT_FRS_ROOT_NOT_VALID = @as(i32, -1073728285);
-pub const EVENT_FRS_STAGE_NOT_VALID = @as(i32, -1073728284);
-pub const EVENT_FRS_OVERLAPS_LOGGING = @as(i32, -1073728283);
-pub const EVENT_FRS_OVERLAPS_WORKING = @as(i32, -1073728282);
-pub const EVENT_FRS_OVERLAPS_STAGE = @as(i32, -1073728281);
-pub const EVENT_FRS_OVERLAPS_ROOT = @as(i32, -1073728280);
-pub const EVENT_FRS_OVERLAPS_OTHER_STAGE = @as(i32, -1073728279);
-pub const EVENT_FRS_PREPARE_ROOT_FAILED = @as(i32, -1073728278);
-pub const EVENT_FRS_BAD_REG_DATA = @as(i32, -2147470101);
-pub const EVENT_FRS_JOIN_FAIL_TIME_SKEW = @as(i32, -1073728276);
-pub const EVENT_FRS_RMTCO_TIME_SKEW = @as(i32, -1073728275);
-pub const EVENT_FRS_CANT_OPEN_STAGE = @as(i32, -1073728274);
-pub const EVENT_FRS_CANT_OPEN_PREINSTALL = @as(i32, -1073728273);
-pub const EVENT_FRS_REPLICA_SET_CREATE_FAIL = @as(i32, -1073728272);
-pub const EVENT_FRS_REPLICA_SET_CREATE_OK = @as(i32, 1073755377);
-pub const EVENT_FRS_REPLICA_SET_CXTIONS = @as(i32, 1073755378);
-pub const EVENT_FRS_IN_ERROR_STATE = @as(i32, -1073728269);
-pub const EVENT_FRS_REPLICA_NO_ROOT_CHANGE = @as(i32, -1073728268);
-pub const EVENT_FRS_DUPLICATE_IN_CXTION_SYSVOL = @as(i32, -1073728267);
-pub const EVENT_FRS_DUPLICATE_IN_CXTION = @as(i32, -1073728266);
-pub const EVENT_FRS_ROOT_HAS_MOVED = @as(i32, -1073728265);
-pub const EVENT_FRS_ERROR_REPLICA_SET_DELETED = @as(i32, -2147470088);
-pub const EVENT_FRS_REPLICA_IN_JRNL_WRAP_ERROR = @as(i32, -1073728263);
-pub const EVENT_FRS_DS_POLL_ERROR_SUMMARY = @as(i32, -2147470086);
-pub const EVENT_PS_GPC_REGISTER_FAILED = @as(i32, -1073727824);
-pub const EVENT_PS_NO_RESOURCES_FOR_INIT = @as(i32, -1073727823);
-pub const EVENT_PS_REGISTER_PROTOCOL_FAILED = @as(i32, -1073727822);
-pub const EVENT_PS_REGISTER_MINIPORT_FAILED = @as(i32, -1073727821);
-pub const EVENT_PS_BAD_BESTEFFORT_LIMIT = @as(i32, -2147469548);
-pub const EVENT_PS_QUERY_OID_GEN_MAXIMUM_FRAME_SIZE = @as(i32, -1073727723);
-pub const EVENT_PS_QUERY_OID_GEN_MAXIMUM_TOTAL_SIZE = @as(i32, -1073727722);
-pub const EVENT_PS_QUERY_OID_GEN_LINK_SPEED = @as(i32, -1073727721);
-pub const EVENT_PS_BINDING_FAILED = @as(i32, -1073727720);
-pub const EVENT_PS_MISSING_ADAPTER_REGISTRY_DATA = @as(i32, -1073727719);
-pub const EVENT_PS_REGISTER_ADDRESS_FAMILY_FAILED = @as(i32, -1073727718);
-pub const EVENT_PS_INIT_DEVICE_FAILED = @as(i32, -1073727717);
-pub const EVENT_PS_WMI_INSTANCE_NAME_FAILED = @as(i32, -1073727716);
-pub const EVENT_PS_WAN_LIMITED_BESTEFFORT = @as(i32, -2147469539);
-pub const EVENT_PS_RESOURCE_POOL = @as(i32, -1073727714);
-pub const EVENT_PS_ADMISSIONCONTROL_OVERFLOW = @as(i32, -2147469537);
-pub const EVENT_PS_NETWORK_ADDRESS_FAIL = @as(i32, -1073727712);
-pub const EXTRA_EXIT_POINT = @as(i32, -1073727524);
-pub const MISSING_EXIT_POINT = @as(i32, -1073727523);
-pub const MISSING_VOLUME = @as(i32, -1073727522);
-pub const EXTRA_VOLUME = @as(i32, -1073727521);
-pub const EXTRA_EXIT_POINT_DELETED = @as(i32, -1073727520);
-pub const EXTRA_EXIT_POINT_NOT_DELETED = @as(i32, -1073727519);
-pub const MISSING_EXIT_POINT_CREATED = @as(i32, -1073727518);
-pub const MISSING_EXIT_POINT_NOT_CREATED = @as(i32, -1073727517);
-pub const MISSING_VOLUME_CREATED = @as(i32, -1073727516);
-pub const MISSING_VOLUME_NOT_CREATED = @as(i32, -1073727515);
-pub const EXTRA_VOLUME_DELETED = @as(i32, -1073727514);
-pub const EXTRA_VOLUME_NOT_DELETED = @as(i32, -1073727513);
-pub const COULD_NOT_VERIFY_VOLUMES = @as(i32, -1073727512);
-pub const KNOWLEDGE_INCONSISTENCY_DETECTED = @as(i32, -1073727511);
-pub const PREFIX_MISMATCH = @as(i32, -1073727510);
-pub const PREFIX_MISMATCH_FIXED = @as(i32, -1073727509);
-pub const PREFIX_MISMATCH_NOT_FIXED = @as(i32, -1073727508);
-pub const MACHINE_UNJOINED = @as(i32, -1073727507);
-pub const DFS_REFERRAL_REQUEST = @as(i32, 1073756142);
-pub const NOT_A_DFS_PATH = @as(i32, 1073756224);
-pub const LM_REDIR_FAILURE = @as(i32, 1073756225);
-pub const DFS_CONNECTION_FAILURE = @as(i32, 1073756226);
-pub const DFS_REFERRAL_FAILURE = @as(i32, 1073756227);
-pub const DFS_REFERRAL_SUCCESS = @as(i32, 1073756228);
-pub const DFS_MAX_DNR_ATTEMPTS = @as(i32, 1073756229);
-pub const DFS_SPECIAL_REFERRAL_FAILURE = @as(i32, 1073756230);
-pub const DFS_OPEN_FAILURE = @as(i32, 1073756231);
-pub const NET_DFS_ENUM = @as(i32, 1073756324);
-pub const NET_DFS_ENUMEX = @as(i32, 1073756325);
-pub const DFS_ERROR_CREATE_REPARSEPOINT_FAILURE = @as(i32, -1073727321);
-pub const DFS_ERROR_UNSUPPORTED_FILESYSTEM = @as(i32, -1073727320);
-pub const DFS_ERROR_OVERLAPPING_DIRECTORIES = @as(i32, -1073727319);
-pub const DFS_INFO_ACTIVEDIRECTORY_ONLINE = @as(i32, 1073756332);
-pub const DFS_ERROR_TOO_MANY_ERRORS = @as(i32, -1073727315);
-pub const DFS_ERROR_WINSOCKINIT_FAILED = @as(i32, -1073727314);
-pub const DFS_ERROR_SECURITYINIT_FAILED = @as(i32, -1073727313);
-pub const DFS_ERROR_THREADINIT_FAILED = @as(i32, -1073727312);
-pub const DFS_ERROR_SITECACHEINIT_FAILED = @as(i32, -1073727311);
-pub const DFS_ERROR_ROOTSYNCINIT_FAILED = @as(i32, -1073727310);
-pub const DFS_ERROR_CREATEEVENT_FAILED = @as(i32, -1073727309);
-pub const DFS_ERROR_COMPUTERINFO_FAILED = @as(i32, -1073727308);
-pub const DFS_ERROR_CLUSTERINFO_FAILED = @as(i32, -1073727307);
-pub const DFS_ERROR_DCINFO_FAILED = @as(i32, -1073727306);
-pub const DFS_ERROR_PREFIXTABLE_FAILED = @as(i32, -1073727305);
-pub const DFS_ERROR_HANDLENAMESPACE_FAILED = @as(i32, -1073727304);
-pub const DFS_ERROR_REGISTERSTORE_FAILED = @as(i32, -1073727303);
-pub const DFS_ERROR_REFLECTIONENGINE_FAILED = @as(i32, -1073727302);
-pub const DFS_ERROR_ACTIVEDIRECTORY_OFFLINE = @as(i32, -1073727301);
-pub const DFS_ERROR_SITESUPPOR_FAILED = @as(i32, -1073727300);
-pub const DFS_ERROR_DSCONNECT_FAILED = @as(i32, -2147469122);
-pub const DFS_INFO_DS_RECONNECTED = @as(i32, 1073756353);
-pub const DFS_ERROR_NO_DFS_DATA = @as(i32, -1073727294);
-pub const DFS_INFO_FINISH_INIT = @as(i32, 1073756355);
-pub const DFS_INFO_RECONNECT_DATA = @as(i32, 1073756356);
-pub const DFS_INFO_FINISH_BUILDING_NAMESPACE = @as(i32, 1073756357);
-pub const DFS_ERROR_ON_ROOT = @as(i32, -2147469114);
-pub const DFS_ERROR_MUTLIPLE_ROOTS_NOT_SUPPORTED = @as(i32, -1073727289);
-pub const DFS_WARN_DOMAIN_REFERRAL_OVERFLOW = @as(i32, -2147469112);
-pub const DFS_INFO_DOMAIN_REFERRAL_MIN_OVERFLOW = @as(i32, 1073756361);
-pub const DFS_WARN_INCOMPLETE_MOVE = @as(i32, -2147469110);
-pub const DFS_ERROR_RESYNCHRONIZE_FAILED = @as(i32, -1073727285);
-pub const DFS_ERROR_REMOVE_LINK_FAILED = @as(i32, -1073727284);
-pub const DFS_WARN_METADATA_LINK_TYPE_INCORRECT = @as(i32, -2147469107);
-pub const DFS_WARN_METADATA_LINK_INFO_INVALID = @as(i32, -2147469106);
-pub const DFS_ERROR_TARGET_LIST_INCORRECT = @as(i32, -1073727281);
-pub const DFS_ERROR_LINKS_OVERLAP = @as(i32, -1073727280);
-pub const DFS_ERROR_LINK_OVERLAP = @as(i32, -1073727279);
-pub const DFS_ERROR_CREATE_REPARSEPOINT_SUCCESS = @as(i32, 1073756370);
-pub const DFS_ERROR_DUPLICATE_LINK = @as(i32, -1073727277);
-pub const DFS_ERROR_TRUSTED_DOMAIN_INFO_FAILED = @as(i32, -1073727276);
-pub const DFS_INFO_TRUSTED_DOMAIN_INFO_SUCCESS = @as(i32, 1073756373);
-pub const DFS_ERROR_CROSS_FOREST_TRUST_INFO_FAILED = @as(i32, -1073727274);
-pub const DFS_INFO_CROSS_FOREST_TRUST_INFO_SUCCESS = @as(i32, 1073756375);
-pub const DFS_INIT_SUCCESS = @as(i32, 1073756376);
-pub const DFS_ROOT_SHARE_ACQUIRE_FAILED = @as(i32, -2147469095);
-pub const DFS_ROOT_SHARE_ACQUIRE_SUCCESS = @as(i32, 1073756378);
-pub const EVENT_BRIDGE_PROTOCOL_REGISTER_FAILED = @as(i32, -1073727224);
-pub const EVENT_BRIDGE_MINIPROT_DEVNAME_MISSING = @as(i32, -1073727223);
-pub const EVENT_BRIDGE_MINIPORT_REGISTER_FAILED = @as(i32, -1073727222);
-pub const EVENT_BRIDGE_DEVICE_CREATION_FAILED = @as(i32, -1073727221);
-pub const EVENT_BRIDGE_NO_BRIDGE_MAC_ADDR = @as(i32, -1073727220);
-pub const EVENT_BRIDGE_MINIPORT_INIT_FAILED = @as(i32, -1073727219);
-pub const EVENT_BRIDGE_ETHERNET_NOT_OFFERED = @as(i32, -1073727218);
-pub const EVENT_BRIDGE_THREAD_CREATION_FAILED = @as(i32, -1073727217);
-pub const EVENT_BRIDGE_THREAD_REF_FAILED = @as(i32, -1073727216);
-pub const EVENT_BRIDGE_PACKET_POOL_CREATION_FAILED = @as(i32, -1073727215);
-pub const EVENT_BRIDGE_BUFFER_POOL_CREATION_FAILED = @as(i32, -1073727214);
-pub const EVENT_BRIDGE_INIT_MALLOC_FAILED = @as(i32, -1073727213);
-pub const EVENT_BRIDGE_ADAPTER_LINK_SPEED_QUERY_FAILED = @as(i32, -1073727124);
-pub const EVENT_BRIDGE_ADAPTER_MAC_ADDR_QUERY_FAILED = @as(i32, -1073727123);
-pub const EVENT_BRIDGE_ADAPTER_FILTER_FAILED = @as(i32, -1073727122);
-pub const EVENT_BRIDGE_ADAPTER_NAME_QUERY_FAILED = @as(i32, -1073727121);
-pub const EVENT_BRIDGE_ADAPTER_BIND_FAILED = @as(i32, -1073727120);
-pub const EVENT_DAV_REDIR_DELAYED_WRITE_FAILED = @as(i32, -2147468848);
-pub const EVENT_WEBCLIENT_CLOSE_PUT_FAILED = @as(i32, -2147468747);
+pub const EVENT_TRK_SERVICE_START_FAILURE = @as(i32, -1073729322);
+pub const EVENT_TRK_SERVICE_START_SUCCESS = @as(i32, 1073754325);
+pub const EVENT_TRK_SERVICE_VOL_QUOTA_EXCEEDED = @as(i32, -2147471144);
+pub const EVENT_TRK_SERVICE_VOLUME_CLAIM = @as(i32, 1073754330);
+pub const EVENT_TRK_SERVICE_VOLUME_CREATE = @as(i32, 1073754329);
+pub const EVENT_UP_DRIVER_ON_MP = @as(i32, -1073735724);
 pub const EVENT_WEBCLIENT_CLOSE_DELETE_FAILED = @as(i32, -2147468746);
 pub const EVENT_WEBCLIENT_CLOSE_PROPPATCH_FAILED = @as(i32, -2147468745);
+pub const EVENT_WEBCLIENT_CLOSE_PUT_FAILED = @as(i32, -2147468747);
 pub const EVENT_WEBCLIENT_SETINFO_PROPPATCH_FAILED = @as(i32, -2147468744);
-pub const EVENT_WSK_OWNINGTHREAD_PARAMETER_IGNORED = @as(i32, -1073725824);
-pub const EVENT_WINSOCK_TDI_FILTER_DETECTED = @as(i32, -2147467647);
-pub const EVENT_WINSOCK_CLOSESOCKET_STUCK = @as(i32, -2147467646);
-pub const EVENT_EQOS_INFO_MACHINE_POLICY_REFRESH_NO_CHANGE = @as(i32, 1073758324);
-pub const EVENT_EQOS_INFO_MACHINE_POLICY_REFRESH_WITH_CHANGE = @as(i32, 1073758325);
-pub const EVENT_EQOS_INFO_USER_POLICY_REFRESH_NO_CHANGE = @as(i32, 1073758326);
-pub const EVENT_EQOS_INFO_USER_POLICY_REFRESH_WITH_CHANGE = @as(i32, 1073758327);
-pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_NOT_CONFIGURED = @as(i32, 1073758328);
-pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_OFF = @as(i32, 1073758329);
-pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_HIGHLY_RESTRICTED = @as(i32, 1073758330);
-pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_RESTRICTED = @as(i32, 1073758331);
-pub const EVENT_EQOS_INFO_TCP_AUTOTUNING_NORMAL = @as(i32, 1073758332);
-pub const EVENT_EQOS_INFO_APP_MARKING_NOT_CONFIGURED = @as(i32, 1073758333);
-pub const EVENT_EQOS_INFO_APP_MARKING_IGNORED = @as(i32, 1073758334);
-pub const EVENT_EQOS_INFO_APP_MARKING_ALLOWED = @as(i32, 1073758335);
-pub const EVENT_EQOS_INFO_LOCAL_SETTING_DONT_USE_NLA = @as(i32, 1073758336);
-pub const EVENT_EQOS_URL_QOS_APPLICATION_CONFLICT = @as(i32, 1073758337);
-pub const EVENT_EQOS_WARNING_TEST_1 = @as(i32, -2147467048);
-pub const EVENT_EQOS_WARNING_TEST_2 = @as(i32, -2147467047);
-pub const EVENT_EQOS_WARNING_MACHINE_POLICY_VERSION = @as(i32, -2147467046);
-pub const EVENT_EQOS_WARNING_USER_POLICY_VERSION = @as(i32, -2147467045);
-pub const EVENT_EQOS_WARNING_MACHINE_POLICY_PROFILE_NOT_SPECIFIED = @as(i32, -2147467044);
-pub const EVENT_EQOS_WARNING_USER_POLICY_PROFILE_NOT_SPECIFIED = @as(i32, -2147467043);
-pub const EVENT_EQOS_WARNING_MACHINE_POLICY_QUOTA_EXCEEDED = @as(i32, -2147467042);
-pub const EVENT_EQOS_WARNING_USER_POLICY_QUOTA_EXCEEDED = @as(i32, -2147467041);
-pub const EVENT_EQOS_WARNING_MACHINE_POLICY_CONFLICT = @as(i32, -2147467040);
-pub const EVENT_EQOS_WARNING_USER_POLICY_CONFLICT = @as(i32, -2147467039);
-pub const EVENT_EQOS_WARNING_MACHINE_POLICY_NO_FULLPATH_APPNAME = @as(i32, -2147467038);
-pub const EVENT_EQOS_WARNING_USER_POLICY_NO_FULLPATH_APPNAME = @as(i32, -2147467037);
-pub const EVENT_EQOS_ERROR_MACHINE_POLICY_REFERESH = @as(i32, -1073725124);
-pub const EVENT_EQOS_ERROR_USER_POLICY_REFERESH = @as(i32, -1073725123);
-pub const EVENT_EQOS_ERROR_OPENING_MACHINE_POLICY_ROOT_KEY = @as(i32, -1073725122);
-pub const EVENT_EQOS_ERROR_OPENING_USER_POLICY_ROOT_KEY = @as(i32, -1073725121);
-pub const EVENT_EQOS_ERROR_MACHINE_POLICY_KEYNAME_TOO_LONG = @as(i32, -1073725120);
-pub const EVENT_EQOS_ERROR_USER_POLICY_KEYNAME_TOO_LONG = @as(i32, -1073725119);
-pub const EVENT_EQOS_ERROR_MACHINE_POLICY_KEYNAME_SIZE_ZERO = @as(i32, -1073725118);
-pub const EVENT_EQOS_ERROR_USER_POLICY_KEYNAME_SIZE_ZERO = @as(i32, -1073725117);
-pub const EVENT_EQOS_ERROR_OPENING_MACHINE_POLICY_SUBKEY = @as(i32, -1073725116);
-pub const EVENT_EQOS_ERROR_OPENING_USER_POLICY_SUBKEY = @as(i32, -1073725115);
-pub const EVENT_EQOS_ERROR_PROCESSING_MACHINE_POLICY_FIELD = @as(i32, -1073725114);
-pub const EVENT_EQOS_ERROR_PROCESSING_USER_POLICY_FIELD = @as(i32, -1073725113);
-pub const EVENT_EQOS_ERROR_SETTING_TCP_AUTOTUNING = @as(i32, -1073725112);
-pub const EVENT_EQOS_ERROR_SETTING_APP_MARKING = @as(i32, -1073725111);
 pub const EVENT_WINNAT_SESSION_LIMIT_REACHED = @as(i32, -2147466648);
+pub const EVENT_WINSOCK_CLOSESOCKET_STUCK = @as(i32, -2147467646);
+pub const EVENT_WINSOCK_TDI_FILTER_DETECTED = @as(i32, -2147467647);
+pub const EVENT_WSK_OWNINGTHREAD_PARAMETER_IGNORED = @as(i32, -1073725824);
+pub const EVLEN = @as(u32, 16);
+pub const EXTRA_EXIT_POINT = @as(i32, -1073727524);
+pub const EXTRA_EXIT_POINT_DELETED = @as(i32, -1073727520);
+pub const EXTRA_EXIT_POINT_NOT_DELETED = @as(i32, -1073727519);
+pub const EXTRA_VOLUME = @as(i32, -1073727521);
+pub const EXTRA_VOLUME_DELETED = @as(i32, -1073727514);
+pub const EXTRA_VOLUME_NOT_DELETED = @as(i32, -1073727513);
+pub const GNLEN = @as(u32, 256);
+pub const GROUP_ALL_PARMNUM = @as(u32, 0);
+pub const GROUP_ATTRIBUTES_PARMNUM = @as(u32, 3);
+pub const GROUP_COMMENT_PARMNUM = @as(u32, 2);
+pub const GROUP_NAME_PARMNUM = @as(u32, 1);
+pub const GROUP_SPECIALGRP_ADMINS = "ADMINS";
+pub const GROUP_SPECIALGRP_GUESTS = "GUESTS";
+pub const GROUP_SPECIALGRP_LOCAL = "LOCAL";
+pub const GROUP_SPECIALGRP_USERS = "USERS";
+pub const GROUPIDMASK = @as(u32, 32768);
 pub const HARDWARE_ADDRESS_LENGTH = @as(u32, 6);
-pub const NETMAN_VARTYPE_ULONG = @as(u32, 0);
-pub const NETMAN_VARTYPE_HARDWARE_ADDRESS = @as(u32, 1);
-pub const NETMAN_VARTYPE_STRING = @as(u32, 2);
-pub const REPL_ROLE_EXPORT = @as(u32, 1);
-pub const REPL_ROLE_IMPORT = @as(u32, 2);
-pub const REPL_ROLE_BOTH = @as(u32, 3);
-pub const REPL_INTERVAL_INFOLEVEL = @as(u32, 1000);
-pub const REPL_PULSE_INFOLEVEL = @as(u32, 1001);
-pub const REPL_GUARDTIME_INFOLEVEL = @as(u32, 1002);
-pub const REPL_RANDOM_INFOLEVEL = @as(u32, 1003);
-pub const REPL_INTEGRITY_FILE = @as(u32, 1);
-pub const REPL_INTEGRITY_TREE = @as(u32, 2);
-pub const REPL_EXTENT_FILE = @as(u32, 1);
-pub const REPL_EXTENT_TREE = @as(u32, 2);
-pub const REPL_EXPORT_INTEGRITY_INFOLEVEL = @as(u32, 1000);
-pub const REPL_EXPORT_EXTENT_INFOLEVEL = @as(u32, 1001);
-pub const REPL_UNLOCK_NOFORCE = @as(u32, 0);
-pub const REPL_UNLOCK_FORCE = @as(u32, 1);
-pub const REPL_STATE_OK = @as(u32, 0);
-pub const REPL_STATE_NO_MASTER = @as(u32, 1);
-pub const REPL_STATE_NO_SYNC = @as(u32, 2);
-pub const REPL_STATE_NEVER_REPLICATED = @as(u32, 3);
-pub const SERVICE_WORKSTATION = "LanmanWorkstation";
-pub const SERVICE_LM20_WORKSTATION = "WORKSTATION";
-pub const WORKSTATION_DISPLAY_NAME = "Workstation";
-pub const SERVICE_SERVER = "LanmanServer";
-pub const SERVICE_LM20_SERVER = "SERVER";
-pub const SERVER_DISPLAY_NAME = "Server";
-pub const SERVICE_BROWSER = "BROWSER";
-pub const SERVICE_LM20_BROWSER = "BROWSER";
-pub const SERVICE_MESSENGER = "MESSENGER";
-pub const SERVICE_LM20_MESSENGER = "MESSENGER";
-pub const SERVICE_NETRUN = "NETRUN";
-pub const SERVICE_LM20_NETRUN = "NETRUN";
-pub const SERVICE_SPOOLER = "SPOOLER";
-pub const SERVICE_LM20_SPOOLER = "SPOOLER";
-pub const SERVICE_ALERTER = "ALERTER";
-pub const SERVICE_LM20_ALERTER = "ALERTER";
-pub const SERVICE_NETLOGON = "NETLOGON";
-pub const SERVICE_LM20_NETLOGON = "NETLOGON";
-pub const SERVICE_NETPOPUP = "NETPOPUP";
-pub const SERVICE_LM20_NETPOPUP = "NETPOPUP";
-pub const SERVICE_SQLSERVER = "SQLSERVER";
-pub const SERVICE_LM20_SQLSERVER = "SQLSERVER";
-pub const SERVICE_REPL = "REPLICATOR";
-pub const SERVICE_LM20_REPL = "REPLICATOR";
-pub const SERVICE_RIPL = "REMOTEBOOT";
-pub const SERVICE_LM20_RIPL = "REMOTEBOOT";
-pub const SERVICE_TIMESOURCE = "TIMESOURCE";
-pub const SERVICE_LM20_TIMESOURCE = "TIMESOURCE";
-pub const SERVICE_AFP = "AFP";
-pub const SERVICE_LM20_AFP = "AFP";
-pub const SERVICE_UPS = "UPS";
-pub const SERVICE_LM20_UPS = "UPS";
-pub const SERVICE_XACTSRV = "XACTSRV";
-pub const SERVICE_LM20_XACTSRV = "XACTSRV";
-pub const SERVICE_TCPIP = "TCPIP";
-pub const SERVICE_LM20_TCPIP = "TCPIP";
-pub const SERVICE_NBT = "NBT";
-pub const SERVICE_LM20_NBT = "NBT";
-pub const SERVICE_LMHOSTS = "LMHOSTS";
-pub const SERVICE_LM20_LMHOSTS = "LMHOSTS";
-pub const SERVICE_TELNET = "Telnet";
-pub const SERVICE_LM20_TELNET = "Telnet";
-pub const SERVICE_SCHEDULE = "Schedule";
-pub const SERVICE_LM20_SCHEDULE = "Schedule";
-pub const SERVICE_NTLMSSP = "NtLmSsp";
-pub const SERVICE_DHCP = "DHCP";
-pub const SERVICE_LM20_DHCP = "DHCP";
-pub const SERVICE_NWSAP = "NwSapAgent";
-pub const SERVICE_LM20_NWSAP = "NwSapAgent";
-pub const NWSAP_DISPLAY_NAME = "NW Sap Agent";
-pub const SERVICE_NWCS = "NWCWorkstation";
-pub const SERVICE_DNS_CACHE = "DnsCache";
-pub const SERVICE_W32TIME = "w32time";
-pub const SERVCE_LM20_W32TIME = "w32time";
-pub const SERVICE_KDC = "kdc";
-pub const SERVICE_LM20_KDC = "kdc";
-pub const SERVICE_RPCLOCATOR = "RPCLOCATOR";
-pub const SERVICE_LM20_RPCLOCATOR = "RPCLOCATOR";
-pub const SERVICE_TRKSVR = "TrkSvr";
-pub const SERVICE_LM20_TRKSVR = "TrkSvr";
-pub const SERVICE_TRKWKS = "TrkWks";
-pub const SERVICE_LM20_TRKWKS = "TrkWks";
-pub const SERVICE_NTFRS = "NtFrs";
-pub const SERVICE_LM20_NTFRS = "NtFrs";
-pub const SERVICE_ISMSERV = "IsmServ";
-pub const SERVICE_LM20_ISMSERV = "IsmServ";
-pub const SERVICE_NTDS = "NTDS";
-pub const SERVICE_LM20_NTDS = "NTDS";
-pub const SERVICE_ADWS = "ADWS";
-pub const SERVICE_DSROLE = "DsRoleSvc";
-pub const SERVICE_LM20_DSROLE = "DsRoleSvc";
-pub const NETCFG_E_ALREADY_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180512));
-pub const NETCFG_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180511));
-pub const NETCFG_E_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180510));
-pub const NETCFG_E_NO_WRITE_LOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180508));
-pub const NETCFG_E_NEED_REBOOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180507));
+pub const HELP_MSG_FILENAME = "NETH";
+pub const INTERFACE_INFO_REVISION_1 = @as(u32, 1);
+pub const INVALID_TRACEID = @as(u32, 4294967295);
+pub const IPX_PROTOCOL_BASE = @as(u32, 131071);
+pub const IPX_PROTOCOL_RIP = @as(u32, 131072);
+pub const IR_PROMISCUOUS = @as(u32, 0);
+pub const IR_PROMISCUOUS_MULTICAST = @as(u32, 1);
+pub const JOB_ADD_CURRENT_DATE = @as(u32, 8);
+pub const JOB_EXEC_ERROR = @as(u32, 2);
+pub const JOB_NONINTERACTIVE = @as(u32, 16);
+pub const JOB_RUN_PERIODICALLY = @as(u32, 1);
+pub const JOB_RUNS_TODAY = @as(u32, 4);
+pub const KNOWLEDGE_INCONSISTENCY_DETECTED = @as(i32, -1073727511);
+pub const LG_INCLUDE_INDIRECT = @as(u32, 1);
+pub const LM20_CNLEN = @as(u32, 15);
+pub const LM20_DEVLEN = @as(u32, 8);
+pub const LM20_DNLEN = @as(u32, 15);
+pub const LM20_GNLEN = @as(u32, 20);
+pub const LM20_MAXCOMMENTSZ = @as(u32, 48);
+pub const LM20_NNLEN = @as(u32, 12);
+pub const LM20_PATHLEN = @as(u32, 256);
+pub const LM20_PWLEN = @as(u32, 14);
+pub const LM20_QNLEN = @as(u32, 12);
+pub const LM20_SERVICE_ACTIVE = @as(u32, 0);
+pub const LM20_SERVICE_CONTINUE_PENDING = @as(u32, 4);
+pub const LM20_SERVICE_PAUSE_PENDING = @as(u32, 8);
+pub const LM20_SERVICE_PAUSED = @as(u32, 12);
+pub const LM20_SNLEN = @as(u32, 15);
+pub const LM20_STXTLEN = @as(u32, 63);
+pub const LM20_UNCLEN = @as(u32, 17);
+pub const LM20_UNLEN = @as(u32, 20);
+pub const LM_REDIR_FAILURE = @as(i32, 1073756225);
+pub const LOCALGROUP_COMMENT_PARMNUM = @as(u32, 2);
+pub const LOCALGROUP_NAME_PARMNUM = @as(u32, 1);
+pub const LOGFLAGS_BACKWARD = @as(u32, 1);
+pub const LOGFLAGS_FORWARD = @as(u32, 0);
+pub const LOGFLAGS_SEEK = @as(u32, 2);
+pub const LOWER_GET_HINT_MASK = @as(u32, 65280);
+pub const LOWER_HINT_MASK = @as(u32, 255);
+pub const MACHINE_UNJOINED = @as(i32, -1073727507);
+pub const MAJOR_VERSION_MASK = @as(u32, 15);
+pub const MAX_LANMAN_MESSAGE_ID = @as(u32, 5899);
+pub const MAX_NERR = @as(u32, 2999);
+pub const MAX_PASSWD_LEN = @as(u32, 256);
+pub const MAX_PREFERRED_LENGTH = @as(u32, 4294967295);
+pub const MAX_PROTOCOL_DLL_LEN = @as(u32, 48);
+pub const MAX_PROTOCOL_NAME_LEN = @as(u32, 40);
+pub const MAXCOMMENTSZ = @as(u32, 256);
+pub const MAXPERMENTRIES = @as(u32, 64);
+pub const MESSAGE_FILENAME = "NETMSG";
+pub const MFE_BOUNDARY_REACHED = @as(u32, 6);
+pub const MFE_IIF = @as(u32, 8);
+pub const MFE_NO_ERROR = @as(u32, 0);
+pub const MFE_NO_MULTICAST = @as(u32, 7);
+pub const MFE_NO_ROUTE = @as(u32, 9);
+pub const MFE_NO_SPACE = @as(u32, 13);
+pub const MFE_NOT_FORWARDING = @as(u32, 2);
+pub const MFE_NOT_LAST_HOP = @as(u32, 10);
+pub const MFE_OIF_PRUNED = @as(u32, 5);
+pub const MFE_OLD_ROUTER = @as(u32, 11);
+pub const MFE_PROHIBITED = @as(u32, 12);
+pub const MFE_PRUNED_UPSTREAM = @as(u32, 4);
+pub const MFE_REACHED_CORE = @as(u32, 1);
+pub const MFE_WRONG_IF = @as(u32, 3);
+pub const MIN_LANMAN_MESSAGE_ID = @as(u32, 2100);
+pub const MISSING_EXIT_POINT = @as(i32, -1073727523);
+pub const MISSING_EXIT_POINT_CREATED = @as(i32, -1073727518);
+pub const MISSING_EXIT_POINT_NOT_CREATED = @as(i32, -1073727517);
+pub const MISSING_VOLUME = @as(i32, -1073727522);
+pub const MISSING_VOLUME_CREATED = @as(i32, -1073727516);
+pub const MISSING_VOLUME_NOT_CREATED = @as(i32, -1073727515);
+pub const MODALS_DOMAIN_ID_PARMNUM = @as(u32, 9);
+pub const MODALS_DOMAIN_NAME_PARMNUM = @as(u32, 8);
+pub const MODALS_FORCE_LOGOFF_PARMNUM = @as(u32, 4);
+pub const MODALS_LOCKOUT_DURATION_PARMNUM = @as(u32, 10);
+pub const MODALS_LOCKOUT_OBSERVATION_WINDOW_PARMNUM = @as(u32, 11);
+pub const MODALS_LOCKOUT_THRESHOLD_PARMNUM = @as(u32, 12);
+pub const MODALS_MAX_PASSWD_AGE_PARMNUM = @as(u32, 2);
+pub const MODALS_MIN_PASSWD_AGE_PARMNUM = @as(u32, 3);
+pub const MODALS_MIN_PASSWD_LEN_PARMNUM = @as(u32, 1);
+pub const MODALS_PASSWD_HIST_LEN_PARMNUM = @as(u32, 5);
+pub const MODALS_PRIMARY_PARMNUM = @as(u32, 7);
+pub const MODALS_ROLE_PARMNUM = @as(u32, 6);
+pub const MRINFO_DISABLED_FLAG = @as(u32, 32);
+pub const MRINFO_DOWN_FLAG = @as(u32, 16);
+pub const MRINFO_LEAF_FLAG = @as(u32, 128);
+pub const MRINFO_PIM_FLAG = @as(u32, 4);
+pub const MRINFO_QUERIER_FLAG = @as(u32, 64);
+pub const MRINFO_TUNNEL_FLAG = @as(u32, 1);
+pub const MS_ROUTER_VERSION = @as(u32, 1536);
+pub const MSGNAME_FORWARDED_FROM = @as(u32, 16);
+pub const MSGNAME_FORWARDED_TO = @as(u32, 4);
+pub const MSGNAME_NOT_FORWARDED = @as(u32, 0);
+pub const NELOG_Access_File_Bad = @as(u32, 3122);
+pub const NELOG_AT_cannot_read = @as(u32, 3174);
+pub const NELOG_AT_cannot_write = @as(u32, 3129);
+pub const NELOG_AT_Exec_Err = @as(u32, 3178);
+pub const NELOG_AT_sched_err = @as(u32, 3175);
+pub const NELOG_AT_schedule_file_created = @as(u32, 3176);
+pub const NELOG_Build_Name = @as(u32, 3170);
+pub const NELOG_Cant_Make_Msg_File = @as(u32, 3130);
+pub const NELOG_DiskFT = @as(u32, 3221);
+pub const NELOG_DriverNotLoaded = @as(u32, 5727);
+pub const NELOG_Entries_Lost = @as(u32, 3114);
+pub const NELOG_Error_in_DLL = @as(u32, 3256);
+pub const NELOG_Exec_Netservr_NoMem = @as(u32, 3131);
+pub const NELOG_FailedToGetComputerName = @as(u32, 5726);
+pub const NELOG_FailedToRegisterSC = @as(u32, 5724);
+pub const NELOG_FailedToSetServiceStatus = @as(u32, 5725);
+pub const NELOG_File_Changed = @as(u32, 3253);
+pub const NELOG_Files_Dont_Fit = @as(u32, 3254);
+pub const NELOG_FT_ErrLog_Too_Large = @as(u32, 3258);
+pub const NELOG_FT_Update_In_Progress = @as(u32, 3259);
+pub const NELOG_HardErr_From_Server = @as(u32, 3182);
+pub const NELOG_HotFix = @as(u32, 3181);
+pub const NELOG_Init_Chardev_Err = @as(u32, 3124);
+pub const NELOG_Init_Exec_Fail = @as(u32, 3105);
+pub const NELOG_Init_OpenCreate_Err = @as(u32, 3110);
+pub const NELOG_Init_Seg_Overflow = @as(u32, 3120);
+pub const NELOG_Internal_Error = @as(u32, 3100);
+pub const NELOG_Invalid_Config_File = @as(u32, 3252);
+pub const NELOG_Invalid_Config_Line = @as(u32, 3251);
+pub const NELOG_Ioctl_Error = @as(u32, 3108);
+pub const NELOG_Joined_Domain = @as(u32, 3260);
+pub const NELOG_Joined_Workgroup = @as(u32, 3261);
+pub const NELOG_Lazy_Write_Err = @as(u32, 3180);
+pub const NELOG_LocalSecFail1 = @as(u32, 3183);
+pub const NELOG_LocalSecFail2 = @as(u32, 3184);
+pub const NELOG_LocalSecFail3 = @as(u32, 3185);
+pub const NELOG_LocalSecGeneralFail = @as(u32, 3186);
+pub const NELOG_Mail_Slt_Err = @as(u32, 3173);
+pub const NELOG_Mailslot_err = @as(u32, 3127);
+pub const NELOG_Message_Send = @as(u32, 3172);
+pub const NELOG_Missing_Parameter = @as(u32, 3250);
+pub const NELOG_Msg_Log_Err = @as(u32, 3150);
+pub const NELOG_Msg_Sem_Shutdown = @as(u32, 3141);
+pub const NELOG_Msg_Shutdown = @as(u32, 3140);
+pub const NELOG_Msg_Unexpected_SMB_Type = @as(u32, 3152);
+pub const NELOG_Name_Expansion = @as(u32, 3171);
+pub const NELOG_Ncb_Error = @as(u32, 3106);
+pub const NELOG_Ncb_TooManyErr = @as(u32, 3126);
+pub const NELOG_Net_Not_Started = @as(u32, 3107);
+pub const NELOG_NetBios = @as(u32, 3111);
+pub const NELOG_NetlogonAddNameFailure = @as(u32, 5741);
+pub const NELOG_NetlogonAuthDCFail = @as(u32, 3210);
+pub const NELOG_NetlogonAuthDomainDowngraded = @as(u32, 5791);
+pub const NELOG_NetlogonAuthNoDomainController = @as(u32, 5719);
+pub const NELOG_NetlogonAuthNoTrustLsaSecret = @as(u32, 5720);
+pub const NELOG_NetlogonAuthNoTrustSamAccount = @as(u32, 5721);
+pub const NELOG_NetlogonAuthNoUplevelDomainController = @as(u32, 5790);
+pub const NELOG_NetlogonBadSiteName = @as(u32, 5779);
+pub const NELOG_NetlogonBadSubnetName = @as(u32, 5780);
+pub const NELOG_NetlogonBrowserDriver = @as(u32, 5740);
+pub const NELOG_NetlogonChangeLogCorrupt = @as(u32, 5705);
+pub const NELOG_NetlogonDcOldSiteCovered = @as(u32, 5794);
+pub const NELOG_NetlogonDcSiteCovered = @as(u32, 5784);
+pub const NELOG_NetlogonDcSiteNotCovered = @as(u32, 5785);
+pub const NELOG_NetlogonDcSiteNotCoveredAuto = @as(u32, 5795);
+pub const NELOG_NetlogonDnsDeregAborted = @as(u32, 5808);
+pub const NELOG_NetlogonDnsHostNameLowerCasingFailed = @as(u32, 5825);
+pub const NELOG_NetlogonDownLevelLogoffFailed = @as(u32, 5708);
+pub const NELOG_NetlogonDownLevelLogonFailed = @as(u32, 5707);
+pub const NELOG_NetlogonDuplicateMachineAccounts = @as(u32, 5738);
+pub const NELOG_NetlogonDynamicDnsDeregisterFailure = @as(u32, 5775);
+pub const NELOG_NetlogonDynamicDnsFailure = @as(u32, 5782);
+pub const NELOG_NetlogonDynamicDnsRegisterFailure = @as(u32, 5774);
+pub const NELOG_NetlogonDynamicDnsServerFailure = @as(u32, 5781);
+pub const NELOG_NetlogonFailedAccountDelta = @as(u32, 5735);
+pub const NELOG_NetlogonFailedDnsHostNameUpdate = @as(u32, 5789);
+pub const NELOG_NetlogonFailedDomainDelta = @as(u32, 5729);
+pub const NELOG_NetlogonFailedFileCreate = @as(u32, 5776);
+pub const NELOG_NetlogonFailedGlobalGroupDelta = @as(u32, 5730);
+pub const NELOG_NetlogonFailedLocalGroupDelta = @as(u32, 5731);
+pub const NELOG_NetlogonFailedPolicyDelta = @as(u32, 5733);
+pub const NELOG_NetlogonFailedPrimary = @as(u32, 3223);
+pub const NELOG_NetlogonFailedSecretDelta = @as(u32, 5736);
+pub const NELOG_NetlogonFailedSpnUpdate = @as(u32, 5788);
+pub const NELOG_NetlogonFailedToAddAuthzRpcInterface = @as(u32, 5820);
+pub const NELOG_NetlogonFailedToAddRpcInterface = @as(u32, 5702);
+pub const NELOG_NetlogonFailedToCreateShare = @as(u32, 5706);
+pub const NELOG_NetLogonFailedToInitializeAuthzRm = @as(u32, 5821);
+pub const NELOG_NetLogonFailedToInitializeRPCSD = @as(u32, 5822);
+pub const NELOG_NetlogonFailedToReadMailslot = @as(u32, 5703);
+pub const NELOG_NetlogonFailedToRegisterSC = @as(u32, 5704);
+pub const NELOG_NetlogonFailedToUpdateTrustList = @as(u32, 5701);
+pub const NELOG_NetlogonFailedTrustedDomainDelta = @as(u32, 5734);
+pub const NELOG_NetlogonFailedUserDelta = @as(u32, 5732);
+pub const NELOG_NetlogonFullSyncCallFailed = @as(u32, 5714);
+pub const NELOG_NetlogonFullSyncCallSuccess = @as(u32, 5713);
+pub const NELOG_NetlogonFullSyncFailed = @as(u32, 5718);
+pub const NELOG_NetlogonFullSyncSuccess = @as(u32, 5717);
+pub const NELOG_NetlogonGcOldSiteCovered = @as(u32, 5796);
+pub const NELOG_NetlogonGcSiteCovered = @as(u32, 5786);
+pub const NELOG_NetlogonGcSiteNotCovered = @as(u32, 5787);
+pub const NELOG_NetlogonGcSiteNotCoveredAuto = @as(u32, 5797);
+pub const NELOG_NetlogonGetSubnetToSite = @as(u32, 5777);
+pub const NELOG_NetlogonInvalidDwordParameterValue = @as(u32, 5804);
+pub const NELOG_NetlogonInvalidGenericParameterValue = @as(u32, 5803);
+pub const NELOG_NetlogonLanmanBdcsNotAllowed = @as(u32, 5772);
+pub const NELOG_NetlogonMachinePasswdSetSucceeded = @as(u32, 5823);
+pub const NELOG_NetlogonMsaPasswdSetSucceeded = @as(u32, 5824);
+pub const NELOG_NetlogonNdncOldSiteCovered = @as(u32, 5798);
+pub const NELOG_NetlogonNdncSiteCovered = @as(u32, 5792);
+pub const NELOG_NetlogonNdncSiteNotCovered = @as(u32, 5793);
+pub const NELOG_NetlogonNdncSiteNotCoveredAuto = @as(u32, 5799);
+pub const NELOG_NetlogonNoAddressToSiteMapping = @as(u32, 5802);
+pub const NELOG_NetlogonNoDynamicDns = @as(u32, 5773);
+pub const NELOG_NetlogonNoDynamicDnsManual = @as(u32, 5806);
+pub const NELOG_NetlogonNoSiteForClient = @as(u32, 5778);
+pub const NELOG_NetlogonNoSiteForClients = @as(u32, 5807);
+pub const NELOG_NetlogonNTLogoffFailed = @as(u32, 5710);
+pub const NELOG_NetlogonNTLogonFailed = @as(u32, 5709);
+pub const NELOG_NetlogonPartialSiteMappingForClients = @as(u32, 5810);
+pub const NELOG_NetlogonPartialSyncCallFailed = @as(u32, 5712);
+pub const NELOG_NetlogonPartialSyncCallSuccess = @as(u32, 5711);
+pub const NELOG_NetlogonPartialSyncFailed = @as(u32, 5716);
+pub const NELOG_NetlogonPartialSyncSuccess = @as(u32, 5715);
+pub const NELOG_NetlogonPasswdSetFailed = @as(u32, 3224);
+pub const NELOG_NetlogonRejectedRemoteDynamicDnsDeregister = @as(u32, 5814);
+pub const NELOG_NetlogonRejectedRemoteDynamicDnsRegister = @as(u32, 5813);
+pub const NELOG_NetlogonRemoteDynamicDnsDeregisterFailure = @as(u32, 5812);
+pub const NELOG_NetlogonRemoteDynamicDnsRegisterFailure = @as(u32, 5811);
+pub const NELOG_NetlogonRemoteDynamicDnsUpdateRequestFailure = @as(u32, 5815);
+pub const NELOG_NetlogonRequireSignOrSealError = @as(u32, 3227);
+pub const NELOG_NetlogonRpcCallCancelled = @as(u32, 5783);
+pub const NELOG_NetlogonRpcPortRequestFailure = @as(u32, 5809);
+pub const NELOG_NetlogonServerAuthFailed = @as(u32, 5722);
+pub const NELOG_NetlogonServerAuthFailedNoAccount = @as(u32, 5805);
+pub const NELOG_NetlogonServerAuthNoTrustSamAccount = @as(u32, 5723);
+pub const NELOG_NetlogonSessionTypeWrong = @as(u32, 5770);
+pub const NELOG_NetlogonSpnCrackNamesFailure = @as(u32, 5801);
+pub const NELOG_NetlogonSpnMultipleSamAccountNames = @as(u32, 5800);
+pub const NELOG_NetlogonSSIInitError = @as(u32, 5700);
+pub const NELOG_NetlogonSyncError = @as(u32, 3226);
+pub const NELOG_NetlogonSystemError = @as(u32, 5737);
+pub const NELOG_NetlogonTooManyGlobalGroups = @as(u32, 5739);
+pub const NELOG_NetlogonTrackingError = @as(u32, 3225);
+pub const NELOG_NetlogonUserValidationReqInitialTimeOut = @as(u32, 5816);
+pub const NELOG_NetlogonUserValidationReqRecurringTimeOut = @as(u32, 5817);
+pub const NELOG_NetlogonUserValidationReqWaitInitialWarning = @as(u32, 5818);
+pub const NELOG_NetlogonUserValidationReqWaitRecurringWarning = @as(u32, 5819);
+pub const NELOG_NetWkSta_Internal_Error = @as(u32, 3190);
+pub const NELOG_NetWkSta_NCB_Err = @as(u32, 3195);
+pub const NELOG_NetWkSta_No_Resource = @as(u32, 3191);
+pub const NELOG_NetWkSta_Reset_Err = @as(u32, 3197);
+pub const NELOG_NetWkSta_SMB_Err = @as(u32, 3192);
+pub const NELOG_NetWkSta_Stuck_VC_Err = @as(u32, 3194);
+pub const NELOG_NetWkSta_Too_Many = @as(u32, 3198);
+pub const NELOG_NetWkSta_VC_Err = @as(u32, 3193);
+pub const NELOG_NetWkSta_Write_Behind_Err = @as(u32, 3196);
+pub const NELOG_NoTranportLoaded = @as(u32, 5728);
+pub const NELOG_OEM_Code = @as(u32, 3299);
+pub const NELOG_ReleaseMem_Alert = @as(u32, 3128);
+pub const NELOG_Remote_API = @as(u32, 3125);
+pub const NELOG_ReplAccessDenied = @as(u32, 3222);
+pub const NELOG_ReplBadExport = @as(u32, 3219);
+pub const NELOG_ReplBadImport = @as(u32, 3218);
+pub const NELOG_ReplBadMsg = @as(u32, 3215);
+pub const NELOG_ReplCannotMasterDir = @as(u32, 3207);
+pub const NELOG_ReplLogonFailed = @as(u32, 3211);
+pub const NELOG_ReplLostMaster = @as(u32, 3209);
+pub const NELOG_ReplMaxFiles = @as(u32, 3213);
+pub const NELOG_ReplMaxTreeDepth = @as(u32, 3214);
+pub const NELOG_ReplNetErr = @as(u32, 3212);
+pub const NELOG_ReplSignalFileErr = @as(u32, 3220);
+pub const NELOG_ReplSysErr = @as(u32, 3216);
+pub const NELOG_ReplUpdateError = @as(u32, 3208);
+pub const NELOG_ReplUserCurDir = @as(u32, 3206);
+pub const NELOG_ReplUserLoged = @as(u32, 3217);
+pub const NELOG_Resource_Shortage = @as(u32, 3101);
+pub const NELOG_RplAdapterResource = @as(u32, 5756);
+pub const NELOG_RplBackupDatabase = @as(u32, 5765);
+pub const NELOG_RplCheckConfigs = @as(u32, 5760);
+pub const NELOG_RplCheckSecurity = @as(u32, 5764);
+pub const NELOG_RplCreateProfiles = @as(u32, 5761);
+pub const NELOG_RplFileCopy = @as(u32, 5757);
+pub const NELOG_RplFileDelete = @as(u32, 5758);
+pub const NELOG_RplFilePerms = @as(u32, 5759);
+pub const NELOG_RplInitDatabase = @as(u32, 5766);
+pub const NELOG_RplInitRestoredDatabase = @as(u32, 5769);
+pub const NELOG_RplMessages = @as(u32, 5742);
+pub const NELOG_RplRegistry = @as(u32, 5762);
+pub const NELOG_RplReplaceRPLDISK = @as(u32, 5763);
+pub const NELOG_RplRestoreDatabaseFailure = @as(u32, 5767);
+pub const NELOG_RplRestoreDatabaseSuccess = @as(u32, 5768);
+pub const NELOG_RplSystem = @as(u32, 5744);
+pub const NELOG_RplUpgradeDBTo40 = @as(u32, 5771);
+pub const NELOG_RplWkstaBbcFile = @as(u32, 5751);
+pub const NELOG_RplWkstaFileChecksum = @as(u32, 5749);
+pub const NELOG_RplWkstaFileLineCount = @as(u32, 5750);
+pub const NELOG_RplWkstaFileOpen = @as(u32, 5746);
+pub const NELOG_RplWkstaFileRead = @as(u32, 5747);
+pub const NELOG_RplWkstaFileSize = @as(u32, 5752);
+pub const NELOG_RplWkstaInternal = @as(u32, 5753);
+pub const NELOG_RplWkstaMemory = @as(u32, 5748);
+pub const NELOG_RplWkstaNetwork = @as(u32, 5755);
+pub const NELOG_RplWkstaTimeout = @as(u32, 5745);
+pub const NELOG_RplWkstaWrongVersion = @as(u32, 5754);
+pub const NELOG_RplXnsBoot = @as(u32, 5743);
+pub const NELOG_Server_Lock_Failure = @as(u32, 3132);
+pub const NELOG_Service_Fail = @as(u32, 3113);
+pub const NELOG_SMB_Illegal = @as(u32, 3112);
+pub const NELOG_Srv_Close_Failure = @as(u32, 3205);
+pub const NELOG_Srv_No_Mem_Grow = @as(u32, 3121);
+pub const NELOG_Srv_Thread_Failure = @as(u32, 3204);
+pub const NELOG_Srvnet_NB_Open = @as(u32, 3177);
+pub const NELOG_Srvnet_Not_Started = @as(u32, 3123);
+pub const NELOG_System_Error = @as(u32, 3257);
+pub const NELOG_System_Semaphore = @as(u32, 3109);
+pub const NELOG_Unable_To_Lock_Segment = @as(u32, 3102);
+pub const NELOG_Unable_To_Unlock_Segment = @as(u32, 3103);
+pub const NELOG_Uninstall_Service = @as(u32, 3104);
+pub const NELOG_UPS_CannotOpenDriver = @as(u32, 3233);
+pub const NELOG_UPS_CmdFileConfig = @as(u32, 3235);
+pub const NELOG_UPS_CmdFileError = @as(u32, 3232);
+pub const NELOG_UPS_CmdFileExec = @as(u32, 3236);
+pub const NELOG_UPS_PowerBack = @as(u32, 3234);
+pub const NELOG_UPS_PowerOut = @as(u32, 3230);
+pub const NELOG_UPS_Shutdown = @as(u32, 3231);
+pub const NELOG_VIO_POPUP_ERR = @as(u32, 3151);
+pub const NELOG_Wksta_Bad_Mailslot_SMB = @as(u32, 3165);
+pub const NELOG_Wksta_BiosThreadFailure = @as(u32, 3162);
+pub const NELOG_Wksta_Compname = @as(u32, 3161);
+pub const NELOG_Wksta_HostTab_Full = @as(u32, 3164);
+pub const NELOG_Wksta_Infoseg = @as(u32, 3160);
+pub const NELOG_Wksta_IniSeg = @as(u32, 3163);
+pub const NELOG_Wksta_SSIRelogon = @as(u32, 3167);
+pub const NELOG_Wksta_UASInit = @as(u32, 3166);
+pub const NELOG_Wrong_DLL_Version = @as(u32, 3255);
+pub const NERR_AccountExpired = @as(u32, 2239);
+pub const NERR_AccountLockedOut = @as(u32, 2702);
+pub const NERR_AccountUndefined = @as(u32, 2238);
+pub const NERR_AcctLimitExceeded = @as(u32, 2434);
+pub const NERR_ACFFileIOFail = @as(u32, 2229);
+pub const NERR_ACFNoParent = @as(u32, 2232);
+pub const NERR_ACFNoRoom = @as(u32, 2228);
+pub const NERR_ACFNotFound = @as(u32, 2219);
+pub const NERR_ACFNotLoaded = @as(u32, 2227);
+pub const NERR_ACFTooManyLists = @as(u32, 2230);
+pub const NERR_ActiveConns = @as(u32, 2402);
+pub const NERR_AddForwarded = @as(u32, 2275);
+pub const NERR_AlertExists = @as(u32, 2430);
+pub const NERR_AlreadyCloudDomainJoined = @as(u32, 2700);
+pub const NERR_AlreadyExists = @as(u32, 2276);
+pub const NERR_AlreadyForwarded = @as(u32, 2274);
+pub const NERR_AlreadyLoggedOn = @as(u32, 2200);
+pub const NERR_BadAsgType = @as(u32, 2251);
+pub const NERR_BadComponent = @as(u32, 2356);
+pub const NERR_BadControlRecv = @as(u32, 2193);
+pub const NERR_BadDest = @as(u32, 2382);
+pub const NERR_BadDev = @as(u32, 2341);
+pub const NERR_BadDevString = @as(u32, 2340);
+pub const NERR_BadDomainJoinInfo = @as(u32, 2712);
+pub const NERR_BadDosFunction = @as(u32, 2502);
+pub const NERR_BadDosRetCode = @as(u32, 2500);
+pub const NERR_BadEventName = @as(u32, 2143);
+pub const NERR_BadFileCheckSum = @as(u32, 2504);
+pub const NERR_BadOfflineJoinInfo = @as(u32, 2710);
+pub const NERR_BadPassword = @as(u32, 2203);
+pub const NERR_BadPasswordCore = @as(u32, 2403);
+pub const NERR_BadQueueDevString = @as(u32, 2334);
+pub const NERR_BadQueuePriority = @as(u32, 2335);
+pub const NERR_BadReceive = @as(u32, 2282);
+pub const NERR_BadRecipient = @as(u32, 2433);
+pub const NERR_BadServiceName = @as(u32, 2185);
+pub const NERR_BadServiceProgName = @as(u32, 2188);
+pub const NERR_BadSource = @as(u32, 2381);
+pub const NERR_BadTransactConfig = @as(u32, 2141);
+pub const NERR_BadUasConfig = @as(u32, 2450);
+pub const NERR_BadUsername = @as(u32, 2202);
+pub const NERR_BASE = @as(u32, 2100);
+pub const NERR_BrowserConfiguredToNotRun = @as(u32, 2550);
+pub const NERR_BrowserNotStarted = @as(u32, 2139);
+pub const NERR_BrowserTableIncomplete = @as(u32, 2319);
+pub const NERR_BufTooSmall = @as(u32, 2123);
+pub const NERR_CallingRplSrvr = @as(u32, 2515);
+pub const NERR_CanNotGrowSegment = @as(u32, 2233);
+pub const NERR_CanNotGrowUASFile = @as(u32, 2456);
+pub const NERR_CannotUnjoinAadDomain = @as(u32, 2727);
+pub const NERR_CantConnectRplSrvr = @as(u32, 2513);
+pub const NERR_CantCreateJoinInfo = @as(u32, 2711);
+pub const NERR_CantLoadOfflineHive = @as(u32, 2717);
+pub const NERR_CantOpenImageFile = @as(u32, 2514);
+pub const NERR_CantType = @as(u32, 2357);
+pub const NERR_CantVerifyHostname = @as(u32, 2716);
+pub const NERR_CfgCompNotFound = @as(u32, 2146);
+pub const NERR_CfgParamNotFound = @as(u32, 2147);
+pub const NERR_ClientNameNotFound = @as(u32, 2312);
+pub const NERR_CommDevInUse = @as(u32, 2343);
+pub const NERR_ComputerAccountNotFound = @as(u32, 2697);
+pub const NERR_ConnectionInsecure = @as(u32, 2718);
+pub const NERR_DatabaseUpToDate = @as(u32, 2248);
+pub const NERR_DataTypeInvalid = @as(u32, 2167);
+pub const NERR_DCNotFound = @as(u32, 2453);
+pub const NERR_DefaultJoinRequired = @as(u32, 2694);
+pub const NERR_DelComputerName = @as(u32, 2278);
+pub const NERR_DeleteLater = @as(u32, 2298);
+pub const NERR_DestExists = @as(u32, 2153);
+pub const NERR_DestIdle = @as(u32, 2158);
+pub const NERR_DestInvalidOp = @as(u32, 2159);
+pub const NERR_DestInvalidState = @as(u32, 2162);
+pub const NERR_DestNoRoom = @as(u32, 2157);
+pub const NERR_DestNotFound = @as(u32, 2152);
+pub const NERR_DeviceIsShared = @as(u32, 2252);
+pub const NERR_DeviceNotShared = @as(u32, 2311);
+pub const NERR_DeviceShareConflict = @as(u32, 2318);
+pub const NERR_DevInUse = @as(u32, 2404);
+pub const NERR_DevInvalidOpCode = @as(u32, 2331);
+pub const NERR_DevNotFound = @as(u32, 2332);
+pub const NERR_DevNotOpen = @as(u32, 2333);
+pub const NERR_DevNotRedirected = @as(u32, 2107);
+pub const NERR_DfsAlreadyShared = @as(u32, 2664);
+pub const NERR_DfsBadRenamePath = @as(u32, 2671);
+pub const NERR_DfsCantCreateJunctionPoint = @as(u32, 2669);
+pub const NERR_DfsCantRemoveDfsRoot = @as(u32, 2682);
+pub const NERR_DfsCantRemoveLastServerShare = @as(u32, 2677);
+pub const NERR_DfsChildOrParentInDfs = @as(u32, 2683);
+pub const NERR_DfsCyclicalName = @as(u32, 2674);
+pub const NERR_DfsDataIsIdentical = @as(u32, 2681);
+pub const NERR_DfsDuplicateService = @as(u32, 2676);
+pub const NERR_DfsInconsistent = @as(u32, 2679);
+pub const NERR_DfsInternalCorruption = @as(u32, 2660);
+pub const NERR_DfsInternalError = @as(u32, 2690);
+pub const NERR_DfsLeafVolume = @as(u32, 2667);
+pub const NERR_DfsNoSuchServer = @as(u32, 2673);
+pub const NERR_DfsNoSuchShare = @as(u32, 2665);
+pub const NERR_DfsNoSuchVolume = @as(u32, 2662);
+pub const NERR_DfsNotALeafVolume = @as(u32, 2666);
+pub const NERR_DfsNotSupportedInServerDfs = @as(u32, 2675);
+pub const NERR_DfsServerNotDfsAware = @as(u32, 2670);
+pub const NERR_DfsServerUpgraded = @as(u32, 2680);
+pub const NERR_DfsVolumeAlreadyExists = @as(u32, 2663);
+pub const NERR_DfsVolumeDataCorrupt = @as(u32, 2661);
+pub const NERR_DfsVolumeHasMultipleServers = @as(u32, 2668);
+pub const NERR_DfsVolumeIsInterDfs = @as(u32, 2678);
+pub const NERR_DfsVolumeIsOffline = @as(u32, 2672);
+pub const NERR_DifferentServers = @as(u32, 2383);
+pub const NERR_DriverNotFound = @as(u32, 2166);
+pub const NERR_DS8DCNotFound = @as(u32, 2722);
+pub const NERR_DS8DCRequired = @as(u32, 2720);
+pub const NERR_DS9DCNotFound = @as(u32, 2725);
+pub const NERR_DuplicateName = @as(u32, 2297);
+pub const NERR_DuplicateShare = @as(u32, 2118);
+pub const NERR_DupNameReboot = @as(u32, 2144);
+pub const NERR_ErrCommRunSrv = @as(u32, 2389);
+pub const NERR_ErrorExecingGhost = @as(u32, 2391);
+pub const NERR_ExecFailure = @as(u32, 2315);
+pub const NERR_FileIdNotFound = @as(u32, 2314);
+pub const NERR_GroupExists = @as(u32, 2223);
+pub const NERR_GroupNotFound = @as(u32, 2220);
+pub const NERR_GrpMsgProcessor = @as(u32, 2280);
+pub const NERR_ImageParamErr = @as(u32, 2508);
+pub const NERR_IncompleteDel = @as(u32, 2299);
+pub const NERR_InternalError = @as(u32, 2140);
+pub const NERR_InUseBySpooler = @as(u32, 2342);
+pub const NERR_InvalidAPI = @as(u32, 2142);
+pub const NERR_InvalidComputer = @as(u32, 2351);
+pub const NERR_InvalidDatabase = @as(u32, 2247);
+pub const NERR_InvalidDevice = @as(u32, 2294);
+pub const NERR_InvalidLana = @as(u32, 2400);
+pub const NERR_InvalidLogonHours = @as(u32, 2241);
+pub const NERR_InvalidLogSeek = @as(u32, 2440);
+pub const NERR_InvalidMachineNameForJoin = @as(u32, 2724);
+pub const NERR_InvalidMaxUsers = @as(u32, 2122);
+pub const NERR_InvalidUASOp = @as(u32, 2451);
+pub const NERR_InvalidWorkgroupName = @as(u32, 2695);
+pub const NERR_InvalidWorkstation = @as(u32, 2240);
+pub const NERR_IsDfsShare = @as(u32, 2321);
+pub const NERR_ItemNotFound = @as(u32, 2115);
+pub const NERR_JobInvalidState = @as(u32, 2164);
+pub const NERR_JobNoRoom = @as(u32, 2156);
+pub const NERR_JobNotFound = @as(u32, 2151);
+pub const NERR_JoinPerformedMustRestart = @as(u32, 2713);
+pub const NERR_LanmanIniError = @as(u32, 2131);
+pub const NERR_LastAdmin = @as(u32, 2452);
+pub const NERR_LDAPCapableDCRequired = @as(u32, 2721);
+pub const NERR_LineTooLong = @as(u32, 2149);
+pub const NERR_LocalDrive = @as(u32, 2405);
+pub const NERR_LocalForward = @as(u32, 2279);
+pub const NERR_LogFileChanged = @as(u32, 2378);
+pub const NERR_LogFileCorrupt = @as(u32, 2379);
+pub const NERR_LogonDomainExists = @as(u32, 2216);
+pub const NERR_LogonNoUserPath = @as(u32, 2211);
+pub const NERR_LogonScriptError = @as(u32, 2212);
+pub const NERR_LogonServerConflict = @as(u32, 2210);
+pub const NERR_LogonServerNotFound = @as(u32, 2215);
+pub const NERR_LogonsPaused = @as(u32, 2209);
+pub const NERR_LogonTrackingError = @as(u32, 2454);
+pub const NERR_LogOverflow = @as(u32, 2377);
+pub const NERR_MaxLenExceeded = @as(u32, 2354);
+pub const NERR_MsgAlreadyStarted = @as(u32, 2271);
+pub const NERR_MsgInitFailed = @as(u32, 2272);
+pub const NERR_MsgNotStarted = @as(u32, 2284);
+pub const NERR_MultipleNets = @as(u32, 2300);
+pub const NERR_NameInUse = @as(u32, 2283);
+pub const NERR_NameNotForwarded = @as(u32, 2288);
+pub const NERR_NameNotFound = @as(u32, 2273);
+pub const NERR_NameUsesIncompatibleCodePage = @as(u32, 2696);
+pub const NERR_NetlogonNotStarted = @as(u32, 2455);
+pub const NERR_NetNameNotFound = @as(u32, 2310);
+pub const NERR_NetNotStarted = @as(u32, 2102);
+pub const NERR_NetworkError = @as(u32, 2136);
+pub const NERR_NoAlternateServers = @as(u32, 2467);
+pub const NERR_NoCommDevs = @as(u32, 2337);
+pub const NERR_NoComputerName = @as(u32, 2270);
+pub const NERR_NoForwardName = @as(u32, 2286);
+pub const NERR_NoJoinPending = @as(u32, 2714);
+pub const NERR_NonDosFloppyUsed = @as(u32, 2510);
+pub const NERR_NoNetworkResource = @as(u32, 2105);
+pub const NERR_NonValidatedLogon = @as(u32, 2217);
+pub const NERR_NoOfflineJoinInfo = @as(u32, 2709);
+pub const NERR_NoRoom = @as(u32, 2119);
+pub const NERR_NoRplBootSystem = @as(u32, 2505);
+pub const NERR_NoSuchAlert = @as(u32, 2432);
+pub const NERR_NoSuchConnection = @as(u32, 2462);
+pub const NERR_NoSuchServer = @as(u32, 2460);
+pub const NERR_NoSuchSession = @as(u32, 2461);
+pub const NERR_NotInCache = @as(u32, 2235);
+pub const NERR_NotInDispatchTbl = @as(u32, 2192);
+pub const NERR_NotLocalDomain = @as(u32, 2320);
+pub const NERR_NotLocalName = @as(u32, 2285);
+pub const NERR_NotLoggedOn = @as(u32, 2201);
+pub const NERR_NotPrimary = @as(u32, 2226);
+pub const NERR_OpenFiles = @as(u32, 2401);
+pub const NERR_PasswordCantChange = @as(u32, 2243);
+pub const NERR_PasswordExpired = @as(u32, 2242);
+pub const NERR_PasswordFilterError = @as(u32, 2705);
+pub const NERR_PasswordHistConflict = @as(u32, 2244);
+pub const NERR_PasswordMismatch = @as(u32, 2458);
+pub const NERR_PasswordMustChange = @as(u32, 2701);
+pub const NERR_PasswordNotComplexEnough = @as(u32, 2704);
+pub const NERR_PasswordTooLong = @as(u32, 2703);
+pub const NERR_PasswordTooRecent = @as(u32, 2246);
+pub const NERR_PasswordTooShort = @as(u32, 2245);
+pub const NERR_PausedRemote = @as(u32, 2281);
+pub const NERR_PersonalSku = @as(u32, 2698);
+pub const NERR_PlainTextSecretsRequired = @as(u32, 2726);
+pub const NERR_ProcNoRespond = @as(u32, 2160);
+pub const NERR_ProcNotFound = @as(u32, 2168);
+pub const NERR_ProfileCleanup = @as(u32, 2372);
+pub const NERR_ProfileFileTooBig = @as(u32, 2370);
+pub const NERR_ProfileLoadErr = @as(u32, 2374);
+pub const NERR_ProfileOffset = @as(u32, 2371);
+pub const NERR_ProfileSaveErr = @as(u32, 2375);
+pub const NERR_ProfileUnknownCmd = @as(u32, 2373);
+pub const NERR_ProgNeedsExtraMem = @as(u32, 2501);
+pub const NERR_ProvisioningBlobUnsupported = @as(u32, 2719);
+pub const NERR_QExists = @as(u32, 2154);
+pub const NERR_QInvalidState = @as(u32, 2163);
+pub const NERR_QNoRoom = @as(u32, 2155);
+pub const NERR_QNotFound = @as(u32, 2150);
+pub const NERR_QueueNotFound = @as(u32, 2338);
+pub const NERR_RedirectedPath = @as(u32, 2117);
+pub const NERR_RemoteBootFailed = @as(u32, 2503);
+pub const NERR_RemoteErr = @as(u32, 2127);
+pub const NERR_RemoteFull = @as(u32, 2287);
+pub const NERR_RemoteOnly = @as(u32, 2106);
+pub const NERR_ResourceExists = @as(u32, 2225);
+pub const NERR_ResourceNotFound = @as(u32, 2222);
+pub const NERR_RPL_CONNECTED = @as(u32, 2519);
+pub const NERR_RplAdapterInfoCorrupted = @as(u32, 2625);
+pub const NERR_RplAdapterNameUnavailable = @as(u32, 2633);
+pub const NERR_RplAdapterNotFound = @as(u32, 2637);
+pub const NERR_RplBackupDatabase = @as(u32, 2636);
+pub const NERR_RplBadDatabase = @as(u32, 2612);
+pub const NERR_RplBadRegistry = @as(u32, 2611);
+pub const NERR_RplBootInfoCorrupted = @as(u32, 2628);
+pub const NERR_RplBootInUse = @as(u32, 2635);
+pub const NERR_RplBootNameUnavailable = @as(u32, 2640);
+pub const NERR_RplBootNotFound = @as(u32, 2631);
+pub const NERR_RplBootRestart = @as(u32, 2511);
+pub const NERR_RplBootServiceTerm = @as(u32, 2517);
+pub const NERR_RplBootStartFailed = @as(u32, 2518);
+pub const NERR_RplCannotEnum = @as(u32, 2615);
+pub const NERR_RplConfigInfoCorrupted = @as(u32, 2623);
+pub const NERR_RplConfigNameUnavailable = @as(u32, 2641);
+pub const NERR_RplConfigNotEmpty = @as(u32, 2634);
+pub const NERR_RplConfigNotFound = @as(u32, 2624);
+pub const NERR_RplIncompatibleProfile = @as(u32, 2632);
+pub const NERR_RplInternal = @as(u32, 2626);
+pub const NERR_RplLoadrDiskErr = @as(u32, 2507);
+pub const NERR_RplLoadrNetBiosErr = @as(u32, 2506);
+pub const NERR_RplNeedsRPLUSERAcct = @as(u32, 2630);
+pub const NERR_RplNoAdaptersStarted = @as(u32, 2610);
+pub const NERR_RplNotRplServer = @as(u32, 2614);
+pub const NERR_RplProfileInfoCorrupted = @as(u32, 2619);
+pub const NERR_RplProfileNameUnavailable = @as(u32, 2621);
+pub const NERR_RplProfileNotEmpty = @as(u32, 2622);
+pub const NERR_RplProfileNotFound = @as(u32, 2620);
+pub const NERR_RplRplfilesShare = @as(u32, 2613);
+pub const NERR_RplSrvrCallFailed = @as(u32, 2512);
+pub const NERR_RplVendorInfoCorrupted = @as(u32, 2627);
+pub const NERR_RplVendorNameUnavailable = @as(u32, 2639);
+pub const NERR_RplVendorNotFound = @as(u32, 2638);
+pub const NERR_RplWkstaInfoCorrupted = @as(u32, 2616);
+pub const NERR_RplWkstaNameUnavailable = @as(u32, 2618);
+pub const NERR_RplWkstaNeedsUserAcct = @as(u32, 2629);
+pub const NERR_RplWkstaNotFound = @as(u32, 2617);
+pub const NERR_RunSrvPaused = @as(u32, 2385);
+pub const NERR_SameAsComputerName = @as(u32, 2253);
+pub const NERR_ServerNotStarted = @as(u32, 2114);
+pub const NERR_ServiceCtlBusy = @as(u32, 2187);
+pub const NERR_ServiceCtlNotValid = @as(u32, 2191);
+pub const NERR_ServiceCtlTimeout = @as(u32, 2186);
+pub const NERR_ServiceEntryLocked = @as(u32, 2183);
+pub const NERR_ServiceInstalled = @as(u32, 2182);
+pub const NERR_ServiceKillProc = @as(u32, 2190);
+pub const NERR_ServiceNotCtrl = @as(u32, 2189);
+pub const NERR_ServiceNotInstalled = @as(u32, 2184);
+pub const NERR_ServiceNotStarting = @as(u32, 2194);
+pub const NERR_ServiceTableFull = @as(u32, 2181);
+pub const NERR_ServiceTableLocked = @as(u32, 2180);
+pub const NERR_SetupAlreadyJoined = @as(u32, 2691);
+pub const NERR_SetupCheckDNSConfig = @as(u32, 2699);
+pub const NERR_SetupDomainController = @as(u32, 2693);
+pub const NERR_SetupNotJoined = @as(u32, 2692);
+pub const NERR_ShareMem = @as(u32, 2104);
+pub const NERR_ShareNotFound = @as(u32, 2392);
+pub const NERR_SourceIsDir = @as(u32, 2380);
+pub const NERR_SpeGroupOp = @as(u32, 2234);
+pub const NERR_SpoolerNotLoaded = @as(u32, 2161);
+pub const NERR_SpoolNoMemory = @as(u32, 2165);
+pub const NERR_StandaloneLogon = @as(u32, 2214);
+pub const NERR_StartingRplBoot = @as(u32, 2516);
+pub const NERR_Success = @as(u32, 0);
+pub const NERR_SyncRequired = @as(u32, 2249);
+pub const NERR_TargetVersionUnsupported = @as(u32, 2723);
+pub const NERR_TimeDiffAtDC = @as(u32, 2457);
+pub const NERR_TmpFile = @as(u32, 2316);
+pub const NERR_TooManyAlerts = @as(u32, 2431);
+pub const NERR_TooManyConnections = @as(u32, 2465);
+pub const NERR_TooManyEntries = @as(u32, 2362);
+pub const NERR_TooManyFiles = @as(u32, 2466);
+pub const NERR_TooManyImageParams = @as(u32, 2509);
+pub const NERR_TooManyItems = @as(u32, 2121);
+pub const NERR_TooManyNames = @as(u32, 2277);
+pub const NERR_TooManyServers = @as(u32, 2463);
+pub const NERR_TooManySessions = @as(u32, 2464);
+pub const NERR_TooMuchData = @as(u32, 2317);
+pub const NERR_TruncatedBroadcast = @as(u32, 2289);
+pub const NERR_TryDownLevel = @as(u32, 2470);
+pub const NERR_UnableToAddName_F = @as(u32, 2205);
+pub const NERR_UnableToAddName_W = @as(u32, 2204);
+pub const NERR_UnableToDelName_F = @as(u32, 2207);
+pub const NERR_UnableToDelName_W = @as(u32, 2206);
+pub const NERR_UnknownDevDir = @as(u32, 2116);
+pub const NERR_UnknownServer = @as(u32, 2103);
+pub const NERR_UPSDriverNotStarted = @as(u32, 2480);
+pub const NERR_UPSInvalidCommPort = @as(u32, 2482);
+pub const NERR_UPSInvalidConfig = @as(u32, 2481);
+pub const NERR_UPSShutdownFailed = @as(u32, 2484);
+pub const NERR_UPSSignalAsserted = @as(u32, 2483);
+pub const NERR_UseNotFound = @as(u32, 2250);
+pub const NERR_UserExists = @as(u32, 2224);
+pub const NERR_UserInGroup = @as(u32, 2236);
+pub const NERR_UserLogon = @as(u32, 2231);
+pub const NERR_UserNotFound = @as(u32, 2221);
+pub const NERR_UserNotInGroup = @as(u32, 2237);
+pub const NERR_ValuesNotSet = @as(u32, 2715);
+pub const NERR_WkstaInconsistentState = @as(u32, 2137);
+pub const NERR_WkstaNotStarted = @as(u32, 2138);
+pub const NERR_WriteFault = @as(u32, 2295);
+pub const NET_DFS_ENUM = @as(i32, 1073756324);
+pub const NET_DFS_ENUMEX = @as(i32, 1073756325);
+pub const NET_IGNORE_UNSUPPORTED_FLAGS = @as(u32, 1);
+pub const NET_VALIDATE_BAD_PASSWORD_COUNT = @as(u32, 8);
+pub const NET_VALIDATE_BAD_PASSWORD_TIME = @as(u32, 2);
+pub const NET_VALIDATE_LOCKOUT_TIME = @as(u32, 4);
+pub const NET_VALIDATE_PASSWORD_HISTORY = @as(u32, 32);
+pub const NET_VALIDATE_PASSWORD_HISTORY_LENGTH = @as(u32, 16);
+pub const NET_VALIDATE_PASSWORD_LAST_SET = @as(u32, 1);
+pub const NETBIOS_NAME_LEN = @as(u32, 16);
+pub const NETCFG_CLIENT_CID_MS_MSClient = "ms_msclient";
 pub const NETCFG_E_ACTIVE_RAS_CONNECTIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180506));
 pub const NETCFG_E_ADAPTER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180505));
+pub const NETCFG_E_ALREADY_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180512));
 pub const NETCFG_E_COMPONENT_REMOVED_PENDING_REBOOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180504));
-pub const NETCFG_E_MAX_FILTER_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180503));
-pub const NETCFG_E_VMSWITCH_ACTIVE_OVER_ADAPTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180502));
 pub const NETCFG_E_DUPLICATE_INSTANCEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180501));
-pub const NETCFG_S_REBOOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303136));
-pub const NETCFG_S_DISABLE_QUERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303138));
-pub const NETCFG_S_STILL_REFERENCED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303139));
+pub const NETCFG_E_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180510));
+pub const NETCFG_E_MAX_FILTER_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180503));
+pub const NETCFG_E_NEED_REBOOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180507));
+pub const NETCFG_E_NO_WRITE_LOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180508));
+pub const NETCFG_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180511));
+pub const NETCFG_E_VMSWITCH_ACTIVE_OVER_ADAPTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180502));
 pub const NETCFG_S_CAUSED_SETUP_CHANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303140));
 pub const NETCFG_S_COMMIT_NOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303141));
-pub const NETCFG_CLIENT_CID_MS_MSClient = "ms_msclient";
-pub const NETCFG_SERVICE_CID_MS_SERVER = "ms_server";
+pub const NETCFG_S_DISABLE_QUERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303138));
+pub const NETCFG_S_REBOOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303136));
+pub const NETCFG_S_STILL_REFERENCED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 303139));
 pub const NETCFG_SERVICE_CID_MS_NETBIOS = "ms_netbios";
 pub const NETCFG_SERVICE_CID_MS_PSCHED = "ms_pschedpc";
+pub const NETCFG_SERVICE_CID_MS_SERVER = "ms_server";
 pub const NETCFG_SERVICE_CID_MS_WLBS = "ms_wlbs";
 pub const NETCFG_TRANS_CID_MS_APPLETALK = "ms_appletalk";
 pub const NETCFG_TRANS_CID_MS_NETBEUI = "ms_netbeui";
@@ -1958,127 +1385,794 @@ pub const NETCFG_TRANS_CID_MS_NETMON = "ms_netmon";
 pub const NETCFG_TRANS_CID_MS_NWIPX = "ms_nwipx";
 pub const NETCFG_TRANS_CID_MS_NWSPX = "ms_nwspx";
 pub const NETCFG_TRANS_CID_MS_TCPIP = "ms_tcpip";
-pub const WZC_PROFILE_SUCCESS = @as(u32, 0);
-pub const WZC_PROFILE_XML_ERROR_NO_VERSION = @as(u32, 1);
-pub const WZC_PROFILE_XML_ERROR_BAD_VERSION = @as(u32, 2);
-pub const WZC_PROFILE_XML_ERROR_UNSUPPORTED_VERSION = @as(u32, 3);
-pub const WZC_PROFILE_XML_ERROR_SSID_NOT_FOUND = @as(u32, 4);
-pub const WZC_PROFILE_XML_ERROR_BAD_SSID = @as(u32, 5);
-pub const WZC_PROFILE_XML_ERROR_CONNECTION_TYPE = @as(u32, 6);
-pub const WZC_PROFILE_XML_ERROR_AUTHENTICATION = @as(u32, 7);
-pub const WZC_PROFILE_XML_ERROR_ENCRYPTION = @as(u32, 8);
-pub const WZC_PROFILE_XML_ERROR_KEY_PROVIDED_AUTOMATICALLY = @as(u32, 9);
-pub const WZC_PROFILE_XML_ERROR_1X_ENABLED = @as(u32, 10);
-pub const WZC_PROFILE_XML_ERROR_EAP_METHOD = @as(u32, 11);
-pub const WZC_PROFILE_XML_ERROR_BAD_KEY_INDEX = @as(u32, 12);
-pub const WZC_PROFILE_XML_ERROR_KEY_INDEX_RANGE = @as(u32, 13);
-pub const WZC_PROFILE_XML_ERROR_BAD_NETWORK_KEY = @as(u32, 14);
-pub const WZC_PROFILE_CONFIG_ERROR_INVALID_AUTH_FOR_CONNECTION_TYPE = @as(u32, 15);
-pub const WZC_PROFILE_CONFIG_ERROR_INVALID_ENCRYPTION_FOR_AUTHMODE = @as(u32, 16);
-pub const WZC_PROFILE_CONFIG_ERROR_KEY_REQUIRED = @as(u32, 17);
-pub const WZC_PROFILE_CONFIG_ERROR_KEY_INDEX_REQUIRED = @as(u32, 18);
-pub const WZC_PROFILE_CONFIG_ERROR_KEY_INDEX_NOT_APPLICABLE = @as(u32, 19);
+pub const NETLOG_NetlogonNonWindowsSupportsSecureRpc = @as(u32, 5826);
+pub const NETLOG_NetlogonUnsecuredRpcMachineTemporarilyAllowed = @as(u32, 5829);
+pub const NETLOG_NetlogonUnsecureRpcClient = @as(u32, 5827);
+pub const NETLOG_NetlogonUnsecureRpcMachineAllowedBySsdl = @as(u32, 5830);
+pub const NETLOG_NetlogonUnsecureRpcTrust = @as(u32, 5828);
+pub const NETLOG_NetlogonUnsecureRpcTrustAllowedBySsdl = @as(u32, 5831);
+pub const NETLOGON_CONTROL_BACKUP_CHANGE_LOG = @as(u32, 65532);
+pub const NETLOGON_CONTROL_BREAKPOINT = @as(u32, 65535);
+pub const NETLOGON_CONTROL_CHANGE_PASSWORD = @as(u32, 9);
+pub const NETLOGON_CONTROL_FIND_USER = @as(u32, 8);
+pub const NETLOGON_CONTROL_FORCE_DNS_REG = @as(u32, 11);
+pub const NETLOGON_CONTROL_PDC_REPLICATE = @as(u32, 4);
+pub const NETLOGON_CONTROL_QUERY = @as(u32, 1);
+pub const NETLOGON_CONTROL_QUERY_DNS_REG = @as(u32, 12);
+pub const NETLOGON_CONTROL_QUERY_ENC_TYPES = @as(u32, 13);
+pub const NETLOGON_CONTROL_REDISCOVER = @as(u32, 5);
+pub const NETLOGON_CONTROL_REPLICATE = @as(u32, 2);
+pub const NETLOGON_CONTROL_SET_DBFLAG = @as(u32, 65534);
+pub const NETLOGON_CONTROL_SYNCHRONIZE = @as(u32, 3);
+pub const NETLOGON_CONTROL_TC_QUERY = @as(u32, 6);
+pub const NETLOGON_CONTROL_TC_VERIFY = @as(u32, 10);
+pub const NETLOGON_CONTROL_TRANSPORT_NOTIFY = @as(u32, 7);
+pub const NETLOGON_CONTROL_TRUNCATE_LOG = @as(u32, 65533);
+pub const NETLOGON_CONTROL_UNLOAD_NETLOGON_DLL = @as(u32, 65531);
+pub const NETLOGON_DNS_UPDATE_FAILURE = @as(u32, 64);
+pub const NETLOGON_FULL_SYNC_REPLICATION = @as(u32, 4);
+pub const NETLOGON_HAS_IP = @as(u32, 16);
+pub const NETLOGON_HAS_TIMESERV = @as(u32, 32);
+pub const NETLOGON_REDO_NEEDED = @as(u32, 8);
+pub const NETLOGON_REPLICATION_IN_PROGRESS = @as(u32, 2);
+pub const NETLOGON_REPLICATION_NEEDED = @as(u32, 1);
+pub const NETLOGON_VERIFY_STATUS_RETURNED = @as(u32, 128);
+pub const NETMAN_VARTYPE_HARDWARE_ADDRESS = @as(u32, 1);
+pub const NETMAN_VARTYPE_STRING = @as(u32, 2);
+pub const NETMAN_VARTYPE_ULONG = @as(u32, 0);
+pub const NETSETUP_ACCT_DELETE = @as(u32, 4);
+pub const NETSETUP_ALT_SAMACCOUNTNAME = @as(u32, 131072);
+pub const NETSETUP_DNS_NAME_CHANGES_ONLY = @as(u32, 4096);
+pub const NETSETUP_INSTALL_INVOCATION = @as(u32, 262144);
+pub const NETSETUP_PROVISION_CHECK_PWD_ONLY = @as(u32, 2147483648);
+pub const NETSETUP_PROVISION_PERSISTENTSITE = @as(u32, 32);
+pub const NETSETUP_PROVISIONING_PARAMS_CURRENT_VERSION = @as(u32, 2);
+pub const NETSETUP_PROVISIONING_PARAMS_WIN8_VERSION = @as(u32, 1);
+pub const NO_PERMISSION_REQUIRED = @as(u32, 1);
+pub const NON_VALIDATED_LOGON = @as(u32, 3);
+pub const NOT_A_DFS_PATH = @as(i32, 1073756224);
+pub const NTFRSPRF_COLLECT_RPC_BINDING_ERROR_CONN = @as(i32, -1073728292);
+pub const NTFRSPRF_COLLECT_RPC_BINDING_ERROR_SET = @as(i32, -1073728293);
+pub const NTFRSPRF_COLLECT_RPC_CALL_ERROR_CONN = @as(i32, -1073728290);
+pub const NTFRSPRF_COLLECT_RPC_CALL_ERROR_SET = @as(i32, -1073728291);
+pub const NTFRSPRF_OPEN_RPC_BINDING_ERROR_CONN = @as(i32, -1073728296);
+pub const NTFRSPRF_OPEN_RPC_BINDING_ERROR_SET = @as(i32, -1073728297);
+pub const NTFRSPRF_OPEN_RPC_CALL_ERROR_CONN = @as(i32, -1073728294);
+pub const NTFRSPRF_OPEN_RPC_CALL_ERROR_SET = @as(i32, -1073728295);
+pub const NTFRSPRF_REGISTRY_ERROR_CONN = @as(i32, -1073728286);
+pub const NTFRSPRF_REGISTRY_ERROR_SET = @as(i32, -1073728287);
+pub const NTFRSPRF_VIRTUALALLOC_ERROR_CONN = @as(i32, -1073728288);
+pub const NTFRSPRF_VIRTUALALLOC_ERROR_SET = @as(i32, -1073728289);
+pub const NULL_USERSETINFO_PASSWD = "              ";
+pub const NWSAP_DISPLAY_NAME = "NW Sap Agent";
+pub const NWSAP_EVENT_BADWANFILTER_VALUE = @as(i32, -1073733302);
+pub const NWSAP_EVENT_BIND_FAILED = @as(i32, -1073733320);
+pub const NWSAP_EVENT_CARDLISTEVENT_FAIL = @as(i32, -1073733301);
+pub const NWSAP_EVENT_CARDMALLOC_FAILED = @as(i32, -1073733316);
+pub const NWSAP_EVENT_CREATELPCEVENT_ERROR = @as(i32, -1073733305);
+pub const NWSAP_EVENT_CREATELPCPORT_ERROR = @as(i32, -1073733306);
+pub const NWSAP_EVENT_GETSOCKNAME_FAILED = @as(i32, -1073733319);
+pub const NWSAP_EVENT_HASHTABLE_MALLOC_FAILED = @as(i32, -1073733308);
+pub const NWSAP_EVENT_INVALID_FILTERNAME = @as(i32, -2147475123);
+pub const NWSAP_EVENT_KEY_NOT_FOUND = @as(i32, -1073733324);
+pub const NWSAP_EVENT_LPCHANDLEMEMORY_ERROR = @as(i32, -1073733303);
+pub const NWSAP_EVENT_LPCLISTENMEMORY_ERROR = @as(i32, -1073733304);
+pub const NWSAP_EVENT_NOCARDS = @as(i32, -1073733315);
+pub const NWSAP_EVENT_OPTBCASTINADDR_FAILED = @as(i32, -1073733317);
+pub const NWSAP_EVENT_OPTEXTENDEDADDR_FAILED = @as(i32, -1073733318);
+pub const NWSAP_EVENT_OPTMAXADAPTERNUM_ERROR = @as(i32, -1073733293);
+pub const NWSAP_EVENT_RECVSEM_FAIL = @as(i32, -1073733313);
+pub const NWSAP_EVENT_SDMDEVENT_FAIL = @as(i32, -1073733300);
+pub const NWSAP_EVENT_SENDEVENT_FAIL = @as(i32, -1073733312);
+pub const NWSAP_EVENT_SETOPTBCAST_FAILED = @as(i32, -1073733321);
+pub const NWSAP_EVENT_SOCKET_FAILED = @as(i32, -1073733322);
+pub const NWSAP_EVENT_STARTLPCWORKER_ERROR = @as(i32, -1073733307);
+pub const NWSAP_EVENT_STARTRECEIVE_ERROR = @as(i32, -1073733311);
+pub const NWSAP_EVENT_STARTWANCHECK_ERROR = @as(i32, -1073733294);
+pub const NWSAP_EVENT_STARTWANWORKER_ERROR = @as(i32, -1073733295);
+pub const NWSAP_EVENT_STARTWORKER_ERROR = @as(i32, -1073733310);
+pub const NWSAP_EVENT_TABLE_MALLOC_FAILED = @as(i32, -1073733309);
+pub const NWSAP_EVENT_THREADEVENT_FAIL = @as(i32, -1073733314);
+pub const NWSAP_EVENT_WANBIND_FAILED = @as(i32, -1073733296);
+pub const NWSAP_EVENT_WANEVENT_ERROR = @as(i32, -1073733291);
+pub const NWSAP_EVENT_WANHANDLEMEMORY_ERROR = @as(i32, -1073733292);
+pub const NWSAP_EVENT_WANSEM_FAIL = @as(i32, -1073733298);
+pub const NWSAP_EVENT_WANSOCKET_FAILED = @as(i32, -1073733297);
+pub const NWSAP_EVENT_WSASTARTUP_FAILED = @as(i32, -1073733323);
+pub const OS2MSG_FILENAME = "BASE";
+pub const PARM_ERROR_NONE = @as(u32, 0);
+pub const PARM_ERROR_UNKNOWN = @as(u32, 4294967295);
+pub const PARMNUM_ALL = @as(u32, 0);
+pub const PARMNUM_BASE_INFOLEVEL = @as(u32, 1000);
+pub const PASSWORD_EXPIRED = @as(u32, 2);
+pub const PATHLEN = @as(u32, 256);
+pub const PLATFORM_ID_DOS = @as(u32, 300);
+pub const PLATFORM_ID_NT = @as(u32, 500);
+pub const PLATFORM_ID_OS2 = @as(u32, 400);
+pub const PLATFORM_ID_OSF = @as(u32, 600);
+pub const PLATFORM_ID_VMS = @as(u32, 700);
+pub const PREFIX_MISMATCH = @as(i32, -1073727510);
+pub const PREFIX_MISMATCH_FIXED = @as(i32, -1073727509);
+pub const PREFIX_MISMATCH_NOT_FIXED = @as(i32, -1073727508);
+pub const PRJOB_COMPLETE = @as(u32, 4);
+pub const PRJOB_DELETED = @as(u32, 32768);
+pub const PRJOB_DESTNOPAPER = @as(u32, 256);
+pub const PRJOB_DESTOFFLINE = @as(u32, 32);
+pub const PRJOB_DESTPAUSED = @as(u32, 64);
+pub const PRJOB_DEVSTATUS = @as(u32, 508);
+pub const PRJOB_ERROR = @as(u32, 16);
+pub const PRJOB_INTERV = @as(u32, 8);
+pub const PRJOB_NOTIFY = @as(u32, 128);
+pub const PRJOB_QS_PAUSED = @as(u32, 1);
+pub const PRJOB_QS_PRINTING = @as(u32, 3);
+pub const PRJOB_QS_QUEUED = @as(u32, 0);
+pub const PRJOB_QS_SPOOLING = @as(u32, 2);
+pub const PRJOB_QSTATUS = @as(u32, 3);
+pub const PROTO_IP_ALG = @as(u32, 10010);
+pub const PROTO_IP_BGMP = @as(u32, 11);
+pub const PROTO_IP_BOOTP = @as(u32, 9999);
+pub const PROTO_IP_DHCP_ALLOCATOR = @as(u32, 10004);
+pub const PROTO_IP_DIFFSERV = @as(u32, 10008);
+pub const PROTO_IP_DNS_PROXY = @as(u32, 10003);
+pub const PROTO_IP_DTP = @as(u32, 10013);
+pub const PROTO_IP_FTP = @as(u32, 10012);
+pub const PROTO_IP_H323 = @as(u32, 10011);
+pub const PROTO_IP_IGMP = @as(u32, 10);
+pub const PROTO_IP_MGM = @as(u32, 10009);
+pub const PROTO_IP_MSDP = @as(u32, 9);
+pub const PROTO_IP_NAT = @as(u32, 10005);
+pub const PROTO_IP_VRRP = @as(u32, 112);
+pub const PROTO_IPV6_DHCP = @as(u32, 999);
+pub const PROTO_TYPE_MCAST = @as(u32, 1);
+pub const PROTO_TYPE_MS0 = @as(u32, 2);
+pub const PROTO_TYPE_MS1 = @as(u32, 3);
+pub const PROTO_TYPE_UCAST = @as(u32, 0);
+pub const PROTO_VENDOR_MS0 = @as(u32, 0);
+pub const PROTO_VENDOR_MS1 = @as(u32, 311);
+pub const PROTO_VENDOR_MS2 = @as(u32, 16383);
+pub const PWLEN = @as(u32, 256);
+pub const QNLEN = @as(u32, 80);
+pub const REGISTER_PROTOCOL_ENTRY_POINT_STRING = "RegisterProtocol";
+pub const REPL_EXPORT_EXTENT_INFOLEVEL = @as(u32, 1001);
+pub const REPL_EXPORT_INTEGRITY_INFOLEVEL = @as(u32, 1000);
+pub const REPL_EXTENT_FILE = @as(u32, 1);
+pub const REPL_EXTENT_TREE = @as(u32, 2);
+pub const REPL_GUARDTIME_INFOLEVEL = @as(u32, 1002);
+pub const REPL_INTEGRITY_FILE = @as(u32, 1);
+pub const REPL_INTEGRITY_TREE = @as(u32, 2);
+pub const REPL_INTERVAL_INFOLEVEL = @as(u32, 1000);
+pub const REPL_PULSE_INFOLEVEL = @as(u32, 1001);
+pub const REPL_RANDOM_INFOLEVEL = @as(u32, 1003);
+pub const REPL_ROLE_BOTH = @as(u32, 3);
+pub const REPL_ROLE_EXPORT = @as(u32, 1);
+pub const REPL_ROLE_IMPORT = @as(u32, 2);
+pub const REPL_STATE_NEVER_REPLICATED = @as(u32, 3);
+pub const REPL_STATE_NO_MASTER = @as(u32, 1);
+pub const REPL_STATE_NO_SYNC = @as(u32, 2);
+pub const REPL_STATE_OK = @as(u32, 0);
+pub const REPL_UNLOCK_FORCE = @as(u32, 1);
+pub const REPL_UNLOCK_NOFORCE = @as(u32, 0);
+pub const RF_ADD_ALL_INTERFACES = @as(u32, 16);
+pub const RF_DEMAND_UPDATE_ROUTES = @as(u32, 4);
+pub const RF_MULTICAST = @as(u32, 32);
+pub const RF_POWER = @as(u32, 64);
+pub const RF_ROUTING = @as(u32, 1);
+pub const RF_ROUTINGV6 = @as(u32, 2);
+pub const RIS_INTERFACE_ADDRESS_CHANGE = @as(u32, 0);
+pub const RIS_INTERFACE_DISABLED = @as(u32, 2);
+pub const RIS_INTERFACE_ENABLED = @as(u32, 1);
+pub const RIS_INTERFACE_MEDIA_ABSENT = @as(u32, 4);
+pub const RIS_INTERFACE_MEDIA_PRESENT = @as(u32, 3);
+pub const ROUTING_DOMAIN_INFO_REVISION_1 = @as(u32, 1);
+pub const RTR_INFO_BLOCK_VERSION = @as(u32, 1);
+pub const RTUTILS_MAX_PROTOCOL_DLL_LEN = @as(u32, 48);
+pub const RTUTILS_MAX_PROTOCOL_NAME_LEN = @as(u32, 40);
+pub const SERVCE_LM20_W32TIME = "w32time";
+pub const SERVER_DISPLAY_NAME = "Server";
+pub const SERVICE2_BASE = @as(u32, 5600);
+pub const SERVICE_ACCOUNT_FLAG_ADD_AGAINST_RODC = @as(i32, 2);
+pub const SERVICE_ACCOUNT_FLAG_LINK_TO_HOST_ONLY = @as(i32, 1);
+pub const SERVICE_ACCOUNT_FLAG_REMOVE_OFFLINE = @as(i32, 2);
+pub const SERVICE_ACCOUNT_FLAG_UNLINK_FROM_HOST_ONLY = @as(i32, 1);
+pub const SERVICE_ACCOUNT_PASSWORD = "_SA_{262E99C9-6160-4871-ACEC-4E61736B6F21}";
+pub const SERVICE_ACCOUNT_SECRET_PREFIX = "_SC_{262E99C9-6160-4871-ACEC-4E61736B6F21}_";
+pub const SERVICE_ADWS = "ADWS";
+pub const SERVICE_AFP = "AFP";
+pub const SERVICE_ALERTER = "ALERTER";
+pub const SERVICE_BASE = @as(u32, 3050);
+pub const SERVICE_BROWSER = "BROWSER";
+pub const SERVICE_CCP_CHKPT_NUM = @as(u32, 255);
+pub const SERVICE_CCP_NO_HINT = @as(u32, 0);
+pub const SERVICE_CCP_QUERY_HINT = @as(u32, 65536);
+pub const SERVICE_CCP_WAIT_TIME = @as(u32, 65280);
+pub const SERVICE_CTRL_CONTINUE = @as(u32, 2);
+pub const SERVICE_CTRL_INTERROGATE = @as(u32, 0);
+pub const SERVICE_CTRL_PAUSE = @as(u32, 1);
+pub const SERVICE_CTRL_REDIR_COMM = @as(u32, 4);
+pub const SERVICE_CTRL_REDIR_DISK = @as(u32, 1);
+pub const SERVICE_CTRL_REDIR_PRINT = @as(u32, 2);
+pub const SERVICE_CTRL_UNINSTALL = @as(u32, 3);
+pub const SERVICE_DHCP = "DHCP";
+pub const SERVICE_DNS_CACHE = "DnsCache";
+pub const SERVICE_DOS_ENCRYPTION = "ENCRYPT";
+pub const SERVICE_DSROLE = "DsRoleSvc";
+pub const SERVICE_INSTALL_PENDING = @as(u32, 1);
+pub const SERVICE_INSTALL_STATE = @as(u32, 3);
+pub const SERVICE_INSTALLED = @as(u32, 3);
+pub const SERVICE_IP_CHKPT_NUM = @as(u32, 255);
+pub const SERVICE_IP_NO_HINT = @as(u32, 0);
+pub const SERVICE_IP_QUERY_HINT = @as(u32, 65536);
+pub const SERVICE_IP_WAIT_TIME = @as(u32, 65280);
+pub const SERVICE_IP_WAITTIME_SHIFT = @as(u32, 8);
+pub const SERVICE_ISMSERV = "IsmServ";
+pub const SERVICE_KDC = "kdc";
+pub const SERVICE_LM20_AFP = "AFP";
+pub const SERVICE_LM20_ALERTER = "ALERTER";
+pub const SERVICE_LM20_BROWSER = "BROWSER";
+pub const SERVICE_LM20_DHCP = "DHCP";
+pub const SERVICE_LM20_DSROLE = "DsRoleSvc";
+pub const SERVICE_LM20_ISMSERV = "IsmServ";
+pub const SERVICE_LM20_KDC = "kdc";
+pub const SERVICE_LM20_LMHOSTS = "LMHOSTS";
+pub const SERVICE_LM20_MESSENGER = "MESSENGER";
+pub const SERVICE_LM20_NBT = "NBT";
+pub const SERVICE_LM20_NETLOGON = "NETLOGON";
+pub const SERVICE_LM20_NETPOPUP = "NETPOPUP";
+pub const SERVICE_LM20_NETRUN = "NETRUN";
+pub const SERVICE_LM20_NTDS = "NTDS";
+pub const SERVICE_LM20_NTFRS = "NtFrs";
+pub const SERVICE_LM20_NWSAP = "NwSapAgent";
+pub const SERVICE_LM20_REPL = "REPLICATOR";
+pub const SERVICE_LM20_RIPL = "REMOTEBOOT";
+pub const SERVICE_LM20_RPCLOCATOR = "RPCLOCATOR";
+pub const SERVICE_LM20_SCHEDULE = "Schedule";
+pub const SERVICE_LM20_SERVER = "SERVER";
+pub const SERVICE_LM20_SPOOLER = "SPOOLER";
+pub const SERVICE_LM20_SQLSERVER = "SQLSERVER";
+pub const SERVICE_LM20_TCPIP = "TCPIP";
+pub const SERVICE_LM20_TELNET = "Telnet";
+pub const SERVICE_LM20_TIMESOURCE = "TIMESOURCE";
+pub const SERVICE_LM20_TRKSVR = "TrkSvr";
+pub const SERVICE_LM20_TRKWKS = "TrkWks";
+pub const SERVICE_LM20_UPS = "UPS";
+pub const SERVICE_LM20_WORKSTATION = "WORKSTATION";
+pub const SERVICE_LM20_XACTSRV = "XACTSRV";
+pub const SERVICE_LMHOSTS = "LMHOSTS";
+pub const SERVICE_MAXTIME = @as(u32, 255);
+pub const SERVICE_MESSENGER = "MESSENGER";
+pub const SERVICE_NBT = "NBT";
+pub const SERVICE_NETLOGON = "NETLOGON";
+pub const SERVICE_NETPOPUP = "NETPOPUP";
+pub const SERVICE_NETRUN = "NETRUN";
+pub const SERVICE_NOT_PAUSABLE = @as(u32, 0);
+pub const SERVICE_NOT_UNINSTALLABLE = @as(u32, 0);
+pub const SERVICE_NT_MAXTIME = @as(u32, 65535);
+pub const SERVICE_NTDS = "NTDS";
+pub const SERVICE_NTFRS = "NtFrs";
+pub const SERVICE_NTIP_WAITTIME_SHIFT = @as(u32, 12);
+pub const SERVICE_NTLMSSP = "NtLmSsp";
+pub const SERVICE_NWCS = "NWCWorkstation";
+pub const SERVICE_NWSAP = "NwSapAgent";
+pub const SERVICE_PAUSABLE = @as(u32, 32);
+pub const SERVICE_PAUSE_STATE = @as(u32, 12);
+pub const SERVICE_REDIR_COMM_PAUSED = @as(u32, 1024);
+pub const SERVICE_REDIR_DISK_PAUSED = @as(u32, 256);
+pub const SERVICE_REDIR_PAUSED = @as(u32, 1792);
+pub const SERVICE_REDIR_PRINT_PAUSED = @as(u32, 512);
+pub const SERVICE_REPL = "REPLICATOR";
+pub const SERVICE_RESRV_MASK = @as(u32, 131071);
+pub const SERVICE_RIPL = "REMOTEBOOT";
+pub const SERVICE_RPCLOCATOR = "RPCLOCATOR";
+pub const SERVICE_SCHEDULE = "Schedule";
+pub const SERVICE_SERVER = "LanmanServer";
+pub const SERVICE_SPOOLER = "SPOOLER";
+pub const SERVICE_SQLSERVER = "SQLSERVER";
+pub const SERVICE_TCPIP = "TCPIP";
+pub const SERVICE_TELNET = "Telnet";
+pub const SERVICE_TIMESOURCE = "TIMESOURCE";
+pub const SERVICE_TRKSVR = "TrkSvr";
+pub const SERVICE_TRKWKS = "TrkWks";
+pub const SERVICE_UIC_AMBIGPARM = @as(u32, 3058);
+pub const SERVICE_UIC_BADPARMVAL = @as(u32, 3051);
+pub const SERVICE_UIC_CONFIG = @as(u32, 3055);
+pub const SERVICE_UIC_CONFLPARM = @as(u32, 3063);
+pub const SERVICE_UIC_DUPPARM = @as(u32, 3059);
+pub const SERVICE_UIC_EXEC = @as(u32, 3061);
+pub const SERVICE_UIC_FILE = @as(u32, 3064);
+pub const SERVICE_UIC_INTERNAL = @as(u32, 3057);
+pub const SERVICE_UIC_KILL = @as(u32, 3060);
+pub const SERVICE_UIC_M_ADDPAK = @as(u32, 3090);
+pub const SERVICE_UIC_M_ANNOUNCE = @as(u32, 3083);
+pub const SERVICE_UIC_M_DATABASE_ERROR = @as(u32, 5602);
+pub const SERVICE_UIC_M_DISK = @as(u32, 3071);
+pub const SERVICE_UIC_M_ERRLOG = @as(u32, 3088);
+pub const SERVICE_UIC_M_FILE_UW = @as(u32, 3089);
+pub const SERVICE_UIC_M_FILES = @as(u32, 3079);
+pub const SERVICE_UIC_M_LANGROUP = @as(u32, 3081);
+pub const SERVICE_UIC_M_LANROOT = @as(u32, 3075);
+pub const SERVICE_UIC_M_LAZY = @as(u32, 3091);
+pub const SERVICE_UIC_M_LOGS = @as(u32, 3080);
+pub const SERVICE_UIC_M_LSA_MACHINE_ACCT = @as(u32, 5601);
+pub const SERVICE_UIC_M_MEMORY = @as(u32, 3070);
+pub const SERVICE_UIC_M_MSGNAME = @as(u32, 3082);
+pub const SERVICE_UIC_M_NETLOGON_AUTH = @as(u32, 3098);
+pub const SERVICE_UIC_M_NETLOGON_DC_CFLCT = @as(u32, 3097);
+pub const SERVICE_UIC_M_NETLOGON_MPATH = @as(u32, 5600);
+pub const SERVICE_UIC_M_NETLOGON_NO_DC = @as(u32, 3096);
+pub const SERVICE_UIC_M_NULL = @as(u32, 0);
+pub const SERVICE_UIC_M_PROCESSES = @as(u32, 3073);
+pub const SERVICE_UIC_M_REDIR = @as(u32, 3076);
+pub const SERVICE_UIC_M_SEC_FILE_ERR = @as(u32, 3078);
+pub const SERVICE_UIC_M_SECURITY = @as(u32, 3074);
+pub const SERVICE_UIC_M_SERVER = @as(u32, 3077);
+pub const SERVICE_UIC_M_SERVER_SEC_ERR = @as(u32, 3085);
+pub const SERVICE_UIC_M_THREADS = @as(u32, 3072);
+pub const SERVICE_UIC_M_UAS = @as(u32, 3084);
+pub const SERVICE_UIC_M_UAS_INVALID_ROLE = @as(u32, 3095);
+pub const SERVICE_UIC_M_UAS_MACHINE_ACCT = @as(u32, 3092);
+pub const SERVICE_UIC_M_UAS_PROLOG = @as(u32, 3099);
+pub const SERVICE_UIC_M_UAS_SERVERS_NMEMB = @as(u32, 3093);
+pub const SERVICE_UIC_M_UAS_SERVERS_NOGRP = @as(u32, 3094);
+pub const SERVICE_UIC_M_WKSTA = @as(u32, 3087);
+pub const SERVICE_UIC_MISSPARM = @as(u32, 3052);
+pub const SERVICE_UIC_NORMAL = @as(u32, 0);
+pub const SERVICE_UIC_RESOURCE = @as(u32, 3054);
+pub const SERVICE_UIC_SUBSERV = @as(u32, 3062);
+pub const SERVICE_UIC_SYSTEM = @as(u32, 3056);
+pub const SERVICE_UIC_UNKPARM = @as(u32, 3053);
+pub const SERVICE_UNINSTALL_PENDING = @as(u32, 2);
+pub const SERVICE_UNINSTALLABLE = @as(u32, 16);
+pub const SERVICE_UNINSTALLED = @as(u32, 0);
+pub const SERVICE_UPS = "UPS";
+pub const SERVICE_W32TIME = "w32time";
+pub const SERVICE_WORKSTATION = "LanmanWorkstation";
+pub const SERVICE_XACTSRV = "XACTSRV";
+pub const ServiceAccountPasswordGUID = Guid.initString("262e99c9-6160-4871-acec-4e61736b6f21");
+pub const SESSION_CRYPT_KLEN = @as(u32, 21);
+pub const SESSION_PWLEN = @as(u32, 24);
+pub const SHPWLEN = @as(u32, 8);
+pub const SNLEN = @as(u32, 80);
+pub const SRV_HASH_GENERATION_ACTIVE = @as(u32, 2);
+pub const SRV_SUPPORT_HASH_GENERATION = @as(u32, 1);
+pub const STXTLEN = @as(u32, 256);
+pub const SUPPORTS_ANY = @as(i32, -1);
+pub const SV_ACCEPTDOWNLEVELAPIS_PARMNUM = @as(u32, 517);
+pub const SV_ACCESSALERT_PARMNUM = @as(u32, 40);
+pub const SV_ACTIVELOCKS_PARMNUM = @as(u32, 419);
+pub const SV_ALERTS_PARMNUM = @as(u32, 11);
+pub const SV_ALERTSCHED_PARMNUM = @as(u32, 37);
+pub const SV_ALERTSCHEDULE_PARMNUM = @as(u32, 547);
+pub const SV_ALIST_MTIME_PARMNUM = @as(u32, 403);
+pub const SV_ANNDELTA_PARMNUM = @as(u32, 18);
+pub const SV_ANNOUNCE_PARMNUM = @as(u32, 17);
+pub const SV_AUTOSHARESERVER_PARMNUM = @as(u32, 592);
+pub const SV_AUTOSHAREWKS_PARMNUM = @as(u32, 591);
+pub const SV_BALANCECOUNT_PARMNUM = @as(u32, 577);
+pub const SV_CACHEDDIRECTORYLIMIT_PARMNUM = @as(u32, 587);
+pub const SV_CACHEDOPENLIMIT_PARMNUM = @as(u32, 571);
+pub const SV_CHDEVJOBS_PARMNUM = @as(u32, 411);
+pub const SV_CHDEVQ_PARMNUM = @as(u32, 410);
+pub const SV_COMMENT_PARMNUM = @as(u32, 5);
+pub const SV_CONNECTIONLESSAUTODISC_PARMNUM = @as(u32, 562);
+pub const SV_CONNECTIONNOSESSIONSTIMEOUT_PARMNUM = @as(u32, 596);
+pub const SV_CONNECTIONS_PARMNUM = @as(u32, 412);
+pub const SV_CRITICALTHREADS_PARMNUM = @as(u32, 572);
+pub const SV_DISABLEDOS_PARMNUM = @as(u32, 600);
+pub const SV_DISABLESTRICTNAMECHECKING_PARMNUM = @as(u32, 602);
+pub const SV_DISC_PARMNUM = @as(u32, 10);
+pub const SV_DISKALERT_PARMNUM = @as(u32, 41);
+pub const SV_DISKSPACETHRESHOLD_PARMNUM = @as(u32, 550);
+pub const SV_DOMAIN_PARMNUM = @as(u32, 519);
+pub const SV_ENABLEAUTHENTICATEUSERSHARING_PARMNUM = @as(u32, 603);
+pub const SV_ENABLECOMPRESSION_PARMNUM = @as(u32, 590);
+pub const SV_ENABLEFCBOPENS_PARMNUM = @as(u32, 538);
+pub const SV_ENABLEFORCEDLOGOFF_PARMNUM = @as(u32, 515);
+pub const SV_ENABLEOPLOCKFORCECLOSE_PARMNUM = @as(u32, 537);
+pub const SV_ENABLEOPLOCKS_PARMNUM = @as(u32, 536);
+pub const SV_ENABLERAW_PARMNUM = @as(u32, 539);
+pub const SV_ENABLESECURITYSIGNATURE_PARMNUM = @as(u32, 593);
+pub const SV_ENABLESHAREDNETDRIVES_PARMNUM = @as(u32, 540);
+pub const SV_ENABLESOFTCOMPAT_PARMNUM = @as(u32, 514);
+pub const SV_ENABLEW9XSECURITYSIGNATURE_PARMNUM = @as(u32, 598);
+pub const SV_ENABLEWFW311DIRECTIPX_PARMNUM = @as(u32, 574);
+pub const SV_ENFORCEKERBEROSREAUTHENTICATION_PARMNUM = @as(u32, 599);
+pub const SV_ERRORALERT_PARMNUM = @as(u32, 38);
+pub const SV_ERRORTHRESHOLD_PARMNUM = @as(u32, 548);
+pub const SV_GLIST_MTIME_PARMNUM = @as(u32, 402);
+pub const SV_GUESTACC_PARMNUM = @as(u32, 408);
+pub const SV_HIDDEN_PARMNUM = @as(u32, 16);
+pub const SV_IDLETHREADTIMEOUT_PARMNUM = @as(u32, 597);
+pub const SV_INITCONNTABLE_PARMNUM = @as(u32, 544);
+pub const SV_INITFILETABLE_PARMNUM = @as(u32, 545);
+pub const SV_INITSEARCHTABLE_PARMNUM = @as(u32, 546);
+pub const SV_INITSESSTABLE_PARMNUM = @as(u32, 543);
+pub const SV_INITWORKITEMS_PARMNUM = @as(u32, 505);
+pub const SV_IRPSTACKSIZE_PARMNUM = @as(u32, 508);
+pub const SV_LANMASK_PARMNUM = @as(u32, 407);
+pub const SV_LINKINFOVALIDTIME_PARMNUM = @as(u32, 554);
+pub const SV_LMANNOUNCE_PARMNUM = @as(u32, 518);
+pub const SV_LOCKVIOLATIONDELAY_PARMNUM = @as(u32, 569);
+pub const SV_LOCKVIOLATIONOFFSET_PARMNUM = @as(u32, 568);
+pub const SV_LOCKVIOLATIONRETRIES_PARMNUM = @as(u32, 567);
+pub const SV_LOGONALERT_PARMNUM = @as(u32, 39);
+pub const SV_LOWDISKSPACEMINIMUM_PARMNUM = @as(u32, 601);
+pub const SV_MAX_CMD_LEN = @as(u32, 256);
+pub const SV_MAX_SRV_HEUR_LEN = @as(u32, 32);
+pub const SV_MAXAUDITSZ_PARMNUM = @as(u32, 43);
+pub const SV_MAXCOPYLENGTH_PARMNUM = @as(u32, 588);
+pub const SV_MAXCOPYREADLEN_PARMNUM = @as(u32, 520);
+pub const SV_MAXCOPYWRITELEN_PARMNUM = @as(u32, 521);
+pub const SV_MAXFREECONNECTIONS_PARMNUM = @as(u32, 542);
+pub const SV_MAXFREELFCBS_PARMNUM = @as(u32, 581);
+pub const SV_MAXFREEMFCBS_PARMNUM = @as(u32, 580);
+pub const SV_MAXFREEPAGEDPOOLCHUNKS_PARMNUM = @as(u32, 582);
+pub const SV_MAXFREERFCBS_PARMNUM = @as(u32, 579);
+pub const SV_MAXGLOBALOPENSEARCH_PARMNUM = @as(u32, 565);
+pub const SV_MAXKEEPCOMPLSEARCH_PARMNUM = @as(u32, 525);
+pub const SV_MAXKEEPSEARCH_PARMNUM = @as(u32, 523);
+pub const SV_MAXLINKDELAY_PARMNUM = @as(u32, 552);
+pub const SV_MAXMPXCT_PARMNUM = @as(u32, 533);
+pub const SV_MAXNONPAGEDMEMORYUSAGE_PARMNUM = @as(u32, 512);
+pub const SV_MAXPAGEDMEMORYUSAGE_PARMNUM = @as(u32, 513);
+pub const SV_MAXPAGEDPOOLCHUNKSIZE_PARMNUM = @as(u32, 584);
+pub const SV_MAXRAWBUFLEN_PARMNUM = @as(u32, 509);
+pub const SV_MAXRAWWORKITEMS_PARMNUM = @as(u32, 557);
+pub const SV_MAXTHREADSPERQUEUE_PARMNUM = @as(u32, 586);
+pub const SV_MAXWORKITEMIDLETIME_PARMNUM = @as(u32, 556);
+pub const SV_MAXWORKITEMS_PARMNUM = @as(u32, 506);
+pub const SV_MDLREADSWITCHOVER_PARMNUM = @as(u32, 570);
+pub const SV_MINCLIENTBUFFERSIZE_PARMNUM = @as(u32, 595);
+pub const SV_MINFREECONNECTIONS_PARMNUM = @as(u32, 541);
+pub const SV_MINFREEWORKITEMS_PARMNUM = @as(u32, 530);
+pub const SV_MINKEEPCOMPLSEARCH_PARMNUM = @as(u32, 524);
+pub const SV_MINKEEPSEARCH_PARMNUM = @as(u32, 522);
+pub const SV_MINLINKTHROUGHPUT_PARMNUM = @as(u32, 553);
+pub const SV_MINPAGEDPOOLCHUNKSIZE_PARMNUM = @as(u32, 583);
+pub const SV_MINRCVQUEUE_PARMNUM = @as(u32, 529);
+pub const SV_NAME_PARMNUM = @as(u32, 102);
+pub const SV_NETIOALERT_PARMNUM = @as(u32, 42);
+pub const SV_NETWORKERRORTHRESHOLD_PARMNUM = @as(u32, 549);
+pub const SV_NODISC = @as(i32, -1);
+pub const SV_NUMADMIN_PARMNUM = @as(u32, 406);
+pub const SV_NUMBIGBUF_PARMNUM = @as(u32, 422);
+pub const SV_NUMBLOCKTHREADS_PARMNUM = @as(u32, 527);
+pub const SV_NUMFILETASKS_PARMNUM = @as(u32, 423);
+pub const SV_NUMREQBUF_PARMNUM = @as(u32, 420);
+pub const SV_OPENFILES_PARMNUM = @as(u32, 414);
+pub const SV_OPENSEARCH_PARMNUM = @as(u32, 503);
+pub const SV_OPLOCKBREAKRESPONSEWAIT_PARMNUM = @as(u32, 535);
+pub const SV_OPLOCKBREAKWAIT_PARMNUM = @as(u32, 534);
+pub const SV_OTHERQUEUEAFFINITY_PARMNUM = @as(u32, 575);
+pub const SV_PLATFORM_ID_NT = @as(u32, 500);
+pub const SV_PLATFORM_ID_OS2 = @as(u32, 400);
+pub const SV_PLATFORM_ID_PARMNUM = @as(u32, 101);
+pub const SV_PREFERREDAFFINITY_PARMNUM = @as(u32, 578);
+pub const SV_PRODUCTTYPE_PARMNUM = @as(u32, 560);
+pub const SV_QUEUESAMPLESECS_PARMNUM = @as(u32, 576);
+pub const SV_RAWWORKITEMS_PARMNUM = @as(u32, 507);
+pub const SV_REMOVEDUPLICATESEARCHES_PARMNUM = @as(u32, 566);
+pub const SV_REQUIRESECURITYSIGNATURE_PARMNUM = @as(u32, 594);
+pub const SV_RESTRICTNULLSESSACCESS_PARMNUM = @as(u32, 573);
+pub const SV_SCAVQOSINFOUPDATETIME_PARMNUM = @as(u32, 555);
+pub const SV_SCAVTIMEOUT_PARMNUM = @as(u32, 528);
+pub const SV_SECURITY_PARMNUM = @as(u32, 405);
+pub const SV_SENDSFROMPREFERREDPROCESSOR_PARMNUM = @as(u32, 585);
+pub const SV_SERVERSIZE_PARMNUM = @as(u32, 561);
+pub const SV_SESSCONNS_PARMNUM = @as(u32, 511);
+pub const SV_SESSOPENS_PARMNUM = @as(u32, 501);
+pub const SV_SESSREQS_PARMNUM = @as(u32, 417);
+pub const SV_SESSUSERS_PARMNUM = @as(u32, 510);
+pub const SV_SESSVCS_PARMNUM = @as(u32, 502);
+pub const SV_SHARES_PARMNUM = @as(u32, 413);
+pub const SV_SHARINGVIOLATIONDELAY_PARMNUM = @as(u32, 564);
+pub const SV_SHARINGVIOLATIONRETRIES_PARMNUM = @as(u32, 563);
+pub const SV_SIZREQBUF_PARMNUM = @as(u32, 504);
+pub const SV_SRVHEURISTICS_PARMNUM = @as(u32, 431);
+pub const SV_THREADCOUNTADD_PARMNUM = @as(u32, 526);
+pub const SV_THREADPRIORITY_PARMNUM = @as(u32, 532);
+pub const SV_TIMESOURCE_PARMNUM = @as(u32, 516);
+pub const SV_TYPE_PARMNUM = @as(u32, 105);
+pub const SV_ULIST_MTIME_PARMNUM = @as(u32, 401);
+pub const SV_USERPATH_PARMNUM = @as(u32, 112);
+pub const SV_USERS_PARMNUM = @as(u32, 107);
+pub const SV_USERS_PER_LICENSE = @as(u32, 5);
+pub const SV_VERSION_MAJOR_PARMNUM = @as(u32, 103);
+pub const SV_VERSION_MINOR_PARMNUM = @as(u32, 104);
+pub const SV_XACTMEMSIZE_PARMNUM = @as(u32, 531);
+pub const SVAUD_BADNETLOGON = @as(u32, 384);
+pub const SVAUD_BADSESSLOGON = @as(u32, 24);
+pub const SVAUD_BADUSE = @as(u32, 6144);
+pub const SVAUD_GOODNETLOGON = @as(u32, 96);
+pub const SVAUD_GOODSESSLOGON = @as(u32, 6);
+pub const SVAUD_GOODUSE = @as(u32, 1536);
+pub const SVAUD_LOGONLIM = @as(u32, 65536);
+pub const SVAUD_PERMISSIONS = @as(u32, 16384);
+pub const SVAUD_RESOURCE = @as(u32, 32768);
+pub const SVAUD_SERVICE = @as(u32, 1);
+pub const SVAUD_USERLIST = @as(u32, 8192);
+pub const SVI1_NUM_ELEMENTS = @as(u32, 5);
+pub const SVI2_NUM_ELEMENTS = @as(u32, 40);
+pub const SVI3_NUM_ELEMENTS = @as(u32, 44);
+pub const SVTI2_CLUSTER_DNN_NAME = @as(u32, 16);
+pub const SVTI2_CLUSTER_NAME = @as(u32, 8);
+pub const SVTI2_REMAP_PIPE_NAMES = @as(u32, 2);
+pub const SVTI2_RESERVED1 = @as(u32, 4096);
+pub const SVTI2_RESERVED2 = @as(u32, 8192);
+pub const SVTI2_RESERVED3 = @as(u32, 16384);
+pub const SVTI2_SCOPED_NAME = @as(u32, 4);
+pub const SVTI2_UNICODE_TRANSPORT_ADDRESS = @as(u32, 32);
+pub const SW_AUTOPROF_LOAD_MASK = @as(u32, 1);
+pub const SW_AUTOPROF_SAVE_MASK = @as(u32, 2);
+pub const TITLE_SC_MESSAGE_BOX = @as(i32, -1073734795);
+pub const TRACE_NO_STDINFO = @as(u32, 1);
+pub const TRACE_NO_SYNCH = @as(u32, 4);
+pub const TRACE_USE_CONSOLE = @as(u32, 2);
+pub const TRACE_USE_DATE = @as(u32, 8);
+pub const TRACE_USE_FILE = @as(u32, 1);
+pub const TRACE_USE_MASK = @as(u32, 2);
+pub const TRACE_USE_MSEC = @as(u32, 4);
+pub const TRANSPORT_NAME_PARMNUM = @as(u32, 202);
+pub const TRANSPORT_QUALITYOFSERVICE_PARMNUM = @as(u32, 201);
+pub const UF_INTERDOMAIN_TRUST_ACCOUNT = @as(u32, 2048);
+pub const UF_MNS_LOGON_ACCOUNT = @as(u32, 131072);
+pub const UF_NO_AUTH_DATA_REQUIRED = @as(u32, 33554432);
+pub const UF_NORMAL_ACCOUNT = @as(u32, 512);
+pub const UF_PARTIAL_SECRETS_ACCOUNT = @as(u32, 67108864);
+pub const UF_SERVER_TRUST_ACCOUNT = @as(u32, 8192);
+pub const UF_TEMP_DUPLICATE_ACCOUNT = @as(u32, 256);
+pub const UF_USE_AES_KEYS = @as(u32, 134217728);
+pub const UF_WORKSTATION_TRUST_ACCOUNT = @as(u32, 4096);
+pub const UNCLEN = @as(u32, 17);
+pub const UNITS_PER_DAY = @as(u32, 24);
+pub const UNLEN = @as(u32, 256);
+pub const UPPER_GET_HINT_MASK = @as(u32, 267386880);
+pub const UPPER_HINT_MASK = @as(u32, 65280);
+pub const USE_ASGTYPE_PARMNUM = @as(u32, 4);
+pub const USE_AUTHIDENTITY_PARMNUM = @as(u32, 8);
+pub const USE_CHARDEV = @as(u32, 2);
+pub const USE_CONN = @as(u32, 4);
+pub const USE_DEFAULT_CREDENTIALS = @as(u32, 4);
+pub const USE_DISCONN = @as(u32, 2);
+pub const USE_DOMAINNAME_PARMNUM = @as(u32, 6);
+pub const USE_FLAG_GLOBAL_MAPPING = @as(u32, 65536);
+pub const USE_FLAGS_PARMNUM = @as(u32, 7);
+pub const USE_LOCAL_PARMNUM = @as(u32, 1);
+pub const USE_NETERR = @as(u32, 3);
+pub const USE_OK = @as(u32, 0);
+pub const USE_OPTIONS_PARMNUM = @as(u32, 10);
+pub const USE_PASSWORD_PARMNUM = @as(u32, 3);
+pub const USE_PAUSED = @as(u32, 1);
+pub const USE_RECONN = @as(u32, 5);
+pub const USE_REMOTE_PARMNUM = @as(u32, 2);
+pub const USE_SD_PARMNUM = @as(u32, 9);
+pub const USE_SESSLOST = @as(u32, 2);
+pub const USE_SPECIFIC_TRANSPORT = @as(u32, 2147483648);
+pub const USE_USERNAME_PARMNUM = @as(u32, 5);
+pub const USER_ACCT_EXPIRES_PARMNUM = @as(u32, 17);
+pub const USER_AUTH_FLAGS_PARMNUM = @as(u32, 10);
+pub const USER_CODE_PAGE_PARMNUM = @as(u32, 25);
+pub const USER_COMMENT_PARMNUM = @as(u32, 7);
+pub const USER_COUNTRY_CODE_PARMNUM = @as(u32, 24);
+pub const USER_FLAGS_PARMNUM = @as(u32, 8);
+pub const USER_FULL_NAME_PARMNUM = @as(u32, 11);
+pub const USER_HOME_DIR_DRIVE_PARMNUM = @as(u32, 53);
+pub const USER_HOME_DIR_PARMNUM = @as(u32, 6);
+pub const USER_LAST_LOGOFF_PARMNUM = @as(u32, 16);
+pub const USER_LAST_LOGON_PARMNUM = @as(u32, 15);
+pub const USER_LOGON_HOURS_PARMNUM = @as(u32, 20);
+pub const USER_LOGON_SERVER_PARMNUM = @as(u32, 23);
+pub const USER_MAX_STORAGE_PARMNUM = @as(u32, 18);
+pub const USER_NAME_PARMNUM = @as(u32, 1);
+pub const USER_NUM_LOGONS_PARMNUM = @as(u32, 22);
+pub const USER_PAD_PW_COUNT_PARMNUM = @as(u32, 21);
+pub const USER_PARMS_PARMNUM = @as(u32, 13);
+pub const USER_PASSWORD_AGE_PARMNUM = @as(u32, 4);
+pub const USER_PASSWORD_PARMNUM = @as(u32, 3);
+pub const USER_PRIMARY_GROUP_PARMNUM = @as(u32, 51);
+pub const USER_PRIV_MASK = @as(u32, 3);
+pub const USER_PRIV_PARMNUM = @as(u32, 5);
+pub const USER_PROFILE = @as(u32, 52);
+pub const USER_PROFILE_PARMNUM = @as(u32, 52);
+pub const USER_SCRIPT_PATH_PARMNUM = @as(u32, 9);
+pub const USER_UNITS_PER_WEEK_PARMNUM = @as(u32, 19);
+pub const USER_USR_COMMENT_PARMNUM = @as(u32, 12);
+pub const USER_WORKSTATIONS_PARMNUM = @as(u32, 14);
+pub const VALID_LOGOFF = @as(u32, 1);
+pub const VALIDATED_LOGON = @as(u32, 0);
+pub const WKSTA_BUFFERNAMEDPIPES_PARMNUM = @as(u32, 51);
+pub const WKSTA_BUFFERREADONLYFILES_PARMNUM = @as(u32, 59);
+pub const WKSTA_BUFFILESWITHDENYWRITE_PARMNUM = @as(u32, 58);
+pub const WKSTA_CACHEFILETIMEOUT_PARMNUM = @as(u32, 47);
+pub const WKSTA_CHARCOUNT_PARMNUM = @as(u32, 12);
+pub const WKSTA_CHARTIME_PARMNUM = @as(u32, 11);
+pub const WKSTA_CHARWAIT_PARMNUM = @as(u32, 10);
+pub const WKSTA_COMPUTERNAME_PARMNUM = @as(u32, 1);
+pub const WKSTA_DORMANTFILELIMIT_PARMNUM = @as(u32, 46);
+pub const WKSTA_ERRLOGSZ_PARMNUM = @as(u32, 27);
+pub const WKSTA_FORCECORECREATEMODE_PARMNUM = @as(u32, 60);
+pub const WKSTA_KEEPCONN_PARMNUM = @as(u32, 13);
+pub const WKSTA_KEEPSEARCH_PARMNUM = @as(u32, 14);
+pub const WKSTA_LANGROUP_PARMNUM = @as(u32, 2);
+pub const WKSTA_LANROOT_PARMNUM = @as(u32, 7);
+pub const WKSTA_LOCKINCREMENT_PARMNUM = @as(u32, 42);
+pub const WKSTA_LOCKMAXIMUM_PARMNUM = @as(u32, 43);
+pub const WKSTA_LOCKQUOTA_PARMNUM = @as(u32, 41);
+pub const WKSTA_LOGGED_ON_USERS_PARMNUM = @as(u32, 6);
+pub const WKSTA_LOGON_DOMAIN_PARMNUM = @as(u32, 8);
+pub const WKSTA_LOGON_SERVER_PARMNUM = @as(u32, 9);
+pub const WKSTA_MAILSLOTS_PARMNUM = @as(u32, 30);
+pub const WKSTA_MAXCMDS_PARMNUM = @as(u32, 15);
+pub const WKSTA_MAXTHREADS_PARMNUM = @as(u32, 33);
+pub const WKSTA_MAXWRKCACHE_PARMNUM = @as(u32, 17);
+pub const WKSTA_NUMALERTS_PARMNUM = @as(u32, 20);
+pub const WKSTA_NUMCHARBUF_PARMNUM = @as(u32, 22);
+pub const WKSTA_NUMDGRAMBUF_PARMNUM = @as(u32, 31);
+pub const WKSTA_NUMSERVICES_PARMNUM = @as(u32, 21);
+pub const WKSTA_NUMWORKBUF_PARMNUM = @as(u32, 16);
+pub const WKSTA_OTH_DOMAINS_PARMNUM = @as(u32, 101);
+pub const WKSTA_PIPEINCREMENT_PARMNUM = @as(u32, 44);
+pub const WKSTA_PIPEMAXIMUM_PARMNUM = @as(u32, 45);
+pub const WKSTA_PLATFORM_ID_PARMNUM = @as(u32, 100);
+pub const WKSTA_PRINTBUFTIME_PARMNUM = @as(u32, 28);
+pub const WKSTA_READAHEADTHRUPUT_PARMNUM = @as(u32, 62);
+pub const WKSTA_SESSTIMEOUT_PARMNUM = @as(u32, 18);
+pub const WKSTA_SIZCHARBUF_PARMNUM = @as(u32, 23);
+pub const WKSTA_SIZERROR_PARMNUM = @as(u32, 19);
+pub const WKSTA_SIZWORKBUF_PARMNUM = @as(u32, 29);
+pub const WKSTA_USE512BYTESMAXTRANSFER_PARMNUM = @as(u32, 61);
+pub const WKSTA_USECLOSEBEHIND_PARMNUM = @as(u32, 50);
+pub const WKSTA_USEENCRYPTION_PARMNUM = @as(u32, 57);
+pub const WKSTA_USELOCKANDREADANDUNLOCK_PARMNUM = @as(u32, 52);
+pub const WKSTA_USEOPPORTUNISTICLOCKING_PARMNUM = @as(u32, 48);
+pub const WKSTA_USERAWREAD_PARMNUM = @as(u32, 54);
+pub const WKSTA_USERAWWRITE_PARMNUM = @as(u32, 55);
+pub const WKSTA_USEUNLOCKBEHIND_PARMNUM = @as(u32, 49);
+pub const WKSTA_USEWRITERAWWITHDATA_PARMNUM = @as(u32, 56);
+pub const WKSTA_UTILIZENTCACHING_PARMNUM = @as(u32, 53);
+pub const WKSTA_VER_MAJOR_PARMNUM = @as(u32, 4);
+pub const WKSTA_VER_MINOR_PARMNUM = @as(u32, 5);
+pub const WKSTA_WRKHEURISTICS_PARMNUM = @as(u32, 32);
+pub const WORKSTATION_DISPLAY_NAME = "Workstation";
+pub const WZC_PROFILE_API_ERROR_FAILED_TO_LOAD_SCHEMA = @as(u32, 34);
+pub const WZC_PROFILE_API_ERROR_FAILED_TO_LOAD_XML = @as(u32, 33);
+pub const WZC_PROFILE_API_ERROR_INTERNAL = @as(u32, 36);
+pub const WZC_PROFILE_API_ERROR_NOT_SUPPORTED = @as(u32, 32);
+pub const WZC_PROFILE_API_ERROR_XML_VALIDATION_FAILED = @as(u32, 35);
 pub const WZC_PROFILE_CONFIG_ERROR_1X_NOT_ALLOWED = @as(u32, 20);
 pub const WZC_PROFILE_CONFIG_ERROR_1X_NOT_ALLOWED_KEY_REQUIRED = @as(u32, 21);
 pub const WZC_PROFILE_CONFIG_ERROR_1X_NOT_ENABLED_KEY_PROVIDED = @as(u32, 22);
-pub const WZC_PROFILE_CONFIG_ERROR_EAP_METHOD_REQUIRED = @as(u32, 23);
 pub const WZC_PROFILE_CONFIG_ERROR_EAP_METHOD_NOT_APPLICABLE = @as(u32, 24);
-pub const WZC_PROFILE_CONFIG_ERROR_WPA_NOT_SUPPORTED = @as(u32, 25);
+pub const WZC_PROFILE_CONFIG_ERROR_EAP_METHOD_REQUIRED = @as(u32, 23);
+pub const WZC_PROFILE_CONFIG_ERROR_INVALID_AUTH_FOR_CONNECTION_TYPE = @as(u32, 15);
+pub const WZC_PROFILE_CONFIG_ERROR_INVALID_ENCRYPTION_FOR_AUTHMODE = @as(u32, 16);
+pub const WZC_PROFILE_CONFIG_ERROR_KEY_INDEX_NOT_APPLICABLE = @as(u32, 19);
+pub const WZC_PROFILE_CONFIG_ERROR_KEY_INDEX_REQUIRED = @as(u32, 18);
+pub const WZC_PROFILE_CONFIG_ERROR_KEY_REQUIRED = @as(u32, 17);
 pub const WZC_PROFILE_CONFIG_ERROR_WPA_ENCRYPTION_NOT_SUPPORTED = @as(u32, 26);
+pub const WZC_PROFILE_CONFIG_ERROR_WPA_NOT_SUPPORTED = @as(u32, 25);
 pub const WZC_PROFILE_SET_ERROR_DUPLICATE_NETWORK = @as(u32, 27);
 pub const WZC_PROFILE_SET_ERROR_MEMORY_ALLOCATION = @as(u32, 28);
 pub const WZC_PROFILE_SET_ERROR_READING_1X_CONFIG = @as(u32, 29);
 pub const WZC_PROFILE_SET_ERROR_WRITING_1X_CONFIG = @as(u32, 30);
 pub const WZC_PROFILE_SET_ERROR_WRITING_WZC_CFG = @as(u32, 31);
-pub const WZC_PROFILE_API_ERROR_NOT_SUPPORTED = @as(u32, 32);
-pub const WZC_PROFILE_API_ERROR_FAILED_TO_LOAD_XML = @as(u32, 33);
-pub const WZC_PROFILE_API_ERROR_FAILED_TO_LOAD_SCHEMA = @as(u32, 34);
-pub const WZC_PROFILE_API_ERROR_XML_VALIDATION_FAILED = @as(u32, 35);
-pub const WZC_PROFILE_API_ERROR_INTERNAL = @as(u32, 36);
-pub const RF_ROUTING = @as(u32, 1);
-pub const RF_ROUTINGV6 = @as(u32, 2);
-pub const RF_DEMAND_UPDATE_ROUTES = @as(u32, 4);
-pub const RF_ADD_ALL_INTERFACES = @as(u32, 16);
-pub const RF_MULTICAST = @as(u32, 32);
-pub const RF_POWER = @as(u32, 64);
-pub const MS_ROUTER_VERSION = @as(u32, 1536);
-pub const ROUTING_DOMAIN_INFO_REVISION_1 = @as(u32, 1);
-pub const INTERFACE_INFO_REVISION_1 = @as(u32, 1);
-pub const IR_PROMISCUOUS = @as(u32, 0);
-pub const IR_PROMISCUOUS_MULTICAST = @as(u32, 1);
-pub const PROTO_IP_MSDP = @as(u32, 9);
-pub const PROTO_IP_IGMP = @as(u32, 10);
-pub const PROTO_IP_BGMP = @as(u32, 11);
-pub const PROTO_IP_VRRP = @as(u32, 112);
-pub const PROTO_IP_BOOTP = @as(u32, 9999);
-pub const PROTO_IPV6_DHCP = @as(u32, 999);
-pub const PROTO_IP_DNS_PROXY = @as(u32, 10003);
-pub const PROTO_IP_DHCP_ALLOCATOR = @as(u32, 10004);
-pub const PROTO_IP_NAT = @as(u32, 10005);
-pub const PROTO_IP_DIFFSERV = @as(u32, 10008);
-pub const PROTO_IP_MGM = @as(u32, 10009);
-pub const PROTO_IP_ALG = @as(u32, 10010);
-pub const PROTO_IP_H323 = @as(u32, 10011);
-pub const PROTO_IP_FTP = @as(u32, 10012);
-pub const PROTO_IP_DTP = @as(u32, 10013);
-pub const PROTO_TYPE_UCAST = @as(u32, 0);
-pub const PROTO_TYPE_MCAST = @as(u32, 1);
-pub const PROTO_TYPE_MS0 = @as(u32, 2);
-pub const PROTO_TYPE_MS1 = @as(u32, 3);
-pub const PROTO_VENDOR_MS0 = @as(u32, 0);
-pub const PROTO_VENDOR_MS1 = @as(u32, 311);
-pub const PROTO_VENDOR_MS2 = @as(u32, 16383);
-pub const IPX_PROTOCOL_BASE = @as(u32, 131071);
-pub const IPX_PROTOCOL_RIP = @as(u32, 131072);
-pub const RIS_INTERFACE_ADDRESS_CHANGE = @as(u32, 0);
-pub const RIS_INTERFACE_ENABLED = @as(u32, 1);
-pub const RIS_INTERFACE_DISABLED = @as(u32, 2);
-pub const RIS_INTERFACE_MEDIA_PRESENT = @as(u32, 3);
-pub const RIS_INTERFACE_MEDIA_ABSENT = @as(u32, 4);
-pub const MRINFO_TUNNEL_FLAG = @as(u32, 1);
-pub const MRINFO_PIM_FLAG = @as(u32, 4);
-pub const MRINFO_DOWN_FLAG = @as(u32, 16);
-pub const MRINFO_DISABLED_FLAG = @as(u32, 32);
-pub const MRINFO_QUERIER_FLAG = @as(u32, 64);
-pub const MRINFO_LEAF_FLAG = @as(u32, 128);
-pub const MFE_NO_ERROR = @as(u32, 0);
-pub const MFE_REACHED_CORE = @as(u32, 1);
-pub const MFE_OIF_PRUNED = @as(u32, 5);
-pub const MFE_PRUNED_UPSTREAM = @as(u32, 4);
-pub const MFE_OLD_ROUTER = @as(u32, 11);
-pub const MFE_NOT_FORWARDING = @as(u32, 2);
-pub const MFE_WRONG_IF = @as(u32, 3);
-pub const MFE_BOUNDARY_REACHED = @as(u32, 6);
-pub const MFE_NO_MULTICAST = @as(u32, 7);
-pub const MFE_IIF = @as(u32, 8);
-pub const MFE_NO_ROUTE = @as(u32, 9);
-pub const MFE_NOT_LAST_HOP = @as(u32, 10);
-pub const MFE_PROHIBITED = @as(u32, 12);
-pub const MFE_NO_SPACE = @as(u32, 13);
-pub const REGISTER_PROTOCOL_ENTRY_POINT_STRING = "RegisterProtocol";
-pub const ALIGN_SIZE = @as(u32, 8);
-pub const RTR_INFO_BLOCK_VERSION = @as(u32, 1);
-pub const TRACE_USE_FILE = @as(u32, 1);
-pub const TRACE_USE_CONSOLE = @as(u32, 2);
-pub const TRACE_NO_SYNCH = @as(u32, 4);
-pub const TRACE_NO_STDINFO = @as(u32, 1);
-pub const TRACE_USE_MASK = @as(u32, 2);
-pub const TRACE_USE_MSEC = @as(u32, 4);
-pub const TRACE_USE_DATE = @as(u32, 8);
-pub const INVALID_TRACEID = @as(u32, 4294967295);
-pub const RTUTILS_MAX_PROTOCOL_NAME_LEN = @as(u32, 40);
-pub const RTUTILS_MAX_PROTOCOL_DLL_LEN = @as(u32, 48);
-pub const MAX_PROTOCOL_NAME_LEN = @as(u32, 40);
-pub const MAX_PROTOCOL_DLL_LEN = @as(u32, 48);
+pub const WZC_PROFILE_SUCCESS = @as(u32, 0);
+pub const WZC_PROFILE_XML_ERROR_1X_ENABLED = @as(u32, 10);
+pub const WZC_PROFILE_XML_ERROR_AUTHENTICATION = @as(u32, 7);
+pub const WZC_PROFILE_XML_ERROR_BAD_KEY_INDEX = @as(u32, 12);
+pub const WZC_PROFILE_XML_ERROR_BAD_NETWORK_KEY = @as(u32, 14);
+pub const WZC_PROFILE_XML_ERROR_BAD_SSID = @as(u32, 5);
+pub const WZC_PROFILE_XML_ERROR_BAD_VERSION = @as(u32, 2);
+pub const WZC_PROFILE_XML_ERROR_CONNECTION_TYPE = @as(u32, 6);
+pub const WZC_PROFILE_XML_ERROR_EAP_METHOD = @as(u32, 11);
+pub const WZC_PROFILE_XML_ERROR_ENCRYPTION = @as(u32, 8);
+pub const WZC_PROFILE_XML_ERROR_KEY_INDEX_RANGE = @as(u32, 13);
+pub const WZC_PROFILE_XML_ERROR_KEY_PROVIDED_AUTOMATICALLY = @as(u32, 9);
+pub const WZC_PROFILE_XML_ERROR_NO_VERSION = @as(u32, 1);
+pub const WZC_PROFILE_XML_ERROR_SSID_NOT_FOUND = @as(u32, 4);
+pub const WZC_PROFILE_XML_ERROR_UNSUPPORTED_VERSION = @as(u32, 3);
 
 //--------------------------------------------------------------------------------
 // Section: Types (359)
 //--------------------------------------------------------------------------------
-pub const NET_REQUEST_PROVISION_OPTIONS = packed struct(u32) {
-    _0: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
+pub const ACCESS_INFO_0 = extern struct {
+    acc0_resource_name: ?PWSTR,
+};
+
+pub const ACCESS_INFO_1 = extern struct {
+    acc1_resource_name: ?PWSTR,
+    acc1_attr: u32,
+    acc1_count: u32,
+};
+
+pub const ACCESS_INFO_1002 = extern struct {
+    acc1002_attr: u32,
+};
+
+pub const ACCESS_LIST = extern struct {
+    acl_ugname: ?PWSTR,
+    acl_access: u32,
+};
+
+pub const ADMIN_OTHER_INFO = extern struct {
+    alrtad_errcode: u32,
+    alrtad_numstrings: u32,
+};
+
+pub const AE_ACCLIM = extern struct {
+    ae_al_compname: u32,
+    ae_al_username: u32,
+    ae_al_resname: u32,
+    ae_al_limit: u32,
+};
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_ACLMOD_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_CLOSEFILE_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_CONNREJ_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_CONNSTART_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_CONNSTOP_CONFLICT_ = usize;
+
+pub const AE_GENERIC = extern struct {
+    ae_ge_msgfile: u32,
+    ae_ge_msgnum: u32,
+    ae_ge_params: u32,
+    ae_ge_param1: u32,
+    ae_ge_param2: u32,
+    ae_ge_param3: u32,
+    ae_ge_param4: u32,
+    ae_ge_param5: u32,
+    ae_ge_param6: u32,
+    ae_ge_param7: u32,
+    ae_ge_param8: u32,
+    ae_ge_param9: u32,
+};
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_LOCKOUT_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_NETLOGOFF_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_NETLOGON_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_RESACCESS_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_RESACCESSREJ_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_SERVICESTAT_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_SESSLOGOFF_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_SESSLOGON_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_SESSPWERR_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_SRVSTATUS_CONFLICT_ = usize;
+
+// WARNING: this type symbol conflicts with a const!
+pub const AE_UASMOD_CONFLICT_ = usize;
+
+pub const AF_OP = packed struct(u32) {
+    PRINT: u1 = 0,
+    COMM: u1 = 0,
+    SERVER: u1 = 0,
+    ACCOUNTS: u1 = 0,
     _4: u1 = 0,
     _5: u1 = 0,
     _6: u1 = 0,
@@ -2105,10 +2199,1322 @@ pub const NET_REQUEST_PROVISION_OPTIONS = packed struct(u32) {
     _27: u1 = 0,
     _28: u1 = 0,
     _29: u1 = 0,
-    R: u1 = 0,
+    _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const NETSETUP_PROVISION_ONLINE_CALLER = NET_REQUEST_PROVISION_OPTIONS{ .R = 1 };
+pub const AF_OP_PRINT = AF_OP{ .PRINT = 1 };
+pub const AF_OP_COMM = AF_OP{ .COMM = 1 };
+pub const AF_OP_SERVER = AF_OP{ .SERVER = 1 };
+pub const AF_OP_ACCOUNTS = AF_OP{ .ACCOUNTS = 1 };
+
+pub const AT_ENUM = extern struct {
+    JobId: u32,
+    JobTime: usize,
+    DaysOfMonth: u32,
+    DaysOfWeek: u8,
+    Flags: u8,
+    Command: ?PWSTR,
+};
+
+pub const AT_INFO = extern struct {
+    JobTime: usize,
+    DaysOfMonth: u32,
+    DaysOfWeek: u8,
+    Flags: u8,
+    Command: ?PWSTR,
+};
+
+pub const AUDIT_ENTRY = extern struct {
+    ae_len: u32,
+    ae_reserved: u32,
+    ae_time: u32,
+    ae_type: u32,
+    ae_data_offset: u32,
+    ae_data_size: u32,
+};
+
+pub const BIND_FLAGS1 = enum(i32) {
+    ADD = 1,
+    REMOVE = 2,
+    UPDATE = 4,
+    ENABLE = 16,
+    DISABLE = 32,
+    BINDING_PATH = 256,
+    PROPERTYCHANGE = 512,
+    NET = 65536,
+    NETTRANS = 131072,
+    NETCLIENT = 262144,
+    NETSERVICE = 524288,
+};
+pub const NCN_ADD = BIND_FLAGS1.ADD;
+pub const NCN_REMOVE = BIND_FLAGS1.REMOVE;
+pub const NCN_UPDATE = BIND_FLAGS1.UPDATE;
+pub const NCN_ENABLE = BIND_FLAGS1.ENABLE;
+pub const NCN_DISABLE = BIND_FLAGS1.DISABLE;
+pub const NCN_BINDING_PATH = BIND_FLAGS1.BINDING_PATH;
+pub const NCN_PROPERTYCHANGE = BIND_FLAGS1.PROPERTYCHANGE;
+pub const NCN_NET = BIND_FLAGS1.NET;
+pub const NCN_NETTRANS = BIND_FLAGS1.NETTRANS;
+pub const NCN_NETCLIENT = BIND_FLAGS1.NETCLIENT;
+pub const NCN_NETSERVICE = BIND_FLAGS1.NETSERVICE;
+
+pub const COMPONENT_CHARACTERISTICS = enum(i32) {
+    VIRTUAL = 1,
+    SOFTWARE_ENUMERATED = 2,
+    PHYSICAL = 4,
+    HIDDEN = 8,
+    NO_SERVICE = 16,
+    NOT_USER_REMOVABLE = 32,
+    MULTIPORT_INSTANCED_ADAPTER = 64,
+    HAS_UI = 128,
+    SINGLE_INSTANCE = 256,
+    FILTER = 1024,
+    DONTEXPOSELOWER = 4096,
+    HIDE_BINDING = 8192,
+    NDIS_PROTOCOL = 16384,
+    FIXED_BINDING = 131072,
+    LW_FILTER = 262144,
+};
+pub const NCF_VIRTUAL = COMPONENT_CHARACTERISTICS.VIRTUAL;
+pub const NCF_SOFTWARE_ENUMERATED = COMPONENT_CHARACTERISTICS.SOFTWARE_ENUMERATED;
+pub const NCF_PHYSICAL = COMPONENT_CHARACTERISTICS.PHYSICAL;
+pub const NCF_HIDDEN = COMPONENT_CHARACTERISTICS.HIDDEN;
+pub const NCF_NO_SERVICE = COMPONENT_CHARACTERISTICS.NO_SERVICE;
+pub const NCF_NOT_USER_REMOVABLE = COMPONENT_CHARACTERISTICS.NOT_USER_REMOVABLE;
+pub const NCF_MULTIPORT_INSTANCED_ADAPTER = COMPONENT_CHARACTERISTICS.MULTIPORT_INSTANCED_ADAPTER;
+pub const NCF_HAS_UI = COMPONENT_CHARACTERISTICS.HAS_UI;
+pub const NCF_SINGLE_INSTANCE = COMPONENT_CHARACTERISTICS.SINGLE_INSTANCE;
+pub const NCF_FILTER = COMPONENT_CHARACTERISTICS.FILTER;
+pub const NCF_DONTEXPOSELOWER = COMPONENT_CHARACTERISTICS.DONTEXPOSELOWER;
+pub const NCF_HIDE_BINDING = COMPONENT_CHARACTERISTICS.HIDE_BINDING;
+pub const NCF_NDIS_PROTOCOL = COMPONENT_CHARACTERISTICS.NDIS_PROTOCOL;
+pub const NCF_FIXED_BINDING = COMPONENT_CHARACTERISTICS.FIXED_BINDING;
+pub const NCF_LW_FILTER = COMPONENT_CHARACTERISTICS.LW_FILTER;
+
+pub const CONFIG_INFO_0 = extern struct {
+    cfgi0_key: ?PWSTR,
+    cfgi0_data: ?PWSTR,
+};
+
+pub const DEFAULT_PAGES = enum(i32) {
+    D = 1,
+};
+pub const DPP_ADVANCED = DEFAULT_PAGES.D;
+
+pub const DSREG_JOIN_INFO = extern struct {
+    joinType: DSREG_JOIN_TYPE,
+    pJoinCertificate: ?*const CERT_CONTEXT,
+    pszDeviceId: ?PWSTR,
+    pszIdpDomain: ?PWSTR,
+    pszTenantId: ?PWSTR,
+    pszJoinUserEmail: ?PWSTR,
+    pszTenantDisplayName: ?PWSTR,
+    pszMdmEnrollmentUrl: ?PWSTR,
+    pszMdmTermsOfUseUrl: ?PWSTR,
+    pszMdmComplianceUrl: ?PWSTR,
+    pszUserSettingSyncUrl: ?PWSTR,
+    pUserInfo: ?*DSREG_USER_INFO,
+};
+
+pub const DSREG_JOIN_TYPE = enum(i32) {
+    UNKNOWN_JOIN = 0,
+    DEVICE_JOIN = 1,
+    WORKPLACE_JOIN = 2,
+};
+pub const DSREG_UNKNOWN_JOIN = DSREG_JOIN_TYPE.UNKNOWN_JOIN;
+pub const DSREG_DEVICE_JOIN = DSREG_JOIN_TYPE.DEVICE_JOIN;
+pub const DSREG_WORKPLACE_JOIN = DSREG_JOIN_TYPE.WORKPLACE_JOIN;
+
+pub const DSREG_USER_INFO = extern struct {
+    pszUserEmail: ?PWSTR,
+    pszUserKeyId: ?PWSTR,
+    pszUserKeyName: ?PWSTR,
+};
+
+pub const ENUM_BINDING_PATHS_FLAGS = enum(i32) {
+    ABOVE = 1,
+    BELOW = 2,
+};
+pub const EBP_ABOVE = ENUM_BINDING_PATHS_FLAGS.ABOVE;
+pub const EBP_BELOW = ENUM_BINDING_PATHS_FLAGS.BELOW;
+
+pub const ERRLOG_OTHER_INFO = extern struct {
+    alrter_errcode: u32,
+    alrter_offset: u32,
+};
+
+pub const ERROR_LOG = extern struct {
+    el_len: u32,
+    el_reserved: u32,
+    el_time: u32,
+    el_error: u32,
+    el_name: ?PWSTR,
+    el_text: ?PWSTR,
+    el_data: ?*u8,
+    el_data_size: u32,
+    el_nstrings: u32,
+};
+
+pub const FLAT_STRING = extern struct {
+    MaximumLength: i16,
+    Length: i16,
+    Buffer: [1]CHAR,
+};
+
+pub const FORCE_LEVEL_FLAGS = enum(u32) {
+    NOFORCE = 0,
+    FORCE = 1,
+    LOTS_OF_FORCE = 2,
+};
+pub const USE_NOFORCE = FORCE_LEVEL_FLAGS.NOFORCE;
+pub const USE_FORCE = FORCE_LEVEL_FLAGS.FORCE;
+pub const USE_LOTS_OF_FORCE = FORCE_LEVEL_FLAGS.LOTS_OF_FORCE;
+
+pub const GROUP_INFO_0 = extern struct {
+    grpi0_name: ?PWSTR,
+};
+
+pub const GROUP_INFO_1 = extern struct {
+    grpi1_name: ?PWSTR,
+    grpi1_comment: ?PWSTR,
+};
+
+pub const GROUP_INFO_1002 = extern struct {
+    grpi1002_comment: ?PWSTR,
+};
+
+pub const GROUP_INFO_1005 = extern struct {
+    grpi1005_attributes: u32,
+};
+
+pub const GROUP_INFO_2 = extern struct {
+    grpi2_name: ?PWSTR,
+    grpi2_comment: ?PWSTR,
+    grpi2_group_id: u32,
+    grpi2_attributes: u32,
+};
+
+pub const GROUP_INFO_3 = extern struct {
+    grpi3_name: ?PWSTR,
+    grpi3_comment: ?PWSTR,
+    grpi3_group_sid: ?PSID,
+    grpi3_attributes: u32,
+};
+
+pub const GROUP_USERS_INFO_0 = extern struct {
+    grui0_name: ?PWSTR,
+};
+
+pub const GROUP_USERS_INFO_1 = extern struct {
+    grui1_name: ?PWSTR,
+    grui1_attributes: u32,
+};
+
+pub const HARDWARE_ADDRESS = extern struct {
+    Address: [6]u8,
+};
+
+pub const HLOG = extern struct {
+    time: u32,
+    last_flags: u32,
+    offset: u32,
+    rec_offset: u32,
+};
+
+const IID_IEnumNetCfgBindingInterface_Value = Guid.initString("c0e8ae90-306e-11d1-aacf-00805fc1270e");
+pub const IID_IEnumNetCfgBindingInterface = &IID_IEnumNetCfgBindingInterface_Value;
+pub const IEnumNetCfgBindingInterface = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+            celt: u32,
+            rgelt: [*]?*INetCfgBindingInterface,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+            ppenum: ?*?*IEnumNetCfgBindingInterface,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumNetCfgBindingInterface, celt: u32, rgelt: [*]?*INetCfgBindingInterface, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetCfgBindingInterface, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetCfgBindingInterface) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetCfgBindingInterface, ppenum: ?*?*IEnumNetCfgBindingInterface) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+const IID_IEnumNetCfgBindingPath_Value = Guid.initString("c0e8ae91-306e-11d1-aacf-00805fc1270e");
+pub const IID_IEnumNetCfgBindingPath = &IID_IEnumNetCfgBindingPath_Value;
+pub const IEnumNetCfgBindingPath = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+            celt: u32,
+            rgelt: [*]?*INetCfgBindingPath,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+            ppenum: ?*?*IEnumNetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumNetCfgBindingPath, celt: u32, rgelt: [*]?*INetCfgBindingPath, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetCfgBindingPath, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetCfgBindingPath, ppenum: ?*?*IEnumNetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+const IID_IEnumNetCfgComponent_Value = Guid.initString("c0e8ae92-306e-11d1-aacf-00805fc1270e");
+pub const IID_IEnumNetCfgComponent = &IID_IEnumNetCfgComponent_Value;
+pub const IEnumNetCfgComponent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumNetCfgComponent,
+            celt: u32,
+            rgelt: [*]?*INetCfgComponent,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetCfgComponent,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetCfgComponent,
+            ppenum: ?*?*IEnumNetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumNetCfgComponent, celt: u32, rgelt: [*]?*INetCfgComponent, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetCfgComponent, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetCfgComponent, ppenum: ?*?*IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+const IID_INetCfg_Value = Guid.initString("c0e8ae93-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfg = &IID_INetCfg_Value;
+pub const INetCfg = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const INetCfg,
+            pvReserved: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        Uninitialize: *const fn(
+            self: *const INetCfg,
+        ) callconv(.winapi) HRESULT,
+        Apply: *const fn(
+            self: *const INetCfg,
+        ) callconv(.winapi) HRESULT,
+        Cancel: *const fn(
+            self: *const INetCfg,
+        ) callconv(.winapi) HRESULT,
+        EnumComponents: *const fn(
+            self: *const INetCfg,
+            pguidClass: ?*const Guid,
+            ppenumComponent: ?*?*IEnumNetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        FindComponent: *const fn(
+            self: *const INetCfg,
+            pszwInfId: ?[*:0]const u16,
+            pComponent: ?*?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        QueryNetCfgClass: *const fn(
+            self: *const INetCfg,
+            pguidClass: ?*const Guid,
+            riid: ?*const Guid,
+            ppvObject: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const INetCfg, pvReserved: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pvReserved);
+    }
+    pub fn Uninitialize(self: *const INetCfg) callconv(.@"inline") HRESULT {
+        return self.vtable.Uninitialize(self);
+    }
+    pub fn Apply(self: *const INetCfg) callconv(.@"inline") HRESULT {
+        return self.vtable.Apply(self);
+    }
+    pub fn Cancel(self: *const INetCfg) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn EnumComponents(self: *const INetCfg, pguidClass: ?*const Guid, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumComponents(self, pguidClass, ppenumComponent);
+    }
+    pub fn FindComponent(self: *const INetCfg, pszwInfId: ?[*:0]const u16, pComponent: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.FindComponent(self, pszwInfId, pComponent);
+    }
+    pub fn QueryNetCfgClass(self: *const INetCfg, pguidClass: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryNetCfgClass(self, pguidClass, riid, ppvObject);
+    }
+};
+
+const IID_INetCfgBindingInterface_Value = Guid.initString("c0e8ae94-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgBindingInterface = &IID_INetCfgBindingInterface_Value;
+pub const INetCfgBindingInterface = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const INetCfgBindingInterface,
+            ppszwInterfaceName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetUpperComponent: *const fn(
+            self: *const INetCfgBindingInterface,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        GetLowerComponent: *const fn(
+            self: *const INetCfgBindingInterface,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const INetCfgBindingInterface, ppszwInterfaceName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, ppszwInterfaceName);
+    }
+    pub fn GetUpperComponent(self: *const INetCfgBindingInterface, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUpperComponent(self, ppnccItem);
+    }
+    pub fn GetLowerComponent(self: *const INetCfgBindingInterface, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLowerComponent(self, ppnccItem);
+    }
+};
+
+const IID_INetCfgBindingPath_Value = Guid.initString("c0e8ae96-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgBindingPath = &IID_INetCfgBindingPath_Value;
+pub const INetCfgBindingPath = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsSamePathAs: *const fn(
+            self: *const INetCfgBindingPath,
+            pPath: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        IsSubPathOf: *const fn(
+            self: *const INetCfgBindingPath,
+            pPath: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        IsEnabled: *const fn(
+            self: *const INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        Enable: *const fn(
+            self: *const INetCfgBindingPath,
+            fEnable: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetPathToken: *const fn(
+            self: *const INetCfgBindingPath,
+            ppszwPathToken: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetOwner: *const fn(
+            self: *const INetCfgBindingPath,
+            ppComponent: ?*?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        GetDepth: *const fn(
+            self: *const INetCfgBindingPath,
+            pcInterfaces: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        EnumBindingInterfaces: *const fn(
+            self: *const INetCfgBindingPath,
+            ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsSamePathAs(self: *const INetCfgBindingPath, pPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSamePathAs(self, pPath);
+    }
+    pub fn IsSubPathOf(self: *const INetCfgBindingPath, pPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSubPathOf(self, pPath);
+    }
+    pub fn IsEnabled(self: *const INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.IsEnabled(self);
+    }
+    pub fn Enable(self: *const INetCfgBindingPath, fEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Enable(self, fEnable);
+    }
+    pub fn GetPathToken(self: *const INetCfgBindingPath, ppszwPathToken: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPathToken(self, ppszwPathToken);
+    }
+    pub fn GetOwner(self: *const INetCfgBindingPath, ppComponent: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOwner(self, ppComponent);
+    }
+    pub fn GetDepth(self: *const INetCfgBindingPath, pcInterfaces: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDepth(self, pcInterfaces);
+    }
+    pub fn EnumBindingInterfaces(self: *const INetCfgBindingPath, ppenumInterface: ?*?*IEnumNetCfgBindingInterface) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumBindingInterfaces(self, ppenumInterface);
+    }
+};
+
+const IID_INetCfgClass_Value = Guid.initString("c0e8ae97-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgClass = &IID_INetCfgClass_Value;
+pub const INetCfgClass = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FindComponent: *const fn(
+            self: *const INetCfgClass,
+            pszwInfId: ?[*:0]const u16,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        EnumComponents: *const fn(
+            self: *const INetCfgClass,
+            ppenumComponent: ?*?*IEnumNetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn FindComponent(self: *const INetCfgClass, pszwInfId: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.FindComponent(self, pszwInfId, ppnccItem);
+    }
+    pub fn EnumComponents(self: *const INetCfgClass, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumComponents(self, ppenumComponent);
+    }
+};
+
+const IID_INetCfgClassSetup_Value = Guid.initString("c0e8ae9d-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgClassSetup = &IID_INetCfgClassSetup_Value;
+pub const INetCfgClassSetup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SelectAndInstall: *const fn(
+            self: *const INetCfgClassSetup,
+            hwndParent: ?HWND,
+            pOboToken: ?*OBO_TOKEN,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        Install: *const fn(
+            self: *const INetCfgClassSetup,
+            pszwInfId: ?[*:0]const u16,
+            pOboToken: ?*OBO_TOKEN,
+            dwSetupFlags: u32,
+            dwUpgradeFromBuildNo: u32,
+            pszwAnswerFile: ?[*:0]const u16,
+            pszwAnswerSections: ?[*:0]const u16,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        DeInstall: *const fn(
+            self: *const INetCfgClassSetup,
+            pComponent: ?*INetCfgComponent,
+            pOboToken: ?*OBO_TOKEN,
+            pmszwRefs: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SelectAndInstall(self: *const INetCfgClassSetup, hwndParent: ?HWND, pOboToken: ?*OBO_TOKEN, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.SelectAndInstall(self, hwndParent, pOboToken, ppnccItem);
+    }
+    pub fn Install(self: *const INetCfgClassSetup, pszwInfId: ?[*:0]const u16, pOboToken: ?*OBO_TOKEN, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.Install(self, pszwInfId, pOboToken, dwSetupFlags, dwUpgradeFromBuildNo, pszwAnswerFile, pszwAnswerSections, ppnccItem);
+    }
+    pub fn DeInstall(self: *const INetCfgClassSetup, pComponent: ?*INetCfgComponent, pOboToken: ?*OBO_TOKEN, pmszwRefs: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeInstall(self, pComponent, pOboToken, pmszwRefs);
+    }
+};
+
+const IID_INetCfgClassSetup2_Value = Guid.initString("c0e8aea0-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgClassSetup2 = &IID_INetCfgClassSetup2_Value;
+pub const INetCfgClassSetup2 = extern union {
+    pub const VTable = extern struct {
+        base: INetCfgClassSetup.VTable,
+        UpdateNonEnumeratedComponent: *const fn(
+            self: *const INetCfgClassSetup2,
+            pIComp: ?*INetCfgComponent,
+            dwSetupFlags: u32,
+            dwUpgradeFromBuildNo: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    INetCfgClassSetup: INetCfgClassSetup,
+    IUnknown: IUnknown,
+    pub fn UpdateNonEnumeratedComponent(self: *const INetCfgClassSetup2, pIComp: ?*INetCfgComponent, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateNonEnumeratedComponent(self, pIComp, dwSetupFlags, dwUpgradeFromBuildNo);
+    }
+};
+
+const IID_INetCfgComponent_Value = Guid.initString("c0e8ae99-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgComponent = &IID_INetCfgComponent_Value;
+pub const INetCfgComponent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDisplayName: *const fn(
+            self: *const INetCfgComponent,
+            ppszwDisplayName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetDisplayName: *const fn(
+            self: *const INetCfgComponent,
+            pszwDisplayName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetHelpText: *const fn(
+            self: *const INetCfgComponent,
+            pszwHelpText: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetId: *const fn(
+            self: *const INetCfgComponent,
+            ppszwId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCharacteristics: *const fn(
+            self: *const INetCfgComponent,
+            pdwCharacteristics: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetInstanceGuid: *const fn(
+            self: *const INetCfgComponent,
+            pGuid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetPnpDevNodeId: *const fn(
+            self: *const INetCfgComponent,
+            ppszwDevNodeId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetClassGuid: *const fn(
+            self: *const INetCfgComponent,
+            pGuid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetBindName: *const fn(
+            self: *const INetCfgComponent,
+            ppszwBindName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceStatus: *const fn(
+            self: *const INetCfgComponent,
+            pulStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        OpenParamKey: *const fn(
+            self: *const INetCfgComponent,
+            phkey: ?*?HKEY,
+        ) callconv(.winapi) HRESULT,
+        RaisePropertyUi: *const fn(
+            self: *const INetCfgComponent,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+            punkContext: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDisplayName(self: *const INetCfgComponent, ppszwDisplayName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDisplayName(self, ppszwDisplayName);
+    }
+    pub fn SetDisplayName(self: *const INetCfgComponent, pszwDisplayName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDisplayName(self, pszwDisplayName);
+    }
+    pub fn GetHelpText(self: *const INetCfgComponent, pszwHelpText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHelpText(self, pszwHelpText);
+    }
+    pub fn GetId(self: *const INetCfgComponent, ppszwId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetId(self, ppszwId);
+    }
+    pub fn GetCharacteristics(self: *const INetCfgComponent, pdwCharacteristics: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCharacteristics(self, pdwCharacteristics);
+    }
+    pub fn GetInstanceGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInstanceGuid(self, pGuid);
+    }
+    pub fn GetPnpDevNodeId(self: *const INetCfgComponent, ppszwDevNodeId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPnpDevNodeId(self, ppszwDevNodeId);
+    }
+    pub fn GetClassGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClassGuid(self, pGuid);
+    }
+    pub fn GetBindName(self: *const INetCfgComponent, ppszwBindName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBindName(self, ppszwBindName);
+    }
+    pub fn GetDeviceStatus(self: *const INetCfgComponent, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceStatus(self, pulStatus);
+    }
+    pub fn OpenParamKey(self: *const INetCfgComponent, phkey: ?*?HKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenParamKey(self, phkey);
+    }
+    pub fn RaisePropertyUi(self: *const INetCfgComponent, hwndParent: ?HWND, dwFlags: u32, punkContext: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.RaisePropertyUi(self, hwndParent, dwFlags, punkContext);
+    }
+};
+
+const IID_INetCfgComponentBindings_Value = Guid.initString("c0e8ae9e-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgComponentBindings = &IID_INetCfgComponentBindings_Value;
+pub const INetCfgComponentBindings = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BindTo: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        UnbindFrom: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        SupportsBindingInterface: *const fn(
+            self: *const INetCfgComponentBindings,
+            dwFlags: u32,
+            pszwInterfaceName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        IsBoundTo: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        IsBindableTo: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+        EnumBindingPaths: *const fn(
+            self: *const INetCfgComponentBindings,
+            dwFlags: u32,
+            ppIEnum: ?*?*IEnumNetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        MoveBefore: *const fn(
+            self: *const INetCfgComponentBindings,
+            pncbItemSrc: ?*INetCfgBindingPath,
+            pncbItemDest: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        MoveAfter: *const fn(
+            self: *const INetCfgComponentBindings,
+            pncbItemSrc: ?*INetCfgBindingPath,
+            pncbItemDest: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn BindTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.BindTo(self, pnccItem);
+    }
+    pub fn UnbindFrom(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.UnbindFrom(self, pnccItem);
+    }
+    pub fn SupportsBindingInterface(self: *const INetCfgComponentBindings, dwFlags: u32, pszwInterfaceName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SupportsBindingInterface(self, dwFlags, pszwInterfaceName);
+    }
+    pub fn IsBoundTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.IsBoundTo(self, pnccItem);
+    }
+    pub fn IsBindableTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.IsBindableTo(self, pnccItem);
+    }
+    pub fn EnumBindingPaths(self: *const INetCfgComponentBindings, dwFlags: u32, ppIEnum: ?*?*IEnumNetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumBindingPaths(self, dwFlags, ppIEnum);
+    }
+    pub fn MoveBefore(self: *const INetCfgComponentBindings, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveBefore(self, pncbItemSrc, pncbItemDest);
+    }
+    pub fn MoveAfter(self: *const INetCfgComponentBindings, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveAfter(self, pncbItemSrc, pncbItemDest);
+    }
+};
+
+const IID_INetCfgComponentControl_Value = Guid.initString("932238df-bea1-11d0-9298-00c04fc99dcf");
+pub const IID_INetCfgComponentControl = &IID_INetCfgComponentControl_Value;
+pub const INetCfgComponentControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const INetCfgComponentControl,
+            pIComp: ?*INetCfgComponent,
+            pINetCfg: ?*INetCfg,
+            fInstalling: BOOL,
+        ) callconv(.winapi) HRESULT,
+        ApplyRegistryChanges: *const fn(
+            self: *const INetCfgComponentControl,
+        ) callconv(.winapi) HRESULT,
+        ApplyPnpChanges: *const fn(
+            self: *const INetCfgComponentControl,
+            pICallback: ?*INetCfgPnpReconfigCallback,
+        ) callconv(.winapi) HRESULT,
+        CancelChanges: *const fn(
+            self: *const INetCfgComponentControl,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const INetCfgComponentControl, pIComp: ?*INetCfgComponent, pINetCfg: ?*INetCfg, fInstalling: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pIComp, pINetCfg, fInstalling);
+    }
+    pub fn ApplyRegistryChanges(self: *const INetCfgComponentControl) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplyRegistryChanges(self);
+    }
+    pub fn ApplyPnpChanges(self: *const INetCfgComponentControl, pICallback: ?*INetCfgPnpReconfigCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplyPnpChanges(self, pICallback);
+    }
+    pub fn CancelChanges(self: *const INetCfgComponentControl) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelChanges(self);
+    }
+};
+
+const IID_INetCfgComponentNotifyBinding_Value = Guid.initString("932238e1-bea1-11d0-9298-00c04fc99dcf");
+pub const IID_INetCfgComponentNotifyBinding = &IID_INetCfgComponentNotifyBinding_Value;
+pub const INetCfgComponentNotifyBinding = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyBinding,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        NotifyBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyBinding,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryBindingPath(self: *const INetCfgComponentNotifyBinding, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryBindingPath(self, dwChangeFlag, pIPath);
+    }
+    pub fn NotifyBindingPath(self: *const INetCfgComponentNotifyBinding, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.NotifyBindingPath(self, dwChangeFlag, pIPath);
+    }
+};
+
+const IID_INetCfgComponentNotifyGlobal_Value = Guid.initString("932238e2-bea1-11d0-9298-00c04fc99dcf");
+pub const IID_INetCfgComponentNotifyGlobal = &IID_INetCfgComponentNotifyGlobal_Value;
+pub const INetCfgComponentNotifyGlobal = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSupportedNotifications: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwNotifications: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SysQueryBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        SysNotifyBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(.winapi) HRESULT,
+        SysNotifyComponent: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwChangeFlag: u32,
+            pIComp: ?*INetCfgComponent,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSupportedNotifications(self: *const INetCfgComponentNotifyGlobal, dwNotifications: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSupportedNotifications(self, dwNotifications);
+    }
+    pub fn SysQueryBindingPath(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.SysQueryBindingPath(self, dwChangeFlag, pIPath);
+    }
+    pub fn SysNotifyBindingPath(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
+        return self.vtable.SysNotifyBindingPath(self, dwChangeFlag, pIPath);
+    }
+    pub fn SysNotifyComponent(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIComp: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
+        return self.vtable.SysNotifyComponent(self, dwChangeFlag, pIComp);
+    }
+};
+
+const IID_INetCfgComponentPropertyUi_Value = Guid.initString("932238e0-bea1-11d0-9298-00c04fc99dcf");
+pub const IID_INetCfgComponentPropertyUi = &IID_INetCfgComponentPropertyUi_Value;
+pub const INetCfgComponentPropertyUi = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryPropertyUi: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            pUnkReserved: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        SetContext: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            pUnkReserved: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        MergePropPages: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            pdwDefPages: ?*u32,
+            pahpspPrivate: ?*?*u8,
+            pcPages: ?*u32,
+            hwndParent: ?HWND,
+            pszStartPage: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        ValidateProperties: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            hwndSheet: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        ApplyProperties: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+        ) callconv(.winapi) HRESULT,
+        CancelProperties: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryPropertyUi(self: *const INetCfgComponentPropertyUi, pUnkReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryPropertyUi(self, pUnkReserved);
+    }
+    pub fn SetContext(self: *const INetCfgComponentPropertyUi, pUnkReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetContext(self, pUnkReserved);
+    }
+    pub fn MergePropPages(self: *const INetCfgComponentPropertyUi, pdwDefPages: ?*u32, pahpspPrivate: ?*?*u8, pcPages: ?*u32, hwndParent: ?HWND, pszStartPage: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.MergePropPages(self, pdwDefPages, pahpspPrivate, pcPages, hwndParent, pszStartPage);
+    }
+    pub fn ValidateProperties(self: *const INetCfgComponentPropertyUi, hwndSheet: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.ValidateProperties(self, hwndSheet);
+    }
+    pub fn ApplyProperties(self: *const INetCfgComponentPropertyUi) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplyProperties(self);
+    }
+    pub fn CancelProperties(self: *const INetCfgComponentPropertyUi) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelProperties(self);
+    }
+};
+
+const IID_INetCfgComponentSetup_Value = Guid.initString("932238e3-bea1-11d0-9298-00c04fc99dcf");
+pub const IID_INetCfgComponentSetup = &IID_INetCfgComponentSetup_Value;
+pub const INetCfgComponentSetup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Install: *const fn(
+            self: *const INetCfgComponentSetup,
+            dwSetupFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        Upgrade: *const fn(
+            self: *const INetCfgComponentSetup,
+            dwSetupFlags: u32,
+            dwUpgradeFomBuildNo: u32,
+        ) callconv(.winapi) HRESULT,
+        ReadAnswerFile: *const fn(
+            self: *const INetCfgComponentSetup,
+            pszwAnswerFile: ?[*:0]const u16,
+            pszwAnswerSections: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Removing: *const fn(
+            self: *const INetCfgComponentSetup,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Install(self: *const INetCfgComponentSetup, dwSetupFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Install(self, dwSetupFlags);
+    }
+    pub fn Upgrade(self: *const INetCfgComponentSetup, dwSetupFlags: u32, dwUpgradeFomBuildNo: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Upgrade(self, dwSetupFlags, dwUpgradeFomBuildNo);
+    }
+    pub fn ReadAnswerFile(self: *const INetCfgComponentSetup, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadAnswerFile(self, pszwAnswerFile, pszwAnswerSections);
+    }
+    pub fn Removing(self: *const INetCfgComponentSetup) callconv(.@"inline") HRESULT {
+        return self.vtable.Removing(self);
+    }
+};
+
+const IID_INetCfgComponentSysPrep_Value = Guid.initString("c0e8ae9a-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgComponentSysPrep = &IID_INetCfgComponentSysPrep_Value;
+pub const INetCfgComponentSysPrep = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SaveAdapterParameters: *const fn(
+            self: *const INetCfgComponentSysPrep,
+            pncsp: ?*INetCfgSysPrep,
+            pszwAnswerSections: ?[*:0]const u16,
+            pAdapterInstanceGuid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        RestoreAdapterParameters: *const fn(
+            self: *const INetCfgComponentSysPrep,
+            pszwAnswerFile: ?[*:0]const u16,
+            pszwAnswerSection: ?[*:0]const u16,
+            pAdapterInstanceGuid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SaveAdapterParameters(self: *const INetCfgComponentSysPrep, pncsp: ?*INetCfgSysPrep, pszwAnswerSections: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveAdapterParameters(self, pncsp, pszwAnswerSections, pAdapterInstanceGuid);
+    }
+    pub fn RestoreAdapterParameters(self: *const INetCfgComponentSysPrep, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSection: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreAdapterParameters(self, pszwAnswerFile, pszwAnswerSection, pAdapterInstanceGuid);
+    }
+};
+
+const IID_INetCfgComponentUpperEdge_Value = Guid.initString("932238e4-bea1-11d0-9298-00c04fc99dcf");
+pub const IID_INetCfgComponentUpperEdge = &IID_INetCfgComponentUpperEdge_Value;
+pub const INetCfgComponentUpperEdge = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInterfaceIdsForAdapter: *const fn(
+            self: *const INetCfgComponentUpperEdge,
+            pAdapter: ?*INetCfgComponent,
+            pdwNumInterfaces: ?*u32,
+            ppguidInterfaceIds: ?[*]?*Guid,
+        ) callconv(.winapi) HRESULT,
+        AddInterfacesToAdapter: *const fn(
+            self: *const INetCfgComponentUpperEdge,
+            pAdapter: ?*INetCfgComponent,
+            dwNumInterfaces: u32,
+        ) callconv(.winapi) HRESULT,
+        RemoveInterfacesFromAdapter: *const fn(
+            self: *const INetCfgComponentUpperEdge,
+            pAdapter: ?*INetCfgComponent,
+            dwNumInterfaces: u32,
+            pguidInterfaceIds: [*]const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetInterfaceIdsForAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, pdwNumInterfaces: ?*u32, ppguidInterfaceIds: ?[*]?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInterfaceIdsForAdapter(self, pAdapter, pdwNumInterfaces, ppguidInterfaceIds);
+    }
+    pub fn AddInterfacesToAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddInterfacesToAdapter(self, pAdapter, dwNumInterfaces);
+    }
+    pub fn RemoveInterfacesFromAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32, pguidInterfaceIds: [*]const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveInterfacesFromAdapter(self, pAdapter, dwNumInterfaces, pguidInterfaceIds);
+    }
+};
+
+const IID_INetCfgLock_Value = Guid.initString("c0e8ae9f-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgLock = &IID_INetCfgLock_Value;
+pub const INetCfgLock = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AcquireWriteLock: *const fn(
+            self: *const INetCfgLock,
+            cmsTimeout: u32,
+            pszwClientDescription: ?[*:0]const u16,
+            ppszwClientDescription: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        ReleaseWriteLock: *const fn(
+            self: *const INetCfgLock,
+        ) callconv(.winapi) HRESULT,
+        IsWriteLocked: *const fn(
+            self: *const INetCfgLock,
+            ppszwClientDescription: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AcquireWriteLock(self: *const INetCfgLock, cmsTimeout: u32, pszwClientDescription: ?[*:0]const u16, ppszwClientDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AcquireWriteLock(self, cmsTimeout, pszwClientDescription, ppszwClientDescription);
+    }
+    pub fn ReleaseWriteLock(self: *const INetCfgLock) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseWriteLock(self);
+    }
+    pub fn IsWriteLocked(self: *const INetCfgLock, ppszwClientDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.IsWriteLocked(self, ppszwClientDescription);
+    }
+};
+
+const IID_INetCfgPnpReconfigCallback_Value = Guid.initString("8d84bd35-e227-11d2-b700-00a0c98a6a85");
+pub const IID_INetCfgPnpReconfigCallback = &IID_INetCfgPnpReconfigCallback_Value;
+pub const INetCfgPnpReconfigCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SendPnpReconfig: *const fn(
+            self: *const INetCfgPnpReconfigCallback,
+            Layer: NCPNP_RECONFIG_LAYER,
+            pszwUpper: ?[*:0]const u16,
+            pszwLower: ?[*:0]const u16,
+            // TODO: what to do with BytesParamIndex 4?
+            pvData: ?*anyopaque,
+            dwSizeOfData: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SendPnpReconfig(self: *const INetCfgPnpReconfigCallback, Layer: NCPNP_RECONFIG_LAYER, pszwUpper: ?[*:0]const u16, pszwLower: ?[*:0]const u16, pvData: ?*anyopaque, dwSizeOfData: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SendPnpReconfig(self, Layer, pszwUpper, pszwLower, pvData, dwSizeOfData);
+    }
+};
+
+const IID_INetCfgSysPrep_Value = Guid.initString("c0e8ae98-306e-11d1-aacf-00805fc1270e");
+pub const IID_INetCfgSysPrep = &IID_INetCfgSysPrep_Value;
+pub const INetCfgSysPrep = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HrSetupSetFirstDword: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            dwValue: u32,
+        ) callconv(.winapi) HRESULT,
+        HrSetupSetFirstString: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        HrSetupSetFirstStringAsBool: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            fValue: BOOL,
+        ) callconv(.winapi) HRESULT,
+        HrSetupSetFirstMultiSzField: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            pmszValue: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HrSetupSetFirstDword(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, dwValue: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.HrSetupSetFirstDword(self, pwszSection, pwszKey, dwValue);
+    }
+    pub fn HrSetupSetFirstString(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.HrSetupSetFirstString(self, pwszSection, pwszKey, pwszValue);
+    }
+    pub fn HrSetupSetFirstStringAsBool(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, fValue: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.HrSetupSetFirstStringAsBool(self, pwszSection, pwszKey, fValue);
+    }
+    pub fn HrSetupSetFirstMultiSzField(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pmszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.HrSetupSetFirstMultiSzField(self, pwszSection, pwszKey, pmszValue);
+    }
+};
+
+const IID_INetLanConnectionUiInfo_Value = Guid.initString("c08956a6-1cd3-11d1-b1c5-00805fc1270e");
+pub const IID_INetLanConnectionUiInfo = &IID_INetLanConnectionUiInfo_Value;
+pub const INetLanConnectionUiInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDeviceGuid: *const fn(
+            self: *const INetLanConnectionUiInfo,
+            pguid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDeviceGuid(self: *const INetLanConnectionUiInfo, pguid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceGuid(self, pguid);
+    }
+};
+
+const IID_INetRasConnectionIpUiInfo_Value = Guid.initString("faedcf58-31fe-11d1-aad2-00805fc1270e");
+pub const IID_INetRasConnectionIpUiInfo = &IID_INetRasConnectionIpUiInfo_Value;
+pub const INetRasConnectionIpUiInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetUiInfo: *const fn(
+            self: *const INetRasConnectionIpUiInfo,
+            pInfo: ?*RASCON_IPUI,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetUiInfo(self: *const INetRasConnectionIpUiInfo, pInfo: ?*RASCON_IPUI) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUiInfo(self, pInfo);
+    }
+};
+
+const IID_IProvisioningDomain_Value = Guid.initString("c96fbd50-24dd-11d8-89fb-00904b2ea9c6");
+pub const IID_IProvisioningDomain = &IID_IProvisioningDomain_Value;
+pub const IProvisioningDomain = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Add: *const fn(
+            self: *const IProvisioningDomain,
+            pszwPathToFolder: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Query: *const fn(
+            self: *const IProvisioningDomain,
+            pszwDomain: ?[*:0]const u16,
+            pszwLanguage: ?[*:0]const u16,
+            pszwXPathQuery: ?[*:0]const u16,
+            Nodes: ?*?*IXMLDOMNodeList,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Add(self: *const IProvisioningDomain, pszwPathToFolder: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, pszwPathToFolder);
+    }
+    pub fn Query(self: *const IProvisioningDomain, pszwDomain: ?[*:0]const u16, pszwLanguage: ?[*:0]const u16, pszwXPathQuery: ?[*:0]const u16, Nodes: ?*?*IXMLDOMNodeList) callconv(.@"inline") HRESULT {
+        return self.vtable.Query(self, pszwDomain, pszwLanguage, pszwXPathQuery, Nodes);
+    }
+};
+
+const IID_IProvisioningProfileWireless_Value = Guid.initString("c96fbd51-24dd-11d8-89fb-00904b2ea9c6");
+pub const IID_IProvisioningProfileWireless = &IID_IProvisioningProfileWireless_Value;
+pub const IProvisioningProfileWireless = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateProfile: *const fn(
+            self: *const IProvisioningProfileWireless,
+            bstrXMLWirelessConfigProfile: ?BSTR,
+            bstrXMLConnectionConfigProfile: ?BSTR,
+            pAdapterInstanceGuid: ?*Guid,
+            pulStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateProfile(self: *const IProvisioningProfileWireless, bstrXMLWirelessConfigProfile: ?BSTR, bstrXMLConnectionConfigProfile: ?BSTR, pAdapterInstanceGuid: ?*Guid, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateProfile(self, bstrXMLWirelessConfigProfile, bstrXMLConnectionConfigProfile, pAdapterInstanceGuid, pulStatus);
+    }
+};
+
+pub const LOCALGROUP_INFO_0 = extern struct {
+    lgrpi0_name: ?PWSTR,
+};
+
+pub const LOCALGROUP_INFO_1 = extern struct {
+    lgrpi1_name: ?PWSTR,
+    lgrpi1_comment: ?PWSTR,
+};
+
+pub const LOCALGROUP_INFO_1002 = extern struct {
+    lgrpi1002_comment: ?PWSTR,
+};
+
+pub const LOCALGROUP_MEMBERS_INFO_0 = extern struct {
+    lgrmi0_sid: ?PSID,
+};
+
+pub const LOCALGROUP_MEMBERS_INFO_1 = extern struct {
+    lgrmi1_sid: ?PSID,
+    lgrmi1_sidusage: SID_NAME_USE,
+    lgrmi1_name: ?PWSTR,
+};
+
+pub const LOCALGROUP_MEMBERS_INFO_2 = extern struct {
+    lgrmi2_sid: ?PSID,
+    lgrmi2_sidusage: SID_NAME_USE,
+    lgrmi2_domainandname: ?PWSTR,
+};
+
+pub const LOCALGROUP_MEMBERS_INFO_3 = extern struct {
+    lgrmi3_domainandname: ?PWSTR,
+};
+
+pub const LOCALGROUP_USERS_INFO_0 = extern struct {
+    lgrui0_name: ?PWSTR,
+};
+
+pub const MPR_PROTOCOL_0 = extern struct {
+    dwProtocolId: u32,
+    wszProtocol: [41]u16,
+    wszDLLName: [49]u16,
+};
+
+pub const MSA_INFO_0 = extern struct {
+    State: MSA_INFO_STATE,
+};
+
+pub const MSA_INFO_LEVEL = enum(i32) {
+    @"0" = 0,
+    Max = 1,
+};
+pub const MsaInfoLevel0 = MSA_INFO_LEVEL.@"0";
+pub const MsaInfoLevelMax = MSA_INFO_LEVEL.Max;
+
+pub const MSA_INFO_STATE = enum(i32) {
+    NotExist = 1,
+    NotService = 2,
+    CannotInstall = 3,
+    CanInstall = 4,
+    Installed = 5,
+};
+pub const MsaInfoNotExist = MSA_INFO_STATE.NotExist;
+pub const MsaInfoNotService = MSA_INFO_STATE.NotService;
+pub const MsaInfoCannotInstall = MSA_INFO_STATE.CannotInstall;
+pub const MsaInfoCanInstall = MSA_INFO_STATE.CanInstall;
+pub const MsaInfoInstalled = MSA_INFO_STATE.Installed;
+
+pub const MSG_INFO_0 = extern struct {
+    msgi0_name: ?PWSTR,
+};
+
+pub const MSG_INFO_1 = extern struct {
+    msgi1_name: ?PWSTR,
+    msgi1_forward_flag: u32,
+    msgi1_forward: ?PWSTR,
+};
+
+pub const NCPNP_RECONFIG_LAYER = enum(i32) {
+    NDIS = 1,
+    TDI = 2,
+};
+pub const NCRL_NDIS = NCPNP_RECONFIG_LAYER.NDIS;
+pub const NCRL_TDI = NCPNP_RECONFIG_LAYER.TDI;
+
+pub const NCRP_FLAGS = enum(i32) {
+    QUERY_PROPERTY_UI = 1,
+    SHOW_PROPERTY_UI = 2,
+};
+pub const NCRP_QUERY_PROPERTY_UI = NCRP_FLAGS.QUERY_PROPERTY_UI;
+pub const NCRP_SHOW_PROPERTY_UI = NCRP_FLAGS.SHOW_PROPERTY_UI;
+
+pub const NET_COMPUTER_NAME_TYPE = enum(i32) {
+    PrimaryComputerName = 0,
+    AlternateComputerNames = 1,
+    AllComputerNames = 2,
+    ComputerNameTypeMax = 3,
+};
+pub const NetPrimaryComputerName = NET_COMPUTER_NAME_TYPE.PrimaryComputerName;
+pub const NetAlternateComputerNames = NET_COMPUTER_NAME_TYPE.AlternateComputerNames;
+pub const NetAllComputerNames = NET_COMPUTER_NAME_TYPE.AllComputerNames;
+pub const NetComputerNameTypeMax = NET_COMPUTER_NAME_TYPE.ComputerNameTypeMax;
+
+pub const NET_DISPLAY_GROUP = extern struct {
+    grpi3_name: ?PWSTR,
+    grpi3_comment: ?PWSTR,
+    grpi3_group_id: u32,
+    grpi3_attributes: u32,
+    grpi3_next_index: u32,
+};
+
+pub const NET_DISPLAY_MACHINE = extern struct {
+    usri2_name: ?PWSTR,
+    usri2_comment: ?PWSTR,
+    usri2_flags: USER_ACCOUNT_FLAGS,
+    usri2_user_id: u32,
+    usri2_next_index: u32,
+};
+
+pub const NET_DISPLAY_USER = extern struct {
+    usri1_name: ?PWSTR,
+    usri1_comment: ?PWSTR,
+    usri1_flags: USER_ACCOUNT_FLAGS,
+    usri1_full_name: ?PWSTR,
+    usri1_user_id: u32,
+    usri1_next_index: u32,
+};
 
 pub const NET_JOIN_DOMAIN_JOIN_OPTIONS = packed struct(u32) {
     JOIN_DOMAIN: u1 = 0,
@@ -2175,14 +3581,41 @@ pub const SUPPORTS_SAM_PROTOCOL = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.SAM_PROTO
 pub const SUPPORTS_UNICODE = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.UNICODE;
 pub const SUPPORTS_LOCAL = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.LOCAL;
 
-pub const FORCE_LEVEL_FLAGS = enum(u32) {
-    NOFORCE = 0,
-    FORCE = 1,
-    LOTS_OF_FORCE = 2,
+pub const NET_REQUEST_PROVISION_OPTIONS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    R: u1 = 0,
+    _31: u1 = 0,
 };
-pub const USE_NOFORCE = FORCE_LEVEL_FLAGS.NOFORCE;
-pub const USE_FORCE = FORCE_LEVEL_FLAGS.FORCE;
-pub const USE_LOTS_OF_FORCE = FORCE_LEVEL_FLAGS.LOTS_OF_FORCE;
+pub const NETSETUP_PROVISION_ONLINE_CALLER = NET_REQUEST_PROVISION_OPTIONS{ .R = 1 };
 
 pub const NET_SERVER_TYPE = packed struct(u32) {
     WORKSTATION: u1 = 0,
@@ -2326,6 +3759,113 @@ pub const FILTER_INTERDOMAIN_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS{ .INTERD
 pub const FILTER_WORKSTATION_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS{ .WORKSTATION_TRUST_ACCOUNT = 1 };
 pub const FILTER_SERVER_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS{ .SERVER_TRUST_ACCOUNT = 1 };
 
+pub const NET_VALIDATE_AUTHENTICATION_INPUT_ARG = extern struct {
+    InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
+    PasswordMatched: BOOLEAN,
+};
+
+pub const NET_VALIDATE_OUTPUT_ARG = extern struct {
+    ChangedPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
+    ValidationStatus: u32,
+};
+
+pub const NET_VALIDATE_PASSWORD_CHANGE_INPUT_ARG = extern struct {
+    InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
+    ClearPassword: ?PWSTR,
+    UserAccountName: ?PWSTR,
+    HashedPassword: NET_VALIDATE_PASSWORD_HASH,
+    PasswordMatch: BOOLEAN,
+};
+
+pub const NET_VALIDATE_PASSWORD_HASH = extern struct {
+    Length: u32,
+    Hash: ?*u8,
+};
+
+pub const NET_VALIDATE_PASSWORD_RESET_INPUT_ARG = extern struct {
+    InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
+    ClearPassword: ?PWSTR,
+    UserAccountName: ?PWSTR,
+    HashedPassword: NET_VALIDATE_PASSWORD_HASH,
+    PasswordMustChangeAtNextLogon: BOOLEAN,
+    ClearLockout: BOOLEAN,
+};
+
+pub const NET_VALIDATE_PASSWORD_TYPE = enum(i32) {
+    Authentication = 1,
+    PasswordChange = 2,
+    PasswordReset = 3,
+};
+pub const NetValidateAuthentication = NET_VALIDATE_PASSWORD_TYPE.Authentication;
+pub const NetValidatePasswordChange = NET_VALIDATE_PASSWORD_TYPE.PasswordChange;
+pub const NetValidatePasswordReset = NET_VALIDATE_PASSWORD_TYPE.PasswordReset;
+
+pub const NET_VALIDATE_PERSISTED_FIELDS = extern struct {
+    PresentFields: u32,
+    PasswordLastSet: FILETIME,
+    BadPasswordTime: FILETIME,
+    LockoutTime: FILETIME,
+    BadPasswordCount: u32,
+    PasswordHistoryLength: u32,
+    PasswordHistory: ?*NET_VALIDATE_PASSWORD_HASH,
+};
+
+pub const NETLOGON_INFO_1 = extern struct {
+    netlog1_flags: u32,
+    netlog1_pdc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_2 = extern struct {
+    netlog2_flags: u32,
+    netlog2_pdc_connection_status: u32,
+    netlog2_trusted_dc_name: ?PWSTR,
+    netlog2_tc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_3 = extern struct {
+    netlog3_flags: u32,
+    netlog3_logon_attempts: u32,
+    netlog3_reserved1: u32,
+    netlog3_reserved2: u32,
+    netlog3_reserved3: u32,
+    netlog3_reserved4: u32,
+    netlog3_reserved5: u32,
+};
+
+pub const NETLOGON_INFO_4 = extern struct {
+    netlog4_trusted_dc_name: ?PWSTR,
+    netlog4_trusted_domain_name: ?PWSTR,
+};
+
+const CLSID_NetProvisioning_Value = Guid.initString("2aa2b5fe-b846-4d07-810c-b21ee45320e3");
+pub const CLSID_NetProvisioning = &CLSID_NetProvisioning_Value;
+
+pub const NETSETUP_JOIN_STATUS = enum(i32) {
+    UnknownStatus = 0,
+    Unjoined = 1,
+    WorkgroupName = 2,
+    DomainName = 3,
+};
+pub const NetSetupUnknownStatus = NETSETUP_JOIN_STATUS.UnknownStatus;
+pub const NetSetupUnjoined = NETSETUP_JOIN_STATUS.Unjoined;
+pub const NetSetupWorkgroupName = NETSETUP_JOIN_STATUS.WorkgroupName;
+pub const NetSetupDomainName = NETSETUP_JOIN_STATUS.DomainName;
+
+pub const NETSETUP_NAME_TYPE = enum(i32) {
+    Unknown = 0,
+    Machine = 1,
+    Workgroup = 2,
+    Domain = 3,
+    NonExistentDomain = 4,
+    DnsMachine = 5,
+};
+pub const NetSetupUnknown = NETSETUP_NAME_TYPE.Unknown;
+pub const NetSetupMachine = NETSETUP_NAME_TYPE.Machine;
+pub const NetSetupWorkgroup = NETSETUP_NAME_TYPE.Workgroup;
+pub const NetSetupDomain = NETSETUP_NAME_TYPE.Domain;
+pub const NetSetupNonExistentDomain = NETSETUP_NAME_TYPE.NonExistentDomain;
+pub const NetSetupDnsMachine = NETSETUP_NAME_TYPE.DnsMachine;
+
 pub const NETSETUP_PROVISION = packed struct(u32) {
     DOWNLEVEL_PRIV_SUPPORT: u1 = 0,
     REUSE_ACCOUNT: u1 = 0,
@@ -2366,702 +3906,67 @@ pub const NETSETUP_PROVISION_USE_DEFAULT_PASSWORD = NETSETUP_PROVISION{ .USE_DEF
 pub const NETSETUP_PROVISION_SKIP_ACCOUNT_SEARCH = NETSETUP_PROVISION{ .SKIP_ACCOUNT_SEARCH = 1 };
 pub const NETSETUP_PROVISION_ROOT_CA_CERTS = NETSETUP_PROVISION{ .ROOT_CA_CERTS = 1 };
 
-pub const USER_ACCOUNT_FLAGS = packed struct(u32) {
-    SCRIPT: u1 = 0,
-    ACCOUNTDISABLE: u1 = 0,
-    _2: u1 = 0,
-    HOMEDIR_REQUIRED: u1 = 0,
-    LOCKOUT: u1 = 0,
-    PASSWD_NOTREQD: u1 = 0,
-    PASSWD_CANT_CHANGE: u1 = 0,
-    ENCRYPTED_TEXT_PASSWORD_ALLOWED: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    DONT_EXPIRE_PASSWD: u1 = 0,
-    _17: u1 = 0,
-    SMARTCARD_REQUIRED: u1 = 0,
-    TRUSTED_FOR_DELEGATION: u1 = 0,
-    NOT_DELEGATED: u1 = 0,
-    USE_DES_KEY_ONLY: u1 = 0,
-    DONT_REQUIRE_PREAUTH: u1 = 0,
-    PASSWORD_EXPIRED: u1 = 0,
-    TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const NETSETUP_PROVISIONING_PARAMS = extern struct {
+    dwVersion: u32,
+    lpDomain: ?[*:0]const u16,
+    lpHostName: ?[*:0]const u16,
+    lpMachineAccountOU: ?[*:0]const u16,
+    lpDcName: ?[*:0]const u16,
+    dwProvisionOptions: NETSETUP_PROVISION,
+    aCertTemplateNames: ?*?PWSTR,
+    cCertTemplateNames: u32,
+    aMachinePolicyNames: ?*?PWSTR,
+    cMachinePolicyNames: u32,
+    aMachinePolicyPaths: ?*?PWSTR,
+    cMachinePolicyPaths: u32,
+    lpNetbiosName: ?PWSTR,
+    lpSiteName: ?PWSTR,
+    lpPrimaryDNSDomain: ?PWSTR,
 };
-pub const UF_SCRIPT = USER_ACCOUNT_FLAGS{ .SCRIPT = 1 };
-pub const UF_ACCOUNTDISABLE = USER_ACCOUNT_FLAGS{ .ACCOUNTDISABLE = 1 };
-pub const UF_HOMEDIR_REQUIRED = USER_ACCOUNT_FLAGS{ .HOMEDIR_REQUIRED = 1 };
-pub const UF_PASSWD_NOTREQD = USER_ACCOUNT_FLAGS{ .PASSWD_NOTREQD = 1 };
-pub const UF_PASSWD_CANT_CHANGE = USER_ACCOUNT_FLAGS{ .PASSWD_CANT_CHANGE = 1 };
-pub const UF_LOCKOUT = USER_ACCOUNT_FLAGS{ .LOCKOUT = 1 };
-pub const UF_DONT_EXPIRE_PASSWD = USER_ACCOUNT_FLAGS{ .DONT_EXPIRE_PASSWD = 1 };
-pub const UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = USER_ACCOUNT_FLAGS{ .ENCRYPTED_TEXT_PASSWORD_ALLOWED = 1 };
-pub const UF_NOT_DELEGATED = USER_ACCOUNT_FLAGS{ .NOT_DELEGATED = 1 };
-pub const UF_SMARTCARD_REQUIRED = USER_ACCOUNT_FLAGS{ .SMARTCARD_REQUIRED = 1 };
-pub const UF_USE_DES_KEY_ONLY = USER_ACCOUNT_FLAGS{ .USE_DES_KEY_ONLY = 1 };
-pub const UF_DONT_REQUIRE_PREAUTH = USER_ACCOUNT_FLAGS{ .DONT_REQUIRE_PREAUTH = 1 };
-pub const UF_TRUSTED_FOR_DELEGATION = USER_ACCOUNT_FLAGS{ .TRUSTED_FOR_DELEGATION = 1 };
-pub const UF_PASSWORD_EXPIRED = USER_ACCOUNT_FLAGS{ .PASSWORD_EXPIRED = 1 };
-pub const UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = USER_ACCOUNT_FLAGS{ .TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = 1 };
 
-pub const AF_OP = packed struct(u32) {
-    PRINT: u1 = 0,
-    COMM: u1 = 0,
-    SERVER: u1 = 0,
-    ACCOUNTS: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const NETWORK_INSTALL_TIME = enum(i32) {
+    RIMARYINSTALL = 1,
+    OSTSYSINSTALL = 2,
 };
-pub const AF_OP_PRINT = AF_OP{ .PRINT = 1 };
-pub const AF_OP_COMM = AF_OP{ .COMM = 1 };
-pub const AF_OP_SERVER = AF_OP{ .SERVER = 1 };
-pub const AF_OP_ACCOUNTS = AF_OP{ .ACCOUNTS = 1 };
+pub const NSF_PRIMARYINSTALL = NETWORK_INSTALL_TIME.RIMARYINSTALL;
+pub const NSF_POSTSYSINSTALL = NETWORK_INSTALL_TIME.OSTSYSINSTALL;
 
-pub const SERVER_INFO_SECURITY = enum(u32) {
-    SHARESECURITY = 0,
-    USERSECURITY = 1,
+pub const NETWORK_NAME = extern struct {
+    Name: FLAT_STRING,
 };
-pub const SV_SHARESECURITY = SERVER_INFO_SECURITY.SHARESECURITY;
-pub const SV_USERSECURITY = SERVER_INFO_SECURITY.USERSECURITY;
 
-pub const USER_PRIV = enum(u32) {
-    GUEST = 0,
+pub const NETWORK_UPGRADE_TYPE = enum(i32) {
+    WIN16_UPGRADE = 16,
+    WIN95_UPGRADE = 32,
+    WINNT_WKS_UPGRADE = 64,
+    WINNT_SVR_UPGRADE = 128,
+    WINNT_SBS_UPGRADE = 256,
+    COMPONENT_UPDATE = 512,
+};
+pub const NSF_WIN16_UPGRADE = NETWORK_UPGRADE_TYPE.WIN16_UPGRADE;
+pub const NSF_WIN95_UPGRADE = NETWORK_UPGRADE_TYPE.WIN95_UPGRADE;
+pub const NSF_WINNT_WKS_UPGRADE = NETWORK_UPGRADE_TYPE.WINNT_WKS_UPGRADE;
+pub const NSF_WINNT_SVR_UPGRADE = NETWORK_UPGRADE_TYPE.WINNT_SVR_UPGRADE;
+pub const NSF_WINNT_SBS_UPGRADE = NETWORK_UPGRADE_TYPE.WINNT_SBS_UPGRADE;
+pub const NSF_COMPONENT_UPDATE = NETWORK_UPGRADE_TYPE.COMPONENT_UPDATE;
+
+pub const OBO_TOKEN = extern struct {
+    Type: OBO_TOKEN_TYPE,
+    pncc: ?*INetCfgComponent,
+    pszwManufacturer: ?[*:0]const u16,
+    pszwProduct: ?[*:0]const u16,
+    pszwDisplayName: ?[*:0]const u16,
+    fRegistered: BOOL,
+};
+
+pub const OBO_TOKEN_TYPE = enum(i32) {
     USER = 1,
-    ADMIN = 2,
-};
-pub const USER_PRIV_GUEST = USER_PRIV.GUEST;
-pub const USER_PRIV_USER = USER_PRIV.USER;
-pub const USER_PRIV_ADMIN = USER_PRIV.ADMIN;
-
-pub const USE_INFO_ASG_TYPE = enum(u32) {
-    WILDCARD = 4294967295,
-    DISKDEV = 0,
-    SPOOLDEV = 1,
-    IPC = 3,
-};
-pub const USE_WILDCARD = USE_INFO_ASG_TYPE.WILDCARD;
-pub const USE_DISKDEV = USE_INFO_ASG_TYPE.DISKDEV;
-pub const USE_SPOOLDEV = USE_INFO_ASG_TYPE.SPOOLDEV;
-pub const USE_IPC = USE_INFO_ASG_TYPE.IPC;
-
-pub const SERVER_INFO_HIDDEN = enum(u32) {
-    VISIBLE = 0,
-    HIDDEN = 1,
-};
-pub const SV_VISIBLE = SERVER_INFO_HIDDEN.VISIBLE;
-pub const SV_HIDDEN = SERVER_INFO_HIDDEN.HIDDEN;
-
-pub const USER_MODALS_ROLES = enum(u32) {
-    STANDALONE = 0,
-    MEMBER = 1,
-    BACKUP = 2,
-    PRIMARY = 3,
-};
-pub const UAS_ROLE_STANDALONE = USER_MODALS_ROLES.STANDALONE;
-pub const UAS_ROLE_MEMBER = USER_MODALS_ROLES.MEMBER;
-pub const UAS_ROLE_BACKUP = USER_MODALS_ROLES.BACKUP;
-pub const UAS_ROLE_PRIMARY = USER_MODALS_ROLES.PRIMARY;
-
-pub const USER_INFO_0 = extern struct {
-    usri0_name: ?PWSTR,
-};
-
-pub const USER_INFO_1 = extern struct {
-    usri1_name: ?PWSTR,
-    usri1_password: ?PWSTR,
-    usri1_password_age: u32,
-    usri1_priv: USER_PRIV,
-    usri1_home_dir: ?PWSTR,
-    usri1_comment: ?PWSTR,
-    usri1_flags: USER_ACCOUNT_FLAGS,
-    usri1_script_path: ?PWSTR,
-};
-
-pub const USER_INFO_2 = extern struct {
-    usri2_name: ?PWSTR,
-    usri2_password: ?PWSTR,
-    usri2_password_age: u32,
-    usri2_priv: USER_PRIV,
-    usri2_home_dir: ?PWSTR,
-    usri2_comment: ?PWSTR,
-    usri2_flags: USER_ACCOUNT_FLAGS,
-    usri2_script_path: ?PWSTR,
-    usri2_auth_flags: AF_OP,
-    usri2_full_name: ?PWSTR,
-    usri2_usr_comment: ?PWSTR,
-    usri2_parms: ?PWSTR,
-    usri2_workstations: ?PWSTR,
-    usri2_last_logon: u32,
-    usri2_last_logoff: u32,
-    usri2_acct_expires: u32,
-    usri2_max_storage: u32,
-    usri2_units_per_week: u32,
-    usri2_logon_hours: ?*u8,
-    usri2_bad_pw_count: u32,
-    usri2_num_logons: u32,
-    usri2_logon_server: ?PWSTR,
-    usri2_country_code: u32,
-    usri2_code_page: u32,
-};
-
-pub const USER_INFO_3 = extern struct {
-    usri3_name: ?PWSTR,
-    usri3_password: ?PWSTR,
-    usri3_password_age: u32,
-    usri3_priv: USER_PRIV,
-    usri3_home_dir: ?PWSTR,
-    usri3_comment: ?PWSTR,
-    usri3_flags: USER_ACCOUNT_FLAGS,
-    usri3_script_path: ?PWSTR,
-    usri3_auth_flags: AF_OP,
-    usri3_full_name: ?PWSTR,
-    usri3_usr_comment: ?PWSTR,
-    usri3_parms: ?PWSTR,
-    usri3_workstations: ?PWSTR,
-    usri3_last_logon: u32,
-    usri3_last_logoff: u32,
-    usri3_acct_expires: u32,
-    usri3_max_storage: u32,
-    usri3_units_per_week: u32,
-    usri3_logon_hours: ?*u8,
-    usri3_bad_pw_count: u32,
-    usri3_num_logons: u32,
-    usri3_logon_server: ?PWSTR,
-    usri3_country_code: u32,
-    usri3_code_page: u32,
-    usri3_user_id: u32,
-    usri3_primary_group_id: u32,
-    usri3_profile: ?PWSTR,
-    usri3_home_dir_drive: ?PWSTR,
-    usri3_password_expired: u32,
-};
-
-pub const USER_INFO_4 = extern struct {
-    usri4_name: ?PWSTR,
-    usri4_password: ?PWSTR,
-    usri4_password_age: u32,
-    usri4_priv: USER_PRIV,
-    usri4_home_dir: ?PWSTR,
-    usri4_comment: ?PWSTR,
-    usri4_flags: USER_ACCOUNT_FLAGS,
-    usri4_script_path: ?PWSTR,
-    usri4_auth_flags: AF_OP,
-    usri4_full_name: ?PWSTR,
-    usri4_usr_comment: ?PWSTR,
-    usri4_parms: ?PWSTR,
-    usri4_workstations: ?PWSTR,
-    usri4_last_logon: u32,
-    usri4_last_logoff: u32,
-    usri4_acct_expires: u32,
-    usri4_max_storage: u32,
-    usri4_units_per_week: u32,
-    usri4_logon_hours: ?*u8,
-    usri4_bad_pw_count: u32,
-    usri4_num_logons: u32,
-    usri4_logon_server: ?PWSTR,
-    usri4_country_code: u32,
-    usri4_code_page: u32,
-    usri4_user_sid: ?PSID,
-    usri4_primary_group_id: u32,
-    usri4_profile: ?PWSTR,
-    usri4_home_dir_drive: ?PWSTR,
-    usri4_password_expired: u32,
-};
-
-pub const USER_INFO_10 = extern struct {
-    usri10_name: ?PWSTR,
-    usri10_comment: ?PWSTR,
-    usri10_usr_comment: ?PWSTR,
-    usri10_full_name: ?PWSTR,
-};
-
-pub const USER_INFO_11 = extern struct {
-    usri11_name: ?PWSTR,
-    usri11_comment: ?PWSTR,
-    usri11_usr_comment: ?PWSTR,
-    usri11_full_name: ?PWSTR,
-    usri11_priv: USER_PRIV,
-    usri11_auth_flags: AF_OP,
-    usri11_password_age: u32,
-    usri11_home_dir: ?PWSTR,
-    usri11_parms: ?PWSTR,
-    usri11_last_logon: u32,
-    usri11_last_logoff: u32,
-    usri11_bad_pw_count: u32,
-    usri11_num_logons: u32,
-    usri11_logon_server: ?PWSTR,
-    usri11_country_code: u32,
-    usri11_workstations: ?PWSTR,
-    usri11_max_storage: u32,
-    usri11_units_per_week: u32,
-    usri11_logon_hours: ?*u8,
-    usri11_code_page: u32,
-};
-
-pub const USER_INFO_20 = extern struct {
-    usri20_name: ?PWSTR,
-    usri20_full_name: ?PWSTR,
-    usri20_comment: ?PWSTR,
-    usri20_flags: USER_ACCOUNT_FLAGS,
-    usri20_user_id: u32,
-};
-
-pub const USER_INFO_21 = extern struct {
-    usri21_password: [16]u8,
-};
-
-pub const USER_INFO_22 = extern struct {
-    usri22_name: ?PWSTR,
-    usri22_password: [16]u8,
-    usri22_password_age: u32,
-    usri22_priv: USER_PRIV,
-    usri22_home_dir: ?PWSTR,
-    usri22_comment: ?PWSTR,
-    usri22_flags: USER_ACCOUNT_FLAGS,
-    usri22_script_path: ?PWSTR,
-    usri22_auth_flags: AF_OP,
-    usri22_full_name: ?PWSTR,
-    usri22_usr_comment: ?PWSTR,
-    usri22_parms: ?PWSTR,
-    usri22_workstations: ?PWSTR,
-    usri22_last_logon: u32,
-    usri22_last_logoff: u32,
-    usri22_acct_expires: u32,
-    usri22_max_storage: u32,
-    usri22_units_per_week: u32,
-    usri22_logon_hours: ?*u8,
-    usri22_bad_pw_count: u32,
-    usri22_num_logons: u32,
-    usri22_logon_server: ?PWSTR,
-    usri22_country_code: u32,
-    usri22_code_page: u32,
-};
-
-pub const USER_INFO_23 = extern struct {
-    usri23_name: ?PWSTR,
-    usri23_full_name: ?PWSTR,
-    usri23_comment: ?PWSTR,
-    usri23_flags: USER_ACCOUNT_FLAGS,
-    usri23_user_sid: ?PSID,
-};
-
-pub const USER_INFO_24 = extern struct {
-    usri24_internet_identity: BOOL,
-    usri24_flags: u32,
-    usri24_internet_provider_name: ?PWSTR,
-    usri24_internet_principal_name: ?PWSTR,
-    usri24_user_sid: ?PSID,
-};
-
-pub const USER_INFO_1003 = extern struct {
-    usri1003_password: ?PWSTR,
-};
-
-pub const USER_INFO_1005 = extern struct {
-    usri1005_priv: USER_PRIV,
-};
-
-pub const USER_INFO_1006 = extern struct {
-    usri1006_home_dir: ?PWSTR,
-};
-
-pub const USER_INFO_1007 = extern struct {
-    usri1007_comment: ?PWSTR,
-};
-
-pub const USER_INFO_1008 = extern struct {
-    usri1008_flags: USER_ACCOUNT_FLAGS,
-};
-
-pub const USER_INFO_1009 = extern struct {
-    usri1009_script_path: ?PWSTR,
-};
-
-pub const USER_INFO_1010 = extern struct {
-    usri1010_auth_flags: AF_OP,
-};
-
-pub const USER_INFO_1011 = extern struct {
-    usri1011_full_name: ?PWSTR,
-};
-
-pub const USER_INFO_1012 = extern struct {
-    usri1012_usr_comment: ?PWSTR,
-};
-
-pub const USER_INFO_1013 = extern struct {
-    usri1013_parms: ?PWSTR,
-};
-
-pub const USER_INFO_1014 = extern struct {
-    usri1014_workstations: ?PWSTR,
-};
-
-pub const USER_INFO_1017 = extern struct {
-    usri1017_acct_expires: u32,
-};
-
-pub const USER_INFO_1018 = extern struct {
-    usri1018_max_storage: u32,
-};
-
-pub const USER_INFO_1020 = extern struct {
-    usri1020_units_per_week: u32,
-    usri1020_logon_hours: ?*u8,
-};
-
-pub const USER_INFO_1023 = extern struct {
-    usri1023_logon_server: ?PWSTR,
-};
-
-pub const USER_INFO_1024 = extern struct {
-    usri1024_country_code: u32,
-};
-
-pub const USER_INFO_1025 = extern struct {
-    usri1025_code_page: u32,
-};
-
-pub const USER_INFO_1051 = extern struct {
-    usri1051_primary_group_id: u32,
-};
-
-pub const USER_INFO_1052 = extern struct {
-    usri1052_profile: ?PWSTR,
-};
-
-pub const USER_INFO_1053 = extern struct {
-    usri1053_home_dir_drive: ?PWSTR,
-};
-
-pub const USER_MODALS_INFO_0 = extern struct {
-    usrmod0_min_passwd_len: u32,
-    usrmod0_max_passwd_age: u32,
-    usrmod0_min_passwd_age: u32,
-    usrmod0_force_logoff: u32,
-    usrmod0_password_hist_len: u32,
-};
-
-pub const USER_MODALS_INFO_1 = extern struct {
-    usrmod1_role: u32,
-    usrmod1_primary: ?PWSTR,
-};
-
-pub const USER_MODALS_INFO_2 = extern struct {
-    usrmod2_domain_name: ?PWSTR,
-    usrmod2_domain_id: ?PSID,
-};
-
-pub const USER_MODALS_INFO_3 = extern struct {
-    usrmod3_lockout_duration: u32,
-    usrmod3_lockout_observation_window: u32,
-    usrmod3_lockout_threshold: u32,
-};
-
-pub const USER_MODALS_INFO_1001 = extern struct {
-    usrmod1001_min_passwd_len: u32,
-};
-
-pub const USER_MODALS_INFO_1002 = extern struct {
-    usrmod1002_max_passwd_age: u32,
-};
-
-pub const USER_MODALS_INFO_1003 = extern struct {
-    usrmod1003_min_passwd_age: u32,
-};
-
-pub const USER_MODALS_INFO_1004 = extern struct {
-    usrmod1004_force_logoff: u32,
-};
-
-pub const USER_MODALS_INFO_1005 = extern struct {
-    usrmod1005_password_hist_len: u32,
-};
-
-pub const USER_MODALS_INFO_1006 = extern struct {
-    usrmod1006_role: USER_MODALS_ROLES,
-};
-
-pub const USER_MODALS_INFO_1007 = extern struct {
-    usrmod1007_primary: ?PWSTR,
-};
-
-pub const GROUP_INFO_0 = extern struct {
-    grpi0_name: ?PWSTR,
-};
-
-pub const GROUP_INFO_1 = extern struct {
-    grpi1_name: ?PWSTR,
-    grpi1_comment: ?PWSTR,
-};
-
-pub const GROUP_INFO_2 = extern struct {
-    grpi2_name: ?PWSTR,
-    grpi2_comment: ?PWSTR,
-    grpi2_group_id: u32,
-    grpi2_attributes: u32,
-};
-
-pub const GROUP_INFO_3 = extern struct {
-    grpi3_name: ?PWSTR,
-    grpi3_comment: ?PWSTR,
-    grpi3_group_sid: ?PSID,
-    grpi3_attributes: u32,
-};
-
-pub const GROUP_INFO_1002 = extern struct {
-    grpi1002_comment: ?PWSTR,
-};
-
-pub const GROUP_INFO_1005 = extern struct {
-    grpi1005_attributes: u32,
-};
-
-pub const GROUP_USERS_INFO_0 = extern struct {
-    grui0_name: ?PWSTR,
-};
-
-pub const GROUP_USERS_INFO_1 = extern struct {
-    grui1_name: ?PWSTR,
-    grui1_attributes: u32,
-};
-
-pub const LOCALGROUP_INFO_0 = extern struct {
-    lgrpi0_name: ?PWSTR,
-};
-
-pub const LOCALGROUP_INFO_1 = extern struct {
-    lgrpi1_name: ?PWSTR,
-    lgrpi1_comment: ?PWSTR,
-};
-
-pub const LOCALGROUP_INFO_1002 = extern struct {
-    lgrpi1002_comment: ?PWSTR,
-};
-
-pub const LOCALGROUP_MEMBERS_INFO_0 = extern struct {
-    lgrmi0_sid: ?PSID,
-};
-
-pub const LOCALGROUP_MEMBERS_INFO_1 = extern struct {
-    lgrmi1_sid: ?PSID,
-    lgrmi1_sidusage: SID_NAME_USE,
-    lgrmi1_name: ?PWSTR,
-};
-
-pub const LOCALGROUP_MEMBERS_INFO_2 = extern struct {
-    lgrmi2_sid: ?PSID,
-    lgrmi2_sidusage: SID_NAME_USE,
-    lgrmi2_domainandname: ?PWSTR,
-};
-
-pub const LOCALGROUP_MEMBERS_INFO_3 = extern struct {
-    lgrmi3_domainandname: ?PWSTR,
-};
-
-pub const LOCALGROUP_USERS_INFO_0 = extern struct {
-    lgrui0_name: ?PWSTR,
-};
-
-pub const NET_DISPLAY_USER = extern struct {
-    usri1_name: ?PWSTR,
-    usri1_comment: ?PWSTR,
-    usri1_flags: USER_ACCOUNT_FLAGS,
-    usri1_full_name: ?PWSTR,
-    usri1_user_id: u32,
-    usri1_next_index: u32,
-};
-
-pub const NET_DISPLAY_MACHINE = extern struct {
-    usri2_name: ?PWSTR,
-    usri2_comment: ?PWSTR,
-    usri2_flags: USER_ACCOUNT_FLAGS,
-    usri2_user_id: u32,
-    usri2_next_index: u32,
-};
-
-pub const NET_DISPLAY_GROUP = extern struct {
-    grpi3_name: ?PWSTR,
-    grpi3_comment: ?PWSTR,
-    grpi3_group_id: u32,
-    grpi3_attributes: u32,
-    grpi3_next_index: u32,
-};
-
-pub const ACCESS_INFO_0 = extern struct {
-    acc0_resource_name: ?PWSTR,
-};
-
-pub const ACCESS_INFO_1 = extern struct {
-    acc1_resource_name: ?PWSTR,
-    acc1_attr: u32,
-    acc1_count: u32,
-};
-
-pub const ACCESS_INFO_1002 = extern struct {
-    acc1002_attr: u32,
-};
-
-pub const ACCESS_LIST = extern struct {
-    acl_ugname: ?PWSTR,
-    acl_access: u32,
-};
-
-pub const NET_VALIDATE_PASSWORD_TYPE = enum(i32) {
-    Authentication = 1,
-    PasswordChange = 2,
-    PasswordReset = 3,
-};
-pub const NetValidateAuthentication = NET_VALIDATE_PASSWORD_TYPE.Authentication;
-pub const NetValidatePasswordChange = NET_VALIDATE_PASSWORD_TYPE.PasswordChange;
-pub const NetValidatePasswordReset = NET_VALIDATE_PASSWORD_TYPE.PasswordReset;
-
-pub const NET_VALIDATE_PASSWORD_HASH = extern struct {
-    Length: u32,
-    Hash: ?*u8,
-};
-
-pub const NET_VALIDATE_PERSISTED_FIELDS = extern struct {
-    PresentFields: u32,
-    PasswordLastSet: FILETIME,
-    BadPasswordTime: FILETIME,
-    LockoutTime: FILETIME,
-    BadPasswordCount: u32,
-    PasswordHistoryLength: u32,
-    PasswordHistory: ?*NET_VALIDATE_PASSWORD_HASH,
-};
-
-pub const NET_VALIDATE_OUTPUT_ARG = extern struct {
-    ChangedPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    ValidationStatus: u32,
-};
-
-pub const NET_VALIDATE_AUTHENTICATION_INPUT_ARG = extern struct {
-    InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    PasswordMatched: BOOLEAN,
-};
-
-pub const NET_VALIDATE_PASSWORD_CHANGE_INPUT_ARG = extern struct {
-    InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    ClearPassword: ?PWSTR,
-    UserAccountName: ?PWSTR,
-    HashedPassword: NET_VALIDATE_PASSWORD_HASH,
-    PasswordMatch: BOOLEAN,
-};
-
-pub const NET_VALIDATE_PASSWORD_RESET_INPUT_ARG = extern struct {
-    InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    ClearPassword: ?PWSTR,
-    UserAccountName: ?PWSTR,
-    HashedPassword: NET_VALIDATE_PASSWORD_HASH,
-    PasswordMustChangeAtNextLogon: BOOLEAN,
-    ClearLockout: BOOLEAN,
-};
-
-pub const NETLOGON_INFO_1 = extern struct {
-    netlog1_flags: u32,
-    netlog1_pdc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_2 = extern struct {
-    netlog2_flags: u32,
-    netlog2_pdc_connection_status: u32,
-    netlog2_trusted_dc_name: ?PWSTR,
-    netlog2_tc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_3 = extern struct {
-    netlog3_flags: u32,
-    netlog3_logon_attempts: u32,
-    netlog3_reserved1: u32,
-    netlog3_reserved2: u32,
-    netlog3_reserved3: u32,
-    netlog3_reserved4: u32,
-    netlog3_reserved5: u32,
-};
-
-pub const NETLOGON_INFO_4 = extern struct {
-    netlog4_trusted_dc_name: ?PWSTR,
-    netlog4_trusted_domain_name: ?PWSTR,
-};
-
-pub const MSA_INFO_LEVEL = enum(i32) {
-    @"0" = 0,
-    Max = 1,
-};
-pub const MsaInfoLevel0 = MSA_INFO_LEVEL.@"0";
-pub const MsaInfoLevelMax = MSA_INFO_LEVEL.Max;
-
-pub const MSA_INFO_STATE = enum(i32) {
-    NotExist = 1,
-    NotService = 2,
-    CannotInstall = 3,
-    CanInstall = 4,
-    Installed = 5,
-};
-pub const MsaInfoNotExist = MSA_INFO_STATE.NotExist;
-pub const MsaInfoNotService = MSA_INFO_STATE.NotService;
-pub const MsaInfoCannotInstall = MSA_INFO_STATE.CannotInstall;
-pub const MsaInfoCanInstall = MSA_INFO_STATE.CanInstall;
-pub const MsaInfoInstalled = MSA_INFO_STATE.Installed;
-
-pub const MSA_INFO_0 = extern struct {
-    State: MSA_INFO_STATE,
-};
-
-pub const STD_ALERT = extern struct {
-    alrt_timestamp: u32,
-    alrt_eventname: [17]u16,
-    alrt_servicename: [81]u16,
-};
-
-pub const ADMIN_OTHER_INFO = extern struct {
-    alrtad_errcode: u32,
-    alrtad_numstrings: u32,
-};
-
-pub const ERRLOG_OTHER_INFO = extern struct {
-    alrter_errcode: u32,
-    alrter_offset: u32,
-};
+    COMPONENT = 2,
+    SOFTWARE = 3,
+};
+pub const OBO_USER = OBO_TOKEN_TYPE.USER;
+pub const OBO_COMPONENT = OBO_TOKEN_TYPE.COMPONENT;
+pub const OBO_SOFTWARE = OBO_TOKEN_TYPE.SOFTWARE;
 
 pub const PRINT_OTHER_INFO = extern struct {
     alrtpr_jobid: u32,
@@ -3070,34 +3975,61 @@ pub const PRINT_OTHER_INFO = extern struct {
     alrtpr_size: u32,
 };
 
-pub const USER_OTHER_INFO = extern struct {
-    alrtus_errcode: u32,
-    alrtus_numstrings: u32,
+pub const RASCON_IPUI = extern struct {
+    guidConnection: Guid,
+    fIPv6Cfg: BOOL,
+    dwFlags: u32,
+    pszwIpAddr: [16]u16,
+    pszwDnsAddr: [16]u16,
+    pszwDns2Addr: [16]u16,
+    pszwWinsAddr: [16]u16,
+    pszwWins2Addr: [16]u16,
+    pszwDnsSuffix: [256]u16,
+    pszwIpv6Addr: [65]u16,
+    dwIpv6PrefixLength: u32,
+    pszwIpv6DnsAddr: [65]u16,
+    pszwIpv6Dns2Addr: [65]u16,
+    dwIPv4InfMetric: u32,
+    dwIPv6InfMetric: u32,
 };
 
-pub const MSG_INFO_0 = extern struct {
-    msgi0_name: ?PWSTR,
+pub const REPL_EDIR_INFO_0 = extern struct {
+    rped0_dirname: ?PWSTR,
 };
 
-pub const MSG_INFO_1 = extern struct {
-    msgi1_name: ?PWSTR,
-    msgi1_forward_flag: u32,
-    msgi1_forward: ?PWSTR,
+pub const REPL_EDIR_INFO_1 = extern struct {
+    rped1_dirname: ?PWSTR,
+    rped1_integrity: u32,
+    rped1_extent: u32,
 };
 
-pub const TIME_OF_DAY_INFO = extern struct {
-    tod_elapsedt: u32,
-    tod_msecs: u32,
-    tod_hours: u32,
-    tod_mins: u32,
-    tod_secs: u32,
-    tod_hunds: u32,
-    tod_timezone: i32,
-    tod_tinterval: u32,
-    tod_day: u32,
-    tod_month: u32,
-    tod_year: u32,
-    tod_weekday: u32,
+pub const REPL_EDIR_INFO_1000 = extern struct {
+    rped1000_integrity: u32,
+};
+
+pub const REPL_EDIR_INFO_1001 = extern struct {
+    rped1001_extent: u32,
+};
+
+pub const REPL_EDIR_INFO_2 = extern struct {
+    rped2_dirname: ?PWSTR,
+    rped2_integrity: u32,
+    rped2_extent: u32,
+    rped2_lockcount: u32,
+    rped2_locktime: u32,
+};
+
+pub const REPL_IDIR_INFO_0 = extern struct {
+    rpid0_dirname: ?PWSTR,
+};
+
+pub const REPL_IDIR_INFO_1 = extern struct {
+    rpid1_dirname: ?PWSTR,
+    rpid1_state: u32,
+    rpid1_mastername: ?PWSTR,
+    rpid1_last_update_time: u32,
+    rpid1_lockcount: u32,
+    rpid1_locktime: u32,
 };
 
 pub const REPL_INFO_0 = extern struct {
@@ -3129,48 +4061,27 @@ pub const REPL_INFO_1003 = extern struct {
     rp1003_random: u32,
 };
 
-pub const REPL_EDIR_INFO_0 = extern struct {
-    rped0_dirname: ?PWSTR,
+pub const RTR_INFO_BLOCK_HEADER = extern struct {
+    Version: u32,
+    Size: u32,
+    TocEntriesCount: u32,
+    TocEntry: [1]RTR_TOC_ENTRY,
 };
 
-pub const REPL_EDIR_INFO_1 = extern struct {
-    rped1_dirname: ?PWSTR,
-    rped1_integrity: u32,
-    rped1_extent: u32,
-};
-
-pub const REPL_EDIR_INFO_2 = extern struct {
-    rped2_dirname: ?PWSTR,
-    rped2_integrity: u32,
-    rped2_extent: u32,
-    rped2_lockcount: u32,
-    rped2_locktime: u32,
-};
-
-pub const REPL_EDIR_INFO_1000 = extern struct {
-    rped1000_integrity: u32,
-};
-
-pub const REPL_EDIR_INFO_1001 = extern struct {
-    rped1001_extent: u32,
-};
-
-pub const REPL_IDIR_INFO_0 = extern struct {
-    rpid0_dirname: ?PWSTR,
-};
-
-pub const REPL_IDIR_INFO_1 = extern struct {
-    rpid1_dirname: ?PWSTR,
-    rpid1_state: u32,
-    rpid1_mastername: ?PWSTR,
-    rpid1_last_update_time: u32,
-    rpid1_lockcount: u32,
-    rpid1_locktime: u32,
+pub const RTR_TOC_ENTRY = extern struct {
+    InfoType: u32,
+    InfoSize: u32,
+    Count: u32,
+    Offset: u32,
 };
 
 pub const SERVER_INFO_100 = extern struct {
     sv100_platform_id: u32,
     sv100_name: ?PWSTR,
+};
+
+pub const SERVER_INFO_1005 = extern struct {
+    sv1005_comment: ?PWSTR,
 };
 
 pub const SERVER_INFO_101 = extern struct {
@@ -3180,6 +4091,22 @@ pub const SERVER_INFO_101 = extern struct {
     sv101_version_minor: u32,
     sv101_type: NET_SERVER_TYPE,
     sv101_comment: ?PWSTR,
+};
+
+pub const SERVER_INFO_1010 = extern struct {
+    sv1010_disc: i32,
+};
+
+pub const SERVER_INFO_1016 = extern struct {
+    sv1016_hidden: SERVER_INFO_HIDDEN,
+};
+
+pub const SERVER_INFO_1017 = extern struct {
+    sv1017_announce: u32,
+};
+
+pub const SERVER_INFO_1018 = extern struct {
+    sv1018_anndelta: u32,
 };
 
 pub const SERVER_INFO_102 = extern struct {
@@ -3215,270 +4142,8 @@ pub const SERVER_INFO_103 = extern struct {
     sv103_capabilities: u32,
 };
 
-pub const SERVER_INFO_402 = extern struct {
-    sv402_ulist_mtime: u32,
-    sv402_glist_mtime: u32,
-    sv402_alist_mtime: u32,
-    sv402_alerts: ?PWSTR,
-    sv402_security: SERVER_INFO_SECURITY,
-    sv402_numadmin: u32,
-    sv402_lanmask: u32,
-    sv402_guestacct: ?PWSTR,
-    sv402_chdevs: u32,
-    sv402_chdevq: u32,
-    sv402_chdevjobs: u32,
-    sv402_connections: u32,
-    sv402_shares: u32,
-    sv402_openfiles: u32,
-    sv402_sessopens: u32,
-    sv402_sessvcs: u32,
-    sv402_sessreqs: u32,
-    sv402_opensearch: u32,
-    sv402_activelocks: u32,
-    sv402_numreqbuf: u32,
-    sv402_sizreqbuf: u32,
-    sv402_numbigbuf: u32,
-    sv402_numfiletasks: u32,
-    sv402_alertsched: u32,
-    sv402_erroralert: u32,
-    sv402_logonalert: u32,
-    sv402_accessalert: u32,
-    sv402_diskalert: u32,
-    sv402_netioalert: u32,
-    sv402_maxauditsz: u32,
-    sv402_srvheuristics: ?PWSTR,
-};
-
-pub const SERVER_INFO_403 = extern struct {
-    sv403_ulist_mtime: u32,
-    sv403_glist_mtime: u32,
-    sv403_alist_mtime: u32,
-    sv403_alerts: ?PWSTR,
-    sv403_security: SERVER_INFO_SECURITY,
-    sv403_numadmin: u32,
-    sv403_lanmask: u32,
-    sv403_guestacct: ?PWSTR,
-    sv403_chdevs: u32,
-    sv403_chdevq: u32,
-    sv403_chdevjobs: u32,
-    sv403_connections: u32,
-    sv403_shares: u32,
-    sv403_openfiles: u32,
-    sv403_sessopens: u32,
-    sv403_sessvcs: u32,
-    sv403_sessreqs: u32,
-    sv403_opensearch: u32,
-    sv403_activelocks: u32,
-    sv403_numreqbuf: u32,
-    sv403_sizreqbuf: u32,
-    sv403_numbigbuf: u32,
-    sv403_numfiletasks: u32,
-    sv403_alertsched: u32,
-    sv403_erroralert: u32,
-    sv403_logonalert: u32,
-    sv403_accessalert: u32,
-    sv403_diskalert: u32,
-    sv403_netioalert: u32,
-    sv403_maxauditsz: u32,
-    sv403_srvheuristics: ?PWSTR,
-    sv403_auditedevents: u32,
-    sv403_autoprofile: u32,
-    sv403_autopath: ?PWSTR,
-};
-
-pub const SERVER_INFO_502 = extern struct {
-    sv502_sessopens: u32,
-    sv502_sessvcs: u32,
-    sv502_opensearch: u32,
-    sv502_sizreqbuf: u32,
-    sv502_initworkitems: u32,
-    sv502_maxworkitems: u32,
-    sv502_rawworkitems: u32,
-    sv502_irpstacksize: u32,
-    sv502_maxrawbuflen: u32,
-    sv502_sessusers: u32,
-    sv502_sessconns: u32,
-    sv502_maxpagedmemoryusage: u32,
-    sv502_maxnonpagedmemoryusage: u32,
-    sv502_enablesoftcompat: BOOL,
-    sv502_enableforcedlogoff: BOOL,
-    sv502_timesource: BOOL,
-    sv502_acceptdownlevelapis: BOOL,
-    sv502_lmannounce: BOOL,
-};
-
-pub const SERVER_INFO_503 = extern struct {
-    sv503_sessopens: u32,
-    sv503_sessvcs: u32,
-    sv503_opensearch: u32,
-    sv503_sizreqbuf: u32,
-    sv503_initworkitems: u32,
-    sv503_maxworkitems: u32,
-    sv503_rawworkitems: u32,
-    sv503_irpstacksize: u32,
-    sv503_maxrawbuflen: u32,
-    sv503_sessusers: u32,
-    sv503_sessconns: u32,
-    sv503_maxpagedmemoryusage: u32,
-    sv503_maxnonpagedmemoryusage: u32,
-    sv503_enablesoftcompat: BOOL,
-    sv503_enableforcedlogoff: BOOL,
-    sv503_timesource: BOOL,
-    sv503_acceptdownlevelapis: BOOL,
-    sv503_lmannounce: BOOL,
-    sv503_domain: ?PWSTR,
-    sv503_maxcopyreadlen: u32,
-    sv503_maxcopywritelen: u32,
-    sv503_minkeepsearch: u32,
-    sv503_maxkeepsearch: u32,
-    sv503_minkeepcomplsearch: u32,
-    sv503_maxkeepcomplsearch: u32,
-    sv503_threadcountadd: u32,
-    sv503_numblockthreads: u32,
-    sv503_scavtimeout: u32,
-    sv503_minrcvqueue: u32,
-    sv503_minfreeworkitems: u32,
-    sv503_xactmemsize: u32,
-    sv503_threadpriority: u32,
-    sv503_maxmpxct: u32,
-    sv503_oplockbreakwait: u32,
-    sv503_oplockbreakresponsewait: u32,
-    sv503_enableoplocks: BOOL,
-    sv503_enableoplockforceclose: BOOL,
-    sv503_enablefcbopens: BOOL,
-    sv503_enableraw: BOOL,
-    sv503_enablesharednetdrives: BOOL,
-    sv503_minfreeconnections: u32,
-    sv503_maxfreeconnections: u32,
-};
-
-pub const SERVER_INFO_599 = extern struct {
-    sv599_sessopens: u32,
-    sv599_sessvcs: u32,
-    sv599_opensearch: u32,
-    sv599_sizreqbuf: u32,
-    sv599_initworkitems: u32,
-    sv599_maxworkitems: u32,
-    sv599_rawworkitems: u32,
-    sv599_irpstacksize: u32,
-    sv599_maxrawbuflen: u32,
-    sv599_sessusers: u32,
-    sv599_sessconns: u32,
-    sv599_maxpagedmemoryusage: u32,
-    sv599_maxnonpagedmemoryusage: u32,
-    sv599_enablesoftcompat: BOOL,
-    sv599_enableforcedlogoff: BOOL,
-    sv599_timesource: BOOL,
-    sv599_acceptdownlevelapis: BOOL,
-    sv599_lmannounce: BOOL,
-    sv599_domain: ?PWSTR,
-    sv599_maxcopyreadlen: u32,
-    sv599_maxcopywritelen: u32,
-    sv599_minkeepsearch: u32,
-    sv599_maxkeepsearch: u32,
-    sv599_minkeepcomplsearch: u32,
-    sv599_maxkeepcomplsearch: u32,
-    sv599_threadcountadd: u32,
-    sv599_numblockthreads: u32,
-    sv599_scavtimeout: u32,
-    sv599_minrcvqueue: u32,
-    sv599_minfreeworkitems: u32,
-    sv599_xactmemsize: u32,
-    sv599_threadpriority: u32,
-    sv599_maxmpxct: u32,
-    sv599_oplockbreakwait: u32,
-    sv599_oplockbreakresponsewait: u32,
-    sv599_enableoplocks: BOOL,
-    sv599_enableoplockforceclose: BOOL,
-    sv599_enablefcbopens: BOOL,
-    sv599_enableraw: BOOL,
-    sv599_enablesharednetdrives: BOOL,
-    sv599_minfreeconnections: u32,
-    sv599_maxfreeconnections: u32,
-    sv599_initsesstable: u32,
-    sv599_initconntable: u32,
-    sv599_initfiletable: u32,
-    sv599_initsearchtable: u32,
-    sv599_alertschedule: u32,
-    sv599_errorthreshold: u32,
-    sv599_networkerrorthreshold: u32,
-    sv599_diskspacethreshold: u32,
-    sv599_reserved: u32,
-    sv599_maxlinkdelay: u32,
-    sv599_minlinkthroughput: u32,
-    sv599_linkinfovalidtime: u32,
-    sv599_scavqosinfoupdatetime: u32,
-    sv599_maxworkitemidletime: u32,
-};
-
-pub const SERVER_INFO_598 = extern struct {
-    sv598_maxrawworkitems: u32,
-    sv598_maxthreadsperqueue: u32,
-    sv598_producttype: u32,
-    sv598_serversize: u32,
-    sv598_connectionlessautodisc: u32,
-    sv598_sharingviolationretries: u32,
-    sv598_sharingviolationdelay: u32,
-    sv598_maxglobalopensearch: u32,
-    sv598_removeduplicatesearches: u32,
-    sv598_lockviolationoffset: u32,
-    sv598_lockviolationdelay: u32,
-    sv598_mdlreadswitchover: u32,
-    sv598_cachedopenlimit: u32,
-    sv598_otherqueueaffinity: u32,
-    sv598_restrictnullsessaccess: BOOL,
-    sv598_enablewfw311directipx: BOOL,
-    sv598_queuesamplesecs: u32,
-    sv598_balancecount: u32,
-    sv598_preferredaffinity: u32,
-    sv598_maxfreerfcbs: u32,
-    sv598_maxfreemfcbs: u32,
-    sv598_maxfreelfcbs: u32,
-    sv598_maxfreepagedpoolchunks: u32,
-    sv598_minpagedpoolchunksize: u32,
-    sv598_maxpagedpoolchunksize: u32,
-    sv598_sendsfrompreferredprocessor: BOOL,
-    sv598_cacheddirectorylimit: u32,
-    sv598_maxcopylength: u32,
-    sv598_enablecompression: BOOL,
-    sv598_autosharewks: BOOL,
-    sv598_autoshareserver: BOOL,
-    sv598_enablesecuritysignature: BOOL,
-    sv598_requiresecuritysignature: BOOL,
-    sv598_minclientbuffersize: u32,
-    sv598_serverguid: Guid,
-    sv598_ConnectionNoSessionsTimeout: u32,
-    sv598_IdleThreadTimeOut: u32,
-    sv598_enableW9xsecuritysignature: BOOL,
-    sv598_enforcekerberosreauthentication: BOOL,
-    sv598_disabledos: BOOL,
-    sv598_lowdiskspaceminimum: u32,
-    sv598_disablestrictnamechecking: BOOL,
-    sv598_enableauthenticateusersharing: BOOL,
-};
-
-pub const SERVER_INFO_1005 = extern struct {
-    sv1005_comment: ?PWSTR,
-};
-
 pub const SERVER_INFO_1107 = extern struct {
     sv1107_users: u32,
-};
-
-pub const SERVER_INFO_1010 = extern struct {
-    sv1010_disc: i32,
-};
-
-pub const SERVER_INFO_1016 = extern struct {
-    sv1016_hidden: SERVER_INFO_HIDDEN,
-};
-
-pub const SERVER_INFO_1017 = extern struct {
-    sv1017_announce: u32,
-};
-
-pub const SERVER_INFO_1018 = extern struct {
-    sv1018_anndelta: u32,
 };
 
 pub const SERVER_INFO_1501 = extern struct {
@@ -3833,6 +4498,262 @@ pub const SERVER_INFO_1602 = extern struct {
     sv_1598_disablestrictnamechecking: BOOL,
 };
 
+pub const SERVER_INFO_402 = extern struct {
+    sv402_ulist_mtime: u32,
+    sv402_glist_mtime: u32,
+    sv402_alist_mtime: u32,
+    sv402_alerts: ?PWSTR,
+    sv402_security: SERVER_INFO_SECURITY,
+    sv402_numadmin: u32,
+    sv402_lanmask: u32,
+    sv402_guestacct: ?PWSTR,
+    sv402_chdevs: u32,
+    sv402_chdevq: u32,
+    sv402_chdevjobs: u32,
+    sv402_connections: u32,
+    sv402_shares: u32,
+    sv402_openfiles: u32,
+    sv402_sessopens: u32,
+    sv402_sessvcs: u32,
+    sv402_sessreqs: u32,
+    sv402_opensearch: u32,
+    sv402_activelocks: u32,
+    sv402_numreqbuf: u32,
+    sv402_sizreqbuf: u32,
+    sv402_numbigbuf: u32,
+    sv402_numfiletasks: u32,
+    sv402_alertsched: u32,
+    sv402_erroralert: u32,
+    sv402_logonalert: u32,
+    sv402_accessalert: u32,
+    sv402_diskalert: u32,
+    sv402_netioalert: u32,
+    sv402_maxauditsz: u32,
+    sv402_srvheuristics: ?PWSTR,
+};
+
+pub const SERVER_INFO_403 = extern struct {
+    sv403_ulist_mtime: u32,
+    sv403_glist_mtime: u32,
+    sv403_alist_mtime: u32,
+    sv403_alerts: ?PWSTR,
+    sv403_security: SERVER_INFO_SECURITY,
+    sv403_numadmin: u32,
+    sv403_lanmask: u32,
+    sv403_guestacct: ?PWSTR,
+    sv403_chdevs: u32,
+    sv403_chdevq: u32,
+    sv403_chdevjobs: u32,
+    sv403_connections: u32,
+    sv403_shares: u32,
+    sv403_openfiles: u32,
+    sv403_sessopens: u32,
+    sv403_sessvcs: u32,
+    sv403_sessreqs: u32,
+    sv403_opensearch: u32,
+    sv403_activelocks: u32,
+    sv403_numreqbuf: u32,
+    sv403_sizreqbuf: u32,
+    sv403_numbigbuf: u32,
+    sv403_numfiletasks: u32,
+    sv403_alertsched: u32,
+    sv403_erroralert: u32,
+    sv403_logonalert: u32,
+    sv403_accessalert: u32,
+    sv403_diskalert: u32,
+    sv403_netioalert: u32,
+    sv403_maxauditsz: u32,
+    sv403_srvheuristics: ?PWSTR,
+    sv403_auditedevents: u32,
+    sv403_autoprofile: u32,
+    sv403_autopath: ?PWSTR,
+};
+
+pub const SERVER_INFO_502 = extern struct {
+    sv502_sessopens: u32,
+    sv502_sessvcs: u32,
+    sv502_opensearch: u32,
+    sv502_sizreqbuf: u32,
+    sv502_initworkitems: u32,
+    sv502_maxworkitems: u32,
+    sv502_rawworkitems: u32,
+    sv502_irpstacksize: u32,
+    sv502_maxrawbuflen: u32,
+    sv502_sessusers: u32,
+    sv502_sessconns: u32,
+    sv502_maxpagedmemoryusage: u32,
+    sv502_maxnonpagedmemoryusage: u32,
+    sv502_enablesoftcompat: BOOL,
+    sv502_enableforcedlogoff: BOOL,
+    sv502_timesource: BOOL,
+    sv502_acceptdownlevelapis: BOOL,
+    sv502_lmannounce: BOOL,
+};
+
+pub const SERVER_INFO_503 = extern struct {
+    sv503_sessopens: u32,
+    sv503_sessvcs: u32,
+    sv503_opensearch: u32,
+    sv503_sizreqbuf: u32,
+    sv503_initworkitems: u32,
+    sv503_maxworkitems: u32,
+    sv503_rawworkitems: u32,
+    sv503_irpstacksize: u32,
+    sv503_maxrawbuflen: u32,
+    sv503_sessusers: u32,
+    sv503_sessconns: u32,
+    sv503_maxpagedmemoryusage: u32,
+    sv503_maxnonpagedmemoryusage: u32,
+    sv503_enablesoftcompat: BOOL,
+    sv503_enableforcedlogoff: BOOL,
+    sv503_timesource: BOOL,
+    sv503_acceptdownlevelapis: BOOL,
+    sv503_lmannounce: BOOL,
+    sv503_domain: ?PWSTR,
+    sv503_maxcopyreadlen: u32,
+    sv503_maxcopywritelen: u32,
+    sv503_minkeepsearch: u32,
+    sv503_maxkeepsearch: u32,
+    sv503_minkeepcomplsearch: u32,
+    sv503_maxkeepcomplsearch: u32,
+    sv503_threadcountadd: u32,
+    sv503_numblockthreads: u32,
+    sv503_scavtimeout: u32,
+    sv503_minrcvqueue: u32,
+    sv503_minfreeworkitems: u32,
+    sv503_xactmemsize: u32,
+    sv503_threadpriority: u32,
+    sv503_maxmpxct: u32,
+    sv503_oplockbreakwait: u32,
+    sv503_oplockbreakresponsewait: u32,
+    sv503_enableoplocks: BOOL,
+    sv503_enableoplockforceclose: BOOL,
+    sv503_enablefcbopens: BOOL,
+    sv503_enableraw: BOOL,
+    sv503_enablesharednetdrives: BOOL,
+    sv503_minfreeconnections: u32,
+    sv503_maxfreeconnections: u32,
+};
+
+pub const SERVER_INFO_598 = extern struct {
+    sv598_maxrawworkitems: u32,
+    sv598_maxthreadsperqueue: u32,
+    sv598_producttype: u32,
+    sv598_serversize: u32,
+    sv598_connectionlessautodisc: u32,
+    sv598_sharingviolationretries: u32,
+    sv598_sharingviolationdelay: u32,
+    sv598_maxglobalopensearch: u32,
+    sv598_removeduplicatesearches: u32,
+    sv598_lockviolationoffset: u32,
+    sv598_lockviolationdelay: u32,
+    sv598_mdlreadswitchover: u32,
+    sv598_cachedopenlimit: u32,
+    sv598_otherqueueaffinity: u32,
+    sv598_restrictnullsessaccess: BOOL,
+    sv598_enablewfw311directipx: BOOL,
+    sv598_queuesamplesecs: u32,
+    sv598_balancecount: u32,
+    sv598_preferredaffinity: u32,
+    sv598_maxfreerfcbs: u32,
+    sv598_maxfreemfcbs: u32,
+    sv598_maxfreelfcbs: u32,
+    sv598_maxfreepagedpoolchunks: u32,
+    sv598_minpagedpoolchunksize: u32,
+    sv598_maxpagedpoolchunksize: u32,
+    sv598_sendsfrompreferredprocessor: BOOL,
+    sv598_cacheddirectorylimit: u32,
+    sv598_maxcopylength: u32,
+    sv598_enablecompression: BOOL,
+    sv598_autosharewks: BOOL,
+    sv598_autoshareserver: BOOL,
+    sv598_enablesecuritysignature: BOOL,
+    sv598_requiresecuritysignature: BOOL,
+    sv598_minclientbuffersize: u32,
+    sv598_serverguid: Guid,
+    sv598_ConnectionNoSessionsTimeout: u32,
+    sv598_IdleThreadTimeOut: u32,
+    sv598_enableW9xsecuritysignature: BOOL,
+    sv598_enforcekerberosreauthentication: BOOL,
+    sv598_disabledos: BOOL,
+    sv598_lowdiskspaceminimum: u32,
+    sv598_disablestrictnamechecking: BOOL,
+    sv598_enableauthenticateusersharing: BOOL,
+};
+
+pub const SERVER_INFO_599 = extern struct {
+    sv599_sessopens: u32,
+    sv599_sessvcs: u32,
+    sv599_opensearch: u32,
+    sv599_sizreqbuf: u32,
+    sv599_initworkitems: u32,
+    sv599_maxworkitems: u32,
+    sv599_rawworkitems: u32,
+    sv599_irpstacksize: u32,
+    sv599_maxrawbuflen: u32,
+    sv599_sessusers: u32,
+    sv599_sessconns: u32,
+    sv599_maxpagedmemoryusage: u32,
+    sv599_maxnonpagedmemoryusage: u32,
+    sv599_enablesoftcompat: BOOL,
+    sv599_enableforcedlogoff: BOOL,
+    sv599_timesource: BOOL,
+    sv599_acceptdownlevelapis: BOOL,
+    sv599_lmannounce: BOOL,
+    sv599_domain: ?PWSTR,
+    sv599_maxcopyreadlen: u32,
+    sv599_maxcopywritelen: u32,
+    sv599_minkeepsearch: u32,
+    sv599_maxkeepsearch: u32,
+    sv599_minkeepcomplsearch: u32,
+    sv599_maxkeepcomplsearch: u32,
+    sv599_threadcountadd: u32,
+    sv599_numblockthreads: u32,
+    sv599_scavtimeout: u32,
+    sv599_minrcvqueue: u32,
+    sv599_minfreeworkitems: u32,
+    sv599_xactmemsize: u32,
+    sv599_threadpriority: u32,
+    sv599_maxmpxct: u32,
+    sv599_oplockbreakwait: u32,
+    sv599_oplockbreakresponsewait: u32,
+    sv599_enableoplocks: BOOL,
+    sv599_enableoplockforceclose: BOOL,
+    sv599_enablefcbopens: BOOL,
+    sv599_enableraw: BOOL,
+    sv599_enablesharednetdrives: BOOL,
+    sv599_minfreeconnections: u32,
+    sv599_maxfreeconnections: u32,
+    sv599_initsesstable: u32,
+    sv599_initconntable: u32,
+    sv599_initfiletable: u32,
+    sv599_initsearchtable: u32,
+    sv599_alertschedule: u32,
+    sv599_errorthreshold: u32,
+    sv599_networkerrorthreshold: u32,
+    sv599_diskspacethreshold: u32,
+    sv599_reserved: u32,
+    sv599_maxlinkdelay: u32,
+    sv599_minlinkthroughput: u32,
+    sv599_linkinfovalidtime: u32,
+    sv599_scavqosinfoupdatetime: u32,
+    sv599_maxworkitemidletime: u32,
+};
+
+pub const SERVER_INFO_HIDDEN = enum(u32) {
+    VISIBLE = 0,
+    HIDDEN = 1,
+};
+pub const SV_VISIBLE = SERVER_INFO_HIDDEN.VISIBLE;
+pub const SV_HIDDEN = SERVER_INFO_HIDDEN.HIDDEN;
+
+pub const SERVER_INFO_SECURITY = enum(u32) {
+    SHARESECURITY = 0,
+    USERSECURITY = 1,
+};
+pub const SV_SHARESECURITY = SERVER_INFO_SECURITY.SHARESECURITY;
+pub const SV_USERSECURITY = SERVER_INFO_SECURITY.USERSECURITY;
+
 pub const SERVER_TRANSPORT_INFO_0 = extern struct {
     svti0_numberofvcs: u32,
     svti0_transportname: ?PWSTR,
@@ -3893,6 +4814,103 @@ pub const SERVICE_INFO_2 = extern struct {
     svci2_display_name: ?PWSTR,
 };
 
+pub const SMB_COMPRESSION_INFO = extern struct {
+    Switch: BOOLEAN,
+    Reserved1: u8,
+    Reserved2: u16,
+    Reserved3: u32,
+};
+
+pub const SMB_TREE_CONNECT_PARAMETERS = extern struct {
+    EABufferOffset: u32,
+    EABufferLen: u32,
+    CreateOptions: u32,
+    TreeConnectAttributes: u32,
+};
+
+pub const SMB_USE_OPTION_COMPRESSION_PARAMETERS = extern struct {
+    Tag: u32,
+    Length: u16,
+    Reserved: u16,
+};
+
+pub const STD_ALERT = extern struct {
+    alrt_timestamp: u32,
+    alrt_eventname: [17]u16,
+    alrt_servicename: [81]u16,
+};
+
+pub const SUPPORTS_BINDING_INTERFACE_FLAGS = enum(i32) {
+    LOWER = 1,
+    UPPER = 2,
+};
+pub const NCF_LOWER = SUPPORTS_BINDING_INTERFACE_FLAGS.LOWER;
+pub const NCF_UPPER = SUPPORTS_BINDING_INTERFACE_FLAGS.UPPER;
+
+pub const tagRASCON_IPUI_FLAGS = enum(i32) {
+    VPN = 1,
+    DEMAND_DIAL = 2,
+    NOT_ADMIN = 4,
+    USE_IPv4_STATICADDRESS = 8,
+    USE_IPv4_NAME_SERVERS = 16,
+    USE_IPv4_REMOTE_GATEWAY = 32,
+    USE_IPv4_EXPLICIT_METRIC = 64,
+    USE_HEADER_COMPRESSION = 128,
+    USE_DISABLE_REGISTER_DNS = 256,
+    USE_PRIVATE_DNS_SUFFIX = 512,
+    ENABLE_NBT = 1024,
+    USE_IPv6_STATICADDRESS = 2048,
+    USE_IPv6_NAME_SERVERS = 4096,
+    USE_IPv6_REMOTE_GATEWAY = 8192,
+    USE_IPv6_EXPLICIT_METRIC = 16384,
+    DISABLE_CLASS_BASED_ROUTE = 32768,
+};
+pub const RCUIF_VPN = tagRASCON_IPUI_FLAGS.VPN;
+pub const RCUIF_DEMAND_DIAL = tagRASCON_IPUI_FLAGS.DEMAND_DIAL;
+pub const RCUIF_NOT_ADMIN = tagRASCON_IPUI_FLAGS.NOT_ADMIN;
+pub const RCUIF_USE_IPv4_STATICADDRESS = tagRASCON_IPUI_FLAGS.USE_IPv4_STATICADDRESS;
+pub const RCUIF_USE_IPv4_NAME_SERVERS = tagRASCON_IPUI_FLAGS.USE_IPv4_NAME_SERVERS;
+pub const RCUIF_USE_IPv4_REMOTE_GATEWAY = tagRASCON_IPUI_FLAGS.USE_IPv4_REMOTE_GATEWAY;
+pub const RCUIF_USE_IPv4_EXPLICIT_METRIC = tagRASCON_IPUI_FLAGS.USE_IPv4_EXPLICIT_METRIC;
+pub const RCUIF_USE_HEADER_COMPRESSION = tagRASCON_IPUI_FLAGS.USE_HEADER_COMPRESSION;
+pub const RCUIF_USE_DISABLE_REGISTER_DNS = tagRASCON_IPUI_FLAGS.USE_DISABLE_REGISTER_DNS;
+pub const RCUIF_USE_PRIVATE_DNS_SUFFIX = tagRASCON_IPUI_FLAGS.USE_PRIVATE_DNS_SUFFIX;
+pub const RCUIF_ENABLE_NBT = tagRASCON_IPUI_FLAGS.ENABLE_NBT;
+pub const RCUIF_USE_IPv6_STATICADDRESS = tagRASCON_IPUI_FLAGS.USE_IPv6_STATICADDRESS;
+pub const RCUIF_USE_IPv6_NAME_SERVERS = tagRASCON_IPUI_FLAGS.USE_IPv6_NAME_SERVERS;
+pub const RCUIF_USE_IPv6_REMOTE_GATEWAY = tagRASCON_IPUI_FLAGS.USE_IPv6_REMOTE_GATEWAY;
+pub const RCUIF_USE_IPv6_EXPLICIT_METRIC = tagRASCON_IPUI_FLAGS.USE_IPv6_EXPLICIT_METRIC;
+pub const RCUIF_DISABLE_CLASS_BASED_ROUTE = tagRASCON_IPUI_FLAGS.DISABLE_CLASS_BASED_ROUTE;
+
+pub const TIME_OF_DAY_INFO = extern struct {
+    tod_elapsedt: u32,
+    tod_msecs: u32,
+    tod_hours: u32,
+    tod_mins: u32,
+    tod_secs: u32,
+    tod_hunds: u32,
+    tod_timezone: i32,
+    tod_tinterval: u32,
+    tod_day: u32,
+    tod_month: u32,
+    tod_year: u32,
+    tod_weekday: u32,
+};
+
+pub const TRANSPORT_INFO = extern struct {
+    Type: TRANSPORT_TYPE,
+    SkipCertificateCheck: BOOLEAN,
+};
+
+pub const TRANSPORT_TYPE = enum(i32) {
+    None = 0,
+    Wsk = 1,
+    Quic = 2,
+};
+pub const UseTransportType_None = TRANSPORT_TYPE.None;
+pub const UseTransportType_Wsk = TRANSPORT_TYPE.Wsk;
+pub const UseTransportType_Quic = TRANSPORT_TYPE.Quic;
+
 pub const USE_INFO_0 = extern struct {
     ui0_local: ?PWSTR,
     ui0_remote: ?PWSTR,
@@ -3941,11 +4959,16 @@ pub const USE_INFO_5 = extern struct {
     ui5_use_options: ?*u8,
 };
 
-pub const USE_OPTION_GENERIC = extern struct {
-    Tag: u32,
-    Length: u16,
-    Reserved: u16,
+pub const USE_INFO_ASG_TYPE = enum(u32) {
+    WILDCARD = 4294967295,
+    DISKDEV = 0,
+    SPOOLDEV = 1,
+    IPC = 3,
 };
+pub const USE_WILDCARD = USE_INFO_ASG_TYPE.WILDCARD;
+pub const USE_DISKDEV = USE_INFO_ASG_TYPE.DISKDEV;
+pub const USE_SPOOLDEV = USE_INFO_ASG_TYPE.SPOOLDEV;
+pub const USE_IPC = USE_INFO_ASG_TYPE.IPC;
 
 pub const USE_OPTION_DEFERRED_CONNECTION_PARAMETERS = extern struct {
     Tag: u32,
@@ -3953,18 +4976,16 @@ pub const USE_OPTION_DEFERRED_CONNECTION_PARAMETERS = extern struct {
     Reserved: u16,
 };
 
-pub const TRANSPORT_TYPE = enum(i32) {
-    None = 0,
-    Wsk = 1,
-    Quic = 2,
+pub const USE_OPTION_GENERIC = extern struct {
+    Tag: u32,
+    Length: u16,
+    Reserved: u16,
 };
-pub const UseTransportType_None = TRANSPORT_TYPE.None;
-pub const UseTransportType_Wsk = TRANSPORT_TYPE.Wsk;
-pub const UseTransportType_Quic = TRANSPORT_TYPE.Quic;
 
-pub const TRANSPORT_INFO = extern struct {
-    Type: TRANSPORT_TYPE,
-    SkipCertificateCheck: BOOLEAN,
+pub const USE_OPTION_PROPERTIES = extern struct {
+    Tag: u32,
+    pInfo: ?*anyopaque,
+    Length: usize,
 };
 
 pub const USE_OPTION_TRANSPORT_PARAMETERS = extern struct {
@@ -3973,31 +4994,404 @@ pub const USE_OPTION_TRANSPORT_PARAMETERS = extern struct {
     Reserved: u16,
 };
 
-pub const SMB_COMPRESSION_INFO = extern struct {
-    Switch: BOOLEAN,
-    Reserved1: u8,
-    Reserved2: u16,
-    Reserved3: u32,
+pub const USER_ACCOUNT_FLAGS = packed struct(u32) {
+    SCRIPT: u1 = 0,
+    ACCOUNTDISABLE: u1 = 0,
+    _2: u1 = 0,
+    HOMEDIR_REQUIRED: u1 = 0,
+    LOCKOUT: u1 = 0,
+    PASSWD_NOTREQD: u1 = 0,
+    PASSWD_CANT_CHANGE: u1 = 0,
+    ENCRYPTED_TEXT_PASSWORD_ALLOWED: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    DONT_EXPIRE_PASSWD: u1 = 0,
+    _17: u1 = 0,
+    SMARTCARD_REQUIRED: u1 = 0,
+    TRUSTED_FOR_DELEGATION: u1 = 0,
+    NOT_DELEGATED: u1 = 0,
+    USE_DES_KEY_ONLY: u1 = 0,
+    DONT_REQUIRE_PREAUTH: u1 = 0,
+    PASSWORD_EXPIRED: u1 = 0,
+    TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const UF_SCRIPT = USER_ACCOUNT_FLAGS{ .SCRIPT = 1 };
+pub const UF_ACCOUNTDISABLE = USER_ACCOUNT_FLAGS{ .ACCOUNTDISABLE = 1 };
+pub const UF_HOMEDIR_REQUIRED = USER_ACCOUNT_FLAGS{ .HOMEDIR_REQUIRED = 1 };
+pub const UF_PASSWD_NOTREQD = USER_ACCOUNT_FLAGS{ .PASSWD_NOTREQD = 1 };
+pub const UF_PASSWD_CANT_CHANGE = USER_ACCOUNT_FLAGS{ .PASSWD_CANT_CHANGE = 1 };
+pub const UF_LOCKOUT = USER_ACCOUNT_FLAGS{ .LOCKOUT = 1 };
+pub const UF_DONT_EXPIRE_PASSWD = USER_ACCOUNT_FLAGS{ .DONT_EXPIRE_PASSWD = 1 };
+pub const UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = USER_ACCOUNT_FLAGS{ .ENCRYPTED_TEXT_PASSWORD_ALLOWED = 1 };
+pub const UF_NOT_DELEGATED = USER_ACCOUNT_FLAGS{ .NOT_DELEGATED = 1 };
+pub const UF_SMARTCARD_REQUIRED = USER_ACCOUNT_FLAGS{ .SMARTCARD_REQUIRED = 1 };
+pub const UF_USE_DES_KEY_ONLY = USER_ACCOUNT_FLAGS{ .USE_DES_KEY_ONLY = 1 };
+pub const UF_DONT_REQUIRE_PREAUTH = USER_ACCOUNT_FLAGS{ .DONT_REQUIRE_PREAUTH = 1 };
+pub const UF_TRUSTED_FOR_DELEGATION = USER_ACCOUNT_FLAGS{ .TRUSTED_FOR_DELEGATION = 1 };
+pub const UF_PASSWORD_EXPIRED = USER_ACCOUNT_FLAGS{ .PASSWORD_EXPIRED = 1 };
+pub const UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = USER_ACCOUNT_FLAGS{ .TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = 1 };
+
+pub const USER_INFO_0 = extern struct {
+    usri0_name: ?PWSTR,
 };
 
-pub const SMB_USE_OPTION_COMPRESSION_PARAMETERS = extern struct {
-    Tag: u32,
-    Length: u16,
-    Reserved: u16,
+pub const USER_INFO_1 = extern struct {
+    usri1_name: ?PWSTR,
+    usri1_password: ?PWSTR,
+    usri1_password_age: u32,
+    usri1_priv: USER_PRIV,
+    usri1_home_dir: ?PWSTR,
+    usri1_comment: ?PWSTR,
+    usri1_flags: USER_ACCOUNT_FLAGS,
+    usri1_script_path: ?PWSTR,
 };
 
-pub const SMB_TREE_CONNECT_PARAMETERS = extern struct {
-    EABufferOffset: u32,
-    EABufferLen: u32,
-    CreateOptions: u32,
-    TreeConnectAttributes: u32,
+pub const USER_INFO_10 = extern struct {
+    usri10_name: ?PWSTR,
+    usri10_comment: ?PWSTR,
+    usri10_usr_comment: ?PWSTR,
+    usri10_full_name: ?PWSTR,
 };
 
-pub const USE_OPTION_PROPERTIES = extern struct {
-    Tag: u32,
-    pInfo: ?*anyopaque,
-    Length: usize,
+pub const USER_INFO_1003 = extern struct {
+    usri1003_password: ?PWSTR,
 };
+
+pub const USER_INFO_1005 = extern struct {
+    usri1005_priv: USER_PRIV,
+};
+
+pub const USER_INFO_1006 = extern struct {
+    usri1006_home_dir: ?PWSTR,
+};
+
+pub const USER_INFO_1007 = extern struct {
+    usri1007_comment: ?PWSTR,
+};
+
+pub const USER_INFO_1008 = extern struct {
+    usri1008_flags: USER_ACCOUNT_FLAGS,
+};
+
+pub const USER_INFO_1009 = extern struct {
+    usri1009_script_path: ?PWSTR,
+};
+
+pub const USER_INFO_1010 = extern struct {
+    usri1010_auth_flags: AF_OP,
+};
+
+pub const USER_INFO_1011 = extern struct {
+    usri1011_full_name: ?PWSTR,
+};
+
+pub const USER_INFO_1012 = extern struct {
+    usri1012_usr_comment: ?PWSTR,
+};
+
+pub const USER_INFO_1013 = extern struct {
+    usri1013_parms: ?PWSTR,
+};
+
+pub const USER_INFO_1014 = extern struct {
+    usri1014_workstations: ?PWSTR,
+};
+
+pub const USER_INFO_1017 = extern struct {
+    usri1017_acct_expires: u32,
+};
+
+pub const USER_INFO_1018 = extern struct {
+    usri1018_max_storage: u32,
+};
+
+pub const USER_INFO_1020 = extern struct {
+    usri1020_units_per_week: u32,
+    usri1020_logon_hours: ?*u8,
+};
+
+pub const USER_INFO_1023 = extern struct {
+    usri1023_logon_server: ?PWSTR,
+};
+
+pub const USER_INFO_1024 = extern struct {
+    usri1024_country_code: u32,
+};
+
+pub const USER_INFO_1025 = extern struct {
+    usri1025_code_page: u32,
+};
+
+pub const USER_INFO_1051 = extern struct {
+    usri1051_primary_group_id: u32,
+};
+
+pub const USER_INFO_1052 = extern struct {
+    usri1052_profile: ?PWSTR,
+};
+
+pub const USER_INFO_1053 = extern struct {
+    usri1053_home_dir_drive: ?PWSTR,
+};
+
+pub const USER_INFO_11 = extern struct {
+    usri11_name: ?PWSTR,
+    usri11_comment: ?PWSTR,
+    usri11_usr_comment: ?PWSTR,
+    usri11_full_name: ?PWSTR,
+    usri11_priv: USER_PRIV,
+    usri11_auth_flags: AF_OP,
+    usri11_password_age: u32,
+    usri11_home_dir: ?PWSTR,
+    usri11_parms: ?PWSTR,
+    usri11_last_logon: u32,
+    usri11_last_logoff: u32,
+    usri11_bad_pw_count: u32,
+    usri11_num_logons: u32,
+    usri11_logon_server: ?PWSTR,
+    usri11_country_code: u32,
+    usri11_workstations: ?PWSTR,
+    usri11_max_storage: u32,
+    usri11_units_per_week: u32,
+    usri11_logon_hours: ?*u8,
+    usri11_code_page: u32,
+};
+
+pub const USER_INFO_2 = extern struct {
+    usri2_name: ?PWSTR,
+    usri2_password: ?PWSTR,
+    usri2_password_age: u32,
+    usri2_priv: USER_PRIV,
+    usri2_home_dir: ?PWSTR,
+    usri2_comment: ?PWSTR,
+    usri2_flags: USER_ACCOUNT_FLAGS,
+    usri2_script_path: ?PWSTR,
+    usri2_auth_flags: AF_OP,
+    usri2_full_name: ?PWSTR,
+    usri2_usr_comment: ?PWSTR,
+    usri2_parms: ?PWSTR,
+    usri2_workstations: ?PWSTR,
+    usri2_last_logon: u32,
+    usri2_last_logoff: u32,
+    usri2_acct_expires: u32,
+    usri2_max_storage: u32,
+    usri2_units_per_week: u32,
+    usri2_logon_hours: ?*u8,
+    usri2_bad_pw_count: u32,
+    usri2_num_logons: u32,
+    usri2_logon_server: ?PWSTR,
+    usri2_country_code: u32,
+    usri2_code_page: u32,
+};
+
+pub const USER_INFO_20 = extern struct {
+    usri20_name: ?PWSTR,
+    usri20_full_name: ?PWSTR,
+    usri20_comment: ?PWSTR,
+    usri20_flags: USER_ACCOUNT_FLAGS,
+    usri20_user_id: u32,
+};
+
+pub const USER_INFO_21 = extern struct {
+    usri21_password: [16]u8,
+};
+
+pub const USER_INFO_22 = extern struct {
+    usri22_name: ?PWSTR,
+    usri22_password: [16]u8,
+    usri22_password_age: u32,
+    usri22_priv: USER_PRIV,
+    usri22_home_dir: ?PWSTR,
+    usri22_comment: ?PWSTR,
+    usri22_flags: USER_ACCOUNT_FLAGS,
+    usri22_script_path: ?PWSTR,
+    usri22_auth_flags: AF_OP,
+    usri22_full_name: ?PWSTR,
+    usri22_usr_comment: ?PWSTR,
+    usri22_parms: ?PWSTR,
+    usri22_workstations: ?PWSTR,
+    usri22_last_logon: u32,
+    usri22_last_logoff: u32,
+    usri22_acct_expires: u32,
+    usri22_max_storage: u32,
+    usri22_units_per_week: u32,
+    usri22_logon_hours: ?*u8,
+    usri22_bad_pw_count: u32,
+    usri22_num_logons: u32,
+    usri22_logon_server: ?PWSTR,
+    usri22_country_code: u32,
+    usri22_code_page: u32,
+};
+
+pub const USER_INFO_23 = extern struct {
+    usri23_name: ?PWSTR,
+    usri23_full_name: ?PWSTR,
+    usri23_comment: ?PWSTR,
+    usri23_flags: USER_ACCOUNT_FLAGS,
+    usri23_user_sid: ?PSID,
+};
+
+pub const USER_INFO_24 = extern struct {
+    usri24_internet_identity: BOOL,
+    usri24_flags: u32,
+    usri24_internet_provider_name: ?PWSTR,
+    usri24_internet_principal_name: ?PWSTR,
+    usri24_user_sid: ?PSID,
+};
+
+pub const USER_INFO_3 = extern struct {
+    usri3_name: ?PWSTR,
+    usri3_password: ?PWSTR,
+    usri3_password_age: u32,
+    usri3_priv: USER_PRIV,
+    usri3_home_dir: ?PWSTR,
+    usri3_comment: ?PWSTR,
+    usri3_flags: USER_ACCOUNT_FLAGS,
+    usri3_script_path: ?PWSTR,
+    usri3_auth_flags: AF_OP,
+    usri3_full_name: ?PWSTR,
+    usri3_usr_comment: ?PWSTR,
+    usri3_parms: ?PWSTR,
+    usri3_workstations: ?PWSTR,
+    usri3_last_logon: u32,
+    usri3_last_logoff: u32,
+    usri3_acct_expires: u32,
+    usri3_max_storage: u32,
+    usri3_units_per_week: u32,
+    usri3_logon_hours: ?*u8,
+    usri3_bad_pw_count: u32,
+    usri3_num_logons: u32,
+    usri3_logon_server: ?PWSTR,
+    usri3_country_code: u32,
+    usri3_code_page: u32,
+    usri3_user_id: u32,
+    usri3_primary_group_id: u32,
+    usri3_profile: ?PWSTR,
+    usri3_home_dir_drive: ?PWSTR,
+    usri3_password_expired: u32,
+};
+
+pub const USER_INFO_4 = extern struct {
+    usri4_name: ?PWSTR,
+    usri4_password: ?PWSTR,
+    usri4_password_age: u32,
+    usri4_priv: USER_PRIV,
+    usri4_home_dir: ?PWSTR,
+    usri4_comment: ?PWSTR,
+    usri4_flags: USER_ACCOUNT_FLAGS,
+    usri4_script_path: ?PWSTR,
+    usri4_auth_flags: AF_OP,
+    usri4_full_name: ?PWSTR,
+    usri4_usr_comment: ?PWSTR,
+    usri4_parms: ?PWSTR,
+    usri4_workstations: ?PWSTR,
+    usri4_last_logon: u32,
+    usri4_last_logoff: u32,
+    usri4_acct_expires: u32,
+    usri4_max_storage: u32,
+    usri4_units_per_week: u32,
+    usri4_logon_hours: ?*u8,
+    usri4_bad_pw_count: u32,
+    usri4_num_logons: u32,
+    usri4_logon_server: ?PWSTR,
+    usri4_country_code: u32,
+    usri4_code_page: u32,
+    usri4_user_sid: ?PSID,
+    usri4_primary_group_id: u32,
+    usri4_profile: ?PWSTR,
+    usri4_home_dir_drive: ?PWSTR,
+    usri4_password_expired: u32,
+};
+
+pub const USER_MODALS_INFO_0 = extern struct {
+    usrmod0_min_passwd_len: u32,
+    usrmod0_max_passwd_age: u32,
+    usrmod0_min_passwd_age: u32,
+    usrmod0_force_logoff: u32,
+    usrmod0_password_hist_len: u32,
+};
+
+pub const USER_MODALS_INFO_1 = extern struct {
+    usrmod1_role: u32,
+    usrmod1_primary: ?PWSTR,
+};
+
+pub const USER_MODALS_INFO_1001 = extern struct {
+    usrmod1001_min_passwd_len: u32,
+};
+
+pub const USER_MODALS_INFO_1002 = extern struct {
+    usrmod1002_max_passwd_age: u32,
+};
+
+pub const USER_MODALS_INFO_1003 = extern struct {
+    usrmod1003_min_passwd_age: u32,
+};
+
+pub const USER_MODALS_INFO_1004 = extern struct {
+    usrmod1004_force_logoff: u32,
+};
+
+pub const USER_MODALS_INFO_1005 = extern struct {
+    usrmod1005_password_hist_len: u32,
+};
+
+pub const USER_MODALS_INFO_1006 = extern struct {
+    usrmod1006_role: USER_MODALS_ROLES,
+};
+
+pub const USER_MODALS_INFO_1007 = extern struct {
+    usrmod1007_primary: ?PWSTR,
+};
+
+pub const USER_MODALS_INFO_2 = extern struct {
+    usrmod2_domain_name: ?PWSTR,
+    usrmod2_domain_id: ?PSID,
+};
+
+pub const USER_MODALS_INFO_3 = extern struct {
+    usrmod3_lockout_duration: u32,
+    usrmod3_lockout_observation_window: u32,
+    usrmod3_lockout_threshold: u32,
+};
+
+pub const USER_MODALS_ROLES = enum(u32) {
+    STANDALONE = 0,
+    MEMBER = 1,
+    BACKUP = 2,
+    PRIMARY = 3,
+};
+pub const UAS_ROLE_STANDALONE = USER_MODALS_ROLES.STANDALONE;
+pub const UAS_ROLE_MEMBER = USER_MODALS_ROLES.MEMBER;
+pub const UAS_ROLE_BACKUP = USER_MODALS_ROLES.BACKUP;
+pub const UAS_ROLE_PRIMARY = USER_MODALS_ROLES.PRIMARY;
+
+pub const USER_OTHER_INFO = extern struct {
+    alrtus_errcode: u32,
+    alrtus_numstrings: u32,
+};
+
+pub const USER_PRIV = enum(u32) {
+    GUEST = 0,
+    USER = 1,
+    ADMIN = 2,
+};
+pub const USER_PRIV_GUEST = USER_PRIV.GUEST;
+pub const USER_PRIV_USER = USER_PRIV.USER;
+pub const USER_PRIV_ADMIN = USER_PRIV.ADMIN;
 
 pub const WKSTA_INFO_100 = extern struct {
     wki100_platform_id: u32,
@@ -4016,101 +5410,6 @@ pub const WKSTA_INFO_101 = extern struct {
     wki101_lanroot: ?PWSTR,
 };
 
-pub const WKSTA_INFO_102 = extern struct {
-    wki102_platform_id: u32,
-    wki102_computername: ?PWSTR,
-    wki102_langroup: ?PWSTR,
-    wki102_ver_major: u32,
-    wki102_ver_minor: u32,
-    wki102_lanroot: ?PWSTR,
-    wki102_logged_on_users: u32,
-};
-
-pub const WKSTA_INFO_302 = extern struct {
-    wki302_char_wait: u32,
-    wki302_collection_time: u32,
-    wki302_maximum_collection_count: u32,
-    wki302_keep_conn: u32,
-    wki302_keep_search: u32,
-    wki302_max_cmds: u32,
-    wki302_num_work_buf: u32,
-    wki302_siz_work_buf: u32,
-    wki302_max_wrk_cache: u32,
-    wki302_sess_timeout: u32,
-    wki302_siz_error: u32,
-    wki302_num_alerts: u32,
-    wki302_num_services: u32,
-    wki302_errlog_sz: u32,
-    wki302_print_buf_time: u32,
-    wki302_num_char_buf: u32,
-    wki302_siz_char_buf: u32,
-    wki302_wrk_heuristics: ?PWSTR,
-    wki302_mailslots: u32,
-    wki302_num_dgram_buf: u32,
-};
-
-pub const WKSTA_INFO_402 = extern struct {
-    wki402_char_wait: u32,
-    wki402_collection_time: u32,
-    wki402_maximum_collection_count: u32,
-    wki402_keep_conn: u32,
-    wki402_keep_search: u32,
-    wki402_max_cmds: u32,
-    wki402_num_work_buf: u32,
-    wki402_siz_work_buf: u32,
-    wki402_max_wrk_cache: u32,
-    wki402_sess_timeout: u32,
-    wki402_siz_error: u32,
-    wki402_num_alerts: u32,
-    wki402_num_services: u32,
-    wki402_errlog_sz: u32,
-    wki402_print_buf_time: u32,
-    wki402_num_char_buf: u32,
-    wki402_siz_char_buf: u32,
-    wki402_wrk_heuristics: ?PWSTR,
-    wki402_mailslots: u32,
-    wki402_num_dgram_buf: u32,
-    wki402_max_threads: u32,
-};
-
-pub const WKSTA_INFO_502 = extern struct {
-    wki502_char_wait: u32,
-    wki502_collection_time: u32,
-    wki502_maximum_collection_count: u32,
-    wki502_keep_conn: u32,
-    wki502_max_cmds: u32,
-    wki502_sess_timeout: u32,
-    wki502_siz_char_buf: u32,
-    wki502_max_threads: u32,
-    wki502_lock_quota: u32,
-    wki502_lock_increment: u32,
-    wki502_lock_maximum: u32,
-    wki502_pipe_increment: u32,
-    wki502_pipe_maximum: u32,
-    wki502_cache_file_timeout: u32,
-    wki502_dormant_file_limit: u32,
-    wki502_read_ahead_throughput: u32,
-    wki502_num_mailslot_buffers: u32,
-    wki502_num_srv_announce_buffers: u32,
-    wki502_max_illegal_datagram_events: u32,
-    wki502_illegal_datagram_event_reset_frequency: u32,
-    wki502_log_election_packets: BOOL,
-    wki502_use_opportunistic_locking: BOOL,
-    wki502_use_unlock_behind: BOOL,
-    wki502_use_close_behind: BOOL,
-    wki502_buf_named_pipes: BOOL,
-    wki502_use_lock_read_unlock: BOOL,
-    wki502_utilize_nt_caching: BOOL,
-    wki502_use_raw_read: BOOL,
-    wki502_use_raw_write: BOOL,
-    wki502_use_write_raw_data: BOOL,
-    wki502_use_encryption: BOOL,
-    wki502_buf_files_deny_write: BOOL,
-    wki502_buf_read_only_files: BOOL,
-    wki502_force_core_create_mode: BOOL,
-    wki502_use_512_byte_max_transfer: BOOL,
-};
-
 pub const WKSTA_INFO_1010 = extern struct {
     wki1010_char_wait: u32,
 };
@@ -4123,6 +5422,28 @@ pub const WKSTA_INFO_1012 = extern struct {
     wki1012_maximum_collection_count: u32,
 };
 
+pub const WKSTA_INFO_1013 = extern struct {
+    wki1013_keep_conn: u32,
+};
+
+pub const WKSTA_INFO_1018 = extern struct {
+    wki1018_sess_timeout: u32,
+};
+
+pub const WKSTA_INFO_102 = extern struct {
+    wki102_platform_id: u32,
+    wki102_computername: ?PWSTR,
+    wki102_langroup: ?PWSTR,
+    wki102_ver_major: u32,
+    wki102_ver_minor: u32,
+    wki102_lanroot: ?PWSTR,
+    wki102_logged_on_users: u32,
+};
+
+pub const WKSTA_INFO_1023 = extern struct {
+    wki1023_siz_char_buf: u32,
+};
+
 pub const WKSTA_INFO_1027 = extern struct {
     wki1027_errlog_sz: u32,
 };
@@ -4133,18 +5454,6 @@ pub const WKSTA_INFO_1028 = extern struct {
 
 pub const WKSTA_INFO_1032 = extern struct {
     wki1032_wrk_heuristics: u32,
-};
-
-pub const WKSTA_INFO_1013 = extern struct {
-    wki1013_keep_conn: u32,
-};
-
-pub const WKSTA_INFO_1018 = extern struct {
-    wki1018_sess_timeout: u32,
-};
-
-pub const WKSTA_INFO_1023 = extern struct {
-    wki1023_siz_char_buf: u32,
 };
 
 pub const WKSTA_INFO_1033 = extern struct {
@@ -4239,6 +5548,99 @@ pub const WKSTA_INFO_1062 = extern struct {
     wki1062_read_ahead_throughput: u32,
 };
 
+pub const WKSTA_INFO_302 = extern struct {
+    wki302_char_wait: u32,
+    wki302_collection_time: u32,
+    wki302_maximum_collection_count: u32,
+    wki302_keep_conn: u32,
+    wki302_keep_search: u32,
+    wki302_max_cmds: u32,
+    wki302_num_work_buf: u32,
+    wki302_siz_work_buf: u32,
+    wki302_max_wrk_cache: u32,
+    wki302_sess_timeout: u32,
+    wki302_siz_error: u32,
+    wki302_num_alerts: u32,
+    wki302_num_services: u32,
+    wki302_errlog_sz: u32,
+    wki302_print_buf_time: u32,
+    wki302_num_char_buf: u32,
+    wki302_siz_char_buf: u32,
+    wki302_wrk_heuristics: ?PWSTR,
+    wki302_mailslots: u32,
+    wki302_num_dgram_buf: u32,
+};
+
+pub const WKSTA_INFO_402 = extern struct {
+    wki402_char_wait: u32,
+    wki402_collection_time: u32,
+    wki402_maximum_collection_count: u32,
+    wki402_keep_conn: u32,
+    wki402_keep_search: u32,
+    wki402_max_cmds: u32,
+    wki402_num_work_buf: u32,
+    wki402_siz_work_buf: u32,
+    wki402_max_wrk_cache: u32,
+    wki402_sess_timeout: u32,
+    wki402_siz_error: u32,
+    wki402_num_alerts: u32,
+    wki402_num_services: u32,
+    wki402_errlog_sz: u32,
+    wki402_print_buf_time: u32,
+    wki402_num_char_buf: u32,
+    wki402_siz_char_buf: u32,
+    wki402_wrk_heuristics: ?PWSTR,
+    wki402_mailslots: u32,
+    wki402_num_dgram_buf: u32,
+    wki402_max_threads: u32,
+};
+
+pub const WKSTA_INFO_502 = extern struct {
+    wki502_char_wait: u32,
+    wki502_collection_time: u32,
+    wki502_maximum_collection_count: u32,
+    wki502_keep_conn: u32,
+    wki502_max_cmds: u32,
+    wki502_sess_timeout: u32,
+    wki502_siz_char_buf: u32,
+    wki502_max_threads: u32,
+    wki502_lock_quota: u32,
+    wki502_lock_increment: u32,
+    wki502_lock_maximum: u32,
+    wki502_pipe_increment: u32,
+    wki502_pipe_maximum: u32,
+    wki502_cache_file_timeout: u32,
+    wki502_dormant_file_limit: u32,
+    wki502_read_ahead_throughput: u32,
+    wki502_num_mailslot_buffers: u32,
+    wki502_num_srv_announce_buffers: u32,
+    wki502_max_illegal_datagram_events: u32,
+    wki502_illegal_datagram_event_reset_frequency: u32,
+    wki502_log_election_packets: BOOL,
+    wki502_use_opportunistic_locking: BOOL,
+    wki502_use_unlock_behind: BOOL,
+    wki502_use_close_behind: BOOL,
+    wki502_buf_named_pipes: BOOL,
+    wki502_use_lock_read_unlock: BOOL,
+    wki502_utilize_nt_caching: BOOL,
+    wki502_use_raw_read: BOOL,
+    wki502_use_raw_write: BOOL,
+    wki502_use_write_raw_data: BOOL,
+    wki502_use_encryption: BOOL,
+    wki502_buf_files_deny_write: BOOL,
+    wki502_buf_read_only_files: BOOL,
+    wki502_force_core_create_mode: BOOL,
+    wki502_use_512_byte_max_transfer: BOOL,
+};
+
+pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
+    wkti0_quality_of_service: u32,
+    wkti0_number_of_vcs: u32,
+    wkti0_transport_name: ?PWSTR,
+    wkti0_transport_address: ?PWSTR,
+    wkti0_wan_ish: BOOL,
+};
+
 pub const WKSTA_USER_INFO_0 = extern struct {
     wkui0_username: ?PWSTR,
 };
@@ -4254,1701 +5656,65 @@ pub const WKSTA_USER_INFO_1101 = extern struct {
     wkui1101_oth_domains: ?PWSTR,
 };
 
-pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
-    wkti0_quality_of_service: u32,
-    wkti0_number_of_vcs: u32,
-    wkti0_transport_name: ?PWSTR,
-    wkti0_transport_address: ?PWSTR,
-    wkti0_wan_ish: BOOL,
-};
-
-pub const ERROR_LOG = extern struct {
-    el_len: u32,
-    el_reserved: u32,
-    el_time: u32,
-    el_error: u32,
-    el_name: ?PWSTR,
-    el_text: ?PWSTR,
-    el_data: ?*u8,
-    el_data_size: u32,
-    el_nstrings: u32,
-};
-
-pub const HLOG = extern struct {
-    time: u32,
-    last_flags: u32,
-    offset: u32,
-    rec_offset: u32,
-};
-
-pub const CONFIG_INFO_0 = extern struct {
-    cfgi0_key: ?PWSTR,
-    cfgi0_data: ?PWSTR,
-};
-
-pub const AUDIT_ENTRY = extern struct {
-    ae_len: u32,
-    ae_reserved: u32,
-    ae_time: u32,
-    ae_type: u32,
-    ae_data_offset: u32,
-    ae_data_size: u32,
-};
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_SRVSTATUS_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_SESSLOGON_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_SESSLOGOFF_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_SESSPWERR_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_CONNSTART_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_CONNSTOP_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_CONNREJ_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_RESACCESS_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_RESACCESSREJ_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_CLOSEFILE_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_SERVICESTAT_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_ACLMOD_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_UASMOD_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_NETLOGON_CONFLICT_ = usize;
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_NETLOGOFF_CONFLICT_ = usize;
-
-pub const AE_ACCLIM = extern struct {
-    ae_al_compname: u32,
-    ae_al_username: u32,
-    ae_al_resname: u32,
-    ae_al_limit: u32,
-};
-
-// WARNING: this type symbol conflicts with a const!
-pub const AE_LOCKOUT_CONFLICT_ = usize;
-
-pub const AE_GENERIC = extern struct {
-    ae_ge_msgfile: u32,
-    ae_ge_msgnum: u32,
-    ae_ge_params: u32,
-    ae_ge_param1: u32,
-    ae_ge_param2: u32,
-    ae_ge_param3: u32,
-    ae_ge_param4: u32,
-    ae_ge_param5: u32,
-    ae_ge_param6: u32,
-    ae_ge_param7: u32,
-    ae_ge_param8: u32,
-    ae_ge_param9: u32,
-};
-
-pub const NETSETUP_NAME_TYPE = enum(i32) {
-    Unknown = 0,
-    Machine = 1,
-    Workgroup = 2,
-    Domain = 3,
-    NonExistentDomain = 4,
-    DnsMachine = 5,
-};
-pub const NetSetupUnknown = NETSETUP_NAME_TYPE.Unknown;
-pub const NetSetupMachine = NETSETUP_NAME_TYPE.Machine;
-pub const NetSetupWorkgroup = NETSETUP_NAME_TYPE.Workgroup;
-pub const NetSetupDomain = NETSETUP_NAME_TYPE.Domain;
-pub const NetSetupNonExistentDomain = NETSETUP_NAME_TYPE.NonExistentDomain;
-pub const NetSetupDnsMachine = NETSETUP_NAME_TYPE.DnsMachine;
-
-pub const DSREG_JOIN_TYPE = enum(i32) {
-    UNKNOWN_JOIN = 0,
-    DEVICE_JOIN = 1,
-    WORKPLACE_JOIN = 2,
-};
-pub const DSREG_UNKNOWN_JOIN = DSREG_JOIN_TYPE.UNKNOWN_JOIN;
-pub const DSREG_DEVICE_JOIN = DSREG_JOIN_TYPE.DEVICE_JOIN;
-pub const DSREG_WORKPLACE_JOIN = DSREG_JOIN_TYPE.WORKPLACE_JOIN;
-
-pub const DSREG_USER_INFO = extern struct {
-    pszUserEmail: ?PWSTR,
-    pszUserKeyId: ?PWSTR,
-    pszUserKeyName: ?PWSTR,
-};
-
-pub const DSREG_JOIN_INFO = extern struct {
-    joinType: DSREG_JOIN_TYPE,
-    pJoinCertificate: ?*const CERT_CONTEXT,
-    pszDeviceId: ?PWSTR,
-    pszIdpDomain: ?PWSTR,
-    pszTenantId: ?PWSTR,
-    pszJoinUserEmail: ?PWSTR,
-    pszTenantDisplayName: ?PWSTR,
-    pszMdmEnrollmentUrl: ?PWSTR,
-    pszMdmTermsOfUseUrl: ?PWSTR,
-    pszMdmComplianceUrl: ?PWSTR,
-    pszUserSettingSyncUrl: ?PWSTR,
-    pUserInfo: ?*DSREG_USER_INFO,
-};
-
-pub const NET_COMPUTER_NAME_TYPE = enum(i32) {
-    PrimaryComputerName = 0,
-    AlternateComputerNames = 1,
-    AllComputerNames = 2,
-    ComputerNameTypeMax = 3,
-};
-pub const NetPrimaryComputerName = NET_COMPUTER_NAME_TYPE.PrimaryComputerName;
-pub const NetAlternateComputerNames = NET_COMPUTER_NAME_TYPE.AlternateComputerNames;
-pub const NetAllComputerNames = NET_COMPUTER_NAME_TYPE.AllComputerNames;
-pub const NetComputerNameTypeMax = NET_COMPUTER_NAME_TYPE.ComputerNameTypeMax;
-
-pub const NETSETUP_PROVISIONING_PARAMS = extern struct {
-    dwVersion: u32,
-    lpDomain: ?[*:0]const u16,
-    lpHostName: ?[*:0]const u16,
-    lpMachineAccountOU: ?[*:0]const u16,
-    lpDcName: ?[*:0]const u16,
-    dwProvisionOptions: NETSETUP_PROVISION,
-    aCertTemplateNames: ?*?PWSTR,
-    cCertTemplateNames: u32,
-    aMachinePolicyNames: ?*?PWSTR,
-    cMachinePolicyNames: u32,
-    aMachinePolicyPaths: ?*?PWSTR,
-    cMachinePolicyPaths: u32,
-    lpNetbiosName: ?PWSTR,
-    lpSiteName: ?PWSTR,
-    lpPrimaryDNSDomain: ?PWSTR,
-};
-
-pub const NETSETUP_JOIN_STATUS = enum(i32) {
-    UnknownStatus = 0,
-    Unjoined = 1,
-    WorkgroupName = 2,
-    DomainName = 3,
-};
-pub const NetSetupUnknownStatus = NETSETUP_JOIN_STATUS.UnknownStatus;
-pub const NetSetupUnjoined = NETSETUP_JOIN_STATUS.Unjoined;
-pub const NetSetupWorkgroupName = NETSETUP_JOIN_STATUS.WorkgroupName;
-pub const NetSetupDomainName = NETSETUP_JOIN_STATUS.DomainName;
-
-pub const AT_INFO = extern struct {
-    JobTime: usize,
-    DaysOfMonth: u32,
-    DaysOfWeek: u8,
-    Flags: u8,
-    Command: ?PWSTR,
-};
-
-pub const AT_ENUM = extern struct {
-    JobId: u32,
-    JobTime: usize,
-    DaysOfMonth: u32,
-    DaysOfWeek: u8,
-    Flags: u8,
-    Command: ?PWSTR,
-};
-
-pub const FLAT_STRING = extern struct {
-    MaximumLength: i16,
-    Length: i16,
-    Buffer: [1]CHAR,
-};
-
-pub const NETWORK_NAME = extern struct {
-    Name: FLAT_STRING,
-};
-
-pub const HARDWARE_ADDRESS = extern struct {
-    Address: [6]u8,
-};
-
-const IID_IEnumNetCfgBindingInterface_Value = Guid.initString("c0e8ae90-306e-11d1-aacf-00805fc1270e");
-pub const IID_IEnumNetCfgBindingInterface = &IID_IEnumNetCfgBindingInterface_Value;
-pub const IEnumNetCfgBindingInterface = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumNetCfgBindingInterface,
-            celt: u32,
-            rgelt: [*]?*INetCfgBindingInterface,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetCfgBindingInterface,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetCfgBindingInterface,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetCfgBindingInterface,
-            ppenum: ?*?*IEnumNetCfgBindingInterface,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetCfgBindingInterface, celt: u32, rgelt: [*]?*INetCfgBindingInterface, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetCfgBindingInterface, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetCfgBindingInterface) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetCfgBindingInterface, ppenum: ?*?*IEnumNetCfgBindingInterface) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-const IID_IEnumNetCfgBindingPath_Value = Guid.initString("c0e8ae91-306e-11d1-aacf-00805fc1270e");
-pub const IID_IEnumNetCfgBindingPath = &IID_IEnumNetCfgBindingPath_Value;
-pub const IEnumNetCfgBindingPath = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumNetCfgBindingPath,
-            celt: u32,
-            rgelt: [*]?*INetCfgBindingPath,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetCfgBindingPath,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetCfgBindingPath,
-            ppenum: ?*?*IEnumNetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetCfgBindingPath, celt: u32, rgelt: [*]?*INetCfgBindingPath, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetCfgBindingPath, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetCfgBindingPath, ppenum: ?*?*IEnumNetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-const IID_IEnumNetCfgComponent_Value = Guid.initString("c0e8ae92-306e-11d1-aacf-00805fc1270e");
-pub const IID_IEnumNetCfgComponent = &IID_IEnumNetCfgComponent_Value;
-pub const IEnumNetCfgComponent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumNetCfgComponent,
-            celt: u32,
-            rgelt: [*]?*INetCfgComponent,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetCfgComponent,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetCfgComponent,
-            ppenum: ?*?*IEnumNetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetCfgComponent, celt: u32, rgelt: [*]?*INetCfgComponent, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetCfgComponent, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetCfgComponent, ppenum: ?*?*IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
-};
-
-const IID_INetCfg_Value = Guid.initString("c0e8ae93-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfg = &IID_INetCfg_Value;
-pub const INetCfg = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const INetCfg,
-            pvReserved: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Uninitialize: *const fn(
-            self: *const INetCfg,
-        ) callconv(.winapi) HRESULT,
-        Apply: *const fn(
-            self: *const INetCfg,
-        ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const INetCfg,
-        ) callconv(.winapi) HRESULT,
-        EnumComponents: *const fn(
-            self: *const INetCfg,
-            pguidClass: ?*const Guid,
-            ppenumComponent: ?*?*IEnumNetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        FindComponent: *const fn(
-            self: *const INetCfg,
-            pszwInfId: ?[*:0]const u16,
-            pComponent: ?*?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        QueryNetCfgClass: *const fn(
-            self: *const INetCfg,
-            pguidClass: ?*const Guid,
-            riid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const INetCfg, pvReserved: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pvReserved);
-    }
-    pub fn Uninitialize(self: *const INetCfg) callconv(.@"inline") HRESULT {
-        return self.vtable.Uninitialize(self);
-    }
-    pub fn Apply(self: *const INetCfg) callconv(.@"inline") HRESULT {
-        return self.vtable.Apply(self);
-    }
-    pub fn Cancel(self: *const INetCfg) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-    pub fn EnumComponents(self: *const INetCfg, pguidClass: ?*const Guid, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumComponents(self, pguidClass, ppenumComponent);
-    }
-    pub fn FindComponent(self: *const INetCfg, pszwInfId: ?[*:0]const u16, pComponent: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.FindComponent(self, pszwInfId, pComponent);
-    }
-    pub fn QueryNetCfgClass(self: *const INetCfg, pguidClass: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryNetCfgClass(self, pguidClass, riid, ppvObject);
-    }
-};
-
-const IID_INetCfgLock_Value = Guid.initString("c0e8ae9f-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgLock = &IID_INetCfgLock_Value;
-pub const INetCfgLock = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AcquireWriteLock: *const fn(
-            self: *const INetCfgLock,
-            cmsTimeout: u32,
-            pszwClientDescription: ?[*:0]const u16,
-            ppszwClientDescription: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        ReleaseWriteLock: *const fn(
-            self: *const INetCfgLock,
-        ) callconv(.winapi) HRESULT,
-        IsWriteLocked: *const fn(
-            self: *const INetCfgLock,
-            ppszwClientDescription: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AcquireWriteLock(self: *const INetCfgLock, cmsTimeout: u32, pszwClientDescription: ?[*:0]const u16, ppszwClientDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AcquireWriteLock(self, cmsTimeout, pszwClientDescription, ppszwClientDescription);
-    }
-    pub fn ReleaseWriteLock(self: *const INetCfgLock) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseWriteLock(self);
-    }
-    pub fn IsWriteLocked(self: *const INetCfgLock, ppszwClientDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.IsWriteLocked(self, ppszwClientDescription);
-    }
-};
-
-const IID_INetCfgBindingInterface_Value = Guid.initString("c0e8ae94-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgBindingInterface = &IID_INetCfgBindingInterface_Value;
-pub const INetCfgBindingInterface = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const INetCfgBindingInterface,
-            ppszwInterfaceName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetUpperComponent: *const fn(
-            self: *const INetCfgBindingInterface,
-            ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        GetLowerComponent: *const fn(
-            self: *const INetCfgBindingInterface,
-            ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const INetCfgBindingInterface, ppszwInterfaceName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, ppszwInterfaceName);
-    }
-    pub fn GetUpperComponent(self: *const INetCfgBindingInterface, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUpperComponent(self, ppnccItem);
-    }
-    pub fn GetLowerComponent(self: *const INetCfgBindingInterface, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLowerComponent(self, ppnccItem);
-    }
-};
-
-const IID_INetCfgBindingPath_Value = Guid.initString("c0e8ae96-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgBindingPath = &IID_INetCfgBindingPath_Value;
-pub const INetCfgBindingPath = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsSamePathAs: *const fn(
-            self: *const INetCfgBindingPath,
-            pPath: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        IsSubPathOf: *const fn(
-            self: *const INetCfgBindingPath,
-            pPath: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        IsEnabled: *const fn(
-            self: *const INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        Enable: *const fn(
-            self: *const INetCfgBindingPath,
-            fEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetPathToken: *const fn(
-            self: *const INetCfgBindingPath,
-            ppszwPathToken: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetOwner: *const fn(
-            self: *const INetCfgBindingPath,
-            ppComponent: ?*?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        GetDepth: *const fn(
-            self: *const INetCfgBindingPath,
-            pcInterfaces: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumBindingInterfaces: *const fn(
-            self: *const INetCfgBindingPath,
-            ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsSamePathAs(self: *const INetCfgBindingPath, pPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSamePathAs(self, pPath);
-    }
-    pub fn IsSubPathOf(self: *const INetCfgBindingPath, pPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSubPathOf(self, pPath);
-    }
-    pub fn IsEnabled(self: *const INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.IsEnabled(self);
-    }
-    pub fn Enable(self: *const INetCfgBindingPath, fEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Enable(self, fEnable);
-    }
-    pub fn GetPathToken(self: *const INetCfgBindingPath, ppszwPathToken: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPathToken(self, ppszwPathToken);
-    }
-    pub fn GetOwner(self: *const INetCfgBindingPath, ppComponent: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOwner(self, ppComponent);
-    }
-    pub fn GetDepth(self: *const INetCfgBindingPath, pcInterfaces: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDepth(self, pcInterfaces);
-    }
-    pub fn EnumBindingInterfaces(self: *const INetCfgBindingPath, ppenumInterface: ?*?*IEnumNetCfgBindingInterface) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumBindingInterfaces(self, ppenumInterface);
-    }
-};
-
-const IID_INetCfgClass_Value = Guid.initString("c0e8ae97-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgClass = &IID_INetCfgClass_Value;
-pub const INetCfgClass = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        FindComponent: *const fn(
-            self: *const INetCfgClass,
-            pszwInfId: ?[*:0]const u16,
-            ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        EnumComponents: *const fn(
-            self: *const INetCfgClass,
-            ppenumComponent: ?*?*IEnumNetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn FindComponent(self: *const INetCfgClass, pszwInfId: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.FindComponent(self, pszwInfId, ppnccItem);
-    }
-    pub fn EnumComponents(self: *const INetCfgClass, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumComponents(self, ppenumComponent);
-    }
-};
-
-pub const OBO_TOKEN_TYPE = enum(i32) {
-    USER = 1,
-    COMPONENT = 2,
-    SOFTWARE = 3,
-};
-pub const OBO_USER = OBO_TOKEN_TYPE.USER;
-pub const OBO_COMPONENT = OBO_TOKEN_TYPE.COMPONENT;
-pub const OBO_SOFTWARE = OBO_TOKEN_TYPE.SOFTWARE;
-
-pub const OBO_TOKEN = extern struct {
-    Type: OBO_TOKEN_TYPE,
-    pncc: ?*INetCfgComponent,
-    pszwManufacturer: ?[*:0]const u16,
-    pszwProduct: ?[*:0]const u16,
-    pszwDisplayName: ?[*:0]const u16,
-    fRegistered: BOOL,
-};
-
-const IID_INetCfgClassSetup_Value = Guid.initString("c0e8ae9d-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgClassSetup = &IID_INetCfgClassSetup_Value;
-pub const INetCfgClassSetup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SelectAndInstall: *const fn(
-            self: *const INetCfgClassSetup,
-            hwndParent: ?HWND,
-            pOboToken: ?*OBO_TOKEN,
-            ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        Install: *const fn(
-            self: *const INetCfgClassSetup,
-            pszwInfId: ?[*:0]const u16,
-            pOboToken: ?*OBO_TOKEN,
-            dwSetupFlags: u32,
-            dwUpgradeFromBuildNo: u32,
-            pszwAnswerFile: ?[*:0]const u16,
-            pszwAnswerSections: ?[*:0]const u16,
-            ppnccItem: ?*?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        DeInstall: *const fn(
-            self: *const INetCfgClassSetup,
-            pComponent: ?*INetCfgComponent,
-            pOboToken: ?*OBO_TOKEN,
-            pmszwRefs: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SelectAndInstall(self: *const INetCfgClassSetup, hwndParent: ?HWND, pOboToken: ?*OBO_TOKEN, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.SelectAndInstall(self, hwndParent, pOboToken, ppnccItem);
-    }
-    pub fn Install(self: *const INetCfgClassSetup, pszwInfId: ?[*:0]const u16, pOboToken: ?*OBO_TOKEN, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.Install(self, pszwInfId, pOboToken, dwSetupFlags, dwUpgradeFromBuildNo, pszwAnswerFile, pszwAnswerSections, ppnccItem);
-    }
-    pub fn DeInstall(self: *const INetCfgClassSetup, pComponent: ?*INetCfgComponent, pOboToken: ?*OBO_TOKEN, pmszwRefs: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeInstall(self, pComponent, pOboToken, pmszwRefs);
-    }
-};
-
-const IID_INetCfgClassSetup2_Value = Guid.initString("c0e8aea0-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgClassSetup2 = &IID_INetCfgClassSetup2_Value;
-pub const INetCfgClassSetup2 = extern union {
-    pub const VTable = extern struct {
-        base: INetCfgClassSetup.VTable,
-        UpdateNonEnumeratedComponent: *const fn(
-            self: *const INetCfgClassSetup2,
-            pIComp: ?*INetCfgComponent,
-            dwSetupFlags: u32,
-            dwUpgradeFromBuildNo: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    INetCfgClassSetup: INetCfgClassSetup,
-    IUnknown: IUnknown,
-    pub fn UpdateNonEnumeratedComponent(self: *const INetCfgClassSetup2, pIComp: ?*INetCfgComponent, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateNonEnumeratedComponent(self, pIComp, dwSetupFlags, dwUpgradeFromBuildNo);
-    }
-};
-
-pub const COMPONENT_CHARACTERISTICS = enum(i32) {
-    VIRTUAL = 1,
-    SOFTWARE_ENUMERATED = 2,
-    PHYSICAL = 4,
-    HIDDEN = 8,
-    NO_SERVICE = 16,
-    NOT_USER_REMOVABLE = 32,
-    MULTIPORT_INSTANCED_ADAPTER = 64,
-    HAS_UI = 128,
-    SINGLE_INSTANCE = 256,
-    FILTER = 1024,
-    DONTEXPOSELOWER = 4096,
-    HIDE_BINDING = 8192,
-    NDIS_PROTOCOL = 16384,
-    FIXED_BINDING = 131072,
-    LW_FILTER = 262144,
-};
-pub const NCF_VIRTUAL = COMPONENT_CHARACTERISTICS.VIRTUAL;
-pub const NCF_SOFTWARE_ENUMERATED = COMPONENT_CHARACTERISTICS.SOFTWARE_ENUMERATED;
-pub const NCF_PHYSICAL = COMPONENT_CHARACTERISTICS.PHYSICAL;
-pub const NCF_HIDDEN = COMPONENT_CHARACTERISTICS.HIDDEN;
-pub const NCF_NO_SERVICE = COMPONENT_CHARACTERISTICS.NO_SERVICE;
-pub const NCF_NOT_USER_REMOVABLE = COMPONENT_CHARACTERISTICS.NOT_USER_REMOVABLE;
-pub const NCF_MULTIPORT_INSTANCED_ADAPTER = COMPONENT_CHARACTERISTICS.MULTIPORT_INSTANCED_ADAPTER;
-pub const NCF_HAS_UI = COMPONENT_CHARACTERISTICS.HAS_UI;
-pub const NCF_SINGLE_INSTANCE = COMPONENT_CHARACTERISTICS.SINGLE_INSTANCE;
-pub const NCF_FILTER = COMPONENT_CHARACTERISTICS.FILTER;
-pub const NCF_DONTEXPOSELOWER = COMPONENT_CHARACTERISTICS.DONTEXPOSELOWER;
-pub const NCF_HIDE_BINDING = COMPONENT_CHARACTERISTICS.HIDE_BINDING;
-pub const NCF_NDIS_PROTOCOL = COMPONENT_CHARACTERISTICS.NDIS_PROTOCOL;
-pub const NCF_FIXED_BINDING = COMPONENT_CHARACTERISTICS.FIXED_BINDING;
-pub const NCF_LW_FILTER = COMPONENT_CHARACTERISTICS.LW_FILTER;
-
-pub const NCRP_FLAGS = enum(i32) {
-    QUERY_PROPERTY_UI = 1,
-    SHOW_PROPERTY_UI = 2,
-};
-pub const NCRP_QUERY_PROPERTY_UI = NCRP_FLAGS.QUERY_PROPERTY_UI;
-pub const NCRP_SHOW_PROPERTY_UI = NCRP_FLAGS.SHOW_PROPERTY_UI;
-
-const IID_INetCfgComponent_Value = Guid.initString("c0e8ae99-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgComponent = &IID_INetCfgComponent_Value;
-pub const INetCfgComponent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDisplayName: *const fn(
-            self: *const INetCfgComponent,
-            ppszwDisplayName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetDisplayName: *const fn(
-            self: *const INetCfgComponent,
-            pszwDisplayName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetHelpText: *const fn(
-            self: *const INetCfgComponent,
-            pszwHelpText: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetId: *const fn(
-            self: *const INetCfgComponent,
-            ppszwId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCharacteristics: *const fn(
-            self: *const INetCfgComponent,
-            pdwCharacteristics: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetInstanceGuid: *const fn(
-            self: *const INetCfgComponent,
-            pGuid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetPnpDevNodeId: *const fn(
-            self: *const INetCfgComponent,
-            ppszwDevNodeId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetClassGuid: *const fn(
-            self: *const INetCfgComponent,
-            pGuid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetBindName: *const fn(
-            self: *const INetCfgComponent,
-            ppszwBindName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceStatus: *const fn(
-            self: *const INetCfgComponent,
-            pulStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        OpenParamKey: *const fn(
-            self: *const INetCfgComponent,
-            phkey: ?*?HKEY,
-        ) callconv(.winapi) HRESULT,
-        RaisePropertyUi: *const fn(
-            self: *const INetCfgComponent,
-            hwndParent: ?HWND,
-            dwFlags: u32,
-            punkContext: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDisplayName(self: *const INetCfgComponent, ppszwDisplayName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDisplayName(self, ppszwDisplayName);
-    }
-    pub fn SetDisplayName(self: *const INetCfgComponent, pszwDisplayName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDisplayName(self, pszwDisplayName);
-    }
-    pub fn GetHelpText(self: *const INetCfgComponent, pszwHelpText: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHelpText(self, pszwHelpText);
-    }
-    pub fn GetId(self: *const INetCfgComponent, ppszwId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetId(self, ppszwId);
-    }
-    pub fn GetCharacteristics(self: *const INetCfgComponent, pdwCharacteristics: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCharacteristics(self, pdwCharacteristics);
-    }
-    pub fn GetInstanceGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInstanceGuid(self, pGuid);
-    }
-    pub fn GetPnpDevNodeId(self: *const INetCfgComponent, ppszwDevNodeId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPnpDevNodeId(self, ppszwDevNodeId);
-    }
-    pub fn GetClassGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClassGuid(self, pGuid);
-    }
-    pub fn GetBindName(self: *const INetCfgComponent, ppszwBindName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBindName(self, ppszwBindName);
-    }
-    pub fn GetDeviceStatus(self: *const INetCfgComponent, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceStatus(self, pulStatus);
-    }
-    pub fn OpenParamKey(self: *const INetCfgComponent, phkey: ?*?HKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenParamKey(self, phkey);
-    }
-    pub fn RaisePropertyUi(self: *const INetCfgComponent, hwndParent: ?HWND, dwFlags: u32, punkContext: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.RaisePropertyUi(self, hwndParent, dwFlags, punkContext);
-    }
-};
-
-pub const SUPPORTS_BINDING_INTERFACE_FLAGS = enum(i32) {
-    LOWER = 1,
-    UPPER = 2,
-};
-pub const NCF_LOWER = SUPPORTS_BINDING_INTERFACE_FLAGS.LOWER;
-pub const NCF_UPPER = SUPPORTS_BINDING_INTERFACE_FLAGS.UPPER;
-
-pub const ENUM_BINDING_PATHS_FLAGS = enum(i32) {
-    ABOVE = 1,
-    BELOW = 2,
-};
-pub const EBP_ABOVE = ENUM_BINDING_PATHS_FLAGS.ABOVE;
-pub const EBP_BELOW = ENUM_BINDING_PATHS_FLAGS.BELOW;
-
-const IID_INetCfgComponentBindings_Value = Guid.initString("c0e8ae9e-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgComponentBindings = &IID_INetCfgComponentBindings_Value;
-pub const INetCfgComponentBindings = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BindTo: *const fn(
-            self: *const INetCfgComponentBindings,
-            pnccItem: ?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        UnbindFrom: *const fn(
-            self: *const INetCfgComponentBindings,
-            pnccItem: ?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        SupportsBindingInterface: *const fn(
-            self: *const INetCfgComponentBindings,
-            dwFlags: u32,
-            pszwInterfaceName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        IsBoundTo: *const fn(
-            self: *const INetCfgComponentBindings,
-            pnccItem: ?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        IsBindableTo: *const fn(
-            self: *const INetCfgComponentBindings,
-            pnccItem: ?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-        EnumBindingPaths: *const fn(
-            self: *const INetCfgComponentBindings,
-            dwFlags: u32,
-            ppIEnum: ?*?*IEnumNetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        MoveBefore: *const fn(
-            self: *const INetCfgComponentBindings,
-            pncbItemSrc: ?*INetCfgBindingPath,
-            pncbItemDest: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        MoveAfter: *const fn(
-            self: *const INetCfgComponentBindings,
-            pncbItemSrc: ?*INetCfgBindingPath,
-            pncbItemDest: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn BindTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.BindTo(self, pnccItem);
-    }
-    pub fn UnbindFrom(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.UnbindFrom(self, pnccItem);
-    }
-    pub fn SupportsBindingInterface(self: *const INetCfgComponentBindings, dwFlags: u32, pszwInterfaceName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SupportsBindingInterface(self, dwFlags, pszwInterfaceName);
-    }
-    pub fn IsBoundTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.IsBoundTo(self, pnccItem);
-    }
-    pub fn IsBindableTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.IsBindableTo(self, pnccItem);
-    }
-    pub fn EnumBindingPaths(self: *const INetCfgComponentBindings, dwFlags: u32, ppIEnum: ?*?*IEnumNetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumBindingPaths(self, dwFlags, ppIEnum);
-    }
-    pub fn MoveBefore(self: *const INetCfgComponentBindings, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveBefore(self, pncbItemSrc, pncbItemDest);
-    }
-    pub fn MoveAfter(self: *const INetCfgComponentBindings, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveAfter(self, pncbItemSrc, pncbItemDest);
-    }
-};
-
-const IID_INetCfgSysPrep_Value = Guid.initString("c0e8ae98-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgSysPrep = &IID_INetCfgSysPrep_Value;
-pub const INetCfgSysPrep = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HrSetupSetFirstDword: *const fn(
-            self: *const INetCfgSysPrep,
-            pwszSection: ?[*:0]const u16,
-            pwszKey: ?[*:0]const u16,
-            dwValue: u32,
-        ) callconv(.winapi) HRESULT,
-        HrSetupSetFirstString: *const fn(
-            self: *const INetCfgSysPrep,
-            pwszSection: ?[*:0]const u16,
-            pwszKey: ?[*:0]const u16,
-            pwszValue: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        HrSetupSetFirstStringAsBool: *const fn(
-            self: *const INetCfgSysPrep,
-            pwszSection: ?[*:0]const u16,
-            pwszKey: ?[*:0]const u16,
-            fValue: BOOL,
-        ) callconv(.winapi) HRESULT,
-        HrSetupSetFirstMultiSzField: *const fn(
-            self: *const INetCfgSysPrep,
-            pwszSection: ?[*:0]const u16,
-            pwszKey: ?[*:0]const u16,
-            pmszValue: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HrSetupSetFirstDword(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, dwValue: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.HrSetupSetFirstDword(self, pwszSection, pwszKey, dwValue);
-    }
-    pub fn HrSetupSetFirstString(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.HrSetupSetFirstString(self, pwszSection, pwszKey, pwszValue);
-    }
-    pub fn HrSetupSetFirstStringAsBool(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, fValue: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.HrSetupSetFirstStringAsBool(self, pwszSection, pwszKey, fValue);
-    }
-    pub fn HrSetupSetFirstMultiSzField(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pmszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.HrSetupSetFirstMultiSzField(self, pwszSection, pwszKey, pmszValue);
-    }
-};
-
-pub const NCPNP_RECONFIG_LAYER = enum(i32) {
-    NDIS = 1,
-    TDI = 2,
-};
-pub const NCRL_NDIS = NCPNP_RECONFIG_LAYER.NDIS;
-pub const NCRL_TDI = NCPNP_RECONFIG_LAYER.TDI;
-
-const IID_INetCfgPnpReconfigCallback_Value = Guid.initString("8d84bd35-e227-11d2-b700-00a0c98a6a85");
-pub const IID_INetCfgPnpReconfigCallback = &IID_INetCfgPnpReconfigCallback_Value;
-pub const INetCfgPnpReconfigCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SendPnpReconfig: *const fn(
-            self: *const INetCfgPnpReconfigCallback,
-            Layer: NCPNP_RECONFIG_LAYER,
-            pszwUpper: ?[*:0]const u16,
-            pszwLower: ?[*:0]const u16,
-            // TODO: what to do with BytesParamIndex 4?
-            pvData: ?*anyopaque,
-            dwSizeOfData: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SendPnpReconfig(self: *const INetCfgPnpReconfigCallback, Layer: NCPNP_RECONFIG_LAYER, pszwUpper: ?[*:0]const u16, pszwLower: ?[*:0]const u16, pvData: ?*anyopaque, dwSizeOfData: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SendPnpReconfig(self, Layer, pszwUpper, pszwLower, pvData, dwSizeOfData);
-    }
-};
-
-const IID_INetCfgComponentControl_Value = Guid.initString("932238df-bea1-11d0-9298-00c04fc99dcf");
-pub const IID_INetCfgComponentControl = &IID_INetCfgComponentControl_Value;
-pub const INetCfgComponentControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const INetCfgComponentControl,
-            pIComp: ?*INetCfgComponent,
-            pINetCfg: ?*INetCfg,
-            fInstalling: BOOL,
-        ) callconv(.winapi) HRESULT,
-        ApplyRegistryChanges: *const fn(
-            self: *const INetCfgComponentControl,
-        ) callconv(.winapi) HRESULT,
-        ApplyPnpChanges: *const fn(
-            self: *const INetCfgComponentControl,
-            pICallback: ?*INetCfgPnpReconfigCallback,
-        ) callconv(.winapi) HRESULT,
-        CancelChanges: *const fn(
-            self: *const INetCfgComponentControl,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const INetCfgComponentControl, pIComp: ?*INetCfgComponent, pINetCfg: ?*INetCfg, fInstalling: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pIComp, pINetCfg, fInstalling);
-    }
-    pub fn ApplyRegistryChanges(self: *const INetCfgComponentControl) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplyRegistryChanges(self);
-    }
-    pub fn ApplyPnpChanges(self: *const INetCfgComponentControl, pICallback: ?*INetCfgPnpReconfigCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplyPnpChanges(self, pICallback);
-    }
-    pub fn CancelChanges(self: *const INetCfgComponentControl) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelChanges(self);
-    }
-};
-
-pub const NETWORK_INSTALL_TIME = enum(i32) {
-    RIMARYINSTALL = 1,
-    OSTSYSINSTALL = 2,
-};
-pub const NSF_PRIMARYINSTALL = NETWORK_INSTALL_TIME.RIMARYINSTALL;
-pub const NSF_POSTSYSINSTALL = NETWORK_INSTALL_TIME.OSTSYSINSTALL;
-
-pub const NETWORK_UPGRADE_TYPE = enum(i32) {
-    WIN16_UPGRADE = 16,
-    WIN95_UPGRADE = 32,
-    WINNT_WKS_UPGRADE = 64,
-    WINNT_SVR_UPGRADE = 128,
-    WINNT_SBS_UPGRADE = 256,
-    COMPONENT_UPDATE = 512,
-};
-pub const NSF_WIN16_UPGRADE = NETWORK_UPGRADE_TYPE.WIN16_UPGRADE;
-pub const NSF_WIN95_UPGRADE = NETWORK_UPGRADE_TYPE.WIN95_UPGRADE;
-pub const NSF_WINNT_WKS_UPGRADE = NETWORK_UPGRADE_TYPE.WINNT_WKS_UPGRADE;
-pub const NSF_WINNT_SVR_UPGRADE = NETWORK_UPGRADE_TYPE.WINNT_SVR_UPGRADE;
-pub const NSF_WINNT_SBS_UPGRADE = NETWORK_UPGRADE_TYPE.WINNT_SBS_UPGRADE;
-pub const NSF_COMPONENT_UPDATE = NETWORK_UPGRADE_TYPE.COMPONENT_UPDATE;
-
-const IID_INetCfgComponentSetup_Value = Guid.initString("932238e3-bea1-11d0-9298-00c04fc99dcf");
-pub const IID_INetCfgComponentSetup = &IID_INetCfgComponentSetup_Value;
-pub const INetCfgComponentSetup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Install: *const fn(
-            self: *const INetCfgComponentSetup,
-            dwSetupFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        Upgrade: *const fn(
-            self: *const INetCfgComponentSetup,
-            dwSetupFlags: u32,
-            dwUpgradeFomBuildNo: u32,
-        ) callconv(.winapi) HRESULT,
-        ReadAnswerFile: *const fn(
-            self: *const INetCfgComponentSetup,
-            pszwAnswerFile: ?[*:0]const u16,
-            pszwAnswerSections: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Removing: *const fn(
-            self: *const INetCfgComponentSetup,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Install(self: *const INetCfgComponentSetup, dwSetupFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Install(self, dwSetupFlags);
-    }
-    pub fn Upgrade(self: *const INetCfgComponentSetup, dwSetupFlags: u32, dwUpgradeFomBuildNo: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Upgrade(self, dwSetupFlags, dwUpgradeFomBuildNo);
-    }
-    pub fn ReadAnswerFile(self: *const INetCfgComponentSetup, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadAnswerFile(self, pszwAnswerFile, pszwAnswerSections);
-    }
-    pub fn Removing(self: *const INetCfgComponentSetup) callconv(.@"inline") HRESULT {
-        return self.vtable.Removing(self);
-    }
-};
-
-pub const DEFAULT_PAGES = enum(i32) {
-    D = 1,
-};
-pub const DPP_ADVANCED = DEFAULT_PAGES.D;
-
-const IID_INetCfgComponentPropertyUi_Value = Guid.initString("932238e0-bea1-11d0-9298-00c04fc99dcf");
-pub const IID_INetCfgComponentPropertyUi = &IID_INetCfgComponentPropertyUi_Value;
-pub const INetCfgComponentPropertyUi = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryPropertyUi: *const fn(
-            self: *const INetCfgComponentPropertyUi,
-            pUnkReserved: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        SetContext: *const fn(
-            self: *const INetCfgComponentPropertyUi,
-            pUnkReserved: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        MergePropPages: *const fn(
-            self: *const INetCfgComponentPropertyUi,
-            pdwDefPages: ?*u32,
-            pahpspPrivate: ?*?*u8,
-            pcPages: ?*u32,
-            hwndParent: ?HWND,
-            pszStartPage: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        ValidateProperties: *const fn(
-            self: *const INetCfgComponentPropertyUi,
-            hwndSheet: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        ApplyProperties: *const fn(
-            self: *const INetCfgComponentPropertyUi,
-        ) callconv(.winapi) HRESULT,
-        CancelProperties: *const fn(
-            self: *const INetCfgComponentPropertyUi,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryPropertyUi(self: *const INetCfgComponentPropertyUi, pUnkReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryPropertyUi(self, pUnkReserved);
-    }
-    pub fn SetContext(self: *const INetCfgComponentPropertyUi, pUnkReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetContext(self, pUnkReserved);
-    }
-    pub fn MergePropPages(self: *const INetCfgComponentPropertyUi, pdwDefPages: ?*u32, pahpspPrivate: ?*?*u8, pcPages: ?*u32, hwndParent: ?HWND, pszStartPage: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.MergePropPages(self, pdwDefPages, pahpspPrivate, pcPages, hwndParent, pszStartPage);
-    }
-    pub fn ValidateProperties(self: *const INetCfgComponentPropertyUi, hwndSheet: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.ValidateProperties(self, hwndSheet);
-    }
-    pub fn ApplyProperties(self: *const INetCfgComponentPropertyUi) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplyProperties(self);
-    }
-    pub fn CancelProperties(self: *const INetCfgComponentPropertyUi) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelProperties(self);
-    }
-};
-
-pub const BIND_FLAGS1 = enum(i32) {
-    ADD = 1,
-    REMOVE = 2,
-    UPDATE = 4,
-    ENABLE = 16,
-    DISABLE = 32,
-    BINDING_PATH = 256,
-    PROPERTYCHANGE = 512,
-    NET = 65536,
-    NETTRANS = 131072,
-    NETCLIENT = 262144,
-    NETSERVICE = 524288,
-};
-pub const NCN_ADD = BIND_FLAGS1.ADD;
-pub const NCN_REMOVE = BIND_FLAGS1.REMOVE;
-pub const NCN_UPDATE = BIND_FLAGS1.UPDATE;
-pub const NCN_ENABLE = BIND_FLAGS1.ENABLE;
-pub const NCN_DISABLE = BIND_FLAGS1.DISABLE;
-pub const NCN_BINDING_PATH = BIND_FLAGS1.BINDING_PATH;
-pub const NCN_PROPERTYCHANGE = BIND_FLAGS1.PROPERTYCHANGE;
-pub const NCN_NET = BIND_FLAGS1.NET;
-pub const NCN_NETTRANS = BIND_FLAGS1.NETTRANS;
-pub const NCN_NETCLIENT = BIND_FLAGS1.NETCLIENT;
-pub const NCN_NETSERVICE = BIND_FLAGS1.NETSERVICE;
-
-const IID_INetCfgComponentNotifyBinding_Value = Guid.initString("932238e1-bea1-11d0-9298-00c04fc99dcf");
-pub const IID_INetCfgComponentNotifyBinding = &IID_INetCfgComponentNotifyBinding_Value;
-pub const INetCfgComponentNotifyBinding = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryBindingPath: *const fn(
-            self: *const INetCfgComponentNotifyBinding,
-            dwChangeFlag: u32,
-            pIPath: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        NotifyBindingPath: *const fn(
-            self: *const INetCfgComponentNotifyBinding,
-            dwChangeFlag: u32,
-            pIPath: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryBindingPath(self: *const INetCfgComponentNotifyBinding, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryBindingPath(self, dwChangeFlag, pIPath);
-    }
-    pub fn NotifyBindingPath(self: *const INetCfgComponentNotifyBinding, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.NotifyBindingPath(self, dwChangeFlag, pIPath);
-    }
-};
-
-const IID_INetCfgComponentNotifyGlobal_Value = Guid.initString("932238e2-bea1-11d0-9298-00c04fc99dcf");
-pub const IID_INetCfgComponentNotifyGlobal = &IID_INetCfgComponentNotifyGlobal_Value;
-pub const INetCfgComponentNotifyGlobal = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSupportedNotifications: *const fn(
-            self: *const INetCfgComponentNotifyGlobal,
-            dwNotifications: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SysQueryBindingPath: *const fn(
-            self: *const INetCfgComponentNotifyGlobal,
-            dwChangeFlag: u32,
-            pIPath: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        SysNotifyBindingPath: *const fn(
-            self: *const INetCfgComponentNotifyGlobal,
-            dwChangeFlag: u32,
-            pIPath: ?*INetCfgBindingPath,
-        ) callconv(.winapi) HRESULT,
-        SysNotifyComponent: *const fn(
-            self: *const INetCfgComponentNotifyGlobal,
-            dwChangeFlag: u32,
-            pIComp: ?*INetCfgComponent,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSupportedNotifications(self: *const INetCfgComponentNotifyGlobal, dwNotifications: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSupportedNotifications(self, dwNotifications);
-    }
-    pub fn SysQueryBindingPath(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.SysQueryBindingPath(self, dwChangeFlag, pIPath);
-    }
-    pub fn SysNotifyBindingPath(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.@"inline") HRESULT {
-        return self.vtable.SysNotifyBindingPath(self, dwChangeFlag, pIPath);
-    }
-    pub fn SysNotifyComponent(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIComp: ?*INetCfgComponent) callconv(.@"inline") HRESULT {
-        return self.vtable.SysNotifyComponent(self, dwChangeFlag, pIComp);
-    }
-};
-
-const IID_INetCfgComponentUpperEdge_Value = Guid.initString("932238e4-bea1-11d0-9298-00c04fc99dcf");
-pub const IID_INetCfgComponentUpperEdge = &IID_INetCfgComponentUpperEdge_Value;
-pub const INetCfgComponentUpperEdge = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInterfaceIdsForAdapter: *const fn(
-            self: *const INetCfgComponentUpperEdge,
-            pAdapter: ?*INetCfgComponent,
-            pdwNumInterfaces: ?*u32,
-            ppguidInterfaceIds: ?[*]?*Guid,
-        ) callconv(.winapi) HRESULT,
-        AddInterfacesToAdapter: *const fn(
-            self: *const INetCfgComponentUpperEdge,
-            pAdapter: ?*INetCfgComponent,
-            dwNumInterfaces: u32,
-        ) callconv(.winapi) HRESULT,
-        RemoveInterfacesFromAdapter: *const fn(
-            self: *const INetCfgComponentUpperEdge,
-            pAdapter: ?*INetCfgComponent,
-            dwNumInterfaces: u32,
-            pguidInterfaceIds: [*]const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetInterfaceIdsForAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, pdwNumInterfaces: ?*u32, ppguidInterfaceIds: ?[*]?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInterfaceIdsForAdapter(self, pAdapter, pdwNumInterfaces, ppguidInterfaceIds);
-    }
-    pub fn AddInterfacesToAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddInterfacesToAdapter(self, pAdapter, dwNumInterfaces);
-    }
-    pub fn RemoveInterfacesFromAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32, pguidInterfaceIds: [*]const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveInterfacesFromAdapter(self, pAdapter, dwNumInterfaces, pguidInterfaceIds);
-    }
-};
-
-const IID_INetLanConnectionUiInfo_Value = Guid.initString("c08956a6-1cd3-11d1-b1c5-00805fc1270e");
-pub const IID_INetLanConnectionUiInfo = &IID_INetLanConnectionUiInfo_Value;
-pub const INetLanConnectionUiInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDeviceGuid: *const fn(
-            self: *const INetLanConnectionUiInfo,
-            pguid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDeviceGuid(self: *const INetLanConnectionUiInfo, pguid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceGuid(self, pguid);
-    }
-};
-
-pub const tagRASCON_IPUI_FLAGS = enum(i32) {
-    VPN = 1,
-    DEMAND_DIAL = 2,
-    NOT_ADMIN = 4,
-    USE_IPv4_STATICADDRESS = 8,
-    USE_IPv4_NAME_SERVERS = 16,
-    USE_IPv4_REMOTE_GATEWAY = 32,
-    USE_IPv4_EXPLICIT_METRIC = 64,
-    USE_HEADER_COMPRESSION = 128,
-    USE_DISABLE_REGISTER_DNS = 256,
-    USE_PRIVATE_DNS_SUFFIX = 512,
-    ENABLE_NBT = 1024,
-    USE_IPv6_STATICADDRESS = 2048,
-    USE_IPv6_NAME_SERVERS = 4096,
-    USE_IPv6_REMOTE_GATEWAY = 8192,
-    USE_IPv6_EXPLICIT_METRIC = 16384,
-    DISABLE_CLASS_BASED_ROUTE = 32768,
-};
-pub const RCUIF_VPN = tagRASCON_IPUI_FLAGS.VPN;
-pub const RCUIF_DEMAND_DIAL = tagRASCON_IPUI_FLAGS.DEMAND_DIAL;
-pub const RCUIF_NOT_ADMIN = tagRASCON_IPUI_FLAGS.NOT_ADMIN;
-pub const RCUIF_USE_IPv4_STATICADDRESS = tagRASCON_IPUI_FLAGS.USE_IPv4_STATICADDRESS;
-pub const RCUIF_USE_IPv4_NAME_SERVERS = tagRASCON_IPUI_FLAGS.USE_IPv4_NAME_SERVERS;
-pub const RCUIF_USE_IPv4_REMOTE_GATEWAY = tagRASCON_IPUI_FLAGS.USE_IPv4_REMOTE_GATEWAY;
-pub const RCUIF_USE_IPv4_EXPLICIT_METRIC = tagRASCON_IPUI_FLAGS.USE_IPv4_EXPLICIT_METRIC;
-pub const RCUIF_USE_HEADER_COMPRESSION = tagRASCON_IPUI_FLAGS.USE_HEADER_COMPRESSION;
-pub const RCUIF_USE_DISABLE_REGISTER_DNS = tagRASCON_IPUI_FLAGS.USE_DISABLE_REGISTER_DNS;
-pub const RCUIF_USE_PRIVATE_DNS_SUFFIX = tagRASCON_IPUI_FLAGS.USE_PRIVATE_DNS_SUFFIX;
-pub const RCUIF_ENABLE_NBT = tagRASCON_IPUI_FLAGS.ENABLE_NBT;
-pub const RCUIF_USE_IPv6_STATICADDRESS = tagRASCON_IPUI_FLAGS.USE_IPv6_STATICADDRESS;
-pub const RCUIF_USE_IPv6_NAME_SERVERS = tagRASCON_IPUI_FLAGS.USE_IPv6_NAME_SERVERS;
-pub const RCUIF_USE_IPv6_REMOTE_GATEWAY = tagRASCON_IPUI_FLAGS.USE_IPv6_REMOTE_GATEWAY;
-pub const RCUIF_USE_IPv6_EXPLICIT_METRIC = tagRASCON_IPUI_FLAGS.USE_IPv6_EXPLICIT_METRIC;
-pub const RCUIF_DISABLE_CLASS_BASED_ROUTE = tagRASCON_IPUI_FLAGS.DISABLE_CLASS_BASED_ROUTE;
-
-pub const RASCON_IPUI = extern struct {
-    guidConnection: Guid,
-    fIPv6Cfg: BOOL,
-    dwFlags: u32,
-    pszwIpAddr: [16]u16,
-    pszwDnsAddr: [16]u16,
-    pszwDns2Addr: [16]u16,
-    pszwWinsAddr: [16]u16,
-    pszwWins2Addr: [16]u16,
-    pszwDnsSuffix: [256]u16,
-    pszwIpv6Addr: [65]u16,
-    dwIpv6PrefixLength: u32,
-    pszwIpv6DnsAddr: [65]u16,
-    pszwIpv6Dns2Addr: [65]u16,
-    dwIPv4InfMetric: u32,
-    dwIPv6InfMetric: u32,
-};
-
-const IID_INetRasConnectionIpUiInfo_Value = Guid.initString("faedcf58-31fe-11d1-aad2-00805fc1270e");
-pub const IID_INetRasConnectionIpUiInfo = &IID_INetRasConnectionIpUiInfo_Value;
-pub const INetRasConnectionIpUiInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetUiInfo: *const fn(
-            self: *const INetRasConnectionIpUiInfo,
-            pInfo: ?*RASCON_IPUI,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetUiInfo(self: *const INetRasConnectionIpUiInfo, pInfo: ?*RASCON_IPUI) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUiInfo(self, pInfo);
-    }
-};
-
-const IID_INetCfgComponentSysPrep_Value = Guid.initString("c0e8ae9a-306e-11d1-aacf-00805fc1270e");
-pub const IID_INetCfgComponentSysPrep = &IID_INetCfgComponentSysPrep_Value;
-pub const INetCfgComponentSysPrep = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SaveAdapterParameters: *const fn(
-            self: *const INetCfgComponentSysPrep,
-            pncsp: ?*INetCfgSysPrep,
-            pszwAnswerSections: ?[*:0]const u16,
-            pAdapterInstanceGuid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        RestoreAdapterParameters: *const fn(
-            self: *const INetCfgComponentSysPrep,
-            pszwAnswerFile: ?[*:0]const u16,
-            pszwAnswerSection: ?[*:0]const u16,
-            pAdapterInstanceGuid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SaveAdapterParameters(self: *const INetCfgComponentSysPrep, pncsp: ?*INetCfgSysPrep, pszwAnswerSections: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveAdapterParameters(self, pncsp, pszwAnswerSections, pAdapterInstanceGuid);
-    }
-    pub fn RestoreAdapterParameters(self: *const INetCfgComponentSysPrep, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSection: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreAdapterParameters(self, pszwAnswerFile, pszwAnswerSection, pAdapterInstanceGuid);
-    }
-};
-
-const CLSID_NetProvisioning_Value = Guid.initString("2aa2b5fe-b846-4d07-810c-b21ee45320e3");
-pub const CLSID_NetProvisioning = &CLSID_NetProvisioning_Value;
-
-const IID_IProvisioningDomain_Value = Guid.initString("c96fbd50-24dd-11d8-89fb-00904b2ea9c6");
-pub const IID_IProvisioningDomain = &IID_IProvisioningDomain_Value;
-pub const IProvisioningDomain = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Add: *const fn(
-            self: *const IProvisioningDomain,
-            pszwPathToFolder: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Query: *const fn(
-            self: *const IProvisioningDomain,
-            pszwDomain: ?[*:0]const u16,
-            pszwLanguage: ?[*:0]const u16,
-            pszwXPathQuery: ?[*:0]const u16,
-            Nodes: ?*?*IXMLDOMNodeList,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Add(self: *const IProvisioningDomain, pszwPathToFolder: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, pszwPathToFolder);
-    }
-    pub fn Query(self: *const IProvisioningDomain, pszwDomain: ?[*:0]const u16, pszwLanguage: ?[*:0]const u16, pszwXPathQuery: ?[*:0]const u16, Nodes: ?*?*IXMLDOMNodeList) callconv(.@"inline") HRESULT {
-        return self.vtable.Query(self, pszwDomain, pszwLanguage, pszwXPathQuery, Nodes);
-    }
-};
-
-const IID_IProvisioningProfileWireless_Value = Guid.initString("c96fbd51-24dd-11d8-89fb-00904b2ea9c6");
-pub const IID_IProvisioningProfileWireless = &IID_IProvisioningProfileWireless_Value;
-pub const IProvisioningProfileWireless = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateProfile: *const fn(
-            self: *const IProvisioningProfileWireless,
-            bstrXMLWirelessConfigProfile: ?BSTR,
-            bstrXMLConnectionConfigProfile: ?BSTR,
-            pAdapterInstanceGuid: ?*Guid,
-            pulStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateProfile(self: *const IProvisioningProfileWireless, bstrXMLWirelessConfigProfile: ?BSTR, bstrXMLConnectionConfigProfile: ?BSTR, pAdapterInstanceGuid: ?*Guid, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateProfile(self, bstrXMLWirelessConfigProfile, bstrXMLConnectionConfigProfile, pAdapterInstanceGuid, pulStatus);
-    }
-};
-
-pub const RTR_TOC_ENTRY = extern struct {
-    InfoType: u32,
-    InfoSize: u32,
-    Count: u32,
-    Offset: u32,
-};
-
-pub const RTR_INFO_BLOCK_HEADER = extern struct {
-    Version: u32,
-    Size: u32,
-    TocEntriesCount: u32,
-    TocEntry: [1]RTR_TOC_ENTRY,
-};
-
 pub const WORKERFUNCTION = *const fn(
     param0: ?*anyopaque,
 ) callconv(.winapi) void;
-
-pub const MPR_PROTOCOL_0 = extern struct {
-    dwProtocolId: u32,
-    wszProtocol: [41]u16,
-    wszDLLName: [49]u16,
-};
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (175)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserAdd(
-    servername: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "mstask" fn GetNetScheduleAccountInformation(
+    pwszServerName: ?[*:0]const u16,
+    ccAccount: u32,
+    wszAccount: [*:0]u16,
+) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserEnum(
-    servername: ?[*:0]const u16,
-    level: u32,
-    filter: NET_USER_ENUM_FILTER_FLAGS,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-    resume_handle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netapi32" fn NetUserGetInfo(
-    servername: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserSetInfo(
-    servername: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserDel(
-    servername: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserGetGroups(
-    servername: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserSetGroups(
-    servername: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    num_entries: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserGetLocalGroups(
-    servername: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-    level: u32,
-    flags: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserModalsGet(
-    servername: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserModalsSet(
-    servername: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUserChangePassword(
-    domainname: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-    oldpassword: ?[*:0]const u16,
-    newpassword: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupAdd(
-    servername: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupAddUser(
-    servername: ?[*:0]const u16,
-    GroupName: ?[*:0]const u16,
-    username: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupEnum(
-    servername: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-    resume_handle: ?*usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupGetInfo(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupSetInfo(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupDel(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupDelUser(
-    servername: ?[*:0]const u16,
-    GroupName: ?[*:0]const u16,
-    Username: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupGetUsers(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-    ResumeHandle: ?*usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGroupSetUsers(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    totalentries: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupAdd(
-    servername: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetLocalGroupAddMember(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    membersid: ?PSID,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupEnum(
-    servername: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-    resumehandle: ?*usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupGetInfo(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupSetInfo(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupDel(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetLocalGroupDelMember(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    membersid: ?PSID,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupGetMembers(
-    servername: ?[*:0]const u16,
-    localgroupname: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-    resumehandle: ?*usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupSetMembers(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    totalentries: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupAddMembers(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    totalentries: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetLocalGroupDelMembers(
-    servername: ?[*:0]const u16,
-    groupname: ?[*:0]const u16,
-    level: u32,
-    buf: ?*u8,
-    totalentries: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetQueryDisplayInformation(
+pub extern "netapi32" fn I_NetLogonControl2(
     ServerName: ?[*:0]const u16,
-    Level: u32,
-    Index: u32,
-    EntriesRequested: u32,
-    PreferredMaximumLength: u32,
-    ReturnedEntryCount: ?*u32,
-    SortedBuffer: ?*?*anyopaque,
+    FunctionCode: u32,
+    QueryLevel: u32,
+    Data: ?*u8,
+    Buffer: ?*?*u8,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGetDisplayInformationIndex(
-    ServerName: ?[*:0]const u16,
-    Level: u32,
-    Prefix: ?[*:0]const u16,
-    Index: ?*u32,
+pub extern "rtutils" fn LogErrorA(
+    dwMessageId: u32,
+    cNumberOfSubStrings: u32,
+    plpwsSubStrings: [*]?PSTR,
+    dwErrorCode: u32,
+) callconv(.winapi) void;
+
+pub extern "rtutils" fn LogErrorW(
+    dwMessageId: u32,
+    cNumberOfSubStrings: u32,
+    plpwsSubStrings: [*]?PWSTR,
+    dwErrorCode: u32,
+) callconv(.winapi) void;
+
+pub extern "rtutils" fn LogEventA(
+    wEventType: u32,
+    dwMessageId: u32,
+    cNumberOfSubStrings: u32,
+    plpwsSubStrings: [*]?PSTR,
+) callconv(.winapi) void;
+
+pub extern "rtutils" fn LogEventW(
+    wEventType: u32,
+    dwMessageId: u32,
+    cNumberOfSubStrings: u32,
+    plpwsSubStrings: [*]?PWSTR,
+) callconv(.winapi) void;
+
+pub extern "rtutils" fn MprSetupProtocolEnum(
+    dwTransportId: u32,
+    lplpBuffer: ?*?*u8,
+    lpdwEntriesRead: ?*u32,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn MprSetupProtocolFree(
+    lpBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5957,6 +5723,12 @@ pub extern "netapi32" fn NetAccessAdd(
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetAccessDel(
+    servername: ?[*:0]const u16,
+    resource: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5981,6 +5753,14 @@ pub extern "netapi32" fn NetAccessGetInfo(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetAccessGetUserPerms(
+    servername: ?[*:0]const u16,
+    UGname: ?[*:0]const u16,
+    resource: ?[*:0]const u16,
+    Perms: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetAccessSetInfo(
     servername: ?[*:0]const u16,
     resource: ?[*:0]const u16,
@@ -5989,54 +5769,13 @@ pub extern "netapi32" fn NetAccessSetInfo(
     parm_err: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetAccessDel(
-    servername: ?[*:0]const u16,
-    resource: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetAccessGetUserPerms(
-    servername: ?[*:0]const u16,
-    UGname: ?[*:0]const u16,
-    resource: ?[*:0]const u16,
-    Perms: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "netapi32" fn NetValidatePasswordPolicy(
-    ServerName: ?[*:0]const u16,
-    Qualifier: ?*anyopaque,
-    ValidationType: NET_VALIDATE_PASSWORD_TYPE,
-    InputArg: ?*anyopaque,
-    OutputArg: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "netapi32" fn NetValidatePasswordPolicyFree(
-    OutputArg: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGetDCName(
-    ServerName: ?[*:0]const u16,
-    DomainName: ?[*:0]const u16,
-    Buffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGetAnyDCName(
-    ServerName: ?[*:0]const u16,
-    DomainName: ?[*:0]const u16,
-    Buffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn I_NetLogonControl2(
-    ServerName: ?[*:0]const u16,
-    FunctionCode: u32,
-    QueryLevel: u32,
-    Data: ?*u8,
-    Buffer: ?*?*u8,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "netapi32" fn NetAddAlternateComputerName(
+    Server: ?[*:0]const u16,
+    AlternateName: ?[*:0]const u16,
+    DomainAccount: ?[*:0]const u16,
+    DomainAccountPassword: ?[*:0]const u16,
+    Reserved: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6045,36 +5784,6 @@ pub extern "netapi32" fn NetAddServiceAccount(
     AccountName: ?PWSTR,
     Password: ?PWSTR,
     Flags: u32,
-) callconv(.winapi) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "netapi32" fn NetRemoveServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: ?PWSTR,
-    Flags: u32,
-) callconv(.winapi) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "netapi32" fn NetEnumerateServiceAccounts(
-    ServerName: ?PWSTR,
-    Flags: u32,
-    AccountsCount: ?*u32,
-    Accounts: ?*?*?*u16,
-) callconv(.winapi) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "netapi32" fn NetIsServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: ?PWSTR,
-    IsService: ?*BOOL,
-) callconv(.winapi) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "netapi32" fn NetQueryServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: ?PWSTR,
-    InfoLevel: u32,
-    Buffer: ?*?*u8,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6093,7 +5802,390 @@ pub extern "netapi32" fn NetAlertRaiseEx(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetApiBufferAllocate(
+    ByteCount: u32,
+    Buffer: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetApiBufferFree(
+    Buffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetApiBufferReallocate(
+    OldBuffer: ?*anyopaque,
+    NewByteCount: u32,
+    NewBuffer: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetApiBufferSize(
+    Buffer: ?*anyopaque,
+    ByteCount: ?*u32,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetAuditClear(
+    server: ?[*:0]const u16,
+    backupfile: ?[*:0]const u16,
+    service: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetAuditRead(
+    server: ?[*:0]const u16,
+    service: ?[*:0]const u16,
+    auditloghandle: ?*HLOG,
+    offset: u32,
+    reserved1: ?*u32,
+    reserved2: u32,
+    offsetflag: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    bytesread: ?*u32,
+    totalavailable: ?*u32,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetAuditWrite(
+    type: u32,
+    buf: ?*u8,
+    numbytes: u32,
+    service: ?[*:0]const u16,
+    reserved: ?*u8,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetConfigGet(
+    server: ?[*:0]const u16,
+    component: ?[*:0]const u16,
+    parameter: ?[*:0]const u16,
+    bufptr: ?*?*u8,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetConfigGetAll(
+    server: ?[*:0]const u16,
+    component: ?[*:0]const u16,
+    bufptr: ?*?*u8,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetConfigSet(
+    server: ?[*:0]const u16,
+    reserved1: ?[*:0]const u16,
+    component: ?[*:0]const u16,
+    level: u32,
+    reserved2: u32,
+    buf: ?*u8,
+    reserved3: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "netapi32" fn NetCreateProvisioningPackage(
+    pProvisioningParams: ?*NETSETUP_PROVISIONING_PARAMS,
+    ppPackageBinData: ?*?*u8,
+    pdwPackageBinDataSize: ?*u32,
+    ppPackageTextData: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "netapi32" fn NetEnumerateComputerNames(
+    Server: ?[*:0]const u16,
+    NameType: NET_COMPUTER_NAME_TYPE,
+    Reserved: u32,
+    EntryCount: ?*u32,
+    ComputerNames: ?*?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "netapi32" fn NetEnumerateServiceAccounts(
+    ServerName: ?PWSTR,
+    Flags: u32,
+    AccountsCount: ?*u32,
+    Accounts: ?*?*?*u16,
+) callconv(.winapi) NTSTATUS;
+
+pub extern "netapi32" fn NetErrorLogClear(
+    UncServerName: ?[*:0]const u16,
+    BackupFile: ?[*:0]const u16,
+    Reserved: ?*u8,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetErrorLogRead(
+    UncServerName: ?[*:0]const u16,
+    Reserved1: ?PWSTR,
+    ErrorLogHandle: ?*HLOG,
+    Offset: u32,
+    Reserved2: ?*u32,
+    Reserved3: u32,
+    OffsetFlag: u32,
+    BufPtr: ?*?*u8,
+    PrefMaxSize: u32,
+    BytesRead: ?*u32,
+    TotalAvailable: ?*u32,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetErrorLogWrite(
+    Reserved1: ?*u8,
+    Code: u32,
+    Component: ?[*:0]const u16,
+    Buffer: ?*u8,
+    NumBytes: u32,
+    MsgBuf: ?*u8,
+    StrCount: u32,
+    Reserved2: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "netapi32" fn NetFreeAadJoinInformation(
+    pJoinInfo: ?*DSREG_JOIN_INFO,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "netapi32" fn NetGetAadJoinInformation(
+    pcszTenantId: ?[*:0]const u16,
+    ppJoinInfo: ?*?*DSREG_JOIN_INFO,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGetAnyDCName(
+    ServerName: ?[*:0]const u16,
+    DomainName: ?[*:0]const u16,
+    Buffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGetDCName(
+    ServerName: ?[*:0]const u16,
+    DomainName: ?[*:0]const u16,
+    Buffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGetDisplayInformationIndex(
+    ServerName: ?[*:0]const u16,
+    Level: u32,
+    Prefix: ?[*:0]const u16,
+    Index: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGetJoinableOUs(
+    lpServer: ?[*:0]const u16,
+    lpDomain: ?[*:0]const u16,
+    lpAccount: ?[*:0]const u16,
+    lpPassword: ?[*:0]const u16,
+    OUCount: ?*u32,
+    OUs: ?*?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGetJoinInformation(
+    lpServer: ?[*:0]const u16,
+    lpNameBuffer: ?*?PWSTR,
+    BufferType: ?*NETSETUP_JOIN_STATUS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupAdd(
+    servername: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupAddUser(
+    servername: ?[*:0]const u16,
+    GroupName: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupDel(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupDelUser(
+    servername: ?[*:0]const u16,
+    GroupName: ?[*:0]const u16,
+    Username: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupEnum(
+    servername: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    resume_handle: ?*usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupGetInfo(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupGetUsers(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    ResumeHandle: ?*usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupSetInfo(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetGroupSetUsers(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    totalentries: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "netapi32" fn NetIsServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: ?PWSTR,
+    IsService: ?*BOOL,
+) callconv(.winapi) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetJoinDomain(
+    lpServer: ?[*:0]const u16,
+    lpDomain: ?[*:0]const u16,
+    lpMachineAccountOU: ?[*:0]const u16,
+    lpAccount: ?[*:0]const u16,
+    lpPassword: ?[*:0]const u16,
+    fJoinOptions: NET_JOIN_DOMAIN_JOIN_OPTIONS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupAdd(
+    servername: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetLocalGroupAddMember(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    membersid: ?PSID,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupAddMembers(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    totalentries: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupDel(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetLocalGroupDelMember(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    membersid: ?PSID,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupDelMembers(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    totalentries: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupEnum(
+    servername: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    resumehandle: ?*usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupGetInfo(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupGetMembers(
+    servername: ?[*:0]const u16,
+    localgroupname: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    resumehandle: ?*usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupSetInfo(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetLocalGroupSetMembers(
+    servername: ?[*:0]const u16,
+    groupname: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    totalentries: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetMessageBufferSend(
+    servername: ?[*:0]const u16,
+    msgname: ?[*:0]const u16,
+    fromname: ?[*:0]const u16,
+    buf: ?*u8,
+    buflen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetMessageNameAdd(
+    servername: ?[*:0]const u16,
+    msgname: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetMessageNameDel(
     servername: ?[*:0]const u16,
     msgname: ?[*:0]const u16,
 ) callconv(.winapi) u32;
@@ -6117,26 +6209,36 @@ pub extern "netapi32" fn NetMessageNameGetInfo(
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetMessageNameDel(
-    servername: ?[*:0]const u16,
-    msgname: ?[*:0]const u16,
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "netapi32" fn NetProvisionComputerAccount(
+    lpDomain: ?[*:0]const u16,
+    lpMachineName: ?[*:0]const u16,
+    lpMachineAccountOU: ?[*:0]const u16,
+    lpDcName: ?[*:0]const u16,
+    dwOptions: NETSETUP_PROVISION,
+    pProvisionBinData: ?*?*u8,
+    pdwProvisionBinDataSize: ?*u32,
+    pProvisionTextData: ?*?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetMessageBufferSend(
-    servername: ?[*:0]const u16,
-    msgname: ?[*:0]const u16,
-    fromname: ?[*:0]const u16,
-    buf: ?*u8,
-    buflen: u32,
+pub extern "netapi32" fn NetQueryDisplayInformation(
+    ServerName: ?[*:0]const u16,
+    Level: u32,
+    Index: u32,
+    EntriesRequested: u32,
+    PreferredMaximumLength: u32,
+    ReturnedEntryCount: ?*u32,
+    SortedBuffer: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetRemoteTOD(
-    UncServerName: ?[*:0]const u16,
-    BufferPtr: ?*?*u8,
-) callconv(.winapi) u32;
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "netapi32" fn NetQueryServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: ?PWSTR,
+    InfoLevel: u32,
+    Buffer: ?*?*u8,
+) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetRemoteComputerSupports(
@@ -6145,17 +6247,35 @@ pub extern "netapi32" fn NetRemoteComputerSupports(
     OptionsSupported: ?*u32,
 ) callconv(.winapi) u32;
 
-pub extern "netapi32" fn NetReplGetInfo(
-    servername: ?[*:0]const u16,
-    level: u32,
-    bufptr: ?*?*u8,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetRemoteTOD(
+    UncServerName: ?[*:0]const u16,
+    BufferPtr: ?*?*u8,
 ) callconv(.winapi) u32;
 
-pub extern "netapi32" fn NetReplSetInfo(
-    servername: ?[*:0]const u16,
-    level: u32,
-    buf: ?*const u8,
-    parm_err: ?*u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "netapi32" fn NetRemoveAlternateComputerName(
+    Server: ?[*:0]const u16,
+    AlternateName: ?[*:0]const u16,
+    DomainAccount: ?[*:0]const u16,
+    DomainAccountPassword: ?[*:0]const u16,
+    Reserved: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "netapi32" fn NetRemoveServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: ?PWSTR,
+    Flags: u32,
+) callconv(.winapi) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetRenameMachineInDomain(
+    lpServer: ?[*:0]const u16,
+    lpNewMachineName: ?[*:0]const u16,
+    lpAccount: ?[*:0]const u16,
+    lpPassword: ?[*:0]const u16,
+    fRenameOptions: u32,
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplExportDirAdd(
@@ -6187,6 +6307,11 @@ pub extern "netapi32" fn NetReplExportDirGetInfo(
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
+pub extern "netapi32" fn NetReplExportDirLock(
+    servername: ?[*:0]const u16,
+    dirname: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
 pub extern "netapi32" fn NetReplExportDirSetInfo(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
@@ -6195,15 +6320,16 @@ pub extern "netapi32" fn NetReplExportDirSetInfo(
     parm_err: ?*u32,
 ) callconv(.winapi) u32;
 
-pub extern "netapi32" fn NetReplExportDirLock(
-    servername: ?[*:0]const u16,
-    dirname: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
 pub extern "netapi32" fn NetReplExportDirUnlock(
     servername: ?[*:0]const u16,
     dirname: ?[*:0]const u16,
     unlockforce: u32,
+) callconv(.winapi) u32;
+
+pub extern "netapi32" fn NetReplGetInfo(
+    servername: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetReplImportDirAdd(
@@ -6246,6 +6372,87 @@ pub extern "netapi32" fn NetReplImportDirUnlock(
     unlockforce: u32,
 ) callconv(.winapi) u32;
 
+pub extern "netapi32" fn NetReplSetInfo(
+    servername: ?[*:0]const u16,
+    level: u32,
+    buf: ?*const u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "netapi32" fn NetRequestOfflineDomainJoin(
+    // TODO: what to do with BytesParamIndex 1?
+    pProvisionBinData: ?*u8,
+    cbProvisionBinDataSize: u32,
+    dwOptions: NET_REQUEST_PROVISION_OPTIONS,
+    lpWindowsPath: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "netapi32" fn NetRequestProvisioningPackageInstall(
+    // TODO: what to do with BytesParamIndex 1?
+    pPackageBinData: ?*u8,
+    dwPackageBinDataSize: u32,
+    dwProvisionOptions: NET_REQUEST_PROVISION_OPTIONS,
+    lpWindowsPath: ?[*:0]const u16,
+    pvReserved: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetScheduleJobAdd(
+    Servername: ?[*:0]const u16,
+    Buffer: ?*u8,
+    JobId: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetScheduleJobDel(
+    Servername: ?[*:0]const u16,
+    MinJobId: u32,
+    MaxJobId: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetScheduleJobEnum(
+    Servername: ?[*:0]const u16,
+    PointerToBuffer: ?*?*u8,
+    PrefferedMaximumLength: u32,
+    EntriesRead: ?*u32,
+    TotalEntries: ?*u32,
+    ResumeHandle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetScheduleJobGetInfo(
+    Servername: ?[*:0]const u16,
+    JobId: u32,
+    PointerToBuffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetServerComputerNameAdd(
+    ServerName: ?PWSTR,
+    EmulatedDomainName: ?PWSTR,
+    EmulatedServerName: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetServerComputerNameDel(
+    ServerName: ?PWSTR,
+    EmulatedServerName: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetServerDiskEnum(
+    servername: ?PWSTR,
+    level: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    resume_handle: ?*u32,
+) callconv(.winapi) u32;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerEnum(
     servername: ?[*:0]const u16,
@@ -6272,30 +6479,6 @@ pub extern "netapi32" fn NetServerSetInfo(
     level: u32,
     buf: ?*u8,
     ParmError: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetServerDiskEnum(
-    servername: ?PWSTR,
-    level: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-    resume_handle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetServerComputerNameAdd(
-    ServerName: ?PWSTR,
-    EmulatedDomainName: ?PWSTR,
-    EmulatedServerName: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetServerComputerNameDel(
-    ServerName: ?PWSTR,
-    EmulatedServerName: ?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6363,6 +6546,23 @@ pub extern "netapi32" fn NetServiceInstall(
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "netapi32" fn NetSetPrimaryComputerName(
+    Server: ?[*:0]const u16,
+    PrimaryName: ?[*:0]const u16,
+    DomainAccount: ?[*:0]const u16,
+    DomainAccountPassword: ?[*:0]const u16,
+    Reserved: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUnjoinDomain(
+    lpServer: ?[*:0]const u16,
+    lpAccount: ?[*:0]const u16,
+    lpPassword: ?[*:0]const u16,
+    fUnjoinOptions: u32,
+) callconv(.winapi) u32;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseAdd(
     servername: ?*i8,
@@ -6398,6 +6598,127 @@ pub extern "netapi32" fn NetUseGetInfo(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserAdd(
+    servername: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserChangePassword(
+    domainname: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+    oldpassword: ?[*:0]const u16,
+    newpassword: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserDel(
+    servername: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserEnum(
+    servername: ?[*:0]const u16,
+    level: u32,
+    filter: NET_USER_ENUM_FILTER_FLAGS,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    resume_handle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserGetGroups(
+    servername: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "netapi32" fn NetUserGetInfo(
+    servername: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserGetLocalGroups(
+    servername: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+    level: u32,
+    flags: u32,
+    bufptr: ?*?*u8,
+    prefmaxlen: u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserModalsGet(
+    servername: ?[*:0]const u16,
+    level: u32,
+    bufptr: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserModalsSet(
+    servername: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserSetGroups(
+    servername: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    num_entries: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetUserSetInfo(
+    servername: ?[*:0]const u16,
+    username: ?[*:0]const u16,
+    level: u32,
+    buf: ?*u8,
+    parm_err: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetValidateName(
+    lpServer: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpAccount: ?[*:0]const u16,
+    lpPassword: ?[*:0]const u16,
+    NameType: NETSETUP_NAME_TYPE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "netapi32" fn NetValidatePasswordPolicy(
+    ServerName: ?[*:0]const u16,
+    Qualifier: ?*anyopaque,
+    ValidationType: NET_VALIDATE_PASSWORD_TYPE,
+    InputArg: ?*anyopaque,
+    OutputArg: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "netapi32" fn NetValidatePasswordPolicyFree(
+    OutputArg: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaGetInfo(
     servername: ?PWSTR,
     level: u32,
@@ -6410,32 +6731,6 @@ pub extern "netapi32" fn NetWkstaSetInfo(
     level: u32,
     buffer: ?*u8,
     parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetWkstaUserGetInfo(
-    reserved: ?PWSTR,
-    level: u32,
-    bufptr: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetWkstaUserSetInfo(
-    reserved: ?PWSTR,
-    level: u32,
-    buf: ?*u8,
-    parm_err: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetWkstaUserEnum(
-    servername: ?PWSTR,
-    level: u32,
-    bufptr: ?*?*u8,
-    prefmaxlen: u32,
-    entriesread: ?*u32,
-    totalentries: ?*u32,
-    resumehandle: ?*u32,
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetWkstaTransportAdd(
@@ -6463,434 +6758,53 @@ pub extern "netapi32" fn NetWkstaTransportEnum(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetApiBufferAllocate(
-    ByteCount: u32,
-    Buffer: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetApiBufferFree(
-    Buffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetApiBufferReallocate(
-    OldBuffer: ?*anyopaque,
-    NewByteCount: u32,
-    NewBuffer: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetApiBufferSize(
-    Buffer: ?*anyopaque,
-    ByteCount: ?*u32,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetErrorLogClear(
-    UncServerName: ?[*:0]const u16,
-    BackupFile: ?[*:0]const u16,
-    Reserved: ?*u8,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetErrorLogRead(
-    UncServerName: ?[*:0]const u16,
-    Reserved1: ?PWSTR,
-    ErrorLogHandle: ?*HLOG,
-    Offset: u32,
-    Reserved2: ?*u32,
-    Reserved3: u32,
-    OffsetFlag: u32,
-    BufPtr: ?*?*u8,
-    PrefMaxSize: u32,
-    BytesRead: ?*u32,
-    TotalAvailable: ?*u32,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetErrorLogWrite(
-    Reserved1: ?*u8,
-    Code: u32,
-    Component: ?[*:0]const u16,
-    Buffer: ?*u8,
-    NumBytes: u32,
-    MsgBuf: ?*u8,
-    StrCount: u32,
-    Reserved2: ?*u8,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetConfigGet(
-    server: ?[*:0]const u16,
-    component: ?[*:0]const u16,
-    parameter: ?[*:0]const u16,
-    bufptr: ?*?*u8,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetConfigGetAll(
-    server: ?[*:0]const u16,
-    component: ?[*:0]const u16,
-    bufptr: ?*?*u8,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetConfigSet(
-    server: ?[*:0]const u16,
-    reserved1: ?[*:0]const u16,
-    component: ?[*:0]const u16,
+pub extern "netapi32" fn NetWkstaUserEnum(
+    servername: ?PWSTR,
     level: u32,
-    reserved2: u32,
-    buf: ?*u8,
-    reserved3: u32,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetAuditClear(
-    server: ?[*:0]const u16,
-    backupfile: ?[*:0]const u16,
-    service: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "netapi32" fn NetAuditRead(
-    server: ?[*:0]const u16,
-    service: ?[*:0]const u16,
-    auditloghandle: ?*HLOG,
-    offset: u32,
-    reserved1: ?*u32,
-    reserved2: u32,
-    offsetflag: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
-    bytesread: ?*u32,
-    totalavailable: ?*u32,
+    entriesread: ?*u32,
+    totalentries: ?*u32,
+    resumehandle: ?*u32,
 ) callconv(.winapi) u32;
 
-pub extern "netapi32" fn NetAuditWrite(
-    type: u32,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetWkstaUserGetInfo(
+    reserved: ?PWSTR,
+    level: u32,
+    bufptr: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "netapi32" fn NetWkstaUserSetInfo(
+    reserved: ?PWSTR,
+    level: u32,
     buf: ?*u8,
-    numbytes: u32,
-    service: ?[*:0]const u16,
-    reserved: ?*u8,
+    parm_err: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetJoinDomain(
-    lpServer: ?[*:0]const u16,
-    lpDomain: ?[*:0]const u16,
-    lpMachineAccountOU: ?[*:0]const u16,
-    lpAccount: ?[*:0]const u16,
-    lpPassword: ?[*:0]const u16,
-    fJoinOptions: NET_JOIN_DOMAIN_JOIN_OPTIONS,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetUnjoinDomain(
-    lpServer: ?[*:0]const u16,
-    lpAccount: ?[*:0]const u16,
-    lpPassword: ?[*:0]const u16,
-    fUnjoinOptions: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetRenameMachineInDomain(
-    lpServer: ?[*:0]const u16,
-    lpNewMachineName: ?[*:0]const u16,
-    lpAccount: ?[*:0]const u16,
-    lpPassword: ?[*:0]const u16,
-    fRenameOptions: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetValidateName(
-    lpServer: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    lpAccount: ?[*:0]const u16,
-    lpPassword: ?[*:0]const u16,
-    NameType: NETSETUP_NAME_TYPE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGetJoinableOUs(
-    lpServer: ?[*:0]const u16,
-    lpDomain: ?[*:0]const u16,
-    lpAccount: ?[*:0]const u16,
-    lpPassword: ?[*:0]const u16,
-    OUCount: ?*u32,
-    OUs: ?*?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netapi32" fn NetAddAlternateComputerName(
-    Server: ?[*:0]const u16,
-    AlternateName: ?[*:0]const u16,
-    DomainAccount: ?[*:0]const u16,
-    DomainAccountPassword: ?[*:0]const u16,
-    Reserved: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netapi32" fn NetRemoveAlternateComputerName(
-    Server: ?[*:0]const u16,
-    AlternateName: ?[*:0]const u16,
-    DomainAccount: ?[*:0]const u16,
-    DomainAccountPassword: ?[*:0]const u16,
-    Reserved: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netapi32" fn NetSetPrimaryComputerName(
-    Server: ?[*:0]const u16,
-    PrimaryName: ?[*:0]const u16,
-    DomainAccount: ?[*:0]const u16,
-    DomainAccountPassword: ?[*:0]const u16,
-    Reserved: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netapi32" fn NetEnumerateComputerNames(
-    Server: ?[*:0]const u16,
-    NameType: NET_COMPUTER_NAME_TYPE,
-    Reserved: u32,
-    EntryCount: ?*u32,
-    ComputerNames: ?*?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "netapi32" fn NetProvisionComputerAccount(
-    lpDomain: ?[*:0]const u16,
-    lpMachineName: ?[*:0]const u16,
-    lpMachineAccountOU: ?[*:0]const u16,
-    lpDcName: ?[*:0]const u16,
-    dwOptions: NETSETUP_PROVISION,
-    pProvisionBinData: ?*?*u8,
-    pdwProvisionBinDataSize: ?*u32,
-    pProvisionTextData: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "netapi32" fn NetRequestOfflineDomainJoin(
-    // TODO: what to do with BytesParamIndex 1?
-    pProvisionBinData: ?*u8,
-    cbProvisionBinDataSize: u32,
-    dwOptions: NET_REQUEST_PROVISION_OPTIONS,
-    lpWindowsPath: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "netapi32" fn NetCreateProvisioningPackage(
-    pProvisioningParams: ?*NETSETUP_PROVISIONING_PARAMS,
-    ppPackageBinData: ?*?*u8,
-    pdwPackageBinDataSize: ?*u32,
-    ppPackageTextData: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "netapi32" fn NetRequestProvisioningPackageInstall(
-    // TODO: what to do with BytesParamIndex 1?
-    pPackageBinData: ?*u8,
-    dwPackageBinDataSize: u32,
-    dwProvisionOptions: NET_REQUEST_PROVISION_OPTIONS,
-    lpWindowsPath: ?[*:0]const u16,
-    pvReserved: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "netapi32" fn NetGetAadJoinInformation(
-    pcszTenantId: ?[*:0]const u16,
-    ppJoinInfo: ?*?*DSREG_JOIN_INFO,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "netapi32" fn NetFreeAadJoinInformation(
-    pJoinInfo: ?*DSREG_JOIN_INFO,
+pub extern "rtutils" fn RouterAssert(
+    pszFailedAssertion: ?PSTR,
+    pszFileName: ?PSTR,
+    dwLineNumber: u32,
+    pszMessage: ?PSTR,
 ) callconv(.winapi) void;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetGetJoinInformation(
-    lpServer: ?[*:0]const u16,
-    lpNameBuffer: ?*?PWSTR,
-    BufferType: ?*NETSETUP_JOIN_STATUS,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "mstask" fn GetNetScheduleAccountInformation(
-    pwszServerName: ?[*:0]const u16,
-    ccAccount: u32,
-    wszAccount: [*:0]u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "mstask" fn SetNetScheduleAccountInformation(
-    pwszServerName: ?[*:0]const u16,
-    pwszAccount: ?[*:0]const u16,
-    pwszPassword: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetScheduleJobAdd(
-    Servername: ?[*:0]const u16,
-    Buffer: ?*u8,
-    JobId: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetScheduleJobDel(
-    Servername: ?[*:0]const u16,
-    MinJobId: u32,
-    MaxJobId: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetScheduleJobEnum(
-    Servername: ?[*:0]const u16,
-    PointerToBuffer: ?*?*u8,
-    PrefferedMaximumLength: u32,
-    EntriesRead: ?*u32,
-    TotalEntries: ?*u32,
-    ResumeHandle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn NetScheduleJobGetInfo(
-    Servername: ?[*:0]const u16,
-    JobId: u32,
-    PointerToBuffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceRegisterExA(
-    lpszCallerName: ?[*:0]const u8,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceDeregisterA(
-    dwTraceID: u32,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceDeregisterExA(
-    dwTraceID: u32,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceGetConsoleA(
-    dwTraceID: u32,
-    lphConsole: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TracePrintfA(
-    dwTraceID: u32,
-    lpszFormat: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TracePrintfExA(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpszFormat: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceVprintfExA(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpszFormat: ?[*:0]const u8,
-    arglist: ?*i8,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TracePutsExA(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpszString: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceDumpExA(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpbBytes: ?*u8,
-    dwByteCount: u32,
-    dwGroupSize: u32,
-    bAddressPrefix: BOOL,
-    lpszPrefix: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceRegisterExW(
-    lpszCallerName: ?[*:0]const u16,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceDeregisterW(
-    dwTraceID: u32,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceDeregisterExW(
-    dwTraceID: u32,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceGetConsoleW(
-    dwTraceID: u32,
-    lphConsole: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TracePrintfW(
-    dwTraceID: u32,
-    lpszFormat: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TracePrintfExW(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpszFormat: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceVprintfExW(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpszFormat: ?[*:0]const u16,
-    arglist: ?*i8,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TracePutsExW(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpszString: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn TraceDumpExW(
-    dwTraceID: u32,
-    dwFlags: u32,
-    lpbBytes: ?*u8,
-    dwByteCount: u32,
-    dwGroupSize: u32,
-    bAddressPrefix: BOOL,
-    lpszPrefix: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn LogErrorA(
-    dwMessageId: u32,
-    cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PSTR,
+pub extern "rtutils" fn RouterGetErrorStringA(
     dwErrorCode: u32,
-) callconv(.winapi) void;
+    lplpszErrorString: ?*?PSTR,
+) callconv(.winapi) u32;
 
-pub extern "rtutils" fn LogEventA(
-    wEventType: u32,
-    dwMessageId: u32,
-    cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PSTR,
-) callconv(.winapi) void;
-
-pub extern "rtutils" fn LogErrorW(
-    dwMessageId: u32,
-    cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PWSTR,
+pub extern "rtutils" fn RouterGetErrorStringW(
     dwErrorCode: u32,
-) callconv(.winapi) void;
-
-pub extern "rtutils" fn LogEventW(
-    wEventType: u32,
-    dwMessageId: u32,
-    cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PWSTR,
-) callconv(.winapi) void;
-
-pub extern "rtutils" fn RouterLogRegisterA(
-    lpszSource: ?[*:0]const u8,
-) callconv(.winapi) ?HANDLE;
+    lplpwszErrorString: ?*?PWSTR,
+) callconv(.winapi) u32;
 
 pub extern "rtutils" fn RouterLogDeregisterA(
+    hLogHandle: ?HANDLE,
+) callconv(.winapi) void;
+
+pub extern "rtutils" fn RouterLogDeregisterW(
     hLogHandle: ?HANDLE,
 ) callconv(.winapi) void;
 
@@ -6913,14 +6827,14 @@ pub extern "rtutils" fn RouterLogEventDataA(
     lpDataBytes: ?*u8,
 ) callconv(.winapi) void;
 
-pub extern "rtutils" fn RouterLogEventStringA(
+pub extern "rtutils" fn RouterLogEventDataW(
     hLogHandle: ?HANDLE,
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: [*]?PSTR,
-    dwErrorCode: u32,
-    dwErrorIndex: u32,
+    plpszSubStringArray: ?[*]?PWSTR,
+    dwDataBytes: u32,
+    lpDataBytes: ?*u8,
 ) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventExA(
@@ -6931,45 +6845,22 @@ pub extern "rtutils" fn RouterLogEventExA(
     ptszFormat: ?[*:0]const u8,
 ) callconv(.winapi) void;
 
-pub extern "rtutils" fn RouterLogEventValistExA(
+pub extern "rtutils" fn RouterLogEventExW(
     hLogHandle: ?HANDLE,
     dwEventType: u32,
     dwErrorCode: u32,
     dwMessageId: u32,
-    ptszFormat: ?[*:0]const u8,
-    arglist: ?*i8,
+    ptszFormat: ?[*:0]const u16,
 ) callconv(.winapi) void;
 
-pub extern "rtutils" fn RouterGetErrorStringA(
-    dwErrorCode: u32,
-    lplpszErrorString: ?*?PSTR,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn RouterLogRegisterW(
-    lpszSource: ?[*:0]const u16,
-) callconv(.winapi) ?HANDLE;
-
-pub extern "rtutils" fn RouterLogDeregisterW(
-    hLogHandle: ?HANDLE,
-) callconv(.winapi) void;
-
-pub extern "rtutils" fn RouterLogEventW(
+pub extern "rtutils" fn RouterLogEventStringA(
     hLogHandle: ?HANDLE,
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: ?[*]?PWSTR,
+    plpszSubStringArray: [*]?PSTR,
     dwErrorCode: u32,
-) callconv(.winapi) void;
-
-pub extern "rtutils" fn RouterLogEventDataW(
-    hLogHandle: ?HANDLE,
-    dwEventType: u32,
-    dwMessageId: u32,
-    dwSubStringCount: u32,
-    plpszSubStringArray: ?[*]?PWSTR,
-    dwDataBytes: u32,
-    lpDataBytes: ?*u8,
+    dwErrorIndex: u32,
 ) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventStringW(
@@ -6982,12 +6873,13 @@ pub extern "rtutils" fn RouterLogEventStringW(
     dwErrorIndex: u32,
 ) callconv(.winapi) void;
 
-pub extern "rtutils" fn RouterLogEventExW(
+pub extern "rtutils" fn RouterLogEventValistExA(
     hLogHandle: ?HANDLE,
     dwEventType: u32,
     dwErrorCode: u32,
     dwMessageId: u32,
-    ptszFormat: ?[*:0]const u16,
+    ptszFormat: ?[*:0]const u8,
+    arglist: ?*i8,
 ) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterLogEventValistExW(
@@ -6999,95 +6891,140 @@ pub extern "rtutils" fn RouterLogEventValistExW(
     arglist: ?*i8,
 ) callconv(.winapi) void;
 
-pub extern "rtutils" fn RouterGetErrorStringW(
+pub extern "rtutils" fn RouterLogEventW(
+    hLogHandle: ?HANDLE,
+    dwEventType: u32,
+    dwMessageId: u32,
+    dwSubStringCount: u32,
+    plpszSubStringArray: ?[*]?PWSTR,
     dwErrorCode: u32,
-    lplpwszErrorString: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-pub extern "rtutils" fn RouterAssert(
-    pszFailedAssertion: ?PSTR,
-    pszFileName: ?PSTR,
-    dwLineNumber: u32,
-    pszMessage: ?PSTR,
 ) callconv(.winapi) void;
 
-pub extern "rtutils" fn MprSetupProtocolEnum(
-    dwTransportId: u32,
-    lplpBuffer: ?*?*u8,
-    lpdwEntriesRead: ?*u32,
+pub extern "rtutils" fn RouterLogRegisterA(
+    lpszSource: ?[*:0]const u8,
+) callconv(.winapi) ?HANDLE;
+
+pub extern "rtutils" fn RouterLogRegisterW(
+    lpszSource: ?[*:0]const u16,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "mstask" fn SetNetScheduleAccountInformation(
+    pwszServerName: ?[*:0]const u16,
+    pwszAccount: ?[*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "rtutils" fn TraceDeregisterA(
+    dwTraceID: u32,
 ) callconv(.winapi) u32;
 
-pub extern "rtutils" fn MprSetupProtocolFree(
-    lpBuffer: ?*anyopaque,
+pub extern "rtutils" fn TraceDeregisterExA(
+    dwTraceID: u32,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceDeregisterExW(
+    dwTraceID: u32,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceDeregisterW(
+    dwTraceID: u32,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceDumpExA(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpbBytes: ?*u8,
+    dwByteCount: u32,
+    dwGroupSize: u32,
+    bAddressPrefix: BOOL,
+    lpszPrefix: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceDumpExW(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpbBytes: ?*u8,
+    dwByteCount: u32,
+    dwGroupSize: u32,
+    bAddressPrefix: BOOL,
+    lpszPrefix: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceGetConsoleA(
+    dwTraceID: u32,
+    lphConsole: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceGetConsoleW(
+    dwTraceID: u32,
+    lphConsole: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TracePrintfA(
+    dwTraceID: u32,
+    lpszFormat: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TracePrintfExA(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpszFormat: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TracePrintfExW(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpszFormat: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TracePrintfW(
+    dwTraceID: u32,
+    lpszFormat: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TracePutsExA(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpszString: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TracePutsExW(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpszString: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceRegisterExA(
+    lpszCallerName: ?[*:0]const u8,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceRegisterExW(
+    lpszCallerName: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceVprintfExA(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpszFormat: ?[*:0]const u8,
+    arglist: ?*i8,
+) callconv(.winapi) u32;
+
+pub extern "rtutils" fn TraceVprintfExW(
+    dwTraceID: u32,
+    dwFlags: u32,
+    lpszFormat: ?[*:0]const u16,
+    arglist: ?*i8,
 ) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (19)
 //--------------------------------------------------------------------------------
-pub const TraceRegisterEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TraceRegisterExA,
-    .wide => @This().TraceRegisterExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TraceRegisterEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TraceDeregister = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TraceDeregisterA,
-    .wide => @This().TraceDeregisterW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TraceDeregister' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TraceDeregisterEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TraceDeregisterExA,
-    .wide => @This().TraceDeregisterExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TraceDeregisterEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TraceGetConsole = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TraceGetConsoleA,
-    .wide => @This().TraceGetConsoleW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TraceGetConsole' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TracePrintf = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TracePrintfA,
-    .wide => @This().TracePrintfW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TracePrintf' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TracePrintfEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TracePrintfExA,
-    .wide => @This().TracePrintfExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TracePrintfEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TraceVprintfEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TraceVprintfExA,
-    .wide => @This().TraceVprintfExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TraceVprintfEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TracePutsEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TracePutsExA,
-    .wide => @This().TracePutsExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TracePutsEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TraceDumpEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TraceDumpExA,
-    .wide => @This().TraceDumpExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TraceDumpEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const LogError = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().LogErrorA,
     .wide => @This().LogErrorW,
@@ -7102,11 +7039,11 @@ pub const LogEvent = switch (@import("../zig.zig").unicode_mode) {
         "'LogEvent' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RouterLogRegister = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RouterLogRegisterA,
-    .wide => @This().RouterLogRegisterW,
+pub const RouterGetErrorString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterGetErrorStringA,
+    .wide => @This().RouterGetErrorStringW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RouterLogRegister' requires that UNICODE be set to true or false in the root module",
+        "'RouterGetErrorString' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RouterLogDeregister = switch (@import("../zig.zig").unicode_mode) {
@@ -7130,18 +7067,18 @@ pub const RouterLogEventData = switch (@import("../zig.zig").unicode_mode) {
         "'RouterLogEventData' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RouterLogEventString = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RouterLogEventStringA,
-    .wide => @This().RouterLogEventStringW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RouterLogEventString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const RouterLogEventEx = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().RouterLogEventExA,
     .wide => @This().RouterLogEventExW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'RouterLogEventEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RouterLogEventString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogEventStringA,
+    .wide => @This().RouterLogEventStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RouterLogEventString' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RouterLogEventValistEx = switch (@import("../zig.zig").unicode_mode) {
@@ -7151,11 +7088,74 @@ pub const RouterLogEventValistEx = switch (@import("../zig.zig").unicode_mode) {
         "'RouterLogEventValistEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RouterGetErrorString = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RouterGetErrorStringA,
-    .wide => @This().RouterGetErrorStringW,
+pub const RouterLogRegister = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RouterLogRegisterA,
+    .wide => @This().RouterLogRegisterW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RouterGetErrorString' requires that UNICODE be set to true or false in the root module",
+        "'RouterLogRegister' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceDeregister = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceDeregisterA,
+    .wide => @This().TraceDeregisterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceDeregister' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceDeregisterEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceDeregisterExA,
+    .wide => @This().TraceDeregisterExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceDeregisterEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceDumpEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceDumpExA,
+    .wide => @This().TraceDumpExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceDumpEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceGetConsole = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceGetConsoleA,
+    .wide => @This().TraceGetConsoleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceGetConsole' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TracePrintf = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TracePrintfA,
+    .wide => @This().TracePrintfW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TracePrintf' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TracePrintfEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TracePrintfExA,
+    .wide => @This().TracePrintfExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TracePrintfEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TracePutsEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TracePutsExA,
+    .wide => @This().TracePutsExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TracePutsEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceRegisterEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceRegisterExA,
+    .wide => @This().TraceRegisterExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceRegisterEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const TraceVprintfEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TraceVprintfExA,
+    .wide => @This().TraceVprintfExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'TraceVprintfEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

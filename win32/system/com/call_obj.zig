@@ -6,28 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
-pub const CALLFRAMEINFO = extern struct {
-    iMethod: u32,
-    fHasInValues: BOOL,
-    fHasInOutValues: BOOL,
-    fHasOutValues: BOOL,
-    fDerivesFromIDispatch: BOOL,
-    cInInterfacesMax: i32,
-    cInOutInterfacesMax: i32,
-    cOutInterfacesMax: i32,
-    cTopLevelInInterfaces: i32,
-    iid: Guid,
-    cMethod: u32,
-    cParams: u32,
-};
-
-pub const CALLFRAMEPARAMINFO = extern struct {
-    fIn: BOOLEAN,
-    fOut: BOOLEAN,
-    stackOffset: u32,
-    cbParam: u32,
-};
-
 pub const CALLFRAME_COPY = enum(i32) {
     NESTED = 1,
     INDEPENDENT = 2,
@@ -52,6 +30,14 @@ pub const CALLFRAME_FREE_TOP_INOUT = CALLFRAME_FREE.TOP_INOUT;
 pub const CALLFRAME_FREE_TOP_OUT = CALLFRAME_FREE.TOP_OUT;
 pub const CALLFRAME_FREE_ALL = CALLFRAME_FREE.ALL;
 
+pub const CALLFRAME_MARSHALCONTEXT = extern struct {
+    fIn: BOOLEAN,
+    dwDestContext: u32,
+    pvDestContext: ?*anyopaque,
+    punkReserved: ?*IUnknown,
+    guidTransferSyntax: Guid,
+};
+
 pub const CALLFRAME_NULL = enum(i32) {
     NONE = 0,
     INOUT = 2,
@@ -72,12 +58,26 @@ pub const CALLFRAME_WALK_IN = CALLFRAME_WALK.IN;
 pub const CALLFRAME_WALK_INOUT = CALLFRAME_WALK.INOUT;
 pub const CALLFRAME_WALK_OUT = CALLFRAME_WALK.OUT;
 
-pub const CALLFRAME_MARSHALCONTEXT = extern struct {
+pub const CALLFRAMEINFO = extern struct {
+    iMethod: u32,
+    fHasInValues: BOOL,
+    fHasInOutValues: BOOL,
+    fHasOutValues: BOOL,
+    fDerivesFromIDispatch: BOOL,
+    cInInterfacesMax: i32,
+    cInOutInterfacesMax: i32,
+    cOutInterfacesMax: i32,
+    cTopLevelInInterfaces: i32,
+    iid: Guid,
+    cMethod: u32,
+    cParams: u32,
+};
+
+pub const CALLFRAMEPARAMINFO = extern struct {
     fIn: BOOLEAN,
-    dwDestContext: u32,
-    pvDestContext: ?*anyopaque,
-    punkReserved: ?*IUnknown,
-    guidTransferSyntax: Guid,
+    fOut: BOOLEAN,
+    stackOffset: u32,
+    cbParam: u32,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -255,6 +255,45 @@ pub const ICallFrame = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
+const IID_ICallFrameEvents_Value = Guid.initString("fd5e0843-fc91-11d0-97d7-00c04fb9618a");
+pub const IID_ICallFrameEvents = &IID_ICallFrameEvents_Value;
+pub const ICallFrameEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnCall: *const fn(
+            self: *const ICallFrameEvents,
+            pFrame: ?*ICallFrame,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnCall(self: *const ICallFrameEvents, pFrame: ?*ICallFrame) callconv(.@"inline") HRESULT {
+        return self.vtable.OnCall(self, pFrame);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ICallFrameWalker_Value = Guid.initString("08b23919-392d-11d2-b8a4-00c04fb9618a");
+pub const IID_ICallFrameWalker = &IID_ICallFrameWalker_Value;
+pub const ICallFrameWalker = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnWalkInterface: *const fn(
+            self: *const ICallFrameWalker,
+            iid: ?*const Guid,
+            ppvInterface: ?*?*anyopaque,
+            fIn: BOOL,
+            fOut: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnWalkInterface(self: *const ICallFrameWalker, iid: ?*const Guid, ppvInterface: ?*?*anyopaque, fIn: BOOL, fOut: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnWalkInterface(self, iid, ppvInterface, fIn, fOut);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
 const IID_ICallIndirect_Value = Guid.initString("d573b4b1-894e-11d2-b8b6-00c04fb9618a");
 pub const IID_ICallIndirect = &IID_ICallIndirect_Value;
 pub const ICallIndirect = extern union {
@@ -329,24 +368,6 @@ pub const ICallInterceptor = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallFrameEvents_Value = Guid.initString("fd5e0843-fc91-11d0-97d7-00c04fb9618a");
-pub const IID_ICallFrameEvents = &IID_ICallFrameEvents_Value;
-pub const ICallFrameEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnCall: *const fn(
-            self: *const ICallFrameEvents,
-            pFrame: ?*ICallFrame,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnCall(self: *const ICallFrameEvents, pFrame: ?*ICallFrame) callconv(.@"inline") HRESULT {
-        return self.vtable.OnCall(self, pFrame);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
 const IID_ICallUnmarshal_Value = Guid.initString("5333b003-2e42-11d2-b89d-00c04fb9618a");
 pub const IID_ICallUnmarshal = &IID_ICallUnmarshal_Value;
 pub const ICallUnmarshal = extern union {
@@ -380,27 +401,6 @@ pub const ICallUnmarshal = extern union {
     }
     pub fn ReleaseMarshalData(self: *const ICallUnmarshal, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMarshalData(self, iMethod, pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ICallFrameWalker_Value = Guid.initString("08b23919-392d-11d2-b8a4-00c04fb9618a");
-pub const IID_ICallFrameWalker = &IID_ICallFrameWalker_Value;
-pub const ICallFrameWalker = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnWalkInterface: *const fn(
-            self: *const ICallFrameWalker,
-            iid: ?*const Guid,
-            ppvInterface: ?*?*anyopaque,
-            fIn: BOOL,
-            fOut: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnWalkInterface(self: *const ICallFrameWalker, iid: ?*const Guid, ppvInterface: ?*?*anyopaque, fIn: BOOL, fOut: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnWalkInterface(self, iid, ppvInterface, fIn, fOut);
     }
 };
 

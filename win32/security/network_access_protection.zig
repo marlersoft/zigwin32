@@ -2,33 +2,34 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (15)
 //--------------------------------------------------------------------------------
+pub const ComponentTypeEnforcementClientRp = @as(u32, 2);
+pub const ComponentTypeEnforcementClientSoH = @as(u32, 1);
+pub const failureCategoryCount = @as(u32, 5);
+pub const freshSoHRequest = @as(u32, 1);
+pub const maxConnectionCountPerEnforcer = @as(u32, 20);
+pub const maxEnforcerCount = @as(u32, 20);
+pub const maxNetworkSoHSize = @as(u32, 4000);
+pub const maxPrivateDataSize = @as(u32, 200);
 pub const maxSoHAttributeCount = @as(u32, 100);
 pub const maxSoHAttributeSize = @as(u32, 4000);
-pub const minNetworkSoHSize = @as(u32, 12);
-pub const maxNetworkSoHSize = @as(u32, 4000);
 pub const maxStringLength = @as(u32, 1024);
 pub const maxSystemHealthEntityCount = @as(u32, 20);
-pub const maxEnforcerCount = @as(u32, 20);
-pub const maxPrivateDataSize = @as(u32, 200);
-pub const maxConnectionCountPerEnforcer = @as(u32, 20);
-pub const freshSoHRequest = @as(u32, 1);
-pub const shaFixup = @as(u32, 1);
-pub const failureCategoryCount = @as(u32, 5);
-pub const ComponentTypeEnforcementClientSoH = @as(u32, 1);
-pub const ComponentTypeEnforcementClientRp = @as(u32, 2);
+pub const minNetworkSoHSize = @as(u32, 12);
 pub const percentageNotSupported = @as(u32, 101);
+pub const shaFixup = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (22)
 //--------------------------------------------------------------------------------
-pub const IsolationState = enum(i32) {
-    NotRestricted = 1,
-    InProbation = 2,
-    RestrictedAccess = 3,
+pub const CorrelationId = extern struct {
+    connId: Guid,
+    timeStamp: FILETIME,
 };
-pub const isolationStateNotRestricted = IsolationState.NotRestricted;
-pub const isolationStateInProbation = IsolationState.InProbation;
-pub const isolationStateRestrictedAccess = IsolationState.RestrictedAccess;
+
+pub const CountedString = extern struct {
+    length: u16,
+    string: ?PWSTR,
+};
 
 pub const ExtendedIsolationState = enum(i32) {
     NoData = 0,
@@ -40,35 +41,6 @@ pub const extendedIsolationStateNoData = ExtendedIsolationState.NoData;
 pub const extendedIsolationStateTransition = ExtendedIsolationState.Transition;
 pub const extendedIsolationStateInfected = ExtendedIsolationState.Infected;
 pub const extendedIsolationStateUnknown = ExtendedIsolationState.Unknown;
-
-pub const NapTracingLevel = enum(i32) {
-    Undefined = 0,
-    Basic = 1,
-    Advanced = 2,
-    Debug = 3,
-};
-pub const tracingLevelUndefined = NapTracingLevel.Undefined;
-pub const tracingLevelBasic = NapTracingLevel.Basic;
-pub const tracingLevelAdvanced = NapTracingLevel.Advanced;
-pub const tracingLevelDebug = NapTracingLevel.Debug;
-
-pub const CountedString = extern struct {
-    length: u16,
-    string: ?PWSTR,
-};
-
-pub const IsolationInfo = extern struct {
-    isolationState: IsolationState,
-    probEndTime: FILETIME,
-    failureUrl: CountedString,
-};
-
-pub const IsolationInfoEx = extern struct {
-    isolationState: IsolationState,
-    extendedIsolationState: ExtendedIsolationState,
-    probEndTime: FILETIME,
-    failureUrl: CountedString,
-};
 
 pub const FailureCategory = enum(i32) {
     None = 0,
@@ -89,22 +61,11 @@ pub const FailureCategoryMapping = extern struct {
     mappingCompliance: [5]BOOL,
 };
 
-pub const CorrelationId = extern struct {
-    connId: Guid,
-    timeStamp: FILETIME,
-};
-
-pub const ResultCodes = extern struct {
-    count: u16,
-    results: ?*HRESULT,
-};
-
-pub const Ipv4Address = extern struct {
-    addr: [4]u8,
-};
-
-pub const Ipv6Address = extern struct {
-    addr: [16]u8,
+pub const FixupInfo = extern struct {
+    state: FixupState,
+    percentage: u8,
+    resultCodes: ResultCodes,
+    fixupMsgId: u32,
 };
 
 pub const FixupState = enum(i32) {
@@ -116,49 +77,35 @@ pub const fixupStateSuccess = FixupState.Success;
 pub const fixupStateInProgress = FixupState.InProgress;
 pub const fixupStateCouldNotUpdate = FixupState.CouldNotUpdate;
 
-pub const FixupInfo = extern struct {
-    state: FixupState,
-    percentage: u8,
-    resultCodes: ResultCodes,
-    fixupMsgId: u32,
+pub const Ipv4Address = extern struct {
+    addr: [4]u8,
 };
 
-pub const NapNotifyType = enum(i32) {
-    Unknown = 0,
-    ServiceState = 1,
-    QuarState = 2,
-};
-pub const napNotifyTypeUnknown = NapNotifyType.Unknown;
-pub const napNotifyTypeServiceState = NapNotifyType.ServiceState;
-pub const napNotifyTypeQuarState = NapNotifyType.QuarState;
-
-pub const SystemHealthAgentState = extern struct {
-    id: u32,
-    shaResultCodes: ResultCodes,
-    failureCategory: FailureCategory,
-    fixupInfo: FixupInfo,
+pub const Ipv6Address = extern struct {
+    addr: [16]u8,
 };
 
-pub const SoHAttribute = extern struct {
-    type: u16,
-    size: u16,
-    value: ?*u8,
+pub const IsolationInfo = extern struct {
+    isolationState: IsolationState,
+    probEndTime: FILETIME,
+    failureUrl: CountedString,
 };
 
-pub const SoH = extern struct {
-    count: u16,
-    attributes: ?*SoHAttribute,
+pub const IsolationInfoEx = extern struct {
+    isolationState: IsolationState,
+    extendedIsolationState: ExtendedIsolationState,
+    probEndTime: FILETIME,
+    failureUrl: CountedString,
 };
 
-pub const NetworkSoH = extern struct {
-    size: u16,
-    data: ?*u8,
+pub const IsolationState = enum(i32) {
+    NotRestricted = 1,
+    InProbation = 2,
+    RestrictedAccess = 3,
 };
-
-pub const PrivateData = extern struct {
-    size: u16,
-    data: ?*u8,
-};
+pub const isolationStateNotRestricted = IsolationState.NotRestricted;
+pub const isolationStateInProbation = IsolationState.InProbation;
+pub const isolationStateRestrictedAccess = IsolationState.RestrictedAccess;
 
 pub const NapComponentRegistrationInfo = extern struct {
     id: u32,
@@ -172,12 +119,65 @@ pub const NapComponentRegistrationInfo = extern struct {
     componentType: u32,
 };
 
+pub const NapNotifyType = enum(i32) {
+    Unknown = 0,
+    ServiceState = 1,
+    QuarState = 2,
+};
+pub const napNotifyTypeUnknown = NapNotifyType.Unknown;
+pub const napNotifyTypeServiceState = NapNotifyType.ServiceState;
+pub const napNotifyTypeQuarState = NapNotifyType.QuarState;
+
+pub const NapTracingLevel = enum(i32) {
+    Undefined = 0,
+    Basic = 1,
+    Advanced = 2,
+    Debug = 3,
+};
+pub const tracingLevelUndefined = NapTracingLevel.Undefined;
+pub const tracingLevelBasic = NapTracingLevel.Basic;
+pub const tracingLevelAdvanced = NapTracingLevel.Advanced;
+pub const tracingLevelDebug = NapTracingLevel.Debug;
+
+pub const NetworkSoH = extern struct {
+    size: u16,
+    data: ?*u8,
+};
+
+pub const PrivateData = extern struct {
+    size: u16,
+    data: ?*u8,
+};
+
 pub const RemoteConfigurationType = enum(i32) {
     Machine = 1,
     ConfigBlob = 2,
 };
 pub const remoteConfigTypeMachine = RemoteConfigurationType.Machine;
 pub const remoteConfigTypeConfigBlob = RemoteConfigurationType.ConfigBlob;
+
+pub const ResultCodes = extern struct {
+    count: u16,
+    results: ?*HRESULT,
+};
+
+pub const SoH = extern struct {
+    count: u16,
+    attributes: ?*SoHAttribute,
+};
+
+pub const SoHAttribute = extern struct {
+    type: u16,
+    size: u16,
+    value: ?*u8,
+};
+
+pub const SystemHealthAgentState = extern struct {
+    id: u32,
+    shaResultCodes: ResultCodes,
+    failureCategory: FailureCategory,
+    fixupInfo: FixupInfo,
+};
 
 
 //--------------------------------------------------------------------------------

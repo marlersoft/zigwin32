@@ -2,340 +2,60 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
-pub const EVT_VARIANT_TYPE_MASK = @as(u32, 127);
-pub const EVT_VARIANT_TYPE_ARRAY = @as(u32, 128);
-pub const EVT_READ_ACCESS = @as(u32, 1);
-pub const EVT_WRITE_ACCESS = @as(u32, 2);
-pub const EVT_CLEAR_ACCESS = @as(u32, 4);
 pub const EVT_ALL_ACCESS = @as(u32, 7);
+pub const EVT_CLEAR_ACCESS = @as(u32, 4);
+pub const EVT_READ_ACCESS = @as(u32, 1);
+pub const EVT_VARIANT_TYPE_ARRAY = @as(u32, 128);
+pub const EVT_VARIANT_TYPE_MASK = @as(u32, 127);
+pub const EVT_WRITE_ACCESS = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (34)
 //--------------------------------------------------------------------------------
-pub const REPORT_EVENT_TYPE = enum(u16) {
-    SUCCESS = 0,
-    AUDIT_FAILURE = 16,
-    AUDIT_SUCCESS = 8,
-    ERROR_TYPE = 1,
-    INFORMATION_TYPE = 4,
-    WARNING_TYPE = 2,
+pub const EVENTLOG_FULL_INFORMATION = extern struct {
+    dwFull: u32,
 };
-pub const EVENTLOG_SUCCESS = REPORT_EVENT_TYPE.SUCCESS;
-pub const EVENTLOG_AUDIT_FAILURE = REPORT_EVENT_TYPE.AUDIT_FAILURE;
-pub const EVENTLOG_AUDIT_SUCCESS = REPORT_EVENT_TYPE.AUDIT_SUCCESS;
-pub const EVENTLOG_ERROR_TYPE = REPORT_EVENT_TYPE.ERROR_TYPE;
-pub const EVENTLOG_INFORMATION_TYPE = REPORT_EVENT_TYPE.INFORMATION_TYPE;
-pub const EVENTLOG_WARNING_TYPE = REPORT_EVENT_TYPE.WARNING_TYPE;
-
-pub const READ_EVENT_LOG_READ_FLAGS = enum(u32) {
-    EK_READ = 2,
-    QUENTIAL_READ = 1,
-};
-pub const EVENTLOG_SEEK_READ = READ_EVENT_LOG_READ_FLAGS.EK_READ;
-pub const EVENTLOG_SEQUENTIAL_READ = READ_EVENT_LOG_READ_FLAGS.QUENTIAL_READ;
 
 // TODO: this type has a FreeFunc 'CloseEventLog', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const EventLogHandle = isize;
 
+pub const EVENTLOGRECORD = extern struct {
+    Length: u32,
+    Reserved: u32,
+    RecordNumber: u32,
+    TimeGenerated: u32,
+    TimeWritten: u32,
+    EventID: u32,
+    EventType: REPORT_EVENT_TYPE,
+    NumStrings: u16,
+    EventCategory: u16,
+    ReservedFlags: u16,
+    ClosingRecordNumber: u32,
+    StringOffset: u32,
+    UserSidLength: u32,
+    UserSidOffset: u32,
+    DataLength: u32,
+    DataOffset: u32,
+};
+
+pub const EVENTSFORLOGFILE = extern struct {
+    ulSize: u32,
+    szLogicalLogFile: [256]u16,
+    ulNumRecords: u32,
+    pEventLogRecords: [1]EVENTLOGRECORD,
+};
+
 // TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const EventSourceHandle = isize;
 
-pub const EVT_VARIANT_TYPE = enum(i32) {
-    Null = 0,
-    String = 1,
-    AnsiString = 2,
-    SByte = 3,
-    Byte = 4,
-    Int16 = 5,
-    UInt16 = 6,
-    Int32 = 7,
-    UInt32 = 8,
-    Int64 = 9,
-    UInt64 = 10,
-    Single = 11,
-    Double = 12,
-    Boolean = 13,
-    Binary = 14,
-    Guid = 15,
-    SizeT = 16,
-    FileTime = 17,
-    SysTime = 18,
-    Sid = 19,
-    HexInt32 = 20,
-    HexInt64 = 21,
-    EvtHandle = 32,
-    EvtXml = 35,
+pub const EVT_CHANNEL_CLOCK_TYPE = enum(i32) {
+    SystemTime = 0,
+    QPC = 1,
 };
-pub const EvtVarTypeNull = EVT_VARIANT_TYPE.Null;
-pub const EvtVarTypeString = EVT_VARIANT_TYPE.String;
-pub const EvtVarTypeAnsiString = EVT_VARIANT_TYPE.AnsiString;
-pub const EvtVarTypeSByte = EVT_VARIANT_TYPE.SByte;
-pub const EvtVarTypeByte = EVT_VARIANT_TYPE.Byte;
-pub const EvtVarTypeInt16 = EVT_VARIANT_TYPE.Int16;
-pub const EvtVarTypeUInt16 = EVT_VARIANT_TYPE.UInt16;
-pub const EvtVarTypeInt32 = EVT_VARIANT_TYPE.Int32;
-pub const EvtVarTypeUInt32 = EVT_VARIANT_TYPE.UInt32;
-pub const EvtVarTypeInt64 = EVT_VARIANT_TYPE.Int64;
-pub const EvtVarTypeUInt64 = EVT_VARIANT_TYPE.UInt64;
-pub const EvtVarTypeSingle = EVT_VARIANT_TYPE.Single;
-pub const EvtVarTypeDouble = EVT_VARIANT_TYPE.Double;
-pub const EvtVarTypeBoolean = EVT_VARIANT_TYPE.Boolean;
-pub const EvtVarTypeBinary = EVT_VARIANT_TYPE.Binary;
-pub const EvtVarTypeGuid = EVT_VARIANT_TYPE.Guid;
-pub const EvtVarTypeSizeT = EVT_VARIANT_TYPE.SizeT;
-pub const EvtVarTypeFileTime = EVT_VARIANT_TYPE.FileTime;
-pub const EvtVarTypeSysTime = EVT_VARIANT_TYPE.SysTime;
-pub const EvtVarTypeSid = EVT_VARIANT_TYPE.Sid;
-pub const EvtVarTypeHexInt32 = EVT_VARIANT_TYPE.HexInt32;
-pub const EvtVarTypeHexInt64 = EVT_VARIANT_TYPE.HexInt64;
-pub const EvtVarTypeEvtHandle = EVT_VARIANT_TYPE.EvtHandle;
-pub const EvtVarTypeEvtXml = EVT_VARIANT_TYPE.EvtXml;
-
-pub const EVT_VARIANT = extern struct {
-    Anonymous: extern union {
-        BooleanVal: BOOL,
-        SByteVal: i8,
-        Int16Val: i16,
-        Int32Val: i32,
-        Int64Val: i64,
-        ByteVal: u8,
-        UInt16Val: u16,
-        UInt32Val: u32,
-        UInt64Val: u64,
-        SingleVal: f32,
-        DoubleVal: f64,
-        FileTimeVal: u64,
-        SysTimeVal: ?*SYSTEMTIME,
-        GuidVal: ?*Guid,
-        StringVal: ?[*:0]const u16,
-        AnsiStringVal: ?[*:0]const u8,
-        BinaryVal: ?*u8,
-        SidVal: ?PSID,
-        SizeTVal: usize,
-        BooleanArr: ?*BOOL,
-        SByteArr: ?*i8,
-        Int16Arr: ?*i16,
-        Int32Arr: ?*i32,
-        Int64Arr: ?*i64,
-        ByteArr: ?*u8,
-        UInt16Arr: ?*u16,
-        UInt32Arr: ?*u32,
-        UInt64Arr: ?*u64,
-        SingleArr: ?*f32,
-        DoubleArr: ?*f64,
-        FileTimeArr: ?*FILETIME,
-        SysTimeArr: ?*SYSTEMTIME,
-        GuidArr: ?*Guid,
-        StringArr: ?*?PWSTR,
-        AnsiStringArr: ?*?PSTR,
-        SidArr: ?*?PSID,
-        SizeTArr: ?*usize,
-        EvtHandleVal: isize,
-        XmlVal: ?[*:0]const u16,
-        XmlValArr: ?*?PWSTR,
-    },
-    Count: u32,
-    Type: u32,
-};
-
-pub const EVT_LOGIN_CLASS = enum(i32) {
-    n = 1,
-};
-pub const EvtRpcLogin = EVT_LOGIN_CLASS.n;
-
-pub const EVT_RPC_LOGIN_FLAGS = enum(i32) {
-    Default = 0,
-    Negotiate = 1,
-    Kerberos = 2,
-    NTLM = 3,
-};
-pub const EvtRpcLoginAuthDefault = EVT_RPC_LOGIN_FLAGS.Default;
-pub const EvtRpcLoginAuthNegotiate = EVT_RPC_LOGIN_FLAGS.Negotiate;
-pub const EvtRpcLoginAuthKerberos = EVT_RPC_LOGIN_FLAGS.Kerberos;
-pub const EvtRpcLoginAuthNTLM = EVT_RPC_LOGIN_FLAGS.NTLM;
-
-pub const EVT_RPC_LOGIN = extern struct {
-    Server: ?PWSTR,
-    User: ?PWSTR,
-    Domain: ?PWSTR,
-    Password: ?PWSTR,
-    Flags: u32,
-};
-
-pub const EVT_QUERY_FLAGS = enum(i32) {
-    ChannelPath = 1,
-    FilePath = 2,
-    ForwardDirection = 256,
-    ReverseDirection = 512,
-    TolerateQueryErrors = 4096,
-};
-pub const EvtQueryChannelPath = EVT_QUERY_FLAGS.ChannelPath;
-pub const EvtQueryFilePath = EVT_QUERY_FLAGS.FilePath;
-pub const EvtQueryForwardDirection = EVT_QUERY_FLAGS.ForwardDirection;
-pub const EvtQueryReverseDirection = EVT_QUERY_FLAGS.ReverseDirection;
-pub const EvtQueryTolerateQueryErrors = EVT_QUERY_FLAGS.TolerateQueryErrors;
-
-pub const EVT_SEEK_FLAGS = enum(i32) {
-    RelativeToFirst = 1,
-    RelativeToLast = 2,
-    RelativeToCurrent = 3,
-    RelativeToBookmark = 4,
-    OriginMask = 7,
-    Strict = 65536,
-};
-pub const EvtSeekRelativeToFirst = EVT_SEEK_FLAGS.RelativeToFirst;
-pub const EvtSeekRelativeToLast = EVT_SEEK_FLAGS.RelativeToLast;
-pub const EvtSeekRelativeToCurrent = EVT_SEEK_FLAGS.RelativeToCurrent;
-pub const EvtSeekRelativeToBookmark = EVT_SEEK_FLAGS.RelativeToBookmark;
-pub const EvtSeekOriginMask = EVT_SEEK_FLAGS.OriginMask;
-pub const EvtSeekStrict = EVT_SEEK_FLAGS.Strict;
-
-pub const EVT_SUBSCRIBE_FLAGS = enum(i32) {
-    ToFutureEvents = 1,
-    StartAtOldestRecord = 2,
-    StartAfterBookmark = 3,
-    TolerateQueryErrors = 4096,
-    Strict = 65536,
-    pub const OriginMask = .StartAfterBookmark;
-};
-pub const EvtSubscribeToFutureEvents = EVT_SUBSCRIBE_FLAGS.ToFutureEvents;
-pub const EvtSubscribeStartAtOldestRecord = EVT_SUBSCRIBE_FLAGS.StartAtOldestRecord;
-pub const EvtSubscribeStartAfterBookmark = EVT_SUBSCRIBE_FLAGS.StartAfterBookmark;
-pub const EvtSubscribeOriginMask = EVT_SUBSCRIBE_FLAGS.StartAfterBookmark;
-pub const EvtSubscribeTolerateQueryErrors = EVT_SUBSCRIBE_FLAGS.TolerateQueryErrors;
-pub const EvtSubscribeStrict = EVT_SUBSCRIBE_FLAGS.Strict;
-
-pub const EVT_SUBSCRIBE_NOTIFY_ACTION = enum(i32) {
-    Error = 0,
-    Deliver = 1,
-};
-pub const EvtSubscribeActionError = EVT_SUBSCRIBE_NOTIFY_ACTION.Error;
-pub const EvtSubscribeActionDeliver = EVT_SUBSCRIBE_NOTIFY_ACTION.Deliver;
-
-pub const EVT_SUBSCRIBE_CALLBACK = *const fn(
-    Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
-    UserContext: ?*anyopaque,
-    Event: isize,
-) callconv(.winapi) u32;
-
-pub const EVT_SYSTEM_PROPERTY_ID = enum(i32) {
-    ProviderName = 0,
-    ProviderGuid = 1,
-    EventID = 2,
-    Qualifiers = 3,
-    Level = 4,
-    Task = 5,
-    Opcode = 6,
-    Keywords = 7,
-    TimeCreated = 8,
-    EventRecordId = 9,
-    ActivityID = 10,
-    RelatedActivityID = 11,
-    ProcessID = 12,
-    ThreadID = 13,
-    Channel = 14,
-    Computer = 15,
-    UserID = 16,
-    Version = 17,
-    PropertyIdEND = 18,
-};
-pub const EvtSystemProviderName = EVT_SYSTEM_PROPERTY_ID.ProviderName;
-pub const EvtSystemProviderGuid = EVT_SYSTEM_PROPERTY_ID.ProviderGuid;
-pub const EvtSystemEventID = EVT_SYSTEM_PROPERTY_ID.EventID;
-pub const EvtSystemQualifiers = EVT_SYSTEM_PROPERTY_ID.Qualifiers;
-pub const EvtSystemLevel = EVT_SYSTEM_PROPERTY_ID.Level;
-pub const EvtSystemTask = EVT_SYSTEM_PROPERTY_ID.Task;
-pub const EvtSystemOpcode = EVT_SYSTEM_PROPERTY_ID.Opcode;
-pub const EvtSystemKeywords = EVT_SYSTEM_PROPERTY_ID.Keywords;
-pub const EvtSystemTimeCreated = EVT_SYSTEM_PROPERTY_ID.TimeCreated;
-pub const EvtSystemEventRecordId = EVT_SYSTEM_PROPERTY_ID.EventRecordId;
-pub const EvtSystemActivityID = EVT_SYSTEM_PROPERTY_ID.ActivityID;
-pub const EvtSystemRelatedActivityID = EVT_SYSTEM_PROPERTY_ID.RelatedActivityID;
-pub const EvtSystemProcessID = EVT_SYSTEM_PROPERTY_ID.ProcessID;
-pub const EvtSystemThreadID = EVT_SYSTEM_PROPERTY_ID.ThreadID;
-pub const EvtSystemChannel = EVT_SYSTEM_PROPERTY_ID.Channel;
-pub const EvtSystemComputer = EVT_SYSTEM_PROPERTY_ID.Computer;
-pub const EvtSystemUserID = EVT_SYSTEM_PROPERTY_ID.UserID;
-pub const EvtSystemVersion = EVT_SYSTEM_PROPERTY_ID.Version;
-pub const EvtSystemPropertyIdEND = EVT_SYSTEM_PROPERTY_ID.PropertyIdEND;
-
-pub const EVT_RENDER_CONTEXT_FLAGS = enum(i32) {
-    Values = 0,
-    System = 1,
-    User = 2,
-};
-pub const EvtRenderContextValues = EVT_RENDER_CONTEXT_FLAGS.Values;
-pub const EvtRenderContextSystem = EVT_RENDER_CONTEXT_FLAGS.System;
-pub const EvtRenderContextUser = EVT_RENDER_CONTEXT_FLAGS.User;
-
-pub const EVT_RENDER_FLAGS = enum(i32) {
-    EventValues = 0,
-    EventXml = 1,
-    Bookmark = 2,
-};
-pub const EvtRenderEventValues = EVT_RENDER_FLAGS.EventValues;
-pub const EvtRenderEventXml = EVT_RENDER_FLAGS.EventXml;
-pub const EvtRenderBookmark = EVT_RENDER_FLAGS.Bookmark;
-
-pub const EVT_FORMAT_MESSAGE_FLAGS = enum(i32) {
-    Event = 1,
-    Level = 2,
-    Task = 3,
-    Opcode = 4,
-    Keyword = 5,
-    Channel = 6,
-    Provider = 7,
-    Id = 8,
-    Xml = 9,
-};
-pub const EvtFormatMessageEvent = EVT_FORMAT_MESSAGE_FLAGS.Event;
-pub const EvtFormatMessageLevel = EVT_FORMAT_MESSAGE_FLAGS.Level;
-pub const EvtFormatMessageTask = EVT_FORMAT_MESSAGE_FLAGS.Task;
-pub const EvtFormatMessageOpcode = EVT_FORMAT_MESSAGE_FLAGS.Opcode;
-pub const EvtFormatMessageKeyword = EVT_FORMAT_MESSAGE_FLAGS.Keyword;
-pub const EvtFormatMessageChannel = EVT_FORMAT_MESSAGE_FLAGS.Channel;
-pub const EvtFormatMessageProvider = EVT_FORMAT_MESSAGE_FLAGS.Provider;
-pub const EvtFormatMessageId = EVT_FORMAT_MESSAGE_FLAGS.Id;
-pub const EvtFormatMessageXml = EVT_FORMAT_MESSAGE_FLAGS.Xml;
-
-pub const EVT_OPEN_LOG_FLAGS = enum(i32) {
-    ChannelPath = 1,
-    FilePath = 2,
-};
-pub const EvtOpenChannelPath = EVT_OPEN_LOG_FLAGS.ChannelPath;
-pub const EvtOpenFilePath = EVT_OPEN_LOG_FLAGS.FilePath;
-
-pub const EVT_LOG_PROPERTY_ID = enum(i32) {
-    CreationTime = 0,
-    LastAccessTime = 1,
-    LastWriteTime = 2,
-    FileSize = 3,
-    Attributes = 4,
-    NumberOfLogRecords = 5,
-    OldestRecordNumber = 6,
-    Full = 7,
-};
-pub const EvtLogCreationTime = EVT_LOG_PROPERTY_ID.CreationTime;
-pub const EvtLogLastAccessTime = EVT_LOG_PROPERTY_ID.LastAccessTime;
-pub const EvtLogLastWriteTime = EVT_LOG_PROPERTY_ID.LastWriteTime;
-pub const EvtLogFileSize = EVT_LOG_PROPERTY_ID.FileSize;
-pub const EvtLogAttributes = EVT_LOG_PROPERTY_ID.Attributes;
-pub const EvtLogNumberOfLogRecords = EVT_LOG_PROPERTY_ID.NumberOfLogRecords;
-pub const EvtLogOldestRecordNumber = EVT_LOG_PROPERTY_ID.OldestRecordNumber;
-pub const EvtLogFull = EVT_LOG_PROPERTY_ID.Full;
-
-pub const EVT_EXPORTLOG_FLAGS = enum(i32) {
-    ChannelPath = 1,
-    FilePath = 2,
-    TolerateQueryErrors = 4096,
-    Overwrite = 8192,
-};
-pub const EvtExportLogChannelPath = EVT_EXPORTLOG_FLAGS.ChannelPath;
-pub const EvtExportLogFilePath = EVT_EXPORTLOG_FLAGS.FilePath;
-pub const EvtExportLogTolerateQueryErrors = EVT_EXPORTLOG_FLAGS.TolerateQueryErrors;
-pub const EvtExportLogOverwrite = EVT_EXPORTLOG_FLAGS.Overwrite;
+pub const EvtChannelClockTypeSystemTime = EVT_CHANNEL_CLOCK_TYPE.SystemTime;
+pub const EvtChannelClockTypeQPC = EVT_CHANNEL_CLOCK_TYPE.QPC;
 
 pub const EVT_CHANNEL_CONFIG_PROPERTY_ID = enum(i32) {
     ConfigEnabled = 0,
@@ -384,6 +104,27 @@ pub const EvtChannelPublisherList = EVT_CHANNEL_CONFIG_PROPERTY_ID.PublisherList
 pub const EvtChannelPublishingConfigFileMax = EVT_CHANNEL_CONFIG_PROPERTY_ID.PublishingConfigFileMax;
 pub const EvtChannelConfigPropertyIdEND = EVT_CHANNEL_CONFIG_PROPERTY_ID.ConfigPropertyIdEND;
 
+pub const EVT_CHANNEL_ISOLATION_TYPE = enum(i32) {
+    Application = 0,
+    System = 1,
+    Custom = 2,
+};
+pub const EvtChannelIsolationTypeApplication = EVT_CHANNEL_ISOLATION_TYPE.Application;
+pub const EvtChannelIsolationTypeSystem = EVT_CHANNEL_ISOLATION_TYPE.System;
+pub const EvtChannelIsolationTypeCustom = EVT_CHANNEL_ISOLATION_TYPE.Custom;
+
+pub const EVT_CHANNEL_REFERENCE_FLAGS = enum(i32) {
+    d = 1,
+};
+pub const EvtChannelReferenceImported = EVT_CHANNEL_REFERENCE_FLAGS.d;
+
+pub const EVT_CHANNEL_SID_TYPE = enum(i32) {
+    None = 0,
+    Publishing = 1,
+};
+pub const EvtChannelSidTypeNone = EVT_CHANNEL_SID_TYPE.None;
+pub const EvtChannelSidTypePublishing = EVT_CHANNEL_SID_TYPE.Publishing;
+
 pub const EVT_CHANNEL_TYPE = enum(i32) {
     Admin = 0,
     Operational = 1,
@@ -395,33 +136,100 @@ pub const EvtChannelTypeOperational = EVT_CHANNEL_TYPE.Operational;
 pub const EvtChannelTypeAnalytic = EVT_CHANNEL_TYPE.Analytic;
 pub const EvtChannelTypeDebug = EVT_CHANNEL_TYPE.Debug;
 
-pub const EVT_CHANNEL_ISOLATION_TYPE = enum(i32) {
-    Application = 0,
-    System = 1,
-    Custom = 2,
+pub const EVT_EVENT_METADATA_PROPERTY_ID = enum(i32) {
+    entMetadataEventID = 0,
+    entMetadataEventVersion = 1,
+    entMetadataEventChannel = 2,
+    entMetadataEventLevel = 3,
+    entMetadataEventOpcode = 4,
+    entMetadataEventTask = 5,
+    entMetadataEventKeyword = 6,
+    entMetadataEventMessageID = 7,
+    entMetadataEventTemplate = 8,
+    tEventMetadataPropertyIdEND = 9,
 };
-pub const EvtChannelIsolationTypeApplication = EVT_CHANNEL_ISOLATION_TYPE.Application;
-pub const EvtChannelIsolationTypeSystem = EVT_CHANNEL_ISOLATION_TYPE.System;
-pub const EvtChannelIsolationTypeCustom = EVT_CHANNEL_ISOLATION_TYPE.Custom;
+pub const EventMetadataEventID = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventID;
+pub const EventMetadataEventVersion = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventVersion;
+pub const EventMetadataEventChannel = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventChannel;
+pub const EventMetadataEventLevel = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventLevel;
+pub const EventMetadataEventOpcode = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventOpcode;
+pub const EventMetadataEventTask = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventTask;
+pub const EventMetadataEventKeyword = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventKeyword;
+pub const EventMetadataEventMessageID = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventMessageID;
+pub const EventMetadataEventTemplate = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventTemplate;
+pub const EvtEventMetadataPropertyIdEND = EVT_EVENT_METADATA_PROPERTY_ID.tEventMetadataPropertyIdEND;
 
-pub const EVT_CHANNEL_CLOCK_TYPE = enum(i32) {
-    SystemTime = 0,
-    QPC = 1,
+pub const EVT_EVENT_PROPERTY_ID = enum(i32) {
+    QueryIDs = 0,
+    Path = 1,
+    PropertyIdEND = 2,
 };
-pub const EvtChannelClockTypeSystemTime = EVT_CHANNEL_CLOCK_TYPE.SystemTime;
-pub const EvtChannelClockTypeQPC = EVT_CHANNEL_CLOCK_TYPE.QPC;
+pub const EvtEventQueryIDs = EVT_EVENT_PROPERTY_ID.QueryIDs;
+pub const EvtEventPath = EVT_EVENT_PROPERTY_ID.Path;
+pub const EvtEventPropertyIdEND = EVT_EVENT_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_CHANNEL_SID_TYPE = enum(i32) {
-    None = 0,
-    Publishing = 1,
+pub const EVT_EXPORTLOG_FLAGS = enum(i32) {
+    ChannelPath = 1,
+    FilePath = 2,
+    TolerateQueryErrors = 4096,
+    Overwrite = 8192,
 };
-pub const EvtChannelSidTypeNone = EVT_CHANNEL_SID_TYPE.None;
-pub const EvtChannelSidTypePublishing = EVT_CHANNEL_SID_TYPE.Publishing;
+pub const EvtExportLogChannelPath = EVT_EXPORTLOG_FLAGS.ChannelPath;
+pub const EvtExportLogFilePath = EVT_EXPORTLOG_FLAGS.FilePath;
+pub const EvtExportLogTolerateQueryErrors = EVT_EXPORTLOG_FLAGS.TolerateQueryErrors;
+pub const EvtExportLogOverwrite = EVT_EXPORTLOG_FLAGS.Overwrite;
 
-pub const EVT_CHANNEL_REFERENCE_FLAGS = enum(i32) {
-    d = 1,
+pub const EVT_FORMAT_MESSAGE_FLAGS = enum(i32) {
+    Event = 1,
+    Level = 2,
+    Task = 3,
+    Opcode = 4,
+    Keyword = 5,
+    Channel = 6,
+    Provider = 7,
+    Id = 8,
+    Xml = 9,
 };
-pub const EvtChannelReferenceImported = EVT_CHANNEL_REFERENCE_FLAGS.d;
+pub const EvtFormatMessageEvent = EVT_FORMAT_MESSAGE_FLAGS.Event;
+pub const EvtFormatMessageLevel = EVT_FORMAT_MESSAGE_FLAGS.Level;
+pub const EvtFormatMessageTask = EVT_FORMAT_MESSAGE_FLAGS.Task;
+pub const EvtFormatMessageOpcode = EVT_FORMAT_MESSAGE_FLAGS.Opcode;
+pub const EvtFormatMessageKeyword = EVT_FORMAT_MESSAGE_FLAGS.Keyword;
+pub const EvtFormatMessageChannel = EVT_FORMAT_MESSAGE_FLAGS.Channel;
+pub const EvtFormatMessageProvider = EVT_FORMAT_MESSAGE_FLAGS.Provider;
+pub const EvtFormatMessageId = EVT_FORMAT_MESSAGE_FLAGS.Id;
+pub const EvtFormatMessageXml = EVT_FORMAT_MESSAGE_FLAGS.Xml;
+
+pub const EVT_LOG_PROPERTY_ID = enum(i32) {
+    CreationTime = 0,
+    LastAccessTime = 1,
+    LastWriteTime = 2,
+    FileSize = 3,
+    Attributes = 4,
+    NumberOfLogRecords = 5,
+    OldestRecordNumber = 6,
+    Full = 7,
+};
+pub const EvtLogCreationTime = EVT_LOG_PROPERTY_ID.CreationTime;
+pub const EvtLogLastAccessTime = EVT_LOG_PROPERTY_ID.LastAccessTime;
+pub const EvtLogLastWriteTime = EVT_LOG_PROPERTY_ID.LastWriteTime;
+pub const EvtLogFileSize = EVT_LOG_PROPERTY_ID.FileSize;
+pub const EvtLogAttributes = EVT_LOG_PROPERTY_ID.Attributes;
+pub const EvtLogNumberOfLogRecords = EVT_LOG_PROPERTY_ID.NumberOfLogRecords;
+pub const EvtLogOldestRecordNumber = EVT_LOG_PROPERTY_ID.OldestRecordNumber;
+pub const EvtLogFull = EVT_LOG_PROPERTY_ID.Full;
+
+pub const EVT_LOGIN_CLASS = enum(i32) {
+    n = 1,
+};
+pub const EvtRpcLogin = EVT_LOGIN_CLASS.n;
+
+pub const EVT_OPEN_LOG_FLAGS = enum(i32) {
+    ChannelPath = 1,
+    FilePath = 2,
+};
+pub const EvtOpenChannelPath = EVT_OPEN_LOG_FLAGS.ChannelPath;
+pub const EvtOpenFilePath = EVT_OPEN_LOG_FLAGS.FilePath;
 
 pub const EVT_PUBLISHER_METADATA_PROPERTY_ID = enum(i32) {
     PublisherGuid = 0,
@@ -486,28 +294,18 @@ pub const EvtPublisherMetadataKeywordValue = EVT_PUBLISHER_METADATA_PROPERTY_ID.
 pub const EvtPublisherMetadataKeywordMessageID = EVT_PUBLISHER_METADATA_PROPERTY_ID.KeywordMessageID;
 pub const EvtPublisherMetadataPropertyIdEND = EVT_PUBLISHER_METADATA_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_EVENT_METADATA_PROPERTY_ID = enum(i32) {
-    entMetadataEventID = 0,
-    entMetadataEventVersion = 1,
-    entMetadataEventChannel = 2,
-    entMetadataEventLevel = 3,
-    entMetadataEventOpcode = 4,
-    entMetadataEventTask = 5,
-    entMetadataEventKeyword = 6,
-    entMetadataEventMessageID = 7,
-    entMetadataEventTemplate = 8,
-    tEventMetadataPropertyIdEND = 9,
+pub const EVT_QUERY_FLAGS = enum(i32) {
+    ChannelPath = 1,
+    FilePath = 2,
+    ForwardDirection = 256,
+    ReverseDirection = 512,
+    TolerateQueryErrors = 4096,
 };
-pub const EventMetadataEventID = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventID;
-pub const EventMetadataEventVersion = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventVersion;
-pub const EventMetadataEventChannel = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventChannel;
-pub const EventMetadataEventLevel = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventLevel;
-pub const EventMetadataEventOpcode = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventOpcode;
-pub const EventMetadataEventTask = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventTask;
-pub const EventMetadataEventKeyword = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventKeyword;
-pub const EventMetadataEventMessageID = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventMessageID;
-pub const EventMetadataEventTemplate = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventTemplate;
-pub const EvtEventMetadataPropertyIdEND = EVT_EVENT_METADATA_PROPERTY_ID.tEventMetadataPropertyIdEND;
+pub const EvtQueryChannelPath = EVT_QUERY_FLAGS.ChannelPath;
+pub const EvtQueryFilePath = EVT_QUERY_FLAGS.FilePath;
+pub const EvtQueryForwardDirection = EVT_QUERY_FLAGS.ForwardDirection;
+pub const EvtQueryReverseDirection = EVT_QUERY_FLAGS.ReverseDirection;
+pub const EvtQueryTolerateQueryErrors = EVT_QUERY_FLAGS.TolerateQueryErrors;
 
 pub const EVT_QUERY_PROPERTY_ID = enum(i32) {
     Names = 0,
@@ -518,60 +316,291 @@ pub const EvtQueryNames = EVT_QUERY_PROPERTY_ID.Names;
 pub const EvtQueryStatuses = EVT_QUERY_PROPERTY_ID.Statuses;
 pub const EvtQueryPropertyIdEND = EVT_QUERY_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_EVENT_PROPERTY_ID = enum(i32) {
-    QueryIDs = 0,
-    Path = 1,
-    PropertyIdEND = 2,
+pub const EVT_RENDER_CONTEXT_FLAGS = enum(i32) {
+    Values = 0,
+    System = 1,
+    User = 2,
 };
-pub const EvtEventQueryIDs = EVT_EVENT_PROPERTY_ID.QueryIDs;
-pub const EvtEventPath = EVT_EVENT_PROPERTY_ID.Path;
-pub const EvtEventPropertyIdEND = EVT_EVENT_PROPERTY_ID.PropertyIdEND;
+pub const EvtRenderContextValues = EVT_RENDER_CONTEXT_FLAGS.Values;
+pub const EvtRenderContextSystem = EVT_RENDER_CONTEXT_FLAGS.System;
+pub const EvtRenderContextUser = EVT_RENDER_CONTEXT_FLAGS.User;
 
-pub const EVENTLOGRECORD = extern struct {
-    Length: u32,
-    Reserved: u32,
-    RecordNumber: u32,
-    TimeGenerated: u32,
-    TimeWritten: u32,
-    EventID: u32,
-    EventType: REPORT_EVENT_TYPE,
-    NumStrings: u16,
-    EventCategory: u16,
-    ReservedFlags: u16,
-    ClosingRecordNumber: u32,
-    StringOffset: u32,
-    UserSidLength: u32,
-    UserSidOffset: u32,
-    DataLength: u32,
-    DataOffset: u32,
+pub const EVT_RENDER_FLAGS = enum(i32) {
+    EventValues = 0,
+    EventXml = 1,
+    Bookmark = 2,
+};
+pub const EvtRenderEventValues = EVT_RENDER_FLAGS.EventValues;
+pub const EvtRenderEventXml = EVT_RENDER_FLAGS.EventXml;
+pub const EvtRenderBookmark = EVT_RENDER_FLAGS.Bookmark;
+
+pub const EVT_RPC_LOGIN = extern struct {
+    Server: ?PWSTR,
+    User: ?PWSTR,
+    Domain: ?PWSTR,
+    Password: ?PWSTR,
+    Flags: u32,
 };
 
-pub const EVENTSFORLOGFILE = extern struct {
-    ulSize: u32,
-    szLogicalLogFile: [256]u16,
-    ulNumRecords: u32,
-    pEventLogRecords: [1]EVENTLOGRECORD,
+pub const EVT_RPC_LOGIN_FLAGS = enum(i32) {
+    Default = 0,
+    Negotiate = 1,
+    Kerberos = 2,
+    NTLM = 3,
+};
+pub const EvtRpcLoginAuthDefault = EVT_RPC_LOGIN_FLAGS.Default;
+pub const EvtRpcLoginAuthNegotiate = EVT_RPC_LOGIN_FLAGS.Negotiate;
+pub const EvtRpcLoginAuthKerberos = EVT_RPC_LOGIN_FLAGS.Kerberos;
+pub const EvtRpcLoginAuthNTLM = EVT_RPC_LOGIN_FLAGS.NTLM;
+
+pub const EVT_SEEK_FLAGS = enum(i32) {
+    RelativeToFirst = 1,
+    RelativeToLast = 2,
+    RelativeToCurrent = 3,
+    RelativeToBookmark = 4,
+    OriginMask = 7,
+    Strict = 65536,
+};
+pub const EvtSeekRelativeToFirst = EVT_SEEK_FLAGS.RelativeToFirst;
+pub const EvtSeekRelativeToLast = EVT_SEEK_FLAGS.RelativeToLast;
+pub const EvtSeekRelativeToCurrent = EVT_SEEK_FLAGS.RelativeToCurrent;
+pub const EvtSeekRelativeToBookmark = EVT_SEEK_FLAGS.RelativeToBookmark;
+pub const EvtSeekOriginMask = EVT_SEEK_FLAGS.OriginMask;
+pub const EvtSeekStrict = EVT_SEEK_FLAGS.Strict;
+
+pub const EVT_SUBSCRIBE_CALLBACK = *const fn(
+    Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
+    UserContext: ?*anyopaque,
+    Event: isize,
+) callconv(.winapi) u32;
+
+pub const EVT_SUBSCRIBE_FLAGS = enum(i32) {
+    ToFutureEvents = 1,
+    StartAtOldestRecord = 2,
+    StartAfterBookmark = 3,
+    TolerateQueryErrors = 4096,
+    Strict = 65536,
+    pub const OriginMask = .StartAfterBookmark;
+};
+pub const EvtSubscribeToFutureEvents = EVT_SUBSCRIBE_FLAGS.ToFutureEvents;
+pub const EvtSubscribeStartAtOldestRecord = EVT_SUBSCRIBE_FLAGS.StartAtOldestRecord;
+pub const EvtSubscribeStartAfterBookmark = EVT_SUBSCRIBE_FLAGS.StartAfterBookmark;
+pub const EvtSubscribeOriginMask = EVT_SUBSCRIBE_FLAGS.StartAfterBookmark;
+pub const EvtSubscribeTolerateQueryErrors = EVT_SUBSCRIBE_FLAGS.TolerateQueryErrors;
+pub const EvtSubscribeStrict = EVT_SUBSCRIBE_FLAGS.Strict;
+
+pub const EVT_SUBSCRIBE_NOTIFY_ACTION = enum(i32) {
+    Error = 0,
+    Deliver = 1,
+};
+pub const EvtSubscribeActionError = EVT_SUBSCRIBE_NOTIFY_ACTION.Error;
+pub const EvtSubscribeActionDeliver = EVT_SUBSCRIBE_NOTIFY_ACTION.Deliver;
+
+pub const EVT_SYSTEM_PROPERTY_ID = enum(i32) {
+    ProviderName = 0,
+    ProviderGuid = 1,
+    EventID = 2,
+    Qualifiers = 3,
+    Level = 4,
+    Task = 5,
+    Opcode = 6,
+    Keywords = 7,
+    TimeCreated = 8,
+    EventRecordId = 9,
+    ActivityID = 10,
+    RelatedActivityID = 11,
+    ProcessID = 12,
+    ThreadID = 13,
+    Channel = 14,
+    Computer = 15,
+    UserID = 16,
+    Version = 17,
+    PropertyIdEND = 18,
+};
+pub const EvtSystemProviderName = EVT_SYSTEM_PROPERTY_ID.ProviderName;
+pub const EvtSystemProviderGuid = EVT_SYSTEM_PROPERTY_ID.ProviderGuid;
+pub const EvtSystemEventID = EVT_SYSTEM_PROPERTY_ID.EventID;
+pub const EvtSystemQualifiers = EVT_SYSTEM_PROPERTY_ID.Qualifiers;
+pub const EvtSystemLevel = EVT_SYSTEM_PROPERTY_ID.Level;
+pub const EvtSystemTask = EVT_SYSTEM_PROPERTY_ID.Task;
+pub const EvtSystemOpcode = EVT_SYSTEM_PROPERTY_ID.Opcode;
+pub const EvtSystemKeywords = EVT_SYSTEM_PROPERTY_ID.Keywords;
+pub const EvtSystemTimeCreated = EVT_SYSTEM_PROPERTY_ID.TimeCreated;
+pub const EvtSystemEventRecordId = EVT_SYSTEM_PROPERTY_ID.EventRecordId;
+pub const EvtSystemActivityID = EVT_SYSTEM_PROPERTY_ID.ActivityID;
+pub const EvtSystemRelatedActivityID = EVT_SYSTEM_PROPERTY_ID.RelatedActivityID;
+pub const EvtSystemProcessID = EVT_SYSTEM_PROPERTY_ID.ProcessID;
+pub const EvtSystemThreadID = EVT_SYSTEM_PROPERTY_ID.ThreadID;
+pub const EvtSystemChannel = EVT_SYSTEM_PROPERTY_ID.Channel;
+pub const EvtSystemComputer = EVT_SYSTEM_PROPERTY_ID.Computer;
+pub const EvtSystemUserID = EVT_SYSTEM_PROPERTY_ID.UserID;
+pub const EvtSystemVersion = EVT_SYSTEM_PROPERTY_ID.Version;
+pub const EvtSystemPropertyIdEND = EVT_SYSTEM_PROPERTY_ID.PropertyIdEND;
+
+pub const EVT_VARIANT = extern struct {
+    Anonymous: extern union {
+        BooleanVal: BOOL,
+        SByteVal: i8,
+        Int16Val: i16,
+        Int32Val: i32,
+        Int64Val: i64,
+        ByteVal: u8,
+        UInt16Val: u16,
+        UInt32Val: u32,
+        UInt64Val: u64,
+        SingleVal: f32,
+        DoubleVal: f64,
+        FileTimeVal: u64,
+        SysTimeVal: ?*SYSTEMTIME,
+        GuidVal: ?*Guid,
+        StringVal: ?[*:0]const u16,
+        AnsiStringVal: ?[*:0]const u8,
+        BinaryVal: ?*u8,
+        SidVal: ?PSID,
+        SizeTVal: usize,
+        BooleanArr: ?*BOOL,
+        SByteArr: ?*i8,
+        Int16Arr: ?*i16,
+        Int32Arr: ?*i32,
+        Int64Arr: ?*i64,
+        ByteArr: ?*u8,
+        UInt16Arr: ?*u16,
+        UInt32Arr: ?*u32,
+        UInt64Arr: ?*u64,
+        SingleArr: ?*f32,
+        DoubleArr: ?*f64,
+        FileTimeArr: ?*FILETIME,
+        SysTimeArr: ?*SYSTEMTIME,
+        GuidArr: ?*Guid,
+        StringArr: ?*?PWSTR,
+        AnsiStringArr: ?*?PSTR,
+        SidArr: ?*?PSID,
+        SizeTArr: ?*usize,
+        EvtHandleVal: isize,
+        XmlVal: ?[*:0]const u16,
+        XmlValArr: ?*?PWSTR,
+    },
+    Count: u32,
+    Type: u32,
 };
 
-pub const EVENTLOG_FULL_INFORMATION = extern struct {
-    dwFull: u32,
+pub const EVT_VARIANT_TYPE = enum(i32) {
+    Null = 0,
+    String = 1,
+    AnsiString = 2,
+    SByte = 3,
+    Byte = 4,
+    Int16 = 5,
+    UInt16 = 6,
+    Int32 = 7,
+    UInt32 = 8,
+    Int64 = 9,
+    UInt64 = 10,
+    Single = 11,
+    Double = 12,
+    Boolean = 13,
+    Binary = 14,
+    Guid = 15,
+    SizeT = 16,
+    FileTime = 17,
+    SysTime = 18,
+    Sid = 19,
+    HexInt32 = 20,
+    HexInt64 = 21,
+    EvtHandle = 32,
+    EvtXml = 35,
 };
+pub const EvtVarTypeNull = EVT_VARIANT_TYPE.Null;
+pub const EvtVarTypeString = EVT_VARIANT_TYPE.String;
+pub const EvtVarTypeAnsiString = EVT_VARIANT_TYPE.AnsiString;
+pub const EvtVarTypeSByte = EVT_VARIANT_TYPE.SByte;
+pub const EvtVarTypeByte = EVT_VARIANT_TYPE.Byte;
+pub const EvtVarTypeInt16 = EVT_VARIANT_TYPE.Int16;
+pub const EvtVarTypeUInt16 = EVT_VARIANT_TYPE.UInt16;
+pub const EvtVarTypeInt32 = EVT_VARIANT_TYPE.Int32;
+pub const EvtVarTypeUInt32 = EVT_VARIANT_TYPE.UInt32;
+pub const EvtVarTypeInt64 = EVT_VARIANT_TYPE.Int64;
+pub const EvtVarTypeUInt64 = EVT_VARIANT_TYPE.UInt64;
+pub const EvtVarTypeSingle = EVT_VARIANT_TYPE.Single;
+pub const EvtVarTypeDouble = EVT_VARIANT_TYPE.Double;
+pub const EvtVarTypeBoolean = EVT_VARIANT_TYPE.Boolean;
+pub const EvtVarTypeBinary = EVT_VARIANT_TYPE.Binary;
+pub const EvtVarTypeGuid = EVT_VARIANT_TYPE.Guid;
+pub const EvtVarTypeSizeT = EVT_VARIANT_TYPE.SizeT;
+pub const EvtVarTypeFileTime = EVT_VARIANT_TYPE.FileTime;
+pub const EvtVarTypeSysTime = EVT_VARIANT_TYPE.SysTime;
+pub const EvtVarTypeSid = EVT_VARIANT_TYPE.Sid;
+pub const EvtVarTypeHexInt32 = EVT_VARIANT_TYPE.HexInt32;
+pub const EvtVarTypeHexInt64 = EVT_VARIANT_TYPE.HexInt64;
+pub const EvtVarTypeEvtHandle = EVT_VARIANT_TYPE.EvtHandle;
+pub const EvtVarTypeEvtXml = EVT_VARIANT_TYPE.EvtXml;
+
+pub const READ_EVENT_LOG_READ_FLAGS = enum(u32) {
+    EK_READ = 2,
+    QUENTIAL_READ = 1,
+};
+pub const EVENTLOG_SEEK_READ = READ_EVENT_LOG_READ_FLAGS.EK_READ;
+pub const EVENTLOG_SEQUENTIAL_READ = READ_EVENT_LOG_READ_FLAGS.QUENTIAL_READ;
+
+pub const REPORT_EVENT_TYPE = enum(u16) {
+    SUCCESS = 0,
+    AUDIT_FAILURE = 16,
+    AUDIT_SUCCESS = 8,
+    ERROR_TYPE = 1,
+    INFORMATION_TYPE = 4,
+    WARNING_TYPE = 2,
+};
+pub const EVENTLOG_SUCCESS = REPORT_EVENT_TYPE.SUCCESS;
+pub const EVENTLOG_AUDIT_FAILURE = REPORT_EVENT_TYPE.AUDIT_FAILURE;
+pub const EVENTLOG_AUDIT_SUCCESS = REPORT_EVENT_TYPE.AUDIT_SUCCESS;
+pub const EVENTLOG_ERROR_TYPE = REPORT_EVENT_TYPE.ERROR_TYPE;
+pub const EVENTLOG_INFORMATION_TYPE = REPORT_EVENT_TYPE.INFORMATION_TYPE;
+pub const EVENTLOG_WARNING_TYPE = REPORT_EVENT_TYPE.WARNING_TYPE;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (55)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtOpenSession(
-    LoginClass: EVT_LOGIN_CLASS,
-    Login: ?*anyopaque,
-    Timeout: u32,
-    Flags: u32,
-) callconv(.winapi) isize;
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn BackupEventLogA(
+    hEventLog: EventLogHandle,
+    lpBackupFileName: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn BackupEventLogW(
+    hEventLog: EventLogHandle,
+    lpBackupFileName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn ClearEventLogA(
+    hEventLog: EventLogHandle,
+    lpBackupFileName: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn ClearEventLogW(
+    hEventLog: EventLogHandle,
+    lpBackupFileName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn CloseEventLog(
+    hEventLog: EventLogHandle,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn DeregisterEventSource(
+    hEventLog: EventSourceHandle,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtClose(
-    Object: isize,
+pub extern "wevtapi" fn EvtArchiveExportedLog(
+    Session: isize,
+    LogFilePath: ?[*:0]const u16,
+    Locale: u32,
+    Flags: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -580,49 +609,21 @@ pub extern "wevtapi" fn EvtCancel(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtGetExtendedStatus(
-    BufferSize: u32,
-    Buffer: ?[*:0]u16,
-    BufferUsed: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtQuery(
+pub extern "wevtapi" fn EvtClearLog(
     Session: isize,
-    Path: ?[*:0]const u16,
-    Query: ?[*:0]const u16,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtNext(
-    ResultSet: isize,
-    EventsSize: u32,
-    Events: [*]isize,
-    Timeout: u32,
-    Flags: u32,
-    Returned: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtSeek(
-    ResultSet: isize,
-    Position: i64,
-    Bookmark: isize,
-    Timeout: u32,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtSubscribe(
-    Session: isize,
-    SignalEvent: ?HANDLE,
     ChannelPath: ?[*:0]const u16,
-    Query: ?[*:0]const u16,
-    Bookmark: isize,
-    Context: ?*anyopaque,
-    Callback: ?EVT_SUBSCRIBE_CALLBACK,
+    TargetFilePath: ?[*:0]const u16,
     Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtClose(
+    Object: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtCreateBookmark(
+    BookmarkXml: ?[*:0]const u16,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -633,15 +634,12 @@ pub extern "wevtapi" fn EvtCreateRenderContext(
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtRender(
-    Context: isize,
-    Fragment: isize,
+pub extern "wevtapi" fn EvtExportLog(
+    Session: isize,
+    Path: ?[*:0]const u16,
+    Query: ?[*:0]const u16,
+    TargetFilePath: ?[*:0]const u16,
     Flags: u32,
-    BufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*anyopaque,
-    BufferUsed: ?*u32,
-    PropertyCount: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -658,83 +656,6 @@ pub extern "wevtapi" fn EvtFormatMessage(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtOpenLog(
-    Session: isize,
-    Path: ?[*:0]const u16,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtGetLogInfo(
-    Log: isize,
-    PropertyId: EVT_LOG_PROPERTY_ID,
-    PropertyValueBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    PropertyValueBuffer: ?*EVT_VARIANT,
-    PropertyValueBufferUsed: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtClearLog(
-    Session: isize,
-    ChannelPath: ?[*:0]const u16,
-    TargetFilePath: ?[*:0]const u16,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtExportLog(
-    Session: isize,
-    Path: ?[*:0]const u16,
-    Query: ?[*:0]const u16,
-    TargetFilePath: ?[*:0]const u16,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtArchiveExportedLog(
-    Session: isize,
-    LogFilePath: ?[*:0]const u16,
-    Locale: u32,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtOpenChannelEnum(
-    Session: isize,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtNextChannelPath(
-    ChannelEnum: isize,
-    ChannelPathBufferSize: u32,
-    ChannelPathBuffer: ?[*:0]u16,
-    ChannelPathBufferUsed: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtOpenChannelConfig(
-    Session: isize,
-    ChannelPath: ?[*:0]const u16,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtSaveChannelConfig(
-    ChannelConfig: isize,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtSetChannelConfigProperty(
-    ChannelConfig: isize,
-    PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
-    Flags: u32,
-    PropertyValue: ?*EVT_VARIANT,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetChannelConfigProperty(
     ChannelConfig: isize,
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
@@ -746,50 +667,14 @@ pub extern "wevtapi" fn EvtGetChannelConfigProperty(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtOpenPublisherEnum(
-    Session: isize,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtNextPublisherId(
-    PublisherEnum: isize,
-    PublisherIdBufferSize: u32,
-    PublisherIdBuffer: ?[*:0]u16,
-    PublisherIdBufferUsed: ?*u32,
+pub extern "wevtapi" fn EvtGetEventInfo(
+    Event: isize,
+    PropertyId: EVT_EVENT_PROPERTY_ID,
+    PropertyValueBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    PropertyValueBuffer: ?*EVT_VARIANT,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtOpenPublisherMetadata(
-    Session: isize,
-    PublisherId: ?[*:0]const u16,
-    LogFilePath: ?[*:0]const u16,
-    Locale: u32,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
-    PublisherMetadata: isize,
-    PropertyId: EVT_PUBLISHER_METADATA_PROPERTY_ID,
-    Flags: u32,
-    PublisherMetadataPropertyBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    PublisherMetadataPropertyBuffer: ?*EVT_VARIANT,
-    PublisherMetadataPropertyBufferUsed: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtOpenEventMetadataEnum(
-    PublisherMetadata: isize,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtNextEventMetadata(
-    EventMetadataEnum: isize,
-    Flags: u32,
-) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetEventMetadataProperty(
@@ -803,9 +688,20 @@ pub extern "wevtapi" fn EvtGetEventMetadataProperty(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtGetObjectArraySize(
-    ObjectArray: isize,
-    ObjectArraySize: ?*u32,
+pub extern "wevtapi" fn EvtGetExtendedStatus(
+    BufferSize: u32,
+    Buffer: ?[*:0]u16,
+    BufferUsed: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtGetLogInfo(
+    Log: isize,
+    PropertyId: EVT_LOG_PROPERTY_ID,
+    PropertyValueBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    PropertyValueBuffer: ?*EVT_VARIANT,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -821,6 +717,23 @@ pub extern "wevtapi" fn EvtGetObjectArrayProperty(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtGetObjectArraySize(
+    ObjectArray: isize,
+    ObjectArraySize: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
+    PublisherMetadata: isize,
+    PropertyId: EVT_PUBLISHER_METADATA_PROPERTY_ID,
+    Flags: u32,
+    PublisherMetadataPropertyBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    PublisherMetadataPropertyBuffer: ?*EVT_VARIANT,
+    PublisherMetadataPropertyBufferUsed: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetQueryInfo(
     QueryOrSubscription: isize,
     PropertyId: EVT_QUERY_PROPERTY_ID,
@@ -831,8 +744,139 @@ pub extern "wevtapi" fn EvtGetQueryInfo(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtCreateBookmark(
-    BookmarkXml: ?[*:0]const u16,
+pub extern "wevtapi" fn EvtNext(
+    ResultSet: isize,
+    EventsSize: u32,
+    Events: [*]isize,
+    Timeout: u32,
+    Flags: u32,
+    Returned: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtNextChannelPath(
+    ChannelEnum: isize,
+    ChannelPathBufferSize: u32,
+    ChannelPathBuffer: ?[*:0]u16,
+    ChannelPathBufferUsed: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtNextEventMetadata(
+    EventMetadataEnum: isize,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtNextPublisherId(
+    PublisherEnum: isize,
+    PublisherIdBufferSize: u32,
+    PublisherIdBuffer: ?[*:0]u16,
+    PublisherIdBufferUsed: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtOpenChannelConfig(
+    Session: isize,
+    ChannelPath: ?[*:0]const u16,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtOpenChannelEnum(
+    Session: isize,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtOpenEventMetadataEnum(
+    PublisherMetadata: isize,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtOpenLog(
+    Session: isize,
+    Path: ?[*:0]const u16,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtOpenPublisherEnum(
+    Session: isize,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtOpenPublisherMetadata(
+    Session: isize,
+    PublisherId: ?[*:0]const u16,
+    LogFilePath: ?[*:0]const u16,
+    Locale: u32,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtOpenSession(
+    LoginClass: EVT_LOGIN_CLASS,
+    Login: ?*anyopaque,
+    Timeout: u32,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtQuery(
+    Session: isize,
+    Path: ?[*:0]const u16,
+    Query: ?[*:0]const u16,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtRender(
+    Context: isize,
+    Fragment: isize,
+    Flags: u32,
+    BufferSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*anyopaque,
+    BufferUsed: ?*u32,
+    PropertyCount: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtSaveChannelConfig(
+    ChannelConfig: isize,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtSeek(
+    ResultSet: isize,
+    Position: i64,
+    Bookmark: isize,
+    Timeout: u32,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtSetChannelConfigProperty(
+    ChannelConfig: isize,
+    PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
+    Flags: u32,
+    PropertyValue: ?*EVT_VARIANT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wevtapi" fn EvtSubscribe(
+    Session: isize,
+    SignalEvent: ?HANDLE,
+    ChannelPath: ?[*:0]const u16,
+    Query: ?[*:0]const u16,
+    Bookmark: isize,
+    Context: ?*anyopaque,
+    Callback: ?EVT_SUBSCRIBE_CALLBACK,
+    Flags: u32,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -841,54 +885,14 @@ pub extern "wevtapi" fn EvtUpdateBookmark(
     Event: isize,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wevtapi" fn EvtGetEventInfo(
-    Event: isize,
-    PropertyId: EVT_EVENT_PROPERTY_ID,
-    PropertyValueBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    PropertyValueBuffer: ?*EVT_VARIANT,
-    PropertyValueBufferUsed: ?*u32,
-) callconv(.winapi) BOOL;
-
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn ClearEventLogA(
+pub extern "advapi32" fn GetEventLogInformation(
     hEventLog: EventLogHandle,
-    lpBackupFileName: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn ClearEventLogW(
-    hEventLog: EventLogHandle,
-    lpBackupFileName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn BackupEventLogA(
-    hEventLog: EventLogHandle,
-    lpBackupFileName: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn BackupEventLogW(
-    hEventLog: EventLogHandle,
-    lpBackupFileName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn CloseEventLog(
-    hEventLog: EventLogHandle,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn DeregisterEventSource(
-    hEventLog: EventSourceHandle,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn NotifyChangeEventLog(
-    hEventLog: EventLogHandle,
-    hEvent: ?HANDLE,
+    dwInfoLevel: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: ?*anyopaque,
+    cbBufSize: u32,
+    pcbBytesNeeded: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -904,28 +908,10 @@ pub extern "advapi32" fn GetOldestEventLogRecord(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn OpenEventLogA(
-    lpUNCServerName: ?[*:0]const u8,
-    lpSourceName: ?[*:0]const u8,
-) callconv(.winapi) EventLogHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn OpenEventLogW(
-    lpUNCServerName: ?[*:0]const u16,
-    lpSourceName: ?[*:0]const u16,
-) callconv(.winapi) EventLogHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn RegisterEventSourceA(
-    lpUNCServerName: ?[*:0]const u8,
-    lpSourceName: ?[*:0]const u8,
-) callconv(.winapi) EventSourceHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn RegisterEventSourceW(
-    lpUNCServerName: ?[*:0]const u16,
-    lpSourceName: ?[*:0]const u16,
-) callconv(.winapi) EventSourceHandle;
+pub extern "advapi32" fn NotifyChangeEventLog(
+    hEventLog: EventLogHandle,
+    hEvent: ?HANDLE,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn OpenBackupEventLogA(
@@ -937,6 +923,18 @@ pub extern "advapi32" fn OpenBackupEventLogA(
 pub extern "advapi32" fn OpenBackupEventLogW(
     lpUNCServerName: ?[*:0]const u16,
     lpFileName: ?[*:0]const u16,
+) callconv(.winapi) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn OpenEventLogA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpSourceName: ?[*:0]const u8,
+) callconv(.winapi) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn OpenEventLogW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpSourceName: ?[*:0]const u16,
 ) callconv(.winapi) EventLogHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -962,6 +960,18 @@ pub extern "advapi32" fn ReadEventLogW(
     pnBytesRead: ?*u32,
     pnMinNumberOfBytesNeeded: ?*u32,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn RegisterEventSourceA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpSourceName: ?[*:0]const u8,
+) callconv(.winapi) EventSourceHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "advapi32" fn RegisterEventSourceW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpSourceName: ?[*:0]const u16,
+) callconv(.winapi) EventSourceHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReportEventA(
@@ -991,27 +1001,10 @@ pub extern "advapi32" fn ReportEventW(
     lpRawData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn GetEventLogInformation(
-    hEventLog: EventLogHandle,
-    dwInfoLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*anyopaque,
-    cbBufSize: u32,
-    pcbBytesNeeded: ?*u32,
-) callconv(.winapi) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
-pub const ClearEventLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ClearEventLogA,
-    .wide => @This().ClearEventLogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ClearEventLog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const BackupEventLog = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().BackupEventLogA,
     .wide => @This().BackupEventLogW,
@@ -1019,18 +1012,11 @@ pub const BackupEventLog = switch (@import("../zig.zig").unicode_mode) {
         "'BackupEventLog' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const OpenEventLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenEventLogA,
-    .wide => @This().OpenEventLogW,
+pub const ClearEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ClearEventLogA,
+    .wide => @This().ClearEventLogW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenEventLog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RegisterEventSource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RegisterEventSourceA,
-    .wide => @This().RegisterEventSourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RegisterEventSource' requires that UNICODE be set to true or false in the root module",
+        "'ClearEventLog' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const OpenBackupEventLog = switch (@import("../zig.zig").unicode_mode) {
@@ -1040,11 +1026,25 @@ pub const OpenBackupEventLog = switch (@import("../zig.zig").unicode_mode) {
         "'OpenBackupEventLog' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const OpenEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenEventLogA,
+    .wide => @This().OpenEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const ReadEventLog = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().ReadEventLogA,
     .wide => @This().ReadEventLogW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'ReadEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterEventSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterEventSourceA,
+    .wide => @This().RegisterEventSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterEventSource' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ReportEvent = switch (@import("../zig.zig").unicode_mode) {

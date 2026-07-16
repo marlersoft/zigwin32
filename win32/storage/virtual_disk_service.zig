@@ -2,289 +2,154 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (461)
 //--------------------------------------------------------------------------------
-pub const VDS_NF_VOLUME_ARRIVE = @as(u32, 4);
-pub const VDS_NF_VOLUME_DEPART = @as(u32, 5);
-pub const VDS_NF_VOLUME_MODIFY = @as(u32, 6);
-pub const VDS_NF_VOLUME_REBUILDING_PROGRESS = @as(u32, 7);
-pub const VDS_NF_PARTITION_ARRIVE = @as(u32, 11);
-pub const VDS_NF_PARTITION_DEPART = @as(u32, 12);
-pub const VDS_NF_PARTITION_MODIFY = @as(u32, 13);
-pub const VDS_NF_SUB_SYSTEM_ARRIVE = @as(u32, 101);
-pub const VDS_NF_SUB_SYSTEM_DEPART = @as(u32, 102);
-pub const VDS_NF_PORTAL_ARRIVE = @as(u32, 123);
-pub const VDS_NF_PORTAL_DEPART = @as(u32, 124);
-pub const VDS_NF_PORTAL_MODIFY = @as(u32, 125);
-pub const VDS_NF_TARGET_ARRIVE = @as(u32, 126);
-pub const VDS_NF_TARGET_DEPART = @as(u32, 127);
-pub const VDS_NF_TARGET_MODIFY = @as(u32, 128);
-pub const VDS_NF_PORTAL_GROUP_ARRIVE = @as(u32, 129);
-pub const VDS_NF_PORTAL_GROUP_DEPART = @as(u32, 130);
-pub const VDS_NF_PORTAL_GROUP_MODIFY = @as(u32, 131);
-pub const VDS_NF_SUB_SYSTEM_MODIFY = @as(u32, 151);
-pub const VDS_NF_DRIVE_LETTER_FREE = @as(u32, 201);
-pub const VDS_NF_DRIVE_LETTER_ASSIGN = @as(u32, 202);
-pub const VDS_NF_MOUNT_POINTS_CHANGE = @as(u32, 205);
-pub const VDS_NF_FILE_SYSTEM_SHRINKING_PROGRESS = @as(u32, 206);
-pub const VDS_NF_SERVICE_OUT_OF_SYNC = @as(u32, 301);
-pub const GPT_PARTITION_NAME_LENGTH = @as(u32, 36);
-pub const VDS_HINT_FASTCRASHRECOVERYREQUIRED = @as(i32, 1);
-pub const VDS_HINT_MOSTLYREADS = @as(i32, 2);
-pub const VDS_HINT_OPTIMIZEFORSEQUENTIALREADS = @as(i32, 4);
-pub const VDS_HINT_OPTIMIZEFORSEQUENTIALWRITES = @as(i32, 8);
-pub const VDS_HINT_READBACKVERIFYENABLED = @as(i32, 16);
-pub const VDS_HINT_REMAPENABLED = @as(i32, 32);
-pub const VDS_HINT_WRITETHROUGHCACHINGENABLED = @as(i32, 64);
-pub const VDS_HINT_HARDWARECHECKSUMENABLED = @as(i32, 128);
-pub const VDS_HINT_ISYANKABLE = @as(i32, 256);
-pub const VDS_HINT_ALLOCATEHOTSPARE = @as(i32, 512);
-pub const VDS_HINT_BUSTYPE = @as(i32, 1024);
-pub const VDS_HINT_USEMIRROREDCACHE = @as(i32, 2048);
-pub const VDS_HINT_READCACHINGENABLED = @as(i32, 4096);
-pub const VDS_HINT_WRITECACHINGENABLED = @as(i32, 8192);
-pub const VDS_HINT_MEDIASCANENABLED = @as(i32, 16384);
-pub const VDS_HINT_CONSISTENCYCHECKENABLED = @as(i32, 32768);
-pub const VDS_REBUILD_PRIORITY_MIN = @as(u32, 0);
-pub const VDS_REBUILD_PRIORITY_MAX = @as(u32, 16);
-pub const VDS_POOL_ATTRIB_RAIDTYPE = @as(i32, 1);
-pub const VDS_POOL_ATTRIB_BUSTYPE = @as(i32, 2);
-pub const VDS_POOL_ATTRIB_ALLOW_SPINDOWN = @as(i32, 4);
-pub const VDS_POOL_ATTRIB_THIN_PROVISION = @as(i32, 8);
-pub const VDS_POOL_ATTRIB_NO_SINGLE_POF = @as(i32, 16);
-pub const VDS_POOL_ATTRIB_DATA_RDNCY_MAX = @as(i32, 32);
-pub const VDS_POOL_ATTRIB_DATA_RDNCY_MIN = @as(i32, 64);
-pub const VDS_POOL_ATTRIB_DATA_RDNCY_DEF = @as(i32, 128);
-pub const VDS_POOL_ATTRIB_PKG_RDNCY_MAX = @as(i32, 256);
-pub const VDS_POOL_ATTRIB_PKG_RDNCY_MIN = @as(i32, 512);
-pub const VDS_POOL_ATTRIB_PKG_RDNCY_DEF = @as(i32, 1024);
-pub const VDS_POOL_ATTRIB_STRIPE_SIZE = @as(i32, 2048);
-pub const VDS_POOL_ATTRIB_STRIPE_SIZE_MAX = @as(i32, 4096);
-pub const VDS_POOL_ATTRIB_STRIPE_SIZE_MIN = @as(i32, 8192);
-pub const VDS_POOL_ATTRIB_STRIPE_SIZE_DEF = @as(i32, 16384);
-pub const VDS_POOL_ATTRIB_NUM_CLMNS = @as(i32, 32768);
-pub const VDS_POOL_ATTRIB_NUM_CLMNS_MAX = @as(i32, 65536);
-pub const VDS_POOL_ATTRIB_NUM_CLMNS_MIN = @as(i32, 131072);
-pub const VDS_POOL_ATTRIB_NUM_CLMNS_DEF = @as(i32, 262144);
-pub const VDS_POOL_ATTRIB_DATA_AVL_HINT = @as(i32, 524288);
-pub const VDS_POOL_ATTRIB_ACCS_RNDM_HINT = @as(i32, 1048576);
-pub const VDS_POOL_ATTRIB_ACCS_DIR_HINT = @as(i32, 2097152);
-pub const VDS_POOL_ATTRIB_ACCS_SIZE_HINT = @as(i32, 4194304);
-pub const VDS_POOL_ATTRIB_ACCS_LTNCY_HINT = @as(i32, 8388608);
-pub const VDS_POOL_ATTRIB_ACCS_BDW_WT_HINT = @as(i32, 16777216);
-pub const VDS_POOL_ATTRIB_STOR_COST_HINT = @as(i32, 33554432);
-pub const VDS_POOL_ATTRIB_STOR_EFFCY_HINT = @as(i32, 67108864);
-pub const VDS_POOL_ATTRIB_CUSTOM_ATTRIB = @as(i32, 134217728);
-pub const VDS_ATTACH_VIRTUAL_DISK_FLAG_USE_FILE_ACL = @as(u32, 1);
 pub const CLSID_VdsLoader = Guid.initString("9c38ed61-d565-4728-aeee-c80952f0ecde");
 pub const CLSID_VdsService = Guid.initString("7d1933cb-86f6-4a98-8628-01be94c9a575");
-pub const MAX_FS_NAME_SIZE = @as(u32, 8);
-pub const MAX_FS_FORMAT_SUPPORT_NAME_SIZE = @as(u32, 32);
+pub const GPT_PARTITION_NAME_LENGTH = @as(u32, 36);
 pub const MAX_FS_ALLOWED_CLUSTER_SIZES_SIZE = @as(u32, 32);
-pub const VER_VDS_LUN_INFORMATION = @as(u32, 1);
-pub const VDS_E_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212288));
-pub const VDS_E_INITIALIZED_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212287));
-pub const VDS_E_INITIALIZE_NOT_CALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212286));
+pub const MAX_FS_FORMAT_SUPPORT_NAME_SIZE = @as(u32, 32);
+pub const MAX_FS_NAME_SIZE = @as(u32, 8);
+pub const VDS_ATTACH_VIRTUAL_DISK_FLAG_USE_FILE_ACL = @as(u32, 1);
+pub const VDS_E_ACCESS_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212249));
+pub const VDS_E_ACTIVE_PARTITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212232));
+pub const VDS_E_ADDRESSES_INCOMPLETELY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211517));
+pub const VDS_E_ALIGN_BEYOND_FIRST_CYLINDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211949));
+pub const VDS_E_ALIGN_IS_ZERO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211888));
+pub const VDS_E_ALIGN_NOT_A_POWER_OF_TWO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211889));
+pub const VDS_E_ALIGN_NOT_SECTOR_SIZE_MULTIPLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211948));
+pub const VDS_E_ALIGN_NOT_ZERO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211947));
 pub const VDS_E_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212285));
 pub const VDS_E_ANOTHER_CALL_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212284));
-pub const VDS_E_OBJECT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212283));
-pub const VDS_E_INVALID_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212282));
-pub const VDS_E_PARTITION_LIMIT_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212281));
-pub const VDS_E_PARTITION_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212280));
-pub const VDS_E_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212279));
-pub const VDS_E_OPERATION_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212278));
-pub const VDS_E_OBJECT_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212277));
-pub const VDS_E_CANCEL_TOO_LATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212276));
-pub const VDS_E_OPERATION_CANCELED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212275));
-pub const VDS_E_CANNOT_EXTEND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212274));
-pub const VDS_E_NOT_ENOUGH_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212273));
-pub const VDS_E_NOT_ENOUGH_DRIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212272));
-pub const VDS_E_BAD_COOKIE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212271));
-pub const VDS_E_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212270));
-pub const VDS_E_DEVICE_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212269));
-pub const VDS_E_DISK_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212268));
-pub const VDS_E_INVALID_OPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212267));
-pub const VDS_E_PATH_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212266));
-pub const VDS_E_DISK_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212265));
-pub const VDS_E_NOT_AN_UNALLOCATED_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212264));
-pub const VDS_E_UNRECOVERABLE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212263));
-pub const VDS_S_DISK_PARTIALLY_CLEANED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271386));
-pub const VDS_E_DMADMIN_SERVICE_CONNECTION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212261));
-pub const VDS_E_PROVIDER_INITIALIZATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212260));
-pub const VDS_E_OBJECT_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212259));
-pub const VDS_E_NO_DISKS_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212258));
-pub const VDS_E_PROVIDER_CACHE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212257));
-pub const VDS_E_DMADMIN_METHOD_CALL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212256));
-pub const VDS_S_PROVIDER_ERROR_LOADING_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271393));
-pub const VDS_E_PROVIDER_VOL_DEVICE_NAME_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212254));
-pub const VDS_E_PROVIDER_VOL_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212253));
-pub const VDS_E_DMADMIN_CORRUPT_NOTIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212252));
-pub const VDS_E_INCOMPATIBLE_FILE_SYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212251));
-pub const VDS_E_INCOMPATIBLE_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212250));
-pub const VDS_E_ACCESS_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212249));
-pub const VDS_E_MEDIA_WRITE_PROTECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212248));
-pub const VDS_E_BAD_LABEL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212247));
-pub const VDS_E_CANT_QUICK_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212246));
-pub const VDS_E_IO_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212245));
-pub const VDS_E_VOLUME_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212244));
-pub const VDS_E_VOLUME_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212243));
-pub const VDS_E_CLUSTER_SIZE_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212242));
-pub const VDS_E_CLUSTER_SIZE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212241));
-pub const VDS_E_CLUSTER_COUNT_BEYOND_32BITS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212240));
-pub const VDS_E_OBJECT_STATUS_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212239));
-pub const VDS_E_VOLUME_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212238));
-pub const VDS_E_EXTENT_SIZE_LESS_THAN_MIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212237));
-pub const VDS_S_UPDATE_BOOTFILE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271412));
-pub const VDS_S_BOOT_PARTITION_NUMBER_CHANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271414));
-pub const VDS_E_BOOT_PARTITION_NUMBER_CHANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212234));
-pub const VDS_E_NO_FREE_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212233));
-pub const VDS_E_ACTIVE_PARTITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212232));
-pub const VDS_E_PARTITION_OF_UNKNOWN_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212231));
-pub const VDS_E_LEGACY_VOLUME_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212230));
-pub const VDS_E_NON_CONTIGUOUS_DATA_PARTITIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212229));
-pub const VDS_E_MIGRATE_OPEN_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212228));
-pub const VDS_E_VOLUME_NOT_ONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212227));
-pub const VDS_E_VOLUME_NOT_HEALTHY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212226));
-pub const VDS_E_VOLUME_SPANS_DISKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212225));
-pub const VDS_E_REQUIRES_CONTIGUOUS_DISK_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212224));
-pub const VDS_E_BAD_PROVIDER_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212223));
-pub const VDS_E_PROVIDER_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212222));
-pub const VDS_S_VOLUME_COMPRESS_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271427));
-pub const VDS_E_PACK_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212220));
-pub const VDS_E_VOLUME_NOT_A_MIRROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212219));
-pub const VDS_E_NO_EXTENTS_FOR_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212218));
-pub const VDS_E_DISK_NOT_LOADED_TO_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212217));
-pub const VDS_E_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212216));
-pub const VDS_S_ACCESS_PATH_NOT_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 279108));
-pub const VDS_E_PROVIDER_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212214));
-pub const VDS_E_DISK_NOT_ONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212213));
-pub const VDS_E_DISK_IN_USE_BY_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212212));
-pub const VDS_S_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271437));
+pub const VDS_E_ASSOCIATED_LUNS_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211509));
+pub const VDS_E_ASSOCIATED_PORTALS_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211508));
 pub const VDS_E_ASYNC_OBJECT_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212210));
-pub const VDS_E_VOLUME_NOT_MOUNTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212209));
-pub const VDS_E_PACK_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212208));
-pub const VDS_E_IMPORT_SET_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212207));
-pub const VDS_E_DISK_NOT_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212206));
-pub const VDS_E_OBJECT_OUT_OF_SYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212205));
-pub const VDS_E_MISSING_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212204));
-pub const VDS_E_DISK_PNP_REG_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212203));
-pub const VDS_E_LBN_REMAP_ENABLED_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212202));
-pub const VDS_E_NO_DRIVELETTER_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212201));
-pub const VDS_E_REVERT_ON_CLOSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212200));
-pub const VDS_E_REVERT_ON_CLOSE_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212199));
-pub const VDS_E_IA64_BOOT_MIRRORED_TO_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212198));
-pub const VDS_S_IA64_BOOT_MIRRORED_TO_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271450));
-pub const VDS_S_UNABLE_TO_GET_GPT_ATTRIBUTES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271451));
-pub const VDS_E_VOLUME_TEMPORARILY_DISMOUNTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212196));
-pub const VDS_E_VOLUME_PERMANENTLY_DISMOUNTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212195));
-pub const VDS_E_VOLUME_HAS_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212194));
-pub const VDS_E_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212193));
-pub const VDS_E_REPAIR_VOLUMESTATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212192));
-pub const VDS_E_LDM_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212191));
-pub const VDS_E_REVERT_ON_CLOSE_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212190));
-pub const VDS_E_RETRY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212189));
-pub const VDS_E_ONLINE_PACK_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212188));
-pub const VDS_S_EXTEND_FILE_SYSTEM_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271461));
-pub const VDS_E_EXTEND_FILE_SYSTEM_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212186));
-pub const VDS_S_MBR_BOOT_MIRRORED_TO_GPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271463));
-pub const VDS_E_MAX_USABLE_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212184));
-pub const VDS_S_GPT_BOOT_MIRRORED_TO_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212183));
-pub const VDS_E_NO_SOFTWARE_PROVIDERS_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212032));
-pub const VDS_E_DISK_NOT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212031));
-pub const VDS_E_NO_VOLUME_LAYOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212030));
-pub const VDS_E_CORRUPT_VOLUME_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212029));
-pub const VDS_E_INVALID_ENUMERATOR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212028));
-pub const VDS_E_DRIVER_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212027));
-pub const VDS_E_VOLUME_INVALID_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212025));
-pub const VDS_S_DISK_IS_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271624));
-pub const VDS_E_CORRUPT_PARTITION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212023));
-pub const VDS_S_NONCONFORMANT_PARTITION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271626));
-pub const VDS_E_CORRUPT_EXTENT_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212021));
-pub const VDS_E_DUP_EMPTY_PACK_GUID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212020));
-pub const VDS_E_DRIVER_NO_PACK_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212019));
-pub const VDS_S_SYSTEM_PARTITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271630));
+pub const VDS_E_BAD_BOOT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211898));
+pub const VDS_E_BAD_COOKIE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212271));
+pub const VDS_E_BAD_LABEL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212247));
 pub const VDS_E_BAD_PNP_MESSAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212017));
-pub const VDS_E_NO_PNP_DISK_ARRIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212016));
-pub const VDS_E_NO_PNP_VOLUME_ARRIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212015));
-pub const VDS_E_NO_PNP_DISK_REMOVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212014));
-pub const VDS_E_NO_PNP_VOLUME_REMOVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212013));
-pub const VDS_E_PROVIDER_EXITING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212012));
-pub const VDS_E_EXTENT_EXCEEDS_DISK_FREE_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212011));
-pub const VDS_E_MEMBER_SIZE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212010));
-pub const VDS_S_NO_NOTIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271639));
-pub const VDS_S_DEFAULT_PLEX_MEMBER_IDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271640));
-pub const VDS_E_INVALID_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212007));
-pub const VDS_E_INVALID_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212006));
-pub const VDS_E_VOLUME_ON_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212005));
-pub const VDS_E_DRIVER_INVALID_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212004));
-pub const VDS_E_TARGET_PACK_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212003));
+pub const VDS_E_BAD_PROVIDER_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212223));
+pub const VDS_E_BAD_REVISION_NUMBER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211880));
+pub const VDS_E_BLOCK_CLUSTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210749));
+pub const VDS_E_BOOT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211257));
+pub const VDS_E_BOOT_PAGEFILE_DRIVE_LETTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210994));
+pub const VDS_E_BOOT_PARTITION_NUMBER_CHANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212234));
+pub const VDS_E_CACHE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211946));
+pub const VDS_E_CANCEL_TOO_LATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212276));
+pub const VDS_E_CANNOT_CLEAR_VOLUME_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211945));
+pub const VDS_E_CANNOT_EXTEND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212274));
 pub const VDS_E_CANNOT_SHRINK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212002));
-pub const VDS_E_MULTIPLE_PACKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212001));
-pub const VDS_E_PACK_ONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212000));
-pub const VDS_E_INVALID_PLEX_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211999));
-pub const VDS_E_INVALID_MEMBER_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211998));
-pub const VDS_E_INVALID_PLEX_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211997));
-pub const VDS_E_INVALID_MEMBER_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211996));
-pub const VDS_E_INVALID_STRIPE_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211995));
-pub const VDS_E_INVALID_DISK_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211994));
-pub const VDS_E_INVALID_EXTENT_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211993));
-pub const VDS_E_SOURCE_IS_TARGET_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211992));
-pub const VDS_E_VOLUME_DISK_COUNT_MAX_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211991));
-pub const VDS_E_CORRUPT_NOTIFICATION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211990));
-pub const VDS_E_INVALID_PLEX_GUID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211988));
-pub const VDS_E_DISK_NOT_FOUND_IN_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211987));
-pub const VDS_E_DUPLICATE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211986));
-pub const VDS_E_LAST_VALID_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211985));
-pub const VDS_E_INVALID_SECTOR_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211984));
-pub const VDS_E_ONE_EXTENT_PER_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211983));
-pub const VDS_E_INVALID_BLOCK_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211982));
-pub const VDS_E_PLEX_SIZE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211981));
-pub const VDS_E_NO_EXTENTS_FOR_PLEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211980));
-pub const VDS_E_INVALID_PLEX_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211979));
-pub const VDS_E_INVALID_PLEX_BLOCK_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211978));
-pub const VDS_E_NO_HEALTHY_DISKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211977));
+pub const VDS_E_CANT_INVALIDATE_FVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211886));
+pub const VDS_E_CANT_QUICK_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212246));
+pub const VDS_E_CLEAN_WITH_BOOTBACKING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210743));
+pub const VDS_E_CLEAN_WITH_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210990));
+pub const VDS_E_CLEAN_WITH_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210992));
+pub const VDS_E_CLEAN_WITH_OEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210991));
+pub const VDS_E_CLUSTER_COUNT_BEYOND_32BITS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212240));
+pub const VDS_E_CLUSTER_SIZE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212241));
+pub const VDS_E_CLUSTER_SIZE_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212242));
+pub const VDS_E_COMPRESSION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210984));
 pub const VDS_E_CONFIG_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211976));
+pub const VDS_E_CORRUPT_EXTENT_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212021));
+pub const VDS_E_CORRUPT_NOTIFICATION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211990));
+pub const VDS_E_CORRUPT_PARTITION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212023));
+pub const VDS_E_CORRUPT_VOLUME_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212029));
+pub const VDS_E_CRASHDUMP_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211250));
+pub const VDS_E_CRITICAL_PLEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211906));
+pub const VDS_E_DELETE_WITH_BOOTBACKING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210745));
+pub const VDS_E_DELETE_WITH_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210993));
+pub const VDS_E_DEVICE_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212269));
+pub const VDS_E_DISK_BEING_CLEANED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211944));
 pub const VDS_E_DISK_CONFIGURATION_CORRUPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211975));
 pub const VDS_E_DISK_CONFIGURATION_NOT_IN_SYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211974));
 pub const VDS_E_DISK_CONFIGURATION_UPDATE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211973));
 pub const VDS_E_DISK_DYNAMIC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211972));
-pub const VDS_E_DRIVER_OBJECT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211971));
-pub const VDS_E_PARTITION_NOT_CYLINDER_ALIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211970));
-pub const VDS_E_DISK_LAYOUT_PARTITIONS_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211969));
+pub const VDS_E_DISK_HAS_BANDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210748));
+pub const VDS_E_DISK_IN_USE_BY_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212212));
 pub const VDS_E_DISK_IO_FAILING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211968));
-pub const VDS_E_DYNAMIC_DISKS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211967));
-pub const VDS_E_FAULT_TOLERANT_DISKS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211966));
-pub const VDS_E_GPT_ATTRIBUTES_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211965));
-pub const VDS_E_MEMBER_IS_HEALTHY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211964));
-pub const VDS_E_MEMBER_REGENERATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211963));
-pub const VDS_E_PACK_NAME_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211962));
-pub const VDS_E_PLEX_IS_HEALTHY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211961));
-pub const VDS_E_PLEX_LAST_ACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211960));
-pub const VDS_E_PLEX_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211959));
-pub const VDS_E_MEMBER_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211958));
-pub const VDS_E_PLEX_REGENERATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211957));
-pub const VDS_E_UNEXPECTED_DISK_LAYOUT_CHANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211955));
-pub const VDS_E_INVALID_VOLUME_LENGTH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211954));
-pub const VDS_E_VOLUME_LENGTH_NOT_SECTOR_SIZE_MULTIPLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211953));
-pub const VDS_E_VOLUME_NOT_RETAINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211952));
-pub const VDS_E_VOLUME_RETAINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211951));
-pub const VDS_E_ALIGN_BEYOND_FIRST_CYLINDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211949));
-pub const VDS_E_ALIGN_NOT_SECTOR_SIZE_MULTIPLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211948));
-pub const VDS_E_ALIGN_NOT_ZERO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211947));
-pub const VDS_E_CACHE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211946));
-pub const VDS_E_CANNOT_CLEAR_VOLUME_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211945));
-pub const VDS_E_DISK_BEING_CLEANED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211944));
+pub const VDS_E_DISK_IS_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211254));
+pub const VDS_E_DISK_IS_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211253));
+pub const VDS_E_DISK_LAYOUT_PARTITIONS_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211969));
 pub const VDS_E_DISK_NOT_CONVERTIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211943));
+pub const VDS_E_DISK_NOT_CONVERTIBLE_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210971));
+pub const VDS_E_DISK_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212268));
+pub const VDS_E_DISK_NOT_FOUND_IN_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211987));
+pub const VDS_E_DISK_NOT_IMPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212206));
+pub const VDS_E_DISK_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212265));
+pub const VDS_E_DISK_NOT_LOADED_TO_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212217));
+pub const VDS_E_DISK_NOT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212031));
+pub const VDS_E_DISK_NOT_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211883));
+pub const VDS_E_DISK_NOT_ONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212213));
+pub const VDS_E_DISK_PNP_REG_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212203));
 pub const VDS_E_DISK_REMOVEABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211942));
 pub const VDS_E_DISK_REMOVEABLE_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211941));
+pub const VDS_E_DISTINCT_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211909));
+pub const VDS_E_DMADMIN_CORRUPT_NOTIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212252));
+pub const VDS_E_DMADMIN_METHOD_CALL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212256));
+pub const VDS_E_DMADMIN_SERVICE_CONNECTION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212261));
 pub const VDS_E_DRIVE_LETTER_NOT_FREE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211940));
+pub const VDS_E_DRIVER_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212027));
+pub const VDS_E_DRIVER_INVALID_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212004));
+pub const VDS_E_DRIVER_NO_PACK_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212019));
+pub const VDS_E_DRIVER_OBJECT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211971));
+pub const VDS_E_DUP_EMPTY_PACK_GUID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212020));
+pub const VDS_E_DUPLICATE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211986));
+pub const VDS_E_DYNAMIC_DISKS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211967));
+pub const VDS_E_EXTEND_FILE_SYSTEM_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212186));
 pub const VDS_E_EXTEND_MULTIPLE_DISKS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211939));
+pub const VDS_E_EXTEND_TOO_MANY_CLUSTERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210968));
+pub const VDS_E_EXTEND_UNKNOWN_FILESYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210967));
+pub const VDS_E_EXTENT_EXCEEDS_DISK_FREE_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212011));
+pub const VDS_E_EXTENT_SIZE_LESS_THAN_MIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212237));
+pub const VDS_E_FAILED_TO_OFFLINE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211881));
+pub const VDS_E_FAILED_TO_ONLINE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211882));
+pub const VDS_E_FAT32_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210987));
+pub const VDS_E_FAT_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210986));
+pub const VDS_E_FAULT_TOLERANT_DISKS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211966));
+pub const VDS_E_FLAG_ALREADY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211911));
+pub const VDS_E_FORMAT_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210989));
+pub const VDS_E_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210985));
+pub const VDS_E_FORMAT_WITH_BOOTBACKING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210744));
+pub const VDS_E_FS_NOT_DETERMINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211885));
+pub const VDS_E_GET_SAN_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211259));
+pub const VDS_E_GPT_ATTRIBUTES_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211965));
+pub const VDS_E_HIBERNATION_FILE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211251));
+pub const VDS_E_IA64_BOOT_MIRRORED_TO_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212198));
+pub const VDS_E_IMPORT_SET_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212207));
+pub const VDS_E_INCOMPATIBLE_FILE_SYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212251));
+pub const VDS_E_INCOMPATIBLE_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212250));
+pub const VDS_E_INCORRECT_BOOT_VOLUME_EXTENT_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211260));
+pub const VDS_E_INCORRECT_SYSTEM_VOLUME_EXTENT_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211248));
+pub const VDS_E_INITIALIZE_NOT_CALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212286));
+pub const VDS_E_INITIALIZED_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212287));
+pub const VDS_E_INITIATOR_ADAPTER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211008));
+pub const VDS_E_INITIATOR_SPECIFIC_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211513));
+pub const VDS_E_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212216));
+pub const VDS_E_INVALID_BLOCK_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211982));
+pub const VDS_E_INVALID_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212007));
+pub const VDS_E_INVALID_DISK_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211994));
 pub const VDS_E_INVALID_DRIVE_LETTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211938));
 pub const VDS_E_INVALID_DRIVE_LETTER_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211937));
+pub const VDS_E_INVALID_ENUMERATOR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212028));
+pub const VDS_E_INVALID_EXTENT_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211993));
 pub const VDS_E_INVALID_FS_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211936));
 pub const VDS_E_INVALID_FS_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211935));
+pub const VDS_E_INVALID_IP_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210997));
+pub const VDS_E_INVALID_ISCSI_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210980));
+pub const VDS_E_INVALID_ISCSI_TARGET_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211005));
+pub const VDS_E_INVALID_MEMBER_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211998));
+pub const VDS_E_INVALID_MEMBER_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211996));
 pub const VDS_E_INVALID_OBJECT_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211934));
+pub const VDS_E_INVALID_OPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212267));
+pub const VDS_E_INVALID_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212006));
 pub const VDS_E_INVALID_PARTITION_LAYOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211933));
 pub const VDS_E_INVALID_PARTITION_STYLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211932));
 pub const VDS_E_INVALID_PARTITION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211931));
+pub const VDS_E_INVALID_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210981));
+pub const VDS_E_INVALID_PLEX_BLOCK_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211978));
+pub const VDS_E_INVALID_PLEX_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211999));
+pub const VDS_E_INVALID_PLEX_GUID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211988));
+pub const VDS_E_INVALID_PLEX_ORDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211997));
+pub const VDS_E_INVALID_PLEX_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211979));
+pub const VDS_E_INVALID_PORT_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211006));
 pub const VDS_E_INVALID_PROVIDER_CLSID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211930));
 pub const VDS_E_INVALID_PROVIDER_ID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211929));
 pub const VDS_E_INVALID_PROVIDER_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211928));
@@ -292,1060 +157,316 @@ pub const VDS_E_INVALID_PROVIDER_TYPE = @import("../zig.zig").typedConst(HRESULT
 pub const VDS_E_INVALID_PROVIDER_VERSION_GUID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211926));
 pub const VDS_E_INVALID_PROVIDER_VERSION_STRING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211925));
 pub const VDS_E_INVALID_QUERY_PROVIDER_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211924));
+pub const VDS_E_INVALID_SECTOR_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211984));
 pub const VDS_E_INVALID_SERVICE_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211923));
+pub const VDS_E_INVALID_SHRINK_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211241));
+pub const VDS_E_INVALID_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212282));
+pub const VDS_E_INVALID_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210747));
+pub const VDS_E_INVALID_STRIPE_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211995));
 pub const VDS_E_INVALID_VOLUME_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211922));
-pub const VDS_E_PARTITION_NOT_OEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211921));
-pub const VDS_E_PARTITION_PROTECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211920));
-pub const VDS_E_PARTITION_STYLE_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211919));
-pub const VDS_E_PROVIDER_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211918));
-pub const VDS_E_SHRINK_SIZE_LESS_THAN_MIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211917));
-pub const VDS_E_SHRINK_SIZE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211916));
-pub const VDS_E_UNRECOVERABLE_PROVIDER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211915));
-pub const VDS_E_VOLUME_HIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211914));
-pub const VDS_S_DISMOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271735));
-pub const VDS_S_REMOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271736));
-pub const VDS_E_FLAG_ALREADY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211911));
-pub const VDS_S_RESYNC_NOTIFICATION_TASK_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271738));
-pub const VDS_E_DISTINCT_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211909));
-pub const VDS_E_VOLUME_NOT_FOUND_IN_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211908));
-pub const VDS_E_PARTITION_NON_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211907));
-pub const VDS_E_CRITICAL_PLEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211906));
-pub const VDS_E_VOLUME_SYNCHRONIZING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211905));
-pub const VDS_E_VOLUME_REGENERATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211904));
-pub const VDS_S_VSS_FLUSH_AND_HOLD_WRITES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271745));
-pub const VDS_S_VSS_RELEASE_WRITES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271746));
-pub const VDS_S_FS_LOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271747));
-pub const VDS_E_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211900));
+pub const VDS_E_INVALID_VOLUME_LENGTH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211954));
 pub const VDS_E_INVALID_VOLUME_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211899));
-pub const VDS_E_BAD_BOOT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211898));
-pub const VDS_E_LOG_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211897));
-pub const VDS_E_VOLUME_MIRRORED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211896));
-pub const VDS_E_VOLUME_SIMPLE_SPANNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211895));
-pub const VDS_E_NO_VALID_LOG_COPIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211894));
-pub const VDS_S_PLEX_NOT_LOADED_TO_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271755));
-pub const VDS_E_PLEX_NOT_LOADED_TO_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211893));
-pub const VDS_E_PARTITION_MSR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211892));
-pub const VDS_E_PARTITION_LDM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211891));
-pub const VDS_S_WINPE_BOOTENTRY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271758));
-pub const VDS_E_ALIGN_NOT_A_POWER_OF_TWO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211889));
-pub const VDS_E_ALIGN_IS_ZERO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211888));
-pub const VDS_E_SHRINK_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211887));
-pub const VDS_E_CANT_INVALIDATE_FVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211886));
-pub const VDS_E_FS_NOT_DETERMINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211885));
-pub const VDS_E_DISK_NOT_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211883));
-pub const VDS_E_FAILED_TO_ONLINE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211882));
-pub const VDS_E_FAILED_TO_OFFLINE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211881));
-pub const VDS_E_BAD_REVISION_NUMBER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211880));
-pub const VDS_E_SHRINK_USER_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211879));
-pub const VDS_E_SHRINK_DIRTY_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211878));
-pub const VDS_S_NAME_TRUNCATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272128));
-pub const VDS_E_NAME_NOT_UNIQUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211519));
-pub const VDS_S_STATUSES_INCOMPLETELY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272130));
-pub const VDS_E_ADDRESSES_INCOMPLETELY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211517));
-pub const VDS_E_SECURITY_INCOMPLETELY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211515));
-pub const VDS_E_TARGET_SPECIFIC_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211514));
-pub const VDS_E_INITIATOR_SPECIFIC_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211513));
+pub const VDS_E_IO_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212245));
+pub const VDS_E_ISCSI_CHAP_SECRET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210998));
+pub const VDS_E_ISCSI_GET_IKE_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211003));
+pub const VDS_E_ISCSI_GROUP_PRESHARE_KEY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210999));
+pub const VDS_E_ISCSI_INITIATOR_NODE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211000));
 pub const VDS_E_ISCSI_LOGIN_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211512));
 pub const VDS_E_ISCSI_LOGOUT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211511));
-pub const VDS_E_ISCSI_SESSION_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211510));
-pub const VDS_E_ASSOCIATED_LUNS_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211509));
-pub const VDS_E_ASSOCIATED_PORTALS_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211508));
-pub const VDS_E_NO_DISCOVERY_DOMAIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211507));
-pub const VDS_E_MULTIPLE_DISCOVERY_DOMAINS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211506));
-pub const VDS_E_NO_DISK_PATHNAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211505));
 pub const VDS_E_ISCSI_LOGOUT_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211504));
-pub const VDS_E_NO_VOLUME_PATHNAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211503));
-pub const VDS_E_PROVIDER_CACHE_OUTOFSYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211502));
-pub const VDS_E_NO_IMPORT_TARGET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211501));
-pub const VDS_S_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272148));
-pub const VDS_S_PROPERTIES_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272149));
-pub const VDS_S_ISCSI_SESSION_NOT_FOUND_PERSISTENT_LOGIN_REMOVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272384));
-pub const VDS_S_ISCSI_PERSISTENT_LOGIN_MAY_NOT_BE_REMOVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272385));
-pub const VDS_S_ISCSI_LOGIN_ALREAD_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272386));
-pub const VDS_E_UNABLE_TO_FIND_BOOT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211261));
-pub const VDS_E_INCORRECT_BOOT_VOLUME_EXTENT_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211260));
-pub const VDS_E_GET_SAN_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211259));
-pub const VDS_E_SET_SAN_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211258));
-pub const VDS_E_BOOT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211257));
-pub const VDS_S_DISK_MOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272392));
-pub const VDS_S_DISK_DISMOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272393));
-pub const VDS_E_DISK_IS_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211254));
-pub const VDS_E_DISK_IS_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211253));
-pub const VDS_E_PAGEFILE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211252));
-pub const VDS_E_HIBERNATION_FILE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211251));
-pub const VDS_E_CRASHDUMP_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211250));
-pub const VDS_E_UNABLE_TO_FIND_SYSTEM_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211249));
-pub const VDS_E_INCORRECT_SYSTEM_VOLUME_EXTENT_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211248));
-pub const VDS_E_SYSTEM_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211247));
-pub const VDS_E_VOLUME_SHRINK_FVE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211246));
-pub const VDS_E_VOLUME_SHRINK_FVE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211245));
-pub const VDS_E_VOLUME_SHRINK_FVE_RECOVERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211244));
-pub const VDS_E_VOLUME_SHRINK_FVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211243));
-pub const VDS_E_SHRINK_OVER_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211242));
-pub const VDS_E_INVALID_SHRINK_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211241));
-pub const VDS_E_LUN_DISK_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211240));
-pub const VDS_E_LUN_DISK_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211239));
-pub const VDS_E_LUN_DISK_NOT_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211238));
-pub const VDS_E_LUN_DISK_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211237));
-pub const VDS_E_LUN_NOT_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211236));
-pub const VDS_E_LUN_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211235));
-pub const VDS_E_LUN_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211234));
-pub const VDS_E_VOLUME_EXTEND_FVE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211233));
-pub const VDS_E_VOLUME_EXTEND_FVE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211232));
-pub const VDS_E_VOLUME_EXTEND_FVE_RECOVERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211231));
-pub const VDS_E_VOLUME_EXTEND_FVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211230));
-pub const VDS_E_SECTOR_SIZE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211229));
-pub const VDS_E_INITIATOR_ADAPTER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211008));
-pub const VDS_E_TARGET_PORTAL_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211007));
-pub const VDS_E_INVALID_PORT_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211006));
-pub const VDS_E_INVALID_ISCSI_TARGET_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211005));
-pub const VDS_E_SET_TUNNEL_MODE_OUTER_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211004));
-pub const VDS_E_ISCSI_GET_IKE_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211003));
+pub const VDS_E_ISCSI_SESSION_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211510));
 pub const VDS_E_ISCSI_SET_IKE_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211002));
-pub const VDS_E_SUBSYSTEM_ID_IS_NULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211001));
-pub const VDS_E_ISCSI_INITIATOR_NODE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211000));
-pub const VDS_E_ISCSI_GROUP_PRESHARE_KEY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210999));
-pub const VDS_E_ISCSI_CHAP_SECRET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210998));
-pub const VDS_E_INVALID_IP_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210997));
-pub const VDS_E_REBOOT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210996));
-pub const VDS_E_VOLUME_GUID_PATHNAME_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210995));
-pub const VDS_E_BOOT_PAGEFILE_DRIVE_LETTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210994));
-pub const VDS_E_DELETE_WITH_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210993));
-pub const VDS_E_CLEAN_WITH_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210992));
-pub const VDS_E_CLEAN_WITH_OEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210991));
-pub const VDS_E_CLEAN_WITH_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210990));
-pub const VDS_E_FORMAT_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210989));
-pub const VDS_E_NTFS_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210988));
-pub const VDS_E_FAT32_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210987));
-pub const VDS_E_FAT_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210986));
-pub const VDS_E_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210985));
-pub const VDS_E_COMPRESSION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210984));
-pub const VDS_E_VDISK_NOT_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210983));
-pub const VDS_E_VDISK_INVALID_OP_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210982));
-pub const VDS_E_INVALID_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210981));
-pub const VDS_E_INVALID_ISCSI_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210980));
-pub const VDS_E_SHRINK_LUN_NOT_UNMASKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210979));
+pub const VDS_E_LAST_VALID_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211985));
+pub const VDS_E_LBN_REMAP_ENABLED_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212202));
+pub const VDS_E_LDM_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212191));
+pub const VDS_E_LEGACY_VOLUME_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212230));
+pub const VDS_E_LOG_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211897));
+pub const VDS_E_LUN_DISK_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211239));
+pub const VDS_E_LUN_DISK_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211240));
+pub const VDS_E_LUN_DISK_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211237));
+pub const VDS_E_LUN_DISK_NOT_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211238));
 pub const VDS_E_LUN_DISK_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210978));
-pub const VDS_E_LUN_UPDATE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210977));
 pub const VDS_E_LUN_DYNAMIC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210976));
 pub const VDS_E_LUN_DYNAMIC_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210975));
+pub const VDS_E_LUN_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211234));
+pub const VDS_E_LUN_NOT_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211236));
+pub const VDS_E_LUN_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211235));
 pub const VDS_E_LUN_SHRINK_GPT_HEADER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210974));
+pub const VDS_E_LUN_UPDATE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210977));
+pub const VDS_E_MAX_USABLE_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212184));
+pub const VDS_E_MEDIA_WRITE_PROTECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212248));
+pub const VDS_E_MEMBER_IS_HEALTHY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211964));
+pub const VDS_E_MEMBER_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211958));
+pub const VDS_E_MEMBER_REGENERATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211963));
+pub const VDS_E_MEMBER_SIZE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212010));
+pub const VDS_E_MIGRATE_OPEN_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212228));
 pub const VDS_E_MIRROR_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210973));
-pub const VDS_E_RAID5_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210972));
-pub const VDS_E_DISK_NOT_CONVERTIBLE_SIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210971));
-pub const VDS_E_OFFLINE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210970));
-pub const VDS_E_VDISK_PATHNAME_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210969));
-pub const VDS_E_EXTEND_TOO_MANY_CLUSTERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210968));
-pub const VDS_E_EXTEND_UNKNOWN_FILESYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210967));
-pub const VDS_E_SHRINK_UNKNOWN_FILESYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210966));
-pub const VDS_E_VD_DISK_NOT_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210965));
-pub const VDS_E_VD_DISK_IS_EXPANDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210964));
-pub const VDS_E_VD_DISK_IS_COMPACTING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210963));
-pub const VDS_E_VD_DISK_IS_MERGING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210962));
-pub const VDS_E_VD_IS_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210961));
-pub const VDS_E_VD_DISK_ALREADY_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210960));
-pub const VDS_E_VD_DISK_ALREADY_EXPANDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210959));
-pub const VDS_E_VD_ALREADY_COMPACTING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210958));
-pub const VDS_E_VD_ALREADY_MERGING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210957));
-pub const VDS_E_VD_ALREADY_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210956));
-pub const VDS_E_VD_ALREADY_DETACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210955));
-pub const VDS_E_VD_NOT_ATTACHED_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210954));
-pub const VDS_E_VD_IS_BEING_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210953));
-pub const VDS_E_VD_IS_BEING_DETACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210952));
+pub const VDS_E_MISSING_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212204));
+pub const VDS_E_MULTIPLE_DISCOVERY_DOMAINS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211506));
+pub const VDS_E_MULTIPLE_PACKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212001));
+pub const VDS_E_NAME_NOT_UNIQUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211519));
+pub const VDS_E_NO_DISCOVERY_DOMAIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211507));
+pub const VDS_E_NO_DISK_PATHNAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211505));
+pub const VDS_E_NO_DISKS_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212258));
+pub const VDS_E_NO_DRIVELETTER_FLAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212201));
+pub const VDS_E_NO_EXTENTS_FOR_PLEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211980));
+pub const VDS_E_NO_EXTENTS_FOR_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212218));
+pub const VDS_E_NO_FREE_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212233));
+pub const VDS_E_NO_HEALTHY_DISKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211977));
+pub const VDS_E_NO_IMPORT_TARGET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211501));
+pub const VDS_E_NO_MAINTENANCE_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210750));
+pub const VDS_E_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212270));
+pub const VDS_E_NO_PNP_DISK_ARRIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212016));
+pub const VDS_E_NO_PNP_DISK_REMOVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212014));
+pub const VDS_E_NO_PNP_VOLUME_ARRIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212015));
+pub const VDS_E_NO_PNP_VOLUME_REMOVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212013));
 pub const VDS_E_NO_POOL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210752));
 pub const VDS_E_NO_POOL_CREATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210751));
-pub const VDS_E_NO_MAINTENANCE_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210750));
-pub const VDS_E_BLOCK_CLUSTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210749));
-pub const VDS_E_DISK_HAS_BANDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210748));
-pub const VDS_E_INVALID_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210747));
+pub const VDS_E_NO_SOFTWARE_PROVIDERS_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212032));
+pub const VDS_E_NO_VALID_LOG_COPIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211894));
+pub const VDS_E_NO_VOLUME_LAYOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212030));
+pub const VDS_E_NO_VOLUME_PATHNAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211503));
+pub const VDS_E_NON_CONTIGUOUS_DATA_PARTITIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212229));
+pub const VDS_E_NOT_AN_UNALLOCATED_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212264));
+pub const VDS_E_NOT_ENOUGH_DRIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212272));
+pub const VDS_E_NOT_ENOUGH_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212273));
+pub const VDS_E_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212288));
+pub const VDS_E_NTFS_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210988));
+pub const VDS_E_OBJECT_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212277));
+pub const VDS_E_OBJECT_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212259));
+pub const VDS_E_OBJECT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212283));
+pub const VDS_E_OBJECT_OUT_OF_SYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212205));
+pub const VDS_E_OBJECT_STATUS_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212239));
+pub const VDS_E_OFFLINE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210970));
+pub const VDS_E_ONE_EXTENT_PER_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211983));
+pub const VDS_E_ONLINE_PACK_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212188));
+pub const VDS_E_OPERATION_CANCELED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212275));
+pub const VDS_E_OPERATION_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212278));
+pub const VDS_E_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212279));
+pub const VDS_E_PACK_NAME_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211962));
+pub const VDS_E_PACK_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212208));
+pub const VDS_E_PACK_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212220));
+pub const VDS_E_PACK_ONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212000));
+pub const VDS_E_PAGEFILE_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211252));
+pub const VDS_E_PARTITION_LDM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211891));
+pub const VDS_E_PARTITION_LIMIT_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212281));
+pub const VDS_E_PARTITION_MSR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211892));
+pub const VDS_E_PARTITION_NON_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211907));
+pub const VDS_E_PARTITION_NOT_CYLINDER_ALIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211970));
+pub const VDS_E_PARTITION_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212280));
+pub const VDS_E_PARTITION_NOT_OEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211921));
+pub const VDS_E_PARTITION_OF_UNKNOWN_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212231));
+pub const VDS_E_PARTITION_PROTECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211920));
+pub const VDS_E_PARTITION_STYLE_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211919));
+pub const VDS_E_PATH_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212266));
+pub const VDS_E_PLEX_IS_HEALTHY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211961));
+pub const VDS_E_PLEX_LAST_ACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211960));
+pub const VDS_E_PLEX_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211959));
+pub const VDS_E_PLEX_NOT_LOADED_TO_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211893));
+pub const VDS_E_PLEX_REGENERATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211957));
+pub const VDS_E_PLEX_SIZE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211981));
+pub const VDS_E_PROVIDER_CACHE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212257));
+pub const VDS_E_PROVIDER_CACHE_OUTOFSYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211502));
+pub const VDS_E_PROVIDER_EXITING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212012));
+pub const VDS_E_PROVIDER_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212222));
+pub const VDS_E_PROVIDER_INITIALIZATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212260));
+pub const VDS_E_PROVIDER_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211918));
+pub const VDS_E_PROVIDER_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212214));
+pub const VDS_E_PROVIDER_VOL_DEVICE_NAME_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212254));
+pub const VDS_E_PROVIDER_VOL_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212253));
+pub const VDS_E_RAID5_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210972));
+pub const VDS_E_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211900));
+pub const VDS_E_REBOOT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210996));
 pub const VDS_E_REFS_FORMAT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210746));
-pub const VDS_E_DELETE_WITH_BOOTBACKING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210745));
-pub const VDS_E_FORMAT_WITH_BOOTBACKING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210744));
-pub const VDS_E_CLEAN_WITH_BOOTBACKING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210743));
+pub const VDS_E_REPAIR_VOLUMESTATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212192));
+pub const VDS_E_REQUIRES_CONTIGUOUS_DISK_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212224));
+pub const VDS_E_RETRY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212189));
+pub const VDS_E_REVERT_ON_CLOSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212200));
+pub const VDS_E_REVERT_ON_CLOSE_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212190));
+pub const VDS_E_REVERT_ON_CLOSE_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212199));
+pub const VDS_E_SECTOR_SIZE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211229));
+pub const VDS_E_SECURITY_INCOMPLETELY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211515));
+pub const VDS_E_SET_SAN_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211258));
+pub const VDS_E_SET_TUNNEL_MODE_OUTER_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211004));
+pub const VDS_E_SHRINK_DIRTY_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211878));
 pub const VDS_E_SHRINK_EXTEND_UNALIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210496));
+pub const VDS_E_SHRINK_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211887));
+pub const VDS_E_SHRINK_LUN_NOT_UNMASKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210979));
+pub const VDS_E_SHRINK_OVER_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211242));
+pub const VDS_E_SHRINK_SIZE_LESS_THAN_MIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211917));
+pub const VDS_E_SHRINK_SIZE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211916));
+pub const VDS_E_SHRINK_UNKNOWN_FILESYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210966));
+pub const VDS_E_SHRINK_USER_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211879));
+pub const VDS_E_SOURCE_IS_TARGET_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211992));
+pub const VDS_E_SUBSYSTEM_ID_IS_NULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211001));
+pub const VDS_E_SYSTEM_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211247));
+pub const VDS_E_TARGET_PACK_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212003));
+pub const VDS_E_TARGET_PORTAL_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211007));
+pub const VDS_E_TARGET_SPECIFIC_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211514));
+pub const VDS_E_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212193));
+pub const VDS_E_UNABLE_TO_FIND_BOOT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211261));
+pub const VDS_E_UNABLE_TO_FIND_SYSTEM_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211249));
+pub const VDS_E_UNEXPECTED_DISK_LAYOUT_CHANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211955));
+pub const VDS_E_UNRECOVERABLE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212263));
+pub const VDS_E_UNRECOVERABLE_PROVIDER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211915));
+pub const VDS_E_VD_ALREADY_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210956));
+pub const VDS_E_VD_ALREADY_COMPACTING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210958));
+pub const VDS_E_VD_ALREADY_DETACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210955));
+pub const VDS_E_VD_ALREADY_MERGING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210957));
+pub const VDS_E_VD_DISK_ALREADY_EXPANDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210959));
+pub const VDS_E_VD_DISK_ALREADY_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210960));
+pub const VDS_E_VD_DISK_IS_COMPACTING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210963));
+pub const VDS_E_VD_DISK_IS_EXPANDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210964));
+pub const VDS_E_VD_DISK_IS_MERGING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210962));
+pub const VDS_E_VD_DISK_NOT_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210965));
+pub const VDS_E_VD_IS_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210961));
+pub const VDS_E_VD_IS_BEING_ATTACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210953));
+pub const VDS_E_VD_IS_BEING_DETACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210952));
+pub const VDS_E_VD_NOT_ATTACHED_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210954));
+pub const VDS_E_VDISK_INVALID_OP_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210982));
+pub const VDS_E_VDISK_NOT_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210983));
+pub const VDS_E_VDISK_PATHNAME_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210969));
+pub const VDS_E_VOLUME_DISK_COUNT_MAX_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211991));
+pub const VDS_E_VOLUME_EXTEND_FVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211230));
+pub const VDS_E_VOLUME_EXTEND_FVE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211232));
+pub const VDS_E_VOLUME_EXTEND_FVE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211233));
+pub const VDS_E_VOLUME_EXTEND_FVE_RECOVERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211231));
+pub const VDS_E_VOLUME_GUID_PATHNAME_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147210995));
+pub const VDS_E_VOLUME_HAS_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212194));
+pub const VDS_E_VOLUME_HIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211914));
+pub const VDS_E_VOLUME_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212238));
+pub const VDS_E_VOLUME_INVALID_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212025));
+pub const VDS_E_VOLUME_LENGTH_NOT_SECTOR_SIZE_MULTIPLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211953));
+pub const VDS_E_VOLUME_MIRRORED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211896));
+pub const VDS_E_VOLUME_NOT_A_MIRROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212219));
+pub const VDS_E_VOLUME_NOT_FOUND_IN_PACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211908));
+pub const VDS_E_VOLUME_NOT_HEALTHY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212226));
+pub const VDS_E_VOLUME_NOT_MOUNTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212209));
+pub const VDS_E_VOLUME_NOT_ONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212227));
+pub const VDS_E_VOLUME_NOT_RETAINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211952));
+pub const VDS_E_VOLUME_ON_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212005));
+pub const VDS_E_VOLUME_PERMANENTLY_DISMOUNTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212195));
+pub const VDS_E_VOLUME_REGENERATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211904));
+pub const VDS_E_VOLUME_RETAINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211951));
+pub const VDS_E_VOLUME_SHRINK_FVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211243));
+pub const VDS_E_VOLUME_SHRINK_FVE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211245));
+pub const VDS_E_VOLUME_SHRINK_FVE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211246));
+pub const VDS_E_VOLUME_SHRINK_FVE_RECOVERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211244));
+pub const VDS_E_VOLUME_SIMPLE_SPANNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211895));
+pub const VDS_E_VOLUME_SPANS_DISKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212225));
+pub const VDS_E_VOLUME_SYNCHRONIZING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147211905));
+pub const VDS_E_VOLUME_TEMPORARILY_DISMOUNTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212196));
+pub const VDS_E_VOLUME_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212243));
+pub const VDS_E_VOLUME_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212244));
+pub const VDS_HINT_ALLOCATEHOTSPARE = @as(i32, 512);
+pub const VDS_HINT_BUSTYPE = @as(i32, 1024);
+pub const VDS_HINT_CONSISTENCYCHECKENABLED = @as(i32, 32768);
+pub const VDS_HINT_FASTCRASHRECOVERYREQUIRED = @as(i32, 1);
+pub const VDS_HINT_HARDWARECHECKSUMENABLED = @as(i32, 128);
+pub const VDS_HINT_ISYANKABLE = @as(i32, 256);
+pub const VDS_HINT_MEDIASCANENABLED = @as(i32, 16384);
+pub const VDS_HINT_MOSTLYREADS = @as(i32, 2);
+pub const VDS_HINT_OPTIMIZEFORSEQUENTIALREADS = @as(i32, 4);
+pub const VDS_HINT_OPTIMIZEFORSEQUENTIALWRITES = @as(i32, 8);
+pub const VDS_HINT_READBACKVERIFYENABLED = @as(i32, 16);
+pub const VDS_HINT_READCACHINGENABLED = @as(i32, 4096);
+pub const VDS_HINT_REMAPENABLED = @as(i32, 32);
+pub const VDS_HINT_USEMIRROREDCACHE = @as(i32, 2048);
+pub const VDS_HINT_WRITECACHINGENABLED = @as(i32, 8192);
+pub const VDS_HINT_WRITETHROUGHCACHINGENABLED = @as(i32, 64);
+pub const VDS_NF_DRIVE_LETTER_ASSIGN = @as(u32, 202);
+pub const VDS_NF_DRIVE_LETTER_FREE = @as(u32, 201);
+pub const VDS_NF_FILE_SYSTEM_SHRINKING_PROGRESS = @as(u32, 206);
+pub const VDS_NF_MOUNT_POINTS_CHANGE = @as(u32, 205);
+pub const VDS_NF_PARTITION_ARRIVE = @as(u32, 11);
+pub const VDS_NF_PARTITION_DEPART = @as(u32, 12);
+pub const VDS_NF_PARTITION_MODIFY = @as(u32, 13);
+pub const VDS_NF_PORTAL_ARRIVE = @as(u32, 123);
+pub const VDS_NF_PORTAL_DEPART = @as(u32, 124);
+pub const VDS_NF_PORTAL_GROUP_ARRIVE = @as(u32, 129);
+pub const VDS_NF_PORTAL_GROUP_DEPART = @as(u32, 130);
+pub const VDS_NF_PORTAL_GROUP_MODIFY = @as(u32, 131);
+pub const VDS_NF_PORTAL_MODIFY = @as(u32, 125);
+pub const VDS_NF_SERVICE_OUT_OF_SYNC = @as(u32, 301);
+pub const VDS_NF_SUB_SYSTEM_ARRIVE = @as(u32, 101);
+pub const VDS_NF_SUB_SYSTEM_DEPART = @as(u32, 102);
+pub const VDS_NF_SUB_SYSTEM_MODIFY = @as(u32, 151);
+pub const VDS_NF_TARGET_ARRIVE = @as(u32, 126);
+pub const VDS_NF_TARGET_DEPART = @as(u32, 127);
+pub const VDS_NF_TARGET_MODIFY = @as(u32, 128);
+pub const VDS_NF_VOLUME_ARRIVE = @as(u32, 4);
+pub const VDS_NF_VOLUME_DEPART = @as(u32, 5);
+pub const VDS_NF_VOLUME_MODIFY = @as(u32, 6);
+pub const VDS_NF_VOLUME_REBUILDING_PROGRESS = @as(u32, 7);
+pub const VDS_POOL_ATTRIB_ACCS_BDW_WT_HINT = @as(i32, 16777216);
+pub const VDS_POOL_ATTRIB_ACCS_DIR_HINT = @as(i32, 2097152);
+pub const VDS_POOL_ATTRIB_ACCS_LTNCY_HINT = @as(i32, 8388608);
+pub const VDS_POOL_ATTRIB_ACCS_RNDM_HINT = @as(i32, 1048576);
+pub const VDS_POOL_ATTRIB_ACCS_SIZE_HINT = @as(i32, 4194304);
+pub const VDS_POOL_ATTRIB_ALLOW_SPINDOWN = @as(i32, 4);
+pub const VDS_POOL_ATTRIB_BUSTYPE = @as(i32, 2);
+pub const VDS_POOL_ATTRIB_CUSTOM_ATTRIB = @as(i32, 134217728);
+pub const VDS_POOL_ATTRIB_DATA_AVL_HINT = @as(i32, 524288);
+pub const VDS_POOL_ATTRIB_DATA_RDNCY_DEF = @as(i32, 128);
+pub const VDS_POOL_ATTRIB_DATA_RDNCY_MAX = @as(i32, 32);
+pub const VDS_POOL_ATTRIB_DATA_RDNCY_MIN = @as(i32, 64);
+pub const VDS_POOL_ATTRIB_NO_SINGLE_POF = @as(i32, 16);
+pub const VDS_POOL_ATTRIB_NUM_CLMNS = @as(i32, 32768);
+pub const VDS_POOL_ATTRIB_NUM_CLMNS_DEF = @as(i32, 262144);
+pub const VDS_POOL_ATTRIB_NUM_CLMNS_MAX = @as(i32, 65536);
+pub const VDS_POOL_ATTRIB_NUM_CLMNS_MIN = @as(i32, 131072);
+pub const VDS_POOL_ATTRIB_PKG_RDNCY_DEF = @as(i32, 1024);
+pub const VDS_POOL_ATTRIB_PKG_RDNCY_MAX = @as(i32, 256);
+pub const VDS_POOL_ATTRIB_PKG_RDNCY_MIN = @as(i32, 512);
+pub const VDS_POOL_ATTRIB_RAIDTYPE = @as(i32, 1);
+pub const VDS_POOL_ATTRIB_STOR_COST_HINT = @as(i32, 33554432);
+pub const VDS_POOL_ATTRIB_STOR_EFFCY_HINT = @as(i32, 67108864);
+pub const VDS_POOL_ATTRIB_STRIPE_SIZE = @as(i32, 2048);
+pub const VDS_POOL_ATTRIB_STRIPE_SIZE_DEF = @as(i32, 16384);
+pub const VDS_POOL_ATTRIB_STRIPE_SIZE_MAX = @as(i32, 4096);
+pub const VDS_POOL_ATTRIB_STRIPE_SIZE_MIN = @as(i32, 8192);
+pub const VDS_POOL_ATTRIB_THIN_PROVISION = @as(i32, 8);
+pub const VDS_REBUILD_PRIORITY_MAX = @as(u32, 16);
+pub const VDS_REBUILD_PRIORITY_MIN = @as(u32, 0);
+pub const VDS_S_ACCESS_PATH_NOT_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 279108));
+pub const VDS_S_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272148));
+pub const VDS_S_BOOT_PARTITION_NUMBER_CHANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271414));
+pub const VDS_S_DEFAULT_PLEX_MEMBER_IDS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271640));
+pub const VDS_S_DISK_DISMOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272393));
+pub const VDS_S_DISK_IS_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271624));
+pub const VDS_S_DISK_MOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272392));
+pub const VDS_S_DISK_PARTIALLY_CLEANED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271386));
+pub const VDS_S_DISMOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271735));
+pub const VDS_S_EXTEND_FILE_SYSTEM_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271461));
+pub const VDS_S_FS_LOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271747));
+pub const VDS_S_GPT_BOOT_MIRRORED_TO_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147212183));
+pub const VDS_S_IA64_BOOT_MIRRORED_TO_MBR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271450));
+pub const VDS_S_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271437));
+pub const VDS_S_ISCSI_LOGIN_ALREAD_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272386));
+pub const VDS_S_ISCSI_PERSISTENT_LOGIN_MAY_NOT_BE_REMOVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272385));
+pub const VDS_S_ISCSI_SESSION_NOT_FOUND_PERSISTENT_LOGIN_REMOVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272384));
+pub const VDS_S_MBR_BOOT_MIRRORED_TO_GPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271463));
+pub const VDS_S_NAME_TRUNCATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272128));
+pub const VDS_S_NO_NOTIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271639));
+pub const VDS_S_NONCONFORMANT_PARTITION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271626));
+pub const VDS_S_PLEX_NOT_LOADED_TO_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271755));
+pub const VDS_S_PROPERTIES_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272149));
+pub const VDS_S_PROVIDER_ERROR_LOADING_CACHE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271393));
+pub const VDS_S_REMOUNT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271736));
+pub const VDS_S_RESYNC_NOTIFICATION_TASK_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271738));
+pub const VDS_S_STATUSES_INCOMPLETELY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, 272130));
+pub const VDS_S_SYSTEM_PARTITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271630));
+pub const VDS_S_UNABLE_TO_GET_GPT_ATTRIBUTES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271451));
+pub const VDS_S_UPDATE_BOOTFILE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271412));
+pub const VDS_S_VOLUME_COMPRESS_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271427));
+pub const VDS_S_VSS_FLUSH_AND_HOLD_WRITES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271745));
+pub const VDS_S_VSS_RELEASE_WRITES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271746));
+pub const VDS_S_WINPE_BOOTENTRY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 271758));
+pub const VER_VDS_LUN_INFORMATION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (139)
 //--------------------------------------------------------------------------------
-pub const VDS_NF_PACK = enum(u32) {
-    ARRIVE = 1,
-    DEPART = 2,
-    MODIFY = 3,
-};
-pub const VDS_NF_PACK_ARRIVE = VDS_NF_PACK.ARRIVE;
-pub const VDS_NF_PACK_DEPART = VDS_NF_PACK.DEPART;
-pub const VDS_NF_PACK_MODIFY = VDS_NF_PACK.MODIFY;
-
-pub const VDS_NF_FILE_SYSTEM = enum(u32) {
-    MODIFY = 203,
-    FORMAT_PROGRESS = 204,
-};
-pub const VDS_NF_FILE_SYSTEM_MODIFY = VDS_NF_FILE_SYSTEM.MODIFY;
-pub const VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS = VDS_NF_FILE_SYSTEM.FORMAT_PROGRESS;
-
-pub const VDS_NF_CONTROLLER = enum(u32) {
-    ARRIVE = 103,
-    DEPART = 104,
-    MODIFY = 350,
-    REMOVED = 351,
-};
-pub const VDS_NF_CONTROLLER_ARRIVE = VDS_NF_CONTROLLER.ARRIVE;
-pub const VDS_NF_CONTROLLER_DEPART = VDS_NF_CONTROLLER.DEPART;
-pub const VDS_NF_CONTROLLER_MODIFY = VDS_NF_CONTROLLER.MODIFY;
-pub const VDS_NF_CONTROLLER_REMOVED = VDS_NF_CONTROLLER.REMOVED;
-
-pub const VDS_NF_DRIVE = enum(u32) {
-    ARRIVE = 105,
-    DEPART = 106,
-    MODIFY = 107,
-    REMOVED = 354,
-};
-pub const VDS_NF_DRIVE_ARRIVE = VDS_NF_DRIVE.ARRIVE;
-pub const VDS_NF_DRIVE_DEPART = VDS_NF_DRIVE.DEPART;
-pub const VDS_NF_DRIVE_MODIFY = VDS_NF_DRIVE.MODIFY;
-pub const VDS_NF_DRIVE_REMOVED = VDS_NF_DRIVE.REMOVED;
-
-pub const VDS_NF_PORT = enum(u32) {
-    ARRIVE = 121,
-    DEPART = 122,
-    MODIFY = 352,
-    REMOVED = 353,
-};
-pub const VDS_NF_PORT_ARRIVE = VDS_NF_PORT.ARRIVE;
-pub const VDS_NF_PORT_DEPART = VDS_NF_PORT.DEPART;
-pub const VDS_NF_PORT_MODIFY = VDS_NF_PORT.MODIFY;
-pub const VDS_NF_PORT_REMOVED = VDS_NF_PORT.REMOVED;
-
-pub const VDS_NF_LUN = enum(u32) {
-    ARRIVE = 108,
-    DEPART = 109,
-    MODIFY = 110,
-};
-pub const VDS_NF_LUN_ARRIVE = VDS_NF_LUN.ARRIVE;
-pub const VDS_NF_LUN_DEPART = VDS_NF_LUN.DEPART;
-pub const VDS_NF_LUN_MODIFY = VDS_NF_LUN.MODIFY;
-
-pub const VDS_NF_DISK = enum(u32) {
-    ARRIVE = 8,
-    DEPART = 9,
-    MODIFY = 10,
-};
-pub const VDS_NF_DISK_ARRIVE = VDS_NF_DISK.ARRIVE;
-pub const VDS_NF_DISK_DEPART = VDS_NF_DISK.DEPART;
-pub const VDS_NF_DISK_MODIFY = VDS_NF_DISK.MODIFY;
-
-pub const VDS_STORAGE_IDENTIFIER_CODE_SET = enum(i32) {
-    Reserved = 0,
-    Binary = 1,
-    Ascii = 2,
-    Utf8 = 3,
-};
-pub const VDSStorageIdCodeSetReserved = VDS_STORAGE_IDENTIFIER_CODE_SET.Reserved;
-pub const VDSStorageIdCodeSetBinary = VDS_STORAGE_IDENTIFIER_CODE_SET.Binary;
-pub const VDSStorageIdCodeSetAscii = VDS_STORAGE_IDENTIFIER_CODE_SET.Ascii;
-pub const VDSStorageIdCodeSetUtf8 = VDS_STORAGE_IDENTIFIER_CODE_SET.Utf8;
-
-pub const VDS_STORAGE_IDENTIFIER_TYPE = enum(i32) {
-    VendorSpecific = 0,
-    VendorId = 1,
-    EUI64 = 2,
-    FCPHName = 3,
-    PortRelative = 4,
-    TargetPortGroup = 5,
-    LogicalUnitGroup = 6,
-    MD5LogicalUnitIdentifier = 7,
-    ScsiNameString = 8,
-};
-pub const VDSStorageIdTypeVendorSpecific = VDS_STORAGE_IDENTIFIER_TYPE.VendorSpecific;
-pub const VDSStorageIdTypeVendorId = VDS_STORAGE_IDENTIFIER_TYPE.VendorId;
-pub const VDSStorageIdTypeEUI64 = VDS_STORAGE_IDENTIFIER_TYPE.EUI64;
-pub const VDSStorageIdTypeFCPHName = VDS_STORAGE_IDENTIFIER_TYPE.FCPHName;
-pub const VDSStorageIdTypePortRelative = VDS_STORAGE_IDENTIFIER_TYPE.PortRelative;
-pub const VDSStorageIdTypeTargetPortGroup = VDS_STORAGE_IDENTIFIER_TYPE.TargetPortGroup;
-pub const VDSStorageIdTypeLogicalUnitGroup = VDS_STORAGE_IDENTIFIER_TYPE.LogicalUnitGroup;
-pub const VDSStorageIdTypeMD5LogicalUnitIdentifier = VDS_STORAGE_IDENTIFIER_TYPE.MD5LogicalUnitIdentifier;
-pub const VDSStorageIdTypeScsiNameString = VDS_STORAGE_IDENTIFIER_TYPE.ScsiNameString;
-
-pub const VDS_STORAGE_BUS_TYPE = enum(i32) {
-    Unknown = 0,
-    Scsi = 1,
-    Atapi = 2,
-    Ata = 3,
-    @"1394" = 4,
-    Ssa = 5,
-    Fibre = 6,
-    Usb = 7,
-    RAID = 8,
-    iScsi = 9,
-    Sas = 10,
-    Sata = 11,
-    Sd = 12,
-    Mmc = 13,
-    Max = 14,
-    FileBackedVirtual = 15,
-    Spaces = 16,
-    NVMe = 17,
-    Scm = 18,
-    Ufs = 19,
-    MaxReserved = 127,
-    pub const Virtual = .Max;
-};
-pub const VDSBusTypeUnknown = VDS_STORAGE_BUS_TYPE.Unknown;
-pub const VDSBusTypeScsi = VDS_STORAGE_BUS_TYPE.Scsi;
-pub const VDSBusTypeAtapi = VDS_STORAGE_BUS_TYPE.Atapi;
-pub const VDSBusTypeAta = VDS_STORAGE_BUS_TYPE.Ata;
-pub const VDSBusType1394 = VDS_STORAGE_BUS_TYPE.@"1394";
-pub const VDSBusTypeSsa = VDS_STORAGE_BUS_TYPE.Ssa;
-pub const VDSBusTypeFibre = VDS_STORAGE_BUS_TYPE.Fibre;
-pub const VDSBusTypeUsb = VDS_STORAGE_BUS_TYPE.Usb;
-pub const VDSBusTypeRAID = VDS_STORAGE_BUS_TYPE.RAID;
-pub const VDSBusTypeiScsi = VDS_STORAGE_BUS_TYPE.iScsi;
-pub const VDSBusTypeSas = VDS_STORAGE_BUS_TYPE.Sas;
-pub const VDSBusTypeSata = VDS_STORAGE_BUS_TYPE.Sata;
-pub const VDSBusTypeSd = VDS_STORAGE_BUS_TYPE.Sd;
-pub const VDSBusTypeMmc = VDS_STORAGE_BUS_TYPE.Mmc;
-pub const VDSBusTypeMax = VDS_STORAGE_BUS_TYPE.Max;
-pub const VDSBusTypeVirtual = VDS_STORAGE_BUS_TYPE.Max;
-pub const VDSBusTypeFileBackedVirtual = VDS_STORAGE_BUS_TYPE.FileBackedVirtual;
-pub const VDSBusTypeSpaces = VDS_STORAGE_BUS_TYPE.Spaces;
-pub const VDSBusTypeNVMe = VDS_STORAGE_BUS_TYPE.NVMe;
-pub const VDSBusTypeScm = VDS_STORAGE_BUS_TYPE.Scm;
-pub const VDSBusTypeUfs = VDS_STORAGE_BUS_TYPE.Ufs;
-pub const VDSBusTypeMaxReserved = VDS_STORAGE_BUS_TYPE.MaxReserved;
-
-pub const VDS_STORAGE_IDENTIFIER = extern struct {
-    m_CodeSet: VDS_STORAGE_IDENTIFIER_CODE_SET,
-    m_Type: VDS_STORAGE_IDENTIFIER_TYPE,
-    m_cbIdentifier: u32,
-    m_rgbIdentifier: ?*u8,
-};
-
-pub const VDS_STORAGE_DEVICE_ID_DESCRIPTOR = extern struct {
-    m_version: u32,
-    m_cIdentifiers: u32,
-    m_rgIdentifiers: ?*VDS_STORAGE_IDENTIFIER,
-};
-
-pub const VDS_INTERCONNECT_ADDRESS_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    FCFS = 1,
-    FCPH = 2,
-    FCPH3 = 3,
-    MAC = 4,
-    SCSI = 5,
-};
-pub const VDS_IA_UNKNOWN = VDS_INTERCONNECT_ADDRESS_TYPE.UNKNOWN;
-pub const VDS_IA_FCFS = VDS_INTERCONNECT_ADDRESS_TYPE.FCFS;
-pub const VDS_IA_FCPH = VDS_INTERCONNECT_ADDRESS_TYPE.FCPH;
-pub const VDS_IA_FCPH3 = VDS_INTERCONNECT_ADDRESS_TYPE.FCPH3;
-pub const VDS_IA_MAC = VDS_INTERCONNECT_ADDRESS_TYPE.MAC;
-pub const VDS_IA_SCSI = VDS_INTERCONNECT_ADDRESS_TYPE.SCSI;
-
-pub const VDS_INTERCONNECT = extern struct {
-    m_addressType: VDS_INTERCONNECT_ADDRESS_TYPE,
-    m_cbPort: u32,
-    m_pbPort: ?*u8,
-    m_cbAddress: u32,
-    m_pbAddress: ?*u8,
-};
-
-pub const VDS_LUN_INFORMATION = extern struct {
-    m_version: u32,
-    m_DeviceType: u8,
-    m_DeviceTypeModifier: u8,
-    m_bCommandQueueing: BOOL,
-    m_BusType: VDS_STORAGE_BUS_TYPE,
-    m_szVendorId: ?*u8,
-    m_szProductId: ?*u8,
-    m_szProductRevision: ?*u8,
-    m_szSerialNumber: ?*u8,
-    m_diskSignature: Guid,
-    m_deviceIdDescriptor: VDS_STORAGE_DEVICE_ID_DESCRIPTOR,
-    m_cInterconnects: u32,
-    m_rgInterconnects: ?*VDS_INTERCONNECT,
-};
-
-pub const VDS_OBJECT_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    PROVIDER = 1,
-    PACK = 10,
-    VOLUME = 11,
-    VOLUME_PLEX = 12,
-    DISK = 13,
-    SUB_SYSTEM = 30,
-    CONTROLLER = 31,
-    DRIVE = 32,
-    LUN = 33,
-    LUN_PLEX = 34,
-    PORT = 35,
-    PORTAL = 36,
-    TARGET = 37,
-    PORTAL_GROUP = 38,
-    STORAGE_POOL = 39,
-    HBAPORT = 90,
-    INIT_ADAPTER = 91,
-    INIT_PORTAL = 92,
-    ASYNC = 100,
-    ENUM = 101,
-    VDISK = 200,
-    OPEN_VDISK = 201,
-};
-pub const VDS_OT_UNKNOWN = VDS_OBJECT_TYPE.UNKNOWN;
-pub const VDS_OT_PROVIDER = VDS_OBJECT_TYPE.PROVIDER;
-pub const VDS_OT_PACK = VDS_OBJECT_TYPE.PACK;
-pub const VDS_OT_VOLUME = VDS_OBJECT_TYPE.VOLUME;
-pub const VDS_OT_VOLUME_PLEX = VDS_OBJECT_TYPE.VOLUME_PLEX;
-pub const VDS_OT_DISK = VDS_OBJECT_TYPE.DISK;
-pub const VDS_OT_SUB_SYSTEM = VDS_OBJECT_TYPE.SUB_SYSTEM;
-pub const VDS_OT_CONTROLLER = VDS_OBJECT_TYPE.CONTROLLER;
-pub const VDS_OT_DRIVE = VDS_OBJECT_TYPE.DRIVE;
-pub const VDS_OT_LUN = VDS_OBJECT_TYPE.LUN;
-pub const VDS_OT_LUN_PLEX = VDS_OBJECT_TYPE.LUN_PLEX;
-pub const VDS_OT_PORT = VDS_OBJECT_TYPE.PORT;
-pub const VDS_OT_PORTAL = VDS_OBJECT_TYPE.PORTAL;
-pub const VDS_OT_TARGET = VDS_OBJECT_TYPE.TARGET;
-pub const VDS_OT_PORTAL_GROUP = VDS_OBJECT_TYPE.PORTAL_GROUP;
-pub const VDS_OT_STORAGE_POOL = VDS_OBJECT_TYPE.STORAGE_POOL;
-pub const VDS_OT_HBAPORT = VDS_OBJECT_TYPE.HBAPORT;
-pub const VDS_OT_INIT_ADAPTER = VDS_OBJECT_TYPE.INIT_ADAPTER;
-pub const VDS_OT_INIT_PORTAL = VDS_OBJECT_TYPE.INIT_PORTAL;
-pub const VDS_OT_ASYNC = VDS_OBJECT_TYPE.ASYNC;
-pub const VDS_OT_ENUM = VDS_OBJECT_TYPE.ENUM;
-pub const VDS_OT_VDISK = VDS_OBJECT_TYPE.VDISK;
-pub const VDS_OT_OPEN_VDISK = VDS_OBJECT_TYPE.OPEN_VDISK;
-
-pub const VDS_PROVIDER_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    SOFTWARE = 1,
-    HARDWARE = 2,
-    VIRTUALDISK = 3,
-    MAX = 4,
-};
-pub const VDS_PT_UNKNOWN = VDS_PROVIDER_TYPE.UNKNOWN;
-pub const VDS_PT_SOFTWARE = VDS_PROVIDER_TYPE.SOFTWARE;
-pub const VDS_PT_HARDWARE = VDS_PROVIDER_TYPE.HARDWARE;
-pub const VDS_PT_VIRTUALDISK = VDS_PROVIDER_TYPE.VIRTUALDISK;
-pub const VDS_PT_MAX = VDS_PROVIDER_TYPE.MAX;
-
-pub const VDS_PROVIDER_FLAG = enum(i32) {
-    DYNAMIC = 1,
-    INTERNAL_HARDWARE_PROVIDER = 2,
-    ONE_DISK_ONLY_PER_PACK = 4,
-    ONE_PACK_ONLINE_ONLY = 8,
-    VOLUME_SPACE_MUST_BE_CONTIGUOUS = 16,
-    SUPPORT_DYNAMIC = -2147483648,
-    SUPPORT_FAULT_TOLERANT = 1073741824,
-    SUPPORT_DYNAMIC_1394 = 536870912,
-    SUPPORT_MIRROR = 32,
-    SUPPORT_RAID5 = 64,
-};
-pub const VDS_PF_DYNAMIC = VDS_PROVIDER_FLAG.DYNAMIC;
-pub const VDS_PF_INTERNAL_HARDWARE_PROVIDER = VDS_PROVIDER_FLAG.INTERNAL_HARDWARE_PROVIDER;
-pub const VDS_PF_ONE_DISK_ONLY_PER_PACK = VDS_PROVIDER_FLAG.ONE_DISK_ONLY_PER_PACK;
-pub const VDS_PF_ONE_PACK_ONLINE_ONLY = VDS_PROVIDER_FLAG.ONE_PACK_ONLINE_ONLY;
-pub const VDS_PF_VOLUME_SPACE_MUST_BE_CONTIGUOUS = VDS_PROVIDER_FLAG.VOLUME_SPACE_MUST_BE_CONTIGUOUS;
-pub const VDS_PF_SUPPORT_DYNAMIC = VDS_PROVIDER_FLAG.SUPPORT_DYNAMIC;
-pub const VDS_PF_SUPPORT_FAULT_TOLERANT = VDS_PROVIDER_FLAG.SUPPORT_FAULT_TOLERANT;
-pub const VDS_PF_SUPPORT_DYNAMIC_1394 = VDS_PROVIDER_FLAG.SUPPORT_DYNAMIC_1394;
-pub const VDS_PF_SUPPORT_MIRROR = VDS_PROVIDER_FLAG.SUPPORT_MIRROR;
-pub const VDS_PF_SUPPORT_RAID5 = VDS_PROVIDER_FLAG.SUPPORT_RAID5;
-
-pub const VDS_RECOVER_ACTION = enum(i32) {
-    UNKNOWN = 0,
-    REFRESH = 1,
-    RESTART = 2,
-};
-pub const VDS_RA_UNKNOWN = VDS_RECOVER_ACTION.UNKNOWN;
-pub const VDS_RA_REFRESH = VDS_RECOVER_ACTION.REFRESH;
-pub const VDS_RA_RESTART = VDS_RECOVER_ACTION.RESTART;
-
-pub const VDS_NOTIFICATION_TARGET_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    PACK = 10,
-    VOLUME = 11,
-    DISK = 13,
-    PARTITION = 60,
-    DRIVE_LETTER = 61,
-    FILE_SYSTEM = 62,
-    MOUNT_POINT = 63,
-    SUB_SYSTEM = 30,
-    CONTROLLER = 31,
-    DRIVE = 32,
-    LUN = 33,
-    PORT = 35,
-    PORTAL = 36,
-    TARGET = 37,
-    PORTAL_GROUP = 38,
-    SERVICE = 200,
-};
-pub const VDS_NTT_UNKNOWN = VDS_NOTIFICATION_TARGET_TYPE.UNKNOWN;
-pub const VDS_NTT_PACK = VDS_NOTIFICATION_TARGET_TYPE.PACK;
-pub const VDS_NTT_VOLUME = VDS_NOTIFICATION_TARGET_TYPE.VOLUME;
-pub const VDS_NTT_DISK = VDS_NOTIFICATION_TARGET_TYPE.DISK;
-pub const VDS_NTT_PARTITION = VDS_NOTIFICATION_TARGET_TYPE.PARTITION;
-pub const VDS_NTT_DRIVE_LETTER = VDS_NOTIFICATION_TARGET_TYPE.DRIVE_LETTER;
-pub const VDS_NTT_FILE_SYSTEM = VDS_NOTIFICATION_TARGET_TYPE.FILE_SYSTEM;
-pub const VDS_NTT_MOUNT_POINT = VDS_NOTIFICATION_TARGET_TYPE.MOUNT_POINT;
-pub const VDS_NTT_SUB_SYSTEM = VDS_NOTIFICATION_TARGET_TYPE.SUB_SYSTEM;
-pub const VDS_NTT_CONTROLLER = VDS_NOTIFICATION_TARGET_TYPE.CONTROLLER;
-pub const VDS_NTT_DRIVE = VDS_NOTIFICATION_TARGET_TYPE.DRIVE;
-pub const VDS_NTT_LUN = VDS_NOTIFICATION_TARGET_TYPE.LUN;
-pub const VDS_NTT_PORT = VDS_NOTIFICATION_TARGET_TYPE.PORT;
-pub const VDS_NTT_PORTAL = VDS_NOTIFICATION_TARGET_TYPE.PORTAL;
-pub const VDS_NTT_TARGET = VDS_NOTIFICATION_TARGET_TYPE.TARGET;
-pub const VDS_NTT_PORTAL_GROUP = VDS_NOTIFICATION_TARGET_TYPE.PORTAL_GROUP;
-pub const VDS_NTT_SERVICE = VDS_NOTIFICATION_TARGET_TYPE.SERVICE;
-
-pub const VDS_PACK_NOTIFICATION = extern struct {
-    ulEvent: VDS_NF_PACK,
-    packId: Guid,
-};
-
-pub const VDS_DISK_NOTIFICATION = extern struct {
-    ulEvent: VDS_NF_DISK,
-    diskId: Guid,
-};
-
-pub const VDS_VOLUME_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    volumeId: Guid,
-    plexId: Guid,
-    ulPercentCompleted: u32,
-};
-
-pub const VDS_PARTITION_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    diskId: Guid,
-    ullOffset: u64,
-};
-
-pub const VDS_SERVICE_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    action: VDS_RECOVER_ACTION,
-};
-
-pub const VDS_DRIVE_LETTER_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    wcLetter: u16,
-    volumeId: Guid,
-};
-
-pub const VDS_FILE_SYSTEM_NOTIFICATION = extern struct {
-    ulEvent: VDS_NF_FILE_SYSTEM,
-    volumeId: Guid,
-    dwPercentCompleted: u32,
-};
-
-pub const VDS_MOUNT_POINT_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    volumeId: Guid,
-};
-
-pub const VDS_SUB_SYSTEM_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    subSystemId: Guid,
-};
-
-pub const VDS_CONTROLLER_NOTIFICATION = extern struct {
-    ulEvent: VDS_NF_CONTROLLER,
-    controllerId: Guid,
-};
-
-pub const VDS_DRIVE_NOTIFICATION = extern struct {
-    ulEvent: VDS_NF_DRIVE,
-    driveId: Guid,
-};
-
-pub const VDS_LUN_NOTIFICATION = extern struct {
-    ulEvent: VDS_NF_LUN,
-    LunId: Guid,
-};
-
-pub const VDS_PORT_NOTIFICATION = extern struct {
-    ulEvent: VDS_NF_PORT,
-    portId: Guid,
-};
-
-pub const VDS_PORTAL_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    portalId: Guid,
-};
-
-pub const VDS_TARGET_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    targetId: Guid,
-};
-
-pub const VDS_PORTAL_GROUP_NOTIFICATION = extern struct {
-    ulEvent: u32,
-    portalGroupId: Guid,
-};
-
-pub const VDS_NOTIFICATION = extern struct {
-    objectType: VDS_NOTIFICATION_TARGET_TYPE,
-    Anonymous: extern union {
-        Pack: VDS_PACK_NOTIFICATION,
-        Disk: VDS_DISK_NOTIFICATION,
-        Volume: VDS_VOLUME_NOTIFICATION,
-        Partition: VDS_PARTITION_NOTIFICATION,
-        Letter: VDS_DRIVE_LETTER_NOTIFICATION,
-        FileSystem: VDS_FILE_SYSTEM_NOTIFICATION,
-        MountPoint: VDS_MOUNT_POINT_NOTIFICATION,
-        SubSystem: VDS_SUB_SYSTEM_NOTIFICATION,
-        Controller: VDS_CONTROLLER_NOTIFICATION,
-        Drive: VDS_DRIVE_NOTIFICATION,
-        Lun: VDS_LUN_NOTIFICATION,
-        Port: VDS_PORT_NOTIFICATION,
-        Portal: VDS_PORTAL_NOTIFICATION,
-        Target: VDS_TARGET_NOTIFICATION,
-        PortalGroup: VDS_PORTAL_GROUP_NOTIFICATION,
-        Service: VDS_SERVICE_NOTIFICATION,
-    },
-};
-
-pub const VDS_ASYNC_OUTPUT_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    CREATEVOLUME = 1,
-    EXTENDVOLUME = 2,
-    SHRINKVOLUME = 3,
-    ADDVOLUMEPLEX = 4,
-    BREAKVOLUMEPLEX = 5,
-    REMOVEVOLUMEPLEX = 6,
-    REPAIRVOLUMEPLEX = 7,
-    RECOVERPACK = 8,
-    REPLACEDISK = 9,
-    CREATEPARTITION = 10,
-    CLEAN = 11,
-    CREATELUN = 50,
-    ADDLUNPLEX = 52,
-    REMOVELUNPLEX = 53,
-    EXTENDLUN = 54,
-    SHRINKLUN = 55,
-    RECOVERLUN = 56,
-    LOGINTOTARGET = 60,
-    LOGOUTFROMTARGET = 61,
-    CREATETARGET = 62,
-    CREATEPORTALGROUP = 63,
-    DELETETARGET = 64,
-    ADDPORTAL = 65,
-    REMOVEPORTAL = 66,
-    DELETEPORTALGROUP = 67,
-    FORMAT = 101,
-    CREATE_VDISK = 200,
-    ATTACH_VDISK = 201,
-    COMPACT_VDISK = 202,
-    MERGE_VDISK = 203,
-    EXPAND_VDISK = 204,
-};
-pub const VDS_ASYNCOUT_UNKNOWN = VDS_ASYNC_OUTPUT_TYPE.UNKNOWN;
-pub const VDS_ASYNCOUT_CREATEVOLUME = VDS_ASYNC_OUTPUT_TYPE.CREATEVOLUME;
-pub const VDS_ASYNCOUT_EXTENDVOLUME = VDS_ASYNC_OUTPUT_TYPE.EXTENDVOLUME;
-pub const VDS_ASYNCOUT_SHRINKVOLUME = VDS_ASYNC_OUTPUT_TYPE.SHRINKVOLUME;
-pub const VDS_ASYNCOUT_ADDVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.ADDVOLUMEPLEX;
-pub const VDS_ASYNCOUT_BREAKVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.BREAKVOLUMEPLEX;
-pub const VDS_ASYNCOUT_REMOVEVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.REMOVEVOLUMEPLEX;
-pub const VDS_ASYNCOUT_REPAIRVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.REPAIRVOLUMEPLEX;
-pub const VDS_ASYNCOUT_RECOVERPACK = VDS_ASYNC_OUTPUT_TYPE.RECOVERPACK;
-pub const VDS_ASYNCOUT_REPLACEDISK = VDS_ASYNC_OUTPUT_TYPE.REPLACEDISK;
-pub const VDS_ASYNCOUT_CREATEPARTITION = VDS_ASYNC_OUTPUT_TYPE.CREATEPARTITION;
-pub const VDS_ASYNCOUT_CLEAN = VDS_ASYNC_OUTPUT_TYPE.CLEAN;
-pub const VDS_ASYNCOUT_CREATELUN = VDS_ASYNC_OUTPUT_TYPE.CREATELUN;
-pub const VDS_ASYNCOUT_ADDLUNPLEX = VDS_ASYNC_OUTPUT_TYPE.ADDLUNPLEX;
-pub const VDS_ASYNCOUT_REMOVELUNPLEX = VDS_ASYNC_OUTPUT_TYPE.REMOVELUNPLEX;
-pub const VDS_ASYNCOUT_EXTENDLUN = VDS_ASYNC_OUTPUT_TYPE.EXTENDLUN;
-pub const VDS_ASYNCOUT_SHRINKLUN = VDS_ASYNC_OUTPUT_TYPE.SHRINKLUN;
-pub const VDS_ASYNCOUT_RECOVERLUN = VDS_ASYNC_OUTPUT_TYPE.RECOVERLUN;
-pub const VDS_ASYNCOUT_LOGINTOTARGET = VDS_ASYNC_OUTPUT_TYPE.LOGINTOTARGET;
-pub const VDS_ASYNCOUT_LOGOUTFROMTARGET = VDS_ASYNC_OUTPUT_TYPE.LOGOUTFROMTARGET;
-pub const VDS_ASYNCOUT_CREATETARGET = VDS_ASYNC_OUTPUT_TYPE.CREATETARGET;
-pub const VDS_ASYNCOUT_CREATEPORTALGROUP = VDS_ASYNC_OUTPUT_TYPE.CREATEPORTALGROUP;
-pub const VDS_ASYNCOUT_DELETETARGET = VDS_ASYNC_OUTPUT_TYPE.DELETETARGET;
-pub const VDS_ASYNCOUT_ADDPORTAL = VDS_ASYNC_OUTPUT_TYPE.ADDPORTAL;
-pub const VDS_ASYNCOUT_REMOVEPORTAL = VDS_ASYNC_OUTPUT_TYPE.REMOVEPORTAL;
-pub const VDS_ASYNCOUT_DELETEPORTALGROUP = VDS_ASYNC_OUTPUT_TYPE.DELETEPORTALGROUP;
-pub const VDS_ASYNCOUT_FORMAT = VDS_ASYNC_OUTPUT_TYPE.FORMAT;
-pub const VDS_ASYNCOUT_CREATE_VDISK = VDS_ASYNC_OUTPUT_TYPE.CREATE_VDISK;
-pub const VDS_ASYNCOUT_ATTACH_VDISK = VDS_ASYNC_OUTPUT_TYPE.ATTACH_VDISK;
-pub const VDS_ASYNCOUT_COMPACT_VDISK = VDS_ASYNC_OUTPUT_TYPE.COMPACT_VDISK;
-pub const VDS_ASYNCOUT_MERGE_VDISK = VDS_ASYNC_OUTPUT_TYPE.MERGE_VDISK;
-pub const VDS_ASYNCOUT_EXPAND_VDISK = VDS_ASYNC_OUTPUT_TYPE.EXPAND_VDISK;
-
-pub const VDS_ASYNC_OUTPUT = extern struct {
-    type: VDS_ASYNC_OUTPUT_TYPE,
-    Anonymous: extern union {
-        pub const _cvd = extern struct {
-            pVDiskUnk: ?*IUnknown,
-        };
-        pub const _cpg = extern struct {
-            pPortalGroupUnk: ?*IUnknown,
-        };
-        pub const _ct = extern struct {
-            pTargetUnk: ?*IUnknown,
-        };
-        pub const _cl = extern struct {
-            pLunUnk: ?*IUnknown,
-        };
-        pub const _sv = extern struct {
-            ullReclaimedBytes: u64,
-        };
-        pub const _bvp = extern struct {
-            pVolumeUnk: ?*IUnknown,
-        };
-        pub const _cv = extern struct {
-            pVolumeUnk: ?*IUnknown,
-        };
-        pub const _cp = extern struct {
-            ullOffset: u64,
-            volumeId: Guid,
-        };
-        cp: _cp,
-        cv: _cv,
-        bvp: _bvp,
-        sv: _sv,
-        cl: _cl,
-        ct: _ct,
-        cpg: _cpg,
-        cvd: _cvd,
-    },
-};
-
-pub const VDS_IPADDRESS_TYPE = enum(i32) {
-    TEXT = 0,
-    IPV4 = 1,
-    IPV6 = 2,
-    EMPTY = 3,
-};
-pub const VDS_IPT_TEXT = VDS_IPADDRESS_TYPE.TEXT;
-pub const VDS_IPT_IPV4 = VDS_IPADDRESS_TYPE.IPV4;
-pub const VDS_IPT_IPV6 = VDS_IPADDRESS_TYPE.IPV6;
-pub const VDS_IPT_EMPTY = VDS_IPADDRESS_TYPE.EMPTY;
-
-pub const VDS_HEALTH = enum(i32) {
-    UNKNOWN = 0,
-    HEALTHY = 1,
-    REBUILDING = 2,
-    STALE = 3,
-    FAILING = 4,
-    FAILING_REDUNDANCY = 5,
-    FAILED_REDUNDANCY = 6,
-    FAILED_REDUNDANCY_FAILING = 7,
-    FAILED = 8,
-    REPLACED = 9,
-    PENDING_FAILURE = 10,
-    DEGRADED = 11,
-};
-pub const VDS_H_UNKNOWN = VDS_HEALTH.UNKNOWN;
-pub const VDS_H_HEALTHY = VDS_HEALTH.HEALTHY;
-pub const VDS_H_REBUILDING = VDS_HEALTH.REBUILDING;
-pub const VDS_H_STALE = VDS_HEALTH.STALE;
-pub const VDS_H_FAILING = VDS_HEALTH.FAILING;
-pub const VDS_H_FAILING_REDUNDANCY = VDS_HEALTH.FAILING_REDUNDANCY;
-pub const VDS_H_FAILED_REDUNDANCY = VDS_HEALTH.FAILED_REDUNDANCY;
-pub const VDS_H_FAILED_REDUNDANCY_FAILING = VDS_HEALTH.FAILED_REDUNDANCY_FAILING;
-pub const VDS_H_FAILED = VDS_HEALTH.FAILED;
-pub const VDS_H_REPLACED = VDS_HEALTH.REPLACED;
-pub const VDS_H_PENDING_FAILURE = VDS_HEALTH.PENDING_FAILURE;
-pub const VDS_H_DEGRADED = VDS_HEALTH.DEGRADED;
-
-pub const VDS_TRANSITION_STATE = enum(i32) {
-    UNKNOWN = 0,
-    STABLE = 1,
-    EXTENDING = 2,
-    SHRINKING = 3,
-    RECONFIGING = 4,
-    RESTRIPING = 5,
-};
-pub const VDS_TS_UNKNOWN = VDS_TRANSITION_STATE.UNKNOWN;
-pub const VDS_TS_STABLE = VDS_TRANSITION_STATE.STABLE;
-pub const VDS_TS_EXTENDING = VDS_TRANSITION_STATE.EXTENDING;
-pub const VDS_TS_SHRINKING = VDS_TRANSITION_STATE.SHRINKING;
-pub const VDS_TS_RECONFIGING = VDS_TRANSITION_STATE.RECONFIGING;
-pub const VDS_TS_RESTRIPING = VDS_TRANSITION_STATE.RESTRIPING;
-
-pub const VDS_FILE_SYSTEM_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    RAW = 1,
-    FAT = 2,
-    FAT32 = 3,
-    NTFS = 4,
-    CDFS = 5,
-    UDF = 6,
-    EXFAT = 7,
-    CSVFS = 8,
-    REFS = 9,
-};
-pub const VDS_FST_UNKNOWN = VDS_FILE_SYSTEM_TYPE.UNKNOWN;
-pub const VDS_FST_RAW = VDS_FILE_SYSTEM_TYPE.RAW;
-pub const VDS_FST_FAT = VDS_FILE_SYSTEM_TYPE.FAT;
-pub const VDS_FST_FAT32 = VDS_FILE_SYSTEM_TYPE.FAT32;
-pub const VDS_FST_NTFS = VDS_FILE_SYSTEM_TYPE.NTFS;
-pub const VDS_FST_CDFS = VDS_FILE_SYSTEM_TYPE.CDFS;
-pub const VDS_FST_UDF = VDS_FILE_SYSTEM_TYPE.UDF;
-pub const VDS_FST_EXFAT = VDS_FILE_SYSTEM_TYPE.EXFAT;
-pub const VDS_FST_CSVFS = VDS_FILE_SYSTEM_TYPE.CSVFS;
-pub const VDS_FST_REFS = VDS_FILE_SYSTEM_TYPE.REFS;
-
-pub const VDS_HBAPORT_TYPE = enum(i32) {
-    UNKNOWN = 1,
-    OTHER = 2,
-    NOTPRESENT = 3,
-    NPORT = 5,
-    NLPORT = 6,
-    FLPORT = 7,
-    FPORT = 8,
-    EPORT = 9,
-    GPORT = 10,
-    LPORT = 20,
-    PTP = 21,
-};
-pub const VDS_HPT_UNKNOWN = VDS_HBAPORT_TYPE.UNKNOWN;
-pub const VDS_HPT_OTHER = VDS_HBAPORT_TYPE.OTHER;
-pub const VDS_HPT_NOTPRESENT = VDS_HBAPORT_TYPE.NOTPRESENT;
-pub const VDS_HPT_NPORT = VDS_HBAPORT_TYPE.NPORT;
-pub const VDS_HPT_NLPORT = VDS_HBAPORT_TYPE.NLPORT;
-pub const VDS_HPT_FLPORT = VDS_HBAPORT_TYPE.FLPORT;
-pub const VDS_HPT_FPORT = VDS_HBAPORT_TYPE.FPORT;
-pub const VDS_HPT_EPORT = VDS_HBAPORT_TYPE.EPORT;
-pub const VDS_HPT_GPORT = VDS_HBAPORT_TYPE.GPORT;
-pub const VDS_HPT_LPORT = VDS_HBAPORT_TYPE.LPORT;
-pub const VDS_HPT_PTP = VDS_HBAPORT_TYPE.PTP;
-
-pub const VDS_HBAPORT_STATUS = enum(i32) {
-    UNKNOWN = 1,
-    ONLINE = 2,
-    OFFLINE = 3,
-    BYPASSED = 4,
-    DIAGNOSTICS = 5,
-    LINKDOWN = 6,
-    ERROR = 7,
-    LOOPBACK = 8,
-};
-pub const VDS_HPS_UNKNOWN = VDS_HBAPORT_STATUS.UNKNOWN;
-pub const VDS_HPS_ONLINE = VDS_HBAPORT_STATUS.ONLINE;
-pub const VDS_HPS_OFFLINE = VDS_HBAPORT_STATUS.OFFLINE;
-pub const VDS_HPS_BYPASSED = VDS_HBAPORT_STATUS.BYPASSED;
-pub const VDS_HPS_DIAGNOSTICS = VDS_HBAPORT_STATUS.DIAGNOSTICS;
-pub const VDS_HPS_LINKDOWN = VDS_HBAPORT_STATUS.LINKDOWN;
-pub const VDS_HPS_ERROR = VDS_HBAPORT_STATUS.ERROR;
-pub const VDS_HPS_LOOPBACK = VDS_HBAPORT_STATUS.LOOPBACK;
-
-pub const VDS_HBAPORT_SPEED_FLAG = enum(i32) {
-    UNKNOWN = 0,
-    @"1GBIT" = 1,
-    @"2GBIT" = 2,
-    @"10GBIT" = 4,
-    @"4GBIT" = 8,
-    NOT_NEGOTIATED = 32768,
-};
-pub const VDS_HSF_UNKNOWN = VDS_HBAPORT_SPEED_FLAG.UNKNOWN;
-pub const VDS_HSF_1GBIT = VDS_HBAPORT_SPEED_FLAG.@"1GBIT";
-pub const VDS_HSF_2GBIT = VDS_HBAPORT_SPEED_FLAG.@"2GBIT";
-pub const VDS_HSF_10GBIT = VDS_HBAPORT_SPEED_FLAG.@"10GBIT";
-pub const VDS_HSF_4GBIT = VDS_HBAPORT_SPEED_FLAG.@"4GBIT";
-pub const VDS_HSF_NOT_NEGOTIATED = VDS_HBAPORT_SPEED_FLAG.NOT_NEGOTIATED;
-
-pub const VDS_PATH_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    FAILED = 5,
-    STANDBY = 7,
-};
-pub const VDS_MPS_UNKNOWN = VDS_PATH_STATUS.UNKNOWN;
-pub const VDS_MPS_ONLINE = VDS_PATH_STATUS.ONLINE;
-pub const VDS_MPS_FAILED = VDS_PATH_STATUS.FAILED;
-pub const VDS_MPS_STANDBY = VDS_PATH_STATUS.STANDBY;
-
-pub const VDS_LOADBALANCE_POLICY_ENUM = enum(i32) {
-    UNKNOWN = 0,
-    FAILOVER = 1,
-    ROUND_ROBIN = 2,
-    ROUND_ROBIN_WITH_SUBSET = 3,
-    DYN_LEAST_QUEUE_DEPTH = 4,
-    WEIGHTED_PATHS = 5,
-    LEAST_BLOCKS = 6,
-    VENDOR_SPECIFIC = 7,
-};
-pub const VDS_LBP_UNKNOWN = VDS_LOADBALANCE_POLICY_ENUM.UNKNOWN;
-pub const VDS_LBP_FAILOVER = VDS_LOADBALANCE_POLICY_ENUM.FAILOVER;
-pub const VDS_LBP_ROUND_ROBIN = VDS_LOADBALANCE_POLICY_ENUM.ROUND_ROBIN;
-pub const VDS_LBP_ROUND_ROBIN_WITH_SUBSET = VDS_LOADBALANCE_POLICY_ENUM.ROUND_ROBIN_WITH_SUBSET;
-pub const VDS_LBP_DYN_LEAST_QUEUE_DEPTH = VDS_LOADBALANCE_POLICY_ENUM.DYN_LEAST_QUEUE_DEPTH;
-pub const VDS_LBP_WEIGHTED_PATHS = VDS_LOADBALANCE_POLICY_ENUM.WEIGHTED_PATHS;
-pub const VDS_LBP_LEAST_BLOCKS = VDS_LOADBALANCE_POLICY_ENUM.LEAST_BLOCKS;
-pub const VDS_LBP_VENDOR_SPECIFIC = VDS_LOADBALANCE_POLICY_ENUM.VENDOR_SPECIFIC;
-
-pub const VDS_PROVIDER_LBSUPPORT_FLAG = enum(i32) {
-    FAILOVER = 1,
-    ROUND_ROBIN = 2,
-    ROUND_ROBIN_WITH_SUBSET = 4,
-    DYN_LEAST_QUEUE_DEPTH = 8,
-    WEIGHTED_PATHS = 16,
-    LEAST_BLOCKS = 32,
-    VENDOR_SPECIFIC = 64,
-};
-pub const VDS_LBF_FAILOVER = VDS_PROVIDER_LBSUPPORT_FLAG.FAILOVER;
-pub const VDS_LBF_ROUND_ROBIN = VDS_PROVIDER_LBSUPPORT_FLAG.ROUND_ROBIN;
-pub const VDS_LBF_ROUND_ROBIN_WITH_SUBSET = VDS_PROVIDER_LBSUPPORT_FLAG.ROUND_ROBIN_WITH_SUBSET;
-pub const VDS_LBF_DYN_LEAST_QUEUE_DEPTH = VDS_PROVIDER_LBSUPPORT_FLAG.DYN_LEAST_QUEUE_DEPTH;
-pub const VDS_LBF_WEIGHTED_PATHS = VDS_PROVIDER_LBSUPPORT_FLAG.WEIGHTED_PATHS;
-pub const VDS_LBF_LEAST_BLOCKS = VDS_PROVIDER_LBSUPPORT_FLAG.LEAST_BLOCKS;
-pub const VDS_LBF_VENDOR_SPECIFIC = VDS_PROVIDER_LBSUPPORT_FLAG.VENDOR_SPECIFIC;
-
-pub const VDS_VERSION_SUPPORT_FLAG = enum(i32) {
-    @"1_0" = 1,
-    @"1_1" = 2,
-    @"2_0" = 4,
-    @"2_1" = 8,
-    @"3_0" = 16,
-};
-pub const VDS_VSF_1_0 = VDS_VERSION_SUPPORT_FLAG.@"1_0";
-pub const VDS_VSF_1_1 = VDS_VERSION_SUPPORT_FLAG.@"1_1";
-pub const VDS_VSF_2_0 = VDS_VERSION_SUPPORT_FLAG.@"2_0";
-pub const VDS_VSF_2_1 = VDS_VERSION_SUPPORT_FLAG.@"2_1";
-pub const VDS_VSF_3_0 = VDS_VERSION_SUPPORT_FLAG.@"3_0";
-
-pub const VDS_HWPROVIDER_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    PCI_RAID = 1,
-    FIBRE_CHANNEL = 2,
-    ISCSI = 3,
-    SAS = 4,
-    HYBRID = 5,
-};
-pub const VDS_HWT_UNKNOWN = VDS_HWPROVIDER_TYPE.UNKNOWN;
-pub const VDS_HWT_PCI_RAID = VDS_HWPROVIDER_TYPE.PCI_RAID;
-pub const VDS_HWT_FIBRE_CHANNEL = VDS_HWPROVIDER_TYPE.FIBRE_CHANNEL;
-pub const VDS_HWT_ISCSI = VDS_HWPROVIDER_TYPE.ISCSI;
-pub const VDS_HWT_SAS = VDS_HWPROVIDER_TYPE.SAS;
-pub const VDS_HWT_HYBRID = VDS_HWPROVIDER_TYPE.HYBRID;
-
-pub const VDS_ISCSI_LOGIN_TYPE = enum(i32) {
-    MANUAL = 0,
-    PERSISTENT = 1,
-    BOOT = 2,
-};
-pub const VDS_ILT_MANUAL = VDS_ISCSI_LOGIN_TYPE.MANUAL;
-pub const VDS_ILT_PERSISTENT = VDS_ISCSI_LOGIN_TYPE.PERSISTENT;
-pub const VDS_ILT_BOOT = VDS_ISCSI_LOGIN_TYPE.BOOT;
-
-pub const VDS_ISCSI_AUTH_TYPE = enum(i32) {
-    NONE = 0,
-    CHAP = 1,
-    MUTUAL_CHAP = 2,
-};
-pub const VDS_IAT_NONE = VDS_ISCSI_AUTH_TYPE.NONE;
-pub const VDS_IAT_CHAP = VDS_ISCSI_AUTH_TYPE.CHAP;
-pub const VDS_IAT_MUTUAL_CHAP = VDS_ISCSI_AUTH_TYPE.MUTUAL_CHAP;
-
-pub const VDS_ISCSI_IPSEC_FLAG = enum(i32) {
-    VALID = 1,
-    IKE = 2,
-    MAIN_MODE = 4,
-    AGGRESSIVE_MODE = 8,
-    PFS_ENABLE = 16,
-    TRANSPORT_MODE_PREFERRED = 32,
-    TUNNEL_MODE_PREFERRED = 64,
-};
-pub const VDS_IIF_VALID = VDS_ISCSI_IPSEC_FLAG.VALID;
-pub const VDS_IIF_IKE = VDS_ISCSI_IPSEC_FLAG.IKE;
-pub const VDS_IIF_MAIN_MODE = VDS_ISCSI_IPSEC_FLAG.MAIN_MODE;
-pub const VDS_IIF_AGGRESSIVE_MODE = VDS_ISCSI_IPSEC_FLAG.AGGRESSIVE_MODE;
-pub const VDS_IIF_PFS_ENABLE = VDS_ISCSI_IPSEC_FLAG.PFS_ENABLE;
-pub const VDS_IIF_TRANSPORT_MODE_PREFERRED = VDS_ISCSI_IPSEC_FLAG.TRANSPORT_MODE_PREFERRED;
-pub const VDS_IIF_TUNNEL_MODE_PREFERRED = VDS_ISCSI_IPSEC_FLAG.TUNNEL_MODE_PREFERRED;
-
-pub const VDS_ISCSI_LOGIN_FLAG = enum(i32) {
-    REQUIRE_IPSEC = 1,
-    MULTIPATH_ENABLED = 2,
-};
-pub const VDS_ILF_REQUIRE_IPSEC = VDS_ISCSI_LOGIN_FLAG.REQUIRE_IPSEC;
-pub const VDS_ILF_MULTIPATH_ENABLED = VDS_ISCSI_LOGIN_FLAG.MULTIPATH_ENABLED;
-
-pub const VDS_PATH_ID = extern struct {
-    ullSourceId: u64,
-    ullPathId: u64,
-};
-
-pub const VDS_WWN = extern struct {
-    rguchWwn: [8]u8,
-};
-
-pub const VDS_IPADDRESS = extern struct {
-    type: VDS_IPADDRESS_TYPE,
-    ipv4Address: u32,
-    ipv6Address: [16]u8,
-    ulIpv6FlowInfo: u32,
-    ulIpv6ScopeId: u32,
-    wszTextAddress: [257]u16,
-    ulPort: u32,
-};
-
-pub const VDS_ISCSI_IPSEC_KEY = extern struct {
-    pKey: ?*u8,
-    ulKeySize: u32,
-};
-
-pub const VDS_ISCSI_SHARED_SECRET = extern struct {
-    pSharedSecret: ?*u8,
-    ulSharedSecretSize: u32,
-};
-
-pub const VDS_HBAPORT_PROP = extern struct {
-    id: Guid,
-    wwnNode: VDS_WWN,
-    wwnPort: VDS_WWN,
-    type: VDS_HBAPORT_TYPE,
-    status: VDS_HBAPORT_STATUS,
-    ulPortSpeed: u32,
-    ulSupportedPortSpeed: u32,
-};
-
-pub const VDS_ISCSI_INITIATOR_ADAPTER_PROP = extern struct {
-    id: Guid,
-    pwszName: ?PWSTR,
-};
-
-pub const VDS_ISCSI_INITIATOR_PORTAL_PROP = extern struct {
-    id: Guid,
-    address: VDS_IPADDRESS,
-    ulPortIndex: u32,
-};
-
-pub const VDS_PROVIDER_PROP = extern struct {
-    id: Guid,
-    pwszName: ?PWSTR,
-    guidVersionId: Guid,
-    pwszVersion: ?PWSTR,
-    type: VDS_PROVIDER_TYPE,
-    ulFlags: u32,
-    ulStripeSizeFlags: u32,
-    sRebuildPriority: i16,
-};
-
-pub const VDS_PATH_INFO = extern struct {
-    pathId: VDS_PATH_ID,
-    type: VDS_HWPROVIDER_TYPE,
-    status: VDS_PATH_STATUS,
-    Anonymous1: extern union {
-        controllerPortId: Guid,
-        targetPortalId: Guid,
-    },
-    Anonymous2: extern union {
-        hbaPortId: Guid,
-        initiatorAdapterId: Guid,
-    },
-    Anonymous3: extern union {
-        pHbaPortProp: ?*VDS_HBAPORT_PROP,
-        pInitiatorPortalIpAddr: ?*VDS_IPADDRESS,
-    },
-};
-
-pub const VDS_PATH_POLICY = extern struct {
-    pathId: VDS_PATH_ID,
-    bPrimaryPath: BOOL,
-    ulWeight: u32,
-};
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumVdsObject_Value = Guid.initString("118610b7-8d94-4030-b5b8-500889788e4e");
 pub const IID_IEnumVdsObject = &IID_IEnumVdsObject_Value;
@@ -1387,6 +508,56 @@ pub const IEnumVdsObject = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsAdmin_Value = Guid.initString("d188e97d-85aa-4d33-abc6-26299a10ffc1");
+pub const IID_IVdsAdmin = &IID_IVdsAdmin_Value;
+pub const IVdsAdmin = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterProvider: *const fn(
+            self: *const IVdsAdmin,
+            providerId: Guid,
+            providerClsid: Guid,
+            pwszName: ?PWSTR,
+            type: VDS_PROVIDER_TYPE,
+            pwszMachineName: ?PWSTR,
+            pwszVersion: ?PWSTR,
+            guidVersionId: Guid,
+        ) callconv(.winapi) HRESULT,
+        UnregisterProvider: *const fn(
+            self: *const IVdsAdmin,
+            providerId: Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterProvider(self: *const IVdsAdmin, providerId: Guid, providerClsid: Guid, pwszName: ?PWSTR, @"type": VDS_PROVIDER_TYPE, pwszMachineName: ?PWSTR, pwszVersion: ?PWSTR, guidVersionId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterProvider(self, providerId, providerClsid, pwszName, @"type", pwszMachineName, pwszVersion, guidVersionId);
+    }
+    pub fn UnregisterProvider(self: *const IVdsAdmin, providerId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterProvider(self, providerId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsAdviseSink_Value = Guid.initString("8326cd1d-cf59-4936-b786-5efc08798e25");
+pub const IID_IVdsAdviseSink = &IID_IVdsAdviseSink_Value;
+pub const IVdsAdviseSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnNotify: *const fn(
+            self: *const IVdsAdviseSink,
+            lNumberOfNotifications: i32,
+            pNotificationArray: [*]VDS_NOTIFICATION,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnNotify(self: *const IVdsAdviseSink, lNumberOfNotifications: i32, pNotificationArray: [*]VDS_NOTIFICATION) callconv(.@"inline") HRESULT {
+        return self.vtable.OnNotify(self, lNumberOfNotifications, pNotificationArray);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVdsAsync_Value = Guid.initString("d5d23b6d-5a55-4492-9889-397a3c2d2dbc");
 pub const IID_IVdsAsync = &IID_IVdsAsync_Value;
 pub const IVdsAsync = extern union {
@@ -1416,1133 +587,6 @@ pub const IVdsAsync = extern union {
     }
     pub fn QueryStatus(self: *const IVdsAsync, pHrResult: ?*HRESULT, pulPercentCompleted: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryStatus(self, pHrResult, pulPercentCompleted);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsAdviseSink_Value = Guid.initString("8326cd1d-cf59-4936-b786-5efc08798e25");
-pub const IID_IVdsAdviseSink = &IID_IVdsAdviseSink_Value;
-pub const IVdsAdviseSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnNotify: *const fn(
-            self: *const IVdsAdviseSink,
-            lNumberOfNotifications: i32,
-            pNotificationArray: [*]VDS_NOTIFICATION,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnNotify(self: *const IVdsAdviseSink, lNumberOfNotifications: i32, pNotificationArray: [*]VDS_NOTIFICATION) callconv(.@"inline") HRESULT {
-        return self.vtable.OnNotify(self, lNumberOfNotifications, pNotificationArray);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsProvider_Value = Guid.initString("10c5e575-7984-4e81-a56b-431f5f92ae42");
-pub const IID_IVdsProvider = &IID_IVdsProvider_Value;
-pub const IVdsProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperties: *const fn(
-            self: *const IVdsProvider,
-            pProviderProp: ?*VDS_PROVIDER_PROP,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProperties(self: *const IVdsProvider, pProviderProp: ?*VDS_PROVIDER_PROP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperties(self, pProviderProp);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsProviderSupport_Value = Guid.initString("1732be13-e8f9-4a03-bfbc-5f616aa66ce1");
-pub const IID_IVdsProviderSupport = &IID_IVdsProviderSupport_Value;
-pub const IVdsProviderSupport = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetVersionSupport: *const fn(
-            self: *const IVdsProviderSupport,
-            ulVersionSupport: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetVersionSupport(self: *const IVdsProviderSupport, ulVersionSupport: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVersionSupport(self, ulVersionSupport);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsProviderPrivate_Value = Guid.initString("11f3cd41-b7e8-48ff-9472-9dff018aa292");
-pub const IID_IVdsProviderPrivate = &IID_IVdsProviderPrivate_Value;
-pub const IVdsProviderPrivate = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetObject: *const fn(
-            self: *const IVdsProviderPrivate,
-            ObjectId: Guid,
-            type: VDS_OBJECT_TYPE,
-            ppObjectUnk: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        OnLoad: *const fn(
-            self: *const IVdsProviderPrivate,
-            pwszMachineName: ?PWSTR,
-            pCallbackObject: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        OnUnload: *const fn(
-            self: *const IVdsProviderPrivate,
-            bForceUnload: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetObject(self: *const IVdsProviderPrivate, ObjectId: Guid, @"type": VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObject(self, ObjectId, @"type", ppObjectUnk);
-    }
-    pub fn OnLoad(self: *const IVdsProviderPrivate, pwszMachineName: ?PWSTR, pCallbackObject: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.OnLoad(self, pwszMachineName, pCallbackObject);
-    }
-    pub fn OnUnload(self: *const IVdsProviderPrivate, bForceUnload: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUnload(self, bForceUnload);
-    }
-};
-
-pub const VDS_SUB_SYSTEM_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-    FAILED = 5,
-    PARTIALLY_MANAGED = 9,
-};
-pub const VDS_SSS_UNKNOWN = VDS_SUB_SYSTEM_STATUS.UNKNOWN;
-pub const VDS_SSS_ONLINE = VDS_SUB_SYSTEM_STATUS.ONLINE;
-pub const VDS_SSS_NOT_READY = VDS_SUB_SYSTEM_STATUS.NOT_READY;
-pub const VDS_SSS_OFFLINE = VDS_SUB_SYSTEM_STATUS.OFFLINE;
-pub const VDS_SSS_FAILED = VDS_SUB_SYSTEM_STATUS.FAILED;
-pub const VDS_SSS_PARTIALLY_MANAGED = VDS_SUB_SYSTEM_STATUS.PARTIALLY_MANAGED;
-
-pub const VDS_SUB_SYSTEM_FLAG = enum(i32) {
-    LUN_MASKING_CAPABLE = 1,
-    LUN_PLEXING_CAPABLE = 2,
-    LUN_REMAPPING_CAPABLE = 4,
-    DRIVE_EXTENT_CAPABLE = 8,
-    HARDWARE_CHECKSUM_CAPABLE = 16,
-    RADIUS_CAPABLE = 32,
-    READ_BACK_VERIFY_CAPABLE = 64,
-    WRITE_THROUGH_CACHING_CAPABLE = 128,
-    SUPPORTS_FAULT_TOLERANT_LUNS = 512,
-    SUPPORTS_NON_FAULT_TOLERANT_LUNS = 1024,
-    SUPPORTS_SIMPLE_LUNS = 2048,
-    SUPPORTS_SPAN_LUNS = 4096,
-    SUPPORTS_STRIPE_LUNS = 8192,
-    SUPPORTS_MIRROR_LUNS = 16384,
-    SUPPORTS_PARITY_LUNS = 32768,
-    SUPPORTS_AUTH_CHAP = 65536,
-    SUPPORTS_AUTH_MUTUAL_CHAP = 131072,
-    SUPPORTS_SIMPLE_TARGET_CONFIG = 262144,
-    SUPPORTS_LUN_NUMBER = 524288,
-    SUPPORTS_MIRRORED_CACHE = 1048576,
-    READ_CACHING_CAPABLE = 2097152,
-    WRITE_CACHING_CAPABLE = 4194304,
-    MEDIA_SCAN_CAPABLE = 8388608,
-    CONSISTENCY_CHECK_CAPABLE = 16777216,
-};
-pub const VDS_SF_LUN_MASKING_CAPABLE = VDS_SUB_SYSTEM_FLAG.LUN_MASKING_CAPABLE;
-pub const VDS_SF_LUN_PLEXING_CAPABLE = VDS_SUB_SYSTEM_FLAG.LUN_PLEXING_CAPABLE;
-pub const VDS_SF_LUN_REMAPPING_CAPABLE = VDS_SUB_SYSTEM_FLAG.LUN_REMAPPING_CAPABLE;
-pub const VDS_SF_DRIVE_EXTENT_CAPABLE = VDS_SUB_SYSTEM_FLAG.DRIVE_EXTENT_CAPABLE;
-pub const VDS_SF_HARDWARE_CHECKSUM_CAPABLE = VDS_SUB_SYSTEM_FLAG.HARDWARE_CHECKSUM_CAPABLE;
-pub const VDS_SF_RADIUS_CAPABLE = VDS_SUB_SYSTEM_FLAG.RADIUS_CAPABLE;
-pub const VDS_SF_READ_BACK_VERIFY_CAPABLE = VDS_SUB_SYSTEM_FLAG.READ_BACK_VERIFY_CAPABLE;
-pub const VDS_SF_WRITE_THROUGH_CACHING_CAPABLE = VDS_SUB_SYSTEM_FLAG.WRITE_THROUGH_CACHING_CAPABLE;
-pub const VDS_SF_SUPPORTS_FAULT_TOLERANT_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_FAULT_TOLERANT_LUNS;
-pub const VDS_SF_SUPPORTS_NON_FAULT_TOLERANT_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_NON_FAULT_TOLERANT_LUNS;
-pub const VDS_SF_SUPPORTS_SIMPLE_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_SIMPLE_LUNS;
-pub const VDS_SF_SUPPORTS_SPAN_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_SPAN_LUNS;
-pub const VDS_SF_SUPPORTS_STRIPE_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_STRIPE_LUNS;
-pub const VDS_SF_SUPPORTS_MIRROR_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_MIRROR_LUNS;
-pub const VDS_SF_SUPPORTS_PARITY_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_PARITY_LUNS;
-pub const VDS_SF_SUPPORTS_AUTH_CHAP = VDS_SUB_SYSTEM_FLAG.SUPPORTS_AUTH_CHAP;
-pub const VDS_SF_SUPPORTS_AUTH_MUTUAL_CHAP = VDS_SUB_SYSTEM_FLAG.SUPPORTS_AUTH_MUTUAL_CHAP;
-pub const VDS_SF_SUPPORTS_SIMPLE_TARGET_CONFIG = VDS_SUB_SYSTEM_FLAG.SUPPORTS_SIMPLE_TARGET_CONFIG;
-pub const VDS_SF_SUPPORTS_LUN_NUMBER = VDS_SUB_SYSTEM_FLAG.SUPPORTS_LUN_NUMBER;
-pub const VDS_SF_SUPPORTS_MIRRORED_CACHE = VDS_SUB_SYSTEM_FLAG.SUPPORTS_MIRRORED_CACHE;
-pub const VDS_SF_READ_CACHING_CAPABLE = VDS_SUB_SYSTEM_FLAG.READ_CACHING_CAPABLE;
-pub const VDS_SF_WRITE_CACHING_CAPABLE = VDS_SUB_SYSTEM_FLAG.WRITE_CACHING_CAPABLE;
-pub const VDS_SF_MEDIA_SCAN_CAPABLE = VDS_SUB_SYSTEM_FLAG.MEDIA_SCAN_CAPABLE;
-pub const VDS_SF_CONSISTENCY_CHECK_CAPABLE = VDS_SUB_SYSTEM_FLAG.CONSISTENCY_CHECK_CAPABLE;
-
-pub const VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG = enum(i32) {
-    @"2_LUNS" = 1,
-    @"3_LUNS" = 2,
-    @"4_LUNS" = 4,
-    @"5_LUNS" = 8,
-    @"6_LUNS" = 16,
-    @"01_LUNS" = 32,
-    @"03_LUNS" = 64,
-    @"05_LUNS" = 128,
-    @"10_LUNS" = 256,
-    @"15_LUNS" = 512,
-    @"30_LUNS" = 1024,
-    @"50_LUNS" = 2048,
-    @"51_LUNS" = 4096,
-    @"53_LUNS" = 8192,
-    @"60_LUNS" = 16384,
-    @"61_LUNS" = 32768,
-};
-pub const VDS_SF_SUPPORTS_RAID2_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"2_LUNS";
-pub const VDS_SF_SUPPORTS_RAID3_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"3_LUNS";
-pub const VDS_SF_SUPPORTS_RAID4_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"4_LUNS";
-pub const VDS_SF_SUPPORTS_RAID5_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"5_LUNS";
-pub const VDS_SF_SUPPORTS_RAID6_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"6_LUNS";
-pub const VDS_SF_SUPPORTS_RAID01_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"01_LUNS";
-pub const VDS_SF_SUPPORTS_RAID03_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"03_LUNS";
-pub const VDS_SF_SUPPORTS_RAID05_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"05_LUNS";
-pub const VDS_SF_SUPPORTS_RAID10_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"10_LUNS";
-pub const VDS_SF_SUPPORTS_RAID15_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"15_LUNS";
-pub const VDS_SF_SUPPORTS_RAID30_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"30_LUNS";
-pub const VDS_SF_SUPPORTS_RAID50_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"50_LUNS";
-pub const VDS_SF_SUPPORTS_RAID51_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"51_LUNS";
-pub const VDS_SF_SUPPORTS_RAID53_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"53_LUNS";
-pub const VDS_SF_SUPPORTS_RAID60_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"60_LUNS";
-pub const VDS_SF_SUPPORTS_RAID61_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"61_LUNS";
-
-pub const VDS_INTERCONNECT_FLAG = enum(i32) {
-    PCI_RAID = 1,
-    FIBRE_CHANNEL = 2,
-    ISCSI = 4,
-    SAS = 8,
-};
-pub const VDS_ITF_PCI_RAID = VDS_INTERCONNECT_FLAG.PCI_RAID;
-pub const VDS_ITF_FIBRE_CHANNEL = VDS_INTERCONNECT_FLAG.FIBRE_CHANNEL;
-pub const VDS_ITF_ISCSI = VDS_INTERCONNECT_FLAG.ISCSI;
-pub const VDS_ITF_SAS = VDS_INTERCONNECT_FLAG.SAS;
-
-pub const VDS_CONTROLLER_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-    FAILED = 5,
-    REMOVED = 8,
-};
-pub const VDS_CS_UNKNOWN = VDS_CONTROLLER_STATUS.UNKNOWN;
-pub const VDS_CS_ONLINE = VDS_CONTROLLER_STATUS.ONLINE;
-pub const VDS_CS_NOT_READY = VDS_CONTROLLER_STATUS.NOT_READY;
-pub const VDS_CS_OFFLINE = VDS_CONTROLLER_STATUS.OFFLINE;
-pub const VDS_CS_FAILED = VDS_CONTROLLER_STATUS.FAILED;
-pub const VDS_CS_REMOVED = VDS_CONTROLLER_STATUS.REMOVED;
-
-pub const VDS_PORT_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-    FAILED = 5,
-    REMOVED = 8,
-};
-pub const VDS_PRS_UNKNOWN = VDS_PORT_STATUS.UNKNOWN;
-pub const VDS_PRS_ONLINE = VDS_PORT_STATUS.ONLINE;
-pub const VDS_PRS_NOT_READY = VDS_PORT_STATUS.NOT_READY;
-pub const VDS_PRS_OFFLINE = VDS_PORT_STATUS.OFFLINE;
-pub const VDS_PRS_FAILED = VDS_PORT_STATUS.FAILED;
-pub const VDS_PRS_REMOVED = VDS_PORT_STATUS.REMOVED;
-
-pub const VDS_DRIVE_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-    FAILED = 5,
-    REMOVED = 8,
-};
-pub const VDS_DRS_UNKNOWN = VDS_DRIVE_STATUS.UNKNOWN;
-pub const VDS_DRS_ONLINE = VDS_DRIVE_STATUS.ONLINE;
-pub const VDS_DRS_NOT_READY = VDS_DRIVE_STATUS.NOT_READY;
-pub const VDS_DRS_OFFLINE = VDS_DRIVE_STATUS.OFFLINE;
-pub const VDS_DRS_FAILED = VDS_DRIVE_STATUS.FAILED;
-pub const VDS_DRS_REMOVED = VDS_DRIVE_STATUS.REMOVED;
-
-pub const VDS_DRIVE_FLAG = enum(i32) {
-    HOTSPARE = 1,
-    ASSIGNED = 2,
-    UNASSIGNED = 4,
-    HOTSPARE_IN_USE = 8,
-    HOTSPARE_STANDBY = 16,
-};
-pub const VDS_DRF_HOTSPARE = VDS_DRIVE_FLAG.HOTSPARE;
-pub const VDS_DRF_ASSIGNED = VDS_DRIVE_FLAG.ASSIGNED;
-pub const VDS_DRF_UNASSIGNED = VDS_DRIVE_FLAG.UNASSIGNED;
-pub const VDS_DRF_HOTSPARE_IN_USE = VDS_DRIVE_FLAG.HOTSPARE_IN_USE;
-pub const VDS_DRF_HOTSPARE_STANDBY = VDS_DRIVE_FLAG.HOTSPARE_STANDBY;
-
-pub const VDS_LUN_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    DEFAULT = 1,
-    FAULT_TOLERANT = 2,
-    NON_FAULT_TOLERANT = 3,
-    SIMPLE = 10,
-    SPAN = 11,
-    STRIPE = 12,
-    MIRROR = 13,
-    PARITY = 14,
-    RAID2 = 15,
-    RAID3 = 16,
-    RAID4 = 17,
-    RAID5 = 18,
-    RAID6 = 19,
-    RAID01 = 20,
-    RAID03 = 21,
-    RAID05 = 22,
-    RAID10 = 23,
-    RAID15 = 24,
-    RAID30 = 25,
-    RAID50 = 26,
-    RAID51 = 27,
-    RAID53 = 28,
-    RAID60 = 29,
-    RAID61 = 30,
-};
-pub const VDS_LT_UNKNOWN = VDS_LUN_TYPE.UNKNOWN;
-pub const VDS_LT_DEFAULT = VDS_LUN_TYPE.DEFAULT;
-pub const VDS_LT_FAULT_TOLERANT = VDS_LUN_TYPE.FAULT_TOLERANT;
-pub const VDS_LT_NON_FAULT_TOLERANT = VDS_LUN_TYPE.NON_FAULT_TOLERANT;
-pub const VDS_LT_SIMPLE = VDS_LUN_TYPE.SIMPLE;
-pub const VDS_LT_SPAN = VDS_LUN_TYPE.SPAN;
-pub const VDS_LT_STRIPE = VDS_LUN_TYPE.STRIPE;
-pub const VDS_LT_MIRROR = VDS_LUN_TYPE.MIRROR;
-pub const VDS_LT_PARITY = VDS_LUN_TYPE.PARITY;
-pub const VDS_LT_RAID2 = VDS_LUN_TYPE.RAID2;
-pub const VDS_LT_RAID3 = VDS_LUN_TYPE.RAID3;
-pub const VDS_LT_RAID4 = VDS_LUN_TYPE.RAID4;
-pub const VDS_LT_RAID5 = VDS_LUN_TYPE.RAID5;
-pub const VDS_LT_RAID6 = VDS_LUN_TYPE.RAID6;
-pub const VDS_LT_RAID01 = VDS_LUN_TYPE.RAID01;
-pub const VDS_LT_RAID03 = VDS_LUN_TYPE.RAID03;
-pub const VDS_LT_RAID05 = VDS_LUN_TYPE.RAID05;
-pub const VDS_LT_RAID10 = VDS_LUN_TYPE.RAID10;
-pub const VDS_LT_RAID15 = VDS_LUN_TYPE.RAID15;
-pub const VDS_LT_RAID30 = VDS_LUN_TYPE.RAID30;
-pub const VDS_LT_RAID50 = VDS_LUN_TYPE.RAID50;
-pub const VDS_LT_RAID51 = VDS_LUN_TYPE.RAID51;
-pub const VDS_LT_RAID53 = VDS_LUN_TYPE.RAID53;
-pub const VDS_LT_RAID60 = VDS_LUN_TYPE.RAID60;
-pub const VDS_LT_RAID61 = VDS_LUN_TYPE.RAID61;
-
-pub const VDS_LUN_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-    FAILED = 5,
-};
-pub const VDS_LS_UNKNOWN = VDS_LUN_STATUS.UNKNOWN;
-pub const VDS_LS_ONLINE = VDS_LUN_STATUS.ONLINE;
-pub const VDS_LS_NOT_READY = VDS_LUN_STATUS.NOT_READY;
-pub const VDS_LS_OFFLINE = VDS_LUN_STATUS.OFFLINE;
-pub const VDS_LS_FAILED = VDS_LUN_STATUS.FAILED;
-
-pub const VDS_LUN_FLAG = enum(i32) {
-    LBN_REMAP_ENABLED = 1,
-    READ_BACK_VERIFY_ENABLED = 2,
-    WRITE_THROUGH_CACHING_ENABLED = 4,
-    HARDWARE_CHECKSUM_ENABLED = 8,
-    READ_CACHE_ENABLED = 16,
-    WRITE_CACHE_ENABLED = 32,
-    MEDIA_SCAN_ENABLED = 64,
-    CONSISTENCY_CHECK_ENABLED = 128,
-    SNAPSHOT = 256,
-};
-pub const VDS_LF_LBN_REMAP_ENABLED = VDS_LUN_FLAG.LBN_REMAP_ENABLED;
-pub const VDS_LF_READ_BACK_VERIFY_ENABLED = VDS_LUN_FLAG.READ_BACK_VERIFY_ENABLED;
-pub const VDS_LF_WRITE_THROUGH_CACHING_ENABLED = VDS_LUN_FLAG.WRITE_THROUGH_CACHING_ENABLED;
-pub const VDS_LF_HARDWARE_CHECKSUM_ENABLED = VDS_LUN_FLAG.HARDWARE_CHECKSUM_ENABLED;
-pub const VDS_LF_READ_CACHE_ENABLED = VDS_LUN_FLAG.READ_CACHE_ENABLED;
-pub const VDS_LF_WRITE_CACHE_ENABLED = VDS_LUN_FLAG.WRITE_CACHE_ENABLED;
-pub const VDS_LF_MEDIA_SCAN_ENABLED = VDS_LUN_FLAG.MEDIA_SCAN_ENABLED;
-pub const VDS_LF_CONSISTENCY_CHECK_ENABLED = VDS_LUN_FLAG.CONSISTENCY_CHECK_ENABLED;
-pub const VDS_LF_SNAPSHOT = VDS_LUN_FLAG.SNAPSHOT;
-
-pub const VDS_LUN_PLEX_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    SIMPLE = 10,
-    SPAN = 11,
-    STRIPE = 12,
-    PARITY = 14,
-    RAID2 = 15,
-    RAID3 = 16,
-    RAID4 = 17,
-    RAID5 = 18,
-    RAID6 = 19,
-    RAID03 = 21,
-    RAID05 = 22,
-    RAID10 = 23,
-    RAID15 = 24,
-    RAID30 = 25,
-    RAID50 = 26,
-    RAID53 = 28,
-    RAID60 = 29,
-};
-pub const VDS_LPT_UNKNOWN = VDS_LUN_PLEX_TYPE.UNKNOWN;
-pub const VDS_LPT_SIMPLE = VDS_LUN_PLEX_TYPE.SIMPLE;
-pub const VDS_LPT_SPAN = VDS_LUN_PLEX_TYPE.SPAN;
-pub const VDS_LPT_STRIPE = VDS_LUN_PLEX_TYPE.STRIPE;
-pub const VDS_LPT_PARITY = VDS_LUN_PLEX_TYPE.PARITY;
-pub const VDS_LPT_RAID2 = VDS_LUN_PLEX_TYPE.RAID2;
-pub const VDS_LPT_RAID3 = VDS_LUN_PLEX_TYPE.RAID3;
-pub const VDS_LPT_RAID4 = VDS_LUN_PLEX_TYPE.RAID4;
-pub const VDS_LPT_RAID5 = VDS_LUN_PLEX_TYPE.RAID5;
-pub const VDS_LPT_RAID6 = VDS_LUN_PLEX_TYPE.RAID6;
-pub const VDS_LPT_RAID03 = VDS_LUN_PLEX_TYPE.RAID03;
-pub const VDS_LPT_RAID05 = VDS_LUN_PLEX_TYPE.RAID05;
-pub const VDS_LPT_RAID10 = VDS_LUN_PLEX_TYPE.RAID10;
-pub const VDS_LPT_RAID15 = VDS_LUN_PLEX_TYPE.RAID15;
-pub const VDS_LPT_RAID30 = VDS_LUN_PLEX_TYPE.RAID30;
-pub const VDS_LPT_RAID50 = VDS_LUN_PLEX_TYPE.RAID50;
-pub const VDS_LPT_RAID53 = VDS_LUN_PLEX_TYPE.RAID53;
-pub const VDS_LPT_RAID60 = VDS_LUN_PLEX_TYPE.RAID60;
-
-pub const VDS_LUN_PLEX_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-    FAILED = 5,
-};
-pub const VDS_LPS_UNKNOWN = VDS_LUN_PLEX_STATUS.UNKNOWN;
-pub const VDS_LPS_ONLINE = VDS_LUN_PLEX_STATUS.ONLINE;
-pub const VDS_LPS_NOT_READY = VDS_LUN_PLEX_STATUS.NOT_READY;
-pub const VDS_LPS_OFFLINE = VDS_LUN_PLEX_STATUS.OFFLINE;
-pub const VDS_LPS_FAILED = VDS_LUN_PLEX_STATUS.FAILED;
-
-pub const VDS_LUN_PLEX_FLAG = enum(i32) {
-    D = 1,
-};
-pub const VDS_LPF_LBN_REMAP_ENABLED = VDS_LUN_PLEX_FLAG.D;
-
-pub const VDS_ISCSI_PORTAL_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-    FAILED = 5,
-};
-pub const VDS_IPS_UNKNOWN = VDS_ISCSI_PORTAL_STATUS.UNKNOWN;
-pub const VDS_IPS_ONLINE = VDS_ISCSI_PORTAL_STATUS.ONLINE;
-pub const VDS_IPS_NOT_READY = VDS_ISCSI_PORTAL_STATUS.NOT_READY;
-pub const VDS_IPS_OFFLINE = VDS_ISCSI_PORTAL_STATUS.OFFLINE;
-pub const VDS_IPS_FAILED = VDS_ISCSI_PORTAL_STATUS.FAILED;
-
-pub const VDS_STORAGE_POOL_STATUS = enum(i32) {
-    UNKNOWN = 0,
-    ONLINE = 1,
-    NOT_READY = 2,
-    OFFLINE = 4,
-};
-pub const VDS_SPS_UNKNOWN = VDS_STORAGE_POOL_STATUS.UNKNOWN;
-pub const VDS_SPS_ONLINE = VDS_STORAGE_POOL_STATUS.ONLINE;
-pub const VDS_SPS_NOT_READY = VDS_STORAGE_POOL_STATUS.NOT_READY;
-pub const VDS_SPS_OFFLINE = VDS_STORAGE_POOL_STATUS.OFFLINE;
-
-pub const VDS_STORAGE_POOL_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    PRIMORDIAL = 1,
-    CONCRETE = 2,
-};
-pub const VDS_SPT_UNKNOWN = VDS_STORAGE_POOL_TYPE.UNKNOWN;
-pub const VDS_SPT_PRIMORDIAL = VDS_STORAGE_POOL_TYPE.PRIMORDIAL;
-pub const VDS_SPT_CONCRETE = VDS_STORAGE_POOL_TYPE.CONCRETE;
-
-pub const VDS_MAINTENANCE_OPERATION = enum(i32) {
-    BlinkLight = 1,
-    BeepAlarm = 2,
-    SpinDown = 3,
-    SpinUp = 4,
-    Ping = 5,
-};
-pub const BlinkLight = VDS_MAINTENANCE_OPERATION.BlinkLight;
-pub const BeepAlarm = VDS_MAINTENANCE_OPERATION.BeepAlarm;
-pub const SpinDown = VDS_MAINTENANCE_OPERATION.SpinDown;
-pub const SpinUp = VDS_MAINTENANCE_OPERATION.SpinUp;
-pub const Ping = VDS_MAINTENANCE_OPERATION.Ping;
-
-pub const VDS_HINTS = extern struct {
-    ullHintMask: u64,
-    ullExpectedMaximumSize: u64,
-    ulOptimalReadSize: u32,
-    ulOptimalReadAlignment: u32,
-    ulOptimalWriteSize: u32,
-    ulOptimalWriteAlignment: u32,
-    ulMaximumDriveCount: u32,
-    ulStripeSize: u32,
-    bFastCrashRecoveryRequired: BOOL,
-    bMostlyReads: BOOL,
-    bOptimizeForSequentialReads: BOOL,
-    bOptimizeForSequentialWrites: BOOL,
-    bRemapEnabled: BOOL,
-    bReadBackVerifyEnabled: BOOL,
-    bWriteThroughCachingEnabled: BOOL,
-    bHardwareChecksumEnabled: BOOL,
-    bIsYankable: BOOL,
-    sRebuildPriority: i16,
-};
-
-pub const VDS_HINTS2 = extern struct {
-    ullHintMask: u64,
-    ullExpectedMaximumSize: u64,
-    ulOptimalReadSize: u32,
-    ulOptimalReadAlignment: u32,
-    ulOptimalWriteSize: u32,
-    ulOptimalWriteAlignment: u32,
-    ulMaximumDriveCount: u32,
-    ulStripeSize: u32,
-    ulReserved1: u32,
-    ulReserved2: u32,
-    ulReserved3: u32,
-    bFastCrashRecoveryRequired: BOOL,
-    bMostlyReads: BOOL,
-    bOptimizeForSequentialReads: BOOL,
-    bOptimizeForSequentialWrites: BOOL,
-    bRemapEnabled: BOOL,
-    bReadBackVerifyEnabled: BOOL,
-    bWriteThroughCachingEnabled: BOOL,
-    bHardwareChecksumEnabled: BOOL,
-    bIsYankable: BOOL,
-    bAllocateHotSpare: BOOL,
-    bUseMirroredCache: BOOL,
-    bReadCachingEnabled: BOOL,
-    bWriteCachingEnabled: BOOL,
-    bMediaScanEnabled: BOOL,
-    bConsistencyCheckEnabled: BOOL,
-    BusType: VDS_STORAGE_BUS_TYPE,
-    bReserved1: BOOL,
-    bReserved2: BOOL,
-    bReserved3: BOOL,
-    sRebuildPriority: i16,
-};
-
-pub const VDS_SUB_SYSTEM_PROP = extern struct {
-    id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    ulFlags: u32,
-    ulStripeSizeFlags: u32,
-    status: VDS_SUB_SYSTEM_STATUS,
-    health: VDS_HEALTH,
-    sNumberOfInternalBuses: i16,
-    sMaxNumberOfSlotsEachBus: i16,
-    sMaxNumberOfControllers: i16,
-    sRebuildPriority: i16,
-};
-
-pub const VDS_SUB_SYSTEM_PROP2 = extern struct {
-    id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    ulFlags: u32,
-    ulStripeSizeFlags: u32,
-    ulSupportedRaidTypeFlags: u32,
-    status: VDS_SUB_SYSTEM_STATUS,
-    health: VDS_HEALTH,
-    sNumberOfInternalBuses: i16,
-    sMaxNumberOfSlotsEachBus: i16,
-    sMaxNumberOfControllers: i16,
-    sRebuildPriority: i16,
-    ulNumberOfEnclosures: u32,
-};
-
-pub const VDS_CONTROLLER_PROP = extern struct {
-    id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    status: VDS_CONTROLLER_STATUS,
-    health: VDS_HEALTH,
-    sNumberOfPorts: i16,
-};
-
-pub const VDS_DRIVE_PROP = extern struct {
-    id: Guid,
-    ullSize: u64,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    ulFlags: u32,
-    status: VDS_DRIVE_STATUS,
-    health: VDS_HEALTH,
-    sInternalBusNumber: i16,
-    sSlotNumber: i16,
-};
-
-pub const VDS_DRIVE_PROP2 = extern struct {
-    id: Guid,
-    ullSize: u64,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    ulFlags: u32,
-    status: VDS_DRIVE_STATUS,
-    health: VDS_HEALTH,
-    sInternalBusNumber: i16,
-    sSlotNumber: i16,
-    ulEnclosureNumber: u32,
-    busType: VDS_STORAGE_BUS_TYPE,
-    ulSpindleSpeed: u32,
-};
-
-pub const VDS_DRIVE_EXTENT = extern struct {
-    id: Guid,
-    LunId: Guid,
-    ullSize: u64,
-    bUsed: BOOL,
-};
-
-pub const VDS_LUN_PROP = extern struct {
-    id: Guid,
-    ullSize: u64,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    pwszUnmaskingList: ?PWSTR,
-    ulFlags: u32,
-    type: VDS_LUN_TYPE,
-    status: VDS_LUN_STATUS,
-    health: VDS_HEALTH,
-    TransitionState: VDS_TRANSITION_STATE,
-    sRebuildPriority: i16,
-};
-
-pub const VDS_LUN_PLEX_PROP = extern struct {
-    id: Guid,
-    ullSize: u64,
-    type: VDS_LUN_PLEX_TYPE,
-    status: VDS_LUN_PLEX_STATUS,
-    health: VDS_HEALTH,
-    TransitionState: VDS_TRANSITION_STATE,
-    ulFlags: u32,
-    ulStripeSize: u32,
-    sRebuildPriority: i16,
-};
-
-pub const VDS_PORT_PROP = extern struct {
-    id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    status: VDS_PORT_STATUS,
-};
-
-pub const VDS_ISCSI_PORTAL_PROP = extern struct {
-    id: Guid,
-    address: VDS_IPADDRESS,
-    status: VDS_ISCSI_PORTAL_STATUS,
-};
-
-pub const VDS_ISCSI_TARGET_PROP = extern struct {
-    id: Guid,
-    pwszIscsiName: ?PWSTR,
-    pwszFriendlyName: ?PWSTR,
-    bChapEnabled: BOOL,
-};
-
-pub const VDS_ISCSI_PORTALGROUP_PROP = extern struct {
-    id: Guid,
-    tag: u16,
-};
-
-pub const VDS_RAID_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    RAID0 = 10,
-    RAID1 = 11,
-    RAID2 = 12,
-    RAID3 = 13,
-    RAID4 = 14,
-    RAID5 = 15,
-    RAID6 = 16,
-    RAID01 = 17,
-    RAID03 = 18,
-    RAID05 = 19,
-    RAID10 = 20,
-    RAID15 = 21,
-    RAID30 = 22,
-    RAID50 = 23,
-    RAID51 = 24,
-    RAID53 = 25,
-    RAID60 = 26,
-    RAID61 = 27,
-};
-pub const VDS_RT_UNKNOWN = VDS_RAID_TYPE.UNKNOWN;
-pub const VDS_RT_RAID0 = VDS_RAID_TYPE.RAID0;
-pub const VDS_RT_RAID1 = VDS_RAID_TYPE.RAID1;
-pub const VDS_RT_RAID2 = VDS_RAID_TYPE.RAID2;
-pub const VDS_RT_RAID3 = VDS_RAID_TYPE.RAID3;
-pub const VDS_RT_RAID4 = VDS_RAID_TYPE.RAID4;
-pub const VDS_RT_RAID5 = VDS_RAID_TYPE.RAID5;
-pub const VDS_RT_RAID6 = VDS_RAID_TYPE.RAID6;
-pub const VDS_RT_RAID01 = VDS_RAID_TYPE.RAID01;
-pub const VDS_RT_RAID03 = VDS_RAID_TYPE.RAID03;
-pub const VDS_RT_RAID05 = VDS_RAID_TYPE.RAID05;
-pub const VDS_RT_RAID10 = VDS_RAID_TYPE.RAID10;
-pub const VDS_RT_RAID15 = VDS_RAID_TYPE.RAID15;
-pub const VDS_RT_RAID30 = VDS_RAID_TYPE.RAID30;
-pub const VDS_RT_RAID50 = VDS_RAID_TYPE.RAID50;
-pub const VDS_RT_RAID51 = VDS_RAID_TYPE.RAID51;
-pub const VDS_RT_RAID53 = VDS_RAID_TYPE.RAID53;
-pub const VDS_RT_RAID60 = VDS_RAID_TYPE.RAID60;
-pub const VDS_RT_RAID61 = VDS_RAID_TYPE.RAID61;
-
-pub const VDS_POOL_CUSTOM_ATTRIBUTES = extern struct {
-    pwszName: ?PWSTR,
-    pwszValue: ?PWSTR,
-};
-
-pub const VDS_POOL_ATTRIBUTES = extern struct {
-    ullAttributeMask: u64,
-    raidType: VDS_RAID_TYPE,
-    busType: VDS_STORAGE_BUS_TYPE,
-    pwszIntendedUsage: ?PWSTR,
-    bSpinDown: BOOL,
-    bIsThinProvisioned: BOOL,
-    ullProvisionedSpace: u64,
-    bNoSinglePointOfFailure: BOOL,
-    ulDataRedundancyMax: u32,
-    ulDataRedundancyMin: u32,
-    ulDataRedundancyDefault: u32,
-    ulPackageRedundancyMax: u32,
-    ulPackageRedundancyMin: u32,
-    ulPackageRedundancyDefault: u32,
-    ulStripeSize: u32,
-    ulStripeSizeMax: u32,
-    ulStripeSizeMin: u32,
-    ulDefaultStripeSize: u32,
-    ulNumberOfColumns: u32,
-    ulNumberOfColumnsMax: u32,
-    ulNumberOfColumnsMin: u32,
-    ulDefaultNumberofColumns: u32,
-    ulDataAvailabilityHint: u32,
-    ulAccessRandomnessHint: u32,
-    ulAccessDirectionHint: u32,
-    ulAccessSizeHint: u32,
-    ulAccessLatencyHint: u32,
-    ulAccessBandwidthWeightHint: u32,
-    ulStorageCostHint: u32,
-    ulStorageEfficiencyHint: u32,
-    ulNumOfCustomAttributes: u32,
-    pPoolCustomAttributes: ?*VDS_POOL_CUSTOM_ATTRIBUTES,
-    bReserved1: BOOL,
-    bReserved2: BOOL,
-    ulReserved1: u32,
-    ulReserved2: u32,
-    ullReserved1: u64,
-    ullReserved2: u64,
-};
-
-pub const VDS_STORAGE_POOL_PROP = extern struct {
-    id: Guid,
-    status: VDS_STORAGE_POOL_STATUS,
-    health: VDS_HEALTH,
-    type: VDS_STORAGE_POOL_TYPE,
-    pwszName: ?PWSTR,
-    pwszDescription: ?PWSTR,
-    ullTotalConsumedSpace: u64,
-    ullTotalManagedSpace: u64,
-    ullRemainingFreeSpace: u64,
-};
-
-pub const VDS_STORAGE_POOL_DRIVE_EXTENT = extern struct {
-    id: Guid,
-    ullSize: u64,
-    bUsed: BOOL,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProvider_Value = Guid.initString("d99bdaae-b13a-4178-9fdb-e27f16b4603e");
-pub const IID_IVdsHwProvider = &IID_IVdsHwProvider_Value;
-pub const IVdsHwProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QuerySubSystems: *const fn(
-            self: *const IVdsHwProvider,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        Reenumerate: *const fn(
-            self: *const IVdsHwProvider,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const IVdsHwProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QuerySubSystems(self: *const IVdsHwProvider, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QuerySubSystems(self, ppEnum);
-    }
-    pub fn Reenumerate(self: *const IVdsHwProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Reenumerate(self);
-    }
-    pub fn Refresh(self: *const IVdsHwProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProviderType_Value = Guid.initString("3e0f5166-542d-4fc6-947a-012174240b7e");
-pub const IID_IVdsHwProviderType = &IID_IVdsHwProviderType_Value;
-pub const IVdsHwProviderType = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProviderType: *const fn(
-            self: *const IVdsHwProviderType,
-            pType: ?*VDS_HWPROVIDER_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProviderType(self: *const IVdsHwProviderType, pType: ?*VDS_HWPROVIDER_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProviderType(self, pType);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsHwProviderType2_Value = Guid.initString("8190236f-c4d0-4e81-8011-d69512fcc984");
-pub const IID_IVdsHwProviderType2 = &IID_IVdsHwProviderType2_Value;
-pub const IVdsHwProviderType2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProviderType2: *const fn(
-            self: *const IVdsHwProviderType2,
-            pType: ?*VDS_HWPROVIDER_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProviderType2(self: *const IVdsHwProviderType2, pType: ?*VDS_HWPROVIDER_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProviderType2(self, pType);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsHwProviderStoragePools_Value = Guid.initString("d5b5937a-f188-4c79-b86c-11c920ad11b8");
-pub const IID_IVdsHwProviderStoragePools = &IID_IVdsHwProviderStoragePools_Value;
-pub const IVdsHwProviderStoragePools = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryStoragePools: *const fn(
-            self: *const IVdsHwProviderStoragePools,
-            ulFlags: u32,
-            ullRemainingFreeSpace: u64,
-            pPoolAttributes: ?*VDS_POOL_ATTRIBUTES,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        CreateLunInStoragePool: *const fn(
-            self: *const IVdsHwProviderStoragePools,
-            type: VDS_LUN_TYPE,
-            ullSizeInBytes: u64,
-            StoragePoolId: Guid,
-            pwszUnmaskingList: ?PWSTR,
-            pHints2: ?*VDS_HINTS2,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        QueryMaxLunCreateSizeInStoragePool: *const fn(
-            self: *const IVdsHwProviderStoragePools,
-            type: VDS_LUN_TYPE,
-            StoragePoolId: Guid,
-            pHints2: ?*VDS_HINTS2,
-            pullMaxLunSize: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryStoragePools(self: *const IVdsHwProviderStoragePools, ulFlags: u32, ullRemainingFreeSpace: u64, pPoolAttributes: ?*VDS_POOL_ATTRIBUTES, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryStoragePools(self, ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
-    }
-    pub fn CreateLunInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateLunInStoragePool(self, @"type", ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
-    }
-    pub fn QueryMaxLunCreateSizeInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, StoragePoolId: Guid, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryMaxLunCreateSizeInStoragePool(self, @"type", StoragePoolId, pHints2, pullMaxLunSize);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsSubSystem_Value = Guid.initString("6fcee2d3-6d90-4f91-80e2-a5c7caaca9d8");
-pub const IID_IVdsSubSystem = &IID_IVdsSubSystem_Value;
-pub const IVdsSubSystem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperties: *const fn(
-            self: *const IVdsSubSystem,
-            pSubSystemProp: ?*VDS_SUB_SYSTEM_PROP,
-        ) callconv(.winapi) HRESULT,
-        GetProvider: *const fn(
-            self: *const IVdsSubSystem,
-            ppProvider: ?*?*IVdsProvider,
-        ) callconv(.winapi) HRESULT,
-        QueryControllers: *const fn(
-            self: *const IVdsSubSystem,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        QueryLuns: *const fn(
-            self: *const IVdsSubSystem,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        QueryDrives: *const fn(
-            self: *const IVdsSubSystem,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        GetDrive: *const fn(
-            self: *const IVdsSubSystem,
-            sBusNumber: i16,
-            sSlotNumber: i16,
-            ppDrive: ?*?*IVdsDrive,
-        ) callconv(.winapi) HRESULT,
-        Reenumerate: *const fn(
-            self: *const IVdsSubSystem,
-        ) callconv(.winapi) HRESULT,
-        SetControllerStatus: *const fn(
-            self: *const IVdsSubSystem,
-            pOnlineControllerIdArray: [*]Guid,
-            lNumberOfOnlineControllers: i32,
-            pOfflineControllerIdArray: [*]Guid,
-            lNumberOfOfflineControllers: i32,
-        ) callconv(.winapi) HRESULT,
-        CreateLun: *const fn(
-            self: *const IVdsSubSystem,
-            type: VDS_LUN_TYPE,
-            ullSizeInBytes: u64,
-            pDriveIdArray: ?[*]Guid,
-            lNumberOfDrives: i32,
-            pwszUnmaskingList: ?PWSTR,
-            pHints: ?*VDS_HINTS,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        ReplaceDrive: *const fn(
-            self: *const IVdsSubSystem,
-            DriveToBeReplaced: Guid,
-            ReplacementDrive: Guid,
-        ) callconv(.winapi) HRESULT,
-        SetStatus: *const fn(
-            self: *const IVdsSubSystem,
-            status: VDS_SUB_SYSTEM_STATUS,
-        ) callconv(.winapi) HRESULT,
-        QueryMaxLunCreateSize: *const fn(
-            self: *const IVdsSubSystem,
-            type: VDS_LUN_TYPE,
-            pDriveIdArray: ?[*]Guid,
-            lNumberOfDrives: i32,
-            pHints: ?*VDS_HINTS,
-            pullMaxLunSize: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProperties(self: *const IVdsSubSystem, pSubSystemProp: ?*VDS_SUB_SYSTEM_PROP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperties(self, pSubSystemProp);
-    }
-    pub fn GetProvider(self: *const IVdsSubSystem, ppProvider: ?*?*IVdsProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProvider(self, ppProvider);
-    }
-    pub fn QueryControllers(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryControllers(self, ppEnum);
-    }
-    pub fn QueryLuns(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryLuns(self, ppEnum);
-    }
-    pub fn QueryDrives(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryDrives(self, ppEnum);
-    }
-    pub fn GetDrive(self: *const IVdsSubSystem, sBusNumber: i16, sSlotNumber: i16, ppDrive: ?*?*IVdsDrive) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDrive(self, sBusNumber, sSlotNumber, ppDrive);
-    }
-    pub fn Reenumerate(self: *const IVdsSubSystem) callconv(.@"inline") HRESULT {
-        return self.vtable.Reenumerate(self);
-    }
-    pub fn SetControllerStatus(self: *const IVdsSubSystem, pOnlineControllerIdArray: [*]Guid, lNumberOfOnlineControllers: i32, pOfflineControllerIdArray: [*]Guid, lNumberOfOfflineControllers: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetControllerStatus(self, pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
-    }
-    pub fn CreateLun(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateLun(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
-    }
-    pub fn ReplaceDrive(self: *const IVdsSubSystem, DriveToBeReplaced: Guid, ReplacementDrive: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.ReplaceDrive(self, DriveToBeReplaced, ReplacementDrive);
-    }
-    pub fn SetStatus(self: *const IVdsSubSystem, status: VDS_SUB_SYSTEM_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStatus(self, status);
-    }
-    pub fn QueryMaxLunCreateSize(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints: ?*VDS_HINTS, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryMaxLunCreateSize(self, @"type", pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsSubSystem2_Value = Guid.initString("be666735-7800-4a77-9d9c-40f85b87e292");
-pub const IID_IVdsSubSystem2 = &IID_IVdsSubSystem2_Value;
-pub const IVdsSubSystem2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperties2: *const fn(
-            self: *const IVdsSubSystem2,
-            pSubSystemProp2: ?*VDS_SUB_SYSTEM_PROP2,
-        ) callconv(.winapi) HRESULT,
-        GetDrive2: *const fn(
-            self: *const IVdsSubSystem2,
-            sBusNumber: i16,
-            sSlotNumber: i16,
-            ulEnclosureNumber: u32,
-            ppDrive: ?*?*IVdsDrive,
-        ) callconv(.winapi) HRESULT,
-        CreateLun2: *const fn(
-            self: *const IVdsSubSystem2,
-            type: VDS_LUN_TYPE,
-            ullSizeInBytes: u64,
-            pDriveIdArray: ?[*]Guid,
-            lNumberOfDrives: i32,
-            pwszUnmaskingList: ?PWSTR,
-            pHints2: ?*VDS_HINTS2,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        QueryMaxLunCreateSize2: *const fn(
-            self: *const IVdsSubSystem2,
-            type: VDS_LUN_TYPE,
-            pDriveIdArray: ?[*]Guid,
-            lNumberOfDrives: i32,
-            pHints2: ?*VDS_HINTS2,
-            pullMaxLunSize: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProperties2(self: *const IVdsSubSystem2, pSubSystemProp2: ?*VDS_SUB_SYSTEM_PROP2) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperties2(self, pSubSystemProp2);
-    }
-    pub fn GetDrive2(self: *const IVdsSubSystem2, sBusNumber: i16, sSlotNumber: i16, ulEnclosureNumber: u32, ppDrive: ?*?*IVdsDrive) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDrive2(self, sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
-    }
-    pub fn CreateLun2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateLun2(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
-    }
-    pub fn QueryMaxLunCreateSize2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryMaxLunCreateSize2(self, @"type", pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsSubSystemNaming_Value = Guid.initString("0d70faa3-9cd4-4900-aa20-6981b6aafc75");
-pub const IID_IVdsSubSystemNaming = &IID_IVdsSubSystemNaming_Value;
-pub const IVdsSubSystemNaming = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetFriendlyName: *const fn(
-            self: *const IVdsSubSystemNaming,
-            pwszFriendlyName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetFriendlyName(self: *const IVdsSubSystemNaming, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsSubSystemIscsi_Value = Guid.initString("0027346f-40d0-4b45-8cec-5906dc0380c8");
-pub const IID_IVdsSubSystemIscsi = &IID_IVdsSubSystemIscsi_Value;
-pub const IVdsSubSystemIscsi = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryTargets: *const fn(
-            self: *const IVdsSubSystemIscsi,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        QueryPortals: *const fn(
-            self: *const IVdsSubSystemIscsi,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        CreateTarget: *const fn(
-            self: *const IVdsSubSystemIscsi,
-            pwszIscsiName: ?PWSTR,
-            pwszFriendlyName: ?PWSTR,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        SetIpsecGroupPresharedKey: *const fn(
-            self: *const IVdsSubSystemIscsi,
-            pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryTargets(self: *const IVdsSubSystemIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryTargets(self, ppEnum);
-    }
-    pub fn QueryPortals(self: *const IVdsSubSystemIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryPortals(self, ppEnum);
-    }
-    pub fn CreateTarget(self: *const IVdsSubSystemIscsi, pwszIscsiName: ?PWSTR, pwszFriendlyName: ?PWSTR, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTarget(self, pwszIscsiName, pwszFriendlyName, ppAsync);
-    }
-    pub fn SetIpsecGroupPresharedKey(self: *const IVdsSubSystemIscsi, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIpsecGroupPresharedKey(self, pIpsecKey);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsSubSystemInterconnect_Value = Guid.initString("9e6fa560-c141-477b-83ba-0b6c38f7febf");
-pub const IID_IVdsSubSystemInterconnect = &IID_IVdsSubSystemInterconnect_Value;
-pub const IVdsSubSystemInterconnect = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSupportedInterconnects: *const fn(
-            self: *const IVdsSubSystemInterconnect,
-            pulSupportedInterconnectsFlag: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSupportedInterconnects(self: *const IVdsSubSystemInterconnect, pulSupportedInterconnectsFlag: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSupportedInterconnects(self, pulSupportedInterconnectsFlag);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsControllerPort_Value = Guid.initString("18691d0d-4e7f-43e8-92e4-cf44beeed11c");
-pub const IID_IVdsControllerPort = &IID_IVdsControllerPort_Value;
-pub const IVdsControllerPort = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperties: *const fn(
-            self: *const IVdsControllerPort,
-            pPortProp: ?*VDS_PORT_PROP,
-        ) callconv(.winapi) HRESULT,
-        GetController: *const fn(
-            self: *const IVdsControllerPort,
-            ppController: ?*?*IVdsController,
-        ) callconv(.winapi) HRESULT,
-        QueryAssociatedLuns: *const fn(
-            self: *const IVdsControllerPort,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IVdsControllerPort,
-        ) callconv(.winapi) HRESULT,
-        SetStatus: *const fn(
-            self: *const IVdsControllerPort,
-            status: VDS_PORT_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProperties(self: *const IVdsControllerPort, pPortProp: ?*VDS_PORT_PROP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperties(self, pPortProp);
-    }
-    pub fn GetController(self: *const IVdsControllerPort, ppController: ?*?*IVdsController) callconv(.@"inline") HRESULT {
-        return self.vtable.GetController(self, ppController);
-    }
-    pub fn QueryAssociatedLuns(self: *const IVdsControllerPort, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryAssociatedLuns(self, ppEnum);
-    }
-    pub fn Reset(self: *const IVdsControllerPort) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn SetStatus(self: *const IVdsControllerPort, status: VDS_PORT_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStatus(self, status);
     }
 };
 
@@ -2630,6 +674,51 @@ pub const IVdsControllerControllerPort = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsControllerPort_Value = Guid.initString("18691d0d-4e7f-43e8-92e4-cf44beeed11c");
+pub const IID_IVdsControllerPort = &IID_IVdsControllerPort_Value;
+pub const IVdsControllerPort = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperties: *const fn(
+            self: *const IVdsControllerPort,
+            pPortProp: ?*VDS_PORT_PROP,
+        ) callconv(.winapi) HRESULT,
+        GetController: *const fn(
+            self: *const IVdsControllerPort,
+            ppController: ?*?*IVdsController,
+        ) callconv(.winapi) HRESULT,
+        QueryAssociatedLuns: *const fn(
+            self: *const IVdsControllerPort,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IVdsControllerPort,
+        ) callconv(.winapi) HRESULT,
+        SetStatus: *const fn(
+            self: *const IVdsControllerPort,
+            status: VDS_PORT_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProperties(self: *const IVdsControllerPort, pPortProp: ?*VDS_PORT_PROP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperties(self, pPortProp);
+    }
+    pub fn GetController(self: *const IVdsControllerPort, ppController: ?*?*IVdsController) callconv(.@"inline") HRESULT {
+        return self.vtable.GetController(self, ppController);
+    }
+    pub fn QueryAssociatedLuns(self: *const IVdsControllerPort, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryAssociatedLuns(self, ppEnum);
+    }
+    pub fn Reset(self: *const IVdsControllerPort) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn SetStatus(self: *const IVdsControllerPort, status: VDS_PORT_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStatus(self, status);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVdsDrive_Value = Guid.initString("ff24efa4-aade-4b6b-898b-eaa6a20887c7");
 pub const IID_IVdsDrive = &IID_IVdsDrive_Value;
 pub const IVdsDrive = extern union {
@@ -2698,6 +787,357 @@ pub const IVdsDrive2 = extern union {
     IUnknown: IUnknown,
     pub fn GetProperties2(self: *const IVdsDrive2, pDriveProp2: ?*VDS_DRIVE_PROP2) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperties2(self, pDriveProp2);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsHwProvider_Value = Guid.initString("d99bdaae-b13a-4178-9fdb-e27f16b4603e");
+pub const IID_IVdsHwProvider = &IID_IVdsHwProvider_Value;
+pub const IVdsHwProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QuerySubSystems: *const fn(
+            self: *const IVdsHwProvider,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        Reenumerate: *const fn(
+            self: *const IVdsHwProvider,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const IVdsHwProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QuerySubSystems(self: *const IVdsHwProvider, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QuerySubSystems(self, ppEnum);
+    }
+    pub fn Reenumerate(self: *const IVdsHwProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Reenumerate(self);
+    }
+    pub fn Refresh(self: *const IVdsHwProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsHwProviderPrivate_Value = Guid.initString("98f17bf3-9f33-4f12-8714-8b4075092c2e");
+pub const IID_IVdsHwProviderPrivate = &IID_IVdsHwProviderPrivate_Value;
+pub const IVdsHwProviderPrivate = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryIfCreatedLun: *const fn(
+            self: *const IVdsHwProviderPrivate,
+            pwszDevicePath: ?PWSTR,
+            pVdsLunInformation: ?*VDS_LUN_INFORMATION,
+            pLunId: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryIfCreatedLun(self: *const IVdsHwProviderPrivate, pwszDevicePath: ?PWSTR, pVdsLunInformation: ?*VDS_LUN_INFORMATION, pLunId: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryIfCreatedLun(self, pwszDevicePath, pVdsLunInformation, pLunId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsHwProviderPrivateMpio_Value = Guid.initString("310a7715-ac2b-4c6f-9827-3d742f351676");
+pub const IID_IVdsHwProviderPrivateMpio = &IID_IVdsHwProviderPrivateMpio_Value;
+pub const IVdsHwProviderPrivateMpio = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllPathStatusesFromHbaPort: *const fn(
+            self: *const IVdsHwProviderPrivateMpio,
+            hbaPortProp: VDS_HBAPORT_PROP,
+            status: VDS_PATH_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllPathStatusesFromHbaPort(self: *const IVdsHwProviderPrivateMpio, hbaPortProp: VDS_HBAPORT_PROP, status: VDS_PATH_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllPathStatusesFromHbaPort(self, hbaPortProp, status);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IVdsHwProviderStoragePools_Value = Guid.initString("d5b5937a-f188-4c79-b86c-11c920ad11b8");
+pub const IID_IVdsHwProviderStoragePools = &IID_IVdsHwProviderStoragePools_Value;
+pub const IVdsHwProviderStoragePools = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryStoragePools: *const fn(
+            self: *const IVdsHwProviderStoragePools,
+            ulFlags: u32,
+            ullRemainingFreeSpace: u64,
+            pPoolAttributes: ?*VDS_POOL_ATTRIBUTES,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        CreateLunInStoragePool: *const fn(
+            self: *const IVdsHwProviderStoragePools,
+            type: VDS_LUN_TYPE,
+            ullSizeInBytes: u64,
+            StoragePoolId: Guid,
+            pwszUnmaskingList: ?PWSTR,
+            pHints2: ?*VDS_HINTS2,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        QueryMaxLunCreateSizeInStoragePool: *const fn(
+            self: *const IVdsHwProviderStoragePools,
+            type: VDS_LUN_TYPE,
+            StoragePoolId: Guid,
+            pHints2: ?*VDS_HINTS2,
+            pullMaxLunSize: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryStoragePools(self: *const IVdsHwProviderStoragePools, ulFlags: u32, ullRemainingFreeSpace: u64, pPoolAttributes: ?*VDS_POOL_ATTRIBUTES, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryStoragePools(self, ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
+    }
+    pub fn CreateLunInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateLunInStoragePool(self, @"type", ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
+    }
+    pub fn QueryMaxLunCreateSizeInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, StoragePoolId: Guid, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryMaxLunCreateSizeInStoragePool(self, @"type", StoragePoolId, pHints2, pullMaxLunSize);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsHwProviderType_Value = Guid.initString("3e0f5166-542d-4fc6-947a-012174240b7e");
+pub const IID_IVdsHwProviderType = &IID_IVdsHwProviderType_Value;
+pub const IVdsHwProviderType = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProviderType: *const fn(
+            self: *const IVdsHwProviderType,
+            pType: ?*VDS_HWPROVIDER_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProviderType(self: *const IVdsHwProviderType, pType: ?*VDS_HWPROVIDER_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProviderType(self, pType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IVdsHwProviderType2_Value = Guid.initString("8190236f-c4d0-4e81-8011-d69512fcc984");
+pub const IID_IVdsHwProviderType2 = &IID_IVdsHwProviderType2_Value;
+pub const IVdsHwProviderType2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProviderType2: *const fn(
+            self: *const IVdsHwProviderType2,
+            pType: ?*VDS_HWPROVIDER_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProviderType2(self: *const IVdsHwProviderType2, pType: ?*VDS_HWPROVIDER_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProviderType2(self, pType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsIscsiPortal_Value = Guid.initString("7fa1499d-ec85-4a8a-a47b-ff69201fcd34");
+pub const IID_IVdsIscsiPortal = &IID_IVdsIscsiPortal_Value;
+pub const IVdsIscsiPortal = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperties: *const fn(
+            self: *const IVdsIscsiPortal,
+            pPortalProp: ?*VDS_ISCSI_PORTAL_PROP,
+        ) callconv(.winapi) HRESULT,
+        GetSubSystem: *const fn(
+            self: *const IVdsIscsiPortal,
+            ppSubSystem: ?*?*IVdsSubSystem,
+        ) callconv(.winapi) HRESULT,
+        QueryAssociatedPortalGroups: *const fn(
+            self: *const IVdsIscsiPortal,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        SetStatus: *const fn(
+            self: *const IVdsIscsiPortal,
+            status: VDS_ISCSI_PORTAL_STATUS,
+        ) callconv(.winapi) HRESULT,
+        SetIpsecTunnelAddress: *const fn(
+            self: *const IVdsIscsiPortal,
+            pTunnelAddress: ?*VDS_IPADDRESS,
+            pDestinationAddress: ?*VDS_IPADDRESS,
+        ) callconv(.winapi) HRESULT,
+        GetIpsecSecurity: *const fn(
+            self: *const IVdsIscsiPortal,
+            pInitiatorPortalAddress: ?*VDS_IPADDRESS,
+            pullSecurityFlags: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        SetIpsecSecurity: *const fn(
+            self: *const IVdsIscsiPortal,
+            pInitiatorPortalAddress: ?*VDS_IPADDRESS,
+            ullSecurityFlags: u64,
+            pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProperties(self: *const IVdsIscsiPortal, pPortalProp: ?*VDS_ISCSI_PORTAL_PROP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperties(self, pPortalProp);
+    }
+    pub fn GetSubSystem(self: *const IVdsIscsiPortal, ppSubSystem: ?*?*IVdsSubSystem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubSystem(self, ppSubSystem);
+    }
+    pub fn QueryAssociatedPortalGroups(self: *const IVdsIscsiPortal, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryAssociatedPortalGroups(self, ppEnum);
+    }
+    pub fn SetStatus(self: *const IVdsIscsiPortal, status: VDS_ISCSI_PORTAL_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStatus(self, status);
+    }
+    pub fn SetIpsecTunnelAddress(self: *const IVdsIscsiPortal, pTunnelAddress: ?*VDS_IPADDRESS, pDestinationAddress: ?*VDS_IPADDRESS) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIpsecTunnelAddress(self, pTunnelAddress, pDestinationAddress);
+    }
+    pub fn GetIpsecSecurity(self: *const IVdsIscsiPortal, pInitiatorPortalAddress: ?*VDS_IPADDRESS, pullSecurityFlags: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIpsecSecurity(self, pInitiatorPortalAddress, pullSecurityFlags);
+    }
+    pub fn SetIpsecSecurity(self: *const IVdsIscsiPortal, pInitiatorPortalAddress: ?*VDS_IPADDRESS, ullSecurityFlags: u64, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIpsecSecurity(self, pInitiatorPortalAddress, ullSecurityFlags, pIpsecKey);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsIscsiPortalGroup_Value = Guid.initString("fef5f89d-a3dd-4b36-bf28-e7dde045c593");
+pub const IID_IVdsIscsiPortalGroup = &IID_IVdsIscsiPortalGroup_Value;
+pub const IVdsIscsiPortalGroup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperties: *const fn(
+            self: *const IVdsIscsiPortalGroup,
+            pPortalGroupProp: ?*VDS_ISCSI_PORTALGROUP_PROP,
+        ) callconv(.winapi) HRESULT,
+        GetTarget: *const fn(
+            self: *const IVdsIscsiPortalGroup,
+            ppTarget: ?*?*IVdsIscsiTarget,
+        ) callconv(.winapi) HRESULT,
+        QueryAssociatedPortals: *const fn(
+            self: *const IVdsIscsiPortalGroup,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        AddPortal: *const fn(
+            self: *const IVdsIscsiPortalGroup,
+            portalId: Guid,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        RemovePortal: *const fn(
+            self: *const IVdsIscsiPortalGroup,
+            portalId: Guid,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IVdsIscsiPortalGroup,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProperties(self: *const IVdsIscsiPortalGroup, pPortalGroupProp: ?*VDS_ISCSI_PORTALGROUP_PROP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperties(self, pPortalGroupProp);
+    }
+    pub fn GetTarget(self: *const IVdsIscsiPortalGroup, ppTarget: ?*?*IVdsIscsiTarget) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTarget(self, ppTarget);
+    }
+    pub fn QueryAssociatedPortals(self: *const IVdsIscsiPortalGroup, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryAssociatedPortals(self, ppEnum);
+    }
+    pub fn AddPortal(self: *const IVdsIscsiPortalGroup, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPortal(self, portalId, ppAsync);
+    }
+    pub fn RemovePortal(self: *const IVdsIscsiPortalGroup, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.RemovePortal(self, portalId, ppAsync);
+    }
+    pub fn Delete(self: *const IVdsIscsiPortalGroup, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, ppAsync);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsIscsiTarget_Value = Guid.initString("aa8f5055-83e5-4bcc-aa73-19851a36a849");
+pub const IID_IVdsIscsiTarget = &IID_IVdsIscsiTarget_Value;
+pub const IVdsIscsiTarget = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperties: *const fn(
+            self: *const IVdsIscsiTarget,
+            pTargetProp: ?*VDS_ISCSI_TARGET_PROP,
+        ) callconv(.winapi) HRESULT,
+        GetSubSystem: *const fn(
+            self: *const IVdsIscsiTarget,
+            ppSubSystem: ?*?*IVdsSubSystem,
+        ) callconv(.winapi) HRESULT,
+        QueryPortalGroups: *const fn(
+            self: *const IVdsIscsiTarget,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        QueryAssociatedLuns: *const fn(
+            self: *const IVdsIscsiTarget,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        CreatePortalGroup: *const fn(
+            self: *const IVdsIscsiTarget,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IVdsIscsiTarget,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        SetFriendlyName: *const fn(
+            self: *const IVdsIscsiTarget,
+            pwszFriendlyName: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetSharedSecret: *const fn(
+            self: *const IVdsIscsiTarget,
+            pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET,
+            pwszInitiatorName: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        RememberInitiatorSharedSecret: *const fn(
+            self: *const IVdsIscsiTarget,
+            pwszInitiatorName: ?PWSTR,
+            pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET,
+        ) callconv(.winapi) HRESULT,
+        GetConnectedInitiators: *const fn(
+            self: *const IVdsIscsiTarget,
+            pppwszInitiatorList: [*]?*?PWSTR,
+            plNumberOfInitiators: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProperties(self: *const IVdsIscsiTarget, pTargetProp: ?*VDS_ISCSI_TARGET_PROP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperties(self, pTargetProp);
+    }
+    pub fn GetSubSystem(self: *const IVdsIscsiTarget, ppSubSystem: ?*?*IVdsSubSystem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubSystem(self, ppSubSystem);
+    }
+    pub fn QueryPortalGroups(self: *const IVdsIscsiTarget, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryPortalGroups(self, ppEnum);
+    }
+    pub fn QueryAssociatedLuns(self: *const IVdsIscsiTarget, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryAssociatedLuns(self, ppEnum);
+    }
+    pub fn CreatePortalGroup(self: *const IVdsIscsiTarget, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePortalGroup(self, ppAsync);
+    }
+    pub fn Delete(self: *const IVdsIscsiTarget, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, ppAsync);
+    }
+    pub fn SetFriendlyName(self: *const IVdsIscsiTarget, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
+    }
+    pub fn SetSharedSecret(self: *const IVdsIscsiTarget, pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET, pwszInitiatorName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSharedSecret(self, pTargetSharedSecret, pwszInitiatorName);
+    }
+    pub fn RememberInitiatorSharedSecret(self: *const IVdsIscsiTarget, pwszInitiatorName: ?PWSTR, pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET) callconv(.@"inline") HRESULT {
+        return self.vtable.RememberInitiatorSharedSecret(self, pwszInitiatorName, pInitiatorSharedSecret);
+    }
+    pub fn GetConnectedInitiators(self: *const IVdsIscsiTarget, pppwszInitiatorList: [*]?*?PWSTR, plNumberOfInitiators: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectedInitiators(self, pppwszInitiatorList, plNumberOfInitiators);
     }
 };
 
@@ -2867,42 +1307,6 @@ pub const IVdsLun2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLunNaming_Value = Guid.initString("907504cb-6b4e-4d88-a34d-17ba661fbb06");
-pub const IID_IVdsLunNaming = &IID_IVdsLunNaming_Value;
-pub const IVdsLunNaming = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetFriendlyName: *const fn(
-            self: *const IVdsLunNaming,
-            pwszFriendlyName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetFriendlyName(self: *const IVdsLunNaming, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsLunNumber_Value = Guid.initString("d3f95e46-54b3-41f9-b678-0f1871443a08");
-pub const IID_IVdsLunNumber = &IID_IVdsLunNumber_Value;
-pub const IVdsLunNumber = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLunNumber: *const fn(
-            self: *const IVdsLunNumber,
-            pulLunNumber: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetLunNumber(self: *const IVdsLunNumber, pulLunNumber: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLunNumber(self, pulLunNumber);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVdsLunControllerPorts_Value = Guid.initString("451fe266-da6d-406a-bb60-82e534f85aeb");
 pub const IID_IVdsLunControllerPorts = &IID_IVdsLunControllerPorts_Value;
 pub const IVdsLunControllerPorts = extern union {
@@ -2927,6 +1331,32 @@ pub const IVdsLunControllerPorts = extern union {
     }
     pub fn QueryActiveControllerPorts(self: *const IVdsLunControllerPorts, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
         return self.vtable.QueryActiveControllerPorts(self, ppEnum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsLunIscsi_Value = Guid.initString("0d7c1e64-b59b-45ae-b86a-2c2cc6a42067");
+pub const IID_IVdsLunIscsi = &IID_IVdsLunIscsi_Value;
+pub const IVdsLunIscsi = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AssociateTargets: *const fn(
+            self: *const IVdsLunIscsi,
+            pTargetIdArray: ?[*]Guid,
+            lNumberOfTargets: i32,
+        ) callconv(.winapi) HRESULT,
+        QueryAssociatedTargets: *const fn(
+            self: *const IVdsLunIscsi,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AssociateTargets(self: *const IVdsLunIscsi, pTargetIdArray: ?[*]Guid, lNumberOfTargets: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AssociateTargets(self, pTargetIdArray, lNumberOfTargets);
+    }
+    pub fn QueryAssociatedTargets(self: *const IVdsLunIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryAssociatedTargets(self, ppEnum);
     }
 };
 
@@ -2975,28 +1405,38 @@ pub const IVdsLunMpio = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLunIscsi_Value = Guid.initString("0d7c1e64-b59b-45ae-b86a-2c2cc6a42067");
-pub const IID_IVdsLunIscsi = &IID_IVdsLunIscsi_Value;
-pub const IVdsLunIscsi = extern union {
+const IID_IVdsLunNaming_Value = Guid.initString("907504cb-6b4e-4d88-a34d-17ba661fbb06");
+pub const IID_IVdsLunNaming = &IID_IVdsLunNaming_Value;
+pub const IVdsLunNaming = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AssociateTargets: *const fn(
-            self: *const IVdsLunIscsi,
-            pTargetIdArray: ?[*]Guid,
-            lNumberOfTargets: i32,
-        ) callconv(.winapi) HRESULT,
-        QueryAssociatedTargets: *const fn(
-            self: *const IVdsLunIscsi,
-            ppEnum: ?*?*IEnumVdsObject,
+        SetFriendlyName: *const fn(
+            self: *const IVdsLunNaming,
+            pwszFriendlyName: ?PWSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AssociateTargets(self: *const IVdsLunIscsi, pTargetIdArray: ?[*]Guid, lNumberOfTargets: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AssociateTargets(self, pTargetIdArray, lNumberOfTargets);
+    pub fn SetFriendlyName(self: *const IVdsLunNaming, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
-    pub fn QueryAssociatedTargets(self: *const IVdsLunIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryAssociatedTargets(self, ppEnum);
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IVdsLunNumber_Value = Guid.initString("d3f95e46-54b3-41f9-b678-0f1871443a08");
+pub const IID_IVdsLunNumber = &IID_IVdsLunNumber_Value;
+pub const IVdsLunNumber = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLunNumber: *const fn(
+            self: *const IVdsLunNumber,
+            pulLunNumber: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLunNumber(self: *const IVdsLunNumber, pulLunNumber: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLunNumber(self, pulLunNumber);
     }
 };
 
@@ -3048,205 +1488,106 @@ pub const IVdsLunPlex = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsIscsiPortal_Value = Guid.initString("7fa1499d-ec85-4a8a-a47b-ff69201fcd34");
-pub const IID_IVdsIscsiPortal = &IID_IVdsIscsiPortal_Value;
-pub const IVdsIscsiPortal = extern union {
+const IID_IVdsMaintenance_Value = Guid.initString("daebeef3-8523-47ed-a2b9-05cecce2a1ae");
+pub const IID_IVdsMaintenance = &IID_IVdsMaintenance_Value;
+pub const IVdsMaintenance = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetProperties: *const fn(
-            self: *const IVdsIscsiPortal,
-            pPortalProp: ?*VDS_ISCSI_PORTAL_PROP,
+        StartMaintenance: *const fn(
+            self: *const IVdsMaintenance,
+            operation: VDS_MAINTENANCE_OPERATION,
         ) callconv(.winapi) HRESULT,
-        GetSubSystem: *const fn(
-            self: *const IVdsIscsiPortal,
-            ppSubSystem: ?*?*IVdsSubSystem,
+        StopMaintenance: *const fn(
+            self: *const IVdsMaintenance,
+            operation: VDS_MAINTENANCE_OPERATION,
         ) callconv(.winapi) HRESULT,
-        QueryAssociatedPortalGroups: *const fn(
-            self: *const IVdsIscsiPortal,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        SetStatus: *const fn(
-            self: *const IVdsIscsiPortal,
-            status: VDS_ISCSI_PORTAL_STATUS,
-        ) callconv(.winapi) HRESULT,
-        SetIpsecTunnelAddress: *const fn(
-            self: *const IVdsIscsiPortal,
-            pTunnelAddress: ?*VDS_IPADDRESS,
-            pDestinationAddress: ?*VDS_IPADDRESS,
-        ) callconv(.winapi) HRESULT,
-        GetIpsecSecurity: *const fn(
-            self: *const IVdsIscsiPortal,
-            pInitiatorPortalAddress: ?*VDS_IPADDRESS,
-            pullSecurityFlags: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        SetIpsecSecurity: *const fn(
-            self: *const IVdsIscsiPortal,
-            pInitiatorPortalAddress: ?*VDS_IPADDRESS,
-            ullSecurityFlags: u64,
-            pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY,
+        PulseMaintenance: *const fn(
+            self: *const IVdsMaintenance,
+            operation: VDS_MAINTENANCE_OPERATION,
+            ulCount: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProperties(self: *const IVdsIscsiPortal, pPortalProp: ?*VDS_ISCSI_PORTAL_PROP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperties(self, pPortalProp);
+    pub fn StartMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION) callconv(.@"inline") HRESULT {
+        return self.vtable.StartMaintenance(self, operation);
     }
-    pub fn GetSubSystem(self: *const IVdsIscsiPortal, ppSubSystem: ?*?*IVdsSubSystem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubSystem(self, ppSubSystem);
+    pub fn StopMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION) callconv(.@"inline") HRESULT {
+        return self.vtable.StopMaintenance(self, operation);
     }
-    pub fn QueryAssociatedPortalGroups(self: *const IVdsIscsiPortal, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryAssociatedPortalGroups(self, ppEnum);
-    }
-    pub fn SetStatus(self: *const IVdsIscsiPortal, status: VDS_ISCSI_PORTAL_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStatus(self, status);
-    }
-    pub fn SetIpsecTunnelAddress(self: *const IVdsIscsiPortal, pTunnelAddress: ?*VDS_IPADDRESS, pDestinationAddress: ?*VDS_IPADDRESS) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIpsecTunnelAddress(self, pTunnelAddress, pDestinationAddress);
-    }
-    pub fn GetIpsecSecurity(self: *const IVdsIscsiPortal, pInitiatorPortalAddress: ?*VDS_IPADDRESS, pullSecurityFlags: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIpsecSecurity(self, pInitiatorPortalAddress, pullSecurityFlags);
-    }
-    pub fn SetIpsecSecurity(self: *const IVdsIscsiPortal, pInitiatorPortalAddress: ?*VDS_IPADDRESS, ullSecurityFlags: u64, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIpsecSecurity(self, pInitiatorPortalAddress, ullSecurityFlags, pIpsecKey);
+    pub fn PulseMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.PulseMaintenance(self, operation, ulCount);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsIscsiTarget_Value = Guid.initString("aa8f5055-83e5-4bcc-aa73-19851a36a849");
-pub const IID_IVdsIscsiTarget = &IID_IVdsIscsiTarget_Value;
-pub const IVdsIscsiTarget = extern union {
+const IID_IVdsProvider_Value = Guid.initString("10c5e575-7984-4e81-a56b-431f5f92ae42");
+pub const IID_IVdsProvider = &IID_IVdsProvider_Value;
+pub const IVdsProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProperties: *const fn(
-            self: *const IVdsIscsiTarget,
-            pTargetProp: ?*VDS_ISCSI_TARGET_PROP,
-        ) callconv(.winapi) HRESULT,
-        GetSubSystem: *const fn(
-            self: *const IVdsIscsiTarget,
-            ppSubSystem: ?*?*IVdsSubSystem,
-        ) callconv(.winapi) HRESULT,
-        QueryPortalGroups: *const fn(
-            self: *const IVdsIscsiTarget,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        QueryAssociatedLuns: *const fn(
-            self: *const IVdsIscsiTarget,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        CreatePortalGroup: *const fn(
-            self: *const IVdsIscsiTarget,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IVdsIscsiTarget,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        SetFriendlyName: *const fn(
-            self: *const IVdsIscsiTarget,
-            pwszFriendlyName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetSharedSecret: *const fn(
-            self: *const IVdsIscsiTarget,
-            pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET,
-            pwszInitiatorName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        RememberInitiatorSharedSecret: *const fn(
-            self: *const IVdsIscsiTarget,
-            pwszInitiatorName: ?PWSTR,
-            pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET,
-        ) callconv(.winapi) HRESULT,
-        GetConnectedInitiators: *const fn(
-            self: *const IVdsIscsiTarget,
-            pppwszInitiatorList: [*]?*?PWSTR,
-            plNumberOfInitiators: ?*i32,
+            self: *const IVdsProvider,
+            pProviderProp: ?*VDS_PROVIDER_PROP,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProperties(self: *const IVdsIscsiTarget, pTargetProp: ?*VDS_ISCSI_TARGET_PROP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperties(self, pTargetProp);
-    }
-    pub fn GetSubSystem(self: *const IVdsIscsiTarget, ppSubSystem: ?*?*IVdsSubSystem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubSystem(self, ppSubSystem);
-    }
-    pub fn QueryPortalGroups(self: *const IVdsIscsiTarget, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryPortalGroups(self, ppEnum);
-    }
-    pub fn QueryAssociatedLuns(self: *const IVdsIscsiTarget, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryAssociatedLuns(self, ppEnum);
-    }
-    pub fn CreatePortalGroup(self: *const IVdsIscsiTarget, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePortalGroup(self, ppAsync);
-    }
-    pub fn Delete(self: *const IVdsIscsiTarget, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, ppAsync);
-    }
-    pub fn SetFriendlyName(self: *const IVdsIscsiTarget, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
-    }
-    pub fn SetSharedSecret(self: *const IVdsIscsiTarget, pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET, pwszInitiatorName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSharedSecret(self, pTargetSharedSecret, pwszInitiatorName);
-    }
-    pub fn RememberInitiatorSharedSecret(self: *const IVdsIscsiTarget, pwszInitiatorName: ?PWSTR, pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET) callconv(.@"inline") HRESULT {
-        return self.vtable.RememberInitiatorSharedSecret(self, pwszInitiatorName, pInitiatorSharedSecret);
-    }
-    pub fn GetConnectedInitiators(self: *const IVdsIscsiTarget, pppwszInitiatorList: [*]?*?PWSTR, plNumberOfInitiators: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectedInitiators(self, pppwszInitiatorList, plNumberOfInitiators);
+    pub fn GetProperties(self: *const IVdsProvider, pProviderProp: ?*VDS_PROVIDER_PROP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperties(self, pProviderProp);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsIscsiPortalGroup_Value = Guid.initString("fef5f89d-a3dd-4b36-bf28-e7dde045c593");
-pub const IID_IVdsIscsiPortalGroup = &IID_IVdsIscsiPortalGroup_Value;
-pub const IVdsIscsiPortalGroup = extern union {
+const IID_IVdsProviderPrivate_Value = Guid.initString("11f3cd41-b7e8-48ff-9472-9dff018aa292");
+pub const IID_IVdsProviderPrivate = &IID_IVdsProviderPrivate_Value;
+pub const IVdsProviderPrivate = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetProperties: *const fn(
-            self: *const IVdsIscsiPortalGroup,
-            pPortalGroupProp: ?*VDS_ISCSI_PORTALGROUP_PROP,
+        GetObject: *const fn(
+            self: *const IVdsProviderPrivate,
+            ObjectId: Guid,
+            type: VDS_OBJECT_TYPE,
+            ppObjectUnk: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        GetTarget: *const fn(
-            self: *const IVdsIscsiPortalGroup,
-            ppTarget: ?*?*IVdsIscsiTarget,
+        OnLoad: *const fn(
+            self: *const IVdsProviderPrivate,
+            pwszMachineName: ?PWSTR,
+            pCallbackObject: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        QueryAssociatedPortals: *const fn(
-            self: *const IVdsIscsiPortalGroup,
-            ppEnum: ?*?*IEnumVdsObject,
-        ) callconv(.winapi) HRESULT,
-        AddPortal: *const fn(
-            self: *const IVdsIscsiPortalGroup,
-            portalId: Guid,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        RemovePortal: *const fn(
-            self: *const IVdsIscsiPortalGroup,
-            portalId: Guid,
-            ppAsync: ?*?*IVdsAsync,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IVdsIscsiPortalGroup,
-            ppAsync: ?*?*IVdsAsync,
+        OnUnload: *const fn(
+            self: *const IVdsProviderPrivate,
+            bForceUnload: BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProperties(self: *const IVdsIscsiPortalGroup, pPortalGroupProp: ?*VDS_ISCSI_PORTALGROUP_PROP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperties(self, pPortalGroupProp);
+    pub fn GetObject(self: *const IVdsProviderPrivate, ObjectId: Guid, @"type": VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObject(self, ObjectId, @"type", ppObjectUnk);
     }
-    pub fn GetTarget(self: *const IVdsIscsiPortalGroup, ppTarget: ?*?*IVdsIscsiTarget) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTarget(self, ppTarget);
+    pub fn OnLoad(self: *const IVdsProviderPrivate, pwszMachineName: ?PWSTR, pCallbackObject: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.OnLoad(self, pwszMachineName, pCallbackObject);
     }
-    pub fn QueryAssociatedPortals(self: *const IVdsIscsiPortalGroup, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryAssociatedPortals(self, ppEnum);
+    pub fn OnUnload(self: *const IVdsProviderPrivate, bForceUnload: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUnload(self, bForceUnload);
     }
-    pub fn AddPortal(self: *const IVdsIscsiPortalGroup, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPortal(self, portalId, ppAsync);
-    }
-    pub fn RemovePortal(self: *const IVdsIscsiPortalGroup, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.RemovePortal(self, portalId, ppAsync);
-    }
-    pub fn Delete(self: *const IVdsIscsiPortalGroup, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, ppAsync);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IVdsProviderSupport_Value = Guid.initString("1732be13-e8f9-4a03-bfbc-5f616aa66ce1");
+pub const IID_IVdsProviderSupport = &IID_IVdsProviderSupport_Value;
+pub const IVdsProviderSupport = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetVersionSupport: *const fn(
+            self: *const IVdsProviderSupport,
+            ulVersionSupport: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetVersionSupport(self: *const IVdsProviderSupport, ulVersionSupport: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVersionSupport(self, ulVersionSupport);
     }
 };
 
@@ -3305,106 +1646,1765 @@ pub const IVdsStoragePool = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsMaintenance_Value = Guid.initString("daebeef3-8523-47ed-a2b9-05cecce2a1ae");
-pub const IID_IVdsMaintenance = &IID_IVdsMaintenance_Value;
-pub const IVdsMaintenance = extern union {
+const IID_IVdsSubSystem_Value = Guid.initString("6fcee2d3-6d90-4f91-80e2-a5c7caaca9d8");
+pub const IID_IVdsSubSystem = &IID_IVdsSubSystem_Value;
+pub const IVdsSubSystem = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartMaintenance: *const fn(
-            self: *const IVdsMaintenance,
-            operation: VDS_MAINTENANCE_OPERATION,
+        GetProperties: *const fn(
+            self: *const IVdsSubSystem,
+            pSubSystemProp: ?*VDS_SUB_SYSTEM_PROP,
         ) callconv(.winapi) HRESULT,
-        StopMaintenance: *const fn(
-            self: *const IVdsMaintenance,
-            operation: VDS_MAINTENANCE_OPERATION,
+        GetProvider: *const fn(
+            self: *const IVdsSubSystem,
+            ppProvider: ?*?*IVdsProvider,
         ) callconv(.winapi) HRESULT,
-        PulseMaintenance: *const fn(
-            self: *const IVdsMaintenance,
-            operation: VDS_MAINTENANCE_OPERATION,
-            ulCount: u32,
+        QueryControllers: *const fn(
+            self: *const IVdsSubSystem,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        QueryLuns: *const fn(
+            self: *const IVdsSubSystem,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        QueryDrives: *const fn(
+            self: *const IVdsSubSystem,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        GetDrive: *const fn(
+            self: *const IVdsSubSystem,
+            sBusNumber: i16,
+            sSlotNumber: i16,
+            ppDrive: ?*?*IVdsDrive,
+        ) callconv(.winapi) HRESULT,
+        Reenumerate: *const fn(
+            self: *const IVdsSubSystem,
+        ) callconv(.winapi) HRESULT,
+        SetControllerStatus: *const fn(
+            self: *const IVdsSubSystem,
+            pOnlineControllerIdArray: [*]Guid,
+            lNumberOfOnlineControllers: i32,
+            pOfflineControllerIdArray: [*]Guid,
+            lNumberOfOfflineControllers: i32,
+        ) callconv(.winapi) HRESULT,
+        CreateLun: *const fn(
+            self: *const IVdsSubSystem,
+            type: VDS_LUN_TYPE,
+            ullSizeInBytes: u64,
+            pDriveIdArray: ?[*]Guid,
+            lNumberOfDrives: i32,
+            pwszUnmaskingList: ?PWSTR,
+            pHints: ?*VDS_HINTS,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        ReplaceDrive: *const fn(
+            self: *const IVdsSubSystem,
+            DriveToBeReplaced: Guid,
+            ReplacementDrive: Guid,
+        ) callconv(.winapi) HRESULT,
+        SetStatus: *const fn(
+            self: *const IVdsSubSystem,
+            status: VDS_SUB_SYSTEM_STATUS,
+        ) callconv(.winapi) HRESULT,
+        QueryMaxLunCreateSize: *const fn(
+            self: *const IVdsSubSystem,
+            type: VDS_LUN_TYPE,
+            pDriveIdArray: ?[*]Guid,
+            lNumberOfDrives: i32,
+            pHints: ?*VDS_HINTS,
+            pullMaxLunSize: ?*u64,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StartMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION) callconv(.@"inline") HRESULT {
-        return self.vtable.StartMaintenance(self, operation);
+    pub fn GetProperties(self: *const IVdsSubSystem, pSubSystemProp: ?*VDS_SUB_SYSTEM_PROP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperties(self, pSubSystemProp);
     }
-    pub fn StopMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION) callconv(.@"inline") HRESULT {
-        return self.vtable.StopMaintenance(self, operation);
+    pub fn GetProvider(self: *const IVdsSubSystem, ppProvider: ?*?*IVdsProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProvider(self, ppProvider);
     }
-    pub fn PulseMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.PulseMaintenance(self, operation, ulCount);
+    pub fn QueryControllers(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryControllers(self, ppEnum);
+    }
+    pub fn QueryLuns(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryLuns(self, ppEnum);
+    }
+    pub fn QueryDrives(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryDrives(self, ppEnum);
+    }
+    pub fn GetDrive(self: *const IVdsSubSystem, sBusNumber: i16, sSlotNumber: i16, ppDrive: ?*?*IVdsDrive) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDrive(self, sBusNumber, sSlotNumber, ppDrive);
+    }
+    pub fn Reenumerate(self: *const IVdsSubSystem) callconv(.@"inline") HRESULT {
+        return self.vtable.Reenumerate(self);
+    }
+    pub fn SetControllerStatus(self: *const IVdsSubSystem, pOnlineControllerIdArray: [*]Guid, lNumberOfOnlineControllers: i32, pOfflineControllerIdArray: [*]Guid, lNumberOfOfflineControllers: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetControllerStatus(self, pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
+    }
+    pub fn CreateLun(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateLun(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
+    }
+    pub fn ReplaceDrive(self: *const IVdsSubSystem, DriveToBeReplaced: Guid, ReplacementDrive: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.ReplaceDrive(self, DriveToBeReplaced, ReplacementDrive);
+    }
+    pub fn SetStatus(self: *const IVdsSubSystem, status: VDS_SUB_SYSTEM_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStatus(self, status);
+    }
+    pub fn QueryMaxLunCreateSize(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints: ?*VDS_HINTS, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryMaxLunCreateSize(self, @"type", pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IVdsSubSystem2_Value = Guid.initString("be666735-7800-4a77-9d9c-40f85b87e292");
+pub const IID_IVdsSubSystem2 = &IID_IVdsSubSystem2_Value;
+pub const IVdsSubSystem2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperties2: *const fn(
+            self: *const IVdsSubSystem2,
+            pSubSystemProp2: ?*VDS_SUB_SYSTEM_PROP2,
+        ) callconv(.winapi) HRESULT,
+        GetDrive2: *const fn(
+            self: *const IVdsSubSystem2,
+            sBusNumber: i16,
+            sSlotNumber: i16,
+            ulEnclosureNumber: u32,
+            ppDrive: ?*?*IVdsDrive,
+        ) callconv(.winapi) HRESULT,
+        CreateLun2: *const fn(
+            self: *const IVdsSubSystem2,
+            type: VDS_LUN_TYPE,
+            ullSizeInBytes: u64,
+            pDriveIdArray: ?[*]Guid,
+            lNumberOfDrives: i32,
+            pwszUnmaskingList: ?PWSTR,
+            pHints2: ?*VDS_HINTS2,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        QueryMaxLunCreateSize2: *const fn(
+            self: *const IVdsSubSystem2,
+            type: VDS_LUN_TYPE,
+            pDriveIdArray: ?[*]Guid,
+            lNumberOfDrives: i32,
+            pHints2: ?*VDS_HINTS2,
+            pullMaxLunSize: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProperties2(self: *const IVdsSubSystem2, pSubSystemProp2: ?*VDS_SUB_SYSTEM_PROP2) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperties2(self, pSubSystemProp2);
+    }
+    pub fn GetDrive2(self: *const IVdsSubSystem2, sBusNumber: i16, sSlotNumber: i16, ulEnclosureNumber: u32, ppDrive: ?*?*IVdsDrive) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDrive2(self, sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
+    }
+    pub fn CreateLun2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateLun2(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
+    }
+    pub fn QueryMaxLunCreateSize2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryMaxLunCreateSize2(self, @"type", pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IVdsSubSystemInterconnect_Value = Guid.initString("9e6fa560-c141-477b-83ba-0b6c38f7febf");
+pub const IID_IVdsSubSystemInterconnect = &IID_IVdsSubSystemInterconnect_Value;
+pub const IVdsSubSystemInterconnect = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSupportedInterconnects: *const fn(
+            self: *const IVdsSubSystemInterconnect,
+            pulSupportedInterconnectsFlag: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSupportedInterconnects(self: *const IVdsSubSystemInterconnect, pulSupportedInterconnectsFlag: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSupportedInterconnects(self, pulSupportedInterconnectsFlag);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProviderPrivate_Value = Guid.initString("98f17bf3-9f33-4f12-8714-8b4075092c2e");
-pub const IID_IVdsHwProviderPrivate = &IID_IVdsHwProviderPrivate_Value;
-pub const IVdsHwProviderPrivate = extern union {
+const IID_IVdsSubSystemIscsi_Value = Guid.initString("0027346f-40d0-4b45-8cec-5906dc0380c8");
+pub const IID_IVdsSubSystemIscsi = &IID_IVdsSubSystemIscsi_Value;
+pub const IVdsSubSystemIscsi = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryIfCreatedLun: *const fn(
-            self: *const IVdsHwProviderPrivate,
-            pwszDevicePath: ?PWSTR,
-            pVdsLunInformation: ?*VDS_LUN_INFORMATION,
-            pLunId: ?*Guid,
+        QueryTargets: *const fn(
+            self: *const IVdsSubSystemIscsi,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        QueryPortals: *const fn(
+            self: *const IVdsSubSystemIscsi,
+            ppEnum: ?*?*IEnumVdsObject,
+        ) callconv(.winapi) HRESULT,
+        CreateTarget: *const fn(
+            self: *const IVdsSubSystemIscsi,
+            pwszIscsiName: ?PWSTR,
+            pwszFriendlyName: ?PWSTR,
+            ppAsync: ?*?*IVdsAsync,
+        ) callconv(.winapi) HRESULT,
+        SetIpsecGroupPresharedKey: *const fn(
+            self: *const IVdsSubSystemIscsi,
+            pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryIfCreatedLun(self: *const IVdsHwProviderPrivate, pwszDevicePath: ?PWSTR, pVdsLunInformation: ?*VDS_LUN_INFORMATION, pLunId: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryIfCreatedLun(self, pwszDevicePath, pVdsLunInformation, pLunId);
+    pub fn QueryTargets(self: *const IVdsSubSystemIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryTargets(self, ppEnum);
+    }
+    pub fn QueryPortals(self: *const IVdsSubSystemIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryPortals(self, ppEnum);
+    }
+    pub fn CreateTarget(self: *const IVdsSubSystemIscsi, pwszIscsiName: ?PWSTR, pwszFriendlyName: ?PWSTR, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTarget(self, pwszIscsiName, pwszFriendlyName, ppAsync);
+    }
+    pub fn SetIpsecGroupPresharedKey(self: *const IVdsSubSystemIscsi, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIpsecGroupPresharedKey(self, pIpsecKey);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProviderPrivateMpio_Value = Guid.initString("310a7715-ac2b-4c6f-9827-3d742f351676");
-pub const IID_IVdsHwProviderPrivateMpio = &IID_IVdsHwProviderPrivateMpio_Value;
-pub const IVdsHwProviderPrivateMpio = extern union {
+const IID_IVdsSubSystemNaming_Value = Guid.initString("0d70faa3-9cd4-4900-aa20-6981b6aafc75");
+pub const IID_IVdsSubSystemNaming = &IID_IVdsSubSystemNaming_Value;
+pub const IVdsSubSystemNaming = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllPathStatusesFromHbaPort: *const fn(
-            self: *const IVdsHwProviderPrivateMpio,
-            hbaPortProp: VDS_HBAPORT_PROP,
-            status: VDS_PATH_STATUS,
+        SetFriendlyName: *const fn(
+            self: *const IVdsSubSystemNaming,
+            pwszFriendlyName: ?PWSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllPathStatusesFromHbaPort(self: *const IVdsHwProviderPrivateMpio, hbaPortProp: VDS_HBAPORT_PROP, status: VDS_PATH_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllPathStatusesFromHbaPort(self, hbaPortProp, status);
+    pub fn SetFriendlyName(self: *const IVdsSubSystemNaming, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsAdmin_Value = Guid.initString("d188e97d-85aa-4d33-abc6-26299a10ffc1");
-pub const IID_IVdsAdmin = &IID_IVdsAdmin_Value;
-pub const IVdsAdmin = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterProvider: *const fn(
-            self: *const IVdsAdmin,
-            providerId: Guid,
-            providerClsid: Guid,
-            pwszName: ?PWSTR,
-            type: VDS_PROVIDER_TYPE,
-            pwszMachineName: ?PWSTR,
-            pwszVersion: ?PWSTR,
-            guidVersionId: Guid,
-        ) callconv(.winapi) HRESULT,
-        UnregisterProvider: *const fn(
-            self: *const IVdsAdmin,
-            providerId: Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterProvider(self: *const IVdsAdmin, providerId: Guid, providerClsid: Guid, pwszName: ?PWSTR, @"type": VDS_PROVIDER_TYPE, pwszMachineName: ?PWSTR, pwszVersion: ?PWSTR, guidVersionId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterProvider(self, providerId, providerClsid, pwszName, @"type", pwszMachineName, pwszVersion, guidVersionId);
-    }
-    pub fn UnregisterProvider(self: *const IVdsAdmin, providerId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterProvider(self, providerId);
-    }
+pub const VDS_ASYNC_OUTPUT = extern struct {
+    type: VDS_ASYNC_OUTPUT_TYPE,
+    Anonymous: extern union {
+        pub const _bvp = extern struct {
+            pVolumeUnk: ?*IUnknown,
+        };
+        pub const _cl = extern struct {
+            pLunUnk: ?*IUnknown,
+        };
+        pub const _cp = extern struct {
+            ullOffset: u64,
+            volumeId: Guid,
+        };
+        pub const _cpg = extern struct {
+            pPortalGroupUnk: ?*IUnknown,
+        };
+        pub const _ct = extern struct {
+            pTargetUnk: ?*IUnknown,
+        };
+        pub const _cv = extern struct {
+            pVolumeUnk: ?*IUnknown,
+        };
+        pub const _cvd = extern struct {
+            pVDiskUnk: ?*IUnknown,
+        };
+        pub const _sv = extern struct {
+            ullReclaimedBytes: u64,
+        };
+        cp: _cp,
+        cv: _cv,
+        bvp: _bvp,
+        sv: _sv,
+        cl: _cl,
+        ct: _ct,
+        cpg: _cpg,
+        cvd: _cvd,
+    },
+};
+
+pub const VDS_ASYNC_OUTPUT_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    CREATEVOLUME = 1,
+    EXTENDVOLUME = 2,
+    SHRINKVOLUME = 3,
+    ADDVOLUMEPLEX = 4,
+    BREAKVOLUMEPLEX = 5,
+    REMOVEVOLUMEPLEX = 6,
+    REPAIRVOLUMEPLEX = 7,
+    RECOVERPACK = 8,
+    REPLACEDISK = 9,
+    CREATEPARTITION = 10,
+    CLEAN = 11,
+    CREATELUN = 50,
+    ADDLUNPLEX = 52,
+    REMOVELUNPLEX = 53,
+    EXTENDLUN = 54,
+    SHRINKLUN = 55,
+    RECOVERLUN = 56,
+    LOGINTOTARGET = 60,
+    LOGOUTFROMTARGET = 61,
+    CREATETARGET = 62,
+    CREATEPORTALGROUP = 63,
+    DELETETARGET = 64,
+    ADDPORTAL = 65,
+    REMOVEPORTAL = 66,
+    DELETEPORTALGROUP = 67,
+    FORMAT = 101,
+    CREATE_VDISK = 200,
+    ATTACH_VDISK = 201,
+    COMPACT_VDISK = 202,
+    MERGE_VDISK = 203,
+    EXPAND_VDISK = 204,
+};
+pub const VDS_ASYNCOUT_UNKNOWN = VDS_ASYNC_OUTPUT_TYPE.UNKNOWN;
+pub const VDS_ASYNCOUT_CREATEVOLUME = VDS_ASYNC_OUTPUT_TYPE.CREATEVOLUME;
+pub const VDS_ASYNCOUT_EXTENDVOLUME = VDS_ASYNC_OUTPUT_TYPE.EXTENDVOLUME;
+pub const VDS_ASYNCOUT_SHRINKVOLUME = VDS_ASYNC_OUTPUT_TYPE.SHRINKVOLUME;
+pub const VDS_ASYNCOUT_ADDVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.ADDVOLUMEPLEX;
+pub const VDS_ASYNCOUT_BREAKVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.BREAKVOLUMEPLEX;
+pub const VDS_ASYNCOUT_REMOVEVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.REMOVEVOLUMEPLEX;
+pub const VDS_ASYNCOUT_REPAIRVOLUMEPLEX = VDS_ASYNC_OUTPUT_TYPE.REPAIRVOLUMEPLEX;
+pub const VDS_ASYNCOUT_RECOVERPACK = VDS_ASYNC_OUTPUT_TYPE.RECOVERPACK;
+pub const VDS_ASYNCOUT_REPLACEDISK = VDS_ASYNC_OUTPUT_TYPE.REPLACEDISK;
+pub const VDS_ASYNCOUT_CREATEPARTITION = VDS_ASYNC_OUTPUT_TYPE.CREATEPARTITION;
+pub const VDS_ASYNCOUT_CLEAN = VDS_ASYNC_OUTPUT_TYPE.CLEAN;
+pub const VDS_ASYNCOUT_CREATELUN = VDS_ASYNC_OUTPUT_TYPE.CREATELUN;
+pub const VDS_ASYNCOUT_ADDLUNPLEX = VDS_ASYNC_OUTPUT_TYPE.ADDLUNPLEX;
+pub const VDS_ASYNCOUT_REMOVELUNPLEX = VDS_ASYNC_OUTPUT_TYPE.REMOVELUNPLEX;
+pub const VDS_ASYNCOUT_EXTENDLUN = VDS_ASYNC_OUTPUT_TYPE.EXTENDLUN;
+pub const VDS_ASYNCOUT_SHRINKLUN = VDS_ASYNC_OUTPUT_TYPE.SHRINKLUN;
+pub const VDS_ASYNCOUT_RECOVERLUN = VDS_ASYNC_OUTPUT_TYPE.RECOVERLUN;
+pub const VDS_ASYNCOUT_LOGINTOTARGET = VDS_ASYNC_OUTPUT_TYPE.LOGINTOTARGET;
+pub const VDS_ASYNCOUT_LOGOUTFROMTARGET = VDS_ASYNC_OUTPUT_TYPE.LOGOUTFROMTARGET;
+pub const VDS_ASYNCOUT_CREATETARGET = VDS_ASYNC_OUTPUT_TYPE.CREATETARGET;
+pub const VDS_ASYNCOUT_CREATEPORTALGROUP = VDS_ASYNC_OUTPUT_TYPE.CREATEPORTALGROUP;
+pub const VDS_ASYNCOUT_DELETETARGET = VDS_ASYNC_OUTPUT_TYPE.DELETETARGET;
+pub const VDS_ASYNCOUT_ADDPORTAL = VDS_ASYNC_OUTPUT_TYPE.ADDPORTAL;
+pub const VDS_ASYNCOUT_REMOVEPORTAL = VDS_ASYNC_OUTPUT_TYPE.REMOVEPORTAL;
+pub const VDS_ASYNCOUT_DELETEPORTALGROUP = VDS_ASYNC_OUTPUT_TYPE.DELETEPORTALGROUP;
+pub const VDS_ASYNCOUT_FORMAT = VDS_ASYNC_OUTPUT_TYPE.FORMAT;
+pub const VDS_ASYNCOUT_CREATE_VDISK = VDS_ASYNC_OUTPUT_TYPE.CREATE_VDISK;
+pub const VDS_ASYNCOUT_ATTACH_VDISK = VDS_ASYNC_OUTPUT_TYPE.ATTACH_VDISK;
+pub const VDS_ASYNCOUT_COMPACT_VDISK = VDS_ASYNC_OUTPUT_TYPE.COMPACT_VDISK;
+pub const VDS_ASYNCOUT_MERGE_VDISK = VDS_ASYNC_OUTPUT_TYPE.MERGE_VDISK;
+pub const VDS_ASYNCOUT_EXPAND_VDISK = VDS_ASYNC_OUTPUT_TYPE.EXPAND_VDISK;
+
+pub const VDS_CONTROLLER_NOTIFICATION = extern struct {
+    ulEvent: VDS_NF_CONTROLLER,
+    controllerId: Guid,
+};
+
+pub const VDS_CONTROLLER_PROP = extern struct {
+    id: Guid,
+    pwszFriendlyName: ?PWSTR,
+    pwszIdentification: ?PWSTR,
+    status: VDS_CONTROLLER_STATUS,
+    health: VDS_HEALTH,
+    sNumberOfPorts: i16,
+};
+
+pub const VDS_CONTROLLER_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+    FAILED = 5,
+    REMOVED = 8,
+};
+pub const VDS_CS_UNKNOWN = VDS_CONTROLLER_STATUS.UNKNOWN;
+pub const VDS_CS_ONLINE = VDS_CONTROLLER_STATUS.ONLINE;
+pub const VDS_CS_NOT_READY = VDS_CONTROLLER_STATUS.NOT_READY;
+pub const VDS_CS_OFFLINE = VDS_CONTROLLER_STATUS.OFFLINE;
+pub const VDS_CS_FAILED = VDS_CONTROLLER_STATUS.FAILED;
+pub const VDS_CS_REMOVED = VDS_CONTROLLER_STATUS.REMOVED;
+
+pub const VDS_DISK_NOTIFICATION = extern struct {
+    ulEvent: VDS_NF_DISK,
+    diskId: Guid,
+};
+
+pub const VDS_DRIVE_EXTENT = extern struct {
+    id: Guid,
+    LunId: Guid,
+    ullSize: u64,
+    bUsed: BOOL,
+};
+
+pub const VDS_DRIVE_FLAG = enum(i32) {
+    HOTSPARE = 1,
+    ASSIGNED = 2,
+    UNASSIGNED = 4,
+    HOTSPARE_IN_USE = 8,
+    HOTSPARE_STANDBY = 16,
+};
+pub const VDS_DRF_HOTSPARE = VDS_DRIVE_FLAG.HOTSPARE;
+pub const VDS_DRF_ASSIGNED = VDS_DRIVE_FLAG.ASSIGNED;
+pub const VDS_DRF_UNASSIGNED = VDS_DRIVE_FLAG.UNASSIGNED;
+pub const VDS_DRF_HOTSPARE_IN_USE = VDS_DRIVE_FLAG.HOTSPARE_IN_USE;
+pub const VDS_DRF_HOTSPARE_STANDBY = VDS_DRIVE_FLAG.HOTSPARE_STANDBY;
+
+pub const VDS_DRIVE_LETTER_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    wcLetter: u16,
+    volumeId: Guid,
+};
+
+pub const VDS_DRIVE_NOTIFICATION = extern struct {
+    ulEvent: VDS_NF_DRIVE,
+    driveId: Guid,
+};
+
+pub const VDS_DRIVE_PROP = extern struct {
+    id: Guid,
+    ullSize: u64,
+    pwszFriendlyName: ?PWSTR,
+    pwszIdentification: ?PWSTR,
+    ulFlags: u32,
+    status: VDS_DRIVE_STATUS,
+    health: VDS_HEALTH,
+    sInternalBusNumber: i16,
+    sSlotNumber: i16,
+};
+
+pub const VDS_DRIVE_PROP2 = extern struct {
+    id: Guid,
+    ullSize: u64,
+    pwszFriendlyName: ?PWSTR,
+    pwszIdentification: ?PWSTR,
+    ulFlags: u32,
+    status: VDS_DRIVE_STATUS,
+    health: VDS_HEALTH,
+    sInternalBusNumber: i16,
+    sSlotNumber: i16,
+    ulEnclosureNumber: u32,
+    busType: VDS_STORAGE_BUS_TYPE,
+    ulSpindleSpeed: u32,
+};
+
+pub const VDS_DRIVE_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+    FAILED = 5,
+    REMOVED = 8,
+};
+pub const VDS_DRS_UNKNOWN = VDS_DRIVE_STATUS.UNKNOWN;
+pub const VDS_DRS_ONLINE = VDS_DRIVE_STATUS.ONLINE;
+pub const VDS_DRS_NOT_READY = VDS_DRIVE_STATUS.NOT_READY;
+pub const VDS_DRS_OFFLINE = VDS_DRIVE_STATUS.OFFLINE;
+pub const VDS_DRS_FAILED = VDS_DRIVE_STATUS.FAILED;
+pub const VDS_DRS_REMOVED = VDS_DRIVE_STATUS.REMOVED;
+
+pub const VDS_FILE_SYSTEM_NOTIFICATION = extern struct {
+    ulEvent: VDS_NF_FILE_SYSTEM,
+    volumeId: Guid,
+    dwPercentCompleted: u32,
+};
+
+pub const VDS_FILE_SYSTEM_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    RAW = 1,
+    FAT = 2,
+    FAT32 = 3,
+    NTFS = 4,
+    CDFS = 5,
+    UDF = 6,
+    EXFAT = 7,
+    CSVFS = 8,
+    REFS = 9,
+};
+pub const VDS_FST_UNKNOWN = VDS_FILE_SYSTEM_TYPE.UNKNOWN;
+pub const VDS_FST_RAW = VDS_FILE_SYSTEM_TYPE.RAW;
+pub const VDS_FST_FAT = VDS_FILE_SYSTEM_TYPE.FAT;
+pub const VDS_FST_FAT32 = VDS_FILE_SYSTEM_TYPE.FAT32;
+pub const VDS_FST_NTFS = VDS_FILE_SYSTEM_TYPE.NTFS;
+pub const VDS_FST_CDFS = VDS_FILE_SYSTEM_TYPE.CDFS;
+pub const VDS_FST_UDF = VDS_FILE_SYSTEM_TYPE.UDF;
+pub const VDS_FST_EXFAT = VDS_FILE_SYSTEM_TYPE.EXFAT;
+pub const VDS_FST_CSVFS = VDS_FILE_SYSTEM_TYPE.CSVFS;
+pub const VDS_FST_REFS = VDS_FILE_SYSTEM_TYPE.REFS;
+
+pub const VDS_HBAPORT_PROP = extern struct {
+    id: Guid,
+    wwnNode: VDS_WWN,
+    wwnPort: VDS_WWN,
+    type: VDS_HBAPORT_TYPE,
+    status: VDS_HBAPORT_STATUS,
+    ulPortSpeed: u32,
+    ulSupportedPortSpeed: u32,
+};
+
+pub const VDS_HBAPORT_SPEED_FLAG = enum(i32) {
+    UNKNOWN = 0,
+    @"1GBIT" = 1,
+    @"2GBIT" = 2,
+    @"10GBIT" = 4,
+    @"4GBIT" = 8,
+    NOT_NEGOTIATED = 32768,
+};
+pub const VDS_HSF_UNKNOWN = VDS_HBAPORT_SPEED_FLAG.UNKNOWN;
+pub const VDS_HSF_1GBIT = VDS_HBAPORT_SPEED_FLAG.@"1GBIT";
+pub const VDS_HSF_2GBIT = VDS_HBAPORT_SPEED_FLAG.@"2GBIT";
+pub const VDS_HSF_10GBIT = VDS_HBAPORT_SPEED_FLAG.@"10GBIT";
+pub const VDS_HSF_4GBIT = VDS_HBAPORT_SPEED_FLAG.@"4GBIT";
+pub const VDS_HSF_NOT_NEGOTIATED = VDS_HBAPORT_SPEED_FLAG.NOT_NEGOTIATED;
+
+pub const VDS_HBAPORT_STATUS = enum(i32) {
+    UNKNOWN = 1,
+    ONLINE = 2,
+    OFFLINE = 3,
+    BYPASSED = 4,
+    DIAGNOSTICS = 5,
+    LINKDOWN = 6,
+    ERROR = 7,
+    LOOPBACK = 8,
+};
+pub const VDS_HPS_UNKNOWN = VDS_HBAPORT_STATUS.UNKNOWN;
+pub const VDS_HPS_ONLINE = VDS_HBAPORT_STATUS.ONLINE;
+pub const VDS_HPS_OFFLINE = VDS_HBAPORT_STATUS.OFFLINE;
+pub const VDS_HPS_BYPASSED = VDS_HBAPORT_STATUS.BYPASSED;
+pub const VDS_HPS_DIAGNOSTICS = VDS_HBAPORT_STATUS.DIAGNOSTICS;
+pub const VDS_HPS_LINKDOWN = VDS_HBAPORT_STATUS.LINKDOWN;
+pub const VDS_HPS_ERROR = VDS_HBAPORT_STATUS.ERROR;
+pub const VDS_HPS_LOOPBACK = VDS_HBAPORT_STATUS.LOOPBACK;
+
+pub const VDS_HBAPORT_TYPE = enum(i32) {
+    UNKNOWN = 1,
+    OTHER = 2,
+    NOTPRESENT = 3,
+    NPORT = 5,
+    NLPORT = 6,
+    FLPORT = 7,
+    FPORT = 8,
+    EPORT = 9,
+    GPORT = 10,
+    LPORT = 20,
+    PTP = 21,
+};
+pub const VDS_HPT_UNKNOWN = VDS_HBAPORT_TYPE.UNKNOWN;
+pub const VDS_HPT_OTHER = VDS_HBAPORT_TYPE.OTHER;
+pub const VDS_HPT_NOTPRESENT = VDS_HBAPORT_TYPE.NOTPRESENT;
+pub const VDS_HPT_NPORT = VDS_HBAPORT_TYPE.NPORT;
+pub const VDS_HPT_NLPORT = VDS_HBAPORT_TYPE.NLPORT;
+pub const VDS_HPT_FLPORT = VDS_HBAPORT_TYPE.FLPORT;
+pub const VDS_HPT_FPORT = VDS_HBAPORT_TYPE.FPORT;
+pub const VDS_HPT_EPORT = VDS_HBAPORT_TYPE.EPORT;
+pub const VDS_HPT_GPORT = VDS_HBAPORT_TYPE.GPORT;
+pub const VDS_HPT_LPORT = VDS_HBAPORT_TYPE.LPORT;
+pub const VDS_HPT_PTP = VDS_HBAPORT_TYPE.PTP;
+
+pub const VDS_HEALTH = enum(i32) {
+    UNKNOWN = 0,
+    HEALTHY = 1,
+    REBUILDING = 2,
+    STALE = 3,
+    FAILING = 4,
+    FAILING_REDUNDANCY = 5,
+    FAILED_REDUNDANCY = 6,
+    FAILED_REDUNDANCY_FAILING = 7,
+    FAILED = 8,
+    REPLACED = 9,
+    PENDING_FAILURE = 10,
+    DEGRADED = 11,
+};
+pub const VDS_H_UNKNOWN = VDS_HEALTH.UNKNOWN;
+pub const VDS_H_HEALTHY = VDS_HEALTH.HEALTHY;
+pub const VDS_H_REBUILDING = VDS_HEALTH.REBUILDING;
+pub const VDS_H_STALE = VDS_HEALTH.STALE;
+pub const VDS_H_FAILING = VDS_HEALTH.FAILING;
+pub const VDS_H_FAILING_REDUNDANCY = VDS_HEALTH.FAILING_REDUNDANCY;
+pub const VDS_H_FAILED_REDUNDANCY = VDS_HEALTH.FAILED_REDUNDANCY;
+pub const VDS_H_FAILED_REDUNDANCY_FAILING = VDS_HEALTH.FAILED_REDUNDANCY_FAILING;
+pub const VDS_H_FAILED = VDS_HEALTH.FAILED;
+pub const VDS_H_REPLACED = VDS_HEALTH.REPLACED;
+pub const VDS_H_PENDING_FAILURE = VDS_HEALTH.PENDING_FAILURE;
+pub const VDS_H_DEGRADED = VDS_HEALTH.DEGRADED;
+
+pub const VDS_HINTS = extern struct {
+    ullHintMask: u64,
+    ullExpectedMaximumSize: u64,
+    ulOptimalReadSize: u32,
+    ulOptimalReadAlignment: u32,
+    ulOptimalWriteSize: u32,
+    ulOptimalWriteAlignment: u32,
+    ulMaximumDriveCount: u32,
+    ulStripeSize: u32,
+    bFastCrashRecoveryRequired: BOOL,
+    bMostlyReads: BOOL,
+    bOptimizeForSequentialReads: BOOL,
+    bOptimizeForSequentialWrites: BOOL,
+    bRemapEnabled: BOOL,
+    bReadBackVerifyEnabled: BOOL,
+    bWriteThroughCachingEnabled: BOOL,
+    bHardwareChecksumEnabled: BOOL,
+    bIsYankable: BOOL,
+    sRebuildPriority: i16,
+};
+
+pub const VDS_HINTS2 = extern struct {
+    ullHintMask: u64,
+    ullExpectedMaximumSize: u64,
+    ulOptimalReadSize: u32,
+    ulOptimalReadAlignment: u32,
+    ulOptimalWriteSize: u32,
+    ulOptimalWriteAlignment: u32,
+    ulMaximumDriveCount: u32,
+    ulStripeSize: u32,
+    ulReserved1: u32,
+    ulReserved2: u32,
+    ulReserved3: u32,
+    bFastCrashRecoveryRequired: BOOL,
+    bMostlyReads: BOOL,
+    bOptimizeForSequentialReads: BOOL,
+    bOptimizeForSequentialWrites: BOOL,
+    bRemapEnabled: BOOL,
+    bReadBackVerifyEnabled: BOOL,
+    bWriteThroughCachingEnabled: BOOL,
+    bHardwareChecksumEnabled: BOOL,
+    bIsYankable: BOOL,
+    bAllocateHotSpare: BOOL,
+    bUseMirroredCache: BOOL,
+    bReadCachingEnabled: BOOL,
+    bWriteCachingEnabled: BOOL,
+    bMediaScanEnabled: BOOL,
+    bConsistencyCheckEnabled: BOOL,
+    BusType: VDS_STORAGE_BUS_TYPE,
+    bReserved1: BOOL,
+    bReserved2: BOOL,
+    bReserved3: BOOL,
+    sRebuildPriority: i16,
+};
+
+pub const VDS_HWPROVIDER_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    PCI_RAID = 1,
+    FIBRE_CHANNEL = 2,
+    ISCSI = 3,
+    SAS = 4,
+    HYBRID = 5,
+};
+pub const VDS_HWT_UNKNOWN = VDS_HWPROVIDER_TYPE.UNKNOWN;
+pub const VDS_HWT_PCI_RAID = VDS_HWPROVIDER_TYPE.PCI_RAID;
+pub const VDS_HWT_FIBRE_CHANNEL = VDS_HWPROVIDER_TYPE.FIBRE_CHANNEL;
+pub const VDS_HWT_ISCSI = VDS_HWPROVIDER_TYPE.ISCSI;
+pub const VDS_HWT_SAS = VDS_HWPROVIDER_TYPE.SAS;
+pub const VDS_HWT_HYBRID = VDS_HWPROVIDER_TYPE.HYBRID;
+
+pub const VDS_INTERCONNECT = extern struct {
+    m_addressType: VDS_INTERCONNECT_ADDRESS_TYPE,
+    m_cbPort: u32,
+    m_pbPort: ?*u8,
+    m_cbAddress: u32,
+    m_pbAddress: ?*u8,
+};
+
+pub const VDS_INTERCONNECT_ADDRESS_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    FCFS = 1,
+    FCPH = 2,
+    FCPH3 = 3,
+    MAC = 4,
+    SCSI = 5,
+};
+pub const VDS_IA_UNKNOWN = VDS_INTERCONNECT_ADDRESS_TYPE.UNKNOWN;
+pub const VDS_IA_FCFS = VDS_INTERCONNECT_ADDRESS_TYPE.FCFS;
+pub const VDS_IA_FCPH = VDS_INTERCONNECT_ADDRESS_TYPE.FCPH;
+pub const VDS_IA_FCPH3 = VDS_INTERCONNECT_ADDRESS_TYPE.FCPH3;
+pub const VDS_IA_MAC = VDS_INTERCONNECT_ADDRESS_TYPE.MAC;
+pub const VDS_IA_SCSI = VDS_INTERCONNECT_ADDRESS_TYPE.SCSI;
+
+pub const VDS_INTERCONNECT_FLAG = enum(i32) {
+    PCI_RAID = 1,
+    FIBRE_CHANNEL = 2,
+    ISCSI = 4,
+    SAS = 8,
+};
+pub const VDS_ITF_PCI_RAID = VDS_INTERCONNECT_FLAG.PCI_RAID;
+pub const VDS_ITF_FIBRE_CHANNEL = VDS_INTERCONNECT_FLAG.FIBRE_CHANNEL;
+pub const VDS_ITF_ISCSI = VDS_INTERCONNECT_FLAG.ISCSI;
+pub const VDS_ITF_SAS = VDS_INTERCONNECT_FLAG.SAS;
+
+pub const VDS_IPADDRESS = extern struct {
+    type: VDS_IPADDRESS_TYPE,
+    ipv4Address: u32,
+    ipv6Address: [16]u8,
+    ulIpv6FlowInfo: u32,
+    ulIpv6ScopeId: u32,
+    wszTextAddress: [257]u16,
+    ulPort: u32,
+};
+
+pub const VDS_IPADDRESS_TYPE = enum(i32) {
+    TEXT = 0,
+    IPV4 = 1,
+    IPV6 = 2,
+    EMPTY = 3,
+};
+pub const VDS_IPT_TEXT = VDS_IPADDRESS_TYPE.TEXT;
+pub const VDS_IPT_IPV4 = VDS_IPADDRESS_TYPE.IPV4;
+pub const VDS_IPT_IPV6 = VDS_IPADDRESS_TYPE.IPV6;
+pub const VDS_IPT_EMPTY = VDS_IPADDRESS_TYPE.EMPTY;
+
+pub const VDS_ISCSI_AUTH_TYPE = enum(i32) {
+    NONE = 0,
+    CHAP = 1,
+    MUTUAL_CHAP = 2,
+};
+pub const VDS_IAT_NONE = VDS_ISCSI_AUTH_TYPE.NONE;
+pub const VDS_IAT_CHAP = VDS_ISCSI_AUTH_TYPE.CHAP;
+pub const VDS_IAT_MUTUAL_CHAP = VDS_ISCSI_AUTH_TYPE.MUTUAL_CHAP;
+
+pub const VDS_ISCSI_INITIATOR_ADAPTER_PROP = extern struct {
+    id: Guid,
+    pwszName: ?PWSTR,
+};
+
+pub const VDS_ISCSI_INITIATOR_PORTAL_PROP = extern struct {
+    id: Guid,
+    address: VDS_IPADDRESS,
+    ulPortIndex: u32,
+};
+
+pub const VDS_ISCSI_IPSEC_FLAG = enum(i32) {
+    VALID = 1,
+    IKE = 2,
+    MAIN_MODE = 4,
+    AGGRESSIVE_MODE = 8,
+    PFS_ENABLE = 16,
+    TRANSPORT_MODE_PREFERRED = 32,
+    TUNNEL_MODE_PREFERRED = 64,
+};
+pub const VDS_IIF_VALID = VDS_ISCSI_IPSEC_FLAG.VALID;
+pub const VDS_IIF_IKE = VDS_ISCSI_IPSEC_FLAG.IKE;
+pub const VDS_IIF_MAIN_MODE = VDS_ISCSI_IPSEC_FLAG.MAIN_MODE;
+pub const VDS_IIF_AGGRESSIVE_MODE = VDS_ISCSI_IPSEC_FLAG.AGGRESSIVE_MODE;
+pub const VDS_IIF_PFS_ENABLE = VDS_ISCSI_IPSEC_FLAG.PFS_ENABLE;
+pub const VDS_IIF_TRANSPORT_MODE_PREFERRED = VDS_ISCSI_IPSEC_FLAG.TRANSPORT_MODE_PREFERRED;
+pub const VDS_IIF_TUNNEL_MODE_PREFERRED = VDS_ISCSI_IPSEC_FLAG.TUNNEL_MODE_PREFERRED;
+
+pub const VDS_ISCSI_IPSEC_KEY = extern struct {
+    pKey: ?*u8,
+    ulKeySize: u32,
+};
+
+pub const VDS_ISCSI_LOGIN_FLAG = enum(i32) {
+    REQUIRE_IPSEC = 1,
+    MULTIPATH_ENABLED = 2,
+};
+pub const VDS_ILF_REQUIRE_IPSEC = VDS_ISCSI_LOGIN_FLAG.REQUIRE_IPSEC;
+pub const VDS_ILF_MULTIPATH_ENABLED = VDS_ISCSI_LOGIN_FLAG.MULTIPATH_ENABLED;
+
+pub const VDS_ISCSI_LOGIN_TYPE = enum(i32) {
+    MANUAL = 0,
+    PERSISTENT = 1,
+    BOOT = 2,
+};
+pub const VDS_ILT_MANUAL = VDS_ISCSI_LOGIN_TYPE.MANUAL;
+pub const VDS_ILT_PERSISTENT = VDS_ISCSI_LOGIN_TYPE.PERSISTENT;
+pub const VDS_ILT_BOOT = VDS_ISCSI_LOGIN_TYPE.BOOT;
+
+pub const VDS_ISCSI_PORTAL_PROP = extern struct {
+    id: Guid,
+    address: VDS_IPADDRESS,
+    status: VDS_ISCSI_PORTAL_STATUS,
+};
+
+pub const VDS_ISCSI_PORTAL_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+    FAILED = 5,
+};
+pub const VDS_IPS_UNKNOWN = VDS_ISCSI_PORTAL_STATUS.UNKNOWN;
+pub const VDS_IPS_ONLINE = VDS_ISCSI_PORTAL_STATUS.ONLINE;
+pub const VDS_IPS_NOT_READY = VDS_ISCSI_PORTAL_STATUS.NOT_READY;
+pub const VDS_IPS_OFFLINE = VDS_ISCSI_PORTAL_STATUS.OFFLINE;
+pub const VDS_IPS_FAILED = VDS_ISCSI_PORTAL_STATUS.FAILED;
+
+pub const VDS_ISCSI_PORTALGROUP_PROP = extern struct {
+    id: Guid,
+    tag: u16,
+};
+
+pub const VDS_ISCSI_SHARED_SECRET = extern struct {
+    pSharedSecret: ?*u8,
+    ulSharedSecretSize: u32,
+};
+
+pub const VDS_ISCSI_TARGET_PROP = extern struct {
+    id: Guid,
+    pwszIscsiName: ?PWSTR,
+    pwszFriendlyName: ?PWSTR,
+    bChapEnabled: BOOL,
+};
+
+pub const VDS_LOADBALANCE_POLICY_ENUM = enum(i32) {
+    UNKNOWN = 0,
+    FAILOVER = 1,
+    ROUND_ROBIN = 2,
+    ROUND_ROBIN_WITH_SUBSET = 3,
+    DYN_LEAST_QUEUE_DEPTH = 4,
+    WEIGHTED_PATHS = 5,
+    LEAST_BLOCKS = 6,
+    VENDOR_SPECIFIC = 7,
+};
+pub const VDS_LBP_UNKNOWN = VDS_LOADBALANCE_POLICY_ENUM.UNKNOWN;
+pub const VDS_LBP_FAILOVER = VDS_LOADBALANCE_POLICY_ENUM.FAILOVER;
+pub const VDS_LBP_ROUND_ROBIN = VDS_LOADBALANCE_POLICY_ENUM.ROUND_ROBIN;
+pub const VDS_LBP_ROUND_ROBIN_WITH_SUBSET = VDS_LOADBALANCE_POLICY_ENUM.ROUND_ROBIN_WITH_SUBSET;
+pub const VDS_LBP_DYN_LEAST_QUEUE_DEPTH = VDS_LOADBALANCE_POLICY_ENUM.DYN_LEAST_QUEUE_DEPTH;
+pub const VDS_LBP_WEIGHTED_PATHS = VDS_LOADBALANCE_POLICY_ENUM.WEIGHTED_PATHS;
+pub const VDS_LBP_LEAST_BLOCKS = VDS_LOADBALANCE_POLICY_ENUM.LEAST_BLOCKS;
+pub const VDS_LBP_VENDOR_SPECIFIC = VDS_LOADBALANCE_POLICY_ENUM.VENDOR_SPECIFIC;
+
+pub const VDS_LUN_FLAG = enum(i32) {
+    LBN_REMAP_ENABLED = 1,
+    READ_BACK_VERIFY_ENABLED = 2,
+    WRITE_THROUGH_CACHING_ENABLED = 4,
+    HARDWARE_CHECKSUM_ENABLED = 8,
+    READ_CACHE_ENABLED = 16,
+    WRITE_CACHE_ENABLED = 32,
+    MEDIA_SCAN_ENABLED = 64,
+    CONSISTENCY_CHECK_ENABLED = 128,
+    SNAPSHOT = 256,
+};
+pub const VDS_LF_LBN_REMAP_ENABLED = VDS_LUN_FLAG.LBN_REMAP_ENABLED;
+pub const VDS_LF_READ_BACK_VERIFY_ENABLED = VDS_LUN_FLAG.READ_BACK_VERIFY_ENABLED;
+pub const VDS_LF_WRITE_THROUGH_CACHING_ENABLED = VDS_LUN_FLAG.WRITE_THROUGH_CACHING_ENABLED;
+pub const VDS_LF_HARDWARE_CHECKSUM_ENABLED = VDS_LUN_FLAG.HARDWARE_CHECKSUM_ENABLED;
+pub const VDS_LF_READ_CACHE_ENABLED = VDS_LUN_FLAG.READ_CACHE_ENABLED;
+pub const VDS_LF_WRITE_CACHE_ENABLED = VDS_LUN_FLAG.WRITE_CACHE_ENABLED;
+pub const VDS_LF_MEDIA_SCAN_ENABLED = VDS_LUN_FLAG.MEDIA_SCAN_ENABLED;
+pub const VDS_LF_CONSISTENCY_CHECK_ENABLED = VDS_LUN_FLAG.CONSISTENCY_CHECK_ENABLED;
+pub const VDS_LF_SNAPSHOT = VDS_LUN_FLAG.SNAPSHOT;
+
+pub const VDS_LUN_INFORMATION = extern struct {
+    m_version: u32,
+    m_DeviceType: u8,
+    m_DeviceTypeModifier: u8,
+    m_bCommandQueueing: BOOL,
+    m_BusType: VDS_STORAGE_BUS_TYPE,
+    m_szVendorId: ?*u8,
+    m_szProductId: ?*u8,
+    m_szProductRevision: ?*u8,
+    m_szSerialNumber: ?*u8,
+    m_diskSignature: Guid,
+    m_deviceIdDescriptor: VDS_STORAGE_DEVICE_ID_DESCRIPTOR,
+    m_cInterconnects: u32,
+    m_rgInterconnects: ?*VDS_INTERCONNECT,
+};
+
+pub const VDS_LUN_NOTIFICATION = extern struct {
+    ulEvent: VDS_NF_LUN,
+    LunId: Guid,
+};
+
+pub const VDS_LUN_PLEX_FLAG = enum(i32) {
+    D = 1,
+};
+pub const VDS_LPF_LBN_REMAP_ENABLED = VDS_LUN_PLEX_FLAG.D;
+
+pub const VDS_LUN_PLEX_PROP = extern struct {
+    id: Guid,
+    ullSize: u64,
+    type: VDS_LUN_PLEX_TYPE,
+    status: VDS_LUN_PLEX_STATUS,
+    health: VDS_HEALTH,
+    TransitionState: VDS_TRANSITION_STATE,
+    ulFlags: u32,
+    ulStripeSize: u32,
+    sRebuildPriority: i16,
+};
+
+pub const VDS_LUN_PLEX_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+    FAILED = 5,
+};
+pub const VDS_LPS_UNKNOWN = VDS_LUN_PLEX_STATUS.UNKNOWN;
+pub const VDS_LPS_ONLINE = VDS_LUN_PLEX_STATUS.ONLINE;
+pub const VDS_LPS_NOT_READY = VDS_LUN_PLEX_STATUS.NOT_READY;
+pub const VDS_LPS_OFFLINE = VDS_LUN_PLEX_STATUS.OFFLINE;
+pub const VDS_LPS_FAILED = VDS_LUN_PLEX_STATUS.FAILED;
+
+pub const VDS_LUN_PLEX_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    SIMPLE = 10,
+    SPAN = 11,
+    STRIPE = 12,
+    PARITY = 14,
+    RAID2 = 15,
+    RAID3 = 16,
+    RAID4 = 17,
+    RAID5 = 18,
+    RAID6 = 19,
+    RAID03 = 21,
+    RAID05 = 22,
+    RAID10 = 23,
+    RAID15 = 24,
+    RAID30 = 25,
+    RAID50 = 26,
+    RAID53 = 28,
+    RAID60 = 29,
+};
+pub const VDS_LPT_UNKNOWN = VDS_LUN_PLEX_TYPE.UNKNOWN;
+pub const VDS_LPT_SIMPLE = VDS_LUN_PLEX_TYPE.SIMPLE;
+pub const VDS_LPT_SPAN = VDS_LUN_PLEX_TYPE.SPAN;
+pub const VDS_LPT_STRIPE = VDS_LUN_PLEX_TYPE.STRIPE;
+pub const VDS_LPT_PARITY = VDS_LUN_PLEX_TYPE.PARITY;
+pub const VDS_LPT_RAID2 = VDS_LUN_PLEX_TYPE.RAID2;
+pub const VDS_LPT_RAID3 = VDS_LUN_PLEX_TYPE.RAID3;
+pub const VDS_LPT_RAID4 = VDS_LUN_PLEX_TYPE.RAID4;
+pub const VDS_LPT_RAID5 = VDS_LUN_PLEX_TYPE.RAID5;
+pub const VDS_LPT_RAID6 = VDS_LUN_PLEX_TYPE.RAID6;
+pub const VDS_LPT_RAID03 = VDS_LUN_PLEX_TYPE.RAID03;
+pub const VDS_LPT_RAID05 = VDS_LUN_PLEX_TYPE.RAID05;
+pub const VDS_LPT_RAID10 = VDS_LUN_PLEX_TYPE.RAID10;
+pub const VDS_LPT_RAID15 = VDS_LUN_PLEX_TYPE.RAID15;
+pub const VDS_LPT_RAID30 = VDS_LUN_PLEX_TYPE.RAID30;
+pub const VDS_LPT_RAID50 = VDS_LUN_PLEX_TYPE.RAID50;
+pub const VDS_LPT_RAID53 = VDS_LUN_PLEX_TYPE.RAID53;
+pub const VDS_LPT_RAID60 = VDS_LUN_PLEX_TYPE.RAID60;
+
+pub const VDS_LUN_PROP = extern struct {
+    id: Guid,
+    ullSize: u64,
+    pwszFriendlyName: ?PWSTR,
+    pwszIdentification: ?PWSTR,
+    pwszUnmaskingList: ?PWSTR,
+    ulFlags: u32,
+    type: VDS_LUN_TYPE,
+    status: VDS_LUN_STATUS,
+    health: VDS_HEALTH,
+    TransitionState: VDS_TRANSITION_STATE,
+    sRebuildPriority: i16,
+};
+
+pub const VDS_LUN_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+    FAILED = 5,
+};
+pub const VDS_LS_UNKNOWN = VDS_LUN_STATUS.UNKNOWN;
+pub const VDS_LS_ONLINE = VDS_LUN_STATUS.ONLINE;
+pub const VDS_LS_NOT_READY = VDS_LUN_STATUS.NOT_READY;
+pub const VDS_LS_OFFLINE = VDS_LUN_STATUS.OFFLINE;
+pub const VDS_LS_FAILED = VDS_LUN_STATUS.FAILED;
+
+pub const VDS_LUN_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    DEFAULT = 1,
+    FAULT_TOLERANT = 2,
+    NON_FAULT_TOLERANT = 3,
+    SIMPLE = 10,
+    SPAN = 11,
+    STRIPE = 12,
+    MIRROR = 13,
+    PARITY = 14,
+    RAID2 = 15,
+    RAID3 = 16,
+    RAID4 = 17,
+    RAID5 = 18,
+    RAID6 = 19,
+    RAID01 = 20,
+    RAID03 = 21,
+    RAID05 = 22,
+    RAID10 = 23,
+    RAID15 = 24,
+    RAID30 = 25,
+    RAID50 = 26,
+    RAID51 = 27,
+    RAID53 = 28,
+    RAID60 = 29,
+    RAID61 = 30,
+};
+pub const VDS_LT_UNKNOWN = VDS_LUN_TYPE.UNKNOWN;
+pub const VDS_LT_DEFAULT = VDS_LUN_TYPE.DEFAULT;
+pub const VDS_LT_FAULT_TOLERANT = VDS_LUN_TYPE.FAULT_TOLERANT;
+pub const VDS_LT_NON_FAULT_TOLERANT = VDS_LUN_TYPE.NON_FAULT_TOLERANT;
+pub const VDS_LT_SIMPLE = VDS_LUN_TYPE.SIMPLE;
+pub const VDS_LT_SPAN = VDS_LUN_TYPE.SPAN;
+pub const VDS_LT_STRIPE = VDS_LUN_TYPE.STRIPE;
+pub const VDS_LT_MIRROR = VDS_LUN_TYPE.MIRROR;
+pub const VDS_LT_PARITY = VDS_LUN_TYPE.PARITY;
+pub const VDS_LT_RAID2 = VDS_LUN_TYPE.RAID2;
+pub const VDS_LT_RAID3 = VDS_LUN_TYPE.RAID3;
+pub const VDS_LT_RAID4 = VDS_LUN_TYPE.RAID4;
+pub const VDS_LT_RAID5 = VDS_LUN_TYPE.RAID5;
+pub const VDS_LT_RAID6 = VDS_LUN_TYPE.RAID6;
+pub const VDS_LT_RAID01 = VDS_LUN_TYPE.RAID01;
+pub const VDS_LT_RAID03 = VDS_LUN_TYPE.RAID03;
+pub const VDS_LT_RAID05 = VDS_LUN_TYPE.RAID05;
+pub const VDS_LT_RAID10 = VDS_LUN_TYPE.RAID10;
+pub const VDS_LT_RAID15 = VDS_LUN_TYPE.RAID15;
+pub const VDS_LT_RAID30 = VDS_LUN_TYPE.RAID30;
+pub const VDS_LT_RAID50 = VDS_LUN_TYPE.RAID50;
+pub const VDS_LT_RAID51 = VDS_LUN_TYPE.RAID51;
+pub const VDS_LT_RAID53 = VDS_LUN_TYPE.RAID53;
+pub const VDS_LT_RAID60 = VDS_LUN_TYPE.RAID60;
+pub const VDS_LT_RAID61 = VDS_LUN_TYPE.RAID61;
+
+pub const VDS_MAINTENANCE_OPERATION = enum(i32) {
+    BlinkLight = 1,
+    BeepAlarm = 2,
+    SpinDown = 3,
+    SpinUp = 4,
+    Ping = 5,
+};
+pub const BlinkLight = VDS_MAINTENANCE_OPERATION.BlinkLight;
+pub const BeepAlarm = VDS_MAINTENANCE_OPERATION.BeepAlarm;
+pub const SpinDown = VDS_MAINTENANCE_OPERATION.SpinDown;
+pub const SpinUp = VDS_MAINTENANCE_OPERATION.SpinUp;
+pub const Ping = VDS_MAINTENANCE_OPERATION.Ping;
+
+pub const VDS_MOUNT_POINT_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    volumeId: Guid,
+};
+
+pub const VDS_NF_CONTROLLER = enum(u32) {
+    ARRIVE = 103,
+    DEPART = 104,
+    MODIFY = 350,
+    REMOVED = 351,
+};
+pub const VDS_NF_CONTROLLER_ARRIVE = VDS_NF_CONTROLLER.ARRIVE;
+pub const VDS_NF_CONTROLLER_DEPART = VDS_NF_CONTROLLER.DEPART;
+pub const VDS_NF_CONTROLLER_MODIFY = VDS_NF_CONTROLLER.MODIFY;
+pub const VDS_NF_CONTROLLER_REMOVED = VDS_NF_CONTROLLER.REMOVED;
+
+pub const VDS_NF_DISK = enum(u32) {
+    ARRIVE = 8,
+    DEPART = 9,
+    MODIFY = 10,
+};
+pub const VDS_NF_DISK_ARRIVE = VDS_NF_DISK.ARRIVE;
+pub const VDS_NF_DISK_DEPART = VDS_NF_DISK.DEPART;
+pub const VDS_NF_DISK_MODIFY = VDS_NF_DISK.MODIFY;
+
+pub const VDS_NF_DRIVE = enum(u32) {
+    ARRIVE = 105,
+    DEPART = 106,
+    MODIFY = 107,
+    REMOVED = 354,
+};
+pub const VDS_NF_DRIVE_ARRIVE = VDS_NF_DRIVE.ARRIVE;
+pub const VDS_NF_DRIVE_DEPART = VDS_NF_DRIVE.DEPART;
+pub const VDS_NF_DRIVE_MODIFY = VDS_NF_DRIVE.MODIFY;
+pub const VDS_NF_DRIVE_REMOVED = VDS_NF_DRIVE.REMOVED;
+
+pub const VDS_NF_FILE_SYSTEM = enum(u32) {
+    MODIFY = 203,
+    FORMAT_PROGRESS = 204,
+};
+pub const VDS_NF_FILE_SYSTEM_MODIFY = VDS_NF_FILE_SYSTEM.MODIFY;
+pub const VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS = VDS_NF_FILE_SYSTEM.FORMAT_PROGRESS;
+
+pub const VDS_NF_LUN = enum(u32) {
+    ARRIVE = 108,
+    DEPART = 109,
+    MODIFY = 110,
+};
+pub const VDS_NF_LUN_ARRIVE = VDS_NF_LUN.ARRIVE;
+pub const VDS_NF_LUN_DEPART = VDS_NF_LUN.DEPART;
+pub const VDS_NF_LUN_MODIFY = VDS_NF_LUN.MODIFY;
+
+pub const VDS_NF_PACK = enum(u32) {
+    ARRIVE = 1,
+    DEPART = 2,
+    MODIFY = 3,
+};
+pub const VDS_NF_PACK_ARRIVE = VDS_NF_PACK.ARRIVE;
+pub const VDS_NF_PACK_DEPART = VDS_NF_PACK.DEPART;
+pub const VDS_NF_PACK_MODIFY = VDS_NF_PACK.MODIFY;
+
+pub const VDS_NF_PORT = enum(u32) {
+    ARRIVE = 121,
+    DEPART = 122,
+    MODIFY = 352,
+    REMOVED = 353,
+};
+pub const VDS_NF_PORT_ARRIVE = VDS_NF_PORT.ARRIVE;
+pub const VDS_NF_PORT_DEPART = VDS_NF_PORT.DEPART;
+pub const VDS_NF_PORT_MODIFY = VDS_NF_PORT.MODIFY;
+pub const VDS_NF_PORT_REMOVED = VDS_NF_PORT.REMOVED;
+
+pub const VDS_NOTIFICATION = extern struct {
+    objectType: VDS_NOTIFICATION_TARGET_TYPE,
+    Anonymous: extern union {
+        Pack: VDS_PACK_NOTIFICATION,
+        Disk: VDS_DISK_NOTIFICATION,
+        Volume: VDS_VOLUME_NOTIFICATION,
+        Partition: VDS_PARTITION_NOTIFICATION,
+        Letter: VDS_DRIVE_LETTER_NOTIFICATION,
+        FileSystem: VDS_FILE_SYSTEM_NOTIFICATION,
+        MountPoint: VDS_MOUNT_POINT_NOTIFICATION,
+        SubSystem: VDS_SUB_SYSTEM_NOTIFICATION,
+        Controller: VDS_CONTROLLER_NOTIFICATION,
+        Drive: VDS_DRIVE_NOTIFICATION,
+        Lun: VDS_LUN_NOTIFICATION,
+        Port: VDS_PORT_NOTIFICATION,
+        Portal: VDS_PORTAL_NOTIFICATION,
+        Target: VDS_TARGET_NOTIFICATION,
+        PortalGroup: VDS_PORTAL_GROUP_NOTIFICATION,
+        Service: VDS_SERVICE_NOTIFICATION,
+    },
+};
+
+pub const VDS_NOTIFICATION_TARGET_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    PACK = 10,
+    VOLUME = 11,
+    DISK = 13,
+    PARTITION = 60,
+    DRIVE_LETTER = 61,
+    FILE_SYSTEM = 62,
+    MOUNT_POINT = 63,
+    SUB_SYSTEM = 30,
+    CONTROLLER = 31,
+    DRIVE = 32,
+    LUN = 33,
+    PORT = 35,
+    PORTAL = 36,
+    TARGET = 37,
+    PORTAL_GROUP = 38,
+    SERVICE = 200,
+};
+pub const VDS_NTT_UNKNOWN = VDS_NOTIFICATION_TARGET_TYPE.UNKNOWN;
+pub const VDS_NTT_PACK = VDS_NOTIFICATION_TARGET_TYPE.PACK;
+pub const VDS_NTT_VOLUME = VDS_NOTIFICATION_TARGET_TYPE.VOLUME;
+pub const VDS_NTT_DISK = VDS_NOTIFICATION_TARGET_TYPE.DISK;
+pub const VDS_NTT_PARTITION = VDS_NOTIFICATION_TARGET_TYPE.PARTITION;
+pub const VDS_NTT_DRIVE_LETTER = VDS_NOTIFICATION_TARGET_TYPE.DRIVE_LETTER;
+pub const VDS_NTT_FILE_SYSTEM = VDS_NOTIFICATION_TARGET_TYPE.FILE_SYSTEM;
+pub const VDS_NTT_MOUNT_POINT = VDS_NOTIFICATION_TARGET_TYPE.MOUNT_POINT;
+pub const VDS_NTT_SUB_SYSTEM = VDS_NOTIFICATION_TARGET_TYPE.SUB_SYSTEM;
+pub const VDS_NTT_CONTROLLER = VDS_NOTIFICATION_TARGET_TYPE.CONTROLLER;
+pub const VDS_NTT_DRIVE = VDS_NOTIFICATION_TARGET_TYPE.DRIVE;
+pub const VDS_NTT_LUN = VDS_NOTIFICATION_TARGET_TYPE.LUN;
+pub const VDS_NTT_PORT = VDS_NOTIFICATION_TARGET_TYPE.PORT;
+pub const VDS_NTT_PORTAL = VDS_NOTIFICATION_TARGET_TYPE.PORTAL;
+pub const VDS_NTT_TARGET = VDS_NOTIFICATION_TARGET_TYPE.TARGET;
+pub const VDS_NTT_PORTAL_GROUP = VDS_NOTIFICATION_TARGET_TYPE.PORTAL_GROUP;
+pub const VDS_NTT_SERVICE = VDS_NOTIFICATION_TARGET_TYPE.SERVICE;
+
+pub const VDS_OBJECT_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    PROVIDER = 1,
+    PACK = 10,
+    VOLUME = 11,
+    VOLUME_PLEX = 12,
+    DISK = 13,
+    SUB_SYSTEM = 30,
+    CONTROLLER = 31,
+    DRIVE = 32,
+    LUN = 33,
+    LUN_PLEX = 34,
+    PORT = 35,
+    PORTAL = 36,
+    TARGET = 37,
+    PORTAL_GROUP = 38,
+    STORAGE_POOL = 39,
+    HBAPORT = 90,
+    INIT_ADAPTER = 91,
+    INIT_PORTAL = 92,
+    ASYNC = 100,
+    ENUM = 101,
+    VDISK = 200,
+    OPEN_VDISK = 201,
+};
+pub const VDS_OT_UNKNOWN = VDS_OBJECT_TYPE.UNKNOWN;
+pub const VDS_OT_PROVIDER = VDS_OBJECT_TYPE.PROVIDER;
+pub const VDS_OT_PACK = VDS_OBJECT_TYPE.PACK;
+pub const VDS_OT_VOLUME = VDS_OBJECT_TYPE.VOLUME;
+pub const VDS_OT_VOLUME_PLEX = VDS_OBJECT_TYPE.VOLUME_PLEX;
+pub const VDS_OT_DISK = VDS_OBJECT_TYPE.DISK;
+pub const VDS_OT_SUB_SYSTEM = VDS_OBJECT_TYPE.SUB_SYSTEM;
+pub const VDS_OT_CONTROLLER = VDS_OBJECT_TYPE.CONTROLLER;
+pub const VDS_OT_DRIVE = VDS_OBJECT_TYPE.DRIVE;
+pub const VDS_OT_LUN = VDS_OBJECT_TYPE.LUN;
+pub const VDS_OT_LUN_PLEX = VDS_OBJECT_TYPE.LUN_PLEX;
+pub const VDS_OT_PORT = VDS_OBJECT_TYPE.PORT;
+pub const VDS_OT_PORTAL = VDS_OBJECT_TYPE.PORTAL;
+pub const VDS_OT_TARGET = VDS_OBJECT_TYPE.TARGET;
+pub const VDS_OT_PORTAL_GROUP = VDS_OBJECT_TYPE.PORTAL_GROUP;
+pub const VDS_OT_STORAGE_POOL = VDS_OBJECT_TYPE.STORAGE_POOL;
+pub const VDS_OT_HBAPORT = VDS_OBJECT_TYPE.HBAPORT;
+pub const VDS_OT_INIT_ADAPTER = VDS_OBJECT_TYPE.INIT_ADAPTER;
+pub const VDS_OT_INIT_PORTAL = VDS_OBJECT_TYPE.INIT_PORTAL;
+pub const VDS_OT_ASYNC = VDS_OBJECT_TYPE.ASYNC;
+pub const VDS_OT_ENUM = VDS_OBJECT_TYPE.ENUM;
+pub const VDS_OT_VDISK = VDS_OBJECT_TYPE.VDISK;
+pub const VDS_OT_OPEN_VDISK = VDS_OBJECT_TYPE.OPEN_VDISK;
+
+pub const VDS_PACK_NOTIFICATION = extern struct {
+    ulEvent: VDS_NF_PACK,
+    packId: Guid,
+};
+
+pub const VDS_PARTITION_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    diskId: Guid,
+    ullOffset: u64,
+};
+
+pub const VDS_PATH_ID = extern struct {
+    ullSourceId: u64,
+    ullPathId: u64,
+};
+
+pub const VDS_PATH_INFO = extern struct {
+    pathId: VDS_PATH_ID,
+    type: VDS_HWPROVIDER_TYPE,
+    status: VDS_PATH_STATUS,
+    Anonymous1: extern union {
+        controllerPortId: Guid,
+        targetPortalId: Guid,
+    },
+    Anonymous2: extern union {
+        hbaPortId: Guid,
+        initiatorAdapterId: Guid,
+    },
+    Anonymous3: extern union {
+        pHbaPortProp: ?*VDS_HBAPORT_PROP,
+        pInitiatorPortalIpAddr: ?*VDS_IPADDRESS,
+    },
+};
+
+pub const VDS_PATH_POLICY = extern struct {
+    pathId: VDS_PATH_ID,
+    bPrimaryPath: BOOL,
+    ulWeight: u32,
+};
+
+pub const VDS_PATH_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    FAILED = 5,
+    STANDBY = 7,
+};
+pub const VDS_MPS_UNKNOWN = VDS_PATH_STATUS.UNKNOWN;
+pub const VDS_MPS_ONLINE = VDS_PATH_STATUS.ONLINE;
+pub const VDS_MPS_FAILED = VDS_PATH_STATUS.FAILED;
+pub const VDS_MPS_STANDBY = VDS_PATH_STATUS.STANDBY;
+
+pub const VDS_POOL_ATTRIBUTES = extern struct {
+    ullAttributeMask: u64,
+    raidType: VDS_RAID_TYPE,
+    busType: VDS_STORAGE_BUS_TYPE,
+    pwszIntendedUsage: ?PWSTR,
+    bSpinDown: BOOL,
+    bIsThinProvisioned: BOOL,
+    ullProvisionedSpace: u64,
+    bNoSinglePointOfFailure: BOOL,
+    ulDataRedundancyMax: u32,
+    ulDataRedundancyMin: u32,
+    ulDataRedundancyDefault: u32,
+    ulPackageRedundancyMax: u32,
+    ulPackageRedundancyMin: u32,
+    ulPackageRedundancyDefault: u32,
+    ulStripeSize: u32,
+    ulStripeSizeMax: u32,
+    ulStripeSizeMin: u32,
+    ulDefaultStripeSize: u32,
+    ulNumberOfColumns: u32,
+    ulNumberOfColumnsMax: u32,
+    ulNumberOfColumnsMin: u32,
+    ulDefaultNumberofColumns: u32,
+    ulDataAvailabilityHint: u32,
+    ulAccessRandomnessHint: u32,
+    ulAccessDirectionHint: u32,
+    ulAccessSizeHint: u32,
+    ulAccessLatencyHint: u32,
+    ulAccessBandwidthWeightHint: u32,
+    ulStorageCostHint: u32,
+    ulStorageEfficiencyHint: u32,
+    ulNumOfCustomAttributes: u32,
+    pPoolCustomAttributes: ?*VDS_POOL_CUSTOM_ATTRIBUTES,
+    bReserved1: BOOL,
+    bReserved2: BOOL,
+    ulReserved1: u32,
+    ulReserved2: u32,
+    ullReserved1: u64,
+    ullReserved2: u64,
+};
+
+pub const VDS_POOL_CUSTOM_ATTRIBUTES = extern struct {
+    pwszName: ?PWSTR,
+    pwszValue: ?PWSTR,
+};
+
+pub const VDS_PORT_NOTIFICATION = extern struct {
+    ulEvent: VDS_NF_PORT,
+    portId: Guid,
+};
+
+pub const VDS_PORT_PROP = extern struct {
+    id: Guid,
+    pwszFriendlyName: ?PWSTR,
+    pwszIdentification: ?PWSTR,
+    status: VDS_PORT_STATUS,
+};
+
+pub const VDS_PORT_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+    FAILED = 5,
+    REMOVED = 8,
+};
+pub const VDS_PRS_UNKNOWN = VDS_PORT_STATUS.UNKNOWN;
+pub const VDS_PRS_ONLINE = VDS_PORT_STATUS.ONLINE;
+pub const VDS_PRS_NOT_READY = VDS_PORT_STATUS.NOT_READY;
+pub const VDS_PRS_OFFLINE = VDS_PORT_STATUS.OFFLINE;
+pub const VDS_PRS_FAILED = VDS_PORT_STATUS.FAILED;
+pub const VDS_PRS_REMOVED = VDS_PORT_STATUS.REMOVED;
+
+pub const VDS_PORTAL_GROUP_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    portalGroupId: Guid,
+};
+
+pub const VDS_PORTAL_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    portalId: Guid,
+};
+
+pub const VDS_PROVIDER_FLAG = enum(i32) {
+    DYNAMIC = 1,
+    INTERNAL_HARDWARE_PROVIDER = 2,
+    ONE_DISK_ONLY_PER_PACK = 4,
+    ONE_PACK_ONLINE_ONLY = 8,
+    VOLUME_SPACE_MUST_BE_CONTIGUOUS = 16,
+    SUPPORT_DYNAMIC = -2147483648,
+    SUPPORT_FAULT_TOLERANT = 1073741824,
+    SUPPORT_DYNAMIC_1394 = 536870912,
+    SUPPORT_MIRROR = 32,
+    SUPPORT_RAID5 = 64,
+};
+pub const VDS_PF_DYNAMIC = VDS_PROVIDER_FLAG.DYNAMIC;
+pub const VDS_PF_INTERNAL_HARDWARE_PROVIDER = VDS_PROVIDER_FLAG.INTERNAL_HARDWARE_PROVIDER;
+pub const VDS_PF_ONE_DISK_ONLY_PER_PACK = VDS_PROVIDER_FLAG.ONE_DISK_ONLY_PER_PACK;
+pub const VDS_PF_ONE_PACK_ONLINE_ONLY = VDS_PROVIDER_FLAG.ONE_PACK_ONLINE_ONLY;
+pub const VDS_PF_VOLUME_SPACE_MUST_BE_CONTIGUOUS = VDS_PROVIDER_FLAG.VOLUME_SPACE_MUST_BE_CONTIGUOUS;
+pub const VDS_PF_SUPPORT_DYNAMIC = VDS_PROVIDER_FLAG.SUPPORT_DYNAMIC;
+pub const VDS_PF_SUPPORT_FAULT_TOLERANT = VDS_PROVIDER_FLAG.SUPPORT_FAULT_TOLERANT;
+pub const VDS_PF_SUPPORT_DYNAMIC_1394 = VDS_PROVIDER_FLAG.SUPPORT_DYNAMIC_1394;
+pub const VDS_PF_SUPPORT_MIRROR = VDS_PROVIDER_FLAG.SUPPORT_MIRROR;
+pub const VDS_PF_SUPPORT_RAID5 = VDS_PROVIDER_FLAG.SUPPORT_RAID5;
+
+pub const VDS_PROVIDER_LBSUPPORT_FLAG = enum(i32) {
+    FAILOVER = 1,
+    ROUND_ROBIN = 2,
+    ROUND_ROBIN_WITH_SUBSET = 4,
+    DYN_LEAST_QUEUE_DEPTH = 8,
+    WEIGHTED_PATHS = 16,
+    LEAST_BLOCKS = 32,
+    VENDOR_SPECIFIC = 64,
+};
+pub const VDS_LBF_FAILOVER = VDS_PROVIDER_LBSUPPORT_FLAG.FAILOVER;
+pub const VDS_LBF_ROUND_ROBIN = VDS_PROVIDER_LBSUPPORT_FLAG.ROUND_ROBIN;
+pub const VDS_LBF_ROUND_ROBIN_WITH_SUBSET = VDS_PROVIDER_LBSUPPORT_FLAG.ROUND_ROBIN_WITH_SUBSET;
+pub const VDS_LBF_DYN_LEAST_QUEUE_DEPTH = VDS_PROVIDER_LBSUPPORT_FLAG.DYN_LEAST_QUEUE_DEPTH;
+pub const VDS_LBF_WEIGHTED_PATHS = VDS_PROVIDER_LBSUPPORT_FLAG.WEIGHTED_PATHS;
+pub const VDS_LBF_LEAST_BLOCKS = VDS_PROVIDER_LBSUPPORT_FLAG.LEAST_BLOCKS;
+pub const VDS_LBF_VENDOR_SPECIFIC = VDS_PROVIDER_LBSUPPORT_FLAG.VENDOR_SPECIFIC;
+
+pub const VDS_PROVIDER_PROP = extern struct {
+    id: Guid,
+    pwszName: ?PWSTR,
+    guidVersionId: Guid,
+    pwszVersion: ?PWSTR,
+    type: VDS_PROVIDER_TYPE,
+    ulFlags: u32,
+    ulStripeSizeFlags: u32,
+    sRebuildPriority: i16,
+};
+
+pub const VDS_PROVIDER_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    SOFTWARE = 1,
+    HARDWARE = 2,
+    VIRTUALDISK = 3,
+    MAX = 4,
+};
+pub const VDS_PT_UNKNOWN = VDS_PROVIDER_TYPE.UNKNOWN;
+pub const VDS_PT_SOFTWARE = VDS_PROVIDER_TYPE.SOFTWARE;
+pub const VDS_PT_HARDWARE = VDS_PROVIDER_TYPE.HARDWARE;
+pub const VDS_PT_VIRTUALDISK = VDS_PROVIDER_TYPE.VIRTUALDISK;
+pub const VDS_PT_MAX = VDS_PROVIDER_TYPE.MAX;
+
+pub const VDS_RAID_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    RAID0 = 10,
+    RAID1 = 11,
+    RAID2 = 12,
+    RAID3 = 13,
+    RAID4 = 14,
+    RAID5 = 15,
+    RAID6 = 16,
+    RAID01 = 17,
+    RAID03 = 18,
+    RAID05 = 19,
+    RAID10 = 20,
+    RAID15 = 21,
+    RAID30 = 22,
+    RAID50 = 23,
+    RAID51 = 24,
+    RAID53 = 25,
+    RAID60 = 26,
+    RAID61 = 27,
+};
+pub const VDS_RT_UNKNOWN = VDS_RAID_TYPE.UNKNOWN;
+pub const VDS_RT_RAID0 = VDS_RAID_TYPE.RAID0;
+pub const VDS_RT_RAID1 = VDS_RAID_TYPE.RAID1;
+pub const VDS_RT_RAID2 = VDS_RAID_TYPE.RAID2;
+pub const VDS_RT_RAID3 = VDS_RAID_TYPE.RAID3;
+pub const VDS_RT_RAID4 = VDS_RAID_TYPE.RAID4;
+pub const VDS_RT_RAID5 = VDS_RAID_TYPE.RAID5;
+pub const VDS_RT_RAID6 = VDS_RAID_TYPE.RAID6;
+pub const VDS_RT_RAID01 = VDS_RAID_TYPE.RAID01;
+pub const VDS_RT_RAID03 = VDS_RAID_TYPE.RAID03;
+pub const VDS_RT_RAID05 = VDS_RAID_TYPE.RAID05;
+pub const VDS_RT_RAID10 = VDS_RAID_TYPE.RAID10;
+pub const VDS_RT_RAID15 = VDS_RAID_TYPE.RAID15;
+pub const VDS_RT_RAID30 = VDS_RAID_TYPE.RAID30;
+pub const VDS_RT_RAID50 = VDS_RAID_TYPE.RAID50;
+pub const VDS_RT_RAID51 = VDS_RAID_TYPE.RAID51;
+pub const VDS_RT_RAID53 = VDS_RAID_TYPE.RAID53;
+pub const VDS_RT_RAID60 = VDS_RAID_TYPE.RAID60;
+pub const VDS_RT_RAID61 = VDS_RAID_TYPE.RAID61;
+
+pub const VDS_RECOVER_ACTION = enum(i32) {
+    UNKNOWN = 0,
+    REFRESH = 1,
+    RESTART = 2,
+};
+pub const VDS_RA_UNKNOWN = VDS_RECOVER_ACTION.UNKNOWN;
+pub const VDS_RA_REFRESH = VDS_RECOVER_ACTION.REFRESH;
+pub const VDS_RA_RESTART = VDS_RECOVER_ACTION.RESTART;
+
+pub const VDS_SERVICE_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    action: VDS_RECOVER_ACTION,
+};
+
+pub const VDS_STORAGE_BUS_TYPE = enum(i32) {
+    Unknown = 0,
+    Scsi = 1,
+    Atapi = 2,
+    Ata = 3,
+    @"1394" = 4,
+    Ssa = 5,
+    Fibre = 6,
+    Usb = 7,
+    RAID = 8,
+    iScsi = 9,
+    Sas = 10,
+    Sata = 11,
+    Sd = 12,
+    Mmc = 13,
+    Max = 14,
+    FileBackedVirtual = 15,
+    Spaces = 16,
+    NVMe = 17,
+    Scm = 18,
+    Ufs = 19,
+    MaxReserved = 127,
+    pub const Virtual = .Max;
+};
+pub const VDSBusTypeUnknown = VDS_STORAGE_BUS_TYPE.Unknown;
+pub const VDSBusTypeScsi = VDS_STORAGE_BUS_TYPE.Scsi;
+pub const VDSBusTypeAtapi = VDS_STORAGE_BUS_TYPE.Atapi;
+pub const VDSBusTypeAta = VDS_STORAGE_BUS_TYPE.Ata;
+pub const VDSBusType1394 = VDS_STORAGE_BUS_TYPE.@"1394";
+pub const VDSBusTypeSsa = VDS_STORAGE_BUS_TYPE.Ssa;
+pub const VDSBusTypeFibre = VDS_STORAGE_BUS_TYPE.Fibre;
+pub const VDSBusTypeUsb = VDS_STORAGE_BUS_TYPE.Usb;
+pub const VDSBusTypeRAID = VDS_STORAGE_BUS_TYPE.RAID;
+pub const VDSBusTypeiScsi = VDS_STORAGE_BUS_TYPE.iScsi;
+pub const VDSBusTypeSas = VDS_STORAGE_BUS_TYPE.Sas;
+pub const VDSBusTypeSata = VDS_STORAGE_BUS_TYPE.Sata;
+pub const VDSBusTypeSd = VDS_STORAGE_BUS_TYPE.Sd;
+pub const VDSBusTypeMmc = VDS_STORAGE_BUS_TYPE.Mmc;
+pub const VDSBusTypeMax = VDS_STORAGE_BUS_TYPE.Max;
+pub const VDSBusTypeVirtual = VDS_STORAGE_BUS_TYPE.Max;
+pub const VDSBusTypeFileBackedVirtual = VDS_STORAGE_BUS_TYPE.FileBackedVirtual;
+pub const VDSBusTypeSpaces = VDS_STORAGE_BUS_TYPE.Spaces;
+pub const VDSBusTypeNVMe = VDS_STORAGE_BUS_TYPE.NVMe;
+pub const VDSBusTypeScm = VDS_STORAGE_BUS_TYPE.Scm;
+pub const VDSBusTypeUfs = VDS_STORAGE_BUS_TYPE.Ufs;
+pub const VDSBusTypeMaxReserved = VDS_STORAGE_BUS_TYPE.MaxReserved;
+
+pub const VDS_STORAGE_DEVICE_ID_DESCRIPTOR = extern struct {
+    m_version: u32,
+    m_cIdentifiers: u32,
+    m_rgIdentifiers: ?*VDS_STORAGE_IDENTIFIER,
+};
+
+pub const VDS_STORAGE_IDENTIFIER = extern struct {
+    m_CodeSet: VDS_STORAGE_IDENTIFIER_CODE_SET,
+    m_Type: VDS_STORAGE_IDENTIFIER_TYPE,
+    m_cbIdentifier: u32,
+    m_rgbIdentifier: ?*u8,
+};
+
+pub const VDS_STORAGE_IDENTIFIER_CODE_SET = enum(i32) {
+    Reserved = 0,
+    Binary = 1,
+    Ascii = 2,
+    Utf8 = 3,
+};
+pub const VDSStorageIdCodeSetReserved = VDS_STORAGE_IDENTIFIER_CODE_SET.Reserved;
+pub const VDSStorageIdCodeSetBinary = VDS_STORAGE_IDENTIFIER_CODE_SET.Binary;
+pub const VDSStorageIdCodeSetAscii = VDS_STORAGE_IDENTIFIER_CODE_SET.Ascii;
+pub const VDSStorageIdCodeSetUtf8 = VDS_STORAGE_IDENTIFIER_CODE_SET.Utf8;
+
+pub const VDS_STORAGE_IDENTIFIER_TYPE = enum(i32) {
+    VendorSpecific = 0,
+    VendorId = 1,
+    EUI64 = 2,
+    FCPHName = 3,
+    PortRelative = 4,
+    TargetPortGroup = 5,
+    LogicalUnitGroup = 6,
+    MD5LogicalUnitIdentifier = 7,
+    ScsiNameString = 8,
+};
+pub const VDSStorageIdTypeVendorSpecific = VDS_STORAGE_IDENTIFIER_TYPE.VendorSpecific;
+pub const VDSStorageIdTypeVendorId = VDS_STORAGE_IDENTIFIER_TYPE.VendorId;
+pub const VDSStorageIdTypeEUI64 = VDS_STORAGE_IDENTIFIER_TYPE.EUI64;
+pub const VDSStorageIdTypeFCPHName = VDS_STORAGE_IDENTIFIER_TYPE.FCPHName;
+pub const VDSStorageIdTypePortRelative = VDS_STORAGE_IDENTIFIER_TYPE.PortRelative;
+pub const VDSStorageIdTypeTargetPortGroup = VDS_STORAGE_IDENTIFIER_TYPE.TargetPortGroup;
+pub const VDSStorageIdTypeLogicalUnitGroup = VDS_STORAGE_IDENTIFIER_TYPE.LogicalUnitGroup;
+pub const VDSStorageIdTypeMD5LogicalUnitIdentifier = VDS_STORAGE_IDENTIFIER_TYPE.MD5LogicalUnitIdentifier;
+pub const VDSStorageIdTypeScsiNameString = VDS_STORAGE_IDENTIFIER_TYPE.ScsiNameString;
+
+pub const VDS_STORAGE_POOL_DRIVE_EXTENT = extern struct {
+    id: Guid,
+    ullSize: u64,
+    bUsed: BOOL,
+};
+
+pub const VDS_STORAGE_POOL_PROP = extern struct {
+    id: Guid,
+    status: VDS_STORAGE_POOL_STATUS,
+    health: VDS_HEALTH,
+    type: VDS_STORAGE_POOL_TYPE,
+    pwszName: ?PWSTR,
+    pwszDescription: ?PWSTR,
+    ullTotalConsumedSpace: u64,
+    ullTotalManagedSpace: u64,
+    ullRemainingFreeSpace: u64,
+};
+
+pub const VDS_STORAGE_POOL_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+};
+pub const VDS_SPS_UNKNOWN = VDS_STORAGE_POOL_STATUS.UNKNOWN;
+pub const VDS_SPS_ONLINE = VDS_STORAGE_POOL_STATUS.ONLINE;
+pub const VDS_SPS_NOT_READY = VDS_STORAGE_POOL_STATUS.NOT_READY;
+pub const VDS_SPS_OFFLINE = VDS_STORAGE_POOL_STATUS.OFFLINE;
+
+pub const VDS_STORAGE_POOL_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    PRIMORDIAL = 1,
+    CONCRETE = 2,
+};
+pub const VDS_SPT_UNKNOWN = VDS_STORAGE_POOL_TYPE.UNKNOWN;
+pub const VDS_SPT_PRIMORDIAL = VDS_STORAGE_POOL_TYPE.PRIMORDIAL;
+pub const VDS_SPT_CONCRETE = VDS_STORAGE_POOL_TYPE.CONCRETE;
+
+pub const VDS_SUB_SYSTEM_FLAG = enum(i32) {
+    LUN_MASKING_CAPABLE = 1,
+    LUN_PLEXING_CAPABLE = 2,
+    LUN_REMAPPING_CAPABLE = 4,
+    DRIVE_EXTENT_CAPABLE = 8,
+    HARDWARE_CHECKSUM_CAPABLE = 16,
+    RADIUS_CAPABLE = 32,
+    READ_BACK_VERIFY_CAPABLE = 64,
+    WRITE_THROUGH_CACHING_CAPABLE = 128,
+    SUPPORTS_FAULT_TOLERANT_LUNS = 512,
+    SUPPORTS_NON_FAULT_TOLERANT_LUNS = 1024,
+    SUPPORTS_SIMPLE_LUNS = 2048,
+    SUPPORTS_SPAN_LUNS = 4096,
+    SUPPORTS_STRIPE_LUNS = 8192,
+    SUPPORTS_MIRROR_LUNS = 16384,
+    SUPPORTS_PARITY_LUNS = 32768,
+    SUPPORTS_AUTH_CHAP = 65536,
+    SUPPORTS_AUTH_MUTUAL_CHAP = 131072,
+    SUPPORTS_SIMPLE_TARGET_CONFIG = 262144,
+    SUPPORTS_LUN_NUMBER = 524288,
+    SUPPORTS_MIRRORED_CACHE = 1048576,
+    READ_CACHING_CAPABLE = 2097152,
+    WRITE_CACHING_CAPABLE = 4194304,
+    MEDIA_SCAN_CAPABLE = 8388608,
+    CONSISTENCY_CHECK_CAPABLE = 16777216,
+};
+pub const VDS_SF_LUN_MASKING_CAPABLE = VDS_SUB_SYSTEM_FLAG.LUN_MASKING_CAPABLE;
+pub const VDS_SF_LUN_PLEXING_CAPABLE = VDS_SUB_SYSTEM_FLAG.LUN_PLEXING_CAPABLE;
+pub const VDS_SF_LUN_REMAPPING_CAPABLE = VDS_SUB_SYSTEM_FLAG.LUN_REMAPPING_CAPABLE;
+pub const VDS_SF_DRIVE_EXTENT_CAPABLE = VDS_SUB_SYSTEM_FLAG.DRIVE_EXTENT_CAPABLE;
+pub const VDS_SF_HARDWARE_CHECKSUM_CAPABLE = VDS_SUB_SYSTEM_FLAG.HARDWARE_CHECKSUM_CAPABLE;
+pub const VDS_SF_RADIUS_CAPABLE = VDS_SUB_SYSTEM_FLAG.RADIUS_CAPABLE;
+pub const VDS_SF_READ_BACK_VERIFY_CAPABLE = VDS_SUB_SYSTEM_FLAG.READ_BACK_VERIFY_CAPABLE;
+pub const VDS_SF_WRITE_THROUGH_CACHING_CAPABLE = VDS_SUB_SYSTEM_FLAG.WRITE_THROUGH_CACHING_CAPABLE;
+pub const VDS_SF_SUPPORTS_FAULT_TOLERANT_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_FAULT_TOLERANT_LUNS;
+pub const VDS_SF_SUPPORTS_NON_FAULT_TOLERANT_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_NON_FAULT_TOLERANT_LUNS;
+pub const VDS_SF_SUPPORTS_SIMPLE_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_SIMPLE_LUNS;
+pub const VDS_SF_SUPPORTS_SPAN_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_SPAN_LUNS;
+pub const VDS_SF_SUPPORTS_STRIPE_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_STRIPE_LUNS;
+pub const VDS_SF_SUPPORTS_MIRROR_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_MIRROR_LUNS;
+pub const VDS_SF_SUPPORTS_PARITY_LUNS = VDS_SUB_SYSTEM_FLAG.SUPPORTS_PARITY_LUNS;
+pub const VDS_SF_SUPPORTS_AUTH_CHAP = VDS_SUB_SYSTEM_FLAG.SUPPORTS_AUTH_CHAP;
+pub const VDS_SF_SUPPORTS_AUTH_MUTUAL_CHAP = VDS_SUB_SYSTEM_FLAG.SUPPORTS_AUTH_MUTUAL_CHAP;
+pub const VDS_SF_SUPPORTS_SIMPLE_TARGET_CONFIG = VDS_SUB_SYSTEM_FLAG.SUPPORTS_SIMPLE_TARGET_CONFIG;
+pub const VDS_SF_SUPPORTS_LUN_NUMBER = VDS_SUB_SYSTEM_FLAG.SUPPORTS_LUN_NUMBER;
+pub const VDS_SF_SUPPORTS_MIRRORED_CACHE = VDS_SUB_SYSTEM_FLAG.SUPPORTS_MIRRORED_CACHE;
+pub const VDS_SF_READ_CACHING_CAPABLE = VDS_SUB_SYSTEM_FLAG.READ_CACHING_CAPABLE;
+pub const VDS_SF_WRITE_CACHING_CAPABLE = VDS_SUB_SYSTEM_FLAG.WRITE_CACHING_CAPABLE;
+pub const VDS_SF_MEDIA_SCAN_CAPABLE = VDS_SUB_SYSTEM_FLAG.MEDIA_SCAN_CAPABLE;
+pub const VDS_SF_CONSISTENCY_CHECK_CAPABLE = VDS_SUB_SYSTEM_FLAG.CONSISTENCY_CHECK_CAPABLE;
+
+pub const VDS_SUB_SYSTEM_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    subSystemId: Guid,
+};
+
+pub const VDS_SUB_SYSTEM_PROP = extern struct {
+    id: Guid,
+    pwszFriendlyName: ?PWSTR,
+    pwszIdentification: ?PWSTR,
+    ulFlags: u32,
+    ulStripeSizeFlags: u32,
+    status: VDS_SUB_SYSTEM_STATUS,
+    health: VDS_HEALTH,
+    sNumberOfInternalBuses: i16,
+    sMaxNumberOfSlotsEachBus: i16,
+    sMaxNumberOfControllers: i16,
+    sRebuildPriority: i16,
+};
+
+pub const VDS_SUB_SYSTEM_PROP2 = extern struct {
+    id: Guid,
+    pwszFriendlyName: ?PWSTR,
+    pwszIdentification: ?PWSTR,
+    ulFlags: u32,
+    ulStripeSizeFlags: u32,
+    ulSupportedRaidTypeFlags: u32,
+    status: VDS_SUB_SYSTEM_STATUS,
+    health: VDS_HEALTH,
+    sNumberOfInternalBuses: i16,
+    sMaxNumberOfSlotsEachBus: i16,
+    sMaxNumberOfControllers: i16,
+    sRebuildPriority: i16,
+    ulNumberOfEnclosures: u32,
+};
+
+pub const VDS_SUB_SYSTEM_STATUS = enum(i32) {
+    UNKNOWN = 0,
+    ONLINE = 1,
+    NOT_READY = 2,
+    OFFLINE = 4,
+    FAILED = 5,
+    PARTIALLY_MANAGED = 9,
+};
+pub const VDS_SSS_UNKNOWN = VDS_SUB_SYSTEM_STATUS.UNKNOWN;
+pub const VDS_SSS_ONLINE = VDS_SUB_SYSTEM_STATUS.ONLINE;
+pub const VDS_SSS_NOT_READY = VDS_SUB_SYSTEM_STATUS.NOT_READY;
+pub const VDS_SSS_OFFLINE = VDS_SUB_SYSTEM_STATUS.OFFLINE;
+pub const VDS_SSS_FAILED = VDS_SUB_SYSTEM_STATUS.FAILED;
+pub const VDS_SSS_PARTIALLY_MANAGED = VDS_SUB_SYSTEM_STATUS.PARTIALLY_MANAGED;
+
+pub const VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG = enum(i32) {
+    @"2_LUNS" = 1,
+    @"3_LUNS" = 2,
+    @"4_LUNS" = 4,
+    @"5_LUNS" = 8,
+    @"6_LUNS" = 16,
+    @"01_LUNS" = 32,
+    @"03_LUNS" = 64,
+    @"05_LUNS" = 128,
+    @"10_LUNS" = 256,
+    @"15_LUNS" = 512,
+    @"30_LUNS" = 1024,
+    @"50_LUNS" = 2048,
+    @"51_LUNS" = 4096,
+    @"53_LUNS" = 8192,
+    @"60_LUNS" = 16384,
+    @"61_LUNS" = 32768,
+};
+pub const VDS_SF_SUPPORTS_RAID2_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"2_LUNS";
+pub const VDS_SF_SUPPORTS_RAID3_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"3_LUNS";
+pub const VDS_SF_SUPPORTS_RAID4_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"4_LUNS";
+pub const VDS_SF_SUPPORTS_RAID5_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"5_LUNS";
+pub const VDS_SF_SUPPORTS_RAID6_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"6_LUNS";
+pub const VDS_SF_SUPPORTS_RAID01_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"01_LUNS";
+pub const VDS_SF_SUPPORTS_RAID03_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"03_LUNS";
+pub const VDS_SF_SUPPORTS_RAID05_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"05_LUNS";
+pub const VDS_SF_SUPPORTS_RAID10_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"10_LUNS";
+pub const VDS_SF_SUPPORTS_RAID15_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"15_LUNS";
+pub const VDS_SF_SUPPORTS_RAID30_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"30_LUNS";
+pub const VDS_SF_SUPPORTS_RAID50_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"50_LUNS";
+pub const VDS_SF_SUPPORTS_RAID51_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"51_LUNS";
+pub const VDS_SF_SUPPORTS_RAID53_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"53_LUNS";
+pub const VDS_SF_SUPPORTS_RAID60_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"60_LUNS";
+pub const VDS_SF_SUPPORTS_RAID61_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"61_LUNS";
+
+pub const VDS_TARGET_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    targetId: Guid,
+};
+
+pub const VDS_TRANSITION_STATE = enum(i32) {
+    UNKNOWN = 0,
+    STABLE = 1,
+    EXTENDING = 2,
+    SHRINKING = 3,
+    RECONFIGING = 4,
+    RESTRIPING = 5,
+};
+pub const VDS_TS_UNKNOWN = VDS_TRANSITION_STATE.UNKNOWN;
+pub const VDS_TS_STABLE = VDS_TRANSITION_STATE.STABLE;
+pub const VDS_TS_EXTENDING = VDS_TRANSITION_STATE.EXTENDING;
+pub const VDS_TS_SHRINKING = VDS_TRANSITION_STATE.SHRINKING;
+pub const VDS_TS_RECONFIGING = VDS_TRANSITION_STATE.RECONFIGING;
+pub const VDS_TS_RESTRIPING = VDS_TRANSITION_STATE.RESTRIPING;
+
+pub const VDS_VERSION_SUPPORT_FLAG = enum(i32) {
+    @"1_0" = 1,
+    @"1_1" = 2,
+    @"2_0" = 4,
+    @"2_1" = 8,
+    @"3_0" = 16,
+};
+pub const VDS_VSF_1_0 = VDS_VERSION_SUPPORT_FLAG.@"1_0";
+pub const VDS_VSF_1_1 = VDS_VERSION_SUPPORT_FLAG.@"1_1";
+pub const VDS_VSF_2_0 = VDS_VERSION_SUPPORT_FLAG.@"2_0";
+pub const VDS_VSF_2_1 = VDS_VERSION_SUPPORT_FLAG.@"2_1";
+pub const VDS_VSF_3_0 = VDS_VERSION_SUPPORT_FLAG.@"3_0";
+
+pub const VDS_VOLUME_NOTIFICATION = extern struct {
+    ulEvent: u32,
+    volumeId: Guid,
+    plexId: Guid,
+    ulPercentCompleted: u32,
+};
+
+pub const VDS_WWN = extern struct {
+    rguchWwn: [8]u8,
 };
 
 

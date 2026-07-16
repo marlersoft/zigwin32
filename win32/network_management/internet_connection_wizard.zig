@@ -2,25 +2,25 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (20)
 //--------------------------------------------------------------------------------
-pub const ICW_REGPATHSETTINGS = "Software\\Microsoft\\Internet Connection Wizard";
-pub const ICW_REGKEYCOMPLETED = "Completed";
-pub const ICW_MAX_ACCTNAME = @as(u32, 256);
-pub const ICW_MAX_PASSWORD = @as(u32, 256);
-pub const ICW_MAX_LOGONNAME = @as(u32, 256);
-pub const ICW_MAX_SERVERNAME = @as(u32, 64);
-pub const ICW_MAX_RASNAME = @as(u32, 256);
-pub const ICW_MAX_EMAILNAME = @as(u32, 64);
-pub const ICW_MAX_EMAILADDR = @as(u32, 128);
+pub const ICW_ALREADYRUN = @as(u32, 4);
 pub const ICW_CHECKSTATUS = @as(u32, 1);
-pub const ICW_LAUNCHFULL = @as(u32, 256);
-pub const ICW_LAUNCHMANUAL = @as(u32, 512);
-pub const ICW_USE_SHELLNEXT = @as(u32, 1024);
 pub const ICW_FULL_SMARTSTART = @as(u32, 2048);
 pub const ICW_FULLPRESENT = @as(u32, 1);
-pub const ICW_MANUALPRESENT = @as(u32, 2);
-pub const ICW_ALREADYRUN = @as(u32, 4);
 pub const ICW_LAUNCHEDFULL = @as(u32, 256);
 pub const ICW_LAUNCHEDMANUAL = @as(u32, 512);
+pub const ICW_LAUNCHFULL = @as(u32, 256);
+pub const ICW_LAUNCHMANUAL = @as(u32, 512);
+pub const ICW_MANUALPRESENT = @as(u32, 2);
+pub const ICW_MAX_ACCTNAME = @as(u32, 256);
+pub const ICW_MAX_EMAILADDR = @as(u32, 128);
+pub const ICW_MAX_EMAILNAME = @as(u32, 64);
+pub const ICW_MAX_LOGONNAME = @as(u32, 256);
+pub const ICW_MAX_PASSWORD = @as(u32, 256);
+pub const ICW_MAX_RASNAME = @as(u32, 256);
+pub const ICW_MAX_SERVERNAME = @as(u32, 64);
+pub const ICW_REGKEYCOMPLETED = "Completed";
+pub const ICW_REGPATHSETTINGS = "Software\\Microsoft\\Internet Connection Wizard";
+pub const ICW_USE_SHELLNEXT = @as(u32, 1024);
 pub const ICW_USEDEFAULTS = @as(u32, 1);
 
 //--------------------------------------------------------------------------------

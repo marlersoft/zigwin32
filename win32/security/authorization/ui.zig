@@ -2,180 +2,100 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (28)
 //--------------------------------------------------------------------------------
-pub const SI_EDIT_PERMS = @as(i32, 0);
-pub const SI_EDIT_OWNER = @as(i32, 1);
-pub const SI_CONTAINER = @as(i32, 4);
-pub const SI_READONLY = @as(i32, 8);
-pub const SI_RESET = @as(i32, 32);
-pub const SI_OWNER_READONLY = @as(i32, 64);
-pub const SI_OWNER_RECURSE = @as(i32, 256);
-pub const SI_NO_ACL_PROTECT = @as(i32, 512);
-pub const SI_NO_TREE_APPLY = @as(i32, 1024);
-pub const SI_PAGE_TITLE = @as(i32, 2048);
-pub const SI_SERVER_IS_DC = @as(i32, 4096);
-pub const SI_RESET_DACL_TREE = @as(i32, 16384);
-pub const SI_RESET_SACL_TREE = @as(i32, 32768);
-pub const SI_OBJECT_GUID = @as(i32, 65536);
-pub const SI_ACCESS_SPECIFIC = @as(i32, 65536);
-pub const SI_ACCESS_GENERAL = @as(i32, 131072);
-pub const SI_ACCESS_CONTAINER = @as(i32, 262144);
-pub const SI_ACCESS_PROPERTY = @as(i32, 524288);
+pub const CFSTR_ACLUI_SID_INFO_LIST = "CFSTR_ACLUI_SID_INFO_LIST";
+pub const DOBJ_COND_NTACLS = @as(i32, 8);
 pub const DOBJ_RES_CONT = @as(i32, 1);
 pub const DOBJ_RES_ROOT = @as(i32, 2);
-pub const DOBJ_VOL_NTACLS = @as(i32, 4);
-pub const DOBJ_COND_NTACLS = @as(i32, 8);
 pub const DOBJ_RIBBON_LAUNCH = @as(i32, 16);
-pub const CFSTR_ACLUI_SID_INFO_LIST = "CFSTR_ACLUI_SID_INFO_LIST";
+pub const DOBJ_VOL_NTACLS = @as(i32, 4);
+pub const SECURITY_OBJECT_ID_CENTRAL_ACCESS_RULE = @as(u32, 4);
+pub const SECURITY_OBJECT_ID_CENTRAL_POLICY = @as(u32, 3);
 pub const SECURITY_OBJECT_ID_OBJECT_SD = @as(u32, 1);
 pub const SECURITY_OBJECT_ID_SHARE = @as(u32, 2);
-pub const SECURITY_OBJECT_ID_CENTRAL_POLICY = @as(u32, 3);
-pub const SECURITY_OBJECT_ID_CENTRAL_ACCESS_RULE = @as(u32, 4);
+pub const SI_ACCESS_CONTAINER = @as(i32, 262144);
+pub const SI_ACCESS_GENERAL = @as(i32, 131072);
+pub const SI_ACCESS_PROPERTY = @as(i32, 524288);
+pub const SI_ACCESS_SPECIFIC = @as(i32, 65536);
+pub const SI_CONTAINER = @as(i32, 4);
+pub const SI_EDIT_OWNER = @as(i32, 1);
+pub const SI_EDIT_PERMS = @as(i32, 0);
+pub const SI_NO_ACL_PROTECT = @as(i32, 512);
+pub const SI_NO_TREE_APPLY = @as(i32, 1024);
+pub const SI_OBJECT_GUID = @as(i32, 65536);
+pub const SI_OWNER_READONLY = @as(i32, 64);
+pub const SI_OWNER_RECURSE = @as(i32, 256);
+pub const SI_PAGE_TITLE = @as(i32, 2048);
+pub const SI_READONLY = @as(i32, 8);
+pub const SI_RESET = @as(i32, 32);
+pub const SI_RESET_DACL_TREE = @as(i32, 16384);
+pub const SI_RESET_SACL_TREE = @as(i32, 32768);
+pub const SI_SERVER_IS_DC = @as(i32, 4096);
 
 //--------------------------------------------------------------------------------
 // Section: Types (18)
 //--------------------------------------------------------------------------------
-pub const SECURITY_INFO_PAGE_FLAGS = packed struct(u32) {
-    _0: u1 = 0,
-    EDIT_AUDITS: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    ADVANCED: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    EDIT_PROPERTIES: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const SI_ADVANCED = SECURITY_INFO_PAGE_FLAGS{ .ADVANCED = 1 };
-pub const SI_EDIT_AUDITS = SECURITY_INFO_PAGE_FLAGS{ .EDIT_AUDITS = 1 };
-pub const SI_EDIT_PROPERTIES = SECURITY_INFO_PAGE_FLAGS{ .EDIT_PROPERTIES = 1 };
-
-pub const SI_OBJECT_INFO_FLAGS = packed struct(u32) {
-    _0: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    EDIT_EFFECTIVE: u1 = 0,
-    RESET_DACL: u1 = 0,
-    RESET_SACL: u1 = 0,
-    RESET_OWNER: u1 = 0,
-    NO_ADDITIONAL_PERMISSION: u1 = 0,
-    VIEW_ONLY: u1 = 0,
-    _23: u1 = 0,
-    PERMS_ELEVATION_REQUIRED: u1 = 0,
-    AUDITS_ELEVATION_REQUIRED: u1 = 0,
-    OWNER_ELEVATION_REQUIRED: u1 = 0,
-    SCOPE_ELEVATION_REQUIRED: u1 = 0,
-    MAY_WRITE: u1 = 0,
-    ENABLE_EDIT_ATTRIBUTE_CONDITION: u1 = 0,
-    ENABLE_CENTRAL_POLICY: u1 = 0,
-    DISABLE_DENY_ACE: u1 = 0,
-};
-pub const SI_AUDITS_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .AUDITS_ELEVATION_REQUIRED = 1 };
-pub const SI_DISABLE_DENY_ACE = SI_OBJECT_INFO_FLAGS{ .DISABLE_DENY_ACE = 1 };
-pub const SI_EDIT_EFFECTIVE = SI_OBJECT_INFO_FLAGS{ .EDIT_EFFECTIVE = 1 };
-pub const SI_ENABLE_CENTRAL_POLICY = SI_OBJECT_INFO_FLAGS{ .ENABLE_CENTRAL_POLICY = 1 };
-pub const SI_ENABLE_EDIT_ATTRIBUTE_CONDITION = SI_OBJECT_INFO_FLAGS{ .ENABLE_EDIT_ATTRIBUTE_CONDITION = 1 };
-pub const SI_MAY_WRITE = SI_OBJECT_INFO_FLAGS{ .MAY_WRITE = 1 };
-pub const SI_NO_ADDITIONAL_PERMISSION = SI_OBJECT_INFO_FLAGS{ .NO_ADDITIONAL_PERMISSION = 1 };
-pub const SI_OWNER_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .OWNER_ELEVATION_REQUIRED = 1 };
-pub const SI_PERMS_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .PERMS_ELEVATION_REQUIRED = 1 };
-pub const SI_RESET_DACL = SI_OBJECT_INFO_FLAGS{ .RESET_DACL = 1 };
-pub const SI_RESET_OWNER = SI_OBJECT_INFO_FLAGS{ .RESET_OWNER = 1 };
-pub const SI_RESET_SACL = SI_OBJECT_INFO_FLAGS{ .RESET_SACL = 1 };
-pub const SI_SCOPE_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .SCOPE_ELEVATION_REQUIRED = 1 };
-pub const SI_VIEW_ONLY = SI_OBJECT_INFO_FLAGS{ .VIEW_ONLY = 1 };
-
-pub const SI_OBJECT_INFO = extern struct {
-    dwFlags: SI_OBJECT_INFO_FLAGS,
-    hInstance: ?HINSTANCE,
-    pszServerName: ?PWSTR,
-    pszObjectName: ?PWSTR,
-    pszPageTitle: ?PWSTR,
-    guidObjectType: Guid,
+pub const EFFPERM_RESULT_LIST = extern struct {
+    fEvaluated: BOOLEAN,
+    cObjectTypeListLength: u32,
+    pObjectTypeList: ?*OBJECT_TYPE_LIST,
+    pGrantedAccessList: ?*u32,
 };
 
-pub const SI_ACCESS = extern struct {
-    pguid: ?*const Guid,
-    mask: u32,
-    pszName: ?[*:0]const u16,
-    dwFlags: u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IEffectivePermission_Value = Guid.initString("3853dc76-9f35-407c-88a1-d19344365fbc");
+pub const IID_IEffectivePermission = &IID_IEffectivePermission_Value;
+pub const IEffectivePermission = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetEffectivePermission: *const fn(
+            self: *const IEffectivePermission,
+            pguidObjectType: ?*const Guid,
+            pUserSid: ?PSID,
+            pszServerName: ?[*:0]const u16,
+            pSD: ?PSECURITY_DESCRIPTOR,
+            ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
+            pcObjectTypeListLength: ?*u32,
+            ppGrantedAccessList: ?*?*u32,
+            pcGrantedAccessListLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetEffectivePermission(self: *const IEffectivePermission, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?PSECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEffectivePermission(self, pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
+    }
 };
 
-pub const SI_INHERIT_TYPE = extern struct {
-    pguid: ?*const Guid,
-    dwFlags: ACE_FLAGS,
-    pszName: ?[*:0]const u16,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IEffectivePermission2_Value = Guid.initString("941fabca-dd47-4fca-90bb-b0e10255f20d");
+pub const IID_IEffectivePermission2 = &IID_IEffectivePermission2_Value;
+pub const IEffectivePermission2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ComputeEffectivePermissionWithSecondarySecurity: *const fn(
+            self: *const IEffectivePermission2,
+            pSid: ?PSID,
+            pDeviceSid: ?PSID,
+            pszServerName: ?[*:0]const u16,
+            pSecurityObjects: [*]SECURITY_OBJECT,
+            dwSecurityObjectCount: u32,
+            pUserGroups: ?*TOKEN_GROUPS,
+            pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION,
+            pDeviceGroups: ?*TOKEN_GROUPS,
+            pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION,
+            pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
+            pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+            pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
+            pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+            pEffpermResultLists: [*]EFFPERM_RESULT_LIST,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ComputeEffectivePermissionWithSecondarySecurity(self: *const IEffectivePermission2, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) callconv(.@"inline") HRESULT {
+        return self.vtable.ComputeEffectivePermissionWithSecondarySecurity(self, pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
+    }
 };
-
-pub const SI_PAGE_TYPE = enum(i32) {
-    PERM = 0,
-    ADVPERM = 1,
-    AUDIT = 2,
-    OWNER = 3,
-    EFFECTIVE = 4,
-    TAKEOWNERSHIP = 5,
-    SHARE = 6,
-};
-pub const SI_PAGE_PERM = SI_PAGE_TYPE.PERM;
-pub const SI_PAGE_ADVPERM = SI_PAGE_TYPE.ADVPERM;
-pub const SI_PAGE_AUDIT = SI_PAGE_TYPE.AUDIT;
-pub const SI_PAGE_OWNER = SI_PAGE_TYPE.OWNER;
-pub const SI_PAGE_EFFECTIVE = SI_PAGE_TYPE.EFFECTIVE;
-pub const SI_PAGE_TAKEOWNERSHIP = SI_PAGE_TYPE.TAKEOWNERSHIP;
-pub const SI_PAGE_SHARE = SI_PAGE_TYPE.SHARE;
-
-pub const SI_PAGE_ACTIVATED = enum(i32) {
-    DEFAULT = 0,
-    PERM_ACTIVATED = 1,
-    AUDIT_ACTIVATED = 2,
-    OWNER_ACTIVATED = 3,
-    EFFECTIVE_ACTIVATED = 4,
-    SHARE_ACTIVATED = 5,
-    CENTRAL_POLICY_ACTIVATED = 6,
-};
-pub const SI_SHOW_DEFAULT = SI_PAGE_ACTIVATED.DEFAULT;
-pub const SI_SHOW_PERM_ACTIVATED = SI_PAGE_ACTIVATED.PERM_ACTIVATED;
-pub const SI_SHOW_AUDIT_ACTIVATED = SI_PAGE_ACTIVATED.AUDIT_ACTIVATED;
-pub const SI_SHOW_OWNER_ACTIVATED = SI_PAGE_ACTIVATED.OWNER_ACTIVATED;
-pub const SI_SHOW_EFFECTIVE_ACTIVATED = SI_PAGE_ACTIVATED.EFFECTIVE_ACTIVATED;
-pub const SI_SHOW_SHARE_ACTIVATED = SI_PAGE_ACTIVATED.SHARE_ACTIVATED;
-pub const SI_SHOW_CENTRAL_POLICY_ACTIVATED = SI_PAGE_ACTIVATED.CENTRAL_POLICY_ACTIVATED;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISecurityInformation_Value = Guid.initString("965fc360-16ff-11d0-91cb-00aa00bbb723");
@@ -276,63 +196,6 @@ pub const ISecurityInformation2 = extern union {
     }
 };
 
-pub const SID_INFO = extern struct {
-    pSid: ?PSID,
-    pwzCommonName: ?PWSTR,
-    pwzClass: ?PWSTR,
-    pwzUPN: ?PWSTR,
-};
-
-pub const SID_INFO_LIST = extern struct {
-    cItems: u32,
-    aSidInfo: [1]SID_INFO,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IEffectivePermission_Value = Guid.initString("3853dc76-9f35-407c-88a1-d19344365fbc");
-pub const IID_IEffectivePermission = &IID_IEffectivePermission_Value;
-pub const IEffectivePermission = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetEffectivePermission: *const fn(
-            self: *const IEffectivePermission,
-            pguidObjectType: ?*const Guid,
-            pUserSid: ?PSID,
-            pszServerName: ?[*:0]const u16,
-            pSD: ?PSECURITY_DESCRIPTOR,
-            ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
-            pcObjectTypeListLength: ?*u32,
-            ppGrantedAccessList: ?*?*u32,
-            pcGrantedAccessListLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetEffectivePermission(self: *const IEffectivePermission, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?PSECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEffectivePermission(self, pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISecurityObjectTypeInfo_Value = Guid.initString("fc3066eb-79ef-444b-9111-d18a75ebf2fa");
-pub const IID_ISecurityObjectTypeInfo = &IID_ISecurityObjectTypeInfo_Value;
-pub const ISecurityObjectTypeInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInheritSource: *const fn(
-            self: *const ISecurityObjectTypeInfo,
-            si: u32,
-            pACL: ?*ACL,
-            ppInheritArray: ?*?*INHERITED_FROMA,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetInheritSource(self: *const ISecurityObjectTypeInfo, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInheritSource(self, si, pACL, ppInheritArray);
-    }
-};
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISecurityInformation3_Value = Guid.initString("e2cdc9cc-31bd-4f8f-8c8b-b641af516a1a");
 pub const IID_ISecurityInformation3 = &IID_ISecurityInformation3_Value;
@@ -359,23 +222,6 @@ pub const ISecurityInformation3 = extern union {
     }
 };
 
-pub const SECURITY_OBJECT = extern struct {
-    pwszName: ?PWSTR,
-    pData: ?*anyopaque,
-    cbData: u32,
-    pData2: ?*anyopaque,
-    cbData2: u32,
-    Id: u32,
-    fWellKnown: BOOLEAN,
-};
-
-pub const EFFPERM_RESULT_LIST = extern struct {
-    fEvaluated: BOOLEAN,
-    cObjectTypeListLength: u32,
-    pObjectTypeList: ?*OBJECT_TYPE_LIST,
-    pGrantedAccessList: ?*u32,
-};
-
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ISecurityInformation4_Value = Guid.initString("ea961070-cd14-4621-ace4-f63c03e583e4");
 pub const IID_ISecurityInformation4 = &IID_ISecurityInformation4_Value;
@@ -395,35 +241,189 @@ pub const ISecurityInformation4 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IEffectivePermission2_Value = Guid.initString("941fabca-dd47-4fca-90bb-b0e10255f20d");
-pub const IID_IEffectivePermission2 = &IID_IEffectivePermission2_Value;
-pub const IEffectivePermission2 = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ISecurityObjectTypeInfo_Value = Guid.initString("fc3066eb-79ef-444b-9111-d18a75ebf2fa");
+pub const IID_ISecurityObjectTypeInfo = &IID_ISecurityObjectTypeInfo_Value;
+pub const ISecurityObjectTypeInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ComputeEffectivePermissionWithSecondarySecurity: *const fn(
-            self: *const IEffectivePermission2,
-            pSid: ?PSID,
-            pDeviceSid: ?PSID,
-            pszServerName: ?[*:0]const u16,
-            pSecurityObjects: [*]SECURITY_OBJECT,
-            dwSecurityObjectCount: u32,
-            pUserGroups: ?*TOKEN_GROUPS,
-            pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION,
-            pDeviceGroups: ?*TOKEN_GROUPS,
-            pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION,
-            pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-            pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-            pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-            pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-            pEffpermResultLists: [*]EFFPERM_RESULT_LIST,
+        GetInheritSource: *const fn(
+            self: *const ISecurityObjectTypeInfo,
+            si: u32,
+            pACL: ?*ACL,
+            ppInheritArray: ?*?*INHERITED_FROMA,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ComputeEffectivePermissionWithSecondarySecurity(self: *const IEffectivePermission2, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) callconv(.@"inline") HRESULT {
-        return self.vtable.ComputeEffectivePermissionWithSecondarySecurity(self, pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
+    pub fn GetInheritSource(self: *const ISecurityObjectTypeInfo, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInheritSource(self, si, pACL, ppInheritArray);
     }
+};
+
+pub const SECURITY_INFO_PAGE_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    EDIT_AUDITS: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    ADVANCED: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    EDIT_PROPERTIES: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const SI_ADVANCED = SECURITY_INFO_PAGE_FLAGS{ .ADVANCED = 1 };
+pub const SI_EDIT_AUDITS = SECURITY_INFO_PAGE_FLAGS{ .EDIT_AUDITS = 1 };
+pub const SI_EDIT_PROPERTIES = SECURITY_INFO_PAGE_FLAGS{ .EDIT_PROPERTIES = 1 };
+
+pub const SECURITY_OBJECT = extern struct {
+    pwszName: ?PWSTR,
+    pData: ?*anyopaque,
+    cbData: u32,
+    pData2: ?*anyopaque,
+    cbData2: u32,
+    Id: u32,
+    fWellKnown: BOOLEAN,
+};
+
+pub const SI_ACCESS = extern struct {
+    pguid: ?*const Guid,
+    mask: u32,
+    pszName: ?[*:0]const u16,
+    dwFlags: u32,
+};
+
+pub const SI_INHERIT_TYPE = extern struct {
+    pguid: ?*const Guid,
+    dwFlags: ACE_FLAGS,
+    pszName: ?[*:0]const u16,
+};
+
+pub const SI_OBJECT_INFO = extern struct {
+    dwFlags: SI_OBJECT_INFO_FLAGS,
+    hInstance: ?HINSTANCE,
+    pszServerName: ?PWSTR,
+    pszObjectName: ?PWSTR,
+    pszPageTitle: ?PWSTR,
+    guidObjectType: Guid,
+};
+
+pub const SI_OBJECT_INFO_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    EDIT_EFFECTIVE: u1 = 0,
+    RESET_DACL: u1 = 0,
+    RESET_SACL: u1 = 0,
+    RESET_OWNER: u1 = 0,
+    NO_ADDITIONAL_PERMISSION: u1 = 0,
+    VIEW_ONLY: u1 = 0,
+    _23: u1 = 0,
+    PERMS_ELEVATION_REQUIRED: u1 = 0,
+    AUDITS_ELEVATION_REQUIRED: u1 = 0,
+    OWNER_ELEVATION_REQUIRED: u1 = 0,
+    SCOPE_ELEVATION_REQUIRED: u1 = 0,
+    MAY_WRITE: u1 = 0,
+    ENABLE_EDIT_ATTRIBUTE_CONDITION: u1 = 0,
+    ENABLE_CENTRAL_POLICY: u1 = 0,
+    DISABLE_DENY_ACE: u1 = 0,
+};
+pub const SI_AUDITS_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .AUDITS_ELEVATION_REQUIRED = 1 };
+pub const SI_DISABLE_DENY_ACE = SI_OBJECT_INFO_FLAGS{ .DISABLE_DENY_ACE = 1 };
+pub const SI_EDIT_EFFECTIVE = SI_OBJECT_INFO_FLAGS{ .EDIT_EFFECTIVE = 1 };
+pub const SI_ENABLE_CENTRAL_POLICY = SI_OBJECT_INFO_FLAGS{ .ENABLE_CENTRAL_POLICY = 1 };
+pub const SI_ENABLE_EDIT_ATTRIBUTE_CONDITION = SI_OBJECT_INFO_FLAGS{ .ENABLE_EDIT_ATTRIBUTE_CONDITION = 1 };
+pub const SI_MAY_WRITE = SI_OBJECT_INFO_FLAGS{ .MAY_WRITE = 1 };
+pub const SI_NO_ADDITIONAL_PERMISSION = SI_OBJECT_INFO_FLAGS{ .NO_ADDITIONAL_PERMISSION = 1 };
+pub const SI_OWNER_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .OWNER_ELEVATION_REQUIRED = 1 };
+pub const SI_PERMS_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .PERMS_ELEVATION_REQUIRED = 1 };
+pub const SI_RESET_DACL = SI_OBJECT_INFO_FLAGS{ .RESET_DACL = 1 };
+pub const SI_RESET_OWNER = SI_OBJECT_INFO_FLAGS{ .RESET_OWNER = 1 };
+pub const SI_RESET_SACL = SI_OBJECT_INFO_FLAGS{ .RESET_SACL = 1 };
+pub const SI_SCOPE_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS{ .SCOPE_ELEVATION_REQUIRED = 1 };
+pub const SI_VIEW_ONLY = SI_OBJECT_INFO_FLAGS{ .VIEW_ONLY = 1 };
+
+pub const SI_PAGE_ACTIVATED = enum(i32) {
+    DEFAULT = 0,
+    PERM_ACTIVATED = 1,
+    AUDIT_ACTIVATED = 2,
+    OWNER_ACTIVATED = 3,
+    EFFECTIVE_ACTIVATED = 4,
+    SHARE_ACTIVATED = 5,
+    CENTRAL_POLICY_ACTIVATED = 6,
+};
+pub const SI_SHOW_DEFAULT = SI_PAGE_ACTIVATED.DEFAULT;
+pub const SI_SHOW_PERM_ACTIVATED = SI_PAGE_ACTIVATED.PERM_ACTIVATED;
+pub const SI_SHOW_AUDIT_ACTIVATED = SI_PAGE_ACTIVATED.AUDIT_ACTIVATED;
+pub const SI_SHOW_OWNER_ACTIVATED = SI_PAGE_ACTIVATED.OWNER_ACTIVATED;
+pub const SI_SHOW_EFFECTIVE_ACTIVATED = SI_PAGE_ACTIVATED.EFFECTIVE_ACTIVATED;
+pub const SI_SHOW_SHARE_ACTIVATED = SI_PAGE_ACTIVATED.SHARE_ACTIVATED;
+pub const SI_SHOW_CENTRAL_POLICY_ACTIVATED = SI_PAGE_ACTIVATED.CENTRAL_POLICY_ACTIVATED;
+
+pub const SI_PAGE_TYPE = enum(i32) {
+    PERM = 0,
+    ADVPERM = 1,
+    AUDIT = 2,
+    OWNER = 3,
+    EFFECTIVE = 4,
+    TAKEOWNERSHIP = 5,
+    SHARE = 6,
+};
+pub const SI_PAGE_PERM = SI_PAGE_TYPE.PERM;
+pub const SI_PAGE_ADVPERM = SI_PAGE_TYPE.ADVPERM;
+pub const SI_PAGE_AUDIT = SI_PAGE_TYPE.AUDIT;
+pub const SI_PAGE_OWNER = SI_PAGE_TYPE.OWNER;
+pub const SI_PAGE_EFFECTIVE = SI_PAGE_TYPE.EFFECTIVE;
+pub const SI_PAGE_TAKEOWNERSHIP = SI_PAGE_TYPE.TAKEOWNERSHIP;
+pub const SI_PAGE_SHARE = SI_PAGE_TYPE.SHARE;
+
+pub const SID_INFO = extern struct {
+    pSid: ?PSID,
+    pwzCommonName: ?PWSTR,
+    pwzClass: ?PWSTR,
+    pwzUPN: ?PWSTR,
+};
+
+pub const SID_INFO_LIST = extern struct {
+    cItems: u32,
+    aSidInfo: [1]SID_INFO,
 };
 
 

@@ -2,9 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3)
 //--------------------------------------------------------------------------------
-pub const MAX_MODULE_NAME32 = @as(u32, 255);
 pub const HF32_DEFAULT = @as(u32, 1);
 pub const HF32_SHARED = @as(u32, 2);
+pub const MAX_MODULE_NAME32 = @as(u32, 255);
 
 //--------------------------------------------------------------------------------
 // Section: Types (9)
@@ -56,6 +56,18 @@ pub const TH32CS_SNAPMODULE32 = CREATE_TOOLHELP_SNAPSHOT_FLAGS{ .SNAPMODULE32 = 
 pub const TH32CS_SNAPPROCESS = CREATE_TOOLHELP_SNAPSHOT_FLAGS{ .SNAPPROCESS = 1 };
 pub const TH32CS_SNAPTHREAD = CREATE_TOOLHELP_SNAPSHOT_FLAGS{ .SNAPTHREAD = 1 };
 
+pub const HEAPENTRY32 = extern struct {
+    dwSize: usize,
+    hHandle: ?HANDLE,
+    dwAddress: usize,
+    dwBlockSize: usize,
+    dwFlags: HEAPENTRY32_FLAGS,
+    dwLockCount: u32,
+    dwResvd: u32,
+    th32ProcessID: u32,
+    th32HeapID: usize,
+};
+
 pub const HEAPENTRY32_FLAGS = enum(u32) {
     FIXED = 1,
     FREE = 2,
@@ -72,52 +84,17 @@ pub const HEAPLIST32 = extern struct {
     dwFlags: u32,
 };
 
-pub const HEAPENTRY32 = extern struct {
-    dwSize: usize,
-    hHandle: ?HANDLE,
-    dwAddress: usize,
-    dwBlockSize: usize,
-    dwFlags: HEAPENTRY32_FLAGS,
-    dwLockCount: u32,
-    dwResvd: u32,
-    th32ProcessID: u32,
-    th32HeapID: usize,
-};
-
-pub const PROCESSENTRY32W = extern struct {
+pub const MODULEENTRY32 = extern struct {
     dwSize: u32,
-    cntUsage: u32,
-    th32ProcessID: u32,
-    th32DefaultHeapID: usize,
     th32ModuleID: u32,
-    cntThreads: u32,
-    th32ParentProcessID: u32,
-    pcPriClassBase: i32,
-    dwFlags: u32,
-    szExeFile: [260]u16,
-};
-
-pub const PROCESSENTRY32 = extern struct {
-    dwSize: u32,
-    cntUsage: u32,
     th32ProcessID: u32,
-    th32DefaultHeapID: usize,
-    th32ModuleID: u32,
-    cntThreads: u32,
-    th32ParentProcessID: u32,
-    pcPriClassBase: i32,
-    dwFlags: u32,
-    szExeFile: [260]CHAR,
-};
-
-pub const THREADENTRY32 = extern struct {
-    dwSize: u32,
-    cntUsage: u32,
-    th32ThreadID: u32,
-    th32OwnerProcessID: u32,
-    tpBasePri: i32,
-    tpDeltaPri: i32,
-    dwFlags: u32,
+    GlblcntUsage: u32,
+    ProccntUsage: u32,
+    modBaseAddr: ?*u8,
+    modBaseSize: u32,
+    hModule: ?HINSTANCE,
+    szModule: [256]CHAR,
+    szExePath: [260]CHAR,
 };
 
 pub const MODULEENTRY32W = extern struct {
@@ -133,17 +110,40 @@ pub const MODULEENTRY32W = extern struct {
     szExePath: [260]u16,
 };
 
-pub const MODULEENTRY32 = extern struct {
+pub const PROCESSENTRY32 = extern struct {
     dwSize: u32,
-    th32ModuleID: u32,
+    cntUsage: u32,
     th32ProcessID: u32,
-    GlblcntUsage: u32,
-    ProccntUsage: u32,
-    modBaseAddr: ?*u8,
-    modBaseSize: u32,
-    hModule: ?HINSTANCE,
-    szModule: [256]CHAR,
-    szExePath: [260]CHAR,
+    th32DefaultHeapID: usize,
+    th32ModuleID: u32,
+    cntThreads: u32,
+    th32ParentProcessID: u32,
+    pcPriClassBase: i32,
+    dwFlags: u32,
+    szExeFile: [260]CHAR,
+};
+
+pub const PROCESSENTRY32W = extern struct {
+    dwSize: u32,
+    cntUsage: u32,
+    th32ProcessID: u32,
+    th32DefaultHeapID: usize,
+    th32ModuleID: u32,
+    cntThreads: u32,
+    th32ParentProcessID: u32,
+    pcPriClassBase: i32,
+    dwFlags: u32,
+    szExeFile: [260]u16,
+};
+
+pub const THREADENTRY32 = extern struct {
+    dwSize: u32,
+    cntUsage: u32,
+    th32ThreadID: u32,
+    th32OwnerProcessID: u32,
+    tpBasePri: i32,
+    tpDeltaPri: i32,
+    dwFlags: u32,
 };
 
 
@@ -155,6 +155,13 @@ pub extern "kernel32" fn CreateToolhelp32Snapshot(
     dwFlags: CREATE_TOOLHELP_SNAPSHOT_FLAGS,
     th32ProcessID: u32,
 ) callconv(.winapi) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn Heap32First(
+    lphe: ?*HEAPENTRY32,
+    th32ProcessID: u32,
+    th32HeapID: usize,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn Heap32ListFirst(
@@ -169,36 +176,32 @@ pub extern "kernel32" fn Heap32ListNext(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Heap32First(
-    lphe: ?*HEAPENTRY32,
-    th32ProcessID: u32,
-    th32HeapID: usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn Heap32Next(
     lphe: ?*HEAPENTRY32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Toolhelp32ReadProcessMemory(
-    th32ProcessID: u32,
-    lpBaseAddress: ?*const anyopaque,
-    lpBuffer: ?*anyopaque,
-    cbRead: usize,
-    lpNumberOfBytesRead: ?*usize,
+pub extern "kernel32" fn Module32First(
+    hSnapshot: ?HANDLE,
+    lpme: ?*MODULEENTRY32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Process32FirstW(
+pub extern "kernel32" fn Module32FirstW(
     hSnapshot: ?HANDLE,
-    lppe: ?*PROCESSENTRY32W,
+    lpme: ?*MODULEENTRY32W,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Process32NextW(
+pub extern "kernel32" fn Module32Next(
     hSnapshot: ?HANDLE,
-    lppe: ?*PROCESSENTRY32W,
+    lpme: ?*MODULEENTRY32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn Module32NextW(
+    hSnapshot: ?HANDLE,
+    lpme: ?*MODULEENTRY32W,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -208,9 +211,21 @@ pub extern "kernel32" fn Process32First(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn Process32FirstW(
+    hSnapshot: ?HANDLE,
+    lppe: ?*PROCESSENTRY32W,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn Process32Next(
     hSnapshot: ?HANDLE,
     lppe: ?*PROCESSENTRY32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn Process32NextW(
+    hSnapshot: ?HANDLE,
+    lppe: ?*PROCESSENTRY32W,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -226,27 +241,12 @@ pub extern "kernel32" fn Thread32Next(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Module32FirstW(
-    hSnapshot: ?HANDLE,
-    lpme: ?*MODULEENTRY32W,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Module32NextW(
-    hSnapshot: ?HANDLE,
-    lpme: ?*MODULEENTRY32W,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Module32First(
-    hSnapshot: ?HANDLE,
-    lpme: ?*MODULEENTRY32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn Module32Next(
-    hSnapshot: ?HANDLE,
-    lpme: ?*MODULEENTRY32,
+pub extern "kernel32" fn Toolhelp32ReadProcessMemory(
+    th32ProcessID: u32,
+    lpBaseAddress: ?*const anyopaque,
+    lpBuffer: ?*anyopaque,
+    cbRead: usize,
+    lpNumberOfBytesRead: ?*usize,
 ) callconv(.winapi) BOOL;
 
 

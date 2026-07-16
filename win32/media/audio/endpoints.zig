@@ -2,14 +2,37 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const DEVPKEY_AudioEndpointPlugin_FactoryCLSID = PROPERTYKEY { .fmtid = Guid.initString("12d83bd7-cf12-46be-8540-812710d3021c"), .pid = 1 };
-pub const DEVPKEY_AudioEndpointPlugin_DataFlow = PROPERTYKEY { .fmtid = Guid.initString("12d83bd7-cf12-46be-8540-812710d3021c"), .pid = 2 };
-pub const DEVPKEY_AudioEndpointPlugin_PnPInterface = PROPERTYKEY { .fmtid = Guid.initString("12d83bd7-cf12-46be-8540-812710d3021c"), .pid = 3 };
 pub const DEVPKEY_AudioEndpointPlugin2_FactoryCLSID = PROPERTYKEY { .fmtid = Guid.initString("12d83bd7-cf12-46be-8540-812710d3021c"), .pid = 4 };
+pub const DEVPKEY_AudioEndpointPlugin_DataFlow = PROPERTYKEY { .fmtid = Guid.initString("12d83bd7-cf12-46be-8540-812710d3021c"), .pid = 2 };
+pub const DEVPKEY_AudioEndpointPlugin_FactoryCLSID = PROPERTYKEY { .fmtid = Guid.initString("12d83bd7-cf12-46be-8540-812710d3021c"), .pid = 1 };
+pub const DEVPKEY_AudioEndpointPlugin_PnPInterface = PROPERTYKEY { .fmtid = Guid.initString("12d83bd7-cf12-46be-8540-812710d3021c"), .pid = 3 };
 
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
+pub const AUDIO_ENDPOINT_SHARED_CREATE_PARAMS = extern struct {
+    u32Size: u32,
+    u32TSSessionId: u32,
+    targetEndpointConnectorType: EndpointConnectorType,
+    wfxDeviceFormat: WAVEFORMATEX,
+};
+
+const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN_Value = Guid.initString("9f2f7b66-65ac-4fa6-8ae4-123c78b89313");
+pub const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN = &CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN_Value;
+
+pub const EndpointConnectorType = enum(i32) {
+    HostProcessConnector = 0,
+    OffloadConnector = 1,
+    LoopbackConnector = 2,
+    KeywordDetectorConnector = 3,
+    ConnectorCount = 4,
+};
+pub const eHostProcessConnector = EndpointConnectorType.HostProcessConnector;
+pub const eOffloadConnector = EndpointConnectorType.OffloadConnector;
+pub const eLoopbackConnector = EndpointConnectorType.LoopbackConnector;
+pub const eKeywordDetectorConnector = EndpointConnectorType.KeywordDetectorConnector;
+pub const eConnectorCount = EndpointConnectorType.ConnectorCount;
+
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioEndpointFormatControl_Value = Guid.initString("784cfd40-9f89-456e-a1a6-873b006a664e");
 pub const IID_IAudioEndpointFormatControl = &IID_IAudioEndpointFormatControl_Value;
@@ -28,24 +51,78 @@ pub const IAudioEndpointFormatControl = extern union {
     }
 };
 
-pub const EndpointConnectorType = enum(i32) {
-    HostProcessConnector = 0,
-    OffloadConnector = 1,
-    LoopbackConnector = 2,
-    KeywordDetectorConnector = 3,
-    ConnectorCount = 4,
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IAudioEndpointLastBufferControl_Value = Guid.initString("f8520dd3-8f9d-4437-9861-62f584c33dd6");
+pub const IID_IAudioEndpointLastBufferControl = &IID_IAudioEndpointLastBufferControl_Value;
+pub const IAudioEndpointLastBufferControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsLastBufferControlSupported: *const fn(
+            self: *const IAudioEndpointLastBufferControl,
+        ) callconv(.winapi) BOOL,
+        ReleaseOutputDataPointerForLastBuffer: *const fn(
+            self: *const IAudioEndpointLastBufferControl,
+            pConnectionProperty: ?*const APO_CONNECTION_PROPERTY,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsLastBufferControlSupported(self: *const IAudioEndpointLastBufferControl) callconv(.@"inline") BOOL {
+        return self.vtable.IsLastBufferControlSupported(self);
+    }
+    pub fn ReleaseOutputDataPointerForLastBuffer(self: *const IAudioEndpointLastBufferControl, pConnectionProperty: ?*const APO_CONNECTION_PROPERTY) callconv(.@"inline") void {
+        return self.vtable.ReleaseOutputDataPointerForLastBuffer(self, pConnectionProperty);
+    }
 };
-pub const eHostProcessConnector = EndpointConnectorType.HostProcessConnector;
-pub const eOffloadConnector = EndpointConnectorType.OffloadConnector;
-pub const eLoopbackConnector = EndpointConnectorType.LoopbackConnector;
-pub const eKeywordDetectorConnector = EndpointConnectorType.KeywordDetectorConnector;
-pub const eConnectorCount = EndpointConnectorType.ConnectorCount;
 
-pub const AUDIO_ENDPOINT_SHARED_CREATE_PARAMS = extern struct {
-    u32Size: u32,
-    u32TSSessionId: u32,
-    targetEndpointConnectorType: EndpointConnectorType,
-    wfxDeviceFormat: WAVEFORMATEX,
+const IID_IAudioEndpointOffloadStreamMeter_Value = Guid.initString("e1546dce-9dd1-418b-9ab2-348ced161c86");
+pub const IID_IAudioEndpointOffloadStreamMeter = &IID_IAudioEndpointOffloadStreamMeter_Value;
+pub const IAudioEndpointOffloadStreamMeter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMeterChannelCount: *const fn(
+            self: *const IAudioEndpointOffloadStreamMeter,
+            pu32ChannelCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetMeteringData: *const fn(
+            self: *const IAudioEndpointOffloadStreamMeter,
+            u32ChannelCount: u32,
+            pf32PeakValues: ?*f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMeterChannelCount(self: *const IAudioEndpointOffloadStreamMeter, pu32ChannelCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMeterChannelCount(self, pu32ChannelCount);
+    }
+    pub fn GetMeteringData(self: *const IAudioEndpointOffloadStreamMeter, u32ChannelCount: u32, pf32PeakValues: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMeteringData(self, u32ChannelCount, pf32PeakValues);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAudioEndpointOffloadStreamMute_Value = Guid.initString("dfe21355-5ec2-40e0-8d6b-710ac3c00249");
+pub const IID_IAudioEndpointOffloadStreamMute = &IID_IAudioEndpointOffloadStreamMute_Value;
+pub const IAudioEndpointOffloadStreamMute = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetMute: *const fn(
+            self: *const IAudioEndpointOffloadStreamMute,
+            bMuted: u8,
+        ) callconv(.winapi) HRESULT,
+        GetMute: *const fn(
+            self: *const IAudioEndpointOffloadStreamMute,
+            pbMuted: ?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetMute(self: *const IAudioEndpointOffloadStreamMute, bMuted: u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMute(self, bMuted);
+    }
+    pub fn GetMute(self: *const IAudioEndpointOffloadStreamMute, pbMuted: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMute(self, pbMuted);
+    }
 };
 
 const IID_IAudioEndpointOffloadStreamVolume_Value = Guid.initString("64f1dd49-71ca-4281-8672-3a9eddd1d0b6");
@@ -80,179 +157,6 @@ pub const IAudioEndpointOffloadStreamVolume = extern union {
     }
     pub fn GetChannelVolumes(self: *const IAudioEndpointOffloadStreamVolume, u32ChannelCount: u32, pf32Volumes: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelVolumes(self, u32ChannelCount, pf32Volumes);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAudioEndpointOffloadStreamMute_Value = Guid.initString("dfe21355-5ec2-40e0-8d6b-710ac3c00249");
-pub const IID_IAudioEndpointOffloadStreamMute = &IID_IAudioEndpointOffloadStreamMute_Value;
-pub const IAudioEndpointOffloadStreamMute = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetMute: *const fn(
-            self: *const IAudioEndpointOffloadStreamMute,
-            bMuted: u8,
-        ) callconv(.winapi) HRESULT,
-        GetMute: *const fn(
-            self: *const IAudioEndpointOffloadStreamMute,
-            pbMuted: ?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetMute(self: *const IAudioEndpointOffloadStreamMute, bMuted: u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMute(self, bMuted);
-    }
-    pub fn GetMute(self: *const IAudioEndpointOffloadStreamMute, pbMuted: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMute(self, pbMuted);
-    }
-};
-
-const IID_IAudioEndpointOffloadStreamMeter_Value = Guid.initString("e1546dce-9dd1-418b-9ab2-348ced161c86");
-pub const IID_IAudioEndpointOffloadStreamMeter = &IID_IAudioEndpointOffloadStreamMeter_Value;
-pub const IAudioEndpointOffloadStreamMeter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetMeterChannelCount: *const fn(
-            self: *const IAudioEndpointOffloadStreamMeter,
-            pu32ChannelCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetMeteringData: *const fn(
-            self: *const IAudioEndpointOffloadStreamMeter,
-            u32ChannelCount: u32,
-            pf32PeakValues: ?*f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetMeterChannelCount(self: *const IAudioEndpointOffloadStreamMeter, pu32ChannelCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMeterChannelCount(self, pu32ChannelCount);
-    }
-    pub fn GetMeteringData(self: *const IAudioEndpointOffloadStreamMeter, u32ChannelCount: u32, pf32PeakValues: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMeteringData(self, u32ChannelCount, pf32PeakValues);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IAudioEndpointLastBufferControl_Value = Guid.initString("f8520dd3-8f9d-4437-9861-62f584c33dd6");
-pub const IID_IAudioEndpointLastBufferControl = &IID_IAudioEndpointLastBufferControl_Value;
-pub const IAudioEndpointLastBufferControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsLastBufferControlSupported: *const fn(
-            self: *const IAudioEndpointLastBufferControl,
-        ) callconv(.winapi) BOOL,
-        ReleaseOutputDataPointerForLastBuffer: *const fn(
-            self: *const IAudioEndpointLastBufferControl,
-            pConnectionProperty: ?*const APO_CONNECTION_PROPERTY,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsLastBufferControlSupported(self: *const IAudioEndpointLastBufferControl) callconv(.@"inline") BOOL {
-        return self.vtable.IsLastBufferControlSupported(self);
-    }
-    pub fn ReleaseOutputDataPointerForLastBuffer(self: *const IAudioEndpointLastBufferControl, pConnectionProperty: ?*const APO_CONNECTION_PROPERTY) callconv(.@"inline") void {
-        return self.vtable.ReleaseOutputDataPointerForLastBuffer(self, pConnectionProperty);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAudioLfxControl_Value = Guid.initString("076a6922-d802-4f83-baf6-409d9ca11bfe");
-pub const IID_IAudioLfxControl = &IID_IAudioLfxControl_Value;
-pub const IAudioLfxControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetLocalEffectsState: *const fn(
-            self: *const IAudioLfxControl,
-            bEnabled: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetLocalEffectsState: *const fn(
-            self: *const IAudioLfxControl,
-            pbEnabled: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetLocalEffectsState(self: *const IAudioLfxControl, bEnabled: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLocalEffectsState(self, bEnabled);
-    }
-    pub fn GetLocalEffectsState(self: *const IAudioLfxControl, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalEffectsState(self, pbEnabled);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IHardwareAudioEngineBase_Value = Guid.initString("eddce3e4-f3c1-453a-b461-223563cbd886");
-pub const IID_IHardwareAudioEngineBase = &IID_IHardwareAudioEngineBase_Value;
-pub const IHardwareAudioEngineBase = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAvailableOffloadConnectorCount: *const fn(
-            self: *const IHardwareAudioEngineBase,
-            _pwstrDeviceId: ?PWSTR,
-            _uConnectorId: u32,
-            _pAvailableConnectorInstanceCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetEngineFormat: *const fn(
-            self: *const IHardwareAudioEngineBase,
-            pDevice: ?*IMMDevice,
-            _bRequestDeviceFormat: BOOL,
-            _ppwfxFormat: ?*?*WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        SetEngineDeviceFormat: *const fn(
-            self: *const IHardwareAudioEngineBase,
-            pDevice: ?*IMMDevice,
-            _pwfxFormat: ?*WAVEFORMATEX,
-        ) callconv(.winapi) HRESULT,
-        SetGfxState: *const fn(
-            self: *const IHardwareAudioEngineBase,
-            pDevice: ?*IMMDevice,
-            _bEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetGfxState: *const fn(
-            self: *const IHardwareAudioEngineBase,
-            pDevice: ?*IMMDevice,
-            _pbEnable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAvailableOffloadConnectorCount(self: *const IHardwareAudioEngineBase, _pwstrDeviceId: ?PWSTR, _uConnectorId: u32, _pAvailableConnectorInstanceCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAvailableOffloadConnectorCount(self, _pwstrDeviceId, _uConnectorId, _pAvailableConnectorInstanceCount);
-    }
-    pub fn GetEngineFormat(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _bRequestDeviceFormat: BOOL, _ppwfxFormat: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEngineFormat(self, pDevice, _bRequestDeviceFormat, _ppwfxFormat);
-    }
-    pub fn SetEngineDeviceFormat(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _pwfxFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEngineDeviceFormat(self, pDevice, _pwfxFormat);
-    }
-    pub fn SetGfxState(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _bEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGfxState(self, pDevice, _bEnable);
-    }
-    pub fn GetGfxState(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _pbEnable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGfxState(self, pDevice, _pbEnable);
-    }
-};
-
-const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN_Value = Guid.initString("9f2f7b66-65ac-4fa6-8ae4-123c78b89313");
-pub const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN = &CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN_Value;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAudioEndpointVolumeCallback_Value = Guid.initString("657804fa-d6ad-4496-8a60-352752af4f89");
-pub const IID_IAudioEndpointVolumeCallback = &IID_IAudioEndpointVolumeCallback_Value;
-pub const IAudioEndpointVolumeCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnNotify: *const fn(
-            self: *const IAudioEndpointVolumeCallback,
-            pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnNotify(self: *const IAudioEndpointVolumeCallback, pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA) callconv(.@"inline") HRESULT {
-        return self.vtable.OnNotify(self, pNotify);
     }
 };
 
@@ -405,6 +309,24 @@ pub const IAudioEndpointVolume = extern union {
     }
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAudioEndpointVolumeCallback_Value = Guid.initString("657804fa-d6ad-4496-8a60-352752af4f89");
+pub const IID_IAudioEndpointVolumeCallback = &IID_IAudioEndpointVolumeCallback_Value;
+pub const IAudioEndpointVolumeCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnNotify: *const fn(
+            self: *const IAudioEndpointVolumeCallback,
+            pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnNotify(self: *const IAudioEndpointVolumeCallback, pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA) callconv(.@"inline") HRESULT {
+        return self.vtable.OnNotify(self, pNotify);
+    }
+};
+
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioEndpointVolumeEx_Value = Guid.initString("66e11784-f695-4f28-a505-a7080081a78f");
 pub const IID_IAudioEndpointVolumeEx = &IID_IAudioEndpointVolumeEx_Value;
@@ -424,6 +346,31 @@ pub const IAudioEndpointVolumeEx = extern union {
     IUnknown: IUnknown,
     pub fn GetVolumeRangeChannel(self: *const IAudioEndpointVolumeEx, iChannel: u32, pflVolumeMindB: ?*f32, pflVolumeMaxdB: ?*f32, pflVolumeIncrementdB: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVolumeRangeChannel(self, iChannel, pflVolumeMindB, pflVolumeMaxdB, pflVolumeIncrementdB);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAudioLfxControl_Value = Guid.initString("076a6922-d802-4f83-baf6-409d9ca11bfe");
+pub const IID_IAudioLfxControl = &IID_IAudioLfxControl_Value;
+pub const IAudioLfxControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetLocalEffectsState: *const fn(
+            self: *const IAudioLfxControl,
+            bEnabled: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetLocalEffectsState: *const fn(
+            self: *const IAudioLfxControl,
+            pbEnabled: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetLocalEffectsState(self: *const IAudioLfxControl, bEnabled: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLocalEffectsState(self, bEnabled);
+    }
+    pub fn GetLocalEffectsState(self: *const IAudioLfxControl, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalEffectsState(self, pbEnabled);
     }
 };
 
@@ -464,6 +411,59 @@ pub const IAudioMeterInformation = extern union {
     }
     pub fn QueryHardwareSupport(self: *const IAudioMeterInformation, pdwHardwareSupportMask: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryHardwareSupport(self, pdwHardwareSupportMask);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IHardwareAudioEngineBase_Value = Guid.initString("eddce3e4-f3c1-453a-b461-223563cbd886");
+pub const IID_IHardwareAudioEngineBase = &IID_IHardwareAudioEngineBase_Value;
+pub const IHardwareAudioEngineBase = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAvailableOffloadConnectorCount: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            _pwstrDeviceId: ?PWSTR,
+            _uConnectorId: u32,
+            _pAvailableConnectorInstanceCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetEngineFormat: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _bRequestDeviceFormat: BOOL,
+            _ppwfxFormat: ?*?*WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        SetEngineDeviceFormat: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _pwfxFormat: ?*WAVEFORMATEX,
+        ) callconv(.winapi) HRESULT,
+        SetGfxState: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _bEnable: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetGfxState: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _pbEnable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAvailableOffloadConnectorCount(self: *const IHardwareAudioEngineBase, _pwstrDeviceId: ?PWSTR, _uConnectorId: u32, _pAvailableConnectorInstanceCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAvailableOffloadConnectorCount(self, _pwstrDeviceId, _uConnectorId, _pAvailableConnectorInstanceCount);
+    }
+    pub fn GetEngineFormat(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _bRequestDeviceFormat: BOOL, _ppwfxFormat: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEngineFormat(self, pDevice, _bRequestDeviceFormat, _ppwfxFormat);
+    }
+    pub fn SetEngineDeviceFormat(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _pwfxFormat: ?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEngineDeviceFormat(self, pDevice, _pwfxFormat);
+    }
+    pub fn SetGfxState(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _bEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGfxState(self, pDevice, _bEnable);
+    }
+    pub fn GetGfxState(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _pbEnable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGfxState(self, pDevice, _pbEnable);
     }
 };
 

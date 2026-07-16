@@ -2,1056 +2,2889 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (698)
 //--------------------------------------------------------------------------------
+pub const CLSID_WMPMediaPluginRegistrar = Guid.initString("5569e7f5-424b-4b93-89ca-79d17924689a");
+pub const CLSID_WMPSkinManager = Guid.initString("b2a7fd52-301f-4348-b93a-638c6de49229");
 pub const CLSID_XFeedsManager = Guid.initString("fe6b11c3-c72e-4061-86c6-9d163121f229");
-pub const WMPGC_FLAGS_ALLOW_PREROLL = @as(u32, 1);
-pub const WMPGC_FLAGS_SUPPRESS_DIALOGS = @as(u32, 2);
-pub const WMPGC_FLAGS_IGNORE_AV_SYNC = @as(u32, 4);
-pub const WMPGC_FLAGS_DISABLE_PLUGINS = @as(u32, 8);
-pub const WMPGC_FLAGS_USE_CUSTOM_GRAPH = @as(u32, 16);
-pub const WMPUE_EC_USER = @as(u32, 33024);
-pub const WMP_MDRT_FLAGS_UNREPORTED_DELETED_ITEMS = @as(u32, 1);
-pub const WMP_MDRT_FLAGS_UNREPORTED_ADDED_ITEMS = @as(u32, 2);
-pub const IOCTL_WMP_METADATA_ROUND_TRIP = @as(u32, 827346263);
-pub const IOCTL_WMP_DEVICE_CAN_SYNC = @as(u32, 844123479);
-pub const EFFECT_CANGOFULLSCREEN = @as(u32, 1);
-pub const EFFECT_HASPROPERTYPAGE = @as(u32, 2);
-pub const EFFECT_VARIABLEFREQSTEP = @as(u32, 4);
-pub const EFFECT_WINDOWEDONLY = @as(u32, 8);
-pub const EFFECT2_FULLSCREENEXCLUSIVE = @as(u32, 16);
-pub const SA_BUFFER_SIZE = @as(u32, 1024);
-pub const PLUGIN_INSTALLREGKEY = "Software\\Microsoft\\MediaPlayer\\UIPlugins";
-pub const PLUGIN_INSTALLREGKEY_FRIENDLYNAME = "FriendlyName";
-pub const PLUGIN_INSTALLREGKEY_DESCRIPTION = "Description";
-pub const PLUGIN_INSTALLREGKEY_CAPABILITIES = "Capabilities";
-pub const PLUGIN_INSTALLREGKEY_UNINSTALL = "UninstallPath";
-pub const PLUGIN_TYPE_BACKGROUND = @as(u32, 1);
-pub const PLUGIN_TYPE_SEPARATEWINDOW = @as(u32, 2);
-pub const PLUGIN_TYPE_DISPLAYAREA = @as(u32, 3);
-pub const PLUGIN_TYPE_SETTINGSAREA = @as(u32, 4);
-pub const PLUGIN_TYPE_METADATAAREA = @as(u32, 5);
-pub const PLUGIN_FLAGS_HASPROPERTYPAGE = @as(u32, 2147483648);
-pub const PLUGIN_FLAGS_INSTALLAUTORUN = @as(u32, 1073741824);
-pub const PLUGIN_FLAGS_LAUNCHPROPERTYPAGE = @as(u32, 536870912);
-pub const PLUGIN_FLAGS_ACCEPTSMEDIA = @as(u32, 268435456);
-pub const PLUGIN_FLAGS_ACCEPTSPLAYLISTS = @as(u32, 134217728);
-pub const PLUGIN_FLAGS_HASPRESETS = @as(u32, 67108864);
-pub const PLUGIN_FLAGS_HIDDEN = @as(u32, 33554432);
-pub const PLUGIN_MISC_PRESETCOUNT = "PresetCount";
-pub const PLUGIN_MISC_PRESETNAMES = "PresetNames";
-pub const PLUGIN_MISC_CURRENTPRESET = "CurrentPreset";
-pub const PLUGIN_SEPARATEWINDOW_RESIZABLE = "Resizable";
-pub const PLUGIN_SEPARATEWINDOW_DEFAULTWIDTH = "DefaultWidth";
-pub const PLUGIN_SEPARATEWINDOW_DEFAULTHEIGHT = "DefaultHeight";
-pub const PLUGIN_SEPARATEWINDOW_MINWIDTH = "MinWidth";
-pub const PLUGIN_SEPARATEWINDOW_MINHEIGHT = "MinHeight";
-pub const PLUGIN_SEPARATEWINDOW_MAXWIDTH = "MaxWidth";
-pub const PLUGIN_SEPARATEWINDOW_MAXHEIGHT = "MaxHeight";
-pub const PLUGIN_MISC_QUERYDESTROY = "QueryDestroy";
-pub const PLUGIN_ALL_MEDIASENDTO = "MediaSendTo";
-pub const PLUGIN_ALL_PLAYLISTSENDTO = "PlaylistSendTo";
-pub const SUBSCRIPTION_CAP_DEVICEAVAILABLE = @as(u32, 16);
-pub const SUBSCRIPTION_CAP_BACKGROUNDPROCESSING = @as(u32, 8);
-pub const SUBSCRIPTION_CAP_IS_CONTENTPARTNER = @as(u32, 64);
-pub const SUBSCRIPTION_CAP_ALTLOGIN = @as(u32, 128);
-pub const SUBSCRIPTION_CAP_ALLOWPLAY = @as(u32, 1);
-pub const SUBSCRIPTION_CAP_ALLOWCDBURN = @as(u32, 2);
-pub const SUBSCRIPTION_CAP_ALLOWPDATRANSFER = @as(u32, 4);
-pub const SUBSCRIPTION_CAP_PREPAREFORSYNC = @as(u32, 32);
-pub const SUBSCRIPTION_V1_CAPS = @as(u32, 15);
-pub const SUBSCRIPTION_CAP_UILESSMODE_ALLOWPLAY = @as(u32, 256);
-pub const WMP_SUBSCR_DL_TYPE_BACKGROUND = "background";
-pub const WMP_SUBSCR_DL_TYPE_REALTIME = "real time";
-pub const DISPID_FEEDS_RootFolder = @as(u32, 4096);
-pub const DISPID_FEEDS_IsSubscribed = @as(u32, 4097);
-pub const DISPID_FEEDS_ExistsFeed = @as(u32, 4098);
-pub const DISPID_FEEDS_GetFeed = @as(u32, 4099);
-pub const DISPID_FEEDS_ExistsFolder = @as(u32, 4100);
-pub const DISPID_FEEDS_GetFolder = @as(u32, 4101);
-pub const DISPID_FEEDS_DeleteFeed = @as(u32, 4102);
-pub const DISPID_FEEDS_DeleteFolder = @as(u32, 4103);
-pub const DISPID_FEEDS_GetFeedByUrl = @as(u32, 4104);
+pub const DISPID_DELTA = @as(u32, 50);
+pub const DISPID_FEED_AsyncDownload = @as(u32, 16395);
+pub const DISPID_FEED_CancelAsyncDownload = @as(u32, 16396);
+pub const DISPID_FEED_ClearCredentials = @as(u32, 16428);
+pub const DISPID_FEED_Copyright = @as(u32, 16411);
+pub const DISPID_FEED_Delete = @as(u32, 16393);
+pub const DISPID_FEED_Description = @as(u32, 16404);
+pub const DISPID_FEED_Download = @as(u32, 16394);
+pub const DISPID_FEED_DownloadEnclosuresAutomatically = @as(u32, 16412);
+pub const DISPID_FEED_DownloadStatus = @as(u32, 16413);
+pub const DISPID_FEED_DownloadUrl = @as(u32, 16416);
+pub const DISPID_FEED_GetItem = @as(u32, 16402);
+pub const DISPID_FEED_GetItemByEffectiveId = @as(u32, 16423);
+pub const DISPID_FEED_GetWatcher = @as(u32, 16419);
+pub const DISPID_FEED_Image = @as(u32, 16406);
+pub const DISPID_FEED_Interval = @as(u32, 16397);
+pub const DISPID_FEED_IsList = @as(u32, 16417);
+pub const DISPID_FEED_ItemCount = @as(u32, 16421);
+pub const DISPID_FEED_Items = @as(u32, 16401);
+pub const DISPID_FEED_Language = @as(u32, 16410);
+pub const DISPID_FEED_LastBuildDate = @as(u32, 16407);
+pub const DISPID_FEED_LastDownloadError = @as(u32, 16414);
+pub const DISPID_FEED_LastDownloadTime = @as(u32, 16399);
+pub const DISPID_FEED_LastItemDownloadTime = @as(u32, 16424);
+pub const DISPID_FEED_LastWriteTime = @as(u32, 16392);
+pub const DISPID_FEED_Link = @as(u32, 16405);
+pub const DISPID_FEED_LocalEnclosurePath = @as(u32, 16400);
+pub const DISPID_FEED_LocalId = @as(u32, 16388);
+pub const DISPID_FEED_MarkAllItemsRead = @as(u32, 16418);
+pub const DISPID_FEED_MaxItemCount = @as(u32, 16422);
+pub const DISPID_FEED_Merge = @as(u32, 16415);
+pub const DISPID_FEED_Move = @as(u32, 16390);
+pub const DISPID_FEED_Name = @as(u32, 16385);
+pub const DISPID_FEED_Parent = @as(u32, 16391);
+pub const DISPID_FEED_Password = @as(u32, 16426);
+pub const DISPID_FEED_Path = @as(u32, 16389);
+pub const DISPID_FEED_PubDate = @as(u32, 16408);
+pub const DISPID_FEED_Rename = @as(u32, 16386);
+pub const DISPID_FEED_SetCredentials = @as(u32, 16427);
+pub const DISPID_FEED_SyncSetting = @as(u32, 16398);
+pub const DISPID_FEED_Title = @as(u32, 16403);
+pub const DISPID_FEED_Ttl = @as(u32, 16409);
+pub const DISPID_FEED_UnreadItemCount = @as(u32, 16420);
+pub const DISPID_FEED_Url = @as(u32, 16387);
+pub const DISPID_FEED_Username = @as(u32, 16425);
+pub const DISPID_FEED_Xml = @as(u32, 16384);
+pub const DISPID_FEEDENCLOSURE_AsyncDownload = @as(u32, 24579);
+pub const DISPID_FEEDENCLOSURE_CancelAsyncDownload = @as(u32, 24580);
+pub const DISPID_FEEDENCLOSURE_DownloadMimeType = @as(u32, 24586);
+pub const DISPID_FEEDENCLOSURE_DownloadStatus = @as(u32, 24581);
+pub const DISPID_FEEDENCLOSURE_DownloadUrl = @as(u32, 24585);
+pub const DISPID_FEEDENCLOSURE_LastDownloadError = @as(u32, 24582);
+pub const DISPID_FEEDENCLOSURE_Length = @as(u32, 24578);
+pub const DISPID_FEEDENCLOSURE_LocalPath = @as(u32, 24583);
+pub const DISPID_FEEDENCLOSURE_Parent = @as(u32, 24584);
+pub const DISPID_FEEDENCLOSURE_RemoveFile = @as(u32, 24587);
+pub const DISPID_FEEDENCLOSURE_SetFile = @as(u32, 24588);
+pub const DISPID_FEEDENCLOSURE_Type = @as(u32, 24577);
+pub const DISPID_FEEDENCLOSURE_Url = @as(u32, 24576);
+pub const DISPID_FEEDEVENTS_Error = @as(u32, 32768);
+pub const DISPID_FEEDEVENTS_FeedDeleted = @as(u32, 32769);
+pub const DISPID_FEEDEVENTS_FeedDownloadCompleted = @as(u32, 32774);
+pub const DISPID_FEEDEVENTS_FeedDownloading = @as(u32, 32773);
+pub const DISPID_FEEDEVENTS_FeedItemCountChanged = @as(u32, 32775);
+pub const DISPID_FEEDEVENTS_FeedMoved = @as(u32, 32772);
+pub const DISPID_FEEDEVENTS_FeedRenamed = @as(u32, 32770);
+pub const DISPID_FEEDEVENTS_FeedUrlChanged = @as(u32, 32771);
+pub const DISPID_FEEDFOLDER_CreateFeed = @as(u32, 12290);
+pub const DISPID_FEEDFOLDER_CreateSubfolder = @as(u32, 12291);
+pub const DISPID_FEEDFOLDER_Delete = @as(u32, 12296);
+pub const DISPID_FEEDFOLDER_ExistsFeed = @as(u32, 12292);
+pub const DISPID_FEEDFOLDER_ExistsSubfolder = @as(u32, 12294);
+pub const DISPID_FEEDFOLDER_Feeds = @as(u32, 12288);
+pub const DISPID_FEEDFOLDER_GetFeed = @as(u32, 12293);
+pub const DISPID_FEEDFOLDER_GetSubfolder = @as(u32, 12295);
+pub const DISPID_FEEDFOLDER_GetWatcher = @as(u32, 12305);
+pub const DISPID_FEEDFOLDER_IsRoot = @as(u32, 12302);
+pub const DISPID_FEEDFOLDER_Move = @as(u32, 12300);
+pub const DISPID_FEEDFOLDER_Name = @as(u32, 12297);
+pub const DISPID_FEEDFOLDER_Parent = @as(u32, 12301);
+pub const DISPID_FEEDFOLDER_Path = @as(u32, 12299);
+pub const DISPID_FEEDFOLDER_Rename = @as(u32, 12298);
+pub const DISPID_FEEDFOLDER_Subfolders = @as(u32, 12289);
+pub const DISPID_FEEDFOLDER_TotalItemCount = @as(u32, 12304);
+pub const DISPID_FEEDFOLDER_TotalUnreadItemCount = @as(u32, 12303);
+pub const DISPID_FEEDFOLDEREVENTS_Error = @as(u32, 28672);
+pub const DISPID_FEEDFOLDEREVENTS_FeedAdded = @as(u32, 28679);
+pub const DISPID_FEEDFOLDEREVENTS_FeedDeleted = @as(u32, 28680);
+pub const DISPID_FEEDFOLDEREVENTS_FeedDownloadCompleted = @as(u32, 28686);
+pub const DISPID_FEEDFOLDEREVENTS_FeedDownloading = @as(u32, 28685);
+pub const DISPID_FEEDFOLDEREVENTS_FeedItemCountChanged = @as(u32, 28687);
+pub const DISPID_FEEDFOLDEREVENTS_FeedMovedFrom = @as(u32, 28683);
+pub const DISPID_FEEDFOLDEREVENTS_FeedMovedTo = @as(u32, 28684);
+pub const DISPID_FEEDFOLDEREVENTS_FeedRenamed = @as(u32, 28681);
+pub const DISPID_FEEDFOLDEREVENTS_FeedUrlChanged = @as(u32, 28682);
+pub const DISPID_FEEDFOLDEREVENTS_FolderAdded = @as(u32, 28673);
+pub const DISPID_FEEDFOLDEREVENTS_FolderDeleted = @as(u32, 28674);
+pub const DISPID_FEEDFOLDEREVENTS_FolderItemCountChanged = @as(u32, 28678);
+pub const DISPID_FEEDFOLDEREVENTS_FolderMovedFrom = @as(u32, 28676);
+pub const DISPID_FEEDFOLDEREVENTS_FolderMovedTo = @as(u32, 28677);
+pub const DISPID_FEEDFOLDEREVENTS_FolderRenamed = @as(u32, 28675);
+pub const DISPID_FEEDITEM_Author = @as(u32, 20487);
+pub const DISPID_FEEDITEM_Comments = @as(u32, 20486);
+pub const DISPID_FEEDITEM_Delete = @as(u32, 20492);
+pub const DISPID_FEEDITEM_Description = @as(u32, 20484);
+pub const DISPID_FEEDITEM_DownloadUrl = @as(u32, 20493);
+pub const DISPID_FEEDITEM_EffectiveId = @as(u32, 20496);
+pub const DISPID_FEEDITEM_Enclosure = @as(u32, 20488);
+pub const DISPID_FEEDITEM_Guid = @as(u32, 20483);
+pub const DISPID_FEEDITEM_IsRead = @as(u32, 20489);
+pub const DISPID_FEEDITEM_LastDownloadTime = @as(u32, 20494);
+pub const DISPID_FEEDITEM_Link = @as(u32, 20482);
+pub const DISPID_FEEDITEM_LocalId = @as(u32, 20490);
+pub const DISPID_FEEDITEM_Modified = @as(u32, 20495);
+pub const DISPID_FEEDITEM_Parent = @as(u32, 20491);
+pub const DISPID_FEEDITEM_PubDate = @as(u32, 20485);
+pub const DISPID_FEEDITEM_Title = @as(u32, 20481);
+pub const DISPID_FEEDITEM_Xml = @as(u32, 20480);
+pub const DISPID_FEEDS_AsyncSyncAll = @as(u32, 4108);
 pub const DISPID_FEEDS_BackgroundSync = @as(u32, 4105);
 pub const DISPID_FEEDS_BackgroundSyncStatus = @as(u32, 4106);
 pub const DISPID_FEEDS_DefaultInterval = @as(u32, 4107);
-pub const DISPID_FEEDS_AsyncSyncAll = @as(u32, 4108);
-pub const DISPID_FEEDS_Normalize = @as(u32, 4109);
+pub const DISPID_FEEDS_DeleteFeed = @as(u32, 4102);
+pub const DISPID_FEEDS_DeleteFolder = @as(u32, 4103);
+pub const DISPID_FEEDS_ExistsFeed = @as(u32, 4098);
+pub const DISPID_FEEDS_ExistsFolder = @as(u32, 4100);
+pub const DISPID_FEEDS_GetFeed = @as(u32, 4099);
+pub const DISPID_FEEDS_GetFeedByUrl = @as(u32, 4104);
+pub const DISPID_FEEDS_GetFolder = @as(u32, 4101);
+pub const DISPID_FEEDS_IsSubscribed = @as(u32, 4097);
 pub const DISPID_FEEDS_ItemCountLimit = @as(u32, 4110);
+pub const DISPID_FEEDS_Normalize = @as(u32, 4109);
+pub const DISPID_FEEDS_RootFolder = @as(u32, 4096);
 pub const DISPID_FEEDSENUM_Count = @as(u32, 8192);
 pub const DISPID_FEEDSENUM_Item = @as(u32, 8193);
-pub const DISPID_FEEDFOLDER_Feeds = @as(u32, 12288);
-pub const DISPID_FEEDFOLDER_Subfolders = @as(u32, 12289);
-pub const DISPID_FEEDFOLDER_CreateFeed = @as(u32, 12290);
-pub const DISPID_FEEDFOLDER_CreateSubfolder = @as(u32, 12291);
-pub const DISPID_FEEDFOLDER_ExistsFeed = @as(u32, 12292);
-pub const DISPID_FEEDFOLDER_GetFeed = @as(u32, 12293);
-pub const DISPID_FEEDFOLDER_ExistsSubfolder = @as(u32, 12294);
-pub const DISPID_FEEDFOLDER_GetSubfolder = @as(u32, 12295);
-pub const DISPID_FEEDFOLDER_Delete = @as(u32, 12296);
-pub const DISPID_FEEDFOLDER_Name = @as(u32, 12297);
-pub const DISPID_FEEDFOLDER_Rename = @as(u32, 12298);
-pub const DISPID_FEEDFOLDER_Path = @as(u32, 12299);
-pub const DISPID_FEEDFOLDER_Move = @as(u32, 12300);
-pub const DISPID_FEEDFOLDER_Parent = @as(u32, 12301);
-pub const DISPID_FEEDFOLDER_IsRoot = @as(u32, 12302);
-pub const DISPID_FEEDFOLDER_TotalUnreadItemCount = @as(u32, 12303);
-pub const DISPID_FEEDFOLDER_TotalItemCount = @as(u32, 12304);
-pub const DISPID_FEEDFOLDER_GetWatcher = @as(u32, 12305);
-pub const DISPID_FEED_Xml = @as(u32, 16384);
-pub const DISPID_FEED_Name = @as(u32, 16385);
-pub const DISPID_FEED_Rename = @as(u32, 16386);
-pub const DISPID_FEED_Url = @as(u32, 16387);
-pub const DISPID_FEED_LocalId = @as(u32, 16388);
-pub const DISPID_FEED_Path = @as(u32, 16389);
-pub const DISPID_FEED_Move = @as(u32, 16390);
-pub const DISPID_FEED_Parent = @as(u32, 16391);
-pub const DISPID_FEED_LastWriteTime = @as(u32, 16392);
-pub const DISPID_FEED_Delete = @as(u32, 16393);
-pub const DISPID_FEED_Download = @as(u32, 16394);
-pub const DISPID_FEED_AsyncDownload = @as(u32, 16395);
-pub const DISPID_FEED_CancelAsyncDownload = @as(u32, 16396);
-pub const DISPID_FEED_Interval = @as(u32, 16397);
-pub const DISPID_FEED_SyncSetting = @as(u32, 16398);
-pub const DISPID_FEED_LastDownloadTime = @as(u32, 16399);
-pub const DISPID_FEED_LocalEnclosurePath = @as(u32, 16400);
-pub const DISPID_FEED_Items = @as(u32, 16401);
-pub const DISPID_FEED_GetItem = @as(u32, 16402);
-pub const DISPID_FEED_Title = @as(u32, 16403);
-pub const DISPID_FEED_Description = @as(u32, 16404);
-pub const DISPID_FEED_Link = @as(u32, 16405);
-pub const DISPID_FEED_Image = @as(u32, 16406);
-pub const DISPID_FEED_LastBuildDate = @as(u32, 16407);
-pub const DISPID_FEED_PubDate = @as(u32, 16408);
-pub const DISPID_FEED_Ttl = @as(u32, 16409);
-pub const DISPID_FEED_Language = @as(u32, 16410);
-pub const DISPID_FEED_Copyright = @as(u32, 16411);
-pub const DISPID_FEED_DownloadEnclosuresAutomatically = @as(u32, 16412);
-pub const DISPID_FEED_DownloadStatus = @as(u32, 16413);
-pub const DISPID_FEED_LastDownloadError = @as(u32, 16414);
-pub const DISPID_FEED_Merge = @as(u32, 16415);
-pub const DISPID_FEED_DownloadUrl = @as(u32, 16416);
-pub const DISPID_FEED_IsList = @as(u32, 16417);
-pub const DISPID_FEED_MarkAllItemsRead = @as(u32, 16418);
-pub const DISPID_FEED_GetWatcher = @as(u32, 16419);
-pub const DISPID_FEED_UnreadItemCount = @as(u32, 16420);
-pub const DISPID_FEED_ItemCount = @as(u32, 16421);
-pub const DISPID_FEED_MaxItemCount = @as(u32, 16422);
-pub const DISPID_FEED_GetItemByEffectiveId = @as(u32, 16423);
-pub const DISPID_FEED_LastItemDownloadTime = @as(u32, 16424);
-pub const DISPID_FEED_Username = @as(u32, 16425);
-pub const DISPID_FEED_Password = @as(u32, 16426);
-pub const DISPID_FEED_SetCredentials = @as(u32, 16427);
-pub const DISPID_FEED_ClearCredentials = @as(u32, 16428);
-pub const DISPID_FEEDITEM_Xml = @as(u32, 20480);
-pub const DISPID_FEEDITEM_Title = @as(u32, 20481);
-pub const DISPID_FEEDITEM_Link = @as(u32, 20482);
-pub const DISPID_FEEDITEM_Guid = @as(u32, 20483);
-pub const DISPID_FEEDITEM_Description = @as(u32, 20484);
-pub const DISPID_FEEDITEM_PubDate = @as(u32, 20485);
-pub const DISPID_FEEDITEM_Comments = @as(u32, 20486);
-pub const DISPID_FEEDITEM_Author = @as(u32, 20487);
-pub const DISPID_FEEDITEM_Enclosure = @as(u32, 20488);
-pub const DISPID_FEEDITEM_IsRead = @as(u32, 20489);
-pub const DISPID_FEEDITEM_LocalId = @as(u32, 20490);
-pub const DISPID_FEEDITEM_Parent = @as(u32, 20491);
-pub const DISPID_FEEDITEM_Delete = @as(u32, 20492);
-pub const DISPID_FEEDITEM_DownloadUrl = @as(u32, 20493);
-pub const DISPID_FEEDITEM_LastDownloadTime = @as(u32, 20494);
-pub const DISPID_FEEDITEM_Modified = @as(u32, 20495);
-pub const DISPID_FEEDITEM_EffectiveId = @as(u32, 20496);
-pub const DISPID_FEEDENCLOSURE_Url = @as(u32, 24576);
-pub const DISPID_FEEDENCLOSURE_Type = @as(u32, 24577);
-pub const DISPID_FEEDENCLOSURE_Length = @as(u32, 24578);
-pub const DISPID_FEEDENCLOSURE_AsyncDownload = @as(u32, 24579);
-pub const DISPID_FEEDENCLOSURE_CancelAsyncDownload = @as(u32, 24580);
-pub const DISPID_FEEDENCLOSURE_DownloadStatus = @as(u32, 24581);
-pub const DISPID_FEEDENCLOSURE_LastDownloadError = @as(u32, 24582);
-pub const DISPID_FEEDENCLOSURE_LocalPath = @as(u32, 24583);
-pub const DISPID_FEEDENCLOSURE_Parent = @as(u32, 24584);
-pub const DISPID_FEEDENCLOSURE_DownloadUrl = @as(u32, 24585);
-pub const DISPID_FEEDENCLOSURE_DownloadMimeType = @as(u32, 24586);
-pub const DISPID_FEEDENCLOSURE_RemoveFile = @as(u32, 24587);
-pub const DISPID_FEEDENCLOSURE_SetFile = @as(u32, 24588);
-pub const DISPID_FEEDFOLDEREVENTS_Error = @as(u32, 28672);
-pub const DISPID_FEEDFOLDEREVENTS_FolderAdded = @as(u32, 28673);
-pub const DISPID_FEEDFOLDEREVENTS_FolderDeleted = @as(u32, 28674);
-pub const DISPID_FEEDFOLDEREVENTS_FolderRenamed = @as(u32, 28675);
-pub const DISPID_FEEDFOLDEREVENTS_FolderMovedFrom = @as(u32, 28676);
-pub const DISPID_FEEDFOLDEREVENTS_FolderMovedTo = @as(u32, 28677);
-pub const DISPID_FEEDFOLDEREVENTS_FolderItemCountChanged = @as(u32, 28678);
-pub const DISPID_FEEDFOLDEREVENTS_FeedAdded = @as(u32, 28679);
-pub const DISPID_FEEDFOLDEREVENTS_FeedDeleted = @as(u32, 28680);
-pub const DISPID_FEEDFOLDEREVENTS_FeedRenamed = @as(u32, 28681);
-pub const DISPID_FEEDFOLDEREVENTS_FeedUrlChanged = @as(u32, 28682);
-pub const DISPID_FEEDFOLDEREVENTS_FeedMovedFrom = @as(u32, 28683);
-pub const DISPID_FEEDFOLDEREVENTS_FeedMovedTo = @as(u32, 28684);
-pub const DISPID_FEEDFOLDEREVENTS_FeedDownloading = @as(u32, 28685);
-pub const DISPID_FEEDFOLDEREVENTS_FeedDownloadCompleted = @as(u32, 28686);
-pub const DISPID_FEEDFOLDEREVENTS_FeedItemCountChanged = @as(u32, 28687);
-pub const DISPID_FEEDEVENTS_Error = @as(u32, 32768);
-pub const DISPID_FEEDEVENTS_FeedDeleted = @as(u32, 32769);
-pub const DISPID_FEEDEVENTS_FeedRenamed = @as(u32, 32770);
-pub const DISPID_FEEDEVENTS_FeedUrlChanged = @as(u32, 32771);
-pub const DISPID_FEEDEVENTS_FeedMoved = @as(u32, 32772);
-pub const DISPID_FEEDEVENTS_FeedDownloading = @as(u32, 32773);
-pub const DISPID_FEEDEVENTS_FeedDownloadCompleted = @as(u32, 32774);
-pub const DISPID_FEEDEVENTS_FeedItemCountChanged = @as(u32, 32775);
-pub const DISPID_DELTA = @as(u32, 50);
-pub const DISPID_WMPCORE_BASE = @as(u32, 0);
-pub const DISPID_WMPCORE_URL = @as(u32, 1);
-pub const DISPID_WMPCORE_OPENSTATE = @as(u32, 2);
-pub const DISPID_WMPCORE_CLOSE = @as(u32, 3);
-pub const DISPID_WMPCORE_CONTROLS = @as(u32, 4);
-pub const DISPID_WMPCORE_SETTINGS = @as(u32, 5);
-pub const DISPID_WMPCORE_CURRENTMEDIA = @as(u32, 6);
-pub const DISPID_WMPCORE_NETWORK = @as(u32, 7);
-pub const DISPID_WMPCORE_MEDIACOLLECTION = @as(u32, 8);
-pub const DISPID_WMPCORE_PLAYLISTCOLLECTION = @as(u32, 9);
-pub const DISPID_WMPCORE_PLAYSTATE = @as(u32, 10);
-pub const DISPID_WMPCORE_VERSIONINFO = @as(u32, 11);
-pub const DISPID_WMPCORE_LAUNCHURL = @as(u32, 12);
-pub const DISPID_WMPCORE_CURRENTPLAYLIST = @as(u32, 13);
-pub const DISPID_WMPCORE_CDROMCOLLECTION = @as(u32, 14);
-pub const DISPID_WMPCORE_CLOSEDCAPTION = @as(u32, 15);
-pub const DISPID_WMPCORE_ISONLINE = @as(u32, 16);
-pub const DISPID_WMPCORE_ERROR = @as(u32, 17);
-pub const DISPID_WMPCORE_STATUS = @as(u32, 18);
-pub const DISPID_WMPCORE_LAST = @as(u32, 18);
-pub const DISPID_WMPOCX_BASE = @as(u32, 18);
-pub const DISPID_WMPOCX_ENABLED = @as(u32, 19);
-pub const DISPID_WMPOCX_TRANSPARENTATSTART = @as(u32, 20);
-pub const DISPID_WMPOCX_FULLSCREEN = @as(u32, 21);
-pub const DISPID_WMPOCX_ENABLECONTEXTMENU = @as(u32, 22);
-pub const DISPID_WMPOCX_UIMODE = @as(u32, 23);
-pub const DISPID_WMPOCX_LAST = @as(u32, 23);
-pub const DISPID_WMPOCX2_BASE = @as(u32, 23);
-pub const DISPID_WMPOCX2_STRETCHTOFIT = @as(u32, 24);
-pub const DISPID_WMPOCX2_WINDOWLESSVIDEO = @as(u32, 25);
-pub const DISPID_WMPOCX4_ISREMOTE = @as(u32, 26);
-pub const DISPID_WMPOCX4_PLAYERAPPLICATION = @as(u32, 27);
-pub const DISPID_WMPOCX4_OPENPLAYER = @as(u32, 28);
-pub const DISPID_WMPCORE2_BASE = @as(u32, 39);
-pub const DISPID_WMPCORE2_DVD = @as(u32, 40);
-pub const DISPID_WMPCORE3_NEWPLAYLIST = @as(u32, 41);
-pub const DISPID_WMPCORE3_NEWMEDIA = @as(u32, 42);
-pub const DISPID_WMPCONTROLS_PLAY = @as(u32, 51);
-pub const DISPID_WMPCONTROLS_STOP = @as(u32, 52);
-pub const DISPID_WMPCONTROLS_PAUSE = @as(u32, 53);
-pub const DISPID_WMPCONTROLS_FASTFORWARD = @as(u32, 54);
-pub const DISPID_WMPCONTROLS_FASTREVERSE = @as(u32, 55);
-pub const DISPID_WMPCONTROLS_CURRENTPOSITION = @as(u32, 56);
-pub const DISPID_WMPCONTROLS_CURRENTPOSITIONSTRING = @as(u32, 57);
-pub const DISPID_WMPCONTROLS_NEXT = @as(u32, 58);
-pub const DISPID_WMPCONTROLS_PREVIOUS = @as(u32, 59);
-pub const DISPID_WMPCONTROLS_CURRENTITEM = @as(u32, 60);
-pub const DISPID_WMPCONTROLS_CURRENTMARKER = @as(u32, 61);
-pub const DISPID_WMPCONTROLS_ISAVAILABLE = @as(u32, 62);
-pub const DISPID_WMPCONTROLS_PLAYITEM = @as(u32, 63);
-pub const DISPID_WMPCONTROLS2_STEP = @as(u32, 64);
-pub const DISPID_WMPCONTROLS3_AUDIOLANGUAGECOUNT = @as(u32, 65);
-pub const DISPID_WMPCONTROLS3_GETAUDIOLANGUAGEID = @as(u32, 66);
-pub const DISPID_WMPCONTROLS3_GETAUDIOLANGUAGEDESC = @as(u32, 67);
-pub const DISPID_WMPCONTROLS3_CURRENTAUDIOLANGUAGE = @as(u32, 68);
-pub const DISPID_WMPCONTROLS3_CURRENTAUDIOLANGUAGEINDEX = @as(u32, 69);
-pub const DISPID_WMPCONTROLS3_GETLANGUAGENAME = @as(u32, 70);
-pub const DISPID_WMPCONTROLS3_CURRENTPOSITIONTIMECODE = @as(u32, 71);
-pub const DISPID_WMPCONTROLSFAKE_TIMECOMPRESSION = @as(u32, 72);
-pub const DISPID_WMPSETTINGS_AUTOSTART = @as(u32, 101);
-pub const DISPID_WMPSETTINGS_BALANCE = @as(u32, 102);
-pub const DISPID_WMPSETTINGS_INVOKEURLS = @as(u32, 103);
-pub const DISPID_WMPSETTINGS_MUTE = @as(u32, 104);
-pub const DISPID_WMPSETTINGS_PLAYCOUNT = @as(u32, 105);
-pub const DISPID_WMPSETTINGS_RATE = @as(u32, 106);
-pub const DISPID_WMPSETTINGS_VOLUME = @as(u32, 107);
-pub const DISPID_WMPSETTINGS_BASEURL = @as(u32, 108);
-pub const DISPID_WMPSETTINGS_DEFAULTFRAME = @as(u32, 109);
-pub const DISPID_WMPSETTINGS_GETMODE = @as(u32, 110);
-pub const DISPID_WMPSETTINGS_SETMODE = @as(u32, 111);
-pub const DISPID_WMPSETTINGS_ENABLEERRORDIALOGS = @as(u32, 112);
-pub const DISPID_WMPSETTINGS_ISAVAILABLE = @as(u32, 113);
-pub const DISPID_WMPSETTINGS2_DEFAULTAUDIOLANGUAGE = @as(u32, 114);
-pub const DISPID_WMPSETTINGS2_LIBRARYACCESSRIGHTS = @as(u32, 115);
-pub const DISPID_WMPSETTINGS2_REQUESTLIBRARYACCESSRIGHTS = @as(u32, 116);
-pub const DISPID_WMPPLAYLIST_COUNT = @as(u32, 201);
-pub const DISPID_WMPPLAYLIST_NAME = @as(u32, 202);
-pub const DISPID_WMPPLAYLIST_GETITEMINFO = @as(u32, 203);
-pub const DISPID_WMPPLAYLIST_SETITEMINFO = @as(u32, 204);
-pub const DISPID_WMPPLAYLIST_CLEAR = @as(u32, 205);
-pub const DISPID_WMPPLAYLIST_INSERTITEM = @as(u32, 206);
-pub const DISPID_WMPPLAYLIST_APPENDITEM = @as(u32, 207);
-pub const DISPID_WMPPLAYLIST_REMOVEITEM = @as(u32, 208);
-pub const DISPID_WMPPLAYLIST_MOVEITEM = @as(u32, 209);
-pub const DISPID_WMPPLAYLIST_ATTRIBUTECOUNT = @as(u32, 210);
-pub const DISPID_WMPPLAYLIST_ATTRIBUTENAME = @as(u32, 211);
-pub const DISPID_WMPPLAYLIST_ITEM = @as(u32, 212);
-pub const DISPID_WMPPLAYLIST_ISIDENTICAL = @as(u32, 213);
+pub const DISPID_WMPCDROM_BASE = @as(u32, 250);
 pub const DISPID_WMPCDROM_DRIVESPECIFIER = @as(u32, 251);
-pub const DISPID_WMPCDROM_PLAYLIST = @as(u32, 252);
 pub const DISPID_WMPCDROM_EJECT = @as(u32, 253);
+pub const DISPID_WMPCDROM_PLAYLIST = @as(u32, 252);
+pub const DISPID_WMPCDROMCOLLECTION_BASE = @as(u32, 300);
 pub const DISPID_WMPCDROMCOLLECTION_COUNT = @as(u32, 301);
-pub const DISPID_WMPCDROMCOLLECTION_ITEM = @as(u32, 302);
 pub const DISPID_WMPCDROMCOLLECTION_GETBYDRIVESPECIFIER = @as(u32, 303);
+pub const DISPID_WMPCDROMCOLLECTION_ITEM = @as(u32, 302);
 pub const DISPID_WMPCDROMCOLLECTION_STARTMONITORINGCDROMS = @as(u32, 304);
 pub const DISPID_WMPCDROMCOLLECTION_STOPMONITORINGCDROMS = @as(u32, 305);
-pub const DISPID_WMPSTRINGCOLLECTION_COUNT = @as(u32, 401);
-pub const DISPID_WMPSTRINGCOLLECTION_ITEM = @as(u32, 402);
-pub const DISPID_WMPMEDIACOLLECTION_ADD = @as(u32, 452);
-pub const DISPID_WMPMEDIACOLLECTION_GETALL = @as(u32, 453);
-pub const DISPID_WMPMEDIACOLLECTION_GETBYNAME = @as(u32, 454);
-pub const DISPID_WMPMEDIACOLLECTION_GETBYGENRE = @as(u32, 455);
-pub const DISPID_WMPMEDIACOLLECTION_GETBYAUTHOR = @as(u32, 456);
-pub const DISPID_WMPMEDIACOLLECTION_GETBYALBUM = @as(u32, 457);
-pub const DISPID_WMPMEDIACOLLECTION_GETBYATTRIBUTE = @as(u32, 458);
-pub const DISPID_WMPMEDIACOLLECTION_REMOVE = @as(u32, 459);
-pub const DISPID_WMPMEDIACOLLECTION_GETATTRIBUTESTRINGCOLLECTION = @as(u32, 461);
-pub const DISPID_WMPMEDIACOLLECTION_NEWQUERY = @as(u32, 462);
-pub const DISPID_WMPMEDIACOLLECTION_STARTMONITORING = @as(u32, 463);
-pub const DISPID_WMPMEDIACOLLECTION_STOPMONITORING = @as(u32, 464);
-pub const DISPID_WMPMEDIACOLLECTION_STARTCONTENTSCAN = @as(u32, 465);
-pub const DISPID_WMPMEDIACOLLECTION_STOPCONTENTSCAN = @as(u32, 466);
-pub const DISPID_WMPMEDIACOLLECTION_STARTSEARCH = @as(u32, 467);
-pub const DISPID_WMPMEDIACOLLECTION_STOPSEARCH = @as(u32, 468);
-pub const DISPID_WMPMEDIACOLLECTION_UPDATEMETADATA = @as(u32, 469);
-pub const DISPID_WMPMEDIACOLLECTION_GETMEDIAATOM = @as(u32, 470);
-pub const DISPID_WMPMEDIACOLLECTION_SETDELETED = @as(u32, 471);
-pub const DISPID_WMPMEDIACOLLECTION_ISDELETED = @as(u32, 472);
-pub const DISPID_WMPMEDIACOLLECTION_GETBYQUERYDESCRIPTION = @as(u32, 473);
-pub const DISPID_WMPMEDIACOLLECTION_FREEZECOLLECTIONCHANGE = @as(u32, 474);
-pub const DISPID_WMPMEDIACOLLECTION_UNFREEZECOLLECTIONCHANGE = @as(u32, 475);
-pub const DISPID_WMPMEDIACOLLECTION_POSTCOLLECTIONCHANGE = @as(u32, 476);
-pub const DISPID_WMPPLAYLISTARRAY_COUNT = @as(u32, 501);
-pub const DISPID_WMPPLAYLISTARRAY_ITEM = @as(u32, 502);
-pub const DISPID_WMPPLAYLISTCOLLECTION_NEWPLAYLIST = @as(u32, 552);
-pub const DISPID_WMPPLAYLISTCOLLECTION_GETALL = @as(u32, 553);
-pub const DISPID_WMPPLAYLISTCOLLECTION_GETBYNAME = @as(u32, 554);
-pub const DISPID_WMPPLAYLISTCOLLECTION_GETBYQUERYDESCRIPTION = @as(u32, 555);
-pub const DISPID_WMPPLAYLISTCOLLECTION_REMOVE = @as(u32, 556);
-pub const DISPID_WMPPLAYLISTCOLLECTION_NEWQUERY = @as(u32, 557);
-pub const DISPID_WMPPLAYLISTCOLLECTION_STARTMONITORING = @as(u32, 558);
-pub const DISPID_WMPPLAYLISTCOLLECTION_STOPMONITORING = @as(u32, 559);
-pub const DISPID_WMPPLAYLISTCOLLECTION_SETDELETED = @as(u32, 560);
-pub const DISPID_WMPPLAYLISTCOLLECTION_ISDELETED = @as(u32, 561);
-pub const DISPID_WMPPLAYLISTCOLLECTION_IMPORTPLAYLIST = @as(u32, 562);
-pub const DISPID_WMPMEDIA_SOURCEURL = @as(u32, 751);
-pub const DISPID_WMPMEDIA_IMAGESOURCEWIDTH = @as(u32, 752);
-pub const DISPID_WMPMEDIA_IMAGESOURCEHEIGHT = @as(u32, 753);
-pub const DISPID_WMPMEDIA_MARKERCOUNT = @as(u32, 754);
-pub const DISPID_WMPMEDIA_GETMARKERTIME = @as(u32, 755);
-pub const DISPID_WMPMEDIA_GETMARKERNAME = @as(u32, 756);
-pub const DISPID_WMPMEDIA_DURATION = @as(u32, 757);
-pub const DISPID_WMPMEDIA_DURATIONSTRING = @as(u32, 758);
-pub const DISPID_WMPMEDIA_ATTRIBUTECOUNT = @as(u32, 759);
-pub const DISPID_WMPMEDIA_GETATTRIBUTENAME = @as(u32, 760);
-pub const DISPID_WMPMEDIA_GETITEMINFO = @as(u32, 761);
-pub const DISPID_WMPMEDIA_SETITEMINFO = @as(u32, 762);
-pub const DISPID_WMPMEDIA_ISIDENTICAL = @as(u32, 763);
-pub const DISPID_WMPMEDIA_NAME = @as(u32, 764);
-pub const DISPID_WMPMEDIA_GETITEMINFOBYATOM = @as(u32, 765);
-pub const DISPID_WMPMEDIA_ISMEMBEROF = @as(u32, 766);
-pub const DISPID_WMPMEDIA_ISREADONLYITEM = @as(u32, 767);
-pub const DISPID_WMPMEDIA2_ERROR = @as(u32, 768);
-pub const DISPID_WMPMEDIA3_GETATTRIBUTECOUNTBYTYPE = @as(u32, 769);
-pub const DISPID_WMPMEDIA3_GETITEMINFOBYTYPE = @as(u32, 770);
-pub const DISPID_WMPNETWORK_BANDWIDTH = @as(u32, 801);
-pub const DISPID_WMPNETWORK_RECOVEREDPACKETS = @as(u32, 802);
-pub const DISPID_WMPNETWORK_SOURCEPROTOCOL = @as(u32, 803);
-pub const DISPID_WMPNETWORK_RECEIVEDPACKETS = @as(u32, 804);
-pub const DISPID_WMPNETWORK_LOSTPACKETS = @as(u32, 805);
-pub const DISPID_WMPNETWORK_RECEPTIONQUALITY = @as(u32, 806);
-pub const DISPID_WMPNETWORK_BUFFERINGCOUNT = @as(u32, 807);
-pub const DISPID_WMPNETWORK_BUFFERINGPROGRESS = @as(u32, 808);
-pub const DISPID_WMPNETWORK_BUFFERINGTIME = @as(u32, 809);
-pub const DISPID_WMPNETWORK_FRAMERATE = @as(u32, 810);
-pub const DISPID_WMPNETWORK_MAXBITRATE = @as(u32, 811);
-pub const DISPID_WMPNETWORK_BITRATE = @as(u32, 812);
-pub const DISPID_WMPNETWORK_GETPROXYSETTINGS = @as(u32, 813);
-pub const DISPID_WMPNETWORK_SETPROXYSETTINGS = @as(u32, 814);
-pub const DISPID_WMPNETWORK_GETPROXYNAME = @as(u32, 815);
-pub const DISPID_WMPNETWORK_SETPROXYNAME = @as(u32, 816);
-pub const DISPID_WMPNETWORK_GETPROXYPORT = @as(u32, 817);
-pub const DISPID_WMPNETWORK_SETPROXYPORT = @as(u32, 818);
-pub const DISPID_WMPNETWORK_GETPROXYEXCEPTIONLIST = @as(u32, 819);
-pub const DISPID_WMPNETWORK_SETPROXYEXCEPTIONLIST = @as(u32, 820);
-pub const DISPID_WMPNETWORK_GETPROXYBYPASSFORLOCAL = @as(u32, 821);
-pub const DISPID_WMPNETWORK_SETPROXYBYPASSFORLOCAL = @as(u32, 822);
-pub const DISPID_WMPNETWORK_MAXBANDWIDTH = @as(u32, 823);
-pub const DISPID_WMPNETWORK_DOWNLOADPROGRESS = @as(u32, 824);
-pub const DISPID_WMPNETWORK_ENCODEDFRAMERATE = @as(u32, 825);
-pub const DISPID_WMPNETWORK_FRAMESSKIPPED = @as(u32, 826);
+pub const DISPID_WMPCLOSEDCAPTION2_GETLANGCOUNT = @as(u32, 955);
+pub const DISPID_WMPCLOSEDCAPTION2_GETLANGID = @as(u32, 957);
+pub const DISPID_WMPCLOSEDCAPTION2_GETLANGNAME = @as(u32, 956);
+pub const DISPID_WMPCLOSEDCAPTION2_GETSTYLECOUNT = @as(u32, 958);
+pub const DISPID_WMPCLOSEDCAPTION2_GETSTYLENAME = @as(u32, 959);
+pub const DISPID_WMPCLOSEDCAPTION_BASE = @as(u32, 950);
+pub const DISPID_WMPCLOSEDCAPTION_CAPTIONINGID = @as(u32, 954);
+pub const DISPID_WMPCLOSEDCAPTION_SAMIFILENAME = @as(u32, 953);
+pub const DISPID_WMPCLOSEDCAPTION_SAMILANG = @as(u32, 952);
+pub const DISPID_WMPCLOSEDCAPTION_SAMISTYLE = @as(u32, 951);
+pub const DISPID_WMPCONTROLS2_STEP = @as(u32, 64);
+pub const DISPID_WMPCONTROLS3_AUDIOLANGUAGECOUNT = @as(u32, 65);
+pub const DISPID_WMPCONTROLS3_CURRENTAUDIOLANGUAGE = @as(u32, 68);
+pub const DISPID_WMPCONTROLS3_CURRENTAUDIOLANGUAGEINDEX = @as(u32, 69);
+pub const DISPID_WMPCONTROLS3_CURRENTPOSITIONTIMECODE = @as(u32, 71);
+pub const DISPID_WMPCONTROLS3_GETAUDIOLANGUAGEDESC = @as(u32, 67);
+pub const DISPID_WMPCONTROLS3_GETAUDIOLANGUAGEID = @as(u32, 66);
+pub const DISPID_WMPCONTROLS3_GETLANGUAGENAME = @as(u32, 70);
+pub const DISPID_WMPCONTROLS_BASE = @as(u32, 50);
+pub const DISPID_WMPCONTROLS_CURRENTITEM = @as(u32, 60);
+pub const DISPID_WMPCONTROLS_CURRENTMARKER = @as(u32, 61);
+pub const DISPID_WMPCONTROLS_CURRENTPOSITION = @as(u32, 56);
+pub const DISPID_WMPCONTROLS_CURRENTPOSITIONSTRING = @as(u32, 57);
+pub const DISPID_WMPCONTROLS_FASTFORWARD = @as(u32, 54);
+pub const DISPID_WMPCONTROLS_FASTREVERSE = @as(u32, 55);
+pub const DISPID_WMPCONTROLS_ISAVAILABLE = @as(u32, 62);
+pub const DISPID_WMPCONTROLS_NEXT = @as(u32, 58);
+pub const DISPID_WMPCONTROLS_PAUSE = @as(u32, 53);
+pub const DISPID_WMPCONTROLS_PLAY = @as(u32, 51);
+pub const DISPID_WMPCONTROLS_PLAYITEM = @as(u32, 63);
+pub const DISPID_WMPCONTROLS_PREVIOUS = @as(u32, 59);
+pub const DISPID_WMPCONTROLS_STOP = @as(u32, 52);
+pub const DISPID_WMPCONTROLSFAKE_TIMECOMPRESSION = @as(u32, 72);
+pub const DISPID_WMPCORE2_BASE = @as(u32, 39);
+pub const DISPID_WMPCORE2_DVD = @as(u32, 40);
+pub const DISPID_WMPCORE3_NEWMEDIA = @as(u32, 42);
+pub const DISPID_WMPCORE3_NEWPLAYLIST = @as(u32, 41);
+pub const DISPID_WMPCORE_BASE = @as(u32, 0);
+pub const DISPID_WMPCORE_CDROMCOLLECTION = @as(u32, 14);
+pub const DISPID_WMPCORE_CLOSE = @as(u32, 3);
+pub const DISPID_WMPCORE_CLOSEDCAPTION = @as(u32, 15);
+pub const DISPID_WMPCORE_CONTROLS = @as(u32, 4);
+pub const DISPID_WMPCORE_CURRENTMEDIA = @as(u32, 6);
+pub const DISPID_WMPCORE_CURRENTPLAYLIST = @as(u32, 13);
+pub const DISPID_WMPCORE_ERROR = @as(u32, 17);
+pub const DISPID_WMPCORE_ISONLINE = @as(u32, 16);
+pub const DISPID_WMPCORE_LAST = @as(u32, 18);
+pub const DISPID_WMPCORE_LAUNCHURL = @as(u32, 12);
+pub const DISPID_WMPCORE_MAX = @as(u32, 1454);
+pub const DISPID_WMPCORE_MEDIACOLLECTION = @as(u32, 8);
+pub const DISPID_WMPCORE_MIN = @as(u32, 1);
+pub const DISPID_WMPCORE_NETWORK = @as(u32, 7);
+pub const DISPID_WMPCORE_OPENSTATE = @as(u32, 2);
+pub const DISPID_WMPCORE_PLAYLISTCOLLECTION = @as(u32, 9);
+pub const DISPID_WMPCORE_PLAYSTATE = @as(u32, 10);
+pub const DISPID_WMPCORE_SETTINGS = @as(u32, 5);
+pub const DISPID_WMPCORE_STATUS = @as(u32, 18);
+pub const DISPID_WMPCORE_URL = @as(u32, 1);
+pub const DISPID_WMPCORE_VERSIONINFO = @as(u32, 11);
+pub const DISPID_WMPCOREEVENT_AUDIOLANGUAGECHANGE = @as(u32, 5102);
+pub const DISPID_WMPCOREEVENT_BUFFERING = @as(u32, 5402);
+pub const DISPID_WMPCOREEVENT_CDROMMEDIACHANGE = @as(u32, 5701);
+pub const DISPID_WMPCOREEVENT_CURRENTITEMCHANGE = @as(u32, 5806);
+pub const DISPID_WMPCOREEVENT_CURRENTMEDIAITEMAVAILABLE = @as(u32, 5803);
+pub const DISPID_WMPCOREEVENT_CURRENTPLAYLISTCHANGE = @as(u32, 5804);
+pub const DISPID_WMPCOREEVENT_CURRENTPLAYLISTITEMAVAILABLE = @as(u32, 5805);
+pub const DISPID_WMPCOREEVENT_DISCONNECT = @as(u32, 5401);
+pub const DISPID_WMPCOREEVENT_DOMAINCHANGE = @as(u32, 5822);
+pub const DISPID_WMPCOREEVENT_DURATIONUNITCHANGE = @as(u32, 5204);
+pub const DISPID_WMPCOREEVENT_ENDOFSTREAM = @as(u32, 5201);
+pub const DISPID_WMPCOREEVENT_ERROR = @as(u32, 5501);
+pub const DISPID_WMPCOREEVENT_MARKERHIT = @as(u32, 5203);
+pub const DISPID_WMPCOREEVENT_MEDIACHANGE = @as(u32, 5802);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONATTRIBUTESTRINGADDED = @as(u32, 5808);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONATTRIBUTESTRINGCHANGED = @as(u32, 5820);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONATTRIBUTESTRINGREMOVED = @as(u32, 5809);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONCHANGE = @as(u32, 5807);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONCONTENTSCANADDEDITEM = @as(u32, 5813);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONCONTENTSCANPROGRESS = @as(u32, 5814);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONMEDIAADDED = @as(u32, 5825);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONMEDIAREMOVED = @as(u32, 5826);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONSEARCHCOMPLETE = @as(u32, 5817);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONSEARCHFOUNDITEM = @as(u32, 5815);
+pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONSEARCHPROGRESS = @as(u32, 5816);
+pub const DISPID_WMPCOREEVENT_MEDIAERROR = @as(u32, 5821);
+pub const DISPID_WMPCOREEVENT_MODECHANGE = @as(u32, 5819);
+pub const DISPID_WMPCOREEVENT_NEWSTREAM = @as(u32, 5403);
+pub const DISPID_WMPCOREEVENT_OPENPLAYLISTSWITCH = @as(u32, 5823);
+pub const DISPID_WMPCOREEVENT_OPENSTATECHANGE = @as(u32, 5001);
+pub const DISPID_WMPCOREEVENT_PLAYLISTCHANGE = @as(u32, 5801);
+pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONCHANGE = @as(u32, 5810);
+pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONPLAYLISTADDED = @as(u32, 5811);
+pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONPLAYLISTREMOVED = @as(u32, 5812);
+pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONPLAYLISTSETASDELETED = @as(u32, 5818);
+pub const DISPID_WMPCOREEVENT_PLAYSTATECHANGE = @as(u32, 5101);
+pub const DISPID_WMPCOREEVENT_POSITIONCHANGE = @as(u32, 5202);
+pub const DISPID_WMPCOREEVENT_SCRIPTCOMMAND = @as(u32, 5301);
+pub const DISPID_WMPCOREEVENT_STATUSCHANGE = @as(u32, 5002);
+pub const DISPID_WMPCOREEVENT_STRINGCOLLECTIONCHANGE = @as(u32, 5824);
+pub const DISPID_WMPCOREEVENT_WARNING = @as(u32, 5601);
+pub const DISPID_WMPDOWNLOADCOLLECTION_BASE = @as(u32, 1200);
+pub const DISPID_WMPDOWNLOADCOLLECTION_CLEAR = @as(u32, 1206);
+pub const DISPID_WMPDOWNLOADCOLLECTION_COUNT = @as(u32, 1202);
+pub const DISPID_WMPDOWNLOADCOLLECTION_ID = @as(u32, 1201);
+pub const DISPID_WMPDOWNLOADCOLLECTION_ITEM = @as(u32, 1203);
+pub const DISPID_WMPDOWNLOADCOLLECTION_REMOVEITEM = @as(u32, 1205);
+pub const DISPID_WMPDOWNLOADCOLLECTION_STARTDOWNLOAD = @as(u32, 1204);
+pub const DISPID_WMPDOWNLOADITEM2_BASE = @as(u32, 1300);
+pub const DISPID_WMPDOWNLOADITEM2_GETITEMINFO = @as(u32, 1301);
+pub const DISPID_WMPDOWNLOADITEM_BASE = @as(u32, 1250);
+pub const DISPID_WMPDOWNLOADITEM_CANCEL = @as(u32, 1258);
+pub const DISPID_WMPDOWNLOADITEM_DOWNLOADSTATE = @as(u32, 1255);
+pub const DISPID_WMPDOWNLOADITEM_PAUSE = @as(u32, 1256);
+pub const DISPID_WMPDOWNLOADITEM_PROGRESS = @as(u32, 1254);
+pub const DISPID_WMPDOWNLOADITEM_RESUME = @as(u32, 1257);
+pub const DISPID_WMPDOWNLOADITEM_SIZE = @as(u32, 1252);
+pub const DISPID_WMPDOWNLOADITEM_SOURCEURL = @as(u32, 1251);
+pub const DISPID_WMPDOWNLOADITEM_TYPE = @as(u32, 1253);
+pub const DISPID_WMPDOWNLOADMANAGER_BASE = @as(u32, 1150);
+pub const DISPID_WMPDOWNLOADMANAGER_CREATEDOWNLOADCOLLECTION = @as(u32, 1152);
+pub const DISPID_WMPDOWNLOADMANAGER_GETDOWNLOADCOLLECTION = @as(u32, 1151);
+pub const DISPID_WMPDVD_BACK = @as(u32, 1005);
+pub const DISPID_WMPDVD_BASE = @as(u32, 1000);
+pub const DISPID_WMPDVD_DOMAIN = @as(u32, 1002);
+pub const DISPID_WMPDVD_ISAVAILABLE = @as(u32, 1001);
+pub const DISPID_WMPDVD_RESUME = @as(u32, 1006);
+pub const DISPID_WMPDVD_TITLEMENU = @as(u32, 1004);
+pub const DISPID_WMPDVD_TOPMENU = @as(u32, 1003);
+pub const DISPID_WMPERROR_BASE = @as(u32, 850);
 pub const DISPID_WMPERROR_CLEARERRORQUEUE = @as(u32, 851);
 pub const DISPID_WMPERROR_ERRORCOUNT = @as(u32, 852);
 pub const DISPID_WMPERROR_ITEM = @as(u32, 853);
 pub const DISPID_WMPERROR_WEBHELP = @as(u32, 854);
-pub const DISPID_WMPERRORITEM_ERRORCODE = @as(u32, 901);
-pub const DISPID_WMPERRORITEM_ERRORDESCRIPTION = @as(u32, 902);
-pub const DISPID_WMPERRORITEM_ERRORCONTEXT = @as(u32, 903);
-pub const DISPID_WMPERRORITEM_REMEDY = @as(u32, 904);
-pub const DISPID_WMPERRORITEM_CUSTOMURL = @as(u32, 905);
 pub const DISPID_WMPERRORITEM2_CONDITION = @as(u32, 906);
-pub const DISPID_WMPCLOSEDCAPTION_SAMISTYLE = @as(u32, 951);
-pub const DISPID_WMPCLOSEDCAPTION_SAMILANG = @as(u32, 952);
-pub const DISPID_WMPCLOSEDCAPTION_SAMIFILENAME = @as(u32, 953);
-pub const DISPID_WMPCLOSEDCAPTION_CAPTIONINGID = @as(u32, 954);
-pub const DISPID_WMPCLOSEDCAPTION2_GETLANGCOUNT = @as(u32, 955);
-pub const DISPID_WMPCLOSEDCAPTION2_GETLANGNAME = @as(u32, 956);
-pub const DISPID_WMPCLOSEDCAPTION2_GETLANGID = @as(u32, 957);
-pub const DISPID_WMPCLOSEDCAPTION2_GETSTYLECOUNT = @as(u32, 958);
-pub const DISPID_WMPCLOSEDCAPTION2_GETSTYLENAME = @as(u32, 959);
-pub const DISPID_WMPDVD_ISAVAILABLE = @as(u32, 1001);
-pub const DISPID_WMPDVD_DOMAIN = @as(u32, 1002);
-pub const DISPID_WMPDVD_TOPMENU = @as(u32, 1003);
-pub const DISPID_WMPDVD_TITLEMENU = @as(u32, 1004);
-pub const DISPID_WMPDVD_BACK = @as(u32, 1005);
-pub const DISPID_WMPDVD_RESUME = @as(u32, 1006);
-pub const DISPID_WMPMETADATA_PICTURE_MIMETYPE = @as(u32, 1051);
-pub const DISPID_WMPMETADATA_PICTURE_PICTURETYPE = @as(u32, 1052);
-pub const DISPID_WMPMETADATA_PICTURE_DESCRIPTION = @as(u32, 1053);
-pub const DISPID_WMPMETADATA_PICTURE_URL = @as(u32, 1054);
-pub const DISPID_WMPMETADATA_TEXT_TEXT = @as(u32, 1055);
-pub const DISPID_WMPMETADATA_TEXT_DESCRIPTION = @as(u32, 1056);
-pub const DISPID_WMPPLAYERAPP_SWITCHTOPLAYERAPPLICATION = @as(u32, 1101);
-pub const DISPID_WMPPLAYERAPP_SWITCHTOCONTROL = @as(u32, 1102);
-pub const DISPID_WMPPLAYERAPP_PLAYERDOCKED = @as(u32, 1103);
-pub const DISPID_WMPPLAYERAPP_HASDISPLAY = @as(u32, 1104);
-pub const DISPID_WMPPLAYERAPP_REMOTESTATUS = @as(u32, 1105);
-pub const DISPID_WMPDOWNLOADMANAGER_GETDOWNLOADCOLLECTION = @as(u32, 1151);
-pub const DISPID_WMPDOWNLOADMANAGER_CREATEDOWNLOADCOLLECTION = @as(u32, 1152);
-pub const DISPID_WMPDOWNLOADCOLLECTION_ID = @as(u32, 1201);
-pub const DISPID_WMPDOWNLOADCOLLECTION_COUNT = @as(u32, 1202);
-pub const DISPID_WMPDOWNLOADCOLLECTION_ITEM = @as(u32, 1203);
-pub const DISPID_WMPDOWNLOADCOLLECTION_STARTDOWNLOAD = @as(u32, 1204);
-pub const DISPID_WMPDOWNLOADCOLLECTION_REMOVEITEM = @as(u32, 1205);
-pub const DISPID_WMPDOWNLOADCOLLECTION_CLEAR = @as(u32, 1206);
-pub const DISPID_WMPDOWNLOADITEM_SOURCEURL = @as(u32, 1251);
-pub const DISPID_WMPDOWNLOADITEM_SIZE = @as(u32, 1252);
-pub const DISPID_WMPDOWNLOADITEM_TYPE = @as(u32, 1253);
-pub const DISPID_WMPDOWNLOADITEM_PROGRESS = @as(u32, 1254);
-pub const DISPID_WMPDOWNLOADITEM_DOWNLOADSTATE = @as(u32, 1255);
-pub const DISPID_WMPDOWNLOADITEM_PAUSE = @as(u32, 1256);
-pub const DISPID_WMPDOWNLOADITEM_RESUME = @as(u32, 1257);
-pub const DISPID_WMPDOWNLOADITEM_CANCEL = @as(u32, 1258);
-pub const DISPID_WMPDOWNLOADITEM2_GETITEMINFO = @as(u32, 1301);
-pub const DISPID_WMPQUERY_ADDCONDITION = @as(u32, 1351);
-pub const DISPID_WMPQUERY_BEGINNEXTGROUP = @as(u32, 1352);
+pub const DISPID_WMPERRORITEM_BASE = @as(u32, 900);
+pub const DISPID_WMPERRORITEM_CUSTOMURL = @as(u32, 905);
+pub const DISPID_WMPERRORITEM_ERRORCODE = @as(u32, 901);
+pub const DISPID_WMPERRORITEM_ERRORCONTEXT = @as(u32, 903);
+pub const DISPID_WMPERRORITEM_ERRORDESCRIPTION = @as(u32, 902);
+pub const DISPID_WMPERRORITEM_REMEDY = @as(u32, 904);
+pub const DISPID_WMPMEDIA2_ERROR = @as(u32, 768);
+pub const DISPID_WMPMEDIA3_GETATTRIBUTECOUNTBYTYPE = @as(u32, 769);
+pub const DISPID_WMPMEDIA3_GETITEMINFOBYTYPE = @as(u32, 770);
+pub const DISPID_WMPMEDIA_ATTRIBUTECOUNT = @as(u32, 759);
+pub const DISPID_WMPMEDIA_BASE = @as(u32, 750);
+pub const DISPID_WMPMEDIA_DURATION = @as(u32, 757);
+pub const DISPID_WMPMEDIA_DURATIONSTRING = @as(u32, 758);
+pub const DISPID_WMPMEDIA_GETATTRIBUTENAME = @as(u32, 760);
+pub const DISPID_WMPMEDIA_GETITEMINFO = @as(u32, 761);
+pub const DISPID_WMPMEDIA_GETITEMINFOBYATOM = @as(u32, 765);
+pub const DISPID_WMPMEDIA_GETMARKERNAME = @as(u32, 756);
+pub const DISPID_WMPMEDIA_GETMARKERTIME = @as(u32, 755);
+pub const DISPID_WMPMEDIA_IMAGESOURCEHEIGHT = @as(u32, 753);
+pub const DISPID_WMPMEDIA_IMAGESOURCEWIDTH = @as(u32, 752);
+pub const DISPID_WMPMEDIA_ISIDENTICAL = @as(u32, 763);
+pub const DISPID_WMPMEDIA_ISMEMBEROF = @as(u32, 766);
+pub const DISPID_WMPMEDIA_ISREADONLYITEM = @as(u32, 767);
+pub const DISPID_WMPMEDIA_MARKERCOUNT = @as(u32, 754);
+pub const DISPID_WMPMEDIA_NAME = @as(u32, 764);
+pub const DISPID_WMPMEDIA_SETITEMINFO = @as(u32, 762);
+pub const DISPID_WMPMEDIA_SOURCEURL = @as(u32, 751);
+pub const DISPID_WMPMEDIACOLLECTION2_BASE = @as(u32, 1400);
 pub const DISPID_WMPMEDIACOLLECTION2_CREATEQUERY = @as(u32, 1401);
+pub const DISPID_WMPMEDIACOLLECTION2_GETBYATTRANDMEDIATYPE = @as(u32, 1404);
 pub const DISPID_WMPMEDIACOLLECTION2_GETPLAYLISTBYQUERY = @as(u32, 1402);
 pub const DISPID_WMPMEDIACOLLECTION2_GETSTRINGCOLLBYQUERY = @as(u32, 1403);
-pub const DISPID_WMPMEDIACOLLECTION2_GETBYATTRANDMEDIATYPE = @as(u32, 1404);
-pub const DISPID_WMPSTRINGCOLLECTION2_ISIDENTICAL = @as(u32, 1451);
-pub const DISPID_WMPSTRINGCOLLECTION2_GETITEMINFO = @as(u32, 1452);
-pub const DISPID_WMPSTRINGCOLLECTION2_GETATTRCOUNTBYTYPE = @as(u32, 1453);
-pub const DISPID_WMPSTRINGCOLLECTION2_GETITEMINFOBYTYPE = @as(u32, 1454);
-pub const DISPID_WMPCORE_MIN = @as(u32, 1);
-pub const DISPID_WMPCORE_MAX = @as(u32, 1454);
-pub const WMPCOREEVENT_BASE = @as(u32, 5000);
-pub const DISPID_WMPCOREEVENT_OPENSTATECHANGE = @as(u32, 5001);
-pub const DISPID_WMPCOREEVENT_STATUSCHANGE = @as(u32, 5002);
-pub const WMPCOREEVENT_CONTROL_BASE = @as(u32, 5100);
-pub const DISPID_WMPCOREEVENT_PLAYSTATECHANGE = @as(u32, 5101);
-pub const DISPID_WMPCOREEVENT_AUDIOLANGUAGECHANGE = @as(u32, 5102);
-pub const WMPCOREEVENT_SEEK_BASE = @as(u32, 5200);
-pub const DISPID_WMPCOREEVENT_ENDOFSTREAM = @as(u32, 5201);
-pub const DISPID_WMPCOREEVENT_POSITIONCHANGE = @as(u32, 5202);
-pub const DISPID_WMPCOREEVENT_MARKERHIT = @as(u32, 5203);
-pub const DISPID_WMPCOREEVENT_DURATIONUNITCHANGE = @as(u32, 5204);
-pub const WMPCOREEVENT_CONTENT_BASE = @as(u32, 5300);
-pub const DISPID_WMPCOREEVENT_SCRIPTCOMMAND = @as(u32, 5301);
-pub const WMPCOREEVENT_NETWORK_BASE = @as(u32, 5400);
-pub const DISPID_WMPCOREEVENT_DISCONNECT = @as(u32, 5401);
-pub const DISPID_WMPCOREEVENT_BUFFERING = @as(u32, 5402);
-pub const DISPID_WMPCOREEVENT_NEWSTREAM = @as(u32, 5403);
-pub const WMPCOREEVENT_ERROR_BASE = @as(u32, 5500);
-pub const DISPID_WMPCOREEVENT_ERROR = @as(u32, 5501);
-pub const WMPCOREEVENT_WARNING_BASE = @as(u32, 5600);
-pub const DISPID_WMPCOREEVENT_WARNING = @as(u32, 5601);
-pub const WMPCOREEVENT_CDROM_BASE = @as(u32, 5700);
-pub const DISPID_WMPCOREEVENT_CDROMMEDIACHANGE = @as(u32, 5701);
-pub const WMPCOREEVENT_PLAYLIST_BASE = @as(u32, 5800);
-pub const DISPID_WMPCOREEVENT_PLAYLISTCHANGE = @as(u32, 5801);
-pub const DISPID_WMPCOREEVENT_MEDIACHANGE = @as(u32, 5802);
-pub const DISPID_WMPCOREEVENT_CURRENTMEDIAITEMAVAILABLE = @as(u32, 5803);
-pub const DISPID_WMPCOREEVENT_CURRENTPLAYLISTCHANGE = @as(u32, 5804);
-pub const DISPID_WMPCOREEVENT_CURRENTPLAYLISTITEMAVAILABLE = @as(u32, 5805);
-pub const DISPID_WMPCOREEVENT_CURRENTITEMCHANGE = @as(u32, 5806);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONCHANGE = @as(u32, 5807);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONATTRIBUTESTRINGADDED = @as(u32, 5808);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONATTRIBUTESTRINGREMOVED = @as(u32, 5809);
-pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONCHANGE = @as(u32, 5810);
-pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONPLAYLISTADDED = @as(u32, 5811);
-pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONPLAYLISTREMOVED = @as(u32, 5812);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONCONTENTSCANADDEDITEM = @as(u32, 5813);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONCONTENTSCANPROGRESS = @as(u32, 5814);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONSEARCHFOUNDITEM = @as(u32, 5815);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONSEARCHPROGRESS = @as(u32, 5816);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONSEARCHCOMPLETE = @as(u32, 5817);
-pub const DISPID_WMPCOREEVENT_PLAYLISTCOLLECTIONPLAYLISTSETASDELETED = @as(u32, 5818);
-pub const DISPID_WMPCOREEVENT_MODECHANGE = @as(u32, 5819);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONATTRIBUTESTRINGCHANGED = @as(u32, 5820);
-pub const DISPID_WMPCOREEVENT_MEDIAERROR = @as(u32, 5821);
-pub const DISPID_WMPCOREEVENT_DOMAINCHANGE = @as(u32, 5822);
-pub const DISPID_WMPCOREEVENT_OPENPLAYLISTSWITCH = @as(u32, 5823);
-pub const DISPID_WMPCOREEVENT_STRINGCOLLECTIONCHANGE = @as(u32, 5824);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONMEDIAADDED = @as(u32, 5825);
-pub const DISPID_WMPCOREEVENT_MEDIACOLLECTIONMEDIAREMOVED = @as(u32, 5826);
-pub const WMPOCXEVENT_BASE = @as(u32, 6500);
-pub const DISPID_WMPOCXEVENT_SWITCHEDTOPLAYERAPPLICATION = @as(u32, 6501);
-pub const DISPID_WMPOCXEVENT_SWITCHEDTOCONTROL = @as(u32, 6502);
-pub const DISPID_WMPOCXEVENT_PLAYERDOCKEDSTATECHANGE = @as(u32, 6503);
-pub const DISPID_WMPOCXEVENT_PLAYERRECONNECT = @as(u32, 6504);
+pub const DISPID_WMPMEDIACOLLECTION_ADD = @as(u32, 452);
+pub const DISPID_WMPMEDIACOLLECTION_BASE = @as(u32, 450);
+pub const DISPID_WMPMEDIACOLLECTION_FREEZECOLLECTIONCHANGE = @as(u32, 474);
+pub const DISPID_WMPMEDIACOLLECTION_GETALL = @as(u32, 453);
+pub const DISPID_WMPMEDIACOLLECTION_GETATTRIBUTESTRINGCOLLECTION = @as(u32, 461);
+pub const DISPID_WMPMEDIACOLLECTION_GETBYALBUM = @as(u32, 457);
+pub const DISPID_WMPMEDIACOLLECTION_GETBYATTRIBUTE = @as(u32, 458);
+pub const DISPID_WMPMEDIACOLLECTION_GETBYAUTHOR = @as(u32, 456);
+pub const DISPID_WMPMEDIACOLLECTION_GETBYGENRE = @as(u32, 455);
+pub const DISPID_WMPMEDIACOLLECTION_GETBYNAME = @as(u32, 454);
+pub const DISPID_WMPMEDIACOLLECTION_GETBYQUERYDESCRIPTION = @as(u32, 473);
+pub const DISPID_WMPMEDIACOLLECTION_GETMEDIAATOM = @as(u32, 470);
+pub const DISPID_WMPMEDIACOLLECTION_ISDELETED = @as(u32, 472);
+pub const DISPID_WMPMEDIACOLLECTION_NEWQUERY = @as(u32, 462);
+pub const DISPID_WMPMEDIACOLLECTION_POSTCOLLECTIONCHANGE = @as(u32, 476);
+pub const DISPID_WMPMEDIACOLLECTION_REMOVE = @as(u32, 459);
+pub const DISPID_WMPMEDIACOLLECTION_SETDELETED = @as(u32, 471);
+pub const DISPID_WMPMEDIACOLLECTION_STARTCONTENTSCAN = @as(u32, 465);
+pub const DISPID_WMPMEDIACOLLECTION_STARTMONITORING = @as(u32, 463);
+pub const DISPID_WMPMEDIACOLLECTION_STARTSEARCH = @as(u32, 467);
+pub const DISPID_WMPMEDIACOLLECTION_STOPCONTENTSCAN = @as(u32, 466);
+pub const DISPID_WMPMEDIACOLLECTION_STOPMONITORING = @as(u32, 464);
+pub const DISPID_WMPMEDIACOLLECTION_STOPSEARCH = @as(u32, 468);
+pub const DISPID_WMPMEDIACOLLECTION_UNFREEZECOLLECTIONCHANGE = @as(u32, 475);
+pub const DISPID_WMPMEDIACOLLECTION_UPDATEMETADATA = @as(u32, 469);
+pub const DISPID_WMPMETADATA_BASE = @as(u32, 1050);
+pub const DISPID_WMPMETADATA_PICTURE_DESCRIPTION = @as(u32, 1053);
+pub const DISPID_WMPMETADATA_PICTURE_MIMETYPE = @as(u32, 1051);
+pub const DISPID_WMPMETADATA_PICTURE_PICTURETYPE = @as(u32, 1052);
+pub const DISPID_WMPMETADATA_PICTURE_URL = @as(u32, 1054);
+pub const DISPID_WMPMETADATA_TEXT_DESCRIPTION = @as(u32, 1056);
+pub const DISPID_WMPMETADATA_TEXT_TEXT = @as(u32, 1055);
+pub const DISPID_WMPNETWORK_BANDWIDTH = @as(u32, 801);
+pub const DISPID_WMPNETWORK_BASE = @as(u32, 800);
+pub const DISPID_WMPNETWORK_BITRATE = @as(u32, 812);
+pub const DISPID_WMPNETWORK_BUFFERINGCOUNT = @as(u32, 807);
+pub const DISPID_WMPNETWORK_BUFFERINGPROGRESS = @as(u32, 808);
+pub const DISPID_WMPNETWORK_BUFFERINGTIME = @as(u32, 809);
+pub const DISPID_WMPNETWORK_DOWNLOADPROGRESS = @as(u32, 824);
+pub const DISPID_WMPNETWORK_ENCODEDFRAMERATE = @as(u32, 825);
+pub const DISPID_WMPNETWORK_FRAMERATE = @as(u32, 810);
+pub const DISPID_WMPNETWORK_FRAMESSKIPPED = @as(u32, 826);
+pub const DISPID_WMPNETWORK_GETPROXYBYPASSFORLOCAL = @as(u32, 821);
+pub const DISPID_WMPNETWORK_GETPROXYEXCEPTIONLIST = @as(u32, 819);
+pub const DISPID_WMPNETWORK_GETPROXYNAME = @as(u32, 815);
+pub const DISPID_WMPNETWORK_GETPROXYPORT = @as(u32, 817);
+pub const DISPID_WMPNETWORK_GETPROXYSETTINGS = @as(u32, 813);
+pub const DISPID_WMPNETWORK_LOSTPACKETS = @as(u32, 805);
+pub const DISPID_WMPNETWORK_MAXBANDWIDTH = @as(u32, 823);
+pub const DISPID_WMPNETWORK_MAXBITRATE = @as(u32, 811);
+pub const DISPID_WMPNETWORK_RECEIVEDPACKETS = @as(u32, 804);
+pub const DISPID_WMPNETWORK_RECEPTIONQUALITY = @as(u32, 806);
+pub const DISPID_WMPNETWORK_RECOVEREDPACKETS = @as(u32, 802);
+pub const DISPID_WMPNETWORK_SETPROXYBYPASSFORLOCAL = @as(u32, 822);
+pub const DISPID_WMPNETWORK_SETPROXYEXCEPTIONLIST = @as(u32, 820);
+pub const DISPID_WMPNETWORK_SETPROXYNAME = @as(u32, 816);
+pub const DISPID_WMPNETWORK_SETPROXYPORT = @as(u32, 818);
+pub const DISPID_WMPNETWORK_SETPROXYSETTINGS = @as(u32, 814);
+pub const DISPID_WMPNETWORK_SOURCEPROTOCOL = @as(u32, 803);
+pub const DISPID_WMPOCX2_BASE = @as(u32, 23);
+pub const DISPID_WMPOCX2_STRETCHTOFIT = @as(u32, 24);
+pub const DISPID_WMPOCX2_WINDOWLESSVIDEO = @as(u32, 25);
+pub const DISPID_WMPOCX4_ISREMOTE = @as(u32, 26);
+pub const DISPID_WMPOCX4_OPENPLAYER = @as(u32, 28);
+pub const DISPID_WMPOCX4_PLAYERAPPLICATION = @as(u32, 27);
+pub const DISPID_WMPOCX_BASE = @as(u32, 18);
+pub const DISPID_WMPOCX_ENABLECONTEXTMENU = @as(u32, 22);
+pub const DISPID_WMPOCX_ENABLED = @as(u32, 19);
+pub const DISPID_WMPOCX_FULLSCREEN = @as(u32, 21);
+pub const DISPID_WMPOCX_LAST = @as(u32, 23);
+pub const DISPID_WMPOCX_TRANSPARENTATSTART = @as(u32, 20);
+pub const DISPID_WMPOCX_UIMODE = @as(u32, 23);
+pub const DISPID_WMPOCXEVENT_CDROMBURNERROR = @as(u32, 6523);
+pub const DISPID_WMPOCXEVENT_CDROMBURNMEDIAERROR = @as(u32, 6522);
+pub const DISPID_WMPOCXEVENT_CDROMBURNSTATECHANGE = @as(u32, 6521);
+pub const DISPID_WMPOCXEVENT_CDROMRIPMEDIAERROR = @as(u32, 6520);
+pub const DISPID_WMPOCXEVENT_CDROMRIPSTATECHANGE = @as(u32, 6519);
 pub const DISPID_WMPOCXEVENT_CLICK = @as(u32, 6505);
+pub const DISPID_WMPOCXEVENT_CREATEPARTNERSHIPCOMPLETE = @as(u32, 6518);
+pub const DISPID_WMPOCXEVENT_DEVICECONNECT = @as(u32, 6513);
+pub const DISPID_WMPOCXEVENT_DEVICEDISCONNECT = @as(u32, 6514);
+pub const DISPID_WMPOCXEVENT_DEVICEESTIMATION = @as(u32, 6527);
+pub const DISPID_WMPOCXEVENT_DEVICESTATUSCHANGE = @as(u32, 6515);
+pub const DISPID_WMPOCXEVENT_DEVICESYNCERROR = @as(u32, 6517);
+pub const DISPID_WMPOCXEVENT_DEVICESYNCSTATECHANGE = @as(u32, 6516);
 pub const DISPID_WMPOCXEVENT_DOUBLECLICK = @as(u32, 6506);
+pub const DISPID_WMPOCXEVENT_FOLDERSCANSTATECHANGE = @as(u32, 6526);
 pub const DISPID_WMPOCXEVENT_KEYDOWN = @as(u32, 6507);
 pub const DISPID_WMPOCXEVENT_KEYPRESS = @as(u32, 6508);
 pub const DISPID_WMPOCXEVENT_KEYUP = @as(u32, 6509);
+pub const DISPID_WMPOCXEVENT_LIBRARYCONNECT = @as(u32, 6524);
+pub const DISPID_WMPOCXEVENT_LIBRARYDISCONNECT = @as(u32, 6525);
 pub const DISPID_WMPOCXEVENT_MOUSEDOWN = @as(u32, 6510);
 pub const DISPID_WMPOCXEVENT_MOUSEMOVE = @as(u32, 6511);
 pub const DISPID_WMPOCXEVENT_MOUSEUP = @as(u32, 6512);
-pub const DISPID_WMPOCXEVENT_DEVICECONNECT = @as(u32, 6513);
-pub const DISPID_WMPOCXEVENT_DEVICEDISCONNECT = @as(u32, 6514);
-pub const DISPID_WMPOCXEVENT_DEVICESTATUSCHANGE = @as(u32, 6515);
-pub const DISPID_WMPOCXEVENT_DEVICESYNCSTATECHANGE = @as(u32, 6516);
-pub const DISPID_WMPOCXEVENT_DEVICESYNCERROR = @as(u32, 6517);
-pub const DISPID_WMPOCXEVENT_CREATEPARTNERSHIPCOMPLETE = @as(u32, 6518);
-pub const DISPID_WMPOCXEVENT_CDROMRIPSTATECHANGE = @as(u32, 6519);
-pub const DISPID_WMPOCXEVENT_CDROMRIPMEDIAERROR = @as(u32, 6520);
-pub const DISPID_WMPOCXEVENT_CDROMBURNSTATECHANGE = @as(u32, 6521);
-pub const DISPID_WMPOCXEVENT_CDROMBURNMEDIAERROR = @as(u32, 6522);
-pub const DISPID_WMPOCXEVENT_CDROMBURNERROR = @as(u32, 6523);
-pub const DISPID_WMPOCXEVENT_LIBRARYCONNECT = @as(u32, 6524);
-pub const DISPID_WMPOCXEVENT_LIBRARYDISCONNECT = @as(u32, 6525);
-pub const DISPID_WMPOCXEVENT_FOLDERSCANSTATECHANGE = @as(u32, 6526);
-pub const DISPID_WMPOCXEVENT_DEVICEESTIMATION = @as(u32, 6527);
-pub const DISPID_WMPCONTROLS_BASE = @as(u32, 50);
-pub const DISPID_WMPSETTINGS_BASE = @as(u32, 100);
-pub const DISPID_WMPPLAYLIST_BASE = @as(u32, 200);
-pub const DISPID_WMPCDROM_BASE = @as(u32, 250);
-pub const DISPID_WMPCDROMCOLLECTION_BASE = @as(u32, 300);
-pub const DISPID_WMPSTRINGCOLLECTION_BASE = @as(u32, 400);
-pub const DISPID_WMPMEDIACOLLECTION_BASE = @as(u32, 450);
-pub const DISPID_WMPPLAYLISTARRAY_BASE = @as(u32, 500);
-pub const DISPID_WMPPLAYLISTCOLLECTION_BASE = @as(u32, 550);
-pub const DISPID_WMPMEDIA_BASE = @as(u32, 750);
-pub const DISPID_WMPNETWORK_BASE = @as(u32, 800);
-pub const DISPID_WMPERROR_BASE = @as(u32, 850);
-pub const DISPID_WMPERRORITEM_BASE = @as(u32, 900);
-pub const DISPID_WMPCLOSEDCAPTION_BASE = @as(u32, 950);
-pub const DISPID_WMPDVD_BASE = @as(u32, 1000);
-pub const DISPID_WMPMETADATA_BASE = @as(u32, 1050);
+pub const DISPID_WMPOCXEVENT_PLAYERDOCKEDSTATECHANGE = @as(u32, 6503);
+pub const DISPID_WMPOCXEVENT_PLAYERRECONNECT = @as(u32, 6504);
+pub const DISPID_WMPOCXEVENT_SWITCHEDTOCONTROL = @as(u32, 6502);
+pub const DISPID_WMPOCXEVENT_SWITCHEDTOPLAYERAPPLICATION = @as(u32, 6501);
 pub const DISPID_WMPPLAYERAPP_BASE = @as(u32, 1100);
-pub const DISPID_WMPDOWNLOADMANAGER_BASE = @as(u32, 1150);
-pub const DISPID_WMPDOWNLOADCOLLECTION_BASE = @as(u32, 1200);
-pub const DISPID_WMPDOWNLOADITEM_BASE = @as(u32, 1250);
-pub const DISPID_WMPDOWNLOADITEM2_BASE = @as(u32, 1300);
+pub const DISPID_WMPPLAYERAPP_HASDISPLAY = @as(u32, 1104);
+pub const DISPID_WMPPLAYERAPP_PLAYERDOCKED = @as(u32, 1103);
+pub const DISPID_WMPPLAYERAPP_REMOTESTATUS = @as(u32, 1105);
+pub const DISPID_WMPPLAYERAPP_SWITCHTOCONTROL = @as(u32, 1102);
+pub const DISPID_WMPPLAYERAPP_SWITCHTOPLAYERAPPLICATION = @as(u32, 1101);
+pub const DISPID_WMPPLAYLIST_APPENDITEM = @as(u32, 207);
+pub const DISPID_WMPPLAYLIST_ATTRIBUTECOUNT = @as(u32, 210);
+pub const DISPID_WMPPLAYLIST_ATTRIBUTENAME = @as(u32, 211);
+pub const DISPID_WMPPLAYLIST_BASE = @as(u32, 200);
+pub const DISPID_WMPPLAYLIST_CLEAR = @as(u32, 205);
+pub const DISPID_WMPPLAYLIST_COUNT = @as(u32, 201);
+pub const DISPID_WMPPLAYLIST_GETITEMINFO = @as(u32, 203);
+pub const DISPID_WMPPLAYLIST_INSERTITEM = @as(u32, 206);
+pub const DISPID_WMPPLAYLIST_ISIDENTICAL = @as(u32, 213);
+pub const DISPID_WMPPLAYLIST_ITEM = @as(u32, 212);
+pub const DISPID_WMPPLAYLIST_MOVEITEM = @as(u32, 209);
+pub const DISPID_WMPPLAYLIST_NAME = @as(u32, 202);
+pub const DISPID_WMPPLAYLIST_REMOVEITEM = @as(u32, 208);
+pub const DISPID_WMPPLAYLIST_SETITEMINFO = @as(u32, 204);
+pub const DISPID_WMPPLAYLISTARRAY_BASE = @as(u32, 500);
+pub const DISPID_WMPPLAYLISTARRAY_COUNT = @as(u32, 501);
+pub const DISPID_WMPPLAYLISTARRAY_ITEM = @as(u32, 502);
+pub const DISPID_WMPPLAYLISTCOLLECTION_BASE = @as(u32, 550);
+pub const DISPID_WMPPLAYLISTCOLLECTION_GETALL = @as(u32, 553);
+pub const DISPID_WMPPLAYLISTCOLLECTION_GETBYNAME = @as(u32, 554);
+pub const DISPID_WMPPLAYLISTCOLLECTION_GETBYQUERYDESCRIPTION = @as(u32, 555);
+pub const DISPID_WMPPLAYLISTCOLLECTION_IMPORTPLAYLIST = @as(u32, 562);
+pub const DISPID_WMPPLAYLISTCOLLECTION_ISDELETED = @as(u32, 561);
+pub const DISPID_WMPPLAYLISTCOLLECTION_NEWPLAYLIST = @as(u32, 552);
+pub const DISPID_WMPPLAYLISTCOLLECTION_NEWQUERY = @as(u32, 557);
+pub const DISPID_WMPPLAYLISTCOLLECTION_REMOVE = @as(u32, 556);
+pub const DISPID_WMPPLAYLISTCOLLECTION_SETDELETED = @as(u32, 560);
+pub const DISPID_WMPPLAYLISTCOLLECTION_STARTMONITORING = @as(u32, 558);
+pub const DISPID_WMPPLAYLISTCOLLECTION_STOPMONITORING = @as(u32, 559);
+pub const DISPID_WMPQUERY_ADDCONDITION = @as(u32, 1351);
 pub const DISPID_WMPQUERY_BASE = @as(u32, 1350);
-pub const DISPID_WMPMEDIACOLLECTION2_BASE = @as(u32, 1400);
+pub const DISPID_WMPQUERY_BEGINNEXTGROUP = @as(u32, 1352);
+pub const DISPID_WMPSETTINGS2_DEFAULTAUDIOLANGUAGE = @as(u32, 114);
+pub const DISPID_WMPSETTINGS2_LIBRARYACCESSRIGHTS = @as(u32, 115);
+pub const DISPID_WMPSETTINGS2_REQUESTLIBRARYACCESSRIGHTS = @as(u32, 116);
+pub const DISPID_WMPSETTINGS_AUTOSTART = @as(u32, 101);
+pub const DISPID_WMPSETTINGS_BALANCE = @as(u32, 102);
+pub const DISPID_WMPSETTINGS_BASE = @as(u32, 100);
+pub const DISPID_WMPSETTINGS_BASEURL = @as(u32, 108);
+pub const DISPID_WMPSETTINGS_DEFAULTFRAME = @as(u32, 109);
+pub const DISPID_WMPSETTINGS_ENABLEERRORDIALOGS = @as(u32, 112);
+pub const DISPID_WMPSETTINGS_GETMODE = @as(u32, 110);
+pub const DISPID_WMPSETTINGS_INVOKEURLS = @as(u32, 103);
+pub const DISPID_WMPSETTINGS_ISAVAILABLE = @as(u32, 113);
+pub const DISPID_WMPSETTINGS_MUTE = @as(u32, 104);
+pub const DISPID_WMPSETTINGS_PLAYCOUNT = @as(u32, 105);
+pub const DISPID_WMPSETTINGS_RATE = @as(u32, 106);
+pub const DISPID_WMPSETTINGS_SETMODE = @as(u32, 111);
+pub const DISPID_WMPSETTINGS_VOLUME = @as(u32, 107);
 pub const DISPID_WMPSTRINGCOLLECTION2_BASE = @as(u32, 1450);
-pub const CLSID_WMPSkinManager = Guid.initString("b2a7fd52-301f-4348-b93a-638c6de49229");
-pub const CLSID_WMPMediaPluginRegistrar = Guid.initString("5569e7f5-424b-4b93-89ca-79d17924689a");
-pub const WMP_PLUGINTYPE_DSP = Guid.initString("6434baea-4954-498d-abd5-2b07123e1f04");
-pub const WMP_PLUGINTYPE_DSP_OUTOFPROC = Guid.initString("ef29b174-c347-44cc-9a4f-2399118ff38c");
-pub const WMP_PLUGINTYPE_RENDERING = Guid.initString("a8554541-115d-406a-a4c7-51111c330183");
-pub const kfltTimedLevelMaximumFrequency = @as(f32, 22050.0);
-pub const kfltTimedLevelMinimumFrequency = @as(f32, 20.0);
-pub const g_szContentPartnerInfo_LoginState = "LoginState";
-pub const g_szContentPartnerInfo_MediaPlayerAccountType = "MediaPlayerAccountType";
+pub const DISPID_WMPSTRINGCOLLECTION2_GETATTRCOUNTBYTYPE = @as(u32, 1453);
+pub const DISPID_WMPSTRINGCOLLECTION2_GETITEMINFO = @as(u32, 1452);
+pub const DISPID_WMPSTRINGCOLLECTION2_GETITEMINFOBYTYPE = @as(u32, 1454);
+pub const DISPID_WMPSTRINGCOLLECTION2_ISIDENTICAL = @as(u32, 1451);
+pub const DISPID_WMPSTRINGCOLLECTION_BASE = @as(u32, 400);
+pub const DISPID_WMPSTRINGCOLLECTION_COUNT = @as(u32, 401);
+pub const DISPID_WMPSTRINGCOLLECTION_ITEM = @as(u32, 402);
+pub const EFFECT2_FULLSCREENEXCLUSIVE = @as(u32, 16);
+pub const EFFECT_CANGOFULLSCREEN = @as(u32, 1);
+pub const EFFECT_HASPROPERTYPAGE = @as(u32, 2);
+pub const EFFECT_VARIABLEFREQSTEP = @as(u32, 4);
+pub const EFFECT_WINDOWEDONLY = @as(u32, 8);
+pub const g_szAllAuthors = "AllAuthors";
+pub const g_szAllCPAlbumIDs = "AllCPAlbumIDs";
+pub const g_szAllCPAlbumSubGenreIDs = "AllCPAlbumSubGenreIDs";
+pub const g_szAllCPArtistIDs = "AllCPArtistIDs";
+pub const g_szAllCPGenreIDs = "AllCPGenreIDs";
+pub const g_szAllCPListIDs = "AllCPListIDs";
+pub const g_szAllCPRadioIDs = "AllCPRadioIDs";
+pub const g_szAllCPTrackIDs = "AllCPTrackIDs";
+pub const g_szAllReleaseDateYears = "AllReleaseDateYears";
+pub const g_szAllUserEffectiveRatingStarss = "AllUserEffectiveRatingStarss";
+pub const g_szAllWMParentalRatings = "AllWMParentalRatings";
+pub const g_szAuthor = "Author";
+pub const g_szContentPartnerInfo_AccountBalance = "AccountBalance";
 pub const g_szContentPartnerInfo_AccountType = "AccountType";
 pub const g_szContentPartnerInfo_HasCachedCredentials = "HasCachedCredentials";
 pub const g_szContentPartnerInfo_LicenseRefreshAdvanceWarning = "LicenseRefreshAdvanceWarning";
-pub const g_szContentPartnerInfo_PurchasedTrackRequiresReDownload = "PurchasedTrackRequiresReDownload";
+pub const g_szContentPartnerInfo_LoginState = "LoginState";
 pub const g_szContentPartnerInfo_MaximumTrackPurchasePerPurchase = "MaximumNumberOfTracksPerPurchase";
-pub const g_szContentPartnerInfo_AccountBalance = "AccountBalance";
+pub const g_szContentPartnerInfo_MediaPlayerAccountType = "MediaPlayerAccountType";
+pub const g_szContentPartnerInfo_PurchasedTrackRequiresReDownload = "PurchasedTrackRequiresReDownload";
 pub const g_szContentPartnerInfo_UserName = "UserName";
-pub const g_szMediaPlayerTask_Burn = "Burn";
-pub const g_szMediaPlayerTask_Browse = "Browse";
-pub const g_szMediaPlayerTask_Sync = "Sync";
-pub const g_szItemInfo_PopupURL = "Popup";
-pub const g_szItemInfo_AuthenticationSuccessURL = "AuthenticationSuccessURL";
-pub const g_szItemInfo_LoginFailureURL = "LoginFailureURL";
-pub const g_szItemInfo_HTMLViewURL = "HTMLViewURL";
-pub const g_szItemInfo_PopupCaption = "PopupCaption";
-pub const g_szItemInfo_ALTLoginURL = "ALTLoginURL";
-pub const g_szItemInfo_ALTLoginCaption = "ALTLoginCaption";
-pub const g_szItemInfo_ForgetPasswordURL = "ForgotPassword";
-pub const g_szItemInfo_CreateAccountURL = "CreateAccount";
-pub const g_szItemInfo_ArtistArtURL = "ArtistArt";
+pub const g_szContentPrice_CannotBuy = "PriceCannotBuy";
+pub const g_szContentPrice_Free = "PriceFree";
+pub const g_szContentPrice_Unknown = "PriceUnknown";
+pub const g_szCPAlbumID = "CPAlbumID";
+pub const g_szCPAlbumSubGenreID = "CPAlbumSubGenreID";
+pub const g_szCPArtistID = "CPArtistID";
+pub const g_szCPGenreID = "CPGenreID";
+pub const g_szCPListID = "CPListID";
+pub const g_szCPRadioID = "CPRadioID";
+pub const g_szCPTrackID = "CPTrackID";
+pub const g_szFlyoutMenu = "FlyoutMenu";
 pub const g_szItemInfo_AlbumArtURL = "AlbumArt";
-pub const g_szItemInfo_ListArtURL = "ListArt";
-pub const g_szItemInfo_GenreArtURL = "GenreArt";
-pub const g_szItemInfo_SubGenreArtURL = "SubGenreArt";
-pub const g_szItemInfo_RadioArtURL = "RadioArt";
-pub const g_szItemInfo_TreeListIconURL = "CPListIDIcon";
+pub const g_szItemInfo_ALTLoginCaption = "ALTLoginCaption";
+pub const g_szItemInfo_ALTLoginURL = "ALTLoginURL";
+pub const g_szItemInfo_ArtistArtURL = "ArtistArt";
+pub const g_szItemInfo_AuthenticationSuccessURL = "AuthenticationSuccessURL";
+pub const g_szItemInfo_CreateAccountURL = "CreateAccount";
 pub const g_szItemInfo_ErrorDescription = "CPErrorDescription";
 pub const g_szItemInfo_ErrorURL = "CPErrorURL";
 pub const g_szItemInfo_ErrorURLLinkText = "CPErrorURLLinkText";
-pub const g_szUnknownLocation = "UnknownLocation";
-pub const g_szRootLocation = "RootLocation";
-pub const g_szFlyoutMenu = "FlyoutMenu";
+pub const g_szItemInfo_ForgetPasswordURL = "ForgotPassword";
+pub const g_szItemInfo_GenreArtURL = "GenreArt";
+pub const g_szItemInfo_HTMLViewURL = "HTMLViewURL";
+pub const g_szItemInfo_ListArtURL = "ListArt";
+pub const g_szItemInfo_LoginFailureURL = "LoginFailureURL";
+pub const g_szItemInfo_PopupCaption = "PopupCaption";
+pub const g_szItemInfo_PopupURL = "Popup";
+pub const g_szItemInfo_RadioArtURL = "RadioArt";
+pub const g_szItemInfo_SubGenreArtURL = "SubGenreArt";
+pub const g_szItemInfo_TreeListIconURL = "CPListIDIcon";
+pub const g_szMediaPlayerTask_Browse = "Browse";
+pub const g_szMediaPlayerTask_Burn = "Burn";
+pub const g_szMediaPlayerTask_Sync = "Sync";
 pub const g_szOnlineStore = "OnlineStore";
-pub const g_szVideoRecent = "VideoRecent";
-pub const g_szVideoRoot = "VideoRoot";
-pub const g_szCPListID = "CPListID";
-pub const g_szAllCPListIDs = "AllCPListIDs";
-pub const g_szCPTrackID = "CPTrackID";
-pub const g_szAllCPTrackIDs = "AllCPTrackIDs";
-pub const g_szCPArtistID = "CPArtistID";
-pub const g_szAllCPArtistIDs = "AllCPArtistIDs";
-pub const g_szCPAlbumID = "CPAlbumID";
-pub const g_szAllCPAlbumIDs = "AllCPAlbumIDs";
-pub const g_szCPGenreID = "CPGenreID";
-pub const g_szAllCPGenreIDs = "AllCPGenreIDs";
-pub const g_szCPAlbumSubGenreID = "CPAlbumSubGenreID";
-pub const g_szAllCPAlbumSubGenreIDs = "AllCPAlbumSubGenreIDs";
-pub const g_szReleaseDateYear = "ReleaseDateYear";
-pub const g_szAllReleaseDateYears = "AllReleaseDateYears";
-pub const g_szCPRadioID = "CPRadioID";
-pub const g_szAllCPRadioIDs = "AllCPRadioIDs";
-pub const g_szAuthor = "Author";
-pub const g_szAllAuthors = "AllAuthors";
-pub const g_szWMParentalRating = "WMParentalRating";
-pub const g_szAllWMParentalRatings = "AllWMParentalRatings";
-pub const g_szAllUserEffectiveRatingStarss = "AllUserEffectiveRatingStarss";
-pub const g_szUserEffectiveRatingStars = "UserEffectiveRatingStars";
-pub const g_szUserPlaylist = "UserPlaylist";
-pub const g_szViewMode_Report = "ViewModeReport";
-pub const g_szViewMode_Details = "ViewModeDetails";
-pub const g_szViewMode_Icon = "ViewModeIcon";
-pub const g_szViewMode_Tile = "ViewModeTile";
-pub const g_szViewMode_OrderedList = "ViewModeOrderedList";
-pub const g_szContentPrice_Unknown = "PriceUnknown";
-pub const g_szContentPrice_CannotBuy = "PriceCannotBuy";
-pub const g_szContentPrice_Free = "PriceFree";
-pub const g_szRefreshLicensePlay = "RefreshForPlay";
 pub const g_szRefreshLicenseBurn = "RefreshForBurn";
+pub const g_szRefreshLicensePlay = "RefreshForPlay";
 pub const g_szRefreshLicenseSync = "RefreshForSync";
-pub const g_szVerifyPermissionSync = "VerifyPermissionSync";
-pub const g_szStationEvent_Started = "TrackStarted";
+pub const g_szReleaseDateYear = "ReleaseDateYear";
+pub const g_szRootLocation = "RootLocation";
 pub const g_szStationEvent_Complete = "TrackComplete";
 pub const g_szStationEvent_Skipped = "TrackSkipped";
-pub const WMProfile_V40_DialUpMBR = Guid.initString("fd7f47f1-72a6-45a4-80f0-3aecefc32c07");
-pub const WMProfile_V40_IntranetMBR = Guid.initString("82cd3321-a94a-4ffc-9c2b-092c10ca16e7");
-pub const WMProfile_V40_2856100MBR = Guid.initString("5a1c2206-dc5e-4186-beb2-4c5a994b132e");
-pub const WMProfile_V40_6VoiceAudio = Guid.initString("d508978a-11a0-4d15-b0da-acdc99d4f890");
+pub const g_szStationEvent_Started = "TrackStarted";
+pub const g_szUnknownLocation = "UnknownLocation";
+pub const g_szUserEffectiveRatingStars = "UserEffectiveRatingStars";
+pub const g_szUserPlaylist = "UserPlaylist";
+pub const g_szVerifyPermissionSync = "VerifyPermissionSync";
+pub const g_szVideoRecent = "VideoRecent";
+pub const g_szVideoRoot = "VideoRoot";
+pub const g_szViewMode_Details = "ViewModeDetails";
+pub const g_szViewMode_Icon = "ViewModeIcon";
+pub const g_szViewMode_OrderedList = "ViewModeOrderedList";
+pub const g_szViewMode_Report = "ViewModeReport";
+pub const g_szViewMode_Tile = "ViewModeTile";
+pub const g_szWMParentalRating = "WMParentalRating";
+pub const IOCTL_WMP_DEVICE_CAN_SYNC = @as(u32, 844123479);
+pub const IOCTL_WMP_METADATA_ROUND_TRIP = @as(u32, 827346263);
+pub const kfltTimedLevelMaximumFrequency = @as(f32, 22050.0);
+pub const kfltTimedLevelMinimumFrequency = @as(f32, 20.0);
+pub const PLUGIN_ALL_MEDIASENDTO = "MediaSendTo";
+pub const PLUGIN_ALL_PLAYLISTSENDTO = "PlaylistSendTo";
+pub const PLUGIN_FLAGS_ACCEPTSMEDIA = @as(u32, 268435456);
+pub const PLUGIN_FLAGS_ACCEPTSPLAYLISTS = @as(u32, 134217728);
+pub const PLUGIN_FLAGS_HASPRESETS = @as(u32, 67108864);
+pub const PLUGIN_FLAGS_HASPROPERTYPAGE = @as(u32, 2147483648);
+pub const PLUGIN_FLAGS_HIDDEN = @as(u32, 33554432);
+pub const PLUGIN_FLAGS_INSTALLAUTORUN = @as(u32, 1073741824);
+pub const PLUGIN_FLAGS_LAUNCHPROPERTYPAGE = @as(u32, 536870912);
+pub const PLUGIN_INSTALLREGKEY = "Software\\Microsoft\\MediaPlayer\\UIPlugins";
+pub const PLUGIN_INSTALLREGKEY_CAPABILITIES = "Capabilities";
+pub const PLUGIN_INSTALLREGKEY_DESCRIPTION = "Description";
+pub const PLUGIN_INSTALLREGKEY_FRIENDLYNAME = "FriendlyName";
+pub const PLUGIN_INSTALLREGKEY_UNINSTALL = "UninstallPath";
+pub const PLUGIN_MISC_CURRENTPRESET = "CurrentPreset";
+pub const PLUGIN_MISC_PRESETCOUNT = "PresetCount";
+pub const PLUGIN_MISC_PRESETNAMES = "PresetNames";
+pub const PLUGIN_MISC_QUERYDESTROY = "QueryDestroy";
+pub const PLUGIN_SEPARATEWINDOW_DEFAULTHEIGHT = "DefaultHeight";
+pub const PLUGIN_SEPARATEWINDOW_DEFAULTWIDTH = "DefaultWidth";
+pub const PLUGIN_SEPARATEWINDOW_MAXHEIGHT = "MaxHeight";
+pub const PLUGIN_SEPARATEWINDOW_MAXWIDTH = "MaxWidth";
+pub const PLUGIN_SEPARATEWINDOW_MINHEIGHT = "MinHeight";
+pub const PLUGIN_SEPARATEWINDOW_MINWIDTH = "MinWidth";
+pub const PLUGIN_SEPARATEWINDOW_RESIZABLE = "Resizable";
+pub const PLUGIN_TYPE_BACKGROUND = @as(u32, 1);
+pub const PLUGIN_TYPE_DISPLAYAREA = @as(u32, 3);
+pub const PLUGIN_TYPE_METADATAAREA = @as(u32, 5);
+pub const PLUGIN_TYPE_SEPARATEWINDOW = @as(u32, 2);
+pub const PLUGIN_TYPE_SETTINGSAREA = @as(u32, 4);
+pub const SA_BUFFER_SIZE = @as(u32, 1024);
+pub const SUBSCRIPTION_CAP_ALLOWCDBURN = @as(u32, 2);
+pub const SUBSCRIPTION_CAP_ALLOWPDATRANSFER = @as(u32, 4);
+pub const SUBSCRIPTION_CAP_ALLOWPLAY = @as(u32, 1);
+pub const SUBSCRIPTION_CAP_ALTLOGIN = @as(u32, 128);
+pub const SUBSCRIPTION_CAP_BACKGROUNDPROCESSING = @as(u32, 8);
+pub const SUBSCRIPTION_CAP_DEVICEAVAILABLE = @as(u32, 16);
+pub const SUBSCRIPTION_CAP_IS_CONTENTPARTNER = @as(u32, 64);
+pub const SUBSCRIPTION_CAP_PREPAREFORSYNC = @as(u32, 32);
+pub const SUBSCRIPTION_CAP_UILESSMODE_ALLOWPLAY = @as(u32, 256);
+pub const SUBSCRIPTION_V1_CAPS = @as(u32, 15);
+pub const WMP_MDRT_FLAGS_UNREPORTED_ADDED_ITEMS = @as(u32, 2);
+pub const WMP_MDRT_FLAGS_UNREPORTED_DELETED_ITEMS = @as(u32, 1);
+pub const WMP_PLUGINTYPE_DSP = Guid.initString("6434baea-4954-498d-abd5-2b07123e1f04");
+pub const WMP_PLUGINTYPE_DSP_OUTOFPROC = Guid.initString("ef29b174-c347-44cc-9a4f-2399118ff38c");
+pub const WMP_PLUGINTYPE_RENDERING = Guid.initString("a8554541-115d-406a-a4c7-51111c330183");
+pub const WMP_SUBSCR_DL_TYPE_BACKGROUND = "background";
+pub const WMP_SUBSCR_DL_TYPE_REALTIME = "real time";
+pub const WMPCOREEVENT_BASE = @as(u32, 5000);
+pub const WMPCOREEVENT_CDROM_BASE = @as(u32, 5700);
+pub const WMPCOREEVENT_CONTENT_BASE = @as(u32, 5300);
+pub const WMPCOREEVENT_CONTROL_BASE = @as(u32, 5100);
+pub const WMPCOREEVENT_ERROR_BASE = @as(u32, 5500);
+pub const WMPCOREEVENT_NETWORK_BASE = @as(u32, 5400);
+pub const WMPCOREEVENT_PLAYLIST_BASE = @as(u32, 5800);
+pub const WMPCOREEVENT_SEEK_BASE = @as(u32, 5200);
+pub const WMPCOREEVENT_WARNING_BASE = @as(u32, 5600);
+pub const WMPGC_FLAGS_ALLOW_PREROLL = @as(u32, 1);
+pub const WMPGC_FLAGS_DISABLE_PLUGINS = @as(u32, 8);
+pub const WMPGC_FLAGS_IGNORE_AV_SYNC = @as(u32, 4);
+pub const WMPGC_FLAGS_SUPPRESS_DIALOGS = @as(u32, 2);
+pub const WMPGC_FLAGS_USE_CUSTOM_GRAPH = @as(u32, 16);
+pub const WMPOCXEVENT_BASE = @as(u32, 6500);
+pub const WMProfile_V40_100Video = Guid.initString("8f99ddd8-6684-456b-a0a3-33e1316895f0");
+pub const WMProfile_V40_128Audio = Guid.initString("93ddbe12-13dc-4e32-a35e-40378e34279a");
 pub const WMProfile_V40_16AMRadio = Guid.initString("0f4be81f-d57d-41e1-b2e3-2fad986bfec2");
+pub const WMProfile_V40_1MBVideo = Guid.initString("b4482a4c-cc17-4b07-a94e-9818d5e0f13f");
+pub const WMProfile_V40_250Video = Guid.initString("541841c3-9339-4f7b-9a22-b11540894e42");
+pub const WMProfile_V40_2856100MBR = Guid.initString("5a1c2206-dc5e-4186-beb2-4c5a994b132e");
 pub const WMProfile_V40_288FMRadioMono = Guid.initString("7fa57fc8-6ea4-4645-8abf-b6e5a8f814a1");
 pub const WMProfile_V40_288FMRadioStereo = Guid.initString("22fcf466-aa40-431f-a289-06d0ea1a1e40");
-pub const WMProfile_V40_56DialUpStereo = Guid.initString("e8026f87-e905-4594-a3c7-00d00041d1d9");
-pub const WMProfile_V40_64Audio = Guid.initString("4820b3f7-cbec-41dc-9391-78598714c8e5");
-pub const WMProfile_V40_96Audio = Guid.initString("0efa0ee3-9e64-41e2-837f-3c0038f327ba");
-pub const WMProfile_V40_128Audio = Guid.initString("93ddbe12-13dc-4e32-a35e-40378e34279a");
-pub const WMProfile_V40_288VideoVoice = Guid.initString("bb2bc274-0eb6-4da9-b550-ecf7f2b9948f");
 pub const WMProfile_V40_288VideoAudio = Guid.initString("ac617f2d-6cbe-4e84-8e9a-ce151a12a354");
+pub const WMProfile_V40_288VideoVoice = Guid.initString("bb2bc274-0eb6-4da9-b550-ecf7f2b9948f");
 pub const WMProfile_V40_288VideoWebServer = Guid.initString("abf2f00d-d555-4815-94ce-8275f3a70bfe");
+pub const WMProfile_V40_3MBVideo = Guid.initString("55374ac0-309b-4396-b88f-e6e292113f28");
+pub const WMProfile_V40_512Video = Guid.initString("70440e6d-c4ef-4f84-8cd0-d5c28686e784");
+pub const WMProfile_V40_56DialUpStereo = Guid.initString("e8026f87-e905-4594-a3c7-00d00041d1d9");
 pub const WMProfile_V40_56DialUpVideo = Guid.initString("e21713bb-652f-4dab-99de-71e04400270f");
 pub const WMProfile_V40_56DialUpVideoWebServer = Guid.initString("b756ff10-520f-4749-a399-b780e2fc9250");
-pub const WMProfile_V40_100Video = Guid.initString("8f99ddd8-6684-456b-a0a3-33e1316895f0");
-pub const WMProfile_V40_250Video = Guid.initString("541841c3-9339-4f7b-9a22-b11540894e42");
-pub const WMProfile_V40_512Video = Guid.initString("70440e6d-c4ef-4f84-8cd0-d5c28686e784");
-pub const WMProfile_V40_1MBVideo = Guid.initString("b4482a4c-cc17-4b07-a94e-9818d5e0f13f");
-pub const WMProfile_V40_3MBVideo = Guid.initString("55374ac0-309b-4396-b88f-e6e292113f28");
-pub const WMProfile_V70_DialUpMBR = Guid.initString("5b16e74b-4068-45b5-b80e-7bf8c80d2c2f");
-pub const WMProfile_V70_IntranetMBR = Guid.initString("045880dc-34b6-4ca9-a326-73557ed143f3");
-pub const WMProfile_V70_2856100MBR = Guid.initString("07df7a25-3fe2-4a5b-8b1e-348b0721ca70");
-pub const WMProfile_V70_288VideoVoice = Guid.initString("b952f38e-7dbc-4533-a9ca-b00b1c6e9800");
-pub const WMProfile_V70_288VideoAudio = Guid.initString("58bba0ee-896a-4948-9953-85b736f83947");
-pub const WMProfile_V70_288VideoWebServer = Guid.initString("70a32e2b-e2df-4ebd-9105-d9ca194a2d50");
-pub const WMProfile_V70_56VideoWebServer = Guid.initString("def99e40-57bc-4ab3-b2d1-b6e3caf64257");
-pub const WMProfile_V70_64VideoISDN = Guid.initString("c2b7a7e9-7b8e-4992-a1a1-068217a3b311");
+pub const WMProfile_V40_64Audio = Guid.initString("4820b3f7-cbec-41dc-9391-78598714c8e5");
+pub const WMProfile_V40_6VoiceAudio = Guid.initString("d508978a-11a0-4d15-b0da-acdc99d4f890");
+pub const WMProfile_V40_96Audio = Guid.initString("0efa0ee3-9e64-41e2-837f-3c0038f327ba");
+pub const WMProfile_V40_DialUpMBR = Guid.initString("fd7f47f1-72a6-45a4-80f0-3aecefc32c07");
+pub const WMProfile_V40_IntranetMBR = Guid.initString("82cd3321-a94a-4ffc-9c2b-092c10ca16e7");
 pub const WMProfile_V70_100Video = Guid.initString("d9f3c932-5ea9-4c6d-89b4-2686e515426e");
-pub const WMProfile_V70_256Video = Guid.initString("afe69b3a-403f-4a1b-8007-0e21cfb3df84");
-pub const WMProfile_V70_384Video = Guid.initString("f3d45fbb-8782-44df-97c6-8678e2f9b13d");
-pub const WMProfile_V70_768Video = Guid.initString("0326ebb6-f76e-4964-b0db-e729978d35ee");
-pub const WMProfile_V70_1500Video = Guid.initString("0b89164a-5490-4686-9e37-5a80884e5146");
-pub const WMProfile_V70_2000Video = Guid.initString("aa980124-bf10-4e4f-9afd-4329a7395cff");
-pub const WMProfile_V70_700FilmContentVideo = Guid.initString("7a747920-2449-4d76-99cb-fdb0c90484d4");
+pub const WMProfile_V70_128Audio = Guid.initString("c64cf5da-df45-40d3-8027-de698d68dc66");
 pub const WMProfile_V70_1500FilmContentVideo = Guid.initString("f6a5f6df-ee3f-434c-a433-523ce55f516b");
-pub const WMProfile_V70_6VoiceAudio = Guid.initString("eaba9fbf-b64f-49b3-aa0c-73fbdd150ad0");
+pub const WMProfile_V70_1500Video = Guid.initString("0b89164a-5490-4686-9e37-5a80884e5146");
+pub const WMProfile_V70_150VideoPDA = Guid.initString("0f472967-e3c6-4797-9694-f0304c5e2f17");
+pub const WMProfile_V70_2000Video = Guid.initString("aa980124-bf10-4e4f-9afd-4329a7395cff");
+pub const WMProfile_V70_225VideoPDA = Guid.initString("f55ea573-4c02-42b5-9026-a8260c438a9f");
+pub const WMProfile_V70_256Video = Guid.initString("afe69b3a-403f-4a1b-8007-0e21cfb3df84");
+pub const WMProfile_V70_2856100MBR = Guid.initString("07df7a25-3fe2-4a5b-8b1e-348b0721ca70");
 pub const WMProfile_V70_288FMRadioMono = Guid.initString("c012a833-a03b-44a5-96dc-ed95cc65582d");
 pub const WMProfile_V70_288FMRadioStereo = Guid.initString("e96d67c9-1a39-4dc4-b900-b1184dc83620");
+pub const WMProfile_V70_288VideoAudio = Guid.initString("58bba0ee-896a-4948-9953-85b736f83947");
+pub const WMProfile_V70_288VideoVoice = Guid.initString("b952f38e-7dbc-4533-a9ca-b00b1c6e9800");
+pub const WMProfile_V70_288VideoWebServer = Guid.initString("70a32e2b-e2df-4ebd-9105-d9ca194a2d50");
+pub const WMProfile_V70_384Video = Guid.initString("f3d45fbb-8782-44df-97c6-8678e2f9b13d");
 pub const WMProfile_V70_56DialUpStereo = Guid.initString("674ee767-0949-4fac-875e-f4c9c292013b");
-pub const WMProfile_V70_64AudioISDN = Guid.initString("91dea458-9d60-4212-9c59-d40919c939e4");
+pub const WMProfile_V70_56VideoWebServer = Guid.initString("def99e40-57bc-4ab3-b2d1-b6e3caf64257");
 pub const WMProfile_V70_64Audio = Guid.initString("b29cffc6-f131-41db-b5e8-99d8b0b945f4");
+pub const WMProfile_V70_64AudioISDN = Guid.initString("91dea458-9d60-4212-9c59-d40919c939e4");
+pub const WMProfile_V70_64VideoISDN = Guid.initString("c2b7a7e9-7b8e-4992-a1a1-068217a3b311");
+pub const WMProfile_V70_6VoiceAudio = Guid.initString("eaba9fbf-b64f-49b3-aa0c-73fbdd150ad0");
+pub const WMProfile_V70_700FilmContentVideo = Guid.initString("7a747920-2449-4d76-99cb-fdb0c90484d4");
+pub const WMProfile_V70_768Video = Guid.initString("0326ebb6-f76e-4964-b0db-e729978d35ee");
 pub const WMProfile_V70_96Audio = Guid.initString("a9d4b819-16cc-4a59-9f37-693dbb0302d6");
-pub const WMProfile_V70_128Audio = Guid.initString("c64cf5da-df45-40d3-8027-de698d68dc66");
-pub const WMProfile_V70_225VideoPDA = Guid.initString("f55ea573-4c02-42b5-9026-a8260c438a9f");
-pub const WMProfile_V70_150VideoPDA = Guid.initString("0f472967-e3c6-4797-9694-f0304c5e2f17");
-pub const WMProfile_V80_255VideoPDA = Guid.initString("feedbcdf-3fac-4c93-ac0d-47941ec72c0b");
-pub const WMProfile_V80_150VideoPDA = Guid.initString("aee16dfa-2c14-4a2f-ad3f-a3034031784f");
-pub const WMProfile_V80_28856VideoMBR = Guid.initString("d66920c4-c21f-4ec8-a0b4-95cf2bd57fc4");
+pub const WMProfile_V70_DialUpMBR = Guid.initString("5b16e74b-4068-45b5-b80e-7bf8c80d2c2f");
+pub const WMProfile_V70_IntranetMBR = Guid.initString("045880dc-34b6-4ca9-a326-73557ed143f3");
 pub const WMProfile_V80_100768VideoMBR = Guid.initString("5bdb5a0e-979e-47d3-9596-73b386392a55");
-pub const WMProfile_V80_288100VideoMBR = Guid.initString("d8722c69-2419-4b36-b4e0-6e17b60564e5");
-pub const WMProfile_V80_288Video = Guid.initString("3df678d9-1352-4186-bbf8-74f0c19b6ae2");
-pub const WMProfile_V80_56Video = Guid.initString("254e8a96-2612-405c-8039-f0bf725ced7d");
 pub const WMProfile_V80_100Video = Guid.initString("a2e300b4-c2d4-4fc0-b5dd-ecbd948dc0df");
-pub const WMProfile_V80_256Video = Guid.initString("bbc75500-33d2-4466-b86b-122b201cc9ae");
-pub const WMProfile_V80_384Video = Guid.initString("29b00c2b-09a9-48bd-ad09-cdae117d1da7");
-pub const WMProfile_V80_768Video = Guid.initString("74d01102-e71a-4820-8f0d-13d2ec1e4872");
-pub const WMProfile_V80_700NTSCVideo = Guid.initString("c8c2985f-e5d9-4538-9e23-9b21bf78f745");
+pub const WMProfile_V80_128StereoAudio = Guid.initString("407b9450-8bdc-4ee5-88b8-6f527bd941f2");
 pub const WMProfile_V80_1400NTSCVideo = Guid.initString("931d1bee-617a-4bcd-9905-ccd0786683ee");
-pub const WMProfile_V80_384PALVideo = Guid.initString("9227c692-ae62-4f72-a7ea-736062d0e21e");
-pub const WMProfile_V80_700PALVideo = Guid.initString("ec298949-639b-45e2-96fd-4ab32d5919c2");
+pub const WMProfile_V80_150VideoPDA = Guid.initString("aee16dfa-2c14-4a2f-ad3f-a3034031784f");
+pub const WMProfile_V80_255VideoPDA = Guid.initString("feedbcdf-3fac-4c93-ac0d-47941ec72c0b");
+pub const WMProfile_V80_256Video = Guid.initString("bbc75500-33d2-4466-b86b-122b201cc9ae");
+pub const WMProfile_V80_288100VideoMBR = Guid.initString("d8722c69-2419-4b36-b4e0-6e17b60564e5");
+pub const WMProfile_V80_28856VideoMBR = Guid.initString("d66920c4-c21f-4ec8-a0b4-95cf2bd57fc4");
 pub const WMProfile_V80_288MonoAudio = Guid.initString("7ea3126d-e1ba-4716-89af-f65cee0c0c67");
 pub const WMProfile_V80_288StereoAudio = Guid.initString("7e4cab5c-35dc-45bb-a7c0-19b28070d0cc");
-pub const WMProfile_V80_32StereoAudio = Guid.initString("60907f9f-b352-47e5-b210-0ef1f47e9f9d");
-pub const WMProfile_V80_48StereoAudio = Guid.initString("5ee06be5-492b-480a-8a8f-12f373ecf9d4");
-pub const WMProfile_V80_64StereoAudio = Guid.initString("09bb5bc4-3176-457f-8dd6-3cd919123e2d");
-pub const WMProfile_V80_96StereoAudio = Guid.initString("1fc81930-61f2-436f-9d33-349f2a1c0f10");
-pub const WMProfile_V80_128StereoAudio = Guid.initString("407b9450-8bdc-4ee5-88b8-6f527bd941f2");
+pub const WMProfile_V80_288Video = Guid.initString("3df678d9-1352-4186-bbf8-74f0c19b6ae2");
 pub const WMProfile_V80_288VideoOnly = Guid.initString("8c45b4c7-4aeb-4f78-a5ec-88420b9dadef");
+pub const WMProfile_V80_32StereoAudio = Guid.initString("60907f9f-b352-47e5-b210-0ef1f47e9f9d");
+pub const WMProfile_V80_384PALVideo = Guid.initString("9227c692-ae62-4f72-a7ea-736062d0e21e");
+pub const WMProfile_V80_384Video = Guid.initString("29b00c2b-09a9-48bd-ad09-cdae117d1da7");
+pub const WMProfile_V80_48StereoAudio = Guid.initString("5ee06be5-492b-480a-8a8f-12f373ecf9d4");
+pub const WMProfile_V80_56Video = Guid.initString("254e8a96-2612-405c-8039-f0bf725ced7d");
 pub const WMProfile_V80_56VideoOnly = Guid.initString("6e2a6955-81df-4943-ba50-68a986a708f6");
+pub const WMProfile_V80_64StereoAudio = Guid.initString("09bb5bc4-3176-457f-8dd6-3cd919123e2d");
+pub const WMProfile_V80_700NTSCVideo = Guid.initString("c8c2985f-e5d9-4538-9e23-9b21bf78f745");
+pub const WMProfile_V80_700PALVideo = Guid.initString("ec298949-639b-45e2-96fd-4ab32d5919c2");
+pub const WMProfile_V80_768Video = Guid.initString("74d01102-e71a-4820-8f0d-13d2ec1e4872");
+pub const WMProfile_V80_96StereoAudio = Guid.initString("1fc81930-61f2-436f-9d33-349f2a1c0f10");
+pub const WMProfile_V80_BESTVBRVideo = Guid.initString("048439ba-309c-440e-9cb4-3dcca3756423");
 pub const WMProfile_V80_FAIRVBRVideo = Guid.initString("3510a862-5850-4886-835f-d78ec6a64042");
 pub const WMProfile_V80_HIGHVBRVideo = Guid.initString("0f10d9d3-3b04-4fb0-a3d3-88d4ac854acc");
-pub const WMProfile_V80_BESTVBRVideo = Guid.initString("048439ba-309c-440e-9cb4-3dcca3756423");
+pub const WMPUE_EC_USER = @as(u32, 33024);
 
 //--------------------------------------------------------------------------------
 // Section: Types (153)
 //--------------------------------------------------------------------------------
-const CLSID_WindowsMediaPlayer_Value = Guid.initString("6bf52a52-394a-11d3-b153-00c04f79faa6");
-pub const CLSID_WindowsMediaPlayer = &CLSID_WindowsMediaPlayer_Value;
-
-pub const WMPOpenState = enum(i32) {
-    Undefined = 0,
-    PlaylistChanging = 1,
-    PlaylistLocating = 2,
-    PlaylistConnecting = 3,
-    PlaylistLoading = 4,
-    PlaylistOpening = 5,
-    PlaylistOpenNoMedia = 6,
-    PlaylistChanged = 7,
-    MediaChanging = 8,
-    MediaLocating = 9,
-    MediaConnecting = 10,
-    MediaLoading = 11,
-    MediaOpening = 12,
-    MediaOpen = 13,
-    BeginCodecAcquisition = 14,
-    EndCodecAcquisition = 15,
-    BeginLicenseAcquisition = 16,
-    EndLicenseAcquisition = 17,
-    BeginIndividualization = 18,
-    EndIndividualization = 19,
-    MediaWaiting = 20,
-    OpeningUnknownURL = 21,
-};
-pub const wmposUndefined = WMPOpenState.Undefined;
-pub const wmposPlaylistChanging = WMPOpenState.PlaylistChanging;
-pub const wmposPlaylistLocating = WMPOpenState.PlaylistLocating;
-pub const wmposPlaylistConnecting = WMPOpenState.PlaylistConnecting;
-pub const wmposPlaylistLoading = WMPOpenState.PlaylistLoading;
-pub const wmposPlaylistOpening = WMPOpenState.PlaylistOpening;
-pub const wmposPlaylistOpenNoMedia = WMPOpenState.PlaylistOpenNoMedia;
-pub const wmposPlaylistChanged = WMPOpenState.PlaylistChanged;
-pub const wmposMediaChanging = WMPOpenState.MediaChanging;
-pub const wmposMediaLocating = WMPOpenState.MediaLocating;
-pub const wmposMediaConnecting = WMPOpenState.MediaConnecting;
-pub const wmposMediaLoading = WMPOpenState.MediaLoading;
-pub const wmposMediaOpening = WMPOpenState.MediaOpening;
-pub const wmposMediaOpen = WMPOpenState.MediaOpen;
-pub const wmposBeginCodecAcquisition = WMPOpenState.BeginCodecAcquisition;
-pub const wmposEndCodecAcquisition = WMPOpenState.EndCodecAcquisition;
-pub const wmposBeginLicenseAcquisition = WMPOpenState.BeginLicenseAcquisition;
-pub const wmposEndLicenseAcquisition = WMPOpenState.EndLicenseAcquisition;
-pub const wmposBeginIndividualization = WMPOpenState.BeginIndividualization;
-pub const wmposEndIndividualization = WMPOpenState.EndIndividualization;
-pub const wmposMediaWaiting = WMPOpenState.MediaWaiting;
-pub const wmposOpeningUnknownURL = WMPOpenState.OpeningUnknownURL;
-
-pub const WMPPlayState = enum(i32) {
-    Undefined = 0,
-    Stopped = 1,
-    Paused = 2,
-    Playing = 3,
-    ScanForward = 4,
-    ScanReverse = 5,
-    Buffering = 6,
-    Waiting = 7,
-    MediaEnded = 8,
-    Transitioning = 9,
-    Ready = 10,
-    Reconnecting = 11,
-    Last = 12,
-};
-pub const wmppsUndefined = WMPPlayState.Undefined;
-pub const wmppsStopped = WMPPlayState.Stopped;
-pub const wmppsPaused = WMPPlayState.Paused;
-pub const wmppsPlaying = WMPPlayState.Playing;
-pub const wmppsScanForward = WMPPlayState.ScanForward;
-pub const wmppsScanReverse = WMPPlayState.ScanReverse;
-pub const wmppsBuffering = WMPPlayState.Buffering;
-pub const wmppsWaiting = WMPPlayState.Waiting;
-pub const wmppsMediaEnded = WMPPlayState.MediaEnded;
-pub const wmppsTransitioning = WMPPlayState.Transitioning;
-pub const wmppsReady = WMPPlayState.Ready;
-pub const wmppsReconnecting = WMPPlayState.Reconnecting;
-pub const wmppsLast = WMPPlayState.Last;
-
-pub const WMPPlaylistChangeEventType = enum(i32) {
-    Unknown = 0,
-    Clear = 1,
-    InfoChange = 2,
-    Move = 3,
-    Delete = 4,
-    Insert = 5,
-    Append = 6,
-    Private = 7,
-    NameChange = 8,
-    Morph = 9,
-    Sort = 10,
-    Last = 11,
-};
-pub const wmplcUnknown = WMPPlaylistChangeEventType.Unknown;
-pub const wmplcClear = WMPPlaylistChangeEventType.Clear;
-pub const wmplcInfoChange = WMPPlaylistChangeEventType.InfoChange;
-pub const wmplcMove = WMPPlaylistChangeEventType.Move;
-pub const wmplcDelete = WMPPlaylistChangeEventType.Delete;
-pub const wmplcInsert = WMPPlaylistChangeEventType.Insert;
-pub const wmplcAppend = WMPPlaylistChangeEventType.Append;
-pub const wmplcPrivate = WMPPlaylistChangeEventType.Private;
-pub const wmplcNameChange = WMPPlaylistChangeEventType.NameChange;
-pub const wmplcMorph = WMPPlaylistChangeEventType.Morph;
-pub const wmplcSort = WMPPlaylistChangeEventType.Sort;
-pub const wmplcLast = WMPPlaylistChangeEventType.Last;
-
-const IID_IWMPErrorItem_Value = Guid.initString("3614c646-3b3b-4de7-a81e-930e3f2127b3");
-pub const IID_IWMPErrorItem = &IID_IWMPErrorItem_Value;
-pub const IWMPErrorItem = extern union {
+const IID__WMPOCXEvents_Value = Guid.initString("6bf52a51-394a-11d3-b153-00c04f79faa6");
+pub const IID__WMPOCXEvents = &IID__WMPOCXEvents_Value;
+pub const _WMPOCXEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_errorCode: *const fn(
-            self: *const IWMPErrorItem,
-            phr: ?*i32,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+const CLSID_FeedFolderWatcher_Value = Guid.initString("281001ed-7765-4cb0-84af-e9b387af01ff");
+pub const CLSID_FeedFolderWatcher = &CLSID_FeedFolderWatcher_Value;
+
+pub const FEEDS_BACKGROUNDSYNC_ACTION = enum(i32) {
+    DISABLE = 0,
+    ENABLE = 1,
+    RUNNOW = 2,
+};
+pub const FBSA_DISABLE = FEEDS_BACKGROUNDSYNC_ACTION.DISABLE;
+pub const FBSA_ENABLE = FEEDS_BACKGROUNDSYNC_ACTION.ENABLE;
+pub const FBSA_RUNNOW = FEEDS_BACKGROUNDSYNC_ACTION.RUNNOW;
+
+pub const FEEDS_BACKGROUNDSYNC_STATUS = enum(i32) {
+    DISABLED = 0,
+    ENABLED = 1,
+};
+pub const FBSS_DISABLED = FEEDS_BACKGROUNDSYNC_STATUS.DISABLED;
+pub const FBSS_ENABLED = FEEDS_BACKGROUNDSYNC_STATUS.ENABLED;
+
+pub const FEEDS_DOWNLOAD_ERROR = enum(i32) {
+    NONE = 0,
+    DOWNLOAD_FAILED = 1,
+    INVALID_FEED_FORMAT = 2,
+    NORMALIZATION_FAILED = 3,
+    PERSISTENCE_FAILED = 4,
+    DOWNLOAD_BLOCKED = 5,
+    CANCELED = 6,
+    UNSUPPORTED_AUTH = 7,
+    BACKGROUND_DOWNLOAD_DISABLED = 8,
+    NOT_EXIST = 9,
+    UNSUPPORTED_MSXML = 10,
+    UNSUPPORTED_DTD = 11,
+    DOWNLOAD_SIZE_LIMIT_EXCEEDED = 12,
+    ACCESS_DENIED = 13,
+    AUTH_FAILED = 14,
+    INVALID_AUTH = 15,
+};
+pub const FDE_NONE = FEEDS_DOWNLOAD_ERROR.NONE;
+pub const FDE_DOWNLOAD_FAILED = FEEDS_DOWNLOAD_ERROR.DOWNLOAD_FAILED;
+pub const FDE_INVALID_FEED_FORMAT = FEEDS_DOWNLOAD_ERROR.INVALID_FEED_FORMAT;
+pub const FDE_NORMALIZATION_FAILED = FEEDS_DOWNLOAD_ERROR.NORMALIZATION_FAILED;
+pub const FDE_PERSISTENCE_FAILED = FEEDS_DOWNLOAD_ERROR.PERSISTENCE_FAILED;
+pub const FDE_DOWNLOAD_BLOCKED = FEEDS_DOWNLOAD_ERROR.DOWNLOAD_BLOCKED;
+pub const FDE_CANCELED = FEEDS_DOWNLOAD_ERROR.CANCELED;
+pub const FDE_UNSUPPORTED_AUTH = FEEDS_DOWNLOAD_ERROR.UNSUPPORTED_AUTH;
+pub const FDE_BACKGROUND_DOWNLOAD_DISABLED = FEEDS_DOWNLOAD_ERROR.BACKGROUND_DOWNLOAD_DISABLED;
+pub const FDE_NOT_EXIST = FEEDS_DOWNLOAD_ERROR.NOT_EXIST;
+pub const FDE_UNSUPPORTED_MSXML = FEEDS_DOWNLOAD_ERROR.UNSUPPORTED_MSXML;
+pub const FDE_UNSUPPORTED_DTD = FEEDS_DOWNLOAD_ERROR.UNSUPPORTED_DTD;
+pub const FDE_DOWNLOAD_SIZE_LIMIT_EXCEEDED = FEEDS_DOWNLOAD_ERROR.DOWNLOAD_SIZE_LIMIT_EXCEEDED;
+pub const FDE_ACCESS_DENIED = FEEDS_DOWNLOAD_ERROR.ACCESS_DENIED;
+pub const FDE_AUTH_FAILED = FEEDS_DOWNLOAD_ERROR.AUTH_FAILED;
+pub const FDE_INVALID_AUTH = FEEDS_DOWNLOAD_ERROR.INVALID_AUTH;
+
+pub const FEEDS_DOWNLOAD_STATUS = enum(i32) {
+    NONE = 0,
+    PENDING = 1,
+    DOWNLOADING = 2,
+    DOWNLOADED = 3,
+    DOWNLOAD_FAILED = 4,
+};
+pub const FDS_NONE = FEEDS_DOWNLOAD_STATUS.NONE;
+pub const FDS_PENDING = FEEDS_DOWNLOAD_STATUS.PENDING;
+pub const FDS_DOWNLOADING = FEEDS_DOWNLOAD_STATUS.DOWNLOADING;
+pub const FDS_DOWNLOADED = FEEDS_DOWNLOAD_STATUS.DOWNLOADED;
+pub const FDS_DOWNLOAD_FAILED = FEEDS_DOWNLOAD_STATUS.DOWNLOAD_FAILED;
+
+pub const FEEDS_ERROR_CODE = enum(i32) {
+    ERRORBASE = -1073479168,
+    DOWNLOADSIZELIMITEXCEEDED = -1073479167,
+    pub const INVALIDMSXMLPROPERTY = .ERRORBASE;
+};
+pub const FEC_E_ERRORBASE = FEEDS_ERROR_CODE.ERRORBASE;
+pub const FEC_E_INVALIDMSXMLPROPERTY = FEEDS_ERROR_CODE.ERRORBASE;
+pub const FEC_E_DOWNLOADSIZELIMITEXCEEDED = FEEDS_ERROR_CODE.DOWNLOADSIZELIMITEXCEEDED;
+
+pub const FEEDS_EVENTS_ITEM_COUNT_FLAGS = enum(i32) {
+    READ_ITEM_COUNT_CHANGED = 1,
+    UNREAD_ITEM_COUNT_CHANGED = 2,
+};
+pub const FEICF_READ_ITEM_COUNT_CHANGED = FEEDS_EVENTS_ITEM_COUNT_FLAGS.READ_ITEM_COUNT_CHANGED;
+pub const FEICF_UNREAD_ITEM_COUNT_CHANGED = FEEDS_EVENTS_ITEM_COUNT_FLAGS.UNREAD_ITEM_COUNT_CHANGED;
+
+pub const FEEDS_EVENTS_MASK = enum(i32) {
+    OLDEREVENTS = 1,
+    EEDEVENTS = 2,
+};
+pub const FEM_FOLDEREVENTS = FEEDS_EVENTS_MASK.OLDEREVENTS;
+pub const FEM_FEEDEVENTS = FEEDS_EVENTS_MASK.EEDEVENTS;
+
+pub const FEEDS_EVENTS_SCOPE = enum(i32) {
+    ALL = 0,
+    SELF_ONLY = 1,
+    SELF_AND_CHILDREN_ONLY = 2,
+};
+pub const FES_ALL = FEEDS_EVENTS_SCOPE.ALL;
+pub const FES_SELF_ONLY = FEEDS_EVENTS_SCOPE.SELF_ONLY;
+pub const FES_SELF_AND_CHILDREN_ONLY = FEEDS_EVENTS_SCOPE.SELF_AND_CHILDREN_ONLY;
+
+pub const FEEDS_SYNC_SETTING = enum(i32) {
+    DEFAULT = 0,
+    INTERVAL = 1,
+    MANUAL = 2,
+    SUGGESTED = 3,
+};
+pub const FSS_DEFAULT = FEEDS_SYNC_SETTING.DEFAULT;
+pub const FSS_INTERVAL = FEEDS_SYNC_SETTING.INTERVAL;
+pub const FSS_MANUAL = FEEDS_SYNC_SETTING.MANUAL;
+pub const FSS_SUGGESTED = FEEDS_SYNC_SETTING.SUGGESTED;
+
+pub const FEEDS_XML_FILTER_FLAGS = enum(i32) {
+    ALL = 0,
+    UNREAD = 1,
+    READ = 2,
+};
+pub const FXFF_ALL = FEEDS_XML_FILTER_FLAGS.ALL;
+pub const FXFF_UNREAD = FEEDS_XML_FILTER_FLAGS.UNREAD;
+pub const FXFF_READ = FEEDS_XML_FILTER_FLAGS.READ;
+
+pub const FEEDS_XML_INCLUDE_FLAGS = enum(i32) {
+    NONE = 0,
+    CF_EXTENSIONS = 1,
+};
+pub const FXIF_NONE = FEEDS_XML_INCLUDE_FLAGS.NONE;
+pub const FXIF_CF_EXTENSIONS = FEEDS_XML_INCLUDE_FLAGS.CF_EXTENSIONS;
+
+pub const FEEDS_XML_SORT_ORDER = enum(i32) {
+    NONE = 0,
+    ASCENDING = 1,
+    DESCENDING = 2,
+};
+pub const FXSO_NONE = FEEDS_XML_SORT_ORDER.NONE;
+pub const FXSO_ASCENDING = FEEDS_XML_SORT_ORDER.ASCENDING;
+pub const FXSO_DESCENDING = FEEDS_XML_SORT_ORDER.DESCENDING;
+
+pub const FEEDS_XML_SORT_PROPERTY = enum(i32) {
+    NONE = 0,
+    PUBDATE = 1,
+    DOWNLOADTIME = 2,
+};
+pub const FXSP_NONE = FEEDS_XML_SORT_PROPERTY.NONE;
+pub const FXSP_PUBDATE = FEEDS_XML_SORT_PROPERTY.PUBDATE;
+pub const FXSP_DOWNLOADTIME = FEEDS_XML_SORT_PROPERTY.DOWNLOADTIME;
+
+const CLSID_FeedsManager_Value = Guid.initString("faeb54c4-f66f-4806-83a0-805299f5e3ad");
+pub const CLSID_FeedsManager = &CLSID_FeedsManager_Value;
+
+const CLSID_FeedWatcher_Value = Guid.initString("18a6737b-f433-4687-89bc-a1b4dfb9f123");
+pub const CLSID_FeedWatcher = &CLSID_FeedWatcher_Value;
+
+const IID_IFeed_Value = Guid.initString("f7f915d8-2ede-42bc-98e7-a5d05063a757");
+pub const IID_IFeed = &IID_IFeed_Value;
+pub const IFeed = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Xml: *const fn(
+            self: *const IFeed,
+            count: i32,
+            sortProperty: FEEDS_XML_SORT_PROPERTY,
+            sortOrder: FEEDS_XML_SORT_ORDER,
+            filterFlags: FEEDS_XML_FILTER_FLAGS,
+            includeFlags: FEEDS_XML_INCLUDE_FLAGS,
+            xml: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_errorDescription: *const fn(
-            self: *const IWMPErrorItem,
-            pbstrDescription: ?*?BSTR,
+        get_Name: *const fn(
+            self: *const IFeed,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Rename: *const fn(
+            self: *const IFeed,
+            name: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_errorContext: *const fn(
-            self: *const IWMPErrorItem,
-            pvarContext: ?*VARIANT,
+        get_Url: *const fn(
+            self: *const IFeed,
+            feedUrl: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_remedy: *const fn(
-            self: *const IWMPErrorItem,
-            plRemedy: ?*i32,
+        put_Url: *const fn(
+            self: *const IFeed,
+            feedUrl: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_customUrl: *const fn(
-            self: *const IWMPErrorItem,
-            pbstrCustomUrl: ?*?BSTR,
+        get_LocalId: *const fn(
+            self: *const IFeed,
+            feedGuid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const IFeed,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IFeed,
+            newParentPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Parent: *const fn(
+            self: *const IFeed,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastWriteTime: *const fn(
+            self: *const IFeed,
+            lastWrite: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IFeed,
+        ) callconv(.winapi) HRESULT,
+        Download: *const fn(
+            self: *const IFeed,
+        ) callconv(.winapi) HRESULT,
+        AsyncDownload: *const fn(
+            self: *const IFeed,
+        ) callconv(.winapi) HRESULT,
+        CancelAsyncDownload: *const fn(
+            self: *const IFeed,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SyncSetting: *const fn(
+            self: *const IFeed,
+            syncSetting: ?*FEEDS_SYNC_SETTING,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SyncSetting: *const fn(
+            self: *const IFeed,
+            syncSetting: FEEDS_SYNC_SETTING,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Interval: *const fn(
+            self: *const IFeed,
+            minutes: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Interval: *const fn(
+            self: *const IFeed,
+            minutes: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastDownloadTime: *const fn(
+            self: *const IFeed,
+            lastDownload: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LocalEnclosurePath: *const fn(
+            self: *const IFeed,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Items: *const fn(
+            self: *const IFeed,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        GetItem: *const fn(
+            self: *const IFeed,
+            itemId: i32,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Title: *const fn(
+            self: *const IFeed,
+            title: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IFeed,
+            description: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Link: *const fn(
+            self: *const IFeed,
+            homePage: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Image: *const fn(
+            self: *const IFeed,
+            imageUrl: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastBuildDate: *const fn(
+            self: *const IFeed,
+            lastBuildDate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PubDate: *const fn(
+            self: *const IFeed,
+            lastPopulateDate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Ttl: *const fn(
+            self: *const IFeed,
+            ttl: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Language: *const fn(
+            self: *const IFeed,
+            language: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Copyright: *const fn(
+            self: *const IFeed,
+            copyright: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaxItemCount: *const fn(
+            self: *const IFeed,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MaxItemCount: *const fn(
+            self: *const IFeed,
+            count: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadEnclosuresAutomatically: *const fn(
+            self: *const IFeed,
+            downloadEnclosuresAutomatically: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DownloadEnclosuresAutomatically: *const fn(
+            self: *const IFeed,
+            downloadEnclosuresAutomatically: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadStatus: *const fn(
+            self: *const IFeed,
+            status: ?*FEEDS_DOWNLOAD_STATUS,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastDownloadError: *const fn(
+            self: *const IFeed,
+            @"error": ?*FEEDS_DOWNLOAD_ERROR,
+        ) callconv(.winapi) HRESULT,
+        Merge: *const fn(
+            self: *const IFeed,
+            feedXml: ?BSTR,
+            feedUrl: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadUrl: *const fn(
+            self: *const IFeed,
+            feedUrl: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsList: *const fn(
+            self: *const IFeed,
+            isList: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        MarkAllItemsRead: *const fn(
+            self: *const IFeed,
+        ) callconv(.winapi) HRESULT,
+        GetWatcher: *const fn(
+            self: *const IFeed,
+            scope: FEEDS_EVENTS_SCOPE,
+            mask: FEEDS_EVENTS_MASK,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UnreadItemCount: *const fn(
+            self: *const IFeed,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ItemCount: *const fn(
+            self: *const IFeed,
+            count: ?*i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_errorCode(self: *const IWMPErrorItem, phr: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_errorCode(self, phr);
+    pub fn Xml(self: *const IFeed, count: i32, sortProperty: FEEDS_XML_SORT_PROPERTY, sortOrder: FEEDS_XML_SORT_ORDER, filterFlags: FEEDS_XML_FILTER_FLAGS, includeFlags: FEEDS_XML_INCLUDE_FLAGS, xml: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Xml(self, count, sortProperty, sortOrder, filterFlags, includeFlags, xml);
     }
-    pub fn get_errorDescription(self: *const IWMPErrorItem, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_errorDescription(self, pbstrDescription);
+    pub fn get_Name(self: *const IFeed, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub fn get_errorContext(self: *const IWMPErrorItem, pvarContext: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_errorContext(self, pvarContext);
+    pub fn Rename(self: *const IFeed, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Rename(self, name);
     }
-    pub fn get_remedy(self: *const IWMPErrorItem, plRemedy: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_remedy(self, plRemedy);
+    pub fn get_Url(self: *const IFeed, feedUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Url(self, feedUrl);
     }
-    pub fn get_customUrl(self: *const IWMPErrorItem, pbstrCustomUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_customUrl(self, pbstrCustomUrl);
+    pub fn put_Url(self: *const IFeed, feedUrl: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Url(self, feedUrl);
+    }
+    pub fn get_LocalId(self: *const IFeed, feedGuid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalId(self, feedGuid);
+    }
+    pub fn get_Path(self: *const IFeed, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, path);
+    }
+    pub fn Move(self: *const IFeed, newParentPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, newParentPath);
+    }
+    pub fn get_Parent(self: *const IFeed, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Parent(self, disp);
+    }
+    pub fn get_LastWriteTime(self: *const IFeed, lastWrite: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastWriteTime(self, lastWrite);
+    }
+    pub fn Delete(self: *const IFeed) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn Download(self: *const IFeed) callconv(.@"inline") HRESULT {
+        return self.vtable.Download(self);
+    }
+    pub fn AsyncDownload(self: *const IFeed) callconv(.@"inline") HRESULT {
+        return self.vtable.AsyncDownload(self);
+    }
+    pub fn CancelAsyncDownload(self: *const IFeed) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelAsyncDownload(self);
+    }
+    pub fn get_SyncSetting(self: *const IFeed, syncSetting: ?*FEEDS_SYNC_SETTING) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SyncSetting(self, syncSetting);
+    }
+    pub fn put_SyncSetting(self: *const IFeed, syncSetting: FEEDS_SYNC_SETTING) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SyncSetting(self, syncSetting);
+    }
+    pub fn get_Interval(self: *const IFeed, minutes: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Interval(self, minutes);
+    }
+    pub fn put_Interval(self: *const IFeed, minutes: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Interval(self, minutes);
+    }
+    pub fn get_LastDownloadTime(self: *const IFeed, lastDownload: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastDownloadTime(self, lastDownload);
+    }
+    pub fn get_LocalEnclosurePath(self: *const IFeed, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalEnclosurePath(self, path);
+    }
+    pub fn get_Items(self: *const IFeed, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Items(self, disp);
+    }
+    pub fn GetItem(self: *const IFeed, itemId: i32, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, itemId, disp);
+    }
+    pub fn get_Title(self: *const IFeed, title: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Title(self, title);
+    }
+    pub fn get_Description(self: *const IFeed, description: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn get_Link(self: *const IFeed, homePage: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Link(self, homePage);
+    }
+    pub fn get_Image(self: *const IFeed, imageUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Image(self, imageUrl);
+    }
+    pub fn get_LastBuildDate(self: *const IFeed, lastBuildDate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastBuildDate(self, lastBuildDate);
+    }
+    pub fn get_PubDate(self: *const IFeed, lastPopulateDate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PubDate(self, lastPopulateDate);
+    }
+    pub fn get_Ttl(self: *const IFeed, ttl: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Ttl(self, ttl);
+    }
+    pub fn get_Language(self: *const IFeed, language: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Language(self, language);
+    }
+    pub fn get_Copyright(self: *const IFeed, copyright: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Copyright(self, copyright);
+    }
+    pub fn get_MaxItemCount(self: *const IFeed, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaxItemCount(self, count);
+    }
+    pub fn put_MaxItemCount(self: *const IFeed, count: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MaxItemCount(self, count);
+    }
+    pub fn get_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadEnclosuresAutomatically(self, downloadEnclosuresAutomatically);
+    }
+    pub fn put_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DownloadEnclosuresAutomatically(self, downloadEnclosuresAutomatically);
+    }
+    pub fn get_DownloadStatus(self: *const IFeed, status: ?*FEEDS_DOWNLOAD_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadStatus(self, status);
+    }
+    pub fn get_LastDownloadError(self: *const IFeed, @"error": ?*FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastDownloadError(self, @"error");
+    }
+    pub fn Merge(self: *const IFeed, feedXml: ?BSTR, feedUrl: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Merge(self, feedXml, feedUrl);
+    }
+    pub fn get_DownloadUrl(self: *const IFeed, feedUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadUrl(self, feedUrl);
+    }
+    pub fn get_IsList(self: *const IFeed, isList: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsList(self, isList);
+    }
+    pub fn MarkAllItemsRead(self: *const IFeed) callconv(.@"inline") HRESULT {
+        return self.vtable.MarkAllItemsRead(self);
+    }
+    pub fn GetWatcher(self: *const IFeed, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWatcher(self, scope, mask, disp);
+    }
+    pub fn get_UnreadItemCount(self: *const IFeed, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UnreadItemCount(self, count);
+    }
+    pub fn get_ItemCount(self: *const IFeed, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ItemCount(self, count);
     }
 };
 
-const IID_IWMPError_Value = Guid.initString("a12dcf7d-14ab-4c1b-a8cd-63909f06025b");
-pub const IID_IWMPError = &IID_IWMPError_Value;
-pub const IWMPError = extern union {
+const IID_IFeed2_Value = Guid.initString("33f2ea09-1398-4ab9-b6a4-f94b49d0a42e");
+pub const IID_IFeed2 = &IID_IFeed2_Value;
+pub const IFeed2 = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        clearErrorQueue: *const fn(
-            self: *const IWMPError,
+        base: IFeed.VTable,
+        GetItemByEffectiveId: *const fn(
+            self: *const IFeed2,
+            itemEffectiveId: i32,
+            disp: ?*?*IDispatch,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_errorCount: *const fn(
-            self: *const IWMPError,
-            plNumErrors: ?*i32,
+        get_LastItemDownloadTime: *const fn(
+            self: *const IFeed2,
+            lastItemDownloadTime: ?*f64,
         ) callconv(.winapi) HRESULT,
-        get_item: *const fn(
-            self: *const IWMPError,
-            dwIndex: i32,
-            ppErrorItem: ?*?*IWMPErrorItem,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Username: *const fn(
+            self: *const IFeed2,
+            username: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        webHelp: *const fn(
-            self: *const IWMPError,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Password: *const fn(
+            self: *const IFeed2,
+            password: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetCredentials: *const fn(
+            self: *const IFeed2,
+            username: ?BSTR,
+            password: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ClearCredentials: *const fn(
+            self: *const IFeed2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFeed: IFeed,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetItemByEffectiveId(self: *const IFeed2, itemEffectiveId: i32, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemByEffectiveId(self, itemEffectiveId, disp);
+    }
+    pub fn get_LastItemDownloadTime(self: *const IFeed2, lastItemDownloadTime: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastItemDownloadTime(self, lastItemDownloadTime);
+    }
+    pub fn get_Username(self: *const IFeed2, username: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Username(self, username);
+    }
+    pub fn get_Password(self: *const IFeed2, password: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Password(self, password);
+    }
+    pub fn SetCredentials(self: *const IFeed2, username: ?BSTR, password: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCredentials(self, username, password);
+    }
+    pub fn ClearCredentials(self: *const IFeed2) callconv(.@"inline") HRESULT {
+        return self.vtable.ClearCredentials(self);
+    }
+};
+
+const IID_IFeedEnclosure_Value = Guid.initString("361c26f7-90a4-4e67-ae09-3a36a546436a");
+pub const IID_IFeedEnclosure = &IID_IFeedEnclosure_Value;
+pub const IFeedEnclosure = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Url: *const fn(
+            self: *const IFeedEnclosure,
+            enclosureUrl: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const IFeedEnclosure,
+            mimeType: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Length: *const fn(
+            self: *const IFeedEnclosure,
+            length: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        AsyncDownload: *const fn(
+            self: *const IFeedEnclosure,
+        ) callconv(.winapi) HRESULT,
+        CancelAsyncDownload: *const fn(
+            self: *const IFeedEnclosure,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadStatus: *const fn(
+            self: *const IFeedEnclosure,
+            status: ?*FEEDS_DOWNLOAD_STATUS,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastDownloadError: *const fn(
+            self: *const IFeedEnclosure,
+            @"error": ?*FEEDS_DOWNLOAD_ERROR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LocalPath: *const fn(
+            self: *const IFeedEnclosure,
+            localPath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Parent: *const fn(
+            self: *const IFeedEnclosure,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadUrl: *const fn(
+            self: *const IFeedEnclosure,
+            enclosureUrl: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadMimeType: *const fn(
+            self: *const IFeedEnclosure,
+            mimeType: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveFile: *const fn(
+            self: *const IFeedEnclosure,
+        ) callconv(.winapi) HRESULT,
+        SetFile: *const fn(
+            self: *const IFeedEnclosure,
+            downloadUrl: ?BSTR,
+            downloadFilePath: ?BSTR,
+            downloadMimeType: ?BSTR,
+            enclosureFilename: ?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn clearErrorQueue(self: *const IWMPError) callconv(.@"inline") HRESULT {
-        return self.vtable.clearErrorQueue(self);
+    pub fn get_Url(self: *const IFeedEnclosure, enclosureUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Url(self, enclosureUrl);
     }
-    pub fn get_errorCount(self: *const IWMPError, plNumErrors: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_errorCount(self, plNumErrors);
+    pub fn get_Type(self: *const IFeedEnclosure, mimeType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, mimeType);
     }
-    pub fn get_item(self: *const IWMPError, dwIndex: i32, ppErrorItem: ?*?*IWMPErrorItem) callconv(.@"inline") HRESULT {
-        return self.vtable.get_item(self, dwIndex, ppErrorItem);
+    pub fn get_Length(self: *const IFeedEnclosure, length: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Length(self, length);
     }
-    pub fn webHelp(self: *const IWMPError) callconv(.@"inline") HRESULT {
-        return self.vtable.webHelp(self);
+    pub fn AsyncDownload(self: *const IFeedEnclosure) callconv(.@"inline") HRESULT {
+        return self.vtable.AsyncDownload(self);
+    }
+    pub fn CancelAsyncDownload(self: *const IFeedEnclosure) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelAsyncDownload(self);
+    }
+    pub fn get_DownloadStatus(self: *const IFeedEnclosure, status: ?*FEEDS_DOWNLOAD_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadStatus(self, status);
+    }
+    pub fn get_LastDownloadError(self: *const IFeedEnclosure, @"error": ?*FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastDownloadError(self, @"error");
+    }
+    pub fn get_LocalPath(self: *const IFeedEnclosure, localPath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalPath(self, localPath);
+    }
+    pub fn get_Parent(self: *const IFeedEnclosure, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Parent(self, disp);
+    }
+    pub fn get_DownloadUrl(self: *const IFeedEnclosure, enclosureUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadUrl(self, enclosureUrl);
+    }
+    pub fn get_DownloadMimeType(self: *const IFeedEnclosure, mimeType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadMimeType(self, mimeType);
+    }
+    pub fn RemoveFile(self: *const IFeedEnclosure) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveFile(self);
+    }
+    pub fn SetFile(self: *const IFeedEnclosure, downloadUrl: ?BSTR, downloadFilePath: ?BSTR, downloadMimeType: ?BSTR, enclosureFilename: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFile(self, downloadUrl, downloadFilePath, downloadMimeType, enclosureFilename);
     }
 };
 
-const IID_IWMPMedia_Value = Guid.initString("94d55e95-3fac-11d3-b155-00c04f79faa6");
-pub const IID_IWMPMedia = &IID_IWMPMedia_Value;
-pub const IWMPMedia = extern union {
+const IID_IFeedEvents_Value = Guid.initString("abf35c99-0681-47ea-9a8c-1436a375a99e");
+pub const IID_IFeedEvents = &IID_IFeedEvents_Value;
+pub const IFeedEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        get_isIdentical: *const fn(
-            self: *const IWMPMedia,
-            pIWMPMedia: ?*IWMPMedia,
-            pvbool: ?*i16,
+        Error: *const fn(
+            self: *const IFeedEvents,
+        ) callconv(.winapi) HRESULT,
+        FeedDeleted: *const fn(
+            self: *const IFeedEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedRenamed: *const fn(
+            self: *const IFeedEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedUrlChanged: *const fn(
+            self: *const IFeedEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedMoved: *const fn(
+            self: *const IFeedEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedDownloading: *const fn(
+            self: *const IFeedEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedDownloadCompleted: *const fn(
+            self: *const IFeedEvents,
+            path: ?BSTR,
+            @"error": FEEDS_DOWNLOAD_ERROR,
+        ) callconv(.winapi) HRESULT,
+        FeedItemCountChanged: *const fn(
+            self: *const IFeedEvents,
+            path: ?BSTR,
+            itemCountType: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Error(self: *const IFeedEvents) callconv(.@"inline") HRESULT {
+        return self.vtable.Error(self);
+    }
+    pub fn FeedDeleted(self: *const IFeedEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDeleted(self, path);
+    }
+    pub fn FeedRenamed(self: *const IFeedEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedRenamed(self, path, oldPath);
+    }
+    pub fn FeedUrlChanged(self: *const IFeedEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedUrlChanged(self, path);
+    }
+    pub fn FeedMoved(self: *const IFeedEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedMoved(self, path, oldPath);
+    }
+    pub fn FeedDownloading(self: *const IFeedEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDownloading(self, path);
+    }
+    pub fn FeedDownloadCompleted(self: *const IFeedEvents, path: ?BSTR, @"error": FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDownloadCompleted(self, path, @"error");
+    }
+    pub fn FeedItemCountChanged(self: *const IFeedEvents, path: ?BSTR, itemCountType: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedItemCountChanged(self, path, itemCountType);
+    }
+};
+
+const IID_IFeedFolder_Value = Guid.initString("81f04ad1-4194-4d7d-86d6-11813cec163c");
+pub const IID_IFeedFolder = &IID_IFeedFolder_Value;
+pub const IFeedFolder = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Feeds: *const fn(
+            self: *const IFeedFolder,
+            disp: ?*?*IDispatch,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_sourceURL: *const fn(
-            self: *const IWMPMedia,
-            pbstrSourceURL: ?*?BSTR,
+        get_Subfolders: *const fn(
+            self: *const IFeedFolder,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        CreateFeed: *const fn(
+            self: *const IFeedFolder,
+            feedName: ?BSTR,
+            feedUrl: ?BSTR,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        CreateSubfolder: *const fn(
+            self: *const IFeedFolder,
+            folderName: ?BSTR,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        ExistsFeed: *const fn(
+            self: *const IFeedFolder,
+            feedName: ?BSTR,
+            exists: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetFeed: *const fn(
+            self: *const IFeedFolder,
+            feedName: ?BSTR,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        ExistsSubfolder: *const fn(
+            self: *const IFeedFolder,
+            folderName: ?BSTR,
+            exists: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetSubfolder: *const fn(
+            self: *const IFeedFolder,
+            folderName: ?BSTR,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IFeedFolder,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_name: *const fn(
-            self: *const IWMPMedia,
-            pbstrName: ?*?BSTR,
+        get_Name: *const fn(
+            self: *const IFeedFolder,
+            folderName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Rename: *const fn(
+            self: *const IFeedFolder,
+            folderName: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_name: *const fn(
-            self: *const IWMPMedia,
-            bstrName: ?BSTR,
+        get_Path: *const fn(
+            self: *const IFeedFolder,
+            folderPath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IFeedFolder,
+            newParentPath: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_imageSourceWidth: *const fn(
-            self: *const IWMPMedia,
-            pWidth: ?*i32,
+        get_Parent: *const fn(
+            self: *const IFeedFolder,
+            disp: ?*?*IDispatch,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_imageSourceHeight: *const fn(
-            self: *const IWMPMedia,
-            pHeight: ?*i32,
+        get_IsRoot: *const fn(
+            self: *const IFeedFolder,
+            isRoot: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_markerCount: *const fn(
-            self: *const IWMPMedia,
-            pMarkerCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getMarkerTime: *const fn(
-            self: *const IWMPMedia,
-            MarkerNum: i32,
-            pMarkerTime: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        getMarkerName: *const fn(
-            self: *const IWMPMedia,
-            MarkerNum: i32,
-            pbstrMarkerName: ?*?BSTR,
+        get_TotalUnreadItemCount: *const fn(
+            self: *const IFeedFolder,
+            count: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_duration: *const fn(
-            self: *const IWMPMedia,
-            pDuration: ?*f64,
+        get_TotalItemCount: *const fn(
+            self: *const IFeedFolder,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetWatcher: *const fn(
+            self: *const IFeedFolder,
+            scope: FEEDS_EVENTS_SCOPE,
+            mask: FEEDS_EVENTS_MASK,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Feeds(self: *const IFeedFolder, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Feeds(self, disp);
+    }
+    pub fn get_Subfolders(self: *const IFeedFolder, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Subfolders(self, disp);
+    }
+    pub fn CreateFeed(self: *const IFeedFolder, feedName: ?BSTR, feedUrl: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFeed(self, feedName, feedUrl, disp);
+    }
+    pub fn CreateSubfolder(self: *const IFeedFolder, folderName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateSubfolder(self, folderName, disp);
+    }
+    pub fn ExistsFeed(self: *const IFeedFolder, feedName: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsFeed(self, feedName, exists);
+    }
+    pub fn GetFeed(self: *const IFeedFolder, feedName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFeed(self, feedName, disp);
+    }
+    pub fn ExistsSubfolder(self: *const IFeedFolder, folderName: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsSubfolder(self, folderName, exists);
+    }
+    pub fn GetSubfolder(self: *const IFeedFolder, folderName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubfolder(self, folderName, disp);
+    }
+    pub fn Delete(self: *const IFeedFolder) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn get_Name(self: *const IFeedFolder, folderName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, folderName);
+    }
+    pub fn Rename(self: *const IFeedFolder, folderName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Rename(self, folderName);
+    }
+    pub fn get_Path(self: *const IFeedFolder, folderPath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, folderPath);
+    }
+    pub fn Move(self: *const IFeedFolder, newParentPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, newParentPath);
+    }
+    pub fn get_Parent(self: *const IFeedFolder, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Parent(self, disp);
+    }
+    pub fn get_IsRoot(self: *const IFeedFolder, isRoot: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsRoot(self, isRoot);
+    }
+    pub fn get_TotalUnreadItemCount(self: *const IFeedFolder, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TotalUnreadItemCount(self, count);
+    }
+    pub fn get_TotalItemCount(self: *const IFeedFolder, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TotalItemCount(self, count);
+    }
+    pub fn GetWatcher(self: *const IFeedFolder, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWatcher(self, scope, mask, disp);
+    }
+};
+
+const IID_IFeedFolderEvents_Value = Guid.initString("20a59fa6-a844-4630-9e98-175f70b4d55b");
+pub const IID_IFeedFolderEvents = &IID_IFeedFolderEvents_Value;
+pub const IFeedFolderEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Error: *const fn(
+            self: *const IFeedFolderEvents,
+        ) callconv(.winapi) HRESULT,
+        FolderAdded: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FolderDeleted: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FolderRenamed: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FolderMovedFrom: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FolderMovedTo: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FolderItemCountChanged: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            itemCountType: i32,
+        ) callconv(.winapi) HRESULT,
+        FeedAdded: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedDeleted: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedRenamed: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedUrlChanged: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedMovedFrom: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedMovedTo: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            oldPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedDownloading: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        FeedDownloadCompleted: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            @"error": FEEDS_DOWNLOAD_ERROR,
+        ) callconv(.winapi) HRESULT,
+        FeedItemCountChanged: *const fn(
+            self: *const IFeedFolderEvents,
+            path: ?BSTR,
+            itemCountType: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Error(self: *const IFeedFolderEvents) callconv(.@"inline") HRESULT {
+        return self.vtable.Error(self);
+    }
+    pub fn FolderAdded(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderAdded(self, path);
+    }
+    pub fn FolderDeleted(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderDeleted(self, path);
+    }
+    pub fn FolderRenamed(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderRenamed(self, path, oldPath);
+    }
+    pub fn FolderMovedFrom(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderMovedFrom(self, path, oldPath);
+    }
+    pub fn FolderMovedTo(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderMovedTo(self, path, oldPath);
+    }
+    pub fn FolderItemCountChanged(self: *const IFeedFolderEvents, path: ?BSTR, itemCountType: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderItemCountChanged(self, path, itemCountType);
+    }
+    pub fn FeedAdded(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedAdded(self, path);
+    }
+    pub fn FeedDeleted(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDeleted(self, path);
+    }
+    pub fn FeedRenamed(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedRenamed(self, path, oldPath);
+    }
+    pub fn FeedUrlChanged(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedUrlChanged(self, path);
+    }
+    pub fn FeedMovedFrom(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedMovedFrom(self, path, oldPath);
+    }
+    pub fn FeedMovedTo(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedMovedTo(self, path, oldPath);
+    }
+    pub fn FeedDownloading(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDownloading(self, path);
+    }
+    pub fn FeedDownloadCompleted(self: *const IFeedFolderEvents, path: ?BSTR, @"error": FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDownloadCompleted(self, path, @"error");
+    }
+    pub fn FeedItemCountChanged(self: *const IFeedFolderEvents, path: ?BSTR, itemCountType: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedItemCountChanged(self, path, itemCountType);
+    }
+};
+
+const IID_IFeedItem_Value = Guid.initString("0a1e6cad-0a47-4da2-a13d-5baaa5c8bd4f");
+pub const IID_IFeedItem = &IID_IFeedItem_Value;
+pub const IFeedItem = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Xml: *const fn(
+            self: *const IFeedItem,
+            includeFlags: FEEDS_XML_INCLUDE_FLAGS,
+            xml: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_durationString: *const fn(
-            self: *const IWMPMedia,
-            pbstrDuration: ?*?BSTR,
+        get_Title: *const fn(
+            self: *const IFeedItem,
+            title: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_attributeCount: *const fn(
-            self: *const IWMPMedia,
-            plCount: ?*i32,
+        get_Link: *const fn(
+            self: *const IFeedItem,
+            linkUrl: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        getAttributeName: *const fn(
-            self: *const IWMPMedia,
-            lIndex: i32,
-            pbstrItemName: ?*?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Guid: *const fn(
+            self: *const IFeedItem,
+            itemGuid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IFeedItem,
+            description: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PubDate: *const fn(
+            self: *const IFeedItem,
+            pubDate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Comments: *const fn(
+            self: *const IFeedItem,
+            comments: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Author: *const fn(
+            self: *const IFeedItem,
+            author: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enclosure: *const fn(
+            self: *const IFeedItem,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsRead: *const fn(
+            self: *const IFeedItem,
+            isRead: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_IsRead: *const fn(
+            self: *const IFeedItem,
+            isRead: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LocalId: *const fn(
+            self: *const IFeedItem,
+            itemId: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Parent: *const fn(
+            self: *const IFeedItem,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IFeedItem,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadUrl: *const fn(
+            self: *const IFeedItem,
+            itemUrl: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastDownloadTime: *const fn(
+            self: *const IFeedItem,
+            lastDownload: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Modified: *const fn(
+            self: *const IFeedItem,
+            modified: ?*f64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Xml(self: *const IFeedItem, includeFlags: FEEDS_XML_INCLUDE_FLAGS, xml: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Xml(self, includeFlags, xml);
+    }
+    pub fn get_Title(self: *const IFeedItem, title: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Title(self, title);
+    }
+    pub fn get_Link(self: *const IFeedItem, linkUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Link(self, linkUrl);
+    }
+    pub fn get_Guid(self: *const IFeedItem, itemGuid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Guid(self, itemGuid);
+    }
+    pub fn get_Description(self: *const IFeedItem, description: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn get_PubDate(self: *const IFeedItem, pubDate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PubDate(self, pubDate);
+    }
+    pub fn get_Comments(self: *const IFeedItem, comments: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Comments(self, comments);
+    }
+    pub fn get_Author(self: *const IFeedItem, author: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Author(self, author);
+    }
+    pub fn get_Enclosure(self: *const IFeedItem, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enclosure(self, disp);
+    }
+    pub fn get_IsRead(self: *const IFeedItem, isRead: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsRead(self, isRead);
+    }
+    pub fn put_IsRead(self: *const IFeedItem, isRead: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IsRead(self, isRead);
+    }
+    pub fn get_LocalId(self: *const IFeedItem, itemId: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalId(self, itemId);
+    }
+    pub fn get_Parent(self: *const IFeedItem, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Parent(self, disp);
+    }
+    pub fn Delete(self: *const IFeedItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn get_DownloadUrl(self: *const IFeedItem, itemUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadUrl(self, itemUrl);
+    }
+    pub fn get_LastDownloadTime(self: *const IFeedItem, lastDownload: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastDownloadTime(self, lastDownload);
+    }
+    pub fn get_Modified(self: *const IFeedItem, modified: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Modified(self, modified);
+    }
+};
+
+const IID_IFeedItem2_Value = Guid.initString("79ac9ef4-f9c1-4d2b-a50b-a7ffba4dcf37");
+pub const IID_IFeedItem2 = &IID_IFeedItem2_Value;
+pub const IFeedItem2 = extern union {
+    pub const VTable = extern struct {
+        base: IFeedItem.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EffectiveId: *const fn(
+            self: *const IFeedItem2,
+            effectiveId: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFeedItem: IFeedItem,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EffectiveId(self: *const IFeedItem2, effectiveId: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EffectiveId(self, effectiveId);
+    }
+};
+
+const IID_IFeedsEnum_Value = Guid.initString("e3cd0028-2eed-4c60-8fae-a3225309a836");
+pub const IID_IFeedsEnum = &IID_IFeedsEnum_Value;
+pub const IFeedsEnum = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IFeedsEnum,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IFeedsEnum,
+            index: i32,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IFeedsEnum,
+            enumVar: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IFeedsEnum, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, count);
+    }
+    pub fn Item(self: *const IFeedsEnum, index: i32, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, index, disp);
+    }
+    pub fn get__NewEnum(self: *const IFeedsEnum, enumVar: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, enumVar);
+    }
+};
+
+const IID_IFeedsManager_Value = Guid.initString("a74029cc-1f1a-4906-88f0-810638d86591");
+pub const IID_IFeedsManager = &IID_IFeedsManager_Value;
+pub const IFeedsManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RootFolder: *const fn(
+            self: *const IFeedsManager,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        IsSubscribed: *const fn(
+            self: *const IFeedsManager,
+            feedUrl: ?BSTR,
+            subscribed: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        ExistsFeed: *const fn(
+            self: *const IFeedsManager,
+            feedPath: ?BSTR,
+            exists: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetFeed: *const fn(
+            self: *const IFeedsManager,
+            feedPath: ?BSTR,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        GetFeedByUrl: *const fn(
+            self: *const IFeedsManager,
+            feedUrl: ?BSTR,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        ExistsFolder: *const fn(
+            self: *const IFeedsManager,
+            folderPath: ?BSTR,
+            exists: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetFolder: *const fn(
+            self: *const IFeedsManager,
+            folderPath: ?BSTR,
+            disp: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        DeleteFeed: *const fn(
+            self: *const IFeedsManager,
+            feedPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        DeleteFolder: *const fn(
+            self: *const IFeedsManager,
+            folderPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        BackgroundSync: *const fn(
+            self: *const IFeedsManager,
+            action: FEEDS_BACKGROUNDSYNC_ACTION,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BackgroundSyncStatus: *const fn(
+            self: *const IFeedsManager,
+            status: ?*FEEDS_BACKGROUNDSYNC_STATUS,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultInterval: *const fn(
+            self: *const IFeedsManager,
+            minutes: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DefaultInterval: *const fn(
+            self: *const IFeedsManager,
+            minutes: i32,
+        ) callconv(.winapi) HRESULT,
+        AsyncSyncAll: *const fn(
+            self: *const IFeedsManager,
+        ) callconv(.winapi) HRESULT,
+        Normalize: *const fn(
+            self: *const IFeedsManager,
+            feedXmlIn: ?BSTR,
+            feedXmlOut: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ItemCountLimit: *const fn(
+            self: *const IFeedsManager,
+            itemCountLimit: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_RootFolder(self: *const IFeedsManager, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RootFolder(self, disp);
+    }
+    pub fn IsSubscribed(self: *const IFeedsManager, feedUrl: ?BSTR, subscribed: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSubscribed(self, feedUrl, subscribed);
+    }
+    pub fn ExistsFeed(self: *const IFeedsManager, feedPath: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsFeed(self, feedPath, exists);
+    }
+    pub fn GetFeed(self: *const IFeedsManager, feedPath: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFeed(self, feedPath, disp);
+    }
+    pub fn GetFeedByUrl(self: *const IFeedsManager, feedUrl: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFeedByUrl(self, feedUrl, disp);
+    }
+    pub fn ExistsFolder(self: *const IFeedsManager, folderPath: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsFolder(self, folderPath, exists);
+    }
+    pub fn GetFolder(self: *const IFeedsManager, folderPath: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFolder(self, folderPath, disp);
+    }
+    pub fn DeleteFeed(self: *const IFeedsManager, feedPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteFeed(self, feedPath);
+    }
+    pub fn DeleteFolder(self: *const IFeedsManager, folderPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteFolder(self, folderPath);
+    }
+    pub fn BackgroundSync(self: *const IFeedsManager, action: FEEDS_BACKGROUNDSYNC_ACTION) callconv(.@"inline") HRESULT {
+        return self.vtable.BackgroundSync(self, action);
+    }
+    pub fn get_BackgroundSyncStatus(self: *const IFeedsManager, status: ?*FEEDS_BACKGROUNDSYNC_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackgroundSyncStatus(self, status);
+    }
+    pub fn get_DefaultInterval(self: *const IFeedsManager, minutes: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultInterval(self, minutes);
+    }
+    pub fn put_DefaultInterval(self: *const IFeedsManager, minutes: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DefaultInterval(self, minutes);
+    }
+    pub fn AsyncSyncAll(self: *const IFeedsManager) callconv(.@"inline") HRESULT {
+        return self.vtable.AsyncSyncAll(self);
+    }
+    pub fn Normalize(self: *const IFeedsManager, feedXmlIn: ?BSTR, feedXmlOut: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Normalize(self, feedXmlIn, feedXmlOut);
+    }
+    pub fn get_ItemCountLimit(self: *const IFeedsManager, itemCountLimit: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ItemCountLimit(self, itemCountLimit);
+    }
+};
+
+const IID_IWMPAudioRenderConfig_Value = Guid.initString("e79c6349-5997-4ce4-917c-22a3391ec564");
+pub const IID_IWMPAudioRenderConfig = &IID_IWMPAudioRenderConfig_Value;
+pub const IWMPAudioRenderConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_audioOutputDevice: *const fn(
+            self: *const IWMPAudioRenderConfig,
+            pbstrOutputDevice: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_audioOutputDevice: *const fn(
+            self: *const IWMPAudioRenderConfig,
+            bstrOutputDevice: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_audioOutputDevice(self: *const IWMPAudioRenderConfig, pbstrOutputDevice: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_audioOutputDevice(self, pbstrOutputDevice);
+    }
+    pub fn put_audioOutputDevice(self: *const IWMPAudioRenderConfig, bstrOutputDevice: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_audioOutputDevice(self, bstrOutputDevice);
+    }
+};
+
+const IID_IWMPCdrom_Value = Guid.initString("cfab6e98-8730-11d3-b388-00c04f68574b");
+pub const IID_IWMPCdrom = &IID_IWMPCdrom_Value;
+pub const IWMPCdrom = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_driveSpecifier: *const fn(
+            self: *const IWMPCdrom,
+            pbstrDrive: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_playlist: *const fn(
+            self: *const IWMPCdrom,
+            ppPlaylist: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        eject: *const fn(
+            self: *const IWMPCdrom,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_driveSpecifier(self: *const IWMPCdrom, pbstrDrive: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_driveSpecifier(self, pbstrDrive);
+    }
+    pub fn get_playlist(self: *const IWMPCdrom, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.get_playlist(self, ppPlaylist);
+    }
+    pub fn eject(self: *const IWMPCdrom) callconv(.@"inline") HRESULT {
+        return self.vtable.eject(self);
+    }
+};
+
+const IID_IWMPCdromBurn_Value = Guid.initString("bd94dbeb-417f-4928-aa06-087d56ed9b59");
+pub const IID_IWMPCdromBurn = &IID_IWMPCdromBurn_Value;
+pub const IWMPCdromBurn = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        isAvailable: *const fn(
+            self: *const IWMPCdromBurn,
+            bstrItem: ?BSTR,
+            pIsAvailable: ?*i16,
         ) callconv(.winapi) HRESULT,
         getItemInfo: *const fn(
-            self: *const IWMPMedia,
-            bstrItemName: ?BSTR,
+            self: *const IWMPCdromBurn,
+            bstrItem: ?BSTR,
             pbstrVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        setItemInfo: *const fn(
-            self: *const IWMPMedia,
-            bstrItemName: ?BSTR,
-            bstrVal: ?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_label: *const fn(
+            self: *const IWMPCdromBurn,
+            pbstrLabel: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        getItemInfoByAtom: *const fn(
-            self: *const IWMPMedia,
-            lAtom: i32,
-            pbstrVal: ?*?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_label: *const fn(
+            self: *const IWMPCdromBurn,
+            bstrLabel: ?BSTR,
         ) callconv(.winapi) HRESULT,
-        isMemberOf: *const fn(
-            self: *const IWMPMedia,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_burnFormat: *const fn(
+            self: *const IWMPCdromBurn,
+            pwmpbf: ?*WMPBurnFormat,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_burnFormat: *const fn(
+            self: *const IWMPCdromBurn,
+            wmpbf: WMPBurnFormat,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_burnPlaylist: *const fn(
+            self: *const IWMPCdromBurn,
+            ppPlaylist: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_burnPlaylist: *const fn(
+            self: *const IWMPCdromBurn,
             pPlaylist: ?*IWMPPlaylist,
-            pvarfIsMemberOf: ?*i16,
         ) callconv(.winapi) HRESULT,
-        isReadOnlyItem: *const fn(
-            self: *const IWMPMedia,
-            bstrItemName: ?BSTR,
-            pvarfIsReadOnly: ?*i16,
+        refreshStatus: *const fn(
+            self: *const IWMPCdromBurn,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_burnState: *const fn(
+            self: *const IWMPCdromBurn,
+            pwmpbs: ?*WMPBurnState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_burnProgress: *const fn(
+            self: *const IWMPCdromBurn,
+            plProgress: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        startBurn: *const fn(
+            self: *const IWMPCdromBurn,
+        ) callconv(.winapi) HRESULT,
+        stopBurn: *const fn(
+            self: *const IWMPCdromBurn,
+        ) callconv(.winapi) HRESULT,
+        erase: *const fn(
+            self: *const IWMPCdromBurn,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn isAvailable(self: *const IWMPCdromBurn, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isAvailable(self, bstrItem, pIsAvailable);
+    }
+    pub fn getItemInfo(self: *const IWMPCdromBurn, bstrItem: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfo(self, bstrItem, pbstrVal);
+    }
+    pub fn get_label(self: *const IWMPCdromBurn, pbstrLabel: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_label(self, pbstrLabel);
+    }
+    pub fn put_label(self: *const IWMPCdromBurn, bstrLabel: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_label(self, bstrLabel);
+    }
+    pub fn get_burnFormat(self: *const IWMPCdromBurn, pwmpbf: ?*WMPBurnFormat) callconv(.@"inline") HRESULT {
+        return self.vtable.get_burnFormat(self, pwmpbf);
+    }
+    pub fn put_burnFormat(self: *const IWMPCdromBurn, wmpbf: WMPBurnFormat) callconv(.@"inline") HRESULT {
+        return self.vtable.put_burnFormat(self, wmpbf);
+    }
+    pub fn get_burnPlaylist(self: *const IWMPCdromBurn, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.get_burnPlaylist(self, ppPlaylist);
+    }
+    pub fn put_burnPlaylist(self: *const IWMPCdromBurn, pPlaylist: ?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.put_burnPlaylist(self, pPlaylist);
+    }
+    pub fn refreshStatus(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
+        return self.vtable.refreshStatus(self);
+    }
+    pub fn get_burnState(self: *const IWMPCdromBurn, pwmpbs: ?*WMPBurnState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_burnState(self, pwmpbs);
+    }
+    pub fn get_burnProgress(self: *const IWMPCdromBurn, plProgress: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_burnProgress(self, plProgress);
+    }
+    pub fn startBurn(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
+        return self.vtable.startBurn(self);
+    }
+    pub fn stopBurn(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
+        return self.vtable.stopBurn(self);
+    }
+    pub fn erase(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
+        return self.vtable.erase(self);
+    }
+};
+
+const IID_IWMPCdromCollection_Value = Guid.initString("ee4c8fe2-34b2-11d3-a3bf-006097c9b344");
+pub const IID_IWMPCdromCollection = &IID_IWMPCdromCollection_Value;
+pub const IWMPCdromCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_count: *const fn(
+            self: *const IWMPCdromCollection,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        item: *const fn(
+            self: *const IWMPCdromCollection,
+            lIndex: i32,
+            ppItem: ?*?*IWMPCdrom,
+        ) callconv(.winapi) HRESULT,
+        getByDriveSpecifier: *const fn(
+            self: *const IWMPCdromCollection,
+            bstrDriveSpecifier: ?BSTR,
+            ppCdrom: ?*?*IWMPCdrom,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_isIdentical(self: *const IWMPMedia, pIWMPMedia: ?*IWMPMedia, pvbool: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_isIdentical(self, pIWMPMedia, pvbool);
+    pub fn get_count(self: *const IWMPCdromCollection, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_count(self, plCount);
     }
-    pub fn get_sourceURL(self: *const IWMPMedia, pbstrSourceURL: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_sourceURL(self, pbstrSourceURL);
+    pub fn item(self: *const IWMPCdromCollection, lIndex: i32, ppItem: ?*?*IWMPCdrom) callconv(.@"inline") HRESULT {
+        return self.vtable.item(self, lIndex, ppItem);
     }
-    pub fn get_name(self: *const IWMPMedia, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_name(self, pbstrName);
+    pub fn getByDriveSpecifier(self: *const IWMPCdromCollection, bstrDriveSpecifier: ?BSTR, ppCdrom: ?*?*IWMPCdrom) callconv(.@"inline") HRESULT {
+        return self.vtable.getByDriveSpecifier(self, bstrDriveSpecifier, ppCdrom);
     }
-    pub fn put_name(self: *const IWMPMedia, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_name(self, bstrName);
+};
+
+const IID_IWMPCdromRip_Value = Guid.initString("56e2294f-69ed-4629-a869-aea72c0dcc2c");
+pub const IID_IWMPCdromRip = &IID_IWMPCdromRip_Value;
+pub const IWMPCdromRip = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ripState: *const fn(
+            self: *const IWMPCdromRip,
+            pwmprs: ?*WMPRipState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ripProgress: *const fn(
+            self: *const IWMPCdromRip,
+            plProgress: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        startRip: *const fn(
+            self: *const IWMPCdromRip,
+        ) callconv(.winapi) HRESULT,
+        stopRip: *const fn(
+            self: *const IWMPCdromRip,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_ripState(self: *const IWMPCdromRip, pwmprs: ?*WMPRipState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ripState(self, pwmprs);
     }
-    pub fn get_imageSourceWidth(self: *const IWMPMedia, pWidth: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_imageSourceWidth(self, pWidth);
+    pub fn get_ripProgress(self: *const IWMPCdromRip, plProgress: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ripProgress(self, plProgress);
     }
-    pub fn get_imageSourceHeight(self: *const IWMPMedia, pHeight: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_imageSourceHeight(self, pHeight);
+    pub fn startRip(self: *const IWMPCdromRip) callconv(.@"inline") HRESULT {
+        return self.vtable.startRip(self);
     }
-    pub fn get_markerCount(self: *const IWMPMedia, pMarkerCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_markerCount(self, pMarkerCount);
+    pub fn stopRip(self: *const IWMPCdromRip) callconv(.@"inline") HRESULT {
+        return self.vtable.stopRip(self);
     }
-    pub fn getMarkerTime(self: *const IWMPMedia, MarkerNum: i32, pMarkerTime: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.getMarkerTime(self, MarkerNum, pMarkerTime);
+};
+
+const IID_IWMPClosedCaption_Value = Guid.initString("4f2df574-c588-11d3-9ed0-00c04fb6e937");
+pub const IID_IWMPClosedCaption = &IID_IWMPClosedCaption_Value;
+pub const IWMPClosedCaption = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SAMIStyle: *const fn(
+            self: *const IWMPClosedCaption,
+            pbstrSAMIStyle: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SAMIStyle: *const fn(
+            self: *const IWMPClosedCaption,
+            bstrSAMIStyle: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SAMILang: *const fn(
+            self: *const IWMPClosedCaption,
+            pbstrSAMILang: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SAMILang: *const fn(
+            self: *const IWMPClosedCaption,
+            bstrSAMILang: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SAMIFileName: *const fn(
+            self: *const IWMPClosedCaption,
+            pbstrSAMIFileName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SAMIFileName: *const fn(
+            self: *const IWMPClosedCaption,
+            bstrSAMIFileName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_captioningId: *const fn(
+            self: *const IWMPClosedCaption,
+            pbstrCaptioningID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_captioningId: *const fn(
+            self: *const IWMPClosedCaption,
+            bstrCaptioningID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_SAMIStyle(self: *const IWMPClosedCaption, pbstrSAMIStyle: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SAMIStyle(self, pbstrSAMIStyle);
     }
-    pub fn getMarkerName(self: *const IWMPMedia, MarkerNum: i32, pbstrMarkerName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getMarkerName(self, MarkerNum, pbstrMarkerName);
+    pub fn put_SAMIStyle(self: *const IWMPClosedCaption, bstrSAMIStyle: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SAMIStyle(self, bstrSAMIStyle);
     }
-    pub fn get_duration(self: *const IWMPMedia, pDuration: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_duration(self, pDuration);
+    pub fn get_SAMILang(self: *const IWMPClosedCaption, pbstrSAMILang: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SAMILang(self, pbstrSAMILang);
     }
-    pub fn get_durationString(self: *const IWMPMedia, pbstrDuration: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_durationString(self, pbstrDuration);
+    pub fn put_SAMILang(self: *const IWMPClosedCaption, bstrSAMILang: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SAMILang(self, bstrSAMILang);
     }
-    pub fn get_attributeCount(self: *const IWMPMedia, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_attributeCount(self, plCount);
+    pub fn get_SAMIFileName(self: *const IWMPClosedCaption, pbstrSAMIFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SAMIFileName(self, pbstrSAMIFileName);
     }
-    pub fn getAttributeName(self: *const IWMPMedia, lIndex: i32, pbstrItemName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getAttributeName(self, lIndex, pbstrItemName);
+    pub fn put_SAMIFileName(self: *const IWMPClosedCaption, bstrSAMIFileName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SAMIFileName(self, bstrSAMIFileName);
     }
-    pub fn getItemInfo(self: *const IWMPMedia, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
+    pub fn get_captioningId(self: *const IWMPClosedCaption, pbstrCaptioningID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_captioningId(self, pbstrCaptioningID);
     }
-    pub fn setItemInfo(self: *const IWMPMedia, bstrItemName: ?BSTR, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setItemInfo(self, bstrItemName, bstrVal);
+    pub fn put_captioningId(self: *const IWMPClosedCaption, bstrCaptioningID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_captioningId(self, bstrCaptioningID);
     }
-    pub fn getItemInfoByAtom(self: *const IWMPMedia, lAtom: i32, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfoByAtom(self, lAtom, pbstrVal);
+};
+
+const IID_IWMPClosedCaption2_Value = Guid.initString("350ba78b-6bc8-4113-a5f5-312056934eb6");
+pub const IID_IWMPClosedCaption2 = &IID_IWMPClosedCaption2_Value;
+pub const IWMPClosedCaption2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPClosedCaption.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SAMILangCount: *const fn(
+            self: *const IWMPClosedCaption2,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getSAMILangName: *const fn(
+            self: *const IWMPClosedCaption2,
+            nIndex: i32,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        getSAMILangID: *const fn(
+            self: *const IWMPClosedCaption2,
+            nIndex: i32,
+            plLangID: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SAMIStyleCount: *const fn(
+            self: *const IWMPClosedCaption2,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getSAMIStyleName: *const fn(
+            self: *const IWMPClosedCaption2,
+            nIndex: i32,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPClosedCaption: IWMPClosedCaption,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_SAMILangCount(self: *const IWMPClosedCaption2, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SAMILangCount(self, plCount);
     }
-    pub fn isMemberOf(self: *const IWMPMedia, pPlaylist: ?*IWMPPlaylist, pvarfIsMemberOf: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isMemberOf(self, pPlaylist, pvarfIsMemberOf);
+    pub fn getSAMILangName(self: *const IWMPClosedCaption2, nIndex: i32, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getSAMILangName(self, nIndex, pbstrName);
     }
-    pub fn isReadOnlyItem(self: *const IWMPMedia, bstrItemName: ?BSTR, pvarfIsReadOnly: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isReadOnlyItem(self, bstrItemName, pvarfIsReadOnly);
+    pub fn getSAMILangID(self: *const IWMPClosedCaption2, nIndex: i32, plLangID: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getSAMILangID(self, nIndex, plLangID);
+    }
+    pub fn get_SAMIStyleCount(self: *const IWMPClosedCaption2, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SAMIStyleCount(self, plCount);
+    }
+    pub fn getSAMIStyleName(self: *const IWMPClosedCaption2, nIndex: i32, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getSAMIStyleName(self, nIndex, pbstrName);
+    }
+};
+
+const IID_IWMPContentContainer_Value = Guid.initString("ad7f4d9c-1a9f-4ed2-9815-ecc0b58cb616");
+pub const IID_IWMPContentContainer = &IID_IWMPContentContainer_Value;
+pub const IWMPContentContainer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetID: *const fn(
+            self: *const IWMPContentContainer,
+            pContentID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPrice: *const fn(
+            self: *const IWMPContentContainer,
+            pbstrPrice: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetType: *const fn(
+            self: *const IWMPContentContainer,
+            pbstrType: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetContentCount: *const fn(
+            self: *const IWMPContentContainer,
+            pcContent: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetContentPrice: *const fn(
+            self: *const IWMPContentContainer,
+            idxContent: u32,
+            pbstrPrice: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetContentID: *const fn(
+            self: *const IWMPContentContainer,
+            idxContent: u32,
+            pContentID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetID(self: *const IWMPContentContainer, pContentID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetID(self, pContentID);
+    }
+    pub fn GetPrice(self: *const IWMPContentContainer, pbstrPrice: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrice(self, pbstrPrice);
+    }
+    pub fn GetType(self: *const IWMPContentContainer, pbstrType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pbstrType);
+    }
+    pub fn GetContentCount(self: *const IWMPContentContainer, pcContent: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentCount(self, pcContent);
+    }
+    pub fn GetContentPrice(self: *const IWMPContentContainer, idxContent: u32, pbstrPrice: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentPrice(self, idxContent, pbstrPrice);
+    }
+    pub fn GetContentID(self: *const IWMPContentContainer, idxContent: u32, pContentID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentID(self, idxContent, pContentID);
+    }
+};
+
+const IID_IWMPContentContainerList_Value = Guid.initString("a9937f78-0802-4af8-8b8d-e3f045bc8ab5");
+pub const IID_IWMPContentContainerList = &IID_IWMPContentContainerList_Value;
+pub const IWMPContentContainerList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetTransactionType: *const fn(
+            self: *const IWMPContentContainerList,
+            pwmptt: ?*WMPTransactionType,
+        ) callconv(.winapi) HRESULT,
+        GetContainerCount: *const fn(
+            self: *const IWMPContentContainerList,
+            pcContainer: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetContainer: *const fn(
+            self: *const IWMPContentContainerList,
+            idxContainer: u32,
+            ppContent: ?*?*IWMPContentContainer,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetTransactionType(self: *const IWMPContentContainerList, pwmptt: ?*WMPTransactionType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransactionType(self, pwmptt);
+    }
+    pub fn GetContainerCount(self: *const IWMPContentContainerList, pcContainer: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContainerCount(self, pcContainer);
+    }
+    pub fn GetContainer(self: *const IWMPContentContainerList, idxContainer: u32, ppContent: ?*?*IWMPContentContainer) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContainer(self, idxContainer, ppContent);
+    }
+};
+
+const IID_IWMPContentPartner_Value = Guid.initString("55455073-41b5-4e75-87b8-f13bdb291d08");
+pub const IID_IWMPContentPartner = &IID_IWMPContentPartner_Value;
+pub const IWMPContentPartner = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetCallback: *const fn(
+            self: *const IWMPContentPartner,
+            pCallback: ?*IWMPContentPartnerCallback,
+        ) callconv(.winapi) HRESULT,
+        Notify: *const fn(
+            self: *const IWMPContentPartner,
+            type: WMPPartnerNotification,
+            pContext: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetItemInfo: *const fn(
+            self: *const IWMPContentPartner,
+            bstrInfoName: ?BSTR,
+            pContext: ?*VARIANT,
+            pData: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetContentPartnerInfo: *const fn(
+            self: *const IWMPContentPartner,
+            bstrInfoName: ?BSTR,
+            pData: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetCommands: *const fn(
+            self: *const IWMPContentPartner,
+            location: ?BSTR,
+            pLocationContext: ?*VARIANT,
+            itemLocation: ?BSTR,
+            cItemIDs: u32,
+            prgItemIDs: [*]u32,
+            pcItemIDs: ?*u32,
+            pprgItems: [*]?*WMPContextMenuInfo,
+        ) callconv(.winapi) HRESULT,
+        InvokeCommand: *const fn(
+            self: *const IWMPContentPartner,
+            dwCommandID: u32,
+            location: ?BSTR,
+            pLocationContext: ?*VARIANT,
+            itemLocation: ?BSTR,
+            cItemIDs: u32,
+            rgItemIDs: [*]u32,
+        ) callconv(.winapi) HRESULT,
+        CanBuySilent: *const fn(
+            self: *const IWMPContentPartner,
+            pInfo: ?*IWMPContentContainerList,
+            pbstrTotalPrice: ?*?BSTR,
+            pSilentOK: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        Buy: *const fn(
+            self: *const IWMPContentPartner,
+            pInfo: ?*IWMPContentContainerList,
+            cookie: u32,
+        ) callconv(.winapi) HRESULT,
+        GetStreamingURL: *const fn(
+            self: *const IWMPContentPartner,
+            st: WMPStreamingType,
+            pStreamContext: ?*VARIANT,
+            pbstrURL: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Download: *const fn(
+            self: *const IWMPContentPartner,
+            pInfo: ?*IWMPContentContainerList,
+            cookie: u32,
+        ) callconv(.winapi) HRESULT,
+        DownloadTrackComplete: *const fn(
+            self: *const IWMPContentPartner,
+            hrResult: HRESULT,
+            contentID: u32,
+            downloadTrackParam: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RefreshLicense: *const fn(
+            self: *const IWMPContentPartner,
+            dwCookie: u32,
+            fLocal: i16,
+            bstrURL: ?BSTR,
+            type: WMPStreamingType,
+            contentID: u32,
+            bstrRefreshReason: ?BSTR,
+            pReasonContext: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetCatalogURL: *const fn(
+            self: *const IWMPContentPartner,
+            dwCatalogVersion: u32,
+            dwCatalogSchemaVersion: u32,
+            catalogLCID: u32,
+            pdwNewCatalogVersion: ?*u32,
+            pbstrCatalogURL: ?*?BSTR,
+            pExpirationDate: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetTemplate: *const fn(
+            self: *const IWMPContentPartner,
+            task: WMPTaskType,
+            location: ?BSTR,
+            pContext: ?*VARIANT,
+            clickLocation: ?BSTR,
+            pClickContext: ?*VARIANT,
+            bstrFilter: ?BSTR,
+            bstrViewParams: ?BSTR,
+            pbstrTemplateURL: ?*?BSTR,
+            pTemplateSize: ?*WMPTemplateSize,
+        ) callconv(.winapi) HRESULT,
+        UpdateDevice: *const fn(
+            self: *const IWMPContentPartner,
+            bstrDeviceName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetListContents: *const fn(
+            self: *const IWMPContentPartner,
+            location: ?BSTR,
+            pContext: ?*VARIANT,
+            bstrListType: ?BSTR,
+            bstrParams: ?BSTR,
+            dwListCookie: u32,
+        ) callconv(.winapi) HRESULT,
+        Login: *const fn(
+            self: *const IWMPContentPartner,
+            userInfo: BLOB,
+            pwdInfo: BLOB,
+            fUsedCachedCreds: i16,
+            fOkToCache: i16,
+        ) callconv(.winapi) HRESULT,
+        Authenticate: *const fn(
+            self: *const IWMPContentPartner,
+            userInfo: BLOB,
+            pwdInfo: BLOB,
+        ) callconv(.winapi) HRESULT,
+        Logout: *const fn(
+            self: *const IWMPContentPartner,
+        ) callconv(.winapi) HRESULT,
+        SendMessage: *const fn(
+            self: *const IWMPContentPartner,
+            bstrMsg: ?BSTR,
+            bstrParam: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        StationEvent: *const fn(
+            self: *const IWMPContentPartner,
+            bstrStationEventType: ?BSTR,
+            StationId: u32,
+            PlaylistIndex: u32,
+            TrackID: u32,
+            TrackData: ?BSTR,
+            dwSecondsPlayed: u32,
+        ) callconv(.winapi) HRESULT,
+        CompareContainerListPrices: *const fn(
+            self: *const IWMPContentPartner,
+            pListBase: ?*IWMPContentContainerList,
+            pListCompare: ?*IWMPContentContainerList,
+            pResult: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        VerifyPermission: *const fn(
+            self: *const IWMPContentPartner,
+            bstrPermission: ?BSTR,
+            pContext: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetCallback(self: *const IWMPContentPartner, pCallback: ?*IWMPContentPartnerCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCallback(self, pCallback);
+    }
+    pub fn Notify(self: *const IWMPContentPartner, @"type": WMPPartnerNotification, pContext: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, @"type", pContext);
+    }
+    pub fn GetItemInfo(self: *const IWMPContentPartner, bstrInfoName: ?BSTR, pContext: ?*VARIANT, pData: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemInfo(self, bstrInfoName, pContext, pData);
+    }
+    pub fn GetContentPartnerInfo(self: *const IWMPContentPartner, bstrInfoName: ?BSTR, pData: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentPartnerInfo(self, bstrInfoName, pData);
+    }
+    pub fn GetCommands(self: *const IWMPContentPartner, location: ?BSTR, pLocationContext: ?*VARIANT, itemLocation: ?BSTR, cItemIDs: u32, prgItemIDs: [*]u32, pcItemIDs: ?*u32, pprgItems: [*]?*WMPContextMenuInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCommands(self, location, pLocationContext, itemLocation, cItemIDs, prgItemIDs, pcItemIDs, pprgItems);
+    }
+    pub fn InvokeCommand(self: *const IWMPContentPartner, dwCommandID: u32, location: ?BSTR, pLocationContext: ?*VARIANT, itemLocation: ?BSTR, cItemIDs: u32, rgItemIDs: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.InvokeCommand(self, dwCommandID, location, pLocationContext, itemLocation, cItemIDs, rgItemIDs);
+    }
+    pub fn CanBuySilent(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, pbstrTotalPrice: ?*?BSTR, pSilentOK: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.CanBuySilent(self, pInfo, pbstrTotalPrice, pSilentOK);
+    }
+    pub fn Buy(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, cookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Buy(self, pInfo, cookie);
+    }
+    pub fn GetStreamingURL(self: *const IWMPContentPartner, st: WMPStreamingType, pStreamContext: ?*VARIANT, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamingURL(self, st, pStreamContext, pbstrURL);
+    }
+    pub fn Download(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, cookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Download(self, pInfo, cookie);
+    }
+    pub fn DownloadTrackComplete(self: *const IWMPContentPartner, hrResult: HRESULT, contentID: u32, downloadTrackParam: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DownloadTrackComplete(self, hrResult, contentID, downloadTrackParam);
+    }
+    pub fn RefreshLicense(self: *const IWMPContentPartner, dwCookie: u32, fLocal: i16, bstrURL: ?BSTR, @"type": WMPStreamingType, contentID: u32, bstrRefreshReason: ?BSTR, pReasonContext: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RefreshLicense(self, dwCookie, fLocal, bstrURL, @"type", contentID, bstrRefreshReason, pReasonContext);
+    }
+    pub fn GetCatalogURL(self: *const IWMPContentPartner, dwCatalogVersion: u32, dwCatalogSchemaVersion: u32, catalogLCID: u32, pdwNewCatalogVersion: ?*u32, pbstrCatalogURL: ?*?BSTR, pExpirationDate: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCatalogURL(self, dwCatalogVersion, dwCatalogSchemaVersion, catalogLCID, pdwNewCatalogVersion, pbstrCatalogURL, pExpirationDate);
+    }
+    pub fn GetTemplate(self: *const IWMPContentPartner, task: WMPTaskType, location: ?BSTR, pContext: ?*VARIANT, clickLocation: ?BSTR, pClickContext: ?*VARIANT, bstrFilter: ?BSTR, bstrViewParams: ?BSTR, pbstrTemplateURL: ?*?BSTR, pTemplateSize: ?*WMPTemplateSize) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTemplate(self, task, location, pContext, clickLocation, pClickContext, bstrFilter, bstrViewParams, pbstrTemplateURL, pTemplateSize);
+    }
+    pub fn UpdateDevice(self: *const IWMPContentPartner, bstrDeviceName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateDevice(self, bstrDeviceName);
+    }
+    pub fn GetListContents(self: *const IWMPContentPartner, location: ?BSTR, pContext: ?*VARIANT, bstrListType: ?BSTR, bstrParams: ?BSTR, dwListCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetListContents(self, location, pContext, bstrListType, bstrParams, dwListCookie);
+    }
+    pub fn Login(self: *const IWMPContentPartner, userInfo: BLOB, pwdInfo: BLOB, fUsedCachedCreds: i16, fOkToCache: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.Login(self, userInfo, pwdInfo, fUsedCachedCreds, fOkToCache);
+    }
+    pub fn Authenticate(self: *const IWMPContentPartner, userInfo: BLOB, pwdInfo: BLOB) callconv(.@"inline") HRESULT {
+        return self.vtable.Authenticate(self, userInfo, pwdInfo);
+    }
+    pub fn Logout(self: *const IWMPContentPartner) callconv(.@"inline") HRESULT {
+        return self.vtable.Logout(self);
+    }
+    pub fn SendMessage(self: *const IWMPContentPartner, bstrMsg: ?BSTR, bstrParam: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SendMessage(self, bstrMsg, bstrParam);
+    }
+    pub fn StationEvent(self: *const IWMPContentPartner, bstrStationEventType: ?BSTR, StationId: u32, PlaylistIndex: u32, TrackID: u32, TrackData: ?BSTR, dwSecondsPlayed: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.StationEvent(self, bstrStationEventType, StationId, PlaylistIndex, TrackID, TrackData, dwSecondsPlayed);
+    }
+    pub fn CompareContainerListPrices(self: *const IWMPContentPartner, pListBase: ?*IWMPContentContainerList, pListCompare: ?*IWMPContentContainerList, pResult: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.CompareContainerListPrices(self, pListBase, pListCompare, pResult);
+    }
+    pub fn VerifyPermission(self: *const IWMPContentPartner, bstrPermission: ?BSTR, pContext: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.VerifyPermission(self, bstrPermission, pContext);
+    }
+};
+
+const IID_IWMPContentPartnerCallback_Value = Guid.initString("9e8f7da2-0695-403c-b697-da10fafaa676");
+pub const IID_IWMPContentPartnerCallback = &IID_IWMPContentPartnerCallback_Value;
+pub const IWMPContentPartnerCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Notify: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            type: WMPCallbackNotification,
+            pContext: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        BuyComplete: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            hrResult: HRESULT,
+            dwBuyCookie: u32,
+        ) callconv(.winapi) HRESULT,
+        DownloadTrack: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            cookie: u32,
+            bstrTrackURL: ?BSTR,
+            dwServiceTrackID: u32,
+            bstrDownloadParams: ?BSTR,
+            hrDownload: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        GetCatalogVersion: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            pdwVersion: ?*u32,
+            pdwSchemaVersion: ?*u32,
+            plcid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UpdateDeviceComplete: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            bstrDeviceName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ChangeView: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            bstrType: ?BSTR,
+            bstrID: ?BSTR,
+            bstrFilter: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddListContents: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            dwListCookie: u32,
+            cItems: u32,
+            prgItems: [*]u32,
+        ) callconv(.winapi) HRESULT,
+        ListContentsComplete: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            dwListCookie: u32,
+            hrSuccess: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        SendMessageComplete: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            bstrMsg: ?BSTR,
+            bstrParam: ?BSTR,
+            bstrResult: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetContentIDsInLibrary: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            pcContentIDs: ?*u32,
+            pprgIDs: [*]?*u32,
+        ) callconv(.winapi) HRESULT,
+        RefreshLicenseComplete: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            dwCookie: u32,
+            contentID: u32,
+            hrRefresh: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        ShowPopup: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            lIndex: i32,
+            bstrParameters: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        VerifyPermissionComplete: *const fn(
+            self: *const IWMPContentPartnerCallback,
+            bstrPermission: ?BSTR,
+            pContext: ?*VARIANT,
+            hrPermission: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Notify(self: *const IWMPContentPartnerCallback, @"type": WMPCallbackNotification, pContext: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, @"type", pContext);
+    }
+    pub fn BuyComplete(self: *const IWMPContentPartnerCallback, hrResult: HRESULT, dwBuyCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.BuyComplete(self, hrResult, dwBuyCookie);
+    }
+    pub fn DownloadTrack(self: *const IWMPContentPartnerCallback, cookie: u32, bstrTrackURL: ?BSTR, dwServiceTrackID: u32, bstrDownloadParams: ?BSTR, hrDownload: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.DownloadTrack(self, cookie, bstrTrackURL, dwServiceTrackID, bstrDownloadParams, hrDownload);
+    }
+    pub fn GetCatalogVersion(self: *const IWMPContentPartnerCallback, pdwVersion: ?*u32, pdwSchemaVersion: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCatalogVersion(self, pdwVersion, pdwSchemaVersion, plcid);
+    }
+    pub fn UpdateDeviceComplete(self: *const IWMPContentPartnerCallback, bstrDeviceName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateDeviceComplete(self, bstrDeviceName);
+    }
+    pub fn ChangeView(self: *const IWMPContentPartnerCallback, bstrType: ?BSTR, bstrID: ?BSTR, bstrFilter: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangeView(self, bstrType, bstrID, bstrFilter);
+    }
+    pub fn AddListContents(self: *const IWMPContentPartnerCallback, dwListCookie: u32, cItems: u32, prgItems: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddListContents(self, dwListCookie, cItems, prgItems);
+    }
+    pub fn ListContentsComplete(self: *const IWMPContentPartnerCallback, dwListCookie: u32, hrSuccess: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.ListContentsComplete(self, dwListCookie, hrSuccess);
+    }
+    pub fn SendMessageComplete(self: *const IWMPContentPartnerCallback, bstrMsg: ?BSTR, bstrParam: ?BSTR, bstrResult: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SendMessageComplete(self, bstrMsg, bstrParam, bstrResult);
+    }
+    pub fn GetContentIDsInLibrary(self: *const IWMPContentPartnerCallback, pcContentIDs: ?*u32, pprgIDs: [*]?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentIDsInLibrary(self, pcContentIDs, pprgIDs);
+    }
+    pub fn RefreshLicenseComplete(self: *const IWMPContentPartnerCallback, dwCookie: u32, contentID: u32, hrRefresh: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.RefreshLicenseComplete(self, dwCookie, contentID, hrRefresh);
+    }
+    pub fn ShowPopup(self: *const IWMPContentPartnerCallback, lIndex: i32, bstrParameters: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowPopup(self, lIndex, bstrParameters);
+    }
+    pub fn VerifyPermissionComplete(self: *const IWMPContentPartnerCallback, bstrPermission: ?BSTR, pContext: ?*VARIANT, hrPermission: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.VerifyPermissionComplete(self, bstrPermission, pContext, hrPermission);
     }
 };
 
@@ -1179,922 +3012,141 @@ pub const IWMPControls = extern union {
     }
 };
 
-const IID_IWMPSettings_Value = Guid.initString("9104d1ab-80c9-4fed-abf0-2e6417a6df14");
-pub const IID_IWMPSettings = &IID_IWMPSettings_Value;
-pub const IWMPSettings = extern union {
+const IID_IWMPControls2_Value = Guid.initString("6f030d25-0890-480f-9775-1f7e40ab5b8e");
+pub const IID_IWMPControls2 = &IID_IWMPControls2_Value;
+pub const IWMPControls2 = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_isAvailable: *const fn(
-            self: *const IWMPSettings,
-            bstrItem: ?BSTR,
-            pIsAvailable: ?*i16,
+        base: IWMPControls.VTable,
+        step: *const fn(
+            self: *const IWMPControls2,
+            lStep: i32,
         ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPControls: IWMPControls,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn step(self: *const IWMPControls2, lStep: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.step(self, lStep);
+    }
+};
+
+const IID_IWMPControls3_Value = Guid.initString("a1d1110e-d545-476a-9a78-ac3e4cb1e6bd");
+pub const IID_IWMPControls3 = &IID_IWMPControls3_Value;
+pub const IWMPControls3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPControls2.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_autoStart: *const fn(
-            self: *const IWMPSettings,
-            pfAutoStart: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_autoStart: *const fn(
-            self: *const IWMPSettings,
-            fAutoStart: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_baseURL: *const fn(
-            self: *const IWMPSettings,
-            pbstrBaseURL: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_baseURL: *const fn(
-            self: *const IWMPSettings,
-            bstrBaseURL: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_defaultFrame: *const fn(
-            self: *const IWMPSettings,
-            pbstrDefaultFrame: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_defaultFrame: *const fn(
-            self: *const IWMPSettings,
-            bstrDefaultFrame: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_invokeURLs: *const fn(
-            self: *const IWMPSettings,
-            pfInvokeURLs: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_invokeURLs: *const fn(
-            self: *const IWMPSettings,
-            fInvokeURLs: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_mute: *const fn(
-            self: *const IWMPSettings,
-            pfMute: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_mute: *const fn(
-            self: *const IWMPSettings,
-            fMute: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_playCount: *const fn(
-            self: *const IWMPSettings,
+        get_audioLanguageCount: *const fn(
+            self: *const IWMPControls3,
             plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_playCount: *const fn(
-            self: *const IWMPSettings,
-            lCount: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_rate: *const fn(
-            self: *const IWMPSettings,
-            pdRate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_rate: *const fn(
-            self: *const IWMPSettings,
-            dRate: f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_balance: *const fn(
-            self: *const IWMPSettings,
-            plBalance: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_balance: *const fn(
-            self: *const IWMPSettings,
-            lBalance: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_volume: *const fn(
-            self: *const IWMPSettings,
-            plVolume: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_volume: *const fn(
-            self: *const IWMPSettings,
-            lVolume: i32,
-        ) callconv(.winapi) HRESULT,
-        getMode: *const fn(
-            self: *const IWMPSettings,
-            bstrMode: ?BSTR,
-            pvarfMode: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        setMode: *const fn(
-            self: *const IWMPSettings,
-            bstrMode: ?BSTR,
-            varfMode: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enableErrorDialogs: *const fn(
-            self: *const IWMPSettings,
-            pfEnableErrorDialogs: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enableErrorDialogs: *const fn(
-            self: *const IWMPSettings,
-            fEnableErrorDialogs: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_isAvailable(self: *const IWMPSettings, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_isAvailable(self, bstrItem, pIsAvailable);
-    }
-    pub fn get_autoStart(self: *const IWMPSettings, pfAutoStart: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_autoStart(self, pfAutoStart);
-    }
-    pub fn put_autoStart(self: *const IWMPSettings, fAutoStart: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_autoStart(self, fAutoStart);
-    }
-    pub fn get_baseURL(self: *const IWMPSettings, pbstrBaseURL: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_baseURL(self, pbstrBaseURL);
-    }
-    pub fn put_baseURL(self: *const IWMPSettings, bstrBaseURL: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_baseURL(self, bstrBaseURL);
-    }
-    pub fn get_defaultFrame(self: *const IWMPSettings, pbstrDefaultFrame: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_defaultFrame(self, pbstrDefaultFrame);
-    }
-    pub fn put_defaultFrame(self: *const IWMPSettings, bstrDefaultFrame: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_defaultFrame(self, bstrDefaultFrame);
-    }
-    pub fn get_invokeURLs(self: *const IWMPSettings, pfInvokeURLs: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_invokeURLs(self, pfInvokeURLs);
-    }
-    pub fn put_invokeURLs(self: *const IWMPSettings, fInvokeURLs: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_invokeURLs(self, fInvokeURLs);
-    }
-    pub fn get_mute(self: *const IWMPSettings, pfMute: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_mute(self, pfMute);
-    }
-    pub fn put_mute(self: *const IWMPSettings, fMute: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_mute(self, fMute);
-    }
-    pub fn get_playCount(self: *const IWMPSettings, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_playCount(self, plCount);
-    }
-    pub fn put_playCount(self: *const IWMPSettings, lCount: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_playCount(self, lCount);
-    }
-    pub fn get_rate(self: *const IWMPSettings, pdRate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_rate(self, pdRate);
-    }
-    pub fn put_rate(self: *const IWMPSettings, dRate: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.put_rate(self, dRate);
-    }
-    pub fn get_balance(self: *const IWMPSettings, plBalance: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_balance(self, plBalance);
-    }
-    pub fn put_balance(self: *const IWMPSettings, lBalance: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_balance(self, lBalance);
-    }
-    pub fn get_volume(self: *const IWMPSettings, plVolume: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_volume(self, plVolume);
-    }
-    pub fn put_volume(self: *const IWMPSettings, lVolume: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_volume(self, lVolume);
-    }
-    pub fn getMode(self: *const IWMPSettings, bstrMode: ?BSTR, pvarfMode: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.getMode(self, bstrMode, pvarfMode);
-    }
-    pub fn setMode(self: *const IWMPSettings, bstrMode: ?BSTR, varfMode: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.setMode(self, bstrMode, varfMode);
-    }
-    pub fn get_enableErrorDialogs(self: *const IWMPSettings, pfEnableErrorDialogs: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enableErrorDialogs(self, pfEnableErrorDialogs);
-    }
-    pub fn put_enableErrorDialogs(self: *const IWMPSettings, fEnableErrorDialogs: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enableErrorDialogs(self, fEnableErrorDialogs);
-    }
-};
-
-const IID_IWMPClosedCaption_Value = Guid.initString("4f2df574-c588-11d3-9ed0-00c04fb6e937");
-pub const IID_IWMPClosedCaption = &IID_IWMPClosedCaption_Value;
-pub const IWMPClosedCaption = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SAMIStyle: *const fn(
-            self: *const IWMPClosedCaption,
-            pbstrSAMIStyle: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SAMIStyle: *const fn(
-            self: *const IWMPClosedCaption,
-            bstrSAMIStyle: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SAMILang: *const fn(
-            self: *const IWMPClosedCaption,
-            pbstrSAMILang: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SAMILang: *const fn(
-            self: *const IWMPClosedCaption,
-            bstrSAMILang: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SAMIFileName: *const fn(
-            self: *const IWMPClosedCaption,
-            pbstrSAMIFileName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SAMIFileName: *const fn(
-            self: *const IWMPClosedCaption,
-            bstrSAMIFileName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_captioningId: *const fn(
-            self: *const IWMPClosedCaption,
-            pbstrCaptioningID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_captioningId: *const fn(
-            self: *const IWMPClosedCaption,
-            bstrCaptioningID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_SAMIStyle(self: *const IWMPClosedCaption, pbstrSAMIStyle: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SAMIStyle(self, pbstrSAMIStyle);
-    }
-    pub fn put_SAMIStyle(self: *const IWMPClosedCaption, bstrSAMIStyle: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SAMIStyle(self, bstrSAMIStyle);
-    }
-    pub fn get_SAMILang(self: *const IWMPClosedCaption, pbstrSAMILang: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SAMILang(self, pbstrSAMILang);
-    }
-    pub fn put_SAMILang(self: *const IWMPClosedCaption, bstrSAMILang: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SAMILang(self, bstrSAMILang);
-    }
-    pub fn get_SAMIFileName(self: *const IWMPClosedCaption, pbstrSAMIFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SAMIFileName(self, pbstrSAMIFileName);
-    }
-    pub fn put_SAMIFileName(self: *const IWMPClosedCaption, bstrSAMIFileName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SAMIFileName(self, bstrSAMIFileName);
-    }
-    pub fn get_captioningId(self: *const IWMPClosedCaption, pbstrCaptioningID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_captioningId(self, pbstrCaptioningID);
-    }
-    pub fn put_captioningId(self: *const IWMPClosedCaption, bstrCaptioningID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_captioningId(self, bstrCaptioningID);
-    }
-};
-
-const IID_IWMPPlaylist_Value = Guid.initString("d5f0f4f1-130c-11d3-b14e-00c04f79faa6");
-pub const IID_IWMPPlaylist = &IID_IWMPPlaylist_Value;
-pub const IWMPPlaylist = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_count: *const fn(
-            self: *const IWMPPlaylist,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_name: *const fn(
-            self: *const IWMPPlaylist,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_name: *const fn(
-            self: *const IWMPPlaylist,
-            bstrName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_attributeCount: *const fn(
-            self: *const IWMPPlaylist,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_attributeName: *const fn(
-            self: *const IWMPPlaylist,
+        getAudioLanguageID: *const fn(
+            self: *const IWMPControls3,
             lIndex: i32,
-            pbstrAttributeName: ?*?BSTR,
+            plLangID: ?*i32,
         ) callconv(.winapi) HRESULT,
-        get_item: *const fn(
-            self: *const IWMPPlaylist,
+        getAudioLanguageDescription: *const fn(
+            self: *const IWMPControls3,
             lIndex: i32,
-            ppIWMPMedia: ?*?*IWMPMedia,
+            pbstrLangDesc: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        getItemInfo: *const fn(
-            self: *const IWMPPlaylist,
-            bstrName: ?BSTR,
-            pbstrVal: ?*?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_currentAudioLanguage: *const fn(
+            self: *const IWMPControls3,
+            plLangID: ?*i32,
         ) callconv(.winapi) HRESULT,
-        setItemInfo: *const fn(
-            self: *const IWMPPlaylist,
-            bstrName: ?BSTR,
-            bstrValue: ?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_currentAudioLanguage: *const fn(
+            self: *const IWMPControls3,
+            lLangID: i32,
         ) callconv(.winapi) HRESULT,
-        get_isIdentical: *const fn(
-            self: *const IWMPPlaylist,
-            pIWMPPlaylist: ?*IWMPPlaylist,
-            pvbool: ?*i16,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_currentAudioLanguageIndex: *const fn(
+            self: *const IWMPControls3,
+            plIndex: ?*i32,
         ) callconv(.winapi) HRESULT,
-        clear: *const fn(
-            self: *const IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        insertItem: *const fn(
-            self: *const IWMPPlaylist,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_currentAudioLanguageIndex: *const fn(
+            self: *const IWMPControls3,
             lIndex: i32,
-            pIWMPMedia: ?*IWMPMedia,
         ) callconv(.winapi) HRESULT,
-        appendItem: *const fn(
-            self: *const IWMPPlaylist,
-            pIWMPMedia: ?*IWMPMedia,
+        getLanguageName: *const fn(
+            self: *const IWMPControls3,
+            lLangID: i32,
+            pbstrLangName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        removeItem: *const fn(
-            self: *const IWMPPlaylist,
-            pIWMPMedia: ?*IWMPMedia,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_currentPositionTimecode: *const fn(
+            self: *const IWMPControls3,
+            bstrTimecode: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        moveItem: *const fn(
-            self: *const IWMPPlaylist,
-            lIndexOld: i32,
-            lIndexNew: i32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_currentPositionTimecode: *const fn(
+            self: *const IWMPControls3,
+            bstrTimecode: ?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWMPControls2: IWMPControls2,
+    IWMPControls: IWMPControls,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_count(self: *const IWMPPlaylist, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_count(self, plCount);
+    pub fn get_audioLanguageCount(self: *const IWMPControls3, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_audioLanguageCount(self, plCount);
     }
-    pub fn get_name(self: *const IWMPPlaylist, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_name(self, pbstrName);
+    pub fn getAudioLanguageID(self: *const IWMPControls3, lIndex: i32, plLangID: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getAudioLanguageID(self, lIndex, plLangID);
     }
-    pub fn put_name(self: *const IWMPPlaylist, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_name(self, bstrName);
+    pub fn getAudioLanguageDescription(self: *const IWMPControls3, lIndex: i32, pbstrLangDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getAudioLanguageDescription(self, lIndex, pbstrLangDesc);
     }
-    pub fn get_attributeCount(self: *const IWMPPlaylist, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_attributeCount(self, plCount);
+    pub fn get_currentAudioLanguage(self: *const IWMPControls3, plLangID: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_currentAudioLanguage(self, plLangID);
     }
-    pub fn get_attributeName(self: *const IWMPPlaylist, lIndex: i32, pbstrAttributeName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_attributeName(self, lIndex, pbstrAttributeName);
+    pub fn put_currentAudioLanguage(self: *const IWMPControls3, lLangID: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_currentAudioLanguage(self, lLangID);
     }
-    pub fn get_item(self: *const IWMPPlaylist, lIndex: i32, ppIWMPMedia: ?*?*IWMPMedia) callconv(.@"inline") HRESULT {
-        return self.vtable.get_item(self, lIndex, ppIWMPMedia);
+    pub fn get_currentAudioLanguageIndex(self: *const IWMPControls3, plIndex: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_currentAudioLanguageIndex(self, plIndex);
     }
-    pub fn getItemInfo(self: *const IWMPPlaylist, bstrName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfo(self, bstrName, pbstrVal);
+    pub fn put_currentAudioLanguageIndex(self: *const IWMPControls3, lIndex: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_currentAudioLanguageIndex(self, lIndex);
     }
-    pub fn setItemInfo(self: *const IWMPPlaylist, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setItemInfo(self, bstrName, bstrValue);
+    pub fn getLanguageName(self: *const IWMPControls3, lLangID: i32, pbstrLangName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getLanguageName(self, lLangID, pbstrLangName);
     }
-    pub fn get_isIdentical(self: *const IWMPPlaylist, pIWMPPlaylist: ?*IWMPPlaylist, pvbool: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_isIdentical(self, pIWMPPlaylist, pvbool);
+    pub fn get_currentPositionTimecode(self: *const IWMPControls3, bstrTimecode: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_currentPositionTimecode(self, bstrTimecode);
     }
-    pub fn clear(self: *const IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.clear(self);
-    }
-    pub fn insertItem(self: *const IWMPPlaylist, lIndex: i32, pIWMPMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
-        return self.vtable.insertItem(self, lIndex, pIWMPMedia);
-    }
-    pub fn appendItem(self: *const IWMPPlaylist, pIWMPMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
-        return self.vtable.appendItem(self, pIWMPMedia);
-    }
-    pub fn removeItem(self: *const IWMPPlaylist, pIWMPMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
-        return self.vtable.removeItem(self, pIWMPMedia);
-    }
-    pub fn moveItem(self: *const IWMPPlaylist, lIndexOld: i32, lIndexNew: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.moveItem(self, lIndexOld, lIndexNew);
+    pub fn put_currentPositionTimecode(self: *const IWMPControls3, bstrTimecode: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_currentPositionTimecode(self, bstrTimecode);
     }
 };
 
-const IID_IWMPCdrom_Value = Guid.initString("cfab6e98-8730-11d3-b388-00c04f68574b");
-pub const IID_IWMPCdrom = &IID_IWMPCdrom_Value;
-pub const IWMPCdrom = extern union {
+const IID_IWMPConvert_Value = Guid.initString("d683162f-57d4-4108-8373-4a9676d1c2e9");
+pub const IID_IWMPConvert = &IID_IWMPConvert_Value;
+pub const IWMPConvert = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_driveSpecifier: *const fn(
-            self: *const IWMPCdrom,
-            pbstrDrive: ?*?BSTR,
+        base: IUnknown.VTable,
+        ConvertFile: *const fn(
+            self: *const IWMPConvert,
+            bstrInputFile: ?BSTR,
+            bstrDestinationFolder: ?BSTR,
+            pbstrOutputFile: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_playlist: *const fn(
-            self: *const IWMPCdrom,
-            ppPlaylist: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        eject: *const fn(
-            self: *const IWMPCdrom,
+        GetErrorURL: *const fn(
+            self: *const IWMPConvert,
+            pbstrURL: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_driveSpecifier(self: *const IWMPCdrom, pbstrDrive: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_driveSpecifier(self, pbstrDrive);
+    pub fn ConvertFile(self: *const IWMPConvert, bstrInputFile: ?BSTR, bstrDestinationFolder: ?BSTR, pbstrOutputFile: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertFile(self, bstrInputFile, bstrDestinationFolder, pbstrOutputFile);
     }
-    pub fn get_playlist(self: *const IWMPCdrom, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.get_playlist(self, ppPlaylist);
-    }
-    pub fn eject(self: *const IWMPCdrom) callconv(.@"inline") HRESULT {
-        return self.vtable.eject(self);
-    }
-};
-
-const IID_IWMPCdromCollection_Value = Guid.initString("ee4c8fe2-34b2-11d3-a3bf-006097c9b344");
-pub const IID_IWMPCdromCollection = &IID_IWMPCdromCollection_Value;
-pub const IWMPCdromCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_count: *const fn(
-            self: *const IWMPCdromCollection,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        item: *const fn(
-            self: *const IWMPCdromCollection,
-            lIndex: i32,
-            ppItem: ?*?*IWMPCdrom,
-        ) callconv(.winapi) HRESULT,
-        getByDriveSpecifier: *const fn(
-            self: *const IWMPCdromCollection,
-            bstrDriveSpecifier: ?BSTR,
-            ppCdrom: ?*?*IWMPCdrom,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_count(self: *const IWMPCdromCollection, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_count(self, plCount);
-    }
-    pub fn item(self: *const IWMPCdromCollection, lIndex: i32, ppItem: ?*?*IWMPCdrom) callconv(.@"inline") HRESULT {
-        return self.vtable.item(self, lIndex, ppItem);
-    }
-    pub fn getByDriveSpecifier(self: *const IWMPCdromCollection, bstrDriveSpecifier: ?BSTR, ppCdrom: ?*?*IWMPCdrom) callconv(.@"inline") HRESULT {
-        return self.vtable.getByDriveSpecifier(self, bstrDriveSpecifier, ppCdrom);
-    }
-};
-
-const IID_IWMPStringCollection_Value = Guid.initString("4a976298-8c0d-11d3-b389-00c04f68574b");
-pub const IID_IWMPStringCollection = &IID_IWMPStringCollection_Value;
-pub const IWMPStringCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_count: *const fn(
-            self: *const IWMPStringCollection,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        item: *const fn(
-            self: *const IWMPStringCollection,
-            lIndex: i32,
-            pbstrString: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_count(self: *const IWMPStringCollection, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_count(self, plCount);
-    }
-    pub fn item(self: *const IWMPStringCollection, lIndex: i32, pbstrString: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.item(self, lIndex, pbstrString);
-    }
-};
-
-const IID_IWMPMediaCollection_Value = Guid.initString("8363bc22-b4b4-4b19-989d-1cd765749dd1");
-pub const IID_IWMPMediaCollection = &IID_IWMPMediaCollection_Value;
-pub const IWMPMediaCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        add: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrURL: ?BSTR,
-            ppItem: ?*?*IWMPMedia,
-        ) callconv(.winapi) HRESULT,
-        getAll: *const fn(
-            self: *const IWMPMediaCollection,
-            ppMediaItems: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        getByName: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrName: ?BSTR,
-            ppMediaItems: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        getByGenre: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrGenre: ?BSTR,
-            ppMediaItems: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        getByAuthor: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrAuthor: ?BSTR,
-            ppMediaItems: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        getByAlbum: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrAlbum: ?BSTR,
-            ppMediaItems: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        getByAttribute: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrAttribute: ?BSTR,
-            bstrValue: ?BSTR,
-            ppMediaItems: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        remove: *const fn(
-            self: *const IWMPMediaCollection,
-            pItem: ?*IWMPMedia,
-            varfDeleteFile: i16,
-        ) callconv(.winapi) HRESULT,
-        getAttributeStringCollection: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrAttribute: ?BSTR,
-            bstrMediaType: ?BSTR,
-            ppStringCollection: ?*?*IWMPStringCollection,
-        ) callconv(.winapi) HRESULT,
-        getMediaAtom: *const fn(
-            self: *const IWMPMediaCollection,
-            bstrItemName: ?BSTR,
-            plAtom: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        setDeleted: *const fn(
-            self: *const IWMPMediaCollection,
-            pItem: ?*IWMPMedia,
-            varfIsDeleted: i16,
-        ) callconv(.winapi) HRESULT,
-        isDeleted: *const fn(
-            self: *const IWMPMediaCollection,
-            pItem: ?*IWMPMedia,
-            pvarfIsDeleted: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn add(self: *const IWMPMediaCollection, bstrURL: ?BSTR, ppItem: ?*?*IWMPMedia) callconv(.@"inline") HRESULT {
-        return self.vtable.add(self, bstrURL, ppItem);
-    }
-    pub fn getAll(self: *const IWMPMediaCollection, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getAll(self, ppMediaItems);
-    }
-    pub fn getByName(self: *const IWMPMediaCollection, bstrName: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getByName(self, bstrName, ppMediaItems);
-    }
-    pub fn getByGenre(self: *const IWMPMediaCollection, bstrGenre: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getByGenre(self, bstrGenre, ppMediaItems);
-    }
-    pub fn getByAuthor(self: *const IWMPMediaCollection, bstrAuthor: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getByAuthor(self, bstrAuthor, ppMediaItems);
-    }
-    pub fn getByAlbum(self: *const IWMPMediaCollection, bstrAlbum: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getByAlbum(self, bstrAlbum, ppMediaItems);
-    }
-    pub fn getByAttribute(self: *const IWMPMediaCollection, bstrAttribute: ?BSTR, bstrValue: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getByAttribute(self, bstrAttribute, bstrValue, ppMediaItems);
-    }
-    pub fn remove(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfDeleteFile: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.remove(self, pItem, varfDeleteFile);
-    }
-    pub fn getAttributeStringCollection(self: *const IWMPMediaCollection, bstrAttribute: ?BSTR, bstrMediaType: ?BSTR, ppStringCollection: ?*?*IWMPStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.getAttributeStringCollection(self, bstrAttribute, bstrMediaType, ppStringCollection);
-    }
-    pub fn getMediaAtom(self: *const IWMPMediaCollection, bstrItemName: ?BSTR, plAtom: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getMediaAtom(self, bstrItemName, plAtom);
-    }
-    pub fn setDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfIsDeleted: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.setDeleted(self, pItem, varfIsDeleted);
-    }
-    pub fn isDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, pvarfIsDeleted: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isDeleted(self, pItem, pvarfIsDeleted);
-    }
-};
-
-const IID_IWMPPlaylistArray_Value = Guid.initString("679409c0-99f7-11d3-9fb7-00105aa620bb");
-pub const IID_IWMPPlaylistArray = &IID_IWMPPlaylistArray_Value;
-pub const IWMPPlaylistArray = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_count: *const fn(
-            self: *const IWMPPlaylistArray,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        item: *const fn(
-            self: *const IWMPPlaylistArray,
-            lIndex: i32,
-            ppItem: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_count(self: *const IWMPPlaylistArray, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_count(self, plCount);
-    }
-    pub fn item(self: *const IWMPPlaylistArray, lIndex: i32, ppItem: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.item(self, lIndex, ppItem);
-    }
-};
-
-const IID_IWMPPlaylistCollection_Value = Guid.initString("10a13217-23a7-439b-b1c0-d847c79b7774");
-pub const IID_IWMPPlaylistCollection = &IID_IWMPPlaylistCollection_Value;
-pub const IWMPPlaylistCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        newPlaylist: *const fn(
-            self: *const IWMPPlaylistCollection,
-            bstrName: ?BSTR,
-            ppItem: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        getAll: *const fn(
-            self: *const IWMPPlaylistCollection,
-            ppPlaylistArray: ?*?*IWMPPlaylistArray,
-        ) callconv(.winapi) HRESULT,
-        getByName: *const fn(
-            self: *const IWMPPlaylistCollection,
-            bstrName: ?BSTR,
-            ppPlaylistArray: ?*?*IWMPPlaylistArray,
-        ) callconv(.winapi) HRESULT,
-        remove: *const fn(
-            self: *const IWMPPlaylistCollection,
-            pItem: ?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        setDeleted: *const fn(
-            self: *const IWMPPlaylistCollection,
-            pItem: ?*IWMPPlaylist,
-            varfIsDeleted: i16,
-        ) callconv(.winapi) HRESULT,
-        isDeleted: *const fn(
-            self: *const IWMPPlaylistCollection,
-            pItem: ?*IWMPPlaylist,
-            pvarfIsDeleted: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        importPlaylist: *const fn(
-            self: *const IWMPPlaylistCollection,
-            pItem: ?*IWMPPlaylist,
-            ppImportedItem: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn newPlaylist(self: *const IWMPPlaylistCollection, bstrName: ?BSTR, ppItem: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.newPlaylist(self, bstrName, ppItem);
-    }
-    pub fn getAll(self: *const IWMPPlaylistCollection, ppPlaylistArray: ?*?*IWMPPlaylistArray) callconv(.@"inline") HRESULT {
-        return self.vtable.getAll(self, ppPlaylistArray);
-    }
-    pub fn getByName(self: *const IWMPPlaylistCollection, bstrName: ?BSTR, ppPlaylistArray: ?*?*IWMPPlaylistArray) callconv(.@"inline") HRESULT {
-        return self.vtable.getByName(self, bstrName, ppPlaylistArray);
-    }
-    pub fn remove(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.remove(self, pItem);
-    }
-    pub fn setDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, varfIsDeleted: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.setDeleted(self, pItem, varfIsDeleted);
-    }
-    pub fn isDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, pvarfIsDeleted: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isDeleted(self, pItem, pvarfIsDeleted);
-    }
-    pub fn importPlaylist(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, ppImportedItem: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.importPlaylist(self, pItem, ppImportedItem);
-    }
-};
-
-const IID_IWMPNetwork_Value = Guid.initString("ec21b779-edef-462d-bba4-ad9dde2b29a7");
-pub const IID_IWMPNetwork = &IID_IWMPNetwork_Value;
-pub const IWMPNetwork = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_bandWidth: *const fn(
-            self: *const IWMPNetwork,
-            plBandwidth: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_recoveredPackets: *const fn(
-            self: *const IWMPNetwork,
-            plRecoveredPackets: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_sourceProtocol: *const fn(
-            self: *const IWMPNetwork,
-            pbstrSourceProtocol: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_receivedPackets: *const fn(
-            self: *const IWMPNetwork,
-            plReceivedPackets: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_lostPackets: *const fn(
-            self: *const IWMPNetwork,
-            plLostPackets: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_receptionQuality: *const fn(
-            self: *const IWMPNetwork,
-            plReceptionQuality: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_bufferingCount: *const fn(
-            self: *const IWMPNetwork,
-            plBufferingCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_bufferingProgress: *const fn(
-            self: *const IWMPNetwork,
-            plBufferingProgress: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_bufferingTime: *const fn(
-            self: *const IWMPNetwork,
-            plBufferingTime: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_bufferingTime: *const fn(
-            self: *const IWMPNetwork,
-            lBufferingTime: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_frameRate: *const fn(
-            self: *const IWMPNetwork,
-            plFrameRate: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_maxBitRate: *const fn(
-            self: *const IWMPNetwork,
-            plBitRate: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_bitRate: *const fn(
-            self: *const IWMPNetwork,
-            plBitRate: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getProxySettings: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            plProxySetting: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        setProxySettings: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            lProxySetting: i32,
-        ) callconv(.winapi) HRESULT,
-        getProxyName: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            pbstrProxyName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        setProxyName: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            bstrProxyName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        getProxyPort: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            lProxyPort: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        setProxyPort: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            lProxyPort: i32,
-        ) callconv(.winapi) HRESULT,
-        getProxyExceptionList: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            pbstrExceptionList: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        setProxyExceptionList: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            pbstrExceptionList: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        getProxyBypassForLocal: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            pfBypassForLocal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        setProxyBypassForLocal: *const fn(
-            self: *const IWMPNetwork,
-            bstrProtocol: ?BSTR,
-            fBypassForLocal: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_maxBandwidth: *const fn(
-            self: *const IWMPNetwork,
-            lMaxBandwidth: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_maxBandwidth: *const fn(
-            self: *const IWMPNetwork,
-            lMaxBandwidth: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_downloadProgress: *const fn(
-            self: *const IWMPNetwork,
-            plDownloadProgress: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_encodedFrameRate: *const fn(
-            self: *const IWMPNetwork,
-            plFrameRate: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_framesSkipped: *const fn(
-            self: *const IWMPNetwork,
-            plFrames: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_bandWidth(self: *const IWMPNetwork, plBandwidth: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_bandWidth(self, plBandwidth);
-    }
-    pub fn get_recoveredPackets(self: *const IWMPNetwork, plRecoveredPackets: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_recoveredPackets(self, plRecoveredPackets);
-    }
-    pub fn get_sourceProtocol(self: *const IWMPNetwork, pbstrSourceProtocol: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_sourceProtocol(self, pbstrSourceProtocol);
-    }
-    pub fn get_receivedPackets(self: *const IWMPNetwork, plReceivedPackets: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_receivedPackets(self, plReceivedPackets);
-    }
-    pub fn get_lostPackets(self: *const IWMPNetwork, plLostPackets: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_lostPackets(self, plLostPackets);
-    }
-    pub fn get_receptionQuality(self: *const IWMPNetwork, plReceptionQuality: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_receptionQuality(self, plReceptionQuality);
-    }
-    pub fn get_bufferingCount(self: *const IWMPNetwork, plBufferingCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_bufferingCount(self, plBufferingCount);
-    }
-    pub fn get_bufferingProgress(self: *const IWMPNetwork, plBufferingProgress: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_bufferingProgress(self, plBufferingProgress);
-    }
-    pub fn get_bufferingTime(self: *const IWMPNetwork, plBufferingTime: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_bufferingTime(self, plBufferingTime);
-    }
-    pub fn put_bufferingTime(self: *const IWMPNetwork, lBufferingTime: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_bufferingTime(self, lBufferingTime);
-    }
-    pub fn get_frameRate(self: *const IWMPNetwork, plFrameRate: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_frameRate(self, plFrameRate);
-    }
-    pub fn get_maxBitRate(self: *const IWMPNetwork, plBitRate: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_maxBitRate(self, plBitRate);
-    }
-    pub fn get_bitRate(self: *const IWMPNetwork, plBitRate: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_bitRate(self, plBitRate);
-    }
-    pub fn getProxySettings(self: *const IWMPNetwork, bstrProtocol: ?BSTR, plProxySetting: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getProxySettings(self, bstrProtocol, plProxySetting);
-    }
-    pub fn setProxySettings(self: *const IWMPNetwork, bstrProtocol: ?BSTR, lProxySetting: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.setProxySettings(self, bstrProtocol, lProxySetting);
-    }
-    pub fn getProxyName(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pbstrProxyName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getProxyName(self, bstrProtocol, pbstrProxyName);
-    }
-    pub fn setProxyName(self: *const IWMPNetwork, bstrProtocol: ?BSTR, bstrProxyName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setProxyName(self, bstrProtocol, bstrProxyName);
-    }
-    pub fn getProxyPort(self: *const IWMPNetwork, bstrProtocol: ?BSTR, lProxyPort: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getProxyPort(self, bstrProtocol, lProxyPort);
-    }
-    pub fn setProxyPort(self: *const IWMPNetwork, bstrProtocol: ?BSTR, lProxyPort: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.setProxyPort(self, bstrProtocol, lProxyPort);
-    }
-    pub fn getProxyExceptionList(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pbstrExceptionList: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getProxyExceptionList(self, bstrProtocol, pbstrExceptionList);
-    }
-    pub fn setProxyExceptionList(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pbstrExceptionList: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setProxyExceptionList(self, bstrProtocol, pbstrExceptionList);
-    }
-    pub fn getProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pfBypassForLocal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.getProxyBypassForLocal(self, bstrProtocol, pfBypassForLocal);
-    }
-    pub fn setProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, fBypassForLocal: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.setProxyBypassForLocal(self, bstrProtocol, fBypassForLocal);
-    }
-    pub fn get_maxBandwidth(self: *const IWMPNetwork, lMaxBandwidth: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_maxBandwidth(self, lMaxBandwidth);
-    }
-    pub fn put_maxBandwidth(self: *const IWMPNetwork, lMaxBandwidth: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_maxBandwidth(self, lMaxBandwidth);
-    }
-    pub fn get_downloadProgress(self: *const IWMPNetwork, plDownloadProgress: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_downloadProgress(self, plDownloadProgress);
-    }
-    pub fn get_encodedFrameRate(self: *const IWMPNetwork, plFrameRate: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_encodedFrameRate(self, plFrameRate);
-    }
-    pub fn get_framesSkipped(self: *const IWMPNetwork, plFrames: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_framesSkipped(self, plFrames);
+    pub fn GetErrorURL(self: *const IWMPConvert, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetErrorURL(self, pbstrURL);
     }
 };
 
@@ -2274,226 +3326,225 @@ pub const IWMPCore = extern union {
     }
 };
 
-const IID_IWMPPlayer_Value = Guid.initString("6bf52a4f-394a-11d3-b153-00c04f79faa6");
-pub const IID_IWMPPlayer = &IID_IWMPPlayer_Value;
-pub const IWMPPlayer = extern union {
+const IID_IWMPCore2_Value = Guid.initString("bc17e5b7-7561-4c18-bb90-17d485775659");
+pub const IID_IWMPCore2 = &IID_IWMPCore2_Value;
+pub const IWMPCore2 = extern union {
     pub const VTable = extern struct {
         base: IWMPCore.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enabled: *const fn(
-            self: *const IWMPPlayer,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enabled: *const fn(
-            self: *const IWMPPlayer,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_fullScreen: *const fn(
-            self: *const IWMPPlayer,
-            pbFullScreen: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_fullScreen: *const fn(
-            self: *const IWMPPlayer,
-            bFullScreen: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enableContextMenu: *const fn(
-            self: *const IWMPPlayer,
-            pbEnableContextMenu: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enableContextMenu: *const fn(
-            self: *const IWMPPlayer,
-            bEnableContextMenu: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_uiMode: *const fn(
-            self: *const IWMPPlayer,
-            bstrMode: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_uiMode: *const fn(
-            self: *const IWMPPlayer,
-            pbstrMode: ?*?BSTR,
+        get_dvd: *const fn(
+            self: *const IWMPCore2,
+            ppDVD: ?*?*IWMPDVD,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMPCore: IWMPCore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enabled(self, pbEnabled);
-    }
-    pub fn put_enabled(self: *const IWMPPlayer, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enabled(self, bEnabled);
-    }
-    pub fn get_fullScreen(self: *const IWMPPlayer, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_fullScreen(self, pbFullScreen);
-    }
-    pub fn put_fullScreen(self: *const IWMPPlayer, bFullScreen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_fullScreen(self, bFullScreen);
-    }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
-    }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
-    }
-    pub fn put_uiMode(self: *const IWMPPlayer, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_uiMode(self, bstrMode);
-    }
-    pub fn get_uiMode(self: *const IWMPPlayer, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_uiMode(self, pbstrMode);
+    pub fn get_dvd(self: *const IWMPCore2, ppDVD: ?*?*IWMPDVD) callconv(.@"inline") HRESULT {
+        return self.vtable.get_dvd(self, ppDVD);
     }
 };
 
-const IID_IWMPPlayer2_Value = Guid.initString("0e6b01d1-d407-4c85-bf5f-1c01f6150280");
-pub const IID_IWMPPlayer2 = &IID_IWMPPlayer2_Value;
-pub const IWMPPlayer2 = extern union {
+const IID_IWMPCore3_Value = Guid.initString("7587c667-628f-499f-88e7-6a6f4e888464");
+pub const IID_IWMPCore3 = &IID_IWMPCore3_Value;
+pub const IWMPCore3 = extern union {
     pub const VTable = extern struct {
-        base: IWMPCore.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enabled: *const fn(
-            self: *const IWMPPlayer2,
-            pbEnabled: ?*i16,
+        base: IWMPCore2.VTable,
+        newPlaylist: *const fn(
+            self: *const IWMPCore3,
+            bstrName: ?BSTR,
+            bstrURL: ?BSTR,
+            ppPlaylist: ?*?*IWMPPlaylist,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enabled: *const fn(
-            self: *const IWMPPlayer2,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_fullScreen: *const fn(
-            self: *const IWMPPlayer2,
-            pbFullScreen: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_fullScreen: *const fn(
-            self: *const IWMPPlayer2,
-            bFullScreen: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enableContextMenu: *const fn(
-            self: *const IWMPPlayer2,
-            pbEnableContextMenu: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enableContextMenu: *const fn(
-            self: *const IWMPPlayer2,
-            bEnableContextMenu: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_uiMode: *const fn(
-            self: *const IWMPPlayer2,
-            bstrMode: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_uiMode: *const fn(
-            self: *const IWMPPlayer2,
-            pbstrMode: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_stretchToFit: *const fn(
-            self: *const IWMPPlayer2,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_stretchToFit: *const fn(
-            self: *const IWMPPlayer2,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_windowlessVideo: *const fn(
-            self: *const IWMPPlayer2,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_windowlessVideo: *const fn(
-            self: *const IWMPPlayer2,
-            bEnabled: i16,
+        newMedia: *const fn(
+            self: *const IWMPCore3,
+            bstrURL: ?BSTR,
+            ppMedia: ?*?*IWMPMedia,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWMPCore2: IWMPCore2,
     IWMPCore: IWMPCore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enabled(self, pbEnabled);
+    pub fn newPlaylist(self: *const IWMPCore3, bstrName: ?BSTR, bstrURL: ?BSTR, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.newPlaylist(self, bstrName, bstrURL, ppPlaylist);
     }
-    pub fn put_enabled(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enabled(self, bEnabled);
-    }
-    pub fn get_fullScreen(self: *const IWMPPlayer2, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_fullScreen(self, pbFullScreen);
-    }
-    pub fn put_fullScreen(self: *const IWMPPlayer2, bFullScreen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_fullScreen(self, bFullScreen);
-    }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer2, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
-    }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer2, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
-    }
-    pub fn put_uiMode(self: *const IWMPPlayer2, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_uiMode(self, bstrMode);
-    }
-    pub fn get_uiMode(self: *const IWMPPlayer2, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_uiMode(self, pbstrMode);
-    }
-    pub fn get_stretchToFit(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_stretchToFit(self, pbEnabled);
-    }
-    pub fn put_stretchToFit(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_stretchToFit(self, bEnabled);
-    }
-    pub fn get_windowlessVideo(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_windowlessVideo(self, pbEnabled);
-    }
-    pub fn put_windowlessVideo(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_windowlessVideo(self, bEnabled);
+    pub fn newMedia(self: *const IWMPCore3, bstrURL: ?BSTR, ppMedia: ?*?*IWMPMedia) callconv(.@"inline") HRESULT {
+        return self.vtable.newMedia(self, bstrURL, ppMedia);
     }
 };
 
-const IID_IWMPMedia2_Value = Guid.initString("ab7c88bb-143e-4ea4-acc3-e4350b2106c3");
-pub const IID_IWMPMedia2 = &IID_IWMPMedia2_Value;
-pub const IWMPMedia2 = extern union {
+const IID_IWMPDownloadCollection_Value = Guid.initString("0a319c7f-85f9-436c-b88e-82fd88000e1c");
+pub const IID_IWMPDownloadCollection = &IID_IWMPDownloadCollection_Value;
+pub const IWMPDownloadCollection = extern union {
     pub const VTable = extern struct {
-        base: IWMPMedia.VTable,
+        base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_error: *const fn(
-            self: *const IWMPMedia2,
-            ppIWMPErrorItem: ?*?*IWMPErrorItem,
+        get_id: *const fn(
+            self: *const IWMPDownloadCollection,
+            plId: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_count: *const fn(
+            self: *const IWMPDownloadCollection,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        item: *const fn(
+            self: *const IWMPDownloadCollection,
+            lItem: i32,
+            ppDownload: ?*?*IWMPDownloadItem2,
+        ) callconv(.winapi) HRESULT,
+        startDownload: *const fn(
+            self: *const IWMPDownloadCollection,
+            bstrSourceURL: ?BSTR,
+            bstrType: ?BSTR,
+            ppDownload: ?*?*IWMPDownloadItem2,
+        ) callconv(.winapi) HRESULT,
+        removeItem: *const fn(
+            self: *const IWMPDownloadCollection,
+            lItem: i32,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IWMPDownloadCollection,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWMPMedia: IWMPMedia,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_error(self: *const IWMPMedia2, ppIWMPErrorItem: ?*?*IWMPErrorItem) callconv(.@"inline") HRESULT {
-        return self.vtable.get_error(self, ppIWMPErrorItem);
+    pub fn get_id(self: *const IWMPDownloadCollection, plId: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_id(self, plId);
+    }
+    pub fn get_count(self: *const IWMPDownloadCollection, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_count(self, plCount);
+    }
+    pub fn item(self: *const IWMPDownloadCollection, lItem: i32, ppDownload: ?*?*IWMPDownloadItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.item(self, lItem, ppDownload);
+    }
+    pub fn startDownload(self: *const IWMPDownloadCollection, bstrSourceURL: ?BSTR, bstrType: ?BSTR, ppDownload: ?*?*IWMPDownloadItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.startDownload(self, bstrSourceURL, bstrType, ppDownload);
+    }
+    pub fn removeItem(self: *const IWMPDownloadCollection, lItem: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.removeItem(self, lItem);
+    }
+    pub fn Clear(self: *const IWMPDownloadCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
     }
 };
 
-const IID_IWMPControls2_Value = Guid.initString("6f030d25-0890-480f-9775-1f7e40ab5b8e");
-pub const IID_IWMPControls2 = &IID_IWMPControls2_Value;
-pub const IWMPControls2 = extern union {
+const IID_IWMPDownloadItem_Value = Guid.initString("c9470e8e-3f6b-46a9-a0a9-452815c34297");
+pub const IID_IWMPDownloadItem = &IID_IWMPDownloadItem_Value;
+pub const IWMPDownloadItem = extern union {
     pub const VTable = extern struct {
-        base: IWMPControls.VTable,
-        step: *const fn(
-            self: *const IWMPControls2,
-            lStep: i32,
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_sourceURL: *const fn(
+            self: *const IWMPDownloadItem,
+            pbstrURL: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_size: *const fn(
+            self: *const IWMPDownloadItem,
+            plSize: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_type: *const fn(
+            self: *const IWMPDownloadItem,
+            pbstrType: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_progress: *const fn(
+            self: *const IWMPDownloadItem,
+            plProgress: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_downloadState: *const fn(
+            self: *const IWMPDownloadItem,
+            pwmpsdls: ?*WMPSubscriptionDownloadState,
+        ) callconv(.winapi) HRESULT,
+        pause: *const fn(
+            self: *const IWMPDownloadItem,
+        ) callconv(.winapi) HRESULT,
+        @"resume": *const fn(
+            self: *const IWMPDownloadItem,
+        ) callconv(.winapi) HRESULT,
+        cancel: *const fn(
+            self: *const IWMPDownloadItem,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWMPControls: IWMPControls,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn step(self: *const IWMPControls2, lStep: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.step(self, lStep);
+    pub fn get_sourceURL(self: *const IWMPDownloadItem, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_sourceURL(self, pbstrURL);
+    }
+    pub fn get_size(self: *const IWMPDownloadItem, plSize: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_size(self, plSize);
+    }
+    pub fn get_type(self: *const IWMPDownloadItem, pbstrType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_type(self, pbstrType);
+    }
+    pub fn get_progress(self: *const IWMPDownloadItem, plProgress: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_progress(self, plProgress);
+    }
+    pub fn get_downloadState(self: *const IWMPDownloadItem, pwmpsdls: ?*WMPSubscriptionDownloadState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_downloadState(self, pwmpsdls);
+    }
+    pub fn pause(self: *const IWMPDownloadItem) callconv(.@"inline") HRESULT {
+        return self.vtable.pause(self);
+    }
+    pub fn @"resume"(self: *const IWMPDownloadItem) callconv(.@"inline") HRESULT {
+        return self.vtable.@"resume"(self);
+    }
+    pub fn cancel(self: *const IWMPDownloadItem) callconv(.@"inline") HRESULT {
+        return self.vtable.cancel(self);
+    }
+};
+
+const IID_IWMPDownloadItem2_Value = Guid.initString("9fbb3336-6da3-479d-b8ff-67d46e20a987");
+pub const IID_IWMPDownloadItem2 = &IID_IWMPDownloadItem2_Value;
+pub const IWMPDownloadItem2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPDownloadItem.VTable,
+        getItemInfo: *const fn(
+            self: *const IWMPDownloadItem2,
+            bstrItemName: ?BSTR,
+            pbstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPDownloadItem: IWMPDownloadItem,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn getItemInfo(self: *const IWMPDownloadItem2, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
+    }
+};
+
+const IID_IWMPDownloadManager_Value = Guid.initString("e15e9ad1-8f20-4cc4-9ec7-1a328ca86a0d");
+pub const IID_IWMPDownloadManager = &IID_IWMPDownloadManager_Value;
+pub const IWMPDownloadManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        getDownloadCollection: *const fn(
+            self: *const IWMPDownloadManager,
+            lCollectionId: i32,
+            ppCollection: ?*?*IWMPDownloadCollection,
+        ) callconv(.winapi) HRESULT,
+        createDownloadCollection: *const fn(
+            self: *const IWMPDownloadManager,
+            ppCollection: ?*?*IWMPDownloadCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn getDownloadCollection(self: *const IWMPDownloadManager, lCollectionId: i32, ppCollection: ?*?*IWMPDownloadCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.getDownloadCollection(self, lCollectionId, ppCollection);
+    }
+    pub fn createDownloadCollection(self: *const IWMPDownloadManager, ppCollection: ?*?*IWMPDownloadCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.createDownloadCollection(self, ppCollection);
     }
 };
 
@@ -2548,132 +3599,241 @@ pub const IWMPDVD = extern union {
     }
 };
 
-const IID_IWMPCore2_Value = Guid.initString("bc17e5b7-7561-4c18-bb90-17d485775659");
-pub const IID_IWMPCore2 = &IID_IWMPCore2_Value;
-pub const IWMPCore2 = extern union {
+const IID_IWMPEffects_Value = Guid.initString("d3984c13-c3cb-48e2-8be5-5168340b4f35");
+pub const IID_IWMPEffects = &IID_IWMPEffects_Value;
+pub const IWMPEffects = extern union {
     pub const VTable = extern struct {
-        base: IWMPCore.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_dvd: *const fn(
-            self: *const IWMPCore2,
-            ppDVD: ?*?*IWMPDVD,
+        base: IUnknown.VTable,
+        Render: *const fn(
+            self: *const IWMPEffects,
+            pLevels: ?*TimedLevel,
+            hdc: ?HDC,
+            prc: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+        MediaInfo: *const fn(
+            self: *const IWMPEffects,
+            lChannelCount: i32,
+            lSampleRate: i32,
+            bstrTitle: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCapabilities: *const fn(
+            self: *const IWMPEffects,
+            pdwCapabilities: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetTitle: *const fn(
+            self: *const IWMPEffects,
+            bstrTitle: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPresetTitle: *const fn(
+            self: *const IWMPEffects,
+            nPreset: i32,
+            bstrPresetTitle: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPresetCount: *const fn(
+            self: *const IWMPEffects,
+            pnPresetCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetCurrentPreset: *const fn(
+            self: *const IWMPEffects,
+            nPreset: i32,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentPreset: *const fn(
+            self: *const IWMPEffects,
+            pnPreset: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        DisplayPropertyPage: *const fn(
+            self: *const IWMPEffects,
+            hwndOwner: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        GoFullscreen: *const fn(
+            self: *const IWMPEffects,
+            fFullScreen: BOOL,
+        ) callconv(.winapi) HRESULT,
+        RenderFullScreen: *const fn(
+            self: *const IWMPEffects,
+            pLevels: ?*TimedLevel,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWMPCore: IWMPCore,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_dvd(self: *const IWMPCore2, ppDVD: ?*?*IWMPDVD) callconv(.@"inline") HRESULT {
-        return self.vtable.get_dvd(self, ppDVD);
+    pub fn Render(self: *const IWMPEffects, pLevels: ?*TimedLevel, hdc: ?HDC, prc: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.Render(self, pLevels, hdc, prc);
+    }
+    pub fn MediaInfo(self: *const IWMPEffects, lChannelCount: i32, lSampleRate: i32, bstrTitle: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.MediaInfo(self, lChannelCount, lSampleRate, bstrTitle);
+    }
+    pub fn GetCapabilities(self: *const IWMPEffects, pdwCapabilities: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCapabilities(self, pdwCapabilities);
+    }
+    pub fn GetTitle(self: *const IWMPEffects, bstrTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTitle(self, bstrTitle);
+    }
+    pub fn GetPresetTitle(self: *const IWMPEffects, nPreset: i32, bstrPresetTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPresetTitle(self, nPreset, bstrPresetTitle);
+    }
+    pub fn GetPresetCount(self: *const IWMPEffects, pnPresetCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPresetCount(self, pnPresetCount);
+    }
+    pub fn SetCurrentPreset(self: *const IWMPEffects, nPreset: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCurrentPreset(self, nPreset);
+    }
+    pub fn GetCurrentPreset(self: *const IWMPEffects, pnPreset: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPreset(self, pnPreset);
+    }
+    pub fn DisplayPropertyPage(self: *const IWMPEffects, hwndOwner: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.DisplayPropertyPage(self, hwndOwner);
+    }
+    pub fn GoFullscreen(self: *const IWMPEffects, fFullScreen: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GoFullscreen(self, fFullScreen);
+    }
+    pub fn RenderFullScreen(self: *const IWMPEffects, pLevels: ?*TimedLevel) callconv(.@"inline") HRESULT {
+        return self.vtable.RenderFullScreen(self, pLevels);
     }
 };
 
-const IID_IWMPPlayer3_Value = Guid.initString("54062b68-052a-4c25-a39f-8b63346511d4");
-pub const IID_IWMPPlayer3 = &IID_IWMPPlayer3_Value;
-pub const IWMPPlayer3 = extern union {
+const IID_IWMPEffects2_Value = Guid.initString("695386ec-aa3c-4618-a5e1-dd9a8b987632");
+pub const IID_IWMPEffects2 = &IID_IWMPEffects2_Value;
+pub const IWMPEffects2 = extern union {
     pub const VTable = extern struct {
-        base: IWMPCore2.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enabled: *const fn(
-            self: *const IWMPPlayer3,
-            pbEnabled: ?*i16,
+        base: IWMPEffects.VTable,
+        SetCore: *const fn(
+            self: *const IWMPEffects2,
+            pPlayer: ?*IWMPCore,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enabled: *const fn(
-            self: *const IWMPPlayer3,
-            bEnabled: i16,
+        Create: *const fn(
+            self: *const IWMPEffects2,
+            hwndParent: ?HWND,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_fullScreen: *const fn(
-            self: *const IWMPPlayer3,
-            pbFullScreen: ?*i16,
+        Destroy: *const fn(
+            self: *const IWMPEffects2,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_fullScreen: *const fn(
-            self: *const IWMPPlayer3,
-            bFullScreen: i16,
+        NotifyNewMedia: *const fn(
+            self: *const IWMPEffects2,
+            pMedia: ?*IWMPMedia,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enableContextMenu: *const fn(
-            self: *const IWMPPlayer3,
-            pbEnableContextMenu: ?*i16,
+        OnWindowMessage: *const fn(
+            self: *const IWMPEffects2,
+            msg: u32,
+            WParam: WPARAM,
+            LParam: LPARAM,
+            plResultParam: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enableContextMenu: *const fn(
-            self: *const IWMPPlayer3,
-            bEnableContextMenu: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_uiMode: *const fn(
-            self: *const IWMPPlayer3,
-            bstrMode: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_uiMode: *const fn(
-            self: *const IWMPPlayer3,
-            pbstrMode: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_stretchToFit: *const fn(
-            self: *const IWMPPlayer3,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_stretchToFit: *const fn(
-            self: *const IWMPPlayer3,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_windowlessVideo: *const fn(
-            self: *const IWMPPlayer3,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_windowlessVideo: *const fn(
-            self: *const IWMPPlayer3,
-            bEnabled: i16,
+        RenderWindowed: *const fn(
+            self: *const IWMPEffects2,
+            pData: ?*TimedLevel,
+            fRequiredRender: BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWMPCore2: IWMPCore2,
-    IWMPCore: IWMPCore,
+    IWMPEffects: IWMPEffects,
+    IUnknown: IUnknown,
+    pub fn SetCore(self: *const IWMPEffects2, pPlayer: ?*IWMPCore) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCore(self, pPlayer);
+    }
+    pub fn Create(self: *const IWMPEffects2, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, hwndParent);
+    }
+    pub fn Destroy(self: *const IWMPEffects2) callconv(.@"inline") HRESULT {
+        return self.vtable.Destroy(self);
+    }
+    pub fn NotifyNewMedia(self: *const IWMPEffects2, pMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
+        return self.vtable.NotifyNewMedia(self, pMedia);
+    }
+    pub fn OnWindowMessage(self: *const IWMPEffects2, msg: u32, WParam: WPARAM, LParam: LPARAM, plResultParam: ?*LRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnWindowMessage(self, msg, WParam, LParam, plResultParam);
+    }
+    pub fn RenderWindowed(self: *const IWMPEffects2, pData: ?*TimedLevel, fRequiredRender: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.RenderWindowed(self, pData, fRequiredRender);
+    }
+};
+
+const IID_IWMPError_Value = Guid.initString("a12dcf7d-14ab-4c1b-a8cd-63909f06025b");
+pub const IID_IWMPError = &IID_IWMPError_Value;
+pub const IWMPError = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        clearErrorQueue: *const fn(
+            self: *const IWMPError,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_errorCount: *const fn(
+            self: *const IWMPError,
+            plNumErrors: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_item: *const fn(
+            self: *const IWMPError,
+            dwIndex: i32,
+            ppErrorItem: ?*?*IWMPErrorItem,
+        ) callconv(.winapi) HRESULT,
+        webHelp: *const fn(
+            self: *const IWMPError,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enabled(self, pbEnabled);
+    pub fn clearErrorQueue(self: *const IWMPError) callconv(.@"inline") HRESULT {
+        return self.vtable.clearErrorQueue(self);
     }
-    pub fn put_enabled(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enabled(self, bEnabled);
+    pub fn get_errorCount(self: *const IWMPError, plNumErrors: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_errorCount(self, plNumErrors);
     }
-    pub fn get_fullScreen(self: *const IWMPPlayer3, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_fullScreen(self, pbFullScreen);
+    pub fn get_item(self: *const IWMPError, dwIndex: i32, ppErrorItem: ?*?*IWMPErrorItem) callconv(.@"inline") HRESULT {
+        return self.vtable.get_item(self, dwIndex, ppErrorItem);
     }
-    pub fn put_fullScreen(self: *const IWMPPlayer3, bFullScreen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_fullScreen(self, bFullScreen);
+    pub fn webHelp(self: *const IWMPError) callconv(.@"inline") HRESULT {
+        return self.vtable.webHelp(self);
     }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer3, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
+};
+
+const IID_IWMPErrorItem_Value = Guid.initString("3614c646-3b3b-4de7-a81e-930e3f2127b3");
+pub const IID_IWMPErrorItem = &IID_IWMPErrorItem_Value;
+pub const IWMPErrorItem = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_errorCode: *const fn(
+            self: *const IWMPErrorItem,
+            phr: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_errorDescription: *const fn(
+            self: *const IWMPErrorItem,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_errorContext: *const fn(
+            self: *const IWMPErrorItem,
+            pvarContext: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_remedy: *const fn(
+            self: *const IWMPErrorItem,
+            plRemedy: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_customUrl: *const fn(
+            self: *const IWMPErrorItem,
+            pbstrCustomUrl: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_errorCode(self: *const IWMPErrorItem, phr: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_errorCode(self, phr);
     }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer3, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
+    pub fn get_errorDescription(self: *const IWMPErrorItem, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_errorDescription(self, pbstrDescription);
     }
-    pub fn put_uiMode(self: *const IWMPPlayer3, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_uiMode(self, bstrMode);
+    pub fn get_errorContext(self: *const IWMPErrorItem, pvarContext: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_errorContext(self, pvarContext);
     }
-    pub fn get_uiMode(self: *const IWMPPlayer3, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_uiMode(self, pbstrMode);
+    pub fn get_remedy(self: *const IWMPErrorItem, plRemedy: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_remedy(self, plRemedy);
     }
-    pub fn get_stretchToFit(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_stretchToFit(self, pbEnabled);
-    }
-    pub fn put_stretchToFit(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_stretchToFit(self, bEnabled);
-    }
-    pub fn get_windowlessVideo(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_windowlessVideo(self, pbEnabled);
-    }
-    pub fn put_windowlessVideo(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_windowlessVideo(self, bEnabled);
+    pub fn get_customUrl(self: *const IWMPErrorItem, pbstrCustomUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_customUrl(self, pbstrCustomUrl);
     }
 };
 
@@ -2696,1406 +3856,6 @@ pub const IWMPErrorItem2 = extern union {
         return self.vtable.get_condition(self, plCondition);
     }
 };
-
-const IID_IWMPRemoteMediaServices_Value = Guid.initString("cbb92747-741f-44fe-ab5b-f1a48f3b2a59");
-pub const IID_IWMPRemoteMediaServices = &IID_IWMPRemoteMediaServices_Value;
-pub const IWMPRemoteMediaServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetServiceType: *const fn(
-            self: *const IWMPRemoteMediaServices,
-            pbstrType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetApplicationName: *const fn(
-            self: *const IWMPRemoteMediaServices,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetScriptableObject: *const fn(
-            self: *const IWMPRemoteMediaServices,
-            pbstrName: ?*?BSTR,
-            ppDispatch: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        GetCustomUIMode: *const fn(
-            self: *const IWMPRemoteMediaServices,
-            pbstrFile: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetServiceType(self: *const IWMPRemoteMediaServices, pbstrType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetServiceType(self, pbstrType);
-    }
-    pub fn GetApplicationName(self: *const IWMPRemoteMediaServices, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetApplicationName(self, pbstrName);
-    }
-    pub fn GetScriptableObject(self: *const IWMPRemoteMediaServices, pbstrName: ?*?BSTR, ppDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetScriptableObject(self, pbstrName, ppDispatch);
-    }
-    pub fn GetCustomUIMode(self: *const IWMPRemoteMediaServices, pbstrFile: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCustomUIMode(self, pbstrFile);
-    }
-};
-
-const IID_IWMPSkinManager_Value = Guid.initString("076f2fa6-ed30-448b-8cc5-3f3ef3529c7a");
-pub const IID_IWMPSkinManager = &IID_IWMPSkinManager_Value;
-pub const IWMPSkinManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetVisualStyle: *const fn(
-            self: *const IWMPSkinManager,
-            bstrPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetVisualStyle(self: *const IWMPSkinManager, bstrPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVisualStyle(self, bstrPath);
-    }
-};
-
-const IID_IWMPMetadataPicture_Value = Guid.initString("5c29bbe0-f87d-4c45-aa28-a70f0230ffa9");
-pub const IID_IWMPMetadataPicture = &IID_IWMPMetadataPicture_Value;
-pub const IWMPMetadataPicture = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_mimeType: *const fn(
-            self: *const IWMPMetadataPicture,
-            pbstrMimeType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_pictureType: *const fn(
-            self: *const IWMPMetadataPicture,
-            pbstrPictureType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_description: *const fn(
-            self: *const IWMPMetadataPicture,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_URL: *const fn(
-            self: *const IWMPMetadataPicture,
-            pbstrURL: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_mimeType(self: *const IWMPMetadataPicture, pbstrMimeType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_mimeType(self, pbstrMimeType);
-    }
-    pub fn get_pictureType(self: *const IWMPMetadataPicture, pbstrPictureType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_pictureType(self, pbstrPictureType);
-    }
-    pub fn get_description(self: *const IWMPMetadataPicture, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_description(self, pbstrDescription);
-    }
-    pub fn get_URL(self: *const IWMPMetadataPicture, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_URL(self, pbstrURL);
-    }
-};
-
-const IID_IWMPMetadataText_Value = Guid.initString("769a72db-13d2-45e2-9c48-53ca9d5b7450");
-pub const IID_IWMPMetadataText = &IID_IWMPMetadataText_Value;
-pub const IWMPMetadataText = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_description: *const fn(
-            self: *const IWMPMetadataText,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_text: *const fn(
-            self: *const IWMPMetadataText,
-            pbstrText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_description(self: *const IWMPMetadataText, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_description(self, pbstrDescription);
-    }
-    pub fn get_text(self: *const IWMPMetadataText, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_text(self, pbstrText);
-    }
-};
-
-const IID_IWMPMedia3_Value = Guid.initString("f118efc7-f03a-4fb4-99c9-1c02a5c1065b");
-pub const IID_IWMPMedia3 = &IID_IWMPMedia3_Value;
-pub const IWMPMedia3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPMedia2.VTable,
-        getAttributeCountByType: *const fn(
-            self: *const IWMPMedia3,
-            bstrType: ?BSTR,
-            bstrLanguage: ?BSTR,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getItemInfoByType: *const fn(
-            self: *const IWMPMedia3,
-            bstrType: ?BSTR,
-            bstrLanguage: ?BSTR,
-            lIndex: i32,
-            pvarValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPMedia2: IWMPMedia2,
-    IWMPMedia: IWMPMedia,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn getAttributeCountByType(self: *const IWMPMedia3, bstrType: ?BSTR, bstrLanguage: ?BSTR, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getAttributeCountByType(self, bstrType, bstrLanguage, plCount);
-    }
-    pub fn getItemInfoByType(self: *const IWMPMedia3, bstrType: ?BSTR, bstrLanguage: ?BSTR, lIndex: i32, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfoByType(self, bstrType, bstrLanguage, lIndex, pvarValue);
-    }
-};
-
-const IID_IWMPSettings2_Value = Guid.initString("fda937a4-eece-4da5-a0b6-39bf89ade2c2");
-pub const IID_IWMPSettings2 = &IID_IWMPSettings2_Value;
-pub const IWMPSettings2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPSettings.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_defaultAudioLanguage: *const fn(
-            self: *const IWMPSettings2,
-            plLangID: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_mediaAccessRights: *const fn(
-            self: *const IWMPSettings2,
-            pbstrRights: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        requestMediaAccessRights: *const fn(
-            self: *const IWMPSettings2,
-            bstrDesiredAccess: ?BSTR,
-            pvbAccepted: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPSettings: IWMPSettings,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_defaultAudioLanguage(self: *const IWMPSettings2, plLangID: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_defaultAudioLanguage(self, plLangID);
-    }
-    pub fn get_mediaAccessRights(self: *const IWMPSettings2, pbstrRights: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_mediaAccessRights(self, pbstrRights);
-    }
-    pub fn requestMediaAccessRights(self: *const IWMPSettings2, bstrDesiredAccess: ?BSTR, pvbAccepted: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.requestMediaAccessRights(self, bstrDesiredAccess, pvbAccepted);
-    }
-};
-
-const IID_IWMPControls3_Value = Guid.initString("a1d1110e-d545-476a-9a78-ac3e4cb1e6bd");
-pub const IID_IWMPControls3 = &IID_IWMPControls3_Value;
-pub const IWMPControls3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPControls2.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_audioLanguageCount: *const fn(
-            self: *const IWMPControls3,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getAudioLanguageID: *const fn(
-            self: *const IWMPControls3,
-            lIndex: i32,
-            plLangID: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getAudioLanguageDescription: *const fn(
-            self: *const IWMPControls3,
-            lIndex: i32,
-            pbstrLangDesc: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_currentAudioLanguage: *const fn(
-            self: *const IWMPControls3,
-            plLangID: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_currentAudioLanguage: *const fn(
-            self: *const IWMPControls3,
-            lLangID: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_currentAudioLanguageIndex: *const fn(
-            self: *const IWMPControls3,
-            plIndex: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_currentAudioLanguageIndex: *const fn(
-            self: *const IWMPControls3,
-            lIndex: i32,
-        ) callconv(.winapi) HRESULT,
-        getLanguageName: *const fn(
-            self: *const IWMPControls3,
-            lLangID: i32,
-            pbstrLangName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_currentPositionTimecode: *const fn(
-            self: *const IWMPControls3,
-            bstrTimecode: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_currentPositionTimecode: *const fn(
-            self: *const IWMPControls3,
-            bstrTimecode: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPControls2: IWMPControls2,
-    IWMPControls: IWMPControls,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_audioLanguageCount(self: *const IWMPControls3, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_audioLanguageCount(self, plCount);
-    }
-    pub fn getAudioLanguageID(self: *const IWMPControls3, lIndex: i32, plLangID: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getAudioLanguageID(self, lIndex, plLangID);
-    }
-    pub fn getAudioLanguageDescription(self: *const IWMPControls3, lIndex: i32, pbstrLangDesc: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getAudioLanguageDescription(self, lIndex, pbstrLangDesc);
-    }
-    pub fn get_currentAudioLanguage(self: *const IWMPControls3, plLangID: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_currentAudioLanguage(self, plLangID);
-    }
-    pub fn put_currentAudioLanguage(self: *const IWMPControls3, lLangID: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_currentAudioLanguage(self, lLangID);
-    }
-    pub fn get_currentAudioLanguageIndex(self: *const IWMPControls3, plIndex: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_currentAudioLanguageIndex(self, plIndex);
-    }
-    pub fn put_currentAudioLanguageIndex(self: *const IWMPControls3, lIndex: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_currentAudioLanguageIndex(self, lIndex);
-    }
-    pub fn getLanguageName(self: *const IWMPControls3, lLangID: i32, pbstrLangName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getLanguageName(self, lLangID, pbstrLangName);
-    }
-    pub fn get_currentPositionTimecode(self: *const IWMPControls3, bstrTimecode: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_currentPositionTimecode(self, bstrTimecode);
-    }
-    pub fn put_currentPositionTimecode(self: *const IWMPControls3, bstrTimecode: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_currentPositionTimecode(self, bstrTimecode);
-    }
-};
-
-const IID_IWMPClosedCaption2_Value = Guid.initString("350ba78b-6bc8-4113-a5f5-312056934eb6");
-pub const IID_IWMPClosedCaption2 = &IID_IWMPClosedCaption2_Value;
-pub const IWMPClosedCaption2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPClosedCaption.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SAMILangCount: *const fn(
-            self: *const IWMPClosedCaption2,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getSAMILangName: *const fn(
-            self: *const IWMPClosedCaption2,
-            nIndex: i32,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        getSAMILangID: *const fn(
-            self: *const IWMPClosedCaption2,
-            nIndex: i32,
-            plLangID: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SAMIStyleCount: *const fn(
-            self: *const IWMPClosedCaption2,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getSAMIStyleName: *const fn(
-            self: *const IWMPClosedCaption2,
-            nIndex: i32,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPClosedCaption: IWMPClosedCaption,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_SAMILangCount(self: *const IWMPClosedCaption2, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SAMILangCount(self, plCount);
-    }
-    pub fn getSAMILangName(self: *const IWMPClosedCaption2, nIndex: i32, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getSAMILangName(self, nIndex, pbstrName);
-    }
-    pub fn getSAMILangID(self: *const IWMPClosedCaption2, nIndex: i32, plLangID: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getSAMILangID(self, nIndex, plLangID);
-    }
-    pub fn get_SAMIStyleCount(self: *const IWMPClosedCaption2, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SAMIStyleCount(self, plCount);
-    }
-    pub fn getSAMIStyleName(self: *const IWMPClosedCaption2, nIndex: i32, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getSAMIStyleName(self, nIndex, pbstrName);
-    }
-};
-
-const IID_IWMPPlayerApplication_Value = Guid.initString("40897764-ceab-47be-ad4a-8e28537f9bbf");
-pub const IID_IWMPPlayerApplication = &IID_IWMPPlayerApplication_Value;
-pub const IWMPPlayerApplication = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        switchToPlayerApplication: *const fn(
-            self: *const IWMPPlayerApplication,
-        ) callconv(.winapi) HRESULT,
-        switchToControl: *const fn(
-            self: *const IWMPPlayerApplication,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_playerDocked: *const fn(
-            self: *const IWMPPlayerApplication,
-            pbPlayerDocked: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_hasDisplay: *const fn(
-            self: *const IWMPPlayerApplication,
-            pbHasDisplay: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn switchToPlayerApplication(self: *const IWMPPlayerApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.switchToPlayerApplication(self);
-    }
-    pub fn switchToControl(self: *const IWMPPlayerApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.switchToControl(self);
-    }
-    pub fn get_playerDocked(self: *const IWMPPlayerApplication, pbPlayerDocked: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_playerDocked(self, pbPlayerDocked);
-    }
-    pub fn get_hasDisplay(self: *const IWMPPlayerApplication, pbHasDisplay: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_hasDisplay(self, pbHasDisplay);
-    }
-};
-
-const IID_IWMPCore3_Value = Guid.initString("7587c667-628f-499f-88e7-6a6f4e888464");
-pub const IID_IWMPCore3 = &IID_IWMPCore3_Value;
-pub const IWMPCore3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPCore2.VTable,
-        newPlaylist: *const fn(
-            self: *const IWMPCore3,
-            bstrName: ?BSTR,
-            bstrURL: ?BSTR,
-            ppPlaylist: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        newMedia: *const fn(
-            self: *const IWMPCore3,
-            bstrURL: ?BSTR,
-            ppMedia: ?*?*IWMPMedia,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPCore2: IWMPCore2,
-    IWMPCore: IWMPCore,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn newPlaylist(self: *const IWMPCore3, bstrName: ?BSTR, bstrURL: ?BSTR, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.newPlaylist(self, bstrName, bstrURL, ppPlaylist);
-    }
-    pub fn newMedia(self: *const IWMPCore3, bstrURL: ?BSTR, ppMedia: ?*?*IWMPMedia) callconv(.@"inline") HRESULT {
-        return self.vtable.newMedia(self, bstrURL, ppMedia);
-    }
-};
-
-const IID_IWMPPlayer4_Value = Guid.initString("6c497d62-8919-413c-82db-e935fb3ec584");
-pub const IID_IWMPPlayer4 = &IID_IWMPPlayer4_Value;
-pub const IWMPPlayer4 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPCore3.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enabled: *const fn(
-            self: *const IWMPPlayer4,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enabled: *const fn(
-            self: *const IWMPPlayer4,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_fullScreen: *const fn(
-            self: *const IWMPPlayer4,
-            pbFullScreen: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_fullScreen: *const fn(
-            self: *const IWMPPlayer4,
-            bFullScreen: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_enableContextMenu: *const fn(
-            self: *const IWMPPlayer4,
-            pbEnableContextMenu: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_enableContextMenu: *const fn(
-            self: *const IWMPPlayer4,
-            bEnableContextMenu: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_uiMode: *const fn(
-            self: *const IWMPPlayer4,
-            bstrMode: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_uiMode: *const fn(
-            self: *const IWMPPlayer4,
-            pbstrMode: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_stretchToFit: *const fn(
-            self: *const IWMPPlayer4,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_stretchToFit: *const fn(
-            self: *const IWMPPlayer4,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_windowlessVideo: *const fn(
-            self: *const IWMPPlayer4,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_windowlessVideo: *const fn(
-            self: *const IWMPPlayer4,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_isRemote: *const fn(
-            self: *const IWMPPlayer4,
-            pvarfIsRemote: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_playerApplication: *const fn(
-            self: *const IWMPPlayer4,
-            ppIWMPPlayerApplication: ?*?*IWMPPlayerApplication,
-        ) callconv(.winapi) HRESULT,
-        openPlayer: *const fn(
-            self: *const IWMPPlayer4,
-            bstrURL: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPCore3: IWMPCore3,
-    IWMPCore2: IWMPCore2,
-    IWMPCore: IWMPCore,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enabled(self, pbEnabled);
-    }
-    pub fn put_enabled(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enabled(self, bEnabled);
-    }
-    pub fn get_fullScreen(self: *const IWMPPlayer4, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_fullScreen(self, pbFullScreen);
-    }
-    pub fn put_fullScreen(self: *const IWMPPlayer4, bFullScreen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_fullScreen(self, bFullScreen);
-    }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer4, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
-    }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer4, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
-    }
-    pub fn put_uiMode(self: *const IWMPPlayer4, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_uiMode(self, bstrMode);
-    }
-    pub fn get_uiMode(self: *const IWMPPlayer4, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_uiMode(self, pbstrMode);
-    }
-    pub fn get_stretchToFit(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_stretchToFit(self, pbEnabled);
-    }
-    pub fn put_stretchToFit(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_stretchToFit(self, bEnabled);
-    }
-    pub fn get_windowlessVideo(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_windowlessVideo(self, pbEnabled);
-    }
-    pub fn put_windowlessVideo(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_windowlessVideo(self, bEnabled);
-    }
-    pub fn get_isRemote(self: *const IWMPPlayer4, pvarfIsRemote: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_isRemote(self, pvarfIsRemote);
-    }
-    pub fn get_playerApplication(self: *const IWMPPlayer4, ppIWMPPlayerApplication: ?*?*IWMPPlayerApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.get_playerApplication(self, ppIWMPPlayerApplication);
-    }
-    pub fn openPlayer(self: *const IWMPPlayer4, bstrURL: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.openPlayer(self, bstrURL);
-    }
-};
-
-const IID_IWMPPlayerServices_Value = Guid.initString("1d01fbdb-ade2-4c8d-9842-c190b95c3306");
-pub const IID_IWMPPlayerServices = &IID_IWMPPlayerServices_Value;
-pub const IWMPPlayerServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        activateUIPlugin: *const fn(
-            self: *const IWMPPlayerServices,
-            bstrPlugin: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        setTaskPane: *const fn(
-            self: *const IWMPPlayerServices,
-            bstrTaskPane: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        setTaskPaneURL: *const fn(
-            self: *const IWMPPlayerServices,
-            bstrTaskPane: ?BSTR,
-            bstrURL: ?BSTR,
-            bstrFriendlyName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn activateUIPlugin(self: *const IWMPPlayerServices, bstrPlugin: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.activateUIPlugin(self, bstrPlugin);
-    }
-    pub fn setTaskPane(self: *const IWMPPlayerServices, bstrTaskPane: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setTaskPane(self, bstrTaskPane);
-    }
-    pub fn setTaskPaneURL(self: *const IWMPPlayerServices, bstrTaskPane: ?BSTR, bstrURL: ?BSTR, bstrFriendlyName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setTaskPaneURL(self, bstrTaskPane, bstrURL, bstrFriendlyName);
-    }
-};
-
-pub const WMPSyncState = enum(i32) {
-    Unknown = 0,
-    Synchronizing = 1,
-    Stopped = 2,
-    Estimating = 3,
-    Last = 4,
-};
-pub const wmpssUnknown = WMPSyncState.Unknown;
-pub const wmpssSynchronizing = WMPSyncState.Synchronizing;
-pub const wmpssStopped = WMPSyncState.Stopped;
-pub const wmpssEstimating = WMPSyncState.Estimating;
-pub const wmpssLast = WMPSyncState.Last;
-
-pub const WMPDeviceStatus = enum(i32) {
-    Unknown = 0,
-    PartnershipExists = 1,
-    PartnershipDeclined = 2,
-    PartnershipAnother = 3,
-    ManualDevice = 4,
-    NewDevice = 5,
-    Last = 6,
-};
-pub const wmpdsUnknown = WMPDeviceStatus.Unknown;
-pub const wmpdsPartnershipExists = WMPDeviceStatus.PartnershipExists;
-pub const wmpdsPartnershipDeclined = WMPDeviceStatus.PartnershipDeclined;
-pub const wmpdsPartnershipAnother = WMPDeviceStatus.PartnershipAnother;
-pub const wmpdsManualDevice = WMPDeviceStatus.ManualDevice;
-pub const wmpdsNewDevice = WMPDeviceStatus.NewDevice;
-pub const wmpdsLast = WMPDeviceStatus.Last;
-
-const IID_IWMPSyncDevice_Value = Guid.initString("82a2986c-0293-4fd0-b279-b21b86c058be");
-pub const IID_IWMPSyncDevice = &IID_IWMPSyncDevice_Value;
-pub const IWMPSyncDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_friendlyName: *const fn(
-            self: *const IWMPSyncDevice,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_friendlyName: *const fn(
-            self: *const IWMPSyncDevice,
-            bstrName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_deviceName: *const fn(
-            self: *const IWMPSyncDevice,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_deviceId: *const fn(
-            self: *const IWMPSyncDevice,
-            pbstrDeviceId: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_partnershipIndex: *const fn(
-            self: *const IWMPSyncDevice,
-            plIndex: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_connected: *const fn(
-            self: *const IWMPSyncDevice,
-            pvbConnected: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_status: *const fn(
-            self: *const IWMPSyncDevice,
-            pwmpds: ?*WMPDeviceStatus,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_syncState: *const fn(
-            self: *const IWMPSyncDevice,
-            pwmpss: ?*WMPSyncState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_progress: *const fn(
-            self: *const IWMPSyncDevice,
-            plProgress: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getItemInfo: *const fn(
-            self: *const IWMPSyncDevice,
-            bstrItemName: ?BSTR,
-            pbstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        createPartnership: *const fn(
-            self: *const IWMPSyncDevice,
-            vbShowUI: i16,
-        ) callconv(.winapi) HRESULT,
-        deletePartnership: *const fn(
-            self: *const IWMPSyncDevice,
-        ) callconv(.winapi) HRESULT,
-        start: *const fn(
-            self: *const IWMPSyncDevice,
-        ) callconv(.winapi) HRESULT,
-        stop: *const fn(
-            self: *const IWMPSyncDevice,
-        ) callconv(.winapi) HRESULT,
-        showSettings: *const fn(
-            self: *const IWMPSyncDevice,
-        ) callconv(.winapi) HRESULT,
-        isIdentical: *const fn(
-            self: *const IWMPSyncDevice,
-            pDevice: ?*IWMPSyncDevice,
-            pvbool: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_friendlyName(self: *const IWMPSyncDevice, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_friendlyName(self, pbstrName);
-    }
-    pub fn put_friendlyName(self: *const IWMPSyncDevice, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_friendlyName(self, bstrName);
-    }
-    pub fn get_deviceName(self: *const IWMPSyncDevice, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_deviceName(self, pbstrName);
-    }
-    pub fn get_deviceId(self: *const IWMPSyncDevice, pbstrDeviceId: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_deviceId(self, pbstrDeviceId);
-    }
-    pub fn get_partnershipIndex(self: *const IWMPSyncDevice, plIndex: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_partnershipIndex(self, plIndex);
-    }
-    pub fn get_connected(self: *const IWMPSyncDevice, pvbConnected: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_connected(self, pvbConnected);
-    }
-    pub fn get_status(self: *const IWMPSyncDevice, pwmpds: ?*WMPDeviceStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.get_status(self, pwmpds);
-    }
-    pub fn get_syncState(self: *const IWMPSyncDevice, pwmpss: ?*WMPSyncState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_syncState(self, pwmpss);
-    }
-    pub fn get_progress(self: *const IWMPSyncDevice, plProgress: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_progress(self, plProgress);
-    }
-    pub fn getItemInfo(self: *const IWMPSyncDevice, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
-    }
-    pub fn createPartnership(self: *const IWMPSyncDevice, vbShowUI: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.createPartnership(self, vbShowUI);
-    }
-    pub fn deletePartnership(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.deletePartnership(self);
-    }
-    pub fn start(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.start(self);
-    }
-    pub fn stop(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.stop(self);
-    }
-    pub fn showSettings(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.showSettings(self);
-    }
-    pub fn isIdentical(self: *const IWMPSyncDevice, pDevice: ?*IWMPSyncDevice, pvbool: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isIdentical(self, pDevice, pvbool);
-    }
-};
-
-const IID_IWMPSyncServices_Value = Guid.initString("8b5050ff-e0a4-4808-b3a8-893a9e1ed894");
-pub const IID_IWMPSyncServices = &IID_IWMPSyncServices_Value;
-pub const IWMPSyncServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_deviceCount: *const fn(
-            self: *const IWMPSyncServices,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getDevice: *const fn(
-            self: *const IWMPSyncServices,
-            lIndex: i32,
-            ppDevice: ?*?*IWMPSyncDevice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_deviceCount(self: *const IWMPSyncServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_deviceCount(self, plCount);
-    }
-    pub fn getDevice(self: *const IWMPSyncServices, lIndex: i32, ppDevice: ?*?*IWMPSyncDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.getDevice(self, lIndex, ppDevice);
-    }
-};
-
-const IID_IWMPPlayerServices2_Value = Guid.initString("1bb1592f-f040-418a-9f71-17c7512b4d70");
-pub const IID_IWMPPlayerServices2 = &IID_IWMPPlayerServices2_Value;
-pub const IWMPPlayerServices2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPPlayerServices.VTable,
-        setBackgroundProcessingPriority: *const fn(
-            self: *const IWMPPlayerServices2,
-            bstrPriority: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPPlayerServices: IWMPPlayerServices,
-    IUnknown: IUnknown,
-    pub fn setBackgroundProcessingPriority(self: *const IWMPPlayerServices2, bstrPriority: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setBackgroundProcessingPriority(self, bstrPriority);
-    }
-};
-
-pub const WMPRipState = enum(i32) {
-    Unknown = 0,
-    Ripping = 1,
-    Stopped = 2,
-};
-pub const wmprsUnknown = WMPRipState.Unknown;
-pub const wmprsRipping = WMPRipState.Ripping;
-pub const wmprsStopped = WMPRipState.Stopped;
-
-pub const WMPBurnFormat = enum(i32) {
-    AudioCD = 0,
-    DataCD = 1,
-};
-pub const wmpbfAudioCD = WMPBurnFormat.AudioCD;
-pub const wmpbfDataCD = WMPBurnFormat.DataCD;
-
-pub const WMPBurnState = enum(i32) {
-    Unknown = 0,
-    Busy = 1,
-    Ready = 2,
-    WaitingForDisc = 3,
-    RefreshStatusPending = 4,
-    PreparingToBurn = 5,
-    Burning = 6,
-    Stopped = 7,
-    Erasing = 8,
-    Downloading = 9,
-};
-pub const wmpbsUnknown = WMPBurnState.Unknown;
-pub const wmpbsBusy = WMPBurnState.Busy;
-pub const wmpbsReady = WMPBurnState.Ready;
-pub const wmpbsWaitingForDisc = WMPBurnState.WaitingForDisc;
-pub const wmpbsRefreshStatusPending = WMPBurnState.RefreshStatusPending;
-pub const wmpbsPreparingToBurn = WMPBurnState.PreparingToBurn;
-pub const wmpbsBurning = WMPBurnState.Burning;
-pub const wmpbsStopped = WMPBurnState.Stopped;
-pub const wmpbsErasing = WMPBurnState.Erasing;
-pub const wmpbsDownloading = WMPBurnState.Downloading;
-
-pub const WMPStringCollectionChangeEventType = enum(i32) {
-    Unknown = 0,
-    Insert = 1,
-    Change = 2,
-    Delete = 3,
-    Clear = 4,
-    BeginUpdates = 5,
-    EndUpdates = 6,
-};
-pub const wmpsccetUnknown = WMPStringCollectionChangeEventType.Unknown;
-pub const wmpsccetInsert = WMPStringCollectionChangeEventType.Insert;
-pub const wmpsccetChange = WMPStringCollectionChangeEventType.Change;
-pub const wmpsccetDelete = WMPStringCollectionChangeEventType.Delete;
-pub const wmpsccetClear = WMPStringCollectionChangeEventType.Clear;
-pub const wmpsccetBeginUpdates = WMPStringCollectionChangeEventType.BeginUpdates;
-pub const wmpsccetEndUpdates = WMPStringCollectionChangeEventType.EndUpdates;
-
-const IID_IWMPCdromRip_Value = Guid.initString("56e2294f-69ed-4629-a869-aea72c0dcc2c");
-pub const IID_IWMPCdromRip = &IID_IWMPCdromRip_Value;
-pub const IWMPCdromRip = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ripState: *const fn(
-            self: *const IWMPCdromRip,
-            pwmprs: ?*WMPRipState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ripProgress: *const fn(
-            self: *const IWMPCdromRip,
-            plProgress: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        startRip: *const fn(
-            self: *const IWMPCdromRip,
-        ) callconv(.winapi) HRESULT,
-        stopRip: *const fn(
-            self: *const IWMPCdromRip,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_ripState(self: *const IWMPCdromRip, pwmprs: ?*WMPRipState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ripState(self, pwmprs);
-    }
-    pub fn get_ripProgress(self: *const IWMPCdromRip, plProgress: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ripProgress(self, plProgress);
-    }
-    pub fn startRip(self: *const IWMPCdromRip) callconv(.@"inline") HRESULT {
-        return self.vtable.startRip(self);
-    }
-    pub fn stopRip(self: *const IWMPCdromRip) callconv(.@"inline") HRESULT {
-        return self.vtable.stopRip(self);
-    }
-};
-
-const IID_IWMPCdromBurn_Value = Guid.initString("bd94dbeb-417f-4928-aa06-087d56ed9b59");
-pub const IID_IWMPCdromBurn = &IID_IWMPCdromBurn_Value;
-pub const IWMPCdromBurn = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        isAvailable: *const fn(
-            self: *const IWMPCdromBurn,
-            bstrItem: ?BSTR,
-            pIsAvailable: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        getItemInfo: *const fn(
-            self: *const IWMPCdromBurn,
-            bstrItem: ?BSTR,
-            pbstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_label: *const fn(
-            self: *const IWMPCdromBurn,
-            pbstrLabel: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_label: *const fn(
-            self: *const IWMPCdromBurn,
-            bstrLabel: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_burnFormat: *const fn(
-            self: *const IWMPCdromBurn,
-            pwmpbf: ?*WMPBurnFormat,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_burnFormat: *const fn(
-            self: *const IWMPCdromBurn,
-            wmpbf: WMPBurnFormat,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_burnPlaylist: *const fn(
-            self: *const IWMPCdromBurn,
-            ppPlaylist: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_burnPlaylist: *const fn(
-            self: *const IWMPCdromBurn,
-            pPlaylist: ?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        refreshStatus: *const fn(
-            self: *const IWMPCdromBurn,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_burnState: *const fn(
-            self: *const IWMPCdromBurn,
-            pwmpbs: ?*WMPBurnState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_burnProgress: *const fn(
-            self: *const IWMPCdromBurn,
-            plProgress: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        startBurn: *const fn(
-            self: *const IWMPCdromBurn,
-        ) callconv(.winapi) HRESULT,
-        stopBurn: *const fn(
-            self: *const IWMPCdromBurn,
-        ) callconv(.winapi) HRESULT,
-        erase: *const fn(
-            self: *const IWMPCdromBurn,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn isAvailable(self: *const IWMPCdromBurn, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isAvailable(self, bstrItem, pIsAvailable);
-    }
-    pub fn getItemInfo(self: *const IWMPCdromBurn, bstrItem: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfo(self, bstrItem, pbstrVal);
-    }
-    pub fn get_label(self: *const IWMPCdromBurn, pbstrLabel: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_label(self, pbstrLabel);
-    }
-    pub fn put_label(self: *const IWMPCdromBurn, bstrLabel: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_label(self, bstrLabel);
-    }
-    pub fn get_burnFormat(self: *const IWMPCdromBurn, pwmpbf: ?*WMPBurnFormat) callconv(.@"inline") HRESULT {
-        return self.vtable.get_burnFormat(self, pwmpbf);
-    }
-    pub fn put_burnFormat(self: *const IWMPCdromBurn, wmpbf: WMPBurnFormat) callconv(.@"inline") HRESULT {
-        return self.vtable.put_burnFormat(self, wmpbf);
-    }
-    pub fn get_burnPlaylist(self: *const IWMPCdromBurn, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.get_burnPlaylist(self, ppPlaylist);
-    }
-    pub fn put_burnPlaylist(self: *const IWMPCdromBurn, pPlaylist: ?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.put_burnPlaylist(self, pPlaylist);
-    }
-    pub fn refreshStatus(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
-        return self.vtable.refreshStatus(self);
-    }
-    pub fn get_burnState(self: *const IWMPCdromBurn, pwmpbs: ?*WMPBurnState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_burnState(self, pwmpbs);
-    }
-    pub fn get_burnProgress(self: *const IWMPCdromBurn, plProgress: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_burnProgress(self, plProgress);
-    }
-    pub fn startBurn(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
-        return self.vtable.startBurn(self);
-    }
-    pub fn stopBurn(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
-        return self.vtable.stopBurn(self);
-    }
-    pub fn erase(self: *const IWMPCdromBurn) callconv(.@"inline") HRESULT {
-        return self.vtable.erase(self);
-    }
-};
-
-const IID_IWMPQuery_Value = Guid.initString("a00918f3-a6b0-4bfb-9189-fd834c7bc5a5");
-pub const IID_IWMPQuery = &IID_IWMPQuery_Value;
-pub const IWMPQuery = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        addCondition: *const fn(
-            self: *const IWMPQuery,
-            bstrAttribute: ?BSTR,
-            bstrOperator: ?BSTR,
-            bstrValue: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        beginNextGroup: *const fn(
-            self: *const IWMPQuery,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn addCondition(self: *const IWMPQuery, bstrAttribute: ?BSTR, bstrOperator: ?BSTR, bstrValue: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.addCondition(self, bstrAttribute, bstrOperator, bstrValue);
-    }
-    pub fn beginNextGroup(self: *const IWMPQuery) callconv(.@"inline") HRESULT {
-        return self.vtable.beginNextGroup(self);
-    }
-};
-
-const IID_IWMPMediaCollection2_Value = Guid.initString("8ba957f5-fd8c-4791-b82d-f840401ee474");
-pub const IID_IWMPMediaCollection2 = &IID_IWMPMediaCollection2_Value;
-pub const IWMPMediaCollection2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPMediaCollection.VTable,
-        createQuery: *const fn(
-            self: *const IWMPMediaCollection2,
-            ppQuery: ?*?*IWMPQuery,
-        ) callconv(.winapi) HRESULT,
-        getPlaylistByQuery: *const fn(
-            self: *const IWMPMediaCollection2,
-            pQuery: ?*IWMPQuery,
-            bstrMediaType: ?BSTR,
-            bstrSortAttribute: ?BSTR,
-            fSortAscending: i16,
-            ppPlaylist: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        getStringCollectionByQuery: *const fn(
-            self: *const IWMPMediaCollection2,
-            bstrAttribute: ?BSTR,
-            pQuery: ?*IWMPQuery,
-            bstrMediaType: ?BSTR,
-            bstrSortAttribute: ?BSTR,
-            fSortAscending: i16,
-            ppStringCollection: ?*?*IWMPStringCollection,
-        ) callconv(.winapi) HRESULT,
-        getByAttributeAndMediaType: *const fn(
-            self: *const IWMPMediaCollection2,
-            bstrAttribute: ?BSTR,
-            bstrValue: ?BSTR,
-            bstrMediaType: ?BSTR,
-            ppMediaItems: ?*?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPMediaCollection: IWMPMediaCollection,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn createQuery(self: *const IWMPMediaCollection2, ppQuery: ?*?*IWMPQuery) callconv(.@"inline") HRESULT {
-        return self.vtable.createQuery(self, ppQuery);
-    }
-    pub fn getPlaylistByQuery(self: *const IWMPMediaCollection2, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: i16, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getPlaylistByQuery(self, pQuery, bstrMediaType, bstrSortAttribute, fSortAscending, ppPlaylist);
-    }
-    pub fn getStringCollectionByQuery(self: *const IWMPMediaCollection2, bstrAttribute: ?BSTR, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: i16, ppStringCollection: ?*?*IWMPStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.getStringCollectionByQuery(self, bstrAttribute, pQuery, bstrMediaType, bstrSortAttribute, fSortAscending, ppStringCollection);
-    }
-    pub fn getByAttributeAndMediaType(self: *const IWMPMediaCollection2, bstrAttribute: ?BSTR, bstrValue: ?BSTR, bstrMediaType: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.getByAttributeAndMediaType(self, bstrAttribute, bstrValue, bstrMediaType, ppMediaItems);
-    }
-};
-
-const IID_IWMPStringCollection2_Value = Guid.initString("46ad648d-53f1-4a74-92e2-2a1b68d63fd4");
-pub const IID_IWMPStringCollection2 = &IID_IWMPStringCollection2_Value;
-pub const IWMPStringCollection2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPStringCollection.VTable,
-        isIdentical: *const fn(
-            self: *const IWMPStringCollection2,
-            pIWMPStringCollection2: ?*IWMPStringCollection2,
-            pvbool: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        getItemInfo: *const fn(
-            self: *const IWMPStringCollection2,
-            lCollectionIndex: i32,
-            bstrItemName: ?BSTR,
-            pbstrValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        getAttributeCountByType: *const fn(
-            self: *const IWMPStringCollection2,
-            lCollectionIndex: i32,
-            bstrType: ?BSTR,
-            bstrLanguage: ?BSTR,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getItemInfoByType: *const fn(
-            self: *const IWMPStringCollection2,
-            lCollectionIndex: i32,
-            bstrType: ?BSTR,
-            bstrLanguage: ?BSTR,
-            lAttributeIndex: i32,
-            pvarValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPStringCollection: IWMPStringCollection,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn isIdentical(self: *const IWMPStringCollection2, pIWMPStringCollection2: ?*IWMPStringCollection2, pvbool: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isIdentical(self, pIWMPStringCollection2, pvbool);
-    }
-    pub fn getItemInfo(self: *const IWMPStringCollection2, lCollectionIndex: i32, bstrItemName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfo(self, lCollectionIndex, bstrItemName, pbstrValue);
-    }
-    pub fn getAttributeCountByType(self: *const IWMPStringCollection2, lCollectionIndex: i32, bstrType: ?BSTR, bstrLanguage: ?BSTR, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getAttributeCountByType(self, lCollectionIndex, bstrType, bstrLanguage, plCount);
-    }
-    pub fn getItemInfoByType(self: *const IWMPStringCollection2, lCollectionIndex: i32, bstrType: ?BSTR, bstrLanguage: ?BSTR, lAttributeIndex: i32, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfoByType(self, lCollectionIndex, bstrType, bstrLanguage, lAttributeIndex, pvarValue);
-    }
-};
-
-pub const WMPLibraryType = enum(i32) {
-    Unknown = 0,
-    All = 1,
-    Local = 2,
-    Remote = 3,
-    Disc = 4,
-    PortableDevice = 5,
-};
-pub const wmpltUnknown = WMPLibraryType.Unknown;
-pub const wmpltAll = WMPLibraryType.All;
-pub const wmpltLocal = WMPLibraryType.Local;
-pub const wmpltRemote = WMPLibraryType.Remote;
-pub const wmpltDisc = WMPLibraryType.Disc;
-pub const wmpltPortableDevice = WMPLibraryType.PortableDevice;
-
-const IID_IWMPLibrary_Value = Guid.initString("3df47861-7df1-4c1f-a81b-4c26f0f7a7c6");
-pub const IID_IWMPLibrary = &IID_IWMPLibrary_Value;
-pub const IWMPLibrary = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_name: *const fn(
-            self: *const IWMPLibrary,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_type: *const fn(
-            self: *const IWMPLibrary,
-            pwmplt: ?*WMPLibraryType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_mediaCollection: *const fn(
-            self: *const IWMPLibrary,
-            ppIWMPMediaCollection: ?*?*IWMPMediaCollection,
-        ) callconv(.winapi) HRESULT,
-        isIdentical: *const fn(
-            self: *const IWMPLibrary,
-            pIWMPLibrary: ?*IWMPLibrary,
-            pvbool: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_name(self: *const IWMPLibrary, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_name(self, pbstrName);
-    }
-    pub fn get_type(self: *const IWMPLibrary, pwmplt: ?*WMPLibraryType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_type(self, pwmplt);
-    }
-    pub fn get_mediaCollection(self: *const IWMPLibrary, ppIWMPMediaCollection: ?*?*IWMPMediaCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_mediaCollection(self, ppIWMPMediaCollection);
-    }
-    pub fn isIdentical(self: *const IWMPLibrary, pIWMPLibrary: ?*IWMPLibrary, pvbool: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isIdentical(self, pIWMPLibrary, pvbool);
-    }
-};
-
-const IID_IWMPLibraryServices_Value = Guid.initString("39c2f8d5-1cf2-4d5e-ae09-d73492cf9eaa");
-pub const IID_IWMPLibraryServices = &IID_IWMPLibraryServices_Value;
-pub const IWMPLibraryServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        getCountByType: *const fn(
-            self: *const IWMPLibraryServices,
-            wmplt: WMPLibraryType,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        getLibraryByType: *const fn(
-            self: *const IWMPLibraryServices,
-            wmplt: WMPLibraryType,
-            lIndex: i32,
-            ppIWMPLibrary: ?*?*IWMPLibrary,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn getCountByType(self: *const IWMPLibraryServices, wmplt: WMPLibraryType, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.getCountByType(self, wmplt, plCount);
-    }
-    pub fn getLibraryByType(self: *const IWMPLibraryServices, wmplt: WMPLibraryType, lIndex: i32, ppIWMPLibrary: ?*?*IWMPLibrary) callconv(.@"inline") HRESULT {
-        return self.vtable.getLibraryByType(self, wmplt, lIndex, ppIWMPLibrary);
-    }
-};
-
-const IID_IWMPLibrarySharingServices_Value = Guid.initString("82cba86b-9f04-474b-a365-d6dd1466e541");
-pub const IID_IWMPLibrarySharingServices = &IID_IWMPLibrarySharingServices_Value;
-pub const IWMPLibrarySharingServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        isLibraryShared: *const fn(
-            self: *const IWMPLibrarySharingServices,
-            pvbShared: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        isLibrarySharingEnabled: *const fn(
-            self: *const IWMPLibrarySharingServices,
-            pvbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        showLibrarySharing: *const fn(
-            self: *const IWMPLibrarySharingServices,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn isLibraryShared(self: *const IWMPLibrarySharingServices, pvbShared: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isLibraryShared(self, pvbShared);
-    }
-    pub fn isLibrarySharingEnabled(self: *const IWMPLibrarySharingServices, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.isLibrarySharingEnabled(self, pvbEnabled);
-    }
-    pub fn showLibrarySharing(self: *const IWMPLibrarySharingServices) callconv(.@"inline") HRESULT {
-        return self.vtable.showLibrarySharing(self);
-    }
-};
-
-pub const WMPFolderScanState = enum(i32) {
-    Unknown = 0,
-    Scanning = 1,
-    Updating = 2,
-    Stopped = 3,
-};
-pub const wmpfssUnknown = WMPFolderScanState.Unknown;
-pub const wmpfssScanning = WMPFolderScanState.Scanning;
-pub const wmpfssUpdating = WMPFolderScanState.Updating;
-pub const wmpfssStopped = WMPFolderScanState.Stopped;
-
-const IID_IWMPFolderMonitorServices_Value = Guid.initString("788c8743-e57f-439d-a468-5bc77f2e59c6");
-pub const IID_IWMPFolderMonitorServices = &IID_IWMPFolderMonitorServices_Value;
-pub const IWMPFolderMonitorServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_count: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        item: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            lIndex: i32,
-            pbstrFolder: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        add: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            bstrFolder: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        remove: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            lIndex: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_scanState: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            pwmpfss: ?*WMPFolderScanState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_currentFolder: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            pbstrFolder: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_scannedFilesCount: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_addedFilesCount: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_updateProgress: *const fn(
-            self: *const IWMPFolderMonitorServices,
-            plProgress: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        startScan: *const fn(
-            self: *const IWMPFolderMonitorServices,
-        ) callconv(.winapi) HRESULT,
-        stopScan: *const fn(
-            self: *const IWMPFolderMonitorServices,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_count(self: *const IWMPFolderMonitorServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_count(self, plCount);
-    }
-    pub fn item(self: *const IWMPFolderMonitorServices, lIndex: i32, pbstrFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.item(self, lIndex, pbstrFolder);
-    }
-    pub fn add(self: *const IWMPFolderMonitorServices, bstrFolder: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.add(self, bstrFolder);
-    }
-    pub fn remove(self: *const IWMPFolderMonitorServices, lIndex: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.remove(self, lIndex);
-    }
-    pub fn get_scanState(self: *const IWMPFolderMonitorServices, pwmpfss: ?*WMPFolderScanState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_scanState(self, pwmpfss);
-    }
-    pub fn get_currentFolder(self: *const IWMPFolderMonitorServices, pbstrFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_currentFolder(self, pbstrFolder);
-    }
-    pub fn get_scannedFilesCount(self: *const IWMPFolderMonitorServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_scannedFilesCount(self, plCount);
-    }
-    pub fn get_addedFilesCount(self: *const IWMPFolderMonitorServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_addedFilesCount(self, plCount);
-    }
-    pub fn get_updateProgress(self: *const IWMPFolderMonitorServices, plProgress: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_updateProgress(self, plProgress);
-    }
-    pub fn startScan(self: *const IWMPFolderMonitorServices) callconv(.@"inline") HRESULT {
-        return self.vtable.startScan(self);
-    }
-    pub fn stopScan(self: *const IWMPFolderMonitorServices) callconv(.@"inline") HRESULT {
-        return self.vtable.stopScan(self);
-    }
-};
-
-const IID_IWMPSyncDevice2_Value = Guid.initString("88afb4b2-140a-44d2-91e6-4543da467cd1");
-pub const IID_IWMPSyncDevice2 = &IID_IWMPSyncDevice2_Value;
-pub const IWMPSyncDevice2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPSyncDevice.VTable,
-        setItemInfo: *const fn(
-            self: *const IWMPSyncDevice2,
-            bstrItemName: ?BSTR,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPSyncDevice: IWMPSyncDevice,
-    IUnknown: IUnknown,
-    pub fn setItemInfo(self: *const IWMPSyncDevice2, bstrItemName: ?BSTR, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.setItemInfo(self, bstrItemName, bstrVal);
-    }
-};
-
-const IID_IWMPSyncDevice3_Value = Guid.initString("b22c85f9-263c-4372-a0da-b518db9b4098");
-pub const IID_IWMPSyncDevice3 = &IID_IWMPSyncDevice3_Value;
-pub const IWMPSyncDevice3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPSyncDevice2.VTable,
-        estimateSyncSize: *const fn(
-            self: *const IWMPSyncDevice3,
-            pNonRulePlaylist: ?*IWMPPlaylist,
-            pRulesPlaylist: ?*IWMPPlaylist,
-        ) callconv(.winapi) HRESULT,
-        cancelEstimation: *const fn(
-            self: *const IWMPSyncDevice3,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPSyncDevice2: IWMPSyncDevice2,
-    IWMPSyncDevice: IWMPSyncDevice,
-    IUnknown: IUnknown,
-    pub fn estimateSyncSize(self: *const IWMPSyncDevice3, pNonRulePlaylist: ?*IWMPPlaylist, pRulesPlaylist: ?*IWMPPlaylist) callconv(.@"inline") HRESULT {
-        return self.vtable.estimateSyncSize(self, pNonRulePlaylist, pRulesPlaylist);
-    }
-    pub fn cancelEstimation(self: *const IWMPSyncDevice3) callconv(.@"inline") HRESULT {
-        return self.vtable.cancelEstimation(self);
-    }
-};
-
-const IID_IWMPLibrary2_Value = Guid.initString("dd578a4e-79b1-426c-bf8f-3add9072500b");
-pub const IID_IWMPLibrary2 = &IID_IWMPLibrary2_Value;
-pub const IWMPLibrary2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPLibrary.VTable,
-        getItemInfo: *const fn(
-            self: *const IWMPLibrary2,
-            bstrItemName: ?BSTR,
-            pbstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPLibrary: IWMPLibrary,
-    IUnknown: IUnknown,
-    pub fn getItemInfo(self: *const IWMPLibrary2, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
-    }
-};
-
-const CLSID_WMPLib_Value = Guid.initString("6bf52a50-394a-11d3-b153-00c04f79faa6");
-pub const CLSID_WMPLib = &CLSID_WMPLib_Value;
-
-const CLSID_WMPRemoteMediaServices_Value = Guid.initString("df333473-2cf7-4be2-907f-9aad5661364f");
-pub const CLSID_WMPRemoteMediaServices = &CLSID_WMPRemoteMediaServices_Value;
 
 const IID_IWMPEvents_Value = Guid.initString("19a6627b-da9e-47c1-bb23-00b5e668236a");
 pub const IID_IWMPEvents = &IID_IWMPEvents_Value;
@@ -4617,15 +4377,950 @@ pub const IWMPEvents4 = extern union {
     }
 };
 
-const IID__WMPOCXEvents_Value = Guid.initString("6bf52a51-394a-11d3-b153-00c04f79faa6");
-pub const IID__WMPOCXEvents = &IID__WMPOCXEvents_Value;
-pub const _WMPOCXEvents = extern union {
+const IID_IWMPFolderMonitorServices_Value = Guid.initString("788c8743-e57f-439d-a468-5bc77f2e59c6");
+pub const IID_IWMPFolderMonitorServices = &IID_IWMPFolderMonitorServices_Value;
+pub const IWMPFolderMonitorServices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_count: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        item: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            lIndex: i32,
+            pbstrFolder: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        add: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            bstrFolder: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        remove: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            lIndex: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_scanState: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            pwmpfss: ?*WMPFolderScanState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_currentFolder: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            pbstrFolder: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_scannedFilesCount: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_addedFilesCount: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_updateProgress: *const fn(
+            self: *const IWMPFolderMonitorServices,
+            plProgress: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        startScan: *const fn(
+            self: *const IWMPFolderMonitorServices,
+        ) callconv(.winapi) HRESULT,
+        stopScan: *const fn(
+            self: *const IWMPFolderMonitorServices,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_count(self: *const IWMPFolderMonitorServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_count(self, plCount);
+    }
+    pub fn item(self: *const IWMPFolderMonitorServices, lIndex: i32, pbstrFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.item(self, lIndex, pbstrFolder);
+    }
+    pub fn add(self: *const IWMPFolderMonitorServices, bstrFolder: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.add(self, bstrFolder);
+    }
+    pub fn remove(self: *const IWMPFolderMonitorServices, lIndex: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.remove(self, lIndex);
+    }
+    pub fn get_scanState(self: *const IWMPFolderMonitorServices, pwmpfss: ?*WMPFolderScanState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_scanState(self, pwmpfss);
+    }
+    pub fn get_currentFolder(self: *const IWMPFolderMonitorServices, pbstrFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_currentFolder(self, pbstrFolder);
+    }
+    pub fn get_scannedFilesCount(self: *const IWMPFolderMonitorServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_scannedFilesCount(self, plCount);
+    }
+    pub fn get_addedFilesCount(self: *const IWMPFolderMonitorServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_addedFilesCount(self, plCount);
+    }
+    pub fn get_updateProgress(self: *const IWMPFolderMonitorServices, plProgress: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_updateProgress(self, plProgress);
+    }
+    pub fn startScan(self: *const IWMPFolderMonitorServices) callconv(.@"inline") HRESULT {
+        return self.vtable.startScan(self);
+    }
+    pub fn stopScan(self: *const IWMPFolderMonitorServices) callconv(.@"inline") HRESULT {
+        return self.vtable.stopScan(self);
+    }
+};
+
+const IID_IWMPGraphCreation_Value = Guid.initString("bfb377e5-c594-4369-a970-de896d5ece74");
+pub const IID_IWMPGraphCreation = &IID_IWMPGraphCreation_Value;
+pub const IWMPGraphCreation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GraphCreationPreRender: *const fn(
+            self: *const IWMPGraphCreation,
+            pFilterGraph: ?*IUnknown,
+            pReserved: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GraphCreationPostRender: *const fn(
+            self: *const IWMPGraphCreation,
+            pFilterGraph: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetGraphCreationFlags: *const fn(
+            self: *const IWMPGraphCreation,
+            pdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GraphCreationPreRender(self: *const IWMPGraphCreation, pFilterGraph: ?*IUnknown, pReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GraphCreationPreRender(self, pFilterGraph, pReserved);
+    }
+    pub fn GraphCreationPostRender(self: *const IWMPGraphCreation, pFilterGraph: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GraphCreationPostRender(self, pFilterGraph);
+    }
+    pub fn GetGraphCreationFlags(self: *const IWMPGraphCreation, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGraphCreationFlags(self, pdwFlags);
+    }
+};
+
+const IID_IWMPLibrary_Value = Guid.initString("3df47861-7df1-4c1f-a81b-4c26f0f7a7c6");
+pub const IID_IWMPLibrary = &IID_IWMPLibrary_Value;
+pub const IWMPLibrary = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_name: *const fn(
+            self: *const IWMPLibrary,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_type: *const fn(
+            self: *const IWMPLibrary,
+            pwmplt: ?*WMPLibraryType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_mediaCollection: *const fn(
+            self: *const IWMPLibrary,
+            ppIWMPMediaCollection: ?*?*IWMPMediaCollection,
+        ) callconv(.winapi) HRESULT,
+        isIdentical: *const fn(
+            self: *const IWMPLibrary,
+            pIWMPLibrary: ?*IWMPLibrary,
+            pvbool: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_name(self: *const IWMPLibrary, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_name(self, pbstrName);
+    }
+    pub fn get_type(self: *const IWMPLibrary, pwmplt: ?*WMPLibraryType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_type(self, pwmplt);
+    }
+    pub fn get_mediaCollection(self: *const IWMPLibrary, ppIWMPMediaCollection: ?*?*IWMPMediaCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_mediaCollection(self, ppIWMPMediaCollection);
+    }
+    pub fn isIdentical(self: *const IWMPLibrary, pIWMPLibrary: ?*IWMPLibrary, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isIdentical(self, pIWMPLibrary, pvbool);
+    }
+};
+
+const IID_IWMPLibrary2_Value = Guid.initString("dd578a4e-79b1-426c-bf8f-3add9072500b");
+pub const IID_IWMPLibrary2 = &IID_IWMPLibrary2_Value;
+pub const IWMPLibrary2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPLibrary.VTable,
+        getItemInfo: *const fn(
+            self: *const IWMPLibrary2,
+            bstrItemName: ?BSTR,
+            pbstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPLibrary: IWMPLibrary,
+    IUnknown: IUnknown,
+    pub fn getItemInfo(self: *const IWMPLibrary2, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
+    }
+};
+
+const IID_IWMPLibraryServices_Value = Guid.initString("39c2f8d5-1cf2-4d5e-ae09-d73492cf9eaa");
+pub const IID_IWMPLibraryServices = &IID_IWMPLibraryServices_Value;
+pub const IWMPLibraryServices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        getCountByType: *const fn(
+            self: *const IWMPLibraryServices,
+            wmplt: WMPLibraryType,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getLibraryByType: *const fn(
+            self: *const IWMPLibraryServices,
+            wmplt: WMPLibraryType,
+            lIndex: i32,
+            ppIWMPLibrary: ?*?*IWMPLibrary,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn getCountByType(self: *const IWMPLibraryServices, wmplt: WMPLibraryType, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getCountByType(self, wmplt, plCount);
+    }
+    pub fn getLibraryByType(self: *const IWMPLibraryServices, wmplt: WMPLibraryType, lIndex: i32, ppIWMPLibrary: ?*?*IWMPLibrary) callconv(.@"inline") HRESULT {
+        return self.vtable.getLibraryByType(self, wmplt, lIndex, ppIWMPLibrary);
+    }
+};
+
+const IID_IWMPLibrarySharingServices_Value = Guid.initString("82cba86b-9f04-474b-a365-d6dd1466e541");
+pub const IID_IWMPLibrarySharingServices = &IID_IWMPLibrarySharingServices_Value;
+pub const IWMPLibrarySharingServices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        isLibraryShared: *const fn(
+            self: *const IWMPLibrarySharingServices,
+            pvbShared: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        isLibrarySharingEnabled: *const fn(
+            self: *const IWMPLibrarySharingServices,
+            pvbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        showLibrarySharing: *const fn(
+            self: *const IWMPLibrarySharingServices,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn isLibraryShared(self: *const IWMPLibrarySharingServices, pvbShared: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isLibraryShared(self, pvbShared);
+    }
+    pub fn isLibrarySharingEnabled(self: *const IWMPLibrarySharingServices, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isLibrarySharingEnabled(self, pvbEnabled);
+    }
+    pub fn showLibrarySharing(self: *const IWMPLibrarySharingServices) callconv(.@"inline") HRESULT {
+        return self.vtable.showLibrarySharing(self);
+    }
+};
+
+const IID_IWMPMedia_Value = Guid.initString("94d55e95-3fac-11d3-b155-00c04f79faa6");
+pub const IID_IWMPMedia = &IID_IWMPMedia_Value;
+pub const IWMPMedia = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        get_isIdentical: *const fn(
+            self: *const IWMPMedia,
+            pIWMPMedia: ?*IWMPMedia,
+            pvbool: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_sourceURL: *const fn(
+            self: *const IWMPMedia,
+            pbstrSourceURL: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_name: *const fn(
+            self: *const IWMPMedia,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_name: *const fn(
+            self: *const IWMPMedia,
+            bstrName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_imageSourceWidth: *const fn(
+            self: *const IWMPMedia,
+            pWidth: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_imageSourceHeight: *const fn(
+            self: *const IWMPMedia,
+            pHeight: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_markerCount: *const fn(
+            self: *const IWMPMedia,
+            pMarkerCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getMarkerTime: *const fn(
+            self: *const IWMPMedia,
+            MarkerNum: i32,
+            pMarkerTime: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        getMarkerName: *const fn(
+            self: *const IWMPMedia,
+            MarkerNum: i32,
+            pbstrMarkerName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_duration: *const fn(
+            self: *const IWMPMedia,
+            pDuration: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_durationString: *const fn(
+            self: *const IWMPMedia,
+            pbstrDuration: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_attributeCount: *const fn(
+            self: *const IWMPMedia,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getAttributeName: *const fn(
+            self: *const IWMPMedia,
+            lIndex: i32,
+            pbstrItemName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        getItemInfo: *const fn(
+            self: *const IWMPMedia,
+            bstrItemName: ?BSTR,
+            pbstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        setItemInfo: *const fn(
+            self: *const IWMPMedia,
+            bstrItemName: ?BSTR,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        getItemInfoByAtom: *const fn(
+            self: *const IWMPMedia,
+            lAtom: i32,
+            pbstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        isMemberOf: *const fn(
+            self: *const IWMPMedia,
+            pPlaylist: ?*IWMPPlaylist,
+            pvarfIsMemberOf: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        isReadOnlyItem: *const fn(
+            self: *const IWMPMedia,
+            bstrItemName: ?BSTR,
+            pvarfIsReadOnly: ?*i16,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
+    pub fn get_isIdentical(self: *const IWMPMedia, pIWMPMedia: ?*IWMPMedia, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_isIdentical(self, pIWMPMedia, pvbool);
+    }
+    pub fn get_sourceURL(self: *const IWMPMedia, pbstrSourceURL: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_sourceURL(self, pbstrSourceURL);
+    }
+    pub fn get_name(self: *const IWMPMedia, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_name(self, pbstrName);
+    }
+    pub fn put_name(self: *const IWMPMedia, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_name(self, bstrName);
+    }
+    pub fn get_imageSourceWidth(self: *const IWMPMedia, pWidth: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_imageSourceWidth(self, pWidth);
+    }
+    pub fn get_imageSourceHeight(self: *const IWMPMedia, pHeight: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_imageSourceHeight(self, pHeight);
+    }
+    pub fn get_markerCount(self: *const IWMPMedia, pMarkerCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_markerCount(self, pMarkerCount);
+    }
+    pub fn getMarkerTime(self: *const IWMPMedia, MarkerNum: i32, pMarkerTime: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.getMarkerTime(self, MarkerNum, pMarkerTime);
+    }
+    pub fn getMarkerName(self: *const IWMPMedia, MarkerNum: i32, pbstrMarkerName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getMarkerName(self, MarkerNum, pbstrMarkerName);
+    }
+    pub fn get_duration(self: *const IWMPMedia, pDuration: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_duration(self, pDuration);
+    }
+    pub fn get_durationString(self: *const IWMPMedia, pbstrDuration: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_durationString(self, pbstrDuration);
+    }
+    pub fn get_attributeCount(self: *const IWMPMedia, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_attributeCount(self, plCount);
+    }
+    pub fn getAttributeName(self: *const IWMPMedia, lIndex: i32, pbstrItemName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getAttributeName(self, lIndex, pbstrItemName);
+    }
+    pub fn getItemInfo(self: *const IWMPMedia, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
+    }
+    pub fn setItemInfo(self: *const IWMPMedia, bstrItemName: ?BSTR, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setItemInfo(self, bstrItemName, bstrVal);
+    }
+    pub fn getItemInfoByAtom(self: *const IWMPMedia, lAtom: i32, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfoByAtom(self, lAtom, pbstrVal);
+    }
+    pub fn isMemberOf(self: *const IWMPMedia, pPlaylist: ?*IWMPPlaylist, pvarfIsMemberOf: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isMemberOf(self, pPlaylist, pvarfIsMemberOf);
+    }
+    pub fn isReadOnlyItem(self: *const IWMPMedia, bstrItemName: ?BSTR, pvarfIsReadOnly: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isReadOnlyItem(self, bstrItemName, pvarfIsReadOnly);
+    }
+};
+
+const IID_IWMPMedia2_Value = Guid.initString("ab7c88bb-143e-4ea4-acc3-e4350b2106c3");
+pub const IID_IWMPMedia2 = &IID_IWMPMedia2_Value;
+pub const IWMPMedia2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPMedia.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_error: *const fn(
+            self: *const IWMPMedia2,
+            ppIWMPErrorItem: ?*?*IWMPErrorItem,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPMedia: IWMPMedia,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_error(self: *const IWMPMedia2, ppIWMPErrorItem: ?*?*IWMPErrorItem) callconv(.@"inline") HRESULT {
+        return self.vtable.get_error(self, ppIWMPErrorItem);
+    }
+};
+
+const IID_IWMPMedia3_Value = Guid.initString("f118efc7-f03a-4fb4-99c9-1c02a5c1065b");
+pub const IID_IWMPMedia3 = &IID_IWMPMedia3_Value;
+pub const IWMPMedia3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPMedia2.VTable,
+        getAttributeCountByType: *const fn(
+            self: *const IWMPMedia3,
+            bstrType: ?BSTR,
+            bstrLanguage: ?BSTR,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getItemInfoByType: *const fn(
+            self: *const IWMPMedia3,
+            bstrType: ?BSTR,
+            bstrLanguage: ?BSTR,
+            lIndex: i32,
+            pvarValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPMedia2: IWMPMedia2,
+    IWMPMedia: IWMPMedia,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn getAttributeCountByType(self: *const IWMPMedia3, bstrType: ?BSTR, bstrLanguage: ?BSTR, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getAttributeCountByType(self, bstrType, bstrLanguage, plCount);
+    }
+    pub fn getItemInfoByType(self: *const IWMPMedia3, bstrType: ?BSTR, bstrLanguage: ?BSTR, lIndex: i32, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfoByType(self, bstrType, bstrLanguage, lIndex, pvarValue);
+    }
+};
+
+const IID_IWMPMediaCollection_Value = Guid.initString("8363bc22-b4b4-4b19-989d-1cd765749dd1");
+pub const IID_IWMPMediaCollection = &IID_IWMPMediaCollection_Value;
+pub const IWMPMediaCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        add: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrURL: ?BSTR,
+            ppItem: ?*?*IWMPMedia,
+        ) callconv(.winapi) HRESULT,
+        getAll: *const fn(
+            self: *const IWMPMediaCollection,
+            ppMediaItems: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        getByName: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrName: ?BSTR,
+            ppMediaItems: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        getByGenre: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrGenre: ?BSTR,
+            ppMediaItems: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        getByAuthor: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrAuthor: ?BSTR,
+            ppMediaItems: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        getByAlbum: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrAlbum: ?BSTR,
+            ppMediaItems: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        getByAttribute: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrAttribute: ?BSTR,
+            bstrValue: ?BSTR,
+            ppMediaItems: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        remove: *const fn(
+            self: *const IWMPMediaCollection,
+            pItem: ?*IWMPMedia,
+            varfDeleteFile: i16,
+        ) callconv(.winapi) HRESULT,
+        getAttributeStringCollection: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrAttribute: ?BSTR,
+            bstrMediaType: ?BSTR,
+            ppStringCollection: ?*?*IWMPStringCollection,
+        ) callconv(.winapi) HRESULT,
+        getMediaAtom: *const fn(
+            self: *const IWMPMediaCollection,
+            bstrItemName: ?BSTR,
+            plAtom: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        setDeleted: *const fn(
+            self: *const IWMPMediaCollection,
+            pItem: ?*IWMPMedia,
+            varfIsDeleted: i16,
+        ) callconv(.winapi) HRESULT,
+        isDeleted: *const fn(
+            self: *const IWMPMediaCollection,
+            pItem: ?*IWMPMedia,
+            pvarfIsDeleted: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn add(self: *const IWMPMediaCollection, bstrURL: ?BSTR, ppItem: ?*?*IWMPMedia) callconv(.@"inline") HRESULT {
+        return self.vtable.add(self, bstrURL, ppItem);
+    }
+    pub fn getAll(self: *const IWMPMediaCollection, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getAll(self, ppMediaItems);
+    }
+    pub fn getByName(self: *const IWMPMediaCollection, bstrName: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getByName(self, bstrName, ppMediaItems);
+    }
+    pub fn getByGenre(self: *const IWMPMediaCollection, bstrGenre: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getByGenre(self, bstrGenre, ppMediaItems);
+    }
+    pub fn getByAuthor(self: *const IWMPMediaCollection, bstrAuthor: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getByAuthor(self, bstrAuthor, ppMediaItems);
+    }
+    pub fn getByAlbum(self: *const IWMPMediaCollection, bstrAlbum: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getByAlbum(self, bstrAlbum, ppMediaItems);
+    }
+    pub fn getByAttribute(self: *const IWMPMediaCollection, bstrAttribute: ?BSTR, bstrValue: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getByAttribute(self, bstrAttribute, bstrValue, ppMediaItems);
+    }
+    pub fn remove(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfDeleteFile: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.remove(self, pItem, varfDeleteFile);
+    }
+    pub fn getAttributeStringCollection(self: *const IWMPMediaCollection, bstrAttribute: ?BSTR, bstrMediaType: ?BSTR, ppStringCollection: ?*?*IWMPStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.getAttributeStringCollection(self, bstrAttribute, bstrMediaType, ppStringCollection);
+    }
+    pub fn getMediaAtom(self: *const IWMPMediaCollection, bstrItemName: ?BSTR, plAtom: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getMediaAtom(self, bstrItemName, plAtom);
+    }
+    pub fn setDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfIsDeleted: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.setDeleted(self, pItem, varfIsDeleted);
+    }
+    pub fn isDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, pvarfIsDeleted: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isDeleted(self, pItem, pvarfIsDeleted);
+    }
+};
+
+const IID_IWMPMediaCollection2_Value = Guid.initString("8ba957f5-fd8c-4791-b82d-f840401ee474");
+pub const IID_IWMPMediaCollection2 = &IID_IWMPMediaCollection2_Value;
+pub const IWMPMediaCollection2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPMediaCollection.VTable,
+        createQuery: *const fn(
+            self: *const IWMPMediaCollection2,
+            ppQuery: ?*?*IWMPQuery,
+        ) callconv(.winapi) HRESULT,
+        getPlaylistByQuery: *const fn(
+            self: *const IWMPMediaCollection2,
+            pQuery: ?*IWMPQuery,
+            bstrMediaType: ?BSTR,
+            bstrSortAttribute: ?BSTR,
+            fSortAscending: i16,
+            ppPlaylist: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        getStringCollectionByQuery: *const fn(
+            self: *const IWMPMediaCollection2,
+            bstrAttribute: ?BSTR,
+            pQuery: ?*IWMPQuery,
+            bstrMediaType: ?BSTR,
+            bstrSortAttribute: ?BSTR,
+            fSortAscending: i16,
+            ppStringCollection: ?*?*IWMPStringCollection,
+        ) callconv(.winapi) HRESULT,
+        getByAttributeAndMediaType: *const fn(
+            self: *const IWMPMediaCollection2,
+            bstrAttribute: ?BSTR,
+            bstrValue: ?BSTR,
+            bstrMediaType: ?BSTR,
+            ppMediaItems: ?*?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPMediaCollection: IWMPMediaCollection,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn createQuery(self: *const IWMPMediaCollection2, ppQuery: ?*?*IWMPQuery) callconv(.@"inline") HRESULT {
+        return self.vtable.createQuery(self, ppQuery);
+    }
+    pub fn getPlaylistByQuery(self: *const IWMPMediaCollection2, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: i16, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getPlaylistByQuery(self, pQuery, bstrMediaType, bstrSortAttribute, fSortAscending, ppPlaylist);
+    }
+    pub fn getStringCollectionByQuery(self: *const IWMPMediaCollection2, bstrAttribute: ?BSTR, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: i16, ppStringCollection: ?*?*IWMPStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.getStringCollectionByQuery(self, bstrAttribute, pQuery, bstrMediaType, bstrSortAttribute, fSortAscending, ppStringCollection);
+    }
+    pub fn getByAttributeAndMediaType(self: *const IWMPMediaCollection2, bstrAttribute: ?BSTR, bstrValue: ?BSTR, bstrMediaType: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.getByAttributeAndMediaType(self, bstrAttribute, bstrValue, bstrMediaType, ppMediaItems);
+    }
+};
+
+const IID_IWMPMediaPluginRegistrar_Value = Guid.initString("68e27045-05bd-40b2-9720-23088c78e390");
+pub const IID_IWMPMediaPluginRegistrar = &IID_IWMPMediaPluginRegistrar_Value;
+pub const IWMPMediaPluginRegistrar = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        WMPRegisterPlayerPlugin: *const fn(
+            self: *const IWMPMediaPluginRegistrar,
+            pwszFriendlyName: ?PWSTR,
+            pwszDescription: ?PWSTR,
+            pwszUninstallString: ?PWSTR,
+            dwPriority: u32,
+            guidPluginType: Guid,
+            clsid: Guid,
+            cMediaTypes: u32,
+            pMediaTypes: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        WMPUnRegisterPlayerPlugin: *const fn(
+            self: *const IWMPMediaPluginRegistrar,
+            guidPluginType: Guid,
+            clsid: Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn WMPRegisterPlayerPlugin(self: *const IWMPMediaPluginRegistrar, pwszFriendlyName: ?PWSTR, pwszDescription: ?PWSTR, pwszUninstallString: ?PWSTR, dwPriority: u32, guidPluginType: Guid, clsid: Guid, cMediaTypes: u32, pMediaTypes: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.WMPRegisterPlayerPlugin(self, pwszFriendlyName, pwszDescription, pwszUninstallString, dwPriority, guidPluginType, clsid, cMediaTypes, pMediaTypes);
+    }
+    pub fn WMPUnRegisterPlayerPlugin(self: *const IWMPMediaPluginRegistrar, guidPluginType: Guid, clsid: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.WMPUnRegisterPlayerPlugin(self, guidPluginType, clsid);
+    }
+};
+
+const IID_IWMPMetadataPicture_Value = Guid.initString("5c29bbe0-f87d-4c45-aa28-a70f0230ffa9");
+pub const IID_IWMPMetadataPicture = &IID_IWMPMetadataPicture_Value;
+pub const IWMPMetadataPicture = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_mimeType: *const fn(
+            self: *const IWMPMetadataPicture,
+            pbstrMimeType: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_pictureType: *const fn(
+            self: *const IWMPMetadataPicture,
+            pbstrPictureType: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_description: *const fn(
+            self: *const IWMPMetadataPicture,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_URL: *const fn(
+            self: *const IWMPMetadataPicture,
+            pbstrURL: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_mimeType(self: *const IWMPMetadataPicture, pbstrMimeType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_mimeType(self, pbstrMimeType);
+    }
+    pub fn get_pictureType(self: *const IWMPMetadataPicture, pbstrPictureType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_pictureType(self, pbstrPictureType);
+    }
+    pub fn get_description(self: *const IWMPMetadataPicture, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_description(self, pbstrDescription);
+    }
+    pub fn get_URL(self: *const IWMPMetadataPicture, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_URL(self, pbstrURL);
+    }
+};
+
+const IID_IWMPMetadataText_Value = Guid.initString("769a72db-13d2-45e2-9c48-53ca9d5b7450");
+pub const IID_IWMPMetadataText = &IID_IWMPMetadataText_Value;
+pub const IWMPMetadataText = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_description: *const fn(
+            self: *const IWMPMetadataText,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_text: *const fn(
+            self: *const IWMPMetadataText,
+            pbstrText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_description(self: *const IWMPMetadataText, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_description(self, pbstrDescription);
+    }
+    pub fn get_text(self: *const IWMPMetadataText, pbstrText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_text(self, pbstrText);
+    }
+};
+
+const IID_IWMPNetwork_Value = Guid.initString("ec21b779-edef-462d-bba4-ad9dde2b29a7");
+pub const IID_IWMPNetwork = &IID_IWMPNetwork_Value;
+pub const IWMPNetwork = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_bandWidth: *const fn(
+            self: *const IWMPNetwork,
+            plBandwidth: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_recoveredPackets: *const fn(
+            self: *const IWMPNetwork,
+            plRecoveredPackets: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_sourceProtocol: *const fn(
+            self: *const IWMPNetwork,
+            pbstrSourceProtocol: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_receivedPackets: *const fn(
+            self: *const IWMPNetwork,
+            plReceivedPackets: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_lostPackets: *const fn(
+            self: *const IWMPNetwork,
+            plLostPackets: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_receptionQuality: *const fn(
+            self: *const IWMPNetwork,
+            plReceptionQuality: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_bufferingCount: *const fn(
+            self: *const IWMPNetwork,
+            plBufferingCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_bufferingProgress: *const fn(
+            self: *const IWMPNetwork,
+            plBufferingProgress: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_bufferingTime: *const fn(
+            self: *const IWMPNetwork,
+            plBufferingTime: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_bufferingTime: *const fn(
+            self: *const IWMPNetwork,
+            lBufferingTime: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_frameRate: *const fn(
+            self: *const IWMPNetwork,
+            plFrameRate: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_maxBitRate: *const fn(
+            self: *const IWMPNetwork,
+            plBitRate: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_bitRate: *const fn(
+            self: *const IWMPNetwork,
+            plBitRate: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getProxySettings: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            plProxySetting: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        setProxySettings: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            lProxySetting: i32,
+        ) callconv(.winapi) HRESULT,
+        getProxyName: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            pbstrProxyName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        setProxyName: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            bstrProxyName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        getProxyPort: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            lProxyPort: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        setProxyPort: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            lProxyPort: i32,
+        ) callconv(.winapi) HRESULT,
+        getProxyExceptionList: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            pbstrExceptionList: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        setProxyExceptionList: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            pbstrExceptionList: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        getProxyBypassForLocal: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            pfBypassForLocal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        setProxyBypassForLocal: *const fn(
+            self: *const IWMPNetwork,
+            bstrProtocol: ?BSTR,
+            fBypassForLocal: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_maxBandwidth: *const fn(
+            self: *const IWMPNetwork,
+            lMaxBandwidth: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_maxBandwidth: *const fn(
+            self: *const IWMPNetwork,
+            lMaxBandwidth: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_downloadProgress: *const fn(
+            self: *const IWMPNetwork,
+            plDownloadProgress: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_encodedFrameRate: *const fn(
+            self: *const IWMPNetwork,
+            plFrameRate: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_framesSkipped: *const fn(
+            self: *const IWMPNetwork,
+            plFrames: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_bandWidth(self: *const IWMPNetwork, plBandwidth: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_bandWidth(self, plBandwidth);
+    }
+    pub fn get_recoveredPackets(self: *const IWMPNetwork, plRecoveredPackets: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_recoveredPackets(self, plRecoveredPackets);
+    }
+    pub fn get_sourceProtocol(self: *const IWMPNetwork, pbstrSourceProtocol: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_sourceProtocol(self, pbstrSourceProtocol);
+    }
+    pub fn get_receivedPackets(self: *const IWMPNetwork, plReceivedPackets: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_receivedPackets(self, plReceivedPackets);
+    }
+    pub fn get_lostPackets(self: *const IWMPNetwork, plLostPackets: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_lostPackets(self, plLostPackets);
+    }
+    pub fn get_receptionQuality(self: *const IWMPNetwork, plReceptionQuality: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_receptionQuality(self, plReceptionQuality);
+    }
+    pub fn get_bufferingCount(self: *const IWMPNetwork, plBufferingCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_bufferingCount(self, plBufferingCount);
+    }
+    pub fn get_bufferingProgress(self: *const IWMPNetwork, plBufferingProgress: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_bufferingProgress(self, plBufferingProgress);
+    }
+    pub fn get_bufferingTime(self: *const IWMPNetwork, plBufferingTime: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_bufferingTime(self, plBufferingTime);
+    }
+    pub fn put_bufferingTime(self: *const IWMPNetwork, lBufferingTime: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_bufferingTime(self, lBufferingTime);
+    }
+    pub fn get_frameRate(self: *const IWMPNetwork, plFrameRate: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_frameRate(self, plFrameRate);
+    }
+    pub fn get_maxBitRate(self: *const IWMPNetwork, plBitRate: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_maxBitRate(self, plBitRate);
+    }
+    pub fn get_bitRate(self: *const IWMPNetwork, plBitRate: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_bitRate(self, plBitRate);
+    }
+    pub fn getProxySettings(self: *const IWMPNetwork, bstrProtocol: ?BSTR, plProxySetting: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getProxySettings(self, bstrProtocol, plProxySetting);
+    }
+    pub fn setProxySettings(self: *const IWMPNetwork, bstrProtocol: ?BSTR, lProxySetting: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.setProxySettings(self, bstrProtocol, lProxySetting);
+    }
+    pub fn getProxyName(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pbstrProxyName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getProxyName(self, bstrProtocol, pbstrProxyName);
+    }
+    pub fn setProxyName(self: *const IWMPNetwork, bstrProtocol: ?BSTR, bstrProxyName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setProxyName(self, bstrProtocol, bstrProxyName);
+    }
+    pub fn getProxyPort(self: *const IWMPNetwork, bstrProtocol: ?BSTR, lProxyPort: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getProxyPort(self, bstrProtocol, lProxyPort);
+    }
+    pub fn setProxyPort(self: *const IWMPNetwork, bstrProtocol: ?BSTR, lProxyPort: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.setProxyPort(self, bstrProtocol, lProxyPort);
+    }
+    pub fn getProxyExceptionList(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pbstrExceptionList: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getProxyExceptionList(self, bstrProtocol, pbstrExceptionList);
+    }
+    pub fn setProxyExceptionList(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pbstrExceptionList: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setProxyExceptionList(self, bstrProtocol, pbstrExceptionList);
+    }
+    pub fn getProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pfBypassForLocal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.getProxyBypassForLocal(self, bstrProtocol, pfBypassForLocal);
+    }
+    pub fn setProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, fBypassForLocal: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.setProxyBypassForLocal(self, bstrProtocol, fBypassForLocal);
+    }
+    pub fn get_maxBandwidth(self: *const IWMPNetwork, lMaxBandwidth: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_maxBandwidth(self, lMaxBandwidth);
+    }
+    pub fn put_maxBandwidth(self: *const IWMPNetwork, lMaxBandwidth: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_maxBandwidth(self, lMaxBandwidth);
+    }
+    pub fn get_downloadProgress(self: *const IWMPNetwork, plDownloadProgress: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_downloadProgress(self, plDownloadProgress);
+    }
+    pub fn get_encodedFrameRate(self: *const IWMPNetwork, plFrameRate: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_encodedFrameRate(self, plFrameRate);
+    }
+    pub fn get_framesSkipped(self: *const IWMPNetwork, plFrames: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_framesSkipped(self, plFrames);
+    }
 };
 
 const IID_IWMPNodeRealEstate_Value = Guid.initString("42751198-5a50-4460-bcb4-709f8bdc8e59");
@@ -4760,27 +5455,6 @@ pub const IWMPNodeWindowedHost = extern union {
     }
 };
 
-const IID_IWMPWindowMessageSink_Value = Guid.initString("3a0daa30-908d-4789-ba87-aed879b5c49b");
-pub const IID_IWMPWindowMessageSink = &IID_IWMPWindowMessageSink_Value;
-pub const IWMPWindowMessageSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnWindowMessage: *const fn(
-            self: *const IWMPWindowMessageSink,
-            uMsg: u32,
-            wparam: WPARAM,
-            lparam: LPARAM,
-            plRet: ?*LRESULT,
-            pfHandled: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnWindowMessage(self: *const IWMPWindowMessageSink, uMsg: u32, wparam: WPARAM, lparam: LPARAM, plRet: ?*LRESULT, pfHandled: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.OnWindowMessage(self, uMsg, wparam, lparam, plRet, pfHandled);
-    }
-};
-
 const IID_IWMPNodeWindowless_Value = Guid.initString("9b9199ad-780c-4eda-b816-261eba5d1575");
 pub const IID_IWMPNodeWindowless = &IID_IWMPNodeWindowless_Value;
 pub const IWMPNodeWindowless = extern union {
@@ -4818,145 +5492,732 @@ pub const IWMPNodeWindowlessHost = extern union {
     }
 };
 
-const IID_IWMPVideoRenderConfig_Value = Guid.initString("6d6cf803-1ec0-4c8d-b3ca-f18e27282074");
-pub const IID_IWMPVideoRenderConfig = &IID_IWMPVideoRenderConfig_Value;
-pub const IWMPVideoRenderConfig = extern union {
+const IID_IWMPPlayer_Value = Guid.initString("6bf52a4f-394a-11d3-b153-00c04f79faa6");
+pub const IID_IWMPPlayer = &IID_IWMPPlayer_Value;
+pub const IWMPPlayer = extern union {
+    pub const VTable = extern struct {
+        base: IWMPCore.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enabled: *const fn(
+            self: *const IWMPPlayer,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enabled: *const fn(
+            self: *const IWMPPlayer,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_fullScreen: *const fn(
+            self: *const IWMPPlayer,
+            pbFullScreen: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_fullScreen: *const fn(
+            self: *const IWMPPlayer,
+            bFullScreen: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enableContextMenu: *const fn(
+            self: *const IWMPPlayer,
+            pbEnableContextMenu: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enableContextMenu: *const fn(
+            self: *const IWMPPlayer,
+            bEnableContextMenu: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_uiMode: *const fn(
+            self: *const IWMPPlayer,
+            bstrMode: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_uiMode: *const fn(
+            self: *const IWMPPlayer,
+            pbstrMode: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPCore: IWMPCore,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_enabled(self: *const IWMPPlayer, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enabled(self, pbEnabled);
+    }
+    pub fn put_enabled(self: *const IWMPPlayer, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enabled(self, bEnabled);
+    }
+    pub fn get_fullScreen(self: *const IWMPPlayer, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_fullScreen(self, pbFullScreen);
+    }
+    pub fn put_fullScreen(self: *const IWMPPlayer, bFullScreen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_fullScreen(self, bFullScreen);
+    }
+    pub fn get_enableContextMenu(self: *const IWMPPlayer, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
+    }
+    pub fn put_enableContextMenu(self: *const IWMPPlayer, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
+    }
+    pub fn put_uiMode(self: *const IWMPPlayer, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_uiMode(self, bstrMode);
+    }
+    pub fn get_uiMode(self: *const IWMPPlayer, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_uiMode(self, pbstrMode);
+    }
+};
+
+const IID_IWMPPlayer2_Value = Guid.initString("0e6b01d1-d407-4c85-bf5f-1c01f6150280");
+pub const IID_IWMPPlayer2 = &IID_IWMPPlayer2_Value;
+pub const IWMPPlayer2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPCore.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enabled: *const fn(
+            self: *const IWMPPlayer2,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enabled: *const fn(
+            self: *const IWMPPlayer2,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_fullScreen: *const fn(
+            self: *const IWMPPlayer2,
+            pbFullScreen: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_fullScreen: *const fn(
+            self: *const IWMPPlayer2,
+            bFullScreen: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enableContextMenu: *const fn(
+            self: *const IWMPPlayer2,
+            pbEnableContextMenu: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enableContextMenu: *const fn(
+            self: *const IWMPPlayer2,
+            bEnableContextMenu: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_uiMode: *const fn(
+            self: *const IWMPPlayer2,
+            bstrMode: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_uiMode: *const fn(
+            self: *const IWMPPlayer2,
+            pbstrMode: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_stretchToFit: *const fn(
+            self: *const IWMPPlayer2,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_stretchToFit: *const fn(
+            self: *const IWMPPlayer2,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_windowlessVideo: *const fn(
+            self: *const IWMPPlayer2,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_windowlessVideo: *const fn(
+            self: *const IWMPPlayer2,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPCore: IWMPCore,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_enabled(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enabled(self, pbEnabled);
+    }
+    pub fn put_enabled(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enabled(self, bEnabled);
+    }
+    pub fn get_fullScreen(self: *const IWMPPlayer2, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_fullScreen(self, pbFullScreen);
+    }
+    pub fn put_fullScreen(self: *const IWMPPlayer2, bFullScreen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_fullScreen(self, bFullScreen);
+    }
+    pub fn get_enableContextMenu(self: *const IWMPPlayer2, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
+    }
+    pub fn put_enableContextMenu(self: *const IWMPPlayer2, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
+    }
+    pub fn put_uiMode(self: *const IWMPPlayer2, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_uiMode(self, bstrMode);
+    }
+    pub fn get_uiMode(self: *const IWMPPlayer2, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_uiMode(self, pbstrMode);
+    }
+    pub fn get_stretchToFit(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_stretchToFit(self, pbEnabled);
+    }
+    pub fn put_stretchToFit(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_stretchToFit(self, bEnabled);
+    }
+    pub fn get_windowlessVideo(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_windowlessVideo(self, pbEnabled);
+    }
+    pub fn put_windowlessVideo(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_windowlessVideo(self, bEnabled);
+    }
+};
+
+const IID_IWMPPlayer3_Value = Guid.initString("54062b68-052a-4c25-a39f-8b63346511d4");
+pub const IID_IWMPPlayer3 = &IID_IWMPPlayer3_Value;
+pub const IWMPPlayer3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPCore2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enabled: *const fn(
+            self: *const IWMPPlayer3,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enabled: *const fn(
+            self: *const IWMPPlayer3,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_fullScreen: *const fn(
+            self: *const IWMPPlayer3,
+            pbFullScreen: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_fullScreen: *const fn(
+            self: *const IWMPPlayer3,
+            bFullScreen: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enableContextMenu: *const fn(
+            self: *const IWMPPlayer3,
+            pbEnableContextMenu: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enableContextMenu: *const fn(
+            self: *const IWMPPlayer3,
+            bEnableContextMenu: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_uiMode: *const fn(
+            self: *const IWMPPlayer3,
+            bstrMode: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_uiMode: *const fn(
+            self: *const IWMPPlayer3,
+            pbstrMode: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_stretchToFit: *const fn(
+            self: *const IWMPPlayer3,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_stretchToFit: *const fn(
+            self: *const IWMPPlayer3,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_windowlessVideo: *const fn(
+            self: *const IWMPPlayer3,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_windowlessVideo: *const fn(
+            self: *const IWMPPlayer3,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPCore2: IWMPCore2,
+    IWMPCore: IWMPCore,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_enabled(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enabled(self, pbEnabled);
+    }
+    pub fn put_enabled(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enabled(self, bEnabled);
+    }
+    pub fn get_fullScreen(self: *const IWMPPlayer3, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_fullScreen(self, pbFullScreen);
+    }
+    pub fn put_fullScreen(self: *const IWMPPlayer3, bFullScreen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_fullScreen(self, bFullScreen);
+    }
+    pub fn get_enableContextMenu(self: *const IWMPPlayer3, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
+    }
+    pub fn put_enableContextMenu(self: *const IWMPPlayer3, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
+    }
+    pub fn put_uiMode(self: *const IWMPPlayer3, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_uiMode(self, bstrMode);
+    }
+    pub fn get_uiMode(self: *const IWMPPlayer3, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_uiMode(self, pbstrMode);
+    }
+    pub fn get_stretchToFit(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_stretchToFit(self, pbEnabled);
+    }
+    pub fn put_stretchToFit(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_stretchToFit(self, bEnabled);
+    }
+    pub fn get_windowlessVideo(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_windowlessVideo(self, pbEnabled);
+    }
+    pub fn put_windowlessVideo(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_windowlessVideo(self, bEnabled);
+    }
+};
+
+const IID_IWMPPlayer4_Value = Guid.initString("6c497d62-8919-413c-82db-e935fb3ec584");
+pub const IID_IWMPPlayer4 = &IID_IWMPPlayer4_Value;
+pub const IWMPPlayer4 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPCore3.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enabled: *const fn(
+            self: *const IWMPPlayer4,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enabled: *const fn(
+            self: *const IWMPPlayer4,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_fullScreen: *const fn(
+            self: *const IWMPPlayer4,
+            pbFullScreen: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_fullScreen: *const fn(
+            self: *const IWMPPlayer4,
+            bFullScreen: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enableContextMenu: *const fn(
+            self: *const IWMPPlayer4,
+            pbEnableContextMenu: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enableContextMenu: *const fn(
+            self: *const IWMPPlayer4,
+            bEnableContextMenu: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_uiMode: *const fn(
+            self: *const IWMPPlayer4,
+            bstrMode: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_uiMode: *const fn(
+            self: *const IWMPPlayer4,
+            pbstrMode: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_stretchToFit: *const fn(
+            self: *const IWMPPlayer4,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_stretchToFit: *const fn(
+            self: *const IWMPPlayer4,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_windowlessVideo: *const fn(
+            self: *const IWMPPlayer4,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_windowlessVideo: *const fn(
+            self: *const IWMPPlayer4,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_isRemote: *const fn(
+            self: *const IWMPPlayer4,
+            pvarfIsRemote: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_playerApplication: *const fn(
+            self: *const IWMPPlayer4,
+            ppIWMPPlayerApplication: ?*?*IWMPPlayerApplication,
+        ) callconv(.winapi) HRESULT,
+        openPlayer: *const fn(
+            self: *const IWMPPlayer4,
+            bstrURL: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPCore3: IWMPCore3,
+    IWMPCore2: IWMPCore2,
+    IWMPCore: IWMPCore,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_enabled(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enabled(self, pbEnabled);
+    }
+    pub fn put_enabled(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enabled(self, bEnabled);
+    }
+    pub fn get_fullScreen(self: *const IWMPPlayer4, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_fullScreen(self, pbFullScreen);
+    }
+    pub fn put_fullScreen(self: *const IWMPPlayer4, bFullScreen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_fullScreen(self, bFullScreen);
+    }
+    pub fn get_enableContextMenu(self: *const IWMPPlayer4, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
+    }
+    pub fn put_enableContextMenu(self: *const IWMPPlayer4, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
+    }
+    pub fn put_uiMode(self: *const IWMPPlayer4, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_uiMode(self, bstrMode);
+    }
+    pub fn get_uiMode(self: *const IWMPPlayer4, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_uiMode(self, pbstrMode);
+    }
+    pub fn get_stretchToFit(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_stretchToFit(self, pbEnabled);
+    }
+    pub fn put_stretchToFit(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_stretchToFit(self, bEnabled);
+    }
+    pub fn get_windowlessVideo(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_windowlessVideo(self, pbEnabled);
+    }
+    pub fn put_windowlessVideo(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_windowlessVideo(self, bEnabled);
+    }
+    pub fn get_isRemote(self: *const IWMPPlayer4, pvarfIsRemote: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_isRemote(self, pvarfIsRemote);
+    }
+    pub fn get_playerApplication(self: *const IWMPPlayer4, ppIWMPPlayerApplication: ?*?*IWMPPlayerApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.get_playerApplication(self, ppIWMPPlayerApplication);
+    }
+    pub fn openPlayer(self: *const IWMPPlayer4, bstrURL: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.openPlayer(self, bstrURL);
+    }
+};
+
+const IID_IWMPPlayerApplication_Value = Guid.initString("40897764-ceab-47be-ad4a-8e28537f9bbf");
+pub const IID_IWMPPlayerApplication = &IID_IWMPPlayerApplication_Value;
+pub const IWMPPlayerApplication = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        switchToPlayerApplication: *const fn(
+            self: *const IWMPPlayerApplication,
+        ) callconv(.winapi) HRESULT,
+        switchToControl: *const fn(
+            self: *const IWMPPlayerApplication,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_playerDocked: *const fn(
+            self: *const IWMPPlayerApplication,
+            pbPlayerDocked: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_hasDisplay: *const fn(
+            self: *const IWMPPlayerApplication,
+            pbHasDisplay: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn switchToPlayerApplication(self: *const IWMPPlayerApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.switchToPlayerApplication(self);
+    }
+    pub fn switchToControl(self: *const IWMPPlayerApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.switchToControl(self);
+    }
+    pub fn get_playerDocked(self: *const IWMPPlayerApplication, pbPlayerDocked: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_playerDocked(self, pbPlayerDocked);
+    }
+    pub fn get_hasDisplay(self: *const IWMPPlayerApplication, pbHasDisplay: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_hasDisplay(self, pbHasDisplay);
+    }
+};
+
+const IID_IWMPPlayerServices_Value = Guid.initString("1d01fbdb-ade2-4c8d-9842-c190b95c3306");
+pub const IID_IWMPPlayerServices = &IID_IWMPPlayerServices_Value;
+pub const IWMPPlayerServices = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_presenterActivate: *const fn(
-            self: *const IWMPVideoRenderConfig,
-            pActivate: ?*IMFActivate,
+        activateUIPlugin: *const fn(
+            self: *const IWMPPlayerServices,
+            bstrPlugin: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        setTaskPane: *const fn(
+            self: *const IWMPPlayerServices,
+            bstrTaskPane: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        setTaskPaneURL: *const fn(
+            self: *const IWMPPlayerServices,
+            bstrTaskPane: ?BSTR,
+            bstrURL: ?BSTR,
+            bstrFriendlyName: ?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn put_presenterActivate(self: *const IWMPVideoRenderConfig, pActivate: ?*IMFActivate) callconv(.@"inline") HRESULT {
-        return self.vtable.put_presenterActivate(self, pActivate);
+    pub fn activateUIPlugin(self: *const IWMPPlayerServices, bstrPlugin: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.activateUIPlugin(self, bstrPlugin);
+    }
+    pub fn setTaskPane(self: *const IWMPPlayerServices, bstrTaskPane: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setTaskPane(self, bstrTaskPane);
+    }
+    pub fn setTaskPaneURL(self: *const IWMPPlayerServices, bstrTaskPane: ?BSTR, bstrURL: ?BSTR, bstrFriendlyName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setTaskPaneURL(self, bstrTaskPane, bstrURL, bstrFriendlyName);
     }
 };
 
-const IID_IWMPAudioRenderConfig_Value = Guid.initString("e79c6349-5997-4ce4-917c-22a3391ec564");
-pub const IID_IWMPAudioRenderConfig = &IID_IWMPAudioRenderConfig_Value;
-pub const IWMPAudioRenderConfig = extern union {
+const IID_IWMPPlayerServices2_Value = Guid.initString("1bb1592f-f040-418a-9f71-17c7512b4d70");
+pub const IID_IWMPPlayerServices2 = &IID_IWMPPlayerServices2_Value;
+pub const IWMPPlayerServices2 = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_audioOutputDevice: *const fn(
-            self: *const IWMPAudioRenderConfig,
-            pbstrOutputDevice: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_audioOutputDevice: *const fn(
-            self: *const IWMPAudioRenderConfig,
-            bstrOutputDevice: ?BSTR,
+        base: IWMPPlayerServices.VTable,
+        setBackgroundProcessingPriority: *const fn(
+            self: *const IWMPPlayerServices2,
+            bstrPriority: ?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWMPPlayerServices: IWMPPlayerServices,
     IUnknown: IUnknown,
-    pub fn get_audioOutputDevice(self: *const IWMPAudioRenderConfig, pbstrOutputDevice: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_audioOutputDevice(self, pbstrOutputDevice);
-    }
-    pub fn put_audioOutputDevice(self: *const IWMPAudioRenderConfig, bstrOutputDevice: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_audioOutputDevice(self, bstrOutputDevice);
+    pub fn setBackgroundProcessingPriority(self: *const IWMPPlayerServices2, bstrPriority: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setBackgroundProcessingPriority(self, bstrPriority);
     }
 };
 
-const IID_IWMPRenderConfig_Value = Guid.initString("959506c1-0314-4ec5-9e61-8528db5e5478");
-pub const IID_IWMPRenderConfig = &IID_IWMPRenderConfig_Value;
-pub const IWMPRenderConfig = extern union {
+const IID_IWMPPlaylist_Value = Guid.initString("d5f0f4f1-130c-11d3-b14e-00c04f79faa6");
+pub const IID_IWMPPlaylist = &IID_IWMPPlaylist_Value;
+pub const IWMPPlaylist = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
+        base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_inProcOnly: *const fn(
-            self: *const IWMPRenderConfig,
-            fInProc: BOOL,
+        get_count: *const fn(
+            self: *const IWMPPlaylist,
+            plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_inProcOnly: *const fn(
-            self: *const IWMPRenderConfig,
-            pfInProc: ?*BOOL,
+        get_name: *const fn(
+            self: *const IWMPPlaylist,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_name: *const fn(
+            self: *const IWMPPlaylist,
+            bstrName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_attributeCount: *const fn(
+            self: *const IWMPPlaylist,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_attributeName: *const fn(
+            self: *const IWMPPlaylist,
+            lIndex: i32,
+            pbstrAttributeName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        get_item: *const fn(
+            self: *const IWMPPlaylist,
+            lIndex: i32,
+            ppIWMPMedia: ?*?*IWMPMedia,
+        ) callconv(.winapi) HRESULT,
+        getItemInfo: *const fn(
+            self: *const IWMPPlaylist,
+            bstrName: ?BSTR,
+            pbstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        setItemInfo: *const fn(
+            self: *const IWMPPlaylist,
+            bstrName: ?BSTR,
+            bstrValue: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        get_isIdentical: *const fn(
+            self: *const IWMPPlaylist,
+            pIWMPPlaylist: ?*IWMPPlaylist,
+            pvbool: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        clear: *const fn(
+            self: *const IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        insertItem: *const fn(
+            self: *const IWMPPlaylist,
+            lIndex: i32,
+            pIWMPMedia: ?*IWMPMedia,
+        ) callconv(.winapi) HRESULT,
+        appendItem: *const fn(
+            self: *const IWMPPlaylist,
+            pIWMPMedia: ?*IWMPMedia,
+        ) callconv(.winapi) HRESULT,
+        removeItem: *const fn(
+            self: *const IWMPPlaylist,
+            pIWMPMedia: ?*IWMPMedia,
+        ) callconv(.winapi) HRESULT,
+        moveItem: *const fn(
+            self: *const IWMPPlaylist,
+            lIndexOld: i32,
+            lIndexNew: i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_inProcOnly(self: *const IWMPRenderConfig, fInProc: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_inProcOnly(self, fInProc);
+    pub fn get_count(self: *const IWMPPlaylist, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_count(self, plCount);
     }
-    pub fn get_inProcOnly(self: *const IWMPRenderConfig, pfInProc: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_inProcOnly(self, pfInProc);
+    pub fn get_name(self: *const IWMPPlaylist, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_name(self, pbstrName);
+    }
+    pub fn put_name(self: *const IWMPPlaylist, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_name(self, bstrName);
+    }
+    pub fn get_attributeCount(self: *const IWMPPlaylist, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_attributeCount(self, plCount);
+    }
+    pub fn get_attributeName(self: *const IWMPPlaylist, lIndex: i32, pbstrAttributeName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_attributeName(self, lIndex, pbstrAttributeName);
+    }
+    pub fn get_item(self: *const IWMPPlaylist, lIndex: i32, ppIWMPMedia: ?*?*IWMPMedia) callconv(.@"inline") HRESULT {
+        return self.vtable.get_item(self, lIndex, ppIWMPMedia);
+    }
+    pub fn getItemInfo(self: *const IWMPPlaylist, bstrName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfo(self, bstrName, pbstrVal);
+    }
+    pub fn setItemInfo(self: *const IWMPPlaylist, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setItemInfo(self, bstrName, bstrValue);
+    }
+    pub fn get_isIdentical(self: *const IWMPPlaylist, pIWMPPlaylist: ?*IWMPPlaylist, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_isIdentical(self, pIWMPPlaylist, pvbool);
+    }
+    pub fn clear(self: *const IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.clear(self);
+    }
+    pub fn insertItem(self: *const IWMPPlaylist, lIndex: i32, pIWMPMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
+        return self.vtable.insertItem(self, lIndex, pIWMPMedia);
+    }
+    pub fn appendItem(self: *const IWMPPlaylist, pIWMPMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
+        return self.vtable.appendItem(self, pIWMPMedia);
+    }
+    pub fn removeItem(self: *const IWMPPlaylist, pIWMPMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
+        return self.vtable.removeItem(self, pIWMPMedia);
+    }
+    pub fn moveItem(self: *const IWMPPlaylist, lIndexOld: i32, lIndexNew: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.moveItem(self, lIndexOld, lIndexNew);
     }
 };
 
-pub const WMPServices_StreamState = enum(i32) {
-    Stop = 0,
-    Pause = 1,
-    Play = 2,
-};
-pub const WMPServices_StreamState_Stop = WMPServices_StreamState.Stop;
-pub const WMPServices_StreamState_Pause = WMPServices_StreamState.Pause;
-pub const WMPServices_StreamState_Play = WMPServices_StreamState.Play;
-
-const IID_IWMPServices_Value = Guid.initString("afb6b76b-1e20-4198-83b3-191db6e0b149");
-pub const IID_IWMPServices = &IID_IWMPServices_Value;
-pub const IWMPServices = extern union {
+const IID_IWMPPlaylistArray_Value = Guid.initString("679409c0-99f7-11d3-9fb7-00105aa620bb");
+pub const IID_IWMPPlaylistArray = &IID_IWMPPlaylistArray_Value;
+pub const IWMPPlaylistArray = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStreamTime: *const fn(
-            self: *const IWMPServices,
-            prt: ?*i64,
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_count: *const fn(
+            self: *const IWMPPlaylistArray,
+            plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
-        GetStreamState: *const fn(
-            self: *const IWMPServices,
-            pState: ?*WMPServices_StreamState,
+        item: *const fn(
+            self: *const IWMPPlaylistArray,
+            lIndex: i32,
+            ppItem: ?*?*IWMPPlaylist,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetStreamTime(self: *const IWMPServices, prt: ?*i64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamTime(self, prt);
+    pub fn get_count(self: *const IWMPPlaylistArray, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_count(self, plCount);
     }
-    pub fn GetStreamState(self: *const IWMPServices, pState: ?*WMPServices_StreamState) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamState(self, pState);
+    pub fn item(self: *const IWMPPlaylistArray, lIndex: i32, ppItem: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.item(self, lIndex, ppItem);
     }
 };
 
-const IID_IWMPMediaPluginRegistrar_Value = Guid.initString("68e27045-05bd-40b2-9720-23088c78e390");
-pub const IID_IWMPMediaPluginRegistrar = &IID_IWMPMediaPluginRegistrar_Value;
-pub const IWMPMediaPluginRegistrar = extern union {
+const IID_IWMPPlaylistCollection_Value = Guid.initString("10a13217-23a7-439b-b1c0-d847c79b7774");
+pub const IID_IWMPPlaylistCollection = &IID_IWMPPlaylistCollection_Value;
+pub const IWMPPlaylistCollection = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        WMPRegisterPlayerPlugin: *const fn(
-            self: *const IWMPMediaPluginRegistrar,
-            pwszFriendlyName: ?PWSTR,
-            pwszDescription: ?PWSTR,
-            pwszUninstallString: ?PWSTR,
-            dwPriority: u32,
-            guidPluginType: Guid,
-            clsid: Guid,
-            cMediaTypes: u32,
-            pMediaTypes: ?*anyopaque,
+        base: IDispatch.VTable,
+        newPlaylist: *const fn(
+            self: *const IWMPPlaylistCollection,
+            bstrName: ?BSTR,
+            ppItem: ?*?*IWMPPlaylist,
         ) callconv(.winapi) HRESULT,
-        WMPUnRegisterPlayerPlugin: *const fn(
-            self: *const IWMPMediaPluginRegistrar,
-            guidPluginType: Guid,
-            clsid: Guid,
+        getAll: *const fn(
+            self: *const IWMPPlaylistCollection,
+            ppPlaylistArray: ?*?*IWMPPlaylistArray,
+        ) callconv(.winapi) HRESULT,
+        getByName: *const fn(
+            self: *const IWMPPlaylistCollection,
+            bstrName: ?BSTR,
+            ppPlaylistArray: ?*?*IWMPPlaylistArray,
+        ) callconv(.winapi) HRESULT,
+        remove: *const fn(
+            self: *const IWMPPlaylistCollection,
+            pItem: ?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        setDeleted: *const fn(
+            self: *const IWMPPlaylistCollection,
+            pItem: ?*IWMPPlaylist,
+            varfIsDeleted: i16,
+        ) callconv(.winapi) HRESULT,
+        isDeleted: *const fn(
+            self: *const IWMPPlaylistCollection,
+            pItem: ?*IWMPPlaylist,
+            pvarfIsDeleted: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        importPlaylist: *const fn(
+            self: *const IWMPPlaylistCollection,
+            pItem: ?*IWMPPlaylist,
+            ppImportedItem: ?*?*IWMPPlaylist,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn WMPRegisterPlayerPlugin(self: *const IWMPMediaPluginRegistrar, pwszFriendlyName: ?PWSTR, pwszDescription: ?PWSTR, pwszUninstallString: ?PWSTR, dwPriority: u32, guidPluginType: Guid, clsid: Guid, cMediaTypes: u32, pMediaTypes: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.WMPRegisterPlayerPlugin(self, pwszFriendlyName, pwszDescription, pwszUninstallString, dwPriority, guidPluginType, clsid, cMediaTypes, pMediaTypes);
+    pub fn newPlaylist(self: *const IWMPPlaylistCollection, bstrName: ?BSTR, ppItem: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.newPlaylist(self, bstrName, ppItem);
     }
-    pub fn WMPUnRegisterPlayerPlugin(self: *const IWMPMediaPluginRegistrar, guidPluginType: Guid, clsid: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.WMPUnRegisterPlayerPlugin(self, guidPluginType, clsid);
+    pub fn getAll(self: *const IWMPPlaylistCollection, ppPlaylistArray: ?*?*IWMPPlaylistArray) callconv(.@"inline") HRESULT {
+        return self.vtable.getAll(self, ppPlaylistArray);
+    }
+    pub fn getByName(self: *const IWMPPlaylistCollection, bstrName: ?BSTR, ppPlaylistArray: ?*?*IWMPPlaylistArray) callconv(.@"inline") HRESULT {
+        return self.vtable.getByName(self, bstrName, ppPlaylistArray);
+    }
+    pub fn remove(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.remove(self, pItem);
+    }
+    pub fn setDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, varfIsDeleted: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.setDeleted(self, pItem, varfIsDeleted);
+    }
+    pub fn isDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, pvarfIsDeleted: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isDeleted(self, pItem, pvarfIsDeleted);
+    }
+    pub fn importPlaylist(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, ppImportedItem: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.importPlaylist(self, pItem, ppImportedItem);
     }
 };
-
-pub const WMPPlugin_Caps = enum(i32) {
-    s = 1,
-};
-pub const WMPPlugin_Caps_CannotConvertFormats = WMPPlugin_Caps.s;
 
 const IID_IWMPPlugin_Value = Guid.initString("f1392a70-024c-42bb-a998-73dfdfe7d5a7");
 pub const IID_IWMPPlugin = &IID_IWMPPlugin_Value;
@@ -5032,61 +6293,806 @@ pub const IWMPPluginEnable = extern union {
     }
 };
 
-const IID_IWMPGraphCreation_Value = Guid.initString("bfb377e5-c594-4369-a970-de896d5ece74");
-pub const IID_IWMPGraphCreation = &IID_IWMPGraphCreation_Value;
-pub const IWMPGraphCreation = extern union {
+const IID_IWMPPluginUI_Value = Guid.initString("4c5e8f9f-ad3e-4bf9-9753-fcd30d6d38dd");
+pub const IID_IWMPPluginUI = &IID_IWMPPluginUI_Value;
+pub const IWMPPluginUI = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GraphCreationPreRender: *const fn(
-            self: *const IWMPGraphCreation,
-            pFilterGraph: ?*IUnknown,
-            pReserved: ?*IUnknown,
+        SetCore: *const fn(
+            self: *const IWMPPluginUI,
+            pCore: ?*IWMPCore,
         ) callconv(.winapi) HRESULT,
-        GraphCreationPostRender: *const fn(
-            self: *const IWMPGraphCreation,
-            pFilterGraph: ?*IUnknown,
+        Create: *const fn(
+            self: *const IWMPPluginUI,
+            hwndParent: ?HWND,
+            phwndWindow: ?*?HWND,
         ) callconv(.winapi) HRESULT,
-        GetGraphCreationFlags: *const fn(
-            self: *const IWMPGraphCreation,
-            pdwFlags: ?*u32,
+        Destroy: *const fn(
+            self: *const IWMPPluginUI,
+        ) callconv(.winapi) HRESULT,
+        DisplayPropertyPage: *const fn(
+            self: *const IWMPPluginUI,
+            hwndParent: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IWMPPluginUI,
+            pwszName: ?[*:0]const u16,
+            pvarProperty: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetProperty: *const fn(
+            self: *const IWMPPluginUI,
+            pwszName: ?[*:0]const u16,
+            pvarProperty: ?*const VARIANT,
+        ) callconv(.winapi) HRESULT,
+        TranslateAccelerator: *const fn(
+            self: *const IWMPPluginUI,
+            lpmsg: ?*MSG,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GraphCreationPreRender(self: *const IWMPGraphCreation, pFilterGraph: ?*IUnknown, pReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GraphCreationPreRender(self, pFilterGraph, pReserved);
+    pub fn SetCore(self: *const IWMPPluginUI, pCore: ?*IWMPCore) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCore(self, pCore);
     }
-    pub fn GraphCreationPostRender(self: *const IWMPGraphCreation, pFilterGraph: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GraphCreationPostRender(self, pFilterGraph);
+    pub fn Create(self: *const IWMPPluginUI, hwndParent: ?HWND, phwndWindow: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, hwndParent, phwndWindow);
     }
-    pub fn GetGraphCreationFlags(self: *const IWMPGraphCreation, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGraphCreationFlags(self, pdwFlags);
+    pub fn Destroy(self: *const IWMPPluginUI) callconv(.@"inline") HRESULT {
+        return self.vtable.Destroy(self);
+    }
+    pub fn DisplayPropertyPage(self: *const IWMPPluginUI, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.DisplayPropertyPage(self, hwndParent);
+    }
+    pub fn GetProperty(self: *const IWMPPluginUI, pwszName: ?[*:0]const u16, pvarProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, pwszName, pvarProperty);
+    }
+    pub fn SetProperty(self: *const IWMPPluginUI, pwszName: ?[*:0]const u16, pvarProperty: ?*const VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, pwszName, pvarProperty);
+    }
+    pub fn TranslateAccelerator(self: *const IWMPPluginUI, lpmsg: ?*MSG) callconv(.@"inline") HRESULT {
+        return self.vtable.TranslateAccelerator(self, lpmsg);
     }
 };
 
-const IID_IWMPConvert_Value = Guid.initString("d683162f-57d4-4108-8373-4a9676d1c2e9");
-pub const IID_IWMPConvert = &IID_IWMPConvert_Value;
-pub const IWMPConvert = extern union {
+const IID_IWMPQuery_Value = Guid.initString("a00918f3-a6b0-4bfb-9189-fd834c7bc5a5");
+pub const IID_IWMPQuery = &IID_IWMPQuery_Value;
+pub const IWMPQuery = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        addCondition: *const fn(
+            self: *const IWMPQuery,
+            bstrAttribute: ?BSTR,
+            bstrOperator: ?BSTR,
+            bstrValue: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        beginNextGroup: *const fn(
+            self: *const IWMPQuery,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn addCondition(self: *const IWMPQuery, bstrAttribute: ?BSTR, bstrOperator: ?BSTR, bstrValue: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.addCondition(self, bstrAttribute, bstrOperator, bstrValue);
+    }
+    pub fn beginNextGroup(self: *const IWMPQuery) callconv(.@"inline") HRESULT {
+        return self.vtable.beginNextGroup(self);
+    }
+};
+
+const IID_IWMPRemoteMediaServices_Value = Guid.initString("cbb92747-741f-44fe-ab5b-f1a48f3b2a59");
+pub const IID_IWMPRemoteMediaServices = &IID_IWMPRemoteMediaServices_Value;
+pub const IWMPRemoteMediaServices = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConvertFile: *const fn(
-            self: *const IWMPConvert,
-            bstrInputFile: ?BSTR,
-            bstrDestinationFolder: ?BSTR,
-            pbstrOutputFile: ?*?BSTR,
+        GetServiceType: *const fn(
+            self: *const IWMPRemoteMediaServices,
+            pbstrType: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        GetErrorURL: *const fn(
-            self: *const IWMPConvert,
-            pbstrURL: ?*?BSTR,
+        GetApplicationName: *const fn(
+            self: *const IWMPRemoteMediaServices,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetScriptableObject: *const fn(
+            self: *const IWMPRemoteMediaServices,
+            pbstrName: ?*?BSTR,
+            ppDispatch: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        GetCustomUIMode: *const fn(
+            self: *const IWMPRemoteMediaServices,
+            pbstrFile: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConvertFile(self: *const IWMPConvert, bstrInputFile: ?BSTR, bstrDestinationFolder: ?BSTR, pbstrOutputFile: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertFile(self, bstrInputFile, bstrDestinationFolder, pbstrOutputFile);
+    pub fn GetServiceType(self: *const IWMPRemoteMediaServices, pbstrType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetServiceType(self, pbstrType);
     }
-    pub fn GetErrorURL(self: *const IWMPConvert, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetErrorURL(self, pbstrURL);
+    pub fn GetApplicationName(self: *const IWMPRemoteMediaServices, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetApplicationName(self, pbstrName);
+    }
+    pub fn GetScriptableObject(self: *const IWMPRemoteMediaServices, pbstrName: ?*?BSTR, ppDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetScriptableObject(self, pbstrName, ppDispatch);
+    }
+    pub fn GetCustomUIMode(self: *const IWMPRemoteMediaServices, pbstrFile: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCustomUIMode(self, pbstrFile);
+    }
+};
+
+const IID_IWMPRenderConfig_Value = Guid.initString("959506c1-0314-4ec5-9e61-8528db5e5478");
+pub const IID_IWMPRenderConfig = &IID_IWMPRenderConfig_Value;
+pub const IWMPRenderConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_inProcOnly: *const fn(
+            self: *const IWMPRenderConfig,
+            fInProc: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_inProcOnly: *const fn(
+            self: *const IWMPRenderConfig,
+            pfInProc: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn put_inProcOnly(self: *const IWMPRenderConfig, fInProc: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_inProcOnly(self, fInProc);
+    }
+    pub fn get_inProcOnly(self: *const IWMPRenderConfig, pfInProc: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_inProcOnly(self, pfInProc);
+    }
+};
+
+const IID_IWMPServices_Value = Guid.initString("afb6b76b-1e20-4198-83b3-191db6e0b149");
+pub const IID_IWMPServices = &IID_IWMPServices_Value;
+pub const IWMPServices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStreamTime: *const fn(
+            self: *const IWMPServices,
+            prt: ?*i64,
+        ) callconv(.winapi) HRESULT,
+        GetStreamState: *const fn(
+            self: *const IWMPServices,
+            pState: ?*WMPServices_StreamState,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStreamTime(self: *const IWMPServices, prt: ?*i64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamTime(self, prt);
+    }
+    pub fn GetStreamState(self: *const IWMPServices, pState: ?*WMPServices_StreamState) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamState(self, pState);
+    }
+};
+
+const IID_IWMPSettings_Value = Guid.initString("9104d1ab-80c9-4fed-abf0-2e6417a6df14");
+pub const IID_IWMPSettings = &IID_IWMPSettings_Value;
+pub const IWMPSettings = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_isAvailable: *const fn(
+            self: *const IWMPSettings,
+            bstrItem: ?BSTR,
+            pIsAvailable: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_autoStart: *const fn(
+            self: *const IWMPSettings,
+            pfAutoStart: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_autoStart: *const fn(
+            self: *const IWMPSettings,
+            fAutoStart: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_baseURL: *const fn(
+            self: *const IWMPSettings,
+            pbstrBaseURL: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_baseURL: *const fn(
+            self: *const IWMPSettings,
+            bstrBaseURL: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_defaultFrame: *const fn(
+            self: *const IWMPSettings,
+            pbstrDefaultFrame: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_defaultFrame: *const fn(
+            self: *const IWMPSettings,
+            bstrDefaultFrame: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_invokeURLs: *const fn(
+            self: *const IWMPSettings,
+            pfInvokeURLs: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_invokeURLs: *const fn(
+            self: *const IWMPSettings,
+            fInvokeURLs: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_mute: *const fn(
+            self: *const IWMPSettings,
+            pfMute: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_mute: *const fn(
+            self: *const IWMPSettings,
+            fMute: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_playCount: *const fn(
+            self: *const IWMPSettings,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_playCount: *const fn(
+            self: *const IWMPSettings,
+            lCount: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_rate: *const fn(
+            self: *const IWMPSettings,
+            pdRate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_rate: *const fn(
+            self: *const IWMPSettings,
+            dRate: f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_balance: *const fn(
+            self: *const IWMPSettings,
+            plBalance: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_balance: *const fn(
+            self: *const IWMPSettings,
+            lBalance: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_volume: *const fn(
+            self: *const IWMPSettings,
+            plVolume: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_volume: *const fn(
+            self: *const IWMPSettings,
+            lVolume: i32,
+        ) callconv(.winapi) HRESULT,
+        getMode: *const fn(
+            self: *const IWMPSettings,
+            bstrMode: ?BSTR,
+            pvarfMode: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        setMode: *const fn(
+            self: *const IWMPSettings,
+            bstrMode: ?BSTR,
+            varfMode: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_enableErrorDialogs: *const fn(
+            self: *const IWMPSettings,
+            pfEnableErrorDialogs: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_enableErrorDialogs: *const fn(
+            self: *const IWMPSettings,
+            fEnableErrorDialogs: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_isAvailable(self: *const IWMPSettings, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_isAvailable(self, bstrItem, pIsAvailable);
+    }
+    pub fn get_autoStart(self: *const IWMPSettings, pfAutoStart: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_autoStart(self, pfAutoStart);
+    }
+    pub fn put_autoStart(self: *const IWMPSettings, fAutoStart: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_autoStart(self, fAutoStart);
+    }
+    pub fn get_baseURL(self: *const IWMPSettings, pbstrBaseURL: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_baseURL(self, pbstrBaseURL);
+    }
+    pub fn put_baseURL(self: *const IWMPSettings, bstrBaseURL: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_baseURL(self, bstrBaseURL);
+    }
+    pub fn get_defaultFrame(self: *const IWMPSettings, pbstrDefaultFrame: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_defaultFrame(self, pbstrDefaultFrame);
+    }
+    pub fn put_defaultFrame(self: *const IWMPSettings, bstrDefaultFrame: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_defaultFrame(self, bstrDefaultFrame);
+    }
+    pub fn get_invokeURLs(self: *const IWMPSettings, pfInvokeURLs: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_invokeURLs(self, pfInvokeURLs);
+    }
+    pub fn put_invokeURLs(self: *const IWMPSettings, fInvokeURLs: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_invokeURLs(self, fInvokeURLs);
+    }
+    pub fn get_mute(self: *const IWMPSettings, pfMute: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_mute(self, pfMute);
+    }
+    pub fn put_mute(self: *const IWMPSettings, fMute: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_mute(self, fMute);
+    }
+    pub fn get_playCount(self: *const IWMPSettings, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_playCount(self, plCount);
+    }
+    pub fn put_playCount(self: *const IWMPSettings, lCount: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_playCount(self, lCount);
+    }
+    pub fn get_rate(self: *const IWMPSettings, pdRate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_rate(self, pdRate);
+    }
+    pub fn put_rate(self: *const IWMPSettings, dRate: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.put_rate(self, dRate);
+    }
+    pub fn get_balance(self: *const IWMPSettings, plBalance: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_balance(self, plBalance);
+    }
+    pub fn put_balance(self: *const IWMPSettings, lBalance: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_balance(self, lBalance);
+    }
+    pub fn get_volume(self: *const IWMPSettings, plVolume: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_volume(self, plVolume);
+    }
+    pub fn put_volume(self: *const IWMPSettings, lVolume: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_volume(self, lVolume);
+    }
+    pub fn getMode(self: *const IWMPSettings, bstrMode: ?BSTR, pvarfMode: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.getMode(self, bstrMode, pvarfMode);
+    }
+    pub fn setMode(self: *const IWMPSettings, bstrMode: ?BSTR, varfMode: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.setMode(self, bstrMode, varfMode);
+    }
+    pub fn get_enableErrorDialogs(self: *const IWMPSettings, pfEnableErrorDialogs: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_enableErrorDialogs(self, pfEnableErrorDialogs);
+    }
+    pub fn put_enableErrorDialogs(self: *const IWMPSettings, fEnableErrorDialogs: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_enableErrorDialogs(self, fEnableErrorDialogs);
+    }
+};
+
+const IID_IWMPSettings2_Value = Guid.initString("fda937a4-eece-4da5-a0b6-39bf89ade2c2");
+pub const IID_IWMPSettings2 = &IID_IWMPSettings2_Value;
+pub const IWMPSettings2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPSettings.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_defaultAudioLanguage: *const fn(
+            self: *const IWMPSettings2,
+            plLangID: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_mediaAccessRights: *const fn(
+            self: *const IWMPSettings2,
+            pbstrRights: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        requestMediaAccessRights: *const fn(
+            self: *const IWMPSettings2,
+            bstrDesiredAccess: ?BSTR,
+            pvbAccepted: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPSettings: IWMPSettings,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_defaultAudioLanguage(self: *const IWMPSettings2, plLangID: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_defaultAudioLanguage(self, plLangID);
+    }
+    pub fn get_mediaAccessRights(self: *const IWMPSettings2, pbstrRights: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_mediaAccessRights(self, pbstrRights);
+    }
+    pub fn requestMediaAccessRights(self: *const IWMPSettings2, bstrDesiredAccess: ?BSTR, pvbAccepted: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.requestMediaAccessRights(self, bstrDesiredAccess, pvbAccepted);
+    }
+};
+
+const IID_IWMPSkinManager_Value = Guid.initString("076f2fa6-ed30-448b-8cc5-3f3ef3529c7a");
+pub const IID_IWMPSkinManager = &IID_IWMPSkinManager_Value;
+pub const IWMPSkinManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetVisualStyle: *const fn(
+            self: *const IWMPSkinManager,
+            bstrPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetVisualStyle(self: *const IWMPSkinManager, bstrPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVisualStyle(self, bstrPath);
+    }
+};
+
+const IID_IWMPStringCollection_Value = Guid.initString("4a976298-8c0d-11d3-b389-00c04f68574b");
+pub const IID_IWMPStringCollection = &IID_IWMPStringCollection_Value;
+pub const IWMPStringCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_count: *const fn(
+            self: *const IWMPStringCollection,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        item: *const fn(
+            self: *const IWMPStringCollection,
+            lIndex: i32,
+            pbstrString: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_count(self: *const IWMPStringCollection, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_count(self, plCount);
+    }
+    pub fn item(self: *const IWMPStringCollection, lIndex: i32, pbstrString: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.item(self, lIndex, pbstrString);
+    }
+};
+
+const IID_IWMPStringCollection2_Value = Guid.initString("46ad648d-53f1-4a74-92e2-2a1b68d63fd4");
+pub const IID_IWMPStringCollection2 = &IID_IWMPStringCollection2_Value;
+pub const IWMPStringCollection2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPStringCollection.VTable,
+        isIdentical: *const fn(
+            self: *const IWMPStringCollection2,
+            pIWMPStringCollection2: ?*IWMPStringCollection2,
+            pvbool: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        getItemInfo: *const fn(
+            self: *const IWMPStringCollection2,
+            lCollectionIndex: i32,
+            bstrItemName: ?BSTR,
+            pbstrValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        getAttributeCountByType: *const fn(
+            self: *const IWMPStringCollection2,
+            lCollectionIndex: i32,
+            bstrType: ?BSTR,
+            bstrLanguage: ?BSTR,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getItemInfoByType: *const fn(
+            self: *const IWMPStringCollection2,
+            lCollectionIndex: i32,
+            bstrType: ?BSTR,
+            bstrLanguage: ?BSTR,
+            lAttributeIndex: i32,
+            pvarValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPStringCollection: IWMPStringCollection,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn isIdentical(self: *const IWMPStringCollection2, pIWMPStringCollection2: ?*IWMPStringCollection2, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isIdentical(self, pIWMPStringCollection2, pvbool);
+    }
+    pub fn getItemInfo(self: *const IWMPStringCollection2, lCollectionIndex: i32, bstrItemName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfo(self, lCollectionIndex, bstrItemName, pbstrValue);
+    }
+    pub fn getAttributeCountByType(self: *const IWMPStringCollection2, lCollectionIndex: i32, bstrType: ?BSTR, bstrLanguage: ?BSTR, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.getAttributeCountByType(self, lCollectionIndex, bstrType, bstrLanguage, plCount);
+    }
+    pub fn getItemInfoByType(self: *const IWMPStringCollection2, lCollectionIndex: i32, bstrType: ?BSTR, bstrLanguage: ?BSTR, lAttributeIndex: i32, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfoByType(self, lCollectionIndex, bstrType, bstrLanguage, lAttributeIndex, pvarValue);
+    }
+};
+
+const IID_IWMPSubscriptionService_Value = Guid.initString("376055f8-2a59-4a73-9501-dca5273a7a10");
+pub const IID_IWMPSubscriptionService = &IID_IWMPSubscriptionService_Value;
+pub const IWMPSubscriptionService = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        allowPlay: *const fn(
+            self: *const IWMPSubscriptionService,
+            hwnd: ?HWND,
+            pMedia: ?*IWMPMedia,
+            pfAllowPlay: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        allowCDBurn: *const fn(
+            self: *const IWMPSubscriptionService,
+            hwnd: ?HWND,
+            pPlaylist: ?*IWMPPlaylist,
+            pfAllowBurn: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        allowPDATransfer: *const fn(
+            self: *const IWMPSubscriptionService,
+            hwnd: ?HWND,
+            pPlaylist: ?*IWMPPlaylist,
+            pfAllowTransfer: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        startBackgroundProcessing: *const fn(
+            self: *const IWMPSubscriptionService,
+            hwnd: ?HWND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn allowPlay(self: *const IWMPSubscriptionService, hwnd: ?HWND, pMedia: ?*IWMPMedia, pfAllowPlay: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.allowPlay(self, hwnd, pMedia, pfAllowPlay);
+    }
+    pub fn allowCDBurn(self: *const IWMPSubscriptionService, hwnd: ?HWND, pPlaylist: ?*IWMPPlaylist, pfAllowBurn: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.allowCDBurn(self, hwnd, pPlaylist, pfAllowBurn);
+    }
+    pub fn allowPDATransfer(self: *const IWMPSubscriptionService, hwnd: ?HWND, pPlaylist: ?*IWMPPlaylist, pfAllowTransfer: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.allowPDATransfer(self, hwnd, pPlaylist, pfAllowTransfer);
+    }
+    pub fn startBackgroundProcessing(self: *const IWMPSubscriptionService, hwnd: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.startBackgroundProcessing(self, hwnd);
+    }
+};
+
+const IID_IWMPSubscriptionService2_Value = Guid.initString("a94c120e-d600-4ec6-b05e-ec9d56d84de0");
+pub const IID_IWMPSubscriptionService2 = &IID_IWMPSubscriptionService2_Value;
+pub const IWMPSubscriptionService2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPSubscriptionService.VTable,
+        stopBackgroundProcessing: *const fn(
+            self: *const IWMPSubscriptionService2,
+        ) callconv(.winapi) HRESULT,
+        serviceEvent: *const fn(
+            self: *const IWMPSubscriptionService2,
+            event: WMPSubscriptionServiceEvent,
+        ) callconv(.winapi) HRESULT,
+        deviceAvailable: *const fn(
+            self: *const IWMPSubscriptionService2,
+            bstrDeviceName: ?BSTR,
+            pCB: ?*IWMPSubscriptionServiceCallback,
+        ) callconv(.winapi) HRESULT,
+        prepareForSync: *const fn(
+            self: *const IWMPSubscriptionService2,
+            bstrFilename: ?BSTR,
+            bstrDeviceName: ?BSTR,
+            pCB: ?*IWMPSubscriptionServiceCallback,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPSubscriptionService: IWMPSubscriptionService,
+    IUnknown: IUnknown,
+    pub fn stopBackgroundProcessing(self: *const IWMPSubscriptionService2) callconv(.@"inline") HRESULT {
+        return self.vtable.stopBackgroundProcessing(self);
+    }
+    pub fn serviceEvent(self: *const IWMPSubscriptionService2, event: WMPSubscriptionServiceEvent) callconv(.@"inline") HRESULT {
+        return self.vtable.serviceEvent(self, event);
+    }
+    pub fn deviceAvailable(self: *const IWMPSubscriptionService2, bstrDeviceName: ?BSTR, pCB: ?*IWMPSubscriptionServiceCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.deviceAvailable(self, bstrDeviceName, pCB);
+    }
+    pub fn prepareForSync(self: *const IWMPSubscriptionService2, bstrFilename: ?BSTR, bstrDeviceName: ?BSTR, pCB: ?*IWMPSubscriptionServiceCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.prepareForSync(self, bstrFilename, bstrDeviceName, pCB);
+    }
+};
+
+const IID_IWMPSubscriptionServiceCallback_Value = Guid.initString("dd01d127-2dc2-4c3a-876e-63312079f9b0");
+pub const IID_IWMPSubscriptionServiceCallback = &IID_IWMPSubscriptionServiceCallback_Value;
+pub const IWMPSubscriptionServiceCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        onComplete: *const fn(
+            self: *const IWMPSubscriptionServiceCallback,
+            hrResult: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn onComplete(self: *const IWMPSubscriptionServiceCallback, hrResult: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.onComplete(self, hrResult);
+    }
+};
+
+const IID_IWMPSyncDevice_Value = Guid.initString("82a2986c-0293-4fd0-b279-b21b86c058be");
+pub const IID_IWMPSyncDevice = &IID_IWMPSyncDevice_Value;
+pub const IWMPSyncDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_friendlyName: *const fn(
+            self: *const IWMPSyncDevice,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_friendlyName: *const fn(
+            self: *const IWMPSyncDevice,
+            bstrName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_deviceName: *const fn(
+            self: *const IWMPSyncDevice,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_deviceId: *const fn(
+            self: *const IWMPSyncDevice,
+            pbstrDeviceId: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_partnershipIndex: *const fn(
+            self: *const IWMPSyncDevice,
+            plIndex: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_connected: *const fn(
+            self: *const IWMPSyncDevice,
+            pvbConnected: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_status: *const fn(
+            self: *const IWMPSyncDevice,
+            pwmpds: ?*WMPDeviceStatus,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_syncState: *const fn(
+            self: *const IWMPSyncDevice,
+            pwmpss: ?*WMPSyncState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_progress: *const fn(
+            self: *const IWMPSyncDevice,
+            plProgress: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getItemInfo: *const fn(
+            self: *const IWMPSyncDevice,
+            bstrItemName: ?BSTR,
+            pbstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        createPartnership: *const fn(
+            self: *const IWMPSyncDevice,
+            vbShowUI: i16,
+        ) callconv(.winapi) HRESULT,
+        deletePartnership: *const fn(
+            self: *const IWMPSyncDevice,
+        ) callconv(.winapi) HRESULT,
+        start: *const fn(
+            self: *const IWMPSyncDevice,
+        ) callconv(.winapi) HRESULT,
+        stop: *const fn(
+            self: *const IWMPSyncDevice,
+        ) callconv(.winapi) HRESULT,
+        showSettings: *const fn(
+            self: *const IWMPSyncDevice,
+        ) callconv(.winapi) HRESULT,
+        isIdentical: *const fn(
+            self: *const IWMPSyncDevice,
+            pDevice: ?*IWMPSyncDevice,
+            pvbool: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_friendlyName(self: *const IWMPSyncDevice, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_friendlyName(self, pbstrName);
+    }
+    pub fn put_friendlyName(self: *const IWMPSyncDevice, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_friendlyName(self, bstrName);
+    }
+    pub fn get_deviceName(self: *const IWMPSyncDevice, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_deviceName(self, pbstrName);
+    }
+    pub fn get_deviceId(self: *const IWMPSyncDevice, pbstrDeviceId: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_deviceId(self, pbstrDeviceId);
+    }
+    pub fn get_partnershipIndex(self: *const IWMPSyncDevice, plIndex: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_partnershipIndex(self, plIndex);
+    }
+    pub fn get_connected(self: *const IWMPSyncDevice, pvbConnected: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_connected(self, pvbConnected);
+    }
+    pub fn get_status(self: *const IWMPSyncDevice, pwmpds: ?*WMPDeviceStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.get_status(self, pwmpds);
+    }
+    pub fn get_syncState(self: *const IWMPSyncDevice, pwmpss: ?*WMPSyncState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_syncState(self, pwmpss);
+    }
+    pub fn get_progress(self: *const IWMPSyncDevice, plProgress: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_progress(self, plProgress);
+    }
+    pub fn getItemInfo(self: *const IWMPSyncDevice, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
+    }
+    pub fn createPartnership(self: *const IWMPSyncDevice, vbShowUI: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.createPartnership(self, vbShowUI);
+    }
+    pub fn deletePartnership(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.deletePartnership(self);
+    }
+    pub fn start(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.start(self);
+    }
+    pub fn stop(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.stop(self);
+    }
+    pub fn showSettings(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.showSettings(self);
+    }
+    pub fn isIdentical(self: *const IWMPSyncDevice, pDevice: ?*IWMPSyncDevice, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.isIdentical(self, pDevice, pvbool);
+    }
+};
+
+const IID_IWMPSyncDevice2_Value = Guid.initString("88afb4b2-140a-44d2-91e6-4543da467cd1");
+pub const IID_IWMPSyncDevice2 = &IID_IWMPSyncDevice2_Value;
+pub const IWMPSyncDevice2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPSyncDevice.VTable,
+        setItemInfo: *const fn(
+            self: *const IWMPSyncDevice2,
+            bstrItemName: ?BSTR,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPSyncDevice: IWMPSyncDevice,
+    IUnknown: IUnknown,
+    pub fn setItemInfo(self: *const IWMPSyncDevice2, bstrItemName: ?BSTR, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.setItemInfo(self, bstrItemName, bstrVal);
+    }
+};
+
+const IID_IWMPSyncDevice3_Value = Guid.initString("b22c85f9-263c-4372-a0da-b518db9b4098");
+pub const IID_IWMPSyncDevice3 = &IID_IWMPSyncDevice3_Value;
+pub const IWMPSyncDevice3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPSyncDevice2.VTable,
+        estimateSyncSize: *const fn(
+            self: *const IWMPSyncDevice3,
+            pNonRulePlaylist: ?*IWMPPlaylist,
+            pRulesPlaylist: ?*IWMPPlaylist,
+        ) callconv(.winapi) HRESULT,
+        cancelEstimation: *const fn(
+            self: *const IWMPSyncDevice3,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPSyncDevice2: IWMPSyncDevice2,
+    IWMPSyncDevice: IWMPSyncDevice,
+    IUnknown: IUnknown,
+    pub fn estimateSyncSize(self: *const IWMPSyncDevice3, pNonRulePlaylist: ?*IWMPPlaylist, pRulesPlaylist: ?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+        return self.vtable.estimateSyncSize(self, pNonRulePlaylist, pRulesPlaylist);
+    }
+    pub fn cancelEstimation(self: *const IWMPSyncDevice3) callconv(.@"inline") HRESULT {
+        return self.vtable.cancelEstimation(self);
+    }
+};
+
+const IID_IWMPSyncServices_Value = Guid.initString("8b5050ff-e0a4-4808-b3a8-893a9e1ed894");
+pub const IID_IWMPSyncServices = &IID_IWMPSyncServices_Value;
+pub const IWMPSyncServices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_deviceCount: *const fn(
+            self: *const IWMPSyncServices,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        getDevice: *const fn(
+            self: *const IWMPSyncServices,
+            lIndex: i32,
+            ppDevice: ?*?*IWMPSyncDevice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_deviceCount(self: *const IWMPSyncServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_deviceCount(self, plCount);
+    }
+    pub fn getDevice(self: *const IWMPSyncServices, lIndex: i32, ppDevice: ?*?*IWMPSyncDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.getDevice(self, lIndex, ppDevice);
     }
 };
 
@@ -5124,591 +7130,42 @@ pub const IWMPUserEventSink = extern union {
     }
 };
 
-const CLSID_FeedsManager_Value = Guid.initString("faeb54c4-f66f-4806-83a0-805299f5e3ad");
-pub const CLSID_FeedsManager = &CLSID_FeedsManager_Value;
-
-const CLSID_FeedFolderWatcher_Value = Guid.initString("281001ed-7765-4cb0-84af-e9b387af01ff");
-pub const CLSID_FeedFolderWatcher = &CLSID_FeedFolderWatcher_Value;
-
-const CLSID_FeedWatcher_Value = Guid.initString("18a6737b-f433-4687-89bc-a1b4dfb9f123");
-pub const CLSID_FeedWatcher = &CLSID_FeedWatcher_Value;
-
-pub const FEEDS_BACKGROUNDSYNC_ACTION = enum(i32) {
-    DISABLE = 0,
-    ENABLE = 1,
-    RUNNOW = 2,
-};
-pub const FBSA_DISABLE = FEEDS_BACKGROUNDSYNC_ACTION.DISABLE;
-pub const FBSA_ENABLE = FEEDS_BACKGROUNDSYNC_ACTION.ENABLE;
-pub const FBSA_RUNNOW = FEEDS_BACKGROUNDSYNC_ACTION.RUNNOW;
-
-pub const FEEDS_BACKGROUNDSYNC_STATUS = enum(i32) {
-    DISABLED = 0,
-    ENABLED = 1,
-};
-pub const FBSS_DISABLED = FEEDS_BACKGROUNDSYNC_STATUS.DISABLED;
-pub const FBSS_ENABLED = FEEDS_BACKGROUNDSYNC_STATUS.ENABLED;
-
-pub const FEEDS_EVENTS_SCOPE = enum(i32) {
-    ALL = 0,
-    SELF_ONLY = 1,
-    SELF_AND_CHILDREN_ONLY = 2,
-};
-pub const FES_ALL = FEEDS_EVENTS_SCOPE.ALL;
-pub const FES_SELF_ONLY = FEEDS_EVENTS_SCOPE.SELF_ONLY;
-pub const FES_SELF_AND_CHILDREN_ONLY = FEEDS_EVENTS_SCOPE.SELF_AND_CHILDREN_ONLY;
-
-pub const FEEDS_EVENTS_MASK = enum(i32) {
-    OLDEREVENTS = 1,
-    EEDEVENTS = 2,
-};
-pub const FEM_FOLDEREVENTS = FEEDS_EVENTS_MASK.OLDEREVENTS;
-pub const FEM_FEEDEVENTS = FEEDS_EVENTS_MASK.EEDEVENTS;
-
-pub const FEEDS_XML_SORT_PROPERTY = enum(i32) {
-    NONE = 0,
-    PUBDATE = 1,
-    DOWNLOADTIME = 2,
-};
-pub const FXSP_NONE = FEEDS_XML_SORT_PROPERTY.NONE;
-pub const FXSP_PUBDATE = FEEDS_XML_SORT_PROPERTY.PUBDATE;
-pub const FXSP_DOWNLOADTIME = FEEDS_XML_SORT_PROPERTY.DOWNLOADTIME;
-
-pub const FEEDS_XML_SORT_ORDER = enum(i32) {
-    NONE = 0,
-    ASCENDING = 1,
-    DESCENDING = 2,
-};
-pub const FXSO_NONE = FEEDS_XML_SORT_ORDER.NONE;
-pub const FXSO_ASCENDING = FEEDS_XML_SORT_ORDER.ASCENDING;
-pub const FXSO_DESCENDING = FEEDS_XML_SORT_ORDER.DESCENDING;
-
-pub const FEEDS_XML_FILTER_FLAGS = enum(i32) {
-    ALL = 0,
-    UNREAD = 1,
-    READ = 2,
-};
-pub const FXFF_ALL = FEEDS_XML_FILTER_FLAGS.ALL;
-pub const FXFF_UNREAD = FEEDS_XML_FILTER_FLAGS.UNREAD;
-pub const FXFF_READ = FEEDS_XML_FILTER_FLAGS.READ;
-
-pub const FEEDS_XML_INCLUDE_FLAGS = enum(i32) {
-    NONE = 0,
-    CF_EXTENSIONS = 1,
-};
-pub const FXIF_NONE = FEEDS_XML_INCLUDE_FLAGS.NONE;
-pub const FXIF_CF_EXTENSIONS = FEEDS_XML_INCLUDE_FLAGS.CF_EXTENSIONS;
-
-pub const FEEDS_DOWNLOAD_STATUS = enum(i32) {
-    NONE = 0,
-    PENDING = 1,
-    DOWNLOADING = 2,
-    DOWNLOADED = 3,
-    DOWNLOAD_FAILED = 4,
-};
-pub const FDS_NONE = FEEDS_DOWNLOAD_STATUS.NONE;
-pub const FDS_PENDING = FEEDS_DOWNLOAD_STATUS.PENDING;
-pub const FDS_DOWNLOADING = FEEDS_DOWNLOAD_STATUS.DOWNLOADING;
-pub const FDS_DOWNLOADED = FEEDS_DOWNLOAD_STATUS.DOWNLOADED;
-pub const FDS_DOWNLOAD_FAILED = FEEDS_DOWNLOAD_STATUS.DOWNLOAD_FAILED;
-
-pub const FEEDS_SYNC_SETTING = enum(i32) {
-    DEFAULT = 0,
-    INTERVAL = 1,
-    MANUAL = 2,
-    SUGGESTED = 3,
-};
-pub const FSS_DEFAULT = FEEDS_SYNC_SETTING.DEFAULT;
-pub const FSS_INTERVAL = FEEDS_SYNC_SETTING.INTERVAL;
-pub const FSS_MANUAL = FEEDS_SYNC_SETTING.MANUAL;
-pub const FSS_SUGGESTED = FEEDS_SYNC_SETTING.SUGGESTED;
-
-pub const FEEDS_DOWNLOAD_ERROR = enum(i32) {
-    NONE = 0,
-    DOWNLOAD_FAILED = 1,
-    INVALID_FEED_FORMAT = 2,
-    NORMALIZATION_FAILED = 3,
-    PERSISTENCE_FAILED = 4,
-    DOWNLOAD_BLOCKED = 5,
-    CANCELED = 6,
-    UNSUPPORTED_AUTH = 7,
-    BACKGROUND_DOWNLOAD_DISABLED = 8,
-    NOT_EXIST = 9,
-    UNSUPPORTED_MSXML = 10,
-    UNSUPPORTED_DTD = 11,
-    DOWNLOAD_SIZE_LIMIT_EXCEEDED = 12,
-    ACCESS_DENIED = 13,
-    AUTH_FAILED = 14,
-    INVALID_AUTH = 15,
-};
-pub const FDE_NONE = FEEDS_DOWNLOAD_ERROR.NONE;
-pub const FDE_DOWNLOAD_FAILED = FEEDS_DOWNLOAD_ERROR.DOWNLOAD_FAILED;
-pub const FDE_INVALID_FEED_FORMAT = FEEDS_DOWNLOAD_ERROR.INVALID_FEED_FORMAT;
-pub const FDE_NORMALIZATION_FAILED = FEEDS_DOWNLOAD_ERROR.NORMALIZATION_FAILED;
-pub const FDE_PERSISTENCE_FAILED = FEEDS_DOWNLOAD_ERROR.PERSISTENCE_FAILED;
-pub const FDE_DOWNLOAD_BLOCKED = FEEDS_DOWNLOAD_ERROR.DOWNLOAD_BLOCKED;
-pub const FDE_CANCELED = FEEDS_DOWNLOAD_ERROR.CANCELED;
-pub const FDE_UNSUPPORTED_AUTH = FEEDS_DOWNLOAD_ERROR.UNSUPPORTED_AUTH;
-pub const FDE_BACKGROUND_DOWNLOAD_DISABLED = FEEDS_DOWNLOAD_ERROR.BACKGROUND_DOWNLOAD_DISABLED;
-pub const FDE_NOT_EXIST = FEEDS_DOWNLOAD_ERROR.NOT_EXIST;
-pub const FDE_UNSUPPORTED_MSXML = FEEDS_DOWNLOAD_ERROR.UNSUPPORTED_MSXML;
-pub const FDE_UNSUPPORTED_DTD = FEEDS_DOWNLOAD_ERROR.UNSUPPORTED_DTD;
-pub const FDE_DOWNLOAD_SIZE_LIMIT_EXCEEDED = FEEDS_DOWNLOAD_ERROR.DOWNLOAD_SIZE_LIMIT_EXCEEDED;
-pub const FDE_ACCESS_DENIED = FEEDS_DOWNLOAD_ERROR.ACCESS_DENIED;
-pub const FDE_AUTH_FAILED = FEEDS_DOWNLOAD_ERROR.AUTH_FAILED;
-pub const FDE_INVALID_AUTH = FEEDS_DOWNLOAD_ERROR.INVALID_AUTH;
-
-pub const FEEDS_EVENTS_ITEM_COUNT_FLAGS = enum(i32) {
-    READ_ITEM_COUNT_CHANGED = 1,
-    UNREAD_ITEM_COUNT_CHANGED = 2,
-};
-pub const FEICF_READ_ITEM_COUNT_CHANGED = FEEDS_EVENTS_ITEM_COUNT_FLAGS.READ_ITEM_COUNT_CHANGED;
-pub const FEICF_UNREAD_ITEM_COUNT_CHANGED = FEEDS_EVENTS_ITEM_COUNT_FLAGS.UNREAD_ITEM_COUNT_CHANGED;
-
-pub const FEEDS_ERROR_CODE = enum(i32) {
-    ERRORBASE = -1073479168,
-    DOWNLOADSIZELIMITEXCEEDED = -1073479167,
-    pub const INVALIDMSXMLPROPERTY = .ERRORBASE;
-};
-pub const FEC_E_ERRORBASE = FEEDS_ERROR_CODE.ERRORBASE;
-pub const FEC_E_INVALIDMSXMLPROPERTY = FEEDS_ERROR_CODE.ERRORBASE;
-pub const FEC_E_DOWNLOADSIZELIMITEXCEEDED = FEEDS_ERROR_CODE.DOWNLOADSIZELIMITEXCEEDED;
-
-const IID_IXFeedsManager_Value = Guid.initString("5357e238-fb12-4aca-a930-cab7832b84bf");
-pub const IID_IXFeedsManager = &IID_IXFeedsManager_Value;
-pub const IXFeedsManager = extern union {
+const IID_IWMPVideoRenderConfig_Value = Guid.initString("6d6cf803-1ec0-4c8d-b3ca-f18e27282074");
+pub const IID_IWMPVideoRenderConfig = &IID_IWMPVideoRenderConfig_Value;
+pub const IWMPVideoRenderConfig = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RootFolder: *const fn(
-            self: *const IXFeedsManager,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        IsSubscribed: *const fn(
-            self: *const IXFeedsManager,
-            pszUrl: ?[*:0]const u16,
-            pbSubscribed: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        ExistsFeed: *const fn(
-            self: *const IXFeedsManager,
-            pszPath: ?[*:0]const u16,
-            pbFeedExists: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetFeed: *const fn(
-            self: *const IXFeedsManager,
-            pszPath: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetFeedByUrl: *const fn(
-            self: *const IXFeedsManager,
-            pszUrl: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        ExistsFolder: *const fn(
-            self: *const IXFeedsManager,
-            pszPath: ?[*:0]const u16,
-            pbFolderExists: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetFolder: *const fn(
-            self: *const IXFeedsManager,
-            pszPath: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        DeleteFeed: *const fn(
-            self: *const IXFeedsManager,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        DeleteFolder: *const fn(
-            self: *const IXFeedsManager,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        BackgroundSync: *const fn(
-            self: *const IXFeedsManager,
-            fbsa: FEEDS_BACKGROUNDSYNC_ACTION,
-        ) callconv(.winapi) HRESULT,
-        BackgroundSyncStatus: *const fn(
-            self: *const IXFeedsManager,
-            pfbss: ?*FEEDS_BACKGROUNDSYNC_STATUS,
-        ) callconv(.winapi) HRESULT,
-        DefaultInterval: *const fn(
-            self: *const IXFeedsManager,
-            puiInterval: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetDefaultInterval: *const fn(
-            self: *const IXFeedsManager,
-            uiInterval: u32,
-        ) callconv(.winapi) HRESULT,
-        AsyncSyncAll: *const fn(
-            self: *const IXFeedsManager,
-        ) callconv(.winapi) HRESULT,
-        Normalize: *const fn(
-            self: *const IXFeedsManager,
-            pStreamIn: ?*IStream,
-            ppStreamOut: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-        ItemCountLimit: *const fn(
-            self: *const IXFeedsManager,
-            puiItemCountLimit: ?*u32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_presenterActivate: *const fn(
+            self: *const IWMPVideoRenderConfig,
+            pActivate: ?*IMFActivate,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RootFolder(self: *const IXFeedsManager, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.RootFolder(self, riid, ppv);
-    }
-    pub fn IsSubscribed(self: *const IXFeedsManager, pszUrl: ?[*:0]const u16, pbSubscribed: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSubscribed(self, pszUrl, pbSubscribed);
-    }
-    pub fn ExistsFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, pbFeedExists: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsFeed(self, pszPath, pbFeedExists);
-    }
-    pub fn GetFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFeed(self, pszPath, riid, ppv);
-    }
-    pub fn GetFeedByUrl(self: *const IXFeedsManager, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFeedByUrl(self, pszUrl, riid, ppv);
-    }
-    pub fn ExistsFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, pbFolderExists: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsFolder(self, pszPath, pbFolderExists);
-    }
-    pub fn GetFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFolder(self, pszPath, riid, ppv);
-    }
-    pub fn DeleteFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteFeed(self, pszPath);
-    }
-    pub fn DeleteFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteFolder(self, pszPath);
-    }
-    pub fn BackgroundSync(self: *const IXFeedsManager, fbsa: FEEDS_BACKGROUNDSYNC_ACTION) callconv(.@"inline") HRESULT {
-        return self.vtable.BackgroundSync(self, fbsa);
-    }
-    pub fn BackgroundSyncStatus(self: *const IXFeedsManager, pfbss: ?*FEEDS_BACKGROUNDSYNC_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.BackgroundSyncStatus(self, pfbss);
-    }
-    pub fn DefaultInterval(self: *const IXFeedsManager, puiInterval: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DefaultInterval(self, puiInterval);
-    }
-    pub fn SetDefaultInterval(self: *const IXFeedsManager, uiInterval: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultInterval(self, uiInterval);
-    }
-    pub fn AsyncSyncAll(self: *const IXFeedsManager) callconv(.@"inline") HRESULT {
-        return self.vtable.AsyncSyncAll(self);
-    }
-    pub fn Normalize(self: *const IXFeedsManager, pStreamIn: ?*IStream, ppStreamOut: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.Normalize(self, pStreamIn, ppStreamOut);
-    }
-    pub fn ItemCountLimit(self: *const IXFeedsManager, puiItemCountLimit: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ItemCountLimit(self, puiItemCountLimit);
+    pub fn put_presenterActivate(self: *const IWMPVideoRenderConfig, pActivate: ?*IMFActivate) callconv(.@"inline") HRESULT {
+        return self.vtable.put_presenterActivate(self, pActivate);
     }
 };
 
-const IID_IXFeedsEnum_Value = Guid.initString("dc43a9d5-5015-4301-8c96-a47434b4d658");
-pub const IID_IXFeedsEnum = &IID_IXFeedsEnum_Value;
-pub const IXFeedsEnum = extern union {
+const IID_IWMPWindowMessageSink_Value = Guid.initString("3a0daa30-908d-4789-ba87-aed879b5c49b");
+pub const IID_IWMPWindowMessageSink = &IID_IWMPWindowMessageSink_Value;
+pub const IWMPWindowMessageSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Count: *const fn(
-            self: *const IXFeedsEnum,
-            puiCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IXFeedsEnum,
-            uiIndex: u32,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
+        OnWindowMessage: *const fn(
+            self: *const IWMPWindowMessageSink,
+            uMsg: u32,
+            wparam: WPARAM,
+            lparam: LPARAM,
+            plRet: ?*LRESULT,
+            pfHandled: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Count(self: *const IXFeedsEnum, puiCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Count(self, puiCount);
-    }
-    pub fn Item(self: *const IXFeedsEnum, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, uiIndex, riid, ppv);
-    }
-};
-
-const IID_IXFeedFolder_Value = Guid.initString("4c963678-3a51-4b88-8531-98b90b6508f2");
-pub const IID_IXFeedFolder = &IID_IXFeedFolder_Value;
-pub const IXFeedFolder = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Feeds: *const fn(
-            self: *const IXFeedFolder,
-            ppfe: ?*?*IXFeedsEnum,
-        ) callconv(.winapi) HRESULT,
-        Subfolders: *const fn(
-            self: *const IXFeedFolder,
-            ppfe: ?*?*IXFeedsEnum,
-        ) callconv(.winapi) HRESULT,
-        CreateFeed: *const fn(
-            self: *const IXFeedFolder,
-            pszName: ?[*:0]const u16,
-            pszUrl: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        CreateSubfolder: *const fn(
-            self: *const IXFeedFolder,
-            pszName: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        ExistsFeed: *const fn(
-            self: *const IXFeedFolder,
-            pszName: ?[*:0]const u16,
-            pbFeedExists: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        ExistsSubfolder: *const fn(
-            self: *const IXFeedFolder,
-            pszName: ?[*:0]const u16,
-            pbSubfolderExists: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetFeed: *const fn(
-            self: *const IXFeedFolder,
-            pszName: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetSubfolder: *const fn(
-            self: *const IXFeedFolder,
-            pszName: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IXFeedFolder,
-        ) callconv(.winapi) HRESULT,
-        Name: *const fn(
-            self: *const IXFeedFolder,
-            ppszName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        Rename: *const fn(
-            self: *const IXFeedFolder,
-            pszName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Path: *const fn(
-            self: *const IXFeedFolder,
-            ppszPath: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IXFeedFolder,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Parent: *const fn(
-            self: *const IXFeedFolder,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        IsRoot: *const fn(
-            self: *const IXFeedFolder,
-            pbIsRootFeedFolder: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetWatcher: *const fn(
-            self: *const IXFeedFolder,
-            scope: FEEDS_EVENTS_SCOPE,
-            mask: FEEDS_EVENTS_MASK,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        TotalUnreadItemCount: *const fn(
-            self: *const IXFeedFolder,
-            puiTotalUnreadItemCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        TotalItemCount: *const fn(
-            self: *const IXFeedFolder,
-            puiTotalItemCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Feeds(self: *const IXFeedFolder, ppfe: ?*?*IXFeedsEnum) callconv(.@"inline") HRESULT {
-        return self.vtable.Feeds(self, ppfe);
-    }
-    pub fn Subfolders(self: *const IXFeedFolder, ppfe: ?*?*IXFeedsEnum) callconv(.@"inline") HRESULT {
-        return self.vtable.Subfolders(self, ppfe);
-    }
-    pub fn CreateFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFeed(self, pszName, pszUrl, riid, ppv);
-    }
-    pub fn CreateSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateSubfolder(self, pszName, riid, ppv);
-    }
-    pub fn ExistsFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pbFeedExists: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsFeed(self, pszName, pbFeedExists);
-    }
-    pub fn ExistsSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pbSubfolderExists: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsSubfolder(self, pszName, pbSubfolderExists);
-    }
-    pub fn GetFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFeed(self, pszName, riid, ppv);
-    }
-    pub fn GetSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubfolder(self, pszName, riid, ppv);
-    }
-    pub fn Delete(self: *const IXFeedFolder) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-    pub fn Name(self: *const IXFeedFolder, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Name(self, ppszName);
-    }
-    pub fn Rename(self: *const IXFeedFolder, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Rename(self, pszName);
-    }
-    pub fn Path(self: *const IXFeedFolder, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Path(self, ppszPath);
-    }
-    pub fn Move(self: *const IXFeedFolder, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, pszPath);
-    }
-    pub fn Parent(self: *const IXFeedFolder, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Parent(self, riid, ppv);
-    }
-    pub fn IsRoot(self: *const IXFeedFolder, pbIsRootFeedFolder: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsRoot(self, pbIsRootFeedFolder);
-    }
-    pub fn GetWatcher(self: *const IXFeedFolder, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWatcher(self, scope, mask, riid, ppv);
-    }
-    pub fn TotalUnreadItemCount(self: *const IXFeedFolder, puiTotalUnreadItemCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.TotalUnreadItemCount(self, puiTotalUnreadItemCount);
-    }
-    pub fn TotalItemCount(self: *const IXFeedFolder, puiTotalItemCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.TotalItemCount(self, puiTotalItemCount);
-    }
-};
-
-const IID_IXFeedFolderEvents_Value = Guid.initString("7964b769-234a-4bb1-a5f4-90454c8ad07e");
-pub const IID_IXFeedFolderEvents = &IID_IXFeedFolderEvents_Value;
-pub const IXFeedFolderEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Error: *const fn(
-            self: *const IXFeedFolderEvents,
-        ) callconv(.winapi) HRESULT,
-        FolderAdded: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FolderDeleted: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FolderRenamed: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            pszOldPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FolderMovedFrom: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            pszOldPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FolderMovedTo: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            pszOldPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FolderItemCountChanged: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            feicfFlags: i32,
-        ) callconv(.winapi) HRESULT,
-        FeedAdded: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FeedDeleted: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FeedRenamed: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            pszOldPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FeedUrlChanged: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FeedMovedFrom: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            pszOldPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FeedMovedTo: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            pszOldPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FeedDownloading: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        FeedDownloadCompleted: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            fde: FEEDS_DOWNLOAD_ERROR,
-        ) callconv(.winapi) HRESULT,
-        FeedItemCountChanged: *const fn(
-            self: *const IXFeedFolderEvents,
-            pszPath: ?[*:0]const u16,
-            feicfFlags: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Error(self: *const IXFeedFolderEvents) callconv(.@"inline") HRESULT {
-        return self.vtable.Error(self);
-    }
-    pub fn FolderAdded(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderAdded(self, pszPath);
-    }
-    pub fn FolderDeleted(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderDeleted(self, pszPath);
-    }
-    pub fn FolderRenamed(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderRenamed(self, pszPath, pszOldPath);
-    }
-    pub fn FolderMovedFrom(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderMovedFrom(self, pszPath, pszOldPath);
-    }
-    pub fn FolderMovedTo(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderMovedTo(self, pszPath, pszOldPath);
-    }
-    pub fn FolderItemCountChanged(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, feicfFlags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderItemCountChanged(self, pszPath, feicfFlags);
-    }
-    pub fn FeedAdded(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedAdded(self, pszPath);
-    }
-    pub fn FeedDeleted(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDeleted(self, pszPath);
-    }
-    pub fn FeedRenamed(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedRenamed(self, pszPath, pszOldPath);
-    }
-    pub fn FeedUrlChanged(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedUrlChanged(self, pszPath);
-    }
-    pub fn FeedMovedFrom(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedMovedFrom(self, pszPath, pszOldPath);
-    }
-    pub fn FeedMovedTo(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedMovedTo(self, pszPath, pszOldPath);
-    }
-    pub fn FeedDownloading(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDownloading(self, pszPath);
-    }
-    pub fn FeedDownloadCompleted(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, fde: FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDownloadCompleted(self, pszPath, fde);
-    }
-    pub fn FeedItemCountChanged(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, feicfFlags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedItemCountChanged(self, pszPath, feicfFlags);
+    pub fn OnWindowMessage(self: *const IWMPWindowMessageSink, uMsg: u32, wparam: WPARAM, lparam: LPARAM, plRet: ?*LRESULT, pfHandled: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnWindowMessage(self, uMsg, wparam, lparam, plRet, pfHandled);
     }
 };
 
@@ -6092,6 +7549,108 @@ pub const IXFeed2 = extern union {
     }
 };
 
+const IID_IXFeedEnclosure_Value = Guid.initString("bfbfb953-644f-4792-b69c-dfaca4cbf89a");
+pub const IID_IXFeedEnclosure = &IID_IXFeedEnclosure_Value;
+pub const IXFeedEnclosure = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Url: *const fn(
+            self: *const IXFeedEnclosure,
+            ppszUrl: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        Type: *const fn(
+            self: *const IXFeedEnclosure,
+            ppszMimeType: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        Length: *const fn(
+            self: *const IXFeedEnclosure,
+            puiLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        AsyncDownload: *const fn(
+            self: *const IXFeedEnclosure,
+        ) callconv(.winapi) HRESULT,
+        CancelAsyncDownload: *const fn(
+            self: *const IXFeedEnclosure,
+        ) callconv(.winapi) HRESULT,
+        DownloadStatus: *const fn(
+            self: *const IXFeedEnclosure,
+            pfds: ?*FEEDS_DOWNLOAD_STATUS,
+        ) callconv(.winapi) HRESULT,
+        LastDownloadError: *const fn(
+            self: *const IXFeedEnclosure,
+            pfde: ?*FEEDS_DOWNLOAD_ERROR,
+        ) callconv(.winapi) HRESULT,
+        LocalPath: *const fn(
+            self: *const IXFeedEnclosure,
+            ppszPath: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        Parent: *const fn(
+            self: *const IXFeedEnclosure,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        DownloadUrl: *const fn(
+            self: *const IXFeedEnclosure,
+            ppszUrl: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        DownloadMimeType: *const fn(
+            self: *const IXFeedEnclosure,
+            ppszMimeType: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveFile: *const fn(
+            self: *const IXFeedEnclosure,
+        ) callconv(.winapi) HRESULT,
+        SetFile: *const fn(
+            self: *const IXFeedEnclosure,
+            pszDownloadUrl: ?[*:0]const u16,
+            pszDownloadFilePath: ?[*:0]const u16,
+            pszDownloadMimeType: ?[*:0]const u16,
+            pszEnclosureFilename: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Url(self: *const IXFeedEnclosure, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Url(self, ppszUrl);
+    }
+    pub fn Type(self: *const IXFeedEnclosure, ppszMimeType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Type(self, ppszMimeType);
+    }
+    pub fn Length(self: *const IXFeedEnclosure, puiLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Length(self, puiLength);
+    }
+    pub fn AsyncDownload(self: *const IXFeedEnclosure) callconv(.@"inline") HRESULT {
+        return self.vtable.AsyncDownload(self);
+    }
+    pub fn CancelAsyncDownload(self: *const IXFeedEnclosure) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelAsyncDownload(self);
+    }
+    pub fn DownloadStatus(self: *const IXFeedEnclosure, pfds: ?*FEEDS_DOWNLOAD_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.DownloadStatus(self, pfds);
+    }
+    pub fn LastDownloadError(self: *const IXFeedEnclosure, pfde: ?*FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
+        return self.vtable.LastDownloadError(self, pfde);
+    }
+    pub fn LocalPath(self: *const IXFeedEnclosure, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.LocalPath(self, ppszPath);
+    }
+    pub fn Parent(self: *const IXFeedEnclosure, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Parent(self, riid, ppv);
+    }
+    pub fn DownloadUrl(self: *const IXFeedEnclosure, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DownloadUrl(self, ppszUrl);
+    }
+    pub fn DownloadMimeType(self: *const IXFeedEnclosure, ppszMimeType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DownloadMimeType(self, ppszMimeType);
+    }
+    pub fn RemoveFile(self: *const IXFeedEnclosure) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveFile(self);
+    }
+    pub fn SetFile(self: *const IXFeedEnclosure, pszDownloadUrl: ?[*:0]const u16, pszDownloadFilePath: ?[*:0]const u16, pszDownloadMimeType: ?[*:0]const u16, pszEnclosureFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFile(self, pszDownloadUrl, pszDownloadFilePath, pszDownloadMimeType, pszEnclosureFilename);
+    }
+};
+
 const IID_IXFeedEvents_Value = Guid.initString("1630852e-1263-465b-98e5-fe60ffec4ac2");
 pub const IID_IXFeedEvents = &IID_IXFeedEvents_Value;
 pub const IXFeedEvents = extern union {
@@ -6157,6 +7716,286 @@ pub const IXFeedEvents = extern union {
         return self.vtable.FeedDownloadCompleted(self, pszPath, fde);
     }
     pub fn FeedItemCountChanged(self: *const IXFeedEvents, pszPath: ?[*:0]const u16, feicfFlags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedItemCountChanged(self, pszPath, feicfFlags);
+    }
+};
+
+const IID_IXFeedFolder_Value = Guid.initString("4c963678-3a51-4b88-8531-98b90b6508f2");
+pub const IID_IXFeedFolder = &IID_IXFeedFolder_Value;
+pub const IXFeedFolder = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Feeds: *const fn(
+            self: *const IXFeedFolder,
+            ppfe: ?*?*IXFeedsEnum,
+        ) callconv(.winapi) HRESULT,
+        Subfolders: *const fn(
+            self: *const IXFeedFolder,
+            ppfe: ?*?*IXFeedsEnum,
+        ) callconv(.winapi) HRESULT,
+        CreateFeed: *const fn(
+            self: *const IXFeedFolder,
+            pszName: ?[*:0]const u16,
+            pszUrl: ?[*:0]const u16,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        CreateSubfolder: *const fn(
+            self: *const IXFeedFolder,
+            pszName: ?[*:0]const u16,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        ExistsFeed: *const fn(
+            self: *const IXFeedFolder,
+            pszName: ?[*:0]const u16,
+            pbFeedExists: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        ExistsSubfolder: *const fn(
+            self: *const IXFeedFolder,
+            pszName: ?[*:0]const u16,
+            pbSubfolderExists: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetFeed: *const fn(
+            self: *const IXFeedFolder,
+            pszName: ?[*:0]const u16,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetSubfolder: *const fn(
+            self: *const IXFeedFolder,
+            pszName: ?[*:0]const u16,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IXFeedFolder,
+        ) callconv(.winapi) HRESULT,
+        Name: *const fn(
+            self: *const IXFeedFolder,
+            ppszName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        Rename: *const fn(
+            self: *const IXFeedFolder,
+            pszName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Path: *const fn(
+            self: *const IXFeedFolder,
+            ppszPath: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IXFeedFolder,
+            pszPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Parent: *const fn(
+            self: *const IXFeedFolder,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        IsRoot: *const fn(
+            self: *const IXFeedFolder,
+            pbIsRootFeedFolder: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetWatcher: *const fn(
+            self: *const IXFeedFolder,
+            scope: FEEDS_EVENTS_SCOPE,
+            mask: FEEDS_EVENTS_MASK,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        TotalUnreadItemCount: *const fn(
+            self: *const IXFeedFolder,
+            puiTotalUnreadItemCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        TotalItemCount: *const fn(
+            self: *const IXFeedFolder,
+            puiTotalItemCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Feeds(self: *const IXFeedFolder, ppfe: ?*?*IXFeedsEnum) callconv(.@"inline") HRESULT {
+        return self.vtable.Feeds(self, ppfe);
+    }
+    pub fn Subfolders(self: *const IXFeedFolder, ppfe: ?*?*IXFeedsEnum) callconv(.@"inline") HRESULT {
+        return self.vtable.Subfolders(self, ppfe);
+    }
+    pub fn CreateFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFeed(self, pszName, pszUrl, riid, ppv);
+    }
+    pub fn CreateSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateSubfolder(self, pszName, riid, ppv);
+    }
+    pub fn ExistsFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pbFeedExists: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsFeed(self, pszName, pbFeedExists);
+    }
+    pub fn ExistsSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, pbSubfolderExists: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsSubfolder(self, pszName, pbSubfolderExists);
+    }
+    pub fn GetFeed(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFeed(self, pszName, riid, ppv);
+    }
+    pub fn GetSubfolder(self: *const IXFeedFolder, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubfolder(self, pszName, riid, ppv);
+    }
+    pub fn Delete(self: *const IXFeedFolder) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn Name(self: *const IXFeedFolder, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Name(self, ppszName);
+    }
+    pub fn Rename(self: *const IXFeedFolder, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Rename(self, pszName);
+    }
+    pub fn Path(self: *const IXFeedFolder, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Path(self, ppszPath);
+    }
+    pub fn Move(self: *const IXFeedFolder, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, pszPath);
+    }
+    pub fn Parent(self: *const IXFeedFolder, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Parent(self, riid, ppv);
+    }
+    pub fn IsRoot(self: *const IXFeedFolder, pbIsRootFeedFolder: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsRoot(self, pbIsRootFeedFolder);
+    }
+    pub fn GetWatcher(self: *const IXFeedFolder, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWatcher(self, scope, mask, riid, ppv);
+    }
+    pub fn TotalUnreadItemCount(self: *const IXFeedFolder, puiTotalUnreadItemCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.TotalUnreadItemCount(self, puiTotalUnreadItemCount);
+    }
+    pub fn TotalItemCount(self: *const IXFeedFolder, puiTotalItemCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.TotalItemCount(self, puiTotalItemCount);
+    }
+};
+
+const IID_IXFeedFolderEvents_Value = Guid.initString("7964b769-234a-4bb1-a5f4-90454c8ad07e");
+pub const IID_IXFeedFolderEvents = &IID_IXFeedFolderEvents_Value;
+pub const IXFeedFolderEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Error: *const fn(
+            self: *const IXFeedFolderEvents,
+        ) callconv(.winapi) HRESULT,
+        FolderAdded: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FolderDeleted: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FolderRenamed: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            pszOldPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FolderMovedFrom: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            pszOldPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FolderMovedTo: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            pszOldPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FolderItemCountChanged: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            feicfFlags: i32,
+        ) callconv(.winapi) HRESULT,
+        FeedAdded: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FeedDeleted: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FeedRenamed: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            pszOldPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FeedUrlChanged: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FeedMovedFrom: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            pszOldPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FeedMovedTo: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            pszOldPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FeedDownloading: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        FeedDownloadCompleted: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            fde: FEEDS_DOWNLOAD_ERROR,
+        ) callconv(.winapi) HRESULT,
+        FeedItemCountChanged: *const fn(
+            self: *const IXFeedFolderEvents,
+            pszPath: ?[*:0]const u16,
+            feicfFlags: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Error(self: *const IXFeedFolderEvents) callconv(.@"inline") HRESULT {
+        return self.vtable.Error(self);
+    }
+    pub fn FolderAdded(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderAdded(self, pszPath);
+    }
+    pub fn FolderDeleted(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderDeleted(self, pszPath);
+    }
+    pub fn FolderRenamed(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderRenamed(self, pszPath, pszOldPath);
+    }
+    pub fn FolderMovedFrom(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderMovedFrom(self, pszPath, pszOldPath);
+    }
+    pub fn FolderMovedTo(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderMovedTo(self, pszPath, pszOldPath);
+    }
+    pub fn FolderItemCountChanged(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, feicfFlags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.FolderItemCountChanged(self, pszPath, feicfFlags);
+    }
+    pub fn FeedAdded(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedAdded(self, pszPath);
+    }
+    pub fn FeedDeleted(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDeleted(self, pszPath);
+    }
+    pub fn FeedRenamed(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedRenamed(self, pszPath, pszOldPath);
+    }
+    pub fn FeedUrlChanged(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedUrlChanged(self, pszPath);
+    }
+    pub fn FeedMovedFrom(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedMovedFrom(self, pszPath, pszOldPath);
+    }
+    pub fn FeedMovedTo(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, pszOldPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedMovedTo(self, pszPath, pszOldPath);
+    }
+    pub fn FeedDownloading(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDownloading(self, pszPath);
+    }
+    pub fn FeedDownloadCompleted(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, fde: FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
+        return self.vtable.FeedDownloadCompleted(self, pszPath, fde);
+    }
+    pub fn FeedItemCountChanged(self: *const IXFeedFolderEvents, pszPath: ?[*:0]const u16, feicfFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.FeedItemCountChanged(self, pszPath, feicfFlags);
     }
 };
@@ -6310,1318 +8149,161 @@ pub const IXFeedItem2 = extern union {
     }
 };
 
-const IID_IXFeedEnclosure_Value = Guid.initString("bfbfb953-644f-4792-b69c-dfaca4cbf89a");
-pub const IID_IXFeedEnclosure = &IID_IXFeedEnclosure_Value;
-pub const IXFeedEnclosure = extern union {
+const IID_IXFeedsEnum_Value = Guid.initString("dc43a9d5-5015-4301-8c96-a47434b4d658");
+pub const IID_IXFeedsEnum = &IID_IXFeedsEnum_Value;
+pub const IXFeedsEnum = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Url: *const fn(
-            self: *const IXFeedEnclosure,
-            ppszUrl: ?*?PWSTR,
+        Count: *const fn(
+            self: *const IXFeedsEnum,
+            puiCount: ?*u32,
         ) callconv(.winapi) HRESULT,
-        Type: *const fn(
-            self: *const IXFeedEnclosure,
-            ppszMimeType: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        Length: *const fn(
-            self: *const IXFeedEnclosure,
-            puiLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        AsyncDownload: *const fn(
-            self: *const IXFeedEnclosure,
-        ) callconv(.winapi) HRESULT,
-        CancelAsyncDownload: *const fn(
-            self: *const IXFeedEnclosure,
-        ) callconv(.winapi) HRESULT,
-        DownloadStatus: *const fn(
-            self: *const IXFeedEnclosure,
-            pfds: ?*FEEDS_DOWNLOAD_STATUS,
-        ) callconv(.winapi) HRESULT,
-        LastDownloadError: *const fn(
-            self: *const IXFeedEnclosure,
-            pfde: ?*FEEDS_DOWNLOAD_ERROR,
-        ) callconv(.winapi) HRESULT,
-        LocalPath: *const fn(
-            self: *const IXFeedEnclosure,
-            ppszPath: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        Parent: *const fn(
-            self: *const IXFeedEnclosure,
+        Item: *const fn(
+            self: *const IXFeedsEnum,
+            uiIndex: u32,
             riid: ?*const Guid,
             ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
-        DownloadUrl: *const fn(
-            self: *const IXFeedEnclosure,
-            ppszUrl: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        DownloadMimeType: *const fn(
-            self: *const IXFeedEnclosure,
-            ppszMimeType: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        RemoveFile: *const fn(
-            self: *const IXFeedEnclosure,
-        ) callconv(.winapi) HRESULT,
-        SetFile: *const fn(
-            self: *const IXFeedEnclosure,
-            pszDownloadUrl: ?[*:0]const u16,
-            pszDownloadFilePath: ?[*:0]const u16,
-            pszDownloadMimeType: ?[*:0]const u16,
-            pszEnclosureFilename: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Url(self: *const IXFeedEnclosure, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Url(self, ppszUrl);
+    pub fn Count(self: *const IXFeedsEnum, puiCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Count(self, puiCount);
     }
-    pub fn Type(self: *const IXFeedEnclosure, ppszMimeType: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Type(self, ppszMimeType);
-    }
-    pub fn Length(self: *const IXFeedEnclosure, puiLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Length(self, puiLength);
-    }
-    pub fn AsyncDownload(self: *const IXFeedEnclosure) callconv(.@"inline") HRESULT {
-        return self.vtable.AsyncDownload(self);
-    }
-    pub fn CancelAsyncDownload(self: *const IXFeedEnclosure) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelAsyncDownload(self);
-    }
-    pub fn DownloadStatus(self: *const IXFeedEnclosure, pfds: ?*FEEDS_DOWNLOAD_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.DownloadStatus(self, pfds);
-    }
-    pub fn LastDownloadError(self: *const IXFeedEnclosure, pfde: ?*FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
-        return self.vtable.LastDownloadError(self, pfde);
-    }
-    pub fn LocalPath(self: *const IXFeedEnclosure, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.LocalPath(self, ppszPath);
-    }
-    pub fn Parent(self: *const IXFeedEnclosure, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Parent(self, riid, ppv);
-    }
-    pub fn DownloadUrl(self: *const IXFeedEnclosure, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DownloadUrl(self, ppszUrl);
-    }
-    pub fn DownloadMimeType(self: *const IXFeedEnclosure, ppszMimeType: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DownloadMimeType(self, ppszMimeType);
-    }
-    pub fn RemoveFile(self: *const IXFeedEnclosure) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveFile(self);
-    }
-    pub fn SetFile(self: *const IXFeedEnclosure, pszDownloadUrl: ?[*:0]const u16, pszDownloadFilePath: ?[*:0]const u16, pszDownloadMimeType: ?[*:0]const u16, pszEnclosureFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFile(self, pszDownloadUrl, pszDownloadFilePath, pszDownloadMimeType, pszEnclosureFilename);
+    pub fn Item(self: *const IXFeedsEnum, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, uiIndex, riid, ppv);
     }
 };
 
-const IID_IFeedsManager_Value = Guid.initString("a74029cc-1f1a-4906-88f0-810638d86591");
-pub const IID_IFeedsManager = &IID_IFeedsManager_Value;
-pub const IFeedsManager = extern union {
+const IID_IXFeedsManager_Value = Guid.initString("5357e238-fb12-4aca-a930-cab7832b84bf");
+pub const IID_IXFeedsManager = &IID_IXFeedsManager_Value;
+pub const IXFeedsManager = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RootFolder: *const fn(
-            self: *const IFeedsManager,
-            disp: ?*?*IDispatch,
+        base: IUnknown.VTable,
+        RootFolder: *const fn(
+            self: *const IXFeedsManager,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
         IsSubscribed: *const fn(
-            self: *const IFeedsManager,
-            feedUrl: ?BSTR,
-            subscribed: ?*i16,
+            self: *const IXFeedsManager,
+            pszUrl: ?[*:0]const u16,
+            pbSubscribed: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         ExistsFeed: *const fn(
-            self: *const IFeedsManager,
-            feedPath: ?BSTR,
-            exists: ?*i16,
+            self: *const IXFeedsManager,
+            pszPath: ?[*:0]const u16,
+            pbFeedExists: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         GetFeed: *const fn(
-            self: *const IFeedsManager,
-            feedPath: ?BSTR,
-            disp: ?*?*IDispatch,
+            self: *const IXFeedsManager,
+            pszPath: ?[*:0]const u16,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
         GetFeedByUrl: *const fn(
-            self: *const IFeedsManager,
-            feedUrl: ?BSTR,
-            disp: ?*?*IDispatch,
+            self: *const IXFeedsManager,
+            pszUrl: ?[*:0]const u16,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
         ExistsFolder: *const fn(
-            self: *const IFeedsManager,
-            folderPath: ?BSTR,
-            exists: ?*i16,
+            self: *const IXFeedsManager,
+            pszPath: ?[*:0]const u16,
+            pbFolderExists: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         GetFolder: *const fn(
-            self: *const IFeedsManager,
-            folderPath: ?BSTR,
-            disp: ?*?*IDispatch,
+            self: *const IXFeedsManager,
+            pszPath: ?[*:0]const u16,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
         DeleteFeed: *const fn(
-            self: *const IFeedsManager,
-            feedPath: ?BSTR,
+            self: *const IXFeedsManager,
+            pszPath: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
         DeleteFolder: *const fn(
-            self: *const IFeedsManager,
-            folderPath: ?BSTR,
+            self: *const IXFeedsManager,
+            pszPath: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
         BackgroundSync: *const fn(
-            self: *const IFeedsManager,
-            action: FEEDS_BACKGROUNDSYNC_ACTION,
+            self: *const IXFeedsManager,
+            fbsa: FEEDS_BACKGROUNDSYNC_ACTION,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackgroundSyncStatus: *const fn(
-            self: *const IFeedsManager,
-            status: ?*FEEDS_BACKGROUNDSYNC_STATUS,
+        BackgroundSyncStatus: *const fn(
+            self: *const IXFeedsManager,
+            pfbss: ?*FEEDS_BACKGROUNDSYNC_STATUS,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultInterval: *const fn(
-            self: *const IFeedsManager,
-            minutes: ?*i32,
+        DefaultInterval: *const fn(
+            self: *const IXFeedsManager,
+            puiInterval: ?*u32,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultInterval: *const fn(
-            self: *const IFeedsManager,
-            minutes: i32,
+        SetDefaultInterval: *const fn(
+            self: *const IXFeedsManager,
+            uiInterval: u32,
         ) callconv(.winapi) HRESULT,
         AsyncSyncAll: *const fn(
-            self: *const IFeedsManager,
+            self: *const IXFeedsManager,
         ) callconv(.winapi) HRESULT,
         Normalize: *const fn(
-            self: *const IFeedsManager,
-            feedXmlIn: ?BSTR,
-            feedXmlOut: ?*?BSTR,
+            self: *const IXFeedsManager,
+            pStreamIn: ?*IStream,
+            ppStreamOut: ?*?*IStream,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ItemCountLimit: *const fn(
-            self: *const IFeedsManager,
-            itemCountLimit: ?*i32,
+        ItemCountLimit: *const fn(
+            self: *const IXFeedsManager,
+            puiItemCountLimit: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RootFolder(self: *const IFeedsManager, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RootFolder(self, disp);
+    pub fn RootFolder(self: *const IXFeedsManager, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.RootFolder(self, riid, ppv);
     }
-    pub fn IsSubscribed(self: *const IFeedsManager, feedUrl: ?BSTR, subscribed: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsSubscribed(self, feedUrl, subscribed);
+    pub fn IsSubscribed(self: *const IXFeedsManager, pszUrl: ?[*:0]const u16, pbSubscribed: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsSubscribed(self, pszUrl, pbSubscribed);
     }
-    pub fn ExistsFeed(self: *const IFeedsManager, feedPath: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsFeed(self, feedPath, exists);
+    pub fn ExistsFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, pbFeedExists: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsFeed(self, pszPath, pbFeedExists);
     }
-    pub fn GetFeed(self: *const IFeedsManager, feedPath: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFeed(self, feedPath, disp);
+    pub fn GetFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFeed(self, pszPath, riid, ppv);
     }
-    pub fn GetFeedByUrl(self: *const IFeedsManager, feedUrl: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFeedByUrl(self, feedUrl, disp);
+    pub fn GetFeedByUrl(self: *const IXFeedsManager, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFeedByUrl(self, pszUrl, riid, ppv);
     }
-    pub fn ExistsFolder(self: *const IFeedsManager, folderPath: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsFolder(self, folderPath, exists);
+    pub fn ExistsFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, pbFolderExists: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistsFolder(self, pszPath, pbFolderExists);
     }
-    pub fn GetFolder(self: *const IFeedsManager, folderPath: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFolder(self, folderPath, disp);
+    pub fn GetFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFolder(self, pszPath, riid, ppv);
     }
-    pub fn DeleteFeed(self: *const IFeedsManager, feedPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteFeed(self, feedPath);
+    pub fn DeleteFeed(self: *const IXFeedsManager, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteFeed(self, pszPath);
     }
-    pub fn DeleteFolder(self: *const IFeedsManager, folderPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteFolder(self, folderPath);
+    pub fn DeleteFolder(self: *const IXFeedsManager, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteFolder(self, pszPath);
     }
-    pub fn BackgroundSync(self: *const IFeedsManager, action: FEEDS_BACKGROUNDSYNC_ACTION) callconv(.@"inline") HRESULT {
-        return self.vtable.BackgroundSync(self, action);
+    pub fn BackgroundSync(self: *const IXFeedsManager, fbsa: FEEDS_BACKGROUNDSYNC_ACTION) callconv(.@"inline") HRESULT {
+        return self.vtable.BackgroundSync(self, fbsa);
     }
-    pub fn get_BackgroundSyncStatus(self: *const IFeedsManager, status: ?*FEEDS_BACKGROUNDSYNC_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackgroundSyncStatus(self, status);
+    pub fn BackgroundSyncStatus(self: *const IXFeedsManager, pfbss: ?*FEEDS_BACKGROUNDSYNC_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.BackgroundSyncStatus(self, pfbss);
     }
-    pub fn get_DefaultInterval(self: *const IFeedsManager, minutes: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultInterval(self, minutes);
+    pub fn DefaultInterval(self: *const IXFeedsManager, puiInterval: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DefaultInterval(self, puiInterval);
     }
-    pub fn put_DefaultInterval(self: *const IFeedsManager, minutes: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DefaultInterval(self, minutes);
+    pub fn SetDefaultInterval(self: *const IXFeedsManager, uiInterval: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultInterval(self, uiInterval);
     }
-    pub fn AsyncSyncAll(self: *const IFeedsManager) callconv(.@"inline") HRESULT {
+    pub fn AsyncSyncAll(self: *const IXFeedsManager) callconv(.@"inline") HRESULT {
         return self.vtable.AsyncSyncAll(self);
     }
-    pub fn Normalize(self: *const IFeedsManager, feedXmlIn: ?BSTR, feedXmlOut: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Normalize(self, feedXmlIn, feedXmlOut);
-    }
-    pub fn get_ItemCountLimit(self: *const IFeedsManager, itemCountLimit: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ItemCountLimit(self, itemCountLimit);
-    }
-};
-
-const IID_IFeedsEnum_Value = Guid.initString("e3cd0028-2eed-4c60-8fae-a3225309a836");
-pub const IID_IFeedsEnum = &IID_IFeedsEnum_Value;
-pub const IFeedsEnum = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IFeedsEnum,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IFeedsEnum,
-            index: i32,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IFeedsEnum,
-            enumVar: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IFeedsEnum, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, count);
-    }
-    pub fn Item(self: *const IFeedsEnum, index: i32, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, index, disp);
-    }
-    pub fn get__NewEnum(self: *const IFeedsEnum, enumVar: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, enumVar);
-    }
-};
-
-const IID_IFeedFolder_Value = Guid.initString("81f04ad1-4194-4d7d-86d6-11813cec163c");
-pub const IID_IFeedFolder = &IID_IFeedFolder_Value;
-pub const IFeedFolder = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Feeds: *const fn(
-            self: *const IFeedFolder,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Subfolders: *const fn(
-            self: *const IFeedFolder,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        CreateFeed: *const fn(
-            self: *const IFeedFolder,
-            feedName: ?BSTR,
-            feedUrl: ?BSTR,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        CreateSubfolder: *const fn(
-            self: *const IFeedFolder,
-            folderName: ?BSTR,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        ExistsFeed: *const fn(
-            self: *const IFeedFolder,
-            feedName: ?BSTR,
-            exists: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetFeed: *const fn(
-            self: *const IFeedFolder,
-            feedName: ?BSTR,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        ExistsSubfolder: *const fn(
-            self: *const IFeedFolder,
-            folderName: ?BSTR,
-            exists: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetSubfolder: *const fn(
-            self: *const IFeedFolder,
-            folderName: ?BSTR,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IFeedFolder,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFeedFolder,
-            folderName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Rename: *const fn(
-            self: *const IFeedFolder,
-            folderName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IFeedFolder,
-            folderPath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IFeedFolder,
-            newParentPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parent: *const fn(
-            self: *const IFeedFolder,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsRoot: *const fn(
-            self: *const IFeedFolder,
-            isRoot: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TotalUnreadItemCount: *const fn(
-            self: *const IFeedFolder,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TotalItemCount: *const fn(
-            self: *const IFeedFolder,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetWatcher: *const fn(
-            self: *const IFeedFolder,
-            scope: FEEDS_EVENTS_SCOPE,
-            mask: FEEDS_EVENTS_MASK,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Feeds(self: *const IFeedFolder, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Feeds(self, disp);
-    }
-    pub fn get_Subfolders(self: *const IFeedFolder, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Subfolders(self, disp);
-    }
-    pub fn CreateFeed(self: *const IFeedFolder, feedName: ?BSTR, feedUrl: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFeed(self, feedName, feedUrl, disp);
-    }
-    pub fn CreateSubfolder(self: *const IFeedFolder, folderName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateSubfolder(self, folderName, disp);
-    }
-    pub fn ExistsFeed(self: *const IFeedFolder, feedName: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsFeed(self, feedName, exists);
-    }
-    pub fn GetFeed(self: *const IFeedFolder, feedName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFeed(self, feedName, disp);
-    }
-    pub fn ExistsSubfolder(self: *const IFeedFolder, folderName: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistsSubfolder(self, folderName, exists);
-    }
-    pub fn GetSubfolder(self: *const IFeedFolder, folderName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubfolder(self, folderName, disp);
-    }
-    pub fn Delete(self: *const IFeedFolder) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-    pub fn get_Name(self: *const IFeedFolder, folderName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, folderName);
-    }
-    pub fn Rename(self: *const IFeedFolder, folderName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Rename(self, folderName);
-    }
-    pub fn get_Path(self: *const IFeedFolder, folderPath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, folderPath);
-    }
-    pub fn Move(self: *const IFeedFolder, newParentPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, newParentPath);
-    }
-    pub fn get_Parent(self: *const IFeedFolder, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Parent(self, disp);
-    }
-    pub fn get_IsRoot(self: *const IFeedFolder, isRoot: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsRoot(self, isRoot);
-    }
-    pub fn get_TotalUnreadItemCount(self: *const IFeedFolder, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TotalUnreadItemCount(self, count);
-    }
-    pub fn get_TotalItemCount(self: *const IFeedFolder, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TotalItemCount(self, count);
-    }
-    pub fn GetWatcher(self: *const IFeedFolder, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWatcher(self, scope, mask, disp);
-    }
-};
-
-const IID_IFeedFolderEvents_Value = Guid.initString("20a59fa6-a844-4630-9e98-175f70b4d55b");
-pub const IID_IFeedFolderEvents = &IID_IFeedFolderEvents_Value;
-pub const IFeedFolderEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Error: *const fn(
-            self: *const IFeedFolderEvents,
-        ) callconv(.winapi) HRESULT,
-        FolderAdded: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FolderDeleted: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FolderRenamed: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FolderMovedFrom: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FolderMovedTo: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FolderItemCountChanged: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            itemCountType: i32,
-        ) callconv(.winapi) HRESULT,
-        FeedAdded: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedDeleted: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedRenamed: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedUrlChanged: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedMovedFrom: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedMovedTo: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedDownloading: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedDownloadCompleted: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            @"error": FEEDS_DOWNLOAD_ERROR,
-        ) callconv(.winapi) HRESULT,
-        FeedItemCountChanged: *const fn(
-            self: *const IFeedFolderEvents,
-            path: ?BSTR,
-            itemCountType: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Error(self: *const IFeedFolderEvents) callconv(.@"inline") HRESULT {
-        return self.vtable.Error(self);
-    }
-    pub fn FolderAdded(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderAdded(self, path);
-    }
-    pub fn FolderDeleted(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderDeleted(self, path);
-    }
-    pub fn FolderRenamed(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderRenamed(self, path, oldPath);
-    }
-    pub fn FolderMovedFrom(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderMovedFrom(self, path, oldPath);
-    }
-    pub fn FolderMovedTo(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderMovedTo(self, path, oldPath);
-    }
-    pub fn FolderItemCountChanged(self: *const IFeedFolderEvents, path: ?BSTR, itemCountType: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.FolderItemCountChanged(self, path, itemCountType);
-    }
-    pub fn FeedAdded(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedAdded(self, path);
-    }
-    pub fn FeedDeleted(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDeleted(self, path);
-    }
-    pub fn FeedRenamed(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedRenamed(self, path, oldPath);
-    }
-    pub fn FeedUrlChanged(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedUrlChanged(self, path);
-    }
-    pub fn FeedMovedFrom(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedMovedFrom(self, path, oldPath);
-    }
-    pub fn FeedMovedTo(self: *const IFeedFolderEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedMovedTo(self, path, oldPath);
-    }
-    pub fn FeedDownloading(self: *const IFeedFolderEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDownloading(self, path);
-    }
-    pub fn FeedDownloadCompleted(self: *const IFeedFolderEvents, path: ?BSTR, @"error": FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDownloadCompleted(self, path, @"error");
-    }
-    pub fn FeedItemCountChanged(self: *const IFeedFolderEvents, path: ?BSTR, itemCountType: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedItemCountChanged(self, path, itemCountType);
-    }
-};
-
-const IID_IFeed_Value = Guid.initString("f7f915d8-2ede-42bc-98e7-a5d05063a757");
-pub const IID_IFeed = &IID_IFeed_Value;
-pub const IFeed = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Xml: *const fn(
-            self: *const IFeed,
-            count: i32,
-            sortProperty: FEEDS_XML_SORT_PROPERTY,
-            sortOrder: FEEDS_XML_SORT_ORDER,
-            filterFlags: FEEDS_XML_FILTER_FLAGS,
-            includeFlags: FEEDS_XML_INCLUDE_FLAGS,
-            xml: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFeed,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Rename: *const fn(
-            self: *const IFeed,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Url: *const fn(
-            self: *const IFeed,
-            feedUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Url: *const fn(
-            self: *const IFeed,
-            feedUrl: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalId: *const fn(
-            self: *const IFeed,
-            feedGuid: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IFeed,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IFeed,
-            newParentPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parent: *const fn(
-            self: *const IFeed,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastWriteTime: *const fn(
-            self: *const IFeed,
-            lastWrite: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IFeed,
-        ) callconv(.winapi) HRESULT,
-        Download: *const fn(
-            self: *const IFeed,
-        ) callconv(.winapi) HRESULT,
-        AsyncDownload: *const fn(
-            self: *const IFeed,
-        ) callconv(.winapi) HRESULT,
-        CancelAsyncDownload: *const fn(
-            self: *const IFeed,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SyncSetting: *const fn(
-            self: *const IFeed,
-            syncSetting: ?*FEEDS_SYNC_SETTING,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SyncSetting: *const fn(
-            self: *const IFeed,
-            syncSetting: FEEDS_SYNC_SETTING,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Interval: *const fn(
-            self: *const IFeed,
-            minutes: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Interval: *const fn(
-            self: *const IFeed,
-            minutes: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastDownloadTime: *const fn(
-            self: *const IFeed,
-            lastDownload: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalEnclosurePath: *const fn(
-            self: *const IFeed,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Items: *const fn(
-            self: *const IFeed,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        GetItem: *const fn(
-            self: *const IFeed,
-            itemId: i32,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Title: *const fn(
-            self: *const IFeed,
-            title: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IFeed,
-            description: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Link: *const fn(
-            self: *const IFeed,
-            homePage: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Image: *const fn(
-            self: *const IFeed,
-            imageUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastBuildDate: *const fn(
-            self: *const IFeed,
-            lastBuildDate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PubDate: *const fn(
-            self: *const IFeed,
-            lastPopulateDate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ttl: *const fn(
-            self: *const IFeed,
-            ttl: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Language: *const fn(
-            self: *const IFeed,
-            language: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Copyright: *const fn(
-            self: *const IFeed,
-            copyright: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxItemCount: *const fn(
-            self: *const IFeed,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxItemCount: *const fn(
-            self: *const IFeed,
-            count: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadEnclosuresAutomatically: *const fn(
-            self: *const IFeed,
-            downloadEnclosuresAutomatically: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DownloadEnclosuresAutomatically: *const fn(
-            self: *const IFeed,
-            downloadEnclosuresAutomatically: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadStatus: *const fn(
-            self: *const IFeed,
-            status: ?*FEEDS_DOWNLOAD_STATUS,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastDownloadError: *const fn(
-            self: *const IFeed,
-            @"error": ?*FEEDS_DOWNLOAD_ERROR,
-        ) callconv(.winapi) HRESULT,
-        Merge: *const fn(
-            self: *const IFeed,
-            feedXml: ?BSTR,
-            feedUrl: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadUrl: *const fn(
-            self: *const IFeed,
-            feedUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsList: *const fn(
-            self: *const IFeed,
-            isList: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        MarkAllItemsRead: *const fn(
-            self: *const IFeed,
-        ) callconv(.winapi) HRESULT,
-        GetWatcher: *const fn(
-            self: *const IFeed,
-            scope: FEEDS_EVENTS_SCOPE,
-            mask: FEEDS_EVENTS_MASK,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UnreadItemCount: *const fn(
-            self: *const IFeed,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ItemCount: *const fn(
-            self: *const IFeed,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Xml(self: *const IFeed, count: i32, sortProperty: FEEDS_XML_SORT_PROPERTY, sortOrder: FEEDS_XML_SORT_ORDER, filterFlags: FEEDS_XML_FILTER_FLAGS, includeFlags: FEEDS_XML_INCLUDE_FLAGS, xml: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Xml(self, count, sortProperty, sortOrder, filterFlags, includeFlags, xml);
-    }
-    pub fn get_Name(self: *const IFeed, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn Rename(self: *const IFeed, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Rename(self, name);
-    }
-    pub fn get_Url(self: *const IFeed, feedUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Url(self, feedUrl);
-    }
-    pub fn put_Url(self: *const IFeed, feedUrl: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Url(self, feedUrl);
-    }
-    pub fn get_LocalId(self: *const IFeed, feedGuid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalId(self, feedGuid);
-    }
-    pub fn get_Path(self: *const IFeed, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, path);
-    }
-    pub fn Move(self: *const IFeed, newParentPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, newParentPath);
-    }
-    pub fn get_Parent(self: *const IFeed, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Parent(self, disp);
-    }
-    pub fn get_LastWriteTime(self: *const IFeed, lastWrite: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastWriteTime(self, lastWrite);
-    }
-    pub fn Delete(self: *const IFeed) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-    pub fn Download(self: *const IFeed) callconv(.@"inline") HRESULT {
-        return self.vtable.Download(self);
-    }
-    pub fn AsyncDownload(self: *const IFeed) callconv(.@"inline") HRESULT {
-        return self.vtable.AsyncDownload(self);
-    }
-    pub fn CancelAsyncDownload(self: *const IFeed) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelAsyncDownload(self);
-    }
-    pub fn get_SyncSetting(self: *const IFeed, syncSetting: ?*FEEDS_SYNC_SETTING) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SyncSetting(self, syncSetting);
-    }
-    pub fn put_SyncSetting(self: *const IFeed, syncSetting: FEEDS_SYNC_SETTING) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SyncSetting(self, syncSetting);
-    }
-    pub fn get_Interval(self: *const IFeed, minutes: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Interval(self, minutes);
-    }
-    pub fn put_Interval(self: *const IFeed, minutes: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Interval(self, minutes);
-    }
-    pub fn get_LastDownloadTime(self: *const IFeed, lastDownload: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastDownloadTime(self, lastDownload);
-    }
-    pub fn get_LocalEnclosurePath(self: *const IFeed, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalEnclosurePath(self, path);
-    }
-    pub fn get_Items(self: *const IFeed, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Items(self, disp);
-    }
-    pub fn GetItem(self: *const IFeed, itemId: i32, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, itemId, disp);
-    }
-    pub fn get_Title(self: *const IFeed, title: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Title(self, title);
-    }
-    pub fn get_Description(self: *const IFeed, description: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, description);
-    }
-    pub fn get_Link(self: *const IFeed, homePage: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Link(self, homePage);
-    }
-    pub fn get_Image(self: *const IFeed, imageUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Image(self, imageUrl);
-    }
-    pub fn get_LastBuildDate(self: *const IFeed, lastBuildDate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastBuildDate(self, lastBuildDate);
-    }
-    pub fn get_PubDate(self: *const IFeed, lastPopulateDate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PubDate(self, lastPopulateDate);
-    }
-    pub fn get_Ttl(self: *const IFeed, ttl: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Ttl(self, ttl);
-    }
-    pub fn get_Language(self: *const IFeed, language: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Language(self, language);
-    }
-    pub fn get_Copyright(self: *const IFeed, copyright: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Copyright(self, copyright);
-    }
-    pub fn get_MaxItemCount(self: *const IFeed, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaxItemCount(self, count);
-    }
-    pub fn put_MaxItemCount(self: *const IFeed, count: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MaxItemCount(self, count);
-    }
-    pub fn get_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadEnclosuresAutomatically(self, downloadEnclosuresAutomatically);
-    }
-    pub fn put_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DownloadEnclosuresAutomatically(self, downloadEnclosuresAutomatically);
-    }
-    pub fn get_DownloadStatus(self: *const IFeed, status: ?*FEEDS_DOWNLOAD_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadStatus(self, status);
-    }
-    pub fn get_LastDownloadError(self: *const IFeed, @"error": ?*FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastDownloadError(self, @"error");
-    }
-    pub fn Merge(self: *const IFeed, feedXml: ?BSTR, feedUrl: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Merge(self, feedXml, feedUrl);
-    }
-    pub fn get_DownloadUrl(self: *const IFeed, feedUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadUrl(self, feedUrl);
-    }
-    pub fn get_IsList(self: *const IFeed, isList: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsList(self, isList);
-    }
-    pub fn MarkAllItemsRead(self: *const IFeed) callconv(.@"inline") HRESULT {
-        return self.vtable.MarkAllItemsRead(self);
-    }
-    pub fn GetWatcher(self: *const IFeed, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWatcher(self, scope, mask, disp);
-    }
-    pub fn get_UnreadItemCount(self: *const IFeed, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UnreadItemCount(self, count);
-    }
-    pub fn get_ItemCount(self: *const IFeed, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ItemCount(self, count);
-    }
-};
-
-const IID_IFeed2_Value = Guid.initString("33f2ea09-1398-4ab9-b6a4-f94b49d0a42e");
-pub const IID_IFeed2 = &IID_IFeed2_Value;
-pub const IFeed2 = extern union {
-    pub const VTable = extern struct {
-        base: IFeed.VTable,
-        GetItemByEffectiveId: *const fn(
-            self: *const IFeed2,
-            itemEffectiveId: i32,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastItemDownloadTime: *const fn(
-            self: *const IFeed2,
-            lastItemDownloadTime: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Username: *const fn(
-            self: *const IFeed2,
-            username: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Password: *const fn(
-            self: *const IFeed2,
-            password: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetCredentials: *const fn(
-            self: *const IFeed2,
-            username: ?BSTR,
-            password: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ClearCredentials: *const fn(
-            self: *const IFeed2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFeed: IFeed,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn GetItemByEffectiveId(self: *const IFeed2, itemEffectiveId: i32, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemByEffectiveId(self, itemEffectiveId, disp);
-    }
-    pub fn get_LastItemDownloadTime(self: *const IFeed2, lastItemDownloadTime: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastItemDownloadTime(self, lastItemDownloadTime);
-    }
-    pub fn get_Username(self: *const IFeed2, username: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Username(self, username);
-    }
-    pub fn get_Password(self: *const IFeed2, password: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Password(self, password);
-    }
-    pub fn SetCredentials(self: *const IFeed2, username: ?BSTR, password: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCredentials(self, username, password);
-    }
-    pub fn ClearCredentials(self: *const IFeed2) callconv(.@"inline") HRESULT {
-        return self.vtable.ClearCredentials(self);
-    }
-};
-
-const IID_IFeedEvents_Value = Guid.initString("abf35c99-0681-47ea-9a8c-1436a375a99e");
-pub const IID_IFeedEvents = &IID_IFeedEvents_Value;
-pub const IFeedEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Error: *const fn(
-            self: *const IFeedEvents,
-        ) callconv(.winapi) HRESULT,
-        FeedDeleted: *const fn(
-            self: *const IFeedEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedRenamed: *const fn(
-            self: *const IFeedEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedUrlChanged: *const fn(
-            self: *const IFeedEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedMoved: *const fn(
-            self: *const IFeedEvents,
-            path: ?BSTR,
-            oldPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedDownloading: *const fn(
-            self: *const IFeedEvents,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        FeedDownloadCompleted: *const fn(
-            self: *const IFeedEvents,
-            path: ?BSTR,
-            @"error": FEEDS_DOWNLOAD_ERROR,
-        ) callconv(.winapi) HRESULT,
-        FeedItemCountChanged: *const fn(
-            self: *const IFeedEvents,
-            path: ?BSTR,
-            itemCountType: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Error(self: *const IFeedEvents) callconv(.@"inline") HRESULT {
-        return self.vtable.Error(self);
-    }
-    pub fn FeedDeleted(self: *const IFeedEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDeleted(self, path);
-    }
-    pub fn FeedRenamed(self: *const IFeedEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedRenamed(self, path, oldPath);
-    }
-    pub fn FeedUrlChanged(self: *const IFeedEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedUrlChanged(self, path);
-    }
-    pub fn FeedMoved(self: *const IFeedEvents, path: ?BSTR, oldPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedMoved(self, path, oldPath);
-    }
-    pub fn FeedDownloading(self: *const IFeedEvents, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDownloading(self, path);
-    }
-    pub fn FeedDownloadCompleted(self: *const IFeedEvents, path: ?BSTR, @"error": FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedDownloadCompleted(self, path, @"error");
-    }
-    pub fn FeedItemCountChanged(self: *const IFeedEvents, path: ?BSTR, itemCountType: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.FeedItemCountChanged(self, path, itemCountType);
-    }
-};
-
-const IID_IFeedItem_Value = Guid.initString("0a1e6cad-0a47-4da2-a13d-5baaa5c8bd4f");
-pub const IID_IFeedItem = &IID_IFeedItem_Value;
-pub const IFeedItem = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Xml: *const fn(
-            self: *const IFeedItem,
-            includeFlags: FEEDS_XML_INCLUDE_FLAGS,
-            xml: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Title: *const fn(
-            self: *const IFeedItem,
-            title: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Link: *const fn(
-            self: *const IFeedItem,
-            linkUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guid: *const fn(
-            self: *const IFeedItem,
-            itemGuid: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IFeedItem,
-            description: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PubDate: *const fn(
-            self: *const IFeedItem,
-            pubDate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Comments: *const fn(
-            self: *const IFeedItem,
-            comments: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Author: *const fn(
-            self: *const IFeedItem,
-            author: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enclosure: *const fn(
-            self: *const IFeedItem,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsRead: *const fn(
-            self: *const IFeedItem,
-            isRead: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsRead: *const fn(
-            self: *const IFeedItem,
-            isRead: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalId: *const fn(
-            self: *const IFeedItem,
-            itemId: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parent: *const fn(
-            self: *const IFeedItem,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IFeedItem,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadUrl: *const fn(
-            self: *const IFeedItem,
-            itemUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastDownloadTime: *const fn(
-            self: *const IFeedItem,
-            lastDownload: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: *const fn(
-            self: *const IFeedItem,
-            modified: ?*f64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Xml(self: *const IFeedItem, includeFlags: FEEDS_XML_INCLUDE_FLAGS, xml: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Xml(self, includeFlags, xml);
-    }
-    pub fn get_Title(self: *const IFeedItem, title: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Title(self, title);
-    }
-    pub fn get_Link(self: *const IFeedItem, linkUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Link(self, linkUrl);
-    }
-    pub fn get_Guid(self: *const IFeedItem, itemGuid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Guid(self, itemGuid);
-    }
-    pub fn get_Description(self: *const IFeedItem, description: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, description);
-    }
-    pub fn get_PubDate(self: *const IFeedItem, pubDate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PubDate(self, pubDate);
-    }
-    pub fn get_Comments(self: *const IFeedItem, comments: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Comments(self, comments);
-    }
-    pub fn get_Author(self: *const IFeedItem, author: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Author(self, author);
-    }
-    pub fn get_Enclosure(self: *const IFeedItem, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enclosure(self, disp);
-    }
-    pub fn get_IsRead(self: *const IFeedItem, isRead: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsRead(self, isRead);
-    }
-    pub fn put_IsRead(self: *const IFeedItem, isRead: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IsRead(self, isRead);
-    }
-    pub fn get_LocalId(self: *const IFeedItem, itemId: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalId(self, itemId);
-    }
-    pub fn get_Parent(self: *const IFeedItem, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Parent(self, disp);
-    }
-    pub fn Delete(self: *const IFeedItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-    pub fn get_DownloadUrl(self: *const IFeedItem, itemUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadUrl(self, itemUrl);
-    }
-    pub fn get_LastDownloadTime(self: *const IFeedItem, lastDownload: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastDownloadTime(self, lastDownload);
-    }
-    pub fn get_Modified(self: *const IFeedItem, modified: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Modified(self, modified);
-    }
-};
-
-const IID_IFeedItem2_Value = Guid.initString("79ac9ef4-f9c1-4d2b-a50b-a7ffba4dcf37");
-pub const IID_IFeedItem2 = &IID_IFeedItem2_Value;
-pub const IFeedItem2 = extern union {
-    pub const VTable = extern struct {
-        base: IFeedItem.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EffectiveId: *const fn(
-            self: *const IFeedItem2,
-            effectiveId: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFeedItem: IFeedItem,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EffectiveId(self: *const IFeedItem2, effectiveId: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EffectiveId(self, effectiveId);
-    }
-};
-
-const IID_IFeedEnclosure_Value = Guid.initString("361c26f7-90a4-4e67-ae09-3a36a546436a");
-pub const IID_IFeedEnclosure = &IID_IFeedEnclosure_Value;
-pub const IFeedEnclosure = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Url: *const fn(
-            self: *const IFeedEnclosure,
-            enclosureUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IFeedEnclosure,
-            mimeType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: *const fn(
-            self: *const IFeedEnclosure,
-            length: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        AsyncDownload: *const fn(
-            self: *const IFeedEnclosure,
-        ) callconv(.winapi) HRESULT,
-        CancelAsyncDownload: *const fn(
-            self: *const IFeedEnclosure,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadStatus: *const fn(
-            self: *const IFeedEnclosure,
-            status: ?*FEEDS_DOWNLOAD_STATUS,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastDownloadError: *const fn(
-            self: *const IFeedEnclosure,
-            @"error": ?*FEEDS_DOWNLOAD_ERROR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPath: *const fn(
-            self: *const IFeedEnclosure,
-            localPath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parent: *const fn(
-            self: *const IFeedEnclosure,
-            disp: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadUrl: *const fn(
-            self: *const IFeedEnclosure,
-            enclosureUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadMimeType: *const fn(
-            self: *const IFeedEnclosure,
-            mimeType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RemoveFile: *const fn(
-            self: *const IFeedEnclosure,
-        ) callconv(.winapi) HRESULT,
-        SetFile: *const fn(
-            self: *const IFeedEnclosure,
-            downloadUrl: ?BSTR,
-            downloadFilePath: ?BSTR,
-            downloadMimeType: ?BSTR,
-            enclosureFilename: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Url(self: *const IFeedEnclosure, enclosureUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Url(self, enclosureUrl);
-    }
-    pub fn get_Type(self: *const IFeedEnclosure, mimeType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, mimeType);
-    }
-    pub fn get_Length(self: *const IFeedEnclosure, length: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Length(self, length);
-    }
-    pub fn AsyncDownload(self: *const IFeedEnclosure) callconv(.@"inline") HRESULT {
-        return self.vtable.AsyncDownload(self);
-    }
-    pub fn CancelAsyncDownload(self: *const IFeedEnclosure) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelAsyncDownload(self);
-    }
-    pub fn get_DownloadStatus(self: *const IFeedEnclosure, status: ?*FEEDS_DOWNLOAD_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadStatus(self, status);
-    }
-    pub fn get_LastDownloadError(self: *const IFeedEnclosure, @"error": ?*FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastDownloadError(self, @"error");
-    }
-    pub fn get_LocalPath(self: *const IFeedEnclosure, localPath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalPath(self, localPath);
-    }
-    pub fn get_Parent(self: *const IFeedEnclosure, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Parent(self, disp);
-    }
-    pub fn get_DownloadUrl(self: *const IFeedEnclosure, enclosureUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadUrl(self, enclosureUrl);
-    }
-    pub fn get_DownloadMimeType(self: *const IFeedEnclosure, mimeType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadMimeType(self, mimeType);
-    }
-    pub fn RemoveFile(self: *const IFeedEnclosure) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveFile(self);
-    }
-    pub fn SetFile(self: *const IFeedEnclosure, downloadUrl: ?BSTR, downloadFilePath: ?BSTR, downloadMimeType: ?BSTR, enclosureFilename: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFile(self, downloadUrl, downloadFilePath, downloadMimeType, enclosureFilename);
+    pub fn Normalize(self: *const IXFeedsManager, pStreamIn: ?*IStream, ppStreamOut: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.Normalize(self, pStreamIn, ppStreamOut);
+    }
+    pub fn ItemCountLimit(self: *const IXFeedsManager, puiItemCountLimit: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ItemCountLimit(self, puiItemCountLimit);
     }
 };
 
@@ -7641,225 +8323,61 @@ pub const TimedLevel = extern struct {
     timeStamp: i64,
 };
 
-const IID_IWMPEffects_Value = Guid.initString("d3984c13-c3cb-48e2-8be5-5168340b4f35");
-pub const IID_IWMPEffects = &IID_IWMPEffects_Value;
-pub const IWMPEffects = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Render: *const fn(
-            self: *const IWMPEffects,
-            pLevels: ?*TimedLevel,
-            hdc: ?HDC,
-            prc: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        MediaInfo: *const fn(
-            self: *const IWMPEffects,
-            lChannelCount: i32,
-            lSampleRate: i32,
-            bstrTitle: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCapabilities: *const fn(
-            self: *const IWMPEffects,
-            pdwCapabilities: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTitle: *const fn(
-            self: *const IWMPEffects,
-            bstrTitle: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPresetTitle: *const fn(
-            self: *const IWMPEffects,
-            nPreset: i32,
-            bstrPresetTitle: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPresetCount: *const fn(
-            self: *const IWMPEffects,
-            pnPresetCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        SetCurrentPreset: *const fn(
-            self: *const IWMPEffects,
-            nPreset: i32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPreset: *const fn(
-            self: *const IWMPEffects,
-            pnPreset: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        DisplayPropertyPage: *const fn(
-            self: *const IWMPEffects,
-            hwndOwner: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        GoFullscreen: *const fn(
-            self: *const IWMPEffects,
-            fFullScreen: BOOL,
-        ) callconv(.winapi) HRESULT,
-        RenderFullScreen: *const fn(
-            self: *const IWMPEffects,
-            pLevels: ?*TimedLevel,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Render(self: *const IWMPEffects, pLevels: ?*TimedLevel, hdc: ?HDC, prc: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.Render(self, pLevels, hdc, prc);
-    }
-    pub fn MediaInfo(self: *const IWMPEffects, lChannelCount: i32, lSampleRate: i32, bstrTitle: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.MediaInfo(self, lChannelCount, lSampleRate, bstrTitle);
-    }
-    pub fn GetCapabilities(self: *const IWMPEffects, pdwCapabilities: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCapabilities(self, pdwCapabilities);
-    }
-    pub fn GetTitle(self: *const IWMPEffects, bstrTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTitle(self, bstrTitle);
-    }
-    pub fn GetPresetTitle(self: *const IWMPEffects, nPreset: i32, bstrPresetTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPresetTitle(self, nPreset, bstrPresetTitle);
-    }
-    pub fn GetPresetCount(self: *const IWMPEffects, pnPresetCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPresetCount(self, pnPresetCount);
-    }
-    pub fn SetCurrentPreset(self: *const IWMPEffects, nPreset: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCurrentPreset(self, nPreset);
-    }
-    pub fn GetCurrentPreset(self: *const IWMPEffects, pnPreset: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPreset(self, pnPreset);
-    }
-    pub fn DisplayPropertyPage(self: *const IWMPEffects, hwndOwner: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.DisplayPropertyPage(self, hwndOwner);
-    }
-    pub fn GoFullscreen(self: *const IWMPEffects, fFullScreen: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GoFullscreen(self, fFullScreen);
-    }
-    pub fn RenderFullScreen(self: *const IWMPEffects, pLevels: ?*TimedLevel) callconv(.@"inline") HRESULT {
-        return self.vtable.RenderFullScreen(self, pLevels);
-    }
+const CLSID_WindowsMediaPlayer_Value = Guid.initString("6bf52a52-394a-11d3-b153-00c04f79faa6");
+pub const CLSID_WindowsMediaPlayer = &CLSID_WindowsMediaPlayer_Value;
+
+pub const WMP_WMDM_METADATA_ROUND_TRIP_DEVICE2PC = extern struct {
+    dwCurrentTransactionID: u32 align(1),
+    dwReturnedObjectCount: u32 align(1),
+    dwUnretrievedObjectCount: u32 align(1),
+    dwDeletedObjectStartingOffset: u32 align(1),
+    dwFlags: u32 align(1),
+    wsObjectPathnameList: [1]u16 align(1),
 };
 
-const IID_IWMPEffects2_Value = Guid.initString("695386ec-aa3c-4618-a5e1-dd9a8b987632");
-pub const IID_IWMPEffects2 = &IID_IWMPEffects2_Value;
-pub const IWMPEffects2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPEffects.VTable,
-        SetCore: *const fn(
-            self: *const IWMPEffects2,
-            pPlayer: ?*IWMPCore,
-        ) callconv(.winapi) HRESULT,
-        Create: *const fn(
-            self: *const IWMPEffects2,
-            hwndParent: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        Destroy: *const fn(
-            self: *const IWMPEffects2,
-        ) callconv(.winapi) HRESULT,
-        NotifyNewMedia: *const fn(
-            self: *const IWMPEffects2,
-            pMedia: ?*IWMPMedia,
-        ) callconv(.winapi) HRESULT,
-        OnWindowMessage: *const fn(
-            self: *const IWMPEffects2,
-            msg: u32,
-            WParam: WPARAM,
-            LParam: LPARAM,
-            plResultParam: ?*LRESULT,
-        ) callconv(.winapi) HRESULT,
-        RenderWindowed: *const fn(
-            self: *const IWMPEffects2,
-            pData: ?*TimedLevel,
-            fRequiredRender: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPEffects: IWMPEffects,
-    IUnknown: IUnknown,
-    pub fn SetCore(self: *const IWMPEffects2, pPlayer: ?*IWMPCore) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCore(self, pPlayer);
-    }
-    pub fn Create(self: *const IWMPEffects2, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, hwndParent);
-    }
-    pub fn Destroy(self: *const IWMPEffects2) callconv(.@"inline") HRESULT {
-        return self.vtable.Destroy(self);
-    }
-    pub fn NotifyNewMedia(self: *const IWMPEffects2, pMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
-        return self.vtable.NotifyNewMedia(self, pMedia);
-    }
-    pub fn OnWindowMessage(self: *const IWMPEffects2, msg: u32, WParam: WPARAM, LParam: LPARAM, plResultParam: ?*LRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnWindowMessage(self, msg, WParam, LParam, plResultParam);
-    }
-    pub fn RenderWindowed(self: *const IWMPEffects2, pData: ?*TimedLevel, fRequiredRender: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.RenderWindowed(self, pData, fRequiredRender);
-    }
+pub const WMP_WMDM_METADATA_ROUND_TRIP_PC2DEVICE = extern struct {
+    dwChangesSinceTransactionID: u32 align(1),
+    dwResultSetStartingIndex: u32 align(1),
 };
 
-const IID_IWMPPluginUI_Value = Guid.initString("4c5e8f9f-ad3e-4bf9-9753-fcd30d6d38dd");
-pub const IID_IWMPPluginUI = &IID_IWMPPluginUI_Value;
-pub const IWMPPluginUI = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetCore: *const fn(
-            self: *const IWMPPluginUI,
-            pCore: ?*IWMPCore,
-        ) callconv(.winapi) HRESULT,
-        Create: *const fn(
-            self: *const IWMPPluginUI,
-            hwndParent: ?HWND,
-            phwndWindow: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        Destroy: *const fn(
-            self: *const IWMPPluginUI,
-        ) callconv(.winapi) HRESULT,
-        DisplayPropertyPage: *const fn(
-            self: *const IWMPPluginUI,
-            hwndParent: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IWMPPluginUI,
-            pwszName: ?[*:0]const u16,
-            pvarProperty: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const IWMPPluginUI,
-            pwszName: ?[*:0]const u16,
-            pvarProperty: ?*const VARIANT,
-        ) callconv(.winapi) HRESULT,
-        TranslateAccelerator: *const fn(
-            self: *const IWMPPluginUI,
-            lpmsg: ?*MSG,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetCore(self: *const IWMPPluginUI, pCore: ?*IWMPCore) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCore(self, pCore);
-    }
-    pub fn Create(self: *const IWMPPluginUI, hwndParent: ?HWND, phwndWindow: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, hwndParent, phwndWindow);
-    }
-    pub fn Destroy(self: *const IWMPPluginUI) callconv(.@"inline") HRESULT {
-        return self.vtable.Destroy(self);
-    }
-    pub fn DisplayPropertyPage(self: *const IWMPPluginUI, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.DisplayPropertyPage(self, hwndParent);
-    }
-    pub fn GetProperty(self: *const IWMPPluginUI, pwszName: ?[*:0]const u16, pvarProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, pwszName, pvarProperty);
-    }
-    pub fn SetProperty(self: *const IWMPPluginUI, pwszName: ?[*:0]const u16, pvarProperty: ?*const VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, pwszName, pvarProperty);
-    }
-    pub fn TranslateAccelerator(self: *const IWMPPluginUI, lpmsg: ?*MSG) callconv(.@"inline") HRESULT {
-        return self.vtable.TranslateAccelerator(self, lpmsg);
-    }
+pub const WMPAccountType = enum(i32) {
+    BuyOnly = 1,
+    Subscription = 2,
+    Janus = 3,
 };
+pub const wmpatBuyOnly = WMPAccountType.BuyOnly;
+pub const wmpatSubscription = WMPAccountType.Subscription;
+pub const wmpatJanus = WMPAccountType.Janus;
 
-pub const WMPPartnerNotification = enum(i32) {
-    BackgroundProcessingBegin = 1,
-    BackgroundProcessingEnd = 2,
-    CatalogDownloadFailure = 3,
-    CatalogDownloadComplete = 4,
+pub const WMPBurnFormat = enum(i32) {
+    AudioCD = 0,
+    DataCD = 1,
 };
-pub const wmpsnBackgroundProcessingBegin = WMPPartnerNotification.BackgroundProcessingBegin;
-pub const wmpsnBackgroundProcessingEnd = WMPPartnerNotification.BackgroundProcessingEnd;
-pub const wmpsnCatalogDownloadFailure = WMPPartnerNotification.CatalogDownloadFailure;
-pub const wmpsnCatalogDownloadComplete = WMPPartnerNotification.CatalogDownloadComplete;
+pub const wmpbfAudioCD = WMPBurnFormat.AudioCD;
+pub const wmpbfDataCD = WMPBurnFormat.DataCD;
+
+pub const WMPBurnState = enum(i32) {
+    Unknown = 0,
+    Busy = 1,
+    Ready = 2,
+    WaitingForDisc = 3,
+    RefreshStatusPending = 4,
+    PreparingToBurn = 5,
+    Burning = 6,
+    Stopped = 7,
+    Erasing = 8,
+    Downloading = 9,
+};
+pub const wmpbsUnknown = WMPBurnState.Unknown;
+pub const wmpbsBusy = WMPBurnState.Busy;
+pub const wmpbsReady = WMPBurnState.Ready;
+pub const wmpbsWaitingForDisc = WMPBurnState.WaitingForDisc;
+pub const wmpbsRefreshStatusPending = WMPBurnState.RefreshStatusPending;
+pub const wmpbsPreparingToBurn = WMPBurnState.PreparingToBurn;
+pub const wmpbsBurning = WMPBurnState.Burning;
+pub const wmpbsStopped = WMPBurnState.Stopped;
+pub const wmpbsErasing = WMPBurnState.Erasing;
+pub const wmpbsDownloading = WMPBurnState.Downloading;
 
 pub const WMPCallbackNotification = enum(i32) {
     LoginStateChange = 1,
@@ -7876,126 +8394,197 @@ pub const wmpcnNewCatalogAvailable = WMPCallbackNotification.NewCatalogAvailable
 pub const wmpcnNewPluginAvailable = WMPCallbackNotification.NewPluginAvailable;
 pub const wmpcnDisableRadioSkipping = WMPCallbackNotification.DisableRadioSkipping;
 
-pub const WMPTaskType = enum(i32) {
-    Browse = 1,
-    Sync = 2,
-    Burn = 3,
-    Current = 4,
-};
-pub const wmpttBrowse = WMPTaskType.Browse;
-pub const wmpttSync = WMPTaskType.Sync;
-pub const wmpttBurn = WMPTaskType.Burn;
-pub const wmpttCurrent = WMPTaskType.Current;
-
 pub const WMPContextMenuInfo = extern struct {
     dwID: u32,
     bstrMenuText: ?BSTR,
     bstrHelpText: ?BSTR,
 };
 
-const IID_IWMPContentContainer_Value = Guid.initString("ad7f4d9c-1a9f-4ed2-9815-ecc0b58cb616");
-pub const IID_IWMPContentContainer = &IID_IWMPContentContainer_Value;
-pub const IWMPContentContainer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetID: *const fn(
-            self: *const IWMPContentContainer,
-            pContentID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPrice: *const fn(
-            self: *const IWMPContentContainer,
-            pbstrPrice: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetType: *const fn(
-            self: *const IWMPContentContainer,
-            pbstrType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetContentCount: *const fn(
-            self: *const IWMPContentContainer,
-            pcContent: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetContentPrice: *const fn(
-            self: *const IWMPContentContainer,
-            idxContent: u32,
-            pbstrPrice: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetContentID: *const fn(
-            self: *const IWMPContentContainer,
-            idxContent: u32,
-            pContentID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetID(self: *const IWMPContentContainer, pContentID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetID(self, pContentID);
-    }
-    pub fn GetPrice(self: *const IWMPContentContainer, pbstrPrice: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrice(self, pbstrPrice);
-    }
-    pub fn GetType(self: *const IWMPContentContainer, pbstrType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pbstrType);
-    }
-    pub fn GetContentCount(self: *const IWMPContentContainer, pcContent: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentCount(self, pcContent);
-    }
-    pub fn GetContentPrice(self: *const IWMPContentContainer, idxContent: u32, pbstrPrice: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentPrice(self, idxContent, pbstrPrice);
-    }
-    pub fn GetContentID(self: *const IWMPContentContainer, idxContent: u32, pContentID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentID(self, idxContent, pContentID);
-    }
+pub const WMPDeviceStatus = enum(i32) {
+    Unknown = 0,
+    PartnershipExists = 1,
+    PartnershipDeclined = 2,
+    PartnershipAnother = 3,
+    ManualDevice = 4,
+    NewDevice = 5,
+    Last = 6,
 };
+pub const wmpdsUnknown = WMPDeviceStatus.Unknown;
+pub const wmpdsPartnershipExists = WMPDeviceStatus.PartnershipExists;
+pub const wmpdsPartnershipDeclined = WMPDeviceStatus.PartnershipDeclined;
+pub const wmpdsPartnershipAnother = WMPDeviceStatus.PartnershipAnother;
+pub const wmpdsManualDevice = WMPDeviceStatus.ManualDevice;
+pub const wmpdsNewDevice = WMPDeviceStatus.NewDevice;
+pub const wmpdsLast = WMPDeviceStatus.Last;
 
-pub const WMPTransactionType = enum(i32) {
-    NoTransaction = 0,
-    Download = 1,
-    Buy = 2,
+pub const WMPFolderScanState = enum(i32) {
+    Unknown = 0,
+    Scanning = 1,
+    Updating = 2,
+    Stopped = 3,
 };
-pub const wmpttNoTransaction = WMPTransactionType.NoTransaction;
-pub const wmpttDownload = WMPTransactionType.Download;
-pub const wmpttBuy = WMPTransactionType.Buy;
+pub const wmpfssUnknown = WMPFolderScanState.Unknown;
+pub const wmpfssScanning = WMPFolderScanState.Scanning;
+pub const wmpfssUpdating = WMPFolderScanState.Updating;
+pub const wmpfssStopped = WMPFolderScanState.Stopped;
 
-const IID_IWMPContentContainerList_Value = Guid.initString("a9937f78-0802-4af8-8b8d-e3f045bc8ab5");
-pub const IID_IWMPContentContainerList = &IID_IWMPContentContainerList_Value;
-pub const IWMPContentContainerList = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetTransactionType: *const fn(
-            self: *const IWMPContentContainerList,
-            pwmptt: ?*WMPTransactionType,
-        ) callconv(.winapi) HRESULT,
-        GetContainerCount: *const fn(
-            self: *const IWMPContentContainerList,
-            pcContainer: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetContainer: *const fn(
-            self: *const IWMPContentContainerList,
-            idxContainer: u32,
-            ppContent: ?*?*IWMPContentContainer,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetTransactionType(self: *const IWMPContentContainerList, pwmptt: ?*WMPTransactionType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransactionType(self, pwmptt);
-    }
-    pub fn GetContainerCount(self: *const IWMPContentContainerList, pcContainer: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContainerCount(self, pcContainer);
-    }
-    pub fn GetContainer(self: *const IWMPContentContainerList, idxContainer: u32, ppContent: ?*?*IWMPContentContainer) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContainer(self, idxContainer, ppContent);
-    }
-};
+const CLSID_WMPLib_Value = Guid.initString("6bf52a50-394a-11d3-b153-00c04f79faa6");
+pub const CLSID_WMPLib = &CLSID_WMPLib_Value;
 
-pub const WMPTemplateSize = enum(i32) {
-    Small = 0,
-    Medium = 1,
-    Large = 2,
+pub const WMPLibraryType = enum(i32) {
+    Unknown = 0,
+    All = 1,
+    Local = 2,
+    Remote = 3,
+    Disc = 4,
+    PortableDevice = 5,
 };
-pub const wmptsSmall = WMPTemplateSize.Small;
-pub const wmptsMedium = WMPTemplateSize.Medium;
-pub const wmptsLarge = WMPTemplateSize.Large;
+pub const wmpltUnknown = WMPLibraryType.Unknown;
+pub const wmpltAll = WMPLibraryType.All;
+pub const wmpltLocal = WMPLibraryType.Local;
+pub const wmpltRemote = WMPLibraryType.Remote;
+pub const wmpltDisc = WMPLibraryType.Disc;
+pub const wmpltPortableDevice = WMPLibraryType.PortableDevice;
+
+pub const WMPOpenState = enum(i32) {
+    Undefined = 0,
+    PlaylistChanging = 1,
+    PlaylistLocating = 2,
+    PlaylistConnecting = 3,
+    PlaylistLoading = 4,
+    PlaylistOpening = 5,
+    PlaylistOpenNoMedia = 6,
+    PlaylistChanged = 7,
+    MediaChanging = 8,
+    MediaLocating = 9,
+    MediaConnecting = 10,
+    MediaLoading = 11,
+    MediaOpening = 12,
+    MediaOpen = 13,
+    BeginCodecAcquisition = 14,
+    EndCodecAcquisition = 15,
+    BeginLicenseAcquisition = 16,
+    EndLicenseAcquisition = 17,
+    BeginIndividualization = 18,
+    EndIndividualization = 19,
+    MediaWaiting = 20,
+    OpeningUnknownURL = 21,
+};
+pub const wmposUndefined = WMPOpenState.Undefined;
+pub const wmposPlaylistChanging = WMPOpenState.PlaylistChanging;
+pub const wmposPlaylistLocating = WMPOpenState.PlaylistLocating;
+pub const wmposPlaylistConnecting = WMPOpenState.PlaylistConnecting;
+pub const wmposPlaylistLoading = WMPOpenState.PlaylistLoading;
+pub const wmposPlaylistOpening = WMPOpenState.PlaylistOpening;
+pub const wmposPlaylistOpenNoMedia = WMPOpenState.PlaylistOpenNoMedia;
+pub const wmposPlaylistChanged = WMPOpenState.PlaylistChanged;
+pub const wmposMediaChanging = WMPOpenState.MediaChanging;
+pub const wmposMediaLocating = WMPOpenState.MediaLocating;
+pub const wmposMediaConnecting = WMPOpenState.MediaConnecting;
+pub const wmposMediaLoading = WMPOpenState.MediaLoading;
+pub const wmposMediaOpening = WMPOpenState.MediaOpening;
+pub const wmposMediaOpen = WMPOpenState.MediaOpen;
+pub const wmposBeginCodecAcquisition = WMPOpenState.BeginCodecAcquisition;
+pub const wmposEndCodecAcquisition = WMPOpenState.EndCodecAcquisition;
+pub const wmposBeginLicenseAcquisition = WMPOpenState.BeginLicenseAcquisition;
+pub const wmposEndLicenseAcquisition = WMPOpenState.EndLicenseAcquisition;
+pub const wmposBeginIndividualization = WMPOpenState.BeginIndividualization;
+pub const wmposEndIndividualization = WMPOpenState.EndIndividualization;
+pub const wmposMediaWaiting = WMPOpenState.MediaWaiting;
+pub const wmposOpeningUnknownURL = WMPOpenState.OpeningUnknownURL;
+
+pub const WMPPartnerNotification = enum(i32) {
+    BackgroundProcessingBegin = 1,
+    BackgroundProcessingEnd = 2,
+    CatalogDownloadFailure = 3,
+    CatalogDownloadComplete = 4,
+};
+pub const wmpsnBackgroundProcessingBegin = WMPPartnerNotification.BackgroundProcessingBegin;
+pub const wmpsnBackgroundProcessingEnd = WMPPartnerNotification.BackgroundProcessingEnd;
+pub const wmpsnCatalogDownloadFailure = WMPPartnerNotification.CatalogDownloadFailure;
+pub const wmpsnCatalogDownloadComplete = WMPPartnerNotification.CatalogDownloadComplete;
+
+pub const WMPPlaylistChangeEventType = enum(i32) {
+    Unknown = 0,
+    Clear = 1,
+    InfoChange = 2,
+    Move = 3,
+    Delete = 4,
+    Insert = 5,
+    Append = 6,
+    Private = 7,
+    NameChange = 8,
+    Morph = 9,
+    Sort = 10,
+    Last = 11,
+};
+pub const wmplcUnknown = WMPPlaylistChangeEventType.Unknown;
+pub const wmplcClear = WMPPlaylistChangeEventType.Clear;
+pub const wmplcInfoChange = WMPPlaylistChangeEventType.InfoChange;
+pub const wmplcMove = WMPPlaylistChangeEventType.Move;
+pub const wmplcDelete = WMPPlaylistChangeEventType.Delete;
+pub const wmplcInsert = WMPPlaylistChangeEventType.Insert;
+pub const wmplcAppend = WMPPlaylistChangeEventType.Append;
+pub const wmplcPrivate = WMPPlaylistChangeEventType.Private;
+pub const wmplcNameChange = WMPPlaylistChangeEventType.NameChange;
+pub const wmplcMorph = WMPPlaylistChangeEventType.Morph;
+pub const wmplcSort = WMPPlaylistChangeEventType.Sort;
+pub const wmplcLast = WMPPlaylistChangeEventType.Last;
+
+pub const WMPPlayState = enum(i32) {
+    Undefined = 0,
+    Stopped = 1,
+    Paused = 2,
+    Playing = 3,
+    ScanForward = 4,
+    ScanReverse = 5,
+    Buffering = 6,
+    Waiting = 7,
+    MediaEnded = 8,
+    Transitioning = 9,
+    Ready = 10,
+    Reconnecting = 11,
+    Last = 12,
+};
+pub const wmppsUndefined = WMPPlayState.Undefined;
+pub const wmppsStopped = WMPPlayState.Stopped;
+pub const wmppsPaused = WMPPlayState.Paused;
+pub const wmppsPlaying = WMPPlayState.Playing;
+pub const wmppsScanForward = WMPPlayState.ScanForward;
+pub const wmppsScanReverse = WMPPlayState.ScanReverse;
+pub const wmppsBuffering = WMPPlayState.Buffering;
+pub const wmppsWaiting = WMPPlayState.Waiting;
+pub const wmppsMediaEnded = WMPPlayState.MediaEnded;
+pub const wmppsTransitioning = WMPPlayState.Transitioning;
+pub const wmppsReady = WMPPlayState.Ready;
+pub const wmppsReconnecting = WMPPlayState.Reconnecting;
+pub const wmppsLast = WMPPlayState.Last;
+
+pub const WMPPlugin_Caps = enum(i32) {
+    s = 1,
+};
+pub const WMPPlugin_Caps_CannotConvertFormats = WMPPlugin_Caps.s;
+
+const CLSID_WMPRemoteMediaServices_Value = Guid.initString("df333473-2cf7-4be2-907f-9aad5661364f");
+pub const CLSID_WMPRemoteMediaServices = &CLSID_WMPRemoteMediaServices_Value;
+
+pub const WMPRipState = enum(i32) {
+    Unknown = 0,
+    Ripping = 1,
+    Stopped = 2,
+};
+pub const wmprsUnknown = WMPRipState.Unknown;
+pub const wmprsRipping = WMPRipState.Ripping;
+pub const wmprsStopped = WMPRipState.Stopped;
+
+pub const WMPServices_StreamState = enum(i32) {
+    Stop = 0,
+    Pause = 1,
+    Play = 2,
+};
+pub const WMPServices_StreamState_Stop = WMPServices_StreamState.Stop;
+pub const WMPServices_StreamState_Pause = WMPServices_StreamState.Pause;
+pub const WMPServices_StreamState_Play = WMPServices_StreamState.Play;
 
 pub const WMPStreamingType = enum(i32) {
     Unknown = 0,
@@ -8008,478 +8597,22 @@ pub const wmpstMusic = WMPStreamingType.Music;
 pub const wmpstVideo = WMPStreamingType.Video;
 pub const wmpstRadio = WMPStreamingType.Radio;
 
-pub const WMPAccountType = enum(i32) {
-    BuyOnly = 1,
-    Subscription = 2,
-    Janus = 3,
+pub const WMPStringCollectionChangeEventType = enum(i32) {
+    Unknown = 0,
+    Insert = 1,
+    Change = 2,
+    Delete = 3,
+    Clear = 4,
+    BeginUpdates = 5,
+    EndUpdates = 6,
 };
-pub const wmpatBuyOnly = WMPAccountType.BuyOnly;
-pub const wmpatSubscription = WMPAccountType.Subscription;
-pub const wmpatJanus = WMPAccountType.Janus;
-
-const IID_IWMPContentPartnerCallback_Value = Guid.initString("9e8f7da2-0695-403c-b697-da10fafaa676");
-pub const IID_IWMPContentPartnerCallback = &IID_IWMPContentPartnerCallback_Value;
-pub const IWMPContentPartnerCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Notify: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            type: WMPCallbackNotification,
-            pContext: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        BuyComplete: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            hrResult: HRESULT,
-            dwBuyCookie: u32,
-        ) callconv(.winapi) HRESULT,
-        DownloadTrack: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            cookie: u32,
-            bstrTrackURL: ?BSTR,
-            dwServiceTrackID: u32,
-            bstrDownloadParams: ?BSTR,
-            hrDownload: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        GetCatalogVersion: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            pdwVersion: ?*u32,
-            pdwSchemaVersion: ?*u32,
-            plcid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        UpdateDeviceComplete: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            bstrDeviceName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ChangeView: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            bstrType: ?BSTR,
-            bstrID: ?BSTR,
-            bstrFilter: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddListContents: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            dwListCookie: u32,
-            cItems: u32,
-            prgItems: [*]u32,
-        ) callconv(.winapi) HRESULT,
-        ListContentsComplete: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            dwListCookie: u32,
-            hrSuccess: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        SendMessageComplete: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            bstrMsg: ?BSTR,
-            bstrParam: ?BSTR,
-            bstrResult: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetContentIDsInLibrary: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            pcContentIDs: ?*u32,
-            pprgIDs: [*]?*u32,
-        ) callconv(.winapi) HRESULT,
-        RefreshLicenseComplete: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            dwCookie: u32,
-            contentID: u32,
-            hrRefresh: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        ShowPopup: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            lIndex: i32,
-            bstrParameters: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        VerifyPermissionComplete: *const fn(
-            self: *const IWMPContentPartnerCallback,
-            bstrPermission: ?BSTR,
-            pContext: ?*VARIANT,
-            hrPermission: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Notify(self: *const IWMPContentPartnerCallback, @"type": WMPCallbackNotification, pContext: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, @"type", pContext);
-    }
-    pub fn BuyComplete(self: *const IWMPContentPartnerCallback, hrResult: HRESULT, dwBuyCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.BuyComplete(self, hrResult, dwBuyCookie);
-    }
-    pub fn DownloadTrack(self: *const IWMPContentPartnerCallback, cookie: u32, bstrTrackURL: ?BSTR, dwServiceTrackID: u32, bstrDownloadParams: ?BSTR, hrDownload: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.DownloadTrack(self, cookie, bstrTrackURL, dwServiceTrackID, bstrDownloadParams, hrDownload);
-    }
-    pub fn GetCatalogVersion(self: *const IWMPContentPartnerCallback, pdwVersion: ?*u32, pdwSchemaVersion: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCatalogVersion(self, pdwVersion, pdwSchemaVersion, plcid);
-    }
-    pub fn UpdateDeviceComplete(self: *const IWMPContentPartnerCallback, bstrDeviceName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateDeviceComplete(self, bstrDeviceName);
-    }
-    pub fn ChangeView(self: *const IWMPContentPartnerCallback, bstrType: ?BSTR, bstrID: ?BSTR, bstrFilter: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangeView(self, bstrType, bstrID, bstrFilter);
-    }
-    pub fn AddListContents(self: *const IWMPContentPartnerCallback, dwListCookie: u32, cItems: u32, prgItems: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddListContents(self, dwListCookie, cItems, prgItems);
-    }
-    pub fn ListContentsComplete(self: *const IWMPContentPartnerCallback, dwListCookie: u32, hrSuccess: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.ListContentsComplete(self, dwListCookie, hrSuccess);
-    }
-    pub fn SendMessageComplete(self: *const IWMPContentPartnerCallback, bstrMsg: ?BSTR, bstrParam: ?BSTR, bstrResult: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SendMessageComplete(self, bstrMsg, bstrParam, bstrResult);
-    }
-    pub fn GetContentIDsInLibrary(self: *const IWMPContentPartnerCallback, pcContentIDs: ?*u32, pprgIDs: [*]?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentIDsInLibrary(self, pcContentIDs, pprgIDs);
-    }
-    pub fn RefreshLicenseComplete(self: *const IWMPContentPartnerCallback, dwCookie: u32, contentID: u32, hrRefresh: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.RefreshLicenseComplete(self, dwCookie, contentID, hrRefresh);
-    }
-    pub fn ShowPopup(self: *const IWMPContentPartnerCallback, lIndex: i32, bstrParameters: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowPopup(self, lIndex, bstrParameters);
-    }
-    pub fn VerifyPermissionComplete(self: *const IWMPContentPartnerCallback, bstrPermission: ?BSTR, pContext: ?*VARIANT, hrPermission: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.VerifyPermissionComplete(self, bstrPermission, pContext, hrPermission);
-    }
-};
-
-const IID_IWMPContentPartner_Value = Guid.initString("55455073-41b5-4e75-87b8-f13bdb291d08");
-pub const IID_IWMPContentPartner = &IID_IWMPContentPartner_Value;
-pub const IWMPContentPartner = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetCallback: *const fn(
-            self: *const IWMPContentPartner,
-            pCallback: ?*IWMPContentPartnerCallback,
-        ) callconv(.winapi) HRESULT,
-        Notify: *const fn(
-            self: *const IWMPContentPartner,
-            type: WMPPartnerNotification,
-            pContext: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetItemInfo: *const fn(
-            self: *const IWMPContentPartner,
-            bstrInfoName: ?BSTR,
-            pContext: ?*VARIANT,
-            pData: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetContentPartnerInfo: *const fn(
-            self: *const IWMPContentPartner,
-            bstrInfoName: ?BSTR,
-            pData: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetCommands: *const fn(
-            self: *const IWMPContentPartner,
-            location: ?BSTR,
-            pLocationContext: ?*VARIANT,
-            itemLocation: ?BSTR,
-            cItemIDs: u32,
-            prgItemIDs: [*]u32,
-            pcItemIDs: ?*u32,
-            pprgItems: [*]?*WMPContextMenuInfo,
-        ) callconv(.winapi) HRESULT,
-        InvokeCommand: *const fn(
-            self: *const IWMPContentPartner,
-            dwCommandID: u32,
-            location: ?BSTR,
-            pLocationContext: ?*VARIANT,
-            itemLocation: ?BSTR,
-            cItemIDs: u32,
-            rgItemIDs: [*]u32,
-        ) callconv(.winapi) HRESULT,
-        CanBuySilent: *const fn(
-            self: *const IWMPContentPartner,
-            pInfo: ?*IWMPContentContainerList,
-            pbstrTotalPrice: ?*?BSTR,
-            pSilentOK: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        Buy: *const fn(
-            self: *const IWMPContentPartner,
-            pInfo: ?*IWMPContentContainerList,
-            cookie: u32,
-        ) callconv(.winapi) HRESULT,
-        GetStreamingURL: *const fn(
-            self: *const IWMPContentPartner,
-            st: WMPStreamingType,
-            pStreamContext: ?*VARIANT,
-            pbstrURL: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Download: *const fn(
-            self: *const IWMPContentPartner,
-            pInfo: ?*IWMPContentContainerList,
-            cookie: u32,
-        ) callconv(.winapi) HRESULT,
-        DownloadTrackComplete: *const fn(
-            self: *const IWMPContentPartner,
-            hrResult: HRESULT,
-            contentID: u32,
-            downloadTrackParam: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RefreshLicense: *const fn(
-            self: *const IWMPContentPartner,
-            dwCookie: u32,
-            fLocal: i16,
-            bstrURL: ?BSTR,
-            type: WMPStreamingType,
-            contentID: u32,
-            bstrRefreshReason: ?BSTR,
-            pReasonContext: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetCatalogURL: *const fn(
-            self: *const IWMPContentPartner,
-            dwCatalogVersion: u32,
-            dwCatalogSchemaVersion: u32,
-            catalogLCID: u32,
-            pdwNewCatalogVersion: ?*u32,
-            pbstrCatalogURL: ?*?BSTR,
-            pExpirationDate: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetTemplate: *const fn(
-            self: *const IWMPContentPartner,
-            task: WMPTaskType,
-            location: ?BSTR,
-            pContext: ?*VARIANT,
-            clickLocation: ?BSTR,
-            pClickContext: ?*VARIANT,
-            bstrFilter: ?BSTR,
-            bstrViewParams: ?BSTR,
-            pbstrTemplateURL: ?*?BSTR,
-            pTemplateSize: ?*WMPTemplateSize,
-        ) callconv(.winapi) HRESULT,
-        UpdateDevice: *const fn(
-            self: *const IWMPContentPartner,
-            bstrDeviceName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetListContents: *const fn(
-            self: *const IWMPContentPartner,
-            location: ?BSTR,
-            pContext: ?*VARIANT,
-            bstrListType: ?BSTR,
-            bstrParams: ?BSTR,
-            dwListCookie: u32,
-        ) callconv(.winapi) HRESULT,
-        Login: *const fn(
-            self: *const IWMPContentPartner,
-            userInfo: BLOB,
-            pwdInfo: BLOB,
-            fUsedCachedCreds: i16,
-            fOkToCache: i16,
-        ) callconv(.winapi) HRESULT,
-        Authenticate: *const fn(
-            self: *const IWMPContentPartner,
-            userInfo: BLOB,
-            pwdInfo: BLOB,
-        ) callconv(.winapi) HRESULT,
-        Logout: *const fn(
-            self: *const IWMPContentPartner,
-        ) callconv(.winapi) HRESULT,
-        SendMessage: *const fn(
-            self: *const IWMPContentPartner,
-            bstrMsg: ?BSTR,
-            bstrParam: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        StationEvent: *const fn(
-            self: *const IWMPContentPartner,
-            bstrStationEventType: ?BSTR,
-            StationId: u32,
-            PlaylistIndex: u32,
-            TrackID: u32,
-            TrackData: ?BSTR,
-            dwSecondsPlayed: u32,
-        ) callconv(.winapi) HRESULT,
-        CompareContainerListPrices: *const fn(
-            self: *const IWMPContentPartner,
-            pListBase: ?*IWMPContentContainerList,
-            pListCompare: ?*IWMPContentContainerList,
-            pResult: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        VerifyPermission: *const fn(
-            self: *const IWMPContentPartner,
-            bstrPermission: ?BSTR,
-            pContext: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetCallback(self: *const IWMPContentPartner, pCallback: ?*IWMPContentPartnerCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCallback(self, pCallback);
-    }
-    pub fn Notify(self: *const IWMPContentPartner, @"type": WMPPartnerNotification, pContext: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, @"type", pContext);
-    }
-    pub fn GetItemInfo(self: *const IWMPContentPartner, bstrInfoName: ?BSTR, pContext: ?*VARIANT, pData: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemInfo(self, bstrInfoName, pContext, pData);
-    }
-    pub fn GetContentPartnerInfo(self: *const IWMPContentPartner, bstrInfoName: ?BSTR, pData: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentPartnerInfo(self, bstrInfoName, pData);
-    }
-    pub fn GetCommands(self: *const IWMPContentPartner, location: ?BSTR, pLocationContext: ?*VARIANT, itemLocation: ?BSTR, cItemIDs: u32, prgItemIDs: [*]u32, pcItemIDs: ?*u32, pprgItems: [*]?*WMPContextMenuInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCommands(self, location, pLocationContext, itemLocation, cItemIDs, prgItemIDs, pcItemIDs, pprgItems);
-    }
-    pub fn InvokeCommand(self: *const IWMPContentPartner, dwCommandID: u32, location: ?BSTR, pLocationContext: ?*VARIANT, itemLocation: ?BSTR, cItemIDs: u32, rgItemIDs: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.InvokeCommand(self, dwCommandID, location, pLocationContext, itemLocation, cItemIDs, rgItemIDs);
-    }
-    pub fn CanBuySilent(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, pbstrTotalPrice: ?*?BSTR, pSilentOK: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.CanBuySilent(self, pInfo, pbstrTotalPrice, pSilentOK);
-    }
-    pub fn Buy(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, cookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Buy(self, pInfo, cookie);
-    }
-    pub fn GetStreamingURL(self: *const IWMPContentPartner, st: WMPStreamingType, pStreamContext: ?*VARIANT, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamingURL(self, st, pStreamContext, pbstrURL);
-    }
-    pub fn Download(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, cookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Download(self, pInfo, cookie);
-    }
-    pub fn DownloadTrackComplete(self: *const IWMPContentPartner, hrResult: HRESULT, contentID: u32, downloadTrackParam: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DownloadTrackComplete(self, hrResult, contentID, downloadTrackParam);
-    }
-    pub fn RefreshLicense(self: *const IWMPContentPartner, dwCookie: u32, fLocal: i16, bstrURL: ?BSTR, @"type": WMPStreamingType, contentID: u32, bstrRefreshReason: ?BSTR, pReasonContext: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RefreshLicense(self, dwCookie, fLocal, bstrURL, @"type", contentID, bstrRefreshReason, pReasonContext);
-    }
-    pub fn GetCatalogURL(self: *const IWMPContentPartner, dwCatalogVersion: u32, dwCatalogSchemaVersion: u32, catalogLCID: u32, pdwNewCatalogVersion: ?*u32, pbstrCatalogURL: ?*?BSTR, pExpirationDate: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCatalogURL(self, dwCatalogVersion, dwCatalogSchemaVersion, catalogLCID, pdwNewCatalogVersion, pbstrCatalogURL, pExpirationDate);
-    }
-    pub fn GetTemplate(self: *const IWMPContentPartner, task: WMPTaskType, location: ?BSTR, pContext: ?*VARIANT, clickLocation: ?BSTR, pClickContext: ?*VARIANT, bstrFilter: ?BSTR, bstrViewParams: ?BSTR, pbstrTemplateURL: ?*?BSTR, pTemplateSize: ?*WMPTemplateSize) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTemplate(self, task, location, pContext, clickLocation, pClickContext, bstrFilter, bstrViewParams, pbstrTemplateURL, pTemplateSize);
-    }
-    pub fn UpdateDevice(self: *const IWMPContentPartner, bstrDeviceName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateDevice(self, bstrDeviceName);
-    }
-    pub fn GetListContents(self: *const IWMPContentPartner, location: ?BSTR, pContext: ?*VARIANT, bstrListType: ?BSTR, bstrParams: ?BSTR, dwListCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetListContents(self, location, pContext, bstrListType, bstrParams, dwListCookie);
-    }
-    pub fn Login(self: *const IWMPContentPartner, userInfo: BLOB, pwdInfo: BLOB, fUsedCachedCreds: i16, fOkToCache: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.Login(self, userInfo, pwdInfo, fUsedCachedCreds, fOkToCache);
-    }
-    pub fn Authenticate(self: *const IWMPContentPartner, userInfo: BLOB, pwdInfo: BLOB) callconv(.@"inline") HRESULT {
-        return self.vtable.Authenticate(self, userInfo, pwdInfo);
-    }
-    pub fn Logout(self: *const IWMPContentPartner) callconv(.@"inline") HRESULT {
-        return self.vtable.Logout(self);
-    }
-    pub fn SendMessage(self: *const IWMPContentPartner, bstrMsg: ?BSTR, bstrParam: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SendMessage(self, bstrMsg, bstrParam);
-    }
-    pub fn StationEvent(self: *const IWMPContentPartner, bstrStationEventType: ?BSTR, StationId: u32, PlaylistIndex: u32, TrackID: u32, TrackData: ?BSTR, dwSecondsPlayed: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.StationEvent(self, bstrStationEventType, StationId, PlaylistIndex, TrackID, TrackData, dwSecondsPlayed);
-    }
-    pub fn CompareContainerListPrices(self: *const IWMPContentPartner, pListBase: ?*IWMPContentContainerList, pListCompare: ?*IWMPContentContainerList, pResult: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.CompareContainerListPrices(self, pListBase, pListCompare, pResult);
-    }
-    pub fn VerifyPermission(self: *const IWMPContentPartner, bstrPermission: ?BSTR, pContext: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.VerifyPermission(self, bstrPermission, pContext);
-    }
-};
-
-pub const WMPSubscriptionServiceEvent = enum(i32) {
-    CurrentBegin = 1,
-    CurrentEnd = 2,
-    FullBegin = 3,
-    FullEnd = 4,
-};
-pub const wmpsseCurrentBegin = WMPSubscriptionServiceEvent.CurrentBegin;
-pub const wmpsseCurrentEnd = WMPSubscriptionServiceEvent.CurrentEnd;
-pub const wmpsseFullBegin = WMPSubscriptionServiceEvent.FullBegin;
-pub const wmpsseFullEnd = WMPSubscriptionServiceEvent.FullEnd;
-
-const IID_IWMPSubscriptionService_Value = Guid.initString("376055f8-2a59-4a73-9501-dca5273a7a10");
-pub const IID_IWMPSubscriptionService = &IID_IWMPSubscriptionService_Value;
-pub const IWMPSubscriptionService = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        allowPlay: *const fn(
-            self: *const IWMPSubscriptionService,
-            hwnd: ?HWND,
-            pMedia: ?*IWMPMedia,
-            pfAllowPlay: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        allowCDBurn: *const fn(
-            self: *const IWMPSubscriptionService,
-            hwnd: ?HWND,
-            pPlaylist: ?*IWMPPlaylist,
-            pfAllowBurn: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        allowPDATransfer: *const fn(
-            self: *const IWMPSubscriptionService,
-            hwnd: ?HWND,
-            pPlaylist: ?*IWMPPlaylist,
-            pfAllowTransfer: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        startBackgroundProcessing: *const fn(
-            self: *const IWMPSubscriptionService,
-            hwnd: ?HWND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn allowPlay(self: *const IWMPSubscriptionService, hwnd: ?HWND, pMedia: ?*IWMPMedia, pfAllowPlay: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.allowPlay(self, hwnd, pMedia, pfAllowPlay);
-    }
-    pub fn allowCDBurn(self: *const IWMPSubscriptionService, hwnd: ?HWND, pPlaylist: ?*IWMPPlaylist, pfAllowBurn: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.allowCDBurn(self, hwnd, pPlaylist, pfAllowBurn);
-    }
-    pub fn allowPDATransfer(self: *const IWMPSubscriptionService, hwnd: ?HWND, pPlaylist: ?*IWMPPlaylist, pfAllowTransfer: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.allowPDATransfer(self, hwnd, pPlaylist, pfAllowTransfer);
-    }
-    pub fn startBackgroundProcessing(self: *const IWMPSubscriptionService, hwnd: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.startBackgroundProcessing(self, hwnd);
-    }
-};
-
-const IID_IWMPSubscriptionServiceCallback_Value = Guid.initString("dd01d127-2dc2-4c3a-876e-63312079f9b0");
-pub const IID_IWMPSubscriptionServiceCallback = &IID_IWMPSubscriptionServiceCallback_Value;
-pub const IWMPSubscriptionServiceCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        onComplete: *const fn(
-            self: *const IWMPSubscriptionServiceCallback,
-            hrResult: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn onComplete(self: *const IWMPSubscriptionServiceCallback, hrResult: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.onComplete(self, hrResult);
-    }
-};
-
-const IID_IWMPSubscriptionService2_Value = Guid.initString("a94c120e-d600-4ec6-b05e-ec9d56d84de0");
-pub const IID_IWMPSubscriptionService2 = &IID_IWMPSubscriptionService2_Value;
-pub const IWMPSubscriptionService2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPSubscriptionService.VTable,
-        stopBackgroundProcessing: *const fn(
-            self: *const IWMPSubscriptionService2,
-        ) callconv(.winapi) HRESULT,
-        serviceEvent: *const fn(
-            self: *const IWMPSubscriptionService2,
-            event: WMPSubscriptionServiceEvent,
-        ) callconv(.winapi) HRESULT,
-        deviceAvailable: *const fn(
-            self: *const IWMPSubscriptionService2,
-            bstrDeviceName: ?BSTR,
-            pCB: ?*IWMPSubscriptionServiceCallback,
-        ) callconv(.winapi) HRESULT,
-        prepareForSync: *const fn(
-            self: *const IWMPSubscriptionService2,
-            bstrFilename: ?BSTR,
-            bstrDeviceName: ?BSTR,
-            pCB: ?*IWMPSubscriptionServiceCallback,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPSubscriptionService: IWMPSubscriptionService,
-    IUnknown: IUnknown,
-    pub fn stopBackgroundProcessing(self: *const IWMPSubscriptionService2) callconv(.@"inline") HRESULT {
-        return self.vtable.stopBackgroundProcessing(self);
-    }
-    pub fn serviceEvent(self: *const IWMPSubscriptionService2, event: WMPSubscriptionServiceEvent) callconv(.@"inline") HRESULT {
-        return self.vtable.serviceEvent(self, event);
-    }
-    pub fn deviceAvailable(self: *const IWMPSubscriptionService2, bstrDeviceName: ?BSTR, pCB: ?*IWMPSubscriptionServiceCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.deviceAvailable(self, bstrDeviceName, pCB);
-    }
-    pub fn prepareForSync(self: *const IWMPSubscriptionService2, bstrFilename: ?BSTR, bstrDeviceName: ?BSTR, pCB: ?*IWMPSubscriptionServiceCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.prepareForSync(self, bstrFilename, bstrDeviceName, pCB);
-    }
-};
+pub const wmpsccetUnknown = WMPStringCollectionChangeEventType.Unknown;
+pub const wmpsccetInsert = WMPStringCollectionChangeEventType.Insert;
+pub const wmpsccetChange = WMPStringCollectionChangeEventType.Change;
+pub const wmpsccetDelete = WMPStringCollectionChangeEventType.Delete;
+pub const wmpsccetClear = WMPStringCollectionChangeEventType.Clear;
+pub const wmpsccetBeginUpdates = WMPStringCollectionChangeEventType.BeginUpdates;
+pub const wmpsccetEndUpdates = WMPStringCollectionChangeEventType.EndUpdates;
 
 pub const WMPSubscriptionDownloadState = enum(i32) {
     Downloading = 0,
@@ -8494,191 +8627,58 @@ pub const wmpsdlsProcessing = WMPSubscriptionDownloadState.Processing;
 pub const wmpsdlsCompleted = WMPSubscriptionDownloadState.Completed;
 pub const wmpsdlsCancelled = WMPSubscriptionDownloadState.Cancelled;
 
-const IID_IWMPDownloadItem_Value = Guid.initString("c9470e8e-3f6b-46a9-a0a9-452815c34297");
-pub const IID_IWMPDownloadItem = &IID_IWMPDownloadItem_Value;
-pub const IWMPDownloadItem = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_sourceURL: *const fn(
-            self: *const IWMPDownloadItem,
-            pbstrURL: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_size: *const fn(
-            self: *const IWMPDownloadItem,
-            plSize: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_type: *const fn(
-            self: *const IWMPDownloadItem,
-            pbstrType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_progress: *const fn(
-            self: *const IWMPDownloadItem,
-            plProgress: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_downloadState: *const fn(
-            self: *const IWMPDownloadItem,
-            pwmpsdls: ?*WMPSubscriptionDownloadState,
-        ) callconv(.winapi) HRESULT,
-        pause: *const fn(
-            self: *const IWMPDownloadItem,
-        ) callconv(.winapi) HRESULT,
-        @"resume": *const fn(
-            self: *const IWMPDownloadItem,
-        ) callconv(.winapi) HRESULT,
-        cancel: *const fn(
-            self: *const IWMPDownloadItem,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_sourceURL(self: *const IWMPDownloadItem, pbstrURL: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_sourceURL(self, pbstrURL);
-    }
-    pub fn get_size(self: *const IWMPDownloadItem, plSize: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_size(self, plSize);
-    }
-    pub fn get_type(self: *const IWMPDownloadItem, pbstrType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_type(self, pbstrType);
-    }
-    pub fn get_progress(self: *const IWMPDownloadItem, plProgress: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_progress(self, plProgress);
-    }
-    pub fn get_downloadState(self: *const IWMPDownloadItem, pwmpsdls: ?*WMPSubscriptionDownloadState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_downloadState(self, pwmpsdls);
-    }
-    pub fn pause(self: *const IWMPDownloadItem) callconv(.@"inline") HRESULT {
-        return self.vtable.pause(self);
-    }
-    pub fn @"resume"(self: *const IWMPDownloadItem) callconv(.@"inline") HRESULT {
-        return self.vtable.@"resume"(self);
-    }
-    pub fn cancel(self: *const IWMPDownloadItem) callconv(.@"inline") HRESULT {
-        return self.vtable.cancel(self);
-    }
+pub const WMPSubscriptionServiceEvent = enum(i32) {
+    CurrentBegin = 1,
+    CurrentEnd = 2,
+    FullBegin = 3,
+    FullEnd = 4,
 };
+pub const wmpsseCurrentBegin = WMPSubscriptionServiceEvent.CurrentBegin;
+pub const wmpsseCurrentEnd = WMPSubscriptionServiceEvent.CurrentEnd;
+pub const wmpsseFullBegin = WMPSubscriptionServiceEvent.FullBegin;
+pub const wmpsseFullEnd = WMPSubscriptionServiceEvent.FullEnd;
 
-const IID_IWMPDownloadItem2_Value = Guid.initString("9fbb3336-6da3-479d-b8ff-67d46e20a987");
-pub const IID_IWMPDownloadItem2 = &IID_IWMPDownloadItem2_Value;
-pub const IWMPDownloadItem2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPDownloadItem.VTable,
-        getItemInfo: *const fn(
-            self: *const IWMPDownloadItem2,
-            bstrItemName: ?BSTR,
-            pbstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPDownloadItem: IWMPDownloadItem,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn getItemInfo(self: *const IWMPDownloadItem2, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
-    }
+pub const WMPSyncState = enum(i32) {
+    Unknown = 0,
+    Synchronizing = 1,
+    Stopped = 2,
+    Estimating = 3,
+    Last = 4,
 };
+pub const wmpssUnknown = WMPSyncState.Unknown;
+pub const wmpssSynchronizing = WMPSyncState.Synchronizing;
+pub const wmpssStopped = WMPSyncState.Stopped;
+pub const wmpssEstimating = WMPSyncState.Estimating;
+pub const wmpssLast = WMPSyncState.Last;
 
-const IID_IWMPDownloadCollection_Value = Guid.initString("0a319c7f-85f9-436c-b88e-82fd88000e1c");
-pub const IID_IWMPDownloadCollection = &IID_IWMPDownloadCollection_Value;
-pub const IWMPDownloadCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_id: *const fn(
-            self: *const IWMPDownloadCollection,
-            plId: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_count: *const fn(
-            self: *const IWMPDownloadCollection,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        item: *const fn(
-            self: *const IWMPDownloadCollection,
-            lItem: i32,
-            ppDownload: ?*?*IWMPDownloadItem2,
-        ) callconv(.winapi) HRESULT,
-        startDownload: *const fn(
-            self: *const IWMPDownloadCollection,
-            bstrSourceURL: ?BSTR,
-            bstrType: ?BSTR,
-            ppDownload: ?*?*IWMPDownloadItem2,
-        ) callconv(.winapi) HRESULT,
-        removeItem: *const fn(
-            self: *const IWMPDownloadCollection,
-            lItem: i32,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IWMPDownloadCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_id(self: *const IWMPDownloadCollection, plId: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_id(self, plId);
-    }
-    pub fn get_count(self: *const IWMPDownloadCollection, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_count(self, plCount);
-    }
-    pub fn item(self: *const IWMPDownloadCollection, lItem: i32, ppDownload: ?*?*IWMPDownloadItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.item(self, lItem, ppDownload);
-    }
-    pub fn startDownload(self: *const IWMPDownloadCollection, bstrSourceURL: ?BSTR, bstrType: ?BSTR, ppDownload: ?*?*IWMPDownloadItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.startDownload(self, bstrSourceURL, bstrType, ppDownload);
-    }
-    pub fn removeItem(self: *const IWMPDownloadCollection, lItem: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.removeItem(self, lItem);
-    }
-    pub fn Clear(self: *const IWMPDownloadCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
+pub const WMPTaskType = enum(i32) {
+    Browse = 1,
+    Sync = 2,
+    Burn = 3,
+    Current = 4,
 };
+pub const wmpttBrowse = WMPTaskType.Browse;
+pub const wmpttSync = WMPTaskType.Sync;
+pub const wmpttBurn = WMPTaskType.Burn;
+pub const wmpttCurrent = WMPTaskType.Current;
 
-const IID_IWMPDownloadManager_Value = Guid.initString("e15e9ad1-8f20-4cc4-9ec7-1a328ca86a0d");
-pub const IID_IWMPDownloadManager = &IID_IWMPDownloadManager_Value;
-pub const IWMPDownloadManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        getDownloadCollection: *const fn(
-            self: *const IWMPDownloadManager,
-            lCollectionId: i32,
-            ppCollection: ?*?*IWMPDownloadCollection,
-        ) callconv(.winapi) HRESULT,
-        createDownloadCollection: *const fn(
-            self: *const IWMPDownloadManager,
-            ppCollection: ?*?*IWMPDownloadCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn getDownloadCollection(self: *const IWMPDownloadManager, lCollectionId: i32, ppCollection: ?*?*IWMPDownloadCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.getDownloadCollection(self, lCollectionId, ppCollection);
-    }
-    pub fn createDownloadCollection(self: *const IWMPDownloadManager, ppCollection: ?*?*IWMPDownloadCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.createDownloadCollection(self, ppCollection);
-    }
+pub const WMPTemplateSize = enum(i32) {
+    Small = 0,
+    Medium = 1,
+    Large = 2,
 };
+pub const wmptsSmall = WMPTemplateSize.Small;
+pub const wmptsMedium = WMPTemplateSize.Medium;
+pub const wmptsLarge = WMPTemplateSize.Large;
 
-pub const WMP_WMDM_METADATA_ROUND_TRIP_PC2DEVICE = extern struct {
-    dwChangesSinceTransactionID: u32 align(1),
-    dwResultSetStartingIndex: u32 align(1),
+pub const WMPTransactionType = enum(i32) {
+    NoTransaction = 0,
+    Download = 1,
+    Buy = 2,
 };
-
-pub const WMP_WMDM_METADATA_ROUND_TRIP_DEVICE2PC = extern struct {
-    dwCurrentTransactionID: u32 align(1),
-    dwReturnedObjectCount: u32 align(1),
-    dwUnretrievedObjectCount: u32 align(1),
-    dwDeletedObjectStartingOffset: u32 align(1),
-    dwFlags: u32 align(1),
-    wsObjectPathnameList: [1]u16 align(1),
-};
+pub const wmpttNoTransaction = WMPTransactionType.NoTransaction;
+pub const wmpttDownload = WMPTransactionType.Download;
+pub const wmpttBuy = WMPTransactionType.Buy;
 
 
 //--------------------------------------------------------------------------------

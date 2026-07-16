@@ -6,6 +6,62 @@
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
+pub const INPUT_INJECTION_VALUE = extern struct {
+    page: u16,
+    usage: u16,
+    value: i32,
+    index: u16,
+};
+
+pub const INPUT_TRANSFORM = extern struct {
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _11: f32,
+            _12: f32,
+            _13: f32,
+            _14: f32,
+            _21: f32,
+            _22: f32,
+            _23: f32,
+            _24: f32,
+            _31: f32,
+            _32: f32,
+            _33: f32,
+            _34: f32,
+            _41: f32,
+            _42: f32,
+            _43: f32,
+            _44: f32,
+        },
+        m: [16]f32,
+    },
+};
+
+pub const POINTER_BUTTON_CHANGE_TYPE = enum(i32) {
+    NONE = 0,
+    FIRSTBUTTON_DOWN = 1,
+    FIRSTBUTTON_UP = 2,
+    SECONDBUTTON_DOWN = 3,
+    SECONDBUTTON_UP = 4,
+    THIRDBUTTON_DOWN = 5,
+    THIRDBUTTON_UP = 6,
+    FOURTHBUTTON_DOWN = 7,
+    FOURTHBUTTON_UP = 8,
+    FIFTHBUTTON_DOWN = 9,
+    FIFTHBUTTON_UP = 10,
+};
+pub const POINTER_CHANGE_NONE = POINTER_BUTTON_CHANGE_TYPE.NONE;
+pub const POINTER_CHANGE_FIRSTBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.FIRSTBUTTON_DOWN;
+pub const POINTER_CHANGE_FIRSTBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.FIRSTBUTTON_UP;
+pub const POINTER_CHANGE_SECONDBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.SECONDBUTTON_DOWN;
+pub const POINTER_CHANGE_SECONDBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.SECONDBUTTON_UP;
+pub const POINTER_CHANGE_THIRDBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.THIRDBUTTON_DOWN;
+pub const POINTER_CHANGE_THIRDBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.THIRDBUTTON_UP;
+pub const POINTER_CHANGE_FOURTHBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.FOURTHBUTTON_DOWN;
+pub const POINTER_CHANGE_FOURTHBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.FOURTHBUTTON_UP;
+pub const POINTER_CHANGE_FIFTHBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.FIFTHBUTTON_DOWN;
+pub const POINTER_CHANGE_FIFTHBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.FIFTHBUTTON_UP;
+
 pub const POINTER_FLAGS = packed struct(u32) {
     NEW: u1 = 0,
     INRANGE: u1 = 0,
@@ -60,40 +116,6 @@ pub const POINTER_FLAG_HWHEEL = POINTER_FLAGS{ .HWHEEL = 1 };
 pub const POINTER_FLAG_CAPTURECHANGED = POINTER_FLAGS{ .CAPTURECHANGED = 1 };
 pub const POINTER_FLAG_HASTRANSFORM = POINTER_FLAGS{ .HASTRANSFORM = 1 };
 
-pub const TOUCH_FEEDBACK_MODE = enum(u32) {
-    DEFAULT = 1,
-    INDIRECT = 2,
-    NONE = 3,
-};
-pub const TOUCH_FEEDBACK_DEFAULT = TOUCH_FEEDBACK_MODE.DEFAULT;
-pub const TOUCH_FEEDBACK_INDIRECT = TOUCH_FEEDBACK_MODE.INDIRECT;
-pub const TOUCH_FEEDBACK_NONE = TOUCH_FEEDBACK_MODE.NONE;
-
-pub const POINTER_BUTTON_CHANGE_TYPE = enum(i32) {
-    NONE = 0,
-    FIRSTBUTTON_DOWN = 1,
-    FIRSTBUTTON_UP = 2,
-    SECONDBUTTON_DOWN = 3,
-    SECONDBUTTON_UP = 4,
-    THIRDBUTTON_DOWN = 5,
-    THIRDBUTTON_UP = 6,
-    FOURTHBUTTON_DOWN = 7,
-    FOURTHBUTTON_UP = 8,
-    FIFTHBUTTON_DOWN = 9,
-    FIFTHBUTTON_UP = 10,
-};
-pub const POINTER_CHANGE_NONE = POINTER_BUTTON_CHANGE_TYPE.NONE;
-pub const POINTER_CHANGE_FIRSTBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.FIRSTBUTTON_DOWN;
-pub const POINTER_CHANGE_FIRSTBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.FIRSTBUTTON_UP;
-pub const POINTER_CHANGE_SECONDBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.SECONDBUTTON_DOWN;
-pub const POINTER_CHANGE_SECONDBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.SECONDBUTTON_UP;
-pub const POINTER_CHANGE_THIRDBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.THIRDBUTTON_DOWN;
-pub const POINTER_CHANGE_THIRDBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.THIRDBUTTON_UP;
-pub const POINTER_CHANGE_FOURTHBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.FOURTHBUTTON_DOWN;
-pub const POINTER_CHANGE_FOURTHBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.FOURTHBUTTON_UP;
-pub const POINTER_CHANGE_FIFTHBUTTON_DOWN = POINTER_BUTTON_CHANGE_TYPE.FIFTHBUTTON_DOWN;
-pub const POINTER_CHANGE_FIFTHBUTTON_UP = POINTER_BUTTON_CHANGE_TYPE.FIFTHBUTTON_UP;
-
 pub const POINTER_INFO = extern struct {
     pointerType: POINTER_INPUT_TYPE,
     pointerId: u32,
@@ -113,16 +135,6 @@ pub const POINTER_INFO = extern struct {
     ButtonChangeType: POINTER_BUTTON_CHANGE_TYPE,
 };
 
-pub const POINTER_TOUCH_INFO = extern struct {
-    pointerInfo: POINTER_INFO,
-    touchFlags: u32,
-    touchMask: u32,
-    rcContact: RECT,
-    rcContactRaw: RECT,
-    orientation: u32,
-    pressure: u32,
-};
-
 pub const POINTER_PEN_INFO = extern struct {
     pointerInfo: POINTER_INFO,
     penFlags: u32,
@@ -133,61 +145,32 @@ pub const POINTER_PEN_INFO = extern struct {
     tiltY: i32,
 };
 
-pub const INPUT_INJECTION_VALUE = extern struct {
-    page: u16,
-    usage: u16,
-    value: i32,
-    index: u16,
+pub const POINTER_TOUCH_INFO = extern struct {
+    pointerInfo: POINTER_INFO,
+    touchFlags: u32,
+    touchMask: u32,
+    rcContact: RECT,
+    rcContactRaw: RECT,
+    orientation: u32,
+    pressure: u32,
 };
 
-pub const INPUT_TRANSFORM = extern struct {
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _11: f32,
-            _12: f32,
-            _13: f32,
-            _14: f32,
-            _21: f32,
-            _22: f32,
-            _23: f32,
-            _24: f32,
-            _31: f32,
-            _32: f32,
-            _33: f32,
-            _34: f32,
-            _41: f32,
-            _42: f32,
-            _43: f32,
-            _44: f32,
-        },
-        m: [16]f32,
-    },
+pub const TOUCH_FEEDBACK_MODE = enum(u32) {
+    DEFAULT = 1,
+    INDIRECT = 2,
+    NONE = 3,
 };
+pub const TOUCH_FEEDBACK_DEFAULT = TOUCH_FEEDBACK_MODE.DEFAULT;
+pub const TOUCH_FEEDBACK_INDIRECT = TOUCH_FEEDBACK_MODE.INDIRECT;
+pub const TOUCH_FEEDBACK_NONE = TOUCH_FEEDBACK_MODE.NONE;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetUnpredictedMessagePos(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn InitializeTouchInjection(
-    maxCount: u32,
-    dwMode: TOUCH_FEEDBACK_MODE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn InjectTouchInput(
-    count: u32,
-    contacts: [*]const POINTER_TOUCH_INFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerType(
-    pointerId: u32,
-    pointerType: ?*POINTER_INPUT_TYPE,
+pub extern "user32" fn EnableMouseInPointer(
+    fEnable: BOOL,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -197,16 +180,36 @@ pub extern "user32" fn GetPointerCursorId(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerInfo(
-    pointerId: u32,
-    pointerInfo: ?*POINTER_INFO,
+pub extern "user32" fn GetPointerDevice(
+    device: ?HANDLE,
+    pointerDevice: ?*POINTER_DEVICE_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerInfoHistory(
-    pointerId: u32,
-    entriesCount: ?*u32,
-    pointerInfo: ?[*]POINTER_INFO,
+pub extern "user32" fn GetPointerDeviceCursors(
+    device: ?HANDLE,
+    cursorCount: ?*u32,
+    deviceCursors: ?[*]POINTER_DEVICE_CURSOR_INFO,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetPointerDeviceProperties(
+    device: ?HANDLE,
+    propertyCount: ?*u32,
+    pointerProperties: ?[*]POINTER_DEVICE_PROPERTY,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetPointerDeviceRects(
+    device: ?HANDLE,
+    pointerDeviceRect: ?*RECT,
+    displayRect: ?*RECT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetPointerDevices(
+    deviceCount: ?*u32,
+    pointerDevices: ?[*]POINTER_DEVICE_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -225,16 +228,18 @@ pub extern "user32" fn GetPointerFrameInfoHistory(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerTouchInfo(
+pub extern "user32" fn GetPointerFramePenInfo(
     pointerId: u32,
-    touchInfo: ?*POINTER_TOUCH_INFO,
+    pointerCount: ?*u32,
+    penInfo: ?[*]POINTER_PEN_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerTouchInfoHistory(
+pub extern "user32" fn GetPointerFramePenInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
-    touchInfo: ?[*]POINTER_TOUCH_INFO,
+    pointerCount: ?*u32,
+    penInfo: ?*POINTER_PEN_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -253,6 +258,26 @@ pub extern "user32" fn GetPointerFrameTouchInfoHistory(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetPointerInfo(
+    pointerId: u32,
+    pointerInfo: ?*POINTER_INFO,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetPointerInfoHistory(
+    pointerId: u32,
+    entriesCount: ?*u32,
+    pointerInfo: ?[*]POINTER_INFO,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "user32" fn GetPointerInputTransform(
+    pointerId: u32,
+    historyCount: u32,
+    inputTransform: [*]INPUT_TRANSFORM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "user32" fn GetPointerPenInfo(
     pointerId: u32,
     penInfo: ?*POINTER_PEN_INFO,
@@ -266,23 +291,41 @@ pub extern "user32" fn GetPointerPenInfoHistory(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerFramePenInfo(
+pub extern "user32" fn GetPointerTouchInfo(
     pointerId: u32,
-    pointerCount: ?*u32,
-    penInfo: ?[*]POINTER_PEN_INFO,
+    touchInfo: ?*POINTER_TOUCH_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerFramePenInfoHistory(
+pub extern "user32" fn GetPointerTouchInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
-    pointerCount: ?*u32,
-    penInfo: ?*POINTER_PEN_INFO,
+    touchInfo: ?[*]POINTER_TOUCH_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn SkipPointerFrameMessages(
+pub extern "user32" fn GetPointerType(
     pointerId: u32,
+    pointerType: ?*POINTER_INPUT_TYPE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetRawPointerDeviceData(
+    pointerId: u32,
+    historyCount: u32,
+    propertiesCount: u32,
+    pProperties: [*]POINTER_DEVICE_PROPERTY,
+    pValues: ?*i32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetUnpredictedMessagePos(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn InitializeTouchInjection(
+    maxCount: u32,
+    dwMode: TOUCH_FEEDBACK_MODE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
@@ -293,61 +336,18 @@ pub extern "user32" fn InjectSyntheticPointerInput(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn EnableMouseInPointer(
-    fEnable: BOOL,
+pub extern "user32" fn InjectTouchInput(
+    count: u32,
+    contacts: [*]const POINTER_TOUCH_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "user32" fn IsMouseInPointerEnabled(
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "user32" fn GetPointerInputTransform(
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn SkipPointerFrameMessages(
     pointerId: u32,
-    historyCount: u32,
-    inputTransform: [*]INPUT_TRANSFORM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerDevices(
-    deviceCount: ?*u32,
-    pointerDevices: ?[*]POINTER_DEVICE_INFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerDevice(
-    device: ?HANDLE,
-    pointerDevice: ?*POINTER_DEVICE_INFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerDeviceProperties(
-    device: ?HANDLE,
-    propertyCount: ?*u32,
-    pointerProperties: ?[*]POINTER_DEVICE_PROPERTY,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerDeviceRects(
-    device: ?HANDLE,
-    pointerDeviceRect: ?*RECT,
-    displayRect: ?*RECT,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetPointerDeviceCursors(
-    device: ?HANDLE,
-    cursorCount: ?*u32,
-    deviceCursors: ?[*]POINTER_DEVICE_CURSOR_INFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetRawPointerDeviceData(
-    pointerId: u32,
-    historyCount: u32,
-    propertiesCount: u32,
-    pProperties: [*]POINTER_DEVICE_PROPERTY,
-    pValues: ?*i32,
 ) callconv(.winapi) BOOL;
 
 

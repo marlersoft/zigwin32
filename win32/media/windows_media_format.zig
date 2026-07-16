@@ -2,17 +2,331 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (342)
 //--------------------------------------------------------------------------------
-pub const WMT_VIDEOIMAGE_SAMPLE_INPUT_FRAME = @as(u32, 1);
-pub const WMT_VIDEOIMAGE_SAMPLE_OUTPUT_FRAME = @as(u32, 2);
-pub const WMT_VIDEOIMAGE_SAMPLE_USES_CURRENT_INPUT_FRAME = @as(u32, 4);
-pub const WMT_VIDEOIMAGE_SAMPLE_USES_PREVIOUS_INPUT_FRAME = @as(u32, 8);
-pub const WMT_VIDEOIMAGE_SAMPLE_MOTION = @as(u32, 1);
-pub const WMT_VIDEOIMAGE_SAMPLE_ROTATION = @as(u32, 2);
-pub const WMT_VIDEOIMAGE_SAMPLE_BLENDING = @as(u32, 4);
-pub const WMT_VIDEOIMAGE_SAMPLE_ADV_BLENDING = @as(u32, 8);
+pub const CLSID_ClientNetManager = Guid.initString("cd12a3ce-9c42-11d2-beed-0060082f2054");
+pub const CLSID_WMBandwidthSharing_Exclusive = Guid.initString("af6060aa-5197-11d2-b6af-00c04fd908e9");
+pub const CLSID_WMBandwidthSharing_Partial = Guid.initString("af6060ab-5197-11d2-b6af-00c04fd908e9");
+pub const CLSID_WMMUTEX_Bitrate = Guid.initString("d6e22a01-35da-11d1-9034-00a0c90349be");
+pub const CLSID_WMMUTEX_Language = Guid.initString("d6e22a00-35da-11d1-9034-00a0c90349be");
+pub const CLSID_WMMUTEX_Presentation = Guid.initString("d6e22a02-35da-11d1-9034-00a0c90349be");
+pub const CLSID_WMMUTEX_Unknown = Guid.initString("d6e22a03-35da-11d1-9034-00a0c90349be");
+pub const DRM_OPL_TYPES = @as(u32, 1);
+pub const g_dwWMContentAttributes = @as(u32, 5);
+pub const g_dwWMNSCAttributes = @as(u32, 5);
+pub const g_dwWMSpecialAttributes = @as(u32, 20);
+pub const g_wszAllowInterlacedOutput = "AllowInterlacedOutput";
+pub const g_wszASFLeakyBucketPairs = "ASFLeakyBucketPairs";
+pub const g_wszAverageLevel = "AverageLevel";
+pub const g_wszBufferAverage = "Buffer Average";
+pub const g_wszComplexity = "_COMPLEXITYEX";
+pub const g_wszComplexityLive = "_COMPLEXITYEXLIVE";
+pub const g_wszComplexityMax = "_COMPLEXITYEXMAX";
+pub const g_wszComplexityOffline = "_COMPLEXITYEXOFFLINE";
+pub const g_wszDecoderComplexityRequested = "_DECODERCOMPLEXITYPROFILE";
+pub const g_wszDedicatedDeliveryThread = "DedicatedDeliveryThread";
+pub const g_wszDeinterlaceMode = "DeinterlaceMode";
+pub const g_wszDeliverOnReceive = "DeliverOnReceive";
+pub const g_wszDeviceConformanceTemplate = "DeviceConformanceTemplate";
+pub const g_wszDynamicRangeControl = "DynamicRangeControl";
+pub const g_wszEarlyDataDelivery = "EarlyDataDelivery";
+pub const g_wszEDL = "_EDL";
+pub const g_wszEnableDiscreteOutput = "EnableDiscreteOutput";
+pub const g_wszEnableFrameInterpolation = "EnableFrameInterpolation";
+pub const g_wszEnableWMAProSPDIFOutput = "EnableWMAProSPDIFOutput";
+pub const g_wszFailSeekOnError = "FailSeekOnError";
+pub const g_wszFixedFrameRate = "FixedFrameRate";
+pub const g_wszFold6To2Channels3 = "Fold6To2Channels3";
+pub const g_wszFoldToChannelsTemplate = "Fold%luTo%luChannels%lu";
+pub const g_wszInitialPatternForInverseTelecine = "InitialPatternForInverseTelecine";
+pub const g_wszInterlacedCoding = "InterlacedCoding";
+pub const g_wszIsVBRSupported = "_ISVBRSUPPORTED";
+pub const g_wszJPEGCompressionQuality = "JPEGCompressionQuality";
+pub const g_wszJustInTimeDecode = "JustInTimeDecode";
+pub const g_wszMixedClassMode = "MixedClassMode";
+pub const g_wszMusicClassMode = "MusicClassMode";
+pub const g_wszMusicSpeechClassMode = "MusicSpeechClassMode";
+pub const g_wszNeedsPreviousSample = "NeedsPreviousSample";
+pub const g_wszNumPasses = "_PASSESUSED";
+pub const g_wszOriginalSourceFormatTag = "_SOURCEFORMATTAG";
+pub const g_wszOriginalWaveFormat = "_ORIGINALWAVEFORMAT";
+pub const g_wszPeakValue = "PeakValue";
+pub const g_wszPermitSeeksBeyondEndOfStream = "PermitSeeksBeyondEndOfStream";
+pub const g_wszReloadIndexOnSeek = "ReloadIndexOnSeek";
+pub const g_wszScrambledAudio = "ScrambledAudio";
+pub const g_wszSingleOutputBuffer = "SingleOutputBuffer";
+pub const g_wszSoftwareScaling = "SoftwareScaling";
+pub const g_wszSourceBufferTime = "SourceBufferTime";
+pub const g_wszSourceMaxBytesAtOnce = "SourceMaxBytesAtOnce";
+pub const g_wszSpeakerConfig = "SpeakerConfig";
+pub const g_wszSpeechCaps = "SpeechFormatCap";
+pub const g_wszSpeechClassMode = "SpeechClassMode";
+pub const g_wszStreamLanguage = "StreamLanguage";
+pub const g_wszStreamNumIndexObjects = "StreamNumIndexObjects";
+pub const g_wszUsePacketAtSeekPoint = "UsePacketAtSeekPoint";
+pub const g_wszVBRBitrateMax = "_RMAX";
+pub const g_wszVBRBufferWindowMax = "_BMAX";
+pub const g_wszVBREnabled = "_VBRENABLED";
+pub const g_wszVBRPeak = "VBR Peak";
+pub const g_wszVBRQuality = "_VBRQUALITY";
+pub const g_wszVideoSampleDurations = "VideoSampleDurations";
+pub const g_wszWatermarkCLSID = "WatermarkCLSID";
+pub const g_wszWatermarkConfig = "WatermarkConfig";
+pub const g_wszWMADID = "WM/ADID";
+pub const g_wszWMAlbumArtist = "WM/AlbumArtist";
+pub const g_wszWMAlbumArtistSort = "WM/AlbumArtistSort";
+pub const g_wszWMAlbumCoverURL = "WM/AlbumCoverURL";
+pub const g_wszWMAlbumTitle = "WM/AlbumTitle";
+pub const g_wszWMAlbumTitleSort = "WM/AlbumTitleSort";
+pub const g_wszWMASFPacketCount = "WM/ASFPacketCount";
+pub const g_wszWMASFSecurityObjectsSize = "WM/ASFSecurityObjectsSize";
+pub const g_wszWMAspectRatioX = "AspectRatioX";
+pub const g_wszWMAspectRatioY = "AspectRatioY";
+pub const g_wszWMAudioFileURL = "WM/AudioFileURL";
+pub const g_wszWMAudioSourceURL = "WM/AudioSourceURL";
+pub const g_wszWMAuthor = "Author";
+pub const g_wszWMAuthorSort = "AuthorSort";
+pub const g_wszWMAuthorURL = "WM/AuthorURL";
+pub const g_wszWMBannerImageData = "BannerImageData";
+pub const g_wszWMBannerImageType = "BannerImageType";
+pub const g_wszWMBannerImageURL = "BannerImageURL";
+pub const g_wszWMBeatsPerMinute = "WM/BeatsPerMinute";
+pub const g_wszWMBitrate = "Bitrate";
+pub const g_wszWMBroadcast = "Broadcast";
+pub const g_wszWMCategory = "WM/Category";
+pub const g_wszWMCodec = "WM/Codec";
+pub const g_wszWMComposer = "WM/Composer";
+pub const g_wszWMComposerSort = "WM/ComposerSort";
+pub const g_wszWMConductor = "WM/Conductor";
+pub const g_wszWMContainerFormat = "WM/ContainerFormat";
+pub const g_wszWMContentDistributor = "WM/ContentDistributor";
+pub const g_wszWMContentGroupDescription = "WM/ContentGroupDescription";
+pub const g_wszWMCopyright = "Copyright";
+pub const g_wszWMCopyrightURL = "CopyrightURL";
+pub const g_wszWMCurrentBitrate = "CurrentBitrate";
+pub const g_wszWMDescription = "Description";
+pub const g_wszWMDirector = "WM/Director";
+pub const g_wszWMDRM = "WM/DRM";
+pub const g_wszWMDRM_ContentID = "DRM_ContentID";
+pub const g_wszWMDRM_Flags = "DRM_Flags";
+pub const g_wszWMDRM_HeaderSignPrivKey = "DRM_HeaderSignPrivKey";
+pub const g_wszWMDRM_IndividualizedVersion = "DRM_IndividualizedVersion";
+pub const g_wszWMDRM_KeyID = "DRM_KeyID";
+pub const g_wszWMDRM_KeySeed = "DRM_KeySeed";
+pub const g_wszWMDRM_LASignatureCert = "DRM_LASignatureCert";
+pub const g_wszWMDRM_LASignatureLicSrvCert = "DRM_LASignatureLicSrvCert";
+pub const g_wszWMDRM_LASignaturePrivKey = "DRM_LASignaturePrivKey";
+pub const g_wszWMDRM_LASignatureRootCert = "DRM_LASignatureRootCert";
+pub const g_wszWMDRM_Level = "DRM_Level";
+pub const g_wszWMDRM_LicenseAcqURL = "DRM_LicenseAcqURL";
+pub const g_wszWMDRM_SourceID = "DRM_SourceID";
+pub const g_wszWMDRM_V1LicenseAcqURL = "DRM_V1LicenseAcqURL";
+pub const g_wszWMDuration = "Duration";
+pub const g_wszWMDVDID = "WM/DVDID";
+pub const g_wszWMEncodedBy = "WM/EncodedBy";
+pub const g_wszWMEncodingSettings = "WM/EncodingSettings";
+pub const g_wszWMEncodingTime = "WM/EncodingTime";
+pub const g_wszWMEpisodeNumber = "WM/EpisodeNumber";
+pub const g_wszWMFileSize = "FileSize";
+pub const g_wszWMGenre = "WM/Genre";
+pub const g_wszWMGenreID = "WM/GenreID";
+pub const g_wszWMHasArbitraryDataStream = "HasArbitraryDataStream";
+pub const g_wszWMHasAttachedImages = "HasAttachedImages";
+pub const g_wszWMHasAudio = "HasAudio";
+pub const g_wszWMHasFileTransferStream = "HasFileTransferStream";
+pub const g_wszWMHasImage = "HasImage";
+pub const g_wszWMHasScript = "HasScript";
+pub const g_wszWMHasVideo = "HasVideo";
+pub const g_wszWMInitialKey = "WM/InitialKey";
+pub const g_wszWMISAN = "WM/ISAN";
+pub const g_wszWMIsCompilation = "WM/IsCompilation";
+pub const g_wszWMISRC = "WM/ISRC";
+pub const g_wszWMIsVBR = "IsVBR";
+pub const g_wszWMLanguage = "WM/Language";
+pub const g_wszWMLyrics = "WM/Lyrics";
+pub const g_wszWMLyrics_Synchronised = "WM/Lyrics_Synchronised";
+pub const g_wszWMMCDI = "WM/MCDI";
+pub const g_wszWMMediaClassPrimaryID = "WM/MediaClassPrimaryID";
+pub const g_wszWMMediaClassSecondaryID = "WM/MediaClassSecondaryID";
+pub const g_wszWMMediaCredits = "WM/MediaCredits";
+pub const g_wszWMMediaIsDelay = "WM/MediaIsDelay";
+pub const g_wszWMMediaIsFinale = "WM/MediaIsFinale";
+pub const g_wszWMMediaIsLive = "WM/MediaIsLive";
+pub const g_wszWMMediaIsPremiere = "WM/MediaIsPremiere";
+pub const g_wszWMMediaIsRepeat = "WM/MediaIsRepeat";
+pub const g_wszWMMediaIsSAP = "WM/MediaIsSAP";
+pub const g_wszWMMediaIsStereo = "WM/MediaIsStereo";
+pub const g_wszWMMediaIsSubtitled = "WM/MediaIsSubtitled";
+pub const g_wszWMMediaIsTape = "WM/MediaIsTape";
+pub const g_wszWMMediaNetworkAffiliation = "WM/MediaNetworkAffiliation";
+pub const g_wszWMMediaOriginalBroadcastDateTime = "WM/MediaOriginalBroadcastDateTime";
+pub const g_wszWMMediaOriginalChannel = "WM/MediaOriginalChannel";
+pub const g_wszWMMediaStationCallSign = "WM/MediaStationCallSign";
+pub const g_wszWMMediaStationName = "WM/MediaStationName";
+pub const g_wszWMModifiedBy = "WM/ModifiedBy";
+pub const g_wszWMMood = "WM/Mood";
+pub const g_wszWMNSCAddress = "NSC_Address";
+pub const g_wszWMNSCDescription = "NSC_Description";
+pub const g_wszWMNSCEmail = "NSC_Email";
+pub const g_wszWMNSCName = "NSC_Name";
+pub const g_wszWMNSCPhone = "NSC_Phone";
+pub const g_wszWMNumberOfFrames = "NumberOfFrames";
+pub const g_wszWMOptimalBitrate = "OptimalBitrate";
+pub const g_wszWMOriginalAlbumTitle = "WM/OriginalAlbumTitle";
+pub const g_wszWMOriginalArtist = "WM/OriginalArtist";
+pub const g_wszWMOriginalFilename = "WM/OriginalFilename";
+pub const g_wszWMOriginalLyricist = "WM/OriginalLyricist";
+pub const g_wszWMOriginalReleaseTime = "WM/OriginalReleaseTime";
+pub const g_wszWMOriginalReleaseYear = "WM/OriginalReleaseYear";
+pub const g_wszWMParentalRating = "WM/ParentalRating";
+pub const g_wszWMParentalRatingReason = "WM/ParentalRatingReason";
+pub const g_wszWMPartOfSet = "WM/PartOfSet";
+pub const g_wszWMPeakBitrate = "WM/PeakBitrate";
+pub const g_wszWMPeriod = "WM/Period";
+pub const g_wszWMPicture = "WM/Picture";
+pub const g_wszWMPlaylistDelay = "WM/PlaylistDelay";
+pub const g_wszWMProducer = "WM/Producer";
+pub const g_wszWMPromotionURL = "WM/PromotionURL";
+pub const g_wszWMProtected = "Is_Protected";
+pub const g_wszWMProtectionType = "WM/ProtectionType";
+pub const g_wszWMProvider = "WM/Provider";
+pub const g_wszWMProviderCopyright = "WM/ProviderCopyright";
+pub const g_wszWMProviderRating = "WM/ProviderRating";
+pub const g_wszWMProviderStyle = "WM/ProviderStyle";
+pub const g_wszWMPublisher = "WM/Publisher";
+pub const g_wszWMRadioStationName = "WM/RadioStationName";
+pub const g_wszWMRadioStationOwner = "WM/RadioStationOwner";
+pub const g_wszWMRating = "Rating";
+pub const g_wszWMSeasonNumber = "WM/SeasonNumber";
+pub const g_wszWMSeekable = "Seekable";
+pub const g_wszWMSharedUserRating = "WM/SharedUserRating";
+pub const g_wszWMSignature_Name = "Signature_Name";
+pub const g_wszWMSkipBackward = "Can_Skip_Backward";
+pub const g_wszWMSkipForward = "Can_Skip_Forward";
+pub const g_wszWMStreamTypeInfo = "WM/StreamTypeInfo";
+pub const g_wszWMStridable = "Stridable";
+pub const g_wszWMSubscriptionContentID = "WM/SubscriptionContentID";
+pub const g_wszWMSubTitle = "WM/SubTitle";
+pub const g_wszWMSubTitleDescription = "WM/SubTitleDescription";
+pub const g_wszWMText = "WM/Text";
+pub const g_wszWMTitle = "Title";
+pub const g_wszWMTitleSort = "TitleSort";
+pub const g_wszWMToolName = "WM/ToolName";
+pub const g_wszWMToolVersion = "WM/ToolVersion";
+pub const g_wszWMTrack = "WM/Track";
+pub const g_wszWMTrackNumber = "WM/TrackNumber";
+pub const g_wszWMTrusted = "Is_Trusted";
+pub const g_wszWMUniqueFileIdentifier = "WM/UniqueFileIdentifier";
+pub const g_wszWMUse_Advanced_DRM = "Use_Advanced_DRM";
+pub const g_wszWMUse_DRM = "Use_DRM";
+pub const g_wszWMUserWebURL = "WM/UserWebURL";
+pub const g_wszWMVideoClosedCaptioning = "WM/VideoClosedCaptioning";
+pub const g_wszWMVideoFrameRate = "WM/VideoFrameRate";
+pub const g_wszWMVideoHeight = "WM/VideoHeight";
+pub const g_wszWMVideoWidth = "WM/VideoWidth";
+pub const g_wszWMWMADRCAverageReference = "WM/WMADRCAverageReference";
+pub const g_wszWMWMADRCAverageTarget = "WM/WMADRCAverageTarget";
+pub const g_wszWMWMADRCPeakReference = "WM/WMADRCPeakReference";
+pub const g_wszWMWMADRCPeakTarget = "WM/WMADRCPeakTarget";
+pub const g_wszWMWMCollectionGroupID = "WM/WMCollectionGroupID";
+pub const g_wszWMWMCollectionID = "WM/WMCollectionID";
+pub const g_wszWMWMContentID = "WM/WMContentID";
+pub const g_wszWMWMCPDistributor = "WM/WMCPDistributor";
+pub const g_wszWMWMCPDistributorID = "WM/WMCPDistributorID";
+pub const g_wszWMWMShadowFileSourceDRMType = "WM/WMShadowFileSourceDRMType";
+pub const g_wszWMWMShadowFileSourceFileType = "WM/WMShadowFileSourceFileType";
+pub const g_wszWMWriter = "WM/Writer";
+pub const g_wszWMYear = "WM/Year";
+pub const WM_CL_INTERLACED420 = @as(u32, 0);
+pub const WM_CL_PROGRESSIVE420 = @as(u32, 1);
+pub const WM_CT_BOTTOM_FIELD_FIRST = @as(u32, 32);
+pub const WM_CT_INTERLACED = @as(u32, 128);
+pub const WM_CT_REPEAT_FIRST_FIELD = @as(u32, 16);
+pub const WM_CT_TOP_FIELD_FIRST = @as(u32, 64);
+pub const WM_MAX_STREAMS = @as(u32, 63);
+pub const WM_MAX_VIDEO_STREAMS = @as(u32, 63);
+pub const WM_SampleExtension_ChromaLocation_Size = @as(u32, 1);
+pub const WM_SampleExtension_ColorSpaceInfo_Size = @as(u32, 3);
+pub const WM_SampleExtension_ContentType_Size = @as(u32, 1);
+pub const WM_SampleExtension_PixelAspectRatio_Size = @as(u32, 2);
+pub const WM_SampleExtension_SampleDuration_Size = @as(u32, 2);
+pub const WM_SampleExtension_Timecode_Size = @as(u32, 14);
+pub const WM_SampleExtensionGUID_ChromaLocation = Guid.initString("4c5acca0-9276-4b2c-9e4c-a0edefdd217e");
+pub const WM_SampleExtensionGUID_ColorSpaceInfo = Guid.initString("f79ada56-30eb-4f2b-9f7a-f24b139a1157");
+pub const WM_SampleExtensionGUID_ContentType = Guid.initString("d590dc20-07bc-436c-9cf7-f3bbfbf1a4dc");
+pub const WM_SampleExtensionGUID_FileName = Guid.initString("e165ec0e-19ed-45d7-b4a7-25cbd1e28e9b");
+pub const WM_SampleExtensionGUID_OutputCleanPoint = Guid.initString("f72a3c6f-6eb4-4ebc-b192-09ad9759e828");
+pub const WM_SampleExtensionGUID_PixelAspectRatio = Guid.initString("1b1ee554-f9ea-4bc8-821a-376b74e4c4b8");
+pub const WM_SampleExtensionGUID_SampleDuration = Guid.initString("c6bd9450-867f-4907-83a3-c77921b733ad");
+pub const WM_SampleExtensionGUID_SampleProtectionSalt = Guid.initString("5403deee-b9ee-438f-aa83-3804997e569d");
+pub const WM_SampleExtensionGUID_Timecode = Guid.initString("399595ec-8667-4e2d-8fdb-98814ce76c1e");
+pub const WM_SampleExtensionGUID_UserDataInfo = Guid.initString("732bb4fa-78be-4549-99bd-02db1a55b7a8");
+pub const WMDRM_IMPORT_INIT_STRUCT_DEFINED = @as(u32, 1);
+pub const WMFORMAT_MPEG2Video = Guid.initString("e06d80e3-db46-11cf-b4d1-00805f6cbbea");
+pub const WMFORMAT_Script = Guid.initString("5c8510f2-debe-4ca7-bba5-f07a104f8dff");
+pub const WMFORMAT_VideoInfo = Guid.initString("05589f80-c356-11ce-bf01-00aa0055595a");
+pub const WMFORMAT_WaveFormatEx = Guid.initString("05589f81-c356-11ce-bf01-00aa0055595a");
+pub const WMFORMAT_WebStream = Guid.initString("da1e6b13-8359-4050-b398-388e965bf00c");
+pub const WMMEDIASUBTYPE_ACELPnet = Guid.initString("00000130-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_Base = Guid.initString("00000000-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_DRM = Guid.initString("00000009-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_I420 = Guid.initString("30323449-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_IYUV = Guid.initString("56555949-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_M4S2 = Guid.initString("3253344d-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_MP3 = Guid.initString("00000055-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_MP43 = Guid.initString("3334504d-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_MP4S = Guid.initString("5334504d-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_MPEG2_VIDEO = Guid.initString("e06d8026-db46-11cf-b4d1-00805f6cbbea");
+pub const WMMEDIASUBTYPE_MSS1 = Guid.initString("3153534d-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_MSS2 = Guid.initString("3253534d-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_P422 = Guid.initString("32323450-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_PCM = Guid.initString("00000001-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_RGB1 = Guid.initString("e436eb78-524f-11ce-9f53-0020af0ba770");
+pub const WMMEDIASUBTYPE_RGB24 = Guid.initString("e436eb7d-524f-11ce-9f53-0020af0ba770");
+pub const WMMEDIASUBTYPE_RGB32 = Guid.initString("e436eb7e-524f-11ce-9f53-0020af0ba770");
+pub const WMMEDIASUBTYPE_RGB4 = Guid.initString("e436eb79-524f-11ce-9f53-0020af0ba770");
+pub const WMMEDIASUBTYPE_RGB555 = Guid.initString("e436eb7c-524f-11ce-9f53-0020af0ba770");
+pub const WMMEDIASUBTYPE_RGB565 = Guid.initString("e436eb7b-524f-11ce-9f53-0020af0ba770");
+pub const WMMEDIASUBTYPE_RGB8 = Guid.initString("e436eb7a-524f-11ce-9f53-0020af0ba770");
+pub const WMMEDIASUBTYPE_UYVY = Guid.initString("59565955-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_VIDEOIMAGE = Guid.initString("1d4a45f2-e5f6-4b44-8388-f0ae5c0e0c37");
+pub const WMMEDIASUBTYPE_WebStream = Guid.initString("776257d4-c627-41cb-8f81-7ac7ff1c40cc");
+pub const WMMEDIASUBTYPE_WMAudio_Lossless = Guid.initString("00000163-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMAudioV2 = Guid.initString("00000161-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMAudioV7 = Guid.initString("00000161-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMAudioV8 = Guid.initString("00000161-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMAudioV9 = Guid.initString("00000162-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMSP1 = Guid.initString("0000000a-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMSP2 = Guid.initString("0000000b-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMV1 = Guid.initString("31564d57-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMV2 = Guid.initString("32564d57-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMV3 = Guid.initString("33564d57-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMVA = Guid.initString("41564d57-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WMVP = Guid.initString("50564d57-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WVC1 = Guid.initString("31435657-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_WVP2 = Guid.initString("32505657-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_YUY2 = Guid.initString("32595559-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_YV12 = Guid.initString("32315659-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_YVU9 = Guid.initString("39555659-0000-0010-8000-00aa00389b71");
+pub const WMMEDIASUBTYPE_YVYU = Guid.initString("55595659-0000-0010-8000-00aa00389b71");
+pub const WMMEDIATYPE_Audio = Guid.initString("73647561-0000-0010-8000-00aa00389b71");
+pub const WMMEDIATYPE_FileTransfer = Guid.initString("d9e47579-930e-4427-adfc-ad80f290e470");
+pub const WMMEDIATYPE_Image = Guid.initString("34a50fd8-8aa5-4386-81fe-a0efe0488e31");
+pub const WMMEDIATYPE_Script = Guid.initString("73636d64-0000-0010-8000-00aa00389b71");
+pub const WMMEDIATYPE_Text = Guid.initString("9bba1ea7-5ab2-4829-ba57-0940209bcf3e");
+pub const WMMEDIATYPE_Video = Guid.initString("73646976-0000-0010-8000-00aa00389b71");
+pub const WMSCRIPTTYPE_TwoStrings = Guid.initString("82f38a70-c29f-11d1-97ad-00a0c95ea850");
+pub const WMT_DMOCATEGORY_AUDIO_WATERMARK = Guid.initString("65221c5a-fa75-4b39-b50c-06c336b6a3ef");
+pub const WMT_DMOCATEGORY_VIDEO_WATERMARK = Guid.initString("187cc922-8efc-4404-9daf-63f4830df1bc");
 pub const WMT_VIDEOIMAGE_INTEGER_DENOMINATOR = @as(i32, 65536);
 pub const WMT_VIDEOIMAGE_MAGIC_NUMBER = @as(u32, 491406834);
 pub const WMT_VIDEOIMAGE_MAGIC_NUMBER_2 = @as(u32, 491406835);
+pub const WMT_VIDEOIMAGE_SAMPLE_ADV_BLENDING = @as(u32, 8);
+pub const WMT_VIDEOIMAGE_SAMPLE_BLENDING = @as(u32, 4);
+pub const WMT_VIDEOIMAGE_SAMPLE_INPUT_FRAME = @as(u32, 1);
+pub const WMT_VIDEOIMAGE_SAMPLE_MOTION = @as(u32, 1);
+pub const WMT_VIDEOIMAGE_SAMPLE_OUTPUT_FRAME = @as(u32, 2);
+pub const WMT_VIDEOIMAGE_SAMPLE_ROTATION = @as(u32, 2);
+pub const WMT_VIDEOIMAGE_SAMPLE_USES_CURRENT_INPUT_FRAME = @as(u32, 4);
+pub const WMT_VIDEOIMAGE_SAMPLE_USES_PREVIOUS_INPUT_FRAME = @as(u32, 8);
 pub const WMT_VIDEOIMAGE_TRANSITION_BOW_TIE = @as(u32, 11);
 pub const WMT_VIDEOIMAGE_TRANSITION_CIRCLE = @as(u32, 12);
 pub const WMT_VIDEOIMAGE_TRANSITION_CROSS_FADE = @as(u32, 13);
@@ -30,320 +344,6 @@ pub const WMT_VIDEOIMAGE_TRANSITION_SLIDE = @as(u32, 27);
 pub const WMT_VIDEOIMAGE_TRANSITION_SPLIT = @as(u32, 29);
 pub const WMT_VIDEOIMAGE_TRANSITION_STAR = @as(u32, 30);
 pub const WMT_VIDEOIMAGE_TRANSITION_WHEEL = @as(u32, 31);
-pub const WM_SampleExtension_ContentType_Size = @as(u32, 1);
-pub const WM_SampleExtension_PixelAspectRatio_Size = @as(u32, 2);
-pub const WM_SampleExtension_Timecode_Size = @as(u32, 14);
-pub const WM_SampleExtension_SampleDuration_Size = @as(u32, 2);
-pub const WM_SampleExtension_ChromaLocation_Size = @as(u32, 1);
-pub const WM_SampleExtension_ColorSpaceInfo_Size = @as(u32, 3);
-pub const WM_CT_REPEAT_FIRST_FIELD = @as(u32, 16);
-pub const WM_CT_BOTTOM_FIELD_FIRST = @as(u32, 32);
-pub const WM_CT_TOP_FIELD_FIRST = @as(u32, 64);
-pub const WM_CT_INTERLACED = @as(u32, 128);
-pub const WM_CL_INTERLACED420 = @as(u32, 0);
-pub const WM_CL_PROGRESSIVE420 = @as(u32, 1);
-pub const WM_MAX_VIDEO_STREAMS = @as(u32, 63);
-pub const WM_MAX_STREAMS = @as(u32, 63);
-pub const WMDRM_IMPORT_INIT_STRUCT_DEFINED = @as(u32, 1);
-pub const DRM_OPL_TYPES = @as(u32, 1);
-pub const g_dwWMSpecialAttributes = @as(u32, 20);
-pub const g_wszWMDuration = "Duration";
-pub const g_wszWMBitrate = "Bitrate";
-pub const g_wszWMSeekable = "Seekable";
-pub const g_wszWMStridable = "Stridable";
-pub const g_wszWMBroadcast = "Broadcast";
-pub const g_wszWMProtected = "Is_Protected";
-pub const g_wszWMTrusted = "Is_Trusted";
-pub const g_wszWMSignature_Name = "Signature_Name";
-pub const g_wszWMHasAudio = "HasAudio";
-pub const g_wszWMHasImage = "HasImage";
-pub const g_wszWMHasScript = "HasScript";
-pub const g_wszWMHasVideo = "HasVideo";
-pub const g_wszWMCurrentBitrate = "CurrentBitrate";
-pub const g_wszWMOptimalBitrate = "OptimalBitrate";
-pub const g_wszWMHasAttachedImages = "HasAttachedImages";
-pub const g_wszWMSkipBackward = "Can_Skip_Backward";
-pub const g_wszWMSkipForward = "Can_Skip_Forward";
-pub const g_wszWMNumberOfFrames = "NumberOfFrames";
-pub const g_wszWMFileSize = "FileSize";
-pub const g_wszWMHasArbitraryDataStream = "HasArbitraryDataStream";
-pub const g_wszWMHasFileTransferStream = "HasFileTransferStream";
-pub const g_wszWMContainerFormat = "WM/ContainerFormat";
-pub const g_dwWMContentAttributes = @as(u32, 5);
-pub const g_wszWMTitle = "Title";
-pub const g_wszWMTitleSort = "TitleSort";
-pub const g_wszWMAuthor = "Author";
-pub const g_wszWMAuthorSort = "AuthorSort";
-pub const g_wszWMDescription = "Description";
-pub const g_wszWMRating = "Rating";
-pub const g_wszWMCopyright = "Copyright";
-pub const g_wszWMUse_DRM = "Use_DRM";
-pub const g_wszWMDRM_Flags = "DRM_Flags";
-pub const g_wszWMDRM_Level = "DRM_Level";
-pub const g_wszWMUse_Advanced_DRM = "Use_Advanced_DRM";
-pub const g_wszWMDRM_KeySeed = "DRM_KeySeed";
-pub const g_wszWMDRM_KeyID = "DRM_KeyID";
-pub const g_wszWMDRM_ContentID = "DRM_ContentID";
-pub const g_wszWMDRM_SourceID = "DRM_SourceID";
-pub const g_wszWMDRM_IndividualizedVersion = "DRM_IndividualizedVersion";
-pub const g_wszWMDRM_LicenseAcqURL = "DRM_LicenseAcqURL";
-pub const g_wszWMDRM_V1LicenseAcqURL = "DRM_V1LicenseAcqURL";
-pub const g_wszWMDRM_HeaderSignPrivKey = "DRM_HeaderSignPrivKey";
-pub const g_wszWMDRM_LASignaturePrivKey = "DRM_LASignaturePrivKey";
-pub const g_wszWMDRM_LASignatureCert = "DRM_LASignatureCert";
-pub const g_wszWMDRM_LASignatureLicSrvCert = "DRM_LASignatureLicSrvCert";
-pub const g_wszWMDRM_LASignatureRootCert = "DRM_LASignatureRootCert";
-pub const g_wszWMAlbumTitle = "WM/AlbumTitle";
-pub const g_wszWMAlbumTitleSort = "WM/AlbumTitleSort";
-pub const g_wszWMTrack = "WM/Track";
-pub const g_wszWMPromotionURL = "WM/PromotionURL";
-pub const g_wszWMAlbumCoverURL = "WM/AlbumCoverURL";
-pub const g_wszWMGenre = "WM/Genre";
-pub const g_wszWMYear = "WM/Year";
-pub const g_wszWMGenreID = "WM/GenreID";
-pub const g_wszWMMCDI = "WM/MCDI";
-pub const g_wszWMComposer = "WM/Composer";
-pub const g_wszWMComposerSort = "WM/ComposerSort";
-pub const g_wszWMLyrics = "WM/Lyrics";
-pub const g_wszWMTrackNumber = "WM/TrackNumber";
-pub const g_wszWMToolName = "WM/ToolName";
-pub const g_wszWMToolVersion = "WM/ToolVersion";
-pub const g_wszWMIsVBR = "IsVBR";
-pub const g_wszWMAlbumArtist = "WM/AlbumArtist";
-pub const g_wszWMAlbumArtistSort = "WM/AlbumArtistSort";
-pub const g_wszWMBannerImageType = "BannerImageType";
-pub const g_wszWMBannerImageData = "BannerImageData";
-pub const g_wszWMBannerImageURL = "BannerImageURL";
-pub const g_wszWMCopyrightURL = "CopyrightURL";
-pub const g_wszWMAspectRatioX = "AspectRatioX";
-pub const g_wszWMAspectRatioY = "AspectRatioY";
-pub const g_wszASFLeakyBucketPairs = "ASFLeakyBucketPairs";
-pub const g_dwWMNSCAttributes = @as(u32, 5);
-pub const g_wszWMNSCName = "NSC_Name";
-pub const g_wszWMNSCAddress = "NSC_Address";
-pub const g_wszWMNSCPhone = "NSC_Phone";
-pub const g_wszWMNSCEmail = "NSC_Email";
-pub const g_wszWMNSCDescription = "NSC_Description";
-pub const g_wszWMWriter = "WM/Writer";
-pub const g_wszWMConductor = "WM/Conductor";
-pub const g_wszWMProducer = "WM/Producer";
-pub const g_wszWMDirector = "WM/Director";
-pub const g_wszWMContentGroupDescription = "WM/ContentGroupDescription";
-pub const g_wszWMSubTitle = "WM/SubTitle";
-pub const g_wszWMPartOfSet = "WM/PartOfSet";
-pub const g_wszWMProtectionType = "WM/ProtectionType";
-pub const g_wszWMVideoHeight = "WM/VideoHeight";
-pub const g_wszWMVideoWidth = "WM/VideoWidth";
-pub const g_wszWMVideoFrameRate = "WM/VideoFrameRate";
-pub const g_wszWMMediaClassPrimaryID = "WM/MediaClassPrimaryID";
-pub const g_wszWMMediaClassSecondaryID = "WM/MediaClassSecondaryID";
-pub const g_wszWMPeriod = "WM/Period";
-pub const g_wszWMCategory = "WM/Category";
-pub const g_wszWMPicture = "WM/Picture";
-pub const g_wszWMLyrics_Synchronised = "WM/Lyrics_Synchronised";
-pub const g_wszWMOriginalLyricist = "WM/OriginalLyricist";
-pub const g_wszWMOriginalArtist = "WM/OriginalArtist";
-pub const g_wszWMOriginalAlbumTitle = "WM/OriginalAlbumTitle";
-pub const g_wszWMOriginalReleaseYear = "WM/OriginalReleaseYear";
-pub const g_wszWMOriginalFilename = "WM/OriginalFilename";
-pub const g_wszWMPublisher = "WM/Publisher";
-pub const g_wszWMEncodedBy = "WM/EncodedBy";
-pub const g_wszWMEncodingSettings = "WM/EncodingSettings";
-pub const g_wszWMEncodingTime = "WM/EncodingTime";
-pub const g_wszWMAuthorURL = "WM/AuthorURL";
-pub const g_wszWMUserWebURL = "WM/UserWebURL";
-pub const g_wszWMAudioFileURL = "WM/AudioFileURL";
-pub const g_wszWMAudioSourceURL = "WM/AudioSourceURL";
-pub const g_wszWMLanguage = "WM/Language";
-pub const g_wszWMParentalRating = "WM/ParentalRating";
-pub const g_wszWMBeatsPerMinute = "WM/BeatsPerMinute";
-pub const g_wszWMInitialKey = "WM/InitialKey";
-pub const g_wszWMMood = "WM/Mood";
-pub const g_wszWMText = "WM/Text";
-pub const g_wszWMDVDID = "WM/DVDID";
-pub const g_wszWMWMContentID = "WM/WMContentID";
-pub const g_wszWMWMCollectionID = "WM/WMCollectionID";
-pub const g_wszWMWMCollectionGroupID = "WM/WMCollectionGroupID";
-pub const g_wszWMUniqueFileIdentifier = "WM/UniqueFileIdentifier";
-pub const g_wszWMModifiedBy = "WM/ModifiedBy";
-pub const g_wszWMRadioStationName = "WM/RadioStationName";
-pub const g_wszWMRadioStationOwner = "WM/RadioStationOwner";
-pub const g_wszWMPlaylistDelay = "WM/PlaylistDelay";
-pub const g_wszWMCodec = "WM/Codec";
-pub const g_wszWMDRM = "WM/DRM";
-pub const g_wszWMISRC = "WM/ISRC";
-pub const g_wszWMProvider = "WM/Provider";
-pub const g_wszWMProviderRating = "WM/ProviderRating";
-pub const g_wszWMProviderStyle = "WM/ProviderStyle";
-pub const g_wszWMContentDistributor = "WM/ContentDistributor";
-pub const g_wszWMSubscriptionContentID = "WM/SubscriptionContentID";
-pub const g_wszWMWMADRCPeakReference = "WM/WMADRCPeakReference";
-pub const g_wszWMWMADRCPeakTarget = "WM/WMADRCPeakTarget";
-pub const g_wszWMWMADRCAverageReference = "WM/WMADRCAverageReference";
-pub const g_wszWMWMADRCAverageTarget = "WM/WMADRCAverageTarget";
-pub const g_wszWMStreamTypeInfo = "WM/StreamTypeInfo";
-pub const g_wszWMPeakBitrate = "WM/PeakBitrate";
-pub const g_wszWMASFPacketCount = "WM/ASFPacketCount";
-pub const g_wszWMASFSecurityObjectsSize = "WM/ASFSecurityObjectsSize";
-pub const g_wszWMSharedUserRating = "WM/SharedUserRating";
-pub const g_wszWMSubTitleDescription = "WM/SubTitleDescription";
-pub const g_wszWMMediaCredits = "WM/MediaCredits";
-pub const g_wszWMParentalRatingReason = "WM/ParentalRatingReason";
-pub const g_wszWMOriginalReleaseTime = "WM/OriginalReleaseTime";
-pub const g_wszWMMediaStationCallSign = "WM/MediaStationCallSign";
-pub const g_wszWMMediaStationName = "WM/MediaStationName";
-pub const g_wszWMMediaNetworkAffiliation = "WM/MediaNetworkAffiliation";
-pub const g_wszWMMediaOriginalChannel = "WM/MediaOriginalChannel";
-pub const g_wszWMMediaOriginalBroadcastDateTime = "WM/MediaOriginalBroadcastDateTime";
-pub const g_wszWMMediaIsStereo = "WM/MediaIsStereo";
-pub const g_wszWMVideoClosedCaptioning = "WM/VideoClosedCaptioning";
-pub const g_wszWMMediaIsRepeat = "WM/MediaIsRepeat";
-pub const g_wszWMMediaIsLive = "WM/MediaIsLive";
-pub const g_wszWMMediaIsTape = "WM/MediaIsTape";
-pub const g_wszWMMediaIsDelay = "WM/MediaIsDelay";
-pub const g_wszWMMediaIsSubtitled = "WM/MediaIsSubtitled";
-pub const g_wszWMMediaIsPremiere = "WM/MediaIsPremiere";
-pub const g_wszWMMediaIsFinale = "WM/MediaIsFinale";
-pub const g_wszWMMediaIsSAP = "WM/MediaIsSAP";
-pub const g_wszWMProviderCopyright = "WM/ProviderCopyright";
-pub const g_wszWMISAN = "WM/ISAN";
-pub const g_wszWMADID = "WM/ADID";
-pub const g_wszWMWMShadowFileSourceFileType = "WM/WMShadowFileSourceFileType";
-pub const g_wszWMWMShadowFileSourceDRMType = "WM/WMShadowFileSourceDRMType";
-pub const g_wszWMWMCPDistributor = "WM/WMCPDistributor";
-pub const g_wszWMWMCPDistributorID = "WM/WMCPDistributorID";
-pub const g_wszWMSeasonNumber = "WM/SeasonNumber";
-pub const g_wszWMEpisodeNumber = "WM/EpisodeNumber";
-pub const g_wszEarlyDataDelivery = "EarlyDataDelivery";
-pub const g_wszJustInTimeDecode = "JustInTimeDecode";
-pub const g_wszSingleOutputBuffer = "SingleOutputBuffer";
-pub const g_wszSoftwareScaling = "SoftwareScaling";
-pub const g_wszDeliverOnReceive = "DeliverOnReceive";
-pub const g_wszScrambledAudio = "ScrambledAudio";
-pub const g_wszDedicatedDeliveryThread = "DedicatedDeliveryThread";
-pub const g_wszEnableDiscreteOutput = "EnableDiscreteOutput";
-pub const g_wszSpeakerConfig = "SpeakerConfig";
-pub const g_wszDynamicRangeControl = "DynamicRangeControl";
-pub const g_wszAllowInterlacedOutput = "AllowInterlacedOutput";
-pub const g_wszVideoSampleDurations = "VideoSampleDurations";
-pub const g_wszStreamLanguage = "StreamLanguage";
-pub const g_wszEnableWMAProSPDIFOutput = "EnableWMAProSPDIFOutput";
-pub const g_wszDeinterlaceMode = "DeinterlaceMode";
-pub const g_wszInitialPatternForInverseTelecine = "InitialPatternForInverseTelecine";
-pub const g_wszJPEGCompressionQuality = "JPEGCompressionQuality";
-pub const g_wszWatermarkCLSID = "WatermarkCLSID";
-pub const g_wszWatermarkConfig = "WatermarkConfig";
-pub const g_wszInterlacedCoding = "InterlacedCoding";
-pub const g_wszFixedFrameRate = "FixedFrameRate";
-pub const g_wszOriginalSourceFormatTag = "_SOURCEFORMATTAG";
-pub const g_wszOriginalWaveFormat = "_ORIGINALWAVEFORMAT";
-pub const g_wszEDL = "_EDL";
-pub const g_wszComplexity = "_COMPLEXITYEX";
-pub const g_wszDecoderComplexityRequested = "_DECODERCOMPLEXITYPROFILE";
-pub const g_wszReloadIndexOnSeek = "ReloadIndexOnSeek";
-pub const g_wszStreamNumIndexObjects = "StreamNumIndexObjects";
-pub const g_wszFailSeekOnError = "FailSeekOnError";
-pub const g_wszPermitSeeksBeyondEndOfStream = "PermitSeeksBeyondEndOfStream";
-pub const g_wszUsePacketAtSeekPoint = "UsePacketAtSeekPoint";
-pub const g_wszSourceBufferTime = "SourceBufferTime";
-pub const g_wszSourceMaxBytesAtOnce = "SourceMaxBytesAtOnce";
-pub const g_wszVBREnabled = "_VBRENABLED";
-pub const g_wszVBRQuality = "_VBRQUALITY";
-pub const g_wszVBRBitrateMax = "_RMAX";
-pub const g_wszVBRBufferWindowMax = "_BMAX";
-pub const g_wszVBRPeak = "VBR Peak";
-pub const g_wszBufferAverage = "Buffer Average";
-pub const g_wszComplexityMax = "_COMPLEXITYEXMAX";
-pub const g_wszComplexityOffline = "_COMPLEXITYEXOFFLINE";
-pub const g_wszComplexityLive = "_COMPLEXITYEXLIVE";
-pub const g_wszIsVBRSupported = "_ISVBRSUPPORTED";
-pub const g_wszNumPasses = "_PASSESUSED";
-pub const g_wszMusicSpeechClassMode = "MusicSpeechClassMode";
-pub const g_wszMusicClassMode = "MusicClassMode";
-pub const g_wszSpeechClassMode = "SpeechClassMode";
-pub const g_wszMixedClassMode = "MixedClassMode";
-pub const g_wszSpeechCaps = "SpeechFormatCap";
-pub const g_wszPeakValue = "PeakValue";
-pub const g_wszAverageLevel = "AverageLevel";
-pub const g_wszFold6To2Channels3 = "Fold6To2Channels3";
-pub const g_wszFoldToChannelsTemplate = "Fold%luTo%luChannels%lu";
-pub const g_wszDeviceConformanceTemplate = "DeviceConformanceTemplate";
-pub const g_wszEnableFrameInterpolation = "EnableFrameInterpolation";
-pub const g_wszNeedsPreviousSample = "NeedsPreviousSample";
-pub const g_wszWMIsCompilation = "WM/IsCompilation";
-pub const WMMEDIASUBTYPE_Base = Guid.initString("00000000-0000-0010-8000-00aa00389b71");
-pub const WMMEDIATYPE_Video = Guid.initString("73646976-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_RGB1 = Guid.initString("e436eb78-524f-11ce-9f53-0020af0ba770");
-pub const WMMEDIASUBTYPE_RGB4 = Guid.initString("e436eb79-524f-11ce-9f53-0020af0ba770");
-pub const WMMEDIASUBTYPE_RGB8 = Guid.initString("e436eb7a-524f-11ce-9f53-0020af0ba770");
-pub const WMMEDIASUBTYPE_RGB565 = Guid.initString("e436eb7b-524f-11ce-9f53-0020af0ba770");
-pub const WMMEDIASUBTYPE_RGB555 = Guid.initString("e436eb7c-524f-11ce-9f53-0020af0ba770");
-pub const WMMEDIASUBTYPE_RGB24 = Guid.initString("e436eb7d-524f-11ce-9f53-0020af0ba770");
-pub const WMMEDIASUBTYPE_RGB32 = Guid.initString("e436eb7e-524f-11ce-9f53-0020af0ba770");
-pub const WMMEDIASUBTYPE_I420 = Guid.initString("30323449-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_IYUV = Guid.initString("56555949-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_YV12 = Guid.initString("32315659-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_YUY2 = Guid.initString("32595559-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_P422 = Guid.initString("32323450-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_UYVY = Guid.initString("59565955-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_YVYU = Guid.initString("55595659-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_YVU9 = Guid.initString("39555659-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_VIDEOIMAGE = Guid.initString("1d4a45f2-e5f6-4b44-8388-f0ae5c0e0c37");
-pub const WMMEDIASUBTYPE_MP43 = Guid.initString("3334504d-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_MP4S = Guid.initString("5334504d-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_M4S2 = Guid.initString("3253344d-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMV1 = Guid.initString("31564d57-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMV2 = Guid.initString("32564d57-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_MSS1 = Guid.initString("3153534d-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_MPEG2_VIDEO = Guid.initString("e06d8026-db46-11cf-b4d1-00805f6cbbea");
-pub const WMMEDIATYPE_Audio = Guid.initString("73647561-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_PCM = Guid.initString("00000001-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_DRM = Guid.initString("00000009-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMAudioV9 = Guid.initString("00000162-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMAudio_Lossless = Guid.initString("00000163-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_MSS2 = Guid.initString("3253534d-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMSP1 = Guid.initString("0000000a-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMSP2 = Guid.initString("0000000b-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMV3 = Guid.initString("33564d57-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMVP = Guid.initString("50564d57-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WVP2 = Guid.initString("32505657-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMVA = Guid.initString("41564d57-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WVC1 = Guid.initString("31435657-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMAudioV8 = Guid.initString("00000161-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMAudioV7 = Guid.initString("00000161-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WMAudioV2 = Guid.initString("00000161-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_ACELPnet = Guid.initString("00000130-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_MP3 = Guid.initString("00000055-0000-0010-8000-00aa00389b71");
-pub const WMMEDIASUBTYPE_WebStream = Guid.initString("776257d4-c627-41cb-8f81-7ac7ff1c40cc");
-pub const WMMEDIATYPE_Script = Guid.initString("73636d64-0000-0010-8000-00aa00389b71");
-pub const WMMEDIATYPE_Image = Guid.initString("34a50fd8-8aa5-4386-81fe-a0efe0488e31");
-pub const WMMEDIATYPE_FileTransfer = Guid.initString("d9e47579-930e-4427-adfc-ad80f290e470");
-pub const WMMEDIATYPE_Text = Guid.initString("9bba1ea7-5ab2-4829-ba57-0940209bcf3e");
-pub const WMFORMAT_VideoInfo = Guid.initString("05589f80-c356-11ce-bf01-00aa0055595a");
-pub const WMFORMAT_MPEG2Video = Guid.initString("e06d80e3-db46-11cf-b4d1-00805f6cbbea");
-pub const WMFORMAT_WaveFormatEx = Guid.initString("05589f81-c356-11ce-bf01-00aa0055595a");
-pub const WMFORMAT_Script = Guid.initString("5c8510f2-debe-4ca7-bba5-f07a104f8dff");
-pub const WMFORMAT_WebStream = Guid.initString("da1e6b13-8359-4050-b398-388e965bf00c");
-pub const WMSCRIPTTYPE_TwoStrings = Guid.initString("82f38a70-c29f-11d1-97ad-00a0c95ea850");
-pub const WM_SampleExtensionGUID_OutputCleanPoint = Guid.initString("f72a3c6f-6eb4-4ebc-b192-09ad9759e828");
-pub const WM_SampleExtensionGUID_Timecode = Guid.initString("399595ec-8667-4e2d-8fdb-98814ce76c1e");
-pub const WM_SampleExtensionGUID_ChromaLocation = Guid.initString("4c5acca0-9276-4b2c-9e4c-a0edefdd217e");
-pub const WM_SampleExtensionGUID_ColorSpaceInfo = Guid.initString("f79ada56-30eb-4f2b-9f7a-f24b139a1157");
-pub const WM_SampleExtensionGUID_UserDataInfo = Guid.initString("732bb4fa-78be-4549-99bd-02db1a55b7a8");
-pub const WM_SampleExtensionGUID_FileName = Guid.initString("e165ec0e-19ed-45d7-b4a7-25cbd1e28e9b");
-pub const WM_SampleExtensionGUID_ContentType = Guid.initString("d590dc20-07bc-436c-9cf7-f3bbfbf1a4dc");
-pub const WM_SampleExtensionGUID_PixelAspectRatio = Guid.initString("1b1ee554-f9ea-4bc8-821a-376b74e4c4b8");
-pub const WM_SampleExtensionGUID_SampleDuration = Guid.initString("c6bd9450-867f-4907-83a3-c77921b733ad");
-pub const WM_SampleExtensionGUID_SampleProtectionSalt = Guid.initString("5403deee-b9ee-438f-aa83-3804997e569d");
-pub const CLSID_WMMUTEX_Language = Guid.initString("d6e22a00-35da-11d1-9034-00a0c90349be");
-pub const CLSID_WMMUTEX_Bitrate = Guid.initString("d6e22a01-35da-11d1-9034-00a0c90349be");
-pub const CLSID_WMMUTEX_Presentation = Guid.initString("d6e22a02-35da-11d1-9034-00a0c90349be");
-pub const CLSID_WMMUTEX_Unknown = Guid.initString("d6e22a03-35da-11d1-9034-00a0c90349be");
-pub const CLSID_WMBandwidthSharing_Exclusive = Guid.initString("af6060aa-5197-11d2-b6af-00c04fd908e9");
-pub const CLSID_WMBandwidthSharing_Partial = Guid.initString("af6060ab-5197-11d2-b6af-00c04fd908e9");
-pub const WMT_DMOCATEGORY_AUDIO_WATERMARK = Guid.initString("65221c5a-fa75-4b39-b50c-06c336b6a3ef");
-pub const WMT_DMOCATEGORY_VIDEO_WATERMARK = Guid.initString("187cc922-8efc-4404-9daf-63f4830df1bc");
-pub const CLSID_ClientNetManager = Guid.initString("cd12a3ce-9c42-11d2-beed-0060082f2054");
 
 //--------------------------------------------------------------------------------
 // Section: Types (176)
@@ -360,6 +360,118 @@ pub const AM_CONFIGASFWRITER_PARAM_DONTCOMPRESS = _AM_ASFWRITERCONFIG_PARAM.DONT
 pub const AM_WMT_EVENT_DATA = extern struct {
     hrStatus: HRESULT,
     pData: ?*anyopaque,
+};
+
+pub const DRM_COPY_OPL = extern struct {
+    wMinimumCopyLevel: u16,
+    oplIdIncludes: DRM_OPL_OUTPUT_IDS,
+    oplIdExcludes: DRM_OPL_OUTPUT_IDS,
+};
+
+pub const DRM_MINIMUM_OUTPUT_PROTECTION_LEVELS = extern struct {
+    wCompressedDigitalVideo: u16,
+    wUncompressedDigitalVideo: u16,
+    wAnalogVideo: u16,
+    wCompressedDigitalAudio: u16,
+    wUncompressedDigitalAudio: u16,
+};
+
+pub const DRM_OPL_OUTPUT_IDS = extern struct {
+    cIds: u16,
+    rgIds: ?*Guid,
+};
+
+pub const DRM_OUTPUT_PROTECTION = extern struct {
+    guidId: Guid,
+    bConfigData: u8,
+};
+
+pub const DRM_PLAY_OPL = extern struct {
+    minOPL: DRM_MINIMUM_OUTPUT_PROTECTION_LEVELS,
+    oplIdReserved: DRM_OPL_OUTPUT_IDS,
+    vopi: DRM_VIDEO_OUTPUT_PROTECTION_IDS,
+};
+
+pub const DRM_VAL16 = extern struct {
+    val: [16]u8,
+};
+
+pub const DRM_VIDEO_OUTPUT_PROTECTION_IDS = extern struct {
+    cEntries: u16,
+    rgVop: ?*DRM_OUTPUT_PROTECTION,
+};
+
+const IID_INSNetSourceCreator_Value = Guid.initString("0c0e4080-9081-11d2-beec-0060082f2054");
+pub const IID_INSNetSourceCreator = &IID_INSNetSourceCreator_Value;
+pub const INSNetSourceCreator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const INSNetSourceCreator,
+        ) callconv(.winapi) HRESULT,
+        CreateNetSource: *const fn(
+            self: *const INSNetSourceCreator,
+            pszStreamName: ?[*:0]const u16,
+            pMonitor: ?*IUnknown,
+            pData: ?*u8,
+            pUserContext: ?*IUnknown,
+            pCallback: ?*IUnknown,
+            qwContext: u64,
+        ) callconv(.winapi) HRESULT,
+        GetNetSourceProperties: *const fn(
+            self: *const INSNetSourceCreator,
+            pszStreamName: ?[*:0]const u16,
+            ppPropertiesNode: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetNetSourceSharedNamespace: *const fn(
+            self: *const INSNetSourceCreator,
+            ppSharedNamespace: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetNetSourceAdminInterface: *const fn(
+            self: *const INSNetSourceCreator,
+            pszStreamName: ?[*:0]const u16,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetNumProtocolsSupported: *const fn(
+            self: *const INSNetSourceCreator,
+            pcProtocols: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetProtocolName: *const fn(
+            self: *const INSNetSourceCreator,
+            dwProtocolNum: u32,
+            pwszProtocolName: ?PWSTR,
+            pcchProtocolName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        Shutdown: *const fn(
+            self: *const INSNetSourceCreator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const INSNetSourceCreator) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self);
+    }
+    pub fn CreateNetSource(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, pMonitor: ?*IUnknown, pData: ?*u8, pUserContext: ?*IUnknown, pCallback: ?*IUnknown, qwContext: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateNetSource(self, pszStreamName, pMonitor, pData, pUserContext, pCallback, qwContext);
+    }
+    pub fn GetNetSourceProperties(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, ppPropertiesNode: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetSourceProperties(self, pszStreamName, ppPropertiesNode);
+    }
+    pub fn GetNetSourceSharedNamespace(self: *const INSNetSourceCreator, ppSharedNamespace: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetSourceSharedNamespace(self, ppSharedNamespace);
+    }
+    pub fn GetNetSourceAdminInterface(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetSourceAdminInterface(self, pszStreamName, pVal);
+    }
+    pub fn GetNumProtocolsSupported(self: *const INSNetSourceCreator, pcProtocols: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumProtocolsSupported(self, pcProtocols);
+    }
+    pub fn GetProtocolName(self: *const INSNetSourceCreator, dwProtocolNum: u32, pwszProtocolName: ?PWSTR, pcchProtocolName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProtocolName(self, dwProtocolNum, pwszProtocolName, pcchProtocolName);
+    }
+    pub fn Shutdown(self: *const INSNetSourceCreator) callconv(.@"inline") HRESULT {
+        return self.vtable.Shutdown(self);
+    }
 };
 
 const IID_INSSBuffer_Value = Guid.initString("e1cd3524-03d7-11d2-9eed-006097d2d7cf");
@@ -495,885 +607,775 @@ pub const INSSBuffer4 = extern union {
     }
 };
 
-const IID_IWMSBufferAllocator_Value = Guid.initString("61103ca4-2033-11d2-9ef1-006097d2d7cf");
-pub const IID_IWMSBufferAllocator = &IID_IWMSBufferAllocator_Value;
-pub const IWMSBufferAllocator = extern union {
+const IID_IWMAddressAccess_Value = Guid.initString("bb3c6389-1633-4e92-af14-9f3173ba39d0");
+pub const IID_IWMAddressAccess = &IID_IWMAddressAccess_Value;
+pub const IWMAddressAccess = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AllocateBuffer: *const fn(
-            self: *const IWMSBufferAllocator,
-            dwMaxBufferSize: u32,
-            ppBuffer: ?*?*INSSBuffer,
+        GetAccessEntryCount: *const fn(
+            self: *const IWMAddressAccess,
+            aeType: WM_AETYPE,
+            pcEntries: ?*u32,
         ) callconv(.winapi) HRESULT,
-        AllocatePageSizeBuffer: *const fn(
-            self: *const IWMSBufferAllocator,
-            dwMaxBufferSize: u32,
-            ppBuffer: ?*?*INSSBuffer,
+        GetAccessEntry: *const fn(
+            self: *const IWMAddressAccess,
+            aeType: WM_AETYPE,
+            dwEntryNum: u32,
+            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
+        ) callconv(.winapi) HRESULT,
+        AddAccessEntry: *const fn(
+            self: *const IWMAddressAccess,
+            aeType: WM_AETYPE,
+            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
+        ) callconv(.winapi) HRESULT,
+        RemoveAccessEntry: *const fn(
+            self: *const IWMAddressAccess,
+            aeType: WM_AETYPE,
+            dwEntryNum: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AllocateBuffer(self: *const IWMSBufferAllocator, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocateBuffer(self, dwMaxBufferSize, ppBuffer);
+    pub fn GetAccessEntryCount(self: *const IWMAddressAccess, aeType: WM_AETYPE, pcEntries: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAccessEntryCount(self, aeType, pcEntries);
     }
-    pub fn AllocatePageSizeBuffer(self: *const IWMSBufferAllocator, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocatePageSizeBuffer(self, dwMaxBufferSize, ppBuffer);
+    pub fn GetAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, dwEntryNum: u32, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAccessEntry(self, aeType, dwEntryNum, pAddrAccessEntry);
+    }
+    pub fn AddAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAccessEntry(self, aeType, pAddrAccessEntry);
+    }
+    pub fn RemoveAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, dwEntryNum: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAccessEntry(self, aeType, dwEntryNum);
     }
 };
 
-pub const WEBSTREAM_SAMPLE_TYPE = enum(i32) {
-    FILE = 1,
-    RENDER = 2,
-};
-pub const WEBSTREAM_SAMPLE_TYPE_FILE = WEBSTREAM_SAMPLE_TYPE.FILE;
-pub const WEBSTREAM_SAMPLE_TYPE_RENDER = WEBSTREAM_SAMPLE_TYPE.RENDER;
-
-pub const WM_SF_TYPE = enum(i32) {
-    CLEANPOINT = 1,
-    DISCONTINUITY = 2,
-    DATALOSS = 4,
-};
-pub const WM_SF_CLEANPOINT = WM_SF_TYPE.CLEANPOINT;
-pub const WM_SF_DISCONTINUITY = WM_SF_TYPE.DISCONTINUITY;
-pub const WM_SF_DATALOSS = WM_SF_TYPE.DATALOSS;
-
-pub const WM_SFEX_TYPE = enum(i32) {
-    NOTASYNCPOINT = 2,
-    DATALOSS = 4,
-};
-pub const WM_SFEX_NOTASYNCPOINT = WM_SFEX_TYPE.NOTASYNCPOINT;
-pub const WM_SFEX_DATALOSS = WM_SFEX_TYPE.DATALOSS;
-
-pub const WMT_STATUS = enum(i32) {
-    ERROR = 0,
-    OPENED = 1,
-    BUFFERING_START = 2,
-    BUFFERING_STOP = 3,
-    EOF = 4,
-    END_OF_SEGMENT = 5,
-    END_OF_STREAMING = 6,
-    LOCATING = 7,
-    CONNECTING = 8,
-    NO_RIGHTS = 9,
-    MISSING_CODEC = 10,
-    STARTED = 11,
-    STOPPED = 12,
-    CLOSED = 13,
-    STRIDING = 14,
-    TIMER = 15,
-    INDEX_PROGRESS = 16,
-    SAVEAS_START = 17,
-    SAVEAS_STOP = 18,
-    NEW_SOURCEFLAGS = 19,
-    NEW_METADATA = 20,
-    BACKUPRESTORE_BEGIN = 21,
-    SOURCE_SWITCH = 22,
-    ACQUIRE_LICENSE = 23,
-    INDIVIDUALIZE = 24,
-    NEEDS_INDIVIDUALIZATION = 25,
-    NO_RIGHTS_EX = 26,
-    BACKUPRESTORE_END = 27,
-    BACKUPRESTORE_CONNECTING = 28,
-    BACKUPRESTORE_DISCONNECTING = 29,
-    ERROR_WITHURL = 30,
-    RESTRICTED_LICENSE = 31,
-    CLIENT_CONNECT = 32,
-    CLIENT_DISCONNECT = 33,
-    NATIVE_OUTPUT_PROPS_CHANGED = 34,
-    RECONNECT_START = 35,
-    RECONNECT_END = 36,
-    CLIENT_CONNECT_EX = 37,
-    CLIENT_DISCONNECT_EX = 38,
-    SET_FEC_SPAN = 39,
-    PREROLL_READY = 40,
-    PREROLL_COMPLETE = 41,
-    CLIENT_PROPERTIES = 42,
-    LICENSEURL_SIGNATURE_STATE = 43,
-    INIT_PLAYLIST_BURN = 44,
-    TRANSCRYPTOR_INIT = 45,
-    TRANSCRYPTOR_SEEKED = 46,
-    TRANSCRYPTOR_READ = 47,
-    TRANSCRYPTOR_CLOSED = 48,
-    PROXIMITY_RESULT = 49,
-    PROXIMITY_COMPLETED = 50,
-    CONTENT_ENABLER = 51,
-    pub const END_OF_FILE = .EOF;
-};
-pub const WMT_ERROR = WMT_STATUS.ERROR;
-pub const WMT_OPENED = WMT_STATUS.OPENED;
-pub const WMT_BUFFERING_START = WMT_STATUS.BUFFERING_START;
-pub const WMT_BUFFERING_STOP = WMT_STATUS.BUFFERING_STOP;
-pub const WMT_EOF = WMT_STATUS.EOF;
-pub const WMT_END_OF_FILE = WMT_STATUS.EOF;
-pub const WMT_END_OF_SEGMENT = WMT_STATUS.END_OF_SEGMENT;
-pub const WMT_END_OF_STREAMING = WMT_STATUS.END_OF_STREAMING;
-pub const WMT_LOCATING = WMT_STATUS.LOCATING;
-pub const WMT_CONNECTING = WMT_STATUS.CONNECTING;
-pub const WMT_NO_RIGHTS = WMT_STATUS.NO_RIGHTS;
-pub const WMT_MISSING_CODEC = WMT_STATUS.MISSING_CODEC;
-pub const WMT_STARTED = WMT_STATUS.STARTED;
-pub const WMT_STOPPED = WMT_STATUS.STOPPED;
-pub const WMT_CLOSED = WMT_STATUS.CLOSED;
-pub const WMT_STRIDING = WMT_STATUS.STRIDING;
-pub const WMT_TIMER = WMT_STATUS.TIMER;
-pub const WMT_INDEX_PROGRESS = WMT_STATUS.INDEX_PROGRESS;
-pub const WMT_SAVEAS_START = WMT_STATUS.SAVEAS_START;
-pub const WMT_SAVEAS_STOP = WMT_STATUS.SAVEAS_STOP;
-pub const WMT_NEW_SOURCEFLAGS = WMT_STATUS.NEW_SOURCEFLAGS;
-pub const WMT_NEW_METADATA = WMT_STATUS.NEW_METADATA;
-pub const WMT_BACKUPRESTORE_BEGIN = WMT_STATUS.BACKUPRESTORE_BEGIN;
-pub const WMT_SOURCE_SWITCH = WMT_STATUS.SOURCE_SWITCH;
-pub const WMT_ACQUIRE_LICENSE = WMT_STATUS.ACQUIRE_LICENSE;
-pub const WMT_INDIVIDUALIZE = WMT_STATUS.INDIVIDUALIZE;
-pub const WMT_NEEDS_INDIVIDUALIZATION = WMT_STATUS.NEEDS_INDIVIDUALIZATION;
-pub const WMT_NO_RIGHTS_EX = WMT_STATUS.NO_RIGHTS_EX;
-pub const WMT_BACKUPRESTORE_END = WMT_STATUS.BACKUPRESTORE_END;
-pub const WMT_BACKUPRESTORE_CONNECTING = WMT_STATUS.BACKUPRESTORE_CONNECTING;
-pub const WMT_BACKUPRESTORE_DISCONNECTING = WMT_STATUS.BACKUPRESTORE_DISCONNECTING;
-pub const WMT_ERROR_WITHURL = WMT_STATUS.ERROR_WITHURL;
-pub const WMT_RESTRICTED_LICENSE = WMT_STATUS.RESTRICTED_LICENSE;
-pub const WMT_CLIENT_CONNECT = WMT_STATUS.CLIENT_CONNECT;
-pub const WMT_CLIENT_DISCONNECT = WMT_STATUS.CLIENT_DISCONNECT;
-pub const WMT_NATIVE_OUTPUT_PROPS_CHANGED = WMT_STATUS.NATIVE_OUTPUT_PROPS_CHANGED;
-pub const WMT_RECONNECT_START = WMT_STATUS.RECONNECT_START;
-pub const WMT_RECONNECT_END = WMT_STATUS.RECONNECT_END;
-pub const WMT_CLIENT_CONNECT_EX = WMT_STATUS.CLIENT_CONNECT_EX;
-pub const WMT_CLIENT_DISCONNECT_EX = WMT_STATUS.CLIENT_DISCONNECT_EX;
-pub const WMT_SET_FEC_SPAN = WMT_STATUS.SET_FEC_SPAN;
-pub const WMT_PREROLL_READY = WMT_STATUS.PREROLL_READY;
-pub const WMT_PREROLL_COMPLETE = WMT_STATUS.PREROLL_COMPLETE;
-pub const WMT_CLIENT_PROPERTIES = WMT_STATUS.CLIENT_PROPERTIES;
-pub const WMT_LICENSEURL_SIGNATURE_STATE = WMT_STATUS.LICENSEURL_SIGNATURE_STATE;
-pub const WMT_INIT_PLAYLIST_BURN = WMT_STATUS.INIT_PLAYLIST_BURN;
-pub const WMT_TRANSCRYPTOR_INIT = WMT_STATUS.TRANSCRYPTOR_INIT;
-pub const WMT_TRANSCRYPTOR_SEEKED = WMT_STATUS.TRANSCRYPTOR_SEEKED;
-pub const WMT_TRANSCRYPTOR_READ = WMT_STATUS.TRANSCRYPTOR_READ;
-pub const WMT_TRANSCRYPTOR_CLOSED = WMT_STATUS.TRANSCRYPTOR_CLOSED;
-pub const WMT_PROXIMITY_RESULT = WMT_STATUS.PROXIMITY_RESULT;
-pub const WMT_PROXIMITY_COMPLETED = WMT_STATUS.PROXIMITY_COMPLETED;
-pub const WMT_CONTENT_ENABLER = WMT_STATUS.CONTENT_ENABLER;
-
-pub const WMT_STREAM_SELECTION = enum(i32) {
-    OFF = 0,
-    CLEANPOINT_ONLY = 1,
-    ON = 2,
-};
-pub const WMT_OFF = WMT_STREAM_SELECTION.OFF;
-pub const WMT_CLEANPOINT_ONLY = WMT_STREAM_SELECTION.CLEANPOINT_ONLY;
-pub const WMT_ON = WMT_STREAM_SELECTION.ON;
-
-pub const WMT_IMAGE_TYPE = enum(i32) {
-    NONE = 0,
-    BITMAP = 1,
-    JPEG = 2,
-    GIF = 3,
-};
-pub const WMT_IT_NONE = WMT_IMAGE_TYPE.NONE;
-pub const WMT_IT_BITMAP = WMT_IMAGE_TYPE.BITMAP;
-pub const WMT_IT_JPEG = WMT_IMAGE_TYPE.JPEG;
-pub const WMT_IT_GIF = WMT_IMAGE_TYPE.GIF;
-
-pub const WMT_ATTR_DATATYPE = enum(i32) {
-    DWORD = 0,
-    STRING = 1,
-    BINARY = 2,
-    BOOL = 3,
-    QWORD = 4,
-    WORD = 5,
-    GUID = 6,
-};
-pub const WMT_TYPE_DWORD = WMT_ATTR_DATATYPE.DWORD;
-pub const WMT_TYPE_STRING = WMT_ATTR_DATATYPE.STRING;
-pub const WMT_TYPE_BINARY = WMT_ATTR_DATATYPE.BINARY;
-pub const WMT_TYPE_BOOL = WMT_ATTR_DATATYPE.BOOL;
-pub const WMT_TYPE_QWORD = WMT_ATTR_DATATYPE.QWORD;
-pub const WMT_TYPE_WORD = WMT_ATTR_DATATYPE.WORD;
-pub const WMT_TYPE_GUID = WMT_ATTR_DATATYPE.GUID;
-
-pub const WMT_ATTR_IMAGETYPE = enum(i32) {
-    BITMAP = 1,
-    JPEG = 2,
-    GIF = 3,
-};
-pub const WMT_IMAGETYPE_BITMAP = WMT_ATTR_IMAGETYPE.BITMAP;
-pub const WMT_IMAGETYPE_JPEG = WMT_ATTR_IMAGETYPE.JPEG;
-pub const WMT_IMAGETYPE_GIF = WMT_ATTR_IMAGETYPE.GIF;
-
-pub const WMT_VERSION = enum(i32) {
-    @"4_0" = 262144,
-    @"7_0" = 458752,
-    @"8_0" = 524288,
-    @"9_0" = 589824,
-};
-pub const WMT_VER_4_0 = WMT_VERSION.@"4_0";
-pub const WMT_VER_7_0 = WMT_VERSION.@"7_0";
-pub const WMT_VER_8_0 = WMT_VERSION.@"8_0";
-pub const WMT_VER_9_0 = WMT_VERSION.@"9_0";
-
-pub const WMT_STORAGE_FORMAT = enum(i32) {
-    MP3 = 0,
-    V1 = 1,
-};
-pub const WMT_Storage_Format_MP3 = WMT_STORAGE_FORMAT.MP3;
-pub const WMT_Storage_Format_V1 = WMT_STORAGE_FORMAT.V1;
-
-pub const WMT_DRMLA_TRUST = enum(i32) {
-    UNTRUSTED = 0,
-    TRUSTED = 1,
-    TAMPERED = 2,
-};
-pub const WMT_DRMLA_UNTRUSTED = WMT_DRMLA_TRUST.UNTRUSTED;
-pub const WMT_DRMLA_TRUSTED = WMT_DRMLA_TRUST.TRUSTED;
-pub const WMT_DRMLA_TAMPERED = WMT_DRMLA_TRUST.TAMPERED;
-
-pub const WMT_TRANSPORT_TYPE = enum(i32) {
-    Unreliable = 0,
-    Reliable = 1,
-};
-pub const WMT_Transport_Type_Unreliable = WMT_TRANSPORT_TYPE.Unreliable;
-pub const WMT_Transport_Type_Reliable = WMT_TRANSPORT_TYPE.Reliable;
-
-pub const WMT_NET_PROTOCOL = enum(i32) {
-    P = 0,
-};
-pub const WMT_PROTOCOL_HTTP = WMT_NET_PROTOCOL.P;
-
-pub const WMT_PLAY_MODE = enum(i32) {
-    AUTOSELECT = 0,
-    LOCAL = 1,
-    DOWNLOAD = 2,
-    STREAMING = 3,
-};
-pub const WMT_PLAY_MODE_AUTOSELECT = WMT_PLAY_MODE.AUTOSELECT;
-pub const WMT_PLAY_MODE_LOCAL = WMT_PLAY_MODE.LOCAL;
-pub const WMT_PLAY_MODE_DOWNLOAD = WMT_PLAY_MODE.DOWNLOAD;
-pub const WMT_PLAY_MODE_STREAMING = WMT_PLAY_MODE.STREAMING;
-
-pub const WMT_PROXY_SETTINGS = enum(i32) {
-    NONE = 0,
-    MANUAL = 1,
-    AUTO = 2,
-    BROWSER = 3,
-    MAX = 4,
-};
-pub const WMT_PROXY_SETTING_NONE = WMT_PROXY_SETTINGS.NONE;
-pub const WMT_PROXY_SETTING_MANUAL = WMT_PROXY_SETTINGS.MANUAL;
-pub const WMT_PROXY_SETTING_AUTO = WMT_PROXY_SETTINGS.AUTO;
-pub const WMT_PROXY_SETTING_BROWSER = WMT_PROXY_SETTINGS.BROWSER;
-pub const WMT_PROXY_SETTING_MAX = WMT_PROXY_SETTINGS.MAX;
-
-pub const WMT_CODEC_INFO_TYPE = enum(i32) {
-    AUDIO = 0,
-    VIDEO = 1,
-    UNKNOWN = -1,
-};
-pub const WMT_CODECINFO_AUDIO = WMT_CODEC_INFO_TYPE.AUDIO;
-pub const WMT_CODECINFO_VIDEO = WMT_CODEC_INFO_TYPE.VIDEO;
-pub const WMT_CODECINFO_UNKNOWN = WMT_CODEC_INFO_TYPE.UNKNOWN;
-
-pub const WM_DM_INTERLACED_TYPE = enum(i32) {
-    NOTINTERLACED = 0,
-    DEINTERLACE_NORMAL = 1,
-    DEINTERLACE_HALFSIZE = 2,
-    DEINTERLACE_HALFSIZEDOUBLERATE = 3,
-    DEINTERLACE_INVERSETELECINE = 4,
-    DEINTERLACE_VERTICALHALFSIZEDOUBLERATE = 5,
-};
-pub const WM_DM_NOTINTERLACED = WM_DM_INTERLACED_TYPE.NOTINTERLACED;
-pub const WM_DM_DEINTERLACE_NORMAL = WM_DM_INTERLACED_TYPE.DEINTERLACE_NORMAL;
-pub const WM_DM_DEINTERLACE_HALFSIZE = WM_DM_INTERLACED_TYPE.DEINTERLACE_HALFSIZE;
-pub const WM_DM_DEINTERLACE_HALFSIZEDOUBLERATE = WM_DM_INTERLACED_TYPE.DEINTERLACE_HALFSIZEDOUBLERATE;
-pub const WM_DM_DEINTERLACE_INVERSETELECINE = WM_DM_INTERLACED_TYPE.DEINTERLACE_INVERSETELECINE;
-pub const WM_DM_DEINTERLACE_VERTICALHALFSIZEDOUBLERATE = WM_DM_INTERLACED_TYPE.DEINTERLACE_VERTICALHALFSIZEDOUBLERATE;
-
-pub const WM_DM_IT_FIRST_FRAME_COHERENCY = enum(i32) {
-    DISABLE_COHERENT_MODE = 0,
-    FIRST_FRAME_IN_CLIP_IS_AA_TOP = 1,
-    FIRST_FRAME_IN_CLIP_IS_BB_TOP = 2,
-    FIRST_FRAME_IN_CLIP_IS_BC_TOP = 3,
-    FIRST_FRAME_IN_CLIP_IS_CD_TOP = 4,
-    FIRST_FRAME_IN_CLIP_IS_DD_TOP = 5,
-    FIRST_FRAME_IN_CLIP_IS_AA_BOTTOM = 6,
-    FIRST_FRAME_IN_CLIP_IS_BB_BOTTOM = 7,
-    FIRST_FRAME_IN_CLIP_IS_BC_BOTTOM = 8,
-    FIRST_FRAME_IN_CLIP_IS_CD_BOTTOM = 9,
-    FIRST_FRAME_IN_CLIP_IS_DD_BOTTOM = 10,
-};
-pub const WM_DM_IT_DISABLE_COHERENT_MODE = WM_DM_IT_FIRST_FRAME_COHERENCY.DISABLE_COHERENT_MODE;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_AA_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_AA_TOP;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BB_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BB_TOP;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BC_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BC_TOP;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_CD_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_CD_TOP;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_DD_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_DD_TOP;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_AA_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_AA_BOTTOM;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BB_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BB_BOTTOM;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BC_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BC_BOTTOM;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_CD_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_CD_BOTTOM;
-pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_DD_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_DD_BOTTOM;
-
-pub const WMT_OFFSET_FORMAT = enum(i32) {
-    @"100NS" = 0,
-    FRAME_NUMBERS = 1,
-    PLAYLIST_OFFSET = 2,
-    TIMECODE = 3,
-    @"100NS_APPROXIMATE" = 4,
-};
-pub const WMT_OFFSET_FORMAT_100NS = WMT_OFFSET_FORMAT.@"100NS";
-pub const WMT_OFFSET_FORMAT_FRAME_NUMBERS = WMT_OFFSET_FORMAT.FRAME_NUMBERS;
-pub const WMT_OFFSET_FORMAT_PLAYLIST_OFFSET = WMT_OFFSET_FORMAT.PLAYLIST_OFFSET;
-pub const WMT_OFFSET_FORMAT_TIMECODE = WMT_OFFSET_FORMAT.TIMECODE;
-pub const WMT_OFFSET_FORMAT_100NS_APPROXIMATE = WMT_OFFSET_FORMAT.@"100NS_APPROXIMATE";
-
-pub const WMT_INDEXER_TYPE = enum(i32) {
-    PRESENTATION_TIME = 0,
-    FRAME_NUMBERS = 1,
-    TIMECODE = 2,
-};
-pub const WMT_IT_PRESENTATION_TIME = WMT_INDEXER_TYPE.PRESENTATION_TIME;
-pub const WMT_IT_FRAME_NUMBERS = WMT_INDEXER_TYPE.FRAME_NUMBERS;
-pub const WMT_IT_TIMECODE = WMT_INDEXER_TYPE.TIMECODE;
-
-pub const WMT_INDEX_TYPE = enum(i32) {
-    DATA_UNIT = 1,
-    OBJECT = 2,
-    CLEAN_POINT = 3,
-};
-pub const WMT_IT_NEAREST_DATA_UNIT = WMT_INDEX_TYPE.DATA_UNIT;
-pub const WMT_IT_NEAREST_OBJECT = WMT_INDEX_TYPE.OBJECT;
-pub const WMT_IT_NEAREST_CLEAN_POINT = WMT_INDEX_TYPE.CLEAN_POINT;
-
-pub const WMT_FILESINK_MODE = enum(i32) {
-    SINGLE_BUFFERS = 1,
-    FILESINK_DATA_UNITS = 2,
-    FILESINK_UNBUFFERED = 4,
-};
-pub const WMT_FM_SINGLE_BUFFERS = WMT_FILESINK_MODE.SINGLE_BUFFERS;
-pub const WMT_FM_FILESINK_DATA_UNITS = WMT_FILESINK_MODE.FILESINK_DATA_UNITS;
-pub const WMT_FM_FILESINK_UNBUFFERED = WMT_FILESINK_MODE.FILESINK_UNBUFFERED;
-
-pub const WMT_MUSICSPEECH_CLASS_MODE = enum(i32) {
-    MUSIC = 0,
-    SPEECH = 1,
-    MIXED = 2,
-};
-pub const WMT_MS_CLASS_MUSIC = WMT_MUSICSPEECH_CLASS_MODE.MUSIC;
-pub const WMT_MS_CLASS_SPEECH = WMT_MUSICSPEECH_CLASS_MODE.SPEECH;
-pub const WMT_MS_CLASS_MIXED = WMT_MUSICSPEECH_CLASS_MODE.MIXED;
-
-pub const WMT_WATERMARK_ENTRY_TYPE = enum(i32) {
-    AUDIO = 1,
-    VIDEO = 2,
-};
-pub const WMT_WMETYPE_AUDIO = WMT_WATERMARK_ENTRY_TYPE.AUDIO;
-pub const WMT_WMETYPE_VIDEO = WMT_WATERMARK_ENTRY_TYPE.VIDEO;
-
-pub const WM_PLAYBACK_DRC_LEVEL = enum(i32) {
-    HIGH = 0,
-    MEDIUM = 1,
-    LOW = 2,
-};
-pub const WM_PLAYBACK_DRC_HIGH = WM_PLAYBACK_DRC_LEVEL.HIGH;
-pub const WM_PLAYBACK_DRC_MEDIUM = WM_PLAYBACK_DRC_LEVEL.MEDIUM;
-pub const WM_PLAYBACK_DRC_LOW = WM_PLAYBACK_DRC_LEVEL.LOW;
-
-pub const WMT_TIMECODE_FRAMERATE = enum(i32) {
-    @"30" = 0,
-    @"30DROP" = 1,
-    @"25" = 2,
-    @"24" = 3,
-};
-pub const WMT_TIMECODE_FRAMERATE_30 = WMT_TIMECODE_FRAMERATE.@"30";
-pub const WMT_TIMECODE_FRAMERATE_30DROP = WMT_TIMECODE_FRAMERATE.@"30DROP";
-pub const WMT_TIMECODE_FRAMERATE_25 = WMT_TIMECODE_FRAMERATE.@"25";
-pub const WMT_TIMECODE_FRAMERATE_24 = WMT_TIMECODE_FRAMERATE.@"24";
-
-pub const WMT_CREDENTIAL_FLAGS = enum(i32) {
-    SAVE = 1,
-    DONT_CACHE = 2,
-    CLEAR_TEXT = 4,
-    PROXY = 8,
-    ENCRYPT = 16,
-};
-pub const WMT_CREDENTIAL_SAVE = WMT_CREDENTIAL_FLAGS.SAVE;
-pub const WMT_CREDENTIAL_DONT_CACHE = WMT_CREDENTIAL_FLAGS.DONT_CACHE;
-pub const WMT_CREDENTIAL_CLEAR_TEXT = WMT_CREDENTIAL_FLAGS.CLEAR_TEXT;
-pub const WMT_CREDENTIAL_PROXY = WMT_CREDENTIAL_FLAGS.PROXY;
-pub const WMT_CREDENTIAL_ENCRYPT = WMT_CREDENTIAL_FLAGS.ENCRYPT;
-
-pub const WM_AETYPE = enum(i32) {
-    INCLUDE = 105,
-    EXCLUDE = 101,
-};
-pub const WM_AETYPE_INCLUDE = WM_AETYPE.INCLUDE;
-pub const WM_AETYPE_EXCLUDE = WM_AETYPE.EXCLUDE;
-
-pub const WMT_RIGHTS = enum(i32) {
-    PLAYBACK = 1,
-    COPY_TO_NON_SDMI_DEVICE = 2,
-    COPY_TO_CD = 8,
-    COPY_TO_SDMI_DEVICE = 16,
-    ONE_TIME = 32,
-    SAVE_STREAM_PROTECTED = 64,
-    COPY = 128,
-    COLLABORATIVE_PLAY = 256,
-    SDMI_TRIGGER = 65536,
-    SDMI_NOMORECOPIES = 131072,
-};
-pub const WMT_RIGHT_PLAYBACK = WMT_RIGHTS.PLAYBACK;
-pub const WMT_RIGHT_COPY_TO_NON_SDMI_DEVICE = WMT_RIGHTS.COPY_TO_NON_SDMI_DEVICE;
-pub const WMT_RIGHT_COPY_TO_CD = WMT_RIGHTS.COPY_TO_CD;
-pub const WMT_RIGHT_COPY_TO_SDMI_DEVICE = WMT_RIGHTS.COPY_TO_SDMI_DEVICE;
-pub const WMT_RIGHT_ONE_TIME = WMT_RIGHTS.ONE_TIME;
-pub const WMT_RIGHT_SAVE_STREAM_PROTECTED = WMT_RIGHTS.SAVE_STREAM_PROTECTED;
-pub const WMT_RIGHT_COPY = WMT_RIGHTS.COPY;
-pub const WMT_RIGHT_COLLABORATIVE_PLAY = WMT_RIGHTS.COLLABORATIVE_PLAY;
-pub const WMT_RIGHT_SDMI_TRIGGER = WMT_RIGHTS.SDMI_TRIGGER;
-pub const WMT_RIGHT_SDMI_NOMORECOPIES = WMT_RIGHTS.SDMI_NOMORECOPIES;
-
-pub const WM_STREAM_PRIORITY_RECORD = extern struct {
-    wStreamNumber: u16 align(2),
-    fMandatory: BOOL align(2),
+const IID_IWMAddressAccess2_Value = Guid.initString("65a83fc2-3e98-4d4d-81b5-2a742886b33d");
+pub const IID_IWMAddressAccess2 = &IID_IWMAddressAccess2_Value;
+pub const IWMAddressAccess2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMAddressAccess.VTable,
+        GetAccessEntryEx: *const fn(
+            self: *const IWMAddressAccess2,
+            aeType: WM_AETYPE,
+            dwEntryNum: u32,
+            pbstrAddress: ?*?BSTR,
+            pbstrMask: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddAccessEntryEx: *const fn(
+            self: *const IWMAddressAccess2,
+            aeType: WM_AETYPE,
+            bstrAddress: ?BSTR,
+            bstrMask: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMAddressAccess: IWMAddressAccess,
+    IUnknown: IUnknown,
+    pub fn GetAccessEntryEx(self: *const IWMAddressAccess2, aeType: WM_AETYPE, dwEntryNum: u32, pbstrAddress: ?*?BSTR, pbstrMask: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAccessEntryEx(self, aeType, dwEntryNum, pbstrAddress, pbstrMask);
+    }
+    pub fn AddAccessEntryEx(self: *const IWMAddressAccess2, aeType: WM_AETYPE, bstrAddress: ?BSTR, bstrMask: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAccessEntryEx(self, aeType, bstrAddress, bstrMask);
+    }
 };
 
-pub const WM_WRITER_STATISTICS = extern struct {
-    qwSampleCount: u64,
-    qwByteCount: u64,
-    qwDroppedSampleCount: u64,
-    qwDroppedByteCount: u64,
-    dwCurrentBitrate: u32,
-    dwAverageBitrate: u32,
-    dwExpectedBitrate: u32,
-    dwCurrentSampleRate: u32,
-    dwAverageSampleRate: u32,
-    dwExpectedSampleRate: u32,
-};
-
-pub const WM_WRITER_STATISTICS_EX = extern struct {
-    dwBitratePlusOverhead: u32,
-    dwCurrentSampleDropRateInQueue: u32,
-    dwCurrentSampleDropRateInCodec: u32,
-    dwCurrentSampleDropRateInMultiplexer: u32,
-    dwTotalSampleDropsInQueue: u32,
-    dwTotalSampleDropsInCodec: u32,
-    dwTotalSampleDropsInMultiplexer: u32,
-};
-
-pub const WM_READER_STATISTICS = extern struct {
-    cbSize: u32,
-    dwBandwidth: u32,
-    cPacketsReceived: u32,
-    cPacketsRecovered: u32,
-    cPacketsLost: u32,
-    wQuality: u16,
-};
-
-pub const WM_READER_CLIENTINFO = extern struct {
-    cbSize: u32,
-    wszLang: ?PWSTR,
-    wszBrowserUserAgent: ?PWSTR,
-    wszBrowserWebPage: ?PWSTR,
-    qwReserved: u64,
-    pReserved: ?*LPARAM,
-    wszHostExe: ?PWSTR,
-    qwHostVersion: u64,
-    wszPlayerUserAgent: ?PWSTR,
-};
-
-pub const WM_CLIENT_PROPERTIES = extern struct {
-    dwIPAddress: u32,
-    dwPort: u32,
-};
-
-pub const WM_CLIENT_PROPERTIES_EX = extern struct {
-    cbSize: u32,
-    pwszIPAddress: ?[*:0]const u16,
-    pwszPort: ?[*:0]const u16,
-    pwszDNSName: ?[*:0]const u16,
-};
-
-pub const WM_PORT_NUMBER_RANGE = extern struct {
-    wPortBegin: u16,
-    wPortEnd: u16,
-};
-
-pub const WMT_BUFFER_SEGMENT = extern struct {
-    pBuffer: ?*INSSBuffer,
-    cbOffset: u32,
-    cbLength: u32,
-};
-
-pub const WMT_PAYLOAD_FRAGMENT = extern struct {
-    dwPayloadIndex: u32,
-    segmentData: WMT_BUFFER_SEGMENT,
-};
-
-pub const WMT_FILESINK_DATA_UNIT = extern struct {
-    packetHeaderBuffer: WMT_BUFFER_SEGMENT,
-    cPayloads: u32,
-    pPayloadHeaderBuffers: ?*WMT_BUFFER_SEGMENT,
-    cPayloadDataFragments: u32,
-    pPayloadDataFragments: ?*WMT_PAYLOAD_FRAGMENT,
-};
-
-pub const WMT_WEBSTREAM_FORMAT = extern struct {
-    cbSize: u16,
-    cbSampleHeaderFixedData: u16,
-    wVersion: u16,
-    wReserved: u16,
-};
-
-pub const WMT_WEBSTREAM_SAMPLE_HEADER = extern struct {
-    cbLength: u16,
-    wPart: u16,
-    cTotalParts: u16,
-    wSampleType: u16,
-    wszURL: [1]u16,
-};
-
-pub const WM_ADDRESS_ACCESSENTRY = extern struct {
-    dwIPAddress: u32,
-    dwMask: u32,
-};
-
-pub const WM_PICTURE = extern struct {
-    pwszMIMEType: ?PWSTR align(1),
-    bPictureType: u8 align(1),
-    pwszDescription: ?PWSTR align(1),
-    dwDataLen: u32 align(1),
-    pbData: ?*u8 align(1),
-};
-
-pub const WM_SYNCHRONISED_LYRICS = extern struct {
-    bTimeStampFormat: u8 align(1),
-    bContentType: u8 align(1),
-    pwszContentDescriptor: ?PWSTR align(1),
-    dwLyricsLen: u32 align(1),
-    pbLyrics: ?*u8 align(1),
-};
-
-pub const WM_USER_WEB_URL = extern struct {
-    pwszDescription: ?PWSTR align(1),
-    pwszURL: ?PWSTR align(1),
-};
-
-pub const WM_USER_TEXT = extern struct {
-    pwszDescription: ?PWSTR align(1),
-    pwszText: ?PWSTR align(1),
-};
-
-pub const WM_LEAKY_BUCKET_PAIR = extern struct {
-    dwBitrate: u32 align(1),
-    msBufferWindow: u32 align(1),
-};
-
-pub const WM_STREAM_TYPE_INFO = extern struct {
-    guidMajorType: Guid align(1),
-    cbFormat: u32 align(1),
-};
-
-pub const WMT_WATERMARK_ENTRY = extern struct {
-    wmetType: WMT_WATERMARK_ENTRY_TYPE,
-    clsid: Guid,
-    cbDisplayName: u32,
-    pwszDisplayName: ?PWSTR,
-};
-
-pub const WMT_VIDEOIMAGE_SAMPLE = extern struct {
-    dwMagic: u32,
-    cbStruct: u32,
-    dwControlFlags: u32,
-    dwInputFlagsCur: u32,
-    lCurMotionXtoX: i32,
-    lCurMotionYtoX: i32,
-    lCurMotionXoffset: i32,
-    lCurMotionXtoY: i32,
-    lCurMotionYtoY: i32,
-    lCurMotionYoffset: i32,
-    lCurBlendCoef1: i32,
-    lCurBlendCoef2: i32,
-    dwInputFlagsPrev: u32,
-    lPrevMotionXtoX: i32,
-    lPrevMotionYtoX: i32,
-    lPrevMotionXoffset: i32,
-    lPrevMotionXtoY: i32,
-    lPrevMotionYtoY: i32,
-    lPrevMotionYoffset: i32,
-    lPrevBlendCoef1: i32,
-    lPrevBlendCoef2: i32,
-};
-
-pub const WMT_VIDEOIMAGE_SAMPLE2 = extern struct {
-    dwMagic: u32,
-    dwStructSize: u32,
-    dwControlFlags: u32,
-    dwViewportWidth: u32,
-    dwViewportHeight: u32,
-    dwCurrImageWidth: u32,
-    dwCurrImageHeight: u32,
-    fCurrRegionX0: f32,
-    fCurrRegionY0: f32,
-    fCurrRegionWidth: f32,
-    fCurrRegionHeight: f32,
-    fCurrBlendCoef: f32,
-    dwPrevImageWidth: u32,
-    dwPrevImageHeight: u32,
-    fPrevRegionX0: f32,
-    fPrevRegionY0: f32,
-    fPrevRegionWidth: f32,
-    fPrevRegionHeight: f32,
-    fPrevBlendCoef: f32,
-    dwEffectType: u32,
-    dwNumEffectParas: u32,
-    fEffectPara0: f32,
-    fEffectPara1: f32,
-    fEffectPara2: f32,
-    fEffectPara3: f32,
-    fEffectPara4: f32,
-    bKeepPrevImage: BOOL,
-};
-
-pub const WM_MEDIA_TYPE = extern struct {
-    majortype: Guid,
-    subtype: Guid,
-    bFixedSizeSamples: BOOL,
-    bTemporalCompression: BOOL,
-    lSampleSize: u32,
-    formattype: Guid,
-    pUnk: ?*IUnknown,
-    cbFormat: u32,
-    pbFormat: ?*u8,
-};
-
-pub const WMVIDEOINFOHEADER = extern struct {
-    rcSource: RECT,
-    rcTarget: RECT,
-    dwBitRate: u32,
-    dwBitErrorRate: u32,
-    AvgTimePerFrame: i64,
-    bmiHeader: BITMAPINFOHEADER,
-};
-
-pub const WMVIDEOINFOHEADER2 = extern struct {
-    rcSource: RECT,
-    rcTarget: RECT,
-    dwBitRate: u32,
-    dwBitErrorRate: u32,
-    AvgTimePerFrame: i64,
-    dwInterlaceFlags: u32,
-    dwCopyProtectFlags: u32,
-    dwPictAspectRatioX: u32,
-    dwPictAspectRatioY: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    bmiHeader: BITMAPINFOHEADER,
-};
-
-pub const WMMPEG2VIDEOINFO = extern struct {
-    hdr: WMVIDEOINFOHEADER2,
-    dwStartTimeCode: u32,
-    cbSequenceHeader: u32,
-    dwProfile: u32,
-    dwLevel: u32,
-    dwFlags: u32,
-    dwSequenceHeader: [1]u32,
-};
-
-pub const WMSCRIPTFORMAT = extern struct {
-    scriptType: Guid,
-};
-
-pub const WMT_COLORSPACEINFO_EXTENSION_DATA = extern struct {
-    ucColorPrimaries: u8,
-    ucColorTransferChar: u8,
-    ucColorMatrixCoef: u8,
-};
-
-pub const WMT_TIMECODE_EXTENSION_DATA = extern struct {
-    wRange: u16 align(2),
-    dwTimecode: u32 align(2),
-    dwUserbits: u32 align(2),
-    dwAmFlags: u32 align(2),
-};
-
-pub const DRM_VAL16 = extern struct {
-    val: [16]u8,
-};
-
-const IID_IWMMediaProps_Value = Guid.initString("96406bce-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMMediaProps = &IID_IWMMediaProps_Value;
-pub const IWMMediaProps = extern union {
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWMAuthorizer_Value = Guid.initString("d9b67d36-a9ad-4eb4-baef-db284ef5504c");
+pub const IID_IWMAuthorizer = &IID_IWMAuthorizer_Value;
+pub const IWMAuthorizer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        GetCertCount: *const fn(
+            self: *const IWMAuthorizer,
+            pcCerts: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCert: *const fn(
+            self: *const IWMAuthorizer,
+            dwIndex: u32,
+            ppbCertData: ?*?*u8,
+        ) callconv(.winapi) HRESULT,
+        GetSharedData: *const fn(
+            self: *const IWMAuthorizer,
+            dwCertIndex: u32,
+            pbSharedData: ?*const u8,
+            pbCert: ?*u8,
+            ppbSharedData: ?*?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCertCount(self: *const IWMAuthorizer, pcCerts: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCertCount(self, pcCerts);
+    }
+    pub fn GetCert(self: *const IWMAuthorizer, dwIndex: u32, ppbCertData: ?*?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCert(self, dwIndex, ppbCertData);
+    }
+    pub fn GetSharedData(self: *const IWMAuthorizer, dwCertIndex: u32, pbSharedData: ?*const u8, pbCert: ?*u8, ppbSharedData: ?*?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSharedData(self, dwCertIndex, pbSharedData, pbCert, ppbSharedData);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWMBackupRestoreProps_Value = Guid.initString("3c8e0da6-996f-4ff3-a1af-4838f9377e2e");
+pub const IID_IWMBackupRestoreProps = &IID_IWMBackupRestoreProps_Value;
+pub const IWMBackupRestoreProps = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPropCount: *const fn(
+            self: *const IWMBackupRestoreProps,
+            pcProps: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetPropByIndex: *const fn(
+            self: *const IWMBackupRestoreProps,
+            wIndex: u16,
+            pwszName: [*:0]u16,
+            pcchNameLen: ?*u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pcbLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetPropByName: *const fn(
+            self: *const IWMBackupRestoreProps,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pcbLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetProp: *const fn(
+            self: *const IWMBackupRestoreProps,
+            pszName: ?[*:0]const u16,
+            Type: WMT_ATTR_DATATYPE,
+            pValue: [*:0]const u8,
+            cbLength: u16,
+        ) callconv(.winapi) HRESULT,
+        RemoveProp: *const fn(
+            self: *const IWMBackupRestoreProps,
+            pcwszName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        RemoveAllProps: *const fn(
+            self: *const IWMBackupRestoreProps,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPropCount(self: *const IWMBackupRestoreProps, pcProps: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropCount(self, pcProps);
+    }
+    pub fn GetPropByIndex(self: *const IWMBackupRestoreProps, wIndex: u16, pwszName: [*:0]u16, pcchNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropByIndex(self, wIndex, pwszName, pcchNameLen, pType, pValue, pcbLength);
+    }
+    pub fn GetPropByName(self: *const IWMBackupRestoreProps, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropByName(self, pszName, pType, pValue, pcbLength);
+    }
+    pub fn SetProp(self: *const IWMBackupRestoreProps, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProp(self, pszName, Type, pValue, cbLength);
+    }
+    pub fn RemoveProp(self: *const IWMBackupRestoreProps, pcwszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveProp(self, pcwszName);
+    }
+    pub fn RemoveAllProps(self: *const IWMBackupRestoreProps) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAllProps(self);
+    }
+};
+
+const IID_IWMBandwidthSharing_Value = Guid.initString("ad694af1-f8d9-42f8-bc47-70311b0c4f9e");
+pub const IID_IWMBandwidthSharing = &IID_IWMBandwidthSharing_Value;
+pub const IWMBandwidthSharing = extern union {
+    pub const VTable = extern struct {
+        base: IWMStreamList.VTable,
         GetType: *const fn(
-            self: *const IWMMediaProps,
+            self: *const IWMBandwidthSharing,
             pguidType: ?*Guid,
         ) callconv(.winapi) HRESULT,
-        GetMediaType: *const fn(
-            self: *const IWMMediaProps,
-            pType: ?*WM_MEDIA_TYPE,
-            pcbType: ?*u32,
+        SetType: *const fn(
+            self: *const IWMBandwidthSharing,
+            guidType: ?*const Guid,
         ) callconv(.winapi) HRESULT,
-        SetMediaType: *const fn(
-            self: *const IWMMediaProps,
-            pType: ?*WM_MEDIA_TYPE,
+        GetBandwidth: *const fn(
+            self: *const IWMBandwidthSharing,
+            pdwBitrate: ?*u32,
+            pmsBufferWindow: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetBandwidth: *const fn(
+            self: *const IWMBandwidthSharing,
+            dwBitrate: u32,
+            msBufferWindow: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWMStreamList: IWMStreamList,
     IUnknown: IUnknown,
-    pub fn GetType(self: *const IWMMediaProps, pguidType: ?*Guid) callconv(.@"inline") HRESULT {
+    pub fn GetType(self: *const IWMBandwidthSharing, pguidType: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pguidType);
     }
-    pub fn GetMediaType(self: *const IWMMediaProps, pType: ?*WM_MEDIA_TYPE, pcbType: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMediaType(self, pType, pcbType);
+    pub fn SetType(self: *const IWMBandwidthSharing, guidType: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetType(self, guidType);
     }
-    pub fn SetMediaType(self: *const IWMMediaProps, pType: ?*WM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMediaType(self, pType);
+    pub fn GetBandwidth(self: *const IWMBandwidthSharing, pdwBitrate: ?*u32, pmsBufferWindow: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBandwidth(self, pdwBitrate, pmsBufferWindow);
     }
-};
-
-const IID_IWMVideoMediaProps_Value = Guid.initString("96406bcf-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMVideoMediaProps = &IID_IWMVideoMediaProps_Value;
-pub const IWMVideoMediaProps = extern union {
-    pub const VTable = extern struct {
-        base: IWMMediaProps.VTable,
-        GetMaxKeyFrameSpacing: *const fn(
-            self: *const IWMVideoMediaProps,
-            pllTime: ?*i64,
-        ) callconv(.winapi) HRESULT,
-        SetMaxKeyFrameSpacing: *const fn(
-            self: *const IWMVideoMediaProps,
-            llTime: i64,
-        ) callconv(.winapi) HRESULT,
-        GetQuality: *const fn(
-            self: *const IWMVideoMediaProps,
-            pdwQuality: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetQuality: *const fn(
-            self: *const IWMVideoMediaProps,
-            dwQuality: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMMediaProps: IWMMediaProps,
-    IUnknown: IUnknown,
-    pub fn GetMaxKeyFrameSpacing(self: *const IWMVideoMediaProps, pllTime: ?*i64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxKeyFrameSpacing(self, pllTime);
-    }
-    pub fn SetMaxKeyFrameSpacing(self: *const IWMVideoMediaProps, llTime: i64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMaxKeyFrameSpacing(self, llTime);
-    }
-    pub fn GetQuality(self: *const IWMVideoMediaProps, pdwQuality: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetQuality(self, pdwQuality);
-    }
-    pub fn SetQuality(self: *const IWMVideoMediaProps, dwQuality: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetQuality(self, dwQuality);
+    pub fn SetBandwidth(self: *const IWMBandwidthSharing, dwBitrate: u32, msBufferWindow: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetBandwidth(self, dwBitrate, msBufferWindow);
     }
 };
 
-const IID_IWMWriter_Value = Guid.initString("96406bd4-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMWriter = &IID_IWMWriter_Value;
-pub const IWMWriter = extern union {
+const IID_IWMClientConnections_Value = Guid.initString("73c66010-a299-41df-b1f0-ccf03b09c1c6");
+pub const IID_IWMClientConnections = &IID_IWMClientConnections_Value;
+pub const IWMClientConnections = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetProfileByID: *const fn(
-            self: *const IWMWriter,
-            guidProfile: ?*const Guid,
+        GetClientCount: *const fn(
+            self: *const IWMClientConnections,
+            pcClients: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SetProfile: *const fn(
-            self: *const IWMWriter,
-            pProfile: ?*IWMProfile,
-        ) callconv(.winapi) HRESULT,
-        SetOutputFilename: *const fn(
-            self: *const IWMWriter,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetInputCount: *const fn(
-            self: *const IWMWriter,
-            pcInputs: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetInputProps: *const fn(
-            self: *const IWMWriter,
-            dwInputNum: u32,
-            ppInput: ?*?*IWMInputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        SetInputProps: *const fn(
-            self: *const IWMWriter,
-            dwInputNum: u32,
-            pInput: ?*IWMInputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        GetInputFormatCount: *const fn(
-            self: *const IWMWriter,
-            dwInputNumber: u32,
-            pcFormats: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetInputFormat: *const fn(
-            self: *const IWMWriter,
-            dwInputNumber: u32,
-            dwFormatNumber: u32,
-            pProps: ?*?*IWMInputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        BeginWriting: *const fn(
-            self: *const IWMWriter,
-        ) callconv(.winapi) HRESULT,
-        EndWriting: *const fn(
-            self: *const IWMWriter,
-        ) callconv(.winapi) HRESULT,
-        AllocateSample: *const fn(
-            self: *const IWMWriter,
-            dwSampleSize: u32,
-            ppSample: ?*?*INSSBuffer,
-        ) callconv(.winapi) HRESULT,
-        WriteSample: *const fn(
-            self: *const IWMWriter,
-            dwInputNum: u32,
-            cnsSampleTime: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-        ) callconv(.winapi) HRESULT,
-        Flush: *const fn(
-            self: *const IWMWriter,
+        GetClientProperties: *const fn(
+            self: *const IWMClientConnections,
+            dwClientNum: u32,
+            pClientProperties: ?*WM_CLIENT_PROPERTIES,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetProfileByID(self: *const IWMWriter, guidProfile: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProfileByID(self, guidProfile);
+    pub fn GetClientCount(self: *const IWMClientConnections, pcClients: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClientCount(self, pcClients);
     }
-    pub fn SetProfile(self: *const IWMWriter, pProfile: ?*IWMProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProfile(self, pProfile);
+    pub fn GetClientProperties(self: *const IWMClientConnections, dwClientNum: u32, pClientProperties: ?*WM_CLIENT_PROPERTIES) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClientProperties(self, dwClientNum, pClientProperties);
     }
-    pub fn SetOutputFilename(self: *const IWMWriter, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOutputFilename(self, pwszFilename);
+};
+
+const IID_IWMClientConnections2_Value = Guid.initString("4091571e-4701-4593-bb3d-d5f5f0c74246");
+pub const IID_IWMClientConnections2 = &IID_IWMClientConnections2_Value;
+pub const IWMClientConnections2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMClientConnections.VTable,
+        GetClientInfo: *const fn(
+            self: *const IWMClientConnections2,
+            dwClientNum: u32,
+            pwszNetworkAddress: [*:0]u16,
+            pcchNetworkAddress: ?*u32,
+            pwszPort: [*:0]u16,
+            pcchPort: ?*u32,
+            pwszDNSName: [*:0]u16,
+            pcchDNSName: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMClientConnections: IWMClientConnections,
+    IUnknown: IUnknown,
+    pub fn GetClientInfo(self: *const IWMClientConnections2, dwClientNum: u32, pwszNetworkAddress: [*:0]u16, pcchNetworkAddress: ?*u32, pwszPort: [*:0]u16, pcchPort: ?*u32, pwszDNSName: [*:0]u16, pcchDNSName: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClientInfo(self, dwClientNum, pwszNetworkAddress, pcchNetworkAddress, pwszPort, pcchPort, pwszDNSName, pcchDNSName);
     }
-    pub fn GetInputCount(self: *const IWMWriter, pcInputs: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputCount(self, pcInputs);
+};
+
+const IID_IWMCodecInfo_Value = Guid.initString("a970f41e-34de-4a98-b3ba-e4b3ca7528f0");
+pub const IID_IWMCodecInfo = &IID_IWMCodecInfo_Value;
+pub const IWMCodecInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCodecInfoCount: *const fn(
+            self: *const IWMCodecInfo,
+            guidType: ?*const Guid,
+            pcCodecs: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCodecFormatCount: *const fn(
+            self: *const IWMCodecInfo,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            pcFormat: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCodecFormat: *const fn(
+            self: *const IWMCodecInfo,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            dwFormatIndex: u32,
+            ppIStreamConfig: ?*?*IWMStreamConfig,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCodecInfoCount(self: *const IWMCodecInfo, guidType: ?*const Guid, pcCodecs: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecInfoCount(self, guidType, pcCodecs);
     }
-    pub fn GetInputProps(self: *const IWMWriter, dwInputNum: u32, ppInput: ?*?*IWMInputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputProps(self, dwInputNum, ppInput);
+    pub fn GetCodecFormatCount(self: *const IWMCodecInfo, guidType: ?*const Guid, dwCodecIndex: u32, pcFormat: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecFormatCount(self, guidType, dwCodecIndex, pcFormat);
     }
-    pub fn SetInputProps(self: *const IWMWriter, dwInputNum: u32, pInput: ?*IWMInputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.SetInputProps(self, dwInputNum, pInput);
+    pub fn GetCodecFormat(self: *const IWMCodecInfo, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecFormat(self, guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig);
     }
-    pub fn GetInputFormatCount(self: *const IWMWriter, dwInputNumber: u32, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputFormatCount(self, dwInputNumber, pcFormats);
+};
+
+const IID_IWMCodecInfo2_Value = Guid.initString("aa65e273-b686-4056-91ec-dd768d4df710");
+pub const IID_IWMCodecInfo2 = &IID_IWMCodecInfo2_Value;
+pub const IWMCodecInfo2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMCodecInfo.VTable,
+        GetCodecName: *const fn(
+            self: *const IWMCodecInfo2,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            wszName: [*:0]u16,
+            pcchName: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCodecFormatDesc: *const fn(
+            self: *const IWMCodecInfo2,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            dwFormatIndex: u32,
+            ppIStreamConfig: ?*?*IWMStreamConfig,
+            wszDesc: [*:0]u16,
+            pcchDesc: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMCodecInfo: IWMCodecInfo,
+    IUnknown: IUnknown,
+    pub fn GetCodecName(self: *const IWMCodecInfo2, guidType: ?*const Guid, dwCodecIndex: u32, wszName: [*:0]u16, pcchName: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecName(self, guidType, dwCodecIndex, wszName, pcchName);
     }
-    pub fn GetInputFormat(self: *const IWMWriter, dwInputNumber: u32, dwFormatNumber: u32, pProps: ?*?*IWMInputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputFormat(self, dwInputNumber, dwFormatNumber, pProps);
+    pub fn GetCodecFormatDesc(self: *const IWMCodecInfo2, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig, wszDesc: [*:0]u16, pcchDesc: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecFormatDesc(self, guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig, wszDesc, pcchDesc);
     }
-    pub fn BeginWriting(self: *const IWMWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginWriting(self);
+};
+
+const IID_IWMCodecInfo3_Value = Guid.initString("7e51f487-4d93-4f98-8ab4-27d0565adc51");
+pub const IID_IWMCodecInfo3 = &IID_IWMCodecInfo3_Value;
+pub const IWMCodecInfo3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMCodecInfo2.VTable,
+        GetCodecFormatProp: *const fn(
+            self: *const IWMCodecInfo3,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            dwFormatIndex: u32,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pdwSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCodecProp: *const fn(
+            self: *const IWMCodecInfo3,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pdwSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetCodecEnumerationSetting: *const fn(
+            self: *const IWMCodecInfo3,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            pszName: ?[*:0]const u16,
+            Type: WMT_ATTR_DATATYPE,
+            pValue: [*:0]const u8,
+            dwSize: u32,
+        ) callconv(.winapi) HRESULT,
+        GetCodecEnumerationSetting: *const fn(
+            self: *const IWMCodecInfo3,
+            guidType: ?*const Guid,
+            dwCodecIndex: u32,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pdwSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMCodecInfo2: IWMCodecInfo2,
+    IWMCodecInfo: IWMCodecInfo,
+    IUnknown: IUnknown,
+    pub fn GetCodecFormatProp(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecFormatProp(self, guidType, dwCodecIndex, dwFormatIndex, pszName, pType, pValue, pdwSize);
     }
-    pub fn EndWriting(self: *const IWMWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.EndWriting(self);
+    pub fn GetCodecProp(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecProp(self, guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
     }
-    pub fn AllocateSample(self: *const IWMWriter, dwSampleSize: u32, ppSample: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocateSample(self, dwSampleSize, ppSample);
+    pub fn SetCodecEnumerationSetting(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, dwSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCodecEnumerationSetting(self, guidType, dwCodecIndex, pszName, Type, pValue, dwSize);
     }
-    pub fn WriteSample(self: *const IWMWriter, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteSample(self, dwInputNum, cnsSampleTime, dwFlags, pSample);
+    pub fn GetCodecEnumerationSetting(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecEnumerationSetting(self, guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
     }
-    pub fn Flush(self: *const IWMWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.Flush(self);
+};
+
+const IID_IWMCredentialCallback_Value = Guid.initString("342e0eb7-e651-450c-975b-2ace2c90c48e");
+pub const IID_IWMCredentialCallback = &IID_IWMCredentialCallback_Value;
+pub const IWMCredentialCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AcquireCredentials: *const fn(
+            self: *const IWMCredentialCallback,
+            pwszRealm: ?PWSTR,
+            pwszSite: ?PWSTR,
+            pwszUser: [*:0]u16,
+            cchUser: u32,
+            pwszPassword: [*:0]u16,
+            cchPassword: u32,
+            hrStatus: HRESULT,
+            pdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AcquireCredentials(self: *const IWMCredentialCallback, pwszRealm: ?PWSTR, pwszSite: ?PWSTR, pwszUser: [*:0]u16, cchUser: u32, pwszPassword: [*:0]u16, cchPassword: u32, hrStatus: HRESULT, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AcquireCredentials(self, pwszRealm, pwszSite, pwszUser, cchUser, pwszPassword, cchPassword, hrStatus, pdwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWMDeviceRegistration_Value = Guid.initString("f6211f03-8d21-4e94-93e6-8510805f2d99");
+pub const IID_IWMDeviceRegistration = &IID_IWMDeviceRegistration_Value;
+pub const IWMDeviceRegistration = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterDevice: *const fn(
+            self: *const IWMDeviceRegistration,
+            dwRegisterType: u32,
+            pbCertificate: [*:0]u8,
+            cbCertificate: u32,
+            SerialNumber: DRM_VAL16,
+            ppDevice: ?*?*IWMRegisteredDevice,
+        ) callconv(.winapi) HRESULT,
+        UnregisterDevice: *const fn(
+            self: *const IWMDeviceRegistration,
+            dwRegisterType: u32,
+            pbCertificate: [*:0]u8,
+            cbCertificate: u32,
+            SerialNumber: DRM_VAL16,
+        ) callconv(.winapi) HRESULT,
+        GetRegistrationStats: *const fn(
+            self: *const IWMDeviceRegistration,
+            dwRegisterType: u32,
+            pcRegisteredDevices: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetFirstRegisteredDevice: *const fn(
+            self: *const IWMDeviceRegistration,
+            dwRegisterType: u32,
+            ppDevice: ?*?*IWMRegisteredDevice,
+        ) callconv(.winapi) HRESULT,
+        GetNextRegisteredDevice: *const fn(
+            self: *const IWMDeviceRegistration,
+            ppDevice: ?*?*IWMRegisteredDevice,
+        ) callconv(.winapi) HRESULT,
+        GetRegisteredDeviceByID: *const fn(
+            self: *const IWMDeviceRegistration,
+            dwRegisterType: u32,
+            pbCertificate: [*:0]u8,
+            cbCertificate: u32,
+            SerialNumber: DRM_VAL16,
+            ppDevice: ?*?*IWMRegisteredDevice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterDevice(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
+    }
+    pub fn UnregisterDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterDevice(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber);
+    }
+    pub fn GetRegistrationStats(self: *const IWMDeviceRegistration, dwRegisterType: u32, pcRegisteredDevices: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRegistrationStats(self, dwRegisterType, pcRegisteredDevices);
+    }
+    pub fn GetFirstRegisteredDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFirstRegisteredDevice(self, dwRegisterType, ppDevice);
+    }
+    pub fn GetNextRegisteredDevice(self: *const IWMDeviceRegistration, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextRegisteredDevice(self, ppDevice);
+    }
+    pub fn GetRegisteredDeviceByID(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRegisteredDeviceByID(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWMDRMEditor_Value = Guid.initString("ff130ebc-a6c3-42a6-b401-c3382c3e08b3");
+pub const IID_IWMDRMEditor = &IID_IWMDRMEditor_Value;
+pub const IWMDRMEditor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDRMProperty: *const fn(
+            self: *const IWMDRMEditor,
+            pwstrName: ?[*:0]const u16,
+            pdwType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pcbLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDRMProperty(self: *const IWMDRMEditor, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDRMProperty(self, pwstrName, pdwType, pValue, pcbLength);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWMDRMMessageParser_Value = Guid.initString("a73a0072-25a0-4c99-b4a5-ede8101a6c39");
+pub const IID_IWMDRMMessageParser = &IID_IWMDRMMessageParser_Value;
+pub const IWMDRMMessageParser = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParseRegistrationReqMsg: *const fn(
+            self: *const IWMDRMMessageParser,
+            pbRegistrationReqMsg: [*:0]u8,
+            cbRegistrationReqMsg: u32,
+            ppDeviceCert: ?*?*INSSBuffer,
+            pDeviceSerialNumber: ?*DRM_VAL16,
+        ) callconv(.winapi) HRESULT,
+        ParseLicenseRequestMsg: *const fn(
+            self: *const IWMDRMMessageParser,
+            pbLicenseRequestMsg: [*:0]u8,
+            cbLicenseRequestMsg: u32,
+            ppDeviceCert: ?*?*INSSBuffer,
+            pDeviceSerialNumber: ?*DRM_VAL16,
+            pbstrAction: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ParseRegistrationReqMsg(self: *const IWMDRMMessageParser, pbRegistrationReqMsg: [*:0]u8, cbRegistrationReqMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16) callconv(.@"inline") HRESULT {
+        return self.vtable.ParseRegistrationReqMsg(self, pbRegistrationReqMsg, cbRegistrationReqMsg, ppDeviceCert, pDeviceSerialNumber);
+    }
+    pub fn ParseLicenseRequestMsg(self: *const IWMDRMMessageParser, pbLicenseRequestMsg: [*:0]u8, cbLicenseRequestMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16, pbstrAction: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ParseLicenseRequestMsg(self, pbLicenseRequestMsg, cbLicenseRequestMsg, ppDeviceCert, pDeviceSerialNumber, pbstrAction);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWMDRMReader_Value = Guid.initString("d2827540-3ee7-432c-b14c-dc17f085d3b3");
+pub const IID_IWMDRMReader = &IID_IWMDRMReader_Value;
+pub const IWMDRMReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AcquireLicense: *const fn(
+            self: *const IWMDRMReader,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        CancelLicenseAcquisition: *const fn(
+            self: *const IWMDRMReader,
+        ) callconv(.winapi) HRESULT,
+        Individualize: *const fn(
+            self: *const IWMDRMReader,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        CancelIndividualization: *const fn(
+            self: *const IWMDRMReader,
+        ) callconv(.winapi) HRESULT,
+        MonitorLicenseAcquisition: *const fn(
+            self: *const IWMDRMReader,
+        ) callconv(.winapi) HRESULT,
+        CancelMonitorLicenseAcquisition: *const fn(
+            self: *const IWMDRMReader,
+        ) callconv(.winapi) HRESULT,
+        SetDRMProperty: *const fn(
+            self: *const IWMDRMReader,
+            pwstrName: ?[*:0]const u16,
+            dwType: WMT_ATTR_DATATYPE,
+            pValue: [*:0]const u8,
+            cbLength: u16,
+        ) callconv(.winapi) HRESULT,
+        GetDRMProperty: *const fn(
+            self: *const IWMDRMReader,
+            pwstrName: ?[*:0]const u16,
+            pdwType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pcbLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AcquireLicense(self: *const IWMDRMReader, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AcquireLicense(self, dwFlags);
+    }
+    pub fn CancelLicenseAcquisition(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelLicenseAcquisition(self);
+    }
+    pub fn Individualize(self: *const IWMDRMReader, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Individualize(self, dwFlags);
+    }
+    pub fn CancelIndividualization(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelIndividualization(self);
+    }
+    pub fn MonitorLicenseAcquisition(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
+        return self.vtable.MonitorLicenseAcquisition(self);
+    }
+    pub fn CancelMonitorLicenseAcquisition(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelMonitorLicenseAcquisition(self);
+    }
+    pub fn SetDRMProperty(self: *const IWMDRMReader, pwstrName: ?[*:0]const u16, dwType: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDRMProperty(self, pwstrName, dwType, pValue, cbLength);
+    }
+    pub fn GetDRMProperty(self: *const IWMDRMReader, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDRMProperty(self, pwstrName, pdwType, pValue, pcbLength);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWMDRMReader2_Value = Guid.initString("befe7a75-9f1d-4075-b9d9-a3c37bda49a0");
+pub const IID_IWMDRMReader2 = &IID_IWMDRMReader2_Value;
+pub const IWMDRMReader2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDRMReader.VTable,
+        SetEvaluateOutputLevelLicenses: *const fn(
+            self: *const IWMDRMReader2,
+            fEvaluate: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetPlayOutputLevels: *const fn(
+            self: *const IWMDRMReader2,
+            pPlayOPL: [*]DRM_PLAY_OPL,
+            pcbLength: ?*u32,
+            pdwMinAppComplianceLevel: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCopyOutputLevels: *const fn(
+            self: *const IWMDRMReader2,
+            pCopyOPL: [*]DRM_COPY_OPL,
+            pcbLength: ?*u32,
+            pdwMinAppComplianceLevel: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        TryNextLicense: *const fn(
+            self: *const IWMDRMReader2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDRMReader: IWMDRMReader,
+    IUnknown: IUnknown,
+    pub fn SetEvaluateOutputLevelLicenses(self: *const IWMDRMReader2, fEvaluate: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEvaluateOutputLevelLicenses(self, fEvaluate);
+    }
+    pub fn GetPlayOutputLevels(self: *const IWMDRMReader2, pPlayOPL: [*]DRM_PLAY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPlayOutputLevels(self, pPlayOPL, pcbLength, pdwMinAppComplianceLevel);
+    }
+    pub fn GetCopyOutputLevels(self: *const IWMDRMReader2, pCopyOPL: [*]DRM_COPY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCopyOutputLevels(self, pCopyOPL, pcbLength, pdwMinAppComplianceLevel);
+    }
+    pub fn TryNextLicense(self: *const IWMDRMReader2) callconv(.@"inline") HRESULT {
+        return self.vtable.TryNextLicense(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWMDRMReader3_Value = Guid.initString("e08672de-f1e7-4ff4-a0a3-fc4b08e4caf8");
+pub const IID_IWMDRMReader3 = &IID_IWMDRMReader3_Value;
+pub const IWMDRMReader3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDRMReader2.VTable,
+        GetInclusionList: *const fn(
+            self: *const IWMDRMReader3,
+            ppGuids: ?*?*Guid,
+            pcGuids: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDRMReader2: IWMDRMReader2,
+    IWMDRMReader: IWMDRMReader,
+    IUnknown: IUnknown,
+    pub fn GetInclusionList(self: *const IWMDRMReader3, ppGuids: ?*?*Guid, pcGuids: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInclusionList(self, ppGuids, pcGuids);
+    }
+};
+
+const IID_IWMDRMTranscryptionManager_Value = Guid.initString("b1a887b2-a4f0-407a-b02e-efbd23bbecdf");
+pub const IID_IWMDRMTranscryptionManager = &IID_IWMDRMTranscryptionManager_Value;
+pub const IWMDRMTranscryptionManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateTranscryptor: *const fn(
+            self: *const IWMDRMTranscryptionManager,
+            ppTranscryptor: ?*?*IWMDRMTranscryptor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateTranscryptor(self: *const IWMDRMTranscryptionManager, ppTranscryptor: ?*?*IWMDRMTranscryptor) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTranscryptor(self, ppTranscryptor);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWMDRMTranscryptor_Value = Guid.initString("69059850-6e6f-4bb2-806f-71863ddfc471");
+pub const IID_IWMDRMTranscryptor = &IID_IWMDRMTranscryptor_Value;
+pub const IWMDRMTranscryptor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IWMDRMTranscryptor,
+            bstrFileName: ?BSTR,
+            pbLicenseRequestMsg: ?*u8,
+            cbLicenseRequestMsg: u32,
+            ppLicenseResponseMsg: ?*?*INSSBuffer,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        Seek: *const fn(
+            self: *const IWMDRMTranscryptor,
+            hnsTime: u64,
+        ) callconv(.winapi) HRESULT,
+        Read: *const fn(
+            self: *const IWMDRMTranscryptor,
+            pbData: ?*u8,
+            pcbData: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IWMDRMTranscryptor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWMDRMTranscryptor, bstrFileName: ?BSTR, pbLicenseRequestMsg: ?*u8, cbLicenseRequestMsg: u32, ppLicenseResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, bstrFileName, pbLicenseRequestMsg, cbLicenseRequestMsg, ppLicenseResponseMsg, pCallback, pvContext);
+    }
+    pub fn Seek(self: *const IWMDRMTranscryptor, hnsTime: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.Seek(self, hnsTime);
+    }
+    pub fn Read(self: *const IWMDRMTranscryptor, pbData: ?*u8, pcbData: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Read(self, pbData, pcbData);
+    }
+    pub fn Close(self: *const IWMDRMTranscryptor) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+const IID_IWMDRMTranscryptor2_Value = Guid.initString("e0da439f-d331-496a-bece-18e5bac5dd23");
+pub const IID_IWMDRMTranscryptor2 = &IID_IWMDRMTranscryptor2_Value;
+pub const IWMDRMTranscryptor2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMDRMTranscryptor.VTable,
+        SeekEx: *const fn(
+            self: *const IWMDRMTranscryptor2,
+            cnsStartTime: u64,
+            cnsDuration: u64,
+            flRate: f32,
+            fIncludeFileHeader: BOOL,
+        ) callconv(.winapi) HRESULT,
+        ZeroAdjustTimestamps: *const fn(
+            self: *const IWMDRMTranscryptor2,
+            fEnable: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetSeekStartTime: *const fn(
+            self: *const IWMDRMTranscryptor2,
+            pcnsTime: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetDuration: *const fn(
+            self: *const IWMDRMTranscryptor2,
+            pcnsDuration: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMDRMTranscryptor: IWMDRMTranscryptor,
+    IUnknown: IUnknown,
+    pub fn SeekEx(self: *const IWMDRMTranscryptor2, cnsStartTime: u64, cnsDuration: u64, flRate: f32, fIncludeFileHeader: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SeekEx(self, cnsStartTime, cnsDuration, flRate, fIncludeFileHeader);
+    }
+    pub fn ZeroAdjustTimestamps(self: *const IWMDRMTranscryptor2, fEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ZeroAdjustTimestamps(self, fEnable);
+    }
+    pub fn GetSeekStartTime(self: *const IWMDRMTranscryptor2, pcnsTime: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSeekStartTime(self, pcnsTime);
+    }
+    pub fn GetDuration(self: *const IWMDRMTranscryptor2, pcnsDuration: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDuration(self, pcnsDuration);
     }
 };
 
@@ -1425,14 +1427,6 @@ pub const IWMDRMWriter = extern union {
     }
 };
 
-pub const WMDRM_IMPORT_INIT_STRUCT = extern struct {
-    dwVersion: u32,
-    cbEncryptedSessionKeyMessage: u32,
-    pbEncryptedSessionKeyMessage: ?*u8,
-    cbEncryptedKeyMessage: u32,
-    pbEncryptedKeyMessage: ?*u8,
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMWriter2_Value = Guid.initString("38ee7a94-40e2-4e10-aa3f-33fd3210ed5b");
 pub const IID_IWMDRMWriter2 = &IID_IWMDRMWriter2_Value;
@@ -1474,619 +1468,21 @@ pub const IWMDRMWriter3 = extern union {
     }
 };
 
-const IID_IWMInputMediaProps_Value = Guid.initString("96406bd5-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMInputMediaProps = &IID_IWMInputMediaProps_Value;
-pub const IWMInputMediaProps = extern union {
-    pub const VTable = extern struct {
-        base: IWMMediaProps.VTable,
-        GetConnectionName: *const fn(
-            self: *const IWMInputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetGroupName: *const fn(
-            self: *const IWMInputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMMediaProps: IWMMediaProps,
-    IUnknown: IUnknown,
-    pub fn GetConnectionName(self: *const IWMInputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectionName(self, pwszName, pcchName);
-    }
-    pub fn GetGroupName(self: *const IWMInputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGroupName(self, pwszName, pcchName);
-    }
-};
-
-const IID_IWMPropertyVault_Value = Guid.initString("72995a79-5090-42a4-9c8c-d9d0b6d34be5");
-pub const IID_IWMPropertyVault = &IID_IWMPropertyVault_Value;
-pub const IWMPropertyVault = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPropertyCount: *const fn(
-            self: *const IWMPropertyVault,
-            pdwCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyByName: *const fn(
-            self: *const IWMPropertyVault,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const IWMPropertyVault,
-            pszName: ?[*:0]const u16,
-            pType: WMT_ATTR_DATATYPE,
-            pValue: ?*u8,
-            dwSize: u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyByIndex: *const fn(
-            self: *const IWMPropertyVault,
-            dwIndex: u32,
-            pszName: [*:0]u16,
-            pdwNameLen: ?*u32,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        CopyPropertiesFrom: *const fn(
-            self: *const IWMPropertyVault,
-            pIWMPropertyVault: ?*IWMPropertyVault,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IWMPropertyVault,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPropertyCount(self: *const IWMPropertyVault, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyCount(self, pdwCount);
-    }
-    pub fn GetPropertyByName(self: *const IWMPropertyVault, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyByName(self, pszName, pType, pValue, pdwSize);
-    }
-    pub fn SetProperty(self: *const IWMPropertyVault, pszName: ?[*:0]const u16, pType: WMT_ATTR_DATATYPE, pValue: ?*u8, dwSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, pszName, pType, pValue, dwSize);
-    }
-    pub fn GetPropertyByIndex(self: *const IWMPropertyVault, dwIndex: u32, pszName: [*:0]u16, pdwNameLen: ?*u32, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyByIndex(self, dwIndex, pszName, pdwNameLen, pType, pValue, pdwSize);
-    }
-    pub fn CopyPropertiesFrom(self: *const IWMPropertyVault, pIWMPropertyVault: ?*IWMPropertyVault) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyPropertiesFrom(self, pIWMPropertyVault);
-    }
-    pub fn Clear(self: *const IWMPropertyVault) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-};
-
-const IID_IWMIStreamProps_Value = Guid.initString("6816dad3-2b4b-4c8e-8149-874c3483a753");
-pub const IID_IWMIStreamProps = &IID_IWMIStreamProps_Value;
-pub const IWMIStreamProps = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperty: *const fn(
-            self: *const IWMIStreamProps,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProperty(self: *const IWMIStreamProps, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, pszName, pType, pValue, pdwSize);
-    }
-};
-
-const IID_IWMReader_Value = Guid.initString("96406bd6-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMReader = &IID_IWMReader_Value;
-pub const IWMReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IWMReader,
-            pwszURL: ?[*:0]const u16,
-            pCallback: ?*IWMReaderCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWMReader,
-        ) callconv(.winapi) HRESULT,
-        GetOutputCount: *const fn(
-            self: *const IWMReader,
-            pcOutputs: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetOutputProps: *const fn(
-            self: *const IWMReader,
-            dwOutputNum: u32,
-            ppOutput: ?*?*IWMOutputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        SetOutputProps: *const fn(
-            self: *const IWMReader,
-            dwOutputNum: u32,
-            pOutput: ?*IWMOutputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        GetOutputFormatCount: *const fn(
-            self: *const IWMReader,
-            dwOutputNumber: u32,
-            pcFormats: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetOutputFormat: *const fn(
-            self: *const IWMReader,
-            dwOutputNumber: u32,
-            dwFormatNumber: u32,
-            ppProps: ?*?*IWMOutputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        Start: *const fn(
-            self: *const IWMReader,
-            cnsStart: u64,
-            cnsDuration: u64,
-            fRate: f32,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Stop: *const fn(
-            self: *const IWMReader,
-        ) callconv(.winapi) HRESULT,
-        Pause: *const fn(
-            self: *const IWMReader,
-        ) callconv(.winapi) HRESULT,
-        Resume: *const fn(
-            self: *const IWMReader,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IWMReader, pwszURL: ?[*:0]const u16, pCallback: ?*IWMReaderCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, pwszURL, pCallback, pvContext);
-    }
-    pub fn Close(self: *const IWMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn GetOutputCount(self: *const IWMReader, pcOutputs: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputCount(self, pcOutputs);
-    }
-    pub fn GetOutputProps(self: *const IWMReader, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputProps(self, dwOutputNum, ppOutput);
-    }
-    pub fn SetOutputProps(self: *const IWMReader, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOutputProps(self, dwOutputNum, pOutput);
-    }
-    pub fn GetOutputFormatCount(self: *const IWMReader, dwOutputNumber: u32, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputFormatCount(self, dwOutputNumber, pcFormats);
-    }
-    pub fn GetOutputFormat(self: *const IWMReader, dwOutputNumber: u32, dwFormatNumber: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputFormat(self, dwOutputNumber, dwFormatNumber, ppProps);
-    }
-    pub fn Start(self: *const IWMReader, cnsStart: u64, cnsDuration: u64, fRate: f32, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self, cnsStart, cnsDuration, fRate, pvContext);
-    }
-    pub fn Stop(self: *const IWMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.Stop(self);
-    }
-    pub fn Pause(self: *const IWMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.Pause(self);
-    }
-    pub fn Resume(self: *const IWMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.Resume(self);
-    }
-};
-
-const IID_IWMSyncReader_Value = Guid.initString("9397f121-7705-4dc9-b049-98b698188414");
-pub const IID_IWMSyncReader = &IID_IWMSyncReader_Value;
-pub const IWMSyncReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IWMSyncReader,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWMSyncReader,
-        ) callconv(.winapi) HRESULT,
-        SetRange: *const fn(
-            self: *const IWMSyncReader,
-            cnsStartTime: u64,
-            cnsDuration: i64,
-        ) callconv(.winapi) HRESULT,
-        SetRangeByFrame: *const fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            qwFrameNumber: u64,
-            cFramesToRead: i64,
-        ) callconv(.winapi) HRESULT,
-        GetNextSample: *const fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            ppSample: ?*?*INSSBuffer,
-            pcnsSampleTime: ?*u64,
-            pcnsDuration: ?*u64,
-            pdwFlags: ?*u32,
-            pdwOutputNum: ?*u32,
-            pwStreamNum: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetStreamsSelected: *const fn(
-            self: *const IWMSyncReader,
-            cStreamCount: u16,
-            pwStreamNumbers: ?*u16,
-            pSelections: ?*WMT_STREAM_SELECTION,
-        ) callconv(.winapi) HRESULT,
-        GetStreamSelected: *const fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            pSelection: ?*WMT_STREAM_SELECTION,
-        ) callconv(.winapi) HRESULT,
-        SetReadStreamSamples: *const fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            fCompressed: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetReadStreamSamples: *const fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            pfCompressed: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetOutputSetting: *const fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetOutputSetting: *const fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(.winapi) HRESULT,
-        GetOutputCount: *const fn(
-            self: *const IWMSyncReader,
-            pcOutputs: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetOutputProps: *const fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            ppOutput: ?*?*IWMOutputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        SetOutputProps: *const fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pOutput: ?*IWMOutputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        GetOutputFormatCount: *const fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pcFormats: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetOutputFormat: *const fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            dwFormatNum: u32,
-            ppProps: ?*?*IWMOutputMediaProps,
-        ) callconv(.winapi) HRESULT,
-        GetOutputNumberForStream: *const fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            pdwOutputNum: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStreamNumberForOutput: *const fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pwStreamNum: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetMaxOutputSampleSize: *const fn(
-            self: *const IWMSyncReader,
-            dwOutput: u32,
-            pcbMax: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetMaxStreamSampleSize: *const fn(
-            self: *const IWMSyncReader,
-            wStream: u16,
-            pcbMax: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        OpenStream: *const fn(
-            self: *const IWMSyncReader,
-            pStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IWMSyncReader, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, pwszFilename);
-    }
-    pub fn Close(self: *const IWMSyncReader) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn SetRange(self: *const IWMSyncReader, cnsStartTime: u64, cnsDuration: i64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRange(self, cnsStartTime, cnsDuration);
-    }
-    pub fn SetRangeByFrame(self: *const IWMSyncReader, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRangeByFrame(self, wStreamNum, qwFrameNumber, cFramesToRead);
-    }
-    pub fn GetNextSample(self: *const IWMSyncReader, wStreamNum: u16, ppSample: ?*?*INSSBuffer, pcnsSampleTime: ?*u64, pcnsDuration: ?*u64, pdwFlags: ?*u32, pdwOutputNum: ?*u32, pwStreamNum: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextSample(self, wStreamNum, ppSample, pcnsSampleTime, pcnsDuration, pdwFlags, pdwOutputNum, pwStreamNum);
-    }
-    pub fn SetStreamsSelected(self: *const IWMSyncReader, cStreamCount: u16, pwStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStreamsSelected(self, cStreamCount, pwStreamNumbers, pSelections);
-    }
-    pub fn GetStreamSelected(self: *const IWMSyncReader, wStreamNum: u16, pSelection: ?*WMT_STREAM_SELECTION) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamSelected(self, wStreamNum, pSelection);
-    }
-    pub fn SetReadStreamSamples(self: *const IWMSyncReader, wStreamNum: u16, fCompressed: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReadStreamSamples(self, wStreamNum, fCompressed);
-    }
-    pub fn GetReadStreamSamples(self: *const IWMSyncReader, wStreamNum: u16, pfCompressed: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReadStreamSamples(self, wStreamNum, pfCompressed);
-    }
-    pub fn GetOutputSetting(self: *const IWMSyncReader, dwOutputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputSetting(self, dwOutputNum, pszName, pType, pValue, pcbLength);
-    }
-    pub fn SetOutputSetting(self: *const IWMSyncReader, dwOutputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOutputSetting(self, dwOutputNum, pszName, Type, pValue, cbLength);
-    }
-    pub fn GetOutputCount(self: *const IWMSyncReader, pcOutputs: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputCount(self, pcOutputs);
-    }
-    pub fn GetOutputProps(self: *const IWMSyncReader, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputProps(self, dwOutputNum, ppOutput);
-    }
-    pub fn SetOutputProps(self: *const IWMSyncReader, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOutputProps(self, dwOutputNum, pOutput);
-    }
-    pub fn GetOutputFormatCount(self: *const IWMSyncReader, dwOutputNum: u32, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputFormatCount(self, dwOutputNum, pcFormats);
-    }
-    pub fn GetOutputFormat(self: *const IWMSyncReader, dwOutputNum: u32, dwFormatNum: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputFormat(self, dwOutputNum, dwFormatNum, ppProps);
-    }
-    pub fn GetOutputNumberForStream(self: *const IWMSyncReader, wStreamNum: u16, pdwOutputNum: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputNumberForStream(self, wStreamNum, pdwOutputNum);
-    }
-    pub fn GetStreamNumberForOutput(self: *const IWMSyncReader, dwOutputNum: u32, pwStreamNum: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamNumberForOutput(self, dwOutputNum, pwStreamNum);
-    }
-    pub fn GetMaxOutputSampleSize(self: *const IWMSyncReader, dwOutput: u32, pcbMax: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxOutputSampleSize(self, dwOutput, pcbMax);
-    }
-    pub fn GetMaxStreamSampleSize(self: *const IWMSyncReader, wStream: u16, pcbMax: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxStreamSampleSize(self, wStream, pcbMax);
-    }
-    pub fn OpenStream(self: *const IWMSyncReader, pStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenStream(self, pStream);
-    }
-};
-
-const IID_IWMSyncReader2_Value = Guid.initString("faed3d21-1b6b-4af7-8cb6-3e189bbc187b");
-pub const IID_IWMSyncReader2 = &IID_IWMSyncReader2_Value;
-pub const IWMSyncReader2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMSyncReader.VTable,
-        SetRangeByTimecode: *const fn(
-            self: *const IWMSyncReader2,
-            wStreamNum: u16,
-            pStart: ?*WMT_TIMECODE_EXTENSION_DATA,
-            pEnd: ?*WMT_TIMECODE_EXTENSION_DATA,
-        ) callconv(.winapi) HRESULT,
-        SetRangeByFrameEx: *const fn(
-            self: *const IWMSyncReader2,
-            wStreamNum: u16,
-            qwFrameNumber: u64,
-            cFramesToRead: i64,
-            pcnsStartTime: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        SetAllocateForOutput: *const fn(
-            self: *const IWMSyncReader2,
-            dwOutputNum: u32,
-            pAllocator: ?*IWMReaderAllocatorEx,
-        ) callconv(.winapi) HRESULT,
-        GetAllocateForOutput: *const fn(
-            self: *const IWMSyncReader2,
-            dwOutputNum: u32,
-            ppAllocator: ?*?*IWMReaderAllocatorEx,
-        ) callconv(.winapi) HRESULT,
-        SetAllocateForStream: *const fn(
-            self: *const IWMSyncReader2,
-            wStreamNum: u16,
-            pAllocator: ?*IWMReaderAllocatorEx,
-        ) callconv(.winapi) HRESULT,
-        GetAllocateForStream: *const fn(
-            self: *const IWMSyncReader2,
-            dwSreamNum: u16,
-            ppAllocator: ?*?*IWMReaderAllocatorEx,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMSyncReader: IWMSyncReader,
-    IUnknown: IUnknown,
-    pub fn SetRangeByTimecode(self: *const IWMSyncReader2, wStreamNum: u16, pStart: ?*WMT_TIMECODE_EXTENSION_DATA, pEnd: ?*WMT_TIMECODE_EXTENSION_DATA) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRangeByTimecode(self, wStreamNum, pStart, pEnd);
-    }
-    pub fn SetRangeByFrameEx(self: *const IWMSyncReader2, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64, pcnsStartTime: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRangeByFrameEx(self, wStreamNum, qwFrameNumber, cFramesToRead, pcnsStartTime);
-    }
-    pub fn SetAllocateForOutput(self: *const IWMSyncReader2, dwOutputNum: u32, pAllocator: ?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllocateForOutput(self, dwOutputNum, pAllocator);
-    }
-    pub fn GetAllocateForOutput(self: *const IWMSyncReader2, dwOutputNum: u32, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllocateForOutput(self, dwOutputNum, ppAllocator);
-    }
-    pub fn SetAllocateForStream(self: *const IWMSyncReader2, wStreamNum: u16, pAllocator: ?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllocateForStream(self, wStreamNum, pAllocator);
-    }
-    pub fn GetAllocateForStream(self: *const IWMSyncReader2, dwSreamNum: u16, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllocateForStream(self, dwSreamNum, ppAllocator);
-    }
-};
-
-const IID_IWMOutputMediaProps_Value = Guid.initString("96406bd7-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMOutputMediaProps = &IID_IWMOutputMediaProps_Value;
-pub const IWMOutputMediaProps = extern union {
-    pub const VTable = extern struct {
-        base: IWMMediaProps.VTable,
-        GetStreamGroupName: *const fn(
-            self: *const IWMOutputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetConnectionName: *const fn(
-            self: *const IWMOutputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMMediaProps: IWMMediaProps,
-    IUnknown: IUnknown,
-    pub fn GetStreamGroupName(self: *const IWMOutputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamGroupName(self, pwszName, pcchName);
-    }
-    pub fn GetConnectionName(self: *const IWMOutputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectionName(self, pwszName, pcchName);
-    }
-};
-
-const IID_IWMStatusCallback_Value = Guid.initString("6d7cdc70-9888-11d3-8edc-00c04f6109cf");
-pub const IID_IWMStatusCallback = &IID_IWMStatusCallback_Value;
-pub const IWMStatusCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnStatus: *const fn(
-            self: *const IWMStatusCallback,
-            Status: WMT_STATUS,
-            hr: HRESULT,
-            dwType: WMT_ATTR_DATATYPE,
-            pValue: ?*u8,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnStatus(self: *const IWMStatusCallback, Status: WMT_STATUS, hr: HRESULT, dwType: WMT_ATTR_DATATYPE, pValue: ?*u8, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.OnStatus(self, Status, hr, dwType, pValue, pvContext);
-    }
-};
-
-const IID_IWMReaderCallback_Value = Guid.initString("96406bd8-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMReaderCallback = &IID_IWMReaderCallback_Value;
-pub const IWMReaderCallback = extern union {
-    pub const VTable = extern struct {
-        base: IWMStatusCallback.VTable,
-        OnSample: *const fn(
-            self: *const IWMReaderCallback,
-            dwOutputNum: u32,
-            cnsSampleTime: u64,
-            cnsSampleDuration: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMStatusCallback: IWMStatusCallback,
-    IUnknown: IUnknown,
-    pub fn OnSample(self: *const IWMReaderCallback, dwOutputNum: u32, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSample(self, dwOutputNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
-    }
-};
-
-const IID_IWMCredentialCallback_Value = Guid.initString("342e0eb7-e651-450c-975b-2ace2c90c48e");
-pub const IID_IWMCredentialCallback = &IID_IWMCredentialCallback_Value;
-pub const IWMCredentialCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AcquireCredentials: *const fn(
-            self: *const IWMCredentialCallback,
-            pwszRealm: ?PWSTR,
-            pwszSite: ?PWSTR,
-            pwszUser: [*:0]u16,
-            cchUser: u32,
-            pwszPassword: [*:0]u16,
-            cchPassword: u32,
-            hrStatus: HRESULT,
-            pdwFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AcquireCredentials(self: *const IWMCredentialCallback, pwszRealm: ?PWSTR, pwszSite: ?PWSTR, pwszUser: [*:0]u16, cchUser: u32, pwszPassword: [*:0]u16, cchPassword: u32, hrStatus: HRESULT, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AcquireCredentials(self, pwszRealm, pwszSite, pwszUser, cchUser, pwszPassword, cchPassword, hrStatus, pdwFlags);
-    }
-};
-
-const IID_IWMMetadataEditor_Value = Guid.initString("96406bd9-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMMetadataEditor = &IID_IWMMetadataEditor_Value;
-pub const IWMMetadataEditor = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IWMMetadataEditor,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWMMetadataEditor,
-        ) callconv(.winapi) HRESULT,
-        Flush: *const fn(
-            self: *const IWMMetadataEditor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IWMMetadataEditor, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, pwszFilename);
-    }
-    pub fn Close(self: *const IWMMetadataEditor) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn Flush(self: *const IWMMetadataEditor) callconv(.@"inline") HRESULT {
-        return self.vtable.Flush(self);
-    }
-};
-
-const IID_IWMMetadataEditor2_Value = Guid.initString("203cffe3-2e18-4fdf-b59d-6e71530534cf");
-pub const IID_IWMMetadataEditor2 = &IID_IWMMetadataEditor2_Value;
-pub const IWMMetadataEditor2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMMetadataEditor.VTable,
-        OpenEx: *const fn(
-            self: *const IWMMetadataEditor2,
-            pwszFilename: ?[*:0]const u16,
-            dwDesiredAccess: u32,
-            dwShareMode: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMMetadataEditor: IWMMetadataEditor,
-    IUnknown: IUnknown,
-    pub fn OpenEx(self: *const IWMMetadataEditor2, pwszFilename: ?[*:0]const u16, dwDesiredAccess: u32, dwShareMode: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenEx(self, pwszFilename, dwDesiredAccess, dwShareMode);
-    }
-};
-
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IWMDRMEditor_Value = Guid.initString("ff130ebc-a6c3-42a6-b401-c3382c3e08b3");
-pub const IID_IWMDRMEditor = &IID_IWMDRMEditor_Value;
-pub const IWMDRMEditor = extern union {
+const IID_IWMGetSecureChannel_Value = Guid.initString("94bc0598-c3d2-11d3-bedf-00c04f612986");
+pub const IID_IWMGetSecureChannel = &IID_IWMGetSecureChannel_Value;
+pub const IWMGetSecureChannel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDRMProperty: *const fn(
-            self: *const IWMDRMEditor,
-            pwstrName: ?[*:0]const u16,
-            pdwType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
+        GetPeerSecureChannelInterface: *const fn(
+            self: *const IWMGetSecureChannel,
+            ppPeer: ?*?*IWMSecureChannel,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDRMProperty(self: *const IWMDRMEditor, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDRMProperty(self, pwstrName, pdwType, pValue, pcbLength);
+    pub fn GetPeerSecureChannelInterface(self: *const IWMGetSecureChannel, ppPeer: ?*?*IWMSecureChannel) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPeerSecureChannelInterface(self, ppPeer);
     }
 };
 
@@ -2331,110 +1727,548 @@ pub const IWMHeaderInfo3 = extern union {
     }
 };
 
-const IID_IWMProfileManager_Value = Guid.initString("d16679f2-6ca0-472d-8d31-2f5d55aee155");
-pub const IID_IWMProfileManager = &IID_IWMProfileManager_Value;
-pub const IWMProfileManager = extern union {
+const IID_IWMImageInfo_Value = Guid.initString("9f0aa3b6-7267-4d89-88f2-ba915aa5c4c6");
+pub const IID_IWMImageInfo = &IID_IWMImageInfo_Value;
+pub const IWMImageInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateEmptyProfile: *const fn(
-            self: *const IWMProfileManager,
-            dwVersion: WMT_VERSION,
-            ppProfile: ?*?*IWMProfile,
+        GetImageCount: *const fn(
+            self: *const IWMImageInfo,
+            pcImages: ?*u32,
         ) callconv(.winapi) HRESULT,
-        LoadProfileByID: *const fn(
-            self: *const IWMProfileManager,
-            guidProfile: ?*const Guid,
-            ppProfile: ?*?*IWMProfile,
-        ) callconv(.winapi) HRESULT,
-        LoadProfileByData: *const fn(
-            self: *const IWMProfileManager,
-            pwszProfile: ?[*:0]const u16,
-            ppProfile: ?*?*IWMProfile,
-        ) callconv(.winapi) HRESULT,
-        SaveProfile: *const fn(
-            self: *const IWMProfileManager,
-            pIWMProfile: ?*IWMProfile,
-            pwszProfile: ?PWSTR,
-            pdwLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSystemProfileCount: *const fn(
-            self: *const IWMProfileManager,
-            pcProfiles: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        LoadSystemProfile: *const fn(
-            self: *const IWMProfileManager,
-            dwProfileIndex: u32,
-            ppProfile: ?*?*IWMProfile,
+        GetImage: *const fn(
+            self: *const IWMImageInfo,
+            wIndex: u32,
+            pcchMIMEType: ?*u16,
+            pwszMIMEType: [*:0]u16,
+            pcchDescription: ?*u16,
+            pwszDescription: [*:0]u16,
+            pImageType: ?*u16,
+            pcbImageData: ?*u32,
+            pbImageData: [*:0]u8,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateEmptyProfile(self: *const IWMProfileManager, dwVersion: WMT_VERSION, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEmptyProfile(self, dwVersion, ppProfile);
+    pub fn GetImageCount(self: *const IWMImageInfo, pcImages: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetImageCount(self, pcImages);
     }
-    pub fn LoadProfileByID(self: *const IWMProfileManager, guidProfile: ?*const Guid, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadProfileByID(self, guidProfile, ppProfile);
-    }
-    pub fn LoadProfileByData(self: *const IWMProfileManager, pwszProfile: ?[*:0]const u16, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadProfileByData(self, pwszProfile, ppProfile);
-    }
-    pub fn SaveProfile(self: *const IWMProfileManager, pIWMProfile: ?*IWMProfile, pwszProfile: ?PWSTR, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveProfile(self, pIWMProfile, pwszProfile, pdwLength);
-    }
-    pub fn GetSystemProfileCount(self: *const IWMProfileManager, pcProfiles: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSystemProfileCount(self, pcProfiles);
-    }
-    pub fn LoadSystemProfile(self: *const IWMProfileManager, dwProfileIndex: u32, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadSystemProfile(self, dwProfileIndex, ppProfile);
+    pub fn GetImage(self: *const IWMImageInfo, wIndex: u32, pcchMIMEType: ?*u16, pwszMIMEType: [*:0]u16, pcchDescription: ?*u16, pwszDescription: [*:0]u16, pImageType: ?*u16, pcbImageData: ?*u32, pbImageData: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetImage(self, wIndex, pcchMIMEType, pwszMIMEType, pcchDescription, pwszDescription, pImageType, pcbImageData, pbImageData);
     }
 };
 
-const IID_IWMProfileManager2_Value = Guid.initString("7a924e51-73c1-494d-8019-23d37ed9b89a");
-pub const IID_IWMProfileManager2 = &IID_IWMProfileManager2_Value;
-pub const IWMProfileManager2 = extern union {
+const IID_IWMIndexer_Value = Guid.initString("6d7cdc71-9888-11d3-8edc-00c04f6109cf");
+pub const IID_IWMIndexer = &IID_IWMIndexer_Value;
+pub const IWMIndexer = extern union {
     pub const VTable = extern struct {
-        base: IWMProfileManager.VTable,
-        GetSystemProfileVersion: *const fn(
-            self: *const IWMProfileManager2,
-            pdwVersion: ?*WMT_VERSION,
+        base: IUnknown.VTable,
+        StartIndexing: *const fn(
+            self: *const IWMIndexer,
+            pwszURL: ?[*:0]const u16,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
-        SetSystemProfileVersion: *const fn(
-            self: *const IWMProfileManager2,
-            dwVersion: WMT_VERSION,
+        Cancel: *const fn(
+            self: *const IWMIndexer,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWMProfileManager: IWMProfileManager,
     IUnknown: IUnknown,
-    pub fn GetSystemProfileVersion(self: *const IWMProfileManager2, pdwVersion: ?*WMT_VERSION) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSystemProfileVersion(self, pdwVersion);
+    pub fn StartIndexing(self: *const IWMIndexer, pwszURL: ?[*:0]const u16, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.StartIndexing(self, pwszURL, pCallback, pvContext);
     }
-    pub fn SetSystemProfileVersion(self: *const IWMProfileManager2, dwVersion: WMT_VERSION) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSystemProfileVersion(self, dwVersion);
+    pub fn Cancel(self: *const IWMIndexer) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
     }
 };
 
-const IID_IWMProfileManagerLanguage_Value = Guid.initString("ba4dcc78-7ee0-4ab8-b27a-dbce8bc51454");
-pub const IID_IWMProfileManagerLanguage = &IID_IWMProfileManagerLanguage_Value;
-pub const IWMProfileManagerLanguage = extern union {
+const IID_IWMIndexer2_Value = Guid.initString("b70f1e42-6255-4df0-a6b9-02b212d9e2bb");
+pub const IID_IWMIndexer2 = &IID_IWMIndexer2_Value;
+pub const IWMIndexer2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMIndexer.VTable,
+        Configure: *const fn(
+            self: *const IWMIndexer2,
+            wStreamNum: u16,
+            nIndexerType: WMT_INDEXER_TYPE,
+            pvInterval: ?*anyopaque,
+            pvIndexType: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMIndexer: IWMIndexer,
+    IUnknown: IUnknown,
+    pub fn Configure(self: *const IWMIndexer2, wStreamNum: u16, nIndexerType: WMT_INDEXER_TYPE, pvInterval: ?*anyopaque, pvIndexType: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Configure(self, wStreamNum, nIndexerType, pvInterval, pvIndexType);
+    }
+};
+
+const IID_IWMInputMediaProps_Value = Guid.initString("96406bd5-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMInputMediaProps = &IID_IWMInputMediaProps_Value;
+pub const IWMInputMediaProps = extern union {
+    pub const VTable = extern struct {
+        base: IWMMediaProps.VTable,
+        GetConnectionName: *const fn(
+            self: *const IWMInputMediaProps,
+            pwszName: [*:0]u16,
+            pcchName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetGroupName: *const fn(
+            self: *const IWMInputMediaProps,
+            pwszName: [*:0]u16,
+            pcchName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMMediaProps: IWMMediaProps,
+    IUnknown: IUnknown,
+    pub fn GetConnectionName(self: *const IWMInputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectionName(self, pwszName, pcchName);
+    }
+    pub fn GetGroupName(self: *const IWMInputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGroupName(self, pwszName, pcchName);
+    }
+};
+
+const IID_IWMIStreamProps_Value = Guid.initString("6816dad3-2b4b-4c8e-8149-874c3483a753");
+pub const IID_IWMIStreamProps = &IID_IWMIStreamProps_Value;
+pub const IWMIStreamProps = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetUserLanguageID: *const fn(
-            self: *const IWMProfileManagerLanguage,
-            wLangID: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetUserLanguageID: *const fn(
-            self: *const IWMProfileManagerLanguage,
-            wLangID: u16,
+        GetProperty: *const fn(
+            self: *const IWMIStreamProps,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pdwSize: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUserLanguageID(self: *const IWMProfileManagerLanguage, wLangID: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUserLanguageID(self, wLangID);
+    pub fn GetProperty(self: *const IWMIStreamProps, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, pszName, pType, pValue, pdwSize);
     }
-    pub fn SetUserLanguageID(self: *const IWMProfileManagerLanguage, wLangID: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetUserLanguageID(self, wLangID);
+};
+
+const IID_IWMLanguageList_Value = Guid.initString("df683f00-2d49-4d8e-92b7-fb19f6a0dc57");
+pub const IID_IWMLanguageList = &IID_IWMLanguageList_Value;
+pub const IWMLanguageList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLanguageCount: *const fn(
+            self: *const IWMLanguageList,
+            pwCount: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetLanguageDetails: *const fn(
+            self: *const IWMLanguageList,
+            wIndex: u16,
+            pwszLanguageString: [*:0]u16,
+            pcchLanguageStringLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        AddLanguageByRFC1766String: *const fn(
+            self: *const IWMLanguageList,
+            pwszLanguageString: ?PWSTR,
+            pwIndex: ?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLanguageCount(self: *const IWMLanguageList, pwCount: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLanguageCount(self, pwCount);
+    }
+    pub fn GetLanguageDetails(self: *const IWMLanguageList, wIndex: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLanguageDetails(self, wIndex, pwszLanguageString, pcchLanguageStringLength);
+    }
+    pub fn AddLanguageByRFC1766String(self: *const IWMLanguageList, pwszLanguageString: ?PWSTR, pwIndex: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.AddLanguageByRFC1766String(self, pwszLanguageString, pwIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWMLicenseBackup_Value = Guid.initString("05e5ac9f-3fb6-4508-bb43-a4067ba1ebe8");
+pub const IID_IWMLicenseBackup = &IID_IWMLicenseBackup_Value;
+pub const IWMLicenseBackup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BackupLicenses: *const fn(
+            self: *const IWMLicenseBackup,
+            dwFlags: u32,
+            pCallback: ?*IWMStatusCallback,
+        ) callconv(.winapi) HRESULT,
+        CancelLicenseBackup: *const fn(
+            self: *const IWMLicenseBackup,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn BackupLicenses(self: *const IWMLicenseBackup, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.BackupLicenses(self, dwFlags, pCallback);
+    }
+    pub fn CancelLicenseBackup(self: *const IWMLicenseBackup) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelLicenseBackup(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWMLicenseRestore_Value = Guid.initString("c70b6334-a22e-4efb-a245-15e65a004a13");
+pub const IID_IWMLicenseRestore = &IID_IWMLicenseRestore_Value;
+pub const IWMLicenseRestore = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RestoreLicenses: *const fn(
+            self: *const IWMLicenseRestore,
+            dwFlags: u32,
+            pCallback: ?*IWMStatusCallback,
+        ) callconv(.winapi) HRESULT,
+        CancelLicenseRestore: *const fn(
+            self: *const IWMLicenseRestore,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RestoreLicenses(self: *const IWMLicenseRestore, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreLicenses(self, dwFlags, pCallback);
+    }
+    pub fn CancelLicenseRestore(self: *const IWMLicenseRestore) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelLicenseRestore(self);
+    }
+};
+
+const IID_IWMLicenseRevocationAgent_Value = Guid.initString("6967f2c9-4e26-4b57-8894-799880f7ac7b");
+pub const IID_IWMLicenseRevocationAgent = &IID_IWMLicenseRevocationAgent_Value;
+pub const IWMLicenseRevocationAgent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLRBChallenge: *const fn(
+            self: *const IWMLicenseRevocationAgent,
+            pMachineID: ?*u8,
+            dwMachineIDLength: u32,
+            pChallenge: ?*u8,
+            dwChallengeLength: u32,
+            pChallengeOutput: ?*u8,
+            pdwChallengeOutputLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ProcessLRB: *const fn(
+            self: *const IWMLicenseRevocationAgent,
+            pSignedLRB: ?*u8,
+            dwSignedLRBLength: u32,
+            pSignedACK: ?*u8,
+            pdwSignedACKLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLRBChallenge(self: *const IWMLicenseRevocationAgent, pMachineID: ?*u8, dwMachineIDLength: u32, pChallenge: ?*u8, dwChallengeLength: u32, pChallengeOutput: ?*u8, pdwChallengeOutputLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLRBChallenge(self, pMachineID, dwMachineIDLength, pChallenge, dwChallengeLength, pChallengeOutput, pdwChallengeOutputLength);
+    }
+    pub fn ProcessLRB(self: *const IWMLicenseRevocationAgent, pSignedLRB: ?*u8, dwSignedLRBLength: u32, pSignedACK: ?*u8, pdwSignedACKLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessLRB(self, pSignedLRB, dwSignedLRBLength, pSignedACK, pdwSignedACKLength);
+    }
+};
+
+const IID_IWMMediaProps_Value = Guid.initString("96406bce-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMMediaProps = &IID_IWMMediaProps_Value;
+pub const IWMMediaProps = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetType: *const fn(
+            self: *const IWMMediaProps,
+            pguidType: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetMediaType: *const fn(
+            self: *const IWMMediaProps,
+            pType: ?*WM_MEDIA_TYPE,
+            pcbType: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetMediaType: *const fn(
+            self: *const IWMMediaProps,
+            pType: ?*WM_MEDIA_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetType(self: *const IWMMediaProps, pguidType: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pguidType);
+    }
+    pub fn GetMediaType(self: *const IWMMediaProps, pType: ?*WM_MEDIA_TYPE, pcbType: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMediaType(self, pType, pcbType);
+    }
+    pub fn SetMediaType(self: *const IWMMediaProps, pType: ?*WM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMediaType(self, pType);
+    }
+};
+
+const IID_IWMMetadataEditor_Value = Guid.initString("96406bd9-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMMetadataEditor = &IID_IWMMetadataEditor_Value;
+pub const IWMMetadataEditor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IWMMetadataEditor,
+            pwszFilename: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IWMMetadataEditor,
+        ) callconv(.winapi) HRESULT,
+        Flush: *const fn(
+            self: *const IWMMetadataEditor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IWMMetadataEditor, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, pwszFilename);
+    }
+    pub fn Close(self: *const IWMMetadataEditor) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn Flush(self: *const IWMMetadataEditor) callconv(.@"inline") HRESULT {
+        return self.vtable.Flush(self);
+    }
+};
+
+const IID_IWMMetadataEditor2_Value = Guid.initString("203cffe3-2e18-4fdf-b59d-6e71530534cf");
+pub const IID_IWMMetadataEditor2 = &IID_IWMMetadataEditor2_Value;
+pub const IWMMetadataEditor2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMMetadataEditor.VTable,
+        OpenEx: *const fn(
+            self: *const IWMMetadataEditor2,
+            pwszFilename: ?[*:0]const u16,
+            dwDesiredAccess: u32,
+            dwShareMode: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMMetadataEditor: IWMMetadataEditor,
+    IUnknown: IUnknown,
+    pub fn OpenEx(self: *const IWMMetadataEditor2, pwszFilename: ?[*:0]const u16, dwDesiredAccess: u32, dwShareMode: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenEx(self, pwszFilename, dwDesiredAccess, dwShareMode);
+    }
+};
+
+const IID_IWMMutualExclusion_Value = Guid.initString("96406bde-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMMutualExclusion = &IID_IWMMutualExclusion_Value;
+pub const IWMMutualExclusion = extern union {
+    pub const VTable = extern struct {
+        base: IWMStreamList.VTable,
+        GetType: *const fn(
+            self: *const IWMMutualExclusion,
+            pguidType: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        SetType: *const fn(
+            self: *const IWMMutualExclusion,
+            guidType: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMStreamList: IWMStreamList,
+    IUnknown: IUnknown,
+    pub fn GetType(self: *const IWMMutualExclusion, pguidType: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pguidType);
+    }
+    pub fn SetType(self: *const IWMMutualExclusion, guidType: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetType(self, guidType);
+    }
+};
+
+const IID_IWMMutualExclusion2_Value = Guid.initString("0302b57d-89d1-4ba2-85c9-166f2c53eb91");
+pub const IID_IWMMutualExclusion2 = &IID_IWMMutualExclusion2_Value;
+pub const IWMMutualExclusion2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMMutualExclusion.VTable,
+        GetName: *const fn(
+            self: *const IWMMutualExclusion2,
+            pwszName: [*:0]u16,
+            pcchName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetName: *const fn(
+            self: *const IWMMutualExclusion2,
+            pwszName: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetRecordCount: *const fn(
+            self: *const IWMMutualExclusion2,
+            pwRecordCount: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        AddRecord: *const fn(
+            self: *const IWMMutualExclusion2,
+        ) callconv(.winapi) HRESULT,
+        RemoveRecord: *const fn(
+            self: *const IWMMutualExclusion2,
+            wRecordNumber: u16,
+        ) callconv(.winapi) HRESULT,
+        GetRecordName: *const fn(
+            self: *const IWMMutualExclusion2,
+            wRecordNumber: u16,
+            pwszRecordName: [*:0]u16,
+            pcchRecordName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetRecordName: *const fn(
+            self: *const IWMMutualExclusion2,
+            wRecordNumber: u16,
+            pwszRecordName: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetStreamsForRecord: *const fn(
+            self: *const IWMMutualExclusion2,
+            wRecordNumber: u16,
+            pwStreamNumArray: [*:0]u16,
+            pcStreams: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        AddStreamForRecord: *const fn(
+            self: *const IWMMutualExclusion2,
+            wRecordNumber: u16,
+            wStreamNumber: u16,
+        ) callconv(.winapi) HRESULT,
+        RemoveStreamForRecord: *const fn(
+            self: *const IWMMutualExclusion2,
+            wRecordNumber: u16,
+            wStreamNumber: u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMMutualExclusion: IWMMutualExclusion,
+    IWMStreamList: IWMStreamList,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IWMMutualExclusion2, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, pwszName, pcchName);
+    }
+    pub fn SetName(self: *const IWMMutualExclusion2, pwszName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetName(self, pwszName);
+    }
+    pub fn GetRecordCount(self: *const IWMMutualExclusion2, pwRecordCount: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRecordCount(self, pwRecordCount);
+    }
+    pub fn AddRecord(self: *const IWMMutualExclusion2) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRecord(self);
+    }
+    pub fn RemoveRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveRecord(self, wRecordNumber);
+    }
+    pub fn GetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: [*:0]u16, pcchRecordName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRecordName(self, wRecordNumber, pwszRecordName, pcchRecordName);
+    }
+    pub fn SetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRecordName(self, wRecordNumber, pwszRecordName);
+    }
+    pub fn GetStreamsForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamsForRecord(self, wRecordNumber, pwStreamNumArray, pcStreams);
+    }
+    pub fn AddStreamForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, wStreamNumber: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.AddStreamForRecord(self, wRecordNumber, wStreamNumber);
+    }
+    pub fn RemoveStreamForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, wStreamNumber: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveStreamForRecord(self, wRecordNumber, wStreamNumber);
+    }
+};
+
+const IID_IWMOutputMediaProps_Value = Guid.initString("96406bd7-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMOutputMediaProps = &IID_IWMOutputMediaProps_Value;
+pub const IWMOutputMediaProps = extern union {
+    pub const VTable = extern struct {
+        base: IWMMediaProps.VTable,
+        GetStreamGroupName: *const fn(
+            self: *const IWMOutputMediaProps,
+            pwszName: [*:0]u16,
+            pcchName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetConnectionName: *const fn(
+            self: *const IWMOutputMediaProps,
+            pwszName: [*:0]u16,
+            pcchName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMMediaProps: IWMMediaProps,
+    IUnknown: IUnknown,
+    pub fn GetStreamGroupName(self: *const IWMOutputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamGroupName(self, pwszName, pcchName);
+    }
+    pub fn GetConnectionName(self: *const IWMOutputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectionName(self, pwszName, pcchName);
+    }
+};
+
+const IID_IWMPacketSize_Value = Guid.initString("cdfb97ab-188f-40b3-b643-5b7903975c59");
+pub const IID_IWMPacketSize = &IID_IWMPacketSize_Value;
+pub const IWMPacketSize = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMaxPacketSize: *const fn(
+            self: *const IWMPacketSize,
+            pdwMaxPacketSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetMaxPacketSize: *const fn(
+            self: *const IWMPacketSize,
+            dwMaxPacketSize: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMaxPacketSize(self: *const IWMPacketSize, pdwMaxPacketSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxPacketSize(self, pdwMaxPacketSize);
+    }
+    pub fn SetMaxPacketSize(self: *const IWMPacketSize, dwMaxPacketSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMaxPacketSize(self, dwMaxPacketSize);
+    }
+};
+
+const IID_IWMPacketSize2_Value = Guid.initString("8bfc2b9e-b646-4233-a877-1c6a079669dc");
+pub const IID_IWMPacketSize2 = &IID_IWMPacketSize2_Value;
+pub const IWMPacketSize2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMPacketSize.VTable,
+        GetMinPacketSize: *const fn(
+            self: *const IWMPacketSize2,
+            pdwMinPacketSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetMinPacketSize: *const fn(
+            self: *const IWMPacketSize2,
+            dwMinPacketSize: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMPacketSize: IWMPacketSize,
+    IUnknown: IUnknown,
+    pub fn GetMinPacketSize(self: *const IWMPacketSize2, pdwMinPacketSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMinPacketSize(self, pdwMinPacketSize);
+    }
+    pub fn SetMinPacketSize(self: *const IWMPacketSize2, dwMinPacketSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMinPacketSize(self, dwMinPacketSize);
+    }
+};
+
+const IID_IWMPlayerHook_Value = Guid.initString("e5b7ca9a-0f1c-4f66-9002-74ec50d8b304");
+pub const IID_IWMPlayerHook = &IID_IWMPlayerHook_Value;
+pub const IWMPlayerHook = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PreDecode: *const fn(
+            self: *const IWMPlayerHook,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PreDecode(self: *const IWMPlayerHook) callconv(.@"inline") HRESULT {
+        return self.vtable.PreDecode(self);
+    }
+};
+
+const IID_IWMPlayerTimestampHook_Value = Guid.initString("28580dda-d98e-48d0-b7ae-69e473a02825");
+pub const IID_IWMPlayerTimestampHook = &IID_IWMPlayerTimestampHook_Value;
+pub const IWMPlayerTimestampHook = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MapTimestamp: *const fn(
+            self: *const IWMPlayerTimestampHook,
+            rtIn: i64,
+            prtOut: ?*i64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MapTimestamp(self: *const IWMPlayerTimestampHook, rtIn: i64, prtOut: ?*i64) callconv(.@"inline") HRESULT {
+        return self.vtable.MapTimestamp(self, rtIn, prtOut);
     }
 };
 
@@ -2695,1097 +2529,317 @@ pub const IWMProfile3 = extern union {
     }
 };
 
-const IID_IWMStreamConfig_Value = Guid.initString("96406bdc-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMStreamConfig = &IID_IWMStreamConfig_Value;
-pub const IWMStreamConfig = extern union {
+const IID_IWMProfileManager_Value = Guid.initString("d16679f2-6ca0-472d-8d31-2f5d55aee155");
+pub const IID_IWMProfileManager = &IID_IWMProfileManager_Value;
+pub const IWMProfileManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStreamType: *const fn(
-            self: *const IWMStreamConfig,
-            pguidStreamType: ?*Guid,
+        CreateEmptyProfile: *const fn(
+            self: *const IWMProfileManager,
+            dwVersion: WMT_VERSION,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(.winapi) HRESULT,
-        GetStreamNumber: *const fn(
-            self: *const IWMStreamConfig,
-            pwStreamNum: ?*u16,
+        LoadProfileByID: *const fn(
+            self: *const IWMProfileManager,
+            guidProfile: ?*const Guid,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(.winapi) HRESULT,
-        SetStreamNumber: *const fn(
-            self: *const IWMStreamConfig,
-            wStreamNum: u16,
+        LoadProfileByData: *const fn(
+            self: *const IWMProfileManager,
+            pwszProfile: ?[*:0]const u16,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(.winapi) HRESULT,
-        GetStreamName: *const fn(
-            self: *const IWMStreamConfig,
-            pwszStreamName: [*:0]u16,
-            pcchStreamName: ?*u16,
+        SaveProfile: *const fn(
+            self: *const IWMProfileManager,
+            pIWMProfile: ?*IWMProfile,
+            pwszProfile: ?PWSTR,
+            pdwLength: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SetStreamName: *const fn(
-            self: *const IWMStreamConfig,
-            pwszStreamName: ?PWSTR,
+        GetSystemProfileCount: *const fn(
+            self: *const IWMProfileManager,
+            pcProfiles: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetConnectionName: *const fn(
-            self: *const IWMStreamConfig,
-            pwszInputName: [*:0]u16,
-            pcchInputName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetConnectionName: *const fn(
-            self: *const IWMStreamConfig,
-            pwszInputName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetBitrate: *const fn(
-            self: *const IWMStreamConfig,
-            pdwBitrate: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetBitrate: *const fn(
-            self: *const IWMStreamConfig,
-            pdwBitrate: u32,
-        ) callconv(.winapi) HRESULT,
-        GetBufferWindow: *const fn(
-            self: *const IWMStreamConfig,
-            pmsBufferWindow: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetBufferWindow: *const fn(
-            self: *const IWMStreamConfig,
-            msBufferWindow: u32,
+        LoadSystemProfile: *const fn(
+            self: *const IWMProfileManager,
+            dwProfileIndex: u32,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStreamType(self: *const IWMStreamConfig, pguidStreamType: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamType(self, pguidStreamType);
+    pub fn CreateEmptyProfile(self: *const IWMProfileManager, dwVersion: WMT_VERSION, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEmptyProfile(self, dwVersion, ppProfile);
     }
-    pub fn GetStreamNumber(self: *const IWMStreamConfig, pwStreamNum: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamNumber(self, pwStreamNum);
+    pub fn LoadProfileByID(self: *const IWMProfileManager, guidProfile: ?*const Guid, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadProfileByID(self, guidProfile, ppProfile);
     }
-    pub fn SetStreamNumber(self: *const IWMStreamConfig, wStreamNum: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStreamNumber(self, wStreamNum);
+    pub fn LoadProfileByData(self: *const IWMProfileManager, pwszProfile: ?[*:0]const u16, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadProfileByData(self, pwszProfile, ppProfile);
     }
-    pub fn GetStreamName(self: *const IWMStreamConfig, pwszStreamName: [*:0]u16, pcchStreamName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamName(self, pwszStreamName, pcchStreamName);
+    pub fn SaveProfile(self: *const IWMProfileManager, pIWMProfile: ?*IWMProfile, pwszProfile: ?PWSTR, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveProfile(self, pIWMProfile, pwszProfile, pdwLength);
     }
-    pub fn SetStreamName(self: *const IWMStreamConfig, pwszStreamName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetStreamName(self, pwszStreamName);
+    pub fn GetSystemProfileCount(self: *const IWMProfileManager, pcProfiles: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSystemProfileCount(self, pcProfiles);
     }
-    pub fn GetConnectionName(self: *const IWMStreamConfig, pwszInputName: [*:0]u16, pcchInputName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectionName(self, pwszInputName, pcchInputName);
-    }
-    pub fn SetConnectionName(self: *const IWMStreamConfig, pwszInputName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetConnectionName(self, pwszInputName);
-    }
-    pub fn GetBitrate(self: *const IWMStreamConfig, pdwBitrate: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBitrate(self, pdwBitrate);
-    }
-    pub fn SetBitrate(self: *const IWMStreamConfig, pdwBitrate: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetBitrate(self, pdwBitrate);
-    }
-    pub fn GetBufferWindow(self: *const IWMStreamConfig, pmsBufferWindow: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBufferWindow(self, pmsBufferWindow);
-    }
-    pub fn SetBufferWindow(self: *const IWMStreamConfig, msBufferWindow: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetBufferWindow(self, msBufferWindow);
+    pub fn LoadSystemProfile(self: *const IWMProfileManager, dwProfileIndex: u32, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadSystemProfile(self, dwProfileIndex, ppProfile);
     }
 };
 
-const IID_IWMStreamConfig2_Value = Guid.initString("7688d8cb-fc0d-43bd-9459-5a8dec200cfa");
-pub const IID_IWMStreamConfig2 = &IID_IWMStreamConfig2_Value;
-pub const IWMStreamConfig2 = extern union {
+const IID_IWMProfileManager2_Value = Guid.initString("7a924e51-73c1-494d-8019-23d37ed9b89a");
+pub const IID_IWMProfileManager2 = &IID_IWMProfileManager2_Value;
+pub const IWMProfileManager2 = extern union {
     pub const VTable = extern struct {
-        base: IWMStreamConfig.VTable,
-        GetTransportType: *const fn(
-            self: *const IWMStreamConfig2,
-            pnTransportType: ?*WMT_TRANSPORT_TYPE,
+        base: IWMProfileManager.VTable,
+        GetSystemProfileVersion: *const fn(
+            self: *const IWMProfileManager2,
+            pdwVersion: ?*WMT_VERSION,
         ) callconv(.winapi) HRESULT,
-        SetTransportType: *const fn(
-            self: *const IWMStreamConfig2,
-            nTransportType: WMT_TRANSPORT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        AddDataUnitExtension: *const fn(
-            self: *const IWMStreamConfig2,
-            guidExtensionSystemID: Guid,
-            cbExtensionDataSize: u16,
-            pbExtensionSystemInfo: [*:0]u8,
-            cbExtensionSystemInfo: u32,
-        ) callconv(.winapi) HRESULT,
-        GetDataUnitExtensionCount: *const fn(
-            self: *const IWMStreamConfig2,
-            pcDataUnitExtensions: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetDataUnitExtension: *const fn(
-            self: *const IWMStreamConfig2,
-            wDataUnitExtensionNumber: u16,
-            pguidExtensionSystemID: ?*Guid,
-            pcbExtensionDataSize: ?*u16,
-            pbExtensionSystemInfo: [*:0]u8,
-            pcbExtensionSystemInfo: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        RemoveAllDataUnitExtensions: *const fn(
-            self: *const IWMStreamConfig2,
+        SetSystemProfileVersion: *const fn(
+            self: *const IWMProfileManager2,
+            dwVersion: WMT_VERSION,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWMStreamConfig: IWMStreamConfig,
+    IWMProfileManager: IWMProfileManager,
     IUnknown: IUnknown,
-    pub fn GetTransportType(self: *const IWMStreamConfig2, pnTransportType: ?*WMT_TRANSPORT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransportType(self, pnTransportType);
+    pub fn GetSystemProfileVersion(self: *const IWMProfileManager2, pdwVersion: ?*WMT_VERSION) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSystemProfileVersion(self, pdwVersion);
     }
-    pub fn SetTransportType(self: *const IWMStreamConfig2, nTransportType: WMT_TRANSPORT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTransportType(self, nTransportType);
-    }
-    pub fn AddDataUnitExtension(self: *const IWMStreamConfig2, guidExtensionSystemID: Guid, cbExtensionDataSize: u16, pbExtensionSystemInfo: [*:0]u8, cbExtensionSystemInfo: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddDataUnitExtension(self, guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
-    }
-    pub fn GetDataUnitExtensionCount(self: *const IWMStreamConfig2, pcDataUnitExtensions: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataUnitExtensionCount(self, pcDataUnitExtensions);
-    }
-    pub fn GetDataUnitExtension(self: *const IWMStreamConfig2, wDataUnitExtensionNumber: u16, pguidExtensionSystemID: ?*Guid, pcbExtensionDataSize: ?*u16, pbExtensionSystemInfo: [*:0]u8, pcbExtensionSystemInfo: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataUnitExtension(self, wDataUnitExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
-    }
-    pub fn RemoveAllDataUnitExtensions(self: *const IWMStreamConfig2) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAllDataUnitExtensions(self);
+    pub fn SetSystemProfileVersion(self: *const IWMProfileManager2, dwVersion: WMT_VERSION) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSystemProfileVersion(self, dwVersion);
     }
 };
 
-const IID_IWMStreamConfig3_Value = Guid.initString("cb164104-3aa9-45a7-9ac9-4daee131d6e1");
-pub const IID_IWMStreamConfig3 = &IID_IWMStreamConfig3_Value;
-pub const IWMStreamConfig3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMStreamConfig2.VTable,
-        GetLanguage: *const fn(
-            self: *const IWMStreamConfig3,
-            pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetLanguage: *const fn(
-            self: *const IWMStreamConfig3,
-            pwszLanguageString: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMStreamConfig2: IWMStreamConfig2,
-    IWMStreamConfig: IWMStreamConfig,
-    IUnknown: IUnknown,
-    pub fn GetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLanguage(self, pwszLanguageString, pcchLanguageStringLength);
-    }
-    pub fn SetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLanguage(self, pwszLanguageString);
-    }
-};
-
-const IID_IWMPacketSize_Value = Guid.initString("cdfb97ab-188f-40b3-b643-5b7903975c59");
-pub const IID_IWMPacketSize = &IID_IWMPacketSize_Value;
-pub const IWMPacketSize = extern union {
+const IID_IWMProfileManagerLanguage_Value = Guid.initString("ba4dcc78-7ee0-4ab8-b27a-dbce8bc51454");
+pub const IID_IWMProfileManagerLanguage = &IID_IWMProfileManagerLanguage_Value;
+pub const IWMProfileManagerLanguage = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMaxPacketSize: *const fn(
-            self: *const IWMPacketSize,
-            pdwMaxPacketSize: ?*u32,
+        GetUserLanguageID: *const fn(
+            self: *const IWMProfileManagerLanguage,
+            wLangID: ?*u16,
         ) callconv(.winapi) HRESULT,
-        SetMaxPacketSize: *const fn(
-            self: *const IWMPacketSize,
-            dwMaxPacketSize: u32,
+        SetUserLanguageID: *const fn(
+            self: *const IWMProfileManagerLanguage,
+            wLangID: u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMaxPacketSize(self: *const IWMPacketSize, pdwMaxPacketSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxPacketSize(self, pdwMaxPacketSize);
+    pub fn GetUserLanguageID(self: *const IWMProfileManagerLanguage, wLangID: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUserLanguageID(self, wLangID);
     }
-    pub fn SetMaxPacketSize(self: *const IWMPacketSize, dwMaxPacketSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMaxPacketSize(self, dwMaxPacketSize);
-    }
-};
-
-const IID_IWMPacketSize2_Value = Guid.initString("8bfc2b9e-b646-4233-a877-1c6a079669dc");
-pub const IID_IWMPacketSize2 = &IID_IWMPacketSize2_Value;
-pub const IWMPacketSize2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMPacketSize.VTable,
-        GetMinPacketSize: *const fn(
-            self: *const IWMPacketSize2,
-            pdwMinPacketSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetMinPacketSize: *const fn(
-            self: *const IWMPacketSize2,
-            dwMinPacketSize: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMPacketSize: IWMPacketSize,
-    IUnknown: IUnknown,
-    pub fn GetMinPacketSize(self: *const IWMPacketSize2, pdwMinPacketSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMinPacketSize(self, pdwMinPacketSize);
-    }
-    pub fn SetMinPacketSize(self: *const IWMPacketSize2, dwMinPacketSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMinPacketSize(self, dwMinPacketSize);
+    pub fn SetUserLanguageID(self: *const IWMProfileManagerLanguage, wLangID: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetUserLanguageID(self, wLangID);
     }
 };
 
-const IID_IWMStreamList_Value = Guid.initString("96406bdd-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMStreamList = &IID_IWMStreamList_Value;
-pub const IWMStreamList = extern union {
+const IID_IWMPropertyVault_Value = Guid.initString("72995a79-5090-42a4-9c8c-d9d0b6d34be5");
+pub const IID_IWMPropertyVault = &IID_IWMPropertyVault_Value;
+pub const IWMPropertyVault = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStreams: *const fn(
-            self: *const IWMStreamList,
-            pwStreamNumArray: [*:0]u16,
-            pcStreams: ?*u16,
+        GetPropertyCount: *const fn(
+            self: *const IWMPropertyVault,
+            pdwCount: ?*u32,
         ) callconv(.winapi) HRESULT,
-        AddStream: *const fn(
-            self: *const IWMStreamList,
-            wStreamNum: u16,
-        ) callconv(.winapi) HRESULT,
-        RemoveStream: *const fn(
-            self: *const IWMStreamList,
-            wStreamNum: u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStreams(self: *const IWMStreamList, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreams(self, pwStreamNumArray, pcStreams);
-    }
-    pub fn AddStream(self: *const IWMStreamList, wStreamNum: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.AddStream(self, wStreamNum);
-    }
-    pub fn RemoveStream(self: *const IWMStreamList, wStreamNum: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveStream(self, wStreamNum);
-    }
-};
-
-const IID_IWMMutualExclusion_Value = Guid.initString("96406bde-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMMutualExclusion = &IID_IWMMutualExclusion_Value;
-pub const IWMMutualExclusion = extern union {
-    pub const VTable = extern struct {
-        base: IWMStreamList.VTable,
-        GetType: *const fn(
-            self: *const IWMMutualExclusion,
-            pguidType: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        SetType: *const fn(
-            self: *const IWMMutualExclusion,
-            guidType: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMStreamList: IWMStreamList,
-    IUnknown: IUnknown,
-    pub fn GetType(self: *const IWMMutualExclusion, pguidType: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pguidType);
-    }
-    pub fn SetType(self: *const IWMMutualExclusion, guidType: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetType(self, guidType);
-    }
-};
-
-const IID_IWMMutualExclusion2_Value = Guid.initString("0302b57d-89d1-4ba2-85c9-166f2c53eb91");
-pub const IID_IWMMutualExclusion2 = &IID_IWMMutualExclusion2_Value;
-pub const IWMMutualExclusion2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMMutualExclusion.VTable,
-        GetName: *const fn(
-            self: *const IWMMutualExclusion2,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetName: *const fn(
-            self: *const IWMMutualExclusion2,
-            pwszName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetRecordCount: *const fn(
-            self: *const IWMMutualExclusion2,
-            pwRecordCount: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        AddRecord: *const fn(
-            self: *const IWMMutualExclusion2,
-        ) callconv(.winapi) HRESULT,
-        RemoveRecord: *const fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-        ) callconv(.winapi) HRESULT,
-        GetRecordName: *const fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            pwszRecordName: [*:0]u16,
-            pcchRecordName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetRecordName: *const fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            pwszRecordName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetStreamsForRecord: *const fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            pwStreamNumArray: [*:0]u16,
-            pcStreams: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        AddStreamForRecord: *const fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            wStreamNumber: u16,
-        ) callconv(.winapi) HRESULT,
-        RemoveStreamForRecord: *const fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            wStreamNumber: u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMMutualExclusion: IWMMutualExclusion,
-    IWMStreamList: IWMStreamList,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IWMMutualExclusion2, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, pwszName, pcchName);
-    }
-    pub fn SetName(self: *const IWMMutualExclusion2, pwszName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetName(self, pwszName);
-    }
-    pub fn GetRecordCount(self: *const IWMMutualExclusion2, pwRecordCount: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRecordCount(self, pwRecordCount);
-    }
-    pub fn AddRecord(self: *const IWMMutualExclusion2) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRecord(self);
-    }
-    pub fn RemoveRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveRecord(self, wRecordNumber);
-    }
-    pub fn GetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: [*:0]u16, pcchRecordName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRecordName(self, wRecordNumber, pwszRecordName, pcchRecordName);
-    }
-    pub fn SetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRecordName(self, wRecordNumber, pwszRecordName);
-    }
-    pub fn GetStreamsForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStreamsForRecord(self, wRecordNumber, pwStreamNumArray, pcStreams);
-    }
-    pub fn AddStreamForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, wStreamNumber: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.AddStreamForRecord(self, wRecordNumber, wStreamNumber);
-    }
-    pub fn RemoveStreamForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, wStreamNumber: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveStreamForRecord(self, wRecordNumber, wStreamNumber);
-    }
-};
-
-const IID_IWMBandwidthSharing_Value = Guid.initString("ad694af1-f8d9-42f8-bc47-70311b0c4f9e");
-pub const IID_IWMBandwidthSharing = &IID_IWMBandwidthSharing_Value;
-pub const IWMBandwidthSharing = extern union {
-    pub const VTable = extern struct {
-        base: IWMStreamList.VTable,
-        GetType: *const fn(
-            self: *const IWMBandwidthSharing,
-            pguidType: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        SetType: *const fn(
-            self: *const IWMBandwidthSharing,
-            guidType: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        GetBandwidth: *const fn(
-            self: *const IWMBandwidthSharing,
-            pdwBitrate: ?*u32,
-            pmsBufferWindow: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetBandwidth: *const fn(
-            self: *const IWMBandwidthSharing,
-            dwBitrate: u32,
-            msBufferWindow: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMStreamList: IWMStreamList,
-    IUnknown: IUnknown,
-    pub fn GetType(self: *const IWMBandwidthSharing, pguidType: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pguidType);
-    }
-    pub fn SetType(self: *const IWMBandwidthSharing, guidType: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetType(self, guidType);
-    }
-    pub fn GetBandwidth(self: *const IWMBandwidthSharing, pdwBitrate: ?*u32, pmsBufferWindow: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBandwidth(self, pdwBitrate, pmsBufferWindow);
-    }
-    pub fn SetBandwidth(self: *const IWMBandwidthSharing, dwBitrate: u32, msBufferWindow: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetBandwidth(self, dwBitrate, msBufferWindow);
-    }
-};
-
-const IID_IWMStreamPrioritization_Value = Guid.initString("8c1c6090-f9a8-4748-8ec3-dd1108ba1e77");
-pub const IID_IWMStreamPrioritization = &IID_IWMStreamPrioritization_Value;
-pub const IWMStreamPrioritization = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPriorityRecords: *const fn(
-            self: *const IWMStreamPrioritization,
-            pRecordArray: [*]WM_STREAM_PRIORITY_RECORD,
-            pcRecords: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetPriorityRecords: *const fn(
-            self: *const IWMStreamPrioritization,
-            pRecordArray: ?*WM_STREAM_PRIORITY_RECORD,
-            cRecords: u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPriorityRecords(self: *const IWMStreamPrioritization, pRecordArray: [*]WM_STREAM_PRIORITY_RECORD, pcRecords: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPriorityRecords(self, pRecordArray, pcRecords);
-    }
-    pub fn SetPriorityRecords(self: *const IWMStreamPrioritization, pRecordArray: ?*WM_STREAM_PRIORITY_RECORD, cRecords: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPriorityRecords(self, pRecordArray, cRecords);
-    }
-};
-
-const IID_IWMWriterAdvanced_Value = Guid.initString("96406be3-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMWriterAdvanced = &IID_IWMWriterAdvanced_Value;
-pub const IWMWriterAdvanced = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSinkCount: *const fn(
-            self: *const IWMWriterAdvanced,
-            pcSinks: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSink: *const fn(
-            self: *const IWMWriterAdvanced,
-            dwSinkNum: u32,
-            ppSink: ?*?*IWMWriterSink,
-        ) callconv(.winapi) HRESULT,
-        AddSink: *const fn(
-            self: *const IWMWriterAdvanced,
-            pSink: ?*IWMWriterSink,
-        ) callconv(.winapi) HRESULT,
-        RemoveSink: *const fn(
-            self: *const IWMWriterAdvanced,
-            pSink: ?*IWMWriterSink,
-        ) callconv(.winapi) HRESULT,
-        WriteStreamSample: *const fn(
-            self: *const IWMWriterAdvanced,
-            wStreamNum: u16,
-            cnsSampleTime: u64,
-            msSampleSendTime: u32,
-            cnsSampleDuration: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-        ) callconv(.winapi) HRESULT,
-        SetLiveSource: *const fn(
-            self: *const IWMWriterAdvanced,
-            fIsLiveSource: BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsRealTime: *const fn(
-            self: *const IWMWriterAdvanced,
-            pfRealTime: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetWriterTime: *const fn(
-            self: *const IWMWriterAdvanced,
-            pcnsCurrentTime: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetStatistics: *const fn(
-            self: *const IWMWriterAdvanced,
-            wStreamNum: u16,
-            pStats: ?*WM_WRITER_STATISTICS,
-        ) callconv(.winapi) HRESULT,
-        SetSyncTolerance: *const fn(
-            self: *const IWMWriterAdvanced,
-            msWindow: u32,
-        ) callconv(.winapi) HRESULT,
-        GetSyncTolerance: *const fn(
-            self: *const IWMWriterAdvanced,
-            pmsWindow: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSinkCount(self: *const IWMWriterAdvanced, pcSinks: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSinkCount(self, pcSinks);
-    }
-    pub fn GetSink(self: *const IWMWriterAdvanced, dwSinkNum: u32, ppSink: ?*?*IWMWriterSink) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSink(self, dwSinkNum, ppSink);
-    }
-    pub fn AddSink(self: *const IWMWriterAdvanced, pSink: ?*IWMWriterSink) callconv(.@"inline") HRESULT {
-        return self.vtable.AddSink(self, pSink);
-    }
-    pub fn RemoveSink(self: *const IWMWriterAdvanced, pSink: ?*IWMWriterSink) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveSink(self, pSink);
-    }
-    pub fn WriteStreamSample(self: *const IWMWriterAdvanced, wStreamNum: u16, cnsSampleTime: u64, msSampleSendTime: u32, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteStreamSample(self, wStreamNum, cnsSampleTime, msSampleSendTime, cnsSampleDuration, dwFlags, pSample);
-    }
-    pub fn SetLiveSource(self: *const IWMWriterAdvanced, fIsLiveSource: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLiveSource(self, fIsLiveSource);
-    }
-    pub fn IsRealTime(self: *const IWMWriterAdvanced, pfRealTime: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsRealTime(self, pfRealTime);
-    }
-    pub fn GetWriterTime(self: *const IWMWriterAdvanced, pcnsCurrentTime: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWriterTime(self, pcnsCurrentTime);
-    }
-    pub fn GetStatistics(self: *const IWMWriterAdvanced, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatistics(self, wStreamNum, pStats);
-    }
-    pub fn SetSyncTolerance(self: *const IWMWriterAdvanced, msWindow: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSyncTolerance(self, msWindow);
-    }
-    pub fn GetSyncTolerance(self: *const IWMWriterAdvanced, pmsWindow: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSyncTolerance(self, pmsWindow);
-    }
-};
-
-const IID_IWMWriterAdvanced2_Value = Guid.initString("962dc1ec-c046-4db8-9cc7-26ceae500817");
-pub const IID_IWMWriterAdvanced2 = &IID_IWMWriterAdvanced2_Value;
-pub const IWMWriterAdvanced2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMWriterAdvanced.VTable,
-        GetInputSetting: *const fn(
-            self: *const IWMWriterAdvanced2,
-            dwInputNum: u32,
+        GetPropertyByName: *const fn(
+            self: *const IWMPropertyVault,
             pszName: ?[*:0]const u16,
             pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: ?*u16,
+            pdwSize: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SetInputSetting: *const fn(
-            self: *const IWMWriterAdvanced2,
-            dwInputNum: u32,
+        SetProperty: *const fn(
+            self: *const IWMPropertyVault,
             pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
+            pType: WMT_ATTR_DATATYPE,
+            pValue: ?*u8,
+            dwSize: u32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMWriterAdvanced: IWMWriterAdvanced,
-    IUnknown: IUnknown,
-    pub fn GetInputSetting(self: *const IWMWriterAdvanced2, dwInputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputSetting(self, dwInputNum, pszName, pType, pValue, pcbLength);
-    }
-    pub fn SetInputSetting(self: *const IWMWriterAdvanced2, dwInputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetInputSetting(self, dwInputNum, pszName, Type, pValue, cbLength);
-    }
-};
-
-const IID_IWMWriterAdvanced3_Value = Guid.initString("2cd6492d-7c37-4e76-9d3b-59261183a22e");
-pub const IID_IWMWriterAdvanced3 = &IID_IWMWriterAdvanced3_Value;
-pub const IWMWriterAdvanced3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMWriterAdvanced2.VTable,
-        GetStatisticsEx: *const fn(
-            self: *const IWMWriterAdvanced3,
-            wStreamNum: u16,
-            pStats: ?*WM_WRITER_STATISTICS_EX,
+        GetPropertyByIndex: *const fn(
+            self: *const IWMPropertyVault,
+            dwIndex: u32,
+            pszName: [*:0]u16,
+            pdwNameLen: ?*u32,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pdwSize: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SetNonBlocking: *const fn(
-            self: *const IWMWriterAdvanced3,
+        CopyPropertiesFrom: *const fn(
+            self: *const IWMPropertyVault,
+            pIWMPropertyVault: ?*IWMPropertyVault,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMWriterAdvanced2: IWMWriterAdvanced2,
-    IWMWriterAdvanced: IWMWriterAdvanced,
-    IUnknown: IUnknown,
-    pub fn GetStatisticsEx(self: *const IWMWriterAdvanced3, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS_EX) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatisticsEx(self, wStreamNum, pStats);
-    }
-    pub fn SetNonBlocking(self: *const IWMWriterAdvanced3) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNonBlocking(self);
-    }
-};
-
-const IID_IWMWriterPreprocess_Value = Guid.initString("fc54a285-38c4-45b5-aa23-85b9f7cb424b");
-pub const IID_IWMWriterPreprocess = &IID_IWMWriterPreprocess_Value;
-pub const IWMWriterPreprocess = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetMaxPreprocessingPasses: *const fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
-            pdwMaxNumPasses: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetNumPreprocessingPasses: *const fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
-            dwNumPasses: u32,
-        ) callconv(.winapi) HRESULT,
-        BeginPreprocessingPass: *const fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        PreprocessSample: *const fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            cnsSampleTime: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-        ) callconv(.winapi) HRESULT,
-        EndPreprocessingPass: *const fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
+        Clear: *const fn(
+            self: *const IWMPropertyVault,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMaxPreprocessingPasses(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32, pdwMaxNumPasses: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxPreprocessingPasses(self, dwInputNum, dwFlags, pdwMaxNumPasses);
+    pub fn GetPropertyCount(self: *const IWMPropertyVault, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyCount(self, pdwCount);
     }
-    pub fn SetNumPreprocessingPasses(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32, dwNumPasses: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNumPreprocessingPasses(self, dwInputNum, dwFlags, dwNumPasses);
+    pub fn GetPropertyByName(self: *const IWMPropertyVault, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyByName(self, pszName, pType, pValue, pdwSize);
     }
-    pub fn BeginPreprocessingPass(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginPreprocessingPass(self, dwInputNum, dwFlags);
+    pub fn SetProperty(self: *const IWMPropertyVault, pszName: ?[*:0]const u16, pType: WMT_ATTR_DATATYPE, pValue: ?*u8, dwSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, pszName, pType, pValue, dwSize);
     }
-    pub fn PreprocessSample(self: *const IWMWriterPreprocess, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.PreprocessSample(self, dwInputNum, cnsSampleTime, dwFlags, pSample);
+    pub fn GetPropertyByIndex(self: *const IWMPropertyVault, dwIndex: u32, pszName: [*:0]u16, pdwNameLen: ?*u32, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyByIndex(self, dwIndex, pszName, pdwNameLen, pType, pValue, pdwSize);
     }
-    pub fn EndPreprocessingPass(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.EndPreprocessingPass(self, dwInputNum, dwFlags);
+    pub fn CopyPropertiesFrom(self: *const IWMPropertyVault, pIWMPropertyVault: ?*IWMPropertyVault) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyPropertiesFrom(self, pIWMPropertyVault);
     }
-};
-
-const IID_IWMWriterPostViewCallback_Value = Guid.initString("d9d6549d-a193-4f24-b308-03123d9b7f8d");
-pub const IID_IWMWriterPostViewCallback = &IID_IWMWriterPostViewCallback_Value;
-pub const IWMWriterPostViewCallback = extern union {
-    pub const VTable = extern struct {
-        base: IWMStatusCallback.VTable,
-        OnPostViewSample: *const fn(
-            self: *const IWMWriterPostViewCallback,
-            wStreamNumber: u16,
-            cnsSampleTime: u64,
-            cnsSampleDuration: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        AllocateForPostView: *const fn(
-            self: *const IWMWriterPostViewCallback,
-            wStreamNum: u16,
-            cbBuffer: u32,
-            ppBuffer: ?*?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMStatusCallback: IWMStatusCallback,
-    IUnknown: IUnknown,
-    pub fn OnPostViewSample(self: *const IWMWriterPostViewCallback, wStreamNumber: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPostViewSample(self, wStreamNumber, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
-    }
-    pub fn AllocateForPostView(self: *const IWMWriterPostViewCallback, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocateForPostView(self, wStreamNum, cbBuffer, ppBuffer, pvContext);
+    pub fn Clear(self: *const IWMPropertyVault) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
     }
 };
 
-const IID_IWMWriterPostView_Value = Guid.initString("81e20ce4-75ef-491a-8004-fc53c45bdc3e");
-pub const IID_IWMWriterPostView = &IID_IWMWriterPostView_Value;
-pub const IWMWriterPostView = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWMProximityDetection_Value = Guid.initString("6a9fd8ee-b651-4bf0-b849-7d4ece79a2b1");
+pub const IID_IWMProximityDetection = &IID_IWMProximityDetection_Value;
+pub const IWMProximityDetection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetPostViewCallback: *const fn(
-            self: *const IWMWriterPostView,
-            pCallback: ?*IWMWriterPostViewCallback,
+        StartDetection: *const fn(
+            self: *const IWMProximityDetection,
+            pbRegistrationMsg: [*:0]u8,
+            cbRegistrationMsg: u32,
+            pbLocalAddress: [*:0]u8,
+            cbLocalAddress: u32,
+            dwExtraPortsAllowed: u32,
+            ppRegistrationResponseMsg: ?*?*INSSBuffer,
+            pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
-        SetReceivePostViewSamples: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNum: u16,
-            fReceivePostViewSamples: BOOL,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn StartDetection(self: *const IWMProximityDetection, pbRegistrationMsg: [*:0]u8, cbRegistrationMsg: u32, pbLocalAddress: [*:0]u8, cbLocalAddress: u32, dwExtraPortsAllowed: u32, ppRegistrationResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.StartDetection(self, pbRegistrationMsg, cbRegistrationMsg, pbLocalAddress, cbLocalAddress, dwExtraPortsAllowed, ppRegistrationResponseMsg, pCallback, pvContext);
+    }
+};
+
+const IID_IWMReader_Value = Guid.initString("96406bd6-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMReader = &IID_IWMReader_Value;
+pub const IWMReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IWMReader,
+            pwszURL: ?[*:0]const u16,
+            pCallback: ?*IWMReaderCallback,
+            pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
-        GetReceivePostViewSamples: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNum: u16,
-            pfReceivePostViewSamples: ?*BOOL,
+        Close: *const fn(
+            self: *const IWMReader,
         ) callconv(.winapi) HRESULT,
-        GetPostViewProps: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            ppOutput: ?*?*IWMMediaProps,
+        GetOutputCount: *const fn(
+            self: *const IWMReader,
+            pcOutputs: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SetPostViewProps: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            pOutput: ?*IWMMediaProps,
+        GetOutputProps: *const fn(
+            self: *const IWMReader,
+            dwOutputNum: u32,
+            ppOutput: ?*?*IWMOutputMediaProps,
         ) callconv(.winapi) HRESULT,
-        GetPostViewFormatCount: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
+        SetOutputProps: *const fn(
+            self: *const IWMReader,
+            dwOutputNum: u32,
+            pOutput: ?*IWMOutputMediaProps,
+        ) callconv(.winapi) HRESULT,
+        GetOutputFormatCount: *const fn(
+            self: *const IWMReader,
+            dwOutputNumber: u32,
             pcFormats: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetPostViewFormat: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
+        GetOutputFormat: *const fn(
+            self: *const IWMReader,
+            dwOutputNumber: u32,
             dwFormatNumber: u32,
-            ppProps: ?*?*IWMMediaProps,
+            ppProps: ?*?*IWMOutputMediaProps,
         ) callconv(.winapi) HRESULT,
-        SetAllocateForPostView: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            fAllocate: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetAllocateForPostView: *const fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            pfAllocate: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetPostViewCallback(self: *const IWMWriterPostView, pCallback: ?*IWMWriterPostViewCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPostViewCallback(self, pCallback, pvContext);
-    }
-    pub fn SetReceivePostViewSamples(self: *const IWMWriterPostView, wStreamNum: u16, fReceivePostViewSamples: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReceivePostViewSamples(self, wStreamNum, fReceivePostViewSamples);
-    }
-    pub fn GetReceivePostViewSamples(self: *const IWMWriterPostView, wStreamNum: u16, pfReceivePostViewSamples: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReceivePostViewSamples(self, wStreamNum, pfReceivePostViewSamples);
-    }
-    pub fn GetPostViewProps(self: *const IWMWriterPostView, wStreamNumber: u16, ppOutput: ?*?*IWMMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPostViewProps(self, wStreamNumber, ppOutput);
-    }
-    pub fn SetPostViewProps(self: *const IWMWriterPostView, wStreamNumber: u16, pOutput: ?*IWMMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPostViewProps(self, wStreamNumber, pOutput);
-    }
-    pub fn GetPostViewFormatCount(self: *const IWMWriterPostView, wStreamNumber: u16, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPostViewFormatCount(self, wStreamNumber, pcFormats);
-    }
-    pub fn GetPostViewFormat(self: *const IWMWriterPostView, wStreamNumber: u16, dwFormatNumber: u32, ppProps: ?*?*IWMMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPostViewFormat(self, wStreamNumber, dwFormatNumber, ppProps);
-    }
-    pub fn SetAllocateForPostView(self: *const IWMWriterPostView, wStreamNumber: u16, fAllocate: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllocateForPostView(self, wStreamNumber, fAllocate);
-    }
-    pub fn GetAllocateForPostView(self: *const IWMWriterPostView, wStreamNumber: u16, pfAllocate: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllocateForPostView(self, wStreamNumber, pfAllocate);
-    }
-};
-
-const IID_IWMWriterSink_Value = Guid.initString("96406be4-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMWriterSink = &IID_IWMWriterSink_Value;
-pub const IWMWriterSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnHeader: *const fn(
-            self: *const IWMWriterSink,
-            pHeader: ?*INSSBuffer,
-        ) callconv(.winapi) HRESULT,
-        IsRealTime: *const fn(
-            self: *const IWMWriterSink,
-            pfRealTime: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        AllocateDataUnit: *const fn(
-            self: *const IWMWriterSink,
-            cbDataUnit: u32,
-            ppDataUnit: ?*?*INSSBuffer,
-        ) callconv(.winapi) HRESULT,
-        OnDataUnit: *const fn(
-            self: *const IWMWriterSink,
-            pDataUnit: ?*INSSBuffer,
-        ) callconv(.winapi) HRESULT,
-        OnEndWriting: *const fn(
-            self: *const IWMWriterSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnHeader(self: *const IWMWriterSink, pHeader: ?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.OnHeader(self, pHeader);
-    }
-    pub fn IsRealTime(self: *const IWMWriterSink, pfRealTime: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsRealTime(self, pfRealTime);
-    }
-    pub fn AllocateDataUnit(self: *const IWMWriterSink, cbDataUnit: u32, ppDataUnit: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocateDataUnit(self, cbDataUnit, ppDataUnit);
-    }
-    pub fn OnDataUnit(self: *const IWMWriterSink, pDataUnit: ?*INSSBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDataUnit(self, pDataUnit);
-    }
-    pub fn OnEndWriting(self: *const IWMWriterSink) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEndWriting(self);
-    }
-};
-
-const IID_IWMRegisterCallback_Value = Guid.initString("cf4b1f99-4de2-4e49-a363-252740d99bc1");
-pub const IID_IWMRegisterCallback = &IID_IWMRegisterCallback_Value;
-pub const IWMRegisterCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Advise: *const fn(
-            self: *const IWMRegisterCallback,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Unadvise: *const fn(
-            self: *const IWMRegisterCallback,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Advise(self: *const IWMRegisterCallback, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Advise(self, pCallback, pvContext);
-    }
-    pub fn Unadvise(self: *const IWMRegisterCallback, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Unadvise(self, pCallback, pvContext);
-    }
-};
-
-const IID_IWMWriterFileSink_Value = Guid.initString("96406be5-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMWriterFileSink = &IID_IWMWriterFileSink_Value;
-pub const IWMWriterFileSink = extern union {
-    pub const VTable = extern struct {
-        base: IWMWriterSink.VTable,
-        Open: *const fn(
-            self: *const IWMWriterFileSink,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMWriterSink: IWMWriterSink,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IWMWriterFileSink, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, pwszFilename);
-    }
-};
-
-const IID_IWMWriterFileSink2_Value = Guid.initString("14282ba7-4aef-4205-8ce5-c229035a05bc");
-pub const IID_IWMWriterFileSink2 = &IID_IWMWriterFileSink2_Value;
-pub const IWMWriterFileSink2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMWriterFileSink.VTable,
         Start: *const fn(
-            self: *const IWMWriterFileSink2,
-            cnsStartTime: u64,
+            self: *const IWMReader,
+            cnsStart: u64,
+            cnsDuration: u64,
+            fRate: f32,
+            pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         Stop: *const fn(
-            self: *const IWMWriterFileSink2,
-            cnsStopTime: u64,
+            self: *const IWMReader,
         ) callconv(.winapi) HRESULT,
-        IsStopped: *const fn(
-            self: *const IWMWriterFileSink2,
-            pfStopped: ?*BOOL,
+        Pause: *const fn(
+            self: *const IWMReader,
         ) callconv(.winapi) HRESULT,
-        GetFileDuration: *const fn(
-            self: *const IWMWriterFileSink2,
-            pcnsDuration: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetFileSize: *const fn(
-            self: *const IWMWriterFileSink2,
-            pcbFile: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWMWriterFileSink2,
-        ) callconv(.winapi) HRESULT,
-        IsClosed: *const fn(
-            self: *const IWMWriterFileSink2,
-            pfClosed: ?*BOOL,
+        Resume: *const fn(
+            self: *const IWMReader,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWMWriterFileSink: IWMWriterFileSink,
-    IWMWriterSink: IWMWriterSink,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IWMWriterFileSink2, cnsStartTime: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self, cnsStartTime);
+    pub fn Open(self: *const IWMReader, pwszURL: ?[*:0]const u16, pCallback: ?*IWMReaderCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, pwszURL, pCallback, pvContext);
     }
-    pub fn Stop(self: *const IWMWriterFileSink2, cnsStopTime: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.Stop(self, cnsStopTime);
-    }
-    pub fn IsStopped(self: *const IWMWriterFileSink2, pfStopped: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsStopped(self, pfStopped);
-    }
-    pub fn GetFileDuration(self: *const IWMWriterFileSink2, pcnsDuration: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileDuration(self, pcnsDuration);
-    }
-    pub fn GetFileSize(self: *const IWMWriterFileSink2, pcbFile: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileSize(self, pcbFile);
-    }
-    pub fn Close(self: *const IWMWriterFileSink2) callconv(.@"inline") HRESULT {
+    pub fn Close(self: *const IWMReader) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn IsClosed(self: *const IWMWriterFileSink2, pfClosed: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsClosed(self, pfClosed);
+    pub fn GetOutputCount(self: *const IWMReader, pcOutputs: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputCount(self, pcOutputs);
+    }
+    pub fn GetOutputProps(self: *const IWMReader, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputProps(self, dwOutputNum, ppOutput);
+    }
+    pub fn SetOutputProps(self: *const IWMReader, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOutputProps(self, dwOutputNum, pOutput);
+    }
+    pub fn GetOutputFormatCount(self: *const IWMReader, dwOutputNumber: u32, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputFormatCount(self, dwOutputNumber, pcFormats);
+    }
+    pub fn GetOutputFormat(self: *const IWMReader, dwOutputNumber: u32, dwFormatNumber: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputFormat(self, dwOutputNumber, dwFormatNumber, ppProps);
+    }
+    pub fn Start(self: *const IWMReader, cnsStart: u64, cnsDuration: u64, fRate: f32, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self, cnsStart, cnsDuration, fRate, pvContext);
+    }
+    pub fn Stop(self: *const IWMReader) callconv(.@"inline") HRESULT {
+        return self.vtable.Stop(self);
+    }
+    pub fn Pause(self: *const IWMReader) callconv(.@"inline") HRESULT {
+        return self.vtable.Pause(self);
+    }
+    pub fn Resume(self: *const IWMReader) callconv(.@"inline") HRESULT {
+        return self.vtable.Resume(self);
     }
 };
 
-const IID_IWMWriterFileSink3_Value = Guid.initString("3fea4feb-2945-47a7-a1dd-c53a8fc4c45c");
-pub const IID_IWMWriterFileSink3 = &IID_IWMWriterFileSink3_Value;
-pub const IWMWriterFileSink3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMWriterFileSink2.VTable,
-        SetAutoIndexing: *const fn(
-            self: *const IWMWriterFileSink3,
-            fDoAutoIndexing: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetAutoIndexing: *const fn(
-            self: *const IWMWriterFileSink3,
-            pfAutoIndexing: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetControlStream: *const fn(
-            self: *const IWMWriterFileSink3,
-            wStreamNumber: u16,
-            fShouldControlStartAndStop: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetMode: *const fn(
-            self: *const IWMWriterFileSink3,
-            pdwFileSinkMode: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        OnDataUnitEx: *const fn(
-            self: *const IWMWriterFileSink3,
-            pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT,
-        ) callconv(.winapi) HRESULT,
-        SetUnbufferedIO: *const fn(
-            self: *const IWMWriterFileSink3,
-            fUnbufferedIO: BOOL,
-            fRestrictMemUsage: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetUnbufferedIO: *const fn(
-            self: *const IWMWriterFileSink3,
-            pfUnbufferedIO: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        CompleteOperations: *const fn(
-            self: *const IWMWriterFileSink3,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMWriterFileSink2: IWMWriterFileSink2,
-    IWMWriterFileSink: IWMWriterFileSink,
-    IWMWriterSink: IWMWriterSink,
-    IUnknown: IUnknown,
-    pub fn SetAutoIndexing(self: *const IWMWriterFileSink3, fDoAutoIndexing: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAutoIndexing(self, fDoAutoIndexing);
-    }
-    pub fn GetAutoIndexing(self: *const IWMWriterFileSink3, pfAutoIndexing: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAutoIndexing(self, pfAutoIndexing);
-    }
-    pub fn SetControlStream(self: *const IWMWriterFileSink3, wStreamNumber: u16, fShouldControlStartAndStop: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetControlStream(self, wStreamNumber, fShouldControlStartAndStop);
-    }
-    pub fn GetMode(self: *const IWMWriterFileSink3, pdwFileSinkMode: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMode(self, pdwFileSinkMode);
-    }
-    pub fn OnDataUnitEx(self: *const IWMWriterFileSink3, pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDataUnitEx(self, pFileSinkDataUnit);
-    }
-    pub fn SetUnbufferedIO(self: *const IWMWriterFileSink3, fUnbufferedIO: BOOL, fRestrictMemUsage: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetUnbufferedIO(self, fUnbufferedIO, fRestrictMemUsage);
-    }
-    pub fn GetUnbufferedIO(self: *const IWMWriterFileSink3, pfUnbufferedIO: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUnbufferedIO(self, pfUnbufferedIO);
-    }
-    pub fn CompleteOperations(self: *const IWMWriterFileSink3) callconv(.@"inline") HRESULT {
-        return self.vtable.CompleteOperations(self);
-    }
-};
-
-const IID_IWMWriterNetworkSink_Value = Guid.initString("96406be7-2b2b-11d3-b36b-00c04f6108ff");
-pub const IID_IWMWriterNetworkSink = &IID_IWMWriterNetworkSink_Value;
-pub const IWMWriterNetworkSink = extern union {
-    pub const VTable = extern struct {
-        base: IWMWriterSink.VTable,
-        SetMaximumClients: *const fn(
-            self: *const IWMWriterNetworkSink,
-            dwMaxClients: u32,
-        ) callconv(.winapi) HRESULT,
-        GetMaximumClients: *const fn(
-            self: *const IWMWriterNetworkSink,
-            pdwMaxClients: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkProtocol: *const fn(
-            self: *const IWMWriterNetworkSink,
-            protocol: WMT_NET_PROTOCOL,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkProtocol: *const fn(
-            self: *const IWMWriterNetworkSink,
-            pProtocol: ?*WMT_NET_PROTOCOL,
-        ) callconv(.winapi) HRESULT,
-        GetHostURL: *const fn(
-            self: *const IWMWriterNetworkSink,
-            pwszURL: ?PWSTR,
-            pcchURL: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Open: *const fn(
-            self: *const IWMWriterNetworkSink,
-            pdwPortNum: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Disconnect: *const fn(
-            self: *const IWMWriterNetworkSink,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWMWriterNetworkSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMWriterSink: IWMWriterSink,
-    IUnknown: IUnknown,
-    pub fn SetMaximumClients(self: *const IWMWriterNetworkSink, dwMaxClients: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMaximumClients(self, dwMaxClients);
-    }
-    pub fn GetMaximumClients(self: *const IWMWriterNetworkSink, pdwMaxClients: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaximumClients(self, pdwMaxClients);
-    }
-    pub fn SetNetworkProtocol(self: *const IWMWriterNetworkSink, protocol: WMT_NET_PROTOCOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkProtocol(self, protocol);
-    }
-    pub fn GetNetworkProtocol(self: *const IWMWriterNetworkSink, pProtocol: ?*WMT_NET_PROTOCOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkProtocol(self, pProtocol);
-    }
-    pub fn GetHostURL(self: *const IWMWriterNetworkSink, pwszURL: ?PWSTR, pcchURL: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHostURL(self, pwszURL, pcchURL);
-    }
-    pub fn Open(self: *const IWMWriterNetworkSink, pdwPortNum: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, pdwPortNum);
-    }
-    pub fn Disconnect(self: *const IWMWriterNetworkSink) callconv(.@"inline") HRESULT {
-        return self.vtable.Disconnect(self);
-    }
-    pub fn Close(self: *const IWMWriterNetworkSink) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-};
-
-const IID_IWMClientConnections_Value = Guid.initString("73c66010-a299-41df-b1f0-ccf03b09c1c6");
-pub const IID_IWMClientConnections = &IID_IWMClientConnections_Value;
-pub const IWMClientConnections = extern union {
+const IID_IWMReaderAccelerator_Value = Guid.initString("bddc4d08-944d-4d52-a612-46c3fda07dd4");
+pub const IID_IWMReaderAccelerator = &IID_IWMReaderAccelerator_Value;
+pub const IWMReaderAccelerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClientCount: *const fn(
-            self: *const IWMClientConnections,
-            pcClients: ?*u32,
+        GetCodecInterface: *const fn(
+            self: *const IWMReaderAccelerator,
+            dwOutputNum: u32,
+            riid: ?*const Guid,
+            ppvCodecInterface: ?*?*anyopaque,
         ) callconv(.winapi) HRESULT,
-        GetClientProperties: *const fn(
-            self: *const IWMClientConnections,
-            dwClientNum: u32,
-            pClientProperties: ?*WM_CLIENT_PROPERTIES,
+        Notify: *const fn(
+            self: *const IWMReaderAccelerator,
+            dwOutputNum: u32,
+            pSubtype: ?*WM_MEDIA_TYPE,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClientCount(self: *const IWMClientConnections, pcClients: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClientCount(self, pcClients);
+    pub fn GetCodecInterface(self: *const IWMReaderAccelerator, dwOutputNum: u32, riid: ?*const Guid, ppvCodecInterface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodecInterface(self, dwOutputNum, riid, ppvCodecInterface);
     }
-    pub fn GetClientProperties(self: *const IWMClientConnections, dwClientNum: u32, pClientProperties: ?*WM_CLIENT_PROPERTIES) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClientProperties(self, dwClientNum, pClientProperties);
-    }
-};
-
-const IID_IWMClientConnections2_Value = Guid.initString("4091571e-4701-4593-bb3d-d5f5f0c74246");
-pub const IID_IWMClientConnections2 = &IID_IWMClientConnections2_Value;
-pub const IWMClientConnections2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMClientConnections.VTable,
-        GetClientInfo: *const fn(
-            self: *const IWMClientConnections2,
-            dwClientNum: u32,
-            pwszNetworkAddress: [*:0]u16,
-            pcchNetworkAddress: ?*u32,
-            pwszPort: [*:0]u16,
-            pcchPort: ?*u32,
-            pwszDNSName: [*:0]u16,
-            pcchDNSName: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMClientConnections: IWMClientConnections,
-    IUnknown: IUnknown,
-    pub fn GetClientInfo(self: *const IWMClientConnections2, dwClientNum: u32, pwszNetworkAddress: [*:0]u16, pcchNetworkAddress: ?*u32, pwszPort: [*:0]u16, pcchPort: ?*u32, pwszDNSName: [*:0]u16, pcchDNSName: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClientInfo(self, dwClientNum, pwszNetworkAddress, pcchNetworkAddress, pwszPort, pcchPort, pwszDNSName, pcchDNSName);
+    pub fn Notify(self: *const IWMReaderAccelerator, dwOutputNum: u32, pSubtype: ?*WM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, dwOutputNum, pSubtype);
     }
 };
 
@@ -4244,22 +3298,6 @@ pub const IWMReaderAdvanced6 = extern union {
     }
 };
 
-const IID_IWMPlayerHook_Value = Guid.initString("e5b7ca9a-0f1c-4f66-9002-74ec50d8b304");
-pub const IID_IWMPlayerHook = &IID_IWMPlayerHook_Value;
-pub const IWMPlayerHook = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PreDecode: *const fn(
-            self: *const IWMPlayerHook,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PreDecode(self: *const IWMPlayerHook) callconv(.@"inline") HRESULT {
-        return self.vtable.PreDecode(self);
-    }
-};
-
 const IID_IWMReaderAllocatorEx_Value = Guid.initString("9f762fa7-a22e-428d-93c9-ac82f3aafe5a");
 pub const IID_IWMReaderAllocatorEx = &IID_IWMReaderAllocatorEx_Value;
 pub const IWMReaderAllocatorEx = extern union {
@@ -4296,21 +3334,26 @@ pub const IWMReaderAllocatorEx = extern union {
     }
 };
 
-const IID_IWMReaderTypeNegotiation_Value = Guid.initString("fdbe5592-81a1-41ea-93bd-735cad1adc05");
-pub const IID_IWMReaderTypeNegotiation = &IID_IWMReaderTypeNegotiation_Value;
-pub const IWMReaderTypeNegotiation = extern union {
+const IID_IWMReaderCallback_Value = Guid.initString("96406bd8-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMReaderCallback = &IID_IWMReaderCallback_Value;
+pub const IWMReaderCallback = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        TryOutputProps: *const fn(
-            self: *const IWMReaderTypeNegotiation,
+        base: IWMStatusCallback.VTable,
+        OnSample: *const fn(
+            self: *const IWMReaderCallback,
             dwOutputNum: u32,
-            pOutput: ?*IWMOutputMediaProps,
+            cnsSampleTime: u64,
+            cnsSampleDuration: u64,
+            dwFlags: u32,
+            pSample: ?*INSSBuffer,
+            pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IWMStatusCallback: IWMStatusCallback,
     IUnknown: IUnknown,
-    pub fn TryOutputProps(self: *const IWMReaderTypeNegotiation, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
-        return self.vtable.TryOutputProps(self, dwOutputNum, pOutput);
+    pub fn OnSample(self: *const IWMReaderCallback, dwOutputNum: u32, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSample(self, dwOutputNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
     }
 };
 
@@ -4380,215 +3423,6 @@ pub const IWMReaderCallbackAdvanced = extern union {
     }
     pub fn AllocateForOutput(self: *const IWMReaderCallbackAdvanced, dwOutputNum: u32, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AllocateForOutput(self, dwOutputNum, cbBuffer, ppBuffer, pvContext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWMDRMReader_Value = Guid.initString("d2827540-3ee7-432c-b14c-dc17f085d3b3");
-pub const IID_IWMDRMReader = &IID_IWMDRMReader_Value;
-pub const IWMDRMReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AcquireLicense: *const fn(
-            self: *const IWMDRMReader,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        CancelLicenseAcquisition: *const fn(
-            self: *const IWMDRMReader,
-        ) callconv(.winapi) HRESULT,
-        Individualize: *const fn(
-            self: *const IWMDRMReader,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        CancelIndividualization: *const fn(
-            self: *const IWMDRMReader,
-        ) callconv(.winapi) HRESULT,
-        MonitorLicenseAcquisition: *const fn(
-            self: *const IWMDRMReader,
-        ) callconv(.winapi) HRESULT,
-        CancelMonitorLicenseAcquisition: *const fn(
-            self: *const IWMDRMReader,
-        ) callconv(.winapi) HRESULT,
-        SetDRMProperty: *const fn(
-            self: *const IWMDRMReader,
-            pwstrName: ?[*:0]const u16,
-            dwType: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(.winapi) HRESULT,
-        GetDRMProperty: *const fn(
-            self: *const IWMDRMReader,
-            pwstrName: ?[*:0]const u16,
-            pdwType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AcquireLicense(self: *const IWMDRMReader, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AcquireLicense(self, dwFlags);
-    }
-    pub fn CancelLicenseAcquisition(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelLicenseAcquisition(self);
-    }
-    pub fn Individualize(self: *const IWMDRMReader, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Individualize(self, dwFlags);
-    }
-    pub fn CancelIndividualization(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelIndividualization(self);
-    }
-    pub fn MonitorLicenseAcquisition(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.MonitorLicenseAcquisition(self);
-    }
-    pub fn CancelMonitorLicenseAcquisition(self: *const IWMDRMReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelMonitorLicenseAcquisition(self);
-    }
-    pub fn SetDRMProperty(self: *const IWMDRMReader, pwstrName: ?[*:0]const u16, dwType: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDRMProperty(self, pwstrName, dwType, pValue, cbLength);
-    }
-    pub fn GetDRMProperty(self: *const IWMDRMReader, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDRMProperty(self, pwstrName, pdwType, pValue, pcbLength);
-    }
-};
-
-pub const DRM_MINIMUM_OUTPUT_PROTECTION_LEVELS = extern struct {
-    wCompressedDigitalVideo: u16,
-    wUncompressedDigitalVideo: u16,
-    wAnalogVideo: u16,
-    wCompressedDigitalAudio: u16,
-    wUncompressedDigitalAudio: u16,
-};
-
-pub const DRM_OPL_OUTPUT_IDS = extern struct {
-    cIds: u16,
-    rgIds: ?*Guid,
-};
-
-pub const DRM_OUTPUT_PROTECTION = extern struct {
-    guidId: Guid,
-    bConfigData: u8,
-};
-
-pub const DRM_VIDEO_OUTPUT_PROTECTION_IDS = extern struct {
-    cEntries: u16,
-    rgVop: ?*DRM_OUTPUT_PROTECTION,
-};
-
-pub const DRM_PLAY_OPL = extern struct {
-    minOPL: DRM_MINIMUM_OUTPUT_PROTECTION_LEVELS,
-    oplIdReserved: DRM_OPL_OUTPUT_IDS,
-    vopi: DRM_VIDEO_OUTPUT_PROTECTION_IDS,
-};
-
-pub const DRM_COPY_OPL = extern struct {
-    wMinimumCopyLevel: u16,
-    oplIdIncludes: DRM_OPL_OUTPUT_IDS,
-    oplIdExcludes: DRM_OPL_OUTPUT_IDS,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMDRMReader2_Value = Guid.initString("befe7a75-9f1d-4075-b9d9-a3c37bda49a0");
-pub const IID_IWMDRMReader2 = &IID_IWMDRMReader2_Value;
-pub const IWMDRMReader2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDRMReader.VTable,
-        SetEvaluateOutputLevelLicenses: *const fn(
-            self: *const IWMDRMReader2,
-            fEvaluate: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetPlayOutputLevels: *const fn(
-            self: *const IWMDRMReader2,
-            pPlayOPL: [*]DRM_PLAY_OPL,
-            pcbLength: ?*u32,
-            pdwMinAppComplianceLevel: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCopyOutputLevels: *const fn(
-            self: *const IWMDRMReader2,
-            pCopyOPL: [*]DRM_COPY_OPL,
-            pcbLength: ?*u32,
-            pdwMinAppComplianceLevel: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        TryNextLicense: *const fn(
-            self: *const IWMDRMReader2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDRMReader: IWMDRMReader,
-    IUnknown: IUnknown,
-    pub fn SetEvaluateOutputLevelLicenses(self: *const IWMDRMReader2, fEvaluate: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEvaluateOutputLevelLicenses(self, fEvaluate);
-    }
-    pub fn GetPlayOutputLevels(self: *const IWMDRMReader2, pPlayOPL: [*]DRM_PLAY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPlayOutputLevels(self, pPlayOPL, pcbLength, pdwMinAppComplianceLevel);
-    }
-    pub fn GetCopyOutputLevels(self: *const IWMDRMReader2, pCopyOPL: [*]DRM_COPY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCopyOutputLevels(self, pCopyOPL, pcbLength, pdwMinAppComplianceLevel);
-    }
-    pub fn TryNextLicense(self: *const IWMDRMReader2) callconv(.@"inline") HRESULT {
-        return self.vtable.TryNextLicense(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMDRMReader3_Value = Guid.initString("e08672de-f1e7-4ff4-a0a3-fc4b08e4caf8");
-pub const IID_IWMDRMReader3 = &IID_IWMDRMReader3_Value;
-pub const IWMDRMReader3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDRMReader2.VTable,
-        GetInclusionList: *const fn(
-            self: *const IWMDRMReader3,
-            ppGuids: ?*?*Guid,
-            pcGuids: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDRMReader2: IWMDRMReader2,
-    IWMDRMReader: IWMDRMReader,
-    IUnknown: IUnknown,
-    pub fn GetInclusionList(self: *const IWMDRMReader3, ppGuids: ?*?*Guid, pcGuids: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInclusionList(self, ppGuids, pcGuids);
-    }
-};
-
-const IID_IWMReaderPlaylistBurn_Value = Guid.initString("f28c0300-9baa-4477-a846-1744d9cbf533");
-pub const IID_IWMReaderPlaylistBurn = &IID_IWMReaderPlaylistBurn_Value;
-pub const IWMReaderPlaylistBurn = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitPlaylistBurn: *const fn(
-            self: *const IWMReaderPlaylistBurn,
-            cFiles: u32,
-            ppwszFilenames: ?*?PWSTR,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetInitResults: *const fn(
-            self: *const IWMReaderPlaylistBurn,
-            cFiles: u32,
-            phrStati: ?*HRESULT,
-        ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const IWMReaderPlaylistBurn,
-        ) callconv(.winapi) HRESULT,
-        EndPlaylistBurn: *const fn(
-            self: *const IWMReaderPlaylistBurn,
-            hrBurnResult: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitPlaylistBurn(self: *const IWMReaderPlaylistBurn, cFiles: u32, ppwszFilenames: ?*?PWSTR, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.InitPlaylistBurn(self, cFiles, ppwszFilenames, pCallback, pvContext);
-    }
-    pub fn GetInitResults(self: *const IWMReaderPlaylistBurn, cFiles: u32, phrStati: ?*HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInitResults(self, cFiles, phrStati);
-    }
-    pub fn Cancel(self: *const IWMReaderPlaylistBurn) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-    pub fn EndPlaylistBurn(self: *const IWMReaderPlaylistBurn, hrBurnResult: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.EndPlaylistBurn(self, hrBurnResult);
     }
 };
 
@@ -4951,6 +3785,47 @@ pub const IWMReaderNetworkConfig2 = extern union {
     }
 };
 
+const IID_IWMReaderPlaylistBurn_Value = Guid.initString("f28c0300-9baa-4477-a846-1744d9cbf533");
+pub const IID_IWMReaderPlaylistBurn = &IID_IWMReaderPlaylistBurn_Value;
+pub const IWMReaderPlaylistBurn = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitPlaylistBurn: *const fn(
+            self: *const IWMReaderPlaylistBurn,
+            cFiles: u32,
+            ppwszFilenames: ?*?PWSTR,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetInitResults: *const fn(
+            self: *const IWMReaderPlaylistBurn,
+            cFiles: u32,
+            phrStati: ?*HRESULT,
+        ) callconv(.winapi) HRESULT,
+        Cancel: *const fn(
+            self: *const IWMReaderPlaylistBurn,
+        ) callconv(.winapi) HRESULT,
+        EndPlaylistBurn: *const fn(
+            self: *const IWMReaderPlaylistBurn,
+            hrBurnResult: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitPlaylistBurn(self: *const IWMReaderPlaylistBurn, cFiles: u32, ppwszFilenames: ?*?PWSTR, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.InitPlaylistBurn(self, cFiles, ppwszFilenames, pCallback, pvContext);
+    }
+    pub fn GetInitResults(self: *const IWMReaderPlaylistBurn, cFiles: u32, phrStati: ?*HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInitResults(self, cFiles, phrStati);
+    }
+    pub fn Cancel(self: *const IWMReaderPlaylistBurn) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn EndPlaylistBurn(self: *const IWMReaderPlaylistBurn, hrBurnResult: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.EndPlaylistBurn(self, hrBurnResult);
+    }
+};
+
 const IID_IWMReaderStreamClock_Value = Guid.initString("96406bed-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMReaderStreamClock = &IID_IWMReaderStreamClock_Value;
 pub const IWMReaderStreamClock = extern union {
@@ -4984,425 +3859,75 @@ pub const IWMReaderStreamClock = extern union {
     }
 };
 
-const IID_IWMIndexer_Value = Guid.initString("6d7cdc71-9888-11d3-8edc-00c04f6109cf");
-pub const IID_IWMIndexer = &IID_IWMIndexer_Value;
-pub const IWMIndexer = extern union {
+const IID_IWMReaderTimecode_Value = Guid.initString("f369e2f0-e081-4fe6-8450-b810b2f410d1");
+pub const IID_IWMReaderTimecode = &IID_IWMReaderTimecode_Value;
+pub const IWMReaderTimecode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartIndexing: *const fn(
-            self: *const IWMIndexer,
-            pwszURL: ?[*:0]const u16,
+        GetTimecodeRangeCount: *const fn(
+            self: *const IWMReaderTimecode,
+            wStreamNum: u16,
+            pwRangeCount: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetTimecodeRangeBounds: *const fn(
+            self: *const IWMReaderTimecode,
+            wStreamNum: u16,
+            wRangeNum: u16,
+            pStartTimecode: ?*u32,
+            pEndTimecode: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetTimecodeRangeCount(self: *const IWMReaderTimecode, wStreamNum: u16, pwRangeCount: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTimecodeRangeCount(self, wStreamNum, pwRangeCount);
+    }
+    pub fn GetTimecodeRangeBounds(self: *const IWMReaderTimecode, wStreamNum: u16, wRangeNum: u16, pStartTimecode: ?*u32, pEndTimecode: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTimecodeRangeBounds(self, wStreamNum, wRangeNum, pStartTimecode, pEndTimecode);
+    }
+};
+
+const IID_IWMReaderTypeNegotiation_Value = Guid.initString("fdbe5592-81a1-41ea-93bd-735cad1adc05");
+pub const IID_IWMReaderTypeNegotiation = &IID_IWMReaderTypeNegotiation_Value;
+pub const IWMReaderTypeNegotiation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        TryOutputProps: *const fn(
+            self: *const IWMReaderTypeNegotiation,
+            dwOutputNum: u32,
+            pOutput: ?*IWMOutputMediaProps,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn TryOutputProps(self: *const IWMReaderTypeNegotiation, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.TryOutputProps(self, dwOutputNum, pOutput);
+    }
+};
+
+const IID_IWMRegisterCallback_Value = Guid.initString("cf4b1f99-4de2-4e49-a363-252740d99bc1");
+pub const IID_IWMRegisterCallback = &IID_IWMRegisterCallback_Value;
+pub const IWMRegisterCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Advise: *const fn(
+            self: *const IWMRegisterCallback,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const IWMIndexer,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn StartIndexing(self: *const IWMIndexer, pwszURL: ?[*:0]const u16, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.StartIndexing(self, pwszURL, pCallback, pvContext);
-    }
-    pub fn Cancel(self: *const IWMIndexer) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-};
-
-const IID_IWMIndexer2_Value = Guid.initString("b70f1e42-6255-4df0-a6b9-02b212d9e2bb");
-pub const IID_IWMIndexer2 = &IID_IWMIndexer2_Value;
-pub const IWMIndexer2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMIndexer.VTable,
-        Configure: *const fn(
-            self: *const IWMIndexer2,
-            wStreamNum: u16,
-            nIndexerType: WMT_INDEXER_TYPE,
-            pvInterval: ?*anyopaque,
-            pvIndexType: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMIndexer: IWMIndexer,
-    IUnknown: IUnknown,
-    pub fn Configure(self: *const IWMIndexer2, wStreamNum: u16, nIndexerType: WMT_INDEXER_TYPE, pvInterval: ?*anyopaque, pvIndexType: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Configure(self, wStreamNum, nIndexerType, pvInterval, pvIndexType);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWMLicenseBackup_Value = Guid.initString("05e5ac9f-3fb6-4508-bb43-a4067ba1ebe8");
-pub const IID_IWMLicenseBackup = &IID_IWMLicenseBackup_Value;
-pub const IWMLicenseBackup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BackupLicenses: *const fn(
-            self: *const IWMLicenseBackup,
-            dwFlags: u32,
+        Unadvise: *const fn(
+            self: *const IWMRegisterCallback,
             pCallback: ?*IWMStatusCallback,
-        ) callconv(.winapi) HRESULT,
-        CancelLicenseBackup: *const fn(
-            self: *const IWMLicenseBackup,
+            pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BackupLicenses(self: *const IWMLicenseBackup, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.BackupLicenses(self, dwFlags, pCallback);
+    pub fn Advise(self: *const IWMRegisterCallback, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Advise(self, pCallback, pvContext);
     }
-    pub fn CancelLicenseBackup(self: *const IWMLicenseBackup) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelLicenseBackup(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWMLicenseRestore_Value = Guid.initString("c70b6334-a22e-4efb-a245-15e65a004a13");
-pub const IID_IWMLicenseRestore = &IID_IWMLicenseRestore_Value;
-pub const IWMLicenseRestore = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RestoreLicenses: *const fn(
-            self: *const IWMLicenseRestore,
-            dwFlags: u32,
-            pCallback: ?*IWMStatusCallback,
-        ) callconv(.winapi) HRESULT,
-        CancelLicenseRestore: *const fn(
-            self: *const IWMLicenseRestore,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RestoreLicenses(self: *const IWMLicenseRestore, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreLicenses(self, dwFlags, pCallback);
-    }
-    pub fn CancelLicenseRestore(self: *const IWMLicenseRestore) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelLicenseRestore(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWMBackupRestoreProps_Value = Guid.initString("3c8e0da6-996f-4ff3-a1af-4838f9377e2e");
-pub const IID_IWMBackupRestoreProps = &IID_IWMBackupRestoreProps_Value;
-pub const IWMBackupRestoreProps = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPropCount: *const fn(
-            self: *const IWMBackupRestoreProps,
-            pcProps: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetPropByIndex: *const fn(
-            self: *const IWMBackupRestoreProps,
-            wIndex: u16,
-            pwszName: [*:0]u16,
-            pcchNameLen: ?*u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetPropByName: *const fn(
-            self: *const IWMBackupRestoreProps,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        SetProp: *const fn(
-            self: *const IWMBackupRestoreProps,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(.winapi) HRESULT,
-        RemoveProp: *const fn(
-            self: *const IWMBackupRestoreProps,
-            pcwszName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        RemoveAllProps: *const fn(
-            self: *const IWMBackupRestoreProps,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPropCount(self: *const IWMBackupRestoreProps, pcProps: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropCount(self, pcProps);
-    }
-    pub fn GetPropByIndex(self: *const IWMBackupRestoreProps, wIndex: u16, pwszName: [*:0]u16, pcchNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropByIndex(self, wIndex, pwszName, pcchNameLen, pType, pValue, pcbLength);
-    }
-    pub fn GetPropByName(self: *const IWMBackupRestoreProps, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropByName(self, pszName, pType, pValue, pcbLength);
-    }
-    pub fn SetProp(self: *const IWMBackupRestoreProps, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProp(self, pszName, Type, pValue, cbLength);
-    }
-    pub fn RemoveProp(self: *const IWMBackupRestoreProps, pcwszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveProp(self, pcwszName);
-    }
-    pub fn RemoveAllProps(self: *const IWMBackupRestoreProps) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAllProps(self);
-    }
-};
-
-const IID_IWMCodecInfo_Value = Guid.initString("a970f41e-34de-4a98-b3ba-e4b3ca7528f0");
-pub const IID_IWMCodecInfo = &IID_IWMCodecInfo_Value;
-pub const IWMCodecInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCodecInfoCount: *const fn(
-            self: *const IWMCodecInfo,
-            guidType: ?*const Guid,
-            pcCodecs: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCodecFormatCount: *const fn(
-            self: *const IWMCodecInfo,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pcFormat: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCodecFormat: *const fn(
-            self: *const IWMCodecInfo,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            dwFormatIndex: u32,
-            ppIStreamConfig: ?*?*IWMStreamConfig,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCodecInfoCount(self: *const IWMCodecInfo, guidType: ?*const Guid, pcCodecs: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecInfoCount(self, guidType, pcCodecs);
-    }
-    pub fn GetCodecFormatCount(self: *const IWMCodecInfo, guidType: ?*const Guid, dwCodecIndex: u32, pcFormat: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecFormatCount(self, guidType, dwCodecIndex, pcFormat);
-    }
-    pub fn GetCodecFormat(self: *const IWMCodecInfo, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecFormat(self, guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig);
-    }
-};
-
-const IID_IWMCodecInfo2_Value = Guid.initString("aa65e273-b686-4056-91ec-dd768d4df710");
-pub const IID_IWMCodecInfo2 = &IID_IWMCodecInfo2_Value;
-pub const IWMCodecInfo2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMCodecInfo.VTable,
-        GetCodecName: *const fn(
-            self: *const IWMCodecInfo2,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            wszName: [*:0]u16,
-            pcchName: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCodecFormatDesc: *const fn(
-            self: *const IWMCodecInfo2,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            dwFormatIndex: u32,
-            ppIStreamConfig: ?*?*IWMStreamConfig,
-            wszDesc: [*:0]u16,
-            pcchDesc: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMCodecInfo: IWMCodecInfo,
-    IUnknown: IUnknown,
-    pub fn GetCodecName(self: *const IWMCodecInfo2, guidType: ?*const Guid, dwCodecIndex: u32, wszName: [*:0]u16, pcchName: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecName(self, guidType, dwCodecIndex, wszName, pcchName);
-    }
-    pub fn GetCodecFormatDesc(self: *const IWMCodecInfo2, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig, wszDesc: [*:0]u16, pcchDesc: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecFormatDesc(self, guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig, wszDesc, pcchDesc);
-    }
-};
-
-const IID_IWMCodecInfo3_Value = Guid.initString("7e51f487-4d93-4f98-8ab4-27d0565adc51");
-pub const IID_IWMCodecInfo3 = &IID_IWMCodecInfo3_Value;
-pub const IWMCodecInfo3 = extern union {
-    pub const VTable = extern struct {
-        base: IWMCodecInfo2.VTable,
-        GetCodecFormatProp: *const fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            dwFormatIndex: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCodecProp: *const fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetCodecEnumerationSetting: *const fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            dwSize: u32,
-        ) callconv(.winapi) HRESULT,
-        GetCodecEnumerationSetting: *const fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMCodecInfo2: IWMCodecInfo2,
-    IWMCodecInfo: IWMCodecInfo,
-    IUnknown: IUnknown,
-    pub fn GetCodecFormatProp(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecFormatProp(self, guidType, dwCodecIndex, dwFormatIndex, pszName, pType, pValue, pdwSize);
-    }
-    pub fn GetCodecProp(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecProp(self, guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
-    }
-    pub fn SetCodecEnumerationSetting(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, dwSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCodecEnumerationSetting(self, guidType, dwCodecIndex, pszName, Type, pValue, dwSize);
-    }
-    pub fn GetCodecEnumerationSetting(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecEnumerationSetting(self, guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
-    }
-};
-
-const IID_IWMLanguageList_Value = Guid.initString("df683f00-2d49-4d8e-92b7-fb19f6a0dc57");
-pub const IID_IWMLanguageList = &IID_IWMLanguageList_Value;
-pub const IWMLanguageList = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLanguageCount: *const fn(
-            self: *const IWMLanguageList,
-            pwCount: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetLanguageDetails: *const fn(
-            self: *const IWMLanguageList,
-            wIndex: u16,
-            pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        AddLanguageByRFC1766String: *const fn(
-            self: *const IWMLanguageList,
-            pwszLanguageString: ?PWSTR,
-            pwIndex: ?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetLanguageCount(self: *const IWMLanguageList, pwCount: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLanguageCount(self, pwCount);
-    }
-    pub fn GetLanguageDetails(self: *const IWMLanguageList, wIndex: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLanguageDetails(self, wIndex, pwszLanguageString, pcchLanguageStringLength);
-    }
-    pub fn AddLanguageByRFC1766String(self: *const IWMLanguageList, pwszLanguageString: ?PWSTR, pwIndex: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.AddLanguageByRFC1766String(self, pwszLanguageString, pwIndex);
-    }
-};
-
-const IID_IWMWriterPushSink_Value = Guid.initString("dc10e6a5-072c-467d-bf57-6330a9dde12a");
-pub const IID_IWMWriterPushSink = &IID_IWMWriterPushSink_Value;
-pub const IWMWriterPushSink = extern union {
-    pub const VTable = extern struct {
-        base: IWMWriterSink.VTable,
-        Connect: *const fn(
-            self: *const IWMWriterPushSink,
-            pwszURL: ?[*:0]const u16,
-            pwszTemplateURL: ?[*:0]const u16,
-            fAutoDestroy: BOOL,
-        ) callconv(.winapi) HRESULT,
-        Disconnect: *const fn(
-            self: *const IWMWriterPushSink,
-        ) callconv(.winapi) HRESULT,
-        EndSession: *const fn(
-            self: *const IWMWriterPushSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMWriterSink: IWMWriterSink,
-    IUnknown: IUnknown,
-    pub fn Connect(self: *const IWMWriterPushSink, pwszURL: ?[*:0]const u16, pwszTemplateURL: ?[*:0]const u16, fAutoDestroy: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Connect(self, pwszURL, pwszTemplateURL, fAutoDestroy);
-    }
-    pub fn Disconnect(self: *const IWMWriterPushSink) callconv(.@"inline") HRESULT {
-        return self.vtable.Disconnect(self);
-    }
-    pub fn EndSession(self: *const IWMWriterPushSink) callconv(.@"inline") HRESULT {
-        return self.vtable.EndSession(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMDeviceRegistration_Value = Guid.initString("f6211f03-8d21-4e94-93e6-8510805f2d99");
-pub const IID_IWMDeviceRegistration = &IID_IWMDeviceRegistration_Value;
-pub const IWMDeviceRegistration = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterDevice: *const fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pbCertificate: [*:0]u8,
-            cbCertificate: u32,
-            SerialNumber: DRM_VAL16,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(.winapi) HRESULT,
-        UnregisterDevice: *const fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pbCertificate: [*:0]u8,
-            cbCertificate: u32,
-            SerialNumber: DRM_VAL16,
-        ) callconv(.winapi) HRESULT,
-        GetRegistrationStats: *const fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pcRegisteredDevices: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetFirstRegisteredDevice: *const fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(.winapi) HRESULT,
-        GetNextRegisteredDevice: *const fn(
-            self: *const IWMDeviceRegistration,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(.winapi) HRESULT,
-        GetRegisteredDeviceByID: *const fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pbCertificate: [*:0]u8,
-            cbCertificate: u32,
-            SerialNumber: DRM_VAL16,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterDevice(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
-    }
-    pub fn UnregisterDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterDevice(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber);
-    }
-    pub fn GetRegistrationStats(self: *const IWMDeviceRegistration, dwRegisterType: u32, pcRegisteredDevices: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRegistrationStats(self, dwRegisterType, pcRegisteredDevices);
-    }
-    pub fn GetFirstRegisteredDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFirstRegisteredDevice(self, dwRegisterType, ppDevice);
-    }
-    pub fn GetNextRegisteredDevice(self: *const IWMDeviceRegistration, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextRegisteredDevice(self, ppDevice);
-    }
-    pub fn GetRegisteredDeviceByID(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRegisteredDeviceByID(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
+    pub fn Unadvise(self: *const IWMRegisterCallback, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Unadvise(self, pCallback, pvContext);
     }
 };
 
@@ -5516,417 +4041,29 @@ pub const IWMRegisteredDevice = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMProximityDetection_Value = Guid.initString("6a9fd8ee-b651-4bf0-b849-7d4ece79a2b1");
-pub const IID_IWMProximityDetection = &IID_IWMProximityDetection_Value;
-pub const IWMProximityDetection = extern union {
+const IID_IWMSBufferAllocator_Value = Guid.initString("61103ca4-2033-11d2-9ef1-006097d2d7cf");
+pub const IID_IWMSBufferAllocator = &IID_IWMSBufferAllocator_Value;
+pub const IWMSBufferAllocator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartDetection: *const fn(
-            self: *const IWMProximityDetection,
-            pbRegistrationMsg: [*:0]u8,
-            cbRegistrationMsg: u32,
-            pbLocalAddress: [*:0]u8,
-            cbLocalAddress: u32,
-            dwExtraPortsAllowed: u32,
-            ppRegistrationResponseMsg: ?*?*INSSBuffer,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
+        AllocateBuffer: *const fn(
+            self: *const IWMSBufferAllocator,
+            dwMaxBufferSize: u32,
+            ppBuffer: ?*?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        AllocatePageSizeBuffer: *const fn(
+            self: *const IWMSBufferAllocator,
+            dwMaxBufferSize: u32,
+            ppBuffer: ?*?*INSSBuffer,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StartDetection(self: *const IWMProximityDetection, pbRegistrationMsg: [*:0]u8, cbRegistrationMsg: u32, pbLocalAddress: [*:0]u8, cbLocalAddress: u32, dwExtraPortsAllowed: u32, ppRegistrationResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.StartDetection(self, pbRegistrationMsg, cbRegistrationMsg, pbLocalAddress, cbLocalAddress, dwExtraPortsAllowed, ppRegistrationResponseMsg, pCallback, pvContext);
+    pub fn AllocateBuffer(self: *const IWMSBufferAllocator, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocateBuffer(self, dwMaxBufferSize, ppBuffer);
     }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMDRMMessageParser_Value = Guid.initString("a73a0072-25a0-4c99-b4a5-ede8101a6c39");
-pub const IID_IWMDRMMessageParser = &IID_IWMDRMMessageParser_Value;
-pub const IWMDRMMessageParser = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParseRegistrationReqMsg: *const fn(
-            self: *const IWMDRMMessageParser,
-            pbRegistrationReqMsg: [*:0]u8,
-            cbRegistrationReqMsg: u32,
-            ppDeviceCert: ?*?*INSSBuffer,
-            pDeviceSerialNumber: ?*DRM_VAL16,
-        ) callconv(.winapi) HRESULT,
-        ParseLicenseRequestMsg: *const fn(
-            self: *const IWMDRMMessageParser,
-            pbLicenseRequestMsg: [*:0]u8,
-            cbLicenseRequestMsg: u32,
-            ppDeviceCert: ?*?*INSSBuffer,
-            pDeviceSerialNumber: ?*DRM_VAL16,
-            pbstrAction: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ParseRegistrationReqMsg(self: *const IWMDRMMessageParser, pbRegistrationReqMsg: [*:0]u8, cbRegistrationReqMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16) callconv(.@"inline") HRESULT {
-        return self.vtable.ParseRegistrationReqMsg(self, pbRegistrationReqMsg, cbRegistrationReqMsg, ppDeviceCert, pDeviceSerialNumber);
-    }
-    pub fn ParseLicenseRequestMsg(self: *const IWMDRMMessageParser, pbLicenseRequestMsg: [*:0]u8, cbLicenseRequestMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16, pbstrAction: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ParseLicenseRequestMsg(self, pbLicenseRequestMsg, cbLicenseRequestMsg, ppDeviceCert, pDeviceSerialNumber, pbstrAction);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWMDRMTranscryptor_Value = Guid.initString("69059850-6e6f-4bb2-806f-71863ddfc471");
-pub const IID_IWMDRMTranscryptor = &IID_IWMDRMTranscryptor_Value;
-pub const IWMDRMTranscryptor = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IWMDRMTranscryptor,
-            bstrFileName: ?BSTR,
-            pbLicenseRequestMsg: ?*u8,
-            cbLicenseRequestMsg: u32,
-            ppLicenseResponseMsg: ?*?*INSSBuffer,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Seek: *const fn(
-            self: *const IWMDRMTranscryptor,
-            hnsTime: u64,
-        ) callconv(.winapi) HRESULT,
-        Read: *const fn(
-            self: *const IWMDRMTranscryptor,
-            pbData: ?*u8,
-            pcbData: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWMDRMTranscryptor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWMDRMTranscryptor, bstrFileName: ?BSTR, pbLicenseRequestMsg: ?*u8, cbLicenseRequestMsg: u32, ppLicenseResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, bstrFileName, pbLicenseRequestMsg, cbLicenseRequestMsg, ppLicenseResponseMsg, pCallback, pvContext);
-    }
-    pub fn Seek(self: *const IWMDRMTranscryptor, hnsTime: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.Seek(self, hnsTime);
-    }
-    pub fn Read(self: *const IWMDRMTranscryptor, pbData: ?*u8, pcbData: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Read(self, pbData, pcbData);
-    }
-    pub fn Close(self: *const IWMDRMTranscryptor) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-};
-
-const IID_IWMDRMTranscryptor2_Value = Guid.initString("e0da439f-d331-496a-bece-18e5bac5dd23");
-pub const IID_IWMDRMTranscryptor2 = &IID_IWMDRMTranscryptor2_Value;
-pub const IWMDRMTranscryptor2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMDRMTranscryptor.VTable,
-        SeekEx: *const fn(
-            self: *const IWMDRMTranscryptor2,
-            cnsStartTime: u64,
-            cnsDuration: u64,
-            flRate: f32,
-            fIncludeFileHeader: BOOL,
-        ) callconv(.winapi) HRESULT,
-        ZeroAdjustTimestamps: *const fn(
-            self: *const IWMDRMTranscryptor2,
-            fEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetSeekStartTime: *const fn(
-            self: *const IWMDRMTranscryptor2,
-            pcnsTime: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetDuration: *const fn(
-            self: *const IWMDRMTranscryptor2,
-            pcnsDuration: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMDRMTranscryptor: IWMDRMTranscryptor,
-    IUnknown: IUnknown,
-    pub fn SeekEx(self: *const IWMDRMTranscryptor2, cnsStartTime: u64, cnsDuration: u64, flRate: f32, fIncludeFileHeader: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SeekEx(self, cnsStartTime, cnsDuration, flRate, fIncludeFileHeader);
-    }
-    pub fn ZeroAdjustTimestamps(self: *const IWMDRMTranscryptor2, fEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ZeroAdjustTimestamps(self, fEnable);
-    }
-    pub fn GetSeekStartTime(self: *const IWMDRMTranscryptor2, pcnsTime: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSeekStartTime(self, pcnsTime);
-    }
-    pub fn GetDuration(self: *const IWMDRMTranscryptor2, pcnsDuration: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDuration(self, pcnsDuration);
-    }
-};
-
-const IID_IWMDRMTranscryptionManager_Value = Guid.initString("b1a887b2-a4f0-407a-b02e-efbd23bbecdf");
-pub const IID_IWMDRMTranscryptionManager = &IID_IWMDRMTranscryptionManager_Value;
-pub const IWMDRMTranscryptionManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateTranscryptor: *const fn(
-            self: *const IWMDRMTranscryptionManager,
-            ppTranscryptor: ?*?*IWMDRMTranscryptor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateTranscryptor(self: *const IWMDRMTranscryptionManager, ppTranscryptor: ?*?*IWMDRMTranscryptor) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTranscryptor(self, ppTranscryptor);
-    }
-};
-
-const IID_IWMWatermarkInfo_Value = Guid.initString("6f497062-f2e2-4624-8ea7-9dd40d81fc8d");
-pub const IID_IWMWatermarkInfo = &IID_IWMWatermarkInfo_Value;
-pub const IWMWatermarkInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWatermarkEntryCount: *const fn(
-            self: *const IWMWatermarkInfo,
-            wmetType: WMT_WATERMARK_ENTRY_TYPE,
-            pdwCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetWatermarkEntry: *const fn(
-            self: *const IWMWatermarkInfo,
-            wmetType: WMT_WATERMARK_ENTRY_TYPE,
-            dwEntryNum: u32,
-            pEntry: ?*WMT_WATERMARK_ENTRY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetWatermarkEntryCount(self: *const IWMWatermarkInfo, wmetType: WMT_WATERMARK_ENTRY_TYPE, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWatermarkEntryCount(self, wmetType, pdwCount);
-    }
-    pub fn GetWatermarkEntry(self: *const IWMWatermarkInfo, wmetType: WMT_WATERMARK_ENTRY_TYPE, dwEntryNum: u32, pEntry: ?*WMT_WATERMARK_ENTRY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWatermarkEntry(self, wmetType, dwEntryNum, pEntry);
-    }
-};
-
-const IID_IWMReaderAccelerator_Value = Guid.initString("bddc4d08-944d-4d52-a612-46c3fda07dd4");
-pub const IID_IWMReaderAccelerator = &IID_IWMReaderAccelerator_Value;
-pub const IWMReaderAccelerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCodecInterface: *const fn(
-            self: *const IWMReaderAccelerator,
-            dwOutputNum: u32,
-            riid: ?*const Guid,
-            ppvCodecInterface: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        Notify: *const fn(
-            self: *const IWMReaderAccelerator,
-            dwOutputNum: u32,
-            pSubtype: ?*WM_MEDIA_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCodecInterface(self: *const IWMReaderAccelerator, dwOutputNum: u32, riid: ?*const Guid, ppvCodecInterface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodecInterface(self, dwOutputNum, riid, ppvCodecInterface);
-    }
-    pub fn Notify(self: *const IWMReaderAccelerator, dwOutputNum: u32, pSubtype: ?*WM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, dwOutputNum, pSubtype);
-    }
-};
-
-const IID_IWMReaderTimecode_Value = Guid.initString("f369e2f0-e081-4fe6-8450-b810b2f410d1");
-pub const IID_IWMReaderTimecode = &IID_IWMReaderTimecode_Value;
-pub const IWMReaderTimecode = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetTimecodeRangeCount: *const fn(
-            self: *const IWMReaderTimecode,
-            wStreamNum: u16,
-            pwRangeCount: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        GetTimecodeRangeBounds: *const fn(
-            self: *const IWMReaderTimecode,
-            wStreamNum: u16,
-            wRangeNum: u16,
-            pStartTimecode: ?*u32,
-            pEndTimecode: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetTimecodeRangeCount(self: *const IWMReaderTimecode, wStreamNum: u16, pwRangeCount: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTimecodeRangeCount(self, wStreamNum, pwRangeCount);
-    }
-    pub fn GetTimecodeRangeBounds(self: *const IWMReaderTimecode, wStreamNum: u16, wRangeNum: u16, pStartTimecode: ?*u32, pEndTimecode: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTimecodeRangeBounds(self, wStreamNum, wRangeNum, pStartTimecode, pEndTimecode);
-    }
-};
-
-const IID_IWMAddressAccess_Value = Guid.initString("bb3c6389-1633-4e92-af14-9f3173ba39d0");
-pub const IID_IWMAddressAccess = &IID_IWMAddressAccess_Value;
-pub const IWMAddressAccess = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAccessEntryCount: *const fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            pcEntries: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetAccessEntry: *const fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            dwEntryNum: u32,
-            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
-        ) callconv(.winapi) HRESULT,
-        AddAccessEntry: *const fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
-        ) callconv(.winapi) HRESULT,
-        RemoveAccessEntry: *const fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            dwEntryNum: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAccessEntryCount(self: *const IWMAddressAccess, aeType: WM_AETYPE, pcEntries: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAccessEntryCount(self, aeType, pcEntries);
-    }
-    pub fn GetAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, dwEntryNum: u32, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAccessEntry(self, aeType, dwEntryNum, pAddrAccessEntry);
-    }
-    pub fn AddAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAccessEntry(self, aeType, pAddrAccessEntry);
-    }
-    pub fn RemoveAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, dwEntryNum: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAccessEntry(self, aeType, dwEntryNum);
-    }
-};
-
-const IID_IWMAddressAccess2_Value = Guid.initString("65a83fc2-3e98-4d4d-81b5-2a742886b33d");
-pub const IID_IWMAddressAccess2 = &IID_IWMAddressAccess2_Value;
-pub const IWMAddressAccess2 = extern union {
-    pub const VTable = extern struct {
-        base: IWMAddressAccess.VTable,
-        GetAccessEntryEx: *const fn(
-            self: *const IWMAddressAccess2,
-            aeType: WM_AETYPE,
-            dwEntryNum: u32,
-            pbstrAddress: ?*?BSTR,
-            pbstrMask: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddAccessEntryEx: *const fn(
-            self: *const IWMAddressAccess2,
-            aeType: WM_AETYPE,
-            bstrAddress: ?BSTR,
-            bstrMask: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWMAddressAccess: IWMAddressAccess,
-    IUnknown: IUnknown,
-    pub fn GetAccessEntryEx(self: *const IWMAddressAccess2, aeType: WM_AETYPE, dwEntryNum: u32, pbstrAddress: ?*?BSTR, pbstrMask: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAccessEntryEx(self, aeType, dwEntryNum, pbstrAddress, pbstrMask);
-    }
-    pub fn AddAccessEntryEx(self: *const IWMAddressAccess2, aeType: WM_AETYPE, bstrAddress: ?BSTR, bstrMask: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAccessEntryEx(self, aeType, bstrAddress, bstrMask);
-    }
-};
-
-const IID_IWMImageInfo_Value = Guid.initString("9f0aa3b6-7267-4d89-88f2-ba915aa5c4c6");
-pub const IID_IWMImageInfo = &IID_IWMImageInfo_Value;
-pub const IWMImageInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetImageCount: *const fn(
-            self: *const IWMImageInfo,
-            pcImages: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetImage: *const fn(
-            self: *const IWMImageInfo,
-            wIndex: u32,
-            pcchMIMEType: ?*u16,
-            pwszMIMEType: [*:0]u16,
-            pcchDescription: ?*u16,
-            pwszDescription: [*:0]u16,
-            pImageType: ?*u16,
-            pcbImageData: ?*u32,
-            pbImageData: [*:0]u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetImageCount(self: *const IWMImageInfo, pcImages: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetImageCount(self, pcImages);
-    }
-    pub fn GetImage(self: *const IWMImageInfo, wIndex: u32, pcchMIMEType: ?*u16, pwszMIMEType: [*:0]u16, pcchDescription: ?*u16, pwszDescription: [*:0]u16, pImageType: ?*u16, pcbImageData: ?*u32, pbImageData: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetImage(self, wIndex, pcchMIMEType, pwszMIMEType, pcchDescription, pwszDescription, pImageType, pcbImageData, pbImageData);
-    }
-};
-
-const IID_IWMLicenseRevocationAgent_Value = Guid.initString("6967f2c9-4e26-4b57-8894-799880f7ac7b");
-pub const IID_IWMLicenseRevocationAgent = &IID_IWMLicenseRevocationAgent_Value;
-pub const IWMLicenseRevocationAgent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLRBChallenge: *const fn(
-            self: *const IWMLicenseRevocationAgent,
-            pMachineID: ?*u8,
-            dwMachineIDLength: u32,
-            pChallenge: ?*u8,
-            dwChallengeLength: u32,
-            pChallengeOutput: ?*u8,
-            pdwChallengeOutputLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ProcessLRB: *const fn(
-            self: *const IWMLicenseRevocationAgent,
-            pSignedLRB: ?*u8,
-            dwSignedLRBLength: u32,
-            pSignedACK: ?*u8,
-            pdwSignedACKLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetLRBChallenge(self: *const IWMLicenseRevocationAgent, pMachineID: ?*u8, dwMachineIDLength: u32, pChallenge: ?*u8, dwChallengeLength: u32, pChallengeOutput: ?*u8, pdwChallengeOutputLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLRBChallenge(self, pMachineID, dwMachineIDLength, pChallenge, dwChallengeLength, pChallengeOutput, pdwChallengeOutputLength);
-    }
-    pub fn ProcessLRB(self: *const IWMLicenseRevocationAgent, pSignedLRB: ?*u8, dwSignedLRBLength: u32, pSignedACK: ?*u8, pdwSignedACKLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessLRB(self, pSignedLRB, dwSignedLRBLength, pSignedACK, pdwSignedACKLength);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWMAuthorizer_Value = Guid.initString("d9b67d36-a9ad-4eb4-baef-db284ef5504c");
-pub const IID_IWMAuthorizer = &IID_IWMAuthorizer_Value;
-pub const IWMAuthorizer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCertCount: *const fn(
-            self: *const IWMAuthorizer,
-            pcCerts: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCert: *const fn(
-            self: *const IWMAuthorizer,
-            dwIndex: u32,
-            ppbCertData: ?*?*u8,
-        ) callconv(.winapi) HRESULT,
-        GetSharedData: *const fn(
-            self: *const IWMAuthorizer,
-            dwCertIndex: u32,
-            pbSharedData: ?*const u8,
-            pbCert: ?*u8,
-            ppbSharedData: ?*?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCertCount(self: *const IWMAuthorizer, pcCerts: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCertCount(self, pcCerts);
-    }
-    pub fn GetCert(self: *const IWMAuthorizer, dwIndex: u32, ppbCertData: ?*?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCert(self, dwIndex, ppbCertData);
-    }
-    pub fn GetSharedData(self: *const IWMAuthorizer, dwCertIndex: u32, pbSharedData: ?*const u8, pbCert: ?*u8, ppbSharedData: ?*?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSharedData(self, dwCertIndex, pbSharedData, pbCert, ppbSharedData);
+    pub fn AllocatePageSizeBuffer(self: *const IWMSBufferAllocator, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocatePageSizeBuffer(self, dwMaxBufferSize, ppBuffer);
     }
 };
 
@@ -6020,124 +4157,6 @@ pub const IWMSecureChannel = extern union {
         return self.vtable.WMSC_SetSharedData(self, dwCertIndex, pbSharedData);
     }
 };
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWMGetSecureChannel_Value = Guid.initString("94bc0598-c3d2-11d3-bedf-00c04f612986");
-pub const IID_IWMGetSecureChannel = &IID_IWMGetSecureChannel_Value;
-pub const IWMGetSecureChannel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPeerSecureChannelInterface: *const fn(
-            self: *const IWMGetSecureChannel,
-            ppPeer: ?*?*IWMSecureChannel,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPeerSecureChannelInterface(self: *const IWMGetSecureChannel, ppPeer: ?*?*IWMSecureChannel) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPeerSecureChannelInterface(self, ppPeer);
-    }
-};
-
-const IID_INSNetSourceCreator_Value = Guid.initString("0c0e4080-9081-11d2-beec-0060082f2054");
-pub const IID_INSNetSourceCreator = &IID_INSNetSourceCreator_Value;
-pub const INSNetSourceCreator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const INSNetSourceCreator,
-        ) callconv(.winapi) HRESULT,
-        CreateNetSource: *const fn(
-            self: *const INSNetSourceCreator,
-            pszStreamName: ?[*:0]const u16,
-            pMonitor: ?*IUnknown,
-            pData: ?*u8,
-            pUserContext: ?*IUnknown,
-            pCallback: ?*IUnknown,
-            qwContext: u64,
-        ) callconv(.winapi) HRESULT,
-        GetNetSourceProperties: *const fn(
-            self: *const INSNetSourceCreator,
-            pszStreamName: ?[*:0]const u16,
-            ppPropertiesNode: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetNetSourceSharedNamespace: *const fn(
-            self: *const INSNetSourceCreator,
-            ppSharedNamespace: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetNetSourceAdminInterface: *const fn(
-            self: *const INSNetSourceCreator,
-            pszStreamName: ?[*:0]const u16,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetNumProtocolsSupported: *const fn(
-            self: *const INSNetSourceCreator,
-            pcProtocols: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetProtocolName: *const fn(
-            self: *const INSNetSourceCreator,
-            dwProtocolNum: u32,
-            pwszProtocolName: ?PWSTR,
-            pcchProtocolName: ?*u16,
-        ) callconv(.winapi) HRESULT,
-        Shutdown: *const fn(
-            self: *const INSNetSourceCreator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const INSNetSourceCreator) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self);
-    }
-    pub fn CreateNetSource(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, pMonitor: ?*IUnknown, pData: ?*u8, pUserContext: ?*IUnknown, pCallback: ?*IUnknown, qwContext: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateNetSource(self, pszStreamName, pMonitor, pData, pUserContext, pCallback, qwContext);
-    }
-    pub fn GetNetSourceProperties(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, ppPropertiesNode: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetSourceProperties(self, pszStreamName, ppPropertiesNode);
-    }
-    pub fn GetNetSourceSharedNamespace(self: *const INSNetSourceCreator, ppSharedNamespace: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetSourceSharedNamespace(self, ppSharedNamespace);
-    }
-    pub fn GetNetSourceAdminInterface(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetSourceAdminInterface(self, pszStreamName, pVal);
-    }
-    pub fn GetNumProtocolsSupported(self: *const INSNetSourceCreator, pcProtocols: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumProtocolsSupported(self, pcProtocols);
-    }
-    pub fn GetProtocolName(self: *const INSNetSourceCreator, dwProtocolNum: u32, pwszProtocolName: ?PWSTR, pcchProtocolName: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProtocolName(self, dwProtocolNum, pwszProtocolName, pcchProtocolName);
-    }
-    pub fn Shutdown(self: *const INSNetSourceCreator) callconv(.@"inline") HRESULT {
-        return self.vtable.Shutdown(self);
-    }
-};
-
-const IID_IWMPlayerTimestampHook_Value = Guid.initString("28580dda-d98e-48d0-b7ae-69e473a02825");
-pub const IID_IWMPlayerTimestampHook = &IID_IWMPlayerTimestampHook_Value;
-pub const IWMPlayerTimestampHook = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MapTimestamp: *const fn(
-            self: *const IWMPlayerTimestampHook,
-            rtIn: i64,
-            prtOut: ?*i64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MapTimestamp(self: *const IWMPlayerTimestampHook, rtIn: i64, prtOut: ?*i64) callconv(.@"inline") HRESULT {
-        return self.vtable.MapTimestamp(self, rtIn, prtOut);
-    }
-};
-
-pub const NETSOURCE_URLCREDPOLICY_SETTINGS = enum(i32) {
-    SILENTLOGONOK = 0,
-    MUSTPROMPTUSER = 1,
-    ANONYMOUSONLY = 2,
-};
-pub const NETSOURCE_URLCREDPOLICY_SETTING_SILENTLOGONOK = NETSOURCE_URLCREDPOLICY_SETTINGS.SILENTLOGONOK;
-pub const NETSOURCE_URLCREDPOLICY_SETTING_MUSTPROMPTUSER = NETSOURCE_URLCREDPOLICY_SETTINGS.MUSTPROMPTUSER;
-pub const NETSOURCE_URLCREDPOLICY_SETTING_ANONYMOUSONLY = NETSOURCE_URLCREDPOLICY_SETTINGS.ANONYMOUSONLY;
 
 const IID_IWMSInternalAdminNetSource_Value = Guid.initString("8bb23e5f-d127-4afb-8d02-ae5b66d54c78");
 pub const IID_IWMSInternalAdminNetSource = &IID_IWMSInternalAdminNetSource_Value;
@@ -6383,20 +4402,2010 @@ pub const IWMSInternalAdminNetSource3 = extern union {
     }
 };
 
+const IID_IWMStatusCallback_Value = Guid.initString("6d7cdc70-9888-11d3-8edc-00c04f6109cf");
+pub const IID_IWMStatusCallback = &IID_IWMStatusCallback_Value;
+pub const IWMStatusCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnStatus: *const fn(
+            self: *const IWMStatusCallback,
+            Status: WMT_STATUS,
+            hr: HRESULT,
+            dwType: WMT_ATTR_DATATYPE,
+            pValue: ?*u8,
+            pvContext: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnStatus(self: *const IWMStatusCallback, Status: WMT_STATUS, hr: HRESULT, dwType: WMT_ATTR_DATATYPE, pValue: ?*u8, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.OnStatus(self, Status, hr, dwType, pValue, pvContext);
+    }
+};
+
+const IID_IWMStreamConfig_Value = Guid.initString("96406bdc-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMStreamConfig = &IID_IWMStreamConfig_Value;
+pub const IWMStreamConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStreamType: *const fn(
+            self: *const IWMStreamConfig,
+            pguidStreamType: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetStreamNumber: *const fn(
+            self: *const IWMStreamConfig,
+            pwStreamNum: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetStreamNumber: *const fn(
+            self: *const IWMStreamConfig,
+            wStreamNum: u16,
+        ) callconv(.winapi) HRESULT,
+        GetStreamName: *const fn(
+            self: *const IWMStreamConfig,
+            pwszStreamName: [*:0]u16,
+            pcchStreamName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetStreamName: *const fn(
+            self: *const IWMStreamConfig,
+            pwszStreamName: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetConnectionName: *const fn(
+            self: *const IWMStreamConfig,
+            pwszInputName: [*:0]u16,
+            pcchInputName: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetConnectionName: *const fn(
+            self: *const IWMStreamConfig,
+            pwszInputName: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetBitrate: *const fn(
+            self: *const IWMStreamConfig,
+            pdwBitrate: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetBitrate: *const fn(
+            self: *const IWMStreamConfig,
+            pdwBitrate: u32,
+        ) callconv(.winapi) HRESULT,
+        GetBufferWindow: *const fn(
+            self: *const IWMStreamConfig,
+            pmsBufferWindow: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetBufferWindow: *const fn(
+            self: *const IWMStreamConfig,
+            msBufferWindow: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStreamType(self: *const IWMStreamConfig, pguidStreamType: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamType(self, pguidStreamType);
+    }
+    pub fn GetStreamNumber(self: *const IWMStreamConfig, pwStreamNum: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamNumber(self, pwStreamNum);
+    }
+    pub fn SetStreamNumber(self: *const IWMStreamConfig, wStreamNum: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStreamNumber(self, wStreamNum);
+    }
+    pub fn GetStreamName(self: *const IWMStreamConfig, pwszStreamName: [*:0]u16, pcchStreamName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamName(self, pwszStreamName, pcchStreamName);
+    }
+    pub fn SetStreamName(self: *const IWMStreamConfig, pwszStreamName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStreamName(self, pwszStreamName);
+    }
+    pub fn GetConnectionName(self: *const IWMStreamConfig, pwszInputName: [*:0]u16, pcchInputName: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectionName(self, pwszInputName, pcchInputName);
+    }
+    pub fn SetConnectionName(self: *const IWMStreamConfig, pwszInputName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetConnectionName(self, pwszInputName);
+    }
+    pub fn GetBitrate(self: *const IWMStreamConfig, pdwBitrate: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBitrate(self, pdwBitrate);
+    }
+    pub fn SetBitrate(self: *const IWMStreamConfig, pdwBitrate: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetBitrate(self, pdwBitrate);
+    }
+    pub fn GetBufferWindow(self: *const IWMStreamConfig, pmsBufferWindow: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBufferWindow(self, pmsBufferWindow);
+    }
+    pub fn SetBufferWindow(self: *const IWMStreamConfig, msBufferWindow: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetBufferWindow(self, msBufferWindow);
+    }
+};
+
+const IID_IWMStreamConfig2_Value = Guid.initString("7688d8cb-fc0d-43bd-9459-5a8dec200cfa");
+pub const IID_IWMStreamConfig2 = &IID_IWMStreamConfig2_Value;
+pub const IWMStreamConfig2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMStreamConfig.VTable,
+        GetTransportType: *const fn(
+            self: *const IWMStreamConfig2,
+            pnTransportType: ?*WMT_TRANSPORT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        SetTransportType: *const fn(
+            self: *const IWMStreamConfig2,
+            nTransportType: WMT_TRANSPORT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        AddDataUnitExtension: *const fn(
+            self: *const IWMStreamConfig2,
+            guidExtensionSystemID: Guid,
+            cbExtensionDataSize: u16,
+            pbExtensionSystemInfo: [*:0]u8,
+            cbExtensionSystemInfo: u32,
+        ) callconv(.winapi) HRESULT,
+        GetDataUnitExtensionCount: *const fn(
+            self: *const IWMStreamConfig2,
+            pcDataUnitExtensions: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetDataUnitExtension: *const fn(
+            self: *const IWMStreamConfig2,
+            wDataUnitExtensionNumber: u16,
+            pguidExtensionSystemID: ?*Guid,
+            pcbExtensionDataSize: ?*u16,
+            pbExtensionSystemInfo: [*:0]u8,
+            pcbExtensionSystemInfo: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        RemoveAllDataUnitExtensions: *const fn(
+            self: *const IWMStreamConfig2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMStreamConfig: IWMStreamConfig,
+    IUnknown: IUnknown,
+    pub fn GetTransportType(self: *const IWMStreamConfig2, pnTransportType: ?*WMT_TRANSPORT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransportType(self, pnTransportType);
+    }
+    pub fn SetTransportType(self: *const IWMStreamConfig2, nTransportType: WMT_TRANSPORT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTransportType(self, nTransportType);
+    }
+    pub fn AddDataUnitExtension(self: *const IWMStreamConfig2, guidExtensionSystemID: Guid, cbExtensionDataSize: u16, pbExtensionSystemInfo: [*:0]u8, cbExtensionSystemInfo: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddDataUnitExtension(self, guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
+    }
+    pub fn GetDataUnitExtensionCount(self: *const IWMStreamConfig2, pcDataUnitExtensions: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataUnitExtensionCount(self, pcDataUnitExtensions);
+    }
+    pub fn GetDataUnitExtension(self: *const IWMStreamConfig2, wDataUnitExtensionNumber: u16, pguidExtensionSystemID: ?*Guid, pcbExtensionDataSize: ?*u16, pbExtensionSystemInfo: [*:0]u8, pcbExtensionSystemInfo: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataUnitExtension(self, wDataUnitExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
+    }
+    pub fn RemoveAllDataUnitExtensions(self: *const IWMStreamConfig2) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAllDataUnitExtensions(self);
+    }
+};
+
+const IID_IWMStreamConfig3_Value = Guid.initString("cb164104-3aa9-45a7-9ac9-4daee131d6e1");
+pub const IID_IWMStreamConfig3 = &IID_IWMStreamConfig3_Value;
+pub const IWMStreamConfig3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMStreamConfig2.VTable,
+        GetLanguage: *const fn(
+            self: *const IWMStreamConfig3,
+            pwszLanguageString: [*:0]u16,
+            pcchLanguageStringLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetLanguage: *const fn(
+            self: *const IWMStreamConfig3,
+            pwszLanguageString: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMStreamConfig2: IWMStreamConfig2,
+    IWMStreamConfig: IWMStreamConfig,
+    IUnknown: IUnknown,
+    pub fn GetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLanguage(self, pwszLanguageString, pcchLanguageStringLength);
+    }
+    pub fn SetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLanguage(self, pwszLanguageString);
+    }
+};
+
+const IID_IWMStreamList_Value = Guid.initString("96406bdd-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMStreamList = &IID_IWMStreamList_Value;
+pub const IWMStreamList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStreams: *const fn(
+            self: *const IWMStreamList,
+            pwStreamNumArray: [*:0]u16,
+            pcStreams: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        AddStream: *const fn(
+            self: *const IWMStreamList,
+            wStreamNum: u16,
+        ) callconv(.winapi) HRESULT,
+        RemoveStream: *const fn(
+            self: *const IWMStreamList,
+            wStreamNum: u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStreams(self: *const IWMStreamList, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreams(self, pwStreamNumArray, pcStreams);
+    }
+    pub fn AddStream(self: *const IWMStreamList, wStreamNum: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.AddStream(self, wStreamNum);
+    }
+    pub fn RemoveStream(self: *const IWMStreamList, wStreamNum: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveStream(self, wStreamNum);
+    }
+};
+
+const IID_IWMStreamPrioritization_Value = Guid.initString("8c1c6090-f9a8-4748-8ec3-dd1108ba1e77");
+pub const IID_IWMStreamPrioritization = &IID_IWMStreamPrioritization_Value;
+pub const IWMStreamPrioritization = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPriorityRecords: *const fn(
+            self: *const IWMStreamPrioritization,
+            pRecordArray: [*]WM_STREAM_PRIORITY_RECORD,
+            pcRecords: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetPriorityRecords: *const fn(
+            self: *const IWMStreamPrioritization,
+            pRecordArray: ?*WM_STREAM_PRIORITY_RECORD,
+            cRecords: u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPriorityRecords(self: *const IWMStreamPrioritization, pRecordArray: [*]WM_STREAM_PRIORITY_RECORD, pcRecords: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPriorityRecords(self, pRecordArray, pcRecords);
+    }
+    pub fn SetPriorityRecords(self: *const IWMStreamPrioritization, pRecordArray: ?*WM_STREAM_PRIORITY_RECORD, cRecords: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPriorityRecords(self, pRecordArray, cRecords);
+    }
+};
+
+const IID_IWMSyncReader_Value = Guid.initString("9397f121-7705-4dc9-b049-98b698188414");
+pub const IID_IWMSyncReader = &IID_IWMSyncReader_Value;
+pub const IWMSyncReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IWMSyncReader,
+            pwszFilename: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IWMSyncReader,
+        ) callconv(.winapi) HRESULT,
+        SetRange: *const fn(
+            self: *const IWMSyncReader,
+            cnsStartTime: u64,
+            cnsDuration: i64,
+        ) callconv(.winapi) HRESULT,
+        SetRangeByFrame: *const fn(
+            self: *const IWMSyncReader,
+            wStreamNum: u16,
+            qwFrameNumber: u64,
+            cFramesToRead: i64,
+        ) callconv(.winapi) HRESULT,
+        GetNextSample: *const fn(
+            self: *const IWMSyncReader,
+            wStreamNum: u16,
+            ppSample: ?*?*INSSBuffer,
+            pcnsSampleTime: ?*u64,
+            pcnsDuration: ?*u64,
+            pdwFlags: ?*u32,
+            pdwOutputNum: ?*u32,
+            pwStreamNum: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetStreamsSelected: *const fn(
+            self: *const IWMSyncReader,
+            cStreamCount: u16,
+            pwStreamNumbers: ?*u16,
+            pSelections: ?*WMT_STREAM_SELECTION,
+        ) callconv(.winapi) HRESULT,
+        GetStreamSelected: *const fn(
+            self: *const IWMSyncReader,
+            wStreamNum: u16,
+            pSelection: ?*WMT_STREAM_SELECTION,
+        ) callconv(.winapi) HRESULT,
+        SetReadStreamSamples: *const fn(
+            self: *const IWMSyncReader,
+            wStreamNum: u16,
+            fCompressed: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetReadStreamSamples: *const fn(
+            self: *const IWMSyncReader,
+            wStreamNum: u16,
+            pfCompressed: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetOutputSetting: *const fn(
+            self: *const IWMSyncReader,
+            dwOutputNum: u32,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pcbLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetOutputSetting: *const fn(
+            self: *const IWMSyncReader,
+            dwOutputNum: u32,
+            pszName: ?[*:0]const u16,
+            Type: WMT_ATTR_DATATYPE,
+            pValue: [*:0]const u8,
+            cbLength: u16,
+        ) callconv(.winapi) HRESULT,
+        GetOutputCount: *const fn(
+            self: *const IWMSyncReader,
+            pcOutputs: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetOutputProps: *const fn(
+            self: *const IWMSyncReader,
+            dwOutputNum: u32,
+            ppOutput: ?*?*IWMOutputMediaProps,
+        ) callconv(.winapi) HRESULT,
+        SetOutputProps: *const fn(
+            self: *const IWMSyncReader,
+            dwOutputNum: u32,
+            pOutput: ?*IWMOutputMediaProps,
+        ) callconv(.winapi) HRESULT,
+        GetOutputFormatCount: *const fn(
+            self: *const IWMSyncReader,
+            dwOutputNum: u32,
+            pcFormats: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetOutputFormat: *const fn(
+            self: *const IWMSyncReader,
+            dwOutputNum: u32,
+            dwFormatNum: u32,
+            ppProps: ?*?*IWMOutputMediaProps,
+        ) callconv(.winapi) HRESULT,
+        GetOutputNumberForStream: *const fn(
+            self: *const IWMSyncReader,
+            wStreamNum: u16,
+            pdwOutputNum: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStreamNumberForOutput: *const fn(
+            self: *const IWMSyncReader,
+            dwOutputNum: u32,
+            pwStreamNum: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        GetMaxOutputSampleSize: *const fn(
+            self: *const IWMSyncReader,
+            dwOutput: u32,
+            pcbMax: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetMaxStreamSampleSize: *const fn(
+            self: *const IWMSyncReader,
+            wStream: u16,
+            pcbMax: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        OpenStream: *const fn(
+            self: *const IWMSyncReader,
+            pStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IWMSyncReader, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, pwszFilename);
+    }
+    pub fn Close(self: *const IWMSyncReader) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn SetRange(self: *const IWMSyncReader, cnsStartTime: u64, cnsDuration: i64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRange(self, cnsStartTime, cnsDuration);
+    }
+    pub fn SetRangeByFrame(self: *const IWMSyncReader, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRangeByFrame(self, wStreamNum, qwFrameNumber, cFramesToRead);
+    }
+    pub fn GetNextSample(self: *const IWMSyncReader, wStreamNum: u16, ppSample: ?*?*INSSBuffer, pcnsSampleTime: ?*u64, pcnsDuration: ?*u64, pdwFlags: ?*u32, pdwOutputNum: ?*u32, pwStreamNum: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextSample(self, wStreamNum, ppSample, pcnsSampleTime, pcnsDuration, pdwFlags, pdwOutputNum, pwStreamNum);
+    }
+    pub fn SetStreamsSelected(self: *const IWMSyncReader, cStreamCount: u16, pwStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION) callconv(.@"inline") HRESULT {
+        return self.vtable.SetStreamsSelected(self, cStreamCount, pwStreamNumbers, pSelections);
+    }
+    pub fn GetStreamSelected(self: *const IWMSyncReader, wStreamNum: u16, pSelection: ?*WMT_STREAM_SELECTION) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamSelected(self, wStreamNum, pSelection);
+    }
+    pub fn SetReadStreamSamples(self: *const IWMSyncReader, wStreamNum: u16, fCompressed: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReadStreamSamples(self, wStreamNum, fCompressed);
+    }
+    pub fn GetReadStreamSamples(self: *const IWMSyncReader, wStreamNum: u16, pfCompressed: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReadStreamSamples(self, wStreamNum, pfCompressed);
+    }
+    pub fn GetOutputSetting(self: *const IWMSyncReader, dwOutputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputSetting(self, dwOutputNum, pszName, pType, pValue, pcbLength);
+    }
+    pub fn SetOutputSetting(self: *const IWMSyncReader, dwOutputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOutputSetting(self, dwOutputNum, pszName, Type, pValue, cbLength);
+    }
+    pub fn GetOutputCount(self: *const IWMSyncReader, pcOutputs: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputCount(self, pcOutputs);
+    }
+    pub fn GetOutputProps(self: *const IWMSyncReader, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputProps(self, dwOutputNum, ppOutput);
+    }
+    pub fn SetOutputProps(self: *const IWMSyncReader, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOutputProps(self, dwOutputNum, pOutput);
+    }
+    pub fn GetOutputFormatCount(self: *const IWMSyncReader, dwOutputNum: u32, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputFormatCount(self, dwOutputNum, pcFormats);
+    }
+    pub fn GetOutputFormat(self: *const IWMSyncReader, dwOutputNum: u32, dwFormatNum: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputFormat(self, dwOutputNum, dwFormatNum, ppProps);
+    }
+    pub fn GetOutputNumberForStream(self: *const IWMSyncReader, wStreamNum: u16, pdwOutputNum: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputNumberForStream(self, wStreamNum, pdwOutputNum);
+    }
+    pub fn GetStreamNumberForOutput(self: *const IWMSyncReader, dwOutputNum: u32, pwStreamNum: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStreamNumberForOutput(self, dwOutputNum, pwStreamNum);
+    }
+    pub fn GetMaxOutputSampleSize(self: *const IWMSyncReader, dwOutput: u32, pcbMax: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxOutputSampleSize(self, dwOutput, pcbMax);
+    }
+    pub fn GetMaxStreamSampleSize(self: *const IWMSyncReader, wStream: u16, pcbMax: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxStreamSampleSize(self, wStream, pcbMax);
+    }
+    pub fn OpenStream(self: *const IWMSyncReader, pStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenStream(self, pStream);
+    }
+};
+
+const IID_IWMSyncReader2_Value = Guid.initString("faed3d21-1b6b-4af7-8cb6-3e189bbc187b");
+pub const IID_IWMSyncReader2 = &IID_IWMSyncReader2_Value;
+pub const IWMSyncReader2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMSyncReader.VTable,
+        SetRangeByTimecode: *const fn(
+            self: *const IWMSyncReader2,
+            wStreamNum: u16,
+            pStart: ?*WMT_TIMECODE_EXTENSION_DATA,
+            pEnd: ?*WMT_TIMECODE_EXTENSION_DATA,
+        ) callconv(.winapi) HRESULT,
+        SetRangeByFrameEx: *const fn(
+            self: *const IWMSyncReader2,
+            wStreamNum: u16,
+            qwFrameNumber: u64,
+            cFramesToRead: i64,
+            pcnsStartTime: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        SetAllocateForOutput: *const fn(
+            self: *const IWMSyncReader2,
+            dwOutputNum: u32,
+            pAllocator: ?*IWMReaderAllocatorEx,
+        ) callconv(.winapi) HRESULT,
+        GetAllocateForOutput: *const fn(
+            self: *const IWMSyncReader2,
+            dwOutputNum: u32,
+            ppAllocator: ?*?*IWMReaderAllocatorEx,
+        ) callconv(.winapi) HRESULT,
+        SetAllocateForStream: *const fn(
+            self: *const IWMSyncReader2,
+            wStreamNum: u16,
+            pAllocator: ?*IWMReaderAllocatorEx,
+        ) callconv(.winapi) HRESULT,
+        GetAllocateForStream: *const fn(
+            self: *const IWMSyncReader2,
+            dwSreamNum: u16,
+            ppAllocator: ?*?*IWMReaderAllocatorEx,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMSyncReader: IWMSyncReader,
+    IUnknown: IUnknown,
+    pub fn SetRangeByTimecode(self: *const IWMSyncReader2, wStreamNum: u16, pStart: ?*WMT_TIMECODE_EXTENSION_DATA, pEnd: ?*WMT_TIMECODE_EXTENSION_DATA) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRangeByTimecode(self, wStreamNum, pStart, pEnd);
+    }
+    pub fn SetRangeByFrameEx(self: *const IWMSyncReader2, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64, pcnsStartTime: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRangeByFrameEx(self, wStreamNum, qwFrameNumber, cFramesToRead, pcnsStartTime);
+    }
+    pub fn SetAllocateForOutput(self: *const IWMSyncReader2, dwOutputNum: u32, pAllocator: ?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllocateForOutput(self, dwOutputNum, pAllocator);
+    }
+    pub fn GetAllocateForOutput(self: *const IWMSyncReader2, dwOutputNum: u32, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllocateForOutput(self, dwOutputNum, ppAllocator);
+    }
+    pub fn SetAllocateForStream(self: *const IWMSyncReader2, wStreamNum: u16, pAllocator: ?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllocateForStream(self, wStreamNum, pAllocator);
+    }
+    pub fn GetAllocateForStream(self: *const IWMSyncReader2, dwSreamNum: u16, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllocateForStream(self, dwSreamNum, ppAllocator);
+    }
+};
+
+const IID_IWMVideoMediaProps_Value = Guid.initString("96406bcf-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMVideoMediaProps = &IID_IWMVideoMediaProps_Value;
+pub const IWMVideoMediaProps = extern union {
+    pub const VTable = extern struct {
+        base: IWMMediaProps.VTable,
+        GetMaxKeyFrameSpacing: *const fn(
+            self: *const IWMVideoMediaProps,
+            pllTime: ?*i64,
+        ) callconv(.winapi) HRESULT,
+        SetMaxKeyFrameSpacing: *const fn(
+            self: *const IWMVideoMediaProps,
+            llTime: i64,
+        ) callconv(.winapi) HRESULT,
+        GetQuality: *const fn(
+            self: *const IWMVideoMediaProps,
+            pdwQuality: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetQuality: *const fn(
+            self: *const IWMVideoMediaProps,
+            dwQuality: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMMediaProps: IWMMediaProps,
+    IUnknown: IUnknown,
+    pub fn GetMaxKeyFrameSpacing(self: *const IWMVideoMediaProps, pllTime: ?*i64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxKeyFrameSpacing(self, pllTime);
+    }
+    pub fn SetMaxKeyFrameSpacing(self: *const IWMVideoMediaProps, llTime: i64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMaxKeyFrameSpacing(self, llTime);
+    }
+    pub fn GetQuality(self: *const IWMVideoMediaProps, pdwQuality: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetQuality(self, pdwQuality);
+    }
+    pub fn SetQuality(self: *const IWMVideoMediaProps, dwQuality: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetQuality(self, dwQuality);
+    }
+};
+
+const IID_IWMWatermarkInfo_Value = Guid.initString("6f497062-f2e2-4624-8ea7-9dd40d81fc8d");
+pub const IID_IWMWatermarkInfo = &IID_IWMWatermarkInfo_Value;
+pub const IWMWatermarkInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetWatermarkEntryCount: *const fn(
+            self: *const IWMWatermarkInfo,
+            wmetType: WMT_WATERMARK_ENTRY_TYPE,
+            pdwCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetWatermarkEntry: *const fn(
+            self: *const IWMWatermarkInfo,
+            wmetType: WMT_WATERMARK_ENTRY_TYPE,
+            dwEntryNum: u32,
+            pEntry: ?*WMT_WATERMARK_ENTRY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetWatermarkEntryCount(self: *const IWMWatermarkInfo, wmetType: WMT_WATERMARK_ENTRY_TYPE, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWatermarkEntryCount(self, wmetType, pdwCount);
+    }
+    pub fn GetWatermarkEntry(self: *const IWMWatermarkInfo, wmetType: WMT_WATERMARK_ENTRY_TYPE, dwEntryNum: u32, pEntry: ?*WMT_WATERMARK_ENTRY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWatermarkEntry(self, wmetType, dwEntryNum, pEntry);
+    }
+};
+
+const IID_IWMWriter_Value = Guid.initString("96406bd4-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMWriter = &IID_IWMWriter_Value;
+pub const IWMWriter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetProfileByID: *const fn(
+            self: *const IWMWriter,
+            guidProfile: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        SetProfile: *const fn(
+            self: *const IWMWriter,
+            pProfile: ?*IWMProfile,
+        ) callconv(.winapi) HRESULT,
+        SetOutputFilename: *const fn(
+            self: *const IWMWriter,
+            pwszFilename: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetInputCount: *const fn(
+            self: *const IWMWriter,
+            pcInputs: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetInputProps: *const fn(
+            self: *const IWMWriter,
+            dwInputNum: u32,
+            ppInput: ?*?*IWMInputMediaProps,
+        ) callconv(.winapi) HRESULT,
+        SetInputProps: *const fn(
+            self: *const IWMWriter,
+            dwInputNum: u32,
+            pInput: ?*IWMInputMediaProps,
+        ) callconv(.winapi) HRESULT,
+        GetInputFormatCount: *const fn(
+            self: *const IWMWriter,
+            dwInputNumber: u32,
+            pcFormats: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetInputFormat: *const fn(
+            self: *const IWMWriter,
+            dwInputNumber: u32,
+            dwFormatNumber: u32,
+            pProps: ?*?*IWMInputMediaProps,
+        ) callconv(.winapi) HRESULT,
+        BeginWriting: *const fn(
+            self: *const IWMWriter,
+        ) callconv(.winapi) HRESULT,
+        EndWriting: *const fn(
+            self: *const IWMWriter,
+        ) callconv(.winapi) HRESULT,
+        AllocateSample: *const fn(
+            self: *const IWMWriter,
+            dwSampleSize: u32,
+            ppSample: ?*?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        WriteSample: *const fn(
+            self: *const IWMWriter,
+            dwInputNum: u32,
+            cnsSampleTime: u64,
+            dwFlags: u32,
+            pSample: ?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        Flush: *const fn(
+            self: *const IWMWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetProfileByID(self: *const IWMWriter, guidProfile: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProfileByID(self, guidProfile);
+    }
+    pub fn SetProfile(self: *const IWMWriter, pProfile: ?*IWMProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProfile(self, pProfile);
+    }
+    pub fn SetOutputFilename(self: *const IWMWriter, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOutputFilename(self, pwszFilename);
+    }
+    pub fn GetInputCount(self: *const IWMWriter, pcInputs: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputCount(self, pcInputs);
+    }
+    pub fn GetInputProps(self: *const IWMWriter, dwInputNum: u32, ppInput: ?*?*IWMInputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputProps(self, dwInputNum, ppInput);
+    }
+    pub fn SetInputProps(self: *const IWMWriter, dwInputNum: u32, pInput: ?*IWMInputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.SetInputProps(self, dwInputNum, pInput);
+    }
+    pub fn GetInputFormatCount(self: *const IWMWriter, dwInputNumber: u32, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputFormatCount(self, dwInputNumber, pcFormats);
+    }
+    pub fn GetInputFormat(self: *const IWMWriter, dwInputNumber: u32, dwFormatNumber: u32, pProps: ?*?*IWMInputMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputFormat(self, dwInputNumber, dwFormatNumber, pProps);
+    }
+    pub fn BeginWriting(self: *const IWMWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginWriting(self);
+    }
+    pub fn EndWriting(self: *const IWMWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.EndWriting(self);
+    }
+    pub fn AllocateSample(self: *const IWMWriter, dwSampleSize: u32, ppSample: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocateSample(self, dwSampleSize, ppSample);
+    }
+    pub fn WriteSample(self: *const IWMWriter, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteSample(self, dwInputNum, cnsSampleTime, dwFlags, pSample);
+    }
+    pub fn Flush(self: *const IWMWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.Flush(self);
+    }
+};
+
+const IID_IWMWriterAdvanced_Value = Guid.initString("96406be3-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMWriterAdvanced = &IID_IWMWriterAdvanced_Value;
+pub const IWMWriterAdvanced = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSinkCount: *const fn(
+            self: *const IWMWriterAdvanced,
+            pcSinks: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSink: *const fn(
+            self: *const IWMWriterAdvanced,
+            dwSinkNum: u32,
+            ppSink: ?*?*IWMWriterSink,
+        ) callconv(.winapi) HRESULT,
+        AddSink: *const fn(
+            self: *const IWMWriterAdvanced,
+            pSink: ?*IWMWriterSink,
+        ) callconv(.winapi) HRESULT,
+        RemoveSink: *const fn(
+            self: *const IWMWriterAdvanced,
+            pSink: ?*IWMWriterSink,
+        ) callconv(.winapi) HRESULT,
+        WriteStreamSample: *const fn(
+            self: *const IWMWriterAdvanced,
+            wStreamNum: u16,
+            cnsSampleTime: u64,
+            msSampleSendTime: u32,
+            cnsSampleDuration: u64,
+            dwFlags: u32,
+            pSample: ?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        SetLiveSource: *const fn(
+            self: *const IWMWriterAdvanced,
+            fIsLiveSource: BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsRealTime: *const fn(
+            self: *const IWMWriterAdvanced,
+            pfRealTime: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetWriterTime: *const fn(
+            self: *const IWMWriterAdvanced,
+            pcnsCurrentTime: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetStatistics: *const fn(
+            self: *const IWMWriterAdvanced,
+            wStreamNum: u16,
+            pStats: ?*WM_WRITER_STATISTICS,
+        ) callconv(.winapi) HRESULT,
+        SetSyncTolerance: *const fn(
+            self: *const IWMWriterAdvanced,
+            msWindow: u32,
+        ) callconv(.winapi) HRESULT,
+        GetSyncTolerance: *const fn(
+            self: *const IWMWriterAdvanced,
+            pmsWindow: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSinkCount(self: *const IWMWriterAdvanced, pcSinks: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSinkCount(self, pcSinks);
+    }
+    pub fn GetSink(self: *const IWMWriterAdvanced, dwSinkNum: u32, ppSink: ?*?*IWMWriterSink) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSink(self, dwSinkNum, ppSink);
+    }
+    pub fn AddSink(self: *const IWMWriterAdvanced, pSink: ?*IWMWriterSink) callconv(.@"inline") HRESULT {
+        return self.vtable.AddSink(self, pSink);
+    }
+    pub fn RemoveSink(self: *const IWMWriterAdvanced, pSink: ?*IWMWriterSink) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveSink(self, pSink);
+    }
+    pub fn WriteStreamSample(self: *const IWMWriterAdvanced, wStreamNum: u16, cnsSampleTime: u64, msSampleSendTime: u32, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteStreamSample(self, wStreamNum, cnsSampleTime, msSampleSendTime, cnsSampleDuration, dwFlags, pSample);
+    }
+    pub fn SetLiveSource(self: *const IWMWriterAdvanced, fIsLiveSource: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLiveSource(self, fIsLiveSource);
+    }
+    pub fn IsRealTime(self: *const IWMWriterAdvanced, pfRealTime: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsRealTime(self, pfRealTime);
+    }
+    pub fn GetWriterTime(self: *const IWMWriterAdvanced, pcnsCurrentTime: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWriterTime(self, pcnsCurrentTime);
+    }
+    pub fn GetStatistics(self: *const IWMWriterAdvanced, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatistics(self, wStreamNum, pStats);
+    }
+    pub fn SetSyncTolerance(self: *const IWMWriterAdvanced, msWindow: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSyncTolerance(self, msWindow);
+    }
+    pub fn GetSyncTolerance(self: *const IWMWriterAdvanced, pmsWindow: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSyncTolerance(self, pmsWindow);
+    }
+};
+
+const IID_IWMWriterAdvanced2_Value = Guid.initString("962dc1ec-c046-4db8-9cc7-26ceae500817");
+pub const IID_IWMWriterAdvanced2 = &IID_IWMWriterAdvanced2_Value;
+pub const IWMWriterAdvanced2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMWriterAdvanced.VTable,
+        GetInputSetting: *const fn(
+            self: *const IWMWriterAdvanced2,
+            dwInputNum: u32,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pValue: [*:0]u8,
+            pcbLength: ?*u16,
+        ) callconv(.winapi) HRESULT,
+        SetInputSetting: *const fn(
+            self: *const IWMWriterAdvanced2,
+            dwInputNum: u32,
+            pszName: ?[*:0]const u16,
+            Type: WMT_ATTR_DATATYPE,
+            pValue: [*:0]const u8,
+            cbLength: u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMWriterAdvanced: IWMWriterAdvanced,
+    IUnknown: IUnknown,
+    pub fn GetInputSetting(self: *const IWMWriterAdvanced2, dwInputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputSetting(self, dwInputNum, pszName, pType, pValue, pcbLength);
+    }
+    pub fn SetInputSetting(self: *const IWMWriterAdvanced2, dwInputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetInputSetting(self, dwInputNum, pszName, Type, pValue, cbLength);
+    }
+};
+
+const IID_IWMWriterAdvanced3_Value = Guid.initString("2cd6492d-7c37-4e76-9d3b-59261183a22e");
+pub const IID_IWMWriterAdvanced3 = &IID_IWMWriterAdvanced3_Value;
+pub const IWMWriterAdvanced3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMWriterAdvanced2.VTable,
+        GetStatisticsEx: *const fn(
+            self: *const IWMWriterAdvanced3,
+            wStreamNum: u16,
+            pStats: ?*WM_WRITER_STATISTICS_EX,
+        ) callconv(.winapi) HRESULT,
+        SetNonBlocking: *const fn(
+            self: *const IWMWriterAdvanced3,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMWriterAdvanced2: IWMWriterAdvanced2,
+    IWMWriterAdvanced: IWMWriterAdvanced,
+    IUnknown: IUnknown,
+    pub fn GetStatisticsEx(self: *const IWMWriterAdvanced3, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS_EX) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatisticsEx(self, wStreamNum, pStats);
+    }
+    pub fn SetNonBlocking(self: *const IWMWriterAdvanced3) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNonBlocking(self);
+    }
+};
+
+const IID_IWMWriterFileSink_Value = Guid.initString("96406be5-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMWriterFileSink = &IID_IWMWriterFileSink_Value;
+pub const IWMWriterFileSink = extern union {
+    pub const VTable = extern struct {
+        base: IWMWriterSink.VTable,
+        Open: *const fn(
+            self: *const IWMWriterFileSink,
+            pwszFilename: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMWriterSink: IWMWriterSink,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IWMWriterFileSink, pwszFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, pwszFilename);
+    }
+};
+
+const IID_IWMWriterFileSink2_Value = Guid.initString("14282ba7-4aef-4205-8ce5-c229035a05bc");
+pub const IID_IWMWriterFileSink2 = &IID_IWMWriterFileSink2_Value;
+pub const IWMWriterFileSink2 = extern union {
+    pub const VTable = extern struct {
+        base: IWMWriterFileSink.VTable,
+        Start: *const fn(
+            self: *const IWMWriterFileSink2,
+            cnsStartTime: u64,
+        ) callconv(.winapi) HRESULT,
+        Stop: *const fn(
+            self: *const IWMWriterFileSink2,
+            cnsStopTime: u64,
+        ) callconv(.winapi) HRESULT,
+        IsStopped: *const fn(
+            self: *const IWMWriterFileSink2,
+            pfStopped: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetFileDuration: *const fn(
+            self: *const IWMWriterFileSink2,
+            pcnsDuration: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetFileSize: *const fn(
+            self: *const IWMWriterFileSink2,
+            pcbFile: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IWMWriterFileSink2,
+        ) callconv(.winapi) HRESULT,
+        IsClosed: *const fn(
+            self: *const IWMWriterFileSink2,
+            pfClosed: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMWriterFileSink: IWMWriterFileSink,
+    IWMWriterSink: IWMWriterSink,
+    IUnknown: IUnknown,
+    pub fn Start(self: *const IWMWriterFileSink2, cnsStartTime: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self, cnsStartTime);
+    }
+    pub fn Stop(self: *const IWMWriterFileSink2, cnsStopTime: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.Stop(self, cnsStopTime);
+    }
+    pub fn IsStopped(self: *const IWMWriterFileSink2, pfStopped: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsStopped(self, pfStopped);
+    }
+    pub fn GetFileDuration(self: *const IWMWriterFileSink2, pcnsDuration: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileDuration(self, pcnsDuration);
+    }
+    pub fn GetFileSize(self: *const IWMWriterFileSink2, pcbFile: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileSize(self, pcbFile);
+    }
+    pub fn Close(self: *const IWMWriterFileSink2) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn IsClosed(self: *const IWMWriterFileSink2, pfClosed: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsClosed(self, pfClosed);
+    }
+};
+
+const IID_IWMWriterFileSink3_Value = Guid.initString("3fea4feb-2945-47a7-a1dd-c53a8fc4c45c");
+pub const IID_IWMWriterFileSink3 = &IID_IWMWriterFileSink3_Value;
+pub const IWMWriterFileSink3 = extern union {
+    pub const VTable = extern struct {
+        base: IWMWriterFileSink2.VTable,
+        SetAutoIndexing: *const fn(
+            self: *const IWMWriterFileSink3,
+            fDoAutoIndexing: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetAutoIndexing: *const fn(
+            self: *const IWMWriterFileSink3,
+            pfAutoIndexing: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetControlStream: *const fn(
+            self: *const IWMWriterFileSink3,
+            wStreamNumber: u16,
+            fShouldControlStartAndStop: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetMode: *const fn(
+            self: *const IWMWriterFileSink3,
+            pdwFileSinkMode: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        OnDataUnitEx: *const fn(
+            self: *const IWMWriterFileSink3,
+            pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT,
+        ) callconv(.winapi) HRESULT,
+        SetUnbufferedIO: *const fn(
+            self: *const IWMWriterFileSink3,
+            fUnbufferedIO: BOOL,
+            fRestrictMemUsage: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetUnbufferedIO: *const fn(
+            self: *const IWMWriterFileSink3,
+            pfUnbufferedIO: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        CompleteOperations: *const fn(
+            self: *const IWMWriterFileSink3,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMWriterFileSink2: IWMWriterFileSink2,
+    IWMWriterFileSink: IWMWriterFileSink,
+    IWMWriterSink: IWMWriterSink,
+    IUnknown: IUnknown,
+    pub fn SetAutoIndexing(self: *const IWMWriterFileSink3, fDoAutoIndexing: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAutoIndexing(self, fDoAutoIndexing);
+    }
+    pub fn GetAutoIndexing(self: *const IWMWriterFileSink3, pfAutoIndexing: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAutoIndexing(self, pfAutoIndexing);
+    }
+    pub fn SetControlStream(self: *const IWMWriterFileSink3, wStreamNumber: u16, fShouldControlStartAndStop: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetControlStream(self, wStreamNumber, fShouldControlStartAndStop);
+    }
+    pub fn GetMode(self: *const IWMWriterFileSink3, pdwFileSinkMode: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMode(self, pdwFileSinkMode);
+    }
+    pub fn OnDataUnitEx(self: *const IWMWriterFileSink3, pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDataUnitEx(self, pFileSinkDataUnit);
+    }
+    pub fn SetUnbufferedIO(self: *const IWMWriterFileSink3, fUnbufferedIO: BOOL, fRestrictMemUsage: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetUnbufferedIO(self, fUnbufferedIO, fRestrictMemUsage);
+    }
+    pub fn GetUnbufferedIO(self: *const IWMWriterFileSink3, pfUnbufferedIO: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUnbufferedIO(self, pfUnbufferedIO);
+    }
+    pub fn CompleteOperations(self: *const IWMWriterFileSink3) callconv(.@"inline") HRESULT {
+        return self.vtable.CompleteOperations(self);
+    }
+};
+
+const IID_IWMWriterNetworkSink_Value = Guid.initString("96406be7-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMWriterNetworkSink = &IID_IWMWriterNetworkSink_Value;
+pub const IWMWriterNetworkSink = extern union {
+    pub const VTable = extern struct {
+        base: IWMWriterSink.VTable,
+        SetMaximumClients: *const fn(
+            self: *const IWMWriterNetworkSink,
+            dwMaxClients: u32,
+        ) callconv(.winapi) HRESULT,
+        GetMaximumClients: *const fn(
+            self: *const IWMWriterNetworkSink,
+            pdwMaxClients: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkProtocol: *const fn(
+            self: *const IWMWriterNetworkSink,
+            protocol: WMT_NET_PROTOCOL,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkProtocol: *const fn(
+            self: *const IWMWriterNetworkSink,
+            pProtocol: ?*WMT_NET_PROTOCOL,
+        ) callconv(.winapi) HRESULT,
+        GetHostURL: *const fn(
+            self: *const IWMWriterNetworkSink,
+            pwszURL: ?PWSTR,
+            pcchURL: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Open: *const fn(
+            self: *const IWMWriterNetworkSink,
+            pdwPortNum: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Disconnect: *const fn(
+            self: *const IWMWriterNetworkSink,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IWMWriterNetworkSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMWriterSink: IWMWriterSink,
+    IUnknown: IUnknown,
+    pub fn SetMaximumClients(self: *const IWMWriterNetworkSink, dwMaxClients: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMaximumClients(self, dwMaxClients);
+    }
+    pub fn GetMaximumClients(self: *const IWMWriterNetworkSink, pdwMaxClients: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaximumClients(self, pdwMaxClients);
+    }
+    pub fn SetNetworkProtocol(self: *const IWMWriterNetworkSink, protocol: WMT_NET_PROTOCOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkProtocol(self, protocol);
+    }
+    pub fn GetNetworkProtocol(self: *const IWMWriterNetworkSink, pProtocol: ?*WMT_NET_PROTOCOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkProtocol(self, pProtocol);
+    }
+    pub fn GetHostURL(self: *const IWMWriterNetworkSink, pwszURL: ?PWSTR, pcchURL: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHostURL(self, pwszURL, pcchURL);
+    }
+    pub fn Open(self: *const IWMWriterNetworkSink, pdwPortNum: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, pdwPortNum);
+    }
+    pub fn Disconnect(self: *const IWMWriterNetworkSink) callconv(.@"inline") HRESULT {
+        return self.vtable.Disconnect(self);
+    }
+    pub fn Close(self: *const IWMWriterNetworkSink) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+const IID_IWMWriterPostView_Value = Guid.initString("81e20ce4-75ef-491a-8004-fc53c45bdc3e");
+pub const IID_IWMWriterPostView = &IID_IWMWriterPostView_Value;
+pub const IWMWriterPostView = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetPostViewCallback: *const fn(
+            self: *const IWMWriterPostView,
+            pCallback: ?*IWMWriterPostViewCallback,
+            pvContext: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        SetReceivePostViewSamples: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNum: u16,
+            fReceivePostViewSamples: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetReceivePostViewSamples: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNum: u16,
+            pfReceivePostViewSamples: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetPostViewProps: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNumber: u16,
+            ppOutput: ?*?*IWMMediaProps,
+        ) callconv(.winapi) HRESULT,
+        SetPostViewProps: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNumber: u16,
+            pOutput: ?*IWMMediaProps,
+        ) callconv(.winapi) HRESULT,
+        GetPostViewFormatCount: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNumber: u16,
+            pcFormats: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPostViewFormat: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNumber: u16,
+            dwFormatNumber: u32,
+            ppProps: ?*?*IWMMediaProps,
+        ) callconv(.winapi) HRESULT,
+        SetAllocateForPostView: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNumber: u16,
+            fAllocate: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetAllocateForPostView: *const fn(
+            self: *const IWMWriterPostView,
+            wStreamNumber: u16,
+            pfAllocate: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetPostViewCallback(self: *const IWMWriterPostView, pCallback: ?*IWMWriterPostViewCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPostViewCallback(self, pCallback, pvContext);
+    }
+    pub fn SetReceivePostViewSamples(self: *const IWMWriterPostView, wStreamNum: u16, fReceivePostViewSamples: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReceivePostViewSamples(self, wStreamNum, fReceivePostViewSamples);
+    }
+    pub fn GetReceivePostViewSamples(self: *const IWMWriterPostView, wStreamNum: u16, pfReceivePostViewSamples: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReceivePostViewSamples(self, wStreamNum, pfReceivePostViewSamples);
+    }
+    pub fn GetPostViewProps(self: *const IWMWriterPostView, wStreamNumber: u16, ppOutput: ?*?*IWMMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPostViewProps(self, wStreamNumber, ppOutput);
+    }
+    pub fn SetPostViewProps(self: *const IWMWriterPostView, wStreamNumber: u16, pOutput: ?*IWMMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPostViewProps(self, wStreamNumber, pOutput);
+    }
+    pub fn GetPostViewFormatCount(self: *const IWMWriterPostView, wStreamNumber: u16, pcFormats: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPostViewFormatCount(self, wStreamNumber, pcFormats);
+    }
+    pub fn GetPostViewFormat(self: *const IWMWriterPostView, wStreamNumber: u16, dwFormatNumber: u32, ppProps: ?*?*IWMMediaProps) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPostViewFormat(self, wStreamNumber, dwFormatNumber, ppProps);
+    }
+    pub fn SetAllocateForPostView(self: *const IWMWriterPostView, wStreamNumber: u16, fAllocate: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllocateForPostView(self, wStreamNumber, fAllocate);
+    }
+    pub fn GetAllocateForPostView(self: *const IWMWriterPostView, wStreamNumber: u16, pfAllocate: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllocateForPostView(self, wStreamNumber, pfAllocate);
+    }
+};
+
+const IID_IWMWriterPostViewCallback_Value = Guid.initString("d9d6549d-a193-4f24-b308-03123d9b7f8d");
+pub const IID_IWMWriterPostViewCallback = &IID_IWMWriterPostViewCallback_Value;
+pub const IWMWriterPostViewCallback = extern union {
+    pub const VTable = extern struct {
+        base: IWMStatusCallback.VTable,
+        OnPostViewSample: *const fn(
+            self: *const IWMWriterPostViewCallback,
+            wStreamNumber: u16,
+            cnsSampleTime: u64,
+            cnsSampleDuration: u64,
+            dwFlags: u32,
+            pSample: ?*INSSBuffer,
+            pvContext: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        AllocateForPostView: *const fn(
+            self: *const IWMWriterPostViewCallback,
+            wStreamNum: u16,
+            cbBuffer: u32,
+            ppBuffer: ?*?*INSSBuffer,
+            pvContext: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMStatusCallback: IWMStatusCallback,
+    IUnknown: IUnknown,
+    pub fn OnPostViewSample(self: *const IWMWriterPostViewCallback, wStreamNumber: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPostViewSample(self, wStreamNumber, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
+    }
+    pub fn AllocateForPostView(self: *const IWMWriterPostViewCallback, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocateForPostView(self, wStreamNum, cbBuffer, ppBuffer, pvContext);
+    }
+};
+
+const IID_IWMWriterPreprocess_Value = Guid.initString("fc54a285-38c4-45b5-aa23-85b9f7cb424b");
+pub const IID_IWMWriterPreprocess = &IID_IWMWriterPreprocess_Value;
+pub const IWMWriterPreprocess = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMaxPreprocessingPasses: *const fn(
+            self: *const IWMWriterPreprocess,
+            dwInputNum: u32,
+            dwFlags: u32,
+            pdwMaxNumPasses: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetNumPreprocessingPasses: *const fn(
+            self: *const IWMWriterPreprocess,
+            dwInputNum: u32,
+            dwFlags: u32,
+            dwNumPasses: u32,
+        ) callconv(.winapi) HRESULT,
+        BeginPreprocessingPass: *const fn(
+            self: *const IWMWriterPreprocess,
+            dwInputNum: u32,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        PreprocessSample: *const fn(
+            self: *const IWMWriterPreprocess,
+            dwInputNum: u32,
+            cnsSampleTime: u64,
+            dwFlags: u32,
+            pSample: ?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        EndPreprocessingPass: *const fn(
+            self: *const IWMWriterPreprocess,
+            dwInputNum: u32,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMaxPreprocessingPasses(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32, pdwMaxNumPasses: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxPreprocessingPasses(self, dwInputNum, dwFlags, pdwMaxNumPasses);
+    }
+    pub fn SetNumPreprocessingPasses(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32, dwNumPasses: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNumPreprocessingPasses(self, dwInputNum, dwFlags, dwNumPasses);
+    }
+    pub fn BeginPreprocessingPass(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginPreprocessingPass(self, dwInputNum, dwFlags);
+    }
+    pub fn PreprocessSample(self: *const IWMWriterPreprocess, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.PreprocessSample(self, dwInputNum, cnsSampleTime, dwFlags, pSample);
+    }
+    pub fn EndPreprocessingPass(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.EndPreprocessingPass(self, dwInputNum, dwFlags);
+    }
+};
+
+const IID_IWMWriterPushSink_Value = Guid.initString("dc10e6a5-072c-467d-bf57-6330a9dde12a");
+pub const IID_IWMWriterPushSink = &IID_IWMWriterPushSink_Value;
+pub const IWMWriterPushSink = extern union {
+    pub const VTable = extern struct {
+        base: IWMWriterSink.VTable,
+        Connect: *const fn(
+            self: *const IWMWriterPushSink,
+            pwszURL: ?[*:0]const u16,
+            pwszTemplateURL: ?[*:0]const u16,
+            fAutoDestroy: BOOL,
+        ) callconv(.winapi) HRESULT,
+        Disconnect: *const fn(
+            self: *const IWMWriterPushSink,
+        ) callconv(.winapi) HRESULT,
+        EndSession: *const fn(
+            self: *const IWMWriterPushSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWMWriterSink: IWMWriterSink,
+    IUnknown: IUnknown,
+    pub fn Connect(self: *const IWMWriterPushSink, pwszURL: ?[*:0]const u16, pwszTemplateURL: ?[*:0]const u16, fAutoDestroy: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Connect(self, pwszURL, pwszTemplateURL, fAutoDestroy);
+    }
+    pub fn Disconnect(self: *const IWMWriterPushSink) callconv(.@"inline") HRESULT {
+        return self.vtable.Disconnect(self);
+    }
+    pub fn EndSession(self: *const IWMWriterPushSink) callconv(.@"inline") HRESULT {
+        return self.vtable.EndSession(self);
+    }
+};
+
+const IID_IWMWriterSink_Value = Guid.initString("96406be4-2b2b-11d3-b36b-00c04f6108ff");
+pub const IID_IWMWriterSink = &IID_IWMWriterSink_Value;
+pub const IWMWriterSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnHeader: *const fn(
+            self: *const IWMWriterSink,
+            pHeader: ?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        IsRealTime: *const fn(
+            self: *const IWMWriterSink,
+            pfRealTime: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        AllocateDataUnit: *const fn(
+            self: *const IWMWriterSink,
+            cbDataUnit: u32,
+            ppDataUnit: ?*?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        OnDataUnit: *const fn(
+            self: *const IWMWriterSink,
+            pDataUnit: ?*INSSBuffer,
+        ) callconv(.winapi) HRESULT,
+        OnEndWriting: *const fn(
+            self: *const IWMWriterSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnHeader(self: *const IWMWriterSink, pHeader: ?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.OnHeader(self, pHeader);
+    }
+    pub fn IsRealTime(self: *const IWMWriterSink, pfRealTime: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsRealTime(self, pfRealTime);
+    }
+    pub fn AllocateDataUnit(self: *const IWMWriterSink, cbDataUnit: u32, ppDataUnit: ?*?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocateDataUnit(self, cbDataUnit, ppDataUnit);
+    }
+    pub fn OnDataUnit(self: *const IWMWriterSink, pDataUnit: ?*INSSBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDataUnit(self, pDataUnit);
+    }
+    pub fn OnEndWriting(self: *const IWMWriterSink) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEndWriting(self);
+    }
+};
+
+pub const NETSOURCE_URLCREDPOLICY_SETTINGS = enum(i32) {
+    SILENTLOGONOK = 0,
+    MUSTPROMPTUSER = 1,
+    ANONYMOUSONLY = 2,
+};
+pub const NETSOURCE_URLCREDPOLICY_SETTING_SILENTLOGONOK = NETSOURCE_URLCREDPOLICY_SETTINGS.SILENTLOGONOK;
+pub const NETSOURCE_URLCREDPOLICY_SETTING_MUSTPROMPTUSER = NETSOURCE_URLCREDPOLICY_SETTINGS.MUSTPROMPTUSER;
+pub const NETSOURCE_URLCREDPOLICY_SETTING_ANONYMOUSONLY = NETSOURCE_URLCREDPOLICY_SETTINGS.ANONYMOUSONLY;
+
+pub const WEBSTREAM_SAMPLE_TYPE = enum(i32) {
+    FILE = 1,
+    RENDER = 2,
+};
+pub const WEBSTREAM_SAMPLE_TYPE_FILE = WEBSTREAM_SAMPLE_TYPE.FILE;
+pub const WEBSTREAM_SAMPLE_TYPE_RENDER = WEBSTREAM_SAMPLE_TYPE.RENDER;
+
+pub const WM_ADDRESS_ACCESSENTRY = extern struct {
+    dwIPAddress: u32,
+    dwMask: u32,
+};
+
+pub const WM_AETYPE = enum(i32) {
+    INCLUDE = 105,
+    EXCLUDE = 101,
+};
+pub const WM_AETYPE_INCLUDE = WM_AETYPE.INCLUDE;
+pub const WM_AETYPE_EXCLUDE = WM_AETYPE.EXCLUDE;
+
+pub const WM_CLIENT_PROPERTIES = extern struct {
+    dwIPAddress: u32,
+    dwPort: u32,
+};
+
+pub const WM_CLIENT_PROPERTIES_EX = extern struct {
+    cbSize: u32,
+    pwszIPAddress: ?[*:0]const u16,
+    pwszPort: ?[*:0]const u16,
+    pwszDNSName: ?[*:0]const u16,
+};
+
+pub const WM_DM_INTERLACED_TYPE = enum(i32) {
+    NOTINTERLACED = 0,
+    DEINTERLACE_NORMAL = 1,
+    DEINTERLACE_HALFSIZE = 2,
+    DEINTERLACE_HALFSIZEDOUBLERATE = 3,
+    DEINTERLACE_INVERSETELECINE = 4,
+    DEINTERLACE_VERTICALHALFSIZEDOUBLERATE = 5,
+};
+pub const WM_DM_NOTINTERLACED = WM_DM_INTERLACED_TYPE.NOTINTERLACED;
+pub const WM_DM_DEINTERLACE_NORMAL = WM_DM_INTERLACED_TYPE.DEINTERLACE_NORMAL;
+pub const WM_DM_DEINTERLACE_HALFSIZE = WM_DM_INTERLACED_TYPE.DEINTERLACE_HALFSIZE;
+pub const WM_DM_DEINTERLACE_HALFSIZEDOUBLERATE = WM_DM_INTERLACED_TYPE.DEINTERLACE_HALFSIZEDOUBLERATE;
+pub const WM_DM_DEINTERLACE_INVERSETELECINE = WM_DM_INTERLACED_TYPE.DEINTERLACE_INVERSETELECINE;
+pub const WM_DM_DEINTERLACE_VERTICALHALFSIZEDOUBLERATE = WM_DM_INTERLACED_TYPE.DEINTERLACE_VERTICALHALFSIZEDOUBLERATE;
+
+pub const WM_DM_IT_FIRST_FRAME_COHERENCY = enum(i32) {
+    DISABLE_COHERENT_MODE = 0,
+    FIRST_FRAME_IN_CLIP_IS_AA_TOP = 1,
+    FIRST_FRAME_IN_CLIP_IS_BB_TOP = 2,
+    FIRST_FRAME_IN_CLIP_IS_BC_TOP = 3,
+    FIRST_FRAME_IN_CLIP_IS_CD_TOP = 4,
+    FIRST_FRAME_IN_CLIP_IS_DD_TOP = 5,
+    FIRST_FRAME_IN_CLIP_IS_AA_BOTTOM = 6,
+    FIRST_FRAME_IN_CLIP_IS_BB_BOTTOM = 7,
+    FIRST_FRAME_IN_CLIP_IS_BC_BOTTOM = 8,
+    FIRST_FRAME_IN_CLIP_IS_CD_BOTTOM = 9,
+    FIRST_FRAME_IN_CLIP_IS_DD_BOTTOM = 10,
+};
+pub const WM_DM_IT_DISABLE_COHERENT_MODE = WM_DM_IT_FIRST_FRAME_COHERENCY.DISABLE_COHERENT_MODE;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_AA_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_AA_TOP;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BB_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BB_TOP;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BC_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BC_TOP;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_CD_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_CD_TOP;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_DD_TOP = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_DD_TOP;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_AA_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_AA_BOTTOM;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BB_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BB_BOTTOM;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_BC_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_BC_BOTTOM;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_CD_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_CD_BOTTOM;
+pub const WM_DM_IT_FIRST_FRAME_IN_CLIP_IS_DD_BOTTOM = WM_DM_IT_FIRST_FRAME_COHERENCY.FIRST_FRAME_IN_CLIP_IS_DD_BOTTOM;
+
+pub const WM_LEAKY_BUCKET_PAIR = extern struct {
+    dwBitrate: u32 align(1),
+    msBufferWindow: u32 align(1),
+};
+
+pub const WM_MEDIA_TYPE = extern struct {
+    majortype: Guid,
+    subtype: Guid,
+    bFixedSizeSamples: BOOL,
+    bTemporalCompression: BOOL,
+    lSampleSize: u32,
+    formattype: Guid,
+    pUnk: ?*IUnknown,
+    cbFormat: u32,
+    pbFormat: ?*u8,
+};
+
+pub const WM_PICTURE = extern struct {
+    pwszMIMEType: ?PWSTR align(1),
+    bPictureType: u8 align(1),
+    pwszDescription: ?PWSTR align(1),
+    dwDataLen: u32 align(1),
+    pbData: ?*u8 align(1),
+};
+
+pub const WM_PLAYBACK_DRC_LEVEL = enum(i32) {
+    HIGH = 0,
+    MEDIUM = 1,
+    LOW = 2,
+};
+pub const WM_PLAYBACK_DRC_HIGH = WM_PLAYBACK_DRC_LEVEL.HIGH;
+pub const WM_PLAYBACK_DRC_MEDIUM = WM_PLAYBACK_DRC_LEVEL.MEDIUM;
+pub const WM_PLAYBACK_DRC_LOW = WM_PLAYBACK_DRC_LEVEL.LOW;
+
+pub const WM_PORT_NUMBER_RANGE = extern struct {
+    wPortBegin: u16,
+    wPortEnd: u16,
+};
+
+pub const WM_READER_CLIENTINFO = extern struct {
+    cbSize: u32,
+    wszLang: ?PWSTR,
+    wszBrowserUserAgent: ?PWSTR,
+    wszBrowserWebPage: ?PWSTR,
+    qwReserved: u64,
+    pReserved: ?*LPARAM,
+    wszHostExe: ?PWSTR,
+    qwHostVersion: u64,
+    wszPlayerUserAgent: ?PWSTR,
+};
+
+pub const WM_READER_STATISTICS = extern struct {
+    cbSize: u32,
+    dwBandwidth: u32,
+    cPacketsReceived: u32,
+    cPacketsRecovered: u32,
+    cPacketsLost: u32,
+    wQuality: u16,
+};
+
+pub const WM_SF_TYPE = enum(i32) {
+    CLEANPOINT = 1,
+    DISCONTINUITY = 2,
+    DATALOSS = 4,
+};
+pub const WM_SF_CLEANPOINT = WM_SF_TYPE.CLEANPOINT;
+pub const WM_SF_DISCONTINUITY = WM_SF_TYPE.DISCONTINUITY;
+pub const WM_SF_DATALOSS = WM_SF_TYPE.DATALOSS;
+
+pub const WM_SFEX_TYPE = enum(i32) {
+    NOTASYNCPOINT = 2,
+    DATALOSS = 4,
+};
+pub const WM_SFEX_NOTASYNCPOINT = WM_SFEX_TYPE.NOTASYNCPOINT;
+pub const WM_SFEX_DATALOSS = WM_SFEX_TYPE.DATALOSS;
+
+pub const WM_STREAM_PRIORITY_RECORD = extern struct {
+    wStreamNumber: u16 align(2),
+    fMandatory: BOOL align(2),
+};
+
+pub const WM_STREAM_TYPE_INFO = extern struct {
+    guidMajorType: Guid align(1),
+    cbFormat: u32 align(1),
+};
+
+pub const WM_SYNCHRONISED_LYRICS = extern struct {
+    bTimeStampFormat: u8 align(1),
+    bContentType: u8 align(1),
+    pwszContentDescriptor: ?PWSTR align(1),
+    dwLyricsLen: u32 align(1),
+    pbLyrics: ?*u8 align(1),
+};
+
+pub const WM_USER_TEXT = extern struct {
+    pwszDescription: ?PWSTR align(1),
+    pwszText: ?PWSTR align(1),
+};
+
+pub const WM_USER_WEB_URL = extern struct {
+    pwszDescription: ?PWSTR align(1),
+    pwszURL: ?PWSTR align(1),
+};
+
+pub const WM_WRITER_STATISTICS = extern struct {
+    qwSampleCount: u64,
+    qwByteCount: u64,
+    qwDroppedSampleCount: u64,
+    qwDroppedByteCount: u64,
+    dwCurrentBitrate: u32,
+    dwAverageBitrate: u32,
+    dwExpectedBitrate: u32,
+    dwCurrentSampleRate: u32,
+    dwAverageSampleRate: u32,
+    dwExpectedSampleRate: u32,
+};
+
+pub const WM_WRITER_STATISTICS_EX = extern struct {
+    dwBitratePlusOverhead: u32,
+    dwCurrentSampleDropRateInQueue: u32,
+    dwCurrentSampleDropRateInCodec: u32,
+    dwCurrentSampleDropRateInMultiplexer: u32,
+    dwTotalSampleDropsInQueue: u32,
+    dwTotalSampleDropsInCodec: u32,
+    dwTotalSampleDropsInMultiplexer: u32,
+};
+
+pub const WMDRM_IMPORT_INIT_STRUCT = extern struct {
+    dwVersion: u32,
+    cbEncryptedSessionKeyMessage: u32,
+    pbEncryptedSessionKeyMessage: ?*u8,
+    cbEncryptedKeyMessage: u32,
+    pbEncryptedKeyMessage: ?*u8,
+};
+
+pub const WMMPEG2VIDEOINFO = extern struct {
+    hdr: WMVIDEOINFOHEADER2,
+    dwStartTimeCode: u32,
+    cbSequenceHeader: u32,
+    dwProfile: u32,
+    dwLevel: u32,
+    dwFlags: u32,
+    dwSequenceHeader: [1]u32,
+};
+
+pub const WMSCRIPTFORMAT = extern struct {
+    scriptType: Guid,
+};
+
+pub const WMT_ATTR_DATATYPE = enum(i32) {
+    DWORD = 0,
+    STRING = 1,
+    BINARY = 2,
+    BOOL = 3,
+    QWORD = 4,
+    WORD = 5,
+    GUID = 6,
+};
+pub const WMT_TYPE_DWORD = WMT_ATTR_DATATYPE.DWORD;
+pub const WMT_TYPE_STRING = WMT_ATTR_DATATYPE.STRING;
+pub const WMT_TYPE_BINARY = WMT_ATTR_DATATYPE.BINARY;
+pub const WMT_TYPE_BOOL = WMT_ATTR_DATATYPE.BOOL;
+pub const WMT_TYPE_QWORD = WMT_ATTR_DATATYPE.QWORD;
+pub const WMT_TYPE_WORD = WMT_ATTR_DATATYPE.WORD;
+pub const WMT_TYPE_GUID = WMT_ATTR_DATATYPE.GUID;
+
+pub const WMT_ATTR_IMAGETYPE = enum(i32) {
+    BITMAP = 1,
+    JPEG = 2,
+    GIF = 3,
+};
+pub const WMT_IMAGETYPE_BITMAP = WMT_ATTR_IMAGETYPE.BITMAP;
+pub const WMT_IMAGETYPE_JPEG = WMT_ATTR_IMAGETYPE.JPEG;
+pub const WMT_IMAGETYPE_GIF = WMT_ATTR_IMAGETYPE.GIF;
+
+pub const WMT_BUFFER_SEGMENT = extern struct {
+    pBuffer: ?*INSSBuffer,
+    cbOffset: u32,
+    cbLength: u32,
+};
+
+pub const WMT_CODEC_INFO_TYPE = enum(i32) {
+    AUDIO = 0,
+    VIDEO = 1,
+    UNKNOWN = -1,
+};
+pub const WMT_CODECINFO_AUDIO = WMT_CODEC_INFO_TYPE.AUDIO;
+pub const WMT_CODECINFO_VIDEO = WMT_CODEC_INFO_TYPE.VIDEO;
+pub const WMT_CODECINFO_UNKNOWN = WMT_CODEC_INFO_TYPE.UNKNOWN;
+
+pub const WMT_COLORSPACEINFO_EXTENSION_DATA = extern struct {
+    ucColorPrimaries: u8,
+    ucColorTransferChar: u8,
+    ucColorMatrixCoef: u8,
+};
+
+pub const WMT_CREDENTIAL_FLAGS = enum(i32) {
+    SAVE = 1,
+    DONT_CACHE = 2,
+    CLEAR_TEXT = 4,
+    PROXY = 8,
+    ENCRYPT = 16,
+};
+pub const WMT_CREDENTIAL_SAVE = WMT_CREDENTIAL_FLAGS.SAVE;
+pub const WMT_CREDENTIAL_DONT_CACHE = WMT_CREDENTIAL_FLAGS.DONT_CACHE;
+pub const WMT_CREDENTIAL_CLEAR_TEXT = WMT_CREDENTIAL_FLAGS.CLEAR_TEXT;
+pub const WMT_CREDENTIAL_PROXY = WMT_CREDENTIAL_FLAGS.PROXY;
+pub const WMT_CREDENTIAL_ENCRYPT = WMT_CREDENTIAL_FLAGS.ENCRYPT;
+
+pub const WMT_DRMLA_TRUST = enum(i32) {
+    UNTRUSTED = 0,
+    TRUSTED = 1,
+    TAMPERED = 2,
+};
+pub const WMT_DRMLA_UNTRUSTED = WMT_DRMLA_TRUST.UNTRUSTED;
+pub const WMT_DRMLA_TRUSTED = WMT_DRMLA_TRUST.TRUSTED;
+pub const WMT_DRMLA_TAMPERED = WMT_DRMLA_TRUST.TAMPERED;
+
+pub const WMT_FILESINK_DATA_UNIT = extern struct {
+    packetHeaderBuffer: WMT_BUFFER_SEGMENT,
+    cPayloads: u32,
+    pPayloadHeaderBuffers: ?*WMT_BUFFER_SEGMENT,
+    cPayloadDataFragments: u32,
+    pPayloadDataFragments: ?*WMT_PAYLOAD_FRAGMENT,
+};
+
+pub const WMT_FILESINK_MODE = enum(i32) {
+    SINGLE_BUFFERS = 1,
+    FILESINK_DATA_UNITS = 2,
+    FILESINK_UNBUFFERED = 4,
+};
+pub const WMT_FM_SINGLE_BUFFERS = WMT_FILESINK_MODE.SINGLE_BUFFERS;
+pub const WMT_FM_FILESINK_DATA_UNITS = WMT_FILESINK_MODE.FILESINK_DATA_UNITS;
+pub const WMT_FM_FILESINK_UNBUFFERED = WMT_FILESINK_MODE.FILESINK_UNBUFFERED;
+
+pub const WMT_IMAGE_TYPE = enum(i32) {
+    NONE = 0,
+    BITMAP = 1,
+    JPEG = 2,
+    GIF = 3,
+};
+pub const WMT_IT_NONE = WMT_IMAGE_TYPE.NONE;
+pub const WMT_IT_BITMAP = WMT_IMAGE_TYPE.BITMAP;
+pub const WMT_IT_JPEG = WMT_IMAGE_TYPE.JPEG;
+pub const WMT_IT_GIF = WMT_IMAGE_TYPE.GIF;
+
+pub const WMT_INDEX_TYPE = enum(i32) {
+    DATA_UNIT = 1,
+    OBJECT = 2,
+    CLEAN_POINT = 3,
+};
+pub const WMT_IT_NEAREST_DATA_UNIT = WMT_INDEX_TYPE.DATA_UNIT;
+pub const WMT_IT_NEAREST_OBJECT = WMT_INDEX_TYPE.OBJECT;
+pub const WMT_IT_NEAREST_CLEAN_POINT = WMT_INDEX_TYPE.CLEAN_POINT;
+
+pub const WMT_INDEXER_TYPE = enum(i32) {
+    PRESENTATION_TIME = 0,
+    FRAME_NUMBERS = 1,
+    TIMECODE = 2,
+};
+pub const WMT_IT_PRESENTATION_TIME = WMT_INDEXER_TYPE.PRESENTATION_TIME;
+pub const WMT_IT_FRAME_NUMBERS = WMT_INDEXER_TYPE.FRAME_NUMBERS;
+pub const WMT_IT_TIMECODE = WMT_INDEXER_TYPE.TIMECODE;
+
+pub const WMT_MUSICSPEECH_CLASS_MODE = enum(i32) {
+    MUSIC = 0,
+    SPEECH = 1,
+    MIXED = 2,
+};
+pub const WMT_MS_CLASS_MUSIC = WMT_MUSICSPEECH_CLASS_MODE.MUSIC;
+pub const WMT_MS_CLASS_SPEECH = WMT_MUSICSPEECH_CLASS_MODE.SPEECH;
+pub const WMT_MS_CLASS_MIXED = WMT_MUSICSPEECH_CLASS_MODE.MIXED;
+
+pub const WMT_NET_PROTOCOL = enum(i32) {
+    P = 0,
+};
+pub const WMT_PROTOCOL_HTTP = WMT_NET_PROTOCOL.P;
+
+pub const WMT_OFFSET_FORMAT = enum(i32) {
+    @"100NS" = 0,
+    FRAME_NUMBERS = 1,
+    PLAYLIST_OFFSET = 2,
+    TIMECODE = 3,
+    @"100NS_APPROXIMATE" = 4,
+};
+pub const WMT_OFFSET_FORMAT_100NS = WMT_OFFSET_FORMAT.@"100NS";
+pub const WMT_OFFSET_FORMAT_FRAME_NUMBERS = WMT_OFFSET_FORMAT.FRAME_NUMBERS;
+pub const WMT_OFFSET_FORMAT_PLAYLIST_OFFSET = WMT_OFFSET_FORMAT.PLAYLIST_OFFSET;
+pub const WMT_OFFSET_FORMAT_TIMECODE = WMT_OFFSET_FORMAT.TIMECODE;
+pub const WMT_OFFSET_FORMAT_100NS_APPROXIMATE = WMT_OFFSET_FORMAT.@"100NS_APPROXIMATE";
+
+pub const WMT_PAYLOAD_FRAGMENT = extern struct {
+    dwPayloadIndex: u32,
+    segmentData: WMT_BUFFER_SEGMENT,
+};
+
+pub const WMT_PLAY_MODE = enum(i32) {
+    AUTOSELECT = 0,
+    LOCAL = 1,
+    DOWNLOAD = 2,
+    STREAMING = 3,
+};
+pub const WMT_PLAY_MODE_AUTOSELECT = WMT_PLAY_MODE.AUTOSELECT;
+pub const WMT_PLAY_MODE_LOCAL = WMT_PLAY_MODE.LOCAL;
+pub const WMT_PLAY_MODE_DOWNLOAD = WMT_PLAY_MODE.DOWNLOAD;
+pub const WMT_PLAY_MODE_STREAMING = WMT_PLAY_MODE.STREAMING;
+
+pub const WMT_PROXY_SETTINGS = enum(i32) {
+    NONE = 0,
+    MANUAL = 1,
+    AUTO = 2,
+    BROWSER = 3,
+    MAX = 4,
+};
+pub const WMT_PROXY_SETTING_NONE = WMT_PROXY_SETTINGS.NONE;
+pub const WMT_PROXY_SETTING_MANUAL = WMT_PROXY_SETTINGS.MANUAL;
+pub const WMT_PROXY_SETTING_AUTO = WMT_PROXY_SETTINGS.AUTO;
+pub const WMT_PROXY_SETTING_BROWSER = WMT_PROXY_SETTINGS.BROWSER;
+pub const WMT_PROXY_SETTING_MAX = WMT_PROXY_SETTINGS.MAX;
+
+pub const WMT_RIGHTS = enum(i32) {
+    PLAYBACK = 1,
+    COPY_TO_NON_SDMI_DEVICE = 2,
+    COPY_TO_CD = 8,
+    COPY_TO_SDMI_DEVICE = 16,
+    ONE_TIME = 32,
+    SAVE_STREAM_PROTECTED = 64,
+    COPY = 128,
+    COLLABORATIVE_PLAY = 256,
+    SDMI_TRIGGER = 65536,
+    SDMI_NOMORECOPIES = 131072,
+};
+pub const WMT_RIGHT_PLAYBACK = WMT_RIGHTS.PLAYBACK;
+pub const WMT_RIGHT_COPY_TO_NON_SDMI_DEVICE = WMT_RIGHTS.COPY_TO_NON_SDMI_DEVICE;
+pub const WMT_RIGHT_COPY_TO_CD = WMT_RIGHTS.COPY_TO_CD;
+pub const WMT_RIGHT_COPY_TO_SDMI_DEVICE = WMT_RIGHTS.COPY_TO_SDMI_DEVICE;
+pub const WMT_RIGHT_ONE_TIME = WMT_RIGHTS.ONE_TIME;
+pub const WMT_RIGHT_SAVE_STREAM_PROTECTED = WMT_RIGHTS.SAVE_STREAM_PROTECTED;
+pub const WMT_RIGHT_COPY = WMT_RIGHTS.COPY;
+pub const WMT_RIGHT_COLLABORATIVE_PLAY = WMT_RIGHTS.COLLABORATIVE_PLAY;
+pub const WMT_RIGHT_SDMI_TRIGGER = WMT_RIGHTS.SDMI_TRIGGER;
+pub const WMT_RIGHT_SDMI_NOMORECOPIES = WMT_RIGHTS.SDMI_NOMORECOPIES;
+
+pub const WMT_STATUS = enum(i32) {
+    ERROR = 0,
+    OPENED = 1,
+    BUFFERING_START = 2,
+    BUFFERING_STOP = 3,
+    EOF = 4,
+    END_OF_SEGMENT = 5,
+    END_OF_STREAMING = 6,
+    LOCATING = 7,
+    CONNECTING = 8,
+    NO_RIGHTS = 9,
+    MISSING_CODEC = 10,
+    STARTED = 11,
+    STOPPED = 12,
+    CLOSED = 13,
+    STRIDING = 14,
+    TIMER = 15,
+    INDEX_PROGRESS = 16,
+    SAVEAS_START = 17,
+    SAVEAS_STOP = 18,
+    NEW_SOURCEFLAGS = 19,
+    NEW_METADATA = 20,
+    BACKUPRESTORE_BEGIN = 21,
+    SOURCE_SWITCH = 22,
+    ACQUIRE_LICENSE = 23,
+    INDIVIDUALIZE = 24,
+    NEEDS_INDIVIDUALIZATION = 25,
+    NO_RIGHTS_EX = 26,
+    BACKUPRESTORE_END = 27,
+    BACKUPRESTORE_CONNECTING = 28,
+    BACKUPRESTORE_DISCONNECTING = 29,
+    ERROR_WITHURL = 30,
+    RESTRICTED_LICENSE = 31,
+    CLIENT_CONNECT = 32,
+    CLIENT_DISCONNECT = 33,
+    NATIVE_OUTPUT_PROPS_CHANGED = 34,
+    RECONNECT_START = 35,
+    RECONNECT_END = 36,
+    CLIENT_CONNECT_EX = 37,
+    CLIENT_DISCONNECT_EX = 38,
+    SET_FEC_SPAN = 39,
+    PREROLL_READY = 40,
+    PREROLL_COMPLETE = 41,
+    CLIENT_PROPERTIES = 42,
+    LICENSEURL_SIGNATURE_STATE = 43,
+    INIT_PLAYLIST_BURN = 44,
+    TRANSCRYPTOR_INIT = 45,
+    TRANSCRYPTOR_SEEKED = 46,
+    TRANSCRYPTOR_READ = 47,
+    TRANSCRYPTOR_CLOSED = 48,
+    PROXIMITY_RESULT = 49,
+    PROXIMITY_COMPLETED = 50,
+    CONTENT_ENABLER = 51,
+    pub const END_OF_FILE = .EOF;
+};
+pub const WMT_ERROR = WMT_STATUS.ERROR;
+pub const WMT_OPENED = WMT_STATUS.OPENED;
+pub const WMT_BUFFERING_START = WMT_STATUS.BUFFERING_START;
+pub const WMT_BUFFERING_STOP = WMT_STATUS.BUFFERING_STOP;
+pub const WMT_EOF = WMT_STATUS.EOF;
+pub const WMT_END_OF_FILE = WMT_STATUS.EOF;
+pub const WMT_END_OF_SEGMENT = WMT_STATUS.END_OF_SEGMENT;
+pub const WMT_END_OF_STREAMING = WMT_STATUS.END_OF_STREAMING;
+pub const WMT_LOCATING = WMT_STATUS.LOCATING;
+pub const WMT_CONNECTING = WMT_STATUS.CONNECTING;
+pub const WMT_NO_RIGHTS = WMT_STATUS.NO_RIGHTS;
+pub const WMT_MISSING_CODEC = WMT_STATUS.MISSING_CODEC;
+pub const WMT_STARTED = WMT_STATUS.STARTED;
+pub const WMT_STOPPED = WMT_STATUS.STOPPED;
+pub const WMT_CLOSED = WMT_STATUS.CLOSED;
+pub const WMT_STRIDING = WMT_STATUS.STRIDING;
+pub const WMT_TIMER = WMT_STATUS.TIMER;
+pub const WMT_INDEX_PROGRESS = WMT_STATUS.INDEX_PROGRESS;
+pub const WMT_SAVEAS_START = WMT_STATUS.SAVEAS_START;
+pub const WMT_SAVEAS_STOP = WMT_STATUS.SAVEAS_STOP;
+pub const WMT_NEW_SOURCEFLAGS = WMT_STATUS.NEW_SOURCEFLAGS;
+pub const WMT_NEW_METADATA = WMT_STATUS.NEW_METADATA;
+pub const WMT_BACKUPRESTORE_BEGIN = WMT_STATUS.BACKUPRESTORE_BEGIN;
+pub const WMT_SOURCE_SWITCH = WMT_STATUS.SOURCE_SWITCH;
+pub const WMT_ACQUIRE_LICENSE = WMT_STATUS.ACQUIRE_LICENSE;
+pub const WMT_INDIVIDUALIZE = WMT_STATUS.INDIVIDUALIZE;
+pub const WMT_NEEDS_INDIVIDUALIZATION = WMT_STATUS.NEEDS_INDIVIDUALIZATION;
+pub const WMT_NO_RIGHTS_EX = WMT_STATUS.NO_RIGHTS_EX;
+pub const WMT_BACKUPRESTORE_END = WMT_STATUS.BACKUPRESTORE_END;
+pub const WMT_BACKUPRESTORE_CONNECTING = WMT_STATUS.BACKUPRESTORE_CONNECTING;
+pub const WMT_BACKUPRESTORE_DISCONNECTING = WMT_STATUS.BACKUPRESTORE_DISCONNECTING;
+pub const WMT_ERROR_WITHURL = WMT_STATUS.ERROR_WITHURL;
+pub const WMT_RESTRICTED_LICENSE = WMT_STATUS.RESTRICTED_LICENSE;
+pub const WMT_CLIENT_CONNECT = WMT_STATUS.CLIENT_CONNECT;
+pub const WMT_CLIENT_DISCONNECT = WMT_STATUS.CLIENT_DISCONNECT;
+pub const WMT_NATIVE_OUTPUT_PROPS_CHANGED = WMT_STATUS.NATIVE_OUTPUT_PROPS_CHANGED;
+pub const WMT_RECONNECT_START = WMT_STATUS.RECONNECT_START;
+pub const WMT_RECONNECT_END = WMT_STATUS.RECONNECT_END;
+pub const WMT_CLIENT_CONNECT_EX = WMT_STATUS.CLIENT_CONNECT_EX;
+pub const WMT_CLIENT_DISCONNECT_EX = WMT_STATUS.CLIENT_DISCONNECT_EX;
+pub const WMT_SET_FEC_SPAN = WMT_STATUS.SET_FEC_SPAN;
+pub const WMT_PREROLL_READY = WMT_STATUS.PREROLL_READY;
+pub const WMT_PREROLL_COMPLETE = WMT_STATUS.PREROLL_COMPLETE;
+pub const WMT_CLIENT_PROPERTIES = WMT_STATUS.CLIENT_PROPERTIES;
+pub const WMT_LICENSEURL_SIGNATURE_STATE = WMT_STATUS.LICENSEURL_SIGNATURE_STATE;
+pub const WMT_INIT_PLAYLIST_BURN = WMT_STATUS.INIT_PLAYLIST_BURN;
+pub const WMT_TRANSCRYPTOR_INIT = WMT_STATUS.TRANSCRYPTOR_INIT;
+pub const WMT_TRANSCRYPTOR_SEEKED = WMT_STATUS.TRANSCRYPTOR_SEEKED;
+pub const WMT_TRANSCRYPTOR_READ = WMT_STATUS.TRANSCRYPTOR_READ;
+pub const WMT_TRANSCRYPTOR_CLOSED = WMT_STATUS.TRANSCRYPTOR_CLOSED;
+pub const WMT_PROXIMITY_RESULT = WMT_STATUS.PROXIMITY_RESULT;
+pub const WMT_PROXIMITY_COMPLETED = WMT_STATUS.PROXIMITY_COMPLETED;
+pub const WMT_CONTENT_ENABLER = WMT_STATUS.CONTENT_ENABLER;
+
+pub const WMT_STORAGE_FORMAT = enum(i32) {
+    MP3 = 0,
+    V1 = 1,
+};
+pub const WMT_Storage_Format_MP3 = WMT_STORAGE_FORMAT.MP3;
+pub const WMT_Storage_Format_V1 = WMT_STORAGE_FORMAT.V1;
+
+pub const WMT_STREAM_SELECTION = enum(i32) {
+    OFF = 0,
+    CLEANPOINT_ONLY = 1,
+    ON = 2,
+};
+pub const WMT_OFF = WMT_STREAM_SELECTION.OFF;
+pub const WMT_CLEANPOINT_ONLY = WMT_STREAM_SELECTION.CLEANPOINT_ONLY;
+pub const WMT_ON = WMT_STREAM_SELECTION.ON;
+
+pub const WMT_TIMECODE_EXTENSION_DATA = extern struct {
+    wRange: u16 align(2),
+    dwTimecode: u32 align(2),
+    dwUserbits: u32 align(2),
+    dwAmFlags: u32 align(2),
+};
+
+pub const WMT_TIMECODE_FRAMERATE = enum(i32) {
+    @"30" = 0,
+    @"30DROP" = 1,
+    @"25" = 2,
+    @"24" = 3,
+};
+pub const WMT_TIMECODE_FRAMERATE_30 = WMT_TIMECODE_FRAMERATE.@"30";
+pub const WMT_TIMECODE_FRAMERATE_30DROP = WMT_TIMECODE_FRAMERATE.@"30DROP";
+pub const WMT_TIMECODE_FRAMERATE_25 = WMT_TIMECODE_FRAMERATE.@"25";
+pub const WMT_TIMECODE_FRAMERATE_24 = WMT_TIMECODE_FRAMERATE.@"24";
+
+pub const WMT_TRANSPORT_TYPE = enum(i32) {
+    Unreliable = 0,
+    Reliable = 1,
+};
+pub const WMT_Transport_Type_Unreliable = WMT_TRANSPORT_TYPE.Unreliable;
+pub const WMT_Transport_Type_Reliable = WMT_TRANSPORT_TYPE.Reliable;
+
+pub const WMT_VERSION = enum(i32) {
+    @"4_0" = 262144,
+    @"7_0" = 458752,
+    @"8_0" = 524288,
+    @"9_0" = 589824,
+};
+pub const WMT_VER_4_0 = WMT_VERSION.@"4_0";
+pub const WMT_VER_7_0 = WMT_VERSION.@"7_0";
+pub const WMT_VER_8_0 = WMT_VERSION.@"8_0";
+pub const WMT_VER_9_0 = WMT_VERSION.@"9_0";
+
+pub const WMT_VIDEOIMAGE_SAMPLE = extern struct {
+    dwMagic: u32,
+    cbStruct: u32,
+    dwControlFlags: u32,
+    dwInputFlagsCur: u32,
+    lCurMotionXtoX: i32,
+    lCurMotionYtoX: i32,
+    lCurMotionXoffset: i32,
+    lCurMotionXtoY: i32,
+    lCurMotionYtoY: i32,
+    lCurMotionYoffset: i32,
+    lCurBlendCoef1: i32,
+    lCurBlendCoef2: i32,
+    dwInputFlagsPrev: u32,
+    lPrevMotionXtoX: i32,
+    lPrevMotionYtoX: i32,
+    lPrevMotionXoffset: i32,
+    lPrevMotionXtoY: i32,
+    lPrevMotionYtoY: i32,
+    lPrevMotionYoffset: i32,
+    lPrevBlendCoef1: i32,
+    lPrevBlendCoef2: i32,
+};
+
+pub const WMT_VIDEOIMAGE_SAMPLE2 = extern struct {
+    dwMagic: u32,
+    dwStructSize: u32,
+    dwControlFlags: u32,
+    dwViewportWidth: u32,
+    dwViewportHeight: u32,
+    dwCurrImageWidth: u32,
+    dwCurrImageHeight: u32,
+    fCurrRegionX0: f32,
+    fCurrRegionY0: f32,
+    fCurrRegionWidth: f32,
+    fCurrRegionHeight: f32,
+    fCurrBlendCoef: f32,
+    dwPrevImageWidth: u32,
+    dwPrevImageHeight: u32,
+    fPrevRegionX0: f32,
+    fPrevRegionY0: f32,
+    fPrevRegionWidth: f32,
+    fPrevRegionHeight: f32,
+    fPrevBlendCoef: f32,
+    dwEffectType: u32,
+    dwNumEffectParas: u32,
+    fEffectPara0: f32,
+    fEffectPara1: f32,
+    fEffectPara2: f32,
+    fEffectPara3: f32,
+    fEffectPara4: f32,
+    bKeepPrevImage: BOOL,
+};
+
+pub const WMT_WATERMARK_ENTRY = extern struct {
+    wmetType: WMT_WATERMARK_ENTRY_TYPE,
+    clsid: Guid,
+    cbDisplayName: u32,
+    pwszDisplayName: ?PWSTR,
+};
+
+pub const WMT_WATERMARK_ENTRY_TYPE = enum(i32) {
+    AUDIO = 1,
+    VIDEO = 2,
+};
+pub const WMT_WMETYPE_AUDIO = WMT_WATERMARK_ENTRY_TYPE.AUDIO;
+pub const WMT_WMETYPE_VIDEO = WMT_WATERMARK_ENTRY_TYPE.VIDEO;
+
+pub const WMT_WEBSTREAM_FORMAT = extern struct {
+    cbSize: u16,
+    cbSampleHeaderFixedData: u16,
+    wVersion: u16,
+    wReserved: u16,
+};
+
+pub const WMT_WEBSTREAM_SAMPLE_HEADER = extern struct {
+    cbLength: u16,
+    wPart: u16,
+    cTotalParts: u16,
+    wSampleType: u16,
+    wszURL: [1]u16,
+};
+
+pub const WMVIDEOINFOHEADER = extern struct {
+    rcSource: RECT,
+    rcTarget: RECT,
+    dwBitRate: u32,
+    dwBitErrorRate: u32,
+    AvgTimePerFrame: i64,
+    bmiHeader: BITMAPINFOHEADER,
+};
+
+pub const WMVIDEOINFOHEADER2 = extern struct {
+    rcSource: RECT,
+    rcTarget: RECT,
+    dwBitRate: u32,
+    dwBitErrorRate: u32,
+    AvgTimePerFrame: i64,
+    dwInterlaceFlags: u32,
+    dwCopyProtectFlags: u32,
+    dwPictAspectRatioX: u32,
+    dwPictAspectRatioY: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    bmiHeader: BITMAPINFOHEADER,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "wmvcore" fn WMIsContentProtected(
-    pwszFileName: ?[*:0]const u16,
-    pfIsProtected: ?*BOOL,
+pub extern "wmvcore" fn WMCreateBackupRestorer(
+    pCallback: ?*IUnknown,
+    ppBackup: ?*?*IWMLicenseBackup,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "wmvcore" fn WMCreateWriter(
-    pUnkCert: ?*IUnknown,
-    ppWriter: ?*?*IWMWriter,
+pub extern "wmvcore" fn WMCreateEditor(
+    ppEditor: ?*?*IWMMetadataEditor,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "wmvcore" fn WMCreateIndexer(
+    ppIndexer: ?*?*IWMIndexer,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "wmvcore" fn WMCreateProfileManager(
+    ppProfileManager: ?*?*IWMProfileManager,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6414,24 +6423,9 @@ pub extern "wmvcore" fn WMCreateSyncReader(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "wmvcore" fn WMCreateEditor(
-    ppEditor: ?*?*IWMMetadataEditor,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "wmvcore" fn WMCreateIndexer(
-    ppIndexer: ?*?*IWMIndexer,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "wmvcore" fn WMCreateBackupRestorer(
-    pCallback: ?*IUnknown,
-    ppBackup: ?*?*IWMLicenseBackup,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "wmvcore" fn WMCreateProfileManager(
-    ppProfileManager: ?*?*IWMProfileManager,
+pub extern "wmvcore" fn WMCreateWriter(
+    pUnkCert: ?*IUnknown,
+    ppWriter: ?*?*IWMWriter,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6447,6 +6441,12 @@ pub extern "wmvcore" fn WMCreateWriterNetworkSink(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wmvcore" fn WMCreateWriterPushSink(
     ppSink: ?*?*IWMWriterPushSink,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "wmvcore" fn WMIsContentProtected(
+    pwszFileName: ?[*:0]const u16,
+    pfIsProtected: ?*BOOL,
 ) callconv(.winapi) HRESULT;
 
 

@@ -9,73 +9,24 @@ pub const ID_DOCUMENTPACKAGETARGET_OPENXPS_WITH_3D = Guid.initString("63dbd720-8
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const XPS_JOB_COMPLETION = enum(i32) {
-    IN_PROGRESS = 0,
-    COMPLETED = 1,
-    CANCELLED = 2,
-    FAILED = 3,
-};
-pub const XPS_JOB_IN_PROGRESS = XPS_JOB_COMPLETION.IN_PROGRESS;
-pub const XPS_JOB_COMPLETED = XPS_JOB_COMPLETION.COMPLETED;
-pub const XPS_JOB_CANCELLED = XPS_JOB_COMPLETION.CANCELLED;
-pub const XPS_JOB_FAILED = XPS_JOB_COMPLETION.FAILED;
-
-pub const XPS_JOB_STATUS = extern struct {
-    jobId: u32,
-    currentDocument: i32,
-    currentPage: i32,
-    currentPageTotal: i32,
-    completion: XPS_JOB_COMPLETION,
-    jobStatus: HRESULT,
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IXpsPrintJobStream_Value = Guid.initString("7a77dc5f-45d6-4dff-9307-d8cb846347ca");
-pub const IID_IXpsPrintJobStream = &IID_IXpsPrintJobStream_Value;
-pub const IXpsPrintJobStream = extern union {
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IPrintDocumentPackageStatusEvent_Value = Guid.initString("ed90c8ad-5c34-4d05-a1ec-0e8a9b3ad7af");
+pub const IID_IPrintDocumentPackageStatusEvent = &IID_IPrintDocumentPackageStatusEvent_Value;
+pub const IPrintDocumentPackageStatusEvent = extern union {
     pub const VTable = extern struct {
-        base: ISequentialStream.VTable,
-        Close: *const fn(
-            self: *const IXpsPrintJobStream,
+        base: IDispatch.VTable,
+        PackageStatusUpdated: *const fn(
+            self: *const IPrintDocumentPackageStatusEvent,
+            packageStatus: ?*PrintDocumentPackageStatus,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    ISequentialStream: ISequentialStream,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Close(self: *const IXpsPrintJobStream) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
+    pub fn PackageStatusUpdated(self: *const IPrintDocumentPackageStatusEvent, packageStatus: ?*PrintDocumentPackageStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.PackageStatusUpdated(self, packageStatus);
     }
 };
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IXpsPrintJob_Value = Guid.initString("5ab89b06-8194-425f-ab3b-d7a96e350161");
-pub const IID_IXpsPrintJob = &IID_IXpsPrintJob_Value;
-pub const IXpsPrintJob = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Cancel: *const fn(
-            self: *const IXpsPrintJob,
-        ) callconv(.winapi) HRESULT,
-        GetJobStatus: *const fn(
-            self: *const IXpsPrintJob,
-            jobStatus: ?*XPS_JOB_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Cancel(self: *const IXpsPrintJob) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-    pub fn GetJobStatus(self: *const IXpsPrintJob, jobStatus: ?*XPS_JOB_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetJobStatus(self, jobStatus);
-    }
-};
-
-const CLSID_PrintDocumentPackageTarget_Value = Guid.initString("4842669e-9947-46ea-8ba2-d8cce432c2ca");
-pub const CLSID_PrintDocumentPackageTarget = &CLSID_PrintDocumentPackageTarget_Value;
-
-const CLSID_PrintDocumentPackageTargetFactory_Value = Guid.initString("348ef17d-6c81-4982-92b4-ee188a43867a");
-pub const CLSID_PrintDocumentPackageTargetFactory = &CLSID_PrintDocumentPackageTargetFactory_Value;
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageTarget_Value = Guid.initString("1b8efec4-3019-4c27-964e-367202156906");
@@ -111,45 +62,6 @@ pub const IPrintDocumentPackageTarget = extern union {
     }
 };
 
-pub const PrintDocumentPackageCompletion = enum(i32) {
-    InProgress = 0,
-    Completed = 1,
-    Canceled = 2,
-    Failed = 3,
-};
-pub const PrintDocumentPackageCompletion_InProgress = PrintDocumentPackageCompletion.InProgress;
-pub const PrintDocumentPackageCompletion_Completed = PrintDocumentPackageCompletion.Completed;
-pub const PrintDocumentPackageCompletion_Canceled = PrintDocumentPackageCompletion.Canceled;
-pub const PrintDocumentPackageCompletion_Failed = PrintDocumentPackageCompletion.Failed;
-
-pub const PrintDocumentPackageStatus = extern struct {
-    JobId: u32,
-    CurrentDocument: i32,
-    CurrentPage: i32,
-    CurrentPageTotal: i32,
-    Completion: PrintDocumentPackageCompletion,
-    PackageStatus: HRESULT,
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IPrintDocumentPackageStatusEvent_Value = Guid.initString("ed90c8ad-5c34-4d05-a1ec-0e8a9b3ad7af");
-pub const IID_IPrintDocumentPackageStatusEvent = &IID_IPrintDocumentPackageStatusEvent_Value;
-pub const IPrintDocumentPackageStatusEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        PackageStatusUpdated: *const fn(
-            self: *const IPrintDocumentPackageStatusEvent,
-            packageStatus: ?*PrintDocumentPackageStatus,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn PackageStatusUpdated(self: *const IPrintDocumentPackageStatusEvent, packageStatus: ?*PrintDocumentPackageStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.PackageStatusUpdated(self, packageStatus);
-    }
-};
-
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageTargetFactory_Value = Guid.initString("d2959bf7-b31b-4a3d-9600-712eb1335ba4");
 pub const IID_IPrintDocumentPackageTargetFactory = &IID_IPrintDocumentPackageTargetFactory_Value;
@@ -170,6 +82,94 @@ pub const IPrintDocumentPackageTargetFactory = extern union {
     pub fn CreateDocumentPackageTargetForPrintJob(self: *const IPrintDocumentPackageTargetFactory, printerName: ?[*:0]const u16, jobName: ?[*:0]const u16, jobOutputStream: ?*IStream, jobPrintTicketStream: ?*IStream, docPackageTarget: ?*?*IPrintDocumentPackageTarget) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDocumentPackageTargetForPrintJob(self, printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
     }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IXpsPrintJob_Value = Guid.initString("5ab89b06-8194-425f-ab3b-d7a96e350161");
+pub const IID_IXpsPrintJob = &IID_IXpsPrintJob_Value;
+pub const IXpsPrintJob = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Cancel: *const fn(
+            self: *const IXpsPrintJob,
+        ) callconv(.winapi) HRESULT,
+        GetJobStatus: *const fn(
+            self: *const IXpsPrintJob,
+            jobStatus: ?*XPS_JOB_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Cancel(self: *const IXpsPrintJob) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn GetJobStatus(self: *const IXpsPrintJob, jobStatus: ?*XPS_JOB_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetJobStatus(self, jobStatus);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IXpsPrintJobStream_Value = Guid.initString("7a77dc5f-45d6-4dff-9307-d8cb846347ca");
+pub const IID_IXpsPrintJobStream = &IID_IXpsPrintJobStream_Value;
+pub const IXpsPrintJobStream = extern union {
+    pub const VTable = extern struct {
+        base: ISequentialStream.VTable,
+        Close: *const fn(
+            self: *const IXpsPrintJobStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISequentialStream: ISequentialStream,
+    IUnknown: IUnknown,
+    pub fn Close(self: *const IXpsPrintJobStream) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+pub const PrintDocumentPackageCompletion = enum(i32) {
+    InProgress = 0,
+    Completed = 1,
+    Canceled = 2,
+    Failed = 3,
+};
+pub const PrintDocumentPackageCompletion_InProgress = PrintDocumentPackageCompletion.InProgress;
+pub const PrintDocumentPackageCompletion_Completed = PrintDocumentPackageCompletion.Completed;
+pub const PrintDocumentPackageCompletion_Canceled = PrintDocumentPackageCompletion.Canceled;
+pub const PrintDocumentPackageCompletion_Failed = PrintDocumentPackageCompletion.Failed;
+
+pub const PrintDocumentPackageStatus = extern struct {
+    JobId: u32,
+    CurrentDocument: i32,
+    CurrentPage: i32,
+    CurrentPageTotal: i32,
+    Completion: PrintDocumentPackageCompletion,
+    PackageStatus: HRESULT,
+};
+
+const CLSID_PrintDocumentPackageTarget_Value = Guid.initString("4842669e-9947-46ea-8ba2-d8cce432c2ca");
+pub const CLSID_PrintDocumentPackageTarget = &CLSID_PrintDocumentPackageTarget_Value;
+
+const CLSID_PrintDocumentPackageTargetFactory_Value = Guid.initString("348ef17d-6c81-4982-92b4-ee188a43867a");
+pub const CLSID_PrintDocumentPackageTargetFactory = &CLSID_PrintDocumentPackageTargetFactory_Value;
+
+pub const XPS_JOB_COMPLETION = enum(i32) {
+    IN_PROGRESS = 0,
+    COMPLETED = 1,
+    CANCELLED = 2,
+    FAILED = 3,
+};
+pub const XPS_JOB_IN_PROGRESS = XPS_JOB_COMPLETION.IN_PROGRESS;
+pub const XPS_JOB_COMPLETED = XPS_JOB_COMPLETION.COMPLETED;
+pub const XPS_JOB_CANCELLED = XPS_JOB_COMPLETION.CANCELLED;
+pub const XPS_JOB_FAILED = XPS_JOB_COMPLETION.FAILED;
+
+pub const XPS_JOB_STATUS = extern struct {
+    jobId: u32,
+    currentDocument: i32,
+    currentPage: i32,
+    currentPageTotal: i32,
+    completion: XPS_JOB_COMPLETION,
+    jobStatus: HRESULT,
 };
 
 

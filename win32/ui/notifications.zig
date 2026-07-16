@@ -6,11 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-pub const NOTIFICATION_USER_INPUT_DATA = extern struct {
-    Key: ?[*:0]const u16,
-    Value: ?[*:0]const u16,
-};
-
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_INotificationActivationCallback_Value = Guid.initString("53e31837-6600-4a81-9395-75cffe746f94");
 pub const IID_INotificationActivationCallback = &IID_INotificationActivationCallback_Value;
@@ -30,6 +25,11 @@ pub const INotificationActivationCallback = extern union {
     pub fn Activate(self: *const INotificationActivationCallback, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, appUserModelId, invokedArgs, data, count);
     }
+};
+
+pub const NOTIFICATION_USER_INPUT_DATA = extern struct {
+    Key: ?[*:0]const u16,
+    Value: ?[*:0]const u16,
 };
 
 

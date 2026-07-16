@@ -2,50 +2,56 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (32)
 //--------------------------------------------------------------------------------
-pub const INCLUDED_FCI = @as(u32, 1);
-pub const _A_NAME_IS_UTF = @as(u32, 128);
 pub const _A_EXEC = @as(u32, 64);
+pub const _A_NAME_IS_UTF = @as(u32, 128);
+pub const CB_MAX_CAB_PATH = @as(u32, 256);
+pub const CB_MAX_CABINET_NAME = @as(u32, 256);
+pub const CB_MAX_DISK = @as(i32, 2147483647);
+pub const CB_MAX_DISK_NAME = @as(u32, 256);
+pub const CB_MAX_FILENAME = @as(u32, 256);
+pub const INCLUDED_FCI = @as(u32, 1);
+pub const INCLUDED_FDI = @as(u32, 1);
+pub const INCLUDED_TYPES_FCI_FDI = @as(u32, 1);
+pub const statusCabinet = @as(u32, 2);
 pub const statusFile = @as(u32, 0);
 pub const statusFolder = @as(u32, 1);
-pub const statusCabinet = @as(u32, 2);
-pub const INCLUDED_TYPES_FCI_FDI = @as(u32, 1);
-pub const CB_MAX_DISK = @as(i32, 2147483647);
-pub const CB_MAX_FILENAME = @as(u32, 256);
-pub const CB_MAX_CABINET_NAME = @as(u32, 256);
-pub const CB_MAX_CAB_PATH = @as(u32, 256);
-pub const CB_MAX_DISK_NAME = @as(u32, 256);
-pub const tcompMASK_TYPE = @as(u32, 15);
-pub const tcompTYPE_NONE = @as(u32, 0);
-pub const tcompTYPE_MSZIP = @as(u32, 1);
-pub const tcompTYPE_QUANTUM = @as(u32, 2);
-pub const tcompTYPE_LZX = @as(u32, 3);
 pub const tcompBAD = @as(u32, 15);
-pub const tcompMASK_LZX_WINDOW = @as(u32, 7936);
-pub const tcompLZX_WINDOW_LO = @as(u32, 3840);
 pub const tcompLZX_WINDOW_HI = @as(u32, 5376);
-pub const tcompSHIFT_LZX_WINDOW = @as(u32, 8);
+pub const tcompLZX_WINDOW_LO = @as(u32, 3840);
+pub const tcompMASK_LZX_WINDOW = @as(u32, 7936);
 pub const tcompMASK_QUANTUM_LEVEL = @as(u32, 240);
-pub const tcompQUANTUM_LEVEL_LO = @as(u32, 16);
-pub const tcompQUANTUM_LEVEL_HI = @as(u32, 112);
-pub const tcompSHIFT_QUANTUM_LEVEL = @as(u32, 4);
 pub const tcompMASK_QUANTUM_MEM = @as(u32, 7936);
-pub const tcompQUANTUM_MEM_LO = @as(u32, 2560);
-pub const tcompQUANTUM_MEM_HI = @as(u32, 5376);
-pub const tcompSHIFT_QUANTUM_MEM = @as(u32, 8);
 pub const tcompMASK_RESERVED = @as(u32, 57344);
-pub const INCLUDED_FDI = @as(u32, 1);
+pub const tcompMASK_TYPE = @as(u32, 15);
+pub const tcompQUANTUM_LEVEL_HI = @as(u32, 112);
+pub const tcompQUANTUM_LEVEL_LO = @as(u32, 16);
+pub const tcompQUANTUM_MEM_HI = @as(u32, 5376);
+pub const tcompQUANTUM_MEM_LO = @as(u32, 2560);
+pub const tcompSHIFT_LZX_WINDOW = @as(u32, 8);
+pub const tcompSHIFT_QUANTUM_LEVEL = @as(u32, 4);
+pub const tcompSHIFT_QUANTUM_MEM = @as(u32, 8);
+pub const tcompTYPE_LZX = @as(u32, 3);
+pub const tcompTYPE_MSZIP = @as(u32, 1);
+pub const tcompTYPE_NONE = @as(u32, 0);
+pub const tcompTYPE_QUANTUM = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (34)
 //--------------------------------------------------------------------------------
-pub const FDICREATE_CPU_TYPE = enum(i32) {
-    UNKNOWN = -1,
-    @"80286" = 0,
-    @"80386" = 1,
+pub const CCAB = extern struct {
+    cb: u32,
+    cbFolderThresh: u32,
+    cbReserveCFHeader: u32,
+    cbReserveCFFolder: u32,
+    cbReserveCFData: u32,
+    iCab: i32,
+    iDisk: i32,
+    fFailOnIncompressible: i32,
+    setID: u16,
+    szDisk: [256]CHAR,
+    szCab: [256]CHAR,
+    szCabPath: [256]CHAR,
 };
-pub const cpuUNKNOWN = FDICREATE_CPU_TYPE.UNKNOWN;
-pub const cpu80286 = FDICREATE_CPU_TYPE.@"80286";
-pub const cpu80386 = FDICREATE_CPU_TYPE.@"80386";
 
 pub const ERF = extern struct {
     erfOper: i32,
@@ -76,109 +82,60 @@ pub const FCIERR_USER_ABORT = FCIERROR.USER_ABORT;
 pub const FCIERR_MCI_FAIL = FCIERROR.MCI_FAIL;
 pub const FCIERR_CAB_FORMAT_LIMIT = FCIERROR.CAB_FORMAT_LIMIT;
 
-pub const CCAB = extern struct {
-    cb: u32,
-    cbFolderThresh: u32,
-    cbReserveCFHeader: u32,
-    cbReserveCFFolder: u32,
-    cbReserveCFData: u32,
-    iCab: i32,
-    iDisk: i32,
-    fFailOnIncompressible: i32,
+pub const FDICABINETINFO = extern struct {
+    cbCabinet: i32,
+    cFolders: u16,
+    cFiles: u16,
     setID: u16,
-    szDisk: [256]CHAR,
-    szCab: [256]CHAR,
-    szCabPath: [256]CHAR,
+    iCabinet: u16,
+    fReserve: BOOL,
+    hasprev: BOOL,
+    hasnext: BOOL,
 };
 
-pub const PFNFCIALLOC = *const fn(
-    cb: u32,
-) callconv(.winapi) ?*anyopaque;
+pub const FDICREATE_CPU_TYPE = enum(i32) {
+    UNKNOWN = -1,
+    @"80286" = 0,
+    @"80386" = 1,
+};
+pub const cpuUNKNOWN = FDICREATE_CPU_TYPE.UNKNOWN;
+pub const cpu80286 = FDICREATE_CPU_TYPE.@"80286";
+pub const cpu80386 = FDICREATE_CPU_TYPE.@"80386";
 
-pub const PFNFCIFREE = *const fn(
-    memory: ?*anyopaque,
-) callconv(.winapi) void;
+pub const FDIDECRYPT = extern struct {
+    fdidt: FDIDECRYPTTYPE,
+    pvUser: ?*anyopaque,
+    Anonymous: extern union {
+        cabinet: extern struct {
+            pHeaderReserve: ?*anyopaque,
+            cbHeaderReserve: u16,
+            setID: u16,
+            iCabinet: i32,
+        },
+        folder: extern struct {
+            pFolderReserve: ?*anyopaque,
+            cbFolderReserve: u16,
+            iFolder: u16,
+        },
+        decrypt: extern struct {
+            pDataReserve: ?*anyopaque,
+            cbDataReserve: u16,
+            pbData: ?*anyopaque,
+            cbData: u16,
+            fSplit: BOOL,
+            cbPartial: u16,
+        },
+    },
+};
 
-pub const PFNFCIOPEN = *const fn(
-    pszFile: ?PSTR,
-    oflag: i32,
-    pmode: i32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) isize;
-
-pub const PFNFCIREAD = *const fn(
-    hf: isize,
-    memory: ?*anyopaque,
-    cb: u32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PFNFCIWRITE = *const fn(
-    hf: isize,
-    memory: ?*anyopaque,
-    cb: u32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PFNFCICLOSE = *const fn(
-    hf: isize,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const PFNFCISEEK = *const fn(
-    hf: isize,
-    dist: i32,
-    seektype: i32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const PFNFCIDELETE = *const fn(
-    pszFile: ?PSTR,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const PFNFCIGETNEXTCABINET = *const fn(
-    pccab: ?*CCAB,
-    cbPrevCab: u32,
-    pv: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const PFNFCIFILEPLACED = *const fn(
-    pccab: ?*CCAB,
-    pszFile: ?PSTR,
-    cbFile: i32,
-    fContinuation: BOOL,
-    pv: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const PFNFCIGETOPENINFO = *const fn(
-    pszName: ?PSTR,
-    pdate: ?*u16,
-    ptime: ?*u16,
-    pattribs: ?*u16,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) isize;
-
-pub const PFNFCISTATUS = *const fn(
-    typeStatus: u32,
-    cb1: u32,
-    cb2: u32,
-    pv: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const PFNFCIGETTEMPFILE = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pszTempName: ?PSTR,
-    cbTempName: i32,
-    pv: ?*anyopaque,
-) callconv(.winapi) BOOL;
+pub const FDIDECRYPTTYPE = enum(i32) {
+    NEW_CABINET = 0,
+    NEW_FOLDER = 1,
+    DECRYPT = 2,
+};
+pub const fdidtNEW_CABINET = FDIDECRYPTTYPE.NEW_CABINET;
+pub const fdidtNEW_FOLDER = FDIDECRYPTTYPE.NEW_FOLDER;
+pub const fdidtDECRYPT = FDIDECRYPTTYPE.DECRYPT;
 
 pub const FDIERROR = enum(i32) {
     NONE = 0,
@@ -208,94 +165,6 @@ pub const FDIERROR_RESERVE_MISMATCH = FDIERROR.RESERVE_MISMATCH;
 pub const FDIERROR_WRONG_CABINET = FDIERROR.WRONG_CABINET;
 pub const FDIERROR_USER_ABORT = FDIERROR.USER_ABORT;
 pub const FDIERROR_EOF = FDIERROR.EOF;
-
-pub const FDICABINETINFO = extern struct {
-    cbCabinet: i32,
-    cFolders: u16,
-    cFiles: u16,
-    setID: u16,
-    iCabinet: u16,
-    fReserve: BOOL,
-    hasprev: BOOL,
-    hasnext: BOOL,
-};
-
-pub const FDIDECRYPTTYPE = enum(i32) {
-    NEW_CABINET = 0,
-    NEW_FOLDER = 1,
-    DECRYPT = 2,
-};
-pub const fdidtNEW_CABINET = FDIDECRYPTTYPE.NEW_CABINET;
-pub const fdidtNEW_FOLDER = FDIDECRYPTTYPE.NEW_FOLDER;
-pub const fdidtDECRYPT = FDIDECRYPTTYPE.DECRYPT;
-
-pub const FDIDECRYPT = extern struct {
-    fdidt: FDIDECRYPTTYPE,
-    pvUser: ?*anyopaque,
-    Anonymous: extern union {
-        cabinet: extern struct {
-            pHeaderReserve: ?*anyopaque,
-            cbHeaderReserve: u16,
-            setID: u16,
-            iCabinet: i32,
-        },
-        folder: extern struct {
-            pFolderReserve: ?*anyopaque,
-            cbFolderReserve: u16,
-            iFolder: u16,
-        },
-        decrypt: extern struct {
-            pDataReserve: ?*anyopaque,
-            cbDataReserve: u16,
-            pbData: ?*anyopaque,
-            cbData: u16,
-            fSplit: BOOL,
-            cbPartial: u16,
-        },
-    },
-};
-
-pub const PFNALLOC = *const fn(
-    cb: u32,
-) callconv(.winapi) ?*anyopaque;
-
-pub const PFNFREE = *const fn(
-    pv: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const PFNOPEN = *const fn(
-    pszFile: ?PSTR,
-    oflag: i32,
-    pmode: i32,
-) callconv(.winapi) isize;
-
-pub const PFNREAD = *const fn(
-    hf: isize,
-    // TODO: what to do with BytesParamIndex 2?
-    pv: ?*anyopaque,
-    cb: u32,
-) callconv(.winapi) u32;
-
-pub const PFNWRITE = *const fn(
-    hf: isize,
-    // TODO: what to do with BytesParamIndex 2?
-    pv: ?*anyopaque,
-    cb: u32,
-) callconv(.winapi) u32;
-
-pub const PFNCLOSE = *const fn(
-    hf: isize,
-) callconv(.winapi) i32;
-
-pub const PFNSEEK = *const fn(
-    hf: isize,
-    dist: i32,
-    seektype: i32,
-) callconv(.winapi) i32;
-
-pub const PFNFDIDECRYPT = *const fn(
-    pfdid: ?*FDIDECRYPT,
-) callconv(.winapi) i32;
 
 pub const FDINOTIFICATION = extern struct {
     cb: i32,
@@ -328,12 +197,143 @@ pub const fdintCLOSE_FILE_INFO = FDINOTIFICATIONTYPE.CLOSE_FILE_INFO;
 pub const fdintNEXT_CABINET = FDINOTIFICATIONTYPE.NEXT_CABINET;
 pub const fdintENUMERATE = FDINOTIFICATIONTYPE.ENUMERATE;
 
+
+
+pub const PFNALLOC = *const fn(
+    cb: u32,
+) callconv(.winapi) ?*anyopaque;
+
+pub const PFNCLOSE = *const fn(
+    hf: isize,
+) callconv(.winapi) i32;
+
+pub const PFNFCIALLOC = *const fn(
+    cb: u32,
+) callconv(.winapi) ?*anyopaque;
+
+pub const PFNFCICLOSE = *const fn(
+    hf: isize,
+    err: ?*i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const PFNFCIDELETE = *const fn(
+    pszFile: ?PSTR,
+    err: ?*i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const PFNFCIFILEPLACED = *const fn(
+    pccab: ?*CCAB,
+    pszFile: ?PSTR,
+    cbFile: i32,
+    fContinuation: BOOL,
+    pv: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const PFNFCIFREE = *const fn(
+    memory: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const PFNFCIGETNEXTCABINET = *const fn(
+    pccab: ?*CCAB,
+    cbPrevCab: u32,
+    pv: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const PFNFCIGETOPENINFO = *const fn(
+    pszName: ?PSTR,
+    pdate: ?*u16,
+    ptime: ?*u16,
+    pattribs: ?*u16,
+    err: ?*i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) isize;
+
+pub const PFNFCIGETTEMPFILE = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pszTempName: ?PSTR,
+    cbTempName: i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const PFNFCIOPEN = *const fn(
+    pszFile: ?PSTR,
+    oflag: i32,
+    pmode: i32,
+    err: ?*i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) isize;
+
+pub const PFNFCIREAD = *const fn(
+    hf: isize,
+    memory: ?*anyopaque,
+    cb: u32,
+    err: ?*i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PFNFCISEEK = *const fn(
+    hf: isize,
+    dist: i32,
+    seektype: i32,
+    err: ?*i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const PFNFCISTATUS = *const fn(
+    typeStatus: u32,
+    cb1: u32,
+    cb2: u32,
+    pv: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const PFNFCIWRITE = *const fn(
+    hf: isize,
+    memory: ?*anyopaque,
+    cb: u32,
+    err: ?*i32,
+    pv: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PFNFDIDECRYPT = *const fn(
+    pfdid: ?*FDIDECRYPT,
+) callconv(.winapi) i32;
+
 pub const PFNFDINOTIFY = *const fn(
     fdint: FDINOTIFICATIONTYPE,
     pfdin: ?*FDINOTIFICATION,
 ) callconv(.winapi) isize;
 
+pub const PFNFREE = *const fn(
+    pv: ?*anyopaque,
+) callconv(.winapi) void;
 
+pub const PFNOPEN = *const fn(
+    pszFile: ?PSTR,
+    oflag: i32,
+    pmode: i32,
+) callconv(.winapi) isize;
+
+pub const PFNREAD = *const fn(
+    hf: isize,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: ?*anyopaque,
+    cb: u32,
+) callconv(.winapi) u32;
+
+pub const PFNSEEK = *const fn(
+    hf: isize,
+    dist: i32,
+    seektype: i32,
+) callconv(.winapi) i32;
+
+pub const PFNWRITE = *const fn(
+    hf: isize,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: ?*anyopaque,
+    cb: u32,
+) callconv(.winapi) u32;
 
 pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
@@ -349,6 +349,17 @@ pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
+pub extern "cabinet" fn FCIAddFile(
+    hfci: ?*anyopaque,
+    pszSourceFile: ?PSTR,
+    pszFileName: ?PSTR,
+    fExecute: BOOL,
+    pfnfcignc: ?PFNFCIGETNEXTCABINET,
+    pfnfcis: ?PFNFCISTATUS,
+    pfnfcigoi: ?PFNFCIGETOPENINFO,
+    typeCompress: u16,
+) callconv(.winapi) BOOL;
+
 pub extern "cabinet" fn FCICreate(
     perf: ?*ERF,
     pfnfcifp: ?PFNFCIFILEPLACED,
@@ -365,15 +376,8 @@ pub extern "cabinet" fn FCICreate(
     pv: ?*anyopaque,
 ) callconv(.winapi) ?*anyopaque;
 
-pub extern "cabinet" fn FCIAddFile(
+pub extern "cabinet" fn FCIDestroy(
     hfci: ?*anyopaque,
-    pszSourceFile: ?PSTR,
-    pszFileName: ?PSTR,
-    fExecute: BOOL,
-    pfnfcignc: ?PFNFCIGETNEXTCABINET,
-    pfnfcis: ?PFNFCISTATUS,
-    pfnfcigoi: ?PFNFCIGETOPENINFO,
-    typeCompress: u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "cabinet" fn FCIFlushCabinet(
@@ -389,8 +393,15 @@ pub extern "cabinet" fn FCIFlushFolder(
     pfnfcis: ?PFNFCISTATUS,
 ) callconv(.winapi) BOOL;
 
-pub extern "cabinet" fn FCIDestroy(
-    hfci: ?*anyopaque,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "cabinet" fn FDICopy(
+    hfdi: ?*anyopaque,
+    pszCabinet: ?PSTR,
+    pszCabPath: ?PSTR,
+    flags: i32,
+    pfnfdin: ?PFNFDINOTIFY,
+    pfnfdid: ?PFNFDIDECRYPT,
+    pvUser: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -407,26 +418,15 @@ pub extern "cabinet" fn FDICreate(
 ) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "cabinet" fn FDIDestroy(
+    hfdi: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "cabinet" fn FDIIsCabinet(
     hfdi: ?*anyopaque,
     hf: isize,
     pfdici: ?*FDICABINETINFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "cabinet" fn FDICopy(
-    hfdi: ?*anyopaque,
-    pszCabinet: ?PSTR,
-    pszCabPath: ?PSTR,
-    flags: i32,
-    pfnfdin: ?PFNFDINOTIFY,
-    pfnfdid: ?PFNFDIDECRYPT,
-    pvUser: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "cabinet" fn FDIDestroy(
-    hfdi: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 pub extern "cabinet" fn FDITruncateCabinet(
@@ -448,28 +448,28 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "PFNALLOC")) { _ = PFNALLOC; }
+    if (@hasDecl(@This(), "PFNCLOSE")) { _ = PFNCLOSE; }
     if (@hasDecl(@This(), "PFNFCIALLOC")) { _ = PFNFCIALLOC; }
+    if (@hasDecl(@This(), "PFNFCICLOSE")) { _ = PFNFCICLOSE; }
+    if (@hasDecl(@This(), "PFNFCIDELETE")) { _ = PFNFCIDELETE; }
+    if (@hasDecl(@This(), "PFNFCIFILEPLACED")) { _ = PFNFCIFILEPLACED; }
     if (@hasDecl(@This(), "PFNFCIFREE")) { _ = PFNFCIFREE; }
+    if (@hasDecl(@This(), "PFNFCIGETNEXTCABINET")) { _ = PFNFCIGETNEXTCABINET; }
+    if (@hasDecl(@This(), "PFNFCIGETOPENINFO")) { _ = PFNFCIGETOPENINFO; }
+    if (@hasDecl(@This(), "PFNFCIGETTEMPFILE")) { _ = PFNFCIGETTEMPFILE; }
     if (@hasDecl(@This(), "PFNFCIOPEN")) { _ = PFNFCIOPEN; }
     if (@hasDecl(@This(), "PFNFCIREAD")) { _ = PFNFCIREAD; }
-    if (@hasDecl(@This(), "PFNFCIWRITE")) { _ = PFNFCIWRITE; }
-    if (@hasDecl(@This(), "PFNFCICLOSE")) { _ = PFNFCICLOSE; }
     if (@hasDecl(@This(), "PFNFCISEEK")) { _ = PFNFCISEEK; }
-    if (@hasDecl(@This(), "PFNFCIDELETE")) { _ = PFNFCIDELETE; }
-    if (@hasDecl(@This(), "PFNFCIGETNEXTCABINET")) { _ = PFNFCIGETNEXTCABINET; }
-    if (@hasDecl(@This(), "PFNFCIFILEPLACED")) { _ = PFNFCIFILEPLACED; }
-    if (@hasDecl(@This(), "PFNFCIGETOPENINFO")) { _ = PFNFCIGETOPENINFO; }
     if (@hasDecl(@This(), "PFNFCISTATUS")) { _ = PFNFCISTATUS; }
-    if (@hasDecl(@This(), "PFNFCIGETTEMPFILE")) { _ = PFNFCIGETTEMPFILE; }
-    if (@hasDecl(@This(), "PFNALLOC")) { _ = PFNALLOC; }
+    if (@hasDecl(@This(), "PFNFCIWRITE")) { _ = PFNFCIWRITE; }
+    if (@hasDecl(@This(), "PFNFDIDECRYPT")) { _ = PFNFDIDECRYPT; }
+    if (@hasDecl(@This(), "PFNFDINOTIFY")) { _ = PFNFDINOTIFY; }
     if (@hasDecl(@This(), "PFNFREE")) { _ = PFNFREE; }
     if (@hasDecl(@This(), "PFNOPEN")) { _ = PFNOPEN; }
     if (@hasDecl(@This(), "PFNREAD")) { _ = PFNREAD; }
-    if (@hasDecl(@This(), "PFNWRITE")) { _ = PFNWRITE; }
-    if (@hasDecl(@This(), "PFNCLOSE")) { _ = PFNCLOSE; }
     if (@hasDecl(@This(), "PFNSEEK")) { _ = PFNSEEK; }
-    if (@hasDecl(@This(), "PFNFDIDECRYPT")) { _ = PFNFDIDECRYPT; }
-    if (@hasDecl(@This(), "PFNFDINOTIFY")) { _ = PFNFDINOTIFY; }
+    if (@hasDecl(@This(), "PFNWRITE")) { _ = PFNWRITE; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

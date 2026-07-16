@@ -2,352 +2,341 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (720)
 //--------------------------------------------------------------------------------
-pub const RASNAP_ProbationTime = @as(u32, 1);
-pub const RASTUNNELENDPOINT_UNKNOWN = @as(u32, 0);
-pub const RASTUNNELENDPOINT_IPv4 = @as(u32, 1);
-pub const RASTUNNELENDPOINT_IPv6 = @as(u32, 2);
-pub const RAS_MaxDeviceType = @as(u32, 16);
-pub const RAS_MaxPhoneNumber = @as(u32, 128);
-pub const RAS_MaxIpAddress = @as(u32, 15);
-pub const RAS_MaxIpxAddress = @as(u32, 21);
-pub const RAS_MaxEntryName = @as(u32, 256);
-pub const RAS_MaxDeviceName = @as(u32, 128);
-pub const RAS_MaxCallbackNumber = @as(u32, 128);
-pub const RAS_MaxAreaCode = @as(u32, 10);
-pub const RAS_MaxPadType = @as(u32, 32);
-pub const RAS_MaxX25Address = @as(u32, 200);
-pub const RAS_MaxFacilities = @as(u32, 200);
-pub const RAS_MaxUserData = @as(u32, 200);
-pub const RAS_MaxReplyMessage = @as(u32, 1024);
-pub const RAS_MaxDnsSuffix = @as(u32, 256);
-pub const RASCF_AllUsers = @as(u32, 1);
-pub const RASCF_GlobalCreds = @as(u32, 2);
-pub const RASCF_OwnerKnown = @as(u32, 4);
-pub const RASCF_OwnerMatch = @as(u32, 8);
-pub const RAS_MaxIDSize = @as(u32, 256);
-pub const RASCS_PAUSED = @as(u32, 4096);
-pub const RASCS_DONE = @as(u32, 8192);
-pub const RASCSS_DONE = @as(u32, 8192);
-pub const RDEOPT_UsePrefixSuffix = @as(u32, 1);
-pub const RDEOPT_PausedStates = @as(u32, 2);
-pub const RDEOPT_IgnoreModemSpeaker = @as(u32, 4);
-pub const RDEOPT_SetModemSpeaker = @as(u32, 8);
-pub const RDEOPT_IgnoreSoftwareCompression = @as(u32, 16);
-pub const RDEOPT_SetSoftwareCompression = @as(u32, 32);
-pub const RDEOPT_DisableConnectedUI = @as(u32, 64);
-pub const RDEOPT_DisableReconnectUI = @as(u32, 128);
-pub const RDEOPT_DisableReconnect = @as(u32, 256);
-pub const RDEOPT_NoUser = @as(u32, 512);
-pub const RDEOPT_PauseOnScript = @as(u32, 1024);
-pub const RDEOPT_Router = @as(u32, 2048);
-pub const RDEOPT_CustomDial = @as(u32, 4096);
-pub const RDEOPT_UseCustomScripting = @as(u32, 8192);
-pub const RDEOPT_InvokeAutoTriggerCredentialUI = @as(u32, 16384);
-pub const RDEOPT_EapInfoCryptInCapable = @as(u32, 32768);
-pub const REN_User = @as(u32, 0);
-pub const REN_AllUsers = @as(u32, 1);
-pub const RASIPO_VJ = @as(u32, 1);
-pub const RASLCPO_PFC = @as(u32, 1);
-pub const RASLCPO_ACFC = @as(u32, 2);
-pub const RASLCPO_SSHF = @as(u32, 4);
-pub const RASLCPO_DES_56 = @as(u32, 8);
-pub const RASLCPO_3_DES = @as(u32, 16);
-pub const RASLCPO_AES_128 = @as(u32, 32);
-pub const RASLCPO_AES_256 = @as(u32, 64);
-pub const RASLCPO_AES_192 = @as(u32, 128);
-pub const RASLCPO_GCM_AES_128 = @as(u32, 256);
-pub const RASLCPO_GCM_AES_192 = @as(u32, 512);
-pub const RASLCPO_GCM_AES_256 = @as(u32, 1024);
-pub const RASCCPCA_MPPC = @as(u32, 6);
-pub const RASCCPCA_STAC = @as(u32, 5);
-pub const RASCCPO_Compression = @as(u32, 1);
-pub const RASCCPO_HistoryLess = @as(u32, 2);
-pub const RASCCPO_Encryption56bit = @as(u32, 16);
-pub const RASCCPO_Encryption40bit = @as(u32, 32);
-pub const RASCCPO_Encryption128bit = @as(u32, 64);
-pub const RASIKEv2_AUTH_MACHINECERTIFICATES = @as(u32, 1);
-pub const RASIKEv2_AUTH_EAP = @as(u32, 2);
-pub const RASIKEv2_AUTH_PSK = @as(u32, 3);
-pub const RASDIALEVENT = "RasDialEvent";
-pub const WM_RASDIALEVENT = @as(u32, 52429);
+pub const ALLOW_NO_AUTH = @as(u32, 1);
+pub const ATADDRESSLEN = @as(u32, 32);
+pub const DO_NOT_ALLOW_NO_AUTH = @as(u32, 0);
+pub const ERROR_ACCESSING_TCPCFGDLL = @as(u32, 727);
+pub const ERROR_ACCT_DISABLED = @as(u32, 647);
+pub const ERROR_ACCT_EXPIRED = @as(u32, 708);
+pub const ERROR_ACTION_REQUIRED = @as(u32, 877);
+pub const ERROR_ALLOCATING_MEMORY = @as(u32, 664);
+pub const ERROR_ALREADY_DISCONNECTING = @as(u32, 617);
+pub const ERROR_ASYNC_REQUEST_PENDING = @as(u32, 616);
+pub const ERROR_AUTH_INTERNAL = @as(u32, 645);
+pub const ERROR_AUTHENTICATION_FAILURE = @as(u32, 691);
+pub const ERROR_AUTOMATIC_VPN_FAILED = @as(u32, 800);
+pub const ERROR_BAD_ADDRESS_SPECIFIED = @as(u32, 769);
+pub const ERROR_BAD_CALLBACK_NUMBER = @as(u32, 704);
+pub const ERROR_BAD_PHONE_NUMBER = @as(u32, 749);
+pub const ERROR_BAD_STRING = @as(u32, 637);
+pub const ERROR_BAD_USAGE_IN_INI_FILE = @as(u32, 669);
+pub const ERROR_BIPLEX_PORT_NOT_AVAILABLE = @as(u32, 712);
+pub const ERROR_BLOCKED = @as(u32, 775);
+pub const ERROR_BROADBAND_ACTIVE = @as(u32, 813);
+pub const ERROR_BROADBAND_NO_NIC = @as(u32, 814);
+pub const ERROR_BROADBAND_TIMEOUT = @as(u32, 815);
+pub const ERROR_BUFFER_INVALID = @as(u32, 610);
+pub const ERROR_BUFFER_TOO_SMALL = @as(u32, 603);
+pub const ERROR_BUNDLE_NOT_FOUND = @as(u32, 754);
+pub const ERROR_CANNOT_DELETE = @as(u32, 817);
+pub const ERROR_CANNOT_DO_CUSTOMDIAL = @as(u32, 755);
+pub const ERROR_CANNOT_FIND_PHONEBOOK_ENTRY = @as(u32, 623);
+pub const ERROR_CANNOT_GET_LANA = @as(u32, 639);
+pub const ERROR_CANNOT_INITIATE_MOBIKE_UPDATE = @as(u32, 844);
+pub const ERROR_CANNOT_LOAD_PHONEBOOK = @as(u32, 622);
+pub const ERROR_CANNOT_LOAD_STRING = @as(u32, 626);
+pub const ERROR_CANNOT_OPEN_PHONEBOOK = @as(u32, 621);
+pub const ERROR_CANNOT_PROJECT_CLIENT = @as(u32, 634);
+pub const ERROR_CANNOT_SET_PORT_INFO = @as(u32, 605);
+pub const ERROR_CANNOT_SHARE_CONNECTION = @as(u32, 763);
+pub const ERROR_CANNOT_USE_LOGON_CREDENTIALS = @as(u32, 739);
+pub const ERROR_CANNOT_WRITE_PHONEBOOK = @as(u32, 624);
+pub const ERROR_CERT_FOR_ENCRYPTION_NOT_FOUND = @as(u32, 781);
+pub const ERROR_CHANGING_PASSWORD = @as(u32, 709);
+pub const ERROR_CMD_TOO_LONG = @as(u32, 700);
+pub const ERROR_CONGESTION = @as(u32, 771);
+pub const ERROR_CONNECTING_DEVICE_NOT_FOUND = @as(u32, 797);
+pub const ERROR_CONNECTION_ALREADY_SHARED = @as(u32, 758);
+pub const ERROR_CONNECTION_REJECT = @as(u32, 770);
+pub const ERROR_CORRUPT_PHONEBOOK = @as(u32, 625);
+pub const ERROR_DCB_NOT_FOUND = @as(u32, 694);
+pub const ERROR_DEFAULTOFF_MACRO_NOT_FOUND = @as(u32, 656);
+pub const ERROR_DEVICE_COMPLIANCE = @as(u32, 875);
+pub const ERROR_DEVICE_DOES_NOT_EXIST = @as(u32, 608);
+pub const ERROR_DEVICE_NOT_READY = @as(u32, 666);
+pub const ERROR_DEVICENAME_NOT_FOUND = @as(u32, 659);
+pub const ERROR_DEVICENAME_TOO_LONG = @as(u32, 658);
+pub const ERROR_DEVICETYPE_DOES_NOT_EXIST = @as(u32, 609);
+pub const ERROR_DIAL_ALREADY_IN_PROGRESS = @as(u32, 756);
+pub const ERROR_DISCONNECTION = @as(u32, 628);
+pub const ERROR_DNSNAME_NOT_RESOLVABLE = @as(u32, 868);
+pub const ERROR_DONOTDISTURB = @as(u32, 776);
+pub const ERROR_EAP_METHOD_DOES_NOT_SUPPORT_SSO = @as(u32, 851);
+pub const ERROR_EAP_METHOD_NOT_INSTALLED = @as(u32, 850);
+pub const ERROR_EAP_METHOD_OPERATION_NOT_SUPPORTED = @as(u32, 852);
+pub const ERROR_EAP_SERVER_CERT_EXPIRED = @as(u32, 858);
+pub const ERROR_EAP_SERVER_CERT_INVALID = @as(u32, 857);
+pub const ERROR_EAP_SERVER_CERT_OTHER_ERROR = @as(u32, 860);
+pub const ERROR_EAP_SERVER_CERT_REVOKED = @as(u32, 859);
+pub const ERROR_EAP_SERVER_ROOT_CERT_INVALID = @as(u32, 865);
+pub const ERROR_EAP_SERVER_ROOT_CERT_NAME_REQUIRED = @as(u32, 866);
+pub const ERROR_EAP_SERVER_ROOT_CERT_NOT_FOUND = @as(u32, 864);
+pub const ERROR_EAP_USER_CERT_EXPIRED = @as(u32, 854);
+pub const ERROR_EAP_USER_CERT_INVALID = @as(u32, 853);
+pub const ERROR_EAP_USER_CERT_OTHER_ERROR = @as(u32, 856);
+pub const ERROR_EAP_USER_CERT_REVOKED = @as(u32, 855);
+pub const ERROR_EAP_USER_ROOT_CERT_EXPIRED = @as(u32, 863);
+pub const ERROR_EAP_USER_ROOT_CERT_INVALID = @as(u32, 862);
+pub const ERROR_EAP_USER_ROOT_CERT_NOT_FOUND = @as(u32, 861);
+pub const ERROR_EAPTLS_CACHE_CREDENTIALS_INVALID = @as(u32, 826);
+pub const ERROR_EAPTLS_PASSWD_INVALID = @as(u32, 869);
+pub const ERROR_EAPTLS_SCARD_CACHE_CREDENTIALS_INVALID = @as(u32, 847);
+pub const ERROR_EMPTY_INI_FILE = @as(u32, 690);
+pub const ERROR_EVENT_INVALID = @as(u32, 607);
+pub const ERROR_FAILED_CP_REQUIRED = @as(u32, 841);
+pub const ERROR_FAILED_TO_ENCRYPT = @as(u32, 768);
+pub const ERROR_FAST_USER_SWITCH = @as(u32, 831);
+pub const ERROR_FEATURE_DEPRECATED = @as(u32, 816);
+pub const ERROR_FILE_COULD_NOT_BE_OPENED = @as(u32, 657);
+pub const ERROR_FROM_DEVICE = @as(u32, 651);
+pub const ERROR_HANGUP_FAILED = @as(u32, 753);
+pub const ERROR_HARDWARE_FAILURE = @as(u32, 630);
+pub const ERROR_HIBERNATION = @as(u32, 832);
+pub const ERROR_IDLE_TIMEOUT = @as(u32, 828);
+pub const ERROR_IKEV2_PSK_INTERFACE_ALREADY_EXISTS = @as(u32, 870);
+pub const ERROR_IN_COMMAND = @as(u32, 681);
+pub const ERROR_INCOMPATIBLE = @as(u32, 772);
+pub const ERROR_INTERACTIVE_MODE = @as(u32, 703);
+pub const ERROR_INTERNAL_ADDRESS_FAILURE = @as(u32, 840);
+pub const ERROR_INVALID_AUTH_STATE = @as(u32, 705);
+pub const ERROR_INVALID_CALLBACK_NUMBER = @as(u32, 751);
+pub const ERROR_INVALID_COMPRESSION_SPECIFIED = @as(u32, 613);
+pub const ERROR_INVALID_DESTINATION_IP = @as(u32, 871);
+pub const ERROR_INVALID_FUNCTION_FOR_ENTRY = @as(u32, 780);
+pub const ERROR_INVALID_INTERFACE_CONFIG = @as(u32, 872);
+pub const ERROR_INVALID_MSCHAPV2_CONFIG = @as(u32, 805);
+pub const ERROR_INVALID_PEAP_COOKIE_ATTRIBUTES = @as(u32, 849);
+pub const ERROR_INVALID_PEAP_COOKIE_CONFIG = @as(u32, 803);
+pub const ERROR_INVALID_PEAP_COOKIE_USER = @as(u32, 804);
+pub const ERROR_INVALID_PORT_HANDLE = @as(u32, 601);
+pub const ERROR_INVALID_PREFERENCES = @as(u32, 846);
+pub const ERROR_INVALID_SERVER_CERT = @as(u32, 835);
+pub const ERROR_INVALID_SIZE = @as(u32, 632);
+pub const ERROR_INVALID_SMM = @as(u32, 745);
+pub const ERROR_INVALID_TUNNELID = @as(u32, 837);
+pub const ERROR_INVALID_VPNSTRATEGY = @as(u32, 825);
+pub const ERROR_IP_CONFIGURATION = @as(u32, 716);
+pub const ERROR_IPSEC_SERVICE_STOPPED = @as(u32, 827);
+pub const ERROR_IPXCP_DIALOUT_ALREADY_ACTIVE = @as(u32, 726);
+pub const ERROR_IPXCP_NET_NUMBER_CONFLICT = @as(u32, 744);
+pub const ERROR_IPXCP_NO_DIALIN_CONFIGURED = @as(u32, 725);
+pub const ERROR_IPXCP_NO_DIALOUT_CONFIGURED = @as(u32, 724);
+pub const ERROR_KEY_NOT_FOUND = @as(u32, 627);
+pub const ERROR_LINE_BUSY = @as(u32, 676);
+pub const ERROR_LINK_FAILURE = @as(u32, 829);
+pub const ERROR_MACRO_NOT_DEFINED = @as(u32, 654);
+pub const ERROR_MACRO_NOT_FOUND = @as(u32, 653);
+pub const ERROR_MESSAGE_MACRO_NOT_FOUND = @as(u32, 655);
+pub const ERROR_MOBIKE_DISABLED = @as(u32, 843);
+pub const ERROR_NAME_EXISTS_ON_NET = @as(u32, 642);
+pub const ERROR_NETBIOS_ERROR = @as(u32, 640);
+pub const ERROR_NO_ACTIVE_ISDN_LINES = @as(u32, 713);
+pub const ERROR_NO_ANSWER = @as(u32, 678);
+pub const ERROR_NO_CARRIER = @as(u32, 679);
+pub const ERROR_NO_CERTIFICATE = @as(u32, 766);
+pub const ERROR_NO_COMMAND_FOUND = @as(u32, 661);
+pub const ERROR_NO_CONNECTION = @as(u32, 668);
+pub const ERROR_NO_DIALIN_PERMISSION = @as(u32, 649);
+pub const ERROR_NO_DIALTONE = @as(u32, 680);
+pub const ERROR_NO_DIFF_USER_AT_LOGON = @as(u32, 784);
+pub const ERROR_NO_EAPTLS_CERTIFICATE = @as(u32, 798);
+pub const ERROR_NO_ENDPOINTS = @as(u32, 620);
+pub const ERROR_NO_IP_ADDRESSES = @as(u32, 717);
+pub const ERROR_NO_IP_RAS_ADAPTER = @as(u32, 728);
+pub const ERROR_NO_ISDN_CHANNELS_AVAILABLE = @as(u32, 714);
+pub const ERROR_NO_LOCAL_ENCRYPTION = @as(u32, 741);
+pub const ERROR_NO_MAC_FOR_PORT = @as(u32, 747);
+pub const ERROR_NO_REG_CERT_AT_LOGON = @as(u32, 785);
+pub const ERROR_NO_REMOTE_ENCRYPTION = @as(u32, 742);
+pub const ERROR_NO_RESPONSES = @as(u32, 660);
+pub const ERROR_NO_SMART_CARD_READER = @as(u32, 764);
+pub const ERROR_NOT_BINARY_MACRO = @as(u32, 693);
+pub const ERROR_NOT_NAP_CAPABLE = @as(u32, 836);
+pub const ERROR_NUMBERCHANGED = @as(u32, 773);
+pub const ERROR_OAKLEY_ATTRIB_FAIL = @as(u32, 788);
+pub const ERROR_OAKLEY_AUTH_FAIL = @as(u32, 787);
+pub const ERROR_OAKLEY_ERROR = @as(u32, 793);
+pub const ERROR_OAKLEY_GENERAL_PROCESSING = @as(u32, 789);
+pub const ERROR_OAKLEY_NO_CERT = @as(u32, 786);
+pub const ERROR_OAKLEY_NO_PEER_CERT = @as(u32, 790);
+pub const ERROR_OAKLEY_NO_POLICY = @as(u32, 791);
+pub const ERROR_OAKLEY_TIMED_OUT = @as(u32, 792);
+pub const ERROR_OUT_OF_BUFFERS = @as(u32, 614);
+pub const ERROR_OUTOFORDER = @as(u32, 777);
+pub const ERROR_OVERRUN = @as(u32, 710);
+pub const ERROR_PARTIAL_RESPONSE_LOOPING = @as(u32, 697);
+pub const ERROR_PASSWD_EXPIRED = @as(u32, 648);
+pub const ERROR_PEAP_CRYPTOBINDING_INVALID = @as(u32, 823);
+pub const ERROR_PEAP_CRYPTOBINDING_NOTRECEIVED = @as(u32, 824);
+pub const ERROR_PEAP_IDENTITY_MISMATCH = @as(u32, 867);
+pub const ERROR_PEAP_SERVER_REJECTED_CLIENT_TLV = @as(u32, 845);
+pub const ERROR_PHONE_NUMBER_TOO_LONG = @as(u32, 723);
+pub const ERROR_PLUGIN_NOT_INSTALLED = @as(u32, 876);
+pub const ERROR_PORT_ALREADY_OPEN = @as(u32, 602);
+pub const ERROR_PORT_DISCONNECTED = @as(u32, 619);
+pub const ERROR_PORT_NOT_AVAILABLE = @as(u32, 633);
+pub const ERROR_PORT_NOT_CONFIGURED = @as(u32, 665);
+pub const ERROR_PORT_NOT_CONNECTED = @as(u32, 606);
+pub const ERROR_PORT_NOT_FOUND = @as(u32, 615);
+pub const ERROR_PORT_NOT_OPEN = @as(u32, 618);
+pub const ERROR_PORT_OR_DEVICE = @as(u32, 692);
+pub const ERROR_PPP_CP_REJECTED = @as(u32, 733);
+pub const ERROR_PPP_INVALID_PACKET = @as(u32, 722);
+pub const ERROR_PPP_LCP_TERMINATED = @as(u32, 734);
+pub const ERROR_PPP_LOOPBACK_DETECTED = @as(u32, 737);
+pub const ERROR_PPP_NCP_TERMINATED = @as(u32, 736);
+pub const ERROR_PPP_NO_ADDRESS_ASSIGNED = @as(u32, 738);
+pub const ERROR_PPP_NO_PROTOCOLS_CONFIGURED = @as(u32, 720);
+pub const ERROR_PPP_NO_RESPONSE = @as(u32, 721);
+pub const ERROR_PPP_NOT_CONVERGING = @as(u32, 732);
+pub const ERROR_PPP_REMOTE_TERMINATED = @as(u32, 719);
+pub const ERROR_PPP_REQUIRED_ADDRESS_REJECTED = @as(u32, 735);
+pub const ERROR_PPP_TIMEOUT = @as(u32, 718);
+pub const ERROR_PROJECTION_NOT_COMPLETE = @as(u32, 730);
+pub const ERROR_PROTOCOL_ENGINE_DISABLED = @as(u32, 839);
+pub const ERROR_PROTOCOL_NOT_CONFIGURED = @as(u32, 731);
+pub const ERROR_RASAUTO_CANNOT_INITIALIZE = @as(u32, 757);
+pub const ERROR_RASMAN_CANNOT_INITIALIZE = @as(u32, 711);
+pub const ERROR_RASMAN_SERVICE_STOPPED = @as(u32, 834);
+pub const ERROR_RASQEC_CONN_DOESNOTEXIST = @as(u32, 821);
+pub const ERROR_RASQEC_NAPAGENT_NOT_CONNECTED = @as(u32, 820);
+pub const ERROR_RASQEC_NAPAGENT_NOT_ENABLED = @as(u32, 819);
+pub const ERROR_RASQEC_RESOURCE_CREATION_FAILED = @as(u32, 818);
+pub const ERROR_RASQEC_TIMEOUT = @as(u32, 822);
+pub const ERROR_READING_DEFAULTOFF = @as(u32, 689);
+pub const ERROR_READING_DEVICENAME = @as(u32, 672);
+pub const ERROR_READING_DEVICETYPE = @as(u32, 671);
+pub const ERROR_READING_INI_FILE = @as(u32, 667);
+pub const ERROR_READING_MAXCARRIERBPS = @as(u32, 675);
+pub const ERROR_READING_MAXCONNECTBPS = @as(u32, 674);
+pub const ERROR_READING_SCARD = @as(u32, 802);
+pub const ERROR_READING_SECTIONNAME = @as(u32, 670);
+pub const ERROR_READING_USAGE = @as(u32, 673);
+pub const ERROR_RECV_BUF_FULL = @as(u32, 699);
+pub const ERROR_REMOTE_DISCONNECTION = @as(u32, 629);
+pub const ERROR_REMOTE_REQUIRES_ENCRYPTION = @as(u32, 743);
+pub const ERROR_REQUEST_TIMEOUT = @as(u32, 638);
+pub const ERROR_RESTRICTED_LOGON_HOURS = @as(u32, 646);
+pub const ERROR_ROUTE_NOT_ALLOCATED = @as(u32, 612);
+pub const ERROR_ROUTE_NOT_AVAILABLE = @as(u32, 611);
+pub const ERROR_SCRIPT_SYNTAX = @as(u32, 752);
+pub const ERROR_SERVER_GENERAL_NET_FAILURE = @as(u32, 643);
+pub const ERROR_SERVER_NOT_RESPONDING = @as(u32, 650);
+pub const ERROR_SERVER_OUT_OF_RESOURCES = @as(u32, 641);
+pub const ERROR_SERVER_POLICY = @as(u32, 812);
+pub const ERROR_SHARE_CONNECTION_FAILED = @as(u32, 761);
+pub const ERROR_SHARING_ADDRESS_EXISTS = @as(u32, 765);
+pub const ERROR_SHARING_CHANGE_FAILED = @as(u32, 759);
+pub const ERROR_SHARING_HOST_ADDRESS_CONFLICT = @as(u32, 799);
+pub const ERROR_SHARING_MULTIPLE_ADDRESSES = @as(u32, 767);
+pub const ERROR_SHARING_NO_PRIVATE_LAN = @as(u32, 783);
+pub const ERROR_SHARING_PRIVATE_INSTALL = @as(u32, 762);
+pub const ERROR_SHARING_ROUTER_INSTALL = @as(u32, 760);
+pub const ERROR_SHARING_RRAS_CONFLICT = @as(u32, 782);
+pub const ERROR_SLIP_REQUIRES_IP = @as(u32, 729);
+pub const ERROR_SMART_CARD_REQUIRED = @as(u32, 779);
+pub const ERROR_SMM_TIMEOUT = @as(u32, 748);
+pub const ERROR_SMM_UNINITIALIZED = @as(u32, 746);
+pub const ERROR_SSO_CERT_MISSING = @as(u32, 874);
+pub const ERROR_SSTP_COOKIE_SET_FAILURE = @as(u32, 848);
+pub const ERROR_STATE_MACHINES_ALREADY_STARTED = @as(u32, 696);
+pub const ERROR_STATE_MACHINES_NOT_STARTED = @as(u32, 695);
+pub const ERROR_SYSTEM_SUSPENDED = @as(u32, 833);
+pub const ERROR_TAPI_CONFIGURATION = @as(u32, 740);
+pub const ERROR_TEMPFAILURE = @as(u32, 774);
+pub const ERROR_TOO_MANY_LINE_ERRORS = @as(u32, 715);
+pub const ERROR_TS_UNACCEPTABLE = @as(u32, 842);
+pub const ERROR_UNABLE_TO_AUTHENTICATE_SERVER = @as(u32, 778);
+pub const ERROR_UNEXPECTED_RESPONSE = @as(u32, 702);
+pub const ERROR_UNKNOWN = @as(u32, 635);
+pub const ERROR_UNKNOWN_DEVICE_TYPE = @as(u32, 663);
+pub const ERROR_UNKNOWN_FRAMED_PROTOCOL = @as(u32, 794);
+pub const ERROR_UNKNOWN_RESPONSE_KEY = @as(u32, 698);
+pub const ERROR_UNKNOWN_SERVICE_TYPE = @as(u32, 796);
+pub const ERROR_UNRECOGNIZED_RESPONSE = @as(u32, 652);
+pub const ERROR_UNSUPPORTED_BPS = @as(u32, 701);
+pub const ERROR_UPDATECONNECTION_REQUEST_IN_PROCESS = @as(u32, 838);
+pub const ERROR_USER_DISCONNECTION = @as(u32, 631);
+pub const ERROR_USER_LOGOFF = @as(u32, 830);
+pub const ERROR_VALIDATING_SERVER_CERT = @as(u32, 801);
+pub const ERROR_VOICE_ANSWER = @as(u32, 677);
+pub const ERROR_VPN_BAD_CERT = @as(u32, 810);
+pub const ERROR_VPN_BAD_PSK = @as(u32, 811);
+pub const ERROR_VPN_DISCONNECT = @as(u32, 807);
+pub const ERROR_VPN_GRE_BLOCKED = @as(u32, 806);
+pub const ERROR_VPN_PLUGIN_GENERIC = @as(u32, 873);
+pub const ERROR_VPN_REFUSED = @as(u32, 808);
+pub const ERROR_VPN_TIMEOUT = @as(u32, 809);
+pub const ERROR_WRITING_DEFAULTOFF = @as(u32, 688);
+pub const ERROR_WRITING_DEVICENAME = @as(u32, 684);
+pub const ERROR_WRITING_DEVICETYPE = @as(u32, 683);
+pub const ERROR_WRITING_INITBPS = @as(u32, 706);
+pub const ERROR_WRITING_MAXCARRIERBPS = @as(u32, 686);
+pub const ERROR_WRITING_MAXCONNECTBPS = @as(u32, 685);
+pub const ERROR_WRITING_SECTIONNAME = @as(u32, 682);
+pub const ERROR_WRITING_USAGE = @as(u32, 687);
+pub const ERROR_WRONG_DEVICE_ATTACHED = @as(u32, 636);
+pub const ERROR_WRONG_INFO_SPECIFIED = @as(u32, 604);
+pub const ERROR_WRONG_KEY_SPECIFIED = @as(u32, 662);
+pub const ERROR_WRONG_MODULE = @as(u32, 750);
+pub const ERROR_WRONG_TUNNEL_TYPE = @as(u32, 795);
+pub const ERROR_X25_DIAGNOSTIC = @as(u32, 707);
 pub const ET_None = @as(u32, 0);
+pub const ET_Optional = @as(u32, 3);
 pub const ET_Require = @as(u32, 1);
 pub const ET_RequireMax = @as(u32, 2);
-pub const ET_Optional = @as(u32, 3);
-pub const VS_Default = @as(u32, 0);
-pub const VS_PptpOnly = @as(u32, 1);
-pub const VS_PptpFirst = @as(u32, 2);
-pub const VS_L2tpOnly = @as(u32, 3);
-pub const VS_L2tpFirst = @as(u32, 4);
-pub const VS_SstpOnly = @as(u32, 5);
-pub const VS_SstpFirst = @as(u32, 6);
-pub const VS_Ikev2Only = @as(u32, 7);
-pub const VS_Ikev2First = @as(u32, 8);
-pub const VS_GREOnly = @as(u32, 9);
-pub const VS_PptpSstp = @as(u32, 12);
-pub const VS_L2tpSstp = @as(u32, 13);
-pub const VS_Ikev2Sstp = @as(u32, 14);
-pub const VS_ProtocolList = @as(u32, 15);
-pub const RASEO_UseCountryAndAreaCodes = @as(u32, 1);
-pub const RASEO_SpecificIpAddr = @as(u32, 2);
-pub const RASEO_SpecificNameServers = @as(u32, 4);
-pub const RASEO_IpHeaderCompression = @as(u32, 8);
-pub const RASEO_RemoteDefaultGateway = @as(u32, 16);
-pub const RASEO_DisableLcpExtensions = @as(u32, 32);
-pub const RASEO_TerminalBeforeDial = @as(u32, 64);
-pub const RASEO_TerminalAfterDial = @as(u32, 128);
-pub const RASEO_ModemLights = @as(u32, 256);
-pub const RASEO_SwCompression = @as(u32, 512);
-pub const RASEO_RequireEncryptedPw = @as(u32, 1024);
-pub const RASEO_RequireMsEncryptedPw = @as(u32, 2048);
-pub const RASEO_RequireDataEncryption = @as(u32, 4096);
-pub const RASEO_NetworkLogon = @as(u32, 8192);
-pub const RASEO_UseLogonCredentials = @as(u32, 16384);
-pub const RASEO_PromoteAlternates = @as(u32, 32768);
-pub const RASEO_SecureLocalFiles = @as(u32, 65536);
-pub const RASEO_RequireEAP = @as(u32, 131072);
-pub const RASEO_RequirePAP = @as(u32, 262144);
-pub const RASEO_RequireSPAP = @as(u32, 524288);
-pub const RASEO_Custom = @as(u32, 1048576);
-pub const RASEO_PreviewPhoneNumber = @as(u32, 2097152);
-pub const RASEO_SharedPhoneNumbers = @as(u32, 8388608);
-pub const RASEO_PreviewUserPw = @as(u32, 16777216);
-pub const RASEO_PreviewDomain = @as(u32, 33554432);
-pub const RASEO_ShowDialingProgress = @as(u32, 67108864);
-pub const RASEO_RequireCHAP = @as(u32, 134217728);
-pub const RASEO_RequireMsCHAP = @as(u32, 268435456);
-pub const RASEO_RequireMsCHAP2 = @as(u32, 536870912);
-pub const RASEO_RequireW95MSCHAP = @as(u32, 1073741824);
-pub const RASEO_CustomScript = @as(u32, 2147483648);
-pub const RASEO2_SecureFileAndPrint = @as(u32, 1);
-pub const RASEO2_SecureClientForMSNet = @as(u32, 2);
-pub const RASEO2_DontNegotiateMultilink = @as(u32, 4);
-pub const RASEO2_DontUseRasCredentials = @as(u32, 8);
-pub const RASEO2_UsePreSharedKey = @as(u32, 16);
-pub const RASEO2_Internet = @as(u32, 32);
-pub const RASEO2_DisableNbtOverIP = @as(u32, 64);
-pub const RASEO2_UseGlobalDeviceSettings = @as(u32, 128);
-pub const RASEO2_ReconnectIfDropped = @as(u32, 256);
-pub const RASEO2_SharePhoneNumbers = @as(u32, 512);
-pub const RASEO2_SecureRoutingCompartment = @as(u32, 1024);
-pub const RASEO2_UseTypicalSettings = @as(u32, 2048);
-pub const RASEO2_IPv6SpecificNameServers = @as(u32, 4096);
-pub const RASEO2_IPv6RemoteDefaultGateway = @as(u32, 8192);
-pub const RASEO2_RegisterIpWithDNS = @as(u32, 16384);
-pub const RASEO2_UseDNSSuffixForRegistration = @as(u32, 32768);
-pub const RASEO2_IPv4ExplicitMetric = @as(u32, 65536);
-pub const RASEO2_IPv6ExplicitMetric = @as(u32, 131072);
-pub const RASEO2_DisableIKENameEkuCheck = @as(u32, 262144);
-pub const RASEO2_DisableClassBasedStaticRoute = @as(u32, 524288);
-pub const RASEO2_SpecificIPv6Addr = @as(u32, 1048576);
-pub const RASEO2_DisableMobility = @as(u32, 2097152);
-pub const RASEO2_RequireMachineCertificates = @as(u32, 4194304);
-pub const RASEO2_UsePreSharedKeyForIkev2Initiator = @as(u32, 8388608);
-pub const RASEO2_UsePreSharedKeyForIkev2Responder = @as(u32, 16777216);
-pub const RASEO2_CacheCredentials = @as(u32, 33554432);
-pub const RASEO2_AutoTriggerCapable = @as(u32, 67108864);
-pub const RASEO2_IsThirdPartyProfile = @as(u32, 134217728);
-pub const RASEO2_AuthTypeIsOtp = @as(u32, 268435456);
-pub const RASEO2_IsAlwaysOn = @as(u32, 536870912);
-pub const RASEO2_IsPrivateNetwork = @as(u32, 1073741824);
-pub const RASEO2_PlumbIKEv2TSAsRoutes = @as(u32, 2147483648);
-pub const RASNP_NetBEUI = @as(u32, 1);
-pub const RASNP_Ipx = @as(u32, 2);
-pub const RASNP_Ip = @as(u32, 4);
-pub const RASNP_Ipv6 = @as(u32, 8);
-pub const RASFP_Ppp = @as(u32, 1);
-pub const RASFP_Slip = @as(u32, 2);
-pub const RASFP_Ras = @as(u32, 4);
-pub const RASDT_Modem = "modem";
-pub const RASDT_Isdn = "isdn";
-pub const RASDT_X25 = "x25";
-pub const RASDT_Vpn = "vpn";
-pub const RASDT_Pad = "pad";
-pub const RASDT_Generic = "GENERIC";
-pub const RASDT_Serial = "SERIAL";
-pub const RASDT_FrameRelay = "FRAMERELAY";
-pub const RASDT_Atm = "ATM";
-pub const RASDT_Sonet = "SONET";
-pub const RASDT_SW56 = "SW56";
-pub const RASDT_Irda = "IRDA";
-pub const RASDT_Parallel = "PARALLEL";
-pub const RASDT_PPPoE = "PPPoE";
-pub const RASET_Phone = @as(u32, 1);
-pub const RASET_Vpn = @as(u32, 2);
-pub const RASET_Direct = @as(u32, 3);
-pub const RASET_Internet = @as(u32, 4);
-pub const RASET_Broadband = @as(u32, 5);
-pub const RASCN_Connection = @as(u32, 1);
-pub const RASCN_Disconnection = @as(u32, 2);
-pub const RASCN_BandwidthAdded = @as(u32, 4);
-pub const RASCN_BandwidthRemoved = @as(u32, 8);
-pub const RASCN_Dormant = @as(u32, 16);
-pub const RASCN_ReConnection = @as(u32, 32);
-pub const RASCN_EPDGPacketArrival = @as(u32, 64);
-pub const RASIDS_Disabled = @as(u32, 4294967295);
-pub const RASIDS_UseGlobalValue = @as(u32, 0);
-pub const RASADFLG_PositionDlg = @as(u32, 1);
-pub const RASCM_UserName = @as(u32, 1);
-pub const RASCM_Password = @as(u32, 2);
-pub const RASCM_Domain = @as(u32, 4);
-pub const RASCM_DefaultCreds = @as(u32, 8);
-pub const RASCM_PreSharedKey = @as(u32, 16);
-pub const RASCM_ServerPreSharedKey = @as(u32, 32);
-pub const RASCM_DDMPreSharedKey = @as(u32, 64);
-pub const RASADP_DisableConnectionQuery = @as(u32, 0);
-pub const RASADP_LoginSessionDisable = @as(u32, 1);
-pub const RASADP_SavedAddressesLimit = @as(u32, 2);
-pub const RASADP_FailedConnectionTimeout = @as(u32, 3);
-pub const RASADP_ConnectionQueryTimeout = @as(u32, 4);
-pub const RASEAPF_NonInteractive = @as(u32, 2);
-pub const RASEAPF_Logon = @as(u32, 4);
-pub const RASEAPF_Preview = @as(u32, 8);
-pub const RCD_SingleUser = @as(u32, 0);
-pub const RCD_AllUsers = @as(u32, 1);
-pub const RCD_Eap = @as(u32, 2);
-pub const RCD_Logon = @as(u32, 4);
-pub const RASPBDEVENT_AddEntry = @as(u32, 1);
-pub const RASPBDEVENT_EditEntry = @as(u32, 2);
-pub const RASPBDEVENT_RemoveEntry = @as(u32, 3);
-pub const RASPBDEVENT_DialEntry = @as(u32, 4);
-pub const RASPBDEVENT_EditGlobals = @as(u32, 5);
-pub const RASPBDEVENT_NoUser = @as(u32, 6);
-pub const RASPBDEVENT_NoUserEdit = @as(u32, 7);
-pub const RASNOUSER_SmartCard = @as(u32, 1);
-pub const RASPBDFLAG_PositionDlg = @as(u32, 1);
-pub const RASPBDFLAG_ForceCloseOnDial = @as(u32, 2);
-pub const RASPBDFLAG_NoUser = @as(u32, 16);
-pub const RASPBDFLAG_UpdateDefaults = @as(u32, 2147483648);
-pub const RASEDFLAG_PositionDlg = @as(u32, 1);
-pub const RASEDFLAG_NewEntry = @as(u32, 2);
-pub const RASEDFLAG_CloneEntry = @as(u32, 4);
-pub const RASEDFLAG_NoRename = @as(u32, 8);
-pub const RASEDFLAG_ShellOwned = @as(u32, 1073741824);
-pub const RASEDFLAG_NewPhoneEntry = @as(u32, 16);
-pub const RASEDFLAG_NewTunnelEntry = @as(u32, 32);
-pub const RASEDFLAG_NewDirectEntry = @as(u32, 64);
-pub const RASEDFLAG_NewBroadbandEntry = @as(u32, 128);
-pub const RASEDFLAG_InternetEntry = @as(u32, 256);
-pub const RASEDFLAG_NAT = @as(u32, 512);
-pub const RASEDFLAG_IncomingConnection = @as(u32, 1024);
-pub const RASDDFLAG_PositionDlg = @as(u32, 1);
-pub const RASDDFLAG_NoPrompt = @as(u32, 2);
-pub const RASDDFLAG_AoacRedial = @as(u32, 4);
-pub const RASDDFLAG_LinkFailure = @as(u32, 2147483648);
-pub const RRAS_SERVICE_NAME = "RemoteAccess";
-pub const PID_IPX = @as(u32, 43);
-pub const PID_IP = @as(u32, 33);
-pub const PID_IPV6 = @as(u32, 87);
-pub const PID_NBF = @as(u32, 63);
-pub const PID_ATALK = @as(u32, 41);
-pub const MPR_INTERFACE_OUT_OF_RESOURCES = @as(u32, 1);
-pub const MPR_INTERFACE_ADMIN_DISABLED = @as(u32, 2);
-pub const MPR_INTERFACE_CONNECTION_FAILURE = @as(u32, 4);
-pub const MPR_INTERFACE_SERVICE_PAUSED = @as(u32, 8);
-pub const MPR_INTERFACE_DIALOUT_HOURS_RESTRICTION = @as(u32, 16);
-pub const MPR_INTERFACE_NO_MEDIA_SENSE = @as(u32, 32);
-pub const MPR_INTERFACE_NO_DEVICE = @as(u32, 64);
-pub const MPR_MaxDeviceType = @as(u32, 16);
-pub const MPR_MaxPhoneNumber = @as(u32, 128);
-pub const MPR_MaxIpAddress = @as(u32, 15);
-pub const MPR_MaxIpxAddress = @as(u32, 21);
-pub const MPR_MaxEntryName = @as(u32, 256);
-pub const MPR_MaxDeviceName = @as(u32, 128);
-pub const MPR_MaxCallbackNumber = @as(u32, 128);
-pub const MPR_MaxAreaCode = @as(u32, 10);
-pub const MPR_MaxPadType = @as(u32, 32);
-pub const MPR_MaxX25Address = @as(u32, 200);
-pub const MPR_MaxFacilities = @as(u32, 200);
-pub const MPR_MaxUserData = @as(u32, 200);
-pub const MPRIO_SpecificIpAddr = @as(u32, 2);
-pub const MPRIO_SpecificNameServers = @as(u32, 4);
-pub const MPRIO_IpHeaderCompression = @as(u32, 8);
-pub const MPRIO_RemoteDefaultGateway = @as(u32, 16);
-pub const MPRIO_DisableLcpExtensions = @as(u32, 32);
-pub const MPRIO_SwCompression = @as(u32, 512);
-pub const MPRIO_RequireEncryptedPw = @as(u32, 1024);
-pub const MPRIO_RequireMsEncryptedPw = @as(u32, 2048);
-pub const MPRIO_RequireDataEncryption = @as(u32, 4096);
-pub const MPRIO_NetworkLogon = @as(u32, 8192);
-pub const MPRIO_PromoteAlternates = @as(u32, 32768);
-pub const MPRIO_SecureLocalFiles = @as(u32, 65536);
-pub const MPRIO_RequireEAP = @as(u32, 131072);
-pub const MPRIO_RequirePAP = @as(u32, 262144);
-pub const MPRIO_RequireSPAP = @as(u32, 524288);
-pub const MPRIO_SharedPhoneNumbers = @as(u32, 8388608);
-pub const MPRIO_RequireCHAP = @as(u32, 134217728);
-pub const MPRIO_RequireMsCHAP = @as(u32, 268435456);
-pub const MPRIO_RequireMsCHAP2 = @as(u32, 536870912);
-pub const MPRIO_IpSecPreSharedKey = @as(u32, 2147483648);
-pub const MPRIO_RequireMachineCertificates = @as(u32, 16777216);
-pub const MPRIO_UsePreSharedKeyForIkev2Initiator = @as(u32, 33554432);
-pub const MPRIO_UsePreSharedKeyForIkev2Responder = @as(u32, 67108864);
-pub const MPRNP_Ipx = @as(u32, 2);
-pub const MPRNP_Ip = @as(u32, 4);
-pub const MPRNP_Ipv6 = @as(u32, 8);
-pub const MPRDT_Modem = "modem";
-pub const MPRDT_Isdn = "isdn";
-pub const MPRDT_X25 = "x25";
-pub const MPRDT_Vpn = "vpn";
-pub const MPRDT_Pad = "pad";
-pub const MPRDT_Generic = "GENERIC";
-pub const MPRDT_Serial = "SERIAL";
-pub const MPRDT_FrameRelay = "FRAMERELAY";
-pub const MPRDT_Atm = "ATM";
-pub const MPRDT_Sonet = "SONET";
-pub const MPRDT_SW56 = "SW56";
-pub const MPRDT_Irda = "IRDA";
-pub const MPRDT_Parallel = "PARALLEL";
-pub const MPRET_Phone = @as(u32, 1);
-pub const MPRET_Vpn = @as(u32, 2);
-pub const MPRET_Direct = @as(u32, 3);
-pub const MPRIDS_Disabled = @as(u32, 4294967295);
-pub const MPRIDS_UseGlobalValue = @as(u32, 0);
-pub const MPR_VS_Ikev2Only = @as(u32, 7);
-pub const MPR_VS_Ikev2First = @as(u32, 8);
+pub const IPADDRESSLEN = @as(u32, 15);
+pub const IPV6_ADDRESS_LEN_IN_BYTES = @as(u32, 16);
+pub const IPXADDRESSLEN = @as(u32, 22);
+pub const MAX_SSTP_HASH_SIZE = @as(u32, 32);
+pub const MAXIPADRESSLEN = @as(u32, 64);
+pub const METHOD_BGP4_AS_PATH = @as(u32, 1);
+pub const METHOD_BGP4_NEXTHOP_ATTR = @as(u32, 8);
+pub const METHOD_BGP4_PA_ORIGIN = @as(u32, 4);
+pub const METHOD_BGP4_PEER_ID = @as(u32, 2);
+pub const METHOD_RIP2_NEIGHBOUR_ADDR = @as(u32, 1);
+pub const METHOD_RIP2_OUTBOUND_INTF = @as(u32, 2);
+pub const METHOD_RIP2_ROUTE_TAG = @as(u32, 4);
+pub const METHOD_RIP2_ROUTE_TIMESTAMP = @as(u32, 8);
+pub const METHOD_TYPE_ALL_METHODS = @as(u32, 4294967295);
+pub const MGM_FORWARD_STATE_FLAG = @as(u32, 2);
+pub const MGM_JOIN_STATE_FLAG = @as(u32, 1);
+pub const MGM_MFE_STATS_0 = @as(u32, 1);
+pub const MGM_MFE_STATS_1 = @as(u32, 2);
 pub const MPR_ENABLE_RAS_ON_DEVICE = @as(u32, 1);
 pub const MPR_ENABLE_ROUTING_ON_DEVICE = @as(u32, 2);
-pub const IPADDRESSLEN = @as(u32, 15);
-pub const IPXADDRESSLEN = @as(u32, 22);
-pub const ATADDRESSLEN = @as(u32, 32);
-pub const MAXIPADRESSLEN = @as(u32, 64);
-pub const PPP_IPCP_VJ = @as(u32, 1);
-pub const PPP_CCP_COMPRESSION = @as(u32, 1);
-pub const PPP_CCP_ENCRYPTION40BITOLD = @as(u32, 16);
-pub const PPP_CCP_ENCRYPTION40BIT = @as(u32, 32);
-pub const PPP_CCP_ENCRYPTION128BIT = @as(u32, 64);
-pub const PPP_CCP_ENCRYPTION56BIT = @as(u32, 128);
-pub const PPP_CCP_HISTORYLESS = @as(u32, 16777216);
-pub const PPP_LCP_MULTILINK_FRAMING = @as(u32, 1);
-pub const PPP_LCP_PFC = @as(u32, 2);
-pub const PPP_LCP_ACFC = @as(u32, 4);
-pub const PPP_LCP_SSHF = @as(u32, 8);
-pub const PPP_LCP_DES_56 = @as(u32, 16);
-pub const PPP_LCP_3_DES = @as(u32, 32);
-pub const PPP_LCP_AES_128 = @as(u32, 64);
-pub const PPP_LCP_AES_256 = @as(u32, 128);
-pub const PPP_LCP_AES_192 = @as(u32, 256);
-pub const PPP_LCP_GCM_AES_128 = @as(u32, 512);
-pub const PPP_LCP_GCM_AES_192 = @as(u32, 1024);
-pub const PPP_LCP_GCM_AES_256 = @as(u32, 2048);
-pub const RAS_FLAGS_RAS_CONNECTION = @as(u32, 4);
-pub const RASPRIV_NoCallback = @as(u32, 1);
-pub const RASPRIV_AdminSetCallback = @as(u32, 2);
-pub const RASPRIV_CallerSetCallback = @as(u32, 4);
-pub const RASPRIV_DialinPrivilege = @as(u32, 8);
-pub const RASPRIV2_DialinPolicy = @as(u32, 1);
+pub const MPR_INTERFACE_ADMIN_DISABLED = @as(u32, 2);
+pub const MPR_INTERFACE_CONNECTION_FAILURE = @as(u32, 4);
+pub const MPR_INTERFACE_DIALOUT_HOURS_RESTRICTION = @as(u32, 16);
+pub const MPR_INTERFACE_NO_DEVICE = @as(u32, 64);
+pub const MPR_INTERFACE_NO_MEDIA_SENSE = @as(u32, 32);
+pub const MPR_INTERFACE_OUT_OF_RESOURCES = @as(u32, 1);
+pub const MPR_INTERFACE_SERVICE_PAUSED = @as(u32, 8);
+pub const MPR_MaxAreaCode = @as(u32, 10);
+pub const MPR_MaxCallbackNumber = @as(u32, 128);
+pub const MPR_MaxDeviceName = @as(u32, 128);
+pub const MPR_MaxDeviceType = @as(u32, 16);
+pub const MPR_MaxEntryName = @as(u32, 256);
+pub const MPR_MaxFacilities = @as(u32, 200);
+pub const MPR_MaxIpAddress = @as(u32, 15);
+pub const MPR_MaxIpxAddress = @as(u32, 21);
+pub const MPR_MaxPadType = @as(u32, 32);
+pub const MPR_MaxPhoneNumber = @as(u32, 128);
+pub const MPR_MaxUserData = @as(u32, 200);
+pub const MPR_MaxX25Address = @as(u32, 200);
+pub const MPR_VS_Ikev2First = @as(u32, 8);
+pub const MPR_VS_Ikev2Only = @as(u32, 7);
+pub const MPRAPI_ADMIN_DLL_VERSION_1 = @as(u32, 1);
+pub const MPRAPI_ADMIN_DLL_VERSION_2 = @as(u32, 2);
+pub const MPRAPI_IF_CUSTOM_CONFIG_FOR_IKEV2 = @as(u32, 1);
 pub const MPRAPI_IKEV2_AUTH_USING_CERT = @as(u32, 1);
 pub const MPRAPI_IKEV2_AUTH_USING_EAP = @as(u32, 2);
-pub const MPRAPI_PPP_PROJECTION_INFO_TYPE = @as(u32, 1);
 pub const MPRAPI_IKEV2_PROJECTION_INFO_TYPE = @as(u32, 2);
-pub const MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1 = @as(u32, 1);
-pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_1 = @as(u32, 1);
-pub const MPRAPI_IF_CUSTOM_CONFIG_FOR_IKEV2 = @as(u32, 1);
-pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_3 = @as(u32, 3);
-pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_2 = @as(u32, 2);
 pub const MPRAPI_IKEV2_SET_TUNNEL_CONFIG_PARAMS = @as(u32, 1);
 pub const MPRAPI_L2TP_SET_TUNNEL_CONFIG_PARAMS = @as(u32, 1);
-pub const MAX_SSTP_HASH_SIZE = @as(u32, 32);
+pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_1 = @as(u32, 1);
+pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_2 = @as(u32, 2);
+pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_3 = @as(u32, 3);
 pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_1 = @as(u32, 1);
 pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_2 = @as(u32, 2);
 pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_3 = @as(u32, 3);
@@ -358,921 +347,418 @@ pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_2 = @as(u32, 2);
 pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_3 = @as(u32, 3);
 pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_4 = @as(u32, 4);
 pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_5 = @as(u32, 5);
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_PPTP = @as(u32, 1);
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_L2TP = @as(u32, 2);
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_SSTP = @as(u32, 4);
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_IKEV2 = @as(u32, 8);
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_GRE = @as(u32, 16);
-pub const ALLOW_NO_AUTH = @as(u32, 1);
-pub const DO_NOT_ALLOW_NO_AUTH = @as(u32, 0);
+pub const MPRAPI_PPP_PROJECTION_INFO_TYPE = @as(u32, 1);
+pub const MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1 = @as(u32, 1);
 pub const MPRAPI_RAS_UPDATE_CONNECTION_OBJECT_REVISION_1 = @as(u32, 1);
-pub const MPRAPI_ADMIN_DLL_VERSION_1 = @as(u32, 1);
-pub const MPRAPI_ADMIN_DLL_VERSION_2 = @as(u32, 2);
-pub const MGM_JOIN_STATE_FLAG = @as(u32, 1);
-pub const MGM_FORWARD_STATE_FLAG = @as(u32, 2);
-pub const MGM_MFE_STATS_0 = @as(u32, 1);
-pub const MGM_MFE_STATS_1 = @as(u32, 2);
-pub const RTM_MAX_ADDRESS_SIZE = @as(u32, 16);
-pub const RTM_MAX_VIEWS = @as(u32, 32);
-pub const RTM_VIEW_ID_UCAST = @as(u32, 0);
-pub const RTM_VIEW_ID_MCAST = @as(u32, 1);
-pub const RTM_VIEW_MASK_SIZE = @as(u32, 32);
-pub const RTM_VIEW_MASK_NONE = @as(u32, 0);
-pub const RTM_VIEW_MASK_ANY = @as(u32, 0);
-pub const RTM_VIEW_MASK_UCAST = @as(u32, 1);
-pub const RTM_VIEW_MASK_MCAST = @as(u32, 2);
-pub const RTM_VIEW_MASK_ALL = @as(u32, 4294967295);
-pub const IPV6_ADDRESS_LEN_IN_BYTES = @as(u32, 16);
-pub const RTM_DEST_FLAG_NATURAL_NET = @as(u32, 1);
-pub const RTM_DEST_FLAG_FWD_ENGIN_ADD = @as(u32, 2);
-pub const RTM_DEST_FLAG_DONT_FORWARD = @as(u32, 4);
-pub const RTM_ROUTE_STATE_CREATED = @as(u32, 0);
-pub const RTM_ROUTE_STATE_DELETING = @as(u32, 1);
-pub const RTM_ROUTE_STATE_DELETED = @as(u32, 2);
-pub const RTM_ROUTE_FLAGS_MARTIAN = @as(u32, 1);
-pub const RTM_ROUTE_FLAGS_BLACKHOLE = @as(u32, 2);
-pub const RTM_ROUTE_FLAGS_DISCARD = @as(u32, 4);
-pub const RTM_ROUTE_FLAGS_INACTIVE = @as(u32, 8);
-pub const RTM_ROUTE_FLAGS_LOCAL = @as(u32, 16);
-pub const RTM_ROUTE_FLAGS_REMOTE = @as(u32, 32);
-pub const RTM_ROUTE_FLAGS_MYSELF = @as(u32, 64);
-pub const RTM_ROUTE_FLAGS_LOOPBACK = @as(u32, 128);
-pub const RTM_ROUTE_FLAGS_MCAST = @as(u32, 256);
-pub const RTM_ROUTE_FLAGS_LOCAL_MCAST = @as(u32, 512);
-pub const RTM_ROUTE_FLAGS_LIMITED_BC = @as(u32, 1024);
-pub const RTM_ROUTE_FLAGS_ZEROS_NETBC = @as(u32, 4096);
-pub const RTM_ROUTE_FLAGS_ZEROS_SUBNETBC = @as(u32, 8192);
-pub const RTM_ROUTE_FLAGS_ONES_NETBC = @as(u32, 16384);
-pub const RTM_ROUTE_FLAGS_ONES_SUBNETBC = @as(u32, 32768);
-pub const RTM_NEXTHOP_STATE_CREATED = @as(u32, 0);
-pub const RTM_NEXTHOP_STATE_DELETED = @as(u32, 1);
-pub const RTM_NEXTHOP_FLAGS_REMOTE = @as(u32, 1);
-pub const RTM_NEXTHOP_FLAGS_DOWN = @as(u32, 2);
-pub const METHOD_TYPE_ALL_METHODS = @as(u32, 4294967295);
-pub const METHOD_RIP2_NEIGHBOUR_ADDR = @as(u32, 1);
-pub const METHOD_RIP2_OUTBOUND_INTF = @as(u32, 2);
-pub const METHOD_RIP2_ROUTE_TAG = @as(u32, 4);
-pub const METHOD_RIP2_ROUTE_TIMESTAMP = @as(u32, 8);
-pub const METHOD_BGP4_AS_PATH = @as(u32, 1);
-pub const METHOD_BGP4_PEER_ID = @as(u32, 2);
-pub const METHOD_BGP4_PA_ORIGIN = @as(u32, 4);
-pub const METHOD_BGP4_NEXTHOP_ATTR = @as(u32, 8);
-pub const RTM_RESUME_METHODS = @as(u32, 0);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_GRE = @as(u32, 16);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_IKEV2 = @as(u32, 8);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_L2TP = @as(u32, 2);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_PPTP = @as(u32, 1);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_SSTP = @as(u32, 4);
+pub const MPRDT_Atm = "ATM";
+pub const MPRDT_FrameRelay = "FRAMERELAY";
+pub const MPRDT_Generic = "GENERIC";
+pub const MPRDT_Irda = "IRDA";
+pub const MPRDT_Isdn = "isdn";
+pub const MPRDT_Modem = "modem";
+pub const MPRDT_Pad = "pad";
+pub const MPRDT_Parallel = "PARALLEL";
+pub const MPRDT_Serial = "SERIAL";
+pub const MPRDT_Sonet = "SONET";
+pub const MPRDT_SW56 = "SW56";
+pub const MPRDT_Vpn = "vpn";
+pub const MPRDT_X25 = "x25";
+pub const MPRET_Direct = @as(u32, 3);
+pub const MPRET_Phone = @as(u32, 1);
+pub const MPRET_Vpn = @as(u32, 2);
+pub const MPRIDS_Disabled = @as(u32, 4294967295);
+pub const MPRIDS_UseGlobalValue = @as(u32, 0);
+pub const MPRIO_DisableLcpExtensions = @as(u32, 32);
+pub const MPRIO_IpHeaderCompression = @as(u32, 8);
+pub const MPRIO_IpSecPreSharedKey = @as(u32, 2147483648);
+pub const MPRIO_NetworkLogon = @as(u32, 8192);
+pub const MPRIO_PromoteAlternates = @as(u32, 32768);
+pub const MPRIO_RemoteDefaultGateway = @as(u32, 16);
+pub const MPRIO_RequireCHAP = @as(u32, 134217728);
+pub const MPRIO_RequireDataEncryption = @as(u32, 4096);
+pub const MPRIO_RequireEAP = @as(u32, 131072);
+pub const MPRIO_RequireEncryptedPw = @as(u32, 1024);
+pub const MPRIO_RequireMachineCertificates = @as(u32, 16777216);
+pub const MPRIO_RequireMsCHAP = @as(u32, 268435456);
+pub const MPRIO_RequireMsCHAP2 = @as(u32, 536870912);
+pub const MPRIO_RequireMsEncryptedPw = @as(u32, 2048);
+pub const MPRIO_RequirePAP = @as(u32, 262144);
+pub const MPRIO_RequireSPAP = @as(u32, 524288);
+pub const MPRIO_SecureLocalFiles = @as(u32, 65536);
+pub const MPRIO_SharedPhoneNumbers = @as(u32, 8388608);
+pub const MPRIO_SpecificIpAddr = @as(u32, 2);
+pub const MPRIO_SpecificNameServers = @as(u32, 4);
+pub const MPRIO_SwCompression = @as(u32, 512);
+pub const MPRIO_UsePreSharedKeyForIkev2Initiator = @as(u32, 33554432);
+pub const MPRIO_UsePreSharedKeyForIkev2Responder = @as(u32, 67108864);
+pub const MPRNP_Ip = @as(u32, 4);
+pub const MPRNP_Ipv6 = @as(u32, 8);
+pub const MPRNP_Ipx = @as(u32, 2);
+pub const PENDING = @as(u32, 600);
+pub const PID_ATALK = @as(u32, 41);
+pub const PID_IP = @as(u32, 33);
+pub const PID_IPV6 = @as(u32, 87);
+pub const PID_IPX = @as(u32, 43);
+pub const PID_NBF = @as(u32, 63);
+pub const PPP_CCP_COMPRESSION = @as(u32, 1);
+pub const PPP_CCP_ENCRYPTION128BIT = @as(u32, 64);
+pub const PPP_CCP_ENCRYPTION40BIT = @as(u32, 32);
+pub const PPP_CCP_ENCRYPTION40BITOLD = @as(u32, 16);
+pub const PPP_CCP_ENCRYPTION56BIT = @as(u32, 128);
+pub const PPP_CCP_HISTORYLESS = @as(u32, 16777216);
+pub const PPP_IPCP_VJ = @as(u32, 1);
+pub const PPP_LCP_3_DES = @as(u32, 32);
+pub const PPP_LCP_ACFC = @as(u32, 4);
+pub const PPP_LCP_AES_128 = @as(u32, 64);
+pub const PPP_LCP_AES_192 = @as(u32, 256);
+pub const PPP_LCP_AES_256 = @as(u32, 128);
+pub const PPP_LCP_DES_56 = @as(u32, 16);
+pub const PPP_LCP_GCM_AES_128 = @as(u32, 512);
+pub const PPP_LCP_GCM_AES_192 = @as(u32, 1024);
+pub const PPP_LCP_GCM_AES_256 = @as(u32, 2048);
+pub const PPP_LCP_MULTILINK_FRAMING = @as(u32, 1);
+pub const PPP_LCP_PFC = @as(u32, 2);
+pub const PPP_LCP_SSHF = @as(u32, 8);
+pub const RAS_FLAGS_RAS_CONNECTION = @as(u32, 4);
+pub const RAS_MaxAreaCode = @as(u32, 10);
+pub const RAS_MaxCallbackNumber = @as(u32, 128);
+pub const RAS_MaxDeviceName = @as(u32, 128);
+pub const RAS_MaxDeviceType = @as(u32, 16);
+pub const RAS_MaxDnsSuffix = @as(u32, 256);
+pub const RAS_MaxEntryName = @as(u32, 256);
+pub const RAS_MaxFacilities = @as(u32, 200);
+pub const RAS_MaxIDSize = @as(u32, 256);
+pub const RAS_MaxIpAddress = @as(u32, 15);
+pub const RAS_MaxIpxAddress = @as(u32, 21);
+pub const RAS_MaxPadType = @as(u32, 32);
+pub const RAS_MaxPhoneNumber = @as(u32, 128);
+pub const RAS_MaxReplyMessage = @as(u32, 1024);
+pub const RAS_MaxUserData = @as(u32, 200);
+pub const RAS_MaxX25Address = @as(u32, 200);
+pub const RASADFLG_PositionDlg = @as(u32, 1);
+pub const RASADP_ConnectionQueryTimeout = @as(u32, 4);
+pub const RASADP_DisableConnectionQuery = @as(u32, 0);
+pub const RASADP_FailedConnectionTimeout = @as(u32, 3);
+pub const RASADP_LoginSessionDisable = @as(u32, 1);
+pub const RASADP_SavedAddressesLimit = @as(u32, 2);
+pub const RASBASE = @as(u32, 600);
+pub const RASBASEEND = @as(u32, 877);
+pub const RASCCPCA_MPPC = @as(u32, 6);
+pub const RASCCPCA_STAC = @as(u32, 5);
+pub const RASCCPO_Compression = @as(u32, 1);
+pub const RASCCPO_Encryption128bit = @as(u32, 64);
+pub const RASCCPO_Encryption40bit = @as(u32, 32);
+pub const RASCCPO_Encryption56bit = @as(u32, 16);
+pub const RASCCPO_HistoryLess = @as(u32, 2);
+pub const RASCF_AllUsers = @as(u32, 1);
+pub const RASCF_GlobalCreds = @as(u32, 2);
+pub const RASCF_OwnerKnown = @as(u32, 4);
+pub const RASCF_OwnerMatch = @as(u32, 8);
+pub const RASCM_DDMPreSharedKey = @as(u32, 64);
+pub const RASCM_DefaultCreds = @as(u32, 8);
+pub const RASCM_Domain = @as(u32, 4);
+pub const RASCM_Password = @as(u32, 2);
+pub const RASCM_PreSharedKey = @as(u32, 16);
+pub const RASCM_ServerPreSharedKey = @as(u32, 32);
+pub const RASCM_UserName = @as(u32, 1);
+pub const RASCN_BandwidthAdded = @as(u32, 4);
+pub const RASCN_BandwidthRemoved = @as(u32, 8);
+pub const RASCN_Connection = @as(u32, 1);
+pub const RASCN_Disconnection = @as(u32, 2);
+pub const RASCN_Dormant = @as(u32, 16);
+pub const RASCN_EPDGPacketArrival = @as(u32, 64);
+pub const RASCN_ReConnection = @as(u32, 32);
+pub const RASCS_DONE = @as(u32, 8192);
+pub const RASCS_PAUSED = @as(u32, 4096);
+pub const RASCSS_DONE = @as(u32, 8192);
+pub const RASDDFLAG_AoacRedial = @as(u32, 4);
+pub const RASDDFLAG_LinkFailure = @as(u32, 2147483648);
+pub const RASDDFLAG_NoPrompt = @as(u32, 2);
+pub const RASDDFLAG_PositionDlg = @as(u32, 1);
+pub const RASDIALEVENT = "RasDialEvent";
+pub const RASDT_Atm = "ATM";
+pub const RASDT_FrameRelay = "FRAMERELAY";
+pub const RASDT_Generic = "GENERIC";
+pub const RASDT_Irda = "IRDA";
+pub const RASDT_Isdn = "isdn";
+pub const RASDT_Modem = "modem";
+pub const RASDT_Pad = "pad";
+pub const RASDT_Parallel = "PARALLEL";
+pub const RASDT_PPPoE = "PPPoE";
+pub const RASDT_Serial = "SERIAL";
+pub const RASDT_Sonet = "SONET";
+pub const RASDT_SW56 = "SW56";
+pub const RASDT_Vpn = "vpn";
+pub const RASDT_X25 = "x25";
+pub const RASEAPF_Logon = @as(u32, 4);
+pub const RASEAPF_NonInteractive = @as(u32, 2);
+pub const RASEAPF_Preview = @as(u32, 8);
+pub const RASEDFLAG_CloneEntry = @as(u32, 4);
+pub const RASEDFLAG_IncomingConnection = @as(u32, 1024);
+pub const RASEDFLAG_InternetEntry = @as(u32, 256);
+pub const RASEDFLAG_NAT = @as(u32, 512);
+pub const RASEDFLAG_NewBroadbandEntry = @as(u32, 128);
+pub const RASEDFLAG_NewDirectEntry = @as(u32, 64);
+pub const RASEDFLAG_NewEntry = @as(u32, 2);
+pub const RASEDFLAG_NewPhoneEntry = @as(u32, 16);
+pub const RASEDFLAG_NewTunnelEntry = @as(u32, 32);
+pub const RASEDFLAG_NoRename = @as(u32, 8);
+pub const RASEDFLAG_PositionDlg = @as(u32, 1);
+pub const RASEDFLAG_ShellOwned = @as(u32, 1073741824);
+pub const RASEO2_AuthTypeIsOtp = @as(u32, 268435456);
+pub const RASEO2_AutoTriggerCapable = @as(u32, 67108864);
+pub const RASEO2_CacheCredentials = @as(u32, 33554432);
+pub const RASEO2_DisableClassBasedStaticRoute = @as(u32, 524288);
+pub const RASEO2_DisableIKENameEkuCheck = @as(u32, 262144);
+pub const RASEO2_DisableMobility = @as(u32, 2097152);
+pub const RASEO2_DisableNbtOverIP = @as(u32, 64);
+pub const RASEO2_DontNegotiateMultilink = @as(u32, 4);
+pub const RASEO2_DontUseRasCredentials = @as(u32, 8);
+pub const RASEO2_Internet = @as(u32, 32);
+pub const RASEO2_IPv4ExplicitMetric = @as(u32, 65536);
+pub const RASEO2_IPv6ExplicitMetric = @as(u32, 131072);
+pub const RASEO2_IPv6RemoteDefaultGateway = @as(u32, 8192);
+pub const RASEO2_IPv6SpecificNameServers = @as(u32, 4096);
+pub const RASEO2_IsAlwaysOn = @as(u32, 536870912);
+pub const RASEO2_IsPrivateNetwork = @as(u32, 1073741824);
+pub const RASEO2_IsThirdPartyProfile = @as(u32, 134217728);
+pub const RASEO2_PlumbIKEv2TSAsRoutes = @as(u32, 2147483648);
+pub const RASEO2_ReconnectIfDropped = @as(u32, 256);
+pub const RASEO2_RegisterIpWithDNS = @as(u32, 16384);
+pub const RASEO2_RequireMachineCertificates = @as(u32, 4194304);
+pub const RASEO2_SecureClientForMSNet = @as(u32, 2);
+pub const RASEO2_SecureFileAndPrint = @as(u32, 1);
+pub const RASEO2_SecureRoutingCompartment = @as(u32, 1024);
+pub const RASEO2_SharePhoneNumbers = @as(u32, 512);
+pub const RASEO2_SpecificIPv6Addr = @as(u32, 1048576);
+pub const RASEO2_UseDNSSuffixForRegistration = @as(u32, 32768);
+pub const RASEO2_UseGlobalDeviceSettings = @as(u32, 128);
+pub const RASEO2_UsePreSharedKey = @as(u32, 16);
+pub const RASEO2_UsePreSharedKeyForIkev2Initiator = @as(u32, 8388608);
+pub const RASEO2_UsePreSharedKeyForIkev2Responder = @as(u32, 16777216);
+pub const RASEO2_UseTypicalSettings = @as(u32, 2048);
+pub const RASEO_Custom = @as(u32, 1048576);
+pub const RASEO_CustomScript = @as(u32, 2147483648);
+pub const RASEO_DisableLcpExtensions = @as(u32, 32);
+pub const RASEO_IpHeaderCompression = @as(u32, 8);
+pub const RASEO_ModemLights = @as(u32, 256);
+pub const RASEO_NetworkLogon = @as(u32, 8192);
+pub const RASEO_PreviewDomain = @as(u32, 33554432);
+pub const RASEO_PreviewPhoneNumber = @as(u32, 2097152);
+pub const RASEO_PreviewUserPw = @as(u32, 16777216);
+pub const RASEO_PromoteAlternates = @as(u32, 32768);
+pub const RASEO_RemoteDefaultGateway = @as(u32, 16);
+pub const RASEO_RequireCHAP = @as(u32, 134217728);
+pub const RASEO_RequireDataEncryption = @as(u32, 4096);
+pub const RASEO_RequireEAP = @as(u32, 131072);
+pub const RASEO_RequireEncryptedPw = @as(u32, 1024);
+pub const RASEO_RequireMsCHAP = @as(u32, 268435456);
+pub const RASEO_RequireMsCHAP2 = @as(u32, 536870912);
+pub const RASEO_RequireMsEncryptedPw = @as(u32, 2048);
+pub const RASEO_RequirePAP = @as(u32, 262144);
+pub const RASEO_RequireSPAP = @as(u32, 524288);
+pub const RASEO_RequireW95MSCHAP = @as(u32, 1073741824);
+pub const RASEO_SecureLocalFiles = @as(u32, 65536);
+pub const RASEO_SharedPhoneNumbers = @as(u32, 8388608);
+pub const RASEO_ShowDialingProgress = @as(u32, 67108864);
+pub const RASEO_SpecificIpAddr = @as(u32, 2);
+pub const RASEO_SpecificNameServers = @as(u32, 4);
+pub const RASEO_SwCompression = @as(u32, 512);
+pub const RASEO_TerminalAfterDial = @as(u32, 128);
+pub const RASEO_TerminalBeforeDial = @as(u32, 64);
+pub const RASEO_UseCountryAndAreaCodes = @as(u32, 1);
+pub const RASEO_UseLogonCredentials = @as(u32, 16384);
+pub const RASET_Broadband = @as(u32, 5);
+pub const RASET_Direct = @as(u32, 3);
+pub const RASET_Internet = @as(u32, 4);
+pub const RASET_Phone = @as(u32, 1);
+pub const RASET_Vpn = @as(u32, 2);
+pub const RASFP_Ppp = @as(u32, 1);
+pub const RASFP_Ras = @as(u32, 4);
+pub const RASFP_Slip = @as(u32, 2);
+pub const RASIDS_Disabled = @as(u32, 4294967295);
+pub const RASIDS_UseGlobalValue = @as(u32, 0);
+pub const RASIKEv2_AUTH_EAP = @as(u32, 2);
+pub const RASIKEv2_AUTH_MACHINECERTIFICATES = @as(u32, 1);
+pub const RASIKEv2_AUTH_PSK = @as(u32, 3);
+pub const RASIPO_VJ = @as(u32, 1);
+pub const RASLCPO_3_DES = @as(u32, 16);
+pub const RASLCPO_ACFC = @as(u32, 2);
+pub const RASLCPO_AES_128 = @as(u32, 32);
+pub const RASLCPO_AES_192 = @as(u32, 128);
+pub const RASLCPO_AES_256 = @as(u32, 64);
+pub const RASLCPO_DES_56 = @as(u32, 8);
+pub const RASLCPO_GCM_AES_128 = @as(u32, 256);
+pub const RASLCPO_GCM_AES_192 = @as(u32, 512);
+pub const RASLCPO_GCM_AES_256 = @as(u32, 1024);
+pub const RASLCPO_PFC = @as(u32, 1);
+pub const RASLCPO_SSHF = @as(u32, 4);
+pub const RASNAP_ProbationTime = @as(u32, 1);
+pub const RASNOUSER_SmartCard = @as(u32, 1);
+pub const RASNP_Ip = @as(u32, 4);
+pub const RASNP_Ipv6 = @as(u32, 8);
+pub const RASNP_Ipx = @as(u32, 2);
+pub const RASNP_NetBEUI = @as(u32, 1);
+pub const RASPBDEVENT_AddEntry = @as(u32, 1);
+pub const RASPBDEVENT_DialEntry = @as(u32, 4);
+pub const RASPBDEVENT_EditEntry = @as(u32, 2);
+pub const RASPBDEVENT_EditGlobals = @as(u32, 5);
+pub const RASPBDEVENT_NoUser = @as(u32, 6);
+pub const RASPBDEVENT_NoUserEdit = @as(u32, 7);
+pub const RASPBDEVENT_RemoveEntry = @as(u32, 3);
+pub const RASPBDFLAG_ForceCloseOnDial = @as(u32, 2);
+pub const RASPBDFLAG_NoUser = @as(u32, 16);
+pub const RASPBDFLAG_PositionDlg = @as(u32, 1);
+pub const RASPBDFLAG_UpdateDefaults = @as(u32, 2147483648);
+pub const RASPRIV2_DialinPolicy = @as(u32, 1);
+pub const RASPRIV_AdminSetCallback = @as(u32, 2);
+pub const RASPRIV_CallerSetCallback = @as(u32, 4);
+pub const RASPRIV_DialinPrivilege = @as(u32, 8);
+pub const RASPRIV_NoCallback = @as(u32, 1);
+pub const RASTUNNELENDPOINT_IPv4 = @as(u32, 1);
+pub const RASTUNNELENDPOINT_IPv6 = @as(u32, 2);
+pub const RASTUNNELENDPOINT_UNKNOWN = @as(u32, 0);
+pub const RCD_AllUsers = @as(u32, 1);
+pub const RCD_Eap = @as(u32, 2);
+pub const RCD_Logon = @as(u32, 4);
+pub const RCD_SingleUser = @as(u32, 0);
+pub const RDEOPT_CustomDial = @as(u32, 4096);
+pub const RDEOPT_DisableConnectedUI = @as(u32, 64);
+pub const RDEOPT_DisableReconnect = @as(u32, 256);
+pub const RDEOPT_DisableReconnectUI = @as(u32, 128);
+pub const RDEOPT_EapInfoCryptInCapable = @as(u32, 32768);
+pub const RDEOPT_IgnoreModemSpeaker = @as(u32, 4);
+pub const RDEOPT_IgnoreSoftwareCompression = @as(u32, 16);
+pub const RDEOPT_InvokeAutoTriggerCredentialUI = @as(u32, 16384);
+pub const RDEOPT_NoUser = @as(u32, 512);
+pub const RDEOPT_PausedStates = @as(u32, 2);
+pub const RDEOPT_PauseOnScript = @as(u32, 1024);
+pub const RDEOPT_Router = @as(u32, 2048);
+pub const RDEOPT_SetModemSpeaker = @as(u32, 8);
+pub const RDEOPT_SetSoftwareCompression = @as(u32, 32);
+pub const RDEOPT_UseCustomScripting = @as(u32, 8192);
+pub const RDEOPT_UsePrefixSuffix = @as(u32, 1);
+pub const REN_AllUsers = @as(u32, 1);
+pub const REN_User = @as(u32, 0);
+pub const RRAS_SERVICE_NAME = "RemoteAccess";
 pub const RTM_BLOCK_METHODS = @as(u32, 1);
-pub const RTM_ROUTE_CHANGE_FIRST = @as(u32, 1);
-pub const RTM_ROUTE_CHANGE_NEW = @as(u32, 2);
-pub const RTM_ROUTE_CHANGE_BEST = @as(u32, 65536);
-pub const RTM_NEXTHOP_CHANGE_NEW = @as(u32, 1);
-pub const RTM_MATCH_NONE = @as(u32, 0);
-pub const RTM_MATCH_OWNER = @as(u32, 1);
-pub const RTM_MATCH_NEIGHBOUR = @as(u32, 2);
-pub const RTM_MATCH_PREF = @as(u32, 4);
-pub const RTM_MATCH_NEXTHOP = @as(u32, 8);
-pub const RTM_MATCH_INTERFACE = @as(u32, 16);
-pub const RTM_MATCH_FULL = @as(u32, 65535);
-pub const RTM_ENUM_START = @as(u32, 0);
-pub const RTM_ENUM_NEXT = @as(u32, 1);
-pub const RTM_ENUM_RANGE = @as(u32, 2);
-pub const RTM_ENUM_ALL_DESTS = @as(u32, 0);
-pub const RTM_ENUM_OWN_DESTS = @as(u32, 16777216);
-pub const RTM_ENUM_ALL_ROUTES = @as(u32, 0);
-pub const RTM_ENUM_OWN_ROUTES = @as(u32, 65536);
-pub const RTM_NUM_CHANGE_TYPES = @as(u32, 3);
 pub const RTM_CHANGE_TYPE_ALL = @as(u32, 1);
 pub const RTM_CHANGE_TYPE_BEST = @as(u32, 2);
 pub const RTM_CHANGE_TYPE_FORWARDING = @as(u32, 4);
+pub const RTM_DEST_FLAG_DONT_FORWARD = @as(u32, 4);
+pub const RTM_DEST_FLAG_FWD_ENGIN_ADD = @as(u32, 2);
+pub const RTM_DEST_FLAG_NATURAL_NET = @as(u32, 1);
+pub const RTM_ENUM_ALL_DESTS = @as(u32, 0);
+pub const RTM_ENUM_ALL_ROUTES = @as(u32, 0);
+pub const RTM_ENUM_NEXT = @as(u32, 1);
+pub const RTM_ENUM_OWN_DESTS = @as(u32, 16777216);
+pub const RTM_ENUM_OWN_ROUTES = @as(u32, 65536);
+pub const RTM_ENUM_RANGE = @as(u32, 2);
+pub const RTM_ENUM_START = @as(u32, 0);
+pub const RTM_MATCH_FULL = @as(u32, 65535);
+pub const RTM_MATCH_INTERFACE = @as(u32, 16);
+pub const RTM_MATCH_NEIGHBOUR = @as(u32, 2);
+pub const RTM_MATCH_NEXTHOP = @as(u32, 8);
+pub const RTM_MATCH_NONE = @as(u32, 0);
+pub const RTM_MATCH_OWNER = @as(u32, 1);
+pub const RTM_MATCH_PREF = @as(u32, 4);
+pub const RTM_MAX_ADDRESS_SIZE = @as(u32, 16);
+pub const RTM_MAX_VIEWS = @as(u32, 32);
+pub const RTM_NEXTHOP_CHANGE_NEW = @as(u32, 1);
+pub const RTM_NEXTHOP_FLAGS_DOWN = @as(u32, 2);
+pub const RTM_NEXTHOP_FLAGS_REMOTE = @as(u32, 1);
+pub const RTM_NEXTHOP_STATE_CREATED = @as(u32, 0);
+pub const RTM_NEXTHOP_STATE_DELETED = @as(u32, 1);
 pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
-pub const RASBASE = @as(u32, 600);
-pub const PENDING = @as(u32, 600);
-pub const ERROR_INVALID_PORT_HANDLE = @as(u32, 601);
-pub const ERROR_PORT_ALREADY_OPEN = @as(u32, 602);
-pub const ERROR_BUFFER_TOO_SMALL = @as(u32, 603);
-pub const ERROR_WRONG_INFO_SPECIFIED = @as(u32, 604);
-pub const ERROR_CANNOT_SET_PORT_INFO = @as(u32, 605);
-pub const ERROR_PORT_NOT_CONNECTED = @as(u32, 606);
-pub const ERROR_EVENT_INVALID = @as(u32, 607);
-pub const ERROR_DEVICE_DOES_NOT_EXIST = @as(u32, 608);
-pub const ERROR_DEVICETYPE_DOES_NOT_EXIST = @as(u32, 609);
-pub const ERROR_BUFFER_INVALID = @as(u32, 610);
-pub const ERROR_ROUTE_NOT_AVAILABLE = @as(u32, 611);
-pub const ERROR_ROUTE_NOT_ALLOCATED = @as(u32, 612);
-pub const ERROR_INVALID_COMPRESSION_SPECIFIED = @as(u32, 613);
-pub const ERROR_OUT_OF_BUFFERS = @as(u32, 614);
-pub const ERROR_PORT_NOT_FOUND = @as(u32, 615);
-pub const ERROR_ASYNC_REQUEST_PENDING = @as(u32, 616);
-pub const ERROR_ALREADY_DISCONNECTING = @as(u32, 617);
-pub const ERROR_PORT_NOT_OPEN = @as(u32, 618);
-pub const ERROR_PORT_DISCONNECTED = @as(u32, 619);
-pub const ERROR_NO_ENDPOINTS = @as(u32, 620);
-pub const ERROR_CANNOT_OPEN_PHONEBOOK = @as(u32, 621);
-pub const ERROR_CANNOT_LOAD_PHONEBOOK = @as(u32, 622);
-pub const ERROR_CANNOT_FIND_PHONEBOOK_ENTRY = @as(u32, 623);
-pub const ERROR_CANNOT_WRITE_PHONEBOOK = @as(u32, 624);
-pub const ERROR_CORRUPT_PHONEBOOK = @as(u32, 625);
-pub const ERROR_CANNOT_LOAD_STRING = @as(u32, 626);
-pub const ERROR_KEY_NOT_FOUND = @as(u32, 627);
-pub const ERROR_DISCONNECTION = @as(u32, 628);
-pub const ERROR_REMOTE_DISCONNECTION = @as(u32, 629);
-pub const ERROR_HARDWARE_FAILURE = @as(u32, 630);
-pub const ERROR_USER_DISCONNECTION = @as(u32, 631);
-pub const ERROR_INVALID_SIZE = @as(u32, 632);
-pub const ERROR_PORT_NOT_AVAILABLE = @as(u32, 633);
-pub const ERROR_CANNOT_PROJECT_CLIENT = @as(u32, 634);
-pub const ERROR_UNKNOWN = @as(u32, 635);
-pub const ERROR_WRONG_DEVICE_ATTACHED = @as(u32, 636);
-pub const ERROR_BAD_STRING = @as(u32, 637);
-pub const ERROR_REQUEST_TIMEOUT = @as(u32, 638);
-pub const ERROR_CANNOT_GET_LANA = @as(u32, 639);
-pub const ERROR_NETBIOS_ERROR = @as(u32, 640);
-pub const ERROR_SERVER_OUT_OF_RESOURCES = @as(u32, 641);
-pub const ERROR_NAME_EXISTS_ON_NET = @as(u32, 642);
-pub const ERROR_SERVER_GENERAL_NET_FAILURE = @as(u32, 643);
+pub const RTM_NUM_CHANGE_TYPES = @as(u32, 3);
+pub const RTM_RESUME_METHODS = @as(u32, 0);
+pub const RTM_ROUTE_CHANGE_BEST = @as(u32, 65536);
+pub const RTM_ROUTE_CHANGE_FIRST = @as(u32, 1);
+pub const RTM_ROUTE_CHANGE_NEW = @as(u32, 2);
+pub const RTM_ROUTE_FLAGS_BLACKHOLE = @as(u32, 2);
+pub const RTM_ROUTE_FLAGS_DISCARD = @as(u32, 4);
+pub const RTM_ROUTE_FLAGS_INACTIVE = @as(u32, 8);
+pub const RTM_ROUTE_FLAGS_LIMITED_BC = @as(u32, 1024);
+pub const RTM_ROUTE_FLAGS_LOCAL = @as(u32, 16);
+pub const RTM_ROUTE_FLAGS_LOCAL_MCAST = @as(u32, 512);
+pub const RTM_ROUTE_FLAGS_LOOPBACK = @as(u32, 128);
+pub const RTM_ROUTE_FLAGS_MARTIAN = @as(u32, 1);
+pub const RTM_ROUTE_FLAGS_MCAST = @as(u32, 256);
+pub const RTM_ROUTE_FLAGS_MYSELF = @as(u32, 64);
+pub const RTM_ROUTE_FLAGS_ONES_NETBC = @as(u32, 16384);
+pub const RTM_ROUTE_FLAGS_ONES_SUBNETBC = @as(u32, 32768);
+pub const RTM_ROUTE_FLAGS_REMOTE = @as(u32, 32);
+pub const RTM_ROUTE_FLAGS_ZEROS_NETBC = @as(u32, 4096);
+pub const RTM_ROUTE_FLAGS_ZEROS_SUBNETBC = @as(u32, 8192);
+pub const RTM_ROUTE_STATE_CREATED = @as(u32, 0);
+pub const RTM_ROUTE_STATE_DELETED = @as(u32, 2);
+pub const RTM_ROUTE_STATE_DELETING = @as(u32, 1);
+pub const RTM_VIEW_ID_MCAST = @as(u32, 1);
+pub const RTM_VIEW_ID_UCAST = @as(u32, 0);
+pub const RTM_VIEW_MASK_ALL = @as(u32, 4294967295);
+pub const RTM_VIEW_MASK_ANY = @as(u32, 0);
+pub const RTM_VIEW_MASK_MCAST = @as(u32, 2);
+pub const RTM_VIEW_MASK_NONE = @as(u32, 0);
+pub const RTM_VIEW_MASK_SIZE = @as(u32, 32);
+pub const RTM_VIEW_MASK_UCAST = @as(u32, 1);
+pub const VS_Default = @as(u32, 0);
+pub const VS_GREOnly = @as(u32, 9);
+pub const VS_Ikev2First = @as(u32, 8);
+pub const VS_Ikev2Only = @as(u32, 7);
+pub const VS_Ikev2Sstp = @as(u32, 14);
+pub const VS_L2tpFirst = @as(u32, 4);
+pub const VS_L2tpOnly = @as(u32, 3);
+pub const VS_L2tpSstp = @as(u32, 13);
+pub const VS_PptpFirst = @as(u32, 2);
+pub const VS_PptpOnly = @as(u32, 1);
+pub const VS_PptpSstp = @as(u32, 12);
+pub const VS_ProtocolList = @as(u32, 15);
+pub const VS_SstpFirst = @as(u32, 6);
+pub const VS_SstpOnly = @as(u32, 5);
 pub const WARNING_MSG_ALIAS_NOT_ADDED = @as(u32, 644);
-pub const ERROR_AUTH_INTERNAL = @as(u32, 645);
-pub const ERROR_RESTRICTED_LOGON_HOURS = @as(u32, 646);
-pub const ERROR_ACCT_DISABLED = @as(u32, 647);
-pub const ERROR_PASSWD_EXPIRED = @as(u32, 648);
-pub const ERROR_NO_DIALIN_PERMISSION = @as(u32, 649);
-pub const ERROR_SERVER_NOT_RESPONDING = @as(u32, 650);
-pub const ERROR_FROM_DEVICE = @as(u32, 651);
-pub const ERROR_UNRECOGNIZED_RESPONSE = @as(u32, 652);
-pub const ERROR_MACRO_NOT_FOUND = @as(u32, 653);
-pub const ERROR_MACRO_NOT_DEFINED = @as(u32, 654);
-pub const ERROR_MESSAGE_MACRO_NOT_FOUND = @as(u32, 655);
-pub const ERROR_DEFAULTOFF_MACRO_NOT_FOUND = @as(u32, 656);
-pub const ERROR_FILE_COULD_NOT_BE_OPENED = @as(u32, 657);
-pub const ERROR_DEVICENAME_TOO_LONG = @as(u32, 658);
-pub const ERROR_DEVICENAME_NOT_FOUND = @as(u32, 659);
-pub const ERROR_NO_RESPONSES = @as(u32, 660);
-pub const ERROR_NO_COMMAND_FOUND = @as(u32, 661);
-pub const ERROR_WRONG_KEY_SPECIFIED = @as(u32, 662);
-pub const ERROR_UNKNOWN_DEVICE_TYPE = @as(u32, 663);
-pub const ERROR_ALLOCATING_MEMORY = @as(u32, 664);
-pub const ERROR_PORT_NOT_CONFIGURED = @as(u32, 665);
-pub const ERROR_DEVICE_NOT_READY = @as(u32, 666);
-pub const ERROR_READING_INI_FILE = @as(u32, 667);
-pub const ERROR_NO_CONNECTION = @as(u32, 668);
-pub const ERROR_BAD_USAGE_IN_INI_FILE = @as(u32, 669);
-pub const ERROR_READING_SECTIONNAME = @as(u32, 670);
-pub const ERROR_READING_DEVICETYPE = @as(u32, 671);
-pub const ERROR_READING_DEVICENAME = @as(u32, 672);
-pub const ERROR_READING_USAGE = @as(u32, 673);
-pub const ERROR_READING_MAXCONNECTBPS = @as(u32, 674);
-pub const ERROR_READING_MAXCARRIERBPS = @as(u32, 675);
-pub const ERROR_LINE_BUSY = @as(u32, 676);
-pub const ERROR_VOICE_ANSWER = @as(u32, 677);
-pub const ERROR_NO_ANSWER = @as(u32, 678);
-pub const ERROR_NO_CARRIER = @as(u32, 679);
-pub const ERROR_NO_DIALTONE = @as(u32, 680);
-pub const ERROR_IN_COMMAND = @as(u32, 681);
-pub const ERROR_WRITING_SECTIONNAME = @as(u32, 682);
-pub const ERROR_WRITING_DEVICETYPE = @as(u32, 683);
-pub const ERROR_WRITING_DEVICENAME = @as(u32, 684);
-pub const ERROR_WRITING_MAXCONNECTBPS = @as(u32, 685);
-pub const ERROR_WRITING_MAXCARRIERBPS = @as(u32, 686);
-pub const ERROR_WRITING_USAGE = @as(u32, 687);
-pub const ERROR_WRITING_DEFAULTOFF = @as(u32, 688);
-pub const ERROR_READING_DEFAULTOFF = @as(u32, 689);
-pub const ERROR_EMPTY_INI_FILE = @as(u32, 690);
-pub const ERROR_AUTHENTICATION_FAILURE = @as(u32, 691);
-pub const ERROR_PORT_OR_DEVICE = @as(u32, 692);
-pub const ERROR_NOT_BINARY_MACRO = @as(u32, 693);
-pub const ERROR_DCB_NOT_FOUND = @as(u32, 694);
-pub const ERROR_STATE_MACHINES_NOT_STARTED = @as(u32, 695);
-pub const ERROR_STATE_MACHINES_ALREADY_STARTED = @as(u32, 696);
-pub const ERROR_PARTIAL_RESPONSE_LOOPING = @as(u32, 697);
-pub const ERROR_UNKNOWN_RESPONSE_KEY = @as(u32, 698);
-pub const ERROR_RECV_BUF_FULL = @as(u32, 699);
-pub const ERROR_CMD_TOO_LONG = @as(u32, 700);
-pub const ERROR_UNSUPPORTED_BPS = @as(u32, 701);
-pub const ERROR_UNEXPECTED_RESPONSE = @as(u32, 702);
-pub const ERROR_INTERACTIVE_MODE = @as(u32, 703);
-pub const ERROR_BAD_CALLBACK_NUMBER = @as(u32, 704);
-pub const ERROR_INVALID_AUTH_STATE = @as(u32, 705);
-pub const ERROR_WRITING_INITBPS = @as(u32, 706);
-pub const ERROR_X25_DIAGNOSTIC = @as(u32, 707);
-pub const ERROR_ACCT_EXPIRED = @as(u32, 708);
-pub const ERROR_CHANGING_PASSWORD = @as(u32, 709);
-pub const ERROR_OVERRUN = @as(u32, 710);
-pub const ERROR_RASMAN_CANNOT_INITIALIZE = @as(u32, 711);
-pub const ERROR_BIPLEX_PORT_NOT_AVAILABLE = @as(u32, 712);
-pub const ERROR_NO_ACTIVE_ISDN_LINES = @as(u32, 713);
-pub const ERROR_NO_ISDN_CHANNELS_AVAILABLE = @as(u32, 714);
-pub const ERROR_TOO_MANY_LINE_ERRORS = @as(u32, 715);
-pub const ERROR_IP_CONFIGURATION = @as(u32, 716);
-pub const ERROR_NO_IP_ADDRESSES = @as(u32, 717);
-pub const ERROR_PPP_TIMEOUT = @as(u32, 718);
-pub const ERROR_PPP_REMOTE_TERMINATED = @as(u32, 719);
-pub const ERROR_PPP_NO_PROTOCOLS_CONFIGURED = @as(u32, 720);
-pub const ERROR_PPP_NO_RESPONSE = @as(u32, 721);
-pub const ERROR_PPP_INVALID_PACKET = @as(u32, 722);
-pub const ERROR_PHONE_NUMBER_TOO_LONG = @as(u32, 723);
-pub const ERROR_IPXCP_NO_DIALOUT_CONFIGURED = @as(u32, 724);
-pub const ERROR_IPXCP_NO_DIALIN_CONFIGURED = @as(u32, 725);
-pub const ERROR_IPXCP_DIALOUT_ALREADY_ACTIVE = @as(u32, 726);
-pub const ERROR_ACCESSING_TCPCFGDLL = @as(u32, 727);
-pub const ERROR_NO_IP_RAS_ADAPTER = @as(u32, 728);
-pub const ERROR_SLIP_REQUIRES_IP = @as(u32, 729);
-pub const ERROR_PROJECTION_NOT_COMPLETE = @as(u32, 730);
-pub const ERROR_PROTOCOL_NOT_CONFIGURED = @as(u32, 731);
-pub const ERROR_PPP_NOT_CONVERGING = @as(u32, 732);
-pub const ERROR_PPP_CP_REJECTED = @as(u32, 733);
-pub const ERROR_PPP_LCP_TERMINATED = @as(u32, 734);
-pub const ERROR_PPP_REQUIRED_ADDRESS_REJECTED = @as(u32, 735);
-pub const ERROR_PPP_NCP_TERMINATED = @as(u32, 736);
-pub const ERROR_PPP_LOOPBACK_DETECTED = @as(u32, 737);
-pub const ERROR_PPP_NO_ADDRESS_ASSIGNED = @as(u32, 738);
-pub const ERROR_CANNOT_USE_LOGON_CREDENTIALS = @as(u32, 739);
-pub const ERROR_TAPI_CONFIGURATION = @as(u32, 740);
-pub const ERROR_NO_LOCAL_ENCRYPTION = @as(u32, 741);
-pub const ERROR_NO_REMOTE_ENCRYPTION = @as(u32, 742);
-pub const ERROR_REMOTE_REQUIRES_ENCRYPTION = @as(u32, 743);
-pub const ERROR_IPXCP_NET_NUMBER_CONFLICT = @as(u32, 744);
-pub const ERROR_INVALID_SMM = @as(u32, 745);
-pub const ERROR_SMM_UNINITIALIZED = @as(u32, 746);
-pub const ERROR_NO_MAC_FOR_PORT = @as(u32, 747);
-pub const ERROR_SMM_TIMEOUT = @as(u32, 748);
-pub const ERROR_BAD_PHONE_NUMBER = @as(u32, 749);
-pub const ERROR_WRONG_MODULE = @as(u32, 750);
-pub const ERROR_INVALID_CALLBACK_NUMBER = @as(u32, 751);
-pub const ERROR_SCRIPT_SYNTAX = @as(u32, 752);
-pub const ERROR_HANGUP_FAILED = @as(u32, 753);
-pub const ERROR_BUNDLE_NOT_FOUND = @as(u32, 754);
-pub const ERROR_CANNOT_DO_CUSTOMDIAL = @as(u32, 755);
-pub const ERROR_DIAL_ALREADY_IN_PROGRESS = @as(u32, 756);
-pub const ERROR_RASAUTO_CANNOT_INITIALIZE = @as(u32, 757);
-pub const ERROR_CONNECTION_ALREADY_SHARED = @as(u32, 758);
-pub const ERROR_SHARING_CHANGE_FAILED = @as(u32, 759);
-pub const ERROR_SHARING_ROUTER_INSTALL = @as(u32, 760);
-pub const ERROR_SHARE_CONNECTION_FAILED = @as(u32, 761);
-pub const ERROR_SHARING_PRIVATE_INSTALL = @as(u32, 762);
-pub const ERROR_CANNOT_SHARE_CONNECTION = @as(u32, 763);
-pub const ERROR_NO_SMART_CARD_READER = @as(u32, 764);
-pub const ERROR_SHARING_ADDRESS_EXISTS = @as(u32, 765);
-pub const ERROR_NO_CERTIFICATE = @as(u32, 766);
-pub const ERROR_SHARING_MULTIPLE_ADDRESSES = @as(u32, 767);
-pub const ERROR_FAILED_TO_ENCRYPT = @as(u32, 768);
-pub const ERROR_BAD_ADDRESS_SPECIFIED = @as(u32, 769);
-pub const ERROR_CONNECTION_REJECT = @as(u32, 770);
-pub const ERROR_CONGESTION = @as(u32, 771);
-pub const ERROR_INCOMPATIBLE = @as(u32, 772);
-pub const ERROR_NUMBERCHANGED = @as(u32, 773);
-pub const ERROR_TEMPFAILURE = @as(u32, 774);
-pub const ERROR_BLOCKED = @as(u32, 775);
-pub const ERROR_DONOTDISTURB = @as(u32, 776);
-pub const ERROR_OUTOFORDER = @as(u32, 777);
-pub const ERROR_UNABLE_TO_AUTHENTICATE_SERVER = @as(u32, 778);
-pub const ERROR_SMART_CARD_REQUIRED = @as(u32, 779);
-pub const ERROR_INVALID_FUNCTION_FOR_ENTRY = @as(u32, 780);
-pub const ERROR_CERT_FOR_ENCRYPTION_NOT_FOUND = @as(u32, 781);
-pub const ERROR_SHARING_RRAS_CONFLICT = @as(u32, 782);
-pub const ERROR_SHARING_NO_PRIVATE_LAN = @as(u32, 783);
-pub const ERROR_NO_DIFF_USER_AT_LOGON = @as(u32, 784);
-pub const ERROR_NO_REG_CERT_AT_LOGON = @as(u32, 785);
-pub const ERROR_OAKLEY_NO_CERT = @as(u32, 786);
-pub const ERROR_OAKLEY_AUTH_FAIL = @as(u32, 787);
-pub const ERROR_OAKLEY_ATTRIB_FAIL = @as(u32, 788);
-pub const ERROR_OAKLEY_GENERAL_PROCESSING = @as(u32, 789);
-pub const ERROR_OAKLEY_NO_PEER_CERT = @as(u32, 790);
-pub const ERROR_OAKLEY_NO_POLICY = @as(u32, 791);
-pub const ERROR_OAKLEY_TIMED_OUT = @as(u32, 792);
-pub const ERROR_OAKLEY_ERROR = @as(u32, 793);
-pub const ERROR_UNKNOWN_FRAMED_PROTOCOL = @as(u32, 794);
-pub const ERROR_WRONG_TUNNEL_TYPE = @as(u32, 795);
-pub const ERROR_UNKNOWN_SERVICE_TYPE = @as(u32, 796);
-pub const ERROR_CONNECTING_DEVICE_NOT_FOUND = @as(u32, 797);
-pub const ERROR_NO_EAPTLS_CERTIFICATE = @as(u32, 798);
-pub const ERROR_SHARING_HOST_ADDRESS_CONFLICT = @as(u32, 799);
-pub const ERROR_AUTOMATIC_VPN_FAILED = @as(u32, 800);
-pub const ERROR_VALIDATING_SERVER_CERT = @as(u32, 801);
-pub const ERROR_READING_SCARD = @as(u32, 802);
-pub const ERROR_INVALID_PEAP_COOKIE_CONFIG = @as(u32, 803);
-pub const ERROR_INVALID_PEAP_COOKIE_USER = @as(u32, 804);
-pub const ERROR_INVALID_MSCHAPV2_CONFIG = @as(u32, 805);
-pub const ERROR_VPN_GRE_BLOCKED = @as(u32, 806);
-pub const ERROR_VPN_DISCONNECT = @as(u32, 807);
-pub const ERROR_VPN_REFUSED = @as(u32, 808);
-pub const ERROR_VPN_TIMEOUT = @as(u32, 809);
-pub const ERROR_VPN_BAD_CERT = @as(u32, 810);
-pub const ERROR_VPN_BAD_PSK = @as(u32, 811);
-pub const ERROR_SERVER_POLICY = @as(u32, 812);
-pub const ERROR_BROADBAND_ACTIVE = @as(u32, 813);
-pub const ERROR_BROADBAND_NO_NIC = @as(u32, 814);
-pub const ERROR_BROADBAND_TIMEOUT = @as(u32, 815);
-pub const ERROR_FEATURE_DEPRECATED = @as(u32, 816);
-pub const ERROR_CANNOT_DELETE = @as(u32, 817);
-pub const ERROR_RASQEC_RESOURCE_CREATION_FAILED = @as(u32, 818);
-pub const ERROR_RASQEC_NAPAGENT_NOT_ENABLED = @as(u32, 819);
-pub const ERROR_RASQEC_NAPAGENT_NOT_CONNECTED = @as(u32, 820);
-pub const ERROR_RASQEC_CONN_DOESNOTEXIST = @as(u32, 821);
-pub const ERROR_RASQEC_TIMEOUT = @as(u32, 822);
-pub const ERROR_PEAP_CRYPTOBINDING_INVALID = @as(u32, 823);
-pub const ERROR_PEAP_CRYPTOBINDING_NOTRECEIVED = @as(u32, 824);
-pub const ERROR_INVALID_VPNSTRATEGY = @as(u32, 825);
-pub const ERROR_EAPTLS_CACHE_CREDENTIALS_INVALID = @as(u32, 826);
-pub const ERROR_IPSEC_SERVICE_STOPPED = @as(u32, 827);
-pub const ERROR_IDLE_TIMEOUT = @as(u32, 828);
-pub const ERROR_LINK_FAILURE = @as(u32, 829);
-pub const ERROR_USER_LOGOFF = @as(u32, 830);
-pub const ERROR_FAST_USER_SWITCH = @as(u32, 831);
-pub const ERROR_HIBERNATION = @as(u32, 832);
-pub const ERROR_SYSTEM_SUSPENDED = @as(u32, 833);
-pub const ERROR_RASMAN_SERVICE_STOPPED = @as(u32, 834);
-pub const ERROR_INVALID_SERVER_CERT = @as(u32, 835);
-pub const ERROR_NOT_NAP_CAPABLE = @as(u32, 836);
-pub const ERROR_INVALID_TUNNELID = @as(u32, 837);
-pub const ERROR_UPDATECONNECTION_REQUEST_IN_PROCESS = @as(u32, 838);
-pub const ERROR_PROTOCOL_ENGINE_DISABLED = @as(u32, 839);
-pub const ERROR_INTERNAL_ADDRESS_FAILURE = @as(u32, 840);
-pub const ERROR_FAILED_CP_REQUIRED = @as(u32, 841);
-pub const ERROR_TS_UNACCEPTABLE = @as(u32, 842);
-pub const ERROR_MOBIKE_DISABLED = @as(u32, 843);
-pub const ERROR_CANNOT_INITIATE_MOBIKE_UPDATE = @as(u32, 844);
-pub const ERROR_PEAP_SERVER_REJECTED_CLIENT_TLV = @as(u32, 845);
-pub const ERROR_INVALID_PREFERENCES = @as(u32, 846);
-pub const ERROR_EAPTLS_SCARD_CACHE_CREDENTIALS_INVALID = @as(u32, 847);
-pub const ERROR_SSTP_COOKIE_SET_FAILURE = @as(u32, 848);
-pub const ERROR_INVALID_PEAP_COOKIE_ATTRIBUTES = @as(u32, 849);
-pub const ERROR_EAP_METHOD_NOT_INSTALLED = @as(u32, 850);
-pub const ERROR_EAP_METHOD_DOES_NOT_SUPPORT_SSO = @as(u32, 851);
-pub const ERROR_EAP_METHOD_OPERATION_NOT_SUPPORTED = @as(u32, 852);
-pub const ERROR_EAP_USER_CERT_INVALID = @as(u32, 853);
-pub const ERROR_EAP_USER_CERT_EXPIRED = @as(u32, 854);
-pub const ERROR_EAP_USER_CERT_REVOKED = @as(u32, 855);
-pub const ERROR_EAP_USER_CERT_OTHER_ERROR = @as(u32, 856);
-pub const ERROR_EAP_SERVER_CERT_INVALID = @as(u32, 857);
-pub const ERROR_EAP_SERVER_CERT_EXPIRED = @as(u32, 858);
-pub const ERROR_EAP_SERVER_CERT_REVOKED = @as(u32, 859);
-pub const ERROR_EAP_SERVER_CERT_OTHER_ERROR = @as(u32, 860);
-pub const ERROR_EAP_USER_ROOT_CERT_NOT_FOUND = @as(u32, 861);
-pub const ERROR_EAP_USER_ROOT_CERT_INVALID = @as(u32, 862);
-pub const ERROR_EAP_USER_ROOT_CERT_EXPIRED = @as(u32, 863);
-pub const ERROR_EAP_SERVER_ROOT_CERT_NOT_FOUND = @as(u32, 864);
-pub const ERROR_EAP_SERVER_ROOT_CERT_INVALID = @as(u32, 865);
-pub const ERROR_EAP_SERVER_ROOT_CERT_NAME_REQUIRED = @as(u32, 866);
-pub const ERROR_PEAP_IDENTITY_MISMATCH = @as(u32, 867);
-pub const ERROR_DNSNAME_NOT_RESOLVABLE = @as(u32, 868);
-pub const ERROR_EAPTLS_PASSWD_INVALID = @as(u32, 869);
-pub const ERROR_IKEV2_PSK_INTERFACE_ALREADY_EXISTS = @as(u32, 870);
-pub const ERROR_INVALID_DESTINATION_IP = @as(u32, 871);
-pub const ERROR_INVALID_INTERFACE_CONFIG = @as(u32, 872);
-pub const ERROR_VPN_PLUGIN_GENERIC = @as(u32, 873);
-pub const ERROR_SSO_CERT_MISSING = @as(u32, 874);
-pub const ERROR_DEVICE_COMPLIANCE = @as(u32, 875);
-pub const ERROR_PLUGIN_NOT_INSTALLED = @as(u32, 876);
-pub const ERROR_ACTION_REQUIRED = @as(u32, 877);
-pub const RASBASEEND = @as(u32, 877);
+pub const WM_RASDIALEVENT = @as(u32, 52429);
 
 //--------------------------------------------------------------------------------
 // Section: Types (224)
 //--------------------------------------------------------------------------------
-pub const MPR_INTERFACE_DIAL_MODE = enum(u32) {
-    First = 0,
-    All = 1,
-    AsNeeded = 2,
+pub const _MPR_VPN_SELECTOR = extern struct {
+    type: MPR_VPN_TS_TYPE,
+    protocolId: u8,
+    portStart: u16,
+    portEnd: u16,
+    tsPayloadId: u16,
+    addrStart: VPN_TS_IP_ADDRESS,
+    addrEnd: VPN_TS_IP_ADDRESS,
 };
-pub const MPRDM_DialFirst = MPR_INTERFACE_DIAL_MODE.First;
-pub const MPRDM_DialAll = MPR_INTERFACE_DIAL_MODE.All;
-pub const MPRDM_DialAsNeeded = MPR_INTERFACE_DIAL_MODE.AsNeeded;
 
-pub const RASENTRY_DIAL_MODE = enum(u32) {
-    ll = 1,
-    sNeeded = 2,
+pub const AUTH_VALIDATION_EX = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
+    hRasConnection: ?HANDLE,
+    wszUserName: [257]u16,
+    wszLogonDomain: [16]u16,
+    AuthInfoSize: u32,
+    AuthInfo: [1]u8,
 };
-pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
-pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
 
-pub const RAS_FLAGS = enum(u32) {
-    PPP_CONNECTION = 1,
-    MESSENGER_PRESENT = 2,
-    QUARANTINE_PRESENT = 8,
-    ARAP_CONNECTION = 16,
-    DORMANT = 32,
-    pub const IKEV2_CONNECTION = .ARAP_CONNECTION;
+pub const GRE_CONFIG_PARAMS0 = extern struct {
+    dwNumPorts: u32,
+    dwPortFlags: u32,
 };
-pub const RAS_FLAGS_PPP_CONNECTION = RAS_FLAGS.PPP_CONNECTION;
-pub const RAS_FLAGS_MESSENGER_PRESENT = RAS_FLAGS.MESSENGER_PRESENT;
-pub const RAS_FLAGS_QUARANTINE_PRESENT = RAS_FLAGS.QUARANTINE_PRESENT;
-pub const RAS_FLAGS_ARAP_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
-pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
-pub const RAS_FLAGS_DORMANT = RAS_FLAGS.DORMANT;
-
-pub const MPR_ET = enum(u32) {
-    None = 0,
-    Require = 1,
-    RequireMax = 2,
-    Optional = 3,
-};
-pub const MPR_ET_None = MPR_ET.None;
-pub const MPR_ET_Require = MPR_ET.Require;
-pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
-pub const MPR_ET_Optional = MPR_ET.Optional;
-
-pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA = enum(u32) {
-    D5 = 5,
-    S = 128,
-    SV2 = 129,
-};
-pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.D5;
-pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.S;
-pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.SV2;
-
-pub const PPP_LCP = enum(u32) {
-    PAP = 49187,
-    CHAP = 49699,
-    EAP = 49703,
-    SPAP = 49191,
-};
-pub const PPP_LCP_PAP = PPP_LCP.PAP;
-pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
-pub const PPP_LCP_EAP = PPP_LCP.EAP;
-pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
-
-pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL = enum(u32) {
-    PAP = 49187,
-    SPAP = 49191,
-    CHAP = 49699,
-    EAP = 49703,
-};
-pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.PAP;
-pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.SPAP;
-pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.CHAP;
-pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.EAP;
-
-pub const PPP_LCP_INFO_AUTH_DATA = enum(u32) {
-    D5 = 5,
-    S = 128,
-    SV2 = 129,
-};
-pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_AUTH_DATA.D5;
-pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_AUTH_DATA.S;
-pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_AUTH_DATA.SV2;
-
-pub const RASIKEV_PROJECTION_INFO_FLAGS = packed struct(u32) {
-    MOBIKESUPPORTED: u1 = 0,
-    BEHIND_NAT: u1 = 0,
-    SERVERBEHIND_NAT: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS{ .MOBIKESUPPORTED = 1 };
-pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS{ .BEHIND_NAT = 1 };
-pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS{ .SERVERBEHIND_NAT = 1 };
-
-pub const MPR_VS = enum(u32) {
-    Default = 0,
-    PptpOnly = 1,
-    PptpFirst = 2,
-    L2tpOnly = 3,
-    L2tpFirst = 4,
-};
-pub const MPR_VS_Default = MPR_VS.Default;
-pub const MPR_VS_PptpOnly = MPR_VS.PptpOnly;
-pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
-pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
-pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
-
-pub const SECURITY_MESSAGE_MSG_ID = enum(u32) {
-    SUCCESS = 1,
-    FAILURE = 2,
-    ERROR = 3,
-};
-pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
-pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
-pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HRASCONN = *opaque{};
 
-pub const RASAPIVERSION = enum(i32) {
-    @"500" = 1,
-    @"501" = 2,
-    @"600" = 3,
-    @"601" = 4,
+pub const IKEV2_CONFIG_PARAMS = extern struct {
+    dwNumPorts: u32,
+    dwPortFlags: u32,
+    dwTunnelConfigParamFlags: u32,
+    TunnelConfigParams: IKEV2_TUNNEL_CONFIG_PARAMS4,
 };
-pub const RASAPIVERSION_500 = RASAPIVERSION.@"500";
-pub const RASAPIVERSION_501 = RASAPIVERSION.@"501";
-pub const RASAPIVERSION_600 = RASAPIVERSION.@"600";
-pub const RASAPIVERSION_601 = RASAPIVERSION.@"601";
-
-pub const RASIPADDR = extern struct {
-    a: u8,
-    b: u8,
-    c: u8,
-    d: u8,
-};
-
-pub const RASTUNNELENDPOINT = extern struct {
-    dwType: u32,
-    Anonymous: extern union {
-        ipv4: IN_ADDR,
-        ipv6: IN6_ADDR,
-    },
-};
-
-pub const RASCONNW = extern struct {
-    dwSize: u32 align(4),
-    hrasconn: ?HRASCONN align(4),
-    szEntryName: [257]u16 align(4),
-    szDeviceType: [17]u16 align(4),
-    szDeviceName: [129]u16 align(4),
-    szPhonebook: [260]u16 align(4),
-    dwSubEntry: u32 align(4),
-    guidEntry: Guid align(4),
-    dwFlags: u32 align(4),
-    luid: LUID align(4),
-    guidCorrelationId: Guid align(4),
-};
-
-pub const RASCONNA = extern struct {
-    dwSize: u32 align(4),
-    hrasconn: ?HRASCONN align(4),
-    szEntryName: [257]CHAR align(4),
-    szDeviceType: [17]CHAR align(4),
-    szDeviceName: [129]CHAR align(4),
-    szPhonebook: [260]CHAR align(4),
-    dwSubEntry: u32 align(4),
-    guidEntry: Guid align(4),
-    dwFlags: u32 align(4),
-    luid: LUID align(4),
-    guidCorrelationId: Guid align(4),
-};
-
-pub const RASCONNSTATE = enum(i32) {
-    OpenPort = 0,
-    PortOpened = 1,
-    ConnectDevice = 2,
-    DeviceConnected = 3,
-    AllDevicesConnected = 4,
-    Authenticate = 5,
-    AuthNotify = 6,
-    AuthRetry = 7,
-    AuthCallback = 8,
-    AuthChangePassword = 9,
-    AuthProject = 10,
-    AuthLinkSpeed = 11,
-    AuthAck = 12,
-    ReAuthenticate = 13,
-    Authenticated = 14,
-    PrepareForCallback = 15,
-    WaitForModemReset = 16,
-    WaitForCallback = 17,
-    Projected = 18,
-    StartAuthentication = 19,
-    CallbackComplete = 20,
-    LogonNetwork = 21,
-    SubEntryConnected = 22,
-    SubEntryDisconnected = 23,
-    ApplySettings = 24,
-    Interactive = 4096,
-    RetryAuthentication = 4097,
-    CallbackSetByCaller = 4098,
-    PasswordExpired = 4099,
-    InvokeEapUI = 4100,
-    Connected = 8192,
-    Disconnected = 8193,
-};
-pub const RASCS_OpenPort = RASCONNSTATE.OpenPort;
-pub const RASCS_PortOpened = RASCONNSTATE.PortOpened;
-pub const RASCS_ConnectDevice = RASCONNSTATE.ConnectDevice;
-pub const RASCS_DeviceConnected = RASCONNSTATE.DeviceConnected;
-pub const RASCS_AllDevicesConnected = RASCONNSTATE.AllDevicesConnected;
-pub const RASCS_Authenticate = RASCONNSTATE.Authenticate;
-pub const RASCS_AuthNotify = RASCONNSTATE.AuthNotify;
-pub const RASCS_AuthRetry = RASCONNSTATE.AuthRetry;
-pub const RASCS_AuthCallback = RASCONNSTATE.AuthCallback;
-pub const RASCS_AuthChangePassword = RASCONNSTATE.AuthChangePassword;
-pub const RASCS_AuthProject = RASCONNSTATE.AuthProject;
-pub const RASCS_AuthLinkSpeed = RASCONNSTATE.AuthLinkSpeed;
-pub const RASCS_AuthAck = RASCONNSTATE.AuthAck;
-pub const RASCS_ReAuthenticate = RASCONNSTATE.ReAuthenticate;
-pub const RASCS_Authenticated = RASCONNSTATE.Authenticated;
-pub const RASCS_PrepareForCallback = RASCONNSTATE.PrepareForCallback;
-pub const RASCS_WaitForModemReset = RASCONNSTATE.WaitForModemReset;
-pub const RASCS_WaitForCallback = RASCONNSTATE.WaitForCallback;
-pub const RASCS_Projected = RASCONNSTATE.Projected;
-pub const RASCS_StartAuthentication = RASCONNSTATE.StartAuthentication;
-pub const RASCS_CallbackComplete = RASCONNSTATE.CallbackComplete;
-pub const RASCS_LogonNetwork = RASCONNSTATE.LogonNetwork;
-pub const RASCS_SubEntryConnected = RASCONNSTATE.SubEntryConnected;
-pub const RASCS_SubEntryDisconnected = RASCONNSTATE.SubEntryDisconnected;
-pub const RASCS_ApplySettings = RASCONNSTATE.ApplySettings;
-pub const RASCS_Interactive = RASCONNSTATE.Interactive;
-pub const RASCS_RetryAuthentication = RASCONNSTATE.RetryAuthentication;
-pub const RASCS_CallbackSetByCaller = RASCONNSTATE.CallbackSetByCaller;
-pub const RASCS_PasswordExpired = RASCONNSTATE.PasswordExpired;
-pub const RASCS_InvokeEapUI = RASCONNSTATE.InvokeEapUI;
-pub const RASCS_Connected = RASCONNSTATE.Connected;
-pub const RASCS_Disconnected = RASCONNSTATE.Disconnected;
-
-pub const RASCONNSUBSTATE = enum(i32) {
-    None = 0,
-    Dormant = 1,
-    Reconnecting = 2,
-    Reconnected = 8192,
-};
-pub const RASCSS_None = RASCONNSUBSTATE.None;
-pub const RASCSS_Dormant = RASCONNSUBSTATE.Dormant;
-pub const RASCSS_Reconnecting = RASCONNSUBSTATE.Reconnecting;
-pub const RASCSS_Reconnected = RASCONNSUBSTATE.Reconnected;
-
-pub const RASCONNSTATUSW = extern struct {
-    dwSize: u32,
-    rasconnstate: RASCONNSTATE,
-    dwError: u32,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szPhoneNumber: [129]u16,
-    localEndPoint: RASTUNNELENDPOINT,
-    remoteEndPoint: RASTUNNELENDPOINT,
-    rasconnsubstate: RASCONNSUBSTATE,
-};
-
-pub const RASCONNSTATUSA = extern struct {
-    dwSize: u32,
-    rasconnstate: RASCONNSTATE,
-    dwError: u32,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szPhoneNumber: [129]CHAR,
-    localEndPoint: RASTUNNELENDPOINT,
-    remoteEndPoint: RASTUNNELENDPOINT,
-    rasconnsubstate: RASCONNSUBSTATE,
-};
-
-pub const RASDIALPARAMSW = extern struct {
-    dwSize: u32 align(4),
-    szEntryName: [257]u16 align(4),
-    szPhoneNumber: [129]u16 align(4),
-    szCallbackNumber: [129]u16 align(4),
-    szUserName: [257]u16 align(4),
-    szPassword: [257]u16 align(4),
-    szDomain: [16]u16 align(4),
-    dwSubEntry: u32 align(4),
-    dwCallbackId: usize align(4),
-    dwIfIndex: u32 align(4),
-    szEncPassword: ?PWSTR align(4),
-};
-
-pub const RASDIALPARAMSA = extern struct {
-    dwSize: u32 align(4),
-    szEntryName: [257]CHAR align(4),
-    szPhoneNumber: [129]CHAR align(4),
-    szCallbackNumber: [129]CHAR align(4),
-    szUserName: [257]CHAR align(4),
-    szPassword: [257]CHAR align(4),
-    szDomain: [16]CHAR align(4),
-    dwSubEntry: u32 align(4),
-    dwCallbackId: usize align(4),
-    dwIfIndex: u32 align(4),
-    szEncPassword: ?PSTR align(4),
-};
-
-pub const RASEAPINFO = extern struct {
-    dwSizeofEapInfo: u32 align(4),
-    pbEapInfo: ?*u8 align(4),
-};
-
-pub const RASDEVSPECIFICINFO = extern struct {
-    dwSize: u32 align(4),
-    pbDevSpecificInfo: ?*u8 align(4),
-};
-
-pub const RASDIALEXTENSIONS = extern struct {
-    dwSize: u32 align(4),
-    dwfOptions: u32 align(4),
-    hwndParent: ?HWND align(4),
-    reserved: usize align(4),
-    reserved1: usize align(4),
-    RasEapInfo: RASEAPINFO align(4),
-    fSkipPppAuth: BOOL align(4),
-    RasDevSpecificInfo: RASDEVSPECIFICINFO align(4),
-};
-
-pub const RASENTRYNAMEW = extern struct {
-    dwSize: u32,
-    szEntryName: [257]u16,
-    dwFlags: u32,
-    szPhonebookPath: [261]u16,
-};
-
-pub const RASENTRYNAMEA = extern struct {
-    dwSize: u32,
-    szEntryName: [257]CHAR,
-    dwFlags: u32,
-    szPhonebookPath: [261]CHAR,
-};
-
-pub const RASPROJECTION = enum(i32) {
-    Amb = 65536,
-    PppNbf = 32831,
-    PppIpx = 32811,
-    PppIp = 32801,
-    PppCcp = 33021,
-    PppLcp = 49185,
-    PppIpv6 = 32855,
-};
-pub const RASP_Amb = RASPROJECTION.Amb;
-pub const RASP_PppNbf = RASPROJECTION.PppNbf;
-pub const RASP_PppIpx = RASPROJECTION.PppIpx;
-pub const RASP_PppIp = RASPROJECTION.PppIp;
-pub const RASP_PppCcp = RASPROJECTION.PppCcp;
-pub const RASP_PppLcp = RASPROJECTION.PppLcp;
-pub const RASP_PppIpv6 = RASPROJECTION.PppIpv6;
-
-pub const RASAMBW = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    szNetBiosError: [17]u16,
-    bLana: u8,
-};
-
-pub const RASAMBA = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    szNetBiosError: [17]CHAR,
-    bLana: u8,
-};
-
-pub const RASPPPNBFW = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    dwNetBiosError: u32,
-    szNetBiosError: [17]u16,
-    szWorkstationName: [17]u16,
-    bLana: u8,
-};
-
-pub const RASPPPNBFA = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    dwNetBiosError: u32,
-    szNetBiosError: [17]CHAR,
-    szWorkstationName: [17]CHAR,
-    bLana: u8,
-};
-
-pub const RASIPXW = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    szIpxAddress: [22]u16,
-};
-
-pub const RASPPPIPXA = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    szIpxAddress: [22]CHAR,
-};
-
-pub const RASPPPIPW = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    szIpAddress: [16]u16,
-    szServerIpAddress: [16]u16,
-    dwOptions: u32,
-    dwServerOptions: u32,
-};
-
-pub const RASPPPIPA = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    szIpAddress: [16]CHAR,
-    szServerIpAddress: [16]CHAR,
-    dwOptions: u32,
-    dwServerOptions: u32,
-};
-
-pub const RASPPPIPV6 = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    bLocalInterfaceIdentifier: [8]u8,
-    bPeerInterfaceIdentifier: [8]u8,
-    bLocalCompressionProtocol: [2]u8,
-    bPeerCompressionProtocol: [2]u8,
-};
-
-pub const RASPPPLCPW = extern struct {
-    dwSize: u32,
-    fBundled: BOOL,
-    dwError: u32,
-    dwAuthenticationProtocol: u32,
-    dwAuthenticationData: u32,
-    dwEapTypeId: u32,
-    dwServerAuthenticationProtocol: u32,
-    dwServerAuthenticationData: u32,
-    dwServerEapTypeId: u32,
-    fMultilink: BOOL,
-    dwTerminateReason: u32,
-    dwServerTerminateReason: u32,
-    szReplyMessage: [1024]u16,
-    dwOptions: u32,
-    dwServerOptions: u32,
-};
-
-pub const RASPPPLCPA = extern struct {
-    dwSize: u32,
-    fBundled: BOOL,
-    dwError: u32,
-    dwAuthenticationProtocol: u32,
-    dwAuthenticationData: u32,
-    dwEapTypeId: u32,
-    dwServerAuthenticationProtocol: u32,
-    dwServerAuthenticationData: u32,
-    dwServerEapTypeId: u32,
-    fMultilink: BOOL,
-    dwTerminateReason: u32,
-    dwServerTerminateReason: u32,
-    szReplyMessage: [1024]CHAR,
-    dwOptions: u32,
-    dwServerOptions: u32,
-};
-
-pub const RASPPPCCP = extern struct {
-    dwSize: u32,
-    dwError: u32,
-    dwCompressionAlgorithm: u32,
-    dwOptions: u32,
-    dwServerCompressionAlgorithm: u32,
-    dwServerOptions: u32,
-};
-
-pub const RASPPP_PROJECTION_INFO = extern struct {
-    dwIPv4NegotiationError: u32,
-    ipv4Address: IN_ADDR,
-    ipv4ServerAddress: IN_ADDR,
-    dwIPv4Options: u32,
-    dwIPv4ServerOptions: u32,
-    dwIPv6NegotiationError: u32,
-    bInterfaceIdentifier: [8]u8,
-    bServerInterfaceIdentifier: [8]u8,
-    fBundled: BOOL,
-    fMultilink: BOOL,
-    dwAuthenticationProtocol: RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL,
-    dwAuthenticationData: RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA,
-    dwServerAuthenticationProtocol: RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL,
-    dwServerAuthenticationData: RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA,
-    dwEapTypeId: u32,
-    dwServerEapTypeId: u32,
-    dwLcpOptions: u32,
-    dwLcpServerOptions: u32,
-    dwCcpError: u32,
-    dwCcpCompressionAlgorithm: u32,
-    dwCcpServerCompressionAlgorithm: u32,
-    dwCcpOptions: u32,
-    dwCcpServerOptions: u32,
-};
-
-pub const RASIKEV2_PROJECTION_INFO = extern struct {
-    dwIPv4NegotiationError: u32 align(4),
-    ipv4Address: IN_ADDR align(4),
-    ipv4ServerAddress: IN_ADDR align(4),
-    dwIPv6NegotiationError: u32 align(4),
-    ipv6Address: IN6_ADDR align(4),
-    ipv6ServerAddress: IN6_ADDR align(4),
-    dwPrefixLength: u32 align(4),
-    dwAuthenticationProtocol: u32 align(4),
-    dwEapTypeId: u32 align(4),
-    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS align(4),
-    dwEncryptionMethod: u32 align(4),
-    numIPv4ServerAddresses: u32 align(4),
-    ipv4ServerAddresses: ?*IN_ADDR align(4),
-    numIPv6ServerAddresses: u32 align(4),
-    ipv6ServerAddresses: ?*IN6_ADDR align(4),
-};
-
-pub const RASPROJECTION_INFO_TYPE = enum(i32) {
-    PPP = 1,
-    IKEv2 = 2,
-};
-pub const PROJECTION_INFO_TYPE_PPP = RASPROJECTION_INFO_TYPE.PPP;
-pub const PROJECTION_INFO_TYPE_IKEv2 = RASPROJECTION_INFO_TYPE.IKEv2;
 
 pub const IKEV2_ID_PAYLOAD_TYPE = enum(i32) {
     INVALID = 0,
@@ -1303,529 +789,198 @@ pub const IKEV2_ID_PAYLOAD_TYPE_DER_ASN1_GN = IKEV2_ID_PAYLOAD_TYPE.DER_ASN1_GN;
 pub const IKEV2_ID_PAYLOAD_TYPE_KEY_ID = IKEV2_ID_PAYLOAD_TYPE.KEY_ID;
 pub const IKEV2_ID_PAYLOAD_TYPE_MAX = IKEV2_ID_PAYLOAD_TYPE.MAX;
 
-pub const RAS_PROJECTION_INFO = extern struct {
-    version: RASAPIVERSION,
-    type: RASPROJECTION_INFO_TYPE,
-    Anonymous: extern union {
-        ppp: RASPPP_PROJECTION_INFO,
-        ikev2: RASIKEV2_PROJECTION_INFO,
-    },
+pub const IKEV2_PROJECTION_INFO = extern struct {
+    dwIPv4NegotiationError: u32,
+    wszAddress: [16]u16,
+    wszRemoteAddress: [16]u16,
+    IPv4SubInterfaceIndex: u64,
+    dwIPv6NegotiationError: u32,
+    bInterfaceIdentifier: [8]u8,
+    bRemoteInterfaceIdentifier: [8]u8,
+    bPrefix: [8]u8,
+    dwPrefixLength: u32,
+    IPv6SubInterfaceIndex: u64,
+    dwOptions: u32,
+    dwAuthenticationProtocol: u32,
+    dwEapTypeId: u32,
+    dwCompressionAlgorithm: u32,
+    dwEncryptionMethod: u32,
 };
 
-pub const RASDIALFUNC = *const fn(
-    param0: u32,
-    param1: RASCONNSTATE,
-    param2: u32,
-) callconv(.winapi) void;
-
-pub const RASDIALFUNC1 = *const fn(
-    param0: ?HRASCONN,
-    param1: u32,
-    param2: RASCONNSTATE,
-    param3: u32,
-    param4: u32,
-) callconv(.winapi) void;
-
-pub const RASDIALFUNC2 = *const fn(
-    param0: usize,
-    param1: u32,
-    param2: ?HRASCONN,
-    param3: u32,
-    param4: RASCONNSTATE,
-    param5: u32,
-    param6: u32,
-) callconv(.winapi) u32;
-
-pub const RASDEVINFOW = extern struct {
-    dwSize: u32,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
+pub const IKEV2_PROJECTION_INFO2 = extern struct {
+    dwIPv4NegotiationError: u32,
+    wszAddress: [16]u16,
+    wszRemoteAddress: [16]u16,
+    IPv4SubInterfaceIndex: u64,
+    dwIPv6NegotiationError: u32,
+    bInterfaceIdentifier: [8]u8,
+    bRemoteInterfaceIdentifier: [8]u8,
+    bPrefix: [8]u8,
+    dwPrefixLength: u32,
+    IPv6SubInterfaceIndex: u64,
+    dwOptions: u32,
+    dwAuthenticationProtocol: u32,
+    dwEapTypeId: u32,
+    dwEmbeddedEAPTypeId: u32,
+    dwCompressionAlgorithm: u32,
+    dwEncryptionMethod: u32,
 };
 
-pub const RASDEVINFOA = extern struct {
-    dwSize: u32,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-};
-
-pub const RASCTRYINFO = extern struct {
-    dwSize: u32,
-    dwCountryID: u32,
-    dwNextCountryID: u32,
-    dwCountryCode: u32,
-    dwCountryNameOffset: u32,
-};
-
-pub const RASENTRYA = extern struct {
-    dwSize: u32,
-    dwfOptions: u32,
-    dwCountryID: u32,
-    dwCountryCode: u32,
-    szAreaCode: [11]CHAR,
-    szLocalPhoneNumber: [129]CHAR,
-    dwAlternateOffset: u32,
-    ipaddr: RASIPADDR,
-    ipaddrDns: RASIPADDR,
-    ipaddrDnsAlt: RASIPADDR,
-    ipaddrWins: RASIPADDR,
-    ipaddrWinsAlt: RASIPADDR,
-    dwFrameSize: u32,
-    dwfNetProtocols: u32,
-    dwFramingProtocol: u32,
-    szScript: [260]CHAR,
-    szAutodialDll: [260]CHAR,
-    szAutodialFunc: [260]CHAR,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szX25PadType: [33]CHAR,
-    szX25Address: [201]CHAR,
-    szX25Facilities: [201]CHAR,
-    szX25UserData: [201]CHAR,
-    dwChannels: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwSubEntries: u32,
-    dwDialMode: RASENTRY_DIAL_MODE,
-    dwDialExtraPercent: u32,
-    dwDialExtraSampleSeconds: u32,
-    dwHangUpExtraPercent: u32,
-    dwHangUpExtraSampleSeconds: u32,
-    dwIdleDisconnectSeconds: u32,
-    dwType: u32,
+pub const IKEV2_TUNNEL_CONFIG_PARAMS2 = extern struct {
+    dwIdleTimeout: u32,
+    dwNetworkBlackoutTime: u32,
+    dwSaLifeTime: u32,
+    dwSaDataSizeForRenegotiation: u32,
+    dwConfigOptions: u32,
+    dwTotalCertificates: u32,
+    certificateNames: ?*CRYPTOAPI_BLOB,
+    machineCertificateName: CRYPTOAPI_BLOB,
     dwEncryptionType: u32,
-    dwCustomAuthKey: u32,
-    guidId: Guid,
-    szCustomDialDll: [260]CHAR,
-    dwVpnStrategy: u32,
-    dwfOptions2: u32,
-    dwfOptions3: u32,
-    szDnsSuffix: [256]CHAR,
-    dwTcpWindowSize: u32,
-    szPrerequisitePbk: [260]CHAR,
-    szPrerequisiteEntry: [257]CHAR,
-    dwRedialCount: u32,
-    dwRedialPause: u32,
-    ipv6addrDns: IN6_ADDR,
-    ipv6addrDnsAlt: IN6_ADDR,
-    dwIPv4InterfaceMetric: u32,
-    dwIPv6InterfaceMetric: u32,
-    ipv6addr: IN6_ADDR,
-    dwIPv6PrefixLength: u32,
-    dwNetworkOutageTime: u32,
-    szIDi: [257]CHAR,
-    szIDr: [257]CHAR,
-    fIsImsConfig: BOOL,
-    IdiType: IKEV2_ID_PAYLOAD_TYPE,
-    IdrType: IKEV2_ID_PAYLOAD_TYPE,
-    fDisableIKEv2Fragmentation: BOOL,
+    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
 };
 
-pub const RASENTRYW = extern struct {
-    dwSize: u32,
-    dwfOptions: u32,
-    dwCountryID: u32,
-    dwCountryCode: u32,
-    szAreaCode: [11]u16,
-    szLocalPhoneNumber: [129]u16,
-    dwAlternateOffset: u32,
-    ipaddr: RASIPADDR,
-    ipaddrDns: RASIPADDR,
-    ipaddrDnsAlt: RASIPADDR,
-    ipaddrWins: RASIPADDR,
-    ipaddrWinsAlt: RASIPADDR,
-    dwFrameSize: u32,
-    dwfNetProtocols: u32,
-    dwFramingProtocol: u32,
-    szScript: [260]u16,
-    szAutodialDll: [260]u16,
-    szAutodialFunc: [260]u16,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szX25PadType: [33]u16,
-    szX25Address: [201]u16,
-    szX25Facilities: [201]u16,
-    szX25UserData: [201]u16,
-    dwChannels: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwSubEntries: u32,
-    dwDialMode: RASENTRY_DIAL_MODE,
-    dwDialExtraPercent: u32,
-    dwDialExtraSampleSeconds: u32,
-    dwHangUpExtraPercent: u32,
-    dwHangUpExtraSampleSeconds: u32,
-    dwIdleDisconnectSeconds: u32,
-    dwType: u32,
+pub const IKEV2_TUNNEL_CONFIG_PARAMS3 = extern struct {
+    dwIdleTimeout: u32,
+    dwNetworkBlackoutTime: u32,
+    dwSaLifeTime: u32,
+    dwSaDataSizeForRenegotiation: u32,
+    dwConfigOptions: u32,
+    dwTotalCertificates: u32,
+    certificateNames: ?*CRYPTOAPI_BLOB,
+    machineCertificateName: CRYPTOAPI_BLOB,
     dwEncryptionType: u32,
-    dwCustomAuthKey: u32,
-    guidId: Guid,
-    szCustomDialDll: [260]u16,
-    dwVpnStrategy: u32,
-    dwfOptions2: u32,
-    dwfOptions3: u32,
-    szDnsSuffix: [256]u16,
-    dwTcpWindowSize: u32,
-    szPrerequisitePbk: [260]u16,
-    szPrerequisiteEntry: [257]u16,
-    dwRedialCount: u32,
-    dwRedialPause: u32,
-    ipv6addrDns: IN6_ADDR,
-    ipv6addrDnsAlt: IN6_ADDR,
-    dwIPv4InterfaceMetric: u32,
-    dwIPv6InterfaceMetric: u32,
-    ipv6addr: IN6_ADDR,
-    dwIPv6PrefixLength: u32,
-    dwNetworkOutageTime: u32,
-    szIDi: [257]u16,
-    szIDr: [257]u16,
-    fIsImsConfig: BOOL,
-    IdiType: IKEV2_ID_PAYLOAD_TYPE,
-    IdrType: IKEV2_ID_PAYLOAD_TYPE,
-    fDisableIKEv2Fragmentation: BOOL,
+    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
+    dwTotalEkus: u32,
+    certificateEKUs: ?*MPR_CERT_EKU,
+    machineCertificateHash: CRYPTOAPI_BLOB,
 };
 
-pub const ORASADFUNC = *const fn(
-    param0: ?HWND,
-    param1: ?PSTR,
-    param2: u32,
-    param3: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub const RASADPARAMS = extern struct {
-    dwSize: u32 align(4),
-    hwndOwner: ?HWND align(4),
-    dwFlags: u32 align(4),
-    xDlg: i32 align(4),
-    yDlg: i32 align(4),
+pub const IKEV2_TUNNEL_CONFIG_PARAMS4 = extern struct {
+    dwIdleTimeout: u32,
+    dwNetworkBlackoutTime: u32,
+    dwSaLifeTime: u32,
+    dwSaDataSizeForRenegotiation: u32,
+    dwConfigOptions: u32,
+    dwTotalCertificates: u32,
+    certificateNames: ?*CRYPTOAPI_BLOB,
+    machineCertificateName: CRYPTOAPI_BLOB,
+    dwEncryptionType: u32,
+    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
+    dwTotalEkus: u32,
+    certificateEKUs: ?*MPR_CERT_EKU,
+    machineCertificateHash: CRYPTOAPI_BLOB,
+    dwMmSaLifeTime: u32,
 };
 
-pub const RASADFUNCA = *const fn(
-    param0: ?PSTR,
-    param1: ?PSTR,
-    param2: ?*RASADPARAMS,
-    param3: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub const RASADFUNCW = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
-    param2: ?*RASADPARAMS,
-    param3: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub const RASSUBENTRYA = extern struct {
-    dwSize: u32,
-    dwfFlags: u32,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szLocalPhoneNumber: [129]CHAR,
-    dwAlternateOffset: u32,
+pub const L2TP_CONFIG_PARAMS0 = extern struct {
+    dwNumPorts: u32,
+    dwPortFlags: u32,
 };
 
-pub const RASSUBENTRYW = extern struct {
-    dwSize: u32,
-    dwfFlags: u32,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szLocalPhoneNumber: [129]u16,
-    dwAlternateOffset: u32,
+pub const L2TP_CONFIG_PARAMS1 = extern struct {
+    dwNumPorts: u32,
+    dwPortFlags: u32,
+    dwTunnelConfigParamFlags: u32,
+    TunnelConfigParams: L2TP_TUNNEL_CONFIG_PARAMS2,
 };
 
-pub const RASCREDENTIALSA = extern struct {
-    dwSize: u32,
-    dwMask: u32,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
+pub const L2TP_TUNNEL_CONFIG_PARAMS1 = extern struct {
+    dwIdleTimeout: u32,
+    dwEncryptionType: u32,
+    dwSaLifeTime: u32,
+    dwSaDataSizeForRenegotiation: u32,
+    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
 };
 
-pub const RASCREDENTIALSW = extern struct {
-    dwSize: u32,
-    dwMask: u32,
-    szUserName: [257]u16,
-    szPassword: [257]u16,
-    szDomain: [16]u16,
+pub const L2TP_TUNNEL_CONFIG_PARAMS2 = extern struct {
+    dwIdleTimeout: u32,
+    dwEncryptionType: u32,
+    dwSaLifeTime: u32,
+    dwSaDataSizeForRenegotiation: u32,
+    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
+    dwMmSaLifeTime: u32,
 };
 
-pub const RASAUTODIALENTRYA = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwDialingLocation: u32,
-    szEntry: [257]CHAR,
+pub const MGM_ENUM_TYPES = enum(i32) {
+    NY_SOURCE = 0,
+    LL_SOURCES = 1,
 };
+pub const ANY_SOURCE = MGM_ENUM_TYPES.NY_SOURCE;
+pub const ALL_SOURCES = MGM_ENUM_TYPES.LL_SOURCES;
 
-pub const RASAUTODIALENTRYW = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwDialingLocation: u32,
-    szEntry: [257]u16,
-};
-
-pub const RASEAPUSERIDENTITYA = extern struct {
-    szUserName: [257]CHAR,
-    dwSizeofEapInfo: u32,
-    pbEapInfo: [1]u8,
-};
-
-pub const RASEAPUSERIDENTITYW = extern struct {
-    szUserName: [257]u16,
-    dwSizeofEapInfo: u32,
-    pbEapInfo: [1]u8,
-};
-
-pub const PFNRASGETBUFFER = *const fn(
-    ppBuffer: ?*?*u8,
-    pdwSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PFNRASFREEBUFFER = *const fn(
-    pBufer: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PFNRASSENDBUFFER = *const fn(
-    hPort: ?HANDLE,
-    pBuffer: ?*u8,
-    dwSize: u32,
-) callconv(.winapi) u32;
-
-pub const PFNRASRECEIVEBUFFER = *const fn(
-    hPort: ?HANDLE,
-    pBuffer: ?*u8,
-    pdwSize: ?*u32,
-    dwTimeOut: u32,
-    hEvent: ?HANDLE,
-) callconv(.winapi) u32;
-
-pub const PFNRASRETRIEVEBUFFER = *const fn(
-    hPort: ?HANDLE,
-    pBuffer: ?*u8,
-    pdwSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const RasCustomScriptExecuteFn = *const fn(
-    hPort: ?HANDLE,
-    lpszPhonebook: ?[*:0]const u16,
-    lpszEntryName: ?[*:0]const u16,
-    pfnRasGetBuffer: ?PFNRASGETBUFFER,
-    pfnRasFreeBuffer: ?PFNRASFREEBUFFER,
-    pfnRasSendBuffer: ?PFNRASSENDBUFFER,
-    pfnRasReceiveBuffer: ?PFNRASRECEIVEBUFFER,
-    pfnRasRetrieveBuffer: ?PFNRASRETRIEVEBUFFER,
-    hWnd: ?HWND,
-    pRasDialParams: ?*RASDIALPARAMSA,
-    pvReserved: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const RASCOMMSETTINGS = extern struct {
-    dwSize: u32,
-    bParity: u8,
-    bStop: u8,
-    bByteSize: u8,
-    bAlign: u8,
-};
-
-pub const PFNRASSETCOMMSETTINGS = *const fn(
-    hPort: ?HANDLE,
-    pRasCommSettings: ?*RASCOMMSETTINGS,
-    pvReserved: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
-    dwSize: u32 align(4),
-    pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS align(4),
-};
-
-pub const RAS_STATS = extern struct {
-    dwSize: u32,
-    dwBytesXmited: u32,
-    dwBytesRcved: u32,
-    dwFramesXmited: u32,
-    dwFramesRcved: u32,
-    dwCrcErr: u32,
-    dwTimeoutErr: u32,
-    dwAlignmentErr: u32,
-    dwHardwareOverrunErr: u32,
-    dwFramingErr: u32,
-    dwBufferOverrunErr: u32,
-    dwCompressionRatioIn: u32,
-    dwCompressionRatioOut: u32,
-    dwBps: u32,
-    dwConnectDuration: u32,
-};
-
-pub const RasCustomHangUpFn = *const fn(
-    hRasConn: ?HRASCONN,
-) callconv(.winapi) u32;
-
-pub const RasCustomDialFn = *const fn(
-    hInstDll: ?HINSTANCE,
-    lpRasDialExtensions: ?*RASDIALEXTENSIONS,
-    lpszPhonebook: ?[*:0]const u16,
-    lpRasDialParams: ?*RASDIALPARAMSA,
-    dwNotifierType: u32,
-    lpvNotifier: ?*anyopaque,
-    lphRasConn: ?*?HRASCONN,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-pub const RasCustomDeleteEntryNotifyFn = *const fn(
-    lpszPhonebook: ?[*:0]const u16,
-    lpszEntry: ?[*:0]const u16,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-pub const RASUPDATECONN = extern struct {
-    version: RASAPIVERSION,
-    dwSize: u32,
-    dwFlags: u32,
+pub const MGM_IF_ENTRY = extern struct {
     dwIfIndex: u32,
-    localEndPoint: RASTUNNELENDPOINT,
-    remoteEndPoint: RASTUNNELENDPOINT,
+    dwIfNextHopAddr: u32,
+    bIGMP: BOOL,
+    bIsEnabled: BOOL,
 };
 
-pub const RASPBDLGFUNCW = *const fn(
-    param0: usize,
-    param1: u32,
-    param2: ?PWSTR,
-    param3: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const RASPBDLGFUNCA = *const fn(
-    param0: usize,
-    param1: u32,
-    param2: ?PSTR,
-    param3: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const RASNOUSERW = extern struct {
+pub const MPR_CERT_EKU = extern struct {
     dwSize: u32,
-    dwFlags: u32,
-    dwTimeoutMs: u32,
-    szUserName: [257]u16,
-    szPassword: [257]u16,
-    szDomain: [16]u16,
+    IsEKUOID: BOOL,
+    pwszEKU: ?PWSTR,
 };
 
-pub const RASNOUSERA = extern struct {
+pub const MPR_CREDENTIALSEX_0 = extern struct {
     dwSize: u32,
+    lpbCredentialsInfo: ?*u8,
+};
+
+pub const MPR_CREDENTIALSEX_1 = extern struct {
+    dwSize: u32,
+    lpbCredentialsInfo: ?*u8,
+};
+
+pub const MPR_DEVICE_0 = extern struct {
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+};
+
+pub const MPR_DEVICE_1 = extern struct {
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+    szLocalPhoneNumber: [129]u16,
+    szAlternates: ?[*]u16,
+};
+
+pub const MPR_ET = enum(u32) {
+    None = 0,
+    Require = 1,
+    RequireMax = 2,
+    Optional = 3,
+};
+pub const MPR_ET_None = MPR_ET.None;
+pub const MPR_ET_Require = MPR_ET.Require;
+pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
+pub const MPR_ET_Optional = MPR_ET.Optional;
+
+pub const MPR_FILTER_0 = extern struct {
+    fEnable: BOOL,
+};
+
+pub const MPR_IF_CUSTOMINFOEX0 = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
     dwFlags: u32,
-    dwTimeoutMs: u32,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
+    customIkev2Config: ROUTER_IKEv2_IF_CUSTOM_CONFIG0,
 };
 
-pub const RASPBDLGW = extern struct {
-    dwSize: u32 align(4),
-    hwndOwner: ?HWND align(4),
-    dwFlags: u32 align(4),
-    xDlg: i32 align(4),
-    yDlg: i32 align(4),
-    dwCallbackId: usize align(4),
-    pCallback: ?RASPBDLGFUNCW align(4),
-    dwError: u32 align(4),
-    reserved: usize align(4),
-    reserved2: usize align(4),
-};
-
-pub const RASPBDLGA = extern struct {
-    dwSize: u32 align(4),
-    hwndOwner: ?HWND align(4),
-    dwFlags: u32 align(4),
-    xDlg: i32 align(4),
-    yDlg: i32 align(4),
-    dwCallbackId: usize align(4),
-    pCallback: ?RASPBDLGFUNCA align(4),
-    dwError: u32 align(4),
-    reserved: usize align(4),
-    reserved2: usize align(4),
-};
-
-pub const RASENTRYDLGW = extern struct {
-    dwSize: u32 align(4),
-    hwndOwner: ?HWND align(4),
-    dwFlags: u32 align(4),
-    xDlg: i32 align(4),
-    yDlg: i32 align(4),
-    szEntry: [257]u16 align(4),
-    dwError: u32 align(4),
-    reserved: usize align(4),
-    reserved2: usize align(4),
-};
-
-pub const RASENTRYDLGA = extern struct {
-    dwSize: u32 align(4),
-    hwndOwner: ?HWND align(4),
-    dwFlags: u32 align(4),
-    xDlg: i32 align(4),
-    yDlg: i32 align(4),
-    szEntry: [257]CHAR align(4),
-    dwError: u32 align(4),
-    reserved: usize align(4),
-    reserved2: usize align(4),
-};
-
-pub const RASDIALDLG = extern struct {
-    dwSize: u32 align(4),
-    hwndOwner: ?HWND align(4),
-    dwFlags: u32 align(4),
-    xDlg: i32 align(4),
-    yDlg: i32 align(4),
-    dwSubEntry: u32 align(4),
-    dwError: u32 align(4),
-    reserved: usize align(4),
-    reserved2: usize align(4),
-};
-
-pub const RasCustomDialDlgFn = *const fn(
-    hInstDll: ?HINSTANCE,
+pub const MPR_IF_CUSTOMINFOEX1 = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
     dwFlags: u32,
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
-    lpszPhoneNumber: ?PWSTR,
-    lpInfo: ?*RASDIALDLG,
-    pvInfo: ?*anyopaque,
-) callconv(.winapi) BOOL;
+    customIkev2Config: ROUTER_IKEv2_IF_CUSTOM_CONFIG1,
+};
 
-pub const RasCustomEntryDlgFn = *const fn(
-    hInstDll: ?HINSTANCE,
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
-    lpInfo: ?*RASENTRYDLGA,
+pub const MPR_IF_CUSTOMINFOEX2 = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
     dwFlags: u32,
-) callconv(.winapi) BOOL;
-
-pub const ROUTER_INTERFACE_TYPE = enum(i32) {
-    CLIENT = 0,
-    HOME_ROUTER = 1,
-    FULL_ROUTER = 2,
-    DEDICATED = 3,
-    INTERNAL = 4,
-    LOOPBACK = 5,
-    TUNNEL1 = 6,
-    DIALOUT = 7,
-    MAX = 8,
+    customIkev2Config: ROUTER_IKEv2_IF_CUSTOM_CONFIG2,
 };
-pub const ROUTER_IF_TYPE_CLIENT = ROUTER_INTERFACE_TYPE.CLIENT;
-pub const ROUTER_IF_TYPE_HOME_ROUTER = ROUTER_INTERFACE_TYPE.HOME_ROUTER;
-pub const ROUTER_IF_TYPE_FULL_ROUTER = ROUTER_INTERFACE_TYPE.FULL_ROUTER;
-pub const ROUTER_IF_TYPE_DEDICATED = ROUTER_INTERFACE_TYPE.DEDICATED;
-pub const ROUTER_IF_TYPE_INTERNAL = ROUTER_INTERFACE_TYPE.INTERNAL;
-pub const ROUTER_IF_TYPE_LOOPBACK = ROUTER_INTERFACE_TYPE.LOOPBACK;
-pub const ROUTER_IF_TYPE_TUNNEL1 = ROUTER_INTERFACE_TYPE.TUNNEL1;
-pub const ROUTER_IF_TYPE_DIALOUT = ROUTER_INTERFACE_TYPE.DIALOUT;
-pub const ROUTER_IF_TYPE_MAX = ROUTER_INTERFACE_TYPE.MAX;
 
-pub const ROUTER_CONNECTION_STATE = enum(i32) {
-    UNREACHABLE = 0,
-    DISCONNECTED = 1,
-    CONNECTING = 2,
-    CONNECTED = 3,
+pub const MPR_IFTRANSPORT_0 = extern struct {
+    dwTransportId: u32,
+    hIfTransport: ?HANDLE,
+    wszIfTransportName: [41]u16,
 };
-pub const ROUTER_IF_STATE_UNREACHABLE = ROUTER_CONNECTION_STATE.UNREACHABLE;
-pub const ROUTER_IF_STATE_DISCONNECTED = ROUTER_CONNECTION_STATE.DISCONNECTED;
-pub const ROUTER_IF_STATE_CONNECTING = ROUTER_CONNECTION_STATE.CONNECTING;
-pub const ROUTER_IF_STATE_CONNECTED = ROUTER_CONNECTION_STATE.CONNECTED;
 
 pub const MPR_INTERFACE_0 = extern struct {
     wszInterfaceName: [257]u16,
@@ -1835,11 +990,6 @@ pub const MPR_INTERFACE_0 = extern struct {
     dwConnectionState: ROUTER_CONNECTION_STATE,
     fUnReachabilityReasons: u32,
     dwLastError: u32,
-};
-
-pub const MPR_IPINIP_INTERFACE_0 = extern struct {
-    wszFriendlyName: [257]u16,
-    Guid: Guid,
 };
 
 pub const MPR_INTERFACE_1 = extern struct {
@@ -1937,38 +1087,18 @@ pub const MPR_INTERFACE_3 = extern struct {
     ipv6addr: ?*IN6_ADDR,
 };
 
-pub const MPR_DEVICE_0 = extern struct {
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
+pub const MPR_INTERFACE_DIAL_MODE = enum(u32) {
+    First = 0,
+    All = 1,
+    AsNeeded = 2,
 };
+pub const MPRDM_DialFirst = MPR_INTERFACE_DIAL_MODE.First;
+pub const MPRDM_DialAll = MPR_INTERFACE_DIAL_MODE.All;
+pub const MPRDM_DialAsNeeded = MPR_INTERFACE_DIAL_MODE.AsNeeded;
 
-pub const MPR_DEVICE_1 = extern struct {
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szLocalPhoneNumber: [129]u16,
-    szAlternates: ?[*]u16,
-};
-
-pub const MPR_CREDENTIALSEX_0 = extern struct {
-    dwSize: u32,
-    lpbCredentialsInfo: ?*u8,
-};
-
-pub const MPR_CREDENTIALSEX_1 = extern struct {
-    dwSize: u32,
-    lpbCredentialsInfo: ?*u8,
-};
-
-pub const MPR_TRANSPORT_0 = extern struct {
-    dwTransportId: u32,
-    hTransport: ?HANDLE,
-    wszTransportName: [41]u16,
-};
-
-pub const MPR_IFTRANSPORT_0 = extern struct {
-    dwTransportId: u32,
-    hIfTransport: ?HANDLE,
-    wszIfTransportName: [41]u16,
+pub const MPR_IPINIP_INTERFACE_0 = extern struct {
+    wszFriendlyName: [257]u16,
+    Guid: Guid,
 };
 
 pub const MPR_SERVER_0 = extern struct {
@@ -1994,22 +1124,667 @@ pub const MPR_SERVER_2 = extern struct {
     dwSstpPortFlags: u32,
 };
 
-pub const RAS_PORT_CONDITION = enum(i32) {
-    NON_OPERATIONAL = 0,
-    DISCONNECTED = 1,
-    CALLING_BACK = 2,
-    LISTENING = 3,
-    AUTHENTICATING = 4,
-    AUTHENTICATED = 5,
-    INITIALIZING = 6,
+pub const MPR_SERVER_EX0 = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
+    fLanOnlyMode: u32,
+    dwUpTime: u32,
+    dwTotalPorts: u32,
+    dwPortsInUse: u32,
+    Reserved: u32,
+    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS0,
 };
-pub const RAS_PORT_NON_OPERATIONAL = RAS_PORT_CONDITION.NON_OPERATIONAL;
-pub const RAS_PORT_DISCONNECTED = RAS_PORT_CONDITION.DISCONNECTED;
-pub const RAS_PORT_CALLING_BACK = RAS_PORT_CONDITION.CALLING_BACK;
-pub const RAS_PORT_LISTENING = RAS_PORT_CONDITION.LISTENING;
-pub const RAS_PORT_AUTHENTICATING = RAS_PORT_CONDITION.AUTHENTICATING;
-pub const RAS_PORT_AUTHENTICATED = RAS_PORT_CONDITION.AUTHENTICATED;
-pub const RAS_PORT_INITIALIZING = RAS_PORT_CONDITION.INITIALIZING;
+
+pub const MPR_SERVER_EX1 = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
+    fLanOnlyMode: u32,
+    dwUpTime: u32,
+    dwTotalPorts: u32,
+    dwPortsInUse: u32,
+    Reserved: u32,
+    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS1,
+};
+
+pub const MPR_SERVER_SET_CONFIG_EX0 = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
+    setConfigForProtocols: u32,
+    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS0,
+};
+
+pub const MPR_SERVER_SET_CONFIG_EX1 = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
+    setConfigForProtocols: u32,
+    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS1,
+};
+
+pub const MPR_TRANSPORT_0 = extern struct {
+    dwTransportId: u32,
+    hTransport: ?HANDLE,
+    wszTransportName: [41]u16,
+};
+
+pub const MPR_VPN_TRAFFIC_SELECTORS = extern struct {
+    numTsi: u32,
+    numTsr: u32,
+    tsI: ?*_MPR_VPN_SELECTOR,
+    tsR: ?*_MPR_VPN_SELECTOR,
+};
+
+pub const MPR_VPN_TS_TYPE = enum(i32) {
+    @"4_ADDR_RANGE" = 7,
+    @"6_ADDR_RANGE" = 8,
+};
+pub const MPR_VPN_TS_IPv4_ADDR_RANGE = MPR_VPN_TS_TYPE.@"4_ADDR_RANGE";
+pub const MPR_VPN_TS_IPv6_ADDR_RANGE = MPR_VPN_TS_TYPE.@"6_ADDR_RANGE";
+
+pub const MPR_VS = enum(u32) {
+    Default = 0,
+    PptpOnly = 1,
+    PptpFirst = 2,
+    L2tpOnly = 3,
+    L2tpFirst = 4,
+};
+pub const MPR_VS_Default = MPR_VS.Default;
+pub const MPR_VS_PptpOnly = MPR_VS.PptpOnly;
+pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
+pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
+pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
+
+pub const MPRAPI_ADMIN_DLL_CALLBACKS = extern struct {
+    revision: u8,
+    lpfnMprAdminGetIpAddressForUser: ?PMPRADMINGETIPADDRESSFORUSER,
+    lpfnMprAdminReleaseIpAddress: ?PMPRADMINRELEASEIPADRESS,
+    lpfnMprAdminGetIpv6AddressForUser: ?PMPRADMINGETIPV6ADDRESSFORUSER,
+    lpfnMprAdminReleaseIpV6AddressForUser: ?PMPRADMINRELEASEIPV6ADDRESSFORUSER,
+    lpfnRasAdminAcceptNewLink: ?PMPRADMINACCEPTNEWLINK,
+    lpfnRasAdminLinkHangupNotification: ?PMPRADMINLINKHANGUPNOTIFICATION,
+    lpfnRasAdminTerminateDll: ?PMPRADMINTERMINATEDLL,
+    lpfnRasAdminAcceptNewConnectionEx: ?PMPRADMINACCEPTNEWCONNECTIONEX,
+    lpfnRasAdminAcceptEndpointChangeEx: ?PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX,
+    lpfnRasAdminAcceptReauthenticationEx: ?PMPRADMINACCEPTREAUTHENTICATIONEX,
+    lpfnRasAdminConnectionHangupNotificationEx: ?PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX,
+    lpfnRASValidatePreAuthenticatedConnectionEx: ?PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX,
+};
+
+pub const MPRAPI_OBJECT_HEADER = extern struct {
+    revision: u8,
+    type: u8,
+    size: u16,
+};
+
+pub const MPRAPI_OBJECT_TYPE = enum(i32) {
+    RAS_CONNECTION_OBJECT = 1,
+    MPR_SERVER_OBJECT = 2,
+    MPR_SERVER_SET_CONFIG_OBJECT = 3,
+    AUTH_VALIDATION_OBJECT = 4,
+    UPDATE_CONNECTION_OBJECT = 5,
+    IF_CUSTOM_CONFIG_OBJECT = 6,
+};
+pub const MPRAPI_OBJECT_TYPE_RAS_CONNECTION_OBJECT = MPRAPI_OBJECT_TYPE.RAS_CONNECTION_OBJECT;
+pub const MPRAPI_OBJECT_TYPE_MPR_SERVER_OBJECT = MPRAPI_OBJECT_TYPE.MPR_SERVER_OBJECT;
+pub const MPRAPI_OBJECT_TYPE_MPR_SERVER_SET_CONFIG_OBJECT = MPRAPI_OBJECT_TYPE.MPR_SERVER_SET_CONFIG_OBJECT;
+pub const MPRAPI_OBJECT_TYPE_AUTH_VALIDATION_OBJECT = MPRAPI_OBJECT_TYPE.AUTH_VALIDATION_OBJECT;
+pub const MPRAPI_OBJECT_TYPE_UPDATE_CONNECTION_OBJECT = MPRAPI_OBJECT_TYPE.UPDATE_CONNECTION_OBJECT;
+pub const MPRAPI_OBJECT_TYPE_IF_CUSTOM_CONFIG_OBJECT = MPRAPI_OBJECT_TYPE.IF_CUSTOM_CONFIG_OBJECT;
+
+pub const MPRAPI_TUNNEL_CONFIG_PARAMS0 = extern struct {
+    IkeConfigParams: IKEV2_CONFIG_PARAMS,
+    PptpConfigParams: PPTP_CONFIG_PARAMS,
+    L2tpConfigParams: L2TP_CONFIG_PARAMS1,
+    SstpConfigParams: SSTP_CONFIG_PARAMS,
+};
+
+pub const MPRAPI_TUNNEL_CONFIG_PARAMS1 = extern struct {
+    IkeConfigParams: IKEV2_CONFIG_PARAMS,
+    PptpConfigParams: PPTP_CONFIG_PARAMS,
+    L2tpConfigParams: L2TP_CONFIG_PARAMS1,
+    SstpConfigParams: SSTP_CONFIG_PARAMS,
+    GREConfigParams: GRE_CONFIG_PARAMS0,
+};
+
+pub const ORASADFUNC = *const fn(
+    param0: ?HWND,
+    param1: ?PSTR,
+    param2: u32,
+    param3: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub const PFNRASFREEBUFFER = *const fn(
+    pBufer: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PFNRASGETBUFFER = *const fn(
+    ppBuffer: ?*?*u8,
+    pdwSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PFNRASRECEIVEBUFFER = *const fn(
+    hPort: ?HANDLE,
+    pBuffer: ?*u8,
+    pdwSize: ?*u32,
+    dwTimeOut: u32,
+    hEvent: ?HANDLE,
+) callconv(.winapi) u32;
+
+pub const PFNRASRETRIEVEBUFFER = *const fn(
+    hPort: ?HANDLE,
+    pBuffer: ?*u8,
+    pdwSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PFNRASSENDBUFFER = *const fn(
+    hPort: ?HANDLE,
+    pBuffer: ?*u8,
+    dwSize: u32,
+) callconv(.winapi) u32;
+
+pub const PFNRASSETCOMMSETTINGS = *const fn(
+    hPort: ?HANDLE,
+    pRasCommSettings: ?*RASCOMMSETTINGS,
+    pvReserved: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PMGM_CREATION_ALERT_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwInIfIndex: u32,
+    dwInIfNextHopAddr: u32,
+    dwIfCount: u32,
+    pmieOutIfList: ?*MGM_IF_ENTRY,
+) callconv(.winapi) u32;
+
+pub const PMGM_DISABLE_IGMP_CALLBACK = *const fn(
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(.winapi) u32;
+
+pub const PMGM_ENABLE_IGMP_CALLBACK = *const fn(
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(.winapi) u32;
+
+pub const PMGM_JOIN_ALERT_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    bMemberUpdate: BOOL,
+) callconv(.winapi) u32;
+
+pub const PMGM_LOCAL_JOIN_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(.winapi) u32;
+
+pub const PMGM_LOCAL_LEAVE_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(.winapi) u32;
+
+pub const PMGM_PRUNE_ALERT_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+    bMemberDelete: BOOL,
+    pdwTimeout: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PMGM_RPF_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    pdwInIfIndex: ?*u32,
+    pdwInIfNextHopAddr: ?*u32,
+    pdwUpStreamNbr: ?*u32,
+    dwHdrSize: u32,
+    pbPacketHdr: ?*u8,
+    pbRoute: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PMGM_WRONG_IF_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwGroupAddr: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+    dwHdrSize: u32,
+    pbPacketHdr: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PMPRADMINACCEPTNEWCONNECTION = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINACCEPTNEWCONNECTION2 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINACCEPTNEWCONNECTION3 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+    param3: ?*RAS_CONNECTION_3,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINACCEPTNEWCONNECTIONEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINACCEPTNEWLINK = *const fn(
+    param0: ?*RAS_PORT_0,
+    param1: ?*RAS_PORT_1,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINACCEPTREAUTHENTICATION = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+    param3: ?*RAS_CONNECTION_3,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINACCEPTREAUTHENTICATIONEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(.winapi) BOOL;
+
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+) callconv(.winapi) void;
+
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION2 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+) callconv(.winapi) void;
+
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION3 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+    param3: RAS_CONNECTION_3,
+) callconv(.winapi) void;
+
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(.winapi) void;
+
+pub const PMPRADMINGETIPADDRESSFORUSER = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*u32,
+    param3: ?*BOOL,
+) callconv(.winapi) u32;
+
+pub const PMPRADMINGETIPV6ADDRESSFORUSER = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*IN6_ADDR,
+    param3: ?*BOOL,
+) callconv(.winapi) u32;
+
+pub const PMPRADMINLINKHANGUPNOTIFICATION = *const fn(
+    param0: ?*RAS_PORT_0,
+    param1: ?*RAS_PORT_1,
+) callconv(.winapi) void;
+
+pub const PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX = *const fn(
+    param0: ?*AUTH_VALIDATION_EX,
+) callconv(.winapi) u32;
+
+pub const PMPRADMINRELEASEIPADRESS = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*u32,
+) callconv(.winapi) void;
+
+pub const PMPRADMINRELEASEIPV6ADDRESSFORUSER = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*IN6_ADDR,
+) callconv(.winapi) void;
+
+pub const PMPRADMINTERMINATEDLL = *const fn(
+) callconv(.winapi) u32;
+
+pub const PPP_ATCP_INFO = extern struct {
+    dwError: u32,
+    wszAddress: [33]u16,
+};
+
+pub const PPP_CCP_INFO = extern struct {
+    dwError: u32,
+    dwCompressionAlgorithm: u32,
+    dwOptions: u32,
+    dwRemoteCompressionAlgorithm: u32,
+    dwRemoteOptions: u32,
+};
+
+pub const PPP_INFO = extern struct {
+    nbf: PPP_NBFCP_INFO,
+    ip: PPP_IPCP_INFO,
+    ipx: PPP_IPXCP_INFO,
+    at: PPP_ATCP_INFO,
+};
+
+pub const PPP_INFO_2 = extern struct {
+    nbf: PPP_NBFCP_INFO,
+    ip: PPP_IPCP_INFO2,
+    ipx: PPP_IPXCP_INFO,
+    at: PPP_ATCP_INFO,
+    ccp: PPP_CCP_INFO,
+    lcp: PPP_LCP_INFO,
+};
+
+pub const PPP_INFO_3 = extern struct {
+    nbf: PPP_NBFCP_INFO,
+    ip: PPP_IPCP_INFO2,
+    ipv6: PPP_IPV6_CP_INFO,
+    ccp: PPP_CCP_INFO,
+    lcp: PPP_LCP_INFO,
+};
+
+pub const PPP_IPCP_INFO = extern struct {
+    dwError: u32,
+    wszAddress: [16]u16,
+    wszRemoteAddress: [16]u16,
+};
+
+pub const PPP_IPCP_INFO2 = extern struct {
+    dwError: u32,
+    wszAddress: [16]u16,
+    wszRemoteAddress: [16]u16,
+    dwOptions: u32,
+    dwRemoteOptions: u32,
+};
+
+pub const PPP_IPV6_CP_INFO = extern struct {
+    dwVersion: u32,
+    dwSize: u32,
+    dwError: u32,
+    bInterfaceIdentifier: [8]u8,
+    bRemoteInterfaceIdentifier: [8]u8,
+    dwOptions: u32,
+    dwRemoteOptions: u32,
+    bPrefix: [8]u8,
+    dwPrefixLength: u32,
+};
+
+pub const PPP_IPXCP_INFO = extern struct {
+    dwError: u32,
+    wszAddress: [23]u16,
+};
+
+pub const PPP_LCP = enum(u32) {
+    PAP = 49187,
+    CHAP = 49699,
+    EAP = 49703,
+    SPAP = 49191,
+};
+pub const PPP_LCP_PAP = PPP_LCP.PAP;
+pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
+pub const PPP_LCP_EAP = PPP_LCP.EAP;
+pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
+
+pub const PPP_LCP_INFO = extern struct {
+    dwError: u32,
+    dwAuthenticationProtocol: PPP_LCP,
+    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
+    dwRemoteAuthenticationProtocol: u32,
+    dwRemoteAuthenticationData: u32,
+    dwTerminateReason: u32,
+    dwRemoteTerminateReason: u32,
+    dwOptions: u32,
+    dwRemoteOptions: u32,
+    dwEapTypeId: u32,
+    dwRemoteEapTypeId: u32,
+};
+
+pub const PPP_LCP_INFO_AUTH_DATA = enum(u32) {
+    D5 = 5,
+    S = 128,
+    SV2 = 129,
+};
+pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_AUTH_DATA.D5;
+pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_AUTH_DATA.S;
+pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_AUTH_DATA.SV2;
+
+pub const PPP_NBFCP_INFO = extern struct {
+    dwError: u32,
+    wszWksta: [17]u16,
+};
+
+pub const PPP_PROJECTION_INFO = extern struct {
+    dwIPv4NegotiationError: u32,
+    wszAddress: [16]u16,
+    wszRemoteAddress: [16]u16,
+    dwIPv4Options: u32,
+    dwIPv4RemoteOptions: u32,
+    IPv4SubInterfaceIndex: u64,
+    dwIPv6NegotiationError: u32,
+    bInterfaceIdentifier: [8]u8,
+    bRemoteInterfaceIdentifier: [8]u8,
+    bPrefix: [8]u8,
+    dwPrefixLength: u32,
+    IPv6SubInterfaceIndex: u64,
+    dwLcpError: u32,
+    dwAuthenticationProtocol: PPP_LCP,
+    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
+    dwRemoteAuthenticationProtocol: PPP_LCP,
+    dwRemoteAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
+    dwLcpTerminateReason: u32,
+    dwLcpRemoteTerminateReason: u32,
+    dwLcpOptions: u32,
+    dwLcpRemoteOptions: u32,
+    dwEapTypeId: u32,
+    dwRemoteEapTypeId: u32,
+    dwCcpError: u32,
+    dwCompressionAlgorithm: u32,
+    dwCcpOptions: u32,
+    dwRemoteCompressionAlgorithm: u32,
+    dwCcpRemoteOptions: u32,
+};
+
+pub const PPP_PROJECTION_INFO2 = extern struct {
+    dwIPv4NegotiationError: u32,
+    wszAddress: [16]u16,
+    wszRemoteAddress: [16]u16,
+    dwIPv4Options: u32,
+    dwIPv4RemoteOptions: u32,
+    IPv4SubInterfaceIndex: u64,
+    dwIPv6NegotiationError: u32,
+    bInterfaceIdentifier: [8]u8,
+    bRemoteInterfaceIdentifier: [8]u8,
+    bPrefix: [8]u8,
+    dwPrefixLength: u32,
+    IPv6SubInterfaceIndex: u64,
+    dwLcpError: u32,
+    dwAuthenticationProtocol: PPP_LCP,
+    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
+    dwRemoteAuthenticationProtocol: PPP_LCP,
+    dwRemoteAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
+    dwLcpTerminateReason: u32,
+    dwLcpRemoteTerminateReason: u32,
+    dwLcpOptions: u32,
+    dwLcpRemoteOptions: u32,
+    dwEapTypeId: u32,
+    dwEmbeddedEAPTypeId: u32,
+    dwRemoteEapTypeId: u32,
+    dwCcpError: u32,
+    dwCompressionAlgorithm: u32,
+    dwCcpOptions: u32,
+    dwRemoteCompressionAlgorithm: u32,
+    dwCcpRemoteOptions: u32,
+};
+
+pub const PPTP_CONFIG_PARAMS = extern struct {
+    dwNumPorts: u32,
+    dwPortFlags: u32,
+};
+
+pub const PROJECTION_INFO = extern struct {
+    projectionInfoType: u8,
+    Anonymous: extern union {
+        PppProjectionInfo: PPP_PROJECTION_INFO,
+        Ikev2ProjectionInfo: IKEV2_PROJECTION_INFO,
+    },
+};
+
+pub const PROJECTION_INFO2 = extern struct {
+    projectionInfoType: u8,
+    Anonymous: extern union {
+        PppProjectionInfo: PPP_PROJECTION_INFO2,
+        Ikev2ProjectionInfo: IKEV2_PROJECTION_INFO2,
+    },
+};
+
+pub const RAS_CONNECTION_0 = extern struct {
+    hConnection: ?HANDLE,
+    hInterface: ?HANDLE,
+    dwConnectDuration: u32,
+    dwInterfaceType: ROUTER_INTERFACE_TYPE,
+    dwConnectionFlags: RAS_FLAGS,
+    wszInterfaceName: [257]u16,
+    wszUserName: [257]u16,
+    wszLogonDomain: [16]u16,
+    wszRemoteComputer: [17]u16,
+};
+
+pub const RAS_CONNECTION_1 = extern struct {
+    hConnection: ?HANDLE,
+    hInterface: ?HANDLE,
+    PppInfo: PPP_INFO,
+    dwBytesXmited: u32,
+    dwBytesRcved: u32,
+    dwFramesXmited: u32,
+    dwFramesRcved: u32,
+    dwCrcErr: u32,
+    dwTimeoutErr: u32,
+    dwAlignmentErr: u32,
+    dwHardwareOverrunErr: u32,
+    dwFramingErr: u32,
+    dwBufferOverrunErr: u32,
+    dwCompressionRatioIn: u32,
+    dwCompressionRatioOut: u32,
+};
+
+pub const RAS_CONNECTION_2 = extern struct {
+    hConnection: ?HANDLE,
+    wszUserName: [257]u16,
+    dwInterfaceType: ROUTER_INTERFACE_TYPE,
+    guid: Guid,
+    PppInfo2: PPP_INFO_2,
+};
+
+pub const RAS_CONNECTION_3 = extern struct {
+    dwVersion: u32,
+    dwSize: u32,
+    hConnection: ?HANDLE,
+    wszUserName: [257]u16,
+    dwInterfaceType: ROUTER_INTERFACE_TYPE,
+    guid: Guid,
+    PppInfo3: PPP_INFO_3,
+    rasQuarState: RAS_QUARANTINE_STATE,
+    timer: FILETIME,
+};
+
+pub const RAS_CONNECTION_4 = extern struct {
+    dwConnectDuration: u32,
+    dwInterfaceType: ROUTER_INTERFACE_TYPE,
+    dwConnectionFlags: RAS_FLAGS,
+    wszInterfaceName: [257]u16,
+    wszUserName: [257]u16,
+    wszLogonDomain: [16]u16,
+    wszRemoteComputer: [17]u16,
+    guid: Guid,
+    rasQuarState: RAS_QUARANTINE_STATE,
+    probationTime: FILETIME,
+    connectionStartTime: FILETIME,
+    ullBytesXmited: u64,
+    ullBytesRcved: u64,
+    dwFramesXmited: u32,
+    dwFramesRcved: u32,
+    dwCrcErr: u32,
+    dwTimeoutErr: u32,
+    dwAlignmentErr: u32,
+    dwHardwareOverrunErr: u32,
+    dwFramingErr: u32,
+    dwBufferOverrunErr: u32,
+    dwCompressionRatioIn: u32,
+    dwCompressionRatioOut: u32,
+    dwNumSwitchOvers: u32,
+    wszRemoteEndpointAddress: [65]u16,
+    wszLocalEndpointAddress: [65]u16,
+    ProjectionInfo: PROJECTION_INFO2,
+    hConnection: ?HANDLE,
+    hInterface: ?HANDLE,
+    dwDeviceType: u32,
+};
+
+pub const RAS_CONNECTION_EX = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
+    dwConnectDuration: u32,
+    dwInterfaceType: ROUTER_INTERFACE_TYPE,
+    dwConnectionFlags: RAS_FLAGS,
+    wszInterfaceName: [257]u16,
+    wszUserName: [257]u16,
+    wszLogonDomain: [16]u16,
+    wszRemoteComputer: [17]u16,
+    guid: Guid,
+    rasQuarState: RAS_QUARANTINE_STATE,
+    probationTime: FILETIME,
+    dwBytesXmited: u32,
+    dwBytesRcved: u32,
+    dwFramesXmited: u32,
+    dwFramesRcved: u32,
+    dwCrcErr: u32,
+    dwTimeoutErr: u32,
+    dwAlignmentErr: u32,
+    dwHardwareOverrunErr: u32,
+    dwFramingErr: u32,
+    dwBufferOverrunErr: u32,
+    dwCompressionRatioIn: u32,
+    dwCompressionRatioOut: u32,
+    dwNumSwitchOvers: u32,
+    wszRemoteEndpointAddress: [65]u16,
+    wszLocalEndpointAddress: [65]u16,
+    ProjectionInfo: PROJECTION_INFO,
+    hConnection: ?HANDLE,
+    hInterface: ?HANDLE,
+};
+
+pub const RAS_FLAGS = enum(u32) {
+    PPP_CONNECTION = 1,
+    MESSENGER_PRESENT = 2,
+    QUARANTINE_PRESENT = 8,
+    ARAP_CONNECTION = 16,
+    DORMANT = 32,
+    pub const IKEV2_CONNECTION = .ARAP_CONNECTION;
+};
+pub const RAS_FLAGS_PPP_CONNECTION = RAS_FLAGS.PPP_CONNECTION;
+pub const RAS_FLAGS_MESSENGER_PRESENT = RAS_FLAGS.MESSENGER_PRESENT;
+pub const RAS_FLAGS_QUARANTINE_PRESENT = RAS_FLAGS.QUARANTINE_PRESENT;
+pub const RAS_FLAGS_ARAP_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
+pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
+pub const RAS_FLAGS_DORMANT = RAS_FLAGS.DORMANT;
 
 pub const RAS_HARDWARE_CONDITION = enum(i32) {
     OPERATIONAL = 0,
@@ -2079,129 +1854,30 @@ pub const RAS_PORT_2 = extern struct {
     ullBytesRcvCompressed: u64,
 };
 
-pub const PPP_NBFCP_INFO = extern struct {
-    dwError: u32,
-    wszWksta: [17]u16,
+pub const RAS_PORT_CONDITION = enum(i32) {
+    NON_OPERATIONAL = 0,
+    DISCONNECTED = 1,
+    CALLING_BACK = 2,
+    LISTENING = 3,
+    AUTHENTICATING = 4,
+    AUTHENTICATED = 5,
+    INITIALIZING = 6,
 };
+pub const RAS_PORT_NON_OPERATIONAL = RAS_PORT_CONDITION.NON_OPERATIONAL;
+pub const RAS_PORT_DISCONNECTED = RAS_PORT_CONDITION.DISCONNECTED;
+pub const RAS_PORT_CALLING_BACK = RAS_PORT_CONDITION.CALLING_BACK;
+pub const RAS_PORT_LISTENING = RAS_PORT_CONDITION.LISTENING;
+pub const RAS_PORT_AUTHENTICATING = RAS_PORT_CONDITION.AUTHENTICATING;
+pub const RAS_PORT_AUTHENTICATED = RAS_PORT_CONDITION.AUTHENTICATED;
+pub const RAS_PORT_INITIALIZING = RAS_PORT_CONDITION.INITIALIZING;
 
-pub const PPP_IPCP_INFO = extern struct {
-    dwError: u32,
-    wszAddress: [16]u16,
-    wszRemoteAddress: [16]u16,
-};
-
-pub const PPP_IPCP_INFO2 = extern struct {
-    dwError: u32,
-    wszAddress: [16]u16,
-    wszRemoteAddress: [16]u16,
-    dwOptions: u32,
-    dwRemoteOptions: u32,
-};
-
-pub const PPP_IPXCP_INFO = extern struct {
-    dwError: u32,
-    wszAddress: [23]u16,
-};
-
-pub const PPP_ATCP_INFO = extern struct {
-    dwError: u32,
-    wszAddress: [33]u16,
-};
-
-pub const PPP_IPV6_CP_INFO = extern struct {
-    dwVersion: u32,
-    dwSize: u32,
-    dwError: u32,
-    bInterfaceIdentifier: [8]u8,
-    bRemoteInterfaceIdentifier: [8]u8,
-    dwOptions: u32,
-    dwRemoteOptions: u32,
-    bPrefix: [8]u8,
-    dwPrefixLength: u32,
-};
-
-pub const PPP_INFO = extern struct {
-    nbf: PPP_NBFCP_INFO,
-    ip: PPP_IPCP_INFO,
-    ipx: PPP_IPXCP_INFO,
-    at: PPP_ATCP_INFO,
-};
-
-pub const PPP_CCP_INFO = extern struct {
-    dwError: u32,
-    dwCompressionAlgorithm: u32,
-    dwOptions: u32,
-    dwRemoteCompressionAlgorithm: u32,
-    dwRemoteOptions: u32,
-};
-
-pub const PPP_LCP_INFO = extern struct {
-    dwError: u32,
-    dwAuthenticationProtocol: PPP_LCP,
-    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
-    dwRemoteAuthenticationProtocol: u32,
-    dwRemoteAuthenticationData: u32,
-    dwTerminateReason: u32,
-    dwRemoteTerminateReason: u32,
-    dwOptions: u32,
-    dwRemoteOptions: u32,
-    dwEapTypeId: u32,
-    dwRemoteEapTypeId: u32,
-};
-
-pub const PPP_INFO_2 = extern struct {
-    nbf: PPP_NBFCP_INFO,
-    ip: PPP_IPCP_INFO2,
-    ipx: PPP_IPXCP_INFO,
-    at: PPP_ATCP_INFO,
-    ccp: PPP_CCP_INFO,
-    lcp: PPP_LCP_INFO,
-};
-
-pub const PPP_INFO_3 = extern struct {
-    nbf: PPP_NBFCP_INFO,
-    ip: PPP_IPCP_INFO2,
-    ipv6: PPP_IPV6_CP_INFO,
-    ccp: PPP_CCP_INFO,
-    lcp: PPP_LCP_INFO,
-};
-
-pub const RAS_CONNECTION_0 = extern struct {
-    hConnection: ?HANDLE,
-    hInterface: ?HANDLE,
-    dwConnectDuration: u32,
-    dwInterfaceType: ROUTER_INTERFACE_TYPE,
-    dwConnectionFlags: RAS_FLAGS,
-    wszInterfaceName: [257]u16,
-    wszUserName: [257]u16,
-    wszLogonDomain: [16]u16,
-    wszRemoteComputer: [17]u16,
-};
-
-pub const RAS_CONNECTION_1 = extern struct {
-    hConnection: ?HANDLE,
-    hInterface: ?HANDLE,
-    PppInfo: PPP_INFO,
-    dwBytesXmited: u32,
-    dwBytesRcved: u32,
-    dwFramesXmited: u32,
-    dwFramesRcved: u32,
-    dwCrcErr: u32,
-    dwTimeoutErr: u32,
-    dwAlignmentErr: u32,
-    dwHardwareOverrunErr: u32,
-    dwFramingErr: u32,
-    dwBufferOverrunErr: u32,
-    dwCompressionRatioIn: u32,
-    dwCompressionRatioOut: u32,
-};
-
-pub const RAS_CONNECTION_2 = extern struct {
-    hConnection: ?HANDLE,
-    wszUserName: [257]u16,
-    dwInterfaceType: ROUTER_INTERFACE_TYPE,
-    guid: Guid,
-    PppInfo2: PPP_INFO_2,
+pub const RAS_PROJECTION_INFO = extern struct {
+    version: RASAPIVERSION,
+    type: RASPROJECTION_INFO_TYPE,
+    Anonymous: extern union {
+        ppp: RASPPP_PROJECTION_INFO,
+        ikev2: RASIKEV2_PROJECTION_INFO,
+    },
 };
 
 pub const RAS_QUARANTINE_STATE = enum(i32) {
@@ -2215,16 +1891,35 @@ pub const RAS_QUAR_STATE_QUARANTINE = RAS_QUARANTINE_STATE.QUARANTINE;
 pub const RAS_QUAR_STATE_PROBATION = RAS_QUARANTINE_STATE.PROBATION;
 pub const RAS_QUAR_STATE_NOT_CAPABLE = RAS_QUARANTINE_STATE.NOT_CAPABLE;
 
-pub const RAS_CONNECTION_3 = extern struct {
-    dwVersion: u32,
+pub const RAS_SECURITY_INFO = extern struct {
+    LastError: u32,
+    BytesReceived: u32,
+    DeviceName: [129]CHAR,
+};
+
+pub const RAS_STATS = extern struct {
     dwSize: u32,
-    hConnection: ?HANDLE,
-    wszUserName: [257]u16,
-    dwInterfaceType: ROUTER_INTERFACE_TYPE,
-    guid: Guid,
-    PppInfo3: PPP_INFO_3,
-    rasQuarState: RAS_QUARANTINE_STATE,
-    timer: FILETIME,
+    dwBytesXmited: u32,
+    dwBytesRcved: u32,
+    dwFramesXmited: u32,
+    dwFramesRcved: u32,
+    dwCrcErr: u32,
+    dwTimeoutErr: u32,
+    dwAlignmentErr: u32,
+    dwHardwareOverrunErr: u32,
+    dwFramingErr: u32,
+    dwBufferOverrunErr: u32,
+    dwCompressionRatioIn: u32,
+    dwCompressionRatioOut: u32,
+    dwBps: u32,
+    dwConnectDuration: u32,
+};
+
+pub const RAS_UPDATE_CONNECTION = extern struct {
+    Header: MPRAPI_OBJECT_HEADER,
+    dwIfIndex: u32,
+    wszLocalEndpointAddress: [65]u16,
+    wszRemoteEndpointAddress: [65]u16,
 };
 
 pub const RAS_USER_0 = extern struct {
@@ -2238,211 +1933,910 @@ pub const RAS_USER_1 = extern struct {
     bfPrivilege2: u8,
 };
 
-pub const MPR_FILTER_0 = extern struct {
-    fEnable: BOOL,
+pub const RASADFUNCA = *const fn(
+    param0: ?PSTR,
+    param1: ?PSTR,
+    param2: ?*RASADPARAMS,
+    param3: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub const RASADFUNCW = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*RASADPARAMS,
+    param3: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub const RASADPARAMS = extern struct {
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
 };
 
-pub const MPRAPI_OBJECT_HEADER = extern struct {
-    revision: u8,
-    type: u8,
-    size: u16,
+pub const RASAMBA = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    szNetBiosError: [17]CHAR,
+    bLana: u8,
 };
 
-pub const MPRAPI_OBJECT_TYPE = enum(i32) {
-    RAS_CONNECTION_OBJECT = 1,
-    MPR_SERVER_OBJECT = 2,
-    MPR_SERVER_SET_CONFIG_OBJECT = 3,
-    AUTH_VALIDATION_OBJECT = 4,
-    UPDATE_CONNECTION_OBJECT = 5,
-    IF_CUSTOM_CONFIG_OBJECT = 6,
+pub const RASAMBW = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    szNetBiosError: [17]u16,
+    bLana: u8,
 };
-pub const MPRAPI_OBJECT_TYPE_RAS_CONNECTION_OBJECT = MPRAPI_OBJECT_TYPE.RAS_CONNECTION_OBJECT;
-pub const MPRAPI_OBJECT_TYPE_MPR_SERVER_OBJECT = MPRAPI_OBJECT_TYPE.MPR_SERVER_OBJECT;
-pub const MPRAPI_OBJECT_TYPE_MPR_SERVER_SET_CONFIG_OBJECT = MPRAPI_OBJECT_TYPE.MPR_SERVER_SET_CONFIG_OBJECT;
-pub const MPRAPI_OBJECT_TYPE_AUTH_VALIDATION_OBJECT = MPRAPI_OBJECT_TYPE.AUTH_VALIDATION_OBJECT;
-pub const MPRAPI_OBJECT_TYPE_UPDATE_CONNECTION_OBJECT = MPRAPI_OBJECT_TYPE.UPDATE_CONNECTION_OBJECT;
-pub const MPRAPI_OBJECT_TYPE_IF_CUSTOM_CONFIG_OBJECT = MPRAPI_OBJECT_TYPE.IF_CUSTOM_CONFIG_OBJECT;
 
-pub const PPP_PROJECTION_INFO = extern struct {
+pub const RASAPIVERSION = enum(i32) {
+    @"500" = 1,
+    @"501" = 2,
+    @"600" = 3,
+    @"601" = 4,
+};
+pub const RASAPIVERSION_500 = RASAPIVERSION.@"500";
+pub const RASAPIVERSION_501 = RASAPIVERSION.@"501";
+pub const RASAPIVERSION_600 = RASAPIVERSION.@"600";
+pub const RASAPIVERSION_601 = RASAPIVERSION.@"601";
+
+pub const RASAUTODIALENTRYA = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwDialingLocation: u32,
+    szEntry: [257]CHAR,
+};
+
+pub const RASAUTODIALENTRYW = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwDialingLocation: u32,
+    szEntry: [257]u16,
+};
+
+pub const RASCOMMSETTINGS = extern struct {
+    dwSize: u32,
+    bParity: u8,
+    bStop: u8,
+    bByteSize: u8,
+    bAlign: u8,
+};
+
+pub const RASCONNA = extern struct {
+    dwSize: u32 align(4),
+    hrasconn: ?HRASCONN align(4),
+    szEntryName: [257]CHAR align(4),
+    szDeviceType: [17]CHAR align(4),
+    szDeviceName: [129]CHAR align(4),
+    szPhonebook: [260]CHAR align(4),
+    dwSubEntry: u32 align(4),
+    guidEntry: Guid align(4),
+    dwFlags: u32 align(4),
+    luid: LUID align(4),
+    guidCorrelationId: Guid align(4),
+};
+
+pub const RASCONNSTATE = enum(i32) {
+    OpenPort = 0,
+    PortOpened = 1,
+    ConnectDevice = 2,
+    DeviceConnected = 3,
+    AllDevicesConnected = 4,
+    Authenticate = 5,
+    AuthNotify = 6,
+    AuthRetry = 7,
+    AuthCallback = 8,
+    AuthChangePassword = 9,
+    AuthProject = 10,
+    AuthLinkSpeed = 11,
+    AuthAck = 12,
+    ReAuthenticate = 13,
+    Authenticated = 14,
+    PrepareForCallback = 15,
+    WaitForModemReset = 16,
+    WaitForCallback = 17,
+    Projected = 18,
+    StartAuthentication = 19,
+    CallbackComplete = 20,
+    LogonNetwork = 21,
+    SubEntryConnected = 22,
+    SubEntryDisconnected = 23,
+    ApplySettings = 24,
+    Interactive = 4096,
+    RetryAuthentication = 4097,
+    CallbackSetByCaller = 4098,
+    PasswordExpired = 4099,
+    InvokeEapUI = 4100,
+    Connected = 8192,
+    Disconnected = 8193,
+};
+pub const RASCS_OpenPort = RASCONNSTATE.OpenPort;
+pub const RASCS_PortOpened = RASCONNSTATE.PortOpened;
+pub const RASCS_ConnectDevice = RASCONNSTATE.ConnectDevice;
+pub const RASCS_DeviceConnected = RASCONNSTATE.DeviceConnected;
+pub const RASCS_AllDevicesConnected = RASCONNSTATE.AllDevicesConnected;
+pub const RASCS_Authenticate = RASCONNSTATE.Authenticate;
+pub const RASCS_AuthNotify = RASCONNSTATE.AuthNotify;
+pub const RASCS_AuthRetry = RASCONNSTATE.AuthRetry;
+pub const RASCS_AuthCallback = RASCONNSTATE.AuthCallback;
+pub const RASCS_AuthChangePassword = RASCONNSTATE.AuthChangePassword;
+pub const RASCS_AuthProject = RASCONNSTATE.AuthProject;
+pub const RASCS_AuthLinkSpeed = RASCONNSTATE.AuthLinkSpeed;
+pub const RASCS_AuthAck = RASCONNSTATE.AuthAck;
+pub const RASCS_ReAuthenticate = RASCONNSTATE.ReAuthenticate;
+pub const RASCS_Authenticated = RASCONNSTATE.Authenticated;
+pub const RASCS_PrepareForCallback = RASCONNSTATE.PrepareForCallback;
+pub const RASCS_WaitForModemReset = RASCONNSTATE.WaitForModemReset;
+pub const RASCS_WaitForCallback = RASCONNSTATE.WaitForCallback;
+pub const RASCS_Projected = RASCONNSTATE.Projected;
+pub const RASCS_StartAuthentication = RASCONNSTATE.StartAuthentication;
+pub const RASCS_CallbackComplete = RASCONNSTATE.CallbackComplete;
+pub const RASCS_LogonNetwork = RASCONNSTATE.LogonNetwork;
+pub const RASCS_SubEntryConnected = RASCONNSTATE.SubEntryConnected;
+pub const RASCS_SubEntryDisconnected = RASCONNSTATE.SubEntryDisconnected;
+pub const RASCS_ApplySettings = RASCONNSTATE.ApplySettings;
+pub const RASCS_Interactive = RASCONNSTATE.Interactive;
+pub const RASCS_RetryAuthentication = RASCONNSTATE.RetryAuthentication;
+pub const RASCS_CallbackSetByCaller = RASCONNSTATE.CallbackSetByCaller;
+pub const RASCS_PasswordExpired = RASCONNSTATE.PasswordExpired;
+pub const RASCS_InvokeEapUI = RASCONNSTATE.InvokeEapUI;
+pub const RASCS_Connected = RASCONNSTATE.Connected;
+pub const RASCS_Disconnected = RASCONNSTATE.Disconnected;
+
+pub const RASCONNSTATUSA = extern struct {
+    dwSize: u32,
+    rasconnstate: RASCONNSTATE,
+    dwError: u32,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szPhoneNumber: [129]CHAR,
+    localEndPoint: RASTUNNELENDPOINT,
+    remoteEndPoint: RASTUNNELENDPOINT,
+    rasconnsubstate: RASCONNSUBSTATE,
+};
+
+pub const RASCONNSTATUSW = extern struct {
+    dwSize: u32,
+    rasconnstate: RASCONNSTATE,
+    dwError: u32,
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+    szPhoneNumber: [129]u16,
+    localEndPoint: RASTUNNELENDPOINT,
+    remoteEndPoint: RASTUNNELENDPOINT,
+    rasconnsubstate: RASCONNSUBSTATE,
+};
+
+pub const RASCONNSUBSTATE = enum(i32) {
+    None = 0,
+    Dormant = 1,
+    Reconnecting = 2,
+    Reconnected = 8192,
+};
+pub const RASCSS_None = RASCONNSUBSTATE.None;
+pub const RASCSS_Dormant = RASCONNSUBSTATE.Dormant;
+pub const RASCSS_Reconnecting = RASCONNSUBSTATE.Reconnecting;
+pub const RASCSS_Reconnected = RASCONNSUBSTATE.Reconnected;
+
+pub const RASCONNW = extern struct {
+    dwSize: u32 align(4),
+    hrasconn: ?HRASCONN align(4),
+    szEntryName: [257]u16 align(4),
+    szDeviceType: [17]u16 align(4),
+    szDeviceName: [129]u16 align(4),
+    szPhonebook: [260]u16 align(4),
+    dwSubEntry: u32 align(4),
+    guidEntry: Guid align(4),
+    dwFlags: u32 align(4),
+    luid: LUID align(4),
+    guidCorrelationId: Guid align(4),
+};
+
+pub const RASCREDENTIALSA = extern struct {
+    dwSize: u32,
+    dwMask: u32,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
+};
+
+pub const RASCREDENTIALSW = extern struct {
+    dwSize: u32,
+    dwMask: u32,
+    szUserName: [257]u16,
+    szPassword: [257]u16,
+    szDomain: [16]u16,
+};
+
+pub const RASCTRYINFO = extern struct {
+    dwSize: u32,
+    dwCountryID: u32,
+    dwNextCountryID: u32,
+    dwCountryCode: u32,
+    dwCountryNameOffset: u32,
+};
+
+pub const RasCustomDeleteEntryNotifyFn = *const fn(
+    lpszPhonebook: ?[*:0]const u16,
+    lpszEntry: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+pub const RasCustomDialDlgFn = *const fn(
+    hInstDll: ?HINSTANCE,
+    dwFlags: u32,
+    lpszPhonebook: ?PWSTR,
+    lpszEntry: ?PWSTR,
+    lpszPhoneNumber: ?PWSTR,
+    lpInfo: ?*RASDIALDLG,
+    pvInfo: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const RasCustomDialFn = *const fn(
+    hInstDll: ?HINSTANCE,
+    lpRasDialExtensions: ?*RASDIALEXTENSIONS,
+    lpszPhonebook: ?[*:0]const u16,
+    lpRasDialParams: ?*RASDIALPARAMSA,
+    dwNotifierType: u32,
+    lpvNotifier: ?*anyopaque,
+    lphRasConn: ?*?HRASCONN,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+pub const RasCustomEntryDlgFn = *const fn(
+    hInstDll: ?HINSTANCE,
+    lpszPhonebook: ?PWSTR,
+    lpszEntry: ?PWSTR,
+    lpInfo: ?*RASENTRYDLGA,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+pub const RasCustomHangUpFn = *const fn(
+    hRasConn: ?HRASCONN,
+) callconv(.winapi) u32;
+
+pub const RasCustomScriptExecuteFn = *const fn(
+    hPort: ?HANDLE,
+    lpszPhonebook: ?[*:0]const u16,
+    lpszEntryName: ?[*:0]const u16,
+    pfnRasGetBuffer: ?PFNRASGETBUFFER,
+    pfnRasFreeBuffer: ?PFNRASFREEBUFFER,
+    pfnRasSendBuffer: ?PFNRASSENDBUFFER,
+    pfnRasReceiveBuffer: ?PFNRASRECEIVEBUFFER,
+    pfnRasRetrieveBuffer: ?PFNRASRETRIEVEBUFFER,
+    hWnd: ?HWND,
+    pRasDialParams: ?*RASDIALPARAMSA,
+    pvReserved: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
+    dwSize: u32 align(4),
+    pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS align(4),
+};
+
+pub const RASDEVINFOA = extern struct {
+    dwSize: u32,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+};
+
+pub const RASDEVINFOW = extern struct {
+    dwSize: u32,
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+};
+
+pub const RASDEVSPECIFICINFO = extern struct {
+    dwSize: u32 align(4),
+    pbDevSpecificInfo: ?*u8 align(4),
+};
+
+pub const RASDIALDLG = extern struct {
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    dwSubEntry: u32 align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
+};
+
+pub const RASDIALEXTENSIONS = extern struct {
+    dwSize: u32 align(4),
+    dwfOptions: u32 align(4),
+    hwndParent: ?HWND align(4),
+    reserved: usize align(4),
+    reserved1: usize align(4),
+    RasEapInfo: RASEAPINFO align(4),
+    fSkipPppAuth: BOOL align(4),
+    RasDevSpecificInfo: RASDEVSPECIFICINFO align(4),
+};
+
+pub const RASDIALFUNC = *const fn(
+    param0: u32,
+    param1: RASCONNSTATE,
+    param2: u32,
+) callconv(.winapi) void;
+
+pub const RASDIALFUNC1 = *const fn(
+    param0: ?HRASCONN,
+    param1: u32,
+    param2: RASCONNSTATE,
+    param3: u32,
+    param4: u32,
+) callconv(.winapi) void;
+
+pub const RASDIALFUNC2 = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: ?HRASCONN,
+    param3: u32,
+    param4: RASCONNSTATE,
+    param5: u32,
+    param6: u32,
+) callconv(.winapi) u32;
+
+pub const RASDIALPARAMSA = extern struct {
+    dwSize: u32 align(4),
+    szEntryName: [257]CHAR align(4),
+    szPhoneNumber: [129]CHAR align(4),
+    szCallbackNumber: [129]CHAR align(4),
+    szUserName: [257]CHAR align(4),
+    szPassword: [257]CHAR align(4),
+    szDomain: [16]CHAR align(4),
+    dwSubEntry: u32 align(4),
+    dwCallbackId: usize align(4),
+    dwIfIndex: u32 align(4),
+    szEncPassword: ?PSTR align(4),
+};
+
+pub const RASDIALPARAMSW = extern struct {
+    dwSize: u32 align(4),
+    szEntryName: [257]u16 align(4),
+    szPhoneNumber: [129]u16 align(4),
+    szCallbackNumber: [129]u16 align(4),
+    szUserName: [257]u16 align(4),
+    szPassword: [257]u16 align(4),
+    szDomain: [16]u16 align(4),
+    dwSubEntry: u32 align(4),
+    dwCallbackId: usize align(4),
+    dwIfIndex: u32 align(4),
+    szEncPassword: ?PWSTR align(4),
+};
+
+pub const RASEAPINFO = extern struct {
+    dwSizeofEapInfo: u32 align(4),
+    pbEapInfo: ?*u8 align(4),
+};
+
+pub const RASEAPUSERIDENTITYA = extern struct {
+    szUserName: [257]CHAR,
+    dwSizeofEapInfo: u32,
+    pbEapInfo: [1]u8,
+};
+
+pub const RASEAPUSERIDENTITYW = extern struct {
+    szUserName: [257]u16,
+    dwSizeofEapInfo: u32,
+    pbEapInfo: [1]u8,
+};
+
+pub const RASENTRY_DIAL_MODE = enum(u32) {
+    ll = 1,
+    sNeeded = 2,
+};
+pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
+pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
+
+pub const RASENTRYA = extern struct {
+    dwSize: u32,
+    dwfOptions: u32,
+    dwCountryID: u32,
+    dwCountryCode: u32,
+    szAreaCode: [11]CHAR,
+    szLocalPhoneNumber: [129]CHAR,
+    dwAlternateOffset: u32,
+    ipaddr: RASIPADDR,
+    ipaddrDns: RASIPADDR,
+    ipaddrDnsAlt: RASIPADDR,
+    ipaddrWins: RASIPADDR,
+    ipaddrWinsAlt: RASIPADDR,
+    dwFrameSize: u32,
+    dwfNetProtocols: u32,
+    dwFramingProtocol: u32,
+    szScript: [260]CHAR,
+    szAutodialDll: [260]CHAR,
+    szAutodialFunc: [260]CHAR,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szX25PadType: [33]CHAR,
+    szX25Address: [201]CHAR,
+    szX25Facilities: [201]CHAR,
+    szX25UserData: [201]CHAR,
+    dwChannels: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwSubEntries: u32,
+    dwDialMode: RASENTRY_DIAL_MODE,
+    dwDialExtraPercent: u32,
+    dwDialExtraSampleSeconds: u32,
+    dwHangUpExtraPercent: u32,
+    dwHangUpExtraSampleSeconds: u32,
+    dwIdleDisconnectSeconds: u32,
+    dwType: u32,
+    dwEncryptionType: u32,
+    dwCustomAuthKey: u32,
+    guidId: Guid,
+    szCustomDialDll: [260]CHAR,
+    dwVpnStrategy: u32,
+    dwfOptions2: u32,
+    dwfOptions3: u32,
+    szDnsSuffix: [256]CHAR,
+    dwTcpWindowSize: u32,
+    szPrerequisitePbk: [260]CHAR,
+    szPrerequisiteEntry: [257]CHAR,
+    dwRedialCount: u32,
+    dwRedialPause: u32,
+    ipv6addrDns: IN6_ADDR,
+    ipv6addrDnsAlt: IN6_ADDR,
+    dwIPv4InterfaceMetric: u32,
+    dwIPv6InterfaceMetric: u32,
+    ipv6addr: IN6_ADDR,
+    dwIPv6PrefixLength: u32,
+    dwNetworkOutageTime: u32,
+    szIDi: [257]CHAR,
+    szIDr: [257]CHAR,
+    fIsImsConfig: BOOL,
+    IdiType: IKEV2_ID_PAYLOAD_TYPE,
+    IdrType: IKEV2_ID_PAYLOAD_TYPE,
+    fDisableIKEv2Fragmentation: BOOL,
+};
+
+pub const RASENTRYDLGA = extern struct {
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    szEntry: [257]CHAR align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
+};
+
+pub const RASENTRYDLGW = extern struct {
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    szEntry: [257]u16 align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
+};
+
+pub const RASENTRYNAMEA = extern struct {
+    dwSize: u32,
+    szEntryName: [257]CHAR,
+    dwFlags: u32,
+    szPhonebookPath: [261]CHAR,
+};
+
+pub const RASENTRYNAMEW = extern struct {
+    dwSize: u32,
+    szEntryName: [257]u16,
+    dwFlags: u32,
+    szPhonebookPath: [261]u16,
+};
+
+pub const RASENTRYW = extern struct {
+    dwSize: u32,
+    dwfOptions: u32,
+    dwCountryID: u32,
+    dwCountryCode: u32,
+    szAreaCode: [11]u16,
+    szLocalPhoneNumber: [129]u16,
+    dwAlternateOffset: u32,
+    ipaddr: RASIPADDR,
+    ipaddrDns: RASIPADDR,
+    ipaddrDnsAlt: RASIPADDR,
+    ipaddrWins: RASIPADDR,
+    ipaddrWinsAlt: RASIPADDR,
+    dwFrameSize: u32,
+    dwfNetProtocols: u32,
+    dwFramingProtocol: u32,
+    szScript: [260]u16,
+    szAutodialDll: [260]u16,
+    szAutodialFunc: [260]u16,
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+    szX25PadType: [33]u16,
+    szX25Address: [201]u16,
+    szX25Facilities: [201]u16,
+    szX25UserData: [201]u16,
+    dwChannels: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwSubEntries: u32,
+    dwDialMode: RASENTRY_DIAL_MODE,
+    dwDialExtraPercent: u32,
+    dwDialExtraSampleSeconds: u32,
+    dwHangUpExtraPercent: u32,
+    dwHangUpExtraSampleSeconds: u32,
+    dwIdleDisconnectSeconds: u32,
+    dwType: u32,
+    dwEncryptionType: u32,
+    dwCustomAuthKey: u32,
+    guidId: Guid,
+    szCustomDialDll: [260]u16,
+    dwVpnStrategy: u32,
+    dwfOptions2: u32,
+    dwfOptions3: u32,
+    szDnsSuffix: [256]u16,
+    dwTcpWindowSize: u32,
+    szPrerequisitePbk: [260]u16,
+    szPrerequisiteEntry: [257]u16,
+    dwRedialCount: u32,
+    dwRedialPause: u32,
+    ipv6addrDns: IN6_ADDR,
+    ipv6addrDnsAlt: IN6_ADDR,
+    dwIPv4InterfaceMetric: u32,
+    dwIPv6InterfaceMetric: u32,
+    ipv6addr: IN6_ADDR,
+    dwIPv6PrefixLength: u32,
+    dwNetworkOutageTime: u32,
+    szIDi: [257]u16,
+    szIDr: [257]u16,
+    fIsImsConfig: BOOL,
+    IdiType: IKEV2_ID_PAYLOAD_TYPE,
+    IdrType: IKEV2_ID_PAYLOAD_TYPE,
+    fDisableIKEv2Fragmentation: BOOL,
+};
+
+pub const RASIKEV2_PROJECTION_INFO = extern struct {
+    dwIPv4NegotiationError: u32 align(4),
+    ipv4Address: IN_ADDR align(4),
+    ipv4ServerAddress: IN_ADDR align(4),
+    dwIPv6NegotiationError: u32 align(4),
+    ipv6Address: IN6_ADDR align(4),
+    ipv6ServerAddress: IN6_ADDR align(4),
+    dwPrefixLength: u32 align(4),
+    dwAuthenticationProtocol: u32 align(4),
+    dwEapTypeId: u32 align(4),
+    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS align(4),
+    dwEncryptionMethod: u32 align(4),
+    numIPv4ServerAddresses: u32 align(4),
+    ipv4ServerAddresses: ?*IN_ADDR align(4),
+    numIPv6ServerAddresses: u32 align(4),
+    ipv6ServerAddresses: ?*IN6_ADDR align(4),
+};
+
+pub const RASIKEV_PROJECTION_INFO_FLAGS = packed struct(u32) {
+    MOBIKESUPPORTED: u1 = 0,
+    BEHIND_NAT: u1 = 0,
+    SERVERBEHIND_NAT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS{ .MOBIKESUPPORTED = 1 };
+pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS{ .BEHIND_NAT = 1 };
+pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS{ .SERVERBEHIND_NAT = 1 };
+
+pub const RASIPADDR = extern struct {
+    a: u8,
+    b: u8,
+    c: u8,
+    d: u8,
+};
+
+pub const RASIPXW = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    szIpxAddress: [22]u16,
+};
+
+pub const RASNOUSERA = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwTimeoutMs: u32,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
+};
+
+pub const RASNOUSERW = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwTimeoutMs: u32,
+    szUserName: [257]u16,
+    szPassword: [257]u16,
+    szDomain: [16]u16,
+};
+
+pub const RASPBDLGA = extern struct {
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    dwCallbackId: usize align(4),
+    pCallback: ?RASPBDLGFUNCA align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
+};
+
+pub const RASPBDLGFUNCA = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: ?PSTR,
+    param3: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const RASPBDLGFUNCW = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: ?PWSTR,
+    param3: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const RASPBDLGW = extern struct {
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    dwCallbackId: usize align(4),
+    pCallback: ?RASPBDLGFUNCW align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
+};
+
+pub const RASPPP_PROJECTION_INFO = extern struct {
     dwIPv4NegotiationError: u32,
-    wszAddress: [16]u16,
-    wszRemoteAddress: [16]u16,
+    ipv4Address: IN_ADDR,
+    ipv4ServerAddress: IN_ADDR,
     dwIPv4Options: u32,
-    dwIPv4RemoteOptions: u32,
-    IPv4SubInterfaceIndex: u64,
+    dwIPv4ServerOptions: u32,
     dwIPv6NegotiationError: u32,
     bInterfaceIdentifier: [8]u8,
-    bRemoteInterfaceIdentifier: [8]u8,
-    bPrefix: [8]u8,
-    dwPrefixLength: u32,
-    IPv6SubInterfaceIndex: u64,
-    dwLcpError: u32,
-    dwAuthenticationProtocol: PPP_LCP,
-    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
-    dwRemoteAuthenticationProtocol: PPP_LCP,
-    dwRemoteAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
-    dwLcpTerminateReason: u32,
-    dwLcpRemoteTerminateReason: u32,
+    bServerInterfaceIdentifier: [8]u8,
+    fBundled: BOOL,
+    fMultilink: BOOL,
+    dwAuthenticationProtocol: RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL,
+    dwAuthenticationData: RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA,
+    dwServerAuthenticationProtocol: RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL,
+    dwServerAuthenticationData: RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA,
+    dwEapTypeId: u32,
+    dwServerEapTypeId: u32,
     dwLcpOptions: u32,
-    dwLcpRemoteOptions: u32,
-    dwEapTypeId: u32,
-    dwRemoteEapTypeId: u32,
+    dwLcpServerOptions: u32,
     dwCcpError: u32,
-    dwCompressionAlgorithm: u32,
+    dwCcpCompressionAlgorithm: u32,
+    dwCcpServerCompressionAlgorithm: u32,
     dwCcpOptions: u32,
-    dwRemoteCompressionAlgorithm: u32,
-    dwCcpRemoteOptions: u32,
+    dwCcpServerOptions: u32,
 };
 
-pub const PPP_PROJECTION_INFO2 = extern struct {
-    dwIPv4NegotiationError: u32,
-    wszAddress: [16]u16,
-    wszRemoteAddress: [16]u16,
-    dwIPv4Options: u32,
-    dwIPv4RemoteOptions: u32,
-    IPv4SubInterfaceIndex: u64,
-    dwIPv6NegotiationError: u32,
-    bInterfaceIdentifier: [8]u8,
-    bRemoteInterfaceIdentifier: [8]u8,
-    bPrefix: [8]u8,
-    dwPrefixLength: u32,
-    IPv6SubInterfaceIndex: u64,
-    dwLcpError: u32,
-    dwAuthenticationProtocol: PPP_LCP,
-    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
-    dwRemoteAuthenticationProtocol: PPP_LCP,
-    dwRemoteAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
-    dwLcpTerminateReason: u32,
-    dwLcpRemoteTerminateReason: u32,
-    dwLcpOptions: u32,
-    dwLcpRemoteOptions: u32,
-    dwEapTypeId: u32,
-    dwEmbeddedEAPTypeId: u32,
-    dwRemoteEapTypeId: u32,
-    dwCcpError: u32,
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA = enum(u32) {
+    D5 = 5,
+    S = 128,
+    SV2 = 129,
+};
+pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.D5;
+pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.S;
+pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.SV2;
+
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL = enum(u32) {
+    PAP = 49187,
+    SPAP = 49191,
+    CHAP = 49699,
+    EAP = 49703,
+};
+pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.PAP;
+pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.SPAP;
+pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.CHAP;
+pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.EAP;
+
+pub const RASPPPCCP = extern struct {
+    dwSize: u32,
+    dwError: u32,
     dwCompressionAlgorithm: u32,
-    dwCcpOptions: u32,
-    dwRemoteCompressionAlgorithm: u32,
-    dwCcpRemoteOptions: u32,
-};
-
-pub const IKEV2_PROJECTION_INFO = extern struct {
-    dwIPv4NegotiationError: u32,
-    wszAddress: [16]u16,
-    wszRemoteAddress: [16]u16,
-    IPv4SubInterfaceIndex: u64,
-    dwIPv6NegotiationError: u32,
-    bInterfaceIdentifier: [8]u8,
-    bRemoteInterfaceIdentifier: [8]u8,
-    bPrefix: [8]u8,
-    dwPrefixLength: u32,
-    IPv6SubInterfaceIndex: u64,
     dwOptions: u32,
-    dwAuthenticationProtocol: u32,
-    dwEapTypeId: u32,
-    dwCompressionAlgorithm: u32,
-    dwEncryptionMethod: u32,
+    dwServerCompressionAlgorithm: u32,
+    dwServerOptions: u32,
 };
 
-pub const IKEV2_PROJECTION_INFO2 = extern struct {
-    dwIPv4NegotiationError: u32,
-    wszAddress: [16]u16,
-    wszRemoteAddress: [16]u16,
-    IPv4SubInterfaceIndex: u64,
-    dwIPv6NegotiationError: u32,
-    bInterfaceIdentifier: [8]u8,
-    bRemoteInterfaceIdentifier: [8]u8,
-    bPrefix: [8]u8,
-    dwPrefixLength: u32,
-    IPv6SubInterfaceIndex: u64,
+pub const RASPPPIPA = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    szIpAddress: [16]CHAR,
+    szServerIpAddress: [16]CHAR,
     dwOptions: u32,
-    dwAuthenticationProtocol: u32,
-    dwEapTypeId: u32,
-    dwEmbeddedEAPTypeId: u32,
-    dwCompressionAlgorithm: u32,
-    dwEncryptionMethod: u32,
+    dwServerOptions: u32,
 };
 
-pub const PROJECTION_INFO = extern struct {
-    projectionInfoType: u8,
+pub const RASPPPIPV6 = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    bLocalInterfaceIdentifier: [8]u8,
+    bPeerInterfaceIdentifier: [8]u8,
+    bLocalCompressionProtocol: [2]u8,
+    bPeerCompressionProtocol: [2]u8,
+};
+
+pub const RASPPPIPW = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    szIpAddress: [16]u16,
+    szServerIpAddress: [16]u16,
+    dwOptions: u32,
+    dwServerOptions: u32,
+};
+
+pub const RASPPPIPXA = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    szIpxAddress: [22]CHAR,
+};
+
+pub const RASPPPLCPA = extern struct {
+    dwSize: u32,
+    fBundled: BOOL,
+    dwError: u32,
+    dwAuthenticationProtocol: u32,
+    dwAuthenticationData: u32,
+    dwEapTypeId: u32,
+    dwServerAuthenticationProtocol: u32,
+    dwServerAuthenticationData: u32,
+    dwServerEapTypeId: u32,
+    fMultilink: BOOL,
+    dwTerminateReason: u32,
+    dwServerTerminateReason: u32,
+    szReplyMessage: [1024]CHAR,
+    dwOptions: u32,
+    dwServerOptions: u32,
+};
+
+pub const RASPPPLCPW = extern struct {
+    dwSize: u32,
+    fBundled: BOOL,
+    dwError: u32,
+    dwAuthenticationProtocol: u32,
+    dwAuthenticationData: u32,
+    dwEapTypeId: u32,
+    dwServerAuthenticationProtocol: u32,
+    dwServerAuthenticationData: u32,
+    dwServerEapTypeId: u32,
+    fMultilink: BOOL,
+    dwTerminateReason: u32,
+    dwServerTerminateReason: u32,
+    szReplyMessage: [1024]u16,
+    dwOptions: u32,
+    dwServerOptions: u32,
+};
+
+pub const RASPPPNBFA = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    dwNetBiosError: u32,
+    szNetBiosError: [17]CHAR,
+    szWorkstationName: [17]CHAR,
+    bLana: u8,
+};
+
+pub const RASPPPNBFW = extern struct {
+    dwSize: u32,
+    dwError: u32,
+    dwNetBiosError: u32,
+    szNetBiosError: [17]u16,
+    szWorkstationName: [17]u16,
+    bLana: u8,
+};
+
+pub const RASPROJECTION = enum(i32) {
+    Amb = 65536,
+    PppNbf = 32831,
+    PppIpx = 32811,
+    PppIp = 32801,
+    PppCcp = 33021,
+    PppLcp = 49185,
+    PppIpv6 = 32855,
+};
+pub const RASP_Amb = RASPROJECTION.Amb;
+pub const RASP_PppNbf = RASPROJECTION.PppNbf;
+pub const RASP_PppIpx = RASPROJECTION.PppIpx;
+pub const RASP_PppIp = RASPROJECTION.PppIp;
+pub const RASP_PppCcp = RASPROJECTION.PppCcp;
+pub const RASP_PppLcp = RASPROJECTION.PppLcp;
+pub const RASP_PppIpv6 = RASPROJECTION.PppIpv6;
+
+pub const RASPROJECTION_INFO_TYPE = enum(i32) {
+    PPP = 1,
+    IKEv2 = 2,
+};
+pub const PROJECTION_INFO_TYPE_PPP = RASPROJECTION_INFO_TYPE.PPP;
+pub const PROJECTION_INFO_TYPE_IKEv2 = RASPROJECTION_INFO_TYPE.IKEv2;
+
+pub const RASSECURITYPROC = *const fn(
+) callconv(.winapi) u32;
+
+pub const RASSUBENTRYA = extern struct {
+    dwSize: u32,
+    dwfFlags: u32,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szLocalPhoneNumber: [129]CHAR,
+    dwAlternateOffset: u32,
+};
+
+pub const RASSUBENTRYW = extern struct {
+    dwSize: u32,
+    dwfFlags: u32,
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+    szLocalPhoneNumber: [129]u16,
+    dwAlternateOffset: u32,
+};
+
+pub const RASTUNNELENDPOINT = extern struct {
+    dwType: u32,
     Anonymous: extern union {
-        PppProjectionInfo: PPP_PROJECTION_INFO,
-        Ikev2ProjectionInfo: IKEV2_PROJECTION_INFO,
+        ipv4: IN_ADDR,
+        ipv6: IN6_ADDR,
     },
 };
 
-pub const PROJECTION_INFO2 = extern struct {
-    projectionInfoType: u8,
-    Anonymous: extern union {
-        PppProjectionInfo: PPP_PROJECTION_INFO2,
-        Ikev2ProjectionInfo: IKEV2_PROJECTION_INFO2,
-    },
+pub const RASUPDATECONN = extern struct {
+    version: RASAPIVERSION,
+    dwSize: u32,
+    dwFlags: u32,
+    dwIfIndex: u32,
+    localEndPoint: RASTUNNELENDPOINT,
+    remoteEndPoint: RASTUNNELENDPOINT,
 };
 
-pub const RAS_CONNECTION_EX = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    dwConnectDuration: u32,
-    dwInterfaceType: ROUTER_INTERFACE_TYPE,
-    dwConnectionFlags: RAS_FLAGS,
-    wszInterfaceName: [257]u16,
-    wszUserName: [257]u16,
-    wszLogonDomain: [16]u16,
-    wszRemoteComputer: [17]u16,
-    guid: Guid,
-    rasQuarState: RAS_QUARANTINE_STATE,
-    probationTime: FILETIME,
-    dwBytesXmited: u32,
-    dwBytesRcved: u32,
-    dwFramesXmited: u32,
-    dwFramesRcved: u32,
-    dwCrcErr: u32,
-    dwTimeoutErr: u32,
-    dwAlignmentErr: u32,
-    dwHardwareOverrunErr: u32,
-    dwFramingErr: u32,
-    dwBufferOverrunErr: u32,
-    dwCompressionRatioIn: u32,
-    dwCompressionRatioOut: u32,
-    dwNumSwitchOvers: u32,
-    wszRemoteEndpointAddress: [65]u16,
-    wszLocalEndpointAddress: [65]u16,
-    ProjectionInfo: PROJECTION_INFO,
-    hConnection: ?HANDLE,
-    hInterface: ?HANDLE,
+pub const ROUTER_CONNECTION_STATE = enum(i32) {
+    UNREACHABLE = 0,
+    DISCONNECTED = 1,
+    CONNECTING = 2,
+    CONNECTED = 3,
 };
-
-pub const RAS_CONNECTION_4 = extern struct {
-    dwConnectDuration: u32,
-    dwInterfaceType: ROUTER_INTERFACE_TYPE,
-    dwConnectionFlags: RAS_FLAGS,
-    wszInterfaceName: [257]u16,
-    wszUserName: [257]u16,
-    wszLogonDomain: [16]u16,
-    wszRemoteComputer: [17]u16,
-    guid: Guid,
-    rasQuarState: RAS_QUARANTINE_STATE,
-    probationTime: FILETIME,
-    connectionStartTime: FILETIME,
-    ullBytesXmited: u64,
-    ullBytesRcved: u64,
-    dwFramesXmited: u32,
-    dwFramesRcved: u32,
-    dwCrcErr: u32,
-    dwTimeoutErr: u32,
-    dwAlignmentErr: u32,
-    dwHardwareOverrunErr: u32,
-    dwFramingErr: u32,
-    dwBufferOverrunErr: u32,
-    dwCompressionRatioIn: u32,
-    dwCompressionRatioOut: u32,
-    dwNumSwitchOvers: u32,
-    wszRemoteEndpointAddress: [65]u16,
-    wszLocalEndpointAddress: [65]u16,
-    ProjectionInfo: PROJECTION_INFO2,
-    hConnection: ?HANDLE,
-    hInterface: ?HANDLE,
-    dwDeviceType: u32,
-};
+pub const ROUTER_IF_STATE_UNREACHABLE = ROUTER_CONNECTION_STATE.UNREACHABLE;
+pub const ROUTER_IF_STATE_DISCONNECTED = ROUTER_CONNECTION_STATE.DISCONNECTED;
+pub const ROUTER_IF_STATE_CONNECTING = ROUTER_CONNECTION_STATE.CONNECTING;
+pub const ROUTER_IF_STATE_CONNECTED = ROUTER_CONNECTION_STATE.CONNECTED;
 
 pub const ROUTER_CUSTOM_IKEv2_POLICY0 = extern struct {
     dwIntegrityMethod: u32,
@@ -2460,48 +2854,12 @@ pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG0 = extern struct {
     customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
 };
 
-pub const MPR_IF_CUSTOMINFOEX0 = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    dwFlags: u32,
-    customIkev2Config: ROUTER_IKEv2_IF_CUSTOM_CONFIG0,
-};
-
-pub const MPR_CERT_EKU = extern struct {
-    dwSize: u32,
-    IsEKUOID: BOOL,
-    pwszEKU: ?PWSTR,
-};
-
-pub const VPN_TS_IP_ADDRESS = extern struct {
-    Type: u16,
-    Anonymous: extern union {
-        v4: IN_ADDR,
-        v6: IN6_ADDR,
-    },
-};
-
-pub const MPR_VPN_TS_TYPE = enum(i32) {
-    @"4_ADDR_RANGE" = 7,
-    @"6_ADDR_RANGE" = 8,
-};
-pub const MPR_VPN_TS_IPv4_ADDR_RANGE = MPR_VPN_TS_TYPE.@"4_ADDR_RANGE";
-pub const MPR_VPN_TS_IPv6_ADDR_RANGE = MPR_VPN_TS_TYPE.@"6_ADDR_RANGE";
-
-pub const _MPR_VPN_SELECTOR = extern struct {
-    type: MPR_VPN_TS_TYPE,
-    protocolId: u8,
-    portStart: u16,
-    portEnd: u16,
-    tsPayloadId: u16,
-    addrStart: VPN_TS_IP_ADDRESS,
-    addrEnd: VPN_TS_IP_ADDRESS,
-};
-
-pub const MPR_VPN_TRAFFIC_SELECTORS = extern struct {
-    numTsi: u32,
-    numTsr: u32,
-    tsI: ?*_MPR_VPN_SELECTOR,
-    tsR: ?*_MPR_VPN_SELECTOR,
+pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG1 = extern struct {
+    dwSaLifeTime: u32,
+    dwSaDataSize: u32,
+    certificateName: CRYPTOAPI_BLOB,
+    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
+    certificateHash: CRYPTOAPI_BLOB,
 };
 
 pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG2 = extern struct {
@@ -2514,415 +2872,26 @@ pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG2 = extern struct {
     vpnTrafficSelectors: MPR_VPN_TRAFFIC_SELECTORS,
 };
 
-pub const MPR_IF_CUSTOMINFOEX2 = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    dwFlags: u32,
-    customIkev2Config: ROUTER_IKEv2_IF_CUSTOM_CONFIG2,
+pub const ROUTER_INTERFACE_TYPE = enum(i32) {
+    CLIENT = 0,
+    HOME_ROUTER = 1,
+    FULL_ROUTER = 2,
+    DEDICATED = 3,
+    INTERNAL = 4,
+    LOOPBACK = 5,
+    TUNNEL1 = 6,
+    DIALOUT = 7,
+    MAX = 8,
 };
-
-pub const IKEV2_TUNNEL_CONFIG_PARAMS4 = extern struct {
-    dwIdleTimeout: u32,
-    dwNetworkBlackoutTime: u32,
-    dwSaLifeTime: u32,
-    dwSaDataSizeForRenegotiation: u32,
-    dwConfigOptions: u32,
-    dwTotalCertificates: u32,
-    certificateNames: ?*CRYPTOAPI_BLOB,
-    machineCertificateName: CRYPTOAPI_BLOB,
-    dwEncryptionType: u32,
-    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-    dwTotalEkus: u32,
-    certificateEKUs: ?*MPR_CERT_EKU,
-    machineCertificateHash: CRYPTOAPI_BLOB,
-    dwMmSaLifeTime: u32,
-};
-
-pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG1 = extern struct {
-    dwSaLifeTime: u32,
-    dwSaDataSize: u32,
-    certificateName: CRYPTOAPI_BLOB,
-    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-    certificateHash: CRYPTOAPI_BLOB,
-};
-
-pub const MPR_IF_CUSTOMINFOEX1 = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    dwFlags: u32,
-    customIkev2Config: ROUTER_IKEv2_IF_CUSTOM_CONFIG1,
-};
-
-pub const IKEV2_TUNNEL_CONFIG_PARAMS3 = extern struct {
-    dwIdleTimeout: u32,
-    dwNetworkBlackoutTime: u32,
-    dwSaLifeTime: u32,
-    dwSaDataSizeForRenegotiation: u32,
-    dwConfigOptions: u32,
-    dwTotalCertificates: u32,
-    certificateNames: ?*CRYPTOAPI_BLOB,
-    machineCertificateName: CRYPTOAPI_BLOB,
-    dwEncryptionType: u32,
-    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-    dwTotalEkus: u32,
-    certificateEKUs: ?*MPR_CERT_EKU,
-    machineCertificateHash: CRYPTOAPI_BLOB,
-};
-
-pub const IKEV2_TUNNEL_CONFIG_PARAMS2 = extern struct {
-    dwIdleTimeout: u32,
-    dwNetworkBlackoutTime: u32,
-    dwSaLifeTime: u32,
-    dwSaDataSizeForRenegotiation: u32,
-    dwConfigOptions: u32,
-    dwTotalCertificates: u32,
-    certificateNames: ?*CRYPTOAPI_BLOB,
-    machineCertificateName: CRYPTOAPI_BLOB,
-    dwEncryptionType: u32,
-    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-};
-
-pub const L2TP_TUNNEL_CONFIG_PARAMS2 = extern struct {
-    dwIdleTimeout: u32,
-    dwEncryptionType: u32,
-    dwSaLifeTime: u32,
-    dwSaDataSizeForRenegotiation: u32,
-    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-    dwMmSaLifeTime: u32,
-};
-
-pub const L2TP_TUNNEL_CONFIG_PARAMS1 = extern struct {
-    dwIdleTimeout: u32,
-    dwEncryptionType: u32,
-    dwSaLifeTime: u32,
-    dwSaDataSizeForRenegotiation: u32,
-    customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-};
-
-pub const IKEV2_CONFIG_PARAMS = extern struct {
-    dwNumPorts: u32,
-    dwPortFlags: u32,
-    dwTunnelConfigParamFlags: u32,
-    TunnelConfigParams: IKEV2_TUNNEL_CONFIG_PARAMS4,
-};
-
-pub const PPTP_CONFIG_PARAMS = extern struct {
-    dwNumPorts: u32,
-    dwPortFlags: u32,
-};
-
-pub const L2TP_CONFIG_PARAMS1 = extern struct {
-    dwNumPorts: u32,
-    dwPortFlags: u32,
-    dwTunnelConfigParamFlags: u32,
-    TunnelConfigParams: L2TP_TUNNEL_CONFIG_PARAMS2,
-};
-
-pub const GRE_CONFIG_PARAMS0 = extern struct {
-    dwNumPorts: u32,
-    dwPortFlags: u32,
-};
-
-pub const L2TP_CONFIG_PARAMS0 = extern struct {
-    dwNumPorts: u32,
-    dwPortFlags: u32,
-};
-
-pub const SSTP_CERT_INFO = extern struct {
-    isDefault: BOOL,
-    certBlob: CRYPTOAPI_BLOB,
-};
-
-pub const SSTP_CONFIG_PARAMS = extern struct {
-    dwNumPorts: u32,
-    dwPortFlags: u32,
-    isUseHttps: BOOL,
-    certAlgorithm: u32,
-    sstpCertDetails: SSTP_CERT_INFO,
-};
-
-pub const MPRAPI_TUNNEL_CONFIG_PARAMS0 = extern struct {
-    IkeConfigParams: IKEV2_CONFIG_PARAMS,
-    PptpConfigParams: PPTP_CONFIG_PARAMS,
-    L2tpConfigParams: L2TP_CONFIG_PARAMS1,
-    SstpConfigParams: SSTP_CONFIG_PARAMS,
-};
-
-pub const MPRAPI_TUNNEL_CONFIG_PARAMS1 = extern struct {
-    IkeConfigParams: IKEV2_CONFIG_PARAMS,
-    PptpConfigParams: PPTP_CONFIG_PARAMS,
-    L2tpConfigParams: L2TP_CONFIG_PARAMS1,
-    SstpConfigParams: SSTP_CONFIG_PARAMS,
-    GREConfigParams: GRE_CONFIG_PARAMS0,
-};
-
-pub const MPR_SERVER_EX0 = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    fLanOnlyMode: u32,
-    dwUpTime: u32,
-    dwTotalPorts: u32,
-    dwPortsInUse: u32,
-    Reserved: u32,
-    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS0,
-};
-
-pub const MPR_SERVER_EX1 = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    fLanOnlyMode: u32,
-    dwUpTime: u32,
-    dwTotalPorts: u32,
-    dwPortsInUse: u32,
-    Reserved: u32,
-    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS1,
-};
-
-pub const MPR_SERVER_SET_CONFIG_EX0 = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    setConfigForProtocols: u32,
-    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS0,
-};
-
-pub const MPR_SERVER_SET_CONFIG_EX1 = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    setConfigForProtocols: u32,
-    ConfigParams: MPRAPI_TUNNEL_CONFIG_PARAMS1,
-};
-
-pub const AUTH_VALIDATION_EX = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    hRasConnection: ?HANDLE,
-    wszUserName: [257]u16,
-    wszLogonDomain: [16]u16,
-    AuthInfoSize: u32,
-    AuthInfo: [1]u8,
-};
-
-pub const RAS_UPDATE_CONNECTION = extern struct {
-    Header: MPRAPI_OBJECT_HEADER,
-    dwIfIndex: u32,
-    wszLocalEndpointAddress: [65]u16,
-    wszRemoteEndpointAddress: [65]u16,
-};
-
-pub const PMPRADMINGETIPADDRESSFORUSER = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
-    param2: ?*u32,
-    param3: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub const PMPRADMINRELEASEIPADRESS = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
-    param2: ?*u32,
-) callconv(.winapi) void;
-
-pub const PMPRADMINGETIPV6ADDRESSFORUSER = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
-    param2: ?*IN6_ADDR,
-    param3: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub const PMPRADMINRELEASEIPV6ADDRESSFORUSER = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
-    param2: ?*IN6_ADDR,
-) callconv(.winapi) void;
-
-pub const PMPRADMINACCEPTNEWCONNECTION = *const fn(
-    param0: ?*RAS_CONNECTION_0,
-    param1: ?*RAS_CONNECTION_1,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINACCEPTNEWCONNECTION2 = *const fn(
-    param0: ?*RAS_CONNECTION_0,
-    param1: ?*RAS_CONNECTION_1,
-    param2: ?*RAS_CONNECTION_2,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINACCEPTNEWCONNECTION3 = *const fn(
-    param0: ?*RAS_CONNECTION_0,
-    param1: ?*RAS_CONNECTION_1,
-    param2: ?*RAS_CONNECTION_2,
-    param3: ?*RAS_CONNECTION_3,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINACCEPTNEWLINK = *const fn(
-    param0: ?*RAS_PORT_0,
-    param1: ?*RAS_PORT_1,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION = *const fn(
-    param0: ?*RAS_CONNECTION_0,
-    param1: ?*RAS_CONNECTION_1,
-) callconv(.winapi) void;
-
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION2 = *const fn(
-    param0: ?*RAS_CONNECTION_0,
-    param1: ?*RAS_CONNECTION_1,
-    param2: ?*RAS_CONNECTION_2,
-) callconv(.winapi) void;
-
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION3 = *const fn(
-    param0: ?*RAS_CONNECTION_0,
-    param1: ?*RAS_CONNECTION_1,
-    param2: ?*RAS_CONNECTION_2,
-    param3: RAS_CONNECTION_3,
-) callconv(.winapi) void;
-
-pub const PMPRADMINLINKHANGUPNOTIFICATION = *const fn(
-    param0: ?*RAS_PORT_0,
-    param1: ?*RAS_PORT_1,
-) callconv(.winapi) void;
-
-pub const PMPRADMINTERMINATEDLL = *const fn(
-) callconv(.winapi) u32;
-
-pub const PMPRADMINACCEPTREAUTHENTICATION = *const fn(
-    param0: ?*RAS_CONNECTION_0,
-    param1: ?*RAS_CONNECTION_1,
-    param2: ?*RAS_CONNECTION_2,
-    param3: ?*RAS_CONNECTION_3,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINACCEPTNEWCONNECTIONEX = *const fn(
-    param0: ?*RAS_CONNECTION_EX,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINACCEPTREAUTHENTICATIONEX = *const fn(
-    param0: ?*RAS_CONNECTION_EX,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX = *const fn(
-    param0: ?*RAS_CONNECTION_EX,
-) callconv(.winapi) BOOL;
-
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX = *const fn(
-    param0: ?*RAS_CONNECTION_EX,
-) callconv(.winapi) void;
-
-pub const PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX = *const fn(
-    param0: ?*AUTH_VALIDATION_EX,
-) callconv(.winapi) u32;
-
-pub const MPRAPI_ADMIN_DLL_CALLBACKS = extern struct {
-    revision: u8,
-    lpfnMprAdminGetIpAddressForUser: ?PMPRADMINGETIPADDRESSFORUSER,
-    lpfnMprAdminReleaseIpAddress: ?PMPRADMINRELEASEIPADRESS,
-    lpfnMprAdminGetIpv6AddressForUser: ?PMPRADMINGETIPV6ADDRESSFORUSER,
-    lpfnMprAdminReleaseIpV6AddressForUser: ?PMPRADMINRELEASEIPV6ADDRESSFORUSER,
-    lpfnRasAdminAcceptNewLink: ?PMPRADMINACCEPTNEWLINK,
-    lpfnRasAdminLinkHangupNotification: ?PMPRADMINLINKHANGUPNOTIFICATION,
-    lpfnRasAdminTerminateDll: ?PMPRADMINTERMINATEDLL,
-    lpfnRasAdminAcceptNewConnectionEx: ?PMPRADMINACCEPTNEWCONNECTIONEX,
-    lpfnRasAdminAcceptEndpointChangeEx: ?PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX,
-    lpfnRasAdminAcceptReauthenticationEx: ?PMPRADMINACCEPTREAUTHENTICATIONEX,
-    lpfnRasAdminConnectionHangupNotificationEx: ?PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX,
-    lpfnRASValidatePreAuthenticatedConnectionEx: ?PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX,
-};
-
-pub const SECURITY_MESSAGE = extern struct {
-    dwMsgId: SECURITY_MESSAGE_MSG_ID,
-    hPort: isize,
-    dwError: u32,
-    UserName: [257]CHAR,
-    Domain: [16]CHAR,
-};
-
-pub const RAS_SECURITY_INFO = extern struct {
-    LastError: u32,
-    BytesReceived: u32,
-    DeviceName: [129]CHAR,
-};
-
-pub const RASSECURITYPROC = *const fn(
-) callconv(.winapi) u32;
-
-pub const MGM_IF_ENTRY = extern struct {
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-    bIGMP: BOOL,
-    bIsEnabled: BOOL,
-};
-
-pub const PMGM_RPF_CALLBACK = *const fn(
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    pdwInIfIndex: ?*u32,
-    pdwInIfNextHopAddr: ?*u32,
-    pdwUpStreamNbr: ?*u32,
-    dwHdrSize: u32,
-    pbPacketHdr: ?*u8,
-    pbRoute: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PMGM_CREATION_ALERT_CALLBACK = *const fn(
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    dwInIfIndex: u32,
-    dwInIfNextHopAddr: u32,
-    dwIfCount: u32,
-    pmieOutIfList: ?*MGM_IF_ENTRY,
-) callconv(.winapi) u32;
-
-pub const PMGM_PRUNE_ALERT_CALLBACK = *const fn(
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-    bMemberDelete: BOOL,
-    pdwTimeout: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PMGM_JOIN_ALERT_CALLBACK = *const fn(
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    bMemberUpdate: BOOL,
-) callconv(.winapi) u32;
-
-pub const PMGM_WRONG_IF_CALLBACK = *const fn(
-    dwSourceAddr: u32,
-    dwGroupAddr: u32,
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-    dwHdrSize: u32,
-    pbPacketHdr: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PMGM_LOCAL_JOIN_CALLBACK = *const fn(
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-) callconv(.winapi) u32;
-
-pub const PMGM_LOCAL_LEAVE_CALLBACK = *const fn(
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-) callconv(.winapi) u32;
-
-pub const PMGM_DISABLE_IGMP_CALLBACK = *const fn(
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-) callconv(.winapi) u32;
-
-pub const PMGM_ENABLE_IGMP_CALLBACK = *const fn(
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-) callconv(.winapi) u32;
+pub const ROUTER_IF_TYPE_CLIENT = ROUTER_INTERFACE_TYPE.CLIENT;
+pub const ROUTER_IF_TYPE_HOME_ROUTER = ROUTER_INTERFACE_TYPE.HOME_ROUTER;
+pub const ROUTER_IF_TYPE_FULL_ROUTER = ROUTER_INTERFACE_TYPE.FULL_ROUTER;
+pub const ROUTER_IF_TYPE_DEDICATED = ROUTER_INTERFACE_TYPE.DEDICATED;
+pub const ROUTER_IF_TYPE_INTERNAL = ROUTER_INTERFACE_TYPE.INTERNAL;
+pub const ROUTER_IF_TYPE_LOOPBACK = ROUTER_INTERFACE_TYPE.LOOPBACK;
+pub const ROUTER_IF_TYPE_TUNNEL1 = ROUTER_INTERFACE_TYPE.TUNNEL1;
+pub const ROUTER_IF_TYPE_DIALOUT = ROUTER_INTERFACE_TYPE.DIALOUT;
+pub const ROUTER_IF_TYPE_MAX = ROUTER_INTERFACE_TYPE.MAX;
 
 pub const ROUTING_PROTOCOL_CONFIG = extern struct {
     dwCallbackFlags: u32,
@@ -2935,43 +2904,6 @@ pub const ROUTING_PROTOCOL_CONFIG = extern struct {
     pfnLocalLeaveCallback: ?PMGM_LOCAL_LEAVE_CALLBACK,
     pfnDisableIgmpCallback: ?PMGM_DISABLE_IGMP_CALLBACK,
     pfnEnableIgmpCallback: ?PMGM_ENABLE_IGMP_CALLBACK,
-};
-
-pub const MGM_ENUM_TYPES = enum(i32) {
-    NY_SOURCE = 0,
-    LL_SOURCES = 1,
-};
-pub const ANY_SOURCE = MGM_ENUM_TYPES.NY_SOURCE;
-pub const ALL_SOURCES = MGM_ENUM_TYPES.LL_SOURCES;
-
-pub const SOURCE_GROUP_ENTRY = extern struct {
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-};
-
-pub const RTM_REGN_PROFILE = extern struct {
-    MaxNextHopsInRoute: u32,
-    MaxHandlesInEnum: u32,
-    ViewsSupported: u32,
-    NumberOfViews: u32,
-};
-
-pub const RTM_NET_ADDRESS = extern struct {
-    AddressFamily: u16,
-    NumBits: u16,
-    AddrBits: [16]u8,
-};
-
-pub const RTM_PREF_INFO = extern struct {
-    Metric: u32,
-    Preference: u32,
-};
-
-pub const RTM_NEXTHOP_LIST = extern struct {
-    NumNextHops: u16,
-    NextHops: [1]isize,
 };
 
 pub const RTM_DEST_INFO = extern struct {
@@ -2990,27 +2922,16 @@ pub const RTM_DEST_INFO = extern struct {
     },
 };
 
-pub const RTM_ROUTE_INFO = extern struct {
-    DestHandle: isize,
-    RouteOwner: isize,
-    Neighbour: isize,
-    State: u8,
-    Flags1: u8,
-    Flags: u16,
-    PrefInfo: RTM_PREF_INFO,
-    BelongsToViews: u32,
-    EntitySpecificInfo: ?*anyopaque,
-    NextHopsList: RTM_NEXTHOP_LIST,
-};
+pub const RTM_ENTITY_EXPORT_METHOD = *const fn(
+    CallerHandle: isize,
+    CalleeHandle: isize,
+    Input: ?*RTM_ENTITY_METHOD_INPUT,
+    Output: ?*RTM_ENTITY_METHOD_OUTPUT,
+) callconv(.winapi) void;
 
-pub const RTM_NEXTHOP_INFO = extern struct {
-    NextHopAddress: RTM_NET_ADDRESS,
-    NextHopOwner: isize,
-    InterfaceIndex: u32,
-    State: u16,
-    Flags: u16,
-    EntitySpecificInfo: ?*anyopaque,
-    RemoteNextHop: isize,
+pub const RTM_ENTITY_EXPORT_METHODS = extern struct {
+    NumMethods: u32,
+    Methods: [1]?RTM_ENTITY_EXPORT_METHOD,
 };
 
 pub const RTM_ENTITY_ID = extern struct {
@@ -3029,24 +2950,6 @@ pub const RTM_ENTITY_INFO = extern struct {
     EntityId: RTM_ENTITY_ID,
 };
 
-pub const RTM_EVENT_TYPE = enum(i32) {
-    ENTITY_REGISTERED = 0,
-    ENTITY_DEREGISTERED = 1,
-    ROUTE_EXPIRED = 2,
-    CHANGE_NOTIFICATION = 3,
-};
-pub const RTM_ENTITY_REGISTERED = RTM_EVENT_TYPE.ENTITY_REGISTERED;
-pub const RTM_ENTITY_DEREGISTERED = RTM_EVENT_TYPE.ENTITY_DEREGISTERED;
-pub const RTM_ROUTE_EXPIRED = RTM_EVENT_TYPE.ROUTE_EXPIRED;
-pub const RTM_CHANGE_NOTIFICATION = RTM_EVENT_TYPE.CHANGE_NOTIFICATION;
-
-pub const RTM_EVENT_CALLBACK = *const fn(
-    RtmRegHandle: isize,
-    EventType: RTM_EVENT_TYPE,
-    Context1: ?*anyopaque,
-    Context2: ?*anyopaque,
-) callconv(.winapi) u32;
-
 pub const RTM_ENTITY_METHOD_INPUT = extern struct {
     MethodType: u32,
     InputSize: u32,
@@ -3060,777 +2963,254 @@ pub const RTM_ENTITY_METHOD_OUTPUT = extern struct {
     OutputData: [1]u8,
 };
 
-pub const RTM_ENTITY_EXPORT_METHOD = *const fn(
-    CallerHandle: isize,
-    CalleeHandle: isize,
-    Input: ?*RTM_ENTITY_METHOD_INPUT,
-    Output: ?*RTM_ENTITY_METHOD_OUTPUT,
-) callconv(.winapi) void;
+pub const RTM_EVENT_CALLBACK = *const fn(
+    RtmRegHandle: isize,
+    EventType: RTM_EVENT_TYPE,
+    Context1: ?*anyopaque,
+    Context2: ?*anyopaque,
+) callconv(.winapi) u32;
 
-pub const RTM_ENTITY_EXPORT_METHODS = extern struct {
-    NumMethods: u32,
-    Methods: [1]?RTM_ENTITY_EXPORT_METHOD,
+pub const RTM_EVENT_TYPE = enum(i32) {
+    ENTITY_REGISTERED = 0,
+    ENTITY_DEREGISTERED = 1,
+    ROUTE_EXPIRED = 2,
+    CHANGE_NOTIFICATION = 3,
+};
+pub const RTM_ENTITY_REGISTERED = RTM_EVENT_TYPE.ENTITY_REGISTERED;
+pub const RTM_ENTITY_DEREGISTERED = RTM_EVENT_TYPE.ENTITY_DEREGISTERED;
+pub const RTM_ROUTE_EXPIRED = RTM_EVENT_TYPE.ROUTE_EXPIRED;
+pub const RTM_CHANGE_NOTIFICATION = RTM_EVENT_TYPE.CHANGE_NOTIFICATION;
+
+pub const RTM_NET_ADDRESS = extern struct {
+    AddressFamily: u16,
+    NumBits: u16,
+    AddrBits: [16]u8,
+};
+
+pub const RTM_NEXTHOP_INFO = extern struct {
+    NextHopAddress: RTM_NET_ADDRESS,
+    NextHopOwner: isize,
+    InterfaceIndex: u32,
+    State: u16,
+    Flags: u16,
+    EntitySpecificInfo: ?*anyopaque,
+    RemoteNextHop: isize,
+};
+
+pub const RTM_NEXTHOP_LIST = extern struct {
+    NumNextHops: u16,
+    NextHops: [1]isize,
+};
+
+pub const RTM_PREF_INFO = extern struct {
+    Metric: u32,
+    Preference: u32,
+};
+
+pub const RTM_REGN_PROFILE = extern struct {
+    MaxNextHopsInRoute: u32,
+    MaxHandlesInEnum: u32,
+    ViewsSupported: u32,
+    NumberOfViews: u32,
+};
+
+pub const RTM_ROUTE_INFO = extern struct {
+    DestHandle: isize,
+    RouteOwner: isize,
+    Neighbour: isize,
+    State: u8,
+    Flags1: u8,
+    Flags: u16,
+    PrefInfo: RTM_PREF_INFO,
+    BelongsToViews: u32,
+    EntitySpecificInfo: ?*anyopaque,
+    NextHopsList: RTM_NEXTHOP_LIST,
+};
+
+pub const SECURITY_MESSAGE = extern struct {
+    dwMsgId: SECURITY_MESSAGE_MSG_ID,
+    hPort: isize,
+    dwError: u32,
+    UserName: [257]CHAR,
+    Domain: [16]CHAR,
+};
+
+pub const SECURITY_MESSAGE_MSG_ID = enum(u32) {
+    SUCCESS = 1,
+    FAILURE = 2,
+    ERROR = 3,
+};
+pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
+pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
+pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
+
+pub const SOURCE_GROUP_ENTRY = extern struct {
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+};
+
+pub const SSTP_CERT_INFO = extern struct {
+    isDefault: BOOL,
+    certBlob: CRYPTOAPI_BLOB,
+};
+
+pub const SSTP_CONFIG_PARAMS = extern struct {
+    dwNumPorts: u32,
+    dwPortFlags: u32,
+    isUseHttps: BOOL,
+    certAlgorithm: u32,
+    sstpCertDetails: SSTP_CERT_INFO,
+};
+
+pub const VPN_TS_IP_ADDRESS = extern struct {
+    Type: u16,
+    Anonymous: extern union {
+        v4: IN_ADDR,
+        v6: IN6_ADDR,
+    },
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (277)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasDialA(
-    param0: ?*RASDIALEXTENSIONS,
-    param1: ?[*:0]const u8,
-    param2: ?*RASDIALPARAMSA,
-    param3: u32,
-    param4: ?*anyopaque,
-    param5: ?*?HRASCONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasDialW(
-    param0: ?*RASDIALEXTENSIONS,
-    param1: ?[*:0]const u16,
-    param2: ?*RASDIALPARAMSW,
-    param3: u32,
-    param4: ?*anyopaque,
-    param5: ?*?HRASCONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumConnectionsA(
-    param0: ?*RASCONNA,
-    param1: ?*u32,
-    param2: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumConnectionsW(
-    param0: ?*RASCONNW,
-    param1: ?*u32,
-    param2: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumEntriesA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*RASENTRYNAMEA,
-    param3: ?*u32,
-    param4: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumEntriesW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*RASENTRYNAMEW,
-    param3: ?*u32,
-    param4: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetConnectStatusA(
-    param0: ?HRASCONN,
-    param1: ?*RASCONNSTATUSA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetConnectStatusW(
-    param0: ?HRASCONN,
-    param1: ?*RASCONNSTATUSW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetErrorStringA(
-    ResourceId: u32,
-    lpszString: [*:0]u8,
-    InBufSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetErrorStringW(
-    ResourceId: u32,
-    lpszString: [*:0]u16,
-    InBufSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasHangUpA(
-    param0: ?HRASCONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasHangUpW(
-    param0: ?HRASCONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetProjectionInfoA(
-    param0: ?HRASCONN,
-    param1: RASPROJECTION,
-    param2: ?*anyopaque,
-    param3: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetProjectionInfoW(
-    param0: ?HRASCONN,
-    param1: RASPROJECTION,
-    param2: ?*anyopaque,
-    param3: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasCreatePhonebookEntryA(
-    param0: ?HWND,
-    param1: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasCreatePhonebookEntryW(
-    param0: ?HWND,
-    param1: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEditPhonebookEntryA(
-    param0: ?HWND,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEditPhonebookEntryW(
-    param0: ?HWND,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetEntryDialParamsA(
-    param0: ?[*:0]const u8,
-    param1: ?*RASDIALPARAMSA,
-    param2: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetEntryDialParamsW(
-    param0: ?[*:0]const u16,
-    param1: ?*RASDIALPARAMSW,
-    param2: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEntryDialParamsA(
-    param0: ?[*:0]const u8,
-    param1: ?*RASDIALPARAMSA,
-    param2: ?*i32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEntryDialParamsW(
-    param0: ?[*:0]const u16,
-    param1: ?*RASDIALPARAMSW,
-    param2: ?*i32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumDevicesA(
-    param0: ?*RASDEVINFOA,
-    param1: ?*u32,
-    param2: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumDevicesW(
-    param0: ?*RASDEVINFOW,
-    param1: ?*u32,
-    param2: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetCountryInfoA(
-    param0: ?*RASCTRYINFO,
-    param1: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetCountryInfoW(
-    param0: ?*RASCTRYINFO,
-    param1: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEntryPropertiesA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*RASENTRYA,
-    param3: ?*u32,
-    param4: ?*u8,
-    param5: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEntryPropertiesW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*RASENTRYW,
-    param3: ?*u32,
-    param4: ?*u8,
-    param5: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetEntryPropertiesA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*RASENTRYA,
-    param3: u32,
-    param4: ?*u8,
-    param5: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetEntryPropertiesW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*RASENTRYW,
-    param3: u32,
-    param4: ?*u8,
-    param5: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasRenameEntryA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasRenameEntryW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasDeleteEntryA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasDeleteEntryW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasValidateEntryNameA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasValidateEntryNameW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasConnectionNotificationA(
-    param0: ?HRASCONN,
-    param1: ?HANDLE,
-    param2: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasConnectionNotificationW(
-    param0: ?HRASCONN,
-    param1: ?HANDLE,
-    param2: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetSubEntryHandleA(
-    param0: ?HRASCONN,
-    param1: u32,
-    param2: ?*?HRASCONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetSubEntryHandleW(
-    param0: ?HRASCONN,
-    param1: u32,
-    param2: ?*?HRASCONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetCredentialsA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*RASCREDENTIALSA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetCredentialsW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*RASCREDENTIALSW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetCredentialsA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*RASCREDENTIALSA,
-    param3: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetCredentialsW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*RASCREDENTIALSW,
-    param3: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetSubEntryPropertiesA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: u32,
-    param3: ?*RASSUBENTRYA,
-    param4: ?*u32,
-    param5: ?*u8,
-    param6: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetSubEntryPropertiesW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: u32,
-    param3: ?*RASSUBENTRYW,
-    param4: ?*u32,
-    param5: ?*u8,
-    param6: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetSubEntryPropertiesA(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: u32,
-    param3: ?*RASSUBENTRYA,
-    param4: u32,
-    param5: ?*u8,
-    param6: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetSubEntryPropertiesW(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: u32,
-    param3: ?*RASSUBENTRYW,
-    param4: u32,
-    param5: ?*u8,
-    param6: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetAutodialAddressA(
-    param0: ?[*:0]const u8,
-    param1: ?*u32,
-    param2: ?*RASAUTODIALENTRYA,
-    param3: ?*u32,
-    param4: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetAutodialAddressW(
-    param0: ?[*:0]const u16,
-    param1: ?*u32,
-    param2: ?*RASAUTODIALENTRYW,
-    param3: ?*u32,
-    param4: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetAutodialAddressA(
-    param0: ?[*:0]const u8,
-    param1: u32,
-    param2: ?*RASAUTODIALENTRYA,
-    param3: u32,
-    param4: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetAutodialAddressW(
-    param0: ?[*:0]const u16,
-    param1: u32,
-    param2: ?*RASAUTODIALENTRYW,
-    param3: u32,
-    param4: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumAutodialAddressesA(
-    // TODO: what to do with BytesParamIndex 1?
-    lppRasAutodialAddresses: ?*?PSTR,
-    lpdwcbRasAutodialAddresses: ?*u32,
-    lpdwcRasAutodialAddresses: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasEnumAutodialAddressesW(
-    // TODO: what to do with BytesParamIndex 1?
-    lppRasAutodialAddresses: ?*?PWSTR,
-    lpdwcbRasAutodialAddresses: ?*u32,
-    lpdwcRasAutodialAddresses: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetAutodialEnableA(
-    param0: u32,
-    param1: ?*i32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetAutodialEnableW(
-    param0: u32,
-    param1: ?*i32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetAutodialEnableA(
-    param0: u32,
-    param1: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetAutodialEnableW(
-    param0: u32,
-    param1: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetAutodialParamA(
-    param0: u32,
-    param1: ?*anyopaque,
-    param2: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetAutodialParamW(
-    param0: u32,
-    param1: ?*anyopaque,
-    param2: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetAutodialParamA(
-    param0: u32,
-    param1: ?*anyopaque,
-    param2: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetAutodialParamW(
-    param0: u32,
-    param1: ?*anyopaque,
-    param2: u32,
-) callconv(.winapi) u32;
-
-pub extern "rasapi32" fn RasGetPCscf(
-    lpszPCscf: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasInvokeEapUI(
-    param0: ?HRASCONN,
-    param1: u32,
-    param2: ?*RASDIALEXTENSIONS,
-    param3: ?HWND,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetLinkStatistics(
-    hRasConn: ?HRASCONN,
-    dwSubEntry: u32,
-    lpStatistics: ?*RAS_STATS,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetConnectionStatistics(
-    hRasConn: ?HRASCONN,
-    lpStatistics: ?*RAS_STATS,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasClearLinkStatistics(
-    hRasConn: ?HRASCONN,
-    dwSubEntry: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasClearConnectionStatistics(
-    hRasConn: ?HRASCONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEapUserDataA(
-    hToken: ?HANDLE,
-    pszPhonebook: ?[*:0]const u8,
-    pszEntry: ?[*:0]const u8,
-    pbEapData: ?*u8,
-    pdwSizeofEapData: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEapUserDataW(
-    hToken: ?HANDLE,
-    pszPhonebook: ?[*:0]const u16,
-    pszEntry: ?[*:0]const u16,
-    pbEapData: ?*u8,
-    pdwSizeofEapData: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetEapUserDataA(
-    hToken: ?HANDLE,
-    pszPhonebook: ?[*:0]const u8,
-    pszEntry: ?[*:0]const u8,
-    pbEapData: ?*u8,
-    dwSizeofEapData: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetEapUserDataW(
-    hToken: ?HANDLE,
-    pszPhonebook: ?[*:0]const u16,
-    pszEntry: ?[*:0]const u16,
-    pbEapData: ?*u8,
-    dwSizeofEapData: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetCustomAuthDataA(
-    pszPhonebook: ?[*:0]const u8,
-    pszEntry: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
-    pbCustomAuthData: ?*u8,
-    pdwSizeofCustomAuthData: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetCustomAuthDataW(
-    pszPhonebook: ?[*:0]const u16,
-    pszEntry: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pbCustomAuthData: ?*u8,
-    pdwSizeofCustomAuthData: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetCustomAuthDataA(
-    pszPhonebook: ?[*:0]const u8,
-    pszEntry: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
-    pbCustomAuthData: ?*u8,
-    dwSizeofCustomAuthData: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasSetCustomAuthDataW(
-    pszPhonebook: ?[*:0]const u16,
-    pszEntry: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pbCustomAuthData: ?*u8,
-    dwSizeofCustomAuthData: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEapUserIdentityW(
-    pszPhonebook: ?[*:0]const u16,
-    pszEntry: ?[*:0]const u16,
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmAddGroupMembershipEntry(
+    hProtocol: ?HANDLE,
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopIPAddr: u32,
     dwFlags: u32,
-    hwnd: ?HWND,
-    ppRasEapUserIdentity: ?*?*RASEAPUSERIDENTITYW,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasGetEapUserIdentityA(
-    pszPhonebook: ?[*:0]const u8,
-    pszEntry: ?[*:0]const u8,
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmDeleteGroupMembershipEntry(
+    hProtocol: ?HANDLE,
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopIPAddr: u32,
     dwFlags: u32,
-    hwnd: ?HWND,
-    ppRasEapUserIdentity: ?*?*RASEAPUSERIDENTITYA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmDeRegisterMProtocol(
+    hProtocol: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGetFirstMfe(
+    pdwBufferSize: ?*u32,
+    pbBuffer: ?*u8,
+    pdwNumEntries: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGetFirstMfeStats(
+    pdwBufferSize: ?*u32,
+    pbBuffer: ?*u8,
+    pdwNumEntries: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGetMfe(
+    pimm: ?*MIB_IPMCAST_MFE,
+    pdwBufferSize: ?*u32,
+    pbBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGetMfeStats(
+    pimm: ?*MIB_IPMCAST_MFE,
+    pdwBufferSize: ?*u32,
+    pbBuffer: ?*u8,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGetNextMfe(
+    pimmStart: ?*MIB_IPMCAST_MFE,
+    pdwBufferSize: ?*u32,
+    pbBuffer: ?*u8,
+    pdwNumEntries: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGetNextMfeStats(
+    pimmStart: ?*MIB_IPMCAST_MFE,
+    pdwBufferSize: ?*u32,
+    pbBuffer: ?*u8,
+    pdwNumEntries: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGetProtocolOnInterface(
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+    pdwIfProtocolId: ?*u32,
+    pdwIfComponentId: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGroupEnumerationEnd(
+    hEnum: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGroupEnumerationGetNext(
+    hEnum: ?HANDLE,
+    pdwBufferSize: ?*u32,
+    pbBuffer: ?*u8,
+    pdwNumEntries: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmGroupEnumerationStart(
+    hProtocol: ?HANDLE,
+    metEnumType: MGM_ENUM_TYPES,
+    phEnumHandle: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmRegisterMProtocol(
+    prpiInfo: ?*ROUTING_PROTOCOL_CONFIG,
+    dwProtocolId: u32,
+    dwComponentId: u32,
+    phProtocol: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmReleaseInterfaceOwnership(
+    hProtocol: ?HANDLE,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn MgmTakeInterfaceOwnership(
+    hProtocol: ?HANDLE,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminBufferFree(
+    pBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasFreeEapUserIdentityW(
-    pRasEapUserIdentity: ?*RASEAPUSERIDENTITYW,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasapi32" fn RasFreeEapUserIdentityA(
-    pRasEapUserIdentity: ?*RASEAPUSERIDENTITYA,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "rasapi32" fn RasDeleteSubEntryA(
-    pszPhonebook: ?[*:0]const u8,
-    pszEntry: ?[*:0]const u8,
-    dwSubentryId: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "rasapi32" fn RasDeleteSubEntryW(
-    pszPhonebook: ?[*:0]const u16,
-    pszEntry: ?[*:0]const u16,
-    dwSubEntryId: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "rasapi32" fn RasUpdateConnection(
-    hrasconn: ?HRASCONN,
-    lprasupdateconn: ?*RASUPDATECONN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "rasapi32" fn RasGetProjectionInfoEx(
-    hrasconn: ?HRASCONN,
-    pRasProjection: ?*RAS_PROJECTION_INFO,
-    lpdwSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasdlg" fn RasPhonebookDlgA(
-    lpszPhonebook: ?PSTR,
-    lpszEntry: ?PSTR,
-    lpInfo: ?*RASPBDLGA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasdlg" fn RasPhonebookDlgW(
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
-    lpInfo: ?*RASPBDLGW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasdlg" fn RasEntryDlgA(
-    lpszPhonebook: ?PSTR,
-    lpszEntry: ?PSTR,
-    lpInfo: ?*RASENTRYDLGA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasdlg" fn RasEntryDlgW(
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
-    lpInfo: ?*RASENTRYDLGW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasdlg" fn RasDialDlgA(
-    lpszPhonebook: ?PSTR,
-    lpszEntry: ?PSTR,
-    lpszPhoneNumber: ?PSTR,
-    lpInfo: ?*RASDIALDLG,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "rasdlg" fn RasDialDlgW(
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
-    lpszPhoneNumber: ?PWSTR,
-    lpInfo: ?*RASDIALDLG,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "mprapi" fn MprAdminConnectionEnumEx(
-    hRasServer: isize,
-    pObjectHeader: ?*MPRAPI_OBJECT_HEADER,
-    dwPreferedMaxLen: u32,
-    lpdwEntriesRead: ?*u32,
-    lpdwTotalEntries: ?*u32,
-    ppRasConn: ?*?*RAS_CONNECTION_EX,
-    lpdwResumeHandle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "mprapi" fn MprAdminConnectionGetInfoEx(
+pub extern "mprapi" fn MprAdminConnectionClearStats(
     hRasServer: isize,
     hRasConnection: ?HANDLE,
-    pRasConnection: ?*RAS_CONNECTION_EX,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "mprapi" fn MprAdminServerGetInfoEx(
-    hMprServer: isize,
-    pServerInfo: ?*MPR_SERVER_EX1,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "mprapi" fn MprAdminServerSetInfoEx(
-    hMprServer: isize,
-    pServerInfo: ?*MPR_SERVER_SET_CONFIG_EX1,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "mprapi" fn MprConfigServerGetInfoEx(
-    hMprConfig: ?HANDLE,
-    pServerInfo: ?*MPR_SERVER_EX1,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "mprapi" fn MprConfigServerSetInfoEx(
-    hMprConfig: ?HANDLE,
-    pSetServerConfig: ?*MPR_SERVER_SET_CONFIG_EX1,
-) callconv(.winapi) u32;
-
-pub extern "mprapi" fn MprAdminUpdateConnection(
-    hRasServer: isize,
-    hRasConnection: ?HANDLE,
-    pRasUpdateConnection: ?*RAS_UPDATE_CONNECTION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "mprapi" fn MprAdminIsServiceInitialized(
-    lpwsServerName: ?PWSTR,
-    fIsServiceInitialized: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "mprapi" fn MprAdminInterfaceSetCustomInfoEx(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "mprapi" fn MprAdminInterfaceGetCustomInfoEx(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "mprapi" fn MprConfigInterfaceGetCustomInfoEx(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "mprapi" fn MprConfigInterfaceSetCustomInfoEx(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3844,15 +3224,14 @@ pub extern "mprapi" fn MprAdminConnectionEnum(
     lpdwResumeHandle: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminPortEnum(
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "mprapi" fn MprAdminConnectionEnumEx(
     hRasServer: isize,
-    dwLevel: u32,
-    hRasConnection: ?HANDLE,
-    lplpbBuffer: ?*?*u8,
-    dwPrefMaxLen: u32,
+    pObjectHeader: ?*MPRAPI_OBJECT_HEADER,
+    dwPreferedMaxLen: u32,
     lpdwEntriesRead: ?*u32,
     lpdwTotalEntries: ?*u32,
+    ppRasConn: ?*?*RAS_CONNECTION_EX,
     lpdwResumeHandle: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -3864,36 +3243,11 @@ pub extern "mprapi" fn MprAdminConnectionGetInfo(
     lplpbBuffer: ?*?*u8,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminPortGetInfo(
-    hRasServer: isize,
-    dwLevel: u32,
-    hPort: ?HANDLE,
-    lplpbBuffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminConnectionClearStats(
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "mprapi" fn MprAdminConnectionGetInfoEx(
     hRasServer: isize,
     hRasConnection: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminPortClearStats(
-    hRasServer: isize,
-    hPort: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminPortReset(
-    hRasServer: isize,
-    hPort: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminPortDisconnect(
-    hRasServer: isize,
-    hPort: ?HANDLE,
+    pRasConnection: ?*RAS_CONNECTION_EX,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3903,135 +3257,10 @@ pub extern "mprapi" fn MprAdminConnectionRemoveQuarantine(
     fIsIpAddress: BOOL,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminUserGetInfo(
-    lpszServer: ?[*:0]const u16,
-    lpszUser: ?[*:0]const u16,
-    dwLevel: u32,
-    lpbBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminUserSetInfo(
-    lpszServer: ?[*:0]const u16,
-    lpszUser: ?[*:0]const u16,
-    dwLevel: u32,
-    lpbBuffer: ?*const u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminSendUserMessage(
-    hMprServer: isize,
-    hConnection: ?HANDLE,
-    lpwszMessage: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mprapi" fn MprAdminGetPDCServer(
-    lpszDomain: ?[*:0]const u16,
-    lpszServer: ?[*:0]const u16,
-    lpszPDCServer: ?PWSTR,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminIsServiceRunning(
-    lpwsServerName: ?PWSTR,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminServerConnect(
-    lpwsServerName: ?PWSTR,
-    phMprServer: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminServerDisconnect(
+pub extern "mprapi" fn MprAdminDeregisterConnectionNotification(
     hMprServer: isize,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "mprapi" fn MprAdminServerGetCredentials(
-    hMprServer: isize,
-    dwLevel: u32,
-    lplpbBuffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "mprapi" fn MprAdminServerSetCredentials(
-    hMprServer: isize,
-    dwLevel: u32,
-    lpbBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminBufferFree(
-    pBuffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminGetErrorString(
-    dwError: u32,
-    lplpwsErrorString: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminServerGetInfo(
-    hMprServer: isize,
-    dwLevel: u32,
-    lplpbBuffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "mprapi" fn MprAdminServerSetInfo(
-    hMprServer: isize,
-    dwLevel: u32,
-    lpbBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "mprapi" fn MprAdminEstablishDomainRasServer(
-    pszDomain: ?PWSTR,
-    pszMachine: ?PWSTR,
-    bEnable: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "mprapi" fn MprAdminIsDomainRasServer(
-    pszDomain: ?PWSTR,
-    pszMachine: ?PWSTR,
-    pbIsRasServer: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminTransportCreate(
-    hMprServer: isize,
-    dwTransportId: u32,
-    lpwsTransportName: ?PWSTR,
-    pGlobalInfo: ?*u8,
-    dwGlobalInfoSize: u32,
-    pClientInterfaceInfo: ?*u8,
-    dwClientInterfaceInfoSize: u32,
-    lpwsDLLPath: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminTransportSetInfo(
-    hMprServer: isize,
-    dwTransportId: u32,
-    pGlobalInfo: ?*u8,
-    dwGlobalInfoSize: u32,
-    pClientInterfaceInfo: ?*u8,
-    dwClientInterfaceInfoSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminTransportGetInfo(
-    hMprServer: isize,
-    dwTransportId: u32,
-    ppGlobalInfo: ?*?*u8,
-    lpdwGlobalInfoSize: ?*u32,
-    ppClientInterfaceInfo: ?*?*u8,
-    lpdwClientInterfaceInfoSize: ?*u32,
+    hEventNotification: ?HANDLE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4042,12 +3271,32 @@ pub extern "mprapi" fn MprAdminDeviceEnum(
     lpdwTotalEntries: ?*u32,
 ) callconv(.winapi) u32;
 
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "mprapi" fn MprAdminEstablishDomainRasServer(
+    pszDomain: ?PWSTR,
+    pszMachine: ?PWSTR,
+    bEnable: BOOL,
+) callconv(.winapi) u32;
+
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceGetHandle(
+pub extern "mprapi" fn MprAdminGetErrorString(
+    dwError: u32,
+    lplpwsErrorString: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminGetPDCServer(
+    lpszDomain: ?[*:0]const u16,
+    lpszServer: ?[*:0]const u16,
+    lpszPDCServer: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceConnect(
     hMprServer: isize,
-    lpwsInterfaceName: ?PWSTR,
-    phInterface: ?*?HANDLE,
-    fIncludeClientInterfaces: BOOL,
+    hInterface: ?HANDLE,
+    hEvent: ?HANDLE,
+    fSynchronous: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4056,22 +3305,6 @@ pub extern "mprapi" fn MprAdminInterfaceCreate(
     dwLevel: u32,
     lpbBuffer: ?*u8,
     phInterface: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceGetInfo(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    dwLevel: u32,
-    lplpbBuffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceSetInfo(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    dwLevel: u32,
-    lpbBuffer: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4099,10 +3332,100 @@ pub extern "mprapi" fn MprAdminInterfaceDeviceSetInfo(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceTransportRemove(
+pub extern "mprapi" fn MprAdminInterfaceDisconnect(
     hMprServer: isize,
     hInterface: ?HANDLE,
-    dwTransportId: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceEnum(
+    hMprServer: isize,
+    dwLevel: u32,
+    lplpbBuffer: ?*?*u8,
+    dwPrefMaxLen: u32,
+    lpdwEntriesRead: ?*u32,
+    lpdwTotalEntries: ?*u32,
+    lpdwResumeHandle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceGetCredentials(
+    lpwsServer: ?PWSTR,
+    lpwsInterfaceName: ?PWSTR,
+    lpwsUserName: ?PWSTR,
+    lpwsPassword: ?PWSTR,
+    lpwsDomainName: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceGetCredentialsEx(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    dwLevel: u32,
+    lplpbBuffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "mprapi" fn MprAdminInterfaceGetCustomInfoEx(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceGetHandle(
+    hMprServer: isize,
+    lpwsInterfaceName: ?PWSTR,
+    phInterface: ?*?HANDLE,
+    fIncludeClientInterfaces: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceGetInfo(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    dwLevel: u32,
+    lplpbBuffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceQueryUpdateResult(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    dwProtocolId: u32,
+    lpdwUpdateResult: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceSetCredentials(
+    lpwsServer: ?PWSTR,
+    lpwsInterfaceName: ?PWSTR,
+    lpwsUserName: ?PWSTR,
+    lpwsDomainName: ?PWSTR,
+    lpwsPassword: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceSetCredentialsEx(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    dwLevel: u32,
+    lpbBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "mprapi" fn MprAdminInterfaceSetCustomInfoEx(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceSetInfo(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    dwLevel: u32,
+    lpbBuffer: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4124,6 +3447,13 @@ pub extern "mprapi" fn MprAdminInterfaceTransportGetInfo(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminInterfaceTransportRemove(
+    hMprServer: isize,
+    hInterface: ?HANDLE,
+    dwTransportId: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
 pub extern "mprapi" fn MprAdminInterfaceTransportSetInfo(
     hMprServer: isize,
     hInterface: ?HANDLE,
@@ -4133,60 +3463,7 @@ pub extern "mprapi" fn MprAdminInterfaceTransportSetInfo(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceEnum(
-    hMprServer: isize,
-    dwLevel: u32,
-    lplpbBuffer: ?*?*u8,
-    dwPrefMaxLen: u32,
-    lpdwEntriesRead: ?*u32,
-    lpdwTotalEntries: ?*u32,
-    lpdwResumeHandle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceSetCredentials(
-    lpwsServer: ?PWSTR,
-    lpwsInterfaceName: ?PWSTR,
-    lpwsUserName: ?PWSTR,
-    lpwsDomainName: ?PWSTR,
-    lpwsPassword: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceGetCredentials(
-    lpwsServer: ?PWSTR,
-    lpwsInterfaceName: ?PWSTR,
-    lpwsUserName: ?PWSTR,
-    lpwsPassword: ?PWSTR,
-    lpwsDomainName: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceSetCredentialsEx(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    dwLevel: u32,
-    lpbBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceGetCredentialsEx(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    dwLevel: u32,
-    lplpbBuffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceConnect(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    hEvent: ?HANDLE,
-    fSynchronous: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceDisconnect(
+pub extern "mprapi" fn MprAdminInterfaceUpdatePhonebookInfo(
     hMprServer: isize,
     hInterface: ?HANDLE,
 ) callconv(.winapi) u32;
@@ -4199,42 +3476,28 @@ pub extern "mprapi" fn MprAdminInterfaceUpdateRoutes(
     hEvent: ?HANDLE,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceQueryUpdateResult(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-    dwProtocolId: u32,
-    lpdwUpdateResult: ?*u32,
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "mprapi" fn MprAdminIsDomainRasServer(
+    pszDomain: ?PWSTR,
+    pszMachine: ?PWSTR,
+    pbIsRasServer: ?*BOOL,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminInterfaceUpdatePhonebookInfo(
-    hMprServer: isize,
-    hInterface: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminRegisterConnectionNotification(
-    hMprServer: isize,
-    hEventNotification: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminDeregisterConnectionNotification(
-    hMprServer: isize,
-    hEventNotification: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminMIBServerConnect(
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "mprapi" fn MprAdminIsServiceInitialized(
     lpwsServerName: ?PWSTR,
-    phMibServer: ?*isize,
+    fIsServiceInitialized: ?*BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminMIBServerDisconnect(
-    hMibServer: isize,
-) callconv(.winapi) void;
+pub extern "mprapi" fn MprAdminIsServiceRunning(
+    lpwsServerName: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminMIBBufferFree(
+    pBuffer: ?*anyopaque,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "mprapi" fn MprAdminMIBEntryCreate(
@@ -4247,15 +3510,6 @@ pub extern "mprapi" fn MprAdminMIBEntryCreate(
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "mprapi" fn MprAdminMIBEntryDelete(
-    hMibServer: isize,
-    dwProtocolId: u32,
-    dwRoutingPid: u32,
-    lpEntry: ?*anyopaque,
-    dwEntrySize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminMIBEntrySet(
     hMibServer: isize,
     dwProtocolId: u32,
     dwRoutingPid: u32,
@@ -4297,14 +3551,345 @@ pub extern "mprapi" fn MprAdminMIBEntryGetNext(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprAdminMIBBufferFree(
-    pBuffer: ?*anyopaque,
+pub extern "mprapi" fn MprAdminMIBEntrySet(
+    hMibServer: isize,
+    dwProtocolId: u32,
+    dwRoutingPid: u32,
+    lpEntry: ?*anyopaque,
+    dwEntrySize: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigServerInstall(
+pub extern "mprapi" fn MprAdminMIBServerConnect(
+    lpwsServerName: ?PWSTR,
+    phMibServer: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminMIBServerDisconnect(
+    hMibServer: isize,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminPortClearStats(
+    hRasServer: isize,
+    hPort: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminPortDisconnect(
+    hRasServer: isize,
+    hPort: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminPortEnum(
+    hRasServer: isize,
     dwLevel: u32,
+    hRasConnection: ?HANDLE,
+    lplpbBuffer: ?*?*u8,
+    dwPrefMaxLen: u32,
+    lpdwEntriesRead: ?*u32,
+    lpdwTotalEntries: ?*u32,
+    lpdwResumeHandle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminPortGetInfo(
+    hRasServer: isize,
+    dwLevel: u32,
+    hPort: ?HANDLE,
+    lplpbBuffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminPortReset(
+    hRasServer: isize,
+    hPort: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminRegisterConnectionNotification(
+    hMprServer: isize,
+    hEventNotification: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminSendUserMessage(
+    hMprServer: isize,
+    hConnection: ?HANDLE,
+    lpwszMessage: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminServerConnect(
+    lpwsServerName: ?PWSTR,
+    phMprServer: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminServerDisconnect(
+    hMprServer: isize,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "mprapi" fn MprAdminServerGetCredentials(
+    hMprServer: isize,
+    dwLevel: u32,
+    lplpbBuffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminServerGetInfo(
+    hMprServer: isize,
+    dwLevel: u32,
+    lplpbBuffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "mprapi" fn MprAdminServerGetInfoEx(
+    hMprServer: isize,
+    pServerInfo: ?*MPR_SERVER_EX1,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "mprapi" fn MprAdminServerSetCredentials(
+    hMprServer: isize,
+    dwLevel: u32,
+    lpbBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "mprapi" fn MprAdminServerSetInfo(
+    hMprServer: isize,
+    dwLevel: u32,
+    lpbBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "mprapi" fn MprAdminServerSetInfoEx(
+    hMprServer: isize,
+    pServerInfo: ?*MPR_SERVER_SET_CONFIG_EX1,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminTransportCreate(
+    hMprServer: isize,
+    dwTransportId: u32,
+    lpwsTransportName: ?PWSTR,
+    pGlobalInfo: ?*u8,
+    dwGlobalInfoSize: u32,
+    pClientInterfaceInfo: ?*u8,
+    dwClientInterfaceInfoSize: u32,
+    lpwsDLLPath: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminTransportGetInfo(
+    hMprServer: isize,
+    dwTransportId: u32,
+    ppGlobalInfo: ?*?*u8,
+    lpdwGlobalInfoSize: ?*u32,
+    ppClientInterfaceInfo: ?*?*u8,
+    lpdwClientInterfaceInfoSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprAdminTransportSetInfo(
+    hMprServer: isize,
+    dwTransportId: u32,
+    pGlobalInfo: ?*u8,
+    dwGlobalInfoSize: u32,
+    pClientInterfaceInfo: ?*u8,
+    dwClientInterfaceInfoSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "mprapi" fn MprAdminUpdateConnection(
+    hRasServer: isize,
+    hRasConnection: ?HANDLE,
+    pRasUpdateConnection: ?*RAS_UPDATE_CONNECTION,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminUserGetInfo(
+    lpszServer: ?[*:0]const u16,
+    lpszUser: ?[*:0]const u16,
+    dwLevel: u32,
+    lpbBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "mprapi" fn MprAdminUserSetInfo(
+    lpszServer: ?[*:0]const u16,
+    lpszUser: ?[*:0]const u16,
+    dwLevel: u32,
+    lpbBuffer: ?*const u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigBufferFree(
     pBuffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "mprapi" fn MprConfigFilterGetInfo(
+    hMprConfig: ?HANDLE,
+    dwLevel: u32,
+    dwTransportId: u32,
+    lpBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "mprapi" fn MprConfigFilterSetInfo(
+    hMprConfig: ?HANDLE,
+    dwLevel: u32,
+    dwTransportId: u32,
+    lpBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigGetFriendlyName(
+    hMprConfig: ?HANDLE,
+    pszGuidName: ?PWSTR,
+    // TODO: what to do with BytesParamIndex 3?
+    pszBuffer: ?[*]u16,
+    dwBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigGetGuidName(
+    hMprConfig: ?HANDLE,
+    pszFriendlyName: ?PWSTR,
+    // TODO: what to do with BytesParamIndex 3?
+    pszBuffer: ?[*]u16,
+    dwBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceCreate(
+    hMprConfig: ?HANDLE,
+    dwLevel: u32,
+    lpbBuffer: ?*u8,
+    phRouterInterface: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceDelete(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceEnum(
+    hMprConfig: ?HANDLE,
+    dwLevel: u32,
+    lplpBuffer: ?*?*u8,
+    dwPrefMaxLen: u32,
+    lpdwEntriesRead: ?*u32,
+    lpdwTotalEntries: ?*u32,
+    lpdwResumeHandle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "mprapi" fn MprConfigInterfaceGetCustomInfoEx(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceGetHandle(
+    hMprConfig: ?HANDLE,
+    lpwsInterfaceName: ?PWSTR,
+    phRouterInterface: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceGetInfo(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    dwLevel: u32,
+    lplpBuffer: ?*?*u8,
+    lpdwBufferSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "mprapi" fn MprConfigInterfaceSetCustomInfoEx(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    pCustomInfo: ?*MPR_IF_CUSTOMINFOEX2,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceSetInfo(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    dwLevel: u32,
+    lpbBuffer: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceTransportAdd(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    dwTransportId: u32,
+    lpwsTransportName: ?PWSTR,
+    // TODO: what to do with BytesParamIndex 5?
+    pInterfaceInfo: ?*u8,
+    dwInterfaceInfoSize: u32,
+    phRouterIfTransport: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceTransportEnum(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    dwLevel: u32,
+    lplpBuffer: ?*?*u8,
+    dwPrefMaxLen: u32,
+    lpdwEntriesRead: ?*u32,
+    lpdwTotalEntries: ?*u32,
+    lpdwResumeHandle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceTransportGetHandle(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    dwTransportId: u32,
+    phRouterIfTransport: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceTransportGetInfo(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    hRouterIfTransport: ?HANDLE,
+    ppInterfaceInfo: ?*?*u8,
+    lpdwInterfaceInfoSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceTransportRemove(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    hRouterIfTransport: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigInterfaceTransportSetInfo(
+    hMprConfig: ?HANDLE,
+    hRouterInterface: ?HANDLE,
+    hRouterIfTransport: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 4?
+    pInterfaceInfo: ?*u8,
+    dwInterfaceInfoSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigServerBackup(
+    hMprConfig: ?HANDLE,
+    lpwsPath: ?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4318,20 +3903,33 @@ pub extern "mprapi" fn MprConfigServerDisconnect(
     hMprConfig: ?HANDLE,
 ) callconv(.winapi) void;
 
-pub extern "mprapi" fn MprConfigServerRefresh(
-    hMprConfig: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigBufferFree(
-    pBuffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "mprapi" fn MprConfigServerGetInfo(
     hMprConfig: ?HANDLE,
     dwLevel: u32,
     lplpbBuffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "mprapi" fn MprConfigServerGetInfoEx(
+    hMprConfig: ?HANDLE,
+    pServerInfo: ?*MPR_SERVER_EX1,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigServerInstall(
+    dwLevel: u32,
+    pBuffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub extern "mprapi" fn MprConfigServerRefresh(
+    hMprConfig: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigServerRestore(
+    hMprConfig: ?HANDLE,
+    lpwsPath: ?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -4341,16 +3939,10 @@ pub extern "mprapi" fn MprConfigServerSetInfo(
     lpbBuffer: ?*u8,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigServerBackup(
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "mprapi" fn MprConfigServerSetInfoEx(
     hMprConfig: ?HANDLE,
-    lpwsPath: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigServerRestore(
-    hMprConfig: ?HANDLE,
-    lpwsPath: ?PWSTR,
+    pSetServerConfig: ?*MPR_SERVER_SET_CONFIG_EX1,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4375,10 +3967,32 @@ pub extern "mprapi" fn MprConfigTransportDelete(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigTransportEnum(
+    hMprConfig: ?HANDLE,
+    dwLevel: u32,
+    lplpBuffer: ?*?*u8,
+    dwPrefMaxLen: u32,
+    lpdwEntriesRead: ?*u32,
+    lpdwTotalEntries: ?*u32,
+    lpdwResumeHandle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
 pub extern "mprapi" fn MprConfigTransportGetHandle(
     hMprConfig: ?HANDLE,
     dwTransportId: u32,
     phRouterTransport: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "mprapi" fn MprConfigTransportGetInfo(
+    hMprConfig: ?HANDLE,
+    hRouterTransport: ?HANDLE,
+    ppGlobalInfo: ?*?*u8,
+    lpdwGlobalInfoSize: ?*u32,
+    ppClientInterfaceInfo: ?*?*u8,
+    lpdwClientInterfaceInfoSize: ?*u32,
+    lplpwsDLLPath: ?*?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4395,210 +4009,7 @@ pub extern "mprapi" fn MprConfigTransportSetInfo(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigTransportGetInfo(
-    hMprConfig: ?HANDLE,
-    hRouterTransport: ?HANDLE,
-    ppGlobalInfo: ?*?*u8,
-    lpdwGlobalInfoSize: ?*u32,
-    ppClientInterfaceInfo: ?*?*u8,
-    lpdwClientInterfaceInfoSize: ?*u32,
-    lplpwsDLLPath: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigTransportEnum(
-    hMprConfig: ?HANDLE,
-    dwLevel: u32,
-    lplpBuffer: ?*?*u8,
-    dwPrefMaxLen: u32,
-    lpdwEntriesRead: ?*u32,
-    lpdwTotalEntries: ?*u32,
-    lpdwResumeHandle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceCreate(
-    hMprConfig: ?HANDLE,
-    dwLevel: u32,
-    lpbBuffer: ?*u8,
-    phRouterInterface: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceDelete(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceGetHandle(
-    hMprConfig: ?HANDLE,
-    lpwsInterfaceName: ?PWSTR,
-    phRouterInterface: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceGetInfo(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    dwLevel: u32,
-    lplpBuffer: ?*?*u8,
-    lpdwBufferSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceSetInfo(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    dwLevel: u32,
-    lpbBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceEnum(
-    hMprConfig: ?HANDLE,
-    dwLevel: u32,
-    lplpBuffer: ?*?*u8,
-    dwPrefMaxLen: u32,
-    lpdwEntriesRead: ?*u32,
-    lpdwTotalEntries: ?*u32,
-    lpdwResumeHandle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceTransportAdd(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    dwTransportId: u32,
-    lpwsTransportName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 5?
-    pInterfaceInfo: ?*u8,
-    dwInterfaceInfoSize: u32,
-    phRouterIfTransport: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceTransportRemove(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    hRouterIfTransport: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceTransportGetHandle(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    dwTransportId: u32,
-    phRouterIfTransport: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceTransportGetInfo(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    hRouterIfTransport: ?HANDLE,
-    ppInterfaceInfo: ?*?*u8,
-    lpdwInterfaceInfoSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceTransportSetInfo(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    hRouterIfTransport: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 4?
-    pInterfaceInfo: ?*u8,
-    dwInterfaceInfoSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigInterfaceTransportEnum(
-    hMprConfig: ?HANDLE,
-    hRouterInterface: ?HANDLE,
-    dwLevel: u32,
-    lplpBuffer: ?*?*u8,
-    dwPrefMaxLen: u32,
-    lpdwEntriesRead: ?*u32,
-    lpdwTotalEntries: ?*u32,
-    lpdwResumeHandle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigGetFriendlyName(
-    hMprConfig: ?HANDLE,
-    pszGuidName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 3?
-    pszBuffer: ?[*]u16,
-    dwBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprConfigGetGuidName(
-    hMprConfig: ?HANDLE,
-    pszFriendlyName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 3?
-    pszBuffer: ?[*]u16,
-    dwBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "mprapi" fn MprConfigFilterGetInfo(
-    hMprConfig: ?HANDLE,
-    dwLevel: u32,
-    dwTransportId: u32,
-    lpBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "mprapi" fn MprConfigFilterSetInfo(
-    hMprConfig: ?HANDLE,
-    dwLevel: u32,
-    dwTransportId: u32,
-    lpBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprInfoCreate(
-    dwVersion: u32,
-    lplpNewHeader: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprInfoDelete(
-    lpHeader: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprInfoRemoveAll(
-    lpHeader: ?*anyopaque,
-    lplpNewHeader: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprInfoDuplicate(
-    lpHeader: ?*anyopaque,
-    lplpNewHeader: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
 pub extern "mprapi" fn MprInfoBlockAdd(
-    lpHeader: ?*anyopaque,
-    dwInfoType: u32,
-    dwItemSize: u32,
-    dwItemCount: u32,
-    lpItemData: ?*u8,
-    lplpNewHeader: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprInfoBlockRemove(
-    lpHeader: ?*anyopaque,
-    dwInfoType: u32,
-    lplpNewHeader: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "mprapi" fn MprInfoBlockSet(
     lpHeader: ?*anyopaque,
     dwInfoType: u32,
     dwItemSize: u32,
@@ -4622,268 +4033,726 @@ pub extern "mprapi" fn MprInfoBlockQuerySize(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmRegisterMProtocol(
-    prpiInfo: ?*ROUTING_PROTOCOL_CONFIG,
-    dwProtocolId: u32,
-    dwComponentId: u32,
-    phProtocol: ?*?HANDLE,
+pub extern "mprapi" fn MprInfoBlockRemove(
+    lpHeader: ?*anyopaque,
+    dwInfoType: u32,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmDeRegisterMProtocol(
-    hProtocol: ?HANDLE,
+pub extern "mprapi" fn MprInfoBlockSet(
+    lpHeader: ?*anyopaque,
+    dwInfoType: u32,
+    dwItemSize: u32,
+    dwItemCount: u32,
+    lpItemData: ?*u8,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmTakeInterfaceOwnership(
-    hProtocol: ?HANDLE,
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
+pub extern "mprapi" fn MprInfoCreate(
+    dwVersion: u32,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmReleaseInterfaceOwnership(
-    hProtocol: ?HANDLE,
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
+pub extern "mprapi" fn MprInfoDelete(
+    lpHeader: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGetProtocolOnInterface(
-    dwIfIndex: u32,
-    dwIfNextHopAddr: u32,
-    pdwIfProtocolId: ?*u32,
-    pdwIfComponentId: ?*u32,
+pub extern "mprapi" fn MprInfoDuplicate(
+    lpHeader: ?*anyopaque,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmAddGroupMembershipEntry(
-    hProtocol: ?HANDLE,
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    dwIfIndex: u32,
-    dwIfNextHopIPAddr: u32,
+pub extern "mprapi" fn MprInfoRemoveAll(
+    lpHeader: ?*anyopaque,
+    lplpNewHeader: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasClearConnectionStatistics(
+    hRasConn: ?HRASCONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasClearLinkStatistics(
+    hRasConn: ?HRASCONN,
+    dwSubEntry: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasConnectionNotificationA(
+    param0: ?HRASCONN,
+    param1: ?HANDLE,
+    param2: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasConnectionNotificationW(
+    param0: ?HRASCONN,
+    param1: ?HANDLE,
+    param2: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasCreatePhonebookEntryA(
+    param0: ?HWND,
+    param1: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasCreatePhonebookEntryW(
+    param0: ?HWND,
+    param1: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasDeleteEntryA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasDeleteEntryW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "rasapi32" fn RasDeleteSubEntryA(
+    pszPhonebook: ?[*:0]const u8,
+    pszEntry: ?[*:0]const u8,
+    dwSubentryId: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "rasapi32" fn RasDeleteSubEntryW(
+    pszPhonebook: ?[*:0]const u16,
+    pszEntry: ?[*:0]const u16,
+    dwSubEntryId: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasDialA(
+    param0: ?*RASDIALEXTENSIONS,
+    param1: ?[*:0]const u8,
+    param2: ?*RASDIALPARAMSA,
+    param3: u32,
+    param4: ?*anyopaque,
+    param5: ?*?HRASCONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasdlg" fn RasDialDlgA(
+    lpszPhonebook: ?PSTR,
+    lpszEntry: ?PSTR,
+    lpszPhoneNumber: ?PSTR,
+    lpInfo: ?*RASDIALDLG,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasdlg" fn RasDialDlgW(
+    lpszPhonebook: ?PWSTR,
+    lpszEntry: ?PWSTR,
+    lpszPhoneNumber: ?PWSTR,
+    lpInfo: ?*RASDIALDLG,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasDialW(
+    param0: ?*RASDIALEXTENSIONS,
+    param1: ?[*:0]const u16,
+    param2: ?*RASDIALPARAMSW,
+    param3: u32,
+    param4: ?*anyopaque,
+    param5: ?*?HRASCONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEditPhonebookEntryA(
+    param0: ?HWND,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEditPhonebookEntryW(
+    param0: ?HWND,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasdlg" fn RasEntryDlgA(
+    lpszPhonebook: ?PSTR,
+    lpszEntry: ?PSTR,
+    lpInfo: ?*RASENTRYDLGA,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasdlg" fn RasEntryDlgW(
+    lpszPhonebook: ?PWSTR,
+    lpszEntry: ?PWSTR,
+    lpInfo: ?*RASENTRYDLGW,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumAutodialAddressesA(
+    // TODO: what to do with BytesParamIndex 1?
+    lppRasAutodialAddresses: ?*?PSTR,
+    lpdwcbRasAutodialAddresses: ?*u32,
+    lpdwcRasAutodialAddresses: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumAutodialAddressesW(
+    // TODO: what to do with BytesParamIndex 1?
+    lppRasAutodialAddresses: ?*?PWSTR,
+    lpdwcbRasAutodialAddresses: ?*u32,
+    lpdwcRasAutodialAddresses: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumConnectionsA(
+    param0: ?*RASCONNA,
+    param1: ?*u32,
+    param2: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumConnectionsW(
+    param0: ?*RASCONNW,
+    param1: ?*u32,
+    param2: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumDevicesA(
+    param0: ?*RASDEVINFOA,
+    param1: ?*u32,
+    param2: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumDevicesW(
+    param0: ?*RASDEVINFOW,
+    param1: ?*u32,
+    param2: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumEntriesA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*RASENTRYNAMEA,
+    param3: ?*u32,
+    param4: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasEnumEntriesW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*RASENTRYNAMEW,
+    param3: ?*u32,
+    param4: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasFreeEapUserIdentityA(
+    pRasEapUserIdentity: ?*RASEAPUSERIDENTITYA,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasFreeEapUserIdentityW(
+    pRasEapUserIdentity: ?*RASEAPUSERIDENTITYW,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetAutodialAddressA(
+    param0: ?[*:0]const u8,
+    param1: ?*u32,
+    param2: ?*RASAUTODIALENTRYA,
+    param3: ?*u32,
+    param4: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetAutodialAddressW(
+    param0: ?[*:0]const u16,
+    param1: ?*u32,
+    param2: ?*RASAUTODIALENTRYW,
+    param3: ?*u32,
+    param4: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetAutodialEnableA(
+    param0: u32,
+    param1: ?*i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetAutodialEnableW(
+    param0: u32,
+    param1: ?*i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetAutodialParamA(
+    param0: u32,
+    param1: ?*anyopaque,
+    param2: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetAutodialParamW(
+    param0: u32,
+    param1: ?*anyopaque,
+    param2: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetConnectionStatistics(
+    hRasConn: ?HRASCONN,
+    lpStatistics: ?*RAS_STATS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetConnectStatusA(
+    param0: ?HRASCONN,
+    param1: ?*RASCONNSTATUSA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetConnectStatusW(
+    param0: ?HRASCONN,
+    param1: ?*RASCONNSTATUSW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetCountryInfoA(
+    param0: ?*RASCTRYINFO,
+    param1: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetCountryInfoW(
+    param0: ?*RASCTRYINFO,
+    param1: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetCredentialsA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*RASCREDENTIALSA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetCredentialsW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*RASCREDENTIALSW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetCustomAuthDataA(
+    pszPhonebook: ?[*:0]const u8,
+    pszEntry: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: ?*u8,
+    pdwSizeofCustomAuthData: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetCustomAuthDataW(
+    pszPhonebook: ?[*:0]const u16,
+    pszEntry: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: ?*u8,
+    pdwSizeofCustomAuthData: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEapUserDataA(
+    hToken: ?HANDLE,
+    pszPhonebook: ?[*:0]const u8,
+    pszEntry: ?[*:0]const u8,
+    pbEapData: ?*u8,
+    pdwSizeofEapData: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEapUserDataW(
+    hToken: ?HANDLE,
+    pszPhonebook: ?[*:0]const u16,
+    pszEntry: ?[*:0]const u16,
+    pbEapData: ?*u8,
+    pdwSizeofEapData: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEapUserIdentityA(
+    pszPhonebook: ?[*:0]const u8,
+    pszEntry: ?[*:0]const u8,
     dwFlags: u32,
+    hwnd: ?HWND,
+    ppRasEapUserIdentity: ?*?*RASEAPUSERIDENTITYA,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmDeleteGroupMembershipEntry(
-    hProtocol: ?HANDLE,
-    dwSourceAddr: u32,
-    dwSourceMask: u32,
-    dwGroupAddr: u32,
-    dwGroupMask: u32,
-    dwIfIndex: u32,
-    dwIfNextHopIPAddr: u32,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEapUserIdentityW(
+    pszPhonebook: ?[*:0]const u16,
+    pszEntry: ?[*:0]const u16,
     dwFlags: u32,
+    hwnd: ?HWND,
+    ppRasEapUserIdentity: ?*?*RASEAPUSERIDENTITYW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEntryDialParamsA(
+    param0: ?[*:0]const u8,
+    param1: ?*RASDIALPARAMSA,
+    param2: ?*i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEntryDialParamsW(
+    param0: ?[*:0]const u16,
+    param1: ?*RASDIALPARAMSW,
+    param2: ?*i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEntryPropertiesA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*RASENTRYA,
+    param3: ?*u32,
+    param4: ?*u8,
+    param5: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetEntryPropertiesW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*RASENTRYW,
+    param3: ?*u32,
+    param4: ?*u8,
+    param5: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetErrorStringA(
+    ResourceId: u32,
+    lpszString: [*:0]u8,
+    InBufSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetErrorStringW(
+    ResourceId: u32,
+    lpszString: [*:0]u16,
+    InBufSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetLinkStatistics(
+    hRasConn: ?HRASCONN,
+    dwSubEntry: u32,
+    lpStatistics: ?*RAS_STATS,
+) callconv(.winapi) u32;
+
+pub extern "rasapi32" fn RasGetPCscf(
+    lpszPCscf: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetProjectionInfoA(
+    param0: ?HRASCONN,
+    param1: RASPROJECTION,
+    param2: ?*anyopaque,
+    param3: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "rasapi32" fn RasGetProjectionInfoEx(
+    hrasconn: ?HRASCONN,
+    pRasProjection: ?*RAS_PROJECTION_INFO,
+    lpdwSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetProjectionInfoW(
+    param0: ?HRASCONN,
+    param1: RASPROJECTION,
+    param2: ?*anyopaque,
+    param3: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetSubEntryHandleA(
+    param0: ?HRASCONN,
+    param1: u32,
+    param2: ?*?HRASCONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetSubEntryHandleW(
+    param0: ?HRASCONN,
+    param1: u32,
+    param2: ?*?HRASCONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetSubEntryPropertiesA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: u32,
+    param3: ?*RASSUBENTRYA,
+    param4: ?*u32,
+    param5: ?*u8,
+    param6: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasGetSubEntryPropertiesW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: u32,
+    param3: ?*RASSUBENTRYW,
+    param4: ?*u32,
+    param5: ?*u8,
+    param6: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasHangUpA(
+    param0: ?HRASCONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasHangUpW(
+    param0: ?HRASCONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasInvokeEapUI(
+    param0: ?HRASCONN,
+    param1: u32,
+    param2: ?*RASDIALEXTENSIONS,
+    param3: ?HWND,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasdlg" fn RasPhonebookDlgA(
+    lpszPhonebook: ?PSTR,
+    lpszEntry: ?PSTR,
+    lpInfo: ?*RASPBDLGA,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasdlg" fn RasPhonebookDlgW(
+    lpszPhonebook: ?PWSTR,
+    lpszEntry: ?PWSTR,
+    lpInfo: ?*RASPBDLGW,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasRenameEntryA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasRenameEntryW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetAutodialAddressA(
+    param0: ?[*:0]const u8,
+    param1: u32,
+    param2: ?*RASAUTODIALENTRYA,
+    param3: u32,
+    param4: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetAutodialAddressW(
+    param0: ?[*:0]const u16,
+    param1: u32,
+    param2: ?*RASAUTODIALENTRYW,
+    param3: u32,
+    param4: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetAutodialEnableA(
+    param0: u32,
+    param1: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetAutodialEnableW(
+    param0: u32,
+    param1: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetAutodialParamA(
+    param0: u32,
+    param1: ?*anyopaque,
+    param2: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetAutodialParamW(
+    param0: u32,
+    param1: ?*anyopaque,
+    param2: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetCredentialsA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*RASCREDENTIALSA,
+    param3: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetCredentialsW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*RASCREDENTIALSW,
+    param3: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetCustomAuthDataA(
+    pszPhonebook: ?[*:0]const u8,
+    pszEntry: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: ?*u8,
+    dwSizeofCustomAuthData: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetCustomAuthDataW(
+    pszPhonebook: ?[*:0]const u16,
+    pszEntry: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: ?*u8,
+    dwSizeofCustomAuthData: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetEapUserDataA(
+    hToken: ?HANDLE,
+    pszPhonebook: ?[*:0]const u8,
+    pszEntry: ?[*:0]const u8,
+    pbEapData: ?*u8,
+    dwSizeofEapData: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetEapUserDataW(
+    hToken: ?HANDLE,
+    pszPhonebook: ?[*:0]const u16,
+    pszEntry: ?[*:0]const u16,
+    pbEapData: ?*u8,
+    dwSizeofEapData: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetEntryDialParamsA(
+    param0: ?[*:0]const u8,
+    param1: ?*RASDIALPARAMSA,
+    param2: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetEntryDialParamsW(
+    param0: ?[*:0]const u16,
+    param1: ?*RASDIALPARAMSW,
+    param2: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetEntryPropertiesA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*RASENTRYA,
+    param3: u32,
+    param4: ?*u8,
+    param5: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetEntryPropertiesW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*RASENTRYW,
+    param3: u32,
+    param4: ?*u8,
+    param5: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetSubEntryPropertiesA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: u32,
+    param3: ?*RASSUBENTRYA,
+    param4: u32,
+    param5: ?*u8,
+    param6: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasSetSubEntryPropertiesW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: u32,
+    param3: ?*RASSUBENTRYW,
+    param4: u32,
+    param5: ?*u8,
+    param6: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "rasapi32" fn RasUpdateConnection(
+    hrasconn: ?HRASCONN,
+    lprasupdateconn: ?*RASUPDATECONN,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasValidateEntryNameA(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "rasapi32" fn RasValidateEntryNameW(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGetMfe(
-    pimm: ?*MIB_IPMCAST_MFE,
-    pdwBufferSize: ?*u32,
-    pbBuffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGetFirstMfe(
-    pdwBufferSize: ?*u32,
-    pbBuffer: ?*u8,
-    pdwNumEntries: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGetNextMfe(
-    pimmStart: ?*MIB_IPMCAST_MFE,
-    pdwBufferSize: ?*u32,
-    pbBuffer: ?*u8,
-    pdwNumEntries: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGetMfeStats(
-    pimm: ?*MIB_IPMCAST_MFE,
-    pdwBufferSize: ?*u32,
-    pbBuffer: ?*u8,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGetFirstMfeStats(
-    pdwBufferSize: ?*u32,
-    pbBuffer: ?*u8,
-    pdwNumEntries: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGetNextMfeStats(
-    pimmStart: ?*MIB_IPMCAST_MFE,
-    pdwBufferSize: ?*u32,
-    pbBuffer: ?*u8,
-    pdwNumEntries: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGroupEnumerationStart(
-    hProtocol: ?HANDLE,
-    metEnumType: MGM_ENUM_TYPES,
-    phEnumHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGroupEnumerationGetNext(
-    hEnum: ?HANDLE,
-    pdwBufferSize: ?*u32,
-    pbBuffer: ?*u8,
-    pdwNumEntries: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn MgmGroupEnumerationEnd(
-    hEnum: ?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "rtm" fn RtmConvertNetAddressToIpv6AddressAndLength(
-    pNetAddress: ?*RTM_NET_ADDRESS,
-    pAddress: ?*IN6_ADDR,
-    pLength: ?*u32,
-    dwAddressSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "rtm" fn RtmConvertIpv6AddressAndLengthToNetAddress(
-    pNetAddress: ?*RTM_NET_ADDRESS,
-    Address: IN6_ADDR,
-    dwLength: u32,
-    dwAddressSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmRegisterEntity(
-    RtmEntityInfo: ?*RTM_ENTITY_INFO,
-    ExportMethods: ?*RTM_ENTITY_EXPORT_METHODS,
-    EventCallback: ?RTM_EVENT_CALLBACK,
-    ReserveOpaquePointer: BOOL,
-    RtmRegProfile: ?*RTM_REGN_PROFILE,
-    RtmRegHandle: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmDeregisterEntity(
+pub extern "rtm" fn RtmAddNextHop(
     RtmRegHandle: isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetRegisteredEntities(
-    RtmRegHandle: isize,
-    NumEntities: ?*u32,
-    EntityHandles: ?*isize,
-    EntityInfos: ?*RTM_ENTITY_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseEntities(
-    RtmRegHandle: isize,
-    NumEntities: u32,
-    EntityHandles: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmLockDestination(
-    RtmRegHandle: isize,
-    DestHandle: isize,
-    Exclusive: BOOL,
-    LockDest: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetOpaqueInformationPointer(
-    RtmRegHandle: isize,
-    DestHandle: isize,
-    OpaqueInfoPointer: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetEntityMethods(
-    RtmRegHandle: isize,
-    EntityHandle: isize,
-    NumMethods: ?*u32,
-    ExptMethods: ?*?RTM_ENTITY_EXPORT_METHOD,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmInvokeMethod(
-    RtmRegHandle: isize,
-    EntityHandle: isize,
-    Input: ?*RTM_ENTITY_METHOD_INPUT,
-    OutputSize: ?*u32,
-    Output: ?*RTM_ENTITY_METHOD_OUTPUT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmBlockMethods(
-    RtmRegHandle: isize,
-    TargetHandle: ?HANDLE,
-    TargetType: u8,
-    BlockingFlag: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetEntityInfo(
-    RtmRegHandle: isize,
-    EntityHandle: isize,
-    EntityInfo: ?*RTM_ENTITY_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetDestInfo(
-    RtmRegHandle: isize,
-    DestHandle: isize,
-    ProtocolId: u32,
-    TargetViews: u32,
-    DestInfo: ?*RTM_DEST_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetRouteInfo(
-    RtmRegHandle: isize,
-    RouteHandle: isize,
-    RouteInfo: ?*RTM_ROUTE_INFO,
-    DestAddress: ?*RTM_NET_ADDRESS,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetNextHopInfo(
-    RtmRegHandle: isize,
-    NextHopHandle: isize,
     NextHopInfo: ?*RTM_NEXTHOP_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseEntityInfo(
-    RtmRegHandle: isize,
-    EntityInfo: ?*RTM_ENTITY_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseDestInfo(
-    RtmRegHandle: isize,
-    DestInfo: ?*RTM_DEST_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseRouteInfo(
-    RtmRegHandle: isize,
-    RouteInfo: ?*RTM_ROUTE_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseNextHopInfo(
-    RtmRegHandle: isize,
-    NextHopInfo: ?*RTM_NEXTHOP_INFO,
+    NextHopHandle: ?*isize,
+    ChangeFlags: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4900,6 +4769,91 @@ pub extern "rtm" fn RtmAddRouteToDest(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmBlockMethods(
+    RtmRegHandle: isize,
+    TargetHandle: ?HANDLE,
+    TargetType: u8,
+    BlockingFlag: u32,
+) callconv(.winapi) u32;
+
+pub extern "rtm" fn RtmConvertIpv6AddressAndLengthToNetAddress(
+    pNetAddress: ?*RTM_NET_ADDRESS,
+    Address: IN6_ADDR,
+    dwLength: u32,
+    dwAddressSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "rtm" fn RtmConvertNetAddressToIpv6AddressAndLength(
+    pNetAddress: ?*RTM_NET_ADDRESS,
+    pAddress: ?*IN6_ADDR,
+    pLength: ?*u32,
+    dwAddressSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmCreateDestEnum(
+    RtmRegHandle: isize,
+    TargetViews: u32,
+    EnumFlags: u32,
+    NetAddress: ?*RTM_NET_ADDRESS,
+    ProtocolId: u32,
+    RtmEnumHandle: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmCreateNextHopEnum(
+    RtmRegHandle: isize,
+    EnumFlags: u32,
+    NetAddress: ?*RTM_NET_ADDRESS,
+    RtmEnumHandle: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmCreateRouteEnum(
+    RtmRegHandle: isize,
+    DestHandle: isize,
+    TargetViews: u32,
+    EnumFlags: u32,
+    StartDest: ?*RTM_NET_ADDRESS,
+    MatchingFlags: u32,
+    CriteriaRoute: ?*RTM_ROUTE_INFO,
+    CriteriaInterface: u32,
+    RtmEnumHandle: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmCreateRouteList(
+    RtmRegHandle: isize,
+    RouteListHandle: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmCreateRouteListEnum(
+    RtmRegHandle: isize,
+    RouteListHandle: isize,
+    RtmEnumHandle: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmDeleteEnumHandle(
+    RtmRegHandle: isize,
+    EnumHandle: isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmDeleteNextHop(
+    RtmRegHandle: isize,
+    NextHopHandle: isize,
+    NextHopInfo: ?*RTM_NEXTHOP_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmDeleteRouteList(
+    RtmRegHandle: isize,
+    RouteListHandle: isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
 pub extern "rtm" fn RtmDeleteRouteToDest(
     RtmRegHandle: isize,
     RouteHandle: isize,
@@ -4907,62 +4861,92 @@ pub extern "rtm" fn RtmDeleteRouteToDest(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmHoldDestination(
+pub extern "rtm" fn RtmDeregisterEntity(
+    RtmRegHandle: isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmDeregisterFromChangeNotification(
+    RtmRegHandle: isize,
+    NotifyHandle: isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmFindNextHop(
+    RtmRegHandle: isize,
+    NextHopInfo: ?*RTM_NEXTHOP_INFO,
+    NextHopHandle: ?*isize,
+    NextHopPointer: ?*?*RTM_NEXTHOP_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetChangedDests(
+    RtmRegHandle: isize,
+    NotifyHandle: isize,
+    NumDests: ?*u32,
+    ChangedDests: ?*RTM_DEST_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetChangeStatus(
+    RtmRegHandle: isize,
+    NotifyHandle: isize,
+    DestHandle: isize,
+    ChangeStatus: ?*BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetDestInfo(
     RtmRegHandle: isize,
     DestHandle: isize,
+    ProtocolId: u32,
     TargetViews: u32,
-    HoldTime: u32,
+    DestInfo: ?*RTM_DEST_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetRoutePointer(
+pub extern "rtm" fn RtmGetEntityInfo(
     RtmRegHandle: isize,
-    RouteHandle: isize,
-    RoutePointer: ?*?*RTM_ROUTE_INFO,
+    EntityHandle: isize,
+    EntityInfo: ?*RTM_ENTITY_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmLockRoute(
+pub extern "rtm" fn RtmGetEntityMethods(
     RtmRegHandle: isize,
-    RouteHandle: isize,
-    Exclusive: BOOL,
-    LockRoute: BOOL,
-    RoutePointer: ?*?*RTM_ROUTE_INFO,
+    EntityHandle: isize,
+    NumMethods: ?*u32,
+    ExptMethods: ?*?RTM_ENTITY_EXPORT_METHOD,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmUpdateAndUnlockRoute(
+pub extern "rtm" fn RtmGetEnumDests(
     RtmRegHandle: isize,
-    RouteHandle: isize,
-    TimeToLive: u32,
-    RouteListHandle: isize,
-    NotifyType: u32,
-    NotifyHandle: isize,
-    ChangeFlags: ?*u32,
+    EnumHandle: isize,
+    NumDests: ?*u32,
+    DestInfos: ?*RTM_DEST_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetEnumNextHops(
+    RtmRegHandle: isize,
+    EnumHandle: isize,
+    NumNextHops: ?*u32,
+    NextHopHandles: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetEnumRoutes(
+    RtmRegHandle: isize,
+    EnumHandle: isize,
+    NumRoutes: ?*u32,
+    RouteHandles: ?*isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "rtm" fn RtmGetExactMatchDestination(
     RtmRegHandle: isize,
     DestAddress: ?*RTM_NET_ADDRESS,
-    ProtocolId: u32,
-    TargetViews: u32,
-    DestInfo: ?*RTM_DEST_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetMostSpecificDestination(
-    RtmRegHandle: isize,
-    DestAddress: ?*RTM_NET_ADDRESS,
-    ProtocolId: u32,
-    TargetViews: u32,
-    DestInfo: ?*RTM_DEST_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetLessSpecificDestination(
-    RtmRegHandle: isize,
-    DestHandle: isize,
     ProtocolId: u32,
     TargetViews: u32,
     DestInfo: ?*RTM_DEST_INFO,
@@ -4980,30 +4964,33 @@ pub extern "rtm" fn RtmGetExactMatchRoute(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmIsBestRoute(
+pub extern "rtm" fn RtmGetLessSpecificDestination(
     RtmRegHandle: isize,
-    RouteHandle: isize,
-    BestInViews: ?*u32,
+    DestHandle: isize,
+    ProtocolId: u32,
+    TargetViews: u32,
+    DestInfo: ?*RTM_DEST_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmAddNextHop(
+pub extern "rtm" fn RtmGetListEnumRoutes(
     RtmRegHandle: isize,
-    NextHopInfo: ?*RTM_NEXTHOP_INFO,
-    NextHopHandle: ?*isize,
-    ChangeFlags: ?*u32,
+    EnumHandle: isize,
+    NumRoutes: ?*u32,
+    RouteHandles: [*]isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmFindNextHop(
+pub extern "rtm" fn RtmGetMostSpecificDestination(
     RtmRegHandle: isize,
-    NextHopInfo: ?*RTM_NEXTHOP_INFO,
-    NextHopHandle: ?*isize,
-    NextHopPointer: ?*?*RTM_NEXTHOP_INFO,
+    DestAddress: ?*RTM_NET_ADDRESS,
+    ProtocolId: u32,
+    TargetViews: u32,
+    DestInfo: ?*RTM_DEST_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmDeleteNextHop(
+pub extern "rtm" fn RtmGetNextHopInfo(
     RtmRegHandle: isize,
     NextHopHandle: isize,
     NextHopInfo: ?*RTM_NEXTHOP_INFO,
@@ -5017,6 +5004,92 @@ pub extern "rtm" fn RtmGetNextHopPointer(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetOpaqueInformationPointer(
+    RtmRegHandle: isize,
+    DestHandle: isize,
+    OpaqueInfoPointer: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetRegisteredEntities(
+    RtmRegHandle: isize,
+    NumEntities: ?*u32,
+    EntityHandles: ?*isize,
+    EntityInfos: ?*RTM_ENTITY_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetRouteInfo(
+    RtmRegHandle: isize,
+    RouteHandle: isize,
+    RouteInfo: ?*RTM_ROUTE_INFO,
+    DestAddress: ?*RTM_NET_ADDRESS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmGetRoutePointer(
+    RtmRegHandle: isize,
+    RouteHandle: isize,
+    RoutePointer: ?*?*RTM_ROUTE_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmHoldDestination(
+    RtmRegHandle: isize,
+    DestHandle: isize,
+    TargetViews: u32,
+    HoldTime: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmIgnoreChangedDests(
+    RtmRegHandle: isize,
+    NotifyHandle: isize,
+    NumDests: u32,
+    ChangedDests: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmInsertInRouteList(
+    RtmRegHandle: isize,
+    RouteListHandle: isize,
+    NumRoutes: u32,
+    RouteHandles: ?*isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmInvokeMethod(
+    RtmRegHandle: isize,
+    EntityHandle: isize,
+    Input: ?*RTM_ENTITY_METHOD_INPUT,
+    OutputSize: ?*u32,
+    Output: ?*RTM_ENTITY_METHOD_OUTPUT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmIsBestRoute(
+    RtmRegHandle: isize,
+    RouteHandle: isize,
+    BestInViews: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmIsMarkedForChangeNotification(
+    RtmRegHandle: isize,
+    NotifyHandle: isize,
+    DestHandle: isize,
+    DestMarked: ?*BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmLockDestination(
+    RtmRegHandle: isize,
+    DestHandle: isize,
+    Exclusive: BOOL,
+    LockDest: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
 pub extern "rtm" fn RtmLockNextHop(
     RtmRegHandle: isize,
     NextHopHandle: isize,
@@ -5026,85 +5099,37 @@ pub extern "rtm" fn RtmLockNextHop(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmCreateDestEnum(
+pub extern "rtm" fn RtmLockRoute(
     RtmRegHandle: isize,
-    TargetViews: u32,
-    EnumFlags: u32,
-    NetAddress: ?*RTM_NET_ADDRESS,
-    ProtocolId: u32,
-    RtmEnumHandle: ?*isize,
+    RouteHandle: isize,
+    Exclusive: BOOL,
+    LockRoute: BOOL,
+    RoutePointer: ?*?*RTM_ROUTE_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetEnumDests(
+pub extern "rtm" fn RtmMarkDestForChangeNotification(
     RtmRegHandle: isize,
-    EnumHandle: isize,
-    NumDests: ?*u32,
-    DestInfos: ?*RTM_DEST_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseDests(
-    RtmRegHandle: isize,
-    NumDests: u32,
-    DestInfos: ?*RTM_DEST_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmCreateRouteEnum(
-    RtmRegHandle: isize,
+    NotifyHandle: isize,
     DestHandle: isize,
-    TargetViews: u32,
-    EnumFlags: u32,
-    StartDest: ?*RTM_NET_ADDRESS,
-    MatchingFlags: u32,
-    CriteriaRoute: ?*RTM_ROUTE_INFO,
-    CriteriaInterface: u32,
-    RtmEnumHandle: ?*isize,
+    MarkDest: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetEnumRoutes(
+pub extern "rtm" fn RtmReferenceHandles(
     RtmRegHandle: isize,
-    EnumHandle: isize,
-    NumRoutes: ?*u32,
-    RouteHandles: ?*isize,
+    NumHandles: u32,
+    RtmHandles: ?*?HANDLE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseRoutes(
-    RtmRegHandle: isize,
-    NumRoutes: u32,
-    RouteHandles: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmCreateNextHopEnum(
-    RtmRegHandle: isize,
-    EnumFlags: u32,
-    NetAddress: ?*RTM_NET_ADDRESS,
-    RtmEnumHandle: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetEnumNextHops(
-    RtmRegHandle: isize,
-    EnumHandle: isize,
-    NumNextHops: ?*u32,
-    NextHopHandles: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReleaseNextHops(
-    RtmRegHandle: isize,
-    NumNextHops: u32,
-    NextHopHandles: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmDeleteEnumHandle(
-    RtmRegHandle: isize,
-    EnumHandle: isize,
+pub extern "rtm" fn RtmRegisterEntity(
+    RtmEntityInfo: ?*RTM_ENTITY_INFO,
+    ExportMethods: ?*RTM_ENTITY_EXPORT_METHODS,
+    EventCallback: ?RTM_EVENT_CALLBACK,
+    ReserveOpaquePointer: BOOL,
+    RtmRegProfile: ?*RTM_REGN_PROFILE,
+    RtmRegHandle: ?*isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -5117,14 +5142,6 @@ pub extern "rtm" fn RtmRegisterForChangeNotification(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetChangedDests(
-    RtmRegHandle: isize,
-    NotifyHandle: isize,
-    NumDests: ?*u32,
-    ChangedDests: ?*RTM_DEST_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
 pub extern "rtm" fn RtmReleaseChangedDests(
     RtmRegHandle: isize,
     NotifyHandle: isize,
@@ -5133,89 +5150,93 @@ pub extern "rtm" fn RtmReleaseChangedDests(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmIgnoreChangedDests(
+pub extern "rtm" fn RtmReleaseDestInfo(
     RtmRegHandle: isize,
-    NotifyHandle: isize,
+    DestInfo: ?*RTM_DEST_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2000'
+pub extern "rtm" fn RtmReleaseDests(
+    RtmRegHandle: isize,
     NumDests: u32,
-    ChangedDests: ?*isize,
+    DestInfos: ?*RTM_DEST_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetChangeStatus(
+pub extern "rtm" fn RtmReleaseEntities(
     RtmRegHandle: isize,
-    NotifyHandle: isize,
-    DestHandle: isize,
-    ChangeStatus: ?*BOOL,
+    NumEntities: u32,
+    EntityHandles: ?*isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmMarkDestForChangeNotification(
+pub extern "rtm" fn RtmReleaseEntityInfo(
     RtmRegHandle: isize,
-    NotifyHandle: isize,
-    DestHandle: isize,
-    MarkDest: BOOL,
+    EntityInfo: ?*RTM_ENTITY_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmIsMarkedForChangeNotification(
+pub extern "rtm" fn RtmReleaseNextHopInfo(
     RtmRegHandle: isize,
-    NotifyHandle: isize,
-    DestHandle: isize,
-    DestMarked: ?*BOOL,
+    NextHopInfo: ?*RTM_NEXTHOP_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmDeregisterFromChangeNotification(
+pub extern "rtm" fn RtmReleaseNextHops(
     RtmRegHandle: isize,
-    NotifyHandle: isize,
+    NumNextHops: u32,
+    NextHopHandles: ?*isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmCreateRouteList(
+pub extern "rtm" fn RtmReleaseRouteInfo(
     RtmRegHandle: isize,
-    RouteListHandle: ?*isize,
+    RouteInfo: ?*RTM_ROUTE_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmInsertInRouteList(
+pub extern "rtm" fn RtmReleaseRoutes(
     RtmRegHandle: isize,
-    RouteListHandle: isize,
     NumRoutes: u32,
     RouteHandles: ?*isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmCreateRouteListEnum(
+pub extern "rtm" fn RtmUpdateAndUnlockRoute(
     RtmRegHandle: isize,
+    RouteHandle: isize,
+    TimeToLive: u32,
     RouteListHandle: isize,
-    RtmEnumHandle: ?*isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmGetListEnumRoutes(
-    RtmRegHandle: isize,
-    EnumHandle: isize,
-    NumRoutes: ?*u32,
-    RouteHandles: [*]isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmDeleteRouteList(
-    RtmRegHandle: isize,
-    RouteListHandle: isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2000'
-pub extern "rtm" fn RtmReferenceHandles(
-    RtmRegHandle: isize,
-    NumHandles: u32,
-    RtmHandles: ?*?HANDLE,
+    NotifyType: u32,
+    NotifyHandle: isize,
+    ChangeFlags: ?*u32,
 ) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (60)
 //--------------------------------------------------------------------------------
+pub const RASADFUNC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASADFUNCA,
+    .wide => @This().RASADFUNCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASADFUNC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASAMB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASAMBA,
+    .wide => @This().RASAMBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASAMB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASAUTODIALENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASAUTODIALENTRYA,
+    .wide => @This().RASAUTODIALENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASAUTODIALENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const RASCONN = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().RASCONNA,
     .wide => @This().RASCONNW,
@@ -5230,46 +5251,11 @@ pub const RASCONNSTATUS = switch (@import("../zig.zig").unicode_mode) {
         "'RASCONNSTATUS' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RASDIALPARAMS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASDIALPARAMSA,
-    .wide => @This().RASDIALPARAMSW,
+pub const RASCREDENTIALS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASCREDENTIALSA,
+    .wide => @This().RASCREDENTIALSW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASDIALPARAMS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASENTRYNAME = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASENTRYNAMEA,
-    .wide => @This().RASENTRYNAMEW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASENTRYNAME' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASAMB = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASAMBA,
-    .wide => @This().RASAMBW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASAMB' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASPPPNBF = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASPPPNBFA,
-    .wide => @This().RASPPPNBFW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASPPPNBF' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASPPPIP = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASPPPIPA,
-    .wide => @This().RASPPPIPW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASPPPIP' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASPPPLCP = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASPPPLCPA,
-    .wide => @This().RASPPPLCPW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASPPPLCP' requires that UNICODE be set to true or false in the root module",
+        "'RASCREDENTIALS' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RASDEVINFO = switch (@import("../zig.zig").unicode_mode) {
@@ -5279,39 +5265,11 @@ pub const RASDEVINFO = switch (@import("../zig.zig").unicode_mode) {
         "'RASDEVINFO' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RASENTRY = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASENTRYA,
-    .wide => @This().RASENTRYW,
+pub const RASDIALPARAMS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASDIALPARAMSA,
+    .wide => @This().RASDIALPARAMSW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASENTRY' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASADFUNC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASADFUNCA,
-    .wide => @This().RASADFUNCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASADFUNC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASSUBENTRY = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASSUBENTRYA,
-    .wide => @This().RASSUBENTRYW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASSUBENTRY' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASCREDENTIALS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASCREDENTIALSA,
-    .wide => @This().RASCREDENTIALSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASCREDENTIALS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RASAUTODIALENTRY = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASAUTODIALENTRYA,
-    .wide => @This().RASAUTODIALENTRYW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASAUTODIALENTRY' requires that UNICODE be set to true or false in the root module",
+        "'RASDIALPARAMS' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RASEAPUSERIDENTITY = switch (@import("../zig.zig").unicode_mode) {
@@ -5321,11 +5279,25 @@ pub const RASEAPUSERIDENTITY = switch (@import("../zig.zig").unicode_mode) {
         "'RASEAPUSERIDENTITY' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RASPBDLGFUNC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASPBDLGFUNCA,
-    .wide => @This().RASPBDLGFUNCW,
+pub const RASENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASENTRYA,
+    .wide => @This().RASENTRYW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASPBDLGFUNC' requires that UNICODE be set to true or false in the root module",
+        "'RASENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASENTRYDLG = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASENTRYDLGA,
+    .wide => @This().RASENTRYDLGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASENTRYDLG' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RASENTRYNAME = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASENTRYNAMEA,
+    .wide => @This().RASENTRYNAMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RASENTRYNAME' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RASNOUSER = switch (@import("../zig.zig").unicode_mode) {
@@ -5342,137 +5314,39 @@ pub const RASPBDLG = switch (@import("../zig.zig").unicode_mode) {
         "'RASPBDLG' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RASENTRYDLG = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RASENTRYDLGA,
-    .wide => @This().RASENTRYDLGW,
+pub const RASPBDLGFUNC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPBDLGFUNCA,
+    .wide => @This().RASPBDLGFUNCW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RASENTRYDLG' requires that UNICODE be set to true or false in the root module",
+        "'RASPBDLGFUNC' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasDial = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasDialA,
-    .wide => @This().RasDialW,
+pub const RASPPPIP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPPPIPA,
+    .wide => @This().RASPPPIPW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasDial' requires that UNICODE be set to true or false in the root module",
+        "'RASPPPIP' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasEnumConnections = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasEnumConnectionsA,
-    .wide => @This().RasEnumConnectionsW,
+pub const RASPPPLCP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPPPLCPA,
+    .wide => @This().RASPPPLCPW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasEnumConnections' requires that UNICODE be set to true or false in the root module",
+        "'RASPPPLCP' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasEnumEntries = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasEnumEntriesA,
-    .wide => @This().RasEnumEntriesW,
+pub const RASPPPNBF = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASPPPNBFA,
+    .wide => @This().RASPPPNBFW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasEnumEntries' requires that UNICODE be set to true or false in the root module",
+        "'RASPPPNBF' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasGetConnectStatus = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetConnectStatusA,
-    .wide => @This().RasGetConnectStatusW,
+pub const RASSUBENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RASSUBENTRYA,
+    .wide => @This().RASSUBENTRYW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetConnectStatus' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetErrorString = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetErrorStringA,
-    .wide => @This().RasGetErrorStringW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetErrorString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasHangUp = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasHangUpA,
-    .wide => @This().RasHangUpW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasHangUp' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetProjectionInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetProjectionInfoA,
-    .wide => @This().RasGetProjectionInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetProjectionInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasCreatePhonebookEntry = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasCreatePhonebookEntryA,
-    .wide => @This().RasCreatePhonebookEntryW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasCreatePhonebookEntry' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasEditPhonebookEntry = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasEditPhonebookEntryA,
-    .wide => @This().RasEditPhonebookEntryW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasEditPhonebookEntry' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetEntryDialParams = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetEntryDialParamsA,
-    .wide => @This().RasSetEntryDialParamsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetEntryDialParams' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetEntryDialParams = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetEntryDialParamsA,
-    .wide => @This().RasGetEntryDialParamsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetEntryDialParams' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasEnumDevices = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasEnumDevicesA,
-    .wide => @This().RasEnumDevicesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasEnumDevices' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetCountryInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetCountryInfoA,
-    .wide => @This().RasGetCountryInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetCountryInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetEntryProperties = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetEntryPropertiesA,
-    .wide => @This().RasGetEntryPropertiesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetEntryProperties' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetEntryProperties = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetEntryPropertiesA,
-    .wide => @This().RasSetEntryPropertiesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetEntryProperties' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasRenameEntry = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasRenameEntryA,
-    .wide => @This().RasRenameEntryW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasRenameEntry' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasDeleteEntry = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasDeleteEntryA,
-    .wide => @This().RasDeleteEntryW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasDeleteEntry' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasValidateEntryName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasValidateEntryNameA,
-    .wide => @This().RasValidateEntryNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasValidateEntryName' requires that UNICODE be set to true or false in the root module",
+        "'RASSUBENTRY' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RasConnectionNotification = switch (@import("../zig.zig").unicode_mode) {
@@ -5482,130 +5356,18 @@ pub const RasConnectionNotification = switch (@import("../zig.zig").unicode_mode
         "'RasConnectionNotification' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasGetSubEntryHandle = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetSubEntryHandleA,
-    .wide => @This().RasGetSubEntryHandleW,
+pub const RasCreatePhonebookEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasCreatePhonebookEntryA,
+    .wide => @This().RasCreatePhonebookEntryW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetSubEntryHandle' requires that UNICODE be set to true or false in the root module",
+        "'RasCreatePhonebookEntry' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasGetCredentials = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetCredentialsA,
-    .wide => @This().RasGetCredentialsW,
+pub const RasDeleteEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasDeleteEntryA,
+    .wide => @This().RasDeleteEntryW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetCredentials' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetCredentials = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetCredentialsA,
-    .wide => @This().RasSetCredentialsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetCredentials' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetSubEntryProperties = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetSubEntryPropertiesA,
-    .wide => @This().RasGetSubEntryPropertiesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetSubEntryProperties' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetSubEntryProperties = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetSubEntryPropertiesA,
-    .wide => @This().RasSetSubEntryPropertiesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetSubEntryProperties' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetAutodialAddress = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetAutodialAddressA,
-    .wide => @This().RasGetAutodialAddressW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetAutodialAddress' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetAutodialAddress = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetAutodialAddressA,
-    .wide => @This().RasSetAutodialAddressW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetAutodialAddress' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasEnumAutodialAddresses = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasEnumAutodialAddressesA,
-    .wide => @This().RasEnumAutodialAddressesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasEnumAutodialAddresses' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetAutodialEnable = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetAutodialEnableA,
-    .wide => @This().RasGetAutodialEnableW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetAutodialEnable' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetAutodialEnable = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetAutodialEnableA,
-    .wide => @This().RasSetAutodialEnableW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetAutodialEnable' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetAutodialParam = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetAutodialParamA,
-    .wide => @This().RasGetAutodialParamW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetAutodialParam' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetAutodialParam = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetAutodialParamA,
-    .wide => @This().RasSetAutodialParamW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetAutodialParam' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetEapUserData = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetEapUserDataA,
-    .wide => @This().RasGetEapUserDataW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetEapUserData' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetEapUserData = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetEapUserDataA,
-    .wide => @This().RasSetEapUserDataW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetEapUserData' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetCustomAuthData = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetCustomAuthDataA,
-    .wide => @This().RasGetCustomAuthDataW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetCustomAuthData' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasSetCustomAuthData = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasSetCustomAuthDataA,
-    .wide => @This().RasSetCustomAuthDataW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasSetCustomAuthData' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasGetEapUserIdentity = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasGetEapUserIdentityA,
-    .wide => @This().RasGetEapUserIdentityW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasGetEapUserIdentity' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RasFreeEapUserIdentity = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasFreeEapUserIdentityA,
-    .wide => @This().RasFreeEapUserIdentityW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasFreeEapUserIdentity' requires that UNICODE be set to true or false in the root module",
+        "'RasDeleteEntry' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RasDeleteSubEntry = switch (@import("../zig.zig").unicode_mode) {
@@ -5615,11 +5377,25 @@ pub const RasDeleteSubEntry = switch (@import("../zig.zig").unicode_mode) {
         "'RasDeleteSubEntry' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasPhonebookDlg = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasPhonebookDlgA,
-    .wide => @This().RasPhonebookDlgW,
+pub const RasDial = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasDialA,
+    .wide => @This().RasDialW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasPhonebookDlg' requires that UNICODE be set to true or false in the root module",
+        "'RasDial' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasDialDlg = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasDialDlgA,
+    .wide => @This().RasDialDlgW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasDialDlg' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEditPhonebookEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEditPhonebookEntryA,
+    .wide => @This().RasEditPhonebookEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEditPhonebookEntry' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RasEntryDlg = switch (@import("../zig.zig").unicode_mode) {
@@ -5629,11 +5405,235 @@ pub const RasEntryDlg = switch (@import("../zig.zig").unicode_mode) {
         "'RasEntryDlg' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RasDialDlg = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RasDialDlgA,
-    .wide => @This().RasDialDlgW,
+pub const RasEnumAutodialAddresses = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumAutodialAddressesA,
+    .wide => @This().RasEnumAutodialAddressesW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RasDialDlg' requires that UNICODE be set to true or false in the root module",
+        "'RasEnumAutodialAddresses' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEnumConnections = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumConnectionsA,
+    .wide => @This().RasEnumConnectionsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEnumConnections' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEnumDevices = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumDevicesA,
+    .wide => @This().RasEnumDevicesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEnumDevices' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasEnumEntries = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasEnumEntriesA,
+    .wide => @This().RasEnumEntriesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasEnumEntries' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasFreeEapUserIdentity = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasFreeEapUserIdentityA,
+    .wide => @This().RasFreeEapUserIdentityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasFreeEapUserIdentity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetAutodialAddress = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetAutodialAddressA,
+    .wide => @This().RasGetAutodialAddressW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetAutodialAddress' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetAutodialEnable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetAutodialEnableA,
+    .wide => @This().RasGetAutodialEnableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetAutodialEnable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetAutodialParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetAutodialParamA,
+    .wide => @This().RasGetAutodialParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetAutodialParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetConnectStatus = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetConnectStatusA,
+    .wide => @This().RasGetConnectStatusW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetConnectStatus' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetCountryInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetCountryInfoA,
+    .wide => @This().RasGetCountryInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetCountryInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetCredentialsA,
+    .wide => @This().RasGetCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetCustomAuthData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetCustomAuthDataA,
+    .wide => @This().RasGetCustomAuthDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetCustomAuthData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEapUserData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEapUserDataA,
+    .wide => @This().RasGetEapUserDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEapUserData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEapUserIdentity = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEapUserIdentityA,
+    .wide => @This().RasGetEapUserIdentityW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEapUserIdentity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEntryDialParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEntryDialParamsA,
+    .wide => @This().RasGetEntryDialParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEntryDialParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetEntryPropertiesA,
+    .wide => @This().RasGetEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetErrorString = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetErrorStringA,
+    .wide => @This().RasGetErrorStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetErrorString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetProjectionInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetProjectionInfoA,
+    .wide => @This().RasGetProjectionInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetProjectionInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetSubEntryHandle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetSubEntryHandleA,
+    .wide => @This().RasGetSubEntryHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetSubEntryHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasGetSubEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasGetSubEntryPropertiesA,
+    .wide => @This().RasGetSubEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasGetSubEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasHangUp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasHangUpA,
+    .wide => @This().RasHangUpW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasHangUp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasPhonebookDlg = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasPhonebookDlgA,
+    .wide => @This().RasPhonebookDlgW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasPhonebookDlg' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasRenameEntry = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasRenameEntryA,
+    .wide => @This().RasRenameEntryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasRenameEntry' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetAutodialAddress = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetAutodialAddressA,
+    .wide => @This().RasSetAutodialAddressW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetAutodialAddress' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetAutodialEnable = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetAutodialEnableA,
+    .wide => @This().RasSetAutodialEnableW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetAutodialEnable' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetAutodialParam = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetAutodialParamA,
+    .wide => @This().RasSetAutodialParamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetAutodialParam' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetCredentialsA,
+    .wide => @This().RasSetCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetCustomAuthData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetCustomAuthDataA,
+    .wide => @This().RasSetCustomAuthDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetCustomAuthData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetEapUserData = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetEapUserDataA,
+    .wide => @This().RasSetEapUserDataW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetEapUserData' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetEntryDialParams = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetEntryDialParamsA,
+    .wide => @This().RasSetEntryDialParamsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetEntryDialParams' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetEntryPropertiesA,
+    .wide => @This().RasSetEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasSetSubEntryProperties = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasSetSubEntryPropertiesA,
+    .wide => @This().RasSetSubEntryPropertiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasSetSubEntryProperties' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RasValidateEntryName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RasValidateEntryNameA,
+    .wide => @This().RasValidateEntryNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RasValidateEntryName' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -5656,57 +5656,57 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "RASDIALFUNC")) { _ = RASDIALFUNC; }
-    if (@hasDecl(@This(), "RASDIALFUNC1")) { _ = RASDIALFUNC1; }
-    if (@hasDecl(@This(), "RASDIALFUNC2")) { _ = RASDIALFUNC2; }
     if (@hasDecl(@This(), "ORASADFUNC")) { _ = ORASADFUNC; }
-    if (@hasDecl(@This(), "RASADFUNCA")) { _ = RASADFUNCA; }
-    if (@hasDecl(@This(), "RASADFUNCW")) { _ = RASADFUNCW; }
-    if (@hasDecl(@This(), "PFNRASGETBUFFER")) { _ = PFNRASGETBUFFER; }
     if (@hasDecl(@This(), "PFNRASFREEBUFFER")) { _ = PFNRASFREEBUFFER; }
-    if (@hasDecl(@This(), "PFNRASSENDBUFFER")) { _ = PFNRASSENDBUFFER; }
+    if (@hasDecl(@This(), "PFNRASGETBUFFER")) { _ = PFNRASGETBUFFER; }
     if (@hasDecl(@This(), "PFNRASRECEIVEBUFFER")) { _ = PFNRASRECEIVEBUFFER; }
     if (@hasDecl(@This(), "PFNRASRETRIEVEBUFFER")) { _ = PFNRASRETRIEVEBUFFER; }
-    if (@hasDecl(@This(), "RasCustomScriptExecuteFn")) { _ = RasCustomScriptExecuteFn; }
+    if (@hasDecl(@This(), "PFNRASSENDBUFFER")) { _ = PFNRASSENDBUFFER; }
     if (@hasDecl(@This(), "PFNRASSETCOMMSETTINGS")) { _ = PFNRASSETCOMMSETTINGS; }
-    if (@hasDecl(@This(), "RasCustomHangUpFn")) { _ = RasCustomHangUpFn; }
-    if (@hasDecl(@This(), "RasCustomDialFn")) { _ = RasCustomDialFn; }
-    if (@hasDecl(@This(), "RasCustomDeleteEntryNotifyFn")) { _ = RasCustomDeleteEntryNotifyFn; }
-    if (@hasDecl(@This(), "RASPBDLGFUNCW")) { _ = RASPBDLGFUNCW; }
-    if (@hasDecl(@This(), "RASPBDLGFUNCA")) { _ = RASPBDLGFUNCA; }
-    if (@hasDecl(@This(), "RasCustomDialDlgFn")) { _ = RasCustomDialDlgFn; }
-    if (@hasDecl(@This(), "RasCustomEntryDlgFn")) { _ = RasCustomEntryDlgFn; }
-    if (@hasDecl(@This(), "PMPRADMINGETIPADDRESSFORUSER")) { _ = PMPRADMINGETIPADDRESSFORUSER; }
-    if (@hasDecl(@This(), "PMPRADMINRELEASEIPADRESS")) { _ = PMPRADMINRELEASEIPADRESS; }
-    if (@hasDecl(@This(), "PMPRADMINGETIPV6ADDRESSFORUSER")) { _ = PMPRADMINGETIPV6ADDRESSFORUSER; }
-    if (@hasDecl(@This(), "PMPRADMINRELEASEIPV6ADDRESSFORUSER")) { _ = PMPRADMINRELEASEIPV6ADDRESSFORUSER; }
+    if (@hasDecl(@This(), "PMGM_CREATION_ALERT_CALLBACK")) { _ = PMGM_CREATION_ALERT_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_DISABLE_IGMP_CALLBACK")) { _ = PMGM_DISABLE_IGMP_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_ENABLE_IGMP_CALLBACK")) { _ = PMGM_ENABLE_IGMP_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_JOIN_ALERT_CALLBACK")) { _ = PMGM_JOIN_ALERT_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_LOCAL_JOIN_CALLBACK")) { _ = PMGM_LOCAL_JOIN_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_LOCAL_LEAVE_CALLBACK")) { _ = PMGM_LOCAL_LEAVE_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_PRUNE_ALERT_CALLBACK")) { _ = PMGM_PRUNE_ALERT_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_RPF_CALLBACK")) { _ = PMGM_RPF_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_WRONG_IF_CALLBACK")) { _ = PMGM_WRONG_IF_CALLBACK; }
     if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION")) { _ = PMPRADMINACCEPTNEWCONNECTION; }
     if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION2")) { _ = PMPRADMINACCEPTNEWCONNECTION2; }
     if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION3")) { _ = PMPRADMINACCEPTNEWCONNECTION3; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTIONEX")) { _ = PMPRADMINACCEPTNEWCONNECTIONEX; }
     if (@hasDecl(@This(), "PMPRADMINACCEPTNEWLINK")) { _ = PMPRADMINACCEPTNEWLINK; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATION")) { _ = PMPRADMINACCEPTREAUTHENTICATION; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATIONEX")) { _ = PMPRADMINACCEPTREAUTHENTICATIONEX; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX")) { _ = PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX; }
     if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION; }
     if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION2")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION2; }
     if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION3")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION3; }
-    if (@hasDecl(@This(), "PMPRADMINLINKHANGUPNOTIFICATION")) { _ = PMPRADMINLINKHANGUPNOTIFICATION; }
-    if (@hasDecl(@This(), "PMPRADMINTERMINATEDLL")) { _ = PMPRADMINTERMINATEDLL; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATION")) { _ = PMPRADMINACCEPTREAUTHENTICATION; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTIONEX")) { _ = PMPRADMINACCEPTNEWCONNECTIONEX; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATIONEX")) { _ = PMPRADMINACCEPTREAUTHENTICATIONEX; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX")) { _ = PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX; }
     if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX; }
+    if (@hasDecl(@This(), "PMPRADMINGETIPADDRESSFORUSER")) { _ = PMPRADMINGETIPADDRESSFORUSER; }
+    if (@hasDecl(@This(), "PMPRADMINGETIPV6ADDRESSFORUSER")) { _ = PMPRADMINGETIPV6ADDRESSFORUSER; }
+    if (@hasDecl(@This(), "PMPRADMINLINKHANGUPNOTIFICATION")) { _ = PMPRADMINLINKHANGUPNOTIFICATION; }
     if (@hasDecl(@This(), "PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX")) { _ = PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX; }
+    if (@hasDecl(@This(), "PMPRADMINRELEASEIPADRESS")) { _ = PMPRADMINRELEASEIPADRESS; }
+    if (@hasDecl(@This(), "PMPRADMINRELEASEIPV6ADDRESSFORUSER")) { _ = PMPRADMINRELEASEIPV6ADDRESSFORUSER; }
+    if (@hasDecl(@This(), "PMPRADMINTERMINATEDLL")) { _ = PMPRADMINTERMINATEDLL; }
+    if (@hasDecl(@This(), "RASADFUNCA")) { _ = RASADFUNCA; }
+    if (@hasDecl(@This(), "RASADFUNCW")) { _ = RASADFUNCW; }
+    if (@hasDecl(@This(), "RasCustomDeleteEntryNotifyFn")) { _ = RasCustomDeleteEntryNotifyFn; }
+    if (@hasDecl(@This(), "RasCustomDialDlgFn")) { _ = RasCustomDialDlgFn; }
+    if (@hasDecl(@This(), "RasCustomDialFn")) { _ = RasCustomDialFn; }
+    if (@hasDecl(@This(), "RasCustomEntryDlgFn")) { _ = RasCustomEntryDlgFn; }
+    if (@hasDecl(@This(), "RasCustomHangUpFn")) { _ = RasCustomHangUpFn; }
+    if (@hasDecl(@This(), "RasCustomScriptExecuteFn")) { _ = RasCustomScriptExecuteFn; }
+    if (@hasDecl(@This(), "RASDIALFUNC")) { _ = RASDIALFUNC; }
+    if (@hasDecl(@This(), "RASDIALFUNC1")) { _ = RASDIALFUNC1; }
+    if (@hasDecl(@This(), "RASDIALFUNC2")) { _ = RASDIALFUNC2; }
+    if (@hasDecl(@This(), "RASPBDLGFUNCA")) { _ = RASPBDLGFUNCA; }
+    if (@hasDecl(@This(), "RASPBDLGFUNCW")) { _ = RASPBDLGFUNCW; }
     if (@hasDecl(@This(), "RASSECURITYPROC")) { _ = RASSECURITYPROC; }
-    if (@hasDecl(@This(), "PMGM_RPF_CALLBACK")) { _ = PMGM_RPF_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_CREATION_ALERT_CALLBACK")) { _ = PMGM_CREATION_ALERT_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_PRUNE_ALERT_CALLBACK")) { _ = PMGM_PRUNE_ALERT_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_JOIN_ALERT_CALLBACK")) { _ = PMGM_JOIN_ALERT_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_WRONG_IF_CALLBACK")) { _ = PMGM_WRONG_IF_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_LOCAL_JOIN_CALLBACK")) { _ = PMGM_LOCAL_JOIN_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_LOCAL_LEAVE_CALLBACK")) { _ = PMGM_LOCAL_LEAVE_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_DISABLE_IGMP_CALLBACK")) { _ = PMGM_DISABLE_IGMP_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_ENABLE_IGMP_CALLBACK")) { _ = PMGM_ENABLE_IGMP_CALLBACK; }
-    if (@hasDecl(@This(), "RTM_EVENT_CALLBACK")) { _ = RTM_EVENT_CALLBACK; }
     if (@hasDecl(@This(), "RTM_ENTITY_EXPORT_METHOD")) { _ = RTM_ENTITY_EXPORT_METHOD; }
+    if (@hasDecl(@This(), "RTM_EVENT_CALLBACK")) { _ = RTM_EVENT_CALLBACK; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

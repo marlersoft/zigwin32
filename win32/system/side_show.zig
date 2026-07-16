@@ -2,102 +2,289 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (26)
 //--------------------------------------------------------------------------------
-pub const SIDESHOW_ENDPOINT_SIMPLE_CONTENT_FORMAT = Guid.initString("a9a5353f-2d4b-47ce-93ee-759f3a7dda4f");
-pub const SIDESHOW_ENDPOINT_ICAL = Guid.initString("4dff36b5-9dde-4f76-9a2a-96435047063d");
-pub const SIDESHOW_CAPABILITY_DEVICE_PROPERTIES = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99");
-pub const SIDESHOW_CAPABILITY_DEVICE_ID = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 1 };
-pub const SIDESHOW_CAPABILITY_SCREEN_TYPE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 2 };
-pub const SIDESHOW_CAPABILITY_SCREEN_WIDTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 3 };
-pub const SIDESHOW_CAPABILITY_SCREEN_HEIGHT = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 4 };
+pub const CONTENT_ID_GLANCE = @as(u32, 0);
+pub const CONTENT_ID_HOME = @as(u32, 1);
+pub const GUID_DEVINTERFACE_SIDESHOW = Guid.initString("152e5811-feb9-4b00-90f4-d32947ae1681");
+pub const SIDESHOW_APPLICATION_EVENT = Guid.initString("4cb572fa-1d3b-49b3-a17a-2e6bff052854");
+pub const SIDESHOW_CAPABILITY_CLIENT_AREA_HEIGHT = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 16 };
+pub const SIDESHOW_CAPABILITY_CLIENT_AREA_WIDTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 15 };
 pub const SIDESHOW_CAPABILITY_COLOR_DEPTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 5 };
 pub const SIDESHOW_CAPABILITY_COLOR_TYPE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 6 };
-pub const SIDESHOW_CAPABILITY_DATA_CACHE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 7 };
-pub const SIDESHOW_CAPABILITY_SUPPORTED_LANGUAGES = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 8 };
 pub const SIDESHOW_CAPABILITY_CURRENT_LANGUAGE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 9 };
-pub const SIDESHOW_CAPABILITY_SUPPORTED_THEMES = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 10 };
+pub const SIDESHOW_CAPABILITY_DATA_CACHE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 7 };
+pub const SIDESHOW_CAPABILITY_DEVICE_ID = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 1 };
+pub const SIDESHOW_CAPABILITY_DEVICE_PROPERTIES = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99");
+pub const SIDESHOW_CAPABILITY_SCREEN_HEIGHT = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 4 };
+pub const SIDESHOW_CAPABILITY_SCREEN_TYPE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 2 };
+pub const SIDESHOW_CAPABILITY_SCREEN_WIDTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 3 };
 pub const SIDESHOW_CAPABILITY_SUPPORTED_IMAGE_FORMATS = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 14 };
-pub const SIDESHOW_CAPABILITY_CLIENT_AREA_WIDTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 15 };
-pub const SIDESHOW_CAPABILITY_CLIENT_AREA_HEIGHT = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 16 };
-pub const GUID_DEVINTERFACE_SIDESHOW = Guid.initString("152e5811-feb9-4b00-90f4-d32947ae1681");
+pub const SIDESHOW_CAPABILITY_SUPPORTED_LANGUAGES = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 8 };
+pub const SIDESHOW_CAPABILITY_SUPPORTED_THEMES = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 10 };
 pub const SIDESHOW_CONTENT_MISSING_EVENT = Guid.initString("5007fba8-d313-439f-bea2-a50201d3e9a8");
-pub const SIDESHOW_APPLICATION_EVENT = Guid.initString("4cb572fa-1d3b-49b3-a17a-2e6bff052854");
-pub const SIDESHOW_USER_CHANGE_REQUEST_EVENT = Guid.initString("5009673c-3f7d-4c7e-9971-eaa2e91f1575");
-pub const SIDESHOW_NEW_EVENT_DATA_AVAILABLE = Guid.initString("57813854-2fc1-411c-a59f-f24927608804");
-pub const CONTENT_ID_GLANCE = @as(u32, 0);
+pub const SIDESHOW_ENDPOINT_ICAL = Guid.initString("4dff36b5-9dde-4f76-9a2a-96435047063d");
+pub const SIDESHOW_ENDPOINT_SIMPLE_CONTENT_FORMAT = Guid.initString("a9a5353f-2d4b-47ce-93ee-759f3a7dda4f");
 pub const SIDESHOW_EVENTID_APPLICATION_ENTER = @as(u32, 4294901760);
 pub const SIDESHOW_EVENTID_APPLICATION_EXIT = @as(u32, 4294901761);
-pub const CONTENT_ID_HOME = @as(u32, 1);
+pub const SIDESHOW_NEW_EVENT_DATA_AVAILABLE = Guid.initString("57813854-2fc1-411c-a59f-f24927608804");
+pub const SIDESHOW_USER_CHANGE_REQUEST_EVENT = Guid.initString("5009673c-3f7d-4c7e-9971-eaa2e91f1575");
 pub const VERSION_1_WINDOWS_7 = @as(u32, 0);
 
 //--------------------------------------------------------------------------------
 // Section: Types (28)
 //--------------------------------------------------------------------------------
-const CLSID_SideShowSession_Value = Guid.initString("e20543b9-f785-4ea2-981e-c4ffa76bbc7c");
-pub const CLSID_SideShowSession = &CLSID_SideShowSession_Value;
+pub const APPLICATION_EVENT_DATA = extern struct {
+    cbApplicationEventData: u32 align(1),
+    ApplicationId: Guid align(1),
+    EndpointId: Guid align(1),
+    dwEventId: u32 align(1),
+    cbEventData: u32 align(1),
+    bEventData: [1]u8 align(1),
+};
 
-const CLSID_SideShowNotification_Value = Guid.initString("0ce3e86f-d5cd-4525-a766-1abab1a752f5");
-pub const CLSID_SideShowNotification = &CLSID_SideShowNotification_Value;
+pub const CONTENT_MISSING_EVENT_DATA = extern struct {
+    cbContentMissingEventData: u32 align(1),
+    ApplicationId: Guid align(1),
+    EndpointId: Guid align(1),
+    ContentId: u32 align(1),
+};
 
-const CLSID_SideShowKeyCollection_Value = Guid.initString("dfbbdbf8-18de-49b8-83dc-ebc727c62d94");
-pub const CLSID_SideShowKeyCollection = &CLSID_SideShowKeyCollection_Value;
+pub const DEVICE_USER_CHANGE_EVENT_DATA = extern struct {
+    cbDeviceUserChangeEventData: u32 align(1),
+    wszUser: u16 align(1),
+};
 
-const CLSID_SideShowPropVariantCollection_Value = Guid.initString("e640f415-539e-4923-96cd-5f093bc250cd");
-pub const CLSID_SideShowPropVariantCollection = &CLSID_SideShowPropVariantCollection_Value;
+pub const EVENT_DATA_HEADER = extern struct {
+    cbEventDataHeader: u32 align(1),
+    guidEventType: Guid align(1),
+    dwVersion: u32 align(1),
+    cbEventDataSid: u32 align(1),
+};
 
-const IID_ISideShowSession_Value = Guid.initString("e22331ee-9e7d-4922-9fc2-ab7aa41ce491");
-pub const IID_ISideShowSession = &IID_ISideShowSession_Value;
-pub const ISideShowSession = extern union {
+const IID_ISideShowBulkCapabilities_Value = Guid.initString("3a2b7fbc-3ad5-48bd-bbf1-0e6cfbd10807");
+pub const IID_ISideShowBulkCapabilities = &IID_ISideShowBulkCapabilities_Value;
+pub const ISideShowBulkCapabilities = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterContent: *const fn(
-            self: *const ISideShowSession,
-            in_applicationId: ?*Guid,
-            in_endpointId: ?*Guid,
-            out_ppIContent: ?*?*ISideShowContentManager,
-        ) callconv(.winapi) HRESULT,
-        RegisterNotifications: *const fn(
-            self: *const ISideShowSession,
-            in_applicationId: ?*Guid,
-            out_ppINotification: ?*?*ISideShowNotificationManager,
+        base: ISideShowCapabilities.VTable,
+        GetCapabilities: *const fn(
+            self: *const ISideShowBulkCapabilities,
+            in_keyCollection: ?*ISideShowKeyCollection,
+            inout_pValues: ?*?*ISideShowPropVariantCollection,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    ISideShowCapabilities: ISideShowCapabilities,
     IUnknown: IUnknown,
-    pub fn RegisterContent(self: *const ISideShowSession, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterContent(self, in_applicationId, in_endpointId, out_ppIContent);
-    }
-    pub fn RegisterNotifications(self: *const ISideShowSession, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterNotifications(self, in_applicationId, out_ppINotification);
+    pub fn GetCapabilities(self: *const ISideShowBulkCapabilities, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCapabilities(self, in_keyCollection, inout_pValues);
     }
 };
 
-const IID_ISideShowNotificationManager_Value = Guid.initString("63cea909-f2b9-4302-b5e1-c68e6d9ab833");
-pub const IID_ISideShowNotificationManager = &IID_ISideShowNotificationManager_Value;
-pub const ISideShowNotificationManager = extern union {
+const IID_ISideShowCapabilities_Value = Guid.initString("535e1379-c09e-4a54-a511-597bab3a72b8");
+pub const IID_ISideShowCapabilities = &IID_ISideShowCapabilities_Value;
+pub const ISideShowCapabilities = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Show: *const fn(
-            self: *const ISideShowNotificationManager,
-            in_pINotification: ?*ISideShowNotification,
-        ) callconv(.winapi) HRESULT,
-        Revoke: *const fn(
-            self: *const ISideShowNotificationManager,
-            in_notificationId: u32,
-        ) callconv(.winapi) HRESULT,
-        RevokeAll: *const fn(
-            self: *const ISideShowNotificationManager,
+        GetCapability: *const fn(
+            self: *const ISideShowCapabilities,
+            in_keyCapability: ?*const PROPERTYKEY,
+            inout_pValue: ?*PROPVARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Show(self: *const ISideShowNotificationManager, in_pINotification: ?*ISideShowNotification) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, in_pINotification);
+    pub fn GetCapability(self: *const ISideShowCapabilities, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCapability(self, in_keyCapability, inout_pValue);
     }
-    pub fn Revoke(self: *const ISideShowNotificationManager, in_notificationId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Revoke(self, in_notificationId);
+};
+
+const IID_ISideShowCapabilitiesCollection_Value = Guid.initString("50305597-5e0d-4ff7-b3af-33d0d9bd52dd");
+pub const IID_ISideShowCapabilitiesCollection = &IID_ISideShowCapabilitiesCollection_Value;
+pub const ISideShowCapabilitiesCollection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCount: *const fn(
+            self: *const ISideShowCapabilitiesCollection,
+            out_pdwCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetAt: *const fn(
+            self: *const ISideShowCapabilitiesCollection,
+            in_dwIndex: u32,
+            out_ppCapabilities: ?*?*ISideShowCapabilities,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const ISideShowCapabilitiesCollection, out_pdwCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, out_pdwCount);
     }
-    pub fn RevokeAll(self: *const ISideShowNotificationManager) callconv(.@"inline") HRESULT {
-        return self.vtable.RevokeAll(self);
+    pub fn GetAt(self: *const ISideShowCapabilitiesCollection, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAt(self, in_dwIndex, out_ppCapabilities);
+    }
+};
+
+const IID_ISideShowContent_Value = Guid.initString("c18552ed-74ff-4fec-be07-4cfed29d4887");
+pub const IID_ISideShowContent = &IID_ISideShowContent_Value;
+pub const ISideShowContent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetContent: *const fn(
+            self: *const ISideShowContent,
+            in_pICapabilities: ?*ISideShowCapabilities,
+            out_pdwSize: ?*u32,
+            out_ppbData: [*]?*u8,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ContentId: *const fn(
+            self: *const ISideShowContent,
+            out_pcontentId: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DifferentiateContent: *const fn(
+            self: *const ISideShowContent,
+            out_pfDifferentiateContent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetContent(self: *const ISideShowContent, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: [*]?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContent(self, in_pICapabilities, out_pdwSize, out_ppbData);
+    }
+    pub fn get_ContentId(self: *const ISideShowContent, out_pcontentId: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ContentId(self, out_pcontentId);
+    }
+    pub fn get_DifferentiateContent(self: *const ISideShowContent, out_pfDifferentiateContent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DifferentiateContent(self, out_pfDifferentiateContent);
+    }
+};
+
+const IID_ISideShowContentManager_Value = Guid.initString("a5d5b66b-eef9-41db-8d7e-e17c33ab10b0");
+pub const IID_ISideShowContentManager = &IID_ISideShowContentManager_Value;
+pub const ISideShowContentManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Add: *const fn(
+            self: *const ISideShowContentManager,
+            in_pIContent: ?*ISideShowContent,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const ISideShowContentManager,
+            in_contentId: u32,
+        ) callconv(.winapi) HRESULT,
+        RemoveAll: *const fn(
+            self: *const ISideShowContentManager,
+        ) callconv(.winapi) HRESULT,
+        SetEventSink: *const fn(
+            self: *const ISideShowContentManager,
+            in_pIEvents: ?*ISideShowEvents,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceCapabilities: *const fn(
+            self: *const ISideShowContentManager,
+            out_ppCollection: ?*?*ISideShowCapabilitiesCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Add(self: *const ISideShowContentManager, in_pIContent: ?*ISideShowContent) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, in_pIContent);
+    }
+    pub fn Remove(self: *const ISideShowContentManager, in_contentId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, in_contentId);
+    }
+    pub fn RemoveAll(self: *const ISideShowContentManager) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAll(self);
+    }
+    pub fn SetEventSink(self: *const ISideShowContentManager, in_pIEvents: ?*ISideShowEvents) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEventSink(self, in_pIEvents);
+    }
+    pub fn GetDeviceCapabilities(self: *const ISideShowContentManager, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceCapabilities(self, out_ppCollection);
+    }
+};
+
+const IID_ISideShowEvents_Value = Guid.initString("61feca4c-deb4-4a7e-8d75-51f1132d615b");
+pub const IID_ISideShowEvents = &IID_ISideShowEvents_Value;
+pub const ISideShowEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ContentMissing: *const fn(
+            self: *const ISideShowEvents,
+            in_contentId: u32,
+            out_ppIContent: ?*?*ISideShowContent,
+        ) callconv(.winapi) HRESULT,
+        ApplicationEvent: *const fn(
+            self: *const ISideShowEvents,
+            in_pICapabilities: ?*ISideShowCapabilities,
+            in_dwEventId: u32,
+            in_dwEventSize: u32,
+            in_pbEventData: ?[*:0]const u8,
+        ) callconv(.winapi) HRESULT,
+        DeviceAdded: *const fn(
+            self: *const ISideShowEvents,
+            in_pIDevice: ?*ISideShowCapabilities,
+        ) callconv(.winapi) HRESULT,
+        DeviceRemoved: *const fn(
+            self: *const ISideShowEvents,
+            in_pIDevice: ?*ISideShowCapabilities,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ContentMissing(self: *const ISideShowEvents, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) callconv(.@"inline") HRESULT {
+        return self.vtable.ContentMissing(self, in_contentId, out_ppIContent);
+    }
+    pub fn ApplicationEvent(self: *const ISideShowEvents, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplicationEvent(self, in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
+    }
+    pub fn DeviceAdded(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceAdded(self, in_pIDevice);
+    }
+    pub fn DeviceRemoved(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceRemoved(self, in_pIDevice);
+    }
+};
+
+const IID_ISideShowKeyCollection_Value = Guid.initString("045473bc-a37b-4957-b144-68105411ed8e");
+pub const IID_ISideShowKeyCollection = &IID_ISideShowKeyCollection_Value;
+pub const ISideShowKeyCollection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Add: *const fn(
+            self: *const ISideShowKeyCollection,
+            Key: ?*const PROPERTYKEY,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const ISideShowKeyCollection,
+        ) callconv(.winapi) HRESULT,
+        GetAt: *const fn(
+            self: *const ISideShowKeyCollection,
+            dwIndex: u32,
+            pKey: ?*PROPERTYKEY,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const ISideShowKeyCollection,
+            pcElems: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        RemoveAt: *const fn(
+            self: *const ISideShowKeyCollection,
+            dwIndex: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Add(self: *const ISideShowKeyCollection, Key: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, Key);
+    }
+    pub fn Clear(self: *const ISideShowKeyCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+    pub fn GetAt(self: *const ISideShowKeyCollection, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAt(self, dwIndex, pKey);
+    }
+    pub fn GetCount(self: *const ISideShowKeyCollection, pcElems: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pcElems);
+    }
+    pub fn RemoveAt(self: *const ISideShowKeyCollection, dwIndex: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAt(self, dwIndex);
     }
 };
 
@@ -191,231 +378,33 @@ pub const ISideShowNotification = extern union {
     }
 };
 
-const IID_ISideShowContentManager_Value = Guid.initString("a5d5b66b-eef9-41db-8d7e-e17c33ab10b0");
-pub const IID_ISideShowContentManager = &IID_ISideShowContentManager_Value;
-pub const ISideShowContentManager = extern union {
+const IID_ISideShowNotificationManager_Value = Guid.initString("63cea909-f2b9-4302-b5e1-c68e6d9ab833");
+pub const IID_ISideShowNotificationManager = &IID_ISideShowNotificationManager_Value;
+pub const ISideShowNotificationManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Add: *const fn(
-            self: *const ISideShowContentManager,
-            in_pIContent: ?*ISideShowContent,
+        Show: *const fn(
+            self: *const ISideShowNotificationManager,
+            in_pINotification: ?*ISideShowNotification,
         ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const ISideShowContentManager,
-            in_contentId: u32,
+        Revoke: *const fn(
+            self: *const ISideShowNotificationManager,
+            in_notificationId: u32,
         ) callconv(.winapi) HRESULT,
-        RemoveAll: *const fn(
-            self: *const ISideShowContentManager,
-        ) callconv(.winapi) HRESULT,
-        SetEventSink: *const fn(
-            self: *const ISideShowContentManager,
-            in_pIEvents: ?*ISideShowEvents,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceCapabilities: *const fn(
-            self: *const ISideShowContentManager,
-            out_ppCollection: ?*?*ISideShowCapabilitiesCollection,
+        RevokeAll: *const fn(
+            self: *const ISideShowNotificationManager,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Add(self: *const ISideShowContentManager, in_pIContent: ?*ISideShowContent) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, in_pIContent);
+    pub fn Show(self: *const ISideShowNotificationManager, in_pINotification: ?*ISideShowNotification) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, in_pINotification);
     }
-    pub fn Remove(self: *const ISideShowContentManager, in_contentId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, in_contentId);
+    pub fn Revoke(self: *const ISideShowNotificationManager, in_notificationId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Revoke(self, in_notificationId);
     }
-    pub fn RemoveAll(self: *const ISideShowContentManager) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAll(self);
-    }
-    pub fn SetEventSink(self: *const ISideShowContentManager, in_pIEvents: ?*ISideShowEvents) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEventSink(self, in_pIEvents);
-    }
-    pub fn GetDeviceCapabilities(self: *const ISideShowContentManager, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceCapabilities(self, out_ppCollection);
-    }
-};
-
-const IID_ISideShowContent_Value = Guid.initString("c18552ed-74ff-4fec-be07-4cfed29d4887");
-pub const IID_ISideShowContent = &IID_ISideShowContent_Value;
-pub const ISideShowContent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetContent: *const fn(
-            self: *const ISideShowContent,
-            in_pICapabilities: ?*ISideShowCapabilities,
-            out_pdwSize: ?*u32,
-            out_ppbData: [*]?*u8,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ContentId: *const fn(
-            self: *const ISideShowContent,
-            out_pcontentId: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DifferentiateContent: *const fn(
-            self: *const ISideShowContent,
-            out_pfDifferentiateContent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetContent(self: *const ISideShowContent, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: [*]?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContent(self, in_pICapabilities, out_pdwSize, out_ppbData);
-    }
-    pub fn get_ContentId(self: *const ISideShowContent, out_pcontentId: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ContentId(self, out_pcontentId);
-    }
-    pub fn get_DifferentiateContent(self: *const ISideShowContent, out_pfDifferentiateContent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DifferentiateContent(self, out_pfDifferentiateContent);
-    }
-};
-
-const IID_ISideShowEvents_Value = Guid.initString("61feca4c-deb4-4a7e-8d75-51f1132d615b");
-pub const IID_ISideShowEvents = &IID_ISideShowEvents_Value;
-pub const ISideShowEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ContentMissing: *const fn(
-            self: *const ISideShowEvents,
-            in_contentId: u32,
-            out_ppIContent: ?*?*ISideShowContent,
-        ) callconv(.winapi) HRESULT,
-        ApplicationEvent: *const fn(
-            self: *const ISideShowEvents,
-            in_pICapabilities: ?*ISideShowCapabilities,
-            in_dwEventId: u32,
-            in_dwEventSize: u32,
-            in_pbEventData: ?[*:0]const u8,
-        ) callconv(.winapi) HRESULT,
-        DeviceAdded: *const fn(
-            self: *const ISideShowEvents,
-            in_pIDevice: ?*ISideShowCapabilities,
-        ) callconv(.winapi) HRESULT,
-        DeviceRemoved: *const fn(
-            self: *const ISideShowEvents,
-            in_pIDevice: ?*ISideShowCapabilities,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ContentMissing(self: *const ISideShowEvents, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) callconv(.@"inline") HRESULT {
-        return self.vtable.ContentMissing(self, in_contentId, out_ppIContent);
-    }
-    pub fn ApplicationEvent(self: *const ISideShowEvents, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplicationEvent(self, in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
-    }
-    pub fn DeviceAdded(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceAdded(self, in_pIDevice);
-    }
-    pub fn DeviceRemoved(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceRemoved(self, in_pIDevice);
-    }
-};
-
-const IID_ISideShowCapabilities_Value = Guid.initString("535e1379-c09e-4a54-a511-597bab3a72b8");
-pub const IID_ISideShowCapabilities = &IID_ISideShowCapabilities_Value;
-pub const ISideShowCapabilities = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCapability: *const fn(
-            self: *const ISideShowCapabilities,
-            in_keyCapability: ?*const PROPERTYKEY,
-            inout_pValue: ?*PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCapability(self: *const ISideShowCapabilities, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCapability(self, in_keyCapability, inout_pValue);
-    }
-};
-
-const IID_ISideShowCapabilitiesCollection_Value = Guid.initString("50305597-5e0d-4ff7-b3af-33d0d9bd52dd");
-pub const IID_ISideShowCapabilitiesCollection = &IID_ISideShowCapabilitiesCollection_Value;
-pub const ISideShowCapabilitiesCollection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCount: *const fn(
-            self: *const ISideShowCapabilitiesCollection,
-            out_pdwCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetAt: *const fn(
-            self: *const ISideShowCapabilitiesCollection,
-            in_dwIndex: u32,
-            out_ppCapabilities: ?*?*ISideShowCapabilities,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCount(self: *const ISideShowCapabilitiesCollection, out_pdwCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, out_pdwCount);
-    }
-    pub fn GetAt(self: *const ISideShowCapabilitiesCollection, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAt(self, in_dwIndex, out_ppCapabilities);
-    }
-};
-
-const IID_ISideShowBulkCapabilities_Value = Guid.initString("3a2b7fbc-3ad5-48bd-bbf1-0e6cfbd10807");
-pub const IID_ISideShowBulkCapabilities = &IID_ISideShowBulkCapabilities_Value;
-pub const ISideShowBulkCapabilities = extern union {
-    pub const VTable = extern struct {
-        base: ISideShowCapabilities.VTable,
-        GetCapabilities: *const fn(
-            self: *const ISideShowBulkCapabilities,
-            in_keyCollection: ?*ISideShowKeyCollection,
-            inout_pValues: ?*?*ISideShowPropVariantCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISideShowCapabilities: ISideShowCapabilities,
-    IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const ISideShowBulkCapabilities, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCapabilities(self, in_keyCollection, inout_pValues);
-    }
-};
-
-const IID_ISideShowKeyCollection_Value = Guid.initString("045473bc-a37b-4957-b144-68105411ed8e");
-pub const IID_ISideShowKeyCollection = &IID_ISideShowKeyCollection_Value;
-pub const ISideShowKeyCollection = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Add: *const fn(
-            self: *const ISideShowKeyCollection,
-            Key: ?*const PROPERTYKEY,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const ISideShowKeyCollection,
-        ) callconv(.winapi) HRESULT,
-        GetAt: *const fn(
-            self: *const ISideShowKeyCollection,
-            dwIndex: u32,
-            pKey: ?*PROPERTYKEY,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const ISideShowKeyCollection,
-            pcElems: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        RemoveAt: *const fn(
-            self: *const ISideShowKeyCollection,
-            dwIndex: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Add(self: *const ISideShowKeyCollection, Key: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, Key);
-    }
-    pub fn Clear(self: *const ISideShowKeyCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-    pub fn GetAt(self: *const ISideShowKeyCollection, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAt(self, dwIndex, pKey);
-    }
-    pub fn GetCount(self: *const ISideShowKeyCollection, pcElems: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pcElems);
-    }
-    pub fn RemoveAt(self: *const ISideShowKeyCollection, dwIndex: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAt(self, dwIndex);
+    pub fn RevokeAll(self: *const ISideShowNotificationManager) callconv(.@"inline") HRESULT {
+        return self.vtable.RevokeAll(self);
     }
 };
 
@@ -464,30 +453,37 @@ pub const ISideShowPropVariantCollection = extern union {
     }
 };
 
-pub const SIDESHOW_SCREEN_TYPE = enum(i32) {
-    BITMAP = 0,
-    TEXT = 1,
+const IID_ISideShowSession_Value = Guid.initString("e22331ee-9e7d-4922-9fc2-ab7aa41ce491");
+pub const IID_ISideShowSession = &IID_ISideShowSession_Value;
+pub const ISideShowSession = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterContent: *const fn(
+            self: *const ISideShowSession,
+            in_applicationId: ?*Guid,
+            in_endpointId: ?*Guid,
+            out_ppIContent: ?*?*ISideShowContentManager,
+        ) callconv(.winapi) HRESULT,
+        RegisterNotifications: *const fn(
+            self: *const ISideShowSession,
+            in_applicationId: ?*Guid,
+            out_ppINotification: ?*?*ISideShowNotificationManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterContent(self: *const ISideShowSession, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterContent(self, in_applicationId, in_endpointId, out_ppIContent);
+    }
+    pub fn RegisterNotifications(self: *const ISideShowSession, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterNotifications(self, in_applicationId, out_ppINotification);
+    }
 };
-pub const SIDESHOW_SCREEN_TYPE_BITMAP = SIDESHOW_SCREEN_TYPE.BITMAP;
-pub const SIDESHOW_SCREEN_TYPE_TEXT = SIDESHOW_SCREEN_TYPE.TEXT;
 
-pub const SIDESHOW_COLOR_TYPE = enum(i32) {
-    COLOR = 0,
-    GREYSCALE = 1,
-    BLACK_AND_WHITE = 2,
+pub const NEW_EVENT_DATA_AVAILABLE = extern struct {
+    cbNewEventDataAvailable: u32 align(1),
+    dwVersion: u32 align(1),
 };
-pub const SIDESHOW_COLOR_TYPE_COLOR = SIDESHOW_COLOR_TYPE.COLOR;
-pub const SIDESHOW_COLOR_TYPE_GREYSCALE = SIDESHOW_COLOR_TYPE.GREYSCALE;
-pub const SIDESHOW_COLOR_TYPE_BLACK_AND_WHITE = SIDESHOW_COLOR_TYPE.BLACK_AND_WHITE;
-
-pub const SCF_EVENT_IDS = enum(i32) {
-    NAVIGATION = 1,
-    MENUACTION = 2,
-    CONTEXTMENU = 3,
-};
-pub const SCF_EVENT_NAVIGATION = SCF_EVENT_IDS.NAVIGATION;
-pub const SCF_EVENT_MENUACTION = SCF_EVENT_IDS.MENUACTION;
-pub const SCF_EVENT_CONTEXTMENU = SCF_EVENT_IDS.CONTEXTMENU;
 
 pub const SCF_BUTTON_IDS = enum(i32) {
     MENU = 1,
@@ -516,24 +512,6 @@ pub const SCF_BUTTON_REWIND = SCF_BUTTON_IDS.REWIND;
 pub const SCF_BUTTON_STOP = SCF_BUTTON_IDS.STOP;
 pub const SCF_BUTTON_BACK = SCF_BUTTON_IDS.BACK;
 
-pub const SCF_EVENT_HEADER = extern struct {
-    PreviousPage: u32,
-    TargetPage: u32,
-};
-
-pub const SCF_NAVIGATION_EVENT = extern struct {
-    PreviousPage: u32,
-    TargetPage: u32,
-    Button: u32,
-};
-
-pub const SCF_MENUACTION_EVENT = extern struct {
-    PreviousPage: u32,
-    TargetPage: u32,
-    Button: u32,
-    ItemId: u32,
-};
-
 pub const SCF_CONTEXTMENU_EVENT = extern struct {
     PreviousPage: u32,
     TargetPage: u32,
@@ -542,38 +520,60 @@ pub const SCF_CONTEXTMENU_EVENT = extern struct {
     MenuItemId: u32,
 };
 
-pub const CONTENT_MISSING_EVENT_DATA = extern struct {
-    cbContentMissingEventData: u32 align(1),
-    ApplicationId: Guid align(1),
-    EndpointId: Guid align(1),
-    ContentId: u32 align(1),
+pub const SCF_EVENT_HEADER = extern struct {
+    PreviousPage: u32,
+    TargetPage: u32,
 };
 
-pub const APPLICATION_EVENT_DATA = extern struct {
-    cbApplicationEventData: u32 align(1),
-    ApplicationId: Guid align(1),
-    EndpointId: Guid align(1),
-    dwEventId: u32 align(1),
-    cbEventData: u32 align(1),
-    bEventData: [1]u8 align(1),
+pub const SCF_EVENT_IDS = enum(i32) {
+    NAVIGATION = 1,
+    MENUACTION = 2,
+    CONTEXTMENU = 3,
+};
+pub const SCF_EVENT_NAVIGATION = SCF_EVENT_IDS.NAVIGATION;
+pub const SCF_EVENT_MENUACTION = SCF_EVENT_IDS.MENUACTION;
+pub const SCF_EVENT_CONTEXTMENU = SCF_EVENT_IDS.CONTEXTMENU;
+
+pub const SCF_MENUACTION_EVENT = extern struct {
+    PreviousPage: u32,
+    TargetPage: u32,
+    Button: u32,
+    ItemId: u32,
 };
 
-pub const DEVICE_USER_CHANGE_EVENT_DATA = extern struct {
-    cbDeviceUserChangeEventData: u32 align(1),
-    wszUser: u16 align(1),
+pub const SCF_NAVIGATION_EVENT = extern struct {
+    PreviousPage: u32,
+    TargetPage: u32,
+    Button: u32,
 };
 
-pub const NEW_EVENT_DATA_AVAILABLE = extern struct {
-    cbNewEventDataAvailable: u32 align(1),
-    dwVersion: u32 align(1),
+pub const SIDESHOW_COLOR_TYPE = enum(i32) {
+    COLOR = 0,
+    GREYSCALE = 1,
+    BLACK_AND_WHITE = 2,
 };
+pub const SIDESHOW_COLOR_TYPE_COLOR = SIDESHOW_COLOR_TYPE.COLOR;
+pub const SIDESHOW_COLOR_TYPE_GREYSCALE = SIDESHOW_COLOR_TYPE.GREYSCALE;
+pub const SIDESHOW_COLOR_TYPE_BLACK_AND_WHITE = SIDESHOW_COLOR_TYPE.BLACK_AND_WHITE;
 
-pub const EVENT_DATA_HEADER = extern struct {
-    cbEventDataHeader: u32 align(1),
-    guidEventType: Guid align(1),
-    dwVersion: u32 align(1),
-    cbEventDataSid: u32 align(1),
+pub const SIDESHOW_SCREEN_TYPE = enum(i32) {
+    BITMAP = 0,
+    TEXT = 1,
 };
+pub const SIDESHOW_SCREEN_TYPE_BITMAP = SIDESHOW_SCREEN_TYPE.BITMAP;
+pub const SIDESHOW_SCREEN_TYPE_TEXT = SIDESHOW_SCREEN_TYPE.TEXT;
+
+const CLSID_SideShowKeyCollection_Value = Guid.initString("dfbbdbf8-18de-49b8-83dc-ebc727c62d94");
+pub const CLSID_SideShowKeyCollection = &CLSID_SideShowKeyCollection_Value;
+
+const CLSID_SideShowNotification_Value = Guid.initString("0ce3e86f-d5cd-4525-a766-1abab1a752f5");
+pub const CLSID_SideShowNotification = &CLSID_SideShowNotification_Value;
+
+const CLSID_SideShowPropVariantCollection_Value = Guid.initString("e640f415-539e-4923-96cd-5f093bc250cd");
+pub const CLSID_SideShowPropVariantCollection = &CLSID_SideShowPropVariantCollection_Value;
+
+const CLSID_SideShowSession_Value = Guid.initString("e20543b9-f785-4ea2-981e-c4ffa76bbc7c");
+pub const CLSID_SideShowSession = &CLSID_SideShowSession_Value;
 
 
 //--------------------------------------------------------------------------------

@@ -4,12 +4,33 @@
 //--------------------------------------------------------------------------------
 pub const _FACDXCORE = @as(u32, 2176);
 pub const DXCORE_ADAPTER_ATTRIBUTE_D3D11_GRAPHICS = Guid.initString("8c47866b-7583-450d-f0f0-6bada895af4b");
-pub const DXCORE_ADAPTER_ATTRIBUTE_D3D12_GRAPHICS = Guid.initString("0c9ece4d-2f6e-4f01-8c96-e89e331b47b1");
 pub const DXCORE_ADAPTER_ATTRIBUTE_D3D12_CORE_COMPUTE = Guid.initString("248e2800-a793-4724-abaa-23a6de1be090");
+pub const DXCORE_ADAPTER_ATTRIBUTE_D3D12_GRAPHICS = Guid.initString("0c9ece4d-2f6e-4f01-8c96-e89e331b47b1");
 
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
+pub const DXCoreAdapterMemoryBudget = extern struct {
+    budget: u64,
+    currentUsage: u64,
+    availableForReservation: u64,
+    currentReservation: u64,
+};
+
+pub const DXCoreAdapterMemoryBudgetNodeSegmentGroup = extern struct {
+    nodeIndex: u32,
+    segmentGroup: DXCoreSegmentGroup,
+};
+
+pub const DXCoreAdapterPreference = enum(u32) {
+    Hardware = 0,
+    MinimumPower = 1,
+    HighPerformance = 2,
+};
+pub const Hardware = DXCoreAdapterPreference.Hardware;
+pub const MinimumPower = DXCoreAdapterPreference.MinimumPower;
+pub const HighPerformance = DXCoreAdapterPreference.HighPerformance;
+
 pub const DXCoreAdapterProperty = enum(u32) {
     InstanceLuid = 0,
     DriverVersion = 1,
@@ -50,33 +71,6 @@ pub const DXCoreAdapterState = enum(u32) {
 pub const IsDriverUpdateInProgress = DXCoreAdapterState.IsDriverUpdateInProgress;
 pub const AdapterMemoryBudget = DXCoreAdapterState.AdapterMemoryBudget;
 
-pub const DXCoreSegmentGroup = enum(u32) {
-    Local = 0,
-    NonLocal = 1,
-};
-pub const Local = DXCoreSegmentGroup.Local;
-pub const NonLocal = DXCoreSegmentGroup.NonLocal;
-
-pub const DXCoreNotificationType = enum(u32) {
-    ListStale = 0,
-    NoLongerValid = 1,
-    BudgetChange = 2,
-    HardwareContentProtectionTeardown = 3,
-};
-pub const AdapterListStale = DXCoreNotificationType.ListStale;
-pub const AdapterNoLongerValid = DXCoreNotificationType.NoLongerValid;
-pub const AdapterBudgetChange = DXCoreNotificationType.BudgetChange;
-pub const AdapterHardwareContentProtectionTeardown = DXCoreNotificationType.HardwareContentProtectionTeardown;
-
-pub const DXCoreAdapterPreference = enum(u32) {
-    Hardware = 0,
-    MinimumPower = 1,
-    HighPerformance = 2,
-};
-pub const Hardware = DXCoreAdapterPreference.Hardware;
-pub const MinimumPower = DXCoreAdapterPreference.MinimumPower;
-pub const HighPerformance = DXCoreAdapterPreference.HighPerformance;
-
 pub const DXCoreHardwareID = extern struct {
     vendorID: u32,
     deviceID: u32,
@@ -92,23 +86,23 @@ pub const DXCoreHardwareIDParts = extern struct {
     revisionID: u32,
 };
 
-pub const DXCoreAdapterMemoryBudgetNodeSegmentGroup = extern struct {
-    nodeIndex: u32,
-    segmentGroup: DXCoreSegmentGroup,
+pub const DXCoreNotificationType = enum(u32) {
+    ListStale = 0,
+    NoLongerValid = 1,
+    BudgetChange = 2,
+    HardwareContentProtectionTeardown = 3,
 };
+pub const AdapterListStale = DXCoreNotificationType.ListStale;
+pub const AdapterNoLongerValid = DXCoreNotificationType.NoLongerValid;
+pub const AdapterBudgetChange = DXCoreNotificationType.BudgetChange;
+pub const AdapterHardwareContentProtectionTeardown = DXCoreNotificationType.HardwareContentProtectionTeardown;
 
-pub const DXCoreAdapterMemoryBudget = extern struct {
-    budget: u64,
-    currentUsage: u64,
-    availableForReservation: u64,
-    currentReservation: u64,
+pub const DXCoreSegmentGroup = enum(u32) {
+    Local = 0,
+    NonLocal = 1,
 };
-
-pub const PFN_DXCORE_NOTIFICATION_CALLBACK = *const fn(
-    notificationType: DXCoreNotificationType,
-    object: ?*IUnknown,
-    context: ?*anyopaque,
-) callconv(.winapi) void;
+pub const Local = DXCoreSegmentGroup.Local;
+pub const NonLocal = DXCoreSegmentGroup.NonLocal;
 
 const IID_IDXCoreAdapter_Value = Guid.initString("f0db4c7f-fe5a-42a2-bd62-f2a6cf6fc83e");
 pub const IID_IDXCoreAdapter = &IID_IDXCoreAdapter_Value;
@@ -206,6 +200,60 @@ pub const IDXCoreAdapter = extern union {
     }
 };
 
+const IID_IDXCoreAdapterFactory_Value = Guid.initString("78ee5945-c36e-4b13-a669-005dd11c0f06");
+pub const IID_IDXCoreAdapterFactory = &IID_IDXCoreAdapterFactory_Value;
+pub const IDXCoreAdapterFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateAdapterList: *const fn(
+            self: *const IDXCoreAdapterFactory,
+            numAttributes: u32,
+            filterAttributes: [*]const Guid,
+            riid: ?*const Guid,
+            ppvAdapterList: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetAdapterByLuid: *const fn(
+            self: *const IDXCoreAdapterFactory,
+            adapterLUID: ?*const LUID,
+            riid: ?*const Guid,
+            ppvAdapter: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        IsNotificationTypeSupported: *const fn(
+            self: *const IDXCoreAdapterFactory,
+            notificationType: DXCoreNotificationType,
+        ) callconv(.winapi) bool,
+        RegisterEventNotification: *const fn(
+            self: *const IDXCoreAdapterFactory,
+            dxCoreObject: ?*IUnknown,
+            notificationType: DXCoreNotificationType,
+            callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK,
+            callbackContext: ?*anyopaque,
+            eventCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UnregisterEventNotification: *const fn(
+            self: *const IDXCoreAdapterFactory,
+            eventCookie: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateAdapterList(self: *const IDXCoreAdapterFactory, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateAdapterList(self, numAttributes, filterAttributes, riid, ppvAdapterList);
+    }
+    pub fn GetAdapterByLuid(self: *const IDXCoreAdapterFactory, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAdapterByLuid(self, adapterLUID, riid, ppvAdapter);
+    }
+    pub fn IsNotificationTypeSupported(self: *const IDXCoreAdapterFactory, notificationType: DXCoreNotificationType) callconv(.@"inline") bool {
+        return self.vtable.IsNotificationTypeSupported(self, notificationType);
+    }
+    pub fn RegisterEventNotification(self: *const IDXCoreAdapterFactory, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterEventNotification(self, dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
+    }
+    pub fn UnregisterEventNotification(self: *const IDXCoreAdapterFactory, eventCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterEventNotification(self, eventCookie);
+    }
+};
+
 const IID_IDXCoreAdapterList_Value = Guid.initString("526c7776-40e9-459b-b711-f32ad76dfc28");
 pub const IID_IDXCoreAdapterList = &IID_IDXCoreAdapterList_Value;
 pub const IDXCoreAdapterList = extern union {
@@ -260,59 +308,11 @@ pub const IDXCoreAdapterList = extern union {
     }
 };
 
-const IID_IDXCoreAdapterFactory_Value = Guid.initString("78ee5945-c36e-4b13-a669-005dd11c0f06");
-pub const IID_IDXCoreAdapterFactory = &IID_IDXCoreAdapterFactory_Value;
-pub const IDXCoreAdapterFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateAdapterList: *const fn(
-            self: *const IDXCoreAdapterFactory,
-            numAttributes: u32,
-            filterAttributes: [*]const Guid,
-            riid: ?*const Guid,
-            ppvAdapterList: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetAdapterByLuid: *const fn(
-            self: *const IDXCoreAdapterFactory,
-            adapterLUID: ?*const LUID,
-            riid: ?*const Guid,
-            ppvAdapter: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        IsNotificationTypeSupported: *const fn(
-            self: *const IDXCoreAdapterFactory,
-            notificationType: DXCoreNotificationType,
-        ) callconv(.winapi) bool,
-        RegisterEventNotification: *const fn(
-            self: *const IDXCoreAdapterFactory,
-            dxCoreObject: ?*IUnknown,
-            notificationType: DXCoreNotificationType,
-            callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK,
-            callbackContext: ?*anyopaque,
-            eventCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        UnregisterEventNotification: *const fn(
-            self: *const IDXCoreAdapterFactory,
-            eventCookie: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateAdapterList(self: *const IDXCoreAdapterFactory, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateAdapterList(self, numAttributes, filterAttributes, riid, ppvAdapterList);
-    }
-    pub fn GetAdapterByLuid(self: *const IDXCoreAdapterFactory, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAdapterByLuid(self, adapterLUID, riid, ppvAdapter);
-    }
-    pub fn IsNotificationTypeSupported(self: *const IDXCoreAdapterFactory, notificationType: DXCoreNotificationType) callconv(.@"inline") bool {
-        return self.vtable.IsNotificationTypeSupported(self, notificationType);
-    }
-    pub fn RegisterEventNotification(self: *const IDXCoreAdapterFactory, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterEventNotification(self, dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
-    }
-    pub fn UnregisterEventNotification(self: *const IDXCoreAdapterFactory, eventCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterEventNotification(self, eventCookie);
-    }
-};
+pub const PFN_DXCORE_NOTIFICATION_CALLBACK = *const fn(
+    notificationType: DXCoreNotificationType,
+    object: ?*IUnknown,
+    context: ?*anyopaque,
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------

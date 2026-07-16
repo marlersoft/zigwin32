@@ -3,10 +3,10 @@
 // Section: Constants (5)
 //--------------------------------------------------------------------------------
 pub const RTL_CORRELATION_VECTOR_STRING_LENGTH = @as(u32, 129);
-pub const RTL_CORRELATION_VECTOR_V1_PREFIX_LENGTH = @as(u32, 16);
 pub const RTL_CORRELATION_VECTOR_V1_LENGTH = @as(u32, 64);
-pub const RTL_CORRELATION_VECTOR_V2_PREFIX_LENGTH = @as(u32, 22);
+pub const RTL_CORRELATION_VECTOR_V1_PREFIX_LENGTH = @as(u32, 16);
 pub const RTL_CORRELATION_VECTOR_V2_LENGTH = @as(u32, 128);
+pub const RTL_CORRELATION_VECTOR_V2_PREFIX_LENGTH = @as(u32, 22);
 
 //--------------------------------------------------------------------------------
 // Section: Types (1)
@@ -20,18 +20,18 @@ pub const CORRELATION_VECTOR = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
-pub extern "ntdll" fn RtlInitializeCorrelationVector(
+pub extern "ntdll" fn RtlExtendCorrelationVector(
     CorrelationVector: ?*CORRELATION_VECTOR,
-    Version: i32,
-    Guid: ?*const Guid,
 ) callconv(.winapi) u32;
 
 pub extern "ntdll" fn RtlIncrementCorrelationVector(
     CorrelationVector: ?*CORRELATION_VECTOR,
 ) callconv(.winapi) u32;
 
-pub extern "ntdll" fn RtlExtendCorrelationVector(
+pub extern "ntdll" fn RtlInitializeCorrelationVector(
     CorrelationVector: ?*CORRELATION_VECTOR,
+    Version: i32,
+    Guid: ?*const Guid,
 ) callconv(.winapi) u32;
 
 pub extern "ntdll" fn RtlValidateCorrelationVector(

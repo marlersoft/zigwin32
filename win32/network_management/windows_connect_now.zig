@@ -2,99 +2,231 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (89)
 //--------------------------------------------------------------------------------
-pub const WCN_E_PEER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147206143));
+pub const PKEY_WCN_DeviceType_Category = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 16 };
+pub const PKEY_WCN_DeviceType_SubCategory = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 18 };
+pub const PKEY_WCN_DeviceType_SubCategoryOUI = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 17 };
+pub const PKEY_WCN_SSID = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 32 };
+pub const SID_WcnProvider = Guid.initString("c100beca-d33a-4a4b-bf23-bbef4663d017");
+pub const WCN_API_MAX_BUFFER_SIZE = @as(u32, 2096);
 pub const WCN_E_AUTHENTICATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147206142));
 pub const WCN_E_CONNECTION_REJECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147206141));
-pub const WCN_E_SESSION_TIMEDOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147206140));
+pub const WCN_E_PEER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147206143));
 pub const WCN_E_PROTOCOL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147206139));
+pub const WCN_E_SESSION_TIMEDOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147206140));
+pub const WCN_FLAG_AUTHENTICATED_VE = @as(u32, 2);
+pub const WCN_FLAG_DISCOVERY_VE = @as(u32, 1);
+pub const WCN_FLAG_ENCRYPTED_VE = @as(u32, 4);
+pub const WCN_MICROSOFT_VENDOR_ID = @as(u32, 311);
+pub const WCN_NO_SUBTYPE = @as(u32, 4294967294);
 pub const WCN_QUERY_CONSTRAINT_USE_SOFTAP = "WCN.Discovery.SoftAP";
-pub const WCN_VALUE_DT_CATEGORY_COMPUTER = @as(u32, 1);
-pub const WCN_VALUE_DT_CATEGORY_INPUT_DEVICE = @as(u32, 2);
-pub const WCN_VALUE_DT_CATEGORY_PRINTER = @as(u32, 3);
-pub const WCN_VALUE_DT_CATEGORY_CAMERA = @as(u32, 4);
-pub const WCN_VALUE_DT_CATEGORY_STORAGE = @as(u32, 5);
-pub const WCN_VALUE_DT_CATEGORY_NETWORK_INFRASTRUCTURE = @as(u32, 6);
-pub const WCN_VALUE_DT_CATEGORY_DISPLAY = @as(u32, 7);
-pub const WCN_VALUE_DT_CATEGORY_MULTIMEDIA_DEVICE = @as(u32, 8);
-pub const WCN_VALUE_DT_CATEGORY_GAMING_DEVICE = @as(u32, 9);
-pub const WCN_VALUE_DT_CATEGORY_TELEPHONE = @as(u32, 10);
 pub const WCN_VALUE_DT_CATEGORY_AUDIO_DEVICE = @as(u32, 11);
+pub const WCN_VALUE_DT_CATEGORY_CAMERA = @as(u32, 4);
+pub const WCN_VALUE_DT_CATEGORY_COMPUTER = @as(u32, 1);
+pub const WCN_VALUE_DT_CATEGORY_DISPLAY = @as(u32, 7);
+pub const WCN_VALUE_DT_CATEGORY_GAMING_DEVICE = @as(u32, 9);
+pub const WCN_VALUE_DT_CATEGORY_INPUT_DEVICE = @as(u32, 2);
+pub const WCN_VALUE_DT_CATEGORY_MULTIMEDIA_DEVICE = @as(u32, 8);
+pub const WCN_VALUE_DT_CATEGORY_NETWORK_INFRASTRUCTURE = @as(u32, 6);
 pub const WCN_VALUE_DT_CATEGORY_OTHER = @as(u32, 255);
-pub const WCN_VALUE_DT_SUBTYPE_WIFI_OUI = @as(u32, 5304836);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__PC = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__SERVER = @as(u32, 2);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__MEDIACENTER = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__ULTRAMOBILEPC = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__NOTEBOOK = @as(u32, 5);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__DESKTOP = @as(u32, 6);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__MID = @as(u32, 7);
-pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__NETBOOK = @as(u32, 8);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__KEYBOARD = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__MOUSE = @as(u32, 2);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__JOYSTICK = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__TRACKBALL = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__GAMECONTROLLER = @as(u32, 5);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__REMOTE = @as(u32, 6);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__TOUCHSCREEN = @as(u32, 7);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__BIOMETRICREADER = @as(u32, 8);
-pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__BARCODEREADER = @as(u32, 9);
-pub const WCN_VALUE_DT_SUBTYPE_PRINTER__PRINTER = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_PRINTER__SCANNER = @as(u32, 2);
-pub const WCN_VALUE_DT_SUBTYPE_PRINTER__FAX = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_PRINTER__COPIER = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_PRINTER__ALLINONE = @as(u32, 5);
+pub const WCN_VALUE_DT_CATEGORY_PRINTER = @as(u32, 3);
+pub const WCN_VALUE_DT_CATEGORY_STORAGE = @as(u32, 5);
+pub const WCN_VALUE_DT_CATEGORY_TELEPHONE = @as(u32, 10);
+pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__HEADPHONES = @as(u32, 5);
+pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__HEADSET = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__HOMETHEATER = @as(u32, 7);
+pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__MICROPHONE = @as(u32, 6);
+pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__PMP = @as(u32, 3);
+pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__SPEAKERS = @as(u32, 2);
+pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__TUNER_RECEIVER = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_CAMERA__SECURITY_CAMERA = @as(u32, 4);
 pub const WCN_VALUE_DT_SUBTYPE_CAMERA__STILL_CAMERA = @as(u32, 1);
 pub const WCN_VALUE_DT_SUBTYPE_CAMERA__VIDEO_CAMERA = @as(u32, 2);
 pub const WCN_VALUE_DT_SUBTYPE_CAMERA__WEB_CAMERA = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_CAMERA__SECURITY_CAMERA = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_STORAGE__NAS = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__AP = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__ROUTER = @as(u32, 2);
-pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__SWITCH = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__GATEWAY = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__BRIDGE = @as(u32, 5);
-pub const WCN_VALUE_DT_SUBTYPE_DISPLAY__TELEVISION = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__DESKTOP = @as(u32, 6);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__MEDIACENTER = @as(u32, 3);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__MID = @as(u32, 7);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__NETBOOK = @as(u32, 8);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__NOTEBOOK = @as(u32, 5);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__PC = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__SERVER = @as(u32, 2);
+pub const WCN_VALUE_DT_SUBTYPE_COMPUTER__ULTRAMOBILEPC = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_DISPLAY__MONITOR = @as(u32, 4);
 pub const WCN_VALUE_DT_SUBTYPE_DISPLAY__PICTURE_FRAME = @as(u32, 2);
 pub const WCN_VALUE_DT_SUBTYPE_DISPLAY__PROJECTOR = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_DISPLAY__MONITOR = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__DAR = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__PVR = @as(u32, 2);
-pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__MCX = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__SETTOPBOX = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__MEDIA_SERVER_ADAPT_EXT = @as(u32, 5);
-pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__PVP = @as(u32, 6);
+pub const WCN_VALUE_DT_SUBTYPE_DISPLAY__TELEVISION = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__CONSOLE_ADAPT = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__PLAYSTATION = @as(u32, 3);
+pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__PORTABLE = @as(u32, 5);
 pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__XBOX = @as(u32, 1);
 pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__XBOX360 = @as(u32, 2);
-pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__PLAYSTATION = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__CONSOLE_ADAPT = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_GAMING_DEVICE__PORTABLE = @as(u32, 5);
-pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__WINDOWS_MOBILE = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__PHONE_SINGLEMODE = @as(u32, 2);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__BARCODEREADER = @as(u32, 9);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__BIOMETRICREADER = @as(u32, 8);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__GAMECONTROLLER = @as(u32, 5);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__JOYSTICK = @as(u32, 3);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__KEYBOARD = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__MOUSE = @as(u32, 2);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__REMOTE = @as(u32, 6);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__TOUCHSCREEN = @as(u32, 7);
+pub const WCN_VALUE_DT_SUBTYPE_INPUT_DEVICE__TRACKBALL = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__DAR = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__MCX = @as(u32, 3);
+pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__MEDIA_SERVER_ADAPT_EXT = @as(u32, 5);
+pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__PVP = @as(u32, 6);
+pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__PVR = @as(u32, 2);
+pub const WCN_VALUE_DT_SUBTYPE_MULTIMEDIA_DEVICE__SETTOPBOX = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__AP = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__BRIDGE = @as(u32, 5);
+pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__GATEWAY = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__ROUTER = @as(u32, 2);
+pub const WCN_VALUE_DT_SUBTYPE_NETWORK_INFRASTRUCUTURE__SWITCH = @as(u32, 3);
+pub const WCN_VALUE_DT_SUBTYPE_PRINTER__ALLINONE = @as(u32, 5);
+pub const WCN_VALUE_DT_SUBTYPE_PRINTER__COPIER = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_PRINTER__FAX = @as(u32, 3);
+pub const WCN_VALUE_DT_SUBTYPE_PRINTER__PRINTER = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_PRINTER__SCANNER = @as(u32, 2);
+pub const WCN_VALUE_DT_SUBTYPE_STORAGE__NAS = @as(u32, 1);
 pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__PHONE_DUALMODE = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__SMARTPHONE_SINGLEMODE = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__PHONE_SINGLEMODE = @as(u32, 2);
 pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__SMARTPHONE_DUALMODE = @as(u32, 5);
-pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__TUNER_RECEIVER = @as(u32, 1);
-pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__SPEAKERS = @as(u32, 2);
-pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__PMP = @as(u32, 3);
-pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__HEADSET = @as(u32, 4);
-pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__HEADPHONES = @as(u32, 5);
-pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__MICROPHONE = @as(u32, 6);
-pub const WCN_VALUE_DT_SUBTYPE_AUDIO_DEVICE__HOMETHEATER = @as(u32, 7);
-pub const WCN_API_MAX_BUFFER_SIZE = @as(u32, 2096);
-pub const WCN_MICROSOFT_VENDOR_ID = @as(u32, 311);
-pub const WCN_NO_SUBTYPE = @as(u32, 4294967294);
-pub const WCN_FLAG_DISCOVERY_VE = @as(u32, 1);
-pub const WCN_FLAG_AUTHENTICATED_VE = @as(u32, 2);
-pub const WCN_FLAG_ENCRYPTED_VE = @as(u32, 4);
-pub const SID_WcnProvider = Guid.initString("c100beca-d33a-4a4b-bf23-bbef4663d017");
-pub const PKEY_WCN_DeviceType_Category = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 16 };
-pub const PKEY_WCN_DeviceType_SubCategoryOUI = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 17 };
-pub const PKEY_WCN_DeviceType_SubCategory = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 18 };
-pub const PKEY_WCN_SSID = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 32 };
+pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__SMARTPHONE_SINGLEMODE = @as(u32, 4);
+pub const WCN_VALUE_DT_SUBTYPE_TELEPHONE__WINDOWS_MOBILE = @as(u32, 1);
+pub const WCN_VALUE_DT_SUBTYPE_WIFI_OUI = @as(u32, 5304836);
 
 //--------------------------------------------------------------------------------
 // Section: Types (22)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWCNConnectNotify_Value = Guid.initString("c100be9f-d33a-4a4b-bf23-bbef4663d017");
+pub const IID_IWCNConnectNotify = &IID_IWCNConnectNotify_Value;
+pub const IWCNConnectNotify = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ConnectSucceeded: *const fn(
+            self: *const IWCNConnectNotify,
+        ) callconv(.winapi) HRESULT,
+        ConnectFailed: *const fn(
+            self: *const IWCNConnectNotify,
+            hrFailure: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ConnectSucceeded(self: *const IWCNConnectNotify) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectSucceeded(self);
+    }
+    pub fn ConnectFailed(self: *const IWCNConnectNotify, hrFailure: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectFailed(self, hrFailure);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWCNDevice_Value = Guid.initString("c100be9c-d33a-4a4b-bf23-bbef4663d017");
+pub const IID_IWCNDevice = &IID_IWCNDevice_Value;
+pub const IWCNDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetPassword: *const fn(
+            self: *const IWCNDevice,
+            Type: WCN_PASSWORD_TYPE,
+            dwPasswordLength: u32,
+            pbPassword: [*:0]const u8,
+        ) callconv(.winapi) HRESULT,
+        Connect: *const fn(
+            self: *const IWCNDevice,
+            pNotify: ?*IWCNConnectNotify,
+        ) callconv(.winapi) HRESULT,
+        GetAttribute: *const fn(
+            self: *const IWCNDevice,
+            AttributeType: WCN_ATTRIBUTE_TYPE,
+            dwMaxBufferSize: u32,
+            pbBuffer: [*:0]u8,
+            pdwBufferUsed: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetIntegerAttribute: *const fn(
+            self: *const IWCNDevice,
+            AttributeType: WCN_ATTRIBUTE_TYPE,
+            puInteger: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStringAttribute: *const fn(
+            self: *const IWCNDevice,
+            AttributeType: WCN_ATTRIBUTE_TYPE,
+            cchMaxString: u32,
+            wszString: [*:0]u16,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkProfile: *const fn(
+            self: *const IWCNDevice,
+            cchMaxStringLength: u32,
+            wszProfile: [*:0]u16,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkProfile: *const fn(
+            self: *const IWCNDevice,
+            pszProfileXml: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetVendorExtension: *const fn(
+            self: *const IWCNDevice,
+            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
+            dwMaxBufferSize: u32,
+            pbBuffer: [*:0]u8,
+            pdwBufferUsed: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetVendorExtension: *const fn(
+            self: *const IWCNDevice,
+            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
+            cbBuffer: u32,
+            pbBuffer: [*:0]const u8,
+        ) callconv(.winapi) HRESULT,
+        Unadvise: *const fn(
+            self: *const IWCNDevice,
+        ) callconv(.winapi) HRESULT,
+        SetNFCPasswordParams: *const fn(
+            self: *const IWCNDevice,
+            Type: WCN_PASSWORD_TYPE,
+            dwOOBPasswordID: u32,
+            dwPasswordLength: u32,
+            pbPassword: ?[*:0]const u8,
+            dwRemotePublicKeyHashLength: u32,
+            pbRemotePublicKeyHash: ?[*:0]const u8,
+            dwDHKeyBlobLength: u32,
+            pbDHKeyBlob: ?[*:0]const u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetPassword(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPassword(self, Type, dwPasswordLength, pbPassword);
+    }
+    pub fn Connect(self: *const IWCNDevice, pNotify: ?*IWCNConnectNotify) callconv(.@"inline") HRESULT {
+        return self.vtable.Connect(self, pNotify);
+    }
+    pub fn GetAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttribute(self, AttributeType, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
+    }
+    pub fn GetIntegerAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIntegerAttribute(self, AttributeType, puInteger);
+    }
+    pub fn GetStringAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, cchMaxString: u32, wszString: [*:0]u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringAttribute(self, AttributeType, cchMaxString, wszString);
+    }
+    pub fn GetNetworkProfile(self: *const IWCNDevice, cchMaxStringLength: u32, wszProfile: [*:0]u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkProfile(self, cchMaxStringLength, wszProfile);
+    }
+    pub fn SetNetworkProfile(self: *const IWCNDevice, pszProfileXml: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkProfile(self, pszProfileXml);
+    }
+    pub fn GetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVendorExtension(self, pVendorExtSpec, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
+    }
+    pub fn SetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVendorExtension(self, pVendorExtSpec, cbBuffer, pbBuffer);
+    }
+    pub fn Unadvise(self: *const IWCNDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.Unadvise(self);
+    }
+    pub fn SetNFCPasswordParams(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwOOBPasswordID: u32, dwPasswordLength: u32, pbPassword: ?[*:0]const u8, dwRemotePublicKeyHashLength: u32, pbRemotePublicKeyHash: ?[*:0]const u8, dwDHKeyBlobLength: u32, pbDHKeyBlob: ?[*:0]const u8) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNFCPasswordParams(self, Type, dwOOBPasswordID, dwPasswordLength, pbPassword, dwRemotePublicKeyHashLength, pbRemotePublicKeyHash, dwDHKeyBlobLength, pbDHKeyBlob);
+    }
+};
+
 pub const WCN_ATTRIBUTE_TYPE = enum(i32) {
     TYPE_AP_CHANNEL = 0,
     TYPE_ASSOCIATION_STATE = 1,
@@ -300,19 +432,27 @@ pub const WCN_TYPE_VERSION2 = WCN_ATTRIBUTE_TYPE.TYPE_VERSION2;
 pub const WCN_TYPE_VENDOR_EXTENSION_WFA = WCN_ATTRIBUTE_TYPE.TYPE_VENDOR_EXTENSION_WFA;
 pub const WCN_NUM_ATTRIBUTE_TYPES = WCN_ATTRIBUTE_TYPE.NUM_ATTRIBUTE_TYPES;
 
-pub const WCN_VALUE_TYPE_VERSION = enum(i32) {
-    @"1_0" = 16,
-    @"2_0" = 32,
+pub const WCN_PASSWORD_TYPE = enum(i32) {
+    PUSH_BUTTON = 0,
+    PIN = 1,
+    PIN_REGISTRAR_SPECIFIED = 2,
+    OOB_SPECIFIED = 3,
+    WFDS = 4,
 };
-pub const WCN_VALUE_VERSION_1_0 = WCN_VALUE_TYPE_VERSION.@"1_0";
-pub const WCN_VALUE_VERSION_2_0 = WCN_VALUE_TYPE_VERSION.@"2_0";
+pub const WCN_PASSWORD_TYPE_PUSH_BUTTON = WCN_PASSWORD_TYPE.PUSH_BUTTON;
+pub const WCN_PASSWORD_TYPE_PIN = WCN_PASSWORD_TYPE.PIN;
+pub const WCN_PASSWORD_TYPE_PIN_REGISTRAR_SPECIFIED = WCN_PASSWORD_TYPE.PIN_REGISTRAR_SPECIFIED;
+pub const WCN_PASSWORD_TYPE_OOB_SPECIFIED = WCN_PASSWORD_TYPE.OOB_SPECIFIED;
+pub const WCN_PASSWORD_TYPE_WFDS = WCN_PASSWORD_TYPE.WFDS;
 
-pub const WCN_VALUE_TYPE_BOOLEAN = enum(i32) {
-    FALSE = 0,
-    TRUE = 1,
+pub const WCN_SESSION_STATUS = enum(i32) {
+    SUCCESS = 0,
+    FAILURE_GENERIC = 1,
+    FAILURE_TIMEOUT = 2,
 };
-pub const WCN_VALUE_FALSE = WCN_VALUE_TYPE_BOOLEAN.FALSE;
-pub const WCN_VALUE_TRUE = WCN_VALUE_TYPE_BOOLEAN.TRUE;
+pub const WCN_SESSION_STATUS_SUCCESS = WCN_SESSION_STATUS.SUCCESS;
+pub const WCN_SESSION_STATUS_FAILURE_GENERIC = WCN_SESSION_STATUS.FAILURE_GENERIC;
+pub const WCN_SESSION_STATUS_FAILURE_TIMEOUT = WCN_SESSION_STATUS.FAILURE_TIMEOUT;
 
 pub const WCN_VALUE_TYPE_ASSOCIATION_STATE = enum(i32) {
     NOT_ASSOCIATED = 0,
@@ -343,6 +483,13 @@ pub const WCN_VALUE_AT_WPA = WCN_VALUE_TYPE_AUTHENTICATION_TYPE.WPA;
 pub const WCN_VALUE_AT_WPA2 = WCN_VALUE_TYPE_AUTHENTICATION_TYPE.WPA2;
 pub const WCN_VALUE_AT_WPA2PSK = WCN_VALUE_TYPE_AUTHENTICATION_TYPE.WPA2PSK;
 pub const WCN_VALUE_AT_WPAWPA2PSK_MIXED = WCN_VALUE_TYPE_AUTHENTICATION_TYPE.WPAWPA2PSK_MIXED;
+
+pub const WCN_VALUE_TYPE_BOOLEAN = enum(i32) {
+    FALSE = 0,
+    TRUE = 1,
+};
+pub const WCN_VALUE_FALSE = WCN_VALUE_TYPE_BOOLEAN.FALSE;
+pub const WCN_VALUE_TRUE = WCN_VALUE_TYPE_BOOLEAN.TRUE;
 
 pub const WCN_VALUE_TYPE_CONFIG_METHODS = enum(i32) {
     USBA = 1,
@@ -490,6 +637,12 @@ pub const WCN_VALUE_MT_ACK = WCN_VALUE_TYPE_MESSAGE_TYPE.ACK;
 pub const WCN_VALUE_MT_NACK = WCN_VALUE_TYPE_MESSAGE_TYPE.NACK;
 pub const WCN_VALUE_MT_DONE = WCN_VALUE_TYPE_MESSAGE_TYPE.DONE;
 
+pub const WCN_VALUE_TYPE_PRIMARY_DEVICE_TYPE = extern struct {
+    Category: u16 align(1),
+    SubCategoryOUI: u32 align(1),
+    SubCategory: u16 align(1),
+};
+
 pub const WCN_VALUE_TYPE_REQUEST_TYPE = enum(i32) {
     ENROLLEE_INFO = 0,
     ENROLLEE_OPEN_1X = 1,
@@ -519,6 +672,13 @@ pub const WCN_VALUE_TYPE_RF_BANDS = enum(i32) {
 pub const WCN_VALUE_RB_24GHZ = WCN_VALUE_TYPE_RF_BANDS.@"24GHZ";
 pub const WCN_VALUE_RB_50GHZ = WCN_VALUE_TYPE_RF_BANDS.@"50GHZ";
 
+pub const WCN_VALUE_TYPE_VERSION = enum(i32) {
+    @"1_0" = 16,
+    @"2_0" = 32,
+};
+pub const WCN_VALUE_VERSION_1_0 = WCN_VALUE_TYPE_VERSION.@"1_0";
+pub const WCN_VALUE_VERSION_2_0 = WCN_VALUE_TYPE_VERSION.@"2_0";
+
 pub const WCN_VALUE_TYPE_WI_FI_PROTECTED_SETUP_STATE = enum(i32) {
     RESERVED00 = 0,
     NOT_CONFIGURED = 1,
@@ -528,37 +688,6 @@ pub const WCN_VALUE_SS_RESERVED00 = WCN_VALUE_TYPE_WI_FI_PROTECTED_SETUP_STATE.R
 pub const WCN_VALUE_SS_NOT_CONFIGURED = WCN_VALUE_TYPE_WI_FI_PROTECTED_SETUP_STATE.NOT_CONFIGURED;
 pub const WCN_VALUE_SS_CONFIGURED = WCN_VALUE_TYPE_WI_FI_PROTECTED_SETUP_STATE.CONFIGURED;
 
-pub const WCN_VALUE_TYPE_PRIMARY_DEVICE_TYPE = extern struct {
-    Category: u16 align(1),
-    SubCategoryOUI: u32 align(1),
-    SubCategory: u16 align(1),
-};
-
-const CLSID_WCNDeviceObject_Value = Guid.initString("c100bea7-d33a-4a4b-bf23-bbef4663d017");
-pub const CLSID_WCNDeviceObject = &CLSID_WCNDeviceObject_Value;
-
-pub const WCN_PASSWORD_TYPE = enum(i32) {
-    PUSH_BUTTON = 0,
-    PIN = 1,
-    PIN_REGISTRAR_SPECIFIED = 2,
-    OOB_SPECIFIED = 3,
-    WFDS = 4,
-};
-pub const WCN_PASSWORD_TYPE_PUSH_BUTTON = WCN_PASSWORD_TYPE.PUSH_BUTTON;
-pub const WCN_PASSWORD_TYPE_PIN = WCN_PASSWORD_TYPE.PIN;
-pub const WCN_PASSWORD_TYPE_PIN_REGISTRAR_SPECIFIED = WCN_PASSWORD_TYPE.PIN_REGISTRAR_SPECIFIED;
-pub const WCN_PASSWORD_TYPE_OOB_SPECIFIED = WCN_PASSWORD_TYPE.OOB_SPECIFIED;
-pub const WCN_PASSWORD_TYPE_WFDS = WCN_PASSWORD_TYPE.WFDS;
-
-pub const WCN_SESSION_STATUS = enum(i32) {
-    SUCCESS = 0,
-    FAILURE_GENERIC = 1,
-    FAILURE_TIMEOUT = 2,
-};
-pub const WCN_SESSION_STATUS_SUCCESS = WCN_SESSION_STATUS.SUCCESS;
-pub const WCN_SESSION_STATUS_FAILURE_GENERIC = WCN_SESSION_STATUS.FAILURE_GENERIC;
-pub const WCN_SESSION_STATUS_FAILURE_TIMEOUT = WCN_SESSION_STATUS.FAILURE_TIMEOUT;
-
 pub const WCN_VENDOR_EXTENSION_SPEC = extern struct {
     VendorId: u32,
     SubType: u32,
@@ -566,137 +695,8 @@ pub const WCN_VENDOR_EXTENSION_SPEC = extern struct {
     Flags: u32,
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWCNDevice_Value = Guid.initString("c100be9c-d33a-4a4b-bf23-bbef4663d017");
-pub const IID_IWCNDevice = &IID_IWCNDevice_Value;
-pub const IWCNDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetPassword: *const fn(
-            self: *const IWCNDevice,
-            Type: WCN_PASSWORD_TYPE,
-            dwPasswordLength: u32,
-            pbPassword: [*:0]const u8,
-        ) callconv(.winapi) HRESULT,
-        Connect: *const fn(
-            self: *const IWCNDevice,
-            pNotify: ?*IWCNConnectNotify,
-        ) callconv(.winapi) HRESULT,
-        GetAttribute: *const fn(
-            self: *const IWCNDevice,
-            AttributeType: WCN_ATTRIBUTE_TYPE,
-            dwMaxBufferSize: u32,
-            pbBuffer: [*:0]u8,
-            pdwBufferUsed: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetIntegerAttribute: *const fn(
-            self: *const IWCNDevice,
-            AttributeType: WCN_ATTRIBUTE_TYPE,
-            puInteger: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStringAttribute: *const fn(
-            self: *const IWCNDevice,
-            AttributeType: WCN_ATTRIBUTE_TYPE,
-            cchMaxString: u32,
-            wszString: [*:0]u16,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkProfile: *const fn(
-            self: *const IWCNDevice,
-            cchMaxStringLength: u32,
-            wszProfile: [*:0]u16,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkProfile: *const fn(
-            self: *const IWCNDevice,
-            pszProfileXml: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetVendorExtension: *const fn(
-            self: *const IWCNDevice,
-            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
-            dwMaxBufferSize: u32,
-            pbBuffer: [*:0]u8,
-            pdwBufferUsed: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetVendorExtension: *const fn(
-            self: *const IWCNDevice,
-            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
-            cbBuffer: u32,
-            pbBuffer: [*:0]const u8,
-        ) callconv(.winapi) HRESULT,
-        Unadvise: *const fn(
-            self: *const IWCNDevice,
-        ) callconv(.winapi) HRESULT,
-        SetNFCPasswordParams: *const fn(
-            self: *const IWCNDevice,
-            Type: WCN_PASSWORD_TYPE,
-            dwOOBPasswordID: u32,
-            dwPasswordLength: u32,
-            pbPassword: ?[*:0]const u8,
-            dwRemotePublicKeyHashLength: u32,
-            pbRemotePublicKeyHash: ?[*:0]const u8,
-            dwDHKeyBlobLength: u32,
-            pbDHKeyBlob: ?[*:0]const u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetPassword(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPassword(self, Type, dwPasswordLength, pbPassword);
-    }
-    pub fn Connect(self: *const IWCNDevice, pNotify: ?*IWCNConnectNotify) callconv(.@"inline") HRESULT {
-        return self.vtable.Connect(self, pNotify);
-    }
-    pub fn GetAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttribute(self, AttributeType, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
-    }
-    pub fn GetIntegerAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIntegerAttribute(self, AttributeType, puInteger);
-    }
-    pub fn GetStringAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, cchMaxString: u32, wszString: [*:0]u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringAttribute(self, AttributeType, cchMaxString, wszString);
-    }
-    pub fn GetNetworkProfile(self: *const IWCNDevice, cchMaxStringLength: u32, wszProfile: [*:0]u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkProfile(self, cchMaxStringLength, wszProfile);
-    }
-    pub fn SetNetworkProfile(self: *const IWCNDevice, pszProfileXml: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkProfile(self, pszProfileXml);
-    }
-    pub fn GetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVendorExtension(self, pVendorExtSpec, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
-    }
-    pub fn SetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVendorExtension(self, pVendorExtSpec, cbBuffer, pbBuffer);
-    }
-    pub fn Unadvise(self: *const IWCNDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.Unadvise(self);
-    }
-    pub fn SetNFCPasswordParams(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwOOBPasswordID: u32, dwPasswordLength: u32, pbPassword: ?[*:0]const u8, dwRemotePublicKeyHashLength: u32, pbRemotePublicKeyHash: ?[*:0]const u8, dwDHKeyBlobLength: u32, pbDHKeyBlob: ?[*:0]const u8) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNFCPasswordParams(self, Type, dwOOBPasswordID, dwPasswordLength, pbPassword, dwRemotePublicKeyHashLength, pbRemotePublicKeyHash, dwDHKeyBlobLength, pbDHKeyBlob);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWCNConnectNotify_Value = Guid.initString("c100be9f-d33a-4a4b-bf23-bbef4663d017");
-pub const IID_IWCNConnectNotify = &IID_IWCNConnectNotify_Value;
-pub const IWCNConnectNotify = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ConnectSucceeded: *const fn(
-            self: *const IWCNConnectNotify,
-        ) callconv(.winapi) HRESULT,
-        ConnectFailed: *const fn(
-            self: *const IWCNConnectNotify,
-            hrFailure: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ConnectSucceeded(self: *const IWCNConnectNotify) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectSucceeded(self);
-    }
-    pub fn ConnectFailed(self: *const IWCNConnectNotify, hrFailure: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectFailed(self, hrFailure);
-    }
-};
+const CLSID_WCNDeviceObject_Value = Guid.initString("c100bea7-d33a-4a4b-bf23-bbef4663d017");
+pub const CLSID_WCNDeviceObject = &CLSID_WCNDeviceObject_Value;
 
 
 //--------------------------------------------------------------------------------

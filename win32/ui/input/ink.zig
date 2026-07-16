@@ -6,9 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-const CLSID_InkDesktopHost_Value = Guid.initString("062584a6-f830-4bdc-a4d2-0a10ab062b1d");
-pub const CLSID_InkDesktopHost = &CLSID_InkDesktopHost_Value;
-
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IInkCommitRequestHandler_Value = Guid.initString("fabea3fc-b108-45b6-a9fc-8d08fa9f85cf");
 pub const IID_IInkCommitRequestHandler = &IID_IInkCommitRequestHandler_Value;
@@ -23,6 +20,99 @@ pub const IInkCommitRequestHandler = extern union {
     IUnknown: IUnknown,
     pub fn OnCommitRequested(self: *const IInkCommitRequestHandler) callconv(.@"inline") HRESULT {
         return self.vtable.OnCommitRequested(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IInkD2DRenderer_Value = Guid.initString("407fb1de-f85a-4150-97cf-b7fb274fb4f8");
+pub const IID_IInkD2DRenderer = &IID_IInkD2DRenderer_Value;
+pub const IInkD2DRenderer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Draw: *const fn(
+            self: *const IInkD2DRenderer,
+            pD2D1DeviceContext: ?*IUnknown,
+            pInkStrokeIterable: ?*IUnknown,
+            fHighContrast: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Draw(self: *const IInkD2DRenderer, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, fHighContrast: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Draw(self, pD2D1DeviceContext, pInkStrokeIterable, fHighContrast);
+    }
+};
+
+const IID_IInkD2DRenderer2_Value = Guid.initString("0a95dcd9-4578-4b71-b20b-bf664d4bfeee");
+pub const IID_IInkD2DRenderer2 = &IID_IInkD2DRenderer2_Value;
+pub const IInkD2DRenderer2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Draw: *const fn(
+            self: *const IInkD2DRenderer2,
+            pD2D1DeviceContext: ?*IUnknown,
+            pInkStrokeIterable: ?*IUnknown,
+            highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Draw(self: *const IInkD2DRenderer2, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT) callconv(.@"inline") HRESULT {
+        return self.vtable.Draw(self, pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IInkDesktopHost_Value = Guid.initString("4ce7d875-a981-4140-a1ff-ad93258e8d59");
+pub const IID_IInkDesktopHost = &IID_IInkDesktopHost_Value;
+pub const IInkDesktopHost = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueueWorkItem: *const fn(
+            self: *const IInkDesktopHost,
+            workItem: ?*IInkHostWorkItem,
+        ) callconv(.winapi) HRESULT,
+        CreateInkPresenter: *const fn(
+            self: *const IInkDesktopHost,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        CreateAndInitializeInkPresenter: *const fn(
+            self: *const IInkDesktopHost,
+            rootVisual: ?*IUnknown,
+            width: f32,
+            height: f32,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueueWorkItem(self: *const IInkDesktopHost, workItem: ?*IInkHostWorkItem) callconv(.@"inline") HRESULT {
+        return self.vtable.QueueWorkItem(self, workItem);
+    }
+    pub fn CreateInkPresenter(self: *const IInkDesktopHost, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateInkPresenter(self, riid, ppv);
+    }
+    pub fn CreateAndInitializeInkPresenter(self: *const IInkDesktopHost, rootVisual: ?*IUnknown, width: f32, height: f32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateAndInitializeInkPresenter(self, rootVisual, width, height, riid, ppv);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IInkHostWorkItem_Value = Guid.initString("ccda0a9a-1b78-4632-bb96-97800662e26c");
+pub const IID_IInkHostWorkItem = &IID_IInkHostWorkItem_Value;
+pub const IInkHostWorkItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const IInkHostWorkItem,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const IInkHostWorkItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self);
     }
 };
 
@@ -74,63 +164,6 @@ pub const IInkPresenterDesktop = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkHostWorkItem_Value = Guid.initString("ccda0a9a-1b78-4632-bb96-97800662e26c");
-pub const IID_IInkHostWorkItem = &IID_IInkHostWorkItem_Value;
-pub const IInkHostWorkItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const IInkHostWorkItem,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const IInkHostWorkItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkDesktopHost_Value = Guid.initString("4ce7d875-a981-4140-a1ff-ad93258e8d59");
-pub const IID_IInkDesktopHost = &IID_IInkDesktopHost_Value;
-pub const IInkDesktopHost = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueueWorkItem: *const fn(
-            self: *const IInkDesktopHost,
-            workItem: ?*IInkHostWorkItem,
-        ) callconv(.winapi) HRESULT,
-        CreateInkPresenter: *const fn(
-            self: *const IInkDesktopHost,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        CreateAndInitializeInkPresenter: *const fn(
-            self: *const IInkDesktopHost,
-            rootVisual: ?*IUnknown,
-            width: f32,
-            height: f32,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueueWorkItem(self: *const IInkDesktopHost, workItem: ?*IInkHostWorkItem) callconv(.@"inline") HRESULT {
-        return self.vtable.QueueWorkItem(self, workItem);
-    }
-    pub fn CreateInkPresenter(self: *const IInkDesktopHost, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateInkPresenter(self, riid, ppv);
-    }
-    pub fn CreateAndInitializeInkPresenter(self: *const IInkDesktopHost, rootVisual: ?*IUnknown, width: f32, height: f32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateAndInitializeInkPresenter(self, rootVisual, width, height, riid, ppv);
-    }
-};
-
-const CLSID_InkD2DRenderer_Value = Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
-pub const CLSID_InkD2DRenderer = &CLSID_InkD2DRenderer_Value;
-
 pub const INK_HIGH_CONTRAST_ADJUSTMENT = enum(i32) {
     SYSTEM_COLORS_WHEN_NECESSARY = 0,
     SYSTEM_COLORS = 1,
@@ -140,44 +173,11 @@ pub const USE_SYSTEM_COLORS_WHEN_NECESSARY = INK_HIGH_CONTRAST_ADJUSTMENT.SYSTEM
 pub const USE_SYSTEM_COLORS = INK_HIGH_CONTRAST_ADJUSTMENT.SYSTEM_COLORS;
 pub const USE_ORIGINAL_COLORS = INK_HIGH_CONTRAST_ADJUSTMENT.ORIGINAL_COLORS;
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IInkD2DRenderer_Value = Guid.initString("407fb1de-f85a-4150-97cf-b7fb274fb4f8");
-pub const IID_IInkD2DRenderer = &IID_IInkD2DRenderer_Value;
-pub const IInkD2DRenderer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Draw: *const fn(
-            self: *const IInkD2DRenderer,
-            pD2D1DeviceContext: ?*IUnknown,
-            pInkStrokeIterable: ?*IUnknown,
-            fHighContrast: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Draw(self: *const IInkD2DRenderer, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, fHighContrast: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Draw(self, pD2D1DeviceContext, pInkStrokeIterable, fHighContrast);
-    }
-};
+const CLSID_InkD2DRenderer_Value = Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
+pub const CLSID_InkD2DRenderer = &CLSID_InkD2DRenderer_Value;
 
-const IID_IInkD2DRenderer2_Value = Guid.initString("0a95dcd9-4578-4b71-b20b-bf664d4bfeee");
-pub const IID_IInkD2DRenderer2 = &IID_IInkD2DRenderer2_Value;
-pub const IInkD2DRenderer2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Draw: *const fn(
-            self: *const IInkD2DRenderer2,
-            pD2D1DeviceContext: ?*IUnknown,
-            pInkStrokeIterable: ?*IUnknown,
-            highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Draw(self: *const IInkD2DRenderer2, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT) callconv(.@"inline") HRESULT {
-        return self.vtable.Draw(self, pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
-    }
-};
+const CLSID_InkDesktopHost_Value = Guid.initString("062584a6-f830-4bdc-a4d2-0a10ab062b1d");
+pub const CLSID_InkDesktopHost = &CLSID_InkDesktopHost_Value;
 
 
 //--------------------------------------------------------------------------------

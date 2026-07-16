@@ -2,56 +2,141 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (19)
 //--------------------------------------------------------------------------------
-pub const EVCF_HASSETTINGS = @as(u32, 1);
-pub const EVCF_ENABLEBYDEFAULT = @as(u32, 2);
-pub const EVCF_REMOVEFROMLIST = @as(u32, 4);
-pub const EVCF_ENABLEBYDEFAULT_AUTO = @as(u32, 8);
-pub const EVCF_DONTSHOWIFZERO = @as(u32, 16);
-pub const EVCF_SETTINGSMODE = @as(u32, 32);
-pub const EVCF_OUTOFDISKSPACE = @as(u32, 64);
-pub const EVCF_USERCONSENTOBTAINED = @as(u32, 128);
-pub const EVCF_SYSTEMAUTORUN = @as(u32, 256);
 pub const EVCCBF_LASTNOTIFICATION = @as(u32, 1);
-pub const STATEBITS_FLAT = @as(u32, 1);
-pub const REC_S_IDIDTHEUPDATES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 266240));
-pub const REC_S_NOTCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 266241));
-pub const REC_S_NOTCOMPLETEBUTPROPAGATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 266242));
+pub const EVCF_DONTSHOWIFZERO = @as(u32, 16);
+pub const EVCF_ENABLEBYDEFAULT = @as(u32, 2);
+pub const EVCF_ENABLEBYDEFAULT_AUTO = @as(u32, 8);
+pub const EVCF_HASSETTINGS = @as(u32, 1);
+pub const EVCF_OUTOFDISKSPACE = @as(u32, 64);
+pub const EVCF_REMOVEFROMLIST = @as(u32, 4);
+pub const EVCF_SETTINGSMODE = @as(u32, 32);
+pub const EVCF_SYSTEMAUTORUN = @as(u32, 256);
+pub const EVCF_USERCONSENTOBTAINED = @as(u32, 128);
 pub const REC_E_ABORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217408));
+pub const REC_E_INEEDTODOTHEUPDATES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217404));
 pub const REC_E_NOCALLBACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217407));
 pub const REC_E_NORESIDUES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217406));
 pub const REC_E_TOODIFFERENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217405));
-pub const REC_E_INEEDTODOTHEUPDATES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217404));
+pub const REC_S_IDIDTHEUPDATES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 266240));
+pub const REC_S_NOTCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 266241));
+pub const REC_S_NOTCOMPLETEBUTPROPAGATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 266242));
+pub const STATEBITS_FLAT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
+pub const _reconcilef = enum(i32) {
+    RECONCILEF_MAYBOTHERUSER = 1,
+    RECONCILEF_FEEDBACKWINDOWVALID = 2,
+    RECONCILEF_NORESIDUESOK = 4,
+    RECONCILEF_OMITSELFRESIDUE = 8,
+    RECONCILEF_RESUMERECONCILIATION = 16,
+    RECONCILEF_YOUMAYDOTHEUPDATES = 32,
+    RECONCILEF_ONLYYOUWERECHANGED = 64,
+    ALL_RECONCILE_FLAGS = 127,
+};
+pub const RECONCILEF_MAYBOTHERUSER = _reconcilef.RECONCILEF_MAYBOTHERUSER;
+pub const RECONCILEF_FEEDBACKWINDOWVALID = _reconcilef.RECONCILEF_FEEDBACKWINDOWVALID;
+pub const RECONCILEF_NORESIDUESOK = _reconcilef.RECONCILEF_NORESIDUESOK;
+pub const RECONCILEF_OMITSELFRESIDUE = _reconcilef.RECONCILEF_OMITSELFRESIDUE;
+pub const RECONCILEF_RESUMERECONCILIATION = _reconcilef.RECONCILEF_RESUMERECONCILIATION;
+pub const RECONCILEF_YOUMAYDOTHEUPDATES = _reconcilef.RECONCILEF_YOUMAYDOTHEUPDATES;
+pub const RECONCILEF_ONLYYOUWERECHANGED = _reconcilef.RECONCILEF_ONLYYOUWERECHANGED;
+pub const ALL_RECONCILE_FLAGS = _reconcilef.ALL_RECONCILE_FLAGS;
+
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEmptyVolumeCacheCallBack_Value = Guid.initString("6e793361-73c6-11d0-8469-00aa00442901");
-pub const IID_IEmptyVolumeCacheCallBack = &IID_IEmptyVolumeCacheCallBack_Value;
-pub const IEmptyVolumeCacheCallBack = extern union {
+const IID_IActiveDesktopP_Value = Guid.initString("52502ee0-ec80-11d0-89ab-00c04fc2972d");
+pub const IID_IActiveDesktopP = &IID_IActiveDesktopP_Value;
+pub const IActiveDesktopP = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ScanProgress: *const fn(
-            self: *const IEmptyVolumeCacheCallBack,
-            dwlSpaceUsed: u64,
+        SetSafeMode: *const fn(
+            self: *const IActiveDesktopP,
             dwFlags: u32,
-            pcwszStatus: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
-        PurgeProgress: *const fn(
-            self: *const IEmptyVolumeCacheCallBack,
-            dwlSpaceFreed: u64,
-            dwlSpaceToFree: u64,
+        EnsureUpdateHTML: *const fn(
+            self: *const IActiveDesktopP,
+        ) callconv(.winapi) HRESULT,
+        SetScheme: *const fn(
+            self: *const IActiveDesktopP,
+            pwszSchemeName: ?[*:0]const u16,
             dwFlags: u32,
-            pcwszStatus: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetScheme: *const fn(
+            self: *const IActiveDesktopP,
+            pwszSchemeName: [*:0]u16,
+            pdwcchBuffer: ?*u32,
+            dwFlags: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ScanProgress(self: *const IEmptyVolumeCacheCallBack, dwlSpaceUsed: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ScanProgress(self, dwlSpaceUsed, dwFlags, pcwszStatus);
+    pub fn SetSafeMode(self: *const IActiveDesktopP, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSafeMode(self, dwFlags);
     }
-    pub fn PurgeProgress(self: *const IEmptyVolumeCacheCallBack, dwlSpaceFreed: u64, dwlSpaceToFree: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.PurgeProgress(self, dwlSpaceFreed, dwlSpaceToFree, dwFlags, pcwszStatus);
+    pub fn EnsureUpdateHTML(self: *const IActiveDesktopP) callconv(.@"inline") HRESULT {
+        return self.vtable.EnsureUpdateHTML(self);
+    }
+    pub fn SetScheme(self: *const IActiveDesktopP, pwszSchemeName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetScheme(self, pwszSchemeName, dwFlags);
+    }
+    pub fn GetScheme(self: *const IActiveDesktopP, pwszSchemeName: [*:0]u16, pdwcchBuffer: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetScheme(self, pwszSchemeName, pdwcchBuffer, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IADesktopP2_Value = Guid.initString("b22754e2-4574-11d1-9888-006097deacf9");
+pub const IID_IADesktopP2 = &IID_IADesktopP2_Value;
+pub const IADesktopP2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReReadWallpaper: *const fn(
+            self: *const IADesktopP2,
+        ) callconv(.winapi) HRESULT,
+        GetADObjectFlags: *const fn(
+            self: *const IADesktopP2,
+            pdwFlags: ?*u32,
+            dwMask: u32,
+        ) callconv(.winapi) HRESULT,
+        UpdateAllDesktopSubscriptions: *const fn(
+            self: *const IADesktopP2,
+        ) callconv(.winapi) HRESULT,
+        MakeDynamicChanges: *const fn(
+            self: *const IADesktopP2,
+            pOleObj: ?*IOleObject,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReReadWallpaper(self: *const IADesktopP2) callconv(.@"inline") HRESULT {
+        return self.vtable.ReReadWallpaper(self);
+    }
+    pub fn GetADObjectFlags(self: *const IADesktopP2, pdwFlags: ?*u32, dwMask: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetADObjectFlags(self, pdwFlags, dwMask);
+    }
+    pub fn UpdateAllDesktopSubscriptions(self: *const IADesktopP2) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateAllDesktopSubscriptions(self);
+    }
+    pub fn MakeDynamicChanges(self: *const IADesktopP2, pOleObj: ?*IOleObject) callconv(.@"inline") HRESULT {
+        return self.vtable.MakeDynamicChanges(self, pOleObj);
+    }
+};
+
+const IID_IBriefcaseInitiator_Value = Guid.initString("99180164-da16-101a-935c-444553540000");
+pub const IID_IBriefcaseInitiator = &IID_IBriefcaseInitiator_Value;
+pub const IBriefcaseInitiator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsMonikerInBriefcase: *const fn(
+            self: *const IBriefcaseInitiator,
+            pmk: ?*IMoniker,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsMonikerInBriefcase(self: *const IBriefcaseInitiator, pmk: ?*IMoniker) callconv(.@"inline") HRESULT {
+        return self.vtable.IsMonikerInBriefcase(self, pmk);
     }
 };
 
@@ -132,50 +217,35 @@ pub const IEmptyVolumeCache2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IReconcileInitiator_Value = Guid.initString("99180161-da16-101a-935c-444553540000");
-pub const IID_IReconcileInitiator = &IID_IReconcileInitiator_Value;
-pub const IReconcileInitiator = extern union {
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEmptyVolumeCacheCallBack_Value = Guid.initString("6e793361-73c6-11d0-8469-00aa00442901");
+pub const IID_IEmptyVolumeCacheCallBack = &IID_IEmptyVolumeCacheCallBack_Value;
+pub const IEmptyVolumeCacheCallBack = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAbortCallback: *const fn(
-            self: *const IReconcileInitiator,
-            punkForAbort: ?*IUnknown,
+        ScanProgress: *const fn(
+            self: *const IEmptyVolumeCacheCallBack,
+            dwlSpaceUsed: u64,
+            dwFlags: u32,
+            pcwszStatus: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
-        SetProgressFeedback: *const fn(
-            self: *const IReconcileInitiator,
-            ulProgress: u32,
-            ulProgressMax: u32,
+        PurgeProgress: *const fn(
+            self: *const IEmptyVolumeCacheCallBack,
+            dwlSpaceFreed: u64,
+            dwlSpaceToFree: u64,
+            dwFlags: u32,
+            pcwszStatus: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAbortCallback(self: *const IReconcileInitiator, punkForAbort: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAbortCallback(self, punkForAbort);
+    pub fn ScanProgress(self: *const IEmptyVolumeCacheCallBack, dwlSpaceUsed: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ScanProgress(self, dwlSpaceUsed, dwFlags, pcwszStatus);
     }
-    pub fn SetProgressFeedback(self: *const IReconcileInitiator, ulProgress: u32, ulProgressMax: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProgressFeedback(self, ulProgress, ulProgressMax);
+    pub fn PurgeProgress(self: *const IEmptyVolumeCacheCallBack, dwlSpaceFreed: u64, dwlSpaceToFree: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.PurgeProgress(self, dwlSpaceFreed, dwlSpaceToFree, dwFlags, pcwszStatus);
     }
 };
-
-pub const _reconcilef = enum(i32) {
-    RECONCILEF_MAYBOTHERUSER = 1,
-    RECONCILEF_FEEDBACKWINDOWVALID = 2,
-    RECONCILEF_NORESIDUESOK = 4,
-    RECONCILEF_OMITSELFRESIDUE = 8,
-    RECONCILEF_RESUMERECONCILIATION = 16,
-    RECONCILEF_YOUMAYDOTHEUPDATES = 32,
-    RECONCILEF_ONLYYOUWERECHANGED = 64,
-    ALL_RECONCILE_FLAGS = 127,
-};
-pub const RECONCILEF_MAYBOTHERUSER = _reconcilef.RECONCILEF_MAYBOTHERUSER;
-pub const RECONCILEF_FEEDBACKWINDOWVALID = _reconcilef.RECONCILEF_FEEDBACKWINDOWVALID;
-pub const RECONCILEF_NORESIDUESOK = _reconcilef.RECONCILEF_NORESIDUESOK;
-pub const RECONCILEF_OMITSELFRESIDUE = _reconcilef.RECONCILEF_OMITSELFRESIDUE;
-pub const RECONCILEF_RESUMERECONCILIATION = _reconcilef.RECONCILEF_RESUMERECONCILIATION;
-pub const RECONCILEF_YOUMAYDOTHEUPDATES = _reconcilef.RECONCILEF_YOUMAYDOTHEUPDATES;
-pub const RECONCILEF_ONLYYOUWERECHANGED = _reconcilef.RECONCILEF_ONLYYOUWERECHANGED;
-pub const ALL_RECONCILE_FLAGS = _reconcilef.ALL_RECONCILE_FLAGS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IReconcilableObject_Value = Guid.initString("99180162-da16-101a-935c-444553540000");
@@ -210,99 +280,29 @@ pub const IReconcilableObject = extern union {
     }
 };
 
-const IID_IBriefcaseInitiator_Value = Guid.initString("99180164-da16-101a-935c-444553540000");
-pub const IID_IBriefcaseInitiator = &IID_IBriefcaseInitiator_Value;
-pub const IBriefcaseInitiator = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IReconcileInitiator_Value = Guid.initString("99180161-da16-101a-935c-444553540000");
+pub const IID_IReconcileInitiator = &IID_IReconcileInitiator_Value;
+pub const IReconcileInitiator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsMonikerInBriefcase: *const fn(
-            self: *const IBriefcaseInitiator,
-            pmk: ?*IMoniker,
+        SetAbortCallback: *const fn(
+            self: *const IReconcileInitiator,
+            punkForAbort: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        SetProgressFeedback: *const fn(
+            self: *const IReconcileInitiator,
+            ulProgress: u32,
+            ulProgressMax: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsMonikerInBriefcase(self: *const IBriefcaseInitiator, pmk: ?*IMoniker) callconv(.@"inline") HRESULT {
-        return self.vtable.IsMonikerInBriefcase(self, pmk);
+    pub fn SetAbortCallback(self: *const IReconcileInitiator, punkForAbort: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAbortCallback(self, punkForAbort);
     }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IActiveDesktopP_Value = Guid.initString("52502ee0-ec80-11d0-89ab-00c04fc2972d");
-pub const IID_IActiveDesktopP = &IID_IActiveDesktopP_Value;
-pub const IActiveDesktopP = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetSafeMode: *const fn(
-            self: *const IActiveDesktopP,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        EnsureUpdateHTML: *const fn(
-            self: *const IActiveDesktopP,
-        ) callconv(.winapi) HRESULT,
-        SetScheme: *const fn(
-            self: *const IActiveDesktopP,
-            pwszSchemeName: ?[*:0]const u16,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetScheme: *const fn(
-            self: *const IActiveDesktopP,
-            pwszSchemeName: [*:0]u16,
-            pdwcchBuffer: ?*u32,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetSafeMode(self: *const IActiveDesktopP, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSafeMode(self, dwFlags);
-    }
-    pub fn EnsureUpdateHTML(self: *const IActiveDesktopP) callconv(.@"inline") HRESULT {
-        return self.vtable.EnsureUpdateHTML(self);
-    }
-    pub fn SetScheme(self: *const IActiveDesktopP, pwszSchemeName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetScheme(self, pwszSchemeName, dwFlags);
-    }
-    pub fn GetScheme(self: *const IActiveDesktopP, pwszSchemeName: [*:0]u16, pdwcchBuffer: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetScheme(self, pwszSchemeName, pdwcchBuffer, dwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IADesktopP2_Value = Guid.initString("b22754e2-4574-11d1-9888-006097deacf9");
-pub const IID_IADesktopP2 = &IID_IADesktopP2_Value;
-pub const IADesktopP2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReReadWallpaper: *const fn(
-            self: *const IADesktopP2,
-        ) callconv(.winapi) HRESULT,
-        GetADObjectFlags: *const fn(
-            self: *const IADesktopP2,
-            pdwFlags: ?*u32,
-            dwMask: u32,
-        ) callconv(.winapi) HRESULT,
-        UpdateAllDesktopSubscriptions: *const fn(
-            self: *const IADesktopP2,
-        ) callconv(.winapi) HRESULT,
-        MakeDynamicChanges: *const fn(
-            self: *const IADesktopP2,
-            pOleObj: ?*IOleObject,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ReReadWallpaper(self: *const IADesktopP2) callconv(.@"inline") HRESULT {
-        return self.vtable.ReReadWallpaper(self);
-    }
-    pub fn GetADObjectFlags(self: *const IADesktopP2, pdwFlags: ?*u32, dwMask: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetADObjectFlags(self, pdwFlags, dwMask);
-    }
-    pub fn UpdateAllDesktopSubscriptions(self: *const IADesktopP2) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateAllDesktopSubscriptions(self);
-    }
-    pub fn MakeDynamicChanges(self: *const IADesktopP2, pOleObj: ?*IOleObject) callconv(.@"inline") HRESULT {
-        return self.vtable.MakeDynamicChanges(self, pOleObj);
+    pub fn SetProgressFeedback(self: *const IReconcileInitiator, ulProgress: u32, ulProgressMax: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProgressFeedback(self, ulProgress, ulProgressMax);
     }
 };
 

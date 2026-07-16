@@ -2,17 +2,55 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const EC_VARIANT_TYPE_MASK = @as(u32, 127);
-pub const EC_VARIANT_TYPE_ARRAY = @as(u32, 128);
-pub const EC_READ_ACCESS = @as(u32, 1);
-pub const EC_WRITE_ACCESS = @as(u32, 2);
-pub const EC_OPEN_ALWAYS = @as(u32, 0);
 pub const EC_CREATE_NEW = @as(u32, 1);
+pub const EC_OPEN_ALWAYS = @as(u32, 0);
 pub const EC_OPEN_EXISTING = @as(u32, 2);
+pub const EC_READ_ACCESS = @as(u32, 1);
+pub const EC_VARIANT_TYPE_ARRAY = @as(u32, 128);
+pub const EC_VARIANT_TYPE_MASK = @as(u32, 127);
+pub const EC_WRITE_ACCESS = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
+pub const EC_SUBSCRIPTION_CONFIGURATION_MODE = enum(i32) {
+    Normal = 0,
+    Custom = 1,
+    MinLatency = 2,
+    MinBandwidth = 3,
+};
+pub const EcConfigurationModeNormal = EC_SUBSCRIPTION_CONFIGURATION_MODE.Normal;
+pub const EcConfigurationModeCustom = EC_SUBSCRIPTION_CONFIGURATION_MODE.Custom;
+pub const EcConfigurationModeMinLatency = EC_SUBSCRIPTION_CONFIGURATION_MODE.MinLatency;
+pub const EcConfigurationModeMinBandwidth = EC_SUBSCRIPTION_CONFIGURATION_MODE.MinBandwidth;
+
+pub const EC_SUBSCRIPTION_CONTENT_FORMAT = enum(i32) {
+    Events = 1,
+    RenderedText = 2,
+};
+pub const EcContentFormatEvents = EC_SUBSCRIPTION_CONTENT_FORMAT.Events;
+pub const EcContentFormatRenderedText = EC_SUBSCRIPTION_CONTENT_FORMAT.RenderedText;
+
+pub const EC_SUBSCRIPTION_CREDENTIALS_TYPE = enum(i32) {
+    Default = 0,
+    Negotiate = 1,
+    Digest = 2,
+    Basic = 3,
+    LocalMachine = 4,
+};
+pub const EcSubscriptionCredDefault = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Default;
+pub const EcSubscriptionCredNegotiate = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Negotiate;
+pub const EcSubscriptionCredDigest = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Digest;
+pub const EcSubscriptionCredBasic = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Basic;
+pub const EcSubscriptionCredLocalMachine = EC_SUBSCRIPTION_CREDENTIALS_TYPE.LocalMachine;
+
+pub const EC_SUBSCRIPTION_DELIVERY_MODE = enum(i32) {
+    ll = 1,
+    sh = 2,
+};
+pub const EcDeliveryModePull = EC_SUBSCRIPTION_DELIVERY_MODE.ll;
+pub const EcDeliveryModePush = EC_SUBSCRIPTION_DELIVERY_MODE.sh;
+
 pub const EC_SUBSCRIPTION_PROPERTY_ID = enum(i32) {
     Enabled = 0,
     EventSources = 1,
@@ -82,25 +120,16 @@ pub const EcSubscriptionDeniedSubjects = EC_SUBSCRIPTION_PROPERTY_ID.DeniedSubje
 pub const EcSubscriptionAllowedSourceDomainComputers = EC_SUBSCRIPTION_PROPERTY_ID.AllowedSourceDomainComputers;
 pub const EcSubscriptionPropertyIdEND = EC_SUBSCRIPTION_PROPERTY_ID.PropertyIdEND;
 
-pub const EC_SUBSCRIPTION_CREDENTIALS_TYPE = enum(i32) {
-    Default = 0,
-    Negotiate = 1,
-    Digest = 2,
-    Basic = 3,
-    LocalMachine = 4,
+pub const EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS = enum(i32) {
+    Disabled = 1,
+    Active = 2,
+    Inactive = 3,
+    Trying = 4,
 };
-pub const EcSubscriptionCredDefault = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Default;
-pub const EcSubscriptionCredNegotiate = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Negotiate;
-pub const EcSubscriptionCredDigest = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Digest;
-pub const EcSubscriptionCredBasic = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Basic;
-pub const EcSubscriptionCredLocalMachine = EC_SUBSCRIPTION_CREDENTIALS_TYPE.LocalMachine;
-
-pub const EC_SUBSCRIPTION_TYPE = enum(i32) {
-    SourceInitiated = 0,
-    CollectorInitiated = 1,
-};
-pub const EcSubscriptionTypeSourceInitiated = EC_SUBSCRIPTION_TYPE.SourceInitiated;
-pub const EcSubscriptionTypeCollectorInitiated = EC_SUBSCRIPTION_TYPE.CollectorInitiated;
+pub const EcRuntimeStatusActiveStatusDisabled = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Disabled;
+pub const EcRuntimeStatusActiveStatusActive = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Active;
+pub const EcRuntimeStatusActiveStatusInactive = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Inactive;
+pub const EcRuntimeStatusActiveStatusTrying = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Trying;
 
 pub const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID = enum(i32) {
     Active = 0,
@@ -121,20 +150,12 @@ pub const EcSubscriptionRunTimeStatusEventSources = EC_SUBSCRIPTION_RUNTIME_STAT
 pub const EcSubscriptionRunTimeStatusLastHeartbeatTime = EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID.LastHeartbeatTime;
 pub const EcSubscriptionRunTimeStatusInfoIdEND = EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID.InfoIdEND;
 
-pub const EC_VARIANT_TYPE = enum(i32) {
-    TypeNull = 0,
-    TypeBoolean = 1,
-    TypeUInt32 = 2,
-    TypeDateTime = 3,
-    TypeString = 4,
-    ObjectArrayPropertyHandle = 5,
+pub const EC_SUBSCRIPTION_TYPE = enum(i32) {
+    SourceInitiated = 0,
+    CollectorInitiated = 1,
 };
-pub const EcVarTypeNull = EC_VARIANT_TYPE.TypeNull;
-pub const EcVarTypeBoolean = EC_VARIANT_TYPE.TypeBoolean;
-pub const EcVarTypeUInt32 = EC_VARIANT_TYPE.TypeUInt32;
-pub const EcVarTypeDateTime = EC_VARIANT_TYPE.TypeDateTime;
-pub const EcVarTypeString = EC_VARIANT_TYPE.TypeString;
-pub const EcVarObjectArrayPropertyHandle = EC_VARIANT_TYPE.ObjectArrayPropertyHandle;
+pub const EcSubscriptionTypeSourceInitiated = EC_SUBSCRIPTION_TYPE.SourceInitiated;
+pub const EcSubscriptionTypeCollectorInitiated = EC_SUBSCRIPTION_TYPE.CollectorInitiated;
 
 pub const EC_VARIANT = extern struct {
     Anonymous: extern union {
@@ -152,88 +173,28 @@ pub const EC_VARIANT = extern struct {
     Type: u32,
 };
 
-pub const EC_SUBSCRIPTION_CONFIGURATION_MODE = enum(i32) {
-    Normal = 0,
-    Custom = 1,
-    MinLatency = 2,
-    MinBandwidth = 3,
+pub const EC_VARIANT_TYPE = enum(i32) {
+    TypeNull = 0,
+    TypeBoolean = 1,
+    TypeUInt32 = 2,
+    TypeDateTime = 3,
+    TypeString = 4,
+    ObjectArrayPropertyHandle = 5,
 };
-pub const EcConfigurationModeNormal = EC_SUBSCRIPTION_CONFIGURATION_MODE.Normal;
-pub const EcConfigurationModeCustom = EC_SUBSCRIPTION_CONFIGURATION_MODE.Custom;
-pub const EcConfigurationModeMinLatency = EC_SUBSCRIPTION_CONFIGURATION_MODE.MinLatency;
-pub const EcConfigurationModeMinBandwidth = EC_SUBSCRIPTION_CONFIGURATION_MODE.MinBandwidth;
-
-pub const EC_SUBSCRIPTION_DELIVERY_MODE = enum(i32) {
-    ll = 1,
-    sh = 2,
-};
-pub const EcDeliveryModePull = EC_SUBSCRIPTION_DELIVERY_MODE.ll;
-pub const EcDeliveryModePush = EC_SUBSCRIPTION_DELIVERY_MODE.sh;
-
-pub const EC_SUBSCRIPTION_CONTENT_FORMAT = enum(i32) {
-    Events = 1,
-    RenderedText = 2,
-};
-pub const EcContentFormatEvents = EC_SUBSCRIPTION_CONTENT_FORMAT.Events;
-pub const EcContentFormatRenderedText = EC_SUBSCRIPTION_CONTENT_FORMAT.RenderedText;
-
-pub const EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS = enum(i32) {
-    Disabled = 1,
-    Active = 2,
-    Inactive = 3,
-    Trying = 4,
-};
-pub const EcRuntimeStatusActiveStatusDisabled = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Disabled;
-pub const EcRuntimeStatusActiveStatusActive = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Active;
-pub const EcRuntimeStatusActiveStatusInactive = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Inactive;
-pub const EcRuntimeStatusActiveStatusTrying = EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS.Trying;
+pub const EcVarTypeNull = EC_VARIANT_TYPE.TypeNull;
+pub const EcVarTypeBoolean = EC_VARIANT_TYPE.TypeBoolean;
+pub const EcVarTypeUInt32 = EC_VARIANT_TYPE.TypeUInt32;
+pub const EcVarTypeDateTime = EC_VARIANT_TYPE.TypeDateTime;
+pub const EcVarTypeString = EC_VARIANT_TYPE.TypeString;
+pub const EcVarObjectArrayPropertyHandle = EC_VARIANT_TYPE.ObjectArrayPropertyHandle;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (15)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcOpenSubscriptionEnum(
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcEnumNextSubscription(
-    SubscriptionEnum: isize,
-    SubscriptionNameBufferSize: u32,
-    SubscriptionNameBuffer: ?[*:0]u16,
-    SubscriptionNameBufferUsed: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcOpenSubscription(
-    SubscriptionName: ?[*:0]const u16,
-    AccessMask: u32,
-    Flags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcSetSubscriptionProperty(
-    Subscription: isize,
-    PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
-    Flags: u32,
-    PropertyValue: ?*EC_VARIANT,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcGetSubscriptionProperty(
-    Subscription: isize,
-    PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
-    Flags: u32,
-    PropertyValueBufferSize: u32,
-    PropertyValueBuffer: ?*EC_VARIANT,
-    PropertyValueBufferUsed: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcSaveSubscription(
-    Subscription: isize,
-    Flags: u32,
+pub extern "wecapi" fn EcClose(
+    Object: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -243,18 +204,11 @@ pub extern "wecapi" fn EcDeleteSubscription(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcGetObjectArraySize(
-    ObjectArray: isize,
-    ObjectArraySize: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcSetObjectArrayProperty(
-    ObjectArray: isize,
-    PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
-    ArrayIndex: u32,
-    Flags: u32,
-    PropertyValue: ?*EC_VARIANT,
+pub extern "wecapi" fn EcEnumNextSubscription(
+    SubscriptionEnum: isize,
+    SubscriptionNameBufferSize: u32,
+    SubscriptionNameBuffer: ?[*:0]u16,
+    SubscriptionNameBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -269,15 +223,19 @@ pub extern "wecapi" fn EcGetObjectArrayProperty(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcInsertObjectArrayElement(
+pub extern "wecapi" fn EcGetObjectArraySize(
     ObjectArray: isize,
-    ArrayIndex: u32,
+    ObjectArraySize: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcRemoveObjectArrayElement(
-    ObjectArray: isize,
-    ArrayIndex: u32,
+pub extern "wecapi" fn EcGetSubscriptionProperty(
+    Subscription: isize,
+    PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
+    Flags: u32,
+    PropertyValueBufferSize: u32,
+    PropertyValueBuffer: ?*EC_VARIANT,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -292,6 +250,30 @@ pub extern "wecapi" fn EcGetSubscriptionRunTimeStatus(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wecapi" fn EcInsertObjectArrayElement(
+    ObjectArray: isize,
+    ArrayIndex: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wecapi" fn EcOpenSubscription(
+    SubscriptionName: ?[*:0]const u16,
+    AccessMask: u32,
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wecapi" fn EcOpenSubscriptionEnum(
+    Flags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wecapi" fn EcRemoveObjectArrayElement(
+    ObjectArray: isize,
+    ArrayIndex: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wecapi" fn EcRetrySubscription(
     SubscriptionName: ?[*:0]const u16,
     EventSourceName: ?[*:0]const u16,
@@ -299,8 +281,26 @@ pub extern "wecapi" fn EcRetrySubscription(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wecapi" fn EcClose(
-    Object: isize,
+pub extern "wecapi" fn EcSaveSubscription(
+    Subscription: isize,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wecapi" fn EcSetObjectArrayProperty(
+    ObjectArray: isize,
+    PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
+    ArrayIndex: u32,
+    Flags: u32,
+    PropertyValue: ?*EC_VARIANT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wecapi" fn EcSetSubscriptionProperty(
+    Subscription: isize,
+    PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
+    Flags: u32,
+    PropertyValue: ?*EC_VARIANT,
 ) callconv(.winapi) BOOL;
 
 

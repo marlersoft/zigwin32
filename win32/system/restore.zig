@@ -2,31 +2,50 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (21)
 //--------------------------------------------------------------------------------
-pub const MIN_EVENT = @as(u32, 100);
-pub const BEGIN_NESTED_SYSTEM_CHANGE_NORP = @as(u32, 104);
-pub const MAX_EVENT = @as(u32, 104);
-pub const MIN_RPT = @as(u32, 0);
-pub const DESKTOP_SETTING = @as(u32, 2);
 pub const ACCESSIBILITY_SETTING = @as(u32, 3);
-pub const OE_SETTING = @as(u32, 4);
 pub const APPLICATION_RUN = @as(u32, 5);
-pub const RESTORE = @as(u32, 6);
-pub const CHECKPOINT = @as(u32, 7);
-pub const WINDOWS_SHUTDOWN = @as(u32, 8);
-pub const WINDOWS_BOOT = @as(u32, 9);
-pub const FIRSTRUN = @as(u32, 11);
-pub const BACKUP_RECOVERY = @as(u32, 14);
 pub const BACKUP = @as(u32, 15);
-pub const MANUAL_CHECKPOINT = @as(u32, 16);
-pub const WINDOWS_UPDATE = @as(u32, 17);
+pub const BACKUP_RECOVERY = @as(u32, 14);
+pub const BEGIN_NESTED_SYSTEM_CHANGE_NORP = @as(u32, 104);
+pub const CHECKPOINT = @as(u32, 7);
 pub const CRITICAL_UPDATE = @as(u32, 18);
-pub const MAX_RPT = @as(u32, 18);
+pub const DESKTOP_SETTING = @as(u32, 2);
+pub const FIRSTRUN = @as(u32, 11);
+pub const MANUAL_CHECKPOINT = @as(u32, 16);
 pub const MAX_DESC = @as(u32, 64);
 pub const MAX_DESC_W = @as(u32, 256);
+pub const MAX_EVENT = @as(u32, 104);
+pub const MAX_RPT = @as(u32, 18);
+pub const MIN_EVENT = @as(u32, 100);
+pub const MIN_RPT = @as(u32, 0);
+pub const OE_SETTING = @as(u32, 4);
+pub const RESTORE = @as(u32, 6);
+pub const WINDOWS_BOOT = @as(u32, 9);
+pub const WINDOWS_SHUTDOWN = @as(u32, 8);
+pub const WINDOWS_UPDATE = @as(u32, 17);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+pub const _RESTOREPTINFOEX = extern struct {
+    ftCreation: FILETIME align(1),
+    dwEventType: u32 align(1),
+    dwRestorePtType: u32 align(1),
+    dwRPNum: u32 align(1),
+    szDescription: [256]u16 align(1),
+};
+
+pub const RESTOREPOINTINFO_EVENT_TYPE = enum(u32) {
+    BEGIN_NESTED_SYSTEM_CHANGE = 102,
+    BEGIN_SYSTEM_CHANGE = 100,
+    END_NESTED_SYSTEM_CHANGE = 103,
+    END_SYSTEM_CHANGE = 101,
+};
+pub const BEGIN_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.BEGIN_NESTED_SYSTEM_CHANGE;
+pub const BEGIN_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.BEGIN_SYSTEM_CHANGE;
+pub const END_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_NESTED_SYSTEM_CHANGE;
+pub const END_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_SYSTEM_CHANGE;
+
 pub const RESTOREPOINTINFO_TYPE = enum(u32) {
     APPLICATION_INSTALL = 0,
     APPLICATION_UNINSTALL = 1,
@@ -40,17 +59,6 @@ pub const DEVICE_DRIVER_INSTALL = RESTOREPOINTINFO_TYPE.DEVICE_DRIVER_INSTALL;
 pub const MODIFY_SETTINGS = RESTOREPOINTINFO_TYPE.MODIFY_SETTINGS;
 pub const CANCELLED_OPERATION = RESTOREPOINTINFO_TYPE.CANCELLED_OPERATION;
 
-pub const RESTOREPOINTINFO_EVENT_TYPE = enum(u32) {
-    BEGIN_NESTED_SYSTEM_CHANGE = 102,
-    BEGIN_SYSTEM_CHANGE = 100,
-    END_NESTED_SYSTEM_CHANGE = 103,
-    END_SYSTEM_CHANGE = 101,
-};
-pub const BEGIN_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.BEGIN_NESTED_SYSTEM_CHANGE;
-pub const BEGIN_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.BEGIN_SYSTEM_CHANGE;
-pub const END_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_NESTED_SYSTEM_CHANGE;
-pub const END_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_SYSTEM_CHANGE;
-
 pub const RESTOREPOINTINFOA = extern struct {
     dwEventType: RESTOREPOINTINFO_EVENT_TYPE align(1),
     dwRestorePtType: RESTOREPOINTINFO_TYPE align(1),
@@ -62,14 +70,6 @@ pub const RESTOREPOINTINFOW = extern struct {
     dwEventType: RESTOREPOINTINFO_EVENT_TYPE align(1),
     dwRestorePtType: RESTOREPOINTINFO_TYPE align(1),
     llSequenceNumber: i64 align(1),
-    szDescription: [256]u16 align(1),
-};
-
-pub const _RESTOREPTINFOEX = extern struct {
-    ftCreation: FILETIME align(1),
-    dwEventType: u32 align(1),
-    dwRestorePtType: u32 align(1),
-    dwRPNum: u32 align(1),
     szDescription: [256]u16 align(1),
 };
 

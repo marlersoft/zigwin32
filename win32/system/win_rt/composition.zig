@@ -6,6 +6,25 @@
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
+const IID_ICompositionCapabilitiesInteropFactory_Value = Guid.initString("2c9db356-e70d-4642-8298-bc4aa5b4865c");
+pub const IID_ICompositionCapabilitiesInteropFactory = &IID_ICompositionCapabilitiesInteropFactory_Value;
+pub const ICompositionCapabilitiesInteropFactory = extern union {
+    pub const VTable = extern struct {
+        base: IInspectable.VTable,
+        GetForWindow: *const fn(
+            self: *const ICompositionCapabilitiesInteropFactory,
+            hwnd: ?HWND,
+            result: **struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"},
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IInspectable: IInspectable,
+    IUnknown: IUnknown,
+    pub fn GetForWindow(self: *const ICompositionCapabilitiesInteropFactory, hwnd: ?HWND, result: **struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"}) callconv(.@"inline") HRESULT {
+        return self.vtable.GetForWindow(self, hwnd, result);
+    }
+};
+
 const IID_ICompositionDrawingSurfaceInterop_Value = Guid.initString("fd04e6e3-fe0c-4c3c-ab19-a07601a576ee");
 pub const IID_ICompositionDrawingSurfaceInterop = &IID_ICompositionDrawingSurfaceInterop_Value;
 pub const ICompositionDrawingSurfaceInterop = extern union {
@@ -106,6 +125,32 @@ pub const ICompositionGraphicsDeviceInterop = extern union {
     }
 };
 
+const IID_ICompositorDesktopInterop_Value = Guid.initString("29e691fa-4567-4dca-b319-d0f207eb6807");
+pub const IID_ICompositorDesktopInterop = &IID_ICompositorDesktopInterop_Value;
+pub const ICompositorDesktopInterop = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateDesktopWindowTarget: *const fn(
+            self: *const ICompositorDesktopInterop,
+            hwndTarget: ?HWND,
+            isTopmost: BOOL,
+            result: **struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"},
+        ) callconv(.winapi) HRESULT,
+        EnsureOnThread: *const fn(
+            self: *const ICompositorDesktopInterop,
+            threadId: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateDesktopWindowTarget(self: *const ICompositorDesktopInterop, hwndTarget: ?HWND, isTopmost: BOOL, result: **struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"}) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDesktopWindowTarget(self, hwndTarget, isTopmost, result);
+    }
+    pub fn EnsureOnThread(self: *const ICompositorDesktopInterop, threadId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.EnsureOnThread(self, threadId);
+    }
+};
+
 const IID_ICompositorInterop_Value = Guid.initString("25297d5c-3ad4-4c9c-b5cf-e36a38512330");
 pub const IID_ICompositorInterop = &IID_ICompositorInterop_Value;
 pub const ICompositorInterop = extern union {
@@ -140,6 +185,24 @@ pub const ICompositorInterop = extern union {
     }
 };
 
+const IID_IDesktopWindowTargetInterop_Value = Guid.initString("35dbf59e-e3f9-45b0-81e7-fe75f4145dc9");
+pub const IID_IDesktopWindowTargetInterop = &IID_IDesktopWindowTargetInterop_Value;
+pub const IDesktopWindowTargetInterop = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Hwnd: *const fn(
+            self: *const IDesktopWindowTargetInterop,
+            value: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Hwnd(self: *const IDesktopWindowTargetInterop, value: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Hwnd(self, value);
+    }
+};
+
 const IID_ISwapChainInterop_Value = Guid.initString("26f496a0-7f38-45fb-88f7-faaabe67dd59");
 pub const IID_ISwapChainInterop = &IID_ISwapChainInterop_Value;
 pub const ISwapChainInterop = extern union {
@@ -171,69 +234,6 @@ pub const IVisualInteractionSourceInterop = extern union {
     IUnknown: IUnknown,
     pub fn TryRedirectForManipulation(self: *const IVisualInteractionSourceInterop, pointerInfo: ?*const POINTER_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.TryRedirectForManipulation(self, pointerInfo);
-    }
-};
-
-const IID_ICompositionCapabilitiesInteropFactory_Value = Guid.initString("2c9db356-e70d-4642-8298-bc4aa5b4865c");
-pub const IID_ICompositionCapabilitiesInteropFactory = &IID_ICompositionCapabilitiesInteropFactory_Value;
-pub const ICompositionCapabilitiesInteropFactory = extern union {
-    pub const VTable = extern struct {
-        base: IInspectable.VTable,
-        GetForWindow: *const fn(
-            self: *const ICompositionCapabilitiesInteropFactory,
-            hwnd: ?HWND,
-            result: **struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"},
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IInspectable: IInspectable,
-    IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const ICompositionCapabilitiesInteropFactory, hwnd: ?HWND, result: **struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"}) callconv(.@"inline") HRESULT {
-        return self.vtable.GetForWindow(self, hwnd, result);
-    }
-};
-
-const IID_ICompositorDesktopInterop_Value = Guid.initString("29e691fa-4567-4dca-b319-d0f207eb6807");
-pub const IID_ICompositorDesktopInterop = &IID_ICompositorDesktopInterop_Value;
-pub const ICompositorDesktopInterop = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateDesktopWindowTarget: *const fn(
-            self: *const ICompositorDesktopInterop,
-            hwndTarget: ?HWND,
-            isTopmost: BOOL,
-            result: **struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"},
-        ) callconv(.winapi) HRESULT,
-        EnsureOnThread: *const fn(
-            self: *const ICompositorDesktopInterop,
-            threadId: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateDesktopWindowTarget(self: *const ICompositorDesktopInterop, hwndTarget: ?HWND, isTopmost: BOOL, result: **struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"}) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDesktopWindowTarget(self, hwndTarget, isTopmost, result);
-    }
-    pub fn EnsureOnThread(self: *const ICompositorDesktopInterop, threadId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.EnsureOnThread(self, threadId);
-    }
-};
-
-const IID_IDesktopWindowTargetInterop_Value = Guid.initString("35dbf59e-e3f9-45b0-81e7-fe75f4145dc9");
-pub const IID_IDesktopWindowTargetInterop = &IID_IDesktopWindowTargetInterop_Value;
-pub const IDesktopWindowTargetInterop = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Hwnd: *const fn(
-            self: *const IDesktopWindowTargetInterop,
-            value: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Hwnd(self: *const IDesktopWindowTargetInterop, value: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Hwnd(self, value);
     }
 };
 

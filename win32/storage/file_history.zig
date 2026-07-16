@@ -2,162 +2,52 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (42)
 //--------------------------------------------------------------------------------
-pub const FHCFG_E_CORRUPT_CONFIG_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220736));
-pub const FHCFG_E_CONFIG_FILE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220735));
-pub const FHCFG_E_CONFIG_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220734));
-pub const FHCFG_E_NO_VALID_CONFIGURATION_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220733));
-pub const FHCFG_E_TARGET_NOT_CONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220732));
-pub const FHCFG_E_CONFIGURATION_PREVIOUSLY_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220731));
-pub const FHCFG_E_TARGET_VERIFICATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220730));
-pub const FHCFG_E_TARGET_NOT_CONFIGURED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220729));
-pub const FHCFG_E_TARGET_NOT_ENOUGH_FREE_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220728));
-pub const FHCFG_E_TARGET_CANNOT_BE_USED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220727));
-pub const FHCFG_E_INVALID_REHYDRATION_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220726));
-pub const FHCFG_E_RECOMMENDATION_CHANGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220720));
-pub const FHCFG_E_TARGET_REHYDRATED_ELSEWHERE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220719));
-pub const FHCFG_E_LEGACY_TARGET_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220718));
-pub const FHCFG_E_LEGACY_TARGET_VALIDATION_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220717));
-pub const FHCFG_E_LEGACY_BACKUP_USER_EXCLUDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220716));
-pub const FHCFG_E_LEGACY_BACKUP_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220715));
-pub const FHSVC_E_BACKUP_BLOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219968));
-pub const FHSVC_E_NOT_CONFIGURED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219967));
-pub const FHSVC_E_CONFIG_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219966));
-pub const FHSVC_E_CONFIG_DISABLED_GP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219965));
-pub const FHSVC_E_FATAL_CONFIG_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219964));
-pub const FHSVC_E_CONFIG_REHYDRATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219963));
-pub const FH_STATE_NOT_TRACKED = @as(u32, 0);
-pub const FH_STATE_OFF = @as(u32, 1);
+pub const FH_STATE_BACKUP_NOT_SUPPORTED = @as(u32, 2064);
 pub const FH_STATE_DISABLED_BY_GP = @as(u32, 2);
 pub const FH_STATE_FATAL_CONFIG_ERROR = @as(u32, 3);
 pub const FH_STATE_MIGRATING = @as(u32, 4);
-pub const FH_STATE_REHYDRATING = @as(u32, 5);
-pub const FH_STATE_TARGET_FS_LIMITATION = @as(u32, 13);
-pub const FH_STATE_TARGET_ACCESS_DENIED = @as(u32, 14);
-pub const FH_STATE_TARGET_VOLUME_DIRTY = @as(u32, 15);
-pub const FH_STATE_TARGET_FULL_RETENTION_MAX = @as(u32, 16);
-pub const FH_STATE_TARGET_FULL = @as(u32, 17);
-pub const FH_STATE_STAGING_FULL = @as(u32, 18);
-pub const FH_STATE_TARGET_LOW_SPACE_RETENTION_MAX = @as(u32, 19);
-pub const FH_STATE_TARGET_LOW_SPACE = @as(u32, 20);
-pub const FH_STATE_TARGET_ABSENT = @as(u32, 21);
-pub const FH_STATE_TOO_MUCH_BEHIND = @as(u32, 240);
 pub const FH_STATE_NO_ERROR = @as(u32, 255);
-pub const FH_STATE_BACKUP_NOT_SUPPORTED = @as(u32, 2064);
+pub const FH_STATE_NOT_TRACKED = @as(u32, 0);
+pub const FH_STATE_OFF = @as(u32, 1);
+pub const FH_STATE_REHYDRATING = @as(u32, 5);
 pub const FH_STATE_RUNNING = @as(u32, 256);
+pub const FH_STATE_STAGING_FULL = @as(u32, 18);
+pub const FH_STATE_TARGET_ABSENT = @as(u32, 21);
+pub const FH_STATE_TARGET_ACCESS_DENIED = @as(u32, 14);
+pub const FH_STATE_TARGET_FS_LIMITATION = @as(u32, 13);
+pub const FH_STATE_TARGET_FULL = @as(u32, 17);
+pub const FH_STATE_TARGET_FULL_RETENTION_MAX = @as(u32, 16);
+pub const FH_STATE_TARGET_LOW_SPACE = @as(u32, 20);
+pub const FH_STATE_TARGET_LOW_SPACE_RETENTION_MAX = @as(u32, 19);
+pub const FH_STATE_TARGET_VOLUME_DIRTY = @as(u32, 15);
+pub const FH_STATE_TOO_MUCH_BEHIND = @as(u32, 240);
+pub const FHCFG_E_CONFIG_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220734));
+pub const FHCFG_E_CONFIG_FILE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220735));
+pub const FHCFG_E_CONFIGURATION_PREVIOUSLY_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220731));
+pub const FHCFG_E_CORRUPT_CONFIG_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220736));
+pub const FHCFG_E_INVALID_REHYDRATION_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220726));
+pub const FHCFG_E_LEGACY_BACKUP_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220715));
+pub const FHCFG_E_LEGACY_BACKUP_USER_EXCLUDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220716));
+pub const FHCFG_E_LEGACY_TARGET_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220718));
+pub const FHCFG_E_LEGACY_TARGET_VALIDATION_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220717));
+pub const FHCFG_E_NO_VALID_CONFIGURATION_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220733));
+pub const FHCFG_E_RECOMMENDATION_CHANGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220720));
+pub const FHCFG_E_TARGET_CANNOT_BE_USED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220727));
+pub const FHCFG_E_TARGET_NOT_CONFIGURED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220729));
+pub const FHCFG_E_TARGET_NOT_CONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220732));
+pub const FHCFG_E_TARGET_NOT_ENOUGH_FREE_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220728));
+pub const FHCFG_E_TARGET_REHYDRATED_ELSEWHERE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220719));
+pub const FHCFG_E_TARGET_VERIFICATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220730));
+pub const FHSVC_E_BACKUP_BLOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219968));
+pub const FHSVC_E_CONFIG_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219966));
+pub const FHSVC_E_CONFIG_DISABLED_GP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219965));
+pub const FHSVC_E_CONFIG_REHYDRATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219963));
+pub const FHSVC_E_FATAL_CONFIG_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219964));
+pub const FHSVC_E_NOT_CONFIGURED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147219967));
 
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
-const CLSID_FhConfigMgr_Value = Guid.initString("ed43bb3c-09e9-498a-9df6-2177244c6db4");
-pub const CLSID_FhConfigMgr = &CLSID_FhConfigMgr_Value;
-
-const CLSID_FhReassociation_Value = Guid.initString("4d728e35-16fa-4320-9e8b-bfd7100a8846");
-pub const CLSID_FhReassociation = &CLSID_FhReassociation_Value;
-
-pub const FH_TARGET_PROPERTY_TYPE = enum(i32) {
-    FH_TARGET_NAME = 0,
-    FH_TARGET_URL = 1,
-    FH_TARGET_DRIVE_TYPE = 2,
-    MAX_TARGET_PROPERTY = 3,
-};
-pub const FH_TARGET_NAME = FH_TARGET_PROPERTY_TYPE.FH_TARGET_NAME;
-pub const FH_TARGET_URL = FH_TARGET_PROPERTY_TYPE.FH_TARGET_URL;
-pub const FH_TARGET_DRIVE_TYPE = FH_TARGET_PROPERTY_TYPE.FH_TARGET_DRIVE_TYPE;
-pub const MAX_TARGET_PROPERTY = FH_TARGET_PROPERTY_TYPE.MAX_TARGET_PROPERTY;
-
-pub const FH_TARGET_DRIVE_TYPES = enum(i32) {
-    UNKNOWN = 0,
-    REMOVABLE = 2,
-    FIXED = 3,
-    REMOTE = 4,
-};
-pub const FH_DRIVE_UNKNOWN = FH_TARGET_DRIVE_TYPES.UNKNOWN;
-pub const FH_DRIVE_REMOVABLE = FH_TARGET_DRIVE_TYPES.REMOVABLE;
-pub const FH_DRIVE_FIXED = FH_TARGET_DRIVE_TYPES.FIXED;
-pub const FH_DRIVE_REMOTE = FH_TARGET_DRIVE_TYPES.REMOTE;
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IFhTarget_Value = Guid.initString("d87965fd-2bad-4657-bd3b-9567eb300ced");
-pub const IID_IFhTarget = &IID_IFhTarget_Value;
-pub const IFhTarget = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStringProperty: *const fn(
-            self: *const IFhTarget,
-            PropertyType: FH_TARGET_PROPERTY_TYPE,
-            PropertyValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetNumericalProperty: *const fn(
-            self: *const IFhTarget,
-            PropertyType: FH_TARGET_PROPERTY_TYPE,
-            PropertyValue: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStringProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringProperty(self, PropertyType, PropertyValue);
-    }
-    pub fn GetNumericalProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumericalProperty(self, PropertyType, PropertyValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IFhScopeIterator_Value = Guid.initString("3197abce-532a-44c6-8615-f3666566a720");
-pub const IID_IFhScopeIterator = &IID_IFhScopeIterator_Value;
-pub const IFhScopeIterator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveToNextItem: *const fn(
-            self: *const IFhScopeIterator,
-        ) callconv(.winapi) HRESULT,
-        GetItem: *const fn(
-            self: *const IFhScopeIterator,
-            Item: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveToNextItem(self: *const IFhScopeIterator) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveToNextItem(self);
-    }
-    pub fn GetItem(self: *const IFhScopeIterator, Item: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, Item);
-    }
-};
-
-pub const FH_PROTECTED_ITEM_CATEGORY = enum(i32) {
-    FH_FOLDER = 0,
-    FH_LIBRARY = 1,
-    MAX_PROTECTED_ITEM_CATEGORY = 2,
-};
-pub const FH_FOLDER = FH_PROTECTED_ITEM_CATEGORY.FH_FOLDER;
-pub const FH_LIBRARY = FH_PROTECTED_ITEM_CATEGORY.FH_LIBRARY;
-pub const MAX_PROTECTED_ITEM_CATEGORY = FH_PROTECTED_ITEM_CATEGORY.MAX_PROTECTED_ITEM_CATEGORY;
-
-pub const FH_LOCAL_POLICY_TYPE = enum(i32) {
-    FH_FREQUENCY = 0,
-    FH_RETENTION_TYPE = 1,
-    FH_RETENTION_AGE = 2,
-    MAX_LOCAL_POLICY = 3,
-};
-pub const FH_FREQUENCY = FH_LOCAL_POLICY_TYPE.FH_FREQUENCY;
-pub const FH_RETENTION_TYPE = FH_LOCAL_POLICY_TYPE.FH_RETENTION_TYPE;
-pub const FH_RETENTION_AGE = FH_LOCAL_POLICY_TYPE.FH_RETENTION_AGE;
-pub const MAX_LOCAL_POLICY = FH_LOCAL_POLICY_TYPE.MAX_LOCAL_POLICY;
-
-pub const FH_RETENTION_TYPES = enum(i32) {
-    FH_RETENTION_DISABLED = 0,
-    FH_RETENTION_UNLIMITED = 1,
-    FH_RETENTION_AGE_BASED = 2,
-    MAX_RETENTION_TYPE = 3,
-};
-pub const FH_RETENTION_DISABLED = FH_RETENTION_TYPES.FH_RETENTION_DISABLED;
-pub const FH_RETENTION_UNLIMITED = FH_RETENTION_TYPES.FH_RETENTION_UNLIMITED;
-pub const FH_RETENTION_AGE_BASED = FH_RETENTION_TYPES.FH_RETENTION_AGE_BASED;
-pub const MAX_RETENTION_TYPE = FH_RETENTION_TYPES.MAX_RETENTION_TYPE;
-
 pub const FH_BACKUP_STATUS = enum(i32) {
     FH_STATUS_DISABLED = 0,
     FH_STATUS_DISABLED_BY_GP = 1,
@@ -189,6 +79,78 @@ pub const FH_NAMESPACE_EXISTS = FH_DEVICE_VALIDATION_RESULT.FH_NAMESPACE_EXISTS;
 pub const FH_TARGET_PART_OF_LIBRARY = FH_DEVICE_VALIDATION_RESULT.FH_TARGET_PART_OF_LIBRARY;
 pub const FH_VALID_TARGET = FH_DEVICE_VALIDATION_RESULT.FH_VALID_TARGET;
 pub const MAX_VALIDATION_RESULT = FH_DEVICE_VALIDATION_RESULT.MAX_VALIDATION_RESULT;
+
+pub const FH_LOCAL_POLICY_TYPE = enum(i32) {
+    FH_FREQUENCY = 0,
+    FH_RETENTION_TYPE = 1,
+    FH_RETENTION_AGE = 2,
+    MAX_LOCAL_POLICY = 3,
+};
+pub const FH_FREQUENCY = FH_LOCAL_POLICY_TYPE.FH_FREQUENCY;
+pub const FH_RETENTION_TYPE = FH_LOCAL_POLICY_TYPE.FH_RETENTION_TYPE;
+pub const FH_RETENTION_AGE = FH_LOCAL_POLICY_TYPE.FH_RETENTION_AGE;
+pub const MAX_LOCAL_POLICY = FH_LOCAL_POLICY_TYPE.MAX_LOCAL_POLICY;
+
+pub const FH_PROTECTED_ITEM_CATEGORY = enum(i32) {
+    FH_FOLDER = 0,
+    FH_LIBRARY = 1,
+    MAX_PROTECTED_ITEM_CATEGORY = 2,
+};
+pub const FH_FOLDER = FH_PROTECTED_ITEM_CATEGORY.FH_FOLDER;
+pub const FH_LIBRARY = FH_PROTECTED_ITEM_CATEGORY.FH_LIBRARY;
+pub const MAX_PROTECTED_ITEM_CATEGORY = FH_PROTECTED_ITEM_CATEGORY.MAX_PROTECTED_ITEM_CATEGORY;
+
+pub const FH_RETENTION_TYPES = enum(i32) {
+    FH_RETENTION_DISABLED = 0,
+    FH_RETENTION_UNLIMITED = 1,
+    FH_RETENTION_AGE_BASED = 2,
+    MAX_RETENTION_TYPE = 3,
+};
+pub const FH_RETENTION_DISABLED = FH_RETENTION_TYPES.FH_RETENTION_DISABLED;
+pub const FH_RETENTION_UNLIMITED = FH_RETENTION_TYPES.FH_RETENTION_UNLIMITED;
+pub const FH_RETENTION_AGE_BASED = FH_RETENTION_TYPES.FH_RETENTION_AGE_BASED;
+pub const MAX_RETENTION_TYPE = FH_RETENTION_TYPES.MAX_RETENTION_TYPE;
+
+pub const FH_TARGET_DRIVE_TYPES = enum(i32) {
+    UNKNOWN = 0,
+    REMOVABLE = 2,
+    FIXED = 3,
+    REMOTE = 4,
+};
+pub const FH_DRIVE_UNKNOWN = FH_TARGET_DRIVE_TYPES.UNKNOWN;
+pub const FH_DRIVE_REMOVABLE = FH_TARGET_DRIVE_TYPES.REMOVABLE;
+pub const FH_DRIVE_FIXED = FH_TARGET_DRIVE_TYPES.FIXED;
+pub const FH_DRIVE_REMOTE = FH_TARGET_DRIVE_TYPES.REMOTE;
+
+pub const FH_TARGET_PROPERTY_TYPE = enum(i32) {
+    FH_TARGET_NAME = 0,
+    FH_TARGET_URL = 1,
+    FH_TARGET_DRIVE_TYPE = 2,
+    MAX_TARGET_PROPERTY = 3,
+};
+pub const FH_TARGET_NAME = FH_TARGET_PROPERTY_TYPE.FH_TARGET_NAME;
+pub const FH_TARGET_URL = FH_TARGET_PROPERTY_TYPE.FH_TARGET_URL;
+pub const FH_TARGET_DRIVE_TYPE = FH_TARGET_PROPERTY_TYPE.FH_TARGET_DRIVE_TYPE;
+pub const MAX_TARGET_PROPERTY = FH_TARGET_PROPERTY_TYPE.MAX_TARGET_PROPERTY;
+
+pub const FhBackupStopReason = enum(i32) {
+    InvalidStopReason = 0,
+    LimitUserBusyMachineOnAC = 1,
+    LimitUserIdleMachineOnDC = 2,
+    LimitUserBusyMachineOnDC = 3,
+    Cancelled = 4,
+};
+pub const BackupInvalidStopReason = FhBackupStopReason.InvalidStopReason;
+pub const BackupLimitUserBusyMachineOnAC = FhBackupStopReason.LimitUserBusyMachineOnAC;
+pub const BackupLimitUserIdleMachineOnDC = FhBackupStopReason.LimitUserIdleMachineOnDC;
+pub const BackupLimitUserBusyMachineOnDC = FhBackupStopReason.LimitUserBusyMachineOnDC;
+pub const BackupCancelled = FhBackupStopReason.Cancelled;
+
+const CLSID_FhConfigMgr_Value = Guid.initString("ed43bb3c-09e9-498a-9df6-2177244c6db4");
+pub const CLSID_FhConfigMgr = &CLSID_FhConfigMgr_Value;
+
+const CLSID_FhReassociation_Value = Guid.initString("4d728e35-16fa-4320-9e8b-bfd7100a8846");
+pub const CLSID_FhReassociation = &CLSID_FhReassociation_Value;
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IFhConfigMgr_Value = Guid.initString("6a5fea5b-bf8f-4ee5-b8c3-44d8a0d7331c");
@@ -356,23 +318,71 @@ pub const IFhReassociation = extern union {
     }
 };
 
-pub const FhBackupStopReason = enum(i32) {
-    InvalidStopReason = 0,
-    LimitUserBusyMachineOnAC = 1,
-    LimitUserIdleMachineOnDC = 2,
-    LimitUserBusyMachineOnDC = 3,
-    Cancelled = 4,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IFhScopeIterator_Value = Guid.initString("3197abce-532a-44c6-8615-f3666566a720");
+pub const IID_IFhScopeIterator = &IID_IFhScopeIterator_Value;
+pub const IFhScopeIterator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveToNextItem: *const fn(
+            self: *const IFhScopeIterator,
+        ) callconv(.winapi) HRESULT,
+        GetItem: *const fn(
+            self: *const IFhScopeIterator,
+            Item: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveToNextItem(self: *const IFhScopeIterator) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveToNextItem(self);
+    }
+    pub fn GetItem(self: *const IFhScopeIterator, Item: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, Item);
+    }
 };
-pub const BackupInvalidStopReason = FhBackupStopReason.InvalidStopReason;
-pub const BackupLimitUserBusyMachineOnAC = FhBackupStopReason.LimitUserBusyMachineOnAC;
-pub const BackupLimitUserIdleMachineOnDC = FhBackupStopReason.LimitUserIdleMachineOnDC;
-pub const BackupLimitUserBusyMachineOnDC = FhBackupStopReason.LimitUserBusyMachineOnDC;
-pub const BackupCancelled = FhBackupStopReason.Cancelled;
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IFhTarget_Value = Guid.initString("d87965fd-2bad-4657-bd3b-9567eb300ced");
+pub const IID_IFhTarget = &IID_IFhTarget_Value;
+pub const IFhTarget = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStringProperty: *const fn(
+            self: *const IFhTarget,
+            PropertyType: FH_TARGET_PROPERTY_TYPE,
+            PropertyValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetNumericalProperty: *const fn(
+            self: *const IFhTarget,
+            PropertyType: FH_TARGET_PROPERTY_TYPE,
+            PropertyValue: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStringProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringProperty(self, PropertyType, PropertyValue);
+    }
+    pub fn GetNumericalProperty(self: *const IFhTarget, PropertyType: FH_TARGET_PROPERTY_TYPE, PropertyValue: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumericalProperty(self, PropertyType, PropertyValue);
+    }
+};
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "fhsvcctl" fn FhServiceBlockBackup(
+    Pipe: FH_SERVICE_PIPE_HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "fhsvcctl" fn FhServiceClosePipe(
+    Pipe: FH_SERVICE_PIPE_HANDLE,
+) callconv(.winapi) HRESULT;
+
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fhsvcctl" fn FhServiceOpenPipe(
     StartServiceIfStopped: BOOL,
@@ -380,7 +390,7 @@ pub extern "fhsvcctl" fn FhServiceOpenPipe(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceClosePipe(
+pub extern "fhsvcctl" fn FhServiceReloadConfiguration(
     Pipe: FH_SERVICE_PIPE_HANDLE,
 ) callconv(.winapi) HRESULT;
 
@@ -394,16 +404,6 @@ pub extern "fhsvcctl" fn FhServiceStartBackup(
 pub extern "fhsvcctl" fn FhServiceStopBackup(
     Pipe: FH_SERVICE_PIPE_HANDLE,
     StopTracking: BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceReloadConfiguration(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceBlockBackup(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

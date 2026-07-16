@@ -2,193 +2,778 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (68)
 //--------------------------------------------------------------------------------
+pub const BREADCRUMBING_UNSUPPORTED = @as(u32, 0);
+pub const BREADCRUMBING_VERSION_1 = @as(u32, 1);
+pub const GNSS_AGNSSFORMAT_LTO = @as(u32, 4);
+pub const GNSS_AGNSSFORMAT_XTRA1 = @as(u32, 1);
+pub const GNSS_AGNSSFORMAT_XTRA2 = @as(u32, 2);
+pub const GNSS_AGNSSFORMAT_XTRA3 = @as(u32, 8);
+pub const GNSS_AGNSSFORMAT_XTRA3_1 = @as(u32, 16);
+pub const GNSS_AGNSSFORMAT_XTRA3_2 = @as(u32, 32);
+pub const GNSS_AGNSSFORMAT_XTRA_INT = @as(u32, 64);
 pub const GNSS_DRIVER_VERSION_1 = @as(u32, 1);
 pub const GNSS_DRIVER_VERSION_2 = @as(u32, 2);
 pub const GNSS_DRIVER_VERSION_3 = @as(u32, 3);
 pub const GNSS_DRIVER_VERSION_4 = @as(u32, 4);
 pub const GNSS_DRIVER_VERSION_5 = @as(u32, 5);
 pub const GNSS_DRIVER_VERSION_6 = @as(u32, 6);
-pub const IOCTL_GNSS_SEND_PLATFORM_CAPABILITY = @as(u32, 2228228);
-pub const IOCTL_GNSS_GET_DEVICE_CAPABILITY = @as(u32, 2228232);
-pub const IOCTL_GNSS_SEND_DRIVERCOMMAND = @as(u32, 2228236);
-pub const IOCTL_GNSS_START_FIXSESSION = @as(u32, 2228288);
-pub const IOCTL_GNSS_MODIFY_FIXSESSION = @as(u32, 2228292);
-pub const IOCTL_GNSS_STOP_FIXSESSION = @as(u32, 2228296);
-pub const IOCTL_GNSS_GET_FIXDATA = @as(u32, 2228300);
-pub const IOCTL_GNSS_INJECT_AGNSS = @as(u32, 2228352);
-pub const IOCTL_GNSS_LISTEN_AGNSS = @as(u32, 2228416);
-pub const IOCTL_GNSS_LISTEN_ERROR = @as(u32, 2228420);
-pub const IOCTL_GNSS_LISTEN_NI = @as(u32, 2228480);
-pub const IOCTL_GNSS_SET_SUPL_HSLP = @as(u32, 2228484);
-pub const IOCTL_GNSS_CONFIG_SUPL_CERT = @as(u32, 2228488);
-pub const IOCTL_GNSS_RESPOND_NI = @as(u32, 2228492);
-pub const IOCTL_GNSS_EXECUTE_CWTEST = @as(u32, 2228496);
-pub const IOCTL_GNSS_EXECUTE_SELFTEST = @as(u32, 2228500);
-pub const IOCTL_GNSS_GET_CHIPSETINFO = @as(u32, 2228504);
-pub const IOCTL_GNSS_LISTEN_NMEA = @as(u32, 2228508);
-pub const IOCTL_GNSS_SET_V2UPL_CONFIG = @as(u32, 2228512);
-pub const IOCTL_GNSS_CREATE_GEOFENCE = @as(u32, 2228544);
-pub const IOCTL_GNSS_DELETE_GEOFENCE = @as(u32, 2228548);
-pub const IOCTL_GNSS_LISTEN_GEOFENCE_ALERT = @as(u32, 2228552);
-pub const IOCTL_GNSS_LISTEN_GEOFENCES_TRACKINGSTATUS = @as(u32, 2228556);
-pub const IOCTL_GNSS_LISTEN_DRIVER_REQUEST = @as(u32, 2228608);
-pub const IOCTL_GNSS_START_BREADCRUMBING = @as(u32, 2228672);
-pub const IOCTL_GNSS_STOP_BREADCRUMBING = @as(u32, 2228676);
-pub const IOCTL_GNSS_LISTEN_BREADCRUMBING_ALERT = @as(u32, 2228680);
-pub const IOCTL_GNSS_POP_BREADCRUMBS = @as(u32, 2228684);
-pub const GNSS_AGNSSFORMAT_XTRA1 = @as(u32, 1);
-pub const GNSS_AGNSSFORMAT_XTRA2 = @as(u32, 2);
-pub const GNSS_AGNSSFORMAT_LTO = @as(u32, 4);
-pub const GNSS_AGNSSFORMAT_XTRA3 = @as(u32, 8);
-pub const GNSS_AGNSSFORMAT_XTRA3_1 = @as(u32, 16);
-pub const GNSS_AGNSSFORMAT_XTRA3_2 = @as(u32, 32);
-pub const GNSS_AGNSSFORMAT_XTRA_INT = @as(u32, 64);
-pub const MAX_SERVER_URL_NAME = @as(u32, 260);
-pub const MIN_GEOFENCES_REQUIRED = @as(u32, 100);
-pub const BREADCRUMBING_UNSUPPORTED = @as(u32, 0);
-pub const BREADCRUMBING_VERSION_1 = @as(u32, 1);
-pub const MIN_BREADCRUMBS_SUPPORTED = @as(u32, 120);
-pub const GNSS_SATELLITE_ANY = @as(u32, 0);
-pub const GNSS_SATELLITE_GPS = @as(u32, 1);
-pub const GNSS_SATELLITE_GLONASS = @as(u32, 2);
-pub const GNSS_SATELLITE_BEIDOU = @as(u32, 4);
-pub const GNSS_SATELLITE_GALILEO = @as(u32, 8);
+pub const GNSS_FIXDETAIL_ACCURACY = @as(u32, 2);
+pub const GNSS_FIXDETAIL_BASIC = @as(u32, 1);
+pub const GNSS_FIXDETAIL_SATELLITE = @as(u32, 4);
+pub const GNSS_GEOFENCESUPPORT_CIRCLE = @as(u32, 2);
+pub const GNSS_GEOFENCESUPPORT_SUPPORTED = @as(u32, 1);
+pub const GNSS_MAXSATELLITE = @as(u32, 64);
+pub const GNSS_NMEALOGGING_ALL = @as(u32, 255);
+pub const GNSS_NMEALOGGING_NONE = @as(u32, 0);
+pub const GNSS_OPERMODE_AFLT = @as(u32, 16);
 pub const GNSS_OPERMODE_ANY = @as(u32, 0);
+pub const GNSS_OPERMODE_CELLID = @as(u32, 8);
 pub const GNSS_OPERMODE_MSA = @as(u32, 1);
 pub const GNSS_OPERMODE_MSB = @as(u32, 2);
 pub const GNSS_OPERMODE_MSS = @as(u32, 4);
-pub const GNSS_OPERMODE_CELLID = @as(u32, 8);
-pub const GNSS_OPERMODE_AFLT = @as(u32, 16);
 pub const GNSS_OPERMODE_OTDOA = @as(u32, 32);
-pub const GNSS_NMEALOGGING_NONE = @as(u32, 0);
-pub const GNSS_NMEALOGGING_ALL = @as(u32, 255);
-pub const GNSS_FIXDETAIL_BASIC = @as(u32, 1);
-pub const GNSS_FIXDETAIL_ACCURACY = @as(u32, 2);
-pub const GNSS_FIXDETAIL_SATELLITE = @as(u32, 4);
-pub const GNSS_MAXSATELLITE = @as(u32, 64);
-pub const GNSS_GEOFENCESUPPORT_SUPPORTED = @as(u32, 1);
-pub const GNSS_GEOFENCESUPPORT_CIRCLE = @as(u32, 2);
-pub const LOCATION_API_VERSION = @as(u32, 1);
+pub const GNSS_SATELLITE_ANY = @as(u32, 0);
+pub const GNSS_SATELLITE_BEIDOU = @as(u32, 4);
+pub const GNSS_SATELLITE_GALILEO = @as(u32, 8);
+pub const GNSS_SATELLITE_GLONASS = @as(u32, 2);
+pub const GNSS_SATELLITE_GPS = @as(u32, 1);
 pub const GUID_DEVINTERFACE_GNSS = Guid.initString("3336e5e4-018a-4669-84c5-bd05f3bd368b");
+pub const IOCTL_GNSS_CONFIG_SUPL_CERT = @as(u32, 2228488);
+pub const IOCTL_GNSS_CREATE_GEOFENCE = @as(u32, 2228544);
+pub const IOCTL_GNSS_DELETE_GEOFENCE = @as(u32, 2228548);
+pub const IOCTL_GNSS_EXECUTE_CWTEST = @as(u32, 2228496);
+pub const IOCTL_GNSS_EXECUTE_SELFTEST = @as(u32, 2228500);
+pub const IOCTL_GNSS_GET_CHIPSETINFO = @as(u32, 2228504);
+pub const IOCTL_GNSS_GET_DEVICE_CAPABILITY = @as(u32, 2228232);
+pub const IOCTL_GNSS_GET_FIXDATA = @as(u32, 2228300);
+pub const IOCTL_GNSS_INJECT_AGNSS = @as(u32, 2228352);
+pub const IOCTL_GNSS_LISTEN_AGNSS = @as(u32, 2228416);
+pub const IOCTL_GNSS_LISTEN_BREADCRUMBING_ALERT = @as(u32, 2228680);
+pub const IOCTL_GNSS_LISTEN_DRIVER_REQUEST = @as(u32, 2228608);
+pub const IOCTL_GNSS_LISTEN_ERROR = @as(u32, 2228420);
+pub const IOCTL_GNSS_LISTEN_GEOFENCE_ALERT = @as(u32, 2228552);
+pub const IOCTL_GNSS_LISTEN_GEOFENCES_TRACKINGSTATUS = @as(u32, 2228556);
+pub const IOCTL_GNSS_LISTEN_NI = @as(u32, 2228480);
+pub const IOCTL_GNSS_LISTEN_NMEA = @as(u32, 2228508);
+pub const IOCTL_GNSS_MODIFY_FIXSESSION = @as(u32, 2228292);
+pub const IOCTL_GNSS_POP_BREADCRUMBS = @as(u32, 2228684);
+pub const IOCTL_GNSS_RESPOND_NI = @as(u32, 2228492);
+pub const IOCTL_GNSS_SEND_DRIVERCOMMAND = @as(u32, 2228236);
+pub const IOCTL_GNSS_SEND_PLATFORM_CAPABILITY = @as(u32, 2228228);
+pub const IOCTL_GNSS_SET_SUPL_HSLP = @as(u32, 2228484);
+pub const IOCTL_GNSS_SET_V2UPL_CONFIG = @as(u32, 2228512);
+pub const IOCTL_GNSS_START_BREADCRUMBING = @as(u32, 2228672);
+pub const IOCTL_GNSS_START_FIXSESSION = @as(u32, 2228288);
+pub const IOCTL_GNSS_STOP_BREADCRUMBING = @as(u32, 2228676);
+pub const IOCTL_GNSS_STOP_FIXSESSION = @as(u32, 2228296);
+pub const LOCATION_API_VERSION = @as(u32, 1);
+pub const MAX_SERVER_URL_NAME = @as(u32, 260);
+pub const MIN_BREADCRUMBS_SUPPORTED = @as(u32, 120);
+pub const MIN_GEOFENCES_REQUIRED = @as(u32, 100);
 
 //--------------------------------------------------------------------------------
 // Section: Types (87)
 //--------------------------------------------------------------------------------
-const CLSID_Location_Value = Guid.initString("e5b8e079-ee6d-4e33-a438-c87f2e959254");
-pub const CLSID_Location = &CLSID_Location_Value;
+const IID__ICivicAddressReportFactoryEvents_Value = Guid.initString("c96039ff-72ec-4617-89bd-84d88bedc722");
+pub const IID__ICivicAddressReportFactoryEvents = &IID__ICivicAddressReportFactoryEvents_Value;
+pub const _ICivicAddressReportFactoryEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
 
-const CLSID_DefaultLocation_Value = Guid.initString("8b7fbfe0-5cd7-494a-af8c-283a65707506");
-pub const CLSID_DefaultLocation = &CLSID_DefaultLocation_Value;
-
-const CLSID_LatLongReport_Value = Guid.initString("ed81c073-1f84-4ca8-a161-183c776bc651");
-pub const CLSID_LatLongReport = &CLSID_LatLongReport_Value;
+const IID__ILatLongReportFactoryEvents_Value = Guid.initString("16ee6cb7-ab3c-424b-849f-269be551fcbc");
+pub const IID__ILatLongReportFactoryEvents = &IID__ILatLongReportFactoryEvents_Value;
+pub const _ILatLongReportFactoryEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
 
 const CLSID_CivicAddressReport_Value = Guid.initString("d39e7bdd-7d05-46b8-8721-80cf035f57d7");
 pub const CLSID_CivicAddressReport = &CLSID_CivicAddressReport_Value;
 
-const CLSID_LatLongReportFactory_Value = Guid.initString("9dcc3cc8-8609-4863-bad4-03601f4c65e8");
-pub const CLSID_LatLongReportFactory = &CLSID_LatLongReportFactory_Value;
-
 const CLSID_CivicAddressReportFactory_Value = Guid.initString("2a11f42c-3e81-4ad4-9cbe-45579d89671a");
 pub const CLSID_CivicAddressReportFactory = &CLSID_CivicAddressReportFactory_Value;
 
-const CLSID_DispLatLongReport_Value = Guid.initString("7a7c3277-8f84-4636-95b2-ebb5507ff77e");
-pub const CLSID_DispLatLongReport = &CLSID_DispLatLongReport_Value;
+const CLSID_DefaultLocation_Value = Guid.initString("8b7fbfe0-5cd7-494a-af8c-283a65707506");
+pub const CLSID_DefaultLocation = &CLSID_DefaultLocation_Value;
 
 const CLSID_DispCivicAddressReport_Value = Guid.initString("4c596aec-8544-4082-ba9f-eb0a7d8e65c6");
 pub const CLSID_DispCivicAddressReport = &CLSID_DispCivicAddressReport_Value;
 
-pub const LOCATION_REPORT_STATUS = enum(i32) {
-    NOT_SUPPORTED = 0,
-    ERROR = 1,
-    ACCESS_DENIED = 2,
-    INITIALIZING = 3,
-    RUNNING = 4,
-};
-pub const REPORT_NOT_SUPPORTED = LOCATION_REPORT_STATUS.NOT_SUPPORTED;
-pub const REPORT_ERROR = LOCATION_REPORT_STATUS.ERROR;
-pub const REPORT_ACCESS_DENIED = LOCATION_REPORT_STATUS.ACCESS_DENIED;
-pub const REPORT_INITIALIZING = LOCATION_REPORT_STATUS.INITIALIZING;
-pub const REPORT_RUNNING = LOCATION_REPORT_STATUS.RUNNING;
+const CLSID_DispLatLongReport_Value = Guid.initString("7a7c3277-8f84-4636-95b2-ebb5507ff77e");
+pub const CLSID_DispLatLongReport = &CLSID_DispLatLongReport_Value;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_ILocationReport_Value = Guid.initString("c8b7f7ee-75d0-4db9-b62d-7a0f369ca456");
-pub const IID_ILocationReport = &IID_ILocationReport_Value;
-pub const ILocationReport = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSensorID: *const fn(
-            self: *const ILocationReport,
-            pSensorID: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetTimestamp: *const fn(
-            self: *const ILocationReport,
-            pCreationTime: ?*SYSTEMTIME,
-        ) callconv(.winapi) HRESULT,
-        GetValue: *const fn(
-            self: *const ILocationReport,
-            pKey: ?*const PROPERTYKEY,
-            pValue: ?*PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSensorID(self: *const ILocationReport, pSensorID: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSensorID(self, pSensorID);
-    }
-    pub fn GetTimestamp(self: *const ILocationReport, pCreationTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTimestamp(self, pCreationTime);
-    }
-    pub fn GetValue(self: *const ILocationReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, pKey, pValue);
-    }
+pub const GNSS_AGNSS_INJECT = extern struct {
+    Size: u32,
+    Version: u32,
+    InjectionType: GNSS_AGNSS_REQUEST_TYPE,
+    InjectionStatus: NTSTATUS,
+    InjectionDataSize: u32,
+    Unused: [512]u8,
+    Anonymous: extern union {
+        Time: GNSS_AGNSS_INJECTTIME,
+        Position: GNSS_AGNSS_INJECTPOSITION,
+        BlobData: GNSS_AGNSS_INJECTBLOB,
+    },
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_ILatLongReport_Value = Guid.initString("7fed806d-0ef8-4f07-80ac-36a0beae3134");
-pub const IID_ILatLongReport = &IID_ILatLongReport_Value;
-pub const ILatLongReport = extern union {
-    pub const VTable = extern struct {
-        base: ILocationReport.VTable,
-        GetLatitude: *const fn(
-            self: *const ILatLongReport,
-            pLatitude: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        GetLongitude: *const fn(
-            self: *const ILatLongReport,
-            pLongitude: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        GetErrorRadius: *const fn(
-            self: *const ILatLongReport,
-            pErrorRadius: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        GetAltitude: *const fn(
-            self: *const ILatLongReport,
-            pAltitude: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        GetAltitudeError: *const fn(
-            self: *const ILatLongReport,
-            pAltitudeError: ?*f64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ILocationReport: ILocationReport,
-    IUnknown: IUnknown,
-    pub fn GetLatitude(self: *const ILatLongReport, pLatitude: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLatitude(self, pLatitude);
-    }
-    pub fn GetLongitude(self: *const ILatLongReport, pLongitude: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLongitude(self, pLongitude);
-    }
-    pub fn GetErrorRadius(self: *const ILatLongReport, pErrorRadius: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetErrorRadius(self, pErrorRadius);
-    }
-    pub fn GetAltitude(self: *const ILatLongReport, pAltitude: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAltitude(self, pAltitude);
-    }
-    pub fn GetAltitudeError(self: *const ILatLongReport, pAltitudeError: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAltitudeError(self, pAltitudeError);
-    }
+pub const GNSS_AGNSS_INJECTBLOB = extern struct {
+    Size: u32,
+    Version: u32,
+    BlobOui: u32,
+    BlobVersion: u32,
+    AgnssFormat: u32,
+    BlobSize: u32,
+    BlobData: [1]u8,
+};
+
+pub const GNSS_AGNSS_INJECTPOSITION = extern struct {
+    Size: u32,
+    Version: u32,
+    Age: u32,
+    BasicData: GNSS_FIXDATA_BASIC,
+    AccuracyData: GNSS_FIXDATA_ACCURACY,
+};
+
+pub const GNSS_AGNSS_INJECTTIME = extern struct {
+    Size: u32,
+    Version: u32,
+    UtcTime: FILETIME,
+    TimeUncertainty: u32,
+};
+
+pub const GNSS_AGNSS_REQUEST_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    RequestType: GNSS_AGNSS_REQUEST_TYPE,
+    BlobFormat: u32,
+};
+
+pub const GNSS_AGNSS_REQUEST_TYPE = enum(i32) {
+    TimeInjection = 1,
+    PositionInjection = 2,
+    BlobInjection = 3,
+};
+pub const GNSS_AGNSS_TimeInjection = GNSS_AGNSS_REQUEST_TYPE.TimeInjection;
+pub const GNSS_AGNSS_PositionInjection = GNSS_AGNSS_REQUEST_TYPE.PositionInjection;
+pub const GNSS_AGNSS_BlobInjection = GNSS_AGNSS_REQUEST_TYPE.BlobInjection;
+
+pub const GNSS_BREADCRUMB_LIST = extern struct {
+    Size: u32,
+    Version: u32,
+    NumCrumbs: u32,
+    Anonymous: extern union {
+        v1: [50]GNSS_BREADCRUMB_V1,
+    },
+};
+
+pub const GNSS_BREADCRUMB_V1 = extern struct {
+    FixTimeStamp: FILETIME,
+    Latitude: f64,
+    Longitude: f64,
+    HorizontalAccuracy: u32,
+    Speed: u16,
+    SpeedAccuracy: u16,
+    Altitude: i16,
+    AltitudeAccuracy: u16,
+    Heading: i16,
+    HeadingAccuracy: u8,
+    FixSuccess: u8,
+};
+
+pub const GNSS_BREADCRUMBING_ALERT_DATA = extern struct {
+    Size: u32,
+    Version: u32,
+    Unused: [512]u8,
+};
+
+pub const GNSS_BREADCRUMBING_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    MaximumHorizontalUncertainty: u32,
+    MinDistanceBetweenFixes: u32,
+    MaximumErrorTimeoutMs: u32,
+    Unused: [512]u8,
+};
+
+pub const GNSS_CHIPSETINFO = extern struct {
+    Size: u32,
+    Version: u32,
+    ManufacturerID: [25]u16,
+    HardwareID: [25]u16,
+    FirmwareVersion: [20]u16,
+    Unused: [512]u8,
+};
+
+pub const GNSS_CONTINUOUSTRACKING_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    PreferredInterval: u32,
+};
+
+pub const GNSS_CP_NI_INFO = extern struct {
+    Size: u32,
+    Version: u32,
+    RequestorId: [260]u16,
+    NotificationText: [260]u16,
+};
+
+pub const GNSS_CWTESTDATA = extern struct {
+    Size: u32,
+    Version: u32,
+    TestResultStatus: NTSTATUS,
+    SignalToNoiseRatio: f64,
+    Frequency: f64,
+    Unused: [512]u8,
+};
+
+pub const GNSS_DEVICE_CAPABILITY = extern struct {
+    Size: u32,
+    Version: u32,
+    SupportMultipleFixSessions: BOOL,
+    SupportMultipleAppSessions: BOOL,
+    RequireAGnssInjection: BOOL,
+    AgnssFormatSupported: u32,
+    AgnssFormatPreferred: u32,
+    SupportDistanceTracking: BOOL,
+    SupportContinuousTracking: BOOL,
+    Reserved1: u32,
+    Reserved2: BOOL,
+    Reserved3: BOOL,
+    Reserved4: BOOL,
+    Reserved5: BOOL,
+    GeofencingSupport: u32,
+    Reserved6: BOOL,
+    Reserved7: BOOL,
+    SupportCpLocation: BOOL,
+    SupportUplV2: BOOL,
+    SupportSuplV1: BOOL,
+    SupportSuplV2: BOOL,
+    SupportedSuplVersion: GNSS_SUPL_VERSION,
+    MaxGeofencesSupported: u32,
+    SupportMultipleSuplRootCert: BOOL,
+    GnssBreadCrumbPayloadVersion: u32,
+    MaxGnssBreadCrumbFixes: u32,
+    Unused: [496]u8,
+};
+
+pub const GNSS_DISTANCETRACKING_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    MovementThreshold: u32,
+};
+
+pub const GNSS_DRIVER_REQUEST = enum(i32) {
+    A = 1,
+};
+pub const SUPL_CONFIG_DATA = GNSS_DRIVER_REQUEST.A;
+
+pub const GNSS_DRIVER_REQUEST_DATA = extern struct {
+    Size: u32,
+    Version: u32,
+    Request: GNSS_DRIVER_REQUEST,
+    RequestFlag: u32,
+};
+
+pub const GNSS_DRIVERCOMMAND_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    CommandType: GNSS_DRIVERCOMMAND_TYPE,
+    Reserved: u32,
+    CommandDataSize: u32,
+    Unused: [512]u8,
+    CommandData: [1]u8,
+};
+
+pub const GNSS_DRIVERCOMMAND_TYPE = enum(i32) {
+    SetLocationServiceEnabled = 1,
+    SetLocationNIRequestAllowed = 2,
+    ForceSatelliteSystem = 3,
+    ForceOperationMode = 4,
+    ResetEngine = 9,
+    ClearAgnssData = 10,
+    SetSuplVersion = 12,
+    SetNMEALogging = 13,
+    SetUplServerAccessInterval = 14,
+    SetNiTimeoutInterval = 15,
+    ResetGeofencesTracking = 16,
+    SetSuplVersion2 = 17,
+    CustomCommand = 256,
+};
+pub const GNSS_SetLocationServiceEnabled = GNSS_DRIVERCOMMAND_TYPE.SetLocationServiceEnabled;
+pub const GNSS_SetLocationNIRequestAllowed = GNSS_DRIVERCOMMAND_TYPE.SetLocationNIRequestAllowed;
+pub const GNSS_ForceSatelliteSystem = GNSS_DRIVERCOMMAND_TYPE.ForceSatelliteSystem;
+pub const GNSS_ForceOperationMode = GNSS_DRIVERCOMMAND_TYPE.ForceOperationMode;
+pub const GNSS_ResetEngine = GNSS_DRIVERCOMMAND_TYPE.ResetEngine;
+pub const GNSS_ClearAgnssData = GNSS_DRIVERCOMMAND_TYPE.ClearAgnssData;
+pub const GNSS_SetSuplVersion = GNSS_DRIVERCOMMAND_TYPE.SetSuplVersion;
+pub const GNSS_SetNMEALogging = GNSS_DRIVERCOMMAND_TYPE.SetNMEALogging;
+pub const GNSS_SetUplServerAccessInterval = GNSS_DRIVERCOMMAND_TYPE.SetUplServerAccessInterval;
+pub const GNSS_SetNiTimeoutInterval = GNSS_DRIVERCOMMAND_TYPE.SetNiTimeoutInterval;
+pub const GNSS_ResetGeofencesTracking = GNSS_DRIVERCOMMAND_TYPE.ResetGeofencesTracking;
+pub const GNSS_SetSuplVersion2 = GNSS_DRIVERCOMMAND_TYPE.SetSuplVersion2;
+pub const GNSS_CustomCommand = GNSS_DRIVERCOMMAND_TYPE.CustomCommand;
+
+pub const GNSS_ERRORINFO = extern struct {
+    Size: u32,
+    Version: u32,
+    ErrorCode: u32,
+    IsRecoverable: BOOL,
+    ErrorDescription: [256]u16,
+    Unused: [512]u8,
+};
+
+pub const GNSS_EVENT = extern struct {
+    Size: u32,
+    Version: u32,
+    EventType: GNSS_EVENT_TYPE,
+    EventDataSize: u32,
+    Unused: [512]u8,
+    Anonymous: extern union {
+        FixData: GNSS_FIXDATA,
+        AgnssRequest: GNSS_AGNSS_REQUEST_PARAM,
+        NiRequest: GNSS_NI_REQUEST_PARAM,
+        ErrorInformation: GNSS_ERRORINFO,
+        NmeaData: GNSS_NMEA_DATA,
+        GeofenceAlertData: GNSS_GEOFENCE_ALERT_DATA,
+        BreadcrumbAlertData: GNSS_BREADCRUMBING_ALERT_DATA,
+        GeofencesTrackingStatus: GNSS_GEOFENCES_TRACKINGSTATUS_DATA,
+        DriverRequestData: GNSS_DRIVER_REQUEST_DATA,
+        CustomData: [1]u8,
+    },
+};
+
+pub const GNSS_EVENT_2 = extern struct {
+    Size: u32,
+    Version: u32,
+    EventType: GNSS_EVENT_TYPE,
+    EventDataSize: u32,
+    Unused: [512]u8,
+    Anonymous: extern union {
+        FixData: GNSS_FIXDATA,
+        FixData2: GNSS_FIXDATA_2,
+        AgnssRequest: GNSS_AGNSS_REQUEST_PARAM,
+        NiRequest: GNSS_NI_REQUEST_PARAM,
+        ErrorInformation: GNSS_ERRORINFO,
+        NmeaData: GNSS_NMEA_DATA,
+        GeofenceAlertData: GNSS_GEOFENCE_ALERT_DATA,
+        BreadcrumbAlertData: GNSS_BREADCRUMBING_ALERT_DATA,
+        GeofencesTrackingStatus: GNSS_GEOFENCES_TRACKINGSTATUS_DATA,
+        DriverRequestData: GNSS_DRIVER_REQUEST_DATA,
+        CustomData: [1]u8,
+    },
+};
+
+pub const GNSS_EVENT_TYPE = enum(i32) {
+    FixAvailable = 1,
+    RequireAgnss = 2,
+    Error = 3,
+    NiRequest = 12,
+    NmeaData = 13,
+    GeofenceAlertData = 14,
+    GeofencesTrackingStatus = 15,
+    DriverRequest = 16,
+    BreadcrumbAlertEvent = 17,
+    FixAvailable_2 = 18,
+    Custom = 32768,
+};
+pub const GNSS_Event_FixAvailable = GNSS_EVENT_TYPE.FixAvailable;
+pub const GNSS_Event_RequireAgnss = GNSS_EVENT_TYPE.RequireAgnss;
+pub const GNSS_Event_Error = GNSS_EVENT_TYPE.Error;
+pub const GNSS_Event_NiRequest = GNSS_EVENT_TYPE.NiRequest;
+pub const GNSS_Event_NmeaData = GNSS_EVENT_TYPE.NmeaData;
+pub const GNSS_Event_GeofenceAlertData = GNSS_EVENT_TYPE.GeofenceAlertData;
+pub const GNSS_Event_GeofencesTrackingStatus = GNSS_EVENT_TYPE.GeofencesTrackingStatus;
+pub const GNSS_Event_DriverRequest = GNSS_EVENT_TYPE.DriverRequest;
+pub const GNSS_Event_BreadcrumbAlertEvent = GNSS_EVENT_TYPE.BreadcrumbAlertEvent;
+pub const GNSS_Event_FixAvailable_2 = GNSS_EVENT_TYPE.FixAvailable_2;
+pub const GNSS_Event_Custom = GNSS_EVENT_TYPE.Custom;
+
+pub const GNSS_FIXDATA = extern struct {
+    Size: u32,
+    Version: u32,
+    FixSessionID: u32,
+    FixTimeStamp: FILETIME,
+    IsFinalFix: BOOL,
+    FixStatus: NTSTATUS,
+    FixLevelOfDetails: u32,
+    BasicData: GNSS_FIXDATA_BASIC,
+    AccuracyData: GNSS_FIXDATA_ACCURACY,
+    SatelliteData: GNSS_FIXDATA_SATELLITE,
+};
+
+pub const GNSS_FIXDATA_2 = extern struct {
+    Size: u32,
+    Version: u32,
+    FixSessionID: u32,
+    FixTimeStamp: FILETIME,
+    IsFinalFix: BOOL,
+    FixStatus: NTSTATUS,
+    FixLevelOfDetails: u32,
+    BasicData: GNSS_FIXDATA_BASIC_2,
+    AccuracyData: GNSS_FIXDATA_ACCURACY_2,
+    SatelliteData: GNSS_FIXDATA_SATELLITE,
+};
+
+pub const GNSS_FIXDATA_ACCURACY = extern struct {
+    Size: u32,
+    Version: u32,
+    HorizontalAccuracy: u32,
+    HorizontalErrorMajorAxis: u32,
+    HorizontalErrorMinorAxis: u32,
+    HorizontalErrorAngle: u32,
+    HeadingAccuracy: u32,
+    AltitudeAccuracy: u32,
+    SpeedAccuracy: u32,
+    HorizontalConfidence: u32,
+    HeadingConfidence: u32,
+    AltitudeConfidence: u32,
+    SpeedConfidence: u32,
+    PositionDilutionOfPrecision: f32,
+    HorizontalDilutionOfPrecision: f32,
+    VerticalDilutionOfPrecision: f32,
+};
+
+pub const GNSS_FIXDATA_ACCURACY_2 = extern struct {
+    Size: u32,
+    Version: u32,
+    HorizontalAccuracy: f64,
+    HorizontalErrorMajorAxis: f64,
+    HorizontalErrorMinorAxis: f64,
+    HorizontalErrorAngle: f64,
+    HeadingAccuracy: f64,
+    AltitudeAccuracy: f64,
+    SpeedAccuracy: f64,
+    HorizontalConfidence: u32,
+    HeadingConfidence: u32,
+    AltitudeConfidence: u32,
+    SpeedConfidence: u32,
+    PositionDilutionOfPrecision: f64,
+    HorizontalDilutionOfPrecision: f64,
+    VerticalDilutionOfPrecision: f64,
+    GeometricDilutionOfPrecision: f64,
+    TimeDilutionOfPrecision: f64,
+};
+
+pub const GNSS_FIXDATA_BASIC = extern struct {
+    Size: u32,
+    Version: u32,
+    Latitude: f64,
+    Longitude: f64,
+    Altitude: f64,
+    Speed: f64,
+    Heading: f64,
+};
+
+pub const GNSS_FIXDATA_BASIC_2 = extern struct {
+    Size: u32,
+    Version: u32,
+    Latitude: f64,
+    Longitude: f64,
+    Altitude: f64,
+    Speed: f64,
+    Heading: f64,
+    AltitudeEllipsoid: f64,
+};
+
+pub const GNSS_FIXDATA_SATELLITE = extern struct {
+    Size: u32,
+    Version: u32,
+    SatelliteCount: u32,
+    SatelliteArray: [64]GNSS_SATELLITEINFO,
+};
+
+pub const GNSS_FIXSESSION_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    FixSessionID: u32,
+    SessionType: GNSS_FIXSESSIONTYPE,
+    HorizontalAccuracy: u32,
+    HorizontalConfidence: u32,
+    Reserved: [9]u32,
+    FixLevelOfDetails: u32,
+    Anonymous: extern union {
+        SingleShotParam: GNSS_SINGLESHOT_PARAM,
+        DistanceParam: GNSS_DISTANCETRACKING_PARAM,
+        ContinuousParam: GNSS_CONTINUOUSTRACKING_PARAM,
+        LkgFixParam: GNSS_LKGFIX_PARAM,
+        UnusedParam: [268]u8,
+    },
+    Unused: [256]u8,
+};
+
+pub const GNSS_FIXSESSIONTYPE = enum(i32) {
+    SingleShot = 1,
+    DistanceTracking = 2,
+    ContinuousTracking = 3,
+    LKG = 4,
+};
+pub const GNSS_FixSession_SingleShot = GNSS_FIXSESSIONTYPE.SingleShot;
+pub const GNSS_FixSession_DistanceTracking = GNSS_FIXSESSIONTYPE.DistanceTracking;
+pub const GNSS_FixSession_ContinuousTracking = GNSS_FIXSESSIONTYPE.ContinuousTracking;
+pub const GNSS_FixSession_LKG = GNSS_FIXSESSIONTYPE.LKG;
+
+pub const GNSS_GEOFENCE_ALERT_DATA = extern struct {
+    Size: u32,
+    Version: u32,
+    GeofenceID: u32,
+    GeofenceState: GNSS_GEOFENCE_STATE,
+    FixBasicData: GNSS_FIXDATA_BASIC,
+    FixAccuracyData: GNSS_FIXDATA_ACCURACY,
+    Unused: [512]u8,
+};
+
+pub const GNSS_GEOFENCE_CREATE_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    AlertTypes: u32,
+    InitialState: GNSS_GEOFENCE_STATE,
+    Boundary: GNSS_GEOREGION,
+    Unused: [512]u8,
+};
+
+pub const GNSS_GEOFENCE_CREATE_RESPONSE = extern struct {
+    Size: u32,
+    Version: u32,
+    CreationStatus: NTSTATUS,
+    GeofenceID: u32,
+    Unused: [512]u8,
+};
+
+pub const GNSS_GEOFENCE_DELETE_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    GeofenceID: u32,
+    Unused: [512]u8,
+};
+
+pub const GNSS_GEOFENCE_STATE = enum(i32) {
+    Unknown = 0,
+    Entered = 1,
+    Exited = 2,
+};
+pub const GNSS_GeofenceState_Unknown = GNSS_GEOFENCE_STATE.Unknown;
+pub const GNSS_GeofenceState_Entered = GNSS_GEOFENCE_STATE.Entered;
+pub const GNSS_GeofenceState_Exited = GNSS_GEOFENCE_STATE.Exited;
+
+pub const GNSS_GEOFENCES_TRACKINGSTATUS_DATA = extern struct {
+    Size: u32,
+    Version: u32,
+    Status: NTSTATUS,
+    StatusTimeStamp: FILETIME,
+    Unused: [512]u8,
+};
+
+pub const GNSS_GEOREGION = extern struct {
+    Size: u32,
+    Version: u32,
+    GeoRegionType: GNSS_GEOREGIONTYPE,
+    Anonymous: extern union {
+        Circle: GNSS_GEOREGION_CIRCLE,
+        Unused: [512]u8,
+    },
+};
+
+pub const GNSS_GEOREGION_CIRCLE = extern struct {
+    Latitude: f64,
+    Longitude: f64,
+    RadiusInMeters: f64,
+};
+
+pub const GNSS_GEOREGIONTYPE = enum(i32) {
+    e = 1,
+};
+pub const GNSS_GeoRegion_Circle = GNSS_GEOREGIONTYPE.e;
+
+pub const GNSS_LKGFIX_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+};
+
+pub const GNSS_NI_NOTIFICATION_TYPE = enum(i32) {
+    NoNotifyNoVerify = 1,
+    NotifyOnly = 2,
+    NotifyVerifyDefaultAllow = 3,
+    NotifyVerifyDefaultNotAllow = 4,
+    PrivacyOverride = 5,
+};
+pub const GNSS_NI_NoNotifyNoVerify = GNSS_NI_NOTIFICATION_TYPE.NoNotifyNoVerify;
+pub const GNSS_NI_NotifyOnly = GNSS_NI_NOTIFICATION_TYPE.NotifyOnly;
+pub const GNSS_NI_NotifyVerifyDefaultAllow = GNSS_NI_NOTIFICATION_TYPE.NotifyVerifyDefaultAllow;
+pub const GNSS_NI_NotifyVerifyDefaultNotAllow = GNSS_NI_NOTIFICATION_TYPE.NotifyVerifyDefaultNotAllow;
+pub const GNSS_NI_PrivacyOverride = GNSS_NI_NOTIFICATION_TYPE.PrivacyOverride;
+
+pub const GNSS_NI_PLANE_TYPE = enum(i32) {
+    SUPL = 1,
+    CP = 2,
+    V2UPL = 3,
+};
+pub const GNSS_NI_SUPL = GNSS_NI_PLANE_TYPE.SUPL;
+pub const GNSS_NI_CP = GNSS_NI_PLANE_TYPE.CP;
+pub const GNSS_NI_V2UPL = GNSS_NI_PLANE_TYPE.V2UPL;
+
+pub const GNSS_NI_REQUEST_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    RequestId: u32,
+    RequestType: GNSS_NI_REQUEST_TYPE,
+    NotificationType: GNSS_NI_NOTIFICATION_TYPE,
+    RequestPlaneType: GNSS_NI_PLANE_TYPE,
+    Anonymous: extern union {
+        SuplNiInfo: GNSS_SUPL_NI_INFO,
+        CpNiInfo: GNSS_CP_NI_INFO,
+        V2UplNiInfo: GNSS_V2UPL_NI_INFO,
+    },
+    ResponseTimeInSec: u32,
+    EmergencyLocation: BOOL,
+};
+
+pub const GNSS_NI_REQUEST_TYPE = enum(i32) {
+    SingleShot = 1,
+    AreaTrigger = 2,
+};
+pub const GNSS_NI_Request_SingleShot = GNSS_NI_REQUEST_TYPE.SingleShot;
+pub const GNSS_NI_Request_AreaTrigger = GNSS_NI_REQUEST_TYPE.AreaTrigger;
+
+pub const GNSS_NI_RESPONSE = extern struct {
+    Size: u32,
+    Version: u32,
+    RequestId: u32,
+    UserResponse: GNSS_NI_USER_RESPONSE,
+};
+
+pub const GNSS_NI_USER_RESPONSE = enum(i32) {
+    Accept = 1,
+    Deny = 2,
+    Timeout = 3,
+};
+pub const GNSS_Ni_UserResponseAccept = GNSS_NI_USER_RESPONSE.Accept;
+pub const GNSS_Ni_UserResponseDeny = GNSS_NI_USER_RESPONSE.Deny;
+pub const GNSS_Ni_UserResponseTimeout = GNSS_NI_USER_RESPONSE.Timeout;
+
+pub const GNSS_NMEA_DATA = extern struct {
+    Size: u32,
+    Version: u32,
+    NmeaSentences: [256]CHAR,
+};
+
+pub const GNSS_PLATFORM_CAPABILITY = extern struct {
+    Size: u32,
+    Version: u32,
+    SupportAgnssInjection: BOOL,
+    AgnssFormatSupported: u32,
+    Unused: [516]u8,
+};
+
+pub const GNSS_SATELLITEINFO = extern struct {
+    SatelliteId: u32,
+    UsedInPositiong: BOOL,
+    Elevation: f64,
+    Azimuth: f64,
+    SignalToNoiseRatio: f64,
+};
+
+pub const GNSS_SELFTESTCONFIG = extern struct {
+    Size: u32,
+    Version: u32,
+    TestType: u32,
+    Unused: [512]u8,
+    InBufLen: u32,
+    InBuffer: [1]u8,
+};
+
+pub const GNSS_SELFTESTRESULT = extern struct {
+    Size: u32,
+    Version: u32,
+    TestResultStatus: NTSTATUS,
+    Result: u32,
+    PinFailedBitMask: u32,
+    Unused: [512]u8,
+    OutBufLen: u32,
+    OutBuffer: [1]u8,
+};
+
+pub const GNSS_SINGLESHOT_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    ResponseTime: u32,
+};
+
+pub const GNSS_STOPFIXSESSION_PARAM = extern struct {
+    Size: u32,
+    Version: u32,
+    FixSessionID: u32,
+    Unused: [512]u8,
+};
+
+pub const GNSS_SUPL_CERT_ACTION = enum(i32) {
+    Inject = 1,
+    Delete = 2,
+    Purge = 3,
+};
+pub const GNSS_Supl_Cert_Inject = GNSS_SUPL_CERT_ACTION.Inject;
+pub const GNSS_Supl_Cert_Delete = GNSS_SUPL_CERT_ACTION.Delete;
+pub const GNSS_Supl_Cert_Purge = GNSS_SUPL_CERT_ACTION.Purge;
+
+pub const GNSS_SUPL_CERT_CONFIG = extern struct {
+    Size: u32,
+    Version: u32,
+    CertAction: GNSS_SUPL_CERT_ACTION,
+    SuplCertName: [260]CHAR,
+    CertSize: u32,
+    Unused: [512]u8,
+    CertData: [1]u8,
+};
+
+pub const GNSS_SUPL_HSLP_CONFIG = extern struct {
+    Size: u32,
+    Version: u32,
+    SuplHslp: [260]CHAR,
+    SuplHslpFromImsi: [260]CHAR,
+    Reserved: u32,
+    Unused: [512]u8,
+};
+
+pub const GNSS_SUPL_NI_INFO = extern struct {
+    Size: u32,
+    Version: u32,
+    RequestorId: [260]u16,
+    ClientName: [260]u16,
+    SuplNiUrl: [260]CHAR,
+};
+
+pub const GNSS_SUPL_VERSION = extern struct {
+    MajorVersion: u32,
+    MinorVersion: u32,
+};
+
+pub const GNSS_SUPL_VERSION_2 = extern struct {
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ServiceIndicator: u32,
+};
+
+pub const GNSS_V2UPL_CONFIG = extern struct {
+    Size: u32,
+    Version: u32,
+    MPC: [260]CHAR,
+    PDE: [260]CHAR,
+    ApplicationTypeIndicator_MR: u8,
+    Unused: [512]u8,
+};
+
+pub const GNSS_V2UPL_NI_INFO = extern struct {
+    Size: u32,
+    Version: u32,
+    RequestorId: [260]u16,
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -249,6 +834,254 @@ pub const ICivicAddressReport = extern union {
     }
     pub fn GetDetailLevel(self: *const ICivicAddressReport, pDetailLevel: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDetailLevel(self, pDetailLevel);
+    }
+};
+
+const IID_ICivicAddressReportFactory_Value = Guid.initString("bf773b93-c64f-4bee-beb2-67c0b8df66e0");
+pub const IID_ICivicAddressReportFactory = &IID_ICivicAddressReportFactory_Value;
+pub const ICivicAddressReportFactory = extern union {
+    pub const VTable = extern struct {
+        base: ILocationReportFactory.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CivicAddressReport: *const fn(
+            self: *const ICivicAddressReportFactory,
+            pVal: ?*?*IDispCivicAddressReport,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ILocationReportFactory: ILocationReportFactory,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_CivicAddressReport(self: *const ICivicAddressReportFactory, pVal: ?*?*IDispCivicAddressReport) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CivicAddressReport(self, pVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDefaultLocation_Value = Guid.initString("a65af77e-969a-4a2e-8aca-33bb7cbb1235");
+pub const IID_IDefaultLocation = &IID_IDefaultLocation_Value;
+pub const IDefaultLocation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetReport: *const fn(
+            self: *const IDefaultLocation,
+            reportType: ?*const Guid,
+            pLocationReport: ?*ILocationReport,
+        ) callconv(.winapi) HRESULT,
+        GetReport: *const fn(
+            self: *const IDefaultLocation,
+            reportType: ?*const Guid,
+            ppLocationReport: ?*?*ILocationReport,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetReport(self: *const IDefaultLocation, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReport(self, reportType, pLocationReport);
+    }
+    pub fn GetReport(self: *const IDefaultLocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReport(self, reportType, ppLocationReport);
+    }
+};
+
+const IID_IDispCivicAddressReport_Value = Guid.initString("16ff1a34-9e30-42c3-b44d-e22513b5767a");
+pub const IID_IDispCivicAddressReport = &IID_IDispCivicAddressReport_Value;
+pub const IDispCivicAddressReport = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AddressLine1: *const fn(
+            self: *const IDispCivicAddressReport,
+            pAddress1: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AddressLine2: *const fn(
+            self: *const IDispCivicAddressReport,
+            pAddress2: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_City: *const fn(
+            self: *const IDispCivicAddressReport,
+            pCity: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StateProvince: *const fn(
+            self: *const IDispCivicAddressReport,
+            pStateProvince: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PostalCode: *const fn(
+            self: *const IDispCivicAddressReport,
+            pPostalCode: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CountryRegion: *const fn(
+            self: *const IDispCivicAddressReport,
+            pCountryRegion: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DetailLevel: *const fn(
+            self: *const IDispCivicAddressReport,
+            pDetailLevel: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Timestamp: *const fn(
+            self: *const IDispCivicAddressReport,
+            pVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AddressLine1(self: *const IDispCivicAddressReport, pAddress1: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AddressLine1(self, pAddress1);
+    }
+    pub fn get_AddressLine2(self: *const IDispCivicAddressReport, pAddress2: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AddressLine2(self, pAddress2);
+    }
+    pub fn get_City(self: *const IDispCivicAddressReport, pCity: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_City(self, pCity);
+    }
+    pub fn get_StateProvince(self: *const IDispCivicAddressReport, pStateProvince: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StateProvince(self, pStateProvince);
+    }
+    pub fn get_PostalCode(self: *const IDispCivicAddressReport, pPostalCode: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PostalCode(self, pPostalCode);
+    }
+    pub fn get_CountryRegion(self: *const IDispCivicAddressReport, pCountryRegion: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CountryRegion(self, pCountryRegion);
+    }
+    pub fn get_DetailLevel(self: *const IDispCivicAddressReport, pDetailLevel: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DetailLevel(self, pDetailLevel);
+    }
+    pub fn get_Timestamp(self: *const IDispCivicAddressReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Timestamp(self, pVal);
+    }
+};
+
+const IID_IDispLatLongReport_Value = Guid.initString("8ae32723-389b-4a11-9957-5bdd48fc9617");
+pub const IID_IDispLatLongReport = &IID_IDispLatLongReport_Value;
+pub const IDispLatLongReport = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Latitude: *const fn(
+            self: *const IDispLatLongReport,
+            pVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Longitude: *const fn(
+            self: *const IDispLatLongReport,
+            pVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ErrorRadius: *const fn(
+            self: *const IDispLatLongReport,
+            pVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Altitude: *const fn(
+            self: *const IDispLatLongReport,
+            pVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AltitudeError: *const fn(
+            self: *const IDispLatLongReport,
+            pVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Timestamp: *const fn(
+            self: *const IDispLatLongReport,
+            pVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Latitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Latitude(self, pVal);
+    }
+    pub fn get_Longitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Longitude(self, pVal);
+    }
+    pub fn get_ErrorRadius(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ErrorRadius(self, pVal);
+    }
+    pub fn get_Altitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Altitude(self, pVal);
+    }
+    pub fn get_AltitudeError(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AltitudeError(self, pVal);
+    }
+    pub fn get_Timestamp(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Timestamp(self, pVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_ILatLongReport_Value = Guid.initString("7fed806d-0ef8-4f07-80ac-36a0beae3134");
+pub const IID_ILatLongReport = &IID_ILatLongReport_Value;
+pub const ILatLongReport = extern union {
+    pub const VTable = extern struct {
+        base: ILocationReport.VTable,
+        GetLatitude: *const fn(
+            self: *const ILatLongReport,
+            pLatitude: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        GetLongitude: *const fn(
+            self: *const ILatLongReport,
+            pLongitude: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        GetErrorRadius: *const fn(
+            self: *const ILatLongReport,
+            pErrorRadius: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        GetAltitude: *const fn(
+            self: *const ILatLongReport,
+            pAltitude: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        GetAltitudeError: *const fn(
+            self: *const ILatLongReport,
+            pAltitudeError: ?*f64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ILocationReport: ILocationReport,
+    IUnknown: IUnknown,
+    pub fn GetLatitude(self: *const ILatLongReport, pLatitude: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLatitude(self, pLatitude);
+    }
+    pub fn GetLongitude(self: *const ILatLongReport, pLongitude: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLongitude(self, pLongitude);
+    }
+    pub fn GetErrorRadius(self: *const ILatLongReport, pErrorRadius: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetErrorRadius(self, pErrorRadius);
+    }
+    pub fn GetAltitude(self: *const ILatLongReport, pAltitude: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAltitude(self, pAltitude);
+    }
+    pub fn GetAltitudeError(self: *const ILatLongReport, pAltitudeError: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAltitudeError(self, pAltitudeError);
+    }
+};
+
+const IID_ILatLongReportFactory_Value = Guid.initString("3f0804cb-b114-447d-83dd-390174ebb082");
+pub const IID_ILatLongReportFactory = &IID_ILatLongReportFactory_Value;
+pub const ILatLongReportFactory = extern union {
+    pub const VTable = extern struct {
+        base: ILocationReportFactory.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LatLongReport: *const fn(
+            self: *const ILatLongReportFactory,
+            pVal: ?*?*IDispLatLongReport,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ILocationReportFactory: ILocationReportFactory,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_LatLongReport(self: *const ILatLongReportFactory, pVal: ?*?*IDispLatLongReport) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LatLongReport(self, pVal);
     }
 };
 
@@ -337,56 +1170,6 @@ pub const ILocation = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ILocationPower_Value = Guid.initString("193e7729-ab6b-4b12-8617-7596e1bb191c");
-pub const IID_ILocationPower = &IID_ILocationPower_Value;
-pub const ILocationPower = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Connect: *const fn(
-            self: *const ILocationPower,
-        ) callconv(.winapi) HRESULT,
-        Disconnect: *const fn(
-            self: *const ILocationPower,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Connect(self: *const ILocationPower) callconv(.@"inline") HRESULT {
-        return self.vtable.Connect(self);
-    }
-    pub fn Disconnect(self: *const ILocationPower) callconv(.@"inline") HRESULT {
-        return self.vtable.Disconnect(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IDefaultLocation_Value = Guid.initString("a65af77e-969a-4a2e-8aca-33bb7cbb1235");
-pub const IID_IDefaultLocation = &IID_IDefaultLocation_Value;
-pub const IDefaultLocation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetReport: *const fn(
-            self: *const IDefaultLocation,
-            reportType: ?*const Guid,
-            pLocationReport: ?*ILocationReport,
-        ) callconv(.winapi) HRESULT,
-        GetReport: *const fn(
-            self: *const IDefaultLocation,
-            reportType: ?*const Guid,
-            ppLocationReport: ?*?*ILocationReport,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetReport(self: *const IDefaultLocation, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReport(self, reportType, pLocationReport);
-    }
-    pub fn GetReport(self: *const IDefaultLocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReport(self, reportType, ppLocationReport);
-    }
-};
-
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ILocationEvents_Value = Guid.initString("cae02bbf-798b-4508-a207-35a7906dc73d");
 pub const IID_ILocationEvents = &IID_ILocationEvents_Value;
@@ -414,137 +1197,59 @@ pub const ILocationEvents = extern union {
     }
 };
 
-const IID_IDispLatLongReport_Value = Guid.initString("8ae32723-389b-4a11-9957-5bdd48fc9617");
-pub const IID_IDispLatLongReport = &IID_IDispLatLongReport_Value;
-pub const IDispLatLongReport = extern union {
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ILocationPower_Value = Guid.initString("193e7729-ab6b-4b12-8617-7596e1bb191c");
+pub const IID_ILocationPower = &IID_ILocationPower_Value;
+pub const ILocationPower = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Latitude: *const fn(
-            self: *const IDispLatLongReport,
-            pVal: ?*f64,
+        base: IUnknown.VTable,
+        Connect: *const fn(
+            self: *const ILocationPower,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Longitude: *const fn(
-            self: *const IDispLatLongReport,
-            pVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ErrorRadius: *const fn(
-            self: *const IDispLatLongReport,
-            pVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Altitude: *const fn(
-            self: *const IDispLatLongReport,
-            pVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AltitudeError: *const fn(
-            self: *const IDispLatLongReport,
-            pVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Timestamp: *const fn(
-            self: *const IDispLatLongReport,
-            pVal: ?*f64,
+        Disconnect: *const fn(
+            self: *const ILocationPower,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Latitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Latitude(self, pVal);
+    pub fn Connect(self: *const ILocationPower) callconv(.@"inline") HRESULT {
+        return self.vtable.Connect(self);
     }
-    pub fn get_Longitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Longitude(self, pVal);
-    }
-    pub fn get_ErrorRadius(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ErrorRadius(self, pVal);
-    }
-    pub fn get_Altitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Altitude(self, pVal);
-    }
-    pub fn get_AltitudeError(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AltitudeError(self, pVal);
-    }
-    pub fn get_Timestamp(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Timestamp(self, pVal);
+    pub fn Disconnect(self: *const ILocationPower) callconv(.@"inline") HRESULT {
+        return self.vtable.Disconnect(self);
     }
 };
 
-const IID_IDispCivicAddressReport_Value = Guid.initString("16ff1a34-9e30-42c3-b44d-e22513b5767a");
-pub const IID_IDispCivicAddressReport = &IID_IDispCivicAddressReport_Value;
-pub const IDispCivicAddressReport = extern union {
+// TODO: this type is limited to platform 'windows6.1'
+const IID_ILocationReport_Value = Guid.initString("c8b7f7ee-75d0-4db9-b62d-7a0f369ca456");
+pub const IID_ILocationReport = &IID_ILocationReport_Value;
+pub const ILocationReport = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AddressLine1: *const fn(
-            self: *const IDispCivicAddressReport,
-            pAddress1: ?*?BSTR,
+        base: IUnknown.VTable,
+        GetSensorID: *const fn(
+            self: *const ILocationReport,
+            pSensorID: ?*Guid,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AddressLine2: *const fn(
-            self: *const IDispCivicAddressReport,
-            pAddress2: ?*?BSTR,
+        GetTimestamp: *const fn(
+            self: *const ILocationReport,
+            pCreationTime: ?*SYSTEMTIME,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_City: *const fn(
-            self: *const IDispCivicAddressReport,
-            pCity: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StateProvince: *const fn(
-            self: *const IDispCivicAddressReport,
-            pStateProvince: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PostalCode: *const fn(
-            self: *const IDispCivicAddressReport,
-            pPostalCode: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CountryRegion: *const fn(
-            self: *const IDispCivicAddressReport,
-            pCountryRegion: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DetailLevel: *const fn(
-            self: *const IDispCivicAddressReport,
-            pDetailLevel: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Timestamp: *const fn(
-            self: *const IDispCivicAddressReport,
-            pVal: ?*f64,
+        GetValue: *const fn(
+            self: *const ILocationReport,
+            pKey: ?*const PROPERTYKEY,
+            pValue: ?*PROPVARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AddressLine1(self: *const IDispCivicAddressReport, pAddress1: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AddressLine1(self, pAddress1);
+    pub fn GetSensorID(self: *const ILocationReport, pSensorID: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSensorID(self, pSensorID);
     }
-    pub fn get_AddressLine2(self: *const IDispCivicAddressReport, pAddress2: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AddressLine2(self, pAddress2);
+    pub fn GetTimestamp(self: *const ILocationReport, pCreationTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTimestamp(self, pCreationTime);
     }
-    pub fn get_City(self: *const IDispCivicAddressReport, pCity: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_City(self, pCity);
-    }
-    pub fn get_StateProvince(self: *const IDispCivicAddressReport, pStateProvince: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StateProvince(self, pStateProvince);
-    }
-    pub fn get_PostalCode(self: *const IDispCivicAddressReport, pPostalCode: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PostalCode(self, pPostalCode);
-    }
-    pub fn get_CountryRegion(self: *const IDispCivicAddressReport, pCountryRegion: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CountryRegion(self, pCountryRegion);
-    }
-    pub fn get_DetailLevel(self: *const IDispCivicAddressReport, pDetailLevel: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DetailLevel(self, pDetailLevel);
-    }
-    pub fn get_Timestamp(self: *const IDispCivicAddressReport, pVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Timestamp(self, pVal);
+    pub fn GetValue(self: *const ILocationReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, pKey, pValue);
     }
 };
 
@@ -619,732 +1324,27 @@ pub const ILocationReportFactory = extern union {
     }
 };
 
-const IID_ILatLongReportFactory_Value = Guid.initString("3f0804cb-b114-447d-83dd-390174ebb082");
-pub const IID_ILatLongReportFactory = &IID_ILatLongReportFactory_Value;
-pub const ILatLongReportFactory = extern union {
-    pub const VTable = extern struct {
-        base: ILocationReportFactory.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LatLongReport: *const fn(
-            self: *const ILatLongReportFactory,
-            pVal: ?*?*IDispLatLongReport,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ILocationReportFactory: ILocationReportFactory,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_LatLongReport(self: *const ILatLongReportFactory, pVal: ?*?*IDispLatLongReport) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LatLongReport(self, pVal);
-    }
-};
-
-const IID_ICivicAddressReportFactory_Value = Guid.initString("bf773b93-c64f-4bee-beb2-67c0b8df66e0");
-pub const IID_ICivicAddressReportFactory = &IID_ICivicAddressReportFactory_Value;
-pub const ICivicAddressReportFactory = extern union {
-    pub const VTable = extern struct {
-        base: ILocationReportFactory.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CivicAddressReport: *const fn(
-            self: *const ICivicAddressReportFactory,
-            pVal: ?*?*IDispCivicAddressReport,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ILocationReportFactory: ILocationReportFactory,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_CivicAddressReport(self: *const ICivicAddressReportFactory, pVal: ?*?*IDispCivicAddressReport) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CivicAddressReport(self, pVal);
-    }
-};
-
-const IID__ILatLongReportFactoryEvents_Value = Guid.initString("16ee6cb7-ab3c-424b-849f-269be551fcbc");
-pub const IID__ILatLongReportFactoryEvents = &IID__ILatLongReportFactoryEvents_Value;
-pub const _ILatLongReportFactoryEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID__ICivicAddressReportFactoryEvents_Value = Guid.initString("c96039ff-72ec-4617-89bd-84d88bedc722");
-pub const IID__ICivicAddressReportFactoryEvents = &IID__ICivicAddressReportFactoryEvents_Value;
-pub const _ICivicAddressReportFactoryEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-pub const GNSS_SUPL_VERSION = extern struct {
-    MajorVersion: u32,
-    MinorVersion: u32,
-};
-
-pub const GNSS_SUPL_VERSION_2 = extern struct {
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ServiceIndicator: u32,
-};
-
-pub const GNSS_DEVICE_CAPABILITY = extern struct {
-    Size: u32,
-    Version: u32,
-    SupportMultipleFixSessions: BOOL,
-    SupportMultipleAppSessions: BOOL,
-    RequireAGnssInjection: BOOL,
-    AgnssFormatSupported: u32,
-    AgnssFormatPreferred: u32,
-    SupportDistanceTracking: BOOL,
-    SupportContinuousTracking: BOOL,
-    Reserved1: u32,
-    Reserved2: BOOL,
-    Reserved3: BOOL,
-    Reserved4: BOOL,
-    Reserved5: BOOL,
-    GeofencingSupport: u32,
-    Reserved6: BOOL,
-    Reserved7: BOOL,
-    SupportCpLocation: BOOL,
-    SupportUplV2: BOOL,
-    SupportSuplV1: BOOL,
-    SupportSuplV2: BOOL,
-    SupportedSuplVersion: GNSS_SUPL_VERSION,
-    MaxGeofencesSupported: u32,
-    SupportMultipleSuplRootCert: BOOL,
-    GnssBreadCrumbPayloadVersion: u32,
-    MaxGnssBreadCrumbFixes: u32,
-    Unused: [496]u8,
-};
-
-pub const GNSS_PLATFORM_CAPABILITY = extern struct {
-    Size: u32,
-    Version: u32,
-    SupportAgnssInjection: BOOL,
-    AgnssFormatSupported: u32,
-    Unused: [516]u8,
-};
-
-pub const GNSS_DRIVERCOMMAND_TYPE = enum(i32) {
-    SetLocationServiceEnabled = 1,
-    SetLocationNIRequestAllowed = 2,
-    ForceSatelliteSystem = 3,
-    ForceOperationMode = 4,
-    ResetEngine = 9,
-    ClearAgnssData = 10,
-    SetSuplVersion = 12,
-    SetNMEALogging = 13,
-    SetUplServerAccessInterval = 14,
-    SetNiTimeoutInterval = 15,
-    ResetGeofencesTracking = 16,
-    SetSuplVersion2 = 17,
-    CustomCommand = 256,
-};
-pub const GNSS_SetLocationServiceEnabled = GNSS_DRIVERCOMMAND_TYPE.SetLocationServiceEnabled;
-pub const GNSS_SetLocationNIRequestAllowed = GNSS_DRIVERCOMMAND_TYPE.SetLocationNIRequestAllowed;
-pub const GNSS_ForceSatelliteSystem = GNSS_DRIVERCOMMAND_TYPE.ForceSatelliteSystem;
-pub const GNSS_ForceOperationMode = GNSS_DRIVERCOMMAND_TYPE.ForceOperationMode;
-pub const GNSS_ResetEngine = GNSS_DRIVERCOMMAND_TYPE.ResetEngine;
-pub const GNSS_ClearAgnssData = GNSS_DRIVERCOMMAND_TYPE.ClearAgnssData;
-pub const GNSS_SetSuplVersion = GNSS_DRIVERCOMMAND_TYPE.SetSuplVersion;
-pub const GNSS_SetNMEALogging = GNSS_DRIVERCOMMAND_TYPE.SetNMEALogging;
-pub const GNSS_SetUplServerAccessInterval = GNSS_DRIVERCOMMAND_TYPE.SetUplServerAccessInterval;
-pub const GNSS_SetNiTimeoutInterval = GNSS_DRIVERCOMMAND_TYPE.SetNiTimeoutInterval;
-pub const GNSS_ResetGeofencesTracking = GNSS_DRIVERCOMMAND_TYPE.ResetGeofencesTracking;
-pub const GNSS_SetSuplVersion2 = GNSS_DRIVERCOMMAND_TYPE.SetSuplVersion2;
-pub const GNSS_CustomCommand = GNSS_DRIVERCOMMAND_TYPE.CustomCommand;
-
-pub const GNSS_DRIVERCOMMAND_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    CommandType: GNSS_DRIVERCOMMAND_TYPE,
-    Reserved: u32,
-    CommandDataSize: u32,
-    Unused: [512]u8,
-    CommandData: [1]u8,
-};
-
-pub const GNSS_FIXSESSIONTYPE = enum(i32) {
-    SingleShot = 1,
-    DistanceTracking = 2,
-    ContinuousTracking = 3,
-    LKG = 4,
-};
-pub const GNSS_FixSession_SingleShot = GNSS_FIXSESSIONTYPE.SingleShot;
-pub const GNSS_FixSession_DistanceTracking = GNSS_FIXSESSIONTYPE.DistanceTracking;
-pub const GNSS_FixSession_ContinuousTracking = GNSS_FIXSESSIONTYPE.ContinuousTracking;
-pub const GNSS_FixSession_LKG = GNSS_FIXSESSIONTYPE.LKG;
-
-pub const GNSS_SINGLESHOT_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    ResponseTime: u32,
-};
-
-pub const GNSS_DISTANCETRACKING_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    MovementThreshold: u32,
-};
-
-pub const GNSS_CONTINUOUSTRACKING_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    PreferredInterval: u32,
-};
-
-pub const GNSS_LKGFIX_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-};
-
-pub const GNSS_FIXSESSION_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    FixSessionID: u32,
-    SessionType: GNSS_FIXSESSIONTYPE,
-    HorizontalAccuracy: u32,
-    HorizontalConfidence: u32,
-    Reserved: [9]u32,
-    FixLevelOfDetails: u32,
-    Anonymous: extern union {
-        SingleShotParam: GNSS_SINGLESHOT_PARAM,
-        DistanceParam: GNSS_DISTANCETRACKING_PARAM,
-        ContinuousParam: GNSS_CONTINUOUSTRACKING_PARAM,
-        LkgFixParam: GNSS_LKGFIX_PARAM,
-        UnusedParam: [268]u8,
-    },
-    Unused: [256]u8,
-};
-
-pub const GNSS_STOPFIXSESSION_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    FixSessionID: u32,
-    Unused: [512]u8,
-};
-
-pub const GNSS_FIXDATA_BASIC = extern struct {
-    Size: u32,
-    Version: u32,
-    Latitude: f64,
-    Longitude: f64,
-    Altitude: f64,
-    Speed: f64,
-    Heading: f64,
-};
-
-pub const GNSS_FIXDATA_BASIC_2 = extern struct {
-    Size: u32,
-    Version: u32,
-    Latitude: f64,
-    Longitude: f64,
-    Altitude: f64,
-    Speed: f64,
-    Heading: f64,
-    AltitudeEllipsoid: f64,
-};
-
-pub const GNSS_FIXDATA_ACCURACY = extern struct {
-    Size: u32,
-    Version: u32,
-    HorizontalAccuracy: u32,
-    HorizontalErrorMajorAxis: u32,
-    HorizontalErrorMinorAxis: u32,
-    HorizontalErrorAngle: u32,
-    HeadingAccuracy: u32,
-    AltitudeAccuracy: u32,
-    SpeedAccuracy: u32,
-    HorizontalConfidence: u32,
-    HeadingConfidence: u32,
-    AltitudeConfidence: u32,
-    SpeedConfidence: u32,
-    PositionDilutionOfPrecision: f32,
-    HorizontalDilutionOfPrecision: f32,
-    VerticalDilutionOfPrecision: f32,
-};
-
-pub const GNSS_FIXDATA_ACCURACY_2 = extern struct {
-    Size: u32,
-    Version: u32,
-    HorizontalAccuracy: f64,
-    HorizontalErrorMajorAxis: f64,
-    HorizontalErrorMinorAxis: f64,
-    HorizontalErrorAngle: f64,
-    HeadingAccuracy: f64,
-    AltitudeAccuracy: f64,
-    SpeedAccuracy: f64,
-    HorizontalConfidence: u32,
-    HeadingConfidence: u32,
-    AltitudeConfidence: u32,
-    SpeedConfidence: u32,
-    PositionDilutionOfPrecision: f64,
-    HorizontalDilutionOfPrecision: f64,
-    VerticalDilutionOfPrecision: f64,
-    GeometricDilutionOfPrecision: f64,
-    TimeDilutionOfPrecision: f64,
-};
-
-pub const GNSS_SATELLITEINFO = extern struct {
-    SatelliteId: u32,
-    UsedInPositiong: BOOL,
-    Elevation: f64,
-    Azimuth: f64,
-    SignalToNoiseRatio: f64,
-};
-
-pub const GNSS_FIXDATA_SATELLITE = extern struct {
-    Size: u32,
-    Version: u32,
-    SatelliteCount: u32,
-    SatelliteArray: [64]GNSS_SATELLITEINFO,
-};
-
-pub const GNSS_FIXDATA = extern struct {
-    Size: u32,
-    Version: u32,
-    FixSessionID: u32,
-    FixTimeStamp: FILETIME,
-    IsFinalFix: BOOL,
-    FixStatus: NTSTATUS,
-    FixLevelOfDetails: u32,
-    BasicData: GNSS_FIXDATA_BASIC,
-    AccuracyData: GNSS_FIXDATA_ACCURACY,
-    SatelliteData: GNSS_FIXDATA_SATELLITE,
-};
-
-pub const GNSS_FIXDATA_2 = extern struct {
-    Size: u32,
-    Version: u32,
-    FixSessionID: u32,
-    FixTimeStamp: FILETIME,
-    IsFinalFix: BOOL,
-    FixStatus: NTSTATUS,
-    FixLevelOfDetails: u32,
-    BasicData: GNSS_FIXDATA_BASIC_2,
-    AccuracyData: GNSS_FIXDATA_ACCURACY_2,
-    SatelliteData: GNSS_FIXDATA_SATELLITE,
-};
-
-pub const GNSS_BREADCRUMBING_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    MaximumHorizontalUncertainty: u32,
-    MinDistanceBetweenFixes: u32,
-    MaximumErrorTimeoutMs: u32,
-    Unused: [512]u8,
-};
-
-pub const GNSS_BREADCRUMBING_ALERT_DATA = extern struct {
-    Size: u32,
-    Version: u32,
-    Unused: [512]u8,
-};
-
-pub const GNSS_BREADCRUMB_V1 = extern struct {
-    FixTimeStamp: FILETIME,
-    Latitude: f64,
-    Longitude: f64,
-    HorizontalAccuracy: u32,
-    Speed: u16,
-    SpeedAccuracy: u16,
-    Altitude: i16,
-    AltitudeAccuracy: u16,
-    Heading: i16,
-    HeadingAccuracy: u8,
-    FixSuccess: u8,
-};
-
-pub const GNSS_BREADCRUMB_LIST = extern struct {
-    Size: u32,
-    Version: u32,
-    NumCrumbs: u32,
-    Anonymous: extern union {
-        v1: [50]GNSS_BREADCRUMB_V1,
-    },
-};
-
-pub const GNSS_GEOREGIONTYPE = enum(i32) {
-    e = 1,
-};
-pub const GNSS_GeoRegion_Circle = GNSS_GEOREGIONTYPE.e;
-
-pub const GNSS_GEOREGION_CIRCLE = extern struct {
-    Latitude: f64,
-    Longitude: f64,
-    RadiusInMeters: f64,
-};
-
-pub const GNSS_GEOREGION = extern struct {
-    Size: u32,
-    Version: u32,
-    GeoRegionType: GNSS_GEOREGIONTYPE,
-    Anonymous: extern union {
-        Circle: GNSS_GEOREGION_CIRCLE,
-        Unused: [512]u8,
-    },
-};
-
-pub const GNSS_GEOFENCE_STATE = enum(i32) {
-    Unknown = 0,
-    Entered = 1,
-    Exited = 2,
-};
-pub const GNSS_GeofenceState_Unknown = GNSS_GEOFENCE_STATE.Unknown;
-pub const GNSS_GeofenceState_Entered = GNSS_GEOFENCE_STATE.Entered;
-pub const GNSS_GeofenceState_Exited = GNSS_GEOFENCE_STATE.Exited;
-
-pub const GNSS_GEOFENCE_CREATE_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    AlertTypes: u32,
-    InitialState: GNSS_GEOFENCE_STATE,
-    Boundary: GNSS_GEOREGION,
-    Unused: [512]u8,
-};
-
-pub const GNSS_GEOFENCE_CREATE_RESPONSE = extern struct {
-    Size: u32,
-    Version: u32,
-    CreationStatus: NTSTATUS,
-    GeofenceID: u32,
-    Unused: [512]u8,
-};
-
-pub const GNSS_GEOFENCE_DELETE_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    GeofenceID: u32,
-    Unused: [512]u8,
-};
-
-pub const GNSS_GEOFENCE_ALERT_DATA = extern struct {
-    Size: u32,
-    Version: u32,
-    GeofenceID: u32,
-    GeofenceState: GNSS_GEOFENCE_STATE,
-    FixBasicData: GNSS_FIXDATA_BASIC,
-    FixAccuracyData: GNSS_FIXDATA_ACCURACY,
-    Unused: [512]u8,
-};
-
-pub const GNSS_GEOFENCES_TRACKINGSTATUS_DATA = extern struct {
-    Size: u32,
-    Version: u32,
-    Status: NTSTATUS,
-    StatusTimeStamp: FILETIME,
-    Unused: [512]u8,
-};
-
-pub const GNSS_EVENT_TYPE = enum(i32) {
-    FixAvailable = 1,
-    RequireAgnss = 2,
-    Error = 3,
-    NiRequest = 12,
-    NmeaData = 13,
-    GeofenceAlertData = 14,
-    GeofencesTrackingStatus = 15,
-    DriverRequest = 16,
-    BreadcrumbAlertEvent = 17,
-    FixAvailable_2 = 18,
-    Custom = 32768,
-};
-pub const GNSS_Event_FixAvailable = GNSS_EVENT_TYPE.FixAvailable;
-pub const GNSS_Event_RequireAgnss = GNSS_EVENT_TYPE.RequireAgnss;
-pub const GNSS_Event_Error = GNSS_EVENT_TYPE.Error;
-pub const GNSS_Event_NiRequest = GNSS_EVENT_TYPE.NiRequest;
-pub const GNSS_Event_NmeaData = GNSS_EVENT_TYPE.NmeaData;
-pub const GNSS_Event_GeofenceAlertData = GNSS_EVENT_TYPE.GeofenceAlertData;
-pub const GNSS_Event_GeofencesTrackingStatus = GNSS_EVENT_TYPE.GeofencesTrackingStatus;
-pub const GNSS_Event_DriverRequest = GNSS_EVENT_TYPE.DriverRequest;
-pub const GNSS_Event_BreadcrumbAlertEvent = GNSS_EVENT_TYPE.BreadcrumbAlertEvent;
-pub const GNSS_Event_FixAvailable_2 = GNSS_EVENT_TYPE.FixAvailable_2;
-pub const GNSS_Event_Custom = GNSS_EVENT_TYPE.Custom;
-
-pub const GNSS_ERRORINFO = extern struct {
-    Size: u32,
-    Version: u32,
-    ErrorCode: u32,
-    IsRecoverable: BOOL,
-    ErrorDescription: [256]u16,
-    Unused: [512]u8,
-};
-
-pub const GNSS_NMEA_DATA = extern struct {
-    Size: u32,
-    Version: u32,
-    NmeaSentences: [256]CHAR,
-};
-
-pub const GNSS_AGNSS_REQUEST_TYPE = enum(i32) {
-    TimeInjection = 1,
-    PositionInjection = 2,
-    BlobInjection = 3,
-};
-pub const GNSS_AGNSS_TimeInjection = GNSS_AGNSS_REQUEST_TYPE.TimeInjection;
-pub const GNSS_AGNSS_PositionInjection = GNSS_AGNSS_REQUEST_TYPE.PositionInjection;
-pub const GNSS_AGNSS_BlobInjection = GNSS_AGNSS_REQUEST_TYPE.BlobInjection;
-
-pub const GNSS_AGNSS_REQUEST_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    RequestType: GNSS_AGNSS_REQUEST_TYPE,
-    BlobFormat: u32,
-};
-
-pub const GNSS_NI_PLANE_TYPE = enum(i32) {
-    SUPL = 1,
-    CP = 2,
-    V2UPL = 3,
-};
-pub const GNSS_NI_SUPL = GNSS_NI_PLANE_TYPE.SUPL;
-pub const GNSS_NI_CP = GNSS_NI_PLANE_TYPE.CP;
-pub const GNSS_NI_V2UPL = GNSS_NI_PLANE_TYPE.V2UPL;
-
-pub const GNSS_NI_REQUEST_TYPE = enum(i32) {
-    SingleShot = 1,
-    AreaTrigger = 2,
-};
-pub const GNSS_NI_Request_SingleShot = GNSS_NI_REQUEST_TYPE.SingleShot;
-pub const GNSS_NI_Request_AreaTrigger = GNSS_NI_REQUEST_TYPE.AreaTrigger;
-
-pub const GNSS_NI_NOTIFICATION_TYPE = enum(i32) {
-    NoNotifyNoVerify = 1,
-    NotifyOnly = 2,
-    NotifyVerifyDefaultAllow = 3,
-    NotifyVerifyDefaultNotAllow = 4,
-    PrivacyOverride = 5,
-};
-pub const GNSS_NI_NoNotifyNoVerify = GNSS_NI_NOTIFICATION_TYPE.NoNotifyNoVerify;
-pub const GNSS_NI_NotifyOnly = GNSS_NI_NOTIFICATION_TYPE.NotifyOnly;
-pub const GNSS_NI_NotifyVerifyDefaultAllow = GNSS_NI_NOTIFICATION_TYPE.NotifyVerifyDefaultAllow;
-pub const GNSS_NI_NotifyVerifyDefaultNotAllow = GNSS_NI_NOTIFICATION_TYPE.NotifyVerifyDefaultNotAllow;
-pub const GNSS_NI_PrivacyOverride = GNSS_NI_NOTIFICATION_TYPE.PrivacyOverride;
-
-pub const GNSS_SUPL_NI_INFO = extern struct {
-    Size: u32,
-    Version: u32,
-    RequestorId: [260]u16,
-    ClientName: [260]u16,
-    SuplNiUrl: [260]CHAR,
-};
-
-pub const GNSS_CP_NI_INFO = extern struct {
-    Size: u32,
-    Version: u32,
-    RequestorId: [260]u16,
-    NotificationText: [260]u16,
-};
-
-pub const GNSS_V2UPL_NI_INFO = extern struct {
-    Size: u32,
-    Version: u32,
-    RequestorId: [260]u16,
-};
-
-pub const GNSS_NI_REQUEST_PARAM = extern struct {
-    Size: u32,
-    Version: u32,
-    RequestId: u32,
-    RequestType: GNSS_NI_REQUEST_TYPE,
-    NotificationType: GNSS_NI_NOTIFICATION_TYPE,
-    RequestPlaneType: GNSS_NI_PLANE_TYPE,
-    Anonymous: extern union {
-        SuplNiInfo: GNSS_SUPL_NI_INFO,
-        CpNiInfo: GNSS_CP_NI_INFO,
-        V2UplNiInfo: GNSS_V2UPL_NI_INFO,
-    },
-    ResponseTimeInSec: u32,
-    EmergencyLocation: BOOL,
-};
-
-pub const GNSS_DRIVER_REQUEST = enum(i32) {
-    A = 1,
-};
-pub const SUPL_CONFIG_DATA = GNSS_DRIVER_REQUEST.A;
-
-pub const GNSS_DRIVER_REQUEST_DATA = extern struct {
-    Size: u32,
-    Version: u32,
-    Request: GNSS_DRIVER_REQUEST,
-    RequestFlag: u32,
-};
-
-pub const GNSS_EVENT = extern struct {
-    Size: u32,
-    Version: u32,
-    EventType: GNSS_EVENT_TYPE,
-    EventDataSize: u32,
-    Unused: [512]u8,
-    Anonymous: extern union {
-        FixData: GNSS_FIXDATA,
-        AgnssRequest: GNSS_AGNSS_REQUEST_PARAM,
-        NiRequest: GNSS_NI_REQUEST_PARAM,
-        ErrorInformation: GNSS_ERRORINFO,
-        NmeaData: GNSS_NMEA_DATA,
-        GeofenceAlertData: GNSS_GEOFENCE_ALERT_DATA,
-        BreadcrumbAlertData: GNSS_BREADCRUMBING_ALERT_DATA,
-        GeofencesTrackingStatus: GNSS_GEOFENCES_TRACKINGSTATUS_DATA,
-        DriverRequestData: GNSS_DRIVER_REQUEST_DATA,
-        CustomData: [1]u8,
-    },
-};
-
-pub const GNSS_EVENT_2 = extern struct {
-    Size: u32,
-    Version: u32,
-    EventType: GNSS_EVENT_TYPE,
-    EventDataSize: u32,
-    Unused: [512]u8,
-    Anonymous: extern union {
-        FixData: GNSS_FIXDATA,
-        FixData2: GNSS_FIXDATA_2,
-        AgnssRequest: GNSS_AGNSS_REQUEST_PARAM,
-        NiRequest: GNSS_NI_REQUEST_PARAM,
-        ErrorInformation: GNSS_ERRORINFO,
-        NmeaData: GNSS_NMEA_DATA,
-        GeofenceAlertData: GNSS_GEOFENCE_ALERT_DATA,
-        BreadcrumbAlertData: GNSS_BREADCRUMBING_ALERT_DATA,
-        GeofencesTrackingStatus: GNSS_GEOFENCES_TRACKINGSTATUS_DATA,
-        DriverRequestData: GNSS_DRIVER_REQUEST_DATA,
-        CustomData: [1]u8,
-    },
-};
-
-pub const GNSS_AGNSS_INJECTTIME = extern struct {
-    Size: u32,
-    Version: u32,
-    UtcTime: FILETIME,
-    TimeUncertainty: u32,
-};
-
-pub const GNSS_AGNSS_INJECTPOSITION = extern struct {
-    Size: u32,
-    Version: u32,
-    Age: u32,
-    BasicData: GNSS_FIXDATA_BASIC,
-    AccuracyData: GNSS_FIXDATA_ACCURACY,
-};
-
-pub const GNSS_AGNSS_INJECTBLOB = extern struct {
-    Size: u32,
-    Version: u32,
-    BlobOui: u32,
-    BlobVersion: u32,
-    AgnssFormat: u32,
-    BlobSize: u32,
-    BlobData: [1]u8,
-};
-
-pub const GNSS_AGNSS_INJECT = extern struct {
-    Size: u32,
-    Version: u32,
-    InjectionType: GNSS_AGNSS_REQUEST_TYPE,
-    InjectionStatus: NTSTATUS,
-    InjectionDataSize: u32,
-    Unused: [512]u8,
-    Anonymous: extern union {
-        Time: GNSS_AGNSS_INJECTTIME,
-        Position: GNSS_AGNSS_INJECTPOSITION,
-        BlobData: GNSS_AGNSS_INJECTBLOB,
-    },
-};
-
-pub const GNSS_SUPL_HSLP_CONFIG = extern struct {
-    Size: u32,
-    Version: u32,
-    SuplHslp: [260]CHAR,
-    SuplHslpFromImsi: [260]CHAR,
-    Reserved: u32,
-    Unused: [512]u8,
-};
-
-pub const GNSS_SUPL_CERT_ACTION = enum(i32) {
-    Inject = 1,
-    Delete = 2,
-    Purge = 3,
-};
-pub const GNSS_Supl_Cert_Inject = GNSS_SUPL_CERT_ACTION.Inject;
-pub const GNSS_Supl_Cert_Delete = GNSS_SUPL_CERT_ACTION.Delete;
-pub const GNSS_Supl_Cert_Purge = GNSS_SUPL_CERT_ACTION.Purge;
-
-pub const GNSS_SUPL_CERT_CONFIG = extern struct {
-    Size: u32,
-    Version: u32,
-    CertAction: GNSS_SUPL_CERT_ACTION,
-    SuplCertName: [260]CHAR,
-    CertSize: u32,
-    Unused: [512]u8,
-    CertData: [1]u8,
-};
-
-pub const GNSS_V2UPL_CONFIG = extern struct {
-    Size: u32,
-    Version: u32,
-    MPC: [260]CHAR,
-    PDE: [260]CHAR,
-    ApplicationTypeIndicator_MR: u8,
-    Unused: [512]u8,
-};
-
-pub const GNSS_NI_USER_RESPONSE = enum(i32) {
-    Accept = 1,
-    Deny = 2,
-    Timeout = 3,
-};
-pub const GNSS_Ni_UserResponseAccept = GNSS_NI_USER_RESPONSE.Accept;
-pub const GNSS_Ni_UserResponseDeny = GNSS_NI_USER_RESPONSE.Deny;
-pub const GNSS_Ni_UserResponseTimeout = GNSS_NI_USER_RESPONSE.Timeout;
-
-pub const GNSS_NI_RESPONSE = extern struct {
-    Size: u32,
-    Version: u32,
-    RequestId: u32,
-    UserResponse: GNSS_NI_USER_RESPONSE,
-};
-
-pub const GNSS_CWTESTDATA = extern struct {
-    Size: u32,
-    Version: u32,
-    TestResultStatus: NTSTATUS,
-    SignalToNoiseRatio: f64,
-    Frequency: f64,
-    Unused: [512]u8,
-};
-
-pub const GNSS_SELFTESTCONFIG = extern struct {
-    Size: u32,
-    Version: u32,
-    TestType: u32,
-    Unused: [512]u8,
-    InBufLen: u32,
-    InBuffer: [1]u8,
-};
-
-pub const GNSS_SELFTESTRESULT = extern struct {
-    Size: u32,
-    Version: u32,
-    TestResultStatus: NTSTATUS,
-    Result: u32,
-    PinFailedBitMask: u32,
-    Unused: [512]u8,
-    OutBufLen: u32,
-    OutBuffer: [1]u8,
-};
-
-pub const GNSS_CHIPSETINFO = extern struct {
-    Size: u32,
-    Version: u32,
-    ManufacturerID: [25]u16,
-    HardwareID: [25]u16,
-    FirmwareVersion: [20]u16,
-    Unused: [512]u8,
-};
+const CLSID_LatLongReport_Value = Guid.initString("ed81c073-1f84-4ca8-a161-183c776bc651");
+pub const CLSID_LatLongReport = &CLSID_LatLongReport_Value;
+
+const CLSID_LatLongReportFactory_Value = Guid.initString("9dcc3cc8-8609-4863-bad4-03601f4c65e8");
+pub const CLSID_LatLongReportFactory = &CLSID_LatLongReportFactory_Value;
+
+const CLSID_Location_Value = Guid.initString("e5b8e079-ee6d-4e33-a438-c87f2e959254");
+pub const CLSID_Location = &CLSID_Location_Value;
+
+pub const LOCATION_REPORT_STATUS = enum(i32) {
+    NOT_SUPPORTED = 0,
+    ERROR = 1,
+    ACCESS_DENIED = 2,
+    INITIALIZING = 3,
+    RUNNING = 4,
+};
+pub const REPORT_NOT_SUPPORTED = LOCATION_REPORT_STATUS.NOT_SUPPORTED;
+pub const REPORT_ERROR = LOCATION_REPORT_STATUS.ERROR;
+pub const REPORT_ACCESS_DENIED = LOCATION_REPORT_STATUS.ACCESS_DENIED;
+pub const REPORT_INITIALIZING = LOCATION_REPORT_STATUS.INITIALIZING;
+pub const REPORT_RUNNING = LOCATION_REPORT_STATUS.RUNNING;
 
 
 //--------------------------------------------------------------------------------

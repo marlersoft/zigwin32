@@ -4,510 +4,495 @@
 //--------------------------------------------------------------------------------
 pub const LIBID_WUApiLib = Guid.initString("b596cc9f-56e5-419e-a622-e01bb457431e");
 pub const UPDATE_LOCKDOWN_WEBSITE_ACCESS = @as(u32, 1);
-pub const WU_S_SERVICE_STOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359297));
-pub const WU_S_SELFUPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359298));
-pub const WU_S_UPDATE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359299));
-pub const WU_S_MARKED_FOR_DISCONNECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359300));
-pub const WU_S_REBOOT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359301));
-pub const WU_S_ALREADY_INSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359302));
-pub const WU_S_ALREADY_UNINSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359303));
-pub const WU_S_ALREADY_DOWNLOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359304));
-pub const WU_S_SOME_UPDATES_SKIPPED_ON_BATTERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359305));
-pub const WU_S_ALREADY_REVERTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359306));
-pub const WU_S_SEARCH_CRITERIA_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359312));
-pub const WU_S_UH_INSTALLSTILLPENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2367509));
-pub const WU_S_UH_DOWNLOAD_SIZE_CALCULATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2367510));
-pub const WU_S_SIH_NOOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2379777));
-pub const WU_S_DM_ALREADYDOWNLOADING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2383873));
-pub const WU_S_METADATA_SKIPPED_BY_ENFORCEMENTMODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2388225));
-pub const WU_S_METADATA_IGNORED_SIGNATURE_VERIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2388226));
-pub const WU_S_SEARCH_LOAD_SHEDDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2392065));
-pub const WU_E_NO_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124351));
-pub const WU_E_MAX_CAPACITY_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124350));
-pub const WU_E_UNKNOWN_ID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124349));
-pub const WU_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124348));
-pub const WU_E_RANGEOVERLAP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124347));
-pub const WU_E_TOOMANYRANGES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124346));
-pub const WU_E_INVALIDINDEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124345));
-pub const WU_E_ITEMNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124344));
-pub const WU_E_OPERATIONINPROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124343));
-pub const WU_E_COULDNOTCANCEL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124342));
-pub const WU_E_CALL_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124341));
-pub const WU_E_NOOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124340));
-pub const WU_E_XML_MISSINGDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124339));
-pub const WU_E_XML_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124338));
-pub const WU_E_CYCLE_DETECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124337));
-pub const WU_E_TOO_DEEP_RELATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124336));
-pub const WU_E_INVALID_RELATIONSHIP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124335));
-pub const WU_E_REG_VALUE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124334));
-pub const WU_E_DUPLICATE_ITEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124333));
-pub const WU_E_INVALID_INSTALL_REQUESTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124332));
-pub const WU_E_INSTALL_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124330));
-pub const WU_E_NOT_APPLICABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124329));
-pub const WU_E_NO_USERTOKEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124328));
-pub const WU_E_EXCLUSIVE_INSTALL_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124327));
-pub const WU_E_POLICY_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124326));
-pub const WU_E_SELFUPDATE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124325));
-pub const WU_E_INVALID_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124323));
-pub const WU_E_SERVICE_STOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124322));
-pub const WU_E_NO_CONNECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124321));
-pub const WU_E_NO_INTERACTIVE_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124320));
-pub const WU_E_TIME_OUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124319));
 pub const WU_E_ALL_UPDATES_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124318));
-pub const WU_E_EULAS_DECLINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124317));
-pub const WU_E_NO_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124316));
-pub const WU_E_USER_ACCESS_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124315));
-pub const WU_E_INVALID_UPDATE_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124314));
-pub const WU_E_URL_TOO_LONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124313));
-pub const WU_E_UNINSTALL_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124312));
-pub const WU_E_INVALID_PRODUCT_LICENSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124311));
-pub const WU_E_MISSING_HANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124310));
-pub const WU_E_LEGACYSERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124309));
-pub const WU_E_BIN_SOURCE_ABSENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124308));
-pub const WU_E_SOURCE_ABSENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124307));
-pub const WU_E_WU_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124306));
-pub const WU_E_CALL_CANCELLED_BY_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124305));
-pub const WU_E_INVALID_PROXY_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124304));
-pub const WU_E_INVALID_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124303));
-pub const WU_E_INVALID_CRITERIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124302));
-pub const WU_E_EULA_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124301));
-pub const WU_E_DOWNLOAD_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124300));
-pub const WU_E_UPDATE_NOT_PROCESSED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124299));
-pub const WU_E_INVALID_OPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124298));
-pub const WU_E_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124297));
-pub const WU_E_WINHTTP_INVALID_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124296));
-pub const WU_E_TOO_MANY_RESYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124295));
-pub const WU_E_NO_SERVER_CORE_SUPPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124288));
-pub const WU_E_SYSPREP_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124287));
-pub const WU_E_UNKNOWN_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124286));
-pub const WU_E_NO_UI_SUPPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124285));
-pub const WU_E_PER_MACHINE_UPDATE_ACCESS_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124284));
-pub const WU_E_UNSUPPORTED_SEARCHSCOPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124283));
+pub const WU_E_AU_CALL_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124267));
+pub const WU_E_AU_DETECT_SVCID_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083386));
+pub const WU_E_AU_LEGACYCLIENTDISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083389));
+pub const WU_E_AU_NO_REGISTERED_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083387));
+pub const WU_E_AU_NONLEGACYSERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083390));
+pub const WU_E_AU_NOSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083392));
+pub const WU_E_AU_OOBE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083384));
+pub const WU_E_AU_PAUSED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083388));
+pub const WU_E_AU_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079297));
+pub const WU_E_AUCLIENT_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107969));
 pub const WU_E_BAD_FILE_URL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124282));
-pub const WU_E_REVERT_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124281));
-pub const WU_E_INVALID_NOTIFICATION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124280));
-pub const WU_E_OUTOFRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124279));
-pub const WU_E_SETUP_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124278));
-pub const WU_E_ORPHANED_DOWNLOAD_JOB = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124277));
-pub const WU_E_LOW_BATTERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124276));
-pub const WU_E_INFRASTRUCTUREFILE_INVALID_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124275));
-pub const WU_E_INFRASTRUCTUREFILE_REQUIRES_SSL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124274));
+pub const WU_E_BAD_XML_HARDWARECAPABILITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079038));
+pub const WU_E_BIN_SOURCE_ABSENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124308));
+pub const WU_E_CALL_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124341));
+pub const WU_E_CALL_CANCELLED_BY_HIDE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124262));
+pub const WU_E_CALL_CANCELLED_BY_INTERACTIVE_SEARCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124253));
+pub const WU_E_CALL_CANCELLED_BY_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124261));
+pub const WU_E_CALL_CANCELLED_BY_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124305));
+pub const WU_E_CALLBACK_COOKIE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062907));
+pub const WU_E_COULDNOTCANCEL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124342));
+pub const WU_E_CYCLE_DETECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124337));
+pub const WU_E_DM_BG_ERROR_TOKEN_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099761));
+pub const WU_E_DM_BITSTRANSFERERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099767));
+pub const WU_E_DM_CONTENTCHANGED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099765));
+pub const WU_E_DM_DOSVC_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099746));
+pub const WU_E_DM_DOWNLOAD_VOLUME_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099749));
+pub const WU_E_DM_DOWNLOADFILEMISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099758));
+pub const WU_E_DM_DOWNLOADFILEPATHUNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099759));
+pub const WU_E_DM_DOWNLOADLIMITEDBYUPDATESIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099764));
+pub const WU_E_DM_DOWNLOADLOCATIONCHANGED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099766));
+pub const WU_E_DM_DOWNLOADSANDBOXNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099760));
+pub const WU_E_DM_FAILTOCONNECTTOBITS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099768));
+pub const WU_E_DM_FALLINGBACKTOBITS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099750));
+pub const WU_E_DM_HARDRESERVEID_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099747));
+pub const WU_E_DM_INCORRECTFILEHASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099774));
+pub const WU_E_DM_NEEDDOWNLOADREQUEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099772));
+pub const WU_E_DM_NONETWORK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099771));
+pub const WU_E_DM_NOTDOWNLOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099769));
+pub const WU_E_DM_READRANGEFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099756));
+pub const WU_E_DM_SANDBOX_HASH_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099748));
+pub const WU_E_DM_UNAUTHORIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099762));
+pub const WU_E_DM_UNAUTHORIZED_DOMAIN_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099752));
+pub const WU_E_DM_UNAUTHORIZED_LOCAL_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099753));
+pub const WU_E_DM_UNAUTHORIZED_MSA_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099751));
+pub const WU_E_DM_UNAUTHORIZED_NO_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099754));
+pub const WU_E_DM_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095681));
+pub const WU_E_DM_UNKNOWNALGORITHM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099773));
+pub const WU_E_DM_UPDATEREMOVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099757));
+pub const WU_E_DM_URLNOTAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099775));
+pub const WU_E_DM_WRONGBITSVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099770));
+pub const WU_E_DOWNLOAD_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124300));
+pub const WU_E_DRV_DEVICE_PROBLEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075192));
+pub const WU_E_DRV_MISSING_ATTRIBUTE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075195));
+pub const WU_E_DRV_NO_METADATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075196));
+pub const WU_E_DRV_NO_PRINTER_CONTENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075193));
+pub const WU_E_DRV_NOPROP_OR_LEGACY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075198));
+pub const WU_E_DRV_PRUNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075199));
+pub const WU_E_DRV_REG_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075197));
+pub const WU_E_DRV_SYNC_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075194));
+pub const WU_E_DRV_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071105));
+pub const WU_E_DS_BADVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091578));
+pub const WU_E_DS_CANNOTREGISTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091568));
+pub const WU_E_DS_CANTDELETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091573));
+pub const WU_E_DS_DATANOTAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091554));
+pub const WU_E_DS_DATANOTLOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091553));
+pub const WU_E_DS_DECLINENOTALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091562));
+pub const WU_E_DS_DUPLICATEUPDATEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091565));
+pub const WU_E_DS_IMPERSONATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091555));
+pub const WU_E_DS_INUSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091583));
+pub const WU_E_DS_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091582));
+pub const WU_E_DS_INVALIDOPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091558));
+pub const WU_E_DS_INVALIDTABLENAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091579));
+pub const WU_E_DS_LOCKTIMEOUTEXPIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091572));
+pub const WU_E_DS_MISSINGDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091576));
+pub const WU_E_DS_MISSINGREF = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091575));
+pub const WU_E_DS_NEEDWINDOWSSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091559));
+pub const WU_E_DS_NOCATEGORIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091571));
+pub const WU_E_DS_NODATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091577));
+pub const WU_E_DS_NODATA_CCR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091546));
+pub const WU_E_DS_NODATA_COOKIE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091548));
+pub const WU_E_DS_NODATA_DOWNLOADJOB = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091544));
+pub const WU_E_DS_NODATA_EULA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091550));
+pub const WU_E_DS_NODATA_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091545));
+pub const WU_E_DS_NODATA_NOSUCHREVISION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091552));
+pub const WU_E_DS_NODATA_NOSUCHUPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091551));
+pub const WU_E_DS_NODATA_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091549));
+pub const WU_E_DS_NODATA_TIMER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091547));
+pub const WU_E_DS_NODATA_TMI = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091543));
+pub const WU_E_DS_RESETREQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091556));
+pub const WU_E_DS_ROWEXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091570));
+pub const WU_E_DS_SCHEMAMISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091557));
+pub const WU_E_DS_SERVICEEXPIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091563));
+pub const WU_E_DS_SESSIONLOCKMISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091560));
+pub const WU_E_DS_SHUTDOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091584));
+pub const WU_E_DS_STOREFILELOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091569));
+pub const WU_E_DS_TABLEINCORRECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091580));
+pub const WU_E_DS_TABLEMISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091581));
+pub const WU_E_DS_TABLESESSIONMISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091561));
+pub const WU_E_DS_UNABLETOSTART = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091567));
+pub const WU_E_DS_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087489));
+pub const WU_E_DS_UNKNOWNHANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091574));
+pub const WU_E_DS_UNKNOWNSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091564));
+pub const WU_E_DUPLICATE_ITEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124333));
+pub const WU_E_EE_CLUSTER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067001));
+pub const WU_E_EE_INVALID_ATTRIBUTEDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067002));
+pub const WU_E_EE_INVALID_EXPRESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067006));
+pub const WU_E_EE_INVALID_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067004));
+pub const WU_E_EE_MISSING_METADATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067005));
+pub const WU_E_EE_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067003));
+pub const WU_E_EE_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062913));
+pub const WU_E_EE_UNKNOWN_EXPRESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067007));
+pub const WU_E_EULA_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124301));
+pub const WU_E_EULAS_DECLINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124317));
+pub const WU_E_EXCLUSIVE_INSTALL_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124327));
+pub const WU_E_EXTENDEDERROR_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124257));
+pub const WU_E_EXTENDEDERROR_NOTSET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124258));
+pub const WU_E_FILETRUST_DUALSIGNATURE_ECC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078526));
+pub const WU_E_FILETRUST_DUALSIGNATURE_RSA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078527));
+pub const WU_E_FILETRUST_SHA2SIGNATURE_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124255));
 pub const WU_E_IDLESHUTDOWN_OPCOUNT_DISCOVERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124273));
-pub const WU_E_IDLESHUTDOWN_OPCOUNT_SEARCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124272));
 pub const WU_E_IDLESHUTDOWN_OPCOUNT_DOWNLOAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124271));
 pub const WU_E_IDLESHUTDOWN_OPCOUNT_INSTALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124270));
 pub const WU_E_IDLESHUTDOWN_OPCOUNT_OTHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124269));
-pub const WU_E_INTERACTIVE_CALL_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124268));
-pub const WU_E_AU_CALL_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124267));
-pub const WU_E_SYSTEM_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124266));
-pub const WU_E_NO_SUCH_HANDLER_PLUGIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124265));
-pub const WU_E_INVALID_SERIALIZATION_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124264));
-pub const WU_E_NETWORK_COST_EXCEEDS_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124263));
-pub const WU_E_CALL_CANCELLED_BY_HIDE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124262));
-pub const WU_E_CALL_CANCELLED_BY_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124261));
-pub const WU_E_INVALID_VOLUMEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124260));
-pub const WU_E_UNRECOGNIZED_VOLUMEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124259));
-pub const WU_E_EXTENDEDERROR_NOTSET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124258));
-pub const WU_E_EXTENDEDERROR_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124257));
+pub const WU_E_IDLESHUTDOWN_OPCOUNT_SEARCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124272));
 pub const WU_E_IDLESHUTDOWN_OPCOUNT_SERVICEREGISTRATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124256));
-pub const WU_E_FILETRUST_SHA2SIGNATURE_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124255));
-pub const WU_E_UPDATE_NOT_APPROVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124254));
-pub const WU_E_CALL_CANCELLED_BY_INTERACTIVE_SEARCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124253));
-pub const WU_E_INSTALL_JOB_RESUME_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124252));
+pub const WU_E_INFRASTRUCTUREFILE_INVALID_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124275));
+pub const WU_E_INFRASTRUCTUREFILE_REQUIRES_SSL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124274));
 pub const WU_E_INSTALL_JOB_NOT_SUSPENDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124251));
+pub const WU_E_INSTALL_JOB_RESUME_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124252));
+pub const WU_E_INSTALL_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124330));
 pub const WU_E_INSTALL_USERCONTEXT_ACCESSDENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124250));
-pub const WU_E_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120257));
-pub const WU_E_MSI_WRONG_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120255));
+pub const WU_E_INSTALLATION_RESULTS_INVALID_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112062));
+pub const WU_E_INSTALLATION_RESULTS_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112061));
+pub const WU_E_INSTALLATION_RESULTS_UNKNOWN_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112063));
+pub const WU_E_INTERACTIVE_CALL_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124268));
+pub const WU_E_INVALID_CRITERIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124302));
+pub const WU_E_INVALID_EVENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062909));
+pub const WU_E_INVALID_EVENT_PAYLOAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095677));
+pub const WU_E_INVALID_EVENT_PAYLOADSIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095676));
+pub const WU_E_INVALID_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124303));
+pub const WU_E_INVALID_INSTALL_REQUESTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124332));
+pub const WU_E_INVALID_NOTIFICATION_INFO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124280));
+pub const WU_E_INVALID_OPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124298));
+pub const WU_E_INVALID_PRODUCT_LICENSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124311));
+pub const WU_E_INVALID_PROXY_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124304));
+pub const WU_E_INVALID_RELATIONSHIP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124335));
+pub const WU_E_INVALID_SERIALIZATION_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124264));
+pub const WU_E_INVALID_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124323));
+pub const WU_E_INVALID_UPDATE_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124314));
+pub const WU_E_INVALID_VOLUMEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124260));
+pub const WU_E_INVALIDINDEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124345));
+pub const WU_E_INVENTORY_GET_INVENTORY_TYPE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087486));
+pub const WU_E_INVENTORY_PARSEFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087487));
+pub const WU_E_INVENTORY_RESULT_UPLOAD_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087485));
+pub const WU_E_INVENTORY_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087484));
+pub const WU_E_INVENTORY_WMI_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087483));
+pub const WU_E_ITEMNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124344));
+pub const WU_E_LEGACYSERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124309));
+pub const WU_E_LOW_BATTERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124276));
+pub const WU_E_MAX_CAPACITY_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124350));
+pub const WU_E_METADATA_BAD_FRAGMENTSIGNING_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095417));
+pub const WU_E_METADATA_BAD_SIGNATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095360));
+pub const WU_E_METADATA_CERT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095296));
+pub const WU_E_METADATA_CERT_UNTRUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095293));
+pub const WU_E_METADATA_CONFIG_INVALID_BINARY_ENCODING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095423));
+pub const WU_E_METADATA_FAILURE_PROCESSING_FRAGMENTSIGNING_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095416));
+pub const WU_E_METADATA_FETCH_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095422));
+pub const WU_E_METADATA_INTCERT_BAD_TRANSPORT_ENCODING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095294));
+pub const WU_E_METADATA_INVALID_PARAMETER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095420));
+pub const WU_E_METADATA_LEAFCERT_BAD_TRANSPORT_ENCODING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095295));
+pub const WU_E_METADATA_NO_VERIFICATION_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095418));
+pub const WU_E_METADATA_NOOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095424));
+pub const WU_E_METADATA_SIGNATURE_VERIFY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095358));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_ALL_BAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095321));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_CACHELOOKUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095319));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_CERTCHAIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095323));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095328));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_NODATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095320));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_REFRESHONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095322));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_SIGNATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095324));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095297));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_UNTRUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095326));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_VALIDITY_WINDOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095325));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_VALIDITYWINDOW_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095298));
+pub const WU_E_METADATA_TIMESTAMP_TOKEN_VERIFICATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095327));
+pub const WU_E_METADATA_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095419));
+pub const WU_E_METADATA_UNSUPPORTED_HASH_ALG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095359));
+pub const WU_E_METADATA_XML_BASE64CERDATA_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095384));
+pub const WU_E_METADATA_XML_FRAGMENTSIGNING_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095391));
+pub const WU_E_METADATA_XML_INTERMEDIATECERT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095386));
+pub const WU_E_METADATA_XML_LEAFCERT_ID_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095385));
+pub const WU_E_METADATA_XML_LEAFCERT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095387));
+pub const WU_E_METADATA_XML_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095392));
+pub const WU_E_METADATA_XML_MODE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095389));
+pub const WU_E_METADATA_XML_MODE_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095390));
+pub const WU_E_METADATA_XML_VALIDITY_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095388));
+pub const WU_E_METADATATRUST_CERTIFICATECHAIN_VERIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095344));
+pub const WU_E_METADATATRUST_UNTRUSTED_CERTIFICATECHAIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095343));
+pub const WU_E_MISSING_HANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124310));
 pub const WU_E_MSI_NOT_CONFIGURED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120254));
-pub const WU_E_MSP_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120253));
-pub const WU_E_MSI_WRONG_APP_CONTEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120252));
 pub const WU_E_MSI_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120251));
+pub const WU_E_MSI_WRONG_APP_CONTEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120252));
+pub const WU_E_MSI_WRONG_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120255));
+pub const WU_E_MSP_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120253));
 pub const WU_E_MSP_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116161));
-pub const WU_E_PT_SOAPCLIENT_BASE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107968));
-pub const WU_E_PT_SOAPCLIENT_INITIALIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107967));
-pub const WU_E_PT_SOAPCLIENT_OUTOFMEMORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107966));
-pub const WU_E_PT_SOAPCLIENT_GENERATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107965));
-pub const WU_E_PT_SOAPCLIENT_CONNECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107964));
-pub const WU_E_PT_SOAPCLIENT_SEND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107963));
-pub const WU_E_PT_SOAPCLIENT_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107962));
-pub const WU_E_PT_SOAPCLIENT_SOAPFAULT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107961));
-pub const WU_E_PT_SOAPCLIENT_PARSEFAULT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107960));
-pub const WU_E_PT_SOAPCLIENT_READ = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107959));
-pub const WU_E_PT_SOAPCLIENT_PARSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107958));
-pub const WU_E_PT_SOAP_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107957));
-pub const WU_E_PT_SOAP_MUST_UNDERSTAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107956));
-pub const WU_E_PT_SOAP_CLIENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107955));
-pub const WU_E_PT_SOAP_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107954));
-pub const WU_E_PT_WMI_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107953));
-pub const WU_E_PT_EXCEEDED_MAX_SERVER_TRIPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107952));
-pub const WU_E_PT_SUS_SERVER_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107951));
-pub const WU_E_PT_DOUBLE_INITIALIZATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107950));
-pub const WU_E_PT_INVALID_COMPUTER_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107949));
-pub const WU_E_PT_REFRESH_CACHE_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107947));
-pub const WU_E_PT_HTTP_STATUS_BAD_REQUEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107946));
-pub const WU_E_PT_HTTP_STATUS_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107945));
-pub const WU_E_PT_HTTP_STATUS_FORBIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107944));
-pub const WU_E_PT_HTTP_STATUS_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107943));
-pub const WU_E_PT_HTTP_STATUS_BAD_METHOD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107942));
-pub const WU_E_PT_HTTP_STATUS_PROXY_AUTH_REQ = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107941));
-pub const WU_E_PT_HTTP_STATUS_REQUEST_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107940));
-pub const WU_E_PT_HTTP_STATUS_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107939));
-pub const WU_E_PT_HTTP_STATUS_GONE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107938));
-pub const WU_E_PT_HTTP_STATUS_SERVER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107937));
-pub const WU_E_PT_HTTP_STATUS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107936));
-pub const WU_E_PT_HTTP_STATUS_BAD_GATEWAY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107935));
-pub const WU_E_PT_HTTP_STATUS_SERVICE_UNAVAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107934));
-pub const WU_E_PT_HTTP_STATUS_GATEWAY_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107933));
-pub const WU_E_PT_HTTP_STATUS_VERSION_NOT_SUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107932));
-pub const WU_E_PT_FILE_LOCATIONS_CHANGED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107931));
-pub const WU_E_PT_REGISTRATION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107930));
-pub const WU_E_PT_NO_AUTH_PLUGINS_REQUESTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107929));
-pub const WU_E_PT_NO_AUTH_COOKIES_CREATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107928));
-pub const WU_E_PT_INVALID_CONFIG_PROP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107927));
+pub const WU_E_NETWORK_COST_EXCEEDS_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124263));
+pub const WU_E_NO_CONNECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124321));
+pub const WU_E_NO_INTERACTIVE_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124320));
+pub const WU_E_NO_SERVER_CORE_SUPPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124288));
+pub const WU_E_NO_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124351));
+pub const WU_E_NO_SUCH_HANDLER_PLUGIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124265));
+pub const WU_E_NO_UI_SUPPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124285));
+pub const WU_E_NO_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124316));
+pub const WU_E_NO_USERTOKEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124328));
+pub const WU_E_NON_UI_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107971));
+pub const WU_E_NOOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124340));
+pub const WU_E_NOT_APPLICABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124329));
+pub const WU_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124348));
+pub const WU_E_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124297));
+pub const WU_E_OL_INVALID_SCANFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095679));
+pub const WU_E_OL_NEWCLIENT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095678));
+pub const WU_E_OL_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091585));
+pub const WU_E_OPERATIONINPROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124343));
+pub const WU_E_ORPHANED_DOWNLOAD_JOB = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124277));
+pub const WU_E_OUTOFRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124279));
+pub const WU_E_PER_MACHINE_UPDATE_ACCESS_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124284));
+pub const WU_E_POLICY_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124326));
+pub const WU_E_PT_ADDRESS_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123256));
+pub const WU_E_PT_ADDRESS_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123255));
+pub const WU_E_PT_CATALOG_SYNC_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123274));
 pub const WU_E_PT_CONFIG_PROP_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107926));
-pub const WU_E_PT_HTTP_STATUS_NOT_MAPPED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107925));
-pub const WU_E_PT_WINHTTP_NAME_NOT_RESOLVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107924));
-pub const WU_E_PT_LOAD_SHEDDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107923));
-pub const WU_E_PT_SAME_REDIR_ID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103827));
-pub const WU_E_PT_NO_MANAGED_RECOVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103826));
-pub const WU_E_PT_ECP_SUCCEEDED_WITH_ERRORS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107921));
+pub const WU_E_PT_DOUBLE_INITIALIZATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107950));
+pub const WU_E_PT_ECP_FAILURE_TO_DECOMPRESS_CAB_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107916));
+pub const WU_E_PT_ECP_FAILURE_TO_EXTRACT_DIGEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107917));
+pub const WU_E_PT_ECP_FILE_LOCATION_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107915));
 pub const WU_E_PT_ECP_INIT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107920));
 pub const WU_E_PT_ECP_INVALID_FILE_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107919));
 pub const WU_E_PT_ECP_INVALID_METADATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107918));
-pub const WU_E_PT_ECP_FAILURE_TO_EXTRACT_DIGEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107917));
-pub const WU_E_PT_ECP_FAILURE_TO_DECOMPRESS_CAB_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107916));
-pub const WU_E_PT_ECP_FILE_LOCATION_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107915));
-pub const WU_E_PT_CATALOG_SYNC_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123274));
-pub const WU_E_PT_SECURITY_VERIFICATION_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123273));
-pub const WU_E_PT_ENDPOINT_UNREACHABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123272));
-pub const WU_E_PT_INVALID_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123271));
-pub const WU_E_PT_INVALID_URL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123270));
-pub const WU_E_PT_NWS_NOT_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123269));
-pub const WU_E_PT_PROXY_AUTH_SCHEME_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123268));
-pub const WU_E_SERVICEPROP_NOTAVAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123267));
-pub const WU_E_PT_ENDPOINT_REFRESH_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123266));
-pub const WU_E_PT_ENDPOINTURL_NOTAVAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123265));
+pub const WU_E_PT_ECP_SUCCEEDED_WITH_ERRORS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107921));
 pub const WU_E_PT_ENDPOINT_DISCONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123264));
+pub const WU_E_PT_ENDPOINT_REFRESH_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123266));
+pub const WU_E_PT_ENDPOINT_UNREACHABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123272));
+pub const WU_E_PT_ENDPOINTURL_NOTAVAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123265));
+pub const WU_E_PT_EXCEEDED_MAX_SERVER_TRIPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107952));
+pub const WU_E_PT_FILE_LOCATIONS_CHANGED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107931));
+pub const WU_E_PT_HTTP_STATUS_BAD_GATEWAY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107935));
+pub const WU_E_PT_HTTP_STATUS_BAD_METHOD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107942));
+pub const WU_E_PT_HTTP_STATUS_BAD_REQUEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107946));
+pub const WU_E_PT_HTTP_STATUS_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107939));
+pub const WU_E_PT_HTTP_STATUS_DENIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107945));
+pub const WU_E_PT_HTTP_STATUS_FORBIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107944));
+pub const WU_E_PT_HTTP_STATUS_GATEWAY_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107933));
+pub const WU_E_PT_HTTP_STATUS_GONE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107938));
+pub const WU_E_PT_HTTP_STATUS_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107943));
+pub const WU_E_PT_HTTP_STATUS_NOT_MAPPED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107925));
+pub const WU_E_PT_HTTP_STATUS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107936));
+pub const WU_E_PT_HTTP_STATUS_PROXY_AUTH_REQ = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107941));
+pub const WU_E_PT_HTTP_STATUS_REQUEST_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107940));
+pub const WU_E_PT_HTTP_STATUS_SERVER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107937));
+pub const WU_E_PT_HTTP_STATUS_SERVICE_UNAVAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107934));
+pub const WU_E_PT_HTTP_STATUS_VERSION_NOT_SUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107932));
+pub const WU_E_PT_INVALID_COMPUTER_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107949));
+pub const WU_E_PT_INVALID_CONFIG_PROP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107927));
+pub const WU_E_PT_INVALID_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123271));
 pub const WU_E_PT_INVALID_OPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123263));
-pub const WU_E_PT_OBJECT_FAULTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123262));
-pub const WU_E_PT_NUMERIC_OVERFLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123261));
-pub const WU_E_PT_OPERATION_ABORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123260));
-pub const WU_E_PT_OPERATION_ABANDONED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123259));
-pub const WU_E_PT_QUOTA_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123258));
+pub const WU_E_PT_INVALID_URL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123270));
+pub const WU_E_PT_LOAD_SHEDDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107923));
+pub const WU_E_PT_NO_AUTH_COOKIES_CREATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107928));
+pub const WU_E_PT_NO_AUTH_PLUGINS_REQUESTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107929));
+pub const WU_E_PT_NO_MANAGED_RECOVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103826));
 pub const WU_E_PT_NO_TRANSLATION_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123257));
-pub const WU_E_PT_ADDRESS_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123256));
-pub const WU_E_PT_ADDRESS_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123255));
+pub const WU_E_PT_NUMERIC_OVERFLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123261));
+pub const WU_E_PT_NWS_NOT_LOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123269));
+pub const WU_E_PT_OBJECT_FAULTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123262));
+pub const WU_E_PT_OPERATION_ABANDONED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123259));
+pub const WU_E_PT_OPERATION_ABORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123260));
 pub const WU_E_PT_OTHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123254));
+pub const WU_E_PT_PROXY_AUTH_SCHEME_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123268));
+pub const WU_E_PT_QUOTA_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123258));
+pub const WU_E_PT_REFRESH_CACHE_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107947));
+pub const WU_E_PT_REGISTRATION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107930));
+pub const WU_E_PT_SAME_REDIR_ID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103827));
 pub const WU_E_PT_SECURITY_SYSTEM_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123253));
+pub const WU_E_PT_SECURITY_VERIFICATION_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123273));
+pub const WU_E_PT_SOAP_CLIENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107955));
+pub const WU_E_PT_SOAP_MUST_UNDERSTAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107956));
+pub const WU_E_PT_SOAP_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107954));
+pub const WU_E_PT_SOAP_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107957));
+pub const WU_E_PT_SOAPCLIENT_BASE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107968));
+pub const WU_E_PT_SOAPCLIENT_CONNECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107964));
+pub const WU_E_PT_SOAPCLIENT_GENERATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107965));
+pub const WU_E_PT_SOAPCLIENT_INITIALIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107967));
+pub const WU_E_PT_SOAPCLIENT_OUTOFMEMORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107966));
+pub const WU_E_PT_SOAPCLIENT_PARSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107958));
+pub const WU_E_PT_SOAPCLIENT_PARSEFAULT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107960));
+pub const WU_E_PT_SOAPCLIENT_READ = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107959));
+pub const WU_E_PT_SOAPCLIENT_SEND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107963));
+pub const WU_E_PT_SOAPCLIENT_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107962));
+pub const WU_E_PT_SOAPCLIENT_SOAPFAULT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107961));
+pub const WU_E_PT_SUS_SERVER_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107951));
 pub const WU_E_PT_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103873));
-pub const WU_E_REDIRECTOR_LOAD_XML = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103871));
-pub const WU_E_REDIRECTOR_S_FALSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103870));
-pub const WU_E_REDIRECTOR_ID_SMALLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103869));
-pub const WU_E_REDIRECTOR_UNKNOWN_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103868));
-pub const WU_E_REDIRECTOR_UNSUPPORTED_CONTENTTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103867));
-pub const WU_E_REDIRECTOR_INVALID_RESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103866));
+pub const WU_E_PT_WINHTTP_NAME_NOT_RESOLVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107924));
+pub const WU_E_PT_WMI_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107953));
+pub const WU_E_RANGEOVERLAP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124347));
+pub const WU_E_REBOOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083385));
 pub const WU_E_REDIRECTOR_ATTRPROVIDER_EXCEEDED_MAX_NAMEVALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103864));
 pub const WU_E_REDIRECTOR_ATTRPROVIDER_INVALID_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103863));
 pub const WU_E_REDIRECTOR_ATTRPROVIDER_INVALID_VALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103862));
-pub const WU_E_REDIRECTOR_SLS_GENERIC_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103861));
 pub const WU_E_REDIRECTOR_CONNECT_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103860));
+pub const WU_E_REDIRECTOR_ID_SMALLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103869));
+pub const WU_E_REDIRECTOR_INVALID_RESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103866));
+pub const WU_E_REDIRECTOR_LOAD_XML = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103871));
 pub const WU_E_REDIRECTOR_ONLINE_DISALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103859));
+pub const WU_E_REDIRECTOR_S_FALSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103870));
+pub const WU_E_REDIRECTOR_SLS_GENERIC_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103861));
 pub const WU_E_REDIRECTOR_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103617));
+pub const WU_E_REDIRECTOR_UNKNOWN_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103868));
+pub const WU_E_REDIRECTOR_UNSUPPORTED_CONTENTTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103867));
+pub const WU_E_REG_VALUE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124334));
+pub const WU_E_REPORTER_EVENTCACHECORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062911));
+pub const WU_E_REPORTER_EVENTNAMESPACEPARSEFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062910));
+pub const WU_E_REPORTER_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145058817));
+pub const WU_E_REVERT_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124281));
+pub const WU_E_SELFUPDATE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124325));
+pub const WU_E_SELFUPDATE_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071087));
+pub const WU_E_SELFUPDATE_REQUIRED_ADMIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071086));
+pub const WU_E_SELFUPDATE_SKIP_ON_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071096));
+pub const WU_E_SERVER_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062908));
+pub const WU_E_SERVICE_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095675));
+pub const WU_E_SERVICE_STOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124322));
+pub const WU_E_SERVICEPROP_NOTAVAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145123267));
+pub const WU_E_SETUP_ALREADY_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071101));
+pub const WU_E_SETUP_ALREADYRUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071091));
+pub const WU_E_SETUP_BLOCKED_CONFIGURATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071093));
+pub const WU_E_SETUP_DEFERRABLE_REBOOT_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071084));
+pub const WU_E_SETUP_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071082));
+pub const WU_E_SETUP_HANDLER_EXEC_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071089));
+pub const WU_E_SETUP_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124278));
+pub const WU_E_SETUP_INVALID_IDENTDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071102));
+pub const WU_E_SETUP_INVALID_INFDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071103));
+pub const WU_E_SETUP_INVALID_REGISTRY_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071088));
+pub const WU_E_SETUP_NON_DEFERRABLE_REBOOT_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071083));
+pub const WU_E_SETUP_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071100));
+pub const WU_E_SETUP_REBOOT_TO_FIX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071092));
+pub const WU_E_SETUP_REBOOTREQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071090));
+pub const WU_E_SETUP_REGISTRATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071097));
+pub const WU_E_SETUP_SKIP_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071095));
+pub const WU_E_SETUP_SOURCE_VERSION_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071099));
+pub const WU_E_SETUP_TARGET_VERSION_GREATER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071098));
+pub const WU_E_SETUP_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067009));
+pub const WU_E_SETUP_UNSUPPORTED_CONFIGURATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071094));
+pub const WU_E_SETUP_WRONG_SERVER_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071085));
+pub const WU_E_SIH_ACTION_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103611));
+pub const WU_E_SIH_ANOTHER_INSTANCE_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103597));
+pub const WU_E_SIH_BLOCKED_FOR_PLATFORM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103598));
+pub const WU_E_SIH_DNSRESILIENCY_OFF = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103596));
+pub const WU_E_SIH_ENGINE_EXCEPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103599));
+pub const WU_E_SIH_INVALIDHASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103609));
+pub const WU_E_SIH_NO_ENGINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103608));
+pub const WU_E_SIH_NONSTDEXCEPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103600));
+pub const WU_E_SIH_PARSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103605));
+pub const WU_E_SIH_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103602));
+pub const WU_E_SIH_POST_REBOOT_INSTALL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103607));
+pub const WU_E_SIH_POST_REBOOT_NO_CACHED_SLS_RESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103606));
+pub const WU_E_SIH_PPL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103603));
+pub const WU_E_SIH_SECURITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103604));
+pub const WU_E_SIH_SLS_PARSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103610));
+pub const WU_E_SIH_STDEXCEPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103601));
+pub const WU_E_SIH_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103361));
 pub const WU_E_SIH_VERIFY_DOWNLOAD_ENGINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103615));
 pub const WU_E_SIH_VERIFY_DOWNLOAD_PAYLOAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103614));
 pub const WU_E_SIH_VERIFY_STAGE_ENGINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103613));
 pub const WU_E_SIH_VERIFY_STAGE_PAYLOAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103612));
-pub const WU_E_SIH_ACTION_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103611));
-pub const WU_E_SIH_SLS_PARSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103610));
-pub const WU_E_SIH_INVALIDHASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103609));
-pub const WU_E_SIH_NO_ENGINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103608));
-pub const WU_E_SIH_POST_REBOOT_INSTALL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103607));
-pub const WU_E_SIH_POST_REBOOT_NO_CACHED_SLS_RESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103606));
-pub const WU_E_SIH_PARSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103605));
-pub const WU_E_SIH_SECURITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103604));
-pub const WU_E_SIH_PPL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103603));
-pub const WU_E_SIH_POLICY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103602));
-pub const WU_E_SIH_STDEXCEPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103601));
-pub const WU_E_SIH_NONSTDEXCEPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103600));
-pub const WU_E_SIH_ENGINE_EXCEPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103599));
-pub const WU_E_SIH_BLOCKED_FOR_PLATFORM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103598));
-pub const WU_E_SIH_ANOTHER_INSTANCE_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103597));
-pub const WU_E_SIH_DNSRESILIENCY_OFF = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103596));
-pub const WU_E_SIH_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145103361));
-pub const WU_E_DRV_PRUNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075199));
-pub const WU_E_DRV_NOPROP_OR_LEGACY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075198));
-pub const WU_E_DRV_REG_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075197));
-pub const WU_E_DRV_NO_METADATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075196));
-pub const WU_E_DRV_MISSING_ATTRIBUTE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075195));
-pub const WU_E_DRV_SYNC_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075194));
-pub const WU_E_DRV_NO_PRINTER_CONTENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075193));
-pub const WU_E_DRV_DEVICE_PROBLEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145075192));
-pub const WU_E_DRV_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071105));
-pub const WU_E_DS_SHUTDOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091584));
-pub const WU_E_DS_INUSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091583));
-pub const WU_E_DS_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091582));
-pub const WU_E_DS_TABLEMISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091581));
-pub const WU_E_DS_TABLEINCORRECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091580));
-pub const WU_E_DS_INVALIDTABLENAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091579));
-pub const WU_E_DS_BADVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091578));
-pub const WU_E_DS_NODATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091577));
-pub const WU_E_DS_MISSINGDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091576));
-pub const WU_E_DS_MISSINGREF = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091575));
-pub const WU_E_DS_UNKNOWNHANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091574));
-pub const WU_E_DS_CANTDELETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091573));
-pub const WU_E_DS_LOCKTIMEOUTEXPIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091572));
-pub const WU_E_DS_NOCATEGORIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091571));
-pub const WU_E_DS_ROWEXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091570));
-pub const WU_E_DS_STOREFILELOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091569));
-pub const WU_E_DS_CANNOTREGISTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091568));
-pub const WU_E_DS_UNABLETOSTART = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091567));
-pub const WU_E_DS_DUPLICATEUPDATEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091565));
-pub const WU_E_DS_UNKNOWNSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091564));
-pub const WU_E_DS_SERVICEEXPIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091563));
-pub const WU_E_DS_DECLINENOTALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091562));
-pub const WU_E_DS_TABLESESSIONMISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091561));
-pub const WU_E_DS_SESSIONLOCKMISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091560));
-pub const WU_E_DS_NEEDWINDOWSSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091559));
-pub const WU_E_DS_INVALIDOPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091558));
-pub const WU_E_DS_SCHEMAMISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091557));
-pub const WU_E_DS_RESETREQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091556));
-pub const WU_E_DS_IMPERSONATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091555));
-pub const WU_E_DS_DATANOTAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091554));
-pub const WU_E_DS_DATANOTLOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091553));
-pub const WU_E_DS_NODATA_NOSUCHREVISION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091552));
-pub const WU_E_DS_NODATA_NOSUCHUPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091551));
-pub const WU_E_DS_NODATA_EULA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091550));
-pub const WU_E_DS_NODATA_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091549));
-pub const WU_E_DS_NODATA_COOKIE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091548));
-pub const WU_E_DS_NODATA_TIMER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091547));
-pub const WU_E_DS_NODATA_CCR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091546));
-pub const WU_E_DS_NODATA_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091545));
-pub const WU_E_DS_NODATA_DOWNLOADJOB = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091544));
-pub const WU_E_DS_NODATA_TMI = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091543));
-pub const WU_E_DS_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087489));
-pub const WU_E_INVENTORY_PARSEFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087487));
-pub const WU_E_INVENTORY_GET_INVENTORY_TYPE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087486));
-pub const WU_E_INVENTORY_RESULT_UPLOAD_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087485));
-pub const WU_E_INVENTORY_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087484));
-pub const WU_E_INVENTORY_WMI_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145087483));
-pub const WU_E_AU_NOSERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083392));
-pub const WU_E_AU_NONLEGACYSERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083390));
-pub const WU_E_AU_LEGACYCLIENTDISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083389));
-pub const WU_E_AU_PAUSED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083388));
-pub const WU_E_AU_NO_REGISTERED_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083387));
-pub const WU_E_AU_DETECT_SVCID_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083386));
-pub const WU_E_REBOOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083385));
-pub const WU_E_AU_OOBE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145083384));
-pub const WU_E_AU_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079297));
-pub const WU_E_UH_REMOTEUNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116160));
-pub const WU_E_UH_LOCALONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116159));
-pub const WU_E_UH_UNKNOWNHANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116158));
-pub const WU_E_UH_REMOTEALREADYACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116157));
-pub const WU_E_UH_DOESNOTSUPPORTACTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116156));
-pub const WU_E_UH_WRONGHANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116155));
-pub const WU_E_UH_INVALIDMETADATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116154));
-pub const WU_E_UH_INSTALLERHUNG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116153));
-pub const WU_E_UH_OPERATIONCANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116152));
-pub const WU_E_UH_BADHANDLERXML = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116151));
-pub const WU_E_UH_CANREQUIREINPUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116150));
-pub const WU_E_UH_INSTALLERFAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116149));
-pub const WU_E_UH_FALLBACKTOSELFCONTAINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116148));
-pub const WU_E_UH_NEEDANOTHERDOWNLOAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116147));
-pub const WU_E_UH_NOTIFYFAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116146));
-pub const WU_E_UH_INCONSISTENT_FILE_NAMES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116145));
-pub const WU_E_UH_FALLBACKERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116144));
-pub const WU_E_UH_TOOMANYDOWNLOADREQUESTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116143));
-pub const WU_E_UH_UNEXPECTEDCBSRESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116142));
-pub const WU_E_UH_BADCBSPACKAGEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116141));
-pub const WU_E_UH_POSTREBOOTSTILLPENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116140));
-pub const WU_E_UH_POSTREBOOTRESULTUNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116139));
-pub const WU_E_UH_POSTREBOOTUNEXPECTEDSTATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116138));
-pub const WU_E_UH_NEW_SERVICING_STACK_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116137));
-pub const WU_E_UH_CALLED_BACK_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116136));
-pub const WU_E_UH_CUSTOMINSTALLER_INVALID_SIGNATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116135));
-pub const WU_E_UH_UNSUPPORTED_INSTALLCONTEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116134));
-pub const WU_E_UH_INVALID_TARGETSESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116133));
-pub const WU_E_UH_DECRYPTFAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116132));
-pub const WU_E_UH_HANDLER_DISABLEDUNTILREBOOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116131));
-pub const WU_E_UH_APPX_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116130));
-pub const WU_E_UH_NOTREADYTOCOMMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116129));
-pub const WU_E_UH_APPX_INVALID_PACKAGE_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116128));
-pub const WU_E_UH_APPX_DEFAULT_PACKAGE_VOLUME_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116127));
-pub const WU_E_UH_APPX_INSTALLED_PACKAGE_VOLUME_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116126));
-pub const WU_E_UH_APPX_PACKAGE_FAMILY_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116125));
-pub const WU_E_UH_APPX_SYSTEM_VOLUME_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116124));
-pub const WU_E_UH_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112065));
-pub const WU_E_DM_URLNOTAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099775));
-pub const WU_E_DM_INCORRECTFILEHASH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099774));
-pub const WU_E_DM_UNKNOWNALGORITHM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099773));
-pub const WU_E_DM_NEEDDOWNLOADREQUEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099772));
-pub const WU_E_DM_NONETWORK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099771));
-pub const WU_E_DM_WRONGBITSVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099770));
-pub const WU_E_DM_NOTDOWNLOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099769));
-pub const WU_E_DM_FAILTOCONNECTTOBITS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099768));
-pub const WU_E_DM_BITSTRANSFERERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099767));
-pub const WU_E_DM_DOWNLOADLOCATIONCHANGED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099766));
-pub const WU_E_DM_CONTENTCHANGED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099765));
-pub const WU_E_DM_DOWNLOADLIMITEDBYUPDATESIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099764));
-pub const WU_E_DM_UNAUTHORIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099762));
-pub const WU_E_DM_BG_ERROR_TOKEN_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099761));
-pub const WU_E_DM_DOWNLOADSANDBOXNOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099760));
-pub const WU_E_DM_DOWNLOADFILEPATHUNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099759));
-pub const WU_E_DM_DOWNLOADFILEMISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099758));
-pub const WU_E_DM_UPDATEREMOVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099757));
-pub const WU_E_DM_READRANGEFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099756));
-pub const WU_E_DM_UNAUTHORIZED_NO_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099754));
-pub const WU_E_DM_UNAUTHORIZED_LOCAL_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099753));
-pub const WU_E_DM_UNAUTHORIZED_DOMAIN_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099752));
-pub const WU_E_DM_UNAUTHORIZED_MSA_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099751));
-pub const WU_E_DM_FALLINGBACKTOBITS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099750));
-pub const WU_E_DM_DOWNLOAD_VOLUME_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099749));
-pub const WU_E_DM_SANDBOX_HASH_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099748));
-pub const WU_E_DM_HARDRESERVEID_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099747));
-pub const WU_E_DM_DOSVC_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145099746));
-pub const WU_E_DM_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095681));
-pub const WU_E_SETUP_INVALID_INFDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071103));
-pub const WU_E_SETUP_INVALID_IDENTDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071102));
-pub const WU_E_SETUP_ALREADY_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071101));
-pub const WU_E_SETUP_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071100));
-pub const WU_E_SETUP_SOURCE_VERSION_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071099));
-pub const WU_E_SETUP_TARGET_VERSION_GREATER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071098));
-pub const WU_E_SETUP_REGISTRATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071097));
-pub const WU_E_SELFUPDATE_SKIP_ON_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071096));
-pub const WU_E_SETUP_SKIP_UPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071095));
-pub const WU_E_SETUP_UNSUPPORTED_CONFIGURATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071094));
-pub const WU_E_SETUP_BLOCKED_CONFIGURATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071093));
-pub const WU_E_SETUP_REBOOT_TO_FIX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071092));
-pub const WU_E_SETUP_ALREADYRUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071091));
-pub const WU_E_SETUP_REBOOTREQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071090));
-pub const WU_E_SETUP_HANDLER_EXEC_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071089));
-pub const WU_E_SETUP_INVALID_REGISTRY_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071088));
-pub const WU_E_SELFUPDATE_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071087));
-pub const WU_E_SELFUPDATE_REQUIRED_ADMIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071086));
-pub const WU_E_SETUP_WRONG_SERVER_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071085));
-pub const WU_E_SETUP_DEFERRABLE_REBOOT_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071084));
-pub const WU_E_SETUP_NON_DEFERRABLE_REBOOT_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071083));
-pub const WU_E_SETUP_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145071082));
-pub const WU_E_SETUP_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067009));
-pub const WU_E_EE_UNKNOWN_EXPRESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067007));
-pub const WU_E_EE_INVALID_EXPRESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067006));
-pub const WU_E_EE_MISSING_METADATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067005));
-pub const WU_E_EE_INVALID_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067004));
-pub const WU_E_EE_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067003));
-pub const WU_E_EE_INVALID_ATTRIBUTEDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067002));
-pub const WU_E_EE_CLUSTER_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145067001));
-pub const WU_E_EE_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062913));
-pub const WU_E_INSTALLATION_RESULTS_UNKNOWN_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112063));
-pub const WU_E_INSTALLATION_RESULTS_INVALID_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112062));
-pub const WU_E_INSTALLATION_RESULTS_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112061));
-pub const WU_E_TRAYICON_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112060));
-pub const WU_E_NON_UI_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107971));
-pub const WU_E_WUCLTUI_UNSUPPORTED_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107970));
-pub const WU_E_AUCLIENT_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107969));
-pub const WU_E_REPORTER_EVENTCACHECORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062911));
-pub const WU_E_REPORTER_EVENTNAMESPACEPARSEFAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062910));
-pub const WU_E_INVALID_EVENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062909));
-pub const WU_E_SERVER_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062908));
-pub const WU_E_CALLBACK_COOKIE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145062907));
-pub const WU_E_REPORTER_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145058817));
-pub const WU_E_OL_INVALID_SCANFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095679));
-pub const WU_E_OL_NEWCLIENT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095678));
-pub const WU_E_INVALID_EVENT_PAYLOAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095677));
-pub const WU_E_INVALID_EVENT_PAYLOADSIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095676));
-pub const WU_E_SERVICE_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095675));
-pub const WU_E_OL_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145091585));
-pub const WU_E_METADATA_NOOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095424));
-pub const WU_E_METADATA_CONFIG_INVALID_BINARY_ENCODING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095423));
-pub const WU_E_METADATA_FETCH_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095422));
-pub const WU_E_METADATA_INVALID_PARAMETER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095420));
-pub const WU_E_METADATA_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095419));
-pub const WU_E_METADATA_NO_VERIFICATION_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095418));
-pub const WU_E_METADATA_BAD_FRAGMENTSIGNING_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095417));
-pub const WU_E_METADATA_FAILURE_PROCESSING_FRAGMENTSIGNING_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095416));
-pub const WU_E_METADATA_XML_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095392));
-pub const WU_E_METADATA_XML_FRAGMENTSIGNING_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095391));
-pub const WU_E_METADATA_XML_MODE_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095390));
-pub const WU_E_METADATA_XML_MODE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095389));
-pub const WU_E_METADATA_XML_VALIDITY_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095388));
-pub const WU_E_METADATA_XML_LEAFCERT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095387));
-pub const WU_E_METADATA_XML_INTERMEDIATECERT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095386));
-pub const WU_E_METADATA_XML_LEAFCERT_ID_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095385));
-pub const WU_E_METADATA_XML_BASE64CERDATA_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095384));
-pub const WU_E_METADATA_BAD_SIGNATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095360));
-pub const WU_E_METADATA_UNSUPPORTED_HASH_ALG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095359));
-pub const WU_E_METADATA_SIGNATURE_VERIFY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095358));
-pub const WU_E_METADATATRUST_CERTIFICATECHAIN_VERIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095344));
-pub const WU_E_METADATATRUST_UNTRUSTED_CERTIFICATECHAIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095343));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095328));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_VERIFICATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095327));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_UNTRUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095326));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_VALIDITY_WINDOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095325));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_SIGNATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095324));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_CERTCHAIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095323));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_REFRESHONLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095322));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_ALL_BAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095321));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_NODATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095320));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_CACHELOOKUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095319));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_VALIDITYWINDOW_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095298));
-pub const WU_E_METADATA_TIMESTAMP_TOKEN_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095297));
-pub const WU_E_METADATA_CERT_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095296));
-pub const WU_E_METADATA_LEAFCERT_BAD_TRANSPORT_ENCODING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095295));
-pub const WU_E_METADATA_INTCERT_BAD_TRANSPORT_ENCODING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095294));
-pub const WU_E_METADATA_CERT_UNTRUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145095293));
-pub const WU_E_WUTASK_INPROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079295));
-pub const WU_E_WUTASK_STATUS_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079294));
-pub const WU_E_WUTASK_NOT_STARTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079293));
-pub const WU_E_WUTASK_RETRY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079292));
-pub const WU_E_WUTASK_CANCELINSTALL_DISALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079291));
-pub const WU_E_UNKNOWN_HARDWARECAPABILITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079039));
-pub const WU_E_BAD_XML_HARDWARECAPABILITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079038));
-pub const WU_E_WMI_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079037));
-pub const WU_E_UPDATE_MERGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079036));
 pub const WU_E_SKIPPED_UPDATE_INSTALLATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079035));
 pub const WU_E_SLS_INVALID_REVISION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078783));
-pub const WU_E_FILETRUST_DUALSIGNATURE_RSA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078527));
-pub const WU_E_FILETRUST_DUALSIGNATURE_ECC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078526));
-pub const WU_E_TRUST_SUBJECT_NOT_TRUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078525));
+pub const WU_E_SOURCE_ABSENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124307));
+pub const WU_E_SYSPREP_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124287));
+pub const WU_E_SYSTEM_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124266));
+pub const WU_E_TIME_OUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124319));
+pub const WU_E_TOO_DEEP_RELATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124336));
+pub const WU_E_TOO_MANY_RESYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124295));
+pub const WU_E_TOOMANYRANGES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124346));
+pub const WU_E_TRAYICON_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112060));
 pub const WU_E_TRUST_PROVIDER_UNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078524));
+pub const WU_E_TRUST_SUBJECT_NOT_TRUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145078525));
+pub const WU_E_UH_APPX_DEFAULT_PACKAGE_VOLUME_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116127));
+pub const WU_E_UH_APPX_INSTALLED_PACKAGE_VOLUME_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116126));
+pub const WU_E_UH_APPX_INVALID_PACKAGE_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116128));
+pub const WU_E_UH_APPX_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116130));
+pub const WU_E_UH_APPX_PACKAGE_FAMILY_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116125));
+pub const WU_E_UH_APPX_SYSTEM_VOLUME_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116124));
+pub const WU_E_UH_BADCBSPACKAGEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116141));
+pub const WU_E_UH_BADHANDLERXML = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116151));
+pub const WU_E_UH_CALLED_BACK_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116136));
+pub const WU_E_UH_CANREQUIREINPUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116150));
+pub const WU_E_UH_CUSTOMINSTALLER_INVALID_SIGNATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116135));
+pub const WU_E_UH_DECRYPTFAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116132));
+pub const WU_E_UH_DOESNOTSUPPORTACTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116156));
+pub const WU_E_UH_FALLBACKERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116144));
+pub const WU_E_UH_FALLBACKTOSELFCONTAINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116148));
+pub const WU_E_UH_HANDLER_DISABLEDUNTILREBOOT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116131));
+pub const WU_E_UH_INCONSISTENT_FILE_NAMES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116145));
+pub const WU_E_UH_INSTALLERFAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116149));
+pub const WU_E_UH_INSTALLERHUNG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116153));
+pub const WU_E_UH_INVALID_TARGETSESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116133));
+pub const WU_E_UH_INVALIDMETADATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116154));
+pub const WU_E_UH_LOCALONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116159));
+pub const WU_E_UH_NEEDANOTHERDOWNLOAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116147));
+pub const WU_E_UH_NEW_SERVICING_STACK_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116137));
+pub const WU_E_UH_NOTIFYFAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116146));
+pub const WU_E_UH_NOTREADYTOCOMMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116129));
+pub const WU_E_UH_OPERATIONCANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116152));
+pub const WU_E_UH_POSTREBOOTRESULTUNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116139));
+pub const WU_E_UH_POSTREBOOTSTILLPENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116140));
+pub const WU_E_UH_POSTREBOOTUNEXPECTEDSTATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116138));
+pub const WU_E_UH_REMOTEALREADYACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116157));
+pub const WU_E_UH_REMOTEUNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116160));
+pub const WU_E_UH_TOOMANYDOWNLOADREQUESTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116143));
+pub const WU_E_UH_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145112065));
+pub const WU_E_UH_UNEXPECTEDCBSRESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116142));
+pub const WU_E_UH_UNKNOWNHANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116158));
+pub const WU_E_UH_UNSUPPORTED_INSTALLCONTEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116134));
+pub const WU_E_UH_WRONGHANDLER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145116155));
+pub const WU_E_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145120257));
+pub const WU_E_UNINSTALL_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124312));
+pub const WU_E_UNKNOWN_HARDWARECAPABILITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079039));
+pub const WU_E_UNKNOWN_ID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124349));
+pub const WU_E_UNKNOWN_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124286));
+pub const WU_E_UNRECOGNIZED_VOLUMEID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124259));
+pub const WU_E_UNSUPPORTED_SEARCHSCOPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124283));
+pub const WU_E_UPDATE_MERGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079036));
+pub const WU_E_UPDATE_NOT_APPROVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124254));
+pub const WU_E_UPDATE_NOT_PROCESSED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124299));
+pub const WU_E_URL_TOO_LONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124313));
+pub const WU_E_USER_ACCESS_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124315));
+pub const WU_E_WINHTTP_INVALID_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124296));
+pub const WU_E_WMI_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079037));
+pub const WU_E_WU_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124306));
+pub const WU_E_WUCLTUI_UNSUPPORTED_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145107970));
+pub const WU_E_WUTASK_CANCELINSTALL_DISALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079291));
+pub const WU_E_WUTASK_INPROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079295));
+pub const WU_E_WUTASK_NOT_STARTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079293));
+pub const WU_E_WUTASK_RETRY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079292));
+pub const WU_E_WUTASK_STATUS_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145079294));
+pub const WU_E_XML_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124338));
+pub const WU_E_XML_MISSINGDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145124339));
+pub const WU_S_ALREADY_DOWNLOADED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359304));
+pub const WU_S_ALREADY_INSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359302));
+pub const WU_S_ALREADY_REVERTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359306));
+pub const WU_S_ALREADY_UNINSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359303));
+pub const WU_S_DM_ALREADYDOWNLOADING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2383873));
+pub const WU_S_MARKED_FOR_DISCONNECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359300));
+pub const WU_S_METADATA_IGNORED_SIGNATURE_VERIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2388226));
+pub const WU_S_METADATA_SKIPPED_BY_ENFORCEMENTMODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2388225));
+pub const WU_S_REBOOT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359301));
+pub const WU_S_SEARCH_CRITERIA_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359312));
+pub const WU_S_SEARCH_LOAD_SHEDDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2392065));
+pub const WU_S_SELFUPDATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359298));
+pub const WU_S_SERVICE_STOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359297));
+pub const WU_S_SIH_NOOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2379777));
+pub const WU_S_SOME_UPDATES_SKIPPED_ON_BATTERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359305));
+pub const WU_S_UH_DOWNLOAD_SIZE_CALCULATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2367510));
+pub const WU_S_UH_INSTALLSTILLPENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2367509));
+pub const WU_S_UPDATE_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2359299));
 
 //--------------------------------------------------------------------------------
 // Section: Types (109)
 //--------------------------------------------------------------------------------
-const CLSID_StringCollection_Value = Guid.initString("72c97d74-7c3b-40ae-b77d-abdb22eba6fb");
-pub const CLSID_StringCollection = &CLSID_StringCollection_Value;
+pub const AddServiceFlag = enum(i32) {
+    AllowPendingRegistration = 1,
+    AllowOnlineRegistration = 2,
+    RegisterServiceWithAU = 4,
+};
+pub const asfAllowPendingRegistration = AddServiceFlag.AllowPendingRegistration;
+pub const asfAllowOnlineRegistration = AddServiceFlag.AllowOnlineRegistration;
+pub const asfRegisterServiceWithAU = AddServiceFlag.RegisterServiceWithAU;
 
-const CLSID_UpdateSearcher_Value = Guid.initString("b699e5e8-67ff-4177-88b0-3684a3388bfb");
-pub const CLSID_UpdateSearcher = &CLSID_UpdateSearcher_Value;
-
-const CLSID_WebProxy_Value = Guid.initString("650503cf-9108-4ddc-a2ce-6c2341e1c582");
-pub const CLSID_WebProxy = &CLSID_WebProxy_Value;
-
-const CLSID_SystemInformation_Value = Guid.initString("c01b9ba0-bea7-41ba-b604-d0a36f469133");
-pub const CLSID_SystemInformation = &CLSID_SystemInformation_Value;
-
-const CLSID_WindowsUpdateAgentInfo_Value = Guid.initString("c2e88c2f-6f5b-4aaa-894b-55c847ad3a2d");
-pub const CLSID_WindowsUpdateAgentInfo = &CLSID_WindowsUpdateAgentInfo_Value;
+pub const AutoDownloadMode = enum(i32) {
+    LetWindowsUpdateDecide = 0,
+    NeverAutoDownload = 1,
+    AlwaysAutoDownload = 2,
+};
+pub const adLetWindowsUpdateDecide = AutoDownloadMode.LetWindowsUpdateDecide;
+pub const adNeverAutoDownload = AutoDownloadMode.NeverAutoDownload;
+pub const adAlwaysAutoDownload = AutoDownloadMode.AlwaysAutoDownload;
 
 const CLSID_AutomaticUpdates_Value = Guid.initString("bfe18e9c-6d87-4450-b37c-e02f0b373803");
 pub const CLSID_AutomaticUpdates = &CLSID_AutomaticUpdates_Value;
-
-const CLSID_UpdateCollection_Value = Guid.initString("13639463-00db-4646-803d-528026140d88");
-pub const CLSID_UpdateCollection = &CLSID_UpdateCollection_Value;
-
-const CLSID_UpdateDownloader_Value = Guid.initString("5baf654a-5a07-4264-a255-9ff54c7151e7");
-pub const CLSID_UpdateDownloader = &CLSID_UpdateDownloader_Value;
-
-const CLSID_UpdateInstaller_Value = Guid.initString("d2e0fe7f-d23e-48e1-93c0-6fa8cc346474");
-pub const CLSID_UpdateInstaller = &CLSID_UpdateInstaller_Value;
-
-const CLSID_UpdateSession_Value = Guid.initString("4cb43d7f-7eee-4906-8698-60da1c38f2fe");
-pub const CLSID_UpdateSession = &CLSID_UpdateSession_Value;
-
-const CLSID_UpdateServiceManager_Value = Guid.initString("f8d253d9-89a4-4daa-87b6-1168369f0b21");
-pub const CLSID_UpdateServiceManager = &CLSID_UpdateServiceManager_Value;
-
-const CLSID_InstallationAgent_Value = Guid.initString("317e92fc-1679-46fd-a0b5-f08914dd8623");
-pub const CLSID_InstallationAgent = &CLSID_InstallationAgent_Value;
 
 pub const AutomaticUpdatesNotificationLevel = enum(i32) {
     NotConfigured = 0,
@@ -521,6 +506,19 @@ pub const aunlDisabled = AutomaticUpdatesNotificationLevel.Disabled;
 pub const aunlNotifyBeforeDownload = AutomaticUpdatesNotificationLevel.NotifyBeforeDownload;
 pub const aunlNotifyBeforeInstallation = AutomaticUpdatesNotificationLevel.NotifyBeforeInstallation;
 pub const aunlScheduledInstallation = AutomaticUpdatesNotificationLevel.ScheduledInstallation;
+
+pub const AutomaticUpdatesPermissionType = enum(i32) {
+    SetNotificationLevel = 1,
+    DisableAutomaticUpdates = 2,
+    SetIncludeRecommendedUpdates = 3,
+    SetFeaturedUpdatesEnabled = 4,
+    SetNonAdministratorsElevated = 5,
+};
+pub const auptSetNotificationLevel = AutomaticUpdatesPermissionType.SetNotificationLevel;
+pub const auptDisableAutomaticUpdates = AutomaticUpdatesPermissionType.DisableAutomaticUpdates;
+pub const auptSetIncludeRecommendedUpdates = AutomaticUpdatesPermissionType.SetIncludeRecommendedUpdates;
+pub const auptSetFeaturedUpdatesEnabled = AutomaticUpdatesPermissionType.SetFeaturedUpdatesEnabled;
+pub const auptSetNonAdministratorsElevated = AutomaticUpdatesPermissionType.SetNonAdministratorsElevated;
 
 pub const AutomaticUpdatesScheduledInstallationDay = enum(i32) {
     Day = 0,
@@ -540,6 +538,37 @@ pub const ausidEveryWednesday = AutomaticUpdatesScheduledInstallationDay.Wednesd
 pub const ausidEveryThursday = AutomaticUpdatesScheduledInstallationDay.Thursday;
 pub const ausidEveryFriday = AutomaticUpdatesScheduledInstallationDay.Friday;
 pub const ausidEverySaturday = AutomaticUpdatesScheduledInstallationDay.Saturday;
+
+pub const AutomaticUpdatesUserType = enum(i32) {
+    CurrentUser = 1,
+    LocalAdministrator = 2,
+};
+pub const auutCurrentUser = AutomaticUpdatesUserType.CurrentUser;
+pub const auutLocalAdministrator = AutomaticUpdatesUserType.LocalAdministrator;
+
+pub const AutoSelectionMode = enum(i32) {
+    LetWindowsUpdateDecide = 0,
+    AutoSelectIfDownloaded = 1,
+    NeverAutoSelect = 2,
+    AlwaysAutoSelect = 3,
+};
+pub const asLetWindowsUpdateDecide = AutoSelectionMode.LetWindowsUpdateDecide;
+pub const asAutoSelectIfDownloaded = AutoSelectionMode.AutoSelectIfDownloaded;
+pub const asNeverAutoSelect = AutoSelectionMode.NeverAutoSelect;
+pub const asAlwaysAutoSelect = AutoSelectionMode.AlwaysAutoSelect;
+
+pub const DeploymentAction = enum(i32) {
+    None = 0,
+    Installation = 1,
+    Uninstallation = 2,
+    Detection = 3,
+    OptionalInstallation = 4,
+};
+pub const daNone = DeploymentAction.None;
+pub const daInstallation = DeploymentAction.Installation;
+pub const daUninstallation = DeploymentAction.Uninstallation;
+pub const daDetection = DeploymentAction.Detection;
+pub const daOptionalInstallation = DeploymentAction.OptionalInstallation;
 
 pub const DownloadPhase = enum(i32) {
     Initializing = 1,
@@ -561,426 +590,82 @@ pub const dpNormal = DownloadPriority.Normal;
 pub const dpHigh = DownloadPriority.High;
 pub const dpExtraHigh = DownloadPriority.ExtraHigh;
 
-pub const AutoSelectionMode = enum(i32) {
-    LetWindowsUpdateDecide = 0,
-    AutoSelectIfDownloaded = 1,
-    NeverAutoSelect = 2,
-    AlwaysAutoSelect = 3,
-};
-pub const asLetWindowsUpdateDecide = AutoSelectionMode.LetWindowsUpdateDecide;
-pub const asAutoSelectIfDownloaded = AutoSelectionMode.AutoSelectIfDownloaded;
-pub const asNeverAutoSelect = AutoSelectionMode.NeverAutoSelect;
-pub const asAlwaysAutoSelect = AutoSelectionMode.AlwaysAutoSelect;
-
-pub const AutoDownloadMode = enum(i32) {
-    LetWindowsUpdateDecide = 0,
-    NeverAutoDownload = 1,
-    AlwaysAutoDownload = 2,
-};
-pub const adLetWindowsUpdateDecide = AutoDownloadMode.LetWindowsUpdateDecide;
-pub const adNeverAutoDownload = AutoDownloadMode.NeverAutoDownload;
-pub const adAlwaysAutoDownload = AutoDownloadMode.AlwaysAutoDownload;
-
-pub const InstallationImpact = enum(i32) {
-    Normal = 0,
-    Minor = 1,
-    RequiresExclusiveHandling = 2,
-};
-pub const iiNormal = InstallationImpact.Normal;
-pub const iiMinor = InstallationImpact.Minor;
-pub const iiRequiresExclusiveHandling = InstallationImpact.RequiresExclusiveHandling;
-
-pub const InstallationRebootBehavior = enum(i32) {
-    NeverReboots = 0,
-    AlwaysRequiresReboot = 1,
-    CanRequestReboot = 2,
-};
-pub const irbNeverReboots = InstallationRebootBehavior.NeverReboots;
-pub const irbAlwaysRequiresReboot = InstallationRebootBehavior.AlwaysRequiresReboot;
-pub const irbCanRequestReboot = InstallationRebootBehavior.CanRequestReboot;
-
-pub const OperationResultCode = enum(i32) {
-    NotStarted = 0,
-    InProgress = 1,
-    Succeeded = 2,
-    SucceededWithErrors = 3,
-    Failed = 4,
-    Aborted = 5,
-};
-pub const orcNotStarted = OperationResultCode.NotStarted;
-pub const orcInProgress = OperationResultCode.InProgress;
-pub const orcSucceeded = OperationResultCode.Succeeded;
-pub const orcSucceededWithErrors = OperationResultCode.SucceededWithErrors;
-pub const orcFailed = OperationResultCode.Failed;
-pub const orcAborted = OperationResultCode.Aborted;
-
-pub const ServerSelection = enum(i32) {
-    Default = 0,
-    ManagedServer = 1,
-    WindowsUpdate = 2,
-    Others = 3,
-};
-pub const ssDefault = ServerSelection.Default;
-pub const ssManagedServer = ServerSelection.ManagedServer;
-pub const ssWindowsUpdate = ServerSelection.WindowsUpdate;
-pub const ssOthers = ServerSelection.Others;
-
-pub const UpdateType = enum(i32) {
-    Software = 1,
-    Driver = 2,
-};
-pub const utSoftware = UpdateType.Software;
-pub const utDriver = UpdateType.Driver;
-
-pub const UpdateOperation = enum(i32) {
-    Installation = 1,
-    Uninstallation = 2,
-};
-pub const uoInstallation = UpdateOperation.Installation;
-pub const uoUninstallation = UpdateOperation.Uninstallation;
-
-pub const DeploymentAction = enum(i32) {
-    None = 0,
-    Installation = 1,
-    Uninstallation = 2,
-    Detection = 3,
-    OptionalInstallation = 4,
-};
-pub const daNone = DeploymentAction.None;
-pub const daInstallation = DeploymentAction.Installation;
-pub const daUninstallation = DeploymentAction.Uninstallation;
-pub const daDetection = DeploymentAction.Detection;
-pub const daOptionalInstallation = DeploymentAction.OptionalInstallation;
-
-pub const UpdateExceptionContext = enum(i32) {
-    General = 1,
-    WindowsDriver = 2,
-    WindowsInstaller = 3,
-    SearchIncomplete = 4,
-};
-pub const uecGeneral = UpdateExceptionContext.General;
-pub const uecWindowsDriver = UpdateExceptionContext.WindowsDriver;
-pub const uecWindowsInstaller = UpdateExceptionContext.WindowsInstaller;
-pub const uecSearchIncomplete = UpdateExceptionContext.SearchIncomplete;
-
-pub const AutomaticUpdatesUserType = enum(i32) {
-    CurrentUser = 1,
-    LocalAdministrator = 2,
-};
-pub const auutCurrentUser = AutomaticUpdatesUserType.CurrentUser;
-pub const auutLocalAdministrator = AutomaticUpdatesUserType.LocalAdministrator;
-
-pub const AutomaticUpdatesPermissionType = enum(i32) {
-    SetNotificationLevel = 1,
-    DisableAutomaticUpdates = 2,
-    SetIncludeRecommendedUpdates = 3,
-    SetFeaturedUpdatesEnabled = 4,
-    SetNonAdministratorsElevated = 5,
-};
-pub const auptSetNotificationLevel = AutomaticUpdatesPermissionType.SetNotificationLevel;
-pub const auptDisableAutomaticUpdates = AutomaticUpdatesPermissionType.DisableAutomaticUpdates;
-pub const auptSetIncludeRecommendedUpdates = AutomaticUpdatesPermissionType.SetIncludeRecommendedUpdates;
-pub const auptSetFeaturedUpdatesEnabled = AutomaticUpdatesPermissionType.SetFeaturedUpdatesEnabled;
-pub const auptSetNonAdministratorsElevated = AutomaticUpdatesPermissionType.SetNonAdministratorsElevated;
-
-pub const UpdateServiceRegistrationState = enum(i32) {
-    NotRegistered = 1,
-    RegistrationPending = 2,
-    Registered = 3,
-};
-pub const usrsNotRegistered = UpdateServiceRegistrationState.NotRegistered;
-pub const usrsRegistrationPending = UpdateServiceRegistrationState.RegistrationPending;
-pub const usrsRegistered = UpdateServiceRegistrationState.Registered;
-
-pub const SearchScope = enum(i32) {
-    Default = 0,
-    MachineOnly = 1,
-    CurrentUserOnly = 2,
-    MachineAndCurrentUser = 3,
-    MachineAndAllUsers = 4,
-    AllUsers = 5,
-};
-pub const searchScopeDefault = SearchScope.Default;
-pub const searchScopeMachineOnly = SearchScope.MachineOnly;
-pub const searchScopeCurrentUserOnly = SearchScope.CurrentUserOnly;
-pub const searchScopeMachineAndCurrentUser = SearchScope.MachineAndCurrentUser;
-pub const searchScopeMachineAndAllUsers = SearchScope.MachineAndAllUsers;
-pub const searchScopeAllUsers = SearchScope.AllUsers;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateLockdown_Value = Guid.initString("a976c28d-75a1-42aa-94ae-8af8b872089a");
-pub const IID_IUpdateLockdown = &IID_IUpdateLockdown_Value;
-pub const IUpdateLockdown = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LockDown: *const fn(
-            self: *const IUpdateLockdown,
-            flags: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn LockDown(self: *const IUpdateLockdown, flags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.LockDown(self, flags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStringCollection_Value = Guid.initString("eff90582-2ddc-480f-a06d-60f3fbc362c3");
-pub const IID_IStringCollection = &IID_IStringCollection_Value;
-pub const IStringCollection = extern union {
+const IID_IAutomaticUpdates_Value = Guid.initString("673425bf-c082-4c7c-bdfd-569464b8e0ce");
+pub const IID_IAutomaticUpdates = &IID_IAutomaticUpdates_Value;
+pub const IAutomaticUpdates = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        get_Item: *const fn(
-            self: *const IStringCollection,
-            index: i32,
-            retval: ?*?BSTR,
+        DetectNow: *const fn(
+            self: *const IAutomaticUpdates,
         ) callconv(.winapi) HRESULT,
-        put_Item: *const fn(
-            self: *const IStringCollection,
-            index: i32,
-            value: ?BSTR,
+        Pause: *const fn(
+            self: *const IAutomaticUpdates,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IStringCollection,
-            retval: ?*?*IUnknown,
+        Resume: *const fn(
+            self: *const IAutomaticUpdates,
+        ) callconv(.winapi) HRESULT,
+        ShowSettingsDialog: *const fn(
+            self: *const IAutomaticUpdates,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IStringCollection,
-            retval: ?*i32,
+        get_Settings: *const fn(
+            self: *const IAutomaticUpdates,
+            retval: ?*?*IAutomaticUpdatesSettings,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: *const fn(
-            self: *const IStringCollection,
+        get_ServiceEnabled: *const fn(
+            self: *const IAutomaticUpdates,
             retval: ?*i16,
         ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IStringCollection,
-            value: ?BSTR,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IStringCollection,
-        ) callconv(.winapi) HRESULT,
-        Copy: *const fn(
-            self: *const IStringCollection,
-            retval: ?*?*IStringCollection,
-        ) callconv(.winapi) HRESULT,
-        Insert: *const fn(
-            self: *const IStringCollection,
-            index: i32,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RemoveAt: *const fn(
-            self: *const IStringCollection,
-            index: i32,
+        EnableService: *const fn(
+            self: *const IAutomaticUpdates,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IStringCollection, index: i32, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, retval);
+    pub fn DetectNow(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
+        return self.vtable.DetectNow(self);
     }
-    pub fn put_Item(self: *const IStringCollection, index: i32, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Item(self, index, value);
+    pub fn Pause(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
+        return self.vtable.Pause(self);
     }
-    pub fn get__NewEnum(self: *const IStringCollection, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
+    pub fn Resume(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
+        return self.vtable.Resume(self);
     }
-    pub fn get_Count(self: *const IStringCollection, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, retval);
+    pub fn ShowSettingsDialog(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowSettingsDialog(self);
     }
-    pub fn get_ReadOnly(self: *const IStringCollection, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReadOnly(self, retval);
+    pub fn get_Settings(self: *const IAutomaticUpdates, retval: ?*?*IAutomaticUpdatesSettings) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Settings(self, retval);
     }
-    pub fn Add(self: *const IStringCollection, value: ?BSTR, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, value, retval);
+    pub fn get_ServiceEnabled(self: *const IAutomaticUpdates, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServiceEnabled(self, retval);
     }
-    pub fn Clear(self: *const IStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-    pub fn Copy(self: *const IStringCollection, retval: ?*?*IStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Copy(self, retval);
-    }
-    pub fn Insert(self: *const IStringCollection, index: i32, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Insert(self, index, value);
-    }
-    pub fn RemoveAt(self: *const IStringCollection, index: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAt(self, index);
+    pub fn EnableService(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableService(self);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWebProxy_Value = Guid.initString("174c81fe-aecd-4dae-b8a0-2c6318dd86a8");
-pub const IID_IWebProxy = &IID_IWebProxy_Value;
-pub const IWebProxy = extern union {
+const IID_IAutomaticUpdates2_Value = Guid.initString("4a2f5c31-cfd9-410e-b7fb-29a653973a0f");
+pub const IID_IAutomaticUpdates2 = &IID_IAutomaticUpdates2_Value;
+pub const IAutomaticUpdates2 = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
+        base: IAutomaticUpdates.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Address: *const fn(
-            self: *const IWebProxy,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Address: *const fn(
-            self: *const IWebProxy,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BypassList: *const fn(
-            self: *const IWebProxy,
-            retval: ?*?*IStringCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BypassList: *const fn(
-            self: *const IWebProxy,
-            value: ?*IStringCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BypassProxyOnLocal: *const fn(
-            self: *const IWebProxy,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BypassProxyOnLocal: *const fn(
-            self: *const IWebProxy,
-            value: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: *const fn(
-            self: *const IWebProxy,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserName: *const fn(
-            self: *const IWebProxy,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UserName: *const fn(
-            self: *const IWebProxy,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetPassword: *const fn(
-            self: *const IWebProxy,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        PromptForCredentials: *const fn(
-            self: *const IWebProxy,
-            parentWindow: ?*IUnknown,
-            title: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        PromptForCredentialsFromHwnd: *const fn(
-            self: *const IWebProxy,
-            parentWindow: ?HWND,
-            title: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoDetect: *const fn(
-            self: *const IWebProxy,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoDetect: *const fn(
-            self: *const IWebProxy,
-            value: i16,
+        get_Results: *const fn(
+            self: *const IAutomaticUpdates2,
+            retval: ?*?*IAutomaticUpdatesResults,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IAutomaticUpdates: IAutomaticUpdates,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Address(self: *const IWebProxy, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Address(self, retval);
-    }
-    pub fn put_Address(self: *const IWebProxy, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Address(self, value);
-    }
-    pub fn get_BypassList(self: *const IWebProxy, retval: ?*?*IStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BypassList(self, retval);
-    }
-    pub fn put_BypassList(self: *const IWebProxy, value: ?*IStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BypassList(self, value);
-    }
-    pub fn get_BypassProxyOnLocal(self: *const IWebProxy, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BypassProxyOnLocal(self, retval);
-    }
-    pub fn put_BypassProxyOnLocal(self: *const IWebProxy, value: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BypassProxyOnLocal(self, value);
-    }
-    pub fn get_ReadOnly(self: *const IWebProxy, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReadOnly(self, retval);
-    }
-    pub fn get_UserName(self: *const IWebProxy, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserName(self, retval);
-    }
-    pub fn put_UserName(self: *const IWebProxy, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UserName(self, value);
-    }
-    pub fn SetPassword(self: *const IWebProxy, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPassword(self, value);
-    }
-    pub fn PromptForCredentials(self: *const IWebProxy, parentWindow: ?*IUnknown, title: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.PromptForCredentials(self, parentWindow, title);
-    }
-    pub fn PromptForCredentialsFromHwnd(self: *const IWebProxy, parentWindow: ?HWND, title: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.PromptForCredentialsFromHwnd(self, parentWindow, title);
-    }
-    pub fn get_AutoDetect(self: *const IWebProxy, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AutoDetect(self, retval);
-    }
-    pub fn put_AutoDetect(self: *const IWebProxy, value: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AutoDetect(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISystemInformation_Value = Guid.initString("ade87bf7-7b56-4275-8fab-b9b0e591844b");
-pub const IID_ISystemInformation = &IID_ISystemInformation_Value;
-pub const ISystemInformation = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OemHardwareSupportLink: *const fn(
-            self: *const ISystemInformation,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RebootRequired: *const fn(
-            self: *const ISystemInformation,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_OemHardwareSupportLink(self: *const ISystemInformation, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_OemHardwareSupportLink(self, retval);
-    }
-    pub fn get_RebootRequired(self: *const ISystemInformation, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RebootRequired(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsUpdateAgentInfo_Value = Guid.initString("85713fa1-7796-4fa2-be3b-e2d6124dd373");
-pub const IID_IWindowsUpdateAgentInfo = &IID_IWindowsUpdateAgentInfo_Value;
-pub const IWindowsUpdateAgentInfo = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        GetInfo: *const fn(
-            self: *const IWindowsUpdateAgentInfo,
-            varInfoIdentifier: VARIANT,
-            retval: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn GetInfo(self: *const IWindowsUpdateAgentInfo, varInfoIdentifier: VARIANT, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInfo(self, varInfoIdentifier, retval);
+    pub fn get_Results(self: *const IAutomaticUpdates2, retval: ?*?*IAutomaticUpdatesResults) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Results(self, retval);
     }
 };
 
@@ -1185,157 +870,6 @@ pub const IAutomaticUpdatesSettings3 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IAutomaticUpdates_Value = Guid.initString("673425bf-c082-4c7c-bdfd-569464b8e0ce");
-pub const IID_IAutomaticUpdates = &IID_IAutomaticUpdates_Value;
-pub const IAutomaticUpdates = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        DetectNow: *const fn(
-            self: *const IAutomaticUpdates,
-        ) callconv(.winapi) HRESULT,
-        Pause: *const fn(
-            self: *const IAutomaticUpdates,
-        ) callconv(.winapi) HRESULT,
-        Resume: *const fn(
-            self: *const IAutomaticUpdates,
-        ) callconv(.winapi) HRESULT,
-        ShowSettingsDialog: *const fn(
-            self: *const IAutomaticUpdates,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Settings: *const fn(
-            self: *const IAutomaticUpdates,
-            retval: ?*?*IAutomaticUpdatesSettings,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceEnabled: *const fn(
-            self: *const IAutomaticUpdates,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        EnableService: *const fn(
-            self: *const IAutomaticUpdates,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn DetectNow(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
-        return self.vtable.DetectNow(self);
-    }
-    pub fn Pause(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
-        return self.vtable.Pause(self);
-    }
-    pub fn Resume(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
-        return self.vtable.Resume(self);
-    }
-    pub fn ShowSettingsDialog(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowSettingsDialog(self);
-    }
-    pub fn get_Settings(self: *const IAutomaticUpdates, retval: ?*?*IAutomaticUpdatesSettings) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Settings(self, retval);
-    }
-    pub fn get_ServiceEnabled(self: *const IAutomaticUpdates, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServiceEnabled(self, retval);
-    }
-    pub fn EnableService(self: *const IAutomaticUpdates) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableService(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IAutomaticUpdates2_Value = Guid.initString("4a2f5c31-cfd9-410e-b7fb-29a653973a0f");
-pub const IID_IAutomaticUpdates2 = &IID_IAutomaticUpdates2_Value;
-pub const IAutomaticUpdates2 = extern union {
-    pub const VTable = extern struct {
-        base: IAutomaticUpdates.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Results: *const fn(
-            self: *const IAutomaticUpdates2,
-            retval: ?*?*IAutomaticUpdatesResults,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAutomaticUpdates: IAutomaticUpdates,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Results(self: *const IAutomaticUpdates2, retval: ?*?*IAutomaticUpdatesResults) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Results(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateIdentity_Value = Guid.initString("46297823-9940-4c09-aed9-cd3ea6d05968");
-pub const IID_IUpdateIdentity = &IID_IUpdateIdentity_Value;
-pub const IUpdateIdentity = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RevisionNumber: *const fn(
-            self: *const IUpdateIdentity,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UpdateID: *const fn(
-            self: *const IUpdateIdentity,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_RevisionNumber(self: *const IUpdateIdentity, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RevisionNumber(self, retval);
-    }
-    pub fn get_UpdateID(self: *const IUpdateIdentity, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UpdateID(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IImageInformation_Value = Guid.initString("7c907864-346c-4aeb-8f3f-57da289f969f");
-pub const IID_IImageInformation = &IID_IImageInformation_Value;
-pub const IImageInformation = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AltText: *const fn(
-            self: *const IImageInformation,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Height: *const fn(
-            self: *const IImageInformation,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Source: *const fn(
-            self: *const IImageInformation,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: *const fn(
-            self: *const IImageInformation,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_AltText(self: *const IImageInformation, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AltText(self, retval);
-    }
-    pub fn get_Height(self: *const IImageInformation, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Height(self, retval);
-    }
-    pub fn get_Source(self: *const IImageInformation, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Source(self, retval);
-    }
-    pub fn get_Width(self: *const IImageInformation, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Width(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICategory_Value = Guid.initString("81ddc1b8-9d35-47a6-b471-5b80f519223b");
 pub const IID_ICategory = &IID_ICategory_Value;
 pub const ICategory = extern union {
@@ -1456,6 +990,316 @@ pub const ICategoryCollection = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IDownloadCompletedCallback_Value = Guid.initString("77254866-9f5b-4c8e-b9e2-c77a8530d64b");
+pub const IID_IDownloadCompletedCallback = &IID_IDownloadCompletedCallback_Value;
+pub const IDownloadCompletedCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const IDownloadCompletedCallback,
+            downloadJob: ?*IDownloadJob,
+            callbackArgs: ?*IDownloadCompletedCallbackArgs,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const IDownloadCompletedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadCompletedCallbackArgs) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self, downloadJob, callbackArgs);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IDownloadCompletedCallbackArgs_Value = Guid.initString("fa565b23-498c-47a0-979d-e7d5b1813360");
+pub const IID_IDownloadCompletedCallbackArgs = &IID_IDownloadCompletedCallbackArgs_Value;
+pub const IDownloadCompletedCallbackArgs = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IDownloadJob_Value = Guid.initString("c574de85-7358-43f6-aae8-8697e62d8ba7");
+pub const IID_IDownloadJob = &IID_IDownloadJob_Value;
+pub const IDownloadJob = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AsyncState: *const fn(
+            self: *const IDownloadJob,
+            retval: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsCompleted: *const fn(
+            self: *const IDownloadJob,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Updates: *const fn(
+            self: *const IDownloadJob,
+            retval: ?*?*IUpdateCollection,
+        ) callconv(.winapi) HRESULT,
+        CleanUp: *const fn(
+            self: *const IDownloadJob,
+        ) callconv(.winapi) HRESULT,
+        GetProgress: *const fn(
+            self: *const IDownloadJob,
+            retval: ?*?*IDownloadProgress,
+        ) callconv(.winapi) HRESULT,
+        RequestAbort: *const fn(
+            self: *const IDownloadJob,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AsyncState(self: *const IDownloadJob, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AsyncState(self, retval);
+    }
+    pub fn get_IsCompleted(self: *const IDownloadJob, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsCompleted(self, retval);
+    }
+    pub fn get_Updates(self: *const IDownloadJob, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Updates(self, retval);
+    }
+    pub fn CleanUp(self: *const IDownloadJob) callconv(.@"inline") HRESULT {
+        return self.vtable.CleanUp(self);
+    }
+    pub fn GetProgress(self: *const IDownloadJob, retval: ?*?*IDownloadProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProgress(self, retval);
+    }
+    pub fn RequestAbort(self: *const IDownloadJob) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestAbort(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IDownloadProgress_Value = Guid.initString("d31a5bac-f719-4178-9dbb-5e2cb47fd18a");
+pub const IID_IDownloadProgress = &IID_IDownloadProgress_Value;
+pub const IDownloadProgress = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentUpdateBytesDownloaded: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*DECIMAL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentUpdateBytesToDownload: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*DECIMAL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentUpdateIndex: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PercentComplete: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TotalBytesDownloaded: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*DECIMAL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TotalBytesToDownload: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*DECIMAL,
+        ) callconv(.winapi) HRESULT,
+        GetUpdateResult: *const fn(
+            self: *const IDownloadProgress,
+            updateIndex: i32,
+            retval: ?*?*IUpdateDownloadResult,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentUpdateDownloadPhase: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*DownloadPhase,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentUpdatePercentComplete: *const fn(
+            self: *const IDownloadProgress,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_CurrentUpdateBytesDownloaded(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentUpdateBytesDownloaded(self, retval);
+    }
+    pub fn get_CurrentUpdateBytesToDownload(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentUpdateBytesToDownload(self, retval);
+    }
+    pub fn get_CurrentUpdateIndex(self: *const IDownloadProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentUpdateIndex(self, retval);
+    }
+    pub fn get_PercentComplete(self: *const IDownloadProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PercentComplete(self, retval);
+    }
+    pub fn get_TotalBytesDownloaded(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TotalBytesDownloaded(self, retval);
+    }
+    pub fn get_TotalBytesToDownload(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TotalBytesToDownload(self, retval);
+    }
+    pub fn GetUpdateResult(self: *const IDownloadProgress, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUpdateResult(self, updateIndex, retval);
+    }
+    pub fn get_CurrentUpdateDownloadPhase(self: *const IDownloadProgress, retval: ?*DownloadPhase) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentUpdateDownloadPhase(self, retval);
+    }
+    pub fn get_CurrentUpdatePercentComplete(self: *const IDownloadProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentUpdatePercentComplete(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IDownloadProgressChangedCallback_Value = Guid.initString("8c3f1cdd-6173-4591-aebd-a56a53ca77c1");
+pub const IID_IDownloadProgressChangedCallback = &IID_IDownloadProgressChangedCallback_Value;
+pub const IDownloadProgressChangedCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const IDownloadProgressChangedCallback,
+            downloadJob: ?*IDownloadJob,
+            callbackArgs: ?*IDownloadProgressChangedCallbackArgs,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const IDownloadProgressChangedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadProgressChangedCallbackArgs) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self, downloadJob, callbackArgs);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IDownloadProgressChangedCallbackArgs_Value = Guid.initString("324ff2c6-4981-4b04-9412-57481745ab24");
+pub const IID_IDownloadProgressChangedCallbackArgs = &IID_IDownloadProgressChangedCallbackArgs_Value;
+pub const IDownloadProgressChangedCallbackArgs = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Progress: *const fn(
+            self: *const IDownloadProgressChangedCallbackArgs,
+            retval: ?*?*IDownloadProgress,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Progress(self: *const IDownloadProgressChangedCallbackArgs, retval: ?*?*IDownloadProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Progress(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IDownloadResult_Value = Guid.initString("daa4fdd0-4727-4dbe-a1e7-745dca317144");
+pub const IID_IDownloadResult = &IID_IDownloadResult_Value;
+pub const IDownloadResult = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HResult: *const fn(
+            self: *const IDownloadResult,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ResultCode: *const fn(
+            self: *const IDownloadResult,
+            retval: ?*OperationResultCode,
+        ) callconv(.winapi) HRESULT,
+        GetUpdateResult: *const fn(
+            self: *const IDownloadResult,
+            updateIndex: i32,
+            retval: ?*?*IUpdateDownloadResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_HResult(self: *const IDownloadResult, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HResult(self, retval);
+    }
+    pub fn get_ResultCode(self: *const IDownloadResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ResultCode(self, retval);
+    }
+    pub fn GetUpdateResult(self: *const IDownloadResult, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUpdateResult(self, updateIndex, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IImageInformation_Value = Guid.initString("7c907864-346c-4aeb-8f3f-57da289f969f");
+pub const IID_IImageInformation = &IID_IImageInformation_Value;
+pub const IImageInformation = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AltText: *const fn(
+            self: *const IImageInformation,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Height: *const fn(
+            self: *const IImageInformation,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Source: *const fn(
+            self: *const IImageInformation,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Width: *const fn(
+            self: *const IImageInformation,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AltText(self: *const IImageInformation, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AltText(self, retval);
+    }
+    pub fn get_Height(self: *const IImageInformation, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Height(self, retval);
+    }
+    pub fn get_Source(self: *const IImageInformation, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Source(self, retval);
+    }
+    pub fn get_Width(self: *const IImageInformation, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Width(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInstallationAgent_Value = Guid.initString("925cbc18-a2ea-4648-bf1c-ec8badcfe20a");
+pub const IID_IInstallationAgent = &IID_IInstallationAgent_Value;
+pub const IInstallationAgent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        RecordInstallationResult: *const fn(
+            self: *const IInstallationAgent,
+            installationResultCookie: ?BSTR,
+            hresult: i32,
+            extendedReportingData: ?*IStringCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn RecordInstallationResult(self: *const IInstallationAgent, installationResultCookie: ?BSTR, hresult: i32, extendedReportingData: ?*IStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.RecordInstallationResult(self, installationResultCookie, hresult, extendedReportingData);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInstallationBehavior_Value = Guid.initString("d9a59339-e245-4dbd-9686-4d5763e39624");
 pub const IID_IInstallationBehavior = &IID_IInstallationBehavior_Value;
 pub const IInstallationBehavior = extern union {
@@ -1500,79 +1344,488 @@ pub const IInstallationBehavior = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateDownloadContent_Value = Guid.initString("54a2cb2d-9a0c-48b6-8a50-9abb69ee2d02");
-pub const IID_IUpdateDownloadContent = &IID_IUpdateDownloadContent_Value;
-pub const IUpdateDownloadContent = extern union {
+const IID_IInstallationCompletedCallback_Value = Guid.initString("45f4f6f3-d602-4f98-9a8a-3efa152ad2d3");
+pub const IID_IInstallationCompletedCallback = &IID_IInstallationCompletedCallback_Value;
+pub const IInstallationCompletedCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const IInstallationCompletedCallback,
+            installationJob: ?*IInstallationJob,
+            callbackArgs: ?*IInstallationCompletedCallbackArgs,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const IInstallationCompletedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationCompletedCallbackArgs) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self, installationJob, callbackArgs);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInstallationCompletedCallbackArgs_Value = Guid.initString("250e2106-8efb-4705-9653-ef13c581b6a1");
+pub const IID_IInstallationCompletedCallbackArgs = &IID_IInstallationCompletedCallbackArgs_Value;
+pub const IInstallationCompletedCallbackArgs = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInstallationJob_Value = Guid.initString("5c209f0b-bad5-432a-9556-4699bed2638a");
+pub const IID_IInstallationJob = &IID_IInstallationJob_Value;
+pub const IInstallationJob = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadUrl: *const fn(
-            self: *const IUpdateDownloadContent,
+        get_AsyncState: *const fn(
+            self: *const IInstallationJob,
+            retval: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsCompleted: *const fn(
+            self: *const IInstallationJob,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Updates: *const fn(
+            self: *const IInstallationJob,
+            retval: ?*?*IUpdateCollection,
+        ) callconv(.winapi) HRESULT,
+        CleanUp: *const fn(
+            self: *const IInstallationJob,
+        ) callconv(.winapi) HRESULT,
+        GetProgress: *const fn(
+            self: *const IInstallationJob,
+            retval: ?*?*IInstallationProgress,
+        ) callconv(.winapi) HRESULT,
+        RequestAbort: *const fn(
+            self: *const IInstallationJob,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AsyncState(self: *const IInstallationJob, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AsyncState(self, retval);
+    }
+    pub fn get_IsCompleted(self: *const IInstallationJob, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsCompleted(self, retval);
+    }
+    pub fn get_Updates(self: *const IInstallationJob, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Updates(self, retval);
+    }
+    pub fn CleanUp(self: *const IInstallationJob) callconv(.@"inline") HRESULT {
+        return self.vtable.CleanUp(self);
+    }
+    pub fn GetProgress(self: *const IInstallationJob, retval: ?*?*IInstallationProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProgress(self, retval);
+    }
+    pub fn RequestAbort(self: *const IInstallationJob) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestAbort(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInstallationProgress_Value = Guid.initString("345c8244-43a3-4e32-a368-65f073b76f36");
+pub const IID_IInstallationProgress = &IID_IInstallationProgress_Value;
+pub const IInstallationProgress = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentUpdateIndex: *const fn(
+            self: *const IInstallationProgress,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentUpdatePercentComplete: *const fn(
+            self: *const IInstallationProgress,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PercentComplete: *const fn(
+            self: *const IInstallationProgress,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetUpdateResult: *const fn(
+            self: *const IInstallationProgress,
+            updateIndex: i32,
+            retval: ?*?*IUpdateInstallationResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_CurrentUpdateIndex(self: *const IInstallationProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentUpdateIndex(self, retval);
+    }
+    pub fn get_CurrentUpdatePercentComplete(self: *const IInstallationProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentUpdatePercentComplete(self, retval);
+    }
+    pub fn get_PercentComplete(self: *const IInstallationProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PercentComplete(self, retval);
+    }
+    pub fn GetUpdateResult(self: *const IInstallationProgress, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUpdateResult(self, updateIndex, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInstallationProgressChangedCallback_Value = Guid.initString("e01402d5-f8da-43ba-a012-38894bd048f1");
+pub const IID_IInstallationProgressChangedCallback = &IID_IInstallationProgressChangedCallback_Value;
+pub const IInstallationProgressChangedCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const IInstallationProgressChangedCallback,
+            installationJob: ?*IInstallationJob,
+            callbackArgs: ?*IInstallationProgressChangedCallbackArgs,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const IInstallationProgressChangedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationProgressChangedCallbackArgs) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self, installationJob, callbackArgs);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInstallationProgressChangedCallbackArgs_Value = Guid.initString("e4f14e1e-689d-4218-a0b9-bc189c484a01");
+pub const IID_IInstallationProgressChangedCallbackArgs = &IID_IInstallationProgressChangedCallbackArgs_Value;
+pub const IInstallationProgressChangedCallbackArgs = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Progress: *const fn(
+            self: *const IInstallationProgressChangedCallbackArgs,
+            retval: ?*?*IInstallationProgress,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Progress(self: *const IInstallationProgressChangedCallbackArgs, retval: ?*?*IInstallationProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Progress(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInstallationResult_Value = Guid.initString("a43c56d6-7451-48d4-af96-b6cd2d0d9b7a");
+pub const IID_IInstallationResult = &IID_IInstallationResult_Value;
+pub const IInstallationResult = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HResult: *const fn(
+            self: *const IInstallationResult,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RebootRequired: *const fn(
+            self: *const IInstallationResult,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ResultCode: *const fn(
+            self: *const IInstallationResult,
+            retval: ?*OperationResultCode,
+        ) callconv(.winapi) HRESULT,
+        GetUpdateResult: *const fn(
+            self: *const IInstallationResult,
+            updateIndex: i32,
+            retval: ?*?*IUpdateInstallationResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_HResult(self: *const IInstallationResult, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HResult(self, retval);
+    }
+    pub fn get_RebootRequired(self: *const IInstallationResult, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RebootRequired(self, retval);
+    }
+    pub fn get_ResultCode(self: *const IInstallationResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ResultCode(self, retval);
+    }
+    pub fn GetUpdateResult(self: *const IInstallationResult, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUpdateResult(self, updateIndex, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInvalidProductLicenseException_Value = Guid.initString("a37d00f5-7bb0-4953-b414-f9e98326f2e8");
+pub const IID_IInvalidProductLicenseException = &IID_IInvalidProductLicenseException_Value;
+pub const IInvalidProductLicenseException = extern union {
+    pub const VTable = extern struct {
+        base: IUpdateException.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Product: *const fn(
+            self: *const IInvalidProductLicenseException,
             retval: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IUpdateException: IUpdateException,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DownloadUrl(self: *const IUpdateDownloadContent, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DownloadUrl(self, retval);
+    pub fn get_Product(self: *const IInvalidProductLicenseException, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Product(self, retval);
     }
 };
 
+const CLSID_InstallationAgent_Value = Guid.initString("317e92fc-1679-46fd-a0b5-f08914dd8623");
+pub const CLSID_InstallationAgent = &CLSID_InstallationAgent_Value;
+
+pub const InstallationImpact = enum(i32) {
+    Normal = 0,
+    Minor = 1,
+    RequiresExclusiveHandling = 2,
+};
+pub const iiNormal = InstallationImpact.Normal;
+pub const iiMinor = InstallationImpact.Minor;
+pub const iiRequiresExclusiveHandling = InstallationImpact.RequiresExclusiveHandling;
+
+pub const InstallationRebootBehavior = enum(i32) {
+    NeverReboots = 0,
+    AlwaysRequiresReboot = 1,
+    CanRequestReboot = 2,
+};
+pub const irbNeverReboots = InstallationRebootBehavior.NeverReboots;
+pub const irbAlwaysRequiresReboot = InstallationRebootBehavior.AlwaysRequiresReboot;
+pub const irbCanRequestReboot = InstallationRebootBehavior.CanRequestReboot;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateDownloadContent2_Value = Guid.initString("c97ad11b-f257-420b-9d9f-377f733f6f68");
-pub const IID_IUpdateDownloadContent2 = &IID_IUpdateDownloadContent2_Value;
-pub const IUpdateDownloadContent2 = extern union {
+const IID_ISearchCompletedCallback_Value = Guid.initString("88aee058-d4b0-4725-a2f1-814a67ae964c");
+pub const IID_ISearchCompletedCallback = &IID_ISearchCompletedCallback_Value;
+pub const ISearchCompletedCallback = extern union {
     pub const VTable = extern struct {
-        base: IUpdateDownloadContent.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsDeltaCompressedContent: *const fn(
-            self: *const IUpdateDownloadContent2,
-            retval: ?*i16,
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const ISearchCompletedCallback,
+            searchJob: ?*ISearchJob,
+            callbackArgs: ?*ISearchCompletedCallbackArgs,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IUpdateDownloadContent: IUpdateDownloadContent,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IsDeltaCompressedContent(self: *const IUpdateDownloadContent2, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsDeltaCompressedContent(self, retval);
+    pub fn Invoke(self: *const ISearchCompletedCallback, searchJob: ?*ISearchJob, callbackArgs: ?*ISearchCompletedCallbackArgs) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self, searchJob, callbackArgs);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateDownloadContentCollection_Value = Guid.initString("bc5513c8-b3b8-4bf7-a4d4-361c0d8c88ba");
-pub const IID_IUpdateDownloadContentCollection = &IID_IUpdateDownloadContentCollection_Value;
-pub const IUpdateDownloadContentCollection = extern union {
+const IID_ISearchCompletedCallbackArgs_Value = Guid.initString("a700a634-2850-4c47-938a-9e4b6e5af9a6");
+pub const IID_ISearchCompletedCallbackArgs = &IID_ISearchCompletedCallbackArgs_Value;
+pub const ISearchCompletedCallbackArgs = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ISearchJob_Value = Guid.initString("7366ea16-7a1a-4ea2-b042-973d3e9cd99b");
+pub const IID_ISearchJob = &IID_ISearchJob_Value;
+pub const ISearchJob = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AsyncState: *const fn(
+            self: *const ISearchJob,
+            retval: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsCompleted: *const fn(
+            self: *const ISearchJob,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        CleanUp: *const fn(
+            self: *const ISearchJob,
+        ) callconv(.winapi) HRESULT,
+        RequestAbort: *const fn(
+            self: *const ISearchJob,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AsyncState(self: *const ISearchJob, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AsyncState(self, retval);
+    }
+    pub fn get_IsCompleted(self: *const ISearchJob, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsCompleted(self, retval);
+    }
+    pub fn CleanUp(self: *const ISearchJob) callconv(.@"inline") HRESULT {
+        return self.vtable.CleanUp(self);
+    }
+    pub fn RequestAbort(self: *const ISearchJob) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestAbort(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ISearchResult_Value = Guid.initString("d40cff62-e08c-4498-941a-01e25f0fd33c");
+pub const IID_ISearchResult = &IID_ISearchResult_Value;
+pub const ISearchResult = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ResultCode: *const fn(
+            self: *const ISearchResult,
+            retval: ?*OperationResultCode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RootCategories: *const fn(
+            self: *const ISearchResult,
+            retval: ?*?*ICategoryCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Updates: *const fn(
+            self: *const ISearchResult,
+            retval: ?*?*IUpdateCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Warnings: *const fn(
+            self: *const ISearchResult,
+            retval: ?*?*IUpdateExceptionCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ResultCode(self: *const ISearchResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ResultCode(self, retval);
+    }
+    pub fn get_RootCategories(self: *const ISearchResult, retval: ?*?*ICategoryCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RootCategories(self, retval);
+    }
+    pub fn get_Updates(self: *const ISearchResult, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Updates(self, retval);
+    }
+    pub fn get_Warnings(self: *const ISearchResult, retval: ?*?*IUpdateExceptionCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Warnings(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IStringCollection_Value = Guid.initString("eff90582-2ddc-480f-a06d-60f3fbc362c3");
+pub const IID_IStringCollection = &IID_IStringCollection_Value;
+pub const IStringCollection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
-            self: *const IUpdateDownloadContentCollection,
+            self: *const IStringCollection,
             index: i32,
-            retval: ?*?*IUpdateDownloadContent,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        put_Item: *const fn(
+            self: *const IStringCollection,
+            index: i32,
+            value: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const IUpdateDownloadContentCollection,
+            self: *const IStringCollection,
             retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const IUpdateDownloadContentCollection,
+            self: *const IStringCollection,
             retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReadOnly: *const fn(
+            self: *const IStringCollection,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IStringCollection,
+            value: ?BSTR,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IStringCollection,
+        ) callconv(.winapi) HRESULT,
+        Copy: *const fn(
+            self: *const IStringCollection,
+            retval: ?*?*IStringCollection,
+        ) callconv(.winapi) HRESULT,
+        Insert: *const fn(
+            self: *const IStringCollection,
+            index: i32,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IStringCollection,
+            index: i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IUpdateDownloadContentCollection, index: i32, retval: ?*?*IUpdateDownloadContent) callconv(.@"inline") HRESULT {
+    pub fn get_Item(self: *const IStringCollection, index: i32, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, index, retval);
     }
-    pub fn get__NewEnum(self: *const IUpdateDownloadContentCollection, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn put_Item(self: *const IStringCollection, index: i32, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Item(self, index, value);
+    }
+    pub fn get__NewEnum(self: *const IStringCollection, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Count(self: *const IUpdateDownloadContentCollection, retval: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const IStringCollection, retval: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, retval);
+    }
+    pub fn get_ReadOnly(self: *const IStringCollection, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReadOnly(self, retval);
+    }
+    pub fn Add(self: *const IStringCollection, value: ?BSTR, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, value, retval);
+    }
+    pub fn Clear(self: *const IStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+    pub fn Copy(self: *const IStringCollection, retval: ?*?*IStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Copy(self, retval);
+    }
+    pub fn Insert(self: *const IStringCollection, index: i32, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Insert(self, index, value);
+    }
+    pub fn RemoveAt(self: *const IStringCollection, index: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ISystemInformation_Value = Guid.initString("ade87bf7-7b56-4275-8fab-b9b0e591844b");
+pub const IID_ISystemInformation = &IID_ISystemInformation_Value;
+pub const ISystemInformation = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_OemHardwareSupportLink: *const fn(
+            self: *const ISystemInformation,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RebootRequired: *const fn(
+            self: *const ISystemInformation,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_OemHardwareSupportLink(self: *const ISystemInformation, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_OemHardwareSupportLink(self, retval);
+    }
+    pub fn get_RebootRequired(self: *const ISystemInformation, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RebootRequired(self, retval);
     }
 };
 
@@ -1947,83 +2200,6 @@ pub const IUpdate = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsDriverUpdate_Value = Guid.initString("b383cd1a-5ce9-4504-9f63-764b1236f191");
-pub const IID_IWindowsDriverUpdate = &IID_IWindowsDriverUpdate_Value;
-pub const IWindowsDriverUpdate = extern union {
-    pub const VTable = extern struct {
-        base: IUpdate.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverClass: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverHardwareID: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverManufacturer: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverModel: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverProvider: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverVerDate: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceProblemNumber: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceStatus: *const fn(
-            self: *const IWindowsDriverUpdate,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUpdate: IUpdate,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_DriverClass(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverClass(self, retval);
-    }
-    pub fn get_DriverHardwareID(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverHardwareID(self, retval);
-    }
-    pub fn get_DriverManufacturer(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverManufacturer(self, retval);
-    }
-    pub fn get_DriverModel(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverModel(self, retval);
-    }
-    pub fn get_DriverProvider(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverProvider(self, retval);
-    }
-    pub fn get_DriverVerDate(self: *const IWindowsDriverUpdate, retval: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverVerDate(self, retval);
-    }
-    pub fn get_DeviceProblemNumber(self: *const IWindowsDriverUpdate, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceProblemNumber(self, retval);
-    }
-    pub fn get_DeviceStatus(self: *const IWindowsDriverUpdate, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceStatus(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdate2_Value = Guid.initString("144fe9b0-d23d-4a8b-8634-fb4457533b7a");
 pub const IID_IUpdate2 = &IID_IUpdate2_Value;
 pub const IUpdate2 = extern union {
@@ -2145,251 +2321,6 @@ pub const IUpdate5 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsDriverUpdate2_Value = Guid.initString("615c4269-7a48-43bd-96b7-bf6ca27d6c3e");
-pub const IID_IWindowsDriverUpdate2 = &IID_IWindowsDriverUpdate2_Value;
-pub const IWindowsDriverUpdate2 = extern union {
-    pub const VTable = extern struct {
-        base: IWindowsDriverUpdate.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RebootRequired: *const fn(
-            self: *const IWindowsDriverUpdate2,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsPresent: *const fn(
-            self: *const IWindowsDriverUpdate2,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CveIDs: *const fn(
-            self: *const IWindowsDriverUpdate2,
-            retval: ?*?*IStringCollection,
-        ) callconv(.winapi) HRESULT,
-        CopyToCache: *const fn(
-            self: *const IWindowsDriverUpdate2,
-            pFiles: ?*IStringCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWindowsDriverUpdate: IWindowsDriverUpdate,
-    IUpdate: IUpdate,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_RebootRequired(self: *const IWindowsDriverUpdate2, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RebootRequired(self, retval);
-    }
-    pub fn get_IsPresent(self: *const IWindowsDriverUpdate2, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsPresent(self, retval);
-    }
-    pub fn get_CveIDs(self: *const IWindowsDriverUpdate2, retval: ?*?*IStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CveIDs(self, retval);
-    }
-    pub fn CopyToCache(self: *const IWindowsDriverUpdate2, pFiles: ?*IStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyToCache(self, pFiles);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsDriverUpdate3_Value = Guid.initString("49ebd502-4a96-41bd-9e3e-4c5057f4250c");
-pub const IID_IWindowsDriverUpdate3 = &IID_IWindowsDriverUpdate3_Value;
-pub const IWindowsDriverUpdate3 = extern union {
-    pub const VTable = extern struct {
-        base: IWindowsDriverUpdate2.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BrowseOnly: *const fn(
-            self: *const IWindowsDriverUpdate3,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
-    IWindowsDriverUpdate: IWindowsDriverUpdate,
-    IUpdate: IUpdate,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_BrowseOnly(self: *const IWindowsDriverUpdate3, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BrowseOnly(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsDriverUpdateEntry_Value = Guid.initString("ed8bfe40-a60b-42ea-9652-817dfcfa23ec");
-pub const IID_IWindowsDriverUpdateEntry = &IID_IWindowsDriverUpdateEntry_Value;
-pub const IWindowsDriverUpdateEntry = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverClass: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverHardwareID: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverManufacturer: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverModel: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverProvider: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverVerDate: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceProblemNumber: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceStatus: *const fn(
-            self: *const IWindowsDriverUpdateEntry,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_DriverClass(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverClass(self, retval);
-    }
-    pub fn get_DriverHardwareID(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverHardwareID(self, retval);
-    }
-    pub fn get_DriverManufacturer(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverManufacturer(self, retval);
-    }
-    pub fn get_DriverModel(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverModel(self, retval);
-    }
-    pub fn get_DriverProvider(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverProvider(self, retval);
-    }
-    pub fn get_DriverVerDate(self: *const IWindowsDriverUpdateEntry, retval: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DriverVerDate(self, retval);
-    }
-    pub fn get_DeviceProblemNumber(self: *const IWindowsDriverUpdateEntry, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceProblemNumber(self, retval);
-    }
-    pub fn get_DeviceStatus(self: *const IWindowsDriverUpdateEntry, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceStatus(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsDriverUpdateEntryCollection_Value = Guid.initString("0d521700-a372-4bef-828b-3d00c10adebd");
-pub const IID_IWindowsDriverUpdateEntryCollection = &IID_IWindowsDriverUpdateEntryCollection_Value;
-pub const IWindowsDriverUpdateEntryCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Item: *const fn(
-            self: *const IWindowsDriverUpdateEntryCollection,
-            index: i32,
-            retval: ?*?*IWindowsDriverUpdateEntry,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IWindowsDriverUpdateEntryCollection,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IWindowsDriverUpdateEntryCollection,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Item(self: *const IWindowsDriverUpdateEntryCollection, index: i32, retval: ?*?*IWindowsDriverUpdateEntry) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, retval);
-    }
-    pub fn get__NewEnum(self: *const IWindowsDriverUpdateEntryCollection, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Count(self: *const IWindowsDriverUpdateEntryCollection, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsDriverUpdate4_Value = Guid.initString("004c6a2b-0c19-4c69-9f5c-a269b2560db9");
-pub const IID_IWindowsDriverUpdate4 = &IID_IWindowsDriverUpdate4_Value;
-pub const IWindowsDriverUpdate4 = extern union {
-    pub const VTable = extern struct {
-        base: IWindowsDriverUpdate3.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WindowsDriverUpdateEntries: *const fn(
-            self: *const IWindowsDriverUpdate4,
-            retval: ?*?*IWindowsDriverUpdateEntryCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PerUser: *const fn(
-            self: *const IWindowsDriverUpdate4,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWindowsDriverUpdate3: IWindowsDriverUpdate3,
-    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
-    IWindowsDriverUpdate: IWindowsDriverUpdate,
-    IUpdate: IUpdate,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_WindowsDriverUpdateEntries(self: *const IWindowsDriverUpdate4, retval: ?*?*IWindowsDriverUpdateEntryCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_WindowsDriverUpdateEntries(self, retval);
-    }
-    pub fn get_PerUser(self: *const IWindowsDriverUpdate4, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PerUser(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowsDriverUpdate5_Value = Guid.initString("70cf5c82-8642-42bb-9dbc-0cfd263c6c4f");
-pub const IID_IWindowsDriverUpdate5 = &IID_IWindowsDriverUpdate5_Value;
-pub const IWindowsDriverUpdate5 = extern union {
-    pub const VTable = extern struct {
-        base: IWindowsDriverUpdate4.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoSelection: *const fn(
-            self: *const IWindowsDriverUpdate5,
-            retval: ?*AutoSelectionMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoDownload: *const fn(
-            self: *const IWindowsDriverUpdate5,
-            retval: ?*AutoDownloadMode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWindowsDriverUpdate4: IWindowsDriverUpdate4,
-    IWindowsDriverUpdate3: IWindowsDriverUpdate3,
-    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
-    IWindowsDriverUpdate: IWindowsDriverUpdate,
-    IUpdate: IUpdate,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_AutoSelection(self: *const IWindowsDriverUpdate5, retval: ?*AutoSelectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AutoSelection(self, retval);
-    }
-    pub fn get_AutoDownload(self: *const IWindowsDriverUpdate5, retval: ?*AutoDownloadMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AutoDownload(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateCollection_Value = Guid.initString("07f7438c-7709-4ca5-b518-91279288134e");
 pub const IID_IUpdateCollection = &IID_IUpdateCollection_Value;
 pub const IUpdateCollection = extern union {
@@ -2478,6 +2409,212 @@ pub const IUpdateCollection = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateDownloadContent_Value = Guid.initString("54a2cb2d-9a0c-48b6-8a50-9abb69ee2d02");
+pub const IID_IUpdateDownloadContent = &IID_IUpdateDownloadContent_Value;
+pub const IUpdateDownloadContent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DownloadUrl: *const fn(
+            self: *const IUpdateDownloadContent,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DownloadUrl(self: *const IUpdateDownloadContent, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DownloadUrl(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateDownloadContent2_Value = Guid.initString("c97ad11b-f257-420b-9d9f-377f733f6f68");
+pub const IID_IUpdateDownloadContent2 = &IID_IUpdateDownloadContent2_Value;
+pub const IUpdateDownloadContent2 = extern union {
+    pub const VTable = extern struct {
+        base: IUpdateDownloadContent.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsDeltaCompressedContent: *const fn(
+            self: *const IUpdateDownloadContent2,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUpdateDownloadContent: IUpdateDownloadContent,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_IsDeltaCompressedContent(self: *const IUpdateDownloadContent2, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsDeltaCompressedContent(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateDownloadContentCollection_Value = Guid.initString("bc5513c8-b3b8-4bf7-a4d4-361c0d8c88ba");
+pub const IID_IUpdateDownloadContentCollection = &IID_IUpdateDownloadContentCollection_Value;
+pub const IUpdateDownloadContentCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Item: *const fn(
+            self: *const IUpdateDownloadContentCollection,
+            index: i32,
+            retval: ?*?*IUpdateDownloadContent,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IUpdateDownloadContentCollection,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IUpdateDownloadContentCollection,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Item(self: *const IUpdateDownloadContentCollection, index: i32, retval: ?*?*IUpdateDownloadContent) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, retval);
+    }
+    pub fn get__NewEnum(self: *const IUpdateDownloadContentCollection, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Count(self: *const IUpdateDownloadContentCollection, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateDownloader_Value = Guid.initString("68f1c6f9-7ecc-4666-a464-247fe12496c3");
+pub const IID_IUpdateDownloader = &IID_IUpdateDownloader_Value;
+pub const IUpdateDownloader = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClientApplicationID: *const fn(
+            self: *const IUpdateDownloader,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ClientApplicationID: *const fn(
+            self: *const IUpdateDownloader,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsForced: *const fn(
+            self: *const IUpdateDownloader,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_IsForced: *const fn(
+            self: *const IUpdateDownloader,
+            value: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Priority: *const fn(
+            self: *const IUpdateDownloader,
+            retval: ?*DownloadPriority,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Priority: *const fn(
+            self: *const IUpdateDownloader,
+            value: DownloadPriority,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Updates: *const fn(
+            self: *const IUpdateDownloader,
+            retval: ?*?*IUpdateCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Updates: *const fn(
+            self: *const IUpdateDownloader,
+            value: ?*IUpdateCollection,
+        ) callconv(.winapi) HRESULT,
+        BeginDownload: *const fn(
+            self: *const IUpdateDownloader,
+            onProgressChanged: ?*IUnknown,
+            onCompleted: ?*IUnknown,
+            state: VARIANT,
+            retval: ?*?*IDownloadJob,
+        ) callconv(.winapi) HRESULT,
+        Download: *const fn(
+            self: *const IUpdateDownloader,
+            retval: ?*?*IDownloadResult,
+        ) callconv(.winapi) HRESULT,
+        EndDownload: *const fn(
+            self: *const IUpdateDownloader,
+            value: ?*IDownloadJob,
+            retval: ?*?*IDownloadResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ClientApplicationID(self: *const IUpdateDownloader, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClientApplicationID(self, retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateDownloader, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClientApplicationID(self, value);
+    }
+    pub fn get_IsForced(self: *const IUpdateDownloader, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsForced(self, retval);
+    }
+    pub fn put_IsForced(self: *const IUpdateDownloader, value: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IsForced(self, value);
+    }
+    pub fn get_Priority(self: *const IUpdateDownloader, retval: ?*DownloadPriority) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Priority(self, retval);
+    }
+    pub fn put_Priority(self: *const IUpdateDownloader, value: DownloadPriority) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Priority(self, value);
+    }
+    pub fn get_Updates(self: *const IUpdateDownloader, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Updates(self, retval);
+    }
+    pub fn put_Updates(self: *const IUpdateDownloader, value: ?*IUpdateCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Updates(self, value);
+    }
+    pub fn BeginDownload(self: *const IUpdateDownloader, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IDownloadJob) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginDownload(self, onProgressChanged, onCompleted, state, retval);
+    }
+    pub fn Download(self: *const IUpdateDownloader, retval: ?*?*IDownloadResult) callconv(.@"inline") HRESULT {
+        return self.vtable.Download(self, retval);
+    }
+    pub fn EndDownload(self: *const IUpdateDownloader, value: ?*IDownloadJob, retval: ?*?*IDownloadResult) callconv(.@"inline") HRESULT {
+        return self.vtable.EndDownload(self, value, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateDownloadResult_Value = Guid.initString("bf99af76-b575-42ad-8aa4-33cbb5477af1");
+pub const IID_IUpdateDownloadResult = &IID_IUpdateDownloadResult_Value;
+pub const IUpdateDownloadResult = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HResult: *const fn(
+            self: *const IUpdateDownloadResult,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ResultCode: *const fn(
+            self: *const IUpdateDownloadResult,
+            retval: ?*OperationResultCode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_HResult(self: *const IUpdateDownloadResult, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HResult(self, retval);
+    }
+    pub fn get_ResultCode(self: *const IUpdateDownloadResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ResultCode(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateException_Value = Guid.initString("a376dd5e-09d4-427f-af7c-fed5b6e1c1d6");
 pub const IID_IUpdateException = &IID_IUpdateException_Value;
 pub const IUpdateException = extern union {
@@ -2514,27 +2651,6 @@ pub const IUpdateException = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInvalidProductLicenseException_Value = Guid.initString("a37d00f5-7bb0-4953-b414-f9e98326f2e8");
-pub const IID_IInvalidProductLicenseException = &IID_IInvalidProductLicenseException_Value;
-pub const IInvalidProductLicenseException = extern union {
-    pub const VTable = extern struct {
-        base: IUpdateException.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Product: *const fn(
-            self: *const IInvalidProductLicenseException,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUpdateException: IUpdateException,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Product(self: *const IInvalidProductLicenseException, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Product(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateExceptionCollection_Value = Guid.initString("503626a3-8e14-4729-9355-0fe664bd2321");
 pub const IID_IUpdateExceptionCollection = &IID_IUpdateExceptionCollection_Value;
 pub const IUpdateExceptionCollection = extern union {
@@ -2567,121 +2683,6 @@ pub const IUpdateExceptionCollection = extern union {
     }
     pub fn get_Count(self: *const IUpdateExceptionCollection, retval: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISearchResult_Value = Guid.initString("d40cff62-e08c-4498-941a-01e25f0fd33c");
-pub const IID_ISearchResult = &IID_ISearchResult_Value;
-pub const ISearchResult = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResultCode: *const fn(
-            self: *const ISearchResult,
-            retval: ?*OperationResultCode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RootCategories: *const fn(
-            self: *const ISearchResult,
-            retval: ?*?*ICategoryCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Updates: *const fn(
-            self: *const ISearchResult,
-            retval: ?*?*IUpdateCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Warnings: *const fn(
-            self: *const ISearchResult,
-            retval: ?*?*IUpdateExceptionCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ResultCode(self: *const ISearchResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ResultCode(self, retval);
-    }
-    pub fn get_RootCategories(self: *const ISearchResult, retval: ?*?*ICategoryCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RootCategories(self, retval);
-    }
-    pub fn get_Updates(self: *const ISearchResult, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Updates(self, retval);
-    }
-    pub fn get_Warnings(self: *const ISearchResult, retval: ?*?*IUpdateExceptionCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Warnings(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISearchJob_Value = Guid.initString("7366ea16-7a1a-4ea2-b042-973d3e9cd99b");
-pub const IID_ISearchJob = &IID_ISearchJob_Value;
-pub const ISearchJob = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AsyncState: *const fn(
-            self: *const ISearchJob,
-            retval: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsCompleted: *const fn(
-            self: *const ISearchJob,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        CleanUp: *const fn(
-            self: *const ISearchJob,
-        ) callconv(.winapi) HRESULT,
-        RequestAbort: *const fn(
-            self: *const ISearchJob,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_AsyncState(self: *const ISearchJob, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AsyncState(self, retval);
-    }
-    pub fn get_IsCompleted(self: *const ISearchJob, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsCompleted(self, retval);
-    }
-    pub fn CleanUp(self: *const ISearchJob) callconv(.@"inline") HRESULT {
-        return self.vtable.CleanUp(self);
-    }
-    pub fn RequestAbort(self: *const ISearchJob) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestAbort(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISearchCompletedCallbackArgs_Value = Guid.initString("a700a634-2850-4c47-938a-9e4b6e5af9a6");
-pub const IID_ISearchCompletedCallbackArgs = &IID_ISearchCompletedCallbackArgs_Value;
-pub const ISearchCompletedCallbackArgs = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISearchCompletedCallback_Value = Guid.initString("88aee058-d4b0-4725-a2f1-814a67ae964c");
-pub const IID_ISearchCompletedCallback = &IID_ISearchCompletedCallback_Value;
-pub const ISearchCompletedCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const ISearchCompletedCallback,
-            searchJob: ?*ISearchJob,
-            callbackArgs: ?*ISearchCompletedCallbackArgs,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const ISearchCompletedCallback, searchJob: ?*ISearchJob, callbackArgs: ?*ISearchCompletedCallbackArgs) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self, searchJob, callbackArgs);
     }
 };
 
@@ -2867,593 +2868,30 @@ pub const IUpdateHistoryEntryCollection = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateSearcher_Value = Guid.initString("8f45abf1-f9ae-4b95-a933-f0f66e5056ea");
-pub const IID_IUpdateSearcher = &IID_IUpdateSearcher_Value;
-pub const IUpdateSearcher = extern union {
+const IID_IUpdateIdentity_Value = Guid.initString("46297823-9940-4c09-aed9-cd3ea6d05968");
+pub const IID_IUpdateIdentity = &IID_IUpdateIdentity_Value;
+pub const IUpdateIdentity = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanAutomaticallyUpgradeService: *const fn(
-            self: *const IUpdateSearcher,
-            retval: ?*i16,
+        get_RevisionNumber: *const fn(
+            self: *const IUpdateIdentity,
+            retval: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CanAutomaticallyUpgradeService: *const fn(
-            self: *const IUpdateSearcher,
-            value: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientApplicationID: *const fn(
-            self: *const IUpdateSearcher,
+        get_UpdateID: *const fn(
+            self: *const IUpdateIdentity,
             retval: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClientApplicationID: *const fn(
-            self: *const IUpdateSearcher,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IncludePotentiallySupersededUpdates: *const fn(
-            self: *const IUpdateSearcher,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IncludePotentiallySupersededUpdates: *const fn(
-            self: *const IUpdateSearcher,
-            value: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServerSelection: *const fn(
-            self: *const IUpdateSearcher,
-            retval: ?*ServerSelection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServerSelection: *const fn(
-            self: *const IUpdateSearcher,
-            value: ServerSelection,
-        ) callconv(.winapi) HRESULT,
-        BeginSearch: *const fn(
-            self: *const IUpdateSearcher,
-            criteria: ?BSTR,
-            onCompleted: ?*IUnknown,
-            state: VARIANT,
-            retval: ?*?*ISearchJob,
-        ) callconv(.winapi) HRESULT,
-        EndSearch: *const fn(
-            self: *const IUpdateSearcher,
-            searchJob: ?*ISearchJob,
-            retval: ?*?*ISearchResult,
-        ) callconv(.winapi) HRESULT,
-        EscapeString: *const fn(
-            self: *const IUpdateSearcher,
-            unescaped: ?BSTR,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        QueryHistory: *const fn(
-            self: *const IUpdateSearcher,
-            startIndex: i32,
-            count: i32,
-            retval: ?*?*IUpdateHistoryEntryCollection,
-        ) callconv(.winapi) HRESULT,
-        Search: *const fn(
-            self: *const IUpdateSearcher,
-            criteria: ?BSTR,
-            retval: ?*?*ISearchResult,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Online: *const fn(
-            self: *const IUpdateSearcher,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Online: *const fn(
-            self: *const IUpdateSearcher,
-            value: i16,
-        ) callconv(.winapi) HRESULT,
-        GetTotalHistoryCount: *const fn(
-            self: *const IUpdateSearcher,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceID: *const fn(
-            self: *const IUpdateSearcher,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServiceID: *const fn(
-            self: *const IUpdateSearcher,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CanAutomaticallyUpgradeService(self: *const IUpdateSearcher, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanAutomaticallyUpgradeService(self, retval);
+    pub fn get_RevisionNumber(self: *const IUpdateIdentity, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RevisionNumber(self, retval);
     }
-    pub fn put_CanAutomaticallyUpgradeService(self: *const IUpdateSearcher, value: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_CanAutomaticallyUpgradeService(self, value);
-    }
-    pub fn get_ClientApplicationID(self: *const IUpdateSearcher, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClientApplicationID(self, retval);
-    }
-    pub fn put_ClientApplicationID(self: *const IUpdateSearcher, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClientApplicationID(self, value);
-    }
-    pub fn get_IncludePotentiallySupersededUpdates(self: *const IUpdateSearcher, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IncludePotentiallySupersededUpdates(self, retval);
-    }
-    pub fn put_IncludePotentiallySupersededUpdates(self: *const IUpdateSearcher, value: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IncludePotentiallySupersededUpdates(self, value);
-    }
-    pub fn get_ServerSelection(self: *const IUpdateSearcher, retval: ?*ServerSelection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServerSelection(self, retval);
-    }
-    pub fn put_ServerSelection(self: *const IUpdateSearcher, value: ServerSelection) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ServerSelection(self, value);
-    }
-    pub fn BeginSearch(self: *const IUpdateSearcher, criteria: ?BSTR, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*ISearchJob) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginSearch(self, criteria, onCompleted, state, retval);
-    }
-    pub fn EndSearch(self: *const IUpdateSearcher, searchJob: ?*ISearchJob, retval: ?*?*ISearchResult) callconv(.@"inline") HRESULT {
-        return self.vtable.EndSearch(self, searchJob, retval);
-    }
-    pub fn EscapeString(self: *const IUpdateSearcher, unescaped: ?BSTR, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.EscapeString(self, unescaped, retval);
-    }
-    pub fn QueryHistory(self: *const IUpdateSearcher, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryHistory(self, startIndex, count, retval);
-    }
-    pub fn Search(self: *const IUpdateSearcher, criteria: ?BSTR, retval: ?*?*ISearchResult) callconv(.@"inline") HRESULT {
-        return self.vtable.Search(self, criteria, retval);
-    }
-    pub fn get_Online(self: *const IUpdateSearcher, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Online(self, retval);
-    }
-    pub fn put_Online(self: *const IUpdateSearcher, value: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Online(self, value);
-    }
-    pub fn GetTotalHistoryCount(self: *const IUpdateSearcher, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTotalHistoryCount(self, retval);
-    }
-    pub fn get_ServiceID(self: *const IUpdateSearcher, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServiceID(self, retval);
-    }
-    pub fn put_ServiceID(self: *const IUpdateSearcher, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ServiceID(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateSearcher2_Value = Guid.initString("4cbdcb2d-1589-4beb-bd1c-3e582ff0add0");
-pub const IID_IUpdateSearcher2 = &IID_IUpdateSearcher2_Value;
-pub const IUpdateSearcher2 = extern union {
-    pub const VTable = extern struct {
-        base: IUpdateSearcher.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IgnoreDownloadPriority: *const fn(
-            self: *const IUpdateSearcher2,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IgnoreDownloadPriority: *const fn(
-            self: *const IUpdateSearcher2,
-            value: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUpdateSearcher: IUpdateSearcher,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_IgnoreDownloadPriority(self: *const IUpdateSearcher2, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IgnoreDownloadPriority(self, retval);
-    }
-    pub fn put_IgnoreDownloadPriority(self: *const IUpdateSearcher2, value: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IgnoreDownloadPriority(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateSearcher3_Value = Guid.initString("04c6895d-eaf2-4034-97f3-311de9be413a");
-pub const IID_IUpdateSearcher3 = &IID_IUpdateSearcher3_Value;
-pub const IUpdateSearcher3 = extern union {
-    pub const VTable = extern struct {
-        base: IUpdateSearcher2.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchScope: *const fn(
-            self: *const IUpdateSearcher3,
-            retval: ?*SearchScope,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SearchScope: *const fn(
-            self: *const IUpdateSearcher3,
-            value: SearchScope,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUpdateSearcher2: IUpdateSearcher2,
-    IUpdateSearcher: IUpdateSearcher,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_SearchScope(self: *const IUpdateSearcher3, retval: ?*SearchScope) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SearchScope(self, retval);
-    }
-    pub fn put_SearchScope(self: *const IUpdateSearcher3, value: SearchScope) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SearchScope(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateDownloadResult_Value = Guid.initString("bf99af76-b575-42ad-8aa4-33cbb5477af1");
-pub const IID_IUpdateDownloadResult = &IID_IUpdateDownloadResult_Value;
-pub const IUpdateDownloadResult = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HResult: *const fn(
-            self: *const IUpdateDownloadResult,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResultCode: *const fn(
-            self: *const IUpdateDownloadResult,
-            retval: ?*OperationResultCode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_HResult(self: *const IUpdateDownloadResult, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HResult(self, retval);
-    }
-    pub fn get_ResultCode(self: *const IUpdateDownloadResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ResultCode(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDownloadResult_Value = Guid.initString("daa4fdd0-4727-4dbe-a1e7-745dca317144");
-pub const IID_IDownloadResult = &IID_IDownloadResult_Value;
-pub const IDownloadResult = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HResult: *const fn(
-            self: *const IDownloadResult,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResultCode: *const fn(
-            self: *const IDownloadResult,
-            retval: ?*OperationResultCode,
-        ) callconv(.winapi) HRESULT,
-        GetUpdateResult: *const fn(
-            self: *const IDownloadResult,
-            updateIndex: i32,
-            retval: ?*?*IUpdateDownloadResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_HResult(self: *const IDownloadResult, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HResult(self, retval);
-    }
-    pub fn get_ResultCode(self: *const IDownloadResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ResultCode(self, retval);
-    }
-    pub fn GetUpdateResult(self: *const IDownloadResult, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUpdateResult(self, updateIndex, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDownloadProgress_Value = Guid.initString("d31a5bac-f719-4178-9dbb-5e2cb47fd18a");
-pub const IID_IDownloadProgress = &IID_IDownloadProgress_Value;
-pub const IDownloadProgress = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentUpdateBytesDownloaded: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*DECIMAL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentUpdateBytesToDownload: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*DECIMAL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentUpdateIndex: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PercentComplete: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TotalBytesDownloaded: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*DECIMAL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TotalBytesToDownload: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*DECIMAL,
-        ) callconv(.winapi) HRESULT,
-        GetUpdateResult: *const fn(
-            self: *const IDownloadProgress,
-            updateIndex: i32,
-            retval: ?*?*IUpdateDownloadResult,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentUpdateDownloadPhase: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*DownloadPhase,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentUpdatePercentComplete: *const fn(
-            self: *const IDownloadProgress,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_CurrentUpdateBytesDownloaded(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentUpdateBytesDownloaded(self, retval);
-    }
-    pub fn get_CurrentUpdateBytesToDownload(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentUpdateBytesToDownload(self, retval);
-    }
-    pub fn get_CurrentUpdateIndex(self: *const IDownloadProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentUpdateIndex(self, retval);
-    }
-    pub fn get_PercentComplete(self: *const IDownloadProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PercentComplete(self, retval);
-    }
-    pub fn get_TotalBytesDownloaded(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TotalBytesDownloaded(self, retval);
-    }
-    pub fn get_TotalBytesToDownload(self: *const IDownloadProgress, retval: ?*DECIMAL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TotalBytesToDownload(self, retval);
-    }
-    pub fn GetUpdateResult(self: *const IDownloadProgress, updateIndex: i32, retval: ?*?*IUpdateDownloadResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUpdateResult(self, updateIndex, retval);
-    }
-    pub fn get_CurrentUpdateDownloadPhase(self: *const IDownloadProgress, retval: ?*DownloadPhase) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentUpdateDownloadPhase(self, retval);
-    }
-    pub fn get_CurrentUpdatePercentComplete(self: *const IDownloadProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentUpdatePercentComplete(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDownloadJob_Value = Guid.initString("c574de85-7358-43f6-aae8-8697e62d8ba7");
-pub const IID_IDownloadJob = &IID_IDownloadJob_Value;
-pub const IDownloadJob = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AsyncState: *const fn(
-            self: *const IDownloadJob,
-            retval: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsCompleted: *const fn(
-            self: *const IDownloadJob,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Updates: *const fn(
-            self: *const IDownloadJob,
-            retval: ?*?*IUpdateCollection,
-        ) callconv(.winapi) HRESULT,
-        CleanUp: *const fn(
-            self: *const IDownloadJob,
-        ) callconv(.winapi) HRESULT,
-        GetProgress: *const fn(
-            self: *const IDownloadJob,
-            retval: ?*?*IDownloadProgress,
-        ) callconv(.winapi) HRESULT,
-        RequestAbort: *const fn(
-            self: *const IDownloadJob,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_AsyncState(self: *const IDownloadJob, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AsyncState(self, retval);
-    }
-    pub fn get_IsCompleted(self: *const IDownloadJob, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsCompleted(self, retval);
-    }
-    pub fn get_Updates(self: *const IDownloadJob, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Updates(self, retval);
-    }
-    pub fn CleanUp(self: *const IDownloadJob) callconv(.@"inline") HRESULT {
-        return self.vtable.CleanUp(self);
-    }
-    pub fn GetProgress(self: *const IDownloadJob, retval: ?*?*IDownloadProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProgress(self, retval);
-    }
-    pub fn RequestAbort(self: *const IDownloadJob) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestAbort(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDownloadCompletedCallbackArgs_Value = Guid.initString("fa565b23-498c-47a0-979d-e7d5b1813360");
-pub const IID_IDownloadCompletedCallbackArgs = &IID_IDownloadCompletedCallbackArgs_Value;
-pub const IDownloadCompletedCallbackArgs = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDownloadCompletedCallback_Value = Guid.initString("77254866-9f5b-4c8e-b9e2-c77a8530d64b");
-pub const IID_IDownloadCompletedCallback = &IID_IDownloadCompletedCallback_Value;
-pub const IDownloadCompletedCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const IDownloadCompletedCallback,
-            downloadJob: ?*IDownloadJob,
-            callbackArgs: ?*IDownloadCompletedCallbackArgs,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const IDownloadCompletedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadCompletedCallbackArgs) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self, downloadJob, callbackArgs);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDownloadProgressChangedCallbackArgs_Value = Guid.initString("324ff2c6-4981-4b04-9412-57481745ab24");
-pub const IID_IDownloadProgressChangedCallbackArgs = &IID_IDownloadProgressChangedCallbackArgs_Value;
-pub const IDownloadProgressChangedCallbackArgs = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Progress: *const fn(
-            self: *const IDownloadProgressChangedCallbackArgs,
-            retval: ?*?*IDownloadProgress,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Progress(self: *const IDownloadProgressChangedCallbackArgs, retval: ?*?*IDownloadProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Progress(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDownloadProgressChangedCallback_Value = Guid.initString("8c3f1cdd-6173-4591-aebd-a56a53ca77c1");
-pub const IID_IDownloadProgressChangedCallback = &IID_IDownloadProgressChangedCallback_Value;
-pub const IDownloadProgressChangedCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const IDownloadProgressChangedCallback,
-            downloadJob: ?*IDownloadJob,
-            callbackArgs: ?*IDownloadProgressChangedCallbackArgs,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const IDownloadProgressChangedCallback, downloadJob: ?*IDownloadJob, callbackArgs: ?*IDownloadProgressChangedCallbackArgs) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self, downloadJob, callbackArgs);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateDownloader_Value = Guid.initString("68f1c6f9-7ecc-4666-a464-247fe12496c3");
-pub const IID_IUpdateDownloader = &IID_IUpdateDownloader_Value;
-pub const IUpdateDownloader = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientApplicationID: *const fn(
-            self: *const IUpdateDownloader,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClientApplicationID: *const fn(
-            self: *const IUpdateDownloader,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsForced: *const fn(
-            self: *const IUpdateDownloader,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsForced: *const fn(
-            self: *const IUpdateDownloader,
-            value: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Priority: *const fn(
-            self: *const IUpdateDownloader,
-            retval: ?*DownloadPriority,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Priority: *const fn(
-            self: *const IUpdateDownloader,
-            value: DownloadPriority,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Updates: *const fn(
-            self: *const IUpdateDownloader,
-            retval: ?*?*IUpdateCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Updates: *const fn(
-            self: *const IUpdateDownloader,
-            value: ?*IUpdateCollection,
-        ) callconv(.winapi) HRESULT,
-        BeginDownload: *const fn(
-            self: *const IUpdateDownloader,
-            onProgressChanged: ?*IUnknown,
-            onCompleted: ?*IUnknown,
-            state: VARIANT,
-            retval: ?*?*IDownloadJob,
-        ) callconv(.winapi) HRESULT,
-        Download: *const fn(
-            self: *const IUpdateDownloader,
-            retval: ?*?*IDownloadResult,
-        ) callconv(.winapi) HRESULT,
-        EndDownload: *const fn(
-            self: *const IUpdateDownloader,
-            value: ?*IDownloadJob,
-            retval: ?*?*IDownloadResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ClientApplicationID(self: *const IUpdateDownloader, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClientApplicationID(self, retval);
-    }
-    pub fn put_ClientApplicationID(self: *const IUpdateDownloader, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClientApplicationID(self, value);
-    }
-    pub fn get_IsForced(self: *const IUpdateDownloader, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsForced(self, retval);
-    }
-    pub fn put_IsForced(self: *const IUpdateDownloader, value: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IsForced(self, value);
-    }
-    pub fn get_Priority(self: *const IUpdateDownloader, retval: ?*DownloadPriority) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Priority(self, retval);
-    }
-    pub fn put_Priority(self: *const IUpdateDownloader, value: DownloadPriority) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Priority(self, value);
-    }
-    pub fn get_Updates(self: *const IUpdateDownloader, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Updates(self, retval);
-    }
-    pub fn put_Updates(self: *const IUpdateDownloader, value: ?*IUpdateCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Updates(self, value);
-    }
-    pub fn BeginDownload(self: *const IUpdateDownloader, onProgressChanged: ?*IUnknown, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*IDownloadJob) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginDownload(self, onProgressChanged, onCompleted, state, retval);
-    }
-    pub fn Download(self: *const IUpdateDownloader, retval: ?*?*IDownloadResult) callconv(.@"inline") HRESULT {
-        return self.vtable.Download(self, retval);
-    }
-    pub fn EndDownload(self: *const IUpdateDownloader, value: ?*IDownloadJob, retval: ?*?*IDownloadResult) callconv(.@"inline") HRESULT {
-        return self.vtable.EndDownload(self, value, retval);
+    pub fn get_UpdateID(self: *const IUpdateIdentity, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UpdateID(self, retval);
     }
 };
 
@@ -3490,219 +2928,6 @@ pub const IUpdateInstallationResult = extern union {
     }
     pub fn get_ResultCode(self: *const IUpdateInstallationResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
         return self.vtable.get_ResultCode(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationResult_Value = Guid.initString("a43c56d6-7451-48d4-af96-b6cd2d0d9b7a");
-pub const IID_IInstallationResult = &IID_IInstallationResult_Value;
-pub const IInstallationResult = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HResult: *const fn(
-            self: *const IInstallationResult,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RebootRequired: *const fn(
-            self: *const IInstallationResult,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResultCode: *const fn(
-            self: *const IInstallationResult,
-            retval: ?*OperationResultCode,
-        ) callconv(.winapi) HRESULT,
-        GetUpdateResult: *const fn(
-            self: *const IInstallationResult,
-            updateIndex: i32,
-            retval: ?*?*IUpdateInstallationResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_HResult(self: *const IInstallationResult, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HResult(self, retval);
-    }
-    pub fn get_RebootRequired(self: *const IInstallationResult, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RebootRequired(self, retval);
-    }
-    pub fn get_ResultCode(self: *const IInstallationResult, retval: ?*OperationResultCode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ResultCode(self, retval);
-    }
-    pub fn GetUpdateResult(self: *const IInstallationResult, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUpdateResult(self, updateIndex, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationProgress_Value = Guid.initString("345c8244-43a3-4e32-a368-65f073b76f36");
-pub const IID_IInstallationProgress = &IID_IInstallationProgress_Value;
-pub const IInstallationProgress = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentUpdateIndex: *const fn(
-            self: *const IInstallationProgress,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentUpdatePercentComplete: *const fn(
-            self: *const IInstallationProgress,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PercentComplete: *const fn(
-            self: *const IInstallationProgress,
-            retval: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetUpdateResult: *const fn(
-            self: *const IInstallationProgress,
-            updateIndex: i32,
-            retval: ?*?*IUpdateInstallationResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_CurrentUpdateIndex(self: *const IInstallationProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentUpdateIndex(self, retval);
-    }
-    pub fn get_CurrentUpdatePercentComplete(self: *const IInstallationProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentUpdatePercentComplete(self, retval);
-    }
-    pub fn get_PercentComplete(self: *const IInstallationProgress, retval: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PercentComplete(self, retval);
-    }
-    pub fn GetUpdateResult(self: *const IInstallationProgress, updateIndex: i32, retval: ?*?*IUpdateInstallationResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUpdateResult(self, updateIndex, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationJob_Value = Guid.initString("5c209f0b-bad5-432a-9556-4699bed2638a");
-pub const IID_IInstallationJob = &IID_IInstallationJob_Value;
-pub const IInstallationJob = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AsyncState: *const fn(
-            self: *const IInstallationJob,
-            retval: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsCompleted: *const fn(
-            self: *const IInstallationJob,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Updates: *const fn(
-            self: *const IInstallationJob,
-            retval: ?*?*IUpdateCollection,
-        ) callconv(.winapi) HRESULT,
-        CleanUp: *const fn(
-            self: *const IInstallationJob,
-        ) callconv(.winapi) HRESULT,
-        GetProgress: *const fn(
-            self: *const IInstallationJob,
-            retval: ?*?*IInstallationProgress,
-        ) callconv(.winapi) HRESULT,
-        RequestAbort: *const fn(
-            self: *const IInstallationJob,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_AsyncState(self: *const IInstallationJob, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AsyncState(self, retval);
-    }
-    pub fn get_IsCompleted(self: *const IInstallationJob, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsCompleted(self, retval);
-    }
-    pub fn get_Updates(self: *const IInstallationJob, retval: ?*?*IUpdateCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Updates(self, retval);
-    }
-    pub fn CleanUp(self: *const IInstallationJob) callconv(.@"inline") HRESULT {
-        return self.vtable.CleanUp(self);
-    }
-    pub fn GetProgress(self: *const IInstallationJob, retval: ?*?*IInstallationProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProgress(self, retval);
-    }
-    pub fn RequestAbort(self: *const IInstallationJob) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestAbort(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationCompletedCallbackArgs_Value = Guid.initString("250e2106-8efb-4705-9653-ef13c581b6a1");
-pub const IID_IInstallationCompletedCallbackArgs = &IID_IInstallationCompletedCallbackArgs_Value;
-pub const IInstallationCompletedCallbackArgs = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationCompletedCallback_Value = Guid.initString("45f4f6f3-d602-4f98-9a8a-3efa152ad2d3");
-pub const IID_IInstallationCompletedCallback = &IID_IInstallationCompletedCallback_Value;
-pub const IInstallationCompletedCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const IInstallationCompletedCallback,
-            installationJob: ?*IInstallationJob,
-            callbackArgs: ?*IInstallationCompletedCallbackArgs,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const IInstallationCompletedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationCompletedCallbackArgs) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self, installationJob, callbackArgs);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationProgressChangedCallbackArgs_Value = Guid.initString("e4f14e1e-689d-4218-a0b9-bc189c484a01");
-pub const IID_IInstallationProgressChangedCallbackArgs = &IID_IInstallationProgressChangedCallbackArgs_Value;
-pub const IInstallationProgressChangedCallbackArgs = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Progress: *const fn(
-            self: *const IInstallationProgressChangedCallbackArgs,
-            retval: ?*?*IInstallationProgress,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Progress(self: *const IInstallationProgressChangedCallbackArgs, retval: ?*?*IInstallationProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Progress(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationProgressChangedCallback_Value = Guid.initString("e01402d5-f8da-43ba-a012-38894bd048f1");
-pub const IID_IInstallationProgressChangedCallback = &IID_IInstallationProgressChangedCallback_Value;
-pub const IInstallationProgressChangedCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const IInstallationProgressChangedCallback,
-            installationJob: ?*IInstallationJob,
-            callbackArgs: ?*IInstallationProgressChangedCallbackArgs,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const IInstallationProgressChangedCallback, installationJob: ?*IInstallationJob, callbackArgs: ?*IInstallationProgressChangedCallbackArgs) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self, installationJob, callbackArgs);
     }
 };
 
@@ -3970,135 +3195,237 @@ pub const IUpdateInstaller4 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateSession_Value = Guid.initString("816858a4-260d-4260-933a-2585f1abc76b");
-pub const IID_IUpdateSession = &IID_IUpdateSession_Value;
-pub const IUpdateSession = extern union {
+const IID_IUpdateLockdown_Value = Guid.initString("a976c28d-75a1-42aa-94ae-8af8b872089a");
+pub const IID_IUpdateLockdown = &IID_IUpdateLockdown_Value;
+pub const IUpdateLockdown = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        LockDown: *const fn(
+            self: *const IUpdateLockdown,
+            flags: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn LockDown(self: *const IUpdateLockdown, flags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.LockDown(self, flags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateSearcher_Value = Guid.initString("8f45abf1-f9ae-4b95-a933-f0f66e5056ea");
+pub const IID_IUpdateSearcher = &IID_IUpdateSearcher_Value;
+pub const IUpdateSearcher = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CanAutomaticallyUpgradeService: *const fn(
+            self: *const IUpdateSearcher,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_CanAutomaticallyUpgradeService: *const fn(
+            self: *const IUpdateSearcher,
+            value: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientApplicationID: *const fn(
-            self: *const IUpdateSession,
+            self: *const IUpdateSearcher,
             retval: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientApplicationID: *const fn(
-            self: *const IUpdateSession,
+            self: *const IUpdateSearcher,
             value: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: *const fn(
-            self: *const IUpdateSession,
+        get_IncludePotentiallySupersededUpdates: *const fn(
+            self: *const IUpdateSearcher,
             retval: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WebProxy: *const fn(
-            self: *const IUpdateSession,
-            retval: ?*?*IWebProxy,
+        put_IncludePotentiallySupersededUpdates: *const fn(
+            self: *const IUpdateSearcher,
+            value: i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_WebProxy: *const fn(
-            self: *const IUpdateSession,
-            value: ?*IWebProxy,
-        ) callconv(.winapi) HRESULT,
-        CreateUpdateSearcher: *const fn(
-            self: *const IUpdateSession,
-            retval: ?*?*IUpdateSearcher,
-        ) callconv(.winapi) HRESULT,
-        CreateUpdateDownloader: *const fn(
-            self: *const IUpdateSession,
-            retval: ?*?*IUpdateDownloader,
-        ) callconv(.winapi) HRESULT,
-        CreateUpdateInstaller: *const fn(
-            self: *const IUpdateSession,
-            retval: ?*?*IUpdateInstaller,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ClientApplicationID(self: *const IUpdateSession, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClientApplicationID(self, retval);
-    }
-    pub fn put_ClientApplicationID(self: *const IUpdateSession, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClientApplicationID(self, value);
-    }
-    pub fn get_ReadOnly(self: *const IUpdateSession, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReadOnly(self, retval);
-    }
-    pub fn get_WebProxy(self: *const IUpdateSession, retval: ?*?*IWebProxy) callconv(.@"inline") HRESULT {
-        return self.vtable.get_WebProxy(self, retval);
-    }
-    pub fn put_WebProxy(self: *const IUpdateSession, value: ?*IWebProxy) callconv(.@"inline") HRESULT {
-        return self.vtable.put_WebProxy(self, value);
-    }
-    pub fn CreateUpdateSearcher(self: *const IUpdateSession, retval: ?*?*IUpdateSearcher) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateUpdateSearcher(self, retval);
-    }
-    pub fn CreateUpdateDownloader(self: *const IUpdateSession, retval: ?*?*IUpdateDownloader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateUpdateDownloader(self, retval);
-    }
-    pub fn CreateUpdateInstaller(self: *const IUpdateSession, retval: ?*?*IUpdateInstaller) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateUpdateInstaller(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateSession2_Value = Guid.initString("91caf7b0-eb23-49ed-9937-c52d817f46f7");
-pub const IID_IUpdateSession2 = &IID_IUpdateSession2_Value;
-pub const IUpdateSession2 = extern union {
-    pub const VTable = extern struct {
-        base: IUpdateSession.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserLocale: *const fn(
-            self: *const IUpdateSession2,
-            retval: ?*u32,
+        get_ServerSelection: *const fn(
+            self: *const IUpdateSearcher,
+            retval: ?*ServerSelection,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UserLocale: *const fn(
-            self: *const IUpdateSession2,
-            lcid: u32,
+        put_ServerSelection: *const fn(
+            self: *const IUpdateSearcher,
+            value: ServerSelection,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUpdateSession: IUpdateSession,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_UserLocale(self: *const IUpdateSession2, retval: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserLocale(self, retval);
-    }
-    pub fn put_UserLocale(self: *const IUpdateSession2, lcid: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UserLocale(self, lcid);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateSession3_Value = Guid.initString("918efd1e-b5d8-4c90-8540-aeb9bdc56f9d");
-pub const IID_IUpdateSession3 = &IID_IUpdateSession3_Value;
-pub const IUpdateSession3 = extern union {
-    pub const VTable = extern struct {
-        base: IUpdateSession2.VTable,
-        CreateUpdateServiceManager: *const fn(
-            self: *const IUpdateSession3,
-            retval: ?*?*IUpdateServiceManager2,
+        BeginSearch: *const fn(
+            self: *const IUpdateSearcher,
+            criteria: ?BSTR,
+            onCompleted: ?*IUnknown,
+            state: VARIANT,
+            retval: ?*?*ISearchJob,
+        ) callconv(.winapi) HRESULT,
+        EndSearch: *const fn(
+            self: *const IUpdateSearcher,
+            searchJob: ?*ISearchJob,
+            retval: ?*?*ISearchResult,
+        ) callconv(.winapi) HRESULT,
+        EscapeString: *const fn(
+            self: *const IUpdateSearcher,
+            unescaped: ?BSTR,
+            retval: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         QueryHistory: *const fn(
-            self: *const IUpdateSession3,
-            criteria: ?BSTR,
+            self: *const IUpdateSearcher,
             startIndex: i32,
             count: i32,
             retval: ?*?*IUpdateHistoryEntryCollection,
         ) callconv(.winapi) HRESULT,
+        Search: *const fn(
+            self: *const IUpdateSearcher,
+            criteria: ?BSTR,
+            retval: ?*?*ISearchResult,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Online: *const fn(
+            self: *const IUpdateSearcher,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Online: *const fn(
+            self: *const IUpdateSearcher,
+            value: i16,
+        ) callconv(.winapi) HRESULT,
+        GetTotalHistoryCount: *const fn(
+            self: *const IUpdateSearcher,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ServiceID: *const fn(
+            self: *const IUpdateSearcher,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ServiceID: *const fn(
+            self: *const IUpdateSearcher,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IUpdateSession2: IUpdateSession2,
-    IUpdateSession: IUpdateSession,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateUpdateServiceManager(self: *const IUpdateSession3, retval: ?*?*IUpdateServiceManager2) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateUpdateServiceManager(self, retval);
+    pub fn get_CanAutomaticallyUpgradeService(self: *const IUpdateSearcher, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanAutomaticallyUpgradeService(self, retval);
     }
-    pub fn QueryHistory(self: *const IUpdateSession3, criteria: ?BSTR, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryHistory(self, criteria, startIndex, count, retval);
+    pub fn put_CanAutomaticallyUpgradeService(self: *const IUpdateSearcher, value: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_CanAutomaticallyUpgradeService(self, value);
+    }
+    pub fn get_ClientApplicationID(self: *const IUpdateSearcher, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClientApplicationID(self, retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateSearcher, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClientApplicationID(self, value);
+    }
+    pub fn get_IncludePotentiallySupersededUpdates(self: *const IUpdateSearcher, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IncludePotentiallySupersededUpdates(self, retval);
+    }
+    pub fn put_IncludePotentiallySupersededUpdates(self: *const IUpdateSearcher, value: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IncludePotentiallySupersededUpdates(self, value);
+    }
+    pub fn get_ServerSelection(self: *const IUpdateSearcher, retval: ?*ServerSelection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServerSelection(self, retval);
+    }
+    pub fn put_ServerSelection(self: *const IUpdateSearcher, value: ServerSelection) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ServerSelection(self, value);
+    }
+    pub fn BeginSearch(self: *const IUpdateSearcher, criteria: ?BSTR, onCompleted: ?*IUnknown, state: VARIANT, retval: ?*?*ISearchJob) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginSearch(self, criteria, onCompleted, state, retval);
+    }
+    pub fn EndSearch(self: *const IUpdateSearcher, searchJob: ?*ISearchJob, retval: ?*?*ISearchResult) callconv(.@"inline") HRESULT {
+        return self.vtable.EndSearch(self, searchJob, retval);
+    }
+    pub fn EscapeString(self: *const IUpdateSearcher, unescaped: ?BSTR, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.EscapeString(self, unescaped, retval);
+    }
+    pub fn QueryHistory(self: *const IUpdateSearcher, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryHistory(self, startIndex, count, retval);
+    }
+    pub fn Search(self: *const IUpdateSearcher, criteria: ?BSTR, retval: ?*?*ISearchResult) callconv(.@"inline") HRESULT {
+        return self.vtable.Search(self, criteria, retval);
+    }
+    pub fn get_Online(self: *const IUpdateSearcher, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Online(self, retval);
+    }
+    pub fn put_Online(self: *const IUpdateSearcher, value: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Online(self, value);
+    }
+    pub fn GetTotalHistoryCount(self: *const IUpdateSearcher, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTotalHistoryCount(self, retval);
+    }
+    pub fn get_ServiceID(self: *const IUpdateSearcher, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServiceID(self, retval);
+    }
+    pub fn put_ServiceID(self: *const IUpdateSearcher, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ServiceID(self, value);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateSearcher2_Value = Guid.initString("4cbdcb2d-1589-4beb-bd1c-3e582ff0add0");
+pub const IID_IUpdateSearcher2 = &IID_IUpdateSearcher2_Value;
+pub const IUpdateSearcher2 = extern union {
+    pub const VTable = extern struct {
+        base: IUpdateSearcher.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IgnoreDownloadPriority: *const fn(
+            self: *const IUpdateSearcher2,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_IgnoreDownloadPriority: *const fn(
+            self: *const IUpdateSearcher2,
+            value: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUpdateSearcher: IUpdateSearcher,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_IgnoreDownloadPriority(self: *const IUpdateSearcher2, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IgnoreDownloadPriority(self, retval);
+    }
+    pub fn put_IgnoreDownloadPriority(self: *const IUpdateSearcher2, value: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IgnoreDownloadPriority(self, value);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateSearcher3_Value = Guid.initString("04c6895d-eaf2-4034-97f3-311de9be413a");
+pub const IID_IUpdateSearcher3 = &IID_IUpdateSearcher3_Value;
+pub const IUpdateSearcher3 = extern union {
+    pub const VTable = extern struct {
+        base: IUpdateSearcher2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SearchScope: *const fn(
+            self: *const IUpdateSearcher3,
+            retval: ?*SearchScope,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SearchScope: *const fn(
+            self: *const IUpdateSearcher3,
+            value: SearchScope,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUpdateSearcher2: IUpdateSearcher2,
+    IUpdateSearcher: IUpdateSearcher,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_SearchScope(self: *const IUpdateSearcher3, retval: ?*SearchScope) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SearchScope(self, retval);
+    }
+    pub fn put_SearchScope(self: *const IUpdateSearcher3, value: SearchScope) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SearchScope(self, value);
     }
 };
 
@@ -4276,50 +3603,6 @@ pub const IUpdateServiceCollection = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUpdateServiceRegistration_Value = Guid.initString("dde02280-12b3-4e0b-937b-6747f6acb286");
-pub const IID_IUpdateServiceRegistration = &IID_IUpdateServiceRegistration_Value;
-pub const IUpdateServiceRegistration = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RegistrationState: *const fn(
-            self: *const IUpdateServiceRegistration,
-            retval: ?*UpdateServiceRegistrationState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceID: *const fn(
-            self: *const IUpdateServiceRegistration,
-            retval: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsPendingRegistrationWithAU: *const fn(
-            self: *const IUpdateServiceRegistration,
-            retval: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Service: *const fn(
-            self: *const IUpdateServiceRegistration,
-            retval: ?*?*IUpdateService2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_RegistrationState(self: *const IUpdateServiceRegistration, retval: ?*UpdateServiceRegistrationState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RegistrationState(self, retval);
-    }
-    pub fn get_ServiceID(self: *const IUpdateServiceRegistration, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServiceID(self, retval);
-    }
-    pub fn get_IsPendingRegistrationWithAU(self: *const IUpdateServiceRegistration, retval: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsPendingRegistrationWithAU(self, retval);
-    }
-    pub fn get_Service(self: *const IUpdateServiceRegistration, retval: ?*?*IUpdateService2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Service(self, retval);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUpdateServiceManager_Value = Guid.initString("23857e3c-02ba-44a3-9423-b1c900805f37");
 pub const IID_IUpdateServiceManager = &IID_IUpdateServiceManager_Value;
 pub const IUpdateServiceManager = extern union {
@@ -4435,44 +3718,761 @@ pub const IUpdateServiceManager2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInstallationAgent_Value = Guid.initString("925cbc18-a2ea-4648-bf1c-ec8badcfe20a");
-pub const IID_IInstallationAgent = &IID_IInstallationAgent_Value;
-pub const IInstallationAgent = extern union {
+const IID_IUpdateServiceRegistration_Value = Guid.initString("dde02280-12b3-4e0b-937b-6747f6acb286");
+pub const IID_IUpdateServiceRegistration = &IID_IUpdateServiceRegistration_Value;
+pub const IUpdateServiceRegistration = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        RecordInstallationResult: *const fn(
-            self: *const IInstallationAgent,
-            installationResultCookie: ?BSTR,
-            hresult: i32,
-            extendedReportingData: ?*IStringCollection,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RegistrationState: *const fn(
+            self: *const IUpdateServiceRegistration,
+            retval: ?*UpdateServiceRegistrationState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ServiceID: *const fn(
+            self: *const IUpdateServiceRegistration,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsPendingRegistrationWithAU: *const fn(
+            self: *const IUpdateServiceRegistration,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Service: *const fn(
+            self: *const IUpdateServiceRegistration,
+            retval: ?*?*IUpdateService2,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RecordInstallationResult(self: *const IInstallationAgent, installationResultCookie: ?BSTR, hresult: i32, extendedReportingData: ?*IStringCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.RecordInstallationResult(self, installationResultCookie, hresult, extendedReportingData);
+    pub fn get_RegistrationState(self: *const IUpdateServiceRegistration, retval: ?*UpdateServiceRegistrationState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RegistrationState(self, retval);
+    }
+    pub fn get_ServiceID(self: *const IUpdateServiceRegistration, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServiceID(self, retval);
+    }
+    pub fn get_IsPendingRegistrationWithAU(self: *const IUpdateServiceRegistration, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsPendingRegistrationWithAU(self, retval);
+    }
+    pub fn get_Service(self: *const IUpdateServiceRegistration, retval: ?*?*IUpdateService2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Service(self, retval);
     }
 };
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateSession_Value = Guid.initString("816858a4-260d-4260-933a-2585f1abc76b");
+pub const IID_IUpdateSession = &IID_IUpdateSession_Value;
+pub const IUpdateSession = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClientApplicationID: *const fn(
+            self: *const IUpdateSession,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ClientApplicationID: *const fn(
+            self: *const IUpdateSession,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReadOnly: *const fn(
+            self: *const IUpdateSession,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WebProxy: *const fn(
+            self: *const IUpdateSession,
+            retval: ?*?*IWebProxy,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_WebProxy: *const fn(
+            self: *const IUpdateSession,
+            value: ?*IWebProxy,
+        ) callconv(.winapi) HRESULT,
+        CreateUpdateSearcher: *const fn(
+            self: *const IUpdateSession,
+            retval: ?*?*IUpdateSearcher,
+        ) callconv(.winapi) HRESULT,
+        CreateUpdateDownloader: *const fn(
+            self: *const IUpdateSession,
+            retval: ?*?*IUpdateDownloader,
+        ) callconv(.winapi) HRESULT,
+        CreateUpdateInstaller: *const fn(
+            self: *const IUpdateSession,
+            retval: ?*?*IUpdateInstaller,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ClientApplicationID(self: *const IUpdateSession, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClientApplicationID(self, retval);
+    }
+    pub fn put_ClientApplicationID(self: *const IUpdateSession, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClientApplicationID(self, value);
+    }
+    pub fn get_ReadOnly(self: *const IUpdateSession, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReadOnly(self, retval);
+    }
+    pub fn get_WebProxy(self: *const IUpdateSession, retval: ?*?*IWebProxy) callconv(.@"inline") HRESULT {
+        return self.vtable.get_WebProxy(self, retval);
+    }
+    pub fn put_WebProxy(self: *const IUpdateSession, value: ?*IWebProxy) callconv(.@"inline") HRESULT {
+        return self.vtable.put_WebProxy(self, value);
+    }
+    pub fn CreateUpdateSearcher(self: *const IUpdateSession, retval: ?*?*IUpdateSearcher) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateUpdateSearcher(self, retval);
+    }
+    pub fn CreateUpdateDownloader(self: *const IUpdateSession, retval: ?*?*IUpdateDownloader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateUpdateDownloader(self, retval);
+    }
+    pub fn CreateUpdateInstaller(self: *const IUpdateSession, retval: ?*?*IUpdateInstaller) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateUpdateInstaller(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateSession2_Value = Guid.initString("91caf7b0-eb23-49ed-9937-c52d817f46f7");
+pub const IID_IUpdateSession2 = &IID_IUpdateSession2_Value;
+pub const IUpdateSession2 = extern union {
+    pub const VTable = extern struct {
+        base: IUpdateSession.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserLocale: *const fn(
+            self: *const IUpdateSession2,
+            retval: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_UserLocale: *const fn(
+            self: *const IUpdateSession2,
+            lcid: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUpdateSession: IUpdateSession,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_UserLocale(self: *const IUpdateSession2, retval: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserLocale(self, retval);
+    }
+    pub fn put_UserLocale(self: *const IUpdateSession2, lcid: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UserLocale(self, lcid);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUpdateSession3_Value = Guid.initString("918efd1e-b5d8-4c90-8540-aeb9bdc56f9d");
+pub const IID_IUpdateSession3 = &IID_IUpdateSession3_Value;
+pub const IUpdateSession3 = extern union {
+    pub const VTable = extern struct {
+        base: IUpdateSession2.VTable,
+        CreateUpdateServiceManager: *const fn(
+            self: *const IUpdateSession3,
+            retval: ?*?*IUpdateServiceManager2,
+        ) callconv(.winapi) HRESULT,
+        QueryHistory: *const fn(
+            self: *const IUpdateSession3,
+            criteria: ?BSTR,
+            startIndex: i32,
+            count: i32,
+            retval: ?*?*IUpdateHistoryEntryCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUpdateSession2: IUpdateSession2,
+    IUpdateSession: IUpdateSession,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateUpdateServiceManager(self: *const IUpdateSession3, retval: ?*?*IUpdateServiceManager2) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateUpdateServiceManager(self, retval);
+    }
+    pub fn QueryHistory(self: *const IUpdateSession3, criteria: ?BSTR, startIndex: i32, count: i32, retval: ?*?*IUpdateHistoryEntryCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryHistory(self, criteria, startIndex, count, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWebProxy_Value = Guid.initString("174c81fe-aecd-4dae-b8a0-2c6318dd86a8");
+pub const IID_IWebProxy = &IID_IWebProxy_Value;
+pub const IWebProxy = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Address: *const fn(
+            self: *const IWebProxy,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Address: *const fn(
+            self: *const IWebProxy,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BypassList: *const fn(
+            self: *const IWebProxy,
+            retval: ?*?*IStringCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BypassList: *const fn(
+            self: *const IWebProxy,
+            value: ?*IStringCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BypassProxyOnLocal: *const fn(
+            self: *const IWebProxy,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BypassProxyOnLocal: *const fn(
+            self: *const IWebProxy,
+            value: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReadOnly: *const fn(
+            self: *const IWebProxy,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserName: *const fn(
+            self: *const IWebProxy,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_UserName: *const fn(
+            self: *const IWebProxy,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetPassword: *const fn(
+            self: *const IWebProxy,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        PromptForCredentials: *const fn(
+            self: *const IWebProxy,
+            parentWindow: ?*IUnknown,
+            title: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        PromptForCredentialsFromHwnd: *const fn(
+            self: *const IWebProxy,
+            parentWindow: ?HWND,
+            title: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AutoDetect: *const fn(
+            self: *const IWebProxy,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AutoDetect: *const fn(
+            self: *const IWebProxy,
+            value: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Address(self: *const IWebProxy, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Address(self, retval);
+    }
+    pub fn put_Address(self: *const IWebProxy, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Address(self, value);
+    }
+    pub fn get_BypassList(self: *const IWebProxy, retval: ?*?*IStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BypassList(self, retval);
+    }
+    pub fn put_BypassList(self: *const IWebProxy, value: ?*IStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BypassList(self, value);
+    }
+    pub fn get_BypassProxyOnLocal(self: *const IWebProxy, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BypassProxyOnLocal(self, retval);
+    }
+    pub fn put_BypassProxyOnLocal(self: *const IWebProxy, value: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BypassProxyOnLocal(self, value);
+    }
+    pub fn get_ReadOnly(self: *const IWebProxy, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReadOnly(self, retval);
+    }
+    pub fn get_UserName(self: *const IWebProxy, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserName(self, retval);
+    }
+    pub fn put_UserName(self: *const IWebProxy, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UserName(self, value);
+    }
+    pub fn SetPassword(self: *const IWebProxy, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPassword(self, value);
+    }
+    pub fn PromptForCredentials(self: *const IWebProxy, parentWindow: ?*IUnknown, title: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.PromptForCredentials(self, parentWindow, title);
+    }
+    pub fn PromptForCredentialsFromHwnd(self: *const IWebProxy, parentWindow: ?HWND, title: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.PromptForCredentialsFromHwnd(self, parentWindow, title);
+    }
+    pub fn get_AutoDetect(self: *const IWebProxy, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AutoDetect(self, retval);
+    }
+    pub fn put_AutoDetect(self: *const IWebProxy, value: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AutoDetect(self, value);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsDriverUpdate_Value = Guid.initString("b383cd1a-5ce9-4504-9f63-764b1236f191");
+pub const IID_IWindowsDriverUpdate = &IID_IWindowsDriverUpdate_Value;
+pub const IWindowsDriverUpdate = extern union {
+    pub const VTable = extern struct {
+        base: IUpdate.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverClass: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverHardwareID: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverManufacturer: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverModel: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverProvider: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverVerDate: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceProblemNumber: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceStatus: *const fn(
+            self: *const IWindowsDriverUpdate,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DriverClass(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverClass(self, retval);
+    }
+    pub fn get_DriverHardwareID(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverHardwareID(self, retval);
+    }
+    pub fn get_DriverManufacturer(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverManufacturer(self, retval);
+    }
+    pub fn get_DriverModel(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverModel(self, retval);
+    }
+    pub fn get_DriverProvider(self: *const IWindowsDriverUpdate, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverProvider(self, retval);
+    }
+    pub fn get_DriverVerDate(self: *const IWindowsDriverUpdate, retval: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverVerDate(self, retval);
+    }
+    pub fn get_DeviceProblemNumber(self: *const IWindowsDriverUpdate, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceProblemNumber(self, retval);
+    }
+    pub fn get_DeviceStatus(self: *const IWindowsDriverUpdate, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceStatus(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsDriverUpdate2_Value = Guid.initString("615c4269-7a48-43bd-96b7-bf6ca27d6c3e");
+pub const IID_IWindowsDriverUpdate2 = &IID_IWindowsDriverUpdate2_Value;
+pub const IWindowsDriverUpdate2 = extern union {
+    pub const VTable = extern struct {
+        base: IWindowsDriverUpdate.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RebootRequired: *const fn(
+            self: *const IWindowsDriverUpdate2,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsPresent: *const fn(
+            self: *const IWindowsDriverUpdate2,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CveIDs: *const fn(
+            self: *const IWindowsDriverUpdate2,
+            retval: ?*?*IStringCollection,
+        ) callconv(.winapi) HRESULT,
+        CopyToCache: *const fn(
+            self: *const IWindowsDriverUpdate2,
+            pFiles: ?*IStringCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWindowsDriverUpdate: IWindowsDriverUpdate,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_RebootRequired(self: *const IWindowsDriverUpdate2, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RebootRequired(self, retval);
+    }
+    pub fn get_IsPresent(self: *const IWindowsDriverUpdate2, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsPresent(self, retval);
+    }
+    pub fn get_CveIDs(self: *const IWindowsDriverUpdate2, retval: ?*?*IStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CveIDs(self, retval);
+    }
+    pub fn CopyToCache(self: *const IWindowsDriverUpdate2, pFiles: ?*IStringCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyToCache(self, pFiles);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsDriverUpdate3_Value = Guid.initString("49ebd502-4a96-41bd-9e3e-4c5057f4250c");
+pub const IID_IWindowsDriverUpdate3 = &IID_IWindowsDriverUpdate3_Value;
+pub const IWindowsDriverUpdate3 = extern union {
+    pub const VTable = extern struct {
+        base: IWindowsDriverUpdate2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BrowseOnly: *const fn(
+            self: *const IWindowsDriverUpdate3,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
+    IWindowsDriverUpdate: IWindowsDriverUpdate,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_BrowseOnly(self: *const IWindowsDriverUpdate3, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BrowseOnly(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsDriverUpdate4_Value = Guid.initString("004c6a2b-0c19-4c69-9f5c-a269b2560db9");
+pub const IID_IWindowsDriverUpdate4 = &IID_IWindowsDriverUpdate4_Value;
+pub const IWindowsDriverUpdate4 = extern union {
+    pub const VTable = extern struct {
+        base: IWindowsDriverUpdate3.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WindowsDriverUpdateEntries: *const fn(
+            self: *const IWindowsDriverUpdate4,
+            retval: ?*?*IWindowsDriverUpdateEntryCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PerUser: *const fn(
+            self: *const IWindowsDriverUpdate4,
+            retval: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWindowsDriverUpdate3: IWindowsDriverUpdate3,
+    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
+    IWindowsDriverUpdate: IWindowsDriverUpdate,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_WindowsDriverUpdateEntries(self: *const IWindowsDriverUpdate4, retval: ?*?*IWindowsDriverUpdateEntryCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_WindowsDriverUpdateEntries(self, retval);
+    }
+    pub fn get_PerUser(self: *const IWindowsDriverUpdate4, retval: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PerUser(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsDriverUpdate5_Value = Guid.initString("70cf5c82-8642-42bb-9dbc-0cfd263c6c4f");
+pub const IID_IWindowsDriverUpdate5 = &IID_IWindowsDriverUpdate5_Value;
+pub const IWindowsDriverUpdate5 = extern union {
+    pub const VTable = extern struct {
+        base: IWindowsDriverUpdate4.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AutoSelection: *const fn(
+            self: *const IWindowsDriverUpdate5,
+            retval: ?*AutoSelectionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AutoDownload: *const fn(
+            self: *const IWindowsDriverUpdate5,
+            retval: ?*AutoDownloadMode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWindowsDriverUpdate4: IWindowsDriverUpdate4,
+    IWindowsDriverUpdate3: IWindowsDriverUpdate3,
+    IWindowsDriverUpdate2: IWindowsDriverUpdate2,
+    IWindowsDriverUpdate: IWindowsDriverUpdate,
+    IUpdate: IUpdate,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AutoSelection(self: *const IWindowsDriverUpdate5, retval: ?*AutoSelectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AutoSelection(self, retval);
+    }
+    pub fn get_AutoDownload(self: *const IWindowsDriverUpdate5, retval: ?*AutoDownloadMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AutoDownload(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsDriverUpdateEntry_Value = Guid.initString("ed8bfe40-a60b-42ea-9652-817dfcfa23ec");
+pub const IID_IWindowsDriverUpdateEntry = &IID_IWindowsDriverUpdateEntry_Value;
+pub const IWindowsDriverUpdateEntry = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverClass: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverHardwareID: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverManufacturer: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverModel: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverProvider: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DriverVerDate: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceProblemNumber: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceStatus: *const fn(
+            self: *const IWindowsDriverUpdateEntry,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DriverClass(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverClass(self, retval);
+    }
+    pub fn get_DriverHardwareID(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverHardwareID(self, retval);
+    }
+    pub fn get_DriverManufacturer(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverManufacturer(self, retval);
+    }
+    pub fn get_DriverModel(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverModel(self, retval);
+    }
+    pub fn get_DriverProvider(self: *const IWindowsDriverUpdateEntry, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverProvider(self, retval);
+    }
+    pub fn get_DriverVerDate(self: *const IWindowsDriverUpdateEntry, retval: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DriverVerDate(self, retval);
+    }
+    pub fn get_DeviceProblemNumber(self: *const IWindowsDriverUpdateEntry, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceProblemNumber(self, retval);
+    }
+    pub fn get_DeviceStatus(self: *const IWindowsDriverUpdateEntry, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceStatus(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsDriverUpdateEntryCollection_Value = Guid.initString("0d521700-a372-4bef-828b-3d00c10adebd");
+pub const IID_IWindowsDriverUpdateEntryCollection = &IID_IWindowsDriverUpdateEntryCollection_Value;
+pub const IWindowsDriverUpdateEntryCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Item: *const fn(
+            self: *const IWindowsDriverUpdateEntryCollection,
+            index: i32,
+            retval: ?*?*IWindowsDriverUpdateEntry,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IWindowsDriverUpdateEntryCollection,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IWindowsDriverUpdateEntryCollection,
+            retval: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Item(self: *const IWindowsDriverUpdateEntryCollection, index: i32, retval: ?*?*IWindowsDriverUpdateEntry) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, retval);
+    }
+    pub fn get__NewEnum(self: *const IWindowsDriverUpdateEntryCollection, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Count(self: *const IWindowsDriverUpdateEntryCollection, retval: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, retval);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowsUpdateAgentInfo_Value = Guid.initString("85713fa1-7796-4fa2-be3b-e2d6124dd373");
+pub const IID_IWindowsUpdateAgentInfo = &IID_IWindowsUpdateAgentInfo_Value;
+pub const IWindowsUpdateAgentInfo = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetInfo: *const fn(
+            self: *const IWindowsUpdateAgentInfo,
+            varInfoIdentifier: VARIANT,
+            retval: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetInfo(self: *const IWindowsUpdateAgentInfo, varInfoIdentifier: VARIANT, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInfo(self, varInfoIdentifier, retval);
+    }
+};
+
+pub const OperationResultCode = enum(i32) {
+    NotStarted = 0,
+    InProgress = 1,
+    Succeeded = 2,
+    SucceededWithErrors = 3,
+    Failed = 4,
+    Aborted = 5,
+};
+pub const orcNotStarted = OperationResultCode.NotStarted;
+pub const orcInProgress = OperationResultCode.InProgress;
+pub const orcSucceeded = OperationResultCode.Succeeded;
+pub const orcSucceededWithErrors = OperationResultCode.SucceededWithErrors;
+pub const orcFailed = OperationResultCode.Failed;
+pub const orcAborted = OperationResultCode.Aborted;
+
+pub const SearchScope = enum(i32) {
+    Default = 0,
+    MachineOnly = 1,
+    CurrentUserOnly = 2,
+    MachineAndCurrentUser = 3,
+    MachineAndAllUsers = 4,
+    AllUsers = 5,
+};
+pub const searchScopeDefault = SearchScope.Default;
+pub const searchScopeMachineOnly = SearchScope.MachineOnly;
+pub const searchScopeCurrentUserOnly = SearchScope.CurrentUserOnly;
+pub const searchScopeMachineAndCurrentUser = SearchScope.MachineAndCurrentUser;
+pub const searchScopeMachineAndAllUsers = SearchScope.MachineAndAllUsers;
+pub const searchScopeAllUsers = SearchScope.AllUsers;
+
+pub const ServerSelection = enum(i32) {
+    Default = 0,
+    ManagedServer = 1,
+    WindowsUpdate = 2,
+    Others = 3,
+};
+pub const ssDefault = ServerSelection.Default;
+pub const ssManagedServer = ServerSelection.ManagedServer;
+pub const ssWindowsUpdate = ServerSelection.WindowsUpdate;
+pub const ssOthers = ServerSelection.Others;
+
+const CLSID_StringCollection_Value = Guid.initString("72c97d74-7c3b-40ae-b77d-abdb22eba6fb");
+pub const CLSID_StringCollection = &CLSID_StringCollection_Value;
+
+const CLSID_SystemInformation_Value = Guid.initString("c01b9ba0-bea7-41ba-b604-d0a36f469133");
+pub const CLSID_SystemInformation = &CLSID_SystemInformation_Value;
+
+const CLSID_UpdateCollection_Value = Guid.initString("13639463-00db-4646-803d-528026140d88");
+pub const CLSID_UpdateCollection = &CLSID_UpdateCollection_Value;
+
+const CLSID_UpdateDownloader_Value = Guid.initString("5baf654a-5a07-4264-a255-9ff54c7151e7");
+pub const CLSID_UpdateDownloader = &CLSID_UpdateDownloader_Value;
+
+pub const UpdateExceptionContext = enum(i32) {
+    General = 1,
+    WindowsDriver = 2,
+    WindowsInstaller = 3,
+    SearchIncomplete = 4,
+};
+pub const uecGeneral = UpdateExceptionContext.General;
+pub const uecWindowsDriver = UpdateExceptionContext.WindowsDriver;
+pub const uecWindowsInstaller = UpdateExceptionContext.WindowsInstaller;
+pub const uecSearchIncomplete = UpdateExceptionContext.SearchIncomplete;
+
+const CLSID_UpdateInstaller_Value = Guid.initString("d2e0fe7f-d23e-48e1-93c0-6fa8cc346474");
+pub const CLSID_UpdateInstaller = &CLSID_UpdateInstaller_Value;
 
 pub const UpdateLockdownOption = enum(i32) {
     s = 1,
 };
 pub const uloForWebsiteAccess = UpdateLockdownOption.s;
 
-pub const AddServiceFlag = enum(i32) {
-    AllowPendingRegistration = 1,
-    AllowOnlineRegistration = 2,
-    RegisterServiceWithAU = 4,
+pub const UpdateOperation = enum(i32) {
+    Installation = 1,
+    Uninstallation = 2,
 };
-pub const asfAllowPendingRegistration = AddServiceFlag.AllowPendingRegistration;
-pub const asfAllowOnlineRegistration = AddServiceFlag.AllowOnlineRegistration;
-pub const asfRegisterServiceWithAU = AddServiceFlag.RegisterServiceWithAU;
+pub const uoInstallation = UpdateOperation.Installation;
+pub const uoUninstallation = UpdateOperation.Uninstallation;
+
+const CLSID_UpdateSearcher_Value = Guid.initString("b699e5e8-67ff-4177-88b0-3684a3388bfb");
+pub const CLSID_UpdateSearcher = &CLSID_UpdateSearcher_Value;
+
+const CLSID_UpdateServiceManager_Value = Guid.initString("f8d253d9-89a4-4daa-87b6-1168369f0b21");
+pub const CLSID_UpdateServiceManager = &CLSID_UpdateServiceManager_Value;
 
 pub const UpdateServiceOption = enum(i32) {
     e = 1,
 };
 pub const usoNonVolatileService = UpdateServiceOption.e;
+
+pub const UpdateServiceRegistrationState = enum(i32) {
+    NotRegistered = 1,
+    RegistrationPending = 2,
+    Registered = 3,
+};
+pub const usrsNotRegistered = UpdateServiceRegistrationState.NotRegistered;
+pub const usrsRegistrationPending = UpdateServiceRegistrationState.RegistrationPending;
+pub const usrsRegistered = UpdateServiceRegistrationState.Registered;
+
+const CLSID_UpdateSession_Value = Guid.initString("4cb43d7f-7eee-4906-8698-60da1c38f2fe");
+pub const CLSID_UpdateSession = &CLSID_UpdateSession_Value;
+
+pub const UpdateType = enum(i32) {
+    Software = 1,
+    Driver = 2,
+};
+pub const utSoftware = UpdateType.Software;
+pub const utDriver = UpdateType.Driver;
+
+const CLSID_WebProxy_Value = Guid.initString("650503cf-9108-4ddc-a2ce-6c2341e1c582");
+pub const CLSID_WebProxy = &CLSID_WebProxy_Value;
+
+const CLSID_WindowsUpdateAgentInfo_Value = Guid.initString("c2e88c2f-6f5b-4aaa-894b-55c847ad3a2d");
+pub const CLSID_WindowsUpdateAgentInfo = &CLSID_WindowsUpdateAgentInfo_Value;
 
 
 //--------------------------------------------------------------------------------

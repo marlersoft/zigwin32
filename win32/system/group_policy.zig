@@ -2,34 +2,20 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (103)
 //--------------------------------------------------------------------------------
-pub const GPM_USE_PDC = @as(u32, 0);
-pub const GPM_USE_ANYDC = @as(u32, 1);
-pub const GPM_DONOTUSE_W2KDC = @as(u32, 2);
-pub const GPM_DONOT_VALIDATEDC = @as(u32, 1);
-pub const GPM_MIGRATIONTABLE_ONLY = @as(u32, 1);
-pub const GPM_PROCESS_SECURITY = @as(u32, 2);
-pub const RSOP_NO_COMPUTER = @as(u32, 65536);
-pub const RSOP_NO_USER = @as(u32, 131072);
-pub const RSOP_PLANNING_ASSUME_SLOW_LINK = @as(u32, 1);
-pub const RSOP_PLANNING_ASSUME_LOOPBACK_MERGE = @as(u32, 2);
-pub const RSOP_PLANNING_ASSUME_LOOPBACK_REPLACE = @as(u32, 4);
-pub const RSOP_PLANNING_ASSUME_USER_WQLFILTER_TRUE = @as(u32, 8);
-pub const RSOP_PLANNING_ASSUME_COMP_WQLFILTER_TRUE = @as(u32, 16);
-pub const PI_NOUI = @as(u32, 1);
-pub const PI_APPLYPOLICY = @as(u32, 2);
-pub const PT_TEMPORARY = @as(u32, 1);
-pub const PT_ROAMING = @as(u32, 2);
-pub const PT_MANDATORY = @as(u32, 4);
-pub const PT_ROAMING_PREEXISTING = @as(u32, 8);
-pub const RP_FORCE = @as(u32, 1);
-pub const RP_SYNC = @as(u32, 2);
-pub const GPC_BLOCK_POLICY = @as(u32, 1);
-pub const GPO_FLAG_DISABLE = @as(u32, 1);
-pub const GPO_FLAG_FORCE = @as(u32, 2);
-pub const GPO_LIST_FLAG_MACHINE = @as(u32, 1);
-pub const GPO_LIST_FLAG_SITEONLY = @as(u32, 2);
-pub const GPO_LIST_FLAG_NO_WMIFILTERS = @as(u32, 4);
-pub const GPO_LIST_FLAG_NO_SECURITYFILTERS = @as(u32, 8);
+pub const CLSID_GPESnapIn = Guid.initString("8fc0b734-a0e1-11d1-a7d3-0000f87571e3");
+pub const CLSID_GroupPolicyObject = Guid.initString("ea502722-a23d-11d1-a7d3-0000f87571e3");
+pub const CLSID_RSOPSnapIn = Guid.initString("6dc3804b-7212-458d-adb0-9a07e2ae1fa2");
+pub const FLAG_ASSUME_COMP_WQLFILTER_TRUE = @as(u32, 33554432);
+pub const FLAG_ASSUME_SLOW_LINK = @as(u32, 536870912);
+pub const FLAG_ASSUME_USER_WQLFILTER_TRUE = @as(u32, 67108864);
+pub const FLAG_FORCE_CREATENAMESPACE = @as(u32, 4);
+pub const FLAG_LOOPBACK_MERGE = @as(u32, 268435456);
+pub const FLAG_LOOPBACK_REPLACE = @as(u32, 134217728);
+pub const FLAG_NO_COMPUTER = @as(u32, 2);
+pub const FLAG_NO_CSE_INVOKE = @as(u32, 1073741824);
+pub const FLAG_NO_GPO_FILTER = @as(u32, 2147483648);
+pub const FLAG_NO_USER = @as(u32, 1);
+pub const FLAG_PLANNING_MODE = @as(u32, 16777216);
 pub const GP_DLLNAME = "DllName";
 pub const GP_ENABLEASYNCHRONOUSPROCESSING = "EnableAsynchronousProcessing";
 pub const GP_MAXNOGPOLISTCHANGESINTERVAL = "MaxNoGPOListChangesInterval";
@@ -42,73 +28,96 @@ pub const GP_NOUSERPOLICY = "NoUserPolicy";
 pub const GP_PERUSERLOCALSETTINGS = "PerUserLocalSettings";
 pub const GP_PROCESSGROUPPOLICY = "ProcessGroupPolicy";
 pub const GP_REQUIRESSUCCESSFULREGISTRY = "RequiresSuccessfulRegistry";
-pub const GPO_INFO_FLAG_MACHINE = @as(u32, 1);
+pub const GPC_BLOCK_POLICY = @as(u32, 1);
+pub const GPM_DONOT_VALIDATEDC = @as(u32, 1);
+pub const GPM_DONOTUSE_W2KDC = @as(u32, 2);
+pub const GPM_MIGRATIONTABLE_ONLY = @as(u32, 1);
+pub const GPM_PROCESS_SECURITY = @as(u32, 2);
+pub const GPM_USE_ANYDC = @as(u32, 1);
+pub const GPM_USE_PDC = @as(u32, 0);
+pub const GPO_BROWSE_DISABLENEW = @as(u32, 1);
+pub const GPO_BROWSE_INITTOALL = @as(u32, 16);
+pub const GPO_BROWSE_NOCOMPUTERS = @as(u32, 2);
+pub const GPO_BROWSE_NODSGPOS = @as(u32, 4);
+pub const GPO_BROWSE_NOUSERGPOS = @as(u32, 32);
+pub const GPO_BROWSE_OPENBUTTON = @as(u32, 8);
+pub const GPO_BROWSE_SENDAPPLYONEDIT = @as(u32, 64);
+pub const GPO_FLAG_DISABLE = @as(u32, 1);
+pub const GPO_FLAG_FORCE = @as(u32, 2);
+pub const GPO_INFO_FLAG_ASYNC_FOREGROUND = @as(u32, 4096);
 pub const GPO_INFO_FLAG_BACKGROUND = @as(u32, 16);
-pub const GPO_INFO_FLAG_SLOWLINK = @as(u32, 32);
-pub const GPO_INFO_FLAG_VERBOSE = @as(u32, 64);
-pub const GPO_INFO_FLAG_NOCHANGES = @as(u32, 128);
+pub const GPO_INFO_FLAG_FORCED_REFRESH = @as(u32, 1024);
 pub const GPO_INFO_FLAG_LINKTRANSITION = @as(u32, 256);
 pub const GPO_INFO_FLAG_LOGRSOP_TRANSITION = @as(u32, 512);
-pub const GPO_INFO_FLAG_FORCED_REFRESH = @as(u32, 1024);
+pub const GPO_INFO_FLAG_MACHINE = @as(u32, 1);
+pub const GPO_INFO_FLAG_NOCHANGES = @as(u32, 128);
 pub const GPO_INFO_FLAG_SAFEMODE_BOOT = @as(u32, 2048);
-pub const GPO_INFO_FLAG_ASYNC_FOREGROUND = @as(u32, 4096);
-pub const FLAG_NO_GPO_FILTER = @as(u32, 2147483648);
-pub const FLAG_NO_CSE_INVOKE = @as(u32, 1073741824);
-pub const FLAG_ASSUME_SLOW_LINK = @as(u32, 536870912);
-pub const FLAG_LOOPBACK_MERGE = @as(u32, 268435456);
-pub const FLAG_LOOPBACK_REPLACE = @as(u32, 134217728);
-pub const FLAG_ASSUME_USER_WQLFILTER_TRUE = @as(u32, 67108864);
-pub const FLAG_ASSUME_COMP_WQLFILTER_TRUE = @as(u32, 33554432);
-pub const FLAG_PLANNING_MODE = @as(u32, 16777216);
-pub const FLAG_NO_USER = @as(u32, 1);
-pub const FLAG_NO_COMPUTER = @as(u32, 2);
-pub const FLAG_FORCE_CREATENAMESPACE = @as(u32, 4);
-pub const RSOP_USER_ACCESS_DENIED = @as(u32, 1);
-pub const RSOP_COMPUTER_ACCESS_DENIED = @as(u32, 2);
-pub const RSOP_TEMPNAMESPACE_EXISTS = @as(u32, 4);
+pub const GPO_INFO_FLAG_SLOWLINK = @as(u32, 32);
+pub const GPO_INFO_FLAG_VERBOSE = @as(u32, 64);
+pub const GPO_LIST_FLAG_MACHINE = @as(u32, 1);
+pub const GPO_LIST_FLAG_NO_SECURITYFILTERS = @as(u32, 8);
+pub const GPO_LIST_FLAG_NO_WMIFILTERS = @as(u32, 4);
+pub const GPO_LIST_FLAG_SITEONLY = @as(u32, 2);
+pub const GPO_OPEN_LOAD_REGISTRY = @as(u32, 1);
+pub const GPO_OPEN_READ_ONLY = @as(u32, 2);
+pub const GPO_OPTION_DISABLE_MACHINE = @as(u32, 2);
+pub const GPO_OPTION_DISABLE_USER = @as(u32, 1);
+pub const GPO_SECTION_MACHINE = @as(u32, 2);
+pub const GPO_SECTION_ROOT = @as(u32, 0);
+pub const GPO_SECTION_USER = @as(u32, 1);
 pub const LOCALSTATE_ASSIGNED = @as(u32, 1);
-pub const LOCALSTATE_PUBLISHED = @as(u32, 2);
-pub const LOCALSTATE_UNINSTALL_UNMANAGED = @as(u32, 4);
+pub const LOCALSTATE_ORPHANED = @as(u32, 32);
 pub const LOCALSTATE_POLICYREMOVE_ORPHAN = @as(u32, 8);
 pub const LOCALSTATE_POLICYREMOVE_UNINSTALL = @as(u32, 16);
-pub const LOCALSTATE_ORPHANED = @as(u32, 32);
+pub const LOCALSTATE_PUBLISHED = @as(u32, 2);
+pub const LOCALSTATE_UNINSTALL_UNMANAGED = @as(u32, 4);
 pub const LOCALSTATE_UNINSTALLED = @as(u32, 64);
-pub const MANAGED_APPS_USERAPPLICATIONS = @as(u32, 1);
 pub const MANAGED_APPS_FROMCATEGORY = @as(u32, 2);
 pub const MANAGED_APPS_INFOLEVEL_DEFAULT = @as(u32, 65536);
-pub const MANAGED_APPTYPE_WINDOWSINSTALLER = @as(u32, 1);
+pub const MANAGED_APPS_USERAPPLICATIONS = @as(u32, 1);
 pub const MANAGED_APPTYPE_SETUPEXE = @as(u32, 2);
 pub const MANAGED_APPTYPE_UNSUPPORTED = @as(u32, 3);
-pub const CLSID_GPESnapIn = Guid.initString("8fc0b734-a0e1-11d1-a7d3-0000f87571e3");
+pub const MANAGED_APPTYPE_WINDOWSINSTALLER = @as(u32, 1);
 pub const NODEID_Machine = Guid.initString("8fc0b737-a0e1-11d1-a7d3-0000f87571e3");
 pub const NODEID_MachineSWSettings = Guid.initString("8fc0b73a-a0e1-11d1-a7d3-0000f87571e3");
-pub const NODEID_User = Guid.initString("8fc0b738-a0e1-11d1-a7d3-0000f87571e3");
-pub const NODEID_UserSWSettings = Guid.initString("8fc0b73c-a0e1-11d1-a7d3-0000f87571e3");
-pub const CLSID_GroupPolicyObject = Guid.initString("ea502722-a23d-11d1-a7d3-0000f87571e3");
-pub const CLSID_RSOPSnapIn = Guid.initString("6dc3804b-7212-458d-adb0-9a07e2ae1fa2");
 pub const NODEID_RSOPMachine = Guid.initString("bd4c1a2e-0b7a-4a62-a6b0-c0577539c97e");
 pub const NODEID_RSOPMachineSWSettings = Guid.initString("6a76273e-eb8e-45db-94c5-25663a5f2c1a");
 pub const NODEID_RSOPUser = Guid.initString("ab87364f-0cec-4cd8-9bf8-898f34628fb8");
 pub const NODEID_RSOPUserSWSettings = Guid.initString("e52c5ce3-fd27-4402-84de-d9a5f2858910");
-pub const GPO_SECTION_ROOT = @as(u32, 0);
-pub const GPO_SECTION_USER = @as(u32, 1);
-pub const GPO_SECTION_MACHINE = @as(u32, 2);
-pub const GPO_OPEN_LOAD_REGISTRY = @as(u32, 1);
-pub const GPO_OPEN_READ_ONLY = @as(u32, 2);
-pub const GPO_OPTION_DISABLE_USER = @as(u32, 1);
-pub const GPO_OPTION_DISABLE_MACHINE = @as(u32, 2);
+pub const NODEID_User = Guid.initString("8fc0b738-a0e1-11d1-a7d3-0000f87571e3");
+pub const NODEID_UserSWSettings = Guid.initString("8fc0b73c-a0e1-11d1-a7d3-0000f87571e3");
+pub const PI_APPLYPOLICY = @as(u32, 2);
+pub const PI_NOUI = @as(u32, 1);
+pub const PT_MANDATORY = @as(u32, 4);
+pub const PT_ROAMING = @as(u32, 2);
+pub const PT_ROAMING_PREEXISTING = @as(u32, 8);
+pub const PT_TEMPORARY = @as(u32, 1);
+pub const RP_FORCE = @as(u32, 1);
+pub const RP_SYNC = @as(u32, 2);
+pub const RSOP_COMPUTER_ACCESS_DENIED = @as(u32, 2);
 pub const RSOP_INFO_FLAG_DIAGNOSTIC_MODE = @as(u32, 1);
-pub const GPO_BROWSE_DISABLENEW = @as(u32, 1);
-pub const GPO_BROWSE_NOCOMPUTERS = @as(u32, 2);
-pub const GPO_BROWSE_NODSGPOS = @as(u32, 4);
-pub const GPO_BROWSE_OPENBUTTON = @as(u32, 8);
-pub const GPO_BROWSE_INITTOALL = @as(u32, 16);
-pub const GPO_BROWSE_NOUSERGPOS = @as(u32, 32);
-pub const GPO_BROWSE_SENDAPPLYONEDIT = @as(u32, 64);
+pub const RSOP_NO_COMPUTER = @as(u32, 65536);
+pub const RSOP_NO_USER = @as(u32, 131072);
+pub const RSOP_PLANNING_ASSUME_COMP_WQLFILTER_TRUE = @as(u32, 16);
+pub const RSOP_PLANNING_ASSUME_LOOPBACK_MERGE = @as(u32, 2);
+pub const RSOP_PLANNING_ASSUME_LOOPBACK_REPLACE = @as(u32, 4);
+pub const RSOP_PLANNING_ASSUME_SLOW_LINK = @as(u32, 1);
+pub const RSOP_PLANNING_ASSUME_USER_WQLFILTER_TRUE = @as(u32, 8);
+pub const RSOP_TEMPNAMESPACE_EXISTS = @as(u32, 4);
+pub const RSOP_USER_ACCESS_DENIED = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (109)
 //--------------------------------------------------------------------------------
+pub const APPSTATE = enum(i32) {
+    ABSENT = 0,
+    ASSIGNED = 1,
+    PUBLISHED = 2,
+};
+pub const ABSENT = APPSTATE.ABSENT;
+pub const ASSIGNED = APPSTATE.ASSIGNED;
+pub const PUBLISHED = APPSTATE.PUBLISHED;
+
 // TODO: this type has a FreeFunc 'LeaveCriticalPolicySection', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const CriticalPolicySectionHandle = isize;
@@ -116,26 +125,8 @@ pub const CriticalPolicySectionHandle = isize;
 const CLSID_GPM_Value = Guid.initString("f5694708-88fe-4b35-babf-e56162d5fbc8");
 pub const CLSID_GPM = &CLSID_GPM_Value;
 
-const CLSID_GPMDomain_Value = Guid.initString("710901be-1050-4cb1-838a-c5cff259e183");
-pub const CLSID_GPMDomain = &CLSID_GPMDomain_Value;
-
-const CLSID_GPMSitesContainer_Value = Guid.initString("229f5c42-852c-4b30-945f-c522be9bd386");
-pub const CLSID_GPMSitesContainer = &CLSID_GPMSitesContainer_Value;
-
-const CLSID_GPMBackupDir_Value = Guid.initString("fce4a59d-0f21-4afa-b859-e6d0c62cd10c");
-pub const CLSID_GPMBackupDir = &CLSID_GPMBackupDir_Value;
-
-const CLSID_GPMSOM_Value = Guid.initString("32d93fac-450e-44cf-829c-8b22ff6bdae1");
-pub const CLSID_GPMSOM = &CLSID_GPMSOM_Value;
-
-const CLSID_GPMSearchCriteria_Value = Guid.initString("17aaca26-5ce0-44fa-8cc0-5259e6483566");
-pub const CLSID_GPMSearchCriteria = &CLSID_GPMSearchCriteria_Value;
-
-const CLSID_GPMPermission_Value = Guid.initString("5871a40a-e9c0-46ec-913e-944ef9225a94");
-pub const CLSID_GPMPermission = &CLSID_GPMPermission_Value;
-
-const CLSID_GPMSecurityInfo_Value = Guid.initString("547a5e8f-9162-4516-a4df-9ddb9686d846");
-pub const CLSID_GPMSecurityInfo = &CLSID_GPMSecurityInfo_Value;
+const CLSID_GPMAsyncCancel_Value = Guid.initString("372796a9-76ec-479d-ad6c-556318ed5f9d");
+pub const CLSID_GPMAsyncCancel = &CLSID_GPMAsyncCancel_Value;
 
 const CLSID_GPMBackup_Value = Guid.initString("ed1a54b8-5efa-482a-93c0-8ad86f0d68c3");
 pub const CLSID_GPMBackup = &CLSID_GPMBackup_Value;
@@ -143,17 +134,58 @@ pub const CLSID_GPMBackup = &CLSID_GPMBackup_Value;
 const CLSID_GPMBackupCollection_Value = Guid.initString("eb8f035b-70db-4a9f-9676-37c25994e9dc");
 pub const CLSID_GPMBackupCollection = &CLSID_GPMBackupCollection_Value;
 
-const CLSID_GPMSOMCollection_Value = Guid.initString("24c1f147-3720-4f5b-a9c3-06b4e4f931d2");
-pub const CLSID_GPMSOMCollection = &CLSID_GPMSOMCollection_Value;
+const CLSID_GPMBackupDir_Value = Guid.initString("fce4a59d-0f21-4afa-b859-e6d0c62cd10c");
+pub const CLSID_GPMBackupDir = &CLSID_GPMBackupDir_Value;
 
-const CLSID_GPMWMIFilter_Value = Guid.initString("626745d8-0dea-4062-bf60-cfc5b1ca1286");
-pub const CLSID_GPMWMIFilter = &CLSID_GPMWMIFilter_Value;
+const CLSID_GPMBackupDirEx_Value = Guid.initString("e8c0988a-cf03-4c5b-8be2-2aa9ad32aada");
+pub const CLSID_GPMBackupDirEx = &CLSID_GPMBackupDirEx_Value;
 
-const CLSID_GPMWMIFilterCollection_Value = Guid.initString("74dc6d28-e820-47d6-a0b8-f08d93d7fa33");
-pub const CLSID_GPMWMIFilterCollection = &CLSID_GPMWMIFilterCollection_Value;
+pub const GPMBackupType = enum(i32) {
+    GPO = 0,
+    StarterGPO = 1,
+};
+pub const typeGPO = GPMBackupType.GPO;
+pub const typeStarterGPO = GPMBackupType.StarterGPO;
 
-const CLSID_GPMRSOP_Value = Guid.initString("489b0caf-9ec2-4eb7-91f5-b6f71d43da8c");
-pub const CLSID_GPMRSOP = &CLSID_GPMRSOP_Value;
+const CLSID_GPMClientSideExtension_Value = Guid.initString("c1a2e70e-659c-4b1a-940b-f88b0af9c8a4");
+pub const CLSID_GPMClientSideExtension = &CLSID_GPMClientSideExtension_Value;
+
+const CLSID_GPMConstants_Value = Guid.initString("3855e880-cd9e-4d0c-9eaf-1579283a1888");
+pub const CLSID_GPMConstants = &CLSID_GPMConstants_Value;
+
+const CLSID_GPMCSECollection_Value = Guid.initString("cf92b828-2d44-4b61-b10a-b327afd42da8");
+pub const CLSID_GPMCSECollection = &CLSID_GPMCSECollection_Value;
+
+pub const GPMDestinationOption = enum(i32) {
+    SameAsSource = 0,
+    None = 1,
+    ByRelativeName = 2,
+    Set = 3,
+};
+pub const opDestinationSameAsSource = GPMDestinationOption.SameAsSource;
+pub const opDestinationNone = GPMDestinationOption.None;
+pub const opDestinationByRelativeName = GPMDestinationOption.ByRelativeName;
+pub const opDestinationSet = GPMDestinationOption.Set;
+
+const CLSID_GPMDomain_Value = Guid.initString("710901be-1050-4cb1-838a-c5cff259e183");
+pub const CLSID_GPMDomain = &CLSID_GPMDomain_Value;
+
+pub const GPMEntryType = enum(i32) {
+    User = 0,
+    Computer = 1,
+    LocalGroup = 2,
+    GlobalGroup = 3,
+    UniversalGroup = 4,
+    UNCPath = 5,
+    Unknown = 6,
+};
+pub const typeUser = GPMEntryType.User;
+pub const typeComputer = GPMEntryType.Computer;
+pub const typeLocalGroup = GPMEntryType.LocalGroup;
+pub const typeGlobalGroup = GPMEntryType.GlobalGroup;
+pub const typeUniversalGroup = GPMEntryType.UniversalGroup;
+pub const typeUNCPath = GPMEntryType.UNCPath;
+pub const typeUnknown = GPMEntryType.Unknown;
 
 const CLSID_GPMGPO_Value = Guid.initString("d2ce2994-59b5-4064-b581-4d68486a16c4");
 pub const CLSID_GPMGPO = &CLSID_GPMGPO_Value;
@@ -167,62 +199,17 @@ pub const CLSID_GPMGPOLink = &CLSID_GPMGPOLink_Value;
 const CLSID_GPMGPOLinksCollection_Value = Guid.initString("f6ed581a-49a5-47e2-b771-fd8dc02b6259");
 pub const CLSID_GPMGPOLinksCollection = &CLSID_GPMGPOLinksCollection_Value;
 
-const CLSID_GPMAsyncCancel_Value = Guid.initString("372796a9-76ec-479d-ad6c-556318ed5f9d");
-pub const CLSID_GPMAsyncCancel = &CLSID_GPMAsyncCancel_Value;
-
-const CLSID_GPMStatusMsgCollection_Value = Guid.initString("2824e4be-4bcc-4cac-9e60-0e3ed7f12496");
-pub const CLSID_GPMStatusMsgCollection = &CLSID_GPMStatusMsgCollection_Value;
-
-const CLSID_GPMStatusMessage_Value = Guid.initString("4b77cc94-d255-409b-bc62-370881715a19");
-pub const CLSID_GPMStatusMessage = &CLSID_GPMStatusMessage_Value;
-
-const CLSID_GPMTrustee_Value = Guid.initString("c54a700d-19b6-4211-bcb0-e8e2475e471e");
-pub const CLSID_GPMTrustee = &CLSID_GPMTrustee_Value;
-
-const CLSID_GPMClientSideExtension_Value = Guid.initString("c1a2e70e-659c-4b1a-940b-f88b0af9c8a4");
-pub const CLSID_GPMClientSideExtension = &CLSID_GPMClientSideExtension_Value;
-
-const CLSID_GPMCSECollection_Value = Guid.initString("cf92b828-2d44-4b61-b10a-b327afd42da8");
-pub const CLSID_GPMCSECollection = &CLSID_GPMCSECollection_Value;
-
-const CLSID_GPMConstants_Value = Guid.initString("3855e880-cd9e-4d0c-9eaf-1579283a1888");
-pub const CLSID_GPMConstants = &CLSID_GPMConstants_Value;
-
-const CLSID_GPMResult_Value = Guid.initString("92101ac0-9287-4206-a3b2-4bdb73d225f6");
-pub const CLSID_GPMResult = &CLSID_GPMResult_Value;
+const CLSID_GPMMapEntry_Value = Guid.initString("8c975253-5431-4471-b35d-0626c928258a");
+pub const CLSID_GPMMapEntry = &CLSID_GPMMapEntry_Value;
 
 const CLSID_GPMMapEntryCollection_Value = Guid.initString("0cf75d5b-a3a1-4c55-b4fe-9e149c41f66d");
 pub const CLSID_GPMMapEntryCollection = &CLSID_GPMMapEntryCollection_Value;
 
-const CLSID_GPMMapEntry_Value = Guid.initString("8c975253-5431-4471-b35d-0626c928258a");
-pub const CLSID_GPMMapEntry = &CLSID_GPMMapEntry_Value;
-
 const CLSID_GPMMigrationTable_Value = Guid.initString("55af4043-2a06-4f72-abef-631b44079c76");
 pub const CLSID_GPMMigrationTable = &CLSID_GPMMigrationTable_Value;
 
-const CLSID_GPMBackupDirEx_Value = Guid.initString("e8c0988a-cf03-4c5b-8be2-2aa9ad32aada");
-pub const CLSID_GPMBackupDirEx = &CLSID_GPMBackupDirEx_Value;
-
-const CLSID_GPMStarterGPOBackupCollection_Value = Guid.initString("e75ea59d-1aeb-4cb5-a78a-281daa582406");
-pub const CLSID_GPMStarterGPOBackupCollection = &CLSID_GPMStarterGPOBackupCollection_Value;
-
-const CLSID_GPMStarterGPOBackup_Value = Guid.initString("389e400a-d8ef-455b-a861-5f9ca34a6a02");
-pub const CLSID_GPMStarterGPOBackup = &CLSID_GPMStarterGPOBackup_Value;
-
-const CLSID_GPMTemplate_Value = Guid.initString("ecf1d454-71da-4e2f-a8c0-8185465911d9");
-pub const CLSID_GPMTemplate = &CLSID_GPMTemplate_Value;
-
-const CLSID_GPMStarterGPOCollection_Value = Guid.initString("82f8aa8b-49ba-43b2-956e-3397f9b94c3a");
-pub const CLSID_GPMStarterGPOCollection = &CLSID_GPMStarterGPOCollection_Value;
-
-pub const GPMRSOPMode = enum(i32) {
-    Unknown = 0,
-    Planning = 1,
-    Logging = 2,
-};
-pub const rsopUnknown = GPMRSOPMode.Unknown;
-pub const rsopPlanning = GPMRSOPMode.Planning;
-pub const rsopLogging = GPMRSOPMode.Logging;
+const CLSID_GPMPermission_Value = Guid.initString("5871a40a-e9c0-46ec-913e-944ef9225a94");
+pub const CLSID_GPMPermission = &CLSID_GPMPermission_Value;
 
 pub const GPMPermissionType = enum(i32) {
     GPOApply = 65536,
@@ -265,6 +252,57 @@ pub const permStarterGPOFullControl = GPMPermissionType.StarterGPOFullControl;
 pub const permStarterGPOCustom = GPMPermissionType.StarterGPOCustom;
 pub const permSOMStarterGPOCreate = GPMPermissionType.SOMStarterGPOCreate;
 
+pub const GPMReportingOptions = enum(i32) {
+    Legacy = 0,
+    Comments = 1,
+};
+pub const opReportLegacy = GPMReportingOptions.Legacy;
+pub const opReportComments = GPMReportingOptions.Comments;
+
+pub const GPMReportType = enum(i32) {
+    XML = 0,
+    HTML = 1,
+    InfraXML = 2,
+    InfraRefreshXML = 3,
+    ClientHealthXML = 4,
+    ClientHealthRefreshXML = 5,
+};
+pub const repXML = GPMReportType.XML;
+pub const repHTML = GPMReportType.HTML;
+pub const repInfraXML = GPMReportType.InfraXML;
+pub const repInfraRefreshXML = GPMReportType.InfraRefreshXML;
+pub const repClientHealthXML = GPMReportType.ClientHealthXML;
+pub const repClientHealthRefreshXML = GPMReportType.ClientHealthRefreshXML;
+
+const CLSID_GPMResult_Value = Guid.initString("92101ac0-9287-4206-a3b2-4bdb73d225f6");
+pub const CLSID_GPMResult = &CLSID_GPMResult_Value;
+
+const CLSID_GPMRSOP_Value = Guid.initString("489b0caf-9ec2-4eb7-91f5-b6f71d43da8c");
+pub const CLSID_GPMRSOP = &CLSID_GPMRSOP_Value;
+
+pub const GPMRSOPMode = enum(i32) {
+    Unknown = 0,
+    Planning = 1,
+    Logging = 2,
+};
+pub const rsopUnknown = GPMRSOPMode.Unknown;
+pub const rsopPlanning = GPMRSOPMode.Planning;
+pub const rsopLogging = GPMRSOPMode.Logging;
+
+const CLSID_GPMSearchCriteria_Value = Guid.initString("17aaca26-5ce0-44fa-8cc0-5259e6483566");
+pub const CLSID_GPMSearchCriteria = &CLSID_GPMSearchCriteria_Value;
+
+pub const GPMSearchOperation = enum(i32) {
+    Equals = 0,
+    Contains = 1,
+    NotContains = 2,
+    NotEquals = 3,
+};
+pub const opEquals = GPMSearchOperation.Equals;
+pub const opContains = GPMSearchOperation.Contains;
+pub const opNotContains = GPMSearchOperation.NotContains;
+pub const opNotEquals = GPMSearchOperation.NotEquals;
+
 pub const GPMSearchProperty = enum(i32) {
     gpoPermissions = 0,
     gpoEffectivePermissions = 1,
@@ -298,66 +336,229 @@ pub const starterGPODisplayName = GPMSearchProperty.starterGPODisplayName;
 pub const starterGPOID = GPMSearchProperty.starterGPOID;
 pub const starterGPODomain = GPMSearchProperty.starterGPODomain;
 
-pub const GPMSearchOperation = enum(i32) {
-    Equals = 0,
-    Contains = 1,
-    NotContains = 2,
-    NotEquals = 3,
-};
-pub const opEquals = GPMSearchOperation.Equals;
-pub const opContains = GPMSearchOperation.Contains;
-pub const opNotContains = GPMSearchOperation.NotContains;
-pub const opNotEquals = GPMSearchOperation.NotEquals;
+const CLSID_GPMSecurityInfo_Value = Guid.initString("547a5e8f-9162-4516-a4df-9ddb9686d846");
+pub const CLSID_GPMSecurityInfo = &CLSID_GPMSecurityInfo_Value;
 
-pub const GPMReportType = enum(i32) {
-    XML = 0,
-    HTML = 1,
-    InfraXML = 2,
-    InfraRefreshXML = 3,
-    ClientHealthXML = 4,
-    ClientHealthRefreshXML = 5,
-};
-pub const repXML = GPMReportType.XML;
-pub const repHTML = GPMReportType.HTML;
-pub const repInfraXML = GPMReportType.InfraXML;
-pub const repInfraRefreshXML = GPMReportType.InfraRefreshXML;
-pub const repClientHealthXML = GPMReportType.ClientHealthXML;
-pub const repClientHealthRefreshXML = GPMReportType.ClientHealthRefreshXML;
+const CLSID_GPMSitesContainer_Value = Guid.initString("229f5c42-852c-4b30-945f-c522be9bd386");
+pub const CLSID_GPMSitesContainer = &CLSID_GPMSitesContainer_Value;
 
-pub const GPMEntryType = enum(i32) {
-    User = 0,
-    Computer = 1,
-    LocalGroup = 2,
-    GlobalGroup = 3,
-    UniversalGroup = 4,
-    UNCPath = 5,
-    Unknown = 6,
-};
-pub const typeUser = GPMEntryType.User;
-pub const typeComputer = GPMEntryType.Computer;
-pub const typeLocalGroup = GPMEntryType.LocalGroup;
-pub const typeGlobalGroup = GPMEntryType.GlobalGroup;
-pub const typeUniversalGroup = GPMEntryType.UniversalGroup;
-pub const typeUNCPath = GPMEntryType.UNCPath;
-pub const typeUnknown = GPMEntryType.Unknown;
+const CLSID_GPMSOM_Value = Guid.initString("32d93fac-450e-44cf-829c-8b22ff6bdae1");
+pub const CLSID_GPMSOM = &CLSID_GPMSOM_Value;
 
-pub const GPMDestinationOption = enum(i32) {
-    SameAsSource = 0,
-    None = 1,
-    ByRelativeName = 2,
-    Set = 3,
-};
-pub const opDestinationSameAsSource = GPMDestinationOption.SameAsSource;
-pub const opDestinationNone = GPMDestinationOption.None;
-pub const opDestinationByRelativeName = GPMDestinationOption.ByRelativeName;
-pub const opDestinationSet = GPMDestinationOption.Set;
+const CLSID_GPMSOMCollection_Value = Guid.initString("24c1f147-3720-4f5b-a9c3-06b4e4f931d2");
+pub const CLSID_GPMSOMCollection = &CLSID_GPMSOMCollection_Value;
 
-pub const GPMReportingOptions = enum(i32) {
-    Legacy = 0,
-    Comments = 1,
+pub const GPMSOMType = enum(i32) {
+    Site = 0,
+    Domain = 1,
+    OU = 2,
 };
-pub const opReportLegacy = GPMReportingOptions.Legacy;
-pub const opReportComments = GPMReportingOptions.Comments;
+pub const somSite = GPMSOMType.Site;
+pub const somDomain = GPMSOMType.Domain;
+pub const somOU = GPMSOMType.OU;
+
+const CLSID_GPMStarterGPOBackup_Value = Guid.initString("389e400a-d8ef-455b-a861-5f9ca34a6a02");
+pub const CLSID_GPMStarterGPOBackup = &CLSID_GPMStarterGPOBackup_Value;
+
+const CLSID_GPMStarterGPOBackupCollection_Value = Guid.initString("e75ea59d-1aeb-4cb5-a78a-281daa582406");
+pub const CLSID_GPMStarterGPOBackupCollection = &CLSID_GPMStarterGPOBackupCollection_Value;
+
+const CLSID_GPMStarterGPOCollection_Value = Guid.initString("82f8aa8b-49ba-43b2-956e-3397f9b94c3a");
+pub const CLSID_GPMStarterGPOCollection = &CLSID_GPMStarterGPOCollection_Value;
+
+pub const GPMStarterGPOType = enum(i32) {
+    System = 0,
+    Custom = 1,
+};
+pub const typeSystem = GPMStarterGPOType.System;
+pub const typeCustom = GPMStarterGPOType.Custom;
+
+const CLSID_GPMStatusMessage_Value = Guid.initString("4b77cc94-d255-409b-bc62-370881715a19");
+pub const CLSID_GPMStatusMessage = &CLSID_GPMStatusMessage_Value;
+
+const CLSID_GPMStatusMsgCollection_Value = Guid.initString("2824e4be-4bcc-4cac-9e60-0e3ed7f12496");
+pub const CLSID_GPMStatusMsgCollection = &CLSID_GPMStatusMsgCollection_Value;
+
+const CLSID_GPMTemplate_Value = Guid.initString("ecf1d454-71da-4e2f-a8c0-8185465911d9");
+pub const CLSID_GPMTemplate = &CLSID_GPMTemplate_Value;
+
+const CLSID_GPMTrustee_Value = Guid.initString("c54a700d-19b6-4211-bcb0-e8e2475e471e");
+pub const CLSID_GPMTrustee = &CLSID_GPMTrustee_Value;
+
+const CLSID_GPMWMIFilter_Value = Guid.initString("626745d8-0dea-4062-bf60-cfc5b1ca1286");
+pub const CLSID_GPMWMIFilter = &CLSID_GPMWMIFilter_Value;
+
+const CLSID_GPMWMIFilterCollection_Value = Guid.initString("74dc6d28-e820-47d6-a0b8-f08d93d7fa33");
+pub const CLSID_GPMWMIFilterCollection = &CLSID_GPMWMIFilterCollection_Value;
+
+pub const GPO_LINK = enum(i32) {
+    Unknown = 0,
+    Machine = 1,
+    Site = 2,
+    Domain = 3,
+    OrganizationalUnit = 4,
+};
+pub const GPLinkUnknown = GPO_LINK.Unknown;
+pub const GPLinkMachine = GPO_LINK.Machine;
+pub const GPLinkSite = GPO_LINK.Site;
+pub const GPLinkDomain = GPO_LINK.Domain;
+pub const GPLinkOrganizationalUnit = GPO_LINK.OrganizationalUnit;
+
+pub const GPOBROWSEINFO = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    hwndOwner: ?HWND,
+    lpTitle: ?PWSTR,
+    lpInitialOU: ?PWSTR,
+    lpDSPath: ?PWSTR,
+    dwDSPathSize: u32,
+    lpName: ?PWSTR,
+    dwNameSize: u32,
+    gpoType: GROUP_POLICY_OBJECT_TYPE,
+    gpoHint: GROUP_POLICY_HINT_TYPE,
+};
+
+pub const GROUP_POLICY_HINT_TYPE = enum(i32) {
+    Unknown = 0,
+    Machine = 1,
+    Site = 2,
+    Domain = 3,
+    OrganizationalUnit = 4,
+};
+pub const GPHintUnknown = GROUP_POLICY_HINT_TYPE.Unknown;
+pub const GPHintMachine = GROUP_POLICY_HINT_TYPE.Machine;
+pub const GPHintSite = GROUP_POLICY_HINT_TYPE.Site;
+pub const GPHintDomain = GROUP_POLICY_HINT_TYPE.Domain;
+pub const GPHintOrganizationalUnit = GROUP_POLICY_HINT_TYPE.OrganizationalUnit;
+
+pub const GROUP_POLICY_OBJECT_TYPE = enum(i32) {
+    Local = 0,
+    Remote = 1,
+    DS = 2,
+    LocalUser = 3,
+    LocalGroup = 4,
+};
+pub const GPOTypeLocal = GROUP_POLICY_OBJECT_TYPE.Local;
+pub const GPOTypeRemote = GROUP_POLICY_OBJECT_TYPE.Remote;
+pub const GPOTypeDS = GROUP_POLICY_OBJECT_TYPE.DS;
+pub const GPOTypeLocalUser = GROUP_POLICY_OBJECT_TYPE.LocalUser;
+pub const GPOTypeLocalGroup = GROUP_POLICY_OBJECT_TYPE.LocalGroup;
+
+pub const GROUP_POLICY_OBJECTA = extern struct {
+    dwOptions: u32,
+    dwVersion: u32,
+    lpDSPath: ?PSTR,
+    lpFileSysPath: ?PSTR,
+    lpDisplayName: ?PSTR,
+    szGPOName: [50]CHAR,
+    GPOLink: GPO_LINK,
+    lParam: LPARAM,
+    pNext: ?*GROUP_POLICY_OBJECTA,
+    pPrev: ?*GROUP_POLICY_OBJECTA,
+    lpExtensions: ?PSTR,
+    lParam2: LPARAM,
+    lpLink: ?PSTR,
+};
+
+pub const GROUP_POLICY_OBJECTW = extern struct {
+    dwOptions: u32,
+    dwVersion: u32,
+    lpDSPath: ?PWSTR,
+    lpFileSysPath: ?PWSTR,
+    lpDisplayName: ?PWSTR,
+    szGPOName: [50]u16,
+    GPOLink: GPO_LINK,
+    lParam: LPARAM,
+    pNext: ?*GROUP_POLICY_OBJECTW,
+    pPrev: ?*GROUP_POLICY_OBJECTW,
+    lpExtensions: ?PWSTR,
+    lParam2: LPARAM,
+    lpLink: ?PWSTR,
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPEInformation_Value = Guid.initString("8fc0b735-a0e1-11d1-a7d3-0000f87571e3");
+pub const IID_IGPEInformation = &IID_IGPEInformation_Value;
+pub const IGPEInformation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IGPEInformation,
+            pszName: [*:0]u16,
+            cchMaxLength: i32,
+        ) callconv(.winapi) HRESULT,
+        GetDisplayName: *const fn(
+            self: *const IGPEInformation,
+            pszName: [*:0]u16,
+            cchMaxLength: i32,
+        ) callconv(.winapi) HRESULT,
+        GetRegistryKey: *const fn(
+            self: *const IGPEInformation,
+            dwSection: u32,
+            hKey: ?*?HKEY,
+        ) callconv(.winapi) HRESULT,
+        GetDSPath: *const fn(
+            self: *const IGPEInformation,
+            dwSection: u32,
+            pszPath: [*:0]u16,
+            cchMaxPath: i32,
+        ) callconv(.winapi) HRESULT,
+        GetFileSysPath: *const fn(
+            self: *const IGPEInformation,
+            dwSection: u32,
+            pszPath: [*:0]u16,
+            cchMaxPath: i32,
+        ) callconv(.winapi) HRESULT,
+        GetOptions: *const fn(
+            self: *const IGPEInformation,
+            dwOptions: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetType: *const fn(
+            self: *const IGPEInformation,
+            gpoType: ?*GROUP_POLICY_OBJECT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        GetHint: *const fn(
+            self: *const IGPEInformation,
+            gpHint: ?*GROUP_POLICY_HINT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        PolicyChanged: *const fn(
+            self: *const IGPEInformation,
+            bMachine: BOOL,
+            bAdd: BOOL,
+            pGuidExtension: ?*Guid,
+            pGuidSnapin: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IGPEInformation, pszName: [*:0]u16, cchMaxLength: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, pszName, cchMaxLength);
+    }
+    pub fn GetDisplayName(self: *const IGPEInformation, pszName: [*:0]u16, cchMaxLength: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDisplayName(self, pszName, cchMaxLength);
+    }
+    pub fn GetRegistryKey(self: *const IGPEInformation, dwSection: u32, hKey: ?*?HKEY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRegistryKey(self, dwSection, hKey);
+    }
+    pub fn GetDSPath(self: *const IGPEInformation, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDSPath(self, dwSection, pszPath, cchMaxPath);
+    }
+    pub fn GetFileSysPath(self: *const IGPEInformation, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileSysPath(self, dwSection, pszPath, cchMaxPath);
+    }
+    pub fn GetOptions(self: *const IGPEInformation, dwOptions: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOptions(self, dwOptions);
+    }
+    pub fn GetType(self: *const IGPEInformation, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, gpoType);
+    }
+    pub fn GetHint(self: *const IGPEInformation, gpHint: ?*GROUP_POLICY_HINT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHint(self, gpHint);
+    }
+    pub fn PolicyChanged(self: *const IGPEInformation, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuidSnapin: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.PolicyChanged(self, bMachine, bAdd, pGuidExtension, pGuidSnapin);
+    }
+};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPM_Value = Guid.initString("f5fae809-3bd6-4da9-a65e-17665b41d763");
@@ -472,366 +673,73 @@ pub const IGPM = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMDomain_Value = Guid.initString("6b21cc14-5a00-4f44-a738-feec8a94c7e3");
-pub const IID_IGPMDomain = &IID_IGPMDomain_Value;
-pub const IGPMDomain = extern union {
+const IID_IGPM2_Value = Guid.initString("00238f8a-3d86-41ac-8f5e-06a6638a634a");
+pub const IID_IGPM2 = &IID_IGPM2_Value;
+pub const IGPM2 = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainController: *const fn(
-            self: *const IGPMDomain,
-            pVal: ?*?BSTR,
+        base: IGPM.VTable,
+        GetBackupDirEx: *const fn(
+            self: *const IGPM2,
+            bstrBackupDir: ?BSTR,
+            backupDirType: GPMBackupType,
+            ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Domain: *const fn(
-            self: *const IGPMDomain,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CreateGPO: *const fn(
-            self: *const IGPMDomain,
-            ppNewGPO: ?*?*IGPMGPO,
-        ) callconv(.winapi) HRESULT,
-        GetGPO: *const fn(
-            self: *const IGPMDomain,
-            bstrGuid: ?BSTR,
-            ppGPO: ?*?*IGPMGPO,
-        ) callconv(.winapi) HRESULT,
-        SearchGPOs: *const fn(
-            self: *const IGPMDomain,
-            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
-            ppIGPMGPOCollection: ?*?*IGPMGPOCollection,
-        ) callconv(.winapi) HRESULT,
-        RestoreGPO: *const fn(
-            self: *const IGPMDomain,
-            pIGPMBackup: ?*IGPMBackup,
-            lDCFlags: i32,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        GetSOM: *const fn(
-            self: *const IGPMDomain,
-            bstrPath: ?BSTR,
-            ppSOM: ?*?*IGPMSOM,
-        ) callconv(.winapi) HRESULT,
-        SearchSOMs: *const fn(
-            self: *const IGPMDomain,
-            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
-            ppIGPMSOMCollection: ?*?*IGPMSOMCollection,
-        ) callconv(.winapi) HRESULT,
-        GetWMIFilter: *const fn(
-            self: *const IGPMDomain,
-            bstrPath: ?BSTR,
-            ppWMIFilter: ?*?*IGPMWMIFilter,
-        ) callconv(.winapi) HRESULT,
-        SearchWMIFilters: *const fn(
-            self: *const IGPMDomain,
-            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
-            ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection,
+        InitializeReportingEx: *const fn(
+            self: *const IGPM2,
+            bstrAdmPath: ?BSTR,
+            reportingOptions: i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IGPM: IGPM,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DomainController(self: *const IGPMDomain, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DomainController(self, pVal);
+    pub fn GetBackupDirEx(self: *const IGPM2, bstrBackupDir: ?BSTR, backupDirType: GPMBackupType, ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBackupDirEx(self, bstrBackupDir, backupDirType, ppIGPMBackupDirEx);
     }
-    pub fn get_Domain(self: *const IGPMDomain, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Domain(self, pVal);
-    }
-    pub fn CreateGPO(self: *const IGPMDomain, ppNewGPO: ?*?*IGPMGPO) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateGPO(self, ppNewGPO);
-    }
-    pub fn GetGPO(self: *const IGPMDomain, bstrGuid: ?BSTR, ppGPO: ?*?*IGPMGPO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGPO(self, bstrGuid, ppGPO);
-    }
-    pub fn SearchGPOs(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMGPOCollection: ?*?*IGPMGPOCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchGPOs(self, pIGPMSearchCriteria, ppIGPMGPOCollection);
-    }
-    pub fn RestoreGPO(self: *const IGPMDomain, pIGPMBackup: ?*IGPMBackup, lDCFlags: i32, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreGPO(self, pIGPMBackup, lDCFlags, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
-    }
-    pub fn GetSOM(self: *const IGPMDomain, bstrPath: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSOM(self, bstrPath, ppSOM);
-    }
-    pub fn SearchSOMs(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchSOMs(self, pIGPMSearchCriteria, ppIGPMSOMCollection);
-    }
-    pub fn GetWMIFilter(self: *const IGPMDomain, bstrPath: ?BSTR, ppWMIFilter: ?*?*IGPMWMIFilter) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWMIFilter(self, bstrPath, ppWMIFilter);
-    }
-    pub fn SearchWMIFilters(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchWMIFilters(self, pIGPMSearchCriteria, ppIGPMWMIFilterCollection);
+    pub fn InitializeReportingEx(self: *const IGPM2, bstrAdmPath: ?BSTR, reportingOptions: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeReportingEx(self, bstrAdmPath, reportingOptions);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMBackupDir_Value = Guid.initString("b1568bed-0a93-4acc-810f-afe7081019b9");
-pub const IID_IGPMBackupDir = &IID_IGPMBackupDir_Value;
-pub const IGPMBackupDir = extern union {
+const IID_IGPMAsyncCancel_Value = Guid.initString("ddc67754-be67-4541-8166-f48166868c9c");
+pub const IID_IGPMAsyncCancel = &IID_IGPMAsyncCancel_Value;
+pub const IGPMAsyncCancel = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackupDirectory: *const fn(
-            self: *const IGPMBackupDir,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetBackup: *const fn(
-            self: *const IGPMBackupDir,
-            bstrID: ?BSTR,
-            ppBackup: ?*?*IGPMBackup,
-        ) callconv(.winapi) HRESULT,
-        SearchBackups: *const fn(
-            self: *const IGPMBackupDir,
-            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
-            ppIGPMBackupCollection: ?*?*IGPMBackupCollection,
+        Cancel: *const fn(
+            self: *const IGPMAsyncCancel,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BackupDirectory(self: *const IGPMBackupDir, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackupDirectory(self, pVal);
-    }
-    pub fn GetBackup(self: *const IGPMBackupDir, bstrID: ?BSTR, ppBackup: ?*?*IGPMBackup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBackup(self, bstrID, ppBackup);
-    }
-    pub fn SearchBackups(self: *const IGPMBackupDir, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMBackupCollection: ?*?*IGPMBackupCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchBackups(self, pIGPMSearchCriteria, ppIGPMBackupCollection);
+    pub fn Cancel(self: *const IGPMAsyncCancel) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSitesContainer_Value = Guid.initString("4725a899-2782-4d27-a6bb-d499246ffd72");
-pub const IID_IGPMSitesContainer = &IID_IGPMSitesContainer_Value;
-pub const IGPMSitesContainer = extern union {
+const IID_IGPMAsyncProgress_Value = Guid.initString("6aac29f8-5948-4324-bf70-423818942dbc");
+pub const IID_IGPMAsyncProgress = &IID_IGPMAsyncProgress_Value;
+pub const IGPMAsyncProgress = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainController: *const fn(
-            self: *const IGPMSitesContainer,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Domain: *const fn(
-            self: *const IGPMSitesContainer,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Forest: *const fn(
-            self: *const IGPMSitesContainer,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSite: *const fn(
-            self: *const IGPMSitesContainer,
-            bstrSiteName: ?BSTR,
-            ppSOM: ?*?*IGPMSOM,
-        ) callconv(.winapi) HRESULT,
-        SearchSites: *const fn(
-            self: *const IGPMSitesContainer,
-            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
-            ppIGPMSOMCollection: ?*?*IGPMSOMCollection,
+        Status: *const fn(
+            self: *const IGPMAsyncProgress,
+            lProgressNumerator: i32,
+            lProgressDenominator: i32,
+            hrStatus: HRESULT,
+            pResult: ?*VARIANT,
+            ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DomainController(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DomainController(self, pVal);
-    }
-    pub fn get_Domain(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Domain(self, pVal);
-    }
-    pub fn get_Forest(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Forest(self, pVal);
-    }
-    pub fn GetSite(self: *const IGPMSitesContainer, bstrSiteName: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSite(self, bstrSiteName, ppSOM);
-    }
-    pub fn SearchSites(self: *const IGPMSitesContainer, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchSites(self, pIGPMSearchCriteria, ppIGPMSOMCollection);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSearchCriteria_Value = Guid.initString("d6f11c42-829b-48d4-83f5-3615b67dfc22");
-pub const IID_IGPMSearchCriteria = &IID_IGPMSearchCriteria_Value;
-pub const IGPMSearchCriteria = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Add: *const fn(
-            self: *const IGPMSearchCriteria,
-            searchProperty: GPMSearchProperty,
-            searchOperation: GPMSearchOperation,
-            varValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Add(self: *const IGPMSearchCriteria, searchProperty: GPMSearchProperty, searchOperation: GPMSearchOperation, varValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, searchProperty, searchOperation, varValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMTrustee_Value = Guid.initString("3b466da8-c1a4-4b2a-999a-befcdd56cefb");
-pub const IID_IGPMTrustee = &IID_IGPMTrustee_Value;
-pub const IGPMTrustee = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TrusteeSid: *const fn(
-            self: *const IGPMTrustee,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TrusteeName: *const fn(
-            self: *const IGPMTrustee,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TrusteeDomain: *const fn(
-            self: *const IGPMTrustee,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TrusteeDSPath: *const fn(
-            self: *const IGPMTrustee,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TrusteeType: *const fn(
-            self: *const IGPMTrustee,
-            lVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_TrusteeSid(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TrusteeSid(self, bstrVal);
-    }
-    pub fn get_TrusteeName(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TrusteeName(self, bstrVal);
-    }
-    pub fn get_TrusteeDomain(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TrusteeDomain(self, bstrVal);
-    }
-    pub fn get_TrusteeDSPath(self: *const IGPMTrustee, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TrusteeDSPath(self, pVal);
-    }
-    pub fn get_TrusteeType(self: *const IGPMTrustee, lVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TrusteeType(self, lVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMPermission_Value = Guid.initString("35ebca40-e1a1-4a02-8905-d79416fb464a");
-pub const IID_IGPMPermission = &IID_IGPMPermission_Value;
-pub const IGPMPermission = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Inherited: *const fn(
-            self: *const IGPMPermission,
-            pVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Inheritable: *const fn(
-            self: *const IGPMPermission,
-            pVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Denied: *const fn(
-            self: *const IGPMPermission,
-            pVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Permission: *const fn(
-            self: *const IGPMPermission,
-            pVal: ?*GPMPermissionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Trustee: *const fn(
-            self: *const IGPMPermission,
-            ppIGPMTrustee: ?*?*IGPMTrustee,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Inherited(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Inherited(self, pVal);
-    }
-    pub fn get_Inheritable(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Inheritable(self, pVal);
-    }
-    pub fn get_Denied(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Denied(self, pVal);
-    }
-    pub fn get_Permission(self: *const IGPMPermission, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Permission(self, pVal);
-    }
-    pub fn get_Trustee(self: *const IGPMPermission, ppIGPMTrustee: ?*?*IGPMTrustee) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Trustee(self, ppIGPMTrustee);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSecurityInfo_Value = Guid.initString("b6c31ed4-1c93-4d3e-ae84-eb6d61161b60");
-pub const IID_IGPMSecurityInfo = &IID_IGPMSecurityInfo_Value;
-pub const IGPMSecurityInfo = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMSecurityInfo,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMSecurityInfo,
-            lIndex: i32,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMSecurityInfo,
-            ppEnum: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IGPMSecurityInfo,
-            pPerm: ?*IGPMPermission,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IGPMSecurityInfo,
-            pPerm: ?*IGPMPermission,
-        ) callconv(.winapi) HRESULT,
-        RemoveTrustee: *const fn(
-            self: *const IGPMSecurityInfo,
-            bstrTrustee: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMSecurityInfo, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-    pub fn get_Item(self: *const IGPMSecurityInfo, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
-    }
-    pub fn get__NewEnum(self: *const IGPMSecurityInfo, ppEnum: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppEnum);
-    }
-    pub fn Add(self: *const IGPMSecurityInfo, pPerm: ?*IGPMPermission) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, pPerm);
-    }
-    pub fn Remove(self: *const IGPMSecurityInfo, pPerm: ?*IGPMPermission) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, pPerm);
-    }
-    pub fn RemoveTrustee(self: *const IGPMSecurityInfo, bstrTrustee: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveTrustee(self, bstrTrustee);
+    pub fn Status(self: *const IGPMAsyncProgress, lProgressNumerator: i32, lProgressDenominator: i32, hrStatus: HRESULT, pResult: ?*VARIANT, ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Status(self, lProgressNumerator, lProgressDenominator, hrStatus, pResult, ppIGPMStatusMsgCollection);
     }
 };
 
@@ -964,972 +872,83 @@ pub const IGPMBackupCollection = extern union {
     }
 };
 
-pub const GPMSOMType = enum(i32) {
-    Site = 0,
-    Domain = 1,
-    OU = 2,
-};
-pub const somSite = GPMSOMType.Site;
-pub const somDomain = GPMSOMType.Domain;
-pub const somOU = GPMSOMType.OU;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSOM_Value = Guid.initString("c0a7f09e-05a1-4f0c-8158-9e5c33684f6b");
-pub const IID_IGPMSOM = &IID_IGPMSOM_Value;
-pub const IGPMSOM = extern union {
+const IID_IGPMBackupDir_Value = Guid.initString("b1568bed-0a93-4acc-810f-afe7081019b9");
+pub const IID_IGPMBackupDir = &IID_IGPMBackupDir_Value;
+pub const IGPMBackupDir = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GPOInheritanceBlocked: *const fn(
-            self: *const IGPMSOM,
-            pVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GPOInheritanceBlocked: *const fn(
-            self: *const IGPMSOM,
-            newVal: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IGPMSOM,
+        get_BackupDirectory: *const fn(
+            self: *const IGPMBackupDir,
             pVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IGPMSOM,
-            pVal: ?*?BSTR,
+        GetBackup: *const fn(
+            self: *const IGPMBackupDir,
+            bstrID: ?BSTR,
+            ppBackup: ?*?*IGPMBackup,
         ) callconv(.winapi) HRESULT,
-        CreateGPOLink: *const fn(
-            self: *const IGPMSOM,
-            lLinkPos: i32,
-            pGPO: ?*IGPMGPO,
-            ppNewGPOLink: ?*?*IGPMGPOLink,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IGPMSOM,
-            pVal: ?*GPMSOMType,
-        ) callconv(.winapi) HRESULT,
-        GetGPOLinks: *const fn(
-            self: *const IGPMSOM,
-            ppGPOLinks: ?*?*IGPMGPOLinksCollection,
-        ) callconv(.winapi) HRESULT,
-        GetInheritedGPOLinks: *const fn(
-            self: *const IGPMSOM,
-            ppGPOLinks: ?*?*IGPMGPOLinksCollection,
-        ) callconv(.winapi) HRESULT,
-        GetSecurityInfo: *const fn(
-            self: *const IGPMSOM,
-            ppSecurityInfo: ?*?*IGPMSecurityInfo,
-        ) callconv(.winapi) HRESULT,
-        SetSecurityInfo: *const fn(
-            self: *const IGPMSOM,
-            pSecurityInfo: ?*IGPMSecurityInfo,
+        SearchBackups: *const fn(
+            self: *const IGPMBackupDir,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMBackupCollection: ?*?*IGPMBackupCollection,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_GPOInheritanceBlocked(self: *const IGPMSOM, pVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GPOInheritanceBlocked(self, pVal);
+    pub fn get_BackupDirectory(self: *const IGPMBackupDir, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackupDirectory(self, pVal);
     }
-    pub fn put_GPOInheritanceBlocked(self: *const IGPMSOM, newVal: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_GPOInheritanceBlocked(self, newVal);
+    pub fn GetBackup(self: *const IGPMBackupDir, bstrID: ?BSTR, ppBackup: ?*?*IGPMBackup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBackup(self, bstrID, ppBackup);
     }
-    pub fn get_Name(self: *const IGPMSOM, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pVal);
-    }
-    pub fn get_Path(self: *const IGPMSOM, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, pVal);
-    }
-    pub fn CreateGPOLink(self: *const IGPMSOM, lLinkPos: i32, pGPO: ?*IGPMGPO, ppNewGPOLink: ?*?*IGPMGPOLink) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateGPOLink(self, lLinkPos, pGPO, ppNewGPOLink);
-    }
-    pub fn get_Type(self: *const IGPMSOM, pVal: ?*GPMSOMType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, pVal);
-    }
-    pub fn GetGPOLinks(self: *const IGPMSOM, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGPOLinks(self, ppGPOLinks);
-    }
-    pub fn GetInheritedGPOLinks(self: *const IGPMSOM, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInheritedGPOLinks(self, ppGPOLinks);
-    }
-    pub fn GetSecurityInfo(self: *const IGPMSOM, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
-    }
-    pub fn SetSecurityInfo(self: *const IGPMSOM, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
+    pub fn SearchBackups(self: *const IGPMBackupDir, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMBackupCollection: ?*?*IGPMBackupCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchBackups(self, pIGPMSearchCriteria, ppIGPMBackupCollection);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMSOMCollection_Value = Guid.initString("adc1688e-00e4-4495-abba-bed200df0cab");
-pub const IID_IGPMSOMCollection = &IID_IGPMSOMCollection_Value;
-pub const IGPMSOMCollection = extern union {
+const IID_IGPMBackupDirEx_Value = Guid.initString("f8dc55ed-3ba0-4864-aad4-d365189ee1d5");
+pub const IID_IGPMBackupDirEx = &IID_IGPMBackupDirEx_Value;
+pub const IGPMBackupDirEx = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMSOMCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMSOMCollection,
-            lIndex: i32,
-            pVal: ?*VARIANT,
+        get_BackupDir: *const fn(
+            self: *const IGPMBackupDirEx,
+            pbstrBackupDir: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMSOMCollection,
-            ppIGPMSOM: ?*?*IEnumVARIANT,
+        get_BackupType: *const fn(
+            self: *const IGPMBackupDirEx,
+            pgpmBackupType: ?*GPMBackupType,
+        ) callconv(.winapi) HRESULT,
+        GetBackup: *const fn(
+            self: *const IGPMBackupDirEx,
+            bstrID: ?BSTR,
+            pvarBackup: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SearchBackups: *const fn(
+            self: *const IGPMBackupDirEx,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            pvarBackupCollection: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMSOMCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
+    pub fn get_BackupDir(self: *const IGPMBackupDirEx, pbstrBackupDir: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackupDir(self, pbstrBackupDir);
     }
-    pub fn get_Item(self: *const IGPMSOMCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
+    pub fn get_BackupType(self: *const IGPMBackupDirEx, pgpmBackupType: ?*GPMBackupType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackupType(self, pgpmBackupType);
     }
-    pub fn get__NewEnum(self: *const IGPMSOMCollection, ppIGPMSOM: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppIGPMSOM);
+    pub fn GetBackup(self: *const IGPMBackupDirEx, bstrID: ?BSTR, pvarBackup: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBackup(self, bstrID, pvarBackup);
     }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMWMIFilter_Value = Guid.initString("ef2ff9b4-3c27-459a-b979-038305cec75d");
-pub const IID_IGPMWMIFilter = &IID_IGPMWMIFilter_Value;
-pub const IGPMWMIFilter = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IGPMWMIFilter,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IGPMWMIFilter,
-            newVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IGPMWMIFilter,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IGPMWMIFilter,
-            newVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IGPMWMIFilter,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetQueryList: *const fn(
-            self: *const IGPMWMIFilter,
-            pQryList: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetSecurityInfo: *const fn(
-            self: *const IGPMWMIFilter,
-            ppSecurityInfo: ?*?*IGPMSecurityInfo,
-        ) callconv(.winapi) HRESULT,
-        SetSecurityInfo: *const fn(
-            self: *const IGPMWMIFilter,
-            pSecurityInfo: ?*IGPMSecurityInfo,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Path(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, pVal);
-    }
-    pub fn put_Name(self: *const IGPMWMIFilter, newVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, newVal);
-    }
-    pub fn get_Name(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pVal);
-    }
-    pub fn put_Description(self: *const IGPMWMIFilter, newVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, newVal);
-    }
-    pub fn get_Description(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pVal);
-    }
-    pub fn GetQueryList(self: *const IGPMWMIFilter, pQryList: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetQueryList(self, pQryList);
-    }
-    pub fn GetSecurityInfo(self: *const IGPMWMIFilter, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
-    }
-    pub fn SetSecurityInfo(self: *const IGPMWMIFilter, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMWMIFilterCollection_Value = Guid.initString("5782d582-1a36-4661-8a94-c3c32551945b");
-pub const IID_IGPMWMIFilterCollection = &IID_IGPMWMIFilterCollection_Value;
-pub const IGPMWMIFilterCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMWMIFilterCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMWMIFilterCollection,
-            lIndex: i32,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMWMIFilterCollection,
-            pVal: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMWMIFilterCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-    pub fn get_Item(self: *const IGPMWMIFilterCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
-    }
-    pub fn get__NewEnum(self: *const IGPMWMIFilterCollection, pVal: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMRSOP_Value = Guid.initString("49ed785a-3237-4ff2-b1f0-fdf5a8d5a1ee");
-pub const IID_IGPMRSOP = &IID_IGPMRSOP_Value;
-pub const IGPMRSOP = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Mode: *const fn(
-            self: *const IGPMRSOP,
-            pVal: ?*GPMRSOPMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Namespace: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LoggingComputer: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LoggingComputer: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LoggingUser: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LoggingUser: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LoggingFlags: *const fn(
-            self: *const IGPMRSOP,
-            lVal: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LoggingFlags: *const fn(
-            self: *const IGPMRSOP,
-            lVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningFlags: *const fn(
-            self: *const IGPMRSOP,
-            lVal: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningFlags: *const fn(
-            self: *const IGPMRSOP,
-            lVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningDomainController: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningDomainController: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningSiteName: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningSiteName: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningUser: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningUser: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningUserSOM: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningUserSOM: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningUserWMIFilters: *const fn(
-            self: *const IGPMRSOP,
-            varVal: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningUserWMIFilters: *const fn(
-            self: *const IGPMRSOP,
-            varVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningUserSecurityGroups: *const fn(
-            self: *const IGPMRSOP,
-            varVal: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningUserSecurityGroups: *const fn(
-            self: *const IGPMRSOP,
-            varVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningComputer: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningComputer: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningComputerSOM: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningComputerSOM: *const fn(
-            self: *const IGPMRSOP,
-            bstrVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningComputerWMIFilters: *const fn(
-            self: *const IGPMRSOP,
-            varVal: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningComputerWMIFilters: *const fn(
-            self: *const IGPMRSOP,
-            varVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PlanningComputerSecurityGroups: *const fn(
-            self: *const IGPMRSOP,
-            varVal: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlanningComputerSecurityGroups: *const fn(
-            self: *const IGPMRSOP,
-            varVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        LoggingEnumerateUsers: *const fn(
-            self: *const IGPMRSOP,
-            varVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        CreateQueryResults: *const fn(
-            self: *const IGPMRSOP,
-        ) callconv(.winapi) HRESULT,
-        ReleaseQueryResults: *const fn(
-            self: *const IGPMRSOP,
-        ) callconv(.winapi) HRESULT,
-        GenerateReport: *const fn(
-            self: *const IGPMRSOP,
-            gpmReportType: GPMReportType,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        GenerateReportToFile: *const fn(
-            self: *const IGPMRSOP,
-            gpmReportType: GPMReportType,
-            bstrTargetFilePath: ?BSTR,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Mode(self: *const IGPMRSOP, pVal: ?*GPMRSOPMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Mode(self, pVal);
-    }
-    pub fn get_Namespace(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Namespace(self, bstrVal);
-    }
-    pub fn put_LoggingComputer(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LoggingComputer(self, bstrVal);
-    }
-    pub fn get_LoggingComputer(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LoggingComputer(self, bstrVal);
-    }
-    pub fn put_LoggingUser(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LoggingUser(self, bstrVal);
-    }
-    pub fn get_LoggingUser(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LoggingUser(self, bstrVal);
-    }
-    pub fn put_LoggingFlags(self: *const IGPMRSOP, lVal: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LoggingFlags(self, lVal);
-    }
-    pub fn get_LoggingFlags(self: *const IGPMRSOP, lVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LoggingFlags(self, lVal);
-    }
-    pub fn put_PlanningFlags(self: *const IGPMRSOP, lVal: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningFlags(self, lVal);
-    }
-    pub fn get_PlanningFlags(self: *const IGPMRSOP, lVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningFlags(self, lVal);
-    }
-    pub fn put_PlanningDomainController(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningDomainController(self, bstrVal);
-    }
-    pub fn get_PlanningDomainController(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningDomainController(self, bstrVal);
-    }
-    pub fn put_PlanningSiteName(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningSiteName(self, bstrVal);
-    }
-    pub fn get_PlanningSiteName(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningSiteName(self, bstrVal);
-    }
-    pub fn put_PlanningUser(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningUser(self, bstrVal);
-    }
-    pub fn get_PlanningUser(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningUser(self, bstrVal);
-    }
-    pub fn put_PlanningUserSOM(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningUserSOM(self, bstrVal);
-    }
-    pub fn get_PlanningUserSOM(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningUserSOM(self, bstrVal);
-    }
-    pub fn put_PlanningUserWMIFilters(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningUserWMIFilters(self, varVal);
-    }
-    pub fn get_PlanningUserWMIFilters(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningUserWMIFilters(self, varVal);
-    }
-    pub fn put_PlanningUserSecurityGroups(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningUserSecurityGroups(self, varVal);
-    }
-    pub fn get_PlanningUserSecurityGroups(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningUserSecurityGroups(self, varVal);
-    }
-    pub fn put_PlanningComputer(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningComputer(self, bstrVal);
-    }
-    pub fn get_PlanningComputer(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningComputer(self, bstrVal);
-    }
-    pub fn put_PlanningComputerSOM(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningComputerSOM(self, bstrVal);
-    }
-    pub fn get_PlanningComputerSOM(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningComputerSOM(self, bstrVal);
-    }
-    pub fn put_PlanningComputerWMIFilters(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningComputerWMIFilters(self, varVal);
-    }
-    pub fn get_PlanningComputerWMIFilters(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningComputerWMIFilters(self, varVal);
-    }
-    pub fn put_PlanningComputerSecurityGroups(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PlanningComputerSecurityGroups(self, varVal);
-    }
-    pub fn get_PlanningComputerSecurityGroups(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlanningComputerSecurityGroups(self, varVal);
-    }
-    pub fn LoggingEnumerateUsers(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.LoggingEnumerateUsers(self, varVal);
-    }
-    pub fn CreateQueryResults(self: *const IGPMRSOP) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateQueryResults(self);
-    }
-    pub fn ReleaseQueryResults(self: *const IGPMRSOP) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseQueryResults(self);
-    }
-    pub fn GenerateReport(self: *const IGPMRSOP, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
-    }
-    pub fn GenerateReportToFile(self: *const IGPMRSOP, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPO_Value = Guid.initString("58cc4352-1ca3-48e5-9864-1da4d6e0d60f");
-pub const IID_IGPMGPO = &IID_IGPMGPO_Value;
-pub const IGPMGPO = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayName: *const fn(
-            self: *const IGPMGPO,
-            newVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ID: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainName: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CreationTime: *const fn(
-            self: *const IGPMGPO,
-            pDate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModificationTime: *const fn(
-            self: *const IGPMGPO,
-            pDate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserDSVersionNumber: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ComputerDSVersionNumber: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserSysvolVersionNumber: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ComputerSysvolVersionNumber: *const fn(
-            self: *const IGPMGPO,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetWMIFilter: *const fn(
-            self: *const IGPMGPO,
-            ppIGPMWMIFilter: ?*?*IGPMWMIFilter,
-        ) callconv(.winapi) HRESULT,
-        SetWMIFilter: *const fn(
-            self: *const IGPMGPO,
-            pIGPMWMIFilter: ?*IGPMWMIFilter,
-        ) callconv(.winapi) HRESULT,
-        SetUserEnabled: *const fn(
-            self: *const IGPMGPO,
-            vbEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        SetComputerEnabled: *const fn(
-            self: *const IGPMGPO,
-            vbEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        IsUserEnabled: *const fn(
-            self: *const IGPMGPO,
-            pvbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        IsComputerEnabled: *const fn(
-            self: *const IGPMGPO,
-            pvbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetSecurityInfo: *const fn(
-            self: *const IGPMGPO,
-            ppSecurityInfo: ?*?*IGPMSecurityInfo,
-        ) callconv(.winapi) HRESULT,
-        SetSecurityInfo: *const fn(
-            self: *const IGPMGPO,
-            pSecurityInfo: ?*IGPMSecurityInfo,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IGPMGPO,
-        ) callconv(.winapi) HRESULT,
-        Backup: *const fn(
-            self: *const IGPMGPO,
-            bstrBackupDir: ?BSTR,
-            bstrComment: ?BSTR,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        Import: *const fn(
-            self: *const IGPMGPO,
-            lFlags: i32,
-            pIGPMBackup: ?*IGPMBackup,
-            pvarMigrationTable: ?*VARIANT,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        GenerateReport: *const fn(
-            self: *const IGPMGPO,
-            gpmReportType: GPMReportType,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        GenerateReportToFile: *const fn(
-            self: *const IGPMGPO,
-            gpmReportType: GPMReportType,
-            bstrTargetFilePath: ?BSTR,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        CopyTo: *const fn(
-            self: *const IGPMGPO,
-            lFlags: i32,
-            pIGPMDomain: ?*IGPMDomain,
-            pvarNewDisplayName: ?*VARIANT,
-            pvarMigrationTable: ?*VARIANT,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        SetSecurityDescriptor: *const fn(
-            self: *const IGPMGPO,
-            lFlags: i32,
-            pSD: ?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        GetSecurityDescriptor: *const fn(
-            self: *const IGPMGPO,
-            lFlags: i32,
-            ppSD: ?*?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        IsACLConsistent: *const fn(
-            self: *const IGPMGPO,
-            pvbConsistent: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        MakeACLConsistent: *const fn(
-            self: *const IGPMGPO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_DisplayName(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayName(self, pVal);
-    }
-    pub fn put_DisplayName(self: *const IGPMGPO, newVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisplayName(self, newVal);
-    }
-    pub fn get_Path(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, pVal);
-    }
-    pub fn get_ID(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ID(self, pVal);
-    }
-    pub fn get_DomainName(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DomainName(self, pVal);
-    }
-    pub fn get_CreationTime(self: *const IGPMGPO, pDate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CreationTime(self, pDate);
-    }
-    pub fn get_ModificationTime(self: *const IGPMGPO, pDate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ModificationTime(self, pDate);
-    }
-    pub fn get_UserDSVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserDSVersionNumber(self, pVal);
-    }
-    pub fn get_ComputerDSVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ComputerDSVersionNumber(self, pVal);
-    }
-    pub fn get_UserSysvolVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserSysvolVersionNumber(self, pVal);
-    }
-    pub fn get_ComputerSysvolVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ComputerSysvolVersionNumber(self, pVal);
-    }
-    pub fn GetWMIFilter(self: *const IGPMGPO, ppIGPMWMIFilter: ?*?*IGPMWMIFilter) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWMIFilter(self, ppIGPMWMIFilter);
-    }
-    pub fn SetWMIFilter(self: *const IGPMGPO, pIGPMWMIFilter: ?*IGPMWMIFilter) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWMIFilter(self, pIGPMWMIFilter);
-    }
-    pub fn SetUserEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetUserEnabled(self, vbEnabled);
-    }
-    pub fn SetComputerEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetComputerEnabled(self, vbEnabled);
-    }
-    pub fn IsUserEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsUserEnabled(self, pvbEnabled);
-    }
-    pub fn IsComputerEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsComputerEnabled(self, pvbEnabled);
-    }
-    pub fn GetSecurityInfo(self: *const IGPMGPO, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
-    }
-    pub fn SetSecurityInfo(self: *const IGPMGPO, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
-    }
-    pub fn Delete(self: *const IGPMGPO) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-    pub fn Backup(self: *const IGPMGPO, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.Backup(self, bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
-    }
-    pub fn Import(self: *const IGPMGPO, lFlags: i32, pIGPMBackup: ?*IGPMBackup, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.Import(self, lFlags, pIGPMBackup, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
-    }
-    pub fn GenerateReport(self: *const IGPMGPO, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
-    }
-    pub fn GenerateReportToFile(self: *const IGPMGPO, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
-    }
-    pub fn CopyTo(self: *const IGPMGPO, lFlags: i32, pIGPMDomain: ?*IGPMDomain, pvarNewDisplayName: ?*VARIANT, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyTo(self, lFlags, pIGPMDomain, pvarNewDisplayName, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
-    }
-    pub fn SetSecurityDescriptor(self: *const IGPMGPO, lFlags: i32, pSD: ?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSecurityDescriptor(self, lFlags, pSD);
-    }
-    pub fn GetSecurityDescriptor(self: *const IGPMGPO, lFlags: i32, ppSD: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecurityDescriptor(self, lFlags, ppSD);
-    }
-    pub fn IsACLConsistent(self: *const IGPMGPO, pvbConsistent: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsACLConsistent(self, pvbConsistent);
-    }
-    pub fn MakeACLConsistent(self: *const IGPMGPO) callconv(.@"inline") HRESULT {
-        return self.vtable.MakeACLConsistent(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPOCollection_Value = Guid.initString("f0f0d5cf-70ca-4c39-9e29-b642f8726c01");
-pub const IID_IGPMGPOCollection = &IID_IGPMGPOCollection_Value;
-pub const IGPMGPOCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMGPOCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMGPOCollection,
-            lIndex: i32,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMGPOCollection,
-            ppIGPMGPOs: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMGPOCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-    pub fn get_Item(self: *const IGPMGPOCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
-    }
-    pub fn get__NewEnum(self: *const IGPMGPOCollection, ppIGPMGPOs: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppIGPMGPOs);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPOLink_Value = Guid.initString("434b99bd-5de7-478a-809c-c251721df70c");
-pub const IID_IGPMGPOLink = &IID_IGPMGPOLink_Value;
-pub const IGPMGPOLink = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GPOID: *const fn(
-            self: *const IGPMGPOLink,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GPODomain: *const fn(
-            self: *const IGPMGPOLink,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IGPMGPOLink,
-            pVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const IGPMGPOLink,
-            newVal: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enforced: *const fn(
-            self: *const IGPMGPOLink,
-            pVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enforced: *const fn(
-            self: *const IGPMGPOLink,
-            newVal: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SOMLinkOrder: *const fn(
-            self: *const IGPMGPOLink,
-            lVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SOM: *const fn(
-            self: *const IGPMGPOLink,
-            ppIGPMSOM: ?*?*IGPMSOM,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IGPMGPOLink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_GPOID(self: *const IGPMGPOLink, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GPOID(self, pVal);
-    }
-    pub fn get_GPODomain(self: *const IGPMGPOLink, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GPODomain(self, pVal);
-    }
-    pub fn get_Enabled(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, pVal);
-    }
-    pub fn put_Enabled(self: *const IGPMGPOLink, newVal: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, newVal);
-    }
-    pub fn get_Enforced(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enforced(self, pVal);
-    }
-    pub fn put_Enforced(self: *const IGPMGPOLink, newVal: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enforced(self, newVal);
-    }
-    pub fn get_SOMLinkOrder(self: *const IGPMGPOLink, lVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SOMLinkOrder(self, lVal);
-    }
-    pub fn get_SOM(self: *const IGPMGPOLink, ppIGPMSOM: ?*?*IGPMSOM) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SOM(self, ppIGPMSOM);
-    }
-    pub fn Delete(self: *const IGPMGPOLink) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPOLinksCollection_Value = Guid.initString("189d7b68-16bd-4d0d-a2ec-2e6aa2288c7f");
-pub const IID_IGPMGPOLinksCollection = &IID_IGPMGPOLinksCollection_Value;
-pub const IGPMGPOLinksCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMGPOLinksCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMGPOLinksCollection,
-            lIndex: i32,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMGPOLinksCollection,
-            ppIGPMLinks: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMGPOLinksCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-    pub fn get_Item(self: *const IGPMGPOLinksCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
-    }
-    pub fn get__NewEnum(self: *const IGPMGPOLinksCollection, ppIGPMLinks: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppIGPMLinks);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMCSECollection_Value = Guid.initString("2e52a97d-0a4a-4a6f-85db-201622455da0");
-pub const IID_IGPMCSECollection = &IID_IGPMCSECollection_Value;
-pub const IGPMCSECollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMCSECollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMCSECollection,
-            lIndex: i32,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMCSECollection,
-            ppIGPMCSEs: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMCSECollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-    pub fn get_Item(self: *const IGPMCSECollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
-    }
-    pub fn get__NewEnum(self: *const IGPMCSECollection, ppIGPMCSEs: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppIGPMCSEs);
+    pub fn SearchBackups(self: *const IGPMBackupDirEx, pIGPMSearchCriteria: ?*IGPMSearchCriteria, pvarBackupCollection: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchBackups(self, pIGPMSearchCriteria, pvarBackupCollection);
     }
 };
 
@@ -1972,139 +991,6 @@ pub const IGPMClientSideExtension = extern union {
     }
     pub fn IsComputerEnabled(self: *const IGPMClientSideExtension, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsComputerEnabled(self, pvbEnabled);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMAsyncCancel_Value = Guid.initString("ddc67754-be67-4541-8166-f48166868c9c");
-pub const IID_IGPMAsyncCancel = &IID_IGPMAsyncCancel_Value;
-pub const IGPMAsyncCancel = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Cancel: *const fn(
-            self: *const IGPMAsyncCancel,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Cancel(self: *const IGPMAsyncCancel) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMAsyncProgress_Value = Guid.initString("6aac29f8-5948-4324-bf70-423818942dbc");
-pub const IID_IGPMAsyncProgress = &IID_IGPMAsyncProgress_Value;
-pub const IGPMAsyncProgress = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Status: *const fn(
-            self: *const IGPMAsyncProgress,
-            lProgressNumerator: i32,
-            lProgressDenominator: i32,
-            hrStatus: HRESULT,
-            pResult: ?*VARIANT,
-            ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Status(self: *const IGPMAsyncProgress, lProgressNumerator: i32, lProgressDenominator: i32, hrStatus: HRESULT, pResult: ?*VARIANT, ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Status(self, lProgressNumerator, lProgressDenominator, hrStatus, pResult, ppIGPMStatusMsgCollection);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStatusMsgCollection_Value = Guid.initString("9b6e1af0-1a92-40f3-a59d-f36ac1f728b7");
-pub const IID_IGPMStatusMsgCollection = &IID_IGPMStatusMsgCollection_Value;
-pub const IGPMStatusMsgCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMStatusMsgCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMStatusMsgCollection,
-            lIndex: i32,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMStatusMsgCollection,
-            pVal: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMStatusMsgCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
-    }
-    pub fn get_Item(self: *const IGPMStatusMsgCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
-    }
-    pub fn get__NewEnum(self: *const IGPMStatusMsgCollection, pVal: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStatusMessage_Value = Guid.initString("8496c22f-f3de-4a1f-8f58-603caaa93d7b");
-pub const IID_IGPMStatusMessage = &IID_IGPMStatusMessage_Value;
-pub const IGPMStatusMessage = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ObjectPath: *const fn(
-            self: *const IGPMStatusMessage,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ErrorCode: *const fn(
-            self: *const IGPMStatusMessage,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtensionName: *const fn(
-            self: *const IGPMStatusMessage,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SettingsName: *const fn(
-            self: *const IGPMStatusMessage,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OperationCode: *const fn(
-            self: *const IGPMStatusMessage,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Message: *const fn(
-            self: *const IGPMStatusMessage,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ObjectPath(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ObjectPath(self, pVal);
-    }
-    pub fn ErrorCode(self: *const IGPMStatusMessage) callconv(.@"inline") HRESULT {
-        return self.vtable.ErrorCode(self);
-    }
-    pub fn get_ExtensionName(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExtensionName(self, pVal);
-    }
-    pub fn get_SettingsName(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SettingsName(self, pVal);
-    }
-    pub fn OperationCode(self: *const IGPMStatusMessage) callconv(.@"inline") HRESULT {
-        return self.vtable.OperationCode(self);
-    }
-    pub fn get_Message(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Message(self, pVal);
     }
 };
 
@@ -2604,72 +1490,843 @@ pub const IGPMConstants = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMResult_Value = Guid.initString("86dff7e9-f76f-42ab-9570-cebc6be8a52d");
-pub const IID_IGPMResult = &IID_IGPMResult_Value;
-pub const IGPMResult = extern union {
+const IID_IGPMConstants2_Value = Guid.initString("05ae21b0-ac09-4032-a26f-9e7da786dc19");
+pub const IID_IGPMConstants2 = &IID_IGPMConstants2_Value;
+pub const IGPMConstants2 = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
+        base: IGPMConstants.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Status: *const fn(
-            self: *const IGPMResult,
-            ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection,
+        get_BackupTypeGPO: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMBackupType,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Result: *const fn(
-            self: *const IGPMResult,
-            pvarResult: ?*VARIANT,
+        get_BackupTypeStarterGPO: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMBackupType,
         ) callconv(.winapi) HRESULT,
-        OverallStatus: *const fn(
-            self: *const IGPMResult,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StarterGPOTypeSystem: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMStarterGPOType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StarterGPOTypeCustom: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMStarterGPOType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SearchPropertyStarterGPOPermissions: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMSearchProperty,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SearchPropertyStarterGPOEffectivePermissions: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMSearchProperty,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SearchPropertyStarterGPODisplayName: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMSearchProperty,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SearchPropertyStarterGPOID: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMSearchProperty,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SearchPropertyStarterGPODomain: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMSearchProperty,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PermStarterGPORead: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMPermissionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PermStarterGPOEdit: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMPermissionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PermStarterGPOFullControl: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMPermissionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PermStarterGPOCustom: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMPermissionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReportLegacy: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMReportingOptions,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReportComments: *const fn(
+            self: *const IGPMConstants2,
+            pVal: ?*GPMReportingOptions,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IGPMConstants: IGPMConstants,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Status(self: *const IGPMResult, ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Status(self, ppIGPMStatusMsgCollection);
+    pub fn get_BackupTypeGPO(self: *const IGPMConstants2, pVal: ?*GPMBackupType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackupTypeGPO(self, pVal);
     }
-    pub fn get_Result(self: *const IGPMResult, pvarResult: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Result(self, pvarResult);
+    pub fn get_BackupTypeStarterGPO(self: *const IGPMConstants2, pVal: ?*GPMBackupType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackupTypeStarterGPO(self, pVal);
     }
-    pub fn OverallStatus(self: *const IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.OverallStatus(self);
+    pub fn get_StarterGPOTypeSystem(self: *const IGPMConstants2, pVal: ?*GPMStarterGPOType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StarterGPOTypeSystem(self, pVal);
+    }
+    pub fn get_StarterGPOTypeCustom(self: *const IGPMConstants2, pVal: ?*GPMStarterGPOType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StarterGPOTypeCustom(self, pVal);
+    }
+    pub fn get_SearchPropertyStarterGPOPermissions(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SearchPropertyStarterGPOPermissions(self, pVal);
+    }
+    pub fn get_SearchPropertyStarterGPOEffectivePermissions(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SearchPropertyStarterGPOEffectivePermissions(self, pVal);
+    }
+    pub fn get_SearchPropertyStarterGPODisplayName(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SearchPropertyStarterGPODisplayName(self, pVal);
+    }
+    pub fn get_SearchPropertyStarterGPOID(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SearchPropertyStarterGPOID(self, pVal);
+    }
+    pub fn get_SearchPropertyStarterGPODomain(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SearchPropertyStarterGPODomain(self, pVal);
+    }
+    pub fn get_PermStarterGPORead(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PermStarterGPORead(self, pVal);
+    }
+    pub fn get_PermStarterGPOEdit(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PermStarterGPOEdit(self, pVal);
+    }
+    pub fn get_PermStarterGPOFullControl(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PermStarterGPOFullControl(self, pVal);
+    }
+    pub fn get_PermStarterGPOCustom(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PermStarterGPOCustom(self, pVal);
+    }
+    pub fn get_ReportLegacy(self: *const IGPMConstants2, pVal: ?*GPMReportingOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReportLegacy(self, pVal);
+    }
+    pub fn get_ReportComments(self: *const IGPMConstants2, pVal: ?*GPMReportingOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReportComments(self, pVal);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMMapEntryCollection_Value = Guid.initString("bb0bf49b-e53f-443f-b807-8be22bfb6d42");
-pub const IID_IGPMMapEntryCollection = &IID_IGPMMapEntryCollection_Value;
-pub const IGPMMapEntryCollection = extern union {
+const IID_IGPMCSECollection_Value = Guid.initString("2e52a97d-0a4a-4a6f-85db-201622455da0");
+pub const IID_IGPMCSECollection = &IID_IGPMCSECollection_Value;
+pub const IGPMCSECollection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const IGPMMapEntryCollection,
+            self: *const IGPMCSECollection,
             pVal: ?*i32,
         ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
-            self: *const IGPMMapEntryCollection,
+            self: *const IGPMCSECollection,
             lIndex: i32,
             pVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const IGPMMapEntryCollection,
-            pVal: ?*?*IEnumVARIANT,
+            self: *const IGPMCSECollection,
+            ppIGPMCSEs: ?*?*IEnumVARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMMapEntryCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const IGPMCSECollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
-    pub fn get_Item(self: *const IGPMMapEntryCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn get_Item(self: *const IGPMCSECollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, lIndex, pVal);
     }
-    pub fn get__NewEnum(self: *const IGPMMapEntryCollection, pVal: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, pVal);
+    pub fn get__NewEnum(self: *const IGPMCSECollection, ppIGPMCSEs: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppIGPMCSEs);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMDomain_Value = Guid.initString("6b21cc14-5a00-4f44-a738-feec8a94c7e3");
+pub const IID_IGPMDomain = &IID_IGPMDomain_Value;
+pub const IGPMDomain = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DomainController: *const fn(
+            self: *const IGPMDomain,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Domain: *const fn(
+            self: *const IGPMDomain,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        CreateGPO: *const fn(
+            self: *const IGPMDomain,
+            ppNewGPO: ?*?*IGPMGPO,
+        ) callconv(.winapi) HRESULT,
+        GetGPO: *const fn(
+            self: *const IGPMDomain,
+            bstrGuid: ?BSTR,
+            ppGPO: ?*?*IGPMGPO,
+        ) callconv(.winapi) HRESULT,
+        SearchGPOs: *const fn(
+            self: *const IGPMDomain,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMGPOCollection: ?*?*IGPMGPOCollection,
+        ) callconv(.winapi) HRESULT,
+        RestoreGPO: *const fn(
+            self: *const IGPMDomain,
+            pIGPMBackup: ?*IGPMBackup,
+            lDCFlags: i32,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        GetSOM: *const fn(
+            self: *const IGPMDomain,
+            bstrPath: ?BSTR,
+            ppSOM: ?*?*IGPMSOM,
+        ) callconv(.winapi) HRESULT,
+        SearchSOMs: *const fn(
+            self: *const IGPMDomain,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMSOMCollection: ?*?*IGPMSOMCollection,
+        ) callconv(.winapi) HRESULT,
+        GetWMIFilter: *const fn(
+            self: *const IGPMDomain,
+            bstrPath: ?BSTR,
+            ppWMIFilter: ?*?*IGPMWMIFilter,
+        ) callconv(.winapi) HRESULT,
+        SearchWMIFilters: *const fn(
+            self: *const IGPMDomain,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DomainController(self: *const IGPMDomain, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DomainController(self, pVal);
+    }
+    pub fn get_Domain(self: *const IGPMDomain, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Domain(self, pVal);
+    }
+    pub fn CreateGPO(self: *const IGPMDomain, ppNewGPO: ?*?*IGPMGPO) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateGPO(self, ppNewGPO);
+    }
+    pub fn GetGPO(self: *const IGPMDomain, bstrGuid: ?BSTR, ppGPO: ?*?*IGPMGPO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGPO(self, bstrGuid, ppGPO);
+    }
+    pub fn SearchGPOs(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMGPOCollection: ?*?*IGPMGPOCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchGPOs(self, pIGPMSearchCriteria, ppIGPMGPOCollection);
+    }
+    pub fn RestoreGPO(self: *const IGPMDomain, pIGPMBackup: ?*IGPMBackup, lDCFlags: i32, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreGPO(self, pIGPMBackup, lDCFlags, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn GetSOM(self: *const IGPMDomain, bstrPath: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSOM(self, bstrPath, ppSOM);
+    }
+    pub fn SearchSOMs(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchSOMs(self, pIGPMSearchCriteria, ppIGPMSOMCollection);
+    }
+    pub fn GetWMIFilter(self: *const IGPMDomain, bstrPath: ?BSTR, ppWMIFilter: ?*?*IGPMWMIFilter) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWMIFilter(self, bstrPath, ppWMIFilter);
+    }
+    pub fn SearchWMIFilters(self: *const IGPMDomain, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchWMIFilters(self, pIGPMSearchCriteria, ppIGPMWMIFilterCollection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMDomain2_Value = Guid.initString("7ca6bb8b-f1eb-490a-938d-3c4e51c768e6");
+pub const IID_IGPMDomain2 = &IID_IGPMDomain2_Value;
+pub const IGPMDomain2 = extern union {
+    pub const VTable = extern struct {
+        base: IGPMDomain.VTable,
+        CreateStarterGPO: *const fn(
+            self: *const IGPMDomain2,
+            ppnewTemplate: ?*?*IGPMStarterGPO,
+        ) callconv(.winapi) HRESULT,
+        CreateGPOFromStarterGPO: *const fn(
+            self: *const IGPMDomain2,
+            pGPOTemplate: ?*IGPMStarterGPO,
+            ppnewGPO: ?*?*IGPMGPO,
+        ) callconv(.winapi) HRESULT,
+        GetStarterGPO: *const fn(
+            self: *const IGPMDomain2,
+            bstrGuid: ?BSTR,
+            ppTemplate: ?*?*IGPMStarterGPO,
+        ) callconv(.winapi) HRESULT,
+        SearchStarterGPOs: *const fn(
+            self: *const IGPMDomain2,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection,
+        ) callconv(.winapi) HRESULT,
+        LoadStarterGPO: *const fn(
+            self: *const IGPMDomain2,
+            bstrLoadFile: ?BSTR,
+            bOverwrite: i16,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        RestoreStarterGPO: *const fn(
+            self: *const IGPMDomain2,
+            pIGPMTmplBackup: ?*IGPMStarterGPOBackup,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IGPMDomain: IGPMDomain,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateStarterGPO(self: *const IGPMDomain2, ppnewTemplate: ?*?*IGPMStarterGPO) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateStarterGPO(self, ppnewTemplate);
+    }
+    pub fn CreateGPOFromStarterGPO(self: *const IGPMDomain2, pGPOTemplate: ?*IGPMStarterGPO, ppnewGPO: ?*?*IGPMGPO) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateGPOFromStarterGPO(self, pGPOTemplate, ppnewGPO);
+    }
+    pub fn GetStarterGPO(self: *const IGPMDomain2, bstrGuid: ?BSTR, ppTemplate: ?*?*IGPMStarterGPO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStarterGPO(self, bstrGuid, ppTemplate);
+    }
+    pub fn SearchStarterGPOs(self: *const IGPMDomain2, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchStarterGPOs(self, pIGPMSearchCriteria, ppIGPMTemplateCollection);
+    }
+    pub fn LoadStarterGPO(self: *const IGPMDomain2, bstrLoadFile: ?BSTR, bOverwrite: i16, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadStarterGPO(self, bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn RestoreStarterGPO(self: *const IGPMDomain2, pIGPMTmplBackup: ?*IGPMStarterGPOBackup, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreStarterGPO(self, pIGPMTmplBackup, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+};
+
+const IID_IGPMDomain3_Value = Guid.initString("0077fdfe-88c7-4acf-a11d-d10a7c310a03");
+pub const IID_IGPMDomain3 = &IID_IGPMDomain3_Value;
+pub const IGPMDomain3 = extern union {
+    pub const VTable = extern struct {
+        base: IGPMDomain2.VTable,
+        GenerateReport: *const fn(
+            self: *const IGPMDomain3,
+            gpmReportType: GPMReportType,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InfrastructureDC: *const fn(
+            self: *const IGPMDomain3,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_InfrastructureDC: *const fn(
+            self: *const IGPMDomain3,
+            newVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_InfrastructureFlags: *const fn(
+            self: *const IGPMDomain3,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IGPMDomain2: IGPMDomain2,
+    IGPMDomain: IGPMDomain,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GenerateReport(self: *const IGPMDomain3, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn get_InfrastructureDC(self: *const IGPMDomain3, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InfrastructureDC(self, pVal);
+    }
+    pub fn put_InfrastructureDC(self: *const IGPMDomain3, newVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_InfrastructureDC(self, newVal);
+    }
+    pub fn put_InfrastructureFlags(self: *const IGPMDomain3, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_InfrastructureFlags(self, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMGPO_Value = Guid.initString("58cc4352-1ca3-48e5-9864-1da4d6e0d60f");
+pub const IID_IGPMGPO = &IID_IGPMGPO_Value;
+pub const IGPMGPO = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayName: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisplayName: *const fn(
+            self: *const IGPMGPO,
+            newVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ID: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DomainName: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CreationTime: *const fn(
+            self: *const IGPMGPO,
+            pDate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ModificationTime: *const fn(
+            self: *const IGPMGPO,
+            pDate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserDSVersionNumber: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ComputerDSVersionNumber: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserSysvolVersionNumber: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ComputerSysvolVersionNumber: *const fn(
+            self: *const IGPMGPO,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetWMIFilter: *const fn(
+            self: *const IGPMGPO,
+            ppIGPMWMIFilter: ?*?*IGPMWMIFilter,
+        ) callconv(.winapi) HRESULT,
+        SetWMIFilter: *const fn(
+            self: *const IGPMGPO,
+            pIGPMWMIFilter: ?*IGPMWMIFilter,
+        ) callconv(.winapi) HRESULT,
+        SetUserEnabled: *const fn(
+            self: *const IGPMGPO,
+            vbEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        SetComputerEnabled: *const fn(
+            self: *const IGPMGPO,
+            vbEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        IsUserEnabled: *const fn(
+            self: *const IGPMGPO,
+            pvbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        IsComputerEnabled: *const fn(
+            self: *const IGPMGPO,
+            pvbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetSecurityInfo: *const fn(
+            self: *const IGPMGPO,
+            ppSecurityInfo: ?*?*IGPMSecurityInfo,
+        ) callconv(.winapi) HRESULT,
+        SetSecurityInfo: *const fn(
+            self: *const IGPMGPO,
+            pSecurityInfo: ?*IGPMSecurityInfo,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IGPMGPO,
+        ) callconv(.winapi) HRESULT,
+        Backup: *const fn(
+            self: *const IGPMGPO,
+            bstrBackupDir: ?BSTR,
+            bstrComment: ?BSTR,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        Import: *const fn(
+            self: *const IGPMGPO,
+            lFlags: i32,
+            pIGPMBackup: ?*IGPMBackup,
+            pvarMigrationTable: ?*VARIANT,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        GenerateReport: *const fn(
+            self: *const IGPMGPO,
+            gpmReportType: GPMReportType,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        GenerateReportToFile: *const fn(
+            self: *const IGPMGPO,
+            gpmReportType: GPMReportType,
+            bstrTargetFilePath: ?BSTR,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        CopyTo: *const fn(
+            self: *const IGPMGPO,
+            lFlags: i32,
+            pIGPMDomain: ?*IGPMDomain,
+            pvarNewDisplayName: ?*VARIANT,
+            pvarMigrationTable: ?*VARIANT,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        SetSecurityDescriptor: *const fn(
+            self: *const IGPMGPO,
+            lFlags: i32,
+            pSD: ?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        GetSecurityDescriptor: *const fn(
+            self: *const IGPMGPO,
+            lFlags: i32,
+            ppSD: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        IsACLConsistent: *const fn(
+            self: *const IGPMGPO,
+            pvbConsistent: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        MakeACLConsistent: *const fn(
+            self: *const IGPMGPO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DisplayName(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayName(self, pVal);
+    }
+    pub fn put_DisplayName(self: *const IGPMGPO, newVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisplayName(self, newVal);
+    }
+    pub fn get_Path(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, pVal);
+    }
+    pub fn get_ID(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ID(self, pVal);
+    }
+    pub fn get_DomainName(self: *const IGPMGPO, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DomainName(self, pVal);
+    }
+    pub fn get_CreationTime(self: *const IGPMGPO, pDate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CreationTime(self, pDate);
+    }
+    pub fn get_ModificationTime(self: *const IGPMGPO, pDate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ModificationTime(self, pDate);
+    }
+    pub fn get_UserDSVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserDSVersionNumber(self, pVal);
+    }
+    pub fn get_ComputerDSVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ComputerDSVersionNumber(self, pVal);
+    }
+    pub fn get_UserSysvolVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserSysvolVersionNumber(self, pVal);
+    }
+    pub fn get_ComputerSysvolVersionNumber(self: *const IGPMGPO, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ComputerSysvolVersionNumber(self, pVal);
+    }
+    pub fn GetWMIFilter(self: *const IGPMGPO, ppIGPMWMIFilter: ?*?*IGPMWMIFilter) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWMIFilter(self, ppIGPMWMIFilter);
+    }
+    pub fn SetWMIFilter(self: *const IGPMGPO, pIGPMWMIFilter: ?*IGPMWMIFilter) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWMIFilter(self, pIGPMWMIFilter);
+    }
+    pub fn SetUserEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetUserEnabled(self, vbEnabled);
+    }
+    pub fn SetComputerEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetComputerEnabled(self, vbEnabled);
+    }
+    pub fn IsUserEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsUserEnabled(self, pvbEnabled);
+    }
+    pub fn IsComputerEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsComputerEnabled(self, pvbEnabled);
+    }
+    pub fn GetSecurityInfo(self: *const IGPMGPO, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
+    }
+    pub fn SetSecurityInfo(self: *const IGPMGPO, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
+    }
+    pub fn Delete(self: *const IGPMGPO) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn Backup(self: *const IGPMGPO, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.Backup(self, bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn Import(self: *const IGPMGPO, lFlags: i32, pIGPMBackup: ?*IGPMBackup, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.Import(self, lFlags, pIGPMBackup, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn GenerateReport(self: *const IGPMGPO, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn GenerateReportToFile(self: *const IGPMGPO, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
+    }
+    pub fn CopyTo(self: *const IGPMGPO, lFlags: i32, pIGPMDomain: ?*IGPMDomain, pvarNewDisplayName: ?*VARIANT, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyTo(self, lFlags, pIGPMDomain, pvarNewDisplayName, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn SetSecurityDescriptor(self: *const IGPMGPO, lFlags: i32, pSD: ?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSecurityDescriptor(self, lFlags, pSD);
+    }
+    pub fn GetSecurityDescriptor(self: *const IGPMGPO, lFlags: i32, ppSD: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecurityDescriptor(self, lFlags, ppSD);
+    }
+    pub fn IsACLConsistent(self: *const IGPMGPO, pvbConsistent: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsACLConsistent(self, pvbConsistent);
+    }
+    pub fn MakeACLConsistent(self: *const IGPMGPO) callconv(.@"inline") HRESULT {
+        return self.vtable.MakeACLConsistent(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMGPO2_Value = Guid.initString("8a66a210-b78b-4d99-88e2-c306a817c925");
+pub const IID_IGPMGPO2 = &IID_IGPMGPO2_Value;
+pub const IGPMGPO2 = extern union {
+    pub const VTable = extern struct {
+        base: IGPMGPO.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IGPMGPO2,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IGPMGPO2,
+            newVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IGPMGPO: IGPMGPO,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Description(self: *const IGPMGPO2, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pVal);
+    }
+    pub fn put_Description(self: *const IGPMGPO2, newVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, newVal);
+    }
+};
+
+const IID_IGPMGPO3_Value = Guid.initString("7cf123a1-f94a-4112-bfae-6aa1db9cb248");
+pub const IID_IGPMGPO3 = &IID_IGPMGPO3_Value;
+pub const IGPMGPO3 = extern union {
+    pub const VTable = extern struct {
+        base: IGPMGPO2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InfrastructureDC: *const fn(
+            self: *const IGPMGPO3,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_InfrastructureDC: *const fn(
+            self: *const IGPMGPO3,
+            newVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_InfrastructureFlags: *const fn(
+            self: *const IGPMGPO3,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IGPMGPO2: IGPMGPO2,
+    IGPMGPO: IGPMGPO,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_InfrastructureDC(self: *const IGPMGPO3, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InfrastructureDC(self, pVal);
+    }
+    pub fn put_InfrastructureDC(self: *const IGPMGPO3, newVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_InfrastructureDC(self, newVal);
+    }
+    pub fn put_InfrastructureFlags(self: *const IGPMGPO3, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_InfrastructureFlags(self, dwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMGPOCollection_Value = Guid.initString("f0f0d5cf-70ca-4c39-9e29-b642f8726c01");
+pub const IID_IGPMGPOCollection = &IID_IGPMGPOCollection_Value;
+pub const IGPMGPOCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IGPMGPOCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IGPMGPOCollection,
+            lIndex: i32,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IGPMGPOCollection,
+            ppIGPMGPOs: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IGPMGPOCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+    pub fn get_Item(self: *const IGPMGPOCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
+    }
+    pub fn get__NewEnum(self: *const IGPMGPOCollection, ppIGPMGPOs: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppIGPMGPOs);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMGPOLink_Value = Guid.initString("434b99bd-5de7-478a-809c-c251721df70c");
+pub const IID_IGPMGPOLink = &IID_IGPMGPOLink_Value;
+pub const IGPMGPOLink = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GPOID: *const fn(
+            self: *const IGPMGPOLink,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GPODomain: *const fn(
+            self: *const IGPMGPOLink,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const IGPMGPOLink,
+            pVal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enabled: *const fn(
+            self: *const IGPMGPOLink,
+            newVal: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enforced: *const fn(
+            self: *const IGPMGPOLink,
+            pVal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enforced: *const fn(
+            self: *const IGPMGPOLink,
+            newVal: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SOMLinkOrder: *const fn(
+            self: *const IGPMGPOLink,
+            lVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SOM: *const fn(
+            self: *const IGPMGPOLink,
+            ppIGPMSOM: ?*?*IGPMSOM,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IGPMGPOLink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_GPOID(self: *const IGPMGPOLink, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GPOID(self, pVal);
+    }
+    pub fn get_GPODomain(self: *const IGPMGPOLink, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GPODomain(self, pVal);
+    }
+    pub fn get_Enabled(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, pVal);
+    }
+    pub fn put_Enabled(self: *const IGPMGPOLink, newVal: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, newVal);
+    }
+    pub fn get_Enforced(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enforced(self, pVal);
+    }
+    pub fn put_Enforced(self: *const IGPMGPOLink, newVal: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enforced(self, newVal);
+    }
+    pub fn get_SOMLinkOrder(self: *const IGPMGPOLink, lVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SOMLinkOrder(self, lVal);
+    }
+    pub fn get_SOM(self: *const IGPMGPOLink, ppIGPMSOM: ?*?*IGPMSOM) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SOM(self, ppIGPMSOM);
+    }
+    pub fn Delete(self: *const IGPMGPOLink) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMGPOLinksCollection_Value = Guid.initString("189d7b68-16bd-4d0d-a2ec-2e6aa2288c7f");
+pub const IID_IGPMGPOLinksCollection = &IID_IGPMGPOLinksCollection_Value;
+pub const IGPMGPOLinksCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IGPMGPOLinksCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IGPMGPOLinksCollection,
+            lIndex: i32,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IGPMGPOLinksCollection,
+            ppIGPMLinks: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IGPMGPOLinksCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+    pub fn get_Item(self: *const IGPMGPOLinksCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
+    }
+    pub fn get__NewEnum(self: *const IGPMGPOLinksCollection, ppIGPMLinks: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppIGPMLinks);
     }
 };
 
@@ -2714,6 +2371,42 @@ pub const IGPMMapEntry = extern union {
     }
     pub fn get_EntryType(self: *const IGPMMapEntry, pgpmEntryType: ?*GPMEntryType) callconv(.@"inline") HRESULT {
         return self.vtable.get_EntryType(self, pgpmEntryType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMMapEntryCollection_Value = Guid.initString("bb0bf49b-e53f-443f-b807-8be22bfb6d42");
+pub const IID_IGPMMapEntryCollection = &IID_IGPMMapEntryCollection_Value;
+pub const IGPMMapEntryCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IGPMMapEntryCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IGPMMapEntryCollection,
+            lIndex: i32,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IGPMMapEntryCollection,
+            pVal: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IGPMMapEntryCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+    pub fn get_Item(self: *const IGPMMapEntryCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
+    }
+    pub fn get__NewEnum(self: *const IGPMMapEntryCollection, pVal: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
     }
 };
 
@@ -2792,158 +2485,267 @@ pub const IGPMMigrationTable = extern union {
     }
 };
 
-pub const GPMBackupType = enum(i32) {
-    GPO = 0,
-    StarterGPO = 1,
-};
-pub const typeGPO = GPMBackupType.GPO;
-pub const typeStarterGPO = GPMBackupType.StarterGPO;
-
-pub const GPMStarterGPOType = enum(i32) {
-    System = 0,
-    Custom = 1,
-};
-pub const typeSystem = GPMStarterGPOType.System;
-pub const typeCustom = GPMStarterGPOType.Custom;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMBackupDirEx_Value = Guid.initString("f8dc55ed-3ba0-4864-aad4-d365189ee1d5");
-pub const IID_IGPMBackupDirEx = &IID_IGPMBackupDirEx_Value;
-pub const IGPMBackupDirEx = extern union {
+const IID_IGPMPermission_Value = Guid.initString("35ebca40-e1a1-4a02-8905-d79416fb464a");
+pub const IID_IGPMPermission = &IID_IGPMPermission_Value;
+pub const IGPMPermission = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackupDir: *const fn(
-            self: *const IGPMBackupDirEx,
-            pbstrBackupDir: ?*?BSTR,
+        get_Inherited: *const fn(
+            self: *const IGPMPermission,
+            pVal: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackupType: *const fn(
-            self: *const IGPMBackupDirEx,
-            pgpmBackupType: ?*GPMBackupType,
+        get_Inheritable: *const fn(
+            self: *const IGPMPermission,
+            pVal: ?*i16,
         ) callconv(.winapi) HRESULT,
-        GetBackup: *const fn(
-            self: *const IGPMBackupDirEx,
-            bstrID: ?BSTR,
-            pvarBackup: ?*VARIANT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Denied: *const fn(
+            self: *const IGPMPermission,
+            pVal: ?*i16,
         ) callconv(.winapi) HRESULT,
-        SearchBackups: *const fn(
-            self: *const IGPMBackupDirEx,
-            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
-            pvarBackupCollection: ?*VARIANT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Permission: *const fn(
+            self: *const IGPMPermission,
+            pVal: ?*GPMPermissionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Trustee: *const fn(
+            self: *const IGPMPermission,
+            ppIGPMTrustee: ?*?*IGPMTrustee,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BackupDir(self: *const IGPMBackupDirEx, pbstrBackupDir: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackupDir(self, pbstrBackupDir);
+    pub fn get_Inherited(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Inherited(self, pVal);
     }
-    pub fn get_BackupType(self: *const IGPMBackupDirEx, pgpmBackupType: ?*GPMBackupType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackupType(self, pgpmBackupType);
+    pub fn get_Inheritable(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Inheritable(self, pVal);
     }
-    pub fn GetBackup(self: *const IGPMBackupDirEx, bstrID: ?BSTR, pvarBackup: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBackup(self, bstrID, pvarBackup);
+    pub fn get_Denied(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Denied(self, pVal);
     }
-    pub fn SearchBackups(self: *const IGPMBackupDirEx, pIGPMSearchCriteria: ?*IGPMSearchCriteria, pvarBackupCollection: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchBackups(self, pIGPMSearchCriteria, pvarBackupCollection);
+    pub fn get_Permission(self: *const IGPMPermission, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Permission(self, pVal);
+    }
+    pub fn get_Trustee(self: *const IGPMPermission, ppIGPMTrustee: ?*?*IGPMTrustee) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Trustee(self, ppIGPMTrustee);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStarterGPOBackupCollection_Value = Guid.initString("c998031d-add0-4bb5-8dea-298505d8423b");
-pub const IID_IGPMStarterGPOBackupCollection = &IID_IGPMStarterGPOBackupCollection_Value;
-pub const IGPMStarterGPOBackupCollection = extern union {
+const IID_IGPMResult_Value = Guid.initString("86dff7e9-f76f-42ab-9570-cebc6be8a52d");
+pub const IID_IGPMResult = &IID_IGPMResult_Value;
+pub const IGPMResult = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IGPMStarterGPOBackupCollection,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IGPMStarterGPOBackupCollection,
-            lIndex: i32,
-            pVal: ?*VARIANT,
+        get_Status: *const fn(
+            self: *const IGPMResult,
+            ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IGPMStarterGPOBackupCollection,
-            ppIGPMTmplBackup: ?*?*IEnumVARIANT,
+        get_Result: *const fn(
+            self: *const IGPMResult,
+            pvarResult: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        OverallStatus: *const fn(
+            self: *const IGPMResult,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IGPMStarterGPOBackupCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pVal);
+    pub fn get_Status(self: *const IGPMResult, ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Status(self, ppIGPMStatusMsgCollection);
     }
-    pub fn get_Item(self: *const IGPMStarterGPOBackupCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, lIndex, pVal);
+    pub fn get_Result(self: *const IGPMResult, pvarResult: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Result(self, pvarResult);
     }
-    pub fn get__NewEnum(self: *const IGPMStarterGPOBackupCollection, ppIGPMTmplBackup: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppIGPMTmplBackup);
+    pub fn OverallStatus(self: *const IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.OverallStatus(self);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMStarterGPOBackup_Value = Guid.initString("51d98eda-a87e-43dd-b80a-0b66ef1938d6");
-pub const IID_IGPMStarterGPOBackup = &IID_IGPMStarterGPOBackup_Value;
-pub const IGPMStarterGPOBackup = extern union {
+const IID_IGPMRSOP_Value = Guid.initString("49ed785a-3237-4ff2-b1f0-fdf5a8d5a1ee");
+pub const IID_IGPMRSOP = &IID_IGPMRSOP_Value;
+pub const IGPMRSOP = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackupDir: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pbstrBackupDir: ?*?BSTR,
+        get_Mode: *const fn(
+            self: *const IGPMRSOP,
+            pVal: ?*GPMRSOPMode,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Comment: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pbstrComment: ?*?BSTR,
+        get_Namespace: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pbstrDisplayName: ?*?BSTR,
+        put_LoggingComputer: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Domain: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pbstrTemplateDomain: ?*?BSTR,
+        get_LoggingComputer: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StarterGPOID: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pbstrTemplateID: ?*?BSTR,
+        put_LoggingUser: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ID: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pbstrID: ?*?BSTR,
+        get_LoggingUser: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Timestamp: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pTimestamp: ?*f64,
+        put_LoggingFlags: *const fn(
+            self: *const IGPMRSOP,
+            lVal: i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IGPMStarterGPOBackup,
-            pType: ?*GPMStarterGPOType,
+        get_LoggingFlags: *const fn(
+            self: *const IGPMRSOP,
+            lVal: ?*i32,
         ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IGPMStarterGPOBackup,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningFlags: *const fn(
+            self: *const IGPMRSOP,
+            lVal: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningFlags: *const fn(
+            self: *const IGPMRSOP,
+            lVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningDomainController: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningDomainController: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningSiteName: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningSiteName: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningUser: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningUser: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningUserSOM: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningUserSOM: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningUserWMIFilters: *const fn(
+            self: *const IGPMRSOP,
+            varVal: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningUserWMIFilters: *const fn(
+            self: *const IGPMRSOP,
+            varVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningUserSecurityGroups: *const fn(
+            self: *const IGPMRSOP,
+            varVal: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningUserSecurityGroups: *const fn(
+            self: *const IGPMRSOP,
+            varVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningComputer: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningComputer: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningComputerSOM: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningComputerSOM: *const fn(
+            self: *const IGPMRSOP,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningComputerWMIFilters: *const fn(
+            self: *const IGPMRSOP,
+            varVal: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningComputerWMIFilters: *const fn(
+            self: *const IGPMRSOP,
+            varVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PlanningComputerSecurityGroups: *const fn(
+            self: *const IGPMRSOP,
+            varVal: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlanningComputerSecurityGroups: *const fn(
+            self: *const IGPMRSOP,
+            varVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        LoggingEnumerateUsers: *const fn(
+            self: *const IGPMRSOP,
+            varVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        CreateQueryResults: *const fn(
+            self: *const IGPMRSOP,
+        ) callconv(.winapi) HRESULT,
+        ReleaseQueryResults: *const fn(
+            self: *const IGPMRSOP,
         ) callconv(.winapi) HRESULT,
         GenerateReport: *const fn(
-            self: *const IGPMStarterGPOBackup,
+            self: *const IGPMRSOP,
             gpmReportType: GPMReportType,
             pvarGPMProgress: ?*VARIANT,
             pvarGPMCancel: ?*VARIANT,
             ppIGPMResult: ?*?*IGPMResult,
         ) callconv(.winapi) HRESULT,
         GenerateReportToFile: *const fn(
-            self: *const IGPMStarterGPOBackup,
+            self: *const IGPMRSOP,
             gpmReportType: GPMReportType,
             bstrTargetFilePath: ?BSTR,
             ppIGPMResult: ?*?*IGPMResult,
@@ -2952,68 +2754,365 @@ pub const IGPMStarterGPOBackup = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BackupDir(self: *const IGPMStarterGPOBackup, pbstrBackupDir: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackupDir(self, pbstrBackupDir);
+    pub fn get_Mode(self: *const IGPMRSOP, pVal: ?*GPMRSOPMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Mode(self, pVal);
     }
-    pub fn get_Comment(self: *const IGPMStarterGPOBackup, pbstrComment: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Comment(self, pbstrComment);
+    pub fn get_Namespace(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Namespace(self, bstrVal);
     }
-    pub fn get_DisplayName(self: *const IGPMStarterGPOBackup, pbstrDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayName(self, pbstrDisplayName);
+    pub fn put_LoggingComputer(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LoggingComputer(self, bstrVal);
     }
-    pub fn get_Domain(self: *const IGPMStarterGPOBackup, pbstrTemplateDomain: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Domain(self, pbstrTemplateDomain);
+    pub fn get_LoggingComputer(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LoggingComputer(self, bstrVal);
     }
-    pub fn get_StarterGPOID(self: *const IGPMStarterGPOBackup, pbstrTemplateID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StarterGPOID(self, pbstrTemplateID);
+    pub fn put_LoggingUser(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LoggingUser(self, bstrVal);
     }
-    pub fn get_ID(self: *const IGPMStarterGPOBackup, pbstrID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ID(self, pbstrID);
+    pub fn get_LoggingUser(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LoggingUser(self, bstrVal);
     }
-    pub fn get_Timestamp(self: *const IGPMStarterGPOBackup, pTimestamp: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Timestamp(self, pTimestamp);
+    pub fn put_LoggingFlags(self: *const IGPMRSOP, lVal: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LoggingFlags(self, lVal);
     }
-    pub fn get_Type(self: *const IGPMStarterGPOBackup, pType: ?*GPMStarterGPOType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, pType);
+    pub fn get_LoggingFlags(self: *const IGPMRSOP, lVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LoggingFlags(self, lVal);
     }
-    pub fn Delete(self: *const IGPMStarterGPOBackup) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
+    pub fn put_PlanningFlags(self: *const IGPMRSOP, lVal: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningFlags(self, lVal);
     }
-    pub fn GenerateReport(self: *const IGPMStarterGPOBackup, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+    pub fn get_PlanningFlags(self: *const IGPMRSOP, lVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningFlags(self, lVal);
+    }
+    pub fn put_PlanningDomainController(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningDomainController(self, bstrVal);
+    }
+    pub fn get_PlanningDomainController(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningDomainController(self, bstrVal);
+    }
+    pub fn put_PlanningSiteName(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningSiteName(self, bstrVal);
+    }
+    pub fn get_PlanningSiteName(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningSiteName(self, bstrVal);
+    }
+    pub fn put_PlanningUser(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningUser(self, bstrVal);
+    }
+    pub fn get_PlanningUser(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningUser(self, bstrVal);
+    }
+    pub fn put_PlanningUserSOM(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningUserSOM(self, bstrVal);
+    }
+    pub fn get_PlanningUserSOM(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningUserSOM(self, bstrVal);
+    }
+    pub fn put_PlanningUserWMIFilters(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningUserWMIFilters(self, varVal);
+    }
+    pub fn get_PlanningUserWMIFilters(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningUserWMIFilters(self, varVal);
+    }
+    pub fn put_PlanningUserSecurityGroups(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningUserSecurityGroups(self, varVal);
+    }
+    pub fn get_PlanningUserSecurityGroups(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningUserSecurityGroups(self, varVal);
+    }
+    pub fn put_PlanningComputer(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningComputer(self, bstrVal);
+    }
+    pub fn get_PlanningComputer(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningComputer(self, bstrVal);
+    }
+    pub fn put_PlanningComputerSOM(self: *const IGPMRSOP, bstrVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningComputerSOM(self, bstrVal);
+    }
+    pub fn get_PlanningComputerSOM(self: *const IGPMRSOP, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningComputerSOM(self, bstrVal);
+    }
+    pub fn put_PlanningComputerWMIFilters(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningComputerWMIFilters(self, varVal);
+    }
+    pub fn get_PlanningComputerWMIFilters(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningComputerWMIFilters(self, varVal);
+    }
+    pub fn put_PlanningComputerSecurityGroups(self: *const IGPMRSOP, varVal: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PlanningComputerSecurityGroups(self, varVal);
+    }
+    pub fn get_PlanningComputerSecurityGroups(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlanningComputerSecurityGroups(self, varVal);
+    }
+    pub fn LoggingEnumerateUsers(self: *const IGPMRSOP, varVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.LoggingEnumerateUsers(self, varVal);
+    }
+    pub fn CreateQueryResults(self: *const IGPMRSOP) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateQueryResults(self);
+    }
+    pub fn ReleaseQueryResults(self: *const IGPMRSOP) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseQueryResults(self);
+    }
+    pub fn GenerateReport(self: *const IGPMRSOP, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
         return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
-    pub fn GenerateReportToFile(self: *const IGPMStarterGPOBackup, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+    pub fn GenerateReportToFile(self: *const IGPMRSOP, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
         return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPM2_Value = Guid.initString("00238f8a-3d86-41ac-8f5e-06a6638a634a");
-pub const IID_IGPM2 = &IID_IGPM2_Value;
-pub const IGPM2 = extern union {
+const IID_IGPMSearchCriteria_Value = Guid.initString("d6f11c42-829b-48d4-83f5-3615b67dfc22");
+pub const IID_IGPMSearchCriteria = &IID_IGPMSearchCriteria_Value;
+pub const IGPMSearchCriteria = extern union {
     pub const VTable = extern struct {
-        base: IGPM.VTable,
-        GetBackupDirEx: *const fn(
-            self: *const IGPM2,
-            bstrBackupDir: ?BSTR,
-            backupDirType: GPMBackupType,
-            ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx,
-        ) callconv(.winapi) HRESULT,
-        InitializeReportingEx: *const fn(
-            self: *const IGPM2,
-            bstrAdmPath: ?BSTR,
-            reportingOptions: i32,
+        base: IDispatch.VTable,
+        Add: *const fn(
+            self: *const IGPMSearchCriteria,
+            searchProperty: GPMSearchProperty,
+            searchOperation: GPMSearchOperation,
+            varValue: VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IGPM: IGPM,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetBackupDirEx(self: *const IGPM2, bstrBackupDir: ?BSTR, backupDirType: GPMBackupType, ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBackupDirEx(self, bstrBackupDir, backupDirType, ppIGPMBackupDirEx);
+    pub fn Add(self: *const IGPMSearchCriteria, searchProperty: GPMSearchProperty, searchOperation: GPMSearchOperation, varValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, searchProperty, searchOperation, varValue);
     }
-    pub fn InitializeReportingEx(self: *const IGPM2, bstrAdmPath: ?BSTR, reportingOptions: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeReportingEx(self, bstrAdmPath, reportingOptions);
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMSecurityInfo_Value = Guid.initString("b6c31ed4-1c93-4d3e-ae84-eb6d61161b60");
+pub const IID_IGPMSecurityInfo = &IID_IGPMSecurityInfo_Value;
+pub const IGPMSecurityInfo = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IGPMSecurityInfo,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IGPMSecurityInfo,
+            lIndex: i32,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IGPMSecurityInfo,
+            ppEnum: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IGPMSecurityInfo,
+            pPerm: ?*IGPMPermission,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IGPMSecurityInfo,
+            pPerm: ?*IGPMPermission,
+        ) callconv(.winapi) HRESULT,
+        RemoveTrustee: *const fn(
+            self: *const IGPMSecurityInfo,
+            bstrTrustee: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IGPMSecurityInfo, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+    pub fn get_Item(self: *const IGPMSecurityInfo, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
+    }
+    pub fn get__NewEnum(self: *const IGPMSecurityInfo, ppEnum: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppEnum);
+    }
+    pub fn Add(self: *const IGPMSecurityInfo, pPerm: ?*IGPMPermission) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, pPerm);
+    }
+    pub fn Remove(self: *const IGPMSecurityInfo, pPerm: ?*IGPMPermission) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, pPerm);
+    }
+    pub fn RemoveTrustee(self: *const IGPMSecurityInfo, bstrTrustee: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveTrustee(self, bstrTrustee);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMSitesContainer_Value = Guid.initString("4725a899-2782-4d27-a6bb-d499246ffd72");
+pub const IID_IGPMSitesContainer = &IID_IGPMSitesContainer_Value;
+pub const IGPMSitesContainer = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DomainController: *const fn(
+            self: *const IGPMSitesContainer,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Domain: *const fn(
+            self: *const IGPMSitesContainer,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Forest: *const fn(
+            self: *const IGPMSitesContainer,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSite: *const fn(
+            self: *const IGPMSitesContainer,
+            bstrSiteName: ?BSTR,
+            ppSOM: ?*?*IGPMSOM,
+        ) callconv(.winapi) HRESULT,
+        SearchSites: *const fn(
+            self: *const IGPMSitesContainer,
+            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
+            ppIGPMSOMCollection: ?*?*IGPMSOMCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DomainController(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DomainController(self, pVal);
+    }
+    pub fn get_Domain(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Domain(self, pVal);
+    }
+    pub fn get_Forest(self: *const IGPMSitesContainer, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Forest(self, pVal);
+    }
+    pub fn GetSite(self: *const IGPMSitesContainer, bstrSiteName: ?BSTR, ppSOM: ?*?*IGPMSOM) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSite(self, bstrSiteName, ppSOM);
+    }
+    pub fn SearchSites(self: *const IGPMSitesContainer, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchSites(self, pIGPMSearchCriteria, ppIGPMSOMCollection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMSOM_Value = Guid.initString("c0a7f09e-05a1-4f0c-8158-9e5c33684f6b");
+pub const IID_IGPMSOM = &IID_IGPMSOM_Value;
+pub const IGPMSOM = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GPOInheritanceBlocked: *const fn(
+            self: *const IGPMSOM,
+            pVal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_GPOInheritanceBlocked: *const fn(
+            self: *const IGPMSOM,
+            newVal: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IGPMSOM,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const IGPMSOM,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        CreateGPOLink: *const fn(
+            self: *const IGPMSOM,
+            lLinkPos: i32,
+            pGPO: ?*IGPMGPO,
+            ppNewGPOLink: ?*?*IGPMGPOLink,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const IGPMSOM,
+            pVal: ?*GPMSOMType,
+        ) callconv(.winapi) HRESULT,
+        GetGPOLinks: *const fn(
+            self: *const IGPMSOM,
+            ppGPOLinks: ?*?*IGPMGPOLinksCollection,
+        ) callconv(.winapi) HRESULT,
+        GetInheritedGPOLinks: *const fn(
+            self: *const IGPMSOM,
+            ppGPOLinks: ?*?*IGPMGPOLinksCollection,
+        ) callconv(.winapi) HRESULT,
+        GetSecurityInfo: *const fn(
+            self: *const IGPMSOM,
+            ppSecurityInfo: ?*?*IGPMSecurityInfo,
+        ) callconv(.winapi) HRESULT,
+        SetSecurityInfo: *const fn(
+            self: *const IGPMSOM,
+            pSecurityInfo: ?*IGPMSecurityInfo,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_GPOInheritanceBlocked(self: *const IGPMSOM, pVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GPOInheritanceBlocked(self, pVal);
+    }
+    pub fn put_GPOInheritanceBlocked(self: *const IGPMSOM, newVal: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_GPOInheritanceBlocked(self, newVal);
+    }
+    pub fn get_Name(self: *const IGPMSOM, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pVal);
+    }
+    pub fn get_Path(self: *const IGPMSOM, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, pVal);
+    }
+    pub fn CreateGPOLink(self: *const IGPMSOM, lLinkPos: i32, pGPO: ?*IGPMGPO, ppNewGPOLink: ?*?*IGPMGPOLink) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateGPOLink(self, lLinkPos, pGPO, ppNewGPOLink);
+    }
+    pub fn get_Type(self: *const IGPMSOM, pVal: ?*GPMSOMType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, pVal);
+    }
+    pub fn GetGPOLinks(self: *const IGPMSOM, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGPOLinks(self, ppGPOLinks);
+    }
+    pub fn GetInheritedGPOLinks(self: *const IGPMSOM, ppGPOLinks: ?*?*IGPMGPOLinksCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInheritedGPOLinks(self, ppGPOLinks);
+    }
+    pub fn GetSecurityInfo(self: *const IGPMSOM, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
+    }
+    pub fn SetSecurityInfo(self: *const IGPMSOM, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMSOMCollection_Value = Guid.initString("adc1688e-00e4-4495-abba-bed200df0cab");
+pub const IID_IGPMSOMCollection = &IID_IGPMSOMCollection_Value;
+pub const IGPMSOMCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IGPMSOMCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IGPMSOMCollection,
+            lIndex: i32,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IGPMSOMCollection,
+            ppIGPMSOM: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IGPMSOMCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+    pub fn get_Item(self: *const IGPMSOMCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
+    }
+    pub fn get__NewEnum(self: *const IGPMSOMCollection, ppIGPMSOM: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppIGPMSOM);
     }
 };
 
@@ -3211,6 +3310,143 @@ pub const IGPMStarterGPO = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMStarterGPOBackup_Value = Guid.initString("51d98eda-a87e-43dd-b80a-0b66ef1938d6");
+pub const IID_IGPMStarterGPOBackup = &IID_IGPMStarterGPOBackup_Value;
+pub const IGPMStarterGPOBackup = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BackupDir: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pbstrBackupDir: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Comment: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pbstrComment: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayName: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pbstrDisplayName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Domain: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pbstrTemplateDomain: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StarterGPOID: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pbstrTemplateID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ID: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pbstrID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Timestamp: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pTimestamp: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            pType: ?*GPMStarterGPOType,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IGPMStarterGPOBackup,
+        ) callconv(.winapi) HRESULT,
+        GenerateReport: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            gpmReportType: GPMReportType,
+            pvarGPMProgress: ?*VARIANT,
+            pvarGPMCancel: ?*VARIANT,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+        GenerateReportToFile: *const fn(
+            self: *const IGPMStarterGPOBackup,
+            gpmReportType: GPMReportType,
+            bstrTargetFilePath: ?BSTR,
+            ppIGPMResult: ?*?*IGPMResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_BackupDir(self: *const IGPMStarterGPOBackup, pbstrBackupDir: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackupDir(self, pbstrBackupDir);
+    }
+    pub fn get_Comment(self: *const IGPMStarterGPOBackup, pbstrComment: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Comment(self, pbstrComment);
+    }
+    pub fn get_DisplayName(self: *const IGPMStarterGPOBackup, pbstrDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayName(self, pbstrDisplayName);
+    }
+    pub fn get_Domain(self: *const IGPMStarterGPOBackup, pbstrTemplateDomain: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Domain(self, pbstrTemplateDomain);
+    }
+    pub fn get_StarterGPOID(self: *const IGPMStarterGPOBackup, pbstrTemplateID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StarterGPOID(self, pbstrTemplateID);
+    }
+    pub fn get_ID(self: *const IGPMStarterGPOBackup, pbstrID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ID(self, pbstrID);
+    }
+    pub fn get_Timestamp(self: *const IGPMStarterGPOBackup, pTimestamp: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Timestamp(self, pTimestamp);
+    }
+    pub fn get_Type(self: *const IGPMStarterGPOBackup, pType: ?*GPMStarterGPOType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, pType);
+    }
+    pub fn Delete(self: *const IGPMStarterGPOBackup) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn GenerateReport(self: *const IGPMStarterGPOBackup, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    }
+    pub fn GenerateReportToFile(self: *const IGPMStarterGPOBackup, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+        return self.vtable.GenerateReportToFile(self, gpmReportType, bstrTargetFilePath, ppIGPMResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMStarterGPOBackupCollection_Value = Guid.initString("c998031d-add0-4bb5-8dea-298505d8423b");
+pub const IID_IGPMStarterGPOBackupCollection = &IID_IGPMStarterGPOBackupCollection_Value;
+pub const IGPMStarterGPOBackupCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IGPMStarterGPOBackupCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IGPMStarterGPOBackupCollection,
+            lIndex: i32,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IGPMStarterGPOBackupCollection,
+            ppIGPMTmplBackup: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IGPMStarterGPOBackupCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
+    }
+    pub fn get_Item(self: *const IGPMStarterGPOBackupCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
+    }
+    pub fn get__NewEnum(self: *const IGPMStarterGPOBackupCollection, ppIGPMTmplBackup: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppIGPMTmplBackup);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IGPMStarterGPOCollection_Value = Guid.initString("2e522729-2219-44ad-933a-64dfd650c423");
 pub const IID_IGPMStarterGPOCollection = &IID_IGPMStarterGPOCollection_Value;
 pub const IGPMStarterGPOCollection = extern union {
@@ -3247,601 +3483,255 @@ pub const IGPMStarterGPOCollection = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMDomain2_Value = Guid.initString("7ca6bb8b-f1eb-490a-938d-3c4e51c768e6");
-pub const IID_IGPMDomain2 = &IID_IGPMDomain2_Value;
-pub const IGPMDomain2 = extern union {
+const IID_IGPMStatusMessage_Value = Guid.initString("8496c22f-f3de-4a1f-8f58-603caaa93d7b");
+pub const IID_IGPMStatusMessage = &IID_IGPMStatusMessage_Value;
+pub const IGPMStatusMessage = extern union {
     pub const VTable = extern struct {
-        base: IGPMDomain.VTable,
-        CreateStarterGPO: *const fn(
-            self: *const IGPMDomain2,
-            ppnewTemplate: ?*?*IGPMStarterGPO,
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ObjectPath: *const fn(
+            self: *const IGPMStatusMessage,
+            pVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        CreateGPOFromStarterGPO: *const fn(
-            self: *const IGPMDomain2,
-            pGPOTemplate: ?*IGPMStarterGPO,
-            ppnewGPO: ?*?*IGPMGPO,
+        ErrorCode: *const fn(
+            self: *const IGPMStatusMessage,
         ) callconv(.winapi) HRESULT,
-        GetStarterGPO: *const fn(
-            self: *const IGPMDomain2,
-            bstrGuid: ?BSTR,
-            ppTemplate: ?*?*IGPMStarterGPO,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExtensionName: *const fn(
+            self: *const IGPMStatusMessage,
+            pVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        SearchStarterGPOs: *const fn(
-            self: *const IGPMDomain2,
-            pIGPMSearchCriteria: ?*IGPMSearchCriteria,
-            ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SettingsName: *const fn(
+            self: *const IGPMStatusMessage,
+            pVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        LoadStarterGPO: *const fn(
-            self: *const IGPMDomain2,
-            bstrLoadFile: ?BSTR,
-            bOverwrite: i16,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
+        OperationCode: *const fn(
+            self: *const IGPMStatusMessage,
         ) callconv(.winapi) HRESULT,
-        RestoreStarterGPO: *const fn(
-            self: *const IGPMDomain2,
-            pIGPMTmplBackup: ?*IGPMStarterGPOBackup,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Message: *const fn(
+            self: *const IGPMStatusMessage,
+            pVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IGPMDomain: IGPMDomain,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateStarterGPO(self: *const IGPMDomain2, ppnewTemplate: ?*?*IGPMStarterGPO) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateStarterGPO(self, ppnewTemplate);
+    pub fn get_ObjectPath(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ObjectPath(self, pVal);
     }
-    pub fn CreateGPOFromStarterGPO(self: *const IGPMDomain2, pGPOTemplate: ?*IGPMStarterGPO, ppnewGPO: ?*?*IGPMGPO) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateGPOFromStarterGPO(self, pGPOTemplate, ppnewGPO);
+    pub fn ErrorCode(self: *const IGPMStatusMessage) callconv(.@"inline") HRESULT {
+        return self.vtable.ErrorCode(self);
     }
-    pub fn GetStarterGPO(self: *const IGPMDomain2, bstrGuid: ?BSTR, ppTemplate: ?*?*IGPMStarterGPO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStarterGPO(self, bstrGuid, ppTemplate);
+    pub fn get_ExtensionName(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExtensionName(self, pVal);
     }
-    pub fn SearchStarterGPOs(self: *const IGPMDomain2, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchStarterGPOs(self, pIGPMSearchCriteria, ppIGPMTemplateCollection);
+    pub fn get_SettingsName(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SettingsName(self, pVal);
     }
-    pub fn LoadStarterGPO(self: *const IGPMDomain2, bstrLoadFile: ?BSTR, bOverwrite: i16, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadStarterGPO(self, bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    pub fn OperationCode(self: *const IGPMStatusMessage) callconv(.@"inline") HRESULT {
+        return self.vtable.OperationCode(self);
     }
-    pub fn RestoreStarterGPO(self: *const IGPMDomain2, pIGPMTmplBackup: ?*IGPMStarterGPOBackup, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreStarterGPO(self, pIGPMTmplBackup, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    pub fn get_Message(self: *const IGPMStatusMessage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Message(self, pVal);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMConstants2_Value = Guid.initString("05ae21b0-ac09-4032-a26f-9e7da786dc19");
-pub const IID_IGPMConstants2 = &IID_IGPMConstants2_Value;
-pub const IGPMConstants2 = extern union {
+const IID_IGPMStatusMsgCollection_Value = Guid.initString("9b6e1af0-1a92-40f3-a59d-f36ac1f728b7");
+pub const IID_IGPMStatusMsgCollection = &IID_IGPMStatusMsgCollection_Value;
+pub const IGPMStatusMsgCollection = extern union {
     pub const VTable = extern struct {
-        base: IGPMConstants.VTable,
+        base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackupTypeGPO: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMBackupType,
+        get_Count: *const fn(
+            self: *const IGPMStatusMsgCollection,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IGPMStatusMsgCollection,
+            lIndex: i32,
+            pVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackupTypeStarterGPO: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMBackupType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StarterGPOTypeSystem: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMStarterGPOType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StarterGPOTypeCustom: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMStarterGPOType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchPropertyStarterGPOPermissions: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMSearchProperty,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchPropertyStarterGPOEffectivePermissions: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMSearchProperty,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchPropertyStarterGPODisplayName: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMSearchProperty,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchPropertyStarterGPOID: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMSearchProperty,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchPropertyStarterGPODomain: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMSearchProperty,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PermStarterGPORead: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMPermissionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PermStarterGPOEdit: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMPermissionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PermStarterGPOFullControl: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMPermissionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PermStarterGPOCustom: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMPermissionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReportLegacy: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMReportingOptions,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReportComments: *const fn(
-            self: *const IGPMConstants2,
-            pVal: ?*GPMReportingOptions,
+        get__NewEnum: *const fn(
+            self: *const IGPMStatusMsgCollection,
+            pVal: ?*?*IEnumVARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IGPMConstants: IGPMConstants,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BackupTypeGPO(self: *const IGPMConstants2, pVal: ?*GPMBackupType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackupTypeGPO(self, pVal);
+    pub fn get_Count(self: *const IGPMStatusMsgCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
     }
-    pub fn get_BackupTypeStarterGPO(self: *const IGPMConstants2, pVal: ?*GPMBackupType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackupTypeStarterGPO(self, pVal);
+    pub fn get_Item(self: *const IGPMStatusMsgCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
-    pub fn get_StarterGPOTypeSystem(self: *const IGPMConstants2, pVal: ?*GPMStarterGPOType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StarterGPOTypeSystem(self, pVal);
-    }
-    pub fn get_StarterGPOTypeCustom(self: *const IGPMConstants2, pVal: ?*GPMStarterGPOType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StarterGPOTypeCustom(self, pVal);
-    }
-    pub fn get_SearchPropertyStarterGPOPermissions(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SearchPropertyStarterGPOPermissions(self, pVal);
-    }
-    pub fn get_SearchPropertyStarterGPOEffectivePermissions(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SearchPropertyStarterGPOEffectivePermissions(self, pVal);
-    }
-    pub fn get_SearchPropertyStarterGPODisplayName(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SearchPropertyStarterGPODisplayName(self, pVal);
-    }
-    pub fn get_SearchPropertyStarterGPOID(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SearchPropertyStarterGPOID(self, pVal);
-    }
-    pub fn get_SearchPropertyStarterGPODomain(self: *const IGPMConstants2, pVal: ?*GPMSearchProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SearchPropertyStarterGPODomain(self, pVal);
-    }
-    pub fn get_PermStarterGPORead(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PermStarterGPORead(self, pVal);
-    }
-    pub fn get_PermStarterGPOEdit(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PermStarterGPOEdit(self, pVal);
-    }
-    pub fn get_PermStarterGPOFullControl(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PermStarterGPOFullControl(self, pVal);
-    }
-    pub fn get_PermStarterGPOCustom(self: *const IGPMConstants2, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PermStarterGPOCustom(self, pVal);
-    }
-    pub fn get_ReportLegacy(self: *const IGPMConstants2, pVal: ?*GPMReportingOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReportLegacy(self, pVal);
-    }
-    pub fn get_ReportComments(self: *const IGPMConstants2, pVal: ?*GPMReportingOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReportComments(self, pVal);
+    pub fn get__NewEnum(self: *const IGPMStatusMsgCollection, pVal: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPMGPO2_Value = Guid.initString("8a66a210-b78b-4d99-88e2-c306a817c925");
-pub const IID_IGPMGPO2 = &IID_IGPMGPO2_Value;
-pub const IGPMGPO2 = extern union {
+const IID_IGPMTrustee_Value = Guid.initString("3b466da8-c1a4-4b2a-999a-befcdd56cefb");
+pub const IID_IGPMTrustee = &IID_IGPMTrustee_Value;
+pub const IGPMTrustee = extern union {
     pub const VTable = extern struct {
-        base: IGPMGPO.VTable,
+        base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IGPMGPO2,
+        get_TrusteeSid: *const fn(
+            self: *const IGPMTrustee,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TrusteeName: *const fn(
+            self: *const IGPMTrustee,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TrusteeDomain: *const fn(
+            self: *const IGPMTrustee,
+            bstrVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TrusteeDSPath: *const fn(
+            self: *const IGPMTrustee,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TrusteeType: *const fn(
+            self: *const IGPMTrustee,
+            lVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_TrusteeSid(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TrusteeSid(self, bstrVal);
+    }
+    pub fn get_TrusteeName(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TrusteeName(self, bstrVal);
+    }
+    pub fn get_TrusteeDomain(self: *const IGPMTrustee, bstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TrusteeDomain(self, bstrVal);
+    }
+    pub fn get_TrusteeDSPath(self: *const IGPMTrustee, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TrusteeDSPath(self, pVal);
+    }
+    pub fn get_TrusteeType(self: *const IGPMTrustee, lVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TrusteeType(self, lVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IGPMWMIFilter_Value = Guid.initString("ef2ff9b4-3c27-459a-b979-038305cec75d");
+pub const IID_IGPMWMIFilter = &IID_IGPMWMIFilter_Value;
+pub const IGPMWMIFilter = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const IGPMWMIFilter,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IGPMWMIFilter,
+            newVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IGPMWMIFilter,
             pVal: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
-            self: *const IGPMGPO2,
+            self: *const IGPMWMIFilter,
             newVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IGPMWMIFilter,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetQueryList: *const fn(
+            self: *const IGPMWMIFilter,
+            pQryList: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetSecurityInfo: *const fn(
+            self: *const IGPMWMIFilter,
+            ppSecurityInfo: ?*?*IGPMSecurityInfo,
+        ) callconv(.winapi) HRESULT,
+        SetSecurityInfo: *const fn(
+            self: *const IGPMWMIFilter,
+            pSecurityInfo: ?*IGPMSecurityInfo,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IGPMGPO: IGPMGPO,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Description(self: *const IGPMGPO2, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pVal);
+    pub fn get_Path(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, pVal);
     }
-    pub fn put_Description(self: *const IGPMGPO2, newVal: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn put_Name(self: *const IGPMWMIFilter, newVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, newVal);
+    }
+    pub fn get_Name(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pVal);
+    }
+    pub fn put_Description(self: *const IGPMWMIFilter, newVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, newVal);
     }
-};
-
-const IID_IGPMDomain3_Value = Guid.initString("0077fdfe-88c7-4acf-a11d-d10a7c310a03");
-pub const IID_IGPMDomain3 = &IID_IGPMDomain3_Value;
-pub const IGPMDomain3 = extern union {
-    pub const VTable = extern struct {
-        base: IGPMDomain2.VTable,
-        GenerateReport: *const fn(
-            self: *const IGPMDomain3,
-            gpmReportType: GPMReportType,
-            pvarGPMProgress: ?*VARIANT,
-            pvarGPMCancel: ?*VARIANT,
-            ppIGPMResult: ?*?*IGPMResult,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InfrastructureDC: *const fn(
-            self: *const IGPMDomain3,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InfrastructureDC: *const fn(
-            self: *const IGPMDomain3,
-            newVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InfrastructureFlags: *const fn(
-            self: *const IGPMDomain3,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IGPMDomain2: IGPMDomain2,
-    IGPMDomain: IGPMDomain,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn GenerateReport(self: *const IGPMDomain3, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
-        return self.vtable.GenerateReport(self, gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+    pub fn get_Description(self: *const IGPMWMIFilter, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pVal);
     }
-    pub fn get_InfrastructureDC(self: *const IGPMDomain3, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InfrastructureDC(self, pVal);
+    pub fn GetQueryList(self: *const IGPMWMIFilter, pQryList: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetQueryList(self, pQryList);
     }
-    pub fn put_InfrastructureDC(self: *const IGPMDomain3, newVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_InfrastructureDC(self, newVal);
+    pub fn GetSecurityInfo(self: *const IGPMWMIFilter, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecurityInfo(self, ppSecurityInfo);
     }
-    pub fn put_InfrastructureFlags(self: *const IGPMDomain3, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_InfrastructureFlags(self, dwFlags);
+    pub fn SetSecurityInfo(self: *const IGPMWMIFilter, pSecurityInfo: ?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSecurityInfo(self, pSecurityInfo);
     }
 };
-
-const IID_IGPMGPO3_Value = Guid.initString("7cf123a1-f94a-4112-bfae-6aa1db9cb248");
-pub const IID_IGPMGPO3 = &IID_IGPMGPO3_Value;
-pub const IGPMGPO3 = extern union {
-    pub const VTable = extern struct {
-        base: IGPMGPO2.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InfrastructureDC: *const fn(
-            self: *const IGPMGPO3,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InfrastructureDC: *const fn(
-            self: *const IGPMGPO3,
-            newVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InfrastructureFlags: *const fn(
-            self: *const IGPMGPO3,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IGPMGPO2: IGPMGPO2,
-    IGPMGPO: IGPMGPO,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_InfrastructureDC(self: *const IGPMGPO3, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InfrastructureDC(self, pVal);
-    }
-    pub fn put_InfrastructureDC(self: *const IGPMGPO3, newVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_InfrastructureDC(self, newVal);
-    }
-    pub fn put_InfrastructureFlags(self: *const IGPMGPO3, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_InfrastructureFlags(self, dwFlags);
-    }
-};
-
-pub const GPO_LINK = enum(i32) {
-    Unknown = 0,
-    Machine = 1,
-    Site = 2,
-    Domain = 3,
-    OrganizationalUnit = 4,
-};
-pub const GPLinkUnknown = GPO_LINK.Unknown;
-pub const GPLinkMachine = GPO_LINK.Machine;
-pub const GPLinkSite = GPO_LINK.Site;
-pub const GPLinkDomain = GPO_LINK.Domain;
-pub const GPLinkOrganizationalUnit = GPO_LINK.OrganizationalUnit;
-
-pub const GROUP_POLICY_OBJECTA = extern struct {
-    dwOptions: u32,
-    dwVersion: u32,
-    lpDSPath: ?PSTR,
-    lpFileSysPath: ?PSTR,
-    lpDisplayName: ?PSTR,
-    szGPOName: [50]CHAR,
-    GPOLink: GPO_LINK,
-    lParam: LPARAM,
-    pNext: ?*GROUP_POLICY_OBJECTA,
-    pPrev: ?*GROUP_POLICY_OBJECTA,
-    lpExtensions: ?PSTR,
-    lParam2: LPARAM,
-    lpLink: ?PSTR,
-};
-
-pub const GROUP_POLICY_OBJECTW = extern struct {
-    dwOptions: u32,
-    dwVersion: u32,
-    lpDSPath: ?PWSTR,
-    lpFileSysPath: ?PWSTR,
-    lpDisplayName: ?PWSTR,
-    szGPOName: [50]u16,
-    GPOLink: GPO_LINK,
-    lParam: LPARAM,
-    pNext: ?*GROUP_POLICY_OBJECTW,
-    pPrev: ?*GROUP_POLICY_OBJECTW,
-    lpExtensions: ?PWSTR,
-    lParam2: LPARAM,
-    lpLink: ?PWSTR,
-};
-
-pub const PFNSTATUSMESSAGECALLBACK = *const fn(
-    bVerbose: BOOL,
-    lpMessage: ?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PFNPROCESSGROUPPOLICY = *const fn(
-    dwFlags: u32,
-    hToken: ?HANDLE,
-    hKeyRoot: ?HKEY,
-    pDeletedGPOList: ?*GROUP_POLICY_OBJECTA,
-    pChangedGPOList: ?*GROUP_POLICY_OBJECTA,
-    pHandle: usize,
-    pbAbort: ?*BOOL,
-    pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
-) callconv(.winapi) u32;
-
-pub const PFNPROCESSGROUPPOLICYEX = *const fn(
-    dwFlags: u32,
-    hToken: ?HANDLE,
-    hKeyRoot: ?HKEY,
-    pDeletedGPOList: ?*GROUP_POLICY_OBJECTA,
-    pChangedGPOList: ?*GROUP_POLICY_OBJECTA,
-    pHandle: usize,
-    pbAbort: ?*BOOL,
-    pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
-    pWbemServices: ?*IWbemServices,
-    pRsopStatus: ?*HRESULT,
-) callconv(.winapi) u32;
-
-pub const RSOP_TARGET = extern struct {
-    pwszAccountName: ?PWSTR,
-    pwszNewSOM: ?PWSTR,
-    psaSecurityGroups: ?*SAFEARRAY,
-    pRsopToken: ?*anyopaque,
-    pGPOList: ?*GROUP_POLICY_OBJECTA,
-    pWbemServices: ?*IWbemServices,
-};
-
-pub const PFNGENERATEGROUPPOLICY = *const fn(
-    dwFlags: u32,
-    pbAbort: ?*BOOL,
-    pwszSite: ?PWSTR,
-    pComputerTarget: ?*RSOP_TARGET,
-    pUserTarget: ?*RSOP_TARGET,
-) callconv(.winapi) u32;
-
-pub const SETTINGSTATUS = enum(i32) {
-    Unspecified = 0,
-    Applied = 1,
-    Ignored = 2,
-    Failed = 3,
-    SubsettingFailed = 4,
-};
-pub const RSOPUnspecified = SETTINGSTATUS.Unspecified;
-pub const RSOPApplied = SETTINGSTATUS.Applied;
-pub const RSOPIgnored = SETTINGSTATUS.Ignored;
-pub const RSOPFailed = SETTINGSTATUS.Failed;
-pub const RSOPSubsettingFailed = SETTINGSTATUS.SubsettingFailed;
-
-pub const POLICYSETTINGSTATUSINFO = extern struct {
-    szKey: ?PWSTR,
-    szEventSource: ?PWSTR,
-    szEventLogName: ?PWSTR,
-    dwEventID: u32,
-    dwErrorCode: u32,
-    status: SETTINGSTATUS,
-    timeLogged: SYSTEMTIME,
-};
-
-pub const INSTALLSPECTYPE = enum(i32) {
-    APPNAME = 1,
-    FILEEXT = 2,
-    PROGID = 3,
-    COMCLASS = 4,
-};
-pub const APPNAME = INSTALLSPECTYPE.APPNAME;
-pub const FILEEXT = INSTALLSPECTYPE.FILEEXT;
-pub const PROGID = INSTALLSPECTYPE.PROGID;
-pub const COMCLASS = INSTALLSPECTYPE.COMCLASS;
-
-pub const INSTALLSPEC = extern union {
-    AppName: extern struct {
-        Name: ?PWSTR,
-        GPOId: Guid,
-    },
-    FileExt: ?PWSTR,
-    ProgId: ?PWSTR,
-    COMClass: extern struct {
-        Clsid: Guid,
-        ClsCtx: u32,
-    },
-};
-
-pub const INSTALLDATA = extern struct {
-    Type: INSTALLSPECTYPE,
-    Spec: INSTALLSPEC,
-};
-
-pub const APPSTATE = enum(i32) {
-    ABSENT = 0,
-    ASSIGNED = 1,
-    PUBLISHED = 2,
-};
-pub const ABSENT = APPSTATE.ABSENT;
-pub const ASSIGNED = APPSTATE.ASSIGNED;
-pub const PUBLISHED = APPSTATE.PUBLISHED;
-
-pub const LOCALMANAGEDAPPLICATION = extern struct {
-    pszDeploymentName: ?PWSTR,
-    pszPolicyName: ?PWSTR,
-    pszProductId: ?PWSTR,
-    dwState: u32,
-};
-
-pub const MANAGEDAPPLICATION = extern struct {
-    pszPackageName: ?PWSTR,
-    pszPublisher: ?PWSTR,
-    dwVersionHi: u32,
-    dwVersionLo: u32,
-    dwRevision: u32,
-    GpoId: Guid,
-    pszPolicyName: ?PWSTR,
-    ProductId: Guid,
-    Language: u16,
-    pszOwner: ?PWSTR,
-    pszCompany: ?PWSTR,
-    pszComments: ?PWSTR,
-    pszContact: ?PWSTR,
-    pszSupportUrl: ?PWSTR,
-    dwPathType: u32,
-    bInstalled: BOOL,
-};
-
-pub const GROUP_POLICY_OBJECT_TYPE = enum(i32) {
-    Local = 0,
-    Remote = 1,
-    DS = 2,
-    LocalUser = 3,
-    LocalGroup = 4,
-};
-pub const GPOTypeLocal = GROUP_POLICY_OBJECT_TYPE.Local;
-pub const GPOTypeRemote = GROUP_POLICY_OBJECT_TYPE.Remote;
-pub const GPOTypeDS = GROUP_POLICY_OBJECT_TYPE.DS;
-pub const GPOTypeLocalUser = GROUP_POLICY_OBJECT_TYPE.LocalUser;
-pub const GPOTypeLocalGroup = GROUP_POLICY_OBJECT_TYPE.LocalGroup;
-
-pub const GROUP_POLICY_HINT_TYPE = enum(i32) {
-    Unknown = 0,
-    Machine = 1,
-    Site = 2,
-    Domain = 3,
-    OrganizationalUnit = 4,
-};
-pub const GPHintUnknown = GROUP_POLICY_HINT_TYPE.Unknown;
-pub const GPHintMachine = GROUP_POLICY_HINT_TYPE.Machine;
-pub const GPHintSite = GROUP_POLICY_HINT_TYPE.Site;
-pub const GPHintDomain = GROUP_POLICY_HINT_TYPE.Domain;
-pub const GPHintOrganizationalUnit = GROUP_POLICY_HINT_TYPE.OrganizationalUnit;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGPEInformation_Value = Guid.initString("8fc0b735-a0e1-11d1-a7d3-0000f87571e3");
-pub const IID_IGPEInformation = &IID_IGPEInformation_Value;
-pub const IGPEInformation = extern union {
+const IID_IGPMWMIFilterCollection_Value = Guid.initString("5782d582-1a36-4661-8a94-c3c32551945b");
+pub const IID_IGPMWMIFilterCollection = &IID_IGPMWMIFilterCollection_Value;
+pub const IGPMWMIFilterCollection = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IGPEInformation,
-            pszName: [*:0]u16,
-            cchMaxLength: i32,
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IGPMWMIFilterCollection,
+            pVal: ?*i32,
         ) callconv(.winapi) HRESULT,
-        GetDisplayName: *const fn(
-            self: *const IGPEInformation,
-            pszName: [*:0]u16,
-            cchMaxLength: i32,
+        get_Item: *const fn(
+            self: *const IGPMWMIFilterCollection,
+            lIndex: i32,
+            pVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
-        GetRegistryKey: *const fn(
-            self: *const IGPEInformation,
-            dwSection: u32,
-            hKey: ?*?HKEY,
-        ) callconv(.winapi) HRESULT,
-        GetDSPath: *const fn(
-            self: *const IGPEInformation,
-            dwSection: u32,
-            pszPath: [*:0]u16,
-            cchMaxPath: i32,
-        ) callconv(.winapi) HRESULT,
-        GetFileSysPath: *const fn(
-            self: *const IGPEInformation,
-            dwSection: u32,
-            pszPath: [*:0]u16,
-            cchMaxPath: i32,
-        ) callconv(.winapi) HRESULT,
-        GetOptions: *const fn(
-            self: *const IGPEInformation,
-            dwOptions: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetType: *const fn(
-            self: *const IGPEInformation,
-            gpoType: ?*GROUP_POLICY_OBJECT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        GetHint: *const fn(
-            self: *const IGPEInformation,
-            gpHint: ?*GROUP_POLICY_HINT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        PolicyChanged: *const fn(
-            self: *const IGPEInformation,
-            bMachine: BOOL,
-            bAdd: BOOL,
-            pGuidExtension: ?*Guid,
-            pGuidSnapin: ?*Guid,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IGPMWMIFilterCollection,
+            pVal: ?*?*IEnumVARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IGPEInformation, pszName: [*:0]u16, cchMaxLength: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, pszName, cchMaxLength);
+    pub fn get_Count(self: *const IGPMWMIFilterCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pVal);
     }
-    pub fn GetDisplayName(self: *const IGPEInformation, pszName: [*:0]u16, cchMaxLength: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDisplayName(self, pszName, cchMaxLength);
+    pub fn get_Item(self: *const IGPMWMIFilterCollection, lIndex: i32, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, lIndex, pVal);
     }
-    pub fn GetRegistryKey(self: *const IGPEInformation, dwSection: u32, hKey: ?*?HKEY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRegistryKey(self, dwSection, hKey);
-    }
-    pub fn GetDSPath(self: *const IGPEInformation, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDSPath(self, dwSection, pszPath, cchMaxPath);
-    }
-    pub fn GetFileSysPath(self: *const IGPEInformation, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileSysPath(self, dwSection, pszPath, cchMaxPath);
-    }
-    pub fn GetOptions(self: *const IGPEInformation, dwOptions: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOptions(self, dwOptions);
-    }
-    pub fn GetType(self: *const IGPEInformation, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, gpoType);
-    }
-    pub fn GetHint(self: *const IGPEInformation, gpHint: ?*GROUP_POLICY_HINT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHint(self, gpHint);
-    }
-    pub fn PolicyChanged(self: *const IGPEInformation, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuidSnapin: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.PolicyChanged(self, bMachine, bAdd, pGuidExtension, pGuidSnapin);
+    pub fn get__NewEnum(self: *const IGPMWMIFilterCollection, pVal: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, pVal);
     }
 };
 
@@ -3999,6 +3889,35 @@ pub const IGroupPolicyObject = extern union {
     }
 };
 
+pub const INSTALLDATA = extern struct {
+    Type: INSTALLSPECTYPE,
+    Spec: INSTALLSPEC,
+};
+
+pub const INSTALLSPEC = extern union {
+    AppName: extern struct {
+        Name: ?PWSTR,
+        GPOId: Guid,
+    },
+    FileExt: ?PWSTR,
+    ProgId: ?PWSTR,
+    COMClass: extern struct {
+        Clsid: Guid,
+        ClsCtx: u32,
+    },
+};
+
+pub const INSTALLSPECTYPE = enum(i32) {
+    APPNAME = 1,
+    FILEEXT = 2,
+    PROGID = 3,
+    COMCLASS = 4,
+};
+pub const APPNAME = INSTALLSPECTYPE.APPNAME;
+pub const FILEEXT = INSTALLSPECTYPE.FILEEXT;
+pub const PROGID = INSTALLSPECTYPE.PROGID;
+pub const COMCLASS = INSTALLSPECTYPE.COMCLASS;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRSOPInformation_Value = Guid.initString("9a5a81b5-d9c7-49ef-9d11-ddf50968c48d");
 pub const IID_IRSOPInformation = &IID_IRSOPInformation_Value;
@@ -4037,34 +3956,133 @@ pub const IRSOPInformation = extern union {
     }
 };
 
-pub const GPOBROWSEINFO = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    hwndOwner: ?HWND,
-    lpTitle: ?PWSTR,
-    lpInitialOU: ?PWSTR,
-    lpDSPath: ?PWSTR,
-    dwDSPathSize: u32,
-    lpName: ?PWSTR,
-    dwNameSize: u32,
-    gpoType: GROUP_POLICY_OBJECT_TYPE,
-    gpoHint: GROUP_POLICY_HINT_TYPE,
+pub const LOCALMANAGEDAPPLICATION = extern struct {
+    pszDeploymentName: ?PWSTR,
+    pszPolicyName: ?PWSTR,
+    pszProductId: ?PWSTR,
+    dwState: u32,
 };
+
+pub const MANAGEDAPPLICATION = extern struct {
+    pszPackageName: ?PWSTR,
+    pszPublisher: ?PWSTR,
+    dwVersionHi: u32,
+    dwVersionLo: u32,
+    dwRevision: u32,
+    GpoId: Guid,
+    pszPolicyName: ?PWSTR,
+    ProductId: Guid,
+    Language: u16,
+    pszOwner: ?PWSTR,
+    pszCompany: ?PWSTR,
+    pszComments: ?PWSTR,
+    pszContact: ?PWSTR,
+    pszSupportUrl: ?PWSTR,
+    dwPathType: u32,
+    bInstalled: BOOL,
+};
+
+pub const PFNGENERATEGROUPPOLICY = *const fn(
+    dwFlags: u32,
+    pbAbort: ?*BOOL,
+    pwszSite: ?PWSTR,
+    pComputerTarget: ?*RSOP_TARGET,
+    pUserTarget: ?*RSOP_TARGET,
+) callconv(.winapi) u32;
+
+pub const PFNPROCESSGROUPPOLICY = *const fn(
+    dwFlags: u32,
+    hToken: ?HANDLE,
+    hKeyRoot: ?HKEY,
+    pDeletedGPOList: ?*GROUP_POLICY_OBJECTA,
+    pChangedGPOList: ?*GROUP_POLICY_OBJECTA,
+    pHandle: usize,
+    pbAbort: ?*BOOL,
+    pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
+) callconv(.winapi) u32;
+
+pub const PFNPROCESSGROUPPOLICYEX = *const fn(
+    dwFlags: u32,
+    hToken: ?HANDLE,
+    hKeyRoot: ?HKEY,
+    pDeletedGPOList: ?*GROUP_POLICY_OBJECTA,
+    pChangedGPOList: ?*GROUP_POLICY_OBJECTA,
+    pHandle: usize,
+    pbAbort: ?*BOOL,
+    pStatusCallback: ?PFNSTATUSMESSAGECALLBACK,
+    pWbemServices: ?*IWbemServices,
+    pRsopStatus: ?*HRESULT,
+) callconv(.winapi) u32;
+
+pub const PFNSTATUSMESSAGECALLBACK = *const fn(
+    bVerbose: BOOL,
+    lpMessage: ?PWSTR,
+) callconv(.winapi) u32;
+
+pub const POLICYSETTINGSTATUSINFO = extern struct {
+    szKey: ?PWSTR,
+    szEventSource: ?PWSTR,
+    szEventLogName: ?PWSTR,
+    dwEventID: u32,
+    dwErrorCode: u32,
+    status: SETTINGSTATUS,
+    timeLogged: SYSTEMTIME,
+};
+
+pub const RSOP_TARGET = extern struct {
+    pwszAccountName: ?PWSTR,
+    pwszNewSOM: ?PWSTR,
+    psaSecurityGroups: ?*SAFEARRAY,
+    pRsopToken: ?*anyopaque,
+    pGPOList: ?*GROUP_POLICY_OBJECTA,
+    pWbemServices: ?*IWbemServices,
+};
+
+pub const SETTINGSTATUS = enum(i32) {
+    Unspecified = 0,
+    Applied = 1,
+    Ignored = 2,
+    Failed = 3,
+    SubsettingFailed = 4,
+};
+pub const RSOPUnspecified = SETTINGSTATUS.Unspecified;
+pub const RSOPApplied = SETTINGSTATUS.Applied;
+pub const RSOPIgnored = SETTINGSTATUS.Ignored;
+pub const RSOPFailed = SETTINGSTATUS.Failed;
+pub const RSOPSubsettingFailed = SETTINGSTATUS.SubsettingFailed;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (32)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn RefreshPolicy(
-    bMachine: BOOL,
-) callconv(.winapi) BOOL;
+pub extern "gpedit" fn BrowseForGPO(
+    lpBrowseInfo: ?*GPOBROWSEINFO,
+) callconv(.winapi) HRESULT;
+
+pub extern "advapi32" fn CommandLineFromMsiDescriptor(
+    Descriptor: ?PWSTR,
+    CommandLine: [*:0]u16,
+    CommandLineLength: ?*u32,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn RefreshPolicyEx(
-    bMachine: BOOL,
-    dwOptions: u32,
-) callconv(.winapi) BOOL;
+pub extern "gpedit" fn CreateGPOLink(
+    lpGPO: ?PWSTR,
+    lpContainer: ?PWSTR,
+    fHighPriority: BOOL,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "gpedit" fn DeleteAllGPOLinks(
+    lpContainer: ?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "gpedit" fn DeleteGPOLink(
+    lpGPO: ?PWSTR,
+    lpContainer: ?PWSTR,
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "userenv" fn EnterCriticalPolicySection(
@@ -4072,20 +4090,44 @@ pub extern "userenv" fn EnterCriticalPolicySection(
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn LeaveCriticalPolicySection(
-    hSection: ?HANDLE,
+pub extern "gpedit" fn ExportRSoPData(
+    lpNameSpace: ?PWSTR,
+    lpFileName: ?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "userenv" fn FreeGPOListA(
+    pGPOList: ?*GROUP_POLICY_OBJECTA,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn RegisterGPNotification(
-    hEvent: ?HANDLE,
+pub extern "userenv" fn FreeGPOListW(
+    pGPOList: ?*GROUP_POLICY_OBJECTW,
+) callconv(.winapi) BOOL;
+
+pub extern "userenv" fn GenerateGPNotification(
     bMachine: BOOL,
-) callconv(.winapi) BOOL;
+    lpwszMgmtProduct: ?[*:0]const u16,
+    dwMgmtProductOptions: u32,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn UnregisterGPNotification(
-    hEvent: ?HANDLE,
-) callconv(.winapi) BOOL;
+pub extern "userenv" fn GetAppliedGPOListA(
+    dwFlags: u32,
+    pMachineName: ?[*:0]const u8,
+    pSidUser: ?PSID,
+    pGuidExtension: ?*Guid,
+    ppGPOList: ?*?*GROUP_POLICY_OBJECTA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "userenv" fn GetAppliedGPOListW(
+    dwFlags: u32,
+    pMachineName: ?[*:0]const u16,
+    pSidUser: ?PSID,
+    pGuidExtension: ?*Guid,
+    ppGPOList: ?*?*GROUP_POLICY_OBJECTW,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "userenv" fn GetGPOListA(
@@ -4107,33 +4149,49 @@ pub extern "userenv" fn GetGPOListW(
     pGPOList: ?*?*GROUP_POLICY_OBJECTW,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn FreeGPOListA(
-    pGPOList: ?*GROUP_POLICY_OBJECTA,
-) callconv(.winapi) BOOL;
+pub extern "advapi32" fn GetLocalManagedApplicationData(
+    ProductCode: ?PWSTR,
+    DisplayName: ?*?PWSTR,
+    SupportUrl: ?*?PWSTR,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn FreeGPOListW(
-    pGPOList: ?*GROUP_POLICY_OBJECTW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn GetAppliedGPOListA(
-    dwFlags: u32,
-    pMachineName: ?[*:0]const u8,
-    pSidUser: ?PSID,
-    pGuidExtension: ?*Guid,
-    ppGPOList: ?*?*GROUP_POLICY_OBJECTA,
+pub extern "advapi32" fn GetLocalManagedApplications(
+    bUserApps: BOOL,
+    pdwApps: ?*u32,
+    prgLocalApps: ?*?*LOCALMANAGEDAPPLICATION,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn GetAppliedGPOListW(
-    dwFlags: u32,
-    pMachineName: ?[*:0]const u16,
-    pSidUser: ?PSID,
-    pGuidExtension: ?*Guid,
-    ppGPOList: ?*?*GROUP_POLICY_OBJECTW,
+pub extern "advapi32" fn GetManagedApplicationCategories(
+    dwReserved: u32,
+    pAppCategory: ?*APPCATEGORYINFOLIST,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn GetManagedApplications(
+    pCategory: ?*Guid,
+    dwQueryFlags: u32,
+    dwInfoLevel: u32,
+    pdwApps: ?*u32,
+    prgManagedApps: ?*?*MANAGEDAPPLICATION,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "gpedit" fn ImportRSoPData(
+    lpNameSpace: ?PWSTR,
+    lpFileName: ?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn InstallApplication(
+    pInstallInfo: ?*INSTALLDATA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "userenv" fn LeaveCriticalPolicySection(
+    hSection: ?HANDLE,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "userenv" fn ProcessGroupPolicyCompleted(
@@ -4149,6 +4207,23 @@ pub extern "userenv" fn ProcessGroupPolicyCompletedEx(
     dwStatus: u32,
     RsopStatus: HRESULT,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "userenv" fn RefreshPolicy(
+    bMachine: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "userenv" fn RefreshPolicyEx(
+    bMachine: BOOL,
+    dwOptions: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "userenv" fn RegisterGPNotification(
+    hEvent: ?HANDLE,
+    bMachine: BOOL,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "userenv" fn RsopAccessCheckByType(
@@ -4176,6 +4251,13 @@ pub extern "userenv" fn RsopFileAccessCheck(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "userenv" fn RsopResetPolicySettingStatus(
+    dwFlags: u32,
+    pServices: ?*IWbemServices,
+    pSettingInstance: ?*IWbemClassObject,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "userenv" fn RsopSetPolicySettingStatus(
     dwFlags: u32,
     pServices: ?*IWbemServices,
@@ -4185,97 +4267,15 @@ pub extern "userenv" fn RsopSetPolicySettingStatus(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "userenv" fn RsopResetPolicySettingStatus(
-    dwFlags: u32,
-    pServices: ?*IWbemServices,
-    pSettingInstance: ?*IWbemClassObject,
-) callconv(.winapi) HRESULT;
-
-pub extern "userenv" fn GenerateGPNotification(
-    bMachine: BOOL,
-    lpwszMgmtProduct: ?[*:0]const u16,
-    dwMgmtProductOptions: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn InstallApplication(
-    pInstallInfo: ?*INSTALLDATA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn UninstallApplication(
     ProductCode: ?PWSTR,
     dwStatus: u32,
 ) callconv(.winapi) u32;
 
-pub extern "advapi32" fn CommandLineFromMsiDescriptor(
-    Descriptor: ?PWSTR,
-    CommandLine: [*:0]u16,
-    CommandLineLength: ?*u32,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn GetManagedApplications(
-    pCategory: ?*Guid,
-    dwQueryFlags: u32,
-    dwInfoLevel: u32,
-    pdwApps: ?*u32,
-    prgManagedApps: ?*?*MANAGEDAPPLICATION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn GetLocalManagedApplications(
-    bUserApps: BOOL,
-    pdwApps: ?*u32,
-    prgLocalApps: ?*?*LOCALMANAGEDAPPLICATION,
-) callconv(.winapi) u32;
-
-pub extern "advapi32" fn GetLocalManagedApplicationData(
-    ProductCode: ?PWSTR,
-    DisplayName: ?*?PWSTR,
-    SupportUrl: ?*?PWSTR,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn GetManagedApplicationCategories(
-    dwReserved: u32,
-    pAppCategory: ?*APPCATEGORYINFOLIST,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "gpedit" fn CreateGPOLink(
-    lpGPO: ?PWSTR,
-    lpContainer: ?PWSTR,
-    fHighPriority: BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "gpedit" fn DeleteGPOLink(
-    lpGPO: ?PWSTR,
-    lpContainer: ?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "gpedit" fn DeleteAllGPOLinks(
-    lpContainer: ?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "gpedit" fn BrowseForGPO(
-    lpBrowseInfo: ?*GPOBROWSEINFO,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "gpedit" fn ImportRSoPData(
-    lpNameSpace: ?PWSTR,
-    lpFileName: ?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "gpedit" fn ExportRSoPData(
-    lpNameSpace: ?PWSTR,
-    lpFileName: ?PWSTR,
-) callconv(.winapi) HRESULT;
+pub extern "userenv" fn UnregisterGPNotification(
+    hEvent: ?HANDLE,
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------
@@ -4286,13 +4286,6 @@ pub const GROUP_POLICY_OBJECT = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().GROUP_POLICY_OBJECTW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'GROUP_POLICY_OBJECT' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetGPOListA,
-    .wide => @This().GetGPOListW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetGPOList' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const FreeGPOList = switch (@import("../zig.zig").unicode_mode) {
@@ -4307,6 +4300,13 @@ pub const GetAppliedGPOList = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().GetAppliedGPOListW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'GetAppliedGPOList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetGPOListA,
+    .wide => @This().GetGPOListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetGPOList' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -4341,10 +4341,10 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNSTATUSMESSAGECALLBACK")) { _ = PFNSTATUSMESSAGECALLBACK; }
+    if (@hasDecl(@This(), "PFNGENERATEGROUPPOLICY")) { _ = PFNGENERATEGROUPPOLICY; }
     if (@hasDecl(@This(), "PFNPROCESSGROUPPOLICY")) { _ = PFNPROCESSGROUPPOLICY; }
     if (@hasDecl(@This(), "PFNPROCESSGROUPPOLICYEX")) { _ = PFNPROCESSGROUPPOLICYEX; }
-    if (@hasDecl(@This(), "PFNGENERATEGROUPPOLICY")) { _ = PFNGENERATEGROUPPOLICY; }
+    if (@hasDecl(@This(), "PFNSTATUSMESSAGECALLBACK")) { _ = PFNSTATUSMESSAGECALLBACK; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

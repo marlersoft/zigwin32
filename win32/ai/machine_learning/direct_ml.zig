@@ -2,52 +2,324 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
+pub const DML_MINIMUM_BUFFER_TENSOR_ALIGNMENT = @as(u32, 16);
+pub const DML_PERSISTENT_BUFFER_ALIGNMENT = @as(u32, 256);
 pub const DML_TARGET_VERSION = @as(u32, 16384);
+pub const DML_TEMPORARY_BUFFER_ALIGNMENT = @as(u32, 256);
 pub const DML_TENSOR_DIMENSION_COUNT_MAX = @as(u32, 5);
 pub const DML_TENSOR_DIMENSION_COUNT_MAX1 = @as(u32, 8);
-pub const DML_TEMPORARY_BUFFER_ALIGNMENT = @as(u32, 256);
-pub const DML_PERSISTENT_BUFFER_ALIGNMENT = @as(u32, 256);
-pub const DML_MINIMUM_BUFFER_TENSOR_ALIGNMENT = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (206)
 //--------------------------------------------------------------------------------
-pub const DML_TENSOR_DATA_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    FLOAT32 = 1,
-    FLOAT16 = 2,
-    UINT32 = 3,
-    UINT16 = 4,
-    UINT8 = 5,
-    INT32 = 6,
-    INT16 = 7,
-    INT8 = 8,
-    FLOAT64 = 9,
-    UINT64 = 10,
-    INT64 = 11,
+pub const DML_ACTIVATION_CELU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
 };
-pub const DML_TENSOR_DATA_TYPE_UNKNOWN = DML_TENSOR_DATA_TYPE.UNKNOWN;
-pub const DML_TENSOR_DATA_TYPE_FLOAT32 = DML_TENSOR_DATA_TYPE.FLOAT32;
-pub const DML_TENSOR_DATA_TYPE_FLOAT16 = DML_TENSOR_DATA_TYPE.FLOAT16;
-pub const DML_TENSOR_DATA_TYPE_UINT32 = DML_TENSOR_DATA_TYPE.UINT32;
-pub const DML_TENSOR_DATA_TYPE_UINT16 = DML_TENSOR_DATA_TYPE.UINT16;
-pub const DML_TENSOR_DATA_TYPE_UINT8 = DML_TENSOR_DATA_TYPE.UINT8;
-pub const DML_TENSOR_DATA_TYPE_INT32 = DML_TENSOR_DATA_TYPE.INT32;
-pub const DML_TENSOR_DATA_TYPE_INT16 = DML_TENSOR_DATA_TYPE.INT16;
-pub const DML_TENSOR_DATA_TYPE_INT8 = DML_TENSOR_DATA_TYPE.INT8;
-pub const DML_TENSOR_DATA_TYPE_FLOAT64 = DML_TENSOR_DATA_TYPE.FLOAT64;
-pub const DML_TENSOR_DATA_TYPE_UINT64 = DML_TENSOR_DATA_TYPE.UINT64;
-pub const DML_TENSOR_DATA_TYPE_INT64 = DML_TENSOR_DATA_TYPE.INT64;
 
-pub const DML_TENSOR_TYPE = enum(i32) {
-    INVALID = 0,
+pub const DML_ACTIVATION_ELU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+};
+
+pub const DML_ACTIVATION_HARD_SIGMOID_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+    Beta: f32,
+};
+
+pub const DML_ACTIVATION_HARDMAX_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_IDENTITY_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_LEAKY_RELU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+};
+
+pub const DML_ACTIVATION_LINEAR_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+    Beta: f32,
+};
+
+pub const DML_ACTIVATION_LOG_SOFTMAX_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_PARAMETERIZED_RELU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    SlopeTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_PARAMETRIC_SOFTPLUS_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+    Beta: f32,
+};
+
+pub const DML_ACTIVATION_RELU_GRAD_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_RELU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_SCALED_ELU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+    Gamma: f32,
+};
+
+pub const DML_ACTIVATION_SCALED_TANH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+    Beta: f32,
+};
+
+pub const DML_ACTIVATION_SHRINK_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Bias: f32,
+    Threshold: f32,
+};
+
+pub const DML_ACTIVATION_SIGMOID_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_SOFTMAX_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_SOFTPLUS_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Steepness: f32,
+};
+
+pub const DML_ACTIVATION_SOFTSIGN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_TANH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ACTIVATION_THRESHOLDED_RELU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Alpha: f32,
+};
+
+pub const DML_ADAM_OPTIMIZER_OPERATOR_DESC = extern struct {
+    InputParametersTensor: ?*const DML_TENSOR_DESC,
+    InputFirstMomentTensor: ?*const DML_TENSOR_DESC,
+    InputSecondMomentTensor: ?*const DML_TENSOR_DESC,
+    GradientTensor: ?*const DML_TENSOR_DESC,
+    TrainingStepTensor: ?*const DML_TENSOR_DESC,
+    OutputParametersTensor: ?*const DML_TENSOR_DESC,
+    OutputFirstMomentTensor: ?*const DML_TENSOR_DESC,
+    OutputSecondMomentTensor: ?*const DML_TENSOR_DESC,
+    LearningRate: f32,
+    Beta1: f32,
+    Beta2: f32,
+    Epsilon: f32,
+};
+
+pub const DML_ARGMAX_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    AxisCount: u32,
+    Axes: ?*const u32,
+    AxisDirection: DML_AXIS_DIRECTION,
+};
+
+pub const DML_ARGMIN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    AxisCount: u32,
+    Axes: ?*const u32,
+    AxisDirection: DML_AXIS_DIRECTION,
+};
+
+pub const DML_AVERAGE_POOLING_GRAD_OPERATOR_DESC = extern struct {
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    IncludePadding: BOOL,
+};
+
+pub const DML_AVERAGE_POOLING_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    IncludePadding: BOOL,
+};
+
+pub const DML_AXIS_DIRECTION = enum(i32) {
+    INCREASING = 0,
+    DECREASING = 1,
+};
+pub const DML_AXIS_DIRECTION_INCREASING = DML_AXIS_DIRECTION.INCREASING;
+pub const DML_AXIS_DIRECTION_DECREASING = DML_AXIS_DIRECTION.DECREASING;
+
+pub const DML_BATCH_NORMALIZATION_GRAD_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    MeanTensor: ?*const DML_TENSOR_DESC,
+    VarianceTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputScaleGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputBiasGradientTensor: ?*const DML_TENSOR_DESC,
+    Epsilon: f32,
+};
+
+pub const DML_BATCH_NORMALIZATION_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    MeanTensor: ?*const DML_TENSOR_DESC,
+    VarianceTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Spatial: BOOL,
+    Epsilon: f32,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
+};
+
+pub const DML_BINDING_DESC = extern struct {
+    Type: DML_BINDING_TYPE,
+    Desc: ?*const anyopaque,
+};
+
+pub const DML_BINDING_PROPERTIES = extern struct {
+    RequiredDescriptorCount: u32,
+    TemporaryResourceSize: u64,
+    PersistentResourceSize: u64,
+};
+
+pub const DML_BINDING_TABLE_DESC = extern struct {
+    Dispatchable: ?*IDMLDispatchable,
+    CPUDescriptorHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
+    GPUDescriptorHandle: D3D12_GPU_DESCRIPTOR_HANDLE,
+    SizeInDescriptors: u32,
+};
+
+pub const DML_BINDING_TYPE = enum(i32) {
+    NONE = 0,
     BUFFER = 1,
+    BUFFER_ARRAY = 2,
 };
-pub const DML_TENSOR_TYPE_INVALID = DML_TENSOR_TYPE.INVALID;
-pub const DML_TENSOR_TYPE_BUFFER = DML_TENSOR_TYPE.BUFFER;
+pub const DML_BINDING_TYPE_NONE = DML_BINDING_TYPE.NONE;
+pub const DML_BINDING_TYPE_BUFFER = DML_BINDING_TYPE.BUFFER;
+pub const DML_BINDING_TYPE_BUFFER_ARRAY = DML_BINDING_TYPE.BUFFER_ARRAY;
 
-pub const DML_TENSOR_FLAGS = packed struct(u32) {
-    OWNED_BY_DML: u1 = 0,
+pub const DML_BUFFER_ARRAY_BINDING = extern struct {
+    BindingCount: u32,
+    Bindings: ?*const DML_BUFFER_BINDING,
+};
+
+pub const DML_BUFFER_BINDING = extern struct {
+    Buffer: ?*ID3D12Resource,
+    Offset: u64,
+    SizeInBytes: u64,
+};
+
+pub const DML_BUFFER_TENSOR_DESC = extern struct {
+    DataType: DML_TENSOR_DATA_TYPE,
+    Flags: DML_TENSOR_FLAGS,
+    DimensionCount: u32,
+    Sizes: ?*const u32,
+    Strides: ?*const u32,
+    TotalTensorSizeInBytes: u64,
+    GuaranteedBaseOffsetAlignment: u32,
+};
+
+pub const DML_CAST_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_CONVOLUTION_DIRECTION = enum(i32) {
+    FORWARD = 0,
+    BACKWARD = 1,
+};
+pub const DML_CONVOLUTION_DIRECTION_FORWARD = DML_CONVOLUTION_DIRECTION.FORWARD;
+pub const DML_CONVOLUTION_DIRECTION_BACKWARD = DML_CONVOLUTION_DIRECTION.BACKWARD;
+
+pub const DML_CONVOLUTION_INTEGER_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    InputZeroPointTensor: ?*const DML_TENSOR_DESC,
+    FilterTensor: ?*const DML_TENSOR_DESC,
+    FilterZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    Dilations: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    GroupCount: u32,
+};
+
+pub const DML_CONVOLUTION_MODE = enum(i32) {
+    ONVOLUTION = 0,
+    ROSS_CORRELATION = 1,
+};
+pub const DML_CONVOLUTION_MODE_CONVOLUTION = DML_CONVOLUTION_MODE.ONVOLUTION;
+pub const DML_CONVOLUTION_MODE_CROSS_CORRELATION = DML_CONVOLUTION_MODE.ROSS_CORRELATION;
+
+pub const DML_CONVOLUTION_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    FilterTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Mode: DML_CONVOLUTION_MODE,
+    Direction: DML_CONVOLUTION_DIRECTION,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    Dilations: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    OutputPadding: ?*const u32,
+    GroupCount: u32,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
+};
+
+pub const DML_CREATE_DEVICE_FLAGS = packed struct(u32) {
+    DEBUG: u1 = 0,
     _1: u1 = 0,
     _2: u1 = 0,
     _3: u1 = 0,
@@ -80,22 +352,841 @@ pub const DML_TENSOR_FLAGS = packed struct(u32) {
     _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const DML_TENSOR_FLAG_NONE = DML_TENSOR_FLAGS{ };
-pub const DML_TENSOR_FLAG_OWNED_BY_DML = DML_TENSOR_FLAGS{ .OWNED_BY_DML = 1 };
+pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS{ };
+pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS{ .DEBUG = 1 };
 
-pub const DML_BUFFER_TENSOR_DESC = extern struct {
-    DataType: DML_TENSOR_DATA_TYPE,
-    Flags: DML_TENSOR_FLAGS,
-    DimensionCount: u32,
-    Sizes: ?*const u32,
-    Strides: ?*const u32,
-    TotalTensorSizeInBytes: u64,
-    GuaranteedBaseOffsetAlignment: u32,
+pub const DML_CUMULATIVE_PRODUCT_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+    AxisDirection: DML_AXIS_DIRECTION,
+    HasExclusiveProduct: BOOL,
 };
 
-pub const DML_TENSOR_DESC = extern struct {
-    Type: DML_TENSOR_TYPE,
+pub const DML_CUMULATIVE_SUMMATION_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+    AxisDirection: DML_AXIS_DIRECTION,
+    HasExclusiveSum: BOOL,
+};
+
+pub const DML_DEPTH_SPACE_ORDER = enum(i32) {
+    DEPTH_COLUMN_ROW = 0,
+    COLUMN_ROW_DEPTH = 1,
+};
+pub const DML_DEPTH_SPACE_ORDER_DEPTH_COLUMN_ROW = DML_DEPTH_SPACE_ORDER.DEPTH_COLUMN_ROW;
+pub const DML_DEPTH_SPACE_ORDER_COLUMN_ROW_DEPTH = DML_DEPTH_SPACE_ORDER.COLUMN_ROW_DEPTH;
+
+pub const DML_DEPTH_TO_SPACE1_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    BlockSize: u32,
+    Order: DML_DEPTH_SPACE_ORDER,
+};
+
+pub const DML_DEPTH_TO_SPACE_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    BlockSize: u32,
+};
+
+pub const DML_DIAGONAL_MATRIX_OPERATOR_DESC = extern struct {
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Offset: i32,
+    Value: f32,
+};
+
+pub const DML_DYNAMIC_QUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    OutputScaleTensor: ?*const DML_TENSOR_DESC,
+    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_ABS_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_ACOS_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_ACOSH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_ADD1_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_ADD_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_ASIN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_ASINH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_ATAN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_ATAN_YX_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_ATANH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_BIT_AND_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_BIT_COUNT_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_BIT_NOT_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_BIT_OR_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_BIT_SHIFT_LEFT_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_BIT_SHIFT_RIGHT_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_BIT_XOR_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_CEIL_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_CLIP_GRAD_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+    Min: f32,
+    Max: f32,
+};
+
+pub const DML_ELEMENT_WISE_CLIP_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+    Min: f32,
+    Max: f32,
+};
+
+pub const DML_ELEMENT_WISE_CONSTANT_POW_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+    Exponent: f32,
+};
+
+pub const DML_ELEMENT_WISE_COS_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_COSH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_DEQUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    ZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_DIFFERENCE_SQUARE_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_DIVIDE_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_ERF_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_EXP_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_FLOOR_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_IDENTITY_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_IF_OPERATOR_DESC = extern struct {
+    ConditionTensor: ?*const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_IS_INFINITY_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    InfinityMode: DML_IS_INFINITY_MODE,
+};
+
+pub const DML_ELEMENT_WISE_IS_NAN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOG_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_AND_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_EQUALS_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_GREATER_THAN_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_GREATER_THAN_OR_EQUAL_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_LESS_THAN_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_LESS_THAN_OR_EQUAL_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_NOT_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_OR_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_LOGICAL_XOR_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_MAX_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_MEAN_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_MIN_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_MODULUS_FLOOR_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_MODULUS_TRUNCATE_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_MULTIPLY_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_POW_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ExponentTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_QUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    ZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_QUANTIZED_LINEAR_ADD_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    AScaleTensor: ?*const DML_TENSOR_DESC,
+    AZeroPointTensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    BScaleTensor: ?*const DML_TENSOR_DESC,
+    BZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputScaleTensor: ?*const DML_TENSOR_DESC,
+    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_RECIP_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_ROUND_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    RoundingMode: DML_ROUNDING_MODE,
+};
+
+pub const DML_ELEMENT_WISE_SIGN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_SIN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_SINH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_SQRT_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_SUBTRACT_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ELEMENT_WISE_TAN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_TANH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+};
+
+pub const DML_ELEMENT_WISE_THRESHOLD_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
+    Min: f32,
+};
+
+pub const DML_EXECUTION_FLAGS = packed struct(u32) {
+    ALLOW_HALF_PRECISION_COMPUTATION: u1 = 0,
+    DISABLE_META_COMMANDS: u1 = 0,
+    DESCRIPTORS_VOLATILE: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const DML_EXECUTION_FLAG_NONE = DML_EXECUTION_FLAGS{ };
+pub const DML_EXECUTION_FLAG_ALLOW_HALF_PRECISION_COMPUTATION = DML_EXECUTION_FLAGS{ .ALLOW_HALF_PRECISION_COMPUTATION = 1 };
+pub const DML_EXECUTION_FLAG_DISABLE_META_COMMANDS = DML_EXECUTION_FLAGS{ .DISABLE_META_COMMANDS = 1 };
+pub const DML_EXECUTION_FLAG_DESCRIPTORS_VOLATILE = DML_EXECUTION_FLAGS{ .DESCRIPTORS_VOLATILE = 1 };
+
+pub const DML_FEATURE = enum(i32) {
+    TENSOR_DATA_TYPE_SUPPORT = 0,
+    FEATURE_LEVELS = 1,
+};
+pub const DML_FEATURE_TENSOR_DATA_TYPE_SUPPORT = DML_FEATURE.TENSOR_DATA_TYPE_SUPPORT;
+pub const DML_FEATURE_FEATURE_LEVELS = DML_FEATURE.FEATURE_LEVELS;
+
+pub const DML_FEATURE_DATA_FEATURE_LEVELS = extern struct {
+    MaxSupportedFeatureLevel: DML_FEATURE_LEVEL,
+};
+
+pub const DML_FEATURE_DATA_TENSOR_DATA_TYPE_SUPPORT = extern struct {
+    IsSupported: BOOL,
+};
+
+pub const DML_FEATURE_LEVEL = enum(i32) {
+    @"1_0" = 4096,
+    @"2_0" = 8192,
+    @"2_1" = 8448,
+    @"3_0" = 12288,
+    @"3_1" = 12544,
+    @"4_0" = 16384,
+};
+pub const DML_FEATURE_LEVEL_1_0 = DML_FEATURE_LEVEL.@"1_0";
+pub const DML_FEATURE_LEVEL_2_0 = DML_FEATURE_LEVEL.@"2_0";
+pub const DML_FEATURE_LEVEL_2_1 = DML_FEATURE_LEVEL.@"2_1";
+pub const DML_FEATURE_LEVEL_3_0 = DML_FEATURE_LEVEL.@"3_0";
+pub const DML_FEATURE_LEVEL_3_1 = DML_FEATURE_LEVEL.@"3_1";
+pub const DML_FEATURE_LEVEL_4_0 = DML_FEATURE_LEVEL.@"4_0";
+
+pub const DML_FEATURE_QUERY_FEATURE_LEVELS = extern struct {
+    RequestedFeatureLevelCount: u32,
+    RequestedFeatureLevels: ?*const DML_FEATURE_LEVEL,
+};
+
+pub const DML_FEATURE_QUERY_TENSOR_DATA_TYPE_SUPPORT = extern struct {
+    DataType: DML_TENSOR_DATA_TYPE,
+};
+
+pub const DML_FILL_VALUE_CONSTANT_OPERATOR_DESC = extern struct {
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ValueDataType: DML_TENSOR_DATA_TYPE,
+    Value: DML_SCALAR_UNION,
+};
+
+pub const DML_FILL_VALUE_SEQUENCE_OPERATOR_DESC = extern struct {
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ValueDataType: DML_TENSOR_DATA_TYPE,
+    ValueStart: DML_SCALAR_UNION,
+    ValueDelta: DML_SCALAR_UNION,
+};
+
+pub const DML_GATHER_ELEMENTS_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+};
+
+pub const DML_GATHER_ND1_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    InputDimensionCount: u32,
+    IndicesDimensionCount: u32,
+    BatchDimensionCount: u32,
+};
+
+pub const DML_GATHER_ND_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    InputDimensionCount: u32,
+    IndicesDimensionCount: u32,
+};
+
+pub const DML_GATHER_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+    IndexDimensions: u32,
+};
+
+pub const DML_GEMM_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    CTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    TransA: DML_MATRIX_TRANSFORM,
+    TransB: DML_MATRIX_TRANSFORM,
+    Alpha: f32,
+    Beta: f32,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
+};
+
+pub const DML_GRAPH_DESC = extern struct {
+    InputCount: u32,
+    OutputCount: u32,
+    NodeCount: u32,
+    Nodes: ?*const DML_GRAPH_NODE_DESC,
+    InputEdgeCount: u32,
+    InputEdges: ?*const DML_GRAPH_EDGE_DESC,
+    OutputEdgeCount: u32,
+    OutputEdges: ?*const DML_GRAPH_EDGE_DESC,
+    IntermediateEdgeCount: u32,
+    IntermediateEdges: ?*const DML_GRAPH_EDGE_DESC,
+};
+
+pub const DML_GRAPH_EDGE_DESC = extern struct {
+    Type: DML_GRAPH_EDGE_TYPE,
     Desc: ?*const anyopaque,
+};
+
+pub const DML_GRAPH_EDGE_TYPE = enum(i32) {
+    INVALID = 0,
+    INPUT = 1,
+    OUTPUT = 2,
+    INTERMEDIATE = 3,
+};
+pub const DML_GRAPH_EDGE_TYPE_INVALID = DML_GRAPH_EDGE_TYPE.INVALID;
+pub const DML_GRAPH_EDGE_TYPE_INPUT = DML_GRAPH_EDGE_TYPE.INPUT;
+pub const DML_GRAPH_EDGE_TYPE_OUTPUT = DML_GRAPH_EDGE_TYPE.OUTPUT;
+pub const DML_GRAPH_EDGE_TYPE_INTERMEDIATE = DML_GRAPH_EDGE_TYPE.INTERMEDIATE;
+
+pub const DML_GRAPH_NODE_DESC = extern struct {
+    Type: DML_GRAPH_NODE_TYPE,
+    Desc: ?*const anyopaque,
+};
+
+pub const DML_GRAPH_NODE_TYPE = enum(i32) {
+    INVALID = 0,
+    OPERATOR = 1,
+};
+pub const DML_GRAPH_NODE_TYPE_INVALID = DML_GRAPH_NODE_TYPE.INVALID;
+pub const DML_GRAPH_NODE_TYPE_OPERATOR = DML_GRAPH_NODE_TYPE.OPERATOR;
+
+pub const DML_GRU_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    WeightTensor: ?*const DML_TENSOR_DESC,
+    RecurrenceTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    HiddenInitTensor: ?*const DML_TENSOR_DESC,
+    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
+    OutputSequenceTensor: ?*const DML_TENSOR_DESC,
+    OutputSingleTensor: ?*const DML_TENSOR_DESC,
+    ActivationDescCount: u32,
+    ActivationDescs: ?*const DML_OPERATOR_DESC,
+    Direction: DML_RECURRENT_NETWORK_DIRECTION,
+    LinearBeforeReset: BOOL,
+};
+
+pub const DML_INPUT_GRAPH_EDGE_DESC = extern struct {
+    GraphInputIndex: u32,
+    ToNodeIndex: u32,
+    ToNodeInputIndex: u32,
+    Name: ?[*:0]const u8,
+};
+
+pub const DML_INTERMEDIATE_GRAPH_EDGE_DESC = extern struct {
+    FromNodeIndex: u32,
+    FromNodeOutputIndex: u32,
+    ToNodeIndex: u32,
+    ToNodeInputIndex: u32,
+    Name: ?[*:0]const u8,
+};
+
+pub const DML_INTERPOLATION_MODE = enum(i32) {
+    NEAREST_NEIGHBOR = 0,
+    LINEAR = 1,
+};
+pub const DML_INTERPOLATION_MODE_NEAREST_NEIGHBOR = DML_INTERPOLATION_MODE.NEAREST_NEIGHBOR;
+pub const DML_INTERPOLATION_MODE_LINEAR = DML_INTERPOLATION_MODE.LINEAR;
+
+pub const DML_IS_INFINITY_MODE = enum(i32) {
+    EITHER = 0,
+    POSITIVE = 1,
+    NEGATIVE = 2,
+};
+pub const DML_IS_INFINITY_MODE_EITHER = DML_IS_INFINITY_MODE.EITHER;
+pub const DML_IS_INFINITY_MODE_POSITIVE = DML_IS_INFINITY_MODE.POSITIVE;
+pub const DML_IS_INFINITY_MODE_NEGATIVE = DML_IS_INFINITY_MODE.NEGATIVE;
+
+pub const DML_JOIN_OPERATOR_DESC = extern struct {
+    InputCount: u32,
+    InputTensors: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+};
+
+pub const DML_LOCAL_RESPONSE_NORMALIZATION_GRAD_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+    CrossChannel: BOOL,
+    LocalSize: u32,
+    Alpha: f32,
+    Beta: f32,
+    Bias: f32,
+};
+
+pub const DML_LOCAL_RESPONSE_NORMALIZATION_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    CrossChannel: BOOL,
+    LocalSize: u32,
+    Alpha: f32,
+    Beta: f32,
+    Bias: f32,
+};
+
+pub const DML_LP_NORMALIZATION_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+    Epsilon: f32,
+    P: u32,
+};
+
+pub const DML_LP_POOLING_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    P: u32,
+};
+
+pub const DML_LSTM_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    WeightTensor: ?*const DML_TENSOR_DESC,
+    RecurrenceTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    HiddenInitTensor: ?*const DML_TENSOR_DESC,
+    CellMemInitTensor: ?*const DML_TENSOR_DESC,
+    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
+    PeepholeTensor: ?*const DML_TENSOR_DESC,
+    OutputSequenceTensor: ?*const DML_TENSOR_DESC,
+    OutputSingleTensor: ?*const DML_TENSOR_DESC,
+    OutputCellSingleTensor: ?*const DML_TENSOR_DESC,
+    ActivationDescCount: u32,
+    ActivationDescs: ?*const DML_OPERATOR_DESC,
+    Direction: DML_RECURRENT_NETWORK_DIRECTION,
+    ClipThreshold: f32,
+    UseClipThreshold: BOOL,
+    CoupleInputForget: BOOL,
+};
+
+pub const DML_MATRIX_MULTIPLY_INTEGER_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    AZeroPointTensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    BZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_MATRIX_TRANSFORM = enum(i32) {
+    NONE = 0,
+    TRANSPOSE = 1,
+};
+pub const DML_MATRIX_TRANSFORM_NONE = DML_MATRIX_TRANSFORM.NONE;
+pub const DML_MATRIX_TRANSFORM_TRANSPOSE = DML_MATRIX_TRANSFORM.TRANSPOSE;
+
+pub const DML_MAX_POOLING1_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    OutputIndicesTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+};
+
+pub const DML_MAX_POOLING2_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    OutputIndicesTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    Dilations: ?*const u32,
+};
+
+pub const DML_MAX_POOLING_GRAD_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    Dilations: ?*const u32,
+};
+
+pub const DML_MAX_POOLING_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+};
+
+pub const DML_MAX_UNPOOLING_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_MEAN_VARIANCE_NORMALIZATION1_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    AxisCount: u32,
+    Axes: ?*const u32,
+    NormalizeVariance: BOOL,
+    Epsilon: f32,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
+};
+
+pub const DML_MEAN_VARIANCE_NORMALIZATION_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    CrossChannel: BOOL,
+    NormalizeVariance: BOOL,
+    Epsilon: f32,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
+};
+
+pub const DML_NONZERO_COORDINATES_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputCountTensor: ?*const DML_TENSOR_DESC,
+    OutputCoordinatesTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_ONE_HOT_OPERATOR_DESC = extern struct {
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    ValuesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+};
+
+pub const DML_OPERATOR_DESC = extern struct {
+    Type: DML_OPERATOR_TYPE,
+    Desc: ?*const anyopaque,
+};
+
+pub const DML_OPERATOR_GRAPH_NODE_DESC = extern struct {
+    Operator: ?*IDMLOperator,
+    Name: ?[*:0]const u8,
 };
 
 pub const DML_OPERATOR_TYPE = enum(i32) {
@@ -403,6 +1494,86 @@ pub const DML_OPERATOR_ELEMENT_WISE_QUANTIZED_LINEAR_ADD = DML_OPERATOR_TYPE.ELE
 pub const DML_OPERATOR_DYNAMIC_QUANTIZE_LINEAR = DML_OPERATOR_TYPE.DYNAMIC_QUANTIZE_LINEAR;
 pub const DML_OPERATOR_ROI_ALIGN1 = DML_OPERATOR_TYPE.ROI_ALIGN1;
 
+pub const DML_OUTPUT_GRAPH_EDGE_DESC = extern struct {
+    FromNodeIndex: u32,
+    FromNodeOutputIndex: u32,
+    GraphOutputIndex: u32,
+    Name: ?[*:0]const u8,
+};
+
+pub const DML_PADDING_MODE = enum(i32) {
+    CONSTANT = 0,
+    EDGE = 1,
+    REFLECTION = 2,
+    SYMMETRIC = 3,
+};
+pub const DML_PADDING_MODE_CONSTANT = DML_PADDING_MODE.CONSTANT;
+pub const DML_PADDING_MODE_EDGE = DML_PADDING_MODE.EDGE;
+pub const DML_PADDING_MODE_REFLECTION = DML_PADDING_MODE.REFLECTION;
+pub const DML_PADDING_MODE_SYMMETRIC = DML_PADDING_MODE.SYMMETRIC;
+
+pub const DML_PADDING_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    PaddingMode: DML_PADDING_MODE,
+    PaddingValue: f32,
+    DimensionCount: u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+};
+
+pub const DML_QUANTIZED_LINEAR_CONVOLUTION_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    InputScaleTensor: ?*const DML_TENSOR_DESC,
+    InputZeroPointTensor: ?*const DML_TENSOR_DESC,
+    FilterTensor: ?*const DML_TENSOR_DESC,
+    FilterScaleTensor: ?*const DML_TENSOR_DESC,
+    FilterZeroPointTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputScaleTensor: ?*const DML_TENSOR_DESC,
+    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Strides: ?*const u32,
+    Dilations: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    GroupCount: u32,
+};
+
+pub const DML_QUANTIZED_LINEAR_MATRIX_MULTIPLY_OPERATOR_DESC = extern struct {
+    ATensor: ?*const DML_TENSOR_DESC,
+    AScaleTensor: ?*const DML_TENSOR_DESC,
+    AZeroPointTensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    BScaleTensor: ?*const DML_TENSOR_DESC,
+    BZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputScaleTensor: ?*const DML_TENSOR_DESC,
+    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+};
+
+pub const DML_RANDOM_GENERATOR_OPERATOR_DESC = extern struct {
+    InputStateTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    OutputStateTensor: ?*const DML_TENSOR_DESC,
+    Type: DML_RANDOM_GENERATOR_TYPE,
+};
+
+pub const DML_RANDOM_GENERATOR_TYPE = enum(i32) {
+    @"0" = 0,
+};
+pub const DML_RANDOM_GENERATOR_TYPE_PHILOX_4X32_10 = DML_RANDOM_GENERATOR_TYPE.@"0";
+
+pub const DML_RECURRENT_NETWORK_DIRECTION = enum(i32) {
+    FORWARD = 0,
+    BACKWARD = 1,
+    BIDIRECTIONAL = 2,
+};
+pub const DML_RECURRENT_NETWORK_DIRECTION_FORWARD = DML_RECURRENT_NETWORK_DIRECTION.FORWARD;
+pub const DML_RECURRENT_NETWORK_DIRECTION_BACKWARD = DML_RECURRENT_NETWORK_DIRECTION.BACKWARD;
+pub const DML_RECURRENT_NETWORK_DIRECTION_BIDIRECTIONAL = DML_RECURRENT_NETWORK_DIRECTION.BIDIRECTIONAL;
+
 pub const DML_REDUCE_FUNCTION = enum(i32) {
     ARGMAX = 0,
     ARGMIN = 1,
@@ -430,471 +1601,6 @@ pub const DML_REDUCE_FUNCTION_MULTIPLY = DML_REDUCE_FUNCTION.MULTIPLY;
 pub const DML_REDUCE_FUNCTION_SUM = DML_REDUCE_FUNCTION.SUM;
 pub const DML_REDUCE_FUNCTION_SUM_SQUARE = DML_REDUCE_FUNCTION.SUM_SQUARE;
 
-pub const DML_MATRIX_TRANSFORM = enum(i32) {
-    NONE = 0,
-    TRANSPOSE = 1,
-};
-pub const DML_MATRIX_TRANSFORM_NONE = DML_MATRIX_TRANSFORM.NONE;
-pub const DML_MATRIX_TRANSFORM_TRANSPOSE = DML_MATRIX_TRANSFORM.TRANSPOSE;
-
-pub const DML_CONVOLUTION_MODE = enum(i32) {
-    ONVOLUTION = 0,
-    ROSS_CORRELATION = 1,
-};
-pub const DML_CONVOLUTION_MODE_CONVOLUTION = DML_CONVOLUTION_MODE.ONVOLUTION;
-pub const DML_CONVOLUTION_MODE_CROSS_CORRELATION = DML_CONVOLUTION_MODE.ROSS_CORRELATION;
-
-pub const DML_CONVOLUTION_DIRECTION = enum(i32) {
-    FORWARD = 0,
-    BACKWARD = 1,
-};
-pub const DML_CONVOLUTION_DIRECTION_FORWARD = DML_CONVOLUTION_DIRECTION.FORWARD;
-pub const DML_CONVOLUTION_DIRECTION_BACKWARD = DML_CONVOLUTION_DIRECTION.BACKWARD;
-
-pub const DML_PADDING_MODE = enum(i32) {
-    CONSTANT = 0,
-    EDGE = 1,
-    REFLECTION = 2,
-    SYMMETRIC = 3,
-};
-pub const DML_PADDING_MODE_CONSTANT = DML_PADDING_MODE.CONSTANT;
-pub const DML_PADDING_MODE_EDGE = DML_PADDING_MODE.EDGE;
-pub const DML_PADDING_MODE_REFLECTION = DML_PADDING_MODE.REFLECTION;
-pub const DML_PADDING_MODE_SYMMETRIC = DML_PADDING_MODE.SYMMETRIC;
-
-pub const DML_INTERPOLATION_MODE = enum(i32) {
-    NEAREST_NEIGHBOR = 0,
-    LINEAR = 1,
-};
-pub const DML_INTERPOLATION_MODE_NEAREST_NEIGHBOR = DML_INTERPOLATION_MODE.NEAREST_NEIGHBOR;
-pub const DML_INTERPOLATION_MODE_LINEAR = DML_INTERPOLATION_MODE.LINEAR;
-
-pub const DML_SCALE_BIAS = extern struct {
-    Scale: f32,
-    Bias: f32,
-};
-
-pub const DML_SIZE_2D = extern struct {
-    Width: u32,
-    Height: u32,
-};
-
-pub const DML_RECURRENT_NETWORK_DIRECTION = enum(i32) {
-    FORWARD = 0,
-    BACKWARD = 1,
-    BIDIRECTIONAL = 2,
-};
-pub const DML_RECURRENT_NETWORK_DIRECTION_FORWARD = DML_RECURRENT_NETWORK_DIRECTION.FORWARD;
-pub const DML_RECURRENT_NETWORK_DIRECTION_BACKWARD = DML_RECURRENT_NETWORK_DIRECTION.BACKWARD;
-pub const DML_RECURRENT_NETWORK_DIRECTION_BIDIRECTIONAL = DML_RECURRENT_NETWORK_DIRECTION.BIDIRECTIONAL;
-
-pub const DML_ROUNDING_MODE = enum(i32) {
-    HALVES_TO_NEAREST_EVEN = 0,
-    TOWARD_ZERO = 1,
-    TOWARD_INFINITY = 2,
-};
-pub const DML_ROUNDING_MODE_HALVES_TO_NEAREST_EVEN = DML_ROUNDING_MODE.HALVES_TO_NEAREST_EVEN;
-pub const DML_ROUNDING_MODE_TOWARD_ZERO = DML_ROUNDING_MODE.TOWARD_ZERO;
-pub const DML_ROUNDING_MODE_TOWARD_INFINITY = DML_ROUNDING_MODE.TOWARD_INFINITY;
-
-pub const DML_IS_INFINITY_MODE = enum(i32) {
-    EITHER = 0,
-    POSITIVE = 1,
-    NEGATIVE = 2,
-};
-pub const DML_IS_INFINITY_MODE_EITHER = DML_IS_INFINITY_MODE.EITHER;
-pub const DML_IS_INFINITY_MODE_POSITIVE = DML_IS_INFINITY_MODE.POSITIVE;
-pub const DML_IS_INFINITY_MODE_NEGATIVE = DML_IS_INFINITY_MODE.NEGATIVE;
-
-pub const DML_AXIS_DIRECTION = enum(i32) {
-    INCREASING = 0,
-    DECREASING = 1,
-};
-pub const DML_AXIS_DIRECTION_INCREASING = DML_AXIS_DIRECTION.INCREASING;
-pub const DML_AXIS_DIRECTION_DECREASING = DML_AXIS_DIRECTION.DECREASING;
-
-pub const DML_DEPTH_SPACE_ORDER = enum(i32) {
-    DEPTH_COLUMN_ROW = 0,
-    COLUMN_ROW_DEPTH = 1,
-};
-pub const DML_DEPTH_SPACE_ORDER_DEPTH_COLUMN_ROW = DML_DEPTH_SPACE_ORDER.DEPTH_COLUMN_ROW;
-pub const DML_DEPTH_SPACE_ORDER_COLUMN_ROW_DEPTH = DML_DEPTH_SPACE_ORDER.COLUMN_ROW_DEPTH;
-
-pub const DML_SCALAR_UNION = extern union {
-    Bytes: [8]u8,
-    Int8: i8,
-    UInt8: u8,
-    Int16: i16,
-    UInt16: u16,
-    Int32: i32,
-    UInt32: u32,
-    Int64: i64,
-    UInt64: u64,
-    Float32: f32,
-    Float64: f64,
-};
-
-pub const DML_RANDOM_GENERATOR_TYPE = enum(i32) {
-    @"0" = 0,
-};
-pub const DML_RANDOM_GENERATOR_TYPE_PHILOX_4X32_10 = DML_RANDOM_GENERATOR_TYPE.@"0";
-
-pub const DML_OPERATOR_DESC = extern struct {
-    Type: DML_OPERATOR_TYPE,
-    Desc: ?*const anyopaque,
-};
-
-pub const DML_ELEMENT_WISE_IDENTITY_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_ABS_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_ACOS_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_ADD_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_ADD1_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    FusedActivation: ?*const DML_OPERATOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_ASIN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_ATAN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_CEIL_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_CLIP_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-    Min: f32,
-    Max: f32,
-};
-
-pub const DML_ELEMENT_WISE_COS_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_DIVIDE_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_EXP_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_FLOOR_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_LOG_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_AND_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_EQUALS_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_GREATER_THAN_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_LESS_THAN_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_NOT_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_OR_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_XOR_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_MAX_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_MEAN_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_MIN_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_MULTIPLY_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_POW_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    ExponentTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_CONSTANT_POW_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-    Exponent: f32,
-};
-
-pub const DML_ELEMENT_WISE_RECIP_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_SIN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_SQRT_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_SUBTRACT_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_TAN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_THRESHOLD_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-    Min: f32,
-};
-
-pub const DML_ELEMENT_WISE_QUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    ScaleTensor: ?*const DML_TENSOR_DESC,
-    ZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_DEQUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    ScaleTensor: ?*const DML_TENSOR_DESC,
-    ZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_ELU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-};
-
-pub const DML_ACTIVATION_HARDMAX_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_HARD_SIGMOID_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-    Beta: f32,
-};
-
-pub const DML_ACTIVATION_IDENTITY_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_LEAKY_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-};
-
-pub const DML_ACTIVATION_LINEAR_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-    Beta: f32,
-};
-
-pub const DML_ACTIVATION_LOG_SOFTMAX_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_PARAMETERIZED_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    SlopeTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_PARAMETRIC_SOFTPLUS_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-    Beta: f32,
-};
-
-pub const DML_ACTIVATION_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_SCALED_ELU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-    Gamma: f32,
-};
-
-pub const DML_ACTIVATION_SCALED_TANH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-    Beta: f32,
-};
-
-pub const DML_ACTIVATION_SIGMOID_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_SOFTMAX_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_SOFTPLUS_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Steepness: f32,
-};
-
-pub const DML_ACTIVATION_SOFTSIGN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_TANH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_THRESHOLDED_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-};
-
-pub const DML_CONVOLUTION_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    FilterTensor: ?*const DML_TENSOR_DESC,
-    BiasTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Mode: DML_CONVOLUTION_MODE,
-    Direction: DML_CONVOLUTION_DIRECTION,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    Dilations: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    OutputPadding: ?*const u32,
-    GroupCount: u32,
-    FusedActivation: ?*const DML_OPERATOR_DESC,
-};
-
-pub const DML_GEMM_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    CTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    TransA: DML_MATRIX_TRANSFORM,
-    TransB: DML_MATRIX_TRANSFORM,
-    Alpha: f32,
-    Beta: f32,
-    FusedActivation: ?*const DML_OPERATOR_DESC,
-};
-
 pub const DML_REDUCE_OPERATOR_DESC = extern struct {
     Function: DML_REDUCE_FUNCTION,
     InputTensor: ?*const DML_TENSOR_DESC,
@@ -903,173 +1609,39 @@ pub const DML_REDUCE_OPERATOR_DESC = extern struct {
     Axes: ?*const u32,
 };
 
-pub const DML_AVERAGE_POOLING_OPERATOR_DESC = extern struct {
+pub const DML_RESAMPLE1_OPERATOR_DESC = extern struct {
     InputTensor: ?*const DML_TENSOR_DESC,
     OutputTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    WindowSize: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    IncludePadding: BOOL,
-};
-
-pub const DML_LP_POOLING_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    WindowSize: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    P: u32,
-};
-
-pub const DML_MAX_POOLING_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    WindowSize: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-};
-
-pub const DML_ROI_POOLING_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    ROITensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    SpatialScale: f32,
-    PooledSize: DML_SIZE_2D,
-};
-
-pub const DML_SLICE_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Offsets: ?*const u32,
-    Sizes: ?*const u32,
-    Strides: ?*const u32,
-};
-
-pub const DML_CAST_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_SPLIT_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputCount: u32,
-    OutputTensors: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-};
-
-pub const DML_JOIN_OPERATOR_DESC = extern struct {
-    InputCount: u32,
-    InputTensors: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-};
-
-pub const DML_PADDING_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    PaddingMode: DML_PADDING_MODE,
-    PaddingValue: f32,
-    DimensionCount: u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-};
-
-pub const DML_VALUE_SCALE_2D_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Scale: f32,
-    ChannelCount: u32,
-    Bias: ?*const f32,
-};
-
-pub const DML_UPSAMPLE_2D_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleSize: DML_SIZE_2D,
     InterpolationMode: DML_INTERPOLATION_MODE,
+    DimensionCount: u32,
+    Scales: ?*const f32,
+    InputPixelOffsets: ?*const f32,
+    OutputPixelOffsets: ?*const f32,
 };
 
-pub const DML_GATHER_OPERATOR_DESC = extern struct {
+pub const DML_RESAMPLE_GRAD_OPERATOR_DESC = extern struct {
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+    InterpolationMode: DML_INTERPOLATION_MODE,
+    DimensionCount: u32,
+    Scales: ?*const f32,
+    InputPixelOffsets: ?*const f32,
+    OutputPixelOffsets: ?*const f32,
+};
+
+pub const DML_RESAMPLE_OPERATOR_DESC = extern struct {
     InputTensor: ?*const DML_TENSOR_DESC,
-    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    InterpolationMode: DML_INTERPOLATION_MODE,
+    ScaleCount: u32,
+    Scales: ?*const f32,
+};
+
+pub const DML_REVERSE_SUBSEQUENCES_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
     OutputTensor: ?*const DML_TENSOR_DESC,
     Axis: u32,
-    IndexDimensions: u32,
-};
-
-pub const DML_SPACE_TO_DEPTH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    BlockSize: u32,
-};
-
-pub const DML_DEPTH_TO_SPACE_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    BlockSize: u32,
-};
-
-pub const DML_TILE_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    RepeatsCount: u32,
-    Repeats: ?*const u32,
-};
-
-pub const DML_TOP_K_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputValueTensor: ?*const DML_TENSOR_DESC,
-    OutputIndexTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-    K: u32,
-};
-
-pub const DML_BATCH_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    MeanTensor: ?*const DML_TENSOR_DESC,
-    VarianceTensor: ?*const DML_TENSOR_DESC,
-    ScaleTensor: ?*const DML_TENSOR_DESC,
-    BiasTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Spatial: BOOL,
-    Epsilon: f32,
-    FusedActivation: ?*const DML_OPERATOR_DESC,
-};
-
-pub const DML_MEAN_VARIANCE_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    ScaleTensor: ?*const DML_TENSOR_DESC,
-    BiasTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    CrossChannel: BOOL,
-    NormalizeVariance: BOOL,
-    Epsilon: f32,
-    FusedActivation: ?*const DML_OPERATOR_DESC,
-};
-
-pub const DML_LOCAL_RESPONSE_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    CrossChannel: BOOL,
-    LocalSize: u32,
-    Alpha: f32,
-    Beta: f32,
-    Bias: f32,
-};
-
-pub const DML_LP_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-    Epsilon: f32,
-    P: u32,
 };
 
 pub const DML_RNN_OPERATOR_DESC = extern struct {
@@ -1084,591 +1656,6 @@ pub const DML_RNN_OPERATOR_DESC = extern struct {
     ActivationDescCount: u32,
     ActivationDescs: ?*const DML_OPERATOR_DESC,
     Direction: DML_RECURRENT_NETWORK_DIRECTION,
-};
-
-pub const DML_LSTM_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    WeightTensor: ?*const DML_TENSOR_DESC,
-    RecurrenceTensor: ?*const DML_TENSOR_DESC,
-    BiasTensor: ?*const DML_TENSOR_DESC,
-    HiddenInitTensor: ?*const DML_TENSOR_DESC,
-    CellMemInitTensor: ?*const DML_TENSOR_DESC,
-    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
-    PeepholeTensor: ?*const DML_TENSOR_DESC,
-    OutputSequenceTensor: ?*const DML_TENSOR_DESC,
-    OutputSingleTensor: ?*const DML_TENSOR_DESC,
-    OutputCellSingleTensor: ?*const DML_TENSOR_DESC,
-    ActivationDescCount: u32,
-    ActivationDescs: ?*const DML_OPERATOR_DESC,
-    Direction: DML_RECURRENT_NETWORK_DIRECTION,
-    ClipThreshold: f32,
-    UseClipThreshold: BOOL,
-    CoupleInputForget: BOOL,
-};
-
-pub const DML_GRU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    WeightTensor: ?*const DML_TENSOR_DESC,
-    RecurrenceTensor: ?*const DML_TENSOR_DESC,
-    BiasTensor: ?*const DML_TENSOR_DESC,
-    HiddenInitTensor: ?*const DML_TENSOR_DESC,
-    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
-    OutputSequenceTensor: ?*const DML_TENSOR_DESC,
-    OutputSingleTensor: ?*const DML_TENSOR_DESC,
-    ActivationDescCount: u32,
-    ActivationDescs: ?*const DML_OPERATOR_DESC,
-    Direction: DML_RECURRENT_NETWORK_DIRECTION,
-    LinearBeforeReset: BOOL,
-};
-
-pub const DML_ELEMENT_WISE_SIGN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_IS_NAN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_ERF_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_SINH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_COSH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_TANH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_ASINH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_ACOSH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_ATANH_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ScaleBias: ?*const DML_SCALE_BIAS,
-};
-
-pub const DML_ELEMENT_WISE_IF_OPERATOR_DESC = extern struct {
-    ConditionTensor: ?*const DML_TENSOR_DESC,
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_SHRINK_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Bias: f32,
-    Threshold: f32,
-};
-
-pub const DML_MAX_POOLING1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    OutputIndicesTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    WindowSize: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-};
-
-pub const DML_MAX_UNPOOLING_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    IndicesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_DIAGONAL_MATRIX_OPERATOR_DESC = extern struct {
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Offset: i32,
-    Value: f32,
-};
-
-pub const DML_SCATTER_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    IndicesTensor: ?*const DML_TENSOR_DESC,
-    UpdatesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-};
-
-pub const DML_ONE_HOT_OPERATOR_DESC = extern struct {
-    IndicesTensor: ?*const DML_TENSOR_DESC,
-    ValuesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-};
-
-pub const DML_RESAMPLE_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    InterpolationMode: DML_INTERPOLATION_MODE,
-    ScaleCount: u32,
-    Scales: ?*const f32,
-};
-
-pub const DML_ELEMENT_WISE_BIT_SHIFT_LEFT_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_BIT_SHIFT_RIGHT_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_ROUND_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    RoundingMode: DML_ROUNDING_MODE,
-};
-
-pub const DML_ELEMENT_WISE_IS_INFINITY_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    InfinityMode: DML_IS_INFINITY_MODE,
-};
-
-pub const DML_ELEMENT_WISE_MODULUS_TRUNCATE_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_MODULUS_FLOOR_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_FILL_VALUE_CONSTANT_OPERATOR_DESC = extern struct {
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ValueDataType: DML_TENSOR_DATA_TYPE,
-    Value: DML_SCALAR_UNION,
-};
-
-pub const DML_FILL_VALUE_SEQUENCE_OPERATOR_DESC = extern struct {
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ValueDataType: DML_TENSOR_DATA_TYPE,
-    ValueStart: DML_SCALAR_UNION,
-    ValueDelta: DML_SCALAR_UNION,
-};
-
-pub const DML_CUMULATIVE_SUMMATION_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-    AxisDirection: DML_AXIS_DIRECTION,
-    HasExclusiveSum: BOOL,
-};
-
-pub const DML_REVERSE_SUBSEQUENCES_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-};
-
-pub const DML_GATHER_ELEMENTS_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    IndicesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-};
-
-pub const DML_GATHER_ND_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    IndicesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    InputDimensionCount: u32,
-    IndicesDimensionCount: u32,
-};
-
-pub const DML_SCATTER_ND_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    IndicesTensor: ?*const DML_TENSOR_DESC,
-    UpdatesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    InputDimensionCount: u32,
-    IndicesDimensionCount: u32,
-};
-
-pub const DML_MAX_POOLING2_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    OutputIndicesTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    WindowSize: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    Dilations: ?*const u32,
-};
-
-pub const DML_SLICE1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    InputWindowOffsets: ?*const u32,
-    InputWindowSizes: ?*const u32,
-    InputWindowStrides: ?*const i32,
-};
-
-pub const DML_TOP_K1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputValueTensor: ?*const DML_TENSOR_DESC,
-    OutputIndexTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-    K: u32,
-    AxisDirection: DML_AXIS_DIRECTION,
-};
-
-pub const DML_DEPTH_TO_SPACE1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    BlockSize: u32,
-    Order: DML_DEPTH_SPACE_ORDER,
-};
-
-pub const DML_SPACE_TO_DEPTH1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    BlockSize: u32,
-    Order: DML_DEPTH_SPACE_ORDER,
-};
-
-pub const DML_MEAN_VARIANCE_NORMALIZATION1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    ScaleTensor: ?*const DML_TENSOR_DESC,
-    BiasTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    AxisCount: u32,
-    Axes: ?*const u32,
-    NormalizeVariance: BOOL,
-    Epsilon: f32,
-    FusedActivation: ?*const DML_OPERATOR_DESC,
-};
-
-pub const DML_RESAMPLE1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    InterpolationMode: DML_INTERPOLATION_MODE,
-    DimensionCount: u32,
-    Scales: ?*const f32,
-    InputPixelOffsets: ?*const f32,
-    OutputPixelOffsets: ?*const f32,
-};
-
-pub const DML_MATRIX_MULTIPLY_INTEGER_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    AZeroPointTensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    BZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_QUANTIZED_LINEAR_MATRIX_MULTIPLY_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    AScaleTensor: ?*const DML_TENSOR_DESC,
-    AZeroPointTensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    BScaleTensor: ?*const DML_TENSOR_DESC,
-    BZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputScaleTensor: ?*const DML_TENSOR_DESC,
-    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_CONVOLUTION_INTEGER_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    InputZeroPointTensor: ?*const DML_TENSOR_DESC,
-    FilterTensor: ?*const DML_TENSOR_DESC,
-    FilterZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    Dilations: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    GroupCount: u32,
-};
-
-pub const DML_QUANTIZED_LINEAR_CONVOLUTION_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    InputScaleTensor: ?*const DML_TENSOR_DESC,
-    InputZeroPointTensor: ?*const DML_TENSOR_DESC,
-    FilterTensor: ?*const DML_TENSOR_DESC,
-    FilterScaleTensor: ?*const DML_TENSOR_DESC,
-    FilterZeroPointTensor: ?*const DML_TENSOR_DESC,
-    BiasTensor: ?*const DML_TENSOR_DESC,
-    OutputScaleTensor: ?*const DML_TENSOR_DESC,
-    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    Dilations: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    GroupCount: u32,
-};
-
-pub const DML_ELEMENT_WISE_BIT_AND_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_BIT_OR_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_BIT_XOR_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_BIT_NOT_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_BIT_COUNT_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_GREATER_THAN_OR_EQUAL_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_LOGICAL_LESS_THAN_OR_EQUAL_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ACTIVATION_CELU_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Alpha: f32,
-};
-
-pub const DML_ACTIVATION_RELU_GRAD_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_AVERAGE_POOLING_GRAD_OPERATOR_DESC = extern struct {
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    WindowSize: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    IncludePadding: BOOL,
-};
-
-pub const DML_MAX_POOLING_GRAD_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    Strides: ?*const u32,
-    WindowSize: ?*const u32,
-    StartPadding: ?*const u32,
-    EndPadding: ?*const u32,
-    Dilations: ?*const u32,
-};
-
-pub const DML_RANDOM_GENERATOR_OPERATOR_DESC = extern struct {
-    InputStateTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    OutputStateTensor: ?*const DML_TENSOR_DESC,
-    Type: DML_RANDOM_GENERATOR_TYPE,
-};
-
-pub const DML_NONZERO_COORDINATES_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputCountTensor: ?*const DML_TENSOR_DESC,
-    OutputCoordinatesTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_RESAMPLE_GRAD_OPERATOR_DESC = extern struct {
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-    InterpolationMode: DML_INTERPOLATION_MODE,
-    DimensionCount: u32,
-    Scales: ?*const f32,
-    InputPixelOffsets: ?*const f32,
-    OutputPixelOffsets: ?*const f32,
-};
-
-pub const DML_SLICE_GRAD_OPERATOR_DESC = extern struct {
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-    DimensionCount: u32,
-    InputWindowOffsets: ?*const u32,
-    InputWindowSizes: ?*const u32,
-    InputWindowStrides: ?*const i32,
-};
-
-pub const DML_ADAM_OPTIMIZER_OPERATOR_DESC = extern struct {
-    InputParametersTensor: ?*const DML_TENSOR_DESC,
-    InputFirstMomentTensor: ?*const DML_TENSOR_DESC,
-    InputSecondMomentTensor: ?*const DML_TENSOR_DESC,
-    GradientTensor: ?*const DML_TENSOR_DESC,
-    TrainingStepTensor: ?*const DML_TENSOR_DESC,
-    OutputParametersTensor: ?*const DML_TENSOR_DESC,
-    OutputFirstMomentTensor: ?*const DML_TENSOR_DESC,
-    OutputSecondMomentTensor: ?*const DML_TENSOR_DESC,
-    LearningRate: f32,
-    Beta1: f32,
-    Beta2: f32,
-    Epsilon: f32,
-};
-
-pub const DML_ARGMIN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    AxisCount: u32,
-    Axes: ?*const u32,
-    AxisDirection: DML_AXIS_DIRECTION,
-};
-
-pub const DML_ARGMAX_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    AxisCount: u32,
-    Axes: ?*const u32,
-    AxisDirection: DML_AXIS_DIRECTION,
-};
-
-pub const DML_ROI_ALIGN_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    ROITensor: ?*const DML_TENSOR_DESC,
-    BatchIndicesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    ReductionFunction: DML_REDUCE_FUNCTION,
-    InterpolationMode: DML_INTERPOLATION_MODE,
-    SpatialScaleX: f32,
-    SpatialScaleY: f32,
-    OutOfBoundsInputValue: f32,
-    MinimumSamplesPerOutput: u32,
-    MaximumSamplesPerOutput: u32,
-};
-
-pub const DML_GATHER_ND1_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    IndicesTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    InputDimensionCount: u32,
-    IndicesDimensionCount: u32,
-    BatchDimensionCount: u32,
-};
-
-pub const DML_ELEMENT_WISE_ATAN_YX_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_ELEMENT_WISE_CLIP_GRAD_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-    Min: f32,
-    Max: f32,
-};
-
-pub const DML_ELEMENT_WISE_DIFFERENCE_SQUARE_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_LOCAL_RESPONSE_NORMALIZATION_GRAD_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-    CrossChannel: BOOL,
-    LocalSize: u32,
-    Alpha: f32,
-    Beta: f32,
-    Bias: f32,
-};
-
-pub const DML_CUMULATIVE_PRODUCT_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    Axis: u32,
-    AxisDirection: DML_AXIS_DIRECTION,
-    HasExclusiveProduct: BOOL,
-};
-
-pub const DML_BATCH_NORMALIZATION_GRAD_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    InputGradientTensor: ?*const DML_TENSOR_DESC,
-    MeanTensor: ?*const DML_TENSOR_DESC,
-    VarianceTensor: ?*const DML_TENSOR_DESC,
-    ScaleTensor: ?*const DML_TENSOR_DESC,
-    OutputGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputScaleGradientTensor: ?*const DML_TENSOR_DESC,
-    OutputBiasGradientTensor: ?*const DML_TENSOR_DESC,
-    Epsilon: f32,
-};
-
-pub const DML_ELEMENT_WISE_QUANTIZED_LINEAR_ADD_OPERATOR_DESC = extern struct {
-    ATensor: ?*const DML_TENSOR_DESC,
-    AScaleTensor: ?*const DML_TENSOR_DESC,
-    AZeroPointTensor: ?*const DML_TENSOR_DESC,
-    BTensor: ?*const DML_TENSOR_DESC,
-    BScaleTensor: ?*const DML_TENSOR_DESC,
-    BZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputScaleTensor: ?*const DML_TENSOR_DESC,
-    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-};
-
-pub const DML_DYNAMIC_QUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
-    InputTensor: ?*const DML_TENSOR_DESC,
-    OutputTensor: ?*const DML_TENSOR_DESC,
-    OutputScaleTensor: ?*const DML_TENSOR_DESC,
-    OutputZeroPointTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ROI_ALIGN1_OPERATOR_DESC = extern struct {
@@ -1688,93 +1675,159 @@ pub const DML_ROI_ALIGN1_OPERATOR_DESC = extern struct {
     AlignRegionsToCorners: BOOL,
 };
 
-pub const DML_FEATURE_LEVEL = enum(i32) {
-    @"1_0" = 4096,
-    @"2_0" = 8192,
-    @"2_1" = 8448,
-    @"3_0" = 12288,
-    @"3_1" = 12544,
-    @"4_0" = 16384,
-};
-pub const DML_FEATURE_LEVEL_1_0 = DML_FEATURE_LEVEL.@"1_0";
-pub const DML_FEATURE_LEVEL_2_0 = DML_FEATURE_LEVEL.@"2_0";
-pub const DML_FEATURE_LEVEL_2_1 = DML_FEATURE_LEVEL.@"2_1";
-pub const DML_FEATURE_LEVEL_3_0 = DML_FEATURE_LEVEL.@"3_0";
-pub const DML_FEATURE_LEVEL_3_1 = DML_FEATURE_LEVEL.@"3_1";
-pub const DML_FEATURE_LEVEL_4_0 = DML_FEATURE_LEVEL.@"4_0";
-
-pub const DML_FEATURE = enum(i32) {
-    TENSOR_DATA_TYPE_SUPPORT = 0,
-    FEATURE_LEVELS = 1,
-};
-pub const DML_FEATURE_TENSOR_DATA_TYPE_SUPPORT = DML_FEATURE.TENSOR_DATA_TYPE_SUPPORT;
-pub const DML_FEATURE_FEATURE_LEVELS = DML_FEATURE.FEATURE_LEVELS;
-
-pub const DML_FEATURE_QUERY_TENSOR_DATA_TYPE_SUPPORT = extern struct {
-    DataType: DML_TENSOR_DATA_TYPE,
+pub const DML_ROI_ALIGN_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ROITensor: ?*const DML_TENSOR_DESC,
+    BatchIndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ReductionFunction: DML_REDUCE_FUNCTION,
+    InterpolationMode: DML_INTERPOLATION_MODE,
+    SpatialScaleX: f32,
+    SpatialScaleY: f32,
+    OutOfBoundsInputValue: f32,
+    MinimumSamplesPerOutput: u32,
+    MaximumSamplesPerOutput: u32,
 };
 
-pub const DML_FEATURE_DATA_TENSOR_DATA_TYPE_SUPPORT = extern struct {
-    IsSupported: BOOL,
+pub const DML_ROI_POOLING_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ROITensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    SpatialScale: f32,
+    PooledSize: DML_SIZE_2D,
 };
 
-pub const DML_FEATURE_QUERY_FEATURE_LEVELS = extern struct {
-    RequestedFeatureLevelCount: u32,
-    RequestedFeatureLevels: ?*const DML_FEATURE_LEVEL,
+pub const DML_ROUNDING_MODE = enum(i32) {
+    HALVES_TO_NEAREST_EVEN = 0,
+    TOWARD_ZERO = 1,
+    TOWARD_INFINITY = 2,
+};
+pub const DML_ROUNDING_MODE_HALVES_TO_NEAREST_EVEN = DML_ROUNDING_MODE.HALVES_TO_NEAREST_EVEN;
+pub const DML_ROUNDING_MODE_TOWARD_ZERO = DML_ROUNDING_MODE.TOWARD_ZERO;
+pub const DML_ROUNDING_MODE_TOWARD_INFINITY = DML_ROUNDING_MODE.TOWARD_INFINITY;
+
+pub const DML_SCALAR_UNION = extern union {
+    Bytes: [8]u8,
+    Int8: i8,
+    UInt8: u8,
+    Int16: i16,
+    UInt16: u16,
+    Int32: i32,
+    UInt32: u32,
+    Int64: i64,
+    UInt64: u64,
+    Float32: f32,
+    Float64: f64,
 };
 
-pub const DML_FEATURE_DATA_FEATURE_LEVELS = extern struct {
-    MaxSupportedFeatureLevel: DML_FEATURE_LEVEL,
+pub const DML_SCALE_BIAS = extern struct {
+    Scale: f32,
+    Bias: f32,
 };
 
-pub const DML_BINDING_TABLE_DESC = extern struct {
-    Dispatchable: ?*IDMLDispatchable,
-    CPUDescriptorHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
-    GPUDescriptorHandle: D3D12_GPU_DESCRIPTOR_HANDLE,
-    SizeInDescriptors: u32,
+pub const DML_SCATTER_ND_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    UpdatesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    InputDimensionCount: u32,
+    IndicesDimensionCount: u32,
 };
 
-pub const DML_EXECUTION_FLAGS = packed struct(u32) {
-    ALLOW_HALF_PRECISION_COMPUTATION: u1 = 0,
-    DISABLE_META_COMMANDS: u1 = 0,
-    DESCRIPTORS_VOLATILE: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const DML_SCATTER_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    UpdatesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
 };
-pub const DML_EXECUTION_FLAG_NONE = DML_EXECUTION_FLAGS{ };
-pub const DML_EXECUTION_FLAG_ALLOW_HALF_PRECISION_COMPUTATION = DML_EXECUTION_FLAGS{ .ALLOW_HALF_PRECISION_COMPUTATION = 1 };
-pub const DML_EXECUTION_FLAG_DISABLE_META_COMMANDS = DML_EXECUTION_FLAGS{ .DISABLE_META_COMMANDS = 1 };
-pub const DML_EXECUTION_FLAG_DESCRIPTORS_VOLATILE = DML_EXECUTION_FLAGS{ .DESCRIPTORS_VOLATILE = 1 };
 
-pub const DML_CREATE_DEVICE_FLAGS = packed struct(u32) {
-    DEBUG: u1 = 0,
+pub const DML_SIZE_2D = extern struct {
+    Width: u32,
+    Height: u32,
+};
+
+pub const DML_SLICE1_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    InputWindowOffsets: ?*const u32,
+    InputWindowSizes: ?*const u32,
+    InputWindowStrides: ?*const i32,
+};
+
+pub const DML_SLICE_GRAD_OPERATOR_DESC = extern struct {
+    InputGradientTensor: ?*const DML_TENSOR_DESC,
+    OutputGradientTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    InputWindowOffsets: ?*const u32,
+    InputWindowSizes: ?*const u32,
+    InputWindowStrides: ?*const i32,
+};
+
+pub const DML_SLICE_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    DimensionCount: u32,
+    Offsets: ?*const u32,
+    Sizes: ?*const u32,
+    Strides: ?*const u32,
+};
+
+pub const DML_SPACE_TO_DEPTH1_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    BlockSize: u32,
+    Order: DML_DEPTH_SPACE_ORDER,
+};
+
+pub const DML_SPACE_TO_DEPTH_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    BlockSize: u32,
+};
+
+pub const DML_SPLIT_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputCount: u32,
+    OutputTensors: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+};
+
+pub const DML_TENSOR_DATA_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    FLOAT32 = 1,
+    FLOAT16 = 2,
+    UINT32 = 3,
+    UINT16 = 4,
+    UINT8 = 5,
+    INT32 = 6,
+    INT16 = 7,
+    INT8 = 8,
+    FLOAT64 = 9,
+    UINT64 = 10,
+    INT64 = 11,
+};
+pub const DML_TENSOR_DATA_TYPE_UNKNOWN = DML_TENSOR_DATA_TYPE.UNKNOWN;
+pub const DML_TENSOR_DATA_TYPE_FLOAT32 = DML_TENSOR_DATA_TYPE.FLOAT32;
+pub const DML_TENSOR_DATA_TYPE_FLOAT16 = DML_TENSOR_DATA_TYPE.FLOAT16;
+pub const DML_TENSOR_DATA_TYPE_UINT32 = DML_TENSOR_DATA_TYPE.UINT32;
+pub const DML_TENSOR_DATA_TYPE_UINT16 = DML_TENSOR_DATA_TYPE.UINT16;
+pub const DML_TENSOR_DATA_TYPE_UINT8 = DML_TENSOR_DATA_TYPE.UINT8;
+pub const DML_TENSOR_DATA_TYPE_INT32 = DML_TENSOR_DATA_TYPE.INT32;
+pub const DML_TENSOR_DATA_TYPE_INT16 = DML_TENSOR_DATA_TYPE.INT16;
+pub const DML_TENSOR_DATA_TYPE_INT8 = DML_TENSOR_DATA_TYPE.INT8;
+pub const DML_TENSOR_DATA_TYPE_FLOAT64 = DML_TENSOR_DATA_TYPE.FLOAT64;
+pub const DML_TENSOR_DATA_TYPE_UINT64 = DML_TENSOR_DATA_TYPE.UINT64;
+pub const DML_TENSOR_DATA_TYPE_INT64 = DML_TENSOR_DATA_TYPE.INT64;
+
+pub const DML_TENSOR_DESC = extern struct {
+    Type: DML_TENSOR_TYPE,
+    Desc: ?*const anyopaque,
+};
+
+pub const DML_TENSOR_FLAGS = packed struct(u32) {
+    OWNED_BY_DML: u1 = 0,
     _1: u1 = 0,
     _2: u1 = 0,
     _3: u1 = 0,
@@ -1807,51 +1860,153 @@ pub const DML_CREATE_DEVICE_FLAGS = packed struct(u32) {
     _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS{ };
-pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS{ .DEBUG = 1 };
+pub const DML_TENSOR_FLAG_NONE = DML_TENSOR_FLAGS{ };
+pub const DML_TENSOR_FLAG_OWNED_BY_DML = DML_TENSOR_FLAGS{ .OWNED_BY_DML = 1 };
 
-const IID_IDMLObject_Value = Guid.initString("c8263aac-9e0c-4a2d-9b8e-007521a3317c");
-pub const IID_IDMLObject = &IID_IDMLObject_Value;
-pub const IDMLObject = extern union {
+pub const DML_TENSOR_TYPE = enum(i32) {
+    INVALID = 0,
+    BUFFER = 1,
+};
+pub const DML_TENSOR_TYPE_INVALID = DML_TENSOR_TYPE.INVALID;
+pub const DML_TENSOR_TYPE_BUFFER = DML_TENSOR_TYPE.BUFFER;
+
+pub const DML_TILE_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    RepeatsCount: u32,
+    Repeats: ?*const u32,
+};
+
+pub const DML_TOP_K1_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputValueTensor: ?*const DML_TENSOR_DESC,
+    OutputIndexTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+    K: u32,
+    AxisDirection: DML_AXIS_DIRECTION,
+};
+
+pub const DML_TOP_K_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputValueTensor: ?*const DML_TENSOR_DESC,
+    OutputIndexTensor: ?*const DML_TENSOR_DESC,
+    Axis: u32,
+    K: u32,
+};
+
+pub const DML_UPSAMPLE_2D_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleSize: DML_SIZE_2D,
+    InterpolationMode: DML_INTERPOLATION_MODE,
+};
+
+pub const DML_VALUE_SCALE_2D_OPERATOR_DESC = extern struct {
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    Scale: f32,
+    ChannelCount: u32,
+    Bias: ?*const f32,
+};
+
+const IID_IDMLBindingTable_Value = Guid.initString("29c687dc-de74-4e3b-ab00-1168f2fc3cfc");
+pub const IID_IDMLBindingTable = &IID_IDMLBindingTable_Value;
+pub const IDMLBindingTable = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPrivateData: *const fn(
-            self: *const IDMLObject,
-            guid: ?*const Guid,
-            dataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
-            data: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        SetPrivateData: *const fn(
-            self: *const IDMLObject,
-            guid: ?*const Guid,
-            dataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
-            data: ?*const anyopaque,
-        ) callconv(.winapi) HRESULT,
-        SetPrivateDataInterface: *const fn(
-            self: *const IDMLObject,
-            guid: ?*const Guid,
-            data: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        SetName: *const fn(
-            self: *const IDMLObject,
-            name: ?[*:0]const u16,
+        base: IDMLDeviceChild.VTable,
+        BindInputs: *const fn(
+            self: *const IDMLBindingTable,
+            bindingCount: u32,
+            bindings: ?[*]const DML_BINDING_DESC,
+        ) callconv(.winapi) void,
+        BindOutputs: *const fn(
+            self: *const IDMLBindingTable,
+            bindingCount: u32,
+            bindings: ?[*]const DML_BINDING_DESC,
+        ) callconv(.winapi) void,
+        BindTemporaryResource: *const fn(
+            self: *const IDMLBindingTable,
+            binding: ?*const DML_BINDING_DESC,
+        ) callconv(.winapi) void,
+        BindPersistentResource: *const fn(
+            self: *const IDMLBindingTable,
+            binding: ?*const DML_BINDING_DESC,
+        ) callconv(.winapi) void,
+        Reset: *const fn(
+            self: *const IDMLBindingTable,
+            desc: ?*const DML_BINDING_TABLE_DESC,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDMLDeviceChild: IDMLDeviceChild,
+    IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn GetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: ?*u32, data: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrivateData(self, guid, dataSize, data);
+    pub fn BindInputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.@"inline") void {
+        return self.vtable.BindInputs(self, bindingCount, bindings);
     }
-    pub fn SetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: u32, data: ?*const anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPrivateData(self, guid, dataSize, data);
+    pub fn BindOutputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.@"inline") void {
+        return self.vtable.BindOutputs(self, bindingCount, bindings);
     }
-    pub fn SetPrivateDataInterface(self: *const IDMLObject, guid: ?*const Guid, data: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPrivateDataInterface(self, guid, data);
+    pub fn BindTemporaryResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.@"inline") void {
+        return self.vtable.BindTemporaryResource(self, binding);
     }
-    pub fn SetName(self: *const IDMLObject, name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetName(self, name);
+    pub fn BindPersistentResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.@"inline") void {
+        return self.vtable.BindPersistentResource(self, binding);
+    }
+    pub fn Reset(self: *const IDMLBindingTable, desc: ?*const DML_BINDING_TABLE_DESC) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self, desc);
+    }
+};
+
+const IID_IDMLCommandRecorder_Value = Guid.initString("e6857a76-2e3e-4fdd-bff4-5d2ba10fb453");
+pub const IID_IDMLCommandRecorder = &IID_IDMLCommandRecorder_Value;
+pub const IDMLCommandRecorder = extern union {
+    pub const VTable = extern struct {
+        base: IDMLDeviceChild.VTable,
+        RecordDispatch: *const fn(
+            self: *const IDMLCommandRecorder,
+            commandList: ?*ID3D12CommandList,
+            dispatchable: ?*IDMLDispatchable,
+            bindings: ?*IDMLBindingTable,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IDMLDeviceChild: IDMLDeviceChild,
+    IDMLObject: IDMLObject,
+    IUnknown: IUnknown,
+    pub fn RecordDispatch(self: *const IDMLCommandRecorder, commandList: ?*ID3D12CommandList, dispatchable: ?*IDMLDispatchable, bindings: ?*IDMLBindingTable) callconv(.@"inline") void {
+        return self.vtable.RecordDispatch(self, commandList, dispatchable, bindings);
+    }
+};
+
+const IID_IDMLCompiledOperator_Value = Guid.initString("6b15e56a-bf5c-4902-92d8-da3a650afea4");
+pub const IID_IDMLCompiledOperator = &IID_IDMLCompiledOperator_Value;
+pub const IDMLCompiledOperator = extern union {
+    pub const VTable = extern struct {
+        base: IDMLDispatchable.VTable,
+    };
+    vtable: *const VTable,
+    IDMLDispatchable: IDMLDispatchable,
+    IDMLPageable: IDMLPageable,
+    IDMLDeviceChild: IDMLDeviceChild,
+    IDMLObject: IDMLObject,
+    IUnknown: IUnknown,
+};
+
+const IID_IDMLDebugDevice_Value = Guid.initString("7d6f3ac9-394a-4ac3-92a7-390cc57a8217");
+pub const IID_IDMLDebugDevice = &IID_IDMLDebugDevice_Value;
+pub const IDMLDebugDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetMuteDebugOutput: *const fn(
+            self: *const IDMLDebugDevice,
+            mute: BOOL,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetMuteDebugOutput(self: *const IDMLDebugDevice, mute: BOOL) callconv(.@"inline") void {
+        return self.vtable.SetMuteDebugOutput(self, mute);
     }
 };
 
@@ -1955,6 +2110,28 @@ pub const IDMLDevice = extern union {
     }
 };
 
+const IID_IDMLDevice1_Value = Guid.initString("a0884f9a-d2be-4355-aa5d-5901281ad1d2");
+pub const IID_IDMLDevice1 = &IID_IDMLDevice1_Value;
+pub const IDMLDevice1 = extern union {
+    pub const VTable = extern struct {
+        base: IDMLDevice.VTable,
+        CompileGraph: *const fn(
+            self: *const IDMLDevice1,
+            desc: ?*const DML_GRAPH_DESC,
+            flags: DML_EXECUTION_FLAGS,
+            riid: ?*const Guid,
+            ppv: ?**anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDMLDevice: IDMLDevice,
+    IDMLObject: IDMLObject,
+    IUnknown: IUnknown,
+    pub fn CompileGraph(self: *const IDMLDevice1, desc: ?*const DML_GRAPH_DESC, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CompileGraph(self, desc, flags, riid, ppv);
+    }
+};
+
 const IID_IDMLDeviceChild_Value = Guid.initString("27e83142-8165-49e3-974e-2fd66e4cb69d");
 pub const IID_IDMLDeviceChild = &IID_IDMLDeviceChild_Value;
 pub const IDMLDeviceChild = extern union {
@@ -1972,36 +2149,6 @@ pub const IDMLDeviceChild = extern union {
     pub fn GetDevice(self: *const IDMLDeviceChild, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, riid, ppv);
     }
-};
-
-const IID_IDMLPageable_Value = Guid.initString("b1ab0825-4542-4a4b-8617-6dde6e8f6201");
-pub const IID_IDMLPageable = &IID_IDMLPageable_Value;
-pub const IDMLPageable = extern union {
-    pub const VTable = extern struct {
-        base: IDMLDeviceChild.VTable,
-    };
-    vtable: *const VTable,
-    IDMLDeviceChild: IDMLDeviceChild,
-    IDMLObject: IDMLObject,
-    IUnknown: IUnknown,
-};
-
-const IID_IDMLOperator_Value = Guid.initString("26caae7a-3081-4633-9581-226fbe57695d");
-pub const IID_IDMLOperator = &IID_IDMLOperator_Value;
-pub const IDMLOperator = extern union {
-    pub const VTable = extern struct {
-        base: IDMLDeviceChild.VTable,
-    };
-    vtable: *const VTable,
-    IDMLDeviceChild: IDMLDeviceChild,
-    IDMLObject: IDMLObject,
-    IUnknown: IUnknown,
-};
-
-pub const DML_BINDING_PROPERTIES = extern struct {
-    RequiredDescriptorCount: u32,
-    TemporaryResourceSize: u64,
-    PersistentResourceSize: u64,
 };
 
 const IID_IDMLDispatchable_Value = Guid.initString("dcb821a8-1039-441e-9f1c-b1759c2f3cec");
@@ -2026,15 +2173,58 @@ pub const IDMLDispatchable = extern union {
     }
 };
 
-const IID_IDMLCompiledOperator_Value = Guid.initString("6b15e56a-bf5c-4902-92d8-da3a650afea4");
-pub const IID_IDMLCompiledOperator = &IID_IDMLCompiledOperator_Value;
-pub const IDMLCompiledOperator = extern union {
+const IID_IDMLObject_Value = Guid.initString("c8263aac-9e0c-4a2d-9b8e-007521a3317c");
+pub const IID_IDMLObject = &IID_IDMLObject_Value;
+pub const IDMLObject = extern union {
     pub const VTable = extern struct {
-        base: IDMLDispatchable.VTable,
+        base: IUnknown.VTable,
+        GetPrivateData: *const fn(
+            self: *const IDMLObject,
+            guid: ?*const Guid,
+            dataSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 1?
+            data: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        SetPrivateData: *const fn(
+            self: *const IDMLObject,
+            guid: ?*const Guid,
+            dataSize: u32,
+            // TODO: what to do with BytesParamIndex 1?
+            data: ?*const anyopaque,
+        ) callconv(.winapi) HRESULT,
+        SetPrivateDataInterface: *const fn(
+            self: *const IDMLObject,
+            guid: ?*const Guid,
+            data: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        SetName: *const fn(
+            self: *const IDMLObject,
+            name: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDMLDispatchable: IDMLDispatchable,
-    IDMLPageable: IDMLPageable,
+    IUnknown: IUnknown,
+    pub fn GetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: ?*u32, data: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrivateData(self, guid, dataSize, data);
+    }
+    pub fn SetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: u32, data: ?*const anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPrivateData(self, guid, dataSize, data);
+    }
+    pub fn SetPrivateDataInterface(self: *const IDMLObject, guid: ?*const Guid, data: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPrivateDataInterface(self, guid, data);
+    }
+    pub fn SetName(self: *const IDMLObject, name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetName(self, name);
+    }
+};
+
+const IID_IDMLOperator_Value = Guid.initString("26caae7a-3081-4633-9581-226fbe57695d");
+pub const IID_IDMLOperator = &IID_IDMLOperator_Value;
+pub const IDMLOperator = extern union {
+    pub const VTable = extern struct {
+        base: IDMLDeviceChild.VTable,
+    };
+    vtable: *const VTable,
     IDMLDeviceChild: IDMLDeviceChild,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
@@ -2062,206 +2252,16 @@ pub const IDMLOperatorInitializer = extern union {
     }
 };
 
-pub const DML_BINDING_TYPE = enum(i32) {
-    NONE = 0,
-    BUFFER = 1,
-    BUFFER_ARRAY = 2,
-};
-pub const DML_BINDING_TYPE_NONE = DML_BINDING_TYPE.NONE;
-pub const DML_BINDING_TYPE_BUFFER = DML_BINDING_TYPE.BUFFER;
-pub const DML_BINDING_TYPE_BUFFER_ARRAY = DML_BINDING_TYPE.BUFFER_ARRAY;
-
-pub const DML_BINDING_DESC = extern struct {
-    Type: DML_BINDING_TYPE,
-    Desc: ?*const anyopaque,
-};
-
-pub const DML_BUFFER_BINDING = extern struct {
-    Buffer: ?*ID3D12Resource,
-    Offset: u64,
-    SizeInBytes: u64,
-};
-
-pub const DML_BUFFER_ARRAY_BINDING = extern struct {
-    BindingCount: u32,
-    Bindings: ?*const DML_BUFFER_BINDING,
-};
-
-const IID_IDMLBindingTable_Value = Guid.initString("29c687dc-de74-4e3b-ab00-1168f2fc3cfc");
-pub const IID_IDMLBindingTable = &IID_IDMLBindingTable_Value;
-pub const IDMLBindingTable = extern union {
+const IID_IDMLPageable_Value = Guid.initString("b1ab0825-4542-4a4b-8617-6dde6e8f6201");
+pub const IID_IDMLPageable = &IID_IDMLPageable_Value;
+pub const IDMLPageable = extern union {
     pub const VTable = extern struct {
         base: IDMLDeviceChild.VTable,
-        BindInputs: *const fn(
-            self: *const IDMLBindingTable,
-            bindingCount: u32,
-            bindings: ?[*]const DML_BINDING_DESC,
-        ) callconv(.winapi) void,
-        BindOutputs: *const fn(
-            self: *const IDMLBindingTable,
-            bindingCount: u32,
-            bindings: ?[*]const DML_BINDING_DESC,
-        ) callconv(.winapi) void,
-        BindTemporaryResource: *const fn(
-            self: *const IDMLBindingTable,
-            binding: ?*const DML_BINDING_DESC,
-        ) callconv(.winapi) void,
-        BindPersistentResource: *const fn(
-            self: *const IDMLBindingTable,
-            binding: ?*const DML_BINDING_DESC,
-        ) callconv(.winapi) void,
-        Reset: *const fn(
-            self: *const IDMLBindingTable,
-            desc: ?*const DML_BINDING_TABLE_DESC,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDMLDeviceChild: IDMLDeviceChild,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn BindInputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.@"inline") void {
-        return self.vtable.BindInputs(self, bindingCount, bindings);
-    }
-    pub fn BindOutputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.@"inline") void {
-        return self.vtable.BindOutputs(self, bindingCount, bindings);
-    }
-    pub fn BindTemporaryResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.@"inline") void {
-        return self.vtable.BindTemporaryResource(self, binding);
-    }
-    pub fn BindPersistentResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.@"inline") void {
-        return self.vtable.BindPersistentResource(self, binding);
-    }
-    pub fn Reset(self: *const IDMLBindingTable, desc: ?*const DML_BINDING_TABLE_DESC) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self, desc);
-    }
-};
-
-const IID_IDMLCommandRecorder_Value = Guid.initString("e6857a76-2e3e-4fdd-bff4-5d2ba10fb453");
-pub const IID_IDMLCommandRecorder = &IID_IDMLCommandRecorder_Value;
-pub const IDMLCommandRecorder = extern union {
-    pub const VTable = extern struct {
-        base: IDMLDeviceChild.VTable,
-        RecordDispatch: *const fn(
-            self: *const IDMLCommandRecorder,
-            commandList: ?*ID3D12CommandList,
-            dispatchable: ?*IDMLDispatchable,
-            bindings: ?*IDMLBindingTable,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IDMLDeviceChild: IDMLDeviceChild,
-    IDMLObject: IDMLObject,
-    IUnknown: IUnknown,
-    pub fn RecordDispatch(self: *const IDMLCommandRecorder, commandList: ?*ID3D12CommandList, dispatchable: ?*IDMLDispatchable, bindings: ?*IDMLBindingTable) callconv(.@"inline") void {
-        return self.vtable.RecordDispatch(self, commandList, dispatchable, bindings);
-    }
-};
-
-const IID_IDMLDebugDevice_Value = Guid.initString("7d6f3ac9-394a-4ac3-92a7-390cc57a8217");
-pub const IID_IDMLDebugDevice = &IID_IDMLDebugDevice_Value;
-pub const IDMLDebugDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetMuteDebugOutput: *const fn(
-            self: *const IDMLDebugDevice,
-            mute: BOOL,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetMuteDebugOutput(self: *const IDMLDebugDevice, mute: BOOL) callconv(.@"inline") void {
-        return self.vtable.SetMuteDebugOutput(self, mute);
-    }
-};
-
-pub const DML_GRAPH_EDGE_TYPE = enum(i32) {
-    INVALID = 0,
-    INPUT = 1,
-    OUTPUT = 2,
-    INTERMEDIATE = 3,
-};
-pub const DML_GRAPH_EDGE_TYPE_INVALID = DML_GRAPH_EDGE_TYPE.INVALID;
-pub const DML_GRAPH_EDGE_TYPE_INPUT = DML_GRAPH_EDGE_TYPE.INPUT;
-pub const DML_GRAPH_EDGE_TYPE_OUTPUT = DML_GRAPH_EDGE_TYPE.OUTPUT;
-pub const DML_GRAPH_EDGE_TYPE_INTERMEDIATE = DML_GRAPH_EDGE_TYPE.INTERMEDIATE;
-
-pub const DML_GRAPH_EDGE_DESC = extern struct {
-    Type: DML_GRAPH_EDGE_TYPE,
-    Desc: ?*const anyopaque,
-};
-
-pub const DML_INPUT_GRAPH_EDGE_DESC = extern struct {
-    GraphInputIndex: u32,
-    ToNodeIndex: u32,
-    ToNodeInputIndex: u32,
-    Name: ?[*:0]const u8,
-};
-
-pub const DML_OUTPUT_GRAPH_EDGE_DESC = extern struct {
-    FromNodeIndex: u32,
-    FromNodeOutputIndex: u32,
-    GraphOutputIndex: u32,
-    Name: ?[*:0]const u8,
-};
-
-pub const DML_INTERMEDIATE_GRAPH_EDGE_DESC = extern struct {
-    FromNodeIndex: u32,
-    FromNodeOutputIndex: u32,
-    ToNodeIndex: u32,
-    ToNodeInputIndex: u32,
-    Name: ?[*:0]const u8,
-};
-
-pub const DML_GRAPH_NODE_TYPE = enum(i32) {
-    INVALID = 0,
-    OPERATOR = 1,
-};
-pub const DML_GRAPH_NODE_TYPE_INVALID = DML_GRAPH_NODE_TYPE.INVALID;
-pub const DML_GRAPH_NODE_TYPE_OPERATOR = DML_GRAPH_NODE_TYPE.OPERATOR;
-
-pub const DML_GRAPH_NODE_DESC = extern struct {
-    Type: DML_GRAPH_NODE_TYPE,
-    Desc: ?*const anyopaque,
-};
-
-pub const DML_OPERATOR_GRAPH_NODE_DESC = extern struct {
-    Operator: ?*IDMLOperator,
-    Name: ?[*:0]const u8,
-};
-
-pub const DML_GRAPH_DESC = extern struct {
-    InputCount: u32,
-    OutputCount: u32,
-    NodeCount: u32,
-    Nodes: ?*const DML_GRAPH_NODE_DESC,
-    InputEdgeCount: u32,
-    InputEdges: ?*const DML_GRAPH_EDGE_DESC,
-    OutputEdgeCount: u32,
-    OutputEdges: ?*const DML_GRAPH_EDGE_DESC,
-    IntermediateEdgeCount: u32,
-    IntermediateEdges: ?*const DML_GRAPH_EDGE_DESC,
-};
-
-const IID_IDMLDevice1_Value = Guid.initString("a0884f9a-d2be-4355-aa5d-5901281ad1d2");
-pub const IID_IDMLDevice1 = &IID_IDMLDevice1_Value;
-pub const IDMLDevice1 = extern union {
-    pub const VTable = extern struct {
-        base: IDMLDevice.VTable,
-        CompileGraph: *const fn(
-            self: *const IDMLDevice1,
-            desc: ?*const DML_GRAPH_DESC,
-            flags: DML_EXECUTION_FLAGS,
-            riid: ?*const Guid,
-            ppv: ?**anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDMLDevice: IDMLDevice,
-    IDMLObject: IDMLObject,
-    IUnknown: IUnknown,
-    pub fn CompileGraph(self: *const IDMLDevice1, desc: ?*const DML_GRAPH_DESC, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CompileGraph(self, desc, flags, riid, ppv);
-    }
 };
 
 

@@ -2,184 +2,194 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (124)
 //--------------------------------------------------------------------------------
-pub const DISPID_RDPSRAPI_METHOD_OPEN = @as(u32, 100);
-pub const DISPID_RDPSRAPI_METHOD_CLOSE = @as(u32, 101);
-pub const DISPID_RDPSRAPI_METHOD_SETSHAREDRECT = @as(u32, 102);
-pub const DISPID_RDPSRAPI_METHOD_GETSHAREDRECT = @as(u32, 103);
-pub const DISPID_RDPSRAPI_METHOD_VIEWERCONNECT = @as(u32, 104);
-pub const DISPID_RDPSRAPI_METHOD_VIEWERDISCONNECT = @as(u32, 105);
-pub const DISPID_RDPSRAPI_METHOD_TERMINATE_CONNECTION = @as(u32, 106);
-pub const DISPID_RDPSRAPI_METHOD_CREATE_INVITATION = @as(u32, 107);
-pub const DISPID_RDPSRAPI_METHOD_REQUEST_CONTROL = @as(u32, 108);
-pub const DISPID_RDPSRAPI_METHOD_VIRTUAL_CHANNEL_CREATE = @as(u32, 109);
-pub const DISPID_RDPSRAPI_METHOD_VIRTUAL_CHANNEL_SEND_DATA = @as(u32, 110);
-pub const DISPID_RDPSRAPI_METHOD_VIRTUAL_CHANNEL_SET_ACCESS = @as(u32, 111);
-pub const DISPID_RDPSRAPI_METHOD_PAUSE = @as(u32, 112);
-pub const DISPID_RDPSRAPI_METHOD_RESUME = @as(u32, 113);
-pub const DISPID_RDPSRAPI_METHOD_SHOW_WINDOW = @as(u32, 114);
-pub const DISPID_RDPSRAPI_METHOD_REQUEST_COLOR_DEPTH_CHANGE = @as(u32, 115);
-pub const DISPID_RDPSRAPI_METHOD_STARTREVCONNECTLISTENER = @as(u32, 116);
-pub const DISPID_RDPSRAPI_METHOD_CONNECTTOCLIENT = @as(u32, 117);
-pub const DISPID_RDPSRAPI_METHOD_SET_RENDERING_SURFACE = @as(u32, 118);
-pub const DISPID_RDPSRAPI_METHOD_SEND_MOUSE_BUTTON_EVENT = @as(u32, 119);
-pub const DISPID_RDPSRAPI_METHOD_SEND_MOUSE_MOVE_EVENT = @as(u32, 120);
-pub const DISPID_RDPSRAPI_METHOD_SEND_MOUSE_WHEEL_EVENT = @as(u32, 121);
-pub const DISPID_RDPSRAPI_METHOD_SEND_KEYBOARD_EVENT = @as(u32, 122);
-pub const DISPID_RDPSRAPI_METHOD_SEND_SYNC_EVENT = @as(u32, 123);
-pub const DISPID_RDPSRAPI_METHOD_BEGIN_TOUCH_FRAME = @as(u32, 124);
-pub const DISPID_RDPSRAPI_METHOD_ADD_TOUCH_INPUT = @as(u32, 125);
-pub const DISPID_RDPSRAPI_METHOD_END_TOUCH_FRAME = @as(u32, 126);
-pub const DISPID_RDPSRAPI_METHOD_CONNECTUSINGTRANSPORTSTREAM = @as(u32, 127);
-pub const DISPID_RDPSRAPI_METHOD_SENDCONTROLLEVELCHANGERESPONSE = @as(u32, 148);
-pub const DISPID_RDPSRAPI_METHOD_GETFRAMEBUFFERBITS = @as(u32, 149);
-pub const DISPID_RDPSRAPI_PROP_DISPIDVALUE = @as(u32, 200);
-pub const DISPID_RDPSRAPI_PROP_ID = @as(u32, 201);
-pub const DISPID_RDPSRAPI_PROP_SESSION_PROPERTIES = @as(u32, 202);
-pub const DISPID_RDPSRAPI_PROP_ATTENDEES = @as(u32, 203);
-pub const DISPID_RDPSRAPI_PROP_INVITATIONS = @as(u32, 204);
-pub const DISPID_RDPSRAPI_PROP_INVITATION = @as(u32, 205);
-pub const DISPID_RDPSRAPI_PROP_CHANNELMANAGER = @as(u32, 206);
-pub const DISPID_RDPSRAPI_PROP_VIRTUAL_CHANNEL_GETNAME = @as(u32, 207);
-pub const DISPID_RDPSRAPI_PROP_VIRTUAL_CHANNEL_GETFLAGS = @as(u32, 208);
-pub const DISPID_RDPSRAPI_PROP_VIRTUAL_CHANNEL_GETPRIORITY = @as(u32, 209);
-pub const DISPID_RDPSRAPI_PROP_WINDOWID = @as(u32, 210);
-pub const DISPID_RDPSRAPI_PROP_APPLICATION = @as(u32, 211);
-pub const DISPID_RDPSRAPI_PROP_WINDOWSHARED = @as(u32, 212);
-pub const DISPID_RDPSRAPI_PROP_WINDOWNAME = @as(u32, 213);
-pub const DISPID_RDPSRAPI_PROP_APPNAME = @as(u32, 214);
-pub const DISPID_RDPSRAPI_PROP_APPLICATION_FILTER = @as(u32, 215);
-pub const DISPID_RDPSRAPI_PROP_WINDOW_LIST = @as(u32, 216);
-pub const DISPID_RDPSRAPI_PROP_APPLICATION_LIST = @as(u32, 217);
-pub const DISPID_RDPSRAPI_PROP_APPFILTER_ENABLED = @as(u32, 218);
-pub const DISPID_RDPSRAPI_PROP_APPFILTERENABLED = @as(u32, 219);
-pub const DISPID_RDPSRAPI_PROP_SHARED = @as(u32, 220);
-pub const DISPID_RDPSRAPI_PROP_INVITATIONITEM = @as(u32, 221);
-pub const DISPID_RDPSRAPI_PROP_DBG_CLX_CMDLINE = @as(u32, 222);
-pub const DISPID_RDPSRAPI_PROP_APPFLAGS = @as(u32, 223);
-pub const DISPID_RDPSRAPI_PROP_WNDFLAGS = @as(u32, 224);
-pub const DISPID_RDPSRAPI_PROP_PROTOCOL_TYPE = @as(u32, 225);
-pub const DISPID_RDPSRAPI_PROP_LOCAL_PORT = @as(u32, 226);
-pub const DISPID_RDPSRAPI_PROP_LOCAL_IP = @as(u32, 227);
-pub const DISPID_RDPSRAPI_PROP_PEER_PORT = @as(u32, 228);
-pub const DISPID_RDPSRAPI_PROP_PEER_IP = @as(u32, 229);
-pub const DISPID_RDPSRAPI_PROP_ATTENDEE_FLAGS = @as(u32, 230);
-pub const DISPID_RDPSRAPI_PROP_CONINFO = @as(u32, 231);
-pub const DISPID_RDPSRAPI_PROP_CONNECTION_STRING = @as(u32, 232);
-pub const DISPID_RDPSRAPI_PROP_GROUP_NAME = @as(u32, 233);
-pub const DISPID_RDPSRAPI_PROP_PASSWORD = @as(u32, 234);
-pub const DISPID_RDPSRAPI_PROP_ATTENDEELIMIT = @as(u32, 235);
-pub const DISPID_RDPSRAPI_PROP_REVOKED = @as(u32, 236);
-pub const DISPID_RDPSRAPI_PROP_DISCONNECTED_STRING = @as(u32, 237);
-pub const DISPID_RDPSRAPI_PROP_USESMARTSIZING = @as(u32, 238);
-pub const DISPID_RDPSRAPI_PROP_SESSION_COLORDEPTH = @as(u32, 239);
-pub const DISPID_RDPSRAPI_PROP_REASON = @as(u32, 240);
-pub const DISPID_RDPSRAPI_PROP_CODE = @as(u32, 241);
-pub const DISPID_RDPSRAPI_PROP_CTRL_LEVEL = @as(u32, 242);
-pub const DISPID_RDPSRAPI_PROP_REMOTENAME = @as(u32, 243);
-pub const DISPID_RDPSRAPI_PROP_COUNT = @as(u32, 244);
-pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER_HEIGHT = @as(u32, 251);
-pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER_WIDTH = @as(u32, 252);
-pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER_BPP = @as(u32, 253);
-pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER = @as(u32, 254);
+pub const DISPID_RDPAPI_EVENT_ON_BOUNDING_RECT_CHANGED = @as(u32, 340);
+pub const DISPID_RDPSRAPI_EVENT_ON_APPFILTER_UPDATE = @as(u32, 322);
+pub const DISPID_RDPSRAPI_EVENT_ON_APPLICATION_CLOSE = @as(u32, 317);
+pub const DISPID_RDPSRAPI_EVENT_ON_APPLICATION_OPEN = @as(u32, 316);
+pub const DISPID_RDPSRAPI_EVENT_ON_APPLICATION_UPDATE = @as(u32, 318);
 pub const DISPID_RDPSRAPI_EVENT_ON_ATTENDEE_CONNECTED = @as(u32, 301);
 pub const DISPID_RDPSRAPI_EVENT_ON_ATTENDEE_DISCONNECTED = @as(u32, 302);
 pub const DISPID_RDPSRAPI_EVENT_ON_ATTENDEE_UPDATE = @as(u32, 303);
-pub const DISPID_RDPSRAPI_EVENT_ON_ERROR = @as(u32, 304);
-pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_CONNECTED = @as(u32, 305);
-pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_DISCONNECTED = @as(u32, 306);
-pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_AUTHENTICATED = @as(u32, 307);
-pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_CONNECTFAILED = @as(u32, 308);
 pub const DISPID_RDPSRAPI_EVENT_ON_CTRLLEVEL_CHANGE_REQUEST = @as(u32, 309);
+pub const DISPID_RDPSRAPI_EVENT_ON_CTRLLEVEL_CHANGE_RESPONSE = @as(u32, 338);
+pub const DISPID_RDPSRAPI_EVENT_ON_ERROR = @as(u32, 304);
+pub const DISPID_RDPSRAPI_EVENT_ON_FOCUSRELEASED = @as(u32, 324);
 pub const DISPID_RDPSRAPI_EVENT_ON_GRAPHICS_STREAM_PAUSED = @as(u32, 310);
 pub const DISPID_RDPSRAPI_EVENT_ON_GRAPHICS_STREAM_RESUMED = @as(u32, 311);
+pub const DISPID_RDPSRAPI_EVENT_ON_SHARED_DESKTOP_SETTINGS_CHANGED = @as(u32, 325);
+pub const DISPID_RDPSRAPI_EVENT_ON_SHARED_RECT_CHANGED = @as(u32, 323);
+pub const DISPID_RDPSRAPI_EVENT_ON_STREAM_CLOSED = @as(u32, 634);
+pub const DISPID_RDPSRAPI_EVENT_ON_STREAM_DATARECEIVED = @as(u32, 633);
+pub const DISPID_RDPSRAPI_EVENT_ON_STREAM_SENDCOMPLETED = @as(u32, 632);
+pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_AUTHENTICATED = @as(u32, 307);
+pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_CONNECTED = @as(u32, 305);
+pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_CONNECTFAILED = @as(u32, 308);
+pub const DISPID_RDPSRAPI_EVENT_ON_VIEWER_DISCONNECTED = @as(u32, 306);
+pub const DISPID_RDPSRAPI_EVENT_ON_VIRTUAL_CHANNEL_DATARECEIVED = @as(u32, 314);
 pub const DISPID_RDPSRAPI_EVENT_ON_VIRTUAL_CHANNEL_JOIN = @as(u32, 312);
 pub const DISPID_RDPSRAPI_EVENT_ON_VIRTUAL_CHANNEL_LEAVE = @as(u32, 313);
-pub const DISPID_RDPSRAPI_EVENT_ON_VIRTUAL_CHANNEL_DATARECEIVED = @as(u32, 314);
 pub const DISPID_RDPSRAPI_EVENT_ON_VIRTUAL_CHANNEL_SENDCOMPLETED = @as(u32, 315);
-pub const DISPID_RDPSRAPI_EVENT_ON_APPLICATION_OPEN = @as(u32, 316);
-pub const DISPID_RDPSRAPI_EVENT_ON_APPLICATION_CLOSE = @as(u32, 317);
-pub const DISPID_RDPSRAPI_EVENT_ON_APPLICATION_UPDATE = @as(u32, 318);
-pub const DISPID_RDPSRAPI_EVENT_ON_WINDOW_OPEN = @as(u32, 319);
 pub const DISPID_RDPSRAPI_EVENT_ON_WINDOW_CLOSE = @as(u32, 320);
+pub const DISPID_RDPSRAPI_EVENT_ON_WINDOW_OPEN = @as(u32, 319);
 pub const DISPID_RDPSRAPI_EVENT_ON_WINDOW_UPDATE = @as(u32, 321);
-pub const DISPID_RDPSRAPI_EVENT_ON_APPFILTER_UPDATE = @as(u32, 322);
-pub const DISPID_RDPSRAPI_EVENT_ON_SHARED_RECT_CHANGED = @as(u32, 323);
-pub const DISPID_RDPSRAPI_EVENT_ON_FOCUSRELEASED = @as(u32, 324);
-pub const DISPID_RDPSRAPI_EVENT_ON_SHARED_DESKTOP_SETTINGS_CHANGED = @as(u32, 325);
-pub const DISPID_RDPSRAPI_EVENT_ON_CTRLLEVEL_CHANGE_RESPONSE = @as(u32, 338);
-pub const DISPID_RDPAPI_EVENT_ON_BOUNDING_RECT_CHANGED = @as(u32, 340);
-pub const DISPID_RDPSRAPI_METHOD_STREAM_ALLOCBUFFER = @as(u32, 421);
-pub const DISPID_RDPSRAPI_METHOD_STREAM_FREEBUFFER = @as(u32, 422);
-pub const DISPID_RDPSRAPI_METHOD_STREAMSENDDATA = @as(u32, 423);
-pub const DISPID_RDPSRAPI_METHOD_STREAMREADDATA = @as(u32, 424);
-pub const DISPID_RDPSRAPI_METHOD_STREAMOPEN = @as(u32, 425);
-pub const DISPID_RDPSRAPI_METHOD_STREAMCLOSE = @as(u32, 426);
-pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_STORAGE = @as(u32, 555);
-pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_PAYLOADSIZE = @as(u32, 558);
-pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_PAYLOADOFFSET = @as(u32, 559);
-pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_CONTEXT = @as(u32, 560);
-pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_FLAGS = @as(u32, 561);
-pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_STORESIZE = @as(u32, 562);
-pub const DISPID_RDPSRAPI_EVENT_ON_STREAM_SENDCOMPLETED = @as(u32, 632);
-pub const DISPID_RDPSRAPI_EVENT_ON_STREAM_DATARECEIVED = @as(u32, 633);
-pub const DISPID_RDPSRAPI_EVENT_ON_STREAM_CLOSED = @as(u32, 634);
 pub const DISPID_RDPSRAPI_EVENT_VIEW_MOUSE_BUTTON_RECEIVED = @as(u32, 700);
 pub const DISPID_RDPSRAPI_EVENT_VIEW_MOUSE_MOVE_RECEIVED = @as(u32, 701);
 pub const DISPID_RDPSRAPI_EVENT_VIEW_MOUSE_WHEEL_RECEIVED = @as(u32, 702);
+pub const DISPID_RDPSRAPI_METHOD_ADD_TOUCH_INPUT = @as(u32, 125);
+pub const DISPID_RDPSRAPI_METHOD_BEGIN_TOUCH_FRAME = @as(u32, 124);
+pub const DISPID_RDPSRAPI_METHOD_CLOSE = @as(u32, 101);
+pub const DISPID_RDPSRAPI_METHOD_CONNECTTOCLIENT = @as(u32, 117);
+pub const DISPID_RDPSRAPI_METHOD_CONNECTUSINGTRANSPORTSTREAM = @as(u32, 127);
+pub const DISPID_RDPSRAPI_METHOD_CREATE_INVITATION = @as(u32, 107);
+pub const DISPID_RDPSRAPI_METHOD_END_TOUCH_FRAME = @as(u32, 126);
+pub const DISPID_RDPSRAPI_METHOD_GETFRAMEBUFFERBITS = @as(u32, 149);
+pub const DISPID_RDPSRAPI_METHOD_GETSHAREDRECT = @as(u32, 103);
+pub const DISPID_RDPSRAPI_METHOD_OPEN = @as(u32, 100);
+pub const DISPID_RDPSRAPI_METHOD_PAUSE = @as(u32, 112);
+pub const DISPID_RDPSRAPI_METHOD_REQUEST_COLOR_DEPTH_CHANGE = @as(u32, 115);
+pub const DISPID_RDPSRAPI_METHOD_REQUEST_CONTROL = @as(u32, 108);
+pub const DISPID_RDPSRAPI_METHOD_RESUME = @as(u32, 113);
+pub const DISPID_RDPSRAPI_METHOD_SEND_KEYBOARD_EVENT = @as(u32, 122);
+pub const DISPID_RDPSRAPI_METHOD_SEND_MOUSE_BUTTON_EVENT = @as(u32, 119);
+pub const DISPID_RDPSRAPI_METHOD_SEND_MOUSE_MOVE_EVENT = @as(u32, 120);
+pub const DISPID_RDPSRAPI_METHOD_SEND_MOUSE_WHEEL_EVENT = @as(u32, 121);
+pub const DISPID_RDPSRAPI_METHOD_SEND_SYNC_EVENT = @as(u32, 123);
+pub const DISPID_RDPSRAPI_METHOD_SENDCONTROLLEVELCHANGERESPONSE = @as(u32, 148);
+pub const DISPID_RDPSRAPI_METHOD_SET_RENDERING_SURFACE = @as(u32, 118);
+pub const DISPID_RDPSRAPI_METHOD_SETSHAREDRECT = @as(u32, 102);
+pub const DISPID_RDPSRAPI_METHOD_SHOW_WINDOW = @as(u32, 114);
+pub const DISPID_RDPSRAPI_METHOD_STARTREVCONNECTLISTENER = @as(u32, 116);
+pub const DISPID_RDPSRAPI_METHOD_STREAM_ALLOCBUFFER = @as(u32, 421);
+pub const DISPID_RDPSRAPI_METHOD_STREAM_FREEBUFFER = @as(u32, 422);
+pub const DISPID_RDPSRAPI_METHOD_STREAMCLOSE = @as(u32, 426);
+pub const DISPID_RDPSRAPI_METHOD_STREAMOPEN = @as(u32, 425);
+pub const DISPID_RDPSRAPI_METHOD_STREAMREADDATA = @as(u32, 424);
+pub const DISPID_RDPSRAPI_METHOD_STREAMSENDDATA = @as(u32, 423);
+pub const DISPID_RDPSRAPI_METHOD_TERMINATE_CONNECTION = @as(u32, 106);
+pub const DISPID_RDPSRAPI_METHOD_VIEWERCONNECT = @as(u32, 104);
+pub const DISPID_RDPSRAPI_METHOD_VIEWERDISCONNECT = @as(u32, 105);
+pub const DISPID_RDPSRAPI_METHOD_VIRTUAL_CHANNEL_CREATE = @as(u32, 109);
+pub const DISPID_RDPSRAPI_METHOD_VIRTUAL_CHANNEL_SEND_DATA = @as(u32, 110);
+pub const DISPID_RDPSRAPI_METHOD_VIRTUAL_CHANNEL_SET_ACCESS = @as(u32, 111);
+pub const DISPID_RDPSRAPI_PROP_APPFILTER_ENABLED = @as(u32, 218);
+pub const DISPID_RDPSRAPI_PROP_APPFILTERENABLED = @as(u32, 219);
+pub const DISPID_RDPSRAPI_PROP_APPFLAGS = @as(u32, 223);
+pub const DISPID_RDPSRAPI_PROP_APPLICATION = @as(u32, 211);
+pub const DISPID_RDPSRAPI_PROP_APPLICATION_FILTER = @as(u32, 215);
+pub const DISPID_RDPSRAPI_PROP_APPLICATION_LIST = @as(u32, 217);
+pub const DISPID_RDPSRAPI_PROP_APPNAME = @as(u32, 214);
+pub const DISPID_RDPSRAPI_PROP_ATTENDEE_FLAGS = @as(u32, 230);
+pub const DISPID_RDPSRAPI_PROP_ATTENDEELIMIT = @as(u32, 235);
+pub const DISPID_RDPSRAPI_PROP_ATTENDEES = @as(u32, 203);
+pub const DISPID_RDPSRAPI_PROP_CHANNELMANAGER = @as(u32, 206);
+pub const DISPID_RDPSRAPI_PROP_CODE = @as(u32, 241);
+pub const DISPID_RDPSRAPI_PROP_CONINFO = @as(u32, 231);
+pub const DISPID_RDPSRAPI_PROP_CONNECTION_STRING = @as(u32, 232);
+pub const DISPID_RDPSRAPI_PROP_COUNT = @as(u32, 244);
+pub const DISPID_RDPSRAPI_PROP_CTRL_LEVEL = @as(u32, 242);
+pub const DISPID_RDPSRAPI_PROP_DBG_CLX_CMDLINE = @as(u32, 222);
+pub const DISPID_RDPSRAPI_PROP_DISCONNECTED_STRING = @as(u32, 237);
+pub const DISPID_RDPSRAPI_PROP_DISPIDVALUE = @as(u32, 200);
+pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER = @as(u32, 254);
+pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER_BPP = @as(u32, 253);
+pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER_HEIGHT = @as(u32, 251);
+pub const DISPID_RDPSRAPI_PROP_FRAMEBUFFER_WIDTH = @as(u32, 252);
+pub const DISPID_RDPSRAPI_PROP_GROUP_NAME = @as(u32, 233);
+pub const DISPID_RDPSRAPI_PROP_ID = @as(u32, 201);
+pub const DISPID_RDPSRAPI_PROP_INVITATION = @as(u32, 205);
+pub const DISPID_RDPSRAPI_PROP_INVITATIONITEM = @as(u32, 221);
+pub const DISPID_RDPSRAPI_PROP_INVITATIONS = @as(u32, 204);
+pub const DISPID_RDPSRAPI_PROP_LOCAL_IP = @as(u32, 227);
+pub const DISPID_RDPSRAPI_PROP_LOCAL_PORT = @as(u32, 226);
+pub const DISPID_RDPSRAPI_PROP_PASSWORD = @as(u32, 234);
+pub const DISPID_RDPSRAPI_PROP_PEER_IP = @as(u32, 229);
+pub const DISPID_RDPSRAPI_PROP_PEER_PORT = @as(u32, 228);
+pub const DISPID_RDPSRAPI_PROP_PROTOCOL_TYPE = @as(u32, 225);
+pub const DISPID_RDPSRAPI_PROP_REASON = @as(u32, 240);
+pub const DISPID_RDPSRAPI_PROP_REMOTENAME = @as(u32, 243);
+pub const DISPID_RDPSRAPI_PROP_REVOKED = @as(u32, 236);
+pub const DISPID_RDPSRAPI_PROP_SESSION_COLORDEPTH = @as(u32, 239);
+pub const DISPID_RDPSRAPI_PROP_SESSION_PROPERTIES = @as(u32, 202);
+pub const DISPID_RDPSRAPI_PROP_SHARED = @as(u32, 220);
+pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_CONTEXT = @as(u32, 560);
+pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_FLAGS = @as(u32, 561);
+pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_PAYLOADOFFSET = @as(u32, 559);
+pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_PAYLOADSIZE = @as(u32, 558);
+pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_STORAGE = @as(u32, 555);
+pub const DISPID_RDPSRAPI_PROP_STREAMBUFFER_STORESIZE = @as(u32, 562);
+pub const DISPID_RDPSRAPI_PROP_USESMARTSIZING = @as(u32, 238);
+pub const DISPID_RDPSRAPI_PROP_VIRTUAL_CHANNEL_GETFLAGS = @as(u32, 208);
+pub const DISPID_RDPSRAPI_PROP_VIRTUAL_CHANNEL_GETNAME = @as(u32, 207);
+pub const DISPID_RDPSRAPI_PROP_VIRTUAL_CHANNEL_GETPRIORITY = @as(u32, 209);
+pub const DISPID_RDPSRAPI_PROP_WINDOW_LIST = @as(u32, 216);
+pub const DISPID_RDPSRAPI_PROP_WINDOWID = @as(u32, 210);
+pub const DISPID_RDPSRAPI_PROP_WINDOWNAME = @as(u32, 213);
+pub const DISPID_RDPSRAPI_PROP_WINDOWSHARED = @as(u32, 212);
+pub const DISPID_RDPSRAPI_PROP_WNDFLAGS = @as(u32, 224);
 
 //--------------------------------------------------------------------------------
 // Section: Types (58)
 //--------------------------------------------------------------------------------
-const CLSID_RDPViewer_Value = Guid.initString("32be5ed2-5c86-480f-a914-0ff8885a1b3f");
-pub const CLSID_RDPViewer = &CLSID_RDPViewer_Value;
+pub const __ReferenceRemainingTypes__ = extern struct {
+    __ctrlLevel__: CTRL_LEVEL,
+    __attendeeDisconnectReason__: ATTENDEE_DISCONNECT_REASON,
+    __channelPriority__: CHANNEL_PRIORITY,
+    __channelFlags__: CHANNEL_FLAGS,
+    __channelAccessEnum__: CHANNEL_ACCESS_ENUM,
+    __rdpencomapiAttendeeFlags__: RDPENCOMAPI_ATTENDEE_FLAGS,
+    __rdpsrapiWndFlags__: RDPSRAPI_WND_FLAGS,
+    __rdpsrapiAppFlags__: RDPSRAPI_APP_FLAGS,
+};
 
-const CLSID_RDPSRAPISessionProperties_Value = Guid.initString("dd7594ff-ea2a-4c06-8fdf-132de48b6510");
-pub const CLSID_RDPSRAPISessionProperties = &CLSID_RDPSRAPISessionProperties_Value;
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID__IRDPSessionEvents_Value = Guid.initString("98a97042-6698-40e9-8efd-b3200990004b");
+pub const IID__IRDPSessionEvents = &IID__IRDPSessionEvents_Value;
+pub const _IRDPSessionEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
 
-const CLSID_RDPSRAPIInvitationManager_Value = Guid.initString("53d9c9db-75ab-4271-948a-4c4eb36a8f2b");
-pub const CLSID_RDPSRAPIInvitationManager = &CLSID_RDPSRAPIInvitationManager_Value;
+pub const ATTENDEE_DISCONNECT_REASON = enum(i32) {
+    MIN = 0,
+    ERR = 1,
+    CLI = 2,
+    pub const APP = .MIN;
+    pub const MAX = .CLI;
+};
+pub const ATTENDEE_DISCONNECT_REASON_MIN = ATTENDEE_DISCONNECT_REASON.MIN;
+pub const ATTENDEE_DISCONNECT_REASON_APP = ATTENDEE_DISCONNECT_REASON.MIN;
+pub const ATTENDEE_DISCONNECT_REASON_ERR = ATTENDEE_DISCONNECT_REASON.ERR;
+pub const ATTENDEE_DISCONNECT_REASON_CLI = ATTENDEE_DISCONNECT_REASON.CLI;
+pub const ATTENDEE_DISCONNECT_REASON_MAX = ATTENDEE_DISCONNECT_REASON.CLI;
 
-const CLSID_RDPSRAPIInvitation_Value = Guid.initString("49174dc6-0731-4b5e-8ee1-83a63d3868fa");
-pub const CLSID_RDPSRAPIInvitation = &CLSID_RDPSRAPIInvitation_Value;
+pub const CHANNEL_ACCESS_ENUM = enum(i32) {
+    NONE = 0,
+    SENDRECEIVE = 1,
+};
+pub const CHANNEL_ACCESS_ENUM_NONE = CHANNEL_ACCESS_ENUM.NONE;
+pub const CHANNEL_ACCESS_ENUM_SENDRECEIVE = CHANNEL_ACCESS_ENUM.SENDRECEIVE;
 
-const CLSID_RDPSRAPIAttendeeManager_Value = Guid.initString("d7b13a01-f7d4-42a6-8595-12fc8c24e851");
-pub const CLSID_RDPSRAPIAttendeeManager = &CLSID_RDPSRAPIAttendeeManager_Value;
+pub const CHANNEL_FLAGS = enum(i32) {
+    LEGACY = 1,
+    UNCOMPRESSED = 2,
+    DYNAMIC = 4,
+};
+pub const CHANNEL_FLAGS_LEGACY = CHANNEL_FLAGS.LEGACY;
+pub const CHANNEL_FLAGS_UNCOMPRESSED = CHANNEL_FLAGS.UNCOMPRESSED;
+pub const CHANNEL_FLAGS_DYNAMIC = CHANNEL_FLAGS.DYNAMIC;
 
-const CLSID_RDPSRAPIAttendee_Value = Guid.initString("74f93bb5-755f-488e-8a29-2390108aef55");
-pub const CLSID_RDPSRAPIAttendee = &CLSID_RDPSRAPIAttendee_Value;
-
-const CLSID_RDPSRAPIAttendeeDisconnectInfo_Value = Guid.initString("b47d7250-5bdb-405d-b487-caad9c56f4f8");
-pub const CLSID_RDPSRAPIAttendeeDisconnectInfo = &CLSID_RDPSRAPIAttendeeDisconnectInfo_Value;
-
-const CLSID_RDPSRAPIApplicationFilter_Value = Guid.initString("e35ace89-c7e8-427e-a4f9-b9da072826bd");
-pub const CLSID_RDPSRAPIApplicationFilter = &CLSID_RDPSRAPIApplicationFilter_Value;
-
-const CLSID_RDPSRAPIApplicationList_Value = Guid.initString("9e31c815-7433-4876-97fb-ed59fe2baa22");
-pub const CLSID_RDPSRAPIApplicationList = &CLSID_RDPSRAPIApplicationList_Value;
-
-const CLSID_RDPSRAPIApplication_Value = Guid.initString("c116a484-4b25-4b9f-8a54-b934b06e57fa");
-pub const CLSID_RDPSRAPIApplication = &CLSID_RDPSRAPIApplication_Value;
-
-const CLSID_RDPSRAPIWindowList_Value = Guid.initString("9c21e2b8-5dd4-42cc-81ba-1c099852e6fa");
-pub const CLSID_RDPSRAPIWindowList = &CLSID_RDPSRAPIWindowList_Value;
-
-const CLSID_RDPSRAPIWindow_Value = Guid.initString("03cf46db-ce45-4d36-86ed-ed28b74398bf");
-pub const CLSID_RDPSRAPIWindow = &CLSID_RDPSRAPIWindow_Value;
-
-const CLSID_RDPSRAPITcpConnectionInfo_Value = Guid.initString("be49db3f-ebb6-4278-8ce0-d5455833eaee");
-pub const CLSID_RDPSRAPITcpConnectionInfo = &CLSID_RDPSRAPITcpConnectionInfo_Value;
-
-const CLSID_RDPSession_Value = Guid.initString("9b78f0e6-3e05-4a5b-b2e8-e743a8956b65");
-pub const CLSID_RDPSession = &CLSID_RDPSession_Value;
-
-const CLSID_RDPSRAPIFrameBuffer_Value = Guid.initString("a4f66bcc-538e-4101-951d-30847adb5101");
-pub const CLSID_RDPSRAPIFrameBuffer = &CLSID_RDPSRAPIFrameBuffer_Value;
-
-const CLSID_RDPTransportStreamBuffer_Value = Guid.initString("8d4a1c69-f17f-4549-a699-761c6e6b5c0a");
-pub const CLSID_RDPTransportStreamBuffer = &CLSID_RDPTransportStreamBuffer_Value;
-
-const CLSID_RDPTransportStreamEvents_Value = Guid.initString("31e3ab20-5350-483f-9dc6-6748665efdeb");
-pub const CLSID_RDPTransportStreamEvents = &CLSID_RDPTransportStreamEvents_Value;
+pub const CHANNEL_PRIORITY = enum(i32) {
+    LO = 0,
+    MED = 1,
+    HI = 2,
+};
+pub const CHANNEL_PRIORITY_LO = CHANNEL_PRIORITY.LO;
+pub const CHANNEL_PRIORITY_MED = CHANNEL_PRIORITY.MED;
+pub const CHANNEL_PRIORITY_HI = CHANNEL_PRIORITY.HI;
 
 pub const CTRL_LEVEL = enum(i32) {
     MIN = 0,
@@ -200,152 +210,273 @@ pub const CTRL_LEVEL_REQCTRL_VIEW = CTRL_LEVEL.REQCTRL_VIEW;
 pub const CTRL_LEVEL_REQCTRL_INTERACTIVE = CTRL_LEVEL.REQCTRL_INTERACTIVE;
 pub const CTRL_LEVEL_MAX = CTRL_LEVEL.REQCTRL_INTERACTIVE;
 
-pub const ATTENDEE_DISCONNECT_REASON = enum(i32) {
-    MIN = 0,
-    ERR = 1,
-    CLI = 2,
-    pub const APP = .MIN;
-    pub const MAX = .CLI;
-};
-pub const ATTENDEE_DISCONNECT_REASON_MIN = ATTENDEE_DISCONNECT_REASON.MIN;
-pub const ATTENDEE_DISCONNECT_REASON_APP = ATTENDEE_DISCONNECT_REASON.MIN;
-pub const ATTENDEE_DISCONNECT_REASON_ERR = ATTENDEE_DISCONNECT_REASON.ERR;
-pub const ATTENDEE_DISCONNECT_REASON_CLI = ATTENDEE_DISCONNECT_REASON.CLI;
-pub const ATTENDEE_DISCONNECT_REASON_MAX = ATTENDEE_DISCONNECT_REASON.CLI;
-
-pub const CHANNEL_PRIORITY = enum(i32) {
-    LO = 0,
-    MED = 1,
-    HI = 2,
-};
-pub const CHANNEL_PRIORITY_LO = CHANNEL_PRIORITY.LO;
-pub const CHANNEL_PRIORITY_MED = CHANNEL_PRIORITY.MED;
-pub const CHANNEL_PRIORITY_HI = CHANNEL_PRIORITY.HI;
-
-pub const CHANNEL_FLAGS = enum(i32) {
-    LEGACY = 1,
-    UNCOMPRESSED = 2,
-    DYNAMIC = 4,
-};
-pub const CHANNEL_FLAGS_LEGACY = CHANNEL_FLAGS.LEGACY;
-pub const CHANNEL_FLAGS_UNCOMPRESSED = CHANNEL_FLAGS.UNCOMPRESSED;
-pub const CHANNEL_FLAGS_DYNAMIC = CHANNEL_FLAGS.DYNAMIC;
-
-pub const CHANNEL_ACCESS_ENUM = enum(i32) {
-    NONE = 0,
-    SENDRECEIVE = 1,
-};
-pub const CHANNEL_ACCESS_ENUM_NONE = CHANNEL_ACCESS_ENUM.NONE;
-pub const CHANNEL_ACCESS_ENUM_SENDRECEIVE = CHANNEL_ACCESS_ENUM.SENDRECEIVE;
-
-pub const RDPENCOMAPI_ATTENDEE_FLAGS = enum(i32) {
-    L = 1,
-};
-pub const ATTENDEE_FLAGS_LOCAL = RDPENCOMAPI_ATTENDEE_FLAGS.L;
-
-pub const RDPSRAPI_WND_FLAGS = enum(i32) {
-    D = 1,
-};
-pub const WND_FLAG_PRIVILEGED = RDPSRAPI_WND_FLAGS.D;
-
-pub const RDPSRAPI_APP_FLAGS = enum(i32) {
-    D = 1,
-};
-pub const APP_FLAG_PRIVILEGED = RDPSRAPI_APP_FLAGS.D;
-
-pub const RDPSRAPI_MOUSE_BUTTON_TYPE = enum(i32) {
-    BUTTON1 = 0,
-    BUTTON2 = 1,
-    BUTTON3 = 2,
-    XBUTTON1 = 3,
-    XBUTTON2 = 4,
-    XBUTTON3 = 5,
-};
-pub const RDPSRAPI_MOUSE_BUTTON_BUTTON1 = RDPSRAPI_MOUSE_BUTTON_TYPE.BUTTON1;
-pub const RDPSRAPI_MOUSE_BUTTON_BUTTON2 = RDPSRAPI_MOUSE_BUTTON_TYPE.BUTTON2;
-pub const RDPSRAPI_MOUSE_BUTTON_BUTTON3 = RDPSRAPI_MOUSE_BUTTON_TYPE.BUTTON3;
-pub const RDPSRAPI_MOUSE_BUTTON_XBUTTON1 = RDPSRAPI_MOUSE_BUTTON_TYPE.XBUTTON1;
-pub const RDPSRAPI_MOUSE_BUTTON_XBUTTON2 = RDPSRAPI_MOUSE_BUTTON_TYPE.XBUTTON2;
-pub const RDPSRAPI_MOUSE_BUTTON_XBUTTON3 = RDPSRAPI_MOUSE_BUTTON_TYPE.XBUTTON3;
-
-pub const RDPSRAPI_KBD_CODE_TYPE = enum(i32) {
-    SCANCODE = 0,
-    UNICODE = 1,
-};
-pub const RDPSRAPI_KBD_CODE_SCANCODE = RDPSRAPI_KBD_CODE_TYPE.SCANCODE;
-pub const RDPSRAPI_KBD_CODE_UNICODE = RDPSRAPI_KBD_CODE_TYPE.UNICODE;
-
-pub const RDPSRAPI_KBD_SYNC_FLAG = enum(i32) {
-    SCROLL_LOCK = 1,
-    NUM_LOCK = 2,
-    CAPS_LOCK = 4,
-    KANA_LOCK = 8,
-};
-pub const RDPSRAPI_KBD_SYNC_FLAG_SCROLL_LOCK = RDPSRAPI_KBD_SYNC_FLAG.SCROLL_LOCK;
-pub const RDPSRAPI_KBD_SYNC_FLAG_NUM_LOCK = RDPSRAPI_KBD_SYNC_FLAG.NUM_LOCK;
-pub const RDPSRAPI_KBD_SYNC_FLAG_CAPS_LOCK = RDPSRAPI_KBD_SYNC_FLAG.CAPS_LOCK;
-pub const RDPSRAPI_KBD_SYNC_FLAG_KANA_LOCK = RDPSRAPI_KBD_SYNC_FLAG.KANA_LOCK;
-
-const IID_IRDPSRAPIDebug_Value = Guid.initString("aa1e42b5-496d-4ca4-a690-348dcb2ec4ad");
-pub const IID_IRDPSRAPIDebug = &IID_IRDPSRAPIDebug_Value;
-pub const IRDPSRAPIDebug = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIApplication_Value = Guid.initString("41e7a09d-eb7a-436e-935d-780ca2628324");
+pub const IID_IRDPSRAPIApplication = &IID_IRDPSRAPIApplication_Value;
+pub const IRDPSRAPIApplication = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
+        base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CLXCmdLine: *const fn(
-            self: *const IRDPSRAPIDebug,
-            CLXCmdLine: ?BSTR,
+        get_Windows: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pWindowList: ?*?*IRDPSRAPIWindowList,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CLXCmdLine: *const fn(
-            self: *const IRDPSRAPIDebug,
-            pCLXCmdLine: ?*?BSTR,
+        get_Id: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Shared: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pRetVal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Shared: *const fn(
+            self: *const IRDPSRAPIApplication,
+            NewVal: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pRetVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pdwFlags: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_CLXCmdLine(self: *const IRDPSRAPIDebug, CLXCmdLine: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_CLXCmdLine(self, CLXCmdLine);
+    pub fn get_Windows(self: *const IRDPSRAPIApplication, pWindowList: ?*?*IRDPSRAPIWindowList) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Windows(self, pWindowList);
     }
-    pub fn get_CLXCmdLine(self: *const IRDPSRAPIDebug, pCLXCmdLine: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CLXCmdLine(self, pCLXCmdLine);
+    pub fn get_Id(self: *const IRDPSRAPIApplication, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, pRetVal);
+    }
+    pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Shared(self, pRetVal);
+    }
+    pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Shared(self, NewVal);
+    }
+    pub fn get_Name(self: *const IRDPSRAPIApplication, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pRetVal);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIApplication, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Flags(self, pdwFlags);
     }
 };
 
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IRDPSRAPIPerfCounterLogger_Value = Guid.initString("071c2533-0fa4-4e8f-ae83-9c10b4305ab5");
-pub const IID_IRDPSRAPIPerfCounterLogger = &IID_IRDPSRAPIPerfCounterLogger_Value;
-pub const IRDPSRAPIPerfCounterLogger = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIApplicationFilter_Value = Guid.initString("d20f10ca-6637-4f06-b1d5-277ea7e5160d");
+pub const IID_IRDPSRAPIApplicationFilter = &IID_IRDPSRAPIApplicationFilter_Value;
+pub const IRDPSRAPIApplicationFilter = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LogValue: *const fn(
-            self: *const IRDPSRAPIPerfCounterLogger,
-            lValue: i64,
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Applications: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            pApplications: ?*?*IRDPSRAPIApplicationList,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Windows: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            pWindows: ?*?*IRDPSRAPIWindowList,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            pRetVal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enabled: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            NewVal: i16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn LogValue(self: *const IRDPSRAPIPerfCounterLogger, lValue: i64) callconv(.@"inline") HRESULT {
-        return self.vtable.LogValue(self, lValue);
+    pub fn get_Applications(self: *const IRDPSRAPIApplicationFilter, pApplications: ?*?*IRDPSRAPIApplicationList) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Applications(self, pApplications);
+    }
+    pub fn get_Windows(self: *const IRDPSRAPIApplicationFilter, pWindows: ?*?*IRDPSRAPIWindowList) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Windows(self, pWindows);
+    }
+    pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, pRetVal);
+    }
+    pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, NewVal);
     }
 };
 
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IRDPSRAPIPerfCounterLoggingManager_Value = Guid.initString("9a512c86-ac6e-4a8e-b1a4-fcef363f6e64");
-pub const IID_IRDPSRAPIPerfCounterLoggingManager = &IID_IRDPSRAPIPerfCounterLoggingManager_Value;
-pub const IRDPSRAPIPerfCounterLoggingManager = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIApplicationList_Value = Guid.initString("d4b4aeb3-22dc-4837-b3b6-42ea2517849a");
+pub const IID_IRDPSRAPIApplicationList = &IID_IRDPSRAPIApplicationList_Value;
+pub const IRDPSRAPIApplicationList = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateLogger: *const fn(
-            self: *const IRDPSRAPIPerfCounterLoggingManager,
-            bstrCounterName: ?BSTR,
-            ppLogger: ?*?*IRDPSRAPIPerfCounterLogger,
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIApplicationList,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIApplicationList,
+            item: i32,
+            pApplication: ?*?*IRDPSRAPIApplication,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateLogger(self: *const IRDPSRAPIPerfCounterLoggingManager, bstrCounterName: ?BSTR, ppLogger: ?*?*IRDPSRAPIPerfCounterLogger) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateLogger(self, bstrCounterName, ppLogger);
+    pub fn get__NewEnum(self: *const IRDPSRAPIApplicationList, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Item(self: *const IRDPSRAPIApplicationList, item: i32, pApplication: ?*?*IRDPSRAPIApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, item, pApplication);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIAttendee_Value = Guid.initString("ec0671b3-1b78-4b80-a464-9132247543e3");
+pub const IID_IRDPSRAPIAttendee = &IID_IRDPSRAPIAttendee_Value;
+pub const IRDPSRAPIAttendee = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pId: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RemoteName: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ControlLevel: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pVal: ?*CTRL_LEVEL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ControlLevel: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pNewVal: CTRL_LEVEL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Invitation: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            ppVal: ?*?*IRDPSRAPIInvitation,
+        ) callconv(.winapi) HRESULT,
+        TerminateConnection: *const fn(
+            self: *const IRDPSRAPIAttendee,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            plFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ConnectivityInfo: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            ppVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IRDPSRAPIAttendee, pId: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, pId);
+    }
+    pub fn get_RemoteName(self: *const IRDPSRAPIAttendee, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RemoteName(self, pVal);
+    }
+    pub fn get_ControlLevel(self: *const IRDPSRAPIAttendee, pVal: ?*CTRL_LEVEL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ControlLevel(self, pVal);
+    }
+    pub fn put_ControlLevel(self: *const IRDPSRAPIAttendee, pNewVal: CTRL_LEVEL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ControlLevel(self, pNewVal);
+    }
+    pub fn get_Invitation(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IRDPSRAPIInvitation) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Invitation(self, ppVal);
+    }
+    pub fn TerminateConnection(self: *const IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
+        return self.vtable.TerminateConnection(self);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIAttendee, plFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Flags(self, plFlags);
+    }
+    pub fn get_ConnectivityInfo(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ConnectivityInfo(self, ppVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIAttendeeDisconnectInfo_Value = Guid.initString("c187689f-447c-44a1-9c14-fffbb3b7ec17");
+pub const IID_IRDPSRAPIAttendeeDisconnectInfo = &IID_IRDPSRAPIAttendeeDisconnectInfo_Value;
+pub const IRDPSRAPIAttendeeDisconnectInfo = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Attendee: *const fn(
+            self: *const IRDPSRAPIAttendeeDisconnectInfo,
+            retval: ?*?*IRDPSRAPIAttendee,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Reason: *const fn(
+            self: *const IRDPSRAPIAttendeeDisconnectInfo,
+            pReason: ?*ATTENDEE_DISCONNECT_REASON,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Code: *const fn(
+            self: *const IRDPSRAPIAttendeeDisconnectInfo,
+            pVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Attendee(self: *const IRDPSRAPIAttendeeDisconnectInfo, retval: ?*?*IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Attendee(self, retval);
+    }
+    pub fn get_Reason(self: *const IRDPSRAPIAttendeeDisconnectInfo, pReason: ?*ATTENDEE_DISCONNECT_REASON) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Reason(self, pReason);
+    }
+    pub fn get_Code(self: *const IRDPSRAPIAttendeeDisconnectInfo, pVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Code(self, pVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIAttendeeManager_Value = Guid.initString("ba3a37e8-33da-4749-8da0-07fa34da7944");
+pub const IID_IRDPSRAPIAttendeeManager = &IID_IRDPSRAPIAttendeeManager_Value;
+pub const IRDPSRAPIAttendeeManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIAttendeeManager,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIAttendeeManager,
+            id: i32,
+            ppItem: ?*?*IRDPSRAPIAttendee,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIAttendeeManager, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Item(self: *const IRDPSRAPIAttendeeManager, id: i32, ppItem: ?*?*IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, id, ppItem);
     }
 };
 
@@ -414,257 +545,76 @@ pub const IRDPSRAPIClipboardUseEvents = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIWindow_Value = Guid.initString("beafe0f9-c77b-4933-ba9f-a24cddcc27cf");
-pub const IID_IRDPSRAPIWindow = &IID_IRDPSRAPIWindow_Value;
-pub const IRDPSRAPIWindow = extern union {
+const IID_IRDPSRAPIDebug_Value = Guid.initString("aa1e42b5-496d-4ca4-a690-348dcb2ec4ad");
+pub const IID_IRDPSRAPIDebug = &IID_IRDPSRAPIDebug_Value;
+pub const IRDPSRAPIDebug = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
+        base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IRDPSRAPIWindow,
-            pRetVal: ?*i32,
+        put_CLXCmdLine: *const fn(
+            self: *const IRDPSRAPIDebug,
+            CLXCmdLine: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Application: *const fn(
-            self: *const IRDPSRAPIWindow,
-            pApplication: ?*?*IRDPSRAPIApplication,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Shared: *const fn(
-            self: *const IRDPSRAPIWindow,
-            pRetVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Shared: *const fn(
-            self: *const IRDPSRAPIWindow,
-            NewVal: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IRDPSRAPIWindow,
-            pRetVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Show: *const fn(
-            self: *const IRDPSRAPIWindow,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: *const fn(
-            self: *const IRDPSRAPIWindow,
-            pdwFlags: ?*u32,
+        get_CLXCmdLine: *const fn(
+            self: *const IRDPSRAPIDebug,
+            pCLXCmdLine: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IRDPSRAPIWindow, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, pRetVal);
+    pub fn put_CLXCmdLine(self: *const IRDPSRAPIDebug, CLXCmdLine: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_CLXCmdLine(self, CLXCmdLine);
     }
-    pub fn get_Application(self: *const IRDPSRAPIWindow, pApplication: ?*?*IRDPSRAPIApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Application(self, pApplication);
-    }
-    pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Shared(self, pRetVal);
-    }
-    pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Shared(self, NewVal);
-    }
-    pub fn get_Name(self: *const IRDPSRAPIWindow, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pRetVal);
-    }
-    pub fn Show(self: *const IRDPSRAPIWindow) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self);
-    }
-    pub fn get_Flags(self: *const IRDPSRAPIWindow, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Flags(self, pdwFlags);
+    pub fn get_CLXCmdLine(self: *const IRDPSRAPIDebug, pCLXCmdLine: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CLXCmdLine(self, pCLXCmdLine);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIWindowList_Value = Guid.initString("8a05ce44-715a-4116-a189-a118f30a07bd");
-pub const IID_IRDPSRAPIWindowList = &IID_IRDPSRAPIWindowList_Value;
-pub const IRDPSRAPIWindowList = extern union {
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IRDPSRAPIFrameBuffer_Value = Guid.initString("3d67e7d2-b27b-448e-81b3-c6110ed8b4be");
+pub const IID_IRDPSRAPIFrameBuffer = &IID_IRDPSRAPIFrameBuffer_Value;
+pub const IRDPSRAPIFrameBuffer = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IRDPSRAPIWindowList,
-            retval: ?*?*IUnknown,
+        get_Width: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            plWidth: ?*i32,
         ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IRDPSRAPIWindowList,
-            item: i32,
-            pWindow: ?*?*IRDPSRAPIWindow,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Height: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            plHeight: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Bpp: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            plBpp: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetFrameBufferBits: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            x: i32,
+            y: i32,
+            Width: i32,
+            Heigth: i32,
+            ppBits: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIWindowList, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
+    pub fn get_Width(self: *const IRDPSRAPIFrameBuffer, plWidth: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Width(self, plWidth);
     }
-    pub fn get_Item(self: *const IRDPSRAPIWindowList, item: i32, pWindow: ?*?*IRDPSRAPIWindow) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, item, pWindow);
+    pub fn get_Height(self: *const IRDPSRAPIFrameBuffer, plHeight: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Height(self, plHeight);
     }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIApplication_Value = Guid.initString("41e7a09d-eb7a-436e-935d-780ca2628324");
-pub const IID_IRDPSRAPIApplication = &IID_IRDPSRAPIApplication_Value;
-pub const IRDPSRAPIApplication = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Windows: *const fn(
-            self: *const IRDPSRAPIApplication,
-            pWindowList: ?*?*IRDPSRAPIWindowList,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IRDPSRAPIApplication,
-            pRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Shared: *const fn(
-            self: *const IRDPSRAPIApplication,
-            pRetVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Shared: *const fn(
-            self: *const IRDPSRAPIApplication,
-            NewVal: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IRDPSRAPIApplication,
-            pRetVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: *const fn(
-            self: *const IRDPSRAPIApplication,
-            pdwFlags: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Windows(self: *const IRDPSRAPIApplication, pWindowList: ?*?*IRDPSRAPIWindowList) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Windows(self, pWindowList);
+    pub fn get_Bpp(self: *const IRDPSRAPIFrameBuffer, plBpp: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Bpp(self, plBpp);
     }
-    pub fn get_Id(self: *const IRDPSRAPIApplication, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, pRetVal);
-    }
-    pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Shared(self, pRetVal);
-    }
-    pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Shared(self, NewVal);
-    }
-    pub fn get_Name(self: *const IRDPSRAPIApplication, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pRetVal);
-    }
-    pub fn get_Flags(self: *const IRDPSRAPIApplication, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Flags(self, pdwFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIApplicationList_Value = Guid.initString("d4b4aeb3-22dc-4837-b3b6-42ea2517849a");
-pub const IID_IRDPSRAPIApplicationList = &IID_IRDPSRAPIApplicationList_Value;
-pub const IRDPSRAPIApplicationList = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IRDPSRAPIApplicationList,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IRDPSRAPIApplicationList,
-            item: i32,
-            pApplication: ?*?*IRDPSRAPIApplication,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIApplicationList, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Item(self: *const IRDPSRAPIApplicationList, item: i32, pApplication: ?*?*IRDPSRAPIApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, item, pApplication);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIApplicationFilter_Value = Guid.initString("d20f10ca-6637-4f06-b1d5-277ea7e5160d");
-pub const IID_IRDPSRAPIApplicationFilter = &IID_IRDPSRAPIApplicationFilter_Value;
-pub const IRDPSRAPIApplicationFilter = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Applications: *const fn(
-            self: *const IRDPSRAPIApplicationFilter,
-            pApplications: ?*?*IRDPSRAPIApplicationList,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Windows: *const fn(
-            self: *const IRDPSRAPIApplicationFilter,
-            pWindows: ?*?*IRDPSRAPIWindowList,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IRDPSRAPIApplicationFilter,
-            pRetVal: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const IRDPSRAPIApplicationFilter,
-            NewVal: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Applications(self: *const IRDPSRAPIApplicationFilter, pApplications: ?*?*IRDPSRAPIApplicationList) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Applications(self, pApplications);
-    }
-    pub fn get_Windows(self: *const IRDPSRAPIApplicationFilter, pWindows: ?*?*IRDPSRAPIWindowList) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Windows(self, pWindows);
-    }
-    pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, pRetVal);
-    }
-    pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, NewVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPISessionProperties_Value = Guid.initString("339b24f2-9bc0-4f16-9aac-f165433d13d4");
-pub const IID_IRDPSRAPISessionProperties = &IID_IRDPSRAPISessionProperties_Value;
-pub const IRDPSRAPISessionProperties = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Property: *const fn(
-            self: *const IRDPSRAPISessionProperties,
-            PropertyName: ?BSTR,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        put_Property: *const fn(
-            self: *const IRDPSRAPISessionProperties,
-            PropertyName: ?BSTR,
-            newVal: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Property(self, PropertyName, pVal);
-    }
-    pub fn put_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, newVal: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Property(self, PropertyName, newVal);
+    pub fn GetFrameBufferBits(self: *const IRDPSRAPIFrameBuffer, x: i32, y: i32, Width: i32, Heigth: i32, ppBits: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFrameBufferBits(self, x, y, Width, Heigth, ppBits);
     }
 };
 
@@ -783,706 +733,68 @@ pub const IRDPSRAPIInvitationManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPITcpConnectionInfo_Value = Guid.initString("f74049a4-3d06-4028-8193-0a8c29bc2452");
-pub const IID_IRDPSRAPITcpConnectionInfo = &IID_IRDPSRAPITcpConnectionInfo_Value;
-pub const IRDPSRAPITcpConnectionInfo = extern union {
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IRDPSRAPIPerfCounterLogger_Value = Guid.initString("071c2533-0fa4-4e8f-ae83-9c10b4305ab5");
+pub const IID_IRDPSRAPIPerfCounterLogger = &IID_IRDPSRAPIPerfCounterLogger_Value;
+pub const IRDPSRAPIPerfCounterLogger = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: *const fn(
-            self: *const IRDPSRAPITcpConnectionInfo,
-            plProtocol: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPort: *const fn(
-            self: *const IRDPSRAPITcpConnectionInfo,
-            plPort: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalIP: *const fn(
-            self: *const IRDPSRAPITcpConnectionInfo,
-            pbsrLocalIP: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PeerPort: *const fn(
-            self: *const IRDPSRAPITcpConnectionInfo,
-            plPort: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PeerIP: *const fn(
-            self: *const IRDPSRAPITcpConnectionInfo,
-            pbstrIP: ?*?BSTR,
+        base: IUnknown.VTable,
+        LogValue: *const fn(
+            self: *const IRDPSRAPIPerfCounterLogger,
+            lValue: i64,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Protocol(self: *const IRDPSRAPITcpConnectionInfo, plProtocol: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Protocol(self, plProtocol);
-    }
-    pub fn get_LocalPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalPort(self, plPort);
-    }
-    pub fn get_LocalIP(self: *const IRDPSRAPITcpConnectionInfo, pbsrLocalIP: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LocalIP(self, pbsrLocalIP);
-    }
-    pub fn get_PeerPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PeerPort(self, plPort);
-    }
-    pub fn get_PeerIP(self: *const IRDPSRAPITcpConnectionInfo, pbstrIP: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PeerIP(self, pbstrIP);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIAttendee_Value = Guid.initString("ec0671b3-1b78-4b80-a464-9132247543e3");
-pub const IID_IRDPSRAPIAttendee = &IID_IRDPSRAPIAttendee_Value;
-pub const IRDPSRAPIAttendee = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IRDPSRAPIAttendee,
-            pId: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteName: *const fn(
-            self: *const IRDPSRAPIAttendee,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ControlLevel: *const fn(
-            self: *const IRDPSRAPIAttendee,
-            pVal: ?*CTRL_LEVEL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ControlLevel: *const fn(
-            self: *const IRDPSRAPIAttendee,
-            pNewVal: CTRL_LEVEL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Invitation: *const fn(
-            self: *const IRDPSRAPIAttendee,
-            ppVal: ?*?*IRDPSRAPIInvitation,
-        ) callconv(.winapi) HRESULT,
-        TerminateConnection: *const fn(
-            self: *const IRDPSRAPIAttendee,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: *const fn(
-            self: *const IRDPSRAPIAttendee,
-            plFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConnectivityInfo: *const fn(
-            self: *const IRDPSRAPIAttendee,
-            ppVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Id(self: *const IRDPSRAPIAttendee, pId: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, pId);
-    }
-    pub fn get_RemoteName(self: *const IRDPSRAPIAttendee, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RemoteName(self, pVal);
-    }
-    pub fn get_ControlLevel(self: *const IRDPSRAPIAttendee, pVal: ?*CTRL_LEVEL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ControlLevel(self, pVal);
-    }
-    pub fn put_ControlLevel(self: *const IRDPSRAPIAttendee, pNewVal: CTRL_LEVEL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ControlLevel(self, pNewVal);
-    }
-    pub fn get_Invitation(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IRDPSRAPIInvitation) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Invitation(self, ppVal);
-    }
-    pub fn TerminateConnection(self: *const IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
-        return self.vtable.TerminateConnection(self);
-    }
-    pub fn get_Flags(self: *const IRDPSRAPIAttendee, plFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Flags(self, plFlags);
-    }
-    pub fn get_ConnectivityInfo(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ConnectivityInfo(self, ppVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIAttendeeManager_Value = Guid.initString("ba3a37e8-33da-4749-8da0-07fa34da7944");
-pub const IID_IRDPSRAPIAttendeeManager = &IID_IRDPSRAPIAttendeeManager_Value;
-pub const IRDPSRAPIAttendeeManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IRDPSRAPIAttendeeManager,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IRDPSRAPIAttendeeManager,
-            id: i32,
-            ppItem: ?*?*IRDPSRAPIAttendee,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIAttendeeManager, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Item(self: *const IRDPSRAPIAttendeeManager, id: i32, ppItem: ?*?*IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, id, ppItem);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIAttendeeDisconnectInfo_Value = Guid.initString("c187689f-447c-44a1-9c14-fffbb3b7ec17");
-pub const IID_IRDPSRAPIAttendeeDisconnectInfo = &IID_IRDPSRAPIAttendeeDisconnectInfo_Value;
-pub const IRDPSRAPIAttendeeDisconnectInfo = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Attendee: *const fn(
-            self: *const IRDPSRAPIAttendeeDisconnectInfo,
-            retval: ?*?*IRDPSRAPIAttendee,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Reason: *const fn(
-            self: *const IRDPSRAPIAttendeeDisconnectInfo,
-            pReason: ?*ATTENDEE_DISCONNECT_REASON,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Code: *const fn(
-            self: *const IRDPSRAPIAttendeeDisconnectInfo,
-            pVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Attendee(self: *const IRDPSRAPIAttendeeDisconnectInfo, retval: ?*?*IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Attendee(self, retval);
-    }
-    pub fn get_Reason(self: *const IRDPSRAPIAttendeeDisconnectInfo, pReason: ?*ATTENDEE_DISCONNECT_REASON) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Reason(self, pReason);
-    }
-    pub fn get_Code(self: *const IRDPSRAPIAttendeeDisconnectInfo, pVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Code(self, pVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIVirtualChannel_Value = Guid.initString("05e12f95-28b3-4c9a-8780-d0248574a1e0");
-pub const IID_IRDPSRAPIVirtualChannel = &IID_IRDPSRAPIVirtualChannel_Value;
-pub const IRDPSRAPIVirtualChannel = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        SendData: *const fn(
-            self: *const IRDPSRAPIVirtualChannel,
-            bstrData: ?BSTR,
-            lAttendeeId: i32,
-            ChannelSendFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        SetAccess: *const fn(
-            self: *const IRDPSRAPIVirtualChannel,
-            lAttendeeId: i32,
-            AccessType: CHANNEL_ACCESS_ENUM,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IRDPSRAPIVirtualChannel,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: *const fn(
-            self: *const IRDPSRAPIVirtualChannel,
-            plFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Priority: *const fn(
-            self: *const IRDPSRAPIVirtualChannel,
-            pPriority: ?*CHANNEL_PRIORITY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn SendData(self: *const IRDPSRAPIVirtualChannel, bstrData: ?BSTR, lAttendeeId: i32, ChannelSendFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SendData(self, bstrData, lAttendeeId, ChannelSendFlags);
-    }
-    pub fn SetAccess(self: *const IRDPSRAPIVirtualChannel, lAttendeeId: i32, AccessType: CHANNEL_ACCESS_ENUM) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAccess(self, lAttendeeId, AccessType);
-    }
-    pub fn get_Name(self: *const IRDPSRAPIVirtualChannel, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn get_Flags(self: *const IRDPSRAPIVirtualChannel, plFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Flags(self, plFlags);
-    }
-    pub fn get_Priority(self: *const IRDPSRAPIVirtualChannel, pPriority: ?*CHANNEL_PRIORITY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Priority(self, pPriority);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIVirtualChannelManager_Value = Guid.initString("0d11c661-5d0d-4ee4-89df-2166ae1fdfed");
-pub const IID_IRDPSRAPIVirtualChannelManager = &IID_IRDPSRAPIVirtualChannelManager_Value;
-pub const IRDPSRAPIVirtualChannelManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IRDPSRAPIVirtualChannelManager,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IRDPSRAPIVirtualChannelManager,
-            item: VARIANT,
-            pChannel: ?*?*IRDPSRAPIVirtualChannel,
-        ) callconv(.winapi) HRESULT,
-        CreateVirtualChannel: *const fn(
-            self: *const IRDPSRAPIVirtualChannelManager,
-            bstrChannelName: ?BSTR,
-            Priority: CHANNEL_PRIORITY,
-            ChannelFlags: u32,
-            ppChannel: ?*?*IRDPSRAPIVirtualChannel,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIVirtualChannelManager, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Item(self: *const IRDPSRAPIVirtualChannelManager, item: VARIANT, pChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, item, pChannel);
-    }
-    pub fn CreateVirtualChannel(self: *const IRDPSRAPIVirtualChannelManager, bstrChannelName: ?BSTR, Priority: CHANNEL_PRIORITY, ChannelFlags: u32, ppChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateVirtualChannel(self, bstrChannelName, Priority, ChannelFlags, ppChannel);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRDPSRAPIViewer_Value = Guid.initString("c6bfcd38-8ce9-404d-8ae8-f31d00c65cb5");
-pub const IID_IRDPSRAPIViewer = &IID_IRDPSRAPIViewer_Value;
-pub const IRDPSRAPIViewer = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Connect: *const fn(
-            self: *const IRDPSRAPIViewer,
-            bstrConnectionString: ?BSTR,
-            bstrName: ?BSTR,
-            bstrPassword: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Disconnect: *const fn(
-            self: *const IRDPSRAPIViewer,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Attendees: *const fn(
-            self: *const IRDPSRAPIViewer,
-            ppVal: ?*?*IRDPSRAPIAttendeeManager,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Invitations: *const fn(
-            self: *const IRDPSRAPIViewer,
-            ppVal: ?*?*IRDPSRAPIInvitationManager,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationFilter: *const fn(
-            self: *const IRDPSRAPIViewer,
-            ppVal: ?*?*IRDPSRAPIApplicationFilter,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VirtualChannelManager: *const fn(
-            self: *const IRDPSRAPIViewer,
-            ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SmartSizing: *const fn(
-            self: *const IRDPSRAPIViewer,
-            vbSmartSizing: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SmartSizing: *const fn(
-            self: *const IRDPSRAPIViewer,
-            pvbSmartSizing: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        RequestControl: *const fn(
-            self: *const IRDPSRAPIViewer,
-            CtrlLevel: CTRL_LEVEL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisconnectedText: *const fn(
-            self: *const IRDPSRAPIViewer,
-            bstrDisconnectedText: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisconnectedText: *const fn(
-            self: *const IRDPSRAPIViewer,
-            pbstrDisconnectedText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RequestColorDepthChange: *const fn(
-            self: *const IRDPSRAPIViewer,
-            Bpp: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: *const fn(
-            self: *const IRDPSRAPIViewer,
-            ppVal: ?*?*IRDPSRAPISessionProperties,
-        ) callconv(.winapi) HRESULT,
-        StartReverseConnectListener: *const fn(
-            self: *const IRDPSRAPIViewer,
-            bstrConnectionString: ?BSTR,
-            bstrUserName: ?BSTR,
-            bstrPassword: ?BSTR,
-            pbstrReverseConnectString: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Connect(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Connect(self, bstrConnectionString, bstrName, bstrPassword);
-    }
-    pub fn Disconnect(self: *const IRDPSRAPIViewer) callconv(.@"inline") HRESULT {
-        return self.vtable.Disconnect(self);
-    }
-    pub fn get_Attendees(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Attendees(self, ppVal);
-    }
-    pub fn get_Invitations(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Invitations(self, ppVal);
-    }
-    pub fn get_ApplicationFilter(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ApplicationFilter(self, ppVal);
-    }
-    pub fn get_VirtualChannelManager(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_VirtualChannelManager(self, ppVal);
-    }
-    pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SmartSizing(self, vbSmartSizing);
-    }
-    pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SmartSizing(self, pvbSmartSizing);
-    }
-    pub fn RequestControl(self: *const IRDPSRAPIViewer, CtrlLevel: CTRL_LEVEL) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestControl(self, CtrlLevel);
-    }
-    pub fn put_DisconnectedText(self: *const IRDPSRAPIViewer, bstrDisconnectedText: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisconnectedText(self, bstrDisconnectedText);
-    }
-    pub fn get_DisconnectedText(self: *const IRDPSRAPIViewer, pbstrDisconnectedText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisconnectedText(self, pbstrDisconnectedText);
-    }
-    pub fn RequestColorDepthChange(self: *const IRDPSRAPIViewer, Bpp: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestColorDepthChange(self, Bpp);
-    }
-    pub fn get_Properties(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Properties(self, ppVal);
-    }
-    pub fn StartReverseConnectListener(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, pbstrReverseConnectString: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.StartReverseConnectListener(self, bstrConnectionString, bstrUserName, bstrPassword, pbstrReverseConnectString);
+    pub fn LogValue(self: *const IRDPSRAPIPerfCounterLogger, lValue: i64) callconv(.@"inline") HRESULT {
+        return self.vtable.LogValue(self, lValue);
     }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IRDPViewerInputSink_Value = Guid.initString("bb590853-a6c5-4a7b-8dd4-76b69eea12d5");
-pub const IID_IRDPViewerInputSink = &IID_IRDPViewerInputSink_Value;
-pub const IRDPViewerInputSink = extern union {
+const IID_IRDPSRAPIPerfCounterLoggingManager_Value = Guid.initString("9a512c86-ac6e-4a8e-b1a4-fcef363f6e64");
+pub const IID_IRDPSRAPIPerfCounterLoggingManager = &IID_IRDPSRAPIPerfCounterLoggingManager_Value;
+pub const IRDPSRAPIPerfCounterLoggingManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SendMouseButtonEvent: *const fn(
-            self: *const IRDPViewerInputSink,
-            buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE,
-            vbButtonDown: i16,
-            xPos: u32,
-            yPos: u32,
-        ) callconv(.winapi) HRESULT,
-        SendMouseMoveEvent: *const fn(
-            self: *const IRDPViewerInputSink,
-            xPos: u32,
-            yPos: u32,
-        ) callconv(.winapi) HRESULT,
-        SendMouseWheelEvent: *const fn(
-            self: *const IRDPViewerInputSink,
-            wheelRotation: u16,
-        ) callconv(.winapi) HRESULT,
-        SendKeyboardEvent: *const fn(
-            self: *const IRDPViewerInputSink,
-            codeType: RDPSRAPI_KBD_CODE_TYPE,
-            keycode: u16,
-            vbKeyUp: i16,
-            vbRepeat: i16,
-            vbExtended: i16,
-        ) callconv(.winapi) HRESULT,
-        SendSyncEvent: *const fn(
-            self: *const IRDPViewerInputSink,
-            syncFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        BeginTouchFrame: *const fn(
-            self: *const IRDPViewerInputSink,
-        ) callconv(.winapi) HRESULT,
-        AddTouchInput: *const fn(
-            self: *const IRDPViewerInputSink,
-            contactId: u32,
-            event: u32,
-            x: i32,
-            y: i32,
-        ) callconv(.winapi) HRESULT,
-        EndTouchFrame: *const fn(
-            self: *const IRDPViewerInputSink,
+        CreateLogger: *const fn(
+            self: *const IRDPSRAPIPerfCounterLoggingManager,
+            bstrCounterName: ?BSTR,
+            ppLogger: ?*?*IRDPSRAPIPerfCounterLogger,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SendMouseButtonEvent(self, buttonType, vbButtonDown, xPos, yPos);
-    }
-    pub fn SendMouseMoveEvent(self: *const IRDPViewerInputSink, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SendMouseMoveEvent(self, xPos, yPos);
-    }
-    pub fn SendMouseWheelEvent(self: *const IRDPViewerInputSink, wheelRotation: u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SendMouseWheelEvent(self, wheelRotation);
-    }
-    pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SendKeyboardEvent(self, codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
-    }
-    pub fn SendSyncEvent(self: *const IRDPViewerInputSink, syncFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SendSyncEvent(self, syncFlags);
-    }
-    pub fn BeginTouchFrame(self: *const IRDPViewerInputSink) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginTouchFrame(self);
-    }
-    pub fn AddTouchInput(self: *const IRDPViewerInputSink, contactId: u32, event: u32, x: i32, y: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddTouchInput(self, contactId, event, x, y);
-    }
-    pub fn EndTouchFrame(self: *const IRDPViewerInputSink) callconv(.@"inline") HRESULT {
-        return self.vtable.EndTouchFrame(self);
+    pub fn CreateLogger(self: *const IRDPSRAPIPerfCounterLoggingManager, bstrCounterName: ?BSTR, ppLogger: ?*?*IRDPSRAPIPerfCounterLogger) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateLogger(self, bstrCounterName, ppLogger);
     }
 };
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IRDPSRAPIFrameBuffer_Value = Guid.initString("3d67e7d2-b27b-448e-81b3-c6110ed8b4be");
-pub const IID_IRDPSRAPIFrameBuffer = &IID_IRDPSRAPIFrameBuffer_Value;
-pub const IRDPSRAPIFrameBuffer = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPISessionProperties_Value = Guid.initString("339b24f2-9bc0-4f16-9aac-f165433d13d4");
+pub const IID_IRDPSRAPISessionProperties = &IID_IRDPSRAPISessionProperties_Value;
+pub const IRDPSRAPISessionProperties = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: *const fn(
-            self: *const IRDPSRAPIFrameBuffer,
-            plWidth: ?*i32,
+        get_Property: *const fn(
+            self: *const IRDPSRAPISessionProperties,
+            PropertyName: ?BSTR,
+            pVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Height: *const fn(
-            self: *const IRDPSRAPIFrameBuffer,
-            plHeight: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Bpp: *const fn(
-            self: *const IRDPSRAPIFrameBuffer,
-            plBpp: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetFrameBufferBits: *const fn(
-            self: *const IRDPSRAPIFrameBuffer,
-            x: i32,
-            y: i32,
-            Width: i32,
-            Heigth: i32,
-            ppBits: ?*?*SAFEARRAY,
+        put_Property: *const fn(
+            self: *const IRDPSRAPISessionProperties,
+            PropertyName: ?BSTR,
+            newVal: VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Width(self: *const IRDPSRAPIFrameBuffer, plWidth: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Width(self, plWidth);
+    pub fn get_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Property(self, PropertyName, pVal);
     }
-    pub fn get_Height(self: *const IRDPSRAPIFrameBuffer, plHeight: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Height(self, plHeight);
-    }
-    pub fn get_Bpp(self: *const IRDPSRAPIFrameBuffer, plBpp: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Bpp(self, plBpp);
-    }
-    pub fn GetFrameBufferBits(self: *const IRDPSRAPIFrameBuffer, x: i32, y: i32, Width: i32, Heigth: i32, ppBits: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFrameBufferBits(self, x, y, Width, Heigth, ppBits);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IRDPSRAPITransportStreamBuffer_Value = Guid.initString("81c80290-5085-44b0-b460-f865c39cb4a9");
-pub const IID_IRDPSRAPITransportStreamBuffer = &IID_IRDPSRAPITransportStreamBuffer_Value;
-pub const IRDPSRAPITransportStreamBuffer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Storage: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            ppbStorage: ?*?*u8,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StorageSize: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            plMaxStore: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PayloadSize: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            plRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PayloadSize: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            lVal: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PayloadOffset: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            plRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PayloadOffset: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            lRetVal: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            plFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Flags: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            lFlags: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Context: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            ppContext: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Context: *const fn(
-            self: *const IRDPSRAPITransportStreamBuffer,
-            pContext: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Storage(self: *const IRDPSRAPITransportStreamBuffer, ppbStorage: ?*?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Storage(self, ppbStorage);
-    }
-    pub fn get_StorageSize(self: *const IRDPSRAPITransportStreamBuffer, plMaxStore: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StorageSize(self, plMaxStore);
-    }
-    pub fn get_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PayloadSize(self, plRetVal);
-    }
-    pub fn put_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, lVal: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PayloadSize(self, lVal);
-    }
-    pub fn get_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PayloadOffset(self, plRetVal);
-    }
-    pub fn put_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, lRetVal: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PayloadOffset(self, lRetVal);
-    }
-    pub fn get_Flags(self: *const IRDPSRAPITransportStreamBuffer, plFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Flags(self, plFlags);
-    }
-    pub fn put_Flags(self: *const IRDPSRAPITransportStreamBuffer, lFlags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Flags(self, lFlags);
-    }
-    pub fn get_Context(self: *const IRDPSRAPITransportStreamBuffer, ppContext: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Context(self, ppContext);
-    }
-    pub fn put_Context(self: *const IRDPSRAPITransportStreamBuffer, pContext: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Context(self, pContext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IRDPSRAPITransportStreamEvents_Value = Guid.initString("ea81c254-f5af-4e40-982e-3e63bb595276");
-pub const IID_IRDPSRAPITransportStreamEvents = &IID_IRDPSRAPITransportStreamEvents_Value;
-pub const IRDPSRAPITransportStreamEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnWriteCompleted: *const fn(
-            self: *const IRDPSRAPITransportStreamEvents,
-            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-        ) callconv(.winapi) void,
-        OnReadCompleted: *const fn(
-            self: *const IRDPSRAPITransportStreamEvents,
-            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-        ) callconv(.winapi) void,
-        OnStreamClosed: *const fn(
-            self: *const IRDPSRAPITransportStreamEvents,
-            hrReason: HRESULT,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnWriteCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") void {
-        return self.vtable.OnWriteCompleted(self, pBuffer);
-    }
-    pub fn OnReadCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") void {
-        return self.vtable.OnReadCompleted(self, pBuffer);
-    }
-    pub fn OnStreamClosed(self: *const IRDPSRAPITransportStreamEvents, hrReason: HRESULT) callconv(.@"inline") void {
-        return self.vtable.OnStreamClosed(self, hrReason);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IRDPSRAPITransportStream_Value = Guid.initString("36cfa065-43bb-4ef7-aed7-9b88a5053036");
-pub const IID_IRDPSRAPITransportStream = &IID_IRDPSRAPITransportStream_Value;
-pub const IRDPSRAPITransportStream = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AllocBuffer: *const fn(
-            self: *const IRDPSRAPITransportStream,
-            maxPayload: i32,
-            ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer,
-        ) callconv(.winapi) HRESULT,
-        FreeBuffer: *const fn(
-            self: *const IRDPSRAPITransportStream,
-            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-        ) callconv(.winapi) HRESULT,
-        WriteBuffer: *const fn(
-            self: *const IRDPSRAPITransportStream,
-            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-        ) callconv(.winapi) HRESULT,
-        ReadBuffer: *const fn(
-            self: *const IRDPSRAPITransportStream,
-            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-        ) callconv(.winapi) HRESULT,
-        Open: *const fn(
-            self: *const IRDPSRAPITransportStream,
-            pCallbacks: ?*IRDPSRAPITransportStreamEvents,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IRDPSRAPITransportStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AllocBuffer(self: *const IRDPSRAPITransportStream, maxPayload: i32, ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocBuffer(self, maxPayload, ppBuffer);
-    }
-    pub fn FreeBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.FreeBuffer(self, pBuffer);
-    }
-    pub fn WriteBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteBuffer(self, pBuffer);
-    }
-    pub fn ReadBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadBuffer(self, pBuffer);
-    }
-    pub fn Open(self: *const IRDPSRAPITransportStream, pCallbacks: ?*IRDPSRAPITransportStreamEvents) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, pCallbacks);
-    }
-    pub fn Close(self: *const IRDPSRAPITransportStream) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
+    pub fn put_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, newVal: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Property(self, PropertyName, newVal);
     }
 };
 
@@ -1644,6 +956,623 @@ pub const IRDPSRAPISharingSession2 = extern union {
     }
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPITcpConnectionInfo_Value = Guid.initString("f74049a4-3d06-4028-8193-0a8c29bc2452");
+pub const IID_IRDPSRAPITcpConnectionInfo = &IID_IRDPSRAPITcpConnectionInfo_Value;
+pub const IRDPSRAPITcpConnectionInfo = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Protocol: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            plProtocol: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LocalPort: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            plPort: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LocalIP: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            pbsrLocalIP: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PeerPort: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            plPort: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PeerIP: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            pbstrIP: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Protocol(self: *const IRDPSRAPITcpConnectionInfo, plProtocol: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Protocol(self, plProtocol);
+    }
+    pub fn get_LocalPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalPort(self, plPort);
+    }
+    pub fn get_LocalIP(self: *const IRDPSRAPITcpConnectionInfo, pbsrLocalIP: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LocalIP(self, pbsrLocalIP);
+    }
+    pub fn get_PeerPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PeerPort(self, plPort);
+    }
+    pub fn get_PeerIP(self: *const IRDPSRAPITcpConnectionInfo, pbstrIP: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PeerIP(self, pbstrIP);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IRDPSRAPITransportStream_Value = Guid.initString("36cfa065-43bb-4ef7-aed7-9b88a5053036");
+pub const IID_IRDPSRAPITransportStream = &IID_IRDPSRAPITransportStream_Value;
+pub const IRDPSRAPITransportStream = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AllocBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            maxPayload: i32,
+            ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(.winapi) HRESULT,
+        FreeBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(.winapi) HRESULT,
+        WriteBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(.winapi) HRESULT,
+        ReadBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(.winapi) HRESULT,
+        Open: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pCallbacks: ?*IRDPSRAPITransportStreamEvents,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IRDPSRAPITransportStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AllocBuffer(self: *const IRDPSRAPITransportStream, maxPayload: i32, ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocBuffer(self, maxPayload, ppBuffer);
+    }
+    pub fn FreeBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.FreeBuffer(self, pBuffer);
+    }
+    pub fn WriteBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteBuffer(self, pBuffer);
+    }
+    pub fn ReadBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadBuffer(self, pBuffer);
+    }
+    pub fn Open(self: *const IRDPSRAPITransportStream, pCallbacks: ?*IRDPSRAPITransportStreamEvents) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, pCallbacks);
+    }
+    pub fn Close(self: *const IRDPSRAPITransportStream) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IRDPSRAPITransportStreamBuffer_Value = Guid.initString("81c80290-5085-44b0-b460-f865c39cb4a9");
+pub const IID_IRDPSRAPITransportStreamBuffer = &IID_IRDPSRAPITransportStreamBuffer_Value;
+pub const IRDPSRAPITransportStreamBuffer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Storage: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            ppbStorage: ?*?*u8,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StorageSize: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plMaxStore: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PayloadSize: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PayloadSize: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            lVal: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PayloadOffset: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PayloadOffset: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            lRetVal: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Flags: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Flags: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            lFlags: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Context: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            ppContext: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Context: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            pContext: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Storage(self: *const IRDPSRAPITransportStreamBuffer, ppbStorage: ?*?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Storage(self, ppbStorage);
+    }
+    pub fn get_StorageSize(self: *const IRDPSRAPITransportStreamBuffer, plMaxStore: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StorageSize(self, plMaxStore);
+    }
+    pub fn get_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PayloadSize(self, plRetVal);
+    }
+    pub fn put_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, lVal: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PayloadSize(self, lVal);
+    }
+    pub fn get_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PayloadOffset(self, plRetVal);
+    }
+    pub fn put_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, lRetVal: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PayloadOffset(self, lRetVal);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPITransportStreamBuffer, plFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Flags(self, plFlags);
+    }
+    pub fn put_Flags(self: *const IRDPSRAPITransportStreamBuffer, lFlags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Flags(self, lFlags);
+    }
+    pub fn get_Context(self: *const IRDPSRAPITransportStreamBuffer, ppContext: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Context(self, ppContext);
+    }
+    pub fn put_Context(self: *const IRDPSRAPITransportStreamBuffer, pContext: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Context(self, pContext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IRDPSRAPITransportStreamEvents_Value = Guid.initString("ea81c254-f5af-4e40-982e-3e63bb595276");
+pub const IID_IRDPSRAPITransportStreamEvents = &IID_IRDPSRAPITransportStreamEvents_Value;
+pub const IRDPSRAPITransportStreamEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnWriteCompleted: *const fn(
+            self: *const IRDPSRAPITransportStreamEvents,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(.winapi) void,
+        OnReadCompleted: *const fn(
+            self: *const IRDPSRAPITransportStreamEvents,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(.winapi) void,
+        OnStreamClosed: *const fn(
+            self: *const IRDPSRAPITransportStreamEvents,
+            hrReason: HRESULT,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnWriteCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") void {
+        return self.vtable.OnWriteCompleted(self, pBuffer);
+    }
+    pub fn OnReadCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") void {
+        return self.vtable.OnReadCompleted(self, pBuffer);
+    }
+    pub fn OnStreamClosed(self: *const IRDPSRAPITransportStreamEvents, hrReason: HRESULT) callconv(.@"inline") void {
+        return self.vtable.OnStreamClosed(self, hrReason);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIViewer_Value = Guid.initString("c6bfcd38-8ce9-404d-8ae8-f31d00c65cb5");
+pub const IID_IRDPSRAPIViewer = &IID_IRDPSRAPIViewer_Value;
+pub const IRDPSRAPIViewer = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Connect: *const fn(
+            self: *const IRDPSRAPIViewer,
+            bstrConnectionString: ?BSTR,
+            bstrName: ?BSTR,
+            bstrPassword: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Disconnect: *const fn(
+            self: *const IRDPSRAPIViewer,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Attendees: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIAttendeeManager,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Invitations: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIInvitationManager,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ApplicationFilter: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIApplicationFilter,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_VirtualChannelManager: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SmartSizing: *const fn(
+            self: *const IRDPSRAPIViewer,
+            vbSmartSizing: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SmartSizing: *const fn(
+            self: *const IRDPSRAPIViewer,
+            pvbSmartSizing: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        RequestControl: *const fn(
+            self: *const IRDPSRAPIViewer,
+            CtrlLevel: CTRL_LEVEL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisconnectedText: *const fn(
+            self: *const IRDPSRAPIViewer,
+            bstrDisconnectedText: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisconnectedText: *const fn(
+            self: *const IRDPSRAPIViewer,
+            pbstrDisconnectedText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RequestColorDepthChange: *const fn(
+            self: *const IRDPSRAPIViewer,
+            Bpp: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Properties: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPISessionProperties,
+        ) callconv(.winapi) HRESULT,
+        StartReverseConnectListener: *const fn(
+            self: *const IRDPSRAPIViewer,
+            bstrConnectionString: ?BSTR,
+            bstrUserName: ?BSTR,
+            bstrPassword: ?BSTR,
+            pbstrReverseConnectString: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Connect(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Connect(self, bstrConnectionString, bstrName, bstrPassword);
+    }
+    pub fn Disconnect(self: *const IRDPSRAPIViewer) callconv(.@"inline") HRESULT {
+        return self.vtable.Disconnect(self);
+    }
+    pub fn get_Attendees(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Attendees(self, ppVal);
+    }
+    pub fn get_Invitations(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Invitations(self, ppVal);
+    }
+    pub fn get_ApplicationFilter(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ApplicationFilter(self, ppVal);
+    }
+    pub fn get_VirtualChannelManager(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_VirtualChannelManager(self, ppVal);
+    }
+    pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SmartSizing(self, vbSmartSizing);
+    }
+    pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SmartSizing(self, pvbSmartSizing);
+    }
+    pub fn RequestControl(self: *const IRDPSRAPIViewer, CtrlLevel: CTRL_LEVEL) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestControl(self, CtrlLevel);
+    }
+    pub fn put_DisconnectedText(self: *const IRDPSRAPIViewer, bstrDisconnectedText: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisconnectedText(self, bstrDisconnectedText);
+    }
+    pub fn get_DisconnectedText(self: *const IRDPSRAPIViewer, pbstrDisconnectedText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisconnectedText(self, pbstrDisconnectedText);
+    }
+    pub fn RequestColorDepthChange(self: *const IRDPSRAPIViewer, Bpp: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestColorDepthChange(self, Bpp);
+    }
+    pub fn get_Properties(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Properties(self, ppVal);
+    }
+    pub fn StartReverseConnectListener(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, pbstrReverseConnectString: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.StartReverseConnectListener(self, bstrConnectionString, bstrUserName, bstrPassword, pbstrReverseConnectString);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIVirtualChannel_Value = Guid.initString("05e12f95-28b3-4c9a-8780-d0248574a1e0");
+pub const IID_IRDPSRAPIVirtualChannel = &IID_IRDPSRAPIVirtualChannel_Value;
+pub const IRDPSRAPIVirtualChannel = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        SendData: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            bstrData: ?BSTR,
+            lAttendeeId: i32,
+            ChannelSendFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        SetAccess: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            lAttendeeId: i32,
+            AccessType: CHANNEL_ACCESS_ENUM,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            plFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Priority: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            pPriority: ?*CHANNEL_PRIORITY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn SendData(self: *const IRDPSRAPIVirtualChannel, bstrData: ?BSTR, lAttendeeId: i32, ChannelSendFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SendData(self, bstrData, lAttendeeId, ChannelSendFlags);
+    }
+    pub fn SetAccess(self: *const IRDPSRAPIVirtualChannel, lAttendeeId: i32, AccessType: CHANNEL_ACCESS_ENUM) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAccess(self, lAttendeeId, AccessType);
+    }
+    pub fn get_Name(self: *const IRDPSRAPIVirtualChannel, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIVirtualChannel, plFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Flags(self, plFlags);
+    }
+    pub fn get_Priority(self: *const IRDPSRAPIVirtualChannel, pPriority: ?*CHANNEL_PRIORITY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Priority(self, pPriority);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIVirtualChannelManager_Value = Guid.initString("0d11c661-5d0d-4ee4-89df-2166ae1fdfed");
+pub const IID_IRDPSRAPIVirtualChannelManager = &IID_IRDPSRAPIVirtualChannelManager_Value;
+pub const IRDPSRAPIVirtualChannelManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIVirtualChannelManager,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIVirtualChannelManager,
+            item: VARIANT,
+            pChannel: ?*?*IRDPSRAPIVirtualChannel,
+        ) callconv(.winapi) HRESULT,
+        CreateVirtualChannel: *const fn(
+            self: *const IRDPSRAPIVirtualChannelManager,
+            bstrChannelName: ?BSTR,
+            Priority: CHANNEL_PRIORITY,
+            ChannelFlags: u32,
+            ppChannel: ?*?*IRDPSRAPIVirtualChannel,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIVirtualChannelManager, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Item(self: *const IRDPSRAPIVirtualChannelManager, item: VARIANT, pChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, item, pChannel);
+    }
+    pub fn CreateVirtualChannel(self: *const IRDPSRAPIVirtualChannelManager, bstrChannelName: ?BSTR, Priority: CHANNEL_PRIORITY, ChannelFlags: u32, ppChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateVirtualChannel(self, bstrChannelName, Priority, ChannelFlags, ppChannel);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIWindow_Value = Guid.initString("beafe0f9-c77b-4933-ba9f-a24cddcc27cf");
+pub const IID_IRDPSRAPIWindow = &IID_IRDPSRAPIWindow_Value;
+pub const IRDPSRAPIWindow = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Application: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pApplication: ?*?*IRDPSRAPIApplication,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Shared: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pRetVal: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Shared: *const fn(
+            self: *const IRDPSRAPIWindow,
+            NewVal: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pRetVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Show: *const fn(
+            self: *const IRDPSRAPIWindow,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pdwFlags: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IRDPSRAPIWindow, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, pRetVal);
+    }
+    pub fn get_Application(self: *const IRDPSRAPIWindow, pApplication: ?*?*IRDPSRAPIApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Application(self, pApplication);
+    }
+    pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Shared(self, pRetVal);
+    }
+    pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Shared(self, NewVal);
+    }
+    pub fn get_Name(self: *const IRDPSRAPIWindow, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pRetVal);
+    }
+    pub fn Show(self: *const IRDPSRAPIWindow) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIWindow, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Flags(self, pdwFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRDPSRAPIWindowList_Value = Guid.initString("8a05ce44-715a-4116-a189-a118f30a07bd");
+pub const IID_IRDPSRAPIWindowList = &IID_IRDPSRAPIWindowList_Value;
+pub const IRDPSRAPIWindowList = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIWindowList,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIWindowList,
+            item: i32,
+            pWindow: ?*?*IRDPSRAPIWindow,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIWindowList, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Item(self: *const IRDPSRAPIWindowList, item: i32, pWindow: ?*?*IRDPSRAPIWindow) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, item, pWindow);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IRDPViewerInputSink_Value = Guid.initString("bb590853-a6c5-4a7b-8dd4-76b69eea12d5");
+pub const IID_IRDPViewerInputSink = &IID_IRDPViewerInputSink_Value;
+pub const IRDPViewerInputSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SendMouseButtonEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE,
+            vbButtonDown: i16,
+            xPos: u32,
+            yPos: u32,
+        ) callconv(.winapi) HRESULT,
+        SendMouseMoveEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            xPos: u32,
+            yPos: u32,
+        ) callconv(.winapi) HRESULT,
+        SendMouseWheelEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            wheelRotation: u16,
+        ) callconv(.winapi) HRESULT,
+        SendKeyboardEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            codeType: RDPSRAPI_KBD_CODE_TYPE,
+            keycode: u16,
+            vbKeyUp: i16,
+            vbRepeat: i16,
+            vbExtended: i16,
+        ) callconv(.winapi) HRESULT,
+        SendSyncEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            syncFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        BeginTouchFrame: *const fn(
+            self: *const IRDPViewerInputSink,
+        ) callconv(.winapi) HRESULT,
+        AddTouchInput: *const fn(
+            self: *const IRDPViewerInputSink,
+            contactId: u32,
+            event: u32,
+            x: i32,
+            y: i32,
+        ) callconv(.winapi) HRESULT,
+        EndTouchFrame: *const fn(
+            self: *const IRDPViewerInputSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SendMouseButtonEvent(self, buttonType, vbButtonDown, xPos, yPos);
+    }
+    pub fn SendMouseMoveEvent(self: *const IRDPViewerInputSink, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SendMouseMoveEvent(self, xPos, yPos);
+    }
+    pub fn SendMouseWheelEvent(self: *const IRDPViewerInputSink, wheelRotation: u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SendMouseWheelEvent(self, wheelRotation);
+    }
+    pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SendKeyboardEvent(self, codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
+    }
+    pub fn SendSyncEvent(self: *const IRDPViewerInputSink, syncFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SendSyncEvent(self, syncFlags);
+    }
+    pub fn BeginTouchFrame(self: *const IRDPViewerInputSink) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginTouchFrame(self);
+    }
+    pub fn AddTouchInput(self: *const IRDPViewerInputSink, contactId: u32, event: u32, x: i32, y: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddTouchInput(self, contactId, event, x, y);
+    }
+    pub fn EndTouchFrame(self: *const IRDPViewerInputSink) callconv(.@"inline") HRESULT {
+        return self.vtable.EndTouchFrame(self);
+    }
+};
+
+pub const RDPENCOMAPI_ATTENDEE_FLAGS = enum(i32) {
+    L = 1,
+};
+pub const ATTENDEE_FLAGS_LOCAL = RDPENCOMAPI_ATTENDEE_FLAGS.L;
+
 pub const RDPENCOMAPI_CONSTANTS = enum(i32) {
     MAX_CHANNEL_MESSAGE_SIZE = 1024,
     MAX_CHANNEL_NAME_LEN = 8,
@@ -1661,28 +1590,99 @@ pub const CONST_ATTENDEE_ID_HOST = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_HOST;
 pub const CONST_CONN_INTERVAL = RDPENCOMAPI_CONSTANTS.CONN_INTERVAL;
 pub const CONST_ATTENDEE_ID_DEFAULT = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_EVERYONE;
 
-pub const __ReferenceRemainingTypes__ = extern struct {
-    __ctrlLevel__: CTRL_LEVEL,
-    __attendeeDisconnectReason__: ATTENDEE_DISCONNECT_REASON,
-    __channelPriority__: CHANNEL_PRIORITY,
-    __channelFlags__: CHANNEL_FLAGS,
-    __channelAccessEnum__: CHANNEL_ACCESS_ENUM,
-    __rdpencomapiAttendeeFlags__: RDPENCOMAPI_ATTENDEE_FLAGS,
-    __rdpsrapiWndFlags__: RDPSRAPI_WND_FLAGS,
-    __rdpsrapiAppFlags__: RDPSRAPI_APP_FLAGS,
-};
+const CLSID_RDPSession_Value = Guid.initString("9b78f0e6-3e05-4a5b-b2e8-e743a8956b65");
+pub const CLSID_RDPSession = &CLSID_RDPSession_Value;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID__IRDPSessionEvents_Value = Guid.initString("98a97042-6698-40e9-8efd-b3200990004b");
-pub const IID__IRDPSessionEvents = &IID__IRDPSessionEvents_Value;
-pub const _IRDPSessionEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
+pub const RDPSRAPI_APP_FLAGS = enum(i32) {
+    D = 1,
 };
+pub const APP_FLAG_PRIVILEGED = RDPSRAPI_APP_FLAGS.D;
+
+pub const RDPSRAPI_KBD_CODE_TYPE = enum(i32) {
+    SCANCODE = 0,
+    UNICODE = 1,
+};
+pub const RDPSRAPI_KBD_CODE_SCANCODE = RDPSRAPI_KBD_CODE_TYPE.SCANCODE;
+pub const RDPSRAPI_KBD_CODE_UNICODE = RDPSRAPI_KBD_CODE_TYPE.UNICODE;
+
+pub const RDPSRAPI_KBD_SYNC_FLAG = enum(i32) {
+    SCROLL_LOCK = 1,
+    NUM_LOCK = 2,
+    CAPS_LOCK = 4,
+    KANA_LOCK = 8,
+};
+pub const RDPSRAPI_KBD_SYNC_FLAG_SCROLL_LOCK = RDPSRAPI_KBD_SYNC_FLAG.SCROLL_LOCK;
+pub const RDPSRAPI_KBD_SYNC_FLAG_NUM_LOCK = RDPSRAPI_KBD_SYNC_FLAG.NUM_LOCK;
+pub const RDPSRAPI_KBD_SYNC_FLAG_CAPS_LOCK = RDPSRAPI_KBD_SYNC_FLAG.CAPS_LOCK;
+pub const RDPSRAPI_KBD_SYNC_FLAG_KANA_LOCK = RDPSRAPI_KBD_SYNC_FLAG.KANA_LOCK;
+
+pub const RDPSRAPI_MOUSE_BUTTON_TYPE = enum(i32) {
+    BUTTON1 = 0,
+    BUTTON2 = 1,
+    BUTTON3 = 2,
+    XBUTTON1 = 3,
+    XBUTTON2 = 4,
+    XBUTTON3 = 5,
+};
+pub const RDPSRAPI_MOUSE_BUTTON_BUTTON1 = RDPSRAPI_MOUSE_BUTTON_TYPE.BUTTON1;
+pub const RDPSRAPI_MOUSE_BUTTON_BUTTON2 = RDPSRAPI_MOUSE_BUTTON_TYPE.BUTTON2;
+pub const RDPSRAPI_MOUSE_BUTTON_BUTTON3 = RDPSRAPI_MOUSE_BUTTON_TYPE.BUTTON3;
+pub const RDPSRAPI_MOUSE_BUTTON_XBUTTON1 = RDPSRAPI_MOUSE_BUTTON_TYPE.XBUTTON1;
+pub const RDPSRAPI_MOUSE_BUTTON_XBUTTON2 = RDPSRAPI_MOUSE_BUTTON_TYPE.XBUTTON2;
+pub const RDPSRAPI_MOUSE_BUTTON_XBUTTON3 = RDPSRAPI_MOUSE_BUTTON_TYPE.XBUTTON3;
+
+pub const RDPSRAPI_WND_FLAGS = enum(i32) {
+    D = 1,
+};
+pub const WND_FLAG_PRIVILEGED = RDPSRAPI_WND_FLAGS.D;
+
+const CLSID_RDPSRAPIApplication_Value = Guid.initString("c116a484-4b25-4b9f-8a54-b934b06e57fa");
+pub const CLSID_RDPSRAPIApplication = &CLSID_RDPSRAPIApplication_Value;
+
+const CLSID_RDPSRAPIApplicationFilter_Value = Guid.initString("e35ace89-c7e8-427e-a4f9-b9da072826bd");
+pub const CLSID_RDPSRAPIApplicationFilter = &CLSID_RDPSRAPIApplicationFilter_Value;
+
+const CLSID_RDPSRAPIApplicationList_Value = Guid.initString("9e31c815-7433-4876-97fb-ed59fe2baa22");
+pub const CLSID_RDPSRAPIApplicationList = &CLSID_RDPSRAPIApplicationList_Value;
+
+const CLSID_RDPSRAPIAttendee_Value = Guid.initString("74f93bb5-755f-488e-8a29-2390108aef55");
+pub const CLSID_RDPSRAPIAttendee = &CLSID_RDPSRAPIAttendee_Value;
+
+const CLSID_RDPSRAPIAttendeeDisconnectInfo_Value = Guid.initString("b47d7250-5bdb-405d-b487-caad9c56f4f8");
+pub const CLSID_RDPSRAPIAttendeeDisconnectInfo = &CLSID_RDPSRAPIAttendeeDisconnectInfo_Value;
+
+const CLSID_RDPSRAPIAttendeeManager_Value = Guid.initString("d7b13a01-f7d4-42a6-8595-12fc8c24e851");
+pub const CLSID_RDPSRAPIAttendeeManager = &CLSID_RDPSRAPIAttendeeManager_Value;
+
+const CLSID_RDPSRAPIFrameBuffer_Value = Guid.initString("a4f66bcc-538e-4101-951d-30847adb5101");
+pub const CLSID_RDPSRAPIFrameBuffer = &CLSID_RDPSRAPIFrameBuffer_Value;
+
+const CLSID_RDPSRAPIInvitation_Value = Guid.initString("49174dc6-0731-4b5e-8ee1-83a63d3868fa");
+pub const CLSID_RDPSRAPIInvitation = &CLSID_RDPSRAPIInvitation_Value;
+
+const CLSID_RDPSRAPIInvitationManager_Value = Guid.initString("53d9c9db-75ab-4271-948a-4c4eb36a8f2b");
+pub const CLSID_RDPSRAPIInvitationManager = &CLSID_RDPSRAPIInvitationManager_Value;
+
+const CLSID_RDPSRAPISessionProperties_Value = Guid.initString("dd7594ff-ea2a-4c06-8fdf-132de48b6510");
+pub const CLSID_RDPSRAPISessionProperties = &CLSID_RDPSRAPISessionProperties_Value;
+
+const CLSID_RDPSRAPITcpConnectionInfo_Value = Guid.initString("be49db3f-ebb6-4278-8ce0-d5455833eaee");
+pub const CLSID_RDPSRAPITcpConnectionInfo = &CLSID_RDPSRAPITcpConnectionInfo_Value;
+
+const CLSID_RDPSRAPIWindow_Value = Guid.initString("03cf46db-ce45-4d36-86ed-ed28b74398bf");
+pub const CLSID_RDPSRAPIWindow = &CLSID_RDPSRAPIWindow_Value;
+
+const CLSID_RDPSRAPIWindowList_Value = Guid.initString("9c21e2b8-5dd4-42cc-81ba-1c099852e6fa");
+pub const CLSID_RDPSRAPIWindowList = &CLSID_RDPSRAPIWindowList_Value;
+
+const CLSID_RDPTransportStreamBuffer_Value = Guid.initString("8d4a1c69-f17f-4549-a699-761c6e6b5c0a");
+pub const CLSID_RDPTransportStreamBuffer = &CLSID_RDPTransportStreamBuffer_Value;
+
+const CLSID_RDPTransportStreamEvents_Value = Guid.initString("31e3ab20-5350-483f-9dc6-6748665efdeb");
+pub const CLSID_RDPTransportStreamEvents = &CLSID_RDPTransportStreamEvents_Value;
+
+const CLSID_RDPViewer_Value = Guid.initString("32be5ed2-5c86-480f-a914-0ff8885a1b3f");
+pub const CLSID_RDPViewer = &CLSID_RDPViewer_Value;
 
 
 //--------------------------------------------------------------------------------

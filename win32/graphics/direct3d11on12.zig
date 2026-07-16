@@ -6,19 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
-pub const PFN_D3D11ON12_CREATE_DEVICE = *const fn(
-    param0: ?*IUnknown,
-    param1: u32,
-    param2: ?[*]const D3D_FEATURE_LEVEL,
-    FeatureLevels: u32,
-    param4: ?[*]?*IUnknown,
-    NumQueues: u32,
-    param6: u32,
-    param7: ?**ID3D11Device,
-    param8: ?**ID3D11DeviceContext,
-    param9: ?*D3D_FEATURE_LEVEL,
-) callconv(.winapi) HRESULT;
-
 pub const D3D11_RESOURCE_FLAGS = extern struct {
     BindFlags: u32,
     MiscFlags: u32,
@@ -119,6 +106,19 @@ pub const ID3D11On12Device2 = extern union {
         return self.vtable.ReturnUnderlyingResource(self, pResource11, NumSync, pSignalValues, ppFences);
     }
 };
+
+pub const PFN_D3D11ON12_CREATE_DEVICE = *const fn(
+    param0: ?*IUnknown,
+    param1: u32,
+    param2: ?[*]const D3D_FEATURE_LEVEL,
+    FeatureLevels: u32,
+    param4: ?[*]?*IUnknown,
+    NumQueues: u32,
+    param6: u32,
+    param7: ?**ID3D11Device,
+    param8: ?**ID3D11DeviceContext,
+    param9: ?*D3D_FEATURE_LEVEL,
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

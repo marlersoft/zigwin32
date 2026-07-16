@@ -2,236 +2,122 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (15)
 //--------------------------------------------------------------------------------
-pub const NA_DomainAuthenticationFailed = "NA_DomainAuthenticationFailed";
-pub const NA_NetworkClass = "NA_NetworkClass";
-pub const NA_NameSetByPolicy = "NA_NameSetByPolicy";
-pub const NA_IconSetByPolicy = "NA_IconSetByPolicy";
-pub const NA_DescriptionSetByPolicy = "NA_DescriptionSetByPolicy";
-pub const NA_CategorySetByPolicy = "NA_CategorySetByPolicy";
-pub const NA_NameReadOnly = "NA_NameReadOnly";
-pub const NA_IconReadOnly = "NA_IconReadOnly";
-pub const NA_DescriptionReadOnly = "NA_DescriptionReadOnly";
-pub const NA_CategoryReadOnly = "NA_CategoryReadOnly";
 pub const NA_AllowMerge = "NA_AllowMerge";
+pub const NA_CategoryReadOnly = "NA_CategoryReadOnly";
+pub const NA_CategorySetByPolicy = "NA_CategorySetByPolicy";
+pub const NA_DescriptionReadOnly = "NA_DescriptionReadOnly";
+pub const NA_DescriptionSetByPolicy = "NA_DescriptionSetByPolicy";
+pub const NA_DomainAuthenticationFailed = "NA_DomainAuthenticationFailed";
+pub const NA_IconReadOnly = "NA_IconReadOnly";
+pub const NA_IconSetByPolicy = "NA_IconSetByPolicy";
 pub const NA_InternetConnectivityV4 = "NA_InternetConnectivityV4";
 pub const NA_InternetConnectivityV6 = "NA_InternetConnectivityV6";
+pub const NA_NameReadOnly = "NA_NameReadOnly";
+pub const NA_NameSetByPolicy = "NA_NameSetByPolicy";
+pub const NA_NetworkClass = "NA_NetworkClass";
 pub const NLM_MAX_ADDRESS_LIST_SIZE = @as(u32, 10);
 pub const NLM_UNKNOWN_DATAPLAN_STATUS = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
 // Section: Types (26)
 //--------------------------------------------------------------------------------
-const CLSID_NetworkListManager_Value = Guid.initString("dcb00c01-570f-4a9b-8d69-199fdba5723b");
-pub const CLSID_NetworkListManager = &CLSID_NetworkListManager_Value;
-
-pub const NLM_CONNECTION_COST = enum(i32) {
-    UNKNOWN = 0,
-    UNRESTRICTED = 1,
-    FIXED = 2,
-    VARIABLE = 4,
-    OVERDATALIMIT = 65536,
-    CONGESTED = 131072,
-    ROAMING = 262144,
-    APPROACHINGDATALIMIT = 524288,
-};
-pub const NLM_CONNECTION_COST_UNKNOWN = NLM_CONNECTION_COST.UNKNOWN;
-pub const NLM_CONNECTION_COST_UNRESTRICTED = NLM_CONNECTION_COST.UNRESTRICTED;
-pub const NLM_CONNECTION_COST_FIXED = NLM_CONNECTION_COST.FIXED;
-pub const NLM_CONNECTION_COST_VARIABLE = NLM_CONNECTION_COST.VARIABLE;
-pub const NLM_CONNECTION_COST_OVERDATALIMIT = NLM_CONNECTION_COST.OVERDATALIMIT;
-pub const NLM_CONNECTION_COST_CONGESTED = NLM_CONNECTION_COST.CONGESTED;
-pub const NLM_CONNECTION_COST_ROAMING = NLM_CONNECTION_COST.ROAMING;
-pub const NLM_CONNECTION_COST_APPROACHINGDATALIMIT = NLM_CONNECTION_COST.APPROACHINGDATALIMIT;
-
-pub const NLM_USAGE_DATA = extern struct {
-    UsageInMegabytes: u32,
-    LastSyncTime: FILETIME,
-};
-
-pub const NLM_DATAPLAN_STATUS = extern struct {
-    InterfaceGuid: Guid,
-    UsageData: NLM_USAGE_DATA,
-    DataLimitInMegabytes: u32,
-    InboundBandwidthInKbps: u32,
-    OutboundBandwidthInKbps: u32,
-    NextBillingCycle: FILETIME,
-    MaxTransferSizeInMegabytes: u32,
-    Reserved: u32,
-};
-
-pub const NLM_SOCKADDR = extern struct {
-    data: [128]u8,
-};
-
-pub const NLM_NETWORK_CLASS = enum(i32) {
-    IDENTIFYING = 1,
-    IDENTIFIED = 2,
-    UNIDENTIFIED = 3,
-};
-pub const NLM_NETWORK_IDENTIFYING = NLM_NETWORK_CLASS.IDENTIFYING;
-pub const NLM_NETWORK_IDENTIFIED = NLM_NETWORK_CLASS.IDENTIFIED;
-pub const NLM_NETWORK_UNIDENTIFIED = NLM_NETWORK_CLASS.UNIDENTIFIED;
-
-pub const NLM_SIMULATED_PROFILE_INFO = extern struct {
-    ProfileName: [256]u16,
-    cost: NLM_CONNECTION_COST,
-    UsageInMegabytes: u32,
-    DataLimitInMegabytes: u32,
-};
-
-pub const NLM_INTERNET_CONNECTIVITY = enum(i32) {
-    WEBHIJACK = 1,
-    PROXIED = 2,
-    CORPORATE = 4,
-};
-pub const NLM_INTERNET_CONNECTIVITY_WEBHIJACK = NLM_INTERNET_CONNECTIVITY.WEBHIJACK;
-pub const NLM_INTERNET_CONNECTIVITY_PROXIED = NLM_INTERNET_CONNECTIVITY.PROXIED;
-pub const NLM_INTERNET_CONNECTIVITY_CORPORATE = NLM_INTERNET_CONNECTIVITY.CORPORATE;
-
-pub const NLM_CONNECTIVITY = enum(i32) {
-    DISCONNECTED = 0,
-    IPV4_NOTRAFFIC = 1,
-    IPV6_NOTRAFFIC = 2,
-    IPV4_SUBNET = 16,
-    IPV4_LOCALNETWORK = 32,
-    IPV4_INTERNET = 64,
-    IPV6_SUBNET = 256,
-    IPV6_LOCALNETWORK = 512,
-    IPV6_INTERNET = 1024,
-};
-pub const NLM_CONNECTIVITY_DISCONNECTED = NLM_CONNECTIVITY.DISCONNECTED;
-pub const NLM_CONNECTIVITY_IPV4_NOTRAFFIC = NLM_CONNECTIVITY.IPV4_NOTRAFFIC;
-pub const NLM_CONNECTIVITY_IPV6_NOTRAFFIC = NLM_CONNECTIVITY.IPV6_NOTRAFFIC;
-pub const NLM_CONNECTIVITY_IPV4_SUBNET = NLM_CONNECTIVITY.IPV4_SUBNET;
-pub const NLM_CONNECTIVITY_IPV4_LOCALNETWORK = NLM_CONNECTIVITY.IPV4_LOCALNETWORK;
-pub const NLM_CONNECTIVITY_IPV4_INTERNET = NLM_CONNECTIVITY.IPV4_INTERNET;
-pub const NLM_CONNECTIVITY_IPV6_SUBNET = NLM_CONNECTIVITY.IPV6_SUBNET;
-pub const NLM_CONNECTIVITY_IPV6_LOCALNETWORK = NLM_CONNECTIVITY.IPV6_LOCALNETWORK;
-pub const NLM_CONNECTIVITY_IPV6_INTERNET = NLM_CONNECTIVITY.IPV6_INTERNET;
-
-pub const NLM_DOMAIN_TYPE = enum(i32) {
-    NON_DOMAIN_NETWORK = 0,
-    DOMAIN_NETWORK = 1,
-    DOMAIN_AUTHENTICATED = 2,
-};
-pub const NLM_DOMAIN_TYPE_NON_DOMAIN_NETWORK = NLM_DOMAIN_TYPE.NON_DOMAIN_NETWORK;
-pub const NLM_DOMAIN_TYPE_DOMAIN_NETWORK = NLM_DOMAIN_TYPE.DOMAIN_NETWORK;
-pub const NLM_DOMAIN_TYPE_DOMAIN_AUTHENTICATED = NLM_DOMAIN_TYPE.DOMAIN_AUTHENTICATED;
-
-pub const NLM_ENUM_NETWORK = enum(i32) {
-    CONNECTED = 1,
-    DISCONNECTED = 2,
-    ALL = 3,
-};
-pub const NLM_ENUM_NETWORK_CONNECTED = NLM_ENUM_NETWORK.CONNECTED;
-pub const NLM_ENUM_NETWORK_DISCONNECTED = NLM_ENUM_NETWORK.DISCONNECTED;
-pub const NLM_ENUM_NETWORK_ALL = NLM_ENUM_NETWORK.ALL;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkListManager_Value = Guid.initString("dcb00000-570f-4a9b-8d69-199fdba5723b");
-pub const IID_INetworkListManager = &IID_INetworkListManager_Value;
-pub const INetworkListManager = extern union {
+const IID_IEnumNetworkConnections_Value = Guid.initString("dcb00006-570f-4a9b-8d69-199fdba5723b");
+pub const IID_IEnumNetworkConnections = &IID_IEnumNetworkConnections_Value;
+pub const IEnumNetworkConnections = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetNetworks: *const fn(
-            self: *const INetworkListManager,
-            Flags: NLM_ENUM_NETWORK,
-            ppEnumNetwork: ?*?*IEnumNetworks,
-        ) callconv(.winapi) HRESULT,
-        GetNetwork: *const fn(
-            self: *const INetworkListManager,
-            gdNetworkId: Guid,
-            ppNetwork: ?*?*INetwork,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkConnections: *const fn(
-            self: *const INetworkListManager,
-            ppEnum: ?*?*IEnumNetworkConnections,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkConnection: *const fn(
-            self: *const INetworkListManager,
-            gdNetworkConnectionId: Guid,
-            ppNetworkConnection: ?*?*INetworkConnection,
-        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsConnectedToInternet: *const fn(
-            self: *const INetworkListManager,
-            pbIsConnected: ?*i16,
+        get__NewEnum: *const fn(
+            self: *const IEnumNetworkConnections,
+            ppEnumVar: ?*?*IEnumVARIANT,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsConnected: *const fn(
-            self: *const INetworkListManager,
-            pbIsConnected: ?*i16,
+        Next: *const fn(
+            self: *const IEnumNetworkConnections,
+            celt: u32,
+            rgelt: [*]?*INetworkConnection,
+            pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetConnectivity: *const fn(
-            self: *const INetworkListManager,
-            pConnectivity: ?*NLM_CONNECTIVITY,
+        Skip: *const fn(
+            self: *const IEnumNetworkConnections,
+            celt: u32,
         ) callconv(.winapi) HRESULT,
-        SetSimulatedProfileInfo: *const fn(
-            self: *const INetworkListManager,
-            pSimulatedInfo: ?*NLM_SIMULATED_PROFILE_INFO,
+        Reset: *const fn(
+            self: *const IEnumNetworkConnections,
         ) callconv(.winapi) HRESULT,
-        ClearSimulatedProfileInfo: *const fn(
-            self: *const INetworkListManager,
+        Clone: *const fn(
+            self: *const IEnumNetworkConnections,
+            ppEnumNetwork: ?*?*IEnumNetworkConnections,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetNetworks(self: *const INetworkListManager, Flags: NLM_ENUM_NETWORK, ppEnumNetwork: ?*?*IEnumNetworks) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworks(self, Flags, ppEnumNetwork);
+    pub fn get__NewEnum(self: *const IEnumNetworkConnections, ppEnumVar: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppEnumVar);
     }
-    pub fn GetNetwork(self: *const INetworkListManager, gdNetworkId: Guid, ppNetwork: ?*?*INetwork) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetwork(self, gdNetworkId, ppNetwork);
+    pub fn Next(self: *const IEnumNetworkConnections, celt: u32, rgelt: [*]?*INetworkConnection, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn GetNetworkConnections(self: *const INetworkListManager, ppEnum: ?*?*IEnumNetworkConnections) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkConnections(self, ppEnum);
+    pub fn Skip(self: *const IEnumNetworkConnections, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
     }
-    pub fn GetNetworkConnection(self: *const INetworkListManager, gdNetworkConnectionId: Guid, ppNetworkConnection: ?*?*INetworkConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkConnection(self, gdNetworkConnectionId, ppNetworkConnection);
+    pub fn Reset(self: *const IEnumNetworkConnections) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
     }
-    pub fn get_IsConnectedToInternet(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
-    }
-    pub fn get_IsConnected(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsConnected(self, pbIsConnected);
-    }
-    pub fn GetConnectivity(self: *const INetworkListManager, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectivity(self, pConnectivity);
-    }
-    pub fn SetSimulatedProfileInfo(self: *const INetworkListManager, pSimulatedInfo: ?*NLM_SIMULATED_PROFILE_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSimulatedProfileInfo(self, pSimulatedInfo);
-    }
-    pub fn ClearSimulatedProfileInfo(self: *const INetworkListManager) callconv(.@"inline") HRESULT {
-        return self.vtable.ClearSimulatedProfileInfo(self);
+    pub fn Clone(self: *const IEnumNetworkConnections, ppEnumNetwork: ?*?*IEnumNetworkConnections) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnumNetwork);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkListManagerEvents_Value = Guid.initString("dcb00001-570f-4a9b-8d69-199fdba5723b");
-pub const IID_INetworkListManagerEvents = &IID_INetworkListManagerEvents_Value;
-pub const INetworkListManagerEvents = extern union {
+const IID_IEnumNetworks_Value = Guid.initString("dcb00003-570f-4a9b-8d69-199fdba5723b");
+pub const IID_IEnumNetworks = &IID_IEnumNetworks_Value;
+pub const IEnumNetworks = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ConnectivityChanged: *const fn(
-            self: *const INetworkListManagerEvents,
-            newConnectivity: NLM_CONNECTIVITY,
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IEnumNetworks,
+            ppEnumVar: ?*?*IEnumVARIANT,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumNetworks,
+            celt: u32,
+            rgelt: [*]?*INetwork,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetworks,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetworks,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetworks,
+            ppEnumNetwork: ?*?*IEnumNetworks,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ConnectivityChanged(self: *const INetworkListManagerEvents, newConnectivity: NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectivityChanged(self, newConnectivity);
+    pub fn get__NewEnum(self: *const IEnumNetworks, ppEnumVar: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppEnumVar);
+    }
+    pub fn Next(self: *const IEnumNetworks, celt: u32, rgelt: [*]?*INetwork, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumNetworks, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumNetworks) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumNetworks, ppEnumNetwork: ?*?*IEnumNetworks) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnumNetwork);
     }
 };
-
-pub const NLM_NETWORK_CATEGORY = enum(i32) {
-    PUBLIC = 0,
-    PRIVATE = 1,
-    DOMAIN_AUTHENTICATED = 2,
-};
-pub const NLM_NETWORK_CATEGORY_PUBLIC = NLM_NETWORK_CATEGORY.PUBLIC;
-pub const NLM_NETWORK_CATEGORY_PRIVATE = NLM_NETWORK_CATEGORY.PRIVATE;
-pub const NLM_NETWORK_CATEGORY_DOMAIN_AUTHENTICATED = NLM_NETWORK_CATEGORY.DOMAIN_AUTHENTICATED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetwork_Value = Guid.initString("dcb00002-570f-4a9b-8d69-199fdba5723b");
@@ -342,109 +228,6 @@ pub const INetwork = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumNetworks_Value = Guid.initString("dcb00003-570f-4a9b-8d69-199fdba5723b");
-pub const IID_IEnumNetworks = &IID_IEnumNetworks_Value;
-pub const IEnumNetworks = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IEnumNetworks,
-            ppEnumVar: ?*?*IEnumVARIANT,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumNetworks,
-            celt: u32,
-            rgelt: [*]?*INetwork,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetworks,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetworks,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetworks,
-            ppEnumNetwork: ?*?*IEnumNetworks,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IEnumNetworks, ppEnumVar: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppEnumVar);
-    }
-    pub fn Next(self: *const IEnumNetworks, celt: u32, rgelt: [*]?*INetwork, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetworks, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetworks) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetworks, ppEnumNetwork: ?*?*IEnumNetworks) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnumNetwork);
-    }
-};
-
-pub const NLM_NETWORK_PROPERTY_CHANGE = enum(i32) {
-    CONNECTION = 1,
-    DESCRIPTION = 2,
-    NAME = 4,
-    ICON = 8,
-    CATEGORY_VALUE = 16,
-};
-pub const NLM_NETWORK_PROPERTY_CHANGE_CONNECTION = NLM_NETWORK_PROPERTY_CHANGE.CONNECTION;
-pub const NLM_NETWORK_PROPERTY_CHANGE_DESCRIPTION = NLM_NETWORK_PROPERTY_CHANGE.DESCRIPTION;
-pub const NLM_NETWORK_PROPERTY_CHANGE_NAME = NLM_NETWORK_PROPERTY_CHANGE.NAME;
-pub const NLM_NETWORK_PROPERTY_CHANGE_ICON = NLM_NETWORK_PROPERTY_CHANGE.ICON;
-pub const NLM_NETWORK_PROPERTY_CHANGE_CATEGORY_VALUE = NLM_NETWORK_PROPERTY_CHANGE.CATEGORY_VALUE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetworkEvents_Value = Guid.initString("dcb00004-570f-4a9b-8d69-199fdba5723b");
-pub const IID_INetworkEvents = &IID_INetworkEvents_Value;
-pub const INetworkEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        NetworkAdded: *const fn(
-            self: *const INetworkEvents,
-            networkId: Guid,
-        ) callconv(.winapi) HRESULT,
-        NetworkDeleted: *const fn(
-            self: *const INetworkEvents,
-            networkId: Guid,
-        ) callconv(.winapi) HRESULT,
-        NetworkConnectivityChanged: *const fn(
-            self: *const INetworkEvents,
-            networkId: Guid,
-            newConnectivity: NLM_CONNECTIVITY,
-        ) callconv(.winapi) HRESULT,
-        NetworkPropertyChanged: *const fn(
-            self: *const INetworkEvents,
-            networkId: Guid,
-            flags: NLM_NETWORK_PROPERTY_CHANGE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn NetworkAdded(self: *const INetworkEvents, networkId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.NetworkAdded(self, networkId);
-    }
-    pub fn NetworkDeleted(self: *const INetworkEvents, networkId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.NetworkDeleted(self, networkId);
-    }
-    pub fn NetworkConnectivityChanged(self: *const INetworkEvents, networkId: Guid, newConnectivity: NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
-        return self.vtable.NetworkConnectivityChanged(self, networkId, newConnectivity);
-    }
-    pub fn NetworkPropertyChanged(self: *const INetworkEvents, networkId: Guid, flags: NLM_NETWORK_PROPERTY_CHANGE) callconv(.@"inline") HRESULT {
-        return self.vtable.NetworkPropertyChanged(self, networkId, flags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetworkConnection_Value = Guid.initString("dcb00005-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnection = &IID_INetworkConnection_Value;
 pub const INetworkConnection = extern union {
@@ -507,59 +290,56 @@ pub const INetworkConnection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumNetworkConnections_Value = Guid.initString("dcb00006-570f-4a9b-8d69-199fdba5723b");
-pub const IID_IEnumNetworkConnections = &IID_IEnumNetworkConnections_Value;
-pub const IEnumNetworkConnections = extern union {
+// TODO: this type is limited to platform 'windows8.0'
+const IID_INetworkConnectionCost_Value = Guid.initString("dcb0000a-570f-4a9b-8d69-199fdba5723b");
+pub const IID_INetworkConnectionCost = &IID_INetworkConnectionCost_Value;
+pub const INetworkConnectionCost = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IEnumNetworkConnections,
-            ppEnumVar: ?*?*IEnumVARIANT,
+        base: IUnknown.VTable,
+        GetCost: *const fn(
+            self: *const INetworkConnectionCost,
+            pCost: ?*u32,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumNetworkConnections,
-            celt: u32,
-            rgelt: [*]?*INetworkConnection,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumNetworkConnections,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumNetworkConnections,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumNetworkConnections,
-            ppEnumNetwork: ?*?*IEnumNetworkConnections,
+        GetDataPlanStatus: *const fn(
+            self: *const INetworkConnectionCost,
+            pDataPlanStatus: ?*NLM_DATAPLAN_STATUS,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IEnumNetworkConnections, ppEnumVar: ?*?*IEnumVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppEnumVar);
+    pub fn GetCost(self: *const INetworkConnectionCost, pCost: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCost(self, pCost);
     }
-    pub fn Next(self: *const IEnumNetworkConnections, celt: u32, rgelt: [*]?*INetworkConnection, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumNetworkConnections, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumNetworkConnections) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumNetworkConnections, ppEnumNetwork: ?*?*IEnumNetworkConnections) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnumNetwork);
+    pub fn GetDataPlanStatus(self: *const INetworkConnectionCost, pDataPlanStatus: ?*NLM_DATAPLAN_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataPlanStatus(self, pDataPlanStatus);
     }
 };
 
-pub const NLM_CONNECTION_PROPERTY_CHANGE = enum(i32) {
-    N = 1,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_INetworkConnectionCostEvents_Value = Guid.initString("dcb0000b-570f-4a9b-8d69-199fdba5723b");
+pub const IID_INetworkConnectionCostEvents = &IID_INetworkConnectionCostEvents_Value;
+pub const INetworkConnectionCostEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ConnectionCostChanged: *const fn(
+            self: *const INetworkConnectionCostEvents,
+            connectionId: Guid,
+            newCost: u32,
+        ) callconv(.winapi) HRESULT,
+        ConnectionDataPlanStatusChanged: *const fn(
+            self: *const INetworkConnectionCostEvents,
+            connectionId: Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ConnectionCostChanged(self: *const INetworkConnectionCostEvents, connectionId: Guid, newCost: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectionCostChanged(self, connectionId, newCost);
+    }
+    pub fn ConnectionDataPlanStatusChanged(self: *const INetworkConnectionCostEvents, connectionId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectionDataPlanStatusChanged(self, connectionId);
+    }
 };
-pub const NLM_CONNECTION_PROPERTY_CHANGE_AUTHENTICATION = NLM_CONNECTION_PROPERTY_CHANGE.N;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetworkConnectionEvents_Value = Guid.initString("dcb00007-570f-4a9b-8d69-199fdba5723b");
@@ -650,55 +430,275 @@ pub const INetworkCostManagerEvents = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_INetworkConnectionCost_Value = Guid.initString("dcb0000a-570f-4a9b-8d69-199fdba5723b");
-pub const IID_INetworkConnectionCost = &IID_INetworkConnectionCost_Value;
-pub const INetworkConnectionCost = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetworkEvents_Value = Guid.initString("dcb00004-570f-4a9b-8d69-199fdba5723b");
+pub const IID_INetworkEvents = &IID_INetworkEvents_Value;
+pub const INetworkEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCost: *const fn(
-            self: *const INetworkConnectionCost,
-            pCost: ?*u32,
+        NetworkAdded: *const fn(
+            self: *const INetworkEvents,
+            networkId: Guid,
         ) callconv(.winapi) HRESULT,
-        GetDataPlanStatus: *const fn(
-            self: *const INetworkConnectionCost,
-            pDataPlanStatus: ?*NLM_DATAPLAN_STATUS,
+        NetworkDeleted: *const fn(
+            self: *const INetworkEvents,
+            networkId: Guid,
+        ) callconv(.winapi) HRESULT,
+        NetworkConnectivityChanged: *const fn(
+            self: *const INetworkEvents,
+            networkId: Guid,
+            newConnectivity: NLM_CONNECTIVITY,
+        ) callconv(.winapi) HRESULT,
+        NetworkPropertyChanged: *const fn(
+            self: *const INetworkEvents,
+            networkId: Guid,
+            flags: NLM_NETWORK_PROPERTY_CHANGE,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCost(self: *const INetworkConnectionCost, pCost: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCost(self, pCost);
+    pub fn NetworkAdded(self: *const INetworkEvents, networkId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.NetworkAdded(self, networkId);
     }
-    pub fn GetDataPlanStatus(self: *const INetworkConnectionCost, pDataPlanStatus: ?*NLM_DATAPLAN_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataPlanStatus(self, pDataPlanStatus);
+    pub fn NetworkDeleted(self: *const INetworkEvents, networkId: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.NetworkDeleted(self, networkId);
+    }
+    pub fn NetworkConnectivityChanged(self: *const INetworkEvents, networkId: Guid, newConnectivity: NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
+        return self.vtable.NetworkConnectivityChanged(self, networkId, newConnectivity);
+    }
+    pub fn NetworkPropertyChanged(self: *const INetworkEvents, networkId: Guid, flags: NLM_NETWORK_PROPERTY_CHANGE) callconv(.@"inline") HRESULT {
+        return self.vtable.NetworkPropertyChanged(self, networkId, flags);
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_INetworkConnectionCostEvents_Value = Guid.initString("dcb0000b-570f-4a9b-8d69-199fdba5723b");
-pub const IID_INetworkConnectionCostEvents = &IID_INetworkConnectionCostEvents_Value;
-pub const INetworkConnectionCostEvents = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetworkListManager_Value = Guid.initString("dcb00000-570f-4a9b-8d69-199fdba5723b");
+pub const IID_INetworkListManager = &IID_INetworkListManager_Value;
+pub const INetworkListManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetNetworks: *const fn(
+            self: *const INetworkListManager,
+            Flags: NLM_ENUM_NETWORK,
+            ppEnumNetwork: ?*?*IEnumNetworks,
+        ) callconv(.winapi) HRESULT,
+        GetNetwork: *const fn(
+            self: *const INetworkListManager,
+            gdNetworkId: Guid,
+            ppNetwork: ?*?*INetwork,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkConnections: *const fn(
+            self: *const INetworkListManager,
+            ppEnum: ?*?*IEnumNetworkConnections,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkConnection: *const fn(
+            self: *const INetworkListManager,
+            gdNetworkConnectionId: Guid,
+            ppNetworkConnection: ?*?*INetworkConnection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsConnectedToInternet: *const fn(
+            self: *const INetworkListManager,
+            pbIsConnected: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsConnected: *const fn(
+            self: *const INetworkListManager,
+            pbIsConnected: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetConnectivity: *const fn(
+            self: *const INetworkListManager,
+            pConnectivity: ?*NLM_CONNECTIVITY,
+        ) callconv(.winapi) HRESULT,
+        SetSimulatedProfileInfo: *const fn(
+            self: *const INetworkListManager,
+            pSimulatedInfo: ?*NLM_SIMULATED_PROFILE_INFO,
+        ) callconv(.winapi) HRESULT,
+        ClearSimulatedProfileInfo: *const fn(
+            self: *const INetworkListManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetNetworks(self: *const INetworkListManager, Flags: NLM_ENUM_NETWORK, ppEnumNetwork: ?*?*IEnumNetworks) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworks(self, Flags, ppEnumNetwork);
+    }
+    pub fn GetNetwork(self: *const INetworkListManager, gdNetworkId: Guid, ppNetwork: ?*?*INetwork) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetwork(self, gdNetworkId, ppNetwork);
+    }
+    pub fn GetNetworkConnections(self: *const INetworkListManager, ppEnum: ?*?*IEnumNetworkConnections) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkConnections(self, ppEnum);
+    }
+    pub fn GetNetworkConnection(self: *const INetworkListManager, gdNetworkConnectionId: Guid, ppNetworkConnection: ?*?*INetworkConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkConnection(self, gdNetworkConnectionId, ppNetworkConnection);
+    }
+    pub fn get_IsConnectedToInternet(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
+    }
+    pub fn get_IsConnected(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsConnected(self, pbIsConnected);
+    }
+    pub fn GetConnectivity(self: *const INetworkListManager, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectivity(self, pConnectivity);
+    }
+    pub fn SetSimulatedProfileInfo(self: *const INetworkListManager, pSimulatedInfo: ?*NLM_SIMULATED_PROFILE_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSimulatedProfileInfo(self, pSimulatedInfo);
+    }
+    pub fn ClearSimulatedProfileInfo(self: *const INetworkListManager) callconv(.@"inline") HRESULT {
+        return self.vtable.ClearSimulatedProfileInfo(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INetworkListManagerEvents_Value = Guid.initString("dcb00001-570f-4a9b-8d69-199fdba5723b");
+pub const IID_INetworkListManagerEvents = &IID_INetworkListManagerEvents_Value;
+pub const INetworkListManagerEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConnectionCostChanged: *const fn(
-            self: *const INetworkConnectionCostEvents,
-            connectionId: Guid,
-            newCost: u32,
-        ) callconv(.winapi) HRESULT,
-        ConnectionDataPlanStatusChanged: *const fn(
-            self: *const INetworkConnectionCostEvents,
-            connectionId: Guid,
+        ConnectivityChanged: *const fn(
+            self: *const INetworkListManagerEvents,
+            newConnectivity: NLM_CONNECTIVITY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectionCostChanged(self: *const INetworkConnectionCostEvents, connectionId: Guid, newCost: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectionCostChanged(self, connectionId, newCost);
+    pub fn ConnectivityChanged(self: *const INetworkListManagerEvents, newConnectivity: NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectivityChanged(self, newConnectivity);
     }
-    pub fn ConnectionDataPlanStatusChanged(self: *const INetworkConnectionCostEvents, connectionId: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectionDataPlanStatusChanged(self, connectionId);
-    }
+};
+
+const CLSID_NetworkListManager_Value = Guid.initString("dcb00c01-570f-4a9b-8d69-199fdba5723b");
+pub const CLSID_NetworkListManager = &CLSID_NetworkListManager_Value;
+
+pub const NLM_CONNECTION_COST = enum(i32) {
+    UNKNOWN = 0,
+    UNRESTRICTED = 1,
+    FIXED = 2,
+    VARIABLE = 4,
+    OVERDATALIMIT = 65536,
+    CONGESTED = 131072,
+    ROAMING = 262144,
+    APPROACHINGDATALIMIT = 524288,
+};
+pub const NLM_CONNECTION_COST_UNKNOWN = NLM_CONNECTION_COST.UNKNOWN;
+pub const NLM_CONNECTION_COST_UNRESTRICTED = NLM_CONNECTION_COST.UNRESTRICTED;
+pub const NLM_CONNECTION_COST_FIXED = NLM_CONNECTION_COST.FIXED;
+pub const NLM_CONNECTION_COST_VARIABLE = NLM_CONNECTION_COST.VARIABLE;
+pub const NLM_CONNECTION_COST_OVERDATALIMIT = NLM_CONNECTION_COST.OVERDATALIMIT;
+pub const NLM_CONNECTION_COST_CONGESTED = NLM_CONNECTION_COST.CONGESTED;
+pub const NLM_CONNECTION_COST_ROAMING = NLM_CONNECTION_COST.ROAMING;
+pub const NLM_CONNECTION_COST_APPROACHINGDATALIMIT = NLM_CONNECTION_COST.APPROACHINGDATALIMIT;
+
+pub const NLM_CONNECTION_PROPERTY_CHANGE = enum(i32) {
+    N = 1,
+};
+pub const NLM_CONNECTION_PROPERTY_CHANGE_AUTHENTICATION = NLM_CONNECTION_PROPERTY_CHANGE.N;
+
+pub const NLM_CONNECTIVITY = enum(i32) {
+    DISCONNECTED = 0,
+    IPV4_NOTRAFFIC = 1,
+    IPV6_NOTRAFFIC = 2,
+    IPV4_SUBNET = 16,
+    IPV4_LOCALNETWORK = 32,
+    IPV4_INTERNET = 64,
+    IPV6_SUBNET = 256,
+    IPV6_LOCALNETWORK = 512,
+    IPV6_INTERNET = 1024,
+};
+pub const NLM_CONNECTIVITY_DISCONNECTED = NLM_CONNECTIVITY.DISCONNECTED;
+pub const NLM_CONNECTIVITY_IPV4_NOTRAFFIC = NLM_CONNECTIVITY.IPV4_NOTRAFFIC;
+pub const NLM_CONNECTIVITY_IPV6_NOTRAFFIC = NLM_CONNECTIVITY.IPV6_NOTRAFFIC;
+pub const NLM_CONNECTIVITY_IPV4_SUBNET = NLM_CONNECTIVITY.IPV4_SUBNET;
+pub const NLM_CONNECTIVITY_IPV4_LOCALNETWORK = NLM_CONNECTIVITY.IPV4_LOCALNETWORK;
+pub const NLM_CONNECTIVITY_IPV4_INTERNET = NLM_CONNECTIVITY.IPV4_INTERNET;
+pub const NLM_CONNECTIVITY_IPV6_SUBNET = NLM_CONNECTIVITY.IPV6_SUBNET;
+pub const NLM_CONNECTIVITY_IPV6_LOCALNETWORK = NLM_CONNECTIVITY.IPV6_LOCALNETWORK;
+pub const NLM_CONNECTIVITY_IPV6_INTERNET = NLM_CONNECTIVITY.IPV6_INTERNET;
+
+pub const NLM_DATAPLAN_STATUS = extern struct {
+    InterfaceGuid: Guid,
+    UsageData: NLM_USAGE_DATA,
+    DataLimitInMegabytes: u32,
+    InboundBandwidthInKbps: u32,
+    OutboundBandwidthInKbps: u32,
+    NextBillingCycle: FILETIME,
+    MaxTransferSizeInMegabytes: u32,
+    Reserved: u32,
+};
+
+pub const NLM_DOMAIN_TYPE = enum(i32) {
+    NON_DOMAIN_NETWORK = 0,
+    DOMAIN_NETWORK = 1,
+    DOMAIN_AUTHENTICATED = 2,
+};
+pub const NLM_DOMAIN_TYPE_NON_DOMAIN_NETWORK = NLM_DOMAIN_TYPE.NON_DOMAIN_NETWORK;
+pub const NLM_DOMAIN_TYPE_DOMAIN_NETWORK = NLM_DOMAIN_TYPE.DOMAIN_NETWORK;
+pub const NLM_DOMAIN_TYPE_DOMAIN_AUTHENTICATED = NLM_DOMAIN_TYPE.DOMAIN_AUTHENTICATED;
+
+pub const NLM_ENUM_NETWORK = enum(i32) {
+    CONNECTED = 1,
+    DISCONNECTED = 2,
+    ALL = 3,
+};
+pub const NLM_ENUM_NETWORK_CONNECTED = NLM_ENUM_NETWORK.CONNECTED;
+pub const NLM_ENUM_NETWORK_DISCONNECTED = NLM_ENUM_NETWORK.DISCONNECTED;
+pub const NLM_ENUM_NETWORK_ALL = NLM_ENUM_NETWORK.ALL;
+
+pub const NLM_INTERNET_CONNECTIVITY = enum(i32) {
+    WEBHIJACK = 1,
+    PROXIED = 2,
+    CORPORATE = 4,
+};
+pub const NLM_INTERNET_CONNECTIVITY_WEBHIJACK = NLM_INTERNET_CONNECTIVITY.WEBHIJACK;
+pub const NLM_INTERNET_CONNECTIVITY_PROXIED = NLM_INTERNET_CONNECTIVITY.PROXIED;
+pub const NLM_INTERNET_CONNECTIVITY_CORPORATE = NLM_INTERNET_CONNECTIVITY.CORPORATE;
+
+pub const NLM_NETWORK_CATEGORY = enum(i32) {
+    PUBLIC = 0,
+    PRIVATE = 1,
+    DOMAIN_AUTHENTICATED = 2,
+};
+pub const NLM_NETWORK_CATEGORY_PUBLIC = NLM_NETWORK_CATEGORY.PUBLIC;
+pub const NLM_NETWORK_CATEGORY_PRIVATE = NLM_NETWORK_CATEGORY.PRIVATE;
+pub const NLM_NETWORK_CATEGORY_DOMAIN_AUTHENTICATED = NLM_NETWORK_CATEGORY.DOMAIN_AUTHENTICATED;
+
+pub const NLM_NETWORK_CLASS = enum(i32) {
+    IDENTIFYING = 1,
+    IDENTIFIED = 2,
+    UNIDENTIFIED = 3,
+};
+pub const NLM_NETWORK_IDENTIFYING = NLM_NETWORK_CLASS.IDENTIFYING;
+pub const NLM_NETWORK_IDENTIFIED = NLM_NETWORK_CLASS.IDENTIFIED;
+pub const NLM_NETWORK_UNIDENTIFIED = NLM_NETWORK_CLASS.UNIDENTIFIED;
+
+pub const NLM_NETWORK_PROPERTY_CHANGE = enum(i32) {
+    CONNECTION = 1,
+    DESCRIPTION = 2,
+    NAME = 4,
+    ICON = 8,
+    CATEGORY_VALUE = 16,
+};
+pub const NLM_NETWORK_PROPERTY_CHANGE_CONNECTION = NLM_NETWORK_PROPERTY_CHANGE.CONNECTION;
+pub const NLM_NETWORK_PROPERTY_CHANGE_DESCRIPTION = NLM_NETWORK_PROPERTY_CHANGE.DESCRIPTION;
+pub const NLM_NETWORK_PROPERTY_CHANGE_NAME = NLM_NETWORK_PROPERTY_CHANGE.NAME;
+pub const NLM_NETWORK_PROPERTY_CHANGE_ICON = NLM_NETWORK_PROPERTY_CHANGE.ICON;
+pub const NLM_NETWORK_PROPERTY_CHANGE_CATEGORY_VALUE = NLM_NETWORK_PROPERTY_CHANGE.CATEGORY_VALUE;
+
+pub const NLM_SIMULATED_PROFILE_INFO = extern struct {
+    ProfileName: [256]u16,
+    cost: NLM_CONNECTION_COST,
+    UsageInMegabytes: u32,
+    DataLimitInMegabytes: u32,
+};
+
+pub const NLM_SOCKADDR = extern struct {
+    data: [128]u8,
+};
+
+pub const NLM_USAGE_DATA = extern struct {
+    UsageInMegabytes: u32,
+    LastSyncTime: FILETIME,
 };
 
 

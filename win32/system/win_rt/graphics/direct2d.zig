@@ -31,6 +31,31 @@ pub const GRAPHICS_EFFECT_PROPERTY_MAPPING_COLORMATRIX_ALPHA_MODE = GRAPHICS_EFF
 pub const GRAPHICS_EFFECT_PROPERTY_MAPPING_COLOR_TO_VECTOR3 = GRAPHICS_EFFECT_PROPERTY_MAPPING.COLOR_TO_VECTOR3;
 pub const GRAPHICS_EFFECT_PROPERTY_MAPPING_COLOR_TO_VECTOR4 = GRAPHICS_EFFECT_PROPERTY_MAPPING.COLOR_TO_VECTOR4;
 
+const IID_IGeometrySource2DInterop_Value = Guid.initString("0657af73-53fd-47cf-84ff-c8492d2a80a3");
+pub const IID_IGeometrySource2DInterop = &IID_IGeometrySource2DInterop_Value;
+pub const IGeometrySource2DInterop = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetGeometry: *const fn(
+            self: *const IGeometrySource2DInterop,
+            value: **ID2D1Geometry,
+        ) callconv(.winapi) HRESULT,
+        TryGetGeometryUsingFactory: *const fn(
+            self: *const IGeometrySource2DInterop,
+            factory: ?*ID2D1Factory,
+            value: ?**ID2D1Geometry,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: **ID2D1Geometry) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGeometry(self, value);
+    }
+    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?**ID2D1Geometry) callconv(.@"inline") HRESULT {
+        return self.vtable.TryGetGeometryUsingFactory(self, factory, value);
+    }
+};
+
 const IID_IGraphicsEffectD2D1Interop_Value = Guid.initString("2fc57384-a068-44d7-a331-30982fcf7177");
 pub const IID_IGraphicsEffectD2D1Interop = &IID_IGraphicsEffectD2D1Interop_Value;
 pub const IGraphicsEffectD2D1Interop = extern union {
@@ -84,31 +109,6 @@ pub const IGraphicsEffectD2D1Interop = extern union {
     }
     pub fn GetSourceCount(self: *const IGraphicsEffectD2D1Interop, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceCount(self, count);
-    }
-};
-
-const IID_IGeometrySource2DInterop_Value = Guid.initString("0657af73-53fd-47cf-84ff-c8492d2a80a3");
-pub const IID_IGeometrySource2DInterop = &IID_IGeometrySource2DInterop_Value;
-pub const IGeometrySource2DInterop = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetGeometry: *const fn(
-            self: *const IGeometrySource2DInterop,
-            value: **ID2D1Geometry,
-        ) callconv(.winapi) HRESULT,
-        TryGetGeometryUsingFactory: *const fn(
-            self: *const IGeometrySource2DInterop,
-            factory: ?*ID2D1Factory,
-            value: ?**ID2D1Geometry,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: **ID2D1Geometry) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGeometry(self, value);
-    }
-    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?**ID2D1Geometry) callconv(.@"inline") HRESULT {
-        return self.vtable.TryGetGeometryUsingFactory(self, factory, value);
     }
 };
 

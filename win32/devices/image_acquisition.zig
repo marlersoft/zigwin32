@@ -2,710 +2,203 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1242)
 //--------------------------------------------------------------------------------
-pub const WIA_DIP_DEV_ID = @as(u32, 2);
-pub const WIA_DIP_DEV_ID_STR = "Unique Device ID";
-pub const WIA_DIP_VEND_DESC = @as(u32, 3);
-pub const WIA_DIP_VEND_DESC_STR = "Manufacturer";
-pub const WIA_DIP_DEV_DESC = @as(u32, 4);
-pub const WIA_DIP_DEV_DESC_STR = "Description";
-pub const WIA_DIP_DEV_TYPE = @as(u32, 5);
-pub const WIA_DIP_DEV_TYPE_STR = "Type";
-pub const WIA_DIP_PORT_NAME = @as(u32, 6);
-pub const WIA_DIP_PORT_NAME_STR = "Port";
-pub const WIA_DIP_DEV_NAME = @as(u32, 7);
-pub const WIA_DIP_DEV_NAME_STR = "Name";
-pub const WIA_DIP_SERVER_NAME = @as(u32, 8);
-pub const WIA_DIP_SERVER_NAME_STR = "Server";
-pub const WIA_DIP_REMOTE_DEV_ID = @as(u32, 9);
-pub const WIA_DIP_REMOTE_DEV_ID_STR = "Remote Device ID";
-pub const WIA_DIP_UI_CLSID = @as(u32, 10);
-pub const WIA_DIP_UI_CLSID_STR = "UI Class ID";
-pub const WIA_DIP_HW_CONFIG = @as(u32, 11);
-pub const WIA_DIP_HW_CONFIG_STR = "Hardware Configuration";
-pub const WIA_DIP_BAUDRATE = @as(u32, 12);
-pub const WIA_DIP_BAUDRATE_STR = "BaudRate";
-pub const WIA_DIP_STI_GEN_CAPABILITIES = @as(u32, 13);
-pub const WIA_DIP_STI_GEN_CAPABILITIES_STR = "STI Generic Capabilities";
-pub const WIA_DIP_WIA_VERSION = @as(u32, 14);
-pub const WIA_DIP_WIA_VERSION_STR = "WIA Version";
-pub const WIA_DIP_DRIVER_VERSION = @as(u32, 15);
-pub const WIA_DIP_DRIVER_VERSION_STR = "Driver Version";
-pub const WIA_DIP_PNP_ID = @as(u32, 16);
-pub const WIA_DIP_PNP_ID_STR = "PnP ID String";
-pub const WIA_DIP_STI_DRIVER_VERSION = @as(u32, 17);
-pub const WIA_DIP_STI_DRIVER_VERSION_STR = "STI Driver Version";
-pub const WIA_DPA_FIRMWARE_VERSION = @as(u32, 1026);
-pub const WIA_DPA_FIRMWARE_VERSION_STR = "Firmware Version";
-pub const WIA_DPA_CONNECT_STATUS = @as(u32, 1027);
-pub const WIA_DPA_CONNECT_STATUS_STR = "Connect Status";
-pub const WIA_DPA_DEVICE_TIME = @as(u32, 1028);
-pub const WIA_DPA_DEVICE_TIME_STR = "Device Time";
-pub const WIA_DPC_PICTURES_TAKEN = @as(u32, 2050);
-pub const WIA_DPC_PICTURES_TAKEN_STR = "Pictures Taken";
-pub const WIA_DPC_PICTURES_REMAINING = @as(u32, 2051);
-pub const WIA_DPC_PICTURES_REMAINING_STR = "Pictures Remaining";
-pub const WIA_DPC_EXPOSURE_MODE = @as(u32, 2052);
-pub const WIA_DPC_EXPOSURE_MODE_STR = "Exposure Mode";
-pub const WIA_DPC_EXPOSURE_COMP = @as(u32, 2053);
-pub const WIA_DPC_EXPOSURE_COMP_STR = "Exposure Compensation";
-pub const WIA_DPC_EXPOSURE_TIME = @as(u32, 2054);
-pub const WIA_DPC_EXPOSURE_TIME_STR = "Exposure Time";
-pub const WIA_DPC_FNUMBER = @as(u32, 2055);
-pub const WIA_DPC_FNUMBER_STR = "F Number";
-pub const WIA_DPC_FLASH_MODE = @as(u32, 2056);
-pub const WIA_DPC_FLASH_MODE_STR = "Flash Mode";
-pub const WIA_DPC_FOCUS_MODE = @as(u32, 2057);
-pub const WIA_DPC_FOCUS_MODE_STR = "Focus Mode";
-pub const WIA_DPC_FOCUS_MANUAL_DIST = @as(u32, 2058);
-pub const WIA_DPC_FOCUS_MANUAL_DIST_STR = "Focus Manual Dist";
-pub const WIA_DPC_ZOOM_POSITION = @as(u32, 2059);
-pub const WIA_DPC_ZOOM_POSITION_STR = "Zoom Position";
-pub const WIA_DPC_PAN_POSITION = @as(u32, 2060);
-pub const WIA_DPC_PAN_POSITION_STR = "Pan Position";
-pub const WIA_DPC_TILT_POSITION = @as(u32, 2061);
-pub const WIA_DPC_TILT_POSITION_STR = "Tilt Position";
-pub const WIA_DPC_TIMER_MODE = @as(u32, 2062);
-pub const WIA_DPC_TIMER_MODE_STR = "Timer Mode";
-pub const WIA_DPC_TIMER_VALUE = @as(u32, 2063);
-pub const WIA_DPC_TIMER_VALUE_STR = "Timer Value";
-pub const WIA_DPC_POWER_MODE = @as(u32, 2064);
-pub const WIA_DPC_POWER_MODE_STR = "Power Mode";
-pub const WIA_DPC_BATTERY_STATUS = @as(u32, 2065);
-pub const WIA_DPC_BATTERY_STATUS_STR = "Battery Status";
-pub const WIA_DPC_THUMB_WIDTH = @as(u32, 2066);
-pub const WIA_DPC_THUMB_WIDTH_STR = "Thumbnail Width";
-pub const WIA_DPC_THUMB_HEIGHT = @as(u32, 2067);
-pub const WIA_DPC_THUMB_HEIGHT_STR = "Thumbnail Height";
-pub const WIA_DPC_PICT_WIDTH = @as(u32, 2068);
-pub const WIA_DPC_PICT_WIDTH_STR = "Picture Width";
-pub const WIA_DPC_PICT_HEIGHT = @as(u32, 2069);
-pub const WIA_DPC_PICT_HEIGHT_STR = "Picture Height";
-pub const WIA_DPC_DIMENSION = @as(u32, 2070);
-pub const WIA_DPC_DIMENSION_STR = "Dimension";
-pub const WIA_DPC_COMPRESSION_SETTING = @as(u32, 2071);
-pub const WIA_DPC_COMPRESSION_SETTING_STR = "Compression Setting";
-pub const WIA_DPC_FOCUS_METERING = @as(u32, 2072);
-pub const WIA_DPC_FOCUS_METERING_STR = "Focus Metering Mode";
-pub const WIA_DPC_TIMELAPSE_INTERVAL = @as(u32, 2073);
-pub const WIA_DPC_TIMELAPSE_INTERVAL_STR = "Timelapse Interval";
-pub const WIA_DPC_TIMELAPSE_NUMBER = @as(u32, 2074);
-pub const WIA_DPC_TIMELAPSE_NUMBER_STR = "Timelapse Number";
-pub const WIA_DPC_BURST_INTERVAL = @as(u32, 2075);
-pub const WIA_DPC_BURST_INTERVAL_STR = "Burst Interval";
-pub const WIA_DPC_BURST_NUMBER = @as(u32, 2076);
-pub const WIA_DPC_BURST_NUMBER_STR = "Burst Number";
-pub const WIA_DPC_EFFECT_MODE = @as(u32, 2077);
-pub const WIA_DPC_EFFECT_MODE_STR = "Effect Mode";
-pub const WIA_DPC_DIGITAL_ZOOM = @as(u32, 2078);
-pub const WIA_DPC_DIGITAL_ZOOM_STR = "Digital Zoom";
-pub const WIA_DPC_SHARPNESS = @as(u32, 2079);
-pub const WIA_DPC_SHARPNESS_STR = "Sharpness";
-pub const WIA_DPC_CONTRAST = @as(u32, 2080);
-pub const WIA_DPC_CONTRAST_STR = "Contrast";
-pub const WIA_DPC_CAPTURE_MODE = @as(u32, 2081);
-pub const WIA_DPC_CAPTURE_MODE_STR = "Capture Mode";
-pub const WIA_DPC_CAPTURE_DELAY = @as(u32, 2082);
-pub const WIA_DPC_CAPTURE_DELAY_STR = "Capture Delay";
-pub const WIA_DPC_EXPOSURE_INDEX = @as(u32, 2083);
-pub const WIA_DPC_EXPOSURE_INDEX_STR = "Exposure Index";
-pub const WIA_DPC_EXPOSURE_METERING_MODE = @as(u32, 2084);
-pub const WIA_DPC_EXPOSURE_METERING_MODE_STR = "Exposure Metering Mode";
-pub const WIA_DPC_FOCUS_METERING_MODE = @as(u32, 2085);
-pub const WIA_DPC_FOCUS_METERING_MODE_STR = "Focus Metering Mode";
-pub const WIA_DPC_FOCUS_DISTANCE = @as(u32, 2086);
-pub const WIA_DPC_FOCUS_DISTANCE_STR = "Focus Distance";
-pub const WIA_DPC_FOCAL_LENGTH = @as(u32, 2087);
-pub const WIA_DPC_FOCAL_LENGTH_STR = "Focus Length";
-pub const WIA_DPC_RGB_GAIN = @as(u32, 2088);
-pub const WIA_DPC_RGB_GAIN_STR = "RGB Gain";
-pub const WIA_DPC_WHITE_BALANCE = @as(u32, 2089);
-pub const WIA_DPC_WHITE_BALANCE_STR = "White Balance";
-pub const WIA_DPC_UPLOAD_URL = @as(u32, 2090);
-pub const WIA_DPC_UPLOAD_URL_STR = "Upload URL";
-pub const WIA_DPC_ARTIST = @as(u32, 2091);
-pub const WIA_DPC_ARTIST_STR = "Artist";
-pub const WIA_DPC_COPYRIGHT_INFO = @as(u32, 2092);
-pub const WIA_DPC_COPYRIGHT_INFO_STR = "Copyright Info";
-pub const WIA_DPS_HORIZONTAL_BED_SIZE = @as(u32, 3074);
-pub const WIA_DPS_HORIZONTAL_BED_SIZE_STR = "Horizontal Bed Size";
-pub const WIA_DPS_VERTICAL_BED_SIZE = @as(u32, 3075);
-pub const WIA_DPS_VERTICAL_BED_SIZE_STR = "Vertical Bed Size";
-pub const WIA_DPS_HORIZONTAL_SHEET_FEED_SIZE = @as(u32, 3076);
-pub const WIA_DPS_HORIZONTAL_SHEET_FEED_SIZE_STR = "Horizontal Sheet Feed Size";
-pub const WIA_DPS_VERTICAL_SHEET_FEED_SIZE = @as(u32, 3077);
-pub const WIA_DPS_VERTICAL_SHEET_FEED_SIZE_STR = "Vertical Sheet Feed Size";
-pub const WIA_DPS_SHEET_FEEDER_REGISTRATION = @as(u32, 3078);
-pub const WIA_DPS_SHEET_FEEDER_REGISTRATION_STR = "Sheet Feeder Registration";
-pub const WIA_DPS_HORIZONTAL_BED_REGISTRATION = @as(u32, 3079);
-pub const WIA_DPS_HORIZONTAL_BED_REGISTRATION_STR = "Horizontal Bed Registration";
-pub const WIA_DPS_VERTICAL_BED_REGISTRATION = @as(u32, 3080);
-pub const WIA_DPS_VERTICAL_BED_REGISTRATION_STR = "Vertical Bed Registration";
-pub const WIA_DPS_PLATEN_COLOR = @as(u32, 3081);
-pub const WIA_DPS_PLATEN_COLOR_STR = "Platen Color";
-pub const WIA_DPS_PAD_COLOR = @as(u32, 3082);
-pub const WIA_DPS_PAD_COLOR_STR = "Pad Color";
-pub const WIA_DPS_FILTER_SELECT = @as(u32, 3083);
-pub const WIA_DPS_FILTER_SELECT_STR = "Filter Select";
-pub const WIA_DPS_DITHER_SELECT = @as(u32, 3084);
-pub const WIA_DPS_DITHER_SELECT_STR = "Dither Select";
-pub const WIA_DPS_DITHER_PATTERN_DATA = @as(u32, 3085);
-pub const WIA_DPS_DITHER_PATTERN_DATA_STR = "Dither Pattern Data";
-pub const WIA_DPS_DOCUMENT_HANDLING_CAPABILITIES = @as(u32, 3086);
-pub const WIA_DPS_DOCUMENT_HANDLING_CAPABILITIES_STR = "Document Handling Capabilities";
-pub const WIA_DPS_DOCUMENT_HANDLING_STATUS = @as(u32, 3087);
-pub const WIA_DPS_DOCUMENT_HANDLING_STATUS_STR = "Document Handling Status";
-pub const WIA_DPS_DOCUMENT_HANDLING_SELECT = @as(u32, 3088);
-pub const WIA_DPS_DOCUMENT_HANDLING_SELECT_STR = "Document Handling Select";
-pub const WIA_DPS_DOCUMENT_HANDLING_CAPACITY = @as(u32, 3089);
-pub const WIA_DPS_DOCUMENT_HANDLING_CAPACITY_STR = "Document Handling Capacity";
-pub const WIA_DPS_OPTICAL_XRES = @as(u32, 3090);
-pub const WIA_DPS_OPTICAL_XRES_STR = "Horizontal Optical Resolution";
-pub const WIA_DPS_OPTICAL_YRES = @as(u32, 3091);
-pub const WIA_DPS_OPTICAL_YRES_STR = "Vertical Optical Resolution";
-pub const WIA_DPS_ENDORSER_CHARACTERS = @as(u32, 3092);
-pub const WIA_DPS_ENDORSER_CHARACTERS_STR = "Endorser Characters";
-pub const WIA_DPS_ENDORSER_STRING = @as(u32, 3093);
-pub const WIA_DPS_ENDORSER_STRING_STR = "Endorser String";
-pub const WIA_DPS_SCAN_AHEAD_PAGES = @as(u32, 3094);
-pub const WIA_DPS_SCAN_AHEAD_PAGES_STR = "Scan Ahead Pages";
-pub const WIA_DPS_MAX_SCAN_TIME = @as(u32, 3095);
-pub const WIA_DPS_MAX_SCAN_TIME_STR = "Max Scan Time";
-pub const WIA_DPS_PAGES = @as(u32, 3096);
-pub const WIA_DPS_PAGES_STR = "Pages";
-pub const WIA_DPS_PAGE_SIZE = @as(u32, 3097);
-pub const WIA_DPS_PAGE_SIZE_STR = "Page Size";
-pub const WIA_DPS_PAGE_WIDTH = @as(u32, 3098);
-pub const WIA_DPS_PAGE_WIDTH_STR = "Page Width";
-pub const WIA_DPS_PAGE_HEIGHT = @as(u32, 3099);
-pub const WIA_DPS_PAGE_HEIGHT_STR = "Page Height";
-pub const WIA_DPS_PREVIEW = @as(u32, 3100);
-pub const WIA_DPS_PREVIEW_STR = "Preview";
-pub const WIA_DPS_TRANSPARENCY = @as(u32, 3101);
-pub const WIA_DPS_TRANSPARENCY_STR = "Transparency Adapter";
-pub const WIA_DPS_TRANSPARENCY_SELECT = @as(u32, 3102);
-pub const WIA_DPS_TRANSPARENCY_SELECT_STR = "Transparency Adapter Select";
-pub const WIA_DPS_SHOW_PREVIEW_CONTROL = @as(u32, 3103);
-pub const WIA_DPS_SHOW_PREVIEW_CONTROL_STR = "Show preview control";
-pub const WIA_DPS_MIN_HORIZONTAL_SHEET_FEED_SIZE = @as(u32, 3104);
-pub const WIA_DPS_MIN_HORIZONTAL_SHEET_FEED_SIZE_STR = "Minimum Horizontal Sheet Feed Size";
-pub const WIA_DPS_MIN_VERTICAL_SHEET_FEED_SIZE = @as(u32, 3105);
-pub const WIA_DPS_MIN_VERTICAL_SHEET_FEED_SIZE_STR = "Minimum Vertical Sheet Feed Size";
-pub const WIA_DPS_TRANSPARENCY_CAPABILITIES = @as(u32, 3106);
-pub const WIA_DPS_TRANSPARENCY_CAPABILITIES_STR = "Transparency Adapter Capabilities";
-pub const WIA_DPS_TRANSPARENCY_STATUS = @as(u32, 3107);
-pub const WIA_DPS_TRANSPARENCY_STATUS_STR = "Transparency Adapter Status";
-pub const WIA_DPF_MOUNT_POINT = @as(u32, 3330);
-pub const WIA_DPF_MOUNT_POINT_STR = "Directory mount point";
-pub const WIA_DPV_LAST_PICTURE_TAKEN = @as(u32, 3586);
-pub const WIA_DPV_LAST_PICTURE_TAKEN_STR = "Last Picture Taken";
-pub const WIA_DPV_IMAGES_DIRECTORY = @as(u32, 3587);
-pub const WIA_DPV_IMAGES_DIRECTORY_STR = "Images Directory";
-pub const WIA_DPV_DSHOW_DEVICE_PATH = @as(u32, 3588);
-pub const WIA_DPV_DSHOW_DEVICE_PATH_STR = "Directshow Device Path";
-pub const WIA_IPA_ITEM_NAME = @as(u32, 4098);
-pub const WIA_IPA_ITEM_NAME_STR = "Item Name";
-pub const WIA_IPA_FULL_ITEM_NAME = @as(u32, 4099);
-pub const WIA_IPA_FULL_ITEM_NAME_STR = "Full Item Name";
-pub const WIA_IPA_ITEM_TIME = @as(u32, 4100);
-pub const WIA_IPA_ITEM_TIME_STR = "Item Time Stamp";
-pub const WIA_IPA_ITEM_FLAGS = @as(u32, 4101);
-pub const WIA_IPA_ITEM_FLAGS_STR = "Item Flags";
-pub const WIA_IPA_ACCESS_RIGHTS = @as(u32, 4102);
-pub const WIA_IPA_ACCESS_RIGHTS_STR = "Access Rights";
-pub const WIA_IPA_DATATYPE = @as(u32, 4103);
-pub const WIA_IPA_DATATYPE_STR = "Data Type";
-pub const WIA_IPA_DEPTH = @as(u32, 4104);
-pub const WIA_IPA_DEPTH_STR = "Bits Per Pixel";
-pub const WIA_IPA_PREFERRED_FORMAT = @as(u32, 4105);
-pub const WIA_IPA_PREFERRED_FORMAT_STR = "Preferred Format";
-pub const WIA_IPA_FORMAT = @as(u32, 4106);
-pub const WIA_IPA_FORMAT_STR = "Format";
-pub const WIA_IPA_COMPRESSION = @as(u32, 4107);
-pub const WIA_IPA_COMPRESSION_STR = "Compression";
-pub const WIA_IPA_TYMED = @as(u32, 4108);
-pub const WIA_IPA_TYMED_STR = "Media Type";
-pub const WIA_IPA_CHANNELS_PER_PIXEL = @as(u32, 4109);
-pub const WIA_IPA_CHANNELS_PER_PIXEL_STR = "Channels Per Pixel";
-pub const WIA_IPA_BITS_PER_CHANNEL = @as(u32, 4110);
-pub const WIA_IPA_BITS_PER_CHANNEL_STR = "Bits Per Channel";
-pub const WIA_IPA_PLANAR = @as(u32, 4111);
-pub const WIA_IPA_PLANAR_STR = "Planar";
-pub const WIA_IPA_PIXELS_PER_LINE = @as(u32, 4112);
-pub const WIA_IPA_PIXELS_PER_LINE_STR = "Pixels Per Line";
-pub const WIA_IPA_BYTES_PER_LINE = @as(u32, 4113);
-pub const WIA_IPA_BYTES_PER_LINE_STR = "Bytes Per Line";
-pub const WIA_IPA_NUMBER_OF_LINES = @as(u32, 4114);
-pub const WIA_IPA_NUMBER_OF_LINES_STR = "Number of Lines";
-pub const WIA_IPA_GAMMA_CURVES = @as(u32, 4115);
-pub const WIA_IPA_GAMMA_CURVES_STR = "Gamma Curves";
-pub const WIA_IPA_ITEM_SIZE = @as(u32, 4116);
-pub const WIA_IPA_ITEM_SIZE_STR = "Item Size";
-pub const WIA_IPA_COLOR_PROFILE = @as(u32, 4117);
-pub const WIA_IPA_COLOR_PROFILE_STR = "Color Profiles";
-pub const WIA_IPA_MIN_BUFFER_SIZE = @as(u32, 4118);
-pub const WIA_IPA_MIN_BUFFER_SIZE_STR = "Buffer Size";
-pub const WIA_IPA_BUFFER_SIZE = @as(u32, 4118);
-pub const WIA_IPA_BUFFER_SIZE_STR = "Buffer Size";
-pub const WIA_IPA_REGION_TYPE = @as(u32, 4119);
-pub const WIA_IPA_REGION_TYPE_STR = "Region Type";
-pub const WIA_IPA_ICM_PROFILE_NAME = @as(u32, 4120);
-pub const WIA_IPA_ICM_PROFILE_NAME_STR = "Color Profile Name";
-pub const WIA_IPA_APP_COLOR_MAPPING = @as(u32, 4121);
-pub const WIA_IPA_APP_COLOR_MAPPING_STR = "Application Applies Color Mapping";
-pub const WIA_IPA_PROP_STREAM_COMPAT_ID = @as(u32, 4122);
-pub const WIA_IPA_PROP_STREAM_COMPAT_ID_STR = "Stream Compatibility ID";
-pub const WIA_IPA_FILENAME_EXTENSION = @as(u32, 4123);
-pub const WIA_IPA_FILENAME_EXTENSION_STR = "Filename extension";
-pub const WIA_IPA_SUPPRESS_PROPERTY_PAGE = @as(u32, 4124);
-pub const WIA_IPA_SUPPRESS_PROPERTY_PAGE_STR = "Suppress a property page";
-pub const WIA_IPC_THUMBNAIL = @as(u32, 5122);
-pub const WIA_IPC_THUMBNAIL_STR = "Thumbnail Data";
-pub const WIA_IPC_THUMB_WIDTH = @as(u32, 5123);
-pub const WIA_IPC_THUMB_WIDTH_STR = "Thumbnail Width";
-pub const WIA_IPC_THUMB_HEIGHT = @as(u32, 5124);
-pub const WIA_IPC_THUMB_HEIGHT_STR = "Thumbnail Height";
-pub const WIA_IPC_AUDIO_AVAILABLE = @as(u32, 5125);
-pub const WIA_IPC_AUDIO_AVAILABLE_STR = "Audio Available";
-pub const WIA_IPC_AUDIO_DATA_FORMAT = @as(u32, 5126);
-pub const WIA_IPC_AUDIO_DATA_FORMAT_STR = "Audio Format";
-pub const WIA_IPC_AUDIO_DATA = @as(u32, 5127);
-pub const WIA_IPC_AUDIO_DATA_STR = "Audio Data";
-pub const WIA_IPC_NUM_PICT_PER_ROW = @as(u32, 5128);
-pub const WIA_IPC_NUM_PICT_PER_ROW_STR = "Pictures per Row";
-pub const WIA_IPC_SEQUENCE = @as(u32, 5129);
-pub const WIA_IPC_SEQUENCE_STR = "Sequence Number";
-pub const WIA_IPC_TIMEDELAY = @as(u32, 5130);
-pub const WIA_IPC_TIMEDELAY_STR = "Time Delay";
-pub const WIA_IPS_CUR_INTENT = @as(u32, 6146);
-pub const WIA_IPS_CUR_INTENT_STR = "Current Intent";
-pub const WIA_IPS_XRES = @as(u32, 6147);
-pub const WIA_IPS_XRES_STR = "Horizontal Resolution";
-pub const WIA_IPS_YRES = @as(u32, 6148);
-pub const WIA_IPS_YRES_STR = "Vertical Resolution";
-pub const WIA_IPS_XPOS = @as(u32, 6149);
-pub const WIA_IPS_XPOS_STR = "Horizontal Start Position";
-pub const WIA_IPS_YPOS = @as(u32, 6150);
-pub const WIA_IPS_YPOS_STR = "Vertical Start Position";
-pub const WIA_IPS_XEXTENT = @as(u32, 6151);
-pub const WIA_IPS_XEXTENT_STR = "Horizontal Extent";
-pub const WIA_IPS_YEXTENT = @as(u32, 6152);
-pub const WIA_IPS_YEXTENT_STR = "Vertical Extent";
-pub const WIA_IPS_PHOTOMETRIC_INTERP = @as(u32, 6153);
-pub const WIA_IPS_PHOTOMETRIC_INTERP_STR = "Photometric Interpretation";
-pub const WIA_IPS_BRIGHTNESS = @as(u32, 6154);
-pub const WIA_IPS_BRIGHTNESS_STR = "Brightness";
-pub const WIA_IPS_CONTRAST = @as(u32, 6155);
-pub const WIA_IPS_CONTRAST_STR = "Contrast";
-pub const WIA_IPS_ORIENTATION = @as(u32, 6156);
-pub const WIA_IPS_ORIENTATION_STR = "Orientation";
-pub const WIA_IPS_ROTATION = @as(u32, 6157);
-pub const WIA_IPS_ROTATION_STR = "Rotation";
-pub const WIA_IPS_MIRROR = @as(u32, 6158);
-pub const WIA_IPS_MIRROR_STR = "Mirror";
-pub const WIA_IPS_THRESHOLD = @as(u32, 6159);
-pub const WIA_IPS_THRESHOLD_STR = "Threshold";
-pub const WIA_IPS_INVERT = @as(u32, 6160);
-pub const WIA_IPS_INVERT_STR = "Invert";
-pub const WIA_IPS_WARM_UP_TIME = @as(u32, 6161);
-pub const WIA_IPS_WARM_UP_TIME_STR = "Lamp Warm up Time";
-pub const WIA_DPS_USER_NAME = @as(u32, 3112);
-pub const WIA_DPS_USER_NAME_STR = "User Name";
-pub const WIA_DPS_SERVICE_ID = @as(u32, 3113);
-pub const WIA_DPS_SERVICE_ID_STR = "Service ID";
-pub const WIA_DPS_DEVICE_ID = @as(u32, 3114);
-pub const WIA_DPS_DEVICE_ID_STR = "Device ID";
-pub const WIA_DPS_GLOBAL_IDENTITY = @as(u32, 3115);
-pub const WIA_DPS_GLOBAL_IDENTITY_STR = "Global Identity";
-pub const WIA_DPS_SCAN_AVAILABLE_ITEM = @as(u32, 3116);
-pub const WIA_DPS_SCAN_AVAILABLE_ITEM_STR = "Scan Available Item";
-pub const WIA_IPS_DESKEW_X = @as(u32, 6162);
-pub const WIA_IPS_DESKEW_X_STR = "DeskewX";
-pub const WIA_IPS_DESKEW_Y = @as(u32, 6163);
-pub const WIA_IPS_DESKEW_Y_STR = "DeskewY";
-pub const WIA_IPS_SEGMENTATION = @as(u32, 6164);
-pub const WIA_IPS_SEGMENTATION_STR = "Segmentation";
-pub const WIA_SEGMENTATION_FILTER_STR = "SegmentationFilter";
-pub const WIA_IMAGEPROC_FILTER_STR = "ImageProcessingFilter";
-pub const WIA_IPS_MAX_HORIZONTAL_SIZE = @as(u32, 6165);
-pub const WIA_IPS_MAX_HORIZONTAL_SIZE_STR = "Maximum Horizontal Scan Size";
-pub const WIA_IPS_MAX_VERTICAL_SIZE = @as(u32, 6166);
-pub const WIA_IPS_MAX_VERTICAL_SIZE_STR = "Maximum Vertical Scan Size";
-pub const WIA_IPS_MIN_HORIZONTAL_SIZE = @as(u32, 6167);
-pub const WIA_IPS_MIN_HORIZONTAL_SIZE_STR = "Minimum Horizontal Scan Size";
-pub const WIA_IPS_MIN_VERTICAL_SIZE = @as(u32, 6168);
-pub const WIA_IPS_MIN_VERTICAL_SIZE_STR = "Minimum Vertical Scan Size";
-pub const WIA_IPS_TRANSFER_CAPABILITIES = @as(u32, 6169);
-pub const WIA_IPS_TRANSFER_CAPABILITIES_STR = "Transfer Capabilities";
-pub const WIA_IPS_SHEET_FEEDER_REGISTRATION = @as(u32, 3078);
-pub const WIA_IPS_SHEET_FEEDER_REGISTRATION_STR = "Sheet Feeder Registration";
-pub const WIA_IPS_DOCUMENT_HANDLING_SELECT = @as(u32, 3088);
-pub const WIA_IPS_DOCUMENT_HANDLING_SELECT_STR = "Document Handling Select";
-pub const WIA_IPS_OPTICAL_XRES = @as(u32, 3090);
-pub const WIA_IPS_OPTICAL_XRES_STR = "Horizontal Optical Resolution";
-pub const WIA_IPS_OPTICAL_YRES = @as(u32, 3091);
-pub const WIA_IPS_OPTICAL_YRES_STR = "Vertical Optical Resolution";
-pub const WIA_IPS_PAGES = @as(u32, 3096);
-pub const WIA_IPS_PAGES_STR = "Pages";
-pub const WIA_IPS_PAGE_SIZE = @as(u32, 3097);
-pub const WIA_IPS_PAGE_SIZE_STR = "Page Size";
-pub const WIA_IPS_PAGE_WIDTH = @as(u32, 3098);
-pub const WIA_IPS_PAGE_WIDTH_STR = "Page Width";
-pub const WIA_IPS_PAGE_HEIGHT = @as(u32, 3099);
-pub const WIA_IPS_PAGE_HEIGHT_STR = "Page Height";
-pub const WIA_IPS_PREVIEW = @as(u32, 3100);
-pub const WIA_IPS_PREVIEW_STR = "Preview";
-pub const WIA_IPS_SHOW_PREVIEW_CONTROL = @as(u32, 3103);
-pub const WIA_IPS_SHOW_PREVIEW_CONTROL_STR = "Show preview control";
-pub const WIA_IPS_FILM_SCAN_MODE = @as(u32, 3104);
-pub const WIA_IPS_FILM_SCAN_MODE_STR = "Film Scan Mode";
-pub const WIA_IPS_LAMP = @as(u32, 3105);
-pub const WIA_IPS_LAMP_STR = "Lamp";
-pub const WIA_IPS_LAMP_AUTO_OFF = @as(u32, 3106);
-pub const WIA_IPS_LAMP_AUTO_OFF_STR = "Lamp Auto Off";
-pub const WIA_IPS_AUTO_DESKEW = @as(u32, 3107);
-pub const WIA_IPS_AUTO_DESKEW_STR = "Automatic Deskew";
-pub const WIA_IPS_SUPPORTS_CHILD_ITEM_CREATION = @as(u32, 3108);
-pub const WIA_IPS_SUPPORTS_CHILD_ITEM_CREATION_STR = "Supports Child Item Creation";
-pub const WIA_IPS_XSCALING = @as(u32, 3109);
-pub const WIA_IPS_XSCALING_STR = "Horizontal Scaling";
-pub const WIA_IPS_YSCALING = @as(u32, 3110);
-pub const WIA_IPS_YSCALING_STR = "Vertical Scaling";
-pub const WIA_IPS_PREVIEW_TYPE = @as(u32, 3111);
-pub const WIA_IPS_PREVIEW_TYPE_STR = "Preview Type";
-pub const WIA_IPA_ITEM_CATEGORY = @as(u32, 4125);
-pub const WIA_IPA_ITEM_CATEGORY_STR = "Item Category";
-pub const WIA_IPA_UPLOAD_ITEM_SIZE = @as(u32, 4126);
-pub const WIA_IPA_UPLOAD_ITEM_SIZE_STR = "Upload Item Size";
-pub const WIA_IPA_ITEMS_STORED = @as(u32, 4127);
-pub const WIA_IPA_ITEMS_STORED_STR = "Items Stored";
-pub const WIA_IPA_RAW_BITS_PER_CHANNEL = @as(u32, 4128);
-pub const WIA_IPA_RAW_BITS_PER_CHANNEL_STR = "Raw Bits Per Channel";
-pub const WIA_IPS_FILM_NODE_NAME = @as(u32, 4129);
-pub const WIA_IPS_FILM_NODE_NAME_STR = "Film Node Name";
-pub const WIA_IPS_PRINTER_ENDORSER = @as(u32, 4130);
-pub const WIA_IPS_PRINTER_ENDORSER_STR = "Printer/Endorser";
-pub const WIA_IPS_PRINTER_ENDORSER_ORDER = @as(u32, 4131);
-pub const WIA_IPS_PRINTER_ENDORSER_ORDER_STR = "Printer/Endorser Order";
-pub const WIA_IPS_PRINTER_ENDORSER_COUNTER = @as(u32, 4132);
-pub const WIA_IPS_PRINTER_ENDORSER_COUNTER_STR = "Printer/Endorser Counter";
-pub const WIA_IPS_PRINTER_ENDORSER_STEP = @as(u32, 4133);
-pub const WIA_IPS_PRINTER_ENDORSER_STEP_STR = "Printer/Endorser Step";
-pub const WIA_IPS_PRINTER_ENDORSER_XOFFSET = @as(u32, 4134);
-pub const WIA_IPS_PRINTER_ENDORSER_XOFFSET_STR = "Printer/Endorser Horizontal Offset";
-pub const WIA_IPS_PRINTER_ENDORSER_YOFFSET = @as(u32, 4135);
-pub const WIA_IPS_PRINTER_ENDORSER_YOFFSET_STR = "Printer/Endorser Vertical Offset";
-pub const WIA_IPS_PRINTER_ENDORSER_NUM_LINES = @as(u32, 4136);
-pub const WIA_IPS_PRINTER_ENDORSER_NUM_LINES_STR = "Printer/Endorser Lines";
-pub const WIA_IPS_PRINTER_ENDORSER_STRING = @as(u32, 4137);
-pub const WIA_IPS_PRINTER_ENDORSER_STRING_STR = "Printer/Endorser String";
-pub const WIA_IPS_PRINTER_ENDORSER_VALID_CHARACTERS = @as(u32, 4138);
-pub const WIA_IPS_PRINTER_ENDORSER_VALID_CHARACTERS_STR = "Printer/Endorser Valid Characters";
-pub const WIA_IPS_PRINTER_ENDORSER_VALID_FORMAT_SPECIFIERS = @as(u32, 4139);
-pub const WIA_IPS_PRINTER_ENDORSER_VALID_FORMAT_SPECIFIERS_STR = "Printer/Endorser Valid Format Specifiers";
-pub const WIA_IPS_PRINTER_ENDORSER_TEXT_UPLOAD = @as(u32, 4140);
-pub const WIA_IPS_PRINTER_ENDORSER_TEXT_UPLOAD_STR = "Printer/Endorser Text Upload";
-pub const WIA_IPS_PRINTER_ENDORSER_TEXT_DOWNLOAD = @as(u32, 4141);
-pub const WIA_IPS_PRINTER_ENDORSER_TEXT_DOWNLOAD_STR = "Printer/Endorser Text Download";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS = @as(u32, 4142);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_STR = "Printer/Endorser Graphics";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_POSITION = @as(u32, 4143);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_POSITION_STR = "Printer/Endorser Graphics Position";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_WIDTH = @as(u32, 4144);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_WIDTH_STR = "Printer/Endorser Graphics Minimum Width";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_WIDTH = @as(u32, 4145);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_WIDTH_STR = "Printer/Endorser Graphics Maximum Width";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_HEIGHT = @as(u32, 4146);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_HEIGHT_STR = "Printer/Endorser Graphics Minimum Height";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_HEIGHT = @as(u32, 4147);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_HEIGHT_STR = "Printer/Endorser Graphics Maximum Height";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_UPLOAD = @as(u32, 4148);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_UPLOAD_STR = "Printer/Endorser Graphics Upload";
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_DOWNLOAD = @as(u32, 4149);
-pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_DOWNLOAD_STR = "Printer/Endorser Graphics Download";
-pub const WIA_IPS_BARCODE_READER = @as(u32, 4150);
-pub const WIA_IPS_BARCODE_READER_STR = "Barcode Reader";
-pub const WIA_IPS_MAXIMUM_BARCODES_PER_PAGE = @as(u32, 4151);
-pub const WIA_IPS_MAXIMUM_BARCODES_PER_PAGE_STR = "Maximum Barcodes Per Page";
-pub const WIA_IPS_BARCODE_SEARCH_DIRECTION = @as(u32, 4152);
-pub const WIA_IPS_BARCODE_SEARCH_DIRECTION_STR = "Barcode Search Direction";
-pub const WIA_IPS_MAXIMUM_BARCODE_SEARCH_RETRIES = @as(u32, 4153);
-pub const WIA_IPS_MAXIMUM_BARCODE_SEARCH_RETRIES_STR = "Barcode Search Retries";
-pub const WIA_IPS_BARCODE_SEARCH_TIMEOUT = @as(u32, 4154);
-pub const WIA_IPS_BARCODE_SEARCH_TIMEOUT_STR = "Barcode Search Timeout";
-pub const WIA_IPS_SUPPORTED_BARCODE_TYPES = @as(u32, 4155);
-pub const WIA_IPS_SUPPORTED_BARCODE_TYPES_STR = "Supported Barcode Types";
-pub const WIA_IPS_ENABLED_BARCODE_TYPES = @as(u32, 4156);
-pub const WIA_IPS_ENABLED_BARCODE_TYPES_STR = "Enabled Barcode Types";
-pub const WIA_IPS_PATCH_CODE_READER = @as(u32, 4157);
-pub const WIA_IPS_PATCH_CODE_READER_STR = "Patch Code Reader";
-pub const WIA_IPS_SUPPORTED_PATCH_CODE_TYPES = @as(u32, 4162);
-pub const WIA_IPS_SUPPORTED_PATCH_CODE_TYPES_STR = "Supported Patch Code Types";
-pub const WIA_IPS_ENABLED_PATCH_CODE_TYPES = @as(u32, 4163);
-pub const WIA_IPS_ENABLED_PATCH_CODE_TYPES_STR = "Enabled Path Code Types";
-pub const WIA_IPS_MICR_READER = @as(u32, 4164);
-pub const WIA_IPS_MICR_READER_STR = "MICR Reader";
-pub const WIA_IPS_JOB_SEPARATORS = @as(u32, 4165);
-pub const WIA_IPS_JOB_SEPARATORS_STR = "Job Separators";
-pub const WIA_IPS_LONG_DOCUMENT = @as(u32, 4166);
-pub const WIA_IPS_LONG_DOCUMENT_STR = "Long Document";
-pub const WIA_IPS_BLANK_PAGES = @as(u32, 4167);
-pub const WIA_IPS_BLANK_PAGES_STR = "Blank Pages";
-pub const WIA_IPS_MULTI_FEED = @as(u32, 4168);
-pub const WIA_IPS_MULTI_FEED_STR = "Multi-Feed";
-pub const WIA_IPS_MULTI_FEED_SENSITIVITY = @as(u32, 4169);
-pub const WIA_IPS_MULTI_FEED_SENSITIVITY_STR = "Multi-Feed Sensitivity";
-pub const WIA_IPS_AUTO_CROP = @as(u32, 4170);
-pub const WIA_IPS_AUTO_CROP_STR = "Auto-Crop";
-pub const WIA_IPS_OVER_SCAN = @as(u32, 4171);
-pub const WIA_IPS_OVER_SCAN_STR = "Overscan";
-pub const WIA_IPS_OVER_SCAN_LEFT = @as(u32, 4172);
-pub const WIA_IPS_OVER_SCAN_LEFT_STR = "Overscan Left";
-pub const WIA_IPS_OVER_SCAN_RIGHT = @as(u32, 4173);
-pub const WIA_IPS_OVER_SCAN_RIGHT_STR = "Overscan Right";
-pub const WIA_IPS_OVER_SCAN_TOP = @as(u32, 4174);
-pub const WIA_IPS_OVER_SCAN_TOP_STR = "Overscan Top";
-pub const WIA_IPS_OVER_SCAN_BOTTOM = @as(u32, 4175);
-pub const WIA_IPS_OVER_SCAN_BOTTOM_STR = "Overscan Bottom";
-pub const WIA_IPS_COLOR_DROP = @as(u32, 4176);
-pub const WIA_IPS_COLOR_DROP_STR = "Color Drop";
-pub const WIA_IPS_COLOR_DROP_RED = @as(u32, 4177);
-pub const WIA_IPS_COLOR_DROP_RED_STR = "Color Drop Red";
-pub const WIA_IPS_COLOR_DROP_GREEN = @as(u32, 4178);
-pub const WIA_IPS_COLOR_DROP_GREEN_STR = "Color Drop Green";
-pub const WIA_IPS_COLOR_DROP_BLUE = @as(u32, 4179);
-pub const WIA_IPS_COLOR_DROP_BLUE_STR = "Color Drop Blue";
-pub const WIA_IPS_SCAN_AHEAD = @as(u32, 4180);
-pub const WIA_IPS_SCAN_AHEAD_STR = "Scan Ahead";
-pub const WIA_IPS_SCAN_AHEAD_CAPACITY = @as(u32, 4181);
-pub const WIA_IPS_SCAN_AHEAD_CAPACITY_STR = "Scan Ahead Capacity";
-pub const WIA_IPS_FEEDER_CONTROL = @as(u32, 4182);
-pub const WIA_IPS_FEEDER_CONTROL_STR = "Feeder Control";
-pub const WIA_IPS_PRINTER_ENDORSER_PADDING = @as(u32, 4183);
-pub const WIA_IPS_PRINTER_ENDORSER_PADDING_STR = "Printer/Endorser Padding";
-pub const WIA_IPS_PRINTER_ENDORSER_FONT_TYPE = @as(u32, 4184);
-pub const WIA_IPS_PRINTER_ENDORSER_FONT_TYPE_STR = "Printer/Endorser Font Type";
-pub const WIA_IPS_ALARM = @as(u32, 4185);
-pub const WIA_IPS_ALARM_STR = "Alarm";
-pub const WIA_IPS_PRINTER_ENDORSER_INK = @as(u32, 4186);
-pub const WIA_IPS_PRINTER_ENDORSER_INK_STR = "Printer/Endorser Ink";
-pub const WIA_IPS_PRINTER_ENDORSER_CHARACTER_ROTATION = @as(u32, 4187);
-pub const WIA_IPS_PRINTER_ENDORSER_CHARACTER_ROTATION_STR = "Printer/Endorser Character Rotation";
-pub const WIA_IPS_PRINTER_ENDORSER_MAX_CHARACTERS = @as(u32, 4188);
-pub const WIA_IPS_PRINTER_ENDORSER_MAX_CHARACTERS_STR = "Printer/Endorser Maximum Characters";
-pub const WIA_IPS_PRINTER_ENDORSER_MAX_GRAPHICS = @as(u32, 4189);
-pub const WIA_IPS_PRINTER_ENDORSER_MAX_GRAPHICS_STR = "Printer/Endorser Maximum Graphics";
-pub const WIA_IPS_PRINTER_ENDORSER_COUNTER_DIGITS = @as(u32, 4190);
-pub const WIA_IPS_PRINTER_ENDORSER_COUNTER_DIGITS_STR = "Printer/Endorser Counter Digits";
-pub const WIA_IPS_COLOR_DROP_MULTI = @as(u32, 4191);
-pub const WIA_IPS_COLOR_DROP_MULTI_STR = "Color Drop Multiple";
-pub const WIA_IPS_BLANK_PAGES_SENSITIVITY = @as(u32, 4192);
-pub const WIA_IPS_BLANK_PAGES_SENSITIVITY_STR = "Blank Pages Sensitivity";
-pub const WIA_IPS_MULTI_FEED_DETECT_METHOD = @as(u32, 4193);
-pub const WIA_IPS_MULTI_FEED_DETECT_METHOD_STR = "Multi-Feed Detection Method";
-pub const WIA_CATEGORY_FINISHED_FILE = Guid.initString("ff2b77ca-cf84-432b-a735-3a130dde2a88");
-pub const WIA_CATEGORY_FLATBED = Guid.initString("fb607b1f-43f3-488b-855b-fb703ec342a6");
-pub const WIA_CATEGORY_FEEDER = Guid.initString("fe131934-f84c-42ad-8da4-6129cddd7288");
-pub const WIA_CATEGORY_FILM = Guid.initString("fcf65be7-3ce3-4473-af85-f5d37d21b68a");
-pub const WIA_CATEGORY_ROOT = Guid.initString("f193526f-59b8-4a26-9888-e16e4f97ce10");
-pub const WIA_CATEGORY_FOLDER = Guid.initString("c692a446-6f5a-481d-85bb-92e2e86fd30a");
-pub const WIA_CATEGORY_FEEDER_FRONT = Guid.initString("4823175c-3b28-487b-a7e6-eebc17614fd1");
-pub const WIA_CATEGORY_FEEDER_BACK = Guid.initString("61ca74d4-39db-42aa-89b1-8c19c9cd4c23");
-pub const WIA_CATEGORY_AUTO = Guid.initString("defe5fd8-6c97-4dde-b11e-cb509b270e11");
-pub const WIA_CATEGORY_IMPRINTER = Guid.initString("fc65016d-9202-43dd-91a7-64c2954cfb8b");
-pub const WIA_CATEGORY_ENDORSER = Guid.initString("47102cc3-127f-4771-adfc-991ab8ee1e97");
-pub const WIA_CATEGORY_BARCODE_READER = Guid.initString("36e178a0-473f-494b-af8f-6c3f6d7486fc");
-pub const WIA_CATEGORY_PATCH_CODE_READER = Guid.initString("8faa1a6d-9c8a-42cd-98b3-ee9700cbc74f");
-pub const WIA_CATEGORY_MICR_READER = Guid.initString("3b86c1ec-71bc-4645-b4d5-1b19da2be978");
+pub const ADVANCED_DUP = @as(u32, 8192);
+pub const ADVANCED_DUPLEX = @as(u32, 1024);
+pub const ALL_PAGES = @as(u32, 0);
+pub const AUTO_ADVANCE = @as(u32, 512);
+pub const AUTO_SOURCE = @as(u32, 32768);
+pub const BACK_FIRST = @as(u32, 16);
+pub const BACK_ONLY = @as(u32, 64);
+pub const BARCODE_READER = @as(u32, 262144);
+pub const BARCODE_READER_READY = @as(u32, 16384);
+pub const BASE_VAL_WIA_ERROR = @as(u32, 0);
+pub const BASE_VAL_WIA_SUCCESS = @as(u32, 0);
+pub const BOTTOM_JUSTIFIED = @as(u32, 2);
+pub const BUS_TYPE_FIREWIRE = @as(u32, 203);
+pub const BUS_TYPE_PARALLEL = @as(u32, 202);
+pub const BUS_TYPE_SCSI = @as(u32, 200);
+pub const BUS_TYPE_USB = @as(u32, 201);
+pub const CAPTUREMODE_BURST = @as(u32, 2);
+pub const CAPTUREMODE_NORMAL = @as(u32, 1);
+pub const CAPTUREMODE_TIMELAPSE = @as(u32, 3);
+pub const CENTERED = @as(u32, 1);
+pub const CFSTR_WIAITEMNAMES = "WIAItemNames";
+pub const CFSTR_WIAITEMPTR = "WIAItemPointer";
 pub const CLSID_WiaDefaultSegFilter = Guid.initString("d4f4d30b-0b29-4508-8922-0c5797d42765");
-pub const WIA_TRANSFER_CHILDREN_SINGLE_SCAN = @as(u32, 1);
-pub const WIA_USE_SEGMENTATION_FILTER = @as(u32, 0);
-pub const WIA_DONT_USE_SEGMENTATION_FILTER = @as(u32, 1);
-pub const WIA_FILM_COLOR_SLIDE = @as(u32, 0);
-pub const WIA_FILM_COLOR_NEGATIVE = @as(u32, 1);
-pub const WIA_FILM_BW_NEGATIVE = @as(u32, 2);
-pub const WIA_LAMP_ON = @as(u32, 0);
-pub const WIA_LAMP_OFF = @as(u32, 1);
-pub const WIA_AUTO_DESKEW_ON = @as(u32, 0);
-pub const WIA_AUTO_DESKEW_OFF = @as(u32, 1);
+pub const CMD_GET_INTERRUPT_EVENT = @as(u32, 133);
+pub const CMD_GETADFAVAILABLE = @as(u32, 117);
+pub const CMD_GETADFHASPAPER = @as(u32, 120);
+pub const CMD_GETADFOPEN = @as(u32, 118);
+pub const CMD_GETADFREADY = @as(u32, 119);
+pub const CMD_GETADFSTATUS = @as(u32, 121);
+pub const CMD_GETADFUNLOADREADY = @as(u32, 122);
+pub const CMD_GETCAPABILITIES = @as(u32, 132);
+pub const CMD_GETSUPPORTEDFILEFORMATS = @as(u32, 138);
+pub const CMD_GETSUPPORTEDMEMORYFORMATS = @as(u32, 139);
+pub const CMD_GETTPAAVAILABLE = @as(u32, 123);
+pub const CMD_GETTPAOPENED = @as(u32, 124);
+pub const CMD_INITIALIZE = @as(u32, 100);
+pub const CMD_LOAD_ADF = @as(u32, 115);
+pub const CMD_RESETSCANNER = @as(u32, 131);
+pub const CMD_SENDSCSICOMMAND = @as(u32, 127);
+pub const CMD_SETCOLORDITHER = @as(u32, 111);
+pub const CMD_SETCONTRAST = @as(u32, 104);
+pub const CMD_SETDATATYPE = @as(u32, 106);
+pub const CMD_SETDITHER = @as(u32, 107);
+pub const CMD_SETFILTER = @as(u32, 114);
+pub const CMD_SETFORMAT = @as(u32, 140);
+pub const CMD_SETGSDNAME = @as(u32, 134);
+pub const CMD_SETINTENSITY = @as(u32, 105);
+pub const CMD_SETLAMP = @as(u32, 126);
+pub const CMD_SETMATRIX = @as(u32, 112);
+pub const CMD_SETMIRROR = @as(u32, 108);
+pub const CMD_SETNEGATIVE = @as(u32, 109);
+pub const CMD_SETSCANMODE = @as(u32, 135);
+pub const CMD_SETSPEED = @as(u32, 113);
+pub const CMD_SETSTIDEVICEHKEY = @as(u32, 136);
+pub const CMD_SETTONEMAP = @as(u32, 110);
+pub const CMD_SETXRESOLUTION = @as(u32, 102);
+pub const CMD_SETYRESOLUTION = @as(u32, 103);
+pub const CMD_STI_DEVICERESET = @as(u32, 128);
+pub const CMD_STI_DIAGNOSTIC = @as(u32, 130);
+pub const CMD_STI_GETSTATUS = @as(u32, 129);
+pub const CMD_TPAREADY = @as(u32, 125);
+pub const CMD_UNINITIALIZE = @as(u32, 101);
+pub const CMD_UNLOAD_ADF = @as(u32, 116);
+pub const COPY_PARENT_PROPERTY_VALUES = @as(u32, 1073741824);
+pub const DETECT_DUP = @as(u32, 64);
+pub const DETECT_DUP_AVAIL = @as(u32, 256);
+pub const DETECT_FEED = @as(u32, 32);
+pub const DETECT_FEED_AVAIL = @as(u32, 128);
+pub const DETECT_FILM_TPA = @as(u32, 1024);
+pub const DETECT_FLAT = @as(u32, 8);
+pub const DETECT_SCAN = @as(u32, 16);
+pub const DETECT_STOR = @as(u32, 4096);
+pub const DEVICE_ATTENTION = @as(u32, 1024);
+pub const DUP = @as(u32, 4);
+pub const DUP_READY = @as(u32, 4);
+pub const DUPLEX = @as(u32, 4);
+pub const EFFECTMODE_BW = @as(u32, 2);
+pub const EFFECTMODE_SEPIA = @as(u32, 3);
+pub const EFFECTMODE_STANDARD = @as(u32, 1);
+pub const ENDORSER = @as(u32, 131072);
+pub const ENDORSER_READY = @as(u32, 8192);
+pub const ESC_TWAIN_CAPABILITY = @as(u32, 2001);
+pub const ESC_TWAIN_PRIVATE_SUPPORTED_CAPS = @as(u32, 2002);
+pub const EXPOSUREMETERING_AVERAGE = @as(u32, 1);
+pub const EXPOSUREMETERING_CENTERSPOT = @as(u32, 4);
+pub const EXPOSUREMETERING_CENTERWEIGHT = @as(u32, 2);
+pub const EXPOSUREMETERING_MULTISPOT = @as(u32, 3);
+pub const EXPOSUREMODE_APERTURE_PRIORITY = @as(u32, 3);
+pub const EXPOSUREMODE_AUTO = @as(u32, 2);
+pub const EXPOSUREMODE_MANUAL = @as(u32, 1);
+pub const EXPOSUREMODE_PORTRAIT = @as(u32, 7);
+pub const EXPOSUREMODE_PROGRAM_ACTION = @as(u32, 6);
+pub const EXPOSUREMODE_PROGRAM_CREATIVE = @as(u32, 5);
+pub const EXPOSUREMODE_SHUTTER_PRIORITY = @as(u32, 4);
+pub const FEED = @as(u32, 1);
+pub const FEED_READY = @as(u32, 1);
+pub const FEEDER = @as(u32, 1);
+pub const FILM_TPA = @as(u32, 512);
+pub const FILM_TPA_READY = @as(u32, 64);
+pub const FLASHMODE_AUTO = @as(u32, 1);
+pub const FLASHMODE_EXTERNALSYNC = @as(u32, 6);
+pub const FLASHMODE_FILL = @as(u32, 3);
+pub const FLASHMODE_OFF = @as(u32, 2);
+pub const FLASHMODE_REDEYE_AUTO = @as(u32, 4);
+pub const FLASHMODE_REDEYE_FILL = @as(u32, 5);
+pub const FLAT = @as(u32, 2);
+pub const FLAT_COVER_UP = @as(u32, 8);
+pub const FLAT_READY = @as(u32, 2);
+pub const FLATBED = @as(u32, 2);
+pub const FOCUSMETERING_CENTERSPOT = @as(u32, 1);
+pub const FOCUSMETERING_MULTISPOT = @as(u32, 2);
+pub const FOCUSMODE_AUTO = @as(u32, 2);
+pub const FOCUSMODE_MACROAUTO = @as(u32, 3);
+pub const FOCUSMODE_MANUAL = @as(u32, 1);
+pub const FRONT_FIRST = @as(u32, 8);
+pub const FRONT_ONLY = @as(u32, 32);
+pub const g_dwDebugFlags = @as(u32, 0);
+pub const GUID_DEVINTERFACE_IMAGE = Guid.initString("6bdd1fc6-810f-11d0-bec7-08002be2092f");
+pub const IMPRINTER = @as(u32, 65536);
+pub const IMPRINTER_READY = @as(u32, 4096);
+pub const IT_MSG_DATA = @as(u32, 2);
+pub const IT_MSG_DATA_HEADER = @as(u32, 1);
+pub const IT_MSG_FILE_PREVIEW_DATA = @as(u32, 6);
+pub const IT_MSG_FILE_PREVIEW_DATA_HEADER = @as(u32, 7);
+pub const IT_MSG_NEW_PAGE = @as(u32, 5);
+pub const IT_MSG_STATUS = @as(u32, 3);
+pub const IT_MSG_TERMINATION = @as(u32, 4);
+pub const IT_STATUS_MASK = @as(u32, 7);
+pub const IT_STATUS_PROCESSING_DATA = @as(u32, 2);
+pub const IT_STATUS_TRANSFER_FROM_DEVICE = @as(u32, 1);
+pub const IT_STATUS_TRANSFER_TO_CLIENT = @as(u32, 4);
+pub const LAMP_ERR = @as(u32, 2048);
+pub const LANDSCAPE = @as(u32, 1);
+pub const LANSCAPE = @as(u32, 1);
+pub const LEFT_JUSTIFIED = @as(u32, 0);
+pub const LIGHT_SOURCE_DETECT_READY = @as(u32, 4);
+pub const LIGHT_SOURCE_NEGATIVE = @as(u32, 4);
+pub const LIGHT_SOURCE_POSITIVE = @as(u32, 2);
+pub const LIGHT_SOURCE_PRESENT = @as(u32, 2);
+pub const LIGHT_SOURCE_PRESENT_DETECT = @as(u32, 1);
+pub const LIGHT_SOURCE_READY = @as(u32, 8);
+pub const LIGHT_SOURCE_SELECT = @as(u32, 1);
+pub const MAX_ANSI_CHAR = @as(u32, 255);
+pub const MAX_IO_HANDLES = @as(u32, 16);
+pub const MAX_RESERVED = @as(u32, 4);
+pub const MCRO_ERROR_GENERAL_ERROR = @as(u32, 0);
+pub const MCRO_ERROR_OFFLINE = @as(u32, 5);
+pub const MCRO_ERROR_PAPER_EMPTY = @as(u32, 4);
+pub const MCRO_ERROR_PAPER_JAM = @as(u32, 2);
+pub const MCRO_ERROR_PAPER_PROBLEM = @as(u32, 3);
+pub const MCRO_ERROR_USER_INTERVENTION = @as(u32, 6);
+pub const MCRO_STATUS_OK = @as(u32, 1);
+pub const MICR_READER = @as(u32, 1048576);
+pub const MICR_READER_READY = @as(u32, 65536);
+pub const MIRRORED = @as(u32, 1);
+pub const MULTIPLE_FEED = @as(u32, 512);
+pub const NEXT_PAGE = @as(u32, 128);
+pub const PAPER_JAM = @as(u32, 32);
+pub const PATCH_CODE_READER = @as(u32, 524288);
+pub const PATCH_CODE_READER_READY = @as(u32, 32768);
+pub const PATH_COVER_UP = @as(u32, 16);
+pub const PORTRAIT = @as(u32, 0);
+pub const POWERMODE_BATTERY = @as(u32, 2);
+pub const POWERMODE_LINE = @as(u32, 1);
+pub const PREFEED = @as(u32, 256);
+pub const RIGHT_JUSTIFIED = @as(u32, 2);
+pub const ROT180 = @as(u32, 2);
+pub const ROT270 = @as(u32, 3);
+pub const SCAN_FINISHED = @as(u32, 30);
+pub const SCAN_FIRST = @as(u32, 10);
+pub const SCAN_NEXT = @as(u32, 20);
+pub const SCANMODE_FINALSCAN = @as(u32, 0);
+pub const SCANMODE_PREVIEWSCAN = @as(u32, 1);
+pub const SHELLEX_WIAUIEXTENSION_NAME = "WiaDialogExtensionHandlers";
+pub const STOR = @as(u32, 2048);
+pub const STORAGE_FULL = @as(u32, 256);
+pub const STORAGE_READY = @as(u32, 128);
+pub const SUPPORT_BW = @as(u32, 2);
+pub const SUPPORT_COLOR = @as(u32, 1);
+pub const SUPPORT_GRAYSCALE = @as(u32, 4);
+pub const TOP_JUSTIFIED = @as(u32, 0);
+pub const TRANSPARENCY_DYNAMIC_FRAME_SUPPORT = @as(u32, 1);
+pub const TRANSPARENCY_STATIC_FRAME_SUPPORT = @as(u32, 2);
+pub const TYMED_CALLBACK = @as(u32, 128);
+pub const TYMED_MULTIPAGE_CALLBACK = @as(u32, 512);
+pub const TYMED_MULTIPAGE_FILE = @as(u32, 256);
+pub const WHITEBALANCE_AUTO = @as(u32, 2);
+pub const WHITEBALANCE_DAYLIGHT = @as(u32, 4);
+pub const WHITEBALANCE_FLASH = @as(u32, 7);
+pub const WHITEBALANCE_FLORESCENT = @as(u32, 5);
+pub const WHITEBALANCE_MANUAL = @as(u32, 1);
+pub const WHITEBALANCE_ONEPUSH_AUTO = @as(u32, 3);
+pub const WHITEBALANCE_TUNGSTEN = @as(u32, 6);
+pub const WIA_ACTION_EVENT = @as(u32, 2);
 pub const WIA_ADVANCED_PREVIEW = @as(u32, 0);
-pub const WIA_BASIC_PREVIEW = @as(u32, 1);
-pub const WIA_PRINTER_ENDORSER_DISABLED = @as(u32, 0);
-pub const WIA_PRINTER_ENDORSER_AUTO = @as(u32, 1);
-pub const WIA_PRINTER_ENDORSER_FLATBED = @as(u32, 2);
-pub const WIA_PRINTER_ENDORSER_FEEDER_FRONT = @as(u32, 3);
-pub const WIA_PRINTER_ENDORSER_FEEDER_BACK = @as(u32, 4);
-pub const WIA_PRINTER_ENDORSER_FEEDER_DUPLEX = @as(u32, 5);
-pub const WIA_PRINTER_ENDORSER_DIGITAL = @as(u32, 6);
-pub const WIA_PRINTER_ENDORSER_BEFORE_SCAN = @as(u32, 0);
-pub const WIA_PRINTER_ENDORSER_AFTER_SCAN = @as(u32, 1);
-pub const WIA_PRINT_DATE = @as(u32, 0);
-pub const WIA_PRINT_YEAR = @as(u32, 1);
-pub const WIA_PRINT_MONTH = @as(u32, 2);
-pub const WIA_PRINT_DAY = @as(u32, 3);
-pub const WIA_PRINT_WEEK_DAY = @as(u32, 4);
-pub const WIA_PRINT_TIME_24H = @as(u32, 5);
-pub const WIA_PRINT_TIME_12H = @as(u32, 6);
-pub const WIA_PRINT_HOUR_24H = @as(u32, 7);
-pub const WIA_PRINT_HOUR_12H = @as(u32, 8);
-pub const WIA_PRINT_AM_PM = @as(u32, 9);
-pub const WIA_PRINT_MINUTE = @as(u32, 10);
-pub const WIA_PRINT_SECOND = @as(u32, 11);
-pub const WIA_PRINT_PAGE_COUNT = @as(u32, 12);
-pub const WIA_PRINT_IMAGE = @as(u32, 13);
-pub const WIA_PRINT_MILLISECOND = @as(u32, 14);
-pub const WIA_PRINT_MONTH_NAME = @as(u32, 15);
-pub const WIA_PRINT_MONTH_SHORT = @as(u32, 16);
-pub const WIA_PRINT_WEEK_DAY_SHORT = @as(u32, 17);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_LEFT = @as(u32, 0);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_RIGHT = @as(u32, 1);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_TOP = @as(u32, 2);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_BOTTOM = @as(u32, 3);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_TOP_LEFT = @as(u32, 4);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_TOP_RIGHT = @as(u32, 5);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_BOTTOM_LEFT = @as(u32, 6);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_BOTTOM_RIGHT = @as(u32, 7);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_BACKGROUND = @as(u32, 8);
-pub const WIA_PRINTER_ENDORSER_GRAPHICS_DEVICE_DEFAULT = @as(u32, 9);
-pub const WIA_BARCODE_READER_DISABLED = @as(u32, 0);
-pub const WIA_BARCODE_READER_AUTO = @as(u32, 1);
-pub const WIA_BARCODE_READER_FLATBED = @as(u32, 2);
-pub const WIA_BARCODE_READER_FEEDER_FRONT = @as(u32, 3);
-pub const WIA_BARCODE_READER_FEEDER_BACK = @as(u32, 4);
-pub const WIA_BARCODE_READER_FEEDER_DUPLEX = @as(u32, 5);
-pub const WIA_BARCODE_HORIZONTAL_SEARCH = @as(u32, 0);
-pub const WIA_BARCODE_VERTICAL_SEARCH = @as(u32, 1);
-pub const WIA_BARCODE_HORIZONTAL_VERTICAL_SEARCH = @as(u32, 2);
-pub const WIA_BARCODE_VERTICAL_HORIZONTAL_SEARCH = @as(u32, 3);
-pub const WIA_BARCODE_AUTO_SEARCH = @as(u32, 4);
-pub const WIA_BARCODE_UPCA = @as(u32, 0);
-pub const WIA_BARCODE_UPCE = @as(u32, 1);
-pub const WIA_BARCODE_CODABAR = @as(u32, 2);
-pub const WIA_BARCODE_NONINTERLEAVED_2OF5 = @as(u32, 3);
-pub const WIA_BARCODE_INTERLEAVED_2OF5 = @as(u32, 4);
-pub const WIA_BARCODE_CODE39 = @as(u32, 5);
-pub const WIA_BARCODE_CODE39_MOD43 = @as(u32, 6);
-pub const WIA_BARCODE_CODE39_FULLASCII = @as(u32, 7);
-pub const WIA_BARCODE_CODE93 = @as(u32, 8);
-pub const WIA_BARCODE_CODE128 = @as(u32, 9);
-pub const WIA_BARCODE_CODE128A = @as(u32, 10);
-pub const WIA_BARCODE_CODE128B = @as(u32, 11);
-pub const WIA_BARCODE_CODE128C = @as(u32, 12);
-pub const WIA_BARCODE_GS1128 = @as(u32, 13);
-pub const WIA_BARCODE_GS1DATABAR = @as(u32, 14);
-pub const WIA_BARCODE_ITF14 = @as(u32, 15);
-pub const WIA_BARCODE_EAN8 = @as(u32, 16);
-pub const WIA_BARCODE_EAN13 = @as(u32, 17);
-pub const WIA_BARCODE_POSTNETA = @as(u32, 18);
-pub const WIA_BARCODE_POSTNETB = @as(u32, 19);
-pub const WIA_BARCODE_POSTNETC = @as(u32, 20);
-pub const WIA_BARCODE_POSTNET_DPBC = @as(u32, 21);
-pub const WIA_BARCODE_PLANET = @as(u32, 22);
-pub const WIA_BARCODE_INTELLIGENT_MAIL = @as(u32, 23);
-pub const WIA_BARCODE_POSTBAR = @as(u32, 24);
-pub const WIA_BARCODE_RM4SCC = @as(u32, 25);
-pub const WIA_BARCODE_HIGH_CAPACITY_COLOR = @as(u32, 26);
-pub const WIA_BARCODE_MAXICODE = @as(u32, 27);
-pub const WIA_BARCODE_PDF417 = @as(u32, 28);
-pub const WIA_BARCODE_CPCBINARY = @as(u32, 29);
-pub const WIA_BARCODE_FIM = @as(u32, 30);
-pub const WIA_BARCODE_PHARMACODE = @as(u32, 31);
-pub const WIA_BARCODE_PLESSEY = @as(u32, 32);
-pub const WIA_BARCODE_MSI = @as(u32, 33);
-pub const WIA_BARCODE_JAN = @as(u32, 34);
-pub const WIA_BARCODE_TELEPEN = @as(u32, 35);
-pub const WIA_BARCODE_AZTEC = @as(u32, 36);
-pub const WIA_BARCODE_SMALLAZTEC = @as(u32, 37);
-pub const WIA_BARCODE_DATAMATRIX = @as(u32, 38);
-pub const WIA_BARCODE_DATASTRIP = @as(u32, 39);
-pub const WIA_BARCODE_EZCODE = @as(u32, 40);
-pub const WIA_BARCODE_QRCODE = @as(u32, 41);
-pub const WIA_BARCODE_SHOTCODE = @as(u32, 42);
-pub const WIA_BARCODE_SPARQCODE = @as(u32, 43);
-pub const WIA_BARCODE_CUSTOMBASE = @as(u32, 32768);
-pub const WIA_PATCH_CODE_READER_DISABLED = @as(u32, 0);
-pub const WIA_PATCH_CODE_READER_AUTO = @as(u32, 1);
-pub const WIA_PATCH_CODE_READER_FLATBED = @as(u32, 2);
-pub const WIA_PATCH_CODE_READER_FEEDER_FRONT = @as(u32, 3);
-pub const WIA_PATCH_CODE_READER_FEEDER_BACK = @as(u32, 4);
-pub const WIA_PATCH_CODE_READER_FEEDER_DUPLEX = @as(u32, 5);
-pub const WIA_PATCH_CODE_UNKNOWN = @as(u32, 0);
-pub const WIA_PATCH_CODE_1 = @as(u32, 1);
-pub const WIA_PATCH_CODE_2 = @as(u32, 2);
-pub const WIA_PATCH_CODE_3 = @as(u32, 3);
-pub const WIA_PATCH_CODE_4 = @as(u32, 4);
-pub const WIA_PATCH_CODE_T = @as(u32, 5);
-pub const WIA_PATCH_CODE_6 = @as(u32, 6);
-pub const WIA_PATCH_CODE_7 = @as(u32, 7);
-pub const WIA_PATCH_CODE_8 = @as(u32, 8);
-pub const WIA_PATCH_CODE_9 = @as(u32, 9);
-pub const WIA_PATCH_CODE_10 = @as(u32, 10);
-pub const WIA_PATCH_CODE_11 = @as(u32, 11);
-pub const WIA_PATCH_CODE_12 = @as(u32, 12);
-pub const WIA_PATCH_CODE_13 = @as(u32, 13);
-pub const WIA_PATCH_CODE_14 = @as(u32, 14);
-pub const WIA_PATCH_CODE_CUSTOM_BASE = @as(u32, 32768);
-pub const WIA_MICR_READER_DISABLED = @as(u32, 0);
-pub const WIA_MICR_READER_AUTO = @as(u32, 1);
-pub const WIA_MICR_READER_FLATBED = @as(u32, 2);
-pub const WIA_MICR_READER_FEEDER_FRONT = @as(u32, 3);
-pub const WIA_MICR_READER_FEEDER_BACK = @as(u32, 4);
-pub const WIA_MICR_READER_FEEDER_DUPLEX = @as(u32, 5);
-pub const WIA_SEPARATOR_DISABLED = @as(u32, 0);
-pub const WIA_SEPARATOR_DETECT_SCAN_CONTINUE = @as(u32, 1);
-pub const WIA_SEPARATOR_DETECT_SCAN_STOP = @as(u32, 2);
-pub const WIA_SEPARATOR_DETECT_NOSCAN_CONTINUE = @as(u32, 3);
-pub const WIA_SEPARATOR_DETECT_NOSCAN_STOP = @as(u32, 4);
-pub const WIA_LONG_DOCUMENT_DISABLED = @as(u32, 0);
-pub const WIA_LONG_DOCUMENT_ENABLED = @as(u32, 1);
-pub const WIA_LONG_DOCUMENT_SPLIT = @as(u32, 2);
-pub const WIA_BLANK_PAGE_DETECTION_DISABLED = @as(u32, 0);
-pub const WIA_BLANK_PAGE_DISCARD = @as(u32, 1);
-pub const WIA_BLANK_PAGE_JOB_SEPARATOR = @as(u32, 2);
-pub const WIA_MULTI_FEED_DETECT_DISABLED = @as(u32, 0);
-pub const WIA_MULTI_FEED_DETECT_STOP_ERROR = @as(u32, 1);
-pub const WIA_MULTI_FEED_DETECT_STOP_SUCCESS = @as(u32, 2);
-pub const WIA_MULTI_FEED_DETECT_CONTINUE = @as(u32, 3);
-pub const WIA_MULTI_FEED_DETECT_METHOD_LENGTH = @as(u32, 0);
-pub const WIA_MULTI_FEED_DETECT_METHOD_OVERLAP = @as(u32, 1);
-pub const WIA_AUTO_CROP_DISABLED = @as(u32, 0);
-pub const WIA_AUTO_CROP_SINGLE = @as(u32, 1);
-pub const WIA_AUTO_CROP_MULTI = @as(u32, 2);
-pub const WIA_OVER_SCAN_DISABLED = @as(u32, 0);
-pub const WIA_OVER_SCAN_TOP_BOTTOM = @as(u32, 1);
-pub const WIA_OVER_SCAN_LEFT_RIGHT = @as(u32, 2);
-pub const WIA_OVER_SCAN_ALL = @as(u32, 3);
-pub const WIA_COLOR_DROP_DISABLED = @as(u32, 0);
-pub const WIA_COLOR_DROP_RED = @as(u32, 1);
-pub const WIA_COLOR_DROP_GREEN = @as(u32, 2);
-pub const WIA_COLOR_DROP_BLUE = @as(u32, 3);
-pub const WIA_COLOR_DROP_RGB = @as(u32, 4);
-pub const WIA_SCAN_AHEAD_DISABLED = @as(u32, 0);
-pub const WIA_SCAN_AHEAD_ENABLED = @as(u32, 1);
-pub const WIA_FEEDER_CONTROL_AUTO = @as(u32, 0);
-pub const WIA_FEEDER_CONTROL_MANUAL = @as(u32, 1);
-pub const WIA_PRINT_PADDING_NONE = @as(u32, 0);
-pub const WIA_PRINT_PADDING_ZERO = @as(u32, 1);
-pub const WIA_PRINT_PADDING_BLANK = @as(u32, 2);
-pub const WIA_PRINT_FONT_NORMAL = @as(u32, 0);
-pub const WIA_PRINT_FONT_BOLD = @as(u32, 1);
-pub const WIA_PRINT_FONT_EXTRA_BOLD = @as(u32, 2);
-pub const WIA_PRINT_FONT_ITALIC_BOLD = @as(u32, 3);
-pub const WIA_PRINT_FONT_ITALIC_EXTRA_BOLD = @as(u32, 4);
-pub const WIA_PRINT_FONT_ITALIC = @as(u32, 5);
-pub const WIA_PRINT_FONT_SMALL = @as(u32, 6);
-pub const WIA_PRINT_FONT_SMALL_BOLD = @as(u32, 7);
-pub const WIA_PRINT_FONT_SMALL_EXTRA_BOLD = @as(u32, 8);
-pub const WIA_PRINT_FONT_SMALL_ITALIC_BOLD = @as(u32, 9);
-pub const WIA_PRINT_FONT_SMALL_ITALIC_EXTRA_BOLD = @as(u32, 10);
-pub const WIA_PRINT_FONT_SMALL_ITALIC = @as(u32, 11);
-pub const WIA_PRINT_FONT_LARGE = @as(u32, 12);
-pub const WIA_PRINT_FONT_LARGE_BOLD = @as(u32, 13);
-pub const WIA_PRINT_FONT_LARGE_EXTRA_BOLD = @as(u32, 14);
-pub const WIA_PRINT_FONT_LARGE_ITALIC_BOLD = @as(u32, 15);
-pub const WIA_PRINT_FONT_LARGE_ITALIC_EXTRA_BOLD = @as(u32, 16);
-pub const WIA_PRINT_FONT_LARGE_ITALIC = @as(u32, 17);
-pub const WIA_ALARM_NONE = @as(u32, 0);
 pub const WIA_ALARM_BEEP1 = @as(u32, 1);
+pub const WIA_ALARM_BEEP10 = @as(u32, 10);
 pub const WIA_ALARM_BEEP2 = @as(u32, 2);
 pub const WIA_ALARM_BEEP3 = @as(u32, 3);
 pub const WIA_ALARM_BEEP4 = @as(u32, 4);
@@ -714,356 +207,772 @@ pub const WIA_ALARM_BEEP6 = @as(u32, 6);
 pub const WIA_ALARM_BEEP7 = @as(u32, 7);
 pub const WIA_ALARM_BEEP8 = @as(u32, 8);
 pub const WIA_ALARM_BEEP9 = @as(u32, 9);
-pub const WIA_ALARM_BEEP10 = @as(u32, 10);
-pub const WIA_PRIVATE_DEVPROP = @as(u32, 38914);
-pub const WIA_PRIVATE_ITEMPROP = @as(u32, 71682);
-pub const WiaImgFmt_UNDEFINED = Guid.initString("b96b3ca9-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_RAWRGB = Guid.initString("bca48b55-f272-4371-b0f1-4a150d057bb4");
-pub const WiaImgFmt_MEMORYBMP = Guid.initString("b96b3caa-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_BMP = Guid.initString("b96b3cab-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_EMF = Guid.initString("b96b3cac-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_WMF = Guid.initString("b96b3cad-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_JPEG = Guid.initString("b96b3cae-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_PNG = Guid.initString("b96b3caf-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_GIF = Guid.initString("b96b3cb0-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_TIFF = Guid.initString("b96b3cb1-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_EXIF = Guid.initString("b96b3cb2-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_PHOTOCD = Guid.initString("b96b3cb3-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_FLASHPIX = Guid.initString("b96b3cb4-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_ICO = Guid.initString("b96b3cb5-0728-11d3-9d7b-0000f81ef32e");
-pub const WiaImgFmt_CIFF = Guid.initString("9821a8ab-3a7e-4215-94e0-d27a460c03b2");
-pub const WiaImgFmt_PICT = Guid.initString("a6bc85d8-6b3e-40ee-a95c-25d482e41adc");
-pub const WiaImgFmt_JPEG2K = Guid.initString("344ee2b2-39db-4dde-8173-c4b75f8f1e49");
-pub const WiaImgFmt_JPEG2KX = Guid.initString("43e14614-c80a-4850-baf3-4b152dc8da27");
-pub const WiaImgFmt_RAW = Guid.initString("6f120719-f1a8-4e07-9ade-9b64c63a3dcc");
-pub const WiaImgFmt_JBIG = Guid.initString("41e8dd92-2f0a-43d4-8636-f1614ba11e46");
-pub const WiaImgFmt_JBIG2 = Guid.initString("bb8e7e67-283c-4235-9e59-0b9bf94ca687");
-pub const WiaImgFmt_RTF = Guid.initString("573dd6a3-4834-432d-a9b5-e198dd9e890d");
-pub const WiaImgFmt_XML = Guid.initString("b9171457-dac8-4884-b393-15b471d5f07e");
-pub const WiaImgFmt_HTML = Guid.initString("c99a4e62-99de-4a94-acca-71956ac2977d");
-pub const WiaImgFmt_TXT = Guid.initString("fafd4d82-723f-421f-9318-30501ac44b59");
-pub const WiaImgFmt_PDFA = Guid.initString("9980bd5b-3463-43c7-bdca-3caa146f229f");
-pub const WiaImgFmt_XPS = Guid.initString("700b4a0f-2011-411c-b430-d1e0b2e10b28");
-pub const WiaImgFmt_OXPS = Guid.initString("2c7b1240-c14d-4109-9755-04b89025153a");
-pub const WiaImgFmt_CSV = Guid.initString("355bda24-5a9f-4494-80dc-be752cecbc8c");
-pub const WiaImgFmt_MPG = Guid.initString("ecd757e4-d2ec-4f57-955d-bcf8a97c4e52");
-pub const WiaImgFmt_AVI = Guid.initString("32f8ca14-087c-4908-b7c4-6757fe7e90ab");
-pub const WiaAudFmt_WAV = Guid.initString("f818e146-07af-40ff-ae55-be8f2c065dbe");
-pub const WiaAudFmt_MP3 = Guid.initString("0fbc71fb-43bf-49f2-9190-e6fecff37e54");
-pub const WiaAudFmt_AIFF = Guid.initString("66e2bf4f-b6fc-443f-94c8-2f33c8a65aaf");
-pub const WiaAudFmt_WMA = Guid.initString("d61d6413-8bc2-438f-93ad-21bd484db6a1");
-pub const WiaImgFmt_ASF = Guid.initString("8d948ee9-d0aa-4a12-9d9a-9cc5de36199b");
-pub const WiaImgFmt_SCRIPT = Guid.initString("fe7d6c53-2dac-446a-b0bd-d73e21e924c9");
-pub const WiaImgFmt_EXEC = Guid.initString("485da097-141e-4aa5-bb3b-a5618d95d02b");
-pub const WiaImgFmt_UNICODE16 = Guid.initString("1b7639b6-6357-47d1-9a07-12452dc073e9");
-pub const WiaImgFmt_DPOF = Guid.initString("369eeeab-a0e8-45ca-86a6-a83ce5697e28");
-pub const WiaImgFmt_XMLBAR = Guid.initString("6235701c-3a98-484c-b2a8-fdffd87e6b16");
-pub const WiaImgFmt_RAWBAR = Guid.initString("da63f833-d26e-451e-90d2-ea55a1365d62");
-pub const WiaImgFmt_XMLPAT = Guid.initString("f8986f55-f052-460d-9523-3a7dfedbb33c");
-pub const WiaImgFmt_RAWPAT = Guid.initString("7760507c-5064-400c-9a17-575624d8824b");
-pub const WiaImgFmt_XMLMIC = Guid.initString("2d164c61-b9ae-4b23-8973-c7067e1fbd31");
-pub const WiaImgFmt_RAWMIC = Guid.initString("22c4f058-0d88-409c-ac1c-eec12b0ea680");
-pub const WIA_EVENT_DEVICE_DISCONNECTED = Guid.initString("143e4e83-6497-11d2-a231-00c04fa31809");
+pub const WIA_ALARM_NONE = @as(u32, 0);
+pub const WIA_AUTO_CROP_DISABLED = @as(u32, 0);
+pub const WIA_AUTO_CROP_MULTI = @as(u32, 2);
+pub const WIA_AUTO_CROP_SINGLE = @as(u32, 1);
+pub const WIA_AUTO_DESKEW_OFF = @as(u32, 1);
+pub const WIA_AUTO_DESKEW_ON = @as(u32, 0);
+pub const WIA_BARCODE_AUTO_SEARCH = @as(u32, 4);
+pub const WIA_BARCODE_AZTEC = @as(u32, 36);
+pub const WIA_BARCODE_CODABAR = @as(u32, 2);
+pub const WIA_BARCODE_CODE128 = @as(u32, 9);
+pub const WIA_BARCODE_CODE128A = @as(u32, 10);
+pub const WIA_BARCODE_CODE128B = @as(u32, 11);
+pub const WIA_BARCODE_CODE128C = @as(u32, 12);
+pub const WIA_BARCODE_CODE39 = @as(u32, 5);
+pub const WIA_BARCODE_CODE39_FULLASCII = @as(u32, 7);
+pub const WIA_BARCODE_CODE39_MOD43 = @as(u32, 6);
+pub const WIA_BARCODE_CODE93 = @as(u32, 8);
+pub const WIA_BARCODE_CPCBINARY = @as(u32, 29);
+pub const WIA_BARCODE_CUSTOMBASE = @as(u32, 32768);
+pub const WIA_BARCODE_DATAMATRIX = @as(u32, 38);
+pub const WIA_BARCODE_DATASTRIP = @as(u32, 39);
+pub const WIA_BARCODE_EAN13 = @as(u32, 17);
+pub const WIA_BARCODE_EAN8 = @as(u32, 16);
+pub const WIA_BARCODE_EZCODE = @as(u32, 40);
+pub const WIA_BARCODE_FIM = @as(u32, 30);
+pub const WIA_BARCODE_GS1128 = @as(u32, 13);
+pub const WIA_BARCODE_GS1DATABAR = @as(u32, 14);
+pub const WIA_BARCODE_HIGH_CAPACITY_COLOR = @as(u32, 26);
+pub const WIA_BARCODE_HORIZONTAL_SEARCH = @as(u32, 0);
+pub const WIA_BARCODE_HORIZONTAL_VERTICAL_SEARCH = @as(u32, 2);
+pub const WIA_BARCODE_INTELLIGENT_MAIL = @as(u32, 23);
+pub const WIA_BARCODE_INTERLEAVED_2OF5 = @as(u32, 4);
+pub const WIA_BARCODE_ITF14 = @as(u32, 15);
+pub const WIA_BARCODE_JAN = @as(u32, 34);
+pub const WIA_BARCODE_MAXICODE = @as(u32, 27);
+pub const WIA_BARCODE_MSI = @as(u32, 33);
+pub const WIA_BARCODE_NONINTERLEAVED_2OF5 = @as(u32, 3);
+pub const WIA_BARCODE_PDF417 = @as(u32, 28);
+pub const WIA_BARCODE_PHARMACODE = @as(u32, 31);
+pub const WIA_BARCODE_PLANET = @as(u32, 22);
+pub const WIA_BARCODE_PLESSEY = @as(u32, 32);
+pub const WIA_BARCODE_POSTBAR = @as(u32, 24);
+pub const WIA_BARCODE_POSTNET_DPBC = @as(u32, 21);
+pub const WIA_BARCODE_POSTNETA = @as(u32, 18);
+pub const WIA_BARCODE_POSTNETB = @as(u32, 19);
+pub const WIA_BARCODE_POSTNETC = @as(u32, 20);
+pub const WIA_BARCODE_QRCODE = @as(u32, 41);
+pub const WIA_BARCODE_READER_AUTO = @as(u32, 1);
+pub const WIA_BARCODE_READER_DISABLED = @as(u32, 0);
+pub const WIA_BARCODE_READER_FEEDER_BACK = @as(u32, 4);
+pub const WIA_BARCODE_READER_FEEDER_DUPLEX = @as(u32, 5);
+pub const WIA_BARCODE_READER_FEEDER_FRONT = @as(u32, 3);
+pub const WIA_BARCODE_READER_FLATBED = @as(u32, 2);
+pub const WIA_BARCODE_RM4SCC = @as(u32, 25);
+pub const WIA_BARCODE_SHOTCODE = @as(u32, 42);
+pub const WIA_BARCODE_SMALLAZTEC = @as(u32, 37);
+pub const WIA_BARCODE_SPARQCODE = @as(u32, 43);
+pub const WIA_BARCODE_TELEPEN = @as(u32, 35);
+pub const WIA_BARCODE_UPCA = @as(u32, 0);
+pub const WIA_BARCODE_UPCE = @as(u32, 1);
+pub const WIA_BARCODE_VERTICAL_HORIZONTAL_SEARCH = @as(u32, 3);
+pub const WIA_BARCODE_VERTICAL_SEARCH = @as(u32, 1);
+pub const WIA_BASIC_PREVIEW = @as(u32, 1);
+pub const WIA_BLANK_PAGE_DETECTION_DISABLED = @as(u32, 0);
+pub const WIA_BLANK_PAGE_DISCARD = @as(u32, 1);
+pub const WIA_BLANK_PAGE_JOB_SEPARATOR = @as(u32, 2);
+pub const WIA_CATEGORY_AUTO = Guid.initString("defe5fd8-6c97-4dde-b11e-cb509b270e11");
+pub const WIA_CATEGORY_BARCODE_READER = Guid.initString("36e178a0-473f-494b-af8f-6c3f6d7486fc");
+pub const WIA_CATEGORY_ENDORSER = Guid.initString("47102cc3-127f-4771-adfc-991ab8ee1e97");
+pub const WIA_CATEGORY_FEEDER = Guid.initString("fe131934-f84c-42ad-8da4-6129cddd7288");
+pub const WIA_CATEGORY_FEEDER_BACK = Guid.initString("61ca74d4-39db-42aa-89b1-8c19c9cd4c23");
+pub const WIA_CATEGORY_FEEDER_FRONT = Guid.initString("4823175c-3b28-487b-a7e6-eebc17614fd1");
+pub const WIA_CATEGORY_FILM = Guid.initString("fcf65be7-3ce3-4473-af85-f5d37d21b68a");
+pub const WIA_CATEGORY_FINISHED_FILE = Guid.initString("ff2b77ca-cf84-432b-a735-3a130dde2a88");
+pub const WIA_CATEGORY_FLATBED = Guid.initString("fb607b1f-43f3-488b-855b-fb703ec342a6");
+pub const WIA_CATEGORY_FOLDER = Guid.initString("c692a446-6f5a-481d-85bb-92e2e86fd30a");
+pub const WIA_CATEGORY_IMPRINTER = Guid.initString("fc65016d-9202-43dd-91a7-64c2954cfb8b");
+pub const WIA_CATEGORY_MICR_READER = Guid.initString("3b86c1ec-71bc-4645-b4d5-1b19da2be978");
+pub const WIA_CATEGORY_PATCH_CODE_READER = Guid.initString("8faa1a6d-9c8a-42cd-98b3-ee9700cbc74f");
+pub const WIA_CATEGORY_ROOT = Guid.initString("f193526f-59b8-4a26-9888-e16e4f97ce10");
+pub const WIA_CMD_BUILD_DEVICE_TREE = Guid.initString("9cba5ce0-dbea-11d2-8416-00c04fa36145");
+pub const WIA_CMD_CHANGE_DOCUMENT = Guid.initString("04e725b0-acae-11d2-a093-00c04f72dc3c");
+pub const WIA_CMD_DELETE_ALL_ITEMS = Guid.initString("e208c170-acad-11d2-a093-00c04f72dc3c");
+pub const WIA_CMD_DELETE_DEVICE_TREE = Guid.initString("73815942-dbea-11d2-8416-00c04fa36145");
+pub const WIA_CMD_DIAGNOSTIC = Guid.initString("10ff52f5-de04-4cf0-a5ad-691f8dce0141");
+pub const WIA_CMD_FORMAT = Guid.initString("c3a693aa-f788-4d34-a5b0-be7190759a24");
+pub const WIA_CMD_PAUSE_FEEDER = Guid.initString("50985e4d-a5b2-4b71-9c95-6d7d7c469a43");
+pub const WIA_CMD_START_FEEDER = Guid.initString("5a9df6c9-5f2d-4a39-9d6c-00456d047f00");
+pub const WIA_CMD_STOP_FEEDER = Guid.initString("d847b06d-3905-459c-9509-9b29cdb691e7");
+pub const WIA_CMD_SYNCHRONIZE = Guid.initString("9b26b7b2-acad-11d2-a093-00c04f72dc3c");
+pub const WIA_CMD_TAKE_PICTURE = Guid.initString("af933cac-acad-11d2-a093-00c04f72dc3c");
+pub const WIA_CMD_UNLOAD_DOCUMENT = Guid.initString("1f3b3d8e-acae-11d2-a093-00c04f72dc3c");
+pub const WIA_COLOR_DROP_BLUE = @as(u32, 3);
+pub const WIA_COLOR_DROP_DISABLED = @as(u32, 0);
+pub const WIA_COLOR_DROP_GREEN = @as(u32, 2);
+pub const WIA_COLOR_DROP_RED = @as(u32, 1);
+pub const WIA_COLOR_DROP_RGB = @as(u32, 4);
+pub const WIA_COMPRESSION_AUTO = @as(u32, 100);
+pub const WIA_COMPRESSION_BI_RLE4 = @as(u32, 1);
+pub const WIA_COMPRESSION_BI_RLE8 = @as(u32, 2);
+pub const WIA_COMPRESSION_G3 = @as(u32, 3);
+pub const WIA_COMPRESSION_G4 = @as(u32, 4);
+pub const WIA_COMPRESSION_JBIG = @as(u32, 6);
+pub const WIA_COMPRESSION_JPEG = @as(u32, 5);
+pub const WIA_COMPRESSION_JPEG2K = @as(u32, 7);
+pub const WIA_COMPRESSION_NONE = @as(u32, 0);
+pub const WIA_COMPRESSION_PNG = @as(u32, 8);
+pub const WIA_DATA_AUTO = @as(u32, 100);
+pub const WIA_DATA_COLOR = @as(u32, 3);
+pub const WIA_DATA_COLOR_DITHER = @as(u32, 5);
+pub const WIA_DATA_COLOR_THRESHOLD = @as(u32, 4);
+pub const WIA_DATA_DITHER = @as(u32, 1);
+pub const WIA_DATA_GRAYSCALE = @as(u32, 2);
+pub const WIA_DATA_RAW_BGR = @as(u32, 7);
+pub const WIA_DATA_RAW_CMY = @as(u32, 10);
+pub const WIA_DATA_RAW_CMYK = @as(u32, 11);
+pub const WIA_DATA_RAW_RGB = @as(u32, 6);
+pub const WIA_DATA_RAW_YUV = @as(u32, 8);
+pub const WIA_DATA_RAW_YUVK = @as(u32, 9);
+pub const WIA_DATA_THRESHOLD = @as(u32, 0);
+pub const WIA_DEPTH_AUTO = @as(u32, 0);
+pub const WIA_DEVICE_COMMANDS = @as(u32, 1);
+pub const WIA_DEVICE_CONNECTED = @as(u32, 1);
+pub const WIA_DEVICE_DIALOG_SINGLE_IMAGE = @as(u32, 2);
+pub const WIA_DEVICE_DIALOG_USE_COMMON_UI = @as(u32, 4);
+pub const WIA_DEVICE_EVENTS = @as(u32, 2);
+pub const WIA_DEVICE_NOT_CONNECTED = @as(u32, 0);
+pub const WIA_DEVINFO_ENUM_ALL = @as(u32, 15);
+pub const WIA_DEVINFO_ENUM_LOCAL = @as(u32, 16);
+pub const WIA_DIP_BAUDRATE = @as(u32, 12);
+pub const WIA_DIP_BAUDRATE_STR = "BaudRate";
+pub const WIA_DIP_DEV_DESC = @as(u32, 4);
+pub const WIA_DIP_DEV_DESC_STR = "Description";
+pub const WIA_DIP_DEV_ID = @as(u32, 2);
+pub const WIA_DIP_DEV_ID_STR = "Unique Device ID";
+pub const WIA_DIP_DEV_NAME = @as(u32, 7);
+pub const WIA_DIP_DEV_NAME_STR = "Name";
+pub const WIA_DIP_DEV_TYPE = @as(u32, 5);
+pub const WIA_DIP_DEV_TYPE_STR = "Type";
+pub const WIA_DIP_DRIVER_VERSION = @as(u32, 15);
+pub const WIA_DIP_DRIVER_VERSION_STR = "Driver Version";
+pub const WIA_DIP_FIRST = @as(u32, 2);
+pub const WIA_DIP_HW_CONFIG = @as(u32, 11);
+pub const WIA_DIP_HW_CONFIG_STR = "Hardware Configuration";
+pub const WIA_DIP_PNP_ID = @as(u32, 16);
+pub const WIA_DIP_PNP_ID_STR = "PnP ID String";
+pub const WIA_DIP_PORT_NAME = @as(u32, 6);
+pub const WIA_DIP_PORT_NAME_STR = "Port";
+pub const WIA_DIP_REMOTE_DEV_ID = @as(u32, 9);
+pub const WIA_DIP_REMOTE_DEV_ID_STR = "Remote Device ID";
+pub const WIA_DIP_SERVER_NAME = @as(u32, 8);
+pub const WIA_DIP_SERVER_NAME_STR = "Server";
+pub const WIA_DIP_STI_DRIVER_VERSION = @as(u32, 17);
+pub const WIA_DIP_STI_DRIVER_VERSION_STR = "STI Driver Version";
+pub const WIA_DIP_STI_GEN_CAPABILITIES = @as(u32, 13);
+pub const WIA_DIP_STI_GEN_CAPABILITIES_STR = "STI Generic Capabilities";
+pub const WIA_DIP_UI_CLSID = @as(u32, 10);
+pub const WIA_DIP_UI_CLSID_STR = "UI Class ID";
+pub const WIA_DIP_VEND_DESC = @as(u32, 3);
+pub const WIA_DIP_VEND_DESC_STR = "Manufacturer";
+pub const WIA_DIP_WIA_VERSION = @as(u32, 14);
+pub const WIA_DIP_WIA_VERSION_STR = "WIA Version";
+pub const WIA_DONT_SHOW_PREVIEW_CONTROL = @as(u32, 1);
+pub const WIA_DONT_USE_SEGMENTATION_FILTER = @as(u32, 1);
+pub const WIA_DPA_CONNECT_STATUS = @as(u32, 1027);
+pub const WIA_DPA_CONNECT_STATUS_STR = "Connect Status";
+pub const WIA_DPA_DEVICE_TIME = @as(u32, 1028);
+pub const WIA_DPA_DEVICE_TIME_STR = "Device Time";
+pub const WIA_DPA_FIRMWARE_VERSION = @as(u32, 1026);
+pub const WIA_DPA_FIRMWARE_VERSION_STR = "Firmware Version";
+pub const WIA_DPC_ARTIST = @as(u32, 2091);
+pub const WIA_DPC_ARTIST_STR = "Artist";
+pub const WIA_DPC_BATTERY_STATUS = @as(u32, 2065);
+pub const WIA_DPC_BATTERY_STATUS_STR = "Battery Status";
+pub const WIA_DPC_BURST_INTERVAL = @as(u32, 2075);
+pub const WIA_DPC_BURST_INTERVAL_STR = "Burst Interval";
+pub const WIA_DPC_BURST_NUMBER = @as(u32, 2076);
+pub const WIA_DPC_BURST_NUMBER_STR = "Burst Number";
+pub const WIA_DPC_CAPTURE_DELAY = @as(u32, 2082);
+pub const WIA_DPC_CAPTURE_DELAY_STR = "Capture Delay";
+pub const WIA_DPC_CAPTURE_MODE = @as(u32, 2081);
+pub const WIA_DPC_CAPTURE_MODE_STR = "Capture Mode";
+pub const WIA_DPC_COMPRESSION_SETTING = @as(u32, 2071);
+pub const WIA_DPC_COMPRESSION_SETTING_STR = "Compression Setting";
+pub const WIA_DPC_CONTRAST = @as(u32, 2080);
+pub const WIA_DPC_CONTRAST_STR = "Contrast";
+pub const WIA_DPC_COPYRIGHT_INFO = @as(u32, 2092);
+pub const WIA_DPC_COPYRIGHT_INFO_STR = "Copyright Info";
+pub const WIA_DPC_DIGITAL_ZOOM = @as(u32, 2078);
+pub const WIA_DPC_DIGITAL_ZOOM_STR = "Digital Zoom";
+pub const WIA_DPC_DIMENSION = @as(u32, 2070);
+pub const WIA_DPC_DIMENSION_STR = "Dimension";
+pub const WIA_DPC_EFFECT_MODE = @as(u32, 2077);
+pub const WIA_DPC_EFFECT_MODE_STR = "Effect Mode";
+pub const WIA_DPC_EXPOSURE_COMP = @as(u32, 2053);
+pub const WIA_DPC_EXPOSURE_COMP_STR = "Exposure Compensation";
+pub const WIA_DPC_EXPOSURE_INDEX = @as(u32, 2083);
+pub const WIA_DPC_EXPOSURE_INDEX_STR = "Exposure Index";
+pub const WIA_DPC_EXPOSURE_METERING_MODE = @as(u32, 2084);
+pub const WIA_DPC_EXPOSURE_METERING_MODE_STR = "Exposure Metering Mode";
+pub const WIA_DPC_EXPOSURE_MODE = @as(u32, 2052);
+pub const WIA_DPC_EXPOSURE_MODE_STR = "Exposure Mode";
+pub const WIA_DPC_EXPOSURE_TIME = @as(u32, 2054);
+pub const WIA_DPC_EXPOSURE_TIME_STR = "Exposure Time";
+pub const WIA_DPC_FLASH_MODE = @as(u32, 2056);
+pub const WIA_DPC_FLASH_MODE_STR = "Flash Mode";
+pub const WIA_DPC_FNUMBER = @as(u32, 2055);
+pub const WIA_DPC_FNUMBER_STR = "F Number";
+pub const WIA_DPC_FOCAL_LENGTH = @as(u32, 2087);
+pub const WIA_DPC_FOCAL_LENGTH_STR = "Focus Length";
+pub const WIA_DPC_FOCUS_DISTANCE = @as(u32, 2086);
+pub const WIA_DPC_FOCUS_DISTANCE_STR = "Focus Distance";
+pub const WIA_DPC_FOCUS_MANUAL_DIST = @as(u32, 2058);
+pub const WIA_DPC_FOCUS_MANUAL_DIST_STR = "Focus Manual Dist";
+pub const WIA_DPC_FOCUS_METERING = @as(u32, 2072);
+pub const WIA_DPC_FOCUS_METERING_MODE = @as(u32, 2085);
+pub const WIA_DPC_FOCUS_METERING_MODE_STR = "Focus Metering Mode";
+pub const WIA_DPC_FOCUS_METERING_STR = "Focus Metering Mode";
+pub const WIA_DPC_FOCUS_MODE = @as(u32, 2057);
+pub const WIA_DPC_FOCUS_MODE_STR = "Focus Mode";
+pub const WIA_DPC_PAN_POSITION = @as(u32, 2060);
+pub const WIA_DPC_PAN_POSITION_STR = "Pan Position";
+pub const WIA_DPC_PICT_HEIGHT = @as(u32, 2069);
+pub const WIA_DPC_PICT_HEIGHT_STR = "Picture Height";
+pub const WIA_DPC_PICT_WIDTH = @as(u32, 2068);
+pub const WIA_DPC_PICT_WIDTH_STR = "Picture Width";
+pub const WIA_DPC_PICTURES_REMAINING = @as(u32, 2051);
+pub const WIA_DPC_PICTURES_REMAINING_STR = "Pictures Remaining";
+pub const WIA_DPC_PICTURES_TAKEN = @as(u32, 2050);
+pub const WIA_DPC_PICTURES_TAKEN_STR = "Pictures Taken";
+pub const WIA_DPC_POWER_MODE = @as(u32, 2064);
+pub const WIA_DPC_POWER_MODE_STR = "Power Mode";
+pub const WIA_DPC_RGB_GAIN = @as(u32, 2088);
+pub const WIA_DPC_RGB_GAIN_STR = "RGB Gain";
+pub const WIA_DPC_SHARPNESS = @as(u32, 2079);
+pub const WIA_DPC_SHARPNESS_STR = "Sharpness";
+pub const WIA_DPC_THUMB_HEIGHT = @as(u32, 2067);
+pub const WIA_DPC_THUMB_HEIGHT_STR = "Thumbnail Height";
+pub const WIA_DPC_THUMB_WIDTH = @as(u32, 2066);
+pub const WIA_DPC_THUMB_WIDTH_STR = "Thumbnail Width";
+pub const WIA_DPC_TILT_POSITION = @as(u32, 2061);
+pub const WIA_DPC_TILT_POSITION_STR = "Tilt Position";
+pub const WIA_DPC_TIMELAPSE_INTERVAL = @as(u32, 2073);
+pub const WIA_DPC_TIMELAPSE_INTERVAL_STR = "Timelapse Interval";
+pub const WIA_DPC_TIMELAPSE_NUMBER = @as(u32, 2074);
+pub const WIA_DPC_TIMELAPSE_NUMBER_STR = "Timelapse Number";
+pub const WIA_DPC_TIMER_MODE = @as(u32, 2062);
+pub const WIA_DPC_TIMER_MODE_STR = "Timer Mode";
+pub const WIA_DPC_TIMER_VALUE = @as(u32, 2063);
+pub const WIA_DPC_TIMER_VALUE_STR = "Timer Value";
+pub const WIA_DPC_UPLOAD_URL = @as(u32, 2090);
+pub const WIA_DPC_UPLOAD_URL_STR = "Upload URL";
+pub const WIA_DPC_WHITE_BALANCE = @as(u32, 2089);
+pub const WIA_DPC_WHITE_BALANCE_STR = "White Balance";
+pub const WIA_DPC_ZOOM_POSITION = @as(u32, 2059);
+pub const WIA_DPC_ZOOM_POSITION_STR = "Zoom Position";
+pub const WIA_DPF_FIRST = @as(u32, 3330);
+pub const WIA_DPF_MOUNT_POINT = @as(u32, 3330);
+pub const WIA_DPF_MOUNT_POINT_STR = "Directory mount point";
+pub const WIA_DPS_DEVICE_ID = @as(u32, 3114);
+pub const WIA_DPS_DEVICE_ID_STR = "Device ID";
+pub const WIA_DPS_DITHER_PATTERN_DATA = @as(u32, 3085);
+pub const WIA_DPS_DITHER_PATTERN_DATA_STR = "Dither Pattern Data";
+pub const WIA_DPS_DITHER_SELECT = @as(u32, 3084);
+pub const WIA_DPS_DITHER_SELECT_STR = "Dither Select";
+pub const WIA_DPS_DOCUMENT_HANDLING_CAPABILITIES = @as(u32, 3086);
+pub const WIA_DPS_DOCUMENT_HANDLING_CAPABILITIES_STR = "Document Handling Capabilities";
+pub const WIA_DPS_DOCUMENT_HANDLING_CAPACITY = @as(u32, 3089);
+pub const WIA_DPS_DOCUMENT_HANDLING_CAPACITY_STR = "Document Handling Capacity";
+pub const WIA_DPS_DOCUMENT_HANDLING_SELECT = @as(u32, 3088);
+pub const WIA_DPS_DOCUMENT_HANDLING_SELECT_STR = "Document Handling Select";
+pub const WIA_DPS_DOCUMENT_HANDLING_STATUS = @as(u32, 3087);
+pub const WIA_DPS_DOCUMENT_HANDLING_STATUS_STR = "Document Handling Status";
+pub const WIA_DPS_ENDORSER_CHARACTERS = @as(u32, 3092);
+pub const WIA_DPS_ENDORSER_CHARACTERS_STR = "Endorser Characters";
+pub const WIA_DPS_ENDORSER_STRING = @as(u32, 3093);
+pub const WIA_DPS_ENDORSER_STRING_STR = "Endorser String";
+pub const WIA_DPS_FILTER_SELECT = @as(u32, 3083);
+pub const WIA_DPS_FILTER_SELECT_STR = "Filter Select";
+pub const WIA_DPS_FIRST = @as(u32, 3074);
+pub const WIA_DPS_GLOBAL_IDENTITY = @as(u32, 3115);
+pub const WIA_DPS_GLOBAL_IDENTITY_STR = "Global Identity";
+pub const WIA_DPS_HORIZONTAL_BED_REGISTRATION = @as(u32, 3079);
+pub const WIA_DPS_HORIZONTAL_BED_REGISTRATION_STR = "Horizontal Bed Registration";
+pub const WIA_DPS_HORIZONTAL_BED_SIZE = @as(u32, 3074);
+pub const WIA_DPS_HORIZONTAL_BED_SIZE_STR = "Horizontal Bed Size";
+pub const WIA_DPS_HORIZONTAL_SHEET_FEED_SIZE = @as(u32, 3076);
+pub const WIA_DPS_HORIZONTAL_SHEET_FEED_SIZE_STR = "Horizontal Sheet Feed Size";
+pub const WIA_DPS_MAX_SCAN_TIME = @as(u32, 3095);
+pub const WIA_DPS_MAX_SCAN_TIME_STR = "Max Scan Time";
+pub const WIA_DPS_MIN_HORIZONTAL_SHEET_FEED_SIZE = @as(u32, 3104);
+pub const WIA_DPS_MIN_HORIZONTAL_SHEET_FEED_SIZE_STR = "Minimum Horizontal Sheet Feed Size";
+pub const WIA_DPS_MIN_VERTICAL_SHEET_FEED_SIZE = @as(u32, 3105);
+pub const WIA_DPS_MIN_VERTICAL_SHEET_FEED_SIZE_STR = "Minimum Vertical Sheet Feed Size";
+pub const WIA_DPS_OPTICAL_XRES = @as(u32, 3090);
+pub const WIA_DPS_OPTICAL_XRES_STR = "Horizontal Optical Resolution";
+pub const WIA_DPS_OPTICAL_YRES = @as(u32, 3091);
+pub const WIA_DPS_OPTICAL_YRES_STR = "Vertical Optical Resolution";
+pub const WIA_DPS_PAD_COLOR = @as(u32, 3082);
+pub const WIA_DPS_PAD_COLOR_STR = "Pad Color";
+pub const WIA_DPS_PAGE_HEIGHT = @as(u32, 3099);
+pub const WIA_DPS_PAGE_HEIGHT_STR = "Page Height";
+pub const WIA_DPS_PAGE_SIZE = @as(u32, 3097);
+pub const WIA_DPS_PAGE_SIZE_STR = "Page Size";
+pub const WIA_DPS_PAGE_WIDTH = @as(u32, 3098);
+pub const WIA_DPS_PAGE_WIDTH_STR = "Page Width";
+pub const WIA_DPS_PAGES = @as(u32, 3096);
+pub const WIA_DPS_PAGES_STR = "Pages";
+pub const WIA_DPS_PLATEN_COLOR = @as(u32, 3081);
+pub const WIA_DPS_PLATEN_COLOR_STR = "Platen Color";
+pub const WIA_DPS_PREVIEW = @as(u32, 3100);
+pub const WIA_DPS_PREVIEW_STR = "Preview";
+pub const WIA_DPS_SCAN_AHEAD_PAGES = @as(u32, 3094);
+pub const WIA_DPS_SCAN_AHEAD_PAGES_STR = "Scan Ahead Pages";
+pub const WIA_DPS_SCAN_AVAILABLE_ITEM = @as(u32, 3116);
+pub const WIA_DPS_SCAN_AVAILABLE_ITEM_STR = "Scan Available Item";
+pub const WIA_DPS_SERVICE_ID = @as(u32, 3113);
+pub const WIA_DPS_SERVICE_ID_STR = "Service ID";
+pub const WIA_DPS_SHEET_FEEDER_REGISTRATION = @as(u32, 3078);
+pub const WIA_DPS_SHEET_FEEDER_REGISTRATION_STR = "Sheet Feeder Registration";
+pub const WIA_DPS_SHOW_PREVIEW_CONTROL = @as(u32, 3103);
+pub const WIA_DPS_SHOW_PREVIEW_CONTROL_STR = "Show preview control";
+pub const WIA_DPS_TRANSPARENCY = @as(u32, 3101);
+pub const WIA_DPS_TRANSPARENCY_CAPABILITIES = @as(u32, 3106);
+pub const WIA_DPS_TRANSPARENCY_CAPABILITIES_STR = "Transparency Adapter Capabilities";
+pub const WIA_DPS_TRANSPARENCY_SELECT = @as(u32, 3102);
+pub const WIA_DPS_TRANSPARENCY_SELECT_STR = "Transparency Adapter Select";
+pub const WIA_DPS_TRANSPARENCY_STATUS = @as(u32, 3107);
+pub const WIA_DPS_TRANSPARENCY_STATUS_STR = "Transparency Adapter Status";
+pub const WIA_DPS_TRANSPARENCY_STR = "Transparency Adapter";
+pub const WIA_DPS_USER_NAME = @as(u32, 3112);
+pub const WIA_DPS_USER_NAME_STR = "User Name";
+pub const WIA_DPS_VERTICAL_BED_REGISTRATION = @as(u32, 3080);
+pub const WIA_DPS_VERTICAL_BED_REGISTRATION_STR = "Vertical Bed Registration";
+pub const WIA_DPS_VERTICAL_BED_SIZE = @as(u32, 3075);
+pub const WIA_DPS_VERTICAL_BED_SIZE_STR = "Vertical Bed Size";
+pub const WIA_DPS_VERTICAL_SHEET_FEED_SIZE = @as(u32, 3077);
+pub const WIA_DPS_VERTICAL_SHEET_FEED_SIZE_STR = "Vertical Sheet Feed Size";
+pub const WIA_DPV_DSHOW_DEVICE_PATH = @as(u32, 3588);
+pub const WIA_DPV_DSHOW_DEVICE_PATH_STR = "Directshow Device Path";
+pub const WIA_DPV_IMAGES_DIRECTORY = @as(u32, 3587);
+pub const WIA_DPV_IMAGES_DIRECTORY_STR = "Images Directory";
+pub const WIA_DPV_LAST_PICTURE_TAKEN = @as(u32, 3586);
+pub const WIA_DPV_LAST_PICTURE_TAKEN_STR = "Last Picture Taken";
+pub const WIA_ENDORSER_TOK_DATE = "$DATE$";
+pub const WIA_ENDORSER_TOK_DAY = "$DAY$";
+pub const WIA_ENDORSER_TOK_MONTH = "$MONTH$";
+pub const WIA_ENDORSER_TOK_PAGE_COUNT = "$PAGE_COUNT$";
+pub const WIA_ENDORSER_TOK_TIME = "$TIME$";
+pub const WIA_ENDORSER_TOK_YEAR = "$YEAR$";
+pub const WIA_ERROR_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320954));
+pub const WIA_ERROR_COVER_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320944));
+pub const WIA_ERROR_DESTINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320942));
+pub const WIA_ERROR_DEVICE_COMMUNICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320950));
+pub const WIA_ERROR_DEVICE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320947));
+pub const WIA_ERROR_EXCEPTION_IN_DRIVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320946));
+pub const WIA_ERROR_GENERAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320959));
+pub const WIA_ERROR_INCORRECT_HARDWARE_SETTING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320948));
+pub const WIA_ERROR_INVALID_COMMAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320949));
+pub const WIA_ERROR_INVALID_DRIVER_RESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320945));
+pub const WIA_ERROR_ITEM_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320951));
+pub const WIA_ERROR_LAMP_OFF = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320943));
+pub const WIA_ERROR_MAXIMUM_PRINTER_ENDORSER_COUNTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320939));
+pub const WIA_ERROR_MULTI_FEED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320940));
+pub const WIA_ERROR_NETWORK_RESERVATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320941));
+pub const WIA_ERROR_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320955));
+pub const WIA_ERROR_PAPER_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320957));
+pub const WIA_ERROR_PAPER_JAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320958));
+pub const WIA_ERROR_PAPER_PROBLEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320956));
+pub const WIA_ERROR_USER_INTERVENTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320952));
+pub const WIA_ERROR_WARMING_UP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320953));
+pub const WIA_EVENT_CANCEL_IO = Guid.initString("c860f7b8-9ccd-41ea-bbbf-4dd09c5b1795");
+pub const WIA_EVENT_COVER_CLOSED = Guid.initString("6714a1e6-e285-468c-9b8c-da7dc4cbaa05");
+pub const WIA_EVENT_COVER_OPEN = Guid.initString("19a12136-fa1c-4f66-900f-8f914ec74ec9");
 pub const WIA_EVENT_DEVICE_CONNECTED = Guid.initString("a28bbade-64b6-11d2-a231-00c04fa31809");
-pub const WIA_EVENT_ITEM_DELETED = Guid.initString("1d22a559-e14f-11d2-b326-00c04f68ce61");
+pub const WIA_EVENT_DEVICE_CONNECTED_STR = "Device Connected";
+pub const WIA_EVENT_DEVICE_DISCONNECTED = Guid.initString("143e4e83-6497-11d2-a231-00c04fa31809");
+pub const WIA_EVENT_DEVICE_DISCONNECTED_STR = "Device Disconnected";
+pub const WIA_EVENT_DEVICE_NOT_READY = Guid.initString("d8962d7e-e4dc-4b4d-ba29-668a87f42e6f");
+pub const WIA_EVENT_DEVICE_READY = Guid.initString("7523ec6c-988b-419e-9a0a-425ac31b37dc");
+pub const WIA_EVENT_FEEDER_EMPTIED = Guid.initString("e70b4b82-6dda-46bb-8ff9-53ceb1a03e35");
+pub const WIA_EVENT_FEEDER_LOADED = Guid.initString("cc8d701e-9aba-481d-bf74-78f763dc342a");
+pub const WIA_EVENT_FLATBED_LID_CLOSED = Guid.initString("f879af0f-9b29-4283-ad95-d412164d39a9");
+pub const WIA_EVENT_FLATBED_LID_OPEN = Guid.initString("ba0a0623-437d-4f03-a97d-7793b123113c");
+pub const WIA_EVENT_HANDLER_NO_ACTION = Guid.initString("e0372b7d-e115-4525-bc55-b629e68c745a");
+pub const WIA_EVENT_HANDLER_PROMPT = Guid.initString("5f4baad0-4d59-4fcd-b213-783ce7a92f22");
 pub const WIA_EVENT_ITEM_CREATED = Guid.initString("4c8f4ef5-e14f-11d2-b326-00c04f68ce61");
-pub const WIA_EVENT_TREE_UPDATED = Guid.initString("c9859b91-4ab2-4cd6-a1fc-582eec55e585");
-pub const WIA_EVENT_VOLUME_INSERT = Guid.initString("9638bbfd-d1bd-11d2-b31f-00c04f68ce61");
-pub const WIA_EVENT_SCAN_IMAGE = Guid.initString("a6c5a715-8c6e-11d2-977a-0000f87a926f");
-pub const WIA_EVENT_SCAN_PRINT_IMAGE = Guid.initString("b441f425-8c6e-11d2-977a-0000f87a926f");
-pub const WIA_EVENT_SCAN_FAX_IMAGE = Guid.initString("c00eb793-8c6e-11d2-977a-0000f87a926f");
-pub const WIA_EVENT_SCAN_OCR_IMAGE = Guid.initString("9d095b89-37d6-4877-afed-62a297dc6dbe");
+pub const WIA_EVENT_ITEM_DELETED = Guid.initString("1d22a559-e14f-11d2-b326-00c04f68ce61");
+pub const WIA_EVENT_POWER_RESUME = Guid.initString("618f153e-f686-4350-9634-4115a304830c");
+pub const WIA_EVENT_POWER_SUSPEND = Guid.initString("a0922ff9-c3b4-411c-9e29-03a66993d2be");
 pub const WIA_EVENT_SCAN_EMAIL_IMAGE = Guid.initString("c686dcee-54f2-419e-9a27-2fc7f2e98f9e");
+pub const WIA_EVENT_SCAN_FAX_IMAGE = Guid.initString("c00eb793-8c6e-11d2-977a-0000f87a926f");
 pub const WIA_EVENT_SCAN_FILM_IMAGE = Guid.initString("9b2b662c-6185-438c-b68b-e39ee25e71cb");
+pub const WIA_EVENT_SCAN_IMAGE = Guid.initString("a6c5a715-8c6e-11d2-977a-0000f87a926f");
 pub const WIA_EVENT_SCAN_IMAGE2 = Guid.initString("fc4767c1-c8b3-48a2-9cfa-2e90cb3d3590");
 pub const WIA_EVENT_SCAN_IMAGE3 = Guid.initString("154e27be-b617-4653-acc5-0fd7bd4c65ce");
 pub const WIA_EVENT_SCAN_IMAGE4 = Guid.initString("a65b704a-7f3c-4447-a75d-8a26dfca1fdf");
+pub const WIA_EVENT_SCAN_OCR_IMAGE = Guid.initString("9d095b89-37d6-4877-afed-62a297dc6dbe");
+pub const WIA_EVENT_SCAN_PRINT_IMAGE = Guid.initString("b441f425-8c6e-11d2-977a-0000f87a926f");
+pub const WIA_EVENT_STI_PROXY = Guid.initString("d711f81f-1f0d-422d-8641-927d1b93e5e5");
 pub const WIA_EVENT_STORAGE_CREATED = Guid.initString("353308b2-fe73-46c8-895e-fa4551ccc85a");
 pub const WIA_EVENT_STORAGE_DELETED = Guid.initString("5e41e75e-9390-44c5-9a51-e47019e390cf");
-pub const WIA_EVENT_STI_PROXY = Guid.initString("d711f81f-1f0d-422d-8641-927d1b93e5e5");
-pub const WIA_EVENT_CANCEL_IO = Guid.initString("c860f7b8-9ccd-41ea-bbbf-4dd09c5b1795");
-pub const WIA_EVENT_POWER_SUSPEND = Guid.initString("a0922ff9-c3b4-411c-9e29-03a66993d2be");
-pub const WIA_EVENT_POWER_RESUME = Guid.initString("618f153e-f686-4350-9634-4115a304830c");
-pub const WIA_EVENT_HANDLER_NO_ACTION = Guid.initString("e0372b7d-e115-4525-bc55-b629e68c745a");
-pub const WIA_EVENT_HANDLER_PROMPT = Guid.initString("5f4baad0-4d59-4fcd-b213-783ce7a92f22");
-pub const WIA_EVENT_DEVICE_NOT_READY = Guid.initString("d8962d7e-e4dc-4b4d-ba29-668a87f42e6f");
-pub const WIA_EVENT_DEVICE_READY = Guid.initString("7523ec6c-988b-419e-9a0a-425ac31b37dc");
-pub const WIA_EVENT_FLATBED_LID_OPEN = Guid.initString("ba0a0623-437d-4f03-a97d-7793b123113c");
-pub const WIA_EVENT_FLATBED_LID_CLOSED = Guid.initString("f879af0f-9b29-4283-ad95-d412164d39a9");
-pub const WIA_EVENT_FEEDER_LOADED = Guid.initString("cc8d701e-9aba-481d-bf74-78f763dc342a");
-pub const WIA_EVENT_FEEDER_EMPTIED = Guid.initString("e70b4b82-6dda-46bb-8ff9-53ceb1a03e35");
-pub const WIA_EVENT_COVER_OPEN = Guid.initString("19a12136-fa1c-4f66-900f-8f914ec74ec9");
-pub const WIA_EVENT_COVER_CLOSED = Guid.initString("6714a1e6-e285-468c-9b8c-da7dc4cbaa05");
-pub const WIA_CMD_SYNCHRONIZE = Guid.initString("9b26b7b2-acad-11d2-a093-00c04f72dc3c");
-pub const WIA_CMD_TAKE_PICTURE = Guid.initString("af933cac-acad-11d2-a093-00c04f72dc3c");
-pub const WIA_CMD_DELETE_ALL_ITEMS = Guid.initString("e208c170-acad-11d2-a093-00c04f72dc3c");
-pub const WIA_CMD_CHANGE_DOCUMENT = Guid.initString("04e725b0-acae-11d2-a093-00c04f72dc3c");
-pub const WIA_CMD_UNLOAD_DOCUMENT = Guid.initString("1f3b3d8e-acae-11d2-a093-00c04f72dc3c");
-pub const WIA_CMD_DIAGNOSTIC = Guid.initString("10ff52f5-de04-4cf0-a5ad-691f8dce0141");
-pub const WIA_CMD_FORMAT = Guid.initString("c3a693aa-f788-4d34-a5b0-be7190759a24");
-pub const WIA_CMD_DELETE_DEVICE_TREE = Guid.initString("73815942-dbea-11d2-8416-00c04fa36145");
-pub const WIA_CMD_BUILD_DEVICE_TREE = Guid.initString("9cba5ce0-dbea-11d2-8416-00c04fa36145");
-pub const WIA_CMD_START_FEEDER = Guid.initString("5a9df6c9-5f2d-4a39-9d6c-00456d047f00");
-pub const WIA_CMD_STOP_FEEDER = Guid.initString("d847b06d-3905-459c-9509-9b29cdb691e7");
-pub const WIA_CMD_PAUSE_FEEDER = Guid.initString("50985e4d-a5b2-4b71-9c95-6d7d7c469a43");
-pub const BASE_VAL_WIA_ERROR = @as(u32, 0);
-pub const BASE_VAL_WIA_SUCCESS = @as(u32, 0);
-pub const WIA_ERROR_GENERAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320959));
-pub const WIA_ERROR_PAPER_JAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320958));
-pub const WIA_ERROR_PAPER_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320957));
-pub const WIA_ERROR_PAPER_PROBLEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320956));
-pub const WIA_ERROR_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320955));
-pub const WIA_ERROR_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320954));
-pub const WIA_ERROR_WARMING_UP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320953));
-pub const WIA_ERROR_USER_INTERVENTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320952));
-pub const WIA_ERROR_ITEM_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320951));
-pub const WIA_ERROR_DEVICE_COMMUNICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320950));
-pub const WIA_ERROR_INVALID_COMMAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320949));
-pub const WIA_ERROR_INCORRECT_HARDWARE_SETTING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320948));
-pub const WIA_ERROR_DEVICE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320947));
-pub const WIA_ERROR_EXCEPTION_IN_DRIVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320946));
-pub const WIA_ERROR_INVALID_DRIVER_RESPONSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320945));
-pub const WIA_ERROR_COVER_OPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320944));
-pub const WIA_ERROR_LAMP_OFF = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320943));
-pub const WIA_ERROR_DESTINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320942));
-pub const WIA_ERROR_NETWORK_RESERVATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320941));
-pub const WIA_ERROR_MULTI_FEED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320940));
-pub const WIA_ERROR_MAXIMUM_PRINTER_ENDORSER_COUNTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320939));
-pub const WIA_STATUS_END_OF_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162689));
-pub const WIA_STATUS_WARMING_UP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162690));
-pub const WIA_STATUS_CALIBRATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162691));
-pub const WIA_STATUS_RESERVING_NETWORK_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162694));
-pub const WIA_STATUS_NETWORK_DEVICE_RESERVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162695));
-pub const WIA_STATUS_CLEAR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162696));
-pub const WIA_STATUS_SKIP_ITEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162697));
-pub const WIA_STATUS_NOT_HANDLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162698));
-pub const WIA_S_CHANGE_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162699));
-pub const WIA_S_NO_DEVICE_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320939));
-pub const WIA_SELECT_DEVICE_NODEFAULT = @as(u32, 1);
-pub const WIA_DEVICE_DIALOG_SINGLE_IMAGE = @as(u32, 2);
-pub const WIA_DEVICE_DIALOG_USE_COMMON_UI = @as(u32, 4);
-pub const WIA_REGISTER_EVENT_CALLBACK = @as(u32, 1);
-pub const WIA_UNREGISTER_EVENT_CALLBACK = @as(u32, 2);
-pub const WIA_SET_DEFAULT_HANDLER = @as(u32, 4);
-pub const WIA_NOTIFICATION_EVENT = @as(u32, 1);
-pub const WIA_ACTION_EVENT = @as(u32, 2);
-pub const WIA_LINE_ORDER_TOP_TO_BOTTOM = @as(u32, 1);
-pub const WIA_LINE_ORDER_BOTTOM_TO_TOP = @as(u32, 2);
+pub const WIA_EVENT_TREE_UPDATED = Guid.initString("c9859b91-4ab2-4cd6-a1fc-582eec55e585");
+pub const WIA_EVENT_VOLUME_INSERT = Guid.initString("9638bbfd-d1bd-11d2-b31f-00c04f68ce61");
+pub const WIA_FEEDER_CONTROL_AUTO = @as(u32, 0);
+pub const WIA_FEEDER_CONTROL_MANUAL = @as(u32, 1);
+pub const WIA_FILM_BW_NEGATIVE = @as(u32, 2);
+pub const WIA_FILM_COLOR_NEGATIVE = @as(u32, 1);
+pub const WIA_FILM_COLOR_SLIDE = @as(u32, 0);
+pub const WIA_FINAL_SCAN = @as(u32, 0);
+pub const WIA_FLAG_NOM = @as(u32, 0);
+pub const WIA_FLAG_NUM_ELEMS = @as(u32, 2);
+pub const WIA_FLAG_VALUES = @as(u32, 1);
+pub const WIA_IMAGEPROC_FILTER_STR = "ImageProcessingFilter";
+pub const WIA_INTENT_BEST_PREVIEW = @as(u32, 262144);
+pub const WIA_INTENT_IMAGE_TYPE_COLOR = @as(u32, 1);
+pub const WIA_INTENT_IMAGE_TYPE_GRAYSCALE = @as(u32, 2);
+pub const WIA_INTENT_IMAGE_TYPE_MASK = @as(u32, 15);
+pub const WIA_INTENT_IMAGE_TYPE_TEXT = @as(u32, 4);
+pub const WIA_INTENT_MAXIMIZE_QUALITY = @as(u32, 131072);
+pub const WIA_INTENT_MINIMIZE_SIZE = @as(u32, 65536);
+pub const WIA_INTENT_NONE = @as(u32, 0);
+pub const WIA_INTENT_SIZE_MASK = @as(u32, 983040);
+pub const WIA_IPA_ACCESS_RIGHTS = @as(u32, 4102);
+pub const WIA_IPA_ACCESS_RIGHTS_STR = "Access Rights";
+pub const WIA_IPA_APP_COLOR_MAPPING = @as(u32, 4121);
+pub const WIA_IPA_APP_COLOR_MAPPING_STR = "Application Applies Color Mapping";
+pub const WIA_IPA_BITS_PER_CHANNEL = @as(u32, 4110);
+pub const WIA_IPA_BITS_PER_CHANNEL_STR = "Bits Per Channel";
+pub const WIA_IPA_BUFFER_SIZE = @as(u32, 4118);
+pub const WIA_IPA_BUFFER_SIZE_STR = "Buffer Size";
+pub const WIA_IPA_BYTES_PER_LINE = @as(u32, 4113);
+pub const WIA_IPA_BYTES_PER_LINE_STR = "Bytes Per Line";
+pub const WIA_IPA_CHANNELS_PER_PIXEL = @as(u32, 4109);
+pub const WIA_IPA_CHANNELS_PER_PIXEL_STR = "Channels Per Pixel";
+pub const WIA_IPA_COLOR_PROFILE = @as(u32, 4117);
+pub const WIA_IPA_COLOR_PROFILE_STR = "Color Profiles";
+pub const WIA_IPA_COMPRESSION = @as(u32, 4107);
+pub const WIA_IPA_COMPRESSION_STR = "Compression";
+pub const WIA_IPA_DATATYPE = @as(u32, 4103);
+pub const WIA_IPA_DATATYPE_STR = "Data Type";
+pub const WIA_IPA_DEPTH = @as(u32, 4104);
+pub const WIA_IPA_DEPTH_STR = "Bits Per Pixel";
+pub const WIA_IPA_FILENAME_EXTENSION = @as(u32, 4123);
+pub const WIA_IPA_FILENAME_EXTENSION_STR = "Filename extension";
+pub const WIA_IPA_FIRST = @as(u32, 4098);
+pub const WIA_IPA_FORMAT = @as(u32, 4106);
+pub const WIA_IPA_FORMAT_STR = "Format";
+pub const WIA_IPA_FULL_ITEM_NAME = @as(u32, 4099);
+pub const WIA_IPA_FULL_ITEM_NAME_STR = "Full Item Name";
+pub const WIA_IPA_GAMMA_CURVES = @as(u32, 4115);
+pub const WIA_IPA_GAMMA_CURVES_STR = "Gamma Curves";
+pub const WIA_IPA_ICM_PROFILE_NAME = @as(u32, 4120);
+pub const WIA_IPA_ICM_PROFILE_NAME_STR = "Color Profile Name";
+pub const WIA_IPA_ITEM_CATEGORY = @as(u32, 4125);
+pub const WIA_IPA_ITEM_CATEGORY_STR = "Item Category";
+pub const WIA_IPA_ITEM_FLAGS = @as(u32, 4101);
+pub const WIA_IPA_ITEM_FLAGS_STR = "Item Flags";
+pub const WIA_IPA_ITEM_NAME = @as(u32, 4098);
+pub const WIA_IPA_ITEM_NAME_STR = "Item Name";
+pub const WIA_IPA_ITEM_SIZE = @as(u32, 4116);
+pub const WIA_IPA_ITEM_SIZE_STR = "Item Size";
+pub const WIA_IPA_ITEM_TIME = @as(u32, 4100);
+pub const WIA_IPA_ITEM_TIME_STR = "Item Time Stamp";
+pub const WIA_IPA_ITEMS_STORED = @as(u32, 4127);
+pub const WIA_IPA_ITEMS_STORED_STR = "Items Stored";
+pub const WIA_IPA_MIN_BUFFER_SIZE = @as(u32, 4118);
+pub const WIA_IPA_MIN_BUFFER_SIZE_STR = "Buffer Size";
+pub const WIA_IPA_NUMBER_OF_LINES = @as(u32, 4114);
+pub const WIA_IPA_NUMBER_OF_LINES_STR = "Number of Lines";
+pub const WIA_IPA_PIXELS_PER_LINE = @as(u32, 4112);
+pub const WIA_IPA_PIXELS_PER_LINE_STR = "Pixels Per Line";
+pub const WIA_IPA_PLANAR = @as(u32, 4111);
+pub const WIA_IPA_PLANAR_STR = "Planar";
+pub const WIA_IPA_PREFERRED_FORMAT = @as(u32, 4105);
+pub const WIA_IPA_PREFERRED_FORMAT_STR = "Preferred Format";
+pub const WIA_IPA_PROP_STREAM_COMPAT_ID = @as(u32, 4122);
+pub const WIA_IPA_PROP_STREAM_COMPAT_ID_STR = "Stream Compatibility ID";
+pub const WIA_IPA_RAW_BITS_PER_CHANNEL = @as(u32, 4128);
+pub const WIA_IPA_RAW_BITS_PER_CHANNEL_STR = "Raw Bits Per Channel";
+pub const WIA_IPA_REGION_TYPE = @as(u32, 4119);
+pub const WIA_IPA_REGION_TYPE_STR = "Region Type";
+pub const WIA_IPA_SUPPRESS_PROPERTY_PAGE = @as(u32, 4124);
+pub const WIA_IPA_SUPPRESS_PROPERTY_PAGE_STR = "Suppress a property page";
+pub const WIA_IPA_TYMED = @as(u32, 4108);
+pub const WIA_IPA_TYMED_STR = "Media Type";
+pub const WIA_IPA_UPLOAD_ITEM_SIZE = @as(u32, 4126);
+pub const WIA_IPA_UPLOAD_ITEM_SIZE_STR = "Upload Item Size";
+pub const WIA_IPC_AUDIO_AVAILABLE = @as(u32, 5125);
+pub const WIA_IPC_AUDIO_AVAILABLE_STR = "Audio Available";
+pub const WIA_IPC_AUDIO_DATA = @as(u32, 5127);
+pub const WIA_IPC_AUDIO_DATA_FORMAT = @as(u32, 5126);
+pub const WIA_IPC_AUDIO_DATA_FORMAT_STR = "Audio Format";
+pub const WIA_IPC_AUDIO_DATA_STR = "Audio Data";
+pub const WIA_IPC_FIRST = @as(u32, 5122);
+pub const WIA_IPC_NUM_PICT_PER_ROW = @as(u32, 5128);
+pub const WIA_IPC_NUM_PICT_PER_ROW_STR = "Pictures per Row";
+pub const WIA_IPC_SEQUENCE = @as(u32, 5129);
+pub const WIA_IPC_SEQUENCE_STR = "Sequence Number";
+pub const WIA_IPC_THUMB_HEIGHT = @as(u32, 5124);
+pub const WIA_IPC_THUMB_HEIGHT_STR = "Thumbnail Height";
+pub const WIA_IPC_THUMB_WIDTH = @as(u32, 5123);
+pub const WIA_IPC_THUMB_WIDTH_STR = "Thumbnail Width";
+pub const WIA_IPC_THUMBNAIL = @as(u32, 5122);
+pub const WIA_IPC_THUMBNAIL_STR = "Thumbnail Data";
+pub const WIA_IPC_TIMEDELAY = @as(u32, 5130);
+pub const WIA_IPC_TIMEDELAY_STR = "Time Delay";
+pub const WIA_IPS_ALARM = @as(u32, 4185);
+pub const WIA_IPS_ALARM_STR = "Alarm";
+pub const WIA_IPS_AUTO_CROP = @as(u32, 4170);
+pub const WIA_IPS_AUTO_CROP_STR = "Auto-Crop";
+pub const WIA_IPS_AUTO_DESKEW = @as(u32, 3107);
+pub const WIA_IPS_AUTO_DESKEW_STR = "Automatic Deskew";
+pub const WIA_IPS_BARCODE_READER = @as(u32, 4150);
+pub const WIA_IPS_BARCODE_READER_STR = "Barcode Reader";
+pub const WIA_IPS_BARCODE_SEARCH_DIRECTION = @as(u32, 4152);
+pub const WIA_IPS_BARCODE_SEARCH_DIRECTION_STR = "Barcode Search Direction";
+pub const WIA_IPS_BARCODE_SEARCH_TIMEOUT = @as(u32, 4154);
+pub const WIA_IPS_BARCODE_SEARCH_TIMEOUT_STR = "Barcode Search Timeout";
+pub const WIA_IPS_BLANK_PAGES = @as(u32, 4167);
+pub const WIA_IPS_BLANK_PAGES_SENSITIVITY = @as(u32, 4192);
+pub const WIA_IPS_BLANK_PAGES_SENSITIVITY_STR = "Blank Pages Sensitivity";
+pub const WIA_IPS_BLANK_PAGES_STR = "Blank Pages";
+pub const WIA_IPS_BRIGHTNESS = @as(u32, 6154);
+pub const WIA_IPS_BRIGHTNESS_STR = "Brightness";
+pub const WIA_IPS_COLOR_DROP = @as(u32, 4176);
+pub const WIA_IPS_COLOR_DROP_BLUE = @as(u32, 4179);
+pub const WIA_IPS_COLOR_DROP_BLUE_STR = "Color Drop Blue";
+pub const WIA_IPS_COLOR_DROP_GREEN = @as(u32, 4178);
+pub const WIA_IPS_COLOR_DROP_GREEN_STR = "Color Drop Green";
+pub const WIA_IPS_COLOR_DROP_MULTI = @as(u32, 4191);
+pub const WIA_IPS_COLOR_DROP_MULTI_STR = "Color Drop Multiple";
+pub const WIA_IPS_COLOR_DROP_RED = @as(u32, 4177);
+pub const WIA_IPS_COLOR_DROP_RED_STR = "Color Drop Red";
+pub const WIA_IPS_COLOR_DROP_STR = "Color Drop";
+pub const WIA_IPS_CONTRAST = @as(u32, 6155);
+pub const WIA_IPS_CONTRAST_STR = "Contrast";
+pub const WIA_IPS_CUR_INTENT = @as(u32, 6146);
+pub const WIA_IPS_CUR_INTENT_STR = "Current Intent";
+pub const WIA_IPS_DESKEW_X = @as(u32, 6162);
+pub const WIA_IPS_DESKEW_X_STR = "DeskewX";
+pub const WIA_IPS_DESKEW_Y = @as(u32, 6163);
+pub const WIA_IPS_DESKEW_Y_STR = "DeskewY";
+pub const WIA_IPS_DOCUMENT_HANDLING_SELECT = @as(u32, 3088);
+pub const WIA_IPS_DOCUMENT_HANDLING_SELECT_STR = "Document Handling Select";
+pub const WIA_IPS_ENABLED_BARCODE_TYPES = @as(u32, 4156);
+pub const WIA_IPS_ENABLED_BARCODE_TYPES_STR = "Enabled Barcode Types";
+pub const WIA_IPS_ENABLED_PATCH_CODE_TYPES = @as(u32, 4163);
+pub const WIA_IPS_ENABLED_PATCH_CODE_TYPES_STR = "Enabled Path Code Types";
+pub const WIA_IPS_FEEDER_CONTROL = @as(u32, 4182);
+pub const WIA_IPS_FEEDER_CONTROL_STR = "Feeder Control";
+pub const WIA_IPS_FILM_NODE_NAME = @as(u32, 4129);
+pub const WIA_IPS_FILM_NODE_NAME_STR = "Film Node Name";
+pub const WIA_IPS_FILM_SCAN_MODE = @as(u32, 3104);
+pub const WIA_IPS_FILM_SCAN_MODE_STR = "Film Scan Mode";
+pub const WIA_IPS_FIRST = @as(u32, 6146);
+pub const WIA_IPS_INVERT = @as(u32, 6160);
+pub const WIA_IPS_INVERT_STR = "Invert";
+pub const WIA_IPS_JOB_SEPARATORS = @as(u32, 4165);
+pub const WIA_IPS_JOB_SEPARATORS_STR = "Job Separators";
+pub const WIA_IPS_LAMP = @as(u32, 3105);
+pub const WIA_IPS_LAMP_AUTO_OFF = @as(u32, 3106);
+pub const WIA_IPS_LAMP_AUTO_OFF_STR = "Lamp Auto Off";
+pub const WIA_IPS_LAMP_STR = "Lamp";
+pub const WIA_IPS_LONG_DOCUMENT = @as(u32, 4166);
+pub const WIA_IPS_LONG_DOCUMENT_STR = "Long Document";
+pub const WIA_IPS_MAX_HORIZONTAL_SIZE = @as(u32, 6165);
+pub const WIA_IPS_MAX_HORIZONTAL_SIZE_STR = "Maximum Horizontal Scan Size";
+pub const WIA_IPS_MAX_VERTICAL_SIZE = @as(u32, 6166);
+pub const WIA_IPS_MAX_VERTICAL_SIZE_STR = "Maximum Vertical Scan Size";
+pub const WIA_IPS_MAXIMUM_BARCODE_SEARCH_RETRIES = @as(u32, 4153);
+pub const WIA_IPS_MAXIMUM_BARCODE_SEARCH_RETRIES_STR = "Barcode Search Retries";
+pub const WIA_IPS_MAXIMUM_BARCODES_PER_PAGE = @as(u32, 4151);
+pub const WIA_IPS_MAXIMUM_BARCODES_PER_PAGE_STR = "Maximum Barcodes Per Page";
+pub const WIA_IPS_MICR_READER = @as(u32, 4164);
+pub const WIA_IPS_MICR_READER_STR = "MICR Reader";
+pub const WIA_IPS_MIN_HORIZONTAL_SIZE = @as(u32, 6167);
+pub const WIA_IPS_MIN_HORIZONTAL_SIZE_STR = "Minimum Horizontal Scan Size";
+pub const WIA_IPS_MIN_VERTICAL_SIZE = @as(u32, 6168);
+pub const WIA_IPS_MIN_VERTICAL_SIZE_STR = "Minimum Vertical Scan Size";
+pub const WIA_IPS_MIRROR = @as(u32, 6158);
+pub const WIA_IPS_MIRROR_STR = "Mirror";
+pub const WIA_IPS_MULTI_FEED = @as(u32, 4168);
+pub const WIA_IPS_MULTI_FEED_DETECT_METHOD = @as(u32, 4193);
+pub const WIA_IPS_MULTI_FEED_DETECT_METHOD_STR = "Multi-Feed Detection Method";
+pub const WIA_IPS_MULTI_FEED_SENSITIVITY = @as(u32, 4169);
+pub const WIA_IPS_MULTI_FEED_SENSITIVITY_STR = "Multi-Feed Sensitivity";
+pub const WIA_IPS_MULTI_FEED_STR = "Multi-Feed";
+pub const WIA_IPS_OPTICAL_XRES = @as(u32, 3090);
+pub const WIA_IPS_OPTICAL_XRES_STR = "Horizontal Optical Resolution";
+pub const WIA_IPS_OPTICAL_YRES = @as(u32, 3091);
+pub const WIA_IPS_OPTICAL_YRES_STR = "Vertical Optical Resolution";
+pub const WIA_IPS_ORIENTATION = @as(u32, 6156);
+pub const WIA_IPS_ORIENTATION_STR = "Orientation";
+pub const WIA_IPS_OVER_SCAN = @as(u32, 4171);
+pub const WIA_IPS_OVER_SCAN_BOTTOM = @as(u32, 4175);
+pub const WIA_IPS_OVER_SCAN_BOTTOM_STR = "Overscan Bottom";
+pub const WIA_IPS_OVER_SCAN_LEFT = @as(u32, 4172);
+pub const WIA_IPS_OVER_SCAN_LEFT_STR = "Overscan Left";
+pub const WIA_IPS_OVER_SCAN_RIGHT = @as(u32, 4173);
+pub const WIA_IPS_OVER_SCAN_RIGHT_STR = "Overscan Right";
+pub const WIA_IPS_OVER_SCAN_STR = "Overscan";
+pub const WIA_IPS_OVER_SCAN_TOP = @as(u32, 4174);
+pub const WIA_IPS_OVER_SCAN_TOP_STR = "Overscan Top";
+pub const WIA_IPS_PAGE_HEIGHT = @as(u32, 3099);
+pub const WIA_IPS_PAGE_HEIGHT_STR = "Page Height";
+pub const WIA_IPS_PAGE_SIZE = @as(u32, 3097);
+pub const WIA_IPS_PAGE_SIZE_STR = "Page Size";
+pub const WIA_IPS_PAGE_WIDTH = @as(u32, 3098);
+pub const WIA_IPS_PAGE_WIDTH_STR = "Page Width";
+pub const WIA_IPS_PAGES = @as(u32, 3096);
+pub const WIA_IPS_PAGES_STR = "Pages";
+pub const WIA_IPS_PATCH_CODE_READER = @as(u32, 4157);
+pub const WIA_IPS_PATCH_CODE_READER_STR = "Patch Code Reader";
+pub const WIA_IPS_PHOTOMETRIC_INTERP = @as(u32, 6153);
+pub const WIA_IPS_PHOTOMETRIC_INTERP_STR = "Photometric Interpretation";
+pub const WIA_IPS_PREVIEW = @as(u32, 3100);
+pub const WIA_IPS_PREVIEW_STR = "Preview";
+pub const WIA_IPS_PREVIEW_TYPE = @as(u32, 3111);
+pub const WIA_IPS_PREVIEW_TYPE_STR = "Preview Type";
+pub const WIA_IPS_PRINTER_ENDORSER = @as(u32, 4130);
+pub const WIA_IPS_PRINTER_ENDORSER_CHARACTER_ROTATION = @as(u32, 4187);
+pub const WIA_IPS_PRINTER_ENDORSER_CHARACTER_ROTATION_STR = "Printer/Endorser Character Rotation";
+pub const WIA_IPS_PRINTER_ENDORSER_COUNTER = @as(u32, 4132);
+pub const WIA_IPS_PRINTER_ENDORSER_COUNTER_DIGITS = @as(u32, 4190);
+pub const WIA_IPS_PRINTER_ENDORSER_COUNTER_DIGITS_STR = "Printer/Endorser Counter Digits";
+pub const WIA_IPS_PRINTER_ENDORSER_COUNTER_STR = "Printer/Endorser Counter";
+pub const WIA_IPS_PRINTER_ENDORSER_FONT_TYPE = @as(u32, 4184);
+pub const WIA_IPS_PRINTER_ENDORSER_FONT_TYPE_STR = "Printer/Endorser Font Type";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS = @as(u32, 4142);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_DOWNLOAD = @as(u32, 4149);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_DOWNLOAD_STR = "Printer/Endorser Graphics Download";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_HEIGHT = @as(u32, 4147);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_HEIGHT_STR = "Printer/Endorser Graphics Maximum Height";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_WIDTH = @as(u32, 4145);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MAX_WIDTH_STR = "Printer/Endorser Graphics Maximum Width";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_HEIGHT = @as(u32, 4146);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_HEIGHT_STR = "Printer/Endorser Graphics Minimum Height";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_WIDTH = @as(u32, 4144);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_MIN_WIDTH_STR = "Printer/Endorser Graphics Minimum Width";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_POSITION = @as(u32, 4143);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_POSITION_STR = "Printer/Endorser Graphics Position";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_STR = "Printer/Endorser Graphics";
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_UPLOAD = @as(u32, 4148);
+pub const WIA_IPS_PRINTER_ENDORSER_GRAPHICS_UPLOAD_STR = "Printer/Endorser Graphics Upload";
+pub const WIA_IPS_PRINTER_ENDORSER_INK = @as(u32, 4186);
+pub const WIA_IPS_PRINTER_ENDORSER_INK_STR = "Printer/Endorser Ink";
+pub const WIA_IPS_PRINTER_ENDORSER_MAX_CHARACTERS = @as(u32, 4188);
+pub const WIA_IPS_PRINTER_ENDORSER_MAX_CHARACTERS_STR = "Printer/Endorser Maximum Characters";
+pub const WIA_IPS_PRINTER_ENDORSER_MAX_GRAPHICS = @as(u32, 4189);
+pub const WIA_IPS_PRINTER_ENDORSER_MAX_GRAPHICS_STR = "Printer/Endorser Maximum Graphics";
+pub const WIA_IPS_PRINTER_ENDORSER_NUM_LINES = @as(u32, 4136);
+pub const WIA_IPS_PRINTER_ENDORSER_NUM_LINES_STR = "Printer/Endorser Lines";
+pub const WIA_IPS_PRINTER_ENDORSER_ORDER = @as(u32, 4131);
+pub const WIA_IPS_PRINTER_ENDORSER_ORDER_STR = "Printer/Endorser Order";
+pub const WIA_IPS_PRINTER_ENDORSER_PADDING = @as(u32, 4183);
+pub const WIA_IPS_PRINTER_ENDORSER_PADDING_STR = "Printer/Endorser Padding";
+pub const WIA_IPS_PRINTER_ENDORSER_STEP = @as(u32, 4133);
+pub const WIA_IPS_PRINTER_ENDORSER_STEP_STR = "Printer/Endorser Step";
+pub const WIA_IPS_PRINTER_ENDORSER_STR = "Printer/Endorser";
+pub const WIA_IPS_PRINTER_ENDORSER_STRING = @as(u32, 4137);
+pub const WIA_IPS_PRINTER_ENDORSER_STRING_STR = "Printer/Endorser String";
+pub const WIA_IPS_PRINTER_ENDORSER_TEXT_DOWNLOAD = @as(u32, 4141);
+pub const WIA_IPS_PRINTER_ENDORSER_TEXT_DOWNLOAD_STR = "Printer/Endorser Text Download";
+pub const WIA_IPS_PRINTER_ENDORSER_TEXT_UPLOAD = @as(u32, 4140);
+pub const WIA_IPS_PRINTER_ENDORSER_TEXT_UPLOAD_STR = "Printer/Endorser Text Upload";
+pub const WIA_IPS_PRINTER_ENDORSER_VALID_CHARACTERS = @as(u32, 4138);
+pub const WIA_IPS_PRINTER_ENDORSER_VALID_CHARACTERS_STR = "Printer/Endorser Valid Characters";
+pub const WIA_IPS_PRINTER_ENDORSER_VALID_FORMAT_SPECIFIERS = @as(u32, 4139);
+pub const WIA_IPS_PRINTER_ENDORSER_VALID_FORMAT_SPECIFIERS_STR = "Printer/Endorser Valid Format Specifiers";
+pub const WIA_IPS_PRINTER_ENDORSER_XOFFSET = @as(u32, 4134);
+pub const WIA_IPS_PRINTER_ENDORSER_XOFFSET_STR = "Printer/Endorser Horizontal Offset";
+pub const WIA_IPS_PRINTER_ENDORSER_YOFFSET = @as(u32, 4135);
+pub const WIA_IPS_PRINTER_ENDORSER_YOFFSET_STR = "Printer/Endorser Vertical Offset";
+pub const WIA_IPS_ROTATION = @as(u32, 6157);
+pub const WIA_IPS_ROTATION_STR = "Rotation";
+pub const WIA_IPS_SCAN_AHEAD = @as(u32, 4180);
+pub const WIA_IPS_SCAN_AHEAD_CAPACITY = @as(u32, 4181);
+pub const WIA_IPS_SCAN_AHEAD_CAPACITY_STR = "Scan Ahead Capacity";
+pub const WIA_IPS_SCAN_AHEAD_STR = "Scan Ahead";
+pub const WIA_IPS_SEGMENTATION = @as(u32, 6164);
+pub const WIA_IPS_SEGMENTATION_STR = "Segmentation";
+pub const WIA_IPS_SHEET_FEEDER_REGISTRATION = @as(u32, 3078);
+pub const WIA_IPS_SHEET_FEEDER_REGISTRATION_STR = "Sheet Feeder Registration";
+pub const WIA_IPS_SHOW_PREVIEW_CONTROL = @as(u32, 3103);
+pub const WIA_IPS_SHOW_PREVIEW_CONTROL_STR = "Show preview control";
+pub const WIA_IPS_SUPPORTED_BARCODE_TYPES = @as(u32, 4155);
+pub const WIA_IPS_SUPPORTED_BARCODE_TYPES_STR = "Supported Barcode Types";
+pub const WIA_IPS_SUPPORTED_PATCH_CODE_TYPES = @as(u32, 4162);
+pub const WIA_IPS_SUPPORTED_PATCH_CODE_TYPES_STR = "Supported Patch Code Types";
+pub const WIA_IPS_SUPPORTS_CHILD_ITEM_CREATION = @as(u32, 3108);
+pub const WIA_IPS_SUPPORTS_CHILD_ITEM_CREATION_STR = "Supports Child Item Creation";
+pub const WIA_IPS_THRESHOLD = @as(u32, 6159);
+pub const WIA_IPS_THRESHOLD_STR = "Threshold";
+pub const WIA_IPS_TRANSFER_CAPABILITIES = @as(u32, 6169);
+pub const WIA_IPS_TRANSFER_CAPABILITIES_STR = "Transfer Capabilities";
+pub const WIA_IPS_WARM_UP_TIME = @as(u32, 6161);
+pub const WIA_IPS_WARM_UP_TIME_STR = "Lamp Warm up Time";
+pub const WIA_IPS_XEXTENT = @as(u32, 6151);
+pub const WIA_IPS_XEXTENT_STR = "Horizontal Extent";
+pub const WIA_IPS_XPOS = @as(u32, 6149);
+pub const WIA_IPS_XPOS_STR = "Horizontal Start Position";
+pub const WIA_IPS_XRES = @as(u32, 6147);
+pub const WIA_IPS_XRES_STR = "Horizontal Resolution";
+pub const WIA_IPS_XSCALING = @as(u32, 3109);
+pub const WIA_IPS_XSCALING_STR = "Horizontal Scaling";
+pub const WIA_IPS_YEXTENT = @as(u32, 6152);
+pub const WIA_IPS_YEXTENT_STR = "Vertical Extent";
+pub const WIA_IPS_YPOS = @as(u32, 6150);
+pub const WIA_IPS_YPOS_STR = "Vertical Start Position";
+pub const WIA_IPS_YRES = @as(u32, 6148);
+pub const WIA_IPS_YRES_STR = "Vertical Resolution";
+pub const WIA_IPS_YSCALING = @as(u32, 3110);
+pub const WIA_IPS_YSCALING_STR = "Vertical Scaling";
 pub const WIA_IS_DEFAULT_HANDLER = @as(u32, 1);
-pub const WIA_EVENT_DEVICE_DISCONNECTED_STR = "Device Disconnected";
-pub const WIA_EVENT_DEVICE_CONNECTED_STR = "Device Connected";
-pub const TYMED_CALLBACK = @as(u32, 128);
-pub const TYMED_MULTIPAGE_FILE = @as(u32, 256);
-pub const TYMED_MULTIPAGE_CALLBACK = @as(u32, 512);
-pub const IT_MSG_DATA_HEADER = @as(u32, 1);
-pub const IT_MSG_DATA = @as(u32, 2);
-pub const IT_MSG_STATUS = @as(u32, 3);
-pub const IT_MSG_TERMINATION = @as(u32, 4);
-pub const IT_MSG_NEW_PAGE = @as(u32, 5);
-pub const IT_MSG_FILE_PREVIEW_DATA = @as(u32, 6);
-pub const IT_MSG_FILE_PREVIEW_DATA_HEADER = @as(u32, 7);
-pub const IT_STATUS_TRANSFER_FROM_DEVICE = @as(u32, 1);
-pub const IT_STATUS_PROCESSING_DATA = @as(u32, 2);
-pub const IT_STATUS_TRANSFER_TO_CLIENT = @as(u32, 4);
-pub const IT_STATUS_MASK = @as(u32, 7);
-pub const WIA_TRANSFER_ACQUIRE_CHILDREN = @as(u32, 1);
-pub const WIA_TRANSFER_MSG_STATUS = @as(u32, 1);
-pub const WIA_TRANSFER_MSG_END_OF_STREAM = @as(u32, 2);
-pub const WIA_TRANSFER_MSG_END_OF_TRANSFER = @as(u32, 3);
-pub const WIA_TRANSFER_MSG_DEVICE_STATUS = @as(u32, 5);
-pub const WIA_TRANSFER_MSG_NEW_PAGE = @as(u32, 6);
-pub const WIA_MAJOR_EVENT_DEVICE_CONNECT = @as(u32, 1);
-pub const WIA_MAJOR_EVENT_DEVICE_DISCONNECT = @as(u32, 2);
-pub const WIA_MAJOR_EVENT_PICTURE_TAKEN = @as(u32, 3);
-pub const WIA_MAJOR_EVENT_PICTURE_DELETED = @as(u32, 4);
-pub const WIA_DEVICE_NOT_CONNECTED = @as(u32, 0);
-pub const WIA_DEVICE_CONNECTED = @as(u32, 1);
-pub const WIA_DEVICE_COMMANDS = @as(u32, 1);
-pub const WIA_DEVICE_EVENTS = @as(u32, 2);
-pub const WIA_DEVINFO_ENUM_ALL = @as(u32, 15);
-pub const WIA_DEVINFO_ENUM_LOCAL = @as(u32, 16);
-pub const WiaItemTypeFree = @as(u32, 0);
-pub const WiaItemTypeImage = @as(u32, 1);
-pub const WiaItemTypeFile = @as(u32, 2);
-pub const WiaItemTypeFolder = @as(u32, 4);
-pub const WiaItemTypeRoot = @as(u32, 8);
-pub const WiaItemTypeAnalyze = @as(u32, 16);
-pub const WiaItemTypeAudio = @as(u32, 32);
-pub const WiaItemTypeDevice = @as(u32, 64);
-pub const WiaItemTypeDeleted = @as(u32, 128);
-pub const WiaItemTypeDisconnected = @as(u32, 256);
-pub const WiaItemTypeHPanorama = @as(u32, 512);
-pub const WiaItemTypeVPanorama = @as(u32, 1024);
-pub const WiaItemTypeBurst = @as(u32, 2048);
-pub const WiaItemTypeStorage = @as(u32, 4096);
-pub const WiaItemTypeTransfer = @as(u32, 8192);
-pub const WiaItemTypeGenerated = @as(u32, 16384);
-pub const WiaItemTypeHasAttachments = @as(u32, 32768);
-pub const WiaItemTypeVideo = @as(u32, 65536);
-pub const WiaItemTypeRemoved = @as(u32, 2147483648);
-pub const WiaItemTypeDocument = @as(u32, 262144);
-pub const WiaItemTypeProgrammableDataSource = @as(u32, 524288);
-pub const WiaItemTypeMask = @as(u32, 2148532223);
-pub const WIA_MAX_CTX_SIZE = @as(u32, 16777216);
-pub const WIA_PROP_READ = @as(u32, 1);
-pub const WIA_PROP_WRITE = @as(u32, 2);
-pub const WIA_PROP_SYNC_REQUIRED = @as(u32, 4);
-pub const WIA_PROP_NONE = @as(u32, 8);
-pub const WIA_PROP_RANGE = @as(u32, 16);
-pub const WIA_PROP_LIST = @as(u32, 32);
-pub const WIA_PROP_FLAG = @as(u32, 64);
-pub const WIA_PROP_CACHEABLE = @as(u32, 65536);
-pub const COPY_PARENT_PROPERTY_VALUES = @as(u32, 1073741824);
 pub const WIA_ITEM_CAN_BE_DELETED = @as(u32, 128);
 pub const WIA_ITEM_READ = @as(u32, 1);
 pub const WIA_ITEM_WRITE = @as(u32, 2);
-pub const WIA_RANGE_MIN = @as(u32, 0);
-pub const WIA_RANGE_NOM = @as(u32, 1);
-pub const WIA_RANGE_MAX = @as(u32, 2);
-pub const WIA_RANGE_STEP = @as(u32, 3);
-pub const WIA_RANGE_NUM_ELEMS = @as(u32, 4);
+pub const WIA_LAMP_OFF = @as(u32, 1);
+pub const WIA_LAMP_ON = @as(u32, 0);
+pub const WIA_LINE_ORDER_BOTTOM_TO_TOP = @as(u32, 2);
+pub const WIA_LINE_ORDER_TOP_TO_BOTTOM = @as(u32, 1);
 pub const WIA_LIST_COUNT = @as(u32, 0);
 pub const WIA_LIST_NOM = @as(u32, 1);
-pub const WIA_LIST_VALUES = @as(u32, 2);
 pub const WIA_LIST_NUM_ELEMS = @as(u32, 2);
-pub const WIA_FLAG_NOM = @as(u32, 0);
-pub const WIA_FLAG_VALUES = @as(u32, 1);
-pub const WIA_FLAG_NUM_ELEMS = @as(u32, 2);
-pub const WIA_DIP_FIRST = @as(u32, 2);
-pub const WIA_IPA_FIRST = @as(u32, 4098);
-pub const WIA_DPF_FIRST = @as(u32, 3330);
-pub const WIA_IPS_FIRST = @as(u32, 6146);
-pub const WIA_DPS_FIRST = @as(u32, 3074);
-pub const WIA_IPC_FIRST = @as(u32, 5122);
+pub const WIA_LIST_VALUES = @as(u32, 2);
+pub const WIA_LONG_DOCUMENT_DISABLED = @as(u32, 0);
+pub const WIA_LONG_DOCUMENT_ENABLED = @as(u32, 1);
+pub const WIA_LONG_DOCUMENT_SPLIT = @as(u32, 2);
+pub const WIA_MAJOR_EVENT_DEVICE_CONNECT = @as(u32, 1);
+pub const WIA_MAJOR_EVENT_DEVICE_DISCONNECT = @as(u32, 2);
+pub const WIA_MAJOR_EVENT_PICTURE_DELETED = @as(u32, 4);
+pub const WIA_MAJOR_EVENT_PICTURE_TAKEN = @as(u32, 3);
+pub const WIA_MAX_CTX_SIZE = @as(u32, 16777216);
+pub const WIA_MICR_READER_AUTO = @as(u32, 1);
+pub const WIA_MICR_READER_DISABLED = @as(u32, 0);
+pub const WIA_MICR_READER_FEEDER_BACK = @as(u32, 4);
+pub const WIA_MICR_READER_FEEDER_DUPLEX = @as(u32, 5);
+pub const WIA_MICR_READER_FEEDER_FRONT = @as(u32, 3);
+pub const WIA_MICR_READER_FLATBED = @as(u32, 2);
+pub const WIA_MULTI_FEED_DETECT_CONTINUE = @as(u32, 3);
+pub const WIA_MULTI_FEED_DETECT_DISABLED = @as(u32, 0);
+pub const WIA_MULTI_FEED_DETECT_METHOD_LENGTH = @as(u32, 0);
+pub const WIA_MULTI_FEED_DETECT_METHOD_OVERLAP = @as(u32, 1);
+pub const WIA_MULTI_FEED_DETECT_STOP_ERROR = @as(u32, 1);
+pub const WIA_MULTI_FEED_DETECT_STOP_SUCCESS = @as(u32, 2);
+pub const WIA_NOTIFICATION_EVENT = @as(u32, 1);
+pub const WIA_NUM_DIP = @as(u32, 16);
 pub const WIA_NUM_IPC = @as(u32, 9);
-pub const WIA_RESERVED_FOR_NEW_PROPS = @as(u32, 1024);
-pub const WHITEBALANCE_MANUAL = @as(u32, 1);
-pub const WHITEBALANCE_AUTO = @as(u32, 2);
-pub const WHITEBALANCE_ONEPUSH_AUTO = @as(u32, 3);
-pub const WHITEBALANCE_DAYLIGHT = @as(u32, 4);
-pub const WHITEBALANCE_FLORESCENT = @as(u32, 5);
-pub const WHITEBALANCE_TUNGSTEN = @as(u32, 6);
-pub const WHITEBALANCE_FLASH = @as(u32, 7);
-pub const FOCUSMODE_MANUAL = @as(u32, 1);
-pub const FOCUSMODE_AUTO = @as(u32, 2);
-pub const FOCUSMODE_MACROAUTO = @as(u32, 3);
-pub const EXPOSUREMETERING_AVERAGE = @as(u32, 1);
-pub const EXPOSUREMETERING_CENTERWEIGHT = @as(u32, 2);
-pub const EXPOSUREMETERING_MULTISPOT = @as(u32, 3);
-pub const EXPOSUREMETERING_CENTERSPOT = @as(u32, 4);
-pub const FLASHMODE_AUTO = @as(u32, 1);
-pub const FLASHMODE_OFF = @as(u32, 2);
-pub const FLASHMODE_FILL = @as(u32, 3);
-pub const FLASHMODE_REDEYE_AUTO = @as(u32, 4);
-pub const FLASHMODE_REDEYE_FILL = @as(u32, 5);
-pub const FLASHMODE_EXTERNALSYNC = @as(u32, 6);
-pub const EXPOSUREMODE_MANUAL = @as(u32, 1);
-pub const EXPOSUREMODE_AUTO = @as(u32, 2);
-pub const EXPOSUREMODE_APERTURE_PRIORITY = @as(u32, 3);
-pub const EXPOSUREMODE_SHUTTER_PRIORITY = @as(u32, 4);
-pub const EXPOSUREMODE_PROGRAM_CREATIVE = @as(u32, 5);
-pub const EXPOSUREMODE_PROGRAM_ACTION = @as(u32, 6);
-pub const EXPOSUREMODE_PORTRAIT = @as(u32, 7);
-pub const CAPTUREMODE_NORMAL = @as(u32, 1);
-pub const CAPTUREMODE_BURST = @as(u32, 2);
-pub const CAPTUREMODE_TIMELAPSE = @as(u32, 3);
-pub const EFFECTMODE_STANDARD = @as(u32, 1);
-pub const EFFECTMODE_BW = @as(u32, 2);
-pub const EFFECTMODE_SEPIA = @as(u32, 3);
-pub const FOCUSMETERING_CENTERSPOT = @as(u32, 1);
-pub const FOCUSMETERING_MULTISPOT = @as(u32, 2);
-pub const POWERMODE_LINE = @as(u32, 1);
-pub const POWERMODE_BATTERY = @as(u32, 2);
-pub const LEFT_JUSTIFIED = @as(u32, 0);
-pub const CENTERED = @as(u32, 1);
-pub const RIGHT_JUSTIFIED = @as(u32, 2);
-pub const TOP_JUSTIFIED = @as(u32, 0);
-pub const BOTTOM_JUSTIFIED = @as(u32, 2);
-pub const PORTRAIT = @as(u32, 0);
-pub const LANSCAPE = @as(u32, 1);
-pub const LANDSCAPE = @as(u32, 1);
-pub const ROT180 = @as(u32, 2);
-pub const ROT270 = @as(u32, 3);
-pub const MIRRORED = @as(u32, 1);
-pub const FEED = @as(u32, 1);
-pub const FLAT = @as(u32, 2);
-pub const DUP = @as(u32, 4);
-pub const DETECT_FLAT = @as(u32, 8);
-pub const DETECT_SCAN = @as(u32, 16);
-pub const DETECT_FEED = @as(u32, 32);
-pub const DETECT_DUP = @as(u32, 64);
-pub const DETECT_FEED_AVAIL = @as(u32, 128);
-pub const DETECT_DUP_AVAIL = @as(u32, 256);
-pub const FILM_TPA = @as(u32, 512);
-pub const DETECT_FILM_TPA = @as(u32, 1024);
-pub const STOR = @as(u32, 2048);
-pub const DETECT_STOR = @as(u32, 4096);
-pub const ADVANCED_DUP = @as(u32, 8192);
-pub const AUTO_SOURCE = @as(u32, 32768);
-pub const IMPRINTER = @as(u32, 65536);
-pub const ENDORSER = @as(u32, 131072);
-pub const BARCODE_READER = @as(u32, 262144);
-pub const PATCH_CODE_READER = @as(u32, 524288);
-pub const MICR_READER = @as(u32, 1048576);
-pub const FEED_READY = @as(u32, 1);
-pub const FLAT_READY = @as(u32, 2);
-pub const DUP_READY = @as(u32, 4);
-pub const FLAT_COVER_UP = @as(u32, 8);
-pub const PATH_COVER_UP = @as(u32, 16);
-pub const PAPER_JAM = @as(u32, 32);
-pub const FILM_TPA_READY = @as(u32, 64);
-pub const STORAGE_READY = @as(u32, 128);
-pub const STORAGE_FULL = @as(u32, 256);
-pub const MULTIPLE_FEED = @as(u32, 512);
-pub const DEVICE_ATTENTION = @as(u32, 1024);
-pub const LAMP_ERR = @as(u32, 2048);
-pub const IMPRINTER_READY = @as(u32, 4096);
-pub const ENDORSER_READY = @as(u32, 8192);
-pub const BARCODE_READER_READY = @as(u32, 16384);
-pub const PATCH_CODE_READER_READY = @as(u32, 32768);
-pub const MICR_READER_READY = @as(u32, 65536);
-pub const FEEDER = @as(u32, 1);
-pub const FLATBED = @as(u32, 2);
-pub const DUPLEX = @as(u32, 4);
-pub const FRONT_FIRST = @as(u32, 8);
-pub const BACK_FIRST = @as(u32, 16);
-pub const FRONT_ONLY = @as(u32, 32);
-pub const BACK_ONLY = @as(u32, 64);
-pub const NEXT_PAGE = @as(u32, 128);
-pub const PREFEED = @as(u32, 256);
-pub const AUTO_ADVANCE = @as(u32, 512);
-pub const ADVANCED_DUPLEX = @as(u32, 1024);
-pub const LIGHT_SOURCE_PRESENT_DETECT = @as(u32, 1);
-pub const LIGHT_SOURCE_PRESENT = @as(u32, 2);
-pub const LIGHT_SOURCE_DETECT_READY = @as(u32, 4);
-pub const LIGHT_SOURCE_READY = @as(u32, 8);
-pub const TRANSPARENCY_DYNAMIC_FRAME_SUPPORT = @as(u32, 1);
-pub const TRANSPARENCY_STATIC_FRAME_SUPPORT = @as(u32, 2);
-pub const LIGHT_SOURCE_SELECT = @as(u32, 1);
-pub const LIGHT_SOURCE_POSITIVE = @as(u32, 2);
-pub const LIGHT_SOURCE_NEGATIVE = @as(u32, 4);
-pub const WIA_SCAN_AHEAD_ALL = @as(u32, 0);
-pub const ALL_PAGES = @as(u32, 0);
-pub const WIA_FINAL_SCAN = @as(u32, 0);
-pub const WIA_PREVIEW_SCAN = @as(u32, 1);
-pub const WIA_SHOW_PREVIEW_CONTROL = @as(u32, 0);
-pub const WIA_DONT_SHOW_PREVIEW_CONTROL = @as(u32, 1);
-pub const WIA_ENDORSER_TOK_DATE = "$DATE$";
-pub const WIA_ENDORSER_TOK_TIME = "$TIME$";
-pub const WIA_ENDORSER_TOK_PAGE_COUNT = "$PAGE_COUNT$";
-pub const WIA_ENDORSER_TOK_DAY = "$DAY$";
-pub const WIA_ENDORSER_TOK_MONTH = "$MONTH$";
-pub const WIA_ENDORSER_TOK_YEAR = "$YEAR$";
+pub const WIA_ORDER_BGR = @as(u32, 1);
+pub const WIA_ORDER_RGB = @as(u32, 0);
+pub const WIA_OVER_SCAN_ALL = @as(u32, 3);
+pub const WIA_OVER_SCAN_DISABLED = @as(u32, 0);
+pub const WIA_OVER_SCAN_LEFT_RIGHT = @as(u32, 2);
+pub const WIA_OVER_SCAN_TOP_BOTTOM = @as(u32, 1);
+pub const WIA_PACKED_PIXEL = @as(u32, 0);
 pub const WIA_PAGE_A4 = @as(u32, 0);
-pub const WIA_PAGE_LETTER = @as(u32, 1);
-pub const WIA_PAGE_CUSTOM = @as(u32, 2);
-pub const WIA_PAGE_USLEGAL = @as(u32, 3);
-pub const WIA_PAGE_USLETTER = @as(u32, 1);
-pub const WIA_PAGE_USLEDGER = @as(u32, 4);
-pub const WIA_PAGE_USSTATEMENT = @as(u32, 5);
+pub const WIA_PAGE_AUTO = @as(u32, 100);
 pub const WIA_PAGE_BUSINESSCARD = @as(u32, 6);
+pub const WIA_PAGE_CUSTOM = @as(u32, 2);
+pub const WIA_PAGE_CUSTOM_BASE = @as(u32, 32768);
+pub const WIA_PAGE_DIN_2B = @as(u32, 52);
+pub const WIA_PAGE_DIN_4B = @as(u32, 53);
 pub const WIA_PAGE_ISO_A0 = @as(u32, 7);
 pub const WIA_PAGE_ISO_A1 = @as(u32, 8);
+pub const WIA_PAGE_ISO_A10 = @as(u32, 16);
 pub const WIA_PAGE_ISO_A2 = @as(u32, 9);
 pub const WIA_PAGE_ISO_A3 = @as(u32, 10);
 pub const WIA_PAGE_ISO_A4 = @as(u32, 0);
@@ -1072,9 +981,9 @@ pub const WIA_PAGE_ISO_A6 = @as(u32, 12);
 pub const WIA_PAGE_ISO_A7 = @as(u32, 13);
 pub const WIA_PAGE_ISO_A8 = @as(u32, 14);
 pub const WIA_PAGE_ISO_A9 = @as(u32, 15);
-pub const WIA_PAGE_ISO_A10 = @as(u32, 16);
 pub const WIA_PAGE_ISO_B0 = @as(u32, 17);
 pub const WIA_PAGE_ISO_B1 = @as(u32, 18);
+pub const WIA_PAGE_ISO_B10 = @as(u32, 27);
 pub const WIA_PAGE_ISO_B2 = @as(u32, 19);
 pub const WIA_PAGE_ISO_B3 = @as(u32, 20);
 pub const WIA_PAGE_ISO_B4 = @as(u32, 21);
@@ -1083,9 +992,9 @@ pub const WIA_PAGE_ISO_B6 = @as(u32, 23);
 pub const WIA_PAGE_ISO_B7 = @as(u32, 24);
 pub const WIA_PAGE_ISO_B8 = @as(u32, 25);
 pub const WIA_PAGE_ISO_B9 = @as(u32, 26);
-pub const WIA_PAGE_ISO_B10 = @as(u32, 27);
 pub const WIA_PAGE_ISO_C0 = @as(u32, 28);
 pub const WIA_PAGE_ISO_C1 = @as(u32, 29);
+pub const WIA_PAGE_ISO_C10 = @as(u32, 38);
 pub const WIA_PAGE_ISO_C2 = @as(u32, 30);
 pub const WIA_PAGE_ISO_C3 = @as(u32, 31);
 pub const WIA_PAGE_ISO_C4 = @as(u32, 32);
@@ -1094,9 +1003,11 @@ pub const WIA_PAGE_ISO_C6 = @as(u32, 34);
 pub const WIA_PAGE_ISO_C7 = @as(u32, 35);
 pub const WIA_PAGE_ISO_C8 = @as(u32, 36);
 pub const WIA_PAGE_ISO_C9 = @as(u32, 37);
-pub const WIA_PAGE_ISO_C10 = @as(u32, 38);
+pub const WIA_PAGE_JIS_2A = @as(u32, 50);
+pub const WIA_PAGE_JIS_4A = @as(u32, 51);
 pub const WIA_PAGE_JIS_B0 = @as(u32, 39);
 pub const WIA_PAGE_JIS_B1 = @as(u32, 40);
+pub const WIA_PAGE_JIS_B10 = @as(u32, 49);
 pub const WIA_PAGE_JIS_B2 = @as(u32, 41);
 pub const WIA_PAGE_JIS_B3 = @as(u32, 42);
 pub const WIA_PAGE_JIS_B4 = @as(u32, 43);
@@ -1105,127 +1016,148 @@ pub const WIA_PAGE_JIS_B6 = @as(u32, 45);
 pub const WIA_PAGE_JIS_B7 = @as(u32, 46);
 pub const WIA_PAGE_JIS_B8 = @as(u32, 47);
 pub const WIA_PAGE_JIS_B9 = @as(u32, 48);
-pub const WIA_PAGE_JIS_B10 = @as(u32, 49);
-pub const WIA_PAGE_JIS_2A = @as(u32, 50);
-pub const WIA_PAGE_JIS_4A = @as(u32, 51);
-pub const WIA_PAGE_DIN_2B = @as(u32, 52);
-pub const WIA_PAGE_DIN_4B = @as(u32, 53);
-pub const WIA_PAGE_AUTO = @as(u32, 100);
-pub const WIA_PAGE_CUSTOM_BASE = @as(u32, 32768);
-pub const WIA_COMPRESSION_NONE = @as(u32, 0);
-pub const WIA_COMPRESSION_BI_RLE4 = @as(u32, 1);
-pub const WIA_COMPRESSION_BI_RLE8 = @as(u32, 2);
-pub const WIA_COMPRESSION_G3 = @as(u32, 3);
-pub const WIA_COMPRESSION_G4 = @as(u32, 4);
-pub const WIA_COMPRESSION_JPEG = @as(u32, 5);
-pub const WIA_COMPRESSION_JBIG = @as(u32, 6);
-pub const WIA_COMPRESSION_JPEG2K = @as(u32, 7);
-pub const WIA_COMPRESSION_PNG = @as(u32, 8);
-pub const WIA_COMPRESSION_AUTO = @as(u32, 100);
-pub const WIA_PACKED_PIXEL = @as(u32, 0);
-pub const WIA_PLANAR = @as(u32, 1);
-pub const WIA_DATA_THRESHOLD = @as(u32, 0);
-pub const WIA_DATA_DITHER = @as(u32, 1);
-pub const WIA_DATA_GRAYSCALE = @as(u32, 2);
-pub const WIA_DATA_COLOR = @as(u32, 3);
-pub const WIA_DATA_COLOR_THRESHOLD = @as(u32, 4);
-pub const WIA_DATA_COLOR_DITHER = @as(u32, 5);
-pub const WIA_DATA_RAW_RGB = @as(u32, 6);
-pub const WIA_DATA_RAW_BGR = @as(u32, 7);
-pub const WIA_DATA_RAW_YUV = @as(u32, 8);
-pub const WIA_DATA_RAW_YUVK = @as(u32, 9);
-pub const WIA_DATA_RAW_CMY = @as(u32, 10);
-pub const WIA_DATA_RAW_CMYK = @as(u32, 11);
-pub const WIA_DATA_AUTO = @as(u32, 100);
-pub const WIA_DEPTH_AUTO = @as(u32, 0);
-pub const WIA_PHOTO_WHITE_1 = @as(u32, 0);
+pub const WIA_PAGE_LETTER = @as(u32, 1);
+pub const WIA_PAGE_USLEDGER = @as(u32, 4);
+pub const WIA_PAGE_USLEGAL = @as(u32, 3);
+pub const WIA_PAGE_USLETTER = @as(u32, 1);
+pub const WIA_PAGE_USSTATEMENT = @as(u32, 5);
+pub const WIA_PATCH_CODE_1 = @as(u32, 1);
+pub const WIA_PATCH_CODE_10 = @as(u32, 10);
+pub const WIA_PATCH_CODE_11 = @as(u32, 11);
+pub const WIA_PATCH_CODE_12 = @as(u32, 12);
+pub const WIA_PATCH_CODE_13 = @as(u32, 13);
+pub const WIA_PATCH_CODE_14 = @as(u32, 14);
+pub const WIA_PATCH_CODE_2 = @as(u32, 2);
+pub const WIA_PATCH_CODE_3 = @as(u32, 3);
+pub const WIA_PATCH_CODE_4 = @as(u32, 4);
+pub const WIA_PATCH_CODE_6 = @as(u32, 6);
+pub const WIA_PATCH_CODE_7 = @as(u32, 7);
+pub const WIA_PATCH_CODE_8 = @as(u32, 8);
+pub const WIA_PATCH_CODE_9 = @as(u32, 9);
+pub const WIA_PATCH_CODE_CUSTOM_BASE = @as(u32, 32768);
+pub const WIA_PATCH_CODE_READER_AUTO = @as(u32, 1);
+pub const WIA_PATCH_CODE_READER_DISABLED = @as(u32, 0);
+pub const WIA_PATCH_CODE_READER_FEEDER_BACK = @as(u32, 4);
+pub const WIA_PATCH_CODE_READER_FEEDER_DUPLEX = @as(u32, 5);
+pub const WIA_PATCH_CODE_READER_FEEDER_FRONT = @as(u32, 3);
+pub const WIA_PATCH_CODE_READER_FLATBED = @as(u32, 2);
+pub const WIA_PATCH_CODE_T = @as(u32, 5);
+pub const WIA_PATCH_CODE_UNKNOWN = @as(u32, 0);
 pub const WIA_PHOTO_WHITE_0 = @as(u32, 1);
-pub const WIA_PROPPAGE_SCANNER_ITEM_GENERAL = @as(u32, 1);
+pub const WIA_PHOTO_WHITE_1 = @as(u32, 0);
+pub const WIA_PLANAR = @as(u32, 1);
+pub const WIA_PREVIEW_SCAN = @as(u32, 1);
+pub const WIA_PRINT_AM_PM = @as(u32, 9);
+pub const WIA_PRINT_DATE = @as(u32, 0);
+pub const WIA_PRINT_DAY = @as(u32, 3);
+pub const WIA_PRINT_FONT_BOLD = @as(u32, 1);
+pub const WIA_PRINT_FONT_EXTRA_BOLD = @as(u32, 2);
+pub const WIA_PRINT_FONT_ITALIC = @as(u32, 5);
+pub const WIA_PRINT_FONT_ITALIC_BOLD = @as(u32, 3);
+pub const WIA_PRINT_FONT_ITALIC_EXTRA_BOLD = @as(u32, 4);
+pub const WIA_PRINT_FONT_LARGE = @as(u32, 12);
+pub const WIA_PRINT_FONT_LARGE_BOLD = @as(u32, 13);
+pub const WIA_PRINT_FONT_LARGE_EXTRA_BOLD = @as(u32, 14);
+pub const WIA_PRINT_FONT_LARGE_ITALIC = @as(u32, 17);
+pub const WIA_PRINT_FONT_LARGE_ITALIC_BOLD = @as(u32, 15);
+pub const WIA_PRINT_FONT_LARGE_ITALIC_EXTRA_BOLD = @as(u32, 16);
+pub const WIA_PRINT_FONT_NORMAL = @as(u32, 0);
+pub const WIA_PRINT_FONT_SMALL = @as(u32, 6);
+pub const WIA_PRINT_FONT_SMALL_BOLD = @as(u32, 7);
+pub const WIA_PRINT_FONT_SMALL_EXTRA_BOLD = @as(u32, 8);
+pub const WIA_PRINT_FONT_SMALL_ITALIC = @as(u32, 11);
+pub const WIA_PRINT_FONT_SMALL_ITALIC_BOLD = @as(u32, 9);
+pub const WIA_PRINT_FONT_SMALL_ITALIC_EXTRA_BOLD = @as(u32, 10);
+pub const WIA_PRINT_HOUR_12H = @as(u32, 8);
+pub const WIA_PRINT_HOUR_24H = @as(u32, 7);
+pub const WIA_PRINT_IMAGE = @as(u32, 13);
+pub const WIA_PRINT_MILLISECOND = @as(u32, 14);
+pub const WIA_PRINT_MINUTE = @as(u32, 10);
+pub const WIA_PRINT_MONTH = @as(u32, 2);
+pub const WIA_PRINT_MONTH_NAME = @as(u32, 15);
+pub const WIA_PRINT_MONTH_SHORT = @as(u32, 16);
+pub const WIA_PRINT_PADDING_BLANK = @as(u32, 2);
+pub const WIA_PRINT_PADDING_NONE = @as(u32, 0);
+pub const WIA_PRINT_PADDING_ZERO = @as(u32, 1);
+pub const WIA_PRINT_PAGE_COUNT = @as(u32, 12);
+pub const WIA_PRINT_SECOND = @as(u32, 11);
+pub const WIA_PRINT_TIME_12H = @as(u32, 6);
+pub const WIA_PRINT_TIME_24H = @as(u32, 5);
+pub const WIA_PRINT_WEEK_DAY = @as(u32, 4);
+pub const WIA_PRINT_WEEK_DAY_SHORT = @as(u32, 17);
+pub const WIA_PRINT_YEAR = @as(u32, 1);
+pub const WIA_PRINTER_ENDORSER_AFTER_SCAN = @as(u32, 1);
+pub const WIA_PRINTER_ENDORSER_AUTO = @as(u32, 1);
+pub const WIA_PRINTER_ENDORSER_BEFORE_SCAN = @as(u32, 0);
+pub const WIA_PRINTER_ENDORSER_DIGITAL = @as(u32, 6);
+pub const WIA_PRINTER_ENDORSER_DISABLED = @as(u32, 0);
+pub const WIA_PRINTER_ENDORSER_FEEDER_BACK = @as(u32, 4);
+pub const WIA_PRINTER_ENDORSER_FEEDER_DUPLEX = @as(u32, 5);
+pub const WIA_PRINTER_ENDORSER_FEEDER_FRONT = @as(u32, 3);
+pub const WIA_PRINTER_ENDORSER_FLATBED = @as(u32, 2);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_BACKGROUND = @as(u32, 8);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_BOTTOM = @as(u32, 3);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_BOTTOM_LEFT = @as(u32, 6);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_BOTTOM_RIGHT = @as(u32, 7);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_DEVICE_DEFAULT = @as(u32, 9);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_LEFT = @as(u32, 0);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_RIGHT = @as(u32, 1);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_TOP = @as(u32, 2);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_TOP_LEFT = @as(u32, 4);
+pub const WIA_PRINTER_ENDORSER_GRAPHICS_TOP_RIGHT = @as(u32, 5);
+pub const WIA_PRIVATE_DEVPROP = @as(u32, 38914);
+pub const WIA_PRIVATE_ITEMPROP = @as(u32, 71682);
+pub const WIA_PROP_CACHEABLE = @as(u32, 65536);
+pub const WIA_PROP_FLAG = @as(u32, 64);
+pub const WIA_PROP_LIST = @as(u32, 32);
+pub const WIA_PROP_NONE = @as(u32, 8);
+pub const WIA_PROP_RANGE = @as(u32, 16);
+pub const WIA_PROP_READ = @as(u32, 1);
+pub const WIA_PROP_SYNC_REQUIRED = @as(u32, 4);
+pub const WIA_PROP_WRITE = @as(u32, 2);
 pub const WIA_PROPPAGE_CAMERA_ITEM_GENERAL = @as(u32, 2);
 pub const WIA_PROPPAGE_DEVICE_GENERAL = @as(u32, 4);
-pub const WIA_INTENT_NONE = @as(u32, 0);
-pub const WIA_INTENT_IMAGE_TYPE_COLOR = @as(u32, 1);
-pub const WIA_INTENT_IMAGE_TYPE_GRAYSCALE = @as(u32, 2);
-pub const WIA_INTENT_IMAGE_TYPE_TEXT = @as(u32, 4);
-pub const WIA_INTENT_IMAGE_TYPE_MASK = @as(u32, 15);
-pub const WIA_INTENT_MINIMIZE_SIZE = @as(u32, 65536);
-pub const WIA_INTENT_MAXIMIZE_QUALITY = @as(u32, 131072);
-pub const WIA_INTENT_BEST_PREVIEW = @as(u32, 262144);
-pub const WIA_INTENT_SIZE_MASK = @as(u32, 983040);
-pub const WIA_NUM_DIP = @as(u32, 16);
-pub const SHELLEX_WIAUIEXTENSION_NAME = "WiaDialogExtensionHandlers";
-pub const CFSTR_WIAITEMNAMES = "WIAItemNames";
-pub const CFSTR_WIAITEMPTR = "WIAItemPointer";
-pub const GUID_DEVINTERFACE_IMAGE = Guid.initString("6bdd1fc6-810f-11d0-bec7-08002be2092f");
-pub const MAX_IO_HANDLES = @as(u32, 16);
-pub const MAX_RESERVED = @as(u32, 4);
-pub const MAX_ANSI_CHAR = @as(u32, 255);
-pub const BUS_TYPE_SCSI = @as(u32, 200);
-pub const BUS_TYPE_USB = @as(u32, 201);
-pub const BUS_TYPE_PARALLEL = @as(u32, 202);
-pub const BUS_TYPE_FIREWIRE = @as(u32, 203);
-pub const SCAN_FIRST = @as(u32, 10);
-pub const SCAN_NEXT = @as(u32, 20);
-pub const SCAN_FINISHED = @as(u32, 30);
-pub const SCANMODE_FINALSCAN = @as(u32, 0);
-pub const SCANMODE_PREVIEWSCAN = @as(u32, 1);
-pub const CMD_INITIALIZE = @as(u32, 100);
-pub const CMD_UNINITIALIZE = @as(u32, 101);
-pub const CMD_SETXRESOLUTION = @as(u32, 102);
-pub const CMD_SETYRESOLUTION = @as(u32, 103);
-pub const CMD_SETCONTRAST = @as(u32, 104);
-pub const CMD_SETINTENSITY = @as(u32, 105);
-pub const CMD_SETDATATYPE = @as(u32, 106);
-pub const CMD_SETDITHER = @as(u32, 107);
-pub const CMD_SETMIRROR = @as(u32, 108);
-pub const CMD_SETNEGATIVE = @as(u32, 109);
-pub const CMD_SETTONEMAP = @as(u32, 110);
-pub const CMD_SETCOLORDITHER = @as(u32, 111);
-pub const CMD_SETMATRIX = @as(u32, 112);
-pub const CMD_SETSPEED = @as(u32, 113);
-pub const CMD_SETFILTER = @as(u32, 114);
-pub const CMD_LOAD_ADF = @as(u32, 115);
-pub const CMD_UNLOAD_ADF = @as(u32, 116);
-pub const CMD_GETADFAVAILABLE = @as(u32, 117);
-pub const CMD_GETADFOPEN = @as(u32, 118);
-pub const CMD_GETADFREADY = @as(u32, 119);
-pub const CMD_GETADFHASPAPER = @as(u32, 120);
-pub const CMD_GETADFSTATUS = @as(u32, 121);
-pub const CMD_GETADFUNLOADREADY = @as(u32, 122);
-pub const CMD_GETTPAAVAILABLE = @as(u32, 123);
-pub const CMD_GETTPAOPENED = @as(u32, 124);
-pub const CMD_TPAREADY = @as(u32, 125);
-pub const CMD_SETLAMP = @as(u32, 126);
-pub const CMD_SENDSCSICOMMAND = @as(u32, 127);
-pub const CMD_STI_DEVICERESET = @as(u32, 128);
-pub const CMD_STI_GETSTATUS = @as(u32, 129);
-pub const CMD_STI_DIAGNOSTIC = @as(u32, 130);
-pub const CMD_RESETSCANNER = @as(u32, 131);
-pub const CMD_GETCAPABILITIES = @as(u32, 132);
-pub const CMD_GET_INTERRUPT_EVENT = @as(u32, 133);
-pub const CMD_SETGSDNAME = @as(u32, 134);
-pub const CMD_SETSCANMODE = @as(u32, 135);
-pub const CMD_SETSTIDEVICEHKEY = @as(u32, 136);
-pub const CMD_GETSUPPORTEDFILEFORMATS = @as(u32, 138);
-pub const CMD_GETSUPPORTEDMEMORYFORMATS = @as(u32, 139);
-pub const CMD_SETFORMAT = @as(u32, 140);
-pub const SUPPORT_COLOR = @as(u32, 1);
-pub const SUPPORT_BW = @as(u32, 2);
-pub const SUPPORT_GRAYSCALE = @as(u32, 4);
-pub const MCRO_ERROR_GENERAL_ERROR = @as(u32, 0);
-pub const MCRO_STATUS_OK = @as(u32, 1);
-pub const MCRO_ERROR_PAPER_JAM = @as(u32, 2);
-pub const MCRO_ERROR_PAPER_PROBLEM = @as(u32, 3);
-pub const MCRO_ERROR_PAPER_EMPTY = @as(u32, 4);
-pub const MCRO_ERROR_OFFLINE = @as(u32, 5);
-pub const MCRO_ERROR_USER_INTERVENTION = @as(u32, 6);
-pub const WIA_ORDER_RGB = @as(u32, 0);
-pub const WIA_ORDER_BGR = @as(u32, 1);
-pub const WiaItemTypeTwainCapabilityPassThrough = @as(u32, 131072);
-pub const ESC_TWAIN_CAPABILITY = @as(u32, 2001);
-pub const ESC_TWAIN_PRIVATE_SUPPORTED_CAPS = @as(u32, 2002);
-pub const WIAU_DEBUG_TSTR = "S";
-pub const g_dwDebugFlags = @as(u32, 0);
+pub const WIA_PROPPAGE_SCANNER_ITEM_GENERAL = @as(u32, 1);
+pub const WIA_RANGE_MAX = @as(u32, 2);
+pub const WIA_RANGE_MIN = @as(u32, 0);
+pub const WIA_RANGE_NOM = @as(u32, 1);
+pub const WIA_RANGE_NUM_ELEMS = @as(u32, 4);
+pub const WIA_RANGE_STEP = @as(u32, 3);
+pub const WIA_REGISTER_EVENT_CALLBACK = @as(u32, 1);
+pub const WIA_RESERVED_FOR_NEW_PROPS = @as(u32, 1024);
+pub const WIA_S_CHANGE_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162699));
+pub const WIA_S_NO_DEVICE_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2145320939));
+pub const WIA_SCAN_AHEAD_ALL = @as(u32, 0);
+pub const WIA_SCAN_AHEAD_DISABLED = @as(u32, 0);
+pub const WIA_SCAN_AHEAD_ENABLED = @as(u32, 1);
+pub const WIA_SEGMENTATION_FILTER_STR = "SegmentationFilter";
+pub const WIA_SELECT_DEVICE_NODEFAULT = @as(u32, 1);
+pub const WIA_SEPARATOR_DETECT_NOSCAN_CONTINUE = @as(u32, 3);
+pub const WIA_SEPARATOR_DETECT_NOSCAN_STOP = @as(u32, 4);
+pub const WIA_SEPARATOR_DETECT_SCAN_CONTINUE = @as(u32, 1);
+pub const WIA_SEPARATOR_DETECT_SCAN_STOP = @as(u32, 2);
+pub const WIA_SEPARATOR_DISABLED = @as(u32, 0);
+pub const WIA_SET_DEFAULT_HANDLER = @as(u32, 4);
+pub const WIA_SHOW_PREVIEW_CONTROL = @as(u32, 0);
+pub const WIA_STATUS_CALIBRATING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162691));
+pub const WIA_STATUS_CLEAR = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162696));
+pub const WIA_STATUS_END_OF_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162689));
+pub const WIA_STATUS_NETWORK_DEVICE_RESERVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162695));
+pub const WIA_STATUS_NOT_HANDLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162698));
+pub const WIA_STATUS_RESERVING_NETWORK_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162694));
+pub const WIA_STATUS_SKIP_ITEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162697));
+pub const WIA_STATUS_WARMING_UP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2162690));
+pub const WIA_TRANSFER_ACQUIRE_CHILDREN = @as(u32, 1);
+pub const WIA_TRANSFER_CHILDREN_SINGLE_SCAN = @as(u32, 1);
+pub const WIA_TRANSFER_MSG_DEVICE_STATUS = @as(u32, 5);
+pub const WIA_TRANSFER_MSG_END_OF_STREAM = @as(u32, 2);
+pub const WIA_TRANSFER_MSG_END_OF_TRANSFER = @as(u32, 3);
+pub const WIA_TRANSFER_MSG_NEW_PAGE = @as(u32, 6);
+pub const WIA_TRANSFER_MSG_STATUS = @as(u32, 1);
+pub const WIA_UNREGISTER_EVENT_CALLBACK = @as(u32, 2);
+pub const WIA_USE_SEGMENTATION_FILTER = @as(u32, 0);
+pub const WIA_WSD_FRIENDLY_NAME = @as(u32, 38920);
+pub const WIA_WSD_FRIENDLY_NAME_STR = "Friendly name";
 pub const WIA_WSD_MANUFACTURER = @as(u32, 38914);
 pub const WIA_WSD_MANUFACTURER_STR = "Device manufacturer";
 pub const WIA_WSD_MANUFACTURER_URL = @as(u32, 38915);
@@ -1238,113 +1170,442 @@ pub const WIA_WSD_MODEL_URL = @as(u32, 38918);
 pub const WIA_WSD_MODEL_URL_STR = "Model URL";
 pub const WIA_WSD_PRESENTATION_URL = @as(u32, 38919);
 pub const WIA_WSD_PRESENTATION_URL_STR = "Presentation URL";
-pub const WIA_WSD_FRIENDLY_NAME = @as(u32, 38920);
-pub const WIA_WSD_FRIENDLY_NAME_STR = "Friendly name";
-pub const WIA_WSD_SERIAL_NUMBER = @as(u32, 38921);
-pub const WIA_WSD_SERIAL_NUMBER_STR = "Serial number";
 pub const WIA_WSD_SCAN_AVAILABLE_ITEM = @as(u32, 38922);
 pub const WIA_WSD_SCAN_AVAILABLE_ITEM_STR = "Scan Available Item";
+pub const WIA_WSD_SERIAL_NUMBER = @as(u32, 38921);
+pub const WIA_WSD_SERIAL_NUMBER_STR = "Serial number";
+pub const WiaAudFmt_AIFF = Guid.initString("66e2bf4f-b6fc-443f-94c8-2f33c8a65aaf");
+pub const WiaAudFmt_MP3 = Guid.initString("0fbc71fb-43bf-49f2-9190-e6fecff37e54");
+pub const WiaAudFmt_WAV = Guid.initString("f818e146-07af-40ff-ae55-be8f2c065dbe");
+pub const WiaAudFmt_WMA = Guid.initString("d61d6413-8bc2-438f-93ad-21bd484db6a1");
+pub const WiaImgFmt_ASF = Guid.initString("8d948ee9-d0aa-4a12-9d9a-9cc5de36199b");
+pub const WiaImgFmt_AVI = Guid.initString("32f8ca14-087c-4908-b7c4-6757fe7e90ab");
+pub const WiaImgFmt_BMP = Guid.initString("b96b3cab-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_CIFF = Guid.initString("9821a8ab-3a7e-4215-94e0-d27a460c03b2");
+pub const WiaImgFmt_CSV = Guid.initString("355bda24-5a9f-4494-80dc-be752cecbc8c");
+pub const WiaImgFmt_DPOF = Guid.initString("369eeeab-a0e8-45ca-86a6-a83ce5697e28");
+pub const WiaImgFmt_EMF = Guid.initString("b96b3cac-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_EXEC = Guid.initString("485da097-141e-4aa5-bb3b-a5618d95d02b");
+pub const WiaImgFmt_EXIF = Guid.initString("b96b3cb2-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_FLASHPIX = Guid.initString("b96b3cb4-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_GIF = Guid.initString("b96b3cb0-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_HTML = Guid.initString("c99a4e62-99de-4a94-acca-71956ac2977d");
+pub const WiaImgFmt_ICO = Guid.initString("b96b3cb5-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_JBIG = Guid.initString("41e8dd92-2f0a-43d4-8636-f1614ba11e46");
+pub const WiaImgFmt_JBIG2 = Guid.initString("bb8e7e67-283c-4235-9e59-0b9bf94ca687");
+pub const WiaImgFmt_JPEG = Guid.initString("b96b3cae-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_JPEG2K = Guid.initString("344ee2b2-39db-4dde-8173-c4b75f8f1e49");
+pub const WiaImgFmt_JPEG2KX = Guid.initString("43e14614-c80a-4850-baf3-4b152dc8da27");
+pub const WiaImgFmt_MEMORYBMP = Guid.initString("b96b3caa-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_MPG = Guid.initString("ecd757e4-d2ec-4f57-955d-bcf8a97c4e52");
+pub const WiaImgFmt_OXPS = Guid.initString("2c7b1240-c14d-4109-9755-04b89025153a");
+pub const WiaImgFmt_PDFA = Guid.initString("9980bd5b-3463-43c7-bdca-3caa146f229f");
+pub const WiaImgFmt_PHOTOCD = Guid.initString("b96b3cb3-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_PICT = Guid.initString("a6bc85d8-6b3e-40ee-a95c-25d482e41adc");
+pub const WiaImgFmt_PNG = Guid.initString("b96b3caf-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_RAW = Guid.initString("6f120719-f1a8-4e07-9ade-9b64c63a3dcc");
+pub const WiaImgFmt_RAWBAR = Guid.initString("da63f833-d26e-451e-90d2-ea55a1365d62");
+pub const WiaImgFmt_RAWMIC = Guid.initString("22c4f058-0d88-409c-ac1c-eec12b0ea680");
+pub const WiaImgFmt_RAWPAT = Guid.initString("7760507c-5064-400c-9a17-575624d8824b");
+pub const WiaImgFmt_RAWRGB = Guid.initString("bca48b55-f272-4371-b0f1-4a150d057bb4");
+pub const WiaImgFmt_RTF = Guid.initString("573dd6a3-4834-432d-a9b5-e198dd9e890d");
+pub const WiaImgFmt_SCRIPT = Guid.initString("fe7d6c53-2dac-446a-b0bd-d73e21e924c9");
+pub const WiaImgFmt_TIFF = Guid.initString("b96b3cb1-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_TXT = Guid.initString("fafd4d82-723f-421f-9318-30501ac44b59");
+pub const WiaImgFmt_UNDEFINED = Guid.initString("b96b3ca9-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_UNICODE16 = Guid.initString("1b7639b6-6357-47d1-9a07-12452dc073e9");
+pub const WiaImgFmt_WMF = Guid.initString("b96b3cad-0728-11d3-9d7b-0000f81ef32e");
+pub const WiaImgFmt_XML = Guid.initString("b9171457-dac8-4884-b393-15b471d5f07e");
+pub const WiaImgFmt_XMLBAR = Guid.initString("6235701c-3a98-484c-b2a8-fdffd87e6b16");
+pub const WiaImgFmt_XMLMIC = Guid.initString("2d164c61-b9ae-4b23-8973-c7067e1fbd31");
+pub const WiaImgFmt_XMLPAT = Guid.initString("f8986f55-f052-460d-9523-3a7dfedbb33c");
+pub const WiaImgFmt_XPS = Guid.initString("700b4a0f-2011-411c-b430-d1e0b2e10b28");
+pub const WiaItemTypeAnalyze = @as(u32, 16);
+pub const WiaItemTypeAudio = @as(u32, 32);
+pub const WiaItemTypeBurst = @as(u32, 2048);
+pub const WiaItemTypeDeleted = @as(u32, 128);
+pub const WiaItemTypeDevice = @as(u32, 64);
+pub const WiaItemTypeDisconnected = @as(u32, 256);
+pub const WiaItemTypeDocument = @as(u32, 262144);
+pub const WiaItemTypeFile = @as(u32, 2);
+pub const WiaItemTypeFolder = @as(u32, 4);
+pub const WiaItemTypeFree = @as(u32, 0);
+pub const WiaItemTypeGenerated = @as(u32, 16384);
+pub const WiaItemTypeHasAttachments = @as(u32, 32768);
+pub const WiaItemTypeHPanorama = @as(u32, 512);
+pub const WiaItemTypeImage = @as(u32, 1);
+pub const WiaItemTypeMask = @as(u32, 2148532223);
+pub const WiaItemTypeProgrammableDataSource = @as(u32, 524288);
+pub const WiaItemTypeRemoved = @as(u32, 2147483648);
+pub const WiaItemTypeRoot = @as(u32, 8);
+pub const WiaItemTypeStorage = @as(u32, 4096);
+pub const WiaItemTypeTransfer = @as(u32, 8192);
+pub const WiaItemTypeTwainCapabilityPassThrough = @as(u32, 131072);
+pub const WiaItemTypeVideo = @as(u32, 65536);
+pub const WiaItemTypeVPanorama = @as(u32, 1024);
+pub const WIAU_DEBUG_TSTR = "S";
 
 //--------------------------------------------------------------------------------
 // Section: Types (67)
 //--------------------------------------------------------------------------------
-const CLSID_WiaDevMgr_Value = Guid.initString("a1f4e726-8cf1-11d1-bf92-0060081ed811");
-pub const CLSID_WiaDevMgr = &CLSID_WiaDevMgr_Value;
-
-const CLSID_WiaDevMgr2_Value = Guid.initString("b6c292bc-7c88-41ee-8b54-8ec92617e599");
-pub const CLSID_WiaDevMgr2 = &CLSID_WiaDevMgr2_Value;
-
-const CLSID_WiaLog_Value = Guid.initString("a1e75357-881a-419e-83e2-bb16db197c68");
-pub const CLSID_WiaLog = &CLSID_WiaLog_Value;
-
-pub const WIA_DITHER_PATTERN_DATA = extern struct {
-    lSize: i32,
-    bstrPatternName: ?BSTR,
-    lPatternWidth: i32,
-    lPatternLength: i32,
-    cbPattern: i32,
-    pbPattern: ?*u8,
+pub const DEVICEDIALOGDATA = extern struct {
+    cbSize: u32,
+    hwndParent: ?HWND,
+    pIWiaItemRoot: ?*IWiaItem,
+    dwFlags: u32,
+    lIntent: i32,
+    lItemCount: i32,
+    ppWiaItems: ?*?*IWiaItem,
 };
 
-pub const WIA_PROPID_TO_NAME = extern struct {
-    propid: u32,
-    pszName: ?PWSTR,
+pub const DEVICEDIALOGDATA2 = extern struct {
+    cbSize: u32,
+    pIWiaItemRoot: ?*IWiaItem2,
+    dwFlags: u32,
+    hwndParent: ?HWND,
+    bstrFolderName: ?BSTR,
+    bstrFilename: ?BSTR,
+    lNumFiles: i32,
+    pbstrFilePaths: ?*?BSTR,
+    pWiaItem: ?*IWiaItem2,
 };
 
-pub const WIA_FORMAT_INFO = extern struct {
-    guidFormatID: Guid,
-    lTymed: i32,
+pub const DeviceDialogFunction = *const fn(
+    param0: ?*DEVICEDIALOGDATA,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumWIA_DEV_CAPS_Value = Guid.initString("1fcc4287-aca6-11d2-a093-00c04f72dc3c");
+pub const IID_IEnumWIA_DEV_CAPS = &IID_IEnumWIA_DEV_CAPS_Value;
+pub const IEnumWIA_DEV_CAPS = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumWIA_DEV_CAPS,
+            celt: u32,
+            rgelt: ?*WIA_DEV_CAP,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumWIA_DEV_CAPS,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumWIA_DEV_CAPS,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumWIA_DEV_CAPS,
+            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumWIA_DEV_CAPS,
+            pcelt: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumWIA_DEV_CAPS, celt: u32, rgelt: ?*WIA_DEV_CAP, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumWIA_DEV_CAPS, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumWIA_DEV_CAPS) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumWIA_DEV_CAPS, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppIEnum);
+    }
+    pub fn GetCount(self: *const IEnumWIA_DEV_CAPS, pcelt: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pcelt);
+    }
 };
 
-pub const WIA_RAW_HEADER = extern struct {
-    Tag: u32,
-    Version: u32,
-    HeaderSize: u32,
-    XRes: u32,
-    YRes: u32,
-    XExtent: u32,
-    YExtent: u32,
-    BytesPerLine: u32,
-    BitsPerPixel: u32,
-    ChannelsPerPixel: u32,
-    DataType: u32,
-    BitsPerChannel: [8]u8,
-    Compression: u32,
-    PhotometricInterp: u32,
-    LineOrder: u32,
-    RawDataOffset: u32,
-    RawDataSize: u32,
-    PaletteOffset: u32,
-    PaletteSize: u32,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumWIA_DEV_INFO_Value = Guid.initString("5e38b83c-8cf1-11d1-bf92-0060081ed811");
+pub const IID_IEnumWIA_DEV_INFO = &IID_IEnumWIA_DEV_INFO_Value;
+pub const IEnumWIA_DEV_INFO = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumWIA_DEV_INFO,
+            celt: u32,
+            rgelt: ?*?*IWiaPropertyStorage,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumWIA_DEV_INFO,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumWIA_DEV_INFO,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumWIA_DEV_INFO,
+            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumWIA_DEV_INFO,
+            celt: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumWIA_DEV_INFO, celt: u32, rgelt: ?*?*IWiaPropertyStorage, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumWIA_DEV_INFO, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumWIA_DEV_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumWIA_DEV_INFO, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppIEnum);
+    }
+    pub fn GetCount(self: *const IEnumWIA_DEV_INFO, celt: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, celt);
+    }
 };
 
-pub const WIA_BARCODE_INFO = extern struct {
-    Size: u32,
-    Type: u32,
-    Page: u32,
-    Confidence: u32,
-    XOffset: u32,
-    YOffset: u32,
-    Rotation: u32,
-    Length: u32,
-    Text: [1]u16,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumWIA_FORMAT_INFO_Value = Guid.initString("81befc5b-656d-44f1-b24c-d41d51b4dc81");
+pub const IID_IEnumWIA_FORMAT_INFO = &IID_IEnumWIA_FORMAT_INFO_Value;
+pub const IEnumWIA_FORMAT_INFO = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumWIA_FORMAT_INFO,
+            celt: u32,
+            rgelt: ?*WIA_FORMAT_INFO,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumWIA_FORMAT_INFO,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumWIA_FORMAT_INFO,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumWIA_FORMAT_INFO,
+            ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumWIA_FORMAT_INFO,
+            pcelt: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumWIA_FORMAT_INFO, celt: u32, rgelt: ?*WIA_FORMAT_INFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumWIA_FORMAT_INFO, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumWIA_FORMAT_INFO, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppIEnum);
+    }
+    pub fn GetCount(self: *const IEnumWIA_FORMAT_INFO, pcelt: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pcelt);
+    }
 };
 
-pub const WIA_BARCODES = extern struct {
-    Tag: u32,
-    Version: u32,
-    Size: u32,
-    Count: u32,
-    Barcodes: [1]WIA_BARCODE_INFO,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumWiaItem_Value = Guid.initString("5e8383fc-3391-11d2-9a33-00c04fa36145");
+pub const IID_IEnumWiaItem = &IID_IEnumWiaItem_Value;
+pub const IEnumWiaItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumWiaItem,
+            celt: u32,
+            ppIWiaItem: ?*?*IWiaItem,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumWiaItem,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumWiaItem,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumWiaItem,
+            ppIEnum: ?*?*IEnumWiaItem,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumWiaItem,
+            celt: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumWiaItem, celt: u32, ppIWiaItem: ?*?*IWiaItem, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppIWiaItem, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumWiaItem, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumWiaItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumWiaItem, ppIEnum: ?*?*IEnumWiaItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppIEnum);
+    }
+    pub fn GetCount(self: *const IEnumWiaItem, celt: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, celt);
+    }
 };
 
-pub const WIA_PATCH_CODE_INFO = extern struct {
-    Type: u32,
+const IID_IEnumWiaItem2_Value = Guid.initString("59970af4-cd0d-44d9-ab24-52295630e582");
+pub const IID_IEnumWiaItem2 = &IID_IEnumWiaItem2_Value;
+pub const IEnumWiaItem2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumWiaItem2,
+            cElt: u32,
+            ppIWiaItem2: ?*?*IWiaItem2,
+            pcEltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumWiaItem2,
+            cElt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumWiaItem2,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumWiaItem2,
+            ppIEnum: ?*?*IEnumWiaItem2,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumWiaItem2,
+            cElt: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumWiaItem2, cElt: u32, ppIWiaItem2: ?*?*IWiaItem2, pcEltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, cElt, ppIWiaItem2, pcEltFetched);
+    }
+    pub fn Skip(self: *const IEnumWiaItem2, cElt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, cElt);
+    }
+    pub fn Reset(self: *const IEnumWiaItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumWiaItem2, ppIEnum: ?*?*IEnumWiaItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppIEnum);
+    }
+    pub fn GetCount(self: *const IEnumWiaItem2, cElt: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, cElt);
+    }
 };
 
-pub const WIA_PATCH_CODES = extern struct {
-    Tag: u32,
-    Version: u32,
-    Size: u32,
-    Count: u32,
-    PatchCodes: [1]WIA_PATCH_CODE_INFO,
+const IID_IWiaAppErrorHandler_Value = Guid.initString("6c16186c-d0a6-400c-80f4-d26986a0e734");
+pub const IID_IWiaAppErrorHandler = &IID_IWiaAppErrorHandler_Value;
+pub const IWiaAppErrorHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetWindow: *const fn(
+            self: *const IWiaAppErrorHandler,
+            phwnd: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+        ReportStatus: *const fn(
+            self: *const IWiaAppErrorHandler,
+            lFlags: i32,
+            pWiaItem2: ?*IWiaItem2,
+            hrStatus: HRESULT,
+            lPercentComplete: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetWindow(self: *const IWiaAppErrorHandler, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWindow(self, phwnd);
+    }
+    pub fn ReportStatus(self: *const IWiaAppErrorHandler, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReportStatus(self, lFlags, pWiaItem2, hrStatus, lPercentComplete);
+    }
 };
 
-pub const WIA_MICR_INFO = extern struct {
-    Size: u32,
-    Page: u32,
-    Length: u32,
-    Text: [1]u16,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWiaDataCallback_Value = Guid.initString("a558a866-a5b0-11d2-a08f-00c04f72dc3c");
+pub const IID_IWiaDataCallback = &IID_IWiaDataCallback_Value;
+pub const IWiaDataCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BandedDataCallback: *const fn(
+            self: *const IWiaDataCallback,
+            lMessage: i32,
+            lStatus: i32,
+            lPercentComplete: i32,
+            lOffset: i32,
+            lLength: i32,
+            lReserved: i32,
+            lResLength: i32,
+            pbBuffer: ?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn BandedDataCallback(self: *const IWiaDataCallback, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.BandedDataCallback(self, lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
+    }
 };
 
-pub const WIA_MICR = extern struct {
-    Tag: u32,
-    Version: u32,
-    Size: u32,
-    Placeholder: u16,
-    Reserved: u16,
-    Count: u32,
-    Micr: [1]WIA_MICR_INFO,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWiaDataTransfer_Value = Guid.initString("a6cef998-a5b0-11d2-a08f-00c04f72dc3c");
+pub const IID_IWiaDataTransfer = &IID_IWiaDataTransfer_Value;
+pub const IWiaDataTransfer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        idtGetData: *const fn(
+            self: *const IWiaDataTransfer,
+            pMedium: ?*STGMEDIUM,
+            pIWiaDataCallback: ?*IWiaDataCallback,
+        ) callconv(.winapi) HRESULT,
+        idtGetBandedData: *const fn(
+            self: *const IWiaDataTransfer,
+            pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
+            pIWiaDataCallback: ?*IWiaDataCallback,
+        ) callconv(.winapi) HRESULT,
+        idtQueryGetData: *const fn(
+            self: *const IWiaDataTransfer,
+            pfe: ?*WIA_FORMAT_INFO,
+        ) callconv(.winapi) HRESULT,
+        idtEnumWIA_FORMAT_INFO: *const fn(
+            self: *const IWiaDataTransfer,
+            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
+        ) callconv(.winapi) HRESULT,
+        idtGetExtendedTransferInfo: *const fn(
+            self: *const IWiaDataTransfer,
+            pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn idtGetData(self: *const IWiaDataTransfer, pMedium: ?*STGMEDIUM, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.idtGetData(self, pMedium, pIWiaDataCallback);
+    }
+    pub fn idtGetBandedData(self: *const IWiaDataTransfer, pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.idtGetBandedData(self, pWiaDataTransInfo, pIWiaDataCallback);
+    }
+    pub fn idtQueryGetData(self: *const IWiaDataTransfer, pfe: ?*WIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.idtQueryGetData(self, pfe);
+    }
+    pub fn idtEnumWIA_FORMAT_INFO(self: *const IWiaDataTransfer, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.idtEnumWIA_FORMAT_INFO(self, ppEnum);
+    }
+    pub fn idtGetExtendedTransferInfo(self: *const IWiaDataTransfer, pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.idtGetExtendedTransferInfo(self, pExtendedTransferInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1453,50 +1714,238 @@ pub const IWiaDevMgr = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumWIA_DEV_INFO_Value = Guid.initString("5e38b83c-8cf1-11d1-bf92-0060081ed811");
-pub const IID_IEnumWIA_DEV_INFO = &IID_IEnumWIA_DEV_INFO_Value;
-pub const IEnumWIA_DEV_INFO = extern union {
+const IID_IWiaDevMgr2_Value = Guid.initString("79c07cf1-cbdd-41ee-8ec3-f00080cada7a");
+pub const IID_IWiaDevMgr2 = &IID_IWiaDevMgr2_Value;
+pub const IWiaDevMgr2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumWIA_DEV_INFO,
-            celt: u32,
-            rgelt: ?*?*IWiaPropertyStorage,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumWIA_DEV_INFO,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumWIA_DEV_INFO,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumWIA_DEV_INFO,
+        EnumDeviceInfo: *const fn(
+            self: *const IWiaDevMgr2,
+            lFlags: i32,
             ppIEnum: ?*?*IEnumWIA_DEV_INFO,
         ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumWIA_DEV_INFO,
-            celt: ?*u32,
+        CreateDevice: *const fn(
+            self: *const IWiaDevMgr2,
+            lFlags: i32,
+            bstrDeviceID: ?BSTR,
+            ppWiaItem2Root: ?*?*IWiaItem2,
+        ) callconv(.winapi) HRESULT,
+        SelectDeviceDlg: *const fn(
+            self: *const IWiaDevMgr2,
+            hwndParent: ?HWND,
+            lDeviceType: i32,
+            lFlags: i32,
+            pbstrDeviceID: ?*?BSTR,
+            ppItemRoot: ?*?*IWiaItem2,
+        ) callconv(.winapi) HRESULT,
+        SelectDeviceDlgID: *const fn(
+            self: *const IWiaDevMgr2,
+            hwndParent: ?HWND,
+            lDeviceType: i32,
+            lFlags: i32,
+            pbstrDeviceID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RegisterEventCallbackInterface: *const fn(
+            self: *const IWiaDevMgr2,
+            lFlags: i32,
+            bstrDeviceID: ?BSTR,
+            pEventGUID: ?*const Guid,
+            pIWiaEventCallback: ?*IWiaEventCallback,
+            pEventObject: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        RegisterEventCallbackProgram: *const fn(
+            self: *const IWiaDevMgr2,
+            lFlags: i32,
+            bstrDeviceID: ?BSTR,
+            pEventGUID: ?*const Guid,
+            bstrFullAppName: ?BSTR,
+            bstrCommandLineArg: ?BSTR,
+            bstrName: ?BSTR,
+            bstrDescription: ?BSTR,
+            bstrIcon: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RegisterEventCallbackCLSID: *const fn(
+            self: *const IWiaDevMgr2,
+            lFlags: i32,
+            bstrDeviceID: ?BSTR,
+            pEventGUID: ?*const Guid,
+            pClsID: ?*const Guid,
+            bstrName: ?BSTR,
+            bstrDescription: ?BSTR,
+            bstrIcon: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetImageDlg: *const fn(
+            self: *const IWiaDevMgr2,
+            lFlags: i32,
+            bstrDeviceID: ?BSTR,
+            hwndParent: ?HWND,
+            bstrFolderName: ?BSTR,
+            bstrFilename: ?BSTR,
+            plNumFiles: ?*i32,
+            ppbstrFilePaths: ?*?*?BSTR,
+            ppItem: ?*?*IWiaItem2,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumWIA_DEV_INFO, celt: u32, rgelt: ?*?*IWiaPropertyStorage, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    pub fn EnumDeviceInfo(self: *const IWiaDevMgr2, lFlags: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumDeviceInfo(self, lFlags, ppIEnum);
     }
-    pub fn Skip(self: *const IEnumWIA_DEV_INFO, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
+    pub fn CreateDevice(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, ppWiaItem2Root: ?*?*IWiaItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDevice(self, lFlags, bstrDeviceID, ppWiaItem2Root);
     }
-    pub fn Reset(self: *const IEnumWIA_DEV_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
+    pub fn SelectDeviceDlg(self: *const IWiaDevMgr2, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.SelectDeviceDlg(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
     }
-    pub fn Clone(self: *const IEnumWIA_DEV_INFO, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppIEnum);
+    pub fn SelectDeviceDlgID(self: *const IWiaDevMgr2, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SelectDeviceDlgID(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID);
     }
-    pub fn GetCount(self: *const IEnumWIA_DEV_INFO, celt: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, celt);
+    pub fn RegisterEventCallbackInterface(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterEventCallbackInterface(self, lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
+    }
+    pub fn RegisterEventCallbackProgram(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrFullAppName: ?BSTR, bstrCommandLineArg: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterEventCallbackProgram(self, lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
+    }
+    pub fn RegisterEventCallbackCLSID(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterEventCallbackCLSID(self, lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
+    }
+    pub fn GetImageDlg(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.GetImageDlg(self, lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+    }
+};
+
+const IID_IWiaDrvItem_Value = Guid.initString("1f02b5c5-b00c-11d2-a094-00c04f72dc3c");
+pub const IID_IWiaDrvItem = &IID_IWiaDrvItem_Value;
+pub const IWiaDrvItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetItemFlags: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0000: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceSpecContext: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0001: ?*?*u8,
+        ) callconv(.winapi) HRESULT,
+        GetFullItemName: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0002: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetItemName: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0003: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddItemToFolder: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
+        ) callconv(.winapi) HRESULT,
+        UnlinkItemTree: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0005: i32,
+        ) callconv(.winapi) HRESULT,
+        RemoveItemFromFolder: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0006: i32,
+        ) callconv(.winapi) HRESULT,
+        FindItemByName: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0007: i32,
+            __MIDL__IWiaDrvItem0008: ?BSTR,
+            __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem,
+        ) callconv(.winapi) HRESULT,
+        FindChildItemByName: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0010: ?BSTR,
+            __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
+        ) callconv(.winapi) HRESULT,
+        GetParentItem: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
+        ) callconv(.winapi) HRESULT,
+        GetFirstChildItem: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
+        ) callconv(.winapi) HRESULT,
+        GetNextSiblingItem: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
+        ) callconv(.winapi) HRESULT,
+        DumpItemData: *const fn(
+            self: *const IWiaDrvItem,
+            __MIDL__IWiaDrvItem0015: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetItemFlags(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0000: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemFlags(self, __MIDL__IWiaDrvItem0000);
+    }
+    pub fn GetDeviceSpecContext(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0001: ?*?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceSpecContext(self, __MIDL__IWiaDrvItem0001);
+    }
+    pub fn GetFullItemName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0002: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFullItemName(self, __MIDL__IWiaDrvItem0002);
+    }
+    pub fn GetItemName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0003: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemName(self, __MIDL__IWiaDrvItem0003);
+    }
+    pub fn AddItemToFolder(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItemToFolder(self, __MIDL__IWiaDrvItem0004);
+    }
+    pub fn UnlinkItemTree(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0005: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnlinkItemTree(self, __MIDL__IWiaDrvItem0005);
+    }
+    pub fn RemoveItemFromFolder(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0006: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItemFromFolder(self, __MIDL__IWiaDrvItem0006);
+    }
+    pub fn FindItemByName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0007: i32, __MIDL__IWiaDrvItem0008: ?BSTR, __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
+        return self.vtable.FindItemByName(self, __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
+    }
+    pub fn FindChildItemByName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0010: ?BSTR, __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
+        return self.vtable.FindChildItemByName(self, __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
+    }
+    pub fn GetParentItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParentItem(self, __MIDL__IWiaDrvItem0012);
+    }
+    pub fn GetFirstChildItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFirstChildItem(self, __MIDL__IWiaDrvItem0013);
+    }
+    pub fn GetNextSiblingItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextSiblingItem(self, __MIDL__IWiaDrvItem0014);
+    }
+    pub fn DumpItemData(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0015: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DumpItemData(self, __MIDL__IWiaDrvItem0015);
+    }
+};
+
+const IID_IWiaErrorHandler_Value = Guid.initString("0e4a51b1-bc1f-443d-a835-72e890759ef3");
+pub const IID_IWiaErrorHandler = &IID_IWiaErrorHandler_Value;
+pub const IWiaErrorHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReportStatus: *const fn(
+            self: *const IWiaErrorHandler,
+            lFlags: i32,
+            hwndParent: ?HWND,
+            pWiaItem2: ?*IWiaItem2,
+            hrStatus: HRESULT,
+            lPercentComplete: i32,
+        ) callconv(.winapi) HRESULT,
+        GetStatusDescription: *const fn(
+            self: *const IWiaErrorHandler,
+            lFlags: i32,
+            pWiaItem2: ?*IWiaItem2,
+            hrStatus: HRESULT,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReportStatus(self: *const IWiaErrorHandler, lFlags: i32, hwndParent: ?HWND, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReportStatus(self, lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
+    }
+    pub fn GetStatusDescription(self: *const IWiaErrorHandler, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatusDescription(self, lFlags, pWiaItem2, hrStatus, pbstrDescription);
     }
 };
 
@@ -1525,101 +1974,45 @@ pub const IWiaEventCallback = extern union {
     }
 };
 
-pub const WIA_DATA_CALLBACK_HEADER = extern struct {
-    lSize: i32,
-    guidFormatID: Guid,
-    lBufferSize: i32,
-    lPageCount: i32,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWiaDataCallback_Value = Guid.initString("a558a866-a5b0-11d2-a08f-00c04f72dc3c");
-pub const IID_IWiaDataCallback = &IID_IWiaDataCallback_Value;
-pub const IWiaDataCallback = extern union {
+const IID_IWiaImageFilter_Value = Guid.initString("a8a79ffa-450b-41f1-8f87-849ccd94ebf6");
+pub const IID_IWiaImageFilter = &IID_IWiaImageFilter_Value;
+pub const IWiaImageFilter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BandedDataCallback: *const fn(
-            self: *const IWiaDataCallback,
-            lMessage: i32,
-            lStatus: i32,
-            lPercentComplete: i32,
-            lOffset: i32,
-            lLength: i32,
-            lReserved: i32,
-            lResLength: i32,
-            pbBuffer: ?*u8,
+        InitializeFilter: *const fn(
+            self: *const IWiaImageFilter,
+            pWiaItem2: ?*IWiaItem2,
+            pWiaTransferCallback: ?*IWiaTransferCallback,
+        ) callconv(.winapi) HRESULT,
+        SetNewCallback: *const fn(
+            self: *const IWiaImageFilter,
+            pWiaTransferCallback: ?*IWiaTransferCallback,
+        ) callconv(.winapi) HRESULT,
+        FilterPreviewImage: *const fn(
+            self: *const IWiaImageFilter,
+            lFlags: i32,
+            pWiaChildItem2: ?*IWiaItem2,
+            InputImageExtents: RECT,
+            pInputStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        ApplyProperties: *const fn(
+            self: *const IWiaImageFilter,
+            pWiaPropertyStorage: ?*IWiaPropertyStorage,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BandedDataCallback(self: *const IWiaDataCallback, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.BandedDataCallback(self, lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
+    pub fn InitializeFilter(self: *const IWiaImageFilter, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFilter(self, pWiaItem2, pWiaTransferCallback);
     }
-};
-
-pub const WIA_DATA_TRANSFER_INFO = extern struct {
-    ulSize: u32,
-    ulSection: u32,
-    ulBufferSize: u32,
-    bDoubleBuffer: BOOL,
-    ulReserved1: u32,
-    ulReserved2: u32,
-    ulReserved3: u32,
-};
-
-pub const WIA_EXTENDED_TRANSFER_INFO = extern struct {
-    ulSize: u32,
-    ulMinBufferSize: u32,
-    ulOptimalBufferSize: u32,
-    ulMaxBufferSize: u32,
-    ulNumBuffers: u32,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWiaDataTransfer_Value = Guid.initString("a6cef998-a5b0-11d2-a08f-00c04f72dc3c");
-pub const IID_IWiaDataTransfer = &IID_IWiaDataTransfer_Value;
-pub const IWiaDataTransfer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        idtGetData: *const fn(
-            self: *const IWiaDataTransfer,
-            pMedium: ?*STGMEDIUM,
-            pIWiaDataCallback: ?*IWiaDataCallback,
-        ) callconv(.winapi) HRESULT,
-        idtGetBandedData: *const fn(
-            self: *const IWiaDataTransfer,
-            pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
-            pIWiaDataCallback: ?*IWiaDataCallback,
-        ) callconv(.winapi) HRESULT,
-        idtQueryGetData: *const fn(
-            self: *const IWiaDataTransfer,
-            pfe: ?*WIA_FORMAT_INFO,
-        ) callconv(.winapi) HRESULT,
-        idtEnumWIA_FORMAT_INFO: *const fn(
-            self: *const IWiaDataTransfer,
-            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(.winapi) HRESULT,
-        idtGetExtendedTransferInfo: *const fn(
-            self: *const IWiaDataTransfer,
-            pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn idtGetData(self: *const IWiaDataTransfer, pMedium: ?*STGMEDIUM, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.idtGetData(self, pMedium, pIWiaDataCallback);
+    pub fn SetNewCallback(self: *const IWiaImageFilter, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNewCallback(self, pWiaTransferCallback);
     }
-    pub fn idtGetBandedData(self: *const IWiaDataTransfer, pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.idtGetBandedData(self, pWiaDataTransInfo, pIWiaDataCallback);
+    pub fn FilterPreviewImage(self: *const IWiaImageFilter, lFlags: i32, pWiaChildItem2: ?*IWiaItem2, InputImageExtents: RECT, pInputStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.FilterPreviewImage(self, lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
     }
-    pub fn idtQueryGetData(self: *const IWiaDataTransfer, pfe: ?*WIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.idtQueryGetData(self, pfe);
-    }
-    pub fn idtEnumWIA_FORMAT_INFO(self: *const IWiaDataTransfer, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.idtEnumWIA_FORMAT_INFO(self, ppEnum);
-    }
-    pub fn idtGetExtendedTransferInfo(self: *const IWiaDataTransfer, pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.idtGetExtendedTransferInfo(self, pExtendedTransferInfo);
+    pub fn ApplyProperties(self: *const IWiaImageFilter, pWiaPropertyStorage: ?*IWiaPropertyStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplyProperties(self, pWiaPropertyStorage);
     }
 };
 
@@ -1751,719 +2144,6 @@ pub const IWiaItem = extern union {
     }
     pub fn Diagnostic(self: *const IWiaItem, ulSize: u32, pBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.Diagnostic(self, ulSize, pBuffer);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWiaPropertyStorage_Value = Guid.initString("98b5e8a0-29cc-491a-aac0-e6db4fdcceb6");
-pub const IID_IWiaPropertyStorage = &IID_IWiaPropertyStorage_Value;
-pub const IWiaPropertyStorage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReadMultiple: *const fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-            rgpropvar: [*]PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        WriteMultiple: *const fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: ?*const PROPSPEC,
-            rgpropvar: ?*const PROPVARIANT,
-            propidNameFirst: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteMultiple: *const fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-        ) callconv(.winapi) HRESULT,
-        ReadPropertyNames: *const fn(
-            self: *const IWiaPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        WritePropertyNames: *const fn(
-            self: *const IWiaPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]const ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        DeletePropertyNames: *const fn(
-            self: *const IWiaPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-        ) callconv(.winapi) HRESULT,
-        Commit: *const fn(
-            self: *const IWiaPropertyStorage,
-            grfCommitFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        Revert: *const fn(
-            self: *const IWiaPropertyStorage,
-        ) callconv(.winapi) HRESULT,
-        Enum: *const fn(
-            self: *const IWiaPropertyStorage,
-            ppenum: ?*?*IEnumSTATPROPSTG,
-        ) callconv(.winapi) HRESULT,
-        SetTimes: *const fn(
-            self: *const IWiaPropertyStorage,
-            pctime: ?*const FILETIME,
-            patime: ?*const FILETIME,
-            pmtime: ?*const FILETIME,
-        ) callconv(.winapi) HRESULT,
-        SetClass: *const fn(
-            self: *const IWiaPropertyStorage,
-            clsid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        Stat: *const fn(
-            self: *const IWiaPropertyStorage,
-            pstatpsstg: ?*STATPROPSETSTG,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyAttributes: *const fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]PROPSPEC,
-            rgflags: [*]u32,
-            rgpropvar: [*]PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IWiaPropertyStorage,
-            pulNumProps: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyStream: *const fn(
-            self: *const IWiaPropertyStorage,
-            pCompatibilityId: ?*Guid,
-            ppIStream: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-        SetPropertyStream: *const fn(
-            self: *const IWiaPropertyStorage,
-            pCompatibilityId: ?*Guid,
-            pIStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ReadMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadMultiple(self, cpspec, rgpspec, rgpropvar);
-    }
-    pub fn WriteMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: ?*const PROPSPEC, rgpropvar: ?*const PROPVARIANT, propidNameFirst: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteMultiple(self, cpspec, rgpspec, rgpropvar, propidNameFirst);
-    }
-    pub fn DeleteMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteMultiple(self, cpspec, rgpspec);
-    }
-    pub fn ReadPropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadPropertyNames(self, cpropid, rgpropid, rglpwstrName);
-    }
-    pub fn WritePropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.WritePropertyNames(self, cpropid, rgpropid, rglpwstrName);
-    }
-    pub fn DeletePropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePropertyNames(self, cpropid, rgpropid);
-    }
-    pub fn Commit(self: *const IWiaPropertyStorage, grfCommitFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self, grfCommitFlags);
-    }
-    pub fn Revert(self: *const IWiaPropertyStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Revert(self);
-    }
-    pub fn Enum(self: *const IWiaPropertyStorage, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Enum(self, ppenum);
-    }
-    pub fn SetTimes(self: *const IWiaPropertyStorage, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTimes(self, pctime, patime, pmtime);
-    }
-    pub fn SetClass(self: *const IWiaPropertyStorage, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetClass(self, clsid);
-    }
-    pub fn Stat(self: *const IWiaPropertyStorage, pstatpsstg: ?*STATPROPSETSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Stat(self, pstatpsstg);
-    }
-    pub fn GetPropertyAttributes(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]PROPSPEC, rgflags: [*]u32, rgpropvar: [*]PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyAttributes(self, cpspec, rgpspec, rgflags, rgpropvar);
-    }
-    pub fn GetCount(self: *const IWiaPropertyStorage, pulNumProps: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pulNumProps);
-    }
-    pub fn GetPropertyStream(self: *const IWiaPropertyStorage, pCompatibilityId: ?*Guid, ppIStream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyStream(self, pCompatibilityId, ppIStream);
-    }
-    pub fn SetPropertyStream(self: *const IWiaPropertyStorage, pCompatibilityId: ?*Guid, pIStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPropertyStream(self, pCompatibilityId, pIStream);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumWiaItem_Value = Guid.initString("5e8383fc-3391-11d2-9a33-00c04fa36145");
-pub const IID_IEnumWiaItem = &IID_IEnumWiaItem_Value;
-pub const IEnumWiaItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumWiaItem,
-            celt: u32,
-            ppIWiaItem: ?*?*IWiaItem,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumWiaItem,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumWiaItem,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumWiaItem,
-            ppIEnum: ?*?*IEnumWiaItem,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumWiaItem,
-            celt: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumWiaItem, celt: u32, ppIWiaItem: ?*?*IWiaItem, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppIWiaItem, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumWiaItem, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumWiaItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumWiaItem, ppIEnum: ?*?*IEnumWiaItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppIEnum);
-    }
-    pub fn GetCount(self: *const IEnumWiaItem, celt: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, celt);
-    }
-};
-
-pub const WIA_DEV_CAP = extern struct {
-    guid: Guid,
-    ulFlags: u32,
-    bstrName: ?BSTR,
-    bstrDescription: ?BSTR,
-    bstrIcon: ?BSTR,
-    bstrCommandline: ?BSTR,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumWIA_DEV_CAPS_Value = Guid.initString("1fcc4287-aca6-11d2-a093-00c04f72dc3c");
-pub const IID_IEnumWIA_DEV_CAPS = &IID_IEnumWIA_DEV_CAPS_Value;
-pub const IEnumWIA_DEV_CAPS = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            celt: u32,
-            rgelt: ?*WIA_DEV_CAP,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumWIA_DEV_CAPS,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            pcelt: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumWIA_DEV_CAPS, celt: u32, rgelt: ?*WIA_DEV_CAP, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumWIA_DEV_CAPS, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumWIA_DEV_CAPS) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumWIA_DEV_CAPS, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppIEnum);
-    }
-    pub fn GetCount(self: *const IEnumWIA_DEV_CAPS, pcelt: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pcelt);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumWIA_FORMAT_INFO_Value = Guid.initString("81befc5b-656d-44f1-b24c-d41d51b4dc81");
-pub const IID_IEnumWIA_FORMAT_INFO = &IID_IEnumWIA_FORMAT_INFO_Value;
-pub const IEnumWIA_FORMAT_INFO = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            celt: u32,
-            rgelt: ?*WIA_FORMAT_INFO,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            pcelt: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumWIA_FORMAT_INFO, celt: u32, rgelt: ?*WIA_FORMAT_INFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumWIA_FORMAT_INFO, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumWIA_FORMAT_INFO, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppIEnum);
-    }
-    pub fn GetCount(self: *const IEnumWIA_FORMAT_INFO, pcelt: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pcelt);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWiaLog_Value = Guid.initString("a00c10b6-82a1-452f-8b6c-86062aad6890");
-pub const IID_IWiaLog = &IID_IWiaLog_Value;
-pub const IWiaLog = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitializeLog: *const fn(
-            self: *const IWiaLog,
-            hInstance: i32,
-        ) callconv(.winapi) HRESULT,
-        hResult: *const fn(
-            self: *const IWiaLog,
-            hResult: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        Log: *const fn(
-            self: *const IWiaLog,
-            lFlags: i32,
-            lResID: i32,
-            lDetail: i32,
-            bstrText: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitializeLog(self: *const IWiaLog, hInstance: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeLog(self, hInstance);
-    }
-    pub fn hResult(self: *const IWiaLog, _param_hResult: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.hResult(self, _param_hResult);
-    }
-    pub fn Log(self: *const IWiaLog, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Log(self, lFlags, lResID, lDetail, bstrText);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWiaLogEx_Value = Guid.initString("af1f22ac-7a40-4787-b421-aeb47a1fbd0b");
-pub const IID_IWiaLogEx = &IID_IWiaLogEx_Value;
-pub const IWiaLogEx = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitializeLogEx: *const fn(
-            self: *const IWiaLogEx,
-            hInstance: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        hResult: *const fn(
-            self: *const IWiaLogEx,
-            hResult: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        Log: *const fn(
-            self: *const IWiaLogEx,
-            lFlags: i32,
-            lResID: i32,
-            lDetail: i32,
-            bstrText: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        hResultEx: *const fn(
-            self: *const IWiaLogEx,
-            lMethodId: i32,
-            hResult: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        LogEx: *const fn(
-            self: *const IWiaLogEx,
-            lMethodId: i32,
-            lFlags: i32,
-            lResID: i32,
-            lDetail: i32,
-            bstrText: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitializeLogEx(self: *const IWiaLogEx, hInstance: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeLogEx(self, hInstance);
-    }
-    pub fn hResult(self: *const IWiaLogEx, _param_hResult: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.hResult(self, _param_hResult);
-    }
-    pub fn Log(self: *const IWiaLogEx, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Log(self, lFlags, lResID, lDetail, bstrText);
-    }
-    pub fn hResultEx(self: *const IWiaLogEx, lMethodId: i32, _param_hResult: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.hResultEx(self, lMethodId, _param_hResult);
-    }
-    pub fn LogEx(self: *const IWiaLogEx, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.LogEx(self, lMethodId, lFlags, lResID, lDetail, bstrText);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWiaNotifyDevMgr_Value = Guid.initString("70681ea0-e7bf-4291-9fb1-4e8813a3f78e");
-pub const IID_IWiaNotifyDevMgr = &IID_IWiaNotifyDevMgr_Value;
-pub const IWiaNotifyDevMgr = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        NewDeviceArrival: *const fn(
-            self: *const IWiaNotifyDevMgr,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn NewDeviceArrival(self: *const IWiaNotifyDevMgr) callconv(.@"inline") HRESULT {
-        return self.vtable.NewDeviceArrival(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWiaItemExtras_Value = Guid.initString("6291ef2c-36ef-4532-876a-8e132593778d");
-pub const IID_IWiaItemExtras = &IID_IWiaItemExtras_Value;
-pub const IWiaItemExtras = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetExtendedErrorInfo: *const fn(
-            self: *const IWiaItemExtras,
-            bstrErrorText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Escape: *const fn(
-            self: *const IWiaItemExtras,
-            dwEscapeCode: u32,
-            lpInData: [*:0]u8,
-            cbInDataSize: u32,
-            pOutData: ?*u8,
-            dwOutDataSize: u32,
-            pdwActualDataSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        CancelPendingIO: *const fn(
-            self: *const IWiaItemExtras,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetExtendedErrorInfo(self: *const IWiaItemExtras, bstrErrorText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetExtendedErrorInfo(self, bstrErrorText);
-    }
-    pub fn Escape(self: *const IWiaItemExtras, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: ?*u8, dwOutDataSize: u32, pdwActualDataSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Escape(self, dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
-    }
-    pub fn CancelPendingIO(self: *const IWiaItemExtras) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelPendingIO(self);
-    }
-};
-
-const IID_IWiaAppErrorHandler_Value = Guid.initString("6c16186c-d0a6-400c-80f4-d26986a0e734");
-pub const IID_IWiaAppErrorHandler = &IID_IWiaAppErrorHandler_Value;
-pub const IWiaAppErrorHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWindow: *const fn(
-            self: *const IWiaAppErrorHandler,
-            phwnd: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        ReportStatus: *const fn(
-            self: *const IWiaAppErrorHandler,
-            lFlags: i32,
-            pWiaItem2: ?*IWiaItem2,
-            hrStatus: HRESULT,
-            lPercentComplete: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetWindow(self: *const IWiaAppErrorHandler, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWindow(self, phwnd);
-    }
-    pub fn ReportStatus(self: *const IWiaAppErrorHandler, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReportStatus(self, lFlags, pWiaItem2, hrStatus, lPercentComplete);
-    }
-};
-
-const IID_IWiaErrorHandler_Value = Guid.initString("0e4a51b1-bc1f-443d-a835-72e890759ef3");
-pub const IID_IWiaErrorHandler = &IID_IWiaErrorHandler_Value;
-pub const IWiaErrorHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReportStatus: *const fn(
-            self: *const IWiaErrorHandler,
-            lFlags: i32,
-            hwndParent: ?HWND,
-            pWiaItem2: ?*IWiaItem2,
-            hrStatus: HRESULT,
-            lPercentComplete: i32,
-        ) callconv(.winapi) HRESULT,
-        GetStatusDescription: *const fn(
-            self: *const IWiaErrorHandler,
-            lFlags: i32,
-            pWiaItem2: ?*IWiaItem2,
-            hrStatus: HRESULT,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ReportStatus(self: *const IWiaErrorHandler, lFlags: i32, hwndParent: ?HWND, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReportStatus(self, lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
-    }
-    pub fn GetStatusDescription(self: *const IWiaErrorHandler, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatusDescription(self, lFlags, pWiaItem2, hrStatus, pbstrDescription);
-    }
-};
-
-const IID_IWiaTransfer_Value = Guid.initString("c39d6942-2f4e-4d04-92fe-4ef4d3a1de5a");
-pub const IID_IWiaTransfer = &IID_IWiaTransfer_Value;
-pub const IWiaTransfer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Download: *const fn(
-            self: *const IWiaTransfer,
-            lFlags: i32,
-            pIWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(.winapi) HRESULT,
-        Upload: *const fn(
-            self: *const IWiaTransfer,
-            lFlags: i32,
-            pSource: ?*IStream,
-            pIWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const IWiaTransfer,
-        ) callconv(.winapi) HRESULT,
-        EnumWIA_FORMAT_INFO: *const fn(
-            self: *const IWiaTransfer,
-            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Download(self: *const IWiaTransfer, lFlags: i32, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.Download(self, lFlags, pIWiaTransferCallback);
-    }
-    pub fn Upload(self: *const IWiaTransfer, lFlags: i32, pSource: ?*IStream, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.Upload(self, lFlags, pSource, pIWiaTransferCallback);
-    }
-    pub fn Cancel(self: *const IWiaTransfer) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-    pub fn EnumWIA_FORMAT_INFO(self: *const IWiaTransfer, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumWIA_FORMAT_INFO(self, ppEnum);
-    }
-};
-
-pub const WiaTransferParams = extern struct {
-    lMessage: i32,
-    lPercentComplete: i32,
-    ulTransferredBytes: u64,
-    hrErrorStatus: HRESULT,
-};
-
-const IID_IWiaTransferCallback_Value = Guid.initString("27d4eaaf-28a6-4ca5-9aab-e678168b9527");
-pub const IID_IWiaTransferCallback = &IID_IWiaTransferCallback_Value;
-pub const IWiaTransferCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        TransferCallback: *const fn(
-            self: *const IWiaTransferCallback,
-            lFlags: i32,
-            pWiaTransferParams: ?*WiaTransferParams,
-        ) callconv(.winapi) HRESULT,
-        GetNextStream: *const fn(
-            self: *const IWiaTransferCallback,
-            lFlags: i32,
-            bstrItemName: ?BSTR,
-            bstrFullItemName: ?BSTR,
-            ppDestination: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn TransferCallback(self: *const IWiaTransferCallback, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) callconv(.@"inline") HRESULT {
-        return self.vtable.TransferCallback(self, lFlags, pWiaTransferParams);
-    }
-    pub fn GetNextStream(self: *const IWiaTransferCallback, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppDestination: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextStream(self, lFlags, bstrItemName, bstrFullItemName, ppDestination);
-    }
-};
-
-const IID_IWiaSegmentationFilter_Value = Guid.initString("ec46a697-ac04-4447-8f65-ff63d5154b21");
-pub const IID_IWiaSegmentationFilter = &IID_IWiaSegmentationFilter_Value;
-pub const IWiaSegmentationFilter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DetectRegions: *const fn(
-            self: *const IWiaSegmentationFilter,
-            lFlags: i32,
-            pInputStream: ?*IStream,
-            pWiaItem2: ?*IWiaItem2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DetectRegions(self: *const IWiaSegmentationFilter, lFlags: i32, pInputStream: ?*IStream, pWiaItem2: ?*IWiaItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.DetectRegions(self, lFlags, pInputStream, pWiaItem2);
-    }
-};
-
-const IID_IWiaImageFilter_Value = Guid.initString("a8a79ffa-450b-41f1-8f87-849ccd94ebf6");
-pub const IID_IWiaImageFilter = &IID_IWiaImageFilter_Value;
-pub const IWiaImageFilter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitializeFilter: *const fn(
-            self: *const IWiaImageFilter,
-            pWiaItem2: ?*IWiaItem2,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(.winapi) HRESULT,
-        SetNewCallback: *const fn(
-            self: *const IWiaImageFilter,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(.winapi) HRESULT,
-        FilterPreviewImage: *const fn(
-            self: *const IWiaImageFilter,
-            lFlags: i32,
-            pWiaChildItem2: ?*IWiaItem2,
-            InputImageExtents: RECT,
-            pInputStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        ApplyProperties: *const fn(
-            self: *const IWiaImageFilter,
-            pWiaPropertyStorage: ?*IWiaPropertyStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitializeFilter(self: *const IWiaImageFilter, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFilter(self, pWiaItem2, pWiaTransferCallback);
-    }
-    pub fn SetNewCallback(self: *const IWiaImageFilter, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNewCallback(self, pWiaTransferCallback);
-    }
-    pub fn FilterPreviewImage(self: *const IWiaImageFilter, lFlags: i32, pWiaChildItem2: ?*IWiaItem2, InputImageExtents: RECT, pInputStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.FilterPreviewImage(self, lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
-    }
-    pub fn ApplyProperties(self: *const IWiaImageFilter, pWiaPropertyStorage: ?*IWiaPropertyStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplyProperties(self, pWiaPropertyStorage);
-    }
-};
-
-const IID_IWiaPreview_Value = Guid.initString("95c2b4fd-33f2-4d86-ad40-9431f0df08f7");
-pub const IID_IWiaPreview = &IID_IWiaPreview_Value;
-pub const IWiaPreview = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNewPreview: *const fn(
-            self: *const IWiaPreview,
-            lFlags: i32,
-            pWiaItem2: ?*IWiaItem2,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(.winapi) HRESULT,
-        UpdatePreview: *const fn(
-            self: *const IWiaPreview,
-            lFlags: i32,
-            pChildWiaItem2: ?*IWiaItem2,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(.winapi) HRESULT,
-        DetectRegions: *const fn(
-            self: *const IWiaPreview,
-            lFlags: i32,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IWiaPreview,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNewPreview(self: *const IWiaPreview, lFlags: i32, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNewPreview(self, lFlags, pWiaItem2, pWiaTransferCallback);
-    }
-    pub fn UpdatePreview(self: *const IWiaPreview, lFlags: i32, pChildWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdatePreview(self, lFlags, pChildWiaItem2, pWiaTransferCallback);
-    }
-    pub fn DetectRegions(self: *const IWiaPreview, lFlags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DetectRegions(self, lFlags);
-    }
-    pub fn Clear(self: *const IWiaPreview) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-};
-
-const IID_IEnumWiaItem2_Value = Guid.initString("59970af4-cd0d-44d9-ab24-52295630e582");
-pub const IID_IEnumWiaItem2 = &IID_IEnumWiaItem2_Value;
-pub const IEnumWiaItem2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumWiaItem2,
-            cElt: u32,
-            ppIWiaItem2: ?*?*IWiaItem2,
-            pcEltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumWiaItem2,
-            cElt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumWiaItem2,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumWiaItem2,
-            ppIEnum: ?*?*IEnumWiaItem2,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IEnumWiaItem2,
-            cElt: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumWiaItem2, cElt: u32, ppIWiaItem2: ?*?*IWiaItem2, pcEltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, cElt, ppIWiaItem2, pcEltFetched);
-    }
-    pub fn Skip(self: *const IEnumWiaItem2, cElt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, cElt);
-    }
-    pub fn Reset(self: *const IEnumWiaItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumWiaItem2, ppIEnum: ?*?*IEnumWiaItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppIEnum);
-    }
-    pub fn GetCount(self: *const IEnumWiaItem2, cElt: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, cElt);
     }
 };
 
@@ -2614,142 +2294,129 @@ pub const IWiaItem2 = extern union {
     }
 };
 
-const IID_IWiaDevMgr2_Value = Guid.initString("79c07cf1-cbdd-41ee-8ec3-f00080cada7a");
-pub const IID_IWiaDevMgr2 = &IID_IWiaDevMgr2_Value;
-pub const IWiaDevMgr2 = extern union {
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWiaItemExtras_Value = Guid.initString("6291ef2c-36ef-4532-876a-8e132593778d");
+pub const IID_IWiaItemExtras = &IID_IWiaItemExtras_Value;
+pub const IWiaItemExtras = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnumDeviceInfo: *const fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+        GetExtendedErrorInfo: *const fn(
+            self: *const IWiaItemExtras,
+            bstrErrorText: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        CreateDevice: *const fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            ppWiaItem2Root: ?*?*IWiaItem2,
+        Escape: *const fn(
+            self: *const IWiaItemExtras,
+            dwEscapeCode: u32,
+            lpInData: [*:0]u8,
+            cbInDataSize: u32,
+            pOutData: ?*u8,
+            dwOutDataSize: u32,
+            pdwActualDataSize: ?*u32,
         ) callconv(.winapi) HRESULT,
-        SelectDeviceDlg: *const fn(
-            self: *const IWiaDevMgr2,
-            hwndParent: ?HWND,
-            lDeviceType: i32,
-            lFlags: i32,
-            pbstrDeviceID: ?*?BSTR,
-            ppItemRoot: ?*?*IWiaItem2,
-        ) callconv(.winapi) HRESULT,
-        SelectDeviceDlgID: *const fn(
-            self: *const IWiaDevMgr2,
-            hwndParent: ?HWND,
-            lDeviceType: i32,
-            lFlags: i32,
-            pbstrDeviceID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RegisterEventCallbackInterface: *const fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            pIWiaEventCallback: ?*IWiaEventCallback,
-            pEventObject: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        RegisterEventCallbackProgram: *const fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            bstrFullAppName: ?BSTR,
-            bstrCommandLineArg: ?BSTR,
-            bstrName: ?BSTR,
-            bstrDescription: ?BSTR,
-            bstrIcon: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RegisterEventCallbackCLSID: *const fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            pClsID: ?*const Guid,
-            bstrName: ?BSTR,
-            bstrDescription: ?BSTR,
-            bstrIcon: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetImageDlg: *const fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            hwndParent: ?HWND,
-            bstrFolderName: ?BSTR,
-            bstrFilename: ?BSTR,
-            plNumFiles: ?*i32,
-            ppbstrFilePaths: ?*?*?BSTR,
-            ppItem: ?*?*IWiaItem2,
+        CancelPendingIO: *const fn(
+            self: *const IWiaItemExtras,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumDeviceInfo(self: *const IWiaDevMgr2, lFlags: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumDeviceInfo(self, lFlags, ppIEnum);
+    pub fn GetExtendedErrorInfo(self: *const IWiaItemExtras, bstrErrorText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetExtendedErrorInfo(self, bstrErrorText);
     }
-    pub fn CreateDevice(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, ppWiaItem2Root: ?*?*IWiaItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDevice(self, lFlags, bstrDeviceID, ppWiaItem2Root);
+    pub fn Escape(self: *const IWiaItemExtras, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: ?*u8, dwOutDataSize: u32, pdwActualDataSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Escape(self, dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
     }
-    pub fn SelectDeviceDlg(self: *const IWiaDevMgr2, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.SelectDeviceDlg(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
-    }
-    pub fn SelectDeviceDlgID(self: *const IWiaDevMgr2, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SelectDeviceDlgID(self, hwndParent, lDeviceType, lFlags, pbstrDeviceID);
-    }
-    pub fn RegisterEventCallbackInterface(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterEventCallbackInterface(self, lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
-    }
-    pub fn RegisterEventCallbackProgram(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrFullAppName: ?BSTR, bstrCommandLineArg: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterEventCallbackProgram(self, lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
-    }
-    pub fn RegisterEventCallbackCLSID(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterEventCallbackCLSID(self, lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
-    }
-    pub fn GetImageDlg(self: *const IWiaDevMgr2, lFlags: i32, bstrDeviceID: ?BSTR, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) callconv(.@"inline") HRESULT {
-        return self.vtable.GetImageDlg(self, lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+    pub fn CancelPendingIO(self: *const IWiaItemExtras) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelPendingIO(self);
     }
 };
 
-pub const MINIDRV_TRANSFER_CONTEXT = extern struct {
-    lSize: i32,
-    lWidthInPixels: i32,
-    lLines: i32,
-    lDepth: i32,
-    lXRes: i32,
-    lYRes: i32,
-    lCompression: i32,
-    guidFormatID: Guid,
-    tymed: i32,
-    hFile: isize,
-    cbOffset: i32,
-    lBufferSize: i32,
-    lActiveBuffer: i32,
-    lNumBuffers: i32,
-    pBaseBuffer: ?*u8,
-    pTransferBuffer: ?*u8,
-    bTransferDataCB: BOOL,
-    bClassDrvAllocBuf: BOOL,
-    lClientAddress: isize,
-    pIWiaMiniDrvCallBack: ?*IWiaMiniDrvCallBack,
-    lImageSize: i32,
-    lHeaderSize: i32,
-    lItemSize: i32,
-    cbWidthInBytes: i32,
-    lPage: i32,
-    lCurIfdOffset: i32,
-    lPrevIfdOffset: i32,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWiaLog_Value = Guid.initString("a00c10b6-82a1-452f-8b6c-86062aad6890");
+pub const IID_IWiaLog = &IID_IWiaLog_Value;
+pub const IWiaLog = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitializeLog: *const fn(
+            self: *const IWiaLog,
+            hInstance: i32,
+        ) callconv(.winapi) HRESULT,
+        hResult: *const fn(
+            self: *const IWiaLog,
+            hResult: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        Log: *const fn(
+            self: *const IWiaLog,
+            lFlags: i32,
+            lResID: i32,
+            lDetail: i32,
+            bstrText: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitializeLog(self: *const IWiaLog, hInstance: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeLog(self, hInstance);
+    }
+    pub fn hResult(self: *const IWiaLog, _param_hResult: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.hResult(self, _param_hResult);
+    }
+    pub fn Log(self: *const IWiaLog, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Log(self, lFlags, lResID, lDetail, bstrText);
+    }
 };
 
-pub const WIA_DEV_CAP_DRV = extern struct {
-    guid: ?*Guid,
-    ulFlags: u32,
-    wszName: ?PWSTR,
-    wszDescription: ?PWSTR,
-    wszIcon: ?PWSTR,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWiaLogEx_Value = Guid.initString("af1f22ac-7a40-4787-b421-aeb47a1fbd0b");
+pub const IID_IWiaLogEx = &IID_IWiaLogEx_Value;
+pub const IWiaLogEx = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitializeLogEx: *const fn(
+            self: *const IWiaLogEx,
+            hInstance: ?*u8,
+        ) callconv(.winapi) HRESULT,
+        hResult: *const fn(
+            self: *const IWiaLogEx,
+            hResult: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        Log: *const fn(
+            self: *const IWiaLogEx,
+            lFlags: i32,
+            lResID: i32,
+            lDetail: i32,
+            bstrText: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        hResultEx: *const fn(
+            self: *const IWiaLogEx,
+            lMethodId: i32,
+            hResult: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        LogEx: *const fn(
+            self: *const IWiaLogEx,
+            lMethodId: i32,
+            lFlags: i32,
+            lResID: i32,
+            lDetail: i32,
+            bstrText: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitializeLogEx(self: *const IWiaLogEx, hInstance: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeLogEx(self, hInstance);
+    }
+    pub fn hResult(self: *const IWiaLogEx, _param_hResult: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.hResult(self, _param_hResult);
+    }
+    pub fn Log(self: *const IWiaLogEx, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Log(self, lFlags, lResID, lDetail, bstrText);
+    }
+    pub fn hResultEx(self: *const IWiaLogEx, lMethodId: i32, _param_hResult: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.hResultEx(self, lMethodId, _param_hResult);
+    }
+    pub fn LogEx(self: *const IWiaLogEx, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.LogEx(self, lMethodId, lFlags, lResID, lDetail, bstrText);
+    }
 };
 
 const IID_IWiaMiniDrv_Value = Guid.initString("d8cdee14-3c6c-11d2-9a35-00c04fa36145");
@@ -2983,222 +2650,352 @@ pub const IWiaMiniDrvTransferCallback = extern union {
     }
 };
 
-const IID_IWiaDrvItem_Value = Guid.initString("1f02b5c5-b00c-11d2-a094-00c04f72dc3c");
-pub const IID_IWiaDrvItem = &IID_IWiaDrvItem_Value;
-pub const IWiaDrvItem = extern union {
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWiaNotifyDevMgr_Value = Guid.initString("70681ea0-e7bf-4291-9fb1-4e8813a3f78e");
+pub const IID_IWiaNotifyDevMgr = &IID_IWiaNotifyDevMgr_Value;
+pub const IWiaNotifyDevMgr = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemFlags: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0000: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceSpecContext: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0001: ?*?*u8,
-        ) callconv(.winapi) HRESULT,
-        GetFullItemName: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0002: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetItemName: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0003: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddItemToFolder: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
-        ) callconv(.winapi) HRESULT,
-        UnlinkItemTree: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0005: i32,
-        ) callconv(.winapi) HRESULT,
-        RemoveItemFromFolder: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0006: i32,
-        ) callconv(.winapi) HRESULT,
-        FindItemByName: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0007: i32,
-            __MIDL__IWiaDrvItem0008: ?BSTR,
-            __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem,
-        ) callconv(.winapi) HRESULT,
-        FindChildItemByName: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0010: ?BSTR,
-            __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
-        ) callconv(.winapi) HRESULT,
-        GetParentItem: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
-        ) callconv(.winapi) HRESULT,
-        GetFirstChildItem: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
-        ) callconv(.winapi) HRESULT,
-        GetNextSiblingItem: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
-        ) callconv(.winapi) HRESULT,
-        DumpItemData: *const fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0015: ?*?BSTR,
+        NewDeviceArrival: *const fn(
+            self: *const IWiaNotifyDevMgr,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemFlags(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0000: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemFlags(self, __MIDL__IWiaDrvItem0000);
-    }
-    pub fn GetDeviceSpecContext(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0001: ?*?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceSpecContext(self, __MIDL__IWiaDrvItem0001);
-    }
-    pub fn GetFullItemName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0002: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFullItemName(self, __MIDL__IWiaDrvItem0002);
-    }
-    pub fn GetItemName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0003: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemName(self, __MIDL__IWiaDrvItem0003);
-    }
-    pub fn AddItemToFolder(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItemToFolder(self, __MIDL__IWiaDrvItem0004);
-    }
-    pub fn UnlinkItemTree(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0005: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnlinkItemTree(self, __MIDL__IWiaDrvItem0005);
-    }
-    pub fn RemoveItemFromFolder(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0006: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItemFromFolder(self, __MIDL__IWiaDrvItem0006);
-    }
-    pub fn FindItemByName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0007: i32, __MIDL__IWiaDrvItem0008: ?BSTR, __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
-        return self.vtable.FindItemByName(self, __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
-    }
-    pub fn FindChildItemByName(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0010: ?BSTR, __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
-        return self.vtable.FindChildItemByName(self, __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
-    }
-    pub fn GetParentItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParentItem(self, __MIDL__IWiaDrvItem0012);
-    }
-    pub fn GetFirstChildItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFirstChildItem(self, __MIDL__IWiaDrvItem0013);
-    }
-    pub fn GetNextSiblingItem(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextSiblingItem(self, __MIDL__IWiaDrvItem0014);
-    }
-    pub fn DumpItemData(self: *const IWiaDrvItem, __MIDL__IWiaDrvItem0015: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DumpItemData(self, __MIDL__IWiaDrvItem0015);
+    pub fn NewDeviceArrival(self: *const IWiaNotifyDevMgr) callconv(.@"inline") HRESULT {
+        return self.vtable.NewDeviceArrival(self);
     }
 };
 
-pub const WIA_PROPERTY_INFO = extern struct {
-    lAccessFlags: u32,
-    vt: VARENUM,
-    ValidVal: extern union {
-        Range: extern struct {
-            Min: i32,
-            Nom: i32,
-            Max: i32,
-            Inc: i32,
-        },
-        RangeFloat: extern struct {
-            Min: f64,
-            Nom: f64,
-            Max: f64,
-            Inc: f64,
-        },
-        List: extern struct {
-            cNumList: i32,
-            Nom: i32,
-            pList: ?*u8,
-        },
-        ListFloat: extern struct {
-            cNumList: i32,
-            Nom: f64,
-            pList: ?*u8,
-        },
-        ListGuid: extern struct {
-            cNumList: i32,
-            Nom: Guid,
-            pList: ?*Guid,
-        },
-        ListBStr: extern struct {
-            cNumList: i32,
-            Nom: ?BSTR,
-            pList: ?*?BSTR,
-        },
-        Flag: extern struct {
-            Nom: i32,
-            ValidBits: i32,
-        },
-        None: extern struct {
-            Dummy: i32,
-        },
-    },
+const IID_IWiaPreview_Value = Guid.initString("95c2b4fd-33f2-4d86-ad40-9431f0df08f7");
+pub const IID_IWiaPreview = &IID_IWiaPreview_Value;
+pub const IWiaPreview = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNewPreview: *const fn(
+            self: *const IWiaPreview,
+            lFlags: i32,
+            pWiaItem2: ?*IWiaItem2,
+            pWiaTransferCallback: ?*IWiaTransferCallback,
+        ) callconv(.winapi) HRESULT,
+        UpdatePreview: *const fn(
+            self: *const IWiaPreview,
+            lFlags: i32,
+            pChildWiaItem2: ?*IWiaItem2,
+            pWiaTransferCallback: ?*IWiaTransferCallback,
+        ) callconv(.winapi) HRESULT,
+        DetectRegions: *const fn(
+            self: *const IWiaPreview,
+            lFlags: i32,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IWiaPreview,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNewPreview(self: *const IWiaPreview, lFlags: i32, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNewPreview(self, lFlags, pWiaItem2, pWiaTransferCallback);
+    }
+    pub fn UpdatePreview(self: *const IWiaPreview, lFlags: i32, pChildWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdatePreview(self, lFlags, pChildWiaItem2, pWiaTransferCallback);
+    }
+    pub fn DetectRegions(self: *const IWiaPreview, lFlags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DetectRegions(self, lFlags);
+    }
+    pub fn Clear(self: *const IWiaPreview) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
 };
 
-pub const WIA_PROPERTY_CONTEXT = extern struct {
-    cProps: u32,
-    pProps: ?*u32,
-    pChanged: ?*BOOL,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IWiaPropertyStorage_Value = Guid.initString("98b5e8a0-29cc-491a-aac0-e6db4fdcceb6");
+pub const IID_IWiaPropertyStorage = &IID_IWiaPropertyStorage_Value;
+pub const IWiaPropertyStorage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReadMultiple: *const fn(
+            self: *const IWiaPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+            rgpropvar: [*]PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        WriteMultiple: *const fn(
+            self: *const IWiaPropertyStorage,
+            cpspec: u32,
+            rgpspec: ?*const PROPSPEC,
+            rgpropvar: ?*const PROPVARIANT,
+            propidNameFirst: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteMultiple: *const fn(
+            self: *const IWiaPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+        ) callconv(.winapi) HRESULT,
+        ReadPropertyNames: *const fn(
+            self: *const IWiaPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+            rglpwstrName: [*]?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        WritePropertyNames: *const fn(
+            self: *const IWiaPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+            rglpwstrName: [*]const ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        DeletePropertyNames: *const fn(
+            self: *const IWiaPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+        ) callconv(.winapi) HRESULT,
+        Commit: *const fn(
+            self: *const IWiaPropertyStorage,
+            grfCommitFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        Revert: *const fn(
+            self: *const IWiaPropertyStorage,
+        ) callconv(.winapi) HRESULT,
+        Enum: *const fn(
+            self: *const IWiaPropertyStorage,
+            ppenum: ?*?*IEnumSTATPROPSTG,
+        ) callconv(.winapi) HRESULT,
+        SetTimes: *const fn(
+            self: *const IWiaPropertyStorage,
+            pctime: ?*const FILETIME,
+            patime: ?*const FILETIME,
+            pmtime: ?*const FILETIME,
+        ) callconv(.winapi) HRESULT,
+        SetClass: *const fn(
+            self: *const IWiaPropertyStorage,
+            clsid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        Stat: *const fn(
+            self: *const IWiaPropertyStorage,
+            pstatpsstg: ?*STATPROPSETSTG,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyAttributes: *const fn(
+            self: *const IWiaPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]PROPSPEC,
+            rgflags: [*]u32,
+            rgpropvar: [*]PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IWiaPropertyStorage,
+            pulNumProps: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyStream: *const fn(
+            self: *const IWiaPropertyStorage,
+            pCompatibilityId: ?*Guid,
+            ppIStream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+        SetPropertyStream: *const fn(
+            self: *const IWiaPropertyStorage,
+            pCompatibilityId: ?*Guid,
+            pIStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReadMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadMultiple(self, cpspec, rgpspec, rgpropvar);
+    }
+    pub fn WriteMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: ?*const PROPSPEC, rgpropvar: ?*const PROPVARIANT, propidNameFirst: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteMultiple(self, cpspec, rgpspec, rgpropvar, propidNameFirst);
+    }
+    pub fn DeleteMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteMultiple(self, cpspec, rgpspec);
+    }
+    pub fn ReadPropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadPropertyNames(self, cpropid, rgpropid, rglpwstrName);
+    }
+    pub fn WritePropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.WritePropertyNames(self, cpropid, rgpropid, rglpwstrName);
+    }
+    pub fn DeletePropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePropertyNames(self, cpropid, rgpropid);
+    }
+    pub fn Commit(self: *const IWiaPropertyStorage, grfCommitFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self, grfCommitFlags);
+    }
+    pub fn Revert(self: *const IWiaPropertyStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Revert(self);
+    }
+    pub fn Enum(self: *const IWiaPropertyStorage, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Enum(self, ppenum);
+    }
+    pub fn SetTimes(self: *const IWiaPropertyStorage, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTimes(self, pctime, patime, pmtime);
+    }
+    pub fn SetClass(self: *const IWiaPropertyStorage, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetClass(self, clsid);
+    }
+    pub fn Stat(self: *const IWiaPropertyStorage, pstatpsstg: ?*STATPROPSETSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Stat(self, pstatpsstg);
+    }
+    pub fn GetPropertyAttributes(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]PROPSPEC, rgflags: [*]u32, rgpropvar: [*]PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyAttributes(self, cpspec, rgpspec, rgflags, rgpropvar);
+    }
+    pub fn GetCount(self: *const IWiaPropertyStorage, pulNumProps: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pulNumProps);
+    }
+    pub fn GetPropertyStream(self: *const IWiaPropertyStorage, pCompatibilityId: ?*Guid, ppIStream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyStream(self, pCompatibilityId, ppIStream);
+    }
+    pub fn SetPropertyStream(self: *const IWiaPropertyStorage, pCompatibilityId: ?*Guid, pIStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPropertyStream(self, pCompatibilityId, pIStream);
+    }
 };
 
-pub const WIAS_CHANGED_VALUE_INFO = extern struct {
-    bChanged: BOOL,
-    vt: i32,
-    Old: extern union {
-        lVal: i32,
-        fltVal: f32,
-        bstrVal: ?BSTR,
-        guidVal: Guid,
-    },
-    Current: extern union {
-        lVal: i32,
-        fltVal: f32,
-        bstrVal: ?BSTR,
-        guidVal: Guid,
-    },
+const IID_IWiaSegmentationFilter_Value = Guid.initString("ec46a697-ac04-4447-8f65-ff63d5154b21");
+pub const IID_IWiaSegmentationFilter = &IID_IWiaSegmentationFilter_Value;
+pub const IWiaSegmentationFilter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        DetectRegions: *const fn(
+            self: *const IWiaSegmentationFilter,
+            lFlags: i32,
+            pInputStream: ?*IStream,
+            pWiaItem2: ?*IWiaItem2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DetectRegions(self: *const IWiaSegmentationFilter, lFlags: i32, pInputStream: ?*IStream, pWiaItem2: ?*IWiaItem2) callconv(.@"inline") HRESULT {
+        return self.vtable.DetectRegions(self, lFlags, pInputStream, pWiaItem2);
+    }
 };
 
-pub const WIAS_DOWN_SAMPLE_INFO = extern struct {
-    ulOriginalWidth: u32,
-    ulOriginalHeight: u32,
-    ulBitsPerPixel: u32,
-    ulXRes: u32,
-    ulYRes: u32,
-    ulDownSampledWidth: u32,
-    ulDownSampledHeight: u32,
-    ulActualSize: u32,
-    ulDestBufSize: u32,
-    ulSrcBufSize: u32,
-    pSrcBuffer: ?*u8,
-    pDestBuffer: ?*u8,
+const IID_IWiaTransfer_Value = Guid.initString("c39d6942-2f4e-4d04-92fe-4ef4d3a1de5a");
+pub const IID_IWiaTransfer = &IID_IWiaTransfer_Value;
+pub const IWiaTransfer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Download: *const fn(
+            self: *const IWiaTransfer,
+            lFlags: i32,
+            pIWiaTransferCallback: ?*IWiaTransferCallback,
+        ) callconv(.winapi) HRESULT,
+        Upload: *const fn(
+            self: *const IWiaTransfer,
+            lFlags: i32,
+            pSource: ?*IStream,
+            pIWiaTransferCallback: ?*IWiaTransferCallback,
+        ) callconv(.winapi) HRESULT,
+        Cancel: *const fn(
+            self: *const IWiaTransfer,
+        ) callconv(.winapi) HRESULT,
+        EnumWIA_FORMAT_INFO: *const fn(
+            self: *const IWiaTransfer,
+            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Download(self: *const IWiaTransfer, lFlags: i32, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.Download(self, lFlags, pIWiaTransferCallback);
+    }
+    pub fn Upload(self: *const IWiaTransfer, lFlags: i32, pSource: ?*IStream, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.Upload(self, lFlags, pSource, pIWiaTransferCallback);
+    }
+    pub fn Cancel(self: *const IWiaTransfer) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn EnumWIA_FORMAT_INFO(self: *const IWiaTransfer, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumWIA_FORMAT_INFO(self, ppEnum);
+    }
 };
 
-pub const WIAS_ENDORSER_VALUE = extern struct {
-    wszTokenName: ?PWSTR,
-    wszValue: ?PWSTR,
+const IID_IWiaTransferCallback_Value = Guid.initString("27d4eaaf-28a6-4ca5-9aab-e678168b9527");
+pub const IID_IWiaTransferCallback = &IID_IWiaTransferCallback_Value;
+pub const IWiaTransferCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        TransferCallback: *const fn(
+            self: *const IWiaTransferCallback,
+            lFlags: i32,
+            pWiaTransferParams: ?*WiaTransferParams,
+        ) callconv(.winapi) HRESULT,
+        GetNextStream: *const fn(
+            self: *const IWiaTransferCallback,
+            lFlags: i32,
+            bstrItemName: ?BSTR,
+            bstrFullItemName: ?BSTR,
+            ppDestination: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn TransferCallback(self: *const IWiaTransferCallback, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) callconv(.@"inline") HRESULT {
+        return self.vtable.TransferCallback(self, lFlags, pWiaTransferParams);
+    }
+    pub fn GetNextStream(self: *const IWiaTransferCallback, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppDestination: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextStream(self, lFlags, bstrItemName, bstrFullItemName, ppDestination);
+    }
 };
 
-pub const WIAS_ENDORSER_INFO = extern struct {
-    ulPageCount: u32,
-    ulNumEndorserValues: u32,
-    pEndorserValues: ?*WIAS_ENDORSER_VALUE,
+const IID_IWiaUIExtension_Value = Guid.initString("da319113-50ee-4c80-b460-57d005d44a2c");
+pub const IID_IWiaUIExtension = &IID_IWiaUIExtension_Value;
+pub const IWiaUIExtension = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        DeviceDialog: *const fn(
+            self: *const IWiaUIExtension,
+            pDeviceDialogData: ?*DEVICEDIALOGDATA,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceIcon: *const fn(
+            self: *const IWiaUIExtension,
+            bstrDeviceId: ?BSTR,
+            phIcon: ?*?HICON,
+            nSize: u32,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceBitmapLogo: *const fn(
+            self: *const IWiaUIExtension,
+            bstrDeviceId: ?BSTR,
+            phBitmap: ?*?HBITMAP,
+            nMaxWidth: u32,
+            nMaxHeight: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DeviceDialog(self: *const IWiaUIExtension, pDeviceDialogData: ?*DEVICEDIALOGDATA) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceDialog(self, pDeviceDialogData);
+    }
+    pub fn GetDeviceIcon(self: *const IWiaUIExtension, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceIcon(self, bstrDeviceId, phIcon, nSize);
+    }
+    pub fn GetDeviceBitmapLogo(self: *const IWiaUIExtension, bstrDeviceId: ?BSTR, phBitmap: ?*?HBITMAP, nMaxWidth: u32, nMaxHeight: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceBitmapLogo(self, bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
+    }
 };
 
-const CLSID_WiaVideo_Value = Guid.initString("3908c3cd-4478-4536-af2f-10c25d4ef89a");
-pub const CLSID_WiaVideo = &CLSID_WiaVideo_Value;
-
-pub const WIAVIDEO_STATE = enum(i32) {
-    NO_VIDEO = 1,
-    CREATING_VIDEO = 2,
-    VIDEO_CREATED = 3,
-    VIDEO_PLAYING = 4,
-    VIDEO_PAUSED = 5,
-    DESTROYING_VIDEO = 6,
+const IID_IWiaUIExtension2_Value = Guid.initString("305600d7-5088-46d7-9a15-b77b09cdba7a");
+pub const IID_IWiaUIExtension2 = &IID_IWiaUIExtension2_Value;
+pub const IWiaUIExtension2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        DeviceDialog: *const fn(
+            self: *const IWiaUIExtension2,
+            pDeviceDialogData: ?*DEVICEDIALOGDATA2,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceIcon: *const fn(
+            self: *const IWiaUIExtension2,
+            bstrDeviceId: ?BSTR,
+            phIcon: ?*?HICON,
+            nSize: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DeviceDialog(self: *const IWiaUIExtension2, pDeviceDialogData: ?*DEVICEDIALOGDATA2) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceDialog(self, pDeviceDialogData);
+    }
+    pub fn GetDeviceIcon(self: *const IWiaUIExtension2, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceIcon(self, bstrDeviceId, phIcon, nSize);
+    }
 };
-pub const WIAVIDEO_NO_VIDEO = WIAVIDEO_STATE.NO_VIDEO;
-pub const WIAVIDEO_CREATING_VIDEO = WIAVIDEO_STATE.CREATING_VIDEO;
-pub const WIAVIDEO_VIDEO_CREATED = WIAVIDEO_STATE.VIDEO_CREATED;
-pub const WIAVIDEO_VIDEO_PLAYING = WIAVIDEO_STATE.VIDEO_PLAYING;
-pub const WIAVIDEO_VIDEO_PAUSED = WIAVIDEO_STATE.VIDEO_PAUSED;
-pub const WIAVIDEO_DESTROYING_VIDEO = WIAVIDEO_STATE.DESTROYING_VIDEO;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWiaVideo_Value = Guid.initString("d52920aa-db88-41f0-946c-e00dc0a19cfa");
@@ -3312,105 +3109,40 @@ pub const IWiaVideo = extern union {
     }
 };
 
-pub const DEVICEDIALOGDATA2 = extern struct {
-    cbSize: u32,
-    pIWiaItemRoot: ?*IWiaItem2,
-    dwFlags: u32,
-    hwndParent: ?HWND,
-    bstrFolderName: ?BSTR,
-    bstrFilename: ?BSTR,
-    lNumFiles: i32,
-    pbstrFilePaths: ?*?BSTR,
-    pWiaItem: ?*IWiaItem2,
+pub const MINIDRV_TRANSFER_CONTEXT = extern struct {
+    lSize: i32,
+    lWidthInPixels: i32,
+    lLines: i32,
+    lDepth: i32,
+    lXRes: i32,
+    lYRes: i32,
+    lCompression: i32,
+    guidFormatID: Guid,
+    tymed: i32,
+    hFile: isize,
+    cbOffset: i32,
+    lBufferSize: i32,
+    lActiveBuffer: i32,
+    lNumBuffers: i32,
+    pBaseBuffer: ?*u8,
+    pTransferBuffer: ?*u8,
+    bTransferDataCB: BOOL,
+    bClassDrvAllocBuf: BOOL,
+    lClientAddress: isize,
+    pIWiaMiniDrvCallBack: ?*IWiaMiniDrvCallBack,
+    lImageSize: i32,
+    lHeaderSize: i32,
+    lItemSize: i32,
+    cbWidthInBytes: i32,
+    lPage: i32,
+    lCurIfdOffset: i32,
+    lPrevIfdOffset: i32,
 };
-
-const IID_IWiaUIExtension2_Value = Guid.initString("305600d7-5088-46d7-9a15-b77b09cdba7a");
-pub const IID_IWiaUIExtension2 = &IID_IWiaUIExtension2_Value;
-pub const IWiaUIExtension2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DeviceDialog: *const fn(
-            self: *const IWiaUIExtension2,
-            pDeviceDialogData: ?*DEVICEDIALOGDATA2,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceIcon: *const fn(
-            self: *const IWiaUIExtension2,
-            bstrDeviceId: ?BSTR,
-            phIcon: ?*?HICON,
-            nSize: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DeviceDialog(self: *const IWiaUIExtension2, pDeviceDialogData: ?*DEVICEDIALOGDATA2) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceDialog(self, pDeviceDialogData);
-    }
-    pub fn GetDeviceIcon(self: *const IWiaUIExtension2, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceIcon(self, bstrDeviceId, phIcon, nSize);
-    }
-};
-
-pub const DEVICEDIALOGDATA = extern struct {
-    cbSize: u32,
-    hwndParent: ?HWND,
-    pIWiaItemRoot: ?*IWiaItem,
-    dwFlags: u32,
-    lIntent: i32,
-    lItemCount: i32,
-    ppWiaItems: ?*?*IWiaItem,
-};
-
-const IID_IWiaUIExtension_Value = Guid.initString("da319113-50ee-4c80-b460-57d005d44a2c");
-pub const IID_IWiaUIExtension = &IID_IWiaUIExtension_Value;
-pub const IWiaUIExtension = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DeviceDialog: *const fn(
-            self: *const IWiaUIExtension,
-            pDeviceDialogData: ?*DEVICEDIALOGDATA,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceIcon: *const fn(
-            self: *const IWiaUIExtension,
-            bstrDeviceId: ?BSTR,
-            phIcon: ?*?HICON,
-            nSize: u32,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceBitmapLogo: *const fn(
-            self: *const IWiaUIExtension,
-            bstrDeviceId: ?BSTR,
-            phBitmap: ?*?HBITMAP,
-            nMaxWidth: u32,
-            nMaxHeight: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DeviceDialog(self: *const IWiaUIExtension, pDeviceDialogData: ?*DEVICEDIALOGDATA) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceDialog(self, pDeviceDialogData);
-    }
-    pub fn GetDeviceIcon(self: *const IWiaUIExtension, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceIcon(self, bstrDeviceId, phIcon, nSize);
-    }
-    pub fn GetDeviceBitmapLogo(self: *const IWiaUIExtension, bstrDeviceId: ?BSTR, phBitmap: ?*?HBITMAP, nMaxWidth: u32, nMaxHeight: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceBitmapLogo(self, bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
-    }
-};
-
-pub const DeviceDialogFunction = *const fn(
-    param0: ?*DEVICEDIALOGDATA,
-) callconv(.winapi) HRESULT;
 
 pub const RANGEVALUE = extern struct {
     lMin: i32,
     lMax: i32,
     lStep: i32,
-};
-
-pub const SCANWINDOW = extern struct {
-    xPos: i32,
-    yPos: i32,
-    xExtent: i32,
-    yExtent: i32,
 };
 
 pub const SCANINFO = extern struct {
@@ -3452,16 +3184,11 @@ pub const SCANINFO = extern struct {
     pMicroDriverContext: ?*anyopaque,
 };
 
-pub const VAL = extern struct {
-    lVal: i32,
-    dblVal: f64,
-    pGuid: ?*Guid,
-    pScanInfo: ?*SCANINFO,
-    handle: isize,
-    ppButtonNames: ?*?*u16,
-    pHandle: ?*?HANDLE,
-    lReserved: i32,
-    szVal: [255]CHAR,
+pub const SCANWINDOW = extern struct {
+    xPos: i32,
+    yPos: i32,
+    xExtent: i32,
+    yExtent: i32,
 };
 
 pub const TWAIN_CAPABILITY = extern struct {
@@ -3474,6 +3201,279 @@ pub const TWAIN_CAPABILITY = extern struct {
     lDataSize: i32,
     Data: [1]u8,
 };
+
+pub const VAL = extern struct {
+    lVal: i32,
+    dblVal: f64,
+    pGuid: ?*Guid,
+    pScanInfo: ?*SCANINFO,
+    handle: isize,
+    ppButtonNames: ?*?*u16,
+    pHandle: ?*?HANDLE,
+    lReserved: i32,
+    szVal: [255]CHAR,
+};
+
+pub const WIA_BARCODE_INFO = extern struct {
+    Size: u32,
+    Type: u32,
+    Page: u32,
+    Confidence: u32,
+    XOffset: u32,
+    YOffset: u32,
+    Rotation: u32,
+    Length: u32,
+    Text: [1]u16,
+};
+
+pub const WIA_BARCODES = extern struct {
+    Tag: u32,
+    Version: u32,
+    Size: u32,
+    Count: u32,
+    Barcodes: [1]WIA_BARCODE_INFO,
+};
+
+pub const WIA_DATA_CALLBACK_HEADER = extern struct {
+    lSize: i32,
+    guidFormatID: Guid,
+    lBufferSize: i32,
+    lPageCount: i32,
+};
+
+pub const WIA_DATA_TRANSFER_INFO = extern struct {
+    ulSize: u32,
+    ulSection: u32,
+    ulBufferSize: u32,
+    bDoubleBuffer: BOOL,
+    ulReserved1: u32,
+    ulReserved2: u32,
+    ulReserved3: u32,
+};
+
+pub const WIA_DEV_CAP = extern struct {
+    guid: Guid,
+    ulFlags: u32,
+    bstrName: ?BSTR,
+    bstrDescription: ?BSTR,
+    bstrIcon: ?BSTR,
+    bstrCommandline: ?BSTR,
+};
+
+pub const WIA_DEV_CAP_DRV = extern struct {
+    guid: ?*Guid,
+    ulFlags: u32,
+    wszName: ?PWSTR,
+    wszDescription: ?PWSTR,
+    wszIcon: ?PWSTR,
+};
+
+pub const WIA_DITHER_PATTERN_DATA = extern struct {
+    lSize: i32,
+    bstrPatternName: ?BSTR,
+    lPatternWidth: i32,
+    lPatternLength: i32,
+    cbPattern: i32,
+    pbPattern: ?*u8,
+};
+
+pub const WIA_EXTENDED_TRANSFER_INFO = extern struct {
+    ulSize: u32,
+    ulMinBufferSize: u32,
+    ulOptimalBufferSize: u32,
+    ulMaxBufferSize: u32,
+    ulNumBuffers: u32,
+};
+
+pub const WIA_FORMAT_INFO = extern struct {
+    guidFormatID: Guid,
+    lTymed: i32,
+};
+
+pub const WIA_MICR = extern struct {
+    Tag: u32,
+    Version: u32,
+    Size: u32,
+    Placeholder: u16,
+    Reserved: u16,
+    Count: u32,
+    Micr: [1]WIA_MICR_INFO,
+};
+
+pub const WIA_MICR_INFO = extern struct {
+    Size: u32,
+    Page: u32,
+    Length: u32,
+    Text: [1]u16,
+};
+
+pub const WIA_PATCH_CODE_INFO = extern struct {
+    Type: u32,
+};
+
+pub const WIA_PATCH_CODES = extern struct {
+    Tag: u32,
+    Version: u32,
+    Size: u32,
+    Count: u32,
+    PatchCodes: [1]WIA_PATCH_CODE_INFO,
+};
+
+pub const WIA_PROPERTY_CONTEXT = extern struct {
+    cProps: u32,
+    pProps: ?*u32,
+    pChanged: ?*BOOL,
+};
+
+pub const WIA_PROPERTY_INFO = extern struct {
+    lAccessFlags: u32,
+    vt: VARENUM,
+    ValidVal: extern union {
+        Range: extern struct {
+            Min: i32,
+            Nom: i32,
+            Max: i32,
+            Inc: i32,
+        },
+        RangeFloat: extern struct {
+            Min: f64,
+            Nom: f64,
+            Max: f64,
+            Inc: f64,
+        },
+        List: extern struct {
+            cNumList: i32,
+            Nom: i32,
+            pList: ?*u8,
+        },
+        ListFloat: extern struct {
+            cNumList: i32,
+            Nom: f64,
+            pList: ?*u8,
+        },
+        ListGuid: extern struct {
+            cNumList: i32,
+            Nom: Guid,
+            pList: ?*Guid,
+        },
+        ListBStr: extern struct {
+            cNumList: i32,
+            Nom: ?BSTR,
+            pList: ?*?BSTR,
+        },
+        Flag: extern struct {
+            Nom: i32,
+            ValidBits: i32,
+        },
+        None: extern struct {
+            Dummy: i32,
+        },
+    },
+};
+
+pub const WIA_PROPID_TO_NAME = extern struct {
+    propid: u32,
+    pszName: ?PWSTR,
+};
+
+pub const WIA_RAW_HEADER = extern struct {
+    Tag: u32,
+    Version: u32,
+    HeaderSize: u32,
+    XRes: u32,
+    YRes: u32,
+    XExtent: u32,
+    YExtent: u32,
+    BytesPerLine: u32,
+    BitsPerPixel: u32,
+    ChannelsPerPixel: u32,
+    DataType: u32,
+    BitsPerChannel: [8]u8,
+    Compression: u32,
+    PhotometricInterp: u32,
+    LineOrder: u32,
+    RawDataOffset: u32,
+    RawDataSize: u32,
+    PaletteOffset: u32,
+    PaletteSize: u32,
+};
+
+const CLSID_WiaDevMgr_Value = Guid.initString("a1f4e726-8cf1-11d1-bf92-0060081ed811");
+pub const CLSID_WiaDevMgr = &CLSID_WiaDevMgr_Value;
+
+const CLSID_WiaDevMgr2_Value = Guid.initString("b6c292bc-7c88-41ee-8b54-8ec92617e599");
+pub const CLSID_WiaDevMgr2 = &CLSID_WiaDevMgr2_Value;
+
+const CLSID_WiaLog_Value = Guid.initString("a1e75357-881a-419e-83e2-bb16db197c68");
+pub const CLSID_WiaLog = &CLSID_WiaLog_Value;
+
+pub const WIAS_CHANGED_VALUE_INFO = extern struct {
+    bChanged: BOOL,
+    vt: i32,
+    Old: extern union {
+        lVal: i32,
+        fltVal: f32,
+        bstrVal: ?BSTR,
+        guidVal: Guid,
+    },
+    Current: extern union {
+        lVal: i32,
+        fltVal: f32,
+        bstrVal: ?BSTR,
+        guidVal: Guid,
+    },
+};
+
+pub const WIAS_DOWN_SAMPLE_INFO = extern struct {
+    ulOriginalWidth: u32,
+    ulOriginalHeight: u32,
+    ulBitsPerPixel: u32,
+    ulXRes: u32,
+    ulYRes: u32,
+    ulDownSampledWidth: u32,
+    ulDownSampledHeight: u32,
+    ulActualSize: u32,
+    ulDestBufSize: u32,
+    ulSrcBufSize: u32,
+    pSrcBuffer: ?*u8,
+    pDestBuffer: ?*u8,
+};
+
+pub const WIAS_ENDORSER_INFO = extern struct {
+    ulPageCount: u32,
+    ulNumEndorserValues: u32,
+    pEndorserValues: ?*WIAS_ENDORSER_VALUE,
+};
+
+pub const WIAS_ENDORSER_VALUE = extern struct {
+    wszTokenName: ?PWSTR,
+    wszValue: ?PWSTR,
+};
+
+pub const WiaTransferParams = extern struct {
+    lMessage: i32,
+    lPercentComplete: i32,
+    ulTransferredBytes: u64,
+    hrErrorStatus: HRESULT,
+};
+
+const CLSID_WiaVideo_Value = Guid.initString("3908c3cd-4478-4536-af2f-10c25d4ef89a");
+pub const CLSID_WiaVideo = &CLSID_WiaVideo_Value;
+
+pub const WIAVIDEO_STATE = enum(i32) {
+    NO_VIDEO = 1,
+    CREATING_VIDEO = 2,
+    VIDEO_CREATED = 3,
+    VIDEO_PLAYING = 4,
+    VIDEO_PAUSED = 5,
+    DESTROYING_VIDEO = 6,
+};
+pub const WIAVIDEO_NO_VIDEO = WIAVIDEO_STATE.NO_VIDEO;
+pub const WIAVIDEO_CREATING_VIDEO = WIAVIDEO_STATE.CREATING_VIDEO;
+pub const WIAVIDEO_VIDEO_CREATED = WIAVIDEO_STATE.VIDEO_CREATED;
+pub const WIAVIDEO_VIDEO_PLAYING = WIAVIDEO_STATE.VIDEO_PLAYING;
+pub const WIAVIDEO_VIDEO_PAUSED = WIAVIDEO_STATE.VIDEO_PAUSED;
+pub const WIAVIDEO_DESTROYING_VIDEO = WIAVIDEO_STATE.DESTROYING_VIDEO;
 
 
 //--------------------------------------------------------------------------------

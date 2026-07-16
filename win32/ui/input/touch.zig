@@ -6,6 +6,62 @@
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.1'
+const IID__IManipulationEvents_Value = Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
+pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
+pub const _IManipulationEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ManipulationStarted: *const fn(
+            self: *const _IManipulationEvents,
+            x: f32,
+            y: f32,
+        ) callconv(.winapi) HRESULT,
+        ManipulationDelta: *const fn(
+            self: *const _IManipulationEvents,
+            x: f32,
+            y: f32,
+            translationDeltaX: f32,
+            translationDeltaY: f32,
+            scaleDelta: f32,
+            expansionDelta: f32,
+            rotationDelta: f32,
+            cumulativeTranslationX: f32,
+            cumulativeTranslationY: f32,
+            cumulativeScale: f32,
+            cumulativeExpansion: f32,
+            cumulativeRotation: f32,
+        ) callconv(.winapi) HRESULT,
+        ManipulationCompleted: *const fn(
+            self: *const _IManipulationEvents,
+            x: f32,
+            y: f32,
+            cumulativeTranslationX: f32,
+            cumulativeTranslationY: f32,
+            cumulativeScale: f32,
+            cumulativeExpansion: f32,
+            cumulativeRotation: f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ManipulationStarted(self: *const _IManipulationEvents, x: f32, y: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.ManipulationStarted(self, x, y);
+    }
+    pub fn ManipulationDelta(self: *const _IManipulationEvents, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.ManipulationDelta(self, x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+    }
+    pub fn ManipulationCompleted(self: *const _IManipulationEvents, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.ManipulationCompleted(self, x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+    }
+};
+
+pub const GESTURECONFIG = extern struct {
+    dwID: GESTURECONFIG_ID,
+    dwWant: u32,
+    dwBlock: u32,
+};
+
 pub const GESTURECONFIG_ID = packed struct(u32) {
     BEGIN: u1 = 0,
     END: u1 = 0,
@@ -66,170 +122,31 @@ pub const GID_ROLLOVER = GESTURECONFIG_ID{
     .PAN = 1,
 };
 
-pub const TOUCHEVENTF_FLAGS = packed struct(u32) {
-    MOVE: u1 = 0,
-    DOWN: u1 = 0,
-    UP: u1 = 0,
-    INRANGE: u1 = 0,
-    PRIMARY: u1 = 0,
-    NOCOALESCE: u1 = 0,
-    PEN: u1 = 0,
-    PALM: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const GESTUREINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwID: u32,
+    hwndTarget: ?HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
+    dwSequenceID: u32,
+    ullArguments: u64,
+    cbExtraArgs: u32,
 };
-pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS{ .MOVE = 1 };
-pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS{ .DOWN = 1 };
-pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS{ .UP = 1 };
-pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS{ .INRANGE = 1 };
-pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS{ .PRIMARY = 1 };
-pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS{ .NOCOALESCE = 1 };
-pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS{ .PEN = 1 };
-pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS{ .PALM = 1 };
 
-pub const TOUCHINPUTMASKF_MASK = packed struct(u32) {
-    TIMEFROMSYSTEM: u1 = 0,
-    EXTRAINFO: u1 = 0,
-    CONTACTAREA: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const GESTURENOTIFYSTRUCT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    hwndTarget: ?HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
 };
-pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK{ .TIMEFROMSYSTEM = 1 };
-pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK{ .EXTRAINFO = 1 };
-pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK{ .CONTACTAREA = 1 };
-
-pub const REGISTER_TOUCH_WINDOW_FLAGS = enum(u32) {
-    FINETOUCH = 1,
-    WANTPALM = 2,
-};
-pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
-pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HGESTUREINFO = *opaque{};
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HTOUCHINPUT = *opaque{};
-
-const CLSID_InertiaProcessor_Value = Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
-pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
-
-const CLSID_ManipulationProcessor_Value = Guid.initString("597d4fb0-47fd-4aff-89b9-c6cfae8cf08e");
-pub const CLSID_ManipulationProcessor = &CLSID_ManipulationProcessor_Value;
-
-pub const MANIPULATION_PROCESSOR_MANIPULATIONS = enum(i32) {
-    NONE = 0,
-    TRANSLATE_X = 1,
-    TRANSLATE_Y = 2,
-    SCALE = 4,
-    ROTATE = 8,
-    ALL = 15,
-};
-pub const MANIPULATION_NONE = MANIPULATION_PROCESSOR_MANIPULATIONS.NONE;
-pub const MANIPULATION_TRANSLATE_X = MANIPULATION_PROCESSOR_MANIPULATIONS.TRANSLATE_X;
-pub const MANIPULATION_TRANSLATE_Y = MANIPULATION_PROCESSOR_MANIPULATIONS.TRANSLATE_Y;
-pub const MANIPULATION_SCALE = MANIPULATION_PROCESSOR_MANIPULATIONS.SCALE;
-pub const MANIPULATION_ROTATE = MANIPULATION_PROCESSOR_MANIPULATIONS.ROTATE;
-pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.ALL;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID__IManipulationEvents_Value = Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
-pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
-pub const _IManipulationEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ManipulationStarted: *const fn(
-            self: *const _IManipulationEvents,
-            x: f32,
-            y: f32,
-        ) callconv(.winapi) HRESULT,
-        ManipulationDelta: *const fn(
-            self: *const _IManipulationEvents,
-            x: f32,
-            y: f32,
-            translationDeltaX: f32,
-            translationDeltaY: f32,
-            scaleDelta: f32,
-            expansionDelta: f32,
-            rotationDelta: f32,
-            cumulativeTranslationX: f32,
-            cumulativeTranslationY: f32,
-            cumulativeScale: f32,
-            cumulativeExpansion: f32,
-            cumulativeRotation: f32,
-        ) callconv(.winapi) HRESULT,
-        ManipulationCompleted: *const fn(
-            self: *const _IManipulationEvents,
-            x: f32,
-            y: f32,
-            cumulativeTranslationX: f32,
-            cumulativeTranslationY: f32,
-            cumulativeScale: f32,
-            cumulativeExpansion: f32,
-            cumulativeRotation: f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ManipulationStarted(self: *const _IManipulationEvents, x: f32, y: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.ManipulationStarted(self, x, y);
-    }
-    pub fn ManipulationDelta(self: *const _IManipulationEvents, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.ManipulationDelta(self, x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
-    }
-    pub fn ManipulationCompleted(self: *const _IManipulationEvents, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.ManipulationCompleted(self, x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
-    }
-};
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IInertiaProcessor_Value = Guid.initString("18b00c6d-c5ee-41b1-90a9-9d4a929095ad");
@@ -810,6 +727,77 @@ pub const IManipulationProcessor = extern union {
     }
 };
 
+const CLSID_InertiaProcessor_Value = Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
+pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
+
+pub const MANIPULATION_PROCESSOR_MANIPULATIONS = enum(i32) {
+    NONE = 0,
+    TRANSLATE_X = 1,
+    TRANSLATE_Y = 2,
+    SCALE = 4,
+    ROTATE = 8,
+    ALL = 15,
+};
+pub const MANIPULATION_NONE = MANIPULATION_PROCESSOR_MANIPULATIONS.NONE;
+pub const MANIPULATION_TRANSLATE_X = MANIPULATION_PROCESSOR_MANIPULATIONS.TRANSLATE_X;
+pub const MANIPULATION_TRANSLATE_Y = MANIPULATION_PROCESSOR_MANIPULATIONS.TRANSLATE_Y;
+pub const MANIPULATION_SCALE = MANIPULATION_PROCESSOR_MANIPULATIONS.SCALE;
+pub const MANIPULATION_ROTATE = MANIPULATION_PROCESSOR_MANIPULATIONS.ROTATE;
+pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.ALL;
+
+const CLSID_ManipulationProcessor_Value = Guid.initString("597d4fb0-47fd-4aff-89b9-c6cfae8cf08e");
+pub const CLSID_ManipulationProcessor = &CLSID_ManipulationProcessor_Value;
+
+pub const REGISTER_TOUCH_WINDOW_FLAGS = enum(u32) {
+    FINETOUCH = 1,
+    WANTPALM = 2,
+};
+pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
+pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
+
+pub const TOUCHEVENTF_FLAGS = packed struct(u32) {
+    MOVE: u1 = 0,
+    DOWN: u1 = 0,
+    UP: u1 = 0,
+    INRANGE: u1 = 0,
+    PRIMARY: u1 = 0,
+    NOCOALESCE: u1 = 0,
+    PEN: u1 = 0,
+    PALM: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS{ .MOVE = 1 };
+pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS{ .DOWN = 1 };
+pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS{ .UP = 1 };
+pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS{ .INRANGE = 1 };
+pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS{ .PRIMARY = 1 };
+pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS{ .NOCOALESCE = 1 };
+pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS{ .PEN = 1 };
+pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS{ .PALM = 1 };
+
 pub const TOUCHINPUT = extern struct {
     x: i32,
     y: i32,
@@ -823,42 +811,51 @@ pub const TOUCHINPUT = extern struct {
     cyContact: u32,
 };
 
-pub const GESTUREINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwID: u32,
-    hwndTarget: ?HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-    dwSequenceID: u32,
-    ullArguments: u64,
-    cbExtraArgs: u32,
+pub const TOUCHINPUTMASKF_MASK = packed struct(u32) {
+    TIMEFROMSYSTEM: u1 = 0,
+    EXTRAINFO: u1 = 0,
+    CONTACTAREA: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-
-pub const GESTURENOTIFYSTRUCT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    hwndTarget: ?HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-};
-
-pub const GESTURECONFIG = extern struct {
-    dwID: GESTURECONFIG_ID,
-    dwWant: u32,
-    dwBlock: u32,
-};
+pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK{ .TIMEFROMSYSTEM = 1 };
+pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK{ .EXTRAINFO = 1 };
+pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK{ .CONTACTAREA = 1 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "user32" fn GetTouchInputInfo(
-    hTouchInput: ?HTOUCHINPUT,
-    cInputs: u32,
-    pInputs: [*]TOUCHINPUT,
-    cbSize: i32,
+pub extern "user32" fn CloseGestureInfoHandle(
+    hGestureInfo: ?HGESTUREINFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -867,26 +864,13 @@ pub extern "user32" fn CloseTouchInputHandle(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "user32" fn RegisterTouchWindow(
+pub extern "user32" fn GetGestureConfig(
     hwnd: ?HWND,
-    ulFlags: REGISTER_TOUCH_WINDOW_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "user32" fn UnregisterTouchWindow(
-    hwnd: ?HWND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "user32" fn IsTouchWindow(
-    hwnd: ?HWND,
-    pulFlags: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "user32" fn GetGestureInfo(
-    hGestureInfo: ?HGESTUREINFO,
-    pGestureInfo: ?*GESTUREINFO,
+    dwReserved: u32,
+    dwFlags: u32,
+    pcIDs: ?*u32,
+    pGestureConfig: [*]GESTURECONFIG,
+    cbSize: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -898,8 +882,29 @@ pub extern "user32" fn GetGestureExtraArgs(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "user32" fn CloseGestureInfoHandle(
+pub extern "user32" fn GetGestureInfo(
     hGestureInfo: ?HGESTUREINFO,
+    pGestureInfo: ?*GESTUREINFO,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "user32" fn GetTouchInputInfo(
+    hTouchInput: ?HTOUCHINPUT,
+    cInputs: u32,
+    pInputs: [*]TOUCHINPUT,
+    cbSize: i32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "user32" fn IsTouchWindow(
+    hwnd: ?HWND,
+    pulFlags: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "user32" fn RegisterTouchWindow(
+    hwnd: ?HWND,
+    ulFlags: REGISTER_TOUCH_WINDOW_FLAGS,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -912,13 +917,8 @@ pub extern "user32" fn SetGestureConfig(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "user32" fn GetGestureConfig(
+pub extern "user32" fn UnregisterTouchWindow(
     hwnd: ?HWND,
-    dwReserved: u32,
-    dwFlags: u32,
-    pcIDs: ?*u32,
-    pGestureConfig: [*]GESTURECONFIG,
-    cbSize: u32,
 ) callconv(.winapi) BOOL;
 
 

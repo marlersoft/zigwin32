@@ -50,25 +50,13 @@ pub const RESTART_NO_REBOOT = REGISTER_APPLICATION_RESTART_FLAGS{ .REBOOT = 1 };
 // Section: Functions (8)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn RegisterApplicationRecoveryCallback(
-    pRecoveyCallback: ?APPLICATION_RECOVERY_CALLBACK,
-    pvParameter: ?*anyopaque,
-    dwPingInterval: u32,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
+pub extern "kernel32" fn ApplicationRecoveryFinished(
+    bSuccess: BOOL,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn UnregisterApplicationRecoveryCallback(
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn RegisterApplicationRestart(
-    pwzCommandline: ?[*:0]const u16,
-    dwFlags: REGISTER_APPLICATION_RESTART_FLAGS,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn UnregisterApplicationRestart(
+pub extern "kernel32" fn ApplicationRecoveryInProgress(
+    pbCancelled: ?*BOOL,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -89,14 +77,26 @@ pub extern "kernel32" fn GetApplicationRestartSettings(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn ApplicationRecoveryInProgress(
-    pbCancelled: ?*BOOL,
+pub extern "kernel32" fn RegisterApplicationRecoveryCallback(
+    pRecoveyCallback: ?APPLICATION_RECOVERY_CALLBACK,
+    pvParameter: ?*anyopaque,
+    dwPingInterval: u32,
+    dwFlags: u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn ApplicationRecoveryFinished(
-    bSuccess: BOOL,
-) callconv(.winapi) void;
+pub extern "kernel32" fn RegisterApplicationRestart(
+    pwzCommandline: ?[*:0]const u16,
+    dwFlags: REGISTER_APPLICATION_RESTART_FLAGS,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn UnregisterApplicationRecoveryCallback(
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn UnregisterApplicationRestart(
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

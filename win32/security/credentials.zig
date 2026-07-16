@@ -2,180 +2,226 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (170)
 //--------------------------------------------------------------------------------
+pub const CERT_HASH_LENGTH = @as(u32, 20);
+pub const CRED_ALLOW_NAME_RESOLUTION = @as(u32, 1);
+pub const CRED_CACHE_TARGET_INFORMATION = @as(u32, 1);
+pub const CRED_LOGON_TYPES_MASK = @as(u32, 61440);
+pub const CRED_MAX_ATTRIBUTES = @as(u32, 64);
 pub const CRED_MAX_CREDENTIAL_BLOB_SIZE = @as(u32, 2560);
-pub const CRED_MAX_USERNAME_LENGTH = @as(u32, 513);
 pub const CRED_MAX_DOMAIN_TARGET_NAME_LENGTH = @as(u32, 337);
+pub const CRED_MAX_GENERIC_TARGET_NAME_LENGTH = @as(u32, 32767);
+pub const CRED_MAX_STRING_LENGTH = @as(u32, 256);
+pub const CRED_MAX_TARGETNAME_ATTRIBUTE_LENGTH = @as(u32, 256);
+pub const CRED_MAX_TARGETNAME_NAMESPACE_LENGTH = @as(u32, 256);
+pub const CRED_MAX_USERNAME_LENGTH = @as(u32, 513);
+pub const CRED_MAX_VALUE_SIZE = @as(u32, 256);
+pub const CRED_PRESERVE_CREDENTIAL_BLOB = @as(u32, 1);
+pub const CRED_PROTECT_AS_SELF = @as(u32, 1);
+pub const CRED_PROTECT_TO_SYSTEM = @as(u32, 2);
+pub const CRED_SESSION_WILDCARD_NAME = "*Session";
+pub const CRED_SESSION_WILDCARD_NAME_A = "*Session";
+pub const CRED_SESSION_WILDCARD_NAME_W = "*Session";
+pub const CRED_TARGETNAME_ATTRIBUTE_BATCH = "batch";
+pub const CRED_TARGETNAME_ATTRIBUTE_BATCH_A = "batch";
+pub const CRED_TARGETNAME_ATTRIBUTE_BATCH_W = "batch";
+pub const CRED_TARGETNAME_ATTRIBUTE_CACHEDINTERACTIVE = "cachedinteractive";
+pub const CRED_TARGETNAME_ATTRIBUTE_CACHEDINTERACTIVE_A = "cachedinteractive";
+pub const CRED_TARGETNAME_ATTRIBUTE_CACHEDINTERACTIVE_W = "cachedinteractive";
+pub const CRED_TARGETNAME_ATTRIBUTE_INTERACTIVE = "interactive";
+pub const CRED_TARGETNAME_ATTRIBUTE_INTERACTIVE_A = "interactive";
+pub const CRED_TARGETNAME_ATTRIBUTE_INTERACTIVE_W = "interactive";
+pub const CRED_TARGETNAME_ATTRIBUTE_NAME = "name";
+pub const CRED_TARGETNAME_ATTRIBUTE_NAME_A = "name";
+pub const CRED_TARGETNAME_ATTRIBUTE_NAME_W = "name";
+pub const CRED_TARGETNAME_ATTRIBUTE_NETWORK = "network";
+pub const CRED_TARGETNAME_ATTRIBUTE_NETWORK_A = "network";
+pub const CRED_TARGETNAME_ATTRIBUTE_NETWORK_W = "network";
+pub const CRED_TARGETNAME_ATTRIBUTE_NETWORKCLEARTEXT = "networkcleartext";
+pub const CRED_TARGETNAME_ATTRIBUTE_NETWORKCLEARTEXT_A = "networkcleartext";
+pub const CRED_TARGETNAME_ATTRIBUTE_NETWORKCLEARTEXT_W = "networkcleartext";
+pub const CRED_TARGETNAME_ATTRIBUTE_REMOTEINTERACTIVE = "remoteinteractive";
+pub const CRED_TARGETNAME_ATTRIBUTE_REMOTEINTERACTIVE_A = "remoteinteractive";
+pub const CRED_TARGETNAME_ATTRIBUTE_REMOTEINTERACTIVE_W = "remoteinteractive";
+pub const CRED_TARGETNAME_ATTRIBUTE_SERVICE = "service";
+pub const CRED_TARGETNAME_ATTRIBUTE_SERVICE_A = "service";
+pub const CRED_TARGETNAME_ATTRIBUTE_SERVICE_W = "service";
+pub const CRED_TARGETNAME_ATTRIBUTE_TARGET = "target";
+pub const CRED_TARGETNAME_ATTRIBUTE_TARGET_A = "target";
+pub const CRED_TARGETNAME_ATTRIBUTE_TARGET_W = "target";
+pub const CRED_TARGETNAME_DOMAIN_NAMESPACE = "Domain";
+pub const CRED_TARGETNAME_DOMAIN_NAMESPACE_A = "Domain";
+pub const CRED_TARGETNAME_DOMAIN_NAMESPACE_W = "Domain";
+pub const CRED_TARGETNAME_LEGACYGENERIC_NAMESPACE_A = "LegacyGeneric";
+pub const CRED_TARGETNAME_LEGACYGENERIC_NAMESPACE_W = "LegacyGeneric";
+pub const CRED_TI_CREATE_EXPLICIT_CRED = @as(u32, 16);
+pub const CRED_TI_DNSTREE_IS_DFS_SERVER = @as(u32, 64);
+pub const CRED_TI_DOMAIN_FORMAT_UNKNOWN = @as(u32, 2);
+pub const CRED_TI_ONLY_PASSWORD_REQUIRED = @as(u32, 4);
+pub const CRED_TI_SERVER_FORMAT_UNKNOWN = @as(u32, 1);
+pub const CRED_TI_USERNAME_TARGET = @as(u32, 8);
+pub const CRED_TI_VALID_FLAGS = @as(u32, 61567);
+pub const CRED_TI_WORKGROUP_MEMBER = @as(u32, 32);
+pub const CRED_UNPROTECT_ALLOW_TO_SYSTEM = @as(u32, 2);
+pub const CRED_UNPROTECT_AS_SELF = @as(u32, 1);
+pub const CREDSSP_CRED_EX_VERSION = @as(u32, 0);
+pub const CREDSSP_FLAG_REDIRECT = @as(u32, 1);
+pub const CREDSSP_NAME = "CREDSSP";
+pub const CREDSSP_SERVER_AUTH_CERTIFICATE = @as(u32, 2);
+pub const CREDSSP_SERVER_AUTH_LOOPBACK = @as(u32, 4);
+pub const CREDSSP_SERVER_AUTH_NEGOTIATE = @as(u32, 1);
+pub const CREDUI_MAX_CAPTION_LENGTH = @as(u32, 128);
+pub const CREDUI_MAX_DOMAIN_TARGET_LENGTH = @as(u32, 337);
+pub const CREDUI_MAX_GENERIC_TARGET_LENGTH = @as(u32, 32767);
+pub const CREDUI_MAX_MESSAGE_LENGTH = @as(u32, 1024);
+pub const CREDUI_MAX_USERNAME_LENGTH = @as(u32, 513);
+pub const CREDUIWIN_DOWNLEVEL_HELLO_AS_SMART_CARD = @as(u32, 2147483648);
+pub const CREDUIWIN_IGNORE_CLOUDAUTHORITY_NAME = @as(u32, 262144);
 pub const FILE_DEVICE_SMARTCARD = @as(u32, 49);
 pub const GUID_DEVINTERFACE_SMARTCARD_READER = Guid.initString("50dd5230-ba8a-11d1-bf5d-0000f805f530");
-pub const SCARD_ATR_LENGTH = @as(u32, 33);
-pub const SCARD_PROTOCOL_UNDEFINED = @as(u32, 0);
-pub const SCARD_PROTOCOL_T0 = @as(u32, 1);
-pub const SCARD_PROTOCOL_T1 = @as(u32, 2);
-pub const SCARD_PROTOCOL_RAW = @as(u32, 65536);
-pub const SCARD_PROTOCOL_DEFAULT = @as(u32, 2147483648);
-pub const SCARD_PROTOCOL_OPTIMAL = @as(u32, 0);
-pub const SCARD_POWER_DOWN = @as(u32, 0);
-pub const SCARD_COLD_RESET = @as(u32, 1);
-pub const SCARD_WARM_RESET = @as(u32, 2);
 pub const MAXIMUM_ATTR_STRING_LENGTH = @as(u32, 32);
 pub const MAXIMUM_SMARTCARD_READERS = @as(u32, 10);
-pub const SCARD_CLASS_VENDOR_INFO = @as(u32, 1);
+pub const SC_DLG_FORCE_UI = @as(u32, 4);
+pub const SC_DLG_MINIMAL_UI = @as(u32, 1);
+pub const SC_DLG_NO_UI = @as(u32, 2);
+pub const SCARD_ABSENT = @as(u32, 1);
+pub const SCARD_ALL_READERS = "SCard$AllReaders\x0000";
+pub const SCARD_ATR_LENGTH = @as(u32, 33);
+pub const SCARD_AUDIT_CHV_FAILURE = @as(u32, 0);
+pub const SCARD_AUDIT_CHV_SUCCESS = @as(u32, 1);
 pub const SCARD_CLASS_COMMUNICATIONS = @as(u32, 2);
-pub const SCARD_CLASS_PROTOCOL = @as(u32, 3);
-pub const SCARD_CLASS_POWER_MGMT = @as(u32, 4);
-pub const SCARD_CLASS_SECURITY = @as(u32, 5);
-pub const SCARD_CLASS_MECHANICAL = @as(u32, 6);
-pub const SCARD_CLASS_VENDOR_DEFINED = @as(u32, 7);
-pub const SCARD_CLASS_IFD_PROTOCOL = @as(u32, 8);
 pub const SCARD_CLASS_ICC_STATE = @as(u32, 9);
+pub const SCARD_CLASS_IFD_PROTOCOL = @as(u32, 8);
+pub const SCARD_CLASS_MECHANICAL = @as(u32, 6);
 pub const SCARD_CLASS_PERF = @as(u32, 32766);
+pub const SCARD_CLASS_POWER_MGMT = @as(u32, 4);
+pub const SCARD_CLASS_PROTOCOL = @as(u32, 3);
+pub const SCARD_CLASS_SECURITY = @as(u32, 5);
 pub const SCARD_CLASS_SYSTEM = @as(u32, 32767);
-pub const SCARD_T0_HEADER_LENGTH = @as(u32, 7);
+pub const SCARD_CLASS_VENDOR_DEFINED = @as(u32, 7);
+pub const SCARD_CLASS_VENDOR_INFO = @as(u32, 1);
+pub const SCARD_COLD_RESET = @as(u32, 1);
+pub const SCARD_DEFAULT_READERS = "SCard$DefaultReaders\x0000";
+pub const SCARD_EJECT_CARD = @as(u32, 3);
+pub const SCARD_LEAVE_CARD = @as(u32, 0);
+pub const SCARD_LOCAL_READERS = "SCard$LocalReaders\x0000";
+pub const SCARD_NEGOTIABLE = @as(u32, 5);
+pub const SCARD_POWER_DOWN = @as(u32, 0);
+pub const SCARD_POWERED = @as(u32, 4);
+pub const SCARD_PRESENT = @as(u32, 2);
+pub const SCARD_PROTOCOL_DEFAULT = @as(u32, 2147483648);
+pub const SCARD_PROTOCOL_OPTIMAL = @as(u32, 0);
+pub const SCARD_PROTOCOL_RAW = @as(u32, 65536);
+pub const SCARD_PROTOCOL_T0 = @as(u32, 1);
+pub const SCARD_PROTOCOL_T1 = @as(u32, 2);
+pub const SCARD_PROTOCOL_UNDEFINED = @as(u32, 0);
+pub const SCARD_PROVIDER_CSP = @as(u32, 2);
+pub const SCARD_PROVIDER_KSP = @as(u32, 3);
+pub const SCARD_PROVIDER_PRIMARY = @as(u32, 1);
+pub const SCARD_READER_CONFISCATES = @as(u32, 4);
+pub const SCARD_READER_CONTACTLESS = @as(u32, 8);
+pub const SCARD_READER_EJECTS = @as(u32, 2);
+pub const SCARD_READER_SWALLOWS = @as(u32, 1);
+pub const SCARD_READER_TYPE_EMBEDDEDSE = @as(u32, 2048);
+pub const SCARD_READER_TYPE_IDE = @as(u32, 16);
+pub const SCARD_READER_TYPE_KEYBOARD = @as(u32, 4);
+pub const SCARD_READER_TYPE_NFC = @as(u32, 256);
+pub const SCARD_READER_TYPE_NGC = @as(u32, 1024);
+pub const SCARD_READER_TYPE_PARALELL = @as(u32, 2);
+pub const SCARD_READER_TYPE_PCMCIA = @as(u32, 64);
+pub const SCARD_READER_TYPE_SCSI = @as(u32, 8);
+pub const SCARD_READER_TYPE_SERIAL = @as(u32, 1);
+pub const SCARD_READER_TYPE_TPM = @as(u32, 128);
+pub const SCARD_READER_TYPE_UICC = @as(u32, 512);
+pub const SCARD_READER_TYPE_USB = @as(u32, 32);
+pub const SCARD_READER_TYPE_VENDOR = @as(u32, 240);
+pub const SCARD_RESET_CARD = @as(u32, 1);
+pub const SCARD_SCOPE_TERMINAL = @as(u32, 1);
+pub const SCARD_SHARE_DIRECT = @as(u32, 3);
+pub const SCARD_SHARE_EXCLUSIVE = @as(u32, 1);
+pub const SCARD_SHARE_SHARED = @as(u32, 2);
+pub const SCARD_SPECIFIC = @as(u32, 6);
+pub const SCARD_STATE_UNPOWERED = @as(u32, 1024);
+pub const SCARD_SWALLOWED = @as(u32, 3);
+pub const SCARD_SYSTEM_READERS = "SCard$SystemReaders\x0000";
 pub const SCARD_T0_CMD_LENGTH = @as(u32, 5);
-pub const SCARD_T1_PROLOGUE_LENGTH = @as(u32, 3);
+pub const SCARD_T0_HEADER_LENGTH = @as(u32, 7);
 pub const SCARD_T1_EPILOGUE_LENGTH = @as(u32, 2);
 pub const SCARD_T1_EPILOGUE_LENGTH_LRC = @as(u32, 1);
 pub const SCARD_T1_MAX_IFS = @as(u32, 254);
+pub const SCARD_T1_PROLOGUE_LENGTH = @as(u32, 3);
 pub const SCARD_UNKNOWN = @as(u32, 0);
-pub const SCARD_ABSENT = @as(u32, 1);
-pub const SCARD_PRESENT = @as(u32, 2);
-pub const SCARD_SWALLOWED = @as(u32, 3);
-pub const SCARD_POWERED = @as(u32, 4);
-pub const SCARD_NEGOTIABLE = @as(u32, 5);
-pub const SCARD_SPECIFIC = @as(u32, 6);
-pub const SCARD_READER_SWALLOWS = @as(u32, 1);
-pub const SCARD_READER_EJECTS = @as(u32, 2);
-pub const SCARD_READER_CONFISCATES = @as(u32, 4);
-pub const SCARD_READER_CONTACTLESS = @as(u32, 8);
-pub const SCARD_READER_TYPE_SERIAL = @as(u32, 1);
-pub const SCARD_READER_TYPE_PARALELL = @as(u32, 2);
-pub const SCARD_READER_TYPE_KEYBOARD = @as(u32, 4);
-pub const SCARD_READER_TYPE_SCSI = @as(u32, 8);
-pub const SCARD_READER_TYPE_IDE = @as(u32, 16);
-pub const SCARD_READER_TYPE_USB = @as(u32, 32);
-pub const SCARD_READER_TYPE_PCMCIA = @as(u32, 64);
-pub const SCARD_READER_TYPE_TPM = @as(u32, 128);
-pub const SCARD_READER_TYPE_NFC = @as(u32, 256);
-pub const SCARD_READER_TYPE_UICC = @as(u32, 512);
-pub const SCARD_READER_TYPE_NGC = @as(u32, 1024);
-pub const SCARD_READER_TYPE_EMBEDDEDSE = @as(u32, 2048);
-pub const SCARD_READER_TYPE_VENDOR = @as(u32, 240);
-pub const STATUS_LOGON_FAILURE = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741715));
-pub const STATUS_WRONG_PASSWORD = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741718));
-pub const STATUS_PASSWORD_EXPIRED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741711));
-pub const STATUS_PASSWORD_MUST_CHANGE = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741276));
-pub const STATUS_DOWNGRADE_DETECTED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073740920));
-pub const STATUS_AUTHENTICATION_FIREWALL_FAILED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073740781));
+pub const SCARD_UNPOWER_CARD = @as(u32, 2);
+pub const SCARD_WARM_RESET = @as(u32, 2);
+pub const SCERR_NOCARDNAME = @as(u32, 16384);
+pub const SCERR_NOGUIDS = @as(u32, 32768);
+pub const SECPKG_ALT_ATTR = @as(u32, 2147483648);
+pub const SECPKG_ATTR_C_FULL_IDENT_TOKEN = @as(u32, 2147483781);
 pub const STATUS_ACCOUNT_DISABLED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741710));
-pub const STATUS_ACCOUNT_RESTRICTION = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741714));
-pub const STATUS_ACCOUNT_LOCKED_OUT = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741260));
 pub const STATUS_ACCOUNT_EXPIRED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741421));
+pub const STATUS_ACCOUNT_LOCKED_OUT = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741260));
+pub const STATUS_ACCOUNT_RESTRICTION = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741714));
+pub const STATUS_AUTHENTICATION_FIREWALL_FAILED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073740781));
+pub const STATUS_DOWNGRADE_DETECTED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073740920));
+pub const STATUS_LOGON_FAILURE = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741715));
 pub const STATUS_LOGON_TYPE_NOT_GRANTED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741477));
 pub const STATUS_NO_SUCH_LOGON_SESSION = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741729));
 pub const STATUS_NO_SUCH_USER = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741724));
-pub const CRED_MAX_STRING_LENGTH = @as(u32, 256);
-pub const CRED_MAX_GENERIC_TARGET_NAME_LENGTH = @as(u32, 32767);
-pub const CRED_MAX_TARGETNAME_NAMESPACE_LENGTH = @as(u32, 256);
-pub const CRED_MAX_TARGETNAME_ATTRIBUTE_LENGTH = @as(u32, 256);
-pub const CRED_MAX_VALUE_SIZE = @as(u32, 256);
-pub const CRED_MAX_ATTRIBUTES = @as(u32, 64);
-pub const CRED_SESSION_WILDCARD_NAME_W = "*Session";
-pub const CRED_SESSION_WILDCARD_NAME_A = "*Session";
-pub const CRED_TARGETNAME_DOMAIN_NAMESPACE_W = "Domain";
-pub const CRED_TARGETNAME_DOMAIN_NAMESPACE_A = "Domain";
-pub const CRED_TARGETNAME_LEGACYGENERIC_NAMESPACE_W = "LegacyGeneric";
-pub const CRED_TARGETNAME_LEGACYGENERIC_NAMESPACE_A = "LegacyGeneric";
-pub const CRED_TARGETNAME_ATTRIBUTE_TARGET_W = "target";
-pub const CRED_TARGETNAME_ATTRIBUTE_TARGET_A = "target";
-pub const CRED_TARGETNAME_ATTRIBUTE_NAME_W = "name";
-pub const CRED_TARGETNAME_ATTRIBUTE_NAME_A = "name";
-pub const CRED_TARGETNAME_ATTRIBUTE_BATCH_W = "batch";
-pub const CRED_TARGETNAME_ATTRIBUTE_BATCH_A = "batch";
-pub const CRED_TARGETNAME_ATTRIBUTE_INTERACTIVE_W = "interactive";
-pub const CRED_TARGETNAME_ATTRIBUTE_INTERACTIVE_A = "interactive";
-pub const CRED_TARGETNAME_ATTRIBUTE_SERVICE_W = "service";
-pub const CRED_TARGETNAME_ATTRIBUTE_SERVICE_A = "service";
-pub const CRED_TARGETNAME_ATTRIBUTE_NETWORK_W = "network";
-pub const CRED_TARGETNAME_ATTRIBUTE_NETWORK_A = "network";
-pub const CRED_TARGETNAME_ATTRIBUTE_NETWORKCLEARTEXT_W = "networkcleartext";
-pub const CRED_TARGETNAME_ATTRIBUTE_NETWORKCLEARTEXT_A = "networkcleartext";
-pub const CRED_TARGETNAME_ATTRIBUTE_REMOTEINTERACTIVE_W = "remoteinteractive";
-pub const CRED_TARGETNAME_ATTRIBUTE_REMOTEINTERACTIVE_A = "remoteinteractive";
-pub const CRED_TARGETNAME_ATTRIBUTE_CACHEDINTERACTIVE_W = "cachedinteractive";
-pub const CRED_TARGETNAME_ATTRIBUTE_CACHEDINTERACTIVE_A = "cachedinteractive";
-pub const CRED_SESSION_WILDCARD_NAME = "*Session";
-pub const CRED_TARGETNAME_DOMAIN_NAMESPACE = "Domain";
-pub const CRED_TARGETNAME_ATTRIBUTE_NAME = "name";
-pub const CRED_TARGETNAME_ATTRIBUTE_TARGET = "target";
-pub const CRED_TARGETNAME_ATTRIBUTE_BATCH = "batch";
-pub const CRED_TARGETNAME_ATTRIBUTE_INTERACTIVE = "interactive";
-pub const CRED_TARGETNAME_ATTRIBUTE_SERVICE = "service";
-pub const CRED_TARGETNAME_ATTRIBUTE_NETWORK = "network";
-pub const CRED_TARGETNAME_ATTRIBUTE_NETWORKCLEARTEXT = "networkcleartext";
-pub const CRED_TARGETNAME_ATTRIBUTE_REMOTEINTERACTIVE = "remoteinteractive";
-pub const CRED_TARGETNAME_ATTRIBUTE_CACHEDINTERACTIVE = "cachedinteractive";
-pub const CRED_LOGON_TYPES_MASK = @as(u32, 61440);
-pub const CRED_TI_SERVER_FORMAT_UNKNOWN = @as(u32, 1);
-pub const CRED_TI_DOMAIN_FORMAT_UNKNOWN = @as(u32, 2);
-pub const CRED_TI_ONLY_PASSWORD_REQUIRED = @as(u32, 4);
-pub const CRED_TI_USERNAME_TARGET = @as(u32, 8);
-pub const CRED_TI_CREATE_EXPLICIT_CRED = @as(u32, 16);
-pub const CRED_TI_WORKGROUP_MEMBER = @as(u32, 32);
-pub const CRED_TI_DNSTREE_IS_DFS_SERVER = @as(u32, 64);
-pub const CRED_TI_VALID_FLAGS = @as(u32, 61567);
-pub const CERT_HASH_LENGTH = @as(u32, 20);
-pub const CREDUI_MAX_MESSAGE_LENGTH = @as(u32, 1024);
-pub const CREDUI_MAX_CAPTION_LENGTH = @as(u32, 128);
-pub const CREDUI_MAX_GENERIC_TARGET_LENGTH = @as(u32, 32767);
-pub const CREDUI_MAX_DOMAIN_TARGET_LENGTH = @as(u32, 337);
-pub const CREDUI_MAX_USERNAME_LENGTH = @as(u32, 513);
-pub const CREDUIWIN_IGNORE_CLOUDAUTHORITY_NAME = @as(u32, 262144);
-pub const CREDUIWIN_DOWNLEVEL_HELLO_AS_SMART_CARD = @as(u32, 2147483648);
-pub const CRED_PRESERVE_CREDENTIAL_BLOB = @as(u32, 1);
-pub const CRED_CACHE_TARGET_INFORMATION = @as(u32, 1);
-pub const CRED_ALLOW_NAME_RESOLUTION = @as(u32, 1);
-pub const CRED_PROTECT_AS_SELF = @as(u32, 1);
-pub const CRED_PROTECT_TO_SYSTEM = @as(u32, 2);
-pub const CRED_UNPROTECT_AS_SELF = @as(u32, 1);
-pub const CRED_UNPROTECT_ALLOW_TO_SYSTEM = @as(u32, 2);
-pub const SCARD_SCOPE_TERMINAL = @as(u32, 1);
-pub const SCARD_ALL_READERS = "SCard$AllReaders\x0000";
-pub const SCARD_DEFAULT_READERS = "SCard$DefaultReaders\x0000";
-pub const SCARD_LOCAL_READERS = "SCard$LocalReaders\x0000";
-pub const SCARD_SYSTEM_READERS = "SCard$SystemReaders\x0000";
-pub const SCARD_PROVIDER_PRIMARY = @as(u32, 1);
-pub const SCARD_PROVIDER_CSP = @as(u32, 2);
-pub const SCARD_PROVIDER_KSP = @as(u32, 3);
-pub const SCARD_STATE_UNPOWERED = @as(u32, 1024);
-pub const SCARD_SHARE_EXCLUSIVE = @as(u32, 1);
-pub const SCARD_SHARE_SHARED = @as(u32, 2);
-pub const SCARD_SHARE_DIRECT = @as(u32, 3);
-pub const SCARD_LEAVE_CARD = @as(u32, 0);
-pub const SCARD_RESET_CARD = @as(u32, 1);
-pub const SCARD_UNPOWER_CARD = @as(u32, 2);
-pub const SCARD_EJECT_CARD = @as(u32, 3);
-pub const SC_DLG_MINIMAL_UI = @as(u32, 1);
-pub const SC_DLG_NO_UI = @as(u32, 2);
-pub const SC_DLG_FORCE_UI = @as(u32, 4);
-pub const SCERR_NOCARDNAME = @as(u32, 16384);
-pub const SCERR_NOGUIDS = @as(u32, 32768);
-pub const SCARD_AUDIT_CHV_FAILURE = @as(u32, 0);
-pub const SCARD_AUDIT_CHV_SUCCESS = @as(u32, 1);
-pub const CREDSSP_NAME = "CREDSSP";
-pub const TS_SSP_NAME_A = "TSSSP";
-pub const TS_SSP_NAME = "TSSSP";
+pub const STATUS_PASSWORD_EXPIRED = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741711));
+pub const STATUS_PASSWORD_MUST_CHANGE = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741276));
+pub const STATUS_WRONG_PASSWORD = @import("../zig.zig").typedConst(NTSTATUS, @as(i32, -1073741718));
 pub const szOID_TS_KP_TS_SERVER_AUTH = "1.3.6.1.4.1.311.54.1.2";
-pub const CREDSSP_SERVER_AUTH_NEGOTIATE = @as(u32, 1);
-pub const CREDSSP_SERVER_AUTH_CERTIFICATE = @as(u32, 2);
-pub const CREDSSP_SERVER_AUTH_LOOPBACK = @as(u32, 4);
-pub const SECPKG_ALT_ATTR = @as(u32, 2147483648);
-pub const SECPKG_ATTR_C_FULL_IDENT_TOKEN = @as(u32, 2147483781);
-pub const CREDSSP_CRED_EX_VERSION = @as(u32, 0);
-pub const CREDSSP_FLAG_REDIRECT = @as(u32, 1);
+pub const TS_SSP_NAME = "TSSSP";
+pub const TS_SSP_NAME_A = "TSSSP";
 
 //--------------------------------------------------------------------------------
 // Section: Types (50)
 //--------------------------------------------------------------------------------
+pub const BINARY_BLOB_CREDENTIAL_INFO = extern struct {
+    cbBlob: u32,
+    pbBlob: ?*u8,
+};
+
+pub const CERT_CREDENTIAL_INFO = extern struct {
+    cbSize: u32,
+    rgbHashOfCert: [20]u8,
+};
+
+pub const CRED_ENUMERATE_FLAGS = packed struct(u32) {
+    S: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS{ .S = 1 };
+
 pub const CRED_FLAGS = packed struct(u32) {
     PASSWORD_FOR_CERT: u1 = 0,
     PROMPT_NOW: u1 = 0,
@@ -245,6 +291,80 @@ pub const CRED_FLAGS_VALID_INPUT_FLAGS = CRED_FLAGS{
     ._15 = 1,
 };
 
+pub const CRED_MARSHAL_TYPE = enum(i32) {
+    CertCredential = 1,
+    UsernameTargetCredential = 2,
+    BinaryBlobCredential = 3,
+    UsernameForPackedCredentials = 4,
+    BinaryBlobForSystem = 5,
+};
+pub const CertCredential = CRED_MARSHAL_TYPE.CertCredential;
+pub const UsernameTargetCredential = CRED_MARSHAL_TYPE.UsernameTargetCredential;
+pub const BinaryBlobCredential = CRED_MARSHAL_TYPE.BinaryBlobCredential;
+pub const UsernameForPackedCredentials = CRED_MARSHAL_TYPE.UsernameForPackedCredentials;
+pub const BinaryBlobForSystem = CRED_MARSHAL_TYPE.BinaryBlobForSystem;
+
+pub const CRED_PACK_FLAGS = packed struct(u32) {
+    PROTECTED_CREDENTIALS: u1 = 0,
+    WOW_BUFFER: u1 = 0,
+    GENERIC_CREDENTIALS: u1 = 0,
+    ID_PROVIDER_CREDENTIALS: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const CRED_PACK_PROTECTED_CREDENTIALS = CRED_PACK_FLAGS{ .PROTECTED_CREDENTIALS = 1 };
+pub const CRED_PACK_WOW_BUFFER = CRED_PACK_FLAGS{ .WOW_BUFFER = 1 };
+pub const CRED_PACK_GENERIC_CREDENTIALS = CRED_PACK_FLAGS{ .GENERIC_CREDENTIALS = 1 };
+pub const CRED_PACK_ID_PROVIDER_CREDENTIALS = CRED_PACK_FLAGS{ .ID_PROVIDER_CREDENTIALS = 1 };
+
+pub const CRED_PERSIST = enum(u32) {
+    NONE = 0,
+    SESSION = 1,
+    LOCAL_MACHINE = 2,
+    ENTERPRISE = 3,
+};
+pub const CRED_PERSIST_NONE = CRED_PERSIST.NONE;
+pub const CRED_PERSIST_SESSION = CRED_PERSIST.SESSION;
+pub const CRED_PERSIST_LOCAL_MACHINE = CRED_PERSIST.LOCAL_MACHINE;
+pub const CRED_PERSIST_ENTERPRISE = CRED_PERSIST.ENTERPRISE;
+
+pub const CRED_PROTECTION_TYPE = enum(i32) {
+    Unprotected = 0,
+    UserProtection = 1,
+    TrustedProtection = 2,
+    ForSystemProtection = 3,
+};
+pub const CredUnprotected = CRED_PROTECTION_TYPE.Unprotected;
+pub const CredUserProtection = CRED_PROTECTION_TYPE.UserProtection;
+pub const CredTrustedProtection = CRED_PROTECTION_TYPE.TrustedProtection;
+pub const CredForSystemProtection = CRED_PROTECTION_TYPE.ForSystemProtection;
+
 pub const CRED_TYPE = enum(u32) {
     GENERIC = 1,
     DOMAIN_PASSWORD = 2,
@@ -264,16 +384,104 @@ pub const CRED_TYPE_DOMAIN_EXTENDED = CRED_TYPE.DOMAIN_EXTENDED;
 pub const CRED_TYPE_MAXIMUM = CRED_TYPE.MAXIMUM;
 pub const CRED_TYPE_MAXIMUM_EX = CRED_TYPE.MAXIMUM_EX;
 
-pub const CRED_PERSIST = enum(u32) {
-    NONE = 0,
-    SESSION = 1,
-    LOCAL_MACHINE = 2,
-    ENTERPRISE = 3,
+pub const CREDENTIAL_ATTRIBUTEA = extern struct {
+    Keyword: ?PSTR,
+    Flags: u32,
+    ValueSize: u32,
+    Value: ?*u8,
 };
-pub const CRED_PERSIST_NONE = CRED_PERSIST.NONE;
-pub const CRED_PERSIST_SESSION = CRED_PERSIST.SESSION;
-pub const CRED_PERSIST_LOCAL_MACHINE = CRED_PERSIST.LOCAL_MACHINE;
-pub const CRED_PERSIST_ENTERPRISE = CRED_PERSIST.ENTERPRISE;
+
+pub const CREDENTIAL_ATTRIBUTEW = extern struct {
+    Keyword: ?PWSTR,
+    Flags: u32,
+    ValueSize: u32,
+    Value: ?*u8,
+};
+
+pub const CREDENTIAL_TARGET_INFORMATIONA = extern struct {
+    TargetName: ?PSTR,
+    NetbiosServerName: ?PSTR,
+    DnsServerName: ?PSTR,
+    NetbiosDomainName: ?PSTR,
+    DnsDomainName: ?PSTR,
+    DnsTreeName: ?PSTR,
+    PackageName: ?PSTR,
+    Flags: u32,
+    CredTypeCount: u32,
+    CredTypes: ?*u32,
+};
+
+pub const CREDENTIAL_TARGET_INFORMATIONW = extern struct {
+    TargetName: ?PWSTR,
+    NetbiosServerName: ?PWSTR,
+    DnsServerName: ?PWSTR,
+    NetbiosDomainName: ?PWSTR,
+    DnsDomainName: ?PWSTR,
+    DnsTreeName: ?PWSTR,
+    PackageName: ?PWSTR,
+    Flags: u32,
+    CredTypeCount: u32,
+    CredTypes: ?*u32,
+};
+
+pub const CREDENTIALA = extern struct {
+    Flags: CRED_FLAGS,
+    Type: CRED_TYPE,
+    TargetName: ?PSTR,
+    Comment: ?PSTR,
+    LastWritten: FILETIME,
+    CredentialBlobSize: u32,
+    CredentialBlob: ?*u8,
+    Persist: CRED_PERSIST,
+    AttributeCount: u32,
+    Attributes: ?*CREDENTIAL_ATTRIBUTEA,
+    TargetAlias: ?PSTR,
+    UserName: ?PSTR,
+};
+
+pub const CREDENTIALW = extern struct {
+    Flags: CRED_FLAGS,
+    Type: CRED_TYPE,
+    TargetName: ?PWSTR,
+    Comment: ?PWSTR,
+    LastWritten: FILETIME,
+    CredentialBlobSize: u32,
+    CredentialBlob: ?*u8,
+    Persist: CRED_PERSIST,
+    AttributeCount: u32,
+    Attributes: ?*CREDENTIAL_ATTRIBUTEW,
+    TargetAlias: ?PWSTR,
+    UserName: ?PWSTR,
+};
+
+pub const CREDSPP_SUBMIT_TYPE = enum(i32) {
+    PasswordCreds = 2,
+    SchannelCreds = 4,
+    CertificateCreds = 13,
+    SubmitBufferBoth = 50,
+    SubmitBufferBothOld = 51,
+    CredEx = 100,
+};
+pub const CredsspPasswordCreds = CREDSPP_SUBMIT_TYPE.PasswordCreds;
+pub const CredsspSchannelCreds = CREDSPP_SUBMIT_TYPE.SchannelCreds;
+pub const CredsspCertificateCreds = CREDSPP_SUBMIT_TYPE.CertificateCreds;
+pub const CredsspSubmitBufferBoth = CREDSPP_SUBMIT_TYPE.SubmitBufferBoth;
+pub const CredsspSubmitBufferBothOld = CREDSPP_SUBMIT_TYPE.SubmitBufferBothOld;
+pub const CredsspCredEx = CREDSPP_SUBMIT_TYPE.CredEx;
+
+pub const CREDSSP_CRED = extern struct {
+    Type: CREDSPP_SUBMIT_TYPE,
+    pSchannelCred: ?*anyopaque,
+    pSpnegoCred: ?*anyopaque,
+};
+
+pub const CREDSSP_CRED_EX = extern struct {
+    Type: CREDSPP_SUBMIT_TYPE,
+    Version: u32,
+    Flags: u32,
+    Reserved: u32,
+    Cred: CREDSSP_CRED,
+};
 
 pub const CREDUI_FLAGS = packed struct(u32) {
     INCORRECT_PASSWORD: u1 = 0,
@@ -327,48 +535,21 @@ pub const CREDUI_FLAGS_SHOW_SAVE_CHECK_BOX = CREDUI_FLAGS{ .SHOW_SAVE_CHECK_BOX 
 pub const CREDUI_FLAGS_USERNAME_TARGET_CREDENTIALS = CREDUI_FLAGS{ .USERNAME_TARGET_CREDENTIALS = 1 };
 pub const CREDUI_FLAGS_VALIDATE_USERNAME = CREDUI_FLAGS{ .VALIDATE_USERNAME = 1 };
 
-pub const SCARD_SCOPE = enum(u32) {
-    USER = 0,
-    SYSTEM = 2,
+pub const CREDUI_INFOA = extern struct {
+    cbSize: u32,
+    hwndParent: ?HWND,
+    pszMessageText: ?[*:0]const u8,
+    pszCaptionText: ?[*:0]const u8,
+    hbmBanner: ?HBITMAP,
 };
-pub const SCARD_SCOPE_USER = SCARD_SCOPE.USER;
-pub const SCARD_SCOPE_SYSTEM = SCARD_SCOPE.SYSTEM;
 
-pub const CRED_ENUMERATE_FLAGS = packed struct(u32) {
-    S: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const CREDUI_INFOW = extern struct {
+    cbSize: u32,
+    hwndParent: ?HWND,
+    pszMessageText: ?[*:0]const u16,
+    pszCaptionText: ?[*:0]const u16,
+    hbmBanner: ?HBITMAP,
 };
-pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS{ .S = 1 };
 
 pub const CREDUIWIN_FLAGS = packed struct(u32) {
     GENERIC: u1 = 0,
@@ -414,69 +595,9 @@ pub const CREDUIWIN_SECURE_PROMPT = CREDUIWIN_FLAGS{ .SECURE_PROMPT = 1 };
 pub const CREDUIWIN_PREPROMPTING = CREDUIWIN_FLAGS{ .PREPROMPTING = 1 };
 pub const CREDUIWIN_PACK_32_WOW = CREDUIWIN_FLAGS{ .PACK_32_WOW = 1 };
 
-pub const SCARD_STATE = enum(u32) {
-    UNAWARE = 0,
-    IGNORE = 1,
-    UNAVAILABLE = 8,
-    EMPTY = 16,
-    PRESENT = 32,
-    ATRMATCH = 64,
-    EXCLUSIVE = 128,
-    INUSE = 256,
-    MUTE = 512,
-    CHANGED = 2,
-    UNKNOWN = 4,
+pub const KeyCredentialManagerInfo = extern struct {
+    containerId: Guid,
 };
-pub const SCARD_STATE_UNAWARE = SCARD_STATE.UNAWARE;
-pub const SCARD_STATE_IGNORE = SCARD_STATE.IGNORE;
-pub const SCARD_STATE_UNAVAILABLE = SCARD_STATE.UNAVAILABLE;
-pub const SCARD_STATE_EMPTY = SCARD_STATE.EMPTY;
-pub const SCARD_STATE_PRESENT = SCARD_STATE.PRESENT;
-pub const SCARD_STATE_ATRMATCH = SCARD_STATE.ATRMATCH;
-pub const SCARD_STATE_EXCLUSIVE = SCARD_STATE.EXCLUSIVE;
-pub const SCARD_STATE_INUSE = SCARD_STATE.INUSE;
-pub const SCARD_STATE_MUTE = SCARD_STATE.MUTE;
-pub const SCARD_STATE_CHANGED = SCARD_STATE.CHANGED;
-pub const SCARD_STATE_UNKNOWN = SCARD_STATE.UNKNOWN;
-
-pub const CRED_PACK_FLAGS = packed struct(u32) {
-    PROTECTED_CREDENTIALS: u1 = 0,
-    WOW_BUFFER: u1 = 0,
-    GENERIC_CREDENTIALS: u1 = 0,
-    ID_PROVIDER_CREDENTIALS: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const CRED_PACK_PROTECTED_CREDENTIALS = CRED_PACK_FLAGS{ .PROTECTED_CREDENTIALS = 1 };
-pub const CRED_PACK_WOW_BUFFER = CRED_PACK_FLAGS{ .WOW_BUFFER = 1 };
-pub const CRED_PACK_GENERIC_CREDENTIALS = CRED_PACK_FLAGS{ .GENERIC_CREDENTIALS = 1 };
-pub const CRED_PACK_ID_PROVIDER_CREDENTIALS = CRED_PACK_FLAGS{ .ID_PROVIDER_CREDENTIALS = 1 };
 
 pub const KeyCredentialManagerOperationErrorStates = packed struct(u32) {
     DeviceJoinFailure: u1 = 0,
@@ -530,189 +651,11 @@ pub const KeyCredentialManagerProvisioning = KeyCredentialManagerOperationType.r
 pub const KeyCredentialManagerPinChange = KeyCredentialManagerOperationType.inChange;
 pub const KeyCredentialManagerPinReset = KeyCredentialManagerOperationType.inReset;
 
-pub const KeyCredentialManagerInfo = extern struct {
-    containerId: Guid,
-};
-
-pub const SecHandle = extern struct {
-    dwLower: usize,
-    dwUpper: usize,
-};
-
-pub const CREDENTIAL_ATTRIBUTEA = extern struct {
-    Keyword: ?PSTR,
-    Flags: u32,
-    ValueSize: u32,
-    Value: ?*u8,
-};
-
-pub const CREDENTIAL_ATTRIBUTEW = extern struct {
-    Keyword: ?PWSTR,
-    Flags: u32,
-    ValueSize: u32,
-    Value: ?*u8,
-};
-
-pub const CREDENTIALA = extern struct {
-    Flags: CRED_FLAGS,
-    Type: CRED_TYPE,
-    TargetName: ?PSTR,
-    Comment: ?PSTR,
-    LastWritten: FILETIME,
-    CredentialBlobSize: u32,
-    CredentialBlob: ?*u8,
-    Persist: CRED_PERSIST,
-    AttributeCount: u32,
-    Attributes: ?*CREDENTIAL_ATTRIBUTEA,
-    TargetAlias: ?PSTR,
-    UserName: ?PSTR,
-};
-
-pub const CREDENTIALW = extern struct {
-    Flags: CRED_FLAGS,
-    Type: CRED_TYPE,
-    TargetName: ?PWSTR,
-    Comment: ?PWSTR,
-    LastWritten: FILETIME,
-    CredentialBlobSize: u32,
-    CredentialBlob: ?*u8,
-    Persist: CRED_PERSIST,
-    AttributeCount: u32,
-    Attributes: ?*CREDENTIAL_ATTRIBUTEW,
-    TargetAlias: ?PWSTR,
-    UserName: ?PWSTR,
-};
-
-pub const CREDENTIAL_TARGET_INFORMATIONA = extern struct {
-    TargetName: ?PSTR,
-    NetbiosServerName: ?PSTR,
-    DnsServerName: ?PSTR,
-    NetbiosDomainName: ?PSTR,
-    DnsDomainName: ?PSTR,
-    DnsTreeName: ?PSTR,
-    PackageName: ?PSTR,
-    Flags: u32,
-    CredTypeCount: u32,
-    CredTypes: ?*u32,
-};
-
-pub const CREDENTIAL_TARGET_INFORMATIONW = extern struct {
-    TargetName: ?PWSTR,
-    NetbiosServerName: ?PWSTR,
-    DnsServerName: ?PWSTR,
-    NetbiosDomainName: ?PWSTR,
-    DnsDomainName: ?PWSTR,
-    DnsTreeName: ?PWSTR,
-    PackageName: ?PWSTR,
-    Flags: u32,
-    CredTypeCount: u32,
-    CredTypes: ?*u32,
-};
-
-pub const CERT_CREDENTIAL_INFO = extern struct {
-    cbSize: u32,
-    rgbHashOfCert: [20]u8,
-};
-
-pub const USERNAME_TARGET_CREDENTIAL_INFO = extern struct {
-    UserName: ?PWSTR,
-};
-
-pub const BINARY_BLOB_CREDENTIAL_INFO = extern struct {
-    cbBlob: u32,
-    pbBlob: ?*u8,
-};
-
-pub const CRED_MARSHAL_TYPE = enum(i32) {
-    CertCredential = 1,
-    UsernameTargetCredential = 2,
-    BinaryBlobCredential = 3,
-    UsernameForPackedCredentials = 4,
-    BinaryBlobForSystem = 5,
-};
-pub const CertCredential = CRED_MARSHAL_TYPE.CertCredential;
-pub const UsernameTargetCredential = CRED_MARSHAL_TYPE.UsernameTargetCredential;
-pub const BinaryBlobCredential = CRED_MARSHAL_TYPE.BinaryBlobCredential;
-pub const UsernameForPackedCredentials = CRED_MARSHAL_TYPE.UsernameForPackedCredentials;
-pub const BinaryBlobForSystem = CRED_MARSHAL_TYPE.BinaryBlobForSystem;
-
-pub const CRED_PROTECTION_TYPE = enum(i32) {
-    Unprotected = 0,
-    UserProtection = 1,
-    TrustedProtection = 2,
-    ForSystemProtection = 3,
-};
-pub const CredUnprotected = CRED_PROTECTION_TYPE.Unprotected;
-pub const CredUserProtection = CRED_PROTECTION_TYPE.UserProtection;
-pub const CredTrustedProtection = CRED_PROTECTION_TYPE.TrustedProtection;
-pub const CredForSystemProtection = CRED_PROTECTION_TYPE.ForSystemProtection;
-
-pub const CREDUI_INFOA = extern struct {
-    cbSize: u32,
-    hwndParent: ?HWND,
-    pszMessageText: ?[*:0]const u8,
-    pszCaptionText: ?[*:0]const u8,
-    hbmBanner: ?HBITMAP,
-};
-
-pub const CREDUI_INFOW = extern struct {
-    cbSize: u32,
-    hwndParent: ?HWND,
-    pszMessageText: ?[*:0]const u16,
-    pszCaptionText: ?[*:0]const u16,
-    hbmBanner: ?HBITMAP,
-};
-
-pub const SCARD_IO_REQUEST = extern struct {
-    dwProtocol: u32,
-    cbPciLength: u32,
-};
-
-pub const SCARD_T0_COMMAND = extern struct {
-    bCla: u8,
-    bIns: u8,
-    bP1: u8,
-    bP2: u8,
-    bP3: u8,
-};
-
-pub const SCARD_T0_REQUEST = extern struct {
-    ioRequest: SCARD_IO_REQUEST,
-    bSw1: u8,
-    bSw2: u8,
-    Anonymous: extern union {
-        CmdBytes: SCARD_T0_COMMAND,
-        rgbHeader: [5]u8,
-    },
-};
-
-pub const SCARD_T1_REQUEST = extern struct {
-    ioRequest: SCARD_IO_REQUEST,
-};
-
-pub const SCARD_READERSTATEA = extern struct {
-    szReader: ?[*:0]const u8,
-    pvUserData: ?*anyopaque,
-    dwCurrentState: SCARD_STATE,
-    dwEventState: SCARD_STATE,
-    cbAtr: u32,
-    rgbAtr: [36]u8,
-};
-
-pub const SCARD_READERSTATEW = extern struct {
-    szReader: ?[*:0]const u16,
-    pvUserData: ?*anyopaque,
-    dwCurrentState: SCARD_STATE,
-    dwEventState: SCARD_STATE,
-    cbAtr: u32,
-    rgbAtr: [36]u8,
-};
-
-pub const SCARD_ATRMASK = extern struct {
-    cbAtr: u32,
-    rgbAtr: [36]u8,
-    rgbMask: [36]u8,
-};
+pub const LPOCNCHKPROC = *const fn(
+    param0: usize,
+    param1: usize,
+    param2: ?*anyopaque,
+) callconv(.winapi) BOOL;
 
 pub const LPOCNCONNPROCA = *const fn(
     param0: usize,
@@ -727,12 +670,6 @@ pub const LPOCNCONNPROCW = *const fn(
     param2: ?PWSTR,
     param3: ?*anyopaque,
 ) callconv(.winapi) usize;
-
-pub const LPOCNCHKPROC = *const fn(
-    param0: usize,
-    param1: usize,
-    param2: ?*anyopaque,
-) callconv(.winapi) BOOL;
 
 pub const LPOCNDSCPROC = *const fn(
     param0: usize,
@@ -814,43 +751,6 @@ pub const OPENCARDNAME_EXW = extern struct {
     hCardHandle: usize,
 };
 
-pub const READER_SEL_REQUEST_MATCH_TYPE = enum(i32) {
-    READER_AND_CONTAINER = 1,
-    SERIAL_NUMBER = 2,
-    ALL_CARDS = 3,
-};
-pub const RSR_MATCH_TYPE_READER_AND_CONTAINER = READER_SEL_REQUEST_MATCH_TYPE.READER_AND_CONTAINER;
-pub const RSR_MATCH_TYPE_SERIAL_NUMBER = READER_SEL_REQUEST_MATCH_TYPE.SERIAL_NUMBER;
-pub const RSR_MATCH_TYPE_ALL_CARDS = READER_SEL_REQUEST_MATCH_TYPE.ALL_CARDS;
-
-pub const READER_SEL_REQUEST = extern struct {
-    dwShareMode: u32,
-    dwPreferredProtocols: u32,
-    MatchType: READER_SEL_REQUEST_MATCH_TYPE,
-    Anonymous: extern union {
-        ReaderAndContainerParameter: extern struct {
-            cbReaderNameOffset: u32,
-            cchReaderNameLength: u32,
-            cbContainerNameOffset: u32,
-            cchContainerNameLength: u32,
-            dwDesiredCardModuleVersion: u32,
-            dwCspFlags: u32,
-        },
-        SerialNumberParameter: extern struct {
-            cbSerialNumberOffset: u32,
-            cbSerialNumberLength: u32,
-            dwDesiredCardModuleVersion: u32,
-        },
-    },
-};
-
-pub const READER_SEL_RESPONSE = extern struct {
-    cbReaderNameOffset: u32,
-    cchReaderNameLength: u32,
-    cbCardNameOffset: u32,
-    cchCardNameLength: u32,
-};
-
 pub const OPENCARDNAMEA = extern struct {
     dwStructSize: u32,
     hwndOwner: ?HWND,
@@ -903,97 +803,156 @@ pub const OPENCARDNAMEW = extern struct {
     hCardHandle: usize,
 };
 
+pub const READER_SEL_REQUEST = extern struct {
+    dwShareMode: u32,
+    dwPreferredProtocols: u32,
+    MatchType: READER_SEL_REQUEST_MATCH_TYPE,
+    Anonymous: extern union {
+        ReaderAndContainerParameter: extern struct {
+            cbReaderNameOffset: u32,
+            cchReaderNameLength: u32,
+            cbContainerNameOffset: u32,
+            cchContainerNameLength: u32,
+            dwDesiredCardModuleVersion: u32,
+            dwCspFlags: u32,
+        },
+        SerialNumberParameter: extern struct {
+            cbSerialNumberOffset: u32,
+            cbSerialNumberLength: u32,
+            dwDesiredCardModuleVersion: u32,
+        },
+    },
+};
+
+pub const READER_SEL_REQUEST_MATCH_TYPE = enum(i32) {
+    READER_AND_CONTAINER = 1,
+    SERIAL_NUMBER = 2,
+    ALL_CARDS = 3,
+};
+pub const RSR_MATCH_TYPE_READER_AND_CONTAINER = READER_SEL_REQUEST_MATCH_TYPE.READER_AND_CONTAINER;
+pub const RSR_MATCH_TYPE_SERIAL_NUMBER = READER_SEL_REQUEST_MATCH_TYPE.SERIAL_NUMBER;
+pub const RSR_MATCH_TYPE_ALL_CARDS = READER_SEL_REQUEST_MATCH_TYPE.ALL_CARDS;
+
+pub const READER_SEL_RESPONSE = extern struct {
+    cbReaderNameOffset: u32,
+    cchReaderNameLength: u32,
+    cbCardNameOffset: u32,
+    cchCardNameLength: u32,
+};
+
+pub const SCARD_ATRMASK = extern struct {
+    cbAtr: u32,
+    rgbAtr: [36]u8,
+    rgbMask: [36]u8,
+};
+
+pub const SCARD_IO_REQUEST = extern struct {
+    dwProtocol: u32,
+    cbPciLength: u32,
+};
+
+pub const SCARD_READERSTATEA = extern struct {
+    szReader: ?[*:0]const u8,
+    pvUserData: ?*anyopaque,
+    dwCurrentState: SCARD_STATE,
+    dwEventState: SCARD_STATE,
+    cbAtr: u32,
+    rgbAtr: [36]u8,
+};
+
+pub const SCARD_READERSTATEW = extern struct {
+    szReader: ?[*:0]const u16,
+    pvUserData: ?*anyopaque,
+    dwCurrentState: SCARD_STATE,
+    dwEventState: SCARD_STATE,
+    cbAtr: u32,
+    rgbAtr: [36]u8,
+};
+
+pub const SCARD_SCOPE = enum(u32) {
+    USER = 0,
+    SYSTEM = 2,
+};
+pub const SCARD_SCOPE_USER = SCARD_SCOPE.USER;
+pub const SCARD_SCOPE_SYSTEM = SCARD_SCOPE.SYSTEM;
+
+pub const SCARD_STATE = enum(u32) {
+    UNAWARE = 0,
+    IGNORE = 1,
+    UNAVAILABLE = 8,
+    EMPTY = 16,
+    PRESENT = 32,
+    ATRMATCH = 64,
+    EXCLUSIVE = 128,
+    INUSE = 256,
+    MUTE = 512,
+    CHANGED = 2,
+    UNKNOWN = 4,
+};
+pub const SCARD_STATE_UNAWARE = SCARD_STATE.UNAWARE;
+pub const SCARD_STATE_IGNORE = SCARD_STATE.IGNORE;
+pub const SCARD_STATE_UNAVAILABLE = SCARD_STATE.UNAVAILABLE;
+pub const SCARD_STATE_EMPTY = SCARD_STATE.EMPTY;
+pub const SCARD_STATE_PRESENT = SCARD_STATE.PRESENT;
+pub const SCARD_STATE_ATRMATCH = SCARD_STATE.ATRMATCH;
+pub const SCARD_STATE_EXCLUSIVE = SCARD_STATE.EXCLUSIVE;
+pub const SCARD_STATE_INUSE = SCARD_STATE.INUSE;
+pub const SCARD_STATE_MUTE = SCARD_STATE.MUTE;
+pub const SCARD_STATE_CHANGED = SCARD_STATE.CHANGED;
+pub const SCARD_STATE_UNKNOWN = SCARD_STATE.UNKNOWN;
+
+pub const SCARD_T0_COMMAND = extern struct {
+    bCla: u8,
+    bIns: u8,
+    bP1: u8,
+    bP2: u8,
+    bP3: u8,
+};
+
+pub const SCARD_T0_REQUEST = extern struct {
+    ioRequest: SCARD_IO_REQUEST,
+    bSw1: u8,
+    bSw2: u8,
+    Anonymous: extern union {
+        CmdBytes: SCARD_T0_COMMAND,
+        rgbHeader: [5]u8,
+    },
+};
+
+pub const SCARD_T1_REQUEST = extern struct {
+    ioRequest: SCARD_IO_REQUEST,
+};
+
+pub const SecHandle = extern struct {
+    dwLower: usize,
+    dwUpper: usize,
+};
+
 pub const SecPkgContext_ClientCreds = extern struct {
     AuthBufferLen: u32,
     AuthBuffer: ?*u8,
 };
 
-pub const CREDSPP_SUBMIT_TYPE = enum(i32) {
-    PasswordCreds = 2,
-    SchannelCreds = 4,
-    CertificateCreds = 13,
-    SubmitBufferBoth = 50,
-    SubmitBufferBothOld = 51,
-    CredEx = 100,
-};
-pub const CredsspPasswordCreds = CREDSPP_SUBMIT_TYPE.PasswordCreds;
-pub const CredsspSchannelCreds = CREDSPP_SUBMIT_TYPE.SchannelCreds;
-pub const CredsspCertificateCreds = CREDSPP_SUBMIT_TYPE.CertificateCreds;
-pub const CredsspSubmitBufferBoth = CREDSPP_SUBMIT_TYPE.SubmitBufferBoth;
-pub const CredsspSubmitBufferBothOld = CREDSPP_SUBMIT_TYPE.SubmitBufferBothOld;
-pub const CredsspCredEx = CREDSPP_SUBMIT_TYPE.CredEx;
-
-pub const CREDSSP_CRED = extern struct {
-    Type: CREDSPP_SUBMIT_TYPE,
-    pSchannelCred: ?*anyopaque,
-    pSpnegoCred: ?*anyopaque,
-};
-
-pub const CREDSSP_CRED_EX = extern struct {
-    Type: CREDSPP_SUBMIT_TYPE,
-    Version: u32,
-    Flags: u32,
-    Reserved: u32,
-    Cred: CREDSSP_CRED,
+pub const USERNAME_TARGET_CREDENTIAL_INFO = extern struct {
+    UserName: ?PWSTR,
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (127)
 //--------------------------------------------------------------------------------
-pub extern "keycredmgr" fn KeyCredentialManagerGetOperationErrorStates(
-    keyCredentialManagerOperationType: KeyCredentialManagerOperationType,
-    isReady: ?*BOOL,
-    keyCredentialManagerOperationErrorStates: ?*KeyCredentialManagerOperationErrorStates,
-) callconv(.winapi) HRESULT;
-
-pub extern "keycredmgr" fn KeyCredentialManagerShowUIOperation(
-    hWndOwner: ?HWND,
-    keyCredentialManagerOperationType: KeyCredentialManagerOperationType,
-) callconv(.winapi) HRESULT;
-
-pub extern "keycredmgr" fn KeyCredentialManagerGetInformation(
-    keyCredentialManagerInfo: ?*?*KeyCredentialManagerInfo,
-) callconv(.winapi) HRESULT;
-
-pub extern "keycredmgr" fn KeyCredentialManagerFreeInformation(
-    keyCredentialManagerInfo: ?*KeyCredentialManagerInfo,
-) callconv(.winapi) void;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredWriteW(
-    Credential: ?*CREDENTIALW,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredWriteA(
-    Credential: ?*CREDENTIALA,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredReadW(
-    TargetName: ?[*:0]const u16,
-    Type: u32,
-    Flags: u32,
-    Credential: ?*?*CREDENTIALW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredReadA(
+pub extern "advapi32" fn CredDeleteA(
     TargetName: ?[*:0]const u8,
     Type: u32,
     Flags: u32,
-    Credential: ?*?*CREDENTIALA,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredEnumerateW(
-    Filter: ?[*:0]const u16,
-    Flags: CRED_ENUMERATE_FLAGS,
-    Count: ?*u32,
-    Credential: ?*?*?*CREDENTIALW,
+pub extern "advapi32" fn CredDeleteW(
+    TargetName: ?[*:0]const u16,
+    Type: u32,
+    Flags: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1005,70 +964,38 @@ pub extern "advapi32" fn CredEnumerateA(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredWriteDomainCredentialsW(
-    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONW,
-    Credential: ?*CREDENTIALW,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredWriteDomainCredentialsA(
-    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONA,
-    Credential: ?*CREDENTIALA,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredReadDomainCredentialsW(
-    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONW,
-    Flags: u32,
+pub extern "advapi32" fn CredEnumerateW(
+    Filter: ?[*:0]const u16,
+    Flags: CRED_ENUMERATE_FLAGS,
     Count: ?*u32,
     Credential: ?*?*?*CREDENTIALW,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredReadDomainCredentialsA(
-    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONA,
-    Flags: u32,
-    Count: ?*u32,
-    Credential: ?*?*?*CREDENTIALA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredDeleteW(
-    TargetName: ?[*:0]const u16,
-    Type: u32,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredDeleteA(
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn CredFindBestCredentialA(
     TargetName: ?[*:0]const u8,
     Type: u32,
     Flags: u32,
+    Credential: ?*?*CREDENTIALA,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredRenameW(
-    OldTargetName: ?[*:0]const u16,
-    NewTargetName: ?[*:0]const u16,
-    Type: u32,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredRenameA(
-    OldTargetName: ?[*:0]const u8,
-    NewTargetName: ?[*:0]const u8,
-    Type: u32,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredGetTargetInfoW(
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn CredFindBestCredentialW(
     TargetName: ?[*:0]const u16,
+    Type: u32,
     Flags: u32,
-    TargetInfo: ?*?*CREDENTIAL_TARGET_INFORMATIONW,
+    Credential: ?*?*CREDENTIALW,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredFree(
+    Buffer: ?*anyopaque,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredGetSessionTypes(
+    MaximumPersistCount: u32,
+    MaximumPersist: [*]u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1079,10 +1006,32 @@ pub extern "advapi32" fn CredGetTargetInfoA(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredMarshalCredentialW(
-    CredType: CRED_MARSHAL_TYPE,
-    Credential: ?*anyopaque,
-    MarshaledCredential: ?*?PWSTR,
+pub extern "advapi32" fn CredGetTargetInfoW(
+    TargetName: ?[*:0]const u16,
+    Flags: u32,
+    TargetInfo: ?*?*CREDENTIAL_TARGET_INFORMATIONW,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredIsMarshaledCredentialA(
+    MarshaledCredential: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredIsMarshaledCredentialW(
+    MarshaledCredential: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn CredIsProtectedA(
+    pszProtectedCredentials: ?PSTR,
+    pProtectionType: ?*CRED_PROTECTION_TYPE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn CredIsProtectedW(
+    pszProtectedCredentials: ?PWSTR,
+    pProtectionType: ?*CRED_PROTECTION_TYPE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1093,65 +1042,10 @@ pub extern "advapi32" fn CredMarshalCredentialA(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredUnmarshalCredentialW(
-    MarshaledCredential: ?[*:0]const u16,
-    CredType: ?*CRED_MARSHAL_TYPE,
-    Credential: ?*?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredUnmarshalCredentialA(
-    MarshaledCredential: ?[*:0]const u8,
-    CredType: ?*CRED_MARSHAL_TYPE,
-    Credential: ?*?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredIsMarshaledCredentialW(
-    MarshaledCredential: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredIsMarshaledCredentialA(
-    MarshaledCredential: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "credui" fn CredUnPackAuthenticationBufferW(
-    dwFlags: CRED_PACK_FLAGS,
-    // TODO: what to do with BytesParamIndex 2?
-    pAuthBuffer: ?*anyopaque,
-    cbAuthBuffer: u32,
-    pszUserName: ?[*:0]u16,
-    pcchMaxUserName: ?*u32,
-    pszDomainName: ?[*:0]u16,
-    pcchMaxDomainName: ?*u32,
-    pszPassword: ?[*:0]u16,
-    pcchMaxPassword: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "credui" fn CredUnPackAuthenticationBufferA(
-    dwFlags: CRED_PACK_FLAGS,
-    // TODO: what to do with BytesParamIndex 2?
-    pAuthBuffer: ?*anyopaque,
-    cbAuthBuffer: u32,
-    pszUserName: ?[*:0]u8,
-    pcchlMaxUserName: ?*u32,
-    pszDomainName: ?[*:0]u8,
-    pcchMaxDomainName: ?*u32,
-    pszPassword: ?[*:0]u8,
-    pcchMaxPassword: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "credui" fn CredPackAuthenticationBufferW(
-    dwFlags: CRED_PACK_FLAGS,
-    pszUserName: ?PWSTR,
-    pszPassword: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 4?
-    pPackedCredentials: ?*u8,
-    pcbPackedCredentials: ?*u32,
+pub extern "advapi32" fn CredMarshalCredentialW(
+    CredType: CRED_MARSHAL_TYPE,
+    Credential: ?*anyopaque,
+    MarshaledCredential: ?*?PWSTR,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1165,13 +1059,13 @@ pub extern "credui" fn CredPackAuthenticationBufferA(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn CredProtectW(
-    fAsSelf: BOOL,
-    pszCredentials: [*:0]u16,
-    cchCredentials: u32,
-    pszProtectedCredentials: [*:0]u16,
-    pcchMaxChars: ?*u32,
-    ProtectionType: ?*CRED_PROTECTION_TYPE,
+pub extern "credui" fn CredPackAuthenticationBufferW(
+    dwFlags: CRED_PACK_FLAGS,
+    pszUserName: ?PWSTR,
+    pszPassword: ?PWSTR,
+    // TODO: what to do with BytesParamIndex 4?
+    pPackedCredentials: ?*u8,
+    pcbPackedCredentials: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1185,45 +1079,17 @@ pub extern "advapi32" fn CredProtectA(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn CredUnprotectW(
+pub extern "advapi32" fn CredProtectW(
     fAsSelf: BOOL,
+    pszCredentials: [*:0]u16,
+    cchCredentials: u32,
     pszProtectedCredentials: [*:0]u16,
-    cchProtectedCredentials: u32,
-    pszCredentials: ?[*:0]u16,
     pcchMaxChars: ?*u32,
+    ProtectionType: ?*CRED_PROTECTION_TYPE,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn CredUnprotectA(
-    fAsSelf: BOOL,
-    pszProtectedCredentials: [*:0]u8,
-    cchProtectedCredentials: u32,
-    pszCredentials: ?[*:0]u8,
-    pcchMaxChars: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn CredIsProtectedW(
-    pszProtectedCredentials: ?PWSTR,
-    pProtectionType: ?*CRED_PROTECTION_TYPE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn CredIsProtectedA(
-    pszProtectedCredentials: ?PSTR,
-    pProtectionType: ?*CRED_PROTECTION_TYPE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn CredFindBestCredentialW(
-    TargetName: ?[*:0]const u16,
-    Type: u32,
-    Flags: u32,
-    Credential: ?*?*CREDENTIALW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn CredFindBestCredentialA(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredReadA(
     TargetName: ?[*:0]const u8,
     Type: u32,
     Flags: u32,
@@ -1231,28 +1097,99 @@ pub extern "advapi32" fn CredFindBestCredentialA(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredGetSessionTypes(
-    MaximumPersistCount: u32,
-    MaximumPersist: [*]u32,
+pub extern "advapi32" fn CredReadDomainCredentialsA(
+    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONA,
+    Flags: u32,
+    Count: ?*u32,
+    Credential: ?*?*?*CREDENTIALA,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CredFree(
-    Buffer: ?*anyopaque,
-) callconv(.winapi) void;
+pub extern "advapi32" fn CredReadDomainCredentialsW(
+    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONW,
+    Flags: u32,
+    Count: ?*u32,
+    Credential: ?*?*?*CREDENTIALW,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUIPromptForCredentialsW(
-    pUiInfo: ?*CREDUI_INFOW,
+pub extern "advapi32" fn CredReadW(
+    TargetName: ?[*:0]const u16,
+    Type: u32,
+    Flags: u32,
+    Credential: ?*?*CREDENTIALW,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredRenameA(
+    OldTargetName: ?[*:0]const u8,
+    NewTargetName: ?[*:0]const u8,
+    Type: u32,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredRenameW(
+    OldTargetName: ?[*:0]const u16,
+    NewTargetName: ?[*:0]const u16,
+    Type: u32,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "credui" fn CredUICmdLinePromptForCredentialsA(
+    pszTargetName: ?[*:0]const u8,
+    pContext: ?*SecHandle,
+    dwAuthError: u32,
+    UserName: [*:0]u8,
+    ulUserBufferSize: u32,
+    pszPassword: [*:0]u8,
+    ulPasswordBufferSize: u32,
+    pfSave: ?*BOOL,
+    dwFlags: CREDUI_FLAGS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "credui" fn CredUICmdLinePromptForCredentialsW(
     pszTargetName: ?[*:0]const u16,
     pContext: ?*SecHandle,
     dwAuthError: u32,
-    pszUserName: [*:0]u16,
-    ulUserNameBufferSize: u32,
+    UserName: [*:0]u16,
+    ulUserBufferSize: u32,
     pszPassword: [*:0]u16,
     ulPasswordBufferSize: u32,
-    save: ?*BOOL,
+    pfSave: ?*BOOL,
     dwFlags: CREDUI_FLAGS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "credui" fn CredUIConfirmCredentialsA(
+    pszTargetName: ?[*:0]const u8,
+    bConfirm: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "credui" fn CredUIConfirmCredentialsW(
+    pszTargetName: ?[*:0]const u16,
+    bConfirm: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "credui" fn CredUIParseUserNameA(
+    userName: ?[*:0]const u8,
+    user: [*:0]u8,
+    userBufferSize: u32,
+    domain: [*:0]u8,
+    domainBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "credui" fn CredUIParseUserNameW(
+    UserName: ?[*:0]const u16,
+    user: [*:0]u16,
+    userBufferSize: u32,
+    domain: [*:0]u16,
+    domainBufferSize: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1269,19 +1206,18 @@ pub extern "credui" fn CredUIPromptForCredentialsA(
     dwFlags: CREDUI_FLAGS,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "credui" fn CredUIPromptForWindowsCredentialsW(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "credui" fn CredUIPromptForCredentialsW(
     pUiInfo: ?*CREDUI_INFOW,
+    pszTargetName: ?[*:0]const u16,
+    pContext: ?*SecHandle,
     dwAuthError: u32,
-    pulAuthPackage: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
-    pvInAuthBuffer: ?*const anyopaque,
-    ulInAuthBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    ppvOutAuthBuffer: ?*?*anyopaque,
-    pulOutAuthBufferSize: ?*u32,
-    pfSave: ?*BOOL,
-    dwFlags: CREDUIWIN_FLAGS,
+    pszUserName: [*:0]u16,
+    ulUserNameBufferSize: u32,
+    pszPassword: [*:0]u16,
+    ulPasswordBufferSize: u32,
+    save: ?*BOOL,
+    dwFlags: CREDUI_FLAGS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1299,60 +1235,25 @@ pub extern "credui" fn CredUIPromptForWindowsCredentialsA(
     dwFlags: CREDUIWIN_FLAGS,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUIParseUserNameW(
-    UserName: ?[*:0]const u16,
-    user: [*:0]u16,
-    userBufferSize: u32,
-    domain: [*:0]u16,
-    domainBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUIParseUserNameA(
-    userName: ?[*:0]const u8,
-    user: [*:0]u8,
-    userBufferSize: u32,
-    domain: [*:0]u8,
-    domainBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUICmdLinePromptForCredentialsW(
-    pszTargetName: ?[*:0]const u16,
-    pContext: ?*SecHandle,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "credui" fn CredUIPromptForWindowsCredentialsW(
+    pUiInfo: ?*CREDUI_INFOW,
     dwAuthError: u32,
-    UserName: [*:0]u16,
-    ulUserBufferSize: u32,
-    pszPassword: [*:0]u16,
-    ulPasswordBufferSize: u32,
+    pulAuthPackage: ?*u32,
+    // TODO: what to do with BytesParamIndex 4?
+    pvInAuthBuffer: ?*const anyopaque,
+    ulInAuthBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    ppvOutAuthBuffer: ?*?*anyopaque,
+    pulOutAuthBufferSize: ?*u32,
     pfSave: ?*BOOL,
-    dwFlags: CREDUI_FLAGS,
+    dwFlags: CREDUIWIN_FLAGS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUICmdLinePromptForCredentialsA(
-    pszTargetName: ?[*:0]const u8,
-    pContext: ?*SecHandle,
-    dwAuthError: u32,
-    UserName: [*:0]u8,
-    ulUserBufferSize: u32,
-    pszPassword: [*:0]u8,
-    ulPasswordBufferSize: u32,
-    pfSave: ?*BOOL,
-    dwFlags: CREDUI_FLAGS,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUIConfirmCredentialsW(
-    pszTargetName: ?[*:0]const u16,
-    bConfirm: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUIConfirmCredentialsA(
-    pszTargetName: ?[*:0]const u8,
-    bConfirm: BOOL,
+pub extern "credui" fn CredUIReadSSOCredW(
+    pszRealm: ?[*:0]const u16,
+    ppszUsername: ?*?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1364,10 +1265,201 @@ pub extern "credui" fn CredUIStoreSSOCredW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "credui" fn CredUIReadSSOCredW(
-    pszRealm: ?[*:0]const u16,
-    ppszUsername: ?*?PWSTR,
-) callconv(.winapi) u32;
+pub extern "advapi32" fn CredUnmarshalCredentialA(
+    MarshaledCredential: ?[*:0]const u8,
+    CredType: ?*CRED_MARSHAL_TYPE,
+    Credential: ?*?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredUnmarshalCredentialW(
+    MarshaledCredential: ?[*:0]const u16,
+    CredType: ?*CRED_MARSHAL_TYPE,
+    Credential: ?*?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "credui" fn CredUnPackAuthenticationBufferA(
+    dwFlags: CRED_PACK_FLAGS,
+    // TODO: what to do with BytesParamIndex 2?
+    pAuthBuffer: ?*anyopaque,
+    cbAuthBuffer: u32,
+    pszUserName: ?[*:0]u8,
+    pcchlMaxUserName: ?*u32,
+    pszDomainName: ?[*:0]u8,
+    pcchMaxDomainName: ?*u32,
+    pszPassword: ?[*:0]u8,
+    pcchMaxPassword: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "credui" fn CredUnPackAuthenticationBufferW(
+    dwFlags: CRED_PACK_FLAGS,
+    // TODO: what to do with BytesParamIndex 2?
+    pAuthBuffer: ?*anyopaque,
+    cbAuthBuffer: u32,
+    pszUserName: ?[*:0]u16,
+    pcchMaxUserName: ?*u32,
+    pszDomainName: ?[*:0]u16,
+    pcchMaxDomainName: ?*u32,
+    pszPassword: ?[*:0]u16,
+    pcchMaxPassword: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn CredUnprotectA(
+    fAsSelf: BOOL,
+    pszProtectedCredentials: [*:0]u8,
+    cchProtectedCredentials: u32,
+    pszCredentials: ?[*:0]u8,
+    pcchMaxChars: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn CredUnprotectW(
+    fAsSelf: BOOL,
+    pszProtectedCredentials: [*:0]u16,
+    cchProtectedCredentials: u32,
+    pszCredentials: ?[*:0]u16,
+    pcchMaxChars: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredWriteA(
+    Credential: ?*CREDENTIALA,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredWriteDomainCredentialsA(
+    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONA,
+    Credential: ?*CREDENTIALA,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredWriteDomainCredentialsW(
+    TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONW,
+    Credential: ?*CREDENTIALW,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CredWriteW(
+    Credential: ?*CREDENTIALW,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "scarddlg" fn GetOpenCardNameA(
+    param0: ?*OPENCARDNAMEA,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "scarddlg" fn GetOpenCardNameW(
+    param0: ?*OPENCARDNAMEW,
+) callconv(.winapi) i32;
+
+pub extern "keycredmgr" fn KeyCredentialManagerFreeInformation(
+    keyCredentialManagerInfo: ?*KeyCredentialManagerInfo,
+) callconv(.winapi) void;
+
+pub extern "keycredmgr" fn KeyCredentialManagerGetInformation(
+    keyCredentialManagerInfo: ?*?*KeyCredentialManagerInfo,
+) callconv(.winapi) HRESULT;
+
+pub extern "keycredmgr" fn KeyCredentialManagerGetOperationErrorStates(
+    keyCredentialManagerOperationType: KeyCredentialManagerOperationType,
+    isReady: ?*BOOL,
+    keyCredentialManagerOperationErrorStates: ?*KeyCredentialManagerOperationErrorStates,
+) callconv(.winapi) HRESULT;
+
+pub extern "keycredmgr" fn KeyCredentialManagerShowUIOperation(
+    hWndOwner: ?HWND,
+    keyCredentialManagerOperationType: KeyCredentialManagerOperationType,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardAccessStartedEvent(
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardAddReaderToGroupA(
+    hContext: usize,
+    szReaderName: ?[*:0]const u8,
+    szGroupName: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardAddReaderToGroupW(
+    hContext: usize,
+    szReaderName: ?[*:0]const u16,
+    szGroupName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardAudit(
+    hContext: usize,
+    dwEvent: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardBeginTransaction(
+    hCard: usize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardCancel(
+    hContext: usize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardConnectA(
+    hContext: usize,
+    szReader: ?[*:0]const u8,
+    dwShareMode: u32,
+    dwPreferredProtocols: u32,
+    phCard: ?*usize,
+    pdwActiveProtocol: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardConnectW(
+    hContext: usize,
+    szReader: ?[*:0]const u16,
+    dwShareMode: u32,
+    dwPreferredProtocols: u32,
+    phCard: ?*usize,
+    pdwActiveProtocol: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardControl(
+    hCard: usize,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpInBuffer: ?*const anyopaque,
+    cbInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpOutBuffer: ?*anyopaque,
+    cbOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardDisconnect(
+    hCard: usize,
+    dwDisposition: u32,
+) callconv(.winapi) i32;
+
+pub extern "scarddlg" fn SCardDlgExtendedError(
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardEndTransaction(
+    hCard: usize,
+    dwDisposition: u32,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winscard" fn SCardEstablishContext(
@@ -1378,43 +1470,211 @@ pub extern "winscard" fn SCardEstablishContext(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardReleaseContext(
+pub extern "winscard" fn SCardForgetCardTypeA(
     hContext: usize,
+    szCardName: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardForgetCardTypeW(
+    hContext: usize,
+    szCardName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardForgetReaderA(
+    hContext: usize,
+    szReaderName: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardForgetReaderGroupA(
+    hContext: usize,
+    szGroupName: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardForgetReaderGroupW(
+    hContext: usize,
+    szGroupName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardForgetReaderW(
+    hContext: usize,
+    szReaderName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardFreeMemory(
+    hContext: usize,
+    pvMem: ?*const anyopaque,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardGetAttrib(
+    hCard: usize,
+    dwAttrId: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pbAttr: ?*u8,
+    pcbAttrLen: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardGetCardTypeProviderNameA(
+    hContext: usize,
+    szCardName: ?[*:0]const u8,
+    dwProviderId: u32,
+    szProvider: [*:0]u8,
+    pcchProvider: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardGetCardTypeProviderNameW(
+    hContext: usize,
+    szCardName: ?[*:0]const u16,
+    dwProviderId: u32,
+    szProvider: [*:0]u16,
+    pcchProvider: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardGetDeviceTypeIdA(
+    hContext: usize,
+    szReaderName: ?[*:0]const u8,
+    pdwDeviceTypeId: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardGetDeviceTypeIdW(
+    hContext: usize,
+    szReaderName: ?[*:0]const u16,
+    pdwDeviceTypeId: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardGetProviderIdA(
+    hContext: usize,
+    szCard: ?[*:0]const u8,
+    pguidProviderId: ?*Guid,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardGetProviderIdW(
+    hContext: usize,
+    szCard: ?[*:0]const u16,
+    pguidProviderId: ?*Guid,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardGetReaderDeviceInstanceIdA(
+    hContext: usize,
+    szReaderName: ?[*:0]const u8,
+    szDeviceInstanceId: ?[*:0]u8,
+    pcchDeviceInstanceId: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardGetReaderDeviceInstanceIdW(
+    hContext: usize,
+    szReaderName: ?[*:0]const u16,
+    szDeviceInstanceId: ?[*:0]u16,
+    pcchDeviceInstanceId: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardGetReaderIconA(
+    hContext: usize,
+    szReaderName: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pbIcon: ?*u8,
+    pcbIcon: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardGetReaderIconW(
+    hContext: usize,
+    szReaderName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pbIcon: ?*u8,
+    pcbIcon: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardGetStatusChangeA(
+    hContext: usize,
+    dwTimeout: u32,
+    rgReaderStates: ?*SCARD_READERSTATEA,
+    cReaders: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardGetStatusChangeW(
+    hContext: usize,
+    dwTimeout: u32,
+    rgReaderStates: ?*SCARD_READERSTATEW,
+    cReaders: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "winscard" fn SCardGetTransmitCount(
+    hCard: usize,
+    pcTransmitCount: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardIntroduceCardTypeA(
+    hContext: usize,
+    szCardName: ?[*:0]const u8,
+    pguidPrimaryProvider: ?*const Guid,
+    rgguidInterfaces: ?*const Guid,
+    dwInterfaceCount: u32,
+    pbAtr: ?*u8,
+    pbAtrMask: ?*u8,
+    cbAtrLen: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardIntroduceCardTypeW(
+    hContext: usize,
+    szCardName: ?[*:0]const u16,
+    pguidPrimaryProvider: ?*const Guid,
+    rgguidInterfaces: ?*const Guid,
+    dwInterfaceCount: u32,
+    pbAtr: ?*u8,
+    pbAtrMask: ?*u8,
+    cbAtrLen: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardIntroduceReaderA(
+    hContext: usize,
+    szReaderName: ?[*:0]const u8,
+    szDeviceName: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardIntroduceReaderGroupA(
+    hContext: usize,
+    szGroupName: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardIntroduceReaderGroupW(
+    hContext: usize,
+    szGroupName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardIntroduceReaderW(
+    hContext: usize,
+    szReaderName: ?[*:0]const u16,
+    szDeviceName: ?[*:0]const u16,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winscard" fn SCardIsValidContext(
     hContext: usize,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardListReaderGroupsA(
-    hContext: usize,
-    mszGroups: ?[*:0]u8,
-    pcchGroups: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardListReaderGroupsW(
-    hContext: usize,
-    mszGroups: ?[*:0]u16,
-    pcchGroups: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardListReadersA(
-    hContext: usize,
-    mszGroups: ?[*:0]const u8,
-    mszReaders: ?[*:0]u8,
-    pcchReaders: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardListReadersW(
-    hContext: usize,
-    mszGroups: ?[*:0]const u16,
-    mszReaders: ?[*:0]u16,
-    pcchReaders: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1454,194 +1714,56 @@ pub extern "winscard" fn SCardListInterfacesW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardGetProviderIdA(
+pub extern "winscard" fn SCardListReaderGroupsA(
     hContext: usize,
-    szCard: ?[*:0]const u8,
-    pguidProviderId: ?*Guid,
+    mszGroups: ?[*:0]u8,
+    pcchGroups: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardGetProviderIdW(
+pub extern "winscard" fn SCardListReaderGroupsW(
     hContext: usize,
-    szCard: ?[*:0]const u16,
-    pguidProviderId: ?*Guid,
+    mszGroups: ?[*:0]u16,
+    pcchGroups: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardGetCardTypeProviderNameA(
+pub extern "winscard" fn SCardListReadersA(
     hContext: usize,
-    szCardName: ?[*:0]const u8,
-    dwProviderId: u32,
-    szProvider: [*:0]u8,
-    pcchProvider: ?*u32,
+    mszGroups: ?[*:0]const u8,
+    mszReaders: ?[*:0]u8,
+    pcchReaders: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardGetCardTypeProviderNameW(
+pub extern "winscard" fn SCardListReadersW(
     hContext: usize,
-    szCardName: ?[*:0]const u16,
-    dwProviderId: u32,
-    szProvider: [*:0]u16,
-    pcchProvider: ?*u32,
+    mszGroups: ?[*:0]const u16,
+    mszReaders: ?[*:0]u16,
+    pcchReaders: ?*u32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardIntroduceReaderGroupA(
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardListReadersWithDeviceInstanceIdA(
     hContext: usize,
-    szGroupName: ?[*:0]const u8,
+    szDeviceInstanceId: ?[*:0]const u8,
+    mszReaders: ?[*:0]u8,
+    pcchReaders: ?*u32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardIntroduceReaderGroupW(
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "winscard" fn SCardListReadersWithDeviceInstanceIdW(
     hContext: usize,
-    szGroupName: ?[*:0]const u16,
+    szDeviceInstanceId: ?[*:0]const u16,
+    mszReaders: ?[*:0]u16,
+    pcchReaders: ?*u32,
 ) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardForgetReaderGroupA(
-    hContext: usize,
-    szGroupName: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardForgetReaderGroupW(
-    hContext: usize,
-    szGroupName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardIntroduceReaderA(
-    hContext: usize,
-    szReaderName: ?[*:0]const u8,
-    szDeviceName: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardIntroduceReaderW(
-    hContext: usize,
-    szReaderName: ?[*:0]const u16,
-    szDeviceName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardForgetReaderA(
-    hContext: usize,
-    szReaderName: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardForgetReaderW(
-    hContext: usize,
-    szReaderName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardAddReaderToGroupA(
-    hContext: usize,
-    szReaderName: ?[*:0]const u8,
-    szGroupName: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardAddReaderToGroupW(
-    hContext: usize,
-    szReaderName: ?[*:0]const u16,
-    szGroupName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardRemoveReaderFromGroupA(
-    hContext: usize,
-    szReaderName: ?[*:0]const u8,
-    szGroupName: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardRemoveReaderFromGroupW(
-    hContext: usize,
-    szReaderName: ?[*:0]const u16,
-    szGroupName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardIntroduceCardTypeA(
-    hContext: usize,
-    szCardName: ?[*:0]const u8,
-    pguidPrimaryProvider: ?*const Guid,
-    rgguidInterfaces: ?*const Guid,
-    dwInterfaceCount: u32,
-    pbAtr: ?*u8,
-    pbAtrMask: ?*u8,
-    cbAtrLen: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardIntroduceCardTypeW(
-    hContext: usize,
-    szCardName: ?[*:0]const u16,
-    pguidPrimaryProvider: ?*const Guid,
-    rgguidInterfaces: ?*const Guid,
-    dwInterfaceCount: u32,
-    pbAtr: ?*u8,
-    pbAtrMask: ?*u8,
-    cbAtrLen: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardSetCardTypeProviderNameA(
-    hContext: usize,
-    szCardName: ?[*:0]const u8,
-    dwProviderId: u32,
-    szProvider: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardSetCardTypeProviderNameW(
-    hContext: usize,
-    szCardName: ?[*:0]const u16,
-    dwProviderId: u32,
-    szProvider: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardForgetCardTypeA(
-    hContext: usize,
-    szCardName: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardForgetCardTypeW(
-    hContext: usize,
-    szCardName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardFreeMemory(
-    hContext: usize,
-    pvMem: ?*const anyopaque,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardAccessStartedEvent(
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardReleaseStartedEvent(
-) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winscard" fn SCardLocateCardsA(
     hContext: usize,
     mszCards: ?[*:0]const u8,
     rgReaderStates: ?*SCARD_READERSTATEA,
-    cReaders: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardLocateCardsW(
-    hContext: usize,
-    mszCards: ?[*:0]const u16,
-    rgReaderStates: ?*SCARD_READERSTATEW,
     cReaders: u32,
 ) callconv(.winapi) i32;
 
@@ -1664,44 +1786,33 @@ pub extern "winscard" fn SCardLocateCardsByATRW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardGetStatusChangeA(
+pub extern "winscard" fn SCardLocateCardsW(
     hContext: usize,
-    dwTimeout: u32,
-    rgReaderStates: ?*SCARD_READERSTATEA,
-    cReaders: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardGetStatusChangeW(
-    hContext: usize,
-    dwTimeout: u32,
+    mszCards: ?[*:0]const u16,
     rgReaderStates: ?*SCARD_READERSTATEW,
     cReaders: u32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardCancel(
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "winscard" fn SCardReadCacheA(
     hContext: usize,
+    CardIdentifier: ?*Guid,
+    FreshnessCounter: u32,
+    LookupName: ?PSTR,
+    // TODO: what to do with BytesParamIndex 5?
+    Data: ?*u8,
+    DataLen: ?*u32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardConnectA(
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "winscard" fn SCardReadCacheW(
     hContext: usize,
-    szReader: ?[*:0]const u8,
-    dwShareMode: u32,
-    dwPreferredProtocols: u32,
-    phCard: ?*usize,
-    pdwActiveProtocol: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardConnectW(
-    hContext: usize,
-    szReader: ?[*:0]const u16,
-    dwShareMode: u32,
-    dwPreferredProtocols: u32,
-    phCard: ?*usize,
-    pdwActiveProtocol: ?*u32,
+    CardIdentifier: ?*Guid,
+    FreshnessCounter: u32,
+    LookupName: ?PWSTR,
+    // TODO: what to do with BytesParamIndex 5?
+    Data: ?*u8,
+    DataLen: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1714,20 +1825,51 @@ pub extern "winscard" fn SCardReconnect(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardDisconnect(
-    hCard: usize,
-    dwDisposition: u32,
+pub extern "winscard" fn SCardReleaseContext(
+    hContext: usize,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardBeginTransaction(
-    hCard: usize,
+pub extern "winscard" fn SCardReleaseStartedEvent(
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardRemoveReaderFromGroupA(
+    hContext: usize,
+    szReaderName: ?[*:0]const u8,
+    szGroupName: ?[*:0]const u8,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardEndTransaction(
+pub extern "winscard" fn SCardRemoveReaderFromGroupW(
+    hContext: usize,
+    szReaderName: ?[*:0]const u16,
+    szGroupName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardSetAttrib(
     hCard: usize,
-    dwDisposition: u32,
+    dwAttrId: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pbAttr: ?*u8,
+    cbAttrLen: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardSetCardTypeProviderNameA(
+    hContext: usize,
+    szCardName: ?[*:0]const u8,
+    dwProviderId: u32,
+    szProvider: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "winscard" fn SCardSetCardTypeProviderNameW(
+    hContext: usize,
+    szCardName: ?[*:0]const u16,
+    dwProviderId: u32,
+    szProvider: ?[*:0]const u16,
 ) callconv(.winapi) i32;
 
 pub extern "winscard" fn SCardState(
@@ -1774,43 +1916,6 @@ pub extern "winscard" fn SCardTransmit(
     pcbRecvLength: ?*u32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "winscard" fn SCardGetTransmitCount(
-    hCard: usize,
-    pcTransmitCount: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardControl(
-    hCard: usize,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpInBuffer: ?*const anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardGetAttrib(
-    hCard: usize,
-    dwAttrId: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pbAttr: ?*u8,
-    pcbAttrLen: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardSetAttrib(
-    hCard: usize,
-    dwAttrId: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pbAttr: ?*u8,
-    cbAttrLen: u32,
-) callconv(.winapi) i32;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "scarddlg" fn SCardUIDlgSelectCardA(
     param0: ?*OPENCARDNAME_EXA,
@@ -1819,41 +1924,6 @@ pub extern "scarddlg" fn SCardUIDlgSelectCardA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "scarddlg" fn SCardUIDlgSelectCardW(
     param0: ?*OPENCARDNAME_EXW,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "scarddlg" fn GetOpenCardNameA(
-    param0: ?*OPENCARDNAMEA,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "scarddlg" fn GetOpenCardNameW(
-    param0: ?*OPENCARDNAMEW,
-) callconv(.winapi) i32;
-
-pub extern "scarddlg" fn SCardDlgExtendedError(
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "winscard" fn SCardReadCacheA(
-    hContext: usize,
-    CardIdentifier: ?*Guid,
-    FreshnessCounter: u32,
-    LookupName: ?PSTR,
-    // TODO: what to do with BytesParamIndex 5?
-    Data: ?*u8,
-    DataLen: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "winscard" fn SCardReadCacheW(
-    hContext: usize,
-    CardIdentifier: ?*Guid,
-    FreshnessCounter: u32,
-    LookupName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 5?
-    Data: ?*u8,
-    DataLen: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1878,76 +1948,6 @@ pub extern "winscard" fn SCardWriteCacheW(
     DataLen: u32,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardGetReaderIconA(
-    hContext: usize,
-    szReaderName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
-    pbIcon: ?*u8,
-    pcbIcon: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardGetReaderIconW(
-    hContext: usize,
-    szReaderName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pbIcon: ?*u8,
-    pcbIcon: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardGetDeviceTypeIdA(
-    hContext: usize,
-    szReaderName: ?[*:0]const u8,
-    pdwDeviceTypeId: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardGetDeviceTypeIdW(
-    hContext: usize,
-    szReaderName: ?[*:0]const u16,
-    pdwDeviceTypeId: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardGetReaderDeviceInstanceIdA(
-    hContext: usize,
-    szReaderName: ?[*:0]const u8,
-    szDeviceInstanceId: ?[*:0]u8,
-    pcchDeviceInstanceId: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardGetReaderDeviceInstanceIdW(
-    hContext: usize,
-    szReaderName: ?[*:0]const u16,
-    szDeviceInstanceId: ?[*:0]u16,
-    pcchDeviceInstanceId: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardListReadersWithDeviceInstanceIdA(
-    hContext: usize,
-    szDeviceInstanceId: ?[*:0]const u8,
-    mszReaders: ?[*:0]u8,
-    pcchReaders: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardListReadersWithDeviceInstanceIdW(
-    hContext: usize,
-    szDeviceInstanceId: ?[*:0]const u16,
-    mszReaders: ?[*:0]u16,
-    pcchReaders: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "winscard" fn SCardAudit(
-    hContext: usize,
-    dwEvent: u32,
-) callconv(.winapi) i32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (59)
@@ -1959,13 +1959,6 @@ pub const CREDENTIAL_ATTRIBUTE = switch (@import("../zig.zig").unicode_mode) {
         "'CREDENTIAL_ATTRIBUTE' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CREDENTIAL = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CREDENTIALA,
-    .wide => @This().CREDENTIALW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CREDENTIAL' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const CREDENTIAL_TARGET_INFORMATION = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().CREDENTIAL_TARGET_INFORMATIONA,
     .wide => @This().CREDENTIAL_TARGET_INFORMATIONW,
@@ -1973,18 +1966,18 @@ pub const CREDENTIAL_TARGET_INFORMATION = switch (@import("../zig.zig").unicode_
         "'CREDENTIAL_TARGET_INFORMATION' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const CREDENTIAL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CREDENTIALA,
+    .wide => @This().CREDENTIALW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CREDENTIAL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const CREDUI_INFO = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().CREDUI_INFOA,
     .wide => @This().CREDUI_INFOW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'CREDUI_INFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCARD_READERSTATE = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCARD_READERSTATEA,
-    .wide => @This().SCARD_READERSTATEW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCARD_READERSTATE' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const LPOCNCONNPROC = switch (@import("../zig.zig").unicode_mode) {
@@ -2015,39 +2008,11 @@ pub const OPENCARDNAME = switch (@import("../zig.zig").unicode_mode) {
         "'OPENCARDNAME' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CredWrite = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredWriteA,
-    .wide => @This().CredWriteW,
+pub const SCARD_READERSTATE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCARD_READERSTATEA,
+    .wide => @This().SCARD_READERSTATEW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredWrite' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredRead = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredReadA,
-    .wide => @This().CredReadW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredRead' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredEnumerate = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredEnumerateA,
-    .wide => @This().CredEnumerateW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredEnumerate' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredWriteDomainCredentials = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredWriteDomainCredentialsA,
-    .wide => @This().CredWriteDomainCredentialsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredWriteDomainCredentials' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredReadDomainCredentials = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredReadDomainCredentialsA,
-    .wide => @This().CredReadDomainCredentialsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredReadDomainCredentials' requires that UNICODE be set to true or false in the root module",
+        "'SCARD_READERSTATE' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CredDelete = switch (@import("../zig.zig").unicode_mode) {
@@ -2057,11 +2022,18 @@ pub const CredDelete = switch (@import("../zig.zig").unicode_mode) {
         "'CredDelete' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CredRename = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredRenameA,
-    .wide => @This().CredRenameW,
+pub const CredEnumerate = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredEnumerateA,
+    .wide => @This().CredEnumerateW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredRename' requires that UNICODE be set to true or false in the root module",
+        "'CredEnumerate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredFindBestCredential = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredFindBestCredentialA,
+    .wide => @This().CredFindBestCredentialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredFindBestCredential' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CredGetTargetInfo = switch (@import("../zig.zig").unicode_mode) {
@@ -2071,20 +2043,6 @@ pub const CredGetTargetInfo = switch (@import("../zig.zig").unicode_mode) {
         "'CredGetTargetInfo' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CredMarshalCredential = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredMarshalCredentialA,
-    .wide => @This().CredMarshalCredentialW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredMarshalCredential' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredUnmarshalCredential = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredUnmarshalCredentialA,
-    .wide => @This().CredUnmarshalCredentialW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredUnmarshalCredential' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const CredIsMarshaledCredential = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().CredIsMarshaledCredentialA,
     .wide => @This().CredIsMarshaledCredentialW,
@@ -2092,11 +2050,18 @@ pub const CredIsMarshaledCredential = switch (@import("../zig.zig").unicode_mode
         "'CredIsMarshaledCredential' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CredUnPackAuthenticationBuffer = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredUnPackAuthenticationBufferA,
-    .wide => @This().CredUnPackAuthenticationBufferW,
+pub const CredIsProtected = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredIsProtectedA,
+    .wide => @This().CredIsProtectedW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredUnPackAuthenticationBuffer' requires that UNICODE be set to true or false in the root module",
+        "'CredIsProtected' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredMarshalCredential = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredMarshalCredentialA,
+    .wide => @This().CredMarshalCredentialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredMarshalCredential' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CredPackAuthenticationBuffer = switch (@import("../zig.zig").unicode_mode) {
@@ -2113,46 +2078,25 @@ pub const CredProtect = switch (@import("../zig.zig").unicode_mode) {
         "'CredProtect' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CredUnprotect = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredUnprotectA,
-    .wide => @This().CredUnprotectW,
+pub const CredRead = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredReadA,
+    .wide => @This().CredReadW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredUnprotect' requires that UNICODE be set to true or false in the root module",
+        "'CredRead' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CredIsProtected = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredIsProtectedA,
-    .wide => @This().CredIsProtectedW,
+pub const CredReadDomainCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredReadDomainCredentialsA,
+    .wide => @This().CredReadDomainCredentialsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredIsProtected' requires that UNICODE be set to true or false in the root module",
+        "'CredReadDomainCredentials' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CredFindBestCredential = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredFindBestCredentialA,
-    .wide => @This().CredFindBestCredentialW,
+pub const CredRename = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredRenameA,
+    .wide => @This().CredRenameW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredFindBestCredential' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredUIPromptForCredentials = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredUIPromptForCredentialsA,
-    .wide => @This().CredUIPromptForCredentialsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredUIPromptForCredentials' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredUIPromptForWindowsCredentials = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredUIPromptForWindowsCredentialsA,
-    .wide => @This().CredUIPromptForWindowsCredentialsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredUIPromptForWindowsCredentials' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CredUIParseUserName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CredUIParseUserNameA,
-    .wide => @This().CredUIParseUserNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CredUIParseUserName' requires that UNICODE be set to true or false in the root module",
+        "'CredRename' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CredUICmdLinePromptForCredentials = switch (@import("../zig.zig").unicode_mode) {
@@ -2169,18 +2113,165 @@ pub const CredUIConfirmCredentials = switch (@import("../zig.zig").unicode_mode)
         "'CredUIConfirmCredentials' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SCardListReaderGroups = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardListReaderGroupsA,
-    .wide => @This().SCardListReaderGroupsW,
+pub const CredUIParseUserName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUIParseUserNameA,
+    .wide => @This().CredUIParseUserNameW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardListReaderGroups' requires that UNICODE be set to true or false in the root module",
+        "'CredUIParseUserName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SCardListReaders = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardListReadersA,
-    .wide => @This().SCardListReadersW,
+pub const CredUIPromptForCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUIPromptForCredentialsA,
+    .wide => @This().CredUIPromptForCredentialsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardListReaders' requires that UNICODE be set to true or false in the root module",
+        "'CredUIPromptForCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUIPromptForWindowsCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUIPromptForWindowsCredentialsA,
+    .wide => @This().CredUIPromptForWindowsCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUIPromptForWindowsCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUnmarshalCredential = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUnmarshalCredentialA,
+    .wide => @This().CredUnmarshalCredentialW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUnmarshalCredential' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUnPackAuthenticationBuffer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUnPackAuthenticationBufferA,
+    .wide => @This().CredUnPackAuthenticationBufferW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUnPackAuthenticationBuffer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredUnprotect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredUnprotectA,
+    .wide => @This().CredUnprotectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredUnprotect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredWrite = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredWriteA,
+    .wide => @This().CredWriteW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredWrite' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CredWriteDomainCredentials = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CredWriteDomainCredentialsA,
+    .wide => @This().CredWriteDomainCredentialsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CredWriteDomainCredentials' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetOpenCardName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetOpenCardNameA,
+    .wide => @This().GetOpenCardNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetOpenCardName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardAddReaderToGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardAddReaderToGroupA,
+    .wide => @This().SCardAddReaderToGroupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardAddReaderToGroup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardConnect = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardConnectA,
+    .wide => @This().SCardConnectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardConnect' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardForgetCardType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardForgetCardTypeA,
+    .wide => @This().SCardForgetCardTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardForgetCardType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardForgetReader = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardForgetReaderA,
+    .wide => @This().SCardForgetReaderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardForgetReader' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardForgetReaderGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardForgetReaderGroupA,
+    .wide => @This().SCardForgetReaderGroupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardForgetReaderGroup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetCardTypeProviderName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetCardTypeProviderNameA,
+    .wide => @This().SCardGetCardTypeProviderNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetCardTypeProviderName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetDeviceTypeId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetDeviceTypeIdA,
+    .wide => @This().SCardGetDeviceTypeIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetDeviceTypeId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetProviderId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetProviderIdA,
+    .wide => @This().SCardGetProviderIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetProviderId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetReaderDeviceInstanceId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetReaderDeviceInstanceIdA,
+    .wide => @This().SCardGetReaderDeviceInstanceIdW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetReaderDeviceInstanceId' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetReaderIcon = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetReaderIconA,
+    .wide => @This().SCardGetReaderIconW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetReaderIcon' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardGetStatusChange = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardGetStatusChangeA,
+    .wide => @This().SCardGetStatusChangeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardGetStatusChange' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardIntroduceCardType = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardIntroduceCardTypeA,
+    .wide => @This().SCardIntroduceCardTypeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardIntroduceCardType' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardIntroduceReader = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardIntroduceReaderA,
+    .wide => @This().SCardIntroduceReaderW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardIntroduceReader' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardIntroduceReaderGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardIntroduceReaderGroupA,
+    .wide => @This().SCardIntroduceReaderGroupW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardIntroduceReaderGroup' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const SCardListCards = switch (@import("../zig.zig").unicode_mode) {
@@ -2197,81 +2288,25 @@ pub const SCardListInterfaces = switch (@import("../zig.zig").unicode_mode) {
         "'SCardListInterfaces' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SCardGetProviderId = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardGetProviderIdA,
-    .wide => @This().SCardGetProviderIdW,
+pub const SCardListReaderGroups = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListReaderGroupsA,
+    .wide => @This().SCardListReaderGroupsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardGetProviderId' requires that UNICODE be set to true or false in the root module",
+        "'SCardListReaderGroups' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SCardGetCardTypeProviderName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardGetCardTypeProviderNameA,
-    .wide => @This().SCardGetCardTypeProviderNameW,
+pub const SCardListReaders = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListReadersA,
+    .wide => @This().SCardListReadersW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardGetCardTypeProviderName' requires that UNICODE be set to true or false in the root module",
+        "'SCardListReaders' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SCardIntroduceReaderGroup = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardIntroduceReaderGroupA,
-    .wide => @This().SCardIntroduceReaderGroupW,
+pub const SCardListReadersWithDeviceInstanceId = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardListReadersWithDeviceInstanceIdA,
+    .wide => @This().SCardListReadersWithDeviceInstanceIdW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardIntroduceReaderGroup' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardForgetReaderGroup = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardForgetReaderGroupA,
-    .wide => @This().SCardForgetReaderGroupW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardForgetReaderGroup' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardIntroduceReader = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardIntroduceReaderA,
-    .wide => @This().SCardIntroduceReaderW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardIntroduceReader' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardForgetReader = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardForgetReaderA,
-    .wide => @This().SCardForgetReaderW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardForgetReader' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardAddReaderToGroup = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardAddReaderToGroupA,
-    .wide => @This().SCardAddReaderToGroupW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardAddReaderToGroup' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardRemoveReaderFromGroup = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardRemoveReaderFromGroupA,
-    .wide => @This().SCardRemoveReaderFromGroupW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardRemoveReaderFromGroup' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardIntroduceCardType = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardIntroduceCardTypeA,
-    .wide => @This().SCardIntroduceCardTypeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardIntroduceCardType' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardSetCardTypeProviderName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardSetCardTypeProviderNameA,
-    .wide => @This().SCardSetCardTypeProviderNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardSetCardTypeProviderName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardForgetCardType = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardForgetCardTypeA,
-    .wide => @This().SCardForgetCardTypeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardForgetCardType' requires that UNICODE be set to true or false in the root module",
+        "'SCardListReadersWithDeviceInstanceId' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const SCardLocateCards = switch (@import("../zig.zig").unicode_mode) {
@@ -2288,18 +2323,25 @@ pub const SCardLocateCardsByATR = switch (@import("../zig.zig").unicode_mode) {
         "'SCardLocateCardsByATR' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SCardGetStatusChange = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardGetStatusChangeA,
-    .wide => @This().SCardGetStatusChangeW,
+pub const SCardReadCache = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardReadCacheA,
+    .wide => @This().SCardReadCacheW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardGetStatusChange' requires that UNICODE be set to true or false in the root module",
+        "'SCardReadCache' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const SCardConnect = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardConnectA,
-    .wide => @This().SCardConnectW,
+pub const SCardRemoveReaderFromGroup = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardRemoveReaderFromGroupA,
+    .wide => @This().SCardRemoveReaderFromGroupW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardConnect' requires that UNICODE be set to true or false in the root module",
+        "'SCardRemoveReaderFromGroup' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SCardSetCardTypeProviderName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SCardSetCardTypeProviderNameA,
+    .wide => @This().SCardSetCardTypeProviderNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SCardSetCardTypeProviderName' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const SCardStatus = switch (@import("../zig.zig").unicode_mode) {
@@ -2316,53 +2358,11 @@ pub const SCardUIDlgSelectCard = switch (@import("../zig.zig").unicode_mode) {
         "'SCardUIDlgSelectCard' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetOpenCardName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetOpenCardNameA,
-    .wide => @This().GetOpenCardNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetOpenCardName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardReadCache = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardReadCacheA,
-    .wide => @This().SCardReadCacheW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardReadCache' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const SCardWriteCache = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().SCardWriteCacheA,
     .wide => @This().SCardWriteCacheW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'SCardWriteCache' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardGetReaderIcon = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardGetReaderIconA,
-    .wide => @This().SCardGetReaderIconW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardGetReaderIcon' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardGetDeviceTypeId = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardGetDeviceTypeIdA,
-    .wide => @This().SCardGetDeviceTypeIdW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardGetDeviceTypeId' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardGetReaderDeviceInstanceId = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardGetReaderDeviceInstanceIdA,
-    .wide => @This().SCardGetReaderDeviceInstanceIdW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardGetReaderDeviceInstanceId' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SCardListReadersWithDeviceInstanceId = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SCardListReadersWithDeviceInstanceIdA,
-    .wide => @This().SCardListReadersWithDeviceInstanceIdW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SCardListReadersWithDeviceInstanceId' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -2382,9 +2382,9 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "LPOCNCHKPROC")) { _ = LPOCNCHKPROC; }
     if (@hasDecl(@This(), "LPOCNCONNPROCA")) { _ = LPOCNCONNPROCA; }
     if (@hasDecl(@This(), "LPOCNCONNPROCW")) { _ = LPOCNCONNPROCW; }
-    if (@hasDecl(@This(), "LPOCNCHKPROC")) { _ = LPOCNCHKPROC; }
     if (@hasDecl(@This(), "LPOCNDSCPROC")) { _ = LPOCNDSCPROC; }
 
     @setEvalBranchQuota(

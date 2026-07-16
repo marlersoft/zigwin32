@@ -90,6 +90,31 @@ pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO{ };
 pub const BSM_ALLDESKTOPS = BROADCAST_SYSTEM_MESSAGE_INFO{ .LLDESKTOPS = 1 };
 pub const BSM_APPLICATIONS = BROADCAST_SYSTEM_MESSAGE_INFO{ .PPLICATIONS = 1 };
 
+pub const BSMINFO = extern struct {
+    cbSize: u32,
+    hdesk: ?HDESK,
+    hwnd: ?HWND,
+    luid: LUID,
+};
+
+pub const DESKTOPENUMPROCA = *const fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(.winapi) BOOL;
+
+pub const DESKTOPENUMPROCW = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDESK = *opaque{};
+
+// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HWINSTA = *opaque{};
+
 pub const USER_OBJECT_INFORMATION_INDEX = enum(u32) {
     FLAGS = 1,
     HEAPSIZE = 5,
@@ -105,6 +130,12 @@ pub const UOI_NAME = USER_OBJECT_INFORMATION_INDEX.NAME;
 pub const UOI_TYPE = USER_OBJECT_INFORMATION_INDEX.TYPE;
 pub const UOI_USER_SID = USER_OBJECT_INFORMATION_INDEX.USER_SID;
 
+pub const USEROBJECTFLAGS = extern struct {
+    fInherit: BOOL,
+    fReserved: BOOL,
+    dwFlags: u32,
+};
+
 pub const WINSTAENUMPROCA = *const fn(
     param0: ?PSTR,
     param1: LPARAM,
@@ -115,56 +146,62 @@ pub const WINSTAENUMPROCW = *const fn(
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
-pub const DESKTOPENUMPROCA = *const fn(
-    param0: ?PSTR,
-    param1: LPARAM,
-) callconv(.winapi) BOOL;
-
-pub const DESKTOPENUMPROCW = *const fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HWINSTA = *opaque{};
-
-// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDESK = *opaque{};
-
-pub const USEROBJECTFLAGS = extern struct {
-    fInherit: BOOL,
-    fReserved: BOOL,
-    dwFlags: u32,
-};
-
-pub const BSMINFO = extern struct {
-    cbSize: u32,
-    hdesk: ?HDESK,
-    hwnd: ?HWND,
-    luid: LUID,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
 //--------------------------------------------------------------------------------
+pub extern "user32" fn BroadcastSystemMessageA(
+    flags: u32,
+    lpInfo: ?*u32,
+    Msg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "user32" fn BroadcastSystemMessageExA(
+    flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
+    lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
+    Msg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    pbsmInfo: ?*BSMINFO,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "user32" fn BroadcastSystemMessageExW(
+    flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
+    lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
+    Msg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    pbsmInfo: ?*BSMINFO,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn BroadcastSystemMessageW(
+    flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
+    lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
+    Msg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn CloseDesktop(
+    hDesktop: ?HDESK,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn CloseWindowStation(
+    hWinSta: ?HWINSTA,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateDesktopA(
     lpszDesktop: ?[*:0]const u8,
     lpszDevice: ?[*:0]const u8,
     pDevmode: ?*DEVMODEA,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-    lpsa: ?*SECURITY_ATTRIBUTES,
-) callconv(.winapi) ?HDESK;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CreateDesktopW(
-    lpszDesktop: ?[*:0]const u16,
-    lpszDevice: ?[*:0]const u16,
-    pDevmode: ?*DEVMODEW,
     dwFlags: u32,
     dwDesiredAccess: u32,
     lpsa: ?*SECURITY_ATTRIBUTES,
@@ -195,27 +232,30 @@ pub extern "user32" fn CreateDesktopExW(
 ) callconv(.winapi) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn OpenDesktopA(
-    lpszDesktop: ?[*:0]const u8,
-    dwFlags: u32,
-    fInherit: BOOL,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?HDESK;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn OpenDesktopW(
+pub extern "user32" fn CreateDesktopW(
     lpszDesktop: ?[*:0]const u16,
+    lpszDevice: ?[*:0]const u16,
+    pDevmode: ?*DEVMODEW,
     dwFlags: u32,
-    fInherit: BOOL,
     dwDesiredAccess: u32,
+    lpsa: ?*SECURITY_ATTRIBUTES,
 ) callconv(.winapi) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn OpenInputDesktop(
+pub extern "user32" fn CreateWindowStationA(
+    lpwinsta: ?[*:0]const u8,
     dwFlags: u32,
-    fInherit: BOOL,
     dwDesiredAccess: u32,
-) callconv(.winapi) ?HDESK;
+    lpsa: ?*SECURITY_ATTRIBUTES,
+) callconv(.winapi) ?HWINSTA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn CreateWindowStationW(
+    lpwinsta: ?[*:0]const u16,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+    lpsa: ?*SECURITY_ATTRIBUTES,
+) callconv(.winapi) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumDesktopsA(
@@ -239,56 +279,6 @@ pub extern "user32" fn EnumDesktopWindows(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SwitchDesktop(
-    hDesktop: ?HDESK,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetThreadDesktop(
-    hDesktop: ?HDESK,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CloseDesktop(
-    hDesktop: ?HDESK,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetThreadDesktop(
-    dwThreadId: u32,
-) callconv(.winapi) ?HDESK;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CreateWindowStationA(
-    lpwinsta: ?[*:0]const u8,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-    lpsa: ?*SECURITY_ATTRIBUTES,
-) callconv(.winapi) ?HWINSTA;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CreateWindowStationW(
-    lpwinsta: ?[*:0]const u16,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-    lpsa: ?*SECURITY_ATTRIBUTES,
-) callconv(.winapi) ?HWINSTA;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn OpenWindowStationA(
-    lpszWinSta: ?[*:0]const u8,
-    fInherit: BOOL,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?HWINSTA;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn OpenWindowStationW(
-    lpszWinSta: ?[*:0]const u16,
-    fInherit: BOOL,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?HWINSTA;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumWindowStationsA(
     lpEnumFunc: ?WINSTAENUMPROCA,
     lParam: LPARAM,
@@ -301,18 +291,13 @@ pub extern "user32" fn EnumWindowStationsW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CloseWindowStation(
-    hWinSta: ?HWINSTA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetProcessWindowStation(
-    hWinSta: ?HWINSTA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetProcessWindowStation(
 ) callconv(.winapi) ?HWINSTA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetThreadDesktop(
+    dwThreadId: u32,
+) callconv(.winapi) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetUserObjectInformationA(
@@ -335,6 +320,53 @@ pub extern "user32" fn GetUserObjectInformationW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn OpenDesktopA(
+    lpszDesktop: ?[*:0]const u8,
+    dwFlags: u32,
+    fInherit: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?HDESK;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn OpenDesktopW(
+    lpszDesktop: ?[*:0]const u16,
+    dwFlags: u32,
+    fInherit: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?HDESK;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn OpenInputDesktop(
+    dwFlags: u32,
+    fInherit: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?HDESK;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn OpenWindowStationA(
+    lpszWinSta: ?[*:0]const u8,
+    fInherit: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?HWINSTA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn OpenWindowStationW(
+    lpszWinSta: ?[*:0]const u16,
+    fInherit: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?HWINSTA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetProcessWindowStation(
+    hWinSta: ?HWINSTA,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetThreadDesktop(
+    hDesktop: ?HDESK,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetUserObjectInformationA(
     hObj: ?HANDLE,
     nIndex: i32,
@@ -352,47 +384,22 @@ pub extern "user32" fn SetUserObjectInformationW(
     nLength: u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn BroadcastSystemMessageExA(
-    flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
-    lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
-    Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    pbsmInfo: ?*BSMINFO,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn BroadcastSystemMessageExW(
-    flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
-    lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
-    Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    pbsmInfo: ?*BSMINFO,
-) callconv(.winapi) i32;
-
-pub extern "user32" fn BroadcastSystemMessageA(
-    flags: u32,
-    lpInfo: ?*u32,
-    Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn BroadcastSystemMessageW(
-    flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
-    lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
-    Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) i32;
+pub extern "user32" fn SwitchDesktop(
+    hDesktop: ?HDESK,
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
+pub const DESKTOPENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DESKTOPENUMPROCA,
+    .wide => @This().DESKTOPENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const WINSTAENUMPROC = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().WINSTAENUMPROCA,
     .wide => @This().WINSTAENUMPROCW,
@@ -400,11 +407,18 @@ pub const WINSTAENUMPROC = switch (@import("../zig.zig").unicode_mode) {
         "'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const DESKTOPENUMPROC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DESKTOPENUMPROCA,
-    .wide => @This().DESKTOPENUMPROCW,
+pub const BroadcastSystemMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BroadcastSystemMessageA,
+    .wide => @This().BroadcastSystemMessageW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module",
+        "'BroadcastSystemMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BroadcastSystemMessageEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BroadcastSystemMessageExA,
+    .wide => @This().BroadcastSystemMessageExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BroadcastSystemMessageEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CreateDesktop = switch (@import("../zig.zig").unicode_mode) {
@@ -421,20 +435,6 @@ pub const CreateDesktopEx = switch (@import("../zig.zig").unicode_mode) {
         "'CreateDesktopEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const OpenDesktop = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenDesktopA,
-    .wide => @This().OpenDesktopW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenDesktop' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumDesktops = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumDesktopsA,
-    .wide => @This().EnumDesktopsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumDesktops' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const CreateWindowStation = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().CreateWindowStationA,
     .wide => @This().CreateWindowStationW,
@@ -442,11 +442,11 @@ pub const CreateWindowStation = switch (@import("../zig.zig").unicode_mode) {
         "'CreateWindowStation' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const OpenWindowStation = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenWindowStationA,
-    .wide => @This().OpenWindowStationW,
+pub const EnumDesktops = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumDesktopsA,
+    .wide => @This().EnumDesktopsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenWindowStation' requires that UNICODE be set to true or false in the root module",
+        "'EnumDesktops' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const EnumWindowStations = switch (@import("../zig.zig").unicode_mode) {
@@ -463,25 +463,25 @@ pub const GetUserObjectInformation = switch (@import("../zig.zig").unicode_mode)
         "'GetUserObjectInformation' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const OpenDesktop = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenDesktopA,
+    .wide => @This().OpenDesktopW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenDesktop' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenWindowStation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenWindowStationA,
+    .wide => @This().OpenWindowStationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenWindowStation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const SetUserObjectInformation = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().SetUserObjectInformationA,
     .wide => @This().SetUserObjectInformationW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'SetUserObjectInformation' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const BroadcastSystemMessageEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BroadcastSystemMessageExA,
-    .wide => @This().BroadcastSystemMessageExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BroadcastSystemMessageEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const BroadcastSystemMessage = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BroadcastSystemMessageA,
-    .wide => @This().BroadcastSystemMessageW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BroadcastSystemMessage' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -502,10 +502,10 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WINSTAENUMPROCA")) { _ = WINSTAENUMPROCA; }
-    if (@hasDecl(@This(), "WINSTAENUMPROCW")) { _ = WINSTAENUMPROCW; }
     if (@hasDecl(@This(), "DESKTOPENUMPROCA")) { _ = DESKTOPENUMPROCA; }
     if (@hasDecl(@This(), "DESKTOPENUMPROCW")) { _ = DESKTOPENUMPROCW; }
+    if (@hasDecl(@This(), "WINSTAENUMPROCA")) { _ = WINSTAENUMPROCA; }
+    if (@hasDecl(@This(), "WINSTAENUMPROCW")) { _ = WINSTAENUMPROCW; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

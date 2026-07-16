@@ -7,13 +7,6 @@ pub const E_UNKNOWNTYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 
 //--------------------------------------------------------------------------------
 // Section: Types (21)
 //--------------------------------------------------------------------------------
-pub const VisualMutationType = enum(i32) {
-    Add = 0,
-    Remove = 1,
-};
-pub const Add = VisualMutationType.Add;
-pub const Remove = VisualMutationType.Remove;
-
 pub const BaseValueSource = enum(i32) {
     BaseValueSourceUnknown = 0,
     BaseValueSourceDefault = 1,
@@ -47,65 +40,11 @@ pub const Animation = BaseValueSource.Animation;
 pub const Coercion = BaseValueSource.Coercion;
 pub const BaseValueSourceVisualState = BaseValueSource.BaseValueSourceVisualState;
 
-pub const SourceInfo = extern struct {
-    FileName: ?BSTR,
-    LineNumber: u32,
-    ColumnNumber: u32,
-    CharPosition: u32,
-    Hash: ?BSTR,
-};
-
-pub const ParentChildRelation = extern struct {
-    Parent: u64,
-    Child: u64,
-    ChildIndex: u32,
-};
-
-pub const VisualElement = extern struct {
-    Handle: u64,
-    SrcInfo: SourceInfo,
-    Type: ?BSTR,
-    Name: ?BSTR,
-    NumChildren: u32,
-};
-
-pub const PropertyChainSource = extern struct {
-    Handle: u64,
-    TargetType: ?BSTR,
-    Name: ?BSTR,
-    Source: BaseValueSource,
-    SrcInfo: SourceInfo,
-};
-
-pub const MetadataBit = enum(i32) {
-    None = 0,
-    ValueHandle = 1,
-    PropertyReadOnly = 2,
-    ValueCollection = 4,
-    ValueCollectionReadOnly = 8,
-    ValueBindingExpression = 16,
-    ValueNull = 32,
-    ValueHandleAndEvaluatedValue = 64,
-};
-// NOTE: not creating aliases because this enum is 'Scoped'
-
-pub const PropertyChainValue = extern struct {
-    Index: u32,
-    Type: ?BSTR,
-    DeclaringType: ?BSTR,
-    ValueType: ?BSTR,
-    ItemType: ?BSTR,
-    Value: ?BSTR,
-    Overridden: BOOL,
-    MetadataBits: i64,
-    PropertyName: ?BSTR,
-    PropertyChainIndex: u32,
-};
-
-pub const EnumType = extern struct {
-    Name: ?BSTR,
-    ValueInts: ?*SAFEARRAY,
-    ValueStrings: ?*SAFEARRAY,
+pub const BitmapDescription = extern struct {
+    Width: u32,
+    Height: u32,
+    Format: DXGI_FORMAT,
+    AlphaMode: DXGI_ALPHA_MODE,
 };
 
 pub const CollectionElementValue = extern struct {
@@ -115,74 +54,51 @@ pub const CollectionElementValue = extern struct {
     MetadataBits: i64,
 };
 
-pub const RenderTargetBitmapOptions = enum(i32) {
-    t = 0,
-    AndChildren = 1,
-};
-pub const RenderTarget = RenderTargetBitmapOptions.t;
-pub const RenderTargetAndChildren = RenderTargetBitmapOptions.AndChildren;
-
-pub const BitmapDescription = extern struct {
-    Width: u32,
-    Height: u32,
-    Format: DXGI_FORMAT,
-    AlphaMode: DXGI_ALPHA_MODE,
-};
-
-pub const ResourceType = enum(i32) {
-    Static = 0,
-    Theme = 1,
-};
-pub const ResourceTypeStatic = ResourceType.Static;
-pub const ResourceTypeTheme = ResourceType.Theme;
-
-pub const VisualElementState = enum(i32) {
-    Resolved = 0,
-    ResourceNotFound = 1,
-    InvalidResource = 2,
-};
-pub const ErrorResolved = VisualElementState.Resolved;
-pub const ErrorResourceNotFound = VisualElementState.ResourceNotFound;
-pub const ErrorInvalidResource = VisualElementState.InvalidResource;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IVisualTreeServiceCallback_Value = Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
-pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value;
-pub const IVisualTreeServiceCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnVisualTreeChange: *const fn(
-            self: *const IVisualTreeServiceCallback,
-            relation: ParentChildRelation,
-            element: VisualElement,
-            mutationType: VisualMutationType,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnVisualTreeChange(self: *const IVisualTreeServiceCallback, relation: ParentChildRelation, element: VisualElement, mutationType: VisualMutationType) callconv(.@"inline") HRESULT {
-        return self.vtable.OnVisualTreeChange(self, relation, element, mutationType);
-    }
+pub const EnumType = extern struct {
+    Name: ?BSTR,
+    ValueInts: ?*SAFEARRAY,
+    ValueStrings: ?*SAFEARRAY,
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IVisualTreeServiceCallback2_Value = Guid.initString("bad9eb88-ae77-4397-b948-5fa2db0a19ea");
-pub const IID_IVisualTreeServiceCallback2 = &IID_IVisualTreeServiceCallback2_Value;
-pub const IVisualTreeServiceCallback2 = extern union {
+const IID_IBitmapData_Value = Guid.initString("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf");
+pub const IID_IBitmapData = &IID_IBitmapData_Value;
+pub const IBitmapData = extern union {
     pub const VTable = extern struct {
-        base: IVisualTreeServiceCallback.VTable,
-        OnElementStateChanged: *const fn(
-            self: *const IVisualTreeServiceCallback2,
-            element: u64,
-            elementState: VisualElementState,
-            context: ?[*:0]const u16,
+        base: IUnknown.VTable,
+        CopyBytesTo: *const fn(
+            self: *const IBitmapData,
+            sourceOffsetInBytes: u32,
+            maxBytesToCopy: u32,
+            pvBytes: [*:0]u8,
+            numberOfBytesCopied: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStride: *const fn(
+            self: *const IBitmapData,
+            pStride: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetBitmapDescription: *const fn(
+            self: *const IBitmapData,
+            pBitmapDescription: ?*BitmapDescription,
+        ) callconv(.winapi) HRESULT,
+        GetSourceBitmapDescription: *const fn(
+            self: *const IBitmapData,
+            pBitmapDescription: ?*BitmapDescription,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IVisualTreeServiceCallback: IVisualTreeServiceCallback,
     IUnknown: IUnknown,
-    pub fn OnElementStateChanged(self: *const IVisualTreeServiceCallback2, element: u64, elementState: VisualElementState, context: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnElementStateChanged(self, element, elementState, context);
+    pub fn CopyBytesTo(self: *const IBitmapData, sourceOffsetInBytes: u32, maxBytesToCopy: u32, pvBytes: [*:0]u8, numberOfBytesCopied: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyBytesTo(self, sourceOffsetInBytes, maxBytesToCopy, pvBytes, numberOfBytesCopied);
+    }
+    pub fn GetStride(self: *const IBitmapData, pStride: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStride(self, pStride);
+    }
+    pub fn GetBitmapDescription(self: *const IBitmapData, pBitmapDescription: ?*BitmapDescription) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBitmapDescription(self, pBitmapDescription);
+    }
+    pub fn GetSourceBitmapDescription(self: *const IBitmapData, pBitmapDescription: ?*BitmapDescription) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSourceBitmapDescription(self, pBitmapDescription);
     }
 };
 
@@ -297,120 +213,6 @@ pub const IVisualTreeService = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IXamlDiagnostics_Value = Guid.initString("18c9e2b6-3f43-4116-9f2b-ff935d7770d2");
-pub const IID_IXamlDiagnostics = &IID_IXamlDiagnostics_Value;
-pub const IXamlDiagnostics = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDispatcher: *const fn(
-            self: *const IXamlDiagnostics,
-            ppDispatcher: ?*?*IInspectable,
-        ) callconv(.winapi) HRESULT,
-        GetUiLayer: *const fn(
-            self: *const IXamlDiagnostics,
-            ppLayer: ?*?*IInspectable,
-        ) callconv(.winapi) HRESULT,
-        GetApplication: *const fn(
-            self: *const IXamlDiagnostics,
-            ppApplication: ?*?*IInspectable,
-        ) callconv(.winapi) HRESULT,
-        GetIInspectableFromHandle: *const fn(
-            self: *const IXamlDiagnostics,
-            instanceHandle: u64,
-            ppInstance: ?*?*IInspectable,
-        ) callconv(.winapi) HRESULT,
-        GetHandleFromIInspectable: *const fn(
-            self: *const IXamlDiagnostics,
-            pInstance: ?*IInspectable,
-            pHandle: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        HitTest: *const fn(
-            self: *const IXamlDiagnostics,
-            rect: RECT,
-            pCount: ?*u32,
-            ppInstanceHandles: [*]?*u64,
-        ) callconv(.winapi) HRESULT,
-        RegisterInstance: *const fn(
-            self: *const IXamlDiagnostics,
-            pInstance: ?*IInspectable,
-            pInstanceHandle: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetInitializationData: *const fn(
-            self: *const IXamlDiagnostics,
-            pInitializationData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDispatcher(self: *const IXamlDiagnostics, ppDispatcher: ?*?*IInspectable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDispatcher(self, ppDispatcher);
-    }
-    pub fn GetUiLayer(self: *const IXamlDiagnostics, ppLayer: ?*?*IInspectable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUiLayer(self, ppLayer);
-    }
-    pub fn GetApplication(self: *const IXamlDiagnostics, ppApplication: ?*?*IInspectable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetApplication(self, ppApplication);
-    }
-    pub fn GetIInspectableFromHandle(self: *const IXamlDiagnostics, instanceHandle: u64, ppInstance: ?*?*IInspectable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIInspectableFromHandle(self, instanceHandle, ppInstance);
-    }
-    pub fn GetHandleFromIInspectable(self: *const IXamlDiagnostics, pInstance: ?*IInspectable, pHandle: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHandleFromIInspectable(self, pInstance, pHandle);
-    }
-    pub fn HitTest(self: *const IXamlDiagnostics, rect: RECT, pCount: ?*u32, ppInstanceHandles: [*]?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.HitTest(self, rect, pCount, ppInstanceHandles);
-    }
-    pub fn RegisterInstance(self: *const IXamlDiagnostics, pInstance: ?*IInspectable, pInstanceHandle: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterInstance(self, pInstance, pInstanceHandle);
-    }
-    pub fn GetInitializationData(self: *const IXamlDiagnostics, pInitializationData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInitializationData(self, pInitializationData);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IBitmapData_Value = Guid.initString("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf");
-pub const IID_IBitmapData = &IID_IBitmapData_Value;
-pub const IBitmapData = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CopyBytesTo: *const fn(
-            self: *const IBitmapData,
-            sourceOffsetInBytes: u32,
-            maxBytesToCopy: u32,
-            pvBytes: [*:0]u8,
-            numberOfBytesCopied: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStride: *const fn(
-            self: *const IBitmapData,
-            pStride: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetBitmapDescription: *const fn(
-            self: *const IBitmapData,
-            pBitmapDescription: ?*BitmapDescription,
-        ) callconv(.winapi) HRESULT,
-        GetSourceBitmapDescription: *const fn(
-            self: *const IBitmapData,
-            pBitmapDescription: ?*BitmapDescription,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CopyBytesTo(self: *const IBitmapData, sourceOffsetInBytes: u32, maxBytesToCopy: u32, pvBytes: [*:0]u8, numberOfBytesCopied: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyBytesTo(self, sourceOffsetInBytes, maxBytesToCopy, pvBytes, numberOfBytesCopied);
-    }
-    pub fn GetStride(self: *const IBitmapData, pStride: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStride(self, pStride);
-    }
-    pub fn GetBitmapDescription(self: *const IBitmapData, pBitmapDescription: ?*BitmapDescription) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBitmapDescription(self, pBitmapDescription);
-    }
-    pub fn GetSourceBitmapDescription(self: *const IBitmapData, pBitmapDescription: ?*BitmapDescription) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSourceBitmapDescription(self, pBitmapDescription);
-    }
-};
-
 // TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IVisualTreeService2_Value = Guid.initString("130f5136-ec43-4f61-89c7-9801a36d2e95");
 pub const IID_IVisualTreeService2 = &IID_IVisualTreeService2_Value;
@@ -510,6 +312,204 @@ pub const IVisualTreeService3 = extern union {
         return self.vtable.RemoveDictionaryItem(self, dictionaryHandle, resourceKey);
     }
 };
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IVisualTreeServiceCallback_Value = Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
+pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value;
+pub const IVisualTreeServiceCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnVisualTreeChange: *const fn(
+            self: *const IVisualTreeServiceCallback,
+            relation: ParentChildRelation,
+            element: VisualElement,
+            mutationType: VisualMutationType,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnVisualTreeChange(self: *const IVisualTreeServiceCallback, relation: ParentChildRelation, element: VisualElement, mutationType: VisualMutationType) callconv(.@"inline") HRESULT {
+        return self.vtable.OnVisualTreeChange(self, relation, element, mutationType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+const IID_IVisualTreeServiceCallback2_Value = Guid.initString("bad9eb88-ae77-4397-b948-5fa2db0a19ea");
+pub const IID_IVisualTreeServiceCallback2 = &IID_IVisualTreeServiceCallback2_Value;
+pub const IVisualTreeServiceCallback2 = extern union {
+    pub const VTable = extern struct {
+        base: IVisualTreeServiceCallback.VTable,
+        OnElementStateChanged: *const fn(
+            self: *const IVisualTreeServiceCallback2,
+            element: u64,
+            elementState: VisualElementState,
+            context: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IVisualTreeServiceCallback: IVisualTreeServiceCallback,
+    IUnknown: IUnknown,
+    pub fn OnElementStateChanged(self: *const IVisualTreeServiceCallback2, element: u64, elementState: VisualElementState, context: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.OnElementStateChanged(self, element, elementState, context);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IXamlDiagnostics_Value = Guid.initString("18c9e2b6-3f43-4116-9f2b-ff935d7770d2");
+pub const IID_IXamlDiagnostics = &IID_IXamlDiagnostics_Value;
+pub const IXamlDiagnostics = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDispatcher: *const fn(
+            self: *const IXamlDiagnostics,
+            ppDispatcher: ?*?*IInspectable,
+        ) callconv(.winapi) HRESULT,
+        GetUiLayer: *const fn(
+            self: *const IXamlDiagnostics,
+            ppLayer: ?*?*IInspectable,
+        ) callconv(.winapi) HRESULT,
+        GetApplication: *const fn(
+            self: *const IXamlDiagnostics,
+            ppApplication: ?*?*IInspectable,
+        ) callconv(.winapi) HRESULT,
+        GetIInspectableFromHandle: *const fn(
+            self: *const IXamlDiagnostics,
+            instanceHandle: u64,
+            ppInstance: ?*?*IInspectable,
+        ) callconv(.winapi) HRESULT,
+        GetHandleFromIInspectable: *const fn(
+            self: *const IXamlDiagnostics,
+            pInstance: ?*IInspectable,
+            pHandle: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        HitTest: *const fn(
+            self: *const IXamlDiagnostics,
+            rect: RECT,
+            pCount: ?*u32,
+            ppInstanceHandles: [*]?*u64,
+        ) callconv(.winapi) HRESULT,
+        RegisterInstance: *const fn(
+            self: *const IXamlDiagnostics,
+            pInstance: ?*IInspectable,
+            pInstanceHandle: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetInitializationData: *const fn(
+            self: *const IXamlDiagnostics,
+            pInitializationData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDispatcher(self: *const IXamlDiagnostics, ppDispatcher: ?*?*IInspectable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDispatcher(self, ppDispatcher);
+    }
+    pub fn GetUiLayer(self: *const IXamlDiagnostics, ppLayer: ?*?*IInspectable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUiLayer(self, ppLayer);
+    }
+    pub fn GetApplication(self: *const IXamlDiagnostics, ppApplication: ?*?*IInspectable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetApplication(self, ppApplication);
+    }
+    pub fn GetIInspectableFromHandle(self: *const IXamlDiagnostics, instanceHandle: u64, ppInstance: ?*?*IInspectable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIInspectableFromHandle(self, instanceHandle, ppInstance);
+    }
+    pub fn GetHandleFromIInspectable(self: *const IXamlDiagnostics, pInstance: ?*IInspectable, pHandle: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHandleFromIInspectable(self, pInstance, pHandle);
+    }
+    pub fn HitTest(self: *const IXamlDiagnostics, rect: RECT, pCount: ?*u32, ppInstanceHandles: [*]?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.HitTest(self, rect, pCount, ppInstanceHandles);
+    }
+    pub fn RegisterInstance(self: *const IXamlDiagnostics, pInstance: ?*IInspectable, pInstanceHandle: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterInstance(self, pInstance, pInstanceHandle);
+    }
+    pub fn GetInitializationData(self: *const IXamlDiagnostics, pInitializationData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInitializationData(self, pInitializationData);
+    }
+};
+
+pub const MetadataBit = enum(i32) {
+    None = 0,
+    ValueHandle = 1,
+    PropertyReadOnly = 2,
+    ValueCollection = 4,
+    ValueCollectionReadOnly = 8,
+    ValueBindingExpression = 16,
+    ValueNull = 32,
+    ValueHandleAndEvaluatedValue = 64,
+};
+// NOTE: not creating aliases because this enum is 'Scoped'
+
+pub const ParentChildRelation = extern struct {
+    Parent: u64,
+    Child: u64,
+    ChildIndex: u32,
+};
+
+pub const PropertyChainSource = extern struct {
+    Handle: u64,
+    TargetType: ?BSTR,
+    Name: ?BSTR,
+    Source: BaseValueSource,
+    SrcInfo: SourceInfo,
+};
+
+pub const PropertyChainValue = extern struct {
+    Index: u32,
+    Type: ?BSTR,
+    DeclaringType: ?BSTR,
+    ValueType: ?BSTR,
+    ItemType: ?BSTR,
+    Value: ?BSTR,
+    Overridden: BOOL,
+    MetadataBits: i64,
+    PropertyName: ?BSTR,
+    PropertyChainIndex: u32,
+};
+
+pub const RenderTargetBitmapOptions = enum(i32) {
+    t = 0,
+    AndChildren = 1,
+};
+pub const RenderTarget = RenderTargetBitmapOptions.t;
+pub const RenderTargetAndChildren = RenderTargetBitmapOptions.AndChildren;
+
+pub const ResourceType = enum(i32) {
+    Static = 0,
+    Theme = 1,
+};
+pub const ResourceTypeStatic = ResourceType.Static;
+pub const ResourceTypeTheme = ResourceType.Theme;
+
+pub const SourceInfo = extern struct {
+    FileName: ?BSTR,
+    LineNumber: u32,
+    ColumnNumber: u32,
+    CharPosition: u32,
+    Hash: ?BSTR,
+};
+
+pub const VisualElement = extern struct {
+    Handle: u64,
+    SrcInfo: SourceInfo,
+    Type: ?BSTR,
+    Name: ?BSTR,
+    NumChildren: u32,
+};
+
+pub const VisualElementState = enum(i32) {
+    Resolved = 0,
+    ResourceNotFound = 1,
+    InvalidResource = 2,
+};
+pub const ErrorResolved = VisualElementState.Resolved;
+pub const ErrorResourceNotFound = VisualElementState.ResourceNotFound;
+pub const ErrorInvalidResource = VisualElementState.InvalidResource;
+
+pub const VisualMutationType = enum(i32) {
+    Add = 0,
+    Remove = 1,
+};
+pub const Add = VisualMutationType.Add;
+pub const Remove = VisualMutationType.Remove;
 
 
 //--------------------------------------------------------------------------------

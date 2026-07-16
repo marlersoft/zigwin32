@@ -2,984 +2,941 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (929)
 //--------------------------------------------------------------------------------
-pub const IISADMIN_EXTENSIONS_REG_KEYA = "SOFTWARE\\Microsoft\\InetStp\\Extensions";
-pub const IISADMIN_EXTENSIONS_REG_KEYW = "SOFTWARE\\Microsoft\\InetStp\\Extensions";
-pub const IISADMIN_EXTENSIONS_REG_KEY = "SOFTWARE\\Microsoft\\InetStp\\Extensions";
-pub const IISADMIN_EXTENSIONS_CLSID_MD_KEYA = "LM/IISADMIN/EXTENSIONS/DCOMCLSIDS";
-pub const IISADMIN_EXTENSIONS_CLSID_MD_KEYW = "LM/IISADMIN/EXTENSIONS/DCOMCLSIDS";
-pub const IISADMIN_EXTENSIONS_CLSID_MD_KEY = "LM/IISADMIN/EXTENSIONS/DCOMCLSIDS";
 pub const ADMINDATA_MAX_NAME_LEN = @as(u32, 256);
+pub const APPCTR_MD_ID_BEGIN_RESERVED = @as(u32, 57344);
+pub const APPCTR_MD_ID_END_RESERVED = @as(u32, 61439);
+pub const APPSTATUS_NOTDEFINED = @as(u32, 2);
+pub const APPSTATUS_RUNNING = @as(u32, 1);
+pub const APPSTATUS_STOPPED = @as(u32, 0);
+pub const ASP_MD_ID_BEGIN_RESERVED = @as(u32, 28672);
+pub const ASP_MD_ID_END_RESERVED = @as(u32, 29951);
+pub const ASP_MD_SERVER_BASE = @as(u32, 7000);
+pub const ASP_MD_UT_APP = @as(u32, 101);
+pub const CLSID_IImgCtx = Guid.initString("3050f3d6-98b5-11cf-bb82-00aa00bdce0b");
+pub const CLSID_IisServiceControl = Guid.initString("e8fb8621-588f-11d2-9d61-00c04f79c5fe");
 pub const CLSID_MSAdminBase_W = Guid.initString("a9e69610-b80d-11d0-b9b9-00a0c922e750");
-pub const IMGCHG_SIZE = @as(u32, 1);
-pub const IMGCHG_VIEW = @as(u32, 2);
-pub const IMGCHG_COMPLETE = @as(u32, 4);
-pub const IMGCHG_ANIMATE = @as(u32, 8);
-pub const IMGCHG_MASK = @as(u32, 15);
-pub const IMGLOAD_NOTLOADED = @as(u32, 1048576);
-pub const IMGLOAD_LOADING = @as(u32, 2097152);
-pub const IMGLOAD_STOPPED = @as(u32, 4194304);
-pub const IMGLOAD_ERROR = @as(u32, 8388608);
-pub const IMGLOAD_COMPLETE = @as(u32, 16777216);
-pub const IMGLOAD_MASK = @as(u32, 32505856);
-pub const IMGBITS_NONE = @as(u32, 33554432);
-pub const IMGBITS_PARTIAL = @as(u32, 67108864);
-pub const IMGBITS_TOTAL = @as(u32, 134217728);
-pub const IMGBITS_MASK = @as(u32, 234881024);
-pub const IMGANIM_ANIMATED = @as(u32, 268435456);
-pub const IMGANIM_MASK = @as(u32, 268435456);
-pub const IMGTRANS_OPAQUE = @as(u32, 536870912);
-pub const IMGTRANS_MASK = @as(u32, 536870912);
+pub const CLSID_Request = Guid.initString("920c25d0-25d9-11d0-a55f-00a0c90c2091");
+pub const CLSID_Response = Guid.initString("46e19ba0-25dd-11d0-a55f-00a0c90c2091");
+pub const CLSID_ScriptingContext = Guid.initString("d97a6da0-a868-11cf-83ae-11b0c90c2bd8");
+pub const CLSID_Server = Guid.initString("a506d160-25e0-11d0-a55f-00a0c90c2091");
+pub const CLSID_Session = Guid.initString("509f8f20-25de-11d0-a55f-00a0c90c2091");
+pub const CLSID_WamAdmin = Guid.initString("61738644-f196-11d0-9953-00c04fd919c1");
+pub const DISPID_HTTPREQUEST_ABORT = @as(u32, 12);
+pub const DISPID_HTTPREQUEST_BASE = @as(u32, 1);
+pub const DISPID_HTTPREQUEST_GETALLRESPONSEHEADERS = @as(u32, 4);
+pub const DISPID_HTTPREQUEST_GETRESPONSEHEADER = @as(u32, 3);
+pub const DISPID_HTTPREQUEST_OPEN = @as(u32, 1);
+pub const DISPID_HTTPREQUEST_OPTION = @as(u32, 6);
+pub const DISPID_HTTPREQUEST_RESPONSEBODY = @as(u32, 10);
+pub const DISPID_HTTPREQUEST_RESPONSESTREAM = @as(u32, 11);
+pub const DISPID_HTTPREQUEST_RESPONSETEXT = @as(u32, 9);
+pub const DISPID_HTTPREQUEST_SEND = @as(u32, 5);
+pub const DISPID_HTTPREQUEST_SETAUTOLOGONPOLICY = @as(u32, 18);
+pub const DISPID_HTTPREQUEST_SETCLIENTCERTIFICATE = @as(u32, 17);
+pub const DISPID_HTTPREQUEST_SETCREDENTIALS = @as(u32, 14);
+pub const DISPID_HTTPREQUEST_SETPROXY = @as(u32, 13);
+pub const DISPID_HTTPREQUEST_SETREQUESTHEADER = @as(u32, 2);
+pub const DISPID_HTTPREQUEST_SETTIMEOUTS = @as(u32, 16);
+pub const DISPID_HTTPREQUEST_STATUS = @as(u32, 7);
+pub const DISPID_HTTPREQUEST_STATUSTEXT = @as(u32, 8);
+pub const DISPID_HTTPREQUEST_WAITFORRESPONSE = @as(u32, 15);
 pub const DWN_COLORMODE = @as(u32, 63);
 pub const DWN_DOWNLOADONLY = @as(u32, 64);
 pub const DWN_FORCEDITHER = @as(u32, 128);
-pub const DWN_RAWIMAGE = @as(u32, 256);
 pub const DWN_MIRRORIMAGE = @as(u32, 512);
-pub const CLSID_IImgCtx = Guid.initString("3050f3d6-98b5-11cf-bb82-00aa00bdce0b");
-pub const IIS_MD_LOCAL_MACHINE_PATH = "LM";
-pub const IIS_MD_INSTANCE_ROOT = "Root";
-pub const IIS_MD_ISAPI_FILTERS = "/Filters";
-pub const IIS_MD_SVC_INFO_PATH = "Info";
-pub const IIS_MD_ADSI_SCHEMA_PATH_A = "/Schema";
-pub const IIS_MD_ADSI_SCHEMA_PATH_W = "/Schema";
-pub const IIS_MD_ADSI_METAID_BEGIN = @as(u32, 130000);
-pub const IIS_MD_UT_SERVER = @as(u32, 1);
-pub const IIS_MD_UT_FILE = @as(u32, 2);
-pub const IIS_MD_UT_WAM = @as(u32, 100);
-pub const ASP_MD_UT_APP = @as(u32, 101);
-pub const IIS_MD_UT_END_RESERVED = @as(u32, 2000);
-pub const IIS_MD_ID_BEGIN_RESERVED = @as(u32, 1);
-pub const IIS_MD_ID_END_RESERVED = @as(u32, 32767);
-pub const ASP_MD_ID_BEGIN_RESERVED = @as(u32, 28672);
-pub const ASP_MD_ID_END_RESERVED = @as(u32, 29951);
-pub const WAM_MD_ID_BEGIN_RESERVED = @as(u32, 29952);
-pub const WAM_MD_ID_END_RESERVED = @as(u32, 32767);
+pub const DWN_RAWIMAGE = @as(u32, 256);
 pub const FP_MD_ID_BEGIN_RESERVED = @as(u32, 32768);
 pub const FP_MD_ID_END_RESERVED = @as(u32, 36863);
-pub const SMTP_MD_ID_BEGIN_RESERVED = @as(u32, 36864);
-pub const SMTP_MD_ID_END_RESERVED = @as(u32, 40959);
-pub const POP3_MD_ID_BEGIN_RESERVED = @as(u32, 40960);
-pub const POP3_MD_ID_END_RESERVED = @as(u32, 45055);
-pub const NNTP_MD_ID_BEGIN_RESERVED = @as(u32, 45056);
-pub const NNTP_MD_ID_END_RESERVED = @as(u32, 49151);
-pub const IMAP_MD_ID_BEGIN_RESERVED = @as(u32, 49152);
-pub const IMAP_MD_ID_END_RESERVED = @as(u32, 53247);
-pub const MSCS_MD_ID_BEGIN_RESERVED = @as(u32, 53248);
-pub const MSCS_MD_ID_END_RESERVED = @as(u32, 57343);
-pub const APPCTR_MD_ID_BEGIN_RESERVED = @as(u32, 57344);
-pub const APPCTR_MD_ID_END_RESERVED = @as(u32, 61439);
-pub const USER_MD_ID_BASE_RESERVED = @as(u32, 65535);
-pub const IIS_MD_SERVER_BASE = @as(u32, 1000);
-pub const MD_MAX_BANDWIDTH = @as(u32, 1000);
-pub const MD_KEY_TYPE = @as(u32, 1002);
-pub const MD_MAX_BANDWIDTH_BLOCKED = @as(u32, 1003);
-pub const MD_SCHEMA_METAID = @as(u32, 1004);
-pub const MD_SERVER_COMMAND = @as(u32, 1012);
-pub const MD_CONNECTION_TIMEOUT = @as(u32, 1013);
-pub const MD_MAX_CONNECTIONS = @as(u32, 1014);
-pub const MD_SERVER_COMMENT = @as(u32, 1015);
-pub const MD_SERVER_STATE = @as(u32, 1016);
-pub const MD_SERVER_AUTOSTART = @as(u32, 1017);
-pub const MD_SERVER_SIZE = @as(u32, 1018);
-pub const MD_SERVER_LISTEN_BACKLOG = @as(u32, 1019);
-pub const MD_SERVER_LISTEN_TIMEOUT = @as(u32, 1020);
-pub const MD_DOWNLEVEL_ADMIN_INSTANCE = @as(u32, 1021);
-pub const MD_LEVELS_TO_SCAN = @as(u32, 1022);
-pub const MD_SERVER_BINDINGS = @as(u32, 1023);
-pub const MD_MAX_ENDPOINT_CONNECTIONS = @as(u32, 1024);
-pub const MD_SERVER_CONFIGURATION_INFO = @as(u32, 1027);
-pub const MD_IISADMIN_EXTENSIONS = @as(u32, 1028);
-pub const MD_DISABLE_SOCKET_POOLING = @as(u32, 1029);
-pub const MD_METADATA_ID_REGISTRATION = @as(u32, 1030);
-pub const IIS_MD_HTTP_BASE = @as(u32, 2000);
-pub const MD_SECURE_BINDINGS = @as(u32, 2021);
-pub const MD_BINDINGS = @as(u32, 2022);
-pub const MD_ENABLEDPROTOCOLS = @as(u32, 2023);
-pub const MD_FILTER_LOAD_ORDER = @as(u32, 2040);
-pub const MD_FILTER_IMAGE_PATH = @as(u32, 2041);
-pub const MD_FILTER_STATE = @as(u32, 2042);
-pub const MD_FILTER_ENABLED = @as(u32, 2043);
-pub const MD_FILTER_FLAGS = @as(u32, 2044);
-pub const MD_FILTER_DESCRIPTION = @as(u32, 2045);
-pub const MD_FILTER_ENABLE_CACHE = @as(u32, 2046);
-pub const MD_ADV_NOTIFY_PWD_EXP_IN_DAYS = @as(u32, 2063);
-pub const MD_ADV_CACHE_TTL = @as(u32, 2064);
-pub const MD_NET_LOGON_WKS = @as(u32, 2065);
-pub const MD_USE_HOST_NAME = @as(u32, 2066);
-pub const MD_AUTH_CHANGE_FLAGS = @as(u32, 2068);
-pub const MD_PROCESS_NTCR_IF_LOGGED_ON = @as(u32, 2070);
-pub const MD_FRONTPAGE_WEB = @as(u32, 2072);
-pub const MD_IN_PROCESS_ISAPI_APPS = @as(u32, 2073);
-pub const MD_AUTH_CHANGE_URL = @as(u32, 2060);
-pub const MD_AUTH_EXPIRED_URL = @as(u32, 2061);
-pub const MD_AUTH_EXPIRED_UNSECUREURL = @as(u32, 2067);
-pub const MD_ALLOW_PATH_INFO_FOR_SCRIPT_MAPPINGS = @as(u32, 2095);
-pub const MD_APP_FRIENDLY_NAME = @as(u32, 2102);
-pub const MD_APP_ROOT = @as(u32, 2103);
-pub const MD_APP_ISOLATED = @as(u32, 2104);
-pub const MD_APP_WAM_CLSID = @as(u32, 2105);
-pub const MD_APP_PACKAGE_ID = @as(u32, 2106);
-pub const MD_APP_PACKAGE_NAME = @as(u32, 2107);
-pub const MD_APP_OOP_RECOVER_LIMIT = @as(u32, 2110);
-pub const MD_APP_PERIODIC_RESTART_TIME = @as(u32, 2111);
-pub const MD_APP_PERIODIC_RESTART_REQUESTS = @as(u32, 2112);
-pub const MD_APP_PERIODIC_RESTART_SCHEDULE = @as(u32, 2113);
-pub const MD_APP_SHUTDOWN_TIME_LIMIT = @as(u32, 2114);
-pub const MD_ADMIN_INSTANCE = @as(u32, 2115);
-pub const MD_NOT_DELETABLE = @as(u32, 2116);
-pub const MD_APP_TRACE_URL_LIST = @as(u32, 2118);
-pub const MD_CENTRAL_W3C_LOGGING_ENABLED = @as(u32, 2119);
-pub const MD_CUSTOM_ERROR_DESC = @as(u32, 2120);
-pub const MD_CAL_VC_PER_CONNECT = @as(u32, 2130);
-pub const MD_CAL_AUTH_RESERVE_TIMEOUT = @as(u32, 2131);
-pub const MD_CAL_SSL_RESERVE_TIMEOUT = @as(u32, 2132);
-pub const MD_CAL_W3_ERROR = @as(u32, 2133);
-pub const MD_CPU_CGI_ENABLED = @as(u32, 2140);
-pub const MD_CPU_APP_ENABLED = @as(u32, 2141);
-pub const MD_CPU_LIMITS_ENABLED = @as(u32, 2143);
-pub const MD_CPU_RESET_INTERVAL = @as(u32, 2144);
-pub const MD_CPU_LOGGING_INTERVAL = @as(u32, 2145);
-pub const MD_CPU_LOGGING_OPTIONS = @as(u32, 2146);
-pub const MD_CPU_CGI_LIMIT = @as(u32, 2148);
-pub const MD_CPU_LIMIT_LOGEVENT = @as(u32, 2149);
-pub const MD_CPU_LIMIT_PRIORITY = @as(u32, 2150);
-pub const MD_CPU_LIMIT_PROCSTOP = @as(u32, 2151);
-pub const MD_CPU_LIMIT_PAUSE = @as(u32, 2152);
-pub const MD_SET_HOST_NAME = @as(u32, 2154);
-pub const MD_CPU_DISABLE_ALL_LOGGING = @as(u32, 0);
-pub const MD_CPU_ENABLE_ALL_PROC_LOGGING = @as(u32, 1);
-pub const MD_CPU_ENABLE_CGI_LOGGING = @as(u32, 2);
-pub const MD_CPU_ENABLE_APP_LOGGING = @as(u32, 4);
-pub const MD_CPU_ENABLE_EVENT = @as(u32, 1);
-pub const MD_CPU_ENABLE_PROC_TYPE = @as(u32, 2);
-pub const MD_CPU_ENABLE_USER_TIME = @as(u32, 4);
-pub const MD_CPU_ENABLE_KERNEL_TIME = @as(u32, 8);
-pub const MD_CPU_ENABLE_PAGE_FAULTS = @as(u32, 16);
-pub const MD_CPU_ENABLE_TOTAL_PROCS = @as(u32, 32);
-pub const MD_CPU_ENABLE_ACTIVE_PROCS = @as(u32, 64);
-pub const MD_CPU_ENABLE_TERMINATED_PROCS = @as(u32, 128);
-pub const MD_CPU_ENABLE_LOGGING = @as(u32, 2147483648);
-pub const MD_ISAPI_RESTRICTION_LIST = @as(u32, 2163);
-pub const MD_CGI_RESTRICTION_LIST = @as(u32, 2164);
-pub const MD_RESTRICTION_LIST_CUSTOM_DESC = @as(u32, 2165);
-pub const MD_SECURITY_SETUP_REQUIRED = @as(u32, 2166);
-pub const MD_APP_DEPENDENCIES = @as(u32, 2167);
-pub const MD_WEB_SVC_EXT_RESTRICTION_LIST = @as(u32, 2168);
-pub const MD_MD_SERVER_SS_AUTH_MAPPING = @as(u32, 2200);
-pub const MD_CERT_NO_REVOC_CHECK = @as(u32, 1);
-pub const MD_CERT_CACHE_RETRIEVAL_ONLY = @as(u32, 2);
-pub const MD_CERT_CHECK_REVOCATION_FRESHNESS_TIME = @as(u32, 4);
-pub const MD_CERT_NO_USAGE_CHECK = @as(u32, 65536);
-pub const MD_HC_COMPRESSION_DIRECTORY = @as(u32, 2210);
-pub const MD_HC_CACHE_CONTROL_HEADER = @as(u32, 2211);
-pub const MD_HC_EXPIRES_HEADER = @as(u32, 2212);
-pub const MD_HC_DO_DYNAMIC_COMPRESSION = @as(u32, 2213);
-pub const MD_HC_DO_STATIC_COMPRESSION = @as(u32, 2214);
-pub const MD_HC_DO_ON_DEMAND_COMPRESSION = @as(u32, 2215);
-pub const MD_HC_DO_DISK_SPACE_LIMITING = @as(u32, 2216);
-pub const MD_HC_NO_COMPRESSION_FOR_HTTP_10 = @as(u32, 2217);
-pub const MD_HC_NO_COMPRESSION_FOR_PROXIES = @as(u32, 2218);
-pub const MD_HC_NO_COMPRESSION_FOR_RANGE = @as(u32, 2219);
-pub const MD_HC_SEND_CACHE_HEADERS = @as(u32, 2220);
-pub const MD_HC_MAX_DISK_SPACE_USAGE = @as(u32, 2221);
-pub const MD_HC_IO_BUFFER_SIZE = @as(u32, 2222);
-pub const MD_HC_COMPRESSION_BUFFER_SIZE = @as(u32, 2223);
-pub const MD_HC_MAX_QUEUE_LENGTH = @as(u32, 2224);
-pub const MD_HC_FILES_DELETED_PER_DISK_FREE = @as(u32, 2225);
-pub const MD_HC_MIN_FILE_SIZE_FOR_COMP = @as(u32, 2226);
-pub const MD_HC_COMPRESSION_DLL = @as(u32, 2237);
-pub const MD_HC_FILE_EXTENSIONS = @as(u32, 2238);
-pub const MD_HC_MIME_TYPE = @as(u32, 2239);
-pub const MD_HC_PRIORITY = @as(u32, 2240);
-pub const MD_HC_DYNAMIC_COMPRESSION_LEVEL = @as(u32, 2241);
-pub const MD_HC_ON_DEMAND_COMP_LEVEL = @as(u32, 2242);
-pub const MD_HC_CREATE_FLAGS = @as(u32, 2243);
-pub const MD_HC_SCRIPT_FILE_EXTENSIONS = @as(u32, 2244);
-pub const MD_HC_DO_NAMESPACE_DYNAMIC_COMPRESSION = @as(u32, 2255);
-pub const MD_HC_DO_NAMESPACE_STATIC_COMPRESSION = @as(u32, 2256);
-pub const MD_WIN32_ERROR = @as(u32, 1099);
-pub const IIS_MD_VR_BASE = @as(u32, 3000);
-pub const MD_VR_PATH = @as(u32, 3001);
-pub const MD_VR_USERNAME = @as(u32, 3002);
-pub const MD_VR_PASSWORD = @as(u32, 3003);
-pub const MD_VR_PASSTHROUGH = @as(u32, 3006);
-pub const MD_VR_NO_CACHE = @as(u32, 3007);
-pub const MD_VR_IGNORE_TRANSLATE = @as(u32, 3008);
-pub const IIS_MD_LOG_BASE = @as(u32, 4000);
-pub const MD_LOG_TYPE = @as(u32, 4000);
-pub const MD_LOGFILE_DIRECTORY = @as(u32, 4001);
-pub const MD_LOG_UNUSED1 = @as(u32, 4002);
-pub const MD_LOGFILE_PERIOD = @as(u32, 4003);
-pub const MD_LOGFILE_TRUNCATE_SIZE = @as(u32, 4004);
-pub const MD_LOG_PLUGIN_MOD_ID = @as(u32, 4005);
-pub const MD_LOG_PLUGIN_UI_ID = @as(u32, 4006);
-pub const MD_LOGSQL_DATA_SOURCES = @as(u32, 4007);
-pub const MD_LOGSQL_TABLE_NAME = @as(u32, 4008);
-pub const MD_LOGSQL_USER_NAME = @as(u32, 4009);
-pub const MD_LOGSQL_PASSWORD = @as(u32, 4010);
-pub const MD_LOG_PLUGIN_ORDER = @as(u32, 4011);
-pub const MD_LOG_PLUGINS_AVAILABLE = @as(u32, 4012);
-pub const MD_LOGEXT_FIELD_MASK = @as(u32, 4013);
-pub const MD_LOGEXT_FIELD_MASK2 = @as(u32, 4014);
-pub const MD_LOGFILE_LOCALTIME_ROLLOVER = @as(u32, 4015);
-pub const IIS_MD_LOG_LAST = @as(u32, 4015);
-pub const MD_GLOBAL_BINARY_LOGGING_ENABLED = @as(u32, 4016);
-pub const MD_LOG_TYPE_DISABLED = @as(u32, 0);
-pub const MD_LOG_TYPE_ENABLED = @as(u32, 1);
-pub const MD_LOGFILE_PERIOD_NONE = @as(u32, 0);
-pub const MD_LOGFILE_PERIOD_MAXSIZE = @as(u32, 0);
-pub const MD_LOGFILE_PERIOD_DAILY = @as(u32, 1);
-pub const MD_LOGFILE_PERIOD_WEEKLY = @as(u32, 2);
-pub const MD_LOGFILE_PERIOD_MONTHLY = @as(u32, 3);
-pub const MD_LOGFILE_PERIOD_HOURLY = @as(u32, 4);
-pub const MD_EXTLOG_DATE = @as(u32, 1);
-pub const MD_EXTLOG_TIME = @as(u32, 2);
-pub const MD_EXTLOG_CLIENT_IP = @as(u32, 4);
-pub const MD_EXTLOG_USERNAME = @as(u32, 8);
-pub const MD_EXTLOG_SITE_NAME = @as(u32, 16);
-pub const MD_EXTLOG_COMPUTER_NAME = @as(u32, 32);
-pub const MD_EXTLOG_SERVER_IP = @as(u32, 64);
-pub const MD_EXTLOG_METHOD = @as(u32, 128);
-pub const MD_EXTLOG_URI_STEM = @as(u32, 256);
-pub const MD_EXTLOG_URI_QUERY = @as(u32, 512);
-pub const MD_EXTLOG_HTTP_STATUS = @as(u32, 1024);
-pub const MD_EXTLOG_WIN32_STATUS = @as(u32, 2048);
-pub const MD_EXTLOG_BYTES_SENT = @as(u32, 4096);
-pub const MD_EXTLOG_BYTES_RECV = @as(u32, 8192);
-pub const MD_EXTLOG_TIME_TAKEN = @as(u32, 16384);
-pub const MD_EXTLOG_SERVER_PORT = @as(u32, 32768);
-pub const MD_EXTLOG_USER_AGENT = @as(u32, 65536);
-pub const MD_EXTLOG_COOKIE = @as(u32, 131072);
-pub const MD_EXTLOG_REFERER = @as(u32, 262144);
-pub const MD_EXTLOG_PROTOCOL_VERSION = @as(u32, 524288);
-pub const MD_EXTLOG_HOST = @as(u32, 1048576);
-pub const MD_EXTLOG_HTTP_SUB_STATUS = @as(u32, 2097152);
-pub const IIS_MD_LOGCUSTOM_BASE = @as(u32, 4500);
-pub const MD_LOGCUSTOM_PROPERTY_NAME = @as(u32, 4501);
-pub const MD_LOGCUSTOM_PROPERTY_HEADER = @as(u32, 4502);
-pub const MD_LOGCUSTOM_PROPERTY_ID = @as(u32, 4503);
-pub const MD_LOGCUSTOM_PROPERTY_MASK = @as(u32, 4504);
-pub const MD_LOGCUSTOM_PROPERTY_DATATYPE = @as(u32, 4505);
-pub const MD_LOGCUSTOM_SERVICES_STRING = @as(u32, 4506);
-pub const MD_CPU_LOGGING_MASK = @as(u32, 4507);
-pub const MD_LOGCUSTOM_PROPERTY_NODE_ID = @as(u32, 4508);
-pub const IIS_MD_LOGCUSTOM_LAST = @as(u32, 4508);
-pub const MD_LOGCUSTOM_DATATYPE_INT = @as(u32, 0);
-pub const MD_LOGCUSTOM_DATATYPE_UINT = @as(u32, 1);
-pub const MD_LOGCUSTOM_DATATYPE_LONG = @as(u32, 2);
-pub const MD_LOGCUSTOM_DATATYPE_ULONG = @as(u32, 3);
-pub const MD_LOGCUSTOM_DATATYPE_FLOAT = @as(u32, 4);
-pub const MD_LOGCUSTOM_DATATYPE_DOUBLE = @as(u32, 5);
-pub const MD_LOGCUSTOM_DATATYPE_LPSTR = @as(u32, 6);
-pub const MD_LOGCUSTOM_DATATYPE_LPWSTR = @as(u32, 7);
-pub const MD_NOTIFY_SECURE_PORT = @as(u32, 1);
-pub const MD_NOTIFY_NONSECURE_PORT = @as(u32, 2);
-pub const MD_NOTIFY_READ_RAW_DATA = @as(u32, 32768);
-pub const MD_NOTIFY_PREPROC_HEADERS = @as(u32, 16384);
-pub const MD_NOTIFY_AUTHENTICATION = @as(u32, 8192);
-pub const MD_NOTIFY_URL_MAP = @as(u32, 4096);
-pub const MD_NOTIFY_ACCESS_DENIED = @as(u32, 2048);
-pub const MD_NOTIFY_SEND_RESPONSE = @as(u32, 64);
-pub const MD_NOTIFY_SEND_RAW_DATA = @as(u32, 1024);
-pub const MD_NOTIFY_LOG = @as(u32, 512);
-pub const MD_NOTIFY_END_OF_REQUEST = @as(u32, 128);
-pub const MD_NOTIFY_END_OF_NET_SESSION = @as(u32, 256);
-pub const MD_NOTIFY_AUTH_COMPLETE = @as(u32, 67108864);
-pub const MD_NOTIFY_ORDER_HIGH = @as(u32, 524288);
-pub const MD_NOTIFY_ORDER_MEDIUM = @as(u32, 262144);
-pub const MD_NOTIFY_ORDER_LOW = @as(u32, 131072);
-pub const MD_NOTIFY_ORDER_DEFAULT = @as(u32, 131072);
-pub const IIS_MD_FTP_BASE = @as(u32, 5000);
-pub const MD_EXIT_MESSAGE = @as(u32, 5001);
-pub const MD_GREETING_MESSAGE = @as(u32, 5002);
-pub const MD_MAX_CLIENTS_MESSAGE = @as(u32, 5003);
-pub const MD_MSDOS_DIR_OUTPUT = @as(u32, 5004);
-pub const MD_ALLOW_ANONYMOUS = @as(u32, 5005);
-pub const MD_ANONYMOUS_ONLY = @as(u32, 5006);
-pub const MD_LOG_ANONYMOUS = @as(u32, 5007);
-pub const MD_LOG_NONANONYMOUS = @as(u32, 5008);
-pub const MD_ALLOW_REPLACE_ON_RENAME = @as(u32, 5009);
-pub const MD_SHOW_4_DIGIT_YEAR = @as(u32, 5010);
-pub const MD_BANNER_MESSAGE = @as(u32, 5011);
-pub const MD_USER_ISOLATION = @as(u32, 5012);
-pub const MD_FTP_LOG_IN_UTF_8 = @as(u32, 5013);
-pub const MD_AD_CONNECTIONS_USERNAME = @as(u32, 5014);
-pub const MD_AD_CONNECTIONS_PASSWORD = @as(u32, 5015);
-pub const MD_PASSIVE_PORT_RANGE = @as(u32, 5016);
-pub const MD_SUPPRESS_DEFAULT_BANNER = @as(u32, 5017);
-pub const MD_FTP_PASV_RESPONSE_IP = @as(u32, 5018);
-pub const MD_FTP_KEEP_PARTIAL_UPLOADS = @as(u32, 5019);
-pub const MD_FTP_UTF8_FILE_NAMES = @as(u32, 5020);
-pub const MD_FTPS_SECURE_CONTROL_CHANNEL = @as(u32, 5050);
-pub const MD_FTPS_SECURE_DATA_CHANNEL = @as(u32, 5051);
-pub const MD_FTPS_SECURE_ANONYMOUS = @as(u32, 5052);
-pub const MD_FTPS_128_BITS = @as(u32, 5053);
-pub const MD_FTPS_ALLOW_CCC = @as(u32, 5054);
-pub const IIS_MD_SSL_BASE = @as(u32, 5500);
-pub const MD_SSL_PUBLIC_KEY = @as(u32, 5500);
-pub const MD_SSL_PRIVATE_KEY = @as(u32, 5501);
-pub const MD_SSL_KEY_PASSWORD = @as(u32, 5502);
-pub const MD_SSL_KEY_REQUEST = @as(u32, 5503);
-pub const MD_SSL_USE_DS_MAPPER = @as(u32, 5519);
-pub const MD_SSL_ALWAYS_NEGO_CLIENT_CERT = @as(u32, 5521);
-pub const IIS_MD_FILE_PROP_BASE = @as(u32, 6000);
-pub const MD_AUTHORIZATION = @as(u32, 6000);
-pub const MD_REALM = @as(u32, 6001);
-pub const MD_HTTP_EXPIRES = @as(u32, 6002);
-pub const MD_HTTP_PICS = @as(u32, 6003);
-pub const MD_HTTP_CUSTOM = @as(u32, 6004);
-pub const MD_DIRECTORY_BROWSING = @as(u32, 6005);
-pub const MD_DEFAULT_LOAD_FILE = @as(u32, 6006);
-pub const MD_CUSTOM_ERROR = @as(u32, 6008);
-pub const MD_FOOTER_DOCUMENT = @as(u32, 6009);
-pub const MD_FOOTER_ENABLED = @as(u32, 6010);
-pub const MD_HTTP_REDIRECT = @as(u32, 6011);
-pub const MD_DEFAULT_LOGON_DOMAIN = @as(u32, 6012);
-pub const MD_LOGON_METHOD = @as(u32, 6013);
-pub const MD_SCRIPT_MAPS = @as(u32, 6014);
-pub const MD_MIME_MAP = @as(u32, 6015);
-pub const MD_ACCESS_PERM = @as(u32, 6016);
-pub const MD_IP_SEC = @as(u32, 6019);
-pub const MD_ANONYMOUS_USER_NAME = @as(u32, 6020);
-pub const MD_ANONYMOUS_PWD = @as(u32, 6021);
-pub const MD_ANONYMOUS_USE_SUBAUTH = @as(u32, 6022);
-pub const MD_DONT_LOG = @as(u32, 6023);
-pub const MD_ADMIN_ACL = @as(u32, 6027);
-pub const MD_SSI_EXEC_DISABLED = @as(u32, 6028);
-pub const MD_DO_REVERSE_DNS = @as(u32, 6029);
-pub const MD_SSL_ACCESS_PERM = @as(u32, 6030);
-pub const MD_AUTHORIZATION_PERSISTENCE = @as(u32, 6031);
-pub const MD_NTAUTHENTICATION_PROVIDERS = @as(u32, 6032);
-pub const MD_SCRIPT_TIMEOUT = @as(u32, 6033);
-pub const MD_CACHE_EXTENSIONS = @as(u32, 6034);
-pub const MD_CREATE_PROCESS_AS_USER = @as(u32, 6035);
-pub const MD_CREATE_PROC_NEW_CONSOLE = @as(u32, 6036);
-pub const MD_POOL_IDC_TIMEOUT = @as(u32, 6037);
-pub const MD_ALLOW_KEEPALIVES = @as(u32, 6038);
-pub const MD_IS_CONTENT_INDEXED = @as(u32, 6039);
-pub const MD_CC_NO_CACHE = @as(u32, 6041);
-pub const MD_CC_MAX_AGE = @as(u32, 6042);
-pub const MD_CC_OTHER = @as(u32, 6043);
-pub const MD_REDIRECT_HEADERS = @as(u32, 6044);
-pub const MD_UPLOAD_READAHEAD_SIZE = @as(u32, 6045);
-pub const MD_PUT_READ_SIZE = @as(u32, 6046);
-pub const MD_USE_DIGEST_SSP = @as(u32, 6047);
-pub const MD_ENABLE_URL_AUTHORIZATION = @as(u32, 6048);
-pub const MD_URL_AUTHORIZATION_STORE_NAME = @as(u32, 6049);
-pub const MD_URL_AUTHORIZATION_SCOPE_NAME = @as(u32, 6050);
-pub const MD_MAX_REQUEST_ENTITY_ALLOWED = @as(u32, 6051);
-pub const MD_PASSPORT_REQUIRE_AD_MAPPING = @as(u32, 6052);
-pub const MD_URL_AUTHORIZATION_IMPERSONATION_LEVEL = @as(u32, 6053);
-pub const MD_HTTP_FORWARDER_CUSTOM = @as(u32, 6054);
-pub const MD_CUSTOM_DEPLOYMENT_DATA = @as(u32, 6055);
-pub const MD_HTTPERRORS_EXISTING_RESPONSE = @as(u32, 6056);
-pub const ASP_MD_SERVER_BASE = @as(u32, 7000);
-pub const MD_ASP_BUFFERINGON = @as(u32, 7000);
-pub const MD_ASP_LOGERRORREQUESTS = @as(u32, 7001);
-pub const MD_ASP_SCRIPTERRORSSENTTOBROWSER = @as(u32, 7002);
-pub const MD_ASP_SCRIPTERRORMESSAGE = @as(u32, 7003);
-pub const MD_ASP_SCRIPTFILECACHESIZE = @as(u32, 7004);
-pub const MD_ASP_SCRIPTENGINECACHEMAX = @as(u32, 7005);
-pub const MD_ASP_SCRIPTTIMEOUT = @as(u32, 7006);
-pub const MD_ASP_SESSIONTIMEOUT = @as(u32, 7007);
-pub const MD_ASP_ENABLEPARENTPATHS = @as(u32, 7008);
-pub const MD_ASP_MEMFREEFACTOR = @as(u32, 7009);
-pub const MD_ASP_MINUSEDBLOCKS = @as(u32, 7010);
-pub const MD_ASP_ALLOWSESSIONSTATE = @as(u32, 7011);
-pub const MD_ASP_SCRIPTLANGUAGE = @as(u32, 7012);
-pub const MD_ASP_QUEUETIMEOUT = @as(u32, 7013);
-pub const MD_ASP_ALLOWOUTOFPROCCOMPONENTS = @as(u32, 7014);
-pub const MD_ASP_ALLOWOUTOFPROCCMPNTS = @as(u32, 7014);
-pub const MD_ASP_EXCEPTIONCATCHENABLE = @as(u32, 7015);
-pub const MD_ASP_CODEPAGE = @as(u32, 7016);
-pub const MD_ASP_SCRIPTLANGUAGELIST = @as(u32, 7017);
-pub const MD_ASP_ENABLESERVERDEBUG = @as(u32, 7018);
-pub const MD_ASP_ENABLECLIENTDEBUG = @as(u32, 7019);
-pub const MD_ASP_TRACKTHREADINGMODEL = @as(u32, 7020);
-pub const MD_ASP_ENABLEASPHTMLFALLBACK = @as(u32, 7021);
-pub const MD_ASP_ENABLECHUNKEDENCODING = @as(u32, 7022);
-pub const MD_ASP_ENABLETYPELIBCACHE = @as(u32, 7023);
-pub const MD_ASP_ERRORSTONTLOG = @as(u32, 7024);
-pub const MD_ASP_PROCESSORTHREADMAX = @as(u32, 7025);
-pub const MD_ASP_REQEUSTQUEUEMAX = @as(u32, 7026);
-pub const MD_ASP_ENABLEAPPLICATIONRESTART = @as(u32, 7027);
-pub const MD_ASP_QUEUECONNECTIONTESTTIME = @as(u32, 7028);
-pub const MD_ASP_SESSIONMAX = @as(u32, 7029);
-pub const MD_ASP_THREADGATEENABLED = @as(u32, 7030);
-pub const MD_ASP_THREADGATETIMESLICE = @as(u32, 7031);
-pub const MD_ASP_THREADGATESLEEPDELAY = @as(u32, 7032);
-pub const MD_ASP_THREADGATESLEEPMAX = @as(u32, 7033);
-pub const MD_ASP_THREADGATELOADLOW = @as(u32, 7034);
-pub const MD_ASP_THREADGATELOADHIGH = @as(u32, 7035);
-pub const MD_ASP_DISKTEMPLATECACHEDIRECTORY = @as(u32, 7036);
-pub const MD_ASP_MAXDISKTEMPLATECACHEFILES = @as(u32, 7040);
-pub const MD_ASP_EXECUTEINMTA = @as(u32, 7041);
-pub const MD_ASP_LCID = @as(u32, 7042);
-pub const MD_ASP_KEEPSESSIONIDSECURE = @as(u32, 7043);
-pub const MD_ASP_SERVICE_FLAGS = @as(u32, 7044);
-pub const MD_ASP_SERVICE_FLAG_TRACKER = @as(u32, 7045);
-pub const MD_ASP_SERVICE_FLAG_FUSION = @as(u32, 7046);
-pub const MD_ASP_SERVICE_FLAG_PARTITIONS = @as(u32, 7047);
-pub const MD_ASP_SERVICE_PARTITION_ID = @as(u32, 7048);
-pub const MD_ASP_SERVICE_SXS_NAME = @as(u32, 7049);
-pub const MD_ASP_SERVICE_ENABLE_TRACKER = @as(u32, 1);
-pub const MD_ASP_SERVICE_ENABLE_SXS = @as(u32, 2);
-pub const MD_ASP_SERVICE_USE_PARTITION = @as(u32, 4);
-pub const MD_ASP_CALCLINENUMBER = @as(u32, 7050);
-pub const MD_ASP_RUN_ONEND_ANON = @as(u32, 7051);
-pub const MD_ASP_BUFFER_LIMIT = @as(u32, 7052);
-pub const MD_ASP_MAX_REQUEST_ENTITY_ALLOWED = @as(u32, 7053);
-pub const MD_ASP_MAXREQUESTENTITY = @as(u32, 7053);
-pub const MD_ASP_ID_LAST = @as(u32, 7053);
-pub const WAM_MD_SERVER_BASE = @as(u32, 7500);
-pub const MD_WAM_USER_NAME = @as(u32, 7501);
-pub const MD_WAM_PWD = @as(u32, 7502);
-pub const WEBDAV_MD_SERVER_BASE = @as(u32, 8500);
-pub const MD_WEBDAV_MAX_ATTRIBUTES_PER_ELEMENT = @as(u32, 8501);
-pub const IIS_MD_APPPOOL_BASE = @as(u32, 9000);
-pub const MD_APPPOOL_PERIODIC_RESTART_TIME = @as(u32, 9001);
-pub const MD_APPPOOL_PERIODIC_RESTART_REQUEST_COUNT = @as(u32, 9002);
-pub const MD_APPPOOL_MAX_PROCESS_COUNT = @as(u32, 9003);
-pub const MD_APPPOOL_PINGING_ENABLED = @as(u32, 9004);
-pub const MD_APPPOOL_IDLE_TIMEOUT = @as(u32, 9005);
-pub const MD_APPPOOL_RAPID_FAIL_PROTECTION_ENABLED = @as(u32, 9006);
-pub const MD_APPPOOL_SMP_AFFINITIZED = @as(u32, 9007);
-pub const MD_APPPOOL_SMP_AFFINITIZED_PROCESSOR_MASK = @as(u32, 9008);
-pub const MD_APPPOOL_ORPHAN_PROCESSES_FOR_DEBUGGING = @as(u32, 9009);
-pub const MD_APPPOOL_STARTUP_TIMELIMIT = @as(u32, 9011);
-pub const MD_APPPOOL_SHUTDOWN_TIMELIMIT = @as(u32, 9012);
-pub const MD_APPPOOL_PING_INTERVAL = @as(u32, 9013);
-pub const MD_APPPOOL_PING_RESPONSE_TIMELIMIT = @as(u32, 9014);
-pub const MD_APPPOOL_DISALLOW_OVERLAPPING_ROTATION = @as(u32, 9015);
-pub const MD_APPPOOL_UL_APPPOOL_QUEUE_LENGTH = @as(u32, 9017);
-pub const MD_APPPOOL_DISALLOW_ROTATION_ON_CONFIG_CHANGE = @as(u32, 9018);
-pub const MD_APPPOOL_PERIODIC_RESTART_SCHEDULE = @as(u32, 9020);
-pub const MD_APPPOOL_IDENTITY_TYPE = @as(u32, 9021);
-pub const MD_CPU_ACTION = @as(u32, 9022);
-pub const MD_CPU_LIMIT = @as(u32, 9023);
-pub const MD_APPPOOL_PERIODIC_RESTART_MEMORY = @as(u32, 9024);
-pub const MD_APPPOOL_COMMAND = @as(u32, 9026);
-pub const MD_APPPOOL_STATE = @as(u32, 9027);
-pub const MD_APPPOOL_AUTO_START = @as(u32, 9028);
-pub const MD_RAPID_FAIL_PROTECTION_INTERVAL = @as(u32, 9029);
-pub const MD_RAPID_FAIL_PROTECTION_MAX_CRASHES = @as(u32, 9030);
-pub const MD_APPPOOL_ORPHAN_ACTION_EXE = @as(u32, 9031);
-pub const MD_APPPOOL_ORPHAN_ACTION_PARAMS = @as(u32, 9032);
-pub const MB_DONT_IMPERSONATE = @as(u32, 9033);
-pub const MD_LOAD_BALANCER_CAPABILITIES = @as(u32, 9034);
-pub const MD_APPPOOL_AUTO_SHUTDOWN_EXE = @as(u32, 9035);
-pub const MD_APPPOOL_AUTO_SHUTDOWN_PARAMS = @as(u32, 9036);
-pub const MD_APP_POOL_LOG_EVENT_ON_RECYCLE = @as(u32, 9037);
-pub const MD_APPPOOL_PERIODIC_RESTART_PRIVATE_MEMORY = @as(u32, 9038);
-pub const MD_APPPOOL_MANAGED_RUNTIME_VERSION = @as(u32, 9039);
-pub const MD_APPPOOL_32_BIT_APP_ON_WIN64 = @as(u32, 9040);
-pub const MD_APPPOOL_MANAGED_PIPELINE_MODE = @as(u32, 9041);
-pub const MD_APP_POOL_LOG_EVENT_ON_PROCESSMODEL = @as(u32, 9042);
-pub const MD_APP_POOL_PROCESSMODEL_IDLE_TIMEOUT = @as(u32, 1);
-pub const MD_APP_POOL_RECYCLE_TIME = @as(u32, 1);
-pub const MD_APP_POOL_RECYCLE_REQUESTS = @as(u32, 2);
-pub const MD_APP_POOL_RECYCLE_SCHEDULE = @as(u32, 4);
-pub const MD_APP_POOL_RECYCLE_MEMORY = @as(u32, 8);
-pub const MD_APP_POOL_RECYCLE_ISAPI_UNHEALTHY = @as(u32, 16);
-pub const MD_APP_POOL_RECYCLE_ON_DEMAND = @as(u32, 32);
-pub const MD_APP_POOL_RECYCLE_CONFIG_CHANGE = @as(u32, 64);
-pub const MD_APP_POOL_RECYCLE_PRIVATE_MEMORY = @as(u32, 128);
-pub const MD_CPU_NO_ACTION = @as(u32, 0);
-pub const MD_CPU_KILL_W3WP = @as(u32, 1);
-pub const MD_CPU_TRACE = @as(u32, 2);
-pub const MD_CPU_THROTTLE = @as(u32, 3);
-pub const MD_APPPOOL_COMMAND_START = @as(u32, 1);
-pub const MD_APPPOOL_COMMAND_STOP = @as(u32, 2);
-pub const MD_APPPOOL_STATE_STARTING = @as(u32, 1);
-pub const MD_APPPOOL_STATE_STARTED = @as(u32, 2);
-pub const MD_APPPOOL_STATE_STOPPING = @as(u32, 3);
-pub const MD_APPPOOL_STATE_STOPPED = @as(u32, 4);
-pub const MD_APPPOOL_IDENTITY_TYPE_LOCALSYSTEM = @as(u32, 0);
-pub const MD_APPPOOL_IDENTITY_TYPE_LOCALSERVICE = @as(u32, 1);
-pub const MD_APPPOOL_IDENTITY_TYPE_NETWORKSERVICE = @as(u32, 2);
-pub const MD_APPPOOL_IDENTITY_TYPE_SPECIFICUSER = @as(u32, 3);
-pub const MD_LOAD_BALANCER_CAPABILITIES_BASIC = @as(u32, 1);
-pub const MD_LOAD_BALANCER_CAPABILITIES_SOPHISTICATED = @as(u32, 2);
-pub const IIS_MD_APP_BASE = @as(u32, 9100);
-pub const MD_APP_APPPOOL_ID = @as(u32, 9101);
-pub const MD_APP_ALLOW_TRANSIENT_REGISTRATION = @as(u32, 9102);
-pub const MD_APP_AUTO_START = @as(u32, 9103);
-pub const MD_APPPOOL_PERIODIC_RESTART_CONNECTIONS = @as(u32, 9104);
-pub const MD_APPPOOL_APPPOOL_ID = @as(u32, 9201);
-pub const MD_APPPOOL_ALLOW_TRANSIENT_REGISTRATION = @as(u32, 9202);
-pub const IIS_MD_GLOBAL_BASE = @as(u32, 9200);
-pub const MD_MAX_GLOBAL_BANDWIDTH = @as(u32, 9201);
-pub const MD_MAX_GLOBAL_CONNECTIONS = @as(u32, 9202);
-pub const MD_GLOBAL_STANDARD_APP_MODE_ENABLED = @as(u32, 9203);
-pub const MD_HEADER_WAIT_TIMEOUT = @as(u32, 9204);
-pub const MD_MIN_FILE_BYTES_PER_SEC = @as(u32, 9205);
-pub const MD_GLOBAL_LOG_IN_UTF_8 = @as(u32, 9206);
-pub const MD_DEMAND_START_THRESHOLD = @as(u32, 9207);
-pub const MD_GLOBAL_SESSIONKEY = @as(u32, 9999);
-pub const MD_ROOT_ENABLE_EDIT_WHILE_RUNNING = @as(u32, 9998);
-pub const MD_GLOBAL_CHANGE_NUMBER = @as(u32, 9997);
-pub const MD_ROOT_ENABLE_HISTORY = @as(u32, 9996);
-pub const MD_ROOT_MAX_HISTORY_FILES = @as(u32, 9995);
-pub const MD_GLOBAL_EDIT_WHILE_RUNNING_MAJOR_VERSION_NUMBER = @as(u32, 9994);
-pub const MD_GLOBAL_EDIT_WHILE_RUNNING_MINOR_VERSION_NUMBER = @as(u32, 9993);
-pub const MD_GLOBAL_XMLSCHEMATIMESTAMP = @as(u32, 9992);
-pub const MD_GLOBAL_BINSCHEMATIMESTAMP = @as(u32, 9991);
-pub const MD_COMMENTS = @as(u32, 9990);
-pub const MD_LOCATION = @as(u32, 9989);
-pub const MD_MAX_ERROR_FILES = @as(u32, 9988);
-pub const MD_STOP_LISTENING = @as(u32, 9987);
-pub const MD_AUTH_ANONYMOUS = @as(u32, 1);
-pub const MD_AUTH_BASIC = @as(u32, 2);
-pub const MD_AUTH_NT = @as(u32, 4);
-pub const MD_AUTH_MD5 = @as(u32, 16);
-pub const MD_AUTH_PASSPORT = @as(u32, 64);
-pub const MD_AUTH_SINGLEREQUEST = @as(u32, 64);
-pub const MD_AUTH_SINGLEREQUESTIFPROXY = @as(u32, 128);
-pub const MD_AUTH_SINGLEREQUESTALWAYSIFPROXY = @as(u32, 256);
-pub const MD_ACCESS_READ = @as(u32, 1);
-pub const MD_ACCESS_WRITE = @as(u32, 2);
-pub const MD_ACCESS_EXECUTE = @as(u32, 4);
-pub const MD_ACCESS_SOURCE = @as(u32, 16);
-pub const MD_ACCESS_SCRIPT = @as(u32, 512);
-pub const MD_ACCESS_NO_REMOTE_WRITE = @as(u32, 1024);
-pub const MD_ACCESS_NO_REMOTE_READ = @as(u32, 4096);
-pub const MD_ACCESS_NO_REMOTE_EXECUTE = @as(u32, 8192);
-pub const MD_ACCESS_NO_REMOTE_SCRIPT = @as(u32, 16384);
-pub const MD_ACCESS_NO_PHYSICAL_DIR = @as(u32, 32768);
-pub const MD_ACCESS_SSL = @as(u32, 8);
-pub const MD_ACCESS_NEGO_CERT = @as(u32, 32);
-pub const MD_ACCESS_REQUIRE_CERT = @as(u32, 64);
-pub const MD_ACCESS_MAP_CERT = @as(u32, 128);
-pub const MD_ACCESS_SSL128 = @as(u32, 256);
-pub const MD_ACCESS_MASK = @as(u32, 65535);
-pub const MD_DIRBROW_SHOW_DATE = @as(u32, 2);
-pub const MD_DIRBROW_SHOW_TIME = @as(u32, 4);
-pub const MD_DIRBROW_SHOW_SIZE = @as(u32, 8);
-pub const MD_DIRBROW_SHOW_EXTENSION = @as(u32, 16);
-pub const MD_DIRBROW_LONG_DATE = @as(u32, 32);
-pub const MD_DIRBROW_ENABLED = @as(u32, 2147483648);
-pub const MD_DIRBROW_LOADDEFAULT = @as(u32, 1073741824);
-pub const MD_LOGON_INTERACTIVE = @as(u32, 0);
-pub const MD_LOGON_BATCH = @as(u32, 1);
-pub const MD_LOGON_NETWORK = @as(u32, 2);
-pub const MD_LOGON_NETWORK_CLEARTEXT = @as(u32, 3);
-pub const MD_PASSPORT_NO_MAPPING = @as(u32, 0);
-pub const MD_PASSPORT_TRY_MAPPING = @as(u32, 1);
-pub const MD_PASSPORT_NEED_MAPPING = @as(u32, 2);
-pub const MD_NOTIFEXAUTH_NTLMSSL = @as(u32, 1);
-pub const MD_FILTER_STATE_LOADED = @as(u32, 1);
-pub const MD_FILTER_STATE_UNLOADED = @as(u32, 4);
-pub const MD_SERVER_STATE_STARTING = @as(u32, 1);
-pub const MD_SERVER_STATE_STARTED = @as(u32, 2);
-pub const MD_SERVER_STATE_STOPPING = @as(u32, 3);
-pub const MD_SERVER_STATE_STOPPED = @as(u32, 4);
-pub const MD_SERVER_STATE_PAUSING = @as(u32, 5);
-pub const MD_SERVER_STATE_PAUSED = @as(u32, 6);
-pub const MD_SERVER_STATE_CONTINUING = @as(u32, 7);
-pub const MD_SERVER_COMMAND_START = @as(u32, 1);
-pub const MD_SERVER_COMMAND_STOP = @as(u32, 2);
-pub const MD_SERVER_COMMAND_PAUSE = @as(u32, 3);
-pub const MD_SERVER_COMMAND_CONTINUE = @as(u32, 4);
-pub const MD_SERVER_SIZE_SMALL = @as(u32, 0);
-pub const MD_SERVER_SIZE_MEDIUM = @as(u32, 1);
-pub const MD_SERVER_SIZE_LARGE = @as(u32, 2);
-pub const MD_SERVER_CONFIG_SSL_40 = @as(u32, 1);
-pub const MD_SERVER_CONFIG_SSL_128 = @as(u32, 2);
-pub const MD_SERVER_CONFIG_ALLOW_ENCRYPT = @as(u32, 4);
-pub const MD_SERVER_CONFIG_AUTO_PW_SYNC = @as(u32, 8);
-pub const MD_SCRIPTMAPFLAG_SCRIPT = @as(u32, 1);
-pub const MD_SCRIPTMAPFLAG_CHECK_PATH_INFO = @as(u32, 4);
-pub const MD_SCRIPTMAPFLAG_ALLOWED_ON_READ_DIR = @as(u32, 1);
-pub const MD_AUTH_CHANGE_UNSECURE = @as(u32, 1);
-pub const MD_AUTH_CHANGE_DISABLE = @as(u32, 2);
-pub const MD_AUTH_ADVNOTIFY_DISABLE = @as(u32, 4);
-pub const MD_NETLOGON_WKS_NONE = @as(u32, 0);
-pub const MD_NETLOGON_WKS_IP = @as(u32, 1);
-pub const MD_NETLOGON_WKS_DNS = @as(u32, 2);
-pub const MD_ERROR_SUB400_INVALID_DESTINATION = @as(u32, 1);
-pub const MD_ERROR_SUB400_INVALID_DEPTH = @as(u32, 2);
-pub const MD_ERROR_SUB400_INVALID_IF = @as(u32, 3);
-pub const MD_ERROR_SUB400_INVALID_OVERWRITE = @as(u32, 4);
-pub const MD_ERROR_SUB400_INVALID_TRANSLATE = @as(u32, 5);
-pub const MD_ERROR_SUB400_INVALID_REQUEST_BODY = @as(u32, 6);
-pub const MD_ERROR_SUB400_INVALID_CONTENT_LENGTH = @as(u32, 7);
-pub const MD_ERROR_SUB400_INVALID_TIMEOUT = @as(u32, 8);
-pub const MD_ERROR_SUB400_INVALID_LOCK_TOKEN = @as(u32, 9);
-pub const MD_ERROR_SUB400_INVALID_XFF_HEADER = @as(u32, 10);
-pub const MD_ERROR_SUB400_INVALID_WEBSOCKET_REQUEST = @as(u32, 11);
-pub const MD_ERROR_SUB401_LOGON = @as(u32, 1);
-pub const MD_ERROR_SUB401_LOGON_CONFIG = @as(u32, 2);
-pub const MD_ERROR_SUB401_LOGON_ACL = @as(u32, 3);
-pub const MD_ERROR_SUB401_FILTER = @as(u32, 4);
-pub const MD_ERROR_SUB401_APPLICATION = @as(u32, 5);
-pub const MD_ERROR_SUB401_URLAUTH_POLICY = @as(u32, 7);
-pub const MD_ERROR_SUB403_EXECUTE_ACCESS_DENIED = @as(u32, 1);
-pub const MD_ERROR_SUB403_READ_ACCESS_DENIED = @as(u32, 2);
-pub const MD_ERROR_SUB403_WRITE_ACCESS_DENIED = @as(u32, 3);
-pub const MD_ERROR_SUB403_SSL_REQUIRED = @as(u32, 4);
-pub const MD_ERROR_SUB403_SSL128_REQUIRED = @as(u32, 5);
-pub const MD_ERROR_SUB403_ADDR_REJECT = @as(u32, 6);
-pub const MD_ERROR_SUB403_CERT_REQUIRED = @as(u32, 7);
-pub const MD_ERROR_SUB403_SITE_ACCESS_DENIED = @as(u32, 8);
-pub const MD_ERROR_SUB403_TOO_MANY_USERS = @as(u32, 9);
-pub const MD_ERROR_SUB403_INVALID_CNFG = @as(u32, 10);
-pub const MD_ERROR_SUB403_PWD_CHANGE = @as(u32, 11);
-pub const MD_ERROR_SUB403_MAPPER_DENY_ACCESS = @as(u32, 12);
-pub const MD_ERROR_SUB403_CERT_REVOKED = @as(u32, 13);
-pub const MD_ERROR_SUB403_DIR_LIST_DENIED = @as(u32, 14);
-pub const MD_ERROR_SUB403_CAL_EXCEEDED = @as(u32, 15);
-pub const MD_ERROR_SUB403_CERT_BAD = @as(u32, 16);
-pub const MD_ERROR_SUB403_CERT_TIME_INVALID = @as(u32, 17);
-pub const MD_ERROR_SUB403_APPPOOL_DENIED = @as(u32, 18);
-pub const MD_ERROR_SUB403_INSUFFICIENT_PRIVILEGE_FOR_CGI = @as(u32, 19);
-pub const MD_ERROR_SUB403_PASSPORT_LOGIN_FAILURE = @as(u32, 20);
-pub const MD_ERROR_SUB403_SOURCE_ACCESS_DENIED = @as(u32, 21);
-pub const MD_ERROR_SUB403_INFINITE_DEPTH_DENIED = @as(u32, 22);
-pub const MD_ERROR_SUB403_LOCK_TOKEN_REQUIRED = @as(u32, 23);
-pub const MD_ERROR_SUB403_VALIDATION_FAILURE = @as(u32, 24);
-pub const MD_ERROR_SUB404_SITE_NOT_FOUND = @as(u32, 1);
-pub const MD_ERROR_SUB404_DENIED_BY_POLICY = @as(u32, 2);
-pub const MD_ERROR_SUB404_DENIED_BY_MIMEMAP = @as(u32, 3);
-pub const MD_ERROR_SUB404_NO_HANDLER = @as(u32, 4);
-pub const MD_ERROR_SUB404_URL_SEQUENCE_DENIED = @as(u32, 5);
-pub const MD_ERROR_SUB404_VERB_DENIED = @as(u32, 6);
-pub const MD_ERROR_SUB404_FILE_EXTENSION_DENIED = @as(u32, 7);
-pub const MD_ERROR_SUB404_HIDDEN_SEGMENT = @as(u32, 8);
-pub const MD_ERROR_SUB404_FILE_ATTRIBUTE_HIDDEN = @as(u32, 9);
-pub const MD_ERROR_SUB404_URL_DOUBLE_ESCAPED = @as(u32, 11);
-pub const MD_ERROR_SUB404_URL_HAS_HIGH_BIT_CHARS = @as(u32, 12);
-pub const MD_ERROR_SUB404_URL_TOO_LONG = @as(u32, 14);
-pub const MD_ERROR_SUB404_QUERY_STRING_TOO_LONG = @as(u32, 15);
-pub const MD_ERROR_SUB404_STATICFILE_DAV = @as(u32, 16);
-pub const MD_ERROR_SUB404_PRECONDITIONED_HANDLER = @as(u32, 17);
-pub const MD_ERROR_SUB404_QUERY_STRING_SEQUENCE_DENIED = @as(u32, 18);
-pub const MD_ERROR_SUB404_DENIED_BY_FILTERING_RULE = @as(u32, 19);
-pub const MD_ERROR_SUB404_TOO_MANY_URL_SEGMENTS = @as(u32, 20);
-pub const MD_ERROR_SUB413_CONTENT_LENGTH_TOO_LARGE = @as(u32, 1);
-pub const MD_ERROR_SUB423_LOCK_TOKEN_SUBMITTED = @as(u32, 1);
-pub const MD_ERROR_SUB423_NO_CONFLICTING_LOCK = @as(u32, 2);
-pub const MD_ERROR_SUB500_UNC_ACCESS = @as(u32, 16);
-pub const MD_ERROR_SUB500_URLAUTH_NO_STORE = @as(u32, 17);
-pub const MD_ERROR_SUB500_URLAUTH_STORE_ERROR = @as(u32, 18);
-pub const MD_ERROR_SUB500_BAD_METADATA = @as(u32, 19);
-pub const MD_ERROR_SUB500_URLAUTH_NO_SCOPE = @as(u32, 20);
-pub const MD_ERROR_SUB500_HANDLERS_MODULE = @as(u32, 21);
-pub const MD_ERROR_SUB500_ASPNET_MODULES = @as(u32, 22);
-pub const MD_ERROR_SUB500_ASPNET_HANDLERS = @as(u32, 23);
-pub const MD_ERROR_SUB500_ASPNET_IMPERSONATION = @as(u32, 24);
-pub const MD_ERROR_SUB502_TIMEOUT = @as(u32, 1);
-pub const MD_ERROR_SUB502_PREMATURE_EXIT = @as(u32, 2);
-pub const MD_ERROR_SUB502_ARR_CONNECTION_ERROR = @as(u32, 3);
-pub const MD_ERROR_SUB502_ARR_NO_SERVER = @as(u32, 4);
-pub const MD_ERROR_SUB503_CPU_LIMIT = @as(u32, 1);
-pub const MD_ERROR_SUB503_APP_CONCURRENT = @as(u32, 2);
-pub const MD_ERROR_SUB503_ASPNET_QUEUE_FULL = @as(u32, 3);
-pub const MD_ERROR_SUB503_FASTCGI_QUEUE_FULL = @as(u32, 4);
-pub const MD_ERROR_SUB503_CONNECTION_LIMIT = @as(u32, 5);
-pub const MD_ACR_READ = @as(u32, 1);
-pub const MD_ACR_WRITE = @as(u32, 2);
-pub const MD_ACR_RESTRICTED_WRITE = @as(u32, 32);
-pub const MD_ACR_UNSECURE_PROPS_READ = @as(u32, 128);
-pub const MD_ACR_ENUM_KEYS = @as(u32, 8);
-pub const MD_ACR_WRITE_DAC = @as(u32, 262144);
-pub const MD_USER_ISOLATION_NONE = @as(u32, 0);
-pub const MD_USER_ISOLATION_BASIC = @as(u32, 1);
-pub const MD_USER_ISOLATION_AD = @as(u32, 2);
-pub const MD_USER_ISOLATION_LAST = @as(u32, 2);
-pub const IIS_CLASS_COMPUTER = "IIsComputer";
-pub const IIS_CLASS_WEB_SERVICE = "IIsWebService";
-pub const IIS_CLASS_WEB_SERVER = "IIsWebServer";
-pub const IIS_CLASS_WEB_INFO = "IIsWebInfo";
-pub const IIS_CLASS_WEB_DIR = "IIsWebDirectory";
-pub const IIS_CLASS_WEB_VDIR = "IIsWebVirtualDir";
-pub const IIS_CLASS_WEB_FILE = "IIsWebFile";
-pub const IIS_CLASS_FTP_SERVICE = "IIsFtpService";
-pub const IIS_CLASS_FTP_SERVER = "IIsFtpServer";
-pub const IIS_CLASS_FTP_INFO = "IIsFtpInfo";
-pub const IIS_CLASS_FTP_VDIR = "IIsFtpVirtualDir";
-pub const IIS_CLASS_FILTERS = "IIsFilters";
-pub const IIS_CLASS_FILTER = "IIsFilter";
-pub const IIS_CLASS_LOG_MODULES = "IIsLogModules";
-pub const IIS_CLASS_LOG_MODULE = "IIsLogModule";
-pub const IIS_CLASS_MIMEMAP = "IIsMimeMap";
-pub const IIS_CLASS_CERTMAPPER = "IIsCertMapper";
-pub const IIS_CLASS_COMPRESS_SCHEMES = "IIsCompressionSchemes";
-pub const IIS_CLASS_COMPRESS_SCHEME = "IIsCompressionScheme";
-pub const IIS_CLASS_COMPUTER_W = "IIsComputer";
-pub const IIS_CLASS_WEB_SERVICE_W = "IIsWebService";
-pub const IIS_CLASS_WEB_SERVER_W = "IIsWebServer";
-pub const IIS_CLASS_WEB_INFO_W = "IIsWebInfo";
-pub const IIS_CLASS_WEB_DIR_W = "IIsWebDirectory";
-pub const IIS_CLASS_WEB_VDIR_W = "IIsWebVirtualDir";
-pub const IIS_CLASS_WEB_FILE_W = "IIsWebFile";
-pub const IIS_CLASS_FTP_SERVICE_W = "IIsFtpService";
-pub const IIS_CLASS_FTP_SERVER_W = "IIsFtpServer";
-pub const IIS_CLASS_FTP_INFO_W = "IIsFtpInfo";
-pub const IIS_CLASS_FTP_VDIR_W = "IIsFtpVirtualDir";
-pub const IIS_CLASS_FILTERS_W = "IIsFilters";
-pub const IIS_CLASS_FILTER_W = "IIsFilter";
-pub const IIS_CLASS_LOG_MODULES_W = "IIsLogModules";
-pub const IIS_CLASS_LOG_MODULE_W = "IIsLogModule";
-pub const IIS_CLASS_MIMEMAP_W = "IIsMimeMap";
-pub const IIS_CLASS_CERTMAPPER_W = "IIsCertMapper";
-pub const IIS_CLASS_COMPRESS_SCHEMES_W = "IIsCompressionSchemes";
-pub const IIS_CLASS_COMPRESS_SCHEME_W = "IIsCompressionScheme";
-pub const CLSID_IisServiceControl = Guid.initString("e8fb8621-588f-11d2-9d61-00c04f79c5fe");
-pub const LIBID_IISRSTALib = Guid.initString("e8fb8614-588f-11d2-9d61-00c04f79c5fe");
-pub const IIS_WEBSOCKET = "websockets";
-pub const IIS_WEBSOCKET_SERVER_VARIABLE = "IIS_WEBSOCK";
-pub const LIBID_WAMREGLib = Guid.initString("29822aa8-f302-11d0-9953-00c04fd919c1");
-pub const CLSID_WamAdmin = Guid.initString("61738644-f196-11d0-9953-00c04fd919c1");
-pub const APPSTATUS_STOPPED = @as(u32, 0);
-pub const APPSTATUS_RUNNING = @as(u32, 1);
-pub const APPSTATUS_NOTDEFINED = @as(u32, 2);
-pub const METADATA_MAX_NAME_LEN = @as(u32, 256);
-pub const METADATA_PERMISSION_READ = @as(u32, 1);
-pub const METADATA_PERMISSION_WRITE = @as(u32, 2);
-pub const METADATA_NO_ATTRIBUTES = @as(u32, 0);
-pub const METADATA_INHERIT = @as(u32, 1);
-pub const METADATA_PARTIAL_PATH = @as(u32, 2);
-pub const METADATA_SECURE = @as(u32, 4);
-pub const METADATA_REFERENCE = @as(u32, 8);
-pub const METADATA_VOLATILE = @as(u32, 16);
-pub const METADATA_ISINHERITED = @as(u32, 32);
-pub const METADATA_INSERT_PATH = @as(u32, 64);
-pub const METADATA_LOCAL_MACHINE_ONLY = @as(u32, 128);
-pub const METADATA_NON_SECURE_ONLY = @as(u32, 256);
-pub const METADATA_DONT_EXPAND = @as(u32, 512);
-pub const MD_BACKUP_OVERWRITE = @as(u32, 1);
-pub const MD_BACKUP_SAVE_FIRST = @as(u32, 2);
-pub const MD_BACKUP_FORCE_BACKUP = @as(u32, 4);
-pub const MD_BACKUP_NEXT_VERSION = @as(u32, 4294967295);
-pub const MD_BACKUP_HIGHEST_VERSION = @as(u32, 4294967294);
-pub const MD_BACKUP_MAX_VERSION = @as(u32, 9999);
-pub const MD_BACKUP_MAX_LEN = @as(u32, 100);
-pub const MD_DEFAULT_BACKUP_LOCATION = "MDBackUp";
-pub const MD_HISTORY_LATEST = @as(u32, 1);
-pub const MD_EXPORT_INHERITED = @as(u32, 1);
-pub const MD_EXPORT_NODE_ONLY = @as(u32, 2);
-pub const MD_IMPORT_INHERITED = @as(u32, 1);
-pub const MD_IMPORT_NODE_ONLY = @as(u32, 2);
-pub const MD_IMPORT_MERGE = @as(u32, 4);
-pub const MD_INSERT_PATH_STRINGA = "<%INSERT_PATH%>";
-pub const MD_INSERT_PATH_STRING = "<%INSERT_PATH%>";
-pub const METADATA_MASTER_ROOT_HANDLE = @as(u32, 0);
-pub const MD_CHANGE_TYPE_DELETE_OBJECT = @as(u32, 1);
-pub const MD_CHANGE_TYPE_ADD_OBJECT = @as(u32, 2);
-pub const MD_CHANGE_TYPE_SET_DATA = @as(u32, 4);
-pub const MD_CHANGE_TYPE_DELETE_DATA = @as(u32, 8);
-pub const MD_CHANGE_TYPE_RENAME_OBJECT = @as(u32, 16);
-pub const MD_CHANGE_TYPE_RESTORE = @as(u32, 32);
-pub const MD_MAX_CHANGE_ENTRIES = @as(u32, 100);
-pub const MD_ERROR_NOT_INITIALIZED = @as(i32, -2146646016);
-pub const MD_ERROR_DATA_NOT_FOUND = @as(i32, -2146646015);
-pub const MD_ERROR_INVALID_VERSION = @as(i32, -2146646014);
-pub const MD_WARNING_PATH_NOT_FOUND = @as(i32, 837635);
-pub const MD_WARNING_DUP_NAME = @as(i32, 837636);
-pub const MD_WARNING_INVALID_DATA = @as(i32, 837637);
-pub const MD_ERROR_SECURE_CHANNEL_FAILURE = @as(i32, -2146646010);
-pub const MD_WARNING_PATH_NOT_INSERTED = @as(i32, 837639);
-pub const MD_ERROR_CANNOT_REMOVE_SECURE_ATTRIBUTE = @as(i32, -2146646008);
-pub const MD_WARNING_SAVE_FAILED = @as(i32, 837641);
-pub const MD_ERROR_IISAO_INVALID_SCHEMA = @as(i32, -2146646000);
-pub const MD_ERROR_READ_METABASE_FILE = @as(i32, -2146645991);
-pub const MD_ERROR_NO_SESSION_KEY = @as(i32, -2146645987);
-pub const LIBID_ASPTypeLibrary = Guid.initString("d97a6da0-a85c-11cf-83ae-00a0c90c2bd8");
-pub const CLSID_Request = Guid.initString("920c25d0-25d9-11d0-a55f-00a0c90c2091");
-pub const CLSID_Response = Guid.initString("46e19ba0-25dd-11d0-a55f-00a0c90c2091");
-pub const CLSID_Session = Guid.initString("509f8f20-25de-11d0-a55f-00a0c90c2091");
-pub const CLSID_Server = Guid.initString("a506d160-25e0-11d0-a55f-00a0c90c2091");
-pub const CLSID_ScriptingContext = Guid.initString("d97a6da0-a868-11cf-83ae-11b0c90c2bd8");
-pub const HSE_VERSION_MAJOR = @as(u32, 8);
-pub const HSE_VERSION_MINOR = @as(u32, 0);
-pub const HSE_LOG_BUFFER_LEN = @as(u32, 80);
-pub const HSE_MAX_EXT_DLL_NAME_LEN = @as(u32, 256);
-pub const HSE_STATUS_SUCCESS = @as(u32, 1);
-pub const HSE_STATUS_SUCCESS_AND_KEEP_CONN = @as(u32, 2);
-pub const HSE_STATUS_PENDING = @as(u32, 3);
-pub const HSE_STATUS_ERROR = @as(u32, 4);
-pub const HSE_REQ_BASE = @as(u32, 0);
-pub const HSE_REQ_SEND_URL_REDIRECT_RESP = @as(u32, 1);
-pub const HSE_REQ_SEND_URL = @as(u32, 2);
-pub const HSE_REQ_SEND_RESPONSE_HEADER = @as(u32, 3);
-pub const HSE_REQ_DONE_WITH_SESSION = @as(u32, 4);
-pub const HSE_REQ_END_RESERVED = @as(u32, 1000);
-pub const HSE_REQ_MAP_URL_TO_PATH = @as(u32, 1001);
-pub const HSE_REQ_GET_SSPI_INFO = @as(u32, 1002);
-pub const HSE_APPEND_LOG_PARAMETER = @as(u32, 1003);
-pub const HSE_REQ_IO_COMPLETION = @as(u32, 1005);
-pub const HSE_REQ_TRANSMIT_FILE = @as(u32, 1006);
-pub const HSE_REQ_REFRESH_ISAPI_ACL = @as(u32, 1007);
-pub const HSE_REQ_IS_KEEP_CONN = @as(u32, 1008);
-pub const HSE_REQ_ASYNC_READ_CLIENT = @as(u32, 1010);
-pub const HSE_REQ_GET_IMPERSONATION_TOKEN = @as(u32, 1011);
-pub const HSE_REQ_MAP_URL_TO_PATH_EX = @as(u32, 1012);
-pub const HSE_REQ_ABORTIVE_CLOSE = @as(u32, 1014);
-pub const HSE_REQ_GET_CERT_INFO_EX = @as(u32, 1015);
-pub const HSE_REQ_SEND_RESPONSE_HEADER_EX = @as(u32, 1016);
-pub const HSE_REQ_CLOSE_CONNECTION = @as(u32, 1017);
-pub const HSE_REQ_IS_CONNECTED = @as(u32, 1018);
-pub const HSE_REQ_MAP_UNICODE_URL_TO_PATH = @as(u32, 1023);
-pub const HSE_REQ_MAP_UNICODE_URL_TO_PATH_EX = @as(u32, 1024);
-pub const HSE_REQ_EXEC_UNICODE_URL = @as(u32, 1025);
-pub const HSE_REQ_EXEC_URL = @as(u32, 1026);
-pub const HSE_REQ_GET_EXEC_URL_STATUS = @as(u32, 1027);
-pub const HSE_REQ_SEND_CUSTOM_ERROR = @as(u32, 1028);
-pub const HSE_REQ_IS_IN_PROCESS = @as(u32, 1030);
-pub const HSE_REQ_REPORT_UNHEALTHY = @as(u32, 1032);
-pub const HSE_REQ_NORMALIZE_URL = @as(u32, 1033);
-pub const HSE_REQ_VECTOR_SEND = @as(u32, 1037);
-pub const HSE_REQ_GET_ANONYMOUS_TOKEN = @as(u32, 1038);
-pub const HSE_REQ_GET_CACHE_INVALIDATION_CALLBACK = @as(u32, 1040);
-pub const HSE_REQ_GET_UNICODE_ANONYMOUS_TOKEN = @as(u32, 1041);
-pub const HSE_REQ_GET_TRACE_INFO = @as(u32, 1042);
-pub const HSE_REQ_SET_FLUSH_FLAG = @as(u32, 1043);
-pub const HSE_REQ_GET_TRACE_INFO_EX = @as(u32, 1044);
-pub const HSE_REQ_RAISE_TRACE_EVENT = @as(u32, 1045);
-pub const HSE_REQ_GET_CONFIG_OBJECT = @as(u32, 1046);
-pub const HSE_REQ_GET_WORKER_PROCESS_SETTINGS = @as(u32, 1047);
-pub const HSE_REQ_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK = @as(u32, 1048);
-pub const HSE_REQ_CANCEL_IO = @as(u32, 1049);
-pub const HSE_REQ_GET_CHANNEL_BINDING_TOKEN = @as(u32, 1050);
-pub const HSE_TERM_ADVISORY_UNLOAD = @as(u32, 1);
-pub const HSE_TERM_MUST_UNLOAD = @as(u32, 2);
-pub const HSE_IO_SYNC = @as(u32, 1);
-pub const HSE_IO_ASYNC = @as(u32, 2);
-pub const HSE_IO_DISCONNECT_AFTER_SEND = @as(u32, 4);
-pub const HSE_IO_SEND_HEADERS = @as(u32, 8);
-pub const HSE_IO_NODELAY = @as(u32, 4096);
-pub const HSE_IO_FINAL_SEND = @as(u32, 16);
-pub const HSE_IO_CACHE_RESPONSE = @as(u32, 32);
-pub const HSE_IO_TRY_SKIP_CUSTOM_ERRORS = @as(u32, 64);
-pub const HSE_URL_FLAGS_READ = @as(u32, 1);
-pub const HSE_URL_FLAGS_WRITE = @as(u32, 2);
-pub const HSE_URL_FLAGS_EXECUTE = @as(u32, 4);
-pub const HSE_URL_FLAGS_SSL = @as(u32, 8);
-pub const HSE_URL_FLAGS_DONT_CACHE = @as(u32, 16);
-pub const HSE_URL_FLAGS_NEGO_CERT = @as(u32, 32);
-pub const HSE_URL_FLAGS_REQUIRE_CERT = @as(u32, 64);
-pub const HSE_URL_FLAGS_MAP_CERT = @as(u32, 128);
-pub const HSE_URL_FLAGS_SSL128 = @as(u32, 256);
-pub const HSE_URL_FLAGS_SCRIPT = @as(u32, 512);
-pub const HSE_URL_FLAGS_MASK = @as(u32, 1023);
-pub const HSE_EXEC_URL_NO_HEADERS = @as(u32, 2);
-pub const HSE_EXEC_URL_IGNORE_CURRENT_INTERCEPTOR = @as(u32, 4);
-pub const HSE_EXEC_URL_IGNORE_VALIDATION_AND_RANGE = @as(u32, 16);
-pub const HSE_EXEC_URL_DISABLE_CUSTOM_ERROR = @as(u32, 32);
-pub const HSE_EXEC_URL_SSI_CMD = @as(u32, 64);
-pub const HSE_EXEC_URL_HTTP_CACHE_ELIGIBLE = @as(u32, 128);
-pub const HSE_VECTOR_ELEMENT_TYPE_MEMORY_BUFFER = @as(u32, 0);
-pub const HSE_VECTOR_ELEMENT_TYPE_FILE_HANDLE = @as(u32, 1);
+pub const GUID_IIS_ALL_TRACE_PROVIDERS = Guid.initString("00000000-0000-0000-0000-000000000000");
+pub const GUID_IIS_ASP_TRACE_TRACE_PROVIDER = Guid.initString("06b94d9a-b15e-456e-a4ef-37c984a2cb4b");
+pub const GUID_IIS_ASPNET_TRACE_PROVIDER = Guid.initString("aff081fe-0247-4275-9c4e-021f3dc1da35");
+pub const GUID_IIS_ISAPI_TRACE_PROVIDER = Guid.initString("a1c2040e-8840-4c31-ba11-9871031a19ea");
+pub const GUID_IIS_WWW_GLOBAL_TRACE_PROVIDER = Guid.initString("d55d3bc9-cba9-44df-827e-132d3a4596c2");
+pub const GUID_IIS_WWW_SERVER_TRACE_PROVIDER = Guid.initString("3a2a4e84-4c21-4981-ae10-3fda0d9b0f83");
+pub const GUID_IIS_WWW_SERVER_V2_TRACE_PROVIDER = Guid.initString("de4649c9-15e8-4fea-9d85-1cdda520c334");
 pub const HSE_APP_FLAG_IN_PROCESS = @as(u32, 0);
 pub const HSE_APP_FLAG_ISOLATED_OOP = @as(u32, 1);
 pub const HSE_APP_FLAG_POOLED_OOP = @as(u32, 2);
-pub const SF_MAX_USERNAME = @as(u32, 257);
-pub const SF_MAX_PASSWORD = @as(u32, 257);
-pub const SF_MAX_AUTH_TYPE = @as(u32, 33);
-pub const SF_MAX_FILTER_DESC_LEN = @as(u32, 257);
-pub const SF_DENIED_LOGON = @as(u32, 1);
-pub const SF_DENIED_RESOURCE = @as(u32, 2);
-pub const SF_DENIED_FILTER = @as(u32, 4);
+pub const HSE_APPEND_LOG_PARAMETER = @as(u32, 1003);
+pub const HSE_EXEC_URL_DISABLE_CUSTOM_ERROR = @as(u32, 32);
+pub const HSE_EXEC_URL_HTTP_CACHE_ELIGIBLE = @as(u32, 128);
+pub const HSE_EXEC_URL_IGNORE_CURRENT_INTERCEPTOR = @as(u32, 4);
+pub const HSE_EXEC_URL_IGNORE_VALIDATION_AND_RANGE = @as(u32, 16);
+pub const HSE_EXEC_URL_NO_HEADERS = @as(u32, 2);
+pub const HSE_EXEC_URL_SSI_CMD = @as(u32, 64);
+pub const HSE_IO_ASYNC = @as(u32, 2);
+pub const HSE_IO_CACHE_RESPONSE = @as(u32, 32);
+pub const HSE_IO_DISCONNECT_AFTER_SEND = @as(u32, 4);
+pub const HSE_IO_FINAL_SEND = @as(u32, 16);
+pub const HSE_IO_NODELAY = @as(u32, 4096);
+pub const HSE_IO_SEND_HEADERS = @as(u32, 8);
+pub const HSE_IO_SYNC = @as(u32, 1);
+pub const HSE_IO_TRY_SKIP_CUSTOM_ERRORS = @as(u32, 64);
+pub const HSE_LOG_BUFFER_LEN = @as(u32, 80);
+pub const HSE_MAX_EXT_DLL_NAME_LEN = @as(u32, 256);
+pub const HSE_REQ_ABORTIVE_CLOSE = @as(u32, 1014);
+pub const HSE_REQ_ASYNC_READ_CLIENT = @as(u32, 1010);
+pub const HSE_REQ_BASE = @as(u32, 0);
+pub const HSE_REQ_CANCEL_IO = @as(u32, 1049);
+pub const HSE_REQ_CLOSE_CONNECTION = @as(u32, 1017);
+pub const HSE_REQ_DONE_WITH_SESSION = @as(u32, 4);
+pub const HSE_REQ_END_RESERVED = @as(u32, 1000);
+pub const HSE_REQ_EXEC_UNICODE_URL = @as(u32, 1025);
+pub const HSE_REQ_EXEC_URL = @as(u32, 1026);
+pub const HSE_REQ_GET_ANONYMOUS_TOKEN = @as(u32, 1038);
+pub const HSE_REQ_GET_CACHE_INVALIDATION_CALLBACK = @as(u32, 1040);
+pub const HSE_REQ_GET_CERT_INFO_EX = @as(u32, 1015);
+pub const HSE_REQ_GET_CHANNEL_BINDING_TOKEN = @as(u32, 1050);
+pub const HSE_REQ_GET_CONFIG_OBJECT = @as(u32, 1046);
+pub const HSE_REQ_GET_EXEC_URL_STATUS = @as(u32, 1027);
+pub const HSE_REQ_GET_IMPERSONATION_TOKEN = @as(u32, 1011);
+pub const HSE_REQ_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK = @as(u32, 1048);
+pub const HSE_REQ_GET_SSPI_INFO = @as(u32, 1002);
+pub const HSE_REQ_GET_TRACE_INFO = @as(u32, 1042);
+pub const HSE_REQ_GET_TRACE_INFO_EX = @as(u32, 1044);
+pub const HSE_REQ_GET_UNICODE_ANONYMOUS_TOKEN = @as(u32, 1041);
+pub const HSE_REQ_GET_WORKER_PROCESS_SETTINGS = @as(u32, 1047);
+pub const HSE_REQ_IO_COMPLETION = @as(u32, 1005);
+pub const HSE_REQ_IS_CONNECTED = @as(u32, 1018);
+pub const HSE_REQ_IS_IN_PROCESS = @as(u32, 1030);
+pub const HSE_REQ_IS_KEEP_CONN = @as(u32, 1008);
+pub const HSE_REQ_MAP_UNICODE_URL_TO_PATH = @as(u32, 1023);
+pub const HSE_REQ_MAP_UNICODE_URL_TO_PATH_EX = @as(u32, 1024);
+pub const HSE_REQ_MAP_URL_TO_PATH = @as(u32, 1001);
+pub const HSE_REQ_MAP_URL_TO_PATH_EX = @as(u32, 1012);
+pub const HSE_REQ_NORMALIZE_URL = @as(u32, 1033);
+pub const HSE_REQ_RAISE_TRACE_EVENT = @as(u32, 1045);
+pub const HSE_REQ_REFRESH_ISAPI_ACL = @as(u32, 1007);
+pub const HSE_REQ_REPORT_UNHEALTHY = @as(u32, 1032);
+pub const HSE_REQ_SEND_CUSTOM_ERROR = @as(u32, 1028);
+pub const HSE_REQ_SEND_RESPONSE_HEADER = @as(u32, 3);
+pub const HSE_REQ_SEND_RESPONSE_HEADER_EX = @as(u32, 1016);
+pub const HSE_REQ_SEND_URL = @as(u32, 2);
+pub const HSE_REQ_SEND_URL_REDIRECT_RESP = @as(u32, 1);
+pub const HSE_REQ_SET_FLUSH_FLAG = @as(u32, 1043);
+pub const HSE_REQ_TRANSMIT_FILE = @as(u32, 1006);
+pub const HSE_REQ_VECTOR_SEND = @as(u32, 1037);
+pub const HSE_STATUS_ERROR = @as(u32, 4);
+pub const HSE_STATUS_PENDING = @as(u32, 3);
+pub const HSE_STATUS_SUCCESS = @as(u32, 1);
+pub const HSE_STATUS_SUCCESS_AND_KEEP_CONN = @as(u32, 2);
+pub const HSE_TERM_ADVISORY_UNLOAD = @as(u32, 1);
+pub const HSE_TERM_MUST_UNLOAD = @as(u32, 2);
+pub const HSE_URL_FLAGS_DONT_CACHE = @as(u32, 16);
+pub const HSE_URL_FLAGS_EXECUTE = @as(u32, 4);
+pub const HSE_URL_FLAGS_MAP_CERT = @as(u32, 128);
+pub const HSE_URL_FLAGS_MASK = @as(u32, 1023);
+pub const HSE_URL_FLAGS_NEGO_CERT = @as(u32, 32);
+pub const HSE_URL_FLAGS_READ = @as(u32, 1);
+pub const HSE_URL_FLAGS_REQUIRE_CERT = @as(u32, 64);
+pub const HSE_URL_FLAGS_SCRIPT = @as(u32, 512);
+pub const HSE_URL_FLAGS_SSL = @as(u32, 8);
+pub const HSE_URL_FLAGS_SSL128 = @as(u32, 256);
+pub const HSE_URL_FLAGS_WRITE = @as(u32, 2);
+pub const HSE_VECTOR_ELEMENT_TYPE_FILE_HANDLE = @as(u32, 1);
+pub const HSE_VECTOR_ELEMENT_TYPE_MEMORY_BUFFER = @as(u32, 0);
+pub const HSE_VERSION_MAJOR = @as(u32, 8);
+pub const HSE_VERSION_MINOR = @as(u32, 0);
+pub const HTTP_TRACE_EVENT_FLAG_STATIC_DESCRIPTIVE_FIELDS = @as(u32, 1);
+pub const HTTP_TRACE_LEVEL_END = @as(u32, 7);
+pub const HTTP_TRACE_LEVEL_START = @as(u32, 6);
+pub const IIS_CLASS_CERTMAPPER = "IIsCertMapper";
+pub const IIS_CLASS_CERTMAPPER_W = "IIsCertMapper";
+pub const IIS_CLASS_COMPRESS_SCHEME = "IIsCompressionScheme";
+pub const IIS_CLASS_COMPRESS_SCHEME_W = "IIsCompressionScheme";
+pub const IIS_CLASS_COMPRESS_SCHEMES = "IIsCompressionSchemes";
+pub const IIS_CLASS_COMPRESS_SCHEMES_W = "IIsCompressionSchemes";
+pub const IIS_CLASS_COMPUTER = "IIsComputer";
+pub const IIS_CLASS_COMPUTER_W = "IIsComputer";
+pub const IIS_CLASS_FILTER = "IIsFilter";
+pub const IIS_CLASS_FILTER_W = "IIsFilter";
+pub const IIS_CLASS_FILTERS = "IIsFilters";
+pub const IIS_CLASS_FILTERS_W = "IIsFilters";
+pub const IIS_CLASS_FTP_INFO = "IIsFtpInfo";
+pub const IIS_CLASS_FTP_INFO_W = "IIsFtpInfo";
+pub const IIS_CLASS_FTP_SERVER = "IIsFtpServer";
+pub const IIS_CLASS_FTP_SERVER_W = "IIsFtpServer";
+pub const IIS_CLASS_FTP_SERVICE = "IIsFtpService";
+pub const IIS_CLASS_FTP_SERVICE_W = "IIsFtpService";
+pub const IIS_CLASS_FTP_VDIR = "IIsFtpVirtualDir";
+pub const IIS_CLASS_FTP_VDIR_W = "IIsFtpVirtualDir";
+pub const IIS_CLASS_LOG_MODULE = "IIsLogModule";
+pub const IIS_CLASS_LOG_MODULE_W = "IIsLogModule";
+pub const IIS_CLASS_LOG_MODULES = "IIsLogModules";
+pub const IIS_CLASS_LOG_MODULES_W = "IIsLogModules";
+pub const IIS_CLASS_MIMEMAP = "IIsMimeMap";
+pub const IIS_CLASS_MIMEMAP_W = "IIsMimeMap";
+pub const IIS_CLASS_WEB_DIR = "IIsWebDirectory";
+pub const IIS_CLASS_WEB_DIR_W = "IIsWebDirectory";
+pub const IIS_CLASS_WEB_FILE = "IIsWebFile";
+pub const IIS_CLASS_WEB_FILE_W = "IIsWebFile";
+pub const IIS_CLASS_WEB_INFO = "IIsWebInfo";
+pub const IIS_CLASS_WEB_INFO_W = "IIsWebInfo";
+pub const IIS_CLASS_WEB_SERVER = "IIsWebServer";
+pub const IIS_CLASS_WEB_SERVER_W = "IIsWebServer";
+pub const IIS_CLASS_WEB_SERVICE = "IIsWebService";
+pub const IIS_CLASS_WEB_SERVICE_W = "IIsWebService";
+pub const IIS_CLASS_WEB_VDIR = "IIsWebVirtualDir";
+pub const IIS_CLASS_WEB_VDIR_W = "IIsWebVirtualDir";
+pub const IIS_MD_ADSI_METAID_BEGIN = @as(u32, 130000);
+pub const IIS_MD_ADSI_SCHEMA_PATH_A = "/Schema";
+pub const IIS_MD_ADSI_SCHEMA_PATH_W = "/Schema";
+pub const IIS_MD_APP_BASE = @as(u32, 9100);
+pub const IIS_MD_APPPOOL_BASE = @as(u32, 9000);
+pub const IIS_MD_FILE_PROP_BASE = @as(u32, 6000);
+pub const IIS_MD_FTP_BASE = @as(u32, 5000);
+pub const IIS_MD_GLOBAL_BASE = @as(u32, 9200);
+pub const IIS_MD_HTTP_BASE = @as(u32, 2000);
+pub const IIS_MD_ID_BEGIN_RESERVED = @as(u32, 1);
+pub const IIS_MD_ID_END_RESERVED = @as(u32, 32767);
+pub const IIS_MD_INSTANCE_ROOT = "Root";
+pub const IIS_MD_ISAPI_FILTERS = "/Filters";
+pub const IIS_MD_LOCAL_MACHINE_PATH = "LM";
+pub const IIS_MD_LOG_BASE = @as(u32, 4000);
+pub const IIS_MD_LOG_LAST = @as(u32, 4015);
+pub const IIS_MD_LOGCUSTOM_BASE = @as(u32, 4500);
+pub const IIS_MD_LOGCUSTOM_LAST = @as(u32, 4508);
+pub const IIS_MD_SERVER_BASE = @as(u32, 1000);
+pub const IIS_MD_SSL_BASE = @as(u32, 5500);
+pub const IIS_MD_SVC_INFO_PATH = "Info";
+pub const IIS_MD_UT_END_RESERVED = @as(u32, 2000);
+pub const IIS_MD_UT_FILE = @as(u32, 2);
+pub const IIS_MD_UT_SERVER = @as(u32, 1);
+pub const IIS_MD_UT_WAM = @as(u32, 100);
+pub const IIS_MD_VR_BASE = @as(u32, 3000);
+pub const IIS_WEBSOCKET = "websockets";
+pub const IIS_WEBSOCKET_SERVER_VARIABLE = "IIS_WEBSOCK";
+pub const IISADMIN_EXTENSIONS_CLSID_MD_KEY = "LM/IISADMIN/EXTENSIONS/DCOMCLSIDS";
+pub const IISADMIN_EXTENSIONS_CLSID_MD_KEYA = "LM/IISADMIN/EXTENSIONS/DCOMCLSIDS";
+pub const IISADMIN_EXTENSIONS_CLSID_MD_KEYW = "LM/IISADMIN/EXTENSIONS/DCOMCLSIDS";
+pub const IISADMIN_EXTENSIONS_REG_KEY = "SOFTWARE\\Microsoft\\InetStp\\Extensions";
+pub const IISADMIN_EXTENSIONS_REG_KEYA = "SOFTWARE\\Microsoft\\InetStp\\Extensions";
+pub const IISADMIN_EXTENSIONS_REG_KEYW = "SOFTWARE\\Microsoft\\InetStp\\Extensions";
+pub const IMAP_MD_ID_BEGIN_RESERVED = @as(u32, 49152);
+pub const IMAP_MD_ID_END_RESERVED = @as(u32, 53247);
+pub const IMGANIM_ANIMATED = @as(u32, 268435456);
+pub const IMGANIM_MASK = @as(u32, 268435456);
+pub const IMGBITS_MASK = @as(u32, 234881024);
+pub const IMGBITS_NONE = @as(u32, 33554432);
+pub const IMGBITS_PARTIAL = @as(u32, 67108864);
+pub const IMGBITS_TOTAL = @as(u32, 134217728);
+pub const IMGCHG_ANIMATE = @as(u32, 8);
+pub const IMGCHG_COMPLETE = @as(u32, 4);
+pub const IMGCHG_MASK = @as(u32, 15);
+pub const IMGCHG_SIZE = @as(u32, 1);
+pub const IMGCHG_VIEW = @as(u32, 2);
+pub const IMGLOAD_COMPLETE = @as(u32, 16777216);
+pub const IMGLOAD_ERROR = @as(u32, 8388608);
+pub const IMGLOAD_LOADING = @as(u32, 2097152);
+pub const IMGLOAD_MASK = @as(u32, 32505856);
+pub const IMGLOAD_NOTLOADED = @as(u32, 1048576);
+pub const IMGLOAD_STOPPED = @as(u32, 4194304);
+pub const IMGTRANS_MASK = @as(u32, 536870912);
+pub const IMGTRANS_OPAQUE = @as(u32, 536870912);
+pub const LIBID_ASPTypeLibrary = Guid.initString("d97a6da0-a85c-11cf-83ae-00a0c90c2bd8");
+pub const LIBID_IISRSTALib = Guid.initString("e8fb8614-588f-11d2-9d61-00c04f79c5fe");
+pub const LIBID_WAMREGLib = Guid.initString("29822aa8-f302-11d0-9953-00c04fd919c1");
+pub const MB_DONT_IMPERSONATE = @as(u32, 9033);
+pub const MD_ACCESS_EXECUTE = @as(u32, 4);
+pub const MD_ACCESS_MAP_CERT = @as(u32, 128);
+pub const MD_ACCESS_MASK = @as(u32, 65535);
+pub const MD_ACCESS_NEGO_CERT = @as(u32, 32);
+pub const MD_ACCESS_NO_PHYSICAL_DIR = @as(u32, 32768);
+pub const MD_ACCESS_NO_REMOTE_EXECUTE = @as(u32, 8192);
+pub const MD_ACCESS_NO_REMOTE_READ = @as(u32, 4096);
+pub const MD_ACCESS_NO_REMOTE_SCRIPT = @as(u32, 16384);
+pub const MD_ACCESS_NO_REMOTE_WRITE = @as(u32, 1024);
+pub const MD_ACCESS_PERM = @as(u32, 6016);
+pub const MD_ACCESS_READ = @as(u32, 1);
+pub const MD_ACCESS_REQUIRE_CERT = @as(u32, 64);
+pub const MD_ACCESS_SCRIPT = @as(u32, 512);
+pub const MD_ACCESS_SOURCE = @as(u32, 16);
+pub const MD_ACCESS_SSL = @as(u32, 8);
+pub const MD_ACCESS_SSL128 = @as(u32, 256);
+pub const MD_ACCESS_WRITE = @as(u32, 2);
+pub const MD_ACR_ENUM_KEYS = @as(u32, 8);
+pub const MD_ACR_READ = @as(u32, 1);
+pub const MD_ACR_RESTRICTED_WRITE = @as(u32, 32);
+pub const MD_ACR_UNSECURE_PROPS_READ = @as(u32, 128);
+pub const MD_ACR_WRITE = @as(u32, 2);
+pub const MD_ACR_WRITE_DAC = @as(u32, 262144);
+pub const MD_AD_CONNECTIONS_PASSWORD = @as(u32, 5015);
+pub const MD_AD_CONNECTIONS_USERNAME = @as(u32, 5014);
+pub const MD_ADMIN_ACL = @as(u32, 6027);
+pub const MD_ADMIN_INSTANCE = @as(u32, 2115);
+pub const MD_ADV_CACHE_TTL = @as(u32, 2064);
+pub const MD_ADV_NOTIFY_PWD_EXP_IN_DAYS = @as(u32, 2063);
+pub const MD_ALLOW_ANONYMOUS = @as(u32, 5005);
+pub const MD_ALLOW_KEEPALIVES = @as(u32, 6038);
+pub const MD_ALLOW_PATH_INFO_FOR_SCRIPT_MAPPINGS = @as(u32, 2095);
+pub const MD_ALLOW_REPLACE_ON_RENAME = @as(u32, 5009);
+pub const MD_ANONYMOUS_ONLY = @as(u32, 5006);
+pub const MD_ANONYMOUS_PWD = @as(u32, 6021);
+pub const MD_ANONYMOUS_USE_SUBAUTH = @as(u32, 6022);
+pub const MD_ANONYMOUS_USER_NAME = @as(u32, 6020);
+pub const MD_APP_ALLOW_TRANSIENT_REGISTRATION = @as(u32, 9102);
+pub const MD_APP_APPPOOL_ID = @as(u32, 9101);
+pub const MD_APP_AUTO_START = @as(u32, 9103);
+pub const MD_APP_DEPENDENCIES = @as(u32, 2167);
+pub const MD_APP_FRIENDLY_NAME = @as(u32, 2102);
+pub const MD_APP_ISOLATED = @as(u32, 2104);
+pub const MD_APP_OOP_RECOVER_LIMIT = @as(u32, 2110);
+pub const MD_APP_PACKAGE_ID = @as(u32, 2106);
+pub const MD_APP_PACKAGE_NAME = @as(u32, 2107);
+pub const MD_APP_PERIODIC_RESTART_REQUESTS = @as(u32, 2112);
+pub const MD_APP_PERIODIC_RESTART_SCHEDULE = @as(u32, 2113);
+pub const MD_APP_PERIODIC_RESTART_TIME = @as(u32, 2111);
+pub const MD_APP_POOL_LOG_EVENT_ON_PROCESSMODEL = @as(u32, 9042);
+pub const MD_APP_POOL_LOG_EVENT_ON_RECYCLE = @as(u32, 9037);
+pub const MD_APP_POOL_PROCESSMODEL_IDLE_TIMEOUT = @as(u32, 1);
+pub const MD_APP_POOL_RECYCLE_CONFIG_CHANGE = @as(u32, 64);
+pub const MD_APP_POOL_RECYCLE_ISAPI_UNHEALTHY = @as(u32, 16);
+pub const MD_APP_POOL_RECYCLE_MEMORY = @as(u32, 8);
+pub const MD_APP_POOL_RECYCLE_ON_DEMAND = @as(u32, 32);
+pub const MD_APP_POOL_RECYCLE_PRIVATE_MEMORY = @as(u32, 128);
+pub const MD_APP_POOL_RECYCLE_REQUESTS = @as(u32, 2);
+pub const MD_APP_POOL_RECYCLE_SCHEDULE = @as(u32, 4);
+pub const MD_APP_POOL_RECYCLE_TIME = @as(u32, 1);
+pub const MD_APP_ROOT = @as(u32, 2103);
+pub const MD_APP_SHUTDOWN_TIME_LIMIT = @as(u32, 2114);
+pub const MD_APP_TRACE_URL_LIST = @as(u32, 2118);
+pub const MD_APP_WAM_CLSID = @as(u32, 2105);
+pub const MD_APPPOOL_32_BIT_APP_ON_WIN64 = @as(u32, 9040);
+pub const MD_APPPOOL_ALLOW_TRANSIENT_REGISTRATION = @as(u32, 9202);
+pub const MD_APPPOOL_APPPOOL_ID = @as(u32, 9201);
+pub const MD_APPPOOL_AUTO_SHUTDOWN_EXE = @as(u32, 9035);
+pub const MD_APPPOOL_AUTO_SHUTDOWN_PARAMS = @as(u32, 9036);
+pub const MD_APPPOOL_AUTO_START = @as(u32, 9028);
+pub const MD_APPPOOL_COMMAND = @as(u32, 9026);
+pub const MD_APPPOOL_COMMAND_START = @as(u32, 1);
+pub const MD_APPPOOL_COMMAND_STOP = @as(u32, 2);
+pub const MD_APPPOOL_DISALLOW_OVERLAPPING_ROTATION = @as(u32, 9015);
+pub const MD_APPPOOL_DISALLOW_ROTATION_ON_CONFIG_CHANGE = @as(u32, 9018);
+pub const MD_APPPOOL_IDENTITY_TYPE = @as(u32, 9021);
+pub const MD_APPPOOL_IDENTITY_TYPE_LOCALSERVICE = @as(u32, 1);
+pub const MD_APPPOOL_IDENTITY_TYPE_LOCALSYSTEM = @as(u32, 0);
+pub const MD_APPPOOL_IDENTITY_TYPE_NETWORKSERVICE = @as(u32, 2);
+pub const MD_APPPOOL_IDENTITY_TYPE_SPECIFICUSER = @as(u32, 3);
+pub const MD_APPPOOL_IDLE_TIMEOUT = @as(u32, 9005);
+pub const MD_APPPOOL_MANAGED_PIPELINE_MODE = @as(u32, 9041);
+pub const MD_APPPOOL_MANAGED_RUNTIME_VERSION = @as(u32, 9039);
+pub const MD_APPPOOL_MAX_PROCESS_COUNT = @as(u32, 9003);
+pub const MD_APPPOOL_ORPHAN_ACTION_EXE = @as(u32, 9031);
+pub const MD_APPPOOL_ORPHAN_ACTION_PARAMS = @as(u32, 9032);
+pub const MD_APPPOOL_ORPHAN_PROCESSES_FOR_DEBUGGING = @as(u32, 9009);
+pub const MD_APPPOOL_PERIODIC_RESTART_CONNECTIONS = @as(u32, 9104);
+pub const MD_APPPOOL_PERIODIC_RESTART_MEMORY = @as(u32, 9024);
+pub const MD_APPPOOL_PERIODIC_RESTART_PRIVATE_MEMORY = @as(u32, 9038);
+pub const MD_APPPOOL_PERIODIC_RESTART_REQUEST_COUNT = @as(u32, 9002);
+pub const MD_APPPOOL_PERIODIC_RESTART_SCHEDULE = @as(u32, 9020);
+pub const MD_APPPOOL_PERIODIC_RESTART_TIME = @as(u32, 9001);
+pub const MD_APPPOOL_PING_INTERVAL = @as(u32, 9013);
+pub const MD_APPPOOL_PING_RESPONSE_TIMELIMIT = @as(u32, 9014);
+pub const MD_APPPOOL_PINGING_ENABLED = @as(u32, 9004);
+pub const MD_APPPOOL_RAPID_FAIL_PROTECTION_ENABLED = @as(u32, 9006);
+pub const MD_APPPOOL_SHUTDOWN_TIMELIMIT = @as(u32, 9012);
+pub const MD_APPPOOL_SMP_AFFINITIZED = @as(u32, 9007);
+pub const MD_APPPOOL_SMP_AFFINITIZED_PROCESSOR_MASK = @as(u32, 9008);
+pub const MD_APPPOOL_STARTUP_TIMELIMIT = @as(u32, 9011);
+pub const MD_APPPOOL_STATE = @as(u32, 9027);
+pub const MD_APPPOOL_STATE_STARTED = @as(u32, 2);
+pub const MD_APPPOOL_STATE_STARTING = @as(u32, 1);
+pub const MD_APPPOOL_STATE_STOPPED = @as(u32, 4);
+pub const MD_APPPOOL_STATE_STOPPING = @as(u32, 3);
+pub const MD_APPPOOL_UL_APPPOOL_QUEUE_LENGTH = @as(u32, 9017);
+pub const MD_ASP_ALLOWOUTOFPROCCMPNTS = @as(u32, 7014);
+pub const MD_ASP_ALLOWOUTOFPROCCOMPONENTS = @as(u32, 7014);
+pub const MD_ASP_ALLOWSESSIONSTATE = @as(u32, 7011);
+pub const MD_ASP_BUFFER_LIMIT = @as(u32, 7052);
+pub const MD_ASP_BUFFERINGON = @as(u32, 7000);
+pub const MD_ASP_CALCLINENUMBER = @as(u32, 7050);
+pub const MD_ASP_CODEPAGE = @as(u32, 7016);
+pub const MD_ASP_DISKTEMPLATECACHEDIRECTORY = @as(u32, 7036);
+pub const MD_ASP_ENABLEAPPLICATIONRESTART = @as(u32, 7027);
+pub const MD_ASP_ENABLEASPHTMLFALLBACK = @as(u32, 7021);
+pub const MD_ASP_ENABLECHUNKEDENCODING = @as(u32, 7022);
+pub const MD_ASP_ENABLECLIENTDEBUG = @as(u32, 7019);
+pub const MD_ASP_ENABLEPARENTPATHS = @as(u32, 7008);
+pub const MD_ASP_ENABLESERVERDEBUG = @as(u32, 7018);
+pub const MD_ASP_ENABLETYPELIBCACHE = @as(u32, 7023);
+pub const MD_ASP_ERRORSTONTLOG = @as(u32, 7024);
+pub const MD_ASP_EXCEPTIONCATCHENABLE = @as(u32, 7015);
+pub const MD_ASP_EXECUTEINMTA = @as(u32, 7041);
+pub const MD_ASP_ID_LAST = @as(u32, 7053);
+pub const MD_ASP_KEEPSESSIONIDSECURE = @as(u32, 7043);
+pub const MD_ASP_LCID = @as(u32, 7042);
+pub const MD_ASP_LOGERRORREQUESTS = @as(u32, 7001);
+pub const MD_ASP_MAX_REQUEST_ENTITY_ALLOWED = @as(u32, 7053);
+pub const MD_ASP_MAXDISKTEMPLATECACHEFILES = @as(u32, 7040);
+pub const MD_ASP_MAXREQUESTENTITY = @as(u32, 7053);
+pub const MD_ASP_MEMFREEFACTOR = @as(u32, 7009);
+pub const MD_ASP_MINUSEDBLOCKS = @as(u32, 7010);
+pub const MD_ASP_PROCESSORTHREADMAX = @as(u32, 7025);
+pub const MD_ASP_QUEUECONNECTIONTESTTIME = @as(u32, 7028);
+pub const MD_ASP_QUEUETIMEOUT = @as(u32, 7013);
+pub const MD_ASP_REQEUSTQUEUEMAX = @as(u32, 7026);
+pub const MD_ASP_RUN_ONEND_ANON = @as(u32, 7051);
+pub const MD_ASP_SCRIPTENGINECACHEMAX = @as(u32, 7005);
+pub const MD_ASP_SCRIPTERRORMESSAGE = @as(u32, 7003);
+pub const MD_ASP_SCRIPTERRORSSENTTOBROWSER = @as(u32, 7002);
+pub const MD_ASP_SCRIPTFILECACHESIZE = @as(u32, 7004);
+pub const MD_ASP_SCRIPTLANGUAGE = @as(u32, 7012);
+pub const MD_ASP_SCRIPTLANGUAGELIST = @as(u32, 7017);
+pub const MD_ASP_SCRIPTTIMEOUT = @as(u32, 7006);
+pub const MD_ASP_SERVICE_ENABLE_SXS = @as(u32, 2);
+pub const MD_ASP_SERVICE_ENABLE_TRACKER = @as(u32, 1);
+pub const MD_ASP_SERVICE_FLAG_FUSION = @as(u32, 7046);
+pub const MD_ASP_SERVICE_FLAG_PARTITIONS = @as(u32, 7047);
+pub const MD_ASP_SERVICE_FLAG_TRACKER = @as(u32, 7045);
+pub const MD_ASP_SERVICE_FLAGS = @as(u32, 7044);
+pub const MD_ASP_SERVICE_PARTITION_ID = @as(u32, 7048);
+pub const MD_ASP_SERVICE_SXS_NAME = @as(u32, 7049);
+pub const MD_ASP_SERVICE_USE_PARTITION = @as(u32, 4);
+pub const MD_ASP_SESSIONMAX = @as(u32, 7029);
+pub const MD_ASP_SESSIONTIMEOUT = @as(u32, 7007);
+pub const MD_ASP_THREADGATEENABLED = @as(u32, 7030);
+pub const MD_ASP_THREADGATELOADHIGH = @as(u32, 7035);
+pub const MD_ASP_THREADGATELOADLOW = @as(u32, 7034);
+pub const MD_ASP_THREADGATESLEEPDELAY = @as(u32, 7032);
+pub const MD_ASP_THREADGATESLEEPMAX = @as(u32, 7033);
+pub const MD_ASP_THREADGATETIMESLICE = @as(u32, 7031);
+pub const MD_ASP_TRACKTHREADINGMODEL = @as(u32, 7020);
+pub const MD_AUTH_ADVNOTIFY_DISABLE = @as(u32, 4);
+pub const MD_AUTH_ANONYMOUS = @as(u32, 1);
+pub const MD_AUTH_BASIC = @as(u32, 2);
+pub const MD_AUTH_CHANGE_DISABLE = @as(u32, 2);
+pub const MD_AUTH_CHANGE_FLAGS = @as(u32, 2068);
+pub const MD_AUTH_CHANGE_UNSECURE = @as(u32, 1);
+pub const MD_AUTH_CHANGE_URL = @as(u32, 2060);
+pub const MD_AUTH_EXPIRED_UNSECUREURL = @as(u32, 2067);
+pub const MD_AUTH_EXPIRED_URL = @as(u32, 2061);
+pub const MD_AUTH_MD5 = @as(u32, 16);
+pub const MD_AUTH_NT = @as(u32, 4);
+pub const MD_AUTH_PASSPORT = @as(u32, 64);
+pub const MD_AUTH_SINGLEREQUEST = @as(u32, 64);
+pub const MD_AUTH_SINGLEREQUESTALWAYSIFPROXY = @as(u32, 256);
+pub const MD_AUTH_SINGLEREQUESTIFPROXY = @as(u32, 128);
+pub const MD_AUTHORIZATION = @as(u32, 6000);
+pub const MD_AUTHORIZATION_PERSISTENCE = @as(u32, 6031);
+pub const MD_BACKUP_FORCE_BACKUP = @as(u32, 4);
+pub const MD_BACKUP_HIGHEST_VERSION = @as(u32, 4294967294);
+pub const MD_BACKUP_MAX_LEN = @as(u32, 100);
+pub const MD_BACKUP_MAX_VERSION = @as(u32, 9999);
+pub const MD_BACKUP_NEXT_VERSION = @as(u32, 4294967295);
+pub const MD_BACKUP_OVERWRITE = @as(u32, 1);
+pub const MD_BACKUP_SAVE_FIRST = @as(u32, 2);
+pub const MD_BANNER_MESSAGE = @as(u32, 5011);
+pub const MD_BINDINGS = @as(u32, 2022);
+pub const MD_CACHE_EXTENSIONS = @as(u32, 6034);
+pub const MD_CAL_AUTH_RESERVE_TIMEOUT = @as(u32, 2131);
+pub const MD_CAL_SSL_RESERVE_TIMEOUT = @as(u32, 2132);
+pub const MD_CAL_VC_PER_CONNECT = @as(u32, 2130);
+pub const MD_CAL_W3_ERROR = @as(u32, 2133);
+pub const MD_CC_MAX_AGE = @as(u32, 6042);
+pub const MD_CC_NO_CACHE = @as(u32, 6041);
+pub const MD_CC_OTHER = @as(u32, 6043);
+pub const MD_CENTRAL_W3C_LOGGING_ENABLED = @as(u32, 2119);
+pub const MD_CERT_CACHE_RETRIEVAL_ONLY = @as(u32, 2);
+pub const MD_CERT_CHECK_REVOCATION_FRESHNESS_TIME = @as(u32, 4);
+pub const MD_CERT_NO_REVOC_CHECK = @as(u32, 1);
+pub const MD_CERT_NO_USAGE_CHECK = @as(u32, 65536);
+pub const MD_CGI_RESTRICTION_LIST = @as(u32, 2164);
+pub const MD_CHANGE_TYPE_ADD_OBJECT = @as(u32, 2);
+pub const MD_CHANGE_TYPE_DELETE_DATA = @as(u32, 8);
+pub const MD_CHANGE_TYPE_DELETE_OBJECT = @as(u32, 1);
+pub const MD_CHANGE_TYPE_RENAME_OBJECT = @as(u32, 16);
+pub const MD_CHANGE_TYPE_RESTORE = @as(u32, 32);
+pub const MD_CHANGE_TYPE_SET_DATA = @as(u32, 4);
+pub const MD_COMMENTS = @as(u32, 9990);
+pub const MD_CONNECTION_TIMEOUT = @as(u32, 1013);
+pub const MD_CPU_ACTION = @as(u32, 9022);
+pub const MD_CPU_APP_ENABLED = @as(u32, 2141);
+pub const MD_CPU_CGI_ENABLED = @as(u32, 2140);
+pub const MD_CPU_CGI_LIMIT = @as(u32, 2148);
+pub const MD_CPU_DISABLE_ALL_LOGGING = @as(u32, 0);
+pub const MD_CPU_ENABLE_ACTIVE_PROCS = @as(u32, 64);
+pub const MD_CPU_ENABLE_ALL_PROC_LOGGING = @as(u32, 1);
+pub const MD_CPU_ENABLE_APP_LOGGING = @as(u32, 4);
+pub const MD_CPU_ENABLE_CGI_LOGGING = @as(u32, 2);
+pub const MD_CPU_ENABLE_EVENT = @as(u32, 1);
+pub const MD_CPU_ENABLE_KERNEL_TIME = @as(u32, 8);
+pub const MD_CPU_ENABLE_LOGGING = @as(u32, 2147483648);
+pub const MD_CPU_ENABLE_PAGE_FAULTS = @as(u32, 16);
+pub const MD_CPU_ENABLE_PROC_TYPE = @as(u32, 2);
+pub const MD_CPU_ENABLE_TERMINATED_PROCS = @as(u32, 128);
+pub const MD_CPU_ENABLE_TOTAL_PROCS = @as(u32, 32);
+pub const MD_CPU_ENABLE_USER_TIME = @as(u32, 4);
+pub const MD_CPU_KILL_W3WP = @as(u32, 1);
+pub const MD_CPU_LIMIT = @as(u32, 9023);
+pub const MD_CPU_LIMIT_LOGEVENT = @as(u32, 2149);
+pub const MD_CPU_LIMIT_PAUSE = @as(u32, 2152);
+pub const MD_CPU_LIMIT_PRIORITY = @as(u32, 2150);
+pub const MD_CPU_LIMIT_PROCSTOP = @as(u32, 2151);
+pub const MD_CPU_LIMITS_ENABLED = @as(u32, 2143);
+pub const MD_CPU_LOGGING_INTERVAL = @as(u32, 2145);
+pub const MD_CPU_LOGGING_MASK = @as(u32, 4507);
+pub const MD_CPU_LOGGING_OPTIONS = @as(u32, 2146);
+pub const MD_CPU_NO_ACTION = @as(u32, 0);
+pub const MD_CPU_RESET_INTERVAL = @as(u32, 2144);
+pub const MD_CPU_THROTTLE = @as(u32, 3);
+pub const MD_CPU_TRACE = @as(u32, 2);
+pub const MD_CREATE_PROC_NEW_CONSOLE = @as(u32, 6036);
+pub const MD_CREATE_PROCESS_AS_USER = @as(u32, 6035);
+pub const MD_CUSTOM_DEPLOYMENT_DATA = @as(u32, 6055);
+pub const MD_CUSTOM_ERROR = @as(u32, 6008);
+pub const MD_CUSTOM_ERROR_DESC = @as(u32, 2120);
+pub const MD_DEFAULT_BACKUP_LOCATION = "MDBackUp";
+pub const MD_DEFAULT_LOAD_FILE = @as(u32, 6006);
+pub const MD_DEFAULT_LOGON_DOMAIN = @as(u32, 6012);
+pub const MD_DEMAND_START_THRESHOLD = @as(u32, 9207);
+pub const MD_DIRBROW_ENABLED = @as(u32, 2147483648);
+pub const MD_DIRBROW_LOADDEFAULT = @as(u32, 1073741824);
+pub const MD_DIRBROW_LONG_DATE = @as(u32, 32);
+pub const MD_DIRBROW_SHOW_DATE = @as(u32, 2);
+pub const MD_DIRBROW_SHOW_EXTENSION = @as(u32, 16);
+pub const MD_DIRBROW_SHOW_SIZE = @as(u32, 8);
+pub const MD_DIRBROW_SHOW_TIME = @as(u32, 4);
+pub const MD_DIRECTORY_BROWSING = @as(u32, 6005);
+pub const MD_DISABLE_SOCKET_POOLING = @as(u32, 1029);
+pub const MD_DO_REVERSE_DNS = @as(u32, 6029);
+pub const MD_DONT_LOG = @as(u32, 6023);
+pub const MD_DOWNLEVEL_ADMIN_INSTANCE = @as(u32, 1021);
+pub const MD_ENABLE_URL_AUTHORIZATION = @as(u32, 6048);
+pub const MD_ENABLEDPROTOCOLS = @as(u32, 2023);
+pub const MD_ERROR_CANNOT_REMOVE_SECURE_ATTRIBUTE = @as(i32, -2146646008);
+pub const MD_ERROR_DATA_NOT_FOUND = @as(i32, -2146646015);
+pub const MD_ERROR_IISAO_INVALID_SCHEMA = @as(i32, -2146646000);
+pub const MD_ERROR_INVALID_VERSION = @as(i32, -2146646014);
+pub const MD_ERROR_NO_SESSION_KEY = @as(i32, -2146645987);
+pub const MD_ERROR_NOT_INITIALIZED = @as(i32, -2146646016);
+pub const MD_ERROR_READ_METABASE_FILE = @as(i32, -2146645991);
+pub const MD_ERROR_SECURE_CHANNEL_FAILURE = @as(i32, -2146646010);
+pub const MD_ERROR_SUB400_INVALID_CONTENT_LENGTH = @as(u32, 7);
+pub const MD_ERROR_SUB400_INVALID_DEPTH = @as(u32, 2);
+pub const MD_ERROR_SUB400_INVALID_DESTINATION = @as(u32, 1);
+pub const MD_ERROR_SUB400_INVALID_IF = @as(u32, 3);
+pub const MD_ERROR_SUB400_INVALID_LOCK_TOKEN = @as(u32, 9);
+pub const MD_ERROR_SUB400_INVALID_OVERWRITE = @as(u32, 4);
+pub const MD_ERROR_SUB400_INVALID_REQUEST_BODY = @as(u32, 6);
+pub const MD_ERROR_SUB400_INVALID_TIMEOUT = @as(u32, 8);
+pub const MD_ERROR_SUB400_INVALID_TRANSLATE = @as(u32, 5);
+pub const MD_ERROR_SUB400_INVALID_WEBSOCKET_REQUEST = @as(u32, 11);
+pub const MD_ERROR_SUB400_INVALID_XFF_HEADER = @as(u32, 10);
+pub const MD_ERROR_SUB401_APPLICATION = @as(u32, 5);
+pub const MD_ERROR_SUB401_FILTER = @as(u32, 4);
+pub const MD_ERROR_SUB401_LOGON = @as(u32, 1);
+pub const MD_ERROR_SUB401_LOGON_ACL = @as(u32, 3);
+pub const MD_ERROR_SUB401_LOGON_CONFIG = @as(u32, 2);
+pub const MD_ERROR_SUB401_URLAUTH_POLICY = @as(u32, 7);
+pub const MD_ERROR_SUB403_ADDR_REJECT = @as(u32, 6);
+pub const MD_ERROR_SUB403_APPPOOL_DENIED = @as(u32, 18);
+pub const MD_ERROR_SUB403_CAL_EXCEEDED = @as(u32, 15);
+pub const MD_ERROR_SUB403_CERT_BAD = @as(u32, 16);
+pub const MD_ERROR_SUB403_CERT_REQUIRED = @as(u32, 7);
+pub const MD_ERROR_SUB403_CERT_REVOKED = @as(u32, 13);
+pub const MD_ERROR_SUB403_CERT_TIME_INVALID = @as(u32, 17);
+pub const MD_ERROR_SUB403_DIR_LIST_DENIED = @as(u32, 14);
+pub const MD_ERROR_SUB403_EXECUTE_ACCESS_DENIED = @as(u32, 1);
+pub const MD_ERROR_SUB403_INFINITE_DEPTH_DENIED = @as(u32, 22);
+pub const MD_ERROR_SUB403_INSUFFICIENT_PRIVILEGE_FOR_CGI = @as(u32, 19);
+pub const MD_ERROR_SUB403_INVALID_CNFG = @as(u32, 10);
+pub const MD_ERROR_SUB403_LOCK_TOKEN_REQUIRED = @as(u32, 23);
+pub const MD_ERROR_SUB403_MAPPER_DENY_ACCESS = @as(u32, 12);
+pub const MD_ERROR_SUB403_PASSPORT_LOGIN_FAILURE = @as(u32, 20);
+pub const MD_ERROR_SUB403_PWD_CHANGE = @as(u32, 11);
+pub const MD_ERROR_SUB403_READ_ACCESS_DENIED = @as(u32, 2);
+pub const MD_ERROR_SUB403_SITE_ACCESS_DENIED = @as(u32, 8);
+pub const MD_ERROR_SUB403_SOURCE_ACCESS_DENIED = @as(u32, 21);
+pub const MD_ERROR_SUB403_SSL128_REQUIRED = @as(u32, 5);
+pub const MD_ERROR_SUB403_SSL_REQUIRED = @as(u32, 4);
+pub const MD_ERROR_SUB403_TOO_MANY_USERS = @as(u32, 9);
+pub const MD_ERROR_SUB403_VALIDATION_FAILURE = @as(u32, 24);
+pub const MD_ERROR_SUB403_WRITE_ACCESS_DENIED = @as(u32, 3);
+pub const MD_ERROR_SUB404_DENIED_BY_FILTERING_RULE = @as(u32, 19);
+pub const MD_ERROR_SUB404_DENIED_BY_MIMEMAP = @as(u32, 3);
+pub const MD_ERROR_SUB404_DENIED_BY_POLICY = @as(u32, 2);
+pub const MD_ERROR_SUB404_FILE_ATTRIBUTE_HIDDEN = @as(u32, 9);
+pub const MD_ERROR_SUB404_FILE_EXTENSION_DENIED = @as(u32, 7);
+pub const MD_ERROR_SUB404_HIDDEN_SEGMENT = @as(u32, 8);
+pub const MD_ERROR_SUB404_NO_HANDLER = @as(u32, 4);
+pub const MD_ERROR_SUB404_PRECONDITIONED_HANDLER = @as(u32, 17);
+pub const MD_ERROR_SUB404_QUERY_STRING_SEQUENCE_DENIED = @as(u32, 18);
+pub const MD_ERROR_SUB404_QUERY_STRING_TOO_LONG = @as(u32, 15);
+pub const MD_ERROR_SUB404_SITE_NOT_FOUND = @as(u32, 1);
+pub const MD_ERROR_SUB404_STATICFILE_DAV = @as(u32, 16);
+pub const MD_ERROR_SUB404_TOO_MANY_URL_SEGMENTS = @as(u32, 20);
+pub const MD_ERROR_SUB404_URL_DOUBLE_ESCAPED = @as(u32, 11);
+pub const MD_ERROR_SUB404_URL_HAS_HIGH_BIT_CHARS = @as(u32, 12);
+pub const MD_ERROR_SUB404_URL_SEQUENCE_DENIED = @as(u32, 5);
+pub const MD_ERROR_SUB404_URL_TOO_LONG = @as(u32, 14);
+pub const MD_ERROR_SUB404_VERB_DENIED = @as(u32, 6);
+pub const MD_ERROR_SUB413_CONTENT_LENGTH_TOO_LARGE = @as(u32, 1);
+pub const MD_ERROR_SUB423_LOCK_TOKEN_SUBMITTED = @as(u32, 1);
+pub const MD_ERROR_SUB423_NO_CONFLICTING_LOCK = @as(u32, 2);
+pub const MD_ERROR_SUB500_ASPNET_HANDLERS = @as(u32, 23);
+pub const MD_ERROR_SUB500_ASPNET_IMPERSONATION = @as(u32, 24);
+pub const MD_ERROR_SUB500_ASPNET_MODULES = @as(u32, 22);
+pub const MD_ERROR_SUB500_BAD_METADATA = @as(u32, 19);
+pub const MD_ERROR_SUB500_HANDLERS_MODULE = @as(u32, 21);
+pub const MD_ERROR_SUB500_UNC_ACCESS = @as(u32, 16);
+pub const MD_ERROR_SUB500_URLAUTH_NO_SCOPE = @as(u32, 20);
+pub const MD_ERROR_SUB500_URLAUTH_NO_STORE = @as(u32, 17);
+pub const MD_ERROR_SUB500_URLAUTH_STORE_ERROR = @as(u32, 18);
+pub const MD_ERROR_SUB502_ARR_CONNECTION_ERROR = @as(u32, 3);
+pub const MD_ERROR_SUB502_ARR_NO_SERVER = @as(u32, 4);
+pub const MD_ERROR_SUB502_PREMATURE_EXIT = @as(u32, 2);
+pub const MD_ERROR_SUB502_TIMEOUT = @as(u32, 1);
+pub const MD_ERROR_SUB503_APP_CONCURRENT = @as(u32, 2);
+pub const MD_ERROR_SUB503_ASPNET_QUEUE_FULL = @as(u32, 3);
+pub const MD_ERROR_SUB503_CONNECTION_LIMIT = @as(u32, 5);
+pub const MD_ERROR_SUB503_CPU_LIMIT = @as(u32, 1);
+pub const MD_ERROR_SUB503_FASTCGI_QUEUE_FULL = @as(u32, 4);
+pub const MD_EXIT_MESSAGE = @as(u32, 5001);
+pub const MD_EXPORT_INHERITED = @as(u32, 1);
+pub const MD_EXPORT_NODE_ONLY = @as(u32, 2);
+pub const MD_EXTLOG_BYTES_RECV = @as(u32, 8192);
+pub const MD_EXTLOG_BYTES_SENT = @as(u32, 4096);
+pub const MD_EXTLOG_CLIENT_IP = @as(u32, 4);
+pub const MD_EXTLOG_COMPUTER_NAME = @as(u32, 32);
+pub const MD_EXTLOG_COOKIE = @as(u32, 131072);
+pub const MD_EXTLOG_DATE = @as(u32, 1);
+pub const MD_EXTLOG_HOST = @as(u32, 1048576);
+pub const MD_EXTLOG_HTTP_STATUS = @as(u32, 1024);
+pub const MD_EXTLOG_HTTP_SUB_STATUS = @as(u32, 2097152);
+pub const MD_EXTLOG_METHOD = @as(u32, 128);
+pub const MD_EXTLOG_PROTOCOL_VERSION = @as(u32, 524288);
+pub const MD_EXTLOG_REFERER = @as(u32, 262144);
+pub const MD_EXTLOG_SERVER_IP = @as(u32, 64);
+pub const MD_EXTLOG_SERVER_PORT = @as(u32, 32768);
+pub const MD_EXTLOG_SITE_NAME = @as(u32, 16);
+pub const MD_EXTLOG_TIME = @as(u32, 2);
+pub const MD_EXTLOG_TIME_TAKEN = @as(u32, 16384);
+pub const MD_EXTLOG_URI_QUERY = @as(u32, 512);
+pub const MD_EXTLOG_URI_STEM = @as(u32, 256);
+pub const MD_EXTLOG_USER_AGENT = @as(u32, 65536);
+pub const MD_EXTLOG_USERNAME = @as(u32, 8);
+pub const MD_EXTLOG_WIN32_STATUS = @as(u32, 2048);
+pub const MD_FILTER_DESCRIPTION = @as(u32, 2045);
+pub const MD_FILTER_ENABLE_CACHE = @as(u32, 2046);
+pub const MD_FILTER_ENABLED = @as(u32, 2043);
+pub const MD_FILTER_FLAGS = @as(u32, 2044);
+pub const MD_FILTER_IMAGE_PATH = @as(u32, 2041);
+pub const MD_FILTER_LOAD_ORDER = @as(u32, 2040);
+pub const MD_FILTER_STATE = @as(u32, 2042);
+pub const MD_FILTER_STATE_LOADED = @as(u32, 1);
+pub const MD_FILTER_STATE_UNLOADED = @as(u32, 4);
+pub const MD_FOOTER_DOCUMENT = @as(u32, 6009);
+pub const MD_FOOTER_ENABLED = @as(u32, 6010);
+pub const MD_FRONTPAGE_WEB = @as(u32, 2072);
+pub const MD_FTP_KEEP_PARTIAL_UPLOADS = @as(u32, 5019);
+pub const MD_FTP_LOG_IN_UTF_8 = @as(u32, 5013);
+pub const MD_FTP_PASV_RESPONSE_IP = @as(u32, 5018);
+pub const MD_FTP_UTF8_FILE_NAMES = @as(u32, 5020);
+pub const MD_FTPS_128_BITS = @as(u32, 5053);
+pub const MD_FTPS_ALLOW_CCC = @as(u32, 5054);
+pub const MD_FTPS_SECURE_ANONYMOUS = @as(u32, 5052);
+pub const MD_FTPS_SECURE_CONTROL_CHANNEL = @as(u32, 5050);
+pub const MD_FTPS_SECURE_DATA_CHANNEL = @as(u32, 5051);
+pub const MD_GLOBAL_BINARY_LOGGING_ENABLED = @as(u32, 4016);
+pub const MD_GLOBAL_BINSCHEMATIMESTAMP = @as(u32, 9991);
+pub const MD_GLOBAL_CHANGE_NUMBER = @as(u32, 9997);
+pub const MD_GLOBAL_EDIT_WHILE_RUNNING_MAJOR_VERSION_NUMBER = @as(u32, 9994);
+pub const MD_GLOBAL_EDIT_WHILE_RUNNING_MINOR_VERSION_NUMBER = @as(u32, 9993);
+pub const MD_GLOBAL_LOG_IN_UTF_8 = @as(u32, 9206);
+pub const MD_GLOBAL_SESSIONKEY = @as(u32, 9999);
+pub const MD_GLOBAL_STANDARD_APP_MODE_ENABLED = @as(u32, 9203);
+pub const MD_GLOBAL_XMLSCHEMATIMESTAMP = @as(u32, 9992);
+pub const MD_GREETING_MESSAGE = @as(u32, 5002);
+pub const MD_HC_CACHE_CONTROL_HEADER = @as(u32, 2211);
+pub const MD_HC_COMPRESSION_BUFFER_SIZE = @as(u32, 2223);
+pub const MD_HC_COMPRESSION_DIRECTORY = @as(u32, 2210);
+pub const MD_HC_COMPRESSION_DLL = @as(u32, 2237);
+pub const MD_HC_CREATE_FLAGS = @as(u32, 2243);
+pub const MD_HC_DO_DISK_SPACE_LIMITING = @as(u32, 2216);
+pub const MD_HC_DO_DYNAMIC_COMPRESSION = @as(u32, 2213);
+pub const MD_HC_DO_NAMESPACE_DYNAMIC_COMPRESSION = @as(u32, 2255);
+pub const MD_HC_DO_NAMESPACE_STATIC_COMPRESSION = @as(u32, 2256);
+pub const MD_HC_DO_ON_DEMAND_COMPRESSION = @as(u32, 2215);
+pub const MD_HC_DO_STATIC_COMPRESSION = @as(u32, 2214);
+pub const MD_HC_DYNAMIC_COMPRESSION_LEVEL = @as(u32, 2241);
+pub const MD_HC_EXPIRES_HEADER = @as(u32, 2212);
+pub const MD_HC_FILE_EXTENSIONS = @as(u32, 2238);
+pub const MD_HC_FILES_DELETED_PER_DISK_FREE = @as(u32, 2225);
+pub const MD_HC_IO_BUFFER_SIZE = @as(u32, 2222);
+pub const MD_HC_MAX_DISK_SPACE_USAGE = @as(u32, 2221);
+pub const MD_HC_MAX_QUEUE_LENGTH = @as(u32, 2224);
+pub const MD_HC_MIME_TYPE = @as(u32, 2239);
+pub const MD_HC_MIN_FILE_SIZE_FOR_COMP = @as(u32, 2226);
+pub const MD_HC_NO_COMPRESSION_FOR_HTTP_10 = @as(u32, 2217);
+pub const MD_HC_NO_COMPRESSION_FOR_PROXIES = @as(u32, 2218);
+pub const MD_HC_NO_COMPRESSION_FOR_RANGE = @as(u32, 2219);
+pub const MD_HC_ON_DEMAND_COMP_LEVEL = @as(u32, 2242);
+pub const MD_HC_PRIORITY = @as(u32, 2240);
+pub const MD_HC_SCRIPT_FILE_EXTENSIONS = @as(u32, 2244);
+pub const MD_HC_SEND_CACHE_HEADERS = @as(u32, 2220);
+pub const MD_HEADER_WAIT_TIMEOUT = @as(u32, 9204);
+pub const MD_HISTORY_LATEST = @as(u32, 1);
+pub const MD_HTTP_CUSTOM = @as(u32, 6004);
+pub const MD_HTTP_EXPIRES = @as(u32, 6002);
+pub const MD_HTTP_FORWARDER_CUSTOM = @as(u32, 6054);
+pub const MD_HTTP_PICS = @as(u32, 6003);
+pub const MD_HTTP_REDIRECT = @as(u32, 6011);
+pub const MD_HTTPERRORS_EXISTING_RESPONSE = @as(u32, 6056);
+pub const MD_IISADMIN_EXTENSIONS = @as(u32, 1028);
+pub const MD_IMPORT_INHERITED = @as(u32, 1);
+pub const MD_IMPORT_MERGE = @as(u32, 4);
+pub const MD_IMPORT_NODE_ONLY = @as(u32, 2);
+pub const MD_IN_PROCESS_ISAPI_APPS = @as(u32, 2073);
+pub const MD_INSERT_PATH_STRING = "<%INSERT_PATH%>";
+pub const MD_INSERT_PATH_STRINGA = "<%INSERT_PATH%>";
+pub const MD_IP_SEC = @as(u32, 6019);
+pub const MD_IS_CONTENT_INDEXED = @as(u32, 6039);
+pub const MD_ISAPI_RESTRICTION_LIST = @as(u32, 2163);
+pub const MD_KEY_TYPE = @as(u32, 1002);
+pub const MD_LEVELS_TO_SCAN = @as(u32, 1022);
+pub const MD_LOAD_BALANCER_CAPABILITIES = @as(u32, 9034);
+pub const MD_LOAD_BALANCER_CAPABILITIES_BASIC = @as(u32, 1);
+pub const MD_LOAD_BALANCER_CAPABILITIES_SOPHISTICATED = @as(u32, 2);
+pub const MD_LOCATION = @as(u32, 9989);
+pub const MD_LOG_ANONYMOUS = @as(u32, 5007);
+pub const MD_LOG_NONANONYMOUS = @as(u32, 5008);
+pub const MD_LOG_PLUGIN_MOD_ID = @as(u32, 4005);
+pub const MD_LOG_PLUGIN_ORDER = @as(u32, 4011);
+pub const MD_LOG_PLUGIN_UI_ID = @as(u32, 4006);
+pub const MD_LOG_PLUGINS_AVAILABLE = @as(u32, 4012);
+pub const MD_LOG_TYPE = @as(u32, 4000);
+pub const MD_LOG_TYPE_DISABLED = @as(u32, 0);
+pub const MD_LOG_TYPE_ENABLED = @as(u32, 1);
+pub const MD_LOG_UNUSED1 = @as(u32, 4002);
+pub const MD_LOGCUSTOM_DATATYPE_DOUBLE = @as(u32, 5);
+pub const MD_LOGCUSTOM_DATATYPE_FLOAT = @as(u32, 4);
+pub const MD_LOGCUSTOM_DATATYPE_INT = @as(u32, 0);
+pub const MD_LOGCUSTOM_DATATYPE_LONG = @as(u32, 2);
+pub const MD_LOGCUSTOM_DATATYPE_LPSTR = @as(u32, 6);
+pub const MD_LOGCUSTOM_DATATYPE_LPWSTR = @as(u32, 7);
+pub const MD_LOGCUSTOM_DATATYPE_UINT = @as(u32, 1);
+pub const MD_LOGCUSTOM_DATATYPE_ULONG = @as(u32, 3);
+pub const MD_LOGCUSTOM_PROPERTY_DATATYPE = @as(u32, 4505);
+pub const MD_LOGCUSTOM_PROPERTY_HEADER = @as(u32, 4502);
+pub const MD_LOGCUSTOM_PROPERTY_ID = @as(u32, 4503);
+pub const MD_LOGCUSTOM_PROPERTY_MASK = @as(u32, 4504);
+pub const MD_LOGCUSTOM_PROPERTY_NAME = @as(u32, 4501);
+pub const MD_LOGCUSTOM_PROPERTY_NODE_ID = @as(u32, 4508);
+pub const MD_LOGCUSTOM_SERVICES_STRING = @as(u32, 4506);
+pub const MD_LOGEXT_FIELD_MASK = @as(u32, 4013);
+pub const MD_LOGEXT_FIELD_MASK2 = @as(u32, 4014);
+pub const MD_LOGFILE_DIRECTORY = @as(u32, 4001);
+pub const MD_LOGFILE_LOCALTIME_ROLLOVER = @as(u32, 4015);
+pub const MD_LOGFILE_PERIOD = @as(u32, 4003);
+pub const MD_LOGFILE_PERIOD_DAILY = @as(u32, 1);
+pub const MD_LOGFILE_PERIOD_HOURLY = @as(u32, 4);
+pub const MD_LOGFILE_PERIOD_MAXSIZE = @as(u32, 0);
+pub const MD_LOGFILE_PERIOD_MONTHLY = @as(u32, 3);
+pub const MD_LOGFILE_PERIOD_NONE = @as(u32, 0);
+pub const MD_LOGFILE_PERIOD_WEEKLY = @as(u32, 2);
+pub const MD_LOGFILE_TRUNCATE_SIZE = @as(u32, 4004);
+pub const MD_LOGON_BATCH = @as(u32, 1);
+pub const MD_LOGON_INTERACTIVE = @as(u32, 0);
+pub const MD_LOGON_METHOD = @as(u32, 6013);
+pub const MD_LOGON_NETWORK = @as(u32, 2);
+pub const MD_LOGON_NETWORK_CLEARTEXT = @as(u32, 3);
+pub const MD_LOGSQL_DATA_SOURCES = @as(u32, 4007);
+pub const MD_LOGSQL_PASSWORD = @as(u32, 4010);
+pub const MD_LOGSQL_TABLE_NAME = @as(u32, 4008);
+pub const MD_LOGSQL_USER_NAME = @as(u32, 4009);
+pub const MD_MAX_BANDWIDTH = @as(u32, 1000);
+pub const MD_MAX_BANDWIDTH_BLOCKED = @as(u32, 1003);
+pub const MD_MAX_CHANGE_ENTRIES = @as(u32, 100);
+pub const MD_MAX_CLIENTS_MESSAGE = @as(u32, 5003);
+pub const MD_MAX_CONNECTIONS = @as(u32, 1014);
+pub const MD_MAX_ENDPOINT_CONNECTIONS = @as(u32, 1024);
+pub const MD_MAX_ERROR_FILES = @as(u32, 9988);
+pub const MD_MAX_GLOBAL_BANDWIDTH = @as(u32, 9201);
+pub const MD_MAX_GLOBAL_CONNECTIONS = @as(u32, 9202);
+pub const MD_MAX_REQUEST_ENTITY_ALLOWED = @as(u32, 6051);
+pub const MD_MD_SERVER_SS_AUTH_MAPPING = @as(u32, 2200);
+pub const MD_METADATA_ID_REGISTRATION = @as(u32, 1030);
+pub const MD_MIME_MAP = @as(u32, 6015);
+pub const MD_MIN_FILE_BYTES_PER_SEC = @as(u32, 9205);
+pub const MD_MSDOS_DIR_OUTPUT = @as(u32, 5004);
+pub const MD_NET_LOGON_WKS = @as(u32, 2065);
+pub const MD_NETLOGON_WKS_DNS = @as(u32, 2);
+pub const MD_NETLOGON_WKS_IP = @as(u32, 1);
+pub const MD_NETLOGON_WKS_NONE = @as(u32, 0);
+pub const MD_NOT_DELETABLE = @as(u32, 2116);
+pub const MD_NOTIFEXAUTH_NTLMSSL = @as(u32, 1);
+pub const MD_NOTIFY_ACCESS_DENIED = @as(u32, 2048);
+pub const MD_NOTIFY_AUTH_COMPLETE = @as(u32, 67108864);
+pub const MD_NOTIFY_AUTHENTICATION = @as(u32, 8192);
+pub const MD_NOTIFY_END_OF_NET_SESSION = @as(u32, 256);
+pub const MD_NOTIFY_END_OF_REQUEST = @as(u32, 128);
+pub const MD_NOTIFY_LOG = @as(u32, 512);
+pub const MD_NOTIFY_NONSECURE_PORT = @as(u32, 2);
+pub const MD_NOTIFY_ORDER_DEFAULT = @as(u32, 131072);
+pub const MD_NOTIFY_ORDER_HIGH = @as(u32, 524288);
+pub const MD_NOTIFY_ORDER_LOW = @as(u32, 131072);
+pub const MD_NOTIFY_ORDER_MEDIUM = @as(u32, 262144);
+pub const MD_NOTIFY_PREPROC_HEADERS = @as(u32, 16384);
+pub const MD_NOTIFY_READ_RAW_DATA = @as(u32, 32768);
+pub const MD_NOTIFY_SECURE_PORT = @as(u32, 1);
+pub const MD_NOTIFY_SEND_RAW_DATA = @as(u32, 1024);
+pub const MD_NOTIFY_SEND_RESPONSE = @as(u32, 64);
+pub const MD_NOTIFY_URL_MAP = @as(u32, 4096);
+pub const MD_NTAUTHENTICATION_PROVIDERS = @as(u32, 6032);
+pub const MD_PASSIVE_PORT_RANGE = @as(u32, 5016);
+pub const MD_PASSPORT_NEED_MAPPING = @as(u32, 2);
+pub const MD_PASSPORT_NO_MAPPING = @as(u32, 0);
+pub const MD_PASSPORT_REQUIRE_AD_MAPPING = @as(u32, 6052);
+pub const MD_PASSPORT_TRY_MAPPING = @as(u32, 1);
+pub const MD_POOL_IDC_TIMEOUT = @as(u32, 6037);
+pub const MD_PROCESS_NTCR_IF_LOGGED_ON = @as(u32, 2070);
+pub const MD_PUT_READ_SIZE = @as(u32, 6046);
+pub const MD_RAPID_FAIL_PROTECTION_INTERVAL = @as(u32, 9029);
+pub const MD_RAPID_FAIL_PROTECTION_MAX_CRASHES = @as(u32, 9030);
+pub const MD_REALM = @as(u32, 6001);
+pub const MD_REDIRECT_HEADERS = @as(u32, 6044);
+pub const MD_RESTRICTION_LIST_CUSTOM_DESC = @as(u32, 2165);
+pub const MD_ROOT_ENABLE_EDIT_WHILE_RUNNING = @as(u32, 9998);
+pub const MD_ROOT_ENABLE_HISTORY = @as(u32, 9996);
+pub const MD_ROOT_MAX_HISTORY_FILES = @as(u32, 9995);
+pub const MD_SCHEMA_METAID = @as(u32, 1004);
+pub const MD_SCRIPT_MAPS = @as(u32, 6014);
+pub const MD_SCRIPT_TIMEOUT = @as(u32, 6033);
+pub const MD_SCRIPTMAPFLAG_ALLOWED_ON_READ_DIR = @as(u32, 1);
+pub const MD_SCRIPTMAPFLAG_CHECK_PATH_INFO = @as(u32, 4);
+pub const MD_SCRIPTMAPFLAG_SCRIPT = @as(u32, 1);
+pub const MD_SECURE_BINDINGS = @as(u32, 2021);
+pub const MD_SECURITY_SETUP_REQUIRED = @as(u32, 2166);
+pub const MD_SERVER_AUTOSTART = @as(u32, 1017);
+pub const MD_SERVER_BINDINGS = @as(u32, 1023);
+pub const MD_SERVER_COMMAND = @as(u32, 1012);
+pub const MD_SERVER_COMMAND_CONTINUE = @as(u32, 4);
+pub const MD_SERVER_COMMAND_PAUSE = @as(u32, 3);
+pub const MD_SERVER_COMMAND_START = @as(u32, 1);
+pub const MD_SERVER_COMMAND_STOP = @as(u32, 2);
+pub const MD_SERVER_COMMENT = @as(u32, 1015);
+pub const MD_SERVER_CONFIG_ALLOW_ENCRYPT = @as(u32, 4);
+pub const MD_SERVER_CONFIG_AUTO_PW_SYNC = @as(u32, 8);
+pub const MD_SERVER_CONFIG_SSL_128 = @as(u32, 2);
+pub const MD_SERVER_CONFIG_SSL_40 = @as(u32, 1);
+pub const MD_SERVER_CONFIGURATION_INFO = @as(u32, 1027);
+pub const MD_SERVER_LISTEN_BACKLOG = @as(u32, 1019);
+pub const MD_SERVER_LISTEN_TIMEOUT = @as(u32, 1020);
+pub const MD_SERVER_SIZE = @as(u32, 1018);
+pub const MD_SERVER_SIZE_LARGE = @as(u32, 2);
+pub const MD_SERVER_SIZE_MEDIUM = @as(u32, 1);
+pub const MD_SERVER_SIZE_SMALL = @as(u32, 0);
+pub const MD_SERVER_STATE = @as(u32, 1016);
+pub const MD_SERVER_STATE_CONTINUING = @as(u32, 7);
+pub const MD_SERVER_STATE_PAUSED = @as(u32, 6);
+pub const MD_SERVER_STATE_PAUSING = @as(u32, 5);
+pub const MD_SERVER_STATE_STARTED = @as(u32, 2);
+pub const MD_SERVER_STATE_STARTING = @as(u32, 1);
+pub const MD_SERVER_STATE_STOPPED = @as(u32, 4);
+pub const MD_SERVER_STATE_STOPPING = @as(u32, 3);
+pub const MD_SET_HOST_NAME = @as(u32, 2154);
+pub const MD_SHOW_4_DIGIT_YEAR = @as(u32, 5010);
+pub const MD_SSI_EXEC_DISABLED = @as(u32, 6028);
+pub const MD_SSL_ACCESS_PERM = @as(u32, 6030);
+pub const MD_SSL_ALWAYS_NEGO_CLIENT_CERT = @as(u32, 5521);
+pub const MD_SSL_KEY_PASSWORD = @as(u32, 5502);
+pub const MD_SSL_KEY_REQUEST = @as(u32, 5503);
+pub const MD_SSL_PRIVATE_KEY = @as(u32, 5501);
+pub const MD_SSL_PUBLIC_KEY = @as(u32, 5500);
+pub const MD_SSL_USE_DS_MAPPER = @as(u32, 5519);
+pub const MD_STOP_LISTENING = @as(u32, 9987);
+pub const MD_SUPPRESS_DEFAULT_BANNER = @as(u32, 5017);
+pub const MD_UPLOAD_READAHEAD_SIZE = @as(u32, 6045);
+pub const MD_URL_AUTHORIZATION_IMPERSONATION_LEVEL = @as(u32, 6053);
+pub const MD_URL_AUTHORIZATION_SCOPE_NAME = @as(u32, 6050);
+pub const MD_URL_AUTHORIZATION_STORE_NAME = @as(u32, 6049);
+pub const MD_USE_DIGEST_SSP = @as(u32, 6047);
+pub const MD_USE_HOST_NAME = @as(u32, 2066);
+pub const MD_USER_ISOLATION = @as(u32, 5012);
+pub const MD_USER_ISOLATION_AD = @as(u32, 2);
+pub const MD_USER_ISOLATION_BASIC = @as(u32, 1);
+pub const MD_USER_ISOLATION_LAST = @as(u32, 2);
+pub const MD_USER_ISOLATION_NONE = @as(u32, 0);
+pub const MD_VR_IGNORE_TRANSLATE = @as(u32, 3008);
+pub const MD_VR_NO_CACHE = @as(u32, 3007);
+pub const MD_VR_PASSTHROUGH = @as(u32, 3006);
+pub const MD_VR_PASSWORD = @as(u32, 3003);
+pub const MD_VR_PATH = @as(u32, 3001);
+pub const MD_VR_USERNAME = @as(u32, 3002);
+pub const MD_WAM_PWD = @as(u32, 7502);
+pub const MD_WAM_USER_NAME = @as(u32, 7501);
+pub const MD_WARNING_DUP_NAME = @as(i32, 837636);
+pub const MD_WARNING_INVALID_DATA = @as(i32, 837637);
+pub const MD_WARNING_PATH_NOT_FOUND = @as(i32, 837635);
+pub const MD_WARNING_PATH_NOT_INSERTED = @as(i32, 837639);
+pub const MD_WARNING_SAVE_FAILED = @as(i32, 837641);
+pub const MD_WEB_SVC_EXT_RESTRICTION_LIST = @as(u32, 2168);
+pub const MD_WEBDAV_MAX_ATTRIBUTES_PER_ELEMENT = @as(u32, 8501);
+pub const MD_WIN32_ERROR = @as(u32, 1099);
+pub const METADATA_DONT_EXPAND = @as(u32, 512);
+pub const METADATA_INHERIT = @as(u32, 1);
+pub const METADATA_INSERT_PATH = @as(u32, 64);
+pub const METADATA_ISINHERITED = @as(u32, 32);
+pub const METADATA_LOCAL_MACHINE_ONLY = @as(u32, 128);
+pub const METADATA_MASTER_ROOT_HANDLE = @as(u32, 0);
+pub const METADATA_MAX_NAME_LEN = @as(u32, 256);
+pub const METADATA_NO_ATTRIBUTES = @as(u32, 0);
+pub const METADATA_NON_SECURE_ONLY = @as(u32, 256);
+pub const METADATA_PARTIAL_PATH = @as(u32, 2);
+pub const METADATA_PERMISSION_READ = @as(u32, 1);
+pub const METADATA_PERMISSION_WRITE = @as(u32, 2);
+pub const METADATA_REFERENCE = @as(u32, 8);
+pub const METADATA_SECURE = @as(u32, 4);
+pub const METADATA_VOLATILE = @as(u32, 16);
+pub const MSCS_MD_ID_BEGIN_RESERVED = @as(u32, 53248);
+pub const MSCS_MD_ID_END_RESERVED = @as(u32, 57343);
+pub const NNTP_MD_ID_BEGIN_RESERVED = @as(u32, 45056);
+pub const NNTP_MD_ID_END_RESERVED = @as(u32, 49151);
+pub const POP3_MD_ID_BEGIN_RESERVED = @as(u32, 40960);
+pub const POP3_MD_ID_END_RESERVED = @as(u32, 45055);
 pub const SF_DENIED_APPLICATION = @as(u32, 8);
 pub const SF_DENIED_BY_CONFIG = @as(u32, 65536);
-pub const SF_NOTIFY_SECURE_PORT = @as(u32, 1);
-pub const SF_NOTIFY_NONSECURE_PORT = @as(u32, 2);
-pub const SF_NOTIFY_READ_RAW_DATA = @as(u32, 32768);
-pub const SF_NOTIFY_PREPROC_HEADERS = @as(u32, 16384);
-pub const SF_NOTIFY_AUTHENTICATION = @as(u32, 8192);
-pub const SF_NOTIFY_URL_MAP = @as(u32, 4096);
+pub const SF_DENIED_FILTER = @as(u32, 4);
+pub const SF_DENIED_LOGON = @as(u32, 1);
+pub const SF_DENIED_RESOURCE = @as(u32, 2);
+pub const SF_MAX_AUTH_TYPE = @as(u32, 33);
+pub const SF_MAX_FILTER_DESC_LEN = @as(u32, 257);
+pub const SF_MAX_PASSWORD = @as(u32, 257);
+pub const SF_MAX_USERNAME = @as(u32, 257);
 pub const SF_NOTIFY_ACCESS_DENIED = @as(u32, 2048);
-pub const SF_NOTIFY_SEND_RESPONSE = @as(u32, 64);
-pub const SF_NOTIFY_SEND_RAW_DATA = @as(u32, 1024);
-pub const SF_NOTIFY_LOG = @as(u32, 512);
-pub const SF_NOTIFY_END_OF_REQUEST = @as(u32, 128);
-pub const SF_NOTIFY_END_OF_NET_SESSION = @as(u32, 256);
 pub const SF_NOTIFY_AUTH_COMPLETE = @as(u32, 67108864);
-pub const SF_NOTIFY_ORDER_HIGH = @as(u32, 524288);
-pub const SF_NOTIFY_ORDER_MEDIUM = @as(u32, 262144);
-pub const SF_NOTIFY_ORDER_LOW = @as(u32, 131072);
+pub const SF_NOTIFY_AUTHENTICATION = @as(u32, 8192);
+pub const SF_NOTIFY_END_OF_NET_SESSION = @as(u32, 256);
+pub const SF_NOTIFY_END_OF_REQUEST = @as(u32, 128);
+pub const SF_NOTIFY_LOG = @as(u32, 512);
+pub const SF_NOTIFY_NONSECURE_PORT = @as(u32, 2);
 pub const SF_NOTIFY_ORDER_DEFAULT = @as(u32, 131072);
-pub const DISPID_HTTPREQUEST_BASE = @as(u32, 1);
-pub const DISPID_HTTPREQUEST_OPEN = @as(u32, 1);
-pub const DISPID_HTTPREQUEST_SETREQUESTHEADER = @as(u32, 2);
-pub const DISPID_HTTPREQUEST_GETRESPONSEHEADER = @as(u32, 3);
-pub const DISPID_HTTPREQUEST_GETALLRESPONSEHEADERS = @as(u32, 4);
-pub const DISPID_HTTPREQUEST_SEND = @as(u32, 5);
-pub const DISPID_HTTPREQUEST_OPTION = @as(u32, 6);
-pub const DISPID_HTTPREQUEST_STATUS = @as(u32, 7);
-pub const DISPID_HTTPREQUEST_STATUSTEXT = @as(u32, 8);
-pub const DISPID_HTTPREQUEST_RESPONSETEXT = @as(u32, 9);
-pub const DISPID_HTTPREQUEST_RESPONSEBODY = @as(u32, 10);
-pub const DISPID_HTTPREQUEST_RESPONSESTREAM = @as(u32, 11);
-pub const DISPID_HTTPREQUEST_ABORT = @as(u32, 12);
-pub const DISPID_HTTPREQUEST_SETPROXY = @as(u32, 13);
-pub const DISPID_HTTPREQUEST_SETCREDENTIALS = @as(u32, 14);
-pub const DISPID_HTTPREQUEST_WAITFORRESPONSE = @as(u32, 15);
-pub const DISPID_HTTPREQUEST_SETTIMEOUTS = @as(u32, 16);
-pub const DISPID_HTTPREQUEST_SETCLIENTCERTIFICATE = @as(u32, 17);
-pub const DISPID_HTTPREQUEST_SETAUTOLOGONPOLICY = @as(u32, 18);
-pub const HTTP_TRACE_EVENT_FLAG_STATIC_DESCRIPTIVE_FIELDS = @as(u32, 1);
-pub const HTTP_TRACE_LEVEL_START = @as(u32, 6);
-pub const HTTP_TRACE_LEVEL_END = @as(u32, 7);
-pub const GUID_IIS_ALL_TRACE_PROVIDERS = Guid.initString("00000000-0000-0000-0000-000000000000");
-pub const GUID_IIS_WWW_SERVER_TRACE_PROVIDER = Guid.initString("3a2a4e84-4c21-4981-ae10-3fda0d9b0f83");
-pub const GUID_IIS_WWW_SERVER_V2_TRACE_PROVIDER = Guid.initString("de4649c9-15e8-4fea-9d85-1cdda520c334");
-pub const GUID_IIS_ASPNET_TRACE_PROVIDER = Guid.initString("aff081fe-0247-4275-9c4e-021f3dc1da35");
-pub const GUID_IIS_ASP_TRACE_TRACE_PROVIDER = Guid.initString("06b94d9a-b15e-456e-a4ef-37c984a2cb4b");
-pub const GUID_IIS_WWW_GLOBAL_TRACE_PROVIDER = Guid.initString("d55d3bc9-cba9-44df-827e-132d3a4596c2");
-pub const GUID_IIS_ISAPI_TRACE_PROVIDER = Guid.initString("a1c2040e-8840-4c31-ba11-9871031a19ea");
-pub const WEB_CORE_DLL_NAME = "hwebcore.dll";
+pub const SF_NOTIFY_ORDER_HIGH = @as(u32, 524288);
+pub const SF_NOTIFY_ORDER_LOW = @as(u32, 131072);
+pub const SF_NOTIFY_ORDER_MEDIUM = @as(u32, 262144);
+pub const SF_NOTIFY_PREPROC_HEADERS = @as(u32, 16384);
+pub const SF_NOTIFY_READ_RAW_DATA = @as(u32, 32768);
+pub const SF_NOTIFY_SECURE_PORT = @as(u32, 1);
+pub const SF_NOTIFY_SEND_RAW_DATA = @as(u32, 1024);
+pub const SF_NOTIFY_SEND_RESPONSE = @as(u32, 64);
+pub const SF_NOTIFY_URL_MAP = @as(u32, 4096);
+pub const SMTP_MD_ID_BEGIN_RESERVED = @as(u32, 36864);
+pub const SMTP_MD_ID_END_RESERVED = @as(u32, 40959);
+pub const USER_MD_ID_BASE_RESERVED = @as(u32, 65535);
+pub const WAM_MD_ID_BEGIN_RESERVED = @as(u32, 29952);
+pub const WAM_MD_ID_END_RESERVED = @as(u32, 32767);
+pub const WAM_MD_SERVER_BASE = @as(u32, 7500);
 pub const WEB_CORE_ACTIVATE_DLL_ENTRY = "WebCoreActivate";
-pub const WEB_CORE_SHUTDOWN_DLL_ENTRY = "WebCoreShutdown";
+pub const WEB_CORE_DLL_NAME = "hwebcore.dll";
 pub const WEB_CORE_SET_METADATA_DLL_ENTRY = "WebCoreSetMetadata";
+pub const WEB_CORE_SHUTDOWN_DLL_ENTRY = "WebCoreShutdown";
+pub const WEBDAV_MD_SERVER_BASE = @as(u32, 8500);
 
 //--------------------------------------------------------------------------------
 // Section: Types (79)
 //--------------------------------------------------------------------------------
-const CLSID_FtpProvider_Value = Guid.initString("70bdc667-33b2-45f0-ac52-c3ca46f7a656");
-pub const CLSID_FtpProvider = &CLSID_FtpProvider_Value;
-
-pub const CONFIGURATION_ENTRY = extern struct {
-    bstrKey: ?BSTR,
-    bstrValue: ?BSTR,
-};
-
-const IID_IFtpProviderConstruct_Value = Guid.initString("4d1a3f7b-412d-447c-b199-64f967e9a2da");
-pub const IID_IFtpProviderConstruct = &IID_IFtpProviderConstruct_Value;
-pub const IFtpProviderConstruct = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Construct: *const fn(
-            self: *const IFtpProviderConstruct,
-            configurationEntries: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Construct(self: *const IFtpProviderConstruct, configurationEntries: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.Construct(self, configurationEntries);
-    }
-};
-
-const IID_IFtpAuthenticationProvider_Value = Guid.initString("4659f95c-d5a8-4707-b2fc-6fd5794246cf");
-pub const IID_IFtpAuthenticationProvider = &IID_IFtpAuthenticationProvider_Value;
-pub const IFtpAuthenticationProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AuthenticateUser: *const fn(
-            self: *const IFtpAuthenticationProvider,
-            pszSessionId: ?[*:0]const u16,
-            pszSiteName: ?[*:0]const u16,
-            pszUserName: ?[*:0]const u16,
-            pszPassword: ?[*:0]const u16,
-            ppszCanonicalUserName: ?*?PWSTR,
-            pfAuthenticated: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AuthenticateUser(self: *const IFtpAuthenticationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AuthenticateUser(self, pszSessionId, pszSiteName, pszUserName, pszPassword, ppszCanonicalUserName, pfAuthenticated);
-    }
+pub const _IIS_CRYPTO_BLOB = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_AsyncIFtpAuthenticationProvider_Value = Guid.initString("c24efb65-9f3e-4996-8fb1-ce166916bab5");
@@ -1010,24 +967,127 @@ pub const AsyncIFtpAuthenticationProvider = extern union {
     }
 };
 
-const IID_IFtpRoleProvider_Value = Guid.initString("909c850d-8ca0-4674-96b8-cc2941535725");
-pub const IID_IFtpRoleProvider = &IID_IFtpRoleProvider_Value;
-pub const IFtpRoleProvider = extern union {
+const IID_AsyncIFtpAuthorizationProvider_Value = Guid.initString("860dc339-07e5-4a5c-9c61-8820cea012bc");
+pub const IID_AsyncIFtpAuthorizationProvider = &IID_AsyncIFtpAuthorizationProvider_Value;
+pub const AsyncIFtpAuthorizationProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsUserInRole: *const fn(
-            self: *const IFtpRoleProvider,
+        Begin_GetUserAccessPermission: *const fn(
+            self: *const AsyncIFtpAuthorizationProvider,
             pszSessionId: ?[*:0]const u16,
             pszSiteName: ?[*:0]const u16,
+            pszVirtualPath: ?[*:0]const u16,
             pszUserName: ?[*:0]const u16,
-            pszRole: ?[*:0]const u16,
-            pfIsInRole: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        Finish_GetUserAccessPermission: *const fn(
+            self: *const AsyncIFtpAuthorizationProvider,
+            pFtpAccess: ?*FTP_ACCESS,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsUserInRole(self: *const IFtpRoleProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszRole: ?[*:0]const u16, pfIsInRole: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsUserInRole(self, pszSessionId, pszSiteName, pszUserName, pszRole, pfIsInRole);
+    pub fn Begin_GetUserAccessPermission(self: *const AsyncIFtpAuthorizationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_GetUserAccessPermission(self, pszSessionId, pszSiteName, pszVirtualPath, pszUserName);
+    }
+    pub fn Finish_GetUserAccessPermission(self: *const AsyncIFtpAuthorizationProvider, pFtpAccess: ?*FTP_ACCESS) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_GetUserAccessPermission(self, pFtpAccess);
+    }
+};
+
+const IID_AsyncIFtpHomeDirectoryProvider_Value = Guid.initString("73f81638-6295-42bd-a2be-4a657f7c479c");
+pub const IID_AsyncIFtpHomeDirectoryProvider = &IID_AsyncIFtpHomeDirectoryProvider_Value;
+pub const AsyncIFtpHomeDirectoryProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin_GetUserHomeDirectoryData: *const fn(
+            self: *const AsyncIFtpHomeDirectoryProvider,
+            pszSessionId: ?[*:0]const u16,
+            pszSiteName: ?[*:0]const u16,
+            pszUserName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Finish_GetUserHomeDirectoryData: *const fn(
+            self: *const AsyncIFtpHomeDirectoryProvider,
+            ppszHomeDirectoryData: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Begin_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_GetUserHomeDirectoryData(self, pszSessionId, pszSiteName, pszUserName);
+    }
+    pub fn Finish_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, ppszHomeDirectoryData: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_GetUserHomeDirectoryData(self, ppszHomeDirectoryData);
+    }
+};
+
+const IID_AsyncIFtpLogProvider_Value = Guid.initString("00a0ae46-2498-48b2-95e6-df678ed7d49f");
+pub const IID_AsyncIFtpLogProvider = &IID_AsyncIFtpLogProvider_Value;
+pub const AsyncIFtpLogProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin_Log: *const fn(
+            self: *const AsyncIFtpLogProvider,
+            pLoggingParameters: ?*const LOGGING_PARAMETERS,
+        ) callconv(.winapi) HRESULT,
+        Finish_Log: *const fn(
+            self: *const AsyncIFtpLogProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Begin_Log(self: *const AsyncIFtpLogProvider, pLoggingParameters: ?*const LOGGING_PARAMETERS) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_Log(self, pLoggingParameters);
+    }
+    pub fn Finish_Log(self: *const AsyncIFtpLogProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_Log(self);
+    }
+};
+
+const IID_AsyncIFtpPostprocessProvider_Value = Guid.initString("a16b2542-9694-4eb1-a564-6c2e91fdc133");
+pub const IID_AsyncIFtpPostprocessProvider = &IID_AsyncIFtpPostprocessProvider_Value;
+pub const AsyncIFtpPostprocessProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin_HandlePostprocess: *const fn(
+            self: *const AsyncIFtpPostprocessProvider,
+            pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS,
+        ) callconv(.winapi) HRESULT,
+        Finish_HandlePostprocess: *const fn(
+            self: *const AsyncIFtpPostprocessProvider,
+            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Begin_HandlePostprocess(self: *const AsyncIFtpPostprocessProvider, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_HandlePostprocess(self, pPostProcessParameters);
+    }
+    pub fn Finish_HandlePostprocess(self: *const AsyncIFtpPostprocessProvider, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_HandlePostprocess(self, pFtpProcessStatus);
+    }
+};
+
+const IID_AsyncIFtpPreprocessProvider_Value = Guid.initString("6ff5fd8f-fd8e-48b1-a3e0-bf7073db4db5");
+pub const IID_AsyncIFtpPreprocessProvider = &IID_AsyncIFtpPreprocessProvider_Value;
+pub const AsyncIFtpPreprocessProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin_HandlePreprocess: *const fn(
+            self: *const AsyncIFtpPreprocessProvider,
+            pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS,
+        ) callconv(.winapi) HRESULT,
+        Finish_HandlePreprocess: *const fn(
+            self: *const AsyncIFtpPreprocessProvider,
+            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Begin_HandlePreprocess(self: *const AsyncIFtpPreprocessProvider, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_HandlePreprocess(self, pPreProcessParameters);
+    }
+    pub fn Finish_HandlePreprocess(self: *const AsyncIFtpPreprocessProvider, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_HandlePreprocess(self, pFtpProcessStatus);
     }
 };
 
@@ -1058,111 +1118,71 @@ pub const AsyncIFtpRoleProvider = extern union {
     }
 };
 
-const IID_IFtpHomeDirectoryProvider_Value = Guid.initString("0933b392-18dd-4097-8b9c-83325c35d9a6");
-pub const IID_IFtpHomeDirectoryProvider = &IID_IFtpHomeDirectoryProvider_Value;
-pub const IFtpHomeDirectoryProvider = extern union {
+const IID_AsyncIMSAdminBaseSinkW_Value = Guid.initString("a9e69613-b80d-11d0-b9b9-00a0c922e750");
+pub const IID_AsyncIMSAdminBaseSinkW = &IID_AsyncIMSAdminBaseSinkW_Value;
+pub const AsyncIMSAdminBaseSinkW = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetUserHomeDirectoryData: *const fn(
-            self: *const IFtpHomeDirectoryProvider,
-            pszSessionId: ?[*:0]const u16,
-            pszSiteName: ?[*:0]const u16,
-            pszUserName: ?[*:0]const u16,
-            ppszHomeDirectoryData: ?*?PWSTR,
+        Begin_SinkNotify: *const fn(
+            self: *const AsyncIMSAdminBaseSinkW,
+            dwMDNumElements: u32,
+            pcoChangeList: [*]MD_CHANGE_OBJECT_W,
+        ) callconv(.winapi) HRESULT,
+        Finish_SinkNotify: *const fn(
+            self: *const AsyncIMSAdminBaseSinkW,
+        ) callconv(.winapi) HRESULT,
+        Begin_ShutdownNotify: *const fn(
+            self: *const AsyncIMSAdminBaseSinkW,
+        ) callconv(.winapi) HRESULT,
+        Finish_ShutdownNotify: *const fn(
+            self: *const AsyncIMSAdminBaseSinkW,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUserHomeDirectoryData(self: *const IFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, ppszHomeDirectoryData: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUserHomeDirectoryData(self, pszSessionId, pszSiteName, pszUserName, ppszHomeDirectoryData);
+    pub fn Begin_SinkNotify(self: *const AsyncIMSAdminBaseSinkW, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_SinkNotify(self, dwMDNumElements, pcoChangeList);
+    }
+    pub fn Finish_SinkNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_SinkNotify(self);
+    }
+    pub fn Begin_ShutdownNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
+        return self.vtable.Begin_ShutdownNotify(self);
+    }
+    pub fn Finish_ShutdownNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
+        return self.vtable.Finish_ShutdownNotify(self);
     }
 };
 
-const IID_AsyncIFtpHomeDirectoryProvider_Value = Guid.initString("73f81638-6295-42bd-a2be-4a657f7c479c");
-pub const IID_AsyncIFtpHomeDirectoryProvider = &IID_AsyncIFtpHomeDirectoryProvider_Value;
-pub const AsyncIFtpHomeDirectoryProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_GetUserHomeDirectoryData: *const fn(
-            self: *const AsyncIFtpHomeDirectoryProvider,
-            pszSessionId: ?[*:0]const u16,
-            pszSiteName: ?[*:0]const u16,
-            pszUserName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Finish_GetUserHomeDirectoryData: *const fn(
-            self: *const AsyncIFtpHomeDirectoryProvider,
-            ppszHomeDirectoryData: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_GetUserHomeDirectoryData(self, pszSessionId, pszSiteName, pszUserName);
-    }
-    pub fn Finish_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, ppszHomeDirectoryData: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_GetUserHomeDirectoryData(self, ppszHomeDirectoryData);
-    }
+pub const CERT_CONTEXT_EX = extern struct {
+    CertContext: CERT_CONTEXT,
+    cbAllocated: u32,
+    dwCertificateFlags: u32,
 };
 
-pub const LOGGING_PARAMETERS = extern struct {
-    pszSessionId: ?[*:0]const u16,
-    pszSiteName: ?[*:0]const u16,
-    pszUserName: ?[*:0]const u16,
-    pszHostName: ?[*:0]const u16,
-    pszRemoteIpAddress: ?[*:0]const u16,
-    dwRemoteIpPort: u32,
-    pszLocalIpAddress: ?[*:0]const u16,
-    dwLocalIpPort: u32,
-    BytesSent: u64,
-    BytesReceived: u64,
-    pszCommand: ?[*:0]const u16,
-    pszCommandParameters: ?[*:0]const u16,
-    pszFullPath: ?[*:0]const u16,
-    dwElapsedMilliseconds: u32,
-    FtpStatus: u32,
-    FtpSubStatus: u32,
-    hrStatus: HRESULT,
-    pszInformation: ?[*:0]const u16,
+pub const CONFIGURATION_ENTRY = extern struct {
+    bstrKey: ?BSTR,
+    bstrValue: ?BSTR,
 };
 
-const IID_IFtpLogProvider_Value = Guid.initString("a18a94cc-8299-4408-816c-7c3baca1a40e");
-pub const IID_IFtpLogProvider = &IID_IFtpLogProvider_Value;
-pub const IFtpLogProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Log: *const fn(
-            self: *const IFtpLogProvider,
-            pLoggingParameters: ?*const LOGGING_PARAMETERS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Log(self: *const IFtpLogProvider, pLoggingParameters: ?*const LOGGING_PARAMETERS) callconv(.@"inline") HRESULT {
-        return self.vtable.Log(self, pLoggingParameters);
-    }
-};
-
-const IID_AsyncIFtpLogProvider_Value = Guid.initString("00a0ae46-2498-48b2-95e6-df678ed7d49f");
-pub const IID_AsyncIFtpLogProvider = &IID_AsyncIFtpLogProvider_Value;
-pub const AsyncIFtpLogProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_Log: *const fn(
-            self: *const AsyncIFtpLogProvider,
-            pLoggingParameters: ?*const LOGGING_PARAMETERS,
-        ) callconv(.winapi) HRESULT,
-        Finish_Log: *const fn(
-            self: *const AsyncIFtpLogProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_Log(self: *const AsyncIFtpLogProvider, pLoggingParameters: ?*const LOGGING_PARAMETERS) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_Log(self, pLoggingParameters);
-    }
-    pub fn Finish_Log(self: *const AsyncIFtpLogProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_Log(self);
-    }
+pub const EXTENSION_CONTROL_BLOCK = extern struct {
+    cbSize: u32,
+    dwVersion: u32,
+    ConnID: ?*anyopaque,
+    dwHttpStatusCode: u32,
+    lpszLogData: [80]CHAR,
+    lpszMethod: ?PSTR,
+    lpszQueryString: ?PSTR,
+    lpszPathInfo: ?PSTR,
+    lpszPathTranslated: ?PSTR,
+    cbTotalBytes: u32,
+    cbAvailable: u32,
+    lpbData: ?*u8,
+    lpszContentType: ?PSTR,
+    GetServerVariable: isize,
+    WriteClient: isize,
+    ReadClient: isize,
+    ServerSupportFunction: isize,
 };
 
 pub const FTP_ACCESS = enum(i32) {
@@ -1176,54 +1196,6 @@ pub const FTP_ACCESS_READ = FTP_ACCESS.READ;
 pub const FTP_ACCESS_WRITE = FTP_ACCESS.WRITE;
 pub const FTP_ACCESS_READ_WRITE = FTP_ACCESS.READ_WRITE;
 
-const IID_IFtpAuthorizationProvider_Value = Guid.initString("a50ae7a1-a35a-42b4-a4f3-f4f7057a05d1");
-pub const IID_IFtpAuthorizationProvider = &IID_IFtpAuthorizationProvider_Value;
-pub const IFtpAuthorizationProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetUserAccessPermission: *const fn(
-            self: *const IFtpAuthorizationProvider,
-            pszSessionId: ?[*:0]const u16,
-            pszSiteName: ?[*:0]const u16,
-            pszVirtualPath: ?[*:0]const u16,
-            pszUserName: ?[*:0]const u16,
-            pFtpAccess: ?*FTP_ACCESS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetUserAccessPermission(self: *const IFtpAuthorizationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pFtpAccess: ?*FTP_ACCESS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUserAccessPermission(self, pszSessionId, pszSiteName, pszVirtualPath, pszUserName, pFtpAccess);
-    }
-};
-
-const IID_AsyncIFtpAuthorizationProvider_Value = Guid.initString("860dc339-07e5-4a5c-9c61-8820cea012bc");
-pub const IID_AsyncIFtpAuthorizationProvider = &IID_AsyncIFtpAuthorizationProvider_Value;
-pub const AsyncIFtpAuthorizationProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_GetUserAccessPermission: *const fn(
-            self: *const AsyncIFtpAuthorizationProvider,
-            pszSessionId: ?[*:0]const u16,
-            pszSiteName: ?[*:0]const u16,
-            pszVirtualPath: ?[*:0]const u16,
-            pszUserName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Finish_GetUserAccessPermission: *const fn(
-            self: *const AsyncIFtpAuthorizationProvider,
-            pFtpAccess: ?*FTP_ACCESS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_GetUserAccessPermission(self: *const AsyncIFtpAuthorizationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_GetUserAccessPermission(self, pszSessionId, pszSiteName, pszVirtualPath, pszUserName);
-    }
-    pub fn Finish_GetUserAccessPermission(self: *const AsyncIFtpAuthorizationProvider, pFtpAccess: ?*FTP_ACCESS) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_GetUserAccessPermission(self, pFtpAccess);
-    }
-};
-
 pub const FTP_PROCESS_STATUS = enum(i32) {
     CONTINUE = 0,
     CLOSE_SESSION = 1,
@@ -1235,128 +1207,267 @@ pub const FTP_PROCESS_CLOSE_SESSION = FTP_PROCESS_STATUS.CLOSE_SESSION;
 pub const FTP_PROCESS_TERMINATE_SESSION = FTP_PROCESS_STATUS.TERMINATE_SESSION;
 pub const FTP_PROCESS_REJECT_COMMAND = FTP_PROCESS_STATUS.REJECT_COMMAND;
 
-pub const PRE_PROCESS_PARAMETERS = extern struct {
-    pszSessionId: ?[*:0]const u16,
-    pszSiteName: ?[*:0]const u16,
-    pszUserName: ?[*:0]const u16,
-    pszHostName: ?[*:0]const u16,
-    pszRemoteIpAddress: ?[*:0]const u16,
-    dwRemoteIpPort: u32,
-    pszLocalIpAddress: ?[*:0]const u16,
-    dwLocalIpPort: u32,
-    pszCommand: ?[*:0]const u16,
-    pszCommandParameters: ?[*:0]const u16,
-    SessionStartTime: FILETIME,
-    BytesSentPerSession: u64,
-    BytesReceivedPerSession: u64,
+const CLSID_FtpProvider_Value = Guid.initString("70bdc667-33b2-45f0-ac52-c3ca46f7a656");
+pub const CLSID_FtpProvider = &CLSID_FtpProvider_Value;
+
+pub const HSE_CUSTOM_ERROR_INFO = extern struct {
+    pszStatus: ?PSTR,
+    uHttpSubError: u16,
+    fAsync: BOOL,
 };
 
-const IID_IFtpPreprocessProvider_Value = Guid.initString("a3c19b60-5a28-471a-8f93-ab30411cee82");
-pub const IID_IFtpPreprocessProvider = &IID_IFtpPreprocessProvider_Value;
-pub const IFtpPreprocessProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandlePreprocess: *const fn(
-            self: *const IFtpPreprocessProvider,
-            pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS,
-            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandlePreprocess(self: *const IFtpPreprocessProvider, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.HandlePreprocess(self, pPreProcessParameters, pFtpProcessStatus);
-    }
+pub const HSE_EXEC_UNICODE_URL_INFO = extern struct {
+    pszUrl: ?PWSTR,
+    pszMethod: ?PSTR,
+    pszChildHeaders: ?PSTR,
+    pUserInfo: ?*HSE_EXEC_UNICODE_URL_USER_INFO,
+    pEntity: ?*HSE_EXEC_URL_ENTITY_INFO,
+    dwExecUrlFlags: u32,
 };
 
-const IID_AsyncIFtpPreprocessProvider_Value = Guid.initString("6ff5fd8f-fd8e-48b1-a3e0-bf7073db4db5");
-pub const IID_AsyncIFtpPreprocessProvider = &IID_AsyncIFtpPreprocessProvider_Value;
-pub const AsyncIFtpPreprocessProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_HandlePreprocess: *const fn(
-            self: *const AsyncIFtpPreprocessProvider,
-            pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS,
-        ) callconv(.winapi) HRESULT,
-        Finish_HandlePreprocess: *const fn(
-            self: *const AsyncIFtpPreprocessProvider,
-            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_HandlePreprocess(self: *const AsyncIFtpPreprocessProvider, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_HandlePreprocess(self, pPreProcessParameters);
-    }
-    pub fn Finish_HandlePreprocess(self: *const AsyncIFtpPreprocessProvider, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_HandlePreprocess(self, pFtpProcessStatus);
-    }
+pub const HSE_EXEC_UNICODE_URL_USER_INFO = extern struct {
+    hImpersonationToken: ?HANDLE,
+    pszCustomUserName: ?PWSTR,
+    pszCustomAuthType: ?PSTR,
 };
 
-pub const POST_PROCESS_PARAMETERS = extern struct {
-    pszSessionId: ?[*:0]const u16,
-    pszSiteName: ?[*:0]const u16,
-    pszUserName: ?[*:0]const u16,
-    pszHostName: ?[*:0]const u16,
-    pszRemoteIpAddress: ?[*:0]const u16,
-    dwRemoteIpPort: u32,
-    pszLocalIpAddress: ?[*:0]const u16,
-    dwLocalIpPort: u32,
-    BytesSent: u64,
-    BytesReceived: u64,
-    pszCommand: ?[*:0]const u16,
-    pszCommandParameters: ?[*:0]const u16,
-    pszFullPath: ?[*:0]const u16,
-    pszPhysicalPath: ?[*:0]const u16,
-    FtpStatus: u32,
-    FtpSubStatus: u32,
-    hrStatus: HRESULT,
-    SessionStartTime: FILETIME,
-    BytesSentPerSession: u64,
-    BytesReceivedPerSession: u64,
+pub const HSE_EXEC_URL_ENTITY_INFO = extern struct {
+    cbAvailable: u32,
+    lpbData: ?*anyopaque,
 };
 
-const IID_IFtpPostprocessProvider_Value = Guid.initString("4522cbc6-16cd-49ad-8653-9a2c579e4280");
-pub const IID_IFtpPostprocessProvider = &IID_IFtpPostprocessProvider_Value;
-pub const IFtpPostprocessProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandlePostprocess: *const fn(
-            self: *const IFtpPostprocessProvider,
-            pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS,
-            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandlePostprocess(self: *const IFtpPostprocessProvider, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.HandlePostprocess(self, pPostProcessParameters, pFtpProcessStatus);
-    }
+pub const HSE_EXEC_URL_INFO = extern struct {
+    pszUrl: ?PSTR,
+    pszMethod: ?PSTR,
+    pszChildHeaders: ?PSTR,
+    pUserInfo: ?*HSE_EXEC_URL_USER_INFO,
+    pEntity: ?*HSE_EXEC_URL_ENTITY_INFO,
+    dwExecUrlFlags: u32,
 };
 
-const IID_AsyncIFtpPostprocessProvider_Value = Guid.initString("a16b2542-9694-4eb1-a564-6c2e91fdc133");
-pub const IID_AsyncIFtpPostprocessProvider = &IID_AsyncIFtpPostprocessProvider_Value;
-pub const AsyncIFtpPostprocessProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_HandlePostprocess: *const fn(
-            self: *const AsyncIFtpPostprocessProvider,
-            pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS,
-        ) callconv(.winapi) HRESULT,
-        Finish_HandlePostprocess: *const fn(
-            self: *const AsyncIFtpPostprocessProvider,
-            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_HandlePostprocess(self: *const AsyncIFtpPostprocessProvider, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_HandlePostprocess(self, pPostProcessParameters);
-    }
-    pub fn Finish_HandlePostprocess(self: *const AsyncIFtpPostprocessProvider, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_HandlePostprocess(self, pFtpProcessStatus);
-    }
+pub const HSE_EXEC_URL_STATUS = extern struct {
+    uHttpStatusCode: u16,
+    uHttpSubStatus: u16,
+    dwWin32Error: u32,
 };
+
+pub const HSE_EXEC_URL_USER_INFO = extern struct {
+    hImpersonationToken: ?HANDLE,
+    pszCustomUserName: ?PSTR,
+    pszCustomAuthType: ?PSTR,
+};
+
+pub const HSE_RESPONSE_VECTOR = extern struct {
+    dwFlags: u32,
+    pszStatus: ?PSTR,
+    pszHeaders: ?PSTR,
+    nElementCount: u32,
+    lpElementArray: ?*HSE_VECTOR_ELEMENT,
+};
+
+pub const HSE_SEND_HEADER_EX_INFO = extern struct {
+    pszStatus: ?[*:0]const u8,
+    pszHeader: ?[*:0]const u8,
+    cchStatus: u32,
+    cchHeader: u32,
+    fKeepConn: BOOL,
+};
+
+pub const HSE_TF_INFO = extern struct {
+    pfnHseIO: ?PFN_HSE_IO_COMPLETION,
+    pContext: ?*anyopaque,
+    hFile: ?HANDLE,
+    pszStatusCode: ?[*:0]const u8,
+    BytesToWrite: u32,
+    Offset: u32,
+    pHead: ?*anyopaque,
+    HeadLength: u32,
+    pTail: ?*anyopaque,
+    TailLength: u32,
+    dwFlags: u32,
+};
+
+pub const HSE_TRACE_INFO = extern struct {
+    fTraceRequest: BOOL,
+    TraceContextId: [16]u8,
+    dwReserved1: u32,
+    dwReserved2: u32,
+};
+
+pub const HSE_UNICODE_URL_MAPEX_INFO = extern struct {
+    lpszPath: [260]u16,
+    dwFlags: u32,
+    cchMatchingPath: u32,
+    cchMatchingURL: u32,
+};
+
+pub const HSE_URL_MAPEX_INFO = extern struct {
+    lpszPath: [260]CHAR,
+    dwFlags: u32,
+    cchMatchingPath: u32,
+    cchMatchingURL: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+};
+
+pub const HSE_VECTOR_ELEMENT = extern struct {
+    ElementType: u32,
+    pvContext: ?*anyopaque,
+    cbOffset: u64,
+    cbSize: u64,
+};
+
+pub const HSE_VERSION_INFO = extern struct {
+    dwExtensionVersion: u32,
+    lpszExtensionDesc: [256]CHAR,
+};
+
+pub const HTTP_FILTER_ACCESS_DENIED = extern struct {
+    pszURL: ?[*:0]const u8,
+    pszPhysicalPath: ?[*:0]const u8,
+    dwReason: u32,
+};
+
+pub const HTTP_FILTER_AUTH_COMPLETE_INFO = extern struct {
+    GetHeader: isize,
+    SetHeader: isize,
+    AddHeader: isize,
+    GetUserToken: isize,
+    HttpStatus: u32,
+    fResetAuth: BOOL,
+    dwReserved: u32,
+};
+
+pub const HTTP_FILTER_AUTHENT = extern struct {
+    pszUser: ?PSTR,
+    cbUserBuff: u32,
+    pszPassword: ?PSTR,
+    cbPasswordBuff: u32,
+};
+
+pub const HTTP_FILTER_CONTEXT = extern struct {
+    cbSize: u32,
+    Revision: u32,
+    ServerContext: ?*anyopaque,
+    ulReserved: u32,
+    fIsSecurePort: BOOL,
+    pFilterContext: ?*anyopaque,
+    GetServerVariable: isize,
+    AddResponseHeaders: isize,
+    WriteClient: isize,
+    AllocMem: isize,
+    ServerSupportFunction: isize,
+};
+
+pub const HTTP_FILTER_LOG = extern struct {
+    pszClientHostName: ?[*:0]const u8,
+    pszClientUserName: ?[*:0]const u8,
+    pszServerName: ?[*:0]const u8,
+    pszOperation: ?[*:0]const u8,
+    pszTarget: ?[*:0]const u8,
+    pszParameters: ?[*:0]const u8,
+    dwHttpStatus: u32,
+    dwWin32Status: u32,
+    dwBytesSent: u32,
+    dwBytesRecvd: u32,
+    msTimeForProcessing: u32,
+};
+
+pub const HTTP_FILTER_PREPROC_HEADERS = extern struct {
+    GetHeader: isize,
+    SetHeader: isize,
+    AddHeader: isize,
+    HttpStatus: u32,
+    dwReserved: u32,
+};
+
+pub const HTTP_FILTER_RAW_DATA = extern struct {
+    pvInData: ?*anyopaque,
+    cbInData: u32,
+    cbInBuffer: u32,
+    dwReserved: u32,
+};
+
+pub const HTTP_FILTER_URL_MAP = extern struct {
+    pszURL: ?[*:0]const u8,
+    pszPhysicalPath: ?PSTR,
+    cbPathBuff: u32,
+};
+
+pub const HTTP_FILTER_URL_MAP_EX = extern struct {
+    pszURL: ?[*:0]const u8,
+    pszPhysicalPath: ?PSTR,
+    cbPathBuff: u32,
+    dwFlags: u32,
+    cchMatchingPath: u32,
+    cchMatchingURL: u32,
+    pszScriptMapEntry: ?[*:0]const u8,
+};
+
+pub const HTTP_FILTER_VERSION = extern struct {
+    dwServerFilterVersion: u32,
+    dwFilterVersion: u32,
+    lpszFilterDesc: [257]CHAR,
+    dwFlags: u32,
+};
+
+pub const HTTP_TRACE_CONFIGURATION = extern struct {
+    pProviderGuid: ?*const Guid,
+    dwAreas: u32,
+    dwVerbosity: u32,
+    fProviderEnabled: BOOL,
+};
+
+pub const HTTP_TRACE_EVENT = extern struct {
+    pProviderGuid: ?*const Guid,
+    dwArea: u32,
+    pAreaGuid: ?*const Guid,
+    dwEvent: u32,
+    pszEventName: ?[*:0]const u16,
+    dwEventVersion: u32,
+    dwVerbosity: u32,
+    pActivityGuid: ?*const Guid,
+    pRelatedActivityGuid: ?*const Guid,
+    dwTimeStamp: u32,
+    dwFlags: u32,
+    cEventItems: u32,
+    pEventItems: ?*HTTP_TRACE_EVENT_ITEM,
+};
+
+pub const HTTP_TRACE_EVENT_ITEM = extern struct {
+    pszName: ?[*:0]const u16,
+    dwDataType: HTTP_TRACE_TYPE,
+    pbData: ?*u8,
+    cbData: u32,
+    pszDataDescription: ?[*:0]const u16,
+};
+
+pub const HTTP_TRACE_TYPE = enum(i32) {
+    BYTE = 17,
+    USHORT = 18,
+    ULONG = 19,
+    ULONGLONG = 21,
+    CHAR = 16,
+    SHORT = 2,
+    LONG = 3,
+    LONGLONG = 20,
+    LPCWSTR = 31,
+    LPCSTR = 30,
+    LPCGUID = 72,
+    BOOL = 11,
+};
+pub const HTTP_TRACE_TYPE_BYTE = HTTP_TRACE_TYPE.BYTE;
+pub const HTTP_TRACE_TYPE_USHORT = HTTP_TRACE_TYPE.USHORT;
+pub const HTTP_TRACE_TYPE_ULONG = HTTP_TRACE_TYPE.ULONG;
+pub const HTTP_TRACE_TYPE_ULONGLONG = HTTP_TRACE_TYPE.ULONGLONG;
+pub const HTTP_TRACE_TYPE_CHAR = HTTP_TRACE_TYPE.CHAR;
+pub const HTTP_TRACE_TYPE_SHORT = HTTP_TRACE_TYPE.SHORT;
+pub const HTTP_TRACE_TYPE_LONG = HTTP_TRACE_TYPE.LONG;
+pub const HTTP_TRACE_TYPE_LONGLONG = HTTP_TRACE_TYPE.LONGLONG;
+pub const HTTP_TRACE_TYPE_LPCWSTR = HTTP_TRACE_TYPE.LPCWSTR;
+pub const HTTP_TRACE_TYPE_LPCSTR = HTTP_TRACE_TYPE.LPCSTR;
+pub const HTTP_TRACE_TYPE_LPCGUID = HTTP_TRACE_TYPE.LPCGUID;
+pub const HTTP_TRACE_TYPE_BOOL = HTTP_TRACE_TYPE.BOOL;
 
 const IID_IADMEXT_Value = Guid.initString("51dfe970-f6f2-11d0-b9bd-00a0c922e750");
 pub const IID_IADMEXT = &IID_IADMEXT_Value;
@@ -1388,66 +1499,278 @@ pub const IADMEXT = extern union {
     }
 };
 
-pub const METADATATYPES = enum(i32) {
-    ALL_METADATA = 0,
-    DWORD_METADATA = 1,
-    STRING_METADATA = 2,
-    BINARY_METADATA = 3,
-    EXPANDSZ_METADATA = 4,
-    MULTISZ_METADATA = 5,
-    INVALID_END_METADATA = 6,
-};
-pub const ALL_METADATA = METADATATYPES.ALL_METADATA;
-pub const DWORD_METADATA = METADATATYPES.DWORD_METADATA;
-pub const STRING_METADATA = METADATATYPES.STRING_METADATA;
-pub const BINARY_METADATA = METADATATYPES.BINARY_METADATA;
-pub const EXPANDSZ_METADATA = METADATATYPES.EXPANDSZ_METADATA;
-pub const MULTISZ_METADATA = METADATATYPES.MULTISZ_METADATA;
-pub const INVALID_END_METADATA = METADATATYPES.INVALID_END_METADATA;
-
-pub const METADATA_RECORD = extern struct {
-    dwMDIdentifier: u32,
-    dwMDAttributes: u32,
-    dwMDUserType: u32,
-    dwMDDataType: u32,
-    dwMDDataLen: u32,
-    pbMDData: ?*u8,
-    dwMDDataTag: u32,
+const IID_IFtpAuthenticationProvider_Value = Guid.initString("4659f95c-d5a8-4707-b2fc-6fd5794246cf");
+pub const IID_IFtpAuthenticationProvider = &IID_IFtpAuthenticationProvider_Value;
+pub const IFtpAuthenticationProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AuthenticateUser: *const fn(
+            self: *const IFtpAuthenticationProvider,
+            pszSessionId: ?[*:0]const u16,
+            pszSiteName: ?[*:0]const u16,
+            pszUserName: ?[*:0]const u16,
+            pszPassword: ?[*:0]const u16,
+            ppszCanonicalUserName: ?*?PWSTR,
+            pfAuthenticated: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AuthenticateUser(self: *const IFtpAuthenticationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AuthenticateUser(self, pszSessionId, pszSiteName, pszUserName, pszPassword, ppszCanonicalUserName, pfAuthenticated);
+    }
 };
 
-pub const METADATA_GETALL_RECORD = extern struct {
-    dwMDIdentifier: u32,
-    dwMDAttributes: u32,
-    dwMDUserType: u32,
-    dwMDDataType: u32,
-    dwMDDataLen: u32,
-    dwMDDataOffset: u32,
-    dwMDDataTag: u32,
+const IID_IFtpAuthorizationProvider_Value = Guid.initString("a50ae7a1-a35a-42b4-a4f3-f4f7057a05d1");
+pub const IID_IFtpAuthorizationProvider = &IID_IFtpAuthorizationProvider_Value;
+pub const IFtpAuthorizationProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetUserAccessPermission: *const fn(
+            self: *const IFtpAuthorizationProvider,
+            pszSessionId: ?[*:0]const u16,
+            pszSiteName: ?[*:0]const u16,
+            pszVirtualPath: ?[*:0]const u16,
+            pszUserName: ?[*:0]const u16,
+            pFtpAccess: ?*FTP_ACCESS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetUserAccessPermission(self: *const IFtpAuthorizationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pFtpAccess: ?*FTP_ACCESS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUserAccessPermission(self, pszSessionId, pszSiteName, pszVirtualPath, pszUserName, pFtpAccess);
+    }
 };
 
-pub const METADATA_GETALL_INTERNAL_RECORD = extern struct {
-    dwMDIdentifier: u32,
-    dwMDAttributes: u32,
-    dwMDUserType: u32,
-    dwMDDataType: u32,
-    dwMDDataLen: u32,
-    Anonymous: extern union {
-        dwMDDataOffset: usize,
-        pbMDData: ?*u8,
-    },
-    dwMDDataTag: u32,
+const IID_IFtpHomeDirectoryProvider_Value = Guid.initString("0933b392-18dd-4097-8b9c-83325c35d9a6");
+pub const IID_IFtpHomeDirectoryProvider = &IID_IFtpHomeDirectoryProvider_Value;
+pub const IFtpHomeDirectoryProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetUserHomeDirectoryData: *const fn(
+            self: *const IFtpHomeDirectoryProvider,
+            pszSessionId: ?[*:0]const u16,
+            pszSiteName: ?[*:0]const u16,
+            pszUserName: ?[*:0]const u16,
+            ppszHomeDirectoryData: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetUserHomeDirectoryData(self: *const IFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, ppszHomeDirectoryData: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUserHomeDirectoryData(self, pszSessionId, pszSiteName, pszUserName, ppszHomeDirectoryData);
+    }
 };
 
-pub const METADATA_HANDLE_INFO = extern struct {
-    dwMDPermissions: u32,
-    dwMDSystemChangeNumber: u32,
+const IID_IFtpLogProvider_Value = Guid.initString("a18a94cc-8299-4408-816c-7c3baca1a40e");
+pub const IID_IFtpLogProvider = &IID_IFtpLogProvider_Value;
+pub const IFtpLogProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Log: *const fn(
+            self: *const IFtpLogProvider,
+            pLoggingParameters: ?*const LOGGING_PARAMETERS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Log(self: *const IFtpLogProvider, pLoggingParameters: ?*const LOGGING_PARAMETERS) callconv(.@"inline") HRESULT {
+        return self.vtable.Log(self, pLoggingParameters);
+    }
 };
 
-pub const MD_CHANGE_OBJECT_W = extern struct {
-    pszMDPath: ?PWSTR,
-    dwMDChangeType: u32,
-    dwMDNumDataIDs: u32,
-    pdwMDDataIDs: ?*u32,
+const IID_IFtpPostprocessProvider_Value = Guid.initString("4522cbc6-16cd-49ad-8653-9a2c579e4280");
+pub const IID_IFtpPostprocessProvider = &IID_IFtpPostprocessProvider_Value;
+pub const IFtpPostprocessProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandlePostprocess: *const fn(
+            self: *const IFtpPostprocessProvider,
+            pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS,
+            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandlePostprocess(self: *const IFtpPostprocessProvider, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.HandlePostprocess(self, pPostProcessParameters, pFtpProcessStatus);
+    }
+};
+
+const IID_IFtpPreprocessProvider_Value = Guid.initString("a3c19b60-5a28-471a-8f93-ab30411cee82");
+pub const IID_IFtpPreprocessProvider = &IID_IFtpPreprocessProvider_Value;
+pub const IFtpPreprocessProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandlePreprocess: *const fn(
+            self: *const IFtpPreprocessProvider,
+            pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS,
+            pFtpProcessStatus: ?*FTP_PROCESS_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandlePreprocess(self: *const IFtpPreprocessProvider, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.HandlePreprocess(self, pPreProcessParameters, pFtpProcessStatus);
+    }
+};
+
+const IID_IFtpProviderConstruct_Value = Guid.initString("4d1a3f7b-412d-447c-b199-64f967e9a2da");
+pub const IID_IFtpProviderConstruct = &IID_IFtpProviderConstruct_Value;
+pub const IFtpProviderConstruct = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Construct: *const fn(
+            self: *const IFtpProviderConstruct,
+            configurationEntries: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Construct(self: *const IFtpProviderConstruct, configurationEntries: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.Construct(self, configurationEntries);
+    }
+};
+
+const IID_IFtpRoleProvider_Value = Guid.initString("909c850d-8ca0-4674-96b8-cc2941535725");
+pub const IID_IFtpRoleProvider = &IID_IFtpRoleProvider_Value;
+pub const IFtpRoleProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsUserInRole: *const fn(
+            self: *const IFtpRoleProvider,
+            pszSessionId: ?[*:0]const u16,
+            pszSiteName: ?[*:0]const u16,
+            pszUserName: ?[*:0]const u16,
+            pszRole: ?[*:0]const u16,
+            pfIsInRole: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsUserInRole(self: *const IFtpRoleProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszRole: ?[*:0]const u16, pfIsInRole: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsUserInRole(self, pszSessionId, pszSiteName, pszUserName, pszRole, pfIsInRole);
+    }
+};
+
+const IID_IMSAdminBase2W_Value = Guid.initString("8298d101-f992-43b7-8eca-5052d885b995");
+pub const IID_IMSAdminBase2W = &IID_IMSAdminBase2W_Value;
+pub const IMSAdminBase2W = extern union {
+    pub const VTable = extern struct {
+        base: IMSAdminBaseW.VTable,
+        BackupWithPasswd: *const fn(
+            self: *const IMSAdminBase2W,
+            pszMDBackupLocation: ?[*:0]const u16,
+            dwMDVersion: u32,
+            dwMDFlags: u32,
+            pszPasswd: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        RestoreWithPasswd: *const fn(
+            self: *const IMSAdminBase2W,
+            pszMDBackupLocation: ?[*:0]const u16,
+            dwMDVersion: u32,
+            dwMDFlags: u32,
+            pszPasswd: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Export: *const fn(
+            self: *const IMSAdminBase2W,
+            pszPasswd: ?[*:0]const u16,
+            pszFileName: ?[*:0]const u16,
+            pszSourcePath: ?[*:0]const u16,
+            dwMDFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        Import: *const fn(
+            self: *const IMSAdminBase2W,
+            pszPasswd: ?[*:0]const u16,
+            pszFileName: ?[*:0]const u16,
+            pszSourcePath: ?[*:0]const u16,
+            pszDestPath: ?[*:0]const u16,
+            dwMDFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        RestoreHistory: *const fn(
+            self: *const IMSAdminBase2W,
+            pszMDHistoryLocation: ?[*:0]const u16,
+            dwMDMajorVersion: u32,
+            dwMDMinorVersion: u32,
+            dwMDFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        EnumHistory: *const fn(
+            self: *const IMSAdminBase2W,
+            pszMDHistoryLocation: *[256]u16,
+            pdwMDMajorVersion: ?*u32,
+            pdwMDMinorVersion: ?*u32,
+            pftMDHistoryTime: ?*FILETIME,
+            dwMDEnumIndex: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMSAdminBaseW: IMSAdminBaseW,
+    IUnknown: IUnknown,
+    pub fn BackupWithPasswd(self: *const IMSAdminBase2W, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.BackupWithPasswd(self, pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
+    }
+    pub fn RestoreWithPasswd(self: *const IMSAdminBase2W, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreWithPasswd(self, pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
+    }
+    pub fn Export(self: *const IMSAdminBase2W, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, dwMDFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Export(self, pszPasswd, pszFileName, pszSourcePath, dwMDFlags);
+    }
+    pub fn Import(self: *const IMSAdminBase2W, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, pszDestPath: ?[*:0]const u16, dwMDFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Import(self, pszPasswd, pszFileName, pszSourcePath, pszDestPath, dwMDFlags);
+    }
+    pub fn RestoreHistory(self: *const IMSAdminBase2W, pszMDHistoryLocation: ?[*:0]const u16, dwMDMajorVersion: u32, dwMDMinorVersion: u32, dwMDFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreHistory(self, pszMDHistoryLocation, dwMDMajorVersion, dwMDMinorVersion, dwMDFlags);
+    }
+    pub fn EnumHistory(self: *const IMSAdminBase2W, pszMDHistoryLocation: *[256]u16, pdwMDMajorVersion: ?*u32, pdwMDMinorVersion: ?*u32, pftMDHistoryTime: ?*FILETIME, dwMDEnumIndex: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumHistory(self, pszMDHistoryLocation, pdwMDMajorVersion, pdwMDMinorVersion, pftMDHistoryTime, dwMDEnumIndex);
+    }
+};
+
+const IID_IMSAdminBase3W_Value = Guid.initString("f612954d-3b0b-4c56-9563-227b7be624b4");
+pub const IID_IMSAdminBase3W = &IID_IMSAdminBase3W_Value;
+pub const IMSAdminBase3W = extern union {
+    pub const VTable = extern struct {
+        base: IMSAdminBase2W.VTable,
+        GetChildPaths: *const fn(
+            self: *const IMSAdminBase3W,
+            hMDHandle: u32,
+            pszMDPath: ?[*:0]const u16,
+            cchMDBufferSize: u32,
+            pszBuffer: ?[*:0]u16,
+            pcchMDRequiredBufferSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMSAdminBase2W: IMSAdminBase2W,
+    IMSAdminBaseW: IMSAdminBaseW,
+    IUnknown: IUnknown,
+    pub fn GetChildPaths(self: *const IMSAdminBase3W, hMDHandle: u32, pszMDPath: ?[*:0]const u16, cchMDBufferSize: u32, pszBuffer: ?[*:0]u16, pcchMDRequiredBufferSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildPaths(self, hMDHandle, pszMDPath, cchMDBufferSize, pszBuffer, pcchMDRequiredBufferSize);
+    }
+};
+
+const IID_IMSAdminBaseSinkW_Value = Guid.initString("a9e69612-b80d-11d0-b9b9-00a0c922e750");
+pub const IID_IMSAdminBaseSinkW = &IID_IMSAdminBaseSinkW_Value;
+pub const IMSAdminBaseSinkW = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SinkNotify: *const fn(
+            self: *const IMSAdminBaseSinkW,
+            dwMDNumElements: u32,
+            pcoChangeList: [*]MD_CHANGE_OBJECT_W,
+        ) callconv(.winapi) HRESULT,
+        ShutdownNotify: *const fn(
+            self: *const IMSAdminBaseSinkW,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SinkNotify(self: *const IMSAdminBaseSinkW, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) callconv(.@"inline") HRESULT {
+        return self.vtable.SinkNotify(self, dwMDNumElements, pcoChangeList);
+    }
+    pub fn ShutdownNotify(self: *const IMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
+        return self.vtable.ShutdownNotify(self);
+    }
 };
 
 const IID_IMSAdminBaseW_Value = Guid.initString("70b51430-b6ca-11d0-b9b9-00a0c922e750");
@@ -1746,106 +2069,6 @@ pub const IMSAdminBaseW = extern union {
     }
 };
 
-pub const _IIS_CRYPTO_BLOB = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-const IID_IMSAdminBase2W_Value = Guid.initString("8298d101-f992-43b7-8eca-5052d885b995");
-pub const IID_IMSAdminBase2W = &IID_IMSAdminBase2W_Value;
-pub const IMSAdminBase2W = extern union {
-    pub const VTable = extern struct {
-        base: IMSAdminBaseW.VTable,
-        BackupWithPasswd: *const fn(
-            self: *const IMSAdminBase2W,
-            pszMDBackupLocation: ?[*:0]const u16,
-            dwMDVersion: u32,
-            dwMDFlags: u32,
-            pszPasswd: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        RestoreWithPasswd: *const fn(
-            self: *const IMSAdminBase2W,
-            pszMDBackupLocation: ?[*:0]const u16,
-            dwMDVersion: u32,
-            dwMDFlags: u32,
-            pszPasswd: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Export: *const fn(
-            self: *const IMSAdminBase2W,
-            pszPasswd: ?[*:0]const u16,
-            pszFileName: ?[*:0]const u16,
-            pszSourcePath: ?[*:0]const u16,
-            dwMDFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        Import: *const fn(
-            self: *const IMSAdminBase2W,
-            pszPasswd: ?[*:0]const u16,
-            pszFileName: ?[*:0]const u16,
-            pszSourcePath: ?[*:0]const u16,
-            pszDestPath: ?[*:0]const u16,
-            dwMDFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        RestoreHistory: *const fn(
-            self: *const IMSAdminBase2W,
-            pszMDHistoryLocation: ?[*:0]const u16,
-            dwMDMajorVersion: u32,
-            dwMDMinorVersion: u32,
-            dwMDFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        EnumHistory: *const fn(
-            self: *const IMSAdminBase2W,
-            pszMDHistoryLocation: *[256]u16,
-            pdwMDMajorVersion: ?*u32,
-            pdwMDMinorVersion: ?*u32,
-            pftMDHistoryTime: ?*FILETIME,
-            dwMDEnumIndex: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMSAdminBaseW: IMSAdminBaseW,
-    IUnknown: IUnknown,
-    pub fn BackupWithPasswd(self: *const IMSAdminBase2W, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.BackupWithPasswd(self, pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
-    }
-    pub fn RestoreWithPasswd(self: *const IMSAdminBase2W, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreWithPasswd(self, pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
-    }
-    pub fn Export(self: *const IMSAdminBase2W, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, dwMDFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Export(self, pszPasswd, pszFileName, pszSourcePath, dwMDFlags);
-    }
-    pub fn Import(self: *const IMSAdminBase2W, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, pszDestPath: ?[*:0]const u16, dwMDFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Import(self, pszPasswd, pszFileName, pszSourcePath, pszDestPath, dwMDFlags);
-    }
-    pub fn RestoreHistory(self: *const IMSAdminBase2W, pszMDHistoryLocation: ?[*:0]const u16, dwMDMajorVersion: u32, dwMDMinorVersion: u32, dwMDFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreHistory(self, pszMDHistoryLocation, dwMDMajorVersion, dwMDMinorVersion, dwMDFlags);
-    }
-    pub fn EnumHistory(self: *const IMSAdminBase2W, pszMDHistoryLocation: *[256]u16, pdwMDMajorVersion: ?*u32, pdwMDMinorVersion: ?*u32, pftMDHistoryTime: ?*FILETIME, dwMDEnumIndex: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumHistory(self, pszMDHistoryLocation, pdwMDMajorVersion, pdwMDMinorVersion, pftMDHistoryTime, dwMDEnumIndex);
-    }
-};
-
-const IID_IMSAdminBase3W_Value = Guid.initString("f612954d-3b0b-4c56-9563-227b7be624b4");
-pub const IID_IMSAdminBase3W = &IID_IMSAdminBase3W_Value;
-pub const IMSAdminBase3W = extern union {
-    pub const VTable = extern struct {
-        base: IMSAdminBase2W.VTable,
-        GetChildPaths: *const fn(
-            self: *const IMSAdminBase3W,
-            hMDHandle: u32,
-            pszMDPath: ?[*:0]const u16,
-            cchMDBufferSize: u32,
-            pszBuffer: ?[*:0]u16,
-            pcchMDRequiredBufferSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMSAdminBase2W: IMSAdminBase2W,
-    IMSAdminBaseW: IMSAdminBaseW,
-    IUnknown: IUnknown,
-    pub fn GetChildPaths(self: *const IMSAdminBase3W, hMDHandle: u32, pszMDPath: ?[*:0]const u16, cchMDBufferSize: u32, pszBuffer: ?[*:0]u16, pcchMDRequiredBufferSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildPaths(self, hMDHandle, pszMDPath, cchMDBufferSize, pszBuffer, pcchMDRequiredBufferSize);
-    }
-};
-
 const IID_IMSImpExpHelpW_Value = Guid.initString("29ff67ff-8050-480f-9f30-cc41635f2f9d");
 pub const IID_IMSImpExpHelpW = &IID_IMSImpExpHelpW_Value;
 pub const IMSImpExpHelpW = extern union {
@@ -1867,214 +2090,96 @@ pub const IMSImpExpHelpW = extern union {
     }
 };
 
-const IID_IMSAdminBaseSinkW_Value = Guid.initString("a9e69612-b80d-11d0-b9b9-00a0c922e750");
-pub const IID_IMSAdminBaseSinkW = &IID_IMSAdminBaseSinkW_Value;
-pub const IMSAdminBaseSinkW = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SinkNotify: *const fn(
-            self: *const IMSAdminBaseSinkW,
-            dwMDNumElements: u32,
-            pcoChangeList: [*]MD_CHANGE_OBJECT_W,
-        ) callconv(.winapi) HRESULT,
-        ShutdownNotify: *const fn(
-            self: *const IMSAdminBaseSinkW,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SinkNotify(self: *const IMSAdminBaseSinkW, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) callconv(.@"inline") HRESULT {
-        return self.vtable.SinkNotify(self, dwMDNumElements, pcoChangeList);
-    }
-    pub fn ShutdownNotify(self: *const IMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
-        return self.vtable.ShutdownNotify(self);
-    }
+pub const LOGGING_PARAMETERS = extern struct {
+    pszSessionId: ?[*:0]const u16,
+    pszSiteName: ?[*:0]const u16,
+    pszUserName: ?[*:0]const u16,
+    pszHostName: ?[*:0]const u16,
+    pszRemoteIpAddress: ?[*:0]const u16,
+    dwRemoteIpPort: u32,
+    pszLocalIpAddress: ?[*:0]const u16,
+    dwLocalIpPort: u32,
+    BytesSent: u64,
+    BytesReceived: u64,
+    pszCommand: ?[*:0]const u16,
+    pszCommandParameters: ?[*:0]const u16,
+    pszFullPath: ?[*:0]const u16,
+    dwElapsedMilliseconds: u32,
+    FtpStatus: u32,
+    FtpSubStatus: u32,
+    hrStatus: HRESULT,
+    pszInformation: ?[*:0]const u16,
 };
 
-const IID_AsyncIMSAdminBaseSinkW_Value = Guid.initString("a9e69613-b80d-11d0-b9b9-00a0c922e750");
-pub const IID_AsyncIMSAdminBaseSinkW = &IID_AsyncIMSAdminBaseSinkW_Value;
-pub const AsyncIMSAdminBaseSinkW = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_SinkNotify: *const fn(
-            self: *const AsyncIMSAdminBaseSinkW,
-            dwMDNumElements: u32,
-            pcoChangeList: [*]MD_CHANGE_OBJECT_W,
-        ) callconv(.winapi) HRESULT,
-        Finish_SinkNotify: *const fn(
-            self: *const AsyncIMSAdminBaseSinkW,
-        ) callconv(.winapi) HRESULT,
-        Begin_ShutdownNotify: *const fn(
-            self: *const AsyncIMSAdminBaseSinkW,
-        ) callconv(.winapi) HRESULT,
-        Finish_ShutdownNotify: *const fn(
-            self: *const AsyncIMSAdminBaseSinkW,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Begin_SinkNotify(self: *const AsyncIMSAdminBaseSinkW, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_SinkNotify(self, dwMDNumElements, pcoChangeList);
-    }
-    pub fn Finish_SinkNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_SinkNotify(self);
-    }
-    pub fn Begin_ShutdownNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
-        return self.vtable.Begin_ShutdownNotify(self);
-    }
-    pub fn Finish_ShutdownNotify(self: *const AsyncIMSAdminBaseSinkW) callconv(.@"inline") HRESULT {
-        return self.vtable.Finish_ShutdownNotify(self);
-    }
+pub const MD_CHANGE_OBJECT_W = extern struct {
+    pszMDPath: ?PWSTR,
+    dwMDChangeType: u32,
+    dwMDNumDataIDs: u32,
+    pdwMDDataIDs: ?*u32,
 };
 
-pub const HSE_VERSION_INFO = extern struct {
-    dwExtensionVersion: u32,
-    lpszExtensionDesc: [256]CHAR,
+pub const METADATA_GETALL_INTERNAL_RECORD = extern struct {
+    dwMDIdentifier: u32,
+    dwMDAttributes: u32,
+    dwMDUserType: u32,
+    dwMDDataType: u32,
+    dwMDDataLen: u32,
+    Anonymous: extern union {
+        dwMDDataOffset: usize,
+        pbMDData: ?*u8,
+    },
+    dwMDDataTag: u32,
 };
 
-pub const EXTENSION_CONTROL_BLOCK = extern struct {
-    cbSize: u32,
-    dwVersion: u32,
-    ConnID: ?*anyopaque,
-    dwHttpStatusCode: u32,
-    lpszLogData: [80]CHAR,
-    lpszMethod: ?PSTR,
-    lpszQueryString: ?PSTR,
-    lpszPathInfo: ?PSTR,
-    lpszPathTranslated: ?PSTR,
-    cbTotalBytes: u32,
-    cbAvailable: u32,
-    lpbData: ?*u8,
-    lpszContentType: ?PSTR,
-    GetServerVariable: isize,
-    WriteClient: isize,
-    ReadClient: isize,
-    ServerSupportFunction: isize,
+pub const METADATA_GETALL_RECORD = extern struct {
+    dwMDIdentifier: u32,
+    dwMDAttributes: u32,
+    dwMDUserType: u32,
+    dwMDDataType: u32,
+    dwMDDataLen: u32,
+    dwMDDataOffset: u32,
+    dwMDDataTag: u32,
 };
 
-pub const HSE_URL_MAPEX_INFO = extern struct {
-    lpszPath: [260]CHAR,
-    dwFlags: u32,
-    cchMatchingPath: u32,
-    cchMatchingURL: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
+pub const METADATA_HANDLE_INFO = extern struct {
+    dwMDPermissions: u32,
+    dwMDSystemChangeNumber: u32,
 };
 
-pub const HSE_UNICODE_URL_MAPEX_INFO = extern struct {
-    lpszPath: [260]u16,
-    dwFlags: u32,
-    cchMatchingPath: u32,
-    cchMatchingURL: u32,
+pub const METADATA_RECORD = extern struct {
+    dwMDIdentifier: u32,
+    dwMDAttributes: u32,
+    dwMDUserType: u32,
+    dwMDDataType: u32,
+    dwMDDataLen: u32,
+    pbMDData: ?*u8,
+    dwMDDataTag: u32,
 };
 
-pub const PFN_HSE_IO_COMPLETION = *const fn(
-    pECB: ?*EXTENSION_CONTROL_BLOCK,
-    pContext: ?*anyopaque,
-    cbIO: u32,
-    dwError: u32,
-) callconv(.winapi) void;
-
-pub const HSE_TF_INFO = extern struct {
-    pfnHseIO: ?PFN_HSE_IO_COMPLETION,
-    pContext: ?*anyopaque,
-    hFile: ?HANDLE,
-    pszStatusCode: ?[*:0]const u8,
-    BytesToWrite: u32,
-    Offset: u32,
-    pHead: ?*anyopaque,
-    HeadLength: u32,
-    pTail: ?*anyopaque,
-    TailLength: u32,
-    dwFlags: u32,
+pub const METADATATYPES = enum(i32) {
+    ALL_METADATA = 0,
+    DWORD_METADATA = 1,
+    STRING_METADATA = 2,
+    BINARY_METADATA = 3,
+    EXPANDSZ_METADATA = 4,
+    MULTISZ_METADATA = 5,
+    INVALID_END_METADATA = 6,
 };
+pub const ALL_METADATA = METADATATYPES.ALL_METADATA;
+pub const DWORD_METADATA = METADATATYPES.DWORD_METADATA;
+pub const STRING_METADATA = METADATATYPES.STRING_METADATA;
+pub const BINARY_METADATA = METADATATYPES.BINARY_METADATA;
+pub const EXPANDSZ_METADATA = METADATATYPES.EXPANDSZ_METADATA;
+pub const MULTISZ_METADATA = METADATATYPES.MULTISZ_METADATA;
+pub const INVALID_END_METADATA = METADATATYPES.INVALID_END_METADATA;
 
-pub const HSE_SEND_HEADER_EX_INFO = extern struct {
-    pszStatus: ?[*:0]const u8,
-    pszHeader: ?[*:0]const u8,
-    cchStatus: u32,
-    cchHeader: u32,
-    fKeepConn: BOOL,
-};
-
-pub const HSE_EXEC_URL_USER_INFO = extern struct {
-    hImpersonationToken: ?HANDLE,
-    pszCustomUserName: ?PSTR,
-    pszCustomAuthType: ?PSTR,
-};
-
-pub const HSE_EXEC_URL_ENTITY_INFO = extern struct {
-    cbAvailable: u32,
-    lpbData: ?*anyopaque,
-};
-
-pub const HSE_EXEC_URL_STATUS = extern struct {
-    uHttpStatusCode: u16,
-    uHttpSubStatus: u16,
-    dwWin32Error: u32,
-};
-
-pub const HSE_EXEC_URL_INFO = extern struct {
-    pszUrl: ?PSTR,
-    pszMethod: ?PSTR,
-    pszChildHeaders: ?PSTR,
-    pUserInfo: ?*HSE_EXEC_URL_USER_INFO,
-    pEntity: ?*HSE_EXEC_URL_ENTITY_INFO,
-    dwExecUrlFlags: u32,
-};
-
-pub const HSE_EXEC_UNICODE_URL_USER_INFO = extern struct {
-    hImpersonationToken: ?HANDLE,
-    pszCustomUserName: ?PWSTR,
-    pszCustomAuthType: ?PSTR,
-};
-
-pub const HSE_EXEC_UNICODE_URL_INFO = extern struct {
-    pszUrl: ?PWSTR,
-    pszMethod: ?PSTR,
-    pszChildHeaders: ?PSTR,
-    pUserInfo: ?*HSE_EXEC_UNICODE_URL_USER_INFO,
-    pEntity: ?*HSE_EXEC_URL_ENTITY_INFO,
-    dwExecUrlFlags: u32,
-};
-
-pub const HSE_CUSTOM_ERROR_INFO = extern struct {
-    pszStatus: ?PSTR,
-    uHttpSubError: u16,
-    fAsync: BOOL,
-};
-
-pub const HSE_VECTOR_ELEMENT = extern struct {
-    ElementType: u32,
-    pvContext: ?*anyopaque,
-    cbOffset: u64,
-    cbSize: u64,
-};
-
-pub const HSE_RESPONSE_VECTOR = extern struct {
-    dwFlags: u32,
-    pszStatus: ?PSTR,
-    pszHeaders: ?PSTR,
-    nElementCount: u32,
-    lpElementArray: ?*HSE_VECTOR_ELEMENT,
-};
+pub const PFN_GETEXTENSIONVERSION = *const fn(
+    pVer: ?*HSE_VERSION_INFO,
+) callconv(.winapi) BOOL;
 
 pub const PFN_HSE_CACHE_INVALIDATION_CALLBACK = *const fn(
     pszUrl: ?PWSTR,
 ) callconv(.winapi) HRESULT;
-
-pub const CERT_CONTEXT_EX = extern struct {
-    CertContext: CERT_CONTEXT,
-    cbAllocated: u32,
-    dwCertificateFlags: u32,
-};
-
-pub const HSE_TRACE_INFO = extern struct {
-    fTraceRequest: BOOL,
-    TraceContextId: [16]u8,
-    dwReserved1: u32,
-    dwReserved2: u32,
-};
 
 pub const PFN_HSE_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK = *const fn(
     pszProtocolManagerDll: ?[*:0]const u16,
@@ -2083,9 +2188,12 @@ pub const PFN_HSE_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK = *const fn(
     ppCustomInterface: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub const PFN_GETEXTENSIONVERSION = *const fn(
-    pVer: ?*HSE_VERSION_INFO,
-) callconv(.winapi) BOOL;
+pub const PFN_HSE_IO_COMPLETION = *const fn(
+    pECB: ?*EXTENSION_CONTROL_BLOCK,
+    pContext: ?*anyopaque,
+    cbIO: u32,
+    dwError: u32,
+) callconv(.winapi) void;
 
 pub const PFN_HTTPEXTENSIONPROC = *const fn(
     pECB: ?*EXTENSION_CONTROL_BLOCK,
@@ -2094,6 +2202,67 @@ pub const PFN_HTTPEXTENSIONPROC = *const fn(
 pub const PFN_TERMINATEEXTENSION = *const fn(
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
+
+pub const PFN_WEB_CORE_ACTIVATE = *const fn(
+    pszAppHostConfigFile: ?[*:0]const u16,
+    pszRootWebConfigFile: ?[*:0]const u16,
+    pszInstanceName: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub const PFN_WEB_CORE_SET_METADATA_DLL_ENTRY = *const fn(
+    pszMetadataType: ?[*:0]const u16,
+    pszValue: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub const PFN_WEB_CORE_SHUTDOWN = *const fn(
+    fImmediate: u32,
+) callconv(.winapi) HRESULT;
+
+pub const POST_PROCESS_PARAMETERS = extern struct {
+    pszSessionId: ?[*:0]const u16,
+    pszSiteName: ?[*:0]const u16,
+    pszUserName: ?[*:0]const u16,
+    pszHostName: ?[*:0]const u16,
+    pszRemoteIpAddress: ?[*:0]const u16,
+    dwRemoteIpPort: u32,
+    pszLocalIpAddress: ?[*:0]const u16,
+    dwLocalIpPort: u32,
+    BytesSent: u64,
+    BytesReceived: u64,
+    pszCommand: ?[*:0]const u16,
+    pszCommandParameters: ?[*:0]const u16,
+    pszFullPath: ?[*:0]const u16,
+    pszPhysicalPath: ?[*:0]const u16,
+    FtpStatus: u32,
+    FtpSubStatus: u32,
+    hrStatus: HRESULT,
+    SessionStartTime: FILETIME,
+    BytesSentPerSession: u64,
+    BytesReceivedPerSession: u64,
+};
+
+pub const PRE_PROCESS_PARAMETERS = extern struct {
+    pszSessionId: ?[*:0]const u16,
+    pszSiteName: ?[*:0]const u16,
+    pszUserName: ?[*:0]const u16,
+    pszHostName: ?[*:0]const u16,
+    pszRemoteIpAddress: ?[*:0]const u16,
+    dwRemoteIpPort: u32,
+    pszLocalIpAddress: ?[*:0]const u16,
+    dwLocalIpPort: u32,
+    pszCommand: ?[*:0]const u16,
+    pszCommandParameters: ?[*:0]const u16,
+    SessionStartTime: FILETIME,
+    BytesSentPerSession: u64,
+    BytesReceivedPerSession: u64,
+};
+
+pub const SF_PROPERTY_IIS = enum(i32) {
+    SSL_CTXT = 0,
+    INSTANCE_NUM_ID = 1,
+};
+pub const SF_PROPERTY_SSL_CTXT = SF_PROPERTY_IIS.SSL_CTXT;
+pub const SF_PROPERTY_INSTANCE_NUM_ID = SF_PROPERTY_IIS.INSTANCE_NUM_ID;
 
 pub const SF_REQ_TYPE = enum(i32) {
     SEND_RESPONSE_HEADER = 0,
@@ -2116,13 +2285,6 @@ pub const SF_REQ_GET_PROPERTY = SF_REQ_TYPE.GET_PROPERTY;
 pub const SF_REQ_NORMALIZE_URL = SF_REQ_TYPE.NORMALIZE_URL;
 pub const SF_REQ_DISABLE_NOTIFICATIONS = SF_REQ_TYPE.DISABLE_NOTIFICATIONS;
 
-pub const SF_PROPERTY_IIS = enum(i32) {
-    SSL_CTXT = 0,
-    INSTANCE_NUM_ID = 1,
-};
-pub const SF_PROPERTY_SSL_CTXT = SF_PROPERTY_IIS.SSL_CTXT;
-pub const SF_PROPERTY_INSTANCE_NUM_ID = SF_PROPERTY_IIS.INSTANCE_NUM_ID;
-
 pub const SF_STATUS_TYPE = enum(i32) {
     FINISHED = 134217728,
     FINISHED_KEEP_CONN = 134217729,
@@ -2138,174 +2300,16 @@ pub const SF_STATUS_REQ_HANDLED_NOTIFICATION = SF_STATUS_TYPE.HANDLED_NOTIFICATI
 pub const SF_STATUS_REQ_ERROR = SF_STATUS_TYPE.ERROR;
 pub const SF_STATUS_REQ_READ_NEXT = SF_STATUS_TYPE.READ_NEXT;
 
-pub const HTTP_FILTER_CONTEXT = extern struct {
-    cbSize: u32,
-    Revision: u32,
-    ServerContext: ?*anyopaque,
-    ulReserved: u32,
-    fIsSecurePort: BOOL,
-    pFilterContext: ?*anyopaque,
-    GetServerVariable: isize,
-    AddResponseHeaders: isize,
-    WriteClient: isize,
-    AllocMem: isize,
-    ServerSupportFunction: isize,
-};
-
-pub const HTTP_FILTER_RAW_DATA = extern struct {
-    pvInData: ?*anyopaque,
-    cbInData: u32,
-    cbInBuffer: u32,
-    dwReserved: u32,
-};
-
-pub const HTTP_FILTER_PREPROC_HEADERS = extern struct {
-    GetHeader: isize,
-    SetHeader: isize,
-    AddHeader: isize,
-    HttpStatus: u32,
-    dwReserved: u32,
-};
-
-pub const HTTP_FILTER_AUTHENT = extern struct {
-    pszUser: ?PSTR,
-    cbUserBuff: u32,
-    pszPassword: ?PSTR,
-    cbPasswordBuff: u32,
-};
-
-pub const HTTP_FILTER_URL_MAP = extern struct {
-    pszURL: ?[*:0]const u8,
-    pszPhysicalPath: ?PSTR,
-    cbPathBuff: u32,
-};
-
-pub const HTTP_FILTER_URL_MAP_EX = extern struct {
-    pszURL: ?[*:0]const u8,
-    pszPhysicalPath: ?PSTR,
-    cbPathBuff: u32,
-    dwFlags: u32,
-    cchMatchingPath: u32,
-    cchMatchingURL: u32,
-    pszScriptMapEntry: ?[*:0]const u8,
-};
-
-pub const HTTP_FILTER_ACCESS_DENIED = extern struct {
-    pszURL: ?[*:0]const u8,
-    pszPhysicalPath: ?[*:0]const u8,
-    dwReason: u32,
-};
-
-pub const HTTP_FILTER_LOG = extern struct {
-    pszClientHostName: ?[*:0]const u8,
-    pszClientUserName: ?[*:0]const u8,
-    pszServerName: ?[*:0]const u8,
-    pszOperation: ?[*:0]const u8,
-    pszTarget: ?[*:0]const u8,
-    pszParameters: ?[*:0]const u8,
-    dwHttpStatus: u32,
-    dwWin32Status: u32,
-    dwBytesSent: u32,
-    dwBytesRecvd: u32,
-    msTimeForProcessing: u32,
-};
-
-pub const HTTP_FILTER_AUTH_COMPLETE_INFO = extern struct {
-    GetHeader: isize,
-    SetHeader: isize,
-    AddHeader: isize,
-    GetUserToken: isize,
-    HttpStatus: u32,
-    fResetAuth: BOOL,
-    dwReserved: u32,
-};
-
-pub const HTTP_FILTER_VERSION = extern struct {
-    dwServerFilterVersion: u32,
-    dwFilterVersion: u32,
-    lpszFilterDesc: [257]CHAR,
-    dwFlags: u32,
-};
-
-pub const HTTP_TRACE_TYPE = enum(i32) {
-    BYTE = 17,
-    USHORT = 18,
-    ULONG = 19,
-    ULONGLONG = 21,
-    CHAR = 16,
-    SHORT = 2,
-    LONG = 3,
-    LONGLONG = 20,
-    LPCWSTR = 31,
-    LPCSTR = 30,
-    LPCGUID = 72,
-    BOOL = 11,
-};
-pub const HTTP_TRACE_TYPE_BYTE = HTTP_TRACE_TYPE.BYTE;
-pub const HTTP_TRACE_TYPE_USHORT = HTTP_TRACE_TYPE.USHORT;
-pub const HTTP_TRACE_TYPE_ULONG = HTTP_TRACE_TYPE.ULONG;
-pub const HTTP_TRACE_TYPE_ULONGLONG = HTTP_TRACE_TYPE.ULONGLONG;
-pub const HTTP_TRACE_TYPE_CHAR = HTTP_TRACE_TYPE.CHAR;
-pub const HTTP_TRACE_TYPE_SHORT = HTTP_TRACE_TYPE.SHORT;
-pub const HTTP_TRACE_TYPE_LONG = HTTP_TRACE_TYPE.LONG;
-pub const HTTP_TRACE_TYPE_LONGLONG = HTTP_TRACE_TYPE.LONGLONG;
-pub const HTTP_TRACE_TYPE_LPCWSTR = HTTP_TRACE_TYPE.LPCWSTR;
-pub const HTTP_TRACE_TYPE_LPCSTR = HTTP_TRACE_TYPE.LPCSTR;
-pub const HTTP_TRACE_TYPE_LPCGUID = HTTP_TRACE_TYPE.LPCGUID;
-pub const HTTP_TRACE_TYPE_BOOL = HTTP_TRACE_TYPE.BOOL;
-
-pub const HTTP_TRACE_EVENT = extern struct {
-    pProviderGuid: ?*const Guid,
-    dwArea: u32,
-    pAreaGuid: ?*const Guid,
-    dwEvent: u32,
-    pszEventName: ?[*:0]const u16,
-    dwEventVersion: u32,
-    dwVerbosity: u32,
-    pActivityGuid: ?*const Guid,
-    pRelatedActivityGuid: ?*const Guid,
-    dwTimeStamp: u32,
-    dwFlags: u32,
-    cEventItems: u32,
-    pEventItems: ?*HTTP_TRACE_EVENT_ITEM,
-};
-
-pub const HTTP_TRACE_EVENT_ITEM = extern struct {
-    pszName: ?[*:0]const u16,
-    dwDataType: HTTP_TRACE_TYPE,
-    pbData: ?*u8,
-    cbData: u32,
-    pszDataDescription: ?[*:0]const u16,
-};
-
-pub const HTTP_TRACE_CONFIGURATION = extern struct {
-    pProviderGuid: ?*const Guid,
-    dwAreas: u32,
-    dwVerbosity: u32,
-    fProviderEnabled: BOOL,
-};
-
-pub const PFN_WEB_CORE_SET_METADATA_DLL_ENTRY = *const fn(
-    pszMetadataType: ?[*:0]const u16,
-    pszValue: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub const PFN_WEB_CORE_ACTIVATE = *const fn(
-    pszAppHostConfigFile: ?[*:0]const u16,
-    pszRootWebConfigFile: ?[*:0]const u16,
-    pszInstanceName: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub const PFN_WEB_CORE_SHUTDOWN = *const fn(
-    fImmediate: u32,
-) callconv(.winapi) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
 pub extern "rpcproxy" fn GetExtensionVersion(
     pVer: ?*HSE_VERSION_INFO,
+) callconv(.winapi) BOOL;
+
+pub extern "rpcproxy" fn GetFilterVersion(
+    pVer: ?*HTTP_FILTER_VERSION,
 ) callconv(.winapi) BOOL;
 
 pub extern "rpcproxy" fn HttpExtensionProc(
@@ -2317,10 +2321,6 @@ pub extern "rpcproxy" fn HttpFilterProc(
     NotificationType: u32,
     pvNotification: ?*anyopaque,
 ) callconv(.winapi) u32;
-
-pub extern "rpcproxy" fn GetFilterVersion(
-    pVer: ?*HTTP_FILTER_VERSION,
-) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------
@@ -2344,14 +2344,14 @@ const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_HSE_IO_COMPLETION")) { _ = PFN_HSE_IO_COMPLETION; }
+    if (@hasDecl(@This(), "PFN_GETEXTENSIONVERSION")) { _ = PFN_GETEXTENSIONVERSION; }
     if (@hasDecl(@This(), "PFN_HSE_CACHE_INVALIDATION_CALLBACK")) { _ = PFN_HSE_CACHE_INVALIDATION_CALLBACK; }
     if (@hasDecl(@This(), "PFN_HSE_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK")) { _ = PFN_HSE_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_GETEXTENSIONVERSION")) { _ = PFN_GETEXTENSIONVERSION; }
+    if (@hasDecl(@This(), "PFN_HSE_IO_COMPLETION")) { _ = PFN_HSE_IO_COMPLETION; }
     if (@hasDecl(@This(), "PFN_HTTPEXTENSIONPROC")) { _ = PFN_HTTPEXTENSIONPROC; }
     if (@hasDecl(@This(), "PFN_TERMINATEEXTENSION")) { _ = PFN_TERMINATEEXTENSION; }
-    if (@hasDecl(@This(), "PFN_WEB_CORE_SET_METADATA_DLL_ENTRY")) { _ = PFN_WEB_CORE_SET_METADATA_DLL_ENTRY; }
     if (@hasDecl(@This(), "PFN_WEB_CORE_ACTIVATE")) { _ = PFN_WEB_CORE_ACTIVATE; }
+    if (@hasDecl(@This(), "PFN_WEB_CORE_SET_METADATA_DLL_ENTRY")) { _ = PFN_WEB_CORE_SET_METADATA_DLL_ENTRY; }
     if (@hasDecl(@This(), "PFN_WEB_CORE_SHUTDOWN")) { _ = PFN_WEB_CORE_SHUTDOWN; }
 
     @setEvalBranchQuota(

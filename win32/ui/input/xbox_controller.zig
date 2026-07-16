@@ -2,15 +2,258 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (5)
 //--------------------------------------------------------------------------------
+pub const XINPUT_DLL = "xinput1_4.dll";
 pub const XINPUT_DLL_A = "xinput1_4.dll";
 pub const XINPUT_DLL_W = "xinput1_4.dll";
-pub const XINPUT_DLL = "xinput1_4.dll";
-pub const XUSER_MAX_COUNT = @as(u32, 4);
 pub const XUSER_INDEX_ANY = @as(u32, 255);
+pub const XUSER_MAX_COUNT = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
+pub const BATTERY_DEVTYPE = enum(u32) {
+    GAMEPAD = 0,
+    HEADSET = 1,
+};
+pub const BATTERY_DEVTYPE_GAMEPAD = BATTERY_DEVTYPE.GAMEPAD;
+pub const BATTERY_DEVTYPE_HEADSET = BATTERY_DEVTYPE.HEADSET;
+
+pub const BATTERY_LEVEL = enum(u32) {
+    EMPTY = 0,
+    LOW = 1,
+    MEDIUM = 2,
+    FULL = 3,
+};
+pub const BATTERY_LEVEL_EMPTY = BATTERY_LEVEL.EMPTY;
+pub const BATTERY_LEVEL_LOW = BATTERY_LEVEL.LOW;
+pub const BATTERY_LEVEL_MEDIUM = BATTERY_LEVEL.MEDIUM;
+pub const BATTERY_LEVEL_FULL = BATTERY_LEVEL.FULL;
+
+pub const BATTERY_TYPE = enum(u32) {
+    DISCONNECTED = 0,
+    WIRED = 1,
+    ALKALINE = 2,
+    NIMH = 3,
+    UNKNOWN = 255,
+};
+pub const BATTERY_TYPE_DISCONNECTED = BATTERY_TYPE.DISCONNECTED;
+pub const BATTERY_TYPE_WIRED = BATTERY_TYPE.WIRED;
+pub const BATTERY_TYPE_ALKALINE = BATTERY_TYPE.ALKALINE;
+pub const BATTERY_TYPE_NIMH = BATTERY_TYPE.NIMH;
+pub const BATTERY_TYPE_UNKNOWN = BATTERY_TYPE.UNKNOWN;
+
+pub const XINPUT_BATTERY_INFORMATION = extern struct {
+    BatteryType: BATTERY_TYPE,
+    BatteryLevel: BATTERY_LEVEL,
+};
+
+pub const XINPUT_CAPABILITIES = extern struct {
+    Type: XINPUT_DEVTYPE,
+    SubType: XINPUT_DEVSUBTYPE,
+    Flags: XINPUT_CAPABILITIES_FLAGS,
+    Gamepad: XINPUT_GAMEPAD,
+    Vibration: XINPUT_VIBRATION,
+};
+
+pub const XINPUT_CAPABILITIES_FLAGS = packed struct(u16) {
+    FFB_SUPPORTED: u1 = 0,
+    WIRELESS: u1 = 0,
+    VOICE_SUPPORTED: u1 = 0,
+    PMD_SUPPORTED: u1 = 0,
+    NO_NAVIGATION: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+};
+pub const XINPUT_CAPS_VOICE_SUPPORTED = XINPUT_CAPABILITIES_FLAGS{ .VOICE_SUPPORTED = 1 };
+pub const XINPUT_CAPS_FFB_SUPPORTED = XINPUT_CAPABILITIES_FLAGS{ .FFB_SUPPORTED = 1 };
+pub const XINPUT_CAPS_WIRELESS = XINPUT_CAPABILITIES_FLAGS{ .WIRELESS = 1 };
+pub const XINPUT_CAPS_PMD_SUPPORTED = XINPUT_CAPABILITIES_FLAGS{ .PMD_SUPPORTED = 1 };
+pub const XINPUT_CAPS_NO_NAVIGATION = XINPUT_CAPABILITIES_FLAGS{ .NO_NAVIGATION = 1 };
+
+pub const XINPUT_DEVSUBTYPE = enum(u32) {
+    GAMEPAD = 1,
+    UNKNOWN = 0,
+    WHEEL = 2,
+    ARCADE_STICK = 3,
+    FLIGHT_STICK = 4,
+    DANCE_PAD = 5,
+    GUITAR = 6,
+    GUITAR_ALTERNATE = 7,
+    DRUM_KIT = 8,
+    GUITAR_BASS = 11,
+    ARCADE_PAD = 19,
+};
+pub const XINPUT_DEVSUBTYPE_GAMEPAD = XINPUT_DEVSUBTYPE.GAMEPAD;
+pub const XINPUT_DEVSUBTYPE_UNKNOWN = XINPUT_DEVSUBTYPE.UNKNOWN;
+pub const XINPUT_DEVSUBTYPE_WHEEL = XINPUT_DEVSUBTYPE.WHEEL;
+pub const XINPUT_DEVSUBTYPE_ARCADE_STICK = XINPUT_DEVSUBTYPE.ARCADE_STICK;
+pub const XINPUT_DEVSUBTYPE_FLIGHT_STICK = XINPUT_DEVSUBTYPE.FLIGHT_STICK;
+pub const XINPUT_DEVSUBTYPE_DANCE_PAD = XINPUT_DEVSUBTYPE.DANCE_PAD;
+pub const XINPUT_DEVSUBTYPE_GUITAR = XINPUT_DEVSUBTYPE.GUITAR;
+pub const XINPUT_DEVSUBTYPE_GUITAR_ALTERNATE = XINPUT_DEVSUBTYPE.GUITAR_ALTERNATE;
+pub const XINPUT_DEVSUBTYPE_DRUM_KIT = XINPUT_DEVSUBTYPE.DRUM_KIT;
+pub const XINPUT_DEVSUBTYPE_GUITAR_BASS = XINPUT_DEVSUBTYPE.GUITAR_BASS;
+pub const XINPUT_DEVSUBTYPE_ARCADE_PAD = XINPUT_DEVSUBTYPE.ARCADE_PAD;
+
+pub const XINPUT_DEVTYPE = enum(u32) {
+    D = 1,
+};
+pub const XINPUT_DEVTYPE_GAMEPAD = XINPUT_DEVTYPE.D;
+
+pub const XINPUT_FLAG = packed struct(u32) {
+    GAMEPAD: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const XINPUT_FLAG_ALL = XINPUT_FLAG{ };
+pub const XINPUT_FLAG_GAMEPAD = XINPUT_FLAG{ .GAMEPAD = 1 };
+
+pub const XINPUT_GAMEPAD = extern struct {
+    wButtons: XINPUT_GAMEPAD_BUTTON_FLAGS,
+    bLeftTrigger: u8,
+    bRightTrigger: u8,
+    sThumbLX: i16,
+    sThumbLY: i16,
+    sThumbRX: i16,
+    sThumbRY: i16,
+};
+
+pub const XINPUT_GAMEPAD_BUTTON_FLAGS = packed struct(u16) {
+    DPAD_UP: u1 = 0,
+    DPAD_DOWN: u1 = 0,
+    DPAD_LEFT: u1 = 0,
+    DPAD_RIGHT: u1 = 0,
+    START: u1 = 0,
+    BACK: u1 = 0,
+    LEFT_THUMB: u1 = 0,
+    RIGHT_THUMB: u1 = 0,
+    LEFT_SHOULDER: u1 = 0,
+    RIGHT_SHOULDER: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    A: u1 = 0,
+    B: u1 = 0,
+    X: u1 = 0,
+    Y: u1 = 0,
+};
+pub const XINPUT_GAMEPAD_DPAD_UP = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_UP = 1 };
+pub const XINPUT_GAMEPAD_DPAD_DOWN = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_DOWN = 1 };
+pub const XINPUT_GAMEPAD_DPAD_LEFT = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_LEFT = 1 };
+pub const XINPUT_GAMEPAD_DPAD_RIGHT = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_RIGHT = 1 };
+pub const XINPUT_GAMEPAD_START = XINPUT_GAMEPAD_BUTTON_FLAGS{ .START = 1 };
+pub const XINPUT_GAMEPAD_BACK = XINPUT_GAMEPAD_BUTTON_FLAGS{ .BACK = 1 };
+pub const XINPUT_GAMEPAD_LEFT_THUMB = XINPUT_GAMEPAD_BUTTON_FLAGS{ .LEFT_THUMB = 1 };
+pub const XINPUT_GAMEPAD_RIGHT_THUMB = XINPUT_GAMEPAD_BUTTON_FLAGS{ .RIGHT_THUMB = 1 };
+pub const XINPUT_GAMEPAD_LEFT_SHOULDER = XINPUT_GAMEPAD_BUTTON_FLAGS{ .LEFT_SHOULDER = 1 };
+pub const XINPUT_GAMEPAD_RIGHT_SHOULDER = XINPUT_GAMEPAD_BUTTON_FLAGS{ .RIGHT_SHOULDER = 1 };
+pub const XINPUT_GAMEPAD_A = XINPUT_GAMEPAD_BUTTON_FLAGS{ .A = 1 };
+pub const XINPUT_GAMEPAD_B = XINPUT_GAMEPAD_BUTTON_FLAGS{ .B = 1 };
+pub const XINPUT_GAMEPAD_X = XINPUT_GAMEPAD_BUTTON_FLAGS{ .X = 1 };
+pub const XINPUT_GAMEPAD_Y = XINPUT_GAMEPAD_BUTTON_FLAGS{ .Y = 1 };
+pub const XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE = XINPUT_GAMEPAD_BUTTON_FLAGS{
+    .DPAD_UP = 1,
+    .DPAD_RIGHT = 1,
+    .BACK = 1,
+    .RIGHT_THUMB = 1,
+    .RIGHT_SHOULDER = 1,
+    ._10 = 1,
+    ._11 = 1,
+    .A = 1,
+};
+pub const XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE = XINPUT_GAMEPAD_BUTTON_FLAGS{
+    .DPAD_UP = 1,
+    .START = 1,
+    .BACK = 1,
+    .LEFT_THUMB = 1,
+    .RIGHT_THUMB = 1,
+    .LEFT_SHOULDER = 1,
+    .B = 1,
+};
+pub const XINPUT_GAMEPAD_TRIGGER_THRESHOLD = XINPUT_GAMEPAD_BUTTON_FLAGS{
+    .DPAD_DOWN = 1,
+    .DPAD_LEFT = 1,
+    .DPAD_RIGHT = 1,
+    .START = 1,
+};
+
+pub const XINPUT_KEYSTROKE = extern struct {
+    VirtualKey: XINPUT_VIRTUAL_KEY,
+    Unicode: u16,
+    Flags: XINPUT_KEYSTROKE_FLAGS,
+    UserIndex: u8,
+    HidCode: u8,
+};
+
+pub const XINPUT_KEYSTROKE_FLAGS = packed struct(u16) {
+    KEYDOWN: u1 = 0,
+    KEYUP: u1 = 0,
+    REPEAT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+};
+pub const XINPUT_KEYSTROKE_KEYDOWN = XINPUT_KEYSTROKE_FLAGS{ .KEYDOWN = 1 };
+pub const XINPUT_KEYSTROKE_KEYUP = XINPUT_KEYSTROKE_FLAGS{ .KEYUP = 1 };
+pub const XINPUT_KEYSTROKE_REPEAT = XINPUT_KEYSTROKE_FLAGS{ .REPEAT = 1 };
+
+pub const XINPUT_STATE = extern struct {
+    dwPacketNumber: u32,
+    Gamepad: XINPUT_GAMEPAD,
+};
+
+pub const XINPUT_VIBRATION = extern struct {
+    wLeftMotorSpeed: u16,
+    wRightMotorSpeed: u16,
+};
+
 pub const XINPUT_VIRTUAL_KEY = enum(u16) {
     A = 22528,
     B = 22529,
@@ -78,269 +321,10 @@ pub const VK_PAD_RTHUMB_UPRIGHT = XINPUT_VIRTUAL_KEY.RTHUMB_UPRIGHT;
 pub const VK_PAD_RTHUMB_DOWNRIGHT = XINPUT_VIRTUAL_KEY.RTHUMB_DOWNRIGHT;
 pub const VK_PAD_RTHUMB_DOWNLEFT = XINPUT_VIRTUAL_KEY.RTHUMB_DOWNLEFT;
 
-pub const BATTERY_TYPE = enum(u32) {
-    DISCONNECTED = 0,
-    WIRED = 1,
-    ALKALINE = 2,
-    NIMH = 3,
-    UNKNOWN = 255,
-};
-pub const BATTERY_TYPE_DISCONNECTED = BATTERY_TYPE.DISCONNECTED;
-pub const BATTERY_TYPE_WIRED = BATTERY_TYPE.WIRED;
-pub const BATTERY_TYPE_ALKALINE = BATTERY_TYPE.ALKALINE;
-pub const BATTERY_TYPE_NIMH = BATTERY_TYPE.NIMH;
-pub const BATTERY_TYPE_UNKNOWN = BATTERY_TYPE.UNKNOWN;
-
-pub const BATTERY_LEVEL = enum(u32) {
-    EMPTY = 0,
-    LOW = 1,
-    MEDIUM = 2,
-    FULL = 3,
-};
-pub const BATTERY_LEVEL_EMPTY = BATTERY_LEVEL.EMPTY;
-pub const BATTERY_LEVEL_LOW = BATTERY_LEVEL.LOW;
-pub const BATTERY_LEVEL_MEDIUM = BATTERY_LEVEL.MEDIUM;
-pub const BATTERY_LEVEL_FULL = BATTERY_LEVEL.FULL;
-
-pub const BATTERY_DEVTYPE = enum(u32) {
-    GAMEPAD = 0,
-    HEADSET = 1,
-};
-pub const BATTERY_DEVTYPE_GAMEPAD = BATTERY_DEVTYPE.GAMEPAD;
-pub const BATTERY_DEVTYPE_HEADSET = BATTERY_DEVTYPE.HEADSET;
-
-pub const XINPUT_DEVTYPE = enum(u32) {
-    D = 1,
-};
-pub const XINPUT_DEVTYPE_GAMEPAD = XINPUT_DEVTYPE.D;
-
-pub const XINPUT_DEVSUBTYPE = enum(u32) {
-    GAMEPAD = 1,
-    UNKNOWN = 0,
-    WHEEL = 2,
-    ARCADE_STICK = 3,
-    FLIGHT_STICK = 4,
-    DANCE_PAD = 5,
-    GUITAR = 6,
-    GUITAR_ALTERNATE = 7,
-    DRUM_KIT = 8,
-    GUITAR_BASS = 11,
-    ARCADE_PAD = 19,
-};
-pub const XINPUT_DEVSUBTYPE_GAMEPAD = XINPUT_DEVSUBTYPE.GAMEPAD;
-pub const XINPUT_DEVSUBTYPE_UNKNOWN = XINPUT_DEVSUBTYPE.UNKNOWN;
-pub const XINPUT_DEVSUBTYPE_WHEEL = XINPUT_DEVSUBTYPE.WHEEL;
-pub const XINPUT_DEVSUBTYPE_ARCADE_STICK = XINPUT_DEVSUBTYPE.ARCADE_STICK;
-pub const XINPUT_DEVSUBTYPE_FLIGHT_STICK = XINPUT_DEVSUBTYPE.FLIGHT_STICK;
-pub const XINPUT_DEVSUBTYPE_DANCE_PAD = XINPUT_DEVSUBTYPE.DANCE_PAD;
-pub const XINPUT_DEVSUBTYPE_GUITAR = XINPUT_DEVSUBTYPE.GUITAR;
-pub const XINPUT_DEVSUBTYPE_GUITAR_ALTERNATE = XINPUT_DEVSUBTYPE.GUITAR_ALTERNATE;
-pub const XINPUT_DEVSUBTYPE_DRUM_KIT = XINPUT_DEVSUBTYPE.DRUM_KIT;
-pub const XINPUT_DEVSUBTYPE_GUITAR_BASS = XINPUT_DEVSUBTYPE.GUITAR_BASS;
-pub const XINPUT_DEVSUBTYPE_ARCADE_PAD = XINPUT_DEVSUBTYPE.ARCADE_PAD;
-
-pub const XINPUT_CAPABILITIES_FLAGS = packed struct(u16) {
-    FFB_SUPPORTED: u1 = 0,
-    WIRELESS: u1 = 0,
-    VOICE_SUPPORTED: u1 = 0,
-    PMD_SUPPORTED: u1 = 0,
-    NO_NAVIGATION: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-};
-pub const XINPUT_CAPS_VOICE_SUPPORTED = XINPUT_CAPABILITIES_FLAGS{ .VOICE_SUPPORTED = 1 };
-pub const XINPUT_CAPS_FFB_SUPPORTED = XINPUT_CAPABILITIES_FLAGS{ .FFB_SUPPORTED = 1 };
-pub const XINPUT_CAPS_WIRELESS = XINPUT_CAPABILITIES_FLAGS{ .WIRELESS = 1 };
-pub const XINPUT_CAPS_PMD_SUPPORTED = XINPUT_CAPABILITIES_FLAGS{ .PMD_SUPPORTED = 1 };
-pub const XINPUT_CAPS_NO_NAVIGATION = XINPUT_CAPABILITIES_FLAGS{ .NO_NAVIGATION = 1 };
-
-pub const XINPUT_GAMEPAD_BUTTON_FLAGS = packed struct(u16) {
-    DPAD_UP: u1 = 0,
-    DPAD_DOWN: u1 = 0,
-    DPAD_LEFT: u1 = 0,
-    DPAD_RIGHT: u1 = 0,
-    START: u1 = 0,
-    BACK: u1 = 0,
-    LEFT_THUMB: u1 = 0,
-    RIGHT_THUMB: u1 = 0,
-    LEFT_SHOULDER: u1 = 0,
-    RIGHT_SHOULDER: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    A: u1 = 0,
-    B: u1 = 0,
-    X: u1 = 0,
-    Y: u1 = 0,
-};
-pub const XINPUT_GAMEPAD_DPAD_UP = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_UP = 1 };
-pub const XINPUT_GAMEPAD_DPAD_DOWN = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_DOWN = 1 };
-pub const XINPUT_GAMEPAD_DPAD_LEFT = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_LEFT = 1 };
-pub const XINPUT_GAMEPAD_DPAD_RIGHT = XINPUT_GAMEPAD_BUTTON_FLAGS{ .DPAD_RIGHT = 1 };
-pub const XINPUT_GAMEPAD_START = XINPUT_GAMEPAD_BUTTON_FLAGS{ .START = 1 };
-pub const XINPUT_GAMEPAD_BACK = XINPUT_GAMEPAD_BUTTON_FLAGS{ .BACK = 1 };
-pub const XINPUT_GAMEPAD_LEFT_THUMB = XINPUT_GAMEPAD_BUTTON_FLAGS{ .LEFT_THUMB = 1 };
-pub const XINPUT_GAMEPAD_RIGHT_THUMB = XINPUT_GAMEPAD_BUTTON_FLAGS{ .RIGHT_THUMB = 1 };
-pub const XINPUT_GAMEPAD_LEFT_SHOULDER = XINPUT_GAMEPAD_BUTTON_FLAGS{ .LEFT_SHOULDER = 1 };
-pub const XINPUT_GAMEPAD_RIGHT_SHOULDER = XINPUT_GAMEPAD_BUTTON_FLAGS{ .RIGHT_SHOULDER = 1 };
-pub const XINPUT_GAMEPAD_A = XINPUT_GAMEPAD_BUTTON_FLAGS{ .A = 1 };
-pub const XINPUT_GAMEPAD_B = XINPUT_GAMEPAD_BUTTON_FLAGS{ .B = 1 };
-pub const XINPUT_GAMEPAD_X = XINPUT_GAMEPAD_BUTTON_FLAGS{ .X = 1 };
-pub const XINPUT_GAMEPAD_Y = XINPUT_GAMEPAD_BUTTON_FLAGS{ .Y = 1 };
-pub const XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE = XINPUT_GAMEPAD_BUTTON_FLAGS{
-    .DPAD_UP = 1,
-    .DPAD_RIGHT = 1,
-    .BACK = 1,
-    .RIGHT_THUMB = 1,
-    .RIGHT_SHOULDER = 1,
-    ._10 = 1,
-    ._11 = 1,
-    .A = 1,
-};
-pub const XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE = XINPUT_GAMEPAD_BUTTON_FLAGS{
-    .DPAD_UP = 1,
-    .START = 1,
-    .BACK = 1,
-    .LEFT_THUMB = 1,
-    .RIGHT_THUMB = 1,
-    .LEFT_SHOULDER = 1,
-    .B = 1,
-};
-pub const XINPUT_GAMEPAD_TRIGGER_THRESHOLD = XINPUT_GAMEPAD_BUTTON_FLAGS{
-    .DPAD_DOWN = 1,
-    .DPAD_LEFT = 1,
-    .DPAD_RIGHT = 1,
-    .START = 1,
-};
-
-pub const XINPUT_KEYSTROKE_FLAGS = packed struct(u16) {
-    KEYDOWN: u1 = 0,
-    KEYUP: u1 = 0,
-    REPEAT: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-};
-pub const XINPUT_KEYSTROKE_KEYDOWN = XINPUT_KEYSTROKE_FLAGS{ .KEYDOWN = 1 };
-pub const XINPUT_KEYSTROKE_KEYUP = XINPUT_KEYSTROKE_FLAGS{ .KEYUP = 1 };
-pub const XINPUT_KEYSTROKE_REPEAT = XINPUT_KEYSTROKE_FLAGS{ .REPEAT = 1 };
-
-pub const XINPUT_FLAG = packed struct(u32) {
-    GAMEPAD: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const XINPUT_FLAG_ALL = XINPUT_FLAG{ };
-pub const XINPUT_FLAG_GAMEPAD = XINPUT_FLAG{ .GAMEPAD = 1 };
-
-pub const XINPUT_GAMEPAD = extern struct {
-    wButtons: XINPUT_GAMEPAD_BUTTON_FLAGS,
-    bLeftTrigger: u8,
-    bRightTrigger: u8,
-    sThumbLX: i16,
-    sThumbLY: i16,
-    sThumbRX: i16,
-    sThumbRY: i16,
-};
-
-pub const XINPUT_STATE = extern struct {
-    dwPacketNumber: u32,
-    Gamepad: XINPUT_GAMEPAD,
-};
-
-pub const XINPUT_VIBRATION = extern struct {
-    wLeftMotorSpeed: u16,
-    wRightMotorSpeed: u16,
-};
-
-pub const XINPUT_CAPABILITIES = extern struct {
-    Type: XINPUT_DEVTYPE,
-    SubType: XINPUT_DEVSUBTYPE,
-    Flags: XINPUT_CAPABILITIES_FLAGS,
-    Gamepad: XINPUT_GAMEPAD,
-    Vibration: XINPUT_VIBRATION,
-};
-
-pub const XINPUT_BATTERY_INFORMATION = extern struct {
-    BatteryType: BATTERY_TYPE,
-    BatteryLevel: BATTERY_LEVEL,
-};
-
-pub const XINPUT_KEYSTROKE = extern struct {
-    VirtualKey: XINPUT_VIRTUAL_KEY,
-    Unicode: u16,
-    Flags: XINPUT_KEYSTROKE_FLAGS,
-    UserIndex: u8,
-    HidCode: u8,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub extern "xinputuap" fn XInputGetState(
-    dwUserIndex: u32,
-    pState: ?*XINPUT_STATE,
-) callconv(.winapi) u32;
-
-pub extern "xinputuap" fn XInputSetState(
-    dwUserIndex: u32,
-    pVibration: ?*XINPUT_VIBRATION,
-) callconv(.winapi) u32;
-
-pub extern "xinputuap" fn XInputGetCapabilities(
-    dwUserIndex: u32,
-    dwFlags: XINPUT_FLAG,
-    pCapabilities: ?*XINPUT_CAPABILITIES,
-) callconv(.winapi) u32;
-
 pub extern "xinputuap" fn XInputEnable(
     enable: BOOL,
 ) callconv(.winapi) void;
@@ -359,10 +343,26 @@ pub extern "xinputuap" fn XInputGetBatteryInformation(
     pBatteryInformation: ?*XINPUT_BATTERY_INFORMATION,
 ) callconv(.winapi) u32;
 
+pub extern "xinputuap" fn XInputGetCapabilities(
+    dwUserIndex: u32,
+    dwFlags: XINPUT_FLAG,
+    pCapabilities: ?*XINPUT_CAPABILITIES,
+) callconv(.winapi) u32;
+
 pub extern "xinputuap" fn XInputGetKeystroke(
     dwUserIndex: u32,
     dwReserved: u32,
     pKeystroke: ?*XINPUT_KEYSTROKE,
+) callconv(.winapi) u32;
+
+pub extern "xinputuap" fn XInputGetState(
+    dwUserIndex: u32,
+    pState: ?*XINPUT_STATE,
+) callconv(.winapi) u32;
+
+pub extern "xinputuap" fn XInputSetState(
+    dwUserIndex: u32,
+    pVibration: ?*XINPUT_VIBRATION,
 ) callconv(.winapi) u32;
 
 

@@ -2,99 +2,50 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (224)
 //--------------------------------------------------------------------------------
-pub const FXEQ_MIN_FRAMERATE = @as(u32, 22000);
-pub const FXEQ_MAX_FRAMERATE = @as(u32, 48000);
-pub const FXEQ_MIN_FREQUENCY_CENTER = @as(f32, 20.0);
-pub const FXEQ_MAX_FREQUENCY_CENTER = @as(f32, 20000.0);
+pub const FACILITY_XAPO = @as(u32, 2199);
+pub const FACILITY_XAUDIO2 = @as(u32, 2198);
+pub const FXECHO_DEFAULT_DELAY = @as(f32, 500.0);
+pub const FXECHO_DEFAULT_FEEDBACK = @as(f32, 0.5);
+pub const FXECHO_DEFAULT_WETDRYMIX = @as(f32, 0.5);
+pub const FXECHO_MAX_DELAY = @as(f32, 2000.0);
+pub const FXECHO_MAX_FEEDBACK = @as(f32, 1.0);
+pub const FXECHO_MAX_WETDRYMIX = @as(f32, 1.0);
+pub const FXECHO_MIN_DELAY = @as(f32, 1.0);
+pub const FXECHO_MIN_FEEDBACK = @as(f32, 0.0);
+pub const FXECHO_MIN_WETDRYMIX = @as(f32, 0.0);
+pub const FXEQ_DEFAULT_BANDWIDTH = @as(f32, 1.0);
 pub const FXEQ_DEFAULT_FREQUENCY_CENTER_0 = @as(f32, 100.0);
 pub const FXEQ_DEFAULT_FREQUENCY_CENTER_1 = @as(f32, 800.0);
 pub const FXEQ_DEFAULT_FREQUENCY_CENTER_2 = @as(f32, 2000.0);
 pub const FXEQ_DEFAULT_FREQUENCY_CENTER_3 = @as(f32, 10000.0);
-pub const FXEQ_MIN_GAIN = @as(f32, 0.126);
-pub const FXEQ_MAX_GAIN = @as(f32, 7.94);
 pub const FXEQ_DEFAULT_GAIN = @as(f32, 1.0);
-pub const FXEQ_MIN_BANDWIDTH = @as(f32, 0.1);
 pub const FXEQ_MAX_BANDWIDTH = @as(f32, 2.0);
-pub const FXEQ_DEFAULT_BANDWIDTH = @as(f32, 1.0);
-pub const FXMASTERINGLIMITER_MIN_RELEASE = @as(u32, 1);
-pub const FXMASTERINGLIMITER_MAX_RELEASE = @as(u32, 20);
-pub const FXMASTERINGLIMITER_DEFAULT_RELEASE = @as(u32, 6);
-pub const FXMASTERINGLIMITER_MIN_LOUDNESS = @as(u32, 1);
-pub const FXMASTERINGLIMITER_MAX_LOUDNESS = @as(u32, 1800);
-pub const FXMASTERINGLIMITER_DEFAULT_LOUDNESS = @as(u32, 1000);
-pub const FXREVERB_MIN_DIFFUSION = @as(f32, 0.0);
-pub const FXREVERB_MAX_DIFFUSION = @as(f32, 1.0);
-pub const FXREVERB_DEFAULT_DIFFUSION = @as(f32, 0.9);
-pub const FXREVERB_MIN_ROOMSIZE = @as(f32, 0.0001);
-pub const FXREVERB_MAX_ROOMSIZE = @as(f32, 1.0);
-pub const FXREVERB_DEFAULT_ROOMSIZE = @as(f32, 0.6);
+pub const FXEQ_MAX_FRAMERATE = @as(u32, 48000);
+pub const FXEQ_MAX_FREQUENCY_CENTER = @as(f32, 20000.0);
+pub const FXEQ_MAX_GAIN = @as(f32, 7.94);
+pub const FXEQ_MIN_BANDWIDTH = @as(f32, 0.1);
+pub const FXEQ_MIN_FRAMERATE = @as(u32, 22000);
+pub const FXEQ_MIN_FREQUENCY_CENTER = @as(f32, 20.0);
+pub const FXEQ_MIN_GAIN = @as(f32, 0.126);
 pub const FXLOUDNESS_DEFAULT_MOMENTARY_MS = @as(u32, 400);
 pub const FXLOUDNESS_DEFAULT_SHORTTERM_MS = @as(u32, 3000);
-pub const FXECHO_MIN_WETDRYMIX = @as(f32, 0.0);
-pub const FXECHO_MAX_WETDRYMIX = @as(f32, 1.0);
-pub const FXECHO_DEFAULT_WETDRYMIX = @as(f32, 0.5);
-pub const FXECHO_MIN_FEEDBACK = @as(f32, 0.0);
-pub const FXECHO_MAX_FEEDBACK = @as(f32, 1.0);
-pub const FXECHO_DEFAULT_FEEDBACK = @as(f32, 0.5);
-pub const FXECHO_MIN_DELAY = @as(f32, 1.0);
-pub const FXECHO_MAX_DELAY = @as(f32, 2000.0);
-pub const FXECHO_DEFAULT_DELAY = @as(f32, 500.0);
-pub const XAUDIO2_DLL_A = "xaudio2_9.dll";
-pub const XAUDIO2_DLL_W = "xaudio2_9.dll";
-pub const XAUDIO2D_DLL_A = "xaudio2_9d.dll";
-pub const XAUDIO2D_DLL_W = "xaudio2_9d.dll";
-pub const XAUDIO2_DLL = "xaudio2_9.dll";
-pub const XAUDIO2D_DLL = "xaudio2_9d.dll";
-pub const XAUDIO2_MAX_BUFFER_BYTES = @as(u32, 2147483648);
-pub const XAUDIO2_MAX_QUEUED_BUFFERS = @as(u32, 64);
-pub const XAUDIO2_MAX_BUFFERS_SYSTEM = @as(u32, 2);
-pub const XAUDIO2_MAX_AUDIO_CHANNELS = @as(u32, 64);
-pub const XAUDIO2_MIN_SAMPLE_RATE = @as(u32, 1000);
-pub const XAUDIO2_MAX_SAMPLE_RATE = @as(u32, 200000);
-pub const XAUDIO2_MAX_VOLUME_LEVEL = @as(f32, 16777216.0);
-pub const XAUDIO2_MAX_FREQ_RATIO = @as(f32, 1024.0);
-pub const XAUDIO2_DEFAULT_FREQ_RATIO = @as(f32, 2.0);
-pub const XAUDIO2_MAX_FILTER_ONEOVERQ = @as(f32, 1.5);
-pub const XAUDIO2_MAX_FILTER_FREQUENCY = @as(f32, 1.0);
-pub const XAUDIO2_MAX_LOOP_COUNT = @as(u32, 254);
-pub const XAUDIO2_MAX_INSTANCES = @as(u32, 8);
-pub const XAUDIO2_MAX_RATIO_TIMES_RATE_XMA_MONO = @as(u32, 600000);
-pub const XAUDIO2_MAX_RATIO_TIMES_RATE_XMA_MULTICHANNEL = @as(u32, 300000);
-pub const XAUDIO2_COMMIT_NOW = @as(u32, 0);
-pub const XAUDIO2_COMMIT_ALL = @as(u32, 0);
-pub const XAUDIO2_NO_LOOP_REGION = @as(u32, 0);
-pub const XAUDIO2_LOOP_INFINITE = @as(u32, 255);
-pub const XAUDIO2_DEFAULT_CHANNELS = @as(u32, 0);
-pub const XAUDIO2_DEFAULT_SAMPLERATE = @as(u32, 0);
-pub const XAUDIO2_DEBUG_ENGINE = @as(u32, 1);
-pub const XAUDIO2_VOICE_NOPITCH = @as(u32, 2);
-pub const XAUDIO2_VOICE_NOSRC = @as(u32, 4);
-pub const XAUDIO2_VOICE_USEFILTER = @as(u32, 8);
-pub const XAUDIO2_PLAY_TAILS = @as(u32, 32);
-pub const XAUDIO2_END_OF_STREAM = @as(u32, 64);
-pub const XAUDIO2_SEND_USEFILTER = @as(u32, 128);
-pub const XAUDIO2_VOICE_NOSAMPLESPLAYED = @as(u32, 256);
-pub const XAUDIO2_STOP_ENGINE_WHEN_IDLE = @as(u32, 8192);
-pub const XAUDIO2_1024_QUANTUM = @as(u32, 32768);
-pub const XAUDIO2_NO_VIRTUAL_AUDIO_CLIENT = @as(u32, 65536);
-pub const XAUDIO2_DEFAULT_FILTER_FREQUENCY = @as(f32, 1.0);
-pub const XAUDIO2_DEFAULT_FILTER_ONEOVERQ = @as(f32, 1.0);
-pub const XAUDIO2_QUANTUM_NUMERATOR = @as(u32, 1);
-pub const XAUDIO2_QUANTUM_DENOMINATOR = @as(u32, 100);
-pub const FACILITY_XAUDIO2 = @as(u32, 2198);
-pub const XAUDIO2_E_INVALID_CALL = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435519));
-pub const XAUDIO2_E_XMA_DECODER_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435518));
-pub const XAUDIO2_E_XAPO_CREATION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435517));
-pub const XAUDIO2_E_DEVICE_INVALIDATED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435516));
+pub const FXMASTERINGLIMITER_DEFAULT_LOUDNESS = @as(u32, 1000);
+pub const FXMASTERINGLIMITER_DEFAULT_RELEASE = @as(u32, 6);
+pub const FXMASTERINGLIMITER_MAX_LOUDNESS = @as(u32, 1800);
+pub const FXMASTERINGLIMITER_MAX_RELEASE = @as(u32, 20);
+pub const FXMASTERINGLIMITER_MIN_LOUDNESS = @as(u32, 1);
+pub const FXMASTERINGLIMITER_MIN_RELEASE = @as(u32, 1);
+pub const FXREVERB_DEFAULT_DIFFUSION = @as(f32, 0.9);
+pub const FXREVERB_DEFAULT_ROOMSIZE = @as(f32, 0.6);
+pub const FXREVERB_MAX_DIFFUSION = @as(f32, 1.0);
+pub const FXREVERB_MAX_ROOMSIZE = @as(f32, 1.0);
+pub const FXREVERB_MIN_DIFFUSION = @as(f32, 0.0);
+pub const FXREVERB_MIN_ROOMSIZE = @as(f32, 0.0001);
+pub const HRTF_DEFAULT_UNITY_GAIN_DISTANCE = @as(f32, 1.0);
+pub const HRTF_MAX_GAIN_LIMIT = @as(f32, 12.0);
+pub const HRTF_MIN_GAIN_LIMIT = @as(f32, -96.0);
+pub const HRTF_MIN_UNITY_GAIN_DISTANCE = @as(f32, 0.05);
 pub const Processor1 = @as(u32, 1);
-pub const Processor2 = @as(u32, 2);
-pub const Processor3 = @as(u32, 4);
-pub const Processor4 = @as(u32, 8);
-pub const Processor5 = @as(u32, 16);
-pub const Processor6 = @as(u32, 32);
-pub const Processor7 = @as(u32, 64);
-pub const Processor8 = @as(u32, 128);
-pub const Processor9 = @as(u32, 256);
 pub const Processor10 = @as(u32, 512);
 pub const Processor11 = @as(u32, 1024);
 pub const Processor12 = @as(u32, 2048);
@@ -105,6 +56,7 @@ pub const Processor16 = @as(u32, 32768);
 pub const Processor17 = @as(u32, 65536);
 pub const Processor18 = @as(u32, 131072);
 pub const Processor19 = @as(u32, 262144);
+pub const Processor2 = @as(u32, 2);
 pub const Processor20 = @as(u32, 524288);
 pub const Processor21 = @as(u32, 1048576);
 pub const Processor22 = @as(u32, 2097152);
@@ -115,150 +67,286 @@ pub const Processor26 = @as(u32, 33554432);
 pub const Processor27 = @as(u32, 67108864);
 pub const Processor28 = @as(u32, 134217728);
 pub const Processor29 = @as(u32, 268435456);
+pub const Processor3 = @as(u32, 4);
 pub const Processor30 = @as(u32, 536870912);
 pub const Processor31 = @as(u32, 1073741824);
 pub const Processor32 = @as(u32, 2147483648);
+pub const Processor4 = @as(u32, 8);
+pub const Processor5 = @as(u32, 16);
+pub const Processor6 = @as(u32, 32);
+pub const Processor7 = @as(u32, 64);
+pub const Processor8 = @as(u32, 128);
+pub const Processor9 = @as(u32, 256);
+pub const SPEAKER_MONO = @as(u32, 4);
+pub const X3DAUDIO_2PI = @as(f32, 6.2831855);
+pub const X3DAUDIO_CALCULATE_DELAY = @as(u32, 2);
+pub const X3DAUDIO_CALCULATE_DOPPLER = @as(u32, 32);
+pub const X3DAUDIO_CALCULATE_EMITTER_ANGLE = @as(u32, 64);
+pub const X3DAUDIO_CALCULATE_LPF_DIRECT = @as(u32, 4);
+pub const X3DAUDIO_CALCULATE_LPF_REVERB = @as(u32, 8);
+pub const X3DAUDIO_CALCULATE_MATRIX = @as(u32, 1);
+pub const X3DAUDIO_CALCULATE_REDIRECT_TO_LFE = @as(u32, 131072);
+pub const X3DAUDIO_CALCULATE_REVERB = @as(u32, 16);
+pub const X3DAUDIO_CALCULATE_ZEROCENTER = @as(u32, 65536);
+pub const X3DAUDIO_HANDLE_BYTESIZE = @as(u32, 20);
+pub const X3DAUDIO_PI = @as(f32, 3.1415927);
+pub const X3DAUDIO_SPEED_OF_SOUND = @as(f32, 343.5);
+pub const XAPO_E_FORMAT_UNSUPPORTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003369983));
+pub const XAPO_FLAG_BITSPERSAMPLE_MUST_MATCH = @as(u32, 4);
+pub const XAPO_FLAG_BUFFERCOUNT_MUST_MATCH = @as(u32, 8);
+pub const XAPO_FLAG_CHANNELS_MUST_MATCH = @as(u32, 1);
+pub const XAPO_FLAG_FRAMERATE_MUST_MATCH = @as(u32, 2);
+pub const XAPO_FLAG_INPLACE_REQUIRED = @as(u32, 32);
+pub const XAPO_FLAG_INPLACE_SUPPORTED = @as(u32, 16);
+pub const XAPO_MAX_CHANNELS = @as(u32, 64);
+pub const XAPO_MAX_FRAMERATE = @as(u32, 200000);
+pub const XAPO_MIN_CHANNELS = @as(u32, 1);
+pub const XAPO_MIN_FRAMERATE = @as(u32, 1000);
+pub const XAPO_REGISTRATION_STRING_LENGTH = @as(u32, 256);
+pub const XAUDIO2_1024_QUANTUM = @as(u32, 32768);
 pub const XAUDIO2_ANY_PROCESSOR = @as(u32, 4294967295);
-pub const XAUDIO2_USE_DEFAULT_PROCESSOR = @as(u32, 0);
+pub const XAUDIO2_COMMIT_ALL = @as(u32, 0);
+pub const XAUDIO2_COMMIT_NOW = @as(u32, 0);
+pub const XAUDIO2_DEBUG_ENGINE = @as(u32, 1);
+pub const XAUDIO2_DEFAULT_CHANNELS = @as(u32, 0);
+pub const XAUDIO2_DEFAULT_FILTER_FREQUENCY = @as(f32, 1.0);
+pub const XAUDIO2_DEFAULT_FILTER_ONEOVERQ = @as(f32, 1.0);
+pub const XAUDIO2_DEFAULT_FREQ_RATIO = @as(f32, 2.0);
 pub const XAUDIO2_DEFAULT_PROCESSOR = @as(u32, 1);
-pub const XAUDIO2_LOG_ERRORS = @as(u32, 1);
-pub const XAUDIO2_LOG_WARNINGS = @as(u32, 2);
-pub const XAUDIO2_LOG_INFO = @as(u32, 4);
-pub const XAUDIO2_LOG_DETAIL = @as(u32, 8);
+pub const XAUDIO2_DEFAULT_SAMPLERATE = @as(u32, 0);
+pub const XAUDIO2_DLL = "xaudio2_9.dll";
+pub const XAUDIO2_DLL_A = "xaudio2_9.dll";
+pub const XAUDIO2_DLL_W = "xaudio2_9.dll";
+pub const XAUDIO2_E_DEVICE_INVALIDATED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435516));
+pub const XAUDIO2_E_INVALID_CALL = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435519));
+pub const XAUDIO2_E_XAPO_CREATION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435517));
+pub const XAUDIO2_E_XMA_DECODER_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003435518));
+pub const XAUDIO2_END_OF_STREAM = @as(u32, 64);
 pub const XAUDIO2_LOG_API_CALLS = @as(u32, 16);
+pub const XAUDIO2_LOG_DETAIL = @as(u32, 8);
+pub const XAUDIO2_LOG_ERRORS = @as(u32, 1);
 pub const XAUDIO2_LOG_FUNC_CALLS = @as(u32, 32);
-pub const XAUDIO2_LOG_TIMING = @as(u32, 64);
+pub const XAUDIO2_LOG_INFO = @as(u32, 4);
 pub const XAUDIO2_LOG_LOCKS = @as(u32, 128);
 pub const XAUDIO2_LOG_MEMORY = @as(u32, 256);
 pub const XAUDIO2_LOG_STREAMING = @as(u32, 4096);
-pub const XAUDIO2FX_REVERB_MIN_FRAMERATE = @as(u32, 20000);
-pub const XAUDIO2FX_REVERB_MAX_FRAMERATE = @as(u32, 48000);
-pub const XAUDIO2FX_REVERB_MIN_WET_DRY_MIX = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_MIN_REFLECTIONS_DELAY = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_REVERB_DELAY = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_REAR_DELAY = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_7POINT1_SIDE_DELAY = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_7POINT1_REAR_DELAY = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_POSITION = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_DIFFUSION = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_LOW_EQ_GAIN = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_LOW_EQ_CUTOFF = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_HIGH_EQ_GAIN = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_HIGH_EQ_CUTOFF = @as(u32, 0);
-pub const XAUDIO2FX_REVERB_MIN_ROOM_FILTER_FREQ = @as(f32, 20.0);
-pub const XAUDIO2FX_REVERB_MIN_ROOM_FILTER_MAIN = @as(f32, -100.0);
-pub const XAUDIO2FX_REVERB_MIN_ROOM_FILTER_HF = @as(f32, -100.0);
-pub const XAUDIO2FX_REVERB_MIN_REFLECTIONS_GAIN = @as(f32, -100.0);
-pub const XAUDIO2FX_REVERB_MIN_REVERB_GAIN = @as(f32, -100.0);
-pub const XAUDIO2FX_REVERB_MIN_DECAY_TIME = @as(f32, 0.1);
-pub const XAUDIO2FX_REVERB_MIN_DENSITY = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_MIN_ROOM_SIZE = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_MAX_WET_DRY_MIX = @as(f32, 100.0);
-pub const XAUDIO2FX_REVERB_MAX_REFLECTIONS_DELAY = @as(u32, 300);
-pub const XAUDIO2FX_REVERB_MAX_REVERB_DELAY = @as(u32, 85);
-pub const XAUDIO2FX_REVERB_MAX_REAR_DELAY = @as(u32, 5);
-pub const XAUDIO2FX_REVERB_MAX_7POINT1_SIDE_DELAY = @as(u32, 5);
-pub const XAUDIO2FX_REVERB_MAX_7POINT1_REAR_DELAY = @as(u32, 20);
-pub const XAUDIO2FX_REVERB_MAX_POSITION = @as(u32, 30);
-pub const XAUDIO2FX_REVERB_MAX_DIFFUSION = @as(u32, 15);
-pub const XAUDIO2FX_REVERB_MAX_LOW_EQ_GAIN = @as(u32, 12);
-pub const XAUDIO2FX_REVERB_MAX_LOW_EQ_CUTOFF = @as(u32, 9);
-pub const XAUDIO2FX_REVERB_MAX_HIGH_EQ_GAIN = @as(u32, 8);
-pub const XAUDIO2FX_REVERB_MAX_HIGH_EQ_CUTOFF = @as(u32, 14);
-pub const XAUDIO2FX_REVERB_MAX_ROOM_FILTER_FREQ = @as(f32, 20000.0);
-pub const XAUDIO2FX_REVERB_MAX_ROOM_FILTER_MAIN = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_MAX_ROOM_FILTER_HF = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_MAX_REFLECTIONS_GAIN = @as(f32, 20.0);
-pub const XAUDIO2FX_REVERB_MAX_REVERB_GAIN = @as(f32, 20.0);
-pub const XAUDIO2FX_REVERB_MAX_DENSITY = @as(f32, 100.0);
-pub const XAUDIO2FX_REVERB_MAX_ROOM_SIZE = @as(f32, 100.0);
-pub const XAUDIO2FX_REVERB_DEFAULT_WET_DRY_MIX = @as(f32, 100.0);
-pub const XAUDIO2FX_REVERB_DEFAULT_REFLECTIONS_DELAY = @as(u32, 5);
-pub const XAUDIO2FX_REVERB_DEFAULT_REVERB_DELAY = @as(u32, 5);
-pub const XAUDIO2FX_REVERB_DEFAULT_REAR_DELAY = @as(u32, 5);
-pub const XAUDIO2FX_REVERB_DEFAULT_7POINT1_SIDE_DELAY = @as(u32, 5);
+pub const XAUDIO2_LOG_TIMING = @as(u32, 64);
+pub const XAUDIO2_LOG_WARNINGS = @as(u32, 2);
+pub const XAUDIO2_LOOP_INFINITE = @as(u32, 255);
+pub const XAUDIO2_MAX_AUDIO_CHANNELS = @as(u32, 64);
+pub const XAUDIO2_MAX_BUFFER_BYTES = @as(u32, 2147483648);
+pub const XAUDIO2_MAX_BUFFERS_SYSTEM = @as(u32, 2);
+pub const XAUDIO2_MAX_FILTER_FREQUENCY = @as(f32, 1.0);
+pub const XAUDIO2_MAX_FILTER_ONEOVERQ = @as(f32, 1.5);
+pub const XAUDIO2_MAX_FREQ_RATIO = @as(f32, 1024.0);
+pub const XAUDIO2_MAX_INSTANCES = @as(u32, 8);
+pub const XAUDIO2_MAX_LOOP_COUNT = @as(u32, 254);
+pub const XAUDIO2_MAX_QUEUED_BUFFERS = @as(u32, 64);
+pub const XAUDIO2_MAX_RATIO_TIMES_RATE_XMA_MONO = @as(u32, 600000);
+pub const XAUDIO2_MAX_RATIO_TIMES_RATE_XMA_MULTICHANNEL = @as(u32, 300000);
+pub const XAUDIO2_MAX_SAMPLE_RATE = @as(u32, 200000);
+pub const XAUDIO2_MAX_VOLUME_LEVEL = @as(f32, 16777216.0);
+pub const XAUDIO2_MIN_SAMPLE_RATE = @as(u32, 1000);
+pub const XAUDIO2_NO_LOOP_REGION = @as(u32, 0);
+pub const XAUDIO2_NO_VIRTUAL_AUDIO_CLIENT = @as(u32, 65536);
+pub const XAUDIO2_PLAY_TAILS = @as(u32, 32);
+pub const XAUDIO2_QUANTUM_DENOMINATOR = @as(u32, 100);
+pub const XAUDIO2_QUANTUM_NUMERATOR = @as(u32, 1);
+pub const XAUDIO2_SEND_USEFILTER = @as(u32, 128);
+pub const XAUDIO2_STOP_ENGINE_WHEN_IDLE = @as(u32, 8192);
+pub const XAUDIO2_USE_DEFAULT_PROCESSOR = @as(u32, 0);
+pub const XAUDIO2_VOICE_NOPITCH = @as(u32, 2);
+pub const XAUDIO2_VOICE_NOSAMPLESPLAYED = @as(u32, 256);
+pub const XAUDIO2_VOICE_NOSRC = @as(u32, 4);
+pub const XAUDIO2_VOICE_USEFILTER = @as(u32, 8);
+pub const XAUDIO2D_DLL = "xaudio2_9d.dll";
+pub const XAUDIO2D_DLL_A = "xaudio2_9d.dll";
+pub const XAUDIO2D_DLL_W = "xaudio2_9d.dll";
 pub const XAUDIO2FX_REVERB_DEFAULT_7POINT1_REAR_DELAY = @as(u32, 20);
-pub const XAUDIO2FX_REVERB_DEFAULT_POSITION = @as(u32, 6);
-pub const XAUDIO2FX_REVERB_DEFAULT_POSITION_MATRIX = @as(u32, 27);
-pub const XAUDIO2FX_REVERB_DEFAULT_EARLY_DIFFUSION = @as(u32, 8);
-pub const XAUDIO2FX_REVERB_DEFAULT_LATE_DIFFUSION = @as(u32, 8);
-pub const XAUDIO2FX_REVERB_DEFAULT_LOW_EQ_GAIN = @as(u32, 8);
-pub const XAUDIO2FX_REVERB_DEFAULT_LOW_EQ_CUTOFF = @as(u32, 4);
-pub const XAUDIO2FX_REVERB_DEFAULT_HIGH_EQ_GAIN = @as(u32, 8);
-pub const XAUDIO2FX_REVERB_DEFAULT_HIGH_EQ_CUTOFF = @as(u32, 4);
-pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_FILTER_FREQ = @as(f32, 5000.0);
-pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_FILTER_MAIN = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_FILTER_HF = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_DEFAULT_REFLECTIONS_GAIN = @as(f32, 0.0);
-pub const XAUDIO2FX_REVERB_DEFAULT_REVERB_GAIN = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_DEFAULT_7POINT1_SIDE_DELAY = @as(u32, 5);
 pub const XAUDIO2FX_REVERB_DEFAULT_DECAY_TIME = @as(f32, 1.0);
 pub const XAUDIO2FX_REVERB_DEFAULT_DENSITY = @as(f32, 100.0);
-pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_SIZE = @as(f32, 100.0);
 pub const XAUDIO2FX_REVERB_DEFAULT_DISABLE_LATE_FIELD = @as(u32, 0);
-pub const HRTF_MAX_GAIN_LIMIT = @as(f32, 12.0);
-pub const HRTF_MIN_GAIN_LIMIT = @as(f32, -96.0);
-pub const HRTF_MIN_UNITY_GAIN_DISTANCE = @as(f32, 0.05);
-pub const HRTF_DEFAULT_UNITY_GAIN_DISTANCE = @as(f32, 1.0);
-pub const FACILITY_XAPO = @as(u32, 2199);
-pub const XAPO_E_FORMAT_UNSUPPORTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2003369983));
-pub const XAPO_MIN_CHANNELS = @as(u32, 1);
-pub const XAPO_MAX_CHANNELS = @as(u32, 64);
-pub const XAPO_MIN_FRAMERATE = @as(u32, 1000);
-pub const XAPO_MAX_FRAMERATE = @as(u32, 200000);
-pub const XAPO_REGISTRATION_STRING_LENGTH = @as(u32, 256);
-pub const XAPO_FLAG_CHANNELS_MUST_MATCH = @as(u32, 1);
-pub const XAPO_FLAG_FRAMERATE_MUST_MATCH = @as(u32, 2);
-pub const XAPO_FLAG_BITSPERSAMPLE_MUST_MATCH = @as(u32, 4);
-pub const XAPO_FLAG_BUFFERCOUNT_MUST_MATCH = @as(u32, 8);
-pub const XAPO_FLAG_INPLACE_REQUIRED = @as(u32, 32);
-pub const XAPO_FLAG_INPLACE_SUPPORTED = @as(u32, 16);
-pub const SPEAKER_MONO = @as(u32, 4);
-pub const X3DAUDIO_HANDLE_BYTESIZE = @as(u32, 20);
-pub const X3DAUDIO_PI = @as(f32, 3.1415927);
-pub const X3DAUDIO_2PI = @as(f32, 6.2831855);
-pub const X3DAUDIO_SPEED_OF_SOUND = @as(f32, 343.5);
-pub const X3DAUDIO_CALCULATE_MATRIX = @as(u32, 1);
-pub const X3DAUDIO_CALCULATE_DELAY = @as(u32, 2);
-pub const X3DAUDIO_CALCULATE_LPF_DIRECT = @as(u32, 4);
-pub const X3DAUDIO_CALCULATE_LPF_REVERB = @as(u32, 8);
-pub const X3DAUDIO_CALCULATE_REVERB = @as(u32, 16);
-pub const X3DAUDIO_CALCULATE_DOPPLER = @as(u32, 32);
-pub const X3DAUDIO_CALCULATE_EMITTER_ANGLE = @as(u32, 64);
-pub const X3DAUDIO_CALCULATE_ZEROCENTER = @as(u32, 65536);
-pub const X3DAUDIO_CALCULATE_REDIRECT_TO_LFE = @as(u32, 131072);
+pub const XAUDIO2FX_REVERB_DEFAULT_EARLY_DIFFUSION = @as(u32, 8);
+pub const XAUDIO2FX_REVERB_DEFAULT_HIGH_EQ_CUTOFF = @as(u32, 4);
+pub const XAUDIO2FX_REVERB_DEFAULT_HIGH_EQ_GAIN = @as(u32, 8);
+pub const XAUDIO2FX_REVERB_DEFAULT_LATE_DIFFUSION = @as(u32, 8);
+pub const XAUDIO2FX_REVERB_DEFAULT_LOW_EQ_CUTOFF = @as(u32, 4);
+pub const XAUDIO2FX_REVERB_DEFAULT_LOW_EQ_GAIN = @as(u32, 8);
+pub const XAUDIO2FX_REVERB_DEFAULT_POSITION = @as(u32, 6);
+pub const XAUDIO2FX_REVERB_DEFAULT_POSITION_MATRIX = @as(u32, 27);
+pub const XAUDIO2FX_REVERB_DEFAULT_REAR_DELAY = @as(u32, 5);
+pub const XAUDIO2FX_REVERB_DEFAULT_REFLECTIONS_DELAY = @as(u32, 5);
+pub const XAUDIO2FX_REVERB_DEFAULT_REFLECTIONS_GAIN = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_DEFAULT_REVERB_DELAY = @as(u32, 5);
+pub const XAUDIO2FX_REVERB_DEFAULT_REVERB_GAIN = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_FILTER_FREQ = @as(f32, 5000.0);
+pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_FILTER_HF = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_FILTER_MAIN = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_DEFAULT_ROOM_SIZE = @as(f32, 100.0);
+pub const XAUDIO2FX_REVERB_DEFAULT_WET_DRY_MIX = @as(f32, 100.0);
+pub const XAUDIO2FX_REVERB_MAX_7POINT1_REAR_DELAY = @as(u32, 20);
+pub const XAUDIO2FX_REVERB_MAX_7POINT1_SIDE_DELAY = @as(u32, 5);
+pub const XAUDIO2FX_REVERB_MAX_DENSITY = @as(f32, 100.0);
+pub const XAUDIO2FX_REVERB_MAX_DIFFUSION = @as(u32, 15);
+pub const XAUDIO2FX_REVERB_MAX_FRAMERATE = @as(u32, 48000);
+pub const XAUDIO2FX_REVERB_MAX_HIGH_EQ_CUTOFF = @as(u32, 14);
+pub const XAUDIO2FX_REVERB_MAX_HIGH_EQ_GAIN = @as(u32, 8);
+pub const XAUDIO2FX_REVERB_MAX_LOW_EQ_CUTOFF = @as(u32, 9);
+pub const XAUDIO2FX_REVERB_MAX_LOW_EQ_GAIN = @as(u32, 12);
+pub const XAUDIO2FX_REVERB_MAX_POSITION = @as(u32, 30);
+pub const XAUDIO2FX_REVERB_MAX_REAR_DELAY = @as(u32, 5);
+pub const XAUDIO2FX_REVERB_MAX_REFLECTIONS_DELAY = @as(u32, 300);
+pub const XAUDIO2FX_REVERB_MAX_REFLECTIONS_GAIN = @as(f32, 20.0);
+pub const XAUDIO2FX_REVERB_MAX_REVERB_DELAY = @as(u32, 85);
+pub const XAUDIO2FX_REVERB_MAX_REVERB_GAIN = @as(f32, 20.0);
+pub const XAUDIO2FX_REVERB_MAX_ROOM_FILTER_FREQ = @as(f32, 20000.0);
+pub const XAUDIO2FX_REVERB_MAX_ROOM_FILTER_HF = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_MAX_ROOM_FILTER_MAIN = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_MAX_ROOM_SIZE = @as(f32, 100.0);
+pub const XAUDIO2FX_REVERB_MAX_WET_DRY_MIX = @as(f32, 100.0);
+pub const XAUDIO2FX_REVERB_MIN_7POINT1_REAR_DELAY = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_7POINT1_SIDE_DELAY = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_DECAY_TIME = @as(f32, 0.1);
+pub const XAUDIO2FX_REVERB_MIN_DENSITY = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_MIN_DIFFUSION = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_FRAMERATE = @as(u32, 20000);
+pub const XAUDIO2FX_REVERB_MIN_HIGH_EQ_CUTOFF = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_HIGH_EQ_GAIN = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_LOW_EQ_CUTOFF = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_LOW_EQ_GAIN = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_POSITION = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_REAR_DELAY = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_REFLECTIONS_DELAY = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_REFLECTIONS_GAIN = @as(f32, -100.0);
+pub const XAUDIO2FX_REVERB_MIN_REVERB_DELAY = @as(u32, 0);
+pub const XAUDIO2FX_REVERB_MIN_REVERB_GAIN = @as(f32, -100.0);
+pub const XAUDIO2FX_REVERB_MIN_ROOM_FILTER_FREQ = @as(f32, 20.0);
+pub const XAUDIO2FX_REVERB_MIN_ROOM_FILTER_HF = @as(f32, -100.0);
+pub const XAUDIO2FX_REVERB_MIN_ROOM_FILTER_MAIN = @as(f32, -100.0);
+pub const XAUDIO2FX_REVERB_MIN_ROOM_SIZE = @as(f32, 0.0);
+pub const XAUDIO2FX_REVERB_MIN_WET_DRY_MIX = @as(f32, 0.0);
 
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
-pub const XAPO_REGISTRATION_PROPERTIES = extern struct {
-    clsid: Guid align(1),
-    FriendlyName: [256]u16 align(1),
-    CopyrightInfo: [256]u16 align(1),
-    MajorVersion: u32 align(1),
-    MinorVersion: u32 align(1),
-    Flags: u32 align(1),
-    MinInputBufferCount: u32 align(1),
-    MaxInputBufferCount: u32 align(1),
-    MinOutputBufferCount: u32 align(1),
-    MaxOutputBufferCount: u32 align(1),
+const CLSID_AudioReverb_Value = Guid.initString("c2633b16-471b-4498-b8c5-4f0959e2ec09");
+pub const CLSID_AudioReverb = &CLSID_AudioReverb_Value;
+
+const CLSID_AudioVolumeMeter_Value = Guid.initString("4fc3b166-972a-40cf-bc37-7db03db2fba3");
+pub const CLSID_AudioVolumeMeter = &CLSID_AudioVolumeMeter_Value;
+
+const CLSID_FXEcho_Value = Guid.initString("5039d740-f736-449a-84d3-a56202557b87");
+pub const CLSID_FXEcho = &CLSID_FXEcho_Value;
+
+pub const FXECHO_INITDATA = extern struct {
+    MaxDelay: f32 align(1),
 };
 
-pub const XAPO_LOCKFORPROCESS_PARAMETERS = extern struct {
-    pFormat: ?*const WAVEFORMATEX align(1),
-    MaxFrameCount: u32 align(1),
+pub const FXECHO_PARAMETERS = extern struct {
+    WetDryMix: f32 align(1),
+    Feedback: f32 align(1),
+    Delay: f32 align(1),
 };
 
-pub const XAPO_BUFFER_FLAGS = enum(i32) {
-    SILENT = 0,
-    VALID = 1,
-};
-pub const XAPO_BUFFER_SILENT = XAPO_BUFFER_FLAGS.SILENT;
-pub const XAPO_BUFFER_VALID = XAPO_BUFFER_FLAGS.VALID;
+const CLSID_FXEQ_Value = Guid.initString("f5e01117-d6c4-485a-a3f5-695196f3dbfa");
+pub const CLSID_FXEQ = &CLSID_FXEQ_Value;
 
-pub const XAPO_PROCESS_BUFFER_PARAMETERS = extern struct {
-    pBuffer: ?*anyopaque align(1),
-    BufferFlags: XAPO_BUFFER_FLAGS align(1),
-    ValidFrameCount: u32 align(1),
+pub const FXEQ_PARAMETERS = extern struct {
+    FrequencyCenter0: f32 align(1),
+    Gain0: f32 align(1),
+    Bandwidth0: f32 align(1),
+    FrequencyCenter1: f32 align(1),
+    Gain1: f32 align(1),
+    Bandwidth1: f32 align(1),
+    FrequencyCenter2: f32 align(1),
+    Gain2: f32 align(1),
+    Bandwidth2: f32 align(1),
+    FrequencyCenter3: f32 align(1),
+    Gain3: f32 align(1),
+    Bandwidth3: f32 align(1),
+};
+
+const CLSID_FXMasteringLimiter_Value = Guid.initString("c4137916-2be1-46fd-8599-441536f49856");
+pub const CLSID_FXMasteringLimiter = &CLSID_FXMasteringLimiter_Value;
+
+pub const FXMASTERINGLIMITER_PARAMETERS = extern struct {
+    Release: u32 align(1),
+    Loudness: u32 align(1),
+};
+
+const CLSID_FXReverb_Value = Guid.initString("7d9aca56-cb68-4807-b632-b137352e8596");
+pub const CLSID_FXReverb = &CLSID_FXReverb_Value;
+
+pub const FXREVERB_PARAMETERS = extern struct {
+    Diffusion: f32 align(1),
+    RoomSize: f32 align(1),
+};
+
+pub const HrtfApoInit = extern struct {
+    distanceDecay: ?*HrtfDistanceDecay,
+    directivity: ?*HrtfDirectivity,
+};
+
+pub const HrtfDirectivity = extern struct {
+    type: HrtfDirectivityType,
+    scaling: f32,
+};
+
+pub const HrtfDirectivityCardioid = extern struct {
+    directivity: HrtfDirectivity,
+    order: f32,
+};
+
+pub const HrtfDirectivityCone = extern struct {
+    directivity: HrtfDirectivity,
+    innerAngle: f32,
+    outerAngle: f32,
+};
+
+pub const HrtfDirectivityType = enum(i32) {
+    OmniDirectional = 0,
+    Cardioid = 1,
+    Cone = 2,
+};
+pub const OmniDirectional = HrtfDirectivityType.OmniDirectional;
+pub const Cardioid = HrtfDirectivityType.Cardioid;
+pub const Cone = HrtfDirectivityType.Cone;
+
+pub const HrtfDistanceDecay = extern struct {
+    type: HrtfDistanceDecayType,
+    maxGain: f32,
+    minGain: f32,
+    unityGainDistance: f32,
+    cutoffDistance: f32,
+};
+
+pub const HrtfDistanceDecayType = enum(i32) {
+    NaturalDecay = 0,
+    CustomDecay = 1,
+};
+pub const NaturalDecay = HrtfDistanceDecayType.NaturalDecay;
+pub const CustomDecay = HrtfDistanceDecayType.CustomDecay;
+
+pub const HrtfEnvironment = enum(i32) {
+    Small = 0,
+    Medium = 1,
+    Large = 2,
+    Outdoors = 3,
+};
+pub const Small = HrtfEnvironment.Small;
+pub const Medium = HrtfEnvironment.Medium;
+pub const Large = HrtfEnvironment.Large;
+pub const Outdoors = HrtfEnvironment.Outdoors;
+
+pub const HrtfOrientation = extern struct {
+    element: [9]f32,
+};
+
+pub const HrtfPosition = extern struct {
+    x: f32,
+    y: f32,
+    z: f32,
 };
 
 const IID_IXAPO_Value = Guid.initString("a410b984-9839-4819-a0be-2856ae6b3adb");
@@ -352,6 +440,45 @@ pub const IXAPO = extern union {
     }
 };
 
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IXAPOHrtfParameters_Value = Guid.initString("15b3cd66-e9de-4464-b6e6-2bc3cf63d455");
+pub const IID_IXAPOHrtfParameters = &IID_IXAPOHrtfParameters_Value;
+pub const IXAPOHrtfParameters = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetSourcePosition: *const fn(
+            self: *const IXAPOHrtfParameters,
+            position: ?*const HrtfPosition,
+        ) callconv(.winapi) HRESULT,
+        SetSourceOrientation: *const fn(
+            self: *const IXAPOHrtfParameters,
+            orientation: ?*const HrtfOrientation,
+        ) callconv(.winapi) HRESULT,
+        SetSourceGain: *const fn(
+            self: *const IXAPOHrtfParameters,
+            gain: f32,
+        ) callconv(.winapi) HRESULT,
+        SetEnvironment: *const fn(
+            self: *const IXAPOHrtfParameters,
+            environment: HrtfEnvironment,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetSourcePosition(self: *const IXAPOHrtfParameters, position: ?*const HrtfPosition) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSourcePosition(self, position);
+    }
+    pub fn SetSourceOrientation(self: *const IXAPOHrtfParameters, orientation: ?*const HrtfOrientation) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSourceOrientation(self, orientation);
+    }
+    pub fn SetSourceGain(self: *const IXAPOHrtfParameters, gain: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSourceGain(self, gain);
+    }
+    pub fn SetEnvironment(self: *const IXAPOHrtfParameters, environment: HrtfEnvironment) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEnvironment(self, environment);
+    }
+};
+
 const IID_IXAPOParameters_Value = Guid.initString("26d95c66-80f2-499a-ad54-5ae7f01c6d98");
 pub const IID_IXAPOParameters = &IID_IXAPOParameters_Value;
 pub const IXAPOParameters = extern union {
@@ -378,151 +505,6 @@ pub const IXAPOParameters = extern union {
     pub fn GetParameters(self: *const IXAPOParameters, pParameters: ?*anyopaque, ParameterByteSize: u32) callconv(.@"inline") void {
         return self.vtable.GetParameters(self, pParameters, ParameterByteSize);
     }
-};
-
-const CLSID_FXEQ_Value = Guid.initString("f5e01117-d6c4-485a-a3f5-695196f3dbfa");
-pub const CLSID_FXEQ = &CLSID_FXEQ_Value;
-
-const CLSID_FXMasteringLimiter_Value = Guid.initString("c4137916-2be1-46fd-8599-441536f49856");
-pub const CLSID_FXMasteringLimiter = &CLSID_FXMasteringLimiter_Value;
-
-const CLSID_FXReverb_Value = Guid.initString("7d9aca56-cb68-4807-b632-b137352e8596");
-pub const CLSID_FXReverb = &CLSID_FXReverb_Value;
-
-const CLSID_FXEcho_Value = Guid.initString("5039d740-f736-449a-84d3-a56202557b87");
-pub const CLSID_FXEcho = &CLSID_FXEcho_Value;
-
-pub const FXEQ_PARAMETERS = extern struct {
-    FrequencyCenter0: f32 align(1),
-    Gain0: f32 align(1),
-    Bandwidth0: f32 align(1),
-    FrequencyCenter1: f32 align(1),
-    Gain1: f32 align(1),
-    Bandwidth1: f32 align(1),
-    FrequencyCenter2: f32 align(1),
-    Gain2: f32 align(1),
-    Bandwidth2: f32 align(1),
-    FrequencyCenter3: f32 align(1),
-    Gain3: f32 align(1),
-    Bandwidth3: f32 align(1),
-};
-
-pub const FXMASTERINGLIMITER_PARAMETERS = extern struct {
-    Release: u32 align(1),
-    Loudness: u32 align(1),
-};
-
-pub const FXREVERB_PARAMETERS = extern struct {
-    Diffusion: f32 align(1),
-    RoomSize: f32 align(1),
-};
-
-pub const FXECHO_INITDATA = extern struct {
-    MaxDelay: f32 align(1),
-};
-
-pub const FXECHO_PARAMETERS = extern struct {
-    WetDryMix: f32 align(1),
-    Feedback: f32 align(1),
-    Delay: f32 align(1),
-};
-
-pub const XAUDIO2_VOICE_DETAILS = extern struct {
-    CreationFlags: u32 align(1),
-    ActiveFlags: u32 align(1),
-    InputChannels: u32 align(1),
-    InputSampleRate: u32 align(1),
-};
-
-pub const XAUDIO2_SEND_DESCRIPTOR = extern struct {
-    Flags: u32 align(1),
-    pOutputVoice: ?*IXAudio2Voice align(1),
-};
-
-pub const XAUDIO2_VOICE_SENDS = extern struct {
-    SendCount: u32 align(1),
-    pSends: ?*XAUDIO2_SEND_DESCRIPTOR align(1),
-};
-
-pub const XAUDIO2_EFFECT_DESCRIPTOR = extern struct {
-    pEffect: ?*IUnknown align(1),
-    InitialState: BOOL align(1),
-    OutputChannels: u32 align(1),
-};
-
-pub const XAUDIO2_EFFECT_CHAIN = extern struct {
-    EffectCount: u32 align(1),
-    pEffectDescriptors: ?*XAUDIO2_EFFECT_DESCRIPTOR align(1),
-};
-
-pub const XAUDIO2_FILTER_TYPE = enum(i32) {
-    LowPassFilter = 0,
-    BandPassFilter = 1,
-    HighPassFilter = 2,
-    NotchFilter = 3,
-    LowPassOnePoleFilter = 4,
-    HighPassOnePoleFilter = 5,
-};
-pub const LowPassFilter = XAUDIO2_FILTER_TYPE.LowPassFilter;
-pub const BandPassFilter = XAUDIO2_FILTER_TYPE.BandPassFilter;
-pub const HighPassFilter = XAUDIO2_FILTER_TYPE.HighPassFilter;
-pub const NotchFilter = XAUDIO2_FILTER_TYPE.NotchFilter;
-pub const LowPassOnePoleFilter = XAUDIO2_FILTER_TYPE.LowPassOnePoleFilter;
-pub const HighPassOnePoleFilter = XAUDIO2_FILTER_TYPE.HighPassOnePoleFilter;
-
-pub const XAUDIO2_FILTER_PARAMETERS = extern struct {
-    Type: XAUDIO2_FILTER_TYPE align(1),
-    Frequency: f32 align(1),
-    OneOverQ: f32 align(1),
-};
-
-pub const XAUDIO2_BUFFER = extern struct {
-    Flags: u32 align(1),
-    AudioBytes: u32 align(1),
-    pAudioData: ?*const u8 align(1),
-    PlayBegin: u32 align(1),
-    PlayLength: u32 align(1),
-    LoopBegin: u32 align(1),
-    LoopLength: u32 align(1),
-    LoopCount: u32 align(1),
-    pContext: ?*anyopaque align(1),
-};
-
-pub const XAUDIO2_BUFFER_WMA = extern struct {
-    pDecodedPacketCumulativeBytes: ?*const u32 align(1),
-    PacketCount: u32 align(1),
-};
-
-pub const XAUDIO2_VOICE_STATE = extern struct {
-    pCurrentBufferContext: ?*anyopaque align(1),
-    BuffersQueued: u32 align(1),
-    SamplesPlayed: u64 align(1),
-};
-
-pub const XAUDIO2_PERFORMANCE_DATA = extern struct {
-    AudioCyclesSinceLastQuery: u64 align(1),
-    TotalCyclesSinceLastQuery: u64 align(1),
-    MinimumCyclesPerQuantum: u32 align(1),
-    MaximumCyclesPerQuantum: u32 align(1),
-    MemoryUsageInBytes: u32 align(1),
-    CurrentLatencyInSamples: u32 align(1),
-    GlitchesSinceEngineStarted: u32 align(1),
-    ActiveSourceVoiceCount: u32 align(1),
-    TotalSourceVoiceCount: u32 align(1),
-    ActiveSubmixVoiceCount: u32 align(1),
-    ActiveResamplerCount: u32 align(1),
-    ActiveMatrixMixCount: u32 align(1),
-    ActiveXmaSourceVoices: u32 align(1),
-    ActiveXmaStreams: u32 align(1),
-};
-
-pub const XAUDIO2_DEBUG_CONFIGURATION = extern struct {
-    TraceMask: u32 align(1),
-    BreakMask: u32 align(1),
-    LogThreadID: BOOL align(1),
-    LogFileline: BOOL align(1),
-    LogFunctionName: BOOL align(1),
-    LogTiming: BOOL align(1),
 };
 
 const IID_IXAudio2_Value = Guid.initString("2b02e3cf-2e0b-4ec3-be45-1b2a3fe7210d");
@@ -622,6 +604,31 @@ pub const IXAudio2 = extern union {
     }
 };
 
+pub const IXAudio2EngineCallback = extern union {
+    pub const VTable = extern struct {
+        OnProcessingPassStart: *const fn(
+            self: *const IXAudio2EngineCallback,
+        ) callconv(.winapi) void,
+        OnProcessingPassEnd: *const fn(
+            self: *const IXAudio2EngineCallback,
+        ) callconv(.winapi) void,
+        OnCriticalError: *const fn(
+            self: *const IXAudio2EngineCallback,
+            Error: HRESULT,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    pub fn OnProcessingPassStart(self: *const IXAudio2EngineCallback) callconv(.@"inline") void {
+        return self.vtable.OnProcessingPassStart(self);
+    }
+    pub fn OnProcessingPassEnd(self: *const IXAudio2EngineCallback) callconv(.@"inline") void {
+        return self.vtable.OnProcessingPassEnd(self);
+    }
+    pub fn OnCriticalError(self: *const IXAudio2EngineCallback, Error: HRESULT) callconv(.@"inline") void {
+        return self.vtable.OnCriticalError(self, Error);
+    }
+};
+
 const IID_IXAudio2Extension_Value = Guid.initString("84ac29bb-d619-44d2-b197-e4acf7df3ed6");
 pub const IID_IXAudio2Extension = &IID_IXAudio2Extension_Value;
 pub const IXAudio2Extension = extern union {
@@ -645,6 +652,110 @@ pub const IXAudio2Extension = extern union {
     pub fn GetProcessor(self: *const IXAudio2Extension, processor: ?*u32) callconv(.@"inline") void {
         return self.vtable.GetProcessor(self, processor);
     }
+};
+
+pub const IXAudio2MasteringVoice = extern union {
+    pub const VTable = extern struct {
+        base: IXAudio2Voice.VTable,
+        GetChannelMask: *const fn(
+            self: *const IXAudio2MasteringVoice,
+            pChannelmask: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IXAudio2Voice: IXAudio2Voice,
+    pub fn GetChannelMask(self: *const IXAudio2MasteringVoice, pChannelmask: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelMask(self, pChannelmask);
+    }
+};
+
+pub const IXAudio2SourceVoice = extern union {
+    pub const VTable = extern struct {
+        base: IXAudio2Voice.VTable,
+        Start: *const fn(
+            self: *const IXAudio2SourceVoice,
+            Flags: u32,
+            OperationSet: u32,
+        ) callconv(.winapi) HRESULT,
+        Stop: *const fn(
+            self: *const IXAudio2SourceVoice,
+            Flags: u32,
+            OperationSet: u32,
+        ) callconv(.winapi) HRESULT,
+        SubmitSourceBuffer: *const fn(
+            self: *const IXAudio2SourceVoice,
+            pBuffer: ?*const XAUDIO2_BUFFER,
+            pBufferWMA: ?*const XAUDIO2_BUFFER_WMA,
+        ) callconv(.winapi) HRESULT,
+        FlushSourceBuffers: *const fn(
+            self: *const IXAudio2SourceVoice,
+        ) callconv(.winapi) HRESULT,
+        Discontinuity: *const fn(
+            self: *const IXAudio2SourceVoice,
+        ) callconv(.winapi) HRESULT,
+        ExitLoop: *const fn(
+            self: *const IXAudio2SourceVoice,
+            OperationSet: u32,
+        ) callconv(.winapi) HRESULT,
+        GetState: *const fn(
+            self: *const IXAudio2SourceVoice,
+            pVoiceState: ?*XAUDIO2_VOICE_STATE,
+            Flags: u32,
+        ) callconv(.winapi) void,
+        SetFrequencyRatio: *const fn(
+            self: *const IXAudio2SourceVoice,
+            Ratio: f32,
+            OperationSet: u32,
+        ) callconv(.winapi) HRESULT,
+        GetFrequencyRatio: *const fn(
+            self: *const IXAudio2SourceVoice,
+            pRatio: ?*f32,
+        ) callconv(.winapi) void,
+        SetSourceSampleRate: *const fn(
+            self: *const IXAudio2SourceVoice,
+            NewSourceSampleRate: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IXAudio2Voice: IXAudio2Voice,
+    pub fn Start(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self, Flags, OperationSet);
+    }
+    pub fn Stop(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Stop(self, Flags, OperationSet);
+    }
+    pub fn SubmitSourceBuffer(self: *const IXAudio2SourceVoice, pBuffer: ?*const XAUDIO2_BUFFER, pBufferWMA: ?*const XAUDIO2_BUFFER_WMA) callconv(.@"inline") HRESULT {
+        return self.vtable.SubmitSourceBuffer(self, pBuffer, pBufferWMA);
+    }
+    pub fn FlushSourceBuffers(self: *const IXAudio2SourceVoice) callconv(.@"inline") HRESULT {
+        return self.vtable.FlushSourceBuffers(self);
+    }
+    pub fn Discontinuity(self: *const IXAudio2SourceVoice) callconv(.@"inline") HRESULT {
+        return self.vtable.Discontinuity(self);
+    }
+    pub fn ExitLoop(self: *const IXAudio2SourceVoice, OperationSet: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ExitLoop(self, OperationSet);
+    }
+    pub fn GetState(self: *const IXAudio2SourceVoice, pVoiceState: ?*XAUDIO2_VOICE_STATE, Flags: u32) callconv(.@"inline") void {
+        return self.vtable.GetState(self, pVoiceState, Flags);
+    }
+    pub fn SetFrequencyRatio(self: *const IXAudio2SourceVoice, Ratio: f32, OperationSet: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFrequencyRatio(self, Ratio, OperationSet);
+    }
+    pub fn GetFrequencyRatio(self: *const IXAudio2SourceVoice, pRatio: ?*f32) callconv(.@"inline") void {
+        return self.vtable.GetFrequencyRatio(self, pRatio);
+    }
+    pub fn SetSourceSampleRate(self: *const IXAudio2SourceVoice, NewSourceSampleRate: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSourceSampleRate(self, NewSourceSampleRate);
+    }
+};
+
+pub const IXAudio2SubmixVoice = extern union {
+    pub const VTable = extern struct {
+        base: IXAudio2Voice.VTable,
+    };
+    vtable: *const VTable,
+    IXAudio2Voice: IXAudio2Voice,
 };
 
 pub const IXAudio2Voice = extern union {
@@ -810,135 +921,6 @@ pub const IXAudio2Voice = extern union {
     }
 };
 
-pub const IXAudio2SourceVoice = extern union {
-    pub const VTable = extern struct {
-        base: IXAudio2Voice.VTable,
-        Start: *const fn(
-            self: *const IXAudio2SourceVoice,
-            Flags: u32,
-            OperationSet: u32,
-        ) callconv(.winapi) HRESULT,
-        Stop: *const fn(
-            self: *const IXAudio2SourceVoice,
-            Flags: u32,
-            OperationSet: u32,
-        ) callconv(.winapi) HRESULT,
-        SubmitSourceBuffer: *const fn(
-            self: *const IXAudio2SourceVoice,
-            pBuffer: ?*const XAUDIO2_BUFFER,
-            pBufferWMA: ?*const XAUDIO2_BUFFER_WMA,
-        ) callconv(.winapi) HRESULT,
-        FlushSourceBuffers: *const fn(
-            self: *const IXAudio2SourceVoice,
-        ) callconv(.winapi) HRESULT,
-        Discontinuity: *const fn(
-            self: *const IXAudio2SourceVoice,
-        ) callconv(.winapi) HRESULT,
-        ExitLoop: *const fn(
-            self: *const IXAudio2SourceVoice,
-            OperationSet: u32,
-        ) callconv(.winapi) HRESULT,
-        GetState: *const fn(
-            self: *const IXAudio2SourceVoice,
-            pVoiceState: ?*XAUDIO2_VOICE_STATE,
-            Flags: u32,
-        ) callconv(.winapi) void,
-        SetFrequencyRatio: *const fn(
-            self: *const IXAudio2SourceVoice,
-            Ratio: f32,
-            OperationSet: u32,
-        ) callconv(.winapi) HRESULT,
-        GetFrequencyRatio: *const fn(
-            self: *const IXAudio2SourceVoice,
-            pRatio: ?*f32,
-        ) callconv(.winapi) void,
-        SetSourceSampleRate: *const fn(
-            self: *const IXAudio2SourceVoice,
-            NewSourceSampleRate: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IXAudio2Voice: IXAudio2Voice,
-    pub fn Start(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self, Flags, OperationSet);
-    }
-    pub fn Stop(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Stop(self, Flags, OperationSet);
-    }
-    pub fn SubmitSourceBuffer(self: *const IXAudio2SourceVoice, pBuffer: ?*const XAUDIO2_BUFFER, pBufferWMA: ?*const XAUDIO2_BUFFER_WMA) callconv(.@"inline") HRESULT {
-        return self.vtable.SubmitSourceBuffer(self, pBuffer, pBufferWMA);
-    }
-    pub fn FlushSourceBuffers(self: *const IXAudio2SourceVoice) callconv(.@"inline") HRESULT {
-        return self.vtable.FlushSourceBuffers(self);
-    }
-    pub fn Discontinuity(self: *const IXAudio2SourceVoice) callconv(.@"inline") HRESULT {
-        return self.vtable.Discontinuity(self);
-    }
-    pub fn ExitLoop(self: *const IXAudio2SourceVoice, OperationSet: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ExitLoop(self, OperationSet);
-    }
-    pub fn GetState(self: *const IXAudio2SourceVoice, pVoiceState: ?*XAUDIO2_VOICE_STATE, Flags: u32) callconv(.@"inline") void {
-        return self.vtable.GetState(self, pVoiceState, Flags);
-    }
-    pub fn SetFrequencyRatio(self: *const IXAudio2SourceVoice, Ratio: f32, OperationSet: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFrequencyRatio(self, Ratio, OperationSet);
-    }
-    pub fn GetFrequencyRatio(self: *const IXAudio2SourceVoice, pRatio: ?*f32) callconv(.@"inline") void {
-        return self.vtable.GetFrequencyRatio(self, pRatio);
-    }
-    pub fn SetSourceSampleRate(self: *const IXAudio2SourceVoice, NewSourceSampleRate: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSourceSampleRate(self, NewSourceSampleRate);
-    }
-};
-
-pub const IXAudio2SubmixVoice = extern union {
-    pub const VTable = extern struct {
-        base: IXAudio2Voice.VTable,
-    };
-    vtable: *const VTable,
-    IXAudio2Voice: IXAudio2Voice,
-};
-
-pub const IXAudio2MasteringVoice = extern union {
-    pub const VTable = extern struct {
-        base: IXAudio2Voice.VTable,
-        GetChannelMask: *const fn(
-            self: *const IXAudio2MasteringVoice,
-            pChannelmask: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IXAudio2Voice: IXAudio2Voice,
-    pub fn GetChannelMask(self: *const IXAudio2MasteringVoice, pChannelmask: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelMask(self, pChannelmask);
-    }
-};
-
-pub const IXAudio2EngineCallback = extern union {
-    pub const VTable = extern struct {
-        OnProcessingPassStart: *const fn(
-            self: *const IXAudio2EngineCallback,
-        ) callconv(.winapi) void,
-        OnProcessingPassEnd: *const fn(
-            self: *const IXAudio2EngineCallback,
-        ) callconv(.winapi) void,
-        OnCriticalError: *const fn(
-            self: *const IXAudio2EngineCallback,
-            Error: HRESULT,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    pub fn OnProcessingPassStart(self: *const IXAudio2EngineCallback) callconv(.@"inline") void {
-        return self.vtable.OnProcessingPassStart(self);
-    }
-    pub fn OnProcessingPassEnd(self: *const IXAudio2EngineCallback) callconv(.@"inline") void {
-        return self.vtable.OnProcessingPassEnd(self);
-    }
-    pub fn OnCriticalError(self: *const IXAudio2EngineCallback, Error: HRESULT) callconv(.@"inline") void {
-        return self.vtable.OnCriticalError(self, Error);
-    }
-};
-
 pub const IXAudio2VoiceCallback = extern union {
     pub const VTable = extern struct {
         OnVoiceProcessingPassStart: *const fn(
@@ -993,16 +975,149 @@ pub const IXAudio2VoiceCallback = extern union {
     }
 };
 
-const CLSID_AudioVolumeMeter_Value = Guid.initString("4fc3b166-972a-40cf-bc37-7db03db2fba3");
-pub const CLSID_AudioVolumeMeter = &CLSID_AudioVolumeMeter_Value;
+pub const XAPO_BUFFER_FLAGS = enum(i32) {
+    SILENT = 0,
+    VALID = 1,
+};
+pub const XAPO_BUFFER_SILENT = XAPO_BUFFER_FLAGS.SILENT;
+pub const XAPO_BUFFER_VALID = XAPO_BUFFER_FLAGS.VALID;
 
-const CLSID_AudioReverb_Value = Guid.initString("c2633b16-471b-4498-b8c5-4f0959e2ec09");
-pub const CLSID_AudioReverb = &CLSID_AudioReverb_Value;
+pub const XAPO_LOCKFORPROCESS_PARAMETERS = extern struct {
+    pFormat: ?*const WAVEFORMATEX align(1),
+    MaxFrameCount: u32 align(1),
+};
 
-pub const XAUDIO2FX_VOLUMEMETER_LEVELS = extern struct {
-    pPeakLevels: ?*f32 align(1),
-    pRMSLevels: ?*f32 align(1),
-    ChannelCount: u32 align(1),
+pub const XAPO_PROCESS_BUFFER_PARAMETERS = extern struct {
+    pBuffer: ?*anyopaque align(1),
+    BufferFlags: XAPO_BUFFER_FLAGS align(1),
+    ValidFrameCount: u32 align(1),
+};
+
+pub const XAPO_REGISTRATION_PROPERTIES = extern struct {
+    clsid: Guid align(1),
+    FriendlyName: [256]u16 align(1),
+    CopyrightInfo: [256]u16 align(1),
+    MajorVersion: u32 align(1),
+    MinorVersion: u32 align(1),
+    Flags: u32 align(1),
+    MinInputBufferCount: u32 align(1),
+    MaxInputBufferCount: u32 align(1),
+    MinOutputBufferCount: u32 align(1),
+    MaxOutputBufferCount: u32 align(1),
+};
+
+pub const XAUDIO2_BUFFER = extern struct {
+    Flags: u32 align(1),
+    AudioBytes: u32 align(1),
+    pAudioData: ?*const u8 align(1),
+    PlayBegin: u32 align(1),
+    PlayLength: u32 align(1),
+    LoopBegin: u32 align(1),
+    LoopLength: u32 align(1),
+    LoopCount: u32 align(1),
+    pContext: ?*anyopaque align(1),
+};
+
+pub const XAUDIO2_BUFFER_WMA = extern struct {
+    pDecodedPacketCumulativeBytes: ?*const u32 align(1),
+    PacketCount: u32 align(1),
+};
+
+pub const XAUDIO2_DEBUG_CONFIGURATION = extern struct {
+    TraceMask: u32 align(1),
+    BreakMask: u32 align(1),
+    LogThreadID: BOOL align(1),
+    LogFileline: BOOL align(1),
+    LogFunctionName: BOOL align(1),
+    LogTiming: BOOL align(1),
+};
+
+pub const XAUDIO2_EFFECT_CHAIN = extern struct {
+    EffectCount: u32 align(1),
+    pEffectDescriptors: ?*XAUDIO2_EFFECT_DESCRIPTOR align(1),
+};
+
+pub const XAUDIO2_EFFECT_DESCRIPTOR = extern struct {
+    pEffect: ?*IUnknown align(1),
+    InitialState: BOOL align(1),
+    OutputChannels: u32 align(1),
+};
+
+pub const XAUDIO2_FILTER_PARAMETERS = extern struct {
+    Type: XAUDIO2_FILTER_TYPE align(1),
+    Frequency: f32 align(1),
+    OneOverQ: f32 align(1),
+};
+
+pub const XAUDIO2_FILTER_TYPE = enum(i32) {
+    LowPassFilter = 0,
+    BandPassFilter = 1,
+    HighPassFilter = 2,
+    NotchFilter = 3,
+    LowPassOnePoleFilter = 4,
+    HighPassOnePoleFilter = 5,
+};
+pub const LowPassFilter = XAUDIO2_FILTER_TYPE.LowPassFilter;
+pub const BandPassFilter = XAUDIO2_FILTER_TYPE.BandPassFilter;
+pub const HighPassFilter = XAUDIO2_FILTER_TYPE.HighPassFilter;
+pub const NotchFilter = XAUDIO2_FILTER_TYPE.NotchFilter;
+pub const LowPassOnePoleFilter = XAUDIO2_FILTER_TYPE.LowPassOnePoleFilter;
+pub const HighPassOnePoleFilter = XAUDIO2_FILTER_TYPE.HighPassOnePoleFilter;
+
+pub const XAUDIO2_PERFORMANCE_DATA = extern struct {
+    AudioCyclesSinceLastQuery: u64 align(1),
+    TotalCyclesSinceLastQuery: u64 align(1),
+    MinimumCyclesPerQuantum: u32 align(1),
+    MaximumCyclesPerQuantum: u32 align(1),
+    MemoryUsageInBytes: u32 align(1),
+    CurrentLatencyInSamples: u32 align(1),
+    GlitchesSinceEngineStarted: u32 align(1),
+    ActiveSourceVoiceCount: u32 align(1),
+    TotalSourceVoiceCount: u32 align(1),
+    ActiveSubmixVoiceCount: u32 align(1),
+    ActiveResamplerCount: u32 align(1),
+    ActiveMatrixMixCount: u32 align(1),
+    ActiveXmaSourceVoices: u32 align(1),
+    ActiveXmaStreams: u32 align(1),
+};
+
+pub const XAUDIO2_SEND_DESCRIPTOR = extern struct {
+    Flags: u32 align(1),
+    pOutputVoice: ?*IXAudio2Voice align(1),
+};
+
+pub const XAUDIO2_VOICE_DETAILS = extern struct {
+    CreationFlags: u32 align(1),
+    ActiveFlags: u32 align(1),
+    InputChannels: u32 align(1),
+    InputSampleRate: u32 align(1),
+};
+
+pub const XAUDIO2_VOICE_SENDS = extern struct {
+    SendCount: u32 align(1),
+    pSends: ?*XAUDIO2_SEND_DESCRIPTOR align(1),
+};
+
+pub const XAUDIO2_VOICE_STATE = extern struct {
+    pCurrentBufferContext: ?*anyopaque align(1),
+    BuffersQueued: u32 align(1),
+    SamplesPlayed: u64 align(1),
+};
+
+pub const XAUDIO2FX_REVERB_I3DL2_PARAMETERS = extern struct {
+    WetDryMix: f32 align(1),
+    Room: i32 align(1),
+    RoomHF: i32 align(1),
+    RoomRolloffFactor: f32 align(1),
+    DecayTime: f32 align(1),
+    DecayHFRatio: f32 align(1),
+    Reflections: i32 align(1),
+    ReflectionsDelay: f32 align(1),
+    Reverb: i32 align(1),
+    ReverbDelay: f32 align(1),
+    Diffusion: f32 align(1),
+    Density: f32 align(1),
+    HFReference: f32 align(1),
 };
 
 pub const XAUDIO2FX_REVERB_PARAMETERS = extern struct {
@@ -1032,131 +1147,24 @@ pub const XAUDIO2FX_REVERB_PARAMETERS = extern struct {
     DisableLateField: BOOL align(1),
 };
 
-pub const XAUDIO2FX_REVERB_I3DL2_PARAMETERS = extern struct {
-    WetDryMix: f32 align(1),
-    Room: i32 align(1),
-    RoomHF: i32 align(1),
-    RoomRolloffFactor: f32 align(1),
-    DecayTime: f32 align(1),
-    DecayHFRatio: f32 align(1),
-    Reflections: i32 align(1),
-    ReflectionsDelay: f32 align(1),
-    Reverb: i32 align(1),
-    ReverbDelay: f32 align(1),
-    Diffusion: f32 align(1),
-    Density: f32 align(1),
-    HFReference: f32 align(1),
-};
-
-pub const HrtfPosition = extern struct {
-    x: f32,
-    y: f32,
-    z: f32,
-};
-
-pub const HrtfOrientation = extern struct {
-    element: [9]f32,
-};
-
-pub const HrtfDirectivityType = enum(i32) {
-    OmniDirectional = 0,
-    Cardioid = 1,
-    Cone = 2,
-};
-pub const OmniDirectional = HrtfDirectivityType.OmniDirectional;
-pub const Cardioid = HrtfDirectivityType.Cardioid;
-pub const Cone = HrtfDirectivityType.Cone;
-
-pub const HrtfEnvironment = enum(i32) {
-    Small = 0,
-    Medium = 1,
-    Large = 2,
-    Outdoors = 3,
-};
-pub const Small = HrtfEnvironment.Small;
-pub const Medium = HrtfEnvironment.Medium;
-pub const Large = HrtfEnvironment.Large;
-pub const Outdoors = HrtfEnvironment.Outdoors;
-
-pub const HrtfDirectivity = extern struct {
-    type: HrtfDirectivityType,
-    scaling: f32,
-};
-
-pub const HrtfDirectivityCardioid = extern struct {
-    directivity: HrtfDirectivity,
-    order: f32,
-};
-
-pub const HrtfDirectivityCone = extern struct {
-    directivity: HrtfDirectivity,
-    innerAngle: f32,
-    outerAngle: f32,
-};
-
-pub const HrtfDistanceDecayType = enum(i32) {
-    NaturalDecay = 0,
-    CustomDecay = 1,
-};
-pub const NaturalDecay = HrtfDistanceDecayType.NaturalDecay;
-pub const CustomDecay = HrtfDistanceDecayType.CustomDecay;
-
-pub const HrtfDistanceDecay = extern struct {
-    type: HrtfDistanceDecayType,
-    maxGain: f32,
-    minGain: f32,
-    unityGainDistance: f32,
-    cutoffDistance: f32,
-};
-
-pub const HrtfApoInit = extern struct {
-    distanceDecay: ?*HrtfDistanceDecay,
-    directivity: ?*HrtfDirectivity,
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IXAPOHrtfParameters_Value = Guid.initString("15b3cd66-e9de-4464-b6e6-2bc3cf63d455");
-pub const IID_IXAPOHrtfParameters = &IID_IXAPOHrtfParameters_Value;
-pub const IXAPOHrtfParameters = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetSourcePosition: *const fn(
-            self: *const IXAPOHrtfParameters,
-            position: ?*const HrtfPosition,
-        ) callconv(.winapi) HRESULT,
-        SetSourceOrientation: *const fn(
-            self: *const IXAPOHrtfParameters,
-            orientation: ?*const HrtfOrientation,
-        ) callconv(.winapi) HRESULT,
-        SetSourceGain: *const fn(
-            self: *const IXAPOHrtfParameters,
-            gain: f32,
-        ) callconv(.winapi) HRESULT,
-        SetEnvironment: *const fn(
-            self: *const IXAPOHrtfParameters,
-            environment: HrtfEnvironment,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetSourcePosition(self: *const IXAPOHrtfParameters, position: ?*const HrtfPosition) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSourcePosition(self, position);
-    }
-    pub fn SetSourceOrientation(self: *const IXAPOHrtfParameters, orientation: ?*const HrtfOrientation) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSourceOrientation(self, orientation);
-    }
-    pub fn SetSourceGain(self: *const IXAPOHrtfParameters, gain: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSourceGain(self, gain);
-    }
-    pub fn SetEnvironment(self: *const IXAPOHrtfParameters, environment: HrtfEnvironment) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEnvironment(self, environment);
-    }
+pub const XAUDIO2FX_VOLUMEMETER_LEVELS = extern struct {
+    pPeakLevels: ?*f32 align(1),
+    pRMSLevels: ?*f32 align(1),
+    ChannelCount: u32 align(1),
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (5)
 //--------------------------------------------------------------------------------
+pub extern "xaudio2_8" fn CreateAudioReverb(
+    ppApo: ?*?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+pub extern "xaudio2_8" fn CreateAudioVolumeMeter(
+    ppApo: ?*?*IUnknown,
+) callconv(.winapi) HRESULT;
+
 pub extern "xaudio2_8" fn CreateFX(
     clsid: ?*const Guid,
     pEffect: ?*?*IUnknown,
@@ -1165,24 +1173,16 @@ pub extern "xaudio2_8" fn CreateFX(
     InitDataByteSize: u32,
 ) callconv(.winapi) HRESULT;
 
+pub extern "hrtfapo" fn CreateHrtfApo(
+    init: ?*const HrtfApoInit,
+    xApo: **IXAPO,
+) callconv(.winapi) HRESULT;
+
 pub extern "xaudio2_8" fn XAudio2CreateWithVersionInfo(
     ppXAudio2: ?*?*IXAudio2,
     Flags: u32,
     XAudio2Processor: u32,
     ntddiVersion: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "xaudio2_8" fn CreateAudioVolumeMeter(
-    ppApo: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "xaudio2_8" fn CreateAudioReverb(
-    ppApo: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "hrtfapo" fn CreateHrtfApo(
-    init: ?*const HrtfApoInit,
-    xApo: **IXAPO,
 ) callconv(.winapi) HRESULT;
 
 

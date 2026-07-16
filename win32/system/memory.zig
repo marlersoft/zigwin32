@@ -2,15 +2,20 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (5)
 //--------------------------------------------------------------------------------
-pub const FILE_CACHE_MAX_HARD_ENABLE = @as(u32, 1);
 pub const FILE_CACHE_MAX_HARD_DISABLE = @as(u32, 2);
-pub const FILE_CACHE_MIN_HARD_ENABLE = @as(u32, 4);
+pub const FILE_CACHE_MAX_HARD_ENABLE = @as(u32, 1);
 pub const FILE_CACHE_MIN_HARD_DISABLE = @as(u32, 8);
+pub const FILE_CACHE_MIN_HARD_ENABLE = @as(u32, 4);
 pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
+pub const CFG_CALL_TARGET_INFO = extern struct {
+    Offset: usize,
+    Flags: usize,
+};
+
 pub const FILE_MAP = packed struct(u32) {
     COPY: u1 = 0,
     WRITE: u1 = 0,
@@ -63,6 +68,50 @@ pub const FILE_MAP_COPY = FILE_MAP{ .COPY = 1 };
 pub const FILE_MAP_RESERVE = FILE_MAP{ .RESERVE = 1 };
 pub const FILE_MAP_TARGETS_INVALID = FILE_MAP{ .TARGETS_INVALID = 1 };
 pub const FILE_MAP_LARGE_PAGES = FILE_MAP{ .LARGE_PAGES = 1 };
+
+pub const GLOBAL_ALLOC_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    MEM_MOVEABLE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    MEM_ZEROINIT: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // PTR (bit index 6) conflicts with MEM_ZEROINIT
+};
+pub const GHND = GLOBAL_ALLOC_FLAGS{
+    .MEM_MOVEABLE = 1,
+    .MEM_ZEROINIT = 1,
+};
+pub const GMEM_FIXED = GLOBAL_ALLOC_FLAGS{ };
+pub const GMEM_MOVEABLE = GLOBAL_ALLOC_FLAGS{ .MEM_MOVEABLE = 1 };
+pub const GMEM_ZEROINIT = GLOBAL_ALLOC_FLAGS{ .MEM_ZEROINIT = 1 };
+pub const GPTR = GLOBAL_ALLOC_FLAGS{ .MEM_ZEROINIT = 1 };
 
 pub const HEAP_FLAGS = packed struct(u32) {
     NO_SERIALIZE: u1 = 0,
@@ -131,6 +180,156 @@ pub const HEAP_TAG_SHIFT = HEAP_FLAGS{
 };
 pub const HEAP_CREATE_SEGMENT_HEAP = HEAP_FLAGS{ .CREATE_SEGMENT_HEAP = 1 };
 pub const HEAP_CREATE_HARDENED = HEAP_FLAGS{ .CREATE_HARDENED = 1 };
+
+pub const HEAP_INFORMATION_CLASS = enum(i32) {
+    CompatibilityInformation = 0,
+    EnableTerminationOnCorruption = 1,
+    OptimizeResources = 3,
+    Tag = 7,
+};
+pub const HeapCompatibilityInformation = HEAP_INFORMATION_CLASS.CompatibilityInformation;
+pub const HeapEnableTerminationOnCorruption = HEAP_INFORMATION_CLASS.EnableTerminationOnCorruption;
+pub const HeapOptimizeResources = HEAP_INFORMATION_CLASS.OptimizeResources;
+pub const HeapTag = HEAP_INFORMATION_CLASS.Tag;
+
+pub const HEAP_SUMMARY = extern struct {
+    cb: u32,
+    cbAllocated: usize,
+    cbCommitted: usize,
+    cbReserved: usize,
+    cbMaxReserve: usize,
+};
+
+// TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HeapHandle = *opaque{};
+
+pub const LOCAL_ALLOC_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    LMEM_MOVEABLE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    LMEM_ZEROINIT: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // LPTR (bit index 6) conflicts with LMEM_ZEROINIT
+    // NONZEROLHND (bit index 1) conflicts with LMEM_MOVEABLE
+};
+pub const LHND = LOCAL_ALLOC_FLAGS{
+    .LMEM_MOVEABLE = 1,
+    .LMEM_ZEROINIT = 1,
+};
+pub const LMEM_FIXED = LOCAL_ALLOC_FLAGS{ };
+pub const LMEM_MOVEABLE = LOCAL_ALLOC_FLAGS{ .LMEM_MOVEABLE = 1 };
+pub const LMEM_ZEROINIT = LOCAL_ALLOC_FLAGS{ .LMEM_ZEROINIT = 1 };
+pub const LPTR = LOCAL_ALLOC_FLAGS{ .LMEM_ZEROINIT = 1 };
+pub const NONZEROLHND = LOCAL_ALLOC_FLAGS{ .LMEM_MOVEABLE = 1 };
+pub const NONZEROLPTR = LOCAL_ALLOC_FLAGS{ };
+
+pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
+    LowestStartingAddress: ?*anyopaque,
+    HighestEndingAddress: ?*anyopaque,
+    Alignment: usize,
+};
+
+pub const MEM_EXTENDED_PARAMETER = extern struct {
+    Anonymous1: extern struct {
+        _bitfield: u64,
+    },
+    Anonymous2: extern union {
+        ULong64: u64,
+        Pointer: ?*anyopaque,
+        Size: usize,
+        Handle: ?HANDLE,
+        ULong: u32,
+    },
+};
+
+pub const MEM_EXTENDED_PARAMETER_TYPE = enum(i32) {
+    InvalidType = 0,
+    AddressRequirements = 1,
+    NumaNode = 2,
+    PartitionHandle = 3,
+    UserPhysicalHandle = 4,
+    AttributeFlags = 5,
+    ImageMachine = 6,
+    Max = 7,
+};
+pub const MemExtendedParameterInvalidType = MEM_EXTENDED_PARAMETER_TYPE.InvalidType;
+pub const MemExtendedParameterAddressRequirements = MEM_EXTENDED_PARAMETER_TYPE.AddressRequirements;
+pub const MemExtendedParameterNumaNode = MEM_EXTENDED_PARAMETER_TYPE.NumaNode;
+pub const MemExtendedParameterPartitionHandle = MEM_EXTENDED_PARAMETER_TYPE.PartitionHandle;
+pub const MemExtendedParameterUserPhysicalHandle = MEM_EXTENDED_PARAMETER_TYPE.UserPhysicalHandle;
+pub const MemExtendedParameterAttributeFlags = MEM_EXTENDED_PARAMETER_TYPE.AttributeFlags;
+pub const MemExtendedParameterImageMachine = MEM_EXTENDED_PARAMETER_TYPE.ImageMachine;
+pub const MemExtendedParameterMax = MEM_EXTENDED_PARAMETER_TYPE.Max;
+
+
+
+pub const MEMORY_BASIC_INFORMATION32 = extern struct {
+    BaseAddress: u32,
+    AllocationBase: u32,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    RegionSize: u32,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+};
+
+pub const MEMORY_BASIC_INFORMATION64 = extern struct {
+    BaseAddress: u64,
+    AllocationBase: u64,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    __alignment1: u32,
+    RegionSize: u64,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+    __alignment2: u32,
+};
+
+pub const MEMORY_RESOURCE_NOTIFICATION_TYPE = enum(i32) {
+    LowMemoryResourceNotification = 0,
+    HighMemoryResourceNotification = 1,
+};
+pub const LowMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.LowMemoryResourceNotification;
+pub const HighMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.HighMemoryResourceNotification;
+
+pub const OFFER_PRIORITY = enum(i32) {
+    VeryLow = 1,
+    Low = 2,
+    BelowNormal = 3,
+    Normal = 4,
+};
+pub const VmOfferPriorityVeryLow = OFFER_PRIORITY.VeryLow;
+pub const VmOfferPriorityLow = OFFER_PRIORITY.Low;
+pub const VmOfferPriorityBelowNormal = OFFER_PRIORITY.BelowNormal;
+pub const VmOfferPriorityNormal = OFFER_PRIORITY.Normal;
 
 pub const PAGE_PROTECTION_FLAGS = packed struct(u32) {
     PAGE_NOACCESS: u1 = 0,
@@ -222,6 +421,73 @@ pub const SEC_IMAGE_NO_EXECUTE = PAGE_PROTECTION_FLAGS{
     .PAGE_ENCLAVE_MASK = 1,
 };
 
+pub const PAGE_TYPE = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    PRIVATE: u1 = 0,
+    MAPPED: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    IMAGE: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const MEM_PRIVATE = PAGE_TYPE{ .PRIVATE = 1 };
+pub const MEM_MAPPED = PAGE_TYPE{ .MAPPED = 1 };
+pub const MEM_IMAGE = PAGE_TYPE{ .IMAGE = 1 };
+
+pub const PBAD_MEMORY_CALLBACK_ROUTINE = *const fn(
+) callconv(.winapi) void;
+
+pub const PROCESS_HEAP_ENTRY = extern struct {
+    lpData: ?*anyopaque,
+    cbData: u32,
+    cbOverhead: u8,
+    iRegionIndex: u8,
+    wFlags: u16,
+    Anonymous: extern union {
+        Block: extern struct {
+            hMem: ?HANDLE,
+            dwReserved: [3]u32,
+        },
+        Region: extern struct {
+            dwCommittedSize: u32,
+            dwUnCommittedSize: u32,
+            lpFirstBlock: ?*anyopaque,
+            lpLastBlock: ?*anyopaque,
+        },
+    },
+};
+
+pub const PSECURE_MEMORY_CACHE_CALLBACK = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    Addr: ?*anyopaque,
+    Range: usize,
+) callconv(.winapi) BOOLEAN;
+
 pub const UNMAP_VIEW_OF_FILE_FLAGS = enum(u32) {
     UNMAP_NONE = 0,
     UNMAP_WITH_TRANSIENT_BOOST = 1,
@@ -230,13 +496,6 @@ pub const UNMAP_VIEW_OF_FILE_FLAGS = enum(u32) {
 pub const MEM_UNMAP_NONE = UNMAP_VIEW_OF_FILE_FLAGS.UNMAP_NONE;
 pub const MEM_UNMAP_WITH_TRANSIENT_BOOST = UNMAP_VIEW_OF_FILE_FLAGS.UNMAP_WITH_TRANSIENT_BOOST;
 pub const MEM_PRESERVE_PLACEHOLDER = UNMAP_VIEW_OF_FILE_FLAGS.PRESERVE_PLACEHOLDER;
-
-pub const VIRTUAL_FREE_TYPE = enum(u32) {
-    DECOMMIT = 16384,
-    RELEASE = 32768,
-};
-pub const MEM_DECOMMIT = VIRTUAL_FREE_TYPE.DECOMMIT;
-pub const MEM_RELEASE = VIRTUAL_FREE_TYPE.RELEASE;
 
 pub const VIRTUAL_ALLOCATION_TYPE = packed struct(u32) {
     _0: u1 = 0,
@@ -281,217 +540,17 @@ pub const MEM_LARGE_PAGES = VIRTUAL_ALLOCATION_TYPE{ .LARGE_PAGES = 1 };
 pub const MEM_RESERVE_PLACEHOLDER = VIRTUAL_ALLOCATION_TYPE{ .RESERVE_PLACEHOLDER = 1 };
 pub const MEM_FREE = VIRTUAL_ALLOCATION_TYPE{ .FREE = 1 };
 
-pub const LOCAL_ALLOC_FLAGS = packed struct(u32) {
-    _0: u1 = 0,
-    LMEM_MOVEABLE: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    LMEM_ZEROINIT: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-    // LPTR (bit index 6) conflicts with LMEM_ZEROINIT
-    // NONZEROLHND (bit index 1) conflicts with LMEM_MOVEABLE
+pub const VIRTUAL_FREE_TYPE = enum(u32) {
+    DECOMMIT = 16384,
+    RELEASE = 32768,
 };
-pub const LHND = LOCAL_ALLOC_FLAGS{
-    .LMEM_MOVEABLE = 1,
-    .LMEM_ZEROINIT = 1,
-};
-pub const LMEM_FIXED = LOCAL_ALLOC_FLAGS{ };
-pub const LMEM_MOVEABLE = LOCAL_ALLOC_FLAGS{ .LMEM_MOVEABLE = 1 };
-pub const LMEM_ZEROINIT = LOCAL_ALLOC_FLAGS{ .LMEM_ZEROINIT = 1 };
-pub const LPTR = LOCAL_ALLOC_FLAGS{ .LMEM_ZEROINIT = 1 };
-pub const NONZEROLHND = LOCAL_ALLOC_FLAGS{ .LMEM_MOVEABLE = 1 };
-pub const NONZEROLPTR = LOCAL_ALLOC_FLAGS{ };
-
-pub const GLOBAL_ALLOC_FLAGS = packed struct(u32) {
-    _0: u1 = 0,
-    MEM_MOVEABLE: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    MEM_ZEROINIT: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-    // PTR (bit index 6) conflicts with MEM_ZEROINIT
-};
-pub const GHND = GLOBAL_ALLOC_FLAGS{
-    .MEM_MOVEABLE = 1,
-    .MEM_ZEROINIT = 1,
-};
-pub const GMEM_FIXED = GLOBAL_ALLOC_FLAGS{ };
-pub const GMEM_MOVEABLE = GLOBAL_ALLOC_FLAGS{ .MEM_MOVEABLE = 1 };
-pub const GMEM_ZEROINIT = GLOBAL_ALLOC_FLAGS{ .MEM_ZEROINIT = 1 };
-pub const GPTR = GLOBAL_ALLOC_FLAGS{ .MEM_ZEROINIT = 1 };
-
-pub const PAGE_TYPE = packed struct(u32) {
-    _0: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    PRIVATE: u1 = 0,
-    MAPPED: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    IMAGE: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const MEM_PRIVATE = PAGE_TYPE{ .PRIVATE = 1 };
-pub const MEM_MAPPED = PAGE_TYPE{ .MAPPED = 1 };
-pub const MEM_IMAGE = PAGE_TYPE{ .IMAGE = 1 };
-
-// TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HeapHandle = *opaque{};
-
-pub const PROCESS_HEAP_ENTRY = extern struct {
-    lpData: ?*anyopaque,
-    cbData: u32,
-    cbOverhead: u8,
-    iRegionIndex: u8,
-    wFlags: u16,
-    Anonymous: extern union {
-        Block: extern struct {
-            hMem: ?HANDLE,
-            dwReserved: [3]u32,
-        },
-        Region: extern struct {
-            dwCommittedSize: u32,
-            dwUnCommittedSize: u32,
-            lpFirstBlock: ?*anyopaque,
-            lpLastBlock: ?*anyopaque,
-        },
-    },
-};
-
-pub const HEAP_SUMMARY = extern struct {
-    cb: u32,
-    cbAllocated: usize,
-    cbCommitted: usize,
-    cbReserved: usize,
-    cbMaxReserve: usize,
-};
-
-pub const MEMORY_RESOURCE_NOTIFICATION_TYPE = enum(i32) {
-    LowMemoryResourceNotification = 0,
-    HighMemoryResourceNotification = 1,
-};
-pub const LowMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.LowMemoryResourceNotification;
-pub const HighMemoryResourceNotification = MEMORY_RESOURCE_NOTIFICATION_TYPE.HighMemoryResourceNotification;
-
-pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
-    VirtualAddress: ?*anyopaque,
-    NumberOfBytes: usize,
-};
-
-pub const PBAD_MEMORY_CALLBACK_ROUTINE = *const fn(
-) callconv(.winapi) void;
-
-pub const OFFER_PRIORITY = enum(i32) {
-    VeryLow = 1,
-    Low = 2,
-    BelowNormal = 3,
-    Normal = 4,
-};
-pub const VmOfferPriorityVeryLow = OFFER_PRIORITY.VeryLow;
-pub const VmOfferPriorityLow = OFFER_PRIORITY.Low;
-pub const VmOfferPriorityBelowNormal = OFFER_PRIORITY.BelowNormal;
-pub const VmOfferPriorityNormal = OFFER_PRIORITY.Normal;
+pub const MEM_DECOMMIT = VIRTUAL_FREE_TYPE.DECOMMIT;
+pub const MEM_RELEASE = VIRTUAL_FREE_TYPE.RELEASE;
 
 pub const WIN32_MEMORY_INFORMATION_CLASS = enum(i32) {
     o = 0,
 };
 pub const MemoryRegionInfo = WIN32_MEMORY_INFORMATION_CLASS.o;
-
-pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
-    AllocationBase: ?*anyopaque,
-    AllocationProtect: u32,
-    Anonymous: extern union {
-        Flags: u32,
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-    },
-    RegionSize: usize,
-    CommitSize: usize,
-};
-
-pub const WIN32_MEMORY_PARTITION_INFORMATION_CLASS = enum(i32) {
-    Info = 0,
-    DedicatedMemoryInfo = 1,
-};
-pub const MemoryPartitionInfo = WIN32_MEMORY_PARTITION_INFORMATION_CLASS.Info;
-pub const MemoryPartitionDedicatedMemoryInfo = WIN32_MEMORY_PARTITION_INFORMATION_CLASS.DedicatedMemoryInfo;
 
 pub const WIN32_MEMORY_PARTITION_INFORMATION = extern struct {
     Flags: u32,
@@ -513,89 +572,30 @@ pub const WIN32_MEMORY_PARTITION_INFORMATION = extern struct {
     PartitionId: u32,
 };
 
+pub const WIN32_MEMORY_PARTITION_INFORMATION_CLASS = enum(i32) {
+    Info = 0,
+    DedicatedMemoryInfo = 1,
+};
+pub const MemoryPartitionInfo = WIN32_MEMORY_PARTITION_INFORMATION_CLASS.Info;
+pub const MemoryPartitionDedicatedMemoryInfo = WIN32_MEMORY_PARTITION_INFORMATION_CLASS.DedicatedMemoryInfo;
 
-pub const MEMORY_BASIC_INFORMATION32 = extern struct {
-    BaseAddress: u32,
-    AllocationBase: u32,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    RegionSize: u32,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
+pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
+    VirtualAddress: ?*anyopaque,
+    NumberOfBytes: usize,
 };
 
-pub const MEMORY_BASIC_INFORMATION64 = extern struct {
-    BaseAddress: u64,
-    AllocationBase: u64,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    __alignment1: u32,
-    RegionSize: u64,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
-    __alignment2: u32,
-};
-
-pub const CFG_CALL_TARGET_INFO = extern struct {
-    Offset: usize,
-    Flags: usize,
-};
-
-pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
-    LowestStartingAddress: ?*anyopaque,
-    HighestEndingAddress: ?*anyopaque,
-    Alignment: usize,
-};
-
-pub const MEM_EXTENDED_PARAMETER_TYPE = enum(i32) {
-    InvalidType = 0,
-    AddressRequirements = 1,
-    NumaNode = 2,
-    PartitionHandle = 3,
-    UserPhysicalHandle = 4,
-    AttributeFlags = 5,
-    ImageMachine = 6,
-    Max = 7,
-};
-pub const MemExtendedParameterInvalidType = MEM_EXTENDED_PARAMETER_TYPE.InvalidType;
-pub const MemExtendedParameterAddressRequirements = MEM_EXTENDED_PARAMETER_TYPE.AddressRequirements;
-pub const MemExtendedParameterNumaNode = MEM_EXTENDED_PARAMETER_TYPE.NumaNode;
-pub const MemExtendedParameterPartitionHandle = MEM_EXTENDED_PARAMETER_TYPE.PartitionHandle;
-pub const MemExtendedParameterUserPhysicalHandle = MEM_EXTENDED_PARAMETER_TYPE.UserPhysicalHandle;
-pub const MemExtendedParameterAttributeFlags = MEM_EXTENDED_PARAMETER_TYPE.AttributeFlags;
-pub const MemExtendedParameterImageMachine = MEM_EXTENDED_PARAMETER_TYPE.ImageMachine;
-pub const MemExtendedParameterMax = MEM_EXTENDED_PARAMETER_TYPE.Max;
-
-pub const MEM_EXTENDED_PARAMETER = extern struct {
-    Anonymous1: extern struct {
-        _bitfield: u64,
+pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
+    AllocationBase: ?*anyopaque,
+    AllocationProtect: u32,
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
     },
-    Anonymous2: extern union {
-        ULong64: u64,
-        Pointer: ?*anyopaque,
-        Size: usize,
-        Handle: ?HANDLE,
-        ULong: u32,
-    },
+    RegionSize: usize,
+    CommitSize: usize,
 };
-
-pub const HEAP_INFORMATION_CLASS = enum(i32) {
-    CompatibilityInformation = 0,
-    EnableTerminationOnCorruption = 1,
-    OptimizeResources = 3,
-    Tag = 7,
-};
-pub const HeapCompatibilityInformation = HEAP_INFORMATION_CLASS.CompatibilityInformation;
-pub const HeapEnableTerminationOnCorruption = HEAP_INFORMATION_CLASS.EnableTerminationOnCorruption;
-pub const HeapOptimizeResources = HEAP_INFORMATION_CLASS.OptimizeResources;
-pub const HeapTag = HEAP_INFORMATION_CLASS.Tag;
-
-pub const PSECURE_MEMORY_CACHE_CALLBACK = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    Addr: ?*anyopaque,
-    Range: usize,
-) callconv(.winapi) BOOLEAN;
-
 
 pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
@@ -622,168 +622,86 @@ pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (106)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapCreate(
-    flOptions: HEAP_FLAGS,
-    dwInitialSize: usize,
-    dwMaximumSize: usize,
-) callconv(.winapi) ?HeapHandle;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapDestroy(
-    hHeap: ?HeapHandle,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn AddSecureMemoryCacheCallback(
+    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapAlloc(
-    hHeap: ?HeapHandle,
-    dwFlags: HEAP_FLAGS,
-    dwBytes: usize,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapReAlloc(
-    hHeap: ?HeapHandle,
-    dwFlags: HEAP_FLAGS,
-    lpMem: ?*anyopaque,
-    dwBytes: usize,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapFree(
-    hHeap: ?HeapHandle,
-    dwFlags: HEAP_FLAGS,
-    lpMem: ?*anyopaque,
+pub extern "kernel32" fn AllocateUserPhysicalPages(
+    hProcess: ?HANDLE,
+    NumberOfPages: ?*usize,
+    PageArray: [*]usize,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapSize(
-    hHeap: ?HeapHandle,
-    dwFlags: HEAP_FLAGS,
-    lpMem: ?*const anyopaque,
-) callconv(.winapi) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetProcessHeap(
-) callconv(.winapi) ?HeapHandle;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapCompact(
-    hHeap: ?HeapHandle,
-    dwFlags: HEAP_FLAGS,
-) callconv(.winapi) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapSetInformation(
-    HeapHandle: ?HeapHandle,
-    HeapInformationClass: HEAP_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    HeapInformation: ?*anyopaque,
-    HeapInformationLength: usize,
+pub extern "api-ms-win-core-memory-l1-1-8" fn AllocateUserPhysicalPages2(
+    ObjectHandle: ?HANDLE,
+    NumberOfPages: ?*usize,
+    PageArray: [*]usize,
+    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
+    ExtendedParameterCount: u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapValidate(
-    hHeap: ?HeapHandle,
-    dwFlags: HEAP_FLAGS,
-    lpMem: ?*const anyopaque,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn AllocateUserPhysicalPagesNuma(
+    hProcess: ?HANDLE,
+    NumberOfPages: ?*usize,
+    PageArray: [*]usize,
+    nndPreferred: u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn HeapSummary(
-    hHeap: ?HANDLE,
-    dwFlags: u32,
-    lpSummary: ?*HEAP_SUMMARY,
-) callconv(.winapi) BOOL;
+pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
+    File: ?HANDLE,
+    SecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    DesiredAccess: u32,
+    PageProtection: PAGE_PROTECTION_FLAGS,
+    AllocationAttributes: u32,
+    MaximumSize: u64,
+    Name: ?[*:0]const u16,
+    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
+    ParameterCount: u32,
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetProcessHeaps(
-    NumberOfHeaps: u32,
-    ProcessHeaps: [*]?HeapHandle,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapLock(
-    hHeap: ?HeapHandle,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapUnlock(
-    hHeap: ?HeapHandle,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapWalk(
-    hHeap: ?HeapHandle,
-    lpEntry: ?*PROCESS_HEAP_ENTRY,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn HeapQueryInformation(
-    HeapHandle: ?HeapHandle,
-    HeapInformationClass: HEAP_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    HeapInformation: ?*anyopaque,
-    HeapInformationLength: usize,
-    ReturnLength: ?*usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualAlloc(
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-    flAllocationType: VIRTUAL_ALLOCATION_TYPE,
+pub extern "kernel32" fn CreateFileMappingA(
+    hFile: ?HANDLE,
+    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
     flProtect: PAGE_PROTECTION_FLAGS,
-) callconv(.winapi) ?*anyopaque;
+    dwMaximumSizeHigh: u32,
+    dwMaximumSizeLow: u32,
+    lpName: ?[*:0]const u8,
+) callconv(.winapi) ?HANDLE;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualProtect(
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-    flNewProtect: PAGE_PROTECTION_FLAGS,
-    lpflOldProtect: ?*PAGE_PROTECTION_FLAGS,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn CreateFileMappingFromApp(
+    hFile: ?HANDLE,
+    SecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    PageProtection: PAGE_PROTECTION_FLAGS,
+    MaximumSize: u64,
+    Name: ?[*:0]const u16,
+) callconv(.winapi) ?HANDLE;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualFree(
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-    dwFreeType: VIRTUAL_FREE_TYPE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualQuery(
-    lpAddress: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*MEMORY_BASIC_INFORMATION,
-    dwLength: usize,
-) callconv(.winapi) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualAllocEx(
-    hProcess: ?HANDLE,
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-    flAllocationType: VIRTUAL_ALLOCATION_TYPE,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn CreateFileMappingNumaA(
+    hFile: ?HANDLE,
+    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
     flProtect: PAGE_PROTECTION_FLAGS,
-) callconv(.winapi) ?*anyopaque;
+    dwMaximumSizeHigh: u32,
+    dwMaximumSizeLow: u32,
+    lpName: ?[*:0]const u8,
+    nndPreferred: u32,
+) callconv(.winapi) ?HANDLE;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualProtectEx(
-    hProcess: ?HANDLE,
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-    flNewProtect: PAGE_PROTECTION_FLAGS,
-    lpflOldProtect: ?*PAGE_PROTECTION_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualQueryEx(
-    hProcess: ?HANDLE,
-    lpAddress: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*MEMORY_BASIC_INFORMATION,
-    dwLength: usize,
-) callconv(.winapi) usize;
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn CreateFileMappingNumaW(
+    hFile: ?HANDLE,
+    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
+    flProtect: PAGE_PROTECTION_FLAGS,
+    dwMaximumSizeHigh: u32,
+    dwMaximumSizeLow: u32,
+    lpName: ?[*:0]const u16,
+    nndPreferred: u32,
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateFileMappingW(
@@ -796,38 +714,15 @@ pub extern "kernel32" fn CreateFileMappingW(
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn OpenFileMappingW(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: ?[*:0]const u16,
+pub extern "kernel32" fn CreateMemoryResourceNotification(
+    NotificationType: MEMORY_RESOURCE_NOTIFICATION_TYPE,
 ) callconv(.winapi) ?HANDLE;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn MapViewOfFile(
-    hFileMappingObject: ?HANDLE,
-    dwDesiredAccess: FILE_MAP,
-    dwFileOffsetHigh: u32,
-    dwFileOffsetLow: u32,
-    dwNumberOfBytesToMap: usize,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn MapViewOfFileEx(
-    hFileMappingObject: ?HANDLE,
-    dwDesiredAccess: FILE_MAP,
-    dwFileOffsetHigh: u32,
-    dwFileOffsetLow: u32,
-    dwNumberOfBytesToMap: usize,
-    lpBaseAddress: ?*anyopaque,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualFreeEx(
-    hProcess: ?HANDLE,
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-    dwFreeType: VIRTUAL_FREE_TYPE,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn DiscardVirtualMemory(
+    VirtualAddress: [*]u8,
+    Size: usize,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FlushViewOfFile(
@@ -836,13 +731,30 @@ pub extern "kernel32" fn FlushViewOfFile(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn UnmapViewOfFile(
-    lpBaseAddress: ?*const anyopaque,
+pub extern "kernel32" fn FreeUserPhysicalPages(
+    hProcess: ?HANDLE,
+    NumberOfPages: ?*usize,
+    PageArray: [*]usize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetLargePageMinimum(
 ) callconv(.winapi) usize;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetMemoryErrorHandlingCapabilities(
+    Capabilities: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetProcessHeap(
+) callconv(.winapi) ?HeapHandle;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetProcessHeaps(
+    NumberOfHeaps: u32,
+    ProcessHeaps: [*]?HeapHandle,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetProcessWorkingSetSizeEx(
@@ -853,23 +765,10 @@ pub extern "kernel32" fn GetProcessWorkingSetSizeEx(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn SetProcessWorkingSetSizeEx(
-    hProcess: ?HANDLE,
-    dwMinimumWorkingSetSize: usize,
-    dwMaximumWorkingSetSize: usize,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualLock(
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn VirtualUnlock(
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
+pub extern "kernel32" fn GetSystemFileCacheSize(
+    lpMinimumFileCacheSize: ?*usize,
+    lpMaximumFileCacheSize: ?*usize,
+    lpFlags: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -883,90 +782,213 @@ pub extern "kernel32" fn GetWriteWatch(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn ResetWriteWatch(
-    lpBaseAddress: ?*anyopaque,
-    dwRegionSize: usize,
+pub extern "kernel32" fn GlobalAlloc(
+    uFlags: GLOBAL_ALLOC_FLAGS,
+    dwBytes: usize,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GlobalFlags(
+    hMem: isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn CreateMemoryResourceNotification(
-    NotificationType: MEMORY_RESOURCE_NOTIFICATION_TYPE,
-) callconv(.winapi) ?HANDLE;
+pub extern "kernel32" fn GlobalFree(
+    hMem: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn QueryMemoryResourceNotification(
-    ResourceNotificationHandle: ?HANDLE,
-    ResourceState: ?*BOOL,
-) callconv(.winapi) BOOL;
+pub extern "kernel32" fn GlobalHandle(
+    pMem: ?*const anyopaque,
+) callconv(.winapi) isize;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetSystemFileCacheSize(
-    lpMinimumFileCacheSize: ?*usize,
-    lpMaximumFileCacheSize: ?*usize,
-    lpFlags: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn SetSystemFileCacheSize(
-    MinimumFileCacheSize: usize,
-    MaximumFileCacheSize: usize,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn CreateFileMappingNumaW(
-    hFile: ?HANDLE,
-    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_PROTECTION_FLAGS,
-    dwMaximumSizeHigh: u32,
-    dwMaximumSizeLow: u32,
-    lpName: ?[*:0]const u16,
-    nndPreferred: u32,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn PrefetchVirtualMemory(
-    hProcess: ?HANDLE,
-    NumberOfEntries: usize,
-    VirtualAddresses: [*]WIN32_MEMORY_RANGE_ENTRY,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn CreateFileMappingFromApp(
-    hFile: ?HANDLE,
-    SecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    PageProtection: PAGE_PROTECTION_FLAGS,
-    MaximumSize: u64,
-    Name: ?[*:0]const u16,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn MapViewOfFileFromApp(
-    hFileMappingObject: ?HANDLE,
-    DesiredAccess: FILE_MAP,
-    FileOffset: u64,
-    NumberOfBytesToMap: usize,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GlobalLock(
+    hMem: isize,
 ) callconv(.winapi) ?*anyopaque;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn UnmapViewOfFileEx(
-    BaseAddress: ?*anyopaque,
-    UnmapFlags: UNMAP_VIEW_OF_FILE_FLAGS,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GlobalReAlloc(
+    hMem: isize,
+    dwBytes: usize,
+    uFlags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GlobalSize(
+    hMem: isize,
+) callconv(.winapi) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GlobalUnlock(
+    hMem: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn AllocateUserPhysicalPages(
-    hProcess: ?HANDLE,
-    NumberOfPages: ?*usize,
-    PageArray: [*]usize,
+pub extern "kernel32" fn HeapAlloc(
+    hHeap: ?HeapHandle,
+    dwFlags: HEAP_FLAGS,
+    dwBytes: usize,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapCompact(
+    hHeap: ?HeapHandle,
+    dwFlags: HEAP_FLAGS,
+) callconv(.winapi) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapCreate(
+    flOptions: HEAP_FLAGS,
+    dwInitialSize: usize,
+    dwMaximumSize: usize,
+) callconv(.winapi) ?HeapHandle;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapDestroy(
+    hHeap: ?HeapHandle,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn FreeUserPhysicalPages(
-    hProcess: ?HANDLE,
-    NumberOfPages: ?*usize,
-    PageArray: [*]usize,
+pub extern "kernel32" fn HeapFree(
+    hHeap: ?HeapHandle,
+    dwFlags: HEAP_FLAGS,
+    lpMem: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapLock(
+    hHeap: ?HeapHandle,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapQueryInformation(
+    HeapHandle: ?HeapHandle,
+    HeapInformationClass: HEAP_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    HeapInformation: ?*anyopaque,
+    HeapInformationLength: usize,
+    ReturnLength: ?*usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapReAlloc(
+    hHeap: ?HeapHandle,
+    dwFlags: HEAP_FLAGS,
+    lpMem: ?*anyopaque,
+    dwBytes: usize,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapSetInformation(
+    HeapHandle: ?HeapHandle,
+    HeapInformationClass: HEAP_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    HeapInformation: ?*anyopaque,
+    HeapInformationLength: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapSize(
+    hHeap: ?HeapHandle,
+    dwFlags: HEAP_FLAGS,
+    lpMem: ?*const anyopaque,
+) callconv(.winapi) usize;
+
+pub extern "kernel32" fn HeapSummary(
+    hHeap: ?HANDLE,
+    dwFlags: u32,
+    lpSummary: ?*HEAP_SUMMARY,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapUnlock(
+    hHeap: ?HeapHandle,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapValidate(
+    hHeap: ?HeapHandle,
+    dwFlags: HEAP_FLAGS,
+    lpMem: ?*const anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn HeapWalk(
+    hHeap: ?HeapHandle,
+    lpEntry: ?*PROCESS_HEAP_ENTRY,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn IsBadCodePtr(
+    lpfn: ?FARPROC,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn IsBadReadPtr(
+    lp: ?*const anyopaque,
+    ucb: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn IsBadStringPtrA(
+    lpsz: ?[*:0]const u8,
+    ucchMax: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn IsBadStringPtrW(
+    lpsz: ?[*:0]const u16,
+    ucchMax: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn IsBadWritePtr(
+    lp: ?*anyopaque,
+    ucb: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalAlloc(
+    uFlags: LOCAL_ALLOC_FLAGS,
+    uBytes: usize,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalFlags(
+    hMem: isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalFree(
+    hMem: isize,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalHandle(
+    pMem: ?*const anyopaque,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalLock(
+    hMem: isize,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalReAlloc(
+    hMem: isize,
+    uBytes: usize,
+    uFlags: u32,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalSize(
+    hMem: isize,
+) callconv(.winapi) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LocalUnlock(
+    hMem: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -976,145 +998,20 @@ pub extern "kernel32" fn MapUserPhysicalPages(
     PageArray: ?[*]usize,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn AllocateUserPhysicalPagesNuma(
-    hProcess: ?HANDLE,
-    NumberOfPages: ?*usize,
-    PageArray: [*]usize,
-    nndPreferred: u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn MapUserPhysicalPagesScatter(
+    VirtualAddresses: [*]?*anyopaque,
+    NumberOfPages: usize,
+    PageArray: ?[*]usize,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn VirtualAllocExNuma(
-    hProcess: ?HANDLE,
-    lpAddress: ?*anyopaque,
-    dwSize: usize,
-    flAllocationType: VIRTUAL_ALLOCATION_TYPE,
-    flProtect: u32,
-    nndPreferred: u32,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetMemoryErrorHandlingCapabilities(
-    Capabilities: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn RegisterBadMemoryNotification(
-    Callback: ?PBAD_MEMORY_CALLBACK_ROUTINE,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn UnregisterBadMemoryNotification(
-    RegistrationHandle: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn OfferVirtualMemory(
-    VirtualAddress: [*]u8,
-    Size: usize,
-    Priority: OFFER_PRIORITY,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn ReclaimVirtualMemory(
-    VirtualAddress: [*]const u8,
-    Size: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn DiscardVirtualMemory(
-    VirtualAddress: [*]u8,
-    Size: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-core-memory-l1-1-3" fn SetProcessValidCallTargets(
-    hProcess: ?HANDLE,
-    VirtualAddress: ?*anyopaque,
-    RegionSize: usize,
-    NumberOfOffsets: u32,
-    OffsetInformation: [*]CFG_CALL_TARGET_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "api-ms-win-core-memory-l1-1-7" fn SetProcessValidCallTargetsForMappedView(
-    Process: ?HANDLE,
-    VirtualAddress: ?*anyopaque,
-    RegionSize: usize,
-    NumberOfOffsets: u32,
-    OffsetInformation: [*]CFG_CALL_TARGET_INFO,
-    Section: ?HANDLE,
-    ExpectedFileOffset: u64,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-core-memory-l1-1-3" fn VirtualAllocFromApp(
-    BaseAddress: ?*anyopaque,
-    Size: usize,
-    AllocationType: VIRTUAL_ALLOCATION_TYPE,
-    Protection: u32,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-core-memory-l1-1-3" fn VirtualProtectFromApp(
-    Address: ?*anyopaque,
-    Size: usize,
-    NewProtection: u32,
-    OldProtection: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-core-memory-l1-1-3" fn OpenFileMappingFromApp(
-    DesiredAccess: u32,
-    InheritHandle: BOOL,
-    Name: ?[*:0]const u16,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "api-ms-win-core-memory-l1-1-4" fn QueryVirtualMemoryInformation(
-    Process: ?HANDLE,
-    VirtualAddress: ?*const anyopaque,
-    MemoryInformationClass: WIN32_MEMORY_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 4?
-    MemoryInformation: ?*anyopaque,
-    MemoryInformationSize: usize,
-    ReturnSize: ?*usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "api-ms-win-core-memory-l1-1-5" fn MapViewOfFileNuma2(
-    FileMappingHandle: ?HANDLE,
-    ProcessHandle: ?HANDLE,
-    Offset: u64,
-    BaseAddress: ?*anyopaque,
-    ViewSize: usize,
-    AllocationType: u32,
-    PageProtection: u32,
-    PreferredNode: u32,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "api-ms-win-core-memory-l1-1-5" fn UnmapViewOfFile2(
-    Process: ?HANDLE,
-    BaseAddress: ?*anyopaque,
-    UnmapFlags: UNMAP_VIEW_OF_FILE_FLAGS,
-) callconv(.winapi) BOOL;
-
-pub extern "api-ms-win-core-memory-l1-1-5" fn VirtualUnlockEx(
-    Process: ?HANDLE,
-    Address: ?*anyopaque,
-    Size: usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2(
-    Process: ?HANDLE,
-    BaseAddress: ?*anyopaque,
-    Size: usize,
-    AllocationType: VIRTUAL_ALLOCATION_TYPE,
-    PageProtection: u32,
-    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
-    ParameterCount: u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn MapViewOfFile(
+    hFileMappingObject: ?HANDLE,
+    dwDesiredAccess: FILE_MAP,
+    dwFileOffsetHigh: u32,
+    dwFileOffsetLow: u32,
+    dwNumberOfBytesToMap: usize,
 ) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
@@ -1124,17 +1021,6 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3(
     BaseAddress: ?*anyopaque,
     Offset: u64,
     ViewSize: usize,
-    AllocationType: VIRTUAL_ALLOCATION_TYPE,
-    PageProtection: u32,
-    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
-    ParameterCount: u32,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2FromApp(
-    Process: ?HANDLE,
-    BaseAddress: ?*anyopaque,
-    Size: usize,
     AllocationType: VIRTUAL_ALLOCATION_TYPE,
     PageProtection: u32,
     ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
@@ -1154,25 +1040,53 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3FromApp(
     ParameterCount: u32,
 ) callconv(.winapi) ?*anyopaque;
 
-pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
-    File: ?HANDLE,
-    SecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    DesiredAccess: u32,
-    PageProtection: PAGE_PROTECTION_FLAGS,
-    AllocationAttributes: u32,
-    MaximumSize: u64,
-    Name: ?[*:0]const u16,
-    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
-    ParameterCount: u32,
-) callconv(.winapi) ?HANDLE;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn MapViewOfFileEx(
+    hFileMappingObject: ?HANDLE,
+    dwDesiredAccess: FILE_MAP,
+    dwFileOffsetHigh: u32,
+    dwFileOffsetLow: u32,
+    dwNumberOfBytesToMap: usize,
+    lpBaseAddress: ?*anyopaque,
+) callconv(.winapi) ?*anyopaque;
 
-pub extern "api-ms-win-core-memory-l1-1-8" fn AllocateUserPhysicalPages2(
-    ObjectHandle: ?HANDLE,
-    NumberOfPages: ?*usize,
-    PageArray: [*]usize,
-    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
-    ExtendedParameterCount: u32,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn MapViewOfFileExNuma(
+    hFileMappingObject: ?HANDLE,
+    dwDesiredAccess: FILE_MAP,
+    dwFileOffsetHigh: u32,
+    dwFileOffsetLow: u32,
+    dwNumberOfBytesToMap: usize,
+    lpBaseAddress: ?*anyopaque,
+    nndPreferred: u32,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn MapViewOfFileFromApp(
+    hFileMappingObject: ?HANDLE,
+    DesiredAccess: FILE_MAP,
+    FileOffset: u64,
+    NumberOfBytesToMap: usize,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+pub extern "api-ms-win-core-memory-l1-1-5" fn MapViewOfFileNuma2(
+    FileMappingHandle: ?HANDLE,
+    ProcessHandle: ?HANDLE,
+    Offset: u64,
+    BaseAddress: ?*anyopaque,
+    ViewSize: usize,
+    AllocationType: u32,
+    PageProtection: u32,
+    PreferredNode: u32,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn OfferVirtualMemory(
+    VirtualAddress: [*]u8,
+    Size: usize,
+    Priority: OFFER_PRIORITY,
+) callconv(.winapi) u32;
 
 pub extern "api-ms-win-core-memory-l1-1-8" fn OpenDedicatedMemoryPartition(
     Partition: ?HANDLE,
@@ -1181,6 +1095,41 @@ pub extern "api-ms-win-core-memory-l1-1-8" fn OpenDedicatedMemoryPartition(
     InheritHandle: BOOL,
 ) callconv(.winapi) ?HANDLE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn OpenFileMappingA(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: ?[*:0]const u8,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-core-memory-l1-1-3" fn OpenFileMappingFromApp(
+    DesiredAccess: u32,
+    InheritHandle: BOOL,
+    Name: ?[*:0]const u16,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn OpenFileMappingW(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: ?[*:0]const u16,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn PrefetchVirtualMemory(
+    hProcess: ?HANDLE,
+    NumberOfEntries: usize,
+    VirtualAddresses: [*]WIN32_MEMORY_RANGE_ENTRY,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn QueryMemoryResourceNotification(
+    ResourceNotificationHandle: ?HANDLE,
+    ResourceState: ?*BOOL,
+) callconv(.winapi) BOOL;
+
 pub extern "api-ms-win-core-memory-l1-1-8" fn QueryPartitionInformation(
     Partition: ?HANDLE,
     PartitionInformationClass: WIN32_MEMORY_PARTITION_INFORMATION_CLASS,
@@ -1188,6 +1137,39 @@ pub extern "api-ms-win-core-memory-l1-1-8" fn QueryPartitionInformation(
     PartitionInformation: ?*anyopaque,
     PartitionInformationLength: u32,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "api-ms-win-core-memory-l1-1-4" fn QueryVirtualMemoryInformation(
+    Process: ?HANDLE,
+    VirtualAddress: ?*const anyopaque,
+    MemoryInformationClass: WIN32_MEMORY_INFORMATION_CLASS,
+    // TODO: what to do with BytesParamIndex 4?
+    MemoryInformation: ?*anyopaque,
+    MemoryInformationSize: usize,
+    ReturnSize: ?*usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn ReclaimVirtualMemory(
+    VirtualAddress: [*]const u8,
+    Size: usize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn RegisterBadMemoryNotification(
+    Callback: ?PBAD_MEMORY_CALLBACK_ROUTINE,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn RemoveSecureMemoryCacheCallback(
+    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn ResetWriteWatch(
+    lpBaseAddress: ?*anyopaque,
+    dwRegionSize: usize,
+) callconv(.winapi) u32;
 
 pub extern "kernel32" fn RtlCompareMemory(
     Source1: ?*const anyopaque,
@@ -1214,175 +1196,193 @@ pub extern "ntdll" fn RtlIsZeroMemory(
     Length: usize,
 ) callconv(.winapi) BOOLEAN;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalAlloc(
-    uFlags: GLOBAL_ALLOC_FLAGS,
-    dwBytes: usize,
-) callconv(.winapi) isize;
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-core-memory-l1-1-3" fn SetProcessValidCallTargets(
+    hProcess: ?HANDLE,
+    VirtualAddress: ?*anyopaque,
+    RegionSize: usize,
+    NumberOfOffsets: u32,
+    OffsetInformation: [*]CFG_CALL_TARGET_INFO,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalReAlloc(
-    hMem: isize,
-    dwBytes: usize,
-    uFlags: u32,
-) callconv(.winapi) isize;
+pub extern "api-ms-win-core-memory-l1-1-7" fn SetProcessValidCallTargetsForMappedView(
+    Process: ?HANDLE,
+    VirtualAddress: ?*anyopaque,
+    RegionSize: usize,
+    NumberOfOffsets: u32,
+    OffsetInformation: [*]CFG_CALL_TARGET_INFO,
+    Section: ?HANDLE,
+    ExpectedFileOffset: u64,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalSize(
-    hMem: isize,
-) callconv(.winapi) usize;
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn SetProcessWorkingSetSizeEx(
+    hProcess: ?HANDLE,
+    dwMinimumWorkingSetSize: usize,
+    dwMaximumWorkingSetSize: usize,
+    Flags: u32,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalUnlock(
-    hMem: isize,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn SetSystemFileCacheSize(
+    MinimumFileCacheSize: usize,
+    MaximumFileCacheSize: usize,
+    Flags: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalLock(
-    hMem: isize,
-) callconv(.winapi) ?*anyopaque;
+pub extern "kernel32" fn UnmapViewOfFile(
+    lpBaseAddress: ?*const anyopaque,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalFlags(
-    hMem: isize,
-) callconv(.winapi) u32;
+// TODO: this type is limited to platform 'windows10.0.15063'
+pub extern "api-ms-win-core-memory-l1-1-5" fn UnmapViewOfFile2(
+    Process: ?HANDLE,
+    BaseAddress: ?*anyopaque,
+    UnmapFlags: UNMAP_VIEW_OF_FILE_FLAGS,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalHandle(
-    pMem: ?*const anyopaque,
-) callconv(.winapi) isize;
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn UnmapViewOfFileEx(
+    BaseAddress: ?*anyopaque,
+    UnmapFlags: UNMAP_VIEW_OF_FILE_FLAGS,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GlobalFree(
-    hMem: isize,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalAlloc(
-    uFlags: LOCAL_ALLOC_FLAGS,
-    uBytes: usize,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalReAlloc(
-    hMem: isize,
-    uBytes: usize,
-    uFlags: u32,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalLock(
-    hMem: isize,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalHandle(
-    pMem: ?*const anyopaque,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalUnlock(
-    hMem: isize,
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn UnregisterBadMemoryNotification(
+    RegistrationHandle: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalSize(
-    hMem: isize,
-) callconv(.winapi) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalFlags(
-    hMem: isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LocalFree(
-    hMem: isize,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn CreateFileMappingA(
-    hFile: ?HANDLE,
-    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
+pub extern "kernel32" fn VirtualAlloc(
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+    flAllocationType: VIRTUAL_ALLOCATION_TYPE,
     flProtect: PAGE_PROTECTION_FLAGS,
-    dwMaximumSizeHigh: u32,
-    dwMaximumSizeLow: u32,
-    lpName: ?[*:0]const u8,
-) callconv(.winapi) ?HANDLE;
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2(
+    Process: ?HANDLE,
+    BaseAddress: ?*anyopaque,
+    Size: usize,
+    AllocationType: VIRTUAL_ALLOCATION_TYPE,
+    PageProtection: u32,
+    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
+    ParameterCount: u32,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2FromApp(
+    Process: ?HANDLE,
+    BaseAddress: ?*anyopaque,
+    Size: usize,
+    AllocationType: VIRTUAL_ALLOCATION_TYPE,
+    PageProtection: u32,
+    ExtendedParameters: ?[*]MEM_EXTENDED_PARAMETER,
+    ParameterCount: u32,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn VirtualAllocEx(
+    hProcess: ?HANDLE,
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+    flAllocationType: VIRTUAL_ALLOCATION_TYPE,
+    flProtect: PAGE_PROTECTION_FLAGS,
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn CreateFileMappingNumaA(
-    hFile: ?HANDLE,
-    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_PROTECTION_FLAGS,
-    dwMaximumSizeHigh: u32,
-    dwMaximumSizeLow: u32,
-    lpName: ?[*:0]const u8,
-    nndPreferred: u32,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn OpenFileMappingA(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: ?[*:0]const u8,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn MapViewOfFileExNuma(
-    hFileMappingObject: ?HANDLE,
-    dwDesiredAccess: FILE_MAP,
-    dwFileOffsetHigh: u32,
-    dwFileOffsetLow: u32,
-    dwNumberOfBytesToMap: usize,
-    lpBaseAddress: ?*anyopaque,
+pub extern "kernel32" fn VirtualAllocExNuma(
+    hProcess: ?HANDLE,
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+    flAllocationType: VIRTUAL_ALLOCATION_TYPE,
+    flProtect: u32,
     nndPreferred: u32,
 ) callconv(.winapi) ?*anyopaque;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsBadReadPtr(
-    lp: ?*const anyopaque,
-    ucb: usize,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-core-memory-l1-1-3" fn VirtualAllocFromApp(
+    BaseAddress: ?*anyopaque,
+    Size: usize,
+    AllocationType: VIRTUAL_ALLOCATION_TYPE,
+    Protection: u32,
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsBadWritePtr(
-    lp: ?*anyopaque,
-    ucb: usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsBadCodePtr(
-    lpfn: ?FARPROC,
+pub extern "kernel32" fn VirtualFree(
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+    dwFreeType: VIRTUAL_FREE_TYPE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsBadStringPtrA(
-    lpsz: ?[*:0]const u8,
-    ucchMax: usize,
+pub extern "kernel32" fn VirtualFreeEx(
+    hProcess: ?HANDLE,
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+    dwFreeType: VIRTUAL_FREE_TYPE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsBadStringPtrW(
-    lpsz: ?[*:0]const u16,
-    ucchMax: usize,
+pub extern "kernel32" fn VirtualLock(
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn MapUserPhysicalPagesScatter(
-    VirtualAddresses: [*]?*anyopaque,
-    NumberOfPages: usize,
-    PageArray: ?[*]usize,
+pub extern "kernel32" fn VirtualProtect(
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+    flNewProtect: PAGE_PROTECTION_FLAGS,
+    lpflOldProtect: ?*PAGE_PROTECTION_FLAGS,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn AddSecureMemoryCacheCallback(
-    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn VirtualProtectEx(
+    hProcess: ?HANDLE,
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+    flNewProtect: PAGE_PROTECTION_FLAGS,
+    lpflOldProtect: ?*PAGE_PROTECTION_FLAGS,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn RemoveSecureMemoryCacheCallback(
-    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-core-memory-l1-1-3" fn VirtualProtectFromApp(
+    Address: ?*anyopaque,
+    Size: usize,
+    NewProtection: u32,
+    OldProtection: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn VirtualQuery(
+    lpAddress: ?*const anyopaque,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*MEMORY_BASIC_INFORMATION,
+    dwLength: usize,
+) callconv(.winapi) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn VirtualQueryEx(
+    hProcess: ?HANDLE,
+    lpAddress: ?*const anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: ?*MEMORY_BASIC_INFORMATION,
+    dwLength: usize,
+) callconv(.winapi) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn VirtualUnlock(
+    lpAddress: ?*anyopaque,
+    dwSize: usize,
+) callconv(.winapi) BOOL;
+
+pub extern "api-ms-win-core-memory-l1-1-5" fn VirtualUnlockEx(
+    Process: ?HANDLE,
+    Address: ?*anyopaque,
+    Size: usize,
 ) callconv(.winapi) BOOL;
 
 
@@ -1394,13 +1394,6 @@ pub const CreateFileMapping = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().CreateFileMappingW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'CreateFileMapping' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const OpenFileMapping = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenFileMappingA,
-    .wide => @This().OpenFileMappingW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenFileMapping' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const CreateFileMappingNuma = switch (@import("../zig.zig").unicode_mode) {
@@ -1415,6 +1408,13 @@ pub const IsBadStringPtr = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().IsBadStringPtrW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'IsBadStringPtr' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenFileMapping = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenFileMappingA,
+    .wide => @This().OpenFileMappingW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenFileMapping' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

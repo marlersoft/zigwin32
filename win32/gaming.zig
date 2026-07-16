@@ -2,18 +2,12 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2)
 //--------------------------------------------------------------------------------
-pub const ID_GDF_XML_STR = "__GDF_XML";
 pub const ID_GDF_THUMBNAIL_STR = "__GDF_THUMBNAIL";
+pub const ID_GDF_XML_STR = "__GDF_XML";
 
 //--------------------------------------------------------------------------------
 // Section: Types (21)
 //--------------------------------------------------------------------------------
-const CLSID_GameExplorer_Value = Guid.initString("9a5ea990-3034-4d6f-9128-01f3c61022bc");
-pub const CLSID_GameExplorer = &CLSID_GameExplorer_Value;
-
-const CLSID_GameStatistics_Value = Guid.initString("dbc85a2c-c0dc-4961-b6e2-d28b62c11ad4");
-pub const CLSID_GameStatistics = &CLSID_GameStatistics_Value;
-
 pub const GAME_INSTALL_SCOPE = enum(i32) {
     NOT_INSTALLED = 1,
     CURRENT_USER = 2,
@@ -22,6 +16,56 @@ pub const GAME_INSTALL_SCOPE = enum(i32) {
 pub const GIS_NOT_INSTALLED = GAME_INSTALL_SCOPE.NOT_INSTALLED;
 pub const GIS_CURRENT_USER = GAME_INSTALL_SCOPE.CURRENT_USER;
 pub const GIS_ALL_USERS = GAME_INSTALL_SCOPE.ALL_USERS;
+
+const CLSID_GameExplorer_Value = Guid.initString("9a5ea990-3034-4d6f-9128-01f3c61022bc");
+pub const CLSID_GameExplorer = &CLSID_GameExplorer_Value;
+
+const CLSID_GameStatistics_Value = Guid.initString("dbc85a2c-c0dc-4961-b6e2-d28b62c11ad4");
+pub const CLSID_GameStatistics = &CLSID_GameStatistics_Value;
+
+pub const GAMESTATS_OPEN_RESULT = enum(i32) {
+    CREATED = 0,
+    OPENED = 1,
+};
+pub const GAMESTATS_OPEN_CREATED = GAMESTATS_OPEN_RESULT.CREATED;
+pub const GAMESTATS_OPEN_OPENED = GAMESTATS_OPEN_RESULT.OPENED;
+
+pub const GAMESTATS_OPEN_TYPE = enum(i32) {
+    RCREATE = 0,
+    NLY = 1,
+};
+pub const GAMESTATS_OPEN_OPENORCREATE = GAMESTATS_OPEN_TYPE.RCREATE;
+pub const GAMESTATS_OPEN_OPENONLY = GAMESTATS_OPEN_TYPE.NLY;
+
+pub const GameUICompletionRoutine = *const fn(
+    returnCode: HRESULT,
+    context: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const GAMING_DEVICE_DEVICE_ID = enum(i32) {
+    NONE = 0,
+    XBOX_ONE = 1988865574,
+    XBOX_ONE_S = 712204761,
+    XBOX_ONE_X = 1523980231,
+    XBOX_ONE_X_DEVKIT = 284675555,
+};
+pub const GAMING_DEVICE_DEVICE_ID_NONE = GAMING_DEVICE_DEVICE_ID.NONE;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE = GAMING_DEVICE_DEVICE_ID.XBOX_ONE;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_S = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_S;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X_DEVKIT = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X_DEVKIT;
+
+pub const GAMING_DEVICE_MODEL_INFORMATION = extern struct {
+    vendorId: GAMING_DEVICE_VENDOR_ID,
+    deviceId: GAMING_DEVICE_DEVICE_ID,
+};
+
+pub const GAMING_DEVICE_VENDOR_ID = enum(i32) {
+    NONE = 0,
+    MICROSOFT = -1024700366,
+};
+pub const GAMING_DEVICE_VENDOR_ID_NONE = GAMING_DEVICE_VENDOR_ID.NONE;
+pub const GAMING_DEVICE_VENDOR_ID_MICROSOFT = GAMING_DEVICE_VENDOR_ID.MICROSOFT;
 
 const IID_IGameExplorer_Value = Guid.initString("e7b2fb72-d728-49b3-a5f2-18ebf5f1349e");
 pub const IID_IGameExplorer = &IID_IGameExplorer_Value;
@@ -65,19 +109,39 @@ pub const IGameExplorer = extern union {
     }
 };
 
-pub const GAMESTATS_OPEN_TYPE = enum(i32) {
-    RCREATE = 0,
-    NLY = 1,
+const IID_IGameExplorer2_Value = Guid.initString("86874aa7-a1ed-450d-a7eb-b89e20b2fff3");
+pub const IID_IGameExplorer2 = &IID_IGameExplorer2_Value;
+pub const IGameExplorer2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InstallGame: *const fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+            installDirectory: ?[*:0]const u16,
+            installScope: GAME_INSTALL_SCOPE,
+        ) callconv(.winapi) HRESULT,
+        UninstallGame: *const fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        CheckAccess: *const fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+            pHasAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.@"inline") HRESULT {
+        return self.vtable.InstallGame(self, binaryGDFPath, installDirectory, installScope);
+    }
+    pub fn UninstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.UninstallGame(self, binaryGDFPath);
+    }
+    pub fn CheckAccess(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, pHasAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.CheckAccess(self, binaryGDFPath, pHasAccess);
+    }
 };
-pub const GAMESTATS_OPEN_OPENORCREATE = GAMESTATS_OPEN_TYPE.RCREATE;
-pub const GAMESTATS_OPEN_OPENONLY = GAMESTATS_OPEN_TYPE.NLY;
-
-pub const GAMESTATS_OPEN_RESULT = enum(i32) {
-    CREATED = 0,
-    OPENED = 1,
-};
-pub const GAMESTATS_OPEN_CREATED = GAMESTATS_OPEN_RESULT.CREATED;
-pub const GAMESTATS_OPEN_OPENED = GAMESTATS_OPEN_RESULT.OPENED;
 
 const IID_IGameStatistics_Value = Guid.initString("3887c9ca-04a0-42ae-bc4c-5fa6c7721145");
 pub const IID_IGameStatistics = &IID_IGameStatistics_Value;
@@ -207,151 +271,6 @@ pub const IGameStatisticsMgr = extern union {
         return self.vtable.RemoveGameStatistics(self, GDFBinaryPath);
     }
 };
-
-const IID_IGameExplorer2_Value = Guid.initString("86874aa7-a1ed-450d-a7eb-b89e20b2fff3");
-pub const IID_IGameExplorer2 = &IID_IGameExplorer2_Value;
-pub const IGameExplorer2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InstallGame: *const fn(
-            self: *const IGameExplorer2,
-            binaryGDFPath: ?[*:0]const u16,
-            installDirectory: ?[*:0]const u16,
-            installScope: GAME_INSTALL_SCOPE,
-        ) callconv(.winapi) HRESULT,
-        UninstallGame: *const fn(
-            self: *const IGameExplorer2,
-            binaryGDFPath: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        CheckAccess: *const fn(
-            self: *const IGameExplorer2,
-            binaryGDFPath: ?[*:0]const u16,
-            pHasAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.@"inline") HRESULT {
-        return self.vtable.InstallGame(self, binaryGDFPath, installDirectory, installScope);
-    }
-    pub fn UninstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.UninstallGame(self, binaryGDFPath);
-    }
-    pub fn CheckAccess(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, pHasAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.CheckAccess(self, binaryGDFPath, pHasAccess);
-    }
-};
-
-pub const GAMING_DEVICE_VENDOR_ID = enum(i32) {
-    NONE = 0,
-    MICROSOFT = -1024700366,
-};
-pub const GAMING_DEVICE_VENDOR_ID_NONE = GAMING_DEVICE_VENDOR_ID.NONE;
-pub const GAMING_DEVICE_VENDOR_ID_MICROSOFT = GAMING_DEVICE_VENDOR_ID.MICROSOFT;
-
-pub const GAMING_DEVICE_DEVICE_ID = enum(i32) {
-    NONE = 0,
-    XBOX_ONE = 1988865574,
-    XBOX_ONE_S = 712204761,
-    XBOX_ONE_X = 1523980231,
-    XBOX_ONE_X_DEVKIT = 284675555,
-};
-pub const GAMING_DEVICE_DEVICE_ID_NONE = GAMING_DEVICE_DEVICE_ID.NONE;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE = GAMING_DEVICE_DEVICE_ID.XBOX_ONE;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_S = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_S;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X_DEVKIT = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X_DEVKIT;
-
-pub const GAMING_DEVICE_MODEL_INFORMATION = extern struct {
-    vendorId: GAMING_DEVICE_VENDOR_ID,
-    deviceId: GAMING_DEVICE_DEVICE_ID,
-};
-
-pub const GameUICompletionRoutine = *const fn(
-    returnCode: HRESULT,
-    context: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const PlayerPickerUICompletionRoutine = *const fn(
-    returnCode: HRESULT,
-    context: ?*anyopaque,
-    selectedXuids: [*]const ?HSTRING,
-    selectedXuidsCount: usize,
-) callconv(.winapi) void;
-
-pub const KnownGamingPrivileges = enum(i32) {
-    BROADCAST = 190,
-    VIEW_FRIENDS_LIST = 197,
-    GAME_DVR = 198,
-    SHARE_KINECT_CONTENT = 199,
-    MULTIPLAYER_PARTIES = 203,
-    COMMUNICATION_VOICE_INGAME = 205,
-    COMMUNICATION_VOICE_SKYPE = 206,
-    CLOUD_GAMING_MANAGE_SESSION = 207,
-    CLOUD_GAMING_JOIN_SESSION = 208,
-    CLOUD_SAVED_GAMES = 209,
-    SHARE_CONTENT = 211,
-    PREMIUM_CONTENT = 214,
-    SUBSCRIPTION_CONTENT = 219,
-    SOCIAL_NETWORK_SHARING = 220,
-    PREMIUM_VIDEO = 224,
-    VIDEO_COMMUNICATIONS = 235,
-    PURCHASE_CONTENT = 245,
-    USER_CREATED_CONTENT = 247,
-    PROFILE_VIEWING = 249,
-    COMMUNICATIONS = 252,
-    MULTIPLAYER_SESSIONS = 254,
-    ADD_FRIEND = 255,
-};
-pub const XPRIVILEGE_BROADCAST = KnownGamingPrivileges.BROADCAST;
-pub const XPRIVILEGE_VIEW_FRIENDS_LIST = KnownGamingPrivileges.VIEW_FRIENDS_LIST;
-pub const XPRIVILEGE_GAME_DVR = KnownGamingPrivileges.GAME_DVR;
-pub const XPRIVILEGE_SHARE_KINECT_CONTENT = KnownGamingPrivileges.SHARE_KINECT_CONTENT;
-pub const XPRIVILEGE_MULTIPLAYER_PARTIES = KnownGamingPrivileges.MULTIPLAYER_PARTIES;
-pub const XPRIVILEGE_COMMUNICATION_VOICE_INGAME = KnownGamingPrivileges.COMMUNICATION_VOICE_INGAME;
-pub const XPRIVILEGE_COMMUNICATION_VOICE_SKYPE = KnownGamingPrivileges.COMMUNICATION_VOICE_SKYPE;
-pub const XPRIVILEGE_CLOUD_GAMING_MANAGE_SESSION = KnownGamingPrivileges.CLOUD_GAMING_MANAGE_SESSION;
-pub const XPRIVILEGE_CLOUD_GAMING_JOIN_SESSION = KnownGamingPrivileges.CLOUD_GAMING_JOIN_SESSION;
-pub const XPRIVILEGE_CLOUD_SAVED_GAMES = KnownGamingPrivileges.CLOUD_SAVED_GAMES;
-pub const XPRIVILEGE_SHARE_CONTENT = KnownGamingPrivileges.SHARE_CONTENT;
-pub const XPRIVILEGE_PREMIUM_CONTENT = KnownGamingPrivileges.PREMIUM_CONTENT;
-pub const XPRIVILEGE_SUBSCRIPTION_CONTENT = KnownGamingPrivileges.SUBSCRIPTION_CONTENT;
-pub const XPRIVILEGE_SOCIAL_NETWORK_SHARING = KnownGamingPrivileges.SOCIAL_NETWORK_SHARING;
-pub const XPRIVILEGE_PREMIUM_VIDEO = KnownGamingPrivileges.PREMIUM_VIDEO;
-pub const XPRIVILEGE_VIDEO_COMMUNICATIONS = KnownGamingPrivileges.VIDEO_COMMUNICATIONS;
-pub const XPRIVILEGE_PURCHASE_CONTENT = KnownGamingPrivileges.PURCHASE_CONTENT;
-pub const XPRIVILEGE_USER_CREATED_CONTENT = KnownGamingPrivileges.USER_CREATED_CONTENT;
-pub const XPRIVILEGE_PROFILE_VIEWING = KnownGamingPrivileges.PROFILE_VIEWING;
-pub const XPRIVILEGE_COMMUNICATIONS = KnownGamingPrivileges.COMMUNICATIONS;
-pub const XPRIVILEGE_MULTIPLAYER_SESSIONS = KnownGamingPrivileges.MULTIPLAYER_SESSIONS;
-pub const XPRIVILEGE_ADD_FRIEND = KnownGamingPrivileges.ADD_FRIEND;
-
-const CLSID_XblIdpAuthManager_Value = Guid.initString("ce23534b-56d8-4978-86a2-7ee570640468");
-pub const CLSID_XblIdpAuthManager = &CLSID_XblIdpAuthManager_Value;
-
-const CLSID_XblIdpAuthTokenResult_Value = Guid.initString("9f493441-744a-410c-ae2b-9a22f7c7731f");
-pub const CLSID_XblIdpAuthTokenResult = &CLSID_XblIdpAuthTokenResult_Value;
-
-pub const XBL_IDP_AUTH_TOKEN_STATUS = enum(i32) {
-    SUCCESS = 0,
-    OFFLINE_SUCCESS = 1,
-    NO_ACCOUNT_SET = 2,
-    LOAD_MSA_ACCOUNT_FAILED = 3,
-    XBOX_VETO = 4,
-    MSA_INTERRUPT = 5,
-    OFFLINE_NO_CONSENT = 6,
-    VIEW_NOT_SET = 7,
-    UNKNOWN = -1,
-};
-pub const XBL_IDP_AUTH_TOKEN_STATUS_SUCCESS = XBL_IDP_AUTH_TOKEN_STATUS.SUCCESS;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_OFFLINE_SUCCESS = XBL_IDP_AUTH_TOKEN_STATUS.OFFLINE_SUCCESS;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_NO_ACCOUNT_SET = XBL_IDP_AUTH_TOKEN_STATUS.NO_ACCOUNT_SET;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_LOAD_MSA_ACCOUNT_FAILED = XBL_IDP_AUTH_TOKEN_STATUS.LOAD_MSA_ACCOUNT_FAILED;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_XBOX_VETO = XBL_IDP_AUTH_TOKEN_STATUS.XBOX_VETO;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_MSA_INTERRUPT = XBL_IDP_AUTH_TOKEN_STATUS.MSA_INTERRUPT;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_OFFLINE_NO_CONSENT = XBL_IDP_AUTH_TOKEN_STATUS.OFFLINE_NO_CONSENT;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_VIEW_NOT_SET = XBL_IDP_AUTH_TOKEN_STATUS.VIEW_NOT_SET;
-pub const XBL_IDP_AUTH_TOKEN_STATUS_UNKNOWN = XBL_IDP_AUTH_TOKEN_STATUS.UNKNOWN;
 
 const IID_IXblIdpAuthManager_Value = Guid.initString("eb5ddb08-8bbf-449b-ac21-b02ddeb3b136");
 pub const IID_IXblIdpAuthManager = &IID_IXblIdpAuthManager_Value;
@@ -599,80 +518,91 @@ pub const IXblIdpAuthTokenResult2 = extern union {
     }
 };
 
+pub const KnownGamingPrivileges = enum(i32) {
+    BROADCAST = 190,
+    VIEW_FRIENDS_LIST = 197,
+    GAME_DVR = 198,
+    SHARE_KINECT_CONTENT = 199,
+    MULTIPLAYER_PARTIES = 203,
+    COMMUNICATION_VOICE_INGAME = 205,
+    COMMUNICATION_VOICE_SKYPE = 206,
+    CLOUD_GAMING_MANAGE_SESSION = 207,
+    CLOUD_GAMING_JOIN_SESSION = 208,
+    CLOUD_SAVED_GAMES = 209,
+    SHARE_CONTENT = 211,
+    PREMIUM_CONTENT = 214,
+    SUBSCRIPTION_CONTENT = 219,
+    SOCIAL_NETWORK_SHARING = 220,
+    PREMIUM_VIDEO = 224,
+    VIDEO_COMMUNICATIONS = 235,
+    PURCHASE_CONTENT = 245,
+    USER_CREATED_CONTENT = 247,
+    PROFILE_VIEWING = 249,
+    COMMUNICATIONS = 252,
+    MULTIPLAYER_SESSIONS = 254,
+    ADD_FRIEND = 255,
+};
+pub const XPRIVILEGE_BROADCAST = KnownGamingPrivileges.BROADCAST;
+pub const XPRIVILEGE_VIEW_FRIENDS_LIST = KnownGamingPrivileges.VIEW_FRIENDS_LIST;
+pub const XPRIVILEGE_GAME_DVR = KnownGamingPrivileges.GAME_DVR;
+pub const XPRIVILEGE_SHARE_KINECT_CONTENT = KnownGamingPrivileges.SHARE_KINECT_CONTENT;
+pub const XPRIVILEGE_MULTIPLAYER_PARTIES = KnownGamingPrivileges.MULTIPLAYER_PARTIES;
+pub const XPRIVILEGE_COMMUNICATION_VOICE_INGAME = KnownGamingPrivileges.COMMUNICATION_VOICE_INGAME;
+pub const XPRIVILEGE_COMMUNICATION_VOICE_SKYPE = KnownGamingPrivileges.COMMUNICATION_VOICE_SKYPE;
+pub const XPRIVILEGE_CLOUD_GAMING_MANAGE_SESSION = KnownGamingPrivileges.CLOUD_GAMING_MANAGE_SESSION;
+pub const XPRIVILEGE_CLOUD_GAMING_JOIN_SESSION = KnownGamingPrivileges.CLOUD_GAMING_JOIN_SESSION;
+pub const XPRIVILEGE_CLOUD_SAVED_GAMES = KnownGamingPrivileges.CLOUD_SAVED_GAMES;
+pub const XPRIVILEGE_SHARE_CONTENT = KnownGamingPrivileges.SHARE_CONTENT;
+pub const XPRIVILEGE_PREMIUM_CONTENT = KnownGamingPrivileges.PREMIUM_CONTENT;
+pub const XPRIVILEGE_SUBSCRIPTION_CONTENT = KnownGamingPrivileges.SUBSCRIPTION_CONTENT;
+pub const XPRIVILEGE_SOCIAL_NETWORK_SHARING = KnownGamingPrivileges.SOCIAL_NETWORK_SHARING;
+pub const XPRIVILEGE_PREMIUM_VIDEO = KnownGamingPrivileges.PREMIUM_VIDEO;
+pub const XPRIVILEGE_VIDEO_COMMUNICATIONS = KnownGamingPrivileges.VIDEO_COMMUNICATIONS;
+pub const XPRIVILEGE_PURCHASE_CONTENT = KnownGamingPrivileges.PURCHASE_CONTENT;
+pub const XPRIVILEGE_USER_CREATED_CONTENT = KnownGamingPrivileges.USER_CREATED_CONTENT;
+pub const XPRIVILEGE_PROFILE_VIEWING = KnownGamingPrivileges.PROFILE_VIEWING;
+pub const XPRIVILEGE_COMMUNICATIONS = KnownGamingPrivileges.COMMUNICATIONS;
+pub const XPRIVILEGE_MULTIPLAYER_SESSIONS = KnownGamingPrivileges.MULTIPLAYER_SESSIONS;
+pub const XPRIVILEGE_ADD_FRIEND = KnownGamingPrivileges.ADD_FRIEND;
+
+pub const PlayerPickerUICompletionRoutine = *const fn(
+    returnCode: HRESULT,
+    context: ?*anyopaque,
+    selectedXuids: [*]const ?HSTRING,
+    selectedXuidsCount: usize,
+) callconv(.winapi) void;
+
+pub const XBL_IDP_AUTH_TOKEN_STATUS = enum(i32) {
+    SUCCESS = 0,
+    OFFLINE_SUCCESS = 1,
+    NO_ACCOUNT_SET = 2,
+    LOAD_MSA_ACCOUNT_FAILED = 3,
+    XBOX_VETO = 4,
+    MSA_INTERRUPT = 5,
+    OFFLINE_NO_CONSENT = 6,
+    VIEW_NOT_SET = 7,
+    UNKNOWN = -1,
+};
+pub const XBL_IDP_AUTH_TOKEN_STATUS_SUCCESS = XBL_IDP_AUTH_TOKEN_STATUS.SUCCESS;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_OFFLINE_SUCCESS = XBL_IDP_AUTH_TOKEN_STATUS.OFFLINE_SUCCESS;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_NO_ACCOUNT_SET = XBL_IDP_AUTH_TOKEN_STATUS.NO_ACCOUNT_SET;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_LOAD_MSA_ACCOUNT_FAILED = XBL_IDP_AUTH_TOKEN_STATUS.LOAD_MSA_ACCOUNT_FAILED;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_XBOX_VETO = XBL_IDP_AUTH_TOKEN_STATUS.XBOX_VETO;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_MSA_INTERRUPT = XBL_IDP_AUTH_TOKEN_STATUS.MSA_INTERRUPT;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_OFFLINE_NO_CONSENT = XBL_IDP_AUTH_TOKEN_STATUS.OFFLINE_NO_CONSENT;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_VIEW_NOT_SET = XBL_IDP_AUTH_TOKEN_STATUS.VIEW_NOT_SET;
+pub const XBL_IDP_AUTH_TOKEN_STATUS_UNKNOWN = XBL_IDP_AUTH_TOKEN_STATUS.UNKNOWN;
+
+const CLSID_XblIdpAuthManager_Value = Guid.initString("ce23534b-56d8-4978-86a2-7ee570640468");
+pub const CLSID_XblIdpAuthManager = &CLSID_XblIdpAuthManager_Value;
+
+const CLSID_XblIdpAuthTokenResult_Value = Guid.initString("9f493441-744a-410c-ae2b-9a22f7c7731f");
+pub const CLSID_XblIdpAuthTokenResult = &CLSID_XblIdpAuthTokenResult_Value;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (30)
 //--------------------------------------------------------------------------------
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn HasExpandedResources(
-    hasExpandedResources: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn GetExpandedResourceExclusiveCpuCount(
-    exclusiveCpuCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn ReleaseExclusiveCpuSets(
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-deviceinformation-l1-1-0" fn GetGamingDeviceModelInformation(
-    information: ?*GAMING_DEVICE_MODEL_INFORMATION,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowGameInviteUI(
-    serviceConfigurationId: ?HSTRING,
-    sessionTemplateName: ?HSTRING,
-    sessionId: ?HSTRING,
-    invitationDisplayText: ?HSTRING,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowPlayerPickerUI(
-    promptDisplayText: ?HSTRING,
-    xuids: [*]const ?HSTRING,
-    xuidsCount: usize,
-    preSelectedXuids: ?[*]const ?HSTRING,
-    preSelectedXuidsCount: usize,
-    minSelectionCount: usize,
-    maxSelectionCount: usize,
-    completionRoutine: ?PlayerPickerUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowProfileCardUI(
-    targetUserXuid: ?HSTRING,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowChangeFriendRelationshipUI(
-    targetUserXuid: ?HSTRING,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowTitleAchievementsUI(
-    titleId: u32,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ProcessPendingGameUI(
-    waitForCompletion: BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-0" fn TryCancelPendingGameUI(
-) callconv(.winapi) BOOL;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeWithUI(
-    privilegeId: u32,
-    scope: ?HSTRING,
-    policy: ?HSTRING,
-    friendlyMessage: ?HSTRING,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
 pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeSilently(
     privilegeId: u32,
     scope: ?HSTRING,
@@ -680,46 +610,19 @@ pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeSilently(
     hasPrivilege: ?*BOOL,
 ) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowGameInviteUIForUser(
+pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeSilentlyForUser(
     user: ?*IInspectable,
-    serviceConfigurationId: ?HSTRING,
-    sessionTemplateName: ?HSTRING,
-    sessionId: ?HSTRING,
-    invitationDisplayText: ?HSTRING,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
+    privilegeId: u32,
+    scope: ?HSTRING,
+    policy: ?HSTRING,
+    hasPrivilege: ?*BOOL,
 ) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowPlayerPickerUIForUser(
-    user: ?*IInspectable,
-    promptDisplayText: ?HSTRING,
-    xuids: [*]const ?HSTRING,
-    xuidsCount: usize,
-    preSelectedXuids: ?[*]const ?HSTRING,
-    preSelectedXuidsCount: usize,
-    minSelectionCount: usize,
-    maxSelectionCount: usize,
-    completionRoutine: ?PlayerPickerUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowProfileCardUIForUser(
-    user: ?*IInspectable,
-    targetUserXuid: ?HSTRING,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowChangeFriendRelationshipUIForUser(
-    user: ?*IInspectable,
-    targetUserXuid: ?HSTRING,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowTitleAchievementsUIForUser(
-    user: ?*IInspectable,
-    titleId: u32,
+pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeWithUI(
+    privilegeId: u32,
+    scope: ?HSTRING,
+    policy: ?HSTRING,
+    friendlyMessage: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
     context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
@@ -734,12 +637,90 @@ pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeWithUIForUser(
     context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeSilentlyForUser(
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn GetExpandedResourceExclusiveCpuCount(
+    exclusiveCpuCount: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-deviceinformation-l1-1-0" fn GetGamingDeviceModelInformation(
+    information: ?*GAMING_DEVICE_MODEL_INFORMATION,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn HasExpandedResources(
+    hasExpandedResources: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ProcessPendingGameUI(
+    waitForCompletion: BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn ReleaseExclusiveCpuSets(
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowChangeFriendRelationshipUI(
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowChangeFriendRelationshipUIForUser(
     user: ?*IInspectable,
-    privilegeId: u32,
-    scope: ?HSTRING,
-    policy: ?HSTRING,
-    hasPrivilege: ?*BOOL,
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUI(
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUIForUser(
+    user: ?*IInspectable,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUI(
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUIForUser(
+    user: ?*IInspectable,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUI(
+    titleId: u32,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUIForUser(
+    user: ?*IInspectable,
+    titleId: u32,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowGameInviteUI(
+    serviceConfigurationId: ?HSTRING,
+    sessionTemplateName: ?HSTRING,
+    sessionId: ?HSTRING,
+    invitationDisplayText: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowGameInviteUIForUser(
+    user: ?*IInspectable,
+    serviceConfigurationId: ?HSTRING,
+    sessionTemplateName: ?HSTRING,
+    sessionId: ?HSTRING,
+    invitationDisplayText: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-3" fn ShowGameInviteUIWithContext(
@@ -763,37 +744,53 @@ pub extern "api-ms-win-gaming-tcui-l1-1-3" fn ShowGameInviteUIWithContextForUser
     context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUI(
+pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowPlayerPickerUI(
+    promptDisplayText: ?HSTRING,
+    xuids: [*]const ?HSTRING,
+    xuidsCount: usize,
+    preSelectedXuids: ?[*]const ?HSTRING,
+    preSelectedXuidsCount: usize,
+    minSelectionCount: usize,
+    maxSelectionCount: usize,
+    completionRoutine: ?PlayerPickerUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowPlayerPickerUIForUser(
+    user: ?*IInspectable,
+    promptDisplayText: ?HSTRING,
+    xuids: [*]const ?HSTRING,
+    xuidsCount: usize,
+    preSelectedXuids: ?[*]const ?HSTRING,
+    preSelectedXuidsCount: usize,
+    minSelectionCount: usize,
+    maxSelectionCount: usize,
+    completionRoutine: ?PlayerPickerUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowProfileCardUI(
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowProfileCardUIForUser(
+    user: ?*IInspectable,
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
+    context: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowTitleAchievementsUI(
     titleId: u32,
     completionRoutine: ?GameUICompletionRoutine,
     context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUIForUser(
+pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowTitleAchievementsUIForUser(
     user: ?*IInspectable,
     titleId: u32,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUI(
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUIForUser(
-    user: ?*IInspectable,
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUI(
-    completionRoutine: ?GameUICompletionRoutine,
-    context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUIForUser(
-    user: ?*IInspectable,
     completionRoutine: ?GameUICompletionRoutine,
     context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
@@ -808,6 +805,9 @@ pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUIForUser(
     completionRoutine: ?GameUICompletionRoutine,
     context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-gaming-tcui-l1-1-0" fn TryCancelPendingGameUI(
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

@@ -2,917 +2,152 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (922)
 //--------------------------------------------------------------------------------
-pub const LIBID_Accessibility = Guid.initString("1ea4dbf0-3c3b-11cf-810c-00aa00389b71");
-pub const CLSID_AccPropServices = Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
-pub const IIS_IsOleaccProxy = Guid.initString("902697fa-80e4-4560-802a-a13f22a64709");
-pub const IIS_ControlAccessible = Guid.initString("38c682a6-9731-43f2-9fae-e901e641b101");
-pub const ANRUS_PRIORITY_AUDIO_DYNAMIC_DUCK = @as(u32, 16);
-pub const MSAA_MENU_SIG = @as(i32, -1441927155);
-pub const PROPID_ACC_NAME = Guid.initString("608d3df8-8128-4aa7-a428-f55e49267291");
-pub const PROPID_ACC_VALUE = Guid.initString("123fe443-211a-4615-9527-c45a7e93717a");
-pub const PROPID_ACC_DESCRIPTION = Guid.initString("4d48dfe4-bd3f-491f-a648-492d6f20c588");
-pub const PROPID_ACC_ROLE = Guid.initString("cb905ff2-7bd1-4c05-b3c8-e6c241364d70");
-pub const PROPID_ACC_STATE = Guid.initString("a8d4d5b0-0a21-42d0-a5c0-514e984f457b");
-pub const PROPID_ACC_HELP = Guid.initString("c831e11f-44db-4a99-9768-cb8f978b7231");
-pub const PROPID_ACC_KEYBOARDSHORTCUT = Guid.initString("7d9bceee-7d1e-4979-9382-5180f4172c34");
-pub const PROPID_ACC_DEFAULTACTION = Guid.initString("180c072b-c27f-43c7-9922-f63562a4632b");
-pub const PROPID_ACC_HELPTOPIC = Guid.initString("787d1379-8ede-440b-8aec-11f7bf9030b3");
-pub const PROPID_ACC_FOCUS = Guid.initString("6eb335df-1c29-4127-b12c-dee9fd157f2b");
-pub const PROPID_ACC_SELECTION = Guid.initString("b99d073c-d731-405b-9061-d95e8f842984");
-pub const PROPID_ACC_PARENT = Guid.initString("474c22b6-ffc2-467a-b1b5-e958b4657330");
-pub const PROPID_ACC_NAV_UP = Guid.initString("016e1a2b-1a4e-4767-8612-3386f66935ec");
-pub const PROPID_ACC_NAV_DOWN = Guid.initString("031670ed-3cdf-48d2-9613-138f2dd8a668");
-pub const PROPID_ACC_NAV_LEFT = Guid.initString("228086cb-82f1-4a39-8705-dcdc0fff92f5");
-pub const PROPID_ACC_NAV_RIGHT = Guid.initString("cd211d9f-e1cb-4fe5-a77c-920b884d095b");
-pub const PROPID_ACC_NAV_PREV = Guid.initString("776d3891-c73b-4480-b3f6-076a16a15af6");
-pub const PROPID_ACC_NAV_NEXT = Guid.initString("1cdc5455-8cd9-4c92-a371-3939a2fe3eee");
-pub const PROPID_ACC_NAV_FIRSTCHILD = Guid.initString("cfd02558-557b-4c67-84f9-2a09fce40749");
-pub const PROPID_ACC_NAV_LASTCHILD = Guid.initString("302ecaa5-48d5-4f8d-b671-1a8d20a77832");
-pub const PROPID_ACC_ROLEMAP = Guid.initString("f79acda2-140d-4fe6-8914-208476328269");
-pub const PROPID_ACC_VALUEMAP = Guid.initString("da1c3d79-fc5c-420e-b399-9d1533549e75");
-pub const PROPID_ACC_STATEMAP = Guid.initString("43946c5e-0ac0-4042-b525-07bbdbe17fa7");
-pub const PROPID_ACC_DESCRIPTIONMAP = Guid.initString("1ff1435f-8a14-477b-b226-a0abe279975d");
-pub const PROPID_ACC_DODEFAULTACTION = Guid.initString("1ba09523-2e3b-49a6-a059-59682a3c48fd");
-pub const DISPID_ACC_PARENT = @as(i32, -5000);
-pub const DISPID_ACC_CHILDCOUNT = @as(i32, -5001);
-pub const DISPID_ACC_CHILD = @as(i32, -5002);
-pub const DISPID_ACC_NAME = @as(i32, -5003);
-pub const DISPID_ACC_VALUE = @as(i32, -5004);
-pub const DISPID_ACC_DESCRIPTION = @as(i32, -5005);
-pub const DISPID_ACC_ROLE = @as(i32, -5006);
-pub const DISPID_ACC_STATE = @as(i32, -5007);
-pub const DISPID_ACC_HELP = @as(i32, -5008);
-pub const DISPID_ACC_HELPTOPIC = @as(i32, -5009);
-pub const DISPID_ACC_KEYBOARDSHORTCUT = @as(i32, -5010);
-pub const DISPID_ACC_FOCUS = @as(i32, -5011);
-pub const DISPID_ACC_SELECTION = @as(i32, -5012);
-pub const DISPID_ACC_DEFAULTACTION = @as(i32, -5013);
-pub const DISPID_ACC_SELECT = @as(i32, -5014);
-pub const DISPID_ACC_LOCATION = @as(i32, -5015);
-pub const DISPID_ACC_NAVIGATE = @as(i32, -5016);
-pub const DISPID_ACC_HITTEST = @as(i32, -5017);
-pub const DISPID_ACC_DODEFAULTACTION = @as(i32, -5018);
-pub const NAVDIR_MIN = @as(u32, 0);
-pub const NAVDIR_UP = @as(u32, 1);
-pub const NAVDIR_DOWN = @as(u32, 2);
-pub const NAVDIR_LEFT = @as(u32, 3);
-pub const NAVDIR_RIGHT = @as(u32, 4);
-pub const NAVDIR_NEXT = @as(u32, 5);
-pub const NAVDIR_PREVIOUS = @as(u32, 6);
-pub const NAVDIR_FIRSTCHILD = @as(u32, 7);
-pub const NAVDIR_LASTCHILD = @as(u32, 8);
-pub const NAVDIR_MAX = @as(u32, 9);
-pub const SELFLAG_NONE = @as(u32, 0);
-pub const SELFLAG_TAKEFOCUS = @as(u32, 1);
-pub const SELFLAG_TAKESELECTION = @as(u32, 2);
-pub const SELFLAG_EXTENDSELECTION = @as(u32, 4);
-pub const SELFLAG_ADDSELECTION = @as(u32, 8);
-pub const SELFLAG_REMOVESELECTION = @as(u32, 16);
-pub const SELFLAG_VALID = @as(u32, 31);
-pub const STATE_SYSTEM_NORMAL = @as(u32, 0);
-pub const STATE_SYSTEM_HASPOPUP = @as(u32, 1073741824);
-pub const ROLE_SYSTEM_TITLEBAR = @as(u32, 1);
-pub const ROLE_SYSTEM_MENUBAR = @as(u32, 2);
-pub const ROLE_SYSTEM_SCROLLBAR = @as(u32, 3);
-pub const ROLE_SYSTEM_GRIP = @as(u32, 4);
-pub const ROLE_SYSTEM_SOUND = @as(u32, 5);
-pub const ROLE_SYSTEM_CURSOR = @as(u32, 6);
-pub const ROLE_SYSTEM_CARET = @as(u32, 7);
-pub const ROLE_SYSTEM_ALERT = @as(u32, 8);
-pub const ROLE_SYSTEM_WINDOW = @as(u32, 9);
-pub const ROLE_SYSTEM_CLIENT = @as(u32, 10);
-pub const ROLE_SYSTEM_MENUPOPUP = @as(u32, 11);
-pub const ROLE_SYSTEM_MENUITEM = @as(u32, 12);
-pub const ROLE_SYSTEM_TOOLTIP = @as(u32, 13);
-pub const ROLE_SYSTEM_APPLICATION = @as(u32, 14);
-pub const ROLE_SYSTEM_DOCUMENT = @as(u32, 15);
-pub const ROLE_SYSTEM_PANE = @as(u32, 16);
-pub const ROLE_SYSTEM_CHART = @as(u32, 17);
-pub const ROLE_SYSTEM_DIALOG = @as(u32, 18);
-pub const ROLE_SYSTEM_BORDER = @as(u32, 19);
-pub const ROLE_SYSTEM_GROUPING = @as(u32, 20);
-pub const ROLE_SYSTEM_SEPARATOR = @as(u32, 21);
-pub const ROLE_SYSTEM_TOOLBAR = @as(u32, 22);
-pub const ROLE_SYSTEM_STATUSBAR = @as(u32, 23);
-pub const ROLE_SYSTEM_TABLE = @as(u32, 24);
-pub const ROLE_SYSTEM_COLUMNHEADER = @as(u32, 25);
-pub const ROLE_SYSTEM_ROWHEADER = @as(u32, 26);
-pub const ROLE_SYSTEM_COLUMN = @as(u32, 27);
-pub const ROLE_SYSTEM_ROW = @as(u32, 28);
-pub const ROLE_SYSTEM_CELL = @as(u32, 29);
-pub const ROLE_SYSTEM_LINK = @as(u32, 30);
-pub const ROLE_SYSTEM_HELPBALLOON = @as(u32, 31);
-pub const ROLE_SYSTEM_CHARACTER = @as(u32, 32);
-pub const ROLE_SYSTEM_LIST = @as(u32, 33);
-pub const ROLE_SYSTEM_LISTITEM = @as(u32, 34);
-pub const ROLE_SYSTEM_OUTLINE = @as(u32, 35);
-pub const ROLE_SYSTEM_OUTLINEITEM = @as(u32, 36);
-pub const ROLE_SYSTEM_PAGETAB = @as(u32, 37);
-pub const ROLE_SYSTEM_PROPERTYPAGE = @as(u32, 38);
-pub const ROLE_SYSTEM_INDICATOR = @as(u32, 39);
-pub const ROLE_SYSTEM_GRAPHIC = @as(u32, 40);
-pub const ROLE_SYSTEM_STATICTEXT = @as(u32, 41);
-pub const ROLE_SYSTEM_TEXT = @as(u32, 42);
-pub const ROLE_SYSTEM_PUSHBUTTON = @as(u32, 43);
-pub const ROLE_SYSTEM_CHECKBUTTON = @as(u32, 44);
-pub const ROLE_SYSTEM_RADIOBUTTON = @as(u32, 45);
-pub const ROLE_SYSTEM_COMBOBOX = @as(u32, 46);
-pub const ROLE_SYSTEM_DROPLIST = @as(u32, 47);
-pub const ROLE_SYSTEM_PROGRESSBAR = @as(u32, 48);
-pub const ROLE_SYSTEM_DIAL = @as(u32, 49);
-pub const ROLE_SYSTEM_HOTKEYFIELD = @as(u32, 50);
-pub const ROLE_SYSTEM_SLIDER = @as(u32, 51);
-pub const ROLE_SYSTEM_SPINBUTTON = @as(u32, 52);
-pub const ROLE_SYSTEM_DIAGRAM = @as(u32, 53);
-pub const ROLE_SYSTEM_ANIMATION = @as(u32, 54);
-pub const ROLE_SYSTEM_EQUATION = @as(u32, 55);
-pub const ROLE_SYSTEM_BUTTONDROPDOWN = @as(u32, 56);
-pub const ROLE_SYSTEM_BUTTONMENU = @as(u32, 57);
-pub const ROLE_SYSTEM_BUTTONDROPDOWNGRID = @as(u32, 58);
-pub const ROLE_SYSTEM_WHITESPACE = @as(u32, 59);
-pub const ROLE_SYSTEM_PAGETABLIST = @as(u32, 60);
-pub const ROLE_SYSTEM_CLOCK = @as(u32, 61);
-pub const ROLE_SYSTEM_SPLITBUTTON = @as(u32, 62);
-pub const ROLE_SYSTEM_IPADDRESS = @as(u32, 63);
-pub const ROLE_SYSTEM_OUTLINEBUTTON = @as(u32, 64);
-pub const UIA_E_ELEMENTNOTENABLED = @as(u32, 2147746304);
-pub const UIA_E_ELEMENTNOTAVAILABLE = @as(u32, 2147746305);
-pub const UIA_E_NOCLICKABLEPOINT = @as(u32, 2147746306);
-pub const UIA_E_PROXYASSEMBLYNOTLOADED = @as(u32, 2147746307);
-pub const UIA_E_NOTSUPPORTED = @as(u32, 2147746308);
-pub const UIA_E_INVALIDOPERATION = @as(u32, 2148734217);
-pub const UIA_E_TIMEOUT = @as(u32, 2148734213);
-pub const UiaAppendRuntimeId = @as(u32, 3);
-pub const UiaRootObjectId = @as(i32, -25);
-pub const RuntimeId_Property_GUID = Guid.initString("a39eebfa-7fba-4c89-b4d4-b99e2de7d160");
-pub const BoundingRectangle_Property_GUID = Guid.initString("7bbfe8b2-3bfc-48dd-b729-c794b846e9a1");
-pub const ProcessId_Property_GUID = Guid.initString("40499998-9c31-4245-a403-87320e59eaf6");
-pub const ControlType_Property_GUID = Guid.initString("ca774fea-28ac-4bc2-94ca-acec6d6c10a3");
-pub const LocalizedControlType_Property_GUID = Guid.initString("8763404f-a1bd-452a-89c4-3f01d3833806");
-pub const Name_Property_GUID = Guid.initString("c3a6921b-4a99-44f1-bca6-61187052c431");
 pub const AcceleratorKey_Property_GUID = Guid.initString("514865df-2557-4cb9-aeed-6ced084ce52c");
 pub const AccessKey_Property_GUID = Guid.initString("06827b12-a7f9-4a15-917c-ffa5ad3eb0a7");
-pub const HasKeyboardFocus_Property_GUID = Guid.initString("cf8afd39-3f46-4800-9656-b2bf12529905");
-pub const IsKeyboardFocusable_Property_GUID = Guid.initString("f7b8552a-0859-4b37-b9cb-51e72092f29f");
-pub const IsEnabled_Property_GUID = Guid.initString("2109427f-da60-4fed-bf1b-264bdce6eb3a");
-pub const AutomationId_Property_GUID = Guid.initString("c82c0500-b60e-4310-a267-303c531f8ee5");
-pub const ClassName_Property_GUID = Guid.initString("157b7215-894f-4b65-84e2-aac0da08b16b");
-pub const HelpText_Property_GUID = Guid.initString("08555685-0977-45c7-a7a6-abaf5684121a");
-pub const ClickablePoint_Property_GUID = Guid.initString("0196903b-b203-4818-a9f3-f08e675f2341");
-pub const Culture_Property_GUID = Guid.initString("e2d74f27-3d79-4dc2-b88b-3044963a8afb");
-pub const IsControlElement_Property_GUID = Guid.initString("95f35085-abcc-4afd-a5f4-dbb46c230fdb");
-pub const IsContentElement_Property_GUID = Guid.initString("4bda64a8-f5d8-480b-8155-ef2e89adb672");
-pub const LabeledBy_Property_GUID = Guid.initString("e5b8924b-fc8a-4a35-8031-cf78ac43e55e");
-pub const IsPassword_Property_GUID = Guid.initString("e8482eb1-687c-497b-bebc-03be53ec1454");
-pub const NewNativeWindowHandle_Property_GUID = Guid.initString("5196b33b-380a-4982-95e1-91f3ef60e024");
-pub const ItemType_Property_GUID = Guid.initString("cdda434d-6222-413b-a68a-325dd1d40f39");
-pub const IsOffscreen_Property_GUID = Guid.initString("03c3d160-db79-42db-a2ef-1c231eede507");
-pub const Orientation_Property_GUID = Guid.initString("a01eee62-3884-4415-887e-678ec21e39ba");
-pub const FrameworkId_Property_GUID = Guid.initString("dbfd9900-7e1a-4f58-b61b-7063120f773b");
-pub const IsRequiredForForm_Property_GUID = Guid.initString("4f5f43cf-59fb-4bde-a270-602e5e1141e9");
-pub const ItemStatus_Property_GUID = Guid.initString("51de0321-3973-43e7-8913-0b08e813c37f");
-pub const AriaRole_Property_GUID = Guid.initString("dd207b95-be4a-4e0d-b727-63ace94b6916");
-pub const AriaProperties_Property_GUID = Guid.initString("4213678c-e025-4922-beb5-e43ba08e6221");
-pub const IsDataValidForForm_Property_GUID = Guid.initString("445ac684-c3fc-4dd9-acf8-845a579296ba");
-pub const ControllerFor_Property_GUID = Guid.initString("51124c8a-a5d2-4f13-9be6-7fa8ba9d3a90");
-pub const DescribedBy_Property_GUID = Guid.initString("7c5865b8-9992-40fd-8db0-6bf1d317f998");
-pub const FlowsTo_Property_GUID = Guid.initString("e4f33d20-559a-47fb-a830-f9cb4ff1a70a");
-pub const ProviderDescription_Property_GUID = Guid.initString("dca5708a-c16b-4cd9-b889-beb16a804904");
-pub const OptimizeForVisualContent_Property_GUID = Guid.initString("6a852250-c75a-4e5d-b858-e381b0f78861");
-pub const IsDockPatternAvailable_Property_GUID = Guid.initString("2600a4c4-2ff8-4c96-ae31-8fe619a13c6c");
-pub const IsExpandCollapsePatternAvailable_Property_GUID = Guid.initString("929d3806-5287-4725-aa16-222afc63d595");
-pub const IsGridItemPatternAvailable_Property_GUID = Guid.initString("5a43e524-f9a2-4b12-84c8-b48a3efedd34");
-pub const IsGridPatternAvailable_Property_GUID = Guid.initString("5622c26c-f0ef-4f3b-97cb-714c0868588b");
-pub const IsInvokePatternAvailable_Property_GUID = Guid.initString("4e725738-8364-4679-aa6c-f3f41931f750");
-pub const IsMultipleViewPatternAvailable_Property_GUID = Guid.initString("ff0a31eb-8e25-469d-8d6e-e771a27c1b90");
-pub const IsRangeValuePatternAvailable_Property_GUID = Guid.initString("fda4244a-eb4d-43ff-b5ad-ed36d373ec4c");
-pub const IsScrollPatternAvailable_Property_GUID = Guid.initString("3ebb7b4a-828a-4b57-9d22-2fea1632ed0d");
-pub const IsScrollItemPatternAvailable_Property_GUID = Guid.initString("1cad1a05-0927-4b76-97e1-0fcdb209b98a");
-pub const IsSelectionItemPatternAvailable_Property_GUID = Guid.initString("8becd62d-0bc3-4109-bee2-8e6715290e68");
-pub const IsSelectionPatternAvailable_Property_GUID = Guid.initString("f588acbe-c769-4838-9a60-2686dc1188c4");
-pub const IsTablePatternAvailable_Property_GUID = Guid.initString("cb83575f-45c2-4048-9c76-159715a139df");
-pub const IsTableItemPatternAvailable_Property_GUID = Guid.initString("eb36b40d-8ea4-489b-a013-e60d5951fe34");
-pub const IsTextPatternAvailable_Property_GUID = Guid.initString("fbe2d69d-aff6-4a45-82e2-fc92a82f5917");
-pub const IsTogglePatternAvailable_Property_GUID = Guid.initString("78686d53-fcd0-4b83-9b78-5832ce63bb5b");
-pub const IsTransformPatternAvailable_Property_GUID = Guid.initString("a7f78804-d68b-4077-a5c6-7a5ea1ac31c5");
-pub const IsValuePatternAvailable_Property_GUID = Guid.initString("0b5020a7-2119-473b-be37-5ceb98bbfb22");
-pub const IsWindowPatternAvailable_Property_GUID = Guid.initString("e7a57bb1-5888-4155-98dc-b422fd57f2bc");
-pub const IsLegacyIAccessiblePatternAvailable_Property_GUID = Guid.initString("d8ebd0c7-929a-4ee7-8d3a-d3d94413027b");
-pub const IsItemContainerPatternAvailable_Property_GUID = Guid.initString("624b5ca7-fe40-4957-a019-20c4cf11920f");
-pub const IsVirtualizedItemPatternAvailable_Property_GUID = Guid.initString("302cb151-2ac8-45d6-977b-d2b3a5a53f20");
-pub const IsSynchronizedInputPatternAvailable_Property_GUID = Guid.initString("75d69cc5-d2bf-4943-876e-b45b62a6cc66");
-pub const IsObjectModelPatternAvailable_Property_GUID = Guid.initString("6b21d89b-2841-412f-8ef2-15ca952318ba");
-pub const IsAnnotationPatternAvailable_Property_GUID = Guid.initString("0b5b3238-6d5c-41b6-bcc4-5e807f6551c4");
-pub const IsTextPattern2Available_Property_GUID = Guid.initString("41cf921d-e3f1-4b22-9c81-e1c3ed331c22");
-pub const IsTextEditPatternAvailable_Property_GUID = Guid.initString("7843425c-8b32-484c-9ab5-e3200571ffda");
-pub const IsCustomNavigationPatternAvailable_Property_GUID = Guid.initString("8f8e80d4-2351-48e0-874a-54aa7313889a");
-pub const IsStylesPatternAvailable_Property_GUID = Guid.initString("27f353d3-459c-4b59-a490-50611dacafb5");
-pub const IsSpreadsheetPatternAvailable_Property_GUID = Guid.initString("6ff43732-e4b4-4555-97bc-ecdbbc4d1888");
-pub const IsSpreadsheetItemPatternAvailable_Property_GUID = Guid.initString("9fe79b2a-2f94-43fd-996b-549e316f4acd");
-pub const IsTransformPattern2Available_Property_GUID = Guid.initString("25980b4b-be04-4710-ab4a-fda31dbd2895");
-pub const IsTextChildPatternAvailable_Property_GUID = Guid.initString("559e65df-30ff-43b5-b5ed-5b283b80c7e9");
-pub const IsDragPatternAvailable_Property_GUID = Guid.initString("e997a7b7-1d39-4ca7-be0f-277fcf5605cc");
-pub const IsDropTargetPatternAvailable_Property_GUID = Guid.initString("0686b62e-8e19-4aaf-873d-384f6d3b92be");
-pub const IsStructuredMarkupPatternAvailable_Property_GUID = Guid.initString("b0d4c196-2c0b-489c-b165-a405928c6f3d");
-pub const IsPeripheral_Property_GUID = Guid.initString("da758276-7ed5-49d4-8e68-ecc9a2d300dd");
-pub const PositionInSet_Property_GUID = Guid.initString("33d1dc54-641e-4d76-a6b1-13f341c1f896");
-pub const SizeOfSet_Property_GUID = Guid.initString("1600d33c-3b9f-4369-9431-aa293f344cf1");
-pub const Level_Property_GUID = Guid.initString("242ac529-cd36-400f-aad9-7876ef3af627");
-pub const AnnotationTypes_Property_GUID = Guid.initString("64b71f76-53c4-4696-a219-20e940c9a176");
-pub const AnnotationObjects_Property_GUID = Guid.initString("310910c8-7c6e-4f20-becd-4aaf6d191156");
-pub const LandmarkType_Property_GUID = Guid.initString("454045f2-6f61-49f7-a4f8-b5f0cf82da1e");
-pub const LocalizedLandmarkType_Property_GUID = Guid.initString("7ac81980-eafb-4fb2-bf91-f485bef5e8e1");
-pub const FullDescription_Property_GUID = Guid.initString("0d4450ff-6aef-4f33-95dd-7befa72a4391");
-pub const Value_Value_Property_GUID = Guid.initString("e95f5e64-269f-4a85-ba99-4092c3ea2986");
-pub const Value_IsReadOnly_Property_GUID = Guid.initString("eb090f30-e24c-4799-a705-0d247bc037f8");
-pub const RangeValue_Value_Property_GUID = Guid.initString("131f5d98-c50c-489d-abe5-ae220898c5f7");
-pub const RangeValue_IsReadOnly_Property_GUID = Guid.initString("25fa1055-debf-4373-a79e-1f1a1908d3c4");
-pub const RangeValue_Minimum_Property_GUID = Guid.initString("78cbd3b2-684d-4860-af93-d1f95cb022fd");
-pub const RangeValue_Maximum_Property_GUID = Guid.initString("19319914-f979-4b35-a1a6-d37e05433473");
-pub const RangeValue_LargeChange_Property_GUID = Guid.initString("a1f96325-3a3d-4b44-8e1f-4a46d9844019");
-pub const RangeValue_SmallChange_Property_GUID = Guid.initString("81c2c457-3941-4107-9975-139760f7c072");
-pub const Scroll_HorizontalScrollPercent_Property_GUID = Guid.initString("c7c13c0e-eb21-47ff-acc4-b5a3350f5191");
-pub const Scroll_HorizontalViewSize_Property_GUID = Guid.initString("70c2e5d4-fcb0-4713-a9aa-af92ff79e4cd");
-pub const Scroll_VerticalScrollPercent_Property_GUID = Guid.initString("6c8d7099-b2a8-4948-bff7-3cf9058bfefb");
-pub const Scroll_VerticalViewSize_Property_GUID = Guid.initString("de6a2e22-d8c7-40c5-83ba-e5f681d53108");
-pub const Scroll_HorizontallyScrollable_Property_GUID = Guid.initString("8b925147-28cd-49ae-bd63-f44118d2e719");
-pub const Scroll_VerticallyScrollable_Property_GUID = Guid.initString("89164798-0068-4315-b89a-1e7cfbbc3dfc");
-pub const Selection_Selection_Property_GUID = Guid.initString("aa6dc2a2-0e2b-4d38-96d5-34e470b81853");
-pub const Selection_CanSelectMultiple_Property_GUID = Guid.initString("49d73da5-c883-4500-883d-8fcf8daf6cbe");
-pub const Selection_IsSelectionRequired_Property_GUID = Guid.initString("b1ae4422-63fe-44e7-a5a5-a738c829b19a");
-pub const Grid_RowCount_Property_GUID = Guid.initString("2a9505bf-c2eb-4fb6-b356-8245ae53703e");
-pub const Grid_ColumnCount_Property_GUID = Guid.initString("fe96f375-44aa-4536-ac7a-2a75d71a3efc");
-pub const GridItem_Row_Property_GUID = Guid.initString("6223972a-c945-4563-9329-fdc974af2553");
-pub const GridItem_Column_Property_GUID = Guid.initString("c774c15c-62c0-4519-8bdc-47be573c8ad5");
-pub const GridItem_RowSpan_Property_GUID = Guid.initString("4582291c-466b-4e93-8e83-3d1715ec0c5e");
-pub const GridItem_ColumnSpan_Property_GUID = Guid.initString("583ea3f5-86d0-4b08-a6ec-2c5463ffc109");
-pub const GridItem_Parent_Property_GUID = Guid.initString("9d912252-b97f-4ecc-8510-ea0e33427c72");
-pub const Dock_DockPosition_Property_GUID = Guid.initString("6d67f02e-c0b0-4b10-b5b9-18d6ecf98760");
-pub const ExpandCollapse_ExpandCollapseState_Property_GUID = Guid.initString("275a4c48-85a7-4f69-aba0-af157610002b");
-pub const MultipleView_CurrentView_Property_GUID = Guid.initString("7a81a67a-b94f-4875-918b-65c8d2f998e5");
-pub const MultipleView_SupportedViews_Property_GUID = Guid.initString("8d5db9fd-ce3c-4ae7-b788-400a3c645547");
-pub const Window_CanMaximize_Property_GUID = Guid.initString("64fff53f-635d-41c1-950c-cb5adfbe28e3");
-pub const Window_CanMinimize_Property_GUID = Guid.initString("b73b4625-5988-4b97-b4c2-a6fe6e78c8c6");
-pub const Window_WindowVisualState_Property_GUID = Guid.initString("4ab7905f-e860-453e-a30a-f6431e5daad5");
-pub const Window_WindowInteractionState_Property_GUID = Guid.initString("4fed26a4-0455-4fa2-b21c-c4da2db1ff9c");
-pub const Window_IsModal_Property_GUID = Guid.initString("ff4e6892-37b9-4fca-8532-ffe674ecfeed");
-pub const Window_IsTopmost_Property_GUID = Guid.initString("ef7d85d3-0937-4962-9241-b62345f24041");
-pub const SelectionItem_IsSelected_Property_GUID = Guid.initString("f122835f-cd5f-43df-b79d-4b849e9e6020");
-pub const SelectionItem_SelectionContainer_Property_GUID = Guid.initString("a4365b6e-9c1e-4b63-8b53-c2421dd1e8fb");
-pub const Table_RowHeaders_Property_GUID = Guid.initString("d9e35b87-6eb8-4562-aac6-a8a9075236a8");
-pub const Table_ColumnHeaders_Property_GUID = Guid.initString("aff1d72b-968d-42b1-b459-150b299da664");
-pub const Table_RowOrColumnMajor_Property_GUID = Guid.initString("83be75c3-29fe-4a30-85e1-2a6277fd106e");
-pub const TableItem_RowHeaderItems_Property_GUID = Guid.initString("b3f853a0-0574-4cd8-bcd7-ed5923572d97");
-pub const TableItem_ColumnHeaderItems_Property_GUID = Guid.initString("967a56a3-74b6-431e-8de6-99c411031c58");
-pub const Toggle_ToggleState_Property_GUID = Guid.initString("b23cdc52-22c2-4c6c-9ded-f5c422479ede");
-pub const Transform_CanMove_Property_GUID = Guid.initString("1b75824d-208b-4fdf-bccd-f1f4e5741f4f");
-pub const Transform_CanResize_Property_GUID = Guid.initString("bb98dca5-4c1a-41d4-a4f6-ebc128644180");
-pub const Transform_CanRotate_Property_GUID = Guid.initString("10079b48-3849-476f-ac96-44a95c8440d9");
-pub const LegacyIAccessible_ChildId_Property_GUID = Guid.initString("9a191b5d-9ef2-4787-a459-dcde885dd4e8");
-pub const LegacyIAccessible_Name_Property_GUID = Guid.initString("caeb063d-40ae-4869-aa5a-1b8e5d666739");
-pub const LegacyIAccessible_Value_Property_GUID = Guid.initString("b5c5b0b6-8217-4a77-97a5-190a85ed0156");
-pub const LegacyIAccessible_Description_Property_GUID = Guid.initString("46448418-7d70-4ea9-9d27-b7e775cf2ad7");
-pub const LegacyIAccessible_Role_Property_GUID = Guid.initString("6856e59f-cbaf-4e31-93e8-bcbf6f7e491c");
-pub const LegacyIAccessible_State_Property_GUID = Guid.initString("df985854-2281-4340-ab9c-c60e2c5803f6");
-pub const LegacyIAccessible_Help_Property_GUID = Guid.initString("94402352-161c-4b77-a98d-a872cc33947a");
-pub const LegacyIAccessible_KeyboardShortcut_Property_GUID = Guid.initString("8f6909ac-00b8-4259-a41c-966266d43a8a");
-pub const LegacyIAccessible_Selection_Property_GUID = Guid.initString("8aa8b1e0-0891-40cc-8b06-90d7d4166219");
-pub const LegacyIAccessible_DefaultAction_Property_GUID = Guid.initString("3b331729-eaad-4502-b85f-92615622913c");
+pub const ActiveTextPositionChanged_Event_GUID = Guid.initString("a5c09e9c-c77d-4f25-b491-e5bb7017cbd4");
+pub const Annotation_AdvancedProofingIssue_GUID = Guid.initString("dac7b72c-c0f2-4b84-b90d-5fafc0f0ef1c");
 pub const Annotation_AnnotationTypeId_Property_GUID = Guid.initString("20ae484f-69ef-4c48-8f5b-c4938b206ac7");
 pub const Annotation_AnnotationTypeName_Property_GUID = Guid.initString("9b818892-5ac9-4af9-aa96-f58a77b058e3");
+pub const Annotation_Author_GUID = Guid.initString("f161d3a7-f81b-4128-b17f-71f690914520");
 pub const Annotation_Author_Property_GUID = Guid.initString("7a528462-9c5c-4a03-a974-8b307a9937f2");
+pub const Annotation_CircularReferenceError_GUID = Guid.initString("25bd9cf4-1745-4659-ba67-727f0318c616");
+pub const Annotation_Comment_GUID = Guid.initString("fd2fda30-26b3-4c06-8bc7-98f1532e46fd");
+pub const Annotation_ConflictingChange_GUID = Guid.initString("98af8802-517c-459f-af13-016d3fab877e");
+pub const Annotation_Custom_GUID = Guid.initString("9ec82750-3931-4952-85bc-1dbff78a43e3");
+pub const Annotation_DataValidationError_GUID = Guid.initString("c8649fa8-9775-437e-ad46-e709d93c2343");
 pub const Annotation_DateTime_Property_GUID = Guid.initString("99b5ca5d-1acf-414b-a4d0-6b350b047578");
+pub const Annotation_DeletionChange_GUID = Guid.initString("be3d5b05-951d-42e7-901d-adc8c2cf34d0");
+pub const Annotation_EditingLockedChange_GUID = Guid.initString("c31f3e1c-7423-4dac-8348-41f099ff6f64");
+pub const Annotation_Endnote_GUID = Guid.initString("7565725c-2d99-4839-960d-33d3b866aba5");
+pub const Annotation_ExternalChange_GUID = Guid.initString("75a05b31-5f11-42fd-887d-dfa010db2392");
+pub const Annotation_Footer_GUID = Guid.initString("cceab046-1833-47aa-8080-701ed0b0c832");
+pub const Annotation_Footnote_GUID = Guid.initString("3de10e21-4125-42db-8620-be8083080624");
+pub const Annotation_FormatChange_GUID = Guid.initString("eb247345-d4f1-41ce-8e52-f79b69635e48");
+pub const Annotation_FormulaError_GUID = Guid.initString("95611982-0cab-46d5-a2f0-e30d1905f8bf");
+pub const Annotation_GrammarError_GUID = Guid.initString("757a048d-4518-41c6-854c-dc009b7cfb53");
+pub const Annotation_Header_GUID = Guid.initString("867b409b-b216-4472-a219-525e310681f8");
+pub const Annotation_Highlighted_GUID = Guid.initString("757c884e-8083-4081-8b9c-e87f5072f0e4");
+pub const Annotation_InsertionChange_GUID = Guid.initString("0dbeb3a6-df15-4164-a3c0-e21a8ce931c4");
+pub const Annotation_Mathematics_GUID = Guid.initString("eaab634b-26d0-40c1-8073-57ca1c633c9b");
+pub const Annotation_MoveChange_GUID = Guid.initString("9da587eb-23e5-4490-b385-1a22ddc8b187");
+pub const Annotation_Pattern_GUID = Guid.initString("f6c72ad7-356c-4850-9291-316f608a8c84");
+pub const Annotation_Sensitive_GUID = Guid.initString("37f4c04f-0f12-4464-929c-828fd15292e3");
+pub const Annotation_SpellingError_GUID = Guid.initString("ae85567e-9ece-423f-81b7-96c43d53e50e");
 pub const Annotation_Target_Property_GUID = Guid.initString("b71b302d-2104-44ad-9c5c-092b4907d70f");
-pub const Styles_StyleId_Property_GUID = Guid.initString("da82852f-3817-4233-82af-02279e72cc77");
-pub const Styles_StyleName_Property_GUID = Guid.initString("1c12b035-05d1-4f55-9e8e-1489f3ff550d");
-pub const Styles_FillColor_Property_GUID = Guid.initString("63eff97a-a1c5-4b1d-84eb-b765f2edd632");
-pub const Styles_FillPatternStyle_Property_GUID = Guid.initString("81cf651f-482b-4451-a30a-e1545e554fb8");
-pub const Styles_Shape_Property_GUID = Guid.initString("c71a23f8-778c-400d-8458-3b543e526984");
-pub const Styles_FillPatternColor_Property_GUID = Guid.initString("939a59fe-8fbd-4e75-a271-ac4595195163");
-pub const Styles_ExtendedProperties_Property_GUID = Guid.initString("f451cda0-ba0a-4681-b0b0-0dbdb53e58f3");
-pub const SpreadsheetItem_Formula_Property_GUID = Guid.initString("e602e47d-1b47-4bea-87cf-3b0b0b5c15b6");
-pub const SpreadsheetItem_AnnotationObjects_Property_GUID = Guid.initString("a3194c38-c9bc-4604-9396-ae3f9f457f7b");
-pub const SpreadsheetItem_AnnotationTypes_Property_GUID = Guid.initString("c70c51d0-d602-4b45-afbc-b4712b96d72b");
-pub const Transform2_CanZoom_Property_GUID = Guid.initString("f357e890-a756-4359-9ca6-86702bf8f381");
-pub const LiveSetting_Property_GUID = Guid.initString("c12bcd8e-2a8e-4950-8ae7-3625111d58eb");
-pub const Drag_IsGrabbed_Property_GUID = Guid.initString("45f206f3-75cc-4cca-a9b9-fcdfb982d8a2");
-pub const Drag_GrabbedItems_Property_GUID = Guid.initString("77c1562c-7b86-4b21-9ed7-3cefda6f4c43");
-pub const Drag_DropEffect_Property_GUID = Guid.initString("646f2779-48d3-4b23-8902-4bf100005df3");
-pub const Drag_DropEffects_Property_GUID = Guid.initString("f5d61156-7ce6-49be-a836-9269dcec920f");
-pub const DropTarget_DropTargetEffect_Property_GUID = Guid.initString("8bb75975-a0ca-4981-b818-87fc66e9509d");
-pub const DropTarget_DropTargetEffects_Property_GUID = Guid.initString("bc1dd4ed-cb89-45f1-a592-e03b08ae790f");
-pub const Transform2_ZoomLevel_Property_GUID = Guid.initString("eee29f1a-f4a2-4b5b-ac65-95cf93283387");
-pub const Transform2_ZoomMinimum_Property_GUID = Guid.initString("742ccc16-4ad1-4e07-96fe-b122c6e6b22b");
-pub const Transform2_ZoomMaximum_Property_GUID = Guid.initString("42ab6b77-ceb0-4eca-b82a-6cfa5fa1fc08");
-pub const FlowsFrom_Property_GUID = Guid.initString("05c6844f-19de-48f8-95fa-880d5b0fd615");
-pub const FillColor_Property_GUID = Guid.initString("6e0ec4d0-e2a8-4a56-9de7-953389933b39");
-pub const OutlineColor_Property_GUID = Guid.initString("c395d6c0-4b55-4762-a073-fd303a634f52");
-pub const FillType_Property_GUID = Guid.initString("c6fc74e4-8cb9-429c-a9e1-9bc4ac372b62");
-pub const VisualEffects_Property_GUID = Guid.initString("e61a8565-aad9-46d7-9e70-4e8a8420d420");
-pub const OutlineThickness_Property_GUID = Guid.initString("13e67cc7-dac2-4888-bdd3-375c62fa9618");
-pub const CenterPoint_Property_GUID = Guid.initString("0cb00c08-540c-4edb-9445-26359ea69785");
-pub const Rotation_Property_GUID = Guid.initString("767cdc7d-aec0-4110-ad32-30edd403492e");
-pub const Size_Property_GUID = Guid.initString("2b5f761d-f885-4404-973f-9b1d98e36d8f");
-pub const ToolTipOpened_Event_GUID = Guid.initString("3f4b97ff-2edc-451d-bca4-95a3188d5b03");
-pub const ToolTipClosed_Event_GUID = Guid.initString("276d71ef-24a9-49b6-8e97-da98b401bbcd");
-pub const StructureChanged_Event_GUID = Guid.initString("59977961-3edd-4b11-b13b-676b2a2a6ca9");
-pub const MenuOpened_Event_GUID = Guid.initString("ebe2e945-66ca-4ed1-9ff8-2ad7df0a1b08");
-pub const AutomationPropertyChanged_Event_GUID = Guid.initString("2527fba1-8d7a-4630-a4cc-e66315942f52");
-pub const AutomationFocusChanged_Event_GUID = Guid.initString("b68a1f17-f60d-41a7-a3cc-b05292155fe0");
-pub const ActiveTextPositionChanged_Event_GUID = Guid.initString("a5c09e9c-c77d-4f25-b491-e5bb7017cbd4");
+pub const Annotation_TrackChanges_GUID = Guid.initString("21e6e888-dc14-4016-ac27-190553c8c470");
+pub const Annotation_UnsyncedChange_GUID = Guid.initString("1851116a-0e47-4b30-8cb5-d7dae4fbcd1b");
+pub const AnnotationObjects_Property_GUID = Guid.initString("310910c8-7c6e-4f20-becd-4aaf6d191156");
+pub const AnnotationType_AdvancedProofingIssue = @as(i32, 60020);
+pub const AnnotationType_Author = @as(i32, 60019);
+pub const AnnotationType_CircularReferenceError = @as(i32, 60022);
+pub const AnnotationType_Comment = @as(i32, 60003);
+pub const AnnotationType_ConflictingChange = @as(i32, 60018);
+pub const AnnotationType_DataValidationError = @as(i32, 60021);
+pub const AnnotationType_DeletionChange = @as(i32, 60012);
+pub const AnnotationType_EditingLockedChange = @as(i32, 60016);
+pub const AnnotationType_Endnote = @as(i32, 60009);
+pub const AnnotationType_ExternalChange = @as(i32, 60017);
+pub const AnnotationType_Footer = @as(i32, 60007);
+pub const AnnotationType_Footnote = @as(i32, 60010);
+pub const AnnotationType_FormatChange = @as(i32, 60014);
+pub const AnnotationType_FormulaError = @as(i32, 60004);
+pub const AnnotationType_GrammarError = @as(i32, 60002);
+pub const AnnotationType_Header = @as(i32, 60006);
+pub const AnnotationType_Highlighted = @as(i32, 60008);
+pub const AnnotationType_InsertionChange = @as(i32, 60011);
+pub const AnnotationType_Mathematics = @as(i32, 60023);
+pub const AnnotationType_MoveChange = @as(i32, 60013);
+pub const AnnotationType_Sensitive = @as(i32, 60024);
+pub const AnnotationType_SpellingError = @as(i32, 60001);
+pub const AnnotationType_TrackChanges = @as(i32, 60005);
+pub const AnnotationType_Unknown = @as(i32, 60000);
+pub const AnnotationType_UnsyncedChange = @as(i32, 60015);
+pub const AnnotationTypes_Property_GUID = Guid.initString("64b71f76-53c4-4696-a219-20e940c9a176");
+pub const ANRUS_PRIORITY_AUDIO_DYNAMIC_DUCK = @as(u32, 16);
+pub const AppBar_Control_GUID = Guid.initString("6114908d-cc02-4d37-875b-b530c7139554");
+pub const AriaProperties_Property_GUID = Guid.initString("4213678c-e025-4922-beb5-e43ba08e6221");
+pub const AriaRole_Property_GUID = Guid.initString("dd207b95-be4a-4e0d-b727-63ace94b6916");
 pub const AsyncContentLoaded_Event_GUID = Guid.initString("5fdee11c-d2fa-4fb9-904e-5cbee894d5ef");
-pub const MenuClosed_Event_GUID = Guid.initString("3cf1266e-1582-4041-acd7-88a35a965297");
-pub const LayoutInvalidated_Event_GUID = Guid.initString("ed7d6544-a6bd-4595-9bae-3d28946cc715");
-pub const Invoke_Invoked_Event_GUID = Guid.initString("dfd699f0-c915-49dd-b422-dde785c3d24b");
-pub const SelectionItem_ElementAddedToSelectionEvent_Event_GUID = Guid.initString("3c822dd1-c407-4dba-91dd-79d4aed0aec6");
-pub const SelectionItem_ElementRemovedFromSelectionEvent_Event_GUID = Guid.initString("097fa8a9-7079-41af-8b9c-0934d8305e5c");
-pub const SelectionItem_ElementSelectedEvent_Event_GUID = Guid.initString("b9c7dbfb-4ebe-4532-aaf4-008cf647233c");
-pub const Selection_InvalidatedEvent_Event_GUID = Guid.initString("cac14904-16b4-4b53-8e47-4cb1df267bb7");
-pub const Text_TextSelectionChangedEvent_Event_GUID = Guid.initString("918edaa1-71b3-49ae-9741-79beb8d358f3");
-pub const Text_TextChangedEvent_Event_GUID = Guid.initString("4a342082-f483-48c4-ac11-a84b435e2a84");
-pub const Window_WindowOpened_Event_GUID = Guid.initString("d3e81d06-de45-4f2f-9633-de9e02fb65af");
-pub const Window_WindowClosed_Event_GUID = Guid.initString("edf141f8-fa67-4e22-bbf7-944e05735ee2");
-pub const MenuModeStart_Event_GUID = Guid.initString("18d7c631-166a-4ac9-ae3b-ef4b5420e681");
-pub const MenuModeEnd_Event_GUID = Guid.initString("9ecd4c9f-80dd-47b8-8267-5aec06bb2cff");
-pub const InputReachedTarget_Event_GUID = Guid.initString("93ed549a-0549-40f0-bedb-28e44f7de2a3");
-pub const InputReachedOtherElement_Event_GUID = Guid.initString("ed201d8a-4e6c-415e-a874-2460c9b66ba8");
-pub const InputDiscarded_Event_GUID = Guid.initString("7f36c367-7b18-417c-97e3-9d58ddc944ab");
-pub const SystemAlert_Event_GUID = Guid.initString("d271545d-7a3a-47a7-8474-81d29a2451c9");
-pub const LiveRegionChanged_Event_GUID = Guid.initString("102d5e90-e6a9-41b6-b1c5-a9b1929d9510");
-pub const HostedFragmentRootsInvalidated_Event_GUID = Guid.initString("e6bdb03e-0921-4ec5-8dcf-eae877b0426b");
-pub const Drag_DragStart_Event_GUID = Guid.initString("883a480b-3aa9-429d-95e4-d9c8d011f0dd");
+pub const AutomationFocusChanged_Event_GUID = Guid.initString("b68a1f17-f60d-41a7-a3cc-b05292155fe0");
+pub const AutomationId_Property_GUID = Guid.initString("c82c0500-b60e-4310-a267-303c531f8ee5");
+pub const AutomationPropertyChanged_Event_GUID = Guid.initString("2527fba1-8d7a-4630-a4cc-e66315942f52");
+pub const BoundingRectangle_Property_GUID = Guid.initString("7bbfe8b2-3bfc-48dd-b729-c794b846e9a1");
+pub const Button_Control_GUID = Guid.initString("5a78e369-c6a1-4f33-a9d7-79f20d0c788e");
+pub const Calendar_Control_GUID = Guid.initString("8913eb88-00e5-46bc-8e4e-14a786e165a1");
+pub const CenterPoint_Property_GUID = Guid.initString("0cb00c08-540c-4edb-9445-26359ea69785");
+pub const Changes_Event_GUID = Guid.initString("7df26714-614f-4e05-9488-716c5ba19436");
+pub const Changes_Summary_GUID = Guid.initString("313d65a6-e60f-4d62-9861-55afd728d207");
+pub const CheckBox_Control_GUID = Guid.initString("fb50f922-a3db-49c0-8bc3-06dad55778e2");
+pub const ClassName_Property_GUID = Guid.initString("157b7215-894f-4b65-84e2-aac0da08b16b");
+pub const ClickablePoint_Property_GUID = Guid.initString("0196903b-b203-4818-a9f3-f08e675f2341");
+pub const CLSID_AccPropServices = Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
+pub const ComboBox_Control_GUID = Guid.initString("54cb426c-2f33-4fff-aaa1-aef60dac5deb");
+pub const ControllerFor_Property_GUID = Guid.initString("51124c8a-a5d2-4f13-9be6-7fa8ba9d3a90");
+pub const ControlType_Property_GUID = Guid.initString("ca774fea-28ac-4bc2-94ca-acec6d6c10a3");
+pub const Culture_Property_GUID = Guid.initString("e2d74f27-3d79-4dc2-b88b-3044963a8afb");
+pub const Custom_Control_GUID = Guid.initString("f29ea0c3-adb7-430a-ba90-e52c7313e6ed");
+pub const CustomNavigation_Pattern_GUID = Guid.initString("afea938a-621e-4054-bb2c-2f46114dac3f");
+pub const DataGrid_Control_GUID = Guid.initString("84b783af-d103-4b0a-8415-e73942410f4b");
+pub const DataItem_Control_GUID = Guid.initString("a0177842-d94f-42a5-814b-6068addc8da5");
+pub const DescribedBy_Property_GUID = Guid.initString("7c5865b8-9992-40fd-8db0-6bf1d317f998");
+pub const DISPID_ACC_CHILD = @as(i32, -5002);
+pub const DISPID_ACC_CHILDCOUNT = @as(i32, -5001);
+pub const DISPID_ACC_DEFAULTACTION = @as(i32, -5013);
+pub const DISPID_ACC_DESCRIPTION = @as(i32, -5005);
+pub const DISPID_ACC_DODEFAULTACTION = @as(i32, -5018);
+pub const DISPID_ACC_FOCUS = @as(i32, -5011);
+pub const DISPID_ACC_HELP = @as(i32, -5008);
+pub const DISPID_ACC_HELPTOPIC = @as(i32, -5009);
+pub const DISPID_ACC_HITTEST = @as(i32, -5017);
+pub const DISPID_ACC_KEYBOARDSHORTCUT = @as(i32, -5010);
+pub const DISPID_ACC_LOCATION = @as(i32, -5015);
+pub const DISPID_ACC_NAME = @as(i32, -5003);
+pub const DISPID_ACC_NAVIGATE = @as(i32, -5016);
+pub const DISPID_ACC_PARENT = @as(i32, -5000);
+pub const DISPID_ACC_ROLE = @as(i32, -5006);
+pub const DISPID_ACC_SELECT = @as(i32, -5014);
+pub const DISPID_ACC_SELECTION = @as(i32, -5012);
+pub const DISPID_ACC_STATE = @as(i32, -5007);
+pub const DISPID_ACC_VALUE = @as(i32, -5004);
+pub const Dock_DockPosition_Property_GUID = Guid.initString("6d67f02e-c0b0-4b10-b5b9-18d6ecf98760");
+pub const Dock_Pattern_GUID = Guid.initString("9cbaa846-83c8-428d-827f-7e6063fe0620");
+pub const Document_Control_GUID = Guid.initString("3cd6bb6f-6f08-4562-b229-e4e2fc7a9eb4");
 pub const Drag_DragCancel_Event_GUID = Guid.initString("c3ede6fa-3451-4e0f-9e71-df9c280a4657");
 pub const Drag_DragComplete_Event_GUID = Guid.initString("38e96188-ef1f-463e-91ca-3a7792c29caf");
+pub const Drag_DragStart_Event_GUID = Guid.initString("883a480b-3aa9-429d-95e4-d9c8d011f0dd");
+pub const Drag_DropEffect_Property_GUID = Guid.initString("646f2779-48d3-4b23-8902-4bf100005df3");
+pub const Drag_DropEffects_Property_GUID = Guid.initString("f5d61156-7ce6-49be-a836-9269dcec920f");
+pub const Drag_GrabbedItems_Property_GUID = Guid.initString("77c1562c-7b86-4b21-9ed7-3cefda6f4c43");
+pub const Drag_IsGrabbed_Property_GUID = Guid.initString("45f206f3-75cc-4cca-a9b9-fcdfb982d8a2");
+pub const Drag_Pattern_GUID = Guid.initString("c0bee21f-ccb3-4fed-995b-114f6e3d2728");
 pub const DropTarget_DragEnter_Event_GUID = Guid.initString("aad9319b-032c-4a88-961d-1cf579581e34");
 pub const DropTarget_DragLeave_Event_GUID = Guid.initString("0f82eb15-24a2-4988-9217-de162aee272b");
 pub const DropTarget_Dropped_Event_GUID = Guid.initString("622cead8-1edb-4a3d-abbc-be2211ff68b5");
-pub const StructuredMarkup_CompositionComplete_Event_GUID = Guid.initString("c48a3c17-677a-4047-a68d-fc1257528aef");
-pub const StructuredMarkup_Deleted_Event_GUID = Guid.initString("f9d0a020-e1c1-4ecf-b9aa-52efde7e41e1");
-pub const StructuredMarkup_SelectionChanged_Event_GUID = Guid.initString("a7c815f7-ff9f-41c7-a3a7-ab6cbfdb4903");
-pub const Invoke_Pattern_GUID = Guid.initString("d976c2fc-66ea-4a6e-b28f-c24c7546ad37");
-pub const Selection_Pattern_GUID = Guid.initString("66e3b7e8-d821-4d25-8761-435d2c8b253f");
-pub const Value_Pattern_GUID = Guid.initString("17faad9e-c877-475b-b933-77332779b637");
-pub const RangeValue_Pattern_GUID = Guid.initString("18b00d87-b1c9-476a-bfbd-5f0bdb926f63");
-pub const Scroll_Pattern_GUID = Guid.initString("895fa4b4-759d-4c50-8e15-03460672003c");
-pub const ExpandCollapse_Pattern_GUID = Guid.initString("ae05efa2-f9d1-428a-834c-53a5c52f9b8b");
-pub const Grid_Pattern_GUID = Guid.initString("260a2ccb-93a8-4e44-a4c1-3df397f2b02b");
-pub const GridItem_Pattern_GUID = Guid.initString("f2d5c877-a462-4957-a2a5-2c96b303bc63");
-pub const MultipleView_Pattern_GUID = Guid.initString("547a6ae4-113f-47c4-850f-db4dfa466b1d");
-pub const Window_Pattern_GUID = Guid.initString("27901735-c760-4994-ad11-5919e606b110");
-pub const SelectionItem_Pattern_GUID = Guid.initString("9bc64eeb-87c7-4b28-94bb-4d9fa437b6ef");
-pub const Dock_Pattern_GUID = Guid.initString("9cbaa846-83c8-428d-827f-7e6063fe0620");
-pub const Table_Pattern_GUID = Guid.initString("c415218e-a028-461e-aa92-8f925cf79351");
-pub const TableItem_Pattern_GUID = Guid.initString("df1343bd-1888-4a29-a50c-b92e6de37f6f");
-pub const Text_Pattern_GUID = Guid.initString("8615f05d-7de5-44fd-a679-2ca4b46033a8");
-pub const Toggle_Pattern_GUID = Guid.initString("0b419760-e2f4-43ff-8c5f-9457c82b56e9");
-pub const Transform_Pattern_GUID = Guid.initString("24b46fdb-587e-49f1-9c4a-d8e98b664b7b");
-pub const ScrollItem_Pattern_GUID = Guid.initString("4591d005-a803-4d5c-b4d5-8d2800f906a7");
-pub const LegacyIAccessible_Pattern_GUID = Guid.initString("54cc0a9f-3395-48af-ba8d-73f85690f3e0");
-pub const ItemContainer_Pattern_GUID = Guid.initString("3d13da0f-8b9a-4a99-85fa-c5c9a69f1ed4");
-pub const VirtualizedItem_Pattern_GUID = Guid.initString("f510173e-2e71-45e9-a6e5-62f6ed8289d5");
-pub const SynchronizedInput_Pattern_GUID = Guid.initString("05c288a6-c47b-488b-b653-33977a551b8b");
-pub const ObjectModel_Pattern_GUID = Guid.initString("3e04acfe-08fc-47ec-96bc-353fa3b34aa7");
-pub const Annotation_Pattern_GUID = Guid.initString("f6c72ad7-356c-4850-9291-316f608a8c84");
-pub const Text_Pattern2_GUID = Guid.initString("498479a2-5b22-448d-b6e4-647490860698");
-pub const TextEdit_Pattern_GUID = Guid.initString("69f3ff89-5af9-4c75-9340-f2de292e4591");
-pub const CustomNavigation_Pattern_GUID = Guid.initString("afea938a-621e-4054-bb2c-2f46114dac3f");
-pub const Styles_Pattern_GUID = Guid.initString("1ae62655-da72-4d60-a153-e5aa6988e3bf");
-pub const Spreadsheet_Pattern_GUID = Guid.initString("6a5b24c9-9d1e-4b85-9e44-c02e3169b10b");
-pub const SpreadsheetItem_Pattern_GUID = Guid.initString("32cf83ff-f1a8-4a8c-8658-d47ba74e20ba");
-pub const Tranform_Pattern2_GUID = Guid.initString("8afcfd07-a369-44de-988b-2f7ff49fb8a8");
-pub const TextChild_Pattern_GUID = Guid.initString("7533cab7-3bfe-41ef-9e85-e2638cbe169e");
-pub const Drag_Pattern_GUID = Guid.initString("c0bee21f-ccb3-4fed-995b-114f6e3d2728");
+pub const DropTarget_DropTargetEffect_Property_GUID = Guid.initString("8bb75975-a0ca-4981-b818-87fc66e9509d");
+pub const DropTarget_DropTargetEffects_Property_GUID = Guid.initString("bc1dd4ed-cb89-45f1-a592-e03b08ae790f");
 pub const DropTarget_Pattern_GUID = Guid.initString("0bcbec56-bd34-4b7b-9fd5-2659905ea3dc");
-pub const StructuredMarkup_Pattern_GUID = Guid.initString("abbd0878-8665-4f5c-94fc-36e7d8bb706b");
-pub const Button_Control_GUID = Guid.initString("5a78e369-c6a1-4f33-a9d7-79f20d0c788e");
-pub const Calendar_Control_GUID = Guid.initString("8913eb88-00e5-46bc-8e4e-14a786e165a1");
-pub const CheckBox_Control_GUID = Guid.initString("fb50f922-a3db-49c0-8bc3-06dad55778e2");
-pub const ComboBox_Control_GUID = Guid.initString("54cb426c-2f33-4fff-aaa1-aef60dac5deb");
 pub const Edit_Control_GUID = Guid.initString("6504a5c8-2c86-4f87-ae7b-1abddc810cf9");
-pub const Hyperlink_Control_GUID = Guid.initString("8a56022c-b00d-4d15-8ff0-5b6b266e5e02");
-pub const Image_Control_GUID = Guid.initString("2d3736e4-6b16-4c57-a962-f93260a75243");
-pub const ListItem_Control_GUID = Guid.initString("7b3717f2-44d1-4a58-98a8-f12a9b8f78e2");
-pub const List_Control_GUID = Guid.initString("9b149ee1-7cca-4cfc-9af1-cac7bddd3031");
-pub const Menu_Control_GUID = Guid.initString("2e9b1440-0ea8-41fd-b374-c1ea6f503cd1");
-pub const MenuBar_Control_GUID = Guid.initString("cc384250-0e7b-4ae8-95ae-a08f261b52ee");
-pub const MenuItem_Control_GUID = Guid.initString("f45225d3-d0a0-49d8-9834-9a000d2aeddc");
-pub const ProgressBar_Control_GUID = Guid.initString("228c9f86-c36c-47bb-9fb6-a5834bfc53a4");
-pub const RadioButton_Control_GUID = Guid.initString("3bdb49db-fe2c-4483-b3e1-e57f219440c6");
-pub const ScrollBar_Control_GUID = Guid.initString("daf34b36-5065-4946-b22f-92595fc0751a");
-pub const Slider_Control_GUID = Guid.initString("b033c24b-3b35-4cea-b609-763682fa660b");
-pub const Spinner_Control_GUID = Guid.initString("60cc4b38-3cb1-4161-b442-c6b726c17825");
-pub const StatusBar_Control_GUID = Guid.initString("d45e7d1b-5873-475f-95a4-0433e1f1b00a");
-pub const Tab_Control_GUID = Guid.initString("38cd1f2d-337a-4bd2-a5e3-adb469e30bd3");
-pub const TabItem_Control_GUID = Guid.initString("2c6a634f-921b-4e6e-b26e-08fcb0798f4c");
-pub const Text_Control_GUID = Guid.initString("ae9772dc-d331-4f09-be20-7e6dfaf07b0a");
-pub const ToolBar_Control_GUID = Guid.initString("8f06b751-e182-4e98-8893-2284543a7dce");
-pub const ToolTip_Control_GUID = Guid.initString("05ddc6d1-2137-4768-98ea-73f52f7134f3");
-pub const Tree_Control_GUID = Guid.initString("7561349c-d241-43f4-9908-b5f091bee611");
-pub const TreeItem_Control_GUID = Guid.initString("62c9feb9-8ffc-4878-a3a4-96b030315c18");
-pub const Custom_Control_GUID = Guid.initString("f29ea0c3-adb7-430a-ba90-e52c7313e6ed");
+pub const ExpandCollapse_ExpandCollapseState_Property_GUID = Guid.initString("275a4c48-85a7-4f69-aba0-af157610002b");
+pub const ExpandCollapse_Pattern_GUID = Guid.initString("ae05efa2-f9d1-428a-834c-53a5c52f9b8b");
+pub const FillColor_Property_GUID = Guid.initString("6e0ec4d0-e2a8-4a56-9de7-953389933b39");
+pub const FillType_Property_GUID = Guid.initString("c6fc74e4-8cb9-429c-a9e1-9bc4ac372b62");
+pub const FlowsFrom_Property_GUID = Guid.initString("05c6844f-19de-48f8-95fa-880d5b0fd615");
+pub const FlowsTo_Property_GUID = Guid.initString("e4f33d20-559a-47fb-a830-f9cb4ff1a70a");
+pub const FrameworkId_Property_GUID = Guid.initString("dbfd9900-7e1a-4f58-b61b-7063120f773b");
+pub const FullDescription_Property_GUID = Guid.initString("0d4450ff-6aef-4f33-95dd-7befa72a4391");
+pub const Grid_ColumnCount_Property_GUID = Guid.initString("fe96f375-44aa-4536-ac7a-2a75d71a3efc");
+pub const Grid_Pattern_GUID = Guid.initString("260a2ccb-93a8-4e44-a4c1-3df397f2b02b");
+pub const Grid_RowCount_Property_GUID = Guid.initString("2a9505bf-c2eb-4fb6-b356-8245ae53703e");
+pub const GridItem_Column_Property_GUID = Guid.initString("c774c15c-62c0-4519-8bdc-47be573c8ad5");
+pub const GridItem_ColumnSpan_Property_GUID = Guid.initString("583ea3f5-86d0-4b08-a6ec-2c5463ffc109");
+pub const GridItem_Parent_Property_GUID = Guid.initString("9d912252-b97f-4ecc-8510-ea0e33427c72");
+pub const GridItem_Pattern_GUID = Guid.initString("f2d5c877-a462-4957-a2a5-2c96b303bc63");
+pub const GridItem_Row_Property_GUID = Guid.initString("6223972a-c945-4563-9329-fdc974af2553");
+pub const GridItem_RowSpan_Property_GUID = Guid.initString("4582291c-466b-4e93-8e83-3d1715ec0c5e");
 pub const Group_Control_GUID = Guid.initString("ad50aa1c-e8c8-4774-ae1b-dd86df0b3bdc");
-pub const Thumb_Control_GUID = Guid.initString("701ca877-e310-4dd6-b644-797e4faea213");
-pub const DataGrid_Control_GUID = Guid.initString("84b783af-d103-4b0a-8415-e73942410f4b");
-pub const DataItem_Control_GUID = Guid.initString("a0177842-d94f-42a5-814b-6068addc8da5");
-pub const Document_Control_GUID = Guid.initString("3cd6bb6f-6f08-4562-b229-e4e2fc7a9eb4");
-pub const SplitButton_Control_GUID = Guid.initString("7011f01f-4ace-4901-b461-920a6f1ca650");
-pub const Window_Control_GUID = Guid.initString("e13a7242-f462-4f4d-aec1-53b28d6c3290");
-pub const Pane_Control_GUID = Guid.initString("5c2b3f5b-9182-42a3-8dec-8c04c1ee634d");
+pub const HasKeyboardFocus_Property_GUID = Guid.initString("cf8afd39-3f46-4800-9656-b2bf12529905");
 pub const Header_Control_GUID = Guid.initString("5b90cbce-78fb-4614-82b6-554d74718e67");
 pub const HeaderItem_Control_GUID = Guid.initString("e6bc12cb-7c8e-49cf-b168-4a93a32bebb0");
-pub const Table_Control_GUID = Guid.initString("773bfa0e-5bc4-4deb-921b-de7b3206229e");
-pub const TitleBar_Control_GUID = Guid.initString("98aa55bf-3bb0-4b65-836e-2ea30dbc171f");
-pub const Separator_Control_GUID = Guid.initString("8767eba3-2a63-4ab0-ac8d-aa50e23de978");
-pub const SemanticZoom_Control_GUID = Guid.initString("5fd34a43-061e-42c8-b589-9dccf74bc43a");
-pub const AppBar_Control_GUID = Guid.initString("6114908d-cc02-4d37-875b-b530c7139554");
-pub const Text_AnimationStyle_Attribute_GUID = Guid.initString("628209f0-7c9a-4d57-be64-1f1836571ff5");
-pub const Text_BackgroundColor_Attribute_GUID = Guid.initString("fdc49a07-583d-4f17-ad27-77fc832a3c0b");
-pub const Text_BulletStyle_Attribute_GUID = Guid.initString("c1097c90-d5c4-4237-9781-3bec8ba54e48");
-pub const Text_CapStyle_Attribute_GUID = Guid.initString("fb059c50-92cc-49a5-ba8f-0aa872bba2f3");
-pub const Text_Culture_Attribute_GUID = Guid.initString("c2025af9-a42d-4ced-a1fb-c6746315222e");
-pub const Text_FontName_Attribute_GUID = Guid.initString("64e63ba8-f2e5-476e-a477-1734feaaf726");
-pub const Text_FontSize_Attribute_GUID = Guid.initString("dc5eeeff-0506-4673-93f2-377e4a8e01f1");
-pub const Text_FontWeight_Attribute_GUID = Guid.initString("6fc02359-b316-4f5f-b401-f1ce55741853");
-pub const Text_ForegroundColor_Attribute_GUID = Guid.initString("72d1c95d-5e60-471a-96b1-6c1b3b77a436");
-pub const Text_HorizontalTextAlignment_Attribute_GUID = Guid.initString("04ea6161-fba3-477a-952a-bb326d026a5b");
-pub const Text_IndentationFirstLine_Attribute_GUID = Guid.initString("206f9ad5-c1d3-424a-8182-6da9a7f3d632");
-pub const Text_IndentationLeading_Attribute_GUID = Guid.initString("5cf66bac-2d45-4a4b-b6c9-f7221d2815b0");
-pub const Text_IndentationTrailing_Attribute_GUID = Guid.initString("97ff6c0f-1ce4-408a-b67b-94d83eb69bf2");
-pub const Text_IsHidden_Attribute_GUID = Guid.initString("360182fb-bdd7-47f6-ab69-19e33f8a3344");
-pub const Text_IsItalic_Attribute_GUID = Guid.initString("fce12a56-1336-4a34-9663-1bab47239320");
-pub const Text_IsReadOnly_Attribute_GUID = Guid.initString("a738156b-ca3e-495e-9514-833c440feb11");
-pub const Text_IsSubscript_Attribute_GUID = Guid.initString("f0ead858-8f53-413c-873f-1a7d7f5e0de4");
-pub const Text_IsSuperscript_Attribute_GUID = Guid.initString("da706ee4-b3aa-4645-a41f-cd25157dea76");
-pub const Text_MarginBottom_Attribute_GUID = Guid.initString("7ee593c4-72b4-4cac-9271-3ed24b0e4d42");
-pub const Text_MarginLeading_Attribute_GUID = Guid.initString("9e9242d0-5ed0-4900-8e8a-eecc03835afc");
-pub const Text_MarginTop_Attribute_GUID = Guid.initString("683d936f-c9b9-4a9a-b3d9-d20d33311e2a");
-pub const Text_MarginTrailing_Attribute_GUID = Guid.initString("af522f98-999d-40af-a5b2-0169d0342002");
-pub const Text_OutlineStyles_Attribute_GUID = Guid.initString("5b675b27-db89-46fe-970c-614d523bb97d");
-pub const Text_OverlineColor_Attribute_GUID = Guid.initString("83ab383a-fd43-40da-ab3e-ecf8165cbb6d");
-pub const Text_OverlineStyle_Attribute_GUID = Guid.initString("0a234d66-617e-427f-871d-e1ff1e0c213f");
-pub const Text_StrikethroughColor_Attribute_GUID = Guid.initString("bfe15a18-8c41-4c5a-9a0b-04af0e07f487");
-pub const Text_StrikethroughStyle_Attribute_GUID = Guid.initString("72913ef1-da00-4f01-899c-ac5a8577a307");
-pub const Text_Tabs_Attribute_GUID = Guid.initString("2e68d00b-92fe-42d8-899a-a784aa4454a1");
-pub const Text_TextFlowDirections_Attribute_GUID = Guid.initString("8bdf8739-f420-423e-af77-20a5d973a907");
-pub const Text_UnderlineColor_Attribute_GUID = Guid.initString("bfa12c73-fde2-4473-bf64-1036d6aa0f45");
-pub const Text_UnderlineStyle_Attribute_GUID = Guid.initString("5f3b21c0-ede4-44bd-9c36-3853038cbfeb");
-pub const Text_AnnotationTypes_Attribute_GUID = Guid.initString("ad2eb431-ee4e-4be1-a7ba-5559155a73ef");
-pub const Text_AnnotationObjects_Attribute_GUID = Guid.initString("ff41cf68-e7ab-40b9-8c72-72a8ed94017d");
-pub const Text_StyleName_Attribute_GUID = Guid.initString("22c9e091-4d66-45d8-a828-737bab4c98a7");
-pub const Text_StyleId_Attribute_GUID = Guid.initString("14c300de-c32b-449b-ab7c-b0e0789aea5d");
-pub const Text_Link_Attribute_GUID = Guid.initString("b38ef51d-9e8d-4e46-9144-56ebe177329b");
-pub const Text_IsActive_Attribute_GUID = Guid.initString("f5a4e533-e1b8-436b-935d-b57aa3f558c4");
-pub const Text_SelectionActiveEnd_Attribute_GUID = Guid.initString("1f668cc3-9bbf-416b-b0a2-f89f86f6612c");
-pub const Text_CaretPosition_Attribute_GUID = Guid.initString("b227b131-9889-4752-a91b-733efdc5c5a0");
-pub const Text_CaretBidiMode_Attribute_GUID = Guid.initString("929ee7a6-51d3-4715-96dc-b694fa24a168");
-pub const Text_BeforeParagraphSpacing_Attribute_GUID = Guid.initString("be7b0ab1-c822-4a24-85e9-c8f2650fc79c");
-pub const Text_AfterParagraphSpacing_Attribute_GUID = Guid.initString("588cbb38-e62f-497c-b5d1-ccdf0ee823d8");
-pub const Text_LineSpacing_Attribute_GUID = Guid.initString("63ff70ae-d943-4b47-8ab7-a7a033d3214b");
-pub const Text_BeforeSpacing_Attribute_GUID = Guid.initString("be7b0ab1-c822-4a24-85e9-c8f2650fc79c");
-pub const Text_AfterSpacing_Attribute_GUID = Guid.initString("588cbb38-e62f-497c-b5d1-ccdf0ee823d8");
-pub const Text_SayAsInterpretAs_Attribute_GUID = Guid.initString("b38ad6ac-eee1-4b6e-88cc-014cefa93fcb");
-pub const TextEdit_TextChanged_Event_GUID = Guid.initString("120b0308-ec22-4eb8-9c98-9867cda1b165");
-pub const TextEdit_ConversionTargetChanged_Event_GUID = Guid.initString("3388c183-ed4f-4c8b-9baa-364d51d8847f");
-pub const Changes_Event_GUID = Guid.initString("7df26714-614f-4e05-9488-716c5ba19436");
-pub const Annotation_Custom_GUID = Guid.initString("9ec82750-3931-4952-85bc-1dbff78a43e3");
-pub const Annotation_SpellingError_GUID = Guid.initString("ae85567e-9ece-423f-81b7-96c43d53e50e");
-pub const Annotation_GrammarError_GUID = Guid.initString("757a048d-4518-41c6-854c-dc009b7cfb53");
-pub const Annotation_Comment_GUID = Guid.initString("fd2fda30-26b3-4c06-8bc7-98f1532e46fd");
-pub const Annotation_FormulaError_GUID = Guid.initString("95611982-0cab-46d5-a2f0-e30d1905f8bf");
-pub const Annotation_TrackChanges_GUID = Guid.initString("21e6e888-dc14-4016-ac27-190553c8c470");
-pub const Annotation_Header_GUID = Guid.initString("867b409b-b216-4472-a219-525e310681f8");
-pub const Annotation_Footer_GUID = Guid.initString("cceab046-1833-47aa-8080-701ed0b0c832");
-pub const Annotation_Highlighted_GUID = Guid.initString("757c884e-8083-4081-8b9c-e87f5072f0e4");
-pub const Annotation_Endnote_GUID = Guid.initString("7565725c-2d99-4839-960d-33d3b866aba5");
-pub const Annotation_Footnote_GUID = Guid.initString("3de10e21-4125-42db-8620-be8083080624");
-pub const Annotation_InsertionChange_GUID = Guid.initString("0dbeb3a6-df15-4164-a3c0-e21a8ce931c4");
-pub const Annotation_DeletionChange_GUID = Guid.initString("be3d5b05-951d-42e7-901d-adc8c2cf34d0");
-pub const Annotation_MoveChange_GUID = Guid.initString("9da587eb-23e5-4490-b385-1a22ddc8b187");
-pub const Annotation_FormatChange_GUID = Guid.initString("eb247345-d4f1-41ce-8e52-f79b69635e48");
-pub const Annotation_UnsyncedChange_GUID = Guid.initString("1851116a-0e47-4b30-8cb5-d7dae4fbcd1b");
-pub const Annotation_EditingLockedChange_GUID = Guid.initString("c31f3e1c-7423-4dac-8348-41f099ff6f64");
-pub const Annotation_ExternalChange_GUID = Guid.initString("75a05b31-5f11-42fd-887d-dfa010db2392");
-pub const Annotation_ConflictingChange_GUID = Guid.initString("98af8802-517c-459f-af13-016d3fab877e");
-pub const Annotation_Author_GUID = Guid.initString("f161d3a7-f81b-4128-b17f-71f690914520");
-pub const Annotation_AdvancedProofingIssue_GUID = Guid.initString("dac7b72c-c0f2-4b84-b90d-5fafc0f0ef1c");
-pub const Annotation_DataValidationError_GUID = Guid.initString("c8649fa8-9775-437e-ad46-e709d93c2343");
-pub const Annotation_CircularReferenceError_GUID = Guid.initString("25bd9cf4-1745-4659-ba67-727f0318c616");
-pub const Annotation_Mathematics_GUID = Guid.initString("eaab634b-26d0-40c1-8073-57ca1c633c9b");
-pub const Annotation_Sensitive_GUID = Guid.initString("37f4c04f-0f12-4464-929c-828fd15292e3");
-pub const Changes_Summary_GUID = Guid.initString("313d65a6-e60f-4d62-9861-55afd728d207");
-pub const StyleId_Custom_GUID = Guid.initString("ef2edd3e-a999-4b7c-a378-09bbd52a3516");
-pub const StyleId_Heading1_GUID = Guid.initString("7f7e8f69-6866-4621-930c-9a5d0ca5961c");
-pub const StyleId_Heading2_GUID = Guid.initString("baa9b241-5c69-469d-85ad-474737b52b14");
-pub const StyleId_Heading3_GUID = Guid.initString("bf8be9d2-d8b8-4ec5-8c52-9cfb0d035970");
-pub const StyleId_Heading4_GUID = Guid.initString("8436ffc0-9578-45fc-83a4-ff40053315dd");
-pub const StyleId_Heading5_GUID = Guid.initString("909f424d-0dbf-406e-97bb-4e773d9798f7");
-pub const StyleId_Heading6_GUID = Guid.initString("89d23459-5d5b-4824-a420-11d3ed82e40f");
-pub const StyleId_Heading7_GUID = Guid.initString("a3790473-e9ae-422d-b8e3-3b675c6181a4");
-pub const StyleId_Heading8_GUID = Guid.initString("2bc14145-a40c-4881-84ae-f2235685380c");
-pub const StyleId_Heading9_GUID = Guid.initString("c70d9133-bb2a-43d3-8ac6-33657884b0f0");
-pub const StyleId_Title_GUID = Guid.initString("15d8201a-ffcf-481f-b0a1-30b63be98f07");
-pub const StyleId_Subtitle_GUID = Guid.initString("b5d9fc17-5d6f-4420-b439-7cb19ad434e2");
-pub const StyleId_Normal_GUID = Guid.initString("cd14d429-e45e-4475-a1c5-7f9e6be96eba");
-pub const StyleId_Emphasis_GUID = Guid.initString("ca6e7dbe-355e-4820-95a0-925f041d3470");
-pub const StyleId_Quote_GUID = Guid.initString("5d1c21ea-8195-4f6c-87ea-5dabece64c1d");
-pub const StyleId_BulletedList_GUID = Guid.initString("5963ed64-6426-4632-8caf-a32ad402d91a");
-pub const StyleId_NumberedList_GUID = Guid.initString("1e96dbd5-64c3-43d0-b1ee-b53b06e3eddf");
-pub const Notification_Event_GUID = Guid.initString("72c5a2f7-9788-480f-b8eb-4dee00f6186f");
-pub const SID_IsUIAutomationObject = Guid.initString("b96fdb85-7204-4724-842b-c7059dedb9d0");
-pub const SID_ControlElementProvider = Guid.initString("f4791d68-e254-4ba3-9a53-26a5c5497946");
-pub const IsSelectionPattern2Available_Property_GUID = Guid.initString("490806fb-6e89-4a47-8319-d266e511f021");
-pub const Selection2_FirstSelectedItem_Property_GUID = Guid.initString("cc24ea67-369c-4e55-9ff7-38da69540c29");
-pub const Selection2_LastSelectedItem_Property_GUID = Guid.initString("cf7bda90-2d83-49f8-860c-9ce394cf89b4");
-pub const Selection2_CurrentSelectedItem_Property_GUID = Guid.initString("34257c26-83b5-41a6-939c-ae841c136236");
-pub const Selection2_ItemCount_Property_GUID = Guid.initString("bb49eb9f-456d-4048-b591-9c2026b84636");
-pub const Selection_Pattern2_GUID = Guid.initString("fba25cab-ab98-49f7-a7dc-fe539dc15be7");
-pub const HeadingLevel_Property_GUID = Guid.initString("29084272-aaaf-4a30-8796-3c12f62b6bbb");
-pub const IsDialog_Property_GUID = Guid.initString("9d0dfb9b-8436-4501-bbbb-e534a4fb3b3f");
-pub const UIA_IAFP_DEFAULT = @as(u32, 0);
-pub const UIA_IAFP_UNWRAP_BRIDGE = @as(u32, 1);
-pub const UIA_PFIA_DEFAULT = @as(u32, 0);
-pub const UIA_PFIA_UNWRAP_BRIDGE = @as(u32, 1);
-pub const UIA_ScrollPatternNoScroll = @as(f64, -1.0);
-pub const UIA_InvokePatternId = @as(i32, 10000);
-pub const UIA_SelectionPatternId = @as(i32, 10001);
-pub const UIA_ValuePatternId = @as(i32, 10002);
-pub const UIA_RangeValuePatternId = @as(i32, 10003);
-pub const UIA_ScrollPatternId = @as(i32, 10004);
-pub const UIA_ExpandCollapsePatternId = @as(i32, 10005);
-pub const UIA_GridPatternId = @as(i32, 10006);
-pub const UIA_GridItemPatternId = @as(i32, 10007);
-pub const UIA_MultipleViewPatternId = @as(i32, 10008);
-pub const UIA_WindowPatternId = @as(i32, 10009);
-pub const UIA_SelectionItemPatternId = @as(i32, 10010);
-pub const UIA_DockPatternId = @as(i32, 10011);
-pub const UIA_TablePatternId = @as(i32, 10012);
-pub const UIA_TableItemPatternId = @as(i32, 10013);
-pub const UIA_TextPatternId = @as(i32, 10014);
-pub const UIA_TogglePatternId = @as(i32, 10015);
-pub const UIA_TransformPatternId = @as(i32, 10016);
-pub const UIA_ScrollItemPatternId = @as(i32, 10017);
-pub const UIA_LegacyIAccessiblePatternId = @as(i32, 10018);
-pub const UIA_ItemContainerPatternId = @as(i32, 10019);
-pub const UIA_VirtualizedItemPatternId = @as(i32, 10020);
-pub const UIA_SynchronizedInputPatternId = @as(i32, 10021);
-pub const UIA_ObjectModelPatternId = @as(i32, 10022);
-pub const UIA_AnnotationPatternId = @as(i32, 10023);
-pub const UIA_TextPattern2Id = @as(i32, 10024);
-pub const UIA_StylesPatternId = @as(i32, 10025);
-pub const UIA_SpreadsheetPatternId = @as(i32, 10026);
-pub const UIA_SpreadsheetItemPatternId = @as(i32, 10027);
-pub const UIA_TransformPattern2Id = @as(i32, 10028);
-pub const UIA_TextChildPatternId = @as(i32, 10029);
-pub const UIA_DragPatternId = @as(i32, 10030);
-pub const UIA_DropTargetPatternId = @as(i32, 10031);
-pub const UIA_TextEditPatternId = @as(i32, 10032);
-pub const UIA_CustomNavigationPatternId = @as(i32, 10033);
-pub const UIA_SelectionPattern2Id = @as(i32, 10034);
-pub const UIA_ToolTipOpenedEventId = @as(i32, 20000);
-pub const UIA_ToolTipClosedEventId = @as(i32, 20001);
-pub const UIA_StructureChangedEventId = @as(i32, 20002);
-pub const UIA_MenuOpenedEventId = @as(i32, 20003);
-pub const UIA_AutomationPropertyChangedEventId = @as(i32, 20004);
-pub const UIA_AutomationFocusChangedEventId = @as(i32, 20005);
-pub const UIA_AsyncContentLoadedEventId = @as(i32, 20006);
-pub const UIA_MenuClosedEventId = @as(i32, 20007);
-pub const UIA_LayoutInvalidatedEventId = @as(i32, 20008);
-pub const UIA_Invoke_InvokedEventId = @as(i32, 20009);
-pub const UIA_SelectionItem_ElementAddedToSelectionEventId = @as(i32, 20010);
-pub const UIA_SelectionItem_ElementRemovedFromSelectionEventId = @as(i32, 20011);
-pub const UIA_SelectionItem_ElementSelectedEventId = @as(i32, 20012);
-pub const UIA_Selection_InvalidatedEventId = @as(i32, 20013);
-pub const UIA_Text_TextSelectionChangedEventId = @as(i32, 20014);
-pub const UIA_Text_TextChangedEventId = @as(i32, 20015);
-pub const UIA_Window_WindowOpenedEventId = @as(i32, 20016);
-pub const UIA_Window_WindowClosedEventId = @as(i32, 20017);
-pub const UIA_MenuModeStartEventId = @as(i32, 20018);
-pub const UIA_MenuModeEndEventId = @as(i32, 20019);
-pub const UIA_InputReachedTargetEventId = @as(i32, 20020);
-pub const UIA_InputReachedOtherElementEventId = @as(i32, 20021);
-pub const UIA_InputDiscardedEventId = @as(i32, 20022);
-pub const UIA_SystemAlertEventId = @as(i32, 20023);
-pub const UIA_LiveRegionChangedEventId = @as(i32, 20024);
-pub const UIA_HostedFragmentRootsInvalidatedEventId = @as(i32, 20025);
-pub const UIA_Drag_DragStartEventId = @as(i32, 20026);
-pub const UIA_Drag_DragCancelEventId = @as(i32, 20027);
-pub const UIA_Drag_DragCompleteEventId = @as(i32, 20028);
-pub const UIA_DropTarget_DragEnterEventId = @as(i32, 20029);
-pub const UIA_DropTarget_DragLeaveEventId = @as(i32, 20030);
-pub const UIA_DropTarget_DroppedEventId = @as(i32, 20031);
-pub const UIA_TextEdit_TextChangedEventId = @as(i32, 20032);
-pub const UIA_TextEdit_ConversionTargetChangedEventId = @as(i32, 20033);
-pub const UIA_ChangesEventId = @as(i32, 20034);
-pub const UIA_NotificationEventId = @as(i32, 20035);
-pub const UIA_ActiveTextPositionChangedEventId = @as(i32, 20036);
-pub const UIA_RuntimeIdPropertyId = @as(i32, 30000);
-pub const UIA_BoundingRectanglePropertyId = @as(i32, 30001);
-pub const UIA_ProcessIdPropertyId = @as(i32, 30002);
-pub const UIA_ControlTypePropertyId = @as(i32, 30003);
-pub const UIA_LocalizedControlTypePropertyId = @as(i32, 30004);
-pub const UIA_NamePropertyId = @as(i32, 30005);
-pub const UIA_AcceleratorKeyPropertyId = @as(i32, 30006);
-pub const UIA_AccessKeyPropertyId = @as(i32, 30007);
-pub const UIA_HasKeyboardFocusPropertyId = @as(i32, 30008);
-pub const UIA_IsKeyboardFocusablePropertyId = @as(i32, 30009);
-pub const UIA_IsEnabledPropertyId = @as(i32, 30010);
-pub const UIA_AutomationIdPropertyId = @as(i32, 30011);
-pub const UIA_ClassNamePropertyId = @as(i32, 30012);
-pub const UIA_HelpTextPropertyId = @as(i32, 30013);
-pub const UIA_ClickablePointPropertyId = @as(i32, 30014);
-pub const UIA_CulturePropertyId = @as(i32, 30015);
-pub const UIA_IsControlElementPropertyId = @as(i32, 30016);
-pub const UIA_IsContentElementPropertyId = @as(i32, 30017);
-pub const UIA_LabeledByPropertyId = @as(i32, 30018);
-pub const UIA_IsPasswordPropertyId = @as(i32, 30019);
-pub const UIA_NativeWindowHandlePropertyId = @as(i32, 30020);
-pub const UIA_ItemTypePropertyId = @as(i32, 30021);
-pub const UIA_IsOffscreenPropertyId = @as(i32, 30022);
-pub const UIA_OrientationPropertyId = @as(i32, 30023);
-pub const UIA_FrameworkIdPropertyId = @as(i32, 30024);
-pub const UIA_IsRequiredForFormPropertyId = @as(i32, 30025);
-pub const UIA_ItemStatusPropertyId = @as(i32, 30026);
-pub const UIA_IsDockPatternAvailablePropertyId = @as(i32, 30027);
-pub const UIA_IsExpandCollapsePatternAvailablePropertyId = @as(i32, 30028);
-pub const UIA_IsGridItemPatternAvailablePropertyId = @as(i32, 30029);
-pub const UIA_IsGridPatternAvailablePropertyId = @as(i32, 30030);
-pub const UIA_IsInvokePatternAvailablePropertyId = @as(i32, 30031);
-pub const UIA_IsMultipleViewPatternAvailablePropertyId = @as(i32, 30032);
-pub const UIA_IsRangeValuePatternAvailablePropertyId = @as(i32, 30033);
-pub const UIA_IsScrollPatternAvailablePropertyId = @as(i32, 30034);
-pub const UIA_IsScrollItemPatternAvailablePropertyId = @as(i32, 30035);
-pub const UIA_IsSelectionItemPatternAvailablePropertyId = @as(i32, 30036);
-pub const UIA_IsSelectionPatternAvailablePropertyId = @as(i32, 30037);
-pub const UIA_IsTablePatternAvailablePropertyId = @as(i32, 30038);
-pub const UIA_IsTableItemPatternAvailablePropertyId = @as(i32, 30039);
-pub const UIA_IsTextPatternAvailablePropertyId = @as(i32, 30040);
-pub const UIA_IsTogglePatternAvailablePropertyId = @as(i32, 30041);
-pub const UIA_IsTransformPatternAvailablePropertyId = @as(i32, 30042);
-pub const UIA_IsValuePatternAvailablePropertyId = @as(i32, 30043);
-pub const UIA_IsWindowPatternAvailablePropertyId = @as(i32, 30044);
-pub const UIA_ValueValuePropertyId = @as(i32, 30045);
-pub const UIA_ValueIsReadOnlyPropertyId = @as(i32, 30046);
-pub const UIA_RangeValueValuePropertyId = @as(i32, 30047);
-pub const UIA_RangeValueIsReadOnlyPropertyId = @as(i32, 30048);
-pub const UIA_RangeValueMinimumPropertyId = @as(i32, 30049);
-pub const UIA_RangeValueMaximumPropertyId = @as(i32, 30050);
-pub const UIA_RangeValueLargeChangePropertyId = @as(i32, 30051);
-pub const UIA_RangeValueSmallChangePropertyId = @as(i32, 30052);
-pub const UIA_ScrollHorizontalScrollPercentPropertyId = @as(i32, 30053);
-pub const UIA_ScrollHorizontalViewSizePropertyId = @as(i32, 30054);
-pub const UIA_ScrollVerticalScrollPercentPropertyId = @as(i32, 30055);
-pub const UIA_ScrollVerticalViewSizePropertyId = @as(i32, 30056);
-pub const UIA_ScrollHorizontallyScrollablePropertyId = @as(i32, 30057);
-pub const UIA_ScrollVerticallyScrollablePropertyId = @as(i32, 30058);
-pub const UIA_SelectionSelectionPropertyId = @as(i32, 30059);
-pub const UIA_SelectionCanSelectMultiplePropertyId = @as(i32, 30060);
-pub const UIA_SelectionIsSelectionRequiredPropertyId = @as(i32, 30061);
-pub const UIA_GridRowCountPropertyId = @as(i32, 30062);
-pub const UIA_GridColumnCountPropertyId = @as(i32, 30063);
-pub const UIA_GridItemRowPropertyId = @as(i32, 30064);
-pub const UIA_GridItemColumnPropertyId = @as(i32, 30065);
-pub const UIA_GridItemRowSpanPropertyId = @as(i32, 30066);
-pub const UIA_GridItemColumnSpanPropertyId = @as(i32, 30067);
-pub const UIA_GridItemContainingGridPropertyId = @as(i32, 30068);
-pub const UIA_DockDockPositionPropertyId = @as(i32, 30069);
-pub const UIA_ExpandCollapseExpandCollapseStatePropertyId = @as(i32, 30070);
-pub const UIA_MultipleViewCurrentViewPropertyId = @as(i32, 30071);
-pub const UIA_MultipleViewSupportedViewsPropertyId = @as(i32, 30072);
-pub const UIA_WindowCanMaximizePropertyId = @as(i32, 30073);
-pub const UIA_WindowCanMinimizePropertyId = @as(i32, 30074);
-pub const UIA_WindowWindowVisualStatePropertyId = @as(i32, 30075);
-pub const UIA_WindowWindowInteractionStatePropertyId = @as(i32, 30076);
-pub const UIA_WindowIsModalPropertyId = @as(i32, 30077);
-pub const UIA_WindowIsTopmostPropertyId = @as(i32, 30078);
-pub const UIA_SelectionItemIsSelectedPropertyId = @as(i32, 30079);
-pub const UIA_SelectionItemSelectionContainerPropertyId = @as(i32, 30080);
-pub const UIA_TableRowHeadersPropertyId = @as(i32, 30081);
-pub const UIA_TableColumnHeadersPropertyId = @as(i32, 30082);
-pub const UIA_TableRowOrColumnMajorPropertyId = @as(i32, 30083);
-pub const UIA_TableItemRowHeaderItemsPropertyId = @as(i32, 30084);
-pub const UIA_TableItemColumnHeaderItemsPropertyId = @as(i32, 30085);
-pub const UIA_ToggleToggleStatePropertyId = @as(i32, 30086);
-pub const UIA_TransformCanMovePropertyId = @as(i32, 30087);
-pub const UIA_TransformCanResizePropertyId = @as(i32, 30088);
-pub const UIA_TransformCanRotatePropertyId = @as(i32, 30089);
-pub const UIA_IsLegacyIAccessiblePatternAvailablePropertyId = @as(i32, 30090);
-pub const UIA_LegacyIAccessibleChildIdPropertyId = @as(i32, 30091);
-pub const UIA_LegacyIAccessibleNamePropertyId = @as(i32, 30092);
-pub const UIA_LegacyIAccessibleValuePropertyId = @as(i32, 30093);
-pub const UIA_LegacyIAccessibleDescriptionPropertyId = @as(i32, 30094);
-pub const UIA_LegacyIAccessibleRolePropertyId = @as(i32, 30095);
-pub const UIA_LegacyIAccessibleStatePropertyId = @as(i32, 30096);
-pub const UIA_LegacyIAccessibleHelpPropertyId = @as(i32, 30097);
-pub const UIA_LegacyIAccessibleKeyboardShortcutPropertyId = @as(i32, 30098);
-pub const UIA_LegacyIAccessibleSelectionPropertyId = @as(i32, 30099);
-pub const UIA_LegacyIAccessibleDefaultActionPropertyId = @as(i32, 30100);
-pub const UIA_AriaRolePropertyId = @as(i32, 30101);
-pub const UIA_AriaPropertiesPropertyId = @as(i32, 30102);
-pub const UIA_IsDataValidForFormPropertyId = @as(i32, 30103);
-pub const UIA_ControllerForPropertyId = @as(i32, 30104);
-pub const UIA_DescribedByPropertyId = @as(i32, 30105);
-pub const UIA_FlowsToPropertyId = @as(i32, 30106);
-pub const UIA_ProviderDescriptionPropertyId = @as(i32, 30107);
-pub const UIA_IsItemContainerPatternAvailablePropertyId = @as(i32, 30108);
-pub const UIA_IsVirtualizedItemPatternAvailablePropertyId = @as(i32, 30109);
-pub const UIA_IsSynchronizedInputPatternAvailablePropertyId = @as(i32, 30110);
-pub const UIA_OptimizeForVisualContentPropertyId = @as(i32, 30111);
-pub const UIA_IsObjectModelPatternAvailablePropertyId = @as(i32, 30112);
-pub const UIA_AnnotationAnnotationTypeIdPropertyId = @as(i32, 30113);
-pub const UIA_AnnotationAnnotationTypeNamePropertyId = @as(i32, 30114);
-pub const UIA_AnnotationAuthorPropertyId = @as(i32, 30115);
-pub const UIA_AnnotationDateTimePropertyId = @as(i32, 30116);
-pub const UIA_AnnotationTargetPropertyId = @as(i32, 30117);
-pub const UIA_IsAnnotationPatternAvailablePropertyId = @as(i32, 30118);
-pub const UIA_IsTextPattern2AvailablePropertyId = @as(i32, 30119);
-pub const UIA_StylesStyleIdPropertyId = @as(i32, 30120);
-pub const UIA_StylesStyleNamePropertyId = @as(i32, 30121);
-pub const UIA_StylesFillColorPropertyId = @as(i32, 30122);
-pub const UIA_StylesFillPatternStylePropertyId = @as(i32, 30123);
-pub const UIA_StylesShapePropertyId = @as(i32, 30124);
-pub const UIA_StylesFillPatternColorPropertyId = @as(i32, 30125);
-pub const UIA_StylesExtendedPropertiesPropertyId = @as(i32, 30126);
-pub const UIA_IsStylesPatternAvailablePropertyId = @as(i32, 30127);
-pub const UIA_IsSpreadsheetPatternAvailablePropertyId = @as(i32, 30128);
-pub const UIA_SpreadsheetItemFormulaPropertyId = @as(i32, 30129);
-pub const UIA_SpreadsheetItemAnnotationObjectsPropertyId = @as(i32, 30130);
-pub const UIA_SpreadsheetItemAnnotationTypesPropertyId = @as(i32, 30131);
-pub const UIA_IsSpreadsheetItemPatternAvailablePropertyId = @as(i32, 30132);
-pub const UIA_Transform2CanZoomPropertyId = @as(i32, 30133);
-pub const UIA_IsTransformPattern2AvailablePropertyId = @as(i32, 30134);
-pub const UIA_LiveSettingPropertyId = @as(i32, 30135);
-pub const UIA_IsTextChildPatternAvailablePropertyId = @as(i32, 30136);
-pub const UIA_IsDragPatternAvailablePropertyId = @as(i32, 30137);
-pub const UIA_DragIsGrabbedPropertyId = @as(i32, 30138);
-pub const UIA_DragDropEffectPropertyId = @as(i32, 30139);
-pub const UIA_DragDropEffectsPropertyId = @as(i32, 30140);
-pub const UIA_IsDropTargetPatternAvailablePropertyId = @as(i32, 30141);
-pub const UIA_DropTargetDropTargetEffectPropertyId = @as(i32, 30142);
-pub const UIA_DropTargetDropTargetEffectsPropertyId = @as(i32, 30143);
-pub const UIA_DragGrabbedItemsPropertyId = @as(i32, 30144);
-pub const UIA_Transform2ZoomLevelPropertyId = @as(i32, 30145);
-pub const UIA_Transform2ZoomMinimumPropertyId = @as(i32, 30146);
-pub const UIA_Transform2ZoomMaximumPropertyId = @as(i32, 30147);
-pub const UIA_FlowsFromPropertyId = @as(i32, 30148);
-pub const UIA_IsTextEditPatternAvailablePropertyId = @as(i32, 30149);
-pub const UIA_IsPeripheralPropertyId = @as(i32, 30150);
-pub const UIA_IsCustomNavigationPatternAvailablePropertyId = @as(i32, 30151);
-pub const UIA_PositionInSetPropertyId = @as(i32, 30152);
-pub const UIA_SizeOfSetPropertyId = @as(i32, 30153);
-pub const UIA_LevelPropertyId = @as(i32, 30154);
-pub const UIA_AnnotationTypesPropertyId = @as(i32, 30155);
-pub const UIA_AnnotationObjectsPropertyId = @as(i32, 30156);
-pub const UIA_LandmarkTypePropertyId = @as(i32, 30157);
-pub const UIA_LocalizedLandmarkTypePropertyId = @as(i32, 30158);
-pub const UIA_FullDescriptionPropertyId = @as(i32, 30159);
-pub const UIA_FillColorPropertyId = @as(i32, 30160);
-pub const UIA_OutlineColorPropertyId = @as(i32, 30161);
-pub const UIA_FillTypePropertyId = @as(i32, 30162);
-pub const UIA_VisualEffectsPropertyId = @as(i32, 30163);
-pub const UIA_OutlineThicknessPropertyId = @as(i32, 30164);
-pub const UIA_CenterPointPropertyId = @as(i32, 30165);
-pub const UIA_RotationPropertyId = @as(i32, 30166);
-pub const UIA_SizePropertyId = @as(i32, 30167);
-pub const UIA_IsSelectionPattern2AvailablePropertyId = @as(i32, 30168);
-pub const UIA_Selection2FirstSelectedItemPropertyId = @as(i32, 30169);
-pub const UIA_Selection2LastSelectedItemPropertyId = @as(i32, 30170);
-pub const UIA_Selection2CurrentSelectedItemPropertyId = @as(i32, 30171);
-pub const UIA_Selection2ItemCountPropertyId = @as(i32, 30172);
-pub const UIA_HeadingLevelPropertyId = @as(i32, 30173);
-pub const UIA_IsDialogPropertyId = @as(i32, 30174);
-pub const UIA_AnimationStyleAttributeId = @as(i32, 40000);
-pub const UIA_BackgroundColorAttributeId = @as(i32, 40001);
-pub const UIA_BulletStyleAttributeId = @as(i32, 40002);
-pub const UIA_CapStyleAttributeId = @as(i32, 40003);
-pub const UIA_CultureAttributeId = @as(i32, 40004);
-pub const UIA_FontNameAttributeId = @as(i32, 40005);
-pub const UIA_FontSizeAttributeId = @as(i32, 40006);
-pub const UIA_FontWeightAttributeId = @as(i32, 40007);
-pub const UIA_ForegroundColorAttributeId = @as(i32, 40008);
-pub const UIA_HorizontalTextAlignmentAttributeId = @as(i32, 40009);
-pub const UIA_IndentationFirstLineAttributeId = @as(i32, 40010);
-pub const UIA_IndentationLeadingAttributeId = @as(i32, 40011);
-pub const UIA_IndentationTrailingAttributeId = @as(i32, 40012);
-pub const UIA_IsHiddenAttributeId = @as(i32, 40013);
-pub const UIA_IsItalicAttributeId = @as(i32, 40014);
-pub const UIA_IsReadOnlyAttributeId = @as(i32, 40015);
-pub const UIA_IsSubscriptAttributeId = @as(i32, 40016);
-pub const UIA_IsSuperscriptAttributeId = @as(i32, 40017);
-pub const UIA_MarginBottomAttributeId = @as(i32, 40018);
-pub const UIA_MarginLeadingAttributeId = @as(i32, 40019);
-pub const UIA_MarginTopAttributeId = @as(i32, 40020);
-pub const UIA_MarginTrailingAttributeId = @as(i32, 40021);
-pub const UIA_OutlineStylesAttributeId = @as(i32, 40022);
-pub const UIA_OverlineColorAttributeId = @as(i32, 40023);
-pub const UIA_OverlineStyleAttributeId = @as(i32, 40024);
-pub const UIA_StrikethroughColorAttributeId = @as(i32, 40025);
-pub const UIA_StrikethroughStyleAttributeId = @as(i32, 40026);
-pub const UIA_TabsAttributeId = @as(i32, 40027);
-pub const UIA_TextFlowDirectionsAttributeId = @as(i32, 40028);
-pub const UIA_UnderlineColorAttributeId = @as(i32, 40029);
-pub const UIA_UnderlineStyleAttributeId = @as(i32, 40030);
-pub const UIA_AnnotationTypesAttributeId = @as(i32, 40031);
-pub const UIA_AnnotationObjectsAttributeId = @as(i32, 40032);
-pub const UIA_StyleNameAttributeId = @as(i32, 40033);
-pub const UIA_StyleIdAttributeId = @as(i32, 40034);
-pub const UIA_LinkAttributeId = @as(i32, 40035);
-pub const UIA_IsActiveAttributeId = @as(i32, 40036);
-pub const UIA_SelectionActiveEndAttributeId = @as(i32, 40037);
-pub const UIA_CaretPositionAttributeId = @as(i32, 40038);
-pub const UIA_CaretBidiModeAttributeId = @as(i32, 40039);
-pub const UIA_LineSpacingAttributeId = @as(i32, 40040);
-pub const UIA_BeforeParagraphSpacingAttributeId = @as(i32, 40041);
-pub const UIA_AfterParagraphSpacingAttributeId = @as(i32, 40042);
-pub const UIA_SayAsInterpretAsAttributeId = @as(i32, 40043);
-pub const UIA_ButtonControlTypeId = @as(i32, 50000);
-pub const UIA_CalendarControlTypeId = @as(i32, 50001);
-pub const UIA_CheckBoxControlTypeId = @as(i32, 50002);
-pub const UIA_ComboBoxControlTypeId = @as(i32, 50003);
-pub const UIA_EditControlTypeId = @as(i32, 50004);
-pub const UIA_HyperlinkControlTypeId = @as(i32, 50005);
-pub const UIA_ImageControlTypeId = @as(i32, 50006);
-pub const UIA_ListItemControlTypeId = @as(i32, 50007);
-pub const UIA_ListControlTypeId = @as(i32, 50008);
-pub const UIA_MenuControlTypeId = @as(i32, 50009);
-pub const UIA_MenuBarControlTypeId = @as(i32, 50010);
-pub const UIA_MenuItemControlTypeId = @as(i32, 50011);
-pub const UIA_ProgressBarControlTypeId = @as(i32, 50012);
-pub const UIA_RadioButtonControlTypeId = @as(i32, 50013);
-pub const UIA_ScrollBarControlTypeId = @as(i32, 50014);
-pub const UIA_SliderControlTypeId = @as(i32, 50015);
-pub const UIA_SpinnerControlTypeId = @as(i32, 50016);
-pub const UIA_StatusBarControlTypeId = @as(i32, 50017);
-pub const UIA_TabControlTypeId = @as(i32, 50018);
-pub const UIA_TabItemControlTypeId = @as(i32, 50019);
-pub const UIA_TextControlTypeId = @as(i32, 50020);
-pub const UIA_ToolBarControlTypeId = @as(i32, 50021);
-pub const UIA_ToolTipControlTypeId = @as(i32, 50022);
-pub const UIA_TreeControlTypeId = @as(i32, 50023);
-pub const UIA_TreeItemControlTypeId = @as(i32, 50024);
-pub const UIA_CustomControlTypeId = @as(i32, 50025);
-pub const UIA_GroupControlTypeId = @as(i32, 50026);
-pub const UIA_ThumbControlTypeId = @as(i32, 50027);
-pub const UIA_DataGridControlTypeId = @as(i32, 50028);
-pub const UIA_DataItemControlTypeId = @as(i32, 50029);
-pub const UIA_DocumentControlTypeId = @as(i32, 50030);
-pub const UIA_SplitButtonControlTypeId = @as(i32, 50031);
-pub const UIA_WindowControlTypeId = @as(i32, 50032);
-pub const UIA_PaneControlTypeId = @as(i32, 50033);
-pub const UIA_HeaderControlTypeId = @as(i32, 50034);
-pub const UIA_HeaderItemControlTypeId = @as(i32, 50035);
-pub const UIA_TableControlTypeId = @as(i32, 50036);
-pub const UIA_TitleBarControlTypeId = @as(i32, 50037);
-pub const UIA_SeparatorControlTypeId = @as(i32, 50038);
-pub const UIA_SemanticZoomControlTypeId = @as(i32, 50039);
-pub const UIA_AppBarControlTypeId = @as(i32, 50040);
-pub const AnnotationType_Unknown = @as(i32, 60000);
-pub const AnnotationType_SpellingError = @as(i32, 60001);
-pub const AnnotationType_GrammarError = @as(i32, 60002);
-pub const AnnotationType_Comment = @as(i32, 60003);
-pub const AnnotationType_FormulaError = @as(i32, 60004);
-pub const AnnotationType_TrackChanges = @as(i32, 60005);
-pub const AnnotationType_Header = @as(i32, 60006);
-pub const AnnotationType_Footer = @as(i32, 60007);
-pub const AnnotationType_Highlighted = @as(i32, 60008);
-pub const AnnotationType_Endnote = @as(i32, 60009);
-pub const AnnotationType_Footnote = @as(i32, 60010);
-pub const AnnotationType_InsertionChange = @as(i32, 60011);
-pub const AnnotationType_DeletionChange = @as(i32, 60012);
-pub const AnnotationType_MoveChange = @as(i32, 60013);
-pub const AnnotationType_FormatChange = @as(i32, 60014);
-pub const AnnotationType_UnsyncedChange = @as(i32, 60015);
-pub const AnnotationType_EditingLockedChange = @as(i32, 60016);
-pub const AnnotationType_ExternalChange = @as(i32, 60017);
-pub const AnnotationType_ConflictingChange = @as(i32, 60018);
-pub const AnnotationType_Author = @as(i32, 60019);
-pub const AnnotationType_AdvancedProofingIssue = @as(i32, 60020);
-pub const AnnotationType_DataValidationError = @as(i32, 60021);
-pub const AnnotationType_CircularReferenceError = @as(i32, 60022);
-pub const AnnotationType_Mathematics = @as(i32, 60023);
-pub const AnnotationType_Sensitive = @as(i32, 60024);
-pub const StyleId_Custom = @as(i32, 70000);
-pub const StyleId_Heading1 = @as(i32, 70001);
-pub const StyleId_Heading2 = @as(i32, 70002);
-pub const StyleId_Heading3 = @as(i32, 70003);
-pub const StyleId_Heading4 = @as(i32, 70004);
-pub const StyleId_Heading5 = @as(i32, 70005);
-pub const StyleId_Heading6 = @as(i32, 70006);
-pub const StyleId_Heading7 = @as(i32, 70007);
-pub const StyleId_Heading8 = @as(i32, 70008);
-pub const StyleId_Heading9 = @as(i32, 70009);
-pub const StyleId_Title = @as(i32, 70010);
-pub const StyleId_Subtitle = @as(i32, 70011);
-pub const StyleId_Normal = @as(i32, 70012);
-pub const StyleId_Emphasis = @as(i32, 70013);
-pub const StyleId_Quote = @as(i32, 70014);
-pub const StyleId_BulletedList = @as(i32, 70015);
-pub const StyleId_NumberedList = @as(i32, 70016);
-pub const UIA_CustomLandmarkTypeId = @as(i32, 80000);
-pub const UIA_FormLandmarkTypeId = @as(i32, 80001);
-pub const UIA_MainLandmarkTypeId = @as(i32, 80002);
-pub const UIA_NavigationLandmarkTypeId = @as(i32, 80003);
-pub const UIA_SearchLandmarkTypeId = @as(i32, 80004);
-pub const HeadingLevel_None = @as(i32, 80050);
 pub const HeadingLevel1 = @as(i32, 80051);
 pub const HeadingLevel2 = @as(i32, 80052);
 pub const HeadingLevel3 = @as(i32, 80053);
@@ -922,110 +157,777 @@ pub const HeadingLevel6 = @as(i32, 80056);
 pub const HeadingLevel7 = @as(i32, 80057);
 pub const HeadingLevel8 = @as(i32, 80058);
 pub const HeadingLevel9 = @as(i32, 80059);
-pub const UIA_SummaryChangeId = @as(i32, 90000);
+pub const HeadingLevel_None = @as(i32, 80050);
+pub const HeadingLevel_Property_GUID = Guid.initString("29084272-aaaf-4a30-8796-3c12f62b6bbb");
+pub const HelpText_Property_GUID = Guid.initString("08555685-0977-45c7-a7a6-abaf5684121a");
+pub const HostedFragmentRootsInvalidated_Event_GUID = Guid.initString("e6bdb03e-0921-4ec5-8dcf-eae877b0426b");
+pub const Hyperlink_Control_GUID = Guid.initString("8a56022c-b00d-4d15-8ff0-5b6b266e5e02");
+pub const IIS_ControlAccessible = Guid.initString("38c682a6-9731-43f2-9fae-e901e641b101");
+pub const IIS_IsOleaccProxy = Guid.initString("902697fa-80e4-4560-802a-a13f22a64709");
+pub const Image_Control_GUID = Guid.initString("2d3736e4-6b16-4c57-a962-f93260a75243");
+pub const InputDiscarded_Event_GUID = Guid.initString("7f36c367-7b18-417c-97e3-9d58ddc944ab");
+pub const InputReachedOtherElement_Event_GUID = Guid.initString("ed201d8a-4e6c-415e-a874-2460c9b66ba8");
+pub const InputReachedTarget_Event_GUID = Guid.initString("93ed549a-0549-40f0-bedb-28e44f7de2a3");
+pub const Invoke_Invoked_Event_GUID = Guid.initString("dfd699f0-c915-49dd-b422-dde785c3d24b");
+pub const Invoke_Pattern_GUID = Guid.initString("d976c2fc-66ea-4a6e-b28f-c24c7546ad37");
+pub const IsAnnotationPatternAvailable_Property_GUID = Guid.initString("0b5b3238-6d5c-41b6-bcc4-5e807f6551c4");
+pub const IsContentElement_Property_GUID = Guid.initString("4bda64a8-f5d8-480b-8155-ef2e89adb672");
+pub const IsControlElement_Property_GUID = Guid.initString("95f35085-abcc-4afd-a5f4-dbb46c230fdb");
+pub const IsCustomNavigationPatternAvailable_Property_GUID = Guid.initString("8f8e80d4-2351-48e0-874a-54aa7313889a");
+pub const IsDataValidForForm_Property_GUID = Guid.initString("445ac684-c3fc-4dd9-acf8-845a579296ba");
+pub const IsDialog_Property_GUID = Guid.initString("9d0dfb9b-8436-4501-bbbb-e534a4fb3b3f");
+pub const IsDockPatternAvailable_Property_GUID = Guid.initString("2600a4c4-2ff8-4c96-ae31-8fe619a13c6c");
+pub const IsDragPatternAvailable_Property_GUID = Guid.initString("e997a7b7-1d39-4ca7-be0f-277fcf5605cc");
+pub const IsDropTargetPatternAvailable_Property_GUID = Guid.initString("0686b62e-8e19-4aaf-873d-384f6d3b92be");
+pub const IsEnabled_Property_GUID = Guid.initString("2109427f-da60-4fed-bf1b-264bdce6eb3a");
+pub const IsExpandCollapsePatternAvailable_Property_GUID = Guid.initString("929d3806-5287-4725-aa16-222afc63d595");
+pub const IsGridItemPatternAvailable_Property_GUID = Guid.initString("5a43e524-f9a2-4b12-84c8-b48a3efedd34");
+pub const IsGridPatternAvailable_Property_GUID = Guid.initString("5622c26c-f0ef-4f3b-97cb-714c0868588b");
+pub const IsInvokePatternAvailable_Property_GUID = Guid.initString("4e725738-8364-4679-aa6c-f3f41931f750");
+pub const IsItemContainerPatternAvailable_Property_GUID = Guid.initString("624b5ca7-fe40-4957-a019-20c4cf11920f");
+pub const IsKeyboardFocusable_Property_GUID = Guid.initString("f7b8552a-0859-4b37-b9cb-51e72092f29f");
+pub const IsLegacyIAccessiblePatternAvailable_Property_GUID = Guid.initString("d8ebd0c7-929a-4ee7-8d3a-d3d94413027b");
+pub const IsMultipleViewPatternAvailable_Property_GUID = Guid.initString("ff0a31eb-8e25-469d-8d6e-e771a27c1b90");
+pub const IsObjectModelPatternAvailable_Property_GUID = Guid.initString("6b21d89b-2841-412f-8ef2-15ca952318ba");
+pub const IsOffscreen_Property_GUID = Guid.initString("03c3d160-db79-42db-a2ef-1c231eede507");
+pub const IsPassword_Property_GUID = Guid.initString("e8482eb1-687c-497b-bebc-03be53ec1454");
+pub const IsPeripheral_Property_GUID = Guid.initString("da758276-7ed5-49d4-8e68-ecc9a2d300dd");
+pub const IsRangeValuePatternAvailable_Property_GUID = Guid.initString("fda4244a-eb4d-43ff-b5ad-ed36d373ec4c");
+pub const IsRequiredForForm_Property_GUID = Guid.initString("4f5f43cf-59fb-4bde-a270-602e5e1141e9");
+pub const IsScrollItemPatternAvailable_Property_GUID = Guid.initString("1cad1a05-0927-4b76-97e1-0fcdb209b98a");
+pub const IsScrollPatternAvailable_Property_GUID = Guid.initString("3ebb7b4a-828a-4b57-9d22-2fea1632ed0d");
+pub const IsSelectionItemPatternAvailable_Property_GUID = Guid.initString("8becd62d-0bc3-4109-bee2-8e6715290e68");
+pub const IsSelectionPattern2Available_Property_GUID = Guid.initString("490806fb-6e89-4a47-8319-d266e511f021");
+pub const IsSelectionPatternAvailable_Property_GUID = Guid.initString("f588acbe-c769-4838-9a60-2686dc1188c4");
+pub const IsSpreadsheetItemPatternAvailable_Property_GUID = Guid.initString("9fe79b2a-2f94-43fd-996b-549e316f4acd");
+pub const IsSpreadsheetPatternAvailable_Property_GUID = Guid.initString("6ff43732-e4b4-4555-97bc-ecdbbc4d1888");
+pub const IsStructuredMarkupPatternAvailable_Property_GUID = Guid.initString("b0d4c196-2c0b-489c-b165-a405928c6f3d");
+pub const IsStylesPatternAvailable_Property_GUID = Guid.initString("27f353d3-459c-4b59-a490-50611dacafb5");
+pub const IsSynchronizedInputPatternAvailable_Property_GUID = Guid.initString("75d69cc5-d2bf-4943-876e-b45b62a6cc66");
+pub const IsTableItemPatternAvailable_Property_GUID = Guid.initString("eb36b40d-8ea4-489b-a013-e60d5951fe34");
+pub const IsTablePatternAvailable_Property_GUID = Guid.initString("cb83575f-45c2-4048-9c76-159715a139df");
+pub const IsTextChildPatternAvailable_Property_GUID = Guid.initString("559e65df-30ff-43b5-b5ed-5b283b80c7e9");
+pub const IsTextEditPatternAvailable_Property_GUID = Guid.initString("7843425c-8b32-484c-9ab5-e3200571ffda");
+pub const IsTextPattern2Available_Property_GUID = Guid.initString("41cf921d-e3f1-4b22-9c81-e1c3ed331c22");
+pub const IsTextPatternAvailable_Property_GUID = Guid.initString("fbe2d69d-aff6-4a45-82e2-fc92a82f5917");
+pub const IsTogglePatternAvailable_Property_GUID = Guid.initString("78686d53-fcd0-4b83-9b78-5832ce63bb5b");
+pub const IsTransformPattern2Available_Property_GUID = Guid.initString("25980b4b-be04-4710-ab4a-fda31dbd2895");
+pub const IsTransformPatternAvailable_Property_GUID = Guid.initString("a7f78804-d68b-4077-a5c6-7a5ea1ac31c5");
+pub const IsValuePatternAvailable_Property_GUID = Guid.initString("0b5020a7-2119-473b-be37-5ceb98bbfb22");
+pub const IsVirtualizedItemPatternAvailable_Property_GUID = Guid.initString("302cb151-2ac8-45d6-977b-d2b3a5a53f20");
+pub const IsWindowPatternAvailable_Property_GUID = Guid.initString("e7a57bb1-5888-4155-98dc-b422fd57f2bc");
+pub const ItemContainer_Pattern_GUID = Guid.initString("3d13da0f-8b9a-4a99-85fa-c5c9a69f1ed4");
+pub const ItemStatus_Property_GUID = Guid.initString("51de0321-3973-43e7-8913-0b08e813c37f");
+pub const ItemType_Property_GUID = Guid.initString("cdda434d-6222-413b-a68a-325dd1d40f39");
+pub const LabeledBy_Property_GUID = Guid.initString("e5b8924b-fc8a-4a35-8031-cf78ac43e55e");
+pub const LandmarkType_Property_GUID = Guid.initString("454045f2-6f61-49f7-a4f8-b5f0cf82da1e");
+pub const LayoutInvalidated_Event_GUID = Guid.initString("ed7d6544-a6bd-4595-9bae-3d28946cc715");
+pub const LegacyIAccessible_ChildId_Property_GUID = Guid.initString("9a191b5d-9ef2-4787-a459-dcde885dd4e8");
+pub const LegacyIAccessible_DefaultAction_Property_GUID = Guid.initString("3b331729-eaad-4502-b85f-92615622913c");
+pub const LegacyIAccessible_Description_Property_GUID = Guid.initString("46448418-7d70-4ea9-9d27-b7e775cf2ad7");
+pub const LegacyIAccessible_Help_Property_GUID = Guid.initString("94402352-161c-4b77-a98d-a872cc33947a");
+pub const LegacyIAccessible_KeyboardShortcut_Property_GUID = Guid.initString("8f6909ac-00b8-4259-a41c-966266d43a8a");
+pub const LegacyIAccessible_Name_Property_GUID = Guid.initString("caeb063d-40ae-4869-aa5a-1b8e5d666739");
+pub const LegacyIAccessible_Pattern_GUID = Guid.initString("54cc0a9f-3395-48af-ba8d-73f85690f3e0");
+pub const LegacyIAccessible_Role_Property_GUID = Guid.initString("6856e59f-cbaf-4e31-93e8-bcbf6f7e491c");
+pub const LegacyIAccessible_Selection_Property_GUID = Guid.initString("8aa8b1e0-0891-40cc-8b06-90d7d4166219");
+pub const LegacyIAccessible_State_Property_GUID = Guid.initString("df985854-2281-4340-ab9c-c60e2c5803f6");
+pub const LegacyIAccessible_Value_Property_GUID = Guid.initString("b5c5b0b6-8217-4a77-97a5-190a85ed0156");
+pub const Level_Property_GUID = Guid.initString("242ac529-cd36-400f-aad9-7876ef3af627");
+pub const LIBID_Accessibility = Guid.initString("1ea4dbf0-3c3b-11cf-810c-00aa00389b71");
+pub const List_Control_GUID = Guid.initString("9b149ee1-7cca-4cfc-9af1-cac7bddd3031");
+pub const ListItem_Control_GUID = Guid.initString("7b3717f2-44d1-4a58-98a8-f12a9b8f78e2");
+pub const LiveRegionChanged_Event_GUID = Guid.initString("102d5e90-e6a9-41b6-b1c5-a9b1929d9510");
+pub const LiveSetting_Property_GUID = Guid.initString("c12bcd8e-2a8e-4950-8ae7-3625111d58eb");
+pub const LocalizedControlType_Property_GUID = Guid.initString("8763404f-a1bd-452a-89c4-3f01d3833806");
+pub const LocalizedLandmarkType_Property_GUID = Guid.initString("7ac81980-eafb-4fb2-bf91-f485bef5e8e1");
+pub const Menu_Control_GUID = Guid.initString("2e9b1440-0ea8-41fd-b374-c1ea6f503cd1");
+pub const MenuBar_Control_GUID = Guid.initString("cc384250-0e7b-4ae8-95ae-a08f261b52ee");
+pub const MenuClosed_Event_GUID = Guid.initString("3cf1266e-1582-4041-acd7-88a35a965297");
+pub const MenuItem_Control_GUID = Guid.initString("f45225d3-d0a0-49d8-9834-9a000d2aeddc");
+pub const MenuModeEnd_Event_GUID = Guid.initString("9ecd4c9f-80dd-47b8-8267-5aec06bb2cff");
+pub const MenuModeStart_Event_GUID = Guid.initString("18d7c631-166a-4ac9-ae3b-ef4b5420e681");
+pub const MenuOpened_Event_GUID = Guid.initString("ebe2e945-66ca-4ed1-9ff8-2ad7df0a1b08");
+pub const MSAA_MENU_SIG = @as(i32, -1441927155);
+pub const MultipleView_CurrentView_Property_GUID = Guid.initString("7a81a67a-b94f-4875-918b-65c8d2f998e5");
+pub const MultipleView_Pattern_GUID = Guid.initString("547a6ae4-113f-47c4-850f-db4dfa466b1d");
+pub const MultipleView_SupportedViews_Property_GUID = Guid.initString("8d5db9fd-ce3c-4ae7-b788-400a3c645547");
+pub const Name_Property_GUID = Guid.initString("c3a6921b-4a99-44f1-bca6-61187052c431");
+pub const NAVDIR_DOWN = @as(u32, 2);
+pub const NAVDIR_FIRSTCHILD = @as(u32, 7);
+pub const NAVDIR_LASTCHILD = @as(u32, 8);
+pub const NAVDIR_LEFT = @as(u32, 3);
+pub const NAVDIR_MAX = @as(u32, 9);
+pub const NAVDIR_MIN = @as(u32, 0);
+pub const NAVDIR_NEXT = @as(u32, 5);
+pub const NAVDIR_PREVIOUS = @as(u32, 6);
+pub const NAVDIR_RIGHT = @as(u32, 4);
+pub const NAVDIR_UP = @as(u32, 1);
+pub const NewNativeWindowHandle_Property_GUID = Guid.initString("5196b33b-380a-4982-95e1-91f3ef60e024");
+pub const Notification_Event_GUID = Guid.initString("72c5a2f7-9788-480f-b8eb-4dee00f6186f");
+pub const ObjectModel_Pattern_GUID = Guid.initString("3e04acfe-08fc-47ec-96bc-353fa3b34aa7");
+pub const OptimizeForVisualContent_Property_GUID = Guid.initString("6a852250-c75a-4e5d-b858-e381b0f78861");
+pub const Orientation_Property_GUID = Guid.initString("a01eee62-3884-4415-887e-678ec21e39ba");
+pub const OutlineColor_Property_GUID = Guid.initString("c395d6c0-4b55-4762-a073-fd303a634f52");
+pub const OutlineThickness_Property_GUID = Guid.initString("13e67cc7-dac2-4888-bdd3-375c62fa9618");
+pub const Pane_Control_GUID = Guid.initString("5c2b3f5b-9182-42a3-8dec-8c04c1ee634d");
+pub const PositionInSet_Property_GUID = Guid.initString("33d1dc54-641e-4d76-a6b1-13f341c1f896");
+pub const ProcessId_Property_GUID = Guid.initString("40499998-9c31-4245-a403-87320e59eaf6");
+pub const ProgressBar_Control_GUID = Guid.initString("228c9f86-c36c-47bb-9fb6-a5834bfc53a4");
+pub const PROPID_ACC_DEFAULTACTION = Guid.initString("180c072b-c27f-43c7-9922-f63562a4632b");
+pub const PROPID_ACC_DESCRIPTION = Guid.initString("4d48dfe4-bd3f-491f-a648-492d6f20c588");
+pub const PROPID_ACC_DESCRIPTIONMAP = Guid.initString("1ff1435f-8a14-477b-b226-a0abe279975d");
+pub const PROPID_ACC_DODEFAULTACTION = Guid.initString("1ba09523-2e3b-49a6-a059-59682a3c48fd");
+pub const PROPID_ACC_FOCUS = Guid.initString("6eb335df-1c29-4127-b12c-dee9fd157f2b");
+pub const PROPID_ACC_HELP = Guid.initString("c831e11f-44db-4a99-9768-cb8f978b7231");
+pub const PROPID_ACC_HELPTOPIC = Guid.initString("787d1379-8ede-440b-8aec-11f7bf9030b3");
+pub const PROPID_ACC_KEYBOARDSHORTCUT = Guid.initString("7d9bceee-7d1e-4979-9382-5180f4172c34");
+pub const PROPID_ACC_NAME = Guid.initString("608d3df8-8128-4aa7-a428-f55e49267291");
+pub const PROPID_ACC_NAV_DOWN = Guid.initString("031670ed-3cdf-48d2-9613-138f2dd8a668");
+pub const PROPID_ACC_NAV_FIRSTCHILD = Guid.initString("cfd02558-557b-4c67-84f9-2a09fce40749");
+pub const PROPID_ACC_NAV_LASTCHILD = Guid.initString("302ecaa5-48d5-4f8d-b671-1a8d20a77832");
+pub const PROPID_ACC_NAV_LEFT = Guid.initString("228086cb-82f1-4a39-8705-dcdc0fff92f5");
+pub const PROPID_ACC_NAV_NEXT = Guid.initString("1cdc5455-8cd9-4c92-a371-3939a2fe3eee");
+pub const PROPID_ACC_NAV_PREV = Guid.initString("776d3891-c73b-4480-b3f6-076a16a15af6");
+pub const PROPID_ACC_NAV_RIGHT = Guid.initString("cd211d9f-e1cb-4fe5-a77c-920b884d095b");
+pub const PROPID_ACC_NAV_UP = Guid.initString("016e1a2b-1a4e-4767-8612-3386f66935ec");
+pub const PROPID_ACC_PARENT = Guid.initString("474c22b6-ffc2-467a-b1b5-e958b4657330");
+pub const PROPID_ACC_ROLE = Guid.initString("cb905ff2-7bd1-4c05-b3c8-e6c241364d70");
+pub const PROPID_ACC_ROLEMAP = Guid.initString("f79acda2-140d-4fe6-8914-208476328269");
+pub const PROPID_ACC_SELECTION = Guid.initString("b99d073c-d731-405b-9061-d95e8f842984");
+pub const PROPID_ACC_STATE = Guid.initString("a8d4d5b0-0a21-42d0-a5c0-514e984f457b");
+pub const PROPID_ACC_STATEMAP = Guid.initString("43946c5e-0ac0-4042-b525-07bbdbe17fa7");
+pub const PROPID_ACC_VALUE = Guid.initString("123fe443-211a-4615-9527-c45a7e93717a");
+pub const PROPID_ACC_VALUEMAP = Guid.initString("da1c3d79-fc5c-420e-b399-9d1533549e75");
+pub const ProviderDescription_Property_GUID = Guid.initString("dca5708a-c16b-4cd9-b889-beb16a804904");
+pub const RadioButton_Control_GUID = Guid.initString("3bdb49db-fe2c-4483-b3e1-e57f219440c6");
+pub const RangeValue_IsReadOnly_Property_GUID = Guid.initString("25fa1055-debf-4373-a79e-1f1a1908d3c4");
+pub const RangeValue_LargeChange_Property_GUID = Guid.initString("a1f96325-3a3d-4b44-8e1f-4a46d9844019");
+pub const RangeValue_Maximum_Property_GUID = Guid.initString("19319914-f979-4b35-a1a6-d37e05433473");
+pub const RangeValue_Minimum_Property_GUID = Guid.initString("78cbd3b2-684d-4860-af93-d1f95cb022fd");
+pub const RangeValue_Pattern_GUID = Guid.initString("18b00d87-b1c9-476a-bfbd-5f0bdb926f63");
+pub const RangeValue_SmallChange_Property_GUID = Guid.initString("81c2c457-3941-4107-9975-139760f7c072");
+pub const RangeValue_Value_Property_GUID = Guid.initString("131f5d98-c50c-489d-abe5-ae220898c5f7");
+pub const ROLE_SYSTEM_ALERT = @as(u32, 8);
+pub const ROLE_SYSTEM_ANIMATION = @as(u32, 54);
+pub const ROLE_SYSTEM_APPLICATION = @as(u32, 14);
+pub const ROLE_SYSTEM_BORDER = @as(u32, 19);
+pub const ROLE_SYSTEM_BUTTONDROPDOWN = @as(u32, 56);
+pub const ROLE_SYSTEM_BUTTONDROPDOWNGRID = @as(u32, 58);
+pub const ROLE_SYSTEM_BUTTONMENU = @as(u32, 57);
+pub const ROLE_SYSTEM_CARET = @as(u32, 7);
+pub const ROLE_SYSTEM_CELL = @as(u32, 29);
+pub const ROLE_SYSTEM_CHARACTER = @as(u32, 32);
+pub const ROLE_SYSTEM_CHART = @as(u32, 17);
+pub const ROLE_SYSTEM_CHECKBUTTON = @as(u32, 44);
+pub const ROLE_SYSTEM_CLIENT = @as(u32, 10);
+pub const ROLE_SYSTEM_CLOCK = @as(u32, 61);
+pub const ROLE_SYSTEM_COLUMN = @as(u32, 27);
+pub const ROLE_SYSTEM_COLUMNHEADER = @as(u32, 25);
+pub const ROLE_SYSTEM_COMBOBOX = @as(u32, 46);
+pub const ROLE_SYSTEM_CURSOR = @as(u32, 6);
+pub const ROLE_SYSTEM_DIAGRAM = @as(u32, 53);
+pub const ROLE_SYSTEM_DIAL = @as(u32, 49);
+pub const ROLE_SYSTEM_DIALOG = @as(u32, 18);
+pub const ROLE_SYSTEM_DOCUMENT = @as(u32, 15);
+pub const ROLE_SYSTEM_DROPLIST = @as(u32, 47);
+pub const ROLE_SYSTEM_EQUATION = @as(u32, 55);
+pub const ROLE_SYSTEM_GRAPHIC = @as(u32, 40);
+pub const ROLE_SYSTEM_GRIP = @as(u32, 4);
+pub const ROLE_SYSTEM_GROUPING = @as(u32, 20);
+pub const ROLE_SYSTEM_HELPBALLOON = @as(u32, 31);
+pub const ROLE_SYSTEM_HOTKEYFIELD = @as(u32, 50);
+pub const ROLE_SYSTEM_INDICATOR = @as(u32, 39);
+pub const ROLE_SYSTEM_IPADDRESS = @as(u32, 63);
+pub const ROLE_SYSTEM_LINK = @as(u32, 30);
+pub const ROLE_SYSTEM_LIST = @as(u32, 33);
+pub const ROLE_SYSTEM_LISTITEM = @as(u32, 34);
+pub const ROLE_SYSTEM_MENUBAR = @as(u32, 2);
+pub const ROLE_SYSTEM_MENUITEM = @as(u32, 12);
+pub const ROLE_SYSTEM_MENUPOPUP = @as(u32, 11);
+pub const ROLE_SYSTEM_OUTLINE = @as(u32, 35);
+pub const ROLE_SYSTEM_OUTLINEBUTTON = @as(u32, 64);
+pub const ROLE_SYSTEM_OUTLINEITEM = @as(u32, 36);
+pub const ROLE_SYSTEM_PAGETAB = @as(u32, 37);
+pub const ROLE_SYSTEM_PAGETABLIST = @as(u32, 60);
+pub const ROLE_SYSTEM_PANE = @as(u32, 16);
+pub const ROLE_SYSTEM_PROGRESSBAR = @as(u32, 48);
+pub const ROLE_SYSTEM_PROPERTYPAGE = @as(u32, 38);
+pub const ROLE_SYSTEM_PUSHBUTTON = @as(u32, 43);
+pub const ROLE_SYSTEM_RADIOBUTTON = @as(u32, 45);
+pub const ROLE_SYSTEM_ROW = @as(u32, 28);
+pub const ROLE_SYSTEM_ROWHEADER = @as(u32, 26);
+pub const ROLE_SYSTEM_SCROLLBAR = @as(u32, 3);
+pub const ROLE_SYSTEM_SEPARATOR = @as(u32, 21);
+pub const ROLE_SYSTEM_SLIDER = @as(u32, 51);
+pub const ROLE_SYSTEM_SOUND = @as(u32, 5);
+pub const ROLE_SYSTEM_SPINBUTTON = @as(u32, 52);
+pub const ROLE_SYSTEM_SPLITBUTTON = @as(u32, 62);
+pub const ROLE_SYSTEM_STATICTEXT = @as(u32, 41);
+pub const ROLE_SYSTEM_STATUSBAR = @as(u32, 23);
+pub const ROLE_SYSTEM_TABLE = @as(u32, 24);
+pub const ROLE_SYSTEM_TEXT = @as(u32, 42);
+pub const ROLE_SYSTEM_TITLEBAR = @as(u32, 1);
+pub const ROLE_SYSTEM_TOOLBAR = @as(u32, 22);
+pub const ROLE_SYSTEM_TOOLTIP = @as(u32, 13);
+pub const ROLE_SYSTEM_WHITESPACE = @as(u32, 59);
+pub const ROLE_SYSTEM_WINDOW = @as(u32, 9);
+pub const Rotation_Property_GUID = Guid.initString("767cdc7d-aec0-4110-ad32-30edd403492e");
+pub const RuntimeId_Property_GUID = Guid.initString("a39eebfa-7fba-4c89-b4d4-b99e2de7d160");
+pub const Scroll_HorizontallyScrollable_Property_GUID = Guid.initString("8b925147-28cd-49ae-bd63-f44118d2e719");
+pub const Scroll_HorizontalScrollPercent_Property_GUID = Guid.initString("c7c13c0e-eb21-47ff-acc4-b5a3350f5191");
+pub const Scroll_HorizontalViewSize_Property_GUID = Guid.initString("70c2e5d4-fcb0-4713-a9aa-af92ff79e4cd");
+pub const Scroll_Pattern_GUID = Guid.initString("895fa4b4-759d-4c50-8e15-03460672003c");
+pub const Scroll_VerticallyScrollable_Property_GUID = Guid.initString("89164798-0068-4315-b89a-1e7cfbbc3dfc");
+pub const Scroll_VerticalScrollPercent_Property_GUID = Guid.initString("6c8d7099-b2a8-4948-bff7-3cf9058bfefb");
+pub const Scroll_VerticalViewSize_Property_GUID = Guid.initString("de6a2e22-d8c7-40c5-83ba-e5f681d53108");
+pub const ScrollBar_Control_GUID = Guid.initString("daf34b36-5065-4946-b22f-92595fc0751a");
+pub const ScrollItem_Pattern_GUID = Guid.initString("4591d005-a803-4d5c-b4d5-8d2800f906a7");
+pub const Selection2_CurrentSelectedItem_Property_GUID = Guid.initString("34257c26-83b5-41a6-939c-ae841c136236");
+pub const Selection2_FirstSelectedItem_Property_GUID = Guid.initString("cc24ea67-369c-4e55-9ff7-38da69540c29");
+pub const Selection2_ItemCount_Property_GUID = Guid.initString("bb49eb9f-456d-4048-b591-9c2026b84636");
+pub const Selection2_LastSelectedItem_Property_GUID = Guid.initString("cf7bda90-2d83-49f8-860c-9ce394cf89b4");
+pub const Selection_CanSelectMultiple_Property_GUID = Guid.initString("49d73da5-c883-4500-883d-8fcf8daf6cbe");
+pub const Selection_InvalidatedEvent_Event_GUID = Guid.initString("cac14904-16b4-4b53-8e47-4cb1df267bb7");
+pub const Selection_IsSelectionRequired_Property_GUID = Guid.initString("b1ae4422-63fe-44e7-a5a5-a738c829b19a");
+pub const Selection_Pattern2_GUID = Guid.initString("fba25cab-ab98-49f7-a7dc-fe539dc15be7");
+pub const Selection_Pattern_GUID = Guid.initString("66e3b7e8-d821-4d25-8761-435d2c8b253f");
+pub const Selection_Selection_Property_GUID = Guid.initString("aa6dc2a2-0e2b-4d38-96d5-34e470b81853");
+pub const SelectionItem_ElementAddedToSelectionEvent_Event_GUID = Guid.initString("3c822dd1-c407-4dba-91dd-79d4aed0aec6");
+pub const SelectionItem_ElementRemovedFromSelectionEvent_Event_GUID = Guid.initString("097fa8a9-7079-41af-8b9c-0934d8305e5c");
+pub const SelectionItem_ElementSelectedEvent_Event_GUID = Guid.initString("b9c7dbfb-4ebe-4532-aaf4-008cf647233c");
+pub const SelectionItem_IsSelected_Property_GUID = Guid.initString("f122835f-cd5f-43df-b79d-4b849e9e6020");
+pub const SelectionItem_Pattern_GUID = Guid.initString("9bc64eeb-87c7-4b28-94bb-4d9fa437b6ef");
+pub const SelectionItem_SelectionContainer_Property_GUID = Guid.initString("a4365b6e-9c1e-4b63-8b53-c2421dd1e8fb");
+pub const SELFLAG_ADDSELECTION = @as(u32, 8);
+pub const SELFLAG_EXTENDSELECTION = @as(u32, 4);
+pub const SELFLAG_NONE = @as(u32, 0);
+pub const SELFLAG_REMOVESELECTION = @as(u32, 16);
+pub const SELFLAG_TAKEFOCUS = @as(u32, 1);
+pub const SELFLAG_TAKESELECTION = @as(u32, 2);
+pub const SELFLAG_VALID = @as(u32, 31);
+pub const SemanticZoom_Control_GUID = Guid.initString("5fd34a43-061e-42c8-b589-9dccf74bc43a");
+pub const Separator_Control_GUID = Guid.initString("8767eba3-2a63-4ab0-ac8d-aa50e23de978");
+pub const SID_ControlElementProvider = Guid.initString("f4791d68-e254-4ba3-9a53-26a5c5497946");
+pub const SID_IsUIAutomationObject = Guid.initString("b96fdb85-7204-4724-842b-c7059dedb9d0");
+pub const Size_Property_GUID = Guid.initString("2b5f761d-f885-4404-973f-9b1d98e36d8f");
+pub const SizeOfSet_Property_GUID = Guid.initString("1600d33c-3b9f-4369-9431-aa293f344cf1");
+pub const Slider_Control_GUID = Guid.initString("b033c24b-3b35-4cea-b609-763682fa660b");
+pub const Spinner_Control_GUID = Guid.initString("60cc4b38-3cb1-4161-b442-c6b726c17825");
+pub const SplitButton_Control_GUID = Guid.initString("7011f01f-4ace-4901-b461-920a6f1ca650");
+pub const Spreadsheet_Pattern_GUID = Guid.initString("6a5b24c9-9d1e-4b85-9e44-c02e3169b10b");
+pub const SpreadsheetItem_AnnotationObjects_Property_GUID = Guid.initString("a3194c38-c9bc-4604-9396-ae3f9f457f7b");
+pub const SpreadsheetItem_AnnotationTypes_Property_GUID = Guid.initString("c70c51d0-d602-4b45-afbc-b4712b96d72b");
+pub const SpreadsheetItem_Formula_Property_GUID = Guid.initString("e602e47d-1b47-4bea-87cf-3b0b0b5c15b6");
+pub const SpreadsheetItem_Pattern_GUID = Guid.initString("32cf83ff-f1a8-4a8c-8658-d47ba74e20ba");
+pub const STATE_SYSTEM_HASPOPUP = @as(u32, 1073741824);
+pub const STATE_SYSTEM_NORMAL = @as(u32, 0);
+pub const StatusBar_Control_GUID = Guid.initString("d45e7d1b-5873-475f-95a4-0433e1f1b00a");
+pub const StructureChanged_Event_GUID = Guid.initString("59977961-3edd-4b11-b13b-676b2a2a6ca9");
+pub const StructuredMarkup_CompositionComplete_Event_GUID = Guid.initString("c48a3c17-677a-4047-a68d-fc1257528aef");
+pub const StructuredMarkup_Deleted_Event_GUID = Guid.initString("f9d0a020-e1c1-4ecf-b9aa-52efde7e41e1");
+pub const StructuredMarkup_Pattern_GUID = Guid.initString("abbd0878-8665-4f5c-94fc-36e7d8bb706b");
+pub const StructuredMarkup_SelectionChanged_Event_GUID = Guid.initString("a7c815f7-ff9f-41c7-a3a7-ab6cbfdb4903");
+pub const StyleId_BulletedList = @as(i32, 70015);
+pub const StyleId_BulletedList_GUID = Guid.initString("5963ed64-6426-4632-8caf-a32ad402d91a");
+pub const StyleId_Custom = @as(i32, 70000);
+pub const StyleId_Custom_GUID = Guid.initString("ef2edd3e-a999-4b7c-a378-09bbd52a3516");
+pub const StyleId_Emphasis = @as(i32, 70013);
+pub const StyleId_Emphasis_GUID = Guid.initString("ca6e7dbe-355e-4820-95a0-925f041d3470");
+pub const StyleId_Heading1 = @as(i32, 70001);
+pub const StyleId_Heading1_GUID = Guid.initString("7f7e8f69-6866-4621-930c-9a5d0ca5961c");
+pub const StyleId_Heading2 = @as(i32, 70002);
+pub const StyleId_Heading2_GUID = Guid.initString("baa9b241-5c69-469d-85ad-474737b52b14");
+pub const StyleId_Heading3 = @as(i32, 70003);
+pub const StyleId_Heading3_GUID = Guid.initString("bf8be9d2-d8b8-4ec5-8c52-9cfb0d035970");
+pub const StyleId_Heading4 = @as(i32, 70004);
+pub const StyleId_Heading4_GUID = Guid.initString("8436ffc0-9578-45fc-83a4-ff40053315dd");
+pub const StyleId_Heading5 = @as(i32, 70005);
+pub const StyleId_Heading5_GUID = Guid.initString("909f424d-0dbf-406e-97bb-4e773d9798f7");
+pub const StyleId_Heading6 = @as(i32, 70006);
+pub const StyleId_Heading6_GUID = Guid.initString("89d23459-5d5b-4824-a420-11d3ed82e40f");
+pub const StyleId_Heading7 = @as(i32, 70007);
+pub const StyleId_Heading7_GUID = Guid.initString("a3790473-e9ae-422d-b8e3-3b675c6181a4");
+pub const StyleId_Heading8 = @as(i32, 70008);
+pub const StyleId_Heading8_GUID = Guid.initString("2bc14145-a40c-4881-84ae-f2235685380c");
+pub const StyleId_Heading9 = @as(i32, 70009);
+pub const StyleId_Heading9_GUID = Guid.initString("c70d9133-bb2a-43d3-8ac6-33657884b0f0");
+pub const StyleId_Normal = @as(i32, 70012);
+pub const StyleId_Normal_GUID = Guid.initString("cd14d429-e45e-4475-a1c5-7f9e6be96eba");
+pub const StyleId_NumberedList = @as(i32, 70016);
+pub const StyleId_NumberedList_GUID = Guid.initString("1e96dbd5-64c3-43d0-b1ee-b53b06e3eddf");
+pub const StyleId_Quote = @as(i32, 70014);
+pub const StyleId_Quote_GUID = Guid.initString("5d1c21ea-8195-4f6c-87ea-5dabece64c1d");
+pub const StyleId_Subtitle = @as(i32, 70011);
+pub const StyleId_Subtitle_GUID = Guid.initString("b5d9fc17-5d6f-4420-b439-7cb19ad434e2");
+pub const StyleId_Title = @as(i32, 70010);
+pub const StyleId_Title_GUID = Guid.initString("15d8201a-ffcf-481f-b0a1-30b63be98f07");
+pub const Styles_ExtendedProperties_Property_GUID = Guid.initString("f451cda0-ba0a-4681-b0b0-0dbdb53e58f3");
+pub const Styles_FillColor_Property_GUID = Guid.initString("63eff97a-a1c5-4b1d-84eb-b765f2edd632");
+pub const Styles_FillPatternColor_Property_GUID = Guid.initString("939a59fe-8fbd-4e75-a271-ac4595195163");
+pub const Styles_FillPatternStyle_Property_GUID = Guid.initString("81cf651f-482b-4451-a30a-e1545e554fb8");
+pub const Styles_Pattern_GUID = Guid.initString("1ae62655-da72-4d60-a153-e5aa6988e3bf");
+pub const Styles_Shape_Property_GUID = Guid.initString("c71a23f8-778c-400d-8458-3b543e526984");
+pub const Styles_StyleId_Property_GUID = Guid.initString("da82852f-3817-4233-82af-02279e72cc77");
+pub const Styles_StyleName_Property_GUID = Guid.initString("1c12b035-05d1-4f55-9e8e-1489f3ff550d");
+pub const SynchronizedInput_Pattern_GUID = Guid.initString("05c288a6-c47b-488b-b653-33977a551b8b");
+pub const SystemAlert_Event_GUID = Guid.initString("d271545d-7a3a-47a7-8474-81d29a2451c9");
+pub const Tab_Control_GUID = Guid.initString("38cd1f2d-337a-4bd2-a5e3-adb469e30bd3");
+pub const TabItem_Control_GUID = Guid.initString("2c6a634f-921b-4e6e-b26e-08fcb0798f4c");
+pub const Table_ColumnHeaders_Property_GUID = Guid.initString("aff1d72b-968d-42b1-b459-150b299da664");
+pub const Table_Control_GUID = Guid.initString("773bfa0e-5bc4-4deb-921b-de7b3206229e");
+pub const Table_Pattern_GUID = Guid.initString("c415218e-a028-461e-aa92-8f925cf79351");
+pub const Table_RowHeaders_Property_GUID = Guid.initString("d9e35b87-6eb8-4562-aac6-a8a9075236a8");
+pub const Table_RowOrColumnMajor_Property_GUID = Guid.initString("83be75c3-29fe-4a30-85e1-2a6277fd106e");
+pub const TableItem_ColumnHeaderItems_Property_GUID = Guid.initString("967a56a3-74b6-431e-8de6-99c411031c58");
+pub const TableItem_Pattern_GUID = Guid.initString("df1343bd-1888-4a29-a50c-b92e6de37f6f");
+pub const TableItem_RowHeaderItems_Property_GUID = Guid.initString("b3f853a0-0574-4cd8-bcd7-ed5923572d97");
+pub const Text_AfterParagraphSpacing_Attribute_GUID = Guid.initString("588cbb38-e62f-497c-b5d1-ccdf0ee823d8");
+pub const Text_AfterSpacing_Attribute_GUID = Guid.initString("588cbb38-e62f-497c-b5d1-ccdf0ee823d8");
+pub const Text_AnimationStyle_Attribute_GUID = Guid.initString("628209f0-7c9a-4d57-be64-1f1836571ff5");
+pub const Text_AnnotationObjects_Attribute_GUID = Guid.initString("ff41cf68-e7ab-40b9-8c72-72a8ed94017d");
+pub const Text_AnnotationTypes_Attribute_GUID = Guid.initString("ad2eb431-ee4e-4be1-a7ba-5559155a73ef");
+pub const Text_BackgroundColor_Attribute_GUID = Guid.initString("fdc49a07-583d-4f17-ad27-77fc832a3c0b");
+pub const Text_BeforeParagraphSpacing_Attribute_GUID = Guid.initString("be7b0ab1-c822-4a24-85e9-c8f2650fc79c");
+pub const Text_BeforeSpacing_Attribute_GUID = Guid.initString("be7b0ab1-c822-4a24-85e9-c8f2650fc79c");
+pub const Text_BulletStyle_Attribute_GUID = Guid.initString("c1097c90-d5c4-4237-9781-3bec8ba54e48");
+pub const Text_CapStyle_Attribute_GUID = Guid.initString("fb059c50-92cc-49a5-ba8f-0aa872bba2f3");
+pub const Text_CaretBidiMode_Attribute_GUID = Guid.initString("929ee7a6-51d3-4715-96dc-b694fa24a168");
+pub const Text_CaretPosition_Attribute_GUID = Guid.initString("b227b131-9889-4752-a91b-733efdc5c5a0");
+pub const Text_Control_GUID = Guid.initString("ae9772dc-d331-4f09-be20-7e6dfaf07b0a");
+pub const Text_Culture_Attribute_GUID = Guid.initString("c2025af9-a42d-4ced-a1fb-c6746315222e");
+pub const Text_FontName_Attribute_GUID = Guid.initString("64e63ba8-f2e5-476e-a477-1734feaaf726");
+pub const Text_FontSize_Attribute_GUID = Guid.initString("dc5eeeff-0506-4673-93f2-377e4a8e01f1");
+pub const Text_FontWeight_Attribute_GUID = Guid.initString("6fc02359-b316-4f5f-b401-f1ce55741853");
+pub const Text_ForegroundColor_Attribute_GUID = Guid.initString("72d1c95d-5e60-471a-96b1-6c1b3b77a436");
+pub const Text_HorizontalTextAlignment_Attribute_GUID = Guid.initString("04ea6161-fba3-477a-952a-bb326d026a5b");
+pub const Text_IndentationFirstLine_Attribute_GUID = Guid.initString("206f9ad5-c1d3-424a-8182-6da9a7f3d632");
+pub const Text_IndentationLeading_Attribute_GUID = Guid.initString("5cf66bac-2d45-4a4b-b6c9-f7221d2815b0");
+pub const Text_IndentationTrailing_Attribute_GUID = Guid.initString("97ff6c0f-1ce4-408a-b67b-94d83eb69bf2");
+pub const Text_IsActive_Attribute_GUID = Guid.initString("f5a4e533-e1b8-436b-935d-b57aa3f558c4");
+pub const Text_IsHidden_Attribute_GUID = Guid.initString("360182fb-bdd7-47f6-ab69-19e33f8a3344");
+pub const Text_IsItalic_Attribute_GUID = Guid.initString("fce12a56-1336-4a34-9663-1bab47239320");
+pub const Text_IsReadOnly_Attribute_GUID = Guid.initString("a738156b-ca3e-495e-9514-833c440feb11");
+pub const Text_IsSubscript_Attribute_GUID = Guid.initString("f0ead858-8f53-413c-873f-1a7d7f5e0de4");
+pub const Text_IsSuperscript_Attribute_GUID = Guid.initString("da706ee4-b3aa-4645-a41f-cd25157dea76");
+pub const Text_LineSpacing_Attribute_GUID = Guid.initString("63ff70ae-d943-4b47-8ab7-a7a033d3214b");
+pub const Text_Link_Attribute_GUID = Guid.initString("b38ef51d-9e8d-4e46-9144-56ebe177329b");
+pub const Text_MarginBottom_Attribute_GUID = Guid.initString("7ee593c4-72b4-4cac-9271-3ed24b0e4d42");
+pub const Text_MarginLeading_Attribute_GUID = Guid.initString("9e9242d0-5ed0-4900-8e8a-eecc03835afc");
+pub const Text_MarginTop_Attribute_GUID = Guid.initString("683d936f-c9b9-4a9a-b3d9-d20d33311e2a");
+pub const Text_MarginTrailing_Attribute_GUID = Guid.initString("af522f98-999d-40af-a5b2-0169d0342002");
+pub const Text_OutlineStyles_Attribute_GUID = Guid.initString("5b675b27-db89-46fe-970c-614d523bb97d");
+pub const Text_OverlineColor_Attribute_GUID = Guid.initString("83ab383a-fd43-40da-ab3e-ecf8165cbb6d");
+pub const Text_OverlineStyle_Attribute_GUID = Guid.initString("0a234d66-617e-427f-871d-e1ff1e0c213f");
+pub const Text_Pattern2_GUID = Guid.initString("498479a2-5b22-448d-b6e4-647490860698");
+pub const Text_Pattern_GUID = Guid.initString("8615f05d-7de5-44fd-a679-2ca4b46033a8");
+pub const Text_SayAsInterpretAs_Attribute_GUID = Guid.initString("b38ad6ac-eee1-4b6e-88cc-014cefa93fcb");
+pub const Text_SelectionActiveEnd_Attribute_GUID = Guid.initString("1f668cc3-9bbf-416b-b0a2-f89f86f6612c");
+pub const Text_StrikethroughColor_Attribute_GUID = Guid.initString("bfe15a18-8c41-4c5a-9a0b-04af0e07f487");
+pub const Text_StrikethroughStyle_Attribute_GUID = Guid.initString("72913ef1-da00-4f01-899c-ac5a8577a307");
+pub const Text_StyleId_Attribute_GUID = Guid.initString("14c300de-c32b-449b-ab7c-b0e0789aea5d");
+pub const Text_StyleName_Attribute_GUID = Guid.initString("22c9e091-4d66-45d8-a828-737bab4c98a7");
+pub const Text_Tabs_Attribute_GUID = Guid.initString("2e68d00b-92fe-42d8-899a-a784aa4454a1");
+pub const Text_TextChangedEvent_Event_GUID = Guid.initString("4a342082-f483-48c4-ac11-a84b435e2a84");
+pub const Text_TextFlowDirections_Attribute_GUID = Guid.initString("8bdf8739-f420-423e-af77-20a5d973a907");
+pub const Text_TextSelectionChangedEvent_Event_GUID = Guid.initString("918edaa1-71b3-49ae-9741-79beb8d358f3");
+pub const Text_UnderlineColor_Attribute_GUID = Guid.initString("bfa12c73-fde2-4473-bf64-1036d6aa0f45");
+pub const Text_UnderlineStyle_Attribute_GUID = Guid.initString("5f3b21c0-ede4-44bd-9c36-3853038cbfeb");
+pub const TextChild_Pattern_GUID = Guid.initString("7533cab7-3bfe-41ef-9e85-e2638cbe169e");
+pub const TextEdit_ConversionTargetChanged_Event_GUID = Guid.initString("3388c183-ed4f-4c8b-9baa-364d51d8847f");
+pub const TextEdit_Pattern_GUID = Guid.initString("69f3ff89-5af9-4c75-9340-f2de292e4591");
+pub const TextEdit_TextChanged_Event_GUID = Guid.initString("120b0308-ec22-4eb8-9c98-9867cda1b165");
+pub const Thumb_Control_GUID = Guid.initString("701ca877-e310-4dd6-b644-797e4faea213");
+pub const TitleBar_Control_GUID = Guid.initString("98aa55bf-3bb0-4b65-836e-2ea30dbc171f");
+pub const Toggle_Pattern_GUID = Guid.initString("0b419760-e2f4-43ff-8c5f-9457c82b56e9");
+pub const Toggle_ToggleState_Property_GUID = Guid.initString("b23cdc52-22c2-4c6c-9ded-f5c422479ede");
+pub const ToolBar_Control_GUID = Guid.initString("8f06b751-e182-4e98-8893-2284543a7dce");
+pub const ToolTip_Control_GUID = Guid.initString("05ddc6d1-2137-4768-98ea-73f52f7134f3");
+pub const ToolTipClosed_Event_GUID = Guid.initString("276d71ef-24a9-49b6-8e97-da98b401bbcd");
+pub const ToolTipOpened_Event_GUID = Guid.initString("3f4b97ff-2edc-451d-bca4-95a3188d5b03");
+pub const Tranform_Pattern2_GUID = Guid.initString("8afcfd07-a369-44de-988b-2f7ff49fb8a8");
+pub const Transform2_CanZoom_Property_GUID = Guid.initString("f357e890-a756-4359-9ca6-86702bf8f381");
+pub const Transform2_ZoomLevel_Property_GUID = Guid.initString("eee29f1a-f4a2-4b5b-ac65-95cf93283387");
+pub const Transform2_ZoomMaximum_Property_GUID = Guid.initString("42ab6b77-ceb0-4eca-b82a-6cfa5fa1fc08");
+pub const Transform2_ZoomMinimum_Property_GUID = Guid.initString("742ccc16-4ad1-4e07-96fe-b122c6e6b22b");
+pub const Transform_CanMove_Property_GUID = Guid.initString("1b75824d-208b-4fdf-bccd-f1f4e5741f4f");
+pub const Transform_CanResize_Property_GUID = Guid.initString("bb98dca5-4c1a-41d4-a4f6-ebc128644180");
+pub const Transform_CanRotate_Property_GUID = Guid.initString("10079b48-3849-476f-ac96-44a95c8440d9");
+pub const Transform_Pattern_GUID = Guid.initString("24b46fdb-587e-49f1-9c4a-d8e98b664b7b");
+pub const Tree_Control_GUID = Guid.initString("7561349c-d241-43f4-9908-b5f091bee611");
+pub const TreeItem_Control_GUID = Guid.initString("62c9feb9-8ffc-4878-a3a4-96b030315c18");
+pub const UIA_AcceleratorKeyPropertyId = @as(i32, 30006);
+pub const UIA_AccessKeyPropertyId = @as(i32, 30007);
+pub const UIA_ActiveTextPositionChangedEventId = @as(i32, 20036);
+pub const UIA_AfterParagraphSpacingAttributeId = @as(i32, 40042);
+pub const UIA_AnimationStyleAttributeId = @as(i32, 40000);
+pub const UIA_AnnotationAnnotationTypeIdPropertyId = @as(i32, 30113);
+pub const UIA_AnnotationAnnotationTypeNamePropertyId = @as(i32, 30114);
+pub const UIA_AnnotationAuthorPropertyId = @as(i32, 30115);
+pub const UIA_AnnotationDateTimePropertyId = @as(i32, 30116);
+pub const UIA_AnnotationObjectsAttributeId = @as(i32, 40032);
+pub const UIA_AnnotationObjectsPropertyId = @as(i32, 30156);
+pub const UIA_AnnotationPatternId = @as(i32, 10023);
+pub const UIA_AnnotationTargetPropertyId = @as(i32, 30117);
+pub const UIA_AnnotationTypesAttributeId = @as(i32, 40031);
+pub const UIA_AnnotationTypesPropertyId = @as(i32, 30155);
+pub const UIA_AppBarControlTypeId = @as(i32, 50040);
+pub const UIA_AriaPropertiesPropertyId = @as(i32, 30102);
+pub const UIA_AriaRolePropertyId = @as(i32, 30101);
+pub const UIA_AsyncContentLoadedEventId = @as(i32, 20006);
+pub const UIA_AutomationFocusChangedEventId = @as(i32, 20005);
+pub const UIA_AutomationIdPropertyId = @as(i32, 30011);
+pub const UIA_AutomationPropertyChangedEventId = @as(i32, 20004);
+pub const UIA_BackgroundColorAttributeId = @as(i32, 40001);
+pub const UIA_BeforeParagraphSpacingAttributeId = @as(i32, 40041);
+pub const UIA_BoundingRectanglePropertyId = @as(i32, 30001);
+pub const UIA_BulletStyleAttributeId = @as(i32, 40002);
+pub const UIA_ButtonControlTypeId = @as(i32, 50000);
+pub const UIA_CalendarControlTypeId = @as(i32, 50001);
+pub const UIA_CapStyleAttributeId = @as(i32, 40003);
+pub const UIA_CaretBidiModeAttributeId = @as(i32, 40039);
+pub const UIA_CaretPositionAttributeId = @as(i32, 40038);
+pub const UIA_CenterPointPropertyId = @as(i32, 30165);
+pub const UIA_ChangesEventId = @as(i32, 20034);
+pub const UIA_CheckBoxControlTypeId = @as(i32, 50002);
+pub const UIA_ClassNamePropertyId = @as(i32, 30012);
+pub const UIA_ClickablePointPropertyId = @as(i32, 30014);
+pub const UIA_ComboBoxControlTypeId = @as(i32, 50003);
+pub const UIA_ControllerForPropertyId = @as(i32, 30104);
+pub const UIA_ControlTypePropertyId = @as(i32, 30003);
+pub const UIA_CultureAttributeId = @as(i32, 40004);
+pub const UIA_CulturePropertyId = @as(i32, 30015);
+pub const UIA_CustomControlTypeId = @as(i32, 50025);
+pub const UIA_CustomLandmarkTypeId = @as(i32, 80000);
+pub const UIA_CustomNavigationPatternId = @as(i32, 10033);
+pub const UIA_DataGridControlTypeId = @as(i32, 50028);
+pub const UIA_DataItemControlTypeId = @as(i32, 50029);
+pub const UIA_DescribedByPropertyId = @as(i32, 30105);
+pub const UIA_DockDockPositionPropertyId = @as(i32, 30069);
+pub const UIA_DockPatternId = @as(i32, 10011);
+pub const UIA_DocumentControlTypeId = @as(i32, 50030);
+pub const UIA_Drag_DragCancelEventId = @as(i32, 20027);
+pub const UIA_Drag_DragCompleteEventId = @as(i32, 20028);
+pub const UIA_Drag_DragStartEventId = @as(i32, 20026);
+pub const UIA_DragDropEffectPropertyId = @as(i32, 30139);
+pub const UIA_DragDropEffectsPropertyId = @as(i32, 30140);
+pub const UIA_DragGrabbedItemsPropertyId = @as(i32, 30144);
+pub const UIA_DragIsGrabbedPropertyId = @as(i32, 30138);
+pub const UIA_DragPatternId = @as(i32, 10030);
+pub const UIA_DropTarget_DragEnterEventId = @as(i32, 20029);
+pub const UIA_DropTarget_DragLeaveEventId = @as(i32, 20030);
+pub const UIA_DropTarget_DroppedEventId = @as(i32, 20031);
+pub const UIA_DropTargetDropTargetEffectPropertyId = @as(i32, 30142);
+pub const UIA_DropTargetDropTargetEffectsPropertyId = @as(i32, 30143);
+pub const UIA_DropTargetPatternId = @as(i32, 10031);
+pub const UIA_E_ELEMENTNOTAVAILABLE = @as(u32, 2147746305);
+pub const UIA_E_ELEMENTNOTENABLED = @as(u32, 2147746304);
+pub const UIA_E_INVALIDOPERATION = @as(u32, 2148734217);
+pub const UIA_E_NOCLICKABLEPOINT = @as(u32, 2147746306);
+pub const UIA_E_NOTSUPPORTED = @as(u32, 2147746308);
+pub const UIA_E_PROXYASSEMBLYNOTLOADED = @as(u32, 2147746307);
+pub const UIA_E_TIMEOUT = @as(u32, 2148734213);
+pub const UIA_EditControlTypeId = @as(i32, 50004);
+pub const UIA_ExpandCollapseExpandCollapseStatePropertyId = @as(i32, 30070);
+pub const UIA_ExpandCollapsePatternId = @as(i32, 10005);
+pub const UIA_FillColorPropertyId = @as(i32, 30160);
+pub const UIA_FillTypePropertyId = @as(i32, 30162);
+pub const UIA_FlowsFromPropertyId = @as(i32, 30148);
+pub const UIA_FlowsToPropertyId = @as(i32, 30106);
+pub const UIA_FontNameAttributeId = @as(i32, 40005);
+pub const UIA_FontSizeAttributeId = @as(i32, 40006);
+pub const UIA_FontWeightAttributeId = @as(i32, 40007);
+pub const UIA_ForegroundColorAttributeId = @as(i32, 40008);
+pub const UIA_FormLandmarkTypeId = @as(i32, 80001);
+pub const UIA_FrameworkIdPropertyId = @as(i32, 30024);
+pub const UIA_FullDescriptionPropertyId = @as(i32, 30159);
+pub const UIA_GridColumnCountPropertyId = @as(i32, 30063);
+pub const UIA_GridItemColumnPropertyId = @as(i32, 30065);
+pub const UIA_GridItemColumnSpanPropertyId = @as(i32, 30067);
+pub const UIA_GridItemContainingGridPropertyId = @as(i32, 30068);
+pub const UIA_GridItemPatternId = @as(i32, 10007);
+pub const UIA_GridItemRowPropertyId = @as(i32, 30064);
+pub const UIA_GridItemRowSpanPropertyId = @as(i32, 30066);
+pub const UIA_GridPatternId = @as(i32, 10006);
+pub const UIA_GridRowCountPropertyId = @as(i32, 30062);
+pub const UIA_GroupControlTypeId = @as(i32, 50026);
+pub const UIA_HasKeyboardFocusPropertyId = @as(i32, 30008);
+pub const UIA_HeaderControlTypeId = @as(i32, 50034);
+pub const UIA_HeaderItemControlTypeId = @as(i32, 50035);
+pub const UIA_HeadingLevelPropertyId = @as(i32, 30173);
+pub const UIA_HelpTextPropertyId = @as(i32, 30013);
+pub const UIA_HorizontalTextAlignmentAttributeId = @as(i32, 40009);
+pub const UIA_HostedFragmentRootsInvalidatedEventId = @as(i32, 20025);
+pub const UIA_HyperlinkControlTypeId = @as(i32, 50005);
+pub const UIA_IAFP_DEFAULT = @as(u32, 0);
+pub const UIA_IAFP_UNWRAP_BRIDGE = @as(u32, 1);
+pub const UIA_ImageControlTypeId = @as(i32, 50006);
+pub const UIA_IndentationFirstLineAttributeId = @as(i32, 40010);
+pub const UIA_IndentationLeadingAttributeId = @as(i32, 40011);
+pub const UIA_IndentationTrailingAttributeId = @as(i32, 40012);
+pub const UIA_InputDiscardedEventId = @as(i32, 20022);
+pub const UIA_InputReachedOtherElementEventId = @as(i32, 20021);
+pub const UIA_InputReachedTargetEventId = @as(i32, 20020);
+pub const UIA_Invoke_InvokedEventId = @as(i32, 20009);
+pub const UIA_InvokePatternId = @as(i32, 10000);
+pub const UIA_IsActiveAttributeId = @as(i32, 40036);
+pub const UIA_IsAnnotationPatternAvailablePropertyId = @as(i32, 30118);
+pub const UIA_IsContentElementPropertyId = @as(i32, 30017);
+pub const UIA_IsControlElementPropertyId = @as(i32, 30016);
+pub const UIA_IsCustomNavigationPatternAvailablePropertyId = @as(i32, 30151);
+pub const UIA_IsDataValidForFormPropertyId = @as(i32, 30103);
+pub const UIA_IsDialogPropertyId = @as(i32, 30174);
+pub const UIA_IsDockPatternAvailablePropertyId = @as(i32, 30027);
+pub const UIA_IsDragPatternAvailablePropertyId = @as(i32, 30137);
+pub const UIA_IsDropTargetPatternAvailablePropertyId = @as(i32, 30141);
+pub const UIA_IsEnabledPropertyId = @as(i32, 30010);
+pub const UIA_IsExpandCollapsePatternAvailablePropertyId = @as(i32, 30028);
+pub const UIA_IsGridItemPatternAvailablePropertyId = @as(i32, 30029);
+pub const UIA_IsGridPatternAvailablePropertyId = @as(i32, 30030);
+pub const UIA_IsHiddenAttributeId = @as(i32, 40013);
+pub const UIA_IsInvokePatternAvailablePropertyId = @as(i32, 30031);
+pub const UIA_IsItalicAttributeId = @as(i32, 40014);
+pub const UIA_IsItemContainerPatternAvailablePropertyId = @as(i32, 30108);
+pub const UIA_IsKeyboardFocusablePropertyId = @as(i32, 30009);
+pub const UIA_IsLegacyIAccessiblePatternAvailablePropertyId = @as(i32, 30090);
+pub const UIA_IsMultipleViewPatternAvailablePropertyId = @as(i32, 30032);
+pub const UIA_IsObjectModelPatternAvailablePropertyId = @as(i32, 30112);
+pub const UIA_IsOffscreenPropertyId = @as(i32, 30022);
+pub const UIA_IsPasswordPropertyId = @as(i32, 30019);
+pub const UIA_IsPeripheralPropertyId = @as(i32, 30150);
+pub const UIA_IsRangeValuePatternAvailablePropertyId = @as(i32, 30033);
+pub const UIA_IsReadOnlyAttributeId = @as(i32, 40015);
+pub const UIA_IsRequiredForFormPropertyId = @as(i32, 30025);
+pub const UIA_IsScrollItemPatternAvailablePropertyId = @as(i32, 30035);
+pub const UIA_IsScrollPatternAvailablePropertyId = @as(i32, 30034);
+pub const UIA_IsSelectionItemPatternAvailablePropertyId = @as(i32, 30036);
+pub const UIA_IsSelectionPattern2AvailablePropertyId = @as(i32, 30168);
+pub const UIA_IsSelectionPatternAvailablePropertyId = @as(i32, 30037);
+pub const UIA_IsSpreadsheetItemPatternAvailablePropertyId = @as(i32, 30132);
+pub const UIA_IsSpreadsheetPatternAvailablePropertyId = @as(i32, 30128);
+pub const UIA_IsStylesPatternAvailablePropertyId = @as(i32, 30127);
+pub const UIA_IsSubscriptAttributeId = @as(i32, 40016);
+pub const UIA_IsSuperscriptAttributeId = @as(i32, 40017);
+pub const UIA_IsSynchronizedInputPatternAvailablePropertyId = @as(i32, 30110);
+pub const UIA_IsTableItemPatternAvailablePropertyId = @as(i32, 30039);
+pub const UIA_IsTablePatternAvailablePropertyId = @as(i32, 30038);
+pub const UIA_IsTextChildPatternAvailablePropertyId = @as(i32, 30136);
+pub const UIA_IsTextEditPatternAvailablePropertyId = @as(i32, 30149);
+pub const UIA_IsTextPattern2AvailablePropertyId = @as(i32, 30119);
+pub const UIA_IsTextPatternAvailablePropertyId = @as(i32, 30040);
+pub const UIA_IsTogglePatternAvailablePropertyId = @as(i32, 30041);
+pub const UIA_IsTransformPattern2AvailablePropertyId = @as(i32, 30134);
+pub const UIA_IsTransformPatternAvailablePropertyId = @as(i32, 30042);
+pub const UIA_IsValuePatternAvailablePropertyId = @as(i32, 30043);
+pub const UIA_IsVirtualizedItemPatternAvailablePropertyId = @as(i32, 30109);
+pub const UIA_IsWindowPatternAvailablePropertyId = @as(i32, 30044);
+pub const UIA_ItemContainerPatternId = @as(i32, 10019);
+pub const UIA_ItemStatusPropertyId = @as(i32, 30026);
+pub const UIA_ItemTypePropertyId = @as(i32, 30021);
+pub const UIA_LabeledByPropertyId = @as(i32, 30018);
+pub const UIA_LandmarkTypePropertyId = @as(i32, 30157);
+pub const UIA_LayoutInvalidatedEventId = @as(i32, 20008);
+pub const UIA_LegacyIAccessibleChildIdPropertyId = @as(i32, 30091);
+pub const UIA_LegacyIAccessibleDefaultActionPropertyId = @as(i32, 30100);
+pub const UIA_LegacyIAccessibleDescriptionPropertyId = @as(i32, 30094);
+pub const UIA_LegacyIAccessibleHelpPropertyId = @as(i32, 30097);
+pub const UIA_LegacyIAccessibleKeyboardShortcutPropertyId = @as(i32, 30098);
+pub const UIA_LegacyIAccessibleNamePropertyId = @as(i32, 30092);
+pub const UIA_LegacyIAccessiblePatternId = @as(i32, 10018);
+pub const UIA_LegacyIAccessibleRolePropertyId = @as(i32, 30095);
+pub const UIA_LegacyIAccessibleSelectionPropertyId = @as(i32, 30099);
+pub const UIA_LegacyIAccessibleStatePropertyId = @as(i32, 30096);
+pub const UIA_LegacyIAccessibleValuePropertyId = @as(i32, 30093);
+pub const UIA_LevelPropertyId = @as(i32, 30154);
+pub const UIA_LineSpacingAttributeId = @as(i32, 40040);
+pub const UIA_LinkAttributeId = @as(i32, 40035);
+pub const UIA_ListControlTypeId = @as(i32, 50008);
+pub const UIA_ListItemControlTypeId = @as(i32, 50007);
+pub const UIA_LiveRegionChangedEventId = @as(i32, 20024);
+pub const UIA_LiveSettingPropertyId = @as(i32, 30135);
+pub const UIA_LocalizedControlTypePropertyId = @as(i32, 30004);
+pub const UIA_LocalizedLandmarkTypePropertyId = @as(i32, 30158);
+pub const UIA_MainLandmarkTypeId = @as(i32, 80002);
+pub const UIA_MarginBottomAttributeId = @as(i32, 40018);
+pub const UIA_MarginLeadingAttributeId = @as(i32, 40019);
+pub const UIA_MarginTopAttributeId = @as(i32, 40020);
+pub const UIA_MarginTrailingAttributeId = @as(i32, 40021);
+pub const UIA_MenuBarControlTypeId = @as(i32, 50010);
+pub const UIA_MenuClosedEventId = @as(i32, 20007);
+pub const UIA_MenuControlTypeId = @as(i32, 50009);
+pub const UIA_MenuItemControlTypeId = @as(i32, 50011);
+pub const UIA_MenuModeEndEventId = @as(i32, 20019);
+pub const UIA_MenuModeStartEventId = @as(i32, 20018);
+pub const UIA_MenuOpenedEventId = @as(i32, 20003);
+pub const UIA_MultipleViewCurrentViewPropertyId = @as(i32, 30071);
+pub const UIA_MultipleViewPatternId = @as(i32, 10008);
+pub const UIA_MultipleViewSupportedViewsPropertyId = @as(i32, 30072);
+pub const UIA_NamePropertyId = @as(i32, 30005);
+pub const UIA_NativeWindowHandlePropertyId = @as(i32, 30020);
+pub const UIA_NavigationLandmarkTypeId = @as(i32, 80003);
+pub const UIA_NotificationEventId = @as(i32, 20035);
+pub const UIA_ObjectModelPatternId = @as(i32, 10022);
+pub const UIA_OptimizeForVisualContentPropertyId = @as(i32, 30111);
+pub const UIA_OrientationPropertyId = @as(i32, 30023);
+pub const UIA_OutlineColorPropertyId = @as(i32, 30161);
+pub const UIA_OutlineStylesAttributeId = @as(i32, 40022);
+pub const UIA_OutlineThicknessPropertyId = @as(i32, 30164);
+pub const UIA_OverlineColorAttributeId = @as(i32, 40023);
+pub const UIA_OverlineStyleAttributeId = @as(i32, 40024);
+pub const UIA_PaneControlTypeId = @as(i32, 50033);
+pub const UIA_PFIA_DEFAULT = @as(u32, 0);
+pub const UIA_PFIA_UNWRAP_BRIDGE = @as(u32, 1);
+pub const UIA_PositionInSetPropertyId = @as(i32, 30152);
+pub const UIA_ProcessIdPropertyId = @as(i32, 30002);
+pub const UIA_ProgressBarControlTypeId = @as(i32, 50012);
+pub const UIA_ProviderDescriptionPropertyId = @as(i32, 30107);
+pub const UIA_RadioButtonControlTypeId = @as(i32, 50013);
+pub const UIA_RangeValueIsReadOnlyPropertyId = @as(i32, 30048);
+pub const UIA_RangeValueLargeChangePropertyId = @as(i32, 30051);
+pub const UIA_RangeValueMaximumPropertyId = @as(i32, 30050);
+pub const UIA_RangeValueMinimumPropertyId = @as(i32, 30049);
+pub const UIA_RangeValuePatternId = @as(i32, 10003);
+pub const UIA_RangeValueSmallChangePropertyId = @as(i32, 30052);
+pub const UIA_RangeValueValuePropertyId = @as(i32, 30047);
+pub const UIA_RotationPropertyId = @as(i32, 30166);
+pub const UIA_RuntimeIdPropertyId = @as(i32, 30000);
+pub const UIA_SayAsInterpretAsAttributeId = @as(i32, 40043);
 pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
+pub const UIA_ScrollBarControlTypeId = @as(i32, 50014);
+pub const UIA_ScrollHorizontallyScrollablePropertyId = @as(i32, 30057);
+pub const UIA_ScrollHorizontalScrollPercentPropertyId = @as(i32, 30053);
+pub const UIA_ScrollHorizontalViewSizePropertyId = @as(i32, 30054);
+pub const UIA_ScrollItemPatternId = @as(i32, 10017);
+pub const UIA_ScrollPatternId = @as(i32, 10004);
+pub const UIA_ScrollPatternNoScroll = @as(f64, -1.0);
+pub const UIA_ScrollVerticallyScrollablePropertyId = @as(i32, 30058);
+pub const UIA_ScrollVerticalScrollPercentPropertyId = @as(i32, 30055);
+pub const UIA_ScrollVerticalViewSizePropertyId = @as(i32, 30056);
+pub const UIA_SearchLandmarkTypeId = @as(i32, 80004);
+pub const UIA_Selection2CurrentSelectedItemPropertyId = @as(i32, 30171);
+pub const UIA_Selection2FirstSelectedItemPropertyId = @as(i32, 30169);
+pub const UIA_Selection2ItemCountPropertyId = @as(i32, 30172);
+pub const UIA_Selection2LastSelectedItemPropertyId = @as(i32, 30170);
+pub const UIA_Selection_InvalidatedEventId = @as(i32, 20013);
+pub const UIA_SelectionActiveEndAttributeId = @as(i32, 40037);
+pub const UIA_SelectionCanSelectMultiplePropertyId = @as(i32, 30060);
+pub const UIA_SelectionIsSelectionRequiredPropertyId = @as(i32, 30061);
+pub const UIA_SelectionItem_ElementAddedToSelectionEventId = @as(i32, 20010);
+pub const UIA_SelectionItem_ElementRemovedFromSelectionEventId = @as(i32, 20011);
+pub const UIA_SelectionItem_ElementSelectedEventId = @as(i32, 20012);
+pub const UIA_SelectionItemIsSelectedPropertyId = @as(i32, 30079);
+pub const UIA_SelectionItemPatternId = @as(i32, 10010);
+pub const UIA_SelectionItemSelectionContainerPropertyId = @as(i32, 30080);
+pub const UIA_SelectionPattern2Id = @as(i32, 10034);
+pub const UIA_SelectionPatternId = @as(i32, 10001);
+pub const UIA_SelectionSelectionPropertyId = @as(i32, 30059);
+pub const UIA_SemanticZoomControlTypeId = @as(i32, 50039);
+pub const UIA_SeparatorControlTypeId = @as(i32, 50038);
+pub const UIA_SizeOfSetPropertyId = @as(i32, 30153);
+pub const UIA_SizePropertyId = @as(i32, 30167);
+pub const UIA_SliderControlTypeId = @as(i32, 50015);
+pub const UIA_SpinnerControlTypeId = @as(i32, 50016);
+pub const UIA_SplitButtonControlTypeId = @as(i32, 50031);
+pub const UIA_SpreadsheetItemAnnotationObjectsPropertyId = @as(i32, 30130);
+pub const UIA_SpreadsheetItemAnnotationTypesPropertyId = @as(i32, 30131);
+pub const UIA_SpreadsheetItemFormulaPropertyId = @as(i32, 30129);
+pub const UIA_SpreadsheetItemPatternId = @as(i32, 10027);
+pub const UIA_SpreadsheetPatternId = @as(i32, 10026);
+pub const UIA_StatusBarControlTypeId = @as(i32, 50017);
+pub const UIA_StrikethroughColorAttributeId = @as(i32, 40025);
+pub const UIA_StrikethroughStyleAttributeId = @as(i32, 40026);
+pub const UIA_StructureChangedEventId = @as(i32, 20002);
+pub const UIA_StyleIdAttributeId = @as(i32, 40034);
+pub const UIA_StyleNameAttributeId = @as(i32, 40033);
+pub const UIA_StylesExtendedPropertiesPropertyId = @as(i32, 30126);
+pub const UIA_StylesFillColorPropertyId = @as(i32, 30122);
+pub const UIA_StylesFillPatternColorPropertyId = @as(i32, 30125);
+pub const UIA_StylesFillPatternStylePropertyId = @as(i32, 30123);
+pub const UIA_StylesPatternId = @as(i32, 10025);
+pub const UIA_StylesShapePropertyId = @as(i32, 30124);
+pub const UIA_StylesStyleIdPropertyId = @as(i32, 30120);
+pub const UIA_StylesStyleNamePropertyId = @as(i32, 30121);
+pub const UIA_SummaryChangeId = @as(i32, 90000);
+pub const UIA_SynchronizedInputPatternId = @as(i32, 10021);
+pub const UIA_SystemAlertEventId = @as(i32, 20023);
+pub const UIA_TabControlTypeId = @as(i32, 50018);
+pub const UIA_TabItemControlTypeId = @as(i32, 50019);
+pub const UIA_TableColumnHeadersPropertyId = @as(i32, 30082);
+pub const UIA_TableControlTypeId = @as(i32, 50036);
+pub const UIA_TableItemColumnHeaderItemsPropertyId = @as(i32, 30085);
+pub const UIA_TableItemPatternId = @as(i32, 10013);
+pub const UIA_TableItemRowHeaderItemsPropertyId = @as(i32, 30084);
+pub const UIA_TablePatternId = @as(i32, 10012);
+pub const UIA_TableRowHeadersPropertyId = @as(i32, 30081);
+pub const UIA_TableRowOrColumnMajorPropertyId = @as(i32, 30083);
+pub const UIA_TabsAttributeId = @as(i32, 40027);
+pub const UIA_Text_TextChangedEventId = @as(i32, 20015);
+pub const UIA_Text_TextSelectionChangedEventId = @as(i32, 20014);
+pub const UIA_TextChildPatternId = @as(i32, 10029);
+pub const UIA_TextControlTypeId = @as(i32, 50020);
+pub const UIA_TextEdit_ConversionTargetChangedEventId = @as(i32, 20033);
+pub const UIA_TextEdit_TextChangedEventId = @as(i32, 20032);
+pub const UIA_TextEditPatternId = @as(i32, 10032);
+pub const UIA_TextFlowDirectionsAttributeId = @as(i32, 40028);
+pub const UIA_TextPattern2Id = @as(i32, 10024);
+pub const UIA_TextPatternId = @as(i32, 10014);
+pub const UIA_ThumbControlTypeId = @as(i32, 50027);
+pub const UIA_TitleBarControlTypeId = @as(i32, 50037);
+pub const UIA_TogglePatternId = @as(i32, 10015);
+pub const UIA_ToggleToggleStatePropertyId = @as(i32, 30086);
+pub const UIA_ToolBarControlTypeId = @as(i32, 50021);
+pub const UIA_ToolTipClosedEventId = @as(i32, 20001);
+pub const UIA_ToolTipControlTypeId = @as(i32, 50022);
+pub const UIA_ToolTipOpenedEventId = @as(i32, 20000);
+pub const UIA_Transform2CanZoomPropertyId = @as(i32, 30133);
+pub const UIA_Transform2ZoomLevelPropertyId = @as(i32, 30145);
+pub const UIA_Transform2ZoomMaximumPropertyId = @as(i32, 30147);
+pub const UIA_Transform2ZoomMinimumPropertyId = @as(i32, 30146);
+pub const UIA_TransformCanMovePropertyId = @as(i32, 30087);
+pub const UIA_TransformCanResizePropertyId = @as(i32, 30088);
+pub const UIA_TransformCanRotatePropertyId = @as(i32, 30089);
+pub const UIA_TransformPattern2Id = @as(i32, 10028);
+pub const UIA_TransformPatternId = @as(i32, 10016);
+pub const UIA_TreeControlTypeId = @as(i32, 50023);
+pub const UIA_TreeItemControlTypeId = @as(i32, 50024);
+pub const UIA_UnderlineColorAttributeId = @as(i32, 40029);
+pub const UIA_UnderlineStyleAttributeId = @as(i32, 40030);
+pub const UIA_ValueIsReadOnlyPropertyId = @as(i32, 30046);
+pub const UIA_ValuePatternId = @as(i32, 10002);
+pub const UIA_ValueValuePropertyId = @as(i32, 30045);
+pub const UIA_VirtualizedItemPatternId = @as(i32, 10020);
+pub const UIA_VisualEffectsPropertyId = @as(i32, 30163);
+pub const UIA_Window_WindowClosedEventId = @as(i32, 20017);
+pub const UIA_Window_WindowOpenedEventId = @as(i32, 20016);
+pub const UIA_WindowCanMaximizePropertyId = @as(i32, 30073);
+pub const UIA_WindowCanMinimizePropertyId = @as(i32, 30074);
+pub const UIA_WindowControlTypeId = @as(i32, 50032);
+pub const UIA_WindowIsModalPropertyId = @as(i32, 30077);
+pub const UIA_WindowIsTopmostPropertyId = @as(i32, 30078);
+pub const UIA_WindowPatternId = @as(i32, 10009);
+pub const UIA_WindowWindowInteractionStatePropertyId = @as(i32, 30076);
+pub const UIA_WindowWindowVisualStatePropertyId = @as(i32, 30075);
+pub const UiaAppendRuntimeId = @as(u32, 3);
+pub const UiaRootObjectId = @as(i32, -25);
+pub const Value_IsReadOnly_Property_GUID = Guid.initString("eb090f30-e24c-4799-a705-0d247bc037f8");
+pub const Value_Pattern_GUID = Guid.initString("17faad9e-c877-475b-b933-77332779b637");
+pub const Value_Value_Property_GUID = Guid.initString("e95f5e64-269f-4a85-ba99-4092c3ea2986");
+pub const VirtualizedItem_Pattern_GUID = Guid.initString("f510173e-2e71-45e9-a6e5-62f6ed8289d5");
+pub const VisualEffects_Property_GUID = Guid.initString("e61a8565-aad9-46d7-9e70-4e8a8420d420");
+pub const Window_CanMaximize_Property_GUID = Guid.initString("64fff53f-635d-41c1-950c-cb5adfbe28e3");
+pub const Window_CanMinimize_Property_GUID = Guid.initString("b73b4625-5988-4b97-b4c2-a6fe6e78c8c6");
+pub const Window_Control_GUID = Guid.initString("e13a7242-f462-4f4d-aec1-53b28d6c3290");
+pub const Window_IsModal_Property_GUID = Guid.initString("ff4e6892-37b9-4fca-8532-ffe674ecfeed");
+pub const Window_IsTopmost_Property_GUID = Guid.initString("ef7d85d3-0937-4962-9241-b62345f24041");
+pub const Window_Pattern_GUID = Guid.initString("27901735-c760-4994-ad11-5919e606b110");
+pub const Window_WindowClosed_Event_GUID = Guid.initString("edf141f8-fa67-4e22-bbf7-944e05735ee2");
+pub const Window_WindowInteractionState_Property_GUID = Guid.initString("4fed26a4-0455-4fa2-b21c-c4da2db1ff9c");
+pub const Window_WindowOpened_Event_GUID = Guid.initString("d3e81d06-de45-4f2f-9633-de9e02fb65af");
+pub const Window_WindowVisualState_Property_GUID = Guid.initString("4ab7905f-e860-453e-a30a-f6431e5daad5");
 
 //--------------------------------------------------------------------------------
 // Section: Types (243)
 //--------------------------------------------------------------------------------
-pub const STICKYKEYS_FLAGS = packed struct(u32) {
-    STICKYKEYSON: u1 = 0,
-    AVAILABLE: u1 = 0,
-    HOTKEYACTIVE: u1 = 0,
-    CONFIRMHOTKEY: u1 = 0,
-    HOTKEYSOUND: u1 = 0,
-    INDICATOR: u1 = 0,
-    AUDIBLEFEEDBACK: u1 = 0,
-    TRISTATE: u1 = 0,
-    TWOKEYSOFF: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    LSHIFTLOCKED: u1 = 0,
-    RSHIFTLOCKED: u1 = 0,
-    LCTLLOCKED: u1 = 0,
-    RCTLLOCKED: u1 = 0,
-    LALTLOCKED: u1 = 0,
-    RALTLOCKED: u1 = 0,
-    LWINLOCKED: u1 = 0,
-    RWINLOCKED: u1 = 0,
-    LSHIFTLATCHED: u1 = 0,
-    RSHIFTLATCHED: u1 = 0,
-    LCTLLATCHED: u1 = 0,
-    RCTLLATCHED: u1 = 0,
-    LALTLATCHED: u1 = 0,
-    RALTLATCHED: u1 = 0,
-    LWINLATCHED: u1 = 0,
-    RWINLATCHED: u1 = 0,
-};
-pub const SKF_STICKYKEYSON = STICKYKEYS_FLAGS{ .STICKYKEYSON = 1 };
-pub const SKF_AVAILABLE = STICKYKEYS_FLAGS{ .AVAILABLE = 1 };
-pub const SKF_HOTKEYACTIVE = STICKYKEYS_FLAGS{ .HOTKEYACTIVE = 1 };
-pub const SKF_CONFIRMHOTKEY = STICKYKEYS_FLAGS{ .CONFIRMHOTKEY = 1 };
-pub const SKF_HOTKEYSOUND = STICKYKEYS_FLAGS{ .HOTKEYSOUND = 1 };
-pub const SKF_INDICATOR = STICKYKEYS_FLAGS{ .INDICATOR = 1 };
-pub const SKF_AUDIBLEFEEDBACK = STICKYKEYS_FLAGS{ .AUDIBLEFEEDBACK = 1 };
-pub const SKF_TRISTATE = STICKYKEYS_FLAGS{ .TRISTATE = 1 };
-pub const SKF_TWOKEYSOFF = STICKYKEYS_FLAGS{ .TWOKEYSOFF = 1 };
-pub const SKF_LALTLATCHED = STICKYKEYS_FLAGS{ .LALTLATCHED = 1 };
-pub const SKF_LCTLLATCHED = STICKYKEYS_FLAGS{ .LCTLLATCHED = 1 };
-pub const SKF_LSHIFTLATCHED = STICKYKEYS_FLAGS{ .LSHIFTLATCHED = 1 };
-pub const SKF_RALTLATCHED = STICKYKEYS_FLAGS{ .RALTLATCHED = 1 };
-pub const SKF_RCTLLATCHED = STICKYKEYS_FLAGS{ .RCTLLATCHED = 1 };
-pub const SKF_RSHIFTLATCHED = STICKYKEYS_FLAGS{ .RSHIFTLATCHED = 1 };
-pub const SKF_LWINLATCHED = STICKYKEYS_FLAGS{ .LWINLATCHED = 1 };
-pub const SKF_RWINLATCHED = STICKYKEYS_FLAGS{ .RWINLATCHED = 1 };
-pub const SKF_LALTLOCKED = STICKYKEYS_FLAGS{ .LALTLOCKED = 1 };
-pub const SKF_LCTLLOCKED = STICKYKEYS_FLAGS{ .LCTLLOCKED = 1 };
-pub const SKF_LSHIFTLOCKED = STICKYKEYS_FLAGS{ .LSHIFTLOCKED = 1 };
-pub const SKF_RALTLOCKED = STICKYKEYS_FLAGS{ .RALTLOCKED = 1 };
-pub const SKF_RCTLLOCKED = STICKYKEYS_FLAGS{ .RCTLLOCKED = 1 };
-pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS{ .RSHIFTLOCKED = 1 };
-pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS{ .LWINLOCKED = 1 };
-pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS{ .RWINLOCKED = 1 };
-
-pub const SOUNDSENTRY_FLAGS = packed struct(u32) {
-    SOUNDSENTRYON: u1 = 0,
-    AVAILABLE: u1 = 0,
-    INDICATOR: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS{ .SOUNDSENTRYON = 1 };
-pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS{ .AVAILABLE = 1 };
-pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS{ .INDICATOR = 1 };
-
 pub const ACC_UTILITY_STATE_FLAGS = packed struct(u32) {
     ON_SCREEN_KEYBOARD_ACTIVE: u1 = 0,
     TOUCH_MODIFICATION_ACTIVE: u1 = 0,
@@ -1065,50 +967,275 @@ pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS{ .TOUCH_MODI
 pub const ANRUS_PRIORITY_AUDIO_ACTIVE = ACC_UTILITY_STATE_FLAGS{ .PRIORITY_AUDIO_ACTIVE = 1 };
 pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = ACC_UTILITY_STATE_FLAGS{ .PRIORITY_AUDIO_ACTIVE_NODUCK = 1 };
 
-pub const SOUND_SENTRY_GRAPHICS_EFFECT = enum(u32) {
-    DISPLAY = 3,
-    NONE = 0,
+pub const ACCESSTIMEOUT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iTimeOutMSec: u32,
 };
-pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
-pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
 
-pub const SERIALKEYS_FLAGS = packed struct(u32) {
-    SERIALKEYSON: u1 = 0,
-    AVAILABLE: u1 = 0,
-    INDICATOR: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const ActiveEnd = enum(i32) {
+    None = 0,
+    Start = 1,
+    End = 2,
 };
-pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS{ .AVAILABLE = 1 };
-pub const SERKF_INDICATOR = SERIALKEYS_FLAGS{ .INDICATOR = 1 };
-pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS{ .SERIALKEYSON = 1 };
+pub const ActiveEnd_None = ActiveEnd.None;
+pub const ActiveEnd_Start = ActiveEnd.Start;
+pub const ActiveEnd_End = ActiveEnd.End;
+
+pub const AnimationStyle = enum(i32) {
+    None = 0,
+    LasVegasLights = 1,
+    BlinkingBackground = 2,
+    SparkleText = 3,
+    MarchingBlackAnts = 4,
+    MarchingRedAnts = 5,
+    Shimmer = 6,
+    Other = -1,
+};
+pub const AnimationStyle_None = AnimationStyle.None;
+pub const AnimationStyle_LasVegasLights = AnimationStyle.LasVegasLights;
+pub const AnimationStyle_BlinkingBackground = AnimationStyle.BlinkingBackground;
+pub const AnimationStyle_SparkleText = AnimationStyle.SparkleText;
+pub const AnimationStyle_MarchingBlackAnts = AnimationStyle.MarchingBlackAnts;
+pub const AnimationStyle_MarchingRedAnts = AnimationStyle.MarchingRedAnts;
+pub const AnimationStyle_Shimmer = AnimationStyle.Shimmer;
+pub const AnimationStyle_Other = AnimationStyle.Other;
+
+pub const AnnoScope = enum(i32) {
+    THIS = 0,
+    CONTAINER = 1,
+};
+pub const ANNO_THIS = AnnoScope.THIS;
+pub const ANNO_CONTAINER = AnnoScope.CONTAINER;
+
+pub const AsyncContentLoadedState = enum(i32) {
+    Beginning = 0,
+    Progress = 1,
+    Completed = 2,
+};
+pub const AsyncContentLoadedState_Beginning = AsyncContentLoadedState.Beginning;
+pub const AsyncContentLoadedState_Progress = AsyncContentLoadedState.Progress;
+pub const AsyncContentLoadedState_Completed = AsyncContentLoadedState.Completed;
+
+pub const AutomationElementMode = enum(i32) {
+    None = 0,
+    Full = 1,
+};
+pub const AutomationElementMode_None = AutomationElementMode.None;
+pub const AutomationElementMode_Full = AutomationElementMode.Full;
+
+pub const AutomationIdentifierType = enum(i32) {
+    Property = 0,
+    Pattern = 1,
+    Event = 2,
+    ControlType = 3,
+    TextAttribute = 4,
+    LandmarkType = 5,
+    Annotation = 6,
+    Changes = 7,
+    Style = 8,
+};
+pub const AutomationIdentifierType_Property = AutomationIdentifierType.Property;
+pub const AutomationIdentifierType_Pattern = AutomationIdentifierType.Pattern;
+pub const AutomationIdentifierType_Event = AutomationIdentifierType.Event;
+pub const AutomationIdentifierType_ControlType = AutomationIdentifierType.ControlType;
+pub const AutomationIdentifierType_TextAttribute = AutomationIdentifierType.TextAttribute;
+pub const AutomationIdentifierType_LandmarkType = AutomationIdentifierType.LandmarkType;
+pub const AutomationIdentifierType_Annotation = AutomationIdentifierType.Annotation;
+pub const AutomationIdentifierType_Changes = AutomationIdentifierType.Changes;
+pub const AutomationIdentifierType_Style = AutomationIdentifierType.Style;
+
+pub const BulletStyle = enum(i32) {
+    None = 0,
+    HollowRoundBullet = 1,
+    FilledRoundBullet = 2,
+    HollowSquareBullet = 3,
+    FilledSquareBullet = 4,
+    DashBullet = 5,
+    Other = -1,
+};
+pub const BulletStyle_None = BulletStyle.None;
+pub const BulletStyle_HollowRoundBullet = BulletStyle.HollowRoundBullet;
+pub const BulletStyle_FilledRoundBullet = BulletStyle.FilledRoundBullet;
+pub const BulletStyle_HollowSquareBullet = BulletStyle.HollowSquareBullet;
+pub const BulletStyle_FilledSquareBullet = BulletStyle.FilledSquareBullet;
+pub const BulletStyle_DashBullet = BulletStyle.DashBullet;
+pub const BulletStyle_Other = BulletStyle.Other;
+
+const CLSID_CAccPropServices_Value = Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
+pub const CLSID_CAccPropServices = &CLSID_CAccPropServices_Value;
+
+pub const CapStyle = enum(i32) {
+    None = 0,
+    SmallCap = 1,
+    AllCap = 2,
+    AllPetiteCaps = 3,
+    PetiteCaps = 4,
+    Unicase = 5,
+    Titling = 6,
+    Other = -1,
+};
+pub const CapStyle_None = CapStyle.None;
+pub const CapStyle_SmallCap = CapStyle.SmallCap;
+pub const CapStyle_AllCap = CapStyle.AllCap;
+pub const CapStyle_AllPetiteCaps = CapStyle.AllPetiteCaps;
+pub const CapStyle_PetiteCaps = CapStyle.PetiteCaps;
+pub const CapStyle_Unicase = CapStyle.Unicase;
+pub const CapStyle_Titling = CapStyle.Titling;
+pub const CapStyle_Other = CapStyle.Other;
+
+pub const CaretBidiMode = enum(i32) {
+    LTR = 0,
+    RTL = 1,
+};
+pub const CaretBidiMode_LTR = CaretBidiMode.LTR;
+pub const CaretBidiMode_RTL = CaretBidiMode.RTL;
+
+pub const CaretPosition = enum(i32) {
+    Unknown = 0,
+    EndOfLine = 1,
+    BeginningOfLine = 2,
+};
+pub const CaretPosition_Unknown = CaretPosition.Unknown;
+pub const CaretPosition_EndOfLine = CaretPosition.EndOfLine;
+pub const CaretPosition_BeginningOfLine = CaretPosition.BeginningOfLine;
+
+pub const CoalesceEventsOptions = enum(i32) {
+    Disabled = 0,
+    Enabled = 1,
+};
+pub const CoalesceEventsOptions_Disabled = CoalesceEventsOptions.Disabled;
+pub const CoalesceEventsOptions_Enabled = CoalesceEventsOptions.Enabled;
+
+pub const ConditionType = enum(i32) {
+    True = 0,
+    False = 1,
+    Property = 2,
+    And = 3,
+    Or = 4,
+    Not = 5,
+};
+pub const ConditionType_True = ConditionType.True;
+pub const ConditionType_False = ConditionType.False;
+pub const ConditionType_Property = ConditionType.Property;
+pub const ConditionType_And = ConditionType.And;
+pub const ConditionType_Or = ConditionType.Or;
+pub const ConditionType_Not = ConditionType.Not;
+
+pub const ConnectionRecoveryBehaviorOptions = enum(i32) {
+    Disabled = 0,
+    Enabled = 1,
+};
+pub const ConnectionRecoveryBehaviorOptions_Disabled = ConnectionRecoveryBehaviorOptions.Disabled;
+pub const ConnectionRecoveryBehaviorOptions_Enabled = ConnectionRecoveryBehaviorOptions.Enabled;
+
+const CLSID_CUIAutomation_Value = Guid.initString("ff48dba4-60ef-4201-aa87-54103eef594e");
+pub const CLSID_CUIAutomation = &CLSID_CUIAutomation_Value;
+
+const CLSID_CUIAutomation8_Value = Guid.initString("e22ad333-b25f-460c-83d0-0581107395c9");
+pub const CLSID_CUIAutomation8 = &CLSID_CUIAutomation8_Value;
+
+const CLSID_CUIAutomationRegistrar_Value = Guid.initString("6e29fabf-9977-42d1-8d0e-ca7e61ad87e6");
+pub const CLSID_CUIAutomationRegistrar = &CLSID_CUIAutomationRegistrar_Value;
+
+pub const DockPosition = enum(i32) {
+    Top = 0,
+    Left = 1,
+    Bottom = 2,
+    Right = 3,
+    Fill = 4,
+    None = 5,
+};
+pub const DockPosition_Top = DockPosition.Top;
+pub const DockPosition_Left = DockPosition.Left;
+pub const DockPosition_Bottom = DockPosition.Bottom;
+pub const DockPosition_Right = DockPosition.Right;
+pub const DockPosition_Fill = DockPosition.Fill;
+pub const DockPosition_None = DockPosition.None;
+
+pub const EventArgsType = enum(i32) {
+    Simple = 0,
+    PropertyChanged = 1,
+    StructureChanged = 2,
+    AsyncContentLoaded = 3,
+    WindowClosed = 4,
+    TextEditTextChanged = 5,
+    Changes = 6,
+    Notification = 7,
+    ActiveTextPositionChanged = 8,
+    StructuredMarkup = 9,
+};
+pub const EventArgsType_Simple = EventArgsType.Simple;
+pub const EventArgsType_PropertyChanged = EventArgsType.PropertyChanged;
+pub const EventArgsType_StructureChanged = EventArgsType.StructureChanged;
+pub const EventArgsType_AsyncContentLoaded = EventArgsType.AsyncContentLoaded;
+pub const EventArgsType_WindowClosed = EventArgsType.WindowClosed;
+pub const EventArgsType_TextEditTextChanged = EventArgsType.TextEditTextChanged;
+pub const EventArgsType_Changes = EventArgsType.Changes;
+pub const EventArgsType_Notification = EventArgsType.Notification;
+pub const EventArgsType_ActiveTextPositionChanged = EventArgsType.ActiveTextPositionChanged;
+pub const EventArgsType_StructuredMarkup = EventArgsType.StructuredMarkup;
+
+pub const ExpandCollapseState = enum(i32) {
+    Collapsed = 0,
+    Expanded = 1,
+    PartiallyExpanded = 2,
+    LeafNode = 3,
+};
+pub const ExpandCollapseState_Collapsed = ExpandCollapseState.Collapsed;
+pub const ExpandCollapseState_Expanded = ExpandCollapseState.Expanded;
+pub const ExpandCollapseState_PartiallyExpanded = ExpandCollapseState.PartiallyExpanded;
+pub const ExpandCollapseState_LeafNode = ExpandCollapseState.LeafNode;
+
+pub const ExtendedProperty = extern struct {
+    PropertyName: ?BSTR,
+    PropertyValue: ?BSTR,
+};
+
+pub const FillType = enum(i32) {
+    None = 0,
+    Color = 1,
+    Gradient = 2,
+    Picture = 3,
+    Pattern = 4,
+};
+pub const FillType_None = FillType.None;
+pub const FillType_Color = FillType.Color;
+pub const FillType_Gradient = FillType.Gradient;
+pub const FillType_Picture = FillType.Picture;
+pub const FillType_Pattern = FillType.Pattern;
+
+pub const FILTERKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iWaitMSec: u32,
+    iDelayMSec: u32,
+    iRepeatMSec: u32,
+    iBounceMSec: u32,
+};
+
+pub const FlowDirections = enum(i32) {
+    Default = 0,
+    RightToLeft = 1,
+    BottomToTop = 2,
+    Vertical = 4,
+};
+pub const FlowDirections_Default = FlowDirections.Default;
+pub const FlowDirections_RightToLeft = FlowDirections.RightToLeft;
+pub const FlowDirections_BottomToTop = FlowDirections.BottomToTop;
+pub const FlowDirections_Vertical = FlowDirections.Vertical;
+
+pub const HIGHCONTRASTA = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PSTR,
+};
+
+pub const HIGHCONTRASTW = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PWSTR,
+};
 
 pub const HIGHCONTRASTW_FLAGS = packed struct(u32) {
     HIGHCONTRASTON: u1 = 0,
@@ -1153,33 +1280,19 @@ pub const HCF_INDICATOR = HIGHCONTRASTW_FLAGS{ .INDICATOR = 1 };
 pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_FLAGS{ .HOTKEYAVAILABLE = 1 };
 pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_FLAGS{ .OPTION_NOTHEMECHANGE = 1 };
 
-pub const SOUNDSENTRY_TEXT_EFFECT = enum(u32) {
-    BORDER = 2,
-    CHARS = 1,
-    DISPLAY = 3,
-    NONE = 0,
+pub const HorizontalTextAlignment = enum(i32) {
+    Left = 0,
+    Centered = 1,
+    Right = 2,
+    Justified = 3,
 };
-pub const SSTF_BORDER = SOUNDSENTRY_TEXT_EFFECT.BORDER;
-pub const SSTF_CHARS = SOUNDSENTRY_TEXT_EFFECT.CHARS;
-pub const SSTF_DISPLAY = SOUNDSENTRY_TEXT_EFFECT.DISPLAY;
-pub const SSTF_NONE = SOUNDSENTRY_TEXT_EFFECT.NONE;
+pub const HorizontalTextAlignment_Left = HorizontalTextAlignment.Left;
+pub const HorizontalTextAlignment_Centered = HorizontalTextAlignment.Centered;
+pub const HorizontalTextAlignment_Right = HorizontalTextAlignment.Right;
+pub const HorizontalTextAlignment_Justified = HorizontalTextAlignment.Justified;
 
-pub const SOUNDSENTRY_WINDOWS_EFFECT = enum(u32) {
-    CUSTOM = 4,
-    DISPLAY = 3,
-    NONE = 0,
-    TITLE = 1,
-    WINDOW = 2,
-};
-pub const SSWF_CUSTOM = SOUNDSENTRY_WINDOWS_EFFECT.CUSTOM;
-pub const SSWF_DISPLAY = SOUNDSENTRY_WINDOWS_EFFECT.DISPLAY;
-pub const SSWF_NONE = SOUNDSENTRY_WINDOWS_EFFECT.NONE;
-pub const SSWF_TITLE = SOUNDSENTRY_WINDOWS_EFFECT.TITLE;
-pub const SSWF_WINDOW = SOUNDSENTRY_WINDOWS_EFFECT.WINDOW;
-
-// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HWINEVENTHOOK = *opaque{};
+pub const HUIAEVENT = *opaque{};
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HUIANODE = *opaque{};
@@ -1190,97 +1303,9 @@ pub const HUIAPATTERNOBJECT = *opaque{};
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HUIATEXTRANGE = *opaque{};
 
+// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HUIAEVENT = *opaque{};
-
-// TODO: this type is limited to platform 'windows8.0'
-pub const IRicheditWindowlessAccessibility = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateProvider: *const fn(
-            self: *const IRicheditWindowlessAccessibility,
-            pSite: ?*IRawElementProviderWindowlessSite,
-            ppProvider: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateProvider(self: *const IRicheditWindowlessAccessibility, pSite: ?*IRawElementProviderWindowlessSite, ppProvider: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateProvider(self, pSite, ppProvider);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-pub const IRichEditUiaInformation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetBoundaryRectangle: *const fn(
-            self: *const IRichEditUiaInformation,
-            pUiaRect: ?*UiaRect,
-        ) callconv(.winapi) HRESULT,
-        IsVisible: *const fn(
-            self: *const IRichEditUiaInformation,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetBoundaryRectangle(self: *const IRichEditUiaInformation, pUiaRect: ?*UiaRect) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBoundaryRectangle(self, pUiaRect);
-    }
-    pub fn IsVisible(self: *const IRichEditUiaInformation) callconv(.@"inline") HRESULT {
-        return self.vtable.IsVisible(self);
-    }
-};
-
-const CLSID_CAccPropServices_Value = Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
-pub const CLSID_CAccPropServices = &CLSID_CAccPropServices_Value;
-
-pub const LPFNLRESULTFROMOBJECT = *const fn(
-    riid: ?*const Guid,
-    wParam: WPARAM,
-    punk: ?*IUnknown,
-) callconv(.winapi) LRESULT;
-
-pub const LPFNOBJECTFROMLRESULT = *const fn(
-    lResult: LRESULT,
-    riid: ?*const Guid,
-    wParam: WPARAM,
-    ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const LPFNACCESSIBLEOBJECTFROMWINDOW = *const fn(
-    hwnd: ?HWND,
-    dwId: u32,
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const LPFNACCESSIBLEOBJECTFROMPOINT = *const fn(
-    ptScreen: POINT,
-    ppacc: ?*?*IAccessible,
-    pvarChild: ?*VARIANT,
-) callconv(.winapi) HRESULT;
-
-pub const LPFNCREATESTDACCESSIBLEOBJECT = *const fn(
-    hwnd: ?HWND,
-    idObject: i32,
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const LPFNACCESSIBLECHILDREN = *const fn(
-    paccContainer: ?*IAccessible,
-    iChildStart: i32,
-    cChildren: i32,
-    rgvarChildren: ?*VARIANT,
-    pcObtained: ?*i32,
-) callconv(.winapi) HRESULT;
-
-pub const MSAAMENUINFO = extern struct {
-    dwMSAASignature: u32,
-    cchWText: u32,
-    pszWText: ?PWSTR,
-};
+pub const HWINEVENTHOOK = *opaque{};
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IAccessible_Value = Guid.initString("618736e0-3c3d-11cf-810c-00aa00389b71");
@@ -1467,6 +1492,48 @@ pub const IAccessible = extern union {
     }
 };
 
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAccessibleEx_Value = Guid.initString("f8b80ada-2c44-48d0-89be-5ff23c9cd875");
+pub const IID_IAccessibleEx = &IID_IAccessibleEx_Value;
+pub const IAccessibleEx = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetObjectForChild: *const fn(
+            self: *const IAccessibleEx,
+            idChild: i32,
+            pRetVal: ?*?*IAccessibleEx,
+        ) callconv(.winapi) HRESULT,
+        GetIAccessiblePair: *const fn(
+            self: *const IAccessibleEx,
+            ppAcc: ?*?*IAccessible,
+            pidChild: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetRuntimeId: *const fn(
+            self: *const IAccessibleEx,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        ConvertReturnedElement: *const fn(
+            self: *const IAccessibleEx,
+            pIn: ?*IRawElementProviderSimple,
+            ppRetValOut: ?*?*IAccessibleEx,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetObjectForChild(self: *const IAccessibleEx, idChild: i32, pRetVal: ?*?*IAccessibleEx) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectForChild(self, idChild, pRetVal);
+    }
+    pub fn GetIAccessiblePair(self: *const IAccessibleEx, ppAcc: ?*?*IAccessible, pidChild: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIAccessiblePair(self, ppAcc, pidChild);
+    }
+    pub fn GetRuntimeId(self: *const IAccessibleEx, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRuntimeId(self, pRetVal);
+    }
+    pub fn ConvertReturnedElement(self: *const IAccessibleEx, pIn: ?*IRawElementProviderSimple, ppRetValOut: ?*?*IAccessibleEx) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertReturnedElement(self, pIn, ppRetValOut);
+    }
+};
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IAccessibleHandler_Value = Guid.initString("03022430-abc4-11d0-bde2-00aa001a1953");
 pub const IID_IAccessibleHandler = &IID_IAccessibleHandler_Value;
@@ -1484,6 +1551,32 @@ pub const IAccessibleHandler = extern union {
     IUnknown: IUnknown,
     pub fn AccessibleObjectFromID(self: *const IAccessibleHandler, hwnd: i32, lObjectID: i32, pIAccessible: ?*?*IAccessible) callconv(.@"inline") HRESULT {
         return self.vtable.AccessibleObjectFromID(self, hwnd, lObjectID, pIAccessible);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAccessibleHostingElementProviders_Value = Guid.initString("33ac331b-943e-4020-b295-db37784974a3");
+pub const IID_IAccessibleHostingElementProviders = &IID_IAccessibleHostingElementProviders_Value;
+pub const IAccessibleHostingElementProviders = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetEmbeddedFragmentRoots: *const fn(
+            self: *const IAccessibleHostingElementProviders,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetObjectIdForProvider: *const fn(
+            self: *const IAccessibleHostingElementProviders,
+            pProvider: ?*IRawElementProviderSimple,
+            pidObject: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetEmbeddedFragmentRoots(self: *const IAccessibleHostingElementProviders, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEmbeddedFragmentRoots(self, pRetVal);
+    }
+    pub fn GetObjectIdForProvider(self: *const IAccessibleHostingElementProviders, pProvider: ?*IRawElementProviderSimple, pidObject: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectIdForProvider(self, pProvider, pidObject);
     }
 };
 
@@ -1529,13 +1622,6 @@ pub const IAccessibleWindowlessSite = extern union {
         return self.vtable.GetParentAccessible(self, ppParent);
     }
 };
-
-pub const AnnoScope = enum(i32) {
-    THIS = 0,
-    CONTAINER = 1,
-};
-pub const ANNO_THIS = AnnoScope.THIS;
-pub const ANNO_CONTAINER = AnnoScope.CONTAINER;
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IAccIdentity_Value = Guid.initString("7852b78d-1cfd-41c1-a615-9c0c85960b5f");
@@ -1752,1001 +1838,72 @@ pub const IAccPropServices = extern union {
     }
 };
 
-const CLSID_CUIAutomation_Value = Guid.initString("ff48dba4-60ef-4201-aa87-54103eef594e");
-pub const CLSID_CUIAutomation = &CLSID_CUIAutomation_Value;
-
-const CLSID_CUIAutomation8_Value = Guid.initString("e22ad333-b25f-460c-83d0-0581107395c9");
-pub const CLSID_CUIAutomation8 = &CLSID_CUIAutomation8_Value;
-
-const CLSID_CUIAutomationRegistrar_Value = Guid.initString("6e29fabf-9977-42d1-8d0e-ca7e61ad87e6");
-pub const CLSID_CUIAutomationRegistrar = &CLSID_CUIAutomationRegistrar_Value;
-
-pub const NavigateDirection = enum(i32) {
-    Parent = 0,
-    NextSibling = 1,
-    PreviousSibling = 2,
-    FirstChild = 3,
-    LastChild = 4,
-};
-pub const NavigateDirection_Parent = NavigateDirection.Parent;
-pub const NavigateDirection_NextSibling = NavigateDirection.NextSibling;
-pub const NavigateDirection_PreviousSibling = NavigateDirection.PreviousSibling;
-pub const NavigateDirection_FirstChild = NavigateDirection.FirstChild;
-pub const NavigateDirection_LastChild = NavigateDirection.LastChild;
-
-pub const ProviderOptions = enum(i32) {
-    ClientSideProvider = 1,
-    ServerSideProvider = 2,
-    NonClientAreaProvider = 4,
-    OverrideProvider = 8,
-    ProviderOwnsSetFocus = 16,
-    UseComThreading = 32,
-    RefuseNonClientSupport = 64,
-    HasNativeIAccessible = 128,
-    UseClientCoordinates = 256,
-};
-pub const ProviderOptions_ClientSideProvider = ProviderOptions.ClientSideProvider;
-pub const ProviderOptions_ServerSideProvider = ProviderOptions.ServerSideProvider;
-pub const ProviderOptions_NonClientAreaProvider = ProviderOptions.NonClientAreaProvider;
-pub const ProviderOptions_OverrideProvider = ProviderOptions.OverrideProvider;
-pub const ProviderOptions_ProviderOwnsSetFocus = ProviderOptions.ProviderOwnsSetFocus;
-pub const ProviderOptions_UseComThreading = ProviderOptions.UseComThreading;
-pub const ProviderOptions_RefuseNonClientSupport = ProviderOptions.RefuseNonClientSupport;
-pub const ProviderOptions_HasNativeIAccessible = ProviderOptions.HasNativeIAccessible;
-pub const ProviderOptions_UseClientCoordinates = ProviderOptions.UseClientCoordinates;
-
-pub const StructureChangeType = enum(i32) {
-    Added = 0,
-    Removed = 1,
-    renInvalidated = 2,
-    renBulkAdded = 3,
-    renBulkRemoved = 4,
-    renReordered = 5,
-};
-pub const StructureChangeType_ChildAdded = StructureChangeType.Added;
-pub const StructureChangeType_ChildRemoved = StructureChangeType.Removed;
-pub const StructureChangeType_ChildrenInvalidated = StructureChangeType.renInvalidated;
-pub const StructureChangeType_ChildrenBulkAdded = StructureChangeType.renBulkAdded;
-pub const StructureChangeType_ChildrenBulkRemoved = StructureChangeType.renBulkRemoved;
-pub const StructureChangeType_ChildrenReordered = StructureChangeType.renReordered;
-
-pub const TextEditChangeType = enum(i32) {
-    None = 0,
-    AutoCorrect = 1,
-    Composition = 2,
-    CompositionFinalized = 3,
-    AutoComplete = 4,
-};
-pub const TextEditChangeType_None = TextEditChangeType.None;
-pub const TextEditChangeType_AutoCorrect = TextEditChangeType.AutoCorrect;
-pub const TextEditChangeType_Composition = TextEditChangeType.Composition;
-pub const TextEditChangeType_CompositionFinalized = TextEditChangeType.CompositionFinalized;
-pub const TextEditChangeType_AutoComplete = TextEditChangeType.AutoComplete;
-
-pub const OrientationType = enum(i32) {
-    None = 0,
-    Horizontal = 1,
-    Vertical = 2,
-};
-pub const OrientationType_None = OrientationType.None;
-pub const OrientationType_Horizontal = OrientationType.Horizontal;
-pub const OrientationType_Vertical = OrientationType.Vertical;
-
-pub const DockPosition = enum(i32) {
-    Top = 0,
-    Left = 1,
-    Bottom = 2,
-    Right = 3,
-    Fill = 4,
-    None = 5,
-};
-pub const DockPosition_Top = DockPosition.Top;
-pub const DockPosition_Left = DockPosition.Left;
-pub const DockPosition_Bottom = DockPosition.Bottom;
-pub const DockPosition_Right = DockPosition.Right;
-pub const DockPosition_Fill = DockPosition.Fill;
-pub const DockPosition_None = DockPosition.None;
-
-pub const ExpandCollapseState = enum(i32) {
-    Collapsed = 0,
-    Expanded = 1,
-    PartiallyExpanded = 2,
-    LeafNode = 3,
-};
-pub const ExpandCollapseState_Collapsed = ExpandCollapseState.Collapsed;
-pub const ExpandCollapseState_Expanded = ExpandCollapseState.Expanded;
-pub const ExpandCollapseState_PartiallyExpanded = ExpandCollapseState.PartiallyExpanded;
-pub const ExpandCollapseState_LeafNode = ExpandCollapseState.LeafNode;
-
-pub const ScrollAmount = enum(i32) {
-    LargeDecrement = 0,
-    SmallDecrement = 1,
-    NoAmount = 2,
-    LargeIncrement = 3,
-    SmallIncrement = 4,
-};
-pub const ScrollAmount_LargeDecrement = ScrollAmount.LargeDecrement;
-pub const ScrollAmount_SmallDecrement = ScrollAmount.SmallDecrement;
-pub const ScrollAmount_NoAmount = ScrollAmount.NoAmount;
-pub const ScrollAmount_LargeIncrement = ScrollAmount.LargeIncrement;
-pub const ScrollAmount_SmallIncrement = ScrollAmount.SmallIncrement;
-
-pub const RowOrColumnMajor = enum(i32) {
-    RowMajor = 0,
-    ColumnMajor = 1,
-    Indeterminate = 2,
-};
-pub const RowOrColumnMajor_RowMajor = RowOrColumnMajor.RowMajor;
-pub const RowOrColumnMajor_ColumnMajor = RowOrColumnMajor.ColumnMajor;
-pub const RowOrColumnMajor_Indeterminate = RowOrColumnMajor.Indeterminate;
-
-pub const ToggleState = enum(i32) {
-    Off = 0,
-    On = 1,
-    Indeterminate = 2,
-};
-pub const ToggleState_Off = ToggleState.Off;
-pub const ToggleState_On = ToggleState.On;
-pub const ToggleState_Indeterminate = ToggleState.Indeterminate;
-
-pub const WindowVisualState = enum(i32) {
-    Normal = 0,
-    Maximized = 1,
-    Minimized = 2,
-};
-pub const WindowVisualState_Normal = WindowVisualState.Normal;
-pub const WindowVisualState_Maximized = WindowVisualState.Maximized;
-pub const WindowVisualState_Minimized = WindowVisualState.Minimized;
-
-pub const SynchronizedInputType = enum(i32) {
-    KeyUp = 1,
-    KeyDown = 2,
-    LeftMouseUp = 4,
-    LeftMouseDown = 8,
-    RightMouseUp = 16,
-    RightMouseDown = 32,
-};
-pub const SynchronizedInputType_KeyUp = SynchronizedInputType.KeyUp;
-pub const SynchronizedInputType_KeyDown = SynchronizedInputType.KeyDown;
-pub const SynchronizedInputType_LeftMouseUp = SynchronizedInputType.LeftMouseUp;
-pub const SynchronizedInputType_LeftMouseDown = SynchronizedInputType.LeftMouseDown;
-pub const SynchronizedInputType_RightMouseUp = SynchronizedInputType.RightMouseUp;
-pub const SynchronizedInputType_RightMouseDown = SynchronizedInputType.RightMouseDown;
-
-pub const WindowInteractionState = enum(i32) {
-    Running = 0,
-    Closing = 1,
-    ReadyForUserInteraction = 2,
-    BlockedByModalWindow = 3,
-    NotResponding = 4,
-};
-pub const WindowInteractionState_Running = WindowInteractionState.Running;
-pub const WindowInteractionState_Closing = WindowInteractionState.Closing;
-pub const WindowInteractionState_ReadyForUserInteraction = WindowInteractionState.ReadyForUserInteraction;
-pub const WindowInteractionState_BlockedByModalWindow = WindowInteractionState.BlockedByModalWindow;
-pub const WindowInteractionState_NotResponding = WindowInteractionState.NotResponding;
-
-pub const SayAsInterpretAs = enum(i32) {
-    None = 0,
-    Spell = 1,
-    Cardinal = 2,
-    Ordinal = 3,
-    Number = 4,
-    Date = 5,
-    Time = 6,
-    Telephone = 7,
-    Currency = 8,
-    Net = 9,
-    Url = 10,
-    Address = 11,
-    Alphanumeric = 12,
-    Name = 13,
-    Media = 14,
-    Date_MonthDayYear = 15,
-    Date_DayMonthYear = 16,
-    Date_YearMonthDay = 17,
-    Date_YearMonth = 18,
-    Date_MonthYear = 19,
-    Date_DayMonth = 20,
-    Date_MonthDay = 21,
-    Date_Year = 22,
-    Time_HoursMinutesSeconds12 = 23,
-    Time_HoursMinutes12 = 24,
-    Time_HoursMinutesSeconds24 = 25,
-    Time_HoursMinutes24 = 26,
-};
-pub const SayAsInterpretAs_None = SayAsInterpretAs.None;
-pub const SayAsInterpretAs_Spell = SayAsInterpretAs.Spell;
-pub const SayAsInterpretAs_Cardinal = SayAsInterpretAs.Cardinal;
-pub const SayAsInterpretAs_Ordinal = SayAsInterpretAs.Ordinal;
-pub const SayAsInterpretAs_Number = SayAsInterpretAs.Number;
-pub const SayAsInterpretAs_Date = SayAsInterpretAs.Date;
-pub const SayAsInterpretAs_Time = SayAsInterpretAs.Time;
-pub const SayAsInterpretAs_Telephone = SayAsInterpretAs.Telephone;
-pub const SayAsInterpretAs_Currency = SayAsInterpretAs.Currency;
-pub const SayAsInterpretAs_Net = SayAsInterpretAs.Net;
-pub const SayAsInterpretAs_Url = SayAsInterpretAs.Url;
-pub const SayAsInterpretAs_Address = SayAsInterpretAs.Address;
-pub const SayAsInterpretAs_Alphanumeric = SayAsInterpretAs.Alphanumeric;
-pub const SayAsInterpretAs_Name = SayAsInterpretAs.Name;
-pub const SayAsInterpretAs_Media = SayAsInterpretAs.Media;
-pub const SayAsInterpretAs_Date_MonthDayYear = SayAsInterpretAs.Date_MonthDayYear;
-pub const SayAsInterpretAs_Date_DayMonthYear = SayAsInterpretAs.Date_DayMonthYear;
-pub const SayAsInterpretAs_Date_YearMonthDay = SayAsInterpretAs.Date_YearMonthDay;
-pub const SayAsInterpretAs_Date_YearMonth = SayAsInterpretAs.Date_YearMonth;
-pub const SayAsInterpretAs_Date_MonthYear = SayAsInterpretAs.Date_MonthYear;
-pub const SayAsInterpretAs_Date_DayMonth = SayAsInterpretAs.Date_DayMonth;
-pub const SayAsInterpretAs_Date_MonthDay = SayAsInterpretAs.Date_MonthDay;
-pub const SayAsInterpretAs_Date_Year = SayAsInterpretAs.Date_Year;
-pub const SayAsInterpretAs_Time_HoursMinutesSeconds12 = SayAsInterpretAs.Time_HoursMinutesSeconds12;
-pub const SayAsInterpretAs_Time_HoursMinutes12 = SayAsInterpretAs.Time_HoursMinutes12;
-pub const SayAsInterpretAs_Time_HoursMinutesSeconds24 = SayAsInterpretAs.Time_HoursMinutesSeconds24;
-pub const SayAsInterpretAs_Time_HoursMinutes24 = SayAsInterpretAs.Time_HoursMinutes24;
-
-pub const TextUnit = enum(i32) {
-    Character = 0,
-    Format = 1,
-    Word = 2,
-    Line = 3,
-    Paragraph = 4,
-    Page = 5,
-    Document = 6,
-};
-pub const TextUnit_Character = TextUnit.Character;
-pub const TextUnit_Format = TextUnit.Format;
-pub const TextUnit_Word = TextUnit.Word;
-pub const TextUnit_Line = TextUnit.Line;
-pub const TextUnit_Paragraph = TextUnit.Paragraph;
-pub const TextUnit_Page = TextUnit.Page;
-pub const TextUnit_Document = TextUnit.Document;
-
-pub const TextPatternRangeEndpoint = enum(i32) {
-    Start = 0,
-    End = 1,
-};
-pub const TextPatternRangeEndpoint_Start = TextPatternRangeEndpoint.Start;
-pub const TextPatternRangeEndpoint_End = TextPatternRangeEndpoint.End;
-
-pub const SupportedTextSelection = enum(i32) {
-    None = 0,
-    Single = 1,
-    Multiple = 2,
-};
-pub const SupportedTextSelection_None = SupportedTextSelection.None;
-pub const SupportedTextSelection_Single = SupportedTextSelection.Single;
-pub const SupportedTextSelection_Multiple = SupportedTextSelection.Multiple;
-
-pub const LiveSetting = enum(i32) {
-    Off = 0,
-    Polite = 1,
-    Assertive = 2,
-};
-pub const Off = LiveSetting.Off;
-pub const Polite = LiveSetting.Polite;
-pub const Assertive = LiveSetting.Assertive;
-
-pub const ActiveEnd = enum(i32) {
-    None = 0,
-    Start = 1,
-    End = 2,
-};
-pub const ActiveEnd_None = ActiveEnd.None;
-pub const ActiveEnd_Start = ActiveEnd.Start;
-pub const ActiveEnd_End = ActiveEnd.End;
-
-pub const CaretPosition = enum(i32) {
-    Unknown = 0,
-    EndOfLine = 1,
-    BeginningOfLine = 2,
-};
-pub const CaretPosition_Unknown = CaretPosition.Unknown;
-pub const CaretPosition_EndOfLine = CaretPosition.EndOfLine;
-pub const CaretPosition_BeginningOfLine = CaretPosition.BeginningOfLine;
-
-pub const CaretBidiMode = enum(i32) {
-    LTR = 0,
-    RTL = 1,
-};
-pub const CaretBidiMode_LTR = CaretBidiMode.LTR;
-pub const CaretBidiMode_RTL = CaretBidiMode.RTL;
-
-pub const ZoomUnit = enum(i32) {
-    NoAmount = 0,
-    LargeDecrement = 1,
-    SmallDecrement = 2,
-    LargeIncrement = 3,
-    SmallIncrement = 4,
-};
-pub const ZoomUnit_NoAmount = ZoomUnit.NoAmount;
-pub const ZoomUnit_LargeDecrement = ZoomUnit.LargeDecrement;
-pub const ZoomUnit_SmallDecrement = ZoomUnit.SmallDecrement;
-pub const ZoomUnit_LargeIncrement = ZoomUnit.LargeIncrement;
-pub const ZoomUnit_SmallIncrement = ZoomUnit.SmallIncrement;
-
-pub const AnimationStyle = enum(i32) {
-    None = 0,
-    LasVegasLights = 1,
-    BlinkingBackground = 2,
-    SparkleText = 3,
-    MarchingBlackAnts = 4,
-    MarchingRedAnts = 5,
-    Shimmer = 6,
-    Other = -1,
-};
-pub const AnimationStyle_None = AnimationStyle.None;
-pub const AnimationStyle_LasVegasLights = AnimationStyle.LasVegasLights;
-pub const AnimationStyle_BlinkingBackground = AnimationStyle.BlinkingBackground;
-pub const AnimationStyle_SparkleText = AnimationStyle.SparkleText;
-pub const AnimationStyle_MarchingBlackAnts = AnimationStyle.MarchingBlackAnts;
-pub const AnimationStyle_MarchingRedAnts = AnimationStyle.MarchingRedAnts;
-pub const AnimationStyle_Shimmer = AnimationStyle.Shimmer;
-pub const AnimationStyle_Other = AnimationStyle.Other;
-
-pub const BulletStyle = enum(i32) {
-    None = 0,
-    HollowRoundBullet = 1,
-    FilledRoundBullet = 2,
-    HollowSquareBullet = 3,
-    FilledSquareBullet = 4,
-    DashBullet = 5,
-    Other = -1,
-};
-pub const BulletStyle_None = BulletStyle.None;
-pub const BulletStyle_HollowRoundBullet = BulletStyle.HollowRoundBullet;
-pub const BulletStyle_FilledRoundBullet = BulletStyle.FilledRoundBullet;
-pub const BulletStyle_HollowSquareBullet = BulletStyle.HollowSquareBullet;
-pub const BulletStyle_FilledSquareBullet = BulletStyle.FilledSquareBullet;
-pub const BulletStyle_DashBullet = BulletStyle.DashBullet;
-pub const BulletStyle_Other = BulletStyle.Other;
-
-pub const CapStyle = enum(i32) {
-    None = 0,
-    SmallCap = 1,
-    AllCap = 2,
-    AllPetiteCaps = 3,
-    PetiteCaps = 4,
-    Unicase = 5,
-    Titling = 6,
-    Other = -1,
-};
-pub const CapStyle_None = CapStyle.None;
-pub const CapStyle_SmallCap = CapStyle.SmallCap;
-pub const CapStyle_AllCap = CapStyle.AllCap;
-pub const CapStyle_AllPetiteCaps = CapStyle.AllPetiteCaps;
-pub const CapStyle_PetiteCaps = CapStyle.PetiteCaps;
-pub const CapStyle_Unicase = CapStyle.Unicase;
-pub const CapStyle_Titling = CapStyle.Titling;
-pub const CapStyle_Other = CapStyle.Other;
-
-pub const FillType = enum(i32) {
-    None = 0,
-    Color = 1,
-    Gradient = 2,
-    Picture = 3,
-    Pattern = 4,
-};
-pub const FillType_None = FillType.None;
-pub const FillType_Color = FillType.Color;
-pub const FillType_Gradient = FillType.Gradient;
-pub const FillType_Picture = FillType.Picture;
-pub const FillType_Pattern = FillType.Pattern;
-
-pub const FlowDirections = enum(i32) {
-    Default = 0,
-    RightToLeft = 1,
-    BottomToTop = 2,
-    Vertical = 4,
-};
-pub const FlowDirections_Default = FlowDirections.Default;
-pub const FlowDirections_RightToLeft = FlowDirections.RightToLeft;
-pub const FlowDirections_BottomToTop = FlowDirections.BottomToTop;
-pub const FlowDirections_Vertical = FlowDirections.Vertical;
-
-pub const HorizontalTextAlignment = enum(i32) {
-    Left = 0,
-    Centered = 1,
-    Right = 2,
-    Justified = 3,
-};
-pub const HorizontalTextAlignment_Left = HorizontalTextAlignment.Left;
-pub const HorizontalTextAlignment_Centered = HorizontalTextAlignment.Centered;
-pub const HorizontalTextAlignment_Right = HorizontalTextAlignment.Right;
-pub const HorizontalTextAlignment_Justified = HorizontalTextAlignment.Justified;
-
-pub const OutlineStyles = enum(i32) {
-    None = 0,
-    Outline = 1,
-    Shadow = 2,
-    Engraved = 4,
-    Embossed = 8,
-};
-pub const OutlineStyles_None = OutlineStyles.None;
-pub const OutlineStyles_Outline = OutlineStyles.Outline;
-pub const OutlineStyles_Shadow = OutlineStyles.Shadow;
-pub const OutlineStyles_Engraved = OutlineStyles.Engraved;
-pub const OutlineStyles_Embossed = OutlineStyles.Embossed;
-
-pub const TextDecorationLineStyle = enum(i32) {
-    None = 0,
-    Single = 1,
-    WordsOnly = 2,
-    Double = 3,
-    Dot = 4,
-    Dash = 5,
-    DashDot = 6,
-    DashDotDot = 7,
-    Wavy = 8,
-    ThickSingle = 9,
-    DoubleWavy = 11,
-    ThickWavy = 12,
-    LongDash = 13,
-    ThickDash = 14,
-    ThickDashDot = 15,
-    ThickDashDotDot = 16,
-    ThickDot = 17,
-    ThickLongDash = 18,
-    Other = -1,
-};
-pub const TextDecorationLineStyle_None = TextDecorationLineStyle.None;
-pub const TextDecorationLineStyle_Single = TextDecorationLineStyle.Single;
-pub const TextDecorationLineStyle_WordsOnly = TextDecorationLineStyle.WordsOnly;
-pub const TextDecorationLineStyle_Double = TextDecorationLineStyle.Double;
-pub const TextDecorationLineStyle_Dot = TextDecorationLineStyle.Dot;
-pub const TextDecorationLineStyle_Dash = TextDecorationLineStyle.Dash;
-pub const TextDecorationLineStyle_DashDot = TextDecorationLineStyle.DashDot;
-pub const TextDecorationLineStyle_DashDotDot = TextDecorationLineStyle.DashDotDot;
-pub const TextDecorationLineStyle_Wavy = TextDecorationLineStyle.Wavy;
-pub const TextDecorationLineStyle_ThickSingle = TextDecorationLineStyle.ThickSingle;
-pub const TextDecorationLineStyle_DoubleWavy = TextDecorationLineStyle.DoubleWavy;
-pub const TextDecorationLineStyle_ThickWavy = TextDecorationLineStyle.ThickWavy;
-pub const TextDecorationLineStyle_LongDash = TextDecorationLineStyle.LongDash;
-pub const TextDecorationLineStyle_ThickDash = TextDecorationLineStyle.ThickDash;
-pub const TextDecorationLineStyle_ThickDashDot = TextDecorationLineStyle.ThickDashDot;
-pub const TextDecorationLineStyle_ThickDashDotDot = TextDecorationLineStyle.ThickDashDotDot;
-pub const TextDecorationLineStyle_ThickDot = TextDecorationLineStyle.ThickDot;
-pub const TextDecorationLineStyle_ThickLongDash = TextDecorationLineStyle.ThickLongDash;
-pub const TextDecorationLineStyle_Other = TextDecorationLineStyle.Other;
-
-pub const VisualEffects = enum(i32) {
-    None = 0,
-    Shadow = 1,
-    Reflection = 2,
-    Glow = 4,
-    SoftEdges = 8,
-    Bevel = 16,
-};
-pub const VisualEffects_None = VisualEffects.None;
-pub const VisualEffects_Shadow = VisualEffects.Shadow;
-pub const VisualEffects_Reflection = VisualEffects.Reflection;
-pub const VisualEffects_Glow = VisualEffects.Glow;
-pub const VisualEffects_SoftEdges = VisualEffects.SoftEdges;
-pub const VisualEffects_Bevel = VisualEffects.Bevel;
-
-pub const NotificationProcessing = enum(i32) {
-    ImportantAll = 0,
-    ImportantMostRecent = 1,
-    All = 2,
-    MostRecent = 3,
-    CurrentThenMostRecent = 4,
-};
-pub const NotificationProcessing_ImportantAll = NotificationProcessing.ImportantAll;
-pub const NotificationProcessing_ImportantMostRecent = NotificationProcessing.ImportantMostRecent;
-pub const NotificationProcessing_All = NotificationProcessing.All;
-pub const NotificationProcessing_MostRecent = NotificationProcessing.MostRecent;
-pub const NotificationProcessing_CurrentThenMostRecent = NotificationProcessing.CurrentThenMostRecent;
-
-pub const NotificationKind = enum(i32) {
-    ItemAdded = 0,
-    ItemRemoved = 1,
-    ActionCompleted = 2,
-    ActionAborted = 3,
-    Other = 4,
-};
-pub const NotificationKind_ItemAdded = NotificationKind.ItemAdded;
-pub const NotificationKind_ItemRemoved = NotificationKind.ItemRemoved;
-pub const NotificationKind_ActionCompleted = NotificationKind.ActionCompleted;
-pub const NotificationKind_ActionAborted = NotificationKind.ActionAborted;
-pub const NotificationKind_Other = NotificationKind.Other;
-
-pub const UiaRect = extern struct {
-    left: f64,
-    top: f64,
-    width: f64,
-    height: f64,
-};
-
-pub const UiaPoint = extern struct {
-    x: f64,
-    y: f64,
-};
-
-pub const UiaChangeInfo = extern struct {
-    uiaId: i32,
-    payload: VARIANT,
-    extraInfo: VARIANT,
-};
-
-pub const UIAutomationType = enum(i32) {
-    Int = 1,
-    Bool = 2,
-    String = 3,
-    Double = 4,
-    Point = 5,
-    Rect = 6,
-    Element = 7,
-    Array = 65536,
-    Out = 131072,
-    IntArray = 65537,
-    BoolArray = 65538,
-    StringArray = 65539,
-    DoubleArray = 65540,
-    PointArray = 65541,
-    RectArray = 65542,
-    ElementArray = 65543,
-    OutInt = 131073,
-    OutBool = 131074,
-    OutString = 131075,
-    OutDouble = 131076,
-    OutPoint = 131077,
-    OutRect = 131078,
-    OutElement = 131079,
-    OutIntArray = 196609,
-    OutBoolArray = 196610,
-    OutStringArray = 196611,
-    OutDoubleArray = 196612,
-    OutPointArray = 196613,
-    OutRectArray = 196614,
-    OutElementArray = 196615,
-};
-pub const UIAutomationType_Int = UIAutomationType.Int;
-pub const UIAutomationType_Bool = UIAutomationType.Bool;
-pub const UIAutomationType_String = UIAutomationType.String;
-pub const UIAutomationType_Double = UIAutomationType.Double;
-pub const UIAutomationType_Point = UIAutomationType.Point;
-pub const UIAutomationType_Rect = UIAutomationType.Rect;
-pub const UIAutomationType_Element = UIAutomationType.Element;
-pub const UIAutomationType_Array = UIAutomationType.Array;
-pub const UIAutomationType_Out = UIAutomationType.Out;
-pub const UIAutomationType_IntArray = UIAutomationType.IntArray;
-pub const UIAutomationType_BoolArray = UIAutomationType.BoolArray;
-pub const UIAutomationType_StringArray = UIAutomationType.StringArray;
-pub const UIAutomationType_DoubleArray = UIAutomationType.DoubleArray;
-pub const UIAutomationType_PointArray = UIAutomationType.PointArray;
-pub const UIAutomationType_RectArray = UIAutomationType.RectArray;
-pub const UIAutomationType_ElementArray = UIAutomationType.ElementArray;
-pub const UIAutomationType_OutInt = UIAutomationType.OutInt;
-pub const UIAutomationType_OutBool = UIAutomationType.OutBool;
-pub const UIAutomationType_OutString = UIAutomationType.OutString;
-pub const UIAutomationType_OutDouble = UIAutomationType.OutDouble;
-pub const UIAutomationType_OutPoint = UIAutomationType.OutPoint;
-pub const UIAutomationType_OutRect = UIAutomationType.OutRect;
-pub const UIAutomationType_OutElement = UIAutomationType.OutElement;
-pub const UIAutomationType_OutIntArray = UIAutomationType.OutIntArray;
-pub const UIAutomationType_OutBoolArray = UIAutomationType.OutBoolArray;
-pub const UIAutomationType_OutStringArray = UIAutomationType.OutStringArray;
-pub const UIAutomationType_OutDoubleArray = UIAutomationType.OutDoubleArray;
-pub const UIAutomationType_OutPointArray = UIAutomationType.OutPointArray;
-pub const UIAutomationType_OutRectArray = UIAutomationType.OutRectArray;
-pub const UIAutomationType_OutElementArray = UIAutomationType.OutElementArray;
-
-pub const UIAutomationParameter = extern struct {
-    type: UIAutomationType,
-    pData: ?*anyopaque,
-};
-
-pub const UIAutomationPropertyInfo = extern struct {
-    guid: Guid,
-    pProgrammaticName: ?[*:0]const u16,
-    type: UIAutomationType,
-};
-
-pub const UIAutomationEventInfo = extern struct {
-    guid: Guid,
-    pProgrammaticName: ?[*:0]const u16,
-};
-
-pub const UIAutomationMethodInfo = extern struct {
-    pProgrammaticName: ?[*:0]const u16,
-    doSetFocus: BOOL,
-    cInParameters: u32,
-    cOutParameters: u32,
-    pParameterTypes: ?*UIAutomationType,
-    pParameterNames: ?*?PWSTR,
-};
-
-pub const UIAutomationPatternInfo = extern struct {
-    guid: Guid,
-    pProgrammaticName: ?[*:0]const u16,
-    providerInterfaceId: Guid,
-    clientInterfaceId: Guid,
-    cProperties: u32,
-    pProperties: ?*UIAutomationPropertyInfo,
-    cMethods: u32,
-    pMethods: ?*UIAutomationMethodInfo,
-    cEvents: u32,
-    pEvents: ?*UIAutomationEventInfo,
-    pPatternHandler: ?*IUIAutomationPatternHandler,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IRawElementProviderSimple_Value = Guid.initString("d6dd68d1-86fd-4332-8666-9abedea2d24c");
-pub const IID_IRawElementProviderSimple = &IID_IRawElementProviderSimple_Value;
-pub const IRawElementProviderSimple = extern union {
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAnnotationProvider_Value = Guid.initString("f95c7e80-bd63-4601-9782-445ebff011fc");
+pub const IID_IAnnotationProvider = &IID_IAnnotationProvider_Value;
+pub const IAnnotationProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProviderOptions: *const fn(
-            self: *const IRawElementProviderSimple,
-            pRetVal: ?*ProviderOptions,
-        ) callconv(.winapi) HRESULT,
-        GetPatternProvider: *const fn(
-            self: *const IRawElementProviderSimple,
-            patternId: i32,
-            pRetVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyValue: *const fn(
-            self: *const IRawElementProviderSimple,
-            propertyId: i32,
-            pRetVal: ?*VARIANT,
+        get_AnnotationTypeId: *const fn(
+            self: *const IAnnotationProvider,
+            retVal: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HostRawElementProvider: *const fn(
-            self: *const IRawElementProviderSimple,
-            pRetVal: ?*?*IRawElementProviderSimple,
+        get_AnnotationTypeName: *const fn(
+            self: *const IAnnotationProvider,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Author: *const fn(
+            self: *const IAnnotationProvider,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DateTime: *const fn(
+            self: *const IAnnotationProvider,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Target: *const fn(
+            self: *const IAnnotationProvider,
+            retVal: ?*?*IRawElementProviderSimple,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProviderOptions(self: *const IRawElementProviderSimple, pRetVal: ?*ProviderOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ProviderOptions(self, pRetVal);
+    pub fn get_AnnotationTypeId(self: *const IAnnotationProvider, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AnnotationTypeId(self, retVal);
     }
-    pub fn GetPatternProvider(self: *const IRawElementProviderSimple, patternId: i32, pRetVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPatternProvider(self, patternId, pRetVal);
+    pub fn get_AnnotationTypeName(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AnnotationTypeName(self, retVal);
     }
-    pub fn GetPropertyValue(self: *const IRawElementProviderSimple, propertyId: i32, pRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyValue(self, propertyId, pRetVal);
+    pub fn get_Author(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Author(self, retVal);
     }
-    pub fn get_HostRawElementProvider(self: *const IRawElementProviderSimple, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HostRawElementProvider(self, pRetVal);
+    pub fn get_DateTime(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DateTime(self, retVal);
     }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAccessibleEx_Value = Guid.initString("f8b80ada-2c44-48d0-89be-5ff23c9cd875");
-pub const IID_IAccessibleEx = &IID_IAccessibleEx_Value;
-pub const IAccessibleEx = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetObjectForChild: *const fn(
-            self: *const IAccessibleEx,
-            idChild: i32,
-            pRetVal: ?*?*IAccessibleEx,
-        ) callconv(.winapi) HRESULT,
-        GetIAccessiblePair: *const fn(
-            self: *const IAccessibleEx,
-            ppAcc: ?*?*IAccessible,
-            pidChild: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetRuntimeId: *const fn(
-            self: *const IAccessibleEx,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        ConvertReturnedElement: *const fn(
-            self: *const IAccessibleEx,
-            pIn: ?*IRawElementProviderSimple,
-            ppRetValOut: ?*?*IAccessibleEx,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetObjectForChild(self: *const IAccessibleEx, idChild: i32, pRetVal: ?*?*IAccessibleEx) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectForChild(self, idChild, pRetVal);
-    }
-    pub fn GetIAccessiblePair(self: *const IAccessibleEx, ppAcc: ?*?*IAccessible, pidChild: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIAccessiblePair(self, ppAcc, pidChild);
-    }
-    pub fn GetRuntimeId(self: *const IAccessibleEx, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRuntimeId(self, pRetVal);
-    }
-    pub fn ConvertReturnedElement(self: *const IAccessibleEx, pIn: ?*IRawElementProviderSimple, ppRetValOut: ?*?*IAccessibleEx) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertReturnedElement(self, pIn, ppRetValOut);
+    pub fn get_Target(self: *const IAnnotationProvider, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Target(self, retVal);
     }
 };
 
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IRawElementProviderSimple2_Value = Guid.initString("a0a839a9-8da1-4a82-806a-8e0d44e79f56");
-pub const IID_IRawElementProviderSimple2 = &IID_IRawElementProviderSimple2_Value;
-pub const IRawElementProviderSimple2 = extern union {
-    pub const VTable = extern struct {
-        base: IRawElementProviderSimple.VTable,
-        ShowContextMenu: *const fn(
-            self: *const IRawElementProviderSimple2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRawElementProviderSimple: IRawElementProviderSimple,
-    IUnknown: IUnknown,
-    pub fn ShowContextMenu(self: *const IRawElementProviderSimple2) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowContextMenu(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IRawElementProviderSimple3_Value = Guid.initString("fcf5d820-d7ec-4613-bdf6-42a84ce7daaf");
-pub const IID_IRawElementProviderSimple3 = &IID_IRawElementProviderSimple3_Value;
-pub const IRawElementProviderSimple3 = extern union {
-    pub const VTable = extern struct {
-        base: IRawElementProviderSimple2.VTable,
-        GetMetadataValue: *const fn(
-            self: *const IRawElementProviderSimple3,
-            targetId: i32,
-            metadataId: i32,
-            returnVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRawElementProviderSimple2: IRawElementProviderSimple2,
-    IRawElementProviderSimple: IRawElementProviderSimple,
-    IUnknown: IUnknown,
-    pub fn GetMetadataValue(self: *const IRawElementProviderSimple3, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataValue(self, targetId, metadataId, returnVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IRawElementProviderFragmentRoot_Value = Guid.initString("620ce2a5-ab8f-40a9-86cb-de3c75599b58");
-pub const IID_IRawElementProviderFragmentRoot = &IID_IRawElementProviderFragmentRoot_Value;
-pub const IRawElementProviderFragmentRoot = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ElementProviderFromPoint: *const fn(
-            self: *const IRawElementProviderFragmentRoot,
-            x: f64,
-            y: f64,
-            pRetVal: ?*?*IRawElementProviderFragment,
-        ) callconv(.winapi) HRESULT,
-        GetFocus: *const fn(
-            self: *const IRawElementProviderFragmentRoot,
-            pRetVal: ?*?*IRawElementProviderFragment,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ElementProviderFromPoint(self: *const IRawElementProviderFragmentRoot, x: f64, y: f64, pRetVal: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
-        return self.vtable.ElementProviderFromPoint(self, x, y, pRetVal);
-    }
-    pub fn GetFocus(self: *const IRawElementProviderFragmentRoot, pRetVal: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFocus(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IRawElementProviderFragment_Value = Guid.initString("f7063da8-8359-439c-9297-bbc5299a7d87");
-pub const IID_IRawElementProviderFragment = &IID_IRawElementProviderFragment_Value;
-pub const IRawElementProviderFragment = extern union {
+const IID_ICustomNavigationProvider_Value = Guid.initString("2062a28a-8c07-4b94-8e12-7037c622aeb8");
+pub const IID_ICustomNavigationProvider = &IID_ICustomNavigationProvider_Value;
+pub const ICustomNavigationProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Navigate: *const fn(
-            self: *const IRawElementProviderFragment,
+            self: *const ICustomNavigationProvider,
             direction: NavigateDirection,
-            pRetVal: ?*?*IRawElementProviderFragment,
-        ) callconv(.winapi) HRESULT,
-        GetRuntimeId: *const fn(
-            self: *const IRawElementProviderFragment,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BoundingRectangle: *const fn(
-            self: *const IRawElementProviderFragment,
-            pRetVal: ?*UiaRect,
-        ) callconv(.winapi) HRESULT,
-        GetEmbeddedFragmentRoots: *const fn(
-            self: *const IRawElementProviderFragment,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        SetFocus: *const fn(
-            self: *const IRawElementProviderFragment,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FragmentRoot: *const fn(
-            self: *const IRawElementProviderFragment,
-            pRetVal: ?*?*IRawElementProviderFragmentRoot,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Navigate(self: *const IRawElementProviderFragment, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
-        return self.vtable.Navigate(self, direction, pRetVal);
-    }
-    pub fn GetRuntimeId(self: *const IRawElementProviderFragment, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRuntimeId(self, pRetVal);
-    }
-    pub fn get_BoundingRectangle(self: *const IRawElementProviderFragment, pRetVal: ?*UiaRect) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BoundingRectangle(self, pRetVal);
-    }
-    pub fn GetEmbeddedFragmentRoots(self: *const IRawElementProviderFragment, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEmbeddedFragmentRoots(self, pRetVal);
-    }
-    pub fn SetFocus(self: *const IRawElementProviderFragment) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFocus(self);
-    }
-    pub fn get_FragmentRoot(self: *const IRawElementProviderFragment, pRetVal: ?*?*IRawElementProviderFragmentRoot) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FragmentRoot(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IRawElementProviderAdviseEvents_Value = Guid.initString("a407b27b-0f6d-4427-9292-473c7bf93258");
-pub const IID_IRawElementProviderAdviseEvents = &IID_IRawElementProviderAdviseEvents_Value;
-pub const IRawElementProviderAdviseEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AdviseEventAdded: *const fn(
-            self: *const IRawElementProviderAdviseEvents,
-            eventId: i32,
-            propertyIDs: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        AdviseEventRemoved: *const fn(
-            self: *const IRawElementProviderAdviseEvents,
-            eventId: i32,
-            propertyIDs: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AdviseEventAdded(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseEventAdded(self, eventId, propertyIDs);
-    }
-    pub fn AdviseEventRemoved(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.AdviseEventRemoved(self, eventId, propertyIDs);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IRawElementProviderHwndOverride_Value = Guid.initString("1d5df27c-8947-4425-b8d9-79787bb460b8");
-pub const IID_IRawElementProviderHwndOverride = &IID_IRawElementProviderHwndOverride_Value;
-pub const IRawElementProviderHwndOverride = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOverrideProviderForHwnd: *const fn(
-            self: *const IRawElementProviderHwndOverride,
-            hwnd: ?HWND,
             pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOverrideProviderForHwnd(self: *const IRawElementProviderHwndOverride, hwnd: ?HWND, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOverrideProviderForHwnd(self, hwnd, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IProxyProviderWinEventSink_Value = Guid.initString("4fd82b78-a43e-46ac-9803-0a6969c7c183");
-pub const IID_IProxyProviderWinEventSink = &IID_IProxyProviderWinEventSink_Value;
-pub const IProxyProviderWinEventSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddAutomationPropertyChangedEvent: *const fn(
-            self: *const IProxyProviderWinEventSink,
-            pProvider: ?*IRawElementProviderSimple,
-            id: i32,
-            newValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddAutomationEvent: *const fn(
-            self: *const IProxyProviderWinEventSink,
-            pProvider: ?*IRawElementProviderSimple,
-            id: i32,
-        ) callconv(.winapi) HRESULT,
-        AddStructureChangedEvent: *const fn(
-            self: *const IProxyProviderWinEventSink,
-            pProvider: ?*IRawElementProviderSimple,
-            structureChangeType: StructureChangeType,
-            runtimeId: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddAutomationPropertyChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32, newValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAutomationPropertyChangedEvent(self, pProvider, id, newValue);
-    }
-    pub fn AddAutomationEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAutomationEvent(self, pProvider, id);
-    }
-    pub fn AddStructureChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, structureChangeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.AddStructureChangedEvent(self, pProvider, structureChangeType, runtimeId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IProxyProviderWinEventHandler_Value = Guid.initString("89592ad4-f4e0-43d5-a3b6-bad7e111b435");
-pub const IID_IProxyProviderWinEventHandler = &IID_IProxyProviderWinEventHandler_Value;
-pub const IProxyProviderWinEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RespondToWinEvent: *const fn(
-            self: *const IProxyProviderWinEventHandler,
-            idWinEvent: u32,
-            hwnd: ?HWND,
-            idObject: i32,
-            idChild: i32,
-            pSink: ?*IProxyProviderWinEventSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RespondToWinEvent(self: *const IProxyProviderWinEventHandler, idWinEvent: u32, hwnd: ?HWND, idObject: i32, idChild: i32, pSink: ?*IProxyProviderWinEventSink) callconv(.@"inline") HRESULT {
-        return self.vtable.RespondToWinEvent(self, idWinEvent, hwnd, idObject, idChild, pSink);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IRawElementProviderWindowlessSite_Value = Guid.initString("0a2a93cc-bfad-42ac-9b2e-0991fb0d3ea0");
-pub const IID_IRawElementProviderWindowlessSite = &IID_IRawElementProviderWindowlessSite_Value;
-pub const IRawElementProviderWindowlessSite = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAdjacentFragment: *const fn(
-            self: *const IRawElementProviderWindowlessSite,
-            direction: NavigateDirection,
-            ppParent: ?*?*IRawElementProviderFragment,
-        ) callconv(.winapi) HRESULT,
-        GetRuntimeIdPrefix: *const fn(
-            self: *const IRawElementProviderWindowlessSite,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAdjacentFragment(self: *const IRawElementProviderWindowlessSite, direction: NavigateDirection, ppParent: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAdjacentFragment(self, direction, ppParent);
-    }
-    pub fn GetRuntimeIdPrefix(self: *const IRawElementProviderWindowlessSite, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRuntimeIdPrefix(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAccessibleHostingElementProviders_Value = Guid.initString("33ac331b-943e-4020-b295-db37784974a3");
-pub const IID_IAccessibleHostingElementProviders = &IID_IAccessibleHostingElementProviders_Value;
-pub const IAccessibleHostingElementProviders = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetEmbeddedFragmentRoots: *const fn(
-            self: *const IAccessibleHostingElementProviders,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetObjectIdForProvider: *const fn(
-            self: *const IAccessibleHostingElementProviders,
-            pProvider: ?*IRawElementProviderSimple,
-            pidObject: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetEmbeddedFragmentRoots(self: *const IAccessibleHostingElementProviders, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEmbeddedFragmentRoots(self, pRetVal);
-    }
-    pub fn GetObjectIdForProvider(self: *const IAccessibleHostingElementProviders, pProvider: ?*IRawElementProviderSimple, pidObject: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectIdForProvider(self, pProvider, pidObject);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IRawElementProviderHostingAccessibles_Value = Guid.initString("24be0b07-d37d-487a-98cf-a13ed465e9b3");
-pub const IID_IRawElementProviderHostingAccessibles = &IID_IRawElementProviderHostingAccessibles_Value;
-pub const IRawElementProviderHostingAccessibles = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetEmbeddedAccessibles: *const fn(
-            self: *const IRawElementProviderHostingAccessibles,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetEmbeddedAccessibles(self: *const IRawElementProviderHostingAccessibles, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEmbeddedAccessibles(self, pRetVal);
+    pub fn Navigate(self: *const ICustomNavigationProvider, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.Navigate(self, direction, pRetVal);
     }
 };
 
@@ -2773,6 +1930,75 @@ pub const IDockProvider = extern union {
     }
     pub fn get_DockPosition(self: *const IDockProvider, pRetVal: ?*DockPosition) callconv(.@"inline") HRESULT {
         return self.vtable.get_DockPosition(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDragProvider_Value = Guid.initString("6aa7bbbb-7ff9-497d-904f-d20b897929d8");
+pub const IID_IDragProvider = &IID_IDragProvider_Value;
+pub const IDragProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsGrabbed: *const fn(
+            self: *const IDragProvider,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DropEffect: *const fn(
+            self: *const IDragProvider,
+            pRetVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DropEffects: *const fn(
+            self: *const IDragProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetGrabbedItems: *const fn(
+            self: *const IDragProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_IsGrabbed(self: *const IDragProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsGrabbed(self, pRetVal);
+    }
+    pub fn get_DropEffect(self: *const IDragProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DropEffect(self, pRetVal);
+    }
+    pub fn get_DropEffects(self: *const IDragProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DropEffects(self, pRetVal);
+    }
+    pub fn GetGrabbedItems(self: *const IDragProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGrabbedItems(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDropTargetProvider_Value = Guid.initString("bae82bfd-358a-481c-85a0-d8b4d90a5d61");
+pub const IID_IDropTargetProvider = &IID_IDropTargetProvider_Value;
+pub const IDropTargetProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DropTargetEffect: *const fn(
+            self: *const IDropTargetProvider,
+            pRetVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DropTargetEffects: *const fn(
+            self: *const IDropTargetProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_DropTargetEffect(self: *const IDropTargetProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DropTargetEffect(self, pRetVal);
+    }
+    pub fn get_DropTargetEffects(self: *const IDropTargetProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DropTargetEffects(self, pRetVal);
     }
 };
 
@@ -2804,42 +2030,6 @@ pub const IExpandCollapseProvider = extern union {
     }
     pub fn get_ExpandCollapseState(self: *const IExpandCollapseProvider, pRetVal: ?*ExpandCollapseState) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExpandCollapseState(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IGridProvider_Value = Guid.initString("b17d6187-0907-464b-a168-0ef17a1572b1");
-pub const IID_IGridProvider = &IID_IGridProvider_Value;
-pub const IGridProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetItem: *const fn(
-            self: *const IGridProvider,
-            row: i32,
-            column: i32,
-            pRetVal: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RowCount: *const fn(
-            self: *const IGridProvider,
-            pRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ColumnCount: *const fn(
-            self: *const IGridProvider,
-            pRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetItem(self: *const IGridProvider, row: i32, column: i32, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, row, column, pRetVal);
-    }
-    pub fn get_RowCount(self: *const IGridProvider, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RowCount(self, pRetVal);
-    }
-    pub fn get_ColumnCount(self: *const IGridProvider, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ColumnCount(self, pRetVal);
     }
 };
 
@@ -2895,6 +2085,42 @@ pub const IGridItemProvider = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IGridProvider_Value = Guid.initString("b17d6187-0907-464b-a168-0ef17a1572b1");
+pub const IID_IGridProvider = &IID_IGridProvider_Value;
+pub const IGridProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetItem: *const fn(
+            self: *const IGridProvider,
+            row: i32,
+            column: i32,
+            pRetVal: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RowCount: *const fn(
+            self: *const IGridProvider,
+            pRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ColumnCount: *const fn(
+            self: *const IGridProvider,
+            pRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetItem(self: *const IGridProvider, row: i32, column: i32, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, row, column, pRetVal);
+    }
+    pub fn get_RowCount(self: *const IGridProvider, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RowCount(self, pRetVal);
+    }
+    pub fn get_ColumnCount(self: *const IGridProvider, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ColumnCount(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInvokeProvider_Value = Guid.initString("54fcb24b-e18e-47a2-b4d3-eccbe77599a2");
 pub const IID_IInvokeProvider = &IID_IInvokeProvider_Value;
 pub const IInvokeProvider = extern union {
@@ -2908,6 +2134,144 @@ pub const IInvokeProvider = extern union {
     IUnknown: IUnknown,
     pub fn Invoke(self: *const IInvokeProvider) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IItemContainerProvider_Value = Guid.initString("e747770b-39ce-4382-ab30-d8fb3f336f24");
+pub const IID_IItemContainerProvider = &IID_IItemContainerProvider_Value;
+pub const IItemContainerProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FindItemByProperty: *const fn(
+            self: *const IItemContainerProvider,
+            pStartAfter: ?*IRawElementProviderSimple,
+            propertyId: i32,
+            value: VARIANT,
+            pFound: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn FindItemByProperty(self: *const IItemContainerProvider, pStartAfter: ?*IRawElementProviderSimple, propertyId: i32, value: VARIANT, pFound: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.FindItemByProperty(self, pStartAfter, propertyId, value, pFound);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_ILegacyIAccessibleProvider_Value = Guid.initString("e44c3566-915d-4070-99c6-047bff5a08f5");
+pub const IID_ILegacyIAccessibleProvider = &IID_ILegacyIAccessibleProvider_Value;
+pub const ILegacyIAccessibleProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Select: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            flagsSelect: i32,
+        ) callconv(.winapi) HRESULT,
+        DoDefaultAction: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+        ) callconv(.winapi) HRESULT,
+        SetValue: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            szValue: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        GetIAccessible: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            ppAccessible: ?*?*IAccessible,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ChildId: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pszName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pszValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pszDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Role: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pdwRole: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pdwState: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Help: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pszHelp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_KeyboardShortcut: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pszKeyboardShortcut: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSelection: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pvarSelectedChildren: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultAction: *const fn(
+            self: *const ILegacyIAccessibleProvider,
+            pszDefaultAction: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Select(self: *const ILegacyIAccessibleProvider, flagsSelect: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Select(self, flagsSelect);
+    }
+    pub fn DoDefaultAction(self: *const ILegacyIAccessibleProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.DoDefaultAction(self);
+    }
+    pub fn SetValue(self: *const ILegacyIAccessibleProvider, szValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, szValue);
+    }
+    pub fn GetIAccessible(self: *const ILegacyIAccessibleProvider, ppAccessible: ?*?*IAccessible) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIAccessible(self, ppAccessible);
+    }
+    pub fn get_ChildId(self: *const ILegacyIAccessibleProvider, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ChildId(self, pRetVal);
+    }
+    pub fn get_Name(self: *const ILegacyIAccessibleProvider, pszName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pszName);
+    }
+    pub fn get_Value(self: *const ILegacyIAccessibleProvider, pszValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pszValue);
+    }
+    pub fn get_Description(self: *const ILegacyIAccessibleProvider, pszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pszDescription);
+    }
+    pub fn get_Role(self: *const ILegacyIAccessibleProvider, pdwRole: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Role(self, pdwRole);
+    }
+    pub fn get_State(self: *const ILegacyIAccessibleProvider, pdwState: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, pdwState);
+    }
+    pub fn get_Help(self: *const ILegacyIAccessibleProvider, pszHelp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Help(self, pszHelp);
+    }
+    pub fn get_KeyboardShortcut(self: *const ILegacyIAccessibleProvider, pszKeyboardShortcut: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_KeyboardShortcut(self, pszKeyboardShortcut);
+    }
+    pub fn GetSelection(self: *const ILegacyIAccessibleProvider, pvarSelectedChildren: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelection(self, pvarSelectedChildren);
+    }
+    pub fn get_DefaultAction(self: *const ILegacyIAccessibleProvider, pszDefaultAction: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultAction(self, pszDefaultAction);
     }
 };
 
@@ -2949,6 +2313,83 @@ pub const IMultipleViewProvider = extern union {
     }
     pub fn GetSupportedViews(self: *const IMultipleViewProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetSupportedViews(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IObjectModelProvider_Value = Guid.initString("3ad86ebd-f5ef-483d-bb18-b1042a475d64");
+pub const IID_IObjectModelProvider = &IID_IObjectModelProvider_Value;
+pub const IObjectModelProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetUnderlyingObjectModel: *const fn(
+            self: *const IObjectModelProvider,
+            ppUnknown: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetUnderlyingObjectModel(self: *const IObjectModelProvider, ppUnknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUnderlyingObjectModel(self, ppUnknown);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IProxyProviderWinEventHandler_Value = Guid.initString("89592ad4-f4e0-43d5-a3b6-bad7e111b435");
+pub const IID_IProxyProviderWinEventHandler = &IID_IProxyProviderWinEventHandler_Value;
+pub const IProxyProviderWinEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RespondToWinEvent: *const fn(
+            self: *const IProxyProviderWinEventHandler,
+            idWinEvent: u32,
+            hwnd: ?HWND,
+            idObject: i32,
+            idChild: i32,
+            pSink: ?*IProxyProviderWinEventSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RespondToWinEvent(self: *const IProxyProviderWinEventHandler, idWinEvent: u32, hwnd: ?HWND, idObject: i32, idChild: i32, pSink: ?*IProxyProviderWinEventSink) callconv(.@"inline") HRESULT {
+        return self.vtable.RespondToWinEvent(self, idWinEvent, hwnd, idObject, idChild, pSink);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IProxyProviderWinEventSink_Value = Guid.initString("4fd82b78-a43e-46ac-9803-0a6969c7c183");
+pub const IID_IProxyProviderWinEventSink = &IID_IProxyProviderWinEventSink_Value;
+pub const IProxyProviderWinEventSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddAutomationPropertyChangedEvent: *const fn(
+            self: *const IProxyProviderWinEventSink,
+            pProvider: ?*IRawElementProviderSimple,
+            id: i32,
+            newValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddAutomationEvent: *const fn(
+            self: *const IProxyProviderWinEventSink,
+            pProvider: ?*IRawElementProviderSimple,
+            id: i32,
+        ) callconv(.winapi) HRESULT,
+        AddStructureChangedEvent: *const fn(
+            self: *const IProxyProviderWinEventSink,
+            pProvider: ?*IRawElementProviderSimple,
+            structureChangeType: StructureChangeType,
+            runtimeId: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddAutomationPropertyChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32, newValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAutomationPropertyChangedEvent(self, pProvider, id, newValue);
+    }
+    pub fn AddAutomationEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAutomationEvent(self, pProvider, id);
+    }
+    pub fn AddStructureChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, structureChangeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.AddStructureChangedEvent(self, pProvider, structureChangeType, runtimeId);
     }
 };
 
@@ -3019,6 +2460,300 @@ pub const IRangeValueProvider = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IRawElementProviderAdviseEvents_Value = Guid.initString("a407b27b-0f6d-4427-9292-473c7bf93258");
+pub const IID_IRawElementProviderAdviseEvents = &IID_IRawElementProviderAdviseEvents_Value;
+pub const IRawElementProviderAdviseEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AdviseEventAdded: *const fn(
+            self: *const IRawElementProviderAdviseEvents,
+            eventId: i32,
+            propertyIDs: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        AdviseEventRemoved: *const fn(
+            self: *const IRawElementProviderAdviseEvents,
+            eventId: i32,
+            propertyIDs: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AdviseEventAdded(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseEventAdded(self, eventId, propertyIDs);
+    }
+    pub fn AdviseEventRemoved(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.AdviseEventRemoved(self, eventId, propertyIDs);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IRawElementProviderFragment_Value = Guid.initString("f7063da8-8359-439c-9297-bbc5299a7d87");
+pub const IID_IRawElementProviderFragment = &IID_IRawElementProviderFragment_Value;
+pub const IRawElementProviderFragment = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Navigate: *const fn(
+            self: *const IRawElementProviderFragment,
+            direction: NavigateDirection,
+            pRetVal: ?*?*IRawElementProviderFragment,
+        ) callconv(.winapi) HRESULT,
+        GetRuntimeId: *const fn(
+            self: *const IRawElementProviderFragment,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BoundingRectangle: *const fn(
+            self: *const IRawElementProviderFragment,
+            pRetVal: ?*UiaRect,
+        ) callconv(.winapi) HRESULT,
+        GetEmbeddedFragmentRoots: *const fn(
+            self: *const IRawElementProviderFragment,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        SetFocus: *const fn(
+            self: *const IRawElementProviderFragment,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FragmentRoot: *const fn(
+            self: *const IRawElementProviderFragment,
+            pRetVal: ?*?*IRawElementProviderFragmentRoot,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Navigate(self: *const IRawElementProviderFragment, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
+        return self.vtable.Navigate(self, direction, pRetVal);
+    }
+    pub fn GetRuntimeId(self: *const IRawElementProviderFragment, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRuntimeId(self, pRetVal);
+    }
+    pub fn get_BoundingRectangle(self: *const IRawElementProviderFragment, pRetVal: ?*UiaRect) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BoundingRectangle(self, pRetVal);
+    }
+    pub fn GetEmbeddedFragmentRoots(self: *const IRawElementProviderFragment, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEmbeddedFragmentRoots(self, pRetVal);
+    }
+    pub fn SetFocus(self: *const IRawElementProviderFragment) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFocus(self);
+    }
+    pub fn get_FragmentRoot(self: *const IRawElementProviderFragment, pRetVal: ?*?*IRawElementProviderFragmentRoot) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FragmentRoot(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IRawElementProviderFragmentRoot_Value = Guid.initString("620ce2a5-ab8f-40a9-86cb-de3c75599b58");
+pub const IID_IRawElementProviderFragmentRoot = &IID_IRawElementProviderFragmentRoot_Value;
+pub const IRawElementProviderFragmentRoot = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ElementProviderFromPoint: *const fn(
+            self: *const IRawElementProviderFragmentRoot,
+            x: f64,
+            y: f64,
+            pRetVal: ?*?*IRawElementProviderFragment,
+        ) callconv(.winapi) HRESULT,
+        GetFocus: *const fn(
+            self: *const IRawElementProviderFragmentRoot,
+            pRetVal: ?*?*IRawElementProviderFragment,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ElementProviderFromPoint(self: *const IRawElementProviderFragmentRoot, x: f64, y: f64, pRetVal: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
+        return self.vtable.ElementProviderFromPoint(self, x, y, pRetVal);
+    }
+    pub fn GetFocus(self: *const IRawElementProviderFragmentRoot, pRetVal: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFocus(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IRawElementProviderHostingAccessibles_Value = Guid.initString("24be0b07-d37d-487a-98cf-a13ed465e9b3");
+pub const IID_IRawElementProviderHostingAccessibles = &IID_IRawElementProviderHostingAccessibles_Value;
+pub const IRawElementProviderHostingAccessibles = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetEmbeddedAccessibles: *const fn(
+            self: *const IRawElementProviderHostingAccessibles,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetEmbeddedAccessibles(self: *const IRawElementProviderHostingAccessibles, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEmbeddedAccessibles(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IRawElementProviderHwndOverride_Value = Guid.initString("1d5df27c-8947-4425-b8d9-79787bb460b8");
+pub const IID_IRawElementProviderHwndOverride = &IID_IRawElementProviderHwndOverride_Value;
+pub const IRawElementProviderHwndOverride = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOverrideProviderForHwnd: *const fn(
+            self: *const IRawElementProviderHwndOverride,
+            hwnd: ?HWND,
+            pRetVal: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetOverrideProviderForHwnd(self: *const IRawElementProviderHwndOverride, hwnd: ?HWND, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOverrideProviderForHwnd(self, hwnd, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IRawElementProviderSimple_Value = Guid.initString("d6dd68d1-86fd-4332-8666-9abedea2d24c");
+pub const IID_IRawElementProviderSimple = &IID_IRawElementProviderSimple_Value;
+pub const IRawElementProviderSimple = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ProviderOptions: *const fn(
+            self: *const IRawElementProviderSimple,
+            pRetVal: ?*ProviderOptions,
+        ) callconv(.winapi) HRESULT,
+        GetPatternProvider: *const fn(
+            self: *const IRawElementProviderSimple,
+            patternId: i32,
+            pRetVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyValue: *const fn(
+            self: *const IRawElementProviderSimple,
+            propertyId: i32,
+            pRetVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HostRawElementProvider: *const fn(
+            self: *const IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_ProviderOptions(self: *const IRawElementProviderSimple, pRetVal: ?*ProviderOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ProviderOptions(self, pRetVal);
+    }
+    pub fn GetPatternProvider(self: *const IRawElementProviderSimple, patternId: i32, pRetVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPatternProvider(self, patternId, pRetVal);
+    }
+    pub fn GetPropertyValue(self: *const IRawElementProviderSimple, propertyId: i32, pRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyValue(self, propertyId, pRetVal);
+    }
+    pub fn get_HostRawElementProvider(self: *const IRawElementProviderSimple, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HostRawElementProvider(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IRawElementProviderSimple2_Value = Guid.initString("a0a839a9-8da1-4a82-806a-8e0d44e79f56");
+pub const IID_IRawElementProviderSimple2 = &IID_IRawElementProviderSimple2_Value;
+pub const IRawElementProviderSimple2 = extern union {
+    pub const VTable = extern struct {
+        base: IRawElementProviderSimple.VTable,
+        ShowContextMenu: *const fn(
+            self: *const IRawElementProviderSimple2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRawElementProviderSimple: IRawElementProviderSimple,
+    IUnknown: IUnknown,
+    pub fn ShowContextMenu(self: *const IRawElementProviderSimple2) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowContextMenu(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IRawElementProviderSimple3_Value = Guid.initString("fcf5d820-d7ec-4613-bdf6-42a84ce7daaf");
+pub const IID_IRawElementProviderSimple3 = &IID_IRawElementProviderSimple3_Value;
+pub const IRawElementProviderSimple3 = extern union {
+    pub const VTable = extern struct {
+        base: IRawElementProviderSimple2.VTable,
+        GetMetadataValue: *const fn(
+            self: *const IRawElementProviderSimple3,
+            targetId: i32,
+            metadataId: i32,
+            returnVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRawElementProviderSimple2: IRawElementProviderSimple2,
+    IRawElementProviderSimple: IRawElementProviderSimple,
+    IUnknown: IUnknown,
+    pub fn GetMetadataValue(self: *const IRawElementProviderSimple3, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataValue(self, targetId, metadataId, returnVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IRawElementProviderWindowlessSite_Value = Guid.initString("0a2a93cc-bfad-42ac-9b2e-0991fb0d3ea0");
+pub const IID_IRawElementProviderWindowlessSite = &IID_IRawElementProviderWindowlessSite_Value;
+pub const IRawElementProviderWindowlessSite = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAdjacentFragment: *const fn(
+            self: *const IRawElementProviderWindowlessSite,
+            direction: NavigateDirection,
+            ppParent: ?*?*IRawElementProviderFragment,
+        ) callconv(.winapi) HRESULT,
+        GetRuntimeIdPrefix: *const fn(
+            self: *const IRawElementProviderWindowlessSite,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAdjacentFragment(self: *const IRawElementProviderWindowlessSite, direction: NavigateDirection, ppParent: ?*?*IRawElementProviderFragment) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAdjacentFragment(self, direction, ppParent);
+    }
+    pub fn GetRuntimeIdPrefix(self: *const IRawElementProviderWindowlessSite, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRuntimeIdPrefix(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+pub const IRichEditUiaInformation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBoundaryRectangle: *const fn(
+            self: *const IRichEditUiaInformation,
+            pUiaRect: ?*UiaRect,
+        ) callconv(.winapi) HRESULT,
+        IsVisible: *const fn(
+            self: *const IRichEditUiaInformation,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetBoundaryRectangle(self: *const IRichEditUiaInformation, pUiaRect: ?*UiaRect) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBoundaryRectangle(self, pUiaRect);
+    }
+    pub fn IsVisible(self: *const IRichEditUiaInformation) callconv(.@"inline") HRESULT {
+        return self.vtable.IsVisible(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+pub const IRicheditWindowlessAccessibility = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateProvider: *const fn(
+            self: *const IRicheditWindowlessAccessibility,
+            pSite: ?*IRawElementProviderWindowlessSite,
+            ppProvider: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateProvider(self: *const IRicheditWindowlessAccessibility, pSite: ?*IRawElementProviderWindowlessSite, ppProvider: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateProvider(self, pSite, ppProvider);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IScrollItemProvider_Value = Guid.initString("2360c714-4bf1-4b26-ba65-9b21316127eb");
 pub const IID_IScrollItemProvider = &IID_IScrollItemProvider_Value;
 pub const IScrollItemProvider = extern union {
@@ -3032,84 +2767,6 @@ pub const IScrollItemProvider = extern union {
     IUnknown: IUnknown,
     pub fn ScrollIntoView(self: *const IScrollItemProvider) callconv(.@"inline") HRESULT {
         return self.vtable.ScrollIntoView(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISelectionProvider_Value = Guid.initString("fb8b03af-3bdf-48d4-bd36-1a65793be168");
-pub const IID_ISelectionProvider = &IID_ISelectionProvider_Value;
-pub const ISelectionProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSelection: *const fn(
-            self: *const ISelectionProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanSelectMultiple: *const fn(
-            self: *const ISelectionProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsSelectionRequired: *const fn(
-            self: *const ISelectionProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSelection(self: *const ISelectionProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelection(self, pRetVal);
-    }
-    pub fn get_CanSelectMultiple(self: *const ISelectionProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanSelectMultiple(self, pRetVal);
-    }
-    pub fn get_IsSelectionRequired(self: *const ISelectionProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsSelectionRequired(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-const IID_ISelectionProvider2_Value = Guid.initString("14f68475-ee1c-44f6-a869-d239381f0fe7");
-pub const IID_ISelectionProvider2 = &IID_ISelectionProvider2_Value;
-pub const ISelectionProvider2 = extern union {
-    pub const VTable = extern struct {
-        base: ISelectionProvider.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FirstSelectedItem: *const fn(
-            self: *const ISelectionProvider2,
-            retVal: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastSelectedItem: *const fn(
-            self: *const ISelectionProvider2,
-            retVal: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentSelectedItem: *const fn(
-            self: *const ISelectionProvider2,
-            retVal: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ItemCount: *const fn(
-            self: *const ISelectionProvider2,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISelectionProvider: ISelectionProvider,
-    IUnknown: IUnknown,
-    pub fn get_FirstSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FirstSelectedItem(self, retVal);
-    }
-    pub fn get_LastSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastSelectedItem(self, retVal);
-    }
-    pub fn get_CurrentSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentSelectedItem(self, retVal);
-    }
-    pub fn get_ItemCount(self: *const ISelectionProvider2, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ItemCount(self, retVal);
     }
 };
 
@@ -3233,506 +2890,133 @@ pub const ISelectionItemProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_ISynchronizedInputProvider_Value = Guid.initString("29db1a06-02ce-4cf7-9b42-565d4fab20ee");
-pub const IID_ISynchronizedInputProvider = &IID_ISynchronizedInputProvider_Value;
-pub const ISynchronizedInputProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StartListening: *const fn(
-            self: *const ISynchronizedInputProvider,
-            inputType: SynchronizedInputType,
-        ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const ISynchronizedInputProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn StartListening(self: *const ISynchronizedInputProvider, inputType: SynchronizedInputType) callconv(.@"inline") HRESULT {
-        return self.vtable.StartListening(self, inputType);
-    }
-    pub fn Cancel(self: *const ISynchronizedInputProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITableProvider_Value = Guid.initString("9c860395-97b3-490a-b52a-858cc22af166");
-pub const IID_ITableProvider = &IID_ITableProvider_Value;
-pub const ITableProvider = extern union {
+const IID_ISelectionProvider_Value = Guid.initString("fb8b03af-3bdf-48d4-bd36-1a65793be168");
+pub const IID_ISelectionProvider = &IID_ISelectionProvider_Value;
+pub const ISelectionProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRowHeaders: *const fn(
-            self: *const ITableProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetColumnHeaders: *const fn(
-            self: *const ITableProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RowOrColumnMajor: *const fn(
-            self: *const ITableProvider,
-            pRetVal: ?*RowOrColumnMajor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRowHeaders(self: *const ITableProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRowHeaders(self, pRetVal);
-    }
-    pub fn GetColumnHeaders(self: *const ITableProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColumnHeaders(self, pRetVal);
-    }
-    pub fn get_RowOrColumnMajor(self: *const ITableProvider, pRetVal: ?*RowOrColumnMajor) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RowOrColumnMajor(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITableItemProvider_Value = Guid.initString("b9734fa6-771f-4d78-9c90-2517999349cd");
-pub const IID_ITableItemProvider = &IID_ITableItemProvider_Value;
-pub const ITableItemProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRowHeaderItems: *const fn(
-            self: *const ITableItemProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetColumnHeaderItems: *const fn(
-            self: *const ITableItemProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRowHeaderItems(self: *const ITableItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRowHeaderItems(self, pRetVal);
-    }
-    pub fn GetColumnHeaderItems(self: *const ITableItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColumnHeaderItems(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IToggleProvider_Value = Guid.initString("56d00bd0-c4f4-433c-a836-1a52a57e0892");
-pub const IID_IToggleProvider = &IID_IToggleProvider_Value;
-pub const IToggleProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Toggle: *const fn(
-            self: *const IToggleProvider,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ToggleState: *const fn(
-            self: *const IToggleProvider,
-            pRetVal: ?*ToggleState,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Toggle(self: *const IToggleProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Toggle(self);
-    }
-    pub fn get_ToggleState(self: *const IToggleProvider, pRetVal: ?*ToggleState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ToggleState(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITransformProvider_Value = Guid.initString("6829ddc4-4f91-4ffa-b86f-bd3e2987cb4c");
-pub const IID_ITransformProvider = &IID_ITransformProvider_Value;
-pub const ITransformProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Move: *const fn(
-            self: *const ITransformProvider,
-            x: f64,
-            y: f64,
-        ) callconv(.winapi) HRESULT,
-        Resize: *const fn(
-            self: *const ITransformProvider,
-            width: f64,
-            height: f64,
-        ) callconv(.winapi) HRESULT,
-        Rotate: *const fn(
-            self: *const ITransformProvider,
-            degrees: f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanMove: *const fn(
-            self: *const ITransformProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanResize: *const fn(
-            self: *const ITransformProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanRotate: *const fn(
-            self: *const ITransformProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Move(self: *const ITransformProvider, x: f64, y: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, x, y);
-    }
-    pub fn Resize(self: *const ITransformProvider, width: f64, height: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.Resize(self, width, height);
-    }
-    pub fn Rotate(self: *const ITransformProvider, degrees: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.Rotate(self, degrees);
-    }
-    pub fn get_CanMove(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanMove(self, pRetVal);
-    }
-    pub fn get_CanResize(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanResize(self, pRetVal);
-    }
-    pub fn get_CanRotate(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanRotate(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IValueProvider_Value = Guid.initString("c7935180-6fb3-4201-b174-7df73adbf64a");
-pub const IID_IValueProvider = &IID_IValueProvider_Value;
-pub const IValueProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetValue: *const fn(
-            self: *const IValueProvider,
-            val: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IValueProvider,
-            pRetVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsReadOnly: *const fn(
-            self: *const IValueProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetValue(self: *const IValueProvider, val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, val);
-    }
-    pub fn get_Value(self: *const IValueProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pRetVal);
-    }
-    pub fn get_IsReadOnly(self: *const IValueProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsReadOnly(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWindowProvider_Value = Guid.initString("987df77b-db06-4d77-8f8a-86a9c3bb90b9");
-pub const IID_IWindowProvider = &IID_IWindowProvider_Value;
-pub const IWindowProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetVisualState: *const fn(
-            self: *const IWindowProvider,
-            state: WindowVisualState,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IWindowProvider,
-        ) callconv(.winapi) HRESULT,
-        WaitForInputIdle: *const fn(
-            self: *const IWindowProvider,
-            milliseconds: i32,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanMaximize: *const fn(
-            self: *const IWindowProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanMinimize: *const fn(
-            self: *const IWindowProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsModal: *const fn(
-            self: *const IWindowProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WindowVisualState: *const fn(
-            self: *const IWindowProvider,
-            pRetVal: ?*WindowVisualState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WindowInteractionState: *const fn(
-            self: *const IWindowProvider,
-            pRetVal: ?*WindowInteractionState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTopmost: *const fn(
-            self: *const IWindowProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetVisualState(self: *const IWindowProvider, state: WindowVisualState) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVisualState(self, state);
-    }
-    pub fn Close(self: *const IWindowProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn WaitForInputIdle(self: *const IWindowProvider, milliseconds: i32, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.WaitForInputIdle(self, milliseconds, pRetVal);
-    }
-    pub fn get_CanMaximize(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanMaximize(self, pRetVal);
-    }
-    pub fn get_CanMinimize(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanMinimize(self, pRetVal);
-    }
-    pub fn get_IsModal(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsModal(self, pRetVal);
-    }
-    pub fn get_WindowVisualState(self: *const IWindowProvider, pRetVal: ?*WindowVisualState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_WindowVisualState(self, pRetVal);
-    }
-    pub fn get_WindowInteractionState(self: *const IWindowProvider, pRetVal: ?*WindowInteractionState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_WindowInteractionState(self, pRetVal);
-    }
-    pub fn get_IsTopmost(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsTopmost(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_ILegacyIAccessibleProvider_Value = Guid.initString("e44c3566-915d-4070-99c6-047bff5a08f5");
-pub const IID_ILegacyIAccessibleProvider = &IID_ILegacyIAccessibleProvider_Value;
-pub const ILegacyIAccessibleProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Select: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            flagsSelect: i32,
-        ) callconv(.winapi) HRESULT,
-        DoDefaultAction: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-        ) callconv(.winapi) HRESULT,
-        SetValue: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            szValue: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        GetIAccessible: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            ppAccessible: ?*?*IAccessible,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ChildId: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pszName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pszValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pszDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Role: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pdwRole: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pdwState: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Help: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pszHelp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_KeyboardShortcut: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pszKeyboardShortcut: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
         GetSelection: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pvarSelectedChildren: ?*?*SAFEARRAY,
+            self: *const ISelectionProvider,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultAction: *const fn(
-            self: *const ILegacyIAccessibleProvider,
-            pszDefaultAction: ?*?BSTR,
+        get_CanSelectMultiple: *const fn(
+            self: *const ISelectionProvider,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsSelectionRequired: *const fn(
+            self: *const ISelectionProvider,
+            pRetVal: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Select(self: *const ILegacyIAccessibleProvider, flagsSelect: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Select(self, flagsSelect);
+    pub fn GetSelection(self: *const ISelectionProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelection(self, pRetVal);
     }
-    pub fn DoDefaultAction(self: *const ILegacyIAccessibleProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.DoDefaultAction(self);
+    pub fn get_CanSelectMultiple(self: *const ISelectionProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanSelectMultiple(self, pRetVal);
     }
-    pub fn SetValue(self: *const ILegacyIAccessibleProvider, szValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, szValue);
-    }
-    pub fn GetIAccessible(self: *const ILegacyIAccessibleProvider, ppAccessible: ?*?*IAccessible) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIAccessible(self, ppAccessible);
-    }
-    pub fn get_ChildId(self: *const ILegacyIAccessibleProvider, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ChildId(self, pRetVal);
-    }
-    pub fn get_Name(self: *const ILegacyIAccessibleProvider, pszName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pszName);
-    }
-    pub fn get_Value(self: *const ILegacyIAccessibleProvider, pszValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pszValue);
-    }
-    pub fn get_Description(self: *const ILegacyIAccessibleProvider, pszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pszDescription);
-    }
-    pub fn get_Role(self: *const ILegacyIAccessibleProvider, pdwRole: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Role(self, pdwRole);
-    }
-    pub fn get_State(self: *const ILegacyIAccessibleProvider, pdwState: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, pdwState);
-    }
-    pub fn get_Help(self: *const ILegacyIAccessibleProvider, pszHelp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Help(self, pszHelp);
-    }
-    pub fn get_KeyboardShortcut(self: *const ILegacyIAccessibleProvider, pszKeyboardShortcut: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_KeyboardShortcut(self, pszKeyboardShortcut);
-    }
-    pub fn GetSelection(self: *const ILegacyIAccessibleProvider, pvarSelectedChildren: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelection(self, pvarSelectedChildren);
-    }
-    pub fn get_DefaultAction(self: *const ILegacyIAccessibleProvider, pszDefaultAction: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultAction(self, pszDefaultAction);
+    pub fn get_IsSelectionRequired(self: *const ISelectionProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsSelectionRequired(self, pRetVal);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IItemContainerProvider_Value = Guid.initString("e747770b-39ce-4382-ab30-d8fb3f336f24");
-pub const IID_IItemContainerProvider = &IID_IItemContainerProvider_Value;
-pub const IItemContainerProvider = extern union {
+// TODO: this type is limited to platform 'windows10.0.16299'
+const IID_ISelectionProvider2_Value = Guid.initString("14f68475-ee1c-44f6-a869-d239381f0fe7");
+pub const IID_ISelectionProvider2 = &IID_ISelectionProvider2_Value;
+pub const ISelectionProvider2 = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        FindItemByProperty: *const fn(
-            self: *const IItemContainerProvider,
-            pStartAfter: ?*IRawElementProviderSimple,
-            propertyId: i32,
-            value: VARIANT,
-            pFound: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn FindItemByProperty(self: *const IItemContainerProvider, pStartAfter: ?*IRawElementProviderSimple, propertyId: i32, value: VARIANT, pFound: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.FindItemByProperty(self, pStartAfter, propertyId, value, pFound);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IVirtualizedItemProvider_Value = Guid.initString("cb98b665-2d35-4fac-ad35-f3c60d0c0b8b");
-pub const IID_IVirtualizedItemProvider = &IID_IVirtualizedItemProvider_Value;
-pub const IVirtualizedItemProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Realize: *const fn(
-            self: *const IVirtualizedItemProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Realize(self: *const IVirtualizedItemProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Realize(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IObjectModelProvider_Value = Guid.initString("3ad86ebd-f5ef-483d-bb18-b1042a475d64");
-pub const IID_IObjectModelProvider = &IID_IObjectModelProvider_Value;
-pub const IObjectModelProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetUnderlyingObjectModel: *const fn(
-            self: *const IObjectModelProvider,
-            ppUnknown: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetUnderlyingObjectModel(self: *const IObjectModelProvider, ppUnknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUnderlyingObjectModel(self, ppUnknown);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAnnotationProvider_Value = Guid.initString("f95c7e80-bd63-4601-9782-445ebff011fc");
-pub const IID_IAnnotationProvider = &IID_IAnnotationProvider_Value;
-pub const IAnnotationProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
+        base: ISelectionProvider.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AnnotationTypeId: *const fn(
-            self: *const IAnnotationProvider,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AnnotationTypeName: *const fn(
-            self: *const IAnnotationProvider,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Author: *const fn(
-            self: *const IAnnotationProvider,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DateTime: *const fn(
-            self: *const IAnnotationProvider,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Target: *const fn(
-            self: *const IAnnotationProvider,
+        get_FirstSelectedItem: *const fn(
+            self: *const ISelectionProvider2,
             retVal: ?*?*IRawElementProviderSimple,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastSelectedItem: *const fn(
+            self: *const ISelectionProvider2,
+            retVal: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentSelectedItem: *const fn(
+            self: *const ISelectionProvider2,
+            retVal: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ItemCount: *const fn(
+            self: *const ISelectionProvider2,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISelectionProvider: ISelectionProvider,
+    IUnknown: IUnknown,
+    pub fn get_FirstSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FirstSelectedItem(self, retVal);
+    }
+    pub fn get_LastSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastSelectedItem(self, retVal);
+    }
+    pub fn get_CurrentSelectedItem(self: *const ISelectionProvider2, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentSelectedItem(self, retVal);
+    }
+    pub fn get_ItemCount(self: *const ISelectionProvider2, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ItemCount(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ISpreadsheetItemProvider_Value = Guid.initString("eaed4660-7b3d-4879-a2e6-365ce603f3d0");
+pub const IID_ISpreadsheetItemProvider = &IID_ISpreadsheetItemProvider_Value;
+pub const ISpreadsheetItemProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Formula: *const fn(
+            self: *const ISpreadsheetItemProvider,
+            pRetVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetAnnotationObjects: *const fn(
+            self: *const ISpreadsheetItemProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetAnnotationTypes: *const fn(
+            self: *const ISpreadsheetItemProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AnnotationTypeId(self: *const IAnnotationProvider, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AnnotationTypeId(self, retVal);
+    pub fn get_Formula(self: *const ISpreadsheetItemProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Formula(self, pRetVal);
     }
-    pub fn get_AnnotationTypeName(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AnnotationTypeName(self, retVal);
+    pub fn GetAnnotationObjects(self: *const ISpreadsheetItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAnnotationObjects(self, pRetVal);
     }
-    pub fn get_Author(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Author(self, retVal);
+    pub fn GetAnnotationTypes(self: *const ISpreadsheetItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAnnotationTypes(self, pRetVal);
     }
-    pub fn get_DateTime(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DateTime(self, retVal);
-    }
-    pub fn get_Target(self: *const IAnnotationProvider, retVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Target(self, retVal);
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ISpreadsheetProvider_Value = Guid.initString("6f6b5d35-5525-4f80-b758-85473832ffc7");
+pub const IID_ISpreadsheetProvider = &IID_ISpreadsheetProvider_Value;
+pub const ISpreadsheetProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetItemByName: *const fn(
+            self: *const ISpreadsheetProvider,
+            name: ?[*:0]const u16,
+            pRetVal: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetItemByName(self: *const ISpreadsheetProvider, name: ?[*:0]const u16, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemByName(self, name, pRetVal);
     }
 };
 
@@ -3803,182 +3087,223 @@ pub const IStylesProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ISpreadsheetProvider_Value = Guid.initString("6f6b5d35-5525-4f80-b758-85473832ffc7");
-pub const IID_ISpreadsheetProvider = &IID_ISpreadsheetProvider_Value;
-pub const ISpreadsheetProvider = extern union {
+// TODO: this type is limited to platform 'windows6.1'
+const IID_ISynchronizedInputProvider_Value = Guid.initString("29db1a06-02ce-4cf7-9b42-565d4fab20ee");
+pub const IID_ISynchronizedInputProvider = &IID_ISynchronizedInputProvider_Value;
+pub const ISynchronizedInputProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemByName: *const fn(
-            self: *const ISpreadsheetProvider,
-            name: ?[*:0]const u16,
+        StartListening: *const fn(
+            self: *const ISynchronizedInputProvider,
+            inputType: SynchronizedInputType,
+        ) callconv(.winapi) HRESULT,
+        Cancel: *const fn(
+            self: *const ISynchronizedInputProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn StartListening(self: *const ISynchronizedInputProvider, inputType: SynchronizedInputType) callconv(.@"inline") HRESULT {
+        return self.vtable.StartListening(self, inputType);
+    }
+    pub fn Cancel(self: *const ISynchronizedInputProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ITableItemProvider_Value = Guid.initString("b9734fa6-771f-4d78-9c90-2517999349cd");
+pub const IID_ITableItemProvider = &IID_ITableItemProvider_Value;
+pub const ITableItemProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRowHeaderItems: *const fn(
+            self: *const ITableItemProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetColumnHeaderItems: *const fn(
+            self: *const ITableItemProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRowHeaderItems(self: *const ITableItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRowHeaderItems(self, pRetVal);
+    }
+    pub fn GetColumnHeaderItems(self: *const ITableItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColumnHeaderItems(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ITableProvider_Value = Guid.initString("9c860395-97b3-490a-b52a-858cc22af166");
+pub const IID_ITableProvider = &IID_ITableProvider_Value;
+pub const ITableProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRowHeaders: *const fn(
+            self: *const ITableProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetColumnHeaders: *const fn(
+            self: *const ITableProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RowOrColumnMajor: *const fn(
+            self: *const ITableProvider,
+            pRetVal: ?*RowOrColumnMajor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRowHeaders(self: *const ITableProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRowHeaders(self, pRetVal);
+    }
+    pub fn GetColumnHeaders(self: *const ITableProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColumnHeaders(self, pRetVal);
+    }
+    pub fn get_RowOrColumnMajor(self: *const ITableProvider, pRetVal: ?*RowOrColumnMajor) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RowOrColumnMajor(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_ITextChildProvider_Value = Guid.initString("4c2de2b9-c88f-4f88-a111-f1d336b7d1a9");
+pub const IID_ITextChildProvider = &IID_ITextChildProvider_Value;
+pub const ITextChildProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TextContainer: *const fn(
+            self: *const ITextChildProvider,
             pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TextRange: *const fn(
+            self: *const ITextChildProvider,
+            pRetVal: ?*?*ITextRangeProvider,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemByName(self: *const ISpreadsheetProvider, name: ?[*:0]const u16, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemByName(self, name, pRetVal);
+    pub fn get_TextContainer(self: *const ITextChildProvider, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TextContainer(self, pRetVal);
+    }
+    pub fn get_TextRange(self: *const ITextChildProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TextRange(self, pRetVal);
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ISpreadsheetItemProvider_Value = Guid.initString("eaed4660-7b3d-4879-a2e6-365ce603f3d0");
-pub const IID_ISpreadsheetItemProvider = &IID_ISpreadsheetItemProvider_Value;
-pub const ISpreadsheetItemProvider = extern union {
+// TODO: this type is limited to platform 'windows8.1'
+const IID_ITextEditProvider_Value = Guid.initString("ea3605b4-3a05-400e-b5f9-4e91b40f6176");
+pub const IID_ITextEditProvider = &IID_ITextEditProvider_Value;
+pub const ITextEditProvider = extern union {
+    pub const VTable = extern struct {
+        base: ITextProvider.VTable,
+        GetActiveComposition: *const fn(
+            self: *const ITextEditProvider,
+            pRetVal: ?*?*ITextRangeProvider,
+        ) callconv(.winapi) HRESULT,
+        GetConversionTarget: *const fn(
+            self: *const ITextEditProvider,
+            pRetVal: ?*?*ITextRangeProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITextProvider: ITextProvider,
+    IUnknown: IUnknown,
+    pub fn GetActiveComposition(self: *const ITextEditProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActiveComposition(self, pRetVal);
+    }
+    pub fn GetConversionTarget(self: *const ITextEditProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConversionTarget(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ITextProvider_Value = Guid.initString("3589c92c-63f3-4367-99bb-ada653b77cf2");
+pub const IID_ITextProvider = &IID_ITextProvider_Value;
+pub const ITextProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        GetSelection: *const fn(
+            self: *const ITextProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetVisibleRanges: *const fn(
+            self: *const ITextProvider,
+            pRetVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        RangeFromChild: *const fn(
+            self: *const ITextProvider,
+            childElement: ?*IRawElementProviderSimple,
+            pRetVal: ?*?*ITextRangeProvider,
+        ) callconv(.winapi) HRESULT,
+        RangeFromPoint: *const fn(
+            self: *const ITextProvider,
+            point: UiaPoint,
+            pRetVal: ?*?*ITextRangeProvider,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Formula: *const fn(
-            self: *const ISpreadsheetItemProvider,
-            pRetVal: ?*?BSTR,
+        get_DocumentRange: *const fn(
+            self: *const ITextProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(.winapi) HRESULT,
-        GetAnnotationObjects: *const fn(
-            self: *const ISpreadsheetItemProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetAnnotationTypes: *const fn(
-            self: *const ISpreadsheetItemProvider,
-            pRetVal: ?*?*SAFEARRAY,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SupportedTextSelection: *const fn(
+            self: *const ITextProvider,
+            pRetVal: ?*SupportedTextSelection,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Formula(self: *const ISpreadsheetItemProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Formula(self, pRetVal);
+    pub fn GetSelection(self: *const ITextProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelection(self, pRetVal);
     }
-    pub fn GetAnnotationObjects(self: *const ISpreadsheetItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAnnotationObjects(self, pRetVal);
+    pub fn GetVisibleRanges(self: *const ITextProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVisibleRanges(self, pRetVal);
     }
-    pub fn GetAnnotationTypes(self: *const ISpreadsheetItemProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAnnotationTypes(self, pRetVal);
+    pub fn RangeFromChild(self: *const ITextProvider, childElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.RangeFromChild(self, childElement, pRetVal);
+    }
+    pub fn RangeFromPoint(self: *const ITextProvider, point: UiaPoint, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.RangeFromPoint(self, point, pRetVal);
+    }
+    pub fn get_DocumentRange(self: *const ITextProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DocumentRange(self, pRetVal);
+    }
+    pub fn get_SupportedTextSelection(self: *const ITextProvider, pRetVal: ?*SupportedTextSelection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SupportedTextSelection(self, pRetVal);
     }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITransformProvider2_Value = Guid.initString("4758742f-7ac2-460c-bc48-09fc09308a93");
-pub const IID_ITransformProvider2 = &IID_ITransformProvider2_Value;
-pub const ITransformProvider2 = extern union {
+const IID_ITextProvider2_Value = Guid.initString("0dc5e6ed-3e16-4bf1-8f9a-a979878bc195");
+pub const IID_ITextProvider2 = &IID_ITextProvider2_Value;
+pub const ITextProvider2 = extern union {
     pub const VTable = extern struct {
-        base: ITransformProvider.VTable,
-        Zoom: *const fn(
-            self: *const ITransformProvider2,
-            zoom: f64,
+        base: ITextProvider.VTable,
+        RangeFromAnnotation: *const fn(
+            self: *const ITextProvider2,
+            annotationElement: ?*IRawElementProviderSimple,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanZoom: *const fn(
-            self: *const ITransformProvider2,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ZoomLevel: *const fn(
-            self: *const ITransformProvider2,
-            pRetVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ZoomMinimum: *const fn(
-            self: *const ITransformProvider2,
-            pRetVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ZoomMaximum: *const fn(
-            self: *const ITransformProvider2,
-            pRetVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        ZoomByUnit: *const fn(
-            self: *const ITransformProvider2,
-            zoomUnit: ZoomUnit,
+        GetCaretRange: *const fn(
+            self: *const ITextProvider2,
+            isActive: ?*BOOL,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    ITransformProvider: ITransformProvider,
+    ITextProvider: ITextProvider,
     IUnknown: IUnknown,
-    pub fn Zoom(self: *const ITransformProvider2, zoom: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.Zoom(self, zoom);
+    pub fn RangeFromAnnotation(self: *const ITextProvider2, annotationElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.RangeFromAnnotation(self, annotationElement, pRetVal);
     }
-    pub fn get_CanZoom(self: *const ITransformProvider2, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanZoom(self, pRetVal);
-    }
-    pub fn get_ZoomLevel(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ZoomLevel(self, pRetVal);
-    }
-    pub fn get_ZoomMinimum(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ZoomMinimum(self, pRetVal);
-    }
-    pub fn get_ZoomMaximum(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ZoomMaximum(self, pRetVal);
-    }
-    pub fn ZoomByUnit(self: *const ITransformProvider2, zoomUnit: ZoomUnit) callconv(.@"inline") HRESULT {
-        return self.vtable.ZoomByUnit(self, zoomUnit);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDragProvider_Value = Guid.initString("6aa7bbbb-7ff9-497d-904f-d20b897929d8");
-pub const IID_IDragProvider = &IID_IDragProvider_Value;
-pub const IDragProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsGrabbed: *const fn(
-            self: *const IDragProvider,
-            pRetVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DropEffect: *const fn(
-            self: *const IDragProvider,
-            pRetVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DropEffects: *const fn(
-            self: *const IDragProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetGrabbedItems: *const fn(
-            self: *const IDragProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_IsGrabbed(self: *const IDragProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsGrabbed(self, pRetVal);
-    }
-    pub fn get_DropEffect(self: *const IDragProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DropEffect(self, pRetVal);
-    }
-    pub fn get_DropEffects(self: *const IDragProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DropEffects(self, pRetVal);
-    }
-    pub fn GetGrabbedItems(self: *const IDragProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGrabbedItems(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDropTargetProvider_Value = Guid.initString("bae82bfd-358a-481c-85a0-d8b4d90a5d61");
-pub const IID_IDropTargetProvider = &IID_IDropTargetProvider_Value;
-pub const IDropTargetProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DropTargetEffect: *const fn(
-            self: *const IDropTargetProvider,
-            pRetVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DropTargetEffects: *const fn(
-            self: *const IDropTargetProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_DropTargetEffect(self: *const IDropTargetProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DropTargetEffect(self, pRetVal);
-    }
-    pub fn get_DropTargetEffects(self: *const IDropTargetProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DropTargetEffects(self, pRetVal);
+    pub fn GetCaretRange(self: *const ITextProvider2, isActive: ?*BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCaretRange(self, isActive, pRetVal);
     }
 };
 
@@ -4135,117 +3460,6 @@ pub const ITextRangeProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITextProvider_Value = Guid.initString("3589c92c-63f3-4367-99bb-ada653b77cf2");
-pub const IID_ITextProvider = &IID_ITextProvider_Value;
-pub const ITextProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSelection: *const fn(
-            self: *const ITextProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetVisibleRanges: *const fn(
-            self: *const ITextProvider,
-            pRetVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        RangeFromChild: *const fn(
-            self: *const ITextProvider,
-            childElement: ?*IRawElementProviderSimple,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-        RangeFromPoint: *const fn(
-            self: *const ITextProvider,
-            point: UiaPoint,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DocumentRange: *const fn(
-            self: *const ITextProvider,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedTextSelection: *const fn(
-            self: *const ITextProvider,
-            pRetVal: ?*SupportedTextSelection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSelection(self: *const ITextProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelection(self, pRetVal);
-    }
-    pub fn GetVisibleRanges(self: *const ITextProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVisibleRanges(self, pRetVal);
-    }
-    pub fn RangeFromChild(self: *const ITextProvider, childElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.RangeFromChild(self, childElement, pRetVal);
-    }
-    pub fn RangeFromPoint(self: *const ITextProvider, point: UiaPoint, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.RangeFromPoint(self, point, pRetVal);
-    }
-    pub fn get_DocumentRange(self: *const ITextProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DocumentRange(self, pRetVal);
-    }
-    pub fn get_SupportedTextSelection(self: *const ITextProvider, pRetVal: ?*SupportedTextSelection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SupportedTextSelection(self, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ITextProvider2_Value = Guid.initString("0dc5e6ed-3e16-4bf1-8f9a-a979878bc195");
-pub const IID_ITextProvider2 = &IID_ITextProvider2_Value;
-pub const ITextProvider2 = extern union {
-    pub const VTable = extern struct {
-        base: ITextProvider.VTable,
-        RangeFromAnnotation: *const fn(
-            self: *const ITextProvider2,
-            annotationElement: ?*IRawElementProviderSimple,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-        GetCaretRange: *const fn(
-            self: *const ITextProvider2,
-            isActive: ?*BOOL,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITextProvider: ITextProvider,
-    IUnknown: IUnknown,
-    pub fn RangeFromAnnotation(self: *const ITextProvider2, annotationElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.RangeFromAnnotation(self, annotationElement, pRetVal);
-    }
-    pub fn GetCaretRange(self: *const ITextProvider2, isActive: ?*BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCaretRange(self, isActive, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_ITextEditProvider_Value = Guid.initString("ea3605b4-3a05-400e-b5f9-4e91b40f6176");
-pub const IID_ITextEditProvider = &IID_ITextEditProvider_Value;
-pub const ITextEditProvider = extern union {
-    pub const VTable = extern struct {
-        base: ITextProvider.VTable,
-        GetActiveComposition: *const fn(
-            self: *const ITextEditProvider,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-        GetConversionTarget: *const fn(
-            self: *const ITextEditProvider,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITextProvider: ITextProvider,
-    IUnknown: IUnknown,
-    pub fn GetActiveComposition(self: *const ITextEditProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActiveComposition(self, pRetVal);
-    }
-    pub fn GetConversionTarget(self: *const ITextEditProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConversionTarget(self, pRetVal);
-    }
-};
-
 // TODO: this type is limited to platform 'windows8.1'
 const IID_ITextRangeProvider2_Value = Guid.initString("9bbce42c-1921-4f18-89ca-dba1910a0386");
 pub const IID_ITextRangeProvider2 = &IID_ITextRangeProvider2_Value;
@@ -4264,4436 +3478,144 @@ pub const ITextRangeProvider2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_ITextChildProvider_Value = Guid.initString("4c2de2b9-c88f-4f88-a111-f1d336b7d1a9");
-pub const IID_ITextChildProvider = &IID_ITextChildProvider_Value;
-pub const ITextChildProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TextContainer: *const fn(
-            self: *const ITextChildProvider,
-            pRetVal: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TextRange: *const fn(
-            self: *const ITextChildProvider,
-            pRetVal: ?*?*ITextRangeProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_TextContainer(self: *const ITextChildProvider, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TextContainer(self, pRetVal);
-    }
-    pub fn get_TextRange(self: *const ITextChildProvider, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TextRange(self, pRetVal);
-    }
-};
-
-const IID_ICustomNavigationProvider_Value = Guid.initString("2062a28a-8c07-4b94-8e12-7037c622aeb8");
-pub const IID_ICustomNavigationProvider = &IID_ICustomNavigationProvider_Value;
-pub const ICustomNavigationProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Navigate: *const fn(
-            self: *const ICustomNavigationProvider,
-            direction: NavigateDirection,
-            pRetVal: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Navigate(self: *const ICustomNavigationProvider, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.Navigate(self, direction, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationPatternInstance_Value = Guid.initString("c03a7fe4-9431-409f-bed8-ae7c2299bc8d");
-pub const IID_IUIAutomationPatternInstance = &IID_IUIAutomationPatternInstance_Value;
-pub const IUIAutomationPatternInstance = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperty: *const fn(
-            self: *const IUIAutomationPatternInstance,
-            index: u32,
-            cached: BOOL,
-            type: UIAutomationType,
-            pPtr: ?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        CallMethod: *const fn(
-            self: *const IUIAutomationPatternInstance,
-            index: u32,
-            pParams: ?*const UIAutomationParameter,
-            cParams: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProperty(self: *const IUIAutomationPatternInstance, index: u32, cached: BOOL, @"type": UIAutomationType, pPtr: ?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, index, cached, @"type", pPtr);
-    }
-    pub fn CallMethod(self: *const IUIAutomationPatternInstance, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CallMethod(self, index, pParams, cParams);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationPatternHandler_Value = Guid.initString("d97022f3-a947-465e-8b2a-ac4315fa54e8");
-pub const IID_IUIAutomationPatternHandler = &IID_IUIAutomationPatternHandler_Value;
-pub const IUIAutomationPatternHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateClientWrapper: *const fn(
-            self: *const IUIAutomationPatternHandler,
-            pPatternInstance: ?*IUIAutomationPatternInstance,
-            pClientWrapper: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Dispatch: *const fn(
-            self: *const IUIAutomationPatternHandler,
-            pTarget: ?*IUnknown,
-            index: u32,
-            pParams: ?*const UIAutomationParameter,
-            cParams: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateClientWrapper(self: *const IUIAutomationPatternHandler, pPatternInstance: ?*IUIAutomationPatternInstance, pClientWrapper: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateClientWrapper(self, pPatternInstance, pClientWrapper);
-    }
-    pub fn Dispatch(self: *const IUIAutomationPatternHandler, pTarget: ?*IUnknown, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Dispatch(self, pTarget, index, pParams, cParams);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationRegistrar_Value = Guid.initString("8609c4ec-4a1a-4d88-a357-5a66e060e1cf");
-pub const IID_IUIAutomationRegistrar = &IID_IUIAutomationRegistrar_Value;
-pub const IUIAutomationRegistrar = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterProperty: *const fn(
-            self: *const IUIAutomationRegistrar,
-            property: ?*const UIAutomationPropertyInfo,
-            propertyId: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        RegisterEvent: *const fn(
-            self: *const IUIAutomationRegistrar,
-            event: ?*const UIAutomationEventInfo,
-            eventId: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        RegisterPattern: *const fn(
-            self: *const IUIAutomationRegistrar,
-            pattern: ?*const UIAutomationPatternInfo,
-            pPatternId: ?*i32,
-            pPatternAvailablePropertyId: ?*i32,
-            propertyIdCount: u32,
-            pPropertyIds: [*]i32,
-            eventIdCount: u32,
-            pEventIds: [*]i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterProperty(self: *const IUIAutomationRegistrar, property: ?*const UIAutomationPropertyInfo, propertyId: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterProperty(self, property, propertyId);
-    }
-    pub fn RegisterEvent(self: *const IUIAutomationRegistrar, event: ?*const UIAutomationEventInfo, eventId: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterEvent(self, event, eventId);
-    }
-    pub fn RegisterPattern(self: *const IUIAutomationRegistrar, pattern: ?*const UIAutomationPatternInfo, pPatternId: ?*i32, pPatternAvailablePropertyId: ?*i32, propertyIdCount: u32, pPropertyIds: [*]i32, eventIdCount: u32, pEventIds: [*]i32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterPattern(self, pattern, pPatternId, pPatternAvailablePropertyId, propertyIdCount, pPropertyIds, eventIdCount, pEventIds);
-    }
-};
-
-pub const TreeScope = enum(i32) {
-    None = 0,
-    Element = 1,
-    Children = 2,
-    Descendants = 4,
-    Parent = 8,
-    Ancestors = 16,
-    Subtree = 7,
-};
-pub const TreeScope_None = TreeScope.None;
-pub const TreeScope_Element = TreeScope.Element;
-pub const TreeScope_Children = TreeScope.Children;
-pub const TreeScope_Descendants = TreeScope.Descendants;
-pub const TreeScope_Parent = TreeScope.Parent;
-pub const TreeScope_Ancestors = TreeScope.Ancestors;
-pub const TreeScope_Subtree = TreeScope.Subtree;
-
-pub const PropertyConditionFlags = enum(i32) {
-    None = 0,
-    IgnoreCase = 1,
-    MatchSubstring = 2,
-};
-pub const PropertyConditionFlags_None = PropertyConditionFlags.None;
-pub const PropertyConditionFlags_IgnoreCase = PropertyConditionFlags.IgnoreCase;
-pub const PropertyConditionFlags_MatchSubstring = PropertyConditionFlags.MatchSubstring;
-
-pub const AutomationElementMode = enum(i32) {
-    None = 0,
-    Full = 1,
-};
-pub const AutomationElementMode_None = AutomationElementMode.None;
-pub const AutomationElementMode_Full = AutomationElementMode.Full;
-
-pub const TreeTraversalOptions = enum(i32) {
-    Default = 0,
-    PostOrder = 1,
-    LastToFirstOrder = 2,
-};
-pub const TreeTraversalOptions_Default = TreeTraversalOptions.Default;
-pub const TreeTraversalOptions_PostOrder = TreeTraversalOptions.PostOrder;
-pub const TreeTraversalOptions_LastToFirstOrder = TreeTraversalOptions.LastToFirstOrder;
-
-pub const ConnectionRecoveryBehaviorOptions = enum(i32) {
-    Disabled = 0,
-    Enabled = 1,
-};
-pub const ConnectionRecoveryBehaviorOptions_Disabled = ConnectionRecoveryBehaviorOptions.Disabled;
-pub const ConnectionRecoveryBehaviorOptions_Enabled = ConnectionRecoveryBehaviorOptions.Enabled;
-
-pub const CoalesceEventsOptions = enum(i32) {
-    Disabled = 0,
-    Enabled = 1,
-};
-pub const CoalesceEventsOptions_Disabled = CoalesceEventsOptions.Disabled;
-pub const CoalesceEventsOptions_Enabled = CoalesceEventsOptions.Enabled;
-
-pub const ExtendedProperty = extern struct {
-    PropertyName: ?BSTR,
-    PropertyValue: ?BSTR,
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationElement_Value = Guid.initString("d22108aa-8ac5-49a5-837b-37bbb3d7591e");
-pub const IID_IUIAutomationElement = &IID_IUIAutomationElement_Value;
-pub const IUIAutomationElement = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetFocus: *const fn(
-            self: *const IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetRuntimeId: *const fn(
-            self: *const IUIAutomationElement,
-            runtimeId: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        FindFirst: *const fn(
-            self: *const IUIAutomationElement,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            found: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        FindAll: *const fn(
-            self: *const IUIAutomationElement,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            found: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        FindFirstBuildCache: *const fn(
-            self: *const IUIAutomationElement,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            found: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        FindAllBuildCache: *const fn(
-            self: *const IUIAutomationElement,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            found: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        BuildUpdatedCache: *const fn(
-            self: *const IUIAutomationElement,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            updatedElement: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPropertyValue: *const fn(
-            self: *const IUIAutomationElement,
-            propertyId: i32,
-            retVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPropertyValueEx: *const fn(
-            self: *const IUIAutomationElement,
-            propertyId: i32,
-            ignoreDefaultValue: BOOL,
-            retVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetCachedPropertyValue: *const fn(
-            self: *const IUIAutomationElement,
-            propertyId: i32,
-            retVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetCachedPropertyValueEx: *const fn(
-            self: *const IUIAutomationElement,
-            propertyId: i32,
-            ignoreDefaultValue: BOOL,
-            retVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPatternAs: *const fn(
-            self: *const IUIAutomationElement,
-            patternId: i32,
-            riid: ?*const Guid,
-            patternObject: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetCachedPatternAs: *const fn(
-            self: *const IUIAutomationElement,
-            patternId: i32,
-            riid: ?*const Guid,
-            patternObject: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPattern: *const fn(
-            self: *const IUIAutomationElement,
-            patternId: i32,
-            patternObject: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetCachedPattern: *const fn(
-            self: *const IUIAutomationElement,
-            patternId: i32,
-            patternObject: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetCachedParent: *const fn(
-            self: *const IUIAutomationElement,
-            parent: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetCachedChildren: *const fn(
-            self: *const IUIAutomationElement,
-            children: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProcessId: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentControlType: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLocalizedControlType: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentName: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAcceleratorKey: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAccessKey: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentHasKeyboardFocus: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsKeyboardFocusable: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsEnabled: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAutomationId: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentClassName: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentHelpText: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCulture: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsControlElement: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsContentElement: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsPassword: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentNativeWindowHandle: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentItemType: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsOffscreen: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentOrientation: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*OrientationType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFrameworkId: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsRequiredForForm: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentItemStatus: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentBoundingRectangle: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLabeledBy: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAriaRole: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAriaProperties: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsDataValidForForm: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentControllerFor: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDescribedBy: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFlowsTo: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProviderDescription: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedProcessId: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedControlType: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLocalizedControlType: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedName: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAcceleratorKey: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAccessKey: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedHasKeyboardFocus: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsKeyboardFocusable: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsEnabled: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAutomationId: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedClassName: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedHelpText: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCulture: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsControlElement: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsContentElement: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsPassword: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedNativeWindowHandle: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedItemType: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsOffscreen: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedOrientation: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*OrientationType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFrameworkId: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsRequiredForForm: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedItemStatus: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedBoundingRectangle: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLabeledBy: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAriaRole: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAriaProperties: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsDataValidForForm: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedControllerFor: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDescribedBy: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFlowsTo: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedProviderDescription: *const fn(
-            self: *const IUIAutomationElement,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetClickablePoint: *const fn(
-            self: *const IUIAutomationElement,
-            clickable: ?*POINT,
-            gotClickable: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetFocus(self: *const IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFocus(self);
-    }
-    pub fn GetRuntimeId(self: *const IUIAutomationElement, runtimeId: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRuntimeId(self, runtimeId);
-    }
-    pub fn FindFirst(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.FindFirst(self, scope, condition, found);
-    }
-    pub fn FindAll(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.FindAll(self, scope, condition, found);
-    }
-    pub fn FindFirstBuildCache(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.FindFirstBuildCache(self, scope, condition, cacheRequest, found);
-    }
-    pub fn FindAllBuildCache(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.FindAllBuildCache(self, scope, condition, cacheRequest, found);
-    }
-    pub fn BuildUpdatedCache(self: *const IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, updatedElement: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.BuildUpdatedCache(self, cacheRequest, updatedElement);
-    }
-    pub fn GetCurrentPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPropertyValue(self, propertyId, retVal);
-    }
-    pub fn GetCurrentPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPropertyValueEx(self, propertyId, ignoreDefaultValue, retVal);
-    }
-    pub fn GetCachedPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedPropertyValue(self, propertyId, retVal);
-    }
-    pub fn GetCachedPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedPropertyValueEx(self, propertyId, ignoreDefaultValue, retVal);
-    }
-    pub fn GetCurrentPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPatternAs(self, patternId, riid, patternObject);
-    }
-    pub fn GetCachedPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedPatternAs(self, patternId, riid, patternObject);
-    }
-    pub fn GetCurrentPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPattern(self, patternId, patternObject);
-    }
-    pub fn GetCachedPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedPattern(self, patternId, patternObject);
-    }
-    pub fn GetCachedParent(self: *const IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedParent(self, parent);
-    }
-    pub fn GetCachedChildren(self: *const IUIAutomationElement, children: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedChildren(self, children);
-    }
-    pub fn get_CurrentProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentProcessId(self, retVal);
-    }
-    pub fn get_CurrentControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentControlType(self, retVal);
-    }
-    pub fn get_CurrentLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLocalizedControlType(self, retVal);
-    }
-    pub fn get_CurrentName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentName(self, retVal);
-    }
-    pub fn get_CurrentAcceleratorKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAcceleratorKey(self, retVal);
-    }
-    pub fn get_CurrentAccessKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAccessKey(self, retVal);
-    }
-    pub fn get_CurrentHasKeyboardFocus(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentHasKeyboardFocus(self, retVal);
-    }
-    pub fn get_CurrentIsKeyboardFocusable(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsKeyboardFocusable(self, retVal);
-    }
-    pub fn get_CurrentIsEnabled(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsEnabled(self, retVal);
-    }
-    pub fn get_CurrentAutomationId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAutomationId(self, retVal);
-    }
-    pub fn get_CurrentClassName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentClassName(self, retVal);
-    }
-    pub fn get_CurrentHelpText(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentHelpText(self, retVal);
-    }
-    pub fn get_CurrentCulture(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCulture(self, retVal);
-    }
-    pub fn get_CurrentIsControlElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsControlElement(self, retVal);
-    }
-    pub fn get_CurrentIsContentElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsContentElement(self, retVal);
-    }
-    pub fn get_CurrentIsPassword(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsPassword(self, retVal);
-    }
-    pub fn get_CurrentNativeWindowHandle(self: *const IUIAutomationElement, retVal: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentNativeWindowHandle(self, retVal);
-    }
-    pub fn get_CurrentItemType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentItemType(self, retVal);
-    }
-    pub fn get_CurrentIsOffscreen(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsOffscreen(self, retVal);
-    }
-    pub fn get_CurrentOrientation(self: *const IUIAutomationElement, retVal: ?*OrientationType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentOrientation(self, retVal);
-    }
-    pub fn get_CurrentFrameworkId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFrameworkId(self, retVal);
-    }
-    pub fn get_CurrentIsRequiredForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsRequiredForForm(self, retVal);
-    }
-    pub fn get_CurrentItemStatus(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentItemStatus(self, retVal);
-    }
-    pub fn get_CurrentBoundingRectangle(self: *const IUIAutomationElement, retVal: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentBoundingRectangle(self, retVal);
-    }
-    pub fn get_CurrentLabeledBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLabeledBy(self, retVal);
-    }
-    pub fn get_CurrentAriaRole(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAriaRole(self, retVal);
-    }
-    pub fn get_CurrentAriaProperties(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAriaProperties(self, retVal);
-    }
-    pub fn get_CurrentIsDataValidForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsDataValidForForm(self, retVal);
-    }
-    pub fn get_CurrentControllerFor(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentControllerFor(self, retVal);
-    }
-    pub fn get_CurrentDescribedBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDescribedBy(self, retVal);
-    }
-    pub fn get_CurrentFlowsTo(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFlowsTo(self, retVal);
-    }
-    pub fn get_CurrentProviderDescription(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentProviderDescription(self, retVal);
-    }
-    pub fn get_CachedProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedProcessId(self, retVal);
-    }
-    pub fn get_CachedControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedControlType(self, retVal);
-    }
-    pub fn get_CachedLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLocalizedControlType(self, retVal);
-    }
-    pub fn get_CachedName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedName(self, retVal);
-    }
-    pub fn get_CachedAcceleratorKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAcceleratorKey(self, retVal);
-    }
-    pub fn get_CachedAccessKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAccessKey(self, retVal);
-    }
-    pub fn get_CachedHasKeyboardFocus(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedHasKeyboardFocus(self, retVal);
-    }
-    pub fn get_CachedIsKeyboardFocusable(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsKeyboardFocusable(self, retVal);
-    }
-    pub fn get_CachedIsEnabled(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsEnabled(self, retVal);
-    }
-    pub fn get_CachedAutomationId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAutomationId(self, retVal);
-    }
-    pub fn get_CachedClassName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedClassName(self, retVal);
-    }
-    pub fn get_CachedHelpText(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedHelpText(self, retVal);
-    }
-    pub fn get_CachedCulture(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCulture(self, retVal);
-    }
-    pub fn get_CachedIsControlElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsControlElement(self, retVal);
-    }
-    pub fn get_CachedIsContentElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsContentElement(self, retVal);
-    }
-    pub fn get_CachedIsPassword(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsPassword(self, retVal);
-    }
-    pub fn get_CachedNativeWindowHandle(self: *const IUIAutomationElement, retVal: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedNativeWindowHandle(self, retVal);
-    }
-    pub fn get_CachedItemType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedItemType(self, retVal);
-    }
-    pub fn get_CachedIsOffscreen(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsOffscreen(self, retVal);
-    }
-    pub fn get_CachedOrientation(self: *const IUIAutomationElement, retVal: ?*OrientationType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedOrientation(self, retVal);
-    }
-    pub fn get_CachedFrameworkId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFrameworkId(self, retVal);
-    }
-    pub fn get_CachedIsRequiredForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsRequiredForForm(self, retVal);
-    }
-    pub fn get_CachedItemStatus(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedItemStatus(self, retVal);
-    }
-    pub fn get_CachedBoundingRectangle(self: *const IUIAutomationElement, retVal: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedBoundingRectangle(self, retVal);
-    }
-    pub fn get_CachedLabeledBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLabeledBy(self, retVal);
-    }
-    pub fn get_CachedAriaRole(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAriaRole(self, retVal);
-    }
-    pub fn get_CachedAriaProperties(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAriaProperties(self, retVal);
-    }
-    pub fn get_CachedIsDataValidForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsDataValidForForm(self, retVal);
-    }
-    pub fn get_CachedControllerFor(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedControllerFor(self, retVal);
-    }
-    pub fn get_CachedDescribedBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDescribedBy(self, retVal);
-    }
-    pub fn get_CachedFlowsTo(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFlowsTo(self, retVal);
-    }
-    pub fn get_CachedProviderDescription(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedProviderDescription(self, retVal);
-    }
-    pub fn GetClickablePoint(self: *const IUIAutomationElement, clickable: ?*POINT, gotClickable: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClickablePoint(self, clickable, gotClickable);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationElementArray_Value = Guid.initString("14314595-b4bc-4055-95f2-58f2e42c9855");
-pub const IID_IUIAutomationElementArray = &IID_IUIAutomationElementArray_Value;
-pub const IUIAutomationElementArray = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: *const fn(
-            self: *const IUIAutomationElementArray,
-            length: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetElement: *const fn(
-            self: *const IUIAutomationElementArray,
-            index: i32,
-            element: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Length(self: *const IUIAutomationElementArray, length: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Length(self, length);
-    }
-    pub fn GetElement(self: *const IUIAutomationElementArray, index: i32, element: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetElement(self, index, element);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationCondition_Value = Guid.initString("352ffba8-0973-437c-a61f-f64cafd81df9");
-pub const IID_IUIAutomationCondition = &IID_IUIAutomationCondition_Value;
-pub const IUIAutomationCondition = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationBoolCondition_Value = Guid.initString("1b4e1f2e-75eb-4d0b-8952-5a69988e2307");
-pub const IID_IUIAutomationBoolCondition = &IID_IUIAutomationBoolCondition_Value;
-pub const IUIAutomationBoolCondition = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationCondition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BooleanValue: *const fn(
-            self: *const IUIAutomationBoolCondition,
-            boolVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationCondition: IUIAutomationCondition,
-    IUnknown: IUnknown,
-    pub fn get_BooleanValue(self: *const IUIAutomationBoolCondition, boolVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BooleanValue(self, boolVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationPropertyCondition_Value = Guid.initString("99ebf2cb-5578-4267-9ad4-afd6ea77e94b");
-pub const IID_IUIAutomationPropertyCondition = &IID_IUIAutomationPropertyCondition_Value;
-pub const IUIAutomationPropertyCondition = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationCondition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyId: *const fn(
-            self: *const IUIAutomationPropertyCondition,
-            propertyId: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyValue: *const fn(
-            self: *const IUIAutomationPropertyCondition,
-            propertyValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyConditionFlags: *const fn(
-            self: *const IUIAutomationPropertyCondition,
-            flags: ?*PropertyConditionFlags,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationCondition: IUIAutomationCondition,
-    IUnknown: IUnknown,
-    pub fn get_PropertyId(self: *const IUIAutomationPropertyCondition, propertyId: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyId(self, propertyId);
-    }
-    pub fn get_PropertyValue(self: *const IUIAutomationPropertyCondition, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyValue(self, propertyValue);
-    }
-    pub fn get_PropertyConditionFlags(self: *const IUIAutomationPropertyCondition, flags: ?*PropertyConditionFlags) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyConditionFlags(self, flags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationAndCondition_Value = Guid.initString("a7d0af36-b912-45fe-9855-091ddc174aec");
-pub const IID_IUIAutomationAndCondition = &IID_IUIAutomationAndCondition_Value;
-pub const IUIAutomationAndCondition = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationCondition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ChildCount: *const fn(
-            self: *const IUIAutomationAndCondition,
-            childCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetChildrenAsNativeArray: *const fn(
-            self: *const IUIAutomationAndCondition,
-            childArray: [*]?*?*IUIAutomationCondition,
-            childArrayCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetChildren: *const fn(
-            self: *const IUIAutomationAndCondition,
-            childArray: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationCondition: IUIAutomationCondition,
-    IUnknown: IUnknown,
-    pub fn get_ChildCount(self: *const IUIAutomationAndCondition, childCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ChildCount(self, childCount);
-    }
-    pub fn GetChildrenAsNativeArray(self: *const IUIAutomationAndCondition, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildrenAsNativeArray(self, childArray, childArrayCount);
-    }
-    pub fn GetChildren(self: *const IUIAutomationAndCondition, childArray: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildren(self, childArray);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationOrCondition_Value = Guid.initString("8753f032-3db1-47b5-a1fc-6e34a266c712");
-pub const IID_IUIAutomationOrCondition = &IID_IUIAutomationOrCondition_Value;
-pub const IUIAutomationOrCondition = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationCondition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ChildCount: *const fn(
-            self: *const IUIAutomationOrCondition,
-            childCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetChildrenAsNativeArray: *const fn(
-            self: *const IUIAutomationOrCondition,
-            childArray: [*]?*?*IUIAutomationCondition,
-            childArrayCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetChildren: *const fn(
-            self: *const IUIAutomationOrCondition,
-            childArray: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationCondition: IUIAutomationCondition,
-    IUnknown: IUnknown,
-    pub fn get_ChildCount(self: *const IUIAutomationOrCondition, childCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ChildCount(self, childCount);
-    }
-    pub fn GetChildrenAsNativeArray(self: *const IUIAutomationOrCondition, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildrenAsNativeArray(self, childArray, childArrayCount);
-    }
-    pub fn GetChildren(self: *const IUIAutomationOrCondition, childArray: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildren(self, childArray);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationNotCondition_Value = Guid.initString("f528b657-847b-498c-8896-d52b565407a1");
-pub const IID_IUIAutomationNotCondition = &IID_IUIAutomationNotCondition_Value;
-pub const IUIAutomationNotCondition = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationCondition.VTable,
-        GetChild: *const fn(
-            self: *const IUIAutomationNotCondition,
-            condition: ?*?*IUIAutomationCondition,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationCondition: IUIAutomationCondition,
-    IUnknown: IUnknown,
-    pub fn GetChild(self: *const IUIAutomationNotCondition, condition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChild(self, condition);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationCacheRequest_Value = Guid.initString("b32a92b5-bc25-4078-9c08-d7ee95c48e03");
-pub const IID_IUIAutomationCacheRequest = &IID_IUIAutomationCacheRequest_Value;
-pub const IUIAutomationCacheRequest = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddProperty: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            propertyId: i32,
-        ) callconv(.winapi) HRESULT,
-        AddPattern: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            patternId: i32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            clonedRequest: ?*?*IUIAutomationCacheRequest,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TreeScope: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            scope: ?*TreeScope,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TreeScope: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            scope: TreeScope,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TreeFilter: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            filter: ?*?*IUIAutomationCondition,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TreeFilter: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            filter: ?*IUIAutomationCondition,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutomationElementMode: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            mode: ?*AutomationElementMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutomationElementMode: *const fn(
-            self: *const IUIAutomationCacheRequest,
-            mode: AutomationElementMode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddProperty(self: *const IUIAutomationCacheRequest, propertyId: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddProperty(self, propertyId);
-    }
-    pub fn AddPattern(self: *const IUIAutomationCacheRequest, patternId: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPattern(self, patternId);
-    }
-    pub fn Clone(self: *const IUIAutomationCacheRequest, clonedRequest: ?*?*IUIAutomationCacheRequest) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, clonedRequest);
-    }
-    pub fn get_TreeScope(self: *const IUIAutomationCacheRequest, scope: ?*TreeScope) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TreeScope(self, scope);
-    }
-    pub fn put_TreeScope(self: *const IUIAutomationCacheRequest, scope: TreeScope) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TreeScope(self, scope);
-    }
-    pub fn get_TreeFilter(self: *const IUIAutomationCacheRequest, filter: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TreeFilter(self, filter);
-    }
-    pub fn put_TreeFilter(self: *const IUIAutomationCacheRequest, filter: ?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TreeFilter(self, filter);
-    }
-    pub fn get_AutomationElementMode(self: *const IUIAutomationCacheRequest, mode: ?*AutomationElementMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AutomationElementMode(self, mode);
-    }
-    pub fn put_AutomationElementMode(self: *const IUIAutomationCacheRequest, mode: AutomationElementMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AutomationElementMode(self, mode);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTreeWalker_Value = Guid.initString("4042c624-389c-4afc-a630-9df854a541fc");
-pub const IID_IUIAutomationTreeWalker = &IID_IUIAutomationTreeWalker_Value;
-pub const IUIAutomationTreeWalker = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetParentElement: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            parent: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetFirstChildElement: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            first: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetLastChildElement: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            last: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetNextSiblingElement: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            next: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetPreviousSiblingElement: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            previous: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        NormalizeElement: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            normalized: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetParentElementBuildCache: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            parent: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetFirstChildElementBuildCache: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            first: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetLastChildElementBuildCache: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            last: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetNextSiblingElementBuildCache: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            next: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetPreviousSiblingElementBuildCache: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            previous: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        NormalizeElementBuildCache: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            element: ?*IUIAutomationElement,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            normalized: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Condition: *const fn(
-            self: *const IUIAutomationTreeWalker,
-            condition: ?*?*IUIAutomationCondition,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetParentElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParentElement(self, element, parent);
-    }
-    pub fn GetFirstChildElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, first: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFirstChildElement(self, element, first);
-    }
-    pub fn GetLastChildElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, last: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastChildElement(self, element, last);
-    }
-    pub fn GetNextSiblingElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, next: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextSiblingElement(self, element, next);
-    }
-    pub fn GetPreviousSiblingElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, previous: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreviousSiblingElement(self, element, previous);
-    }
-    pub fn NormalizeElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, normalized: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.NormalizeElement(self, element, normalized);
-    }
-    pub fn GetParentElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, parent: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParentElementBuildCache(self, element, cacheRequest, parent);
-    }
-    pub fn GetFirstChildElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, first: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFirstChildElementBuildCache(self, element, cacheRequest, first);
-    }
-    pub fn GetLastChildElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, last: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastChildElementBuildCache(self, element, cacheRequest, last);
-    }
-    pub fn GetNextSiblingElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, next: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextSiblingElementBuildCache(self, element, cacheRequest, next);
-    }
-    pub fn GetPreviousSiblingElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, previous: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreviousSiblingElementBuildCache(self, element, cacheRequest, previous);
-    }
-    pub fn NormalizeElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, normalized: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.NormalizeElementBuildCache(self, element, cacheRequest, normalized);
-    }
-    pub fn get_Condition(self: *const IUIAutomationTreeWalker, condition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Condition(self, condition);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationEventHandler_Value = Guid.initString("146c3c17-f12e-4e22-8c27-f894b9b79c69");
-pub const IID_IUIAutomationEventHandler = &IID_IUIAutomationEventHandler_Value;
-pub const IUIAutomationEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleAutomationEvent: *const fn(
-            self: *const IUIAutomationEventHandler,
-            sender: ?*IUIAutomationElement,
-            eventId: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleAutomationEvent(self: *const IUIAutomationEventHandler, sender: ?*IUIAutomationElement, eventId: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleAutomationEvent(self, sender, eventId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationPropertyChangedEventHandler_Value = Guid.initString("40cd37d4-c756-4b0c-8c6f-bddfeeb13b50");
-pub const IID_IUIAutomationPropertyChangedEventHandler = &IID_IUIAutomationPropertyChangedEventHandler_Value;
-pub const IUIAutomationPropertyChangedEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandlePropertyChangedEvent: *const fn(
-            self: *const IUIAutomationPropertyChangedEventHandler,
-            sender: ?*IUIAutomationElement,
-            propertyId: i32,
-            newValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandlePropertyChangedEvent(self: *const IUIAutomationPropertyChangedEventHandler, sender: ?*IUIAutomationElement, propertyId: i32, newValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.HandlePropertyChangedEvent(self, sender, propertyId, newValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationStructureChangedEventHandler_Value = Guid.initString("e81d1b4e-11c5-42f8-9754-e7036c79f054");
-pub const IID_IUIAutomationStructureChangedEventHandler = &IID_IUIAutomationStructureChangedEventHandler_Value;
-pub const IUIAutomationStructureChangedEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleStructureChangedEvent: *const fn(
-            self: *const IUIAutomationStructureChangedEventHandler,
-            sender: ?*IUIAutomationElement,
-            changeType: StructureChangeType,
-            runtimeId: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleStructureChangedEvent(self: *const IUIAutomationStructureChangedEventHandler, sender: ?*IUIAutomationElement, changeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleStructureChangedEvent(self, sender, changeType, runtimeId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationFocusChangedEventHandler_Value = Guid.initString("c270f6b5-5c69-4290-9745-7a7f97169468");
-pub const IID_IUIAutomationFocusChangedEventHandler = &IID_IUIAutomationFocusChangedEventHandler_Value;
-pub const IUIAutomationFocusChangedEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleFocusChangedEvent: *const fn(
-            self: *const IUIAutomationFocusChangedEventHandler,
-            sender: ?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleFocusChangedEvent(self: *const IUIAutomationFocusChangedEventHandler, sender: ?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleFocusChangedEvent(self, sender);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IUIAutomationTextEditTextChangedEventHandler_Value = Guid.initString("92faa680-e704-4156-931a-e32d5bb38f3f");
-pub const IID_IUIAutomationTextEditTextChangedEventHandler = &IID_IUIAutomationTextEditTextChangedEventHandler_Value;
-pub const IUIAutomationTextEditTextChangedEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleTextEditTextChangedEvent: *const fn(
-            self: *const IUIAutomationTextEditTextChangedEventHandler,
-            sender: ?*IUIAutomationElement,
-            textEditChangeType: TextEditChangeType,
-            eventStrings: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleTextEditTextChangedEvent(self: *const IUIAutomationTextEditTextChangedEventHandler, sender: ?*IUIAutomationElement, textEditChangeType: TextEditChangeType, eventStrings: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleTextEditTextChangedEvent(self, sender, textEditChangeType, eventStrings);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IUIAutomationChangesEventHandler_Value = Guid.initString("58edca55-2c3e-4980-b1b9-56c17f27a2a0");
-pub const IID_IUIAutomationChangesEventHandler = &IID_IUIAutomationChangesEventHandler_Value;
-pub const IUIAutomationChangesEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleChangesEvent: *const fn(
-            self: *const IUIAutomationChangesEventHandler,
-            sender: ?*IUIAutomationElement,
-            uiaChanges: [*]UiaChangeInfo,
-            changesCount: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleChangesEvent(self: *const IUIAutomationChangesEventHandler, sender: ?*IUIAutomationElement, uiaChanges: [*]UiaChangeInfo, changesCount: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleChangesEvent(self, sender, uiaChanges, changesCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-const IID_IUIAutomationNotificationEventHandler_Value = Guid.initString("c7cb2637-e6c2-4d0c-85de-4948c02175c7");
-pub const IID_IUIAutomationNotificationEventHandler = &IID_IUIAutomationNotificationEventHandler_Value;
-pub const IUIAutomationNotificationEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleNotificationEvent: *const fn(
-            self: *const IUIAutomationNotificationEventHandler,
-            sender: ?*IUIAutomationElement,
-            notificationKind: NotificationKind,
-            notificationProcessing: NotificationProcessing,
-            displayString: ?BSTR,
-            activityId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleNotificationEvent(self: *const IUIAutomationNotificationEventHandler, sender: ?*IUIAutomationElement, notificationKind: NotificationKind, notificationProcessing: NotificationProcessing, displayString: ?BSTR, activityId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleNotificationEvent(self, sender, notificationKind, notificationProcessing, displayString, activityId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationInvokePattern_Value = Guid.initString("fb377fbe-8ea6-46d5-9c73-6499642d3059");
-pub const IID_IUIAutomationInvokePattern = &IID_IUIAutomationInvokePattern_Value;
-pub const IUIAutomationInvokePattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Invoke: *const fn(
-            self: *const IUIAutomationInvokePattern,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Invoke(self: *const IUIAutomationInvokePattern) callconv(.@"inline") HRESULT {
-        return self.vtable.Invoke(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationDockPattern_Value = Guid.initString("fde5ef97-1464-48f6-90bf-43d0948e86ec");
-pub const IID_IUIAutomationDockPattern = &IID_IUIAutomationDockPattern_Value;
-pub const IUIAutomationDockPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetDockPosition: *const fn(
-            self: *const IUIAutomationDockPattern,
-            dockPos: DockPosition,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDockPosition: *const fn(
-            self: *const IUIAutomationDockPattern,
-            retVal: ?*DockPosition,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDockPosition: *const fn(
-            self: *const IUIAutomationDockPattern,
-            retVal: ?*DockPosition,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetDockPosition(self: *const IUIAutomationDockPattern, dockPos: DockPosition) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDockPosition(self, dockPos);
-    }
-    pub fn get_CurrentDockPosition(self: *const IUIAutomationDockPattern, retVal: ?*DockPosition) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDockPosition(self, retVal);
-    }
-    pub fn get_CachedDockPosition(self: *const IUIAutomationDockPattern, retVal: ?*DockPosition) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDockPosition(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationExpandCollapsePattern_Value = Guid.initString("619be086-1f4e-4ee4-bafa-210128738730");
-pub const IID_IUIAutomationExpandCollapsePattern = &IID_IUIAutomationExpandCollapsePattern_Value;
-pub const IUIAutomationExpandCollapsePattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Expand: *const fn(
-            self: *const IUIAutomationExpandCollapsePattern,
-        ) callconv(.winapi) HRESULT,
-        Collapse: *const fn(
-            self: *const IUIAutomationExpandCollapsePattern,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentExpandCollapseState: *const fn(
-            self: *const IUIAutomationExpandCollapsePattern,
-            retVal: ?*ExpandCollapseState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedExpandCollapseState: *const fn(
-            self: *const IUIAutomationExpandCollapsePattern,
-            retVal: ?*ExpandCollapseState,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Expand(self: *const IUIAutomationExpandCollapsePattern) callconv(.@"inline") HRESULT {
-        return self.vtable.Expand(self);
-    }
-    pub fn Collapse(self: *const IUIAutomationExpandCollapsePattern) callconv(.@"inline") HRESULT {
-        return self.vtable.Collapse(self);
-    }
-    pub fn get_CurrentExpandCollapseState(self: *const IUIAutomationExpandCollapsePattern, retVal: ?*ExpandCollapseState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentExpandCollapseState(self, retVal);
-    }
-    pub fn get_CachedExpandCollapseState(self: *const IUIAutomationExpandCollapsePattern, retVal: ?*ExpandCollapseState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedExpandCollapseState(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationGridPattern_Value = Guid.initString("414c3cdc-856b-4f5b-8538-3131c6302550");
-pub const IID_IUIAutomationGridPattern = &IID_IUIAutomationGridPattern_Value;
-pub const IUIAutomationGridPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetItem: *const fn(
-            self: *const IUIAutomationGridPattern,
-            row: i32,
-            column: i32,
-            element: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentRowCount: *const fn(
-            self: *const IUIAutomationGridPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentColumnCount: *const fn(
-            self: *const IUIAutomationGridPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedRowCount: *const fn(
-            self: *const IUIAutomationGridPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedColumnCount: *const fn(
-            self: *const IUIAutomationGridPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetItem(self: *const IUIAutomationGridPattern, row: i32, column: i32, element: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, row, column, element);
-    }
-    pub fn get_CurrentRowCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentRowCount(self, retVal);
-    }
-    pub fn get_CurrentColumnCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentColumnCount(self, retVal);
-    }
-    pub fn get_CachedRowCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedRowCount(self, retVal);
-    }
-    pub fn get_CachedColumnCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedColumnCount(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationGridItemPattern_Value = Guid.initString("78f8ef57-66c3-4e09-bd7c-e79b2004894d");
-pub const IID_IUIAutomationGridItemPattern = &IID_IUIAutomationGridItemPattern_Value;
-pub const IUIAutomationGridItemPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentContainingGrid: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentRow: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentColumn: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentRowSpan: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentColumnSpan: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedContainingGrid: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedRow: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedColumn: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedRowSpan: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedColumnSpan: *const fn(
-            self: *const IUIAutomationGridItemPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_CurrentContainingGrid(self: *const IUIAutomationGridItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentContainingGrid(self, retVal);
-    }
-    pub fn get_CurrentRow(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentRow(self, retVal);
-    }
-    pub fn get_CurrentColumn(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentColumn(self, retVal);
-    }
-    pub fn get_CurrentRowSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentRowSpan(self, retVal);
-    }
-    pub fn get_CurrentColumnSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentColumnSpan(self, retVal);
-    }
-    pub fn get_CachedContainingGrid(self: *const IUIAutomationGridItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedContainingGrid(self, retVal);
-    }
-    pub fn get_CachedRow(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedRow(self, retVal);
-    }
-    pub fn get_CachedColumn(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedColumn(self, retVal);
-    }
-    pub fn get_CachedRowSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedRowSpan(self, retVal);
-    }
-    pub fn get_CachedColumnSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedColumnSpan(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationMultipleViewPattern_Value = Guid.initString("8d253c91-1dc5-4bb5-b18f-ade16fa495e8");
-pub const IID_IUIAutomationMultipleViewPattern = &IID_IUIAutomationMultipleViewPattern_Value;
-pub const IUIAutomationMultipleViewPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetViewName: *const fn(
-            self: *const IUIAutomationMultipleViewPattern,
-            view: i32,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetCurrentView: *const fn(
-            self: *const IUIAutomationMultipleViewPattern,
-            view: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCurrentView: *const fn(
-            self: *const IUIAutomationMultipleViewPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentSupportedViews: *const fn(
-            self: *const IUIAutomationMultipleViewPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCurrentView: *const fn(
-            self: *const IUIAutomationMultipleViewPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetCachedSupportedViews: *const fn(
-            self: *const IUIAutomationMultipleViewPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetViewName(self: *const IUIAutomationMultipleViewPattern, view: i32, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetViewName(self, view, name);
-    }
-    pub fn SetCurrentView(self: *const IUIAutomationMultipleViewPattern, view: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCurrentView(self, view);
-    }
-    pub fn get_CurrentCurrentView(self: *const IUIAutomationMultipleViewPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCurrentView(self, retVal);
-    }
-    pub fn GetCurrentSupportedViews(self: *const IUIAutomationMultipleViewPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentSupportedViews(self, retVal);
-    }
-    pub fn get_CachedCurrentView(self: *const IUIAutomationMultipleViewPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCurrentView(self, retVal);
-    }
-    pub fn GetCachedSupportedViews(self: *const IUIAutomationMultipleViewPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedSupportedViews(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationObjectModelPattern_Value = Guid.initString("71c284b3-c14d-4d14-981e-19751b0d756d");
-pub const IID_IUIAutomationObjectModelPattern = &IID_IUIAutomationObjectModelPattern_Value;
-pub const IUIAutomationObjectModelPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetUnderlyingObjectModel: *const fn(
-            self: *const IUIAutomationObjectModelPattern,
-            retVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetUnderlyingObjectModel(self: *const IUIAutomationObjectModelPattern, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUnderlyingObjectModel(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationRangeValuePattern_Value = Guid.initString("59213f4f-7346-49e5-b120-80555987a148");
-pub const IID_IUIAutomationRangeValuePattern = &IID_IUIAutomationRangeValuePattern_Value;
-pub const IUIAutomationRangeValuePattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetValue: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            val: f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentValue: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsReadOnly: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentMaximum: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentMinimum: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLargeChange: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentSmallChange: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedValue: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsReadOnly: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedMaximum: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedMinimum: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLargeChange: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedSmallChange: *const fn(
-            self: *const IUIAutomationRangeValuePattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetValue(self: *const IUIAutomationRangeValuePattern, val: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, val);
-    }
-    pub fn get_CurrentValue(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentValue(self, retVal);
-    }
-    pub fn get_CurrentIsReadOnly(self: *const IUIAutomationRangeValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsReadOnly(self, retVal);
-    }
-    pub fn get_CurrentMaximum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentMaximum(self, retVal);
-    }
-    pub fn get_CurrentMinimum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentMinimum(self, retVal);
-    }
-    pub fn get_CurrentLargeChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLargeChange(self, retVal);
-    }
-    pub fn get_CurrentSmallChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentSmallChange(self, retVal);
-    }
-    pub fn get_CachedValue(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedValue(self, retVal);
-    }
-    pub fn get_CachedIsReadOnly(self: *const IUIAutomationRangeValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsReadOnly(self, retVal);
-    }
-    pub fn get_CachedMaximum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedMaximum(self, retVal);
-    }
-    pub fn get_CachedMinimum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedMinimum(self, retVal);
-    }
-    pub fn get_CachedLargeChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLargeChange(self, retVal);
-    }
-    pub fn get_CachedSmallChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedSmallChange(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationScrollPattern_Value = Guid.initString("88f4d42a-e881-459d-a77c-73bbbb7e02dc");
-pub const IID_IUIAutomationScrollPattern = &IID_IUIAutomationScrollPattern_Value;
-pub const IUIAutomationScrollPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Scroll: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            horizontalAmount: ScrollAmount,
-            verticalAmount: ScrollAmount,
-        ) callconv(.winapi) HRESULT,
-        SetScrollPercent: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            horizontalPercent: f64,
-            verticalPercent: f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentHorizontalScrollPercent: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentVerticalScrollPercent: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentHorizontalViewSize: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentVerticalViewSize: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentHorizontallyScrollable: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentVerticallyScrollable: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedHorizontalScrollPercent: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedVerticalScrollPercent: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedHorizontalViewSize: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedVerticalViewSize: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedHorizontallyScrollable: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedVerticallyScrollable: *const fn(
-            self: *const IUIAutomationScrollPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Scroll(self: *const IUIAutomationScrollPattern, horizontalAmount: ScrollAmount, verticalAmount: ScrollAmount) callconv(.@"inline") HRESULT {
-        return self.vtable.Scroll(self, horizontalAmount, verticalAmount);
-    }
-    pub fn SetScrollPercent(self: *const IUIAutomationScrollPattern, horizontalPercent: f64, verticalPercent: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetScrollPercent(self, horizontalPercent, verticalPercent);
-    }
-    pub fn get_CurrentHorizontalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentHorizontalScrollPercent(self, retVal);
-    }
-    pub fn get_CurrentVerticalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentVerticalScrollPercent(self, retVal);
-    }
-    pub fn get_CurrentHorizontalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentHorizontalViewSize(self, retVal);
-    }
-    pub fn get_CurrentVerticalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentVerticalViewSize(self, retVal);
-    }
-    pub fn get_CurrentHorizontallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentHorizontallyScrollable(self, retVal);
-    }
-    pub fn get_CurrentVerticallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentVerticallyScrollable(self, retVal);
-    }
-    pub fn get_CachedHorizontalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedHorizontalScrollPercent(self, retVal);
-    }
-    pub fn get_CachedVerticalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedVerticalScrollPercent(self, retVal);
-    }
-    pub fn get_CachedHorizontalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedHorizontalViewSize(self, retVal);
-    }
-    pub fn get_CachedVerticalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedVerticalViewSize(self, retVal);
-    }
-    pub fn get_CachedHorizontallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedHorizontallyScrollable(self, retVal);
-    }
-    pub fn get_CachedVerticallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedVerticallyScrollable(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationScrollItemPattern_Value = Guid.initString("b488300f-d015-4f19-9c29-bb595e3645ef");
-pub const IID_IUIAutomationScrollItemPattern = &IID_IUIAutomationScrollItemPattern_Value;
-pub const IUIAutomationScrollItemPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ScrollIntoView: *const fn(
-            self: *const IUIAutomationScrollItemPattern,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ScrollIntoView(self: *const IUIAutomationScrollItemPattern) callconv(.@"inline") HRESULT {
-        return self.vtable.ScrollIntoView(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationSelectionPattern_Value = Guid.initString("5ed5202e-b2ac-47a6-b638-4b0bf140d78e");
-pub const IID_IUIAutomationSelectionPattern = &IID_IUIAutomationSelectionPattern_Value;
-pub const IUIAutomationSelectionPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentSelection: *const fn(
-            self: *const IUIAutomationSelectionPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCanSelectMultiple: *const fn(
-            self: *const IUIAutomationSelectionPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsSelectionRequired: *const fn(
-            self: *const IUIAutomationSelectionPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCachedSelection: *const fn(
-            self: *const IUIAutomationSelectionPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCanSelectMultiple: *const fn(
-            self: *const IUIAutomationSelectionPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsSelectionRequired: *const fn(
-            self: *const IUIAutomationSelectionPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrentSelection(self: *const IUIAutomationSelectionPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentSelection(self, retVal);
-    }
-    pub fn get_CurrentCanSelectMultiple(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCanSelectMultiple(self, retVal);
-    }
-    pub fn get_CurrentIsSelectionRequired(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsSelectionRequired(self, retVal);
-    }
-    pub fn GetCachedSelection(self: *const IUIAutomationSelectionPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedSelection(self, retVal);
-    }
-    pub fn get_CachedCanSelectMultiple(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCanSelectMultiple(self, retVal);
-    }
-    pub fn get_CachedIsSelectionRequired(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsSelectionRequired(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-const IID_IUIAutomationSelectionPattern2_Value = Guid.initString("0532bfae-c011-4e32-a343-6d642d798555");
-pub const IID_IUIAutomationSelectionPattern2 = &IID_IUIAutomationSelectionPattern2_Value;
-pub const IUIAutomationSelectionPattern2 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationSelectionPattern.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFirstSelectedItem: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLastSelectedItem: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCurrentSelectedItem: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentItemCount: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFirstSelectedItem: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLastSelectedItem: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCurrentSelectedItem: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedItemCount: *const fn(
-            self: *const IUIAutomationSelectionPattern2,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationSelectionPattern: IUIAutomationSelectionPattern,
-    IUnknown: IUnknown,
-    pub fn get_CurrentFirstSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFirstSelectedItem(self, retVal);
-    }
-    pub fn get_CurrentLastSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLastSelectedItem(self, retVal);
-    }
-    pub fn get_CurrentCurrentSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCurrentSelectedItem(self, retVal);
-    }
-    pub fn get_CurrentItemCount(self: *const IUIAutomationSelectionPattern2, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentItemCount(self, retVal);
-    }
-    pub fn get_CachedFirstSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFirstSelectedItem(self, retVal);
-    }
-    pub fn get_CachedLastSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLastSelectedItem(self, retVal);
-    }
-    pub fn get_CachedCurrentSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCurrentSelectedItem(self, retVal);
-    }
-    pub fn get_CachedItemCount(self: *const IUIAutomationSelectionPattern2, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedItemCount(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationSelectionItemPattern_Value = Guid.initString("a8efa66a-0fda-421a-9194-38021f3578ea");
-pub const IID_IUIAutomationSelectionItemPattern = &IID_IUIAutomationSelectionItemPattern_Value;
-pub const IUIAutomationSelectionItemPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Select: *const fn(
-            self: *const IUIAutomationSelectionItemPattern,
-        ) callconv(.winapi) HRESULT,
-        AddToSelection: *const fn(
-            self: *const IUIAutomationSelectionItemPattern,
-        ) callconv(.winapi) HRESULT,
-        RemoveFromSelection: *const fn(
-            self: *const IUIAutomationSelectionItemPattern,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsSelected: *const fn(
-            self: *const IUIAutomationSelectionItemPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentSelectionContainer: *const fn(
-            self: *const IUIAutomationSelectionItemPattern,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsSelected: *const fn(
-            self: *const IUIAutomationSelectionItemPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedSelectionContainer: *const fn(
-            self: *const IUIAutomationSelectionItemPattern,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Select(self: *const IUIAutomationSelectionItemPattern) callconv(.@"inline") HRESULT {
-        return self.vtable.Select(self);
-    }
-    pub fn AddToSelection(self: *const IUIAutomationSelectionItemPattern) callconv(.@"inline") HRESULT {
-        return self.vtable.AddToSelection(self);
-    }
-    pub fn RemoveFromSelection(self: *const IUIAutomationSelectionItemPattern) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveFromSelection(self);
-    }
-    pub fn get_CurrentIsSelected(self: *const IUIAutomationSelectionItemPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsSelected(self, retVal);
-    }
-    pub fn get_CurrentSelectionContainer(self: *const IUIAutomationSelectionItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentSelectionContainer(self, retVal);
-    }
-    pub fn get_CachedIsSelected(self: *const IUIAutomationSelectionItemPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsSelected(self, retVal);
-    }
-    pub fn get_CachedSelectionContainer(self: *const IUIAutomationSelectionItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedSelectionContainer(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationSynchronizedInputPattern_Value = Guid.initString("2233be0b-afb7-448b-9fda-3b378aa5eae1");
-pub const IID_IUIAutomationSynchronizedInputPattern = &IID_IUIAutomationSynchronizedInputPattern_Value;
-pub const IUIAutomationSynchronizedInputPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StartListening: *const fn(
-            self: *const IUIAutomationSynchronizedInputPattern,
-            inputType: SynchronizedInputType,
-        ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const IUIAutomationSynchronizedInputPattern,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn StartListening(self: *const IUIAutomationSynchronizedInputPattern, inputType: SynchronizedInputType) callconv(.@"inline") HRESULT {
-        return self.vtable.StartListening(self, inputType);
-    }
-    pub fn Cancel(self: *const IUIAutomationSynchronizedInputPattern) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTablePattern_Value = Guid.initString("620e691c-ea96-4710-a850-754b24ce2417");
-pub const IID_IUIAutomationTablePattern = &IID_IUIAutomationTablePattern_Value;
-pub const IUIAutomationTablePattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentRowHeaders: *const fn(
-            self: *const IUIAutomationTablePattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentColumnHeaders: *const fn(
-            self: *const IUIAutomationTablePattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentRowOrColumnMajor: *const fn(
-            self: *const IUIAutomationTablePattern,
-            retVal: ?*RowOrColumnMajor,
-        ) callconv(.winapi) HRESULT,
-        GetCachedRowHeaders: *const fn(
-            self: *const IUIAutomationTablePattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCachedColumnHeaders: *const fn(
-            self: *const IUIAutomationTablePattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedRowOrColumnMajor: *const fn(
-            self: *const IUIAutomationTablePattern,
-            retVal: ?*RowOrColumnMajor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrentRowHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentRowHeaders(self, retVal);
-    }
-    pub fn GetCurrentColumnHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentColumnHeaders(self, retVal);
-    }
-    pub fn get_CurrentRowOrColumnMajor(self: *const IUIAutomationTablePattern, retVal: ?*RowOrColumnMajor) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentRowOrColumnMajor(self, retVal);
-    }
-    pub fn GetCachedRowHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedRowHeaders(self, retVal);
-    }
-    pub fn GetCachedColumnHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedColumnHeaders(self, retVal);
-    }
-    pub fn get_CachedRowOrColumnMajor(self: *const IUIAutomationTablePattern, retVal: ?*RowOrColumnMajor) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedRowOrColumnMajor(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTableItemPattern_Value = Guid.initString("0b964eb3-ef2e-4464-9c79-61d61737a27e");
-pub const IID_IUIAutomationTableItemPattern = &IID_IUIAutomationTableItemPattern_Value;
-pub const IUIAutomationTableItemPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentRowHeaderItems: *const fn(
-            self: *const IUIAutomationTableItemPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentColumnHeaderItems: *const fn(
-            self: *const IUIAutomationTableItemPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCachedRowHeaderItems: *const fn(
-            self: *const IUIAutomationTableItemPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCachedColumnHeaderItems: *const fn(
-            self: *const IUIAutomationTableItemPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrentRowHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentRowHeaderItems(self, retVal);
-    }
-    pub fn GetCurrentColumnHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentColumnHeaderItems(self, retVal);
-    }
-    pub fn GetCachedRowHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedRowHeaderItems(self, retVal);
-    }
-    pub fn GetCachedColumnHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedColumnHeaderItems(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTogglePattern_Value = Guid.initString("94cf8058-9b8d-4ab9-8bfd-4cd0a33c8c70");
-pub const IID_IUIAutomationTogglePattern = &IID_IUIAutomationTogglePattern_Value;
-pub const IUIAutomationTogglePattern = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IToggleProvider_Value = Guid.initString("56d00bd0-c4f4-433c-a836-1a52a57e0892");
+pub const IID_IToggleProvider = &IID_IToggleProvider_Value;
+pub const IToggleProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Toggle: *const fn(
-            self: *const IUIAutomationTogglePattern,
+            self: *const IToggleProvider,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentToggleState: *const fn(
-            self: *const IUIAutomationTogglePattern,
-            retVal: ?*ToggleState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedToggleState: *const fn(
-            self: *const IUIAutomationTogglePattern,
-            retVal: ?*ToggleState,
+        get_ToggleState: *const fn(
+            self: *const IToggleProvider,
+            pRetVal: ?*ToggleState,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Toggle(self: *const IUIAutomationTogglePattern) callconv(.@"inline") HRESULT {
+    pub fn Toggle(self: *const IToggleProvider) callconv(.@"inline") HRESULT {
         return self.vtable.Toggle(self);
     }
-    pub fn get_CurrentToggleState(self: *const IUIAutomationTogglePattern, retVal: ?*ToggleState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentToggleState(self, retVal);
-    }
-    pub fn get_CachedToggleState(self: *const IUIAutomationTogglePattern, retVal: ?*ToggleState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedToggleState(self, retVal);
+    pub fn get_ToggleState(self: *const IToggleProvider, pRetVal: ?*ToggleState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ToggleState(self, pRetVal);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTransformPattern_Value = Guid.initString("a9b55844-a55d-4ef0-926d-569c16ff89bb");
-pub const IID_IUIAutomationTransformPattern = &IID_IUIAutomationTransformPattern_Value;
-pub const IUIAutomationTransformPattern = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ITransformProvider_Value = Guid.initString("6829ddc4-4f91-4ffa-b86f-bd3e2987cb4c");
+pub const IID_ITransformProvider = &IID_ITransformProvider_Value;
+pub const ITransformProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Move: *const fn(
-            self: *const IUIAutomationTransformPattern,
+            self: *const ITransformProvider,
             x: f64,
             y: f64,
         ) callconv(.winapi) HRESULT,
         Resize: *const fn(
-            self: *const IUIAutomationTransformPattern,
+            self: *const ITransformProvider,
             width: f64,
             height: f64,
         ) callconv(.winapi) HRESULT,
         Rotate: *const fn(
-            self: *const IUIAutomationTransformPattern,
+            self: *const ITransformProvider,
             degrees: f64,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCanMove: *const fn(
-            self: *const IUIAutomationTransformPattern,
-            retVal: ?*BOOL,
+        get_CanMove: *const fn(
+            self: *const ITransformProvider,
+            pRetVal: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCanResize: *const fn(
-            self: *const IUIAutomationTransformPattern,
-            retVal: ?*BOOL,
+        get_CanResize: *const fn(
+            self: *const ITransformProvider,
+            pRetVal: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCanRotate: *const fn(
-            self: *const IUIAutomationTransformPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCanMove: *const fn(
-            self: *const IUIAutomationTransformPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCanResize: *const fn(
-            self: *const IUIAutomationTransformPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCanRotate: *const fn(
-            self: *const IUIAutomationTransformPattern,
-            retVal: ?*BOOL,
+        get_CanRotate: *const fn(
+            self: *const ITransformProvider,
+            pRetVal: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Move(self: *const IUIAutomationTransformPattern, x: f64, y: f64) callconv(.@"inline") HRESULT {
+    pub fn Move(self: *const ITransformProvider, x: f64, y: f64) callconv(.@"inline") HRESULT {
         return self.vtable.Move(self, x, y);
     }
-    pub fn Resize(self: *const IUIAutomationTransformPattern, width: f64, height: f64) callconv(.@"inline") HRESULT {
+    pub fn Resize(self: *const ITransformProvider, width: f64, height: f64) callconv(.@"inline") HRESULT {
         return self.vtable.Resize(self, width, height);
     }
-    pub fn Rotate(self: *const IUIAutomationTransformPattern, degrees: f64) callconv(.@"inline") HRESULT {
+    pub fn Rotate(self: *const ITransformProvider, degrees: f64) callconv(.@"inline") HRESULT {
         return self.vtable.Rotate(self, degrees);
     }
-    pub fn get_CurrentCanMove(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCanMove(self, retVal);
+    pub fn get_CanMove(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanMove(self, pRetVal);
     }
-    pub fn get_CurrentCanResize(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCanResize(self, retVal);
+    pub fn get_CanResize(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanResize(self, pRetVal);
     }
-    pub fn get_CurrentCanRotate(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCanRotate(self, retVal);
-    }
-    pub fn get_CachedCanMove(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCanMove(self, retVal);
-    }
-    pub fn get_CachedCanResize(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCanResize(self, retVal);
-    }
-    pub fn get_CachedCanRotate(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCanRotate(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationValuePattern_Value = Guid.initString("a94cd8b1-0844-4cd6-9d2d-640537ab39e9");
-pub const IID_IUIAutomationValuePattern = &IID_IUIAutomationValuePattern_Value;
-pub const IUIAutomationValuePattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetValue: *const fn(
-            self: *const IUIAutomationValuePattern,
-            val: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentValue: *const fn(
-            self: *const IUIAutomationValuePattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsReadOnly: *const fn(
-            self: *const IUIAutomationValuePattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedValue: *const fn(
-            self: *const IUIAutomationValuePattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsReadOnly: *const fn(
-            self: *const IUIAutomationValuePattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetValue(self: *const IUIAutomationValuePattern, val: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, val);
-    }
-    pub fn get_CurrentValue(self: *const IUIAutomationValuePattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentValue(self, retVal);
-    }
-    pub fn get_CurrentIsReadOnly(self: *const IUIAutomationValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsReadOnly(self, retVal);
-    }
-    pub fn get_CachedValue(self: *const IUIAutomationValuePattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedValue(self, retVal);
-    }
-    pub fn get_CachedIsReadOnly(self: *const IUIAutomationValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsReadOnly(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationWindowPattern_Value = Guid.initString("0faef453-9208-43ef-bbb2-3b485177864f");
-pub const IID_IUIAutomationWindowPattern = &IID_IUIAutomationWindowPattern_Value;
-pub const IUIAutomationWindowPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Close: *const fn(
-            self: *const IUIAutomationWindowPattern,
-        ) callconv(.winapi) HRESULT,
-        WaitForInputIdle: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            milliseconds: i32,
-            success: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetWindowVisualState: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            state: WindowVisualState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCanMaximize: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCanMinimize: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsModal: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsTopmost: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentWindowVisualState: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*WindowVisualState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentWindowInteractionState: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*WindowInteractionState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCanMaximize: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCanMinimize: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsModal: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsTopmost: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedWindowVisualState: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*WindowVisualState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedWindowInteractionState: *const fn(
-            self: *const IUIAutomationWindowPattern,
-            retVal: ?*WindowInteractionState,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Close(self: *const IUIAutomationWindowPattern) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn WaitForInputIdle(self: *const IUIAutomationWindowPattern, milliseconds: i32, success: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.WaitForInputIdle(self, milliseconds, success);
-    }
-    pub fn SetWindowVisualState(self: *const IUIAutomationWindowPattern, state: WindowVisualState) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWindowVisualState(self, state);
-    }
-    pub fn get_CurrentCanMaximize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCanMaximize(self, retVal);
-    }
-    pub fn get_CurrentCanMinimize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCanMinimize(self, retVal);
-    }
-    pub fn get_CurrentIsModal(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsModal(self, retVal);
-    }
-    pub fn get_CurrentIsTopmost(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsTopmost(self, retVal);
-    }
-    pub fn get_CurrentWindowVisualState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowVisualState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentWindowVisualState(self, retVal);
-    }
-    pub fn get_CurrentWindowInteractionState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowInteractionState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentWindowInteractionState(self, retVal);
-    }
-    pub fn get_CachedCanMaximize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCanMaximize(self, retVal);
-    }
-    pub fn get_CachedCanMinimize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCanMinimize(self, retVal);
-    }
-    pub fn get_CachedIsModal(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsModal(self, retVal);
-    }
-    pub fn get_CachedIsTopmost(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsTopmost(self, retVal);
-    }
-    pub fn get_CachedWindowVisualState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowVisualState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedWindowVisualState(self, retVal);
-    }
-    pub fn get_CachedWindowInteractionState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowInteractionState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedWindowInteractionState(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTextRange_Value = Guid.initString("a543cc6a-f4ae-494b-8239-c814481187a8");
-pub const IID_IUIAutomationTextRange = &IID_IUIAutomationTextRange_Value;
-pub const IUIAutomationTextRange = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IUIAutomationTextRange,
-            clonedRange: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        Compare: *const fn(
-            self: *const IUIAutomationTextRange,
-            range: ?*IUIAutomationTextRange,
-            areSame: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        CompareEndpoints: *const fn(
-            self: *const IUIAutomationTextRange,
-            srcEndPoint: TextPatternRangeEndpoint,
-            range: ?*IUIAutomationTextRange,
-            targetEndPoint: TextPatternRangeEndpoint,
-            compValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        ExpandToEnclosingUnit: *const fn(
-            self: *const IUIAutomationTextRange,
-            textUnit: TextUnit,
-        ) callconv(.winapi) HRESULT,
-        FindAttribute: *const fn(
-            self: *const IUIAutomationTextRange,
-            attr: i32,
-            val: VARIANT,
-            backward: BOOL,
-            found: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        FindText: *const fn(
-            self: *const IUIAutomationTextRange,
-            text: ?BSTR,
-            backward: BOOL,
-            ignoreCase: BOOL,
-            found: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        GetAttributeValue: *const fn(
-            self: *const IUIAutomationTextRange,
-            attr: i32,
-            value: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetBoundingRectangles: *const fn(
-            self: *const IUIAutomationTextRange,
-            boundingRects: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetEnclosingElement: *const fn(
-            self: *const IUIAutomationTextRange,
-            enclosingElement: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetText: *const fn(
-            self: *const IUIAutomationTextRange,
-            maxLength: i32,
-            text: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IUIAutomationTextRange,
-            unit: TextUnit,
-            count: i32,
-            moved: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        MoveEndpointByUnit: *const fn(
-            self: *const IUIAutomationTextRange,
-            endpoint: TextPatternRangeEndpoint,
-            unit: TextUnit,
-            count: i32,
-            moved: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        MoveEndpointByRange: *const fn(
-            self: *const IUIAutomationTextRange,
-            srcEndPoint: TextPatternRangeEndpoint,
-            range: ?*IUIAutomationTextRange,
-            targetEndPoint: TextPatternRangeEndpoint,
-        ) callconv(.winapi) HRESULT,
-        Select: *const fn(
-            self: *const IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        AddToSelection: *const fn(
-            self: *const IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        RemoveFromSelection: *const fn(
-            self: *const IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        ScrollIntoView: *const fn(
-            self: *const IUIAutomationTextRange,
-            alignToTop: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetChildren: *const fn(
-            self: *const IUIAutomationTextRange,
-            children: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IUIAutomationTextRange, clonedRange: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, clonedRange);
-    }
-    pub fn Compare(self: *const IUIAutomationTextRange, range: ?*IUIAutomationTextRange, areSame: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Compare(self, range, areSame);
-    }
-    pub fn CompareEndpoints(self: *const IUIAutomationTextRange, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint, compValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.CompareEndpoints(self, srcEndPoint, range, targetEndPoint, compValue);
-    }
-    pub fn ExpandToEnclosingUnit(self: *const IUIAutomationTextRange, textUnit: TextUnit) callconv(.@"inline") HRESULT {
-        return self.vtable.ExpandToEnclosingUnit(self, textUnit);
-    }
-    pub fn FindAttribute(self: *const IUIAutomationTextRange, attr: i32, val: VARIANT, backward: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.FindAttribute(self, attr, val, backward, found);
-    }
-    pub fn FindText(self: *const IUIAutomationTextRange, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.FindText(self, text, backward, ignoreCase, found);
-    }
-    pub fn GetAttributeValue(self: *const IUIAutomationTextRange, attr: i32, value: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttributeValue(self, attr, value);
-    }
-    pub fn GetBoundingRectangles(self: *const IUIAutomationTextRange, boundingRects: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBoundingRectangles(self, boundingRects);
-    }
-    pub fn GetEnclosingElement(self: *const IUIAutomationTextRange, enclosingElement: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnclosingElement(self, enclosingElement);
-    }
-    pub fn GetText(self: *const IUIAutomationTextRange, maxLength: i32, text: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetText(self, maxLength, text);
-    }
-    pub fn Move(self: *const IUIAutomationTextRange, unit: TextUnit, count: i32, moved: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, unit, count, moved);
-    }
-    pub fn MoveEndpointByUnit(self: *const IUIAutomationTextRange, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, moved: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveEndpointByUnit(self, endpoint, unit, count, moved);
-    }
-    pub fn MoveEndpointByRange(self: *const IUIAutomationTextRange, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveEndpointByRange(self, srcEndPoint, range, targetEndPoint);
-    }
-    pub fn Select(self: *const IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.Select(self);
-    }
-    pub fn AddToSelection(self: *const IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.AddToSelection(self);
-    }
-    pub fn RemoveFromSelection(self: *const IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveFromSelection(self);
-    }
-    pub fn ScrollIntoView(self: *const IUIAutomationTextRange, alignToTop: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ScrollIntoView(self, alignToTop);
-    }
-    pub fn GetChildren(self: *const IUIAutomationTextRange, children: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildren(self, children);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IUIAutomationTextRange2_Value = Guid.initString("bb9b40e0-5e04-46bd-9be0-4b601b9afad4");
-pub const IID_IUIAutomationTextRange2 = &IID_IUIAutomationTextRange2_Value;
-pub const IUIAutomationTextRange2 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationTextRange.VTable,
-        ShowContextMenu: *const fn(
-            self: *const IUIAutomationTextRange2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationTextRange: IUIAutomationTextRange,
-    IUnknown: IUnknown,
-    pub fn ShowContextMenu(self: *const IUIAutomationTextRange2) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowContextMenu(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IUIAutomationTextRange3_Value = Guid.initString("6a315d69-5512-4c2e-85f0-53fce6dd4bc2");
-pub const IID_IUIAutomationTextRange3 = &IID_IUIAutomationTextRange3_Value;
-pub const IUIAutomationTextRange3 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationTextRange2.VTable,
-        GetEnclosingElementBuildCache: *const fn(
-            self: *const IUIAutomationTextRange3,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            enclosingElement: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        GetChildrenBuildCache: *const fn(
-            self: *const IUIAutomationTextRange3,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            children: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetAttributeValues: *const fn(
-            self: *const IUIAutomationTextRange3,
-            attributeIds: [*]const i32,
-            attributeIdCount: i32,
-            attributeValues: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationTextRange2: IUIAutomationTextRange2,
-    IUIAutomationTextRange: IUIAutomationTextRange,
-    IUnknown: IUnknown,
-    pub fn GetEnclosingElementBuildCache(self: *const IUIAutomationTextRange3, cacheRequest: ?*IUIAutomationCacheRequest, enclosingElement: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnclosingElementBuildCache(self, cacheRequest, enclosingElement);
-    }
-    pub fn GetChildrenBuildCache(self: *const IUIAutomationTextRange3, cacheRequest: ?*IUIAutomationCacheRequest, children: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChildrenBuildCache(self, cacheRequest, children);
-    }
-    pub fn GetAttributeValues(self: *const IUIAutomationTextRange3, attributeIds: [*]const i32, attributeIdCount: i32, attributeValues: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttributeValues(self, attributeIds, attributeIdCount, attributeValues);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTextRangeArray_Value = Guid.initString("ce4ae76a-e717-4c98-81ea-47371d028eb6");
-pub const IID_IUIAutomationTextRangeArray = &IID_IUIAutomationTextRangeArray_Value;
-pub const IUIAutomationTextRangeArray = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: *const fn(
-            self: *const IUIAutomationTextRangeArray,
-            length: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetElement: *const fn(
-            self: *const IUIAutomationTextRangeArray,
-            index: i32,
-            element: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Length(self: *const IUIAutomationTextRangeArray, length: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Length(self, length);
-    }
-    pub fn GetElement(self: *const IUIAutomationTextRangeArray, index: i32, element: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.GetElement(self, index, element);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationTextPattern_Value = Guid.initString("32eba289-3583-42c9-9c59-3b6d9a1e9b6a");
-pub const IID_IUIAutomationTextPattern = &IID_IUIAutomationTextPattern_Value;
-pub const IUIAutomationTextPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RangeFromPoint: *const fn(
-            self: *const IUIAutomationTextPattern,
-            pt: POINT,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        RangeFromChild: *const fn(
-            self: *const IUIAutomationTextPattern,
-            child: ?*IUIAutomationElement,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        GetSelection: *const fn(
-            self: *const IUIAutomationTextPattern,
-            ranges: ?*?*IUIAutomationTextRangeArray,
-        ) callconv(.winapi) HRESULT,
-        GetVisibleRanges: *const fn(
-            self: *const IUIAutomationTextPattern,
-            ranges: ?*?*IUIAutomationTextRangeArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DocumentRange: *const fn(
-            self: *const IUIAutomationTextPattern,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedTextSelection: *const fn(
-            self: *const IUIAutomationTextPattern,
-            supportedTextSelection: ?*SupportedTextSelection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RangeFromPoint(self: *const IUIAutomationTextPattern, pt: POINT, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.RangeFromPoint(self, pt, range);
-    }
-    pub fn RangeFromChild(self: *const IUIAutomationTextPattern, child: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.RangeFromChild(self, child, range);
-    }
-    pub fn GetSelection(self: *const IUIAutomationTextPattern, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelection(self, ranges);
-    }
-    pub fn GetVisibleRanges(self: *const IUIAutomationTextPattern, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVisibleRanges(self, ranges);
-    }
-    pub fn get_DocumentRange(self: *const IUIAutomationTextPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DocumentRange(self, range);
-    }
-    pub fn get_SupportedTextSelection(self: *const IUIAutomationTextPattern, supportedTextSelection: ?*SupportedTextSelection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SupportedTextSelection(self, supportedTextSelection);
+    pub fn get_CanRotate(self: *const ITransformProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanRotate(self, pRetVal);
     }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationTextPattern2_Value = Guid.initString("506a921a-fcc9-409f-b23b-37eb74106872");
-pub const IID_IUIAutomationTextPattern2 = &IID_IUIAutomationTextPattern2_Value;
-pub const IUIAutomationTextPattern2 = extern union {
+const IID_ITransformProvider2_Value = Guid.initString("4758742f-7ac2-460c-bc48-09fc09308a93");
+pub const IID_ITransformProvider2 = &IID_ITransformProvider2_Value;
+pub const ITransformProvider2 = extern union {
     pub const VTable = extern struct {
-        base: IUIAutomationTextPattern.VTable,
-        RangeFromAnnotation: *const fn(
-            self: *const IUIAutomationTextPattern2,
-            annotation: ?*IUIAutomationElement,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        GetCaretRange: *const fn(
-            self: *const IUIAutomationTextPattern2,
-            isActive: ?*BOOL,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationTextPattern: IUIAutomationTextPattern,
-    IUnknown: IUnknown,
-    pub fn RangeFromAnnotation(self: *const IUIAutomationTextPattern2, annotation: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.RangeFromAnnotation(self, annotation, range);
-    }
-    pub fn GetCaretRange(self: *const IUIAutomationTextPattern2, isActive: ?*BOOL, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCaretRange(self, isActive, range);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IUIAutomationTextEditPattern_Value = Guid.initString("17e21576-996c-4870-99d9-bff323380c06");
-pub const IID_IUIAutomationTextEditPattern = &IID_IUIAutomationTextEditPattern_Value;
-pub const IUIAutomationTextEditPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationTextPattern.VTable,
-        GetActiveComposition: *const fn(
-            self: *const IUIAutomationTextEditPattern,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-        GetConversionTarget: *const fn(
-            self: *const IUIAutomationTextEditPattern,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationTextPattern: IUIAutomationTextPattern,
-    IUnknown: IUnknown,
-    pub fn GetActiveComposition(self: *const IUIAutomationTextEditPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActiveComposition(self, range);
-    }
-    pub fn GetConversionTarget(self: *const IUIAutomationTextEditPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConversionTarget(self, range);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IUIAutomationCustomNavigationPattern_Value = Guid.initString("01ea217a-1766-47ed-a6cc-acf492854b1f");
-pub const IID_IUIAutomationCustomNavigationPattern = &IID_IUIAutomationCustomNavigationPattern_Value;
-pub const IUIAutomationCustomNavigationPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Navigate: *const fn(
-            self: *const IUIAutomationCustomNavigationPattern,
-            direction: NavigateDirection,
-            pRetVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Navigate(self: *const IUIAutomationCustomNavigationPattern, direction: NavigateDirection, pRetVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.Navigate(self, direction, pRetVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.17763'
-const IID_IUIAutomationActiveTextPositionChangedEventHandler_Value = Guid.initString("f97933b0-8dae-4496-8997-5ba015fe0d82");
-pub const IID_IUIAutomationActiveTextPositionChangedEventHandler = &IID_IUIAutomationActiveTextPositionChangedEventHandler_Value;
-pub const IUIAutomationActiveTextPositionChangedEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        HandleActiveTextPositionChangedEvent: *const fn(
-            self: *const IUIAutomationActiveTextPositionChangedEventHandler,
-            sender: ?*IUIAutomationElement,
-            range: ?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn HandleActiveTextPositionChangedEvent(self: *const IUIAutomationActiveTextPositionChangedEventHandler, sender: ?*IUIAutomationElement, range: ?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleActiveTextPositionChangedEvent(self, sender, range);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationLegacyIAccessiblePattern_Value = Guid.initString("828055ad-355b-4435-86d5-3b51c14a9b1b");
-pub const IID_IUIAutomationLegacyIAccessiblePattern = &IID_IUIAutomationLegacyIAccessiblePattern_Value;
-pub const IUIAutomationLegacyIAccessiblePattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Select: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            flagsSelect: i32,
-        ) callconv(.winapi) HRESULT,
-        DoDefaultAction: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-        ) callconv(.winapi) HRESULT,
-        SetValue: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            szValue: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentChildId: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentName: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentValue: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDescription: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentRole: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwRole: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentState: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwState: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentHelp: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszHelp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentKeyboardShortcut: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszKeyboardShortcut: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentSelection: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pvarSelectedChildren: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDefaultAction: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDefaultAction: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedChildId: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pRetVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedName: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedValue: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDescription: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedRole: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwRole: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedState: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwState: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedHelp: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszHelp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedKeyboardShortcut: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszKeyboardShortcut: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCachedSelection: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pvarSelectedChildren: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDefaultAction: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDefaultAction: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetIAccessible: *const fn(
-            self: *const IUIAutomationLegacyIAccessiblePattern,
-            ppAccessible: ?*?*IAccessible,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Select(self: *const IUIAutomationLegacyIAccessiblePattern, flagsSelect: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Select(self, flagsSelect);
-    }
-    pub fn DoDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern) callconv(.@"inline") HRESULT {
-        return self.vtable.DoDefaultAction(self);
-    }
-    pub fn SetValue(self: *const IUIAutomationLegacyIAccessiblePattern, szValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, szValue);
-    }
-    pub fn get_CurrentChildId(self: *const IUIAutomationLegacyIAccessiblePattern, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentChildId(self, pRetVal);
-    }
-    pub fn get_CurrentName(self: *const IUIAutomationLegacyIAccessiblePattern, pszName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentName(self, pszName);
-    }
-    pub fn get_CurrentValue(self: *const IUIAutomationLegacyIAccessiblePattern, pszValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentValue(self, pszValue);
-    }
-    pub fn get_CurrentDescription(self: *const IUIAutomationLegacyIAccessiblePattern, pszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDescription(self, pszDescription);
-    }
-    pub fn get_CurrentRole(self: *const IUIAutomationLegacyIAccessiblePattern, pdwRole: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentRole(self, pdwRole);
-    }
-    pub fn get_CurrentState(self: *const IUIAutomationLegacyIAccessiblePattern, pdwState: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentState(self, pdwState);
-    }
-    pub fn get_CurrentHelp(self: *const IUIAutomationLegacyIAccessiblePattern, pszHelp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentHelp(self, pszHelp);
-    }
-    pub fn get_CurrentKeyboardShortcut(self: *const IUIAutomationLegacyIAccessiblePattern, pszKeyboardShortcut: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentKeyboardShortcut(self, pszKeyboardShortcut);
-    }
-    pub fn GetCurrentSelection(self: *const IUIAutomationLegacyIAccessiblePattern, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentSelection(self, pvarSelectedChildren);
-    }
-    pub fn get_CurrentDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern, pszDefaultAction: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDefaultAction(self, pszDefaultAction);
-    }
-    pub fn get_CachedChildId(self: *const IUIAutomationLegacyIAccessiblePattern, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedChildId(self, pRetVal);
-    }
-    pub fn get_CachedName(self: *const IUIAutomationLegacyIAccessiblePattern, pszName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedName(self, pszName);
-    }
-    pub fn get_CachedValue(self: *const IUIAutomationLegacyIAccessiblePattern, pszValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedValue(self, pszValue);
-    }
-    pub fn get_CachedDescription(self: *const IUIAutomationLegacyIAccessiblePattern, pszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDescription(self, pszDescription);
-    }
-    pub fn get_CachedRole(self: *const IUIAutomationLegacyIAccessiblePattern, pdwRole: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedRole(self, pdwRole);
-    }
-    pub fn get_CachedState(self: *const IUIAutomationLegacyIAccessiblePattern, pdwState: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedState(self, pdwState);
-    }
-    pub fn get_CachedHelp(self: *const IUIAutomationLegacyIAccessiblePattern, pszHelp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedHelp(self, pszHelp);
-    }
-    pub fn get_CachedKeyboardShortcut(self: *const IUIAutomationLegacyIAccessiblePattern, pszKeyboardShortcut: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedKeyboardShortcut(self, pszKeyboardShortcut);
-    }
-    pub fn GetCachedSelection(self: *const IUIAutomationLegacyIAccessiblePattern, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedSelection(self, pvarSelectedChildren);
-    }
-    pub fn get_CachedDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern, pszDefaultAction: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDefaultAction(self, pszDefaultAction);
-    }
-    pub fn GetIAccessible(self: *const IUIAutomationLegacyIAccessiblePattern, ppAccessible: ?*?*IAccessible) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIAccessible(self, ppAccessible);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationItemContainerPattern_Value = Guid.initString("c690fdb2-27a8-423c-812d-429773c9084e");
-pub const IID_IUIAutomationItemContainerPattern = &IID_IUIAutomationItemContainerPattern_Value;
-pub const IUIAutomationItemContainerPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        FindItemByProperty: *const fn(
-            self: *const IUIAutomationItemContainerPattern,
-            pStartAfter: ?*IUIAutomationElement,
-            propertyId: i32,
-            value: VARIANT,
-            pFound: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn FindItemByProperty(self: *const IUIAutomationItemContainerPattern, pStartAfter: ?*IUIAutomationElement, propertyId: i32, value: VARIANT, pFound: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.FindItemByProperty(self, pStartAfter, propertyId, value, pFound);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationVirtualizedItemPattern_Value = Guid.initString("6ba3d7a6-04cf-4f11-8793-a8d1cde9969f");
-pub const IID_IUIAutomationVirtualizedItemPattern = &IID_IUIAutomationVirtualizedItemPattern_Value;
-pub const IUIAutomationVirtualizedItemPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Realize: *const fn(
-            self: *const IUIAutomationVirtualizedItemPattern,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Realize(self: *const IUIAutomationVirtualizedItemPattern) callconv(.@"inline") HRESULT {
-        return self.vtable.Realize(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationAnnotationPattern_Value = Guid.initString("9a175b21-339e-41b1-8e8b-623f6b681098");
-pub const IID_IUIAutomationAnnotationPattern = &IID_IUIAutomationAnnotationPattern_Value;
-pub const IUIAutomationAnnotationPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAnnotationTypeId: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAnnotationTypeName: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAuthor: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDateTime: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentTarget: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAnnotationTypeId: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAnnotationTypeName: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAuthor: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDateTime: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedTarget: *const fn(
-            self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_CurrentAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAnnotationTypeId(self, retVal);
-    }
-    pub fn get_CurrentAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAnnotationTypeName(self, retVal);
-    }
-    pub fn get_CurrentAuthor(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAuthor(self, retVal);
-    }
-    pub fn get_CurrentDateTime(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDateTime(self, retVal);
-    }
-    pub fn get_CurrentTarget(self: *const IUIAutomationAnnotationPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentTarget(self, retVal);
-    }
-    pub fn get_CachedAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAnnotationTypeId(self, retVal);
-    }
-    pub fn get_CachedAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAnnotationTypeName(self, retVal);
-    }
-    pub fn get_CachedAuthor(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAuthor(self, retVal);
-    }
-    pub fn get_CachedDateTime(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDateTime(self, retVal);
-    }
-    pub fn get_CachedTarget(self: *const IUIAutomationAnnotationPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedTarget(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationStylesPattern_Value = Guid.initString("85b5f0a2-bd79-484a-ad2b-388c9838d5fb");
-pub const IID_IUIAutomationStylesPattern = &IID_IUIAutomationStylesPattern_Value;
-pub const IUIAutomationStylesPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentStyleId: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentStyleName: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFillColor: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFillPatternStyle: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentShape: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFillPatternColor: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentExtendedProperties: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentExtendedPropertiesAsArray: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            propertyArray: ?*?*ExtendedProperty,
-            propertyCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedStyleId: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedStyleName: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFillColor: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFillPatternStyle: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedShape: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFillPatternColor: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedExtendedProperties: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCachedExtendedPropertiesAsArray: *const fn(
-            self: *const IUIAutomationStylesPattern,
-            propertyArray: ?*?*ExtendedProperty,
-            propertyCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_CurrentStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentStyleId(self, retVal);
-    }
-    pub fn get_CurrentStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentStyleName(self, retVal);
-    }
-    pub fn get_CurrentFillColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFillColor(self, retVal);
-    }
-    pub fn get_CurrentFillPatternStyle(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFillPatternStyle(self, retVal);
-    }
-    pub fn get_CurrentShape(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentShape(self, retVal);
-    }
-    pub fn get_CurrentFillPatternColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFillPatternColor(self, retVal);
-    }
-    pub fn get_CurrentExtendedProperties(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentExtendedProperties(self, retVal);
-    }
-    pub fn GetCurrentExtendedPropertiesAsArray(self: *const IUIAutomationStylesPattern, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentExtendedPropertiesAsArray(self, propertyArray, propertyCount);
-    }
-    pub fn get_CachedStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedStyleId(self, retVal);
-    }
-    pub fn get_CachedStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedStyleName(self, retVal);
-    }
-    pub fn get_CachedFillColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFillColor(self, retVal);
-    }
-    pub fn get_CachedFillPatternStyle(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFillPatternStyle(self, retVal);
-    }
-    pub fn get_CachedShape(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedShape(self, retVal);
-    }
-    pub fn get_CachedFillPatternColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFillPatternColor(self, retVal);
-    }
-    pub fn get_CachedExtendedProperties(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedExtendedProperties(self, retVal);
-    }
-    pub fn GetCachedExtendedPropertiesAsArray(self: *const IUIAutomationStylesPattern, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedExtendedPropertiesAsArray(self, propertyArray, propertyCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationSpreadsheetPattern_Value = Guid.initString("7517a7c8-faae-4de9-9f08-29b91e8595c1");
-pub const IID_IUIAutomationSpreadsheetPattern = &IID_IUIAutomationSpreadsheetPattern_Value;
-pub const IUIAutomationSpreadsheetPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetItemByName: *const fn(
-            self: *const IUIAutomationSpreadsheetPattern,
-            name: ?BSTR,
-            element: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetItemByName(self: *const IUIAutomationSpreadsheetPattern, name: ?BSTR, element: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItemByName(self, name, element);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationSpreadsheetItemPattern_Value = Guid.initString("7d4fb86c-8d34-40e1-8e83-62c15204e335");
-pub const IID_IUIAutomationSpreadsheetItemPattern = &IID_IUIAutomationSpreadsheetItemPattern_Value;
-pub const IUIAutomationSpreadsheetItemPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFormula: *const fn(
-            self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentAnnotationObjects: *const fn(
-            self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentAnnotationTypes: *const fn(
-            self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFormula: *const fn(
-            self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCachedAnnotationObjects: *const fn(
-            self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCachedAnnotationTypes: *const fn(
-            self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_CurrentFormula(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFormula(self, retVal);
-    }
-    pub fn GetCurrentAnnotationObjects(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentAnnotationObjects(self, retVal);
-    }
-    pub fn GetCurrentAnnotationTypes(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentAnnotationTypes(self, retVal);
-    }
-    pub fn get_CachedFormula(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFormula(self, retVal);
-    }
-    pub fn GetCachedAnnotationObjects(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedAnnotationObjects(self, retVal);
-    }
-    pub fn GetCachedAnnotationTypes(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedAnnotationTypes(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationTransformPattern2_Value = Guid.initString("6d74d017-6ecb-4381-b38b-3c17a48ff1c2");
-pub const IID_IUIAutomationTransformPattern2 = &IID_IUIAutomationTransformPattern2_Value;
-pub const IUIAutomationTransformPattern2 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationTransformPattern.VTable,
+        base: ITransformProvider.VTable,
         Zoom: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            zoomValue: f64,
+            self: *const ITransformProvider2,
+            zoom: f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CanZoom: *const fn(
+            self: *const ITransformProvider2,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ZoomLevel: *const fn(
+            self: *const ITransformProvider2,
+            pRetVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ZoomMinimum: *const fn(
+            self: *const ITransformProvider2,
+            pRetVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ZoomMaximum: *const fn(
+            self: *const ITransformProvider2,
+            pRetVal: ?*f64,
         ) callconv(.winapi) HRESULT,
         ZoomByUnit: *const fn(
-            self: *const IUIAutomationTransformPattern2,
+            self: *const ITransformProvider2,
             zoomUnit: ZoomUnit,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCanZoom: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedCanZoom: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentZoomLevel: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedZoomLevel: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentZoomMinimum: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedZoomMinimum: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentZoomMaximum: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedZoomMaximum: *const fn(
-            self: *const IUIAutomationTransformPattern2,
-            retVal: ?*f64,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IUIAutomationTransformPattern: IUIAutomationTransformPattern,
+    ITransformProvider: ITransformProvider,
     IUnknown: IUnknown,
-    pub fn Zoom(self: *const IUIAutomationTransformPattern2, zoomValue: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.Zoom(self, zoomValue);
+    pub fn Zoom(self: *const ITransformProvider2, zoom: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.Zoom(self, zoom);
     }
-    pub fn ZoomByUnit(self: *const IUIAutomationTransformPattern2, zoomUnit: ZoomUnit) callconv(.@"inline") HRESULT {
+    pub fn get_CanZoom(self: *const ITransformProvider2, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanZoom(self, pRetVal);
+    }
+    pub fn get_ZoomLevel(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ZoomLevel(self, pRetVal);
+    }
+    pub fn get_ZoomMinimum(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ZoomMinimum(self, pRetVal);
+    }
+    pub fn get_ZoomMaximum(self: *const ITransformProvider2, pRetVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ZoomMaximum(self, pRetVal);
+    }
+    pub fn ZoomByUnit(self: *const ITransformProvider2, zoomUnit: ZoomUnit) callconv(.@"inline") HRESULT {
         return self.vtable.ZoomByUnit(self, zoomUnit);
-    }
-    pub fn get_CurrentCanZoom(self: *const IUIAutomationTransformPattern2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCanZoom(self, retVal);
-    }
-    pub fn get_CachedCanZoom(self: *const IUIAutomationTransformPattern2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedCanZoom(self, retVal);
-    }
-    pub fn get_CurrentZoomLevel(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentZoomLevel(self, retVal);
-    }
-    pub fn get_CachedZoomLevel(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedZoomLevel(self, retVal);
-    }
-    pub fn get_CurrentZoomMinimum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentZoomMinimum(self, retVal);
-    }
-    pub fn get_CachedZoomMinimum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedZoomMinimum(self, retVal);
-    }
-    pub fn get_CurrentZoomMaximum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentZoomMaximum(self, retVal);
-    }
-    pub fn get_CachedZoomMaximum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedZoomMaximum(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationTextChildPattern_Value = Guid.initString("6552b038-ae05-40c8-abfd-aa08352aab86");
-pub const IID_IUIAutomationTextChildPattern = &IID_IUIAutomationTextChildPattern_Value;
-pub const IUIAutomationTextChildPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TextContainer: *const fn(
-            self: *const IUIAutomationTextChildPattern,
-            container: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TextRange: *const fn(
-            self: *const IUIAutomationTextChildPattern,
-            range: ?*?*IUIAutomationTextRange,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_TextContainer(self: *const IUIAutomationTextChildPattern, container: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TextContainer(self, container);
-    }
-    pub fn get_TextRange(self: *const IUIAutomationTextChildPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TextRange(self, range);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationDragPattern_Value = Guid.initString("1dc7b570-1f54-4bad-bcda-d36a722fb7bd");
-pub const IID_IUIAutomationDragPattern = &IID_IUIAutomationDragPattern_Value;
-pub const IUIAutomationDragPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsGrabbed: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsGrabbed: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDropEffect: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDropEffect: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDropEffects: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDropEffects: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentGrabbedItems: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCachedGrabbedItems: *const fn(
-            self: *const IUIAutomationDragPattern,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_CurrentIsGrabbed(self: *const IUIAutomationDragPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsGrabbed(self, retVal);
-    }
-    pub fn get_CachedIsGrabbed(self: *const IUIAutomationDragPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsGrabbed(self, retVal);
-    }
-    pub fn get_CurrentDropEffect(self: *const IUIAutomationDragPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDropEffect(self, retVal);
-    }
-    pub fn get_CachedDropEffect(self: *const IUIAutomationDragPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDropEffect(self, retVal);
-    }
-    pub fn get_CurrentDropEffects(self: *const IUIAutomationDragPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDropEffects(self, retVal);
-    }
-    pub fn get_CachedDropEffects(self: *const IUIAutomationDragPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDropEffects(self, retVal);
-    }
-    pub fn GetCurrentGrabbedItems(self: *const IUIAutomationDragPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentGrabbedItems(self, retVal);
-    }
-    pub fn GetCachedGrabbedItems(self: *const IUIAutomationDragPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCachedGrabbedItems(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationDropTargetPattern_Value = Guid.initString("69a095f7-eee4-430e-a46b-fb73b1ae39a5");
-pub const IID_IUIAutomationDropTargetPattern = &IID_IUIAutomationDropTargetPattern_Value;
-pub const IUIAutomationDropTargetPattern = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDropTargetEffect: *const fn(
-            self: *const IUIAutomationDropTargetPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDropTargetEffect: *const fn(
-            self: *const IUIAutomationDropTargetPattern,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentDropTargetEffects: *const fn(
-            self: *const IUIAutomationDropTargetPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedDropTargetEffects: *const fn(
-            self: *const IUIAutomationDropTargetPattern,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_CurrentDropTargetEffect(self: *const IUIAutomationDropTargetPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDropTargetEffect(self, retVal);
-    }
-    pub fn get_CachedDropTargetEffect(self: *const IUIAutomationDropTargetPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDropTargetEffect(self, retVal);
-    }
-    pub fn get_CurrentDropTargetEffects(self: *const IUIAutomationDropTargetPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentDropTargetEffects(self, retVal);
-    }
-    pub fn get_CachedDropTargetEffects(self: *const IUIAutomationDropTargetPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedDropTargetEffects(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIAutomationElement2_Value = Guid.initString("6749c683-f70d-4487-a698-5f79d55290d6");
-pub const IID_IUIAutomationElement2 = &IID_IUIAutomationElement2_Value;
-pub const IUIAutomationElement2 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentOptimizeForVisualContent: *const fn(
-            self: *const IUIAutomationElement2,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedOptimizeForVisualContent: *const fn(
-            self: *const IUIAutomationElement2,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLiveSetting: *const fn(
-            self: *const IUIAutomationElement2,
-            retVal: ?*LiveSetting,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLiveSetting: *const fn(
-            self: *const IUIAutomationElement2,
-            retVal: ?*LiveSetting,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFlowsFrom: *const fn(
-            self: *const IUIAutomationElement2,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFlowsFrom: *const fn(
-            self: *const IUIAutomationElement2,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn get_CurrentOptimizeForVisualContent(self: *const IUIAutomationElement2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentOptimizeForVisualContent(self, retVal);
-    }
-    pub fn get_CachedOptimizeForVisualContent(self: *const IUIAutomationElement2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedOptimizeForVisualContent(self, retVal);
-    }
-    pub fn get_CurrentLiveSetting(self: *const IUIAutomationElement2, retVal: ?*LiveSetting) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLiveSetting(self, retVal);
-    }
-    pub fn get_CachedLiveSetting(self: *const IUIAutomationElement2, retVal: ?*LiveSetting) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLiveSetting(self, retVal);
-    }
-    pub fn get_CurrentFlowsFrom(self: *const IUIAutomationElement2, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFlowsFrom(self, retVal);
-    }
-    pub fn get_CachedFlowsFrom(self: *const IUIAutomationElement2, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFlowsFrom(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IUIAutomationElement3_Value = Guid.initString("8471df34-aee0-4a01-a7de-7db9af12c296");
-pub const IID_IUIAutomationElement3 = &IID_IUIAutomationElement3_Value;
-pub const IUIAutomationElement3 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement2.VTable,
-        ShowContextMenu: *const fn(
-            self: *const IUIAutomationElement3,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsPeripheral: *const fn(
-            self: *const IUIAutomationElement3,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsPeripheral: *const fn(
-            self: *const IUIAutomationElement3,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement2: IUIAutomationElement2,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn ShowContextMenu(self: *const IUIAutomationElement3) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowContextMenu(self);
-    }
-    pub fn get_CurrentIsPeripheral(self: *const IUIAutomationElement3, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsPeripheral(self, retVal);
-    }
-    pub fn get_CachedIsPeripheral(self: *const IUIAutomationElement3, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsPeripheral(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IUIAutomationElement4_Value = Guid.initString("3b6e233c-52fb-4063-a4c9-77c075c2a06b");
-pub const IID_IUIAutomationElement4 = &IID_IUIAutomationElement4_Value;
-pub const IUIAutomationElement4 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement3.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentPositionInSet: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentSizeOfSet: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLevel: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAnnotationTypes: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentAnnotationObjects: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedPositionInSet: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedSizeOfSet: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLevel: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAnnotationTypes: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedAnnotationObjects: *const fn(
-            self: *const IUIAutomationElement4,
-            retVal: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement3: IUIAutomationElement3,
-    IUIAutomationElement2: IUIAutomationElement2,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn get_CurrentPositionInSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentPositionInSet(self, retVal);
-    }
-    pub fn get_CurrentSizeOfSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentSizeOfSet(self, retVal);
-    }
-    pub fn get_CurrentLevel(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLevel(self, retVal);
-    }
-    pub fn get_CurrentAnnotationTypes(self: *const IUIAutomationElement4, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAnnotationTypes(self, retVal);
-    }
-    pub fn get_CurrentAnnotationObjects(self: *const IUIAutomationElement4, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentAnnotationObjects(self, retVal);
-    }
-    pub fn get_CachedPositionInSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedPositionInSet(self, retVal);
-    }
-    pub fn get_CachedSizeOfSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedSizeOfSet(self, retVal);
-    }
-    pub fn get_CachedLevel(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLevel(self, retVal);
-    }
-    pub fn get_CachedAnnotationTypes(self: *const IUIAutomationElement4, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAnnotationTypes(self, retVal);
-    }
-    pub fn get_CachedAnnotationObjects(self: *const IUIAutomationElement4, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedAnnotationObjects(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IUIAutomationElement5_Value = Guid.initString("98141c1d-0d0e-4175-bbe2-6bff455842a7");
-pub const IID_IUIAutomationElement5 = &IID_IUIAutomationElement5_Value;
-pub const IUIAutomationElement5 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement4.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLandmarkType: *const fn(
-            self: *const IUIAutomationElement5,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentLocalizedLandmarkType: *const fn(
-            self: *const IUIAutomationElement5,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLandmarkType: *const fn(
-            self: *const IUIAutomationElement5,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedLocalizedLandmarkType: *const fn(
-            self: *const IUIAutomationElement5,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement4: IUIAutomationElement4,
-    IUIAutomationElement3: IUIAutomationElement3,
-    IUIAutomationElement2: IUIAutomationElement2,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn get_CurrentLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLandmarkType(self, retVal);
-    }
-    pub fn get_CurrentLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentLocalizedLandmarkType(self, retVal);
-    }
-    pub fn get_CachedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLandmarkType(self, retVal);
-    }
-    pub fn get_CachedLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedLocalizedLandmarkType(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IUIAutomationElement6_Value = Guid.initString("4780d450-8bca-4977-afa5-a4a517f555e3");
-pub const IID_IUIAutomationElement6 = &IID_IUIAutomationElement6_Value;
-pub const IUIAutomationElement6 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement5.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentFullDescription: *const fn(
-            self: *const IUIAutomationElement6,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedFullDescription: *const fn(
-            self: *const IUIAutomationElement6,
-            retVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement5: IUIAutomationElement5,
-    IUIAutomationElement4: IUIAutomationElement4,
-    IUIAutomationElement3: IUIAutomationElement3,
-    IUIAutomationElement2: IUIAutomationElement2,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn get_CurrentFullDescription(self: *const IUIAutomationElement6, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentFullDescription(self, retVal);
-    }
-    pub fn get_CachedFullDescription(self: *const IUIAutomationElement6, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedFullDescription(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IUIAutomationElement7_Value = Guid.initString("204e8572-cfc3-4c11-b0c8-7da7420750b7");
-pub const IID_IUIAutomationElement7 = &IID_IUIAutomationElement7_Value;
-pub const IUIAutomationElement7 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement6.VTable,
-        FindFirstWithOptions: *const fn(
-            self: *const IUIAutomationElement7,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            traversalOptions: TreeTraversalOptions,
-            root: ?*IUIAutomationElement,
-            found: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        FindAllWithOptions: *const fn(
-            self: *const IUIAutomationElement7,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            traversalOptions: TreeTraversalOptions,
-            root: ?*IUIAutomationElement,
-            found: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        FindFirstWithOptionsBuildCache: *const fn(
-            self: *const IUIAutomationElement7,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            traversalOptions: TreeTraversalOptions,
-            root: ?*IUIAutomationElement,
-            found: ?*?*IUIAutomationElement,
-        ) callconv(.winapi) HRESULT,
-        FindAllWithOptionsBuildCache: *const fn(
-            self: *const IUIAutomationElement7,
-            scope: TreeScope,
-            condition: ?*IUIAutomationCondition,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            traversalOptions: TreeTraversalOptions,
-            root: ?*IUIAutomationElement,
-            found: ?*?*IUIAutomationElementArray,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentMetadataValue: *const fn(
-            self: *const IUIAutomationElement7,
-            targetId: i32,
-            metadataId: i32,
-            returnVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement6: IUIAutomationElement6,
-    IUIAutomationElement5: IUIAutomationElement5,
-    IUIAutomationElement4: IUIAutomationElement4,
-    IUIAutomationElement3: IUIAutomationElement3,
-    IUIAutomationElement2: IUIAutomationElement2,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn FindFirstWithOptions(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.FindFirstWithOptions(self, scope, condition, traversalOptions, root, found);
-    }
-    pub fn FindAllWithOptions(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.FindAllWithOptions(self, scope, condition, traversalOptions, root, found);
-    }
-    pub fn FindFirstWithOptionsBuildCache(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
-        return self.vtable.FindFirstWithOptionsBuildCache(self, scope, condition, cacheRequest, traversalOptions, root, found);
-    }
-    pub fn FindAllWithOptionsBuildCache(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
-        return self.vtable.FindAllWithOptionsBuildCache(self, scope, condition, cacheRequest, traversalOptions, root, found);
-    }
-    pub fn GetCurrentMetadataValue(self: *const IUIAutomationElement7, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentMetadataValue(self, targetId, metadataId, returnVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.17134'
-const IID_IUIAutomationElement8_Value = Guid.initString("8c60217d-5411-4cde-bcc0-1ceda223830c");
-pub const IID_IUIAutomationElement8 = &IID_IUIAutomationElement8_Value;
-pub const IUIAutomationElement8 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement7.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentHeadingLevel: *const fn(
-            self: *const IUIAutomationElement8,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedHeadingLevel: *const fn(
-            self: *const IUIAutomationElement8,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement7: IUIAutomationElement7,
-    IUIAutomationElement6: IUIAutomationElement6,
-    IUIAutomationElement5: IUIAutomationElement5,
-    IUIAutomationElement4: IUIAutomationElement4,
-    IUIAutomationElement3: IUIAutomationElement3,
-    IUIAutomationElement2: IUIAutomationElement2,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn get_CurrentHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentHeadingLevel(self, retVal);
-    }
-    pub fn get_CachedHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedHeadingLevel(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.17763'
-const IID_IUIAutomationElement9_Value = Guid.initString("39325fac-039d-440e-a3a3-5eb81a5cecc3");
-pub const IID_IUIAutomationElement9 = &IID_IUIAutomationElement9_Value;
-pub const IUIAutomationElement9 = extern union {
-    pub const VTable = extern struct {
-        base: IUIAutomationElement8.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentIsDialog: *const fn(
-            self: *const IUIAutomationElement9,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CachedIsDialog: *const fn(
-            self: *const IUIAutomationElement9,
-            retVal: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUIAutomationElement8: IUIAutomationElement8,
-    IUIAutomationElement7: IUIAutomationElement7,
-    IUIAutomationElement6: IUIAutomationElement6,
-    IUIAutomationElement5: IUIAutomationElement5,
-    IUIAutomationElement4: IUIAutomationElement4,
-    IUIAutomationElement3: IUIAutomationElement3,
-    IUIAutomationElement2: IUIAutomationElement2,
-    IUIAutomationElement: IUIAutomationElement,
-    IUnknown: IUnknown,
-    pub fn get_CurrentIsDialog(self: *const IUIAutomationElement9, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentIsDialog(self, retVal);
-    }
-    pub fn get_CachedIsDialog(self: *const IUIAutomationElement9, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CachedIsDialog(self, retVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationProxyFactory_Value = Guid.initString("85b94ecd-849d-42b6-b94d-d6db23fdf5a4");
-pub const IID_IUIAutomationProxyFactory = &IID_IUIAutomationProxyFactory_Value;
-pub const IUIAutomationProxyFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateProvider: *const fn(
-            self: *const IUIAutomationProxyFactory,
-            hwnd: ?HWND,
-            idObject: i32,
-            idChild: i32,
-            provider: ?*?*IRawElementProviderSimple,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProxyFactoryId: *const fn(
-            self: *const IUIAutomationProxyFactory,
-            factoryId: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateProvider(self: *const IUIAutomationProxyFactory, hwnd: ?HWND, idObject: i32, idChild: i32, provider: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateProvider(self, hwnd, idObject, idChild, provider);
-    }
-    pub fn get_ProxyFactoryId(self: *const IUIAutomationProxyFactory, factoryId: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ProxyFactoryId(self, factoryId);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationProxyFactoryEntry_Value = Guid.initString("d50e472e-b64b-490c-bca1-d30696f9f289");
-pub const IID_IUIAutomationProxyFactoryEntry = &IID_IUIAutomationProxyFactoryEntry_Value;
-pub const IUIAutomationProxyFactoryEntry = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProxyFactory: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            factory: ?*?*IUIAutomationProxyFactory,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassName: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            className: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ImageName: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            imageName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowSubstringMatch: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            allowSubstringMatch: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanCheckBaseClass: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            canCheckBaseClass: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NeedsAdviseEvents: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            adviseEvents: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClassName: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            className: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ImageName: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            imageName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowSubstringMatch: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            allowSubstringMatch: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CanCheckBaseClass: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            canCheckBaseClass: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NeedsAdviseEvents: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            adviseEvents: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetWinEventsForAutomationEvent: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            eventId: i32,
-            propertyId: i32,
-            winEvents: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetWinEventsForAutomationEvent: *const fn(
-            self: *const IUIAutomationProxyFactoryEntry,
-            eventId: i32,
-            propertyId: i32,
-            winEvents: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_ProxyFactory(self: *const IUIAutomationProxyFactoryEntry, factory: ?*?*IUIAutomationProxyFactory) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ProxyFactory(self, factory);
-    }
-    pub fn get_ClassName(self: *const IUIAutomationProxyFactoryEntry, className: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClassName(self, className);
-    }
-    pub fn get_ImageName(self: *const IUIAutomationProxyFactoryEntry, imageName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ImageName(self, imageName);
-    }
-    pub fn get_AllowSubstringMatch(self: *const IUIAutomationProxyFactoryEntry, allowSubstringMatch: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AllowSubstringMatch(self, allowSubstringMatch);
-    }
-    pub fn get_CanCheckBaseClass(self: *const IUIAutomationProxyFactoryEntry, canCheckBaseClass: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CanCheckBaseClass(self, canCheckBaseClass);
-    }
-    pub fn get_NeedsAdviseEvents(self: *const IUIAutomationProxyFactoryEntry, adviseEvents: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NeedsAdviseEvents(self, adviseEvents);
-    }
-    pub fn put_ClassName(self: *const IUIAutomationProxyFactoryEntry, className: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClassName(self, className);
-    }
-    pub fn put_ImageName(self: *const IUIAutomationProxyFactoryEntry, imageName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ImageName(self, imageName);
-    }
-    pub fn put_AllowSubstringMatch(self: *const IUIAutomationProxyFactoryEntry, allowSubstringMatch: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AllowSubstringMatch(self, allowSubstringMatch);
-    }
-    pub fn put_CanCheckBaseClass(self: *const IUIAutomationProxyFactoryEntry, canCheckBaseClass: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_CanCheckBaseClass(self, canCheckBaseClass);
-    }
-    pub fn put_NeedsAdviseEvents(self: *const IUIAutomationProxyFactoryEntry, adviseEvents: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NeedsAdviseEvents(self, adviseEvents);
-    }
-    pub fn SetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWinEventsForAutomationEvent(self, eventId, propertyId, winEvents);
-    }
-    pub fn GetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWinEventsForAutomationEvent(self, eventId, propertyId, winEvents);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIAutomationProxyFactoryMapping_Value = Guid.initString("09e31e18-872d-4873-93d1-1e541ec133fd");
-pub const IID_IUIAutomationProxyFactoryMapping = &IID_IUIAutomationProxyFactoryMapping_Value;
-pub const IUIAutomationProxyFactoryMapping = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-            count: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTable: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-            table: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetEntry: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-            index: u32,
-            entry: ?*?*IUIAutomationProxyFactoryEntry,
-        ) callconv(.winapi) HRESULT,
-        SetTable: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-            factoryList: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        InsertEntries: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-            before: u32,
-            factoryList: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        InsertEntry: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-            before: u32,
-            factory: ?*IUIAutomationProxyFactoryEntry,
-        ) callconv(.winapi) HRESULT,
-        RemoveEntry: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-            index: u32,
-        ) callconv(.winapi) HRESULT,
-        ClearTable: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-        ) callconv(.winapi) HRESULT,
-        RestoreDefaultTable: *const fn(
-            self: *const IUIAutomationProxyFactoryMapping,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IUIAutomationProxyFactoryMapping, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, count);
-    }
-    pub fn GetTable(self: *const IUIAutomationProxyFactoryMapping, table: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTable(self, table);
-    }
-    pub fn GetEntry(self: *const IUIAutomationProxyFactoryMapping, index: u32, entry: ?*?*IUIAutomationProxyFactoryEntry) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEntry(self, index, entry);
-    }
-    pub fn SetTable(self: *const IUIAutomationProxyFactoryMapping, factoryList: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTable(self, factoryList);
-    }
-    pub fn InsertEntries(self: *const IUIAutomationProxyFactoryMapping, before: u32, factoryList: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertEntries(self, before, factoryList);
-    }
-    pub fn InsertEntry(self: *const IUIAutomationProxyFactoryMapping, before: u32, factory: ?*IUIAutomationProxyFactoryEntry) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertEntry(self, before, factory);
-    }
-    pub fn RemoveEntry(self: *const IUIAutomationProxyFactoryMapping, index: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveEntry(self, index);
-    }
-    pub fn ClearTable(self: *const IUIAutomationProxyFactoryMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.ClearTable(self);
-    }
-    pub fn RestoreDefaultTable(self: *const IUIAutomationProxyFactoryMapping) callconv(.@"inline") HRESULT {
-        return self.vtable.RestoreDefaultTable(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.17763'
-const IID_IUIAutomationEventHandlerGroup_Value = Guid.initString("c9ee12f2-c13b-4408-997c-639914377f4e");
-pub const IID_IUIAutomationEventHandlerGroup = &IID_IUIAutomationEventHandlerGroup_Value;
-pub const IUIAutomationEventHandlerGroup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddActiveTextPositionChangedEventHandler: *const fn(
-            self: *const IUIAutomationEventHandlerGroup,
-            scope: TreeScope,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            handler: ?*IUIAutomationActiveTextPositionChangedEventHandler,
-        ) callconv(.winapi) HRESULT,
-        AddAutomationEventHandler: *const fn(
-            self: *const IUIAutomationEventHandlerGroup,
-            eventId: i32,
-            scope: TreeScope,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            handler: ?*IUIAutomationEventHandler,
-        ) callconv(.winapi) HRESULT,
-        AddChangesEventHandler: *const fn(
-            self: *const IUIAutomationEventHandlerGroup,
-            scope: TreeScope,
-            changeTypes: [*]i32,
-            changesCount: i32,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            handler: ?*IUIAutomationChangesEventHandler,
-        ) callconv(.winapi) HRESULT,
-        AddNotificationEventHandler: *const fn(
-            self: *const IUIAutomationEventHandlerGroup,
-            scope: TreeScope,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            handler: ?*IUIAutomationNotificationEventHandler,
-        ) callconv(.winapi) HRESULT,
-        AddPropertyChangedEventHandler: *const fn(
-            self: *const IUIAutomationEventHandlerGroup,
-            scope: TreeScope,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            handler: ?*IUIAutomationPropertyChangedEventHandler,
-            propertyArray: [*]i32,
-            propertyCount: i32,
-        ) callconv(.winapi) HRESULT,
-        AddStructureChangedEventHandler: *const fn(
-            self: *const IUIAutomationEventHandlerGroup,
-            scope: TreeScope,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            handler: ?*IUIAutomationStructureChangedEventHandler,
-        ) callconv(.winapi) HRESULT,
-        AddTextEditTextChangedEventHandler: *const fn(
-            self: *const IUIAutomationEventHandlerGroup,
-            scope: TreeScope,
-            textEditChangeType: TextEditChangeType,
-            cacheRequest: ?*IUIAutomationCacheRequest,
-            handler: ?*IUIAutomationTextEditTextChangedEventHandler,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddActiveTextPositionChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.AddActiveTextPositionChangedEventHandler(self, scope, cacheRequest, handler);
-    }
-    pub fn AddAutomationEventHandler(self: *const IUIAutomationEventHandlerGroup, eventId: i32, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAutomationEventHandler(self, eventId, scope, cacheRequest, handler);
-    }
-    pub fn AddChangesEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationChangesEventHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.AddChangesEventHandler(self, scope, changeTypes, changesCount, cacheRequest, handler);
-    }
-    pub fn AddNotificationEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationNotificationEventHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.AddNotificationEventHandler(self, scope, cacheRequest, handler);
-    }
-    pub fn AddPropertyChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPropertyChangedEventHandler(self, scope, cacheRequest, handler, propertyArray, propertyCount);
-    }
-    pub fn AddStructureChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.AddStructureChangedEventHandler(self, scope, cacheRequest, handler);
-    }
-    pub fn AddTextEditTextChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.AddTextEditTextChangedEventHandler(self, scope, textEditChangeType, cacheRequest, handler);
     }
 };
 
@@ -9420,52 +4342,4542 @@ pub const IUIAutomation6 = extern union {
     }
 };
 
-pub const ConditionType = enum(i32) {
-    True = 0,
-    False = 1,
-    Property = 2,
-    And = 3,
-    Or = 4,
-    Not = 5,
-};
-pub const ConditionType_True = ConditionType.True;
-pub const ConditionType_False = ConditionType.False;
-pub const ConditionType_Property = ConditionType.Property;
-pub const ConditionType_And = ConditionType.And;
-pub const ConditionType_Or = ConditionType.Or;
-pub const ConditionType_Not = ConditionType.Not;
-
-pub const UiaCondition = extern struct {
-    ConditionType: ConditionType,
-};
-
-pub const UiaPropertyCondition = extern struct {
-    ConditionType: ConditionType,
-    PropertyId: i32,
-    Value: VARIANT,
-    Flags: PropertyConditionFlags,
+// TODO: this type is limited to platform 'windows10.0.17763'
+const IID_IUIAutomationActiveTextPositionChangedEventHandler_Value = Guid.initString("f97933b0-8dae-4496-8997-5ba015fe0d82");
+pub const IID_IUIAutomationActiveTextPositionChangedEventHandler = &IID_IUIAutomationActiveTextPositionChangedEventHandler_Value;
+pub const IUIAutomationActiveTextPositionChangedEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleActiveTextPositionChangedEvent: *const fn(
+            self: *const IUIAutomationActiveTextPositionChangedEventHandler,
+            sender: ?*IUIAutomationElement,
+            range: ?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleActiveTextPositionChangedEvent(self: *const IUIAutomationActiveTextPositionChangedEventHandler, sender: ?*IUIAutomationElement, range: ?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleActiveTextPositionChangedEvent(self, sender, range);
+    }
 };
 
-pub const UiaAndOrCondition = extern struct {
-    ConditionType: ConditionType,
-    ppConditions: ?*?*UiaCondition,
-    cConditions: i32,
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationAndCondition_Value = Guid.initString("a7d0af36-b912-45fe-9855-091ddc174aec");
+pub const IID_IUIAutomationAndCondition = &IID_IUIAutomationAndCondition_Value;
+pub const IUIAutomationAndCondition = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ChildCount: *const fn(
+            self: *const IUIAutomationAndCondition,
+            childCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetChildrenAsNativeArray: *const fn(
+            self: *const IUIAutomationAndCondition,
+            childArray: [*]?*?*IUIAutomationCondition,
+            childArrayCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetChildren: *const fn(
+            self: *const IUIAutomationAndCondition,
+            childArray: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationCondition: IUIAutomationCondition,
+    IUnknown: IUnknown,
+    pub fn get_ChildCount(self: *const IUIAutomationAndCondition, childCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ChildCount(self, childCount);
+    }
+    pub fn GetChildrenAsNativeArray(self: *const IUIAutomationAndCondition, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildrenAsNativeArray(self, childArray, childArrayCount);
+    }
+    pub fn GetChildren(self: *const IUIAutomationAndCondition, childArray: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildren(self, childArray);
+    }
 };
 
-pub const UiaNotCondition = extern struct {
-    ConditionType: ConditionType,
-    pCondition: ?*UiaCondition,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationAnnotationPattern_Value = Guid.initString("9a175b21-339e-41b1-8e8b-623f6b681098");
+pub const IID_IUIAutomationAnnotationPattern = &IID_IUIAutomationAnnotationPattern_Value;
+pub const IUIAutomationAnnotationPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAnnotationTypeId: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAnnotationTypeName: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAuthor: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDateTime: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentTarget: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAnnotationTypeId: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAnnotationTypeName: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAuthor: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDateTime: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedTarget: *const fn(
+            self: *const IUIAutomationAnnotationPattern,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_CurrentAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAnnotationTypeId(self, retVal);
+    }
+    pub fn get_CurrentAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAnnotationTypeName(self, retVal);
+    }
+    pub fn get_CurrentAuthor(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAuthor(self, retVal);
+    }
+    pub fn get_CurrentDateTime(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDateTime(self, retVal);
+    }
+    pub fn get_CurrentTarget(self: *const IUIAutomationAnnotationPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentTarget(self, retVal);
+    }
+    pub fn get_CachedAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAnnotationTypeId(self, retVal);
+    }
+    pub fn get_CachedAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAnnotationTypeName(self, retVal);
+    }
+    pub fn get_CachedAuthor(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAuthor(self, retVal);
+    }
+    pub fn get_CachedDateTime(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDateTime(self, retVal);
+    }
+    pub fn get_CachedTarget(self: *const IUIAutomationAnnotationPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedTarget(self, retVal);
+    }
 };
 
-pub const UiaCacheRequest = extern struct {
-    pViewCondition: ?*UiaCondition,
-    Scope: TreeScope,
-    pProperties: ?*i32,
-    cProperties: i32,
-    pPatterns: ?*i32,
-    cPatterns: i32,
-    automationElementMode: AutomationElementMode,
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationBoolCondition_Value = Guid.initString("1b4e1f2e-75eb-4d0b-8952-5a69988e2307");
+pub const IID_IUIAutomationBoolCondition = &IID_IUIAutomationBoolCondition_Value;
+pub const IUIAutomationBoolCondition = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BooleanValue: *const fn(
+            self: *const IUIAutomationBoolCondition,
+            boolVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationCondition: IUIAutomationCondition,
+    IUnknown: IUnknown,
+    pub fn get_BooleanValue(self: *const IUIAutomationBoolCondition, boolVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BooleanValue(self, boolVal);
+    }
 };
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationCacheRequest_Value = Guid.initString("b32a92b5-bc25-4078-9c08-d7ee95c48e03");
+pub const IID_IUIAutomationCacheRequest = &IID_IUIAutomationCacheRequest_Value;
+pub const IUIAutomationCacheRequest = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddProperty: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            propertyId: i32,
+        ) callconv(.winapi) HRESULT,
+        AddPattern: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            patternId: i32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            clonedRequest: ?*?*IUIAutomationCacheRequest,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TreeScope: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            scope: ?*TreeScope,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TreeScope: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            scope: TreeScope,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TreeFilter: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            filter: ?*?*IUIAutomationCondition,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TreeFilter: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            filter: ?*IUIAutomationCondition,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AutomationElementMode: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            mode: ?*AutomationElementMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AutomationElementMode: *const fn(
+            self: *const IUIAutomationCacheRequest,
+            mode: AutomationElementMode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddProperty(self: *const IUIAutomationCacheRequest, propertyId: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddProperty(self, propertyId);
+    }
+    pub fn AddPattern(self: *const IUIAutomationCacheRequest, patternId: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPattern(self, patternId);
+    }
+    pub fn Clone(self: *const IUIAutomationCacheRequest, clonedRequest: ?*?*IUIAutomationCacheRequest) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, clonedRequest);
+    }
+    pub fn get_TreeScope(self: *const IUIAutomationCacheRequest, scope: ?*TreeScope) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TreeScope(self, scope);
+    }
+    pub fn put_TreeScope(self: *const IUIAutomationCacheRequest, scope: TreeScope) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TreeScope(self, scope);
+    }
+    pub fn get_TreeFilter(self: *const IUIAutomationCacheRequest, filter: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TreeFilter(self, filter);
+    }
+    pub fn put_TreeFilter(self: *const IUIAutomationCacheRequest, filter: ?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TreeFilter(self, filter);
+    }
+    pub fn get_AutomationElementMode(self: *const IUIAutomationCacheRequest, mode: ?*AutomationElementMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AutomationElementMode(self, mode);
+    }
+    pub fn put_AutomationElementMode(self: *const IUIAutomationCacheRequest, mode: AutomationElementMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AutomationElementMode(self, mode);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IUIAutomationChangesEventHandler_Value = Guid.initString("58edca55-2c3e-4980-b1b9-56c17f27a2a0");
+pub const IID_IUIAutomationChangesEventHandler = &IID_IUIAutomationChangesEventHandler_Value;
+pub const IUIAutomationChangesEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleChangesEvent: *const fn(
+            self: *const IUIAutomationChangesEventHandler,
+            sender: ?*IUIAutomationElement,
+            uiaChanges: [*]UiaChangeInfo,
+            changesCount: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleChangesEvent(self: *const IUIAutomationChangesEventHandler, sender: ?*IUIAutomationElement, uiaChanges: [*]UiaChangeInfo, changesCount: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleChangesEvent(self, sender, uiaChanges, changesCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationCondition_Value = Guid.initString("352ffba8-0973-437c-a61f-f64cafd81df9");
+pub const IID_IUIAutomationCondition = &IID_IUIAutomationCondition_Value;
+pub const IUIAutomationCondition = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IUIAutomationCustomNavigationPattern_Value = Guid.initString("01ea217a-1766-47ed-a6cc-acf492854b1f");
+pub const IID_IUIAutomationCustomNavigationPattern = &IID_IUIAutomationCustomNavigationPattern_Value;
+pub const IUIAutomationCustomNavigationPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Navigate: *const fn(
+            self: *const IUIAutomationCustomNavigationPattern,
+            direction: NavigateDirection,
+            pRetVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Navigate(self: *const IUIAutomationCustomNavigationPattern, direction: NavigateDirection, pRetVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.Navigate(self, direction, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationDockPattern_Value = Guid.initString("fde5ef97-1464-48f6-90bf-43d0948e86ec");
+pub const IID_IUIAutomationDockPattern = &IID_IUIAutomationDockPattern_Value;
+pub const IUIAutomationDockPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetDockPosition: *const fn(
+            self: *const IUIAutomationDockPattern,
+            dockPos: DockPosition,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDockPosition: *const fn(
+            self: *const IUIAutomationDockPattern,
+            retVal: ?*DockPosition,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDockPosition: *const fn(
+            self: *const IUIAutomationDockPattern,
+            retVal: ?*DockPosition,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetDockPosition(self: *const IUIAutomationDockPattern, dockPos: DockPosition) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDockPosition(self, dockPos);
+    }
+    pub fn get_CurrentDockPosition(self: *const IUIAutomationDockPattern, retVal: ?*DockPosition) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDockPosition(self, retVal);
+    }
+    pub fn get_CachedDockPosition(self: *const IUIAutomationDockPattern, retVal: ?*DockPosition) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDockPosition(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationDragPattern_Value = Guid.initString("1dc7b570-1f54-4bad-bcda-d36a722fb7bd");
+pub const IID_IUIAutomationDragPattern = &IID_IUIAutomationDragPattern_Value;
+pub const IUIAutomationDragPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsGrabbed: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsGrabbed: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDropEffect: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDropEffect: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDropEffects: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDropEffects: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentGrabbedItems: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCachedGrabbedItems: *const fn(
+            self: *const IUIAutomationDragPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_CurrentIsGrabbed(self: *const IUIAutomationDragPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsGrabbed(self, retVal);
+    }
+    pub fn get_CachedIsGrabbed(self: *const IUIAutomationDragPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsGrabbed(self, retVal);
+    }
+    pub fn get_CurrentDropEffect(self: *const IUIAutomationDragPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDropEffect(self, retVal);
+    }
+    pub fn get_CachedDropEffect(self: *const IUIAutomationDragPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDropEffect(self, retVal);
+    }
+    pub fn get_CurrentDropEffects(self: *const IUIAutomationDragPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDropEffects(self, retVal);
+    }
+    pub fn get_CachedDropEffects(self: *const IUIAutomationDragPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDropEffects(self, retVal);
+    }
+    pub fn GetCurrentGrabbedItems(self: *const IUIAutomationDragPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentGrabbedItems(self, retVal);
+    }
+    pub fn GetCachedGrabbedItems(self: *const IUIAutomationDragPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedGrabbedItems(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationDropTargetPattern_Value = Guid.initString("69a095f7-eee4-430e-a46b-fb73b1ae39a5");
+pub const IID_IUIAutomationDropTargetPattern = &IID_IUIAutomationDropTargetPattern_Value;
+pub const IUIAutomationDropTargetPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDropTargetEffect: *const fn(
+            self: *const IUIAutomationDropTargetPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDropTargetEffect: *const fn(
+            self: *const IUIAutomationDropTargetPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDropTargetEffects: *const fn(
+            self: *const IUIAutomationDropTargetPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDropTargetEffects: *const fn(
+            self: *const IUIAutomationDropTargetPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_CurrentDropTargetEffect(self: *const IUIAutomationDropTargetPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDropTargetEffect(self, retVal);
+    }
+    pub fn get_CachedDropTargetEffect(self: *const IUIAutomationDropTargetPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDropTargetEffect(self, retVal);
+    }
+    pub fn get_CurrentDropTargetEffects(self: *const IUIAutomationDropTargetPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDropTargetEffects(self, retVal);
+    }
+    pub fn get_CachedDropTargetEffects(self: *const IUIAutomationDropTargetPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDropTargetEffects(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationElement_Value = Guid.initString("d22108aa-8ac5-49a5-837b-37bbb3d7591e");
+pub const IID_IUIAutomationElement = &IID_IUIAutomationElement_Value;
+pub const IUIAutomationElement = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetFocus: *const fn(
+            self: *const IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetRuntimeId: *const fn(
+            self: *const IUIAutomationElement,
+            runtimeId: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        FindFirst: *const fn(
+            self: *const IUIAutomationElement,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            found: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        FindAll: *const fn(
+            self: *const IUIAutomationElement,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            found: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        FindFirstBuildCache: *const fn(
+            self: *const IUIAutomationElement,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            found: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        FindAllBuildCache: *const fn(
+            self: *const IUIAutomationElement,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            found: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        BuildUpdatedCache: *const fn(
+            self: *const IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            updatedElement: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentPropertyValue: *const fn(
+            self: *const IUIAutomationElement,
+            propertyId: i32,
+            retVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentPropertyValueEx: *const fn(
+            self: *const IUIAutomationElement,
+            propertyId: i32,
+            ignoreDefaultValue: BOOL,
+            retVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetCachedPropertyValue: *const fn(
+            self: *const IUIAutomationElement,
+            propertyId: i32,
+            retVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetCachedPropertyValueEx: *const fn(
+            self: *const IUIAutomationElement,
+            propertyId: i32,
+            ignoreDefaultValue: BOOL,
+            retVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentPatternAs: *const fn(
+            self: *const IUIAutomationElement,
+            patternId: i32,
+            riid: ?*const Guid,
+            patternObject: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetCachedPatternAs: *const fn(
+            self: *const IUIAutomationElement,
+            patternId: i32,
+            riid: ?*const Guid,
+            patternObject: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentPattern: *const fn(
+            self: *const IUIAutomationElement,
+            patternId: i32,
+            patternObject: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetCachedPattern: *const fn(
+            self: *const IUIAutomationElement,
+            patternId: i32,
+            patternObject: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetCachedParent: *const fn(
+            self: *const IUIAutomationElement,
+            parent: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetCachedChildren: *const fn(
+            self: *const IUIAutomationElement,
+            children: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentProcessId: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentControlType: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLocalizedControlType: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentName: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAcceleratorKey: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAccessKey: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentHasKeyboardFocus: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsKeyboardFocusable: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsEnabled: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAutomationId: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentClassName: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentHelpText: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCulture: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsControlElement: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsContentElement: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsPassword: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentNativeWindowHandle: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentItemType: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsOffscreen: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentOrientation: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*OrientationType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFrameworkId: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsRequiredForForm: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentItemStatus: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentBoundingRectangle: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLabeledBy: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAriaRole: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAriaProperties: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsDataValidForForm: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentControllerFor: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDescribedBy: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFlowsTo: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentProviderDescription: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedProcessId: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedControlType: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLocalizedControlType: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedName: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAcceleratorKey: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAccessKey: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedHasKeyboardFocus: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsKeyboardFocusable: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsEnabled: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAutomationId: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedClassName: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedHelpText: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCulture: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsControlElement: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsContentElement: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsPassword: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedNativeWindowHandle: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedItemType: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsOffscreen: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedOrientation: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*OrientationType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFrameworkId: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsRequiredForForm: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedItemStatus: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedBoundingRectangle: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLabeledBy: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAriaRole: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAriaProperties: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsDataValidForForm: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedControllerFor: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDescribedBy: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFlowsTo: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedProviderDescription: *const fn(
+            self: *const IUIAutomationElement,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetClickablePoint: *const fn(
+            self: *const IUIAutomationElement,
+            clickable: ?*POINT,
+            gotClickable: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetFocus(self: *const IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFocus(self);
+    }
+    pub fn GetRuntimeId(self: *const IUIAutomationElement, runtimeId: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRuntimeId(self, runtimeId);
+    }
+    pub fn FindFirst(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.FindFirst(self, scope, condition, found);
+    }
+    pub fn FindAll(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.FindAll(self, scope, condition, found);
+    }
+    pub fn FindFirstBuildCache(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.FindFirstBuildCache(self, scope, condition, cacheRequest, found);
+    }
+    pub fn FindAllBuildCache(self: *const IUIAutomationElement, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.FindAllBuildCache(self, scope, condition, cacheRequest, found);
+    }
+    pub fn BuildUpdatedCache(self: *const IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, updatedElement: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.BuildUpdatedCache(self, cacheRequest, updatedElement);
+    }
+    pub fn GetCurrentPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPropertyValue(self, propertyId, retVal);
+    }
+    pub fn GetCurrentPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPropertyValueEx(self, propertyId, ignoreDefaultValue, retVal);
+    }
+    pub fn GetCachedPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedPropertyValue(self, propertyId, retVal);
+    }
+    pub fn GetCachedPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedPropertyValueEx(self, propertyId, ignoreDefaultValue, retVal);
+    }
+    pub fn GetCurrentPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPatternAs(self, patternId, riid, patternObject);
+    }
+    pub fn GetCachedPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedPatternAs(self, patternId, riid, patternObject);
+    }
+    pub fn GetCurrentPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPattern(self, patternId, patternObject);
+    }
+    pub fn GetCachedPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedPattern(self, patternId, patternObject);
+    }
+    pub fn GetCachedParent(self: *const IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedParent(self, parent);
+    }
+    pub fn GetCachedChildren(self: *const IUIAutomationElement, children: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedChildren(self, children);
+    }
+    pub fn get_CurrentProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentProcessId(self, retVal);
+    }
+    pub fn get_CurrentControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentControlType(self, retVal);
+    }
+    pub fn get_CurrentLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLocalizedControlType(self, retVal);
+    }
+    pub fn get_CurrentName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentName(self, retVal);
+    }
+    pub fn get_CurrentAcceleratorKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAcceleratorKey(self, retVal);
+    }
+    pub fn get_CurrentAccessKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAccessKey(self, retVal);
+    }
+    pub fn get_CurrentHasKeyboardFocus(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentHasKeyboardFocus(self, retVal);
+    }
+    pub fn get_CurrentIsKeyboardFocusable(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsKeyboardFocusable(self, retVal);
+    }
+    pub fn get_CurrentIsEnabled(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsEnabled(self, retVal);
+    }
+    pub fn get_CurrentAutomationId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAutomationId(self, retVal);
+    }
+    pub fn get_CurrentClassName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentClassName(self, retVal);
+    }
+    pub fn get_CurrentHelpText(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentHelpText(self, retVal);
+    }
+    pub fn get_CurrentCulture(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCulture(self, retVal);
+    }
+    pub fn get_CurrentIsControlElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsControlElement(self, retVal);
+    }
+    pub fn get_CurrentIsContentElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsContentElement(self, retVal);
+    }
+    pub fn get_CurrentIsPassword(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsPassword(self, retVal);
+    }
+    pub fn get_CurrentNativeWindowHandle(self: *const IUIAutomationElement, retVal: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentNativeWindowHandle(self, retVal);
+    }
+    pub fn get_CurrentItemType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentItemType(self, retVal);
+    }
+    pub fn get_CurrentIsOffscreen(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsOffscreen(self, retVal);
+    }
+    pub fn get_CurrentOrientation(self: *const IUIAutomationElement, retVal: ?*OrientationType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentOrientation(self, retVal);
+    }
+    pub fn get_CurrentFrameworkId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFrameworkId(self, retVal);
+    }
+    pub fn get_CurrentIsRequiredForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsRequiredForForm(self, retVal);
+    }
+    pub fn get_CurrentItemStatus(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentItemStatus(self, retVal);
+    }
+    pub fn get_CurrentBoundingRectangle(self: *const IUIAutomationElement, retVal: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentBoundingRectangle(self, retVal);
+    }
+    pub fn get_CurrentLabeledBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLabeledBy(self, retVal);
+    }
+    pub fn get_CurrentAriaRole(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAriaRole(self, retVal);
+    }
+    pub fn get_CurrentAriaProperties(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAriaProperties(self, retVal);
+    }
+    pub fn get_CurrentIsDataValidForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsDataValidForForm(self, retVal);
+    }
+    pub fn get_CurrentControllerFor(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentControllerFor(self, retVal);
+    }
+    pub fn get_CurrentDescribedBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDescribedBy(self, retVal);
+    }
+    pub fn get_CurrentFlowsTo(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFlowsTo(self, retVal);
+    }
+    pub fn get_CurrentProviderDescription(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentProviderDescription(self, retVal);
+    }
+    pub fn get_CachedProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedProcessId(self, retVal);
+    }
+    pub fn get_CachedControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedControlType(self, retVal);
+    }
+    pub fn get_CachedLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLocalizedControlType(self, retVal);
+    }
+    pub fn get_CachedName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedName(self, retVal);
+    }
+    pub fn get_CachedAcceleratorKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAcceleratorKey(self, retVal);
+    }
+    pub fn get_CachedAccessKey(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAccessKey(self, retVal);
+    }
+    pub fn get_CachedHasKeyboardFocus(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedHasKeyboardFocus(self, retVal);
+    }
+    pub fn get_CachedIsKeyboardFocusable(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsKeyboardFocusable(self, retVal);
+    }
+    pub fn get_CachedIsEnabled(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsEnabled(self, retVal);
+    }
+    pub fn get_CachedAutomationId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAutomationId(self, retVal);
+    }
+    pub fn get_CachedClassName(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedClassName(self, retVal);
+    }
+    pub fn get_CachedHelpText(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedHelpText(self, retVal);
+    }
+    pub fn get_CachedCulture(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCulture(self, retVal);
+    }
+    pub fn get_CachedIsControlElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsControlElement(self, retVal);
+    }
+    pub fn get_CachedIsContentElement(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsContentElement(self, retVal);
+    }
+    pub fn get_CachedIsPassword(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsPassword(self, retVal);
+    }
+    pub fn get_CachedNativeWindowHandle(self: *const IUIAutomationElement, retVal: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedNativeWindowHandle(self, retVal);
+    }
+    pub fn get_CachedItemType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedItemType(self, retVal);
+    }
+    pub fn get_CachedIsOffscreen(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsOffscreen(self, retVal);
+    }
+    pub fn get_CachedOrientation(self: *const IUIAutomationElement, retVal: ?*OrientationType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedOrientation(self, retVal);
+    }
+    pub fn get_CachedFrameworkId(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFrameworkId(self, retVal);
+    }
+    pub fn get_CachedIsRequiredForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsRequiredForForm(self, retVal);
+    }
+    pub fn get_CachedItemStatus(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedItemStatus(self, retVal);
+    }
+    pub fn get_CachedBoundingRectangle(self: *const IUIAutomationElement, retVal: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedBoundingRectangle(self, retVal);
+    }
+    pub fn get_CachedLabeledBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLabeledBy(self, retVal);
+    }
+    pub fn get_CachedAriaRole(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAriaRole(self, retVal);
+    }
+    pub fn get_CachedAriaProperties(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAriaProperties(self, retVal);
+    }
+    pub fn get_CachedIsDataValidForForm(self: *const IUIAutomationElement, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsDataValidForForm(self, retVal);
+    }
+    pub fn get_CachedControllerFor(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedControllerFor(self, retVal);
+    }
+    pub fn get_CachedDescribedBy(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDescribedBy(self, retVal);
+    }
+    pub fn get_CachedFlowsTo(self: *const IUIAutomationElement, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFlowsTo(self, retVal);
+    }
+    pub fn get_CachedProviderDescription(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedProviderDescription(self, retVal);
+    }
+    pub fn GetClickablePoint(self: *const IUIAutomationElement, clickable: ?*POINT, gotClickable: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClickablePoint(self, clickable, gotClickable);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationElement2_Value = Guid.initString("6749c683-f70d-4487-a698-5f79d55290d6");
+pub const IID_IUIAutomationElement2 = &IID_IUIAutomationElement2_Value;
+pub const IUIAutomationElement2 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentOptimizeForVisualContent: *const fn(
+            self: *const IUIAutomationElement2,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedOptimizeForVisualContent: *const fn(
+            self: *const IUIAutomationElement2,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLiveSetting: *const fn(
+            self: *const IUIAutomationElement2,
+            retVal: ?*LiveSetting,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLiveSetting: *const fn(
+            self: *const IUIAutomationElement2,
+            retVal: ?*LiveSetting,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFlowsFrom: *const fn(
+            self: *const IUIAutomationElement2,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFlowsFrom: *const fn(
+            self: *const IUIAutomationElement2,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn get_CurrentOptimizeForVisualContent(self: *const IUIAutomationElement2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentOptimizeForVisualContent(self, retVal);
+    }
+    pub fn get_CachedOptimizeForVisualContent(self: *const IUIAutomationElement2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedOptimizeForVisualContent(self, retVal);
+    }
+    pub fn get_CurrentLiveSetting(self: *const IUIAutomationElement2, retVal: ?*LiveSetting) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLiveSetting(self, retVal);
+    }
+    pub fn get_CachedLiveSetting(self: *const IUIAutomationElement2, retVal: ?*LiveSetting) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLiveSetting(self, retVal);
+    }
+    pub fn get_CurrentFlowsFrom(self: *const IUIAutomationElement2, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFlowsFrom(self, retVal);
+    }
+    pub fn get_CachedFlowsFrom(self: *const IUIAutomationElement2, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFlowsFrom(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IUIAutomationElement3_Value = Guid.initString("8471df34-aee0-4a01-a7de-7db9af12c296");
+pub const IID_IUIAutomationElement3 = &IID_IUIAutomationElement3_Value;
+pub const IUIAutomationElement3 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement2.VTable,
+        ShowContextMenu: *const fn(
+            self: *const IUIAutomationElement3,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsPeripheral: *const fn(
+            self: *const IUIAutomationElement3,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsPeripheral: *const fn(
+            self: *const IUIAutomationElement3,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement2: IUIAutomationElement2,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn ShowContextMenu(self: *const IUIAutomationElement3) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowContextMenu(self);
+    }
+    pub fn get_CurrentIsPeripheral(self: *const IUIAutomationElement3, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsPeripheral(self, retVal);
+    }
+    pub fn get_CachedIsPeripheral(self: *const IUIAutomationElement3, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsPeripheral(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IUIAutomationElement4_Value = Guid.initString("3b6e233c-52fb-4063-a4c9-77c075c2a06b");
+pub const IID_IUIAutomationElement4 = &IID_IUIAutomationElement4_Value;
+pub const IUIAutomationElement4 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement3.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentPositionInSet: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentSizeOfSet: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLevel: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAnnotationTypes: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentAnnotationObjects: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedPositionInSet: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedSizeOfSet: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLevel: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAnnotationTypes: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedAnnotationObjects: *const fn(
+            self: *const IUIAutomationElement4,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement3: IUIAutomationElement3,
+    IUIAutomationElement2: IUIAutomationElement2,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn get_CurrentPositionInSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentPositionInSet(self, retVal);
+    }
+    pub fn get_CurrentSizeOfSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentSizeOfSet(self, retVal);
+    }
+    pub fn get_CurrentLevel(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLevel(self, retVal);
+    }
+    pub fn get_CurrentAnnotationTypes(self: *const IUIAutomationElement4, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAnnotationTypes(self, retVal);
+    }
+    pub fn get_CurrentAnnotationObjects(self: *const IUIAutomationElement4, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentAnnotationObjects(self, retVal);
+    }
+    pub fn get_CachedPositionInSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedPositionInSet(self, retVal);
+    }
+    pub fn get_CachedSizeOfSet(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedSizeOfSet(self, retVal);
+    }
+    pub fn get_CachedLevel(self: *const IUIAutomationElement4, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLevel(self, retVal);
+    }
+    pub fn get_CachedAnnotationTypes(self: *const IUIAutomationElement4, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAnnotationTypes(self, retVal);
+    }
+    pub fn get_CachedAnnotationObjects(self: *const IUIAutomationElement4, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedAnnotationObjects(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IUIAutomationElement5_Value = Guid.initString("98141c1d-0d0e-4175-bbe2-6bff455842a7");
+pub const IID_IUIAutomationElement5 = &IID_IUIAutomationElement5_Value;
+pub const IUIAutomationElement5 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement4.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLandmarkType: *const fn(
+            self: *const IUIAutomationElement5,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLocalizedLandmarkType: *const fn(
+            self: *const IUIAutomationElement5,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLandmarkType: *const fn(
+            self: *const IUIAutomationElement5,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLocalizedLandmarkType: *const fn(
+            self: *const IUIAutomationElement5,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement4: IUIAutomationElement4,
+    IUIAutomationElement3: IUIAutomationElement3,
+    IUIAutomationElement2: IUIAutomationElement2,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn get_CurrentLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLandmarkType(self, retVal);
+    }
+    pub fn get_CurrentLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLocalizedLandmarkType(self, retVal);
+    }
+    pub fn get_CachedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLandmarkType(self, retVal);
+    }
+    pub fn get_CachedLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLocalizedLandmarkType(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IUIAutomationElement6_Value = Guid.initString("4780d450-8bca-4977-afa5-a4a517f555e3");
+pub const IID_IUIAutomationElement6 = &IID_IUIAutomationElement6_Value;
+pub const IUIAutomationElement6 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement5.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFullDescription: *const fn(
+            self: *const IUIAutomationElement6,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFullDescription: *const fn(
+            self: *const IUIAutomationElement6,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement5: IUIAutomationElement5,
+    IUIAutomationElement4: IUIAutomationElement4,
+    IUIAutomationElement3: IUIAutomationElement3,
+    IUIAutomationElement2: IUIAutomationElement2,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn get_CurrentFullDescription(self: *const IUIAutomationElement6, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFullDescription(self, retVal);
+    }
+    pub fn get_CachedFullDescription(self: *const IUIAutomationElement6, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFullDescription(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IUIAutomationElement7_Value = Guid.initString("204e8572-cfc3-4c11-b0c8-7da7420750b7");
+pub const IID_IUIAutomationElement7 = &IID_IUIAutomationElement7_Value;
+pub const IUIAutomationElement7 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement6.VTable,
+        FindFirstWithOptions: *const fn(
+            self: *const IUIAutomationElement7,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            traversalOptions: TreeTraversalOptions,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        FindAllWithOptions: *const fn(
+            self: *const IUIAutomationElement7,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            traversalOptions: TreeTraversalOptions,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        FindFirstWithOptionsBuildCache: *const fn(
+            self: *const IUIAutomationElement7,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            traversalOptions: TreeTraversalOptions,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        FindAllWithOptionsBuildCache: *const fn(
+            self: *const IUIAutomationElement7,
+            scope: TreeScope,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            traversalOptions: TreeTraversalOptions,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentMetadataValue: *const fn(
+            self: *const IUIAutomationElement7,
+            targetId: i32,
+            metadataId: i32,
+            returnVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement6: IUIAutomationElement6,
+    IUIAutomationElement5: IUIAutomationElement5,
+    IUIAutomationElement4: IUIAutomationElement4,
+    IUIAutomationElement3: IUIAutomationElement3,
+    IUIAutomationElement2: IUIAutomationElement2,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn FindFirstWithOptions(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.FindFirstWithOptions(self, scope, condition, traversalOptions, root, found);
+    }
+    pub fn FindAllWithOptions(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.FindAllWithOptions(self, scope, condition, traversalOptions, root, found);
+    }
+    pub fn FindFirstWithOptionsBuildCache(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.FindFirstWithOptionsBuildCache(self, scope, condition, cacheRequest, traversalOptions, root, found);
+    }
+    pub fn FindAllWithOptionsBuildCache(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.FindAllWithOptionsBuildCache(self, scope, condition, cacheRequest, traversalOptions, root, found);
+    }
+    pub fn GetCurrentMetadataValue(self: *const IUIAutomationElement7, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentMetadataValue(self, targetId, metadataId, returnVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.17134'
+const IID_IUIAutomationElement8_Value = Guid.initString("8c60217d-5411-4cde-bcc0-1ceda223830c");
+pub const IID_IUIAutomationElement8 = &IID_IUIAutomationElement8_Value;
+pub const IUIAutomationElement8 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement7.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentHeadingLevel: *const fn(
+            self: *const IUIAutomationElement8,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedHeadingLevel: *const fn(
+            self: *const IUIAutomationElement8,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement7: IUIAutomationElement7,
+    IUIAutomationElement6: IUIAutomationElement6,
+    IUIAutomationElement5: IUIAutomationElement5,
+    IUIAutomationElement4: IUIAutomationElement4,
+    IUIAutomationElement3: IUIAutomationElement3,
+    IUIAutomationElement2: IUIAutomationElement2,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn get_CurrentHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentHeadingLevel(self, retVal);
+    }
+    pub fn get_CachedHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedHeadingLevel(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.17763'
+const IID_IUIAutomationElement9_Value = Guid.initString("39325fac-039d-440e-a3a3-5eb81a5cecc3");
+pub const IID_IUIAutomationElement9 = &IID_IUIAutomationElement9_Value;
+pub const IUIAutomationElement9 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationElement8.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsDialog: *const fn(
+            self: *const IUIAutomationElement9,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsDialog: *const fn(
+            self: *const IUIAutomationElement9,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationElement8: IUIAutomationElement8,
+    IUIAutomationElement7: IUIAutomationElement7,
+    IUIAutomationElement6: IUIAutomationElement6,
+    IUIAutomationElement5: IUIAutomationElement5,
+    IUIAutomationElement4: IUIAutomationElement4,
+    IUIAutomationElement3: IUIAutomationElement3,
+    IUIAutomationElement2: IUIAutomationElement2,
+    IUIAutomationElement: IUIAutomationElement,
+    IUnknown: IUnknown,
+    pub fn get_CurrentIsDialog(self: *const IUIAutomationElement9, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsDialog(self, retVal);
+    }
+    pub fn get_CachedIsDialog(self: *const IUIAutomationElement9, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsDialog(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationElementArray_Value = Guid.initString("14314595-b4bc-4055-95f2-58f2e42c9855");
+pub const IID_IUIAutomationElementArray = &IID_IUIAutomationElementArray_Value;
+pub const IUIAutomationElementArray = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Length: *const fn(
+            self: *const IUIAutomationElementArray,
+            length: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetElement: *const fn(
+            self: *const IUIAutomationElementArray,
+            index: i32,
+            element: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Length(self: *const IUIAutomationElementArray, length: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Length(self, length);
+    }
+    pub fn GetElement(self: *const IUIAutomationElementArray, index: i32, element: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetElement(self, index, element);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationEventHandler_Value = Guid.initString("146c3c17-f12e-4e22-8c27-f894b9b79c69");
+pub const IID_IUIAutomationEventHandler = &IID_IUIAutomationEventHandler_Value;
+pub const IUIAutomationEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleAutomationEvent: *const fn(
+            self: *const IUIAutomationEventHandler,
+            sender: ?*IUIAutomationElement,
+            eventId: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleAutomationEvent(self: *const IUIAutomationEventHandler, sender: ?*IUIAutomationElement, eventId: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleAutomationEvent(self, sender, eventId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.17763'
+const IID_IUIAutomationEventHandlerGroup_Value = Guid.initString("c9ee12f2-c13b-4408-997c-639914377f4e");
+pub const IID_IUIAutomationEventHandlerGroup = &IID_IUIAutomationEventHandlerGroup_Value;
+pub const IUIAutomationEventHandlerGroup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddActiveTextPositionChangedEventHandler: *const fn(
+            self: *const IUIAutomationEventHandlerGroup,
+            scope: TreeScope,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationActiveTextPositionChangedEventHandler,
+        ) callconv(.winapi) HRESULT,
+        AddAutomationEventHandler: *const fn(
+            self: *const IUIAutomationEventHandlerGroup,
+            eventId: i32,
+            scope: TreeScope,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationEventHandler,
+        ) callconv(.winapi) HRESULT,
+        AddChangesEventHandler: *const fn(
+            self: *const IUIAutomationEventHandlerGroup,
+            scope: TreeScope,
+            changeTypes: [*]i32,
+            changesCount: i32,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationChangesEventHandler,
+        ) callconv(.winapi) HRESULT,
+        AddNotificationEventHandler: *const fn(
+            self: *const IUIAutomationEventHandlerGroup,
+            scope: TreeScope,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationNotificationEventHandler,
+        ) callconv(.winapi) HRESULT,
+        AddPropertyChangedEventHandler: *const fn(
+            self: *const IUIAutomationEventHandlerGroup,
+            scope: TreeScope,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationPropertyChangedEventHandler,
+            propertyArray: [*]i32,
+            propertyCount: i32,
+        ) callconv(.winapi) HRESULT,
+        AddStructureChangedEventHandler: *const fn(
+            self: *const IUIAutomationEventHandlerGroup,
+            scope: TreeScope,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationStructureChangedEventHandler,
+        ) callconv(.winapi) HRESULT,
+        AddTextEditTextChangedEventHandler: *const fn(
+            self: *const IUIAutomationEventHandlerGroup,
+            scope: TreeScope,
+            textEditChangeType: TextEditChangeType,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationTextEditTextChangedEventHandler,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddActiveTextPositionChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.AddActiveTextPositionChangedEventHandler(self, scope, cacheRequest, handler);
+    }
+    pub fn AddAutomationEventHandler(self: *const IUIAutomationEventHandlerGroup, eventId: i32, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAutomationEventHandler(self, eventId, scope, cacheRequest, handler);
+    }
+    pub fn AddChangesEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationChangesEventHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.AddChangesEventHandler(self, scope, changeTypes, changesCount, cacheRequest, handler);
+    }
+    pub fn AddNotificationEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationNotificationEventHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.AddNotificationEventHandler(self, scope, cacheRequest, handler);
+    }
+    pub fn AddPropertyChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPropertyChangedEventHandler(self, scope, cacheRequest, handler, propertyArray, propertyCount);
+    }
+    pub fn AddStructureChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.AddStructureChangedEventHandler(self, scope, cacheRequest, handler);
+    }
+    pub fn AddTextEditTextChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.AddTextEditTextChangedEventHandler(self, scope, textEditChangeType, cacheRequest, handler);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationExpandCollapsePattern_Value = Guid.initString("619be086-1f4e-4ee4-bafa-210128738730");
+pub const IID_IUIAutomationExpandCollapsePattern = &IID_IUIAutomationExpandCollapsePattern_Value;
+pub const IUIAutomationExpandCollapsePattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Expand: *const fn(
+            self: *const IUIAutomationExpandCollapsePattern,
+        ) callconv(.winapi) HRESULT,
+        Collapse: *const fn(
+            self: *const IUIAutomationExpandCollapsePattern,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentExpandCollapseState: *const fn(
+            self: *const IUIAutomationExpandCollapsePattern,
+            retVal: ?*ExpandCollapseState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedExpandCollapseState: *const fn(
+            self: *const IUIAutomationExpandCollapsePattern,
+            retVal: ?*ExpandCollapseState,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Expand(self: *const IUIAutomationExpandCollapsePattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Expand(self);
+    }
+    pub fn Collapse(self: *const IUIAutomationExpandCollapsePattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Collapse(self);
+    }
+    pub fn get_CurrentExpandCollapseState(self: *const IUIAutomationExpandCollapsePattern, retVal: ?*ExpandCollapseState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentExpandCollapseState(self, retVal);
+    }
+    pub fn get_CachedExpandCollapseState(self: *const IUIAutomationExpandCollapsePattern, retVal: ?*ExpandCollapseState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedExpandCollapseState(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationFocusChangedEventHandler_Value = Guid.initString("c270f6b5-5c69-4290-9745-7a7f97169468");
+pub const IID_IUIAutomationFocusChangedEventHandler = &IID_IUIAutomationFocusChangedEventHandler_Value;
+pub const IUIAutomationFocusChangedEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleFocusChangedEvent: *const fn(
+            self: *const IUIAutomationFocusChangedEventHandler,
+            sender: ?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleFocusChangedEvent(self: *const IUIAutomationFocusChangedEventHandler, sender: ?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleFocusChangedEvent(self, sender);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationGridItemPattern_Value = Guid.initString("78f8ef57-66c3-4e09-bd7c-e79b2004894d");
+pub const IID_IUIAutomationGridItemPattern = &IID_IUIAutomationGridItemPattern_Value;
+pub const IUIAutomationGridItemPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentContainingGrid: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentRow: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentColumn: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentRowSpan: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentColumnSpan: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedContainingGrid: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedRow: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedColumn: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedRowSpan: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedColumnSpan: *const fn(
+            self: *const IUIAutomationGridItemPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_CurrentContainingGrid(self: *const IUIAutomationGridItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentContainingGrid(self, retVal);
+    }
+    pub fn get_CurrentRow(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentRow(self, retVal);
+    }
+    pub fn get_CurrentColumn(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentColumn(self, retVal);
+    }
+    pub fn get_CurrentRowSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentRowSpan(self, retVal);
+    }
+    pub fn get_CurrentColumnSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentColumnSpan(self, retVal);
+    }
+    pub fn get_CachedContainingGrid(self: *const IUIAutomationGridItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedContainingGrid(self, retVal);
+    }
+    pub fn get_CachedRow(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedRow(self, retVal);
+    }
+    pub fn get_CachedColumn(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedColumn(self, retVal);
+    }
+    pub fn get_CachedRowSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedRowSpan(self, retVal);
+    }
+    pub fn get_CachedColumnSpan(self: *const IUIAutomationGridItemPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedColumnSpan(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationGridPattern_Value = Guid.initString("414c3cdc-856b-4f5b-8538-3131c6302550");
+pub const IID_IUIAutomationGridPattern = &IID_IUIAutomationGridPattern_Value;
+pub const IUIAutomationGridPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetItem: *const fn(
+            self: *const IUIAutomationGridPattern,
+            row: i32,
+            column: i32,
+            element: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentRowCount: *const fn(
+            self: *const IUIAutomationGridPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentColumnCount: *const fn(
+            self: *const IUIAutomationGridPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedRowCount: *const fn(
+            self: *const IUIAutomationGridPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedColumnCount: *const fn(
+            self: *const IUIAutomationGridPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetItem(self: *const IUIAutomationGridPattern, row: i32, column: i32, element: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, row, column, element);
+    }
+    pub fn get_CurrentRowCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentRowCount(self, retVal);
+    }
+    pub fn get_CurrentColumnCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentColumnCount(self, retVal);
+    }
+    pub fn get_CachedRowCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedRowCount(self, retVal);
+    }
+    pub fn get_CachedColumnCount(self: *const IUIAutomationGridPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedColumnCount(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationInvokePattern_Value = Guid.initString("fb377fbe-8ea6-46d5-9c73-6499642d3059");
+pub const IID_IUIAutomationInvokePattern = &IID_IUIAutomationInvokePattern_Value;
+pub const IUIAutomationInvokePattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Invoke: *const fn(
+            self: *const IUIAutomationInvokePattern,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const IUIAutomationInvokePattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Invoke(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationItemContainerPattern_Value = Guid.initString("c690fdb2-27a8-423c-812d-429773c9084e");
+pub const IID_IUIAutomationItemContainerPattern = &IID_IUIAutomationItemContainerPattern_Value;
+pub const IUIAutomationItemContainerPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FindItemByProperty: *const fn(
+            self: *const IUIAutomationItemContainerPattern,
+            pStartAfter: ?*IUIAutomationElement,
+            propertyId: i32,
+            value: VARIANT,
+            pFound: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn FindItemByProperty(self: *const IUIAutomationItemContainerPattern, pStartAfter: ?*IUIAutomationElement, propertyId: i32, value: VARIANT, pFound: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.FindItemByProperty(self, pStartAfter, propertyId, value, pFound);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationLegacyIAccessiblePattern_Value = Guid.initString("828055ad-355b-4435-86d5-3b51c14a9b1b");
+pub const IID_IUIAutomationLegacyIAccessiblePattern = &IID_IUIAutomationLegacyIAccessiblePattern_Value;
+pub const IUIAutomationLegacyIAccessiblePattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Select: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            flagsSelect: i32,
+        ) callconv(.winapi) HRESULT,
+        DoDefaultAction: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+        ) callconv(.winapi) HRESULT,
+        SetValue: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            szValue: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentChildId: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentName: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentValue: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDescription: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentRole: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pdwRole: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentState: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pdwState: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentHelp: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszHelp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentKeyboardShortcut: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszKeyboardShortcut: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentSelection: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pvarSelectedChildren: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentDefaultAction: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszDefaultAction: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedChildId: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pRetVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedName: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedValue: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDescription: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedRole: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pdwRole: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedState: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pdwState: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedHelp: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszHelp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedKeyboardShortcut: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszKeyboardShortcut: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCachedSelection: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pvarSelectedChildren: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedDefaultAction: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            pszDefaultAction: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetIAccessible: *const fn(
+            self: *const IUIAutomationLegacyIAccessiblePattern,
+            ppAccessible: ?*?*IAccessible,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Select(self: *const IUIAutomationLegacyIAccessiblePattern, flagsSelect: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Select(self, flagsSelect);
+    }
+    pub fn DoDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern) callconv(.@"inline") HRESULT {
+        return self.vtable.DoDefaultAction(self);
+    }
+    pub fn SetValue(self: *const IUIAutomationLegacyIAccessiblePattern, szValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, szValue);
+    }
+    pub fn get_CurrentChildId(self: *const IUIAutomationLegacyIAccessiblePattern, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentChildId(self, pRetVal);
+    }
+    pub fn get_CurrentName(self: *const IUIAutomationLegacyIAccessiblePattern, pszName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentName(self, pszName);
+    }
+    pub fn get_CurrentValue(self: *const IUIAutomationLegacyIAccessiblePattern, pszValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentValue(self, pszValue);
+    }
+    pub fn get_CurrentDescription(self: *const IUIAutomationLegacyIAccessiblePattern, pszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDescription(self, pszDescription);
+    }
+    pub fn get_CurrentRole(self: *const IUIAutomationLegacyIAccessiblePattern, pdwRole: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentRole(self, pdwRole);
+    }
+    pub fn get_CurrentState(self: *const IUIAutomationLegacyIAccessiblePattern, pdwState: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentState(self, pdwState);
+    }
+    pub fn get_CurrentHelp(self: *const IUIAutomationLegacyIAccessiblePattern, pszHelp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentHelp(self, pszHelp);
+    }
+    pub fn get_CurrentKeyboardShortcut(self: *const IUIAutomationLegacyIAccessiblePattern, pszKeyboardShortcut: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentKeyboardShortcut(self, pszKeyboardShortcut);
+    }
+    pub fn GetCurrentSelection(self: *const IUIAutomationLegacyIAccessiblePattern, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentSelection(self, pvarSelectedChildren);
+    }
+    pub fn get_CurrentDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern, pszDefaultAction: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentDefaultAction(self, pszDefaultAction);
+    }
+    pub fn get_CachedChildId(self: *const IUIAutomationLegacyIAccessiblePattern, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedChildId(self, pRetVal);
+    }
+    pub fn get_CachedName(self: *const IUIAutomationLegacyIAccessiblePattern, pszName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedName(self, pszName);
+    }
+    pub fn get_CachedValue(self: *const IUIAutomationLegacyIAccessiblePattern, pszValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedValue(self, pszValue);
+    }
+    pub fn get_CachedDescription(self: *const IUIAutomationLegacyIAccessiblePattern, pszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDescription(self, pszDescription);
+    }
+    pub fn get_CachedRole(self: *const IUIAutomationLegacyIAccessiblePattern, pdwRole: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedRole(self, pdwRole);
+    }
+    pub fn get_CachedState(self: *const IUIAutomationLegacyIAccessiblePattern, pdwState: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedState(self, pdwState);
+    }
+    pub fn get_CachedHelp(self: *const IUIAutomationLegacyIAccessiblePattern, pszHelp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedHelp(self, pszHelp);
+    }
+    pub fn get_CachedKeyboardShortcut(self: *const IUIAutomationLegacyIAccessiblePattern, pszKeyboardShortcut: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedKeyboardShortcut(self, pszKeyboardShortcut);
+    }
+    pub fn GetCachedSelection(self: *const IUIAutomationLegacyIAccessiblePattern, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedSelection(self, pvarSelectedChildren);
+    }
+    pub fn get_CachedDefaultAction(self: *const IUIAutomationLegacyIAccessiblePattern, pszDefaultAction: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedDefaultAction(self, pszDefaultAction);
+    }
+    pub fn GetIAccessible(self: *const IUIAutomationLegacyIAccessiblePattern, ppAccessible: ?*?*IAccessible) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIAccessible(self, ppAccessible);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationMultipleViewPattern_Value = Guid.initString("8d253c91-1dc5-4bb5-b18f-ade16fa495e8");
+pub const IID_IUIAutomationMultipleViewPattern = &IID_IUIAutomationMultipleViewPattern_Value;
+pub const IUIAutomationMultipleViewPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetViewName: *const fn(
+            self: *const IUIAutomationMultipleViewPattern,
+            view: i32,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetCurrentView: *const fn(
+            self: *const IUIAutomationMultipleViewPattern,
+            view: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCurrentView: *const fn(
+            self: *const IUIAutomationMultipleViewPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentSupportedViews: *const fn(
+            self: *const IUIAutomationMultipleViewPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCurrentView: *const fn(
+            self: *const IUIAutomationMultipleViewPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetCachedSupportedViews: *const fn(
+            self: *const IUIAutomationMultipleViewPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetViewName(self: *const IUIAutomationMultipleViewPattern, view: i32, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetViewName(self, view, name);
+    }
+    pub fn SetCurrentView(self: *const IUIAutomationMultipleViewPattern, view: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCurrentView(self, view);
+    }
+    pub fn get_CurrentCurrentView(self: *const IUIAutomationMultipleViewPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCurrentView(self, retVal);
+    }
+    pub fn GetCurrentSupportedViews(self: *const IUIAutomationMultipleViewPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentSupportedViews(self, retVal);
+    }
+    pub fn get_CachedCurrentView(self: *const IUIAutomationMultipleViewPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCurrentView(self, retVal);
+    }
+    pub fn GetCachedSupportedViews(self: *const IUIAutomationMultipleViewPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedSupportedViews(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationNotCondition_Value = Guid.initString("f528b657-847b-498c-8896-d52b565407a1");
+pub const IID_IUIAutomationNotCondition = &IID_IUIAutomationNotCondition_Value;
+pub const IUIAutomationNotCondition = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationCondition.VTable,
+        GetChild: *const fn(
+            self: *const IUIAutomationNotCondition,
+            condition: ?*?*IUIAutomationCondition,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationCondition: IUIAutomationCondition,
+    IUnknown: IUnknown,
+    pub fn GetChild(self: *const IUIAutomationNotCondition, condition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChild(self, condition);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.16299'
+const IID_IUIAutomationNotificationEventHandler_Value = Guid.initString("c7cb2637-e6c2-4d0c-85de-4948c02175c7");
+pub const IID_IUIAutomationNotificationEventHandler = &IID_IUIAutomationNotificationEventHandler_Value;
+pub const IUIAutomationNotificationEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleNotificationEvent: *const fn(
+            self: *const IUIAutomationNotificationEventHandler,
+            sender: ?*IUIAutomationElement,
+            notificationKind: NotificationKind,
+            notificationProcessing: NotificationProcessing,
+            displayString: ?BSTR,
+            activityId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleNotificationEvent(self: *const IUIAutomationNotificationEventHandler, sender: ?*IUIAutomationElement, notificationKind: NotificationKind, notificationProcessing: NotificationProcessing, displayString: ?BSTR, activityId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleNotificationEvent(self, sender, notificationKind, notificationProcessing, displayString, activityId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationObjectModelPattern_Value = Guid.initString("71c284b3-c14d-4d14-981e-19751b0d756d");
+pub const IID_IUIAutomationObjectModelPattern = &IID_IUIAutomationObjectModelPattern_Value;
+pub const IUIAutomationObjectModelPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetUnderlyingObjectModel: *const fn(
+            self: *const IUIAutomationObjectModelPattern,
+            retVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetUnderlyingObjectModel(self: *const IUIAutomationObjectModelPattern, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUnderlyingObjectModel(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationOrCondition_Value = Guid.initString("8753f032-3db1-47b5-a1fc-6e34a266c712");
+pub const IID_IUIAutomationOrCondition = &IID_IUIAutomationOrCondition_Value;
+pub const IUIAutomationOrCondition = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ChildCount: *const fn(
+            self: *const IUIAutomationOrCondition,
+            childCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetChildrenAsNativeArray: *const fn(
+            self: *const IUIAutomationOrCondition,
+            childArray: [*]?*?*IUIAutomationCondition,
+            childArrayCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetChildren: *const fn(
+            self: *const IUIAutomationOrCondition,
+            childArray: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationCondition: IUIAutomationCondition,
+    IUnknown: IUnknown,
+    pub fn get_ChildCount(self: *const IUIAutomationOrCondition, childCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ChildCount(self, childCount);
+    }
+    pub fn GetChildrenAsNativeArray(self: *const IUIAutomationOrCondition, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildrenAsNativeArray(self, childArray, childArrayCount);
+    }
+    pub fn GetChildren(self: *const IUIAutomationOrCondition, childArray: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildren(self, childArray);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationPatternHandler_Value = Guid.initString("d97022f3-a947-465e-8b2a-ac4315fa54e8");
+pub const IID_IUIAutomationPatternHandler = &IID_IUIAutomationPatternHandler_Value;
+pub const IUIAutomationPatternHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateClientWrapper: *const fn(
+            self: *const IUIAutomationPatternHandler,
+            pPatternInstance: ?*IUIAutomationPatternInstance,
+            pClientWrapper: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Dispatch: *const fn(
+            self: *const IUIAutomationPatternHandler,
+            pTarget: ?*IUnknown,
+            index: u32,
+            pParams: ?*const UIAutomationParameter,
+            cParams: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateClientWrapper(self: *const IUIAutomationPatternHandler, pPatternInstance: ?*IUIAutomationPatternInstance, pClientWrapper: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateClientWrapper(self, pPatternInstance, pClientWrapper);
+    }
+    pub fn Dispatch(self: *const IUIAutomationPatternHandler, pTarget: ?*IUnknown, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Dispatch(self, pTarget, index, pParams, cParams);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationPatternInstance_Value = Guid.initString("c03a7fe4-9431-409f-bed8-ae7c2299bc8d");
+pub const IID_IUIAutomationPatternInstance = &IID_IUIAutomationPatternInstance_Value;
+pub const IUIAutomationPatternInstance = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperty: *const fn(
+            self: *const IUIAutomationPatternInstance,
+            index: u32,
+            cached: BOOL,
+            type: UIAutomationType,
+            pPtr: ?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        CallMethod: *const fn(
+            self: *const IUIAutomationPatternInstance,
+            index: u32,
+            pParams: ?*const UIAutomationParameter,
+            cParams: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProperty(self: *const IUIAutomationPatternInstance, index: u32, cached: BOOL, @"type": UIAutomationType, pPtr: ?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, index, cached, @"type", pPtr);
+    }
+    pub fn CallMethod(self: *const IUIAutomationPatternInstance, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CallMethod(self, index, pParams, cParams);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationPropertyChangedEventHandler_Value = Guid.initString("40cd37d4-c756-4b0c-8c6f-bddfeeb13b50");
+pub const IID_IUIAutomationPropertyChangedEventHandler = &IID_IUIAutomationPropertyChangedEventHandler_Value;
+pub const IUIAutomationPropertyChangedEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandlePropertyChangedEvent: *const fn(
+            self: *const IUIAutomationPropertyChangedEventHandler,
+            sender: ?*IUIAutomationElement,
+            propertyId: i32,
+            newValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandlePropertyChangedEvent(self: *const IUIAutomationPropertyChangedEventHandler, sender: ?*IUIAutomationElement, propertyId: i32, newValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.HandlePropertyChangedEvent(self, sender, propertyId, newValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationPropertyCondition_Value = Guid.initString("99ebf2cb-5578-4267-9ad4-afd6ea77e94b");
+pub const IID_IUIAutomationPropertyCondition = &IID_IUIAutomationPropertyCondition_Value;
+pub const IUIAutomationPropertyCondition = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertyId: *const fn(
+            self: *const IUIAutomationPropertyCondition,
+            propertyId: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertyValue: *const fn(
+            self: *const IUIAutomationPropertyCondition,
+            propertyValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertyConditionFlags: *const fn(
+            self: *const IUIAutomationPropertyCondition,
+            flags: ?*PropertyConditionFlags,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationCondition: IUIAutomationCondition,
+    IUnknown: IUnknown,
+    pub fn get_PropertyId(self: *const IUIAutomationPropertyCondition, propertyId: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyId(self, propertyId);
+    }
+    pub fn get_PropertyValue(self: *const IUIAutomationPropertyCondition, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyValue(self, propertyValue);
+    }
+    pub fn get_PropertyConditionFlags(self: *const IUIAutomationPropertyCondition, flags: ?*PropertyConditionFlags) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyConditionFlags(self, flags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationProxyFactory_Value = Guid.initString("85b94ecd-849d-42b6-b94d-d6db23fdf5a4");
+pub const IID_IUIAutomationProxyFactory = &IID_IUIAutomationProxyFactory_Value;
+pub const IUIAutomationProxyFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateProvider: *const fn(
+            self: *const IUIAutomationProxyFactory,
+            hwnd: ?HWND,
+            idObject: i32,
+            idChild: i32,
+            provider: ?*?*IRawElementProviderSimple,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ProxyFactoryId: *const fn(
+            self: *const IUIAutomationProxyFactory,
+            factoryId: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateProvider(self: *const IUIAutomationProxyFactory, hwnd: ?HWND, idObject: i32, idChild: i32, provider: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateProvider(self, hwnd, idObject, idChild, provider);
+    }
+    pub fn get_ProxyFactoryId(self: *const IUIAutomationProxyFactory, factoryId: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ProxyFactoryId(self, factoryId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationProxyFactoryEntry_Value = Guid.initString("d50e472e-b64b-490c-bca1-d30696f9f289");
+pub const IID_IUIAutomationProxyFactoryEntry = &IID_IUIAutomationProxyFactoryEntry_Value;
+pub const IUIAutomationProxyFactoryEntry = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ProxyFactory: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            factory: ?*?*IUIAutomationProxyFactory,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClassName: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            className: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ImageName: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            imageName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AllowSubstringMatch: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            allowSubstringMatch: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CanCheckBaseClass: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            canCheckBaseClass: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NeedsAdviseEvents: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            adviseEvents: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ClassName: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            className: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ImageName: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            imageName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AllowSubstringMatch: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            allowSubstringMatch: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_CanCheckBaseClass: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            canCheckBaseClass: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NeedsAdviseEvents: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            adviseEvents: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetWinEventsForAutomationEvent: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            eventId: i32,
+            propertyId: i32,
+            winEvents: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetWinEventsForAutomationEvent: *const fn(
+            self: *const IUIAutomationProxyFactoryEntry,
+            eventId: i32,
+            propertyId: i32,
+            winEvents: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_ProxyFactory(self: *const IUIAutomationProxyFactoryEntry, factory: ?*?*IUIAutomationProxyFactory) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ProxyFactory(self, factory);
+    }
+    pub fn get_ClassName(self: *const IUIAutomationProxyFactoryEntry, className: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClassName(self, className);
+    }
+    pub fn get_ImageName(self: *const IUIAutomationProxyFactoryEntry, imageName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ImageName(self, imageName);
+    }
+    pub fn get_AllowSubstringMatch(self: *const IUIAutomationProxyFactoryEntry, allowSubstringMatch: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AllowSubstringMatch(self, allowSubstringMatch);
+    }
+    pub fn get_CanCheckBaseClass(self: *const IUIAutomationProxyFactoryEntry, canCheckBaseClass: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanCheckBaseClass(self, canCheckBaseClass);
+    }
+    pub fn get_NeedsAdviseEvents(self: *const IUIAutomationProxyFactoryEntry, adviseEvents: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NeedsAdviseEvents(self, adviseEvents);
+    }
+    pub fn put_ClassName(self: *const IUIAutomationProxyFactoryEntry, className: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClassName(self, className);
+    }
+    pub fn put_ImageName(self: *const IUIAutomationProxyFactoryEntry, imageName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ImageName(self, imageName);
+    }
+    pub fn put_AllowSubstringMatch(self: *const IUIAutomationProxyFactoryEntry, allowSubstringMatch: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AllowSubstringMatch(self, allowSubstringMatch);
+    }
+    pub fn put_CanCheckBaseClass(self: *const IUIAutomationProxyFactoryEntry, canCheckBaseClass: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_CanCheckBaseClass(self, canCheckBaseClass);
+    }
+    pub fn put_NeedsAdviseEvents(self: *const IUIAutomationProxyFactoryEntry, adviseEvents: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NeedsAdviseEvents(self, adviseEvents);
+    }
+    pub fn SetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWinEventsForAutomationEvent(self, eventId, propertyId, winEvents);
+    }
+    pub fn GetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWinEventsForAutomationEvent(self, eventId, propertyId, winEvents);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationProxyFactoryMapping_Value = Guid.initString("09e31e18-872d-4873-93d1-1e541ec133fd");
+pub const IID_IUIAutomationProxyFactoryMapping = &IID_IUIAutomationProxyFactoryMapping_Value;
+pub const IUIAutomationProxyFactoryMapping = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetTable: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+            table: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetEntry: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+            index: u32,
+            entry: ?*?*IUIAutomationProxyFactoryEntry,
+        ) callconv(.winapi) HRESULT,
+        SetTable: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+            factoryList: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        InsertEntries: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+            before: u32,
+            factoryList: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        InsertEntry: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+            before: u32,
+            factory: ?*IUIAutomationProxyFactoryEntry,
+        ) callconv(.winapi) HRESULT,
+        RemoveEntry: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+            index: u32,
+        ) callconv(.winapi) HRESULT,
+        ClearTable: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+        ) callconv(.winapi) HRESULT,
+        RestoreDefaultTable: *const fn(
+            self: *const IUIAutomationProxyFactoryMapping,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IUIAutomationProxyFactoryMapping, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, count);
+    }
+    pub fn GetTable(self: *const IUIAutomationProxyFactoryMapping, table: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTable(self, table);
+    }
+    pub fn GetEntry(self: *const IUIAutomationProxyFactoryMapping, index: u32, entry: ?*?*IUIAutomationProxyFactoryEntry) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEntry(self, index, entry);
+    }
+    pub fn SetTable(self: *const IUIAutomationProxyFactoryMapping, factoryList: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTable(self, factoryList);
+    }
+    pub fn InsertEntries(self: *const IUIAutomationProxyFactoryMapping, before: u32, factoryList: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertEntries(self, before, factoryList);
+    }
+    pub fn InsertEntry(self: *const IUIAutomationProxyFactoryMapping, before: u32, factory: ?*IUIAutomationProxyFactoryEntry) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertEntry(self, before, factory);
+    }
+    pub fn RemoveEntry(self: *const IUIAutomationProxyFactoryMapping, index: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveEntry(self, index);
+    }
+    pub fn ClearTable(self: *const IUIAutomationProxyFactoryMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.ClearTable(self);
+    }
+    pub fn RestoreDefaultTable(self: *const IUIAutomationProxyFactoryMapping) callconv(.@"inline") HRESULT {
+        return self.vtable.RestoreDefaultTable(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationRangeValuePattern_Value = Guid.initString("59213f4f-7346-49e5-b120-80555987a148");
+pub const IID_IUIAutomationRangeValuePattern = &IID_IUIAutomationRangeValuePattern_Value;
+pub const IUIAutomationRangeValuePattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetValue: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            val: f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentValue: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsReadOnly: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentMaximum: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentMinimum: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLargeChange: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentSmallChange: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedValue: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsReadOnly: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedMaximum: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedMinimum: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLargeChange: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedSmallChange: *const fn(
+            self: *const IUIAutomationRangeValuePattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetValue(self: *const IUIAutomationRangeValuePattern, val: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, val);
+    }
+    pub fn get_CurrentValue(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentValue(self, retVal);
+    }
+    pub fn get_CurrentIsReadOnly(self: *const IUIAutomationRangeValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsReadOnly(self, retVal);
+    }
+    pub fn get_CurrentMaximum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentMaximum(self, retVal);
+    }
+    pub fn get_CurrentMinimum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentMinimum(self, retVal);
+    }
+    pub fn get_CurrentLargeChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLargeChange(self, retVal);
+    }
+    pub fn get_CurrentSmallChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentSmallChange(self, retVal);
+    }
+    pub fn get_CachedValue(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedValue(self, retVal);
+    }
+    pub fn get_CachedIsReadOnly(self: *const IUIAutomationRangeValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsReadOnly(self, retVal);
+    }
+    pub fn get_CachedMaximum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedMaximum(self, retVal);
+    }
+    pub fn get_CachedMinimum(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedMinimum(self, retVal);
+    }
+    pub fn get_CachedLargeChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLargeChange(self, retVal);
+    }
+    pub fn get_CachedSmallChange(self: *const IUIAutomationRangeValuePattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedSmallChange(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationRegistrar_Value = Guid.initString("8609c4ec-4a1a-4d88-a357-5a66e060e1cf");
+pub const IID_IUIAutomationRegistrar = &IID_IUIAutomationRegistrar_Value;
+pub const IUIAutomationRegistrar = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterProperty: *const fn(
+            self: *const IUIAutomationRegistrar,
+            property: ?*const UIAutomationPropertyInfo,
+            propertyId: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        RegisterEvent: *const fn(
+            self: *const IUIAutomationRegistrar,
+            event: ?*const UIAutomationEventInfo,
+            eventId: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        RegisterPattern: *const fn(
+            self: *const IUIAutomationRegistrar,
+            pattern: ?*const UIAutomationPatternInfo,
+            pPatternId: ?*i32,
+            pPatternAvailablePropertyId: ?*i32,
+            propertyIdCount: u32,
+            pPropertyIds: [*]i32,
+            eventIdCount: u32,
+            pEventIds: [*]i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterProperty(self: *const IUIAutomationRegistrar, property: ?*const UIAutomationPropertyInfo, propertyId: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterProperty(self, property, propertyId);
+    }
+    pub fn RegisterEvent(self: *const IUIAutomationRegistrar, event: ?*const UIAutomationEventInfo, eventId: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterEvent(self, event, eventId);
+    }
+    pub fn RegisterPattern(self: *const IUIAutomationRegistrar, pattern: ?*const UIAutomationPatternInfo, pPatternId: ?*i32, pPatternAvailablePropertyId: ?*i32, propertyIdCount: u32, pPropertyIds: [*]i32, eventIdCount: u32, pEventIds: [*]i32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterPattern(self, pattern, pPatternId, pPatternAvailablePropertyId, propertyIdCount, pPropertyIds, eventIdCount, pEventIds);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationScrollItemPattern_Value = Guid.initString("b488300f-d015-4f19-9c29-bb595e3645ef");
+pub const IID_IUIAutomationScrollItemPattern = &IID_IUIAutomationScrollItemPattern_Value;
+pub const IUIAutomationScrollItemPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ScrollIntoView: *const fn(
+            self: *const IUIAutomationScrollItemPattern,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ScrollIntoView(self: *const IUIAutomationScrollItemPattern) callconv(.@"inline") HRESULT {
+        return self.vtable.ScrollIntoView(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationScrollPattern_Value = Guid.initString("88f4d42a-e881-459d-a77c-73bbbb7e02dc");
+pub const IID_IUIAutomationScrollPattern = &IID_IUIAutomationScrollPattern_Value;
+pub const IUIAutomationScrollPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Scroll: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            horizontalAmount: ScrollAmount,
+            verticalAmount: ScrollAmount,
+        ) callconv(.winapi) HRESULT,
+        SetScrollPercent: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            horizontalPercent: f64,
+            verticalPercent: f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentHorizontalScrollPercent: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentVerticalScrollPercent: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentHorizontalViewSize: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentVerticalViewSize: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentHorizontallyScrollable: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentVerticallyScrollable: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedHorizontalScrollPercent: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedVerticalScrollPercent: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedHorizontalViewSize: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedVerticalViewSize: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedHorizontallyScrollable: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedVerticallyScrollable: *const fn(
+            self: *const IUIAutomationScrollPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Scroll(self: *const IUIAutomationScrollPattern, horizontalAmount: ScrollAmount, verticalAmount: ScrollAmount) callconv(.@"inline") HRESULT {
+        return self.vtable.Scroll(self, horizontalAmount, verticalAmount);
+    }
+    pub fn SetScrollPercent(self: *const IUIAutomationScrollPattern, horizontalPercent: f64, verticalPercent: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetScrollPercent(self, horizontalPercent, verticalPercent);
+    }
+    pub fn get_CurrentHorizontalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentHorizontalScrollPercent(self, retVal);
+    }
+    pub fn get_CurrentVerticalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentVerticalScrollPercent(self, retVal);
+    }
+    pub fn get_CurrentHorizontalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentHorizontalViewSize(self, retVal);
+    }
+    pub fn get_CurrentVerticalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentVerticalViewSize(self, retVal);
+    }
+    pub fn get_CurrentHorizontallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentHorizontallyScrollable(self, retVal);
+    }
+    pub fn get_CurrentVerticallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentVerticallyScrollable(self, retVal);
+    }
+    pub fn get_CachedHorizontalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedHorizontalScrollPercent(self, retVal);
+    }
+    pub fn get_CachedVerticalScrollPercent(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedVerticalScrollPercent(self, retVal);
+    }
+    pub fn get_CachedHorizontalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedHorizontalViewSize(self, retVal);
+    }
+    pub fn get_CachedVerticalViewSize(self: *const IUIAutomationScrollPattern, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedVerticalViewSize(self, retVal);
+    }
+    pub fn get_CachedHorizontallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedHorizontallyScrollable(self, retVal);
+    }
+    pub fn get_CachedVerticallyScrollable(self: *const IUIAutomationScrollPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedVerticallyScrollable(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationSelectionItemPattern_Value = Guid.initString("a8efa66a-0fda-421a-9194-38021f3578ea");
+pub const IID_IUIAutomationSelectionItemPattern = &IID_IUIAutomationSelectionItemPattern_Value;
+pub const IUIAutomationSelectionItemPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Select: *const fn(
+            self: *const IUIAutomationSelectionItemPattern,
+        ) callconv(.winapi) HRESULT,
+        AddToSelection: *const fn(
+            self: *const IUIAutomationSelectionItemPattern,
+        ) callconv(.winapi) HRESULT,
+        RemoveFromSelection: *const fn(
+            self: *const IUIAutomationSelectionItemPattern,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsSelected: *const fn(
+            self: *const IUIAutomationSelectionItemPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentSelectionContainer: *const fn(
+            self: *const IUIAutomationSelectionItemPattern,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsSelected: *const fn(
+            self: *const IUIAutomationSelectionItemPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedSelectionContainer: *const fn(
+            self: *const IUIAutomationSelectionItemPattern,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Select(self: *const IUIAutomationSelectionItemPattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Select(self);
+    }
+    pub fn AddToSelection(self: *const IUIAutomationSelectionItemPattern) callconv(.@"inline") HRESULT {
+        return self.vtable.AddToSelection(self);
+    }
+    pub fn RemoveFromSelection(self: *const IUIAutomationSelectionItemPattern) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveFromSelection(self);
+    }
+    pub fn get_CurrentIsSelected(self: *const IUIAutomationSelectionItemPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsSelected(self, retVal);
+    }
+    pub fn get_CurrentSelectionContainer(self: *const IUIAutomationSelectionItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentSelectionContainer(self, retVal);
+    }
+    pub fn get_CachedIsSelected(self: *const IUIAutomationSelectionItemPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsSelected(self, retVal);
+    }
+    pub fn get_CachedSelectionContainer(self: *const IUIAutomationSelectionItemPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedSelectionContainer(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationSelectionPattern_Value = Guid.initString("5ed5202e-b2ac-47a6-b638-4b0bf140d78e");
+pub const IID_IUIAutomationSelectionPattern = &IID_IUIAutomationSelectionPattern_Value;
+pub const IUIAutomationSelectionPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentSelection: *const fn(
+            self: *const IUIAutomationSelectionPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCanSelectMultiple: *const fn(
+            self: *const IUIAutomationSelectionPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsSelectionRequired: *const fn(
+            self: *const IUIAutomationSelectionPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCachedSelection: *const fn(
+            self: *const IUIAutomationSelectionPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCanSelectMultiple: *const fn(
+            self: *const IUIAutomationSelectionPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsSelectionRequired: *const fn(
+            self: *const IUIAutomationSelectionPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrentSelection(self: *const IUIAutomationSelectionPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentSelection(self, retVal);
+    }
+    pub fn get_CurrentCanSelectMultiple(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCanSelectMultiple(self, retVal);
+    }
+    pub fn get_CurrentIsSelectionRequired(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsSelectionRequired(self, retVal);
+    }
+    pub fn GetCachedSelection(self: *const IUIAutomationSelectionPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedSelection(self, retVal);
+    }
+    pub fn get_CachedCanSelectMultiple(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCanSelectMultiple(self, retVal);
+    }
+    pub fn get_CachedIsSelectionRequired(self: *const IUIAutomationSelectionPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsSelectionRequired(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.16299'
+const IID_IUIAutomationSelectionPattern2_Value = Guid.initString("0532bfae-c011-4e32-a343-6d642d798555");
+pub const IID_IUIAutomationSelectionPattern2 = &IID_IUIAutomationSelectionPattern2_Value;
+pub const IUIAutomationSelectionPattern2 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationSelectionPattern.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFirstSelectedItem: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentLastSelectedItem: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCurrentSelectedItem: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentItemCount: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFirstSelectedItem: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedLastSelectedItem: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCurrentSelectedItem: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedItemCount: *const fn(
+            self: *const IUIAutomationSelectionPattern2,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationSelectionPattern: IUIAutomationSelectionPattern,
+    IUnknown: IUnknown,
+    pub fn get_CurrentFirstSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFirstSelectedItem(self, retVal);
+    }
+    pub fn get_CurrentLastSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentLastSelectedItem(self, retVal);
+    }
+    pub fn get_CurrentCurrentSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCurrentSelectedItem(self, retVal);
+    }
+    pub fn get_CurrentItemCount(self: *const IUIAutomationSelectionPattern2, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentItemCount(self, retVal);
+    }
+    pub fn get_CachedFirstSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFirstSelectedItem(self, retVal);
+    }
+    pub fn get_CachedLastSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedLastSelectedItem(self, retVal);
+    }
+    pub fn get_CachedCurrentSelectedItem(self: *const IUIAutomationSelectionPattern2, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCurrentSelectedItem(self, retVal);
+    }
+    pub fn get_CachedItemCount(self: *const IUIAutomationSelectionPattern2, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedItemCount(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationSpreadsheetItemPattern_Value = Guid.initString("7d4fb86c-8d34-40e1-8e83-62c15204e335");
+pub const IID_IUIAutomationSpreadsheetItemPattern = &IID_IUIAutomationSpreadsheetItemPattern_Value;
+pub const IUIAutomationSpreadsheetItemPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFormula: *const fn(
+            self: *const IUIAutomationSpreadsheetItemPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentAnnotationObjects: *const fn(
+            self: *const IUIAutomationSpreadsheetItemPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentAnnotationTypes: *const fn(
+            self: *const IUIAutomationSpreadsheetItemPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFormula: *const fn(
+            self: *const IUIAutomationSpreadsheetItemPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCachedAnnotationObjects: *const fn(
+            self: *const IUIAutomationSpreadsheetItemPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCachedAnnotationTypes: *const fn(
+            self: *const IUIAutomationSpreadsheetItemPattern,
+            retVal: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_CurrentFormula(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFormula(self, retVal);
+    }
+    pub fn GetCurrentAnnotationObjects(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentAnnotationObjects(self, retVal);
+    }
+    pub fn GetCurrentAnnotationTypes(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentAnnotationTypes(self, retVal);
+    }
+    pub fn get_CachedFormula(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFormula(self, retVal);
+    }
+    pub fn GetCachedAnnotationObjects(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedAnnotationObjects(self, retVal);
+    }
+    pub fn GetCachedAnnotationTypes(self: *const IUIAutomationSpreadsheetItemPattern, retVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedAnnotationTypes(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationSpreadsheetPattern_Value = Guid.initString("7517a7c8-faae-4de9-9f08-29b91e8595c1");
+pub const IID_IUIAutomationSpreadsheetPattern = &IID_IUIAutomationSpreadsheetPattern_Value;
+pub const IUIAutomationSpreadsheetPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetItemByName: *const fn(
+            self: *const IUIAutomationSpreadsheetPattern,
+            name: ?BSTR,
+            element: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetItemByName(self: *const IUIAutomationSpreadsheetPattern, name: ?BSTR, element: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItemByName(self, name, element);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationStructureChangedEventHandler_Value = Guid.initString("e81d1b4e-11c5-42f8-9754-e7036c79f054");
+pub const IID_IUIAutomationStructureChangedEventHandler = &IID_IUIAutomationStructureChangedEventHandler_Value;
+pub const IUIAutomationStructureChangedEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleStructureChangedEvent: *const fn(
+            self: *const IUIAutomationStructureChangedEventHandler,
+            sender: ?*IUIAutomationElement,
+            changeType: StructureChangeType,
+            runtimeId: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleStructureChangedEvent(self: *const IUIAutomationStructureChangedEventHandler, sender: ?*IUIAutomationElement, changeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleStructureChangedEvent(self, sender, changeType, runtimeId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationStylesPattern_Value = Guid.initString("85b5f0a2-bd79-484a-ad2b-388c9838d5fb");
+pub const IID_IUIAutomationStylesPattern = &IID_IUIAutomationStylesPattern_Value;
+pub const IUIAutomationStylesPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentStyleId: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentStyleName: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFillColor: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFillPatternStyle: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentShape: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentFillPatternColor: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentExtendedProperties: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentExtendedPropertiesAsArray: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            propertyArray: ?*?*ExtendedProperty,
+            propertyCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedStyleId: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedStyleName: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFillColor: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFillPatternStyle: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedShape: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedFillPatternColor: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedExtendedProperties: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCachedExtendedPropertiesAsArray: *const fn(
+            self: *const IUIAutomationStylesPattern,
+            propertyArray: ?*?*ExtendedProperty,
+            propertyCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_CurrentStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentStyleId(self, retVal);
+    }
+    pub fn get_CurrentStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentStyleName(self, retVal);
+    }
+    pub fn get_CurrentFillColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFillColor(self, retVal);
+    }
+    pub fn get_CurrentFillPatternStyle(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFillPatternStyle(self, retVal);
+    }
+    pub fn get_CurrentShape(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentShape(self, retVal);
+    }
+    pub fn get_CurrentFillPatternColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentFillPatternColor(self, retVal);
+    }
+    pub fn get_CurrentExtendedProperties(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentExtendedProperties(self, retVal);
+    }
+    pub fn GetCurrentExtendedPropertiesAsArray(self: *const IUIAutomationStylesPattern, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentExtendedPropertiesAsArray(self, propertyArray, propertyCount);
+    }
+    pub fn get_CachedStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedStyleId(self, retVal);
+    }
+    pub fn get_CachedStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedStyleName(self, retVal);
+    }
+    pub fn get_CachedFillColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFillColor(self, retVal);
+    }
+    pub fn get_CachedFillPatternStyle(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFillPatternStyle(self, retVal);
+    }
+    pub fn get_CachedShape(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedShape(self, retVal);
+    }
+    pub fn get_CachedFillPatternColor(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedFillPatternColor(self, retVal);
+    }
+    pub fn get_CachedExtendedProperties(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedExtendedProperties(self, retVal);
+    }
+    pub fn GetCachedExtendedPropertiesAsArray(self: *const IUIAutomationStylesPattern, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedExtendedPropertiesAsArray(self, propertyArray, propertyCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationSynchronizedInputPattern_Value = Guid.initString("2233be0b-afb7-448b-9fda-3b378aa5eae1");
+pub const IID_IUIAutomationSynchronizedInputPattern = &IID_IUIAutomationSynchronizedInputPattern_Value;
+pub const IUIAutomationSynchronizedInputPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        StartListening: *const fn(
+            self: *const IUIAutomationSynchronizedInputPattern,
+            inputType: SynchronizedInputType,
+        ) callconv(.winapi) HRESULT,
+        Cancel: *const fn(
+            self: *const IUIAutomationSynchronizedInputPattern,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn StartListening(self: *const IUIAutomationSynchronizedInputPattern, inputType: SynchronizedInputType) callconv(.@"inline") HRESULT {
+        return self.vtable.StartListening(self, inputType);
+    }
+    pub fn Cancel(self: *const IUIAutomationSynchronizedInputPattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTableItemPattern_Value = Guid.initString("0b964eb3-ef2e-4464-9c79-61d61737a27e");
+pub const IID_IUIAutomationTableItemPattern = &IID_IUIAutomationTableItemPattern_Value;
+pub const IUIAutomationTableItemPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentRowHeaderItems: *const fn(
+            self: *const IUIAutomationTableItemPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentColumnHeaderItems: *const fn(
+            self: *const IUIAutomationTableItemPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCachedRowHeaderItems: *const fn(
+            self: *const IUIAutomationTableItemPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCachedColumnHeaderItems: *const fn(
+            self: *const IUIAutomationTableItemPattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrentRowHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentRowHeaderItems(self, retVal);
+    }
+    pub fn GetCurrentColumnHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentColumnHeaderItems(self, retVal);
+    }
+    pub fn GetCachedRowHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedRowHeaderItems(self, retVal);
+    }
+    pub fn GetCachedColumnHeaderItems(self: *const IUIAutomationTableItemPattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedColumnHeaderItems(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTablePattern_Value = Guid.initString("620e691c-ea96-4710-a850-754b24ce2417");
+pub const IID_IUIAutomationTablePattern = &IID_IUIAutomationTablePattern_Value;
+pub const IUIAutomationTablePattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentRowHeaders: *const fn(
+            self: *const IUIAutomationTablePattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentColumnHeaders: *const fn(
+            self: *const IUIAutomationTablePattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentRowOrColumnMajor: *const fn(
+            self: *const IUIAutomationTablePattern,
+            retVal: ?*RowOrColumnMajor,
+        ) callconv(.winapi) HRESULT,
+        GetCachedRowHeaders: *const fn(
+            self: *const IUIAutomationTablePattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetCachedColumnHeaders: *const fn(
+            self: *const IUIAutomationTablePattern,
+            retVal: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedRowOrColumnMajor: *const fn(
+            self: *const IUIAutomationTablePattern,
+            retVal: ?*RowOrColumnMajor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrentRowHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentRowHeaders(self, retVal);
+    }
+    pub fn GetCurrentColumnHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentColumnHeaders(self, retVal);
+    }
+    pub fn get_CurrentRowOrColumnMajor(self: *const IUIAutomationTablePattern, retVal: ?*RowOrColumnMajor) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentRowOrColumnMajor(self, retVal);
+    }
+    pub fn GetCachedRowHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedRowHeaders(self, retVal);
+    }
+    pub fn GetCachedColumnHeaders(self: *const IUIAutomationTablePattern, retVal: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCachedColumnHeaders(self, retVal);
+    }
+    pub fn get_CachedRowOrColumnMajor(self: *const IUIAutomationTablePattern, retVal: ?*RowOrColumnMajor) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedRowOrColumnMajor(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationTextChildPattern_Value = Guid.initString("6552b038-ae05-40c8-abfd-aa08352aab86");
+pub const IID_IUIAutomationTextChildPattern = &IID_IUIAutomationTextChildPattern_Value;
+pub const IUIAutomationTextChildPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TextContainer: *const fn(
+            self: *const IUIAutomationTextChildPattern,
+            container: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TextRange: *const fn(
+            self: *const IUIAutomationTextChildPattern,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_TextContainer(self: *const IUIAutomationTextChildPattern, container: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TextContainer(self, container);
+    }
+    pub fn get_TextRange(self: *const IUIAutomationTextChildPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TextRange(self, range);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IUIAutomationTextEditPattern_Value = Guid.initString("17e21576-996c-4870-99d9-bff323380c06");
+pub const IID_IUIAutomationTextEditPattern = &IID_IUIAutomationTextEditPattern_Value;
+pub const IUIAutomationTextEditPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationTextPattern.VTable,
+        GetActiveComposition: *const fn(
+            self: *const IUIAutomationTextEditPattern,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        GetConversionTarget: *const fn(
+            self: *const IUIAutomationTextEditPattern,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationTextPattern: IUIAutomationTextPattern,
+    IUnknown: IUnknown,
+    pub fn GetActiveComposition(self: *const IUIAutomationTextEditPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActiveComposition(self, range);
+    }
+    pub fn GetConversionTarget(self: *const IUIAutomationTextEditPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConversionTarget(self, range);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IUIAutomationTextEditTextChangedEventHandler_Value = Guid.initString("92faa680-e704-4156-931a-e32d5bb38f3f");
+pub const IID_IUIAutomationTextEditTextChangedEventHandler = &IID_IUIAutomationTextEditTextChangedEventHandler_Value;
+pub const IUIAutomationTextEditTextChangedEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleTextEditTextChangedEvent: *const fn(
+            self: *const IUIAutomationTextEditTextChangedEventHandler,
+            sender: ?*IUIAutomationElement,
+            textEditChangeType: TextEditChangeType,
+            eventStrings: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleTextEditTextChangedEvent(self: *const IUIAutomationTextEditTextChangedEventHandler, sender: ?*IUIAutomationElement, textEditChangeType: TextEditChangeType, eventStrings: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleTextEditTextChangedEvent(self, sender, textEditChangeType, eventStrings);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTextPattern_Value = Guid.initString("32eba289-3583-42c9-9c59-3b6d9a1e9b6a");
+pub const IID_IUIAutomationTextPattern = &IID_IUIAutomationTextPattern_Value;
+pub const IUIAutomationTextPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RangeFromPoint: *const fn(
+            self: *const IUIAutomationTextPattern,
+            pt: POINT,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        RangeFromChild: *const fn(
+            self: *const IUIAutomationTextPattern,
+            child: ?*IUIAutomationElement,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        GetSelection: *const fn(
+            self: *const IUIAutomationTextPattern,
+            ranges: ?*?*IUIAutomationTextRangeArray,
+        ) callconv(.winapi) HRESULT,
+        GetVisibleRanges: *const fn(
+            self: *const IUIAutomationTextPattern,
+            ranges: ?*?*IUIAutomationTextRangeArray,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DocumentRange: *const fn(
+            self: *const IUIAutomationTextPattern,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SupportedTextSelection: *const fn(
+            self: *const IUIAutomationTextPattern,
+            supportedTextSelection: ?*SupportedTextSelection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RangeFromPoint(self: *const IUIAutomationTextPattern, pt: POINT, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.RangeFromPoint(self, pt, range);
+    }
+    pub fn RangeFromChild(self: *const IUIAutomationTextPattern, child: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.RangeFromChild(self, child, range);
+    }
+    pub fn GetSelection(self: *const IUIAutomationTextPattern, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelection(self, ranges);
+    }
+    pub fn GetVisibleRanges(self: *const IUIAutomationTextPattern, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVisibleRanges(self, ranges);
+    }
+    pub fn get_DocumentRange(self: *const IUIAutomationTextPattern, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DocumentRange(self, range);
+    }
+    pub fn get_SupportedTextSelection(self: *const IUIAutomationTextPattern, supportedTextSelection: ?*SupportedTextSelection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SupportedTextSelection(self, supportedTextSelection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationTextPattern2_Value = Guid.initString("506a921a-fcc9-409f-b23b-37eb74106872");
+pub const IID_IUIAutomationTextPattern2 = &IID_IUIAutomationTextPattern2_Value;
+pub const IUIAutomationTextPattern2 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationTextPattern.VTable,
+        RangeFromAnnotation: *const fn(
+            self: *const IUIAutomationTextPattern2,
+            annotation: ?*IUIAutomationElement,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        GetCaretRange: *const fn(
+            self: *const IUIAutomationTextPattern2,
+            isActive: ?*BOOL,
+            range: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationTextPattern: IUIAutomationTextPattern,
+    IUnknown: IUnknown,
+    pub fn RangeFromAnnotation(self: *const IUIAutomationTextPattern2, annotation: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.RangeFromAnnotation(self, annotation, range);
+    }
+    pub fn GetCaretRange(self: *const IUIAutomationTextPattern2, isActive: ?*BOOL, range: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCaretRange(self, isActive, range);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTextRange_Value = Guid.initString("a543cc6a-f4ae-494b-8239-c814481187a8");
+pub const IID_IUIAutomationTextRange = &IID_IUIAutomationTextRange_Value;
+pub const IUIAutomationTextRange = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IUIAutomationTextRange,
+            clonedRange: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        Compare: *const fn(
+            self: *const IUIAutomationTextRange,
+            range: ?*IUIAutomationTextRange,
+            areSame: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        CompareEndpoints: *const fn(
+            self: *const IUIAutomationTextRange,
+            srcEndPoint: TextPatternRangeEndpoint,
+            range: ?*IUIAutomationTextRange,
+            targetEndPoint: TextPatternRangeEndpoint,
+            compValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        ExpandToEnclosingUnit: *const fn(
+            self: *const IUIAutomationTextRange,
+            textUnit: TextUnit,
+        ) callconv(.winapi) HRESULT,
+        FindAttribute: *const fn(
+            self: *const IUIAutomationTextRange,
+            attr: i32,
+            val: VARIANT,
+            backward: BOOL,
+            found: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        FindText: *const fn(
+            self: *const IUIAutomationTextRange,
+            text: ?BSTR,
+            backward: BOOL,
+            ignoreCase: BOOL,
+            found: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        GetAttributeValue: *const fn(
+            self: *const IUIAutomationTextRange,
+            attr: i32,
+            value: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetBoundingRectangles: *const fn(
+            self: *const IUIAutomationTextRange,
+            boundingRects: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetEnclosingElement: *const fn(
+            self: *const IUIAutomationTextRange,
+            enclosingElement: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetText: *const fn(
+            self: *const IUIAutomationTextRange,
+            maxLength: i32,
+            text: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IUIAutomationTextRange,
+            unit: TextUnit,
+            count: i32,
+            moved: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        MoveEndpointByUnit: *const fn(
+            self: *const IUIAutomationTextRange,
+            endpoint: TextPatternRangeEndpoint,
+            unit: TextUnit,
+            count: i32,
+            moved: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        MoveEndpointByRange: *const fn(
+            self: *const IUIAutomationTextRange,
+            srcEndPoint: TextPatternRangeEndpoint,
+            range: ?*IUIAutomationTextRange,
+            targetEndPoint: TextPatternRangeEndpoint,
+        ) callconv(.winapi) HRESULT,
+        Select: *const fn(
+            self: *const IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        AddToSelection: *const fn(
+            self: *const IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        RemoveFromSelection: *const fn(
+            self: *const IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+        ScrollIntoView: *const fn(
+            self: *const IUIAutomationTextRange,
+            alignToTop: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetChildren: *const fn(
+            self: *const IUIAutomationTextRange,
+            children: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IUIAutomationTextRange, clonedRange: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, clonedRange);
+    }
+    pub fn Compare(self: *const IUIAutomationTextRange, range: ?*IUIAutomationTextRange, areSame: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Compare(self, range, areSame);
+    }
+    pub fn CompareEndpoints(self: *const IUIAutomationTextRange, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint, compValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.CompareEndpoints(self, srcEndPoint, range, targetEndPoint, compValue);
+    }
+    pub fn ExpandToEnclosingUnit(self: *const IUIAutomationTextRange, textUnit: TextUnit) callconv(.@"inline") HRESULT {
+        return self.vtable.ExpandToEnclosingUnit(self, textUnit);
+    }
+    pub fn FindAttribute(self: *const IUIAutomationTextRange, attr: i32, val: VARIANT, backward: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.FindAttribute(self, attr, val, backward, found);
+    }
+    pub fn FindText(self: *const IUIAutomationTextRange, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.FindText(self, text, backward, ignoreCase, found);
+    }
+    pub fn GetAttributeValue(self: *const IUIAutomationTextRange, attr: i32, value: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttributeValue(self, attr, value);
+    }
+    pub fn GetBoundingRectangles(self: *const IUIAutomationTextRange, boundingRects: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBoundingRectangles(self, boundingRects);
+    }
+    pub fn GetEnclosingElement(self: *const IUIAutomationTextRange, enclosingElement: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnclosingElement(self, enclosingElement);
+    }
+    pub fn GetText(self: *const IUIAutomationTextRange, maxLength: i32, text: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetText(self, maxLength, text);
+    }
+    pub fn Move(self: *const IUIAutomationTextRange, unit: TextUnit, count: i32, moved: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, unit, count, moved);
+    }
+    pub fn MoveEndpointByUnit(self: *const IUIAutomationTextRange, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, moved: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveEndpointByUnit(self, endpoint, unit, count, moved);
+    }
+    pub fn MoveEndpointByRange(self: *const IUIAutomationTextRange, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveEndpointByRange(self, srcEndPoint, range, targetEndPoint);
+    }
+    pub fn Select(self: *const IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.Select(self);
+    }
+    pub fn AddToSelection(self: *const IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.AddToSelection(self);
+    }
+    pub fn RemoveFromSelection(self: *const IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveFromSelection(self);
+    }
+    pub fn ScrollIntoView(self: *const IUIAutomationTextRange, alignToTop: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ScrollIntoView(self, alignToTop);
+    }
+    pub fn GetChildren(self: *const IUIAutomationTextRange, children: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildren(self, children);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IUIAutomationTextRange2_Value = Guid.initString("bb9b40e0-5e04-46bd-9be0-4b601b9afad4");
+pub const IID_IUIAutomationTextRange2 = &IID_IUIAutomationTextRange2_Value;
+pub const IUIAutomationTextRange2 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationTextRange.VTable,
+        ShowContextMenu: *const fn(
+            self: *const IUIAutomationTextRange2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationTextRange: IUIAutomationTextRange,
+    IUnknown: IUnknown,
+    pub fn ShowContextMenu(self: *const IUIAutomationTextRange2) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowContextMenu(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IUIAutomationTextRange3_Value = Guid.initString("6a315d69-5512-4c2e-85f0-53fce6dd4bc2");
+pub const IID_IUIAutomationTextRange3 = &IID_IUIAutomationTextRange3_Value;
+pub const IUIAutomationTextRange3 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationTextRange2.VTable,
+        GetEnclosingElementBuildCache: *const fn(
+            self: *const IUIAutomationTextRange3,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            enclosingElement: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetChildrenBuildCache: *const fn(
+            self: *const IUIAutomationTextRange3,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            children: ?*?*IUIAutomationElementArray,
+        ) callconv(.winapi) HRESULT,
+        GetAttributeValues: *const fn(
+            self: *const IUIAutomationTextRange3,
+            attributeIds: [*]const i32,
+            attributeIdCount: i32,
+            attributeValues: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationTextRange2: IUIAutomationTextRange2,
+    IUIAutomationTextRange: IUIAutomationTextRange,
+    IUnknown: IUnknown,
+    pub fn GetEnclosingElementBuildCache(self: *const IUIAutomationTextRange3, cacheRequest: ?*IUIAutomationCacheRequest, enclosingElement: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnclosingElementBuildCache(self, cacheRequest, enclosingElement);
+    }
+    pub fn GetChildrenBuildCache(self: *const IUIAutomationTextRange3, cacheRequest: ?*IUIAutomationCacheRequest, children: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChildrenBuildCache(self, cacheRequest, children);
+    }
+    pub fn GetAttributeValues(self: *const IUIAutomationTextRange3, attributeIds: [*]const i32, attributeIdCount: i32, attributeValues: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttributeValues(self, attributeIds, attributeIdCount, attributeValues);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTextRangeArray_Value = Guid.initString("ce4ae76a-e717-4c98-81ea-47371d028eb6");
+pub const IID_IUIAutomationTextRangeArray = &IID_IUIAutomationTextRangeArray_Value;
+pub const IUIAutomationTextRangeArray = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Length: *const fn(
+            self: *const IUIAutomationTextRangeArray,
+            length: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetElement: *const fn(
+            self: *const IUIAutomationTextRangeArray,
+            index: i32,
+            element: ?*?*IUIAutomationTextRange,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Length(self: *const IUIAutomationTextRangeArray, length: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Length(self, length);
+    }
+    pub fn GetElement(self: *const IUIAutomationTextRangeArray, index: i32, element: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+        return self.vtable.GetElement(self, index, element);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTogglePattern_Value = Guid.initString("94cf8058-9b8d-4ab9-8bfd-4cd0a33c8c70");
+pub const IID_IUIAutomationTogglePattern = &IID_IUIAutomationTogglePattern_Value;
+pub const IUIAutomationTogglePattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Toggle: *const fn(
+            self: *const IUIAutomationTogglePattern,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentToggleState: *const fn(
+            self: *const IUIAutomationTogglePattern,
+            retVal: ?*ToggleState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedToggleState: *const fn(
+            self: *const IUIAutomationTogglePattern,
+            retVal: ?*ToggleState,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Toggle(self: *const IUIAutomationTogglePattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Toggle(self);
+    }
+    pub fn get_CurrentToggleState(self: *const IUIAutomationTogglePattern, retVal: ?*ToggleState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentToggleState(self, retVal);
+    }
+    pub fn get_CachedToggleState(self: *const IUIAutomationTogglePattern, retVal: ?*ToggleState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedToggleState(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTransformPattern_Value = Guid.initString("a9b55844-a55d-4ef0-926d-569c16ff89bb");
+pub const IID_IUIAutomationTransformPattern = &IID_IUIAutomationTransformPattern_Value;
+pub const IUIAutomationTransformPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Move: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            x: f64,
+            y: f64,
+        ) callconv(.winapi) HRESULT,
+        Resize: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            width: f64,
+            height: f64,
+        ) callconv(.winapi) HRESULT,
+        Rotate: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            degrees: f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCanMove: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCanResize: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCanRotate: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCanMove: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCanResize: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCanRotate: *const fn(
+            self: *const IUIAutomationTransformPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Move(self: *const IUIAutomationTransformPattern, x: f64, y: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, x, y);
+    }
+    pub fn Resize(self: *const IUIAutomationTransformPattern, width: f64, height: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.Resize(self, width, height);
+    }
+    pub fn Rotate(self: *const IUIAutomationTransformPattern, degrees: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.Rotate(self, degrees);
+    }
+    pub fn get_CurrentCanMove(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCanMove(self, retVal);
+    }
+    pub fn get_CurrentCanResize(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCanResize(self, retVal);
+    }
+    pub fn get_CurrentCanRotate(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCanRotate(self, retVal);
+    }
+    pub fn get_CachedCanMove(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCanMove(self, retVal);
+    }
+    pub fn get_CachedCanResize(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCanResize(self, retVal);
+    }
+    pub fn get_CachedCanRotate(self: *const IUIAutomationTransformPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCanRotate(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIAutomationTransformPattern2_Value = Guid.initString("6d74d017-6ecb-4381-b38b-3c17a48ff1c2");
+pub const IID_IUIAutomationTransformPattern2 = &IID_IUIAutomationTransformPattern2_Value;
+pub const IUIAutomationTransformPattern2 = extern union {
+    pub const VTable = extern struct {
+        base: IUIAutomationTransformPattern.VTable,
+        Zoom: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            zoomValue: f64,
+        ) callconv(.winapi) HRESULT,
+        ZoomByUnit: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            zoomUnit: ZoomUnit,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCanZoom: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCanZoom: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentZoomLevel: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedZoomLevel: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentZoomMinimum: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedZoomMinimum: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentZoomMaximum: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedZoomMaximum: *const fn(
+            self: *const IUIAutomationTransformPattern2,
+            retVal: ?*f64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUIAutomationTransformPattern: IUIAutomationTransformPattern,
+    IUnknown: IUnknown,
+    pub fn Zoom(self: *const IUIAutomationTransformPattern2, zoomValue: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.Zoom(self, zoomValue);
+    }
+    pub fn ZoomByUnit(self: *const IUIAutomationTransformPattern2, zoomUnit: ZoomUnit) callconv(.@"inline") HRESULT {
+        return self.vtable.ZoomByUnit(self, zoomUnit);
+    }
+    pub fn get_CurrentCanZoom(self: *const IUIAutomationTransformPattern2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCanZoom(self, retVal);
+    }
+    pub fn get_CachedCanZoom(self: *const IUIAutomationTransformPattern2, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCanZoom(self, retVal);
+    }
+    pub fn get_CurrentZoomLevel(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentZoomLevel(self, retVal);
+    }
+    pub fn get_CachedZoomLevel(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedZoomLevel(self, retVal);
+    }
+    pub fn get_CurrentZoomMinimum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentZoomMinimum(self, retVal);
+    }
+    pub fn get_CachedZoomMinimum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedZoomMinimum(self, retVal);
+    }
+    pub fn get_CurrentZoomMaximum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentZoomMaximum(self, retVal);
+    }
+    pub fn get_CachedZoomMaximum(self: *const IUIAutomationTransformPattern2, retVal: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedZoomMaximum(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationTreeWalker_Value = Guid.initString("4042c624-389c-4afc-a630-9df854a541fc");
+pub const IID_IUIAutomationTreeWalker = &IID_IUIAutomationTreeWalker_Value;
+pub const IUIAutomationTreeWalker = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetParentElement: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            parent: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetFirstChildElement: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            first: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetLastChildElement: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            last: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetNextSiblingElement: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            next: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetPreviousSiblingElement: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            previous: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        NormalizeElement: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            normalized: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetParentElementBuildCache: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            parent: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetFirstChildElementBuildCache: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            first: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetLastChildElementBuildCache: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            last: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetNextSiblingElementBuildCache: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            next: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        GetPreviousSiblingElementBuildCache: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            previous: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        NormalizeElementBuildCache: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            normalized: ?*?*IUIAutomationElement,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Condition: *const fn(
+            self: *const IUIAutomationTreeWalker,
+            condition: ?*?*IUIAutomationCondition,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetParentElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParentElement(self, element, parent);
+    }
+    pub fn GetFirstChildElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, first: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFirstChildElement(self, element, first);
+    }
+    pub fn GetLastChildElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, last: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastChildElement(self, element, last);
+    }
+    pub fn GetNextSiblingElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, next: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextSiblingElement(self, element, next);
+    }
+    pub fn GetPreviousSiblingElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, previous: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreviousSiblingElement(self, element, previous);
+    }
+    pub fn NormalizeElement(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, normalized: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.NormalizeElement(self, element, normalized);
+    }
+    pub fn GetParentElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, parent: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParentElementBuildCache(self, element, cacheRequest, parent);
+    }
+    pub fn GetFirstChildElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, first: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFirstChildElementBuildCache(self, element, cacheRequest, first);
+    }
+    pub fn GetLastChildElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, last: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastChildElementBuildCache(self, element, cacheRequest, last);
+    }
+    pub fn GetNextSiblingElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, next: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextSiblingElementBuildCache(self, element, cacheRequest, next);
+    }
+    pub fn GetPreviousSiblingElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, previous: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreviousSiblingElementBuildCache(self, element, cacheRequest, previous);
+    }
+    pub fn NormalizeElementBuildCache(self: *const IUIAutomationTreeWalker, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, normalized: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+        return self.vtable.NormalizeElementBuildCache(self, element, cacheRequest, normalized);
+    }
+    pub fn get_Condition(self: *const IUIAutomationTreeWalker, condition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Condition(self, condition);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationValuePattern_Value = Guid.initString("a94cd8b1-0844-4cd6-9d2d-640537ab39e9");
+pub const IID_IUIAutomationValuePattern = &IID_IUIAutomationValuePattern_Value;
+pub const IUIAutomationValuePattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetValue: *const fn(
+            self: *const IUIAutomationValuePattern,
+            val: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentValue: *const fn(
+            self: *const IUIAutomationValuePattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsReadOnly: *const fn(
+            self: *const IUIAutomationValuePattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedValue: *const fn(
+            self: *const IUIAutomationValuePattern,
+            retVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsReadOnly: *const fn(
+            self: *const IUIAutomationValuePattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetValue(self: *const IUIAutomationValuePattern, val: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, val);
+    }
+    pub fn get_CurrentValue(self: *const IUIAutomationValuePattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentValue(self, retVal);
+    }
+    pub fn get_CurrentIsReadOnly(self: *const IUIAutomationValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsReadOnly(self, retVal);
+    }
+    pub fn get_CachedValue(self: *const IUIAutomationValuePattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedValue(self, retVal);
+    }
+    pub fn get_CachedIsReadOnly(self: *const IUIAutomationValuePattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsReadOnly(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationVirtualizedItemPattern_Value = Guid.initString("6ba3d7a6-04cf-4f11-8793-a8d1cde9969f");
+pub const IID_IUIAutomationVirtualizedItemPattern = &IID_IUIAutomationVirtualizedItemPattern_Value;
+pub const IUIAutomationVirtualizedItemPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Realize: *const fn(
+            self: *const IUIAutomationVirtualizedItemPattern,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Realize(self: *const IUIAutomationVirtualizedItemPattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Realize(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIAutomationWindowPattern_Value = Guid.initString("0faef453-9208-43ef-bbb2-3b485177864f");
+pub const IID_IUIAutomationWindowPattern = &IID_IUIAutomationWindowPattern_Value;
+pub const IUIAutomationWindowPattern = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Close: *const fn(
+            self: *const IUIAutomationWindowPattern,
+        ) callconv(.winapi) HRESULT,
+        WaitForInputIdle: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            milliseconds: i32,
+            success: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetWindowVisualState: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            state: WindowVisualState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCanMaximize: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCanMinimize: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsModal: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentIsTopmost: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentWindowVisualState: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*WindowVisualState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentWindowInteractionState: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*WindowInteractionState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCanMaximize: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedCanMinimize: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsModal: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedIsTopmost: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedWindowVisualState: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*WindowVisualState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CachedWindowInteractionState: *const fn(
+            self: *const IUIAutomationWindowPattern,
+            retVal: ?*WindowInteractionState,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Close(self: *const IUIAutomationWindowPattern) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn WaitForInputIdle(self: *const IUIAutomationWindowPattern, milliseconds: i32, success: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.WaitForInputIdle(self, milliseconds, success);
+    }
+    pub fn SetWindowVisualState(self: *const IUIAutomationWindowPattern, state: WindowVisualState) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWindowVisualState(self, state);
+    }
+    pub fn get_CurrentCanMaximize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCanMaximize(self, retVal);
+    }
+    pub fn get_CurrentCanMinimize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCanMinimize(self, retVal);
+    }
+    pub fn get_CurrentIsModal(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsModal(self, retVal);
+    }
+    pub fn get_CurrentIsTopmost(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentIsTopmost(self, retVal);
+    }
+    pub fn get_CurrentWindowVisualState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowVisualState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentWindowVisualState(self, retVal);
+    }
+    pub fn get_CurrentWindowInteractionState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowInteractionState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentWindowInteractionState(self, retVal);
+    }
+    pub fn get_CachedCanMaximize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCanMaximize(self, retVal);
+    }
+    pub fn get_CachedCanMinimize(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedCanMinimize(self, retVal);
+    }
+    pub fn get_CachedIsModal(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsModal(self, retVal);
+    }
+    pub fn get_CachedIsTopmost(self: *const IUIAutomationWindowPattern, retVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedIsTopmost(self, retVal);
+    }
+    pub fn get_CachedWindowVisualState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowVisualState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedWindowVisualState(self, retVal);
+    }
+    pub fn get_CachedWindowInteractionState(self: *const IUIAutomationWindowPattern, retVal: ?*WindowInteractionState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CachedWindowInteractionState(self, retVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IValueProvider_Value = Guid.initString("c7935180-6fb3-4201-b174-7df73adbf64a");
+pub const IID_IValueProvider = &IID_IValueProvider_Value;
+pub const IValueProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetValue: *const fn(
+            self: *const IValueProvider,
+            val: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IValueProvider,
+            pRetVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsReadOnly: *const fn(
+            self: *const IValueProvider,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetValue(self: *const IValueProvider, val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, val);
+    }
+    pub fn get_Value(self: *const IValueProvider, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pRetVal);
+    }
+    pub fn get_IsReadOnly(self: *const IValueProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsReadOnly(self, pRetVal);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IVirtualizedItemProvider_Value = Guid.initString("cb98b665-2d35-4fac-ad35-f3c60d0c0b8b");
+pub const IID_IVirtualizedItemProvider = &IID_IVirtualizedItemProvider_Value;
+pub const IVirtualizedItemProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Realize: *const fn(
+            self: *const IVirtualizedItemProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Realize(self: *const IVirtualizedItemProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Realize(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWindowProvider_Value = Guid.initString("987df77b-db06-4d77-8f8a-86a9c3bb90b9");
+pub const IID_IWindowProvider = &IID_IWindowProvider_Value;
+pub const IWindowProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetVisualState: *const fn(
+            self: *const IWindowProvider,
+            state: WindowVisualState,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IWindowProvider,
+        ) callconv(.winapi) HRESULT,
+        WaitForInputIdle: *const fn(
+            self: *const IWindowProvider,
+            milliseconds: i32,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CanMaximize: *const fn(
+            self: *const IWindowProvider,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CanMinimize: *const fn(
+            self: *const IWindowProvider,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsModal: *const fn(
+            self: *const IWindowProvider,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WindowVisualState: *const fn(
+            self: *const IWindowProvider,
+            pRetVal: ?*WindowVisualState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WindowInteractionState: *const fn(
+            self: *const IWindowProvider,
+            pRetVal: ?*WindowInteractionState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsTopmost: *const fn(
+            self: *const IWindowProvider,
+            pRetVal: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetVisualState(self: *const IWindowProvider, state: WindowVisualState) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVisualState(self, state);
+    }
+    pub fn Close(self: *const IWindowProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn WaitForInputIdle(self: *const IWindowProvider, milliseconds: i32, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.WaitForInputIdle(self, milliseconds, pRetVal);
+    }
+    pub fn get_CanMaximize(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanMaximize(self, pRetVal);
+    }
+    pub fn get_CanMinimize(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CanMinimize(self, pRetVal);
+    }
+    pub fn get_IsModal(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsModal(self, pRetVal);
+    }
+    pub fn get_WindowVisualState(self: *const IWindowProvider, pRetVal: ?*WindowVisualState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_WindowVisualState(self, pRetVal);
+    }
+    pub fn get_WindowInteractionState(self: *const IWindowProvider, pRetVal: ?*WindowInteractionState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_WindowInteractionState(self, pRetVal);
+    }
+    pub fn get_IsTopmost(self: *const IWindowProvider, pRetVal: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsTopmost(self, pRetVal);
+    }
+};
+
+pub const LiveSetting = enum(i32) {
+    Off = 0,
+    Polite = 1,
+    Assertive = 2,
+};
+pub const Off = LiveSetting.Off;
+pub const Polite = LiveSetting.Polite;
+pub const Assertive = LiveSetting.Assertive;
+
+pub const LPFNACCESSIBLECHILDREN = *const fn(
+    paccContainer: ?*IAccessible,
+    iChildStart: i32,
+    cChildren: i32,
+    rgvarChildren: ?*VARIANT,
+    pcObtained: ?*i32,
+) callconv(.winapi) HRESULT;
+
+pub const LPFNACCESSIBLEOBJECTFROMPOINT = *const fn(
+    ptScreen: POINT,
+    ppacc: ?*?*IAccessible,
+    pvarChild: ?*VARIANT,
+) callconv(.winapi) HRESULT;
+
+pub const LPFNACCESSIBLEOBJECTFROMWINDOW = *const fn(
+    hwnd: ?HWND,
+    dwId: u32,
+    riid: ?*const Guid,
+    ppvObject: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const LPFNCREATESTDACCESSIBLEOBJECT = *const fn(
+    hwnd: ?HWND,
+    idObject: i32,
+    riid: ?*const Guid,
+    ppvObject: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const LPFNLRESULTFROMOBJECT = *const fn(
+    riid: ?*const Guid,
+    wParam: WPARAM,
+    punk: ?*IUnknown,
+) callconv(.winapi) LRESULT;
+
+pub const LPFNOBJECTFROMLRESULT = *const fn(
+    lResult: LRESULT,
+    riid: ?*const Guid,
+    wParam: WPARAM,
+    ppvObject: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const MOUSEKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iMaxSpeed: u32,
+    iTimeToMaxSpeed: u32,
+    iCtrlSpeed: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+};
+
+pub const MSAAMENUINFO = extern struct {
+    dwMSAASignature: u32,
+    cchWText: u32,
+    pszWText: ?PWSTR,
+};
+
+pub const NavigateDirection = enum(i32) {
+    Parent = 0,
+    NextSibling = 1,
+    PreviousSibling = 2,
+    FirstChild = 3,
+    LastChild = 4,
+};
+pub const NavigateDirection_Parent = NavigateDirection.Parent;
+pub const NavigateDirection_NextSibling = NavigateDirection.NextSibling;
+pub const NavigateDirection_PreviousSibling = NavigateDirection.PreviousSibling;
+pub const NavigateDirection_FirstChild = NavigateDirection.FirstChild;
+pub const NavigateDirection_LastChild = NavigateDirection.LastChild;
 
 pub const NormalizeState = enum(i32) {
     None = 0,
@@ -9476,12 +8888,83 @@ pub const NormalizeState_None = NormalizeState.None;
 pub const NormalizeState_View = NormalizeState.View;
 pub const NormalizeState_Custom = NormalizeState.Custom;
 
-pub const UiaFindParams = extern struct {
-    MaxDepth: i32,
-    FindFirst: BOOL,
-    ExcludeRoot: BOOL,
-    pFindCondition: ?*UiaCondition,
+pub const NotificationKind = enum(i32) {
+    ItemAdded = 0,
+    ItemRemoved = 1,
+    ActionCompleted = 2,
+    ActionAborted = 3,
+    Other = 4,
 };
+pub const NotificationKind_ItemAdded = NotificationKind.ItemAdded;
+pub const NotificationKind_ItemRemoved = NotificationKind.ItemRemoved;
+pub const NotificationKind_ActionCompleted = NotificationKind.ActionCompleted;
+pub const NotificationKind_ActionAborted = NotificationKind.ActionAborted;
+pub const NotificationKind_Other = NotificationKind.Other;
+
+pub const NotificationProcessing = enum(i32) {
+    ImportantAll = 0,
+    ImportantMostRecent = 1,
+    All = 2,
+    MostRecent = 3,
+    CurrentThenMostRecent = 4,
+};
+pub const NotificationProcessing_ImportantAll = NotificationProcessing.ImportantAll;
+pub const NotificationProcessing_ImportantMostRecent = NotificationProcessing.ImportantMostRecent;
+pub const NotificationProcessing_All = NotificationProcessing.All;
+pub const NotificationProcessing_MostRecent = NotificationProcessing.MostRecent;
+pub const NotificationProcessing_CurrentThenMostRecent = NotificationProcessing.CurrentThenMostRecent;
+
+pub const OrientationType = enum(i32) {
+    None = 0,
+    Horizontal = 1,
+    Vertical = 2,
+};
+pub const OrientationType_None = OrientationType.None;
+pub const OrientationType_Horizontal = OrientationType.Horizontal;
+pub const OrientationType_Vertical = OrientationType.Vertical;
+
+pub const OutlineStyles = enum(i32) {
+    None = 0,
+    Outline = 1,
+    Shadow = 2,
+    Engraved = 4,
+    Embossed = 8,
+};
+pub const OutlineStyles_None = OutlineStyles.None;
+pub const OutlineStyles_Outline = OutlineStyles.Outline;
+pub const OutlineStyles_Shadow = OutlineStyles.Shadow;
+pub const OutlineStyles_Engraved = OutlineStyles.Engraved;
+pub const OutlineStyles_Embossed = OutlineStyles.Embossed;
+
+pub const PropertyConditionFlags = enum(i32) {
+    None = 0,
+    IgnoreCase = 1,
+    MatchSubstring = 2,
+};
+pub const PropertyConditionFlags_None = PropertyConditionFlags.None;
+pub const PropertyConditionFlags_IgnoreCase = PropertyConditionFlags.IgnoreCase;
+pub const PropertyConditionFlags_MatchSubstring = PropertyConditionFlags.MatchSubstring;
+
+pub const ProviderOptions = enum(i32) {
+    ClientSideProvider = 1,
+    ServerSideProvider = 2,
+    NonClientAreaProvider = 4,
+    OverrideProvider = 8,
+    ProviderOwnsSetFocus = 16,
+    UseComThreading = 32,
+    RefuseNonClientSupport = 64,
+    HasNativeIAccessible = 128,
+    UseClientCoordinates = 256,
+};
+pub const ProviderOptions_ClientSideProvider = ProviderOptions.ClientSideProvider;
+pub const ProviderOptions_ServerSideProvider = ProviderOptions.ServerSideProvider;
+pub const ProviderOptions_NonClientAreaProvider = ProviderOptions.NonClientAreaProvider;
+pub const ProviderOptions_OverrideProvider = ProviderOptions.OverrideProvider;
+pub const ProviderOptions_ProviderOwnsSetFocus = ProviderOptions.ProviderOwnsSetFocus;
+pub const ProviderOptions_UseComThreading = ProviderOptions.UseComThreading;
+pub const ProviderOptions_RefuseNonClientSupport = ProviderOptions.RefuseNonClientSupport;
+pub const ProviderOptions_HasNativeIAccessible = ProviderOptions.HasNativeIAccessible;
+pub const ProviderOptions_UseClientCoordinates = ProviderOptions.UseClientCoordinates;
 
 pub const ProviderType = enum(i32) {
     BaseHwnd = 0,
@@ -9492,118 +8975,122 @@ pub const ProviderType_BaseHwnd = ProviderType.BaseHwnd;
 pub const ProviderType_Proxy = ProviderType.Proxy;
 pub const ProviderType_NonClientArea = ProviderType.NonClientArea;
 
-pub const UiaProviderCallback = *const fn(
-    hwnd: ?HWND,
-    providerType: ProviderType,
-) callconv(.winapi) ?*SAFEARRAY;
-
-pub const AutomationIdentifierType = enum(i32) {
-    Property = 0,
-    Pattern = 1,
-    Event = 2,
-    ControlType = 3,
-    TextAttribute = 4,
-    LandmarkType = 5,
-    Annotation = 6,
-    Changes = 7,
-    Style = 8,
+pub const RowOrColumnMajor = enum(i32) {
+    RowMajor = 0,
+    ColumnMajor = 1,
+    Indeterminate = 2,
 };
-pub const AutomationIdentifierType_Property = AutomationIdentifierType.Property;
-pub const AutomationIdentifierType_Pattern = AutomationIdentifierType.Pattern;
-pub const AutomationIdentifierType_Event = AutomationIdentifierType.Event;
-pub const AutomationIdentifierType_ControlType = AutomationIdentifierType.ControlType;
-pub const AutomationIdentifierType_TextAttribute = AutomationIdentifierType.TextAttribute;
-pub const AutomationIdentifierType_LandmarkType = AutomationIdentifierType.LandmarkType;
-pub const AutomationIdentifierType_Annotation = AutomationIdentifierType.Annotation;
-pub const AutomationIdentifierType_Changes = AutomationIdentifierType.Changes;
-pub const AutomationIdentifierType_Style = AutomationIdentifierType.Style;
+pub const RowOrColumnMajor_RowMajor = RowOrColumnMajor.RowMajor;
+pub const RowOrColumnMajor_ColumnMajor = RowOrColumnMajor.ColumnMajor;
+pub const RowOrColumnMajor_Indeterminate = RowOrColumnMajor.Indeterminate;
 
-pub const EventArgsType = enum(i32) {
-    Simple = 0,
-    PropertyChanged = 1,
-    StructureChanged = 2,
-    AsyncContentLoaded = 3,
-    WindowClosed = 4,
-    TextEditTextChanged = 5,
-    Changes = 6,
-    Notification = 7,
-    ActiveTextPositionChanged = 8,
-    StructuredMarkup = 9,
+pub const SayAsInterpretAs = enum(i32) {
+    None = 0,
+    Spell = 1,
+    Cardinal = 2,
+    Ordinal = 3,
+    Number = 4,
+    Date = 5,
+    Time = 6,
+    Telephone = 7,
+    Currency = 8,
+    Net = 9,
+    Url = 10,
+    Address = 11,
+    Alphanumeric = 12,
+    Name = 13,
+    Media = 14,
+    Date_MonthDayYear = 15,
+    Date_DayMonthYear = 16,
+    Date_YearMonthDay = 17,
+    Date_YearMonth = 18,
+    Date_MonthYear = 19,
+    Date_DayMonth = 20,
+    Date_MonthDay = 21,
+    Date_Year = 22,
+    Time_HoursMinutesSeconds12 = 23,
+    Time_HoursMinutes12 = 24,
+    Time_HoursMinutesSeconds24 = 25,
+    Time_HoursMinutes24 = 26,
 };
-pub const EventArgsType_Simple = EventArgsType.Simple;
-pub const EventArgsType_PropertyChanged = EventArgsType.PropertyChanged;
-pub const EventArgsType_StructureChanged = EventArgsType.StructureChanged;
-pub const EventArgsType_AsyncContentLoaded = EventArgsType.AsyncContentLoaded;
-pub const EventArgsType_WindowClosed = EventArgsType.WindowClosed;
-pub const EventArgsType_TextEditTextChanged = EventArgsType.TextEditTextChanged;
-pub const EventArgsType_Changes = EventArgsType.Changes;
-pub const EventArgsType_Notification = EventArgsType.Notification;
-pub const EventArgsType_ActiveTextPositionChanged = EventArgsType.ActiveTextPositionChanged;
-pub const EventArgsType_StructuredMarkup = EventArgsType.StructuredMarkup;
+pub const SayAsInterpretAs_None = SayAsInterpretAs.None;
+pub const SayAsInterpretAs_Spell = SayAsInterpretAs.Spell;
+pub const SayAsInterpretAs_Cardinal = SayAsInterpretAs.Cardinal;
+pub const SayAsInterpretAs_Ordinal = SayAsInterpretAs.Ordinal;
+pub const SayAsInterpretAs_Number = SayAsInterpretAs.Number;
+pub const SayAsInterpretAs_Date = SayAsInterpretAs.Date;
+pub const SayAsInterpretAs_Time = SayAsInterpretAs.Time;
+pub const SayAsInterpretAs_Telephone = SayAsInterpretAs.Telephone;
+pub const SayAsInterpretAs_Currency = SayAsInterpretAs.Currency;
+pub const SayAsInterpretAs_Net = SayAsInterpretAs.Net;
+pub const SayAsInterpretAs_Url = SayAsInterpretAs.Url;
+pub const SayAsInterpretAs_Address = SayAsInterpretAs.Address;
+pub const SayAsInterpretAs_Alphanumeric = SayAsInterpretAs.Alphanumeric;
+pub const SayAsInterpretAs_Name = SayAsInterpretAs.Name;
+pub const SayAsInterpretAs_Media = SayAsInterpretAs.Media;
+pub const SayAsInterpretAs_Date_MonthDayYear = SayAsInterpretAs.Date_MonthDayYear;
+pub const SayAsInterpretAs_Date_DayMonthYear = SayAsInterpretAs.Date_DayMonthYear;
+pub const SayAsInterpretAs_Date_YearMonthDay = SayAsInterpretAs.Date_YearMonthDay;
+pub const SayAsInterpretAs_Date_YearMonth = SayAsInterpretAs.Date_YearMonth;
+pub const SayAsInterpretAs_Date_MonthYear = SayAsInterpretAs.Date_MonthYear;
+pub const SayAsInterpretAs_Date_DayMonth = SayAsInterpretAs.Date_DayMonth;
+pub const SayAsInterpretAs_Date_MonthDay = SayAsInterpretAs.Date_MonthDay;
+pub const SayAsInterpretAs_Date_Year = SayAsInterpretAs.Date_Year;
+pub const SayAsInterpretAs_Time_HoursMinutesSeconds12 = SayAsInterpretAs.Time_HoursMinutesSeconds12;
+pub const SayAsInterpretAs_Time_HoursMinutes12 = SayAsInterpretAs.Time_HoursMinutes12;
+pub const SayAsInterpretAs_Time_HoursMinutesSeconds24 = SayAsInterpretAs.Time_HoursMinutesSeconds24;
+pub const SayAsInterpretAs_Time_HoursMinutes24 = SayAsInterpretAs.Time_HoursMinutes24;
 
-pub const AsyncContentLoadedState = enum(i32) {
-    Beginning = 0,
-    Progress = 1,
-    Completed = 2,
+pub const ScrollAmount = enum(i32) {
+    LargeDecrement = 0,
+    SmallDecrement = 1,
+    NoAmount = 2,
+    LargeIncrement = 3,
+    SmallIncrement = 4,
 };
-pub const AsyncContentLoadedState_Beginning = AsyncContentLoadedState.Beginning;
-pub const AsyncContentLoadedState_Progress = AsyncContentLoadedState.Progress;
-pub const AsyncContentLoadedState_Completed = AsyncContentLoadedState.Completed;
+pub const ScrollAmount_LargeDecrement = ScrollAmount.LargeDecrement;
+pub const ScrollAmount_SmallDecrement = ScrollAmount.SmallDecrement;
+pub const ScrollAmount_NoAmount = ScrollAmount.NoAmount;
+pub const ScrollAmount_LargeIncrement = ScrollAmount.LargeIncrement;
+pub const ScrollAmount_SmallIncrement = ScrollAmount.SmallIncrement;
 
-pub const UiaEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
+pub const SERIALKEYS_FLAGS = packed struct(u32) {
+    SERIALKEYSON: u1 = 0,
+    AVAILABLE: u1 = 0,
+    INDICATOR: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-
-pub const UiaPropertyChangedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    PropertyId: i32,
-    OldValue: VARIANT,
-    NewValue: VARIANT,
-};
-
-pub const UiaStructureChangedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    StructureChangeType: StructureChangeType,
-    pRuntimeId: ?*i32,
-    cRuntimeIdLen: i32,
-};
-
-pub const UiaTextEditTextChangedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    TextEditChangeType: TextEditChangeType,
-    pTextChange: ?*SAFEARRAY,
-};
-
-pub const UiaChangesEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    EventIdCount: i32,
-    pUiaChanges: ?*UiaChangeInfo,
-};
-
-pub const UiaAsyncContentLoadedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    AsyncContentLoadedState: AsyncContentLoadedState,
-    PercentComplete: f64,
-};
-
-pub const UiaWindowClosedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    pRuntimeId: ?*i32,
-    cRuntimeIdLen: i32,
-};
-
-pub const UiaEventCallback = *const fn(
-    pArgs: ?*UiaEventArgs,
-    pRequestedData: ?*SAFEARRAY,
-    pTreeStructure: ?BSTR,
-) callconv(.winapi) void;
+pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS{ .AVAILABLE = 1 };
+pub const SERKF_INDICATOR = SERIALKEYS_FLAGS{ .INDICATOR = 1 };
+pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS{ .SERIALKEYSON = 1 };
 
 pub const SERIALKEYSA = extern struct {
     cbSize: u32,
@@ -9625,47 +9112,74 @@ pub const SERIALKEYSW = extern struct {
     iActive: u32,
 };
 
-pub const HIGHCONTRASTA = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PSTR,
+pub const SOUND_SENTRY_GRAPHICS_EFFECT = enum(u32) {
+    DISPLAY = 3,
+    NONE = 0,
 };
+pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
+pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
 
-pub const HIGHCONTRASTW = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PWSTR,
+pub const SOUNDSENTRY_FLAGS = packed struct(u32) {
+    SOUNDSENTRYON: u1 = 0,
+    AVAILABLE: u1 = 0,
+    INDICATOR: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
+pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS{ .SOUNDSENTRYON = 1 };
+pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS{ .AVAILABLE = 1 };
+pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS{ .INDICATOR = 1 };
 
-pub const FILTERKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iWaitMSec: u32,
-    iDelayMSec: u32,
-    iRepeatMSec: u32,
-    iBounceMSec: u32,
+pub const SOUNDSENTRY_TEXT_EFFECT = enum(u32) {
+    BORDER = 2,
+    CHARS = 1,
+    DISPLAY = 3,
+    NONE = 0,
 };
+pub const SSTF_BORDER = SOUNDSENTRY_TEXT_EFFECT.BORDER;
+pub const SSTF_CHARS = SOUNDSENTRY_TEXT_EFFECT.CHARS;
+pub const SSTF_DISPLAY = SOUNDSENTRY_TEXT_EFFECT.DISPLAY;
+pub const SSTF_NONE = SOUNDSENTRY_TEXT_EFFECT.NONE;
 
-pub const STICKYKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: STICKYKEYS_FLAGS,
+pub const SOUNDSENTRY_WINDOWS_EFFECT = enum(u32) {
+    CUSTOM = 4,
+    DISPLAY = 3,
+    NONE = 0,
+    TITLE = 1,
+    WINDOW = 2,
 };
-
-pub const MOUSEKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iMaxSpeed: u32,
-    iTimeToMaxSpeed: u32,
-    iCtrlSpeed: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-};
-
-pub const ACCESSTIMEOUT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iTimeOutMSec: u32,
-};
+pub const SSWF_CUSTOM = SOUNDSENTRY_WINDOWS_EFFECT.CUSTOM;
+pub const SSWF_DISPLAY = SOUNDSENTRY_WINDOWS_EFFECT.DISPLAY;
+pub const SSWF_NONE = SOUNDSENTRY_WINDOWS_EFFECT.NONE;
+pub const SSWF_TITLE = SOUNDSENTRY_WINDOWS_EFFECT.TITLE;
+pub const SSWF_WINDOW = SOUNDSENTRY_WINDOWS_EFFECT.WINDOW;
 
 pub const SOUNDSENTRYA = extern struct {
     cbSize: u32,
@@ -9697,10 +9211,483 @@ pub const SOUNDSENTRYW = extern struct {
     iWindowsEffectOrdinal: u32,
 };
 
+pub const STICKYKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: STICKYKEYS_FLAGS,
+};
+
+pub const STICKYKEYS_FLAGS = packed struct(u32) {
+    STICKYKEYSON: u1 = 0,
+    AVAILABLE: u1 = 0,
+    HOTKEYACTIVE: u1 = 0,
+    CONFIRMHOTKEY: u1 = 0,
+    HOTKEYSOUND: u1 = 0,
+    INDICATOR: u1 = 0,
+    AUDIBLEFEEDBACK: u1 = 0,
+    TRISTATE: u1 = 0,
+    TWOKEYSOFF: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    LSHIFTLOCKED: u1 = 0,
+    RSHIFTLOCKED: u1 = 0,
+    LCTLLOCKED: u1 = 0,
+    RCTLLOCKED: u1 = 0,
+    LALTLOCKED: u1 = 0,
+    RALTLOCKED: u1 = 0,
+    LWINLOCKED: u1 = 0,
+    RWINLOCKED: u1 = 0,
+    LSHIFTLATCHED: u1 = 0,
+    RSHIFTLATCHED: u1 = 0,
+    LCTLLATCHED: u1 = 0,
+    RCTLLATCHED: u1 = 0,
+    LALTLATCHED: u1 = 0,
+    RALTLATCHED: u1 = 0,
+    LWINLATCHED: u1 = 0,
+    RWINLATCHED: u1 = 0,
+};
+pub const SKF_STICKYKEYSON = STICKYKEYS_FLAGS{ .STICKYKEYSON = 1 };
+pub const SKF_AVAILABLE = STICKYKEYS_FLAGS{ .AVAILABLE = 1 };
+pub const SKF_HOTKEYACTIVE = STICKYKEYS_FLAGS{ .HOTKEYACTIVE = 1 };
+pub const SKF_CONFIRMHOTKEY = STICKYKEYS_FLAGS{ .CONFIRMHOTKEY = 1 };
+pub const SKF_HOTKEYSOUND = STICKYKEYS_FLAGS{ .HOTKEYSOUND = 1 };
+pub const SKF_INDICATOR = STICKYKEYS_FLAGS{ .INDICATOR = 1 };
+pub const SKF_AUDIBLEFEEDBACK = STICKYKEYS_FLAGS{ .AUDIBLEFEEDBACK = 1 };
+pub const SKF_TRISTATE = STICKYKEYS_FLAGS{ .TRISTATE = 1 };
+pub const SKF_TWOKEYSOFF = STICKYKEYS_FLAGS{ .TWOKEYSOFF = 1 };
+pub const SKF_LALTLATCHED = STICKYKEYS_FLAGS{ .LALTLATCHED = 1 };
+pub const SKF_LCTLLATCHED = STICKYKEYS_FLAGS{ .LCTLLATCHED = 1 };
+pub const SKF_LSHIFTLATCHED = STICKYKEYS_FLAGS{ .LSHIFTLATCHED = 1 };
+pub const SKF_RALTLATCHED = STICKYKEYS_FLAGS{ .RALTLATCHED = 1 };
+pub const SKF_RCTLLATCHED = STICKYKEYS_FLAGS{ .RCTLLATCHED = 1 };
+pub const SKF_RSHIFTLATCHED = STICKYKEYS_FLAGS{ .RSHIFTLATCHED = 1 };
+pub const SKF_LWINLATCHED = STICKYKEYS_FLAGS{ .LWINLATCHED = 1 };
+pub const SKF_RWINLATCHED = STICKYKEYS_FLAGS{ .RWINLATCHED = 1 };
+pub const SKF_LALTLOCKED = STICKYKEYS_FLAGS{ .LALTLOCKED = 1 };
+pub const SKF_LCTLLOCKED = STICKYKEYS_FLAGS{ .LCTLLOCKED = 1 };
+pub const SKF_LSHIFTLOCKED = STICKYKEYS_FLAGS{ .LSHIFTLOCKED = 1 };
+pub const SKF_RALTLOCKED = STICKYKEYS_FLAGS{ .RALTLOCKED = 1 };
+pub const SKF_RCTLLOCKED = STICKYKEYS_FLAGS{ .RCTLLOCKED = 1 };
+pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS{ .RSHIFTLOCKED = 1 };
+pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS{ .LWINLOCKED = 1 };
+pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS{ .RWINLOCKED = 1 };
+
+pub const StructureChangeType = enum(i32) {
+    Added = 0,
+    Removed = 1,
+    renInvalidated = 2,
+    renBulkAdded = 3,
+    renBulkRemoved = 4,
+    renReordered = 5,
+};
+pub const StructureChangeType_ChildAdded = StructureChangeType.Added;
+pub const StructureChangeType_ChildRemoved = StructureChangeType.Removed;
+pub const StructureChangeType_ChildrenInvalidated = StructureChangeType.renInvalidated;
+pub const StructureChangeType_ChildrenBulkAdded = StructureChangeType.renBulkAdded;
+pub const StructureChangeType_ChildrenBulkRemoved = StructureChangeType.renBulkRemoved;
+pub const StructureChangeType_ChildrenReordered = StructureChangeType.renReordered;
+
+pub const SupportedTextSelection = enum(i32) {
+    None = 0,
+    Single = 1,
+    Multiple = 2,
+};
+pub const SupportedTextSelection_None = SupportedTextSelection.None;
+pub const SupportedTextSelection_Single = SupportedTextSelection.Single;
+pub const SupportedTextSelection_Multiple = SupportedTextSelection.Multiple;
+
+pub const SynchronizedInputType = enum(i32) {
+    KeyUp = 1,
+    KeyDown = 2,
+    LeftMouseUp = 4,
+    LeftMouseDown = 8,
+    RightMouseUp = 16,
+    RightMouseDown = 32,
+};
+pub const SynchronizedInputType_KeyUp = SynchronizedInputType.KeyUp;
+pub const SynchronizedInputType_KeyDown = SynchronizedInputType.KeyDown;
+pub const SynchronizedInputType_LeftMouseUp = SynchronizedInputType.LeftMouseUp;
+pub const SynchronizedInputType_LeftMouseDown = SynchronizedInputType.LeftMouseDown;
+pub const SynchronizedInputType_RightMouseUp = SynchronizedInputType.RightMouseUp;
+pub const SynchronizedInputType_RightMouseDown = SynchronizedInputType.RightMouseDown;
+
+pub const TextDecorationLineStyle = enum(i32) {
+    None = 0,
+    Single = 1,
+    WordsOnly = 2,
+    Double = 3,
+    Dot = 4,
+    Dash = 5,
+    DashDot = 6,
+    DashDotDot = 7,
+    Wavy = 8,
+    ThickSingle = 9,
+    DoubleWavy = 11,
+    ThickWavy = 12,
+    LongDash = 13,
+    ThickDash = 14,
+    ThickDashDot = 15,
+    ThickDashDotDot = 16,
+    ThickDot = 17,
+    ThickLongDash = 18,
+    Other = -1,
+};
+pub const TextDecorationLineStyle_None = TextDecorationLineStyle.None;
+pub const TextDecorationLineStyle_Single = TextDecorationLineStyle.Single;
+pub const TextDecorationLineStyle_WordsOnly = TextDecorationLineStyle.WordsOnly;
+pub const TextDecorationLineStyle_Double = TextDecorationLineStyle.Double;
+pub const TextDecorationLineStyle_Dot = TextDecorationLineStyle.Dot;
+pub const TextDecorationLineStyle_Dash = TextDecorationLineStyle.Dash;
+pub const TextDecorationLineStyle_DashDot = TextDecorationLineStyle.DashDot;
+pub const TextDecorationLineStyle_DashDotDot = TextDecorationLineStyle.DashDotDot;
+pub const TextDecorationLineStyle_Wavy = TextDecorationLineStyle.Wavy;
+pub const TextDecorationLineStyle_ThickSingle = TextDecorationLineStyle.ThickSingle;
+pub const TextDecorationLineStyle_DoubleWavy = TextDecorationLineStyle.DoubleWavy;
+pub const TextDecorationLineStyle_ThickWavy = TextDecorationLineStyle.ThickWavy;
+pub const TextDecorationLineStyle_LongDash = TextDecorationLineStyle.LongDash;
+pub const TextDecorationLineStyle_ThickDash = TextDecorationLineStyle.ThickDash;
+pub const TextDecorationLineStyle_ThickDashDot = TextDecorationLineStyle.ThickDashDot;
+pub const TextDecorationLineStyle_ThickDashDotDot = TextDecorationLineStyle.ThickDashDotDot;
+pub const TextDecorationLineStyle_ThickDot = TextDecorationLineStyle.ThickDot;
+pub const TextDecorationLineStyle_ThickLongDash = TextDecorationLineStyle.ThickLongDash;
+pub const TextDecorationLineStyle_Other = TextDecorationLineStyle.Other;
+
+pub const TextEditChangeType = enum(i32) {
+    None = 0,
+    AutoCorrect = 1,
+    Composition = 2,
+    CompositionFinalized = 3,
+    AutoComplete = 4,
+};
+pub const TextEditChangeType_None = TextEditChangeType.None;
+pub const TextEditChangeType_AutoCorrect = TextEditChangeType.AutoCorrect;
+pub const TextEditChangeType_Composition = TextEditChangeType.Composition;
+pub const TextEditChangeType_CompositionFinalized = TextEditChangeType.CompositionFinalized;
+pub const TextEditChangeType_AutoComplete = TextEditChangeType.AutoComplete;
+
+pub const TextPatternRangeEndpoint = enum(i32) {
+    Start = 0,
+    End = 1,
+};
+pub const TextPatternRangeEndpoint_Start = TextPatternRangeEndpoint.Start;
+pub const TextPatternRangeEndpoint_End = TextPatternRangeEndpoint.End;
+
+pub const TextUnit = enum(i32) {
+    Character = 0,
+    Format = 1,
+    Word = 2,
+    Line = 3,
+    Paragraph = 4,
+    Page = 5,
+    Document = 6,
+};
+pub const TextUnit_Character = TextUnit.Character;
+pub const TextUnit_Format = TextUnit.Format;
+pub const TextUnit_Word = TextUnit.Word;
+pub const TextUnit_Line = TextUnit.Line;
+pub const TextUnit_Paragraph = TextUnit.Paragraph;
+pub const TextUnit_Page = TextUnit.Page;
+pub const TextUnit_Document = TextUnit.Document;
+
 pub const TOGGLEKEYS = extern struct {
     cbSize: u32,
     dwFlags: u32,
 };
+
+pub const ToggleState = enum(i32) {
+    Off = 0,
+    On = 1,
+    Indeterminate = 2,
+};
+pub const ToggleState_Off = ToggleState.Off;
+pub const ToggleState_On = ToggleState.On;
+pub const ToggleState_Indeterminate = ToggleState.Indeterminate;
+
+pub const TreeScope = enum(i32) {
+    None = 0,
+    Element = 1,
+    Children = 2,
+    Descendants = 4,
+    Parent = 8,
+    Ancestors = 16,
+    Subtree = 7,
+};
+pub const TreeScope_None = TreeScope.None;
+pub const TreeScope_Element = TreeScope.Element;
+pub const TreeScope_Children = TreeScope.Children;
+pub const TreeScope_Descendants = TreeScope.Descendants;
+pub const TreeScope_Parent = TreeScope.Parent;
+pub const TreeScope_Ancestors = TreeScope.Ancestors;
+pub const TreeScope_Subtree = TreeScope.Subtree;
+
+pub const TreeTraversalOptions = enum(i32) {
+    Default = 0,
+    PostOrder = 1,
+    LastToFirstOrder = 2,
+};
+pub const TreeTraversalOptions_Default = TreeTraversalOptions.Default;
+pub const TreeTraversalOptions_PostOrder = TreeTraversalOptions.PostOrder;
+pub const TreeTraversalOptions_LastToFirstOrder = TreeTraversalOptions.LastToFirstOrder;
+
+pub const UiaAndOrCondition = extern struct {
+    ConditionType: ConditionType,
+    ppConditions: ?*?*UiaCondition,
+    cConditions: i32,
+};
+
+pub const UiaAsyncContentLoadedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    AsyncContentLoadedState: AsyncContentLoadedState,
+    PercentComplete: f64,
+};
+
+pub const UiaCacheRequest = extern struct {
+    pViewCondition: ?*UiaCondition,
+    Scope: TreeScope,
+    pProperties: ?*i32,
+    cProperties: i32,
+    pPatterns: ?*i32,
+    cPatterns: i32,
+    automationElementMode: AutomationElementMode,
+};
+
+pub const UiaChangeInfo = extern struct {
+    uiaId: i32,
+    payload: VARIANT,
+    extraInfo: VARIANT,
+};
+
+pub const UiaChangesEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    EventIdCount: i32,
+    pUiaChanges: ?*UiaChangeInfo,
+};
+
+pub const UiaCondition = extern struct {
+    ConditionType: ConditionType,
+};
+
+pub const UiaEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+};
+
+pub const UiaEventCallback = *const fn(
+    pArgs: ?*UiaEventArgs,
+    pRequestedData: ?*SAFEARRAY,
+    pTreeStructure: ?BSTR,
+) callconv(.winapi) void;
+
+pub const UiaFindParams = extern struct {
+    MaxDepth: i32,
+    FindFirst: BOOL,
+    ExcludeRoot: BOOL,
+    pFindCondition: ?*UiaCondition,
+};
+
+pub const UiaNotCondition = extern struct {
+    ConditionType: ConditionType,
+    pCondition: ?*UiaCondition,
+};
+
+pub const UiaPoint = extern struct {
+    x: f64,
+    y: f64,
+};
+
+pub const UiaPropertyChangedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    PropertyId: i32,
+    OldValue: VARIANT,
+    NewValue: VARIANT,
+};
+
+pub const UiaPropertyCondition = extern struct {
+    ConditionType: ConditionType,
+    PropertyId: i32,
+    Value: VARIANT,
+    Flags: PropertyConditionFlags,
+};
+
+pub const UiaProviderCallback = *const fn(
+    hwnd: ?HWND,
+    providerType: ProviderType,
+) callconv(.winapi) ?*SAFEARRAY;
+
+pub const UiaRect = extern struct {
+    left: f64,
+    top: f64,
+    width: f64,
+    height: f64,
+};
+
+pub const UiaStructureChangedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    StructureChangeType: StructureChangeType,
+    pRuntimeId: ?*i32,
+    cRuntimeIdLen: i32,
+};
+
+pub const UiaTextEditTextChangedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    TextEditChangeType: TextEditChangeType,
+    pTextChange: ?*SAFEARRAY,
+};
+
+pub const UIAutomationEventInfo = extern struct {
+    guid: Guid,
+    pProgrammaticName: ?[*:0]const u16,
+};
+
+pub const UIAutomationMethodInfo = extern struct {
+    pProgrammaticName: ?[*:0]const u16,
+    doSetFocus: BOOL,
+    cInParameters: u32,
+    cOutParameters: u32,
+    pParameterTypes: ?*UIAutomationType,
+    pParameterNames: ?*?PWSTR,
+};
+
+pub const UIAutomationParameter = extern struct {
+    type: UIAutomationType,
+    pData: ?*anyopaque,
+};
+
+pub const UIAutomationPatternInfo = extern struct {
+    guid: Guid,
+    pProgrammaticName: ?[*:0]const u16,
+    providerInterfaceId: Guid,
+    clientInterfaceId: Guid,
+    cProperties: u32,
+    pProperties: ?*UIAutomationPropertyInfo,
+    cMethods: u32,
+    pMethods: ?*UIAutomationMethodInfo,
+    cEvents: u32,
+    pEvents: ?*UIAutomationEventInfo,
+    pPatternHandler: ?*IUIAutomationPatternHandler,
+};
+
+pub const UIAutomationPropertyInfo = extern struct {
+    guid: Guid,
+    pProgrammaticName: ?[*:0]const u16,
+    type: UIAutomationType,
+};
+
+pub const UIAutomationType = enum(i32) {
+    Int = 1,
+    Bool = 2,
+    String = 3,
+    Double = 4,
+    Point = 5,
+    Rect = 6,
+    Element = 7,
+    Array = 65536,
+    Out = 131072,
+    IntArray = 65537,
+    BoolArray = 65538,
+    StringArray = 65539,
+    DoubleArray = 65540,
+    PointArray = 65541,
+    RectArray = 65542,
+    ElementArray = 65543,
+    OutInt = 131073,
+    OutBool = 131074,
+    OutString = 131075,
+    OutDouble = 131076,
+    OutPoint = 131077,
+    OutRect = 131078,
+    OutElement = 131079,
+    OutIntArray = 196609,
+    OutBoolArray = 196610,
+    OutStringArray = 196611,
+    OutDoubleArray = 196612,
+    OutPointArray = 196613,
+    OutRectArray = 196614,
+    OutElementArray = 196615,
+};
+pub const UIAutomationType_Int = UIAutomationType.Int;
+pub const UIAutomationType_Bool = UIAutomationType.Bool;
+pub const UIAutomationType_String = UIAutomationType.String;
+pub const UIAutomationType_Double = UIAutomationType.Double;
+pub const UIAutomationType_Point = UIAutomationType.Point;
+pub const UIAutomationType_Rect = UIAutomationType.Rect;
+pub const UIAutomationType_Element = UIAutomationType.Element;
+pub const UIAutomationType_Array = UIAutomationType.Array;
+pub const UIAutomationType_Out = UIAutomationType.Out;
+pub const UIAutomationType_IntArray = UIAutomationType.IntArray;
+pub const UIAutomationType_BoolArray = UIAutomationType.BoolArray;
+pub const UIAutomationType_StringArray = UIAutomationType.StringArray;
+pub const UIAutomationType_DoubleArray = UIAutomationType.DoubleArray;
+pub const UIAutomationType_PointArray = UIAutomationType.PointArray;
+pub const UIAutomationType_RectArray = UIAutomationType.RectArray;
+pub const UIAutomationType_ElementArray = UIAutomationType.ElementArray;
+pub const UIAutomationType_OutInt = UIAutomationType.OutInt;
+pub const UIAutomationType_OutBool = UIAutomationType.OutBool;
+pub const UIAutomationType_OutString = UIAutomationType.OutString;
+pub const UIAutomationType_OutDouble = UIAutomationType.OutDouble;
+pub const UIAutomationType_OutPoint = UIAutomationType.OutPoint;
+pub const UIAutomationType_OutRect = UIAutomationType.OutRect;
+pub const UIAutomationType_OutElement = UIAutomationType.OutElement;
+pub const UIAutomationType_OutIntArray = UIAutomationType.OutIntArray;
+pub const UIAutomationType_OutBoolArray = UIAutomationType.OutBoolArray;
+pub const UIAutomationType_OutStringArray = UIAutomationType.OutStringArray;
+pub const UIAutomationType_OutDoubleArray = UIAutomationType.OutDoubleArray;
+pub const UIAutomationType_OutPointArray = UIAutomationType.OutPointArray;
+pub const UIAutomationType_OutRectArray = UIAutomationType.OutRectArray;
+pub const UIAutomationType_OutElementArray = UIAutomationType.OutElementArray;
+
+pub const UiaWindowClosedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    pRuntimeId: ?*i32,
+    cRuntimeIdLen: i32,
+};
+
+pub const VisualEffects = enum(i32) {
+    None = 0,
+    Shadow = 1,
+    Reflection = 2,
+    Glow = 4,
+    SoftEdges = 8,
+    Bevel = 16,
+};
+pub const VisualEffects_None = VisualEffects.None;
+pub const VisualEffects_Shadow = VisualEffects.Shadow;
+pub const VisualEffects_Reflection = VisualEffects.Reflection;
+pub const VisualEffects_Glow = VisualEffects.Glow;
+pub const VisualEffects_SoftEdges = VisualEffects.SoftEdges;
+pub const VisualEffects_Bevel = VisualEffects.Bevel;
+
+pub const WindowInteractionState = enum(i32) {
+    Running = 0,
+    Closing = 1,
+    ReadyForUserInteraction = 2,
+    BlockedByModalWindow = 3,
+    NotResponding = 4,
+};
+pub const WindowInteractionState_Running = WindowInteractionState.Running;
+pub const WindowInteractionState_Closing = WindowInteractionState.Closing;
+pub const WindowInteractionState_ReadyForUserInteraction = WindowInteractionState.ReadyForUserInteraction;
+pub const WindowInteractionState_BlockedByModalWindow = WindowInteractionState.BlockedByModalWindow;
+pub const WindowInteractionState_NotResponding = WindowInteractionState.NotResponding;
+
+pub const WindowVisualState = enum(i32) {
+    Normal = 0,
+    Maximized = 1,
+    Minimized = 2,
+};
+pub const WindowVisualState_Normal = WindowVisualState.Normal;
+pub const WindowVisualState_Maximized = WindowVisualState.Maximized;
+pub const WindowVisualState_Minimized = WindowVisualState.Minimized;
 
 pub const WINEVENTPROC = *const fn(
     hWinEventHook: ?HWINEVENTHOOK,
@@ -9712,37 +9699,30 @@ pub const WINEVENTPROC = *const fn(
     dwmsEventTime: u32,
 ) callconv(.winapi) void;
 
+pub const ZoomUnit = enum(i32) {
+    NoAmount = 0,
+    LargeDecrement = 1,
+    SmallDecrement = 2,
+    LargeIncrement = 3,
+    SmallIncrement = 4,
+};
+pub const ZoomUnit_NoAmount = ZoomUnit.NoAmount;
+pub const ZoomUnit_LargeDecrement = ZoomUnit.LargeDecrement;
+pub const ZoomUnit_SmallDecrement = ZoomUnit.SmallDecrement;
+pub const ZoomUnit_LargeIncrement = ZoomUnit.LargeIncrement;
+pub const ZoomUnit_SmallIncrement = ZoomUnit.SmallIncrement;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (123)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn LresultFromObject(
-    riid: ?*const Guid,
-    wParam: WPARAM,
-    punk: ?*IUnknown,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "oleacc" fn ObjectFromLresult(
-    lResult: LRESULT,
-    riid: ?*const Guid,
-    wParam: WPARAM,
-    ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn WindowFromAccessibleObject(
-    param0: ?*IAccessible,
-    phwnd: ?*?HWND,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn AccessibleObjectFromWindow(
-    hwnd: ?HWND,
-    dwId: u32,
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
+pub extern "oleacc" fn AccessibleChildren(
+    paccContainer: ?*IAccessible,
+    iChildStart: i32,
+    cChildren: i32,
+    rgvarChildren: [*]VARIANT,
+    pcObtained: ?*i32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9762,13 +9742,74 @@ pub extern "oleacc" fn AccessibleObjectFromPoint(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn AccessibleChildren(
-    paccContainer: ?*IAccessible,
-    iChildStart: i32,
-    cChildren: i32,
-    rgvarChildren: [*]VARIANT,
-    pcObtained: ?*i32,
+pub extern "oleacc" fn AccessibleObjectFromWindow(
+    hwnd: ?HWND,
+    dwId: u32,
+    riid: ?*const Guid,
+    ppvObject: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "oleacc" fn AccNotifyTouchInteraction(
+    hwndApp: ?HWND,
+    hwndTarget: ?HWND,
+    ptTarget: POINT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "oleacc" fn AccSetRunningUtilityState(
+    hwndApp: ?HWND,
+    dwUtilityStateMask: u32,
+    dwUtilityState: ACC_UTILITY_STATE_FLAGS,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "oleacc" fn CreateStdAccessibleObject(
+    hwnd: ?HWND,
+    idObject: i32,
+    riid: ?*const Guid,
+    ppvObject: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "oleacc" fn CreateStdAccessibleProxyA(
+    hwnd: ?HWND,
+    pClassName: ?[*:0]const u8,
+    idObject: i32,
+    riid: ?*const Guid,
+    ppvObject: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "oleacc" fn CreateStdAccessibleProxyW(
+    hwnd: ?HWND,
+    pClassName: ?[*:0]const u16,
+    idObject: i32,
+    riid: ?*const Guid,
+    ppvObject: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn DockPattern_SetDockPosition(
+    hobj: ?HUIAPATTERNOBJECT,
+    dockPosition: DockPosition,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn ExpandCollapsePattern_Collapse(
+    hobj: ?HUIAPATTERNOBJECT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn ExpandCollapsePattern_Expand(
+    hobj: ?HUIAPATTERNOBJECT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "oleacc" fn GetOleaccVersionInfo(
+    pVer: ?*u32,
+    pBuild: ?*u32,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "oleacc" fn GetRoleTextA(
@@ -9798,296 +9839,6 @@ pub extern "oleacc" fn GetStateTextW(
     cchState: u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn GetOleaccVersionInfo(
-    pVer: ?*u32,
-    pBuild: ?*u32,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn CreateStdAccessibleObject(
-    hwnd: ?HWND,
-    idObject: i32,
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn CreateStdAccessibleProxyA(
-    hwnd: ?HWND,
-    pClassName: ?[*:0]const u8,
-    idObject: i32,
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "oleacc" fn CreateStdAccessibleProxyW(
-    hwnd: ?HWND,
-    pClassName: ?[*:0]const u16,
-    idObject: i32,
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "oleacc" fn AccSetRunningUtilityState(
-    hwndApp: ?HWND,
-    dwUtilityStateMask: u32,
-    dwUtilityState: ACC_UTILITY_STATE_FLAGS,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "oleacc" fn AccNotifyTouchInteraction(
-    hwndApp: ?HWND,
-    hwndTarget: ?HWND,
-    ptTarget: POINT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetErrorDescription(
-    pDescription: ?*?BSTR,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaHUiaNodeFromVariant(
-    pvar: ?*VARIANT,
-    phnode: ?*?HUIANODE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaHPatternObjectFromVariant(
-    pvar: ?*VARIANT,
-    phobj: ?*?HUIAPATTERNOBJECT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaHTextRangeFromVariant(
-    pvar: ?*VARIANT,
-    phtextrange: ?*?HUIATEXTRANGE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaNodeRelease(
-    hnode: ?HUIANODE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetPropertyValue(
-    hnode: ?HUIANODE,
-    propertyId: i32,
-    pValue: ?*VARIANT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetPatternProvider(
-    hnode: ?HUIANODE,
-    patternId: i32,
-    phobj: ?*?HUIAPATTERNOBJECT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetRuntimeId(
-    hnode: ?HUIANODE,
-    pruntimeId: ?*?*SAFEARRAY,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaSetFocus(
-    hnode: ?HUIANODE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaNavigate(
-    hnode: ?HUIANODE,
-    direction: NavigateDirection,
-    pCondition: ?*UiaCondition,
-    pRequest: ?*UiaCacheRequest,
-    ppRequestedData: ?*?*SAFEARRAY,
-    ppTreeStructure: ?*?BSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetUpdatedCache(
-    hnode: ?HUIANODE,
-    pRequest: ?*UiaCacheRequest,
-    normalizeState: NormalizeState,
-    pNormalizeCondition: ?*UiaCondition,
-    ppRequestedData: ?*?*SAFEARRAY,
-    ppTreeStructure: ?*?BSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaFind(
-    hnode: ?HUIANODE,
-    pParams: ?*UiaFindParams,
-    pRequest: ?*UiaCacheRequest,
-    ppRequestedData: ?*?*SAFEARRAY,
-    ppOffsets: ?*?*SAFEARRAY,
-    ppTreeStructures: ?*?*SAFEARRAY,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaNodeFromPoint(
-    x: f64,
-    y: f64,
-    pRequest: ?*UiaCacheRequest,
-    ppRequestedData: ?*?*SAFEARRAY,
-    ppTreeStructure: ?*?BSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaNodeFromFocus(
-    pRequest: ?*UiaCacheRequest,
-    ppRequestedData: ?*?*SAFEARRAY,
-    ppTreeStructure: ?*?BSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaNodeFromHandle(
-    hwnd: ?HWND,
-    phnode: ?*?HUIANODE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaNodeFromProvider(
-    pProvider: ?*IRawElementProviderSimple,
-    phnode: ?*?HUIANODE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetRootNode(
-    phnode: ?*?HUIANODE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaRegisterProviderCallback(
-    pCallback: ?*?UiaProviderCallback,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaLookupId(
-    type: AutomationIdentifierType,
-    pGuid: ?*const Guid,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetReservedNotSupportedValue(
-    punkNotSupportedValue: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaGetReservedMixedAttributeValue(
-    punkMixedAttributeValue: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaClientsAreListening(
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaRaiseAutomationPropertyChangedEvent(
-    pProvider: ?*IRawElementProviderSimple,
-    id: i32,
-    oldValue: VARIANT,
-    newValue: VARIANT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaRaiseAutomationEvent(
-    pProvider: ?*IRawElementProviderSimple,
-    id: i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaRaiseStructureChangedEvent(
-    pProvider: ?*IRawElementProviderSimple,
-    structureChangeType: StructureChangeType,
-    pRuntimeId: ?*i32,
-    cRuntimeIdLen: i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaRaiseAsyncContentLoadedEvent(
-    pProvider: ?*IRawElementProviderSimple,
-    asyncContentLoadedState: AsyncContentLoadedState,
-    percentComplete: f64,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "uiautomationcore" fn UiaRaiseTextEditTextChangedEvent(
-    pProvider: ?*IRawElementProviderSimple,
-    textEditChangeType: TextEditChangeType,
-    pChangedData: ?*SAFEARRAY,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "uiautomationcore" fn UiaRaiseChangesEvent(
-    pProvider: ?*IRawElementProviderSimple,
-    eventIdCount: i32,
-    pUiaChanges: ?*UiaChangeInfo,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "uiautomationcore" fn UiaRaiseNotificationEvent(
-    provider: ?*IRawElementProviderSimple,
-    notificationKind: NotificationKind,
-    notificationProcessing: NotificationProcessing,
-    displayString: ?BSTR,
-    activityId: ?BSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "uiautomationcore" fn UiaRaiseActiveTextPositionChangedEvent(
-    provider: ?*IRawElementProviderSimple,
-    textRange: ?*ITextRangeProvider,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaAddEvent(
-    hnode: ?HUIANODE,
-    eventId: i32,
-    pCallback: ?*?UiaEventCallback,
-    scope: TreeScope,
-    pProperties: ?*i32,
-    cProperties: i32,
-    pRequest: ?*UiaCacheRequest,
-    phEvent: ?*?HUIAEVENT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaRemoveEvent(
-    hEvent: ?HUIAEVENT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaEventAddWindow(
-    hEvent: ?HUIAEVENT,
-    hwnd: ?HWND,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaEventRemoveWindow(
-    hEvent: ?HUIAEVENT,
-    hwnd: ?HWND,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn DockPattern_SetDockPosition(
-    hobj: ?HUIAPATTERNOBJECT,
-    dockPosition: DockPosition,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn ExpandCollapsePattern_Collapse(
-    hobj: ?HUIAPATTERNOBJECT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn ExpandCollapsePattern_Expand(
-    hobj: ?HUIAPATTERNOBJECT,
-) callconv(.winapi) HRESULT;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn GridPattern_GetItem(
     hobj: ?HUIAPATTERNOBJECT,
@@ -10102,6 +9853,50 @@ pub extern "uiautomationcore" fn InvokePattern_Invoke(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "user32" fn IsWinEventHookInstalled(
+    event: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn ItemContainerPattern_FindItemByProperty(
+    hobj: ?HUIAPATTERNOBJECT,
+    hnodeStartAfter: ?HUIANODE,
+    propertyId: i32,
+    value: VARIANT,
+    pFound: ?*?HUIANODE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_DoDefaultAction(
+    hobj: ?HUIAPATTERNOBJECT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_GetIAccessible(
+    hobj: ?HUIAPATTERNOBJECT,
+    pAccessible: ?*?*IAccessible,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_Select(
+    hobj: ?HUIAPATTERNOBJECT,
+    flagsSelect: i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn LegacyIAccessiblePattern_SetValue(
+    hobj: ?HUIAPATTERNOBJECT,
+    szValue: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "oleacc" fn LresultFromObject(
+    riid: ?*const Guid,
+    wParam: WPARAM,
+    punk: ?*IUnknown,
+) callconv(.winapi) LRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn MultipleViewPattern_GetViewName(
     hobj: ?HUIAPATTERNOBJECT,
     viewId: i32,
@@ -10114,11 +9909,40 @@ pub extern "uiautomationcore" fn MultipleViewPattern_SetCurrentView(
     viewId: i32,
 ) callconv(.winapi) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn NotifyWinEvent(
+    event: u32,
+    hwnd: ?HWND,
+    idObject: i32,
+    idChild: i32,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "oleacc" fn ObjectFromLresult(
+    lResult: LRESULT,
+    riid: ?*const Guid,
+    wParam: WPARAM,
+    ppvObject: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn RangeValuePattern_SetValue(
     hobj: ?HUIAPATTERNOBJECT,
     val: f64,
 ) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn RegisterPointerInputTarget(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "user32" fn RegisterPointerInputTargetEx(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+    fObserve: BOOL,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn ScrollItemPattern_ScrollIntoView(
@@ -10154,53 +9978,38 @@ pub extern "uiautomationcore" fn SelectionItemPattern_Select(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TogglePattern_Toggle(
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetWinEventHook(
+    eventMin: u32,
+    eventMax: u32,
+    hmodWinEventProc: ?HINSTANCE,
+    pfnWinEventProc: ?WINEVENTPROC,
+    idProcess: u32,
+    idThread: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?HWINEVENTHOOK;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn SynchronizedInputPattern_Cancel(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TransformPattern_Move(
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn SynchronizedInputPattern_StartListening(
     hobj: ?HUIAPATTERNOBJECT,
-    x: f64,
-    y: f64,
+    inputType: SynchronizedInputType,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TransformPattern_Resize(
+pub extern "uiautomationcore" fn TextPattern_get_DocumentRange(
     hobj: ?HUIAPATTERNOBJECT,
-    width: f64,
-    height: f64,
+    pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TransformPattern_Rotate(
+pub extern "uiautomationcore" fn TextPattern_get_SupportedTextSelection(
     hobj: ?HUIAPATTERNOBJECT,
-    degrees: f64,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn ValuePattern_SetValue(
-    hobj: ?HUIAPATTERNOBJECT,
-    pVal: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn WindowPattern_Close(
-    hobj: ?HUIAPATTERNOBJECT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn WindowPattern_SetWindowVisualState(
-    hobj: ?HUIAPATTERNOBJECT,
-    state: WindowVisualState,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn WindowPattern_WaitForInputIdle(
-    hobj: ?HUIAPATTERNOBJECT,
-    milliseconds: i32,
-    pResult: ?*BOOL,
+    pRetVal: ?*SupportedTextSelection,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10230,15 +10039,8 @@ pub extern "uiautomationcore" fn TextPattern_RangeFromPoint(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TextPattern_get_DocumentRange(
-    hobj: ?HUIAPATTERNOBJECT,
-    pRetVal: ?*?HUIATEXTRANGE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TextPattern_get_SupportedTextSelection(
-    hobj: ?HUIAPATTERNOBJECT,
-    pRetVal: ?*SupportedTextSelection,
+pub extern "uiautomationcore" fn TextRange_AddToSelection(
+    hobj: ?HUIATEXTRANGE,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10270,13 +10072,6 @@ pub extern "uiautomationcore" fn TextRange_ExpandToEnclosingUnit(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TextRange_GetAttributeValue(
-    hobj: ?HUIATEXTRANGE,
-    attributeId: i32,
-    pRetVal: ?*VARIANT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn TextRange_FindAttribute(
     hobj: ?HUIATEXTRANGE,
     attributeId: i32,
@@ -10295,7 +10090,20 @@ pub extern "uiautomationcore" fn TextRange_FindText(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn TextRange_GetAttributeValue(
+    hobj: ?HUIATEXTRANGE,
+    attributeId: i32,
+    pRetVal: ?*VARIANT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn TextRange_GetBoundingRectangles(
+    hobj: ?HUIATEXTRANGE,
+    pRetVal: ?*?*SAFEARRAY,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn TextRange_GetChildren(
     hobj: ?HUIATEXTRANGE,
     pRetVal: ?*?*SAFEARRAY,
 ) callconv(.winapi) HRESULT;
@@ -10322,15 +10130,6 @@ pub extern "uiautomationcore" fn TextRange_Move(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TextRange_MoveEndpointByUnit(
-    hobj: ?HUIATEXTRANGE,
-    endpoint: TextPatternRangeEndpoint,
-    unit: TextUnit,
-    count: i32,
-    pRetVal: ?*i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn TextRange_MoveEndpointByRange(
     hobj: ?HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
@@ -10339,13 +10138,12 @@ pub extern "uiautomationcore" fn TextRange_MoveEndpointByRange(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TextRange_Select(
+pub extern "uiautomationcore" fn TextRange_MoveEndpointByUnit(
     hobj: ?HUIATEXTRANGE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TextRange_AddToSelection(
-    hobj: ?HUIATEXTRANGE,
+    endpoint: TextPatternRangeEndpoint,
+    unit: TextUnit,
+    count: i32,
+    pRetVal: ?*i32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10360,106 +10158,50 @@ pub extern "uiautomationcore" fn TextRange_ScrollIntoView(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn TextRange_GetChildren(
+pub extern "uiautomationcore" fn TextRange_Select(
     hobj: ?HUIATEXTRANGE,
-    pRetVal: ?*?*SAFEARRAY,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn ItemContainerPattern_FindItemByProperty(
-    hobj: ?HUIAPATTERNOBJECT,
-    hnodeStartAfter: ?HUIANODE,
-    propertyId: i32,
-    value: VARIANT,
-    pFound: ?*?HUIANODE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn LegacyIAccessiblePattern_Select(
-    hobj: ?HUIAPATTERNOBJECT,
-    flagsSelect: i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn LegacyIAccessiblePattern_DoDefaultAction(
-    hobj: ?HUIAPATTERNOBJECT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn LegacyIAccessiblePattern_SetValue(
-    hobj: ?HUIAPATTERNOBJECT,
-    szValue: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn LegacyIAccessiblePattern_GetIAccessible(
-    hobj: ?HUIAPATTERNOBJECT,
-    pAccessible: ?*?*IAccessible,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn SynchronizedInputPattern_StartListening(
-    hobj: ?HUIAPATTERNOBJECT,
-    inputType: SynchronizedInputType,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn SynchronizedInputPattern_Cancel(
-    hobj: ?HUIAPATTERNOBJECT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "uiautomationcore" fn VirtualizedItemPattern_Realize(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn TogglePattern_Toggle(
     hobj: ?HUIAPATTERNOBJECT,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaPatternRelease(
+pub extern "uiautomationcore" fn TransformPattern_Move(
     hobj: ?HUIAPATTERNOBJECT,
+    x: f64,
+    y: f64,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn TransformPattern_Resize(
+    hobj: ?HUIAPATTERNOBJECT,
+    width: f64,
+    height: f64,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn TransformPattern_Rotate(
+    hobj: ?HUIAPATTERNOBJECT,
+    degrees: f64,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaAddEvent(
+    hnode: ?HUIANODE,
+    eventId: i32,
+    pCallback: ?*?UiaEventCallback,
+    scope: TreeScope,
+    pProperties: ?*i32,
+    cProperties: i32,
+    pRequest: ?*UiaCacheRequest,
+    phEvent: ?*?HUIAEVENT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaClientsAreListening(
 ) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaTextRangeRelease(
-    hobj: ?HUIATEXTRANGE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaReturnRawElementProvider(
-    hwnd: ?HWND,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    el: ?*IRawElementProviderSimple,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "uiautomationcore" fn UiaHostProviderFromHwnd(
-    hwnd: ?HWND,
-    ppProvider: ?*?*IRawElementProviderSimple,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "uiautomationcore" fn UiaProviderForNonClient(
-    hwnd: ?HWND,
-    idObject: i32,
-    idChild: i32,
-    ppProvider: ?*?*IRawElementProviderSimple,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "uiautomationcore" fn UiaIAccessibleFromProvider(
-    pProvider: ?*IRawElementProviderSimple,
-    dwFlags: u32,
-    ppAccessible: ?*?*IAccessible,
-    pvarChild: ?*VARIANT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "uiautomationcore" fn UiaProviderFromIAccessible(
-    pAccessible: ?*IAccessible,
-    idChild: i32,
-    dwFlags: u32,
-    ppProvider: ?*?*IRawElementProviderSimple,
-) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "uiautomationcore" fn UiaDisconnectAllProviders(
@@ -10471,14 +10213,273 @@ pub extern "uiautomationcore" fn UiaDisconnectProvider(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaEventAddWindow(
+    hEvent: ?HUIAEVENT,
+    hwnd: ?HWND,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaEventRemoveWindow(
+    hEvent: ?HUIAEVENT,
+    hwnd: ?HWND,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaFind(
+    hnode: ?HUIANODE,
+    pParams: ?*UiaFindParams,
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppOffsets: ?*?*SAFEARRAY,
+    ppTreeStructures: ?*?*SAFEARRAY,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetErrorDescription(
+    pDescription: ?*?BSTR,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetPatternProvider(
+    hnode: ?HUIANODE,
+    patternId: i32,
+    phobj: ?*?HUIAPATTERNOBJECT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetPropertyValue(
+    hnode: ?HUIANODE,
+    propertyId: i32,
+    pValue: ?*VARIANT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetReservedMixedAttributeValue(
+    punkMixedAttributeValue: ?*?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetReservedNotSupportedValue(
+    punkNotSupportedValue: ?*?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetRootNode(
+    phnode: ?*?HUIANODE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetRuntimeId(
+    hnode: ?HUIANODE,
+    pruntimeId: ?*?*SAFEARRAY,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaGetUpdatedCache(
+    hnode: ?HUIANODE,
+    pRequest: ?*UiaCacheRequest,
+    normalizeState: NormalizeState,
+    pNormalizeCondition: ?*UiaCondition,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn UiaHasServerSideProvider(
     hwnd: ?HWND,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn RegisterPointerInputTarget(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaHostProviderFromHwnd(
     hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
+    ppProvider: ?*?*IRawElementProviderSimple,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaHPatternObjectFromVariant(
+    pvar: ?*VARIANT,
+    phobj: ?*?HUIAPATTERNOBJECT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaHTextRangeFromVariant(
+    pvar: ?*VARIANT,
+    phtextrange: ?*?HUIATEXTRANGE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaHUiaNodeFromVariant(
+    pvar: ?*VARIANT,
+    phnode: ?*?HUIANODE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "uiautomationcore" fn UiaIAccessibleFromProvider(
+    pProvider: ?*IRawElementProviderSimple,
+    dwFlags: u32,
+    ppAccessible: ?*?*IAccessible,
+    pvarChild: ?*VARIANT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaLookupId(
+    type: AutomationIdentifierType,
+    pGuid: ?*const Guid,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaNavigate(
+    hnode: ?HUIANODE,
+    direction: NavigateDirection,
+    pCondition: ?*UiaCondition,
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaNodeFromFocus(
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaNodeFromHandle(
+    hwnd: ?HWND,
+    phnode: ?*?HUIANODE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaNodeFromPoint(
+    x: f64,
+    y: f64,
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaNodeFromProvider(
+    pProvider: ?*IRawElementProviderSimple,
+    phnode: ?*?HUIANODE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaNodeRelease(
+    hnode: ?HUIANODE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaPatternRelease(
+    hobj: ?HUIAPATTERNOBJECT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "uiautomationcore" fn UiaProviderForNonClient(
+    hwnd: ?HWND,
+    idObject: i32,
+    idChild: i32,
+    ppProvider: ?*?*IRawElementProviderSimple,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "uiautomationcore" fn UiaProviderFromIAccessible(
+    pAccessible: ?*IAccessible,
+    idChild: i32,
+    dwFlags: u32,
+    ppProvider: ?*?*IRawElementProviderSimple,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "uiautomationcore" fn UiaRaiseActiveTextPositionChangedEvent(
+    provider: ?*IRawElementProviderSimple,
+    textRange: ?*ITextRangeProvider,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaRaiseAsyncContentLoadedEvent(
+    pProvider: ?*IRawElementProviderSimple,
+    asyncContentLoadedState: AsyncContentLoadedState,
+    percentComplete: f64,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaRaiseAutomationEvent(
+    pProvider: ?*IRawElementProviderSimple,
+    id: i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaRaiseAutomationPropertyChangedEvent(
+    pProvider: ?*IRawElementProviderSimple,
+    id: i32,
+    oldValue: VARIANT,
+    newValue: VARIANT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "uiautomationcore" fn UiaRaiseChangesEvent(
+    pProvider: ?*IRawElementProviderSimple,
+    eventIdCount: i32,
+    pUiaChanges: ?*UiaChangeInfo,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.16299'
+pub extern "uiautomationcore" fn UiaRaiseNotificationEvent(
+    provider: ?*IRawElementProviderSimple,
+    notificationKind: NotificationKind,
+    notificationProcessing: NotificationProcessing,
+    displayString: ?BSTR,
+    activityId: ?BSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaRaiseStructureChangedEvent(
+    pProvider: ?*IRawElementProviderSimple,
+    structureChangeType: StructureChangeType,
+    pRuntimeId: ?*i32,
+    cRuntimeIdLen: i32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "uiautomationcore" fn UiaRaiseTextEditTextChangedEvent(
+    pProvider: ?*IRawElementProviderSimple,
+    textEditChangeType: TextEditChangeType,
+    pChangedData: ?*SAFEARRAY,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaRegisterProviderCallback(
+    pCallback: ?*?UiaProviderCallback,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaRemoveEvent(
+    hEvent: ?HUIAEVENT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaReturnRawElementProvider(
+    hwnd: ?HWND,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    el: ?*IRawElementProviderSimple,
+) callconv(.winapi) LRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaSetFocus(
+    hnode: ?HUIANODE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn UiaTextRangeRelease(
+    hobj: ?HUIATEXTRANGE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn UnhookWinEvent(
+    hWinEventHook: ?HWINEVENTHOOK,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10488,58 +10489,50 @@ pub extern "user32" fn UnregisterPointerInputTarget(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "user32" fn RegisterPointerInputTargetEx(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-    fObserve: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "user32" fn UnregisterPointerInputTargetEx(
     hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn NotifyWinEvent(
-    event: u32,
-    hwnd: ?HWND,
-    idObject: i32,
-    idChild: i32,
-) callconv(.winapi) void;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn ValuePattern_SetValue(
+    hobj: ?HUIAPATTERNOBJECT,
+    pVal: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "uiautomationcore" fn VirtualizedItemPattern_Realize(
+    hobj: ?HUIAPATTERNOBJECT,
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetWinEventHook(
-    eventMin: u32,
-    eventMax: u32,
-    hmodWinEventProc: ?HINSTANCE,
-    pfnWinEventProc: ?WINEVENTPROC,
-    idProcess: u32,
-    idThread: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?HWINEVENTHOOK;
+pub extern "oleacc" fn WindowFromAccessibleObject(
+    param0: ?*IAccessible,
+    phwnd: ?*?HWND,
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn IsWinEventHookInstalled(
-    event: u32,
-) callconv(.winapi) BOOL;
+pub extern "uiautomationcore" fn WindowPattern_Close(
+    hobj: ?HUIAPATTERNOBJECT,
+) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn UnhookWinEvent(
-    hWinEventHook: ?HWINEVENTHOOK,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn WindowPattern_SetWindowVisualState(
+    hobj: ?HUIAPATTERNOBJECT,
+    state: WindowVisualState,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "uiautomationcore" fn WindowPattern_WaitForInputIdle(
+    hobj: ?HUIAPATTERNOBJECT,
+    milliseconds: i32,
+    pResult: ?*BOOL,
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (6)
 //--------------------------------------------------------------------------------
-pub const SERIALKEYS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SERIALKEYSA,
-    .wide => @This().SERIALKEYSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SERIALKEYS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const HIGHCONTRAST = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().HIGHCONTRASTA,
     .wide => @This().HIGHCONTRASTW,
@@ -10547,11 +10540,25 @@ pub const HIGHCONTRAST = switch (@import("../zig.zig").unicode_mode) {
         "'HIGHCONTRAST' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const SERIALKEYS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SERIALKEYSA,
+    .wide => @This().SERIALKEYSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SERIALKEYS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const SOUNDSENTRY = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().SOUNDSENTRYA,
     .wide => @This().SOUNDSENTRYW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'SOUNDSENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateStdAccessibleProxy = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateStdAccessibleProxyA,
+    .wide => @This().CreateStdAccessibleProxyW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateStdAccessibleProxy' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const GetRoleText = switch (@import("../zig.zig").unicode_mode) {
@@ -10566,13 +10573,6 @@ pub const GetStateText = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().GetStateTextW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'GetStateText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CreateStdAccessibleProxy = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateStdAccessibleProxyA,
-    .wide => @This().CreateStdAccessibleProxyW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateStdAccessibleProxy' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -10600,14 +10600,14 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "LPFNACCESSIBLECHILDREN")) { _ = LPFNACCESSIBLECHILDREN; }
+    if (@hasDecl(@This(), "LPFNACCESSIBLEOBJECTFROMPOINT")) { _ = LPFNACCESSIBLEOBJECTFROMPOINT; }
+    if (@hasDecl(@This(), "LPFNACCESSIBLEOBJECTFROMWINDOW")) { _ = LPFNACCESSIBLEOBJECTFROMWINDOW; }
+    if (@hasDecl(@This(), "LPFNCREATESTDACCESSIBLEOBJECT")) { _ = LPFNCREATESTDACCESSIBLEOBJECT; }
     if (@hasDecl(@This(), "LPFNLRESULTFROMOBJECT")) { _ = LPFNLRESULTFROMOBJECT; }
     if (@hasDecl(@This(), "LPFNOBJECTFROMLRESULT")) { _ = LPFNOBJECTFROMLRESULT; }
-    if (@hasDecl(@This(), "LPFNACCESSIBLEOBJECTFROMWINDOW")) { _ = LPFNACCESSIBLEOBJECTFROMWINDOW; }
-    if (@hasDecl(@This(), "LPFNACCESSIBLEOBJECTFROMPOINT")) { _ = LPFNACCESSIBLEOBJECTFROMPOINT; }
-    if (@hasDecl(@This(), "LPFNCREATESTDACCESSIBLEOBJECT")) { _ = LPFNCREATESTDACCESSIBLEOBJECT; }
-    if (@hasDecl(@This(), "LPFNACCESSIBLECHILDREN")) { _ = LPFNACCESSIBLECHILDREN; }
-    if (@hasDecl(@This(), "UiaProviderCallback")) { _ = UiaProviderCallback; }
     if (@hasDecl(@This(), "UiaEventCallback")) { _ = UiaEventCallback; }
+    if (@hasDecl(@This(), "UiaProviderCallback")) { _ = UiaProviderCallback; }
     if (@hasDecl(@This(), "WINEVENTPROC")) { _ = WINEVENTPROC; }
 
     @setEvalBranchQuota(

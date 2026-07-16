@@ -2,31 +2,17 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const DSSI_READ_ONLY = @as(u32, 1);
-pub const DSSI_NO_ACCESS_CHECK = @as(u32, 2);
-pub const DSSI_NO_EDIT_SACL = @as(u32, 4);
-pub const DSSI_NO_EDIT_OWNER = @as(u32, 8);
 pub const DSSI_IS_ROOT = @as(u32, 16);
+pub const DSSI_NO_ACCESS_CHECK = @as(u32, 2);
+pub const DSSI_NO_EDIT_OWNER = @as(u32, 8);
+pub const DSSI_NO_EDIT_SACL = @as(u32, 4);
 pub const DSSI_NO_FILTER = @as(u32, 32);
 pub const DSSI_NO_READONLY_MESSAGE = @as(u32, 64);
+pub const DSSI_READ_ONLY = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const PFNREADOBJECTSECURITY = *const fn(
-    param0: ?[*:0]const u16,
-    param1: u32,
-    param2: ?*?PSECURITY_DESCRIPTOR,
-    param3: LPARAM,
-) callconv(.winapi) HRESULT;
-
-pub const PFNWRITEOBJECTSECURITY = *const fn(
-    param0: ?[*:0]const u16,
-    param1: u32,
-    param2: ?PSECURITY_DESCRIPTOR,
-    param3: LPARAM,
-) callconv(.winapi) HRESULT;
-
 pub const PFNDSCREATEISECINFO = *const fn(
     param0: ?[*:0]const u16,
     param1: ?[*:0]const u16,
@@ -69,6 +55,20 @@ pub const PFNDSEDITSECURITY = *const fn(
     param5: ?PFNREADOBJECTSECURITY,
     param6: ?PFNWRITEOBJECTSECURITY,
     param7: LPARAM,
+) callconv(.winapi) HRESULT;
+
+pub const PFNREADOBJECTSECURITY = *const fn(
+    param0: ?[*:0]const u16,
+    param1: u32,
+    param2: ?*?PSECURITY_DESCRIPTOR,
+    param3: LPARAM,
+) callconv(.winapi) HRESULT;
+
+pub const PFNWRITEOBJECTSECURITY = *const fn(
+    param0: ?[*:0]const u16,
+    param1: u32,
+    param2: ?PSECURITY_DESCRIPTOR,
+    param3: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 
@@ -140,12 +140,12 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNREADOBJECTSECURITY")) { _ = PFNREADOBJECTSECURITY; }
-    if (@hasDecl(@This(), "PFNWRITEOBJECTSECURITY")) { _ = PFNWRITEOBJECTSECURITY; }
     if (@hasDecl(@This(), "PFNDSCREATEISECINFO")) { _ = PFNDSCREATEISECINFO; }
     if (@hasDecl(@This(), "PFNDSCREATEISECINFOEX")) { _ = PFNDSCREATEISECINFOEX; }
     if (@hasDecl(@This(), "PFNDSCREATESECPAGE")) { _ = PFNDSCREATESECPAGE; }
     if (@hasDecl(@This(), "PFNDSEDITSECURITY")) { _ = PFNDSEDITSECURITY; }
+    if (@hasDecl(@This(), "PFNREADOBJECTSECURITY")) { _ = PFNREADOBJECTSECURITY; }
+    if (@hasDecl(@This(), "PFNWRITEOBJECTSECURITY")) { _ = PFNWRITEOBJECTSECURITY; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

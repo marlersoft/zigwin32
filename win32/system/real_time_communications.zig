@@ -2,791 +2,591 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (252)
 //--------------------------------------------------------------------------------
-pub const RTCCS_FORCE_PROFILE = @as(u32, 1);
-pub const RTCCS_FAIL_ON_REDIRECT = @as(u32, 2);
-pub const RTCMT_AUDIO_SEND = @as(u32, 1);
-pub const RTCMT_AUDIO_RECEIVE = @as(u32, 2);
-pub const RTCMT_VIDEO_SEND = @as(u32, 4);
-pub const RTCMT_VIDEO_RECEIVE = @as(u32, 8);
-pub const RTCMT_T120_SENDRECV = @as(u32, 16);
-pub const RTCSI_PC_TO_PC = @as(u32, 1);
-pub const RTCSI_PC_TO_PHONE = @as(u32, 2);
-pub const RTCSI_PHONE_TO_PHONE = @as(u32, 4);
-pub const RTCSI_IM = @as(u32, 8);
-pub const RTCSI_MULTIPARTY_IM = @as(u32, 16);
-pub const RTCSI_APPLICATION = @as(u32, 32);
-pub const RTCTR_UDP = @as(u32, 1);
-pub const RTCTR_TCP = @as(u32, 2);
-pub const RTCTR_TLS = @as(u32, 4);
-pub const RTCAU_BASIC = @as(u32, 1);
-pub const RTCAU_DIGEST = @as(u32, 2);
-pub const RTCAU_NTLM = @as(u32, 4);
-pub const RTCAU_KERBEROS = @as(u32, 8);
-pub const RTCAU_USE_LOGON_CRED = @as(u32, 65536);
-pub const RTCRF_REGISTER_INVITE_SESSIONS = @as(u32, 1);
-pub const RTCRF_REGISTER_MESSAGE_SESSIONS = @as(u32, 2);
-pub const RTCRF_REGISTER_PRESENCE = @as(u32, 4);
-pub const RTCRF_REGISTER_NOTIFY = @as(u32, 8);
-pub const RTCRF_REGISTER_ALL = @as(u32, 15);
-pub const RTCRMF_BUDDY_ROAMING = @as(u32, 1);
-pub const RTCRMF_WATCHER_ROAMING = @as(u32, 2);
-pub const RTCRMF_PRESENCE_ROAMING = @as(u32, 4);
-pub const RTCRMF_PROFILE_ROAMING = @as(u32, 8);
-pub const RTCRMF_ALL_ROAMING = @as(u32, 15);
-pub const RTCEF_CLIENT = @as(u32, 1);
-pub const RTCEF_REGISTRATION_STATE_CHANGE = @as(u32, 2);
-pub const RTCEF_SESSION_STATE_CHANGE = @as(u32, 4);
-pub const RTCEF_SESSION_OPERATION_COMPLETE = @as(u32, 8);
-pub const RTCEF_PARTICIPANT_STATE_CHANGE = @as(u32, 16);
-pub const RTCEF_MEDIA = @as(u32, 32);
-pub const RTCEF_INTENSITY = @as(u32, 64);
-pub const RTCEF_MESSAGING = @as(u32, 128);
-pub const RTCEF_BUDDY = @as(u32, 256);
-pub const RTCEF_WATCHER = @as(u32, 512);
-pub const RTCEF_PROFILE = @as(u32, 1024);
-pub const RTCEF_USERSEARCH = @as(u32, 2048);
-pub const RTCEF_INFO = @as(u32, 4096);
-pub const RTCEF_GROUP = @as(u32, 8192);
-pub const RTCEF_MEDIA_REQUEST = @as(u32, 16384);
-pub const RTCEF_ROAMING = @as(u32, 65536);
-pub const RTCEF_PRESENCE_PROPERTY = @as(u32, 131072);
-pub const RTCEF_BUDDY2 = @as(u32, 262144);
-pub const RTCEF_WATCHER2 = @as(u32, 524288);
-pub const RTCEF_SESSION_REFER_STATUS = @as(u32, 1048576);
-pub const RTCEF_SESSION_REFERRED = @as(u32, 2097152);
-pub const RTCEF_REINVITE = @as(u32, 4194304);
-pub const RTCEF_PRESENCE_DATA = @as(u32, 8388608);
-pub const RTCEF_PRESENCE_STATUS = @as(u32, 16777216);
-pub const RTCEF_ALL = @as(u32, 33554431);
-pub const RTCIF_DISABLE_MEDIA = @as(u32, 1);
-pub const RTCIF_DISABLE_UPNP = @as(u32, 2);
-pub const RTCIF_ENABLE_SERVER_CLASS = @as(u32, 4);
-pub const RTCIF_DISABLE_STRICT_DNS = @as(u32, 8);
+pub const FACILITY_PINT_STATUS_CODE = @as(u32, 240);
 pub const FACILITY_RTC_INTERFACE = @as(u32, 238);
 pub const FACILITY_SIP_STATUS_CODE = @as(u32, 239);
-pub const FACILITY_PINT_STATUS_CODE = @as(u32, 240);
-pub const STATUS_SEVERITY_RTC_ERROR = @as(u32, 2);
-pub const RTC_E_SIP_CODECS_DO_NOT_MATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886080));
-pub const RTC_E_SIP_STREAM_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886079));
-pub const RTC_E_SIP_STREAM_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886078));
-pub const RTC_E_SIP_NO_STREAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886077));
-pub const RTC_E_SIP_PARSE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886076));
-pub const RTC_E_SIP_HEADER_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886075));
-pub const RTC_E_SDP_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886074));
-pub const RTC_E_SDP_PARSE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886073));
-pub const RTC_E_SDP_UPDATE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886072));
-pub const RTC_E_SDP_MULTICAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886071));
-pub const RTC_E_SDP_CONNECTION_ADDR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886070));
-pub const RTC_E_SDP_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886069));
-pub const RTC_E_SIP_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886068));
-pub const RTC_E_SDP_FAILED_TO_BUILD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886067));
-pub const RTC_E_SIP_INVITE_TRANSACTION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886066));
-pub const RTC_E_SIP_AUTH_HEADER_SENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886065));
-pub const RTC_E_SIP_AUTH_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886064));
-pub const RTC_E_SIP_AUTH_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886063));
-pub const RTC_E_INVALID_SIP_URL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886062));
-pub const RTC_E_DESTINATION_ADDRESS_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886061));
-pub const RTC_E_INVALID_ADDRESS_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886060));
-pub const RTC_E_DESTINATION_ADDRESS_MULTICAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886059));
-pub const RTC_E_INVALID_PROXY_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886058));
-pub const RTC_E_SIP_TRANSPORT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886057));
-pub const RTC_E_SIP_NEED_MORE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886056));
-pub const RTC_E_SIP_CALL_DISCONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886055));
-pub const RTC_E_SIP_REQUEST_DESTINATION_ADDR_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886054));
-pub const RTC_E_SIP_UDP_SIZE_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886053));
-pub const RTC_E_SIP_SSL_TUNNEL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886052));
-pub const RTC_E_SIP_SSL_NEGOTIATION_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886051));
-pub const RTC_E_SIP_STACK_SHUTDOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886050));
-pub const RTC_E_MEDIA_CONTROLLER_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886049));
-pub const RTC_E_MEDIA_NEED_TERMINAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886048));
-pub const RTC_E_MEDIA_AUDIO_DEVICE_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886047));
-pub const RTC_E_MEDIA_VIDEO_DEVICE_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886046));
-pub const RTC_E_START_STREAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886045));
-pub const RTC_E_MEDIA_AEC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886044));
-pub const RTC_E_CLIENT_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886043));
+pub const RTC_E_ANOTHER_MEDIA_SESSION_ACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885961));
+pub const RTC_E_BASIC_AUTH_SET_TLS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886017));
 pub const RTC_E_CLIENT_ALREADY_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886042));
 pub const RTC_E_CLIENT_ALREADY_SHUT_DOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886041));
-pub const RTC_E_PRESENCE_NOT_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886040));
-pub const RTC_E_INVALID_SESSION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886039));
-pub const RTC_E_INVALID_SESSION_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886038));
-pub const RTC_E_NO_PROFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886037));
-pub const RTC_E_LOCAL_PHONE_NEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886036));
-pub const RTC_E_NO_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886035));
+pub const RTC_E_CLIENT_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886043));
+pub const RTC_E_DESTINATION_ADDRESS_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886061));
+pub const RTC_E_DESTINATION_ADDRESS_MULTICAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886059));
+pub const RTC_E_DUPLICATE_BUDDY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886006));
+pub const RTC_E_DUPLICATE_GROUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885998));
+pub const RTC_E_DUPLICATE_REALM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886013));
+pub const RTC_E_DUPLICATE_WATCHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886005));
+pub const RTC_E_INVALID_ACL_LIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886000));
+pub const RTC_E_INVALID_ADDRESS_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886060));
+pub const RTC_E_INVALID_BUDDY_LIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886001));
+pub const RTC_E_INVALID_LISTEN_SOCKET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885957));
+pub const RTC_E_INVALID_OBJECT_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885983));
+pub const RTC_E_INVALID_PORTRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885988));
+pub const RTC_E_INVALID_PREFERENCE_LIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885991));
 pub const RTC_E_INVALID_PROFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886034));
-pub const RTC_E_PROFILE_NO_PROVISION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886033));
-pub const RTC_E_PROFILE_NO_KEY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886032));
-pub const RTC_E_PROFILE_NO_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886031));
-pub const RTC_E_PROFILE_NO_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886030));
-pub const RTC_E_PROFILE_NO_USER_URI = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886029));
-pub const RTC_E_PROFILE_NO_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886028));
-pub const RTC_E_PROFILE_NO_SERVER_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886027));
-pub const RTC_E_PROFILE_NO_SERVER_PROTOCOL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886026));
-pub const RTC_E_PROFILE_INVALID_SERVER_PROTOCOL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886025));
+pub const RTC_E_INVALID_PROXY_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886058));
+pub const RTC_E_INVALID_REGISTRATION_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885971));
+pub const RTC_E_INVALID_SESSION_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886038));
+pub const RTC_E_INVALID_SESSION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886039));
+pub const RTC_E_INVALID_SIP_URL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886062));
+pub const RTC_E_LISTENING_SOCKET_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885958));
+pub const RTC_E_LOCAL_PHONE_NEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886036));
+pub const RTC_E_MALFORMED_XML = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886004));
+pub const RTC_E_MAX_PENDING_OPERATIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885990));
+pub const RTC_E_MAX_REDIRECTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885960));
+pub const RTC_E_MEDIA_AEC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886044));
+pub const RTC_E_MEDIA_AUDIO_DEVICE_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886047));
+pub const RTC_E_MEDIA_CONTROLLER_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886049));
+pub const RTC_E_MEDIA_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885970));
+pub const RTC_E_MEDIA_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885969));
+pub const RTC_E_MEDIA_NEED_TERMINAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886048));
+pub const RTC_E_MEDIA_SESSION_IN_HOLD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885962));
+pub const RTC_E_MEDIA_SESSION_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885963));
+pub const RTC_E_MEDIA_VIDEO_DEVICE_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886046));
+pub const RTC_E_NO_BUDDY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885996));
+pub const RTC_E_NO_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886035));
+pub const RTC_E_NO_GROUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885999));
+pub const RTC_E_NO_PROFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886037));
+pub const RTC_E_NO_REALM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885994));
+pub const RTC_E_NO_TRANSPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885993));
+pub const RTC_E_NO_WATCHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885995));
+pub const RTC_E_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885950));
+pub const RTC_E_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885992));
+pub const RTC_E_NOT_PRESENCE_PROFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885974));
+pub const RTC_E_OPERATION_WITH_TOO_MANY_PARTICIPANTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886018));
+pub const RTC_E_PINT_STATUS_REJECTED_ALL_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755001));
+pub const RTC_E_PINT_STATUS_REJECTED_BADNUMBER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131754997));
+pub const RTC_E_PINT_STATUS_REJECTED_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755003));
+pub const RTC_E_PINT_STATUS_REJECTED_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131754998));
+pub const RTC_E_PINT_STATUS_REJECTED_NO_ANSWER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755002));
+pub const RTC_E_PINT_STATUS_REJECTED_PL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755000));
+pub const RTC_E_PINT_STATUS_REJECTED_SW_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131754999));
+pub const RTC_E_PLATFORM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885952));
+pub const RTC_E_POLICY_NOT_ALLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886012));
+pub const RTC_E_PORT_MANAGER_ALREADY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885956));
+pub const RTC_E_PORT_MAPPING_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886010));
+pub const RTC_E_PORT_MAPPING_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886011));
+pub const RTC_E_PRESENCE_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885982));
+pub const RTC_E_PRESENCE_NOT_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886040));
 pub const RTC_E_PROFILE_INVALID_SERVER_AUTHMETHOD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886024));
+pub const RTC_E_PROFILE_INVALID_SERVER_PROTOCOL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886025));
 pub const RTC_E_PROFILE_INVALID_SERVER_ROLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886023));
-pub const RTC_E_PROFILE_MULTIPLE_REGISTRARS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886022));
 pub const RTC_E_PROFILE_INVALID_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886021));
 pub const RTC_E_PROFILE_INVALID_SESSION_PARTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886020));
 pub const RTC_E_PROFILE_INVALID_SESSION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886019));
-pub const RTC_E_OPERATION_WITH_TOO_MANY_PARTICIPANTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886018));
-pub const RTC_E_BASIC_AUTH_SET_TLS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886017));
-pub const RTC_E_SIP_HIGH_SECURITY_SET_TLS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886016));
-pub const RTC_S_ROAMING_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15597633));
+pub const RTC_E_PROFILE_MULTIPLE_REGISTRARS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886022));
+pub const RTC_E_PROFILE_NO_KEY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886032));
+pub const RTC_E_PROFILE_NO_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886031));
+pub const RTC_E_PROFILE_NO_PROVISION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886033));
+pub const RTC_E_PROFILE_NO_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886028));
+pub const RTC_E_PROFILE_NO_SERVER_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886027));
+pub const RTC_E_PROFILE_NO_SERVER_PROTOCOL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886026));
+pub const RTC_E_PROFILE_NO_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886030));
+pub const RTC_E_PROFILE_NO_USER_URI = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886029));
 pub const RTC_E_PROFILE_SERVER_UNAUTHORIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886014));
-pub const RTC_E_DUPLICATE_REALM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886013));
-pub const RTC_E_POLICY_NOT_ALLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886012));
-pub const RTC_E_PORT_MAPPING_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886011));
-pub const RTC_E_PORT_MAPPING_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886010));
-pub const RTC_E_SECURITY_LEVEL_NOT_COMPATIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886009));
-pub const RTC_E_SECURITY_LEVEL_NOT_DEFINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886008));
-pub const RTC_E_SECURITY_LEVEL_NOT_SUPPORTED_BY_PARTICIPANT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886007));
-pub const RTC_E_DUPLICATE_BUDDY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886006));
-pub const RTC_E_DUPLICATE_WATCHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886005));
-pub const RTC_E_MALFORMED_XML = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886004));
-pub const RTC_E_ROAMING_OPERATION_INTERRUPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886003));
-pub const RTC_E_ROAMING_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886002));
-pub const RTC_E_INVALID_BUDDY_LIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886001));
-pub const RTC_E_INVALID_ACL_LIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886000));
-pub const RTC_E_NO_GROUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885999));
-pub const RTC_E_DUPLICATE_GROUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885998));
-pub const RTC_E_TOO_MANY_GROUPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885997));
-pub const RTC_E_NO_BUDDY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885996));
-pub const RTC_E_NO_WATCHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885995));
-pub const RTC_E_NO_REALM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885994));
-pub const RTC_E_NO_TRANSPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885993));
-pub const RTC_E_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885992));
-pub const RTC_E_INVALID_PREFERENCE_LIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885991));
-pub const RTC_E_MAX_PENDING_OPERATIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885990));
-pub const RTC_E_TOO_MANY_RETRIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885989));
-pub const RTC_E_INVALID_PORTRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885988));
-pub const RTC_E_SIP_CALL_CONNECTION_NOT_ESTABLISHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885987));
-pub const RTC_E_SIP_ADDITIONAL_PARTY_IN_TWO_PARTY_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885986));
-pub const RTC_E_SIP_PARTY_ALREADY_IN_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885985));
-pub const RTC_E_SIP_OTHER_PARTY_JOIN_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885984));
-pub const RTC_E_INVALID_OBJECT_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885983));
-pub const RTC_E_PRESENCE_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885982));
-pub const RTC_E_ROAMING_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885981));
-pub const RTC_E_SIP_TLS_INCOMPATIBLE_ENCRYPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885980));
-pub const RTC_E_SIP_INVALID_CERTIFICATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885979));
-pub const RTC_E_SIP_DNS_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885978));
-pub const RTC_E_SIP_TCP_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885977));
-pub const RTC_E_TOO_SMALL_EXPIRES_VALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885976));
-pub const RTC_E_SIP_TLS_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885975));
-pub const RTC_E_NOT_PRESENCE_PROFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885974));
-pub const RTC_E_SIP_INVITEE_PARTY_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885973));
-pub const RTC_E_SIP_AUTH_TIME_SKEW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885972));
-pub const RTC_E_INVALID_REGISTRATION_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885971));
-pub const RTC_E_MEDIA_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885970));
-pub const RTC_E_MEDIA_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885969));
+pub const RTC_E_REDIRECT_PROCESSING_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885959));
 pub const RTC_E_REFER_NOT_ACCEPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885968));
 pub const RTC_E_REFER_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885967));
 pub const RTC_E_REFER_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885966));
-pub const RTC_E_SIP_HOLD_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885965));
-pub const RTC_E_SIP_UNHOLD_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885964));
-pub const RTC_E_MEDIA_SESSION_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885963));
-pub const RTC_E_MEDIA_SESSION_IN_HOLD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885962));
-pub const RTC_E_ANOTHER_MEDIA_SESSION_ACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885961));
-pub const RTC_E_MAX_REDIRECTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885960));
-pub const RTC_E_REDIRECT_PROCESSING_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885959));
-pub const RTC_E_LISTENING_SOCKET_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885958));
-pub const RTC_E_INVALID_LISTEN_SOCKET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885957));
-pub const RTC_E_PORT_MANAGER_ALREADY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885956));
-pub const RTC_E_SECURITY_LEVEL_ALREADY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885955));
-pub const RTC_E_UDP_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885954));
-pub const RTC_E_SIP_REFER_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885953));
-pub const RTC_E_PLATFORM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885952));
-pub const RTC_E_SIP_PEER_PARTICIPANT_IN_MULTIPARTY_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885951));
-pub const RTC_E_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885950));
 pub const RTC_E_REGISTRATION_DEACTIVATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885949));
 pub const RTC_E_REGISTRATION_REJECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885948));
 pub const RTC_E_REGISTRATION_UNREGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885947));
-pub const RTC_E_STATUS_INFO_TRYING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663204));
-pub const RTC_E_STATUS_INFO_RINGING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663284));
-pub const RTC_E_STATUS_INFO_CALL_FORWARDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663285));
-pub const RTC_E_STATUS_INFO_QUEUED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663286));
-pub const RTC_E_STATUS_SESSION_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663287));
-pub const RTC_E_STATUS_SUCCESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663304));
-pub const RTC_E_STATUS_REDIRECT_MULTIPLE_CHOICES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820244));
-pub const RTC_E_STATUS_REDIRECT_MOVED_PERMANENTLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820243));
-pub const RTC_E_STATUS_REDIRECT_MOVED_TEMPORARILY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820242));
-pub const RTC_E_STATUS_REDIRECT_SEE_OTHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820241));
-pub const RTC_E_STATUS_REDIRECT_USE_PROXY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820239));
-pub const RTC_E_STATUS_REDIRECT_ALTERNATIVE_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820164));
-pub const RTC_E_STATUS_CLIENT_BAD_REQUEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820144));
-pub const RTC_E_STATUS_CLIENT_UNAUTHORIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820143));
-pub const RTC_E_STATUS_CLIENT_PAYMENT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820142));
-pub const RTC_E_STATUS_CLIENT_FORBIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820141));
-pub const RTC_E_STATUS_CLIENT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820140));
-pub const RTC_E_STATUS_CLIENT_METHOD_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820139));
-pub const RTC_E_STATUS_CLIENT_NOT_ACCEPTABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820138));
-pub const RTC_E_STATUS_CLIENT_PROXY_AUTHENTICATION_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820137));
-pub const RTC_E_STATUS_CLIENT_REQUEST_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820136));
-pub const RTC_E_STATUS_CLIENT_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820135));
-pub const RTC_E_STATUS_CLIENT_GONE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820134));
-pub const RTC_E_STATUS_CLIENT_LENGTH_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820133));
-pub const RTC_E_STATUS_CLIENT_REQUEST_ENTITY_TOO_LARGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820131));
-pub const RTC_E_STATUS_CLIENT_REQUEST_URI_TOO_LARGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820130));
-pub const RTC_E_STATUS_CLIENT_UNSUPPORTED_MEDIA_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820129));
-pub const RTC_E_STATUS_CLIENT_BAD_EXTENSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820124));
-pub const RTC_E_STATUS_CLIENT_TEMPORARILY_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820064));
-pub const RTC_E_STATUS_CLIENT_TRANSACTION_DOES_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820063));
-pub const RTC_E_STATUS_CLIENT_LOOP_DETECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820062));
-pub const RTC_E_STATUS_CLIENT_TOO_MANY_HOPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820061));
+pub const RTC_E_ROAMING_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885981));
+pub const RTC_E_ROAMING_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886002));
+pub const RTC_E_ROAMING_OPERATION_INTERRUPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886003));
+pub const RTC_E_SDP_CONNECTION_ADDR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886070));
+pub const RTC_E_SDP_FAILED_TO_BUILD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886067));
+pub const RTC_E_SDP_MULTICAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886071));
+pub const RTC_E_SDP_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886069));
+pub const RTC_E_SDP_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886074));
+pub const RTC_E_SDP_PARSE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886073));
+pub const RTC_E_SDP_UPDATE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886072));
+pub const RTC_E_SECURITY_LEVEL_ALREADY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885955));
+pub const RTC_E_SECURITY_LEVEL_NOT_COMPATIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886009));
+pub const RTC_E_SECURITY_LEVEL_NOT_DEFINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886008));
+pub const RTC_E_SECURITY_LEVEL_NOT_SUPPORTED_BY_PARTICIPANT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886007));
+pub const RTC_E_SIP_ADDITIONAL_PARTY_IN_TWO_PARTY_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885986));
+pub const RTC_E_SIP_AUTH_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886063));
+pub const RTC_E_SIP_AUTH_HEADER_SENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886065));
+pub const RTC_E_SIP_AUTH_TIME_SKEW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885972));
+pub const RTC_E_SIP_AUTH_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886064));
+pub const RTC_E_SIP_CALL_CONNECTION_NOT_ESTABLISHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885987));
+pub const RTC_E_SIP_CALL_DISCONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886055));
+pub const RTC_E_SIP_CODECS_DO_NOT_MATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886080));
+pub const RTC_E_SIP_DNS_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885978));
+pub const RTC_E_SIP_HEADER_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886075));
+pub const RTC_E_SIP_HIGH_SECURITY_SET_TLS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886016));
+pub const RTC_E_SIP_HOLD_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885965));
+pub const RTC_E_SIP_INVALID_CERTIFICATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885979));
+pub const RTC_E_SIP_INVITE_TRANSACTION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886066));
+pub const RTC_E_SIP_INVITEE_PARTY_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885973));
+pub const RTC_E_SIP_NEED_MORE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886056));
+pub const RTC_E_SIP_NO_STREAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886077));
+pub const RTC_E_SIP_OTHER_PARTY_JOIN_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885984));
+pub const RTC_E_SIP_PARSE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886076));
+pub const RTC_E_SIP_PARTY_ALREADY_IN_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885985));
+pub const RTC_E_SIP_PEER_PARTICIPANT_IN_MULTIPARTY_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885951));
+pub const RTC_E_SIP_REFER_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885953));
+pub const RTC_E_SIP_REQUEST_DESTINATION_ADDR_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886054));
+pub const RTC_E_SIP_SSL_NEGOTIATION_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886051));
+pub const RTC_E_SIP_SSL_TUNNEL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886052));
+pub const RTC_E_SIP_STACK_SHUTDOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886050));
+pub const RTC_E_SIP_STREAM_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886078));
+pub const RTC_E_SIP_STREAM_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886079));
+pub const RTC_E_SIP_TCP_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885977));
+pub const RTC_E_SIP_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886068));
+pub const RTC_E_SIP_TLS_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885975));
+pub const RTC_E_SIP_TLS_INCOMPATIBLE_ENCRYPTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885980));
+pub const RTC_E_SIP_TRANSPORT_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886057));
+pub const RTC_E_SIP_UDP_SIZE_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886053));
+pub const RTC_E_SIP_UNHOLD_OPERATION_PENDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885964));
+pub const RTC_E_START_STREAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131886045));
 pub const RTC_E_STATUS_CLIENT_ADDRESS_INCOMPLETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820060));
 pub const RTC_E_STATUS_CLIENT_AMBIGUOUS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820059));
+pub const RTC_E_STATUS_CLIENT_BAD_EXTENSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820124));
+pub const RTC_E_STATUS_CLIENT_BAD_REQUEST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820144));
 pub const RTC_E_STATUS_CLIENT_BUSY_HERE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820058));
-pub const RTC_E_STATUS_REQUEST_TERMINATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820057));
-pub const RTC_E_STATUS_NOT_ACCEPTABLE_HERE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820056));
-pub const RTC_E_STATUS_SERVER_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820044));
-pub const RTC_E_STATUS_SERVER_NOT_IMPLEMENTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820043));
-pub const RTC_E_STATUS_SERVER_BAD_GATEWAY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820042));
-pub const RTC_E_STATUS_SERVER_SERVICE_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820041));
-pub const RTC_E_STATUS_SERVER_SERVER_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820040));
-pub const RTC_E_STATUS_SERVER_VERSION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820039));
+pub const RTC_E_STATUS_CLIENT_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820135));
+pub const RTC_E_STATUS_CLIENT_FORBIDDEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820141));
+pub const RTC_E_STATUS_CLIENT_GONE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820134));
+pub const RTC_E_STATUS_CLIENT_LENGTH_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820133));
+pub const RTC_E_STATUS_CLIENT_LOOP_DETECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820062));
+pub const RTC_E_STATUS_CLIENT_METHOD_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820139));
+pub const RTC_E_STATUS_CLIENT_NOT_ACCEPTABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820138));
+pub const RTC_E_STATUS_CLIENT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820140));
+pub const RTC_E_STATUS_CLIENT_PAYMENT_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820142));
+pub const RTC_E_STATUS_CLIENT_PROXY_AUTHENTICATION_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820137));
+pub const RTC_E_STATUS_CLIENT_REQUEST_ENTITY_TOO_LARGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820131));
+pub const RTC_E_STATUS_CLIENT_REQUEST_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820136));
+pub const RTC_E_STATUS_CLIENT_REQUEST_URI_TOO_LARGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820130));
+pub const RTC_E_STATUS_CLIENT_TEMPORARILY_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820064));
+pub const RTC_E_STATUS_CLIENT_TOO_MANY_HOPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820061));
+pub const RTC_E_STATUS_CLIENT_TRANSACTION_DOES_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820063));
+pub const RTC_E_STATUS_CLIENT_UNAUTHORIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820143));
+pub const RTC_E_STATUS_CLIENT_UNSUPPORTED_MEDIA_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820129));
 pub const RTC_E_STATUS_GLOBAL_BUSY_EVERYWHERE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131819944));
 pub const RTC_E_STATUS_GLOBAL_DECLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131819941));
 pub const RTC_E_STATUS_GLOBAL_DOES_NOT_EXIST_ANYWHERE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131819940));
 pub const RTC_E_STATUS_GLOBAL_NOT_ACCEPTABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131819938));
-pub const RTC_E_PINT_STATUS_REJECTED_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755003));
-pub const RTC_E_PINT_STATUS_REJECTED_NO_ANSWER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755002));
-pub const RTC_E_PINT_STATUS_REJECTED_ALL_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755001));
-pub const RTC_E_PINT_STATUS_REJECTED_PL_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131755000));
-pub const RTC_E_PINT_STATUS_REJECTED_SW_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131754999));
-pub const RTC_E_PINT_STATUS_REJECTED_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131754998));
-pub const RTC_E_PINT_STATUS_REJECTED_BADNUMBER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131754997));
+pub const RTC_E_STATUS_INFO_CALL_FORWARDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663285));
+pub const RTC_E_STATUS_INFO_QUEUED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663286));
+pub const RTC_E_STATUS_INFO_RINGING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663284));
+pub const RTC_E_STATUS_INFO_TRYING = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663204));
+pub const RTC_E_STATUS_NOT_ACCEPTABLE_HERE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820056));
+pub const RTC_E_STATUS_REDIRECT_ALTERNATIVE_SERVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820164));
+pub const RTC_E_STATUS_REDIRECT_MOVED_PERMANENTLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820243));
+pub const RTC_E_STATUS_REDIRECT_MOVED_TEMPORARILY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820242));
+pub const RTC_E_STATUS_REDIRECT_MULTIPLE_CHOICES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820244));
+pub const RTC_E_STATUS_REDIRECT_SEE_OTHER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820241));
+pub const RTC_E_STATUS_REDIRECT_USE_PROXY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820239));
+pub const RTC_E_STATUS_REQUEST_TERMINATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820057));
+pub const RTC_E_STATUS_SERVER_BAD_GATEWAY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820042));
+pub const RTC_E_STATUS_SERVER_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820044));
+pub const RTC_E_STATUS_SERVER_NOT_IMPLEMENTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820043));
+pub const RTC_E_STATUS_SERVER_SERVER_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820040));
+pub const RTC_E_STATUS_SERVER_SERVICE_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820041));
+pub const RTC_E_STATUS_SERVER_VERSION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131820039));
+pub const RTC_E_STATUS_SESSION_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663287));
+pub const RTC_E_STATUS_SUCCESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15663304));
+pub const RTC_E_TOO_MANY_GROUPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885997));
+pub const RTC_E_TOO_MANY_RETRIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885989));
+pub const RTC_E_TOO_SMALL_EXPIRES_VALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885976));
+pub const RTC_E_UDP_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2131885954));
+pub const RTC_S_ROAMING_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 15597633));
+pub const RTCAU_BASIC = @as(u32, 1);
+pub const RTCAU_DIGEST = @as(u32, 2);
+pub const RTCAU_KERBEROS = @as(u32, 8);
+pub const RTCAU_NTLM = @as(u32, 4);
+pub const RTCAU_USE_LOGON_CRED = @as(u32, 65536);
+pub const RTCCS_FAIL_ON_REDIRECT = @as(u32, 2);
+pub const RTCCS_FORCE_PROFILE = @as(u32, 1);
+pub const RTCEF_ALL = @as(u32, 33554431);
+pub const RTCEF_BUDDY = @as(u32, 256);
+pub const RTCEF_BUDDY2 = @as(u32, 262144);
+pub const RTCEF_CLIENT = @as(u32, 1);
+pub const RTCEF_GROUP = @as(u32, 8192);
+pub const RTCEF_INFO = @as(u32, 4096);
+pub const RTCEF_INTENSITY = @as(u32, 64);
+pub const RTCEF_MEDIA = @as(u32, 32);
+pub const RTCEF_MEDIA_REQUEST = @as(u32, 16384);
+pub const RTCEF_MESSAGING = @as(u32, 128);
+pub const RTCEF_PARTICIPANT_STATE_CHANGE = @as(u32, 16);
+pub const RTCEF_PRESENCE_DATA = @as(u32, 8388608);
+pub const RTCEF_PRESENCE_PROPERTY = @as(u32, 131072);
+pub const RTCEF_PRESENCE_STATUS = @as(u32, 16777216);
+pub const RTCEF_PROFILE = @as(u32, 1024);
+pub const RTCEF_REGISTRATION_STATE_CHANGE = @as(u32, 2);
+pub const RTCEF_REINVITE = @as(u32, 4194304);
+pub const RTCEF_ROAMING = @as(u32, 65536);
+pub const RTCEF_SESSION_OPERATION_COMPLETE = @as(u32, 8);
+pub const RTCEF_SESSION_REFER_STATUS = @as(u32, 1048576);
+pub const RTCEF_SESSION_REFERRED = @as(u32, 2097152);
+pub const RTCEF_SESSION_STATE_CHANGE = @as(u32, 4);
+pub const RTCEF_USERSEARCH = @as(u32, 2048);
+pub const RTCEF_WATCHER = @as(u32, 512);
+pub const RTCEF_WATCHER2 = @as(u32, 524288);
+pub const RTCIF_DISABLE_MEDIA = @as(u32, 1);
+pub const RTCIF_DISABLE_STRICT_DNS = @as(u32, 8);
+pub const RTCIF_DISABLE_UPNP = @as(u32, 2);
+pub const RTCIF_ENABLE_SERVER_CLASS = @as(u32, 4);
+pub const RTCMT_AUDIO_RECEIVE = @as(u32, 2);
+pub const RTCMT_AUDIO_SEND = @as(u32, 1);
+pub const RTCMT_T120_SENDRECV = @as(u32, 16);
+pub const RTCMT_VIDEO_RECEIVE = @as(u32, 8);
+pub const RTCMT_VIDEO_SEND = @as(u32, 4);
+pub const RTCRF_REGISTER_ALL = @as(u32, 15);
+pub const RTCRF_REGISTER_INVITE_SESSIONS = @as(u32, 1);
+pub const RTCRF_REGISTER_MESSAGE_SESSIONS = @as(u32, 2);
+pub const RTCRF_REGISTER_NOTIFY = @as(u32, 8);
+pub const RTCRF_REGISTER_PRESENCE = @as(u32, 4);
+pub const RTCRMF_ALL_ROAMING = @as(u32, 15);
+pub const RTCRMF_BUDDY_ROAMING = @as(u32, 1);
+pub const RTCRMF_PRESENCE_ROAMING = @as(u32, 4);
+pub const RTCRMF_PROFILE_ROAMING = @as(u32, 8);
+pub const RTCRMF_WATCHER_ROAMING = @as(u32, 2);
+pub const RTCSI_APPLICATION = @as(u32, 32);
+pub const RTCSI_IM = @as(u32, 8);
+pub const RTCSI_MULTIPARTY_IM = @as(u32, 16);
+pub const RTCSI_PC_TO_PC = @as(u32, 1);
+pub const RTCSI_PC_TO_PHONE = @as(u32, 2);
+pub const RTCSI_PHONE_TO_PHONE = @as(u32, 4);
+pub const RTCTR_TCP = @as(u32, 2);
+pub const RTCTR_TLS = @as(u32, 4);
+pub const RTCTR_UDP = @as(u32, 1);
+pub const STATUS_SEVERITY_RTC_ERROR = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (107)
 //--------------------------------------------------------------------------------
-const CLSID_RTCClient_Value = Guid.initString("7a42ea29-a2b7-40c4-b091-f6f024aa89be");
-pub const CLSID_RTCClient = &CLSID_RTCClient_Value;
-
-pub const RTC_AUDIO_DEVICE = enum(i32) {
-    SPEAKER = 0,
-    MICROPHONE = 1,
+const IID_INetworkTransportSettings_Value = Guid.initString("5e7abb2c-f2c1-4a61-bd35-deb7a08ab0f1");
+pub const IID_INetworkTransportSettings = &IID_INetworkTransportSettings_Value;
+pub const INetworkTransportSettings = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ApplySetting: *const fn(
+            self: *const INetworkTransportSettings,
+            SettingId: ?*const TRANSPORT_SETTING_ID,
+            LengthIn: u32,
+            ValueIn: [*:0]const u8,
+            LengthOut: ?*u32,
+            ValueOut: [*]?*u8,
+        ) callconv(.winapi) HRESULT,
+        QuerySetting: *const fn(
+            self: *const INetworkTransportSettings,
+            SettingId: ?*const TRANSPORT_SETTING_ID,
+            LengthIn: u32,
+            ValueIn: [*:0]const u8,
+            LengthOut: ?*u32,
+            ValueOut: [*]?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ApplySetting(self: *const INetworkTransportSettings, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplySetting(self, SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
+    }
+    pub fn QuerySetting(self: *const INetworkTransportSettings, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.QuerySetting(self, SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
+    }
 };
-pub const RTCAD_SPEAKER = RTC_AUDIO_DEVICE.SPEAKER;
-pub const RTCAD_MICROPHONE = RTC_AUDIO_DEVICE.MICROPHONE;
 
-pub const RTC_VIDEO_DEVICE = enum(i32) {
-    RECEIVE = 0,
-    PREVIEW = 1,
+const IID_INotificationTransportSync_Value = Guid.initString("79eb1402-0ab8-49c0-9e14-a1ae4ba93058");
+pub const IID_INotificationTransportSync = &IID_INotificationTransportSync_Value;
+pub const INotificationTransportSync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CompleteDelivery: *const fn(
+            self: *const INotificationTransportSync,
+        ) callconv(.winapi) HRESULT,
+        Flush: *const fn(
+            self: *const INotificationTransportSync,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CompleteDelivery(self: *const INotificationTransportSync) callconv(.@"inline") HRESULT {
+        return self.vtable.CompleteDelivery(self);
+    }
+    pub fn Flush(self: *const INotificationTransportSync) callconv(.@"inline") HRESULT {
+        return self.vtable.Flush(self);
+    }
 };
-pub const RTCVD_RECEIVE = RTC_VIDEO_DEVICE.RECEIVE;
-pub const RTCVD_PREVIEW = RTC_VIDEO_DEVICE.PREVIEW;
 
-pub const RTC_EVENT = enum(i32) {
-    CLIENT = 0,
-    REGISTRATION_STATE_CHANGE = 1,
-    SESSION_STATE_CHANGE = 2,
-    SESSION_OPERATION_COMPLETE = 3,
-    PARTICIPANT_STATE_CHANGE = 4,
-    MEDIA = 5,
-    INTENSITY = 6,
-    MESSAGING = 7,
-    BUDDY = 8,
-    WATCHER = 9,
-    PROFILE = 10,
-    USERSEARCH = 11,
-    INFO = 12,
-    GROUP = 13,
-    MEDIA_REQUEST = 14,
-    ROAMING = 15,
-    PRESENCE_PROPERTY = 16,
-    PRESENCE_DATA = 17,
-    PRESENCE_STATUS = 18,
-    SESSION_REFER_STATUS = 19,
-    SESSION_REFERRED = 20,
-    REINVITE = 21,
+const IID_IRTCBuddy_Value = Guid.initString("fcb136c8-7b90-4e0c-befe-56edf0ba6f1c");
+pub const IID_IRTCBuddy = &IID_IRTCBuddy_Value;
+pub const IRTCBuddy = extern union {
+    pub const VTable = extern struct {
+        base: IRTCPresenceContact.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Status: *const fn(
+            self: *const IRTCBuddy,
+            penStatus: ?*RTC_PRESENCE_STATUS,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Notes: *const fn(
+            self: *const IRTCBuddy,
+            pbstrNotes: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRTCPresenceContact: IRTCPresenceContact,
+    IUnknown: IUnknown,
+    pub fn get_Status(self: *const IRTCBuddy, penStatus: ?*RTC_PRESENCE_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Status(self, penStatus);
+    }
+    pub fn get_Notes(self: *const IRTCBuddy, pbstrNotes: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Notes(self, pbstrNotes);
+    }
 };
-pub const RTCE_CLIENT = RTC_EVENT.CLIENT;
-pub const RTCE_REGISTRATION_STATE_CHANGE = RTC_EVENT.REGISTRATION_STATE_CHANGE;
-pub const RTCE_SESSION_STATE_CHANGE = RTC_EVENT.SESSION_STATE_CHANGE;
-pub const RTCE_SESSION_OPERATION_COMPLETE = RTC_EVENT.SESSION_OPERATION_COMPLETE;
-pub const RTCE_PARTICIPANT_STATE_CHANGE = RTC_EVENT.PARTICIPANT_STATE_CHANGE;
-pub const RTCE_MEDIA = RTC_EVENT.MEDIA;
-pub const RTCE_INTENSITY = RTC_EVENT.INTENSITY;
-pub const RTCE_MESSAGING = RTC_EVENT.MESSAGING;
-pub const RTCE_BUDDY = RTC_EVENT.BUDDY;
-pub const RTCE_WATCHER = RTC_EVENT.WATCHER;
-pub const RTCE_PROFILE = RTC_EVENT.PROFILE;
-pub const RTCE_USERSEARCH = RTC_EVENT.USERSEARCH;
-pub const RTCE_INFO = RTC_EVENT.INFO;
-pub const RTCE_GROUP = RTC_EVENT.GROUP;
-pub const RTCE_MEDIA_REQUEST = RTC_EVENT.MEDIA_REQUEST;
-pub const RTCE_ROAMING = RTC_EVENT.ROAMING;
-pub const RTCE_PRESENCE_PROPERTY = RTC_EVENT.PRESENCE_PROPERTY;
-pub const RTCE_PRESENCE_DATA = RTC_EVENT.PRESENCE_DATA;
-pub const RTCE_PRESENCE_STATUS = RTC_EVENT.PRESENCE_STATUS;
-pub const RTCE_SESSION_REFER_STATUS = RTC_EVENT.SESSION_REFER_STATUS;
-pub const RTCE_SESSION_REFERRED = RTC_EVENT.SESSION_REFERRED;
-pub const RTCE_REINVITE = RTC_EVENT.REINVITE;
 
-pub const RTC_LISTEN_MODE = enum(i32) {
-    NONE = 0,
-    DYNAMIC = 1,
-    BOTH = 2,
+const IID_IRTCBuddy2_Value = Guid.initString("102f9588-23e7-40e3-954d-cd7a1d5c0361");
+pub const IID_IRTCBuddy2 = &IID_IRTCBuddy2_Value;
+pub const IRTCBuddy2 = extern union {
+    pub const VTable = extern struct {
+        base: IRTCBuddy.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Profile: *const fn(
+            self: *const IRTCBuddy2,
+            ppProfile: ?*?*IRTCProfile2,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const IRTCBuddy2,
+        ) callconv(.winapi) HRESULT,
+        EnumerateGroups: *const fn(
+            self: *const IRTCBuddy2,
+            ppEnum: ?*?*IRTCEnumGroups,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Groups: *const fn(
+            self: *const IRTCBuddy2,
+            ppCollection: ?*?*IRTCCollection,
+        ) callconv(.winapi) HRESULT,
+        get_PresenceProperty: *const fn(
+            self: *const IRTCBuddy2,
+            enProperty: RTC_PRESENCE_PROPERTY,
+            pbstrProperty: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        EnumeratePresenceDevices: *const fn(
+            self: *const IRTCBuddy2,
+            ppEnumDevices: ?*?*IRTCEnumPresenceDevices,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PresenceDevices: *const fn(
+            self: *const IRTCBuddy2,
+            ppDevicesCollection: ?*?*IRTCCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SubscriptionType: *const fn(
+            self: *const IRTCBuddy2,
+            penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRTCBuddy: IRTCBuddy,
+    IRTCPresenceContact: IRTCPresenceContact,
+    IUnknown: IUnknown,
+    pub fn get_Profile(self: *const IRTCBuddy2, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Profile(self, ppProfile);
+    }
+    pub fn Refresh(self: *const IRTCBuddy2) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn EnumerateGroups(self: *const IRTCBuddy2, ppEnum: ?*?*IRTCEnumGroups) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumerateGroups(self, ppEnum);
+    }
+    pub fn get_Groups(self: *const IRTCBuddy2, ppCollection: ?*?*IRTCCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Groups(self, ppCollection);
+    }
+    pub fn get_PresenceProperty(self: *const IRTCBuddy2, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PresenceProperty(self, enProperty, pbstrProperty);
+    }
+    pub fn EnumeratePresenceDevices(self: *const IRTCBuddy2, ppEnumDevices: ?*?*IRTCEnumPresenceDevices) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumeratePresenceDevices(self, ppEnumDevices);
+    }
+    pub fn get_PresenceDevices(self: *const IRTCBuddy2, ppDevicesCollection: ?*?*IRTCCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PresenceDevices(self, ppDevicesCollection);
+    }
+    pub fn get_SubscriptionType(self: *const IRTCBuddy2, penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SubscriptionType(self, penSubscriptionType);
+    }
 };
-pub const RTCLM_NONE = RTC_LISTEN_MODE.NONE;
-pub const RTCLM_DYNAMIC = RTC_LISTEN_MODE.DYNAMIC;
-pub const RTCLM_BOTH = RTC_LISTEN_MODE.BOTH;
 
-pub const RTC_CLIENT_EVENT_TYPE = enum(i32) {
-    VOLUME_CHANGE = 0,
-    DEVICE_CHANGE = 1,
-    NETWORK_QUALITY_CHANGE = 2,
-    ASYNC_CLEANUP_DONE = 3,
+const IID_IRTCBuddyEvent_Value = Guid.initString("f36d755d-17e6-404e-954f-0fc07574c78d");
+pub const IID_IRTCBuddyEvent = &IID_IRTCBuddyEvent_Value;
+pub const IRTCBuddyEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Buddy: *const fn(
+            self: *const IRTCBuddyEvent,
+            ppBuddy: ?*?*IRTCBuddy,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Buddy(self: *const IRTCBuddyEvent, ppBuddy: ?*?*IRTCBuddy) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Buddy(self, ppBuddy);
+    }
 };
-pub const RTCCET_VOLUME_CHANGE = RTC_CLIENT_EVENT_TYPE.VOLUME_CHANGE;
-pub const RTCCET_DEVICE_CHANGE = RTC_CLIENT_EVENT_TYPE.DEVICE_CHANGE;
-pub const RTCCET_NETWORK_QUALITY_CHANGE = RTC_CLIENT_EVENT_TYPE.NETWORK_QUALITY_CHANGE;
-pub const RTCCET_ASYNC_CLEANUP_DONE = RTC_CLIENT_EVENT_TYPE.ASYNC_CLEANUP_DONE;
 
-pub const RTC_BUDDY_EVENT_TYPE = enum(i32) {
-    ADD = 0,
-    REMOVE = 1,
-    UPDATE = 2,
-    STATE_CHANGE = 3,
-    ROAMED = 4,
-    SUBSCRIBED = 5,
+const IID_IRTCBuddyEvent2_Value = Guid.initString("484a7f1e-73f0-4990-bfc2-60bc3978a720");
+pub const IID_IRTCBuddyEvent2 = &IID_IRTCBuddyEvent2_Value;
+pub const IRTCBuddyEvent2 = extern union {
+    pub const VTable = extern struct {
+        base: IRTCBuddyEvent.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventType: *const fn(
+            self: *const IRTCBuddyEvent2,
+            pEventType: ?*RTC_BUDDY_EVENT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCBuddyEvent2,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusText: *const fn(
+            self: *const IRTCBuddyEvent2,
+            pbstrStatusText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRTCBuddyEvent: IRTCBuddyEvent,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EventType(self: *const IRTCBuddyEvent2, pEventType: ?*RTC_BUDDY_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, pEventType);
+    }
+    pub fn get_StatusCode(self: *const IRTCBuddyEvent2, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+    pub fn get_StatusText(self: *const IRTCBuddyEvent2, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusText(self, pbstrStatusText);
+    }
 };
-pub const RTCBET_BUDDY_ADD = RTC_BUDDY_EVENT_TYPE.ADD;
-pub const RTCBET_BUDDY_REMOVE = RTC_BUDDY_EVENT_TYPE.REMOVE;
-pub const RTCBET_BUDDY_UPDATE = RTC_BUDDY_EVENT_TYPE.UPDATE;
-pub const RTCBET_BUDDY_STATE_CHANGE = RTC_BUDDY_EVENT_TYPE.STATE_CHANGE;
-pub const RTCBET_BUDDY_ROAMED = RTC_BUDDY_EVENT_TYPE.ROAMED;
-pub const RTCBET_BUDDY_SUBSCRIBED = RTC_BUDDY_EVENT_TYPE.SUBSCRIBED;
 
-pub const RTC_WATCHER_EVENT_TYPE = enum(i32) {
-    ADD = 0,
-    REMOVE = 1,
-    UPDATE = 2,
-    OFFERING = 3,
-    ROAMED = 4,
+const IID_IRTCBuddyGroup_Value = Guid.initString("60361e68-9164-4389-a4c6-d0b3925bda5e");
+pub const IID_IRTCBuddyGroup = &IID_IRTCBuddyGroup_Value;
+pub const IRTCBuddyGroup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IRTCBuddyGroup,
+            pbstrGroupName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IRTCBuddyGroup,
+            bstrGroupName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddBuddy: *const fn(
+            self: *const IRTCBuddyGroup,
+            pBuddy: ?*IRTCBuddy,
+        ) callconv(.winapi) HRESULT,
+        RemoveBuddy: *const fn(
+            self: *const IRTCBuddyGroup,
+            pBuddy: ?*IRTCBuddy,
+        ) callconv(.winapi) HRESULT,
+        EnumerateBuddies: *const fn(
+            self: *const IRTCBuddyGroup,
+            ppEnum: ?*?*IRTCEnumBuddies,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Buddies: *const fn(
+            self: *const IRTCBuddyGroup,
+            ppCollection: ?*?*IRTCCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Data: *const fn(
+            self: *const IRTCBuddyGroup,
+            pbstrData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Data: *const fn(
+            self: *const IRTCBuddyGroup,
+            bstrData: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Profile: *const fn(
+            self: *const IRTCBuddyGroup,
+            ppProfile: ?*?*IRTCProfile2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IRTCBuddyGroup, pbstrGroupName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrGroupName);
+    }
+    pub fn put_Name(self: *const IRTCBuddyGroup, bstrGroupName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, bstrGroupName);
+    }
+    pub fn AddBuddy(self: *const IRTCBuddyGroup, pBuddy: ?*IRTCBuddy) callconv(.@"inline") HRESULT {
+        return self.vtable.AddBuddy(self, pBuddy);
+    }
+    pub fn RemoveBuddy(self: *const IRTCBuddyGroup, pBuddy: ?*IRTCBuddy) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveBuddy(self, pBuddy);
+    }
+    pub fn EnumerateBuddies(self: *const IRTCBuddyGroup, ppEnum: ?*?*IRTCEnumBuddies) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumerateBuddies(self, ppEnum);
+    }
+    pub fn get_Buddies(self: *const IRTCBuddyGroup, ppCollection: ?*?*IRTCCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Buddies(self, ppCollection);
+    }
+    pub fn get_Data(self: *const IRTCBuddyGroup, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Data(self, pbstrData);
+    }
+    pub fn put_Data(self: *const IRTCBuddyGroup, bstrData: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Data(self, bstrData);
+    }
+    pub fn get_Profile(self: *const IRTCBuddyGroup, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Profile(self, ppProfile);
+    }
 };
-pub const RTCWET_WATCHER_ADD = RTC_WATCHER_EVENT_TYPE.ADD;
-pub const RTCWET_WATCHER_REMOVE = RTC_WATCHER_EVENT_TYPE.REMOVE;
-pub const RTCWET_WATCHER_UPDATE = RTC_WATCHER_EVENT_TYPE.UPDATE;
-pub const RTCWET_WATCHER_OFFERING = RTC_WATCHER_EVENT_TYPE.OFFERING;
-pub const RTCWET_WATCHER_ROAMED = RTC_WATCHER_EVENT_TYPE.ROAMED;
 
-pub const RTC_GROUP_EVENT_TYPE = enum(i32) {
-    ADD = 0,
-    REMOVE = 1,
-    UPDATE = 2,
-    BUDDY_ADD = 3,
-    BUDDY_REMOVE = 4,
-    ROAMED = 5,
+const IID_IRTCBuddyGroupEvent_Value = Guid.initString("3a79e1d1-b736-4414-96f8-bbc7f08863e4");
+pub const IID_IRTCBuddyGroupEvent = &IID_IRTCBuddyGroupEvent_Value;
+pub const IRTCBuddyGroupEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventType: *const fn(
+            self: *const IRTCBuddyGroupEvent,
+            pEventType: ?*RTC_GROUP_EVENT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Group: *const fn(
+            self: *const IRTCBuddyGroupEvent,
+            ppGroup: ?*?*IRTCBuddyGroup,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Buddy: *const fn(
+            self: *const IRTCBuddyGroupEvent,
+            ppBuddy: ?*?*IRTCBuddy2,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCBuddyGroupEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EventType(self: *const IRTCBuddyGroupEvent, pEventType: ?*RTC_GROUP_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, pEventType);
+    }
+    pub fn get_Group(self: *const IRTCBuddyGroupEvent, ppGroup: ?*?*IRTCBuddyGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Group(self, ppGroup);
+    }
+    pub fn get_Buddy(self: *const IRTCBuddyGroupEvent, ppBuddy: ?*?*IRTCBuddy2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Buddy(self, ppBuddy);
+    }
+    pub fn get_StatusCode(self: *const IRTCBuddyGroupEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
 };
-pub const RTCGET_GROUP_ADD = RTC_GROUP_EVENT_TYPE.ADD;
-pub const RTCGET_GROUP_REMOVE = RTC_GROUP_EVENT_TYPE.REMOVE;
-pub const RTCGET_GROUP_UPDATE = RTC_GROUP_EVENT_TYPE.UPDATE;
-pub const RTCGET_GROUP_BUDDY_ADD = RTC_GROUP_EVENT_TYPE.BUDDY_ADD;
-pub const RTCGET_GROUP_BUDDY_REMOVE = RTC_GROUP_EVENT_TYPE.BUDDY_REMOVE;
-pub const RTCGET_GROUP_ROAMED = RTC_GROUP_EVENT_TYPE.ROAMED;
-
-pub const RTC_TERMINATE_REASON = enum(i32) {
-    NORMAL = 0,
-    DND = 1,
-    BUSY = 2,
-    REJECT = 3,
-    TIMEOUT = 4,
-    SHUTDOWN = 5,
-    INSUFFICIENT_SECURITY_LEVEL = 6,
-    NOT_SUPPORTED = 7,
-};
-pub const RTCTR_NORMAL = RTC_TERMINATE_REASON.NORMAL;
-pub const RTCTR_DND = RTC_TERMINATE_REASON.DND;
-pub const RTCTR_BUSY = RTC_TERMINATE_REASON.BUSY;
-pub const RTCTR_REJECT = RTC_TERMINATE_REASON.REJECT;
-pub const RTCTR_TIMEOUT = RTC_TERMINATE_REASON.TIMEOUT;
-pub const RTCTR_SHUTDOWN = RTC_TERMINATE_REASON.SHUTDOWN;
-pub const RTCTR_INSUFFICIENT_SECURITY_LEVEL = RTC_TERMINATE_REASON.INSUFFICIENT_SECURITY_LEVEL;
-pub const RTCTR_NOT_SUPPORTED = RTC_TERMINATE_REASON.NOT_SUPPORTED;
-
-pub const RTC_REGISTRATION_STATE = enum(i32) {
-    NOT_REGISTERED = 0,
-    REGISTERING = 1,
-    REGISTERED = 2,
-    REJECTED = 3,
-    UNREGISTERING = 4,
-    ERROR = 5,
-    LOGGED_OFF = 6,
-    LOCAL_PA_LOGGED_OFF = 7,
-    REMOTE_PA_LOGGED_OFF = 8,
-};
-pub const RTCRS_NOT_REGISTERED = RTC_REGISTRATION_STATE.NOT_REGISTERED;
-pub const RTCRS_REGISTERING = RTC_REGISTRATION_STATE.REGISTERING;
-pub const RTCRS_REGISTERED = RTC_REGISTRATION_STATE.REGISTERED;
-pub const RTCRS_REJECTED = RTC_REGISTRATION_STATE.REJECTED;
-pub const RTCRS_UNREGISTERING = RTC_REGISTRATION_STATE.UNREGISTERING;
-pub const RTCRS_ERROR = RTC_REGISTRATION_STATE.ERROR;
-pub const RTCRS_LOGGED_OFF = RTC_REGISTRATION_STATE.LOGGED_OFF;
-pub const RTCRS_LOCAL_PA_LOGGED_OFF = RTC_REGISTRATION_STATE.LOCAL_PA_LOGGED_OFF;
-pub const RTCRS_REMOTE_PA_LOGGED_OFF = RTC_REGISTRATION_STATE.REMOTE_PA_LOGGED_OFF;
-
-pub const RTC_SESSION_STATE = enum(i32) {
-    IDLE = 0,
-    INCOMING = 1,
-    ANSWERING = 2,
-    INPROGRESS = 3,
-    CONNECTED = 4,
-    DISCONNECTED = 5,
-    HOLD = 6,
-    REFER = 7,
-};
-pub const RTCSS_IDLE = RTC_SESSION_STATE.IDLE;
-pub const RTCSS_INCOMING = RTC_SESSION_STATE.INCOMING;
-pub const RTCSS_ANSWERING = RTC_SESSION_STATE.ANSWERING;
-pub const RTCSS_INPROGRESS = RTC_SESSION_STATE.INPROGRESS;
-pub const RTCSS_CONNECTED = RTC_SESSION_STATE.CONNECTED;
-pub const RTCSS_DISCONNECTED = RTC_SESSION_STATE.DISCONNECTED;
-pub const RTCSS_HOLD = RTC_SESSION_STATE.HOLD;
-pub const RTCSS_REFER = RTC_SESSION_STATE.REFER;
-
-pub const RTC_PARTICIPANT_STATE = enum(i32) {
-    IDLE = 0,
-    PENDING = 1,
-    INCOMING = 2,
-    ANSWERING = 3,
-    INPROGRESS = 4,
-    ALERTING = 5,
-    CONNECTED = 6,
-    DISCONNECTING = 7,
-    DISCONNECTED = 8,
-};
-pub const RTCPS_IDLE = RTC_PARTICIPANT_STATE.IDLE;
-pub const RTCPS_PENDING = RTC_PARTICIPANT_STATE.PENDING;
-pub const RTCPS_INCOMING = RTC_PARTICIPANT_STATE.INCOMING;
-pub const RTCPS_ANSWERING = RTC_PARTICIPANT_STATE.ANSWERING;
-pub const RTCPS_INPROGRESS = RTC_PARTICIPANT_STATE.INPROGRESS;
-pub const RTCPS_ALERTING = RTC_PARTICIPANT_STATE.ALERTING;
-pub const RTCPS_CONNECTED = RTC_PARTICIPANT_STATE.CONNECTED;
-pub const RTCPS_DISCONNECTING = RTC_PARTICIPANT_STATE.DISCONNECTING;
-pub const RTCPS_DISCONNECTED = RTC_PARTICIPANT_STATE.DISCONNECTED;
-
-pub const RTC_WATCHER_STATE = enum(i32) {
-    UNKNOWN = 0,
-    OFFERING = 1,
-    ALLOWED = 2,
-    BLOCKED = 3,
-    DENIED = 4,
-    PROMPT = 5,
-};
-pub const RTCWS_UNKNOWN = RTC_WATCHER_STATE.UNKNOWN;
-pub const RTCWS_OFFERING = RTC_WATCHER_STATE.OFFERING;
-pub const RTCWS_ALLOWED = RTC_WATCHER_STATE.ALLOWED;
-pub const RTCWS_BLOCKED = RTC_WATCHER_STATE.BLOCKED;
-pub const RTCWS_DENIED = RTC_WATCHER_STATE.DENIED;
-pub const RTCWS_PROMPT = RTC_WATCHER_STATE.PROMPT;
-
-pub const RTC_ACE_SCOPE = enum(i32) {
-    USER = 0,
-    DOMAIN = 1,
-    ALL = 2,
-};
-pub const RTCAS_SCOPE_USER = RTC_ACE_SCOPE.USER;
-pub const RTCAS_SCOPE_DOMAIN = RTC_ACE_SCOPE.DOMAIN;
-pub const RTCAS_SCOPE_ALL = RTC_ACE_SCOPE.ALL;
-
-pub const RTC_OFFER_WATCHER_MODE = enum(i32) {
-    OFFER_WATCHER_EVENT = 0,
-    AUTOMATICALLY_ADD_WATCHER = 1,
-};
-pub const RTCOWM_OFFER_WATCHER_EVENT = RTC_OFFER_WATCHER_MODE.OFFER_WATCHER_EVENT;
-pub const RTCOWM_AUTOMATICALLY_ADD_WATCHER = RTC_OFFER_WATCHER_MODE.AUTOMATICALLY_ADD_WATCHER;
-
-pub const RTC_WATCHER_MATCH_MODE = enum(i32) {
-    EXACT_MATCH = 0,
-    BEST_ACE_MATCH = 1,
-};
-pub const RTCWMM_EXACT_MATCH = RTC_WATCHER_MATCH_MODE.EXACT_MATCH;
-pub const RTCWMM_BEST_ACE_MATCH = RTC_WATCHER_MATCH_MODE.BEST_ACE_MATCH;
-
-pub const RTC_PRIVACY_MODE = enum(i32) {
-    BLOCK_LIST_EXCLUDED = 0,
-    ALLOW_LIST_ONLY = 1,
-};
-pub const RTCPM_BLOCK_LIST_EXCLUDED = RTC_PRIVACY_MODE.BLOCK_LIST_EXCLUDED;
-pub const RTCPM_ALLOW_LIST_ONLY = RTC_PRIVACY_MODE.ALLOW_LIST_ONLY;
-
-pub const RTC_SESSION_TYPE = enum(i32) {
-    PC_TO_PC = 0,
-    PC_TO_PHONE = 1,
-    PHONE_TO_PHONE = 2,
-    IM = 3,
-    MULTIPARTY_IM = 4,
-    APPLICATION = 5,
-};
-pub const RTCST_PC_TO_PC = RTC_SESSION_TYPE.PC_TO_PC;
-pub const RTCST_PC_TO_PHONE = RTC_SESSION_TYPE.PC_TO_PHONE;
-pub const RTCST_PHONE_TO_PHONE = RTC_SESSION_TYPE.PHONE_TO_PHONE;
-pub const RTCST_IM = RTC_SESSION_TYPE.IM;
-pub const RTCST_MULTIPARTY_IM = RTC_SESSION_TYPE.MULTIPARTY_IM;
-pub const RTCST_APPLICATION = RTC_SESSION_TYPE.APPLICATION;
-
-pub const RTC_PRESENCE_STATUS = enum(i32) {
-    OFFLINE = 0,
-    ONLINE = 1,
-    AWAY = 2,
-    IDLE = 3,
-    BUSY = 4,
-    BE_RIGHT_BACK = 5,
-    ON_THE_PHONE = 6,
-    OUT_TO_LUNCH = 7,
-};
-pub const RTCXS_PRESENCE_OFFLINE = RTC_PRESENCE_STATUS.OFFLINE;
-pub const RTCXS_PRESENCE_ONLINE = RTC_PRESENCE_STATUS.ONLINE;
-pub const RTCXS_PRESENCE_AWAY = RTC_PRESENCE_STATUS.AWAY;
-pub const RTCXS_PRESENCE_IDLE = RTC_PRESENCE_STATUS.IDLE;
-pub const RTCXS_PRESENCE_BUSY = RTC_PRESENCE_STATUS.BUSY;
-pub const RTCXS_PRESENCE_BE_RIGHT_BACK = RTC_PRESENCE_STATUS.BE_RIGHT_BACK;
-pub const RTCXS_PRESENCE_ON_THE_PHONE = RTC_PRESENCE_STATUS.ON_THE_PHONE;
-pub const RTCXS_PRESENCE_OUT_TO_LUNCH = RTC_PRESENCE_STATUS.OUT_TO_LUNCH;
-
-pub const RTC_BUDDY_SUBSCRIPTION_TYPE = enum(i32) {
-    SUBSCRIBED = 0,
-    ALWAYS_OFFLINE = 1,
-    ALWAYS_ONLINE = 2,
-    POLL = 3,
-};
-pub const RTCBT_SUBSCRIBED = RTC_BUDDY_SUBSCRIPTION_TYPE.SUBSCRIBED;
-pub const RTCBT_ALWAYS_OFFLINE = RTC_BUDDY_SUBSCRIPTION_TYPE.ALWAYS_OFFLINE;
-pub const RTCBT_ALWAYS_ONLINE = RTC_BUDDY_SUBSCRIPTION_TYPE.ALWAYS_ONLINE;
-pub const RTCBT_POLL = RTC_BUDDY_SUBSCRIPTION_TYPE.POLL;
-
-pub const RTC_MEDIA_EVENT_TYPE = enum(i32) {
-    STOPPED = 0,
-    STARTED = 1,
-    FAILED = 2,
-};
-pub const RTCMET_STOPPED = RTC_MEDIA_EVENT_TYPE.STOPPED;
-pub const RTCMET_STARTED = RTC_MEDIA_EVENT_TYPE.STARTED;
-pub const RTCMET_FAILED = RTC_MEDIA_EVENT_TYPE.FAILED;
-
-pub const RTC_MEDIA_EVENT_REASON = enum(i32) {
-    NORMAL = 0,
-    HOLD = 1,
-    TIMEOUT = 2,
-    BAD_DEVICE = 3,
-    NO_PORT = 4,
-    PORT_MAPPING_FAILED = 5,
-    REMOTE_REQUEST = 6,
-};
-pub const RTCMER_NORMAL = RTC_MEDIA_EVENT_REASON.NORMAL;
-pub const RTCMER_HOLD = RTC_MEDIA_EVENT_REASON.HOLD;
-pub const RTCMER_TIMEOUT = RTC_MEDIA_EVENT_REASON.TIMEOUT;
-pub const RTCMER_BAD_DEVICE = RTC_MEDIA_EVENT_REASON.BAD_DEVICE;
-pub const RTCMER_NO_PORT = RTC_MEDIA_EVENT_REASON.NO_PORT;
-pub const RTCMER_PORT_MAPPING_FAILED = RTC_MEDIA_EVENT_REASON.PORT_MAPPING_FAILED;
-pub const RTCMER_REMOTE_REQUEST = RTC_MEDIA_EVENT_REASON.REMOTE_REQUEST;
-
-pub const RTC_MESSAGING_EVENT_TYPE = enum(i32) {
-    MESSAGE = 0,
-    STATUS = 1,
-};
-pub const RTCMSET_MESSAGE = RTC_MESSAGING_EVENT_TYPE.MESSAGE;
-pub const RTCMSET_STATUS = RTC_MESSAGING_EVENT_TYPE.STATUS;
-
-pub const RTC_MESSAGING_USER_STATUS = enum(i32) {
-    IDLE = 0,
-    TYPING = 1,
-};
-pub const RTCMUS_IDLE = RTC_MESSAGING_USER_STATUS.IDLE;
-pub const RTCMUS_TYPING = RTC_MESSAGING_USER_STATUS.TYPING;
-
-pub const RTC_DTMF = enum(i32) {
-    @"0" = 0,
-    @"1" = 1,
-    @"2" = 2,
-    @"3" = 3,
-    @"4" = 4,
-    @"5" = 5,
-    @"6" = 6,
-    @"7" = 7,
-    @"8" = 8,
-    @"9" = 9,
-    STAR = 10,
-    POUND = 11,
-    A = 12,
-    B = 13,
-    C = 14,
-    D = 15,
-    FLASH = 16,
-};
-pub const RTC_DTMF_0 = RTC_DTMF.@"0";
-pub const RTC_DTMF_1 = RTC_DTMF.@"1";
-pub const RTC_DTMF_2 = RTC_DTMF.@"2";
-pub const RTC_DTMF_3 = RTC_DTMF.@"3";
-pub const RTC_DTMF_4 = RTC_DTMF.@"4";
-pub const RTC_DTMF_5 = RTC_DTMF.@"5";
-pub const RTC_DTMF_6 = RTC_DTMF.@"6";
-pub const RTC_DTMF_7 = RTC_DTMF.@"7";
-pub const RTC_DTMF_8 = RTC_DTMF.@"8";
-pub const RTC_DTMF_9 = RTC_DTMF.@"9";
-pub const RTC_DTMF_STAR = RTC_DTMF.STAR;
-pub const RTC_DTMF_POUND = RTC_DTMF.POUND;
-pub const RTC_DTMF_A = RTC_DTMF.A;
-pub const RTC_DTMF_B = RTC_DTMF.B;
-pub const RTC_DTMF_C = RTC_DTMF.C;
-pub const RTC_DTMF_D = RTC_DTMF.D;
-pub const RTC_DTMF_FLASH = RTC_DTMF.FLASH;
-
-pub const RTC_PROVIDER_URI = enum(i32) {
-    HOMEPAGE = 0,
-    HELPDESK = 1,
-    PERSONALACCOUNT = 2,
-    DISPLAYDURINGCALL = 3,
-    DISPLAYDURINGIDLE = 4,
-};
-pub const RTCPU_URIHOMEPAGE = RTC_PROVIDER_URI.HOMEPAGE;
-pub const RTCPU_URIHELPDESK = RTC_PROVIDER_URI.HELPDESK;
-pub const RTCPU_URIPERSONALACCOUNT = RTC_PROVIDER_URI.PERSONALACCOUNT;
-pub const RTCPU_URIDISPLAYDURINGCALL = RTC_PROVIDER_URI.DISPLAYDURINGCALL;
-pub const RTCPU_URIDISPLAYDURINGIDLE = RTC_PROVIDER_URI.DISPLAYDURINGIDLE;
-
-pub const RTC_RING_TYPE = enum(i32) {
-    PHONE = 0,
-    MESSAGE = 1,
-    RINGBACK = 2,
-};
-pub const RTCRT_PHONE = RTC_RING_TYPE.PHONE;
-pub const RTCRT_MESSAGE = RTC_RING_TYPE.MESSAGE;
-pub const RTCRT_RINGBACK = RTC_RING_TYPE.RINGBACK;
-
-pub const RTC_T120_APPLET = enum(i32) {
-    WHITEBOARD = 0,
-    APPSHARING = 1,
-};
-pub const RTCTA_WHITEBOARD = RTC_T120_APPLET.WHITEBOARD;
-pub const RTCTA_APPSHARING = RTC_T120_APPLET.APPSHARING;
-
-pub const RTC_PORT_TYPE = enum(i32) {
-    AUDIO_RTP = 0,
-    AUDIO_RTCP = 1,
-    VIDEO_RTP = 2,
-    VIDEO_RTCP = 3,
-    SIP = 4,
-};
-pub const RTCPT_AUDIO_RTP = RTC_PORT_TYPE.AUDIO_RTP;
-pub const RTCPT_AUDIO_RTCP = RTC_PORT_TYPE.AUDIO_RTCP;
-pub const RTCPT_VIDEO_RTP = RTC_PORT_TYPE.VIDEO_RTP;
-pub const RTCPT_VIDEO_RTCP = RTC_PORT_TYPE.VIDEO_RTCP;
-pub const RTCPT_SIP = RTC_PORT_TYPE.SIP;
-
-pub const RTC_USER_SEARCH_COLUMN = enum(i32) {
-    URI = 0,
-    DISPLAYNAME = 1,
-    TITLE = 2,
-    OFFICE = 3,
-    PHONE = 4,
-    COMPANY = 5,
-    CITY = 6,
-    STATE = 7,
-    COUNTRY = 8,
-    EMAIL = 9,
-};
-pub const RTCUSC_URI = RTC_USER_SEARCH_COLUMN.URI;
-pub const RTCUSC_DISPLAYNAME = RTC_USER_SEARCH_COLUMN.DISPLAYNAME;
-pub const RTCUSC_TITLE = RTC_USER_SEARCH_COLUMN.TITLE;
-pub const RTCUSC_OFFICE = RTC_USER_SEARCH_COLUMN.OFFICE;
-pub const RTCUSC_PHONE = RTC_USER_SEARCH_COLUMN.PHONE;
-pub const RTCUSC_COMPANY = RTC_USER_SEARCH_COLUMN.COMPANY;
-pub const RTCUSC_CITY = RTC_USER_SEARCH_COLUMN.CITY;
-pub const RTCUSC_STATE = RTC_USER_SEARCH_COLUMN.STATE;
-pub const RTCUSC_COUNTRY = RTC_USER_SEARCH_COLUMN.COUNTRY;
-pub const RTCUSC_EMAIL = RTC_USER_SEARCH_COLUMN.EMAIL;
-
-pub const RTC_USER_SEARCH_PREFERENCE = enum(i32) {
-    MAX_MATCHES = 0,
-    TIME_LIMIT = 1,
-};
-pub const RTCUSP_MAX_MATCHES = RTC_USER_SEARCH_PREFERENCE.MAX_MATCHES;
-pub const RTCUSP_TIME_LIMIT = RTC_USER_SEARCH_PREFERENCE.TIME_LIMIT;
-
-pub const RTC_ROAMING_EVENT_TYPE = enum(i32) {
-    BUDDY_ROAMING = 0,
-    WATCHER_ROAMING = 1,
-    PRESENCE_ROAMING = 2,
-    PROFILE_ROAMING = 3,
-    WPENDING_ROAMING = 4,
-};
-pub const RTCRET_BUDDY_ROAMING = RTC_ROAMING_EVENT_TYPE.BUDDY_ROAMING;
-pub const RTCRET_WATCHER_ROAMING = RTC_ROAMING_EVENT_TYPE.WATCHER_ROAMING;
-pub const RTCRET_PRESENCE_ROAMING = RTC_ROAMING_EVENT_TYPE.PRESENCE_ROAMING;
-pub const RTCRET_PROFILE_ROAMING = RTC_ROAMING_EVENT_TYPE.PROFILE_ROAMING;
-pub const RTCRET_WPENDING_ROAMING = RTC_ROAMING_EVENT_TYPE.WPENDING_ROAMING;
-
-pub const RTC_PROFILE_EVENT_TYPE = enum(i32) {
-    GET = 0,
-    UPDATE = 1,
-};
-pub const RTCPFET_PROFILE_GET = RTC_PROFILE_EVENT_TYPE.GET;
-pub const RTCPFET_PROFILE_UPDATE = RTC_PROFILE_EVENT_TYPE.UPDATE;
-
-pub const RTC_ANSWER_MODE = enum(i32) {
-    OFFER_SESSION_EVENT = 0,
-    AUTOMATICALLY_ACCEPT = 1,
-    AUTOMATICALLY_REJECT = 2,
-    NOT_SUPPORTED = 3,
-};
-pub const RTCAM_OFFER_SESSION_EVENT = RTC_ANSWER_MODE.OFFER_SESSION_EVENT;
-pub const RTCAM_AUTOMATICALLY_ACCEPT = RTC_ANSWER_MODE.AUTOMATICALLY_ACCEPT;
-pub const RTCAM_AUTOMATICALLY_REJECT = RTC_ANSWER_MODE.AUTOMATICALLY_REJECT;
-pub const RTCAM_NOT_SUPPORTED = RTC_ANSWER_MODE.NOT_SUPPORTED;
-
-pub const RTC_SESSION_REFER_STATUS = enum(i32) {
-    REFERRING = 0,
-    ACCEPTED = 1,
-    ERROR = 2,
-    REJECTED = 3,
-    DROPPED = 4,
-    DONE = 5,
-};
-pub const RTCSRS_REFERRING = RTC_SESSION_REFER_STATUS.REFERRING;
-pub const RTCSRS_ACCEPTED = RTC_SESSION_REFER_STATUS.ACCEPTED;
-pub const RTCSRS_ERROR = RTC_SESSION_REFER_STATUS.ERROR;
-pub const RTCSRS_REJECTED = RTC_SESSION_REFER_STATUS.REJECTED;
-pub const RTCSRS_DROPPED = RTC_SESSION_REFER_STATUS.DROPPED;
-pub const RTCSRS_DONE = RTC_SESSION_REFER_STATUS.DONE;
-
-pub const RTC_PRESENCE_PROPERTY = enum(i32) {
-    PHONENUMBER = 0,
-    DISPLAYNAME = 1,
-    EMAIL = 2,
-    DEVICE_NAME = 3,
-    MULTIPLE = 4,
-};
-pub const RTCPP_PHONENUMBER = RTC_PRESENCE_PROPERTY.PHONENUMBER;
-pub const RTCPP_DISPLAYNAME = RTC_PRESENCE_PROPERTY.DISPLAYNAME;
-pub const RTCPP_EMAIL = RTC_PRESENCE_PROPERTY.EMAIL;
-pub const RTCPP_DEVICE_NAME = RTC_PRESENCE_PROPERTY.DEVICE_NAME;
-pub const RTCPP_MULTIPLE = RTC_PRESENCE_PROPERTY.MULTIPLE;
-
-pub const RTC_SECURITY_TYPE = enum(i32) {
-    AUDIO_VIDEO_MEDIA_ENCRYPTION = 0,
-    T120_MEDIA_ENCRYPTION = 1,
-};
-pub const RTCSECT_AUDIO_VIDEO_MEDIA_ENCRYPTION = RTC_SECURITY_TYPE.AUDIO_VIDEO_MEDIA_ENCRYPTION;
-pub const RTCSECT_T120_MEDIA_ENCRYPTION = RTC_SECURITY_TYPE.T120_MEDIA_ENCRYPTION;
-
-pub const RTC_SECURITY_LEVEL = enum(i32) {
-    UNSUPPORTED = 1,
-    SUPPORTED = 2,
-    REQUIRED = 3,
-};
-pub const RTCSECL_UNSUPPORTED = RTC_SECURITY_LEVEL.UNSUPPORTED;
-pub const RTCSECL_SUPPORTED = RTC_SECURITY_LEVEL.SUPPORTED;
-pub const RTCSECL_REQUIRED = RTC_SECURITY_LEVEL.REQUIRED;
-
-pub const RTC_REINVITE_STATE = enum(i32) {
-    INCOMING = 0,
-    SUCCEEDED = 1,
-    FAIL = 2,
-};
-pub const RTCRIN_INCOMING = RTC_REINVITE_STATE.INCOMING;
-pub const RTCRIN_SUCCEEDED = RTC_REINVITE_STATE.SUCCEEDED;
-pub const RTCRIN_FAIL = RTC_REINVITE_STATE.FAIL;
 
 const IID_IRTCClient_Value = Guid.initString("07829e45-9a34-408e-a011-bddf13487cd1");
 pub const IID_IRTCClient = &IID_IRTCClient_Value;
@@ -1244,6 +1044,68 @@ pub const IRTCClient2 = extern union {
     }
 };
 
+const IID_IRTCClientEvent_Value = Guid.initString("2b493b7a-3cba-4170-9c8b-76a9dacdd644");
+pub const IID_IRTCClientEvent = &IID_IRTCClientEvent_Value;
+pub const IRTCClientEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventType: *const fn(
+            self: *const IRTCClientEvent,
+            penEventType: ?*RTC_CLIENT_EVENT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Client: *const fn(
+            self: *const IRTCClientEvent,
+            ppClient: ?*?*IRTCClient,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EventType(self: *const IRTCClientEvent, penEventType: ?*RTC_CLIENT_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, penEventType);
+    }
+    pub fn get_Client(self: *const IRTCClientEvent, ppClient: ?*?*IRTCClient) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Client(self, ppClient);
+    }
+};
+
+const IID_IRTCClientPortManagement_Value = Guid.initString("d5df3f03-4bde-4417-aefe-71177bdaea66");
+pub const IID_IRTCClientPortManagement = &IID_IRTCClientPortManagement_Value;
+pub const IRTCClientPortManagement = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        StartListenAddressAndPort: *const fn(
+            self: *const IRTCClientPortManagement,
+            bstrInternalLocalAddress: ?BSTR,
+            lInternalLocalPort: i32,
+        ) callconv(.winapi) HRESULT,
+        StopListenAddressAndPort: *const fn(
+            self: *const IRTCClientPortManagement,
+            bstrInternalLocalAddress: ?BSTR,
+            lInternalLocalPort: i32,
+        ) callconv(.winapi) HRESULT,
+        GetPortRange: *const fn(
+            self: *const IRTCClientPortManagement,
+            enPortType: RTC_PORT_TYPE,
+            plMinValue: ?*i32,
+            plMaxValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn StartListenAddressAndPort(self: *const IRTCClientPortManagement, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.StartListenAddressAndPort(self, bstrInternalLocalAddress, lInternalLocalPort);
+    }
+    pub fn StopListenAddressAndPort(self: *const IRTCClientPortManagement, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.StopListenAddressAndPort(self, bstrInternalLocalAddress, lInternalLocalPort);
+    }
+    pub fn GetPortRange(self: *const IRTCClientPortManagement, enPortType: RTC_PORT_TYPE, plMinValue: ?*i32, plMaxValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPortRange(self, enPortType, plMinValue, plMaxValue);
+    }
+};
+
 const IID_IRTCClientPresence_Value = Guid.initString("11c3cbcc-0744-42d1-968a-51aa1bb274c6");
 pub const IID_IRTCClientPresence = &IID_IRTCClientPresence_Value;
 pub const IRTCClientPresence = extern union {
@@ -1635,6 +1497,944 @@ pub const IRTCClientProvisioning2 = extern union {
     }
 };
 
+const IID_IRTCCollection_Value = Guid.initString("ec7c8096-b918-4044-94f1-e4fba0361d5c");
+pub const IID_IRTCCollection = &IID_IRTCCollection_Value;
+pub const IRTCCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IRTCCollection,
+            lCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IRTCCollection,
+            Index: i32,
+            pVariant: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IRTCCollection,
+            ppNewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IRTCCollection, lCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, lCount);
+    }
+    pub fn get_Item(self: *const IRTCCollection, Index: i32, pVariant: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, Index, pVariant);
+    }
+    pub fn get__NewEnum(self: *const IRTCCollection, ppNewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppNewEnum);
+    }
+};
+
+const IID_IRTCDispatchEventNotification_Value = Guid.initString("176ddfbe-fec0-4d55-bc87-84cff1ef7f91");
+pub const IID_IRTCDispatchEventNotification = &IID_IRTCDispatchEventNotification_Value;
+pub const IRTCDispatchEventNotification = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+const IID_IRTCEnumBuddies_Value = Guid.initString("f7296917-5569-4b3b-b3af-98d1144b2b87");
+pub const IID_IRTCEnumBuddies = &IID_IRTCEnumBuddies_Value;
+pub const IRTCEnumBuddies = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IRTCEnumBuddies,
+            celt: u32,
+            ppElements: [*]?*IRTCBuddy,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IRTCEnumBuddies,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IRTCEnumBuddies,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IRTCEnumBuddies,
+            ppEnum: ?*?*IRTCEnumBuddies,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IRTCEnumBuddies, celt: u32, ppElements: [*]?*IRTCBuddy, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
+    }
+    pub fn Reset(self: *const IRTCEnumBuddies) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IRTCEnumBuddies, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Clone(self: *const IRTCEnumBuddies, ppEnum: ?*?*IRTCEnumBuddies) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
+
+const IID_IRTCEnumGroups_Value = Guid.initString("742378d6-a141-4415-8f27-35d99076cf5d");
+pub const IID_IRTCEnumGroups = &IID_IRTCEnumGroups_Value;
+pub const IRTCEnumGroups = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IRTCEnumGroups,
+            celt: u32,
+            ppElements: [*]?*IRTCBuddyGroup,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IRTCEnumGroups,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IRTCEnumGroups,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IRTCEnumGroups,
+            ppEnum: ?*?*IRTCEnumGroups,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IRTCEnumGroups, celt: u32, ppElements: [*]?*IRTCBuddyGroup, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
+    }
+    pub fn Reset(self: *const IRTCEnumGroups) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IRTCEnumGroups, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Clone(self: *const IRTCEnumGroups, ppEnum: ?*?*IRTCEnumGroups) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
+
+const IID_IRTCEnumParticipants_Value = Guid.initString("fcd56f29-4a4f-41b2-ba5c-f5bccc060bf6");
+pub const IID_IRTCEnumParticipants = &IID_IRTCEnumParticipants_Value;
+pub const IRTCEnumParticipants = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IRTCEnumParticipants,
+            celt: u32,
+            ppElements: [*]?*IRTCParticipant,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IRTCEnumParticipants,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IRTCEnumParticipants,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IRTCEnumParticipants,
+            ppEnum: ?*?*IRTCEnumParticipants,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IRTCEnumParticipants, celt: u32, ppElements: [*]?*IRTCParticipant, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
+    }
+    pub fn Reset(self: *const IRTCEnumParticipants) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IRTCEnumParticipants, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Clone(self: *const IRTCEnumParticipants, ppEnum: ?*?*IRTCEnumParticipants) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
+
+const IID_IRTCEnumPresenceDevices_Value = Guid.initString("708c2ab7-8bf8-42f8-8c7d-635197ad5539");
+pub const IID_IRTCEnumPresenceDevices = &IID_IRTCEnumPresenceDevices_Value;
+pub const IRTCEnumPresenceDevices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IRTCEnumPresenceDevices,
+            celt: u32,
+            ppElements: [*]?*IRTCPresenceDevice,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IRTCEnumPresenceDevices,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IRTCEnumPresenceDevices,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IRTCEnumPresenceDevices,
+            ppEnum: ?*?*IRTCEnumPresenceDevices,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IRTCEnumPresenceDevices, celt: u32, ppElements: [*]?*IRTCPresenceDevice, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
+    }
+    pub fn Reset(self: *const IRTCEnumPresenceDevices) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IRTCEnumPresenceDevices, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Clone(self: *const IRTCEnumPresenceDevices, ppEnum: ?*?*IRTCEnumPresenceDevices) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
+
+const IID_IRTCEnumProfiles_Value = Guid.initString("29b7c41c-ed82-4bca-84ad-39d5101b58e3");
+pub const IID_IRTCEnumProfiles = &IID_IRTCEnumProfiles_Value;
+pub const IRTCEnumProfiles = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IRTCEnumProfiles,
+            celt: u32,
+            ppElements: [*]?*IRTCProfile,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IRTCEnumProfiles,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IRTCEnumProfiles,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IRTCEnumProfiles,
+            ppEnum: ?*?*IRTCEnumProfiles,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IRTCEnumProfiles, celt: u32, ppElements: [*]?*IRTCProfile, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
+    }
+    pub fn Reset(self: *const IRTCEnumProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IRTCEnumProfiles, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Clone(self: *const IRTCEnumProfiles, ppEnum: ?*?*IRTCEnumProfiles) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
+
+const IID_IRTCEnumUserSearchResults_Value = Guid.initString("83d4d877-aa5d-4a5b-8d0e-002a8067e0e8");
+pub const IID_IRTCEnumUserSearchResults = &IID_IRTCEnumUserSearchResults_Value;
+pub const IRTCEnumUserSearchResults = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IRTCEnumUserSearchResults,
+            celt: u32,
+            ppElements: [*]?*IRTCUserSearchResult,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IRTCEnumUserSearchResults,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IRTCEnumUserSearchResults,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IRTCEnumUserSearchResults,
+            ppEnum: ?*?*IRTCEnumUserSearchResults,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IRTCEnumUserSearchResults, celt: u32, ppElements: [*]?*IRTCUserSearchResult, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
+    }
+    pub fn Reset(self: *const IRTCEnumUserSearchResults) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IRTCEnumUserSearchResults, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Clone(self: *const IRTCEnumUserSearchResults, ppEnum: ?*?*IRTCEnumUserSearchResults) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
+
+const IID_IRTCEnumWatchers_Value = Guid.initString("a87d55d7-db74-4ed1-9ca4-77a0e41b413e");
+pub const IID_IRTCEnumWatchers = &IID_IRTCEnumWatchers_Value;
+pub const IRTCEnumWatchers = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IRTCEnumWatchers,
+            celt: u32,
+            ppElements: [*]?*IRTCWatcher,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IRTCEnumWatchers,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IRTCEnumWatchers,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IRTCEnumWatchers,
+            ppEnum: ?*?*IRTCEnumWatchers,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IRTCEnumWatchers, celt: u32, ppElements: [*]?*IRTCWatcher, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, ppElements, pceltFetched);
+    }
+    pub fn Reset(self: *const IRTCEnumWatchers) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IRTCEnumWatchers, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Clone(self: *const IRTCEnumWatchers, ppEnum: ?*?*IRTCEnumWatchers) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+};
+
+const IID_IRTCEventNotification_Value = Guid.initString("13fa24c7-5748-4b21-91f5-7397609ce747");
+pub const IID_IRTCEventNotification = &IID_IRTCEventNotification_Value;
+pub const IRTCEventNotification = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Event: *const fn(
+            self: *const IRTCEventNotification,
+            RTCEvent: RTC_EVENT,
+            pEvent: ?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Event(self: *const IRTCEventNotification, RTCEvent: RTC_EVENT, pEvent: ?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.Event(self, RTCEvent, pEvent);
+    }
+};
+
+const IID_IRTCInfoEvent_Value = Guid.initString("4e1d68ae-1912-4f49-b2c3-594fadfd425f");
+pub const IID_IRTCInfoEvent = &IID_IRTCInfoEvent_Value;
+pub const IRTCInfoEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IRTCInfoEvent,
+            ppSession: ?*?*IRTCSession2,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Participant: *const fn(
+            self: *const IRTCInfoEvent,
+            ppParticipant: ?*?*IRTCParticipant,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Info: *const fn(
+            self: *const IRTCInfoEvent,
+            pbstrInfo: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InfoHeader: *const fn(
+            self: *const IRTCInfoEvent,
+            pbstrInfoHeader: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Session(self: *const IRTCInfoEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession);
+    }
+    pub fn get_Participant(self: *const IRTCInfoEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Participant(self, ppParticipant);
+    }
+    pub fn get_Info(self: *const IRTCInfoEvent, pbstrInfo: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Info(self, pbstrInfo);
+    }
+    pub fn get_InfoHeader(self: *const IRTCInfoEvent, pbstrInfoHeader: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InfoHeader(self, pbstrInfoHeader);
+    }
+};
+
+const IID_IRTCIntensityEvent_Value = Guid.initString("4c23bf51-390c-4992-a41d-41eec05b2a4b");
+pub const IID_IRTCIntensityEvent = &IID_IRTCIntensityEvent_Value;
+pub const IRTCIntensityEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Level: *const fn(
+            self: *const IRTCIntensityEvent,
+            plLevel: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Min: *const fn(
+            self: *const IRTCIntensityEvent,
+            plMin: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Max: *const fn(
+            self: *const IRTCIntensityEvent,
+            plMax: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Direction: *const fn(
+            self: *const IRTCIntensityEvent,
+            penDirection: ?*RTC_AUDIO_DEVICE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Level(self: *const IRTCIntensityEvent, plLevel: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Level(self, plLevel);
+    }
+    pub fn get_Min(self: *const IRTCIntensityEvent, plMin: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Min(self, plMin);
+    }
+    pub fn get_Max(self: *const IRTCIntensityEvent, plMax: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Max(self, plMax);
+    }
+    pub fn get_Direction(self: *const IRTCIntensityEvent, penDirection: ?*RTC_AUDIO_DEVICE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Direction(self, penDirection);
+    }
+};
+
+const IID_IRTCMediaEvent_Value = Guid.initString("099944fb-bcda-453e-8c41-e13da2adf7f3");
+pub const IID_IRTCMediaEvent = &IID_IRTCMediaEvent_Value;
+pub const IRTCMediaEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MediaType: *const fn(
+            self: *const IRTCMediaEvent,
+            pMediaType: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventType: *const fn(
+            self: *const IRTCMediaEvent,
+            penEventType: ?*RTC_MEDIA_EVENT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventReason: *const fn(
+            self: *const IRTCMediaEvent,
+            penEventReason: ?*RTC_MEDIA_EVENT_REASON,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_MediaType(self: *const IRTCMediaEvent, pMediaType: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MediaType(self, pMediaType);
+    }
+    pub fn get_EventType(self: *const IRTCMediaEvent, penEventType: ?*RTC_MEDIA_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, penEventType);
+    }
+    pub fn get_EventReason(self: *const IRTCMediaEvent, penEventReason: ?*RTC_MEDIA_EVENT_REASON) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventReason(self, penEventReason);
+    }
+};
+
+const IID_IRTCMediaRequestEvent_Value = Guid.initString("52572d15-148c-4d97-a36c-2da55c289d63");
+pub const IID_IRTCMediaRequestEvent = &IID_IRTCMediaRequestEvent_Value;
+pub const IRTCMediaRequestEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IRTCMediaRequestEvent,
+            ppSession: ?*?*IRTCSession2,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ProposedMedia: *const fn(
+            self: *const IRTCMediaRequestEvent,
+            plMediaTypes: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentMedia: *const fn(
+            self: *const IRTCMediaRequestEvent,
+            plMediaTypes: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Accept: *const fn(
+            self: *const IRTCMediaRequestEvent,
+            lMediaTypes: i32,
+        ) callconv(.winapi) HRESULT,
+        get_RemotePreferredSecurityLevel: *const fn(
+            self: *const IRTCMediaRequestEvent,
+            enSecurityType: RTC_SECURITY_TYPE,
+            penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+        ) callconv(.winapi) HRESULT,
+        Reject: *const fn(
+            self: *const IRTCMediaRequestEvent,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const IRTCMediaRequestEvent,
+            pState: ?*RTC_REINVITE_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Session(self: *const IRTCMediaRequestEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession);
+    }
+    pub fn get_ProposedMedia(self: *const IRTCMediaRequestEvent, plMediaTypes: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ProposedMedia(self, plMediaTypes);
+    }
+    pub fn get_CurrentMedia(self: *const IRTCMediaRequestEvent, plMediaTypes: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentMedia(self, plMediaTypes);
+    }
+    pub fn Accept(self: *const IRTCMediaRequestEvent, lMediaTypes: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Accept(self, lMediaTypes);
+    }
+    pub fn get_RemotePreferredSecurityLevel(self: *const IRTCMediaRequestEvent, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RemotePreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
+    }
+    pub fn Reject(self: *const IRTCMediaRequestEvent) callconv(.@"inline") HRESULT {
+        return self.vtable.Reject(self);
+    }
+    pub fn get_State(self: *const IRTCMediaRequestEvent, pState: ?*RTC_REINVITE_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, pState);
+    }
+};
+
+const IID_IRTCMessagingEvent_Value = Guid.initString("d3609541-1b29-4de5-a4ad-5aebaf319512");
+pub const IID_IRTCMessagingEvent = &IID_IRTCMessagingEvent_Value;
+pub const IRTCMessagingEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IRTCMessagingEvent,
+            ppSession: ?*?*IRTCSession,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Participant: *const fn(
+            self: *const IRTCMessagingEvent,
+            ppParticipant: ?*?*IRTCParticipant,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventType: *const fn(
+            self: *const IRTCMessagingEvent,
+            penEventType: ?*RTC_MESSAGING_EVENT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Message: *const fn(
+            self: *const IRTCMessagingEvent,
+            pbstrMessage: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MessageHeader: *const fn(
+            self: *const IRTCMessagingEvent,
+            pbstrMessageHeader: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserStatus: *const fn(
+            self: *const IRTCMessagingEvent,
+            penUserStatus: ?*RTC_MESSAGING_USER_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Session(self: *const IRTCMessagingEvent, ppSession: ?*?*IRTCSession) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession);
+    }
+    pub fn get_Participant(self: *const IRTCMessagingEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Participant(self, ppParticipant);
+    }
+    pub fn get_EventType(self: *const IRTCMessagingEvent, penEventType: ?*RTC_MESSAGING_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, penEventType);
+    }
+    pub fn get_Message(self: *const IRTCMessagingEvent, pbstrMessage: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Message(self, pbstrMessage);
+    }
+    pub fn get_MessageHeader(self: *const IRTCMessagingEvent, pbstrMessageHeader: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MessageHeader(self, pbstrMessageHeader);
+    }
+    pub fn get_UserStatus(self: *const IRTCMessagingEvent, penUserStatus: ?*RTC_MESSAGING_USER_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserStatus(self, penUserStatus);
+    }
+};
+
+const IID_IRTCParticipant_Value = Guid.initString("ae86add5-26b1-4414-af1d-b94cd938d739");
+pub const IID_IRTCParticipant = &IID_IRTCParticipant_Value;
+pub const IRTCParticipant = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserURI: *const fn(
+            self: *const IRTCParticipant,
+            pbstrUserURI: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IRTCParticipant,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Removable: *const fn(
+            self: *const IRTCParticipant,
+            pfRemovable: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const IRTCParticipant,
+            penState: ?*RTC_PARTICIPANT_STATE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IRTCParticipant,
+            ppSession: ?*?*IRTCSession,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_UserURI(self: *const IRTCParticipant, pbstrUserURI: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserURI(self, pbstrUserURI);
+    }
+    pub fn get_Name(self: *const IRTCParticipant, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn get_Removable(self: *const IRTCParticipant, pfRemovable: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Removable(self, pfRemovable);
+    }
+    pub fn get_State(self: *const IRTCParticipant, penState: ?*RTC_PARTICIPANT_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, penState);
+    }
+    pub fn get_Session(self: *const IRTCParticipant, ppSession: ?*?*IRTCSession) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession);
+    }
+};
+
+const IID_IRTCParticipantStateChangeEvent_Value = Guid.initString("09bcb597-f0fa-48f9-b420-468cea7fde04");
+pub const IID_IRTCParticipantStateChangeEvent = &IID_IRTCParticipantStateChangeEvent_Value;
+pub const IRTCParticipantStateChangeEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Participant: *const fn(
+            self: *const IRTCParticipantStateChangeEvent,
+            ppParticipant: ?*?*IRTCParticipant,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const IRTCParticipantStateChangeEvent,
+            penState: ?*RTC_PARTICIPANT_STATE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCParticipantStateChangeEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Participant(self: *const IRTCParticipantStateChangeEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Participant(self, ppParticipant);
+    }
+    pub fn get_State(self: *const IRTCParticipantStateChangeEvent, penState: ?*RTC_PARTICIPANT_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, penState);
+    }
+    pub fn get_StatusCode(self: *const IRTCParticipantStateChangeEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+};
+
+const IID_IRTCPortManager_Value = Guid.initString("da77c14b-6208-43ca-8ddf-5b60a0a69fac");
+pub const IID_IRTCPortManager = &IID_IRTCPortManager_Value;
+pub const IRTCPortManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMapping: *const fn(
+            self: *const IRTCPortManager,
+            bstrRemoteAddress: ?BSTR,
+            enPortType: RTC_PORT_TYPE,
+            pbstrInternalLocalAddress: ?*?BSTR,
+            plInternalLocalPort: ?*i32,
+            pbstrExternalLocalAddress: ?*?BSTR,
+            plExternalLocalPort: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        UpdateRemoteAddress: *const fn(
+            self: *const IRTCPortManager,
+            bstrRemoteAddress: ?BSTR,
+            bstrInternalLocalAddress: ?BSTR,
+            lInternalLocalPort: i32,
+            bstrExternalLocalAddress: ?BSTR,
+            lExternalLocalPort: i32,
+        ) callconv(.winapi) HRESULT,
+        ReleaseMapping: *const fn(
+            self: *const IRTCPortManager,
+            bstrInternalLocalAddress: ?BSTR,
+            lInternalLocalPort: i32,
+            bstrExternalLocalAddress: ?BSTR,
+            lExternalLocalAddress: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMapping(self: *const IRTCPortManager, bstrRemoteAddress: ?BSTR, enPortType: RTC_PORT_TYPE, pbstrInternalLocalAddress: ?*?BSTR, plInternalLocalPort: ?*i32, pbstrExternalLocalAddress: ?*?BSTR, plExternalLocalPort: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMapping(self, bstrRemoteAddress, enPortType, pbstrInternalLocalAddress, plInternalLocalPort, pbstrExternalLocalAddress, plExternalLocalPort);
+    }
+    pub fn UpdateRemoteAddress(self: *const IRTCPortManager, bstrRemoteAddress: ?BSTR, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalPort: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateRemoteAddress(self, bstrRemoteAddress, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalPort);
+    }
+    pub fn ReleaseMapping(self: *const IRTCPortManager, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalAddress: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseMapping(self, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalAddress);
+    }
+};
+
+const IID_IRTCPresenceContact_Value = Guid.initString("8b22f92c-cd90-42db-a733-212205c3e3df");
+pub const IID_IRTCPresenceContact = &IID_IRTCPresenceContact_Value;
+pub const IRTCPresenceContact = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PresentityURI: *const fn(
+            self: *const IRTCPresenceContact,
+            pbstrPresentityURI: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PresentityURI: *const fn(
+            self: *const IRTCPresenceContact,
+            bstrPresentityURI: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IRTCPresenceContact,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IRTCPresenceContact,
+            bstrName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Data: *const fn(
+            self: *const IRTCPresenceContact,
+            pbstrData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Data: *const fn(
+            self: *const IRTCPresenceContact,
+            bstrData: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Persistent: *const fn(
+            self: *const IRTCPresenceContact,
+            pfPersistent: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Persistent: *const fn(
+            self: *const IRTCPresenceContact,
+            fPersistent: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_PresentityURI(self: *const IRTCPresenceContact, pbstrPresentityURI: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PresentityURI(self, pbstrPresentityURI);
+    }
+    pub fn put_PresentityURI(self: *const IRTCPresenceContact, bstrPresentityURI: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PresentityURI(self, bstrPresentityURI);
+    }
+    pub fn get_Name(self: *const IRTCPresenceContact, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn put_Name(self: *const IRTCPresenceContact, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, bstrName);
+    }
+    pub fn get_Data(self: *const IRTCPresenceContact, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Data(self, pbstrData);
+    }
+    pub fn put_Data(self: *const IRTCPresenceContact, bstrData: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Data(self, bstrData);
+    }
+    pub fn get_Persistent(self: *const IRTCPresenceContact, pfPersistent: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Persistent(self, pfPersistent);
+    }
+    pub fn put_Persistent(self: *const IRTCPresenceContact, fPersistent: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Persistent(self, fPersistent);
+    }
+};
+
+const IID_IRTCPresenceDataEvent_Value = Guid.initString("38f0e78c-8b87-4c04-a82d-aedd83c909bb");
+pub const IID_IRTCPresenceDataEvent = &IID_IRTCPresenceDataEvent_Value;
+pub const IRTCPresenceDataEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCPresenceDataEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusText: *const fn(
+            self: *const IRTCPresenceDataEvent,
+            pbstrStatusText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPresenceData: *const fn(
+            self: *const IRTCPresenceDataEvent,
+            pbstrNamespace: ?*?BSTR,
+            pbstrData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_StatusCode(self: *const IRTCPresenceDataEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+    pub fn get_StatusText(self: *const IRTCPresenceDataEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusText(self, pbstrStatusText);
+    }
+    pub fn GetPresenceData(self: *const IRTCPresenceDataEvent, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPresenceData(self, pbstrNamespace, pbstrData);
+    }
+};
+
+const IID_IRTCPresenceDevice_Value = Guid.initString("bc6a90dd-ad9a-48da-9b0c-2515e38521ad");
+pub const IID_IRTCPresenceDevice = &IID_IRTCPresenceDevice_Value;
+pub const IRTCPresenceDevice = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Status: *const fn(
+            self: *const IRTCPresenceDevice,
+            penStatus: ?*RTC_PRESENCE_STATUS,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Notes: *const fn(
+            self: *const IRTCPresenceDevice,
+            pbstrNotes: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        get_PresenceProperty: *const fn(
+            self: *const IRTCPresenceDevice,
+            enProperty: RTC_PRESENCE_PROPERTY,
+            pbstrProperty: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPresenceData: *const fn(
+            self: *const IRTCPresenceDevice,
+            pbstrNamespace: ?*?BSTR,
+            pbstrData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Status(self: *const IRTCPresenceDevice, penStatus: ?*RTC_PRESENCE_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Status(self, penStatus);
+    }
+    pub fn get_Notes(self: *const IRTCPresenceDevice, pbstrNotes: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Notes(self, pbstrNotes);
+    }
+    pub fn get_PresenceProperty(self: *const IRTCPresenceDevice, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PresenceProperty(self, enProperty, pbstrProperty);
+    }
+    pub fn GetPresenceData(self: *const IRTCPresenceDevice, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPresenceData(self, pbstrNamespace, pbstrData);
+    }
+};
+
+const IID_IRTCPresencePropertyEvent_Value = Guid.initString("f777f570-a820-49d5-86bd-e099493f1518");
+pub const IID_IRTCPresencePropertyEvent = &IID_IRTCPresencePropertyEvent_Value;
+pub const IRTCPresencePropertyEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCPresencePropertyEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusText: *const fn(
+            self: *const IRTCPresencePropertyEvent,
+            pbstrStatusText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PresenceProperty: *const fn(
+            self: *const IRTCPresencePropertyEvent,
+            penPresProp: ?*RTC_PRESENCE_PROPERTY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IRTCPresencePropertyEvent,
+            pbstrValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_StatusCode(self: *const IRTCPresencePropertyEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+    pub fn get_StatusText(self: *const IRTCPresencePropertyEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusText(self, pbstrStatusText);
+    }
+    pub fn get_PresenceProperty(self: *const IRTCPresencePropertyEvent, penPresProp: ?*RTC_PRESENCE_PROPERTY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PresenceProperty(self, penPresProp);
+    }
+    pub fn get_Value(self: *const IRTCPresencePropertyEvent, pbstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pbstrValue);
+    }
+};
+
+const IID_IRTCPresenceStatusEvent_Value = Guid.initString("78673f32-4a0f-462c-89aa-ee7706707678");
+pub const IID_IRTCPresenceStatusEvent = &IID_IRTCPresenceStatusEvent_Value;
+pub const IRTCPresenceStatusEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCPresenceStatusEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusText: *const fn(
+            self: *const IRTCPresenceStatusEvent,
+            pbstrStatusText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetLocalPresenceInfo: *const fn(
+            self: *const IRTCPresenceStatusEvent,
+            penStatus: ?*RTC_PRESENCE_STATUS,
+            pbstrNotes: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_StatusCode(self: *const IRTCPresenceStatusEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+    pub fn get_StatusText(self: *const IRTCPresenceStatusEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusText(self, pbstrStatusText);
+    }
+    pub fn GetLocalPresenceInfo(self: *const IRTCPresenceStatusEvent, penStatus: ?*RTC_PRESENCE_STATUS, pbstrNotes: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalPresenceInfo(self, penStatus, pbstrNotes);
+    }
+};
+
 const IID_IRTCProfile_Value = Guid.initString("d07eca9e-4062-4dd4-9e7d-722a49ba7303");
 pub const IID_IRTCProfile = &IID_IRTCProfile_Value;
 pub const IRTCProfile = extern union {
@@ -1830,6 +2630,196 @@ pub const IRTCProfile2 = extern union {
     }
     pub fn put_AllowedAuth(self: *const IRTCProfile2, lAllowedAuth: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowedAuth(self, lAllowedAuth);
+    }
+};
+
+const IID_IRTCProfileEvent_Value = Guid.initString("d6d5ab3b-770e-43e8-800a-79b062395fca");
+pub const IID_IRTCProfileEvent = &IID_IRTCProfileEvent_Value;
+pub const IRTCProfileEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Profile: *const fn(
+            self: *const IRTCProfileEvent,
+            ppProfile: ?*?*IRTCProfile,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Cookie: *const fn(
+            self: *const IRTCProfileEvent,
+            plCookie: ?*isize,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCProfileEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Profile(self: *const IRTCProfileEvent, ppProfile: ?*?*IRTCProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Profile(self, ppProfile);
+    }
+    pub fn get_Cookie(self: *const IRTCProfileEvent, plCookie: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Cookie(self, plCookie);
+    }
+    pub fn get_StatusCode(self: *const IRTCProfileEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+};
+
+const IID_IRTCProfileEvent2_Value = Guid.initString("62e56edc-03fa-4121-94fb-23493fd0ae64");
+pub const IID_IRTCProfileEvent2 = &IID_IRTCProfileEvent2_Value;
+pub const IRTCProfileEvent2 = extern union {
+    pub const VTable = extern struct {
+        base: IRTCProfileEvent.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventType: *const fn(
+            self: *const IRTCProfileEvent2,
+            pEventType: ?*RTC_PROFILE_EVENT_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRTCProfileEvent: IRTCProfileEvent,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EventType(self: *const IRTCProfileEvent2, pEventType: ?*RTC_PROFILE_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, pEventType);
+    }
+};
+
+const IID_IRTCRegistrationStateChangeEvent_Value = Guid.initString("62d0991b-50ab-4f02-b948-ca94f26f8f95");
+pub const IID_IRTCRegistrationStateChangeEvent = &IID_IRTCRegistrationStateChangeEvent_Value;
+pub const IRTCRegistrationStateChangeEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Profile: *const fn(
+            self: *const IRTCRegistrationStateChangeEvent,
+            ppProfile: ?*?*IRTCProfile,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const IRTCRegistrationStateChangeEvent,
+            penState: ?*RTC_REGISTRATION_STATE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCRegistrationStateChangeEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusText: *const fn(
+            self: *const IRTCRegistrationStateChangeEvent,
+            pbstrStatusText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Profile(self: *const IRTCRegistrationStateChangeEvent, ppProfile: ?*?*IRTCProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Profile(self, ppProfile);
+    }
+    pub fn get_State(self: *const IRTCRegistrationStateChangeEvent, penState: ?*RTC_REGISTRATION_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, penState);
+    }
+    pub fn get_StatusCode(self: *const IRTCRegistrationStateChangeEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+    pub fn get_StatusText(self: *const IRTCRegistrationStateChangeEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusText(self, pbstrStatusText);
+    }
+};
+
+const IID_IRTCReInviteEvent_Value = Guid.initString("11558d84-204c-43e7-99b0-2034e9417f7d");
+pub const IID_IRTCReInviteEvent = &IID_IRTCReInviteEvent_Value;
+pub const IRTCReInviteEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IRTCReInviteEvent,
+            ppSession2: ?*?*IRTCSession2,
+        ) callconv(.winapi) HRESULT,
+        Accept: *const fn(
+            self: *const IRTCReInviteEvent,
+            bstrContentType: ?BSTR,
+            bstrSessionDescription: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Reject: *const fn(
+            self: *const IRTCReInviteEvent,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const IRTCReInviteEvent,
+            pState: ?*RTC_REINVITE_STATE,
+        ) callconv(.winapi) HRESULT,
+        GetRemoteSessionDescription: *const fn(
+            self: *const IRTCReInviteEvent,
+            pbstrContentType: ?*?BSTR,
+            pbstrSessionDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Session(self: *const IRTCReInviteEvent, ppSession2: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession2);
+    }
+    pub fn Accept(self: *const IRTCReInviteEvent, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Accept(self, bstrContentType, bstrSessionDescription);
+    }
+    pub fn Reject(self: *const IRTCReInviteEvent) callconv(.@"inline") HRESULT {
+        return self.vtable.Reject(self);
+    }
+    pub fn get_State(self: *const IRTCReInviteEvent, pState: ?*RTC_REINVITE_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, pState);
+    }
+    pub fn GetRemoteSessionDescription(self: *const IRTCReInviteEvent, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
+    }
+};
+
+const IID_IRTCRoamingEvent_Value = Guid.initString("79960a6b-0cb1-4dc8-a805-7318e99902e8");
+pub const IID_IRTCRoamingEvent = &IID_IRTCRoamingEvent_Value;
+pub const IRTCRoamingEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventType: *const fn(
+            self: *const IRTCRoamingEvent,
+            pEventType: ?*RTC_ROAMING_EVENT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Profile: *const fn(
+            self: *const IRTCRoamingEvent,
+            ppProfile: ?*?*IRTCProfile2,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCRoamingEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusText: *const fn(
+            self: *const IRTCRoamingEvent,
+            pbstrStatusText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EventType(self: *const IRTCRoamingEvent, pEventType: ?*RTC_ROAMING_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, pEventType);
+    }
+    pub fn get_Profile(self: *const IRTCRoamingEvent, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Profile(self, ppProfile);
+    }
+    pub fn get_StatusCode(self: *const IRTCRoamingEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+    pub fn get_StatusText(self: *const IRTCRoamingEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
 
@@ -2140,220 +3130,214 @@ pub const IRTCSessionCallControl = extern union {
     }
 };
 
-const IID_IRTCParticipant_Value = Guid.initString("ae86add5-26b1-4414-af1d-b94cd938d739");
-pub const IID_IRTCParticipant = &IID_IRTCParticipant_Value;
-pub const IRTCParticipant = extern union {
+const IID_IRTCSessionDescriptionManager_Value = Guid.initString("ba7f518e-d336-4070-93a6-865395c843f9");
+pub const IID_IRTCSessionDescriptionManager = &IID_IRTCSessionDescriptionManager_Value;
+pub const IRTCSessionDescriptionManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserURI: *const fn(
-            self: *const IRTCParticipant,
-            pbstrUserURI: ?*?BSTR,
+        EvaluateSessionDescription: *const fn(
+            self: *const IRTCSessionDescriptionManager,
+            bstrContentType: ?BSTR,
+            bstrSessionDescription: ?BSTR,
+            pfApplicationSession: ?*i16,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IRTCParticipant,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Removable: *const fn(
-            self: *const IRTCParticipant,
-            pfRemovable: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IRTCParticipant,
-            penState: ?*RTC_PARTICIPANT_STATE,
-        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EvaluateSessionDescription(self: *const IRTCSessionDescriptionManager, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pfApplicationSession: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.EvaluateSessionDescription(self, bstrContentType, bstrSessionDescription, pfApplicationSession);
+    }
+};
+
+const IID_IRTCSessionOperationCompleteEvent_Value = Guid.initString("a6bff4c0-f7c8-4d3c-9a41-3550f78a95b0");
+pub const IID_IRTCSessionOperationCompleteEvent = &IID_IRTCSessionOperationCompleteEvent_Value;
+pub const IRTCSessionOperationCompleteEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Session: *const fn(
-            self: *const IRTCParticipant,
+            self: *const IRTCSessionOperationCompleteEvent,
             ppSession: ?*?*IRTCSession,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_UserURI(self: *const IRTCParticipant, pbstrUserURI: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserURI(self, pbstrUserURI);
-    }
-    pub fn get_Name(self: *const IRTCParticipant, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn get_Removable(self: *const IRTCParticipant, pfRemovable: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Removable(self, pfRemovable);
-    }
-    pub fn get_State(self: *const IRTCParticipant, penState: ?*RTC_PARTICIPANT_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, penState);
-    }
-    pub fn get_Session(self: *const IRTCParticipant, ppSession: ?*?*IRTCSession) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession);
-    }
-};
-
-const IID_IRTCRoamingEvent_Value = Guid.initString("79960a6b-0cb1-4dc8-a805-7318e99902e8");
-pub const IID_IRTCRoamingEvent = &IID_IRTCRoamingEvent_Value;
-pub const IRTCRoamingEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCRoamingEvent,
-            pEventType: ?*RTC_ROAMING_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: *const fn(
-            self: *const IRTCRoamingEvent,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCRoamingEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: *const fn(
-            self: *const IRTCRoamingEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EventType(self: *const IRTCRoamingEvent, pEventType: ?*RTC_ROAMING_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, pEventType);
-    }
-    pub fn get_Profile(self: *const IRTCRoamingEvent, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Profile(self, ppProfile);
-    }
-    pub fn get_StatusCode(self: *const IRTCRoamingEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-    pub fn get_StatusText(self: *const IRTCRoamingEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusText(self, pbstrStatusText);
-    }
-};
-
-const IID_IRTCProfileEvent_Value = Guid.initString("d6d5ab3b-770e-43e8-800a-79b062395fca");
-pub const IID_IRTCProfileEvent = &IID_IRTCProfileEvent_Value;
-pub const IRTCProfileEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: *const fn(
-            self: *const IRTCProfileEvent,
-            ppProfile: ?*?*IRTCProfile,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cookie: *const fn(
-            self: *const IRTCProfileEvent,
+            self: *const IRTCSessionOperationCompleteEvent,
             plCookie: ?*isize,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StatusCode: *const fn(
-            self: *const IRTCProfileEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Profile(self: *const IRTCProfileEvent, ppProfile: ?*?*IRTCProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Profile(self, ppProfile);
-    }
-    pub fn get_Cookie(self: *const IRTCProfileEvent, plCookie: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Cookie(self, plCookie);
-    }
-    pub fn get_StatusCode(self: *const IRTCProfileEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-};
-
-const IID_IRTCProfileEvent2_Value = Guid.initString("62e56edc-03fa-4121-94fb-23493fd0ae64");
-pub const IID_IRTCProfileEvent2 = &IID_IRTCProfileEvent2_Value;
-pub const IRTCProfileEvent2 = extern union {
-    pub const VTable = extern struct {
-        base: IRTCProfileEvent.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCProfileEvent2,
-            pEventType: ?*RTC_PROFILE_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCProfileEvent: IRTCProfileEvent,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EventType(self: *const IRTCProfileEvent2, pEventType: ?*RTC_PROFILE_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, pEventType);
-    }
-};
-
-const IID_IRTCClientEvent_Value = Guid.initString("2b493b7a-3cba-4170-9c8b-76a9dacdd644");
-pub const IID_IRTCClientEvent = &IID_IRTCClientEvent_Value;
-pub const IRTCClientEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCClientEvent,
-            penEventType: ?*RTC_CLIENT_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Client: *const fn(
-            self: *const IRTCClientEvent,
-            ppClient: ?*?*IRTCClient,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EventType(self: *const IRTCClientEvent, penEventType: ?*RTC_CLIENT_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, penEventType);
-    }
-    pub fn get_Client(self: *const IRTCClientEvent, ppClient: ?*?*IRTCClient) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Client(self, ppClient);
-    }
-};
-
-const IID_IRTCRegistrationStateChangeEvent_Value = Guid.initString("62d0991b-50ab-4f02-b948-ca94f26f8f95");
-pub const IID_IRTCRegistrationStateChangeEvent = &IID_IRTCRegistrationStateChangeEvent_Value;
-pub const IRTCRegistrationStateChangeEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: *const fn(
-            self: *const IRTCRegistrationStateChangeEvent,
-            ppProfile: ?*?*IRTCProfile,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IRTCRegistrationStateChangeEvent,
-            penState: ?*RTC_REGISTRATION_STATE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCRegistrationStateChangeEvent,
+            self: *const IRTCSessionOperationCompleteEvent,
             plStatusCode: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StatusText: *const fn(
-            self: *const IRTCRegistrationStateChangeEvent,
+            self: *const IRTCSessionOperationCompleteEvent,
             pbstrStatusText: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Profile(self: *const IRTCRegistrationStateChangeEvent, ppProfile: ?*?*IRTCProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Profile(self, ppProfile);
+    pub fn get_Session(self: *const IRTCSessionOperationCompleteEvent, ppSession: ?*?*IRTCSession) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession);
     }
-    pub fn get_State(self: *const IRTCRegistrationStateChangeEvent, penState: ?*RTC_REGISTRATION_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, penState);
+    pub fn get_Cookie(self: *const IRTCSessionOperationCompleteEvent, plCookie: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Cookie(self, plCookie);
     }
-    pub fn get_StatusCode(self: *const IRTCRegistrationStateChangeEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_StatusCode(self: *const IRTCSessionOperationCompleteEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_StatusCode(self, plStatusCode);
     }
-    pub fn get_StatusText(self: *const IRTCRegistrationStateChangeEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_StatusText(self: *const IRTCSessionOperationCompleteEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusText(self, pbstrStatusText);
+    }
+};
+
+const IID_IRTCSessionOperationCompleteEvent2_Value = Guid.initString("f6fc2a9b-d5bc-4241-b436-1b8460c13832");
+pub const IID_IRTCSessionOperationCompleteEvent2 = &IID_IRTCSessionOperationCompleteEvent2_Value;
+pub const IRTCSessionOperationCompleteEvent2 = extern union {
+    pub const VTable = extern struct {
+        base: IRTCSessionOperationCompleteEvent.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Participant: *const fn(
+            self: *const IRTCSessionOperationCompleteEvent2,
+            ppParticipant: ?*?*IRTCParticipant,
+        ) callconv(.winapi) HRESULT,
+        GetRemoteSessionDescription: *const fn(
+            self: *const IRTCSessionOperationCompleteEvent2,
+            pbstrContentType: ?*?BSTR,
+            pbstrSessionDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRTCSessionOperationCompleteEvent: IRTCSessionOperationCompleteEvent,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Participant(self: *const IRTCSessionOperationCompleteEvent2, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Participant(self, ppParticipant);
+    }
+    pub fn GetRemoteSessionDescription(self: *const IRTCSessionOperationCompleteEvent2, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
+    }
+};
+
+const IID_IRTCSessionPortManagement_Value = Guid.initString("a072f1d6-0286-4e1f-85f2-17a2948456ec");
+pub const IID_IRTCSessionPortManagement = &IID_IRTCSessionPortManagement_Value;
+pub const IRTCSessionPortManagement = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetPortManager: *const fn(
+            self: *const IRTCSessionPortManagement,
+            pPortManager: ?*IRTCPortManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetPortManager(self: *const IRTCSessionPortManagement, pPortManager: ?*IRTCPortManager) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPortManager(self, pPortManager);
+    }
+};
+
+const IID_IRTCSessionReferredEvent_Value = Guid.initString("176a6828-4fcc-4f28-a862-04597a6cf1c4");
+pub const IID_IRTCSessionReferredEvent = &IID_IRTCSessionReferredEvent_Value;
+pub const IRTCSessionReferredEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IRTCSessionReferredEvent,
+            ppSession: ?*?*IRTCSession2,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReferredByURI: *const fn(
+            self: *const IRTCSessionReferredEvent,
+            pbstrReferredByURI: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReferToURI: *const fn(
+            self: *const IRTCSessionReferredEvent,
+            pbstrReferoURI: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReferCookie: *const fn(
+            self: *const IRTCSessionReferredEvent,
+            pbstrReferCookie: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Accept: *const fn(
+            self: *const IRTCSessionReferredEvent,
+        ) callconv(.winapi) HRESULT,
+        Reject: *const fn(
+            self: *const IRTCSessionReferredEvent,
+        ) callconv(.winapi) HRESULT,
+        SetReferredSessionState: *const fn(
+            self: *const IRTCSessionReferredEvent,
+            enState: RTC_SESSION_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Session(self: *const IRTCSessionReferredEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession);
+    }
+    pub fn get_ReferredByURI(self: *const IRTCSessionReferredEvent, pbstrReferredByURI: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReferredByURI(self, pbstrReferredByURI);
+    }
+    pub fn get_ReferToURI(self: *const IRTCSessionReferredEvent, pbstrReferoURI: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReferToURI(self, pbstrReferoURI);
+    }
+    pub fn get_ReferCookie(self: *const IRTCSessionReferredEvent, pbstrReferCookie: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReferCookie(self, pbstrReferCookie);
+    }
+    pub fn Accept(self: *const IRTCSessionReferredEvent) callconv(.@"inline") HRESULT {
+        return self.vtable.Accept(self);
+    }
+    pub fn Reject(self: *const IRTCSessionReferredEvent) callconv(.@"inline") HRESULT {
+        return self.vtable.Reject(self);
+    }
+    pub fn SetReferredSessionState(self: *const IRTCSessionReferredEvent, enState: RTC_SESSION_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReferredSessionState(self, enState);
+    }
+};
+
+const IID_IRTCSessionReferStatusEvent_Value = Guid.initString("3d8fc2cd-5d76-44ab-bb68-2a80353b34a2");
+pub const IID_IRTCSessionReferStatusEvent = &IID_IRTCSessionReferStatusEvent_Value;
+pub const IRTCSessionReferStatusEvent = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IRTCSessionReferStatusEvent,
+            ppSession: ?*?*IRTCSession2,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReferStatus: *const fn(
+            self: *const IRTCSessionReferStatusEvent,
+            penReferStatus: ?*RTC_SESSION_REFER_STATUS,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusCode: *const fn(
+            self: *const IRTCSessionReferStatusEvent,
+            plStatusCode: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StatusText: *const fn(
+            self: *const IRTCSessionReferStatusEvent,
+            pbstrStatusText: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Session(self: *const IRTCSessionReferStatusEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppSession);
+    }
+    pub fn get_ReferStatus(self: *const IRTCSessionReferStatusEvent, penReferStatus: ?*RTC_SESSION_REFER_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReferStatus(self, penReferStatus);
+    }
+    pub fn get_StatusCode(self: *const IRTCSessionReferStatusEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StatusCode(self, plStatusCode);
+    }
+    pub fn get_StatusText(self: *const IRTCSessionReferStatusEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_StatusText(self, pbstrStatusText);
     }
 };
@@ -2442,1313 +3426,6 @@ pub const IRTCSessionStateChangeEvent2 = extern union {
     }
     pub fn GetRemoteSessionDescription(self: *const IRTCSessionStateChangeEvent2, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
-    }
-};
-
-const IID_IRTCSessionOperationCompleteEvent_Value = Guid.initString("a6bff4c0-f7c8-4d3c-9a41-3550f78a95b0");
-pub const IID_IRTCSessionOperationCompleteEvent = &IID_IRTCSessionOperationCompleteEvent_Value;
-pub const IRTCSessionOperationCompleteEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            ppSession: ?*?*IRTCSession,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cookie: *const fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            plCookie: ?*isize,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: *const fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Session(self: *const IRTCSessionOperationCompleteEvent, ppSession: ?*?*IRTCSession) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession);
-    }
-    pub fn get_Cookie(self: *const IRTCSessionOperationCompleteEvent, plCookie: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Cookie(self, plCookie);
-    }
-    pub fn get_StatusCode(self: *const IRTCSessionOperationCompleteEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-    pub fn get_StatusText(self: *const IRTCSessionOperationCompleteEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusText(self, pbstrStatusText);
-    }
-};
-
-const IID_IRTCSessionOperationCompleteEvent2_Value = Guid.initString("f6fc2a9b-d5bc-4241-b436-1b8460c13832");
-pub const IID_IRTCSessionOperationCompleteEvent2 = &IID_IRTCSessionOperationCompleteEvent2_Value;
-pub const IRTCSessionOperationCompleteEvent2 = extern union {
-    pub const VTable = extern struct {
-        base: IRTCSessionOperationCompleteEvent.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: *const fn(
-            self: *const IRTCSessionOperationCompleteEvent2,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(.winapi) HRESULT,
-        GetRemoteSessionDescription: *const fn(
-            self: *const IRTCSessionOperationCompleteEvent2,
-            pbstrContentType: ?*?BSTR,
-            pbstrSessionDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCSessionOperationCompleteEvent: IRTCSessionOperationCompleteEvent,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Participant(self: *const IRTCSessionOperationCompleteEvent2, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Participant(self, ppParticipant);
-    }
-    pub fn GetRemoteSessionDescription(self: *const IRTCSessionOperationCompleteEvent2, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
-    }
-};
-
-const IID_IRTCParticipantStateChangeEvent_Value = Guid.initString("09bcb597-f0fa-48f9-b420-468cea7fde04");
-pub const IID_IRTCParticipantStateChangeEvent = &IID_IRTCParticipantStateChangeEvent_Value;
-pub const IRTCParticipantStateChangeEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: *const fn(
-            self: *const IRTCParticipantStateChangeEvent,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IRTCParticipantStateChangeEvent,
-            penState: ?*RTC_PARTICIPANT_STATE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCParticipantStateChangeEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Participant(self: *const IRTCParticipantStateChangeEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Participant(self, ppParticipant);
-    }
-    pub fn get_State(self: *const IRTCParticipantStateChangeEvent, penState: ?*RTC_PARTICIPANT_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, penState);
-    }
-    pub fn get_StatusCode(self: *const IRTCParticipantStateChangeEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-};
-
-const IID_IRTCMediaEvent_Value = Guid.initString("099944fb-bcda-453e-8c41-e13da2adf7f3");
-pub const IID_IRTCMediaEvent = &IID_IRTCMediaEvent_Value;
-pub const IRTCMediaEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MediaType: *const fn(
-            self: *const IRTCMediaEvent,
-            pMediaType: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCMediaEvent,
-            penEventType: ?*RTC_MEDIA_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventReason: *const fn(
-            self: *const IRTCMediaEvent,
-            penEventReason: ?*RTC_MEDIA_EVENT_REASON,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_MediaType(self: *const IRTCMediaEvent, pMediaType: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MediaType(self, pMediaType);
-    }
-    pub fn get_EventType(self: *const IRTCMediaEvent, penEventType: ?*RTC_MEDIA_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, penEventType);
-    }
-    pub fn get_EventReason(self: *const IRTCMediaEvent, penEventReason: ?*RTC_MEDIA_EVENT_REASON) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventReason(self, penEventReason);
-    }
-};
-
-const IID_IRTCIntensityEvent_Value = Guid.initString("4c23bf51-390c-4992-a41d-41eec05b2a4b");
-pub const IID_IRTCIntensityEvent = &IID_IRTCIntensityEvent_Value;
-pub const IRTCIntensityEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Level: *const fn(
-            self: *const IRTCIntensityEvent,
-            plLevel: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Min: *const fn(
-            self: *const IRTCIntensityEvent,
-            plMin: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Max: *const fn(
-            self: *const IRTCIntensityEvent,
-            plMax: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Direction: *const fn(
-            self: *const IRTCIntensityEvent,
-            penDirection: ?*RTC_AUDIO_DEVICE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Level(self: *const IRTCIntensityEvent, plLevel: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Level(self, plLevel);
-    }
-    pub fn get_Min(self: *const IRTCIntensityEvent, plMin: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Min(self, plMin);
-    }
-    pub fn get_Max(self: *const IRTCIntensityEvent, plMax: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Max(self, plMax);
-    }
-    pub fn get_Direction(self: *const IRTCIntensityEvent, penDirection: ?*RTC_AUDIO_DEVICE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Direction(self, penDirection);
-    }
-};
-
-const IID_IRTCMessagingEvent_Value = Guid.initString("d3609541-1b29-4de5-a4ad-5aebaf319512");
-pub const IID_IRTCMessagingEvent = &IID_IRTCMessagingEvent_Value;
-pub const IRTCMessagingEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IRTCMessagingEvent,
-            ppSession: ?*?*IRTCSession,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: *const fn(
-            self: *const IRTCMessagingEvent,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCMessagingEvent,
-            penEventType: ?*RTC_MESSAGING_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Message: *const fn(
-            self: *const IRTCMessagingEvent,
-            pbstrMessage: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MessageHeader: *const fn(
-            self: *const IRTCMessagingEvent,
-            pbstrMessageHeader: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserStatus: *const fn(
-            self: *const IRTCMessagingEvent,
-            penUserStatus: ?*RTC_MESSAGING_USER_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Session(self: *const IRTCMessagingEvent, ppSession: ?*?*IRTCSession) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession);
-    }
-    pub fn get_Participant(self: *const IRTCMessagingEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Participant(self, ppParticipant);
-    }
-    pub fn get_EventType(self: *const IRTCMessagingEvent, penEventType: ?*RTC_MESSAGING_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, penEventType);
-    }
-    pub fn get_Message(self: *const IRTCMessagingEvent, pbstrMessage: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Message(self, pbstrMessage);
-    }
-    pub fn get_MessageHeader(self: *const IRTCMessagingEvent, pbstrMessageHeader: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MessageHeader(self, pbstrMessageHeader);
-    }
-    pub fn get_UserStatus(self: *const IRTCMessagingEvent, penUserStatus: ?*RTC_MESSAGING_USER_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserStatus(self, penUserStatus);
-    }
-};
-
-const IID_IRTCBuddyEvent_Value = Guid.initString("f36d755d-17e6-404e-954f-0fc07574c78d");
-pub const IID_IRTCBuddyEvent = &IID_IRTCBuddyEvent_Value;
-pub const IRTCBuddyEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddy: *const fn(
-            self: *const IRTCBuddyEvent,
-            ppBuddy: ?*?*IRTCBuddy,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Buddy(self: *const IRTCBuddyEvent, ppBuddy: ?*?*IRTCBuddy) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Buddy(self, ppBuddy);
-    }
-};
-
-const IID_IRTCBuddyEvent2_Value = Guid.initString("484a7f1e-73f0-4990-bfc2-60bc3978a720");
-pub const IID_IRTCBuddyEvent2 = &IID_IRTCBuddyEvent2_Value;
-pub const IRTCBuddyEvent2 = extern union {
-    pub const VTable = extern struct {
-        base: IRTCBuddyEvent.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCBuddyEvent2,
-            pEventType: ?*RTC_BUDDY_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCBuddyEvent2,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: *const fn(
-            self: *const IRTCBuddyEvent2,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCBuddyEvent: IRTCBuddyEvent,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EventType(self: *const IRTCBuddyEvent2, pEventType: ?*RTC_BUDDY_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, pEventType);
-    }
-    pub fn get_StatusCode(self: *const IRTCBuddyEvent2, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-    pub fn get_StatusText(self: *const IRTCBuddyEvent2, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusText(self, pbstrStatusText);
-    }
-};
-
-const IID_IRTCWatcherEvent_Value = Guid.initString("f30d7261-587a-424f-822c-312788f43548");
-pub const IID_IRTCWatcherEvent = &IID_IRTCWatcherEvent_Value;
-pub const IRTCWatcherEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Watcher: *const fn(
-            self: *const IRTCWatcherEvent,
-            ppWatcher: ?*?*IRTCWatcher,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Watcher(self: *const IRTCWatcherEvent, ppWatcher: ?*?*IRTCWatcher) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Watcher(self, ppWatcher);
-    }
-};
-
-const IID_IRTCWatcherEvent2_Value = Guid.initString("e52891e8-188c-49af-b005-98ed13f83f9c");
-pub const IID_IRTCWatcherEvent2 = &IID_IRTCWatcherEvent2_Value;
-pub const IRTCWatcherEvent2 = extern union {
-    pub const VTable = extern struct {
-        base: IRTCWatcherEvent.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCWatcherEvent2,
-            pEventType: ?*RTC_WATCHER_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCWatcherEvent2,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCWatcherEvent: IRTCWatcherEvent,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EventType(self: *const IRTCWatcherEvent2, pEventType: ?*RTC_WATCHER_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, pEventType);
-    }
-    pub fn get_StatusCode(self: *const IRTCWatcherEvent2, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-};
-
-const IID_IRTCBuddyGroupEvent_Value = Guid.initString("3a79e1d1-b736-4414-96f8-bbc7f08863e4");
-pub const IID_IRTCBuddyGroupEvent = &IID_IRTCBuddyGroupEvent_Value;
-pub const IRTCBuddyGroupEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: *const fn(
-            self: *const IRTCBuddyGroupEvent,
-            pEventType: ?*RTC_GROUP_EVENT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Group: *const fn(
-            self: *const IRTCBuddyGroupEvent,
-            ppGroup: ?*?*IRTCBuddyGroup,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddy: *const fn(
-            self: *const IRTCBuddyGroupEvent,
-            ppBuddy: ?*?*IRTCBuddy2,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCBuddyGroupEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EventType(self: *const IRTCBuddyGroupEvent, pEventType: ?*RTC_GROUP_EVENT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventType(self, pEventType);
-    }
-    pub fn get_Group(self: *const IRTCBuddyGroupEvent, ppGroup: ?*?*IRTCBuddyGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Group(self, ppGroup);
-    }
-    pub fn get_Buddy(self: *const IRTCBuddyGroupEvent, ppBuddy: ?*?*IRTCBuddy2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Buddy(self, ppBuddy);
-    }
-    pub fn get_StatusCode(self: *const IRTCBuddyGroupEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-};
-
-const IID_IRTCInfoEvent_Value = Guid.initString("4e1d68ae-1912-4f49-b2c3-594fadfd425f");
-pub const IID_IRTCInfoEvent = &IID_IRTCInfoEvent_Value;
-pub const IRTCInfoEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IRTCInfoEvent,
-            ppSession: ?*?*IRTCSession2,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: *const fn(
-            self: *const IRTCInfoEvent,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Info: *const fn(
-            self: *const IRTCInfoEvent,
-            pbstrInfo: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InfoHeader: *const fn(
-            self: *const IRTCInfoEvent,
-            pbstrInfoHeader: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Session(self: *const IRTCInfoEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession);
-    }
-    pub fn get_Participant(self: *const IRTCInfoEvent, ppParticipant: ?*?*IRTCParticipant) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Participant(self, ppParticipant);
-    }
-    pub fn get_Info(self: *const IRTCInfoEvent, pbstrInfo: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Info(self, pbstrInfo);
-    }
-    pub fn get_InfoHeader(self: *const IRTCInfoEvent, pbstrInfoHeader: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InfoHeader(self, pbstrInfoHeader);
-    }
-};
-
-const IID_IRTCMediaRequestEvent_Value = Guid.initString("52572d15-148c-4d97-a36c-2da55c289d63");
-pub const IID_IRTCMediaRequestEvent = &IID_IRTCMediaRequestEvent_Value;
-pub const IRTCMediaRequestEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IRTCMediaRequestEvent,
-            ppSession: ?*?*IRTCSession2,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProposedMedia: *const fn(
-            self: *const IRTCMediaRequestEvent,
-            plMediaTypes: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentMedia: *const fn(
-            self: *const IRTCMediaRequestEvent,
-            plMediaTypes: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Accept: *const fn(
-            self: *const IRTCMediaRequestEvent,
-            lMediaTypes: i32,
-        ) callconv(.winapi) HRESULT,
-        get_RemotePreferredSecurityLevel: *const fn(
-            self: *const IRTCMediaRequestEvent,
-            enSecurityType: RTC_SECURITY_TYPE,
-            penSecurityLevel: ?*RTC_SECURITY_LEVEL,
-        ) callconv(.winapi) HRESULT,
-        Reject: *const fn(
-            self: *const IRTCMediaRequestEvent,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IRTCMediaRequestEvent,
-            pState: ?*RTC_REINVITE_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Session(self: *const IRTCMediaRequestEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession);
-    }
-    pub fn get_ProposedMedia(self: *const IRTCMediaRequestEvent, plMediaTypes: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ProposedMedia(self, plMediaTypes);
-    }
-    pub fn get_CurrentMedia(self: *const IRTCMediaRequestEvent, plMediaTypes: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentMedia(self, plMediaTypes);
-    }
-    pub fn Accept(self: *const IRTCMediaRequestEvent, lMediaTypes: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Accept(self, lMediaTypes);
-    }
-    pub fn get_RemotePreferredSecurityLevel(self: *const IRTCMediaRequestEvent, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RemotePreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
-    }
-    pub fn Reject(self: *const IRTCMediaRequestEvent) callconv(.@"inline") HRESULT {
-        return self.vtable.Reject(self);
-    }
-    pub fn get_State(self: *const IRTCMediaRequestEvent, pState: ?*RTC_REINVITE_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, pState);
-    }
-};
-
-const IID_IRTCReInviteEvent_Value = Guid.initString("11558d84-204c-43e7-99b0-2034e9417f7d");
-pub const IID_IRTCReInviteEvent = &IID_IRTCReInviteEvent_Value;
-pub const IRTCReInviteEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IRTCReInviteEvent,
-            ppSession2: ?*?*IRTCSession2,
-        ) callconv(.winapi) HRESULT,
-        Accept: *const fn(
-            self: *const IRTCReInviteEvent,
-            bstrContentType: ?BSTR,
-            bstrSessionDescription: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Reject: *const fn(
-            self: *const IRTCReInviteEvent,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IRTCReInviteEvent,
-            pState: ?*RTC_REINVITE_STATE,
-        ) callconv(.winapi) HRESULT,
-        GetRemoteSessionDescription: *const fn(
-            self: *const IRTCReInviteEvent,
-            pbstrContentType: ?*?BSTR,
-            pbstrSessionDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Session(self: *const IRTCReInviteEvent, ppSession2: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession2);
-    }
-    pub fn Accept(self: *const IRTCReInviteEvent, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Accept(self, bstrContentType, bstrSessionDescription);
-    }
-    pub fn Reject(self: *const IRTCReInviteEvent) callconv(.@"inline") HRESULT {
-        return self.vtable.Reject(self);
-    }
-    pub fn get_State(self: *const IRTCReInviteEvent, pState: ?*RTC_REINVITE_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, pState);
-    }
-    pub fn GetRemoteSessionDescription(self: *const IRTCReInviteEvent, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRemoteSessionDescription(self, pbstrContentType, pbstrSessionDescription);
-    }
-};
-
-const IID_IRTCPresencePropertyEvent_Value = Guid.initString("f777f570-a820-49d5-86bd-e099493f1518");
-pub const IID_IRTCPresencePropertyEvent = &IID_IRTCPresencePropertyEvent_Value;
-pub const IRTCPresencePropertyEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCPresencePropertyEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: *const fn(
-            self: *const IRTCPresencePropertyEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresenceProperty: *const fn(
-            self: *const IRTCPresencePropertyEvent,
-            penPresProp: ?*RTC_PRESENCE_PROPERTY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IRTCPresencePropertyEvent,
-            pbstrValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_StatusCode(self: *const IRTCPresencePropertyEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-    pub fn get_StatusText(self: *const IRTCPresencePropertyEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusText(self, pbstrStatusText);
-    }
-    pub fn get_PresenceProperty(self: *const IRTCPresencePropertyEvent, penPresProp: ?*RTC_PRESENCE_PROPERTY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PresenceProperty(self, penPresProp);
-    }
-    pub fn get_Value(self: *const IRTCPresencePropertyEvent, pbstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pbstrValue);
-    }
-};
-
-const IID_IRTCPresenceDataEvent_Value = Guid.initString("38f0e78c-8b87-4c04-a82d-aedd83c909bb");
-pub const IID_IRTCPresenceDataEvent = &IID_IRTCPresenceDataEvent_Value;
-pub const IRTCPresenceDataEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCPresenceDataEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: *const fn(
-            self: *const IRTCPresenceDataEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPresenceData: *const fn(
-            self: *const IRTCPresenceDataEvent,
-            pbstrNamespace: ?*?BSTR,
-            pbstrData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_StatusCode(self: *const IRTCPresenceDataEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-    pub fn get_StatusText(self: *const IRTCPresenceDataEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusText(self, pbstrStatusText);
-    }
-    pub fn GetPresenceData(self: *const IRTCPresenceDataEvent, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPresenceData(self, pbstrNamespace, pbstrData);
-    }
-};
-
-const IID_IRTCPresenceStatusEvent_Value = Guid.initString("78673f32-4a0f-462c-89aa-ee7706707678");
-pub const IID_IRTCPresenceStatusEvent = &IID_IRTCPresenceStatusEvent_Value;
-pub const IRTCPresenceStatusEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: *const fn(
-            self: *const IRTCPresenceStatusEvent,
-            plStatusCode: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: *const fn(
-            self: *const IRTCPresenceStatusEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetLocalPresenceInfo: *const fn(
-            self: *const IRTCPresenceStatusEvent,
-            penStatus: ?*RTC_PRESENCE_STATUS,
-            pbstrNotes: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_StatusCode(self: *const IRTCPresenceStatusEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusCode(self, plStatusCode);
-    }
-    pub fn get_StatusText(self: *const IRTCPresenceStatusEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusText(self, pbstrStatusText);
-    }
-    pub fn GetLocalPresenceInfo(self: *const IRTCPresenceStatusEvent, penStatus: ?*RTC_PRESENCE_STATUS, pbstrNotes: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalPresenceInfo(self, penStatus, pbstrNotes);
-    }
-};
-
-const IID_IRTCCollection_Value = Guid.initString("ec7c8096-b918-4044-94f1-e4fba0361d5c");
-pub const IID_IRTCCollection = &IID_IRTCCollection_Value;
-pub const IRTCCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IRTCCollection,
-            lCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IRTCCollection,
-            Index: i32,
-            pVariant: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IRTCCollection,
-            ppNewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IRTCCollection, lCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, lCount);
-    }
-    pub fn get_Item(self: *const IRTCCollection, Index: i32, pVariant: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, Index, pVariant);
-    }
-    pub fn get__NewEnum(self: *const IRTCCollection, ppNewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppNewEnum);
-    }
-};
-
-const IID_IRTCEnumParticipants_Value = Guid.initString("fcd56f29-4a4f-41b2-ba5c-f5bccc060bf6");
-pub const IID_IRTCEnumParticipants = &IID_IRTCEnumParticipants_Value;
-pub const IRTCEnumParticipants = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IRTCEnumParticipants,
-            celt: u32,
-            ppElements: [*]?*IRTCParticipant,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IRTCEnumParticipants,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IRTCEnumParticipants,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IRTCEnumParticipants,
-            ppEnum: ?*?*IRTCEnumParticipants,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IRTCEnumParticipants, celt: u32, ppElements: [*]?*IRTCParticipant, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppElements, pceltFetched);
-    }
-    pub fn Reset(self: *const IRTCEnumParticipants) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IRTCEnumParticipants, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Clone(self: *const IRTCEnumParticipants, ppEnum: ?*?*IRTCEnumParticipants) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
-const IID_IRTCEnumProfiles_Value = Guid.initString("29b7c41c-ed82-4bca-84ad-39d5101b58e3");
-pub const IID_IRTCEnumProfiles = &IID_IRTCEnumProfiles_Value;
-pub const IRTCEnumProfiles = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IRTCEnumProfiles,
-            celt: u32,
-            ppElements: [*]?*IRTCProfile,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IRTCEnumProfiles,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IRTCEnumProfiles,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IRTCEnumProfiles,
-            ppEnum: ?*?*IRTCEnumProfiles,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IRTCEnumProfiles, celt: u32, ppElements: [*]?*IRTCProfile, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppElements, pceltFetched);
-    }
-    pub fn Reset(self: *const IRTCEnumProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IRTCEnumProfiles, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Clone(self: *const IRTCEnumProfiles, ppEnum: ?*?*IRTCEnumProfiles) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
-const IID_IRTCEnumBuddies_Value = Guid.initString("f7296917-5569-4b3b-b3af-98d1144b2b87");
-pub const IID_IRTCEnumBuddies = &IID_IRTCEnumBuddies_Value;
-pub const IRTCEnumBuddies = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IRTCEnumBuddies,
-            celt: u32,
-            ppElements: [*]?*IRTCBuddy,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IRTCEnumBuddies,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IRTCEnumBuddies,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IRTCEnumBuddies,
-            ppEnum: ?*?*IRTCEnumBuddies,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IRTCEnumBuddies, celt: u32, ppElements: [*]?*IRTCBuddy, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppElements, pceltFetched);
-    }
-    pub fn Reset(self: *const IRTCEnumBuddies) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IRTCEnumBuddies, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Clone(self: *const IRTCEnumBuddies, ppEnum: ?*?*IRTCEnumBuddies) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
-const IID_IRTCEnumWatchers_Value = Guid.initString("a87d55d7-db74-4ed1-9ca4-77a0e41b413e");
-pub const IID_IRTCEnumWatchers = &IID_IRTCEnumWatchers_Value;
-pub const IRTCEnumWatchers = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IRTCEnumWatchers,
-            celt: u32,
-            ppElements: [*]?*IRTCWatcher,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IRTCEnumWatchers,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IRTCEnumWatchers,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IRTCEnumWatchers,
-            ppEnum: ?*?*IRTCEnumWatchers,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IRTCEnumWatchers, celt: u32, ppElements: [*]?*IRTCWatcher, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppElements, pceltFetched);
-    }
-    pub fn Reset(self: *const IRTCEnumWatchers) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IRTCEnumWatchers, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Clone(self: *const IRTCEnumWatchers, ppEnum: ?*?*IRTCEnumWatchers) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
-const IID_IRTCEnumGroups_Value = Guid.initString("742378d6-a141-4415-8f27-35d99076cf5d");
-pub const IID_IRTCEnumGroups = &IID_IRTCEnumGroups_Value;
-pub const IRTCEnumGroups = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IRTCEnumGroups,
-            celt: u32,
-            ppElements: [*]?*IRTCBuddyGroup,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IRTCEnumGroups,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IRTCEnumGroups,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IRTCEnumGroups,
-            ppEnum: ?*?*IRTCEnumGroups,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IRTCEnumGroups, celt: u32, ppElements: [*]?*IRTCBuddyGroup, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppElements, pceltFetched);
-    }
-    pub fn Reset(self: *const IRTCEnumGroups) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IRTCEnumGroups, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Clone(self: *const IRTCEnumGroups, ppEnum: ?*?*IRTCEnumGroups) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
-const IID_IRTCPresenceContact_Value = Guid.initString("8b22f92c-cd90-42db-a733-212205c3e3df");
-pub const IID_IRTCPresenceContact = &IID_IRTCPresenceContact_Value;
-pub const IRTCPresenceContact = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresentityURI: *const fn(
-            self: *const IRTCPresenceContact,
-            pbstrPresentityURI: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PresentityURI: *const fn(
-            self: *const IRTCPresenceContact,
-            bstrPresentityURI: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IRTCPresenceContact,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IRTCPresenceContact,
-            bstrName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: *const fn(
-            self: *const IRTCPresenceContact,
-            pbstrData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: *const fn(
-            self: *const IRTCPresenceContact,
-            bstrData: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Persistent: *const fn(
-            self: *const IRTCPresenceContact,
-            pfPersistent: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Persistent: *const fn(
-            self: *const IRTCPresenceContact,
-            fPersistent: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_PresentityURI(self: *const IRTCPresenceContact, pbstrPresentityURI: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PresentityURI(self, pbstrPresentityURI);
-    }
-    pub fn put_PresentityURI(self: *const IRTCPresenceContact, bstrPresentityURI: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PresentityURI(self, bstrPresentityURI);
-    }
-    pub fn get_Name(self: *const IRTCPresenceContact, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn put_Name(self: *const IRTCPresenceContact, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, bstrName);
-    }
-    pub fn get_Data(self: *const IRTCPresenceContact, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Data(self, pbstrData);
-    }
-    pub fn put_Data(self: *const IRTCPresenceContact, bstrData: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Data(self, bstrData);
-    }
-    pub fn get_Persistent(self: *const IRTCPresenceContact, pfPersistent: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Persistent(self, pfPersistent);
-    }
-    pub fn put_Persistent(self: *const IRTCPresenceContact, fPersistent: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Persistent(self, fPersistent);
-    }
-};
-
-const IID_IRTCBuddy_Value = Guid.initString("fcb136c8-7b90-4e0c-befe-56edf0ba6f1c");
-pub const IID_IRTCBuddy = &IID_IRTCBuddy_Value;
-pub const IRTCBuddy = extern union {
-    pub const VTable = extern struct {
-        base: IRTCPresenceContact.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Status: *const fn(
-            self: *const IRTCBuddy,
-            penStatus: ?*RTC_PRESENCE_STATUS,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Notes: *const fn(
-            self: *const IRTCBuddy,
-            pbstrNotes: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCPresenceContact: IRTCPresenceContact,
-    IUnknown: IUnknown,
-    pub fn get_Status(self: *const IRTCBuddy, penStatus: ?*RTC_PRESENCE_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Status(self, penStatus);
-    }
-    pub fn get_Notes(self: *const IRTCBuddy, pbstrNotes: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Notes(self, pbstrNotes);
-    }
-};
-
-const IID_IRTCBuddy2_Value = Guid.initString("102f9588-23e7-40e3-954d-cd7a1d5c0361");
-pub const IID_IRTCBuddy2 = &IID_IRTCBuddy2_Value;
-pub const IRTCBuddy2 = extern union {
-    pub const VTable = extern struct {
-        base: IRTCBuddy.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: *const fn(
-            self: *const IRTCBuddy2,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const IRTCBuddy2,
-        ) callconv(.winapi) HRESULT,
-        EnumerateGroups: *const fn(
-            self: *const IRTCBuddy2,
-            ppEnum: ?*?*IRTCEnumGroups,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Groups: *const fn(
-            self: *const IRTCBuddy2,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(.winapi) HRESULT,
-        get_PresenceProperty: *const fn(
-            self: *const IRTCBuddy2,
-            enProperty: RTC_PRESENCE_PROPERTY,
-            pbstrProperty: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        EnumeratePresenceDevices: *const fn(
-            self: *const IRTCBuddy2,
-            ppEnumDevices: ?*?*IRTCEnumPresenceDevices,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresenceDevices: *const fn(
-            self: *const IRTCBuddy2,
-            ppDevicesCollection: ?*?*IRTCCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SubscriptionType: *const fn(
-            self: *const IRTCBuddy2,
-            penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCBuddy: IRTCBuddy,
-    IRTCPresenceContact: IRTCPresenceContact,
-    IUnknown: IUnknown,
-    pub fn get_Profile(self: *const IRTCBuddy2, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Profile(self, ppProfile);
-    }
-    pub fn Refresh(self: *const IRTCBuddy2) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn EnumerateGroups(self: *const IRTCBuddy2, ppEnum: ?*?*IRTCEnumGroups) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumerateGroups(self, ppEnum);
-    }
-    pub fn get_Groups(self: *const IRTCBuddy2, ppCollection: ?*?*IRTCCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Groups(self, ppCollection);
-    }
-    pub fn get_PresenceProperty(self: *const IRTCBuddy2, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PresenceProperty(self, enProperty, pbstrProperty);
-    }
-    pub fn EnumeratePresenceDevices(self: *const IRTCBuddy2, ppEnumDevices: ?*?*IRTCEnumPresenceDevices) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumeratePresenceDevices(self, ppEnumDevices);
-    }
-    pub fn get_PresenceDevices(self: *const IRTCBuddy2, ppDevicesCollection: ?*?*IRTCCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PresenceDevices(self, ppDevicesCollection);
-    }
-    pub fn get_SubscriptionType(self: *const IRTCBuddy2, penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SubscriptionType(self, penSubscriptionType);
-    }
-};
-
-const IID_IRTCWatcher_Value = Guid.initString("c7cedad8-346b-4d1b-ac02-a2088df9be4f");
-pub const IID_IRTCWatcher = &IID_IRTCWatcher_Value;
-pub const IRTCWatcher = extern union {
-    pub const VTable = extern struct {
-        base: IRTCPresenceContact.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IRTCWatcher,
-            penState: ?*RTC_WATCHER_STATE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_State: *const fn(
-            self: *const IRTCWatcher,
-            enState: RTC_WATCHER_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCPresenceContact: IRTCPresenceContact,
-    IUnknown: IUnknown,
-    pub fn get_State(self: *const IRTCWatcher, penState: ?*RTC_WATCHER_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, penState);
-    }
-    pub fn put_State(self: *const IRTCWatcher, enState: RTC_WATCHER_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.put_State(self, enState);
-    }
-};
-
-const IID_IRTCWatcher2_Value = Guid.initString("d4d9967f-d011-4b1d-91e3-aba78f96393d");
-pub const IID_IRTCWatcher2 = &IID_IRTCWatcher2_Value;
-pub const IRTCWatcher2 = extern union {
-    pub const VTable = extern struct {
-        base: IRTCWatcher.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: *const fn(
-            self: *const IRTCWatcher2,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: *const fn(
-            self: *const IRTCWatcher2,
-            penScope: ?*RTC_ACE_SCOPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IRTCWatcher: IRTCWatcher,
-    IRTCPresenceContact: IRTCPresenceContact,
-    IUnknown: IUnknown,
-    pub fn get_Profile(self: *const IRTCWatcher2, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Profile(self, ppProfile);
-    }
-    pub fn get_Scope(self: *const IRTCWatcher2, penScope: ?*RTC_ACE_SCOPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Scope(self, penScope);
-    }
-};
-
-const IID_IRTCBuddyGroup_Value = Guid.initString("60361e68-9164-4389-a4c6-d0b3925bda5e");
-pub const IID_IRTCBuddyGroup = &IID_IRTCBuddyGroup_Value;
-pub const IRTCBuddyGroup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IRTCBuddyGroup,
-            pbstrGroupName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IRTCBuddyGroup,
-            bstrGroupName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddBuddy: *const fn(
-            self: *const IRTCBuddyGroup,
-            pBuddy: ?*IRTCBuddy,
-        ) callconv(.winapi) HRESULT,
-        RemoveBuddy: *const fn(
-            self: *const IRTCBuddyGroup,
-            pBuddy: ?*IRTCBuddy,
-        ) callconv(.winapi) HRESULT,
-        EnumerateBuddies: *const fn(
-            self: *const IRTCBuddyGroup,
-            ppEnum: ?*?*IRTCEnumBuddies,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddies: *const fn(
-            self: *const IRTCBuddyGroup,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: *const fn(
-            self: *const IRTCBuddyGroup,
-            pbstrData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: *const fn(
-            self: *const IRTCBuddyGroup,
-            bstrData: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: *const fn(
-            self: *const IRTCBuddyGroup,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IRTCBuddyGroup, pbstrGroupName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrGroupName);
-    }
-    pub fn put_Name(self: *const IRTCBuddyGroup, bstrGroupName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, bstrGroupName);
-    }
-    pub fn AddBuddy(self: *const IRTCBuddyGroup, pBuddy: ?*IRTCBuddy) callconv(.@"inline") HRESULT {
-        return self.vtable.AddBuddy(self, pBuddy);
-    }
-    pub fn RemoveBuddy(self: *const IRTCBuddyGroup, pBuddy: ?*IRTCBuddy) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveBuddy(self, pBuddy);
-    }
-    pub fn EnumerateBuddies(self: *const IRTCBuddyGroup, ppEnum: ?*?*IRTCEnumBuddies) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumerateBuddies(self, ppEnum);
-    }
-    pub fn get_Buddies(self: *const IRTCBuddyGroup, ppCollection: ?*?*IRTCCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Buddies(self, ppCollection);
-    }
-    pub fn get_Data(self: *const IRTCBuddyGroup, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Data(self, pbstrData);
-    }
-    pub fn put_Data(self: *const IRTCBuddyGroup, bstrData: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Data(self, bstrData);
-    }
-    pub fn get_Profile(self: *const IRTCBuddyGroup, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Profile(self, ppProfile);
-    }
-};
-
-const IID_IRTCEventNotification_Value = Guid.initString("13fa24c7-5748-4b21-91f5-7397609ce747");
-pub const IID_IRTCEventNotification = &IID_IRTCEventNotification_Value;
-pub const IRTCEventNotification = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Event: *const fn(
-            self: *const IRTCEventNotification,
-            RTCEvent: RTC_EVENT,
-            pEvent: ?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Event(self: *const IRTCEventNotification, RTCEvent: RTC_EVENT, pEvent: ?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.Event(self, RTCEvent, pEvent);
-    }
-};
-
-const IID_IRTCPortManager_Value = Guid.initString("da77c14b-6208-43ca-8ddf-5b60a0a69fac");
-pub const IID_IRTCPortManager = &IID_IRTCPortManager_Value;
-pub const IRTCPortManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetMapping: *const fn(
-            self: *const IRTCPortManager,
-            bstrRemoteAddress: ?BSTR,
-            enPortType: RTC_PORT_TYPE,
-            pbstrInternalLocalAddress: ?*?BSTR,
-            plInternalLocalPort: ?*i32,
-            pbstrExternalLocalAddress: ?*?BSTR,
-            plExternalLocalPort: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        UpdateRemoteAddress: *const fn(
-            self: *const IRTCPortManager,
-            bstrRemoteAddress: ?BSTR,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-            bstrExternalLocalAddress: ?BSTR,
-            lExternalLocalPort: i32,
-        ) callconv(.winapi) HRESULT,
-        ReleaseMapping: *const fn(
-            self: *const IRTCPortManager,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-            bstrExternalLocalAddress: ?BSTR,
-            lExternalLocalAddress: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetMapping(self: *const IRTCPortManager, bstrRemoteAddress: ?BSTR, enPortType: RTC_PORT_TYPE, pbstrInternalLocalAddress: ?*?BSTR, plInternalLocalPort: ?*i32, pbstrExternalLocalAddress: ?*?BSTR, plExternalLocalPort: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMapping(self, bstrRemoteAddress, enPortType, pbstrInternalLocalAddress, plInternalLocalPort, pbstrExternalLocalAddress, plExternalLocalPort);
-    }
-    pub fn UpdateRemoteAddress(self: *const IRTCPortManager, bstrRemoteAddress: ?BSTR, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalPort: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateRemoteAddress(self, bstrRemoteAddress, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalPort);
-    }
-    pub fn ReleaseMapping(self: *const IRTCPortManager, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalAddress: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseMapping(self, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalAddress);
-    }
-};
-
-const IID_IRTCSessionPortManagement_Value = Guid.initString("a072f1d6-0286-4e1f-85f2-17a2948456ec");
-pub const IID_IRTCSessionPortManagement = &IID_IRTCSessionPortManagement_Value;
-pub const IRTCSessionPortManagement = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetPortManager: *const fn(
-            self: *const IRTCSessionPortManagement,
-            pPortManager: ?*IRTCPortManager,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetPortManager(self: *const IRTCSessionPortManagement, pPortManager: ?*IRTCPortManager) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPortManager(self, pPortManager);
-    }
-};
-
-const IID_IRTCClientPortManagement_Value = Guid.initString("d5df3f03-4bde-4417-aefe-71177bdaea66");
-pub const IID_IRTCClientPortManagement = &IID_IRTCClientPortManagement_Value;
-pub const IRTCClientPortManagement = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StartListenAddressAndPort: *const fn(
-            self: *const IRTCClientPortManagement,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-        ) callconv(.winapi) HRESULT,
-        StopListenAddressAndPort: *const fn(
-            self: *const IRTCClientPortManagement,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-        ) callconv(.winapi) HRESULT,
-        GetPortRange: *const fn(
-            self: *const IRTCClientPortManagement,
-            enPortType: RTC_PORT_TYPE,
-            plMinValue: ?*i32,
-            plMaxValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn StartListenAddressAndPort(self: *const IRTCClientPortManagement, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.StartListenAddressAndPort(self, bstrInternalLocalAddress, lInternalLocalPort);
-    }
-    pub fn StopListenAddressAndPort(self: *const IRTCClientPortManagement, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.StopListenAddressAndPort(self, bstrInternalLocalAddress, lInternalLocalPort);
-    }
-    pub fn GetPortRange(self: *const IRTCClientPortManagement, enPortType: RTC_PORT_TYPE, plMinValue: ?*i32, plMaxValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPortRange(self, enPortType, plMinValue, plMaxValue);
     }
 };
 
@@ -3862,45 +3539,6 @@ pub const IRTCUserSearchResult = extern union {
     }
 };
 
-const IID_IRTCEnumUserSearchResults_Value = Guid.initString("83d4d877-aa5d-4a5b-8d0e-002a8067e0e8");
-pub const IID_IRTCEnumUserSearchResults = &IID_IRTCEnumUserSearchResults_Value;
-pub const IRTCEnumUserSearchResults = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IRTCEnumUserSearchResults,
-            celt: u32,
-            ppElements: [*]?*IRTCUserSearchResult,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IRTCEnumUserSearchResults,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IRTCEnumUserSearchResults,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IRTCEnumUserSearchResults,
-            ppEnum: ?*?*IRTCEnumUserSearchResults,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IRTCEnumUserSearchResults, celt: u32, ppElements: [*]?*IRTCUserSearchResult, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppElements, pceltFetched);
-    }
-    pub fn Reset(self: *const IRTCEnumUserSearchResults) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IRTCEnumUserSearchResults, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Clone(self: *const IRTCEnumUserSearchResults, ppEnum: ?*?*IRTCEnumUserSearchResults) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
 const IID_IRTCUserSearchResultsEvent_Value = Guid.initString("d8c8c3cd-7fac-4088-81c5-c24cbc0938e3");
 pub const IID_IRTCUserSearchResultsEvent = &IID_IRTCUserSearchResultsEvent_Value;
 pub const IRTCUserSearchResultsEvent = extern union {
@@ -3967,226 +3605,106 @@ pub const IRTCUserSearchResultsEvent = extern union {
     }
 };
 
-const IID_IRTCSessionReferStatusEvent_Value = Guid.initString("3d8fc2cd-5d76-44ab-bb68-2a80353b34a2");
-pub const IID_IRTCSessionReferStatusEvent = &IID_IRTCSessionReferStatusEvent_Value;
-pub const IRTCSessionReferStatusEvent = extern union {
+const IID_IRTCWatcher_Value = Guid.initString("c7cedad8-346b-4d1b-ac02-a2088df9be4f");
+pub const IID_IRTCWatcher = &IID_IRTCWatcher_Value;
+pub const IRTCWatcher = extern union {
+    pub const VTable = extern struct {
+        base: IRTCPresenceContact.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const IRTCWatcher,
+            penState: ?*RTC_WATCHER_STATE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_State: *const fn(
+            self: *const IRTCWatcher,
+            enState: RTC_WATCHER_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRTCPresenceContact: IRTCPresenceContact,
+    IUnknown: IUnknown,
+    pub fn get_State(self: *const IRTCWatcher, penState: ?*RTC_WATCHER_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, penState);
+    }
+    pub fn put_State(self: *const IRTCWatcher, enState: RTC_WATCHER_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.put_State(self, enState);
+    }
+};
+
+const IID_IRTCWatcher2_Value = Guid.initString("d4d9967f-d011-4b1d-91e3-aba78f96393d");
+pub const IID_IRTCWatcher2 = &IID_IRTCWatcher2_Value;
+pub const IRTCWatcher2 = extern union {
+    pub const VTable = extern struct {
+        base: IRTCWatcher.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Profile: *const fn(
+            self: *const IRTCWatcher2,
+            ppProfile: ?*?*IRTCProfile2,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Scope: *const fn(
+            self: *const IRTCWatcher2,
+            penScope: ?*RTC_ACE_SCOPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IRTCWatcher: IRTCWatcher,
+    IRTCPresenceContact: IRTCPresenceContact,
+    IUnknown: IUnknown,
+    pub fn get_Profile(self: *const IRTCWatcher2, ppProfile: ?*?*IRTCProfile2) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Profile(self, ppProfile);
+    }
+    pub fn get_Scope(self: *const IRTCWatcher2, penScope: ?*RTC_ACE_SCOPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Scope(self, penScope);
+    }
+};
+
+const IID_IRTCWatcherEvent_Value = Guid.initString("f30d7261-587a-424f-822c-312788f43548");
+pub const IID_IRTCWatcherEvent = &IID_IRTCWatcherEvent_Value;
+pub const IRTCWatcherEvent = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IRTCSessionReferStatusEvent,
-            ppSession: ?*?*IRTCSession2,
+        get_Watcher: *const fn(
+            self: *const IRTCWatcherEvent,
+            ppWatcher: ?*?*IRTCWatcher,
         ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Watcher(self: *const IRTCWatcherEvent, ppWatcher: ?*?*IRTCWatcher) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Watcher(self, ppWatcher);
+    }
+};
+
+const IID_IRTCWatcherEvent2_Value = Guid.initString("e52891e8-188c-49af-b005-98ed13f83f9c");
+pub const IID_IRTCWatcherEvent2 = &IID_IRTCWatcherEvent2_Value;
+pub const IRTCWatcherEvent2 = extern union {
+    pub const VTable = extern struct {
+        base: IRTCWatcherEvent.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferStatus: *const fn(
-            self: *const IRTCSessionReferStatusEvent,
-            penReferStatus: ?*RTC_SESSION_REFER_STATUS,
+        get_EventType: *const fn(
+            self: *const IRTCWatcherEvent2,
+            pEventType: ?*RTC_WATCHER_EVENT_TYPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StatusCode: *const fn(
-            self: *const IRTCSessionReferStatusEvent,
+            self: *const IRTCWatcherEvent2,
             plStatusCode: ?*i32,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: *const fn(
-            self: *const IRTCSessionReferStatusEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IRTCWatcherEvent: IRTCWatcherEvent,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Session(self: *const IRTCSessionReferStatusEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession);
+    pub fn get_EventType(self: *const IRTCWatcherEvent2, pEventType: ?*RTC_WATCHER_EVENT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventType(self, pEventType);
     }
-    pub fn get_ReferStatus(self: *const IRTCSessionReferStatusEvent, penReferStatus: ?*RTC_SESSION_REFER_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReferStatus(self, penReferStatus);
-    }
-    pub fn get_StatusCode(self: *const IRTCSessionReferStatusEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_StatusCode(self: *const IRTCWatcherEvent2, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_StatusCode(self, plStatusCode);
     }
-    pub fn get_StatusText(self: *const IRTCSessionReferStatusEvent, pbstrStatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StatusText(self, pbstrStatusText);
-    }
-};
-
-const IID_IRTCSessionReferredEvent_Value = Guid.initString("176a6828-4fcc-4f28-a862-04597a6cf1c4");
-pub const IID_IRTCSessionReferredEvent = &IID_IRTCSessionReferredEvent_Value;
-pub const IRTCSessionReferredEvent = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IRTCSessionReferredEvent,
-            ppSession: ?*?*IRTCSession2,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferredByURI: *const fn(
-            self: *const IRTCSessionReferredEvent,
-            pbstrReferredByURI: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferToURI: *const fn(
-            self: *const IRTCSessionReferredEvent,
-            pbstrReferoURI: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferCookie: *const fn(
-            self: *const IRTCSessionReferredEvent,
-            pbstrReferCookie: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Accept: *const fn(
-            self: *const IRTCSessionReferredEvent,
-        ) callconv(.winapi) HRESULT,
-        Reject: *const fn(
-            self: *const IRTCSessionReferredEvent,
-        ) callconv(.winapi) HRESULT,
-        SetReferredSessionState: *const fn(
-            self: *const IRTCSessionReferredEvent,
-            enState: RTC_SESSION_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Session(self: *const IRTCSessionReferredEvent, ppSession: ?*?*IRTCSession2) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppSession);
-    }
-    pub fn get_ReferredByURI(self: *const IRTCSessionReferredEvent, pbstrReferredByURI: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReferredByURI(self, pbstrReferredByURI);
-    }
-    pub fn get_ReferToURI(self: *const IRTCSessionReferredEvent, pbstrReferoURI: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReferToURI(self, pbstrReferoURI);
-    }
-    pub fn get_ReferCookie(self: *const IRTCSessionReferredEvent, pbstrReferCookie: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReferCookie(self, pbstrReferCookie);
-    }
-    pub fn Accept(self: *const IRTCSessionReferredEvent) callconv(.@"inline") HRESULT {
-        return self.vtable.Accept(self);
-    }
-    pub fn Reject(self: *const IRTCSessionReferredEvent) callconv(.@"inline") HRESULT {
-        return self.vtable.Reject(self);
-    }
-    pub fn SetReferredSessionState(self: *const IRTCSessionReferredEvent, enState: RTC_SESSION_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReferredSessionState(self, enState);
-    }
-};
-
-const IID_IRTCSessionDescriptionManager_Value = Guid.initString("ba7f518e-d336-4070-93a6-865395c843f9");
-pub const IID_IRTCSessionDescriptionManager = &IID_IRTCSessionDescriptionManager_Value;
-pub const IRTCSessionDescriptionManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EvaluateSessionDescription: *const fn(
-            self: *const IRTCSessionDescriptionManager,
-            bstrContentType: ?BSTR,
-            bstrSessionDescription: ?BSTR,
-            pfApplicationSession: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EvaluateSessionDescription(self: *const IRTCSessionDescriptionManager, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pfApplicationSession: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.EvaluateSessionDescription(self, bstrContentType, bstrSessionDescription, pfApplicationSession);
-    }
-};
-
-const IID_IRTCEnumPresenceDevices_Value = Guid.initString("708c2ab7-8bf8-42f8-8c7d-635197ad5539");
-pub const IID_IRTCEnumPresenceDevices = &IID_IRTCEnumPresenceDevices_Value;
-pub const IRTCEnumPresenceDevices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IRTCEnumPresenceDevices,
-            celt: u32,
-            ppElements: [*]?*IRTCPresenceDevice,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IRTCEnumPresenceDevices,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IRTCEnumPresenceDevices,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IRTCEnumPresenceDevices,
-            ppEnum: ?*?*IRTCEnumPresenceDevices,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IRTCEnumPresenceDevices, celt: u32, ppElements: [*]?*IRTCPresenceDevice, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, ppElements, pceltFetched);
-    }
-    pub fn Reset(self: *const IRTCEnumPresenceDevices) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IRTCEnumPresenceDevices, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Clone(self: *const IRTCEnumPresenceDevices, ppEnum: ?*?*IRTCEnumPresenceDevices) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-};
-
-const IID_IRTCPresenceDevice_Value = Guid.initString("bc6a90dd-ad9a-48da-9b0c-2515e38521ad");
-pub const IID_IRTCPresenceDevice = &IID_IRTCPresenceDevice_Value;
-pub const IRTCPresenceDevice = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Status: *const fn(
-            self: *const IRTCPresenceDevice,
-            penStatus: ?*RTC_PRESENCE_STATUS,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Notes: *const fn(
-            self: *const IRTCPresenceDevice,
-            pbstrNotes: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        get_PresenceProperty: *const fn(
-            self: *const IRTCPresenceDevice,
-            enProperty: RTC_PRESENCE_PROPERTY,
-            pbstrProperty: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPresenceData: *const fn(
-            self: *const IRTCPresenceDevice,
-            pbstrNamespace: ?*?BSTR,
-            pbstrData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Status(self: *const IRTCPresenceDevice, penStatus: ?*RTC_PRESENCE_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Status(self, penStatus);
-    }
-    pub fn get_Notes(self: *const IRTCPresenceDevice, pbstrNotes: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Notes(self, pbstrNotes);
-    }
-    pub fn get_PresenceProperty(self: *const IRTCPresenceDevice, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PresenceProperty(self, enProperty, pbstrProperty);
-    }
-    pub fn GetPresenceData(self: *const IRTCPresenceDevice, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPresenceData(self, pbstrNamespace, pbstrData);
-    }
-};
-
-const IID_IRTCDispatchEventNotification_Value = Guid.initString("176ddfbe-fec0-4d55-bc87-84cff1ef7f91");
-pub const IID_IRTCDispatchEventNotification = &IID_IRTCDispatchEventNotification_Value;
-pub const IRTCDispatchEventNotification = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-pub const TRANSPORT_SETTING = extern struct {
-    SettingId: TRANSPORT_SETTING_ID,
-    Length: ?*u32,
-    Value: ?*u8,
 };
 
 const IID_ITransportSettingsInternal_Value = Guid.initString("5123e076-29e3-4bfd-84fe-0192d411e3e8");
@@ -4213,58 +3731,540 @@ pub const ITransportSettingsInternal = extern union {
     }
 };
 
-const IID_INetworkTransportSettings_Value = Guid.initString("5e7abb2c-f2c1-4a61-bd35-deb7a08ab0f1");
-pub const IID_INetworkTransportSettings = &IID_INetworkTransportSettings_Value;
-pub const INetworkTransportSettings = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ApplySetting: *const fn(
-            self: *const INetworkTransportSettings,
-            SettingId: ?*const TRANSPORT_SETTING_ID,
-            LengthIn: u32,
-            ValueIn: [*:0]const u8,
-            LengthOut: ?*u32,
-            ValueOut: [*]?*u8,
-        ) callconv(.winapi) HRESULT,
-        QuerySetting: *const fn(
-            self: *const INetworkTransportSettings,
-            SettingId: ?*const TRANSPORT_SETTING_ID,
-            LengthIn: u32,
-            ValueIn: [*:0]const u8,
-            LengthOut: ?*u32,
-            ValueOut: [*]?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ApplySetting(self: *const INetworkTransportSettings, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplySetting(self, SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
-    }
-    pub fn QuerySetting(self: *const INetworkTransportSettings, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.QuerySetting(self, SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
-    }
+pub const RTC_ACE_SCOPE = enum(i32) {
+    USER = 0,
+    DOMAIN = 1,
+    ALL = 2,
 };
+pub const RTCAS_SCOPE_USER = RTC_ACE_SCOPE.USER;
+pub const RTCAS_SCOPE_DOMAIN = RTC_ACE_SCOPE.DOMAIN;
+pub const RTCAS_SCOPE_ALL = RTC_ACE_SCOPE.ALL;
 
-const IID_INotificationTransportSync_Value = Guid.initString("79eb1402-0ab8-49c0-9e14-a1ae4ba93058");
-pub const IID_INotificationTransportSync = &IID_INotificationTransportSync_Value;
-pub const INotificationTransportSync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CompleteDelivery: *const fn(
-            self: *const INotificationTransportSync,
-        ) callconv(.winapi) HRESULT,
-        Flush: *const fn(
-            self: *const INotificationTransportSync,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CompleteDelivery(self: *const INotificationTransportSync) callconv(.@"inline") HRESULT {
-        return self.vtable.CompleteDelivery(self);
-    }
-    pub fn Flush(self: *const INotificationTransportSync) callconv(.@"inline") HRESULT {
-        return self.vtable.Flush(self);
-    }
+pub const RTC_ANSWER_MODE = enum(i32) {
+    OFFER_SESSION_EVENT = 0,
+    AUTOMATICALLY_ACCEPT = 1,
+    AUTOMATICALLY_REJECT = 2,
+    NOT_SUPPORTED = 3,
+};
+pub const RTCAM_OFFER_SESSION_EVENT = RTC_ANSWER_MODE.OFFER_SESSION_EVENT;
+pub const RTCAM_AUTOMATICALLY_ACCEPT = RTC_ANSWER_MODE.AUTOMATICALLY_ACCEPT;
+pub const RTCAM_AUTOMATICALLY_REJECT = RTC_ANSWER_MODE.AUTOMATICALLY_REJECT;
+pub const RTCAM_NOT_SUPPORTED = RTC_ANSWER_MODE.NOT_SUPPORTED;
+
+pub const RTC_AUDIO_DEVICE = enum(i32) {
+    SPEAKER = 0,
+    MICROPHONE = 1,
+};
+pub const RTCAD_SPEAKER = RTC_AUDIO_DEVICE.SPEAKER;
+pub const RTCAD_MICROPHONE = RTC_AUDIO_DEVICE.MICROPHONE;
+
+pub const RTC_BUDDY_EVENT_TYPE = enum(i32) {
+    ADD = 0,
+    REMOVE = 1,
+    UPDATE = 2,
+    STATE_CHANGE = 3,
+    ROAMED = 4,
+    SUBSCRIBED = 5,
+};
+pub const RTCBET_BUDDY_ADD = RTC_BUDDY_EVENT_TYPE.ADD;
+pub const RTCBET_BUDDY_REMOVE = RTC_BUDDY_EVENT_TYPE.REMOVE;
+pub const RTCBET_BUDDY_UPDATE = RTC_BUDDY_EVENT_TYPE.UPDATE;
+pub const RTCBET_BUDDY_STATE_CHANGE = RTC_BUDDY_EVENT_TYPE.STATE_CHANGE;
+pub const RTCBET_BUDDY_ROAMED = RTC_BUDDY_EVENT_TYPE.ROAMED;
+pub const RTCBET_BUDDY_SUBSCRIBED = RTC_BUDDY_EVENT_TYPE.SUBSCRIBED;
+
+pub const RTC_BUDDY_SUBSCRIPTION_TYPE = enum(i32) {
+    SUBSCRIBED = 0,
+    ALWAYS_OFFLINE = 1,
+    ALWAYS_ONLINE = 2,
+    POLL = 3,
+};
+pub const RTCBT_SUBSCRIBED = RTC_BUDDY_SUBSCRIPTION_TYPE.SUBSCRIBED;
+pub const RTCBT_ALWAYS_OFFLINE = RTC_BUDDY_SUBSCRIPTION_TYPE.ALWAYS_OFFLINE;
+pub const RTCBT_ALWAYS_ONLINE = RTC_BUDDY_SUBSCRIPTION_TYPE.ALWAYS_ONLINE;
+pub const RTCBT_POLL = RTC_BUDDY_SUBSCRIPTION_TYPE.POLL;
+
+pub const RTC_CLIENT_EVENT_TYPE = enum(i32) {
+    VOLUME_CHANGE = 0,
+    DEVICE_CHANGE = 1,
+    NETWORK_QUALITY_CHANGE = 2,
+    ASYNC_CLEANUP_DONE = 3,
+};
+pub const RTCCET_VOLUME_CHANGE = RTC_CLIENT_EVENT_TYPE.VOLUME_CHANGE;
+pub const RTCCET_DEVICE_CHANGE = RTC_CLIENT_EVENT_TYPE.DEVICE_CHANGE;
+pub const RTCCET_NETWORK_QUALITY_CHANGE = RTC_CLIENT_EVENT_TYPE.NETWORK_QUALITY_CHANGE;
+pub const RTCCET_ASYNC_CLEANUP_DONE = RTC_CLIENT_EVENT_TYPE.ASYNC_CLEANUP_DONE;
+
+pub const RTC_DTMF = enum(i32) {
+    @"0" = 0,
+    @"1" = 1,
+    @"2" = 2,
+    @"3" = 3,
+    @"4" = 4,
+    @"5" = 5,
+    @"6" = 6,
+    @"7" = 7,
+    @"8" = 8,
+    @"9" = 9,
+    STAR = 10,
+    POUND = 11,
+    A = 12,
+    B = 13,
+    C = 14,
+    D = 15,
+    FLASH = 16,
+};
+pub const RTC_DTMF_0 = RTC_DTMF.@"0";
+pub const RTC_DTMF_1 = RTC_DTMF.@"1";
+pub const RTC_DTMF_2 = RTC_DTMF.@"2";
+pub const RTC_DTMF_3 = RTC_DTMF.@"3";
+pub const RTC_DTMF_4 = RTC_DTMF.@"4";
+pub const RTC_DTMF_5 = RTC_DTMF.@"5";
+pub const RTC_DTMF_6 = RTC_DTMF.@"6";
+pub const RTC_DTMF_7 = RTC_DTMF.@"7";
+pub const RTC_DTMF_8 = RTC_DTMF.@"8";
+pub const RTC_DTMF_9 = RTC_DTMF.@"9";
+pub const RTC_DTMF_STAR = RTC_DTMF.STAR;
+pub const RTC_DTMF_POUND = RTC_DTMF.POUND;
+pub const RTC_DTMF_A = RTC_DTMF.A;
+pub const RTC_DTMF_B = RTC_DTMF.B;
+pub const RTC_DTMF_C = RTC_DTMF.C;
+pub const RTC_DTMF_D = RTC_DTMF.D;
+pub const RTC_DTMF_FLASH = RTC_DTMF.FLASH;
+
+pub const RTC_EVENT = enum(i32) {
+    CLIENT = 0,
+    REGISTRATION_STATE_CHANGE = 1,
+    SESSION_STATE_CHANGE = 2,
+    SESSION_OPERATION_COMPLETE = 3,
+    PARTICIPANT_STATE_CHANGE = 4,
+    MEDIA = 5,
+    INTENSITY = 6,
+    MESSAGING = 7,
+    BUDDY = 8,
+    WATCHER = 9,
+    PROFILE = 10,
+    USERSEARCH = 11,
+    INFO = 12,
+    GROUP = 13,
+    MEDIA_REQUEST = 14,
+    ROAMING = 15,
+    PRESENCE_PROPERTY = 16,
+    PRESENCE_DATA = 17,
+    PRESENCE_STATUS = 18,
+    SESSION_REFER_STATUS = 19,
+    SESSION_REFERRED = 20,
+    REINVITE = 21,
+};
+pub const RTCE_CLIENT = RTC_EVENT.CLIENT;
+pub const RTCE_REGISTRATION_STATE_CHANGE = RTC_EVENT.REGISTRATION_STATE_CHANGE;
+pub const RTCE_SESSION_STATE_CHANGE = RTC_EVENT.SESSION_STATE_CHANGE;
+pub const RTCE_SESSION_OPERATION_COMPLETE = RTC_EVENT.SESSION_OPERATION_COMPLETE;
+pub const RTCE_PARTICIPANT_STATE_CHANGE = RTC_EVENT.PARTICIPANT_STATE_CHANGE;
+pub const RTCE_MEDIA = RTC_EVENT.MEDIA;
+pub const RTCE_INTENSITY = RTC_EVENT.INTENSITY;
+pub const RTCE_MESSAGING = RTC_EVENT.MESSAGING;
+pub const RTCE_BUDDY = RTC_EVENT.BUDDY;
+pub const RTCE_WATCHER = RTC_EVENT.WATCHER;
+pub const RTCE_PROFILE = RTC_EVENT.PROFILE;
+pub const RTCE_USERSEARCH = RTC_EVENT.USERSEARCH;
+pub const RTCE_INFO = RTC_EVENT.INFO;
+pub const RTCE_GROUP = RTC_EVENT.GROUP;
+pub const RTCE_MEDIA_REQUEST = RTC_EVENT.MEDIA_REQUEST;
+pub const RTCE_ROAMING = RTC_EVENT.ROAMING;
+pub const RTCE_PRESENCE_PROPERTY = RTC_EVENT.PRESENCE_PROPERTY;
+pub const RTCE_PRESENCE_DATA = RTC_EVENT.PRESENCE_DATA;
+pub const RTCE_PRESENCE_STATUS = RTC_EVENT.PRESENCE_STATUS;
+pub const RTCE_SESSION_REFER_STATUS = RTC_EVENT.SESSION_REFER_STATUS;
+pub const RTCE_SESSION_REFERRED = RTC_EVENT.SESSION_REFERRED;
+pub const RTCE_REINVITE = RTC_EVENT.REINVITE;
+
+pub const RTC_GROUP_EVENT_TYPE = enum(i32) {
+    ADD = 0,
+    REMOVE = 1,
+    UPDATE = 2,
+    BUDDY_ADD = 3,
+    BUDDY_REMOVE = 4,
+    ROAMED = 5,
+};
+pub const RTCGET_GROUP_ADD = RTC_GROUP_EVENT_TYPE.ADD;
+pub const RTCGET_GROUP_REMOVE = RTC_GROUP_EVENT_TYPE.REMOVE;
+pub const RTCGET_GROUP_UPDATE = RTC_GROUP_EVENT_TYPE.UPDATE;
+pub const RTCGET_GROUP_BUDDY_ADD = RTC_GROUP_EVENT_TYPE.BUDDY_ADD;
+pub const RTCGET_GROUP_BUDDY_REMOVE = RTC_GROUP_EVENT_TYPE.BUDDY_REMOVE;
+pub const RTCGET_GROUP_ROAMED = RTC_GROUP_EVENT_TYPE.ROAMED;
+
+pub const RTC_LISTEN_MODE = enum(i32) {
+    NONE = 0,
+    DYNAMIC = 1,
+    BOTH = 2,
+};
+pub const RTCLM_NONE = RTC_LISTEN_MODE.NONE;
+pub const RTCLM_DYNAMIC = RTC_LISTEN_MODE.DYNAMIC;
+pub const RTCLM_BOTH = RTC_LISTEN_MODE.BOTH;
+
+pub const RTC_MEDIA_EVENT_REASON = enum(i32) {
+    NORMAL = 0,
+    HOLD = 1,
+    TIMEOUT = 2,
+    BAD_DEVICE = 3,
+    NO_PORT = 4,
+    PORT_MAPPING_FAILED = 5,
+    REMOTE_REQUEST = 6,
+};
+pub const RTCMER_NORMAL = RTC_MEDIA_EVENT_REASON.NORMAL;
+pub const RTCMER_HOLD = RTC_MEDIA_EVENT_REASON.HOLD;
+pub const RTCMER_TIMEOUT = RTC_MEDIA_EVENT_REASON.TIMEOUT;
+pub const RTCMER_BAD_DEVICE = RTC_MEDIA_EVENT_REASON.BAD_DEVICE;
+pub const RTCMER_NO_PORT = RTC_MEDIA_EVENT_REASON.NO_PORT;
+pub const RTCMER_PORT_MAPPING_FAILED = RTC_MEDIA_EVENT_REASON.PORT_MAPPING_FAILED;
+pub const RTCMER_REMOTE_REQUEST = RTC_MEDIA_EVENT_REASON.REMOTE_REQUEST;
+
+pub const RTC_MEDIA_EVENT_TYPE = enum(i32) {
+    STOPPED = 0,
+    STARTED = 1,
+    FAILED = 2,
+};
+pub const RTCMET_STOPPED = RTC_MEDIA_EVENT_TYPE.STOPPED;
+pub const RTCMET_STARTED = RTC_MEDIA_EVENT_TYPE.STARTED;
+pub const RTCMET_FAILED = RTC_MEDIA_EVENT_TYPE.FAILED;
+
+pub const RTC_MESSAGING_EVENT_TYPE = enum(i32) {
+    MESSAGE = 0,
+    STATUS = 1,
+};
+pub const RTCMSET_MESSAGE = RTC_MESSAGING_EVENT_TYPE.MESSAGE;
+pub const RTCMSET_STATUS = RTC_MESSAGING_EVENT_TYPE.STATUS;
+
+pub const RTC_MESSAGING_USER_STATUS = enum(i32) {
+    IDLE = 0,
+    TYPING = 1,
+};
+pub const RTCMUS_IDLE = RTC_MESSAGING_USER_STATUS.IDLE;
+pub const RTCMUS_TYPING = RTC_MESSAGING_USER_STATUS.TYPING;
+
+pub const RTC_OFFER_WATCHER_MODE = enum(i32) {
+    OFFER_WATCHER_EVENT = 0,
+    AUTOMATICALLY_ADD_WATCHER = 1,
+};
+pub const RTCOWM_OFFER_WATCHER_EVENT = RTC_OFFER_WATCHER_MODE.OFFER_WATCHER_EVENT;
+pub const RTCOWM_AUTOMATICALLY_ADD_WATCHER = RTC_OFFER_WATCHER_MODE.AUTOMATICALLY_ADD_WATCHER;
+
+pub const RTC_PARTICIPANT_STATE = enum(i32) {
+    IDLE = 0,
+    PENDING = 1,
+    INCOMING = 2,
+    ANSWERING = 3,
+    INPROGRESS = 4,
+    ALERTING = 5,
+    CONNECTED = 6,
+    DISCONNECTING = 7,
+    DISCONNECTED = 8,
+};
+pub const RTCPS_IDLE = RTC_PARTICIPANT_STATE.IDLE;
+pub const RTCPS_PENDING = RTC_PARTICIPANT_STATE.PENDING;
+pub const RTCPS_INCOMING = RTC_PARTICIPANT_STATE.INCOMING;
+pub const RTCPS_ANSWERING = RTC_PARTICIPANT_STATE.ANSWERING;
+pub const RTCPS_INPROGRESS = RTC_PARTICIPANT_STATE.INPROGRESS;
+pub const RTCPS_ALERTING = RTC_PARTICIPANT_STATE.ALERTING;
+pub const RTCPS_CONNECTED = RTC_PARTICIPANT_STATE.CONNECTED;
+pub const RTCPS_DISCONNECTING = RTC_PARTICIPANT_STATE.DISCONNECTING;
+pub const RTCPS_DISCONNECTED = RTC_PARTICIPANT_STATE.DISCONNECTED;
+
+pub const RTC_PORT_TYPE = enum(i32) {
+    AUDIO_RTP = 0,
+    AUDIO_RTCP = 1,
+    VIDEO_RTP = 2,
+    VIDEO_RTCP = 3,
+    SIP = 4,
+};
+pub const RTCPT_AUDIO_RTP = RTC_PORT_TYPE.AUDIO_RTP;
+pub const RTCPT_AUDIO_RTCP = RTC_PORT_TYPE.AUDIO_RTCP;
+pub const RTCPT_VIDEO_RTP = RTC_PORT_TYPE.VIDEO_RTP;
+pub const RTCPT_VIDEO_RTCP = RTC_PORT_TYPE.VIDEO_RTCP;
+pub const RTCPT_SIP = RTC_PORT_TYPE.SIP;
+
+pub const RTC_PRESENCE_PROPERTY = enum(i32) {
+    PHONENUMBER = 0,
+    DISPLAYNAME = 1,
+    EMAIL = 2,
+    DEVICE_NAME = 3,
+    MULTIPLE = 4,
+};
+pub const RTCPP_PHONENUMBER = RTC_PRESENCE_PROPERTY.PHONENUMBER;
+pub const RTCPP_DISPLAYNAME = RTC_PRESENCE_PROPERTY.DISPLAYNAME;
+pub const RTCPP_EMAIL = RTC_PRESENCE_PROPERTY.EMAIL;
+pub const RTCPP_DEVICE_NAME = RTC_PRESENCE_PROPERTY.DEVICE_NAME;
+pub const RTCPP_MULTIPLE = RTC_PRESENCE_PROPERTY.MULTIPLE;
+
+pub const RTC_PRESENCE_STATUS = enum(i32) {
+    OFFLINE = 0,
+    ONLINE = 1,
+    AWAY = 2,
+    IDLE = 3,
+    BUSY = 4,
+    BE_RIGHT_BACK = 5,
+    ON_THE_PHONE = 6,
+    OUT_TO_LUNCH = 7,
+};
+pub const RTCXS_PRESENCE_OFFLINE = RTC_PRESENCE_STATUS.OFFLINE;
+pub const RTCXS_PRESENCE_ONLINE = RTC_PRESENCE_STATUS.ONLINE;
+pub const RTCXS_PRESENCE_AWAY = RTC_PRESENCE_STATUS.AWAY;
+pub const RTCXS_PRESENCE_IDLE = RTC_PRESENCE_STATUS.IDLE;
+pub const RTCXS_PRESENCE_BUSY = RTC_PRESENCE_STATUS.BUSY;
+pub const RTCXS_PRESENCE_BE_RIGHT_BACK = RTC_PRESENCE_STATUS.BE_RIGHT_BACK;
+pub const RTCXS_PRESENCE_ON_THE_PHONE = RTC_PRESENCE_STATUS.ON_THE_PHONE;
+pub const RTCXS_PRESENCE_OUT_TO_LUNCH = RTC_PRESENCE_STATUS.OUT_TO_LUNCH;
+
+pub const RTC_PRIVACY_MODE = enum(i32) {
+    BLOCK_LIST_EXCLUDED = 0,
+    ALLOW_LIST_ONLY = 1,
+};
+pub const RTCPM_BLOCK_LIST_EXCLUDED = RTC_PRIVACY_MODE.BLOCK_LIST_EXCLUDED;
+pub const RTCPM_ALLOW_LIST_ONLY = RTC_PRIVACY_MODE.ALLOW_LIST_ONLY;
+
+pub const RTC_PROFILE_EVENT_TYPE = enum(i32) {
+    GET = 0,
+    UPDATE = 1,
+};
+pub const RTCPFET_PROFILE_GET = RTC_PROFILE_EVENT_TYPE.GET;
+pub const RTCPFET_PROFILE_UPDATE = RTC_PROFILE_EVENT_TYPE.UPDATE;
+
+pub const RTC_PROVIDER_URI = enum(i32) {
+    HOMEPAGE = 0,
+    HELPDESK = 1,
+    PERSONALACCOUNT = 2,
+    DISPLAYDURINGCALL = 3,
+    DISPLAYDURINGIDLE = 4,
+};
+pub const RTCPU_URIHOMEPAGE = RTC_PROVIDER_URI.HOMEPAGE;
+pub const RTCPU_URIHELPDESK = RTC_PROVIDER_URI.HELPDESK;
+pub const RTCPU_URIPERSONALACCOUNT = RTC_PROVIDER_URI.PERSONALACCOUNT;
+pub const RTCPU_URIDISPLAYDURINGCALL = RTC_PROVIDER_URI.DISPLAYDURINGCALL;
+pub const RTCPU_URIDISPLAYDURINGIDLE = RTC_PROVIDER_URI.DISPLAYDURINGIDLE;
+
+pub const RTC_REGISTRATION_STATE = enum(i32) {
+    NOT_REGISTERED = 0,
+    REGISTERING = 1,
+    REGISTERED = 2,
+    REJECTED = 3,
+    UNREGISTERING = 4,
+    ERROR = 5,
+    LOGGED_OFF = 6,
+    LOCAL_PA_LOGGED_OFF = 7,
+    REMOTE_PA_LOGGED_OFF = 8,
+};
+pub const RTCRS_NOT_REGISTERED = RTC_REGISTRATION_STATE.NOT_REGISTERED;
+pub const RTCRS_REGISTERING = RTC_REGISTRATION_STATE.REGISTERING;
+pub const RTCRS_REGISTERED = RTC_REGISTRATION_STATE.REGISTERED;
+pub const RTCRS_REJECTED = RTC_REGISTRATION_STATE.REJECTED;
+pub const RTCRS_UNREGISTERING = RTC_REGISTRATION_STATE.UNREGISTERING;
+pub const RTCRS_ERROR = RTC_REGISTRATION_STATE.ERROR;
+pub const RTCRS_LOGGED_OFF = RTC_REGISTRATION_STATE.LOGGED_OFF;
+pub const RTCRS_LOCAL_PA_LOGGED_OFF = RTC_REGISTRATION_STATE.LOCAL_PA_LOGGED_OFF;
+pub const RTCRS_REMOTE_PA_LOGGED_OFF = RTC_REGISTRATION_STATE.REMOTE_PA_LOGGED_OFF;
+
+pub const RTC_REINVITE_STATE = enum(i32) {
+    INCOMING = 0,
+    SUCCEEDED = 1,
+    FAIL = 2,
+};
+pub const RTCRIN_INCOMING = RTC_REINVITE_STATE.INCOMING;
+pub const RTCRIN_SUCCEEDED = RTC_REINVITE_STATE.SUCCEEDED;
+pub const RTCRIN_FAIL = RTC_REINVITE_STATE.FAIL;
+
+pub const RTC_RING_TYPE = enum(i32) {
+    PHONE = 0,
+    MESSAGE = 1,
+    RINGBACK = 2,
+};
+pub const RTCRT_PHONE = RTC_RING_TYPE.PHONE;
+pub const RTCRT_MESSAGE = RTC_RING_TYPE.MESSAGE;
+pub const RTCRT_RINGBACK = RTC_RING_TYPE.RINGBACK;
+
+pub const RTC_ROAMING_EVENT_TYPE = enum(i32) {
+    BUDDY_ROAMING = 0,
+    WATCHER_ROAMING = 1,
+    PRESENCE_ROAMING = 2,
+    PROFILE_ROAMING = 3,
+    WPENDING_ROAMING = 4,
+};
+pub const RTCRET_BUDDY_ROAMING = RTC_ROAMING_EVENT_TYPE.BUDDY_ROAMING;
+pub const RTCRET_WATCHER_ROAMING = RTC_ROAMING_EVENT_TYPE.WATCHER_ROAMING;
+pub const RTCRET_PRESENCE_ROAMING = RTC_ROAMING_EVENT_TYPE.PRESENCE_ROAMING;
+pub const RTCRET_PROFILE_ROAMING = RTC_ROAMING_EVENT_TYPE.PROFILE_ROAMING;
+pub const RTCRET_WPENDING_ROAMING = RTC_ROAMING_EVENT_TYPE.WPENDING_ROAMING;
+
+pub const RTC_SECURITY_LEVEL = enum(i32) {
+    UNSUPPORTED = 1,
+    SUPPORTED = 2,
+    REQUIRED = 3,
+};
+pub const RTCSECL_UNSUPPORTED = RTC_SECURITY_LEVEL.UNSUPPORTED;
+pub const RTCSECL_SUPPORTED = RTC_SECURITY_LEVEL.SUPPORTED;
+pub const RTCSECL_REQUIRED = RTC_SECURITY_LEVEL.REQUIRED;
+
+pub const RTC_SECURITY_TYPE = enum(i32) {
+    AUDIO_VIDEO_MEDIA_ENCRYPTION = 0,
+    T120_MEDIA_ENCRYPTION = 1,
+};
+pub const RTCSECT_AUDIO_VIDEO_MEDIA_ENCRYPTION = RTC_SECURITY_TYPE.AUDIO_VIDEO_MEDIA_ENCRYPTION;
+pub const RTCSECT_T120_MEDIA_ENCRYPTION = RTC_SECURITY_TYPE.T120_MEDIA_ENCRYPTION;
+
+pub const RTC_SESSION_REFER_STATUS = enum(i32) {
+    REFERRING = 0,
+    ACCEPTED = 1,
+    ERROR = 2,
+    REJECTED = 3,
+    DROPPED = 4,
+    DONE = 5,
+};
+pub const RTCSRS_REFERRING = RTC_SESSION_REFER_STATUS.REFERRING;
+pub const RTCSRS_ACCEPTED = RTC_SESSION_REFER_STATUS.ACCEPTED;
+pub const RTCSRS_ERROR = RTC_SESSION_REFER_STATUS.ERROR;
+pub const RTCSRS_REJECTED = RTC_SESSION_REFER_STATUS.REJECTED;
+pub const RTCSRS_DROPPED = RTC_SESSION_REFER_STATUS.DROPPED;
+pub const RTCSRS_DONE = RTC_SESSION_REFER_STATUS.DONE;
+
+pub const RTC_SESSION_STATE = enum(i32) {
+    IDLE = 0,
+    INCOMING = 1,
+    ANSWERING = 2,
+    INPROGRESS = 3,
+    CONNECTED = 4,
+    DISCONNECTED = 5,
+    HOLD = 6,
+    REFER = 7,
+};
+pub const RTCSS_IDLE = RTC_SESSION_STATE.IDLE;
+pub const RTCSS_INCOMING = RTC_SESSION_STATE.INCOMING;
+pub const RTCSS_ANSWERING = RTC_SESSION_STATE.ANSWERING;
+pub const RTCSS_INPROGRESS = RTC_SESSION_STATE.INPROGRESS;
+pub const RTCSS_CONNECTED = RTC_SESSION_STATE.CONNECTED;
+pub const RTCSS_DISCONNECTED = RTC_SESSION_STATE.DISCONNECTED;
+pub const RTCSS_HOLD = RTC_SESSION_STATE.HOLD;
+pub const RTCSS_REFER = RTC_SESSION_STATE.REFER;
+
+pub const RTC_SESSION_TYPE = enum(i32) {
+    PC_TO_PC = 0,
+    PC_TO_PHONE = 1,
+    PHONE_TO_PHONE = 2,
+    IM = 3,
+    MULTIPARTY_IM = 4,
+    APPLICATION = 5,
+};
+pub const RTCST_PC_TO_PC = RTC_SESSION_TYPE.PC_TO_PC;
+pub const RTCST_PC_TO_PHONE = RTC_SESSION_TYPE.PC_TO_PHONE;
+pub const RTCST_PHONE_TO_PHONE = RTC_SESSION_TYPE.PHONE_TO_PHONE;
+pub const RTCST_IM = RTC_SESSION_TYPE.IM;
+pub const RTCST_MULTIPARTY_IM = RTC_SESSION_TYPE.MULTIPARTY_IM;
+pub const RTCST_APPLICATION = RTC_SESSION_TYPE.APPLICATION;
+
+pub const RTC_T120_APPLET = enum(i32) {
+    WHITEBOARD = 0,
+    APPSHARING = 1,
+};
+pub const RTCTA_WHITEBOARD = RTC_T120_APPLET.WHITEBOARD;
+pub const RTCTA_APPSHARING = RTC_T120_APPLET.APPSHARING;
+
+pub const RTC_TERMINATE_REASON = enum(i32) {
+    NORMAL = 0,
+    DND = 1,
+    BUSY = 2,
+    REJECT = 3,
+    TIMEOUT = 4,
+    SHUTDOWN = 5,
+    INSUFFICIENT_SECURITY_LEVEL = 6,
+    NOT_SUPPORTED = 7,
+};
+pub const RTCTR_NORMAL = RTC_TERMINATE_REASON.NORMAL;
+pub const RTCTR_DND = RTC_TERMINATE_REASON.DND;
+pub const RTCTR_BUSY = RTC_TERMINATE_REASON.BUSY;
+pub const RTCTR_REJECT = RTC_TERMINATE_REASON.REJECT;
+pub const RTCTR_TIMEOUT = RTC_TERMINATE_REASON.TIMEOUT;
+pub const RTCTR_SHUTDOWN = RTC_TERMINATE_REASON.SHUTDOWN;
+pub const RTCTR_INSUFFICIENT_SECURITY_LEVEL = RTC_TERMINATE_REASON.INSUFFICIENT_SECURITY_LEVEL;
+pub const RTCTR_NOT_SUPPORTED = RTC_TERMINATE_REASON.NOT_SUPPORTED;
+
+pub const RTC_USER_SEARCH_COLUMN = enum(i32) {
+    URI = 0,
+    DISPLAYNAME = 1,
+    TITLE = 2,
+    OFFICE = 3,
+    PHONE = 4,
+    COMPANY = 5,
+    CITY = 6,
+    STATE = 7,
+    COUNTRY = 8,
+    EMAIL = 9,
+};
+pub const RTCUSC_URI = RTC_USER_SEARCH_COLUMN.URI;
+pub const RTCUSC_DISPLAYNAME = RTC_USER_SEARCH_COLUMN.DISPLAYNAME;
+pub const RTCUSC_TITLE = RTC_USER_SEARCH_COLUMN.TITLE;
+pub const RTCUSC_OFFICE = RTC_USER_SEARCH_COLUMN.OFFICE;
+pub const RTCUSC_PHONE = RTC_USER_SEARCH_COLUMN.PHONE;
+pub const RTCUSC_COMPANY = RTC_USER_SEARCH_COLUMN.COMPANY;
+pub const RTCUSC_CITY = RTC_USER_SEARCH_COLUMN.CITY;
+pub const RTCUSC_STATE = RTC_USER_SEARCH_COLUMN.STATE;
+pub const RTCUSC_COUNTRY = RTC_USER_SEARCH_COLUMN.COUNTRY;
+pub const RTCUSC_EMAIL = RTC_USER_SEARCH_COLUMN.EMAIL;
+
+pub const RTC_USER_SEARCH_PREFERENCE = enum(i32) {
+    MAX_MATCHES = 0,
+    TIME_LIMIT = 1,
+};
+pub const RTCUSP_MAX_MATCHES = RTC_USER_SEARCH_PREFERENCE.MAX_MATCHES;
+pub const RTCUSP_TIME_LIMIT = RTC_USER_SEARCH_PREFERENCE.TIME_LIMIT;
+
+pub const RTC_VIDEO_DEVICE = enum(i32) {
+    RECEIVE = 0,
+    PREVIEW = 1,
+};
+pub const RTCVD_RECEIVE = RTC_VIDEO_DEVICE.RECEIVE;
+pub const RTCVD_PREVIEW = RTC_VIDEO_DEVICE.PREVIEW;
+
+pub const RTC_WATCHER_EVENT_TYPE = enum(i32) {
+    ADD = 0,
+    REMOVE = 1,
+    UPDATE = 2,
+    OFFERING = 3,
+    ROAMED = 4,
+};
+pub const RTCWET_WATCHER_ADD = RTC_WATCHER_EVENT_TYPE.ADD;
+pub const RTCWET_WATCHER_REMOVE = RTC_WATCHER_EVENT_TYPE.REMOVE;
+pub const RTCWET_WATCHER_UPDATE = RTC_WATCHER_EVENT_TYPE.UPDATE;
+pub const RTCWET_WATCHER_OFFERING = RTC_WATCHER_EVENT_TYPE.OFFERING;
+pub const RTCWET_WATCHER_ROAMED = RTC_WATCHER_EVENT_TYPE.ROAMED;
+
+pub const RTC_WATCHER_MATCH_MODE = enum(i32) {
+    EXACT_MATCH = 0,
+    BEST_ACE_MATCH = 1,
+};
+pub const RTCWMM_EXACT_MATCH = RTC_WATCHER_MATCH_MODE.EXACT_MATCH;
+pub const RTCWMM_BEST_ACE_MATCH = RTC_WATCHER_MATCH_MODE.BEST_ACE_MATCH;
+
+pub const RTC_WATCHER_STATE = enum(i32) {
+    UNKNOWN = 0,
+    OFFERING = 1,
+    ALLOWED = 2,
+    BLOCKED = 3,
+    DENIED = 4,
+    PROMPT = 5,
+};
+pub const RTCWS_UNKNOWN = RTC_WATCHER_STATE.UNKNOWN;
+pub const RTCWS_OFFERING = RTC_WATCHER_STATE.OFFERING;
+pub const RTCWS_ALLOWED = RTC_WATCHER_STATE.ALLOWED;
+pub const RTCWS_BLOCKED = RTC_WATCHER_STATE.BLOCKED;
+pub const RTCWS_DENIED = RTC_WATCHER_STATE.DENIED;
+pub const RTCWS_PROMPT = RTC_WATCHER_STATE.PROMPT;
+
+const CLSID_RTCClient_Value = Guid.initString("7a42ea29-a2b7-40c4-b091-f6f024aa89be");
+pub const CLSID_RTCClient = &CLSID_RTCClient_Value;
+
+pub const TRANSPORT_SETTING = extern struct {
+    SettingId: TRANSPORT_SETTING_ID,
+    Length: ?*u32,
+    Value: ?*u8,
 };
 
 

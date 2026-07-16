@@ -7,15 +7,6 @@ pub const DEDUP_CHUNKLIB_MAX_CHUNKS_ENUM = @as(u32, 1024);
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
-const CLSID_DedupBackupSupport_Value = Guid.initString("73d6b2ad-2984-4715-b2e3-924c149744dd");
-pub const CLSID_DedupBackupSupport = &CLSID_DedupBackupSupport_Value;
-
-pub const DEDUP_CONTAINER_EXTENT = extern struct {
-    ContainerIndex: u32,
-    StartOffset: i64,
-    Length: i64,
-};
-
 pub const DDP_FILE_EXTENT = extern struct {
     Length: i64,
     Offset: i64,
@@ -28,46 +19,129 @@ pub const DEDUP_BACKUP_SUPPORT_PARAM_TYPE = enum(i32) {
 pub const DEDUP_RECONSTRUCT_UNOPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.UNOPTIMIZED;
 pub const DEDUP_RECONSTRUCT_OPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.OPTIMIZED;
 
-// TODO: this type is limited to platform 'windowsServer2012'
-const IID_IDedupReadFileCallback_Value = Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
-pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
-pub const IDedupReadFileCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReadBackupFile: *const fn(
-            self: *const IDedupReadFileCallback,
-            FileFullPath: ?BSTR,
-            FileOffset: i64,
-            SizeToRead: u32,
-            FileBuffer: [*:0]u8,
-            ReturnedSize: ?*u32,
-            Flags: u32,
-        ) callconv(.winapi) HRESULT,
-        OrderContainersRestore: *const fn(
-            self: *const IDedupReadFileCallback,
-            NumberOfContainers: u32,
-            ContainerPaths: [*]?BSTR,
-            ReadPlanEntries: ?*u32,
-            ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT,
-        ) callconv(.winapi) HRESULT,
-        PreviewContainerRead: *const fn(
-            self: *const IDedupReadFileCallback,
-            FileFullPath: ?BSTR,
-            NumberOfReads: u32,
-            ReadOffsets: [*]DDP_FILE_EXTENT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ReadBackupFile(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, FileOffset: i64, SizeToRead: u32, FileBuffer: [*:0]u8, ReturnedSize: ?*u32, Flags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadBackupFile(self, FileFullPath, FileOffset, SizeToRead, FileBuffer, ReturnedSize, Flags);
-    }
-    pub fn OrderContainersRestore(self: *const IDedupReadFileCallback, NumberOfContainers: u32, ContainerPaths: [*]?BSTR, ReadPlanEntries: ?*u32, ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT) callconv(.@"inline") HRESULT {
-        return self.vtable.OrderContainersRestore(self, NumberOfContainers, ContainerPaths, ReadPlanEntries, ReadPlan);
-    }
-    pub fn PreviewContainerRead(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, NumberOfReads: u32, ReadOffsets: [*]DDP_FILE_EXTENT) callconv(.@"inline") HRESULT {
-        return self.vtable.PreviewContainerRead(self, FileFullPath, NumberOfReads, ReadOffsets);
-    }
+pub const DEDUP_CHUNK_INFO_HASH32 = extern struct {
+    ChunkFlags: u32,
+    ChunkOffsetInStream: u64,
+    ChunkSize: u64,
+    HashVal: [32]u8,
+};
+
+pub const DEDUP_CONTAINER_EXTENT = extern struct {
+    ContainerIndex: u32,
+    StartOffset: i64,
+    Length: i64,
+};
+
+pub const DEDUP_SET_PARAM_TYPE = enum(i32) {
+    MinChunkSizeBytes = 1,
+    MaxChunkSizeBytes = 2,
+    AvgChunkSizeBytes = 3,
+    InvariantChunking = 4,
+    DisableStrongHashComputation = 5,
+};
+pub const DEDUP_PT_MinChunkSizeBytes = DEDUP_SET_PARAM_TYPE.MinChunkSizeBytes;
+pub const DEDUP_PT_MaxChunkSizeBytes = DEDUP_SET_PARAM_TYPE.MaxChunkSizeBytes;
+pub const DEDUP_PT_AvgChunkSizeBytes = DEDUP_SET_PARAM_TYPE.AvgChunkSizeBytes;
+pub const DEDUP_PT_InvariantChunking = DEDUP_SET_PARAM_TYPE.InvariantChunking;
+pub const DEDUP_PT_DisableStrongHashComputation = DEDUP_SET_PARAM_TYPE.DisableStrongHashComputation;
+
+const CLSID_DedupBackupSupport_Value = Guid.initString("73d6b2ad-2984-4715-b2e3-924c149744dd");
+pub const CLSID_DedupBackupSupport = &CLSID_DedupBackupSupport_Value;
+
+pub const DedupChunk = extern struct {
+    Hash: DedupHash,
+    Flags: DedupChunkFlags,
+    LogicalSize: u32,
+    DataSize: u32,
+};
+
+pub const DedupChunkFlags = enum(i32) {
+    None = 0,
+    Compressed = 1,
+};
+pub const DedupChunkFlags_None = DedupChunkFlags.None;
+pub const DedupChunkFlags_Compressed = DedupChunkFlags.Compressed;
+
+pub const DedupChunkingAlgorithm = enum(i32) {
+    Unknonwn = 0,
+    V1 = 1,
+};
+pub const DedupChunkingAlgorithm_Unknonwn = DedupChunkingAlgorithm.Unknonwn;
+pub const DedupChunkingAlgorithm_V1 = DedupChunkingAlgorithm.V1;
+
+pub const DedupCompressionAlgorithm = enum(i32) {
+    Unknonwn = 0,
+    Xpress = 1,
+};
+pub const DedupCompressionAlgorithm_Unknonwn = DedupCompressionAlgorithm.Unknonwn;
+pub const DedupCompressionAlgorithm_Xpress = DedupCompressionAlgorithm.Xpress;
+
+const CLSID_DedupDataPort_Value = Guid.initString("8f107207-1829-48b2-a64b-e61f8e0d9acb");
+pub const CLSID_DedupDataPort = &CLSID_DedupDataPort_Value;
+
+pub const DedupDataPortManagerOption = enum(i32) {
+    None = 0,
+    AutoStart = 1,
+    SkipReconciliation = 2,
+};
+pub const DedupDataPortManagerOption_None = DedupDataPortManagerOption.None;
+pub const DedupDataPortManagerOption_AutoStart = DedupDataPortManagerOption.AutoStart;
+pub const DedupDataPortManagerOption_SkipReconciliation = DedupDataPortManagerOption.SkipReconciliation;
+
+pub const DedupDataPortRequestStatus = enum(i32) {
+    Unknown = 0,
+    Queued = 1,
+    Processing = 2,
+    Partial = 3,
+    Complete = 4,
+    Failed = 5,
+};
+pub const DedupDataPortRequestStatus_Unknown = DedupDataPortRequestStatus.Unknown;
+pub const DedupDataPortRequestStatus_Queued = DedupDataPortRequestStatus.Queued;
+pub const DedupDataPortRequestStatus_Processing = DedupDataPortRequestStatus.Processing;
+pub const DedupDataPortRequestStatus_Partial = DedupDataPortRequestStatus.Partial;
+pub const DedupDataPortRequestStatus_Complete = DedupDataPortRequestStatus.Complete;
+pub const DedupDataPortRequestStatus_Failed = DedupDataPortRequestStatus.Failed;
+
+pub const DedupDataPortVolumeStatus = enum(i32) {
+    Unknown = 0,
+    NotEnabled = 1,
+    NotAvailable = 2,
+    Initializing = 3,
+    Ready = 4,
+    Maintenance = 5,
+    Shutdown = 6,
+};
+pub const DedupDataPortVolumeStatus_Unknown = DedupDataPortVolumeStatus.Unknown;
+pub const DedupDataPortVolumeStatus_NotEnabled = DedupDataPortVolumeStatus.NotEnabled;
+pub const DedupDataPortVolumeStatus_NotAvailable = DedupDataPortVolumeStatus.NotAvailable;
+pub const DedupDataPortVolumeStatus_Initializing = DedupDataPortVolumeStatus.Initializing;
+pub const DedupDataPortVolumeStatus_Ready = DedupDataPortVolumeStatus.Ready;
+pub const DedupDataPortVolumeStatus_Maintenance = DedupDataPortVolumeStatus.Maintenance;
+pub const DedupDataPortVolumeStatus_Shutdown = DedupDataPortVolumeStatus.Shutdown;
+
+pub const DedupHash = extern struct {
+    Hash: [32]u8,
+};
+
+pub const DedupHashingAlgorithm = enum(i32) {
+    Unknonwn = 0,
+    V1 = 1,
+};
+pub const DedupHashingAlgorithm_Unknonwn = DedupHashingAlgorithm.Unknonwn;
+pub const DedupHashingAlgorithm_V1 = DedupHashingAlgorithm.V1;
+
+pub const DedupStream = extern struct {
+    Path: ?BSTR,
+    Offset: u64,
+    Length: u64,
+    ChunkCount: u32,
+};
+
+pub const DedupStreamEntry = extern struct {
+    Hash: DedupHash,
+    LogicalSize: u32,
+    Offset: u64,
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -90,26 +164,6 @@ pub const IDedupBackupSupport = extern union {
     pub fn RestoreFiles(self: *const IDedupBackupSupport, NumberOfFiles: u32, FileFullPaths: [*]?BSTR, Store: ?*IDedupReadFileCallback, Flags: u32, FileResults: [*]HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreFiles(self, NumberOfFiles, FileFullPaths, Store, Flags, FileResults);
     }
-};
-
-pub const DEDUP_SET_PARAM_TYPE = enum(i32) {
-    MinChunkSizeBytes = 1,
-    MaxChunkSizeBytes = 2,
-    AvgChunkSizeBytes = 3,
-    InvariantChunking = 4,
-    DisableStrongHashComputation = 5,
-};
-pub const DEDUP_PT_MinChunkSizeBytes = DEDUP_SET_PARAM_TYPE.MinChunkSizeBytes;
-pub const DEDUP_PT_MaxChunkSizeBytes = DEDUP_SET_PARAM_TYPE.MaxChunkSizeBytes;
-pub const DEDUP_PT_AvgChunkSizeBytes = DEDUP_SET_PARAM_TYPE.AvgChunkSizeBytes;
-pub const DEDUP_PT_InvariantChunking = DEDUP_SET_PARAM_TYPE.InvariantChunking;
-pub const DEDUP_PT_DisableStrongHashComputation = DEDUP_SET_PARAM_TYPE.DisableStrongHashComputation;
-
-pub const DEDUP_CHUNK_INFO_HASH32 = extern struct {
-    ChunkFlags: u32,
-    ChunkOffsetInStream: u64,
-    ChunkSize: u64,
-    HashVal: [32]u8,
 };
 
 const IID_IDedupChunkLibrary_Value = Guid.initString("bb5144d7-2720-4dcc-8777-78597416ec23");
@@ -149,141 +203,6 @@ pub const IDedupChunkLibrary = extern union {
         return self.vtable.StartChunking(self, iidIteratorInterfaceID, ppChunksEnum);
     }
 };
-
-const IID_IDedupIterateChunksHash32_Value = Guid.initString("90b584d3-72aa-400f-9767-cad866a5a2d8");
-pub const IID_IDedupIterateChunksHash32 = &IID_IDedupIterateChunksHash32_Value;
-pub const IDedupIterateChunksHash32 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PushBuffer: *const fn(
-            self: *const IDedupIterateChunksHash32,
-            pBuffer: [*:0]u8,
-            ulBufferLength: u32,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IDedupIterateChunksHash32,
-            ulMaxChunks: u32,
-            pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32,
-            pulFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Drain: *const fn(
-            self: *const IDedupIterateChunksHash32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IDedupIterateChunksHash32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PushBuffer(self: *const IDedupIterateChunksHash32, pBuffer: [*:0]u8, ulBufferLength: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.PushBuffer(self, pBuffer, ulBufferLength);
-    }
-    pub fn Next(self: *const IDedupIterateChunksHash32, ulMaxChunks: u32, pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32, pulFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulMaxChunks, pArrChunks, pulFetched);
-    }
-    pub fn Drain(self: *const IDedupIterateChunksHash32) callconv(.@"inline") HRESULT {
-        return self.vtable.Drain(self);
-    }
-    pub fn Reset(self: *const IDedupIterateChunksHash32) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-};
-
-pub const DedupDataPortManagerOption = enum(i32) {
-    None = 0,
-    AutoStart = 1,
-    SkipReconciliation = 2,
-};
-pub const DedupDataPortManagerOption_None = DedupDataPortManagerOption.None;
-pub const DedupDataPortManagerOption_AutoStart = DedupDataPortManagerOption.AutoStart;
-pub const DedupDataPortManagerOption_SkipReconciliation = DedupDataPortManagerOption.SkipReconciliation;
-
-pub const DedupDataPortVolumeStatus = enum(i32) {
-    Unknown = 0,
-    NotEnabled = 1,
-    NotAvailable = 2,
-    Initializing = 3,
-    Ready = 4,
-    Maintenance = 5,
-    Shutdown = 6,
-};
-pub const DedupDataPortVolumeStatus_Unknown = DedupDataPortVolumeStatus.Unknown;
-pub const DedupDataPortVolumeStatus_NotEnabled = DedupDataPortVolumeStatus.NotEnabled;
-pub const DedupDataPortVolumeStatus_NotAvailable = DedupDataPortVolumeStatus.NotAvailable;
-pub const DedupDataPortVolumeStatus_Initializing = DedupDataPortVolumeStatus.Initializing;
-pub const DedupDataPortVolumeStatus_Ready = DedupDataPortVolumeStatus.Ready;
-pub const DedupDataPortVolumeStatus_Maintenance = DedupDataPortVolumeStatus.Maintenance;
-pub const DedupDataPortVolumeStatus_Shutdown = DedupDataPortVolumeStatus.Shutdown;
-
-pub const DedupDataPortRequestStatus = enum(i32) {
-    Unknown = 0,
-    Queued = 1,
-    Processing = 2,
-    Partial = 3,
-    Complete = 4,
-    Failed = 5,
-};
-pub const DedupDataPortRequestStatus_Unknown = DedupDataPortRequestStatus.Unknown;
-pub const DedupDataPortRequestStatus_Queued = DedupDataPortRequestStatus.Queued;
-pub const DedupDataPortRequestStatus_Processing = DedupDataPortRequestStatus.Processing;
-pub const DedupDataPortRequestStatus_Partial = DedupDataPortRequestStatus.Partial;
-pub const DedupDataPortRequestStatus_Complete = DedupDataPortRequestStatus.Complete;
-pub const DedupDataPortRequestStatus_Failed = DedupDataPortRequestStatus.Failed;
-
-pub const DedupChunkFlags = enum(i32) {
-    None = 0,
-    Compressed = 1,
-};
-pub const DedupChunkFlags_None = DedupChunkFlags.None;
-pub const DedupChunkFlags_Compressed = DedupChunkFlags.Compressed;
-
-pub const DedupHash = extern struct {
-    Hash: [32]u8,
-};
-
-pub const DedupChunk = extern struct {
-    Hash: DedupHash,
-    Flags: DedupChunkFlags,
-    LogicalSize: u32,
-    DataSize: u32,
-};
-
-pub const DedupStreamEntry = extern struct {
-    Hash: DedupHash,
-    LogicalSize: u32,
-    Offset: u64,
-};
-
-pub const DedupStream = extern struct {
-    Path: ?BSTR,
-    Offset: u64,
-    Length: u64,
-    ChunkCount: u32,
-};
-
-pub const DedupChunkingAlgorithm = enum(i32) {
-    Unknonwn = 0,
-    V1 = 1,
-};
-pub const DedupChunkingAlgorithm_Unknonwn = DedupChunkingAlgorithm.Unknonwn;
-pub const DedupChunkingAlgorithm_V1 = DedupChunkingAlgorithm.V1;
-
-pub const DedupHashingAlgorithm = enum(i32) {
-    Unknonwn = 0,
-    V1 = 1,
-};
-pub const DedupHashingAlgorithm_Unknonwn = DedupHashingAlgorithm.Unknonwn;
-pub const DedupHashingAlgorithm_V1 = DedupHashingAlgorithm.V1;
-
-pub const DedupCompressionAlgorithm = enum(i32) {
-    Unknonwn = 0,
-    Xpress = 1,
-};
-pub const DedupCompressionAlgorithm_Unknonwn = DedupCompressionAlgorithm.Unknonwn;
-pub const DedupCompressionAlgorithm_Xpress = DedupCompressionAlgorithm.Xpress;
-
-const CLSID_DedupDataPort_Value = Guid.initString("8f107207-1829-48b2-a64b-e61f8e0d9acb");
-pub const CLSID_DedupDataPort = &CLSID_DedupDataPort_Value;
 
 const IID_IDedupDataPort_Value = Guid.initString("7963d734-40a9-4ea3-bbf6-5a89d26f7ae8");
 pub const IID_IDedupDataPort = &IID_IDedupDataPort_Value;
@@ -460,6 +379,87 @@ pub const IDedupDataPortManager = extern union {
     }
     pub fn GetVolumeDataPort(self: *const IDedupDataPortManager, Options: u32, Path: ?BSTR, ppDataPort: ?*?*IDedupDataPort) callconv(.@"inline") HRESULT {
         return self.vtable.GetVolumeDataPort(self, Options, Path, ppDataPort);
+    }
+};
+
+const IID_IDedupIterateChunksHash32_Value = Guid.initString("90b584d3-72aa-400f-9767-cad866a5a2d8");
+pub const IID_IDedupIterateChunksHash32 = &IID_IDedupIterateChunksHash32_Value;
+pub const IDedupIterateChunksHash32 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PushBuffer: *const fn(
+            self: *const IDedupIterateChunksHash32,
+            pBuffer: [*:0]u8,
+            ulBufferLength: u32,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IDedupIterateChunksHash32,
+            ulMaxChunks: u32,
+            pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32,
+            pulFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Drain: *const fn(
+            self: *const IDedupIterateChunksHash32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IDedupIterateChunksHash32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PushBuffer(self: *const IDedupIterateChunksHash32, pBuffer: [*:0]u8, ulBufferLength: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.PushBuffer(self, pBuffer, ulBufferLength);
+    }
+    pub fn Next(self: *const IDedupIterateChunksHash32, ulMaxChunks: u32, pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32, pulFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulMaxChunks, pArrChunks, pulFetched);
+    }
+    pub fn Drain(self: *const IDedupIterateChunksHash32) callconv(.@"inline") HRESULT {
+        return self.vtable.Drain(self);
+    }
+    pub fn Reset(self: *const IDedupIterateChunksHash32) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2012'
+const IID_IDedupReadFileCallback_Value = Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
+pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
+pub const IDedupReadFileCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReadBackupFile: *const fn(
+            self: *const IDedupReadFileCallback,
+            FileFullPath: ?BSTR,
+            FileOffset: i64,
+            SizeToRead: u32,
+            FileBuffer: [*:0]u8,
+            ReturnedSize: ?*u32,
+            Flags: u32,
+        ) callconv(.winapi) HRESULT,
+        OrderContainersRestore: *const fn(
+            self: *const IDedupReadFileCallback,
+            NumberOfContainers: u32,
+            ContainerPaths: [*]?BSTR,
+            ReadPlanEntries: ?*u32,
+            ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT,
+        ) callconv(.winapi) HRESULT,
+        PreviewContainerRead: *const fn(
+            self: *const IDedupReadFileCallback,
+            FileFullPath: ?BSTR,
+            NumberOfReads: u32,
+            ReadOffsets: [*]DDP_FILE_EXTENT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReadBackupFile(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, FileOffset: i64, SizeToRead: u32, FileBuffer: [*:0]u8, ReturnedSize: ?*u32, Flags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadBackupFile(self, FileFullPath, FileOffset, SizeToRead, FileBuffer, ReturnedSize, Flags);
+    }
+    pub fn OrderContainersRestore(self: *const IDedupReadFileCallback, NumberOfContainers: u32, ContainerPaths: [*]?BSTR, ReadPlanEntries: ?*u32, ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT) callconv(.@"inline") HRESULT {
+        return self.vtable.OrderContainersRestore(self, NumberOfContainers, ContainerPaths, ReadPlanEntries, ReadPlan);
+    }
+    pub fn PreviewContainerRead(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, NumberOfReads: u32, ReadOffsets: [*]DDP_FILE_EXTENT) callconv(.@"inline") HRESULT {
+        return self.vtable.PreviewContainerRead(self, FileFullPath, NumberOfReads, ReadOffsets);
     }
 };
 

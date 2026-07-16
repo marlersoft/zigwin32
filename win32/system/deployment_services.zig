@@ -2,203 +2,203 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (197)
 //--------------------------------------------------------------------------------
-pub const WDS_CLI_TRANSFER_ASYNCHRONOUS = @as(u32, 1);
-pub const WDS_CLI_NO_SPARSE_FILE = @as(u32, 2);
-pub const PXE_DHCP_SERVER_PORT = @as(u32, 67);
-pub const PXE_DHCP_CLIENT_PORT = @as(u32, 68);
-pub const PXE_SERVER_PORT = @as(u32, 4011);
-pub const PXE_DHCPV6_SERVER_PORT = @as(u32, 547);
-pub const PXE_DHCPV6_CLIENT_PORT = @as(u32, 546);
-pub const PXE_DHCP_FILE_SIZE = @as(u32, 128);
-pub const PXE_DHCP_SERVER_SIZE = @as(u32, 64);
-pub const PXE_DHCP_HWAADR_SIZE = @as(u32, 16);
-pub const PXE_DHCP_MAGIC_COOKIE_SIZE = @as(u32, 4);
-pub const PXE_REG_INDEX_TOP = @as(u32, 0);
-pub const PXE_REG_INDEX_BOTTOM = @as(u32, 4294967295);
-pub const PXE_CALLBACK_RECV_REQUEST = @as(u32, 0);
-pub const PXE_CALLBACK_SHUTDOWN = @as(u32, 1);
-pub const PXE_CALLBACK_SERVICE_CONTROL = @as(u32, 2);
-pub const PXE_CALLBACK_MAX = @as(u32, 3);
-pub const PXE_GSI_TRACE_ENABLED = @as(u32, 1);
-pub const PXE_GSI_SERVER_DUID = @as(u32, 2);
-pub const PXE_MAX_ADDRESS = @as(u32, 16);
+pub const EVT_WDSMCS_E_CP_CALLBACKS_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801324));
+pub const EVT_WDSMCS_E_CP_CLOSE_INSTANCE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801320));
+pub const EVT_WDSMCS_E_CP_DLL_LOAD_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801328));
+pub const EVT_WDSMCS_E_CP_DLL_LOAD_FAILED_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801317));
+pub const EVT_WDSMCS_E_CP_INCOMPATIBLE_SERVER_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801325));
+pub const EVT_WDSMCS_E_CP_INIT_FUNC_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801326));
+pub const EVT_WDSMCS_E_CP_INIT_FUNC_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801327));
+pub const EVT_WDSMCS_E_CP_MEMORY_LEAK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801322));
+pub const EVT_WDSMCS_E_CP_OPEN_CONTENT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801319));
+pub const EVT_WDSMCS_E_CP_OPEN_INSTANCE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801321));
+pub const EVT_WDSMCS_E_CP_SHUTDOWN_FUNC_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801323));
+pub const EVT_WDSMCS_E_DUPLICATE_MULTICAST_ADDR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801406));
+pub const EVT_WDSMCS_E_NON_WDS_DUPLICATE_MULTICAST_ADDR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801405));
+pub const EVT_WDSMCS_E_NSREG_CONTENT_PROVIDER_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801151));
+pub const EVT_WDSMCS_E_NSREG_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801149));
+pub const EVT_WDSMCS_E_NSREG_NAMESPACE_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801150));
+pub const EVT_WDSMCS_E_NSREG_START_TIME_IN_PAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801152));
+pub const EVT_WDSMCS_E_PARAMETERS_READ_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801407));
+pub const EVT_WDSMCS_S_PARAMETERS_READ = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1092682240));
+pub const EVT_WDSMCS_W_CP_DLL_LOAD_FAILED_NOT_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2128543142));
+pub const FACILITY_WDSMCCLIENT = @as(u32, 290);
+pub const FACILITY_WDSMCSERVER = @as(u32, 289);
+pub const FACILITY_WDSTPTMGMT = @as(u32, 272);
+pub const MC_SERVER_CURRENT_VERSION = @as(u32, 1);
 pub const PXE_ADDR_BROADCAST = @as(u32, 1);
-pub const PXE_ADDR_USE_PORT = @as(u32, 2);
 pub const PXE_ADDR_USE_ADDR = @as(u32, 4);
 pub const PXE_ADDR_USE_DHCP_RULES = @as(u32, 8);
-pub const PXE_DHCPV6_RELAY_HOP_COUNT_LIMIT = @as(u32, 32);
-pub const PXE_BA_NBP = @as(u32, 1);
+pub const PXE_ADDR_USE_PORT = @as(u32, 2);
 pub const PXE_BA_CUSTOM = @as(u32, 2);
 pub const PXE_BA_IGNORE = @as(u32, 3);
+pub const PXE_BA_NBP = @as(u32, 1);
 pub const PXE_BA_REJECTED = @as(u32, 4);
-pub const PXE_TRACE_VERBOSE = @as(u32, 65536);
-pub const PXE_TRACE_INFO = @as(u32, 131072);
-pub const PXE_TRACE_WARNING = @as(u32, 262144);
-pub const PXE_TRACE_ERROR = @as(u32, 524288);
-pub const PXE_TRACE_FATAL = @as(u32, 1048576);
+pub const PXE_CALLBACK_MAX = @as(u32, 3);
+pub const PXE_CALLBACK_RECV_REQUEST = @as(u32, 0);
+pub const PXE_CALLBACK_SERVICE_CONTROL = @as(u32, 2);
+pub const PXE_CALLBACK_SHUTDOWN = @as(u32, 1);
+pub const PXE_DHCP_CLIENT_PORT = @as(u32, 68);
+pub const PXE_DHCP_FILE_SIZE = @as(u32, 128);
+pub const PXE_DHCP_HWAADR_SIZE = @as(u32, 16);
+pub const PXE_DHCP_MAGIC_COOKIE_SIZE = @as(u32, 4);
+pub const PXE_DHCP_SERVER_PORT = @as(u32, 67);
+pub const PXE_DHCP_SERVER_SIZE = @as(u32, 64);
+pub const PXE_DHCPV6_CLIENT_PORT = @as(u32, 546);
+pub const PXE_DHCPV6_RELAY_HOP_COUNT_LIMIT = @as(u32, 32);
+pub const PXE_DHCPV6_SERVER_PORT = @as(u32, 547);
+pub const PXE_GSI_SERVER_DUID = @as(u32, 2);
+pub const PXE_GSI_TRACE_ENABLED = @as(u32, 1);
+pub const PXE_MAX_ADDRESS = @as(u32, 16);
 pub const PXE_PROV_ATTR_FILTER = @as(u32, 0);
 pub const PXE_PROV_ATTR_FILTER_IPV6 = @as(u32, 1);
 pub const PXE_PROV_ATTR_IPV6_CAPABLE = @as(u32, 2);
 pub const PXE_PROV_FILTER_ALL = @as(u32, 0);
 pub const PXE_PROV_FILTER_DHCP_ONLY = @as(u32, 1);
 pub const PXE_PROV_FILTER_PXE_ONLY = @as(u32, 2);
-pub const MC_SERVER_CURRENT_VERSION = @as(u32, 1);
+pub const PXE_REG_INDEX_BOTTOM = @as(u32, 4294967295);
+pub const PXE_REG_INDEX_TOP = @as(u32, 0);
+pub const PXE_SERVER_PORT = @as(u32, 4011);
+pub const PXE_TRACE_ERROR = @as(u32, 524288);
+pub const PXE_TRACE_FATAL = @as(u32, 1048576);
+pub const PXE_TRACE_INFO = @as(u32, 131072);
+pub const PXE_TRACE_VERBOSE = @as(u32, 65536);
+pub const PXE_TRACE_WARNING = @as(u32, 262144);
 pub const TRANSPORTPROVIDER_CURRENT_VERSION = @as(u32, 1);
-pub const WDS_MC_TRACE_VERBOSE = @as(u32, 65536);
-pub const WDS_MC_TRACE_INFO = @as(u32, 131072);
-pub const WDS_MC_TRACE_WARNING = @as(u32, 262144);
-pub const WDS_MC_TRACE_ERROR = @as(u32, 524288);
-pub const WDS_MC_TRACE_FATAL = @as(u32, 1048576);
-pub const WDS_TRANSPORTCLIENT_CURRENT_API_VERSION = @as(u32, 1);
-pub const WDS_TRANSPORTCLIENT_PROTOCOL_MULTICAST = @as(u32, 1);
-pub const WDS_TRANSPORTCLIENT_NO_CACHE = @as(u32, 0);
-pub const WDS_TRANSPORTCLIENT_STATUS_IN_PROGRESS = @as(u32, 1);
-pub const WDS_TRANSPORTCLIENT_STATUS_SUCCESS = @as(u32, 2);
-pub const WDS_TRANSPORTCLIENT_STATUS_FAILURE = @as(u32, 3);
-pub const WDSTRANSPORT_RESOURCE_UTILIZATION_UNKNOWN = @as(u32, 255);
-pub const WDSBP_PK_TYPE_DHCP = @as(u32, 1);
-pub const WDSBP_PK_TYPE_WDSNBP = @as(u32, 2);
-pub const WDSBP_PK_TYPE_BCD = @as(u32, 4);
-pub const WDSBP_PK_TYPE_DHCPV6 = @as(u32, 8);
-pub const WDSBP_OPT_TYPE_NONE = @as(u32, 0);
-pub const WDSBP_OPT_TYPE_BYTE = @as(u32, 1);
-pub const WDSBP_OPT_TYPE_USHORT = @as(u32, 2);
-pub const WDSBP_OPT_TYPE_ULONG = @as(u32, 3);
-pub const WDSBP_OPT_TYPE_WSTR = @as(u32, 4);
-pub const WDSBP_OPT_TYPE_STR = @as(u32, 5);
-pub const WDSBP_OPT_TYPE_IP4 = @as(u32, 6);
-pub const WDSBP_OPT_TYPE_IP6 = @as(u32, 7);
-pub const WDSBP_OPTVAL_ACTION_APPROVAL = @as(u32, 1);
-pub const WDSBP_OPTVAL_ACTION_REFERRAL = @as(u32, 3);
-pub const WDSBP_OPTVAL_ACTION_ABORT = @as(u32, 5);
-pub const WDSBP_OPTVAL_PXE_PROMPT_OPTIN = @as(u32, 1);
-pub const WDSBP_OPTVAL_PXE_PROMPT_NOPROMPT = @as(u32, 2);
-pub const WDSBP_OPTVAL_PXE_PROMPT_OPTOUT = @as(u32, 3);
-pub const WDSBP_OPTVAL_NBP_VER_7 = @as(u32, 1792);
-pub const WDSBP_OPTVAL_NBP_VER_8 = @as(u32, 2048);
-pub const FACILITY_WDSMCSERVER = @as(u32, 289);
-pub const FACILITY_WDSMCCLIENT = @as(u32, 290);
-pub const WDSMCSERVER_CATEGORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1));
-pub const WDSMCCLIENT_CATEGORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2));
-pub const WDSMCS_E_SESSION_SHUTDOWN_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801664));
-pub const WDSMCS_E_REQCALLBACKS_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801663));
-pub const WDSMCS_E_INCOMPATIBLE_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801662));
-pub const WDSMCS_E_CONTENT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801661));
-pub const WDSMCS_E_CLIENT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801660));
-pub const WDSMCS_E_NAMESPACE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801659));
-pub const WDSMCS_E_CONTENT_PROVIDER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801658));
-pub const WDSMCS_E_NAMESPACE_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801657));
-pub const WDSMCS_E_NAMESPACE_SHUTDOWN_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801656));
-pub const WDSMCS_E_NAMESPACE_ALREADY_STARTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801655));
-pub const WDSMCS_E_NS_START_FAILED_NO_CLIENTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801654));
-pub const WDSMCS_E_START_TIME_IN_PAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801653));
-pub const WDSMCS_E_PACKET_NOT_HASHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801652));
-pub const WDSMCS_E_PACKET_NOT_SIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801651));
-pub const WDSMCS_E_PACKET_HAS_SECURITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801650));
-pub const WDSMCS_E_PACKET_NOT_CHECKSUMED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801649));
-pub const WDSMCS_E_CLIENT_DOESNOT_SUPPORT_SECURITY_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801648));
-pub const EVT_WDSMCS_S_PARAMETERS_READ = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1092682240));
-pub const EVT_WDSMCS_E_PARAMETERS_READ_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801407));
-pub const EVT_WDSMCS_E_DUPLICATE_MULTICAST_ADDR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801406));
-pub const EVT_WDSMCS_E_NON_WDS_DUPLICATE_MULTICAST_ADDR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801405));
-pub const EVT_WDSMCS_E_CP_DLL_LOAD_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801328));
-pub const EVT_WDSMCS_E_CP_INIT_FUNC_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801327));
-pub const EVT_WDSMCS_E_CP_INIT_FUNC_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801326));
-pub const EVT_WDSMCS_E_CP_INCOMPATIBLE_SERVER_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801325));
-pub const EVT_WDSMCS_E_CP_CALLBACKS_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801324));
-pub const EVT_WDSMCS_E_CP_SHUTDOWN_FUNC_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801323));
-pub const EVT_WDSMCS_E_CP_MEMORY_LEAK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801322));
-pub const EVT_WDSMCS_E_CP_OPEN_INSTANCE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801321));
-pub const EVT_WDSMCS_E_CP_CLOSE_INSTANCE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801320));
-pub const EVT_WDSMCS_E_CP_OPEN_CONTENT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801319));
-pub const EVT_WDSMCS_W_CP_DLL_LOAD_FAILED_NOT_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2128543142));
-pub const EVT_WDSMCS_E_CP_DLL_LOAD_FAILED_CRITICAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801317));
-pub const EVT_WDSMCS_E_NSREG_START_TIME_IN_PAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801152));
-pub const EVT_WDSMCS_E_NSREG_CONTENT_PROVIDER_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801151));
-pub const EVT_WDSMCS_E_NSREG_NAMESPACE_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801150));
-pub const EVT_WDSMCS_E_NSREG_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801149));
-pub const WDSTPC_E_CALLBACKS_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735616));
-pub const WDSTPC_E_ALREADY_COMPLETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735615));
-pub const WDSTPC_E_ALREADY_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735614));
-pub const WDSTPC_E_UNKNOWN_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735613));
-pub const WDSTPC_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735612));
-pub const WDSTPC_E_KICKED_POLICY_NOT_MET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735611));
-pub const WDSTPC_E_KICKED_FALLBACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735610));
-pub const WDSTPC_E_KICKED_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735609));
-pub const WDSTPC_E_KICKED_UNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735608));
-pub const WDSTPC_E_MULTISTREAM_NOT_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735607));
-pub const WDSTPC_E_ALREADY_IN_LOWEST_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735606));
-pub const WDSTPC_E_CLIENT_DEMOTE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735605));
-pub const WDSTPC_E_NO_IP4_INTERFACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735604));
-pub const WDSTPTC_E_WIM_APPLY_REQUIRES_REFERENCE_IMAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735603));
-pub const FACILITY_WDSTPTMGMT = @as(u32, 272);
-pub const WDSTPTMGMT_CATEGORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1));
-pub const WDSTPTMGMT_E_INVALID_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915776));
-pub const WDSTPTMGMT_E_INVALID_OPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915775));
-pub const WDSTPTMGMT_E_INVALID_CLASS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915774));
-pub const WDSTPTMGMT_E_CONTENT_PROVIDER_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915773));
-pub const WDSTPTMGMT_E_CONTENT_PROVIDER_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915772));
-pub const WDSTPTMGMT_E_INVALID_CONTENT_PROVIDER_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915771));
-pub const WDSTPTMGMT_E_TRANSPORT_SERVER_ROLE_NOT_CONFIGURED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915770));
-pub const WDSTPTMGMT_E_NAMESPACE_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915769));
-pub const WDSTPTMGMT_E_NAMESPACE_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915768));
-pub const WDSTPTMGMT_E_CANNOT_REINITIALIZE_OBJECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915767));
-pub const WDSTPTMGMT_E_INVALID_NAMESPACE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915766));
-pub const WDSTPTMGMT_E_INVALID_NAMESPACE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915765));
-pub const WDSTPTMGMT_E_NAMESPACE_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915764));
-pub const WDSTPTMGMT_E_INVALID_NAMESPACE_START_TIME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915763));
-pub const WDSTPTMGMT_E_INVALID_DIAGNOSTICS_COMPONENTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915762));
-pub const WDSTPTMGMT_E_CANNOT_REFRESH_DIRTY_OBJECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915761));
-pub const WDSTPTMGMT_E_INVALID_SERVICE_IP_ADDRESS_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915760));
-pub const WDSTPTMGMT_E_INVALID_SERVICE_PORT_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915759));
-pub const WDSTPTMGMT_E_INVALID_NAMESPACE_START_PARAMETERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915758));
-pub const WDSTPTMGMT_E_TRANSPORT_SERVER_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915757));
-pub const WDSTPTMGMT_E_NAMESPACE_NOT_ON_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915756));
-pub const WDSTPTMGMT_E_NAMESPACE_REMOVED_FROM_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915755));
-pub const WDSTPTMGMT_E_INVALID_IP_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915754));
-pub const WDSTPTMGMT_E_INVALID_IPV4_MULTICAST_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915753));
-pub const WDSTPTMGMT_E_INVALID_IPV6_MULTICAST_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915752));
-pub const WDSTPTMGMT_E_IPV6_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915751));
-pub const WDSTPTMGMT_E_INVALID_IPV6_MULTICAST_ADDRESS_SOURCE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915750));
-pub const WDSTPTMGMT_E_INVALID_MULTISTREAM_STREAM_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915749));
-pub const WDSTPTMGMT_E_INVALID_AUTO_DISCONNECT_THRESHOLD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915748));
-pub const WDSTPTMGMT_E_MULTICAST_SESSION_POLICY_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915747));
-pub const WDSTPTMGMT_E_INVALID_SLOW_CLIENT_HANDLING_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915746));
-pub const WDSTPTMGMT_E_NETWORK_PROFILES_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915745));
-pub const WDSTPTMGMT_E_UDP_PORT_POLICY_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915744));
-pub const WDSTPTMGMT_E_TFTP_MAX_BLOCKSIZE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915743));
-pub const WDSTPTMGMT_E_TFTP_VAR_WINDOW_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915742));
-pub const WDSTPTMGMT_E_INVALID_TFTP_MAX_BLOCKSIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915741));
-pub const WdsCliFlagEnumFilterVersion = @as(i32, 1);
-pub const WdsCliFlagEnumFilterFirmware = @as(i32, 2);
-pub const WDS_LOG_TYPE_CLIENT_ERROR = @as(i32, 1);
-pub const WDS_LOG_TYPE_CLIENT_STARTED = @as(i32, 2);
-pub const WDS_LOG_TYPE_CLIENT_FINISHED = @as(i32, 3);
-pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED = @as(i32, 4);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED = @as(i32, 5);
+pub const WDS_CLI_NO_SPARSE_FILE = @as(u32, 2);
+pub const WDS_CLI_TRANSFER_ASYNCHRONOUS = @as(u32, 1);
+pub const WDS_LOG_LEVEL_DISABLED = @as(i32, 0);
+pub const WDS_LOG_LEVEL_ERROR = @as(i32, 1);
+pub const WDS_LOG_LEVEL_INFO = @as(i32, 3);
+pub const WDS_LOG_LEVEL_WARNING = @as(i32, 2);
 pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED = @as(i32, 6);
-pub const WDS_LOG_TYPE_CLIENT_GENERIC_MESSAGE = @as(i32, 7);
-pub const WDS_LOG_TYPE_CLIENT_UNATTEND_MODE = @as(i32, 8);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_START = @as(i32, 9);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_END = @as(i32, 10);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_DOWNGRADE = @as(i32, 11);
-pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR = @as(i32, 12);
-pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_START = @as(i32, 13);
-pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_END = @as(i32, 14);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED_2 = @as(i32, 15);
 pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED_2 = @as(i32, 16);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED = @as(i32, 5);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED_2 = @as(i32, 15);
+pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR = @as(i32, 12);
 pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR_2 = @as(i32, 17);
 pub const WDS_LOG_TYPE_CLIENT_DRIVER_PACKAGE_NOT_ACCESSIBLE = @as(i32, 18);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_START = @as(i32, 19);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_END = @as(i32, 20);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_FAILURE = @as(i32, 21);
+pub const WDS_LOG_TYPE_CLIENT_ERROR = @as(i32, 1);
+pub const WDS_LOG_TYPE_CLIENT_FINISHED = @as(i32, 3);
+pub const WDS_LOG_TYPE_CLIENT_GENERIC_MESSAGE = @as(i32, 7);
+pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED = @as(i32, 4);
 pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED2 = @as(i32, 22);
 pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED3 = @as(i32, 23);
 pub const WDS_LOG_TYPE_CLIENT_MAX_CODE = @as(i32, 24);
-pub const WDS_LOG_LEVEL_DISABLED = @as(i32, 0);
-pub const WDS_LOG_LEVEL_ERROR = @as(i32, 1);
-pub const WDS_LOG_LEVEL_WARNING = @as(i32, 2);
-pub const WDS_LOG_LEVEL_INFO = @as(i32, 3);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_END = @as(i32, 20);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_FAILURE = @as(i32, 21);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_START = @as(i32, 19);
+pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_END = @as(i32, 14);
+pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_START = @as(i32, 13);
+pub const WDS_LOG_TYPE_CLIENT_STARTED = @as(i32, 2);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_DOWNGRADE = @as(i32, 11);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_END = @as(i32, 10);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_START = @as(i32, 9);
+pub const WDS_LOG_TYPE_CLIENT_UNATTEND_MODE = @as(i32, 8);
+pub const WDS_MC_TRACE_ERROR = @as(u32, 524288);
+pub const WDS_MC_TRACE_FATAL = @as(u32, 1048576);
+pub const WDS_MC_TRACE_INFO = @as(u32, 131072);
+pub const WDS_MC_TRACE_VERBOSE = @as(u32, 65536);
+pub const WDS_MC_TRACE_WARNING = @as(u32, 262144);
+pub const WDS_TRANSPORTCLIENT_CURRENT_API_VERSION = @as(u32, 1);
+pub const WDS_TRANSPORTCLIENT_NO_CACHE = @as(u32, 0);
+pub const WDS_TRANSPORTCLIENT_PROTOCOL_MULTICAST = @as(u32, 1);
+pub const WDS_TRANSPORTCLIENT_STATUS_FAILURE = @as(u32, 3);
+pub const WDS_TRANSPORTCLIENT_STATUS_IN_PROGRESS = @as(u32, 1);
+pub const WDS_TRANSPORTCLIENT_STATUS_SUCCESS = @as(u32, 2);
+pub const WDSBP_OPT_TYPE_BYTE = @as(u32, 1);
+pub const WDSBP_OPT_TYPE_IP4 = @as(u32, 6);
+pub const WDSBP_OPT_TYPE_IP6 = @as(u32, 7);
+pub const WDSBP_OPT_TYPE_NONE = @as(u32, 0);
+pub const WDSBP_OPT_TYPE_STR = @as(u32, 5);
+pub const WDSBP_OPT_TYPE_ULONG = @as(u32, 3);
+pub const WDSBP_OPT_TYPE_USHORT = @as(u32, 2);
+pub const WDSBP_OPT_TYPE_WSTR = @as(u32, 4);
+pub const WDSBP_OPTVAL_ACTION_ABORT = @as(u32, 5);
+pub const WDSBP_OPTVAL_ACTION_APPROVAL = @as(u32, 1);
+pub const WDSBP_OPTVAL_ACTION_REFERRAL = @as(u32, 3);
+pub const WDSBP_OPTVAL_NBP_VER_7 = @as(u32, 1792);
+pub const WDSBP_OPTVAL_NBP_VER_8 = @as(u32, 2048);
+pub const WDSBP_OPTVAL_PXE_PROMPT_NOPROMPT = @as(u32, 2);
+pub const WDSBP_OPTVAL_PXE_PROMPT_OPTIN = @as(u32, 1);
+pub const WDSBP_OPTVAL_PXE_PROMPT_OPTOUT = @as(u32, 3);
+pub const WDSBP_PK_TYPE_BCD = @as(u32, 4);
+pub const WDSBP_PK_TYPE_DHCP = @as(u32, 1);
+pub const WDSBP_PK_TYPE_DHCPV6 = @as(u32, 8);
+pub const WDSBP_PK_TYPE_WDSNBP = @as(u32, 2);
+pub const WdsCliFlagEnumFilterFirmware = @as(i32, 2);
+pub const WdsCliFlagEnumFilterVersion = @as(i32, 1);
+pub const WDSMCCLIENT_CATEGORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2));
+pub const WDSMCS_E_CLIENT_DOESNOT_SUPPORT_SECURITY_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801648));
+pub const WDSMCS_E_CLIENT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801660));
+pub const WDSMCS_E_CONTENT_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801661));
+pub const WDSMCS_E_CONTENT_PROVIDER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801658));
+pub const WDSMCS_E_INCOMPATIBLE_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801662));
+pub const WDSMCS_E_NAMESPACE_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801657));
+pub const WDSMCS_E_NAMESPACE_ALREADY_STARTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801655));
+pub const WDSMCS_E_NAMESPACE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801659));
+pub const WDSMCS_E_NAMESPACE_SHUTDOWN_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801656));
+pub const WDSMCS_E_NS_START_FAILED_NO_CLIENTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801654));
+pub const WDSMCS_E_PACKET_HAS_SECURITY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801650));
+pub const WDSMCS_E_PACKET_NOT_CHECKSUMED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801649));
+pub const WDSMCS_E_PACKET_NOT_HASHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801652));
+pub const WDSMCS_E_PACKET_NOT_SIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801651));
+pub const WDSMCS_E_REQCALLBACKS_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801663));
+pub const WDSMCS_E_SESSION_SHUTDOWN_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801664));
+pub const WDSMCS_E_START_TIME_IN_PAST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054801653));
+pub const WDSMCSERVER_CATEGORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1));
+pub const WDSTPC_E_ALREADY_COMPLETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735615));
+pub const WDSTPC_E_ALREADY_IN_LOWEST_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735606));
+pub const WDSTPC_E_ALREADY_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735614));
+pub const WDSTPC_E_CALLBACKS_NOT_REG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735616));
+pub const WDSTPC_E_CLIENT_DEMOTE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735605));
+pub const WDSTPC_E_KICKED_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735609));
+pub const WDSTPC_E_KICKED_FALLBACK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735610));
+pub const WDSTPC_E_KICKED_POLICY_NOT_MET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735611));
+pub const WDSTPC_E_KICKED_UNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735608));
+pub const WDSTPC_E_MULTISTREAM_NOT_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735607));
+pub const WDSTPC_E_NO_IP4_INTERFACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735604));
+pub const WDSTPC_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735612));
+pub const WDSTPC_E_UNKNOWN_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735613));
+pub const WDSTPTC_E_WIM_APPLY_REQUIRES_REFERENCE_IMAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1054735603));
+pub const WDSTPTMGMT_CATEGORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1));
+pub const WDSTPTMGMT_E_CANNOT_REFRESH_DIRTY_OBJECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915761));
+pub const WDSTPTMGMT_E_CANNOT_REINITIALIZE_OBJECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915767));
+pub const WDSTPTMGMT_E_CONTENT_PROVIDER_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915773));
+pub const WDSTPTMGMT_E_CONTENT_PROVIDER_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915772));
+pub const WDSTPTMGMT_E_INVALID_AUTO_DISCONNECT_THRESHOLD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915748));
+pub const WDSTPTMGMT_E_INVALID_CLASS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915774));
+pub const WDSTPTMGMT_E_INVALID_CONTENT_PROVIDER_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915771));
+pub const WDSTPTMGMT_E_INVALID_DIAGNOSTICS_COMPONENTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915762));
+pub const WDSTPTMGMT_E_INVALID_IP_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915754));
+pub const WDSTPTMGMT_E_INVALID_IPV4_MULTICAST_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915753));
+pub const WDSTPTMGMT_E_INVALID_IPV6_MULTICAST_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915752));
+pub const WDSTPTMGMT_E_INVALID_IPV6_MULTICAST_ADDRESS_SOURCE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915750));
+pub const WDSTPTMGMT_E_INVALID_MULTISTREAM_STREAM_COUNT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915749));
+pub const WDSTPTMGMT_E_INVALID_NAMESPACE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915765));
+pub const WDSTPTMGMT_E_INVALID_NAMESPACE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915766));
+pub const WDSTPTMGMT_E_INVALID_NAMESPACE_START_PARAMETERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915758));
+pub const WDSTPTMGMT_E_INVALID_NAMESPACE_START_TIME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915763));
+pub const WDSTPTMGMT_E_INVALID_OPERATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915775));
+pub const WDSTPTMGMT_E_INVALID_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915776));
+pub const WDSTPTMGMT_E_INVALID_SERVICE_IP_ADDRESS_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915760));
+pub const WDSTPTMGMT_E_INVALID_SERVICE_PORT_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915759));
+pub const WDSTPTMGMT_E_INVALID_SLOW_CLIENT_HANDLING_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915746));
+pub const WDSTPTMGMT_E_INVALID_TFTP_MAX_BLOCKSIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915741));
+pub const WDSTPTMGMT_E_IPV6_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915751));
+pub const WDSTPTMGMT_E_MULTICAST_SESSION_POLICY_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915747));
+pub const WDSTPTMGMT_E_NAMESPACE_ALREADY_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915769));
+pub const WDSTPTMGMT_E_NAMESPACE_NOT_ON_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915756));
+pub const WDSTPTMGMT_E_NAMESPACE_NOT_REGISTERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915768));
+pub const WDSTPTMGMT_E_NAMESPACE_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915764));
+pub const WDSTPTMGMT_E_NAMESPACE_REMOVED_FROM_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915755));
+pub const WDSTPTMGMT_E_NETWORK_PROFILES_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915745));
+pub const WDSTPTMGMT_E_TFTP_MAX_BLOCKSIZE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915743));
+pub const WDSTPTMGMT_E_TFTP_VAR_WINDOW_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915742));
+pub const WDSTPTMGMT_E_TRANSPORT_SERVER_ROLE_NOT_CONFIGURED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915770));
+pub const WDSTPTMGMT_E_TRANSPORT_SERVER_UNAVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915757));
+pub const WDSTPTMGMT_E_UDP_PORT_POLICY_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1055915744));
+pub const WDSTRANSPORT_RESOURCE_UTILIZATION_UNKNOWN = @as(u32, 255);
 
 //--------------------------------------------------------------------------------
 // Section: Types (89)
@@ -211,449 +211,6 @@ pub const CPU_ARCHITECTURE = enum(u32) {
 pub const CPU_ARCHITECTURE_AMD64 = CPU_ARCHITECTURE.AMD64;
 pub const CPU_ARCHITECTURE_IA64 = CPU_ARCHITECTURE.IA64;
 pub const CPU_ARCHITECTURE_INTEL = CPU_ARCHITECTURE.INTEL;
-
-pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = enum(u32) {
-    START = 0,
-    COMPLETE = 1,
-    PROGRESS = 2,
-    TEXT = 3,
-};
-// TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
-
-pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = enum(u32) {
-    AUTH = 1,
-    NO_AUTH = 2,
-};
-pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.AUTH;
-pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.NO_AUTH;
-
-pub const WDS_CLI_CRED = extern struct {
-    pwszUserName: ?[*:0]const u16,
-    pwszDomain: ?[*:0]const u16,
-    pwszPassword: ?[*:0]const u16,
-};
-
-pub const PFN_WdsCliTraceFunction = *const fn(
-    pwszFormat: ?[*:0]const u16,
-    Params: ?*i8,
-) callconv(.winapi) void;
-
-pub const WDS_CLI_IMAGE_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    WIM = 1,
-    VHD = 2,
-    VHDX = 3,
-};
-pub const WDS_CLI_IMAGE_TYPE_UNKNOWN = WDS_CLI_IMAGE_TYPE.UNKNOWN;
-pub const WDS_CLI_IMAGE_TYPE_WIM = WDS_CLI_IMAGE_TYPE.WIM;
-pub const WDS_CLI_IMAGE_TYPE_VHD = WDS_CLI_IMAGE_TYPE.VHD;
-pub const WDS_CLI_IMAGE_TYPE_VHDX = WDS_CLI_IMAGE_TYPE.VHDX;
-
-pub const WDS_CLI_FIRMWARE_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    BIOS = 1,
-    EFI = 2,
-};
-pub const WDS_CLI_FIRMWARE_UNKNOWN = WDS_CLI_FIRMWARE_TYPE.UNKNOWN;
-pub const WDS_CLI_FIRMWARE_BIOS = WDS_CLI_FIRMWARE_TYPE.BIOS;
-pub const WDS_CLI_FIRMWARE_EFI = WDS_CLI_FIRMWARE_TYPE.EFI;
-
-pub const WDS_CLI_IMAGE_PARAM_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    SPARSE_FILE = 1,
-    SUPPORTED_FIRMWARES = 2,
-};
-pub const WDS_CLI_IMAGE_PARAM_UNKNOWN = WDS_CLI_IMAGE_PARAM_TYPE.UNKNOWN;
-pub const WDS_CLI_IMAGE_PARAM_SPARSE_FILE = WDS_CLI_IMAGE_PARAM_TYPE.SPARSE_FILE;
-pub const WDS_CLI_IMAGE_PARAM_SUPPORTED_FIRMWARES = WDS_CLI_IMAGE_PARAM_TYPE.SUPPORTED_FIRMWARES;
-
-pub const PFN_WdsCliCallback = *const fn(
-    dwMessageId: PFN_WDS_CLI_CALLBACK_MESSAGE_ID,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    pvUserData: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const PXE_DHCP_OPTION = extern struct {
-    OptionType: u8,
-    OptionLength: u8,
-    OptionValue: [1]u8,
-};
-
-pub const PXE_DHCP_MESSAGE = extern struct {
-    Operation: u8 align(1),
-    HardwareAddressType: u8 align(1),
-    HardwareAddressLength: u8 align(1),
-    HopCount: u8 align(1),
-    TransactionID: u32 align(1),
-    SecondsSinceBoot: u16 align(1),
-    Reserved: u16 align(1),
-    ClientIpAddress: u32 align(1),
-    YourIpAddress: u32 align(1),
-    BootstrapServerAddress: u32 align(1),
-    RelayAgentIpAddress: u32 align(1),
-    HardwareAddress: [16]u8 align(1),
-    HostName: [64]u8 align(1),
-    BootFileName: [128]u8 align(1),
-    Anonymous: extern union {
-        bMagicCookie: [4]u8 align(1),
-        uMagicCookie: u32 align(1),
-    } align(1),
-    Option: PXE_DHCP_OPTION align(1),
-};
-
-pub const PXE_DHCPV6_OPTION = extern struct {
-    OptionCode: u16 align(1),
-    DataLength: u16 align(1),
-    Data: [1]u8 align(1),
-};
-
-pub const PXE_DHCPV6_MESSAGE_HEADER = extern struct {
-    MessageType: u8,
-    Message: [1]u8,
-};
-
-pub const PXE_DHCPV6_MESSAGE = extern struct {
-    MessageType: u8,
-    TransactionIDByte1: u8,
-    TransactionIDByte2: u8,
-    TransactionIDByte3: u8,
-    Options: [1]PXE_DHCPV6_OPTION,
-};
-
-pub const PXE_DHCPV6_RELAY_MESSAGE = extern struct {
-    MessageType: u8,
-    HopCount: u8,
-    LinkAddress: [16]u8,
-    PeerAddress: [16]u8,
-    Options: [1]PXE_DHCPV6_OPTION,
-};
-
-pub const PXE_PROVIDER = extern struct {
-    uSizeOfStruct: u32,
-    pwszName: ?PWSTR,
-    pwszFilePath: ?PWSTR,
-    bIsCritical: BOOL,
-    uIndex: u32,
-};
-
-pub const PXE_ADDRESS = extern struct {
-    uFlags: u32,
-    Anonymous: extern union {
-        bAddress: [16]u8,
-        uIpAddress: u32,
-    },
-    uAddrLen: u32,
-    uPort: u16,
-};
-
-pub const PXE_DHCPV6_NESTED_RELAY_MESSAGE = extern struct {
-    pRelayMessage: ?*PXE_DHCPV6_RELAY_MESSAGE,
-    cbRelayMessage: u32,
-    pInterfaceIdOption: ?*anyopaque,
-    cbInterfaceIdOption: u16,
-};
-
-pub const TRANSPORTPROVIDER_CALLBACK_ID = enum(i32) {
-    CREATE_INSTANCE = 0,
-    COMPARE_CONTENT = 1,
-    OPEN_CONTENT = 2,
-    USER_ACCESS_CHECK = 3,
-    GET_CONTENT_SIZE = 4,
-    READ_CONTENT = 5,
-    CLOSE_CONTENT = 6,
-    CLOSE_INSTANCE = 7,
-    SHUTDOWN = 8,
-    DUMP_STATE = 9,
-    REFRESH_SETTINGS = 10,
-    GET_CONTENT_METADATA = 11,
-    MAX_CALLBACKS = 12,
-};
-pub const WDS_TRANSPORTPROVIDER_CREATE_INSTANCE = TRANSPORTPROVIDER_CALLBACK_ID.CREATE_INSTANCE;
-pub const WDS_TRANSPORTPROVIDER_COMPARE_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.COMPARE_CONTENT;
-pub const WDS_TRANSPORTPROVIDER_OPEN_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.OPEN_CONTENT;
-pub const WDS_TRANSPORTPROVIDER_USER_ACCESS_CHECK = TRANSPORTPROVIDER_CALLBACK_ID.USER_ACCESS_CHECK;
-pub const WDS_TRANSPORTPROVIDER_GET_CONTENT_SIZE = TRANSPORTPROVIDER_CALLBACK_ID.GET_CONTENT_SIZE;
-pub const WDS_TRANSPORTPROVIDER_READ_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.READ_CONTENT;
-pub const WDS_TRANSPORTPROVIDER_CLOSE_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.CLOSE_CONTENT;
-pub const WDS_TRANSPORTPROVIDER_CLOSE_INSTANCE = TRANSPORTPROVIDER_CALLBACK_ID.CLOSE_INSTANCE;
-pub const WDS_TRANSPORTPROVIDER_SHUTDOWN = TRANSPORTPROVIDER_CALLBACK_ID.SHUTDOWN;
-pub const WDS_TRANSPORTPROVIDER_DUMP_STATE = TRANSPORTPROVIDER_CALLBACK_ID.DUMP_STATE;
-pub const WDS_TRANSPORTPROVIDER_REFRESH_SETTINGS = TRANSPORTPROVIDER_CALLBACK_ID.REFRESH_SETTINGS;
-pub const WDS_TRANSPORTPROVIDER_GET_CONTENT_METADATA = TRANSPORTPROVIDER_CALLBACK_ID.GET_CONTENT_METADATA;
-pub const WDS_TRANSPORTPROVIDER_MAX_CALLBACKS = TRANSPORTPROVIDER_CALLBACK_ID.MAX_CALLBACKS;
-
-pub const WDS_TRANSPORTPROVIDER_INIT_PARAMS = extern struct {
-    ulLength: u32,
-    ulMcServerVersion: u32,
-    hRegistryKey: ?HKEY,
-    hProvider: ?HANDLE,
-};
-
-pub const WDS_TRANSPORTPROVIDER_SETTINGS = extern struct {
-    ulLength: u32,
-    ulProviderVersion: u32,
-};
-
-pub const TRANSPORTCLIENT_CALLBACK_ID = enum(i32) {
-    SESSION_START = 0,
-    RECEIVE_CONTENTS = 1,
-    SESSION_COMPLETE = 2,
-    RECEIVE_METADATA = 3,
-    SESSION_STARTEX = 4,
-    SESSION_NEGOTIATE = 5,
-    MAX_CALLBACKS = 6,
-};
-pub const WDS_TRANSPORTCLIENT_SESSION_START = TRANSPORTCLIENT_CALLBACK_ID.SESSION_START;
-pub const WDS_TRANSPORTCLIENT_RECEIVE_CONTENTS = TRANSPORTCLIENT_CALLBACK_ID.RECEIVE_CONTENTS;
-pub const WDS_TRANSPORTCLIENT_SESSION_COMPLETE = TRANSPORTCLIENT_CALLBACK_ID.SESSION_COMPLETE;
-pub const WDS_TRANSPORTCLIENT_RECEIVE_METADATA = TRANSPORTCLIENT_CALLBACK_ID.RECEIVE_METADATA;
-pub const WDS_TRANSPORTCLIENT_SESSION_STARTEX = TRANSPORTCLIENT_CALLBACK_ID.SESSION_STARTEX;
-pub const WDS_TRANSPORTCLIENT_SESSION_NEGOTIATE = TRANSPORTCLIENT_CALLBACK_ID.SESSION_NEGOTIATE;
-pub const WDS_TRANSPORTCLIENT_MAX_CALLBACKS = TRANSPORTCLIENT_CALLBACK_ID.MAX_CALLBACKS;
-
-pub const TRANSPORTCLIENT_SESSION_INFO = extern struct {
-    ulStructureLength: u32,
-    ullFileSize: ULARGE_INTEGER,
-    ulBlockSize: u32,
-};
-
-pub const PFN_WdsTransportClientSessionStart = *const fn(
-    hSessionKey: ?HANDLE,
-    pCallerData: ?*anyopaque,
-    ullFileSize: ?*ULARGE_INTEGER,
-) callconv(.winapi) void;
-
-pub const PFN_WdsTransportClientSessionStartEx = *const fn(
-    hSessionKey: ?HANDLE,
-    pCallerData: ?*anyopaque,
-    Info: ?*TRANSPORTCLIENT_SESSION_INFO,
-) callconv(.winapi) void;
-
-pub const PFN_WdsTransportClientReceiveMetadata = *const fn(
-    hSessionKey: ?HANDLE,
-    pCallerData: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
-    pMetadata: ?*anyopaque,
-    ulSize: u32,
-) callconv(.winapi) void;
-
-pub const PFN_WdsTransportClientReceiveContents = *const fn(
-    hSessionKey: ?HANDLE,
-    pCallerData: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
-    pContents: ?*anyopaque,
-    ulSize: u32,
-    pullContentOffset: ?*ULARGE_INTEGER,
-) callconv(.winapi) void;
-
-pub const PFN_WdsTransportClientSessionComplete = *const fn(
-    hSessionKey: ?HANDLE,
-    pCallerData: ?*anyopaque,
-    dwError: u32,
-) callconv(.winapi) void;
-
-pub const PFN_WdsTransportClientSessionNegotiate = *const fn(
-    hSessionKey: ?HANDLE,
-    pCallerData: ?*anyopaque,
-    pInfo: ?*TRANSPORTCLIENT_SESSION_INFO,
-    hNegotiateKey: ?HANDLE,
-) callconv(.winapi) void;
-
-pub const WDS_TRANSPORTCLIENT_REQUEST = extern struct {
-    ulLength: u32,
-    ulApiVersion: u32,
-    ulAuthLevel: WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL,
-    pwszServer: ?[*:0]const u16,
-    pwszNamespace: ?[*:0]const u16,
-    pwszObjectName: ?[*:0]const u16,
-    ulCacheSize: u32,
-    ulProtocol: u32,
-    pvProtocolData: ?*anyopaque,
-    ulProtocolDataLength: u32,
-};
-
-pub const WDS_TRANSPORTCLIENT_CALLBACKS = extern struct {
-    SessionStart: ?PFN_WdsTransportClientSessionStart,
-    SessionStartEx: ?PFN_WdsTransportClientSessionStartEx,
-    ReceiveContents: ?PFN_WdsTransportClientReceiveContents,
-    ReceiveMetadata: ?PFN_WdsTransportClientReceiveMetadata,
-    SessionComplete: ?PFN_WdsTransportClientSessionComplete,
-    SessionNegotiate: ?PFN_WdsTransportClientSessionNegotiate,
-};
-
-const CLSID_WdsTransportCacheable_Value = Guid.initString("70590b16-f146-46bd-bd9d-4aaa90084bf5");
-pub const CLSID_WdsTransportCacheable = &CLSID_WdsTransportCacheable_Value;
-
-const CLSID_WdsTransportCollection_Value = Guid.initString("c7f18b09-391e-436e-b10b-c3ef46f2c34f");
-pub const CLSID_WdsTransportCollection = &CLSID_WdsTransportCollection_Value;
-
-const CLSID_WdsTransportManager_Value = Guid.initString("f21523f6-837c-4a58-af99-8a7e27f8ff59");
-pub const CLSID_WdsTransportManager = &CLSID_WdsTransportManager_Value;
-
-const CLSID_WdsTransportServer_Value = Guid.initString("ea19b643-4adf-4413-942c-14f379118760");
-pub const CLSID_WdsTransportServer = &CLSID_WdsTransportServer_Value;
-
-const CLSID_WdsTransportSetupManager_Value = Guid.initString("c7beeaad-9f04-4923-9f0c-fbf52bc7590f");
-pub const CLSID_WdsTransportSetupManager = &CLSID_WdsTransportSetupManager_Value;
-
-const CLSID_WdsTransportConfigurationManager_Value = Guid.initString("8743f674-904c-47ca-8512-35fe98f6b0ac");
-pub const CLSID_WdsTransportConfigurationManager = &CLSID_WdsTransportConfigurationManager_Value;
-
-const CLSID_WdsTransportNamespaceManager_Value = Guid.initString("f08cdb63-85de-4a28-a1a9-5ca3e7efda73");
-pub const CLSID_WdsTransportNamespaceManager = &CLSID_WdsTransportNamespaceManager_Value;
-
-const CLSID_WdsTransportServicePolicy_Value = Guid.initString("65aceadc-2f0b-4f43-9f4d-811865d8cead");
-pub const CLSID_WdsTransportServicePolicy = &CLSID_WdsTransportServicePolicy_Value;
-
-const CLSID_WdsTransportDiagnosticsPolicy_Value = Guid.initString("eb3333e1-a7ad-46f5-80d6-6b740204e509");
-pub const CLSID_WdsTransportDiagnosticsPolicy = &CLSID_WdsTransportDiagnosticsPolicy_Value;
-
-const CLSID_WdsTransportMulticastSessionPolicy_Value = Guid.initString("3c6bc3f4-6418-472a-b6f1-52d457195437");
-pub const CLSID_WdsTransportMulticastSessionPolicy = &CLSID_WdsTransportMulticastSessionPolicy_Value;
-
-const CLSID_WdsTransportNamespace_Value = Guid.initString("d8385768-0732-4ec1-95ea-16da581908a1");
-pub const CLSID_WdsTransportNamespace = &CLSID_WdsTransportNamespace_Value;
-
-const CLSID_WdsTransportNamespaceAutoCast_Value = Guid.initString("b091f5a8-6a99-478d-b23b-09e8fee04574");
-pub const CLSID_WdsTransportNamespaceAutoCast = &CLSID_WdsTransportNamespaceAutoCast_Value;
-
-const CLSID_WdsTransportNamespaceScheduledCast_Value = Guid.initString("badc1897-7025-44eb-9108-fb61c4055792");
-pub const CLSID_WdsTransportNamespaceScheduledCast = &CLSID_WdsTransportNamespaceScheduledCast_Value;
-
-const CLSID_WdsTransportNamespaceScheduledCastManualStart_Value = Guid.initString("d3e1a2aa-caac-460e-b98a-47f9f318a1fa");
-pub const CLSID_WdsTransportNamespaceScheduledCastManualStart = &CLSID_WdsTransportNamespaceScheduledCastManualStart_Value;
-
-const CLSID_WdsTransportNamespaceScheduledCastAutoStart_Value = Guid.initString("a1107052-122c-4b81-9b7c-386e6855383f");
-pub const CLSID_WdsTransportNamespaceScheduledCastAutoStart = &CLSID_WdsTransportNamespaceScheduledCastAutoStart_Value;
-
-const CLSID_WdsTransportContent_Value = Guid.initString("0a891fe7-4a3f-4c65-b6f2-1467619679ea");
-pub const CLSID_WdsTransportContent = &CLSID_WdsTransportContent_Value;
-
-const CLSID_WdsTransportSession_Value = Guid.initString("749ac4e0-67bc-4743-bfe5-cacb1f26f57f");
-pub const CLSID_WdsTransportSession = &CLSID_WdsTransportSession_Value;
-
-const CLSID_WdsTransportClient_Value = Guid.initString("66d2c5e9-0ff6-49ec-9733-dafb1e01df1c");
-pub const CLSID_WdsTransportClient = &CLSID_WdsTransportClient_Value;
-
-const CLSID_WdsTransportTftpClient_Value = Guid.initString("50343925-7c5c-4c8c-96c4-ad9fa5005fba");
-pub const CLSID_WdsTransportTftpClient = &CLSID_WdsTransportTftpClient_Value;
-
-const CLSID_WdsTransportTftpManager_Value = Guid.initString("c8e9dca2-3241-4e4d-b806-bc74019dfeda");
-pub const CLSID_WdsTransportTftpManager = &CLSID_WdsTransportTftpManager_Value;
-
-const CLSID_WdsTransportContentProvider_Value = Guid.initString("e0be741f-5a75-4eb9-8a2d-5e189b45f327");
-pub const CLSID_WdsTransportContentProvider = &CLSID_WdsTransportContentProvider_Value;
-
-pub const WDSTRANSPORT_FEATURE_FLAGS = enum(i32) {
-    AdminPack = 1,
-    TransportServer = 2,
-    DeploymentServer = 4,
-};
-pub const WdsTptFeatureAdminPack = WDSTRANSPORT_FEATURE_FLAGS.AdminPack;
-pub const WdsTptFeatureTransportServer = WDSTRANSPORT_FEATURE_FLAGS.TransportServer;
-pub const WdsTptFeatureDeploymentServer = WDSTRANSPORT_FEATURE_FLAGS.DeploymentServer;
-
-pub const WDSTRANSPORT_PROTOCOL_FLAGS = enum(i32) {
-    Unicast = 1,
-    Multicast = 2,
-};
-pub const WdsTptProtocolUnicast = WDSTRANSPORT_PROTOCOL_FLAGS.Unicast;
-pub const WdsTptProtocolMulticast = WDSTRANSPORT_PROTOCOL_FLAGS.Multicast;
-
-pub const WDSTRANSPORT_NAMESPACE_TYPE = enum(i32) {
-    Unknown = 0,
-    AutoCast = 1,
-    ScheduledCastManualStart = 2,
-    ScheduledCastAutoStart = 3,
-};
-pub const WdsTptNamespaceTypeUnknown = WDSTRANSPORT_NAMESPACE_TYPE.Unknown;
-pub const WdsTptNamespaceTypeAutoCast = WDSTRANSPORT_NAMESPACE_TYPE.AutoCast;
-pub const WdsTptNamespaceTypeScheduledCastManualStart = WDSTRANSPORT_NAMESPACE_TYPE.ScheduledCastManualStart;
-pub const WdsTptNamespaceTypeScheduledCastAutoStart = WDSTRANSPORT_NAMESPACE_TYPE.ScheduledCastAutoStart;
-
-pub const WDSTRANSPORT_DISCONNECT_TYPE = enum(i32) {
-    Unknown = 0,
-    Fallback = 1,
-    Abort = 2,
-};
-pub const WdsTptDisconnectUnknown = WDSTRANSPORT_DISCONNECT_TYPE.Unknown;
-pub const WdsTptDisconnectFallback = WDSTRANSPORT_DISCONNECT_TYPE.Fallback;
-pub const WdsTptDisconnectAbort = WDSTRANSPORT_DISCONNECT_TYPE.Abort;
-
-pub const WDSTRANSPORT_SERVICE_NOTIFICATION = enum(i32) {
-    Unknown = 0,
-    ReadSettings = 1,
-};
-pub const WdsTptServiceNotifyUnknown = WDSTRANSPORT_SERVICE_NOTIFICATION.Unknown;
-pub const WdsTptServiceNotifyReadSettings = WDSTRANSPORT_SERVICE_NOTIFICATION.ReadSettings;
-
-pub const WDSTRANSPORT_IP_ADDRESS_TYPE = enum(i32) {
-    Unknown = 0,
-    Ipv4 = 1,
-    Ipv6 = 2,
-};
-pub const WdsTptIpAddressUnknown = WDSTRANSPORT_IP_ADDRESS_TYPE.Unknown;
-pub const WdsTptIpAddressIpv4 = WDSTRANSPORT_IP_ADDRESS_TYPE.Ipv4;
-pub const WdsTptIpAddressIpv6 = WDSTRANSPORT_IP_ADDRESS_TYPE.Ipv6;
-
-pub const WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE = enum(i32) {
-    Unknown = 0,
-    Dhcp = 1,
-    Range = 2,
-};
-pub const WdsTptIpAddressSourceUnknown = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Unknown;
-pub const WdsTptIpAddressSourceDhcp = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Dhcp;
-pub const WdsTptIpAddressSourceRange = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Range;
-
-pub const WDSTRANSPORT_NETWORK_PROFILE_TYPE = enum(i32) {
-    Unknown = 0,
-    Custom = 1,
-    @"10Mbps" = 2,
-    @"100Mbps" = 3,
-    @"1Gbps" = 4,
-};
-pub const WdsTptNetworkProfileUnknown = WDSTRANSPORT_NETWORK_PROFILE_TYPE.Unknown;
-pub const WdsTptNetworkProfileCustom = WDSTRANSPORT_NETWORK_PROFILE_TYPE.Custom;
-pub const WdsTptNetworkProfile10Mbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"10Mbps";
-pub const WdsTptNetworkProfile100Mbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"100Mbps";
-pub const WdsTptNetworkProfile1Gbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"1Gbps";
-
-pub const WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS = enum(i32) {
-    Pxe = 1,
-    Tftp = 2,
-    ImageServer = 4,
-    Multicast = 8,
-};
-pub const WdsTptDiagnosticsComponentPxe = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.Pxe;
-pub const WdsTptDiagnosticsComponentTftp = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.Tftp;
-pub const WdsTptDiagnosticsComponentImageServer = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.ImageServer;
-pub const WdsTptDiagnosticsComponentMulticast = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.Multicast;
-
-pub const WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE = enum(i32) {
-    Unknown = 0,
-    None = 1,
-    AutoDisconnect = 2,
-    Multistream = 3,
-};
-pub const WdsTptSlowClientHandlingUnknown = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.Unknown;
-pub const WdsTptSlowClientHandlingNone = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.None;
-pub const WdsTptSlowClientHandlingAutoDisconnect = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.AutoDisconnect;
-pub const WdsTptSlowClientHandlingMultistream = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.Multistream;
-
-pub const WDSTRANSPORT_UDP_PORT_POLICY = enum(i32) {
-    Dynamic = 0,
-    Fixed = 1,
-};
-pub const WdsTptUdpPortPolicyDynamic = WDSTRANSPORT_UDP_PORT_POLICY.Dynamic;
-pub const WdsTptUdpPortPolicyFixed = WDSTRANSPORT_UDP_PORT_POLICY.Fixed;
-
-pub const WDSTRANSPORT_TFTP_CAPABILITY = enum(i32) {
-    MaximumBlockSize = 1,
-    VariableWindow = 2,
-};
-pub const WdsTptTftpCapMaximumBlockSize = WDSTRANSPORT_TFTP_CAPABILITY.MaximumBlockSize;
-pub const WdsTptTftpCapVariableWindow = WDSTRANSPORT_TFTP_CAPABILITY.VariableWindow;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWdsTransportCacheable_Value = Guid.initString("46ad894b-0bab-47dc-84b2-7b553f1d8f80");
@@ -694,6 +251,113 @@ pub const IWdsTransportCacheable = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
+const IID_IWdsTransportClient_Value = Guid.initString("b5dbc93a-cabe-46ca-837f-3e44e93c6545");
+pub const IID_IWdsTransportClient = &IID_IWdsTransportClient_Value;
+pub const IWdsTransportClient = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Session: *const fn(
+            self: *const IWdsTransportClient,
+            ppWdsTransportSession: ?*?*IWdsTransportSession,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IWdsTransportClient,
+            pulId: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IWdsTransportClient,
+            pbszName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MacAddress: *const fn(
+            self: *const IWdsTransportClient,
+            pbszMacAddress: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IpAddress: *const fn(
+            self: *const IWdsTransportClient,
+            pbszIpAddress: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PercentCompletion: *const fn(
+            self: *const IWdsTransportClient,
+            pulPercentCompletion: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_JoinDuration: *const fn(
+            self: *const IWdsTransportClient,
+            pulJoinDuration: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CpuUtilization: *const fn(
+            self: *const IWdsTransportClient,
+            pulCpuUtilization: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MemoryUtilization: *const fn(
+            self: *const IWdsTransportClient,
+            pulMemoryUtilization: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NetworkUtilization: *const fn(
+            self: *const IWdsTransportClient,
+            pulNetworkUtilization: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserIdentity: *const fn(
+            self: *const IWdsTransportClient,
+            pbszUserIdentity: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Disconnect: *const fn(
+            self: *const IWdsTransportClient,
+            DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Session(self: *const IWdsTransportClient, ppWdsTransportSession: ?*?*IWdsTransportSession) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Session(self, ppWdsTransportSession);
+    }
+    pub fn get_Id(self: *const IWdsTransportClient, pulId: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, pulId);
+    }
+    pub fn get_Name(self: *const IWdsTransportClient, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbszName);
+    }
+    pub fn get_MacAddress(self: *const IWdsTransportClient, pbszMacAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MacAddress(self, pbszMacAddress);
+    }
+    pub fn get_IpAddress(self: *const IWdsTransportClient, pbszIpAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IpAddress(self, pbszIpAddress);
+    }
+    pub fn get_PercentCompletion(self: *const IWdsTransportClient, pulPercentCompletion: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PercentCompletion(self, pulPercentCompletion);
+    }
+    pub fn get_JoinDuration(self: *const IWdsTransportClient, pulJoinDuration: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_JoinDuration(self, pulJoinDuration);
+    }
+    pub fn get_CpuUtilization(self: *const IWdsTransportClient, pulCpuUtilization: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CpuUtilization(self, pulCpuUtilization);
+    }
+    pub fn get_MemoryUtilization(self: *const IWdsTransportClient, pulMemoryUtilization: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MemoryUtilization(self, pulMemoryUtilization);
+    }
+    pub fn get_NetworkUtilization(self: *const IWdsTransportClient, pulNetworkUtilization: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NetworkUtilization(self, pulNetworkUtilization);
+    }
+    pub fn get_UserIdentity(self: *const IWdsTransportClient, pbszUserIdentity: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserIdentity(self, pbszUserIdentity);
+    }
+    pub fn Disconnect(self: *const IWdsTransportClient, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.Disconnect(self, DisconnectionType);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWdsTransportCollection_Value = Guid.initString("b8ba4b1a-2ff4-43ab-996c-b2b10a91a6eb");
 pub const IID_IWdsTransportCollection = &IID_IWdsTransportCollection_Value;
 pub const IWdsTransportCollection = extern union {
@@ -726,181 +390,6 @@ pub const IWdsTransportCollection = extern union {
     }
     pub fn get__NewEnum(self: *const IWdsTransportCollection, ppVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppVal);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportManager_Value = Guid.initString("5b0d35f5-1b13-4afd-b878-6526dc340b5d");
-pub const IID_IWdsTransportManager = &IID_IWdsTransportManager_Value;
-pub const IWdsTransportManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        GetWdsTransportServer: *const fn(
-            self: *const IWdsTransportManager,
-            bszServerName: ?BSTR,
-            ppWdsTransportServer: ?*?*IWdsTransportServer,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn GetWdsTransportServer(self: *const IWdsTransportManager, bszServerName: ?BSTR, ppWdsTransportServer: ?*?*IWdsTransportServer) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWdsTransportServer(self, bszServerName, ppWdsTransportServer);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportServer_Value = Guid.initString("09ccd093-830d-4344-a30a-73ae8e8fca90");
-pub const IID_IWdsTransportServer = &IID_IWdsTransportServer_Value;
-pub const IWdsTransportServer = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IWdsTransportServer,
-            pbszName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SetupManager: *const fn(
-            self: *const IWdsTransportServer,
-            ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConfigurationManager: *const fn(
-            self: *const IWdsTransportServer,
-            ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NamespaceManager: *const fn(
-            self: *const IWdsTransportServer,
-            ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager,
-        ) callconv(.winapi) HRESULT,
-        DisconnectClient: *const fn(
-            self: *const IWdsTransportServer,
-            ulClientId: u32,
-            DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IWdsTransportServer, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbszName);
-    }
-    pub fn get_SetupManager(self: *const IWdsTransportServer, ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SetupManager(self, ppWdsTransportSetupManager);
-    }
-    pub fn get_ConfigurationManager(self: *const IWdsTransportServer, ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ConfigurationManager(self, ppWdsTransportConfigurationManager);
-    }
-    pub fn get_NamespaceManager(self: *const IWdsTransportServer, ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NamespaceManager(self, ppWdsTransportNamespaceManager);
-    }
-    pub fn DisconnectClient(self: *const IWdsTransportServer, ulClientId: u32, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.DisconnectClient(self, ulClientId, DisconnectionType);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2012'
-const IID_IWdsTransportServer2_Value = Guid.initString("256e999f-6df4-4538-81b9-857b9ab8fb47");
-pub const IID_IWdsTransportServer2 = &IID_IWdsTransportServer2_Value;
-pub const IWdsTransportServer2 = extern union {
-    pub const VTable = extern struct {
-        base: IWdsTransportServer.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TftpManager: *const fn(
-            self: *const IWdsTransportServer2,
-            ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWdsTransportServer: IWdsTransportServer,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_TftpManager(self: *const IWdsTransportServer2, ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TftpManager(self, ppWdsTransportTftpManager);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportSetupManager_Value = Guid.initString("f7238425-efa8-40a4-aef9-c98d969c0b75");
-pub const IID_IWdsTransportSetupManager = &IID_IWdsTransportSetupManager_Value;
-pub const IWdsTransportSetupManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: *const fn(
-            self: *const IWdsTransportSetupManager,
-            pullVersion: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InstalledFeatures: *const fn(
-            self: *const IWdsTransportSetupManager,
-            pulInstalledFeatures: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocols: *const fn(
-            self: *const IWdsTransportSetupManager,
-            pulProtocols: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        RegisterContentProvider: *const fn(
-            self: *const IWdsTransportSetupManager,
-            bszName: ?BSTR,
-            bszDescription: ?BSTR,
-            bszFilePath: ?BSTR,
-            bszInitializationRoutine: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        DeregisterContentProvider: *const fn(
-            self: *const IWdsTransportSetupManager,
-            bszName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Version(self: *const IWdsTransportSetupManager, pullVersion: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Version(self, pullVersion);
-    }
-    pub fn get_InstalledFeatures(self: *const IWdsTransportSetupManager, pulInstalledFeatures: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InstalledFeatures(self, pulInstalledFeatures);
-    }
-    pub fn get_Protocols(self: *const IWdsTransportSetupManager, pulProtocols: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Protocols(self, pulProtocols);
-    }
-    pub fn RegisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR, bszDescription: ?BSTR, bszFilePath: ?BSTR, bszInitializationRoutine: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterContentProvider(self, bszName, bszDescription, bszFilePath, bszInitializationRoutine);
-    }
-    pub fn DeregisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeregisterContentProvider(self, bszName);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2012'
-const IID_IWdsTransportSetupManager2_Value = Guid.initString("02be79da-7e9e-4366-8b6e-2aa9a91be47f");
-pub const IID_IWdsTransportSetupManager2 = &IID_IWdsTransportSetupManager2_Value;
-pub const IWdsTransportSetupManager2 = extern union {
-    pub const VTable = extern struct {
-        base: IWdsTransportSetupManager.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TftpCapabilities: *const fn(
-            self: *const IWdsTransportSetupManager2,
-            pulTftpCapabilities: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ContentProviders: *const fn(
-            self: *const IWdsTransportSetupManager2,
-            ppProviderCollection: ?*?*IWdsTransportCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWdsTransportSetupManager: IWdsTransportSetupManager,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_TftpCapabilities(self: *const IWdsTransportSetupManager2, pulTftpCapabilities: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TftpCapabilities(self, pulTftpCapabilities);
-    }
-    pub fn get_ContentProviders(self: *const IWdsTransportSetupManager2, ppProviderCollection: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ContentProviders(self, ppProviderCollection);
     }
 };
 
@@ -999,233 +488,95 @@ pub const IWdsTransportConfigurationManager2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportNamespaceManager_Value = Guid.initString("3e22d9f6-3777-4d98-83e1-f98696717ba3");
-pub const IID_IWdsTransportNamespaceManager = &IID_IWdsTransportNamespaceManager_Value;
-pub const IWdsTransportNamespaceManager = extern union {
+const IID_IWdsTransportContent_Value = Guid.initString("d405d711-0296-4ab4-a860-ac7d32e65798");
+pub const IID_IWdsTransportContent = &IID_IWdsTransportContent_Value;
+pub const IWdsTransportContent = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        CreateNamespace: *const fn(
-            self: *const IWdsTransportNamespaceManager,
-            NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE,
-            bszNamespaceName: ?BSTR,
-            bszContentProvider: ?BSTR,
-            bszConfiguration: ?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Namespace: *const fn(
+            self: *const IWdsTransportContent,
             ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
         ) callconv(.winapi) HRESULT,
-        RetrieveNamespace: *const fn(
-            self: *const IWdsTransportNamespaceManager,
-            bszNamespaceName: ?BSTR,
-            ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IWdsTransportContent,
+            pulId: ?*u32,
         ) callconv(.winapi) HRESULT,
-        RetrieveNamespaces: *const fn(
-            self: *const IWdsTransportNamespaceManager,
-            bszContentProvider: ?BSTR,
-            bszNamespaceName: ?BSTR,
-            bIncludeTombstones: i16,
-            ppWdsTransportNamespaces: ?*?*IWdsTransportCollection,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IWdsTransportContent,
+            pbszName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RetrieveSessions: *const fn(
+            self: *const IWdsTransportContent,
+            ppWdsTransportSessions: ?*?*IWdsTransportCollection,
+        ) callconv(.winapi) HRESULT,
+        Terminate: *const fn(
+            self: *const IWdsTransportContent,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateNamespace(self: *const IWdsTransportNamespaceManager, NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE, bszNamespaceName: ?BSTR, bszContentProvider: ?BSTR, bszConfiguration: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateNamespace(self, NamespaceType, bszNamespaceName, bszContentProvider, bszConfiguration, ppWdsTransportNamespace);
+    pub fn get_Namespace(self: *const IWdsTransportContent, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Namespace(self, ppWdsTransportNamespace);
     }
-    pub fn RetrieveNamespace(self: *const IWdsTransportNamespaceManager, bszNamespaceName: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
-        return self.vtable.RetrieveNamespace(self, bszNamespaceName, ppWdsTransportNamespace);
+    pub fn get_Id(self: *const IWdsTransportContent, pulId: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, pulId);
     }
-    pub fn RetrieveNamespaces(self: *const IWdsTransportNamespaceManager, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: i16, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.RetrieveNamespaces(self, bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
+    pub fn get_Name(self: *const IWdsTransportContent, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbszName);
+    }
+    pub fn RetrieveSessions(self: *const IWdsTransportContent, ppWdsTransportSessions: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.RetrieveSessions(self, ppWdsTransportSessions);
+    }
+    pub fn Terminate(self: *const IWdsTransportContent) callconv(.@"inline") HRESULT {
+        return self.vtable.Terminate(self);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
-const IID_IWdsTransportTftpManager_Value = Guid.initString("1327a7c8-ae8a-4fb3-8150-136227c37e9a");
-pub const IID_IWdsTransportTftpManager = &IID_IWdsTransportTftpManager_Value;
-pub const IWdsTransportTftpManager = extern union {
+const IID_IWdsTransportContentProvider_Value = Guid.initString("b9489f24-f219-4acf-aad7-265c7c08a6ae");
+pub const IID_IWdsTransportContentProvider = &IID_IWdsTransportContentProvider_Value;
+pub const IWdsTransportContentProvider = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        RetrieveTftpClients: *const fn(
-            self: *const IWdsTransportTftpManager,
-            ppWdsTransportTftpClients: ?*?*IWdsTransportCollection,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IWdsTransportContentProvider,
+            pbszName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IWdsTransportContentProvider,
+            pbszDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FilePath: *const fn(
+            self: *const IWdsTransportContentProvider,
+            pbszFilePath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InitializationRoutine: *const fn(
+            self: *const IWdsTransportContentProvider,
+            pbszInitializationRoutine: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RetrieveTftpClients(self: *const IWdsTransportTftpManager, ppWdsTransportTftpClients: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.RetrieveTftpClients(self, ppWdsTransportTftpClients);
+    pub fn get_Name(self: *const IWdsTransportContentProvider, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbszName);
     }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportServicePolicy_Value = Guid.initString("b9468578-9f2b-48cc-b27a-a60799c2750c");
-pub const IID_IWdsTransportServicePolicy = &IID_IWdsTransportServicePolicy_Value;
-pub const IWdsTransportServicePolicy = extern union {
-    pub const VTable = extern struct {
-        base: IWdsTransportCacheable.VTable,
-        get_IpAddressSource: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
-            pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
-        ) callconv(.winapi) HRESULT,
-        put_IpAddressSource: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
-            SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
-        ) callconv(.winapi) HRESULT,
-        get_StartIpAddress: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
-            pbszStartIpAddress: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        put_StartIpAddress: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
-            bszStartIpAddress: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        get_EndIpAddress: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
-            pbszEndIpAddress: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        put_EndIpAddress: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
-            bszEndIpAddress: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StartPort: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            pulStartPort: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_StartPort: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            ulStartPort: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EndPort: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            pulEndPort: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EndPort: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            ulEndPort: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkProfile: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NetworkProfile: *const fn(
-            self: *const IWdsTransportServicePolicy,
-            ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWdsTransportCacheable: IWdsTransportCacheable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IpAddressSource(self, AddressType, pSourceType);
+    pub fn get_Description(self: *const IWdsTransportContentProvider, pbszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pbszDescription);
     }
-    pub fn put_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IpAddressSource(self, AddressType, SourceType);
+    pub fn get_FilePath(self: *const IWdsTransportContentProvider, pbszFilePath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FilePath(self, pbszFilePath);
     }
-    pub fn get_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszStartIpAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StartIpAddress(self, AddressType, pbszStartIpAddress);
-    }
-    pub fn put_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszStartIpAddress: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_StartIpAddress(self, AddressType, bszStartIpAddress);
-    }
-    pub fn get_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszEndIpAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EndIpAddress(self, AddressType, pbszEndIpAddress);
-    }
-    pub fn put_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszEndIpAddress: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EndIpAddress(self, AddressType, bszEndIpAddress);
-    }
-    pub fn get_StartPort(self: *const IWdsTransportServicePolicy, pulStartPort: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StartPort(self, pulStartPort);
-    }
-    pub fn put_StartPort(self: *const IWdsTransportServicePolicy, ulStartPort: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_StartPort(self, ulStartPort);
-    }
-    pub fn get_EndPort(self: *const IWdsTransportServicePolicy, pulEndPort: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EndPort(self, pulEndPort);
-    }
-    pub fn put_EndPort(self: *const IWdsTransportServicePolicy, ulEndPort: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EndPort(self, ulEndPort);
-    }
-    pub fn get_NetworkProfile(self: *const IWdsTransportServicePolicy, pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NetworkProfile(self, pProfileType);
-    }
-    pub fn put_NetworkProfile(self: *const IWdsTransportServicePolicy, ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NetworkProfile(self, ProfileType);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2012'
-const IID_IWdsTransportServicePolicy2_Value = Guid.initString("65c19e5c-aa7e-4b91-8944-91e0e5572797");
-pub const IID_IWdsTransportServicePolicy2 = &IID_IWdsTransportServicePolicy2_Value;
-pub const IWdsTransportServicePolicy2 = extern union {
-    pub const VTable = extern struct {
-        base: IWdsTransportServicePolicy.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UdpPortPolicy: *const fn(
-            self: *const IWdsTransportServicePolicy2,
-            pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UdpPortPolicy: *const fn(
-            self: *const IWdsTransportServicePolicy2,
-            UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TftpMaximumBlockSize: *const fn(
-            self: *const IWdsTransportServicePolicy2,
-            pulTftpMaximumBlockSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TftpMaximumBlockSize: *const fn(
-            self: *const IWdsTransportServicePolicy2,
-            ulTftpMaximumBlockSize: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnableTftpVariableWindowExtension: *const fn(
-            self: *const IWdsTransportServicePolicy2,
-            pbEnableTftpVariableWindowExtension: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EnableTftpVariableWindowExtension: *const fn(
-            self: *const IWdsTransportServicePolicy2,
-            bEnableTftpVariableWindowExtension: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWdsTransportServicePolicy: IWdsTransportServicePolicy,
-    IWdsTransportCacheable: IWdsTransportCacheable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UdpPortPolicy(self, pUdpPortPolicy);
-    }
-    pub fn put_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UdpPortPolicy(self, UdpPortPolicy);
-    }
-    pub fn get_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, pulTftpMaximumBlockSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TftpMaximumBlockSize(self, pulTftpMaximumBlockSize);
-    }
-    pub fn put_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, ulTftpMaximumBlockSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TftpMaximumBlockSize(self, ulTftpMaximumBlockSize);
-    }
-    pub fn get_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, pbEnableTftpVariableWindowExtension: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnableTftpVariableWindowExtension(self, pbEnableTftpVariableWindowExtension);
-    }
-    pub fn put_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, bEnableTftpVariableWindowExtension: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EnableTftpVariableWindowExtension(self, bEnableTftpVariableWindowExtension);
+    pub fn get_InitializationRoutine(self: *const IWdsTransportContentProvider, pbszInitializationRoutine: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InitializationRoutine(self, pbszInitializationRoutine);
     }
 };
 
@@ -1271,6 +622,26 @@ pub const IWdsTransportDiagnosticsPolicy = extern union {
     }
     pub fn put_Components(self: *const IWdsTransportDiagnosticsPolicy, ulComponents: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Components(self, ulComponents);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IWdsTransportManager_Value = Guid.initString("5b0d35f5-1b13-4afd-b878-6526dc340b5d");
+pub const IID_IWdsTransportManager = &IID_IWdsTransportManager_Value;
+pub const IWdsTransportManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetWdsTransportServer: *const fn(
+            self: *const IWdsTransportManager,
+            bszServerName: ?BSTR,
+            ppWdsTransportServer: ?*?*IWdsTransportServer,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetWdsTransportServer(self: *const IWdsTransportManager, bszServerName: ?BSTR, ppWdsTransportServer: ?*?*IWdsTransportServer) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWdsTransportServer(self, bszServerName, ppWdsTransportServer);
     }
 };
 
@@ -1538,6 +909,47 @@ pub const IWdsTransportNamespaceAutoCast = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
+const IID_IWdsTransportNamespaceManager_Value = Guid.initString("3e22d9f6-3777-4d98-83e1-f98696717ba3");
+pub const IID_IWdsTransportNamespaceManager = &IID_IWdsTransportNamespaceManager_Value;
+pub const IWdsTransportNamespaceManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        CreateNamespace: *const fn(
+            self: *const IWdsTransportNamespaceManager,
+            NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE,
+            bszNamespaceName: ?BSTR,
+            bszContentProvider: ?BSTR,
+            bszConfiguration: ?BSTR,
+            ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
+        ) callconv(.winapi) HRESULT,
+        RetrieveNamespace: *const fn(
+            self: *const IWdsTransportNamespaceManager,
+            bszNamespaceName: ?BSTR,
+            ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
+        ) callconv(.winapi) HRESULT,
+        RetrieveNamespaces: *const fn(
+            self: *const IWdsTransportNamespaceManager,
+            bszContentProvider: ?BSTR,
+            bszNamespaceName: ?BSTR,
+            bIncludeTombstones: i16,
+            ppWdsTransportNamespaces: ?*?*IWdsTransportCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateNamespace(self: *const IWdsTransportNamespaceManager, NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE, bszNamespaceName: ?BSTR, bszContentProvider: ?BSTR, bszConfiguration: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateNamespace(self, NamespaceType, bszNamespaceName, bszContentProvider, bszConfiguration, ppWdsTransportNamespace);
+    }
+    pub fn RetrieveNamespace(self: *const IWdsTransportNamespaceManager, bszNamespaceName: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
+        return self.vtable.RetrieveNamespace(self, bszNamespaceName, ppWdsTransportNamespace);
+    }
+    pub fn RetrieveNamespaces(self: *const IWdsTransportNamespaceManager, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: i16, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.RetrieveNamespaces(self, bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWdsTransportNamespaceScheduledCast_Value = Guid.initString("3840cecf-d76c-416e-a4cc-31c741d2874b");
 pub const IID_IWdsTransportNamespaceScheduledCast = &IID_IWdsTransportNamespaceScheduledCast_Value;
 pub const IWdsTransportNamespaceScheduledCast = extern union {
@@ -1554,20 +966,6 @@ pub const IWdsTransportNamespaceScheduledCast = extern union {
     pub fn StartTransmission(self: *const IWdsTransportNamespaceScheduledCast) callconv(.@"inline") HRESULT {
         return self.vtable.StartTransmission(self);
     }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportNamespaceScheduledCastManualStart_Value = Guid.initString("013e6e4c-e6a7-4fb5-b7ff-d9f5da805c31");
-pub const IID_IWdsTransportNamespaceScheduledCastManualStart = &IID_IWdsTransportNamespaceScheduledCastManualStart_Value;
-pub const IWdsTransportNamespaceScheduledCastManualStart = extern union {
-    pub const VTable = extern struct {
-        base: IWdsTransportNamespaceScheduledCast.VTable,
-    };
-    vtable: *const VTable,
-    IWdsTransportNamespaceScheduledCast: IWdsTransportNamespaceScheduledCast,
-    IWdsTransportNamespace: IWdsTransportNamespace,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -1617,51 +1015,260 @@ pub const IWdsTransportNamespaceScheduledCastAutoStart = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportContent_Value = Guid.initString("d405d711-0296-4ab4-a860-ac7d32e65798");
-pub const IID_IWdsTransportContent = &IID_IWdsTransportContent_Value;
-pub const IWdsTransportContent = extern union {
+const IID_IWdsTransportNamespaceScheduledCastManualStart_Value = Guid.initString("013e6e4c-e6a7-4fb5-b7ff-d9f5da805c31");
+pub const IID_IWdsTransportNamespaceScheduledCastManualStart = &IID_IWdsTransportNamespaceScheduledCastManualStart_Value;
+pub const IWdsTransportNamespaceScheduledCastManualStart = extern union {
+    pub const VTable = extern struct {
+        base: IWdsTransportNamespaceScheduledCast.VTable,
+    };
+    vtable: *const VTable,
+    IWdsTransportNamespaceScheduledCast: IWdsTransportNamespaceScheduledCast,
+    IWdsTransportNamespace: IWdsTransportNamespace,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IWdsTransportServer_Value = Guid.initString("09ccd093-830d-4344-a30a-73ae8e8fca90");
+pub const IID_IWdsTransportServer = &IID_IWdsTransportServer_Value;
+pub const IWdsTransportServer = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Namespace: *const fn(
-            self: *const IWdsTransportContent,
-            ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IWdsTransportContent,
-            pulId: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
-            self: *const IWdsTransportContent,
+            self: *const IWdsTransportServer,
             pbszName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        RetrieveSessions: *const fn(
-            self: *const IWdsTransportContent,
-            ppWdsTransportSessions: ?*?*IWdsTransportCollection,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SetupManager: *const fn(
+            self: *const IWdsTransportServer,
+            ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager,
         ) callconv(.winapi) HRESULT,
-        Terminate: *const fn(
-            self: *const IWdsTransportContent,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ConfigurationManager: *const fn(
+            self: *const IWdsTransportServer,
+            ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NamespaceManager: *const fn(
+            self: *const IWdsTransportServer,
+            ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager,
+        ) callconv(.winapi) HRESULT,
+        DisconnectClient: *const fn(
+            self: *const IWdsTransportServer,
+            ulClientId: u32,
+            DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Namespace(self: *const IWdsTransportContent, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Namespace(self, ppWdsTransportNamespace);
-    }
-    pub fn get_Id(self: *const IWdsTransportContent, pulId: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, pulId);
-    }
-    pub fn get_Name(self: *const IWdsTransportContent, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const IWdsTransportServer, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbszName);
     }
-    pub fn RetrieveSessions(self: *const IWdsTransportContent, ppWdsTransportSessions: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.RetrieveSessions(self, ppWdsTransportSessions);
+    pub fn get_SetupManager(self: *const IWdsTransportServer, ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SetupManager(self, ppWdsTransportSetupManager);
     }
-    pub fn Terminate(self: *const IWdsTransportContent) callconv(.@"inline") HRESULT {
-        return self.vtable.Terminate(self);
+    pub fn get_ConfigurationManager(self: *const IWdsTransportServer, ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ConfigurationManager(self, ppWdsTransportConfigurationManager);
+    }
+    pub fn get_NamespaceManager(self: *const IWdsTransportServer, ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NamespaceManager(self, ppWdsTransportNamespaceManager);
+    }
+    pub fn DisconnectClient(self: *const IWdsTransportServer, ulClientId: u32, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.DisconnectClient(self, ulClientId, DisconnectionType);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2012'
+const IID_IWdsTransportServer2_Value = Guid.initString("256e999f-6df4-4538-81b9-857b9ab8fb47");
+pub const IID_IWdsTransportServer2 = &IID_IWdsTransportServer2_Value;
+pub const IWdsTransportServer2 = extern union {
+    pub const VTable = extern struct {
+        base: IWdsTransportServer.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TftpManager: *const fn(
+            self: *const IWdsTransportServer2,
+            ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWdsTransportServer: IWdsTransportServer,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_TftpManager(self: *const IWdsTransportServer2, ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TftpManager(self, ppWdsTransportTftpManager);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IWdsTransportServicePolicy_Value = Guid.initString("b9468578-9f2b-48cc-b27a-a60799c2750c");
+pub const IID_IWdsTransportServicePolicy = &IID_IWdsTransportServicePolicy_Value;
+pub const IWdsTransportServicePolicy = extern union {
+    pub const VTable = extern struct {
+        base: IWdsTransportCacheable.VTable,
+        get_IpAddressSource: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
+            pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
+        ) callconv(.winapi) HRESULT,
+        put_IpAddressSource: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
+            SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
+        ) callconv(.winapi) HRESULT,
+        get_StartIpAddress: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
+            pbszStartIpAddress: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        put_StartIpAddress: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
+            bszStartIpAddress: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        get_EndIpAddress: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
+            pbszEndIpAddress: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        put_EndIpAddress: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
+            bszEndIpAddress: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StartPort: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            pulStartPort: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_StartPort: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            ulStartPort: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EndPort: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            pulEndPort: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EndPort: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            ulEndPort: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NetworkProfile: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NetworkProfile: *const fn(
+            self: *const IWdsTransportServicePolicy,
+            ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWdsTransportCacheable: IWdsTransportCacheable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IpAddressSource(self, AddressType, pSourceType);
+    }
+    pub fn put_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IpAddressSource(self, AddressType, SourceType);
+    }
+    pub fn get_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszStartIpAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StartIpAddress(self, AddressType, pbszStartIpAddress);
+    }
+    pub fn put_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszStartIpAddress: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_StartIpAddress(self, AddressType, bszStartIpAddress);
+    }
+    pub fn get_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszEndIpAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EndIpAddress(self, AddressType, pbszEndIpAddress);
+    }
+    pub fn put_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszEndIpAddress: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EndIpAddress(self, AddressType, bszEndIpAddress);
+    }
+    pub fn get_StartPort(self: *const IWdsTransportServicePolicy, pulStartPort: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StartPort(self, pulStartPort);
+    }
+    pub fn put_StartPort(self: *const IWdsTransportServicePolicy, ulStartPort: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_StartPort(self, ulStartPort);
+    }
+    pub fn get_EndPort(self: *const IWdsTransportServicePolicy, pulEndPort: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EndPort(self, pulEndPort);
+    }
+    pub fn put_EndPort(self: *const IWdsTransportServicePolicy, ulEndPort: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EndPort(self, ulEndPort);
+    }
+    pub fn get_NetworkProfile(self: *const IWdsTransportServicePolicy, pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NetworkProfile(self, pProfileType);
+    }
+    pub fn put_NetworkProfile(self: *const IWdsTransportServicePolicy, ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NetworkProfile(self, ProfileType);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2012'
+const IID_IWdsTransportServicePolicy2_Value = Guid.initString("65c19e5c-aa7e-4b91-8944-91e0e5572797");
+pub const IID_IWdsTransportServicePolicy2 = &IID_IWdsTransportServicePolicy2_Value;
+pub const IWdsTransportServicePolicy2 = extern union {
+    pub const VTable = extern struct {
+        base: IWdsTransportServicePolicy.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UdpPortPolicy: *const fn(
+            self: *const IWdsTransportServicePolicy2,
+            pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_UdpPortPolicy: *const fn(
+            self: *const IWdsTransportServicePolicy2,
+            UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TftpMaximumBlockSize: *const fn(
+            self: *const IWdsTransportServicePolicy2,
+            pulTftpMaximumBlockSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TftpMaximumBlockSize: *const fn(
+            self: *const IWdsTransportServicePolicy2,
+            ulTftpMaximumBlockSize: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EnableTftpVariableWindowExtension: *const fn(
+            self: *const IWdsTransportServicePolicy2,
+            pbEnableTftpVariableWindowExtension: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EnableTftpVariableWindowExtension: *const fn(
+            self: *const IWdsTransportServicePolicy2,
+            bEnableTftpVariableWindowExtension: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWdsTransportServicePolicy: IWdsTransportServicePolicy,
+    IWdsTransportCacheable: IWdsTransportCacheable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UdpPortPolicy(self, pUdpPortPolicy);
+    }
+    pub fn put_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UdpPortPolicy(self, UdpPortPolicy);
+    }
+    pub fn get_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, pulTftpMaximumBlockSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TftpMaximumBlockSize(self, pulTftpMaximumBlockSize);
+    }
+    pub fn put_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, ulTftpMaximumBlockSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TftpMaximumBlockSize(self, ulTftpMaximumBlockSize);
+    }
+    pub fn get_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, pbEnableTftpVariableWindowExtension: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnableTftpVariableWindowExtension(self, pbEnableTftpVariableWindowExtension);
+    }
+    pub fn put_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, bEnableTftpVariableWindowExtension: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EnableTftpVariableWindowExtension(self, bEnableTftpVariableWindowExtension);
     }
 };
 
@@ -1739,109 +1346,84 @@ pub const IWdsTransportSession = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWdsTransportClient_Value = Guid.initString("b5dbc93a-cabe-46ca-837f-3e44e93c6545");
-pub const IID_IWdsTransportClient = &IID_IWdsTransportClient_Value;
-pub const IWdsTransportClient = extern union {
+const IID_IWdsTransportSetupManager_Value = Guid.initString("f7238425-efa8-40a4-aef9-c98d969c0b75");
+pub const IID_IWdsTransportSetupManager = &IID_IWdsTransportSetupManager_Value;
+pub const IWdsTransportSetupManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: *const fn(
-            self: *const IWdsTransportClient,
-            ppWdsTransportSession: ?*?*IWdsTransportSession,
+        get_Version: *const fn(
+            self: *const IWdsTransportSetupManager,
+            pullVersion: ?*u64,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IWdsTransportClient,
-            pulId: ?*u32,
+        get_InstalledFeatures: *const fn(
+            self: *const IWdsTransportSetupManager,
+            pulInstalledFeatures: ?*u32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IWdsTransportClient,
-            pbszName: ?*?BSTR,
+        get_Protocols: *const fn(
+            self: *const IWdsTransportSetupManager,
+            pulProtocols: ?*u32,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MacAddress: *const fn(
-            self: *const IWdsTransportClient,
-            pbszMacAddress: ?*?BSTR,
+        RegisterContentProvider: *const fn(
+            self: *const IWdsTransportSetupManager,
+            bszName: ?BSTR,
+            bszDescription: ?BSTR,
+            bszFilePath: ?BSTR,
+            bszInitializationRoutine: ?BSTR,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IpAddress: *const fn(
-            self: *const IWdsTransportClient,
-            pbszIpAddress: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PercentCompletion: *const fn(
-            self: *const IWdsTransportClient,
-            pulPercentCompletion: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JoinDuration: *const fn(
-            self: *const IWdsTransportClient,
-            pulJoinDuration: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CpuUtilization: *const fn(
-            self: *const IWdsTransportClient,
-            pulCpuUtilization: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MemoryUtilization: *const fn(
-            self: *const IWdsTransportClient,
-            pulMemoryUtilization: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkUtilization: *const fn(
-            self: *const IWdsTransportClient,
-            pulNetworkUtilization: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserIdentity: *const fn(
-            self: *const IWdsTransportClient,
-            pbszUserIdentity: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Disconnect: *const fn(
-            self: *const IWdsTransportClient,
-            DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE,
+        DeregisterContentProvider: *const fn(
+            self: *const IWdsTransportSetupManager,
+            bszName: ?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Session(self: *const IWdsTransportClient, ppWdsTransportSession: ?*?*IWdsTransportSession) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Session(self, ppWdsTransportSession);
+    pub fn get_Version(self: *const IWdsTransportSetupManager, pullVersion: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Version(self, pullVersion);
     }
-    pub fn get_Id(self: *const IWdsTransportClient, pulId: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, pulId);
+    pub fn get_InstalledFeatures(self: *const IWdsTransportSetupManager, pulInstalledFeatures: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InstalledFeatures(self, pulInstalledFeatures);
     }
-    pub fn get_Name(self: *const IWdsTransportClient, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbszName);
+    pub fn get_Protocols(self: *const IWdsTransportSetupManager, pulProtocols: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Protocols(self, pulProtocols);
     }
-    pub fn get_MacAddress(self: *const IWdsTransportClient, pbszMacAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MacAddress(self, pbszMacAddress);
+    pub fn RegisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR, bszDescription: ?BSTR, bszFilePath: ?BSTR, bszInitializationRoutine: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterContentProvider(self, bszName, bszDescription, bszFilePath, bszInitializationRoutine);
     }
-    pub fn get_IpAddress(self: *const IWdsTransportClient, pbszIpAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IpAddress(self, pbszIpAddress);
+    pub fn DeregisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeregisterContentProvider(self, bszName);
     }
-    pub fn get_PercentCompletion(self: *const IWdsTransportClient, pulPercentCompletion: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PercentCompletion(self, pulPercentCompletion);
+};
+
+// TODO: this type is limited to platform 'windowsServer2012'
+const IID_IWdsTransportSetupManager2_Value = Guid.initString("02be79da-7e9e-4366-8b6e-2aa9a91be47f");
+pub const IID_IWdsTransportSetupManager2 = &IID_IWdsTransportSetupManager2_Value;
+pub const IWdsTransportSetupManager2 = extern union {
+    pub const VTable = extern struct {
+        base: IWdsTransportSetupManager.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TftpCapabilities: *const fn(
+            self: *const IWdsTransportSetupManager2,
+            pulTftpCapabilities: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ContentProviders: *const fn(
+            self: *const IWdsTransportSetupManager2,
+            ppProviderCollection: ?*?*IWdsTransportCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWdsTransportSetupManager: IWdsTransportSetupManager,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_TftpCapabilities(self: *const IWdsTransportSetupManager2, pulTftpCapabilities: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TftpCapabilities(self, pulTftpCapabilities);
     }
-    pub fn get_JoinDuration(self: *const IWdsTransportClient, pulJoinDuration: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_JoinDuration(self, pulJoinDuration);
-    }
-    pub fn get_CpuUtilization(self: *const IWdsTransportClient, pulCpuUtilization: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CpuUtilization(self, pulCpuUtilization);
-    }
-    pub fn get_MemoryUtilization(self: *const IWdsTransportClient, pulMemoryUtilization: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MemoryUtilization(self, pulMemoryUtilization);
-    }
-    pub fn get_NetworkUtilization(self: *const IWdsTransportClient, pulNetworkUtilization: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NetworkUtilization(self, pulNetworkUtilization);
-    }
-    pub fn get_UserIdentity(self: *const IWdsTransportClient, pbszUserIdentity: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserIdentity(self, pbszUserIdentity);
-    }
-    pub fn Disconnect(self: *const IWdsTransportClient, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.Disconnect(self, DisconnectionType);
+    pub fn get_ContentProviders(self: *const IWdsTransportSetupManager2, ppProviderCollection: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ContentProviders(self, ppProviderCollection);
     }
 };
 
@@ -1914,412 +1496,475 @@ pub const IWdsTransportTftpClient = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
-const IID_IWdsTransportContentProvider_Value = Guid.initString("b9489f24-f219-4acf-aad7-265c7c08a6ae");
-pub const IID_IWdsTransportContentProvider = &IID_IWdsTransportContentProvider_Value;
-pub const IWdsTransportContentProvider = extern union {
+const IID_IWdsTransportTftpManager_Value = Guid.initString("1327a7c8-ae8a-4fb3-8150-136227c37e9a");
+pub const IID_IWdsTransportTftpManager = &IID_IWdsTransportTftpManager_Value;
+pub const IWdsTransportTftpManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IWdsTransportContentProvider,
-            pbszName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IWdsTransportContentProvider,
-            pbszDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FilePath: *const fn(
-            self: *const IWdsTransportContentProvider,
-            pbszFilePath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitializationRoutine: *const fn(
-            self: *const IWdsTransportContentProvider,
-            pbszInitializationRoutine: ?*?BSTR,
+        RetrieveTftpClients: *const fn(
+            self: *const IWdsTransportTftpManager,
+            ppWdsTransportTftpClients: ?*?*IWdsTransportCollection,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IWdsTransportContentProvider, pbszName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbszName);
-    }
-    pub fn get_Description(self: *const IWdsTransportContentProvider, pbszDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pbszDescription);
-    }
-    pub fn get_FilePath(self: *const IWdsTransportContentProvider, pbszFilePath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FilePath(self, pbszFilePath);
-    }
-    pub fn get_InitializationRoutine(self: *const IWdsTransportContentProvider, pbszInitializationRoutine: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InitializationRoutine(self, pbszInitializationRoutine);
+    pub fn RetrieveTftpClients(self: *const IWdsTransportTftpManager, ppWdsTransportTftpClients: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.RetrieveTftpClients(self, ppWdsTransportTftpClients);
     }
 };
+
+pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = enum(u32) {
+    START = 0,
+    COMPLETE = 1,
+    PROGRESS = 2,
+    TEXT = 3,
+};
+// TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
+
+pub const PFN_WdsCliCallback = *const fn(
+    dwMessageId: PFN_WDS_CLI_CALLBACK_MESSAGE_ID,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    pvUserData: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const PFN_WdsCliTraceFunction = *const fn(
+    pwszFormat: ?[*:0]const u16,
+    Params: ?*i8,
+) callconv(.winapi) void;
+
+pub const PFN_WdsTransportClientReceiveContents = *const fn(
+    hSessionKey: ?HANDLE,
+    pCallerData: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    pContents: ?*anyopaque,
+    ulSize: u32,
+    pullContentOffset: ?*ULARGE_INTEGER,
+) callconv(.winapi) void;
+
+pub const PFN_WdsTransportClientReceiveMetadata = *const fn(
+    hSessionKey: ?HANDLE,
+    pCallerData: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    pMetadata: ?*anyopaque,
+    ulSize: u32,
+) callconv(.winapi) void;
+
+pub const PFN_WdsTransportClientSessionComplete = *const fn(
+    hSessionKey: ?HANDLE,
+    pCallerData: ?*anyopaque,
+    dwError: u32,
+) callconv(.winapi) void;
+
+pub const PFN_WdsTransportClientSessionNegotiate = *const fn(
+    hSessionKey: ?HANDLE,
+    pCallerData: ?*anyopaque,
+    pInfo: ?*TRANSPORTCLIENT_SESSION_INFO,
+    hNegotiateKey: ?HANDLE,
+) callconv(.winapi) void;
+
+pub const PFN_WdsTransportClientSessionStart = *const fn(
+    hSessionKey: ?HANDLE,
+    pCallerData: ?*anyopaque,
+    ullFileSize: ?*ULARGE_INTEGER,
+) callconv(.winapi) void;
+
+pub const PFN_WdsTransportClientSessionStartEx = *const fn(
+    hSessionKey: ?HANDLE,
+    pCallerData: ?*anyopaque,
+    Info: ?*TRANSPORTCLIENT_SESSION_INFO,
+) callconv(.winapi) void;
+
+pub const PXE_ADDRESS = extern struct {
+    uFlags: u32,
+    Anonymous: extern union {
+        bAddress: [16]u8,
+        uIpAddress: u32,
+    },
+    uAddrLen: u32,
+    uPort: u16,
+};
+
+pub const PXE_DHCP_MESSAGE = extern struct {
+    Operation: u8 align(1),
+    HardwareAddressType: u8 align(1),
+    HardwareAddressLength: u8 align(1),
+    HopCount: u8 align(1),
+    TransactionID: u32 align(1),
+    SecondsSinceBoot: u16 align(1),
+    Reserved: u16 align(1),
+    ClientIpAddress: u32 align(1),
+    YourIpAddress: u32 align(1),
+    BootstrapServerAddress: u32 align(1),
+    RelayAgentIpAddress: u32 align(1),
+    HardwareAddress: [16]u8 align(1),
+    HostName: [64]u8 align(1),
+    BootFileName: [128]u8 align(1),
+    Anonymous: extern union {
+        bMagicCookie: [4]u8 align(1),
+        uMagicCookie: u32 align(1),
+    } align(1),
+    Option: PXE_DHCP_OPTION align(1),
+};
+
+pub const PXE_DHCP_OPTION = extern struct {
+    OptionType: u8,
+    OptionLength: u8,
+    OptionValue: [1]u8,
+};
+
+pub const PXE_DHCPV6_MESSAGE = extern struct {
+    MessageType: u8,
+    TransactionIDByte1: u8,
+    TransactionIDByte2: u8,
+    TransactionIDByte3: u8,
+    Options: [1]PXE_DHCPV6_OPTION,
+};
+
+pub const PXE_DHCPV6_MESSAGE_HEADER = extern struct {
+    MessageType: u8,
+    Message: [1]u8,
+};
+
+pub const PXE_DHCPV6_NESTED_RELAY_MESSAGE = extern struct {
+    pRelayMessage: ?*PXE_DHCPV6_RELAY_MESSAGE,
+    cbRelayMessage: u32,
+    pInterfaceIdOption: ?*anyopaque,
+    cbInterfaceIdOption: u16,
+};
+
+pub const PXE_DHCPV6_OPTION = extern struct {
+    OptionCode: u16 align(1),
+    DataLength: u16 align(1),
+    Data: [1]u8 align(1),
+};
+
+pub const PXE_DHCPV6_RELAY_MESSAGE = extern struct {
+    MessageType: u8,
+    HopCount: u8,
+    LinkAddress: [16]u8,
+    PeerAddress: [16]u8,
+    Options: [1]PXE_DHCPV6_OPTION,
+};
+
+pub const PXE_PROVIDER = extern struct {
+    uSizeOfStruct: u32,
+    pwszName: ?PWSTR,
+    pwszFilePath: ?PWSTR,
+    bIsCritical: BOOL,
+    uIndex: u32,
+};
+
+pub const TRANSPORTCLIENT_CALLBACK_ID = enum(i32) {
+    SESSION_START = 0,
+    RECEIVE_CONTENTS = 1,
+    SESSION_COMPLETE = 2,
+    RECEIVE_METADATA = 3,
+    SESSION_STARTEX = 4,
+    SESSION_NEGOTIATE = 5,
+    MAX_CALLBACKS = 6,
+};
+pub const WDS_TRANSPORTCLIENT_SESSION_START = TRANSPORTCLIENT_CALLBACK_ID.SESSION_START;
+pub const WDS_TRANSPORTCLIENT_RECEIVE_CONTENTS = TRANSPORTCLIENT_CALLBACK_ID.RECEIVE_CONTENTS;
+pub const WDS_TRANSPORTCLIENT_SESSION_COMPLETE = TRANSPORTCLIENT_CALLBACK_ID.SESSION_COMPLETE;
+pub const WDS_TRANSPORTCLIENT_RECEIVE_METADATA = TRANSPORTCLIENT_CALLBACK_ID.RECEIVE_METADATA;
+pub const WDS_TRANSPORTCLIENT_SESSION_STARTEX = TRANSPORTCLIENT_CALLBACK_ID.SESSION_STARTEX;
+pub const WDS_TRANSPORTCLIENT_SESSION_NEGOTIATE = TRANSPORTCLIENT_CALLBACK_ID.SESSION_NEGOTIATE;
+pub const WDS_TRANSPORTCLIENT_MAX_CALLBACKS = TRANSPORTCLIENT_CALLBACK_ID.MAX_CALLBACKS;
+
+pub const TRANSPORTCLIENT_SESSION_INFO = extern struct {
+    ulStructureLength: u32,
+    ullFileSize: ULARGE_INTEGER,
+    ulBlockSize: u32,
+};
+
+pub const TRANSPORTPROVIDER_CALLBACK_ID = enum(i32) {
+    CREATE_INSTANCE = 0,
+    COMPARE_CONTENT = 1,
+    OPEN_CONTENT = 2,
+    USER_ACCESS_CHECK = 3,
+    GET_CONTENT_SIZE = 4,
+    READ_CONTENT = 5,
+    CLOSE_CONTENT = 6,
+    CLOSE_INSTANCE = 7,
+    SHUTDOWN = 8,
+    DUMP_STATE = 9,
+    REFRESH_SETTINGS = 10,
+    GET_CONTENT_METADATA = 11,
+    MAX_CALLBACKS = 12,
+};
+pub const WDS_TRANSPORTPROVIDER_CREATE_INSTANCE = TRANSPORTPROVIDER_CALLBACK_ID.CREATE_INSTANCE;
+pub const WDS_TRANSPORTPROVIDER_COMPARE_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.COMPARE_CONTENT;
+pub const WDS_TRANSPORTPROVIDER_OPEN_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.OPEN_CONTENT;
+pub const WDS_TRANSPORTPROVIDER_USER_ACCESS_CHECK = TRANSPORTPROVIDER_CALLBACK_ID.USER_ACCESS_CHECK;
+pub const WDS_TRANSPORTPROVIDER_GET_CONTENT_SIZE = TRANSPORTPROVIDER_CALLBACK_ID.GET_CONTENT_SIZE;
+pub const WDS_TRANSPORTPROVIDER_READ_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.READ_CONTENT;
+pub const WDS_TRANSPORTPROVIDER_CLOSE_CONTENT = TRANSPORTPROVIDER_CALLBACK_ID.CLOSE_CONTENT;
+pub const WDS_TRANSPORTPROVIDER_CLOSE_INSTANCE = TRANSPORTPROVIDER_CALLBACK_ID.CLOSE_INSTANCE;
+pub const WDS_TRANSPORTPROVIDER_SHUTDOWN = TRANSPORTPROVIDER_CALLBACK_ID.SHUTDOWN;
+pub const WDS_TRANSPORTPROVIDER_DUMP_STATE = TRANSPORTPROVIDER_CALLBACK_ID.DUMP_STATE;
+pub const WDS_TRANSPORTPROVIDER_REFRESH_SETTINGS = TRANSPORTPROVIDER_CALLBACK_ID.REFRESH_SETTINGS;
+pub const WDS_TRANSPORTPROVIDER_GET_CONTENT_METADATA = TRANSPORTPROVIDER_CALLBACK_ID.GET_CONTENT_METADATA;
+pub const WDS_TRANSPORTPROVIDER_MAX_CALLBACKS = TRANSPORTPROVIDER_CALLBACK_ID.MAX_CALLBACKS;
+
+pub const WDS_CLI_CRED = extern struct {
+    pwszUserName: ?[*:0]const u16,
+    pwszDomain: ?[*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
+};
+
+pub const WDS_CLI_FIRMWARE_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    BIOS = 1,
+    EFI = 2,
+};
+pub const WDS_CLI_FIRMWARE_UNKNOWN = WDS_CLI_FIRMWARE_TYPE.UNKNOWN;
+pub const WDS_CLI_FIRMWARE_BIOS = WDS_CLI_FIRMWARE_TYPE.BIOS;
+pub const WDS_CLI_FIRMWARE_EFI = WDS_CLI_FIRMWARE_TYPE.EFI;
+
+pub const WDS_CLI_IMAGE_PARAM_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    SPARSE_FILE = 1,
+    SUPPORTED_FIRMWARES = 2,
+};
+pub const WDS_CLI_IMAGE_PARAM_UNKNOWN = WDS_CLI_IMAGE_PARAM_TYPE.UNKNOWN;
+pub const WDS_CLI_IMAGE_PARAM_SPARSE_FILE = WDS_CLI_IMAGE_PARAM_TYPE.SPARSE_FILE;
+pub const WDS_CLI_IMAGE_PARAM_SUPPORTED_FIRMWARES = WDS_CLI_IMAGE_PARAM_TYPE.SUPPORTED_FIRMWARES;
+
+pub const WDS_CLI_IMAGE_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    WIM = 1,
+    VHD = 2,
+    VHDX = 3,
+};
+pub const WDS_CLI_IMAGE_TYPE_UNKNOWN = WDS_CLI_IMAGE_TYPE.UNKNOWN;
+pub const WDS_CLI_IMAGE_TYPE_WIM = WDS_CLI_IMAGE_TYPE.WIM;
+pub const WDS_CLI_IMAGE_TYPE_VHD = WDS_CLI_IMAGE_TYPE.VHD;
+pub const WDS_CLI_IMAGE_TYPE_VHDX = WDS_CLI_IMAGE_TYPE.VHDX;
+
+pub const WDS_TRANSPORTCLIENT_CALLBACKS = extern struct {
+    SessionStart: ?PFN_WdsTransportClientSessionStart,
+    SessionStartEx: ?PFN_WdsTransportClientSessionStartEx,
+    ReceiveContents: ?PFN_WdsTransportClientReceiveContents,
+    ReceiveMetadata: ?PFN_WdsTransportClientReceiveMetadata,
+    SessionComplete: ?PFN_WdsTransportClientSessionComplete,
+    SessionNegotiate: ?PFN_WdsTransportClientSessionNegotiate,
+};
+
+pub const WDS_TRANSPORTCLIENT_REQUEST = extern struct {
+    ulLength: u32,
+    ulApiVersion: u32,
+    ulAuthLevel: WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL,
+    pwszServer: ?[*:0]const u16,
+    pwszNamespace: ?[*:0]const u16,
+    pwszObjectName: ?[*:0]const u16,
+    ulCacheSize: u32,
+    ulProtocol: u32,
+    pvProtocolData: ?*anyopaque,
+    ulProtocolDataLength: u32,
+};
+
+pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = enum(u32) {
+    AUTH = 1,
+    NO_AUTH = 2,
+};
+pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.AUTH;
+pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.NO_AUTH;
+
+pub const WDS_TRANSPORTPROVIDER_INIT_PARAMS = extern struct {
+    ulLength: u32,
+    ulMcServerVersion: u32,
+    hRegistryKey: ?HKEY,
+    hProvider: ?HANDLE,
+};
+
+pub const WDS_TRANSPORTPROVIDER_SETTINGS = extern struct {
+    ulLength: u32,
+    ulProviderVersion: u32,
+};
+
+pub const WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS = enum(i32) {
+    Pxe = 1,
+    Tftp = 2,
+    ImageServer = 4,
+    Multicast = 8,
+};
+pub const WdsTptDiagnosticsComponentPxe = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.Pxe;
+pub const WdsTptDiagnosticsComponentTftp = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.Tftp;
+pub const WdsTptDiagnosticsComponentImageServer = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.ImageServer;
+pub const WdsTptDiagnosticsComponentMulticast = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.Multicast;
+
+pub const WDSTRANSPORT_DISCONNECT_TYPE = enum(i32) {
+    Unknown = 0,
+    Fallback = 1,
+    Abort = 2,
+};
+pub const WdsTptDisconnectUnknown = WDSTRANSPORT_DISCONNECT_TYPE.Unknown;
+pub const WdsTptDisconnectFallback = WDSTRANSPORT_DISCONNECT_TYPE.Fallback;
+pub const WdsTptDisconnectAbort = WDSTRANSPORT_DISCONNECT_TYPE.Abort;
+
+pub const WDSTRANSPORT_FEATURE_FLAGS = enum(i32) {
+    AdminPack = 1,
+    TransportServer = 2,
+    DeploymentServer = 4,
+};
+pub const WdsTptFeatureAdminPack = WDSTRANSPORT_FEATURE_FLAGS.AdminPack;
+pub const WdsTptFeatureTransportServer = WDSTRANSPORT_FEATURE_FLAGS.TransportServer;
+pub const WdsTptFeatureDeploymentServer = WDSTRANSPORT_FEATURE_FLAGS.DeploymentServer;
+
+pub const WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE = enum(i32) {
+    Unknown = 0,
+    Dhcp = 1,
+    Range = 2,
+};
+pub const WdsTptIpAddressSourceUnknown = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Unknown;
+pub const WdsTptIpAddressSourceDhcp = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Dhcp;
+pub const WdsTptIpAddressSourceRange = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Range;
+
+pub const WDSTRANSPORT_IP_ADDRESS_TYPE = enum(i32) {
+    Unknown = 0,
+    Ipv4 = 1,
+    Ipv6 = 2,
+};
+pub const WdsTptIpAddressUnknown = WDSTRANSPORT_IP_ADDRESS_TYPE.Unknown;
+pub const WdsTptIpAddressIpv4 = WDSTRANSPORT_IP_ADDRESS_TYPE.Ipv4;
+pub const WdsTptIpAddressIpv6 = WDSTRANSPORT_IP_ADDRESS_TYPE.Ipv6;
+
+pub const WDSTRANSPORT_NAMESPACE_TYPE = enum(i32) {
+    Unknown = 0,
+    AutoCast = 1,
+    ScheduledCastManualStart = 2,
+    ScheduledCastAutoStart = 3,
+};
+pub const WdsTptNamespaceTypeUnknown = WDSTRANSPORT_NAMESPACE_TYPE.Unknown;
+pub const WdsTptNamespaceTypeAutoCast = WDSTRANSPORT_NAMESPACE_TYPE.AutoCast;
+pub const WdsTptNamespaceTypeScheduledCastManualStart = WDSTRANSPORT_NAMESPACE_TYPE.ScheduledCastManualStart;
+pub const WdsTptNamespaceTypeScheduledCastAutoStart = WDSTRANSPORT_NAMESPACE_TYPE.ScheduledCastAutoStart;
+
+pub const WDSTRANSPORT_NETWORK_PROFILE_TYPE = enum(i32) {
+    Unknown = 0,
+    Custom = 1,
+    @"10Mbps" = 2,
+    @"100Mbps" = 3,
+    @"1Gbps" = 4,
+};
+pub const WdsTptNetworkProfileUnknown = WDSTRANSPORT_NETWORK_PROFILE_TYPE.Unknown;
+pub const WdsTptNetworkProfileCustom = WDSTRANSPORT_NETWORK_PROFILE_TYPE.Custom;
+pub const WdsTptNetworkProfile10Mbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"10Mbps";
+pub const WdsTptNetworkProfile100Mbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"100Mbps";
+pub const WdsTptNetworkProfile1Gbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"1Gbps";
+
+pub const WDSTRANSPORT_PROTOCOL_FLAGS = enum(i32) {
+    Unicast = 1,
+    Multicast = 2,
+};
+pub const WdsTptProtocolUnicast = WDSTRANSPORT_PROTOCOL_FLAGS.Unicast;
+pub const WdsTptProtocolMulticast = WDSTRANSPORT_PROTOCOL_FLAGS.Multicast;
+
+pub const WDSTRANSPORT_SERVICE_NOTIFICATION = enum(i32) {
+    Unknown = 0,
+    ReadSettings = 1,
+};
+pub const WdsTptServiceNotifyUnknown = WDSTRANSPORT_SERVICE_NOTIFICATION.Unknown;
+pub const WdsTptServiceNotifyReadSettings = WDSTRANSPORT_SERVICE_NOTIFICATION.ReadSettings;
+
+pub const WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE = enum(i32) {
+    Unknown = 0,
+    None = 1,
+    AutoDisconnect = 2,
+    Multistream = 3,
+};
+pub const WdsTptSlowClientHandlingUnknown = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.Unknown;
+pub const WdsTptSlowClientHandlingNone = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.None;
+pub const WdsTptSlowClientHandlingAutoDisconnect = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.AutoDisconnect;
+pub const WdsTptSlowClientHandlingMultistream = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.Multistream;
+
+pub const WDSTRANSPORT_TFTP_CAPABILITY = enum(i32) {
+    MaximumBlockSize = 1,
+    VariableWindow = 2,
+};
+pub const WdsTptTftpCapMaximumBlockSize = WDSTRANSPORT_TFTP_CAPABILITY.MaximumBlockSize;
+pub const WdsTptTftpCapVariableWindow = WDSTRANSPORT_TFTP_CAPABILITY.VariableWindow;
+
+pub const WDSTRANSPORT_UDP_PORT_POLICY = enum(i32) {
+    Dynamic = 0,
+    Fixed = 1,
+};
+pub const WdsTptUdpPortPolicyDynamic = WDSTRANSPORT_UDP_PORT_POLICY.Dynamic;
+pub const WdsTptUdpPortPolicyFixed = WDSTRANSPORT_UDP_PORT_POLICY.Fixed;
+
+const CLSID_WdsTransportCacheable_Value = Guid.initString("70590b16-f146-46bd-bd9d-4aaa90084bf5");
+pub const CLSID_WdsTransportCacheable = &CLSID_WdsTransportCacheable_Value;
+
+const CLSID_WdsTransportClient_Value = Guid.initString("66d2c5e9-0ff6-49ec-9733-dafb1e01df1c");
+pub const CLSID_WdsTransportClient = &CLSID_WdsTransportClient_Value;
+
+const CLSID_WdsTransportCollection_Value = Guid.initString("c7f18b09-391e-436e-b10b-c3ef46f2c34f");
+pub const CLSID_WdsTransportCollection = &CLSID_WdsTransportCollection_Value;
+
+const CLSID_WdsTransportConfigurationManager_Value = Guid.initString("8743f674-904c-47ca-8512-35fe98f6b0ac");
+pub const CLSID_WdsTransportConfigurationManager = &CLSID_WdsTransportConfigurationManager_Value;
+
+const CLSID_WdsTransportContent_Value = Guid.initString("0a891fe7-4a3f-4c65-b6f2-1467619679ea");
+pub const CLSID_WdsTransportContent = &CLSID_WdsTransportContent_Value;
+
+const CLSID_WdsTransportContentProvider_Value = Guid.initString("e0be741f-5a75-4eb9-8a2d-5e189b45f327");
+pub const CLSID_WdsTransportContentProvider = &CLSID_WdsTransportContentProvider_Value;
+
+const CLSID_WdsTransportDiagnosticsPolicy_Value = Guid.initString("eb3333e1-a7ad-46f5-80d6-6b740204e509");
+pub const CLSID_WdsTransportDiagnosticsPolicy = &CLSID_WdsTransportDiagnosticsPolicy_Value;
+
+const CLSID_WdsTransportManager_Value = Guid.initString("f21523f6-837c-4a58-af99-8a7e27f8ff59");
+pub const CLSID_WdsTransportManager = &CLSID_WdsTransportManager_Value;
+
+const CLSID_WdsTransportMulticastSessionPolicy_Value = Guid.initString("3c6bc3f4-6418-472a-b6f1-52d457195437");
+pub const CLSID_WdsTransportMulticastSessionPolicy = &CLSID_WdsTransportMulticastSessionPolicy_Value;
+
+const CLSID_WdsTransportNamespace_Value = Guid.initString("d8385768-0732-4ec1-95ea-16da581908a1");
+pub const CLSID_WdsTransportNamespace = &CLSID_WdsTransportNamespace_Value;
+
+const CLSID_WdsTransportNamespaceAutoCast_Value = Guid.initString("b091f5a8-6a99-478d-b23b-09e8fee04574");
+pub const CLSID_WdsTransportNamespaceAutoCast = &CLSID_WdsTransportNamespaceAutoCast_Value;
+
+const CLSID_WdsTransportNamespaceManager_Value = Guid.initString("f08cdb63-85de-4a28-a1a9-5ca3e7efda73");
+pub const CLSID_WdsTransportNamespaceManager = &CLSID_WdsTransportNamespaceManager_Value;
+
+const CLSID_WdsTransportNamespaceScheduledCast_Value = Guid.initString("badc1897-7025-44eb-9108-fb61c4055792");
+pub const CLSID_WdsTransportNamespaceScheduledCast = &CLSID_WdsTransportNamespaceScheduledCast_Value;
+
+const CLSID_WdsTransportNamespaceScheduledCastAutoStart_Value = Guid.initString("a1107052-122c-4b81-9b7c-386e6855383f");
+pub const CLSID_WdsTransportNamespaceScheduledCastAutoStart = &CLSID_WdsTransportNamespaceScheduledCastAutoStart_Value;
+
+const CLSID_WdsTransportNamespaceScheduledCastManualStart_Value = Guid.initString("d3e1a2aa-caac-460e-b98a-47f9f318a1fa");
+pub const CLSID_WdsTransportNamespaceScheduledCastManualStart = &CLSID_WdsTransportNamespaceScheduledCastManualStart_Value;
+
+const CLSID_WdsTransportServer_Value = Guid.initString("ea19b643-4adf-4413-942c-14f379118760");
+pub const CLSID_WdsTransportServer = &CLSID_WdsTransportServer_Value;
+
+const CLSID_WdsTransportServicePolicy_Value = Guid.initString("65aceadc-2f0b-4f43-9f4d-811865d8cead");
+pub const CLSID_WdsTransportServicePolicy = &CLSID_WdsTransportServicePolicy_Value;
+
+const CLSID_WdsTransportSession_Value = Guid.initString("749ac4e0-67bc-4743-bfe5-cacb1f26f57f");
+pub const CLSID_WdsTransportSession = &CLSID_WdsTransportSession_Value;
+
+const CLSID_WdsTransportSetupManager_Value = Guid.initString("c7beeaad-9f04-4923-9f0c-fbf52bc7590f");
+pub const CLSID_WdsTransportSetupManager = &CLSID_WdsTransportSetupManager_Value;
+
+const CLSID_WdsTransportTftpClient_Value = Guid.initString("50343925-7c5c-4c8c-96c4-ad9fa5005fba");
+pub const CLSID_WdsTransportTftpClient = &CLSID_WdsTransportTftpClient_Value;
+
+const CLSID_WdsTransportTftpManager_Value = Guid.initString("c8e9dca2-3241-4e4d-b806-bc74019dfeda");
+pub const CLSID_WdsTransportTftpManager = &CLSID_WdsTransportTftpManager_Value;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (94)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliClose(
-    Handle: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliRegisterTrace(
-    pfn: ?PFN_WdsCliTraceFunction,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wdsclientapi" fn WdsCliFreeStringArray(
-    ppwszArray: ?[*]?PWSTR,
-    ulCount: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliFindFirstImage(
-    hSession: ?HANDLE,
-    phFindHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliFindNextImage(
-    Handle: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetEnumerationFlags(
-    Handle: ?HANDLE,
-    pdwFlags: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageHandleFromFindHandle(
-    FindHandle: ?HANDLE,
-    phImageHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageHandleFromTransferHandle(
-    hTransfer: ?HANDLE,
-    phImageHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliCreateSession(
-    pwszServer: ?PWSTR,
-    pCred: ?*WDS_CLI_CRED,
-    phSession: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliAuthorizeSession(
-    hSession: ?HANDLE,
-    pCred: ?*WDS_CLI_CRED,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliInitializeLog(
-    hSession: ?HANDLE,
-    ulClientArchitecture: CPU_ARCHITECTURE,
-    pwszClientId: ?PWSTR,
-    pwszClientAddress: ?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliLog(
-    hSession: ?HANDLE,
-    ulLogLevel: u32,
-    ulMessageCode: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageName(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageDescription(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "wdsclientapi" fn WdsCliGetImageType(
-    hIfh: ?HANDLE,
-    pImageType: ?*WDS_CLI_IMAGE_TYPE,
-) callconv(.winapi) HRESULT;
-
-pub extern "wdsclientapi" fn WdsCliGetImageFiles(
-    hIfh: ?HANDLE,
-    pppwszFiles: ?*?*?PWSTR,
-    pdwCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageLanguage(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageLanguages(
-    hIfh: ?HANDLE,
-    pppszValues: ?*?*?*i8,
-    pdwNumValues: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageVersion(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImagePath(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageIndex(
-    hIfh: ?HANDLE,
-    pdwValue: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageArchitecture(
-    hIfh: ?HANDLE,
-    pdwValue: ?*CPU_ARCHITECTURE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageLastModifiedTime(
-    hIfh: ?HANDLE,
-    ppSysTimeValue: ?*?*SYSTEMTIME,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageSize(
-    hIfh: ?HANDLE,
-    pullValue: ?*u64,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageHalName(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageGroup(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetImageNamespace(
-    hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "wdsclientapi" fn WdsCliGetImageParameter(
-    hIfh: ?HANDLE,
-    ParamType: WDS_CLI_IMAGE_PARAM_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
-    pResponse: ?*anyopaque,
-    uResponseLen: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliGetTransferSize(
-    hIfh: ?HANDLE,
-    pullValue: ?*u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "wdsclientapi" fn WdsCliSetTransferBufferSize(
-    ulSizeInBytes: u32,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliTransferImage(
-    hImage: ?HANDLE,
-    pwszLocalPath: ?PWSTR,
-    dwFlags: u32,
-    dwReserved: u32,
-    pfnWdsCliCallback: ?PFN_WdsCliCallback,
-    pvUserData: ?*anyopaque,
-    phTransfer: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliTransferFile(
-    pwszServer: ?[*:0]const u16,
-    pwszNamespace: ?[*:0]const u16,
-    pwszRemoteFilePath: ?[*:0]const u16,
-    pwszLocalFilePath: ?[*:0]const u16,
-    dwFlags: u32,
-    dwReserved: u32,
-    pfnWdsCliCallback: ?PFN_WdsCliCallback,
-    pvUserData: ?*anyopaque,
-    phTransfer: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliCancelTransfer(
-    hTransfer: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsclientapi" fn WdsCliWaitForTransfer(
-    hTransfer: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "wdsclientapi" fn WdsCliObtainDriverPackages(
-    hImage: ?HANDLE,
-    ppwszServerName: ?*?PWSTR,
-    pppwszDriverPackages: ?*?*?PWSTR,
-    pulCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdsclientapi" fn WdsCliObtainDriverPackagesEx(
-    hSession: ?HANDLE,
-    pwszMachineInfo: ?PWSTR,
-    ppwszServerName: ?*?PWSTR,
-    pppwszDriverPackages: ?*?*?PWSTR,
-    pulCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdsclientapi" fn WdsCliGetDriverQueryXml(
-    pwszWinDirPath: ?PWSTR,
-    ppwszDriverQuery: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderRegister(
-    pszProviderName: ?[*:0]const u16,
-    pszModulePath: ?[*:0]const u16,
-    Index: u32,
-    bIsCritical: BOOL,
-    phProviderKey: ?*?HKEY,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderUnRegister(
-    pszProviderName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderQueryIndex(
-    pszProviderName: ?[*:0]const u16,
-    puIndex: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderEnumFirst(
-    phEnum: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderEnumNext(
-    hEnum: ?HANDLE,
-    ppProvider: ?*?*PXE_PROVIDER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderEnumClose(
-    hEnum: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderFreeInfo(
-    pProvider: ?*PXE_PROVIDER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeRegisterCallback(
-    hProvider: ?HANDLE,
-    CallbackType: u32,
-    pCallbackFunction: ?*anyopaque,
-    pContext: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeSendReply(
-    hClientRequest: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    pPacket: ?*anyopaque,
-    uPacketLen: u32,
-    pAddress: ?*PXE_ADDRESS,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeAsyncRecvDone(
     hClientRequest: ?HANDLE,
     Action: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeTrace(
-    hProvider: ?HANDLE,
-    Severity: u32,
-    pszFormat: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "wdspxe" fn PxeTraceV(
-    hProvider: ?HANDLE,
-    Severity: u32,
-    pszFormat: ?[*:0]const u16,
-    Params: ?*i8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxePacketAllocate(
-    hProvider: ?HANDLE,
-    hClientRequest: ?HANDLE,
-    uSize: u32,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxePacketFree(
-    hProvider: ?HANDLE,
-    hClientRequest: ?HANDLE,
-    pPacket: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeProviderSetAttribute(
-    hProvider: ?HANDLE,
-    Attribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pParameterBuffer: ?*anyopaque,
-    uParamLen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeDhcpInitialize(
-    // TODO: what to do with BytesParamIndex 1?
-    pRecvPacket: ?*anyopaque,
-    uRecvPacketLen: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pReplyPacket: ?*anyopaque,
-    uMaxReplyPacketLen: u32,
-    puReplyPacketLen: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdspxe" fn PxeDhcpv6Initialize(
-    // TODO: what to do with BytesParamIndex 1?
-    pRequest: ?*anyopaque,
-    cbRequest: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pReply: ?*anyopaque,
-    cbReply: u32,
-    pcbReplyUsed: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2334,18 +1979,6 @@ pub extern "wdspxe" fn PxeDhcpAppendOption(
     pValue: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdspxe" fn PxeDhcpv6AppendOption(
-    // TODO: what to do with BytesParamIndex 1?
-    pReply: ?*anyopaque,
-    cbReply: u32,
-    pcbReplyUsed: ?*u32,
-    wOptionType: u16,
-    cbOption: u16,
-    // TODO: what to do with BytesParamIndex 4?
-    pOption: ?*anyopaque,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
     // TODO: what to do with BytesParamIndex 1?
@@ -2355,35 +1988,6 @@ pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
     uBufferLen: u16,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdspxe" fn PxeDhcpv6AppendOptionRaw(
-    // TODO: what to do with BytesParamIndex 1?
-    pReply: ?*anyopaque,
-    cbReply: u32,
-    pcbReplyUsed: ?*u32,
-    cbBuffer: u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdspxe" fn PxeDhcpIsValid(
-    // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*anyopaque,
-    uPacketLen: u32,
-    bRequestPacket: BOOL,
-    pbPxeOptionPresent: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdspxe" fn PxeDhcpv6IsValid(
-    // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*anyopaque,
-    uPacketLen: u32,
-    bRequestPacket: BOOL,
-    pbPxeOptionPresent: ?*BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2397,17 +2001,6 @@ pub extern "wdspxe" fn PxeDhcpGetOptionValue(
     ppOptionValue: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdspxe" fn PxeDhcpv6GetOptionValue(
-    // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*anyopaque,
-    uPacketLen: u32,
-    uInstance: u32,
-    wOption: u16,
-    pwOptionLen: ?*u16,
-    ppOptionValue: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
     // TODO: what to do with BytesParamIndex 1?
@@ -2416,6 +2009,73 @@ pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
     bOption: u8,
     uInstance: u32,
     pbOptionLen: ?*u8,
+    ppOptionValue: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeDhcpInitialize(
+    // TODO: what to do with BytesParamIndex 1?
+    pRecvPacket: ?*anyopaque,
+    uRecvPacketLen: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pReplyPacket: ?*anyopaque,
+    uMaxReplyPacketLen: u32,
+    puReplyPacketLen: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeDhcpIsValid(
+    // TODO: what to do with BytesParamIndex 1?
+    pPacket: ?*anyopaque,
+    uPacketLen: u32,
+    bRequestPacket: BOOL,
+    pbPxeOptionPresent: ?*BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "wdspxe" fn PxeDhcpv6AppendOption(
+    // TODO: what to do with BytesParamIndex 1?
+    pReply: ?*anyopaque,
+    cbReply: u32,
+    pcbReplyUsed: ?*u32,
+    wOptionType: u16,
+    cbOption: u16,
+    // TODO: what to do with BytesParamIndex 4?
+    pOption: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "wdspxe" fn PxeDhcpv6AppendOptionRaw(
+    // TODO: what to do with BytesParamIndex 1?
+    pReply: ?*anyopaque,
+    cbReply: u32,
+    pcbReplyUsed: ?*u32,
+    cbBuffer: u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "wdspxe" fn PxeDhcpv6CreateRelayRepl(
+    pRelayMessages: [*]PXE_DHCPV6_NESTED_RELAY_MESSAGE,
+    nRelayMessages: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pInnerPacket: ?*u8,
+    cbInnerPacket: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    pReplyBuffer: ?*anyopaque,
+    cbReplyBuffer: u32,
+    pcbReplyBuffer: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "wdspxe" fn PxeDhcpv6GetOptionValue(
+    // TODO: what to do with BytesParamIndex 1?
+    pPacket: ?*anyopaque,
+    uPacketLen: u32,
+    uInstance: u32,
+    wOption: u16,
+    pwOptionLen: ?*u16,
     ppOptionValue: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -2432,6 +2092,26 @@ pub extern "wdspxe" fn PxeDhcpv6GetVendorOptionValue(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
+pub extern "wdspxe" fn PxeDhcpv6Initialize(
+    // TODO: what to do with BytesParamIndex 1?
+    pRequest: ?*anyopaque,
+    cbRequest: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pReply: ?*anyopaque,
+    cbReply: u32,
+    pcbReplyUsed: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "wdspxe" fn PxeDhcpv6IsValid(
+    // TODO: what to do with BytesParamIndex 1?
+    pPacket: ?*anyopaque,
+    uPacketLen: u32,
+    bRequestPacket: BOOL,
+    pbPxeOptionPresent: ?*BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
     // TODO: what to do with BytesParamIndex 1?
     pRelayForwPacket: ?*anyopaque,
@@ -2441,19 +2121,6 @@ pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
     pnRelayMessages: ?*u32,
     ppInnerPacket: ?*?*u8,
     pcbInnerPacket: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wdspxe" fn PxeDhcpv6CreateRelayRepl(
-    pRelayMessages: [*]PXE_DHCPV6_NESTED_RELAY_MESSAGE,
-    nRelayMessages: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pInnerPacket: ?*u8,
-    cbInnerPacket: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    pReplyBuffer: ?*anyopaque,
-    cbReplyBuffer: u32,
-    pcbReplyBuffer: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2474,117 +2141,127 @@ pub extern "wdspxe" fn PxeGetServerInfoEx(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdsmc" fn WdsTransportServerRegisterCallback(
+pub extern "wdspxe" fn PxePacketAllocate(
     hProvider: ?HANDLE,
-    CallbackId: TRANSPORTPROVIDER_CALLBACK_ID,
-    pfnCallback: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdsmc" fn WdsTransportServerCompleteRead(
-    hProvider: ?HANDLE,
-    ulBytesRead: u32,
-    pvUserData: ?*anyopaque,
-    hReadResult: HRESULT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdsmc" fn WdsTransportServerTrace(
-    hProvider: ?HANDLE,
-    Severity: u32,
-    pwszFormat: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdsmc" fn WdsTransportServerTraceV(
-    hProvider: ?HANDLE,
-    Severity: u32,
-    pwszFormat: ?[*:0]const u16,
-    Params: ?*i8,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdsmc" fn WdsTransportServerAllocateBuffer(
-    hProvider: ?HANDLE,
-    ulBufferSize: u32,
+    hClientRequest: ?HANDLE,
+    uSize: u32,
 ) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "wdsmc" fn WdsTransportServerFreeBuffer(
+pub extern "wdspxe" fn PxePacketFree(
     hProvider: ?HANDLE,
-    pvBuffer: ?*anyopaque,
-) callconv(.winapi) HRESULT;
+    hClientRequest: ?HANDLE,
+    pPacket: ?*anyopaque,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientInitialize(
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderEnumClose(
+    hEnum: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderEnumFirst(
+    phEnum: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderEnumNext(
+    hEnum: ?HANDLE,
+    ppProvider: ?*?*PXE_PROVIDER,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderFreeInfo(
+    pProvider: ?*PXE_PROVIDER,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderQueryIndex(
+    pszProviderName: ?[*:0]const u16,
+    puIndex: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderRegister(
+    pszProviderName: ?[*:0]const u16,
+    pszModulePath: ?[*:0]const u16,
+    Index: u32,
+    bIsCritical: BOOL,
+    phProviderKey: ?*?HKEY,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderSetAttribute(
+    hProvider: ?HANDLE,
+    Attribute: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pParameterBuffer: ?*anyopaque,
+    uParamLen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeProviderUnRegister(
+    pszProviderName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeRegisterCallback(
+    hProvider: ?HANDLE,
+    CallbackType: u32,
+    pCallbackFunction: ?*anyopaque,
+    pContext: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeSendReply(
+    hClientRequest: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    pPacket: ?*anyopaque,
+    uPacketLen: u32,
+    pAddress: ?*PXE_ADDRESS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdspxe" fn PxeTrace(
+    hProvider: ?HANDLE,
+    Severity: u32,
+    pszFormat: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "wdspxe" fn PxeTraceV(
+    hProvider: ?HANDLE,
+    Severity: u32,
+    pszFormat: ?[*:0]const u16,
+    Params: ?*i8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientInitializeSession(
-    pSessionRequest: ?*WDS_TRANSPORTCLIENT_REQUEST,
-    pCallerData: ?*anyopaque,
-    hSessionKey: ?*?HANDLE,
+pub extern "wdsbp" fn WdsBpAddOption(
+    hHandle: ?HANDLE,
+    uOption: u32,
+    uValueLen: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    pValue: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientRegisterCallback(
-    hSessionKey: ?HANDLE,
-    CallbackId: TRANSPORTCLIENT_CALLBACK_ID,
-    pfnCallback: ?*anyopaque,
+pub extern "wdsbp" fn WdsBpCloseHandle(
+    hHandle: ?HANDLE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientStartSession(
-    hSessionKey: ?HANDLE,
+pub extern "wdsbp" fn WdsBpGetOptionBuffer(
+    hHandle: ?HANDLE,
+    uBufferLen: u32,
+    // TODO: what to do with BytesParamIndex 1?
+    pBuffer: ?*anyopaque,
+    puBytes: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientCompleteReceive(
-    hSessionKey: ?HANDLE,
-    ulSize: u32,
-    pullOffset: ?*ULARGE_INTEGER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientCancelSession(
-    hSessionKey: ?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "wdstptc" fn WdsTransportClientCancelSessionEx(
-    hSessionKey: ?HANDLE,
-    dwErrorCode: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientWaitForCompletion(
-    hSessionKey: ?HANDLE,
-    uTimeout: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientQueryStatus(
-    hSessionKey: ?HANDLE,
-    puStatus: ?*u32,
-    puErrorCode: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientCloseSession(
-    hSessionKey: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientAddRefBuffer(
-    pvBuffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientReleaseBuffer(
-    pvBuffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdstptc" fn WdsTransportClientShutdown(
+pub extern "wdsbp" fn WdsBpInitialize(
+    bPacketType: u8,
+    phHandle: ?*?HANDLE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2606,17 +2283,6 @@ pub extern "wdsbp" fn WdsBpParseInitializev6(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsbp" fn WdsBpInitialize(
-    bPacketType: u8,
-    phHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsbp" fn WdsBpCloseHandle(
-    hHandle: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpQueryOption(
     hHandle: ?HANDLE,
     uOption: u32,
@@ -2627,22 +2293,356 @@ pub extern "wdsbp" fn WdsBpQueryOption(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsbp" fn WdsBpAddOption(
-    hHandle: ?HANDLE,
-    uOption: u32,
-    uValueLen: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pValue: ?*anyopaque,
+pub extern "wdsclientapi" fn WdsCliAuthorizeSession(
+    hSession: ?HANDLE,
+    pCred: ?*WDS_CLI_CRED,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliCancelTransfer(
+    hTransfer: ?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliClose(
+    Handle: ?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliCreateSession(
+    pwszServer: ?PWSTR,
+    pCred: ?*WDS_CLI_CRED,
+    phSession: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliFindFirstImage(
+    hSession: ?HANDLE,
+    phFindHandle: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliFindNextImage(
+    Handle: ?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wdsclientapi" fn WdsCliFreeStringArray(
+    ppwszArray: ?[*]?PWSTR,
+    ulCount: u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "wdsclientapi" fn WdsCliGetDriverQueryXml(
+    pwszWinDirPath: ?PWSTR,
+    ppwszDriverQuery: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetEnumerationFlags(
+    Handle: ?HANDLE,
+    pdwFlags: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageArchitecture(
+    hIfh: ?HANDLE,
+    pdwValue: ?*CPU_ARCHITECTURE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageDescription(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "wdsclientapi" fn WdsCliGetImageFiles(
+    hIfh: ?HANDLE,
+    pppwszFiles: ?*?*?PWSTR,
+    pdwCount: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageGroup(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageHalName(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageHandleFromFindHandle(
+    FindHandle: ?HANDLE,
+    phImageHandle: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageHandleFromTransferHandle(
+    hTransfer: ?HANDLE,
+    phImageHandle: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageIndex(
+    hIfh: ?HANDLE,
+    pdwValue: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageLanguage(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageLanguages(
+    hIfh: ?HANDLE,
+    pppszValues: ?*?*?*i8,
+    pdwNumValues: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageLastModifiedTime(
+    hIfh: ?HANDLE,
+    ppSysTimeValue: ?*?*SYSTEMTIME,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageName(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageNamespace(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "wdsclientapi" fn WdsCliGetImageParameter(
+    hIfh: ?HANDLE,
+    ParamType: WDS_CLI_IMAGE_PARAM_TYPE,
+    // TODO: what to do with BytesParamIndex 3?
+    pResponse: ?*anyopaque,
+    uResponseLen: u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImagePath(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageSize(
+    hIfh: ?HANDLE,
+    pullValue: ?*u64,
+) callconv(.winapi) HRESULT;
+
+pub extern "wdsclientapi" fn WdsCliGetImageType(
+    hIfh: ?HANDLE,
+    pImageType: ?*WDS_CLI_IMAGE_TYPE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetImageVersion(
+    hIfh: ?HANDLE,
+    ppwszValue: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliGetTransferSize(
+    hIfh: ?HANDLE,
+    pullValue: ?*u64,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliInitializeLog(
+    hSession: ?HANDLE,
+    ulClientArchitecture: CPU_ARCHITECTURE,
+    pwszClientId: ?PWSTR,
+    pwszClientAddress: ?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliLog(
+    hSession: ?HANDLE,
+    ulLogLevel: u32,
+    ulMessageCode: u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "wdsclientapi" fn WdsCliObtainDriverPackages(
+    hImage: ?HANDLE,
+    ppwszServerName: ?*?PWSTR,
+    pppwszDriverPackages: ?*?*?PWSTR,
+    pulCount: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "wdsclientapi" fn WdsCliObtainDriverPackagesEx(
+    hSession: ?HANDLE,
+    pwszMachineInfo: ?PWSTR,
+    ppwszServerName: ?*?PWSTR,
+    pppwszDriverPackages: ?*?*?PWSTR,
+    pulCount: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliRegisterTrace(
+    pfn: ?PFN_WdsCliTraceFunction,
+) callconv(.winapi) HRESULT;
+
+pub extern "wdsclientapi" fn WdsCliSetTransferBufferSize(
+    ulSizeInBytes: u32,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliTransferFile(
+    pwszServer: ?[*:0]const u16,
+    pwszNamespace: ?[*:0]const u16,
+    pwszRemoteFilePath: ?[*:0]const u16,
+    pwszLocalFilePath: ?[*:0]const u16,
+    dwFlags: u32,
+    dwReserved: u32,
+    pfnWdsCliCallback: ?PFN_WdsCliCallback,
+    pvUserData: ?*anyopaque,
+    phTransfer: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliTransferImage(
+    hImage: ?HANDLE,
+    pwszLocalPath: ?PWSTR,
+    dwFlags: u32,
+    dwReserved: u32,
+    pfnWdsCliCallback: ?PFN_WdsCliCallback,
+    pvUserData: ?*anyopaque,
+    phTransfer: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdsclientapi" fn WdsCliWaitForTransfer(
+    hTransfer: ?HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientAddRefBuffer(
+    pvBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wdsbp" fn WdsBpGetOptionBuffer(
-    hHandle: ?HANDLE,
-    uBufferLen: u32,
-    // TODO: what to do with BytesParamIndex 1?
-    pBuffer: ?*anyopaque,
-    puBytes: ?*u32,
+pub extern "wdstptc" fn WdsTransportClientCancelSession(
+    hSessionKey: ?HANDLE,
 ) callconv(.winapi) u32;
+
+pub extern "wdstptc" fn WdsTransportClientCancelSessionEx(
+    hSessionKey: ?HANDLE,
+    dwErrorCode: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientCloseSession(
+    hSessionKey: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientCompleteReceive(
+    hSessionKey: ?HANDLE,
+    ulSize: u32,
+    pullOffset: ?*ULARGE_INTEGER,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientInitialize(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientInitializeSession(
+    pSessionRequest: ?*WDS_TRANSPORTCLIENT_REQUEST,
+    pCallerData: ?*anyopaque,
+    hSessionKey: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientQueryStatus(
+    hSessionKey: ?HANDLE,
+    puStatus: ?*u32,
+    puErrorCode: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientRegisterCallback(
+    hSessionKey: ?HANDLE,
+    CallbackId: TRANSPORTCLIENT_CALLBACK_ID,
+    pfnCallback: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientReleaseBuffer(
+    pvBuffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientShutdown(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientStartSession(
+    hSessionKey: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "wdstptc" fn WdsTransportClientWaitForCompletion(
+    hSessionKey: ?HANDLE,
+    uTimeout: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdsmc" fn WdsTransportServerAllocateBuffer(
+    hProvider: ?HANDLE,
+    ulBufferSize: u32,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdsmc" fn WdsTransportServerCompleteRead(
+    hProvider: ?HANDLE,
+    ulBytesRead: u32,
+    pvUserData: ?*anyopaque,
+    hReadResult: HRESULT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdsmc" fn WdsTransportServerFreeBuffer(
+    hProvider: ?HANDLE,
+    pvBuffer: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdsmc" fn WdsTransportServerRegisterCallback(
+    hProvider: ?HANDLE,
+    CallbackId: TRANSPORTPROVIDER_CALLBACK_ID,
+    pfnCallback: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdsmc" fn WdsTransportServerTrace(
+    hProvider: ?HANDLE,
+    Severity: u32,
+    pwszFormat: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "wdsmc" fn WdsTransportServerTraceV(
+    hProvider: ?HANDLE,
+    Severity: u32,
+    pwszFormat: ?[*:0]const u16,
+    Params: ?*i8,
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -2667,14 +2667,14 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_WdsCliTraceFunction")) { _ = PFN_WdsCliTraceFunction; }
     if (@hasDecl(@This(), "PFN_WdsCliCallback")) { _ = PFN_WdsCliCallback; }
-    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionStart")) { _ = PFN_WdsTransportClientSessionStart; }
-    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionStartEx")) { _ = PFN_WdsTransportClientSessionStartEx; }
-    if (@hasDecl(@This(), "PFN_WdsTransportClientReceiveMetadata")) { _ = PFN_WdsTransportClientReceiveMetadata; }
+    if (@hasDecl(@This(), "PFN_WdsCliTraceFunction")) { _ = PFN_WdsCliTraceFunction; }
     if (@hasDecl(@This(), "PFN_WdsTransportClientReceiveContents")) { _ = PFN_WdsTransportClientReceiveContents; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientReceiveMetadata")) { _ = PFN_WdsTransportClientReceiveMetadata; }
     if (@hasDecl(@This(), "PFN_WdsTransportClientSessionComplete")) { _ = PFN_WdsTransportClientSessionComplete; }
     if (@hasDecl(@This(), "PFN_WdsTransportClientSessionNegotiate")) { _ = PFN_WdsTransportClientSessionNegotiate; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionStart")) { _ = PFN_WdsTransportClientSessionStart; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionStartEx")) { _ = PFN_WdsTransportClientSessionStartEx; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

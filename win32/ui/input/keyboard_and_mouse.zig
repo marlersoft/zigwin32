@@ -2,160 +2,212 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (150)
 //--------------------------------------------------------------------------------
-pub const EXTENDED_BIT = @as(u32, 16777216);
-pub const DONTCARE_BIT = @as(u32, 33554432);
-pub const FAKE_KEYSTROKE = @as(u32, 33554432);
-pub const KBDBASE = @as(u32, 0);
-pub const KBDSHIFT = @as(u32, 1);
-pub const KBDCTRL = @as(u32, 2);
-pub const KBDALT = @as(u32, 4);
-pub const KBDKANA = @as(u32, 8);
-pub const KBDROYA = @as(u32, 16);
-pub const KBDLOYA = @as(u32, 32);
-pub const KBDGRPSELTAP = @as(u32, 128);
-pub const GRAVE = @as(u32, 768);
 pub const ACUTE = @as(u32, 769);
-pub const CIRCUMFLEX = @as(u32, 770);
-pub const TILDE = @as(u32, 771);
-pub const MACRON = @as(u32, 772);
-pub const OVERSCORE = @as(u32, 773);
+pub const AX_KBD_DESKTOP_TYPE = @as(u32, 1);
 pub const BREVE = @as(u32, 774);
-pub const DOT_ABOVE = @as(u32, 775);
-pub const UMLAUT = @as(u32, 776);
-pub const DIARESIS = @as(u32, 776);
-pub const HOOK_ABOVE = @as(u32, 777);
-pub const RING = @as(u32, 778);
-pub const DOUBLE_ACUTE = @as(u32, 779);
-pub const HACEK = @as(u32, 780);
-pub const CEDILLA = @as(u32, 807);
-pub const OGONEK = @as(u32, 808);
-pub const TONOS = @as(u32, 900);
-pub const DIARESIS_TONOS = @as(u32, 901);
-pub const wszGRAVE = "\xcc\x80";
-pub const wszACUTE = "\xcc\x81";
-pub const wszCIRCUMFLEX = "\xcc\x82";
-pub const wszTILDE = "\xcc\x83";
-pub const wszMACRON = "\xcc\x84";
-pub const wszOVERSCORE = "\xcc\x85";
-pub const wszBREVE = "\xcc\x86";
-pub const wszDOT_ABOVE = "\xcc\x87";
-pub const wszUMLAUT = "\xcc\x88";
-pub const wszHOOK_ABOVE = "\xcc\x89";
-pub const wszRING = "\xcc\x8a";
-pub const wszDOUBLE_ACUTE = "\xcc\x8b";
-pub const wszHACEK = "\xcc\x8c";
-pub const wszCEDILLA = "\xcc\xa7";
-pub const wszOGONEK = "\xcc\xa8";
-pub const wszTONOS = "\xce\x84";
-pub const wszDIARESIS_TONOS = "\xce\x85";
-pub const SHFT_INVALID = @as(u32, 15);
-pub const WCH_NONE = @as(u32, 61440);
-pub const WCH_DEAD = @as(u32, 61441);
-pub const WCH_LGTR = @as(u32, 61442);
 pub const CAPLOK = @as(u32, 1);
-pub const SGCAPS = @as(u32, 2);
 pub const CAPLOKALTGR = @as(u32, 4);
-pub const KANALOK = @as(u32, 8);
-pub const GRPSELTAP = @as(u32, 128);
+pub const CEDILLA = @as(u32, 807);
+pub const CIRCUMFLEX = @as(u32, 770);
+pub const DEC_KBD_ANSI_LAYOUT_TYPE = @as(u32, 1);
+pub const DEC_KBD_JIS_LAYOUT_TYPE = @as(u32, 2);
+pub const DIARESIS = @as(u32, 776);
+pub const DIARESIS_TONOS = @as(u32, 901);
 pub const DKF_DEAD = @as(u32, 1);
+pub const DONTCARE_BIT = @as(u32, 33554432);
+pub const DOT_ABOVE = @as(u32, 775);
+pub const DOUBLE_ACUTE = @as(u32, 779);
+pub const EXTENDED_BIT = @as(u32, 16777216);
+pub const FAKE_KEYSTROKE = @as(u32, 33554432);
+pub const FMR_KBD_JIS_TYPE = @as(u32, 0);
+pub const FMR_KBD_OASYS_TYPE = @as(u32, 1);
+pub const FMV_KBD_OASYS_TYPE = @as(u32, 2);
+pub const GRAVE = @as(u32, 768);
+pub const GRPSELTAP = @as(u32, 128);
+pub const HACEK = @as(u32, 780);
+pub const HOOK_ABOVE = @as(u32, 777);
+pub const KANALOK = @as(u32, 8);
+pub const KBD_TYPE = @as(u32, 4);
 pub const KBD_VERSION = @as(u32, 1);
-pub const KLLF_ALTGR = @as(u32, 1);
-pub const KLLF_SHIFTLOCK = @as(u32, 2);
-pub const KLLF_LRM_RLM = @as(u32, 4);
-pub const KLLF_GLOBAL_ATTRS = @as(u32, 2);
+pub const KBDALT = @as(u32, 4);
+pub const KBDBASE = @as(u32, 0);
+pub const KBDCTRL = @as(u32, 2);
+pub const KBDGRPSELTAP = @as(u32, 128);
+pub const KBDKANA = @as(u32, 8);
+pub const KBDLOYA = @as(u32, 32);
+pub const KBDNLS_ALPHANUM = @as(u32, 5);
+pub const KBDNLS_CODEINPUT = @as(u32, 10);
+pub const KBDNLS_CONV_OR_NONCONV = @as(u32, 15);
+pub const KBDNLS_HELP_OR_END = @as(u32, 11);
+pub const KBDNLS_HIRAGANA = @as(u32, 6);
+pub const KBDNLS_HOME_OR_CLEAR = @as(u32, 12);
+pub const KBDNLS_INDEX_ALT = @as(u32, 2);
+pub const KBDNLS_INDEX_NORMAL = @as(u32, 1);
+pub const KBDNLS_KANAEVENT = @as(u32, 14);
+pub const KBDNLS_KANALOCK = @as(u32, 4);
+pub const KBDNLS_KATAKANA = @as(u32, 7);
+pub const KBDNLS_NOEVENT = @as(u32, 1);
+pub const KBDNLS_NULL = @as(u32, 0);
+pub const KBDNLS_NUMPAD = @as(u32, 13);
+pub const KBDNLS_ROMAN = @as(u32, 9);
+pub const KBDNLS_SBCSDBCS = @as(u32, 8);
+pub const KBDNLS_SEND_BASE_VK = @as(u32, 2);
+pub const KBDNLS_SEND_PARAM_VK = @as(u32, 3);
+pub const KBDNLS_TYPE_NORMAL = @as(u32, 1);
+pub const KBDNLS_TYPE_NULL = @as(u32, 0);
+pub const KBDNLS_TYPE_TOGGLE = @as(u32, 2);
+pub const KBDROYA = @as(u32, 16);
+pub const KBDSHIFT = @as(u32, 1);
 pub const KBDTABLE_MULTI_MAX = @as(u32, 8);
 pub const KEYBOARD_TYPE_GENERIC_101 = @as(u32, 4);
 pub const KEYBOARD_TYPE_JAPAN = @as(u32, 7);
 pub const KEYBOARD_TYPE_KOREA = @as(u32, 8);
 pub const KEYBOARD_TYPE_UNKNOWN = @as(u32, 81);
-pub const NLSKBD_OEM_MICROSOFT = @as(u32, 0);
-pub const NLSKBD_OEM_AX = @as(u32, 1);
-pub const NLSKBD_OEM_EPSON = @as(u32, 4);
-pub const NLSKBD_OEM_FUJITSU = @as(u32, 5);
-pub const NLSKBD_OEM_IBM = @as(u32, 7);
-pub const NLSKBD_OEM_MATSUSHITA = @as(u32, 10);
-pub const NLSKBD_OEM_NEC = @as(u32, 13);
-pub const NLSKBD_OEM_TOSHIBA = @as(u32, 18);
-pub const NLSKBD_OEM_DEC = @as(u32, 24);
-pub const MICROSOFT_KBD_101_TYPE = @as(u32, 0);
-pub const MICROSOFT_KBD_AX_TYPE = @as(u32, 1);
-pub const MICROSOFT_KBD_106_TYPE = @as(u32, 2);
-pub const MICROSOFT_KBD_002_TYPE = @as(u32, 3);
+pub const KLLF_ALTGR = @as(u32, 1);
+pub const KLLF_GLOBAL_ATTRS = @as(u32, 2);
+pub const KLLF_LRM_RLM = @as(u32, 4);
+pub const KLLF_SHIFTLOCK = @as(u32, 2);
+pub const MACRON = @as(u32, 772);
 pub const MICROSOFT_KBD_001_TYPE = @as(u32, 4);
-pub const MICROSOFT_KBD_FUNC = @as(u32, 12);
-pub const AX_KBD_DESKTOP_TYPE = @as(u32, 1);
-pub const FMR_KBD_JIS_TYPE = @as(u32, 0);
-pub const FMR_KBD_OASYS_TYPE = @as(u32, 1);
-pub const FMV_KBD_OASYS_TYPE = @as(u32, 2);
-pub const NEC_KBD_NORMAL_TYPE = @as(u32, 1);
-pub const NEC_KBD_N_MODE_TYPE = @as(u32, 2);
-pub const NEC_KBD_H_MODE_TYPE = @as(u32, 3);
-pub const NEC_KBD_LAPTOP_TYPE = @as(u32, 4);
-pub const NEC_KBD_106_TYPE = @as(u32, 5);
-pub const TOSHIBA_KBD_DESKTOP_TYPE = @as(u32, 13);
-pub const TOSHIBA_KBD_LAPTOP_TYPE = @as(u32, 15);
-pub const DEC_KBD_ANSI_LAYOUT_TYPE = @as(u32, 1);
-pub const DEC_KBD_JIS_LAYOUT_TYPE = @as(u32, 2);
+pub const MICROSOFT_KBD_002_TYPE = @as(u32, 3);
+pub const MICROSOFT_KBD_101_TYPE = @as(u32, 0);
 pub const MICROSOFT_KBD_101A_TYPE = @as(u32, 0);
 pub const MICROSOFT_KBD_101B_TYPE = @as(u32, 4);
 pub const MICROSOFT_KBD_101C_TYPE = @as(u32, 5);
 pub const MICROSOFT_KBD_103_TYPE = @as(u32, 6);
-pub const NLSKBD_INFO_SEND_IME_NOTIFICATION = @as(u32, 1);
+pub const MICROSOFT_KBD_106_TYPE = @as(u32, 2);
+pub const MICROSOFT_KBD_AX_TYPE = @as(u32, 1);
+pub const MICROSOFT_KBD_FUNC = @as(u32, 12);
+pub const NEC_KBD_106_TYPE = @as(u32, 5);
+pub const NEC_KBD_H_MODE_TYPE = @as(u32, 3);
+pub const NEC_KBD_LAPTOP_TYPE = @as(u32, 4);
+pub const NEC_KBD_N_MODE_TYPE = @as(u32, 2);
+pub const NEC_KBD_NORMAL_TYPE = @as(u32, 1);
 pub const NLSKBD_INFO_ACCESSIBILITY_KEYMAP = @as(u32, 2);
 pub const NLSKBD_INFO_EMURATE_101_KEYBOARD = @as(u32, 16);
 pub const NLSKBD_INFO_EMURATE_106_KEYBOARD = @as(u32, 32);
-pub const KBDNLS_TYPE_NULL = @as(u32, 0);
-pub const KBDNLS_TYPE_NORMAL = @as(u32, 1);
-pub const KBDNLS_TYPE_TOGGLE = @as(u32, 2);
-pub const KBDNLS_INDEX_NORMAL = @as(u32, 1);
-pub const KBDNLS_INDEX_ALT = @as(u32, 2);
-pub const KBDNLS_NULL = @as(u32, 0);
-pub const KBDNLS_NOEVENT = @as(u32, 1);
-pub const KBDNLS_SEND_BASE_VK = @as(u32, 2);
-pub const KBDNLS_SEND_PARAM_VK = @as(u32, 3);
-pub const KBDNLS_KANALOCK = @as(u32, 4);
-pub const KBDNLS_ALPHANUM = @as(u32, 5);
-pub const KBDNLS_HIRAGANA = @as(u32, 6);
-pub const KBDNLS_KATAKANA = @as(u32, 7);
-pub const KBDNLS_SBCSDBCS = @as(u32, 8);
-pub const KBDNLS_ROMAN = @as(u32, 9);
-pub const KBDNLS_CODEINPUT = @as(u32, 10);
-pub const KBDNLS_HELP_OR_END = @as(u32, 11);
-pub const KBDNLS_HOME_OR_CLEAR = @as(u32, 12);
-pub const KBDNLS_NUMPAD = @as(u32, 13);
-pub const KBDNLS_KANAEVENT = @as(u32, 14);
-pub const KBDNLS_CONV_OR_NONCONV = @as(u32, 15);
-pub const KBD_TYPE = @as(u32, 4);
+pub const NLSKBD_INFO_SEND_IME_NOTIFICATION = @as(u32, 1);
+pub const NLSKBD_OEM_AX = @as(u32, 1);
+pub const NLSKBD_OEM_DEC = @as(u32, 24);
+pub const NLSKBD_OEM_EPSON = @as(u32, 4);
+pub const NLSKBD_OEM_FUJITSU = @as(u32, 5);
+pub const NLSKBD_OEM_IBM = @as(u32, 7);
+pub const NLSKBD_OEM_MATSUSHITA = @as(u32, 10);
+pub const NLSKBD_OEM_MICROSOFT = @as(u32, 0);
+pub const NLSKBD_OEM_NEC = @as(u32, 13);
+pub const NLSKBD_OEM_TOSHIBA = @as(u32, 18);
+pub const OGONEK = @as(u32, 808);
+pub const OVERSCORE = @as(u32, 773);
+pub const RING = @as(u32, 778);
+pub const SCANCODE_ALT = @as(u32, 56);
+pub const SCANCODE_CTRL = @as(u32, 29);
+pub const SCANCODE_LSHIFT = @as(u32, 42);
+pub const SCANCODE_LWIN = @as(u32, 91);
+pub const SCANCODE_NUMPAD_FIRST = @as(u32, 71);
+pub const SCANCODE_NUMPAD_LAST = @as(u32, 82);
+pub const SCANCODE_RSHIFT = @as(u32, 54);
+pub const SCANCODE_RWIN = @as(u32, 92);
+pub const SCANCODE_THAI_LAYOUT_TOGGLE = @as(u32, 41);
+pub const SGCAPS = @as(u32, 2);
+pub const SHFT_INVALID = @as(u32, 15);
+pub const TILDE = @as(u32, 771);
+pub const TONOS = @as(u32, 900);
+pub const TOSHIBA_KBD_DESKTOP_TYPE = @as(u32, 13);
+pub const TOSHIBA_KBD_LAPTOP_TYPE = @as(u32, 15);
+pub const UMLAUT = @as(u32, 776);
 pub const VK__none_ = @as(u32, 255);
 pub const VK_ABNT_C1 = @as(u32, 193);
 pub const VK_ABNT_C2 = @as(u32, 194);
-pub const SCANCODE_LSHIFT = @as(u32, 42);
-pub const SCANCODE_RSHIFT = @as(u32, 54);
-pub const SCANCODE_CTRL = @as(u32, 29);
-pub const SCANCODE_ALT = @as(u32, 56);
-pub const SCANCODE_NUMPAD_FIRST = @as(u32, 71);
-pub const SCANCODE_NUMPAD_LAST = @as(u32, 82);
-pub const SCANCODE_LWIN = @as(u32, 91);
-pub const SCANCODE_RWIN = @as(u32, 92);
-pub const SCANCODE_THAI_LAYOUT_TOGGLE = @as(u32, 41);
 pub const VK_DBE_ALPHANUMERIC = @as(u32, 240);
-pub const VK_DBE_KATAKANA = @as(u32, 241);
-pub const VK_DBE_HIRAGANA = @as(u32, 242);
-pub const VK_DBE_SBCSCHAR = @as(u32, 243);
-pub const VK_DBE_DBCSCHAR = @as(u32, 244);
-pub const VK_DBE_ROMAN = @as(u32, 245);
-pub const VK_DBE_NOROMAN = @as(u32, 246);
-pub const VK_DBE_ENTERWORDREGISTERMODE = @as(u32, 247);
-pub const VK_DBE_ENTERIMECONFIGMODE = @as(u32, 248);
-pub const VK_DBE_FLUSHSTRING = @as(u32, 249);
 pub const VK_DBE_CODEINPUT = @as(u32, 250);
-pub const VK_DBE_NOCODEINPUT = @as(u32, 251);
+pub const VK_DBE_DBCSCHAR = @as(u32, 244);
 pub const VK_DBE_DETERMINESTRING = @as(u32, 252);
 pub const VK_DBE_ENTERDLGCONVERSIONMODE = @as(u32, 253);
+pub const VK_DBE_ENTERIMECONFIGMODE = @as(u32, 248);
+pub const VK_DBE_ENTERWORDREGISTERMODE = @as(u32, 247);
+pub const VK_DBE_FLUSHSTRING = @as(u32, 249);
+pub const VK_DBE_HIRAGANA = @as(u32, 242);
+pub const VK_DBE_KATAKANA = @as(u32, 241);
+pub const VK_DBE_NOCODEINPUT = @as(u32, 251);
+pub const VK_DBE_NOROMAN = @as(u32, 246);
+pub const VK_DBE_ROMAN = @as(u32, 245);
+pub const VK_DBE_SBCSCHAR = @as(u32, 243);
+pub const WCH_DEAD = @as(u32, 61441);
+pub const WCH_LGTR = @as(u32, 61442);
+pub const WCH_NONE = @as(u32, 61440);
+pub const wszACUTE = "\xcc\x81";
+pub const wszBREVE = "\xcc\x86";
+pub const wszCEDILLA = "\xcc\xa7";
+pub const wszCIRCUMFLEX = "\xcc\x82";
+pub const wszDIARESIS_TONOS = "\xce\x85";
+pub const wszDOT_ABOVE = "\xcc\x87";
+pub const wszDOUBLE_ACUTE = "\xcc\x8b";
+pub const wszGRAVE = "\xcc\x80";
+pub const wszHACEK = "\xcc\x8c";
+pub const wszHOOK_ABOVE = "\xcc\x89";
+pub const wszMACRON = "\xcc\x84";
+pub const wszOGONEK = "\xcc\xa8";
+pub const wszOVERSCORE = "\xcc\x85";
+pub const wszRING = "\xcc\x8a";
+pub const wszTILDE = "\xcc\x83";
+pub const wszTONOS = "\xce\x84";
+pub const wszUMLAUT = "\xcc\x88";
 
 //--------------------------------------------------------------------------------
 // Section: Types (44)
 //--------------------------------------------------------------------------------
+pub const _VK_FUNCTION_PARAM = extern struct {
+    NLSFEProcIndex: u8,
+    NLSFEProcParam: u32,
+};
+
+pub const _VK_TO_FUNCTION_TABLE = extern struct {
+    Vk: u8,
+    NLSFEProcType: u8,
+    NLSFEProcCurrent: u8,
+    NLSFEProcSwitch: u8,
+    NLSFEProc: [8]_VK_FUNCTION_PARAM,
+    NLSFEProcAlt: [8]_VK_FUNCTION_PARAM,
+};
+
+pub const ACTIVATE_KEYBOARD_LAYOUT_FLAGS = enum(u32) {
+    REORDER = 8,
+    RESET = 1073741824,
+    SETFORPROCESS = 256,
+    SHIFTLOCK = 65536,
+    ACTIVATE = 1,
+    NOTELLSHELL = 128,
+    REPLACELANG = 16,
+    SUBSTITUTE_OK = 2,
+};
+pub const KLF_REORDER = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.REORDER;
+pub const KLF_RESET = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.RESET;
+pub const KLF_SETFORPROCESS = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.SETFORPROCESS;
+pub const KLF_SHIFTLOCK = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.SHIFTLOCK;
+pub const KLF_ACTIVATE = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.ACTIVATE;
+pub const KLF_NOTELLSHELL = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.NOTELLSHELL;
+pub const KLF_REPLACELANG = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.REPLACELANG;
+pub const KLF_SUBSTITUTE_OK = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.SUBSTITUTE_OK;
+
+pub const DEADKEY = extern struct {
+    dwBoth: u32,
+    wchComposed: u16,
+    uFlags: u16,
+};
+
+pub const GET_MOUSE_MOVE_POINTS_EX_RESOLUTION = enum(u32) {
+    DISPLAY_POINTS = 1,
+    HIGH_RESOLUTION_POINTS = 2,
+};
+pub const GMMP_USE_DISPLAY_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.DISPLAY_POINTS;
+pub const GMMP_USE_HIGH_RESOLUTION_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.HIGH_RESOLUTION_POINTS;
+
+pub const HARDWAREINPUT = extern struct {
+    uMsg: u32,
+    wParamL: u16,
+    wParamH: u16,
+};
+
 pub const HOT_KEY_MODIFIERS = packed struct(u32) {
     ALT: u1 = 0,
     CONTROL: u1 = 0,
@@ -196,31 +248,40 @@ pub const MOD_NOREPEAT = HOT_KEY_MODIFIERS{ .NOREPEAT = 1 };
 pub const MOD_SHIFT = HOT_KEY_MODIFIERS{ .SHIFT = 1 };
 pub const MOD_WIN = HOT_KEY_MODIFIERS{ .WIN = 1 };
 
-pub const ACTIVATE_KEYBOARD_LAYOUT_FLAGS = enum(u32) {
-    REORDER = 8,
-    RESET = 1073741824,
-    SETFORPROCESS = 256,
-    SHIFTLOCK = 65536,
-    ACTIVATE = 1,
-    NOTELLSHELL = 128,
-    REPLACELANG = 16,
-    SUBSTITUTE_OK = 2,
+pub const INPUT = extern struct {
+    type: INPUT_TYPE,
+    Anonymous: extern union {
+        mi: MOUSEINPUT,
+        ki: KEYBDINPUT,
+        hi: HARDWAREINPUT,
+    },
 };
-pub const KLF_REORDER = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.REORDER;
-pub const KLF_RESET = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.RESET;
-pub const KLF_SETFORPROCESS = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.SETFORPROCESS;
-pub const KLF_SHIFTLOCK = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.SHIFTLOCK;
-pub const KLF_ACTIVATE = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.ACTIVATE;
-pub const KLF_NOTELLSHELL = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.NOTELLSHELL;
-pub const KLF_REPLACELANG = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.REPLACELANG;
-pub const KLF_SUBSTITUTE_OK = ACTIVATE_KEYBOARD_LAYOUT_FLAGS.SUBSTITUTE_OK;
 
-pub const GET_MOUSE_MOVE_POINTS_EX_RESOLUTION = enum(u32) {
-    DISPLAY_POINTS = 1,
-    HIGH_RESOLUTION_POINTS = 2,
+pub const INPUT_TYPE = enum(u32) {
+    MOUSE = 0,
+    KEYBOARD = 1,
+    HARDWARE = 2,
 };
-pub const GMMP_USE_DISPLAY_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.DISPLAY_POINTS;
-pub const GMMP_USE_HIGH_RESOLUTION_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.HIGH_RESOLUTION_POINTS;
+pub const INPUT_MOUSE = INPUT_TYPE.MOUSE;
+pub const INPUT_KEYBOARD = INPUT_TYPE.KEYBOARD;
+pub const INPUT_HARDWARE = INPUT_TYPE.HARDWARE;
+
+pub const KBD_TYPE_INFO = extern struct {
+    dwVersion: u32,
+    dwType: u32,
+    dwSubType: u32,
+};
+
+pub const KBDTABLE_DESC = extern struct {
+    wszDllName: [32]u16,
+    dwType: u32,
+    dwSubType: u32,
+};
+
+pub const KBDTABLE_MULTI = extern struct {
+    nTables: u32,
+    aKbdTables: [8]KBDTABLE_DESC,
+};
 
 pub const KEYBD_EVENT_FLAGS = packed struct(u32) {
     EXTENDEDKEY: u1 = 0,
@@ -260,6 +321,55 @@ pub const KEYEVENTF_EXTENDEDKEY = KEYBD_EVENT_FLAGS{ .EXTENDEDKEY = 1 };
 pub const KEYEVENTF_KEYUP = KEYBD_EVENT_FLAGS{ .KEYUP = 1 };
 pub const KEYEVENTF_SCANCODE = KEYBD_EVENT_FLAGS{ .SCANCODE = 1 };
 pub const KEYEVENTF_UNICODE = KEYBD_EVENT_FLAGS{ .UNICODE = 1 };
+
+pub const KEYBDINPUT = extern struct {
+    wVk: VIRTUAL_KEY,
+    wScan: u16,
+    dwFlags: KEYBD_EVENT_FLAGS,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const LASTINPUTINFO = extern struct {
+    cbSize: u32,
+    dwTime: u32,
+};
+
+pub const LIGATURE1 = extern struct {
+    VirtualKey: u8,
+    ModificationNumber: u16,
+    wch: [1]u16,
+};
+
+pub const LIGATURE2 = extern struct {
+    VirtualKey: u8,
+    ModificationNumber: u16,
+    wch: [2]u16,
+};
+
+pub const LIGATURE3 = extern struct {
+    VirtualKey: u8,
+    ModificationNumber: u16,
+    wch: [3]u16,
+};
+
+pub const LIGATURE4 = extern struct {
+    VirtualKey: u8,
+    ModificationNumber: u16,
+    wch: [4]u16,
+};
+
+pub const LIGATURE5 = extern struct {
+    VirtualKey: u8,
+    ModificationNumber: u16,
+    wch: [5]u16,
+};
+
+pub const MODIFIERS = extern struct {
+    pVkToBit: ?*VK_TO_BIT,
+    wMaxModBits: u16,
+    ModNumber: [1]u8,
+};
 
 pub const MOUSE_EVENT_FLAGS = packed struct(u32) {
     MOVE: u1 = 0,
@@ -310,14 +420,56 @@ pub const MOUSEEVENTF_HWHEEL = MOUSE_EVENT_FLAGS{ .HWHEEL = 1 };
 pub const MOUSEEVENTF_MOVE_NOCOALESCE = MOUSE_EVENT_FLAGS{ .MOVE_NOCOALESCE = 1 };
 pub const MOUSEEVENTF_VIRTUALDESK = MOUSE_EVENT_FLAGS{ .VIRTUALDESK = 1 };
 
-pub const INPUT_TYPE = enum(u32) {
-    MOUSE = 0,
-    KEYBOARD = 1,
-    HARDWARE = 2,
+pub const MOUSEINPUT = extern struct {
+    dx: i32,
+    dy: i32,
+    mouseData: i32,
+    dwFlags: MOUSE_EVENT_FLAGS,
+    time: u32,
+    dwExtraInfo: usize,
 };
-pub const INPUT_MOUSE = INPUT_TYPE.MOUSE;
-pub const INPUT_KEYBOARD = INPUT_TYPE.KEYBOARD;
-pub const INPUT_HARDWARE = INPUT_TYPE.HARDWARE;
+
+pub const MOUSEMOVEPOINT = extern struct {
+    x: i32,
+    y: i32,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const tagKbdLayer = extern struct {
+    pCharModifiers: ?*MODIFIERS,
+    pVkToWcharTable: ?*VK_TO_WCHAR_TABLE,
+    pDeadKey: ?*DEADKEY,
+    pKeyNames: ?*VSC_LPWSTR,
+    pKeyNamesExt: ?*VSC_LPWSTR,
+    pKeyNamesDead: ?*?*u16,
+    pusVSCtoVK: ?*u16,
+    bMaxVSCtoVK: u8,
+    pVSCtoVK_E0: ?*VSC_VK,
+    pVSCtoVK_E1: ?*VSC_VK,
+    fLocaleFlags: u32,
+    nLgMax: u8,
+    cbLgEntry: u8,
+    pLigature: ?*LIGATURE1,
+    dwType: u32,
+    dwSubType: u32,
+};
+
+pub const tagKbdNlsLayer = extern struct {
+    OEMIdentifier: u16,
+    LayoutInformation: u16,
+    NumOfVkToF: u32,
+    pVkToF: ?*_VK_TO_FUNCTION_TABLE,
+    NumOfMouseVKey: i32,
+    pusMouseVKey: ?*u16,
+};
+
+pub const TRACKMOUSEEVENT = extern struct {
+    cbSize: u32,
+    dwFlags: TRACKMOUSEEVENT_FLAGS,
+    hwndTrack: ?HWND,
+    dwHoverTime: u32,
+};
 
 pub const TRACKMOUSEEVENT_FLAGS = packed struct(u32) {
     HOVER: u1 = 0,
@@ -827,26 +979,22 @@ pub const VK_TO_BIT = extern struct {
     ModBits: u8,
 };
 
-pub const MODIFIERS = extern struct {
-    pVkToBit: ?*VK_TO_BIT,
-    wMaxModBits: u16,
-    ModNumber: [1]u8,
-};
-
-pub const VSC_VK = extern struct {
-    Vsc: u8,
-    Vk: u16,
-};
-
-pub const VK_VSC = extern struct {
-    Vk: u8,
-    Vsc: u8,
+pub const VK_TO_WCHAR_TABLE = extern struct {
+    pVkToWchars: ?*VK_TO_WCHARS1,
+    nModifications: u8,
+    cbSize: u8,
 };
 
 pub const VK_TO_WCHARS1 = extern struct {
     VirtualKey: u8,
     Attributes: u8,
     wch: [1]u16,
+};
+
+pub const VK_TO_WCHARS10 = extern struct {
+    VirtualKey: u8,
+    Attributes: u8,
+    wch: [10]u16,
 };
 
 pub const VK_TO_WCHARS2 = extern struct {
@@ -897,52 +1045,9 @@ pub const VK_TO_WCHARS9 = extern struct {
     wch: [9]u16,
 };
 
-pub const VK_TO_WCHARS10 = extern struct {
-    VirtualKey: u8,
-    Attributes: u8,
-    wch: [10]u16,
-};
-
-pub const VK_TO_WCHAR_TABLE = extern struct {
-    pVkToWchars: ?*VK_TO_WCHARS1,
-    nModifications: u8,
-    cbSize: u8,
-};
-
-pub const DEADKEY = extern struct {
-    dwBoth: u32,
-    wchComposed: u16,
-    uFlags: u16,
-};
-
-pub const LIGATURE1 = extern struct {
-    VirtualKey: u8,
-    ModificationNumber: u16,
-    wch: [1]u16,
-};
-
-pub const LIGATURE2 = extern struct {
-    VirtualKey: u8,
-    ModificationNumber: u16,
-    wch: [2]u16,
-};
-
-pub const LIGATURE3 = extern struct {
-    VirtualKey: u8,
-    ModificationNumber: u16,
-    wch: [3]u16,
-};
-
-pub const LIGATURE4 = extern struct {
-    VirtualKey: u8,
-    ModificationNumber: u16,
-    wch: [4]u16,
-};
-
-pub const LIGATURE5 = extern struct {
-    VirtualKey: u8,
-    ModificationNumber: u16,
-    wch: [5]u16,
+pub const VK_VSC = extern struct {
+    Vk: u8,
+    Vsc: u8,
 };
 
 pub const VSC_LPWSTR = extern struct {
@@ -950,114 +1055,9 @@ pub const VSC_LPWSTR = extern struct {
     pwsz: ?PWSTR,
 };
 
-pub const tagKbdLayer = extern struct {
-    pCharModifiers: ?*MODIFIERS,
-    pVkToWcharTable: ?*VK_TO_WCHAR_TABLE,
-    pDeadKey: ?*DEADKEY,
-    pKeyNames: ?*VSC_LPWSTR,
-    pKeyNamesExt: ?*VSC_LPWSTR,
-    pKeyNamesDead: ?*?*u16,
-    pusVSCtoVK: ?*u16,
-    bMaxVSCtoVK: u8,
-    pVSCtoVK_E0: ?*VSC_VK,
-    pVSCtoVK_E1: ?*VSC_VK,
-    fLocaleFlags: u32,
-    nLgMax: u8,
-    cbLgEntry: u8,
-    pLigature: ?*LIGATURE1,
-    dwType: u32,
-    dwSubType: u32,
-};
-
-pub const _VK_FUNCTION_PARAM = extern struct {
-    NLSFEProcIndex: u8,
-    NLSFEProcParam: u32,
-};
-
-pub const _VK_TO_FUNCTION_TABLE = extern struct {
-    Vk: u8,
-    NLSFEProcType: u8,
-    NLSFEProcCurrent: u8,
-    NLSFEProcSwitch: u8,
-    NLSFEProc: [8]_VK_FUNCTION_PARAM,
-    NLSFEProcAlt: [8]_VK_FUNCTION_PARAM,
-};
-
-pub const tagKbdNlsLayer = extern struct {
-    OEMIdentifier: u16,
-    LayoutInformation: u16,
-    NumOfVkToF: u32,
-    pVkToF: ?*_VK_TO_FUNCTION_TABLE,
-    NumOfMouseVKey: i32,
-    pusMouseVKey: ?*u16,
-};
-
-pub const KBDTABLE_DESC = extern struct {
-    wszDllName: [32]u16,
-    dwType: u32,
-    dwSubType: u32,
-};
-
-pub const KBDTABLE_MULTI = extern struct {
-    nTables: u32,
-    aKbdTables: [8]KBDTABLE_DESC,
-};
-
-pub const KBD_TYPE_INFO = extern struct {
-    dwVersion: u32,
-    dwType: u32,
-    dwSubType: u32,
-};
-
-pub const MOUSEMOVEPOINT = extern struct {
-    x: i32,
-    y: i32,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const TRACKMOUSEEVENT = extern struct {
-    cbSize: u32,
-    dwFlags: TRACKMOUSEEVENT_FLAGS,
-    hwndTrack: ?HWND,
-    dwHoverTime: u32,
-};
-
-pub const MOUSEINPUT = extern struct {
-    dx: i32,
-    dy: i32,
-    mouseData: i32,
-    dwFlags: MOUSE_EVENT_FLAGS,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const KEYBDINPUT = extern struct {
-    wVk: VIRTUAL_KEY,
-    wScan: u16,
-    dwFlags: KEYBD_EVENT_FLAGS,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const HARDWAREINPUT = extern struct {
-    uMsg: u32,
-    wParamL: u16,
-    wParamH: u16,
-};
-
-pub const INPUT = extern struct {
-    type: INPUT_TYPE,
-    Anonymous: extern union {
-        mi: MOUSEINPUT,
-        ki: KEYBDINPUT,
-        hi: HARDWAREINPUT,
-    },
-};
-
-pub const LASTINPUTINFO = extern struct {
-    cbSize: u32,
-    dwTime: u32,
+pub const VSC_VK = extern struct {
+    Vsc: u8,
+    Vk: u16,
 };
 
 
@@ -1070,38 +1070,63 @@ pub extern "comctl32" fn _TrackMouseEvent(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn LoadKeyboardLayoutA(
-    pwszKLID: ?[*:0]const u8,
-    Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
-) callconv(.winapi) ?HKL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn LoadKeyboardLayoutW(
-    pwszKLID: ?[*:0]const u16,
-    Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
-) callconv(.winapi) ?HKL;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ActivateKeyboardLayout(
     hkl: ?HKL,
     Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
 ) callconv(.winapi) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn ToUnicodeEx(
-    wVirtKey: u32,
-    wScanCode: u32,
-    lpKeyState: *[256]u8,
-    pwszBuff: [*:0]u16,
-    cchBuff: i32,
-    wFlags: u32,
-    dwhkl: ?HKL,
-) callconv(.winapi) i32;
+pub extern "user32" fn BlockInput(
+    fBlockIt: BOOL,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn UnloadKeyboardLayout(
-    hkl: ?HKL,
+pub extern "user32" fn DragDetect(
+    hwnd: ?HWND,
+    pt: POINT,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn EnableWindow(
+    hWnd: ?HWND,
+    bEnable: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetActiveWindow(
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetAsyncKeyState(
+    vKey: i32,
+) callconv(.winapi) i16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetCapture(
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetDoubleClickTime(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetFocus(
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetKBCodePage(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetKeyboardLayout(
+    idThread: u32,
+) callconv(.winapi) ?HKL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetKeyboardLayoutList(
+    nBuff: i32,
+    lpList: ?[*]?HKL,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetKeyboardLayoutNameA(
@@ -1114,94 +1139,14 @@ pub extern "user32" fn GetKeyboardLayoutNameW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetKeyboardLayoutList(
-    nBuff: i32,
-    lpList: ?[*]?HKL,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetKeyboardLayout(
-    idThread: u32,
-) callconv(.winapi) ?HKL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetMouseMovePointsEx(
-    cbSize: u32,
-    lppt: ?*MOUSEMOVEPOINT,
-    lpptBuf: [*]MOUSEMOVEPOINT,
-    nBufPoints: i32,
-    resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn TrackMouseEvent(
-    lpEventTrack: ?*TRACKMOUSEEVENT,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "user32" fn RegisterHotKey(
-    hWnd: ?HWND,
-    id: i32,
-    fsModifiers: HOT_KEY_MODIFIERS,
-    vk: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn UnregisterHotKey(
-    hWnd: ?HWND,
-    id: i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SwapMouseButton(
-    fSwap: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetDoubleClickTime(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetDoubleClickTime(
-    param0: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetFocus(
-    hWnd: ?HWND,
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetActiveWindow(
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetFocus(
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetKBCodePage(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetKeyState(
-    nVirtKey: i32,
-) callconv(.winapi) i16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetAsyncKeyState(
-    vKey: i32,
-) callconv(.winapi) i16;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetKeyboardState(
     lpKeyState: *[256]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetKeyboardState(
-    lpKeyState: *[256]u8,
-) callconv(.winapi) BOOL;
+pub extern "user32" fn GetKeyboardType(
+    nTypeFlag: i32,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetKeyNameTextA(
@@ -1218,9 +1163,137 @@ pub extern "user32" fn GetKeyNameTextW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetKeyboardType(
-    nTypeFlag: i32,
+pub extern "user32" fn GetKeyState(
+    nVirtKey: i32,
+) callconv(.winapi) i16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetLastInputInfo(
+    plii: ?*LASTINPUTINFO,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetMouseMovePointsEx(
+    cbSize: u32,
+    lppt: ?*MOUSEMOVEPOINT,
+    lpptBuf: [*]MOUSEMOVEPOINT,
+    nBufPoints: i32,
+    resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION,
 ) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn IsWindowEnabled(
+    hWnd: ?HWND,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn keybd_event(
+    bVk: u8,
+    bScan: u8,
+    dwFlags: KEYBD_EVENT_FLAGS,
+    dwExtraInfo: usize,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn LoadKeyboardLayoutA(
+    pwszKLID: ?[*:0]const u8,
+    Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
+) callconv(.winapi) ?HKL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn LoadKeyboardLayoutW(
+    pwszKLID: ?[*:0]const u16,
+    Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
+) callconv(.winapi) ?HKL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn MapVirtualKeyA(
+    uCode: u32,
+    uMapType: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn MapVirtualKeyExA(
+    uCode: u32,
+    uMapType: u32,
+    dwhkl: ?HKL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn MapVirtualKeyExW(
+    uCode: u32,
+    uMapType: u32,
+    dwhkl: ?HKL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn MapVirtualKeyW(
+    uCode: u32,
+    uMapType: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn mouse_event(
+    dwFlags: MOUSE_EVENT_FLAGS,
+    dx: i32,
+    dy: i32,
+    dwData: u32,
+    dwExtraInfo: usize,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn OemKeyScan(
+    wOemChar: u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "user32" fn RegisterHotKey(
+    hWnd: ?HWND,
+    id: i32,
+    fsModifiers: HOT_KEY_MODIFIERS,
+    vk: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn ReleaseCapture(
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SendInput(
+    cInputs: u32,
+    pInputs: [*]INPUT,
+    cbSize: i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetActiveWindow(
+    hWnd: ?HWND,
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetCapture(
+    hWnd: ?HWND,
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetDoubleClickTime(
+    param0: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetFocus(
+    hWnd: ?HWND,
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetKeyboardState(
+    lpKeyState: *[256]u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SwapMouseButton(
+    fSwap: BOOL,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ToAscii(
@@ -1252,18 +1325,35 @@ pub extern "user32" fn ToUnicode(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn OemKeyScan(
-    wOemChar: u16,
-) callconv(.winapi) u32;
+pub extern "user32" fn ToUnicodeEx(
+    wVirtKey: u32,
+    wScanCode: u32,
+    lpKeyState: *[256]u8,
+    pwszBuff: [*:0]u16,
+    cchBuff: i32,
+    wFlags: u32,
+    dwhkl: ?HKL,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn TrackMouseEvent(
+    lpEventTrack: ?*TRACKMOUSEEVENT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn UnloadKeyboardLayout(
+    hkl: ?HKL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn UnregisterHotKey(
+    hWnd: ?HWND,
+    id: i32,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn VkKeyScanA(
     ch: CHAR,
-) callconv(.winapi) i16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn VkKeyScanW(
-    ch: u16,
 ) callconv(.winapi) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1279,111 +1369,14 @@ pub extern "user32" fn VkKeyScanExW(
 ) callconv(.winapi) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn keybd_event(
-    bVk: u8,
-    bScan: u8,
-    dwFlags: KEYBD_EVENT_FLAGS,
-    dwExtraInfo: usize,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn mouse_event(
-    dwFlags: MOUSE_EVENT_FLAGS,
-    dx: i32,
-    dy: i32,
-    dwData: u32,
-    dwExtraInfo: usize,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SendInput(
-    cInputs: u32,
-    pInputs: [*]INPUT,
-    cbSize: i32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetLastInputInfo(
-    plii: ?*LASTINPUTINFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn MapVirtualKeyA(
-    uCode: u32,
-    uMapType: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn MapVirtualKeyW(
-    uCode: u32,
-    uMapType: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn MapVirtualKeyExA(
-    uCode: u32,
-    uMapType: u32,
-    dwhkl: ?HKL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn MapVirtualKeyExW(
-    uCode: u32,
-    uMapType: u32,
-    dwhkl: ?HKL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetCapture(
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetCapture(
-    hWnd: ?HWND,
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn ReleaseCapture(
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn EnableWindow(
-    hWnd: ?HWND,
-    bEnable: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn IsWindowEnabled(
-    hWnd: ?HWND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DragDetect(
-    hwnd: ?HWND,
-    pt: POINT,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetActiveWindow(
-    hWnd: ?HWND,
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn BlockInput(
-    fBlockIt: BOOL,
-) callconv(.winapi) BOOL;
+pub extern "user32" fn VkKeyScanW(
+    ch: u16,
+) callconv(.winapi) i16;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
-pub const LoadKeyboardLayout = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().LoadKeyboardLayoutA,
-    .wide => @This().LoadKeyboardLayoutW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LoadKeyboardLayout' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const GetKeyboardLayoutName = switch (@import("../../zig.zig").unicode_mode) {
     .ansi => @This().GetKeyboardLayoutNameA,
     .wide => @This().GetKeyboardLayoutNameW,
@@ -1398,18 +1391,11 @@ pub const GetKeyNameText = switch (@import("../../zig.zig").unicode_mode) {
         "'GetKeyNameText' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const VkKeyScan = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().VkKeyScanA,
-    .wide => @This().VkKeyScanW,
+pub const LoadKeyboardLayout = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().LoadKeyboardLayoutA,
+    .wide => @This().LoadKeyboardLayoutW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'VkKeyScan' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const VkKeyScanEx = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().VkKeyScanExA,
-    .wide => @This().VkKeyScanExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'VkKeyScanEx' requires that UNICODE be set to true or false in the root module",
+        "'LoadKeyboardLayout' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const MapVirtualKey = switch (@import("../../zig.zig").unicode_mode) {
@@ -1424,6 +1410,20 @@ pub const MapVirtualKeyEx = switch (@import("../../zig.zig").unicode_mode) {
     .wide => @This().MapVirtualKeyExW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'MapVirtualKeyEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VkKeyScan = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().VkKeyScanA,
+    .wide => @This().VkKeyScanW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VkKeyScan' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VkKeyScanEx = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().VkKeyScanExA,
+    .wide => @This().VkKeyScanExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VkKeyScanEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

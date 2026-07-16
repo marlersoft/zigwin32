@@ -2,13 +2,13 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const PRINTTICKET_ISTREAM_APIS = @as(u32, 1);
-pub const S_PT_NO_CONFLICT = @as(u32, 262145);
-pub const S_PT_CONFLICT_RESOLVED = @as(u32, 262146);
-pub const E_PRINTTICKET_FORMAT = @as(u32, 2147745795);
-pub const E_PRINTCAPABILITIES_FORMAT = @as(u32, 2147745796);
 pub const E_DELTA_PRINTTICKET_FORMAT = @as(u32, 2147745797);
+pub const E_PRINTCAPABILITIES_FORMAT = @as(u32, 2147745796);
 pub const E_PRINTDEVICECAPABILITIES_FORMAT = @as(u32, 2147745798);
+pub const E_PRINTTICKET_FORMAT = @as(u32, 2147745795);
+pub const PRINTTICKET_ISTREAM_APIS = @as(u32, 1);
+pub const S_PT_CONFLICT_RESOLVED = @as(u32, 262146);
+pub const S_PT_NO_CONFLICT = @as(u32, 262145);
 
 //--------------------------------------------------------------------------------
 // Section: Types (2)
@@ -34,35 +34,28 @@ pub const kPTJobScope = EPrintTicketScope.JobScope;
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "prntvpt" fn PTQuerySchemaVersionSupport(
-    pszPrinterName: ?[*:0]const u16,
-    pMaxVersion: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "prntvpt" fn PTOpenProvider(
-    pszPrinterName: ?[*:0]const u16,
-    dwVersion: u32,
-    phProvider: ?*?HPTPROVIDER,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "prntvpt" fn PTOpenProviderEx(
-    pszPrinterName: ?[*:0]const u16,
-    dwMaxVersion: u32,
-    dwPrefVersion: u32,
-    phProvider: ?*?HPTPROVIDER,
-    pUsedVersion: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTCloseProvider(
     hProvider: ?HPTPROVIDER,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "prntvpt" fn PTReleaseMemory(
-    pBuffer: ?*anyopaque,
+pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
+    hProvider: ?HPTPROVIDER,
+    cbDevmode: u32,
+    pDevmode: ?*DEVMODEA,
+    scope: EPrintTicketScope,
+    pPrintTicket: ?*IStream,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "prntvpt" fn PTConvertPrintTicketToDevMode(
+    hProvider: ?HPTPROVIDER,
+    pPrintTicket: ?*IStream,
+    baseDevmodeType: EDefaultDevmodeType,
+    scope: EPrintTicketScope,
+    pcbDevmode: ?*u32,
+    ppDevmode: ?*?*DEVMODEA,
+    pbstrErrorMessage: ?*?BSTR,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -101,23 +94,30 @@ pub extern "prntvpt" fn PTMergeAndValidatePrintTicket(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "prntvpt" fn PTConvertPrintTicketToDevMode(
-    hProvider: ?HPTPROVIDER,
-    pPrintTicket: ?*IStream,
-    baseDevmodeType: EDefaultDevmodeType,
-    scope: EPrintTicketScope,
-    pcbDevmode: ?*u32,
-    ppDevmode: ?*?*DEVMODEA,
-    pbstrErrorMessage: ?*?BSTR,
+pub extern "prntvpt" fn PTOpenProvider(
+    pszPrinterName: ?[*:0]const u16,
+    dwVersion: u32,
+    phProvider: ?*?HPTPROVIDER,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
-    hProvider: ?HPTPROVIDER,
-    cbDevmode: u32,
-    pDevmode: ?*DEVMODEA,
-    scope: EPrintTicketScope,
-    pPrintTicket: ?*IStream,
+pub extern "prntvpt" fn PTOpenProviderEx(
+    pszPrinterName: ?[*:0]const u16,
+    dwMaxVersion: u32,
+    dwPrefVersion: u32,
+    phProvider: ?*?HPTPROVIDER,
+    pUsedVersion: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "prntvpt" fn PTQuerySchemaVersionSupport(
+    pszPrinterName: ?[*:0]const u16,
+    pMaxVersion: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "prntvpt" fn PTReleaseMemory(
+    pBuffer: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 

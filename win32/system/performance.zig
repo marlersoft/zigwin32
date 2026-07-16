@@ -2,359 +2,1105 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (185)
 //--------------------------------------------------------------------------------
-pub const MAX_COUNTER_PATH = @as(u32, 256);
-pub const PDH_MAX_COUNTER_NAME = @as(u32, 1024);
-pub const PDH_MAX_INSTANCE_NAME = @as(u32, 1024);
-pub const PDH_MAX_COUNTER_PATH = @as(u32, 2048);
-pub const PDH_MAX_DATASOURCE_PATH = @as(u32, 1024);
-pub const H_WBEM_DATASOURCE = @as(i32, -1);
-pub const PDH_MAX_SCALE = @as(i32, 7);
-pub const PDH_MIN_SCALE = @as(i32, -7);
-pub const PDH_NOEXPANDCOUNTERS = @as(u32, 1);
-pub const PDH_NOEXPANDINSTANCES = @as(u32, 2);
-pub const PDH_REFRESHCOUNTERS = @as(u32, 4);
-pub const PDH_LOG_TYPE_RETIRED_BIN = @as(u32, 3);
-pub const PDH_LOG_TYPE_TRACE_KERNEL = @as(u32, 4);
-pub const PDH_LOG_TYPE_TRACE_GENERIC = @as(u32, 5);
-pub const PERF_PROVIDER_USER_MODE = @as(u32, 0);
-pub const PERF_PROVIDER_KERNEL_MODE = @as(u32, 1);
-pub const PERF_PROVIDER_DRIVER = @as(u32, 2);
-pub const PERF_COUNTERSET_FLAG_MULTIPLE = @as(u32, 2);
-pub const PERF_COUNTERSET_FLAG_AGGREGATE = @as(u32, 4);
-pub const PERF_COUNTERSET_FLAG_HISTORY = @as(u32, 8);
-pub const PERF_COUNTERSET_FLAG_INSTANCE = @as(u32, 16);
-pub const PERF_COUNTERSET_SINGLE_INSTANCE = @as(u32, 0);
-pub const PERF_COUNTERSET_MULTI_INSTANCES = @as(u32, 2);
-pub const PERF_COUNTERSET_SINGLE_AGGREGATE = @as(u32, 4);
-pub const PERF_AGGREGATE_MAX = @as(u32, 4);
-pub const PERF_ATTRIB_BY_REFERENCE = @as(u64, 1);
-pub const PERF_ATTRIB_NO_DISPLAYABLE = @as(u64, 2);
-pub const PERF_ATTRIB_NO_GROUP_SEPARATOR = @as(u64, 4);
-pub const PERF_ATTRIB_DISPLAY_AS_REAL = @as(u64, 8);
-pub const PERF_ATTRIB_DISPLAY_AS_HEX = @as(u64, 16);
-pub const PERF_WILDCARD_COUNTER = @as(u32, 4294967295);
-pub const PERF_WILDCARD_INSTANCE = "*";
-pub const PERF_AGGREGATE_INSTANCE = "_Total";
-pub const PERF_MAX_INSTANCE_NAME = @as(u32, 1024);
-pub const PERF_ADD_COUNTER = @as(u32, 1);
-pub const PERF_REMOVE_COUNTER = @as(u32, 2);
-pub const PERF_ENUM_INSTANCES = @as(u32, 3);
-pub const PERF_COLLECT_START = @as(u32, 5);
-pub const PERF_COLLECT_END = @as(u32, 6);
-pub const PERF_FILTER = @as(u32, 9);
-pub const PERF_DATA_VERSION = @as(u32, 1);
-pub const PERF_DATA_REVISION = @as(u32, 1);
-pub const PERF_NO_INSTANCES = @as(i32, -1);
-pub const PERF_METADATA_MULTIPLE_INSTANCES = @as(i32, -2);
-pub const PERF_METADATA_NO_INSTANCES = @as(i32, -3);
-pub const PERF_SIZE_DWORD = @as(u32, 0);
-pub const PERF_SIZE_LARGE = @as(u32, 256);
-pub const PERF_SIZE_ZERO = @as(u32, 512);
-pub const PERF_SIZE_VARIABLE_LEN = @as(u32, 768);
-pub const PERF_TYPE_NUMBER = @as(u32, 0);
-pub const PERF_TYPE_COUNTER = @as(u32, 1024);
-pub const PERF_TYPE_TEXT = @as(u32, 2048);
-pub const PERF_TYPE_ZERO = @as(u32, 3072);
-pub const PERF_NUMBER_HEX = @as(u32, 0);
-pub const PERF_NUMBER_DECIMAL = @as(u32, 65536);
-pub const PERF_NUMBER_DEC_1000 = @as(u32, 131072);
-pub const PERF_COUNTER_VALUE = @as(u32, 0);
-pub const PERF_COUNTER_RATE = @as(u32, 65536);
-pub const PERF_COUNTER_FRACTION = @as(u32, 131072);
-pub const PERF_COUNTER_BASE = @as(u32, 196608);
-pub const PERF_COUNTER_ELAPSED = @as(u32, 262144);
-pub const PERF_COUNTER_QUEUELEN = @as(u32, 327680);
-pub const PERF_COUNTER_HISTOGRAM = @as(u32, 393216);
-pub const PERF_COUNTER_PRECISION = @as(u32, 458752);
-pub const PERF_TEXT_UNICODE = @as(u32, 0);
-pub const PERF_TEXT_ASCII = @as(u32, 65536);
-pub const PERF_TIMER_TICK = @as(u32, 0);
-pub const PERF_TIMER_100NS = @as(u32, 1048576);
-pub const PERF_OBJECT_TIMER = @as(u32, 2097152);
-pub const PERF_DELTA_COUNTER = @as(u32, 4194304);
-pub const PERF_DELTA_BASE = @as(u32, 8388608);
-pub const PERF_INVERSE_COUNTER = @as(u32, 16777216);
-pub const PERF_MULTI_COUNTER = @as(u32, 33554432);
-pub const PERF_DISPLAY_NO_SUFFIX = @as(u32, 0);
-pub const PERF_DISPLAY_PER_SEC = @as(u32, 268435456);
-pub const PERF_DISPLAY_PERCENT = @as(u32, 536870912);
-pub const PERF_DISPLAY_SECONDS = @as(u32, 805306368);
-pub const PERF_DISPLAY_NOSHOW = @as(u32, 1073741824);
-pub const PERF_COUNTER_HISTOGRAM_TYPE = @as(u32, 2147483648);
-pub const PERF_NO_UNIQUE_ID = @as(i32, -1);
-pub const MAX_PERF_OBJECTS_IN_QUERY_FUNCTION = @as(i32, 64);
-pub const WINPERF_LOG_NONE = @as(u32, 0);
-pub const WINPERF_LOG_USER = @as(u32, 1);
-pub const WINPERF_LOG_DEBUG = @as(u32, 2);
-pub const WINPERF_LOG_VERBOSE = @as(u32, 3);
-pub const LIBID_SystemMonitor = Guid.initString("1b773e42-2509-11cf-942f-008029004347");
 pub const DIID_DICounterItem = Guid.initString("c08c4ff2-0e2e-11cf-942c-008029004347");
 pub const DIID_DILogFileItem = Guid.initString("8d093ffc-f777-4917-82d1-833fbc54c58f");
 pub const DIID_DISystemMonitor = Guid.initString("13d73d81-c32e-11cf-9398-00aa00a3ddea");
-pub const DIID_DISystemMonitorInternal = Guid.initString("194eb242-c32c-11cf-9398-00aa00a3ddea");
 pub const DIID_DISystemMonitorEvents = Guid.initString("84979930-4ab3-11cf-943a-008029004347");
-pub const PDH_CSTATUS_VALID_DATA = @as(i32, 0);
-pub const PDH_CSTATUS_NEW_DATA = @as(i32, 1);
-pub const PDH_CSTATUS_NO_MACHINE = @as(i32, -2147481648);
-pub const PDH_CSTATUS_NO_INSTANCE = @as(i32, -2147481647);
-pub const PDH_MORE_DATA = @as(i32, -2147481646);
-pub const PDH_CSTATUS_ITEM_NOT_VALIDATED = @as(i32, -2147481645);
-pub const PDH_RETRY = @as(i32, -2147481644);
-pub const PDH_NO_DATA = @as(i32, -2147481643);
+pub const DIID_DISystemMonitorInternal = Guid.initString("194eb242-c32c-11cf-9398-00aa00a3ddea");
+pub const H_WBEM_DATASOURCE = @as(i32, -1);
+pub const LIBID_SystemMonitor = Guid.initString("1b773e42-2509-11cf-942f-008029004347");
+pub const MAX_COUNTER_PATH = @as(u32, 256);
+pub const MAX_PERF_OBJECTS_IN_QUERY_FUNCTION = @as(i32, 64);
+pub const PDH_ACCESS_DENIED = @as(i32, -1073738789);
+pub const PDH_ASYNC_QUERY_TIMEOUT = @as(i32, -2147481637);
+pub const PDH_BINARY_LOG_CORRUPT = @as(i32, -1073738761);
 pub const PDH_CALC_NEGATIVE_DENOMINATOR = @as(i32, -2147481642);
 pub const PDH_CALC_NEGATIVE_TIMEBASE = @as(i32, -2147481641);
 pub const PDH_CALC_NEGATIVE_VALUE = @as(i32, -2147481640);
-pub const PDH_DIALOG_CANCELLED = @as(i32, -2147481639);
-pub const PDH_END_OF_LOG_FILE = @as(i32, -2147481638);
-pub const PDH_ASYNC_QUERY_TIMEOUT = @as(i32, -2147481637);
-pub const PDH_CANNOT_SET_DEFAULT_REALTIME_DATASOURCE = @as(i32, -2147481636);
-pub const PDH_UNABLE_MAP_NAME_FILES = @as(i32, -2147480619);
-pub const PDH_PLA_VALIDATION_WARNING = @as(i32, -2147480589);
-pub const PDH_CSTATUS_NO_OBJECT = @as(i32, -1073738824);
-pub const PDH_CSTATUS_NO_COUNTER = @as(i32, -1073738823);
-pub const PDH_CSTATUS_INVALID_DATA = @as(i32, -1073738822);
-pub const PDH_MEMORY_ALLOCATION_FAILURE = @as(i32, -1073738821);
-pub const PDH_INVALID_HANDLE = @as(i32, -1073738820);
-pub const PDH_INVALID_ARGUMENT = @as(i32, -1073738819);
-pub const PDH_FUNCTION_NOT_FOUND = @as(i32, -1073738818);
-pub const PDH_CSTATUS_NO_COUNTERNAME = @as(i32, -1073738817);
-pub const PDH_CSTATUS_BAD_COUNTERNAME = @as(i32, -1073738816);
-pub const PDH_INVALID_BUFFER = @as(i32, -1073738815);
-pub const PDH_INSUFFICIENT_BUFFER = @as(i32, -1073738814);
 pub const PDH_CANNOT_CONNECT_MACHINE = @as(i32, -1073738813);
-pub const PDH_INVALID_PATH = @as(i32, -1073738812);
-pub const PDH_INVALID_INSTANCE = @as(i32, -1073738811);
-pub const PDH_INVALID_DATA = @as(i32, -1073738810);
-pub const PDH_NO_DIALOG_DATA = @as(i32, -1073738809);
+pub const PDH_CANNOT_CONNECT_WMI_SERVER = @as(i32, -1073738776);
 pub const PDH_CANNOT_READ_NAME_STRINGS = @as(i32, -1073738808);
-pub const PDH_LOG_FILE_CREATE_ERROR = @as(i32, -1073738807);
-pub const PDH_LOG_FILE_OPEN_ERROR = @as(i32, -1073738806);
-pub const PDH_LOG_TYPE_NOT_FOUND = @as(i32, -1073738805);
-pub const PDH_NO_MORE_DATA = @as(i32, -1073738804);
-pub const PDH_ENTRY_NOT_IN_LOG_FILE = @as(i32, -1073738803);
+pub const PDH_CANNOT_SET_DEFAULT_REALTIME_DATASOURCE = @as(i32, -2147481636);
+pub const PDH_COUNTER_ALREADY_IN_QUERY = @as(i32, -1073738762);
+pub const PDH_CSTATUS_BAD_COUNTERNAME = @as(i32, -1073738816);
+pub const PDH_CSTATUS_INVALID_DATA = @as(i32, -1073738822);
+pub const PDH_CSTATUS_ITEM_NOT_VALIDATED = @as(i32, -2147481645);
+pub const PDH_CSTATUS_NEW_DATA = @as(i32, 1);
+pub const PDH_CSTATUS_NO_COUNTER = @as(i32, -1073738823);
+pub const PDH_CSTATUS_NO_COUNTERNAME = @as(i32, -1073738817);
+pub const PDH_CSTATUS_NO_INSTANCE = @as(i32, -2147481647);
+pub const PDH_CSTATUS_NO_MACHINE = @as(i32, -2147481648);
+pub const PDH_CSTATUS_NO_OBJECT = @as(i32, -1073738824);
+pub const PDH_CSTATUS_VALID_DATA = @as(i32, 0);
 pub const PDH_DATA_SOURCE_IS_LOG_FILE = @as(i32, -1073738802);
 pub const PDH_DATA_SOURCE_IS_REAL_TIME = @as(i32, -1073738801);
-pub const PDH_UNABLE_READ_LOG_HEADER = @as(i32, -1073738800);
-pub const PDH_FILE_NOT_FOUND = @as(i32, -1073738799);
+pub const PDH_DIALOG_CANCELLED = @as(i32, -2147481639);
+pub const PDH_END_OF_LOG_FILE = @as(i32, -2147481638);
+pub const PDH_ENTRY_NOT_IN_LOG_FILE = @as(i32, -1073738803);
 pub const PDH_FILE_ALREADY_EXISTS = @as(i32, -1073738798);
-pub const PDH_NOT_IMPLEMENTED = @as(i32, -1073738797);
-pub const PDH_STRING_NOT_FOUND = @as(i32, -1073738796);
-pub const PDH_UNKNOWN_LOG_FORMAT = @as(i32, -1073738794);
-pub const PDH_UNKNOWN_LOGSVC_COMMAND = @as(i32, -1073738793);
-pub const PDH_LOGSVC_QUERY_NOT_FOUND = @as(i32, -1073738792);
-pub const PDH_LOGSVC_NOT_OPENED = @as(i32, -1073738791);
-pub const PDH_WBEM_ERROR = @as(i32, -1073738790);
-pub const PDH_ACCESS_DENIED = @as(i32, -1073738789);
-pub const PDH_LOG_FILE_TOO_SMALL = @as(i32, -1073738788);
+pub const PDH_FILE_NOT_FOUND = @as(i32, -1073738799);
+pub const PDH_FUNCTION_NOT_FOUND = @as(i32, -1073738818);
+pub const PDH_INCORRECT_APPEND_TIME = @as(i32, -1073738757);
+pub const PDH_INSUFFICIENT_BUFFER = @as(i32, -1073738814);
+pub const PDH_INVALID_ARGUMENT = @as(i32, -1073738819);
+pub const PDH_INVALID_BUFFER = @as(i32, -1073738815);
+pub const PDH_INVALID_DATA = @as(i32, -1073738810);
 pub const PDH_INVALID_DATASOURCE = @as(i32, -1073738787);
+pub const PDH_INVALID_HANDLE = @as(i32, -1073738820);
+pub const PDH_INVALID_INSTANCE = @as(i32, -1073738811);
+pub const PDH_INVALID_PATH = @as(i32, -1073738812);
+pub const PDH_INVALID_SQL_LOG_FORMAT = @as(i32, -1073738763);
 pub const PDH_INVALID_SQLDB = @as(i32, -1073738786);
+pub const PDH_LOG_FILE_CREATE_ERROR = @as(i32, -1073738807);
+pub const PDH_LOG_FILE_OPEN_ERROR = @as(i32, -1073738806);
+pub const PDH_LOG_FILE_TOO_SMALL = @as(i32, -1073738788);
+pub const PDH_LOG_SAMPLE_TOO_SMALL = @as(i32, -1073738760);
+pub const PDH_LOG_TYPE_NOT_FOUND = @as(i32, -1073738805);
+pub const PDH_LOG_TYPE_RETIRED_BIN = @as(u32, 3);
+pub const PDH_LOG_TYPE_TRACE_GENERIC = @as(u32, 5);
+pub const PDH_LOG_TYPE_TRACE_KERNEL = @as(u32, 4);
+pub const PDH_LOGSVC_NOT_OPENED = @as(i32, -1073738791);
+pub const PDH_LOGSVC_QUERY_NOT_FOUND = @as(i32, -1073738792);
+pub const PDH_MAX_COUNTER_NAME = @as(u32, 1024);
+pub const PDH_MAX_COUNTER_PATH = @as(u32, 2048);
+pub const PDH_MAX_DATASOURCE_PATH = @as(u32, 1024);
+pub const PDH_MAX_INSTANCE_NAME = @as(u32, 1024);
+pub const PDH_MAX_SCALE = @as(i32, 7);
+pub const PDH_MEMORY_ALLOCATION_FAILURE = @as(i32, -1073738821);
+pub const PDH_MIN_SCALE = @as(i32, -7);
+pub const PDH_MORE_DATA = @as(i32, -2147481646);
 pub const PDH_NO_COUNTERS = @as(i32, -1073738785);
-pub const PDH_SQL_ALLOC_FAILED = @as(i32, -1073738784);
-pub const PDH_SQL_ALLOCCON_FAILED = @as(i32, -1073738783);
-pub const PDH_SQL_EXEC_DIRECT_FAILED = @as(i32, -1073738782);
-pub const PDH_SQL_FETCH_FAILED = @as(i32, -1073738781);
-pub const PDH_SQL_ROWCOUNT_FAILED = @as(i32, -1073738780);
-pub const PDH_SQL_MORE_RESULTS_FAILED = @as(i32, -1073738779);
-pub const PDH_SQL_CONNECT_FAILED = @as(i32, -1073738778);
-pub const PDH_SQL_BIND_FAILED = @as(i32, -1073738777);
-pub const PDH_CANNOT_CONNECT_WMI_SERVER = @as(i32, -1073738776);
+pub const PDH_NO_DATA = @as(i32, -2147481643);
+pub const PDH_NO_DIALOG_DATA = @as(i32, -1073738809);
+pub const PDH_NO_MORE_DATA = @as(i32, -1073738804);
+pub const PDH_NOEXPANDCOUNTERS = @as(u32, 1);
+pub const PDH_NOEXPANDINSTANCES = @as(u32, 2);
+pub const PDH_NOT_IMPLEMENTED = @as(i32, -1073738797);
+pub const PDH_OS_EARLIER_VERSION = @as(i32, -1073738758);
+pub const PDH_OS_LATER_VERSION = @as(i32, -1073738759);
 pub const PDH_PLA_COLLECTION_ALREADY_RUNNING = @as(i32, -1073738775);
-pub const PDH_PLA_ERROR_SCHEDULE_OVERLAP = @as(i32, -1073738774);
 pub const PDH_PLA_COLLECTION_NOT_FOUND = @as(i32, -1073738773);
-pub const PDH_PLA_ERROR_SCHEDULE_ELAPSED = @as(i32, -1073738772);
-pub const PDH_PLA_ERROR_NOSTART = @as(i32, -1073738771);
 pub const PDH_PLA_ERROR_ALREADY_EXISTS = @as(i32, -1073738770);
-pub const PDH_PLA_ERROR_TYPE_MISMATCH = @as(i32, -1073738769);
 pub const PDH_PLA_ERROR_FILEPATH = @as(i32, -1073738768);
+pub const PDH_PLA_ERROR_NAME_TOO_LONG = @as(i32, -1073738764);
+pub const PDH_PLA_ERROR_NOSTART = @as(i32, -1073738771);
+pub const PDH_PLA_ERROR_SCHEDULE_ELAPSED = @as(i32, -1073738772);
+pub const PDH_PLA_ERROR_SCHEDULE_OVERLAP = @as(i32, -1073738774);
+pub const PDH_PLA_ERROR_TYPE_MISMATCH = @as(i32, -1073738769);
 pub const PDH_PLA_SERVICE_ERROR = @as(i32, -1073738767);
 pub const PDH_PLA_VALIDATION_ERROR = @as(i32, -1073738766);
-pub const PDH_PLA_ERROR_NAME_TOO_LONG = @as(i32, -1073738764);
-pub const PDH_INVALID_SQL_LOG_FORMAT = @as(i32, -1073738763);
-pub const PDH_COUNTER_ALREADY_IN_QUERY = @as(i32, -1073738762);
-pub const PDH_BINARY_LOG_CORRUPT = @as(i32, -1073738761);
-pub const PDH_LOG_SAMPLE_TOO_SMALL = @as(i32, -1073738760);
-pub const PDH_OS_LATER_VERSION = @as(i32, -1073738759);
-pub const PDH_OS_EARLIER_VERSION = @as(i32, -1073738758);
-pub const PDH_INCORRECT_APPEND_TIME = @as(i32, -1073738757);
-pub const PDH_UNMATCHED_APPEND_COUNTER = @as(i32, -1073738756);
-pub const PDH_SQL_ALTER_DETAIL_FAILED = @as(i32, -1073738755);
+pub const PDH_PLA_VALIDATION_WARNING = @as(i32, -2147480589);
 pub const PDH_QUERY_PERF_DATA_TIMEOUT = @as(i32, -1073738754);
-pub const PLA_CAPABILITY_LOCAL = @as(u32, 268435456);
-pub const PLA_CAPABILITY_V1_SVC = @as(u32, 1);
-pub const PLA_CAPABILITY_V1_SESSION = @as(u32, 2);
-pub const PLA_CAPABILITY_V1_SYSTEM = @as(u32, 4);
+pub const PDH_REFRESHCOUNTERS = @as(u32, 4);
+pub const PDH_RETRY = @as(i32, -2147481644);
+pub const PDH_SQL_ALLOC_FAILED = @as(i32, -1073738784);
+pub const PDH_SQL_ALLOCCON_FAILED = @as(i32, -1073738783);
+pub const PDH_SQL_ALTER_DETAIL_FAILED = @as(i32, -1073738755);
+pub const PDH_SQL_BIND_FAILED = @as(i32, -1073738777);
+pub const PDH_SQL_CONNECT_FAILED = @as(i32, -1073738778);
+pub const PDH_SQL_EXEC_DIRECT_FAILED = @as(i32, -1073738782);
+pub const PDH_SQL_FETCH_FAILED = @as(i32, -1073738781);
+pub const PDH_SQL_MORE_RESULTS_FAILED = @as(i32, -1073738779);
+pub const PDH_SQL_ROWCOUNT_FAILED = @as(i32, -1073738780);
+pub const PDH_STRING_NOT_FOUND = @as(i32, -1073738796);
+pub const PDH_UNABLE_MAP_NAME_FILES = @as(i32, -2147480619);
+pub const PDH_UNABLE_READ_LOG_HEADER = @as(i32, -1073738800);
+pub const PDH_UNKNOWN_LOG_FORMAT = @as(i32, -1073738794);
+pub const PDH_UNKNOWN_LOGSVC_COMMAND = @as(i32, -1073738793);
+pub const PDH_UNMATCHED_APPEND_COUNTER = @as(i32, -1073738756);
+pub const PDH_WBEM_ERROR = @as(i32, -1073738790);
+pub const PERF_ADD_COUNTER = @as(u32, 1);
+pub const PERF_AGGREGATE_INSTANCE = "_Total";
+pub const PERF_AGGREGATE_MAX = @as(u32, 4);
+pub const PERF_ATTRIB_BY_REFERENCE = @as(u64, 1);
+pub const PERF_ATTRIB_DISPLAY_AS_HEX = @as(u64, 16);
+pub const PERF_ATTRIB_DISPLAY_AS_REAL = @as(u64, 8);
+pub const PERF_ATTRIB_NO_DISPLAYABLE = @as(u64, 2);
+pub const PERF_ATTRIB_NO_GROUP_SEPARATOR = @as(u64, 4);
+pub const PERF_COLLECT_END = @as(u32, 6);
+pub const PERF_COLLECT_START = @as(u32, 5);
+pub const PERF_COUNTER_BASE = @as(u32, 196608);
+pub const PERF_COUNTER_ELAPSED = @as(u32, 262144);
+pub const PERF_COUNTER_FRACTION = @as(u32, 131072);
+pub const PERF_COUNTER_HISTOGRAM = @as(u32, 393216);
+pub const PERF_COUNTER_HISTOGRAM_TYPE = @as(u32, 2147483648);
+pub const PERF_COUNTER_PRECISION = @as(u32, 458752);
+pub const PERF_COUNTER_QUEUELEN = @as(u32, 327680);
+pub const PERF_COUNTER_RATE = @as(u32, 65536);
+pub const PERF_COUNTER_VALUE = @as(u32, 0);
+pub const PERF_COUNTERSET_FLAG_AGGREGATE = @as(u32, 4);
+pub const PERF_COUNTERSET_FLAG_HISTORY = @as(u32, 8);
+pub const PERF_COUNTERSET_FLAG_INSTANCE = @as(u32, 16);
+pub const PERF_COUNTERSET_FLAG_MULTIPLE = @as(u32, 2);
+pub const PERF_COUNTERSET_MULTI_INSTANCES = @as(u32, 2);
+pub const PERF_COUNTERSET_SINGLE_AGGREGATE = @as(u32, 4);
+pub const PERF_COUNTERSET_SINGLE_INSTANCE = @as(u32, 0);
+pub const PERF_DATA_REVISION = @as(u32, 1);
+pub const PERF_DATA_VERSION = @as(u32, 1);
+pub const PERF_DELTA_BASE = @as(u32, 8388608);
+pub const PERF_DELTA_COUNTER = @as(u32, 4194304);
+pub const PERF_DISPLAY_NO_SUFFIX = @as(u32, 0);
+pub const PERF_DISPLAY_NOSHOW = @as(u32, 1073741824);
+pub const PERF_DISPLAY_PER_SEC = @as(u32, 268435456);
+pub const PERF_DISPLAY_PERCENT = @as(u32, 536870912);
+pub const PERF_DISPLAY_SECONDS = @as(u32, 805306368);
+pub const PERF_ENUM_INSTANCES = @as(u32, 3);
+pub const PERF_FILTER = @as(u32, 9);
+pub const PERF_INVERSE_COUNTER = @as(u32, 16777216);
+pub const PERF_MAX_INSTANCE_NAME = @as(u32, 1024);
+pub const PERF_METADATA_MULTIPLE_INSTANCES = @as(i32, -2);
+pub const PERF_METADATA_NO_INSTANCES = @as(i32, -3);
+pub const PERF_MULTI_COUNTER = @as(u32, 33554432);
+pub const PERF_NO_INSTANCES = @as(i32, -1);
+pub const PERF_NO_UNIQUE_ID = @as(i32, -1);
+pub const PERF_NUMBER_DEC_1000 = @as(u32, 131072);
+pub const PERF_NUMBER_DECIMAL = @as(u32, 65536);
+pub const PERF_NUMBER_HEX = @as(u32, 0);
+pub const PERF_OBJECT_TIMER = @as(u32, 2097152);
+pub const PERF_PROVIDER_DRIVER = @as(u32, 2);
+pub const PERF_PROVIDER_KERNEL_MODE = @as(u32, 1);
+pub const PERF_PROVIDER_USER_MODE = @as(u32, 0);
+pub const PERF_REMOVE_COUNTER = @as(u32, 2);
+pub const PERF_SIZE_DWORD = @as(u32, 0);
+pub const PERF_SIZE_LARGE = @as(u32, 256);
+pub const PERF_SIZE_VARIABLE_LEN = @as(u32, 768);
+pub const PERF_SIZE_ZERO = @as(u32, 512);
+pub const PERF_TEXT_ASCII = @as(u32, 65536);
+pub const PERF_TEXT_UNICODE = @as(u32, 0);
+pub const PERF_TIMER_100NS = @as(u32, 1048576);
+pub const PERF_TIMER_TICK = @as(u32, 0);
+pub const PERF_TYPE_COUNTER = @as(u32, 1024);
+pub const PERF_TYPE_NUMBER = @as(u32, 0);
+pub const PERF_TYPE_TEXT = @as(u32, 2048);
+pub const PERF_TYPE_ZERO = @as(u32, 3072);
+pub const PERF_WILDCARD_COUNTER = @as(u32, 4294967295);
+pub const PERF_WILDCARD_INSTANCE = "*";
+pub const PLA_CAPABILITY_AUTOLOGGER = @as(u32, 32);
 pub const PLA_CAPABILITY_LEGACY_SESSION = @as(u32, 8);
 pub const PLA_CAPABILITY_LEGACY_SVC = @as(u32, 16);
-pub const PLA_CAPABILITY_AUTOLOGGER = @as(u32, 32);
+pub const PLA_CAPABILITY_LOCAL = @as(u32, 268435456);
+pub const PLA_CAPABILITY_V1_SESSION = @as(u32, 2);
+pub const PLA_CAPABILITY_V1_SVC = @as(u32, 1);
+pub const PLA_CAPABILITY_V1_SYSTEM = @as(u32, 4);
 pub const S_PDH = Guid.initString("04d66358-c4a1-419b-8023-23b73902de2c");
+pub const WINPERF_LOG_DEBUG = @as(u32, 2);
+pub const WINPERF_LOG_NONE = @as(u32, 0);
+pub const WINPERF_LOG_USER = @as(u32, 1);
+pub const WINPERF_LOG_VERBOSE = @as(u32, 3);
 
 //--------------------------------------------------------------------------------
 // Section: Types (144)
 //--------------------------------------------------------------------------------
-pub const PERF_DETAIL = enum(u32) {
-    NOVICE = 100,
-    ADVANCED = 200,
-    EXPERT = 300,
-    WIZARD = 400,
+const IID__ICounterItemUnion_Value = Guid.initString("de1a6b74-9182-4c41-8e2c-24c2cd30ee83");
+pub const IID__ICounterItemUnion = &IID__ICounterItemUnion_Value;
+pub const _ICounterItemUnion = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const _ICounterItemUnion,
+            pdblValue: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Color: *const fn(
+            self: *const _ICounterItemUnion,
+            Color: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Color: *const fn(
+            self: *const _ICounterItemUnion,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Width: *const fn(
+            self: *const _ICounterItemUnion,
+            iWidth: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Width: *const fn(
+            self: *const _ICounterItemUnion,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LineStyle: *const fn(
+            self: *const _ICounterItemUnion,
+            iLineStyle: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LineStyle: *const fn(
+            self: *const _ICounterItemUnion,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ScaleFactor: *const fn(
+            self: *const _ICounterItemUnion,
+            iScale: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ScaleFactor: *const fn(
+            self: *const _ICounterItemUnion,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const _ICounterItemUnion,
+            pstrValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetValue: *const fn(
+            self: *const _ICounterItemUnion,
+            Value: ?*f64,
+            Status: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetStatistics: *const fn(
+            self: *const _ICounterItemUnion,
+            Max: ?*f64,
+            Min: ?*f64,
+            Avg: ?*f64,
+            Status: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Selected: *const fn(
+            self: *const _ICounterItemUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Selected: *const fn(
+            self: *const _ICounterItemUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Visible: *const fn(
+            self: *const _ICounterItemUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Visible: *const fn(
+            self: *const _ICounterItemUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetDataAt: *const fn(
+            self: *const _ICounterItemUnion,
+            iIndex: i32,
+            iWhich: SysmonDataType,
+            pVariant: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Value(self: *const _ICounterItemUnion, pdblValue: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pdblValue);
+    }
+    pub fn put_Color(self: *const _ICounterItemUnion, Color: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Color(self, Color);
+    }
+    pub fn get_Color(self: *const _ICounterItemUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Color(self, pColor);
+    }
+    pub fn put_Width(self: *const _ICounterItemUnion, iWidth: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Width(self, iWidth);
+    }
+    pub fn get_Width(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Width(self, piValue);
+    }
+    pub fn put_LineStyle(self: *const _ICounterItemUnion, iLineStyle: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LineStyle(self, iLineStyle);
+    }
+    pub fn get_LineStyle(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LineStyle(self, piValue);
+    }
+    pub fn put_ScaleFactor(self: *const _ICounterItemUnion, iScale: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ScaleFactor(self, iScale);
+    }
+    pub fn get_ScaleFactor(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ScaleFactor(self, piValue);
+    }
+    pub fn get_Path(self: *const _ICounterItemUnion, pstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, pstrValue);
+    }
+    pub fn GetValue(self: *const _ICounterItemUnion, Value: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, Value, Status);
+    }
+    pub fn GetStatistics(self: *const _ICounterItemUnion, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatistics(self, Max, Min, Avg, Status);
+    }
+    pub fn put_Selected(self: *const _ICounterItemUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Selected(self, bState);
+    }
+    pub fn get_Selected(self: *const _ICounterItemUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Selected(self, pbState);
+    }
+    pub fn put_Visible(self: *const _ICounterItemUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Visible(self, bState);
+    }
+    pub fn get_Visible(self: *const _ICounterItemUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Visible(self, pbState);
+    }
+    pub fn GetDataAt(self: *const _ICounterItemUnion, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataAt(self, iIndex, iWhich, pVariant);
+    }
 };
-pub const PERF_DETAIL_NOVICE = PERF_DETAIL.NOVICE;
-pub const PERF_DETAIL_ADVANCED = PERF_DETAIL.ADVANCED;
-pub const PERF_DETAIL_EXPERT = PERF_DETAIL.EXPERT;
-pub const PERF_DETAIL_WIZARD = PERF_DETAIL.WIZARD;
 
-pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = enum(u32) {
-    REGISTRY = 1,
-    WBEM = 4,
+const IID__ISystemMonitorUnion_Value = Guid.initString("c8a77338-265f-4de5-aa25-c7da1ce5a8f4");
+pub const IID__ISystemMonitorUnion = &IID__ISystemMonitorUnion_Value;
+pub const _ISystemMonitorUnion = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Appearance: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iAppearance: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Appearance: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iAppearance: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BackColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BackColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            Color: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BorderStyle: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iBorderStyle: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BorderStyle: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iBorderStyle: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ForeColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ForeColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            Color: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Font: *const fn(
+            self: *const _ISystemMonitorUnion,
+            ppFont: ?*?*IFontDisp,
+        ) callconv(.winapi) HRESULT,
+        putref_Font: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pFont: ?*IFontDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Counters: *const fn(
+            self: *const _ISystemMonitorUnion,
+            ppICounters: ?*?*ICounters,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ShowVerticalGrid: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ShowVerticalGrid: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ShowHorizontalGrid: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ShowHorizontalGrid: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ShowLegend: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ShowLegend: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ShowScaleLabels: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ShowScaleLabels: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ShowValueBar: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ShowValueBar: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MaximumScale: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iValue: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaximumScale: *const fn(
+            self: *const _ISystemMonitorUnion,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MinimumScale: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iValue: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MinimumScale: *const fn(
+            self: *const _ISystemMonitorUnion,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_UpdateInterval: *const fn(
+            self: *const _ISystemMonitorUnion,
+            fValue: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UpdateInterval: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pfValue: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisplayType: *const fn(
+            self: *const _ISystemMonitorUnion,
+            eDisplayType: DisplayTypeConstants,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayType: *const fn(
+            self: *const _ISystemMonitorUnion,
+            peDisplayType: ?*DisplayTypeConstants,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ManualUpdate: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ManualUpdate: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_GraphTitle: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsTitle: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GraphTitle: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbsTitle: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_YAxisLabel: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsTitle: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_YAxisLabel: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbsTitle: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        CollectSample: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        UpdateGraph: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        BrowseCounters: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        DisplayProperties: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        Counter: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iIndex: i32,
+            ppICounter: ?*?*ICounterItem,
+        ) callconv(.winapi) HRESULT,
+        AddCounter: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsPath: ?BSTR,
+            ppICounter: ?*?*ICounterItem,
+        ) callconv(.winapi) HRESULT,
+        DeleteCounter: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pCtr: ?*ICounterItem,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BackColorCtl: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BackColorCtl: *const fn(
+            self: *const _ISystemMonitorUnion,
+            Color: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogFileName: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsFileName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogFileName: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsFileName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogViewStart: *const fn(
+            self: *const _ISystemMonitorUnion,
+            StartTime: f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogViewStart: *const fn(
+            self: *const _ISystemMonitorUnion,
+            StartTime: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogViewStop: *const fn(
+            self: *const _ISystemMonitorUnion,
+            StopTime: f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogViewStop: *const fn(
+            self: *const _ISystemMonitorUnion,
+            StopTime: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GridColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_GridColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            Color: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TimeBarColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TimeBarColor: *const fn(
+            self: *const _ISystemMonitorUnion,
+            Color: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Highlight: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Highlight: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ShowToolbar: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ShowToolbar: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        Paste: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        Copy: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ReadOnly: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReadOnly: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ReportValueType: *const fn(
+            self: *const _ISystemMonitorUnion,
+            eReportValueType: ReportValueTypeConstants,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReportValueType: *const fn(
+            self: *const _ISystemMonitorUnion,
+            peReportValueType: ?*ReportValueTypeConstants,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MonitorDuplicateInstances: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MonitorDuplicateInstances: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisplayFilter: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iValue: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayFilter: *const fn(
+            self: *const _ISystemMonitorUnion,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogFiles: *const fn(
+            self: *const _ISystemMonitorUnion,
+            ppILogFiles: ?*?*ILogFiles,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DataSourceType: *const fn(
+            self: *const _ISystemMonitorUnion,
+            eDataSourceType: DataSourceTypeConstants,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DataSourceType: *const fn(
+            self: *const _ISystemMonitorUnion,
+            peDataSourceType: ?*DataSourceTypeConstants,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SqlDsnName: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsSqlDsnName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SqlDsnName: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsSqlDsnName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SqlLogSetName: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsSqlLogSetName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SqlLogSetName: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bsSqlLogSetName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EnableDigitGrouping: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EnableDigitGrouping: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EnableToolTips: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EnableToolTips: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ShowTimeAxisLabels: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ShowTimeAxisLabels: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ChartScroll: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bScroll: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ChartScroll: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pbScroll: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DataPointCount: *const fn(
+            self: *const _ISystemMonitorUnion,
+            iNewCount: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DataPointCount: *const fn(
+            self: *const _ISystemMonitorUnion,
+            piDataPointCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        ScaleToFit: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bSelectedCountersOnly: i16,
+        ) callconv(.winapi) HRESULT,
+        SaveAs: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bstrFileName: ?BSTR,
+            eSysmonFileType: SysmonFileType,
+        ) callconv(.winapi) HRESULT,
+        Relog: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bstrFileName: ?BSTR,
+            eSysmonFileType: SysmonFileType,
+            iFilter: i32,
+        ) callconv(.winapi) HRESULT,
+        ClearData: *const fn(
+            self: *const _ISystemMonitorUnion,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogSourceStartTime: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pDate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogSourceStopTime: *const fn(
+            self: *const _ISystemMonitorUnion,
+            pDate: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        SetLogViewRange: *const fn(
+            self: *const _ISystemMonitorUnion,
+            StartTime: f64,
+            StopTime: f64,
+        ) callconv(.winapi) HRESULT,
+        GetLogViewRange: *const fn(
+            self: *const _ISystemMonitorUnion,
+            StartTime: ?*f64,
+            StopTime: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        BatchingLock: *const fn(
+            self: *const _ISystemMonitorUnion,
+            fLock: i16,
+            eBatchReason: SysmonBatchReason,
+        ) callconv(.winapi) HRESULT,
+        LoadSettings: *const fn(
+            self: *const _ISystemMonitorUnion,
+            bstrSettingFileName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Appearance(self: *const _ISystemMonitorUnion, iAppearance: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Appearance(self, iAppearance);
+    }
+    pub fn put_Appearance(self: *const _ISystemMonitorUnion, iAppearance: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Appearance(self, iAppearance);
+    }
+    pub fn get_BackColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackColor(self, pColor);
+    }
+    pub fn put_BackColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BackColor(self, Color);
+    }
+    pub fn get_BorderStyle(self: *const _ISystemMonitorUnion, iBorderStyle: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BorderStyle(self, iBorderStyle);
+    }
+    pub fn put_BorderStyle(self: *const _ISystemMonitorUnion, iBorderStyle: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BorderStyle(self, iBorderStyle);
+    }
+    pub fn get_ForeColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ForeColor(self, pColor);
+    }
+    pub fn put_ForeColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ForeColor(self, Color);
+    }
+    pub fn get_Font(self: *const _ISystemMonitorUnion, ppFont: ?*?*IFontDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Font(self, ppFont);
+    }
+    pub fn putref_Font(self: *const _ISystemMonitorUnion, pFont: ?*IFontDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Font(self, pFont);
+    }
+    pub fn get_Counters(self: *const _ISystemMonitorUnion, ppICounters: ?*?*ICounters) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Counters(self, ppICounters);
+    }
+    pub fn put_ShowVerticalGrid(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ShowVerticalGrid(self, bState);
+    }
+    pub fn get_ShowVerticalGrid(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ShowVerticalGrid(self, pbState);
+    }
+    pub fn put_ShowHorizontalGrid(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ShowHorizontalGrid(self, bState);
+    }
+    pub fn get_ShowHorizontalGrid(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ShowHorizontalGrid(self, pbState);
+    }
+    pub fn put_ShowLegend(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ShowLegend(self, bState);
+    }
+    pub fn get_ShowLegend(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ShowLegend(self, pbState);
+    }
+    pub fn put_ShowScaleLabels(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ShowScaleLabels(self, bState);
+    }
+    pub fn get_ShowScaleLabels(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ShowScaleLabels(self, pbState);
+    }
+    pub fn put_ShowValueBar(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ShowValueBar(self, bState);
+    }
+    pub fn get_ShowValueBar(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ShowValueBar(self, pbState);
+    }
+    pub fn put_MaximumScale(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MaximumScale(self, iValue);
+    }
+    pub fn get_MaximumScale(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaximumScale(self, piValue);
+    }
+    pub fn put_MinimumScale(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MinimumScale(self, iValue);
+    }
+    pub fn get_MinimumScale(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MinimumScale(self, piValue);
+    }
+    pub fn put_UpdateInterval(self: *const _ISystemMonitorUnion, fValue: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UpdateInterval(self, fValue);
+    }
+    pub fn get_UpdateInterval(self: *const _ISystemMonitorUnion, pfValue: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UpdateInterval(self, pfValue);
+    }
+    pub fn put_DisplayType(self: *const _ISystemMonitorUnion, eDisplayType: DisplayTypeConstants) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisplayType(self, eDisplayType);
+    }
+    pub fn get_DisplayType(self: *const _ISystemMonitorUnion, peDisplayType: ?*DisplayTypeConstants) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayType(self, peDisplayType);
+    }
+    pub fn put_ManualUpdate(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ManualUpdate(self, bState);
+    }
+    pub fn get_ManualUpdate(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ManualUpdate(self, pbState);
+    }
+    pub fn put_GraphTitle(self: *const _ISystemMonitorUnion, bsTitle: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_GraphTitle(self, bsTitle);
+    }
+    pub fn get_GraphTitle(self: *const _ISystemMonitorUnion, pbsTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GraphTitle(self, pbsTitle);
+    }
+    pub fn put_YAxisLabel(self: *const _ISystemMonitorUnion, bsTitle: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_YAxisLabel(self, bsTitle);
+    }
+    pub fn get_YAxisLabel(self: *const _ISystemMonitorUnion, pbsTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_YAxisLabel(self, pbsTitle);
+    }
+    pub fn CollectSample(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.CollectSample(self);
+    }
+    pub fn UpdateGraph(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateGraph(self);
+    }
+    pub fn BrowseCounters(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.BrowseCounters(self);
+    }
+    pub fn DisplayProperties(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.DisplayProperties(self);
+    }
+    pub fn Counter(self: *const _ISystemMonitorUnion, iIndex: i32, ppICounter: ?*?*ICounterItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Counter(self, iIndex, ppICounter);
+    }
+    pub fn AddCounter(self: *const _ISystemMonitorUnion, bsPath: ?BSTR, ppICounter: ?*?*ICounterItem) callconv(.@"inline") HRESULT {
+        return self.vtable.AddCounter(self, bsPath, ppICounter);
+    }
+    pub fn DeleteCounter(self: *const _ISystemMonitorUnion, pCtr: ?*ICounterItem) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteCounter(self, pCtr);
+    }
+    pub fn get_BackColorCtl(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackColorCtl(self, pColor);
+    }
+    pub fn put_BackColorCtl(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BackColorCtl(self, Color);
+    }
+    pub fn put_LogFileName(self: *const _ISystemMonitorUnion, bsFileName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogFileName(self, bsFileName);
+    }
+    pub fn get_LogFileName(self: *const _ISystemMonitorUnion, bsFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogFileName(self, bsFileName);
+    }
+    pub fn put_LogViewStart(self: *const _ISystemMonitorUnion, StartTime: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogViewStart(self, StartTime);
+    }
+    pub fn get_LogViewStart(self: *const _ISystemMonitorUnion, StartTime: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogViewStart(self, StartTime);
+    }
+    pub fn put_LogViewStop(self: *const _ISystemMonitorUnion, StopTime: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogViewStop(self, StopTime);
+    }
+    pub fn get_LogViewStop(self: *const _ISystemMonitorUnion, StopTime: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogViewStop(self, StopTime);
+    }
+    pub fn get_GridColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GridColor(self, pColor);
+    }
+    pub fn put_GridColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_GridColor(self, Color);
+    }
+    pub fn get_TimeBarColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TimeBarColor(self, pColor);
+    }
+    pub fn put_TimeBarColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TimeBarColor(self, Color);
+    }
+    pub fn get_Highlight(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Highlight(self, pbState);
+    }
+    pub fn put_Highlight(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Highlight(self, bState);
+    }
+    pub fn get_ShowToolbar(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ShowToolbar(self, pbState);
+    }
+    pub fn put_ShowToolbar(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ShowToolbar(self, bState);
+    }
+    pub fn Paste(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.Paste(self);
+    }
+    pub fn Copy(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.Copy(self);
+    }
+    pub fn Reset(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn put_ReadOnly(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ReadOnly(self, bState);
+    }
+    pub fn get_ReadOnly(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReadOnly(self, pbState);
+    }
+    pub fn put_ReportValueType(self: *const _ISystemMonitorUnion, eReportValueType: ReportValueTypeConstants) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ReportValueType(self, eReportValueType);
+    }
+    pub fn get_ReportValueType(self: *const _ISystemMonitorUnion, peReportValueType: ?*ReportValueTypeConstants) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReportValueType(self, peReportValueType);
+    }
+    pub fn put_MonitorDuplicateInstances(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MonitorDuplicateInstances(self, bState);
+    }
+    pub fn get_MonitorDuplicateInstances(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MonitorDuplicateInstances(self, pbState);
+    }
+    pub fn put_DisplayFilter(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisplayFilter(self, iValue);
+    }
+    pub fn get_DisplayFilter(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayFilter(self, piValue);
+    }
+    pub fn get_LogFiles(self: *const _ISystemMonitorUnion, ppILogFiles: ?*?*ILogFiles) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogFiles(self, ppILogFiles);
+    }
+    pub fn put_DataSourceType(self: *const _ISystemMonitorUnion, eDataSourceType: DataSourceTypeConstants) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DataSourceType(self, eDataSourceType);
+    }
+    pub fn get_DataSourceType(self: *const _ISystemMonitorUnion, peDataSourceType: ?*DataSourceTypeConstants) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DataSourceType(self, peDataSourceType);
+    }
+    pub fn put_SqlDsnName(self: *const _ISystemMonitorUnion, bsSqlDsnName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SqlDsnName(self, bsSqlDsnName);
+    }
+    pub fn get_SqlDsnName(self: *const _ISystemMonitorUnion, bsSqlDsnName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SqlDsnName(self, bsSqlDsnName);
+    }
+    pub fn put_SqlLogSetName(self: *const _ISystemMonitorUnion, bsSqlLogSetName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SqlLogSetName(self, bsSqlLogSetName);
+    }
+    pub fn get_SqlLogSetName(self: *const _ISystemMonitorUnion, bsSqlLogSetName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SqlLogSetName(self, bsSqlLogSetName);
+    }
+    pub fn put_EnableDigitGrouping(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EnableDigitGrouping(self, bState);
+    }
+    pub fn get_EnableDigitGrouping(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnableDigitGrouping(self, pbState);
+    }
+    pub fn put_EnableToolTips(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EnableToolTips(self, bState);
+    }
+    pub fn get_EnableToolTips(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnableToolTips(self, pbState);
+    }
+    pub fn put_ShowTimeAxisLabels(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ShowTimeAxisLabels(self, bState);
+    }
+    pub fn get_ShowTimeAxisLabels(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ShowTimeAxisLabels(self, pbState);
+    }
+    pub fn put_ChartScroll(self: *const _ISystemMonitorUnion, bScroll: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ChartScroll(self, bScroll);
+    }
+    pub fn get_ChartScroll(self: *const _ISystemMonitorUnion, pbScroll: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ChartScroll(self, pbScroll);
+    }
+    pub fn put_DataPointCount(self: *const _ISystemMonitorUnion, iNewCount: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DataPointCount(self, iNewCount);
+    }
+    pub fn get_DataPointCount(self: *const _ISystemMonitorUnion, piDataPointCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DataPointCount(self, piDataPointCount);
+    }
+    pub fn ScaleToFit(self: *const _ISystemMonitorUnion, bSelectedCountersOnly: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.ScaleToFit(self, bSelectedCountersOnly);
+    }
+    pub fn SaveAs(self: *const _ISystemMonitorUnion, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveAs(self, bstrFileName, eSysmonFileType);
+    }
+    pub fn Relog(self: *const _ISystemMonitorUnion, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType, iFilter: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Relog(self, bstrFileName, eSysmonFileType, iFilter);
+    }
+    pub fn ClearData(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
+        return self.vtable.ClearData(self);
+    }
+    pub fn get_LogSourceStartTime(self: *const _ISystemMonitorUnion, pDate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogSourceStartTime(self, pDate);
+    }
+    pub fn get_LogSourceStopTime(self: *const _ISystemMonitorUnion, pDate: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogSourceStopTime(self, pDate);
+    }
+    pub fn SetLogViewRange(self: *const _ISystemMonitorUnion, StartTime: f64, StopTime: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLogViewRange(self, StartTime, StopTime);
+    }
+    pub fn GetLogViewRange(self: *const _ISystemMonitorUnion, StartTime: ?*f64, StopTime: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLogViewRange(self, StartTime, StopTime);
+    }
+    pub fn BatchingLock(self: *const _ISystemMonitorUnion, fLock: i16, eBatchReason: SysmonBatchReason) callconv(.@"inline") HRESULT {
+        return self.vtable.BatchingLock(self, fLock, eBatchReason);
+    }
+    pub fn LoadSettings(self: *const _ISystemMonitorUnion, bstrSettingFileName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadSettings(self, bstrSettingFileName);
+    }
 };
-pub const DATA_SOURCE_REGISTRY = REAL_TIME_DATA_SOURCE_ID_FLAGS.REGISTRY;
-pub const DATA_SOURCE_WBEM = REAL_TIME_DATA_SOURCE_ID_FLAGS.WBEM;
 
-pub const PDH_PATH_FLAGS = enum(u32) {
-    RESULT = 1,
-    INPUT = 2,
-    NONE = 0,
-};
-pub const PDH_PATH_WBEM_RESULT = PDH_PATH_FLAGS.RESULT;
-pub const PDH_PATH_WBEM_INPUT = PDH_PATH_FLAGS.INPUT;
-pub const PDH_PATH_WBEM_NONE = PDH_PATH_FLAGS.NONE;
-
-pub const PDH_FMT = enum(u32) {
-    DOUBLE = 512,
-    LARGE = 1024,
-    LONG = 256,
-};
-pub const PDH_FMT_DOUBLE = PDH_FMT.DOUBLE;
-pub const PDH_FMT_LARGE = PDH_FMT.LARGE;
-pub const PDH_FMT_LONG = PDH_FMT.LONG;
-
-pub const PDH_LOG_TYPE = enum(u32) {
-    UNDEFINED = 0,
-    CSV = 1,
-    SQL = 7,
-    TSV = 2,
-    BINARY = 8,
-    PERFMON = 6,
-};
-pub const PDH_LOG_TYPE_UNDEFINED = PDH_LOG_TYPE.UNDEFINED;
-pub const PDH_LOG_TYPE_CSV = PDH_LOG_TYPE.CSV;
-pub const PDH_LOG_TYPE_SQL = PDH_LOG_TYPE.SQL;
-pub const PDH_LOG_TYPE_TSV = PDH_LOG_TYPE.TSV;
-pub const PDH_LOG_TYPE_BINARY = PDH_LOG_TYPE.BINARY;
-pub const PDH_LOG_TYPE_PERFMON = PDH_LOG_TYPE.PERFMON;
-
-pub const PDH_LOG = enum(u32) {
-    READ_ACCESS = 65536,
-    WRITE_ACCESS = 131072,
-    UPDATE_ACCESS = 262144,
-};
-pub const PDH_LOG_READ_ACCESS = PDH_LOG.READ_ACCESS;
-pub const PDH_LOG_WRITE_ACCESS = PDH_LOG.WRITE_ACCESS;
-pub const PDH_LOG_UPDATE_ACCESS = PDH_LOG.UPDATE_ACCESS;
-
-pub const PDH_SELECT_DATA_SOURCE_FLAGS = enum(u32) {
-    FILE_BROWSER_ONLY = 1,
-    NONE = 0,
-};
-pub const PDH_FLAGS_FILE_BROWSER_ONLY = PDH_SELECT_DATA_SOURCE_FLAGS.FILE_BROWSER_ONLY;
-pub const PDH_FLAGS_NONE = PDH_SELECT_DATA_SOURCE_FLAGS.NONE;
-
-pub const PDH_DLL_VERSION = enum(u32) {
-    CVERSION_WIN50 = 1280,
-    VERSION = 1283,
-};
-pub const PDH_CVERSION_WIN50 = PDH_DLL_VERSION.CVERSION_WIN50;
-pub const PDH_VERSION = PDH_DLL_VERSION.VERSION;
-
-pub const PERF_COUNTER_AGGREGATE_FUNC = enum(u32) {
-    UNDEFINED = 0,
-    TOTAL = 1,
-    AVG = 2,
-    MIN = 3,
-};
-pub const PERF_AGGREGATE_UNDEFINED = PERF_COUNTER_AGGREGATE_FUNC.UNDEFINED;
-pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_AGGREGATE_FUNC.TOTAL;
-pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
-pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
-
-// TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const PerfProviderHandle = isize;
-
-// TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const PerfQueryHandle = isize;
-
-const CLSID_DataCollectorSet_Value = Guid.initString("03837521-098b-11d8-9414-505054503030");
-pub const CLSID_DataCollectorSet = &CLSID_DataCollectorSet_Value;
-
-const CLSID_TraceSession_Value = Guid.initString("0383751c-098b-11d8-9414-505054503030");
-pub const CLSID_TraceSession = &CLSID_TraceSession_Value;
-
-const CLSID_TraceSessionCollection_Value = Guid.initString("03837530-098b-11d8-9414-505054503030");
-pub const CLSID_TraceSessionCollection = &CLSID_TraceSessionCollection_Value;
-
-const CLSID_TraceDataProvider_Value = Guid.initString("03837513-098b-11d8-9414-505054503030");
-pub const CLSID_TraceDataProvider = &CLSID_TraceDataProvider_Value;
-
-const CLSID_TraceDataProviderCollection_Value = Guid.initString("03837511-098b-11d8-9414-505054503030");
-pub const CLSID_TraceDataProviderCollection = &CLSID_TraceDataProviderCollection_Value;
-
-const CLSID_DataCollectorSetCollection_Value = Guid.initString("03837525-098b-11d8-9414-505054503030");
-pub const CLSID_DataCollectorSetCollection = &CLSID_DataCollectorSetCollection_Value;
-
-const CLSID_LegacyDataCollectorSet_Value = Guid.initString("03837526-098b-11d8-9414-505054503030");
-pub const CLSID_LegacyDataCollectorSet = &CLSID_LegacyDataCollectorSet_Value;
-
-const CLSID_LegacyDataCollectorSetCollection_Value = Guid.initString("03837527-098b-11d8-9414-505054503030");
-pub const CLSID_LegacyDataCollectorSetCollection = &CLSID_LegacyDataCollectorSetCollection_Value;
-
-const CLSID_LegacyTraceSession_Value = Guid.initString("03837528-098b-11d8-9414-505054503030");
-pub const CLSID_LegacyTraceSession = &CLSID_LegacyTraceSession_Value;
-
-const CLSID_LegacyTraceSessionCollection_Value = Guid.initString("03837529-098b-11d8-9414-505054503030");
-pub const CLSID_LegacyTraceSessionCollection = &CLSID_LegacyTraceSessionCollection_Value;
-
-const CLSID_ServerDataCollectorSet_Value = Guid.initString("03837531-098b-11d8-9414-505054503030");
-pub const CLSID_ServerDataCollectorSet = &CLSID_ServerDataCollectorSet_Value;
-
-const CLSID_ServerDataCollectorSetCollection_Value = Guid.initString("03837532-098b-11d8-9414-505054503030");
-pub const CLSID_ServerDataCollectorSetCollection = &CLSID_ServerDataCollectorSetCollection_Value;
-
-const CLSID_SystemDataCollectorSet_Value = Guid.initString("03837546-098b-11d8-9414-505054503030");
-pub const CLSID_SystemDataCollectorSet = &CLSID_SystemDataCollectorSet_Value;
-
-const CLSID_SystemDataCollectorSetCollection_Value = Guid.initString("03837547-098b-11d8-9414-505054503030");
-pub const CLSID_SystemDataCollectorSetCollection = &CLSID_SystemDataCollectorSetCollection_Value;
-
-const CLSID_BootTraceSession_Value = Guid.initString("03837538-098b-11d8-9414-505054503030");
-pub const CLSID_BootTraceSession = &CLSID_BootTraceSession_Value;
-
-const CLSID_BootTraceSessionCollection_Value = Guid.initString("03837539-098b-11d8-9414-505054503030");
-pub const CLSID_BootTraceSessionCollection = &CLSID_BootTraceSessionCollection_Value;
-
-pub const DataCollectorType = enum(i32) {
-    PerformanceCounter = 0,
-    Trace = 1,
-    Configuration = 2,
-    Alert = 3,
-    ApiTrace = 4,
-};
-pub const plaPerformanceCounter = DataCollectorType.PerformanceCounter;
-pub const plaTrace = DataCollectorType.Trace;
-pub const plaConfiguration = DataCollectorType.Configuration;
-pub const plaAlert = DataCollectorType.Alert;
-pub const plaApiTrace = DataCollectorType.ApiTrace;
-
-pub const FileFormat = enum(i32) {
-    CommaSeparated = 0,
-    TabSeparated = 1,
-    Sql = 2,
-    Binary = 3,
-};
-pub const plaCommaSeparated = FileFormat.CommaSeparated;
-pub const plaTabSeparated = FileFormat.TabSeparated;
-pub const plaSql = FileFormat.Sql;
-pub const plaBinary = FileFormat.Binary;
+const CLSID_AppearPropPage_Value = Guid.initString("e49741e9-93a8-4ab1-8e96-bf4482282e9c");
+pub const CLSID_AppearPropPage = &CLSID_AppearPropPage_Value;
 
 pub const AutoPathFormat = enum(i32) {
     None = 0,
@@ -379,18 +1125,11 @@ pub const plaYearMonthDay = AutoPathFormat.YearMonthDay;
 pub const plaYearMonthDayHour = AutoPathFormat.YearMonthDayHour;
 pub const plaMonthDayHourMinute = AutoPathFormat.MonthDayHourMinute;
 
-pub const DataCollectorSetStatus = enum(i32) {
-    Stopped = 0,
-    Running = 1,
-    Compiling = 2,
-    Pending = 3,
-    Undefined = 4,
-};
-pub const plaStopped = DataCollectorSetStatus.Stopped;
-pub const plaRunning = DataCollectorSetStatus.Running;
-pub const plaCompiling = DataCollectorSetStatus.Compiling;
-pub const plaPending = DataCollectorSetStatus.Pending;
-pub const plaUndefined = DataCollectorSetStatus.Undefined;
+const CLSID_BootTraceSession_Value = Guid.initString("03837538-098b-11d8-9414-505054503030");
+pub const CLSID_BootTraceSession = &CLSID_BootTraceSession_Value;
+
+const CLSID_BootTraceSessionCollection_Value = Guid.initString("03837539-098b-11d8-9414-505054503030");
+pub const CLSID_BootTraceSessionCollection = &CLSID_BootTraceSessionCollection_Value;
 
 pub const ClockType = enum(i32) {
     TimeStamp = 0,
@@ -402,17 +1141,6 @@ pub const plaTimeStamp = ClockType.TimeStamp;
 pub const plaPerformance = ClockType.Performance;
 pub const plaSystem = ClockType.System;
 pub const plaCycle = ClockType.Cycle;
-
-pub const StreamMode = enum(i32) {
-    File = 1,
-    RealTime = 2,
-    Both = 3,
-    Buffering = 4,
-};
-pub const plaFile = StreamMode.File;
-pub const plaRealTime = StreamMode.RealTime;
-pub const plaBoth = StreamMode.Both;
-pub const plaBuffering = StreamMode.Buffering;
 
 pub const CommitMode = enum(i32) {
     CreateNew = 1,
@@ -429,44 +1157,53 @@ pub const plaUpdateRunningInstance = CommitMode.UpdateRunningInstance;
 pub const plaFlushTrace = CommitMode.FlushTrace;
 pub const plaValidateOnly = CommitMode.ValidateOnly;
 
-pub const ValueMapType = enum(i32) {
-    Index = 1,
-    Flag = 2,
-    FlagArray = 3,
-    Validation = 4,
-};
-pub const plaIndex = ValueMapType.Index;
-pub const plaFlag = ValueMapType.Flag;
-pub const plaFlagArray = ValueMapType.FlagArray;
-pub const plaValidation = ValueMapType.Validation;
+const CLSID_CounterItem_Value = Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004348");
+pub const CLSID_CounterItem = &CLSID_CounterItem_Value;
 
-pub const WeekDays = enum(i32) {
-    RunOnce = 0,
-    Sunday = 1,
-    Monday = 2,
-    Tuesday = 4,
-    Wednesday = 8,
-    Thursday = 16,
-    Friday = 32,
-    Saturday = 64,
-    Everyday = 127,
-};
-pub const plaRunOnce = WeekDays.RunOnce;
-pub const plaSunday = WeekDays.Sunday;
-pub const plaMonday = WeekDays.Monday;
-pub const plaTuesday = WeekDays.Tuesday;
-pub const plaWednesday = WeekDays.Wednesday;
-pub const plaThursday = WeekDays.Thursday;
-pub const plaFriday = WeekDays.Friday;
-pub const plaSaturday = WeekDays.Saturday;
-pub const plaEveryday = WeekDays.Everyday;
+const CLSID_CounterItem2_Value = Guid.initString("43196c62-c31f-4ce3-a02e-79efe0f6a525");
+pub const CLSID_CounterItem2 = &CLSID_CounterItem2_Value;
 
-pub const ResourcePolicy = enum(i32) {
-    Largest = 0,
-    Oldest = 1,
+pub const CounterPathCallBack = *const fn(
+    param0: usize,
+) callconv(.winapi) i32;
+
+const CLSID_CounterPropPage_Value = Guid.initString("cf948561-ede8-11ce-941e-008029004347");
+pub const CLSID_CounterPropPage = &CLSID_CounterPropPage_Value;
+
+const CLSID_Counters_Value = Guid.initString("b2b066d2-2aac-11cf-942f-008029004347");
+pub const CLSID_Counters = &CLSID_Counters_Value;
+
+const CLSID_DataCollectorSet_Value = Guid.initString("03837521-098b-11d8-9414-505054503030");
+pub const CLSID_DataCollectorSet = &CLSID_DataCollectorSet_Value;
+
+const CLSID_DataCollectorSetCollection_Value = Guid.initString("03837525-098b-11d8-9414-505054503030");
+pub const CLSID_DataCollectorSetCollection = &CLSID_DataCollectorSetCollection_Value;
+
+pub const DataCollectorSetStatus = enum(i32) {
+    Stopped = 0,
+    Running = 1,
+    Compiling = 2,
+    Pending = 3,
+    Undefined = 4,
 };
-pub const plaDeleteLargest = ResourcePolicy.Largest;
-pub const plaDeleteOldest = ResourcePolicy.Oldest;
+pub const plaStopped = DataCollectorSetStatus.Stopped;
+pub const plaRunning = DataCollectorSetStatus.Running;
+pub const plaCompiling = DataCollectorSetStatus.Compiling;
+pub const plaPending = DataCollectorSetStatus.Pending;
+pub const plaUndefined = DataCollectorSetStatus.Undefined;
+
+pub const DataCollectorType = enum(i32) {
+    PerformanceCounter = 0,
+    Trace = 1,
+    Configuration = 2,
+    Alert = 3,
+    ApiTrace = 4,
+};
+pub const plaPerformanceCounter = DataCollectorType.PerformanceCounter;
+pub const plaTrace = DataCollectorType.Trace;
+pub const plaConfiguration = DataCollectorType.Configuration;
+pub const plaAlert = DataCollectorType.Alert;
+pub const plaApiTrace = DataCollectorType.ApiTrace;
 
 pub const DataManagerSteps = enum(i32) {
     CreateReport = 1,
@@ -481,6 +1218,96 @@ pub const plaCreateHtml = DataManagerSteps.CreateHtml;
 pub const plaFolderActions = DataManagerSteps.FolderActions;
 pub const plaResourceFreeing = DataManagerSteps.ResourceFreeing;
 
+pub const DataSourceTypeConstants = enum(i32) {
+    NullDataSource = -1,
+    CurrentActivity = 1,
+    LogFiles = 2,
+    SqlLog = 3,
+};
+pub const sysmonNullDataSource = DataSourceTypeConstants.NullDataSource;
+pub const sysmonCurrentActivity = DataSourceTypeConstants.CurrentActivity;
+pub const sysmonLogFiles = DataSourceTypeConstants.LogFiles;
+pub const sysmonSqlLog = DataSourceTypeConstants.SqlLog;
+
+const IID_DICounterItem_Value = Guid.initString("c08c4ff2-0e2e-11cf-942c-008029004347");
+pub const IID_DICounterItem = &IID_DICounterItem_Value;
+pub const DICounterItem = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+const IID_DILogFileItem_Value = Guid.initString("8d093ffc-f777-4917-82d1-833fbc54c58f");
+pub const IID_DILogFileItem = &IID_DILogFileItem_Value;
+pub const DILogFileItem = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+pub const DisplayTypeConstants = enum(i32) {
+    LineGraph = 1,
+    Histogram = 2,
+    Report = 3,
+    ChartArea = 4,
+    ChartStackedArea = 5,
+};
+pub const sysmonLineGraph = DisplayTypeConstants.LineGraph;
+pub const sysmonHistogram = DisplayTypeConstants.Histogram;
+pub const sysmonReport = DisplayTypeConstants.Report;
+pub const sysmonChartArea = DisplayTypeConstants.ChartArea;
+pub const sysmonChartStackedArea = DisplayTypeConstants.ChartStackedArea;
+
+const IID_DISystemMonitor_Value = Guid.initString("13d73d81-c32e-11cf-9398-00aa00a3ddea");
+pub const IID_DISystemMonitor = &IID_DISystemMonitor_Value;
+pub const DISystemMonitor = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+const IID_DISystemMonitorEvents_Value = Guid.initString("84979930-4ab3-11cf-943a-008029004347");
+pub const IID_DISystemMonitorEvents = &IID_DISystemMonitorEvents_Value;
+pub const DISystemMonitorEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+const IID_DISystemMonitorInternal_Value = Guid.initString("194eb242-c32c-11cf-9398-00aa00a3ddea");
+pub const IID_DISystemMonitorInternal = &IID_DISystemMonitorInternal_Value;
+pub const DISystemMonitorInternal = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+pub const FileFormat = enum(i32) {
+    CommaSeparated = 0,
+    TabSeparated = 1,
+    Sql = 2,
+    Binary = 3,
+};
+pub const plaCommaSeparated = FileFormat.CommaSeparated;
+pub const plaTabSeparated = FileFormat.TabSeparated;
+pub const plaSql = FileFormat.Sql;
+pub const plaBinary = FileFormat.Binary;
+
 pub const FolderActionSteps = enum(i32) {
     CreateCab = 1,
     DeleteData = 2,
@@ -494,10 +1321,936 @@ pub const plaSendCab = FolderActionSteps.SendCab;
 pub const plaDeleteCab = FolderActionSteps.DeleteCab;
 pub const plaDeleteReport = FolderActionSteps.DeleteReport;
 
-pub const PLA_CABEXTRACT_CALLBACK = *const fn(
-    FileName: ?[*:0]const u16,
-    Context: ?*anyopaque,
-) callconv(.winapi) void;
+const CLSID_GeneralPropPage_Value = Guid.initString("c3e5d3d2-1a03-11cf-942d-008029004347");
+pub const CLSID_GeneralPropPage = &CLSID_GeneralPropPage_Value;
+
+const CLSID_GraphPropPage_Value = Guid.initString("c3e5d3d3-1a03-11cf-942d-008029004347");
+pub const CLSID_GraphPropPage = &CLSID_GraphPropPage_Value;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAlertDataCollector_Value = Guid.initString("03837516-098b-11d8-9414-505054503030");
+pub const IID_IAlertDataCollector = &IID_IAlertDataCollector_Value;
+pub const IAlertDataCollector = extern union {
+    pub const VTable = extern struct {
+        base: IDataCollector.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AlertThresholds: *const fn(
+            self: *const IAlertDataCollector,
+            alerts: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AlertThresholds: *const fn(
+            self: *const IAlertDataCollector,
+            alerts: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventLog: *const fn(
+            self: *const IAlertDataCollector,
+            log: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EventLog: *const fn(
+            self: *const IAlertDataCollector,
+            log: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SampleInterval: *const fn(
+            self: *const IAlertDataCollector,
+            interval: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SampleInterval: *const fn(
+            self: *const IAlertDataCollector,
+            interval: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Task: *const fn(
+            self: *const IAlertDataCollector,
+            task: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Task: *const fn(
+            self: *const IAlertDataCollector,
+            task: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TaskRunAsSelf: *const fn(
+            self: *const IAlertDataCollector,
+            RunAsSelf: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TaskRunAsSelf: *const fn(
+            self: *const IAlertDataCollector,
+            RunAsSelf: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TaskArguments: *const fn(
+            self: *const IAlertDataCollector,
+            task: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TaskArguments: *const fn(
+            self: *const IAlertDataCollector,
+            task: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TaskUserTextArguments: *const fn(
+            self: *const IAlertDataCollector,
+            task: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TaskUserTextArguments: *const fn(
+            self: *const IAlertDataCollector,
+            task: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TriggerDataCollectorSet: *const fn(
+            self: *const IAlertDataCollector,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_TriggerDataCollectorSet: *const fn(
+            self: *const IAlertDataCollector,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDataCollector: IDataCollector,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AlertThresholds(self: *const IAlertDataCollector, alerts: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AlertThresholds(self, alerts);
+    }
+    pub fn put_AlertThresholds(self: *const IAlertDataCollector, alerts: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AlertThresholds(self, alerts);
+    }
+    pub fn get_EventLog(self: *const IAlertDataCollector, log: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventLog(self, log);
+    }
+    pub fn put_EventLog(self: *const IAlertDataCollector, log: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EventLog(self, log);
+    }
+    pub fn get_SampleInterval(self: *const IAlertDataCollector, interval: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SampleInterval(self, interval);
+    }
+    pub fn put_SampleInterval(self: *const IAlertDataCollector, interval: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SampleInterval(self, interval);
+    }
+    pub fn get_Task(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Task(self, task);
+    }
+    pub fn put_Task(self: *const IAlertDataCollector, task: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Task(self, task);
+    }
+    pub fn get_TaskRunAsSelf(self: *const IAlertDataCollector, RunAsSelf: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TaskRunAsSelf(self, RunAsSelf);
+    }
+    pub fn put_TaskRunAsSelf(self: *const IAlertDataCollector, RunAsSelf: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TaskRunAsSelf(self, RunAsSelf);
+    }
+    pub fn get_TaskArguments(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TaskArguments(self, task);
+    }
+    pub fn put_TaskArguments(self: *const IAlertDataCollector, task: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TaskArguments(self, task);
+    }
+    pub fn get_TaskUserTextArguments(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TaskUserTextArguments(self, task);
+    }
+    pub fn put_TaskUserTextArguments(self: *const IAlertDataCollector, task: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TaskUserTextArguments(self, task);
+    }
+    pub fn get_TriggerDataCollectorSet(self: *const IAlertDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TriggerDataCollectorSet(self, name);
+    }
+    pub fn put_TriggerDataCollectorSet(self: *const IAlertDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_TriggerDataCollectorSet(self, name);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IApiTracingDataCollector_Value = Guid.initString("0383751a-098b-11d8-9414-505054503030");
+pub const IID_IApiTracingDataCollector = &IID_IApiTracingDataCollector_Value;
+pub const IApiTracingDataCollector = extern union {
+    pub const VTable = extern struct {
+        base: IDataCollector.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogApiNamesOnly: *const fn(
+            self: *const IApiTracingDataCollector,
+            logapinames: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogApiNamesOnly: *const fn(
+            self: *const IApiTracingDataCollector,
+            logapinames: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogApisRecursively: *const fn(
+            self: *const IApiTracingDataCollector,
+            logrecursively: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogApisRecursively: *const fn(
+            self: *const IApiTracingDataCollector,
+            logrecursively: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExePath: *const fn(
+            self: *const IApiTracingDataCollector,
+            exepath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExePath: *const fn(
+            self: *const IApiTracingDataCollector,
+            exepath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogFilePath: *const fn(
+            self: *const IApiTracingDataCollector,
+            logfilepath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogFilePath: *const fn(
+            self: *const IApiTracingDataCollector,
+            logfilepath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IncludeModules: *const fn(
+            self: *const IApiTracingDataCollector,
+            includemodules: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_IncludeModules: *const fn(
+            self: *const IApiTracingDataCollector,
+            includemodules: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IncludeApis: *const fn(
+            self: *const IApiTracingDataCollector,
+            includeapis: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_IncludeApis: *const fn(
+            self: *const IApiTracingDataCollector,
+            includeapis: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExcludeApis: *const fn(
+            self: *const IApiTracingDataCollector,
+            excludeapis: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExcludeApis: *const fn(
+            self: *const IApiTracingDataCollector,
+            excludeapis: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDataCollector: IDataCollector,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_LogApiNamesOnly(self: *const IApiTracingDataCollector, logapinames: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogApiNamesOnly(self, logapinames);
+    }
+    pub fn put_LogApiNamesOnly(self: *const IApiTracingDataCollector, logapinames: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogApiNamesOnly(self, logapinames);
+    }
+    pub fn get_LogApisRecursively(self: *const IApiTracingDataCollector, logrecursively: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogApisRecursively(self, logrecursively);
+    }
+    pub fn put_LogApisRecursively(self: *const IApiTracingDataCollector, logrecursively: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogApisRecursively(self, logrecursively);
+    }
+    pub fn get_ExePath(self: *const IApiTracingDataCollector, exepath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExePath(self, exepath);
+    }
+    pub fn put_ExePath(self: *const IApiTracingDataCollector, exepath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExePath(self, exepath);
+    }
+    pub fn get_LogFilePath(self: *const IApiTracingDataCollector, logfilepath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogFilePath(self, logfilepath);
+    }
+    pub fn put_LogFilePath(self: *const IApiTracingDataCollector, logfilepath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogFilePath(self, logfilepath);
+    }
+    pub fn get_IncludeModules(self: *const IApiTracingDataCollector, includemodules: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IncludeModules(self, includemodules);
+    }
+    pub fn put_IncludeModules(self: *const IApiTracingDataCollector, includemodules: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IncludeModules(self, includemodules);
+    }
+    pub fn get_IncludeApis(self: *const IApiTracingDataCollector, includeapis: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IncludeApis(self, includeapis);
+    }
+    pub fn put_IncludeApis(self: *const IApiTracingDataCollector, includeapis: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IncludeApis(self, includeapis);
+    }
+    pub fn get_ExcludeApis(self: *const IApiTracingDataCollector, excludeapis: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExcludeApis(self, excludeapis);
+    }
+    pub fn put_ExcludeApis(self: *const IApiTracingDataCollector, excludeapis: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExcludeApis(self, excludeapis);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IConfigurationDataCollector_Value = Guid.initString("03837514-098b-11d8-9414-505054503030");
+pub const IID_IConfigurationDataCollector = &IID_IConfigurationDataCollector_Value;
+pub const IConfigurationDataCollector = extern union {
+    pub const VTable = extern struct {
+        base: IDataCollector.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileMaxCount: *const fn(
+            self: *const IConfigurationDataCollector,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FileMaxCount: *const fn(
+            self: *const IConfigurationDataCollector,
+            count: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileMaxRecursiveDepth: *const fn(
+            self: *const IConfigurationDataCollector,
+            depth: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FileMaxRecursiveDepth: *const fn(
+            self: *const IConfigurationDataCollector,
+            depth: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileMaxTotalSize: *const fn(
+            self: *const IConfigurationDataCollector,
+            size: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FileMaxTotalSize: *const fn(
+            self: *const IConfigurationDataCollector,
+            size: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Files: *const fn(
+            self: *const IConfigurationDataCollector,
+            Files: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Files: *const fn(
+            self: *const IConfigurationDataCollector,
+            Files: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ManagementQueries: *const fn(
+            self: *const IConfigurationDataCollector,
+            Queries: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ManagementQueries: *const fn(
+            self: *const IConfigurationDataCollector,
+            Queries: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QueryNetworkAdapters: *const fn(
+            self: *const IConfigurationDataCollector,
+            network: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_QueryNetworkAdapters: *const fn(
+            self: *const IConfigurationDataCollector,
+            network: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RegistryKeys: *const fn(
+            self: *const IConfigurationDataCollector,
+            query: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RegistryKeys: *const fn(
+            self: *const IConfigurationDataCollector,
+            query: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RegistryMaxRecursiveDepth: *const fn(
+            self: *const IConfigurationDataCollector,
+            depth: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RegistryMaxRecursiveDepth: *const fn(
+            self: *const IConfigurationDataCollector,
+            depth: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SystemStateFile: *const fn(
+            self: *const IConfigurationDataCollector,
+            FileName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SystemStateFile: *const fn(
+            self: *const IConfigurationDataCollector,
+            FileName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDataCollector: IDataCollector,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_FileMaxCount(self: *const IConfigurationDataCollector, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileMaxCount(self, count);
+    }
+    pub fn put_FileMaxCount(self: *const IConfigurationDataCollector, count: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FileMaxCount(self, count);
+    }
+    pub fn get_FileMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileMaxRecursiveDepth(self, depth);
+    }
+    pub fn put_FileMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FileMaxRecursiveDepth(self, depth);
+    }
+    pub fn get_FileMaxTotalSize(self: *const IConfigurationDataCollector, size: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileMaxTotalSize(self, size);
+    }
+    pub fn put_FileMaxTotalSize(self: *const IConfigurationDataCollector, size: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FileMaxTotalSize(self, size);
+    }
+    pub fn get_Files(self: *const IConfigurationDataCollector, Files: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Files(self, Files);
+    }
+    pub fn put_Files(self: *const IConfigurationDataCollector, Files: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Files(self, Files);
+    }
+    pub fn get_ManagementQueries(self: *const IConfigurationDataCollector, Queries: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ManagementQueries(self, Queries);
+    }
+    pub fn put_ManagementQueries(self: *const IConfigurationDataCollector, Queries: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ManagementQueries(self, Queries);
+    }
+    pub fn get_QueryNetworkAdapters(self: *const IConfigurationDataCollector, network: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QueryNetworkAdapters(self, network);
+    }
+    pub fn put_QueryNetworkAdapters(self: *const IConfigurationDataCollector, network: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_QueryNetworkAdapters(self, network);
+    }
+    pub fn get_RegistryKeys(self: *const IConfigurationDataCollector, query: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RegistryKeys(self, query);
+    }
+    pub fn put_RegistryKeys(self: *const IConfigurationDataCollector, query: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RegistryKeys(self, query);
+    }
+    pub fn get_RegistryMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RegistryMaxRecursiveDepth(self, depth);
+    }
+    pub fn put_RegistryMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RegistryMaxRecursiveDepth(self, depth);
+    }
+    pub fn get_SystemStateFile(self: *const IConfigurationDataCollector, FileName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SystemStateFile(self, FileName);
+    }
+    pub fn put_SystemStateFile(self: *const IConfigurationDataCollector, FileName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SystemStateFile(self, FileName);
+    }
+};
+
+const IID_ICounterItem_Value = Guid.initString("771a9520-ee28-11ce-941e-008029004347");
+pub const IID_ICounterItem = &IID_ICounterItem_Value;
+pub const ICounterItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const ICounterItem,
+            pdblValue: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Color: *const fn(
+            self: *const ICounterItem,
+            Color: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Color: *const fn(
+            self: *const ICounterItem,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Width: *const fn(
+            self: *const ICounterItem,
+            iWidth: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Width: *const fn(
+            self: *const ICounterItem,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LineStyle: *const fn(
+            self: *const ICounterItem,
+            iLineStyle: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LineStyle: *const fn(
+            self: *const ICounterItem,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ScaleFactor: *const fn(
+            self: *const ICounterItem,
+            iScale: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ScaleFactor: *const fn(
+            self: *const ICounterItem,
+            piValue: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const ICounterItem,
+            pstrValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetValue: *const fn(
+            self: *const ICounterItem,
+            Value: ?*f64,
+            Status: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetStatistics: *const fn(
+            self: *const ICounterItem,
+            Max: ?*f64,
+            Min: ?*f64,
+            Avg: ?*f64,
+            Status: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Value(self: *const ICounterItem, pdblValue: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pdblValue);
+    }
+    pub fn put_Color(self: *const ICounterItem, Color: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Color(self, Color);
+    }
+    pub fn get_Color(self: *const ICounterItem, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Color(self, pColor);
+    }
+    pub fn put_Width(self: *const ICounterItem, iWidth: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Width(self, iWidth);
+    }
+    pub fn get_Width(self: *const ICounterItem, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Width(self, piValue);
+    }
+    pub fn put_LineStyle(self: *const ICounterItem, iLineStyle: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LineStyle(self, iLineStyle);
+    }
+    pub fn get_LineStyle(self: *const ICounterItem, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LineStyle(self, piValue);
+    }
+    pub fn put_ScaleFactor(self: *const ICounterItem, iScale: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ScaleFactor(self, iScale);
+    }
+    pub fn get_ScaleFactor(self: *const ICounterItem, piValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ScaleFactor(self, piValue);
+    }
+    pub fn get_Path(self: *const ICounterItem, pstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, pstrValue);
+    }
+    pub fn GetValue(self: *const ICounterItem, Value: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, Value, Status);
+    }
+    pub fn GetStatistics(self: *const ICounterItem, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatistics(self, Max, Min, Avg, Status);
+    }
+};
+
+const IID_ICounterItem2_Value = Guid.initString("eefcd4e1-ea1c-4435-b7f4-e341ba03b4f9");
+pub const IID_ICounterItem2 = &IID_ICounterItem2_Value;
+pub const ICounterItem2 = extern union {
+    pub const VTable = extern struct {
+        base: ICounterItem.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Selected: *const fn(
+            self: *const ICounterItem2,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Selected: *const fn(
+            self: *const ICounterItem2,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Visible: *const fn(
+            self: *const ICounterItem2,
+            bState: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Visible: *const fn(
+            self: *const ICounterItem2,
+            pbState: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetDataAt: *const fn(
+            self: *const ICounterItem2,
+            iIndex: i32,
+            iWhich: SysmonDataType,
+            pVariant: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ICounterItem: ICounterItem,
+    IUnknown: IUnknown,
+    pub fn put_Selected(self: *const ICounterItem2, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Selected(self, bState);
+    }
+    pub fn get_Selected(self: *const ICounterItem2, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Selected(self, pbState);
+    }
+    pub fn put_Visible(self: *const ICounterItem2, bState: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Visible(self, bState);
+    }
+    pub fn get_Visible(self: *const ICounterItem2, pbState: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Visible(self, pbState);
+    }
+    pub fn GetDataAt(self: *const ICounterItem2, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataAt(self, iIndex, iWhich, pVariant);
+    }
+};
+
+const IID_ICounters_Value = Guid.initString("79167962-28fc-11cf-942f-008029004347");
+pub const IID_ICounters = &IID_ICounters_Value;
+pub const ICounters = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ICounters,
+            pLong: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ICounters,
+            ppIunk: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ICounters,
+            index: VARIANT,
+            ppI: ?*?*DICounterItem,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const ICounters,
+            pathname: ?BSTR,
+            ppI: ?*?*DICounterItem,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const ICounters,
+            index: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ICounters, pLong: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pLong);
+    }
+    pub fn get__NewEnum(self: *const ICounters, ppIunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppIunk);
+    }
+    pub fn get_Item(self: *const ICounters, index: VARIANT, ppI: ?*?*DICounterItem) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, ppI);
+    }
+    pub fn Add(self: *const ICounters, pathname: ?BSTR, ppI: ?*?*DICounterItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, pathname, ppI);
+    }
+    pub fn Remove(self: *const ICounters, index: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, index);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDataCollector_Value = Guid.initString("038374ff-098b-11d8-9414-505054503030");
+pub const IID_IDataCollector = &IID_IDataCollector_Value;
+pub const IDataCollector = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DataCollectorSet: *const fn(
+            self: *const IDataCollector,
+            group: ?*?*IDataCollectorSet,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DataCollectorSet: *const fn(
+            self: *const IDataCollector,
+            group: ?*IDataCollectorSet,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DataCollectorType: *const fn(
+            self: *const IDataCollector,
+            type: ?*DataCollectorType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileName: *const fn(
+            self: *const IDataCollector,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FileName: *const fn(
+            self: *const IDataCollector,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileNameFormat: *const fn(
+            self: *const IDataCollector,
+            format: ?*AutoPathFormat,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FileNameFormat: *const fn(
+            self: *const IDataCollector,
+            format: AutoPathFormat,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileNameFormatPattern: *const fn(
+            self: *const IDataCollector,
+            pattern: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FileNameFormatPattern: *const fn(
+            self: *const IDataCollector,
+            pattern: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LatestOutputLocation: *const fn(
+            self: *const IDataCollector,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LatestOutputLocation: *const fn(
+            self: *const IDataCollector,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogAppend: *const fn(
+            self: *const IDataCollector,
+            append: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogAppend: *const fn(
+            self: *const IDataCollector,
+            append: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogCircular: *const fn(
+            self: *const IDataCollector,
+            circular: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogCircular: *const fn(
+            self: *const IDataCollector,
+            circular: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogOverwrite: *const fn(
+            self: *const IDataCollector,
+            overwrite: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogOverwrite: *const fn(
+            self: *const IDataCollector,
+            overwrite: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IDataCollector,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IDataCollector,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_OutputLocation: *const fn(
+            self: *const IDataCollector,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Index: *const fn(
+            self: *const IDataCollector,
+            index: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Index: *const fn(
+            self: *const IDataCollector,
+            index: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Xml: *const fn(
+            self: *const IDataCollector,
+            Xml: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetXml: *const fn(
+            self: *const IDataCollector,
+            Xml: ?BSTR,
+            Validation: ?*?*IValueMap,
+        ) callconv(.winapi) HRESULT,
+        CreateOutputLocation: *const fn(
+            self: *const IDataCollector,
+            Latest: i16,
+            Location: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DataCollectorSet(self: *const IDataCollector, group: ?*?*IDataCollectorSet) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DataCollectorSet(self, group);
+    }
+    pub fn put_DataCollectorSet(self: *const IDataCollector, group: ?*IDataCollectorSet) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DataCollectorSet(self, group);
+    }
+    pub fn get_DataCollectorType(self: *const IDataCollector, @"type": ?*DataCollectorType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DataCollectorType(self, @"type");
+    }
+    pub fn get_FileName(self: *const IDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileName(self, name);
+    }
+    pub fn put_FileName(self: *const IDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FileName(self, name);
+    }
+    pub fn get_FileNameFormat(self: *const IDataCollector, format: ?*AutoPathFormat) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileNameFormat(self, format);
+    }
+    pub fn put_FileNameFormat(self: *const IDataCollector, format: AutoPathFormat) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FileNameFormat(self, format);
+    }
+    pub fn get_FileNameFormatPattern(self: *const IDataCollector, pattern: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileNameFormatPattern(self, pattern);
+    }
+    pub fn put_FileNameFormatPattern(self: *const IDataCollector, pattern: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FileNameFormatPattern(self, pattern);
+    }
+    pub fn get_LatestOutputLocation(self: *const IDataCollector, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LatestOutputLocation(self, path);
+    }
+    pub fn put_LatestOutputLocation(self: *const IDataCollector, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LatestOutputLocation(self, path);
+    }
+    pub fn get_LogAppend(self: *const IDataCollector, append: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogAppend(self, append);
+    }
+    pub fn put_LogAppend(self: *const IDataCollector, append: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogAppend(self, append);
+    }
+    pub fn get_LogCircular(self: *const IDataCollector, circular: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogCircular(self, circular);
+    }
+    pub fn put_LogCircular(self: *const IDataCollector, circular: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogCircular(self, circular);
+    }
+    pub fn get_LogOverwrite(self: *const IDataCollector, overwrite: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogOverwrite(self, overwrite);
+    }
+    pub fn put_LogOverwrite(self: *const IDataCollector, overwrite: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogOverwrite(self, overwrite);
+    }
+    pub fn get_Name(self: *const IDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const IDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_OutputLocation(self: *const IDataCollector, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_OutputLocation(self, path);
+    }
+    pub fn get_Index(self: *const IDataCollector, index: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Index(self, index);
+    }
+    pub fn put_Index(self: *const IDataCollector, index: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Index(self, index);
+    }
+    pub fn get_Xml(self: *const IDataCollector, Xml: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Xml(self, Xml);
+    }
+    pub fn SetXml(self: *const IDataCollector, Xml: ?BSTR, Validation: ?*?*IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.SetXml(self, Xml, Validation);
+    }
+    pub fn CreateOutputLocation(self: *const IDataCollector, Latest: i16, Location: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateOutputLocation(self, Latest, Location);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDataCollectorCollection_Value = Guid.initString("03837502-098b-11d8-9414-505054503030");
+pub const IID_IDataCollectorCollection = &IID_IDataCollectorCollection_Value;
+pub const IDataCollectorCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IDataCollectorCollection,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IDataCollectorCollection,
+            index: VARIANT,
+            collector: ?*?*IDataCollector,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IDataCollectorCollection,
+            retVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IDataCollectorCollection,
+            collector: ?*IDataCollector,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IDataCollectorCollection,
+            collector: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IDataCollectorCollection,
+        ) callconv(.winapi) HRESULT,
+        AddRange: *const fn(
+            self: *const IDataCollectorCollection,
+            collectors: ?*IDataCollectorCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateDataCollectorFromXml: *const fn(
+            self: *const IDataCollectorCollection,
+            bstrXml: ?BSTR,
+            pValidation: ?*?*IValueMap,
+            pCollector: ?*?*IDataCollector,
+        ) callconv(.winapi) HRESULT,
+        CreateDataCollector: *const fn(
+            self: *const IDataCollectorCollection,
+            Type: DataCollectorType,
+            Collector: ?*?*IDataCollector,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IDataCollectorCollection, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, retVal);
+    }
+    pub fn get_Item(self: *const IDataCollectorCollection, index: VARIANT, collector: ?*?*IDataCollector) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, collector);
+    }
+    pub fn get__NewEnum(self: *const IDataCollectorCollection, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retVal);
+    }
+    pub fn Add(self: *const IDataCollectorCollection, collector: ?*IDataCollector) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, collector);
+    }
+    pub fn Remove(self: *const IDataCollectorCollection, collector: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, collector);
+    }
+    pub fn Clear(self: *const IDataCollectorCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+    pub fn AddRange(self: *const IDataCollectorCollection, collectors: ?*IDataCollectorCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRange(self, collectors);
+    }
+    pub fn CreateDataCollectorFromXml(self: *const IDataCollectorCollection, bstrXml: ?BSTR, pValidation: ?*?*IValueMap, pCollector: ?*?*IDataCollector) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDataCollectorFromXml(self, bstrXml, pValidation, pCollector);
+    }
+    pub fn CreateDataCollector(self: *const IDataCollectorCollection, Type: DataCollectorType, Collector: ?*?*IDataCollector) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDataCollector(self, Type, Collector);
+    }
+};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataCollectorSet_Value = Guid.initString("03837520-098b-11d8-9414-505054503030");
@@ -990,6 +2743,77 @@ pub const IDataCollectorSet = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDataCollectorSetCollection_Value = Guid.initString("03837524-098b-11d8-9414-505054503030");
+pub const IID_IDataCollectorSetCollection = &IID_IDataCollectorSetCollection_Value;
+pub const IDataCollectorSetCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IDataCollectorSetCollection,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IDataCollectorSetCollection,
+            index: VARIANT,
+            set: ?*?*IDataCollectorSet,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IDataCollectorSetCollection,
+            retVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IDataCollectorSetCollection,
+            set: ?*IDataCollectorSet,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IDataCollectorSetCollection,
+            set: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IDataCollectorSetCollection,
+        ) callconv(.winapi) HRESULT,
+        AddRange: *const fn(
+            self: *const IDataCollectorSetCollection,
+            sets: ?*IDataCollectorSetCollection,
+        ) callconv(.winapi) HRESULT,
+        GetDataCollectorSets: *const fn(
+            self: *const IDataCollectorSetCollection,
+            server: ?BSTR,
+            filter: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IDataCollectorSetCollection, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, retVal);
+    }
+    pub fn get_Item(self: *const IDataCollectorSetCollection, index: VARIANT, set: ?*?*IDataCollectorSet) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, set);
+    }
+    pub fn get__NewEnum(self: *const IDataCollectorSetCollection, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retVal);
+    }
+    pub fn Add(self: *const IDataCollectorSetCollection, set: ?*IDataCollectorSet) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, set);
+    }
+    pub fn Remove(self: *const IDataCollectorSetCollection, set: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, set);
+    }
+    pub fn Clear(self: *const IDataCollectorSetCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+    pub fn AddRange(self: *const IDataCollectorSetCollection, sets: ?*IDataCollectorSetCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRange(self, sets);
+    }
+    pub fn GetDataCollectorSets(self: *const IDataCollectorSetCollection, server: ?BSTR, filter: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataCollectorSets(self, server, filter);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDataManager_Value = Guid.initString("03837541-098b-11d8-9414-505054503030");
 pub const IID_IDataManager = &IID_IDataManager_Value;
 pub const IDataManager = extern union {
@@ -1348,215 +3172,71 @@ pub const IFolderActionCollection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataCollector_Value = Guid.initString("038374ff-098b-11d8-9414-505054503030");
-pub const IID_IDataCollector = &IID_IDataCollector_Value;
-pub const IDataCollector = extern union {
+const IID_ILogFileItem_Value = Guid.initString("d6b518dd-05c7-418a-89e6-4f9ce8c6841e");
+pub const IID_ILogFileItem = &IID_ILogFileItem_Value;
+pub const ILogFileItem = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const ILogFileItem,
+            pstrValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Path(self: *const ILogFileItem, pstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, pstrValue);
+    }
+};
+
+const IID_ILogFiles_Value = Guid.initString("6a2a97e6-6851-41ea-87ad-2a8225335865");
+pub const IID_ILogFiles = &IID_ILogFiles_Value;
+pub const ILogFiles = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataCollectorSet: *const fn(
-            self: *const IDataCollector,
-            group: ?*?*IDataCollectorSet,
+        get_Count: *const fn(
+            self: *const ILogFiles,
+            pLong: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DataCollectorSet: *const fn(
-            self: *const IDataCollector,
-            group: ?*IDataCollectorSet,
+        get__NewEnum: *const fn(
+            self: *const ILogFiles,
+            ppIunk: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataCollectorType: *const fn(
-            self: *const IDataCollector,
-            type: ?*DataCollectorType,
+        get_Item: *const fn(
+            self: *const ILogFiles,
+            index: VARIANT,
+            ppI: ?*?*DILogFileItem,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileName: *const fn(
-            self: *const IDataCollector,
-            name: ?*?BSTR,
+        Add: *const fn(
+            self: *const ILogFiles,
+            pathname: ?BSTR,
+            ppI: ?*?*DILogFileItem,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileName: *const fn(
-            self: *const IDataCollector,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileNameFormat: *const fn(
-            self: *const IDataCollector,
-            format: ?*AutoPathFormat,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileNameFormat: *const fn(
-            self: *const IDataCollector,
-            format: AutoPathFormat,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileNameFormatPattern: *const fn(
-            self: *const IDataCollector,
-            pattern: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileNameFormatPattern: *const fn(
-            self: *const IDataCollector,
-            pattern: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LatestOutputLocation: *const fn(
-            self: *const IDataCollector,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LatestOutputLocation: *const fn(
-            self: *const IDataCollector,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogAppend: *const fn(
-            self: *const IDataCollector,
-            append: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogAppend: *const fn(
-            self: *const IDataCollector,
-            append: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogCircular: *const fn(
-            self: *const IDataCollector,
-            circular: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogCircular: *const fn(
-            self: *const IDataCollector,
-            circular: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogOverwrite: *const fn(
-            self: *const IDataCollector,
-            overwrite: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogOverwrite: *const fn(
-            self: *const IDataCollector,
-            overwrite: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IDataCollector,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IDataCollector,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OutputLocation: *const fn(
-            self: *const IDataCollector,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Index: *const fn(
-            self: *const IDataCollector,
-            index: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Index: *const fn(
-            self: *const IDataCollector,
-            index: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Xml: *const fn(
-            self: *const IDataCollector,
-            Xml: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetXml: *const fn(
-            self: *const IDataCollector,
-            Xml: ?BSTR,
-            Validation: ?*?*IValueMap,
-        ) callconv(.winapi) HRESULT,
-        CreateOutputLocation: *const fn(
-            self: *const IDataCollector,
-            Latest: i16,
-            Location: ?*?BSTR,
+        Remove: *const fn(
+            self: *const ILogFiles,
+            index: VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DataCollectorSet(self: *const IDataCollector, group: ?*?*IDataCollectorSet) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DataCollectorSet(self, group);
+    pub fn get_Count(self: *const ILogFiles, pLong: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pLong);
     }
-    pub fn put_DataCollectorSet(self: *const IDataCollector, group: ?*IDataCollectorSet) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DataCollectorSet(self, group);
+    pub fn get__NewEnum(self: *const ILogFiles, ppIunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppIunk);
     }
-    pub fn get_DataCollectorType(self: *const IDataCollector, @"type": ?*DataCollectorType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DataCollectorType(self, @"type");
+    pub fn get_Item(self: *const ILogFiles, index: VARIANT, ppI: ?*?*DILogFileItem) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, ppI);
     }
-    pub fn get_FileName(self: *const IDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileName(self, name);
+    pub fn Add(self: *const ILogFiles, pathname: ?BSTR, ppI: ?*?*DILogFileItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, pathname, ppI);
     }
-    pub fn put_FileName(self: *const IDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FileName(self, name);
-    }
-    pub fn get_FileNameFormat(self: *const IDataCollector, format: ?*AutoPathFormat) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileNameFormat(self, format);
-    }
-    pub fn put_FileNameFormat(self: *const IDataCollector, format: AutoPathFormat) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FileNameFormat(self, format);
-    }
-    pub fn get_FileNameFormatPattern(self: *const IDataCollector, pattern: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileNameFormatPattern(self, pattern);
-    }
-    pub fn put_FileNameFormatPattern(self: *const IDataCollector, pattern: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FileNameFormatPattern(self, pattern);
-    }
-    pub fn get_LatestOutputLocation(self: *const IDataCollector, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LatestOutputLocation(self, path);
-    }
-    pub fn put_LatestOutputLocation(self: *const IDataCollector, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LatestOutputLocation(self, path);
-    }
-    pub fn get_LogAppend(self: *const IDataCollector, append: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogAppend(self, append);
-    }
-    pub fn put_LogAppend(self: *const IDataCollector, append: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogAppend(self, append);
-    }
-    pub fn get_LogCircular(self: *const IDataCollector, circular: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogCircular(self, circular);
-    }
-    pub fn put_LogCircular(self: *const IDataCollector, circular: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogCircular(self, circular);
-    }
-    pub fn get_LogOverwrite(self: *const IDataCollector, overwrite: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogOverwrite(self, overwrite);
-    }
-    pub fn put_LogOverwrite(self: *const IDataCollector, overwrite: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogOverwrite(self, overwrite);
-    }
-    pub fn get_Name(self: *const IDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn put_Name(self: *const IDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, name);
-    }
-    pub fn get_OutputLocation(self: *const IDataCollector, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_OutputLocation(self, path);
-    }
-    pub fn get_Index(self: *const IDataCollector, index: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Index(self, index);
-    }
-    pub fn put_Index(self: *const IDataCollector, index: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Index(self, index);
-    }
-    pub fn get_Xml(self: *const IDataCollector, Xml: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Xml(self, Xml);
-    }
-    pub fn SetXml(self: *const IDataCollector, Xml: ?BSTR, Validation: ?*?*IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.SetXml(self, Xml, Validation);
-    }
-    pub fn CreateOutputLocation(self: *const IDataCollector, Latest: i16, Location: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateOutputLocation(self, Latest, Location);
+    pub fn Remove(self: *const ILogFiles, index: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, index);
     }
 };
 
@@ -1650,1159 +3330,6 @@ pub const IPerformanceCounterDataCollector = extern union {
     }
     pub fn put_SegmentMaxRecords(self: *const IPerformanceCounterDataCollector, records: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_SegmentMaxRecords(self, records);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITraceDataCollector_Value = Guid.initString("0383750b-098b-11d8-9414-505054503030");
-pub const IID_ITraceDataCollector = &IID_ITraceDataCollector_Value;
-pub const ITraceDataCollector = extern union {
-    pub const VTable = extern struct {
-        base: IDataCollector.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BufferSize: *const fn(
-            self: *const ITraceDataCollector,
-            size: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BufferSize: *const fn(
-            self: *const ITraceDataCollector,
-            size: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BuffersLost: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BuffersLost: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BuffersWritten: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BuffersWritten: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClockType: *const fn(
-            self: *const ITraceDataCollector,
-            clock: ?*ClockType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClockType: *const fn(
-            self: *const ITraceDataCollector,
-            clock: ClockType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventsLost: *const fn(
-            self: *const ITraceDataCollector,
-            events: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EventsLost: *const fn(
-            self: *const ITraceDataCollector,
-            events: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtendedModes: *const fn(
-            self: *const ITraceDataCollector,
-            mode: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExtendedModes: *const fn(
-            self: *const ITraceDataCollector,
-            mode: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FlushTimer: *const fn(
-            self: *const ITraceDataCollector,
-            seconds: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FlushTimer: *const fn(
-            self: *const ITraceDataCollector,
-            seconds: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FreeBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FreeBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guid: *const fn(
-            self: *const ITraceDataCollector,
-            guid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Guid: *const fn(
-            self: *const ITraceDataCollector,
-            guid: Guid,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsKernelTrace: *const fn(
-            self: *const ITraceDataCollector,
-            kernel: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaximumBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinimumBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MinimumBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NumberOfBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NumberOfBuffers: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreallocateFile: *const fn(
-            self: *const ITraceDataCollector,
-            allocate: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreallocateFile: *const fn(
-            self: *const ITraceDataCollector,
-            allocate: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProcessMode: *const fn(
-            self: *const ITraceDataCollector,
-            process: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ProcessMode: *const fn(
-            self: *const ITraceDataCollector,
-            process: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RealTimeBuffersLost: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RealTimeBuffersLost: *const fn(
-            self: *const ITraceDataCollector,
-            buffers: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SessionId: *const fn(
-            self: *const ITraceDataCollector,
-            id: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SessionId: *const fn(
-            self: *const ITraceDataCollector,
-            id: u64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SessionName: *const fn(
-            self: *const ITraceDataCollector,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SessionName: *const fn(
-            self: *const ITraceDataCollector,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SessionThreadId: *const fn(
-            self: *const ITraceDataCollector,
-            tid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SessionThreadId: *const fn(
-            self: *const ITraceDataCollector,
-            tid: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StreamMode: *const fn(
-            self: *const ITraceDataCollector,
-            mode: ?*StreamMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_StreamMode: *const fn(
-            self: *const ITraceDataCollector,
-            mode: StreamMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TraceDataProviders: *const fn(
-            self: *const ITraceDataCollector,
-            providers: ?*?*ITraceDataProviderCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDataCollector: IDataCollector,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_BufferSize(self: *const ITraceDataCollector, size: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BufferSize(self, size);
-    }
-    pub fn put_BufferSize(self: *const ITraceDataCollector, size: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BufferSize(self, size);
-    }
-    pub fn get_BuffersLost(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BuffersLost(self, buffers);
-    }
-    pub fn put_BuffersLost(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BuffersLost(self, buffers);
-    }
-    pub fn get_BuffersWritten(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BuffersWritten(self, buffers);
-    }
-    pub fn put_BuffersWritten(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BuffersWritten(self, buffers);
-    }
-    pub fn get_ClockType(self: *const ITraceDataCollector, clock: ?*ClockType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClockType(self, clock);
-    }
-    pub fn put_ClockType(self: *const ITraceDataCollector, clock: ClockType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClockType(self, clock);
-    }
-    pub fn get_EventsLost(self: *const ITraceDataCollector, events: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventsLost(self, events);
-    }
-    pub fn put_EventsLost(self: *const ITraceDataCollector, events: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EventsLost(self, events);
-    }
-    pub fn get_ExtendedModes(self: *const ITraceDataCollector, mode: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExtendedModes(self, mode);
-    }
-    pub fn put_ExtendedModes(self: *const ITraceDataCollector, mode: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExtendedModes(self, mode);
-    }
-    pub fn get_FlushTimer(self: *const ITraceDataCollector, seconds: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FlushTimer(self, seconds);
-    }
-    pub fn put_FlushTimer(self: *const ITraceDataCollector, seconds: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FlushTimer(self, seconds);
-    }
-    pub fn get_FreeBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FreeBuffers(self, buffers);
-    }
-    pub fn put_FreeBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FreeBuffers(self, buffers);
-    }
-    pub fn get_Guid(self: *const ITraceDataCollector, guid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Guid(self, guid);
-    }
-    pub fn put_Guid(self: *const ITraceDataCollector, guid: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Guid(self, guid);
-    }
-    pub fn get_IsKernelTrace(self: *const ITraceDataCollector, kernel: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsKernelTrace(self, kernel);
-    }
-    pub fn get_MaximumBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaximumBuffers(self, buffers);
-    }
-    pub fn put_MaximumBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MaximumBuffers(self, buffers);
-    }
-    pub fn get_MinimumBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MinimumBuffers(self, buffers);
-    }
-    pub fn put_MinimumBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MinimumBuffers(self, buffers);
-    }
-    pub fn get_NumberOfBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NumberOfBuffers(self, buffers);
-    }
-    pub fn put_NumberOfBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NumberOfBuffers(self, buffers);
-    }
-    pub fn get_PreallocateFile(self: *const ITraceDataCollector, allocate: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PreallocateFile(self, allocate);
-    }
-    pub fn put_PreallocateFile(self: *const ITraceDataCollector, allocate: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PreallocateFile(self, allocate);
-    }
-    pub fn get_ProcessMode(self: *const ITraceDataCollector, process: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ProcessMode(self, process);
-    }
-    pub fn put_ProcessMode(self: *const ITraceDataCollector, process: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ProcessMode(self, process);
-    }
-    pub fn get_RealTimeBuffersLost(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RealTimeBuffersLost(self, buffers);
-    }
-    pub fn put_RealTimeBuffersLost(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RealTimeBuffersLost(self, buffers);
-    }
-    pub fn get_SessionId(self: *const ITraceDataCollector, id: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SessionId(self, id);
-    }
-    pub fn put_SessionId(self: *const ITraceDataCollector, id: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SessionId(self, id);
-    }
-    pub fn get_SessionName(self: *const ITraceDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SessionName(self, name);
-    }
-    pub fn put_SessionName(self: *const ITraceDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SessionName(self, name);
-    }
-    pub fn get_SessionThreadId(self: *const ITraceDataCollector, tid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SessionThreadId(self, tid);
-    }
-    pub fn put_SessionThreadId(self: *const ITraceDataCollector, tid: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SessionThreadId(self, tid);
-    }
-    pub fn get_StreamMode(self: *const ITraceDataCollector, mode: ?*StreamMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StreamMode(self, mode);
-    }
-    pub fn put_StreamMode(self: *const ITraceDataCollector, mode: StreamMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_StreamMode(self, mode);
-    }
-    pub fn get_TraceDataProviders(self: *const ITraceDataCollector, providers: ?*?*ITraceDataProviderCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TraceDataProviders(self, providers);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConfigurationDataCollector_Value = Guid.initString("03837514-098b-11d8-9414-505054503030");
-pub const IID_IConfigurationDataCollector = &IID_IConfigurationDataCollector_Value;
-pub const IConfigurationDataCollector = extern union {
-    pub const VTable = extern struct {
-        base: IDataCollector.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileMaxCount: *const fn(
-            self: *const IConfigurationDataCollector,
-            count: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileMaxCount: *const fn(
-            self: *const IConfigurationDataCollector,
-            count: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileMaxRecursiveDepth: *const fn(
-            self: *const IConfigurationDataCollector,
-            depth: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileMaxRecursiveDepth: *const fn(
-            self: *const IConfigurationDataCollector,
-            depth: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileMaxTotalSize: *const fn(
-            self: *const IConfigurationDataCollector,
-            size: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileMaxTotalSize: *const fn(
-            self: *const IConfigurationDataCollector,
-            size: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Files: *const fn(
-            self: *const IConfigurationDataCollector,
-            Files: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Files: *const fn(
-            self: *const IConfigurationDataCollector,
-            Files: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ManagementQueries: *const fn(
-            self: *const IConfigurationDataCollector,
-            Queries: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ManagementQueries: *const fn(
-            self: *const IConfigurationDataCollector,
-            Queries: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueryNetworkAdapters: *const fn(
-            self: *const IConfigurationDataCollector,
-            network: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QueryNetworkAdapters: *const fn(
-            self: *const IConfigurationDataCollector,
-            network: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RegistryKeys: *const fn(
-            self: *const IConfigurationDataCollector,
-            query: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RegistryKeys: *const fn(
-            self: *const IConfigurationDataCollector,
-            query: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RegistryMaxRecursiveDepth: *const fn(
-            self: *const IConfigurationDataCollector,
-            depth: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RegistryMaxRecursiveDepth: *const fn(
-            self: *const IConfigurationDataCollector,
-            depth: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SystemStateFile: *const fn(
-            self: *const IConfigurationDataCollector,
-            FileName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SystemStateFile: *const fn(
-            self: *const IConfigurationDataCollector,
-            FileName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDataCollector: IDataCollector,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_FileMaxCount(self: *const IConfigurationDataCollector, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileMaxCount(self, count);
-    }
-    pub fn put_FileMaxCount(self: *const IConfigurationDataCollector, count: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FileMaxCount(self, count);
-    }
-    pub fn get_FileMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileMaxRecursiveDepth(self, depth);
-    }
-    pub fn put_FileMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FileMaxRecursiveDepth(self, depth);
-    }
-    pub fn get_FileMaxTotalSize(self: *const IConfigurationDataCollector, size: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileMaxTotalSize(self, size);
-    }
-    pub fn put_FileMaxTotalSize(self: *const IConfigurationDataCollector, size: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FileMaxTotalSize(self, size);
-    }
-    pub fn get_Files(self: *const IConfigurationDataCollector, Files: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Files(self, Files);
-    }
-    pub fn put_Files(self: *const IConfigurationDataCollector, Files: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Files(self, Files);
-    }
-    pub fn get_ManagementQueries(self: *const IConfigurationDataCollector, Queries: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ManagementQueries(self, Queries);
-    }
-    pub fn put_ManagementQueries(self: *const IConfigurationDataCollector, Queries: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ManagementQueries(self, Queries);
-    }
-    pub fn get_QueryNetworkAdapters(self: *const IConfigurationDataCollector, network: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QueryNetworkAdapters(self, network);
-    }
-    pub fn put_QueryNetworkAdapters(self: *const IConfigurationDataCollector, network: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_QueryNetworkAdapters(self, network);
-    }
-    pub fn get_RegistryKeys(self: *const IConfigurationDataCollector, query: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RegistryKeys(self, query);
-    }
-    pub fn put_RegistryKeys(self: *const IConfigurationDataCollector, query: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RegistryKeys(self, query);
-    }
-    pub fn get_RegistryMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RegistryMaxRecursiveDepth(self, depth);
-    }
-    pub fn put_RegistryMaxRecursiveDepth(self: *const IConfigurationDataCollector, depth: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RegistryMaxRecursiveDepth(self, depth);
-    }
-    pub fn get_SystemStateFile(self: *const IConfigurationDataCollector, FileName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SystemStateFile(self, FileName);
-    }
-    pub fn put_SystemStateFile(self: *const IConfigurationDataCollector, FileName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SystemStateFile(self, FileName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAlertDataCollector_Value = Guid.initString("03837516-098b-11d8-9414-505054503030");
-pub const IID_IAlertDataCollector = &IID_IAlertDataCollector_Value;
-pub const IAlertDataCollector = extern union {
-    pub const VTable = extern struct {
-        base: IDataCollector.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AlertThresholds: *const fn(
-            self: *const IAlertDataCollector,
-            alerts: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AlertThresholds: *const fn(
-            self: *const IAlertDataCollector,
-            alerts: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventLog: *const fn(
-            self: *const IAlertDataCollector,
-            log: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EventLog: *const fn(
-            self: *const IAlertDataCollector,
-            log: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SampleInterval: *const fn(
-            self: *const IAlertDataCollector,
-            interval: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SampleInterval: *const fn(
-            self: *const IAlertDataCollector,
-            interval: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Task: *const fn(
-            self: *const IAlertDataCollector,
-            task: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Task: *const fn(
-            self: *const IAlertDataCollector,
-            task: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskRunAsSelf: *const fn(
-            self: *const IAlertDataCollector,
-            RunAsSelf: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TaskRunAsSelf: *const fn(
-            self: *const IAlertDataCollector,
-            RunAsSelf: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskArguments: *const fn(
-            self: *const IAlertDataCollector,
-            task: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TaskArguments: *const fn(
-            self: *const IAlertDataCollector,
-            task: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskUserTextArguments: *const fn(
-            self: *const IAlertDataCollector,
-            task: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TaskUserTextArguments: *const fn(
-            self: *const IAlertDataCollector,
-            task: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TriggerDataCollectorSet: *const fn(
-            self: *const IAlertDataCollector,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TriggerDataCollectorSet: *const fn(
-            self: *const IAlertDataCollector,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDataCollector: IDataCollector,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_AlertThresholds(self: *const IAlertDataCollector, alerts: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AlertThresholds(self, alerts);
-    }
-    pub fn put_AlertThresholds(self: *const IAlertDataCollector, alerts: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AlertThresholds(self, alerts);
-    }
-    pub fn get_EventLog(self: *const IAlertDataCollector, log: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventLog(self, log);
-    }
-    pub fn put_EventLog(self: *const IAlertDataCollector, log: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EventLog(self, log);
-    }
-    pub fn get_SampleInterval(self: *const IAlertDataCollector, interval: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SampleInterval(self, interval);
-    }
-    pub fn put_SampleInterval(self: *const IAlertDataCollector, interval: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SampleInterval(self, interval);
-    }
-    pub fn get_Task(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Task(self, task);
-    }
-    pub fn put_Task(self: *const IAlertDataCollector, task: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Task(self, task);
-    }
-    pub fn get_TaskRunAsSelf(self: *const IAlertDataCollector, RunAsSelf: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TaskRunAsSelf(self, RunAsSelf);
-    }
-    pub fn put_TaskRunAsSelf(self: *const IAlertDataCollector, RunAsSelf: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TaskRunAsSelf(self, RunAsSelf);
-    }
-    pub fn get_TaskArguments(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TaskArguments(self, task);
-    }
-    pub fn put_TaskArguments(self: *const IAlertDataCollector, task: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TaskArguments(self, task);
-    }
-    pub fn get_TaskUserTextArguments(self: *const IAlertDataCollector, task: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TaskUserTextArguments(self, task);
-    }
-    pub fn put_TaskUserTextArguments(self: *const IAlertDataCollector, task: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TaskUserTextArguments(self, task);
-    }
-    pub fn get_TriggerDataCollectorSet(self: *const IAlertDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TriggerDataCollectorSet(self, name);
-    }
-    pub fn put_TriggerDataCollectorSet(self: *const IAlertDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TriggerDataCollectorSet(self, name);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IApiTracingDataCollector_Value = Guid.initString("0383751a-098b-11d8-9414-505054503030");
-pub const IID_IApiTracingDataCollector = &IID_IApiTracingDataCollector_Value;
-pub const IApiTracingDataCollector = extern union {
-    pub const VTable = extern struct {
-        base: IDataCollector.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogApiNamesOnly: *const fn(
-            self: *const IApiTracingDataCollector,
-            logapinames: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogApiNamesOnly: *const fn(
-            self: *const IApiTracingDataCollector,
-            logapinames: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogApisRecursively: *const fn(
-            self: *const IApiTracingDataCollector,
-            logrecursively: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogApisRecursively: *const fn(
-            self: *const IApiTracingDataCollector,
-            logrecursively: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExePath: *const fn(
-            self: *const IApiTracingDataCollector,
-            exepath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExePath: *const fn(
-            self: *const IApiTracingDataCollector,
-            exepath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogFilePath: *const fn(
-            self: *const IApiTracingDataCollector,
-            logfilepath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogFilePath: *const fn(
-            self: *const IApiTracingDataCollector,
-            logfilepath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IncludeModules: *const fn(
-            self: *const IApiTracingDataCollector,
-            includemodules: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IncludeModules: *const fn(
-            self: *const IApiTracingDataCollector,
-            includemodules: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IncludeApis: *const fn(
-            self: *const IApiTracingDataCollector,
-            includeapis: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IncludeApis: *const fn(
-            self: *const IApiTracingDataCollector,
-            includeapis: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExcludeApis: *const fn(
-            self: *const IApiTracingDataCollector,
-            excludeapis: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExcludeApis: *const fn(
-            self: *const IApiTracingDataCollector,
-            excludeapis: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDataCollector: IDataCollector,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_LogApiNamesOnly(self: *const IApiTracingDataCollector, logapinames: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogApiNamesOnly(self, logapinames);
-    }
-    pub fn put_LogApiNamesOnly(self: *const IApiTracingDataCollector, logapinames: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogApiNamesOnly(self, logapinames);
-    }
-    pub fn get_LogApisRecursively(self: *const IApiTracingDataCollector, logrecursively: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogApisRecursively(self, logrecursively);
-    }
-    pub fn put_LogApisRecursively(self: *const IApiTracingDataCollector, logrecursively: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogApisRecursively(self, logrecursively);
-    }
-    pub fn get_ExePath(self: *const IApiTracingDataCollector, exepath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExePath(self, exepath);
-    }
-    pub fn put_ExePath(self: *const IApiTracingDataCollector, exepath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExePath(self, exepath);
-    }
-    pub fn get_LogFilePath(self: *const IApiTracingDataCollector, logfilepath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogFilePath(self, logfilepath);
-    }
-    pub fn put_LogFilePath(self: *const IApiTracingDataCollector, logfilepath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogFilePath(self, logfilepath);
-    }
-    pub fn get_IncludeModules(self: *const IApiTracingDataCollector, includemodules: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IncludeModules(self, includemodules);
-    }
-    pub fn put_IncludeModules(self: *const IApiTracingDataCollector, includemodules: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IncludeModules(self, includemodules);
-    }
-    pub fn get_IncludeApis(self: *const IApiTracingDataCollector, includeapis: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IncludeApis(self, includeapis);
-    }
-    pub fn put_IncludeApis(self: *const IApiTracingDataCollector, includeapis: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IncludeApis(self, includeapis);
-    }
-    pub fn get_ExcludeApis(self: *const IApiTracingDataCollector, excludeapis: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExcludeApis(self, excludeapis);
-    }
-    pub fn put_ExcludeApis(self: *const IApiTracingDataCollector, excludeapis: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExcludeApis(self, excludeapis);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataCollectorCollection_Value = Guid.initString("03837502-098b-11d8-9414-505054503030");
-pub const IID_IDataCollectorCollection = &IID_IDataCollectorCollection_Value;
-pub const IDataCollectorCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IDataCollectorCollection,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IDataCollectorCollection,
-            index: VARIANT,
-            collector: ?*?*IDataCollector,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IDataCollectorCollection,
-            retVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IDataCollectorCollection,
-            collector: ?*IDataCollector,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IDataCollectorCollection,
-            collector: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IDataCollectorCollection,
-        ) callconv(.winapi) HRESULT,
-        AddRange: *const fn(
-            self: *const IDataCollectorCollection,
-            collectors: ?*IDataCollectorCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateDataCollectorFromXml: *const fn(
-            self: *const IDataCollectorCollection,
-            bstrXml: ?BSTR,
-            pValidation: ?*?*IValueMap,
-            pCollector: ?*?*IDataCollector,
-        ) callconv(.winapi) HRESULT,
-        CreateDataCollector: *const fn(
-            self: *const IDataCollectorCollection,
-            Type: DataCollectorType,
-            Collector: ?*?*IDataCollector,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IDataCollectorCollection, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, retVal);
-    }
-    pub fn get_Item(self: *const IDataCollectorCollection, index: VARIANT, collector: ?*?*IDataCollector) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, collector);
-    }
-    pub fn get__NewEnum(self: *const IDataCollectorCollection, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retVal);
-    }
-    pub fn Add(self: *const IDataCollectorCollection, collector: ?*IDataCollector) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, collector);
-    }
-    pub fn Remove(self: *const IDataCollectorCollection, collector: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, collector);
-    }
-    pub fn Clear(self: *const IDataCollectorCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-    pub fn AddRange(self: *const IDataCollectorCollection, collectors: ?*IDataCollectorCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRange(self, collectors);
-    }
-    pub fn CreateDataCollectorFromXml(self: *const IDataCollectorCollection, bstrXml: ?BSTR, pValidation: ?*?*IValueMap, pCollector: ?*?*IDataCollector) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDataCollectorFromXml(self, bstrXml, pValidation, pCollector);
-    }
-    pub fn CreateDataCollector(self: *const IDataCollectorCollection, Type: DataCollectorType, Collector: ?*?*IDataCollector) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDataCollector(self, Type, Collector);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataCollectorSetCollection_Value = Guid.initString("03837524-098b-11d8-9414-505054503030");
-pub const IID_IDataCollectorSetCollection = &IID_IDataCollectorSetCollection_Value;
-pub const IDataCollectorSetCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IDataCollectorSetCollection,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IDataCollectorSetCollection,
-            index: VARIANT,
-            set: ?*?*IDataCollectorSet,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IDataCollectorSetCollection,
-            retVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IDataCollectorSetCollection,
-            set: ?*IDataCollectorSet,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IDataCollectorSetCollection,
-            set: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IDataCollectorSetCollection,
-        ) callconv(.winapi) HRESULT,
-        AddRange: *const fn(
-            self: *const IDataCollectorSetCollection,
-            sets: ?*IDataCollectorSetCollection,
-        ) callconv(.winapi) HRESULT,
-        GetDataCollectorSets: *const fn(
-            self: *const IDataCollectorSetCollection,
-            server: ?BSTR,
-            filter: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IDataCollectorSetCollection, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, retVal);
-    }
-    pub fn get_Item(self: *const IDataCollectorSetCollection, index: VARIANT, set: ?*?*IDataCollectorSet) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, set);
-    }
-    pub fn get__NewEnum(self: *const IDataCollectorSetCollection, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retVal);
-    }
-    pub fn Add(self: *const IDataCollectorSetCollection, set: ?*IDataCollectorSet) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, set);
-    }
-    pub fn Remove(self: *const IDataCollectorSetCollection, set: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, set);
-    }
-    pub fn Clear(self: *const IDataCollectorSetCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-    pub fn AddRange(self: *const IDataCollectorSetCollection, sets: ?*IDataCollectorSetCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRange(self, sets);
-    }
-    pub fn GetDataCollectorSets(self: *const IDataCollectorSetCollection, server: ?BSTR, filter: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataCollectorSets(self, server, filter);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITraceDataProvider_Value = Guid.initString("03837512-098b-11d8-9414-505054503030");
-pub const IID_ITraceDataProvider = &IID_ITraceDataProvider_Value;
-pub const ITraceDataProvider = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: *const fn(
-            self: *const ITraceDataProvider,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayName: *const fn(
-            self: *const ITraceDataProvider,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guid: *const fn(
-            self: *const ITraceDataProvider,
-            guid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Guid: *const fn(
-            self: *const ITraceDataProvider,
-            guid: Guid,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Level: *const fn(
-            self: *const ITraceDataProvider,
-            ppLevel: ?*?*IValueMap,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_KeywordsAny: *const fn(
-            self: *const ITraceDataProvider,
-            ppKeywords: ?*?*IValueMap,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_KeywordsAll: *const fn(
-            self: *const ITraceDataProvider,
-            ppKeywords: ?*?*IValueMap,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: *const fn(
-            self: *const ITraceDataProvider,
-            ppProperties: ?*?*IValueMap,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FilterEnabled: *const fn(
-            self: *const ITraceDataProvider,
-            FilterEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FilterEnabled: *const fn(
-            self: *const ITraceDataProvider,
-            FilterEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FilterType: *const fn(
-            self: *const ITraceDataProvider,
-            pulType: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FilterType: *const fn(
-            self: *const ITraceDataProvider,
-            ulType: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FilterData: *const fn(
-            self: *const ITraceDataProvider,
-            ppData: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FilterData: *const fn(
-            self: *const ITraceDataProvider,
-            pData: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        Query: *const fn(
-            self: *const ITraceDataProvider,
-            bstrName: ?BSTR,
-            bstrServer: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Resolve: *const fn(
-            self: *const ITraceDataProvider,
-            pFrom: ?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        SetSecurity: *const fn(
-            self: *const ITraceDataProvider,
-            Sddl: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSecurity: *const fn(
-            self: *const ITraceDataProvider,
-            SecurityInfo: u32,
-            Sddl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetRegisteredProcesses: *const fn(
-            self: *const ITraceDataProvider,
-            Processes: ?*?*IValueMap,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_DisplayName(self: *const ITraceDataProvider, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayName(self, name);
-    }
-    pub fn put_DisplayName(self: *const ITraceDataProvider, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisplayName(self, name);
-    }
-    pub fn get_Guid(self: *const ITraceDataProvider, guid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Guid(self, guid);
-    }
-    pub fn put_Guid(self: *const ITraceDataProvider, guid: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Guid(self, guid);
-    }
-    pub fn get_Level(self: *const ITraceDataProvider, ppLevel: ?*?*IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Level(self, ppLevel);
-    }
-    pub fn get_KeywordsAny(self: *const ITraceDataProvider, ppKeywords: ?*?*IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.get_KeywordsAny(self, ppKeywords);
-    }
-    pub fn get_KeywordsAll(self: *const ITraceDataProvider, ppKeywords: ?*?*IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.get_KeywordsAll(self, ppKeywords);
-    }
-    pub fn get_Properties(self: *const ITraceDataProvider, ppProperties: ?*?*IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Properties(self, ppProperties);
-    }
-    pub fn get_FilterEnabled(self: *const ITraceDataProvider, FilterEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FilterEnabled(self, FilterEnabled);
-    }
-    pub fn put_FilterEnabled(self: *const ITraceDataProvider, FilterEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FilterEnabled(self, FilterEnabled);
-    }
-    pub fn get_FilterType(self: *const ITraceDataProvider, pulType: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FilterType(self, pulType);
-    }
-    pub fn put_FilterType(self: *const ITraceDataProvider, ulType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FilterType(self, ulType);
-    }
-    pub fn get_FilterData(self: *const ITraceDataProvider, ppData: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FilterData(self, ppData);
-    }
-    pub fn put_FilterData(self: *const ITraceDataProvider, pData: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FilterData(self, pData);
-    }
-    pub fn Query(self: *const ITraceDataProvider, bstrName: ?BSTR, bstrServer: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Query(self, bstrName, bstrServer);
-    }
-    pub fn Resolve(self: *const ITraceDataProvider, pFrom: ?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.Resolve(self, pFrom);
-    }
-    pub fn SetSecurity(self: *const ITraceDataProvider, Sddl: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSecurity(self, Sddl);
-    }
-    pub fn GetSecurity(self: *const ITraceDataProvider, SecurityInfo: u32, Sddl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecurity(self, SecurityInfo, Sddl);
-    }
-    pub fn GetRegisteredProcesses(self: *const ITraceDataProvider, Processes: ?*?*IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRegisteredProcesses(self, Processes);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITraceDataProviderCollection_Value = Guid.initString("03837510-098b-11d8-9414-505054503030");
-pub const IID_ITraceDataProviderCollection = &IID_ITraceDataProviderCollection_Value;
-pub const ITraceDataProviderCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ITraceDataProviderCollection,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ITraceDataProviderCollection,
-            index: VARIANT,
-            ppProvider: ?*?*ITraceDataProvider,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ITraceDataProviderCollection,
-            retVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const ITraceDataProviderCollection,
-            pProvider: ?*ITraceDataProvider,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const ITraceDataProviderCollection,
-            vProvider: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const ITraceDataProviderCollection,
-        ) callconv(.winapi) HRESULT,
-        AddRange: *const fn(
-            self: *const ITraceDataProviderCollection,
-            providers: ?*ITraceDataProviderCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateTraceDataProvider: *const fn(
-            self: *const ITraceDataProviderCollection,
-            Provider: ?*?*ITraceDataProvider,
-        ) callconv(.winapi) HRESULT,
-        GetTraceDataProviders: *const fn(
-            self: *const ITraceDataProviderCollection,
-            server: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetTraceDataProvidersByProcess: *const fn(
-            self: *const ITraceDataProviderCollection,
-            Server: ?BSTR,
-            Pid: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ITraceDataProviderCollection, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, retVal);
-    }
-    pub fn get_Item(self: *const ITraceDataProviderCollection, index: VARIANT, ppProvider: ?*?*ITraceDataProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, ppProvider);
-    }
-    pub fn get__NewEnum(self: *const ITraceDataProviderCollection, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retVal);
-    }
-    pub fn Add(self: *const ITraceDataProviderCollection, pProvider: ?*ITraceDataProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, pProvider);
-    }
-    pub fn Remove(self: *const ITraceDataProviderCollection, vProvider: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, vProvider);
-    }
-    pub fn Clear(self: *const ITraceDataProviderCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-    pub fn AddRange(self: *const ITraceDataProviderCollection, providers: ?*ITraceDataProviderCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRange(self, providers);
-    }
-    pub fn CreateTraceDataProvider(self: *const ITraceDataProviderCollection, Provider: ?*?*ITraceDataProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTraceDataProvider(self, Provider);
-    }
-    pub fn GetTraceDataProviders(self: *const ITraceDataProviderCollection, server: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTraceDataProviders(self, server);
-    }
-    pub fn GetTraceDataProvidersByProcess(self: *const ITraceDataProviderCollection, Server: ?BSTR, Pid: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTraceDataProvidersByProcess(self, Server, Pid);
     }
 };
 
@@ -2949,1270 +3476,6 @@ pub const IScheduleCollection = extern union {
     }
     pub fn CreateSchedule(self: *const IScheduleCollection, Schedule: ?*?*ISchedule) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSchedule(self, Schedule);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IValueMapItem_Value = Guid.initString("03837533-098b-11d8-9414-505054503030");
-pub const IID_IValueMapItem = &IID_IValueMapItem_Value;
-pub const IValueMapItem = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IValueMapItem,
-            description: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IValueMapItem,
-            description: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IValueMapItem,
-            enabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const IValueMapItem,
-            enabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Key: *const fn(
-            self: *const IValueMapItem,
-            key: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Key: *const fn(
-            self: *const IValueMapItem,
-            key: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IValueMapItem,
-            Value: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const IValueMapItem,
-            Value: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueMapType: *const fn(
-            self: *const IValueMapItem,
-            type: ?*ValueMapType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ValueMapType: *const fn(
-            self: *const IValueMapItem,
-            type: ValueMapType,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Description(self: *const IValueMapItem, description: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, description);
-    }
-    pub fn put_Description(self: *const IValueMapItem, description: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, description);
-    }
-    pub fn get_Enabled(self: *const IValueMapItem, enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, enabled);
-    }
-    pub fn put_Enabled(self: *const IValueMapItem, enabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, enabled);
-    }
-    pub fn get_Key(self: *const IValueMapItem, key: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Key(self, key);
-    }
-    pub fn put_Key(self: *const IValueMapItem, key: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Key(self, key);
-    }
-    pub fn get_Value(self: *const IValueMapItem, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, Value);
-    }
-    pub fn put_Value(self: *const IValueMapItem, Value: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, Value);
-    }
-    pub fn get_ValueMapType(self: *const IValueMapItem, @"type": ?*ValueMapType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ValueMapType(self, @"type");
-    }
-    pub fn put_ValueMapType(self: *const IValueMapItem, @"type": ValueMapType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ValueMapType(self, @"type");
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IValueMap_Value = Guid.initString("03837534-098b-11d8-9414-505054503030");
-pub const IID_IValueMap = &IID_IValueMap_Value;
-pub const IValueMap = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IValueMap,
-            retVal: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IValueMap,
-            index: VARIANT,
-            value: ?*?*IValueMapItem,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IValueMap,
-            retVal: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IValueMap,
-            description: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IValueMap,
-            description: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IValueMap,
-            Value: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const IValueMap,
-            Value: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueMapType: *const fn(
-            self: *const IValueMap,
-            type: ?*ValueMapType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ValueMapType: *const fn(
-            self: *const IValueMap,
-            type: ValueMapType,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IValueMap,
-            value: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IValueMap,
-            value: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IValueMap,
-        ) callconv(.winapi) HRESULT,
-        AddRange: *const fn(
-            self: *const IValueMap,
-            map: ?*IValueMap,
-        ) callconv(.winapi) HRESULT,
-        CreateValueMapItem: *const fn(
-            self: *const IValueMap,
-            Item: ?*?*IValueMapItem,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IValueMap, retVal: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, retVal);
-    }
-    pub fn get_Item(self: *const IValueMap, index: VARIANT, value: ?*?*IValueMapItem) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, value);
-    }
-    pub fn get__NewEnum(self: *const IValueMap, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retVal);
-    }
-    pub fn get_Description(self: *const IValueMap, description: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, description);
-    }
-    pub fn put_Description(self: *const IValueMap, description: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, description);
-    }
-    pub fn get_Value(self: *const IValueMap, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, Value);
-    }
-    pub fn put_Value(self: *const IValueMap, Value: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, Value);
-    }
-    pub fn get_ValueMapType(self: *const IValueMap, @"type": ?*ValueMapType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ValueMapType(self, @"type");
-    }
-    pub fn put_ValueMapType(self: *const IValueMap, @"type": ValueMapType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ValueMapType(self, @"type");
-    }
-    pub fn Add(self: *const IValueMap, value: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, value);
-    }
-    pub fn Remove(self: *const IValueMap, value: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, value);
-    }
-    pub fn Clear(self: *const IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-    pub fn AddRange(self: *const IValueMap, map: ?*IValueMap) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRange(self, map);
-    }
-    pub fn CreateValueMapItem(self: *const IValueMap, Item: ?*?*IValueMapItem) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateValueMapItem(self, Item);
-    }
-};
-
-pub const PERF_COUNTERSET_INFO = extern struct {
-    CounterSetGuid: Guid,
-    ProviderGuid: Guid,
-    NumCounters: u32,
-    InstanceType: u32,
-};
-
-pub const PERF_COUNTER_INFO = extern struct {
-    CounterId: u32,
-    Type: u32,
-    Attrib: u64,
-    Size: u32,
-    DetailLevel: u32,
-    Scale: i32,
-    Offset: u32,
-};
-
-pub const PERF_COUNTERSET_INSTANCE = extern struct {
-    CounterSetGuid: Guid,
-    dwSize: u32,
-    InstanceId: u32,
-    InstanceNameOffset: u32,
-    InstanceNameSize: u32,
-};
-
-pub const PERF_COUNTER_IDENTITY = extern struct {
-    CounterSetGuid: Guid,
-    BufferSize: u32,
-    CounterId: u32,
-    InstanceId: u32,
-    MachineOffset: u32,
-    NameOffset: u32,
-    Reserved: u32,
-};
-
-pub const PERFLIBREQUEST = *const fn(
-    RequestCode: u32,
-    Buffer: ?*anyopaque,
-    BufferSize: u32,
-) callconv(.winapi) u32;
-
-pub const PERF_MEM_ALLOC = *const fn(
-    AllocSize: usize,
-    pContext: ?*anyopaque,
-) callconv(.winapi) ?*anyopaque;
-
-pub const PERF_MEM_FREE = *const fn(
-    pBuffer: ?*anyopaque,
-    pContext: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const PERF_PROVIDER_CONTEXT = extern struct {
-    ContextSize: u32,
-    Reserved: u32,
-    ControlCallback: ?PERFLIBREQUEST,
-    MemAllocRoutine: ?PERF_MEM_ALLOC,
-    MemFreeRoutine: ?PERF_MEM_FREE,
-    pMemContext: ?*anyopaque,
-};
-
-pub const PERF_INSTANCE_HEADER = extern struct {
-    Size: u32,
-    InstanceId: u32,
-};
-
-pub const PerfRegInfoType = enum(i32) {
-    COUNTERSET_STRUCT = 1,
-    COUNTER_STRUCT = 2,
-    COUNTERSET_NAME_STRING = 3,
-    COUNTERSET_HELP_STRING = 4,
-    COUNTER_NAME_STRINGS = 5,
-    COUNTER_HELP_STRINGS = 6,
-    PROVIDER_NAME = 7,
-    PROVIDER_GUID = 8,
-    COUNTERSET_ENGLISH_NAME = 9,
-    COUNTER_ENGLISH_NAMES = 10,
-};
-pub const PERF_REG_COUNTERSET_STRUCT = PerfRegInfoType.COUNTERSET_STRUCT;
-pub const PERF_REG_COUNTER_STRUCT = PerfRegInfoType.COUNTER_STRUCT;
-pub const PERF_REG_COUNTERSET_NAME_STRING = PerfRegInfoType.COUNTERSET_NAME_STRING;
-pub const PERF_REG_COUNTERSET_HELP_STRING = PerfRegInfoType.COUNTERSET_HELP_STRING;
-pub const PERF_REG_COUNTER_NAME_STRINGS = PerfRegInfoType.COUNTER_NAME_STRINGS;
-pub const PERF_REG_COUNTER_HELP_STRINGS = PerfRegInfoType.COUNTER_HELP_STRINGS;
-pub const PERF_REG_PROVIDER_NAME = PerfRegInfoType.PROVIDER_NAME;
-pub const PERF_REG_PROVIDER_GUID = PerfRegInfoType.PROVIDER_GUID;
-pub const PERF_REG_COUNTERSET_ENGLISH_NAME = PerfRegInfoType.COUNTERSET_ENGLISH_NAME;
-pub const PERF_REG_COUNTER_ENGLISH_NAMES = PerfRegInfoType.COUNTER_ENGLISH_NAMES;
-
-pub const PERF_COUNTERSET_REG_INFO = extern struct {
-    CounterSetGuid: Guid,
-    CounterSetType: u32,
-    DetailLevel: u32,
-    NumCounters: u32,
-    InstanceType: u32,
-};
-
-pub const PERF_COUNTER_REG_INFO = extern struct {
-    CounterId: u32,
-    Type: u32,
-    Attrib: u64,
-    DetailLevel: u32,
-    DefaultScale: i32,
-    BaseCounterId: u32,
-    PerfTimeId: u32,
-    PerfFreqId: u32,
-    MultiId: u32,
-    AggregateFunc: PERF_COUNTER_AGGREGATE_FUNC,
-    Reserved: u32,
-};
-
-pub const PERF_STRING_BUFFER_HEADER = extern struct {
-    dwSize: u32,
-    dwCounters: u32,
-};
-
-pub const PERF_STRING_COUNTER_HEADER = extern struct {
-    dwCounterId: u32,
-    dwOffset: u32,
-};
-
-pub const PERF_COUNTER_IDENTIFIER = extern struct {
-    CounterSetGuid: Guid,
-    Status: u32,
-    Size: u32,
-    CounterId: u32,
-    InstanceId: u32,
-    Index: u32,
-    Reserved: u32,
-};
-
-pub const PERF_DATA_HEADER = extern struct {
-    dwTotalSize: u32,
-    dwNumCounters: u32,
-    PerfTimeStamp: i64,
-    PerfTime100NSec: i64,
-    PerfFreq: i64,
-    SystemTime: SYSTEMTIME,
-};
-
-pub const PerfCounterDataType = enum(i32) {
-    ERROR_RETURN = 0,
-    SINGLE_COUNTER = 1,
-    MULTIPLE_COUNTERS = 2,
-    MULTIPLE_INSTANCES = 4,
-    COUNTERSET = 6,
-};
-pub const PERF_ERROR_RETURN = PerfCounterDataType.ERROR_RETURN;
-pub const PERF_SINGLE_COUNTER = PerfCounterDataType.SINGLE_COUNTER;
-pub const PERF_MULTIPLE_COUNTERS = PerfCounterDataType.MULTIPLE_COUNTERS;
-pub const PERF_MULTIPLE_INSTANCES = PerfCounterDataType.MULTIPLE_INSTANCES;
-pub const PERF_COUNTERSET = PerfCounterDataType.COUNTERSET;
-
-pub const PERF_COUNTER_HEADER = extern struct {
-    dwStatus: u32,
-    dwType: PerfCounterDataType,
-    dwSize: u32,
-    Reserved: u32,
-};
-
-pub const PERF_MULTI_INSTANCES = extern struct {
-    dwTotalSize: u32,
-    dwInstances: u32,
-};
-
-pub const PERF_MULTI_COUNTERS = extern struct {
-    dwSize: u32,
-    dwCounters: u32,
-};
-
-pub const PERF_COUNTER_DATA = extern struct {
-    dwDataSize: u32,
-    dwSize: u32,
-};
-
-pub const PERF_DATA_BLOCK = extern struct {
-    Signature: [4]u16,
-    LittleEndian: u32,
-    Version: u32,
-    Revision: u32,
-    TotalByteLength: u32,
-    HeaderLength: u32,
-    NumObjectTypes: u32,
-    DefaultObject: i32,
-    SystemTime: SYSTEMTIME,
-    PerfTime: LARGE_INTEGER,
-    PerfFreq: LARGE_INTEGER,
-    PerfTime100nSec: LARGE_INTEGER,
-    SystemNameLength: u32,
-    SystemNameOffset: u32,
-};
-
-
-
-pub const PERF_INSTANCE_DEFINITION = extern struct {
-    ByteLength: u32,
-    ParentObjectTitleIndex: u32,
-    ParentObjectInstance: u32,
-    UniqueID: i32,
-    NameOffset: u32,
-    NameLength: u32,
-};
-
-pub const PERF_COUNTER_BLOCK = extern struct {
-    ByteLength: u32,
-};
-
-pub const PM_OPEN_PROC = *const fn(
-    pContext: ?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PM_COLLECT_PROC = *const fn(
-    pValueName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 2?
-    ppData: ?*?*anyopaque,
-    pcbTotalBytes: ?*u32,
-    pNumObjectTypes: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PM_CLOSE_PROC = *const fn(
-) callconv(.winapi) u32;
-
-pub const PDH_RAW_COUNTER = extern struct {
-    CStatus: u32,
-    TimeStamp: FILETIME,
-    FirstValue: i64,
-    SecondValue: i64,
-    MultiCount: u32,
-};
-
-pub const PDH_RAW_COUNTER_ITEM_A = extern struct {
-    szName: ?PSTR,
-    RawValue: PDH_RAW_COUNTER,
-};
-
-pub const PDH_RAW_COUNTER_ITEM_W = extern struct {
-    szName: ?PWSTR,
-    RawValue: PDH_RAW_COUNTER,
-};
-
-pub const PDH_FMT_COUNTERVALUE = extern struct {
-    CStatus: u32,
-    Anonymous: extern union {
-        longValue: i32,
-        doubleValue: f64,
-        largeValue: i64,
-        AnsiStringValue: ?[*:0]const u8,
-        WideStringValue: ?[*:0]const u16,
-    },
-};
-
-pub const PDH_FMT_COUNTERVALUE_ITEM_A = extern struct {
-    szName: ?PSTR,
-    FmtValue: PDH_FMT_COUNTERVALUE,
-};
-
-pub const PDH_FMT_COUNTERVALUE_ITEM_W = extern struct {
-    szName: ?PWSTR,
-    FmtValue: PDH_FMT_COUNTERVALUE,
-};
-
-pub const PDH_STATISTICS = extern struct {
-    dwFormat: u32,
-    count: u32,
-    min: PDH_FMT_COUNTERVALUE,
-    max: PDH_FMT_COUNTERVALUE,
-    mean: PDH_FMT_COUNTERVALUE,
-};
-
-pub const PDH_COUNTER_PATH_ELEMENTS_A = extern struct {
-    szMachineName: ?PSTR,
-    szObjectName: ?PSTR,
-    szInstanceName: ?PSTR,
-    szParentInstance: ?PSTR,
-    dwInstanceIndex: u32,
-    szCounterName: ?PSTR,
-};
-
-pub const PDH_COUNTER_PATH_ELEMENTS_W = extern struct {
-    szMachineName: ?PWSTR,
-    szObjectName: ?PWSTR,
-    szInstanceName: ?PWSTR,
-    szParentInstance: ?PWSTR,
-    dwInstanceIndex: u32,
-    szCounterName: ?PWSTR,
-};
-
-pub const PDH_DATA_ITEM_PATH_ELEMENTS_A = extern struct {
-    szMachineName: ?PSTR,
-    ObjectGUID: Guid,
-    dwItemId: u32,
-    szInstanceName: ?PSTR,
-};
-
-pub const PDH_DATA_ITEM_PATH_ELEMENTS_W = extern struct {
-    szMachineName: ?PWSTR,
-    ObjectGUID: Guid,
-    dwItemId: u32,
-    szInstanceName: ?PWSTR,
-};
-
-pub const PDH_COUNTER_INFO_A = extern struct {
-    dwLength: u32,
-    dwType: u32,
-    CVersion: u32,
-    CStatus: u32,
-    lScale: i32,
-    lDefaultScale: i32,
-    dwUserData: usize,
-    dwQueryUserData: usize,
-    szFullPath: ?PSTR,
-    Anonymous: extern union {
-        DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_A,
-        CounterPath: PDH_COUNTER_PATH_ELEMENTS_A,
-        Anonymous: extern struct {
-            szMachineName: ?PSTR,
-            szObjectName: ?PSTR,
-            szInstanceName: ?PSTR,
-            szParentInstance: ?PSTR,
-            dwInstanceIndex: u32,
-            szCounterName: ?PSTR,
-        },
-    },
-    szExplainText: ?PSTR,
-    DataBuffer: [1]u32,
-};
-
-pub const PDH_COUNTER_INFO_W = extern struct {
-    dwLength: u32,
-    dwType: u32,
-    CVersion: u32,
-    CStatus: u32,
-    lScale: i32,
-    lDefaultScale: i32,
-    dwUserData: usize,
-    dwQueryUserData: usize,
-    szFullPath: ?PWSTR,
-    Anonymous: extern union {
-        DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_W,
-        CounterPath: PDH_COUNTER_PATH_ELEMENTS_W,
-        Anonymous: extern struct {
-            szMachineName: ?PWSTR,
-            szObjectName: ?PWSTR,
-            szInstanceName: ?PWSTR,
-            szParentInstance: ?PWSTR,
-            dwInstanceIndex: u32,
-            szCounterName: ?PWSTR,
-        },
-    },
-    szExplainText: ?PWSTR,
-    DataBuffer: [1]u32,
-};
-
-pub const PDH_TIME_INFO = extern struct {
-    StartTime: i64,
-    EndTime: i64,
-    SampleCount: u32,
-};
-
-pub const PDH_RAW_LOG_RECORD = extern struct {
-    dwStructureSize: u32,
-    dwRecordType: PDH_LOG_TYPE,
-    dwItems: u32,
-    RawBytes: [1]u8,
-};
-
-pub const PDH_LOG_SERVICE_QUERY_INFO_A = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwLogQuota: u32,
-    szLogFileCaption: ?PSTR,
-    szDefaultDir: ?PSTR,
-    szBaseFileName: ?PSTR,
-    dwFileType: u32,
-    dwReserved: u32,
-    Anonymous: extern union {
-        Anonymous1: extern struct {
-            PdlAutoNameInterval: u32,
-            PdlAutoNameUnits: u32,
-            PdlCommandFilename: ?PSTR,
-            PdlCounterList: ?PSTR,
-            PdlAutoNameFormat: u32,
-            PdlSampleInterval: u32,
-            PdlLogStartTime: FILETIME,
-            PdlLogEndTime: FILETIME,
-        },
-        Anonymous2: extern struct {
-            TlNumberOfBuffers: u32,
-            TlMinimumBuffers: u32,
-            TlMaximumBuffers: u32,
-            TlFreeBuffers: u32,
-            TlBufferSize: u32,
-            TlEventsLost: u32,
-            TlLoggerThreadId: u32,
-            TlBuffersWritten: u32,
-            TlLogHandle: u32,
-            TlLogFileName: ?PSTR,
-        },
-    },
-};
-
-pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwLogQuota: u32,
-    szLogFileCaption: ?PWSTR,
-    szDefaultDir: ?PWSTR,
-    szBaseFileName: ?PWSTR,
-    dwFileType: u32,
-    dwReserved: u32,
-    Anonymous: extern union {
-        Anonymous1: extern struct {
-            PdlAutoNameInterval: u32,
-            PdlAutoNameUnits: u32,
-            PdlCommandFilename: ?PWSTR,
-            PdlCounterList: ?PWSTR,
-            PdlAutoNameFormat: u32,
-            PdlSampleInterval: u32,
-            PdlLogStartTime: FILETIME,
-            PdlLogEndTime: FILETIME,
-        },
-        Anonymous2: extern struct {
-            TlNumberOfBuffers: u32,
-            TlMinimumBuffers: u32,
-            TlMaximumBuffers: u32,
-            TlFreeBuffers: u32,
-            TlBufferSize: u32,
-            TlEventsLost: u32,
-            TlLoggerThreadId: u32,
-            TlBuffersWritten: u32,
-            TlLogHandle: u32,
-            TlLogFileName: ?PWSTR,
-        },
-    },
-};
-
-pub const CounterPathCallBack = *const fn(
-    param0: usize,
-) callconv(.winapi) i32;
-
-pub const PDH_BROWSE_DLG_CONFIG_HW = extern struct {
-    _bitfield: u32,
-    hWndOwner: ?HWND,
-    hDataSource: isize,
-    szReturnPathBuffer: ?PWSTR,
-    cchReturnPathLength: u32,
-    pCallBack: ?CounterPathCallBack,
-    dwCallBackArg: usize,
-    CallBackStatus: i32,
-    dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PWSTR,
-};
-
-pub const PDH_BROWSE_DLG_CONFIG_HA = extern struct {
-    _bitfield: u32,
-    hWndOwner: ?HWND,
-    hDataSource: isize,
-    szReturnPathBuffer: ?PSTR,
-    cchReturnPathLength: u32,
-    pCallBack: ?CounterPathCallBack,
-    dwCallBackArg: usize,
-    CallBackStatus: i32,
-    dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PSTR,
-};
-
-pub const PDH_BROWSE_DLG_CONFIG_W = extern struct {
-    _bitfield: u32,
-    hWndOwner: ?HWND,
-    szDataSource: ?PWSTR,
-    szReturnPathBuffer: ?PWSTR,
-    cchReturnPathLength: u32,
-    pCallBack: ?CounterPathCallBack,
-    dwCallBackArg: usize,
-    CallBackStatus: i32,
-    dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PWSTR,
-};
-
-pub const PDH_BROWSE_DLG_CONFIG_A = extern struct {
-    _bitfield: u32,
-    hWndOwner: ?HWND,
-    szDataSource: ?PSTR,
-    szReturnPathBuffer: ?PSTR,
-    cchReturnPathLength: u32,
-    pCallBack: ?CounterPathCallBack,
-    dwCallBackArg: usize,
-    CallBackStatus: i32,
-    dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PSTR,
-};
-
-const CLSID_SystemMonitor_Value = Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004347");
-pub const CLSID_SystemMonitor = &CLSID_SystemMonitor_Value;
-
-const CLSID_CounterItem_Value = Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004348");
-pub const CLSID_CounterItem = &CLSID_CounterItem_Value;
-
-const CLSID_Counters_Value = Guid.initString("b2b066d2-2aac-11cf-942f-008029004347");
-pub const CLSID_Counters = &CLSID_Counters_Value;
-
-const CLSID_LogFileItem_Value = Guid.initString("16ec5be8-df93-4237-94e4-9ee918111d71");
-pub const CLSID_LogFileItem = &CLSID_LogFileItem_Value;
-
-const CLSID_LogFiles_Value = Guid.initString("2735d9fd-f6b9-4f19-a5d9-e2d068584bc5");
-pub const CLSID_LogFiles = &CLSID_LogFiles_Value;
-
-const CLSID_CounterItem2_Value = Guid.initString("43196c62-c31f-4ce3-a02e-79efe0f6a525");
-pub const CLSID_CounterItem2 = &CLSID_CounterItem2_Value;
-
-const CLSID_SystemMonitor2_Value = Guid.initString("7f30578c-5f38-4612-acfe-6ed04c7b7af8");
-pub const CLSID_SystemMonitor2 = &CLSID_SystemMonitor2_Value;
-
-const CLSID_AppearPropPage_Value = Guid.initString("e49741e9-93a8-4ab1-8e96-bf4482282e9c");
-pub const CLSID_AppearPropPage = &CLSID_AppearPropPage_Value;
-
-const CLSID_GeneralPropPage_Value = Guid.initString("c3e5d3d2-1a03-11cf-942d-008029004347");
-pub const CLSID_GeneralPropPage = &CLSID_GeneralPropPage_Value;
-
-const CLSID_GraphPropPage_Value = Guid.initString("c3e5d3d3-1a03-11cf-942d-008029004347");
-pub const CLSID_GraphPropPage = &CLSID_GraphPropPage_Value;
-
-const CLSID_SourcePropPage_Value = Guid.initString("0cf32aa1-7571-11d0-93c4-00aa00a3ddea");
-pub const CLSID_SourcePropPage = &CLSID_SourcePropPage_Value;
-
-const CLSID_CounterPropPage_Value = Guid.initString("cf948561-ede8-11ce-941e-008029004347");
-pub const CLSID_CounterPropPage = &CLSID_CounterPropPage_Value;
-
-pub const DisplayTypeConstants = enum(i32) {
-    LineGraph = 1,
-    Histogram = 2,
-    Report = 3,
-    ChartArea = 4,
-    ChartStackedArea = 5,
-};
-pub const sysmonLineGraph = DisplayTypeConstants.LineGraph;
-pub const sysmonHistogram = DisplayTypeConstants.Histogram;
-pub const sysmonReport = DisplayTypeConstants.Report;
-pub const sysmonChartArea = DisplayTypeConstants.ChartArea;
-pub const sysmonChartStackedArea = DisplayTypeConstants.ChartStackedArea;
-
-pub const ReportValueTypeConstants = enum(i32) {
-    DefaultValue = 0,
-    CurrentValue = 1,
-    Average = 2,
-    Minimum = 3,
-    Maximum = 4,
-};
-pub const sysmonDefaultValue = ReportValueTypeConstants.DefaultValue;
-pub const sysmonCurrentValue = ReportValueTypeConstants.CurrentValue;
-pub const sysmonAverage = ReportValueTypeConstants.Average;
-pub const sysmonMinimum = ReportValueTypeConstants.Minimum;
-pub const sysmonMaximum = ReportValueTypeConstants.Maximum;
-
-pub const DataSourceTypeConstants = enum(i32) {
-    NullDataSource = -1,
-    CurrentActivity = 1,
-    LogFiles = 2,
-    SqlLog = 3,
-};
-pub const sysmonNullDataSource = DataSourceTypeConstants.NullDataSource;
-pub const sysmonCurrentActivity = DataSourceTypeConstants.CurrentActivity;
-pub const sysmonLogFiles = DataSourceTypeConstants.LogFiles;
-pub const sysmonSqlLog = DataSourceTypeConstants.SqlLog;
-
-pub const SysmonFileType = enum(i32) {
-    Html = 1,
-    Report = 2,
-    Csv = 3,
-    Tsv = 4,
-    Blg = 5,
-    RetiredBlg = 6,
-    Gif = 7,
-};
-pub const sysmonFileHtml = SysmonFileType.Html;
-pub const sysmonFileReport = SysmonFileType.Report;
-pub const sysmonFileCsv = SysmonFileType.Csv;
-pub const sysmonFileTsv = SysmonFileType.Tsv;
-pub const sysmonFileBlg = SysmonFileType.Blg;
-pub const sysmonFileRetiredBlg = SysmonFileType.RetiredBlg;
-pub const sysmonFileGif = SysmonFileType.Gif;
-
-pub const SysmonDataType = enum(i32) {
-    Avg = 1,
-    Min = 2,
-    Max = 3,
-    Time = 4,
-    Count = 5,
-};
-pub const sysmonDataAvg = SysmonDataType.Avg;
-pub const sysmonDataMin = SysmonDataType.Min;
-pub const sysmonDataMax = SysmonDataType.Max;
-pub const sysmonDataTime = SysmonDataType.Time;
-pub const sysmonDataCount = SysmonDataType.Count;
-
-pub const SysmonBatchReason = enum(i32) {
-    None = 0,
-    AddFiles = 1,
-    AddCounters = 2,
-    AddFilesAutoCounters = 3,
-};
-pub const sysmonBatchNone = SysmonBatchReason.None;
-pub const sysmonBatchAddFiles = SysmonBatchReason.AddFiles;
-pub const sysmonBatchAddCounters = SysmonBatchReason.AddCounters;
-pub const sysmonBatchAddFilesAutoCounters = SysmonBatchReason.AddFilesAutoCounters;
-
-const IID_ICounterItem_Value = Guid.initString("771a9520-ee28-11ce-941e-008029004347");
-pub const IID_ICounterItem = &IID_ICounterItem_Value;
-pub const ICounterItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const ICounterItem,
-            pdblValue: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Color: *const fn(
-            self: *const ICounterItem,
-            Color: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Color: *const fn(
-            self: *const ICounterItem,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Width: *const fn(
-            self: *const ICounterItem,
-            iWidth: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: *const fn(
-            self: *const ICounterItem,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LineStyle: *const fn(
-            self: *const ICounterItem,
-            iLineStyle: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LineStyle: *const fn(
-            self: *const ICounterItem,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ScaleFactor: *const fn(
-            self: *const ICounterItem,
-            iScale: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ScaleFactor: *const fn(
-            self: *const ICounterItem,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const ICounterItem,
-            pstrValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetValue: *const fn(
-            self: *const ICounterItem,
-            Value: ?*f64,
-            Status: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetStatistics: *const fn(
-            self: *const ICounterItem,
-            Max: ?*f64,
-            Min: ?*f64,
-            Avg: ?*f64,
-            Status: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Value(self: *const ICounterItem, pdblValue: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pdblValue);
-    }
-    pub fn put_Color(self: *const ICounterItem, Color: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Color(self, Color);
-    }
-    pub fn get_Color(self: *const ICounterItem, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Color(self, pColor);
-    }
-    pub fn put_Width(self: *const ICounterItem, iWidth: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Width(self, iWidth);
-    }
-    pub fn get_Width(self: *const ICounterItem, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Width(self, piValue);
-    }
-    pub fn put_LineStyle(self: *const ICounterItem, iLineStyle: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LineStyle(self, iLineStyle);
-    }
-    pub fn get_LineStyle(self: *const ICounterItem, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LineStyle(self, piValue);
-    }
-    pub fn put_ScaleFactor(self: *const ICounterItem, iScale: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ScaleFactor(self, iScale);
-    }
-    pub fn get_ScaleFactor(self: *const ICounterItem, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ScaleFactor(self, piValue);
-    }
-    pub fn get_Path(self: *const ICounterItem, pstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, pstrValue);
-    }
-    pub fn GetValue(self: *const ICounterItem, Value: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, Value, Status);
-    }
-    pub fn GetStatistics(self: *const ICounterItem, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatistics(self, Max, Min, Avg, Status);
-    }
-};
-
-const IID_ICounterItem2_Value = Guid.initString("eefcd4e1-ea1c-4435-b7f4-e341ba03b4f9");
-pub const IID_ICounterItem2 = &IID_ICounterItem2_Value;
-pub const ICounterItem2 = extern union {
-    pub const VTable = extern struct {
-        base: ICounterItem.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Selected: *const fn(
-            self: *const ICounterItem2,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Selected: *const fn(
-            self: *const ICounterItem2,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Visible: *const fn(
-            self: *const ICounterItem2,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Visible: *const fn(
-            self: *const ICounterItem2,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetDataAt: *const fn(
-            self: *const ICounterItem2,
-            iIndex: i32,
-            iWhich: SysmonDataType,
-            pVariant: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ICounterItem: ICounterItem,
-    IUnknown: IUnknown,
-    pub fn put_Selected(self: *const ICounterItem2, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Selected(self, bState);
-    }
-    pub fn get_Selected(self: *const ICounterItem2, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Selected(self, pbState);
-    }
-    pub fn put_Visible(self: *const ICounterItem2, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Visible(self, bState);
-    }
-    pub fn get_Visible(self: *const ICounterItem2, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Visible(self, pbState);
-    }
-    pub fn GetDataAt(self: *const ICounterItem2, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataAt(self, iIndex, iWhich, pVariant);
-    }
-};
-
-const IID__ICounterItemUnion_Value = Guid.initString("de1a6b74-9182-4c41-8e2c-24c2cd30ee83");
-pub const IID__ICounterItemUnion = &IID__ICounterItemUnion_Value;
-pub const _ICounterItemUnion = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const _ICounterItemUnion,
-            pdblValue: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Color: *const fn(
-            self: *const _ICounterItemUnion,
-            Color: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Color: *const fn(
-            self: *const _ICounterItemUnion,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Width: *const fn(
-            self: *const _ICounterItemUnion,
-            iWidth: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: *const fn(
-            self: *const _ICounterItemUnion,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LineStyle: *const fn(
-            self: *const _ICounterItemUnion,
-            iLineStyle: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LineStyle: *const fn(
-            self: *const _ICounterItemUnion,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ScaleFactor: *const fn(
-            self: *const _ICounterItemUnion,
-            iScale: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ScaleFactor: *const fn(
-            self: *const _ICounterItemUnion,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const _ICounterItemUnion,
-            pstrValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetValue: *const fn(
-            self: *const _ICounterItemUnion,
-            Value: ?*f64,
-            Status: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetStatistics: *const fn(
-            self: *const _ICounterItemUnion,
-            Max: ?*f64,
-            Min: ?*f64,
-            Avg: ?*f64,
-            Status: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Selected: *const fn(
-            self: *const _ICounterItemUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Selected: *const fn(
-            self: *const _ICounterItemUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Visible: *const fn(
-            self: *const _ICounterItemUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Visible: *const fn(
-            self: *const _ICounterItemUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetDataAt: *const fn(
-            self: *const _ICounterItemUnion,
-            iIndex: i32,
-            iWhich: SysmonDataType,
-            pVariant: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Value(self: *const _ICounterItemUnion, pdblValue: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pdblValue);
-    }
-    pub fn put_Color(self: *const _ICounterItemUnion, Color: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Color(self, Color);
-    }
-    pub fn get_Color(self: *const _ICounterItemUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Color(self, pColor);
-    }
-    pub fn put_Width(self: *const _ICounterItemUnion, iWidth: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Width(self, iWidth);
-    }
-    pub fn get_Width(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Width(self, piValue);
-    }
-    pub fn put_LineStyle(self: *const _ICounterItemUnion, iLineStyle: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LineStyle(self, iLineStyle);
-    }
-    pub fn get_LineStyle(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LineStyle(self, piValue);
-    }
-    pub fn put_ScaleFactor(self: *const _ICounterItemUnion, iScale: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ScaleFactor(self, iScale);
-    }
-    pub fn get_ScaleFactor(self: *const _ICounterItemUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ScaleFactor(self, piValue);
-    }
-    pub fn get_Path(self: *const _ICounterItemUnion, pstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, pstrValue);
-    }
-    pub fn GetValue(self: *const _ICounterItemUnion, Value: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, Value, Status);
-    }
-    pub fn GetStatistics(self: *const _ICounterItemUnion, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatistics(self, Max, Min, Avg, Status);
-    }
-    pub fn put_Selected(self: *const _ICounterItemUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Selected(self, bState);
-    }
-    pub fn get_Selected(self: *const _ICounterItemUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Selected(self, pbState);
-    }
-    pub fn put_Visible(self: *const _ICounterItemUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Visible(self, bState);
-    }
-    pub fn get_Visible(self: *const _ICounterItemUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Visible(self, pbState);
-    }
-    pub fn GetDataAt(self: *const _ICounterItemUnion, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataAt(self, iIndex, iWhich, pVariant);
-    }
-};
-
-const IID_DICounterItem_Value = Guid.initString("c08c4ff2-0e2e-11cf-942c-008029004347");
-pub const IID_DICounterItem = &IID_DICounterItem_Value;
-pub const DICounterItem = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID_ICounters_Value = Guid.initString("79167962-28fc-11cf-942f-008029004347");
-pub const IID_ICounters = &IID_ICounters_Value;
-pub const ICounters = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ICounters,
-            pLong: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ICounters,
-            ppIunk: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ICounters,
-            index: VARIANT,
-            ppI: ?*?*DICounterItem,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const ICounters,
-            pathname: ?BSTR,
-            ppI: ?*?*DICounterItem,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const ICounters,
-            index: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ICounters, pLong: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pLong);
-    }
-    pub fn get__NewEnum(self: *const ICounters, ppIunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppIunk);
-    }
-    pub fn get_Item(self: *const ICounters, index: VARIANT, ppI: ?*?*DICounterItem) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, ppI);
-    }
-    pub fn Add(self: *const ICounters, pathname: ?BSTR, ppI: ?*?*DICounterItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, pathname, ppI);
-    }
-    pub fn Remove(self: *const ICounters, index: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, index);
-    }
-};
-
-const IID_ILogFileItem_Value = Guid.initString("d6b518dd-05c7-418a-89e6-4f9ce8c6841e");
-pub const IID_ILogFileItem = &IID_ILogFileItem_Value;
-pub const ILogFileItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const ILogFileItem,
-            pstrValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Path(self: *const ILogFileItem, pstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, pstrValue);
-    }
-};
-
-const IID_DILogFileItem_Value = Guid.initString("8d093ffc-f777-4917-82d1-833fbc54c58f");
-pub const IID_DILogFileItem = &IID_DILogFileItem_Value;
-pub const DILogFileItem = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID_ILogFiles_Value = Guid.initString("6a2a97e6-6851-41ea-87ad-2a8225335865");
-pub const IID_ILogFiles = &IID_ILogFiles_Value;
-pub const ILogFiles = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ILogFiles,
-            pLong: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ILogFiles,
-            ppIunk: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ILogFiles,
-            index: VARIANT,
-            ppI: ?*?*DILogFileItem,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const ILogFiles,
-            pathname: ?BSTR,
-            ppI: ?*?*DILogFileItem,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const ILogFiles,
-            index: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ILogFiles, pLong: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pLong);
-    }
-    pub fn get__NewEnum(self: *const ILogFiles, ppIunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppIunk);
-    }
-    pub fn get_Item(self: *const ILogFiles, index: VARIANT, ppI: ?*?*DILogFileItem) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, ppI);
-    }
-    pub fn Add(self: *const ILogFiles, pathname: ?BSTR, ppI: ?*?*DILogFileItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, pathname, ppI);
-    }
-    pub fn Remove(self: *const ILogFiles, index: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, index);
     }
 };
 
@@ -4986,787 +4249,6 @@ pub const ISystemMonitor2 = extern union {
     }
 };
 
-const IID__ISystemMonitorUnion_Value = Guid.initString("c8a77338-265f-4de5-aa25-c7da1ce5a8f4");
-pub const IID__ISystemMonitorUnion = &IID__ISystemMonitorUnion_Value;
-pub const _ISystemMonitorUnion = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Appearance: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iAppearance: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Appearance: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iAppearance: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BackColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            Color: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BorderStyle: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iBorderStyle: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BorderStyle: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iBorderStyle: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ForeColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ForeColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            Color: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Font: *const fn(
-            self: *const _ISystemMonitorUnion,
-            ppFont: ?*?*IFontDisp,
-        ) callconv(.winapi) HRESULT,
-        putref_Font: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pFont: ?*IFontDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Counters: *const fn(
-            self: *const _ISystemMonitorUnion,
-            ppICounters: ?*?*ICounters,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ShowVerticalGrid: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShowVerticalGrid: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ShowHorizontalGrid: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShowHorizontalGrid: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ShowLegend: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShowLegend: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ShowScaleLabels: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShowScaleLabels: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ShowValueBar: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShowValueBar: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaximumScale: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iValue: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumScale: *const fn(
-            self: *const _ISystemMonitorUnion,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MinimumScale: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iValue: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinimumScale: *const fn(
-            self: *const _ISystemMonitorUnion,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UpdateInterval: *const fn(
-            self: *const _ISystemMonitorUnion,
-            fValue: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UpdateInterval: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pfValue: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayType: *const fn(
-            self: *const _ISystemMonitorUnion,
-            eDisplayType: DisplayTypeConstants,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayType: *const fn(
-            self: *const _ISystemMonitorUnion,
-            peDisplayType: ?*DisplayTypeConstants,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ManualUpdate: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ManualUpdate: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GraphTitle: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsTitle: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GraphTitle: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbsTitle: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_YAxisLabel: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsTitle: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_YAxisLabel: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbsTitle: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CollectSample: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        UpdateGraph: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        BrowseCounters: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        DisplayProperties: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        Counter: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iIndex: i32,
-            ppICounter: ?*?*ICounterItem,
-        ) callconv(.winapi) HRESULT,
-        AddCounter: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsPath: ?BSTR,
-            ppICounter: ?*?*ICounterItem,
-        ) callconv(.winapi) HRESULT,
-        DeleteCounter: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pCtr: ?*ICounterItem,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackColorCtl: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BackColorCtl: *const fn(
-            self: *const _ISystemMonitorUnion,
-            Color: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogFileName: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsFileName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogFileName: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsFileName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogViewStart: *const fn(
-            self: *const _ISystemMonitorUnion,
-            StartTime: f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogViewStart: *const fn(
-            self: *const _ISystemMonitorUnion,
-            StartTime: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogViewStop: *const fn(
-            self: *const _ISystemMonitorUnion,
-            StopTime: f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogViewStop: *const fn(
-            self: *const _ISystemMonitorUnion,
-            StopTime: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GridColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GridColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            Color: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TimeBarColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TimeBarColor: *const fn(
-            self: *const _ISystemMonitorUnion,
-            Color: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Highlight: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Highlight: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShowToolbar: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ShowToolbar: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        Paste: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        Copy: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ReadOnly: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ReportValueType: *const fn(
-            self: *const _ISystemMonitorUnion,
-            eReportValueType: ReportValueTypeConstants,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReportValueType: *const fn(
-            self: *const _ISystemMonitorUnion,
-            peReportValueType: ?*ReportValueTypeConstants,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MonitorDuplicateInstances: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MonitorDuplicateInstances: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayFilter: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iValue: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayFilter: *const fn(
-            self: *const _ISystemMonitorUnion,
-            piValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogFiles: *const fn(
-            self: *const _ISystemMonitorUnion,
-            ppILogFiles: ?*?*ILogFiles,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DataSourceType: *const fn(
-            self: *const _ISystemMonitorUnion,
-            eDataSourceType: DataSourceTypeConstants,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataSourceType: *const fn(
-            self: *const _ISystemMonitorUnion,
-            peDataSourceType: ?*DataSourceTypeConstants,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SqlDsnName: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsSqlDsnName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SqlDsnName: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsSqlDsnName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SqlLogSetName: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsSqlLogSetName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SqlLogSetName: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bsSqlLogSetName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EnableDigitGrouping: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnableDigitGrouping: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EnableToolTips: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnableToolTips: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ShowTimeAxisLabels: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bState: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShowTimeAxisLabels: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbState: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ChartScroll: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bScroll: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ChartScroll: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pbScroll: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DataPointCount: *const fn(
-            self: *const _ISystemMonitorUnion,
-            iNewCount: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataPointCount: *const fn(
-            self: *const _ISystemMonitorUnion,
-            piDataPointCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        ScaleToFit: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bSelectedCountersOnly: i16,
-        ) callconv(.winapi) HRESULT,
-        SaveAs: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bstrFileName: ?BSTR,
-            eSysmonFileType: SysmonFileType,
-        ) callconv(.winapi) HRESULT,
-        Relog: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bstrFileName: ?BSTR,
-            eSysmonFileType: SysmonFileType,
-            iFilter: i32,
-        ) callconv(.winapi) HRESULT,
-        ClearData: *const fn(
-            self: *const _ISystemMonitorUnion,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogSourceStartTime: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pDate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogSourceStopTime: *const fn(
-            self: *const _ISystemMonitorUnion,
-            pDate: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        SetLogViewRange: *const fn(
-            self: *const _ISystemMonitorUnion,
-            StartTime: f64,
-            StopTime: f64,
-        ) callconv(.winapi) HRESULT,
-        GetLogViewRange: *const fn(
-            self: *const _ISystemMonitorUnion,
-            StartTime: ?*f64,
-            StopTime: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        BatchingLock: *const fn(
-            self: *const _ISystemMonitorUnion,
-            fLock: i16,
-            eBatchReason: SysmonBatchReason,
-        ) callconv(.winapi) HRESULT,
-        LoadSettings: *const fn(
-            self: *const _ISystemMonitorUnion,
-            bstrSettingFileName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_Appearance(self: *const _ISystemMonitorUnion, iAppearance: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Appearance(self, iAppearance);
-    }
-    pub fn put_Appearance(self: *const _ISystemMonitorUnion, iAppearance: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Appearance(self, iAppearance);
-    }
-    pub fn get_BackColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackColor(self, pColor);
-    }
-    pub fn put_BackColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BackColor(self, Color);
-    }
-    pub fn get_BorderStyle(self: *const _ISystemMonitorUnion, iBorderStyle: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BorderStyle(self, iBorderStyle);
-    }
-    pub fn put_BorderStyle(self: *const _ISystemMonitorUnion, iBorderStyle: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BorderStyle(self, iBorderStyle);
-    }
-    pub fn get_ForeColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ForeColor(self, pColor);
-    }
-    pub fn put_ForeColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ForeColor(self, Color);
-    }
-    pub fn get_Font(self: *const _ISystemMonitorUnion, ppFont: ?*?*IFontDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Font(self, ppFont);
-    }
-    pub fn putref_Font(self: *const _ISystemMonitorUnion, pFont: ?*IFontDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Font(self, pFont);
-    }
-    pub fn get_Counters(self: *const _ISystemMonitorUnion, ppICounters: ?*?*ICounters) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Counters(self, ppICounters);
-    }
-    pub fn put_ShowVerticalGrid(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ShowVerticalGrid(self, bState);
-    }
-    pub fn get_ShowVerticalGrid(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ShowVerticalGrid(self, pbState);
-    }
-    pub fn put_ShowHorizontalGrid(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ShowHorizontalGrid(self, bState);
-    }
-    pub fn get_ShowHorizontalGrid(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ShowHorizontalGrid(self, pbState);
-    }
-    pub fn put_ShowLegend(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ShowLegend(self, bState);
-    }
-    pub fn get_ShowLegend(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ShowLegend(self, pbState);
-    }
-    pub fn put_ShowScaleLabels(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ShowScaleLabels(self, bState);
-    }
-    pub fn get_ShowScaleLabels(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ShowScaleLabels(self, pbState);
-    }
-    pub fn put_ShowValueBar(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ShowValueBar(self, bState);
-    }
-    pub fn get_ShowValueBar(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ShowValueBar(self, pbState);
-    }
-    pub fn put_MaximumScale(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MaximumScale(self, iValue);
-    }
-    pub fn get_MaximumScale(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaximumScale(self, piValue);
-    }
-    pub fn put_MinimumScale(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MinimumScale(self, iValue);
-    }
-    pub fn get_MinimumScale(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MinimumScale(self, piValue);
-    }
-    pub fn put_UpdateInterval(self: *const _ISystemMonitorUnion, fValue: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UpdateInterval(self, fValue);
-    }
-    pub fn get_UpdateInterval(self: *const _ISystemMonitorUnion, pfValue: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UpdateInterval(self, pfValue);
-    }
-    pub fn put_DisplayType(self: *const _ISystemMonitorUnion, eDisplayType: DisplayTypeConstants) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisplayType(self, eDisplayType);
-    }
-    pub fn get_DisplayType(self: *const _ISystemMonitorUnion, peDisplayType: ?*DisplayTypeConstants) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayType(self, peDisplayType);
-    }
-    pub fn put_ManualUpdate(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ManualUpdate(self, bState);
-    }
-    pub fn get_ManualUpdate(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ManualUpdate(self, pbState);
-    }
-    pub fn put_GraphTitle(self: *const _ISystemMonitorUnion, bsTitle: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_GraphTitle(self, bsTitle);
-    }
-    pub fn get_GraphTitle(self: *const _ISystemMonitorUnion, pbsTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GraphTitle(self, pbsTitle);
-    }
-    pub fn put_YAxisLabel(self: *const _ISystemMonitorUnion, bsTitle: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_YAxisLabel(self, bsTitle);
-    }
-    pub fn get_YAxisLabel(self: *const _ISystemMonitorUnion, pbsTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_YAxisLabel(self, pbsTitle);
-    }
-    pub fn CollectSample(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.CollectSample(self);
-    }
-    pub fn UpdateGraph(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateGraph(self);
-    }
-    pub fn BrowseCounters(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.BrowseCounters(self);
-    }
-    pub fn DisplayProperties(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.DisplayProperties(self);
-    }
-    pub fn Counter(self: *const _ISystemMonitorUnion, iIndex: i32, ppICounter: ?*?*ICounterItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Counter(self, iIndex, ppICounter);
-    }
-    pub fn AddCounter(self: *const _ISystemMonitorUnion, bsPath: ?BSTR, ppICounter: ?*?*ICounterItem) callconv(.@"inline") HRESULT {
-        return self.vtable.AddCounter(self, bsPath, ppICounter);
-    }
-    pub fn DeleteCounter(self: *const _ISystemMonitorUnion, pCtr: ?*ICounterItem) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteCounter(self, pCtr);
-    }
-    pub fn get_BackColorCtl(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackColorCtl(self, pColor);
-    }
-    pub fn put_BackColorCtl(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BackColorCtl(self, Color);
-    }
-    pub fn put_LogFileName(self: *const _ISystemMonitorUnion, bsFileName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogFileName(self, bsFileName);
-    }
-    pub fn get_LogFileName(self: *const _ISystemMonitorUnion, bsFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogFileName(self, bsFileName);
-    }
-    pub fn put_LogViewStart(self: *const _ISystemMonitorUnion, StartTime: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogViewStart(self, StartTime);
-    }
-    pub fn get_LogViewStart(self: *const _ISystemMonitorUnion, StartTime: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogViewStart(self, StartTime);
-    }
-    pub fn put_LogViewStop(self: *const _ISystemMonitorUnion, StopTime: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogViewStop(self, StopTime);
-    }
-    pub fn get_LogViewStop(self: *const _ISystemMonitorUnion, StopTime: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogViewStop(self, StopTime);
-    }
-    pub fn get_GridColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GridColor(self, pColor);
-    }
-    pub fn put_GridColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_GridColor(self, Color);
-    }
-    pub fn get_TimeBarColor(self: *const _ISystemMonitorUnion, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TimeBarColor(self, pColor);
-    }
-    pub fn put_TimeBarColor(self: *const _ISystemMonitorUnion, Color: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_TimeBarColor(self, Color);
-    }
-    pub fn get_Highlight(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Highlight(self, pbState);
-    }
-    pub fn put_Highlight(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Highlight(self, bState);
-    }
-    pub fn get_ShowToolbar(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ShowToolbar(self, pbState);
-    }
-    pub fn put_ShowToolbar(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ShowToolbar(self, bState);
-    }
-    pub fn Paste(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.Paste(self);
-    }
-    pub fn Copy(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.Copy(self);
-    }
-    pub fn Reset(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn put_ReadOnly(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ReadOnly(self, bState);
-    }
-    pub fn get_ReadOnly(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReadOnly(self, pbState);
-    }
-    pub fn put_ReportValueType(self: *const _ISystemMonitorUnion, eReportValueType: ReportValueTypeConstants) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ReportValueType(self, eReportValueType);
-    }
-    pub fn get_ReportValueType(self: *const _ISystemMonitorUnion, peReportValueType: ?*ReportValueTypeConstants) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReportValueType(self, peReportValueType);
-    }
-    pub fn put_MonitorDuplicateInstances(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MonitorDuplicateInstances(self, bState);
-    }
-    pub fn get_MonitorDuplicateInstances(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MonitorDuplicateInstances(self, pbState);
-    }
-    pub fn put_DisplayFilter(self: *const _ISystemMonitorUnion, iValue: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisplayFilter(self, iValue);
-    }
-    pub fn get_DisplayFilter(self: *const _ISystemMonitorUnion, piValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayFilter(self, piValue);
-    }
-    pub fn get_LogFiles(self: *const _ISystemMonitorUnion, ppILogFiles: ?*?*ILogFiles) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogFiles(self, ppILogFiles);
-    }
-    pub fn put_DataSourceType(self: *const _ISystemMonitorUnion, eDataSourceType: DataSourceTypeConstants) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DataSourceType(self, eDataSourceType);
-    }
-    pub fn get_DataSourceType(self: *const _ISystemMonitorUnion, peDataSourceType: ?*DataSourceTypeConstants) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DataSourceType(self, peDataSourceType);
-    }
-    pub fn put_SqlDsnName(self: *const _ISystemMonitorUnion, bsSqlDsnName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SqlDsnName(self, bsSqlDsnName);
-    }
-    pub fn get_SqlDsnName(self: *const _ISystemMonitorUnion, bsSqlDsnName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SqlDsnName(self, bsSqlDsnName);
-    }
-    pub fn put_SqlLogSetName(self: *const _ISystemMonitorUnion, bsSqlLogSetName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SqlLogSetName(self, bsSqlLogSetName);
-    }
-    pub fn get_SqlLogSetName(self: *const _ISystemMonitorUnion, bsSqlLogSetName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SqlLogSetName(self, bsSqlLogSetName);
-    }
-    pub fn put_EnableDigitGrouping(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EnableDigitGrouping(self, bState);
-    }
-    pub fn get_EnableDigitGrouping(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnableDigitGrouping(self, pbState);
-    }
-    pub fn put_EnableToolTips(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EnableToolTips(self, bState);
-    }
-    pub fn get_EnableToolTips(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnableToolTips(self, pbState);
-    }
-    pub fn put_ShowTimeAxisLabels(self: *const _ISystemMonitorUnion, bState: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ShowTimeAxisLabels(self, bState);
-    }
-    pub fn get_ShowTimeAxisLabels(self: *const _ISystemMonitorUnion, pbState: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ShowTimeAxisLabels(self, pbState);
-    }
-    pub fn put_ChartScroll(self: *const _ISystemMonitorUnion, bScroll: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ChartScroll(self, bScroll);
-    }
-    pub fn get_ChartScroll(self: *const _ISystemMonitorUnion, pbScroll: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ChartScroll(self, pbScroll);
-    }
-    pub fn put_DataPointCount(self: *const _ISystemMonitorUnion, iNewCount: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DataPointCount(self, iNewCount);
-    }
-    pub fn get_DataPointCount(self: *const _ISystemMonitorUnion, piDataPointCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DataPointCount(self, piDataPointCount);
-    }
-    pub fn ScaleToFit(self: *const _ISystemMonitorUnion, bSelectedCountersOnly: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.ScaleToFit(self, bSelectedCountersOnly);
-    }
-    pub fn SaveAs(self: *const _ISystemMonitorUnion, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveAs(self, bstrFileName, eSysmonFileType);
-    }
-    pub fn Relog(self: *const _ISystemMonitorUnion, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType, iFilter: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Relog(self, bstrFileName, eSysmonFileType, iFilter);
-    }
-    pub fn ClearData(self: *const _ISystemMonitorUnion) callconv(.@"inline") HRESULT {
-        return self.vtable.ClearData(self);
-    }
-    pub fn get_LogSourceStartTime(self: *const _ISystemMonitorUnion, pDate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogSourceStartTime(self, pDate);
-    }
-    pub fn get_LogSourceStopTime(self: *const _ISystemMonitorUnion, pDate: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogSourceStopTime(self, pDate);
-    }
-    pub fn SetLogViewRange(self: *const _ISystemMonitorUnion, StartTime: f64, StopTime: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLogViewRange(self, StartTime, StopTime);
-    }
-    pub fn GetLogViewRange(self: *const _ISystemMonitorUnion, StartTime: ?*f64, StopTime: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLogViewRange(self, StartTime, StopTime);
-    }
-    pub fn BatchingLock(self: *const _ISystemMonitorUnion, fLock: i16, eBatchReason: SysmonBatchReason) callconv(.@"inline") HRESULT {
-        return self.vtable.BatchingLock(self, fLock, eBatchReason);
-    }
-    pub fn LoadSettings(self: *const _ISystemMonitorUnion, bstrSettingFileName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadSettings(self, bstrSettingFileName);
-    }
-};
-
-const IID_DISystemMonitor_Value = Guid.initString("13d73d81-c32e-11cf-9398-00aa00a3ddea");
-pub const IID_DISystemMonitor = &IID_DISystemMonitor_Value;
-pub const DISystemMonitor = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID_DISystemMonitorInternal_Value = Guid.initString("194eb242-c32c-11cf-9398-00aa00a3ddea");
-pub const IID_DISystemMonitorInternal = &IID_DISystemMonitorInternal_Value;
-pub const DISystemMonitorInternal = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
 const IID_ISystemMonitorEvents_Value = Guid.initString("ee660ea0-4abd-11cf-943a-008029004347");
 pub const IID_ISystemMonitorEvents = &IID_ISystemMonitorEvents_Value;
 pub const ISystemMonitorEvents = extern union {
@@ -5811,19 +4293,1563 @@ pub const ISystemMonitorEvents = extern union {
     }
 };
 
-const IID_DISystemMonitorEvents_Value = Guid.initString("84979930-4ab3-11cf-943a-008029004347");
-pub const IID_DISystemMonitorEvents = &IID_DISystemMonitorEvents_Value;
-pub const DISystemMonitorEvents = extern union {
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ITraceDataCollector_Value = Guid.initString("0383750b-098b-11d8-9414-505054503030");
+pub const IID_ITraceDataCollector = &IID_ITraceDataCollector_Value;
+pub const ITraceDataCollector = extern union {
+    pub const VTable = extern struct {
+        base: IDataCollector.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BufferSize: *const fn(
+            self: *const ITraceDataCollector,
+            size: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BufferSize: *const fn(
+            self: *const ITraceDataCollector,
+            size: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BuffersLost: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BuffersLost: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BuffersWritten: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BuffersWritten: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClockType: *const fn(
+            self: *const ITraceDataCollector,
+            clock: ?*ClockType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ClockType: *const fn(
+            self: *const ITraceDataCollector,
+            clock: ClockType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventsLost: *const fn(
+            self: *const ITraceDataCollector,
+            events: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EventsLost: *const fn(
+            self: *const ITraceDataCollector,
+            events: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExtendedModes: *const fn(
+            self: *const ITraceDataCollector,
+            mode: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExtendedModes: *const fn(
+            self: *const ITraceDataCollector,
+            mode: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FlushTimer: *const fn(
+            self: *const ITraceDataCollector,
+            seconds: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FlushTimer: *const fn(
+            self: *const ITraceDataCollector,
+            seconds: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FreeBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FreeBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Guid: *const fn(
+            self: *const ITraceDataCollector,
+            guid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Guid: *const fn(
+            self: *const ITraceDataCollector,
+            guid: Guid,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsKernelTrace: *const fn(
+            self: *const ITraceDataCollector,
+            kernel: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaximumBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MaximumBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MinimumBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MinimumBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NumberOfBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NumberOfBuffers: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PreallocateFile: *const fn(
+            self: *const ITraceDataCollector,
+            allocate: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PreallocateFile: *const fn(
+            self: *const ITraceDataCollector,
+            allocate: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ProcessMode: *const fn(
+            self: *const ITraceDataCollector,
+            process: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ProcessMode: *const fn(
+            self: *const ITraceDataCollector,
+            process: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RealTimeBuffersLost: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RealTimeBuffersLost: *const fn(
+            self: *const ITraceDataCollector,
+            buffers: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SessionId: *const fn(
+            self: *const ITraceDataCollector,
+            id: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SessionId: *const fn(
+            self: *const ITraceDataCollector,
+            id: u64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SessionName: *const fn(
+            self: *const ITraceDataCollector,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SessionName: *const fn(
+            self: *const ITraceDataCollector,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SessionThreadId: *const fn(
+            self: *const ITraceDataCollector,
+            tid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SessionThreadId: *const fn(
+            self: *const ITraceDataCollector,
+            tid: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StreamMode: *const fn(
+            self: *const ITraceDataCollector,
+            mode: ?*StreamMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_StreamMode: *const fn(
+            self: *const ITraceDataCollector,
+            mode: StreamMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TraceDataProviders: *const fn(
+            self: *const ITraceDataCollector,
+            providers: ?*?*ITraceDataProviderCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDataCollector: IDataCollector,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_BufferSize(self: *const ITraceDataCollector, size: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BufferSize(self, size);
+    }
+    pub fn put_BufferSize(self: *const ITraceDataCollector, size: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BufferSize(self, size);
+    }
+    pub fn get_BuffersLost(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BuffersLost(self, buffers);
+    }
+    pub fn put_BuffersLost(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BuffersLost(self, buffers);
+    }
+    pub fn get_BuffersWritten(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BuffersWritten(self, buffers);
+    }
+    pub fn put_BuffersWritten(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BuffersWritten(self, buffers);
+    }
+    pub fn get_ClockType(self: *const ITraceDataCollector, clock: ?*ClockType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClockType(self, clock);
+    }
+    pub fn put_ClockType(self: *const ITraceDataCollector, clock: ClockType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClockType(self, clock);
+    }
+    pub fn get_EventsLost(self: *const ITraceDataCollector, events: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventsLost(self, events);
+    }
+    pub fn put_EventsLost(self: *const ITraceDataCollector, events: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EventsLost(self, events);
+    }
+    pub fn get_ExtendedModes(self: *const ITraceDataCollector, mode: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExtendedModes(self, mode);
+    }
+    pub fn put_ExtendedModes(self: *const ITraceDataCollector, mode: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExtendedModes(self, mode);
+    }
+    pub fn get_FlushTimer(self: *const ITraceDataCollector, seconds: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FlushTimer(self, seconds);
+    }
+    pub fn put_FlushTimer(self: *const ITraceDataCollector, seconds: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FlushTimer(self, seconds);
+    }
+    pub fn get_FreeBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FreeBuffers(self, buffers);
+    }
+    pub fn put_FreeBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FreeBuffers(self, buffers);
+    }
+    pub fn get_Guid(self: *const ITraceDataCollector, guid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Guid(self, guid);
+    }
+    pub fn put_Guid(self: *const ITraceDataCollector, guid: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Guid(self, guid);
+    }
+    pub fn get_IsKernelTrace(self: *const ITraceDataCollector, kernel: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsKernelTrace(self, kernel);
+    }
+    pub fn get_MaximumBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaximumBuffers(self, buffers);
+    }
+    pub fn put_MaximumBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MaximumBuffers(self, buffers);
+    }
+    pub fn get_MinimumBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MinimumBuffers(self, buffers);
+    }
+    pub fn put_MinimumBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MinimumBuffers(self, buffers);
+    }
+    pub fn get_NumberOfBuffers(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NumberOfBuffers(self, buffers);
+    }
+    pub fn put_NumberOfBuffers(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NumberOfBuffers(self, buffers);
+    }
+    pub fn get_PreallocateFile(self: *const ITraceDataCollector, allocate: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PreallocateFile(self, allocate);
+    }
+    pub fn put_PreallocateFile(self: *const ITraceDataCollector, allocate: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PreallocateFile(self, allocate);
+    }
+    pub fn get_ProcessMode(self: *const ITraceDataCollector, process: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ProcessMode(self, process);
+    }
+    pub fn put_ProcessMode(self: *const ITraceDataCollector, process: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ProcessMode(self, process);
+    }
+    pub fn get_RealTimeBuffersLost(self: *const ITraceDataCollector, buffers: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RealTimeBuffersLost(self, buffers);
+    }
+    pub fn put_RealTimeBuffersLost(self: *const ITraceDataCollector, buffers: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RealTimeBuffersLost(self, buffers);
+    }
+    pub fn get_SessionId(self: *const ITraceDataCollector, id: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SessionId(self, id);
+    }
+    pub fn put_SessionId(self: *const ITraceDataCollector, id: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SessionId(self, id);
+    }
+    pub fn get_SessionName(self: *const ITraceDataCollector, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SessionName(self, name);
+    }
+    pub fn put_SessionName(self: *const ITraceDataCollector, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SessionName(self, name);
+    }
+    pub fn get_SessionThreadId(self: *const ITraceDataCollector, tid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SessionThreadId(self, tid);
+    }
+    pub fn put_SessionThreadId(self: *const ITraceDataCollector, tid: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SessionThreadId(self, tid);
+    }
+    pub fn get_StreamMode(self: *const ITraceDataCollector, mode: ?*StreamMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StreamMode(self, mode);
+    }
+    pub fn put_StreamMode(self: *const ITraceDataCollector, mode: StreamMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_StreamMode(self, mode);
+    }
+    pub fn get_TraceDataProviders(self: *const ITraceDataCollector, providers: ?*?*ITraceDataProviderCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TraceDataProviders(self, providers);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ITraceDataProvider_Value = Guid.initString("03837512-098b-11d8-9414-505054503030");
+pub const IID_ITraceDataProvider = &IID_ITraceDataProvider_Value;
+pub const ITraceDataProvider = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayName: *const fn(
+            self: *const ITraceDataProvider,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisplayName: *const fn(
+            self: *const ITraceDataProvider,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Guid: *const fn(
+            self: *const ITraceDataProvider,
+            guid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Guid: *const fn(
+            self: *const ITraceDataProvider,
+            guid: Guid,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Level: *const fn(
+            self: *const ITraceDataProvider,
+            ppLevel: ?*?*IValueMap,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_KeywordsAny: *const fn(
+            self: *const ITraceDataProvider,
+            ppKeywords: ?*?*IValueMap,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_KeywordsAll: *const fn(
+            self: *const ITraceDataProvider,
+            ppKeywords: ?*?*IValueMap,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Properties: *const fn(
+            self: *const ITraceDataProvider,
+            ppProperties: ?*?*IValueMap,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FilterEnabled: *const fn(
+            self: *const ITraceDataProvider,
+            FilterEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FilterEnabled: *const fn(
+            self: *const ITraceDataProvider,
+            FilterEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FilterType: *const fn(
+            self: *const ITraceDataProvider,
+            pulType: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FilterType: *const fn(
+            self: *const ITraceDataProvider,
+            ulType: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FilterData: *const fn(
+            self: *const ITraceDataProvider,
+            ppData: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FilterData: *const fn(
+            self: *const ITraceDataProvider,
+            pData: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        Query: *const fn(
+            self: *const ITraceDataProvider,
+            bstrName: ?BSTR,
+            bstrServer: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Resolve: *const fn(
+            self: *const ITraceDataProvider,
+            pFrom: ?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        SetSecurity: *const fn(
+            self: *const ITraceDataProvider,
+            Sddl: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSecurity: *const fn(
+            self: *const ITraceDataProvider,
+            SecurityInfo: u32,
+            Sddl: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetRegisteredProcesses: *const fn(
+            self: *const ITraceDataProvider,
+            Processes: ?*?*IValueMap,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
+    pub fn get_DisplayName(self: *const ITraceDataProvider, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayName(self, name);
+    }
+    pub fn put_DisplayName(self: *const ITraceDataProvider, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisplayName(self, name);
+    }
+    pub fn get_Guid(self: *const ITraceDataProvider, guid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Guid(self, guid);
+    }
+    pub fn put_Guid(self: *const ITraceDataProvider, guid: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Guid(self, guid);
+    }
+    pub fn get_Level(self: *const ITraceDataProvider, ppLevel: ?*?*IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Level(self, ppLevel);
+    }
+    pub fn get_KeywordsAny(self: *const ITraceDataProvider, ppKeywords: ?*?*IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.get_KeywordsAny(self, ppKeywords);
+    }
+    pub fn get_KeywordsAll(self: *const ITraceDataProvider, ppKeywords: ?*?*IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.get_KeywordsAll(self, ppKeywords);
+    }
+    pub fn get_Properties(self: *const ITraceDataProvider, ppProperties: ?*?*IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Properties(self, ppProperties);
+    }
+    pub fn get_FilterEnabled(self: *const ITraceDataProvider, FilterEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FilterEnabled(self, FilterEnabled);
+    }
+    pub fn put_FilterEnabled(self: *const ITraceDataProvider, FilterEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FilterEnabled(self, FilterEnabled);
+    }
+    pub fn get_FilterType(self: *const ITraceDataProvider, pulType: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FilterType(self, pulType);
+    }
+    pub fn put_FilterType(self: *const ITraceDataProvider, ulType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FilterType(self, ulType);
+    }
+    pub fn get_FilterData(self: *const ITraceDataProvider, ppData: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FilterData(self, ppData);
+    }
+    pub fn put_FilterData(self: *const ITraceDataProvider, pData: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FilterData(self, pData);
+    }
+    pub fn Query(self: *const ITraceDataProvider, bstrName: ?BSTR, bstrServer: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Query(self, bstrName, bstrServer);
+    }
+    pub fn Resolve(self: *const ITraceDataProvider, pFrom: ?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.Resolve(self, pFrom);
+    }
+    pub fn SetSecurity(self: *const ITraceDataProvider, Sddl: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSecurity(self, Sddl);
+    }
+    pub fn GetSecurity(self: *const ITraceDataProvider, SecurityInfo: u32, Sddl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecurity(self, SecurityInfo, Sddl);
+    }
+    pub fn GetRegisteredProcesses(self: *const ITraceDataProvider, Processes: ?*?*IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRegisteredProcesses(self, Processes);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ITraceDataProviderCollection_Value = Guid.initString("03837510-098b-11d8-9414-505054503030");
+pub const IID_ITraceDataProviderCollection = &IID_ITraceDataProviderCollection_Value;
+pub const ITraceDataProviderCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ITraceDataProviderCollection,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ITraceDataProviderCollection,
+            index: VARIANT,
+            ppProvider: ?*?*ITraceDataProvider,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ITraceDataProviderCollection,
+            retVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const ITraceDataProviderCollection,
+            pProvider: ?*ITraceDataProvider,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const ITraceDataProviderCollection,
+            vProvider: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const ITraceDataProviderCollection,
+        ) callconv(.winapi) HRESULT,
+        AddRange: *const fn(
+            self: *const ITraceDataProviderCollection,
+            providers: ?*ITraceDataProviderCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateTraceDataProvider: *const fn(
+            self: *const ITraceDataProviderCollection,
+            Provider: ?*?*ITraceDataProvider,
+        ) callconv(.winapi) HRESULT,
+        GetTraceDataProviders: *const fn(
+            self: *const ITraceDataProviderCollection,
+            server: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetTraceDataProvidersByProcess: *const fn(
+            self: *const ITraceDataProviderCollection,
+            Server: ?BSTR,
+            Pid: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ITraceDataProviderCollection, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, retVal);
+    }
+    pub fn get_Item(self: *const ITraceDataProviderCollection, index: VARIANT, ppProvider: ?*?*ITraceDataProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, ppProvider);
+    }
+    pub fn get__NewEnum(self: *const ITraceDataProviderCollection, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retVal);
+    }
+    pub fn Add(self: *const ITraceDataProviderCollection, pProvider: ?*ITraceDataProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, pProvider);
+    }
+    pub fn Remove(self: *const ITraceDataProviderCollection, vProvider: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, vProvider);
+    }
+    pub fn Clear(self: *const ITraceDataProviderCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+    pub fn AddRange(self: *const ITraceDataProviderCollection, providers: ?*ITraceDataProviderCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRange(self, providers);
+    }
+    pub fn CreateTraceDataProvider(self: *const ITraceDataProviderCollection, Provider: ?*?*ITraceDataProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTraceDataProvider(self, Provider);
+    }
+    pub fn GetTraceDataProviders(self: *const ITraceDataProviderCollection, server: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTraceDataProviders(self, server);
+    }
+    pub fn GetTraceDataProvidersByProcess(self: *const ITraceDataProviderCollection, Server: ?BSTR, Pid: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTraceDataProvidersByProcess(self, Server, Pid);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IValueMap_Value = Guid.initString("03837534-098b-11d8-9414-505054503030");
+pub const IID_IValueMap = &IID_IValueMap_Value;
+pub const IValueMap = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IValueMap,
+            retVal: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IValueMap,
+            index: VARIANT,
+            value: ?*?*IValueMapItem,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IValueMap,
+            retVal: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IValueMap,
+            description: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IValueMap,
+            description: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IValueMap,
+            Value: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const IValueMap,
+            Value: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ValueMapType: *const fn(
+            self: *const IValueMap,
+            type: ?*ValueMapType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ValueMapType: *const fn(
+            self: *const IValueMap,
+            type: ValueMapType,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IValueMap,
+            value: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IValueMap,
+            value: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IValueMap,
+        ) callconv(.winapi) HRESULT,
+        AddRange: *const fn(
+            self: *const IValueMap,
+            map: ?*IValueMap,
+        ) callconv(.winapi) HRESULT,
+        CreateValueMapItem: *const fn(
+            self: *const IValueMap,
+            Item: ?*?*IValueMapItem,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IValueMap, retVal: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, retVal);
+    }
+    pub fn get_Item(self: *const IValueMap, index: VARIANT, value: ?*?*IValueMapItem) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, value);
+    }
+    pub fn get__NewEnum(self: *const IValueMap, retVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retVal);
+    }
+    pub fn get_Description(self: *const IValueMap, description: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn put_Description(self: *const IValueMap, description: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, description);
+    }
+    pub fn get_Value(self: *const IValueMap, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, Value);
+    }
+    pub fn put_Value(self: *const IValueMap, Value: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, Value);
+    }
+    pub fn get_ValueMapType(self: *const IValueMap, @"type": ?*ValueMapType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ValueMapType(self, @"type");
+    }
+    pub fn put_ValueMapType(self: *const IValueMap, @"type": ValueMapType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ValueMapType(self, @"type");
+    }
+    pub fn Add(self: *const IValueMap, value: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, value);
+    }
+    pub fn Remove(self: *const IValueMap, value: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, value);
+    }
+    pub fn Clear(self: *const IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+    pub fn AddRange(self: *const IValueMap, map: ?*IValueMap) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRange(self, map);
+    }
+    pub fn CreateValueMapItem(self: *const IValueMap, Item: ?*?*IValueMapItem) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateValueMapItem(self, Item);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IValueMapItem_Value = Guid.initString("03837533-098b-11d8-9414-505054503030");
+pub const IID_IValueMapItem = &IID_IValueMapItem_Value;
+pub const IValueMapItem = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IValueMapItem,
+            description: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IValueMapItem,
+            description: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const IValueMapItem,
+            enabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enabled: *const fn(
+            self: *const IValueMapItem,
+            enabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Key: *const fn(
+            self: *const IValueMapItem,
+            key: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Key: *const fn(
+            self: *const IValueMapItem,
+            key: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IValueMapItem,
+            Value: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const IValueMapItem,
+            Value: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ValueMapType: *const fn(
+            self: *const IValueMapItem,
+            type: ?*ValueMapType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ValueMapType: *const fn(
+            self: *const IValueMapItem,
+            type: ValueMapType,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Description(self: *const IValueMapItem, description: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn put_Description(self: *const IValueMapItem, description: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, description);
+    }
+    pub fn get_Enabled(self: *const IValueMapItem, enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, enabled);
+    }
+    pub fn put_Enabled(self: *const IValueMapItem, enabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, enabled);
+    }
+    pub fn get_Key(self: *const IValueMapItem, key: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Key(self, key);
+    }
+    pub fn put_Key(self: *const IValueMapItem, key: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Key(self, key);
+    }
+    pub fn get_Value(self: *const IValueMapItem, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, Value);
+    }
+    pub fn put_Value(self: *const IValueMapItem, Value: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, Value);
+    }
+    pub fn get_ValueMapType(self: *const IValueMapItem, @"type": ?*ValueMapType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ValueMapType(self, @"type");
+    }
+    pub fn put_ValueMapType(self: *const IValueMapItem, @"type": ValueMapType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ValueMapType(self, @"type");
+    }
+};
+
+const CLSID_LegacyDataCollectorSet_Value = Guid.initString("03837526-098b-11d8-9414-505054503030");
+pub const CLSID_LegacyDataCollectorSet = &CLSID_LegacyDataCollectorSet_Value;
+
+const CLSID_LegacyDataCollectorSetCollection_Value = Guid.initString("03837527-098b-11d8-9414-505054503030");
+pub const CLSID_LegacyDataCollectorSetCollection = &CLSID_LegacyDataCollectorSetCollection_Value;
+
+const CLSID_LegacyTraceSession_Value = Guid.initString("03837528-098b-11d8-9414-505054503030");
+pub const CLSID_LegacyTraceSession = &CLSID_LegacyTraceSession_Value;
+
+const CLSID_LegacyTraceSessionCollection_Value = Guid.initString("03837529-098b-11d8-9414-505054503030");
+pub const CLSID_LegacyTraceSessionCollection = &CLSID_LegacyTraceSessionCollection_Value;
+
+const CLSID_LogFileItem_Value = Guid.initString("16ec5be8-df93-4237-94e4-9ee918111d71");
+pub const CLSID_LogFileItem = &CLSID_LogFileItem_Value;
+
+const CLSID_LogFiles_Value = Guid.initString("2735d9fd-f6b9-4f19-a5d9-e2d068584bc5");
+pub const CLSID_LogFiles = &CLSID_LogFiles_Value;
+
+pub const PDH_BROWSE_DLG_CONFIG_A = extern struct {
+    _bitfield: u32,
+    hWndOwner: ?HWND,
+    szDataSource: ?PSTR,
+    szReturnPathBuffer: ?PSTR,
+    cchReturnPathLength: u32,
+    pCallBack: ?CounterPathCallBack,
+    dwCallBackArg: usize,
+    CallBackStatus: i32,
+    dwDefaultDetailLevel: PERF_DETAIL,
+    szDialogBoxCaption: ?PSTR,
+};
+
+pub const PDH_BROWSE_DLG_CONFIG_HA = extern struct {
+    _bitfield: u32,
+    hWndOwner: ?HWND,
+    hDataSource: isize,
+    szReturnPathBuffer: ?PSTR,
+    cchReturnPathLength: u32,
+    pCallBack: ?CounterPathCallBack,
+    dwCallBackArg: usize,
+    CallBackStatus: i32,
+    dwDefaultDetailLevel: PERF_DETAIL,
+    szDialogBoxCaption: ?PSTR,
+};
+
+pub const PDH_BROWSE_DLG_CONFIG_HW = extern struct {
+    _bitfield: u32,
+    hWndOwner: ?HWND,
+    hDataSource: isize,
+    szReturnPathBuffer: ?PWSTR,
+    cchReturnPathLength: u32,
+    pCallBack: ?CounterPathCallBack,
+    dwCallBackArg: usize,
+    CallBackStatus: i32,
+    dwDefaultDetailLevel: PERF_DETAIL,
+    szDialogBoxCaption: ?PWSTR,
+};
+
+pub const PDH_BROWSE_DLG_CONFIG_W = extern struct {
+    _bitfield: u32,
+    hWndOwner: ?HWND,
+    szDataSource: ?PWSTR,
+    szReturnPathBuffer: ?PWSTR,
+    cchReturnPathLength: u32,
+    pCallBack: ?CounterPathCallBack,
+    dwCallBackArg: usize,
+    CallBackStatus: i32,
+    dwDefaultDetailLevel: PERF_DETAIL,
+    szDialogBoxCaption: ?PWSTR,
+};
+
+pub const PDH_COUNTER_INFO_A = extern struct {
+    dwLength: u32,
+    dwType: u32,
+    CVersion: u32,
+    CStatus: u32,
+    lScale: i32,
+    lDefaultScale: i32,
+    dwUserData: usize,
+    dwQueryUserData: usize,
+    szFullPath: ?PSTR,
+    Anonymous: extern union {
+        DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_A,
+        CounterPath: PDH_COUNTER_PATH_ELEMENTS_A,
+        Anonymous: extern struct {
+            szMachineName: ?PSTR,
+            szObjectName: ?PSTR,
+            szInstanceName: ?PSTR,
+            szParentInstance: ?PSTR,
+            dwInstanceIndex: u32,
+            szCounterName: ?PSTR,
+        },
+    },
+    szExplainText: ?PSTR,
+    DataBuffer: [1]u32,
+};
+
+pub const PDH_COUNTER_INFO_W = extern struct {
+    dwLength: u32,
+    dwType: u32,
+    CVersion: u32,
+    CStatus: u32,
+    lScale: i32,
+    lDefaultScale: i32,
+    dwUserData: usize,
+    dwQueryUserData: usize,
+    szFullPath: ?PWSTR,
+    Anonymous: extern union {
+        DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_W,
+        CounterPath: PDH_COUNTER_PATH_ELEMENTS_W,
+        Anonymous: extern struct {
+            szMachineName: ?PWSTR,
+            szObjectName: ?PWSTR,
+            szInstanceName: ?PWSTR,
+            szParentInstance: ?PWSTR,
+            dwInstanceIndex: u32,
+            szCounterName: ?PWSTR,
+        },
+    },
+    szExplainText: ?PWSTR,
+    DataBuffer: [1]u32,
+};
+
+pub const PDH_COUNTER_PATH_ELEMENTS_A = extern struct {
+    szMachineName: ?PSTR,
+    szObjectName: ?PSTR,
+    szInstanceName: ?PSTR,
+    szParentInstance: ?PSTR,
+    dwInstanceIndex: u32,
+    szCounterName: ?PSTR,
+};
+
+pub const PDH_COUNTER_PATH_ELEMENTS_W = extern struct {
+    szMachineName: ?PWSTR,
+    szObjectName: ?PWSTR,
+    szInstanceName: ?PWSTR,
+    szParentInstance: ?PWSTR,
+    dwInstanceIndex: u32,
+    szCounterName: ?PWSTR,
+};
+
+pub const PDH_DATA_ITEM_PATH_ELEMENTS_A = extern struct {
+    szMachineName: ?PSTR,
+    ObjectGUID: Guid,
+    dwItemId: u32,
+    szInstanceName: ?PSTR,
+};
+
+pub const PDH_DATA_ITEM_PATH_ELEMENTS_W = extern struct {
+    szMachineName: ?PWSTR,
+    ObjectGUID: Guid,
+    dwItemId: u32,
+    szInstanceName: ?PWSTR,
+};
+
+pub const PDH_DLL_VERSION = enum(u32) {
+    CVERSION_WIN50 = 1280,
+    VERSION = 1283,
+};
+pub const PDH_CVERSION_WIN50 = PDH_DLL_VERSION.CVERSION_WIN50;
+pub const PDH_VERSION = PDH_DLL_VERSION.VERSION;
+
+pub const PDH_FMT = enum(u32) {
+    DOUBLE = 512,
+    LARGE = 1024,
+    LONG = 256,
+};
+pub const PDH_FMT_DOUBLE = PDH_FMT.DOUBLE;
+pub const PDH_FMT_LARGE = PDH_FMT.LARGE;
+pub const PDH_FMT_LONG = PDH_FMT.LONG;
+
+pub const PDH_FMT_COUNTERVALUE = extern struct {
+    CStatus: u32,
+    Anonymous: extern union {
+        longValue: i32,
+        doubleValue: f64,
+        largeValue: i64,
+        AnsiStringValue: ?[*:0]const u8,
+        WideStringValue: ?[*:0]const u16,
+    },
+};
+
+pub const PDH_FMT_COUNTERVALUE_ITEM_A = extern struct {
+    szName: ?PSTR,
+    FmtValue: PDH_FMT_COUNTERVALUE,
+};
+
+pub const PDH_FMT_COUNTERVALUE_ITEM_W = extern struct {
+    szName: ?PWSTR,
+    FmtValue: PDH_FMT_COUNTERVALUE,
+};
+
+pub const PDH_LOG = enum(u32) {
+    READ_ACCESS = 65536,
+    WRITE_ACCESS = 131072,
+    UPDATE_ACCESS = 262144,
+};
+pub const PDH_LOG_READ_ACCESS = PDH_LOG.READ_ACCESS;
+pub const PDH_LOG_WRITE_ACCESS = PDH_LOG.WRITE_ACCESS;
+pub const PDH_LOG_UPDATE_ACCESS = PDH_LOG.UPDATE_ACCESS;
+
+pub const PDH_LOG_SERVICE_QUERY_INFO_A = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwLogQuota: u32,
+    szLogFileCaption: ?PSTR,
+    szDefaultDir: ?PSTR,
+    szBaseFileName: ?PSTR,
+    dwFileType: u32,
+    dwReserved: u32,
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            PdlAutoNameInterval: u32,
+            PdlAutoNameUnits: u32,
+            PdlCommandFilename: ?PSTR,
+            PdlCounterList: ?PSTR,
+            PdlAutoNameFormat: u32,
+            PdlSampleInterval: u32,
+            PdlLogStartTime: FILETIME,
+            PdlLogEndTime: FILETIME,
+        },
+        Anonymous2: extern struct {
+            TlNumberOfBuffers: u32,
+            TlMinimumBuffers: u32,
+            TlMaximumBuffers: u32,
+            TlFreeBuffers: u32,
+            TlBufferSize: u32,
+            TlEventsLost: u32,
+            TlLoggerThreadId: u32,
+            TlBuffersWritten: u32,
+            TlLogHandle: u32,
+            TlLogFileName: ?PSTR,
+        },
+    },
+};
+
+pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwLogQuota: u32,
+    szLogFileCaption: ?PWSTR,
+    szDefaultDir: ?PWSTR,
+    szBaseFileName: ?PWSTR,
+    dwFileType: u32,
+    dwReserved: u32,
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            PdlAutoNameInterval: u32,
+            PdlAutoNameUnits: u32,
+            PdlCommandFilename: ?PWSTR,
+            PdlCounterList: ?PWSTR,
+            PdlAutoNameFormat: u32,
+            PdlSampleInterval: u32,
+            PdlLogStartTime: FILETIME,
+            PdlLogEndTime: FILETIME,
+        },
+        Anonymous2: extern struct {
+            TlNumberOfBuffers: u32,
+            TlMinimumBuffers: u32,
+            TlMaximumBuffers: u32,
+            TlFreeBuffers: u32,
+            TlBufferSize: u32,
+            TlEventsLost: u32,
+            TlLoggerThreadId: u32,
+            TlBuffersWritten: u32,
+            TlLogHandle: u32,
+            TlLogFileName: ?PWSTR,
+        },
+    },
+};
+
+pub const PDH_LOG_TYPE = enum(u32) {
+    UNDEFINED = 0,
+    CSV = 1,
+    SQL = 7,
+    TSV = 2,
+    BINARY = 8,
+    PERFMON = 6,
+};
+pub const PDH_LOG_TYPE_UNDEFINED = PDH_LOG_TYPE.UNDEFINED;
+pub const PDH_LOG_TYPE_CSV = PDH_LOG_TYPE.CSV;
+pub const PDH_LOG_TYPE_SQL = PDH_LOG_TYPE.SQL;
+pub const PDH_LOG_TYPE_TSV = PDH_LOG_TYPE.TSV;
+pub const PDH_LOG_TYPE_BINARY = PDH_LOG_TYPE.BINARY;
+pub const PDH_LOG_TYPE_PERFMON = PDH_LOG_TYPE.PERFMON;
+
+pub const PDH_PATH_FLAGS = enum(u32) {
+    RESULT = 1,
+    INPUT = 2,
+    NONE = 0,
+};
+pub const PDH_PATH_WBEM_RESULT = PDH_PATH_FLAGS.RESULT;
+pub const PDH_PATH_WBEM_INPUT = PDH_PATH_FLAGS.INPUT;
+pub const PDH_PATH_WBEM_NONE = PDH_PATH_FLAGS.NONE;
+
+pub const PDH_RAW_COUNTER = extern struct {
+    CStatus: u32,
+    TimeStamp: FILETIME,
+    FirstValue: i64,
+    SecondValue: i64,
+    MultiCount: u32,
+};
+
+pub const PDH_RAW_COUNTER_ITEM_A = extern struct {
+    szName: ?PSTR,
+    RawValue: PDH_RAW_COUNTER,
+};
+
+pub const PDH_RAW_COUNTER_ITEM_W = extern struct {
+    szName: ?PWSTR,
+    RawValue: PDH_RAW_COUNTER,
+};
+
+pub const PDH_RAW_LOG_RECORD = extern struct {
+    dwStructureSize: u32,
+    dwRecordType: PDH_LOG_TYPE,
+    dwItems: u32,
+    RawBytes: [1]u8,
+};
+
+pub const PDH_SELECT_DATA_SOURCE_FLAGS = enum(u32) {
+    FILE_BROWSER_ONLY = 1,
+    NONE = 0,
+};
+pub const PDH_FLAGS_FILE_BROWSER_ONLY = PDH_SELECT_DATA_SOURCE_FLAGS.FILE_BROWSER_ONLY;
+pub const PDH_FLAGS_NONE = PDH_SELECT_DATA_SOURCE_FLAGS.NONE;
+
+pub const PDH_STATISTICS = extern struct {
+    dwFormat: u32,
+    count: u32,
+    min: PDH_FMT_COUNTERVALUE,
+    max: PDH_FMT_COUNTERVALUE,
+    mean: PDH_FMT_COUNTERVALUE,
+};
+
+pub const PDH_TIME_INFO = extern struct {
+    StartTime: i64,
+    EndTime: i64,
+    SampleCount: u32,
+};
+
+pub const PERF_COUNTER_AGGREGATE_FUNC = enum(u32) {
+    UNDEFINED = 0,
+    TOTAL = 1,
+    AVG = 2,
+    MIN = 3,
+};
+pub const PERF_AGGREGATE_UNDEFINED = PERF_COUNTER_AGGREGATE_FUNC.UNDEFINED;
+pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_AGGREGATE_FUNC.TOTAL;
+pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
+pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
+
+pub const PERF_COUNTER_BLOCK = extern struct {
+    ByteLength: u32,
+};
+
+pub const PERF_COUNTER_DATA = extern struct {
+    dwDataSize: u32,
+    dwSize: u32,
 };
 
 
 
+pub const PERF_COUNTER_HEADER = extern struct {
+    dwStatus: u32,
+    dwType: PerfCounterDataType,
+    dwSize: u32,
+    Reserved: u32,
+};
+
+pub const PERF_COUNTER_IDENTIFIER = extern struct {
+    CounterSetGuid: Guid,
+    Status: u32,
+    Size: u32,
+    CounterId: u32,
+    InstanceId: u32,
+    Index: u32,
+    Reserved: u32,
+};
+
+pub const PERF_COUNTER_IDENTITY = extern struct {
+    CounterSetGuid: Guid,
+    BufferSize: u32,
+    CounterId: u32,
+    InstanceId: u32,
+    MachineOffset: u32,
+    NameOffset: u32,
+    Reserved: u32,
+};
+
+pub const PERF_COUNTER_INFO = extern struct {
+    CounterId: u32,
+    Type: u32,
+    Attrib: u64,
+    Size: u32,
+    DetailLevel: u32,
+    Scale: i32,
+    Offset: u32,
+};
+
+pub const PERF_COUNTER_REG_INFO = extern struct {
+    CounterId: u32,
+    Type: u32,
+    Attrib: u64,
+    DetailLevel: u32,
+    DefaultScale: i32,
+    BaseCounterId: u32,
+    PerfTimeId: u32,
+    PerfFreqId: u32,
+    MultiId: u32,
+    AggregateFunc: PERF_COUNTER_AGGREGATE_FUNC,
+    Reserved: u32,
+};
+
+pub const PERF_COUNTERSET_INFO = extern struct {
+    CounterSetGuid: Guid,
+    ProviderGuid: Guid,
+    NumCounters: u32,
+    InstanceType: u32,
+};
+
+pub const PERF_COUNTERSET_INSTANCE = extern struct {
+    CounterSetGuid: Guid,
+    dwSize: u32,
+    InstanceId: u32,
+    InstanceNameOffset: u32,
+    InstanceNameSize: u32,
+};
+
+pub const PERF_COUNTERSET_REG_INFO = extern struct {
+    CounterSetGuid: Guid,
+    CounterSetType: u32,
+    DetailLevel: u32,
+    NumCounters: u32,
+    InstanceType: u32,
+};
+
+pub const PERF_DATA_BLOCK = extern struct {
+    Signature: [4]u16,
+    LittleEndian: u32,
+    Version: u32,
+    Revision: u32,
+    TotalByteLength: u32,
+    HeaderLength: u32,
+    NumObjectTypes: u32,
+    DefaultObject: i32,
+    SystemTime: SYSTEMTIME,
+    PerfTime: LARGE_INTEGER,
+    PerfFreq: LARGE_INTEGER,
+    PerfTime100nSec: LARGE_INTEGER,
+    SystemNameLength: u32,
+    SystemNameOffset: u32,
+};
+
+pub const PERF_DATA_HEADER = extern struct {
+    dwTotalSize: u32,
+    dwNumCounters: u32,
+    PerfTimeStamp: i64,
+    PerfTime100NSec: i64,
+    PerfFreq: i64,
+    SystemTime: SYSTEMTIME,
+};
+
+pub const PERF_DETAIL = enum(u32) {
+    NOVICE = 100,
+    ADVANCED = 200,
+    EXPERT = 300,
+    WIZARD = 400,
+};
+pub const PERF_DETAIL_NOVICE = PERF_DETAIL.NOVICE;
+pub const PERF_DETAIL_ADVANCED = PERF_DETAIL.ADVANCED;
+pub const PERF_DETAIL_EXPERT = PERF_DETAIL.EXPERT;
+pub const PERF_DETAIL_WIZARD = PERF_DETAIL.WIZARD;
+
+pub const PERF_INSTANCE_DEFINITION = extern struct {
+    ByteLength: u32,
+    ParentObjectTitleIndex: u32,
+    ParentObjectInstance: u32,
+    UniqueID: i32,
+    NameOffset: u32,
+    NameLength: u32,
+};
+
+pub const PERF_INSTANCE_HEADER = extern struct {
+    Size: u32,
+    InstanceId: u32,
+};
+
+pub const PERF_MEM_ALLOC = *const fn(
+    AllocSize: usize,
+    pContext: ?*anyopaque,
+) callconv(.winapi) ?*anyopaque;
+
+pub const PERF_MEM_FREE = *const fn(
+    pBuffer: ?*anyopaque,
+    pContext: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const PERF_MULTI_COUNTERS = extern struct {
+    dwSize: u32,
+    dwCounters: u32,
+};
+
+pub const PERF_MULTI_INSTANCES = extern struct {
+    dwTotalSize: u32,
+    dwInstances: u32,
+};
+
+
+
+pub const PERF_PROVIDER_CONTEXT = extern struct {
+    ContextSize: u32,
+    Reserved: u32,
+    ControlCallback: ?PERFLIBREQUEST,
+    MemAllocRoutine: ?PERF_MEM_ALLOC,
+    MemFreeRoutine: ?PERF_MEM_FREE,
+    pMemContext: ?*anyopaque,
+};
+
+pub const PERF_STRING_BUFFER_HEADER = extern struct {
+    dwSize: u32,
+    dwCounters: u32,
+};
+
+pub const PERF_STRING_COUNTER_HEADER = extern struct {
+    dwCounterId: u32,
+    dwOffset: u32,
+};
+
+pub const PerfCounterDataType = enum(i32) {
+    ERROR_RETURN = 0,
+    SINGLE_COUNTER = 1,
+    MULTIPLE_COUNTERS = 2,
+    MULTIPLE_INSTANCES = 4,
+    COUNTERSET = 6,
+};
+pub const PERF_ERROR_RETURN = PerfCounterDataType.ERROR_RETURN;
+pub const PERF_SINGLE_COUNTER = PerfCounterDataType.SINGLE_COUNTER;
+pub const PERF_MULTIPLE_COUNTERS = PerfCounterDataType.MULTIPLE_COUNTERS;
+pub const PERF_MULTIPLE_INSTANCES = PerfCounterDataType.MULTIPLE_INSTANCES;
+pub const PERF_COUNTERSET = PerfCounterDataType.COUNTERSET;
+
+pub const PERFLIBREQUEST = *const fn(
+    RequestCode: u32,
+    Buffer: ?*anyopaque,
+    BufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PerfProviderHandle = isize;
+
+// TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PerfQueryHandle = isize;
+
+pub const PerfRegInfoType = enum(i32) {
+    COUNTERSET_STRUCT = 1,
+    COUNTER_STRUCT = 2,
+    COUNTERSET_NAME_STRING = 3,
+    COUNTERSET_HELP_STRING = 4,
+    COUNTER_NAME_STRINGS = 5,
+    COUNTER_HELP_STRINGS = 6,
+    PROVIDER_NAME = 7,
+    PROVIDER_GUID = 8,
+    COUNTERSET_ENGLISH_NAME = 9,
+    COUNTER_ENGLISH_NAMES = 10,
+};
+pub const PERF_REG_COUNTERSET_STRUCT = PerfRegInfoType.COUNTERSET_STRUCT;
+pub const PERF_REG_COUNTER_STRUCT = PerfRegInfoType.COUNTER_STRUCT;
+pub const PERF_REG_COUNTERSET_NAME_STRING = PerfRegInfoType.COUNTERSET_NAME_STRING;
+pub const PERF_REG_COUNTERSET_HELP_STRING = PerfRegInfoType.COUNTERSET_HELP_STRING;
+pub const PERF_REG_COUNTER_NAME_STRINGS = PerfRegInfoType.COUNTER_NAME_STRINGS;
+pub const PERF_REG_COUNTER_HELP_STRINGS = PerfRegInfoType.COUNTER_HELP_STRINGS;
+pub const PERF_REG_PROVIDER_NAME = PerfRegInfoType.PROVIDER_NAME;
+pub const PERF_REG_PROVIDER_GUID = PerfRegInfoType.PROVIDER_GUID;
+pub const PERF_REG_COUNTERSET_ENGLISH_NAME = PerfRegInfoType.COUNTERSET_ENGLISH_NAME;
+pub const PERF_REG_COUNTER_ENGLISH_NAMES = PerfRegInfoType.COUNTER_ENGLISH_NAMES;
+
+pub const PLA_CABEXTRACT_CALLBACK = *const fn(
+    FileName: ?[*:0]const u16,
+    Context: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const PM_CLOSE_PROC = *const fn(
+) callconv(.winapi) u32;
+
+pub const PM_COLLECT_PROC = *const fn(
+    pValueName: ?PWSTR,
+    // TODO: what to do with BytesParamIndex 2?
+    ppData: ?*?*anyopaque,
+    pcbTotalBytes: ?*u32,
+    pNumObjectTypes: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PM_OPEN_PROC = *const fn(
+    pContext: ?PWSTR,
+) callconv(.winapi) u32;
+
+pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = enum(u32) {
+    REGISTRY = 1,
+    WBEM = 4,
+};
+pub const DATA_SOURCE_REGISTRY = REAL_TIME_DATA_SOURCE_ID_FLAGS.REGISTRY;
+pub const DATA_SOURCE_WBEM = REAL_TIME_DATA_SOURCE_ID_FLAGS.WBEM;
+
+pub const ReportValueTypeConstants = enum(i32) {
+    DefaultValue = 0,
+    CurrentValue = 1,
+    Average = 2,
+    Minimum = 3,
+    Maximum = 4,
+};
+pub const sysmonDefaultValue = ReportValueTypeConstants.DefaultValue;
+pub const sysmonCurrentValue = ReportValueTypeConstants.CurrentValue;
+pub const sysmonAverage = ReportValueTypeConstants.Average;
+pub const sysmonMinimum = ReportValueTypeConstants.Minimum;
+pub const sysmonMaximum = ReportValueTypeConstants.Maximum;
+
+pub const ResourcePolicy = enum(i32) {
+    Largest = 0,
+    Oldest = 1,
+};
+pub const plaDeleteLargest = ResourcePolicy.Largest;
+pub const plaDeleteOldest = ResourcePolicy.Oldest;
+
+const CLSID_ServerDataCollectorSet_Value = Guid.initString("03837531-098b-11d8-9414-505054503030");
+pub const CLSID_ServerDataCollectorSet = &CLSID_ServerDataCollectorSet_Value;
+
+const CLSID_ServerDataCollectorSetCollection_Value = Guid.initString("03837532-098b-11d8-9414-505054503030");
+pub const CLSID_ServerDataCollectorSetCollection = &CLSID_ServerDataCollectorSetCollection_Value;
+
+const CLSID_SourcePropPage_Value = Guid.initString("0cf32aa1-7571-11d0-93c4-00aa00a3ddea");
+pub const CLSID_SourcePropPage = &CLSID_SourcePropPage_Value;
+
+pub const StreamMode = enum(i32) {
+    File = 1,
+    RealTime = 2,
+    Both = 3,
+    Buffering = 4,
+};
+pub const plaFile = StreamMode.File;
+pub const plaRealTime = StreamMode.RealTime;
+pub const plaBoth = StreamMode.Both;
+pub const plaBuffering = StreamMode.Buffering;
+
+pub const SysmonBatchReason = enum(i32) {
+    None = 0,
+    AddFiles = 1,
+    AddCounters = 2,
+    AddFilesAutoCounters = 3,
+};
+pub const sysmonBatchNone = SysmonBatchReason.None;
+pub const sysmonBatchAddFiles = SysmonBatchReason.AddFiles;
+pub const sysmonBatchAddCounters = SysmonBatchReason.AddCounters;
+pub const sysmonBatchAddFilesAutoCounters = SysmonBatchReason.AddFilesAutoCounters;
+
+pub const SysmonDataType = enum(i32) {
+    Avg = 1,
+    Min = 2,
+    Max = 3,
+    Time = 4,
+    Count = 5,
+};
+pub const sysmonDataAvg = SysmonDataType.Avg;
+pub const sysmonDataMin = SysmonDataType.Min;
+pub const sysmonDataMax = SysmonDataType.Max;
+pub const sysmonDataTime = SysmonDataType.Time;
+pub const sysmonDataCount = SysmonDataType.Count;
+
+pub const SysmonFileType = enum(i32) {
+    Html = 1,
+    Report = 2,
+    Csv = 3,
+    Tsv = 4,
+    Blg = 5,
+    RetiredBlg = 6,
+    Gif = 7,
+};
+pub const sysmonFileHtml = SysmonFileType.Html;
+pub const sysmonFileReport = SysmonFileType.Report;
+pub const sysmonFileCsv = SysmonFileType.Csv;
+pub const sysmonFileTsv = SysmonFileType.Tsv;
+pub const sysmonFileBlg = SysmonFileType.Blg;
+pub const sysmonFileRetiredBlg = SysmonFileType.RetiredBlg;
+pub const sysmonFileGif = SysmonFileType.Gif;
+
+const CLSID_SystemDataCollectorSet_Value = Guid.initString("03837546-098b-11d8-9414-505054503030");
+pub const CLSID_SystemDataCollectorSet = &CLSID_SystemDataCollectorSet_Value;
+
+const CLSID_SystemDataCollectorSetCollection_Value = Guid.initString("03837547-098b-11d8-9414-505054503030");
+pub const CLSID_SystemDataCollectorSetCollection = &CLSID_SystemDataCollectorSetCollection_Value;
+
+const CLSID_SystemMonitor_Value = Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004347");
+pub const CLSID_SystemMonitor = &CLSID_SystemMonitor_Value;
+
+const CLSID_SystemMonitor2_Value = Guid.initString("7f30578c-5f38-4612-acfe-6ed04c7b7af8");
+pub const CLSID_SystemMonitor2 = &CLSID_SystemMonitor2_Value;
+
+const CLSID_TraceDataProvider_Value = Guid.initString("03837513-098b-11d8-9414-505054503030");
+pub const CLSID_TraceDataProvider = &CLSID_TraceDataProvider_Value;
+
+const CLSID_TraceDataProviderCollection_Value = Guid.initString("03837511-098b-11d8-9414-505054503030");
+pub const CLSID_TraceDataProviderCollection = &CLSID_TraceDataProviderCollection_Value;
+
+const CLSID_TraceSession_Value = Guid.initString("0383751c-098b-11d8-9414-505054503030");
+pub const CLSID_TraceSession = &CLSID_TraceSession_Value;
+
+const CLSID_TraceSessionCollection_Value = Guid.initString("03837530-098b-11d8-9414-505054503030");
+pub const CLSID_TraceSessionCollection = &CLSID_TraceSessionCollection_Value;
+
+pub const ValueMapType = enum(i32) {
+    Index = 1,
+    Flag = 2,
+    FlagArray = 3,
+    Validation = 4,
+};
+pub const plaIndex = ValueMapType.Index;
+pub const plaFlag = ValueMapType.Flag;
+pub const plaFlagArray = ValueMapType.FlagArray;
+pub const plaValidation = ValueMapType.Validation;
+
+pub const WeekDays = enum(i32) {
+    RunOnce = 0,
+    Sunday = 1,
+    Monday = 2,
+    Tuesday = 4,
+    Wednesday = 8,
+    Thursday = 16,
+    Friday = 32,
+    Saturday = 64,
+    Everyday = 127,
+};
+pub const plaRunOnce = WeekDays.RunOnce;
+pub const plaSunday = WeekDays.Sunday;
+pub const plaMonday = WeekDays.Monday;
+pub const plaTuesday = WeekDays.Tuesday;
+pub const plaWednesday = WeekDays.Wednesday;
+pub const plaThursday = WeekDays.Thursday;
+pub const plaFriday = WeekDays.Friday;
+pub const plaSaturday = WeekDays.Saturday;
+pub const plaEveryday = WeekDays.Everyday;
+
+pub const PERF_COUNTER_DEFINITION = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ByteLength: u32,
+        CounterNameTitleIndex: u32,
+        CounterNameTitle: u32,
+        CounterHelpTitleIndex: u32,
+        CounterHelpTitle: u32,
+        DefaultScale: i32,
+        DetailLevel: u32,
+        CounterType: u32,
+        CounterSize: u32,
+        CounterOffset: u32,
+    },
+    .X86 => extern struct {
+        ByteLength: u32,
+        CounterNameTitleIndex: u32,
+        CounterNameTitle: ?PWSTR,
+        CounterHelpTitleIndex: u32,
+        CounterHelpTitle: ?PWSTR,
+        DefaultScale: i32,
+        DetailLevel: u32,
+        CounterType: u32,
+        CounterSize: u32,
+        CounterOffset: u32,
+    },
+};
 pub const PERF_OBJECT_TYPE = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         TotalByteLength: u32,
@@ -5858,55 +5884,24 @@ pub const PERF_OBJECT_TYPE = switch(@import("../zig.zig").arch) {
         PerfFreq: LARGE_INTEGER,
     },
 };
-pub const PERF_COUNTER_DEFINITION = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        ByteLength: u32,
-        CounterNameTitleIndex: u32,
-        CounterNameTitle: u32,
-        CounterHelpTitleIndex: u32,
-        CounterHelpTitle: u32,
-        DefaultScale: i32,
-        DetailLevel: u32,
-        CounterType: u32,
-        CounterSize: u32,
-        CounterOffset: u32,
-    },
-    .X86 => extern struct {
-        ByteLength: u32,
-        CounterNameTitleIndex: u32,
-        CounterNameTitle: ?PWSTR,
-        CounterHelpTitleIndex: u32,
-        CounterHelpTitle: ?PWSTR,
-        DefaultScale: i32,
-        DetailLevel: u32,
-        CounterType: u32,
-        CounterSize: u32,
-        CounterOffset: u32,
-    },
-};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (135)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn QueryPerformanceCounter(
-    lpPerformanceCount: ?*LARGE_INTEGER,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn QueryPerformanceFrequency(
-    lpFrequency: ?*LARGE_INTEGER,
-) callconv(.winapi) BOOL;
-
-pub extern "loadperf" fn InstallPerfDllW(
-    szComputerName: ?[*:0]const u16,
-    lpIniFile: ?[*:0]const u16,
-    dwFlags: usize,
+pub extern "loadperf" fn BackupPerfRegistryToFileW(
+    szFileName: ?[*:0]const u16,
+    szCommentString: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 pub extern "loadperf" fn InstallPerfDllA(
     szComputerName: ?[*:0]const u8,
     lpIniFile: ?[*:0]const u8,
+    dwFlags: usize,
+) callconv(.winapi) u32;
+
+pub extern "loadperf" fn InstallPerfDllW(
+    szComputerName: ?[*:0]const u16,
+    lpIniFile: ?[*:0]const u16,
     dwFlags: usize,
 ) callconv(.winapi) u32;
 
@@ -5923,259 +5918,6 @@ pub extern "loadperf" fn LoadPerfCounterTextStringsW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "loadperf" fn UnloadPerfCounterTextStringsW(
-    lpCommandLine: ?PWSTR,
-    bQuietModeArg: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "loadperf" fn UnloadPerfCounterTextStringsA(
-    lpCommandLine: ?PSTR,
-    bQuietModeArg: BOOL,
-) callconv(.winapi) u32;
-
-pub extern "loadperf" fn UpdatePerfNameFilesA(
-    szNewCtrFilePath: ?[*:0]const u8,
-    szNewHlpFilePath: ?[*:0]const u8,
-    szLanguageID: ?PSTR,
-    dwFlags: usize,
-) callconv(.winapi) u32;
-
-pub extern "loadperf" fn UpdatePerfNameFilesW(
-    szNewCtrFilePath: ?[*:0]const u16,
-    szNewHlpFilePath: ?[*:0]const u16,
-    szLanguageID: ?PWSTR,
-    dwFlags: usize,
-) callconv(.winapi) u32;
-
-pub extern "loadperf" fn SetServiceAsTrustedA(
-    szReserved: ?[*:0]const u8,
-    szServiceName: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-pub extern "loadperf" fn SetServiceAsTrustedW(
-    szReserved: ?[*:0]const u16,
-    szServiceName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "loadperf" fn BackupPerfRegistryToFileW(
-    szFileName: ?[*:0]const u16,
-    szCommentString: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "loadperf" fn RestorePerfRegistryFromFileW(
-    szFileName: ?[*:0]const u16,
-    szLangId: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfStartProvider(
-    ProviderGuid: ?*Guid,
-    ControlCallback: ?PERFLIBREQUEST,
-    phProvider: ?*PerfProviderHandle,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfStartProviderEx(
-    ProviderGuid: ?*Guid,
-    ProviderContext: ?*PERF_PROVIDER_CONTEXT,
-    Provider: ?*PerfProviderHandle,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfStopProvider(
-    ProviderHandle: PerfProviderHandle,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfSetCounterSetInfo(
-    ProviderHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    Template: ?*PERF_COUNTERSET_INFO,
-    TemplateSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfCreateInstance(
-    ProviderHandle: PerfProviderHandle,
-    CounterSetGuid: ?*const Guid,
-    Name: ?[*:0]const u16,
-    Id: u32,
-) callconv(.winapi) ?*PERF_COUNTERSET_INSTANCE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfDeleteInstance(
-    Provider: PerfProviderHandle,
-    InstanceBlock: ?*PERF_COUNTERSET_INSTANCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfQueryInstance(
-    ProviderHandle: ?HANDLE,
-    CounterSetGuid: ?*const Guid,
-    Name: ?[*:0]const u16,
-    Id: u32,
-) callconv(.winapi) ?*PERF_COUNTERSET_INSTANCE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfSetCounterRefValue(
-    Provider: ?HANDLE,
-    Instance: ?*PERF_COUNTERSET_INSTANCE,
-    CounterId: u32,
-    Address: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfSetULongCounterValue(
-    Provider: ?HANDLE,
-    Instance: ?*PERF_COUNTERSET_INSTANCE,
-    CounterId: u32,
-    Value: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfSetULongLongCounterValue(
-    Provider: ?HANDLE,
-    Instance: ?*PERF_COUNTERSET_INSTANCE,
-    CounterId: u32,
-    Value: u64,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfIncrementULongCounterValue(
-    Provider: ?HANDLE,
-    Instance: ?*PERF_COUNTERSET_INSTANCE,
-    CounterId: u32,
-    Value: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfIncrementULongLongCounterValue(
-    Provider: ?HANDLE,
-    Instance: ?*PERF_COUNTERSET_INSTANCE,
-    CounterId: u32,
-    Value: u64,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfDecrementULongCounterValue(
-    Provider: ?HANDLE,
-    Instance: ?*PERF_COUNTERSET_INSTANCE,
-    CounterId: u32,
-    Value: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn PerfDecrementULongLongCounterValue(
-    Provider: ?HANDLE,
-    Instance: ?*PERF_COUNTERSET_INSTANCE,
-    CounterId: u32,
-    Value: u64,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfEnumerateCounterSet(
-    szMachine: ?[*:0]const u16,
-    pCounterSetIds: ?[*]Guid,
-    cCounterSetIds: u32,
-    pcCounterSetIdsActual: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfEnumerateCounterSetInstances(
-    szMachine: ?[*:0]const u16,
-    pCounterSetId: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 3?
-    pInstances: ?*PERF_INSTANCE_HEADER,
-    cbInstances: u32,
-    pcbInstancesActual: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfQueryCounterSetRegistrationInfo(
-    szMachine: ?[*:0]const u16,
-    pCounterSetId: ?*const Guid,
-    requestCode: PerfRegInfoType,
-    requestLangId: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    pbRegInfo: ?*u8,
-    cbRegInfo: u32,
-    pcbRegInfoActual: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfOpenQueryHandle(
-    szMachine: ?[*:0]const u16,
-    phQuery: ?*PerfQueryHandle,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfCloseQueryHandle(
-    hQuery: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfQueryCounterInfo(
-    hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
-    pCounters: ?*PERF_COUNTER_IDENTIFIER,
-    cbCounters: u32,
-    pcbCountersActual: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfQueryCounterData(
-    hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
-    pCounterBlock: ?*PERF_DATA_HEADER,
-    cbCounterBlock: u32,
-    pcbCounterBlockActual: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfAddCounters(
-    hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
-    pCounters: ?*PERF_COUNTER_IDENTIFIER,
-    cbCounters: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "advapi32" fn PerfDeleteCounters(
-    hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
-    pCounters: ?*PERF_COUNTER_IDENTIFIER,
-    cbCounters: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDllVersion(
-    lpdwVersion: ?*PDH_DLL_VERSION,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhOpenQueryW(
-    szDataSource: ?[*:0]const u16,
-    dwUserData: usize,
-    phQuery: ?*isize,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhOpenQueryA(
-    szDataSource: ?[*:0]const u8,
-    dwUserData: usize,
-    phQuery: ?*isize,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhAddCounterW(
-    hQuery: isize,
-    szFullCounterPath: ?[*:0]const u16,
-    dwUserData: usize,
-    phCounter: ?*isize,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhAddCounterA(
     hQuery: isize,
     szFullCounterPath: ?[*:0]const u8,
@@ -6183,8 +5925,8 @@ pub extern "pdh" fn PdhAddCounterA(
     phCounter: ?*isize,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "pdh" fn PdhAddEnglishCounterW(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhAddCounterW(
     hQuery: isize,
     szFullCounterPath: ?[*:0]const u16,
     dwUserData: usize,
@@ -6200,31 +5942,58 @@ pub extern "pdh" fn PdhAddEnglishCounterA(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "pdh" fn PdhCollectQueryDataWithTime(
+pub extern "pdh" fn PdhAddEnglishCounterW(
     hQuery: isize,
-    pllTimeStamp: ?*i64,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "pdh" fn PdhValidatePathExW(
-    hDataSource: isize,
-    szFullPathBuffer: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "pdh" fn PdhValidatePathExA(
-    hDataSource: isize,
-    szFullPathBuffer: ?[*:0]const u8,
+    szFullCounterPath: ?[*:0]const u16,
+    dwUserData: usize,
+    phCounter: ?*isize,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhRemoveCounter(
+pub extern "pdh" fn PdhBindInputDataSourceA(
+    phDataSource: ?*isize,
+    LogFileNameList: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhBindInputDataSourceW(
+    phDataSource: ?*isize,
+    LogFileNameList: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhBrowseCountersA(
+    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_A,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhBrowseCountersHA(
+    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_HA,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhBrowseCountersHW(
+    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_HW,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhBrowseCountersW(
+    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_W,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhCalculateCounterFromRawValue(
     hCounter: isize,
+    dwFormat: PDH_FMT,
+    rawValue1: ?*PDH_RAW_COUNTER,
+    rawValue2: ?*PDH_RAW_COUNTER,
+    fmtValue: ?*PDH_FMT_COUNTERVALUE,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhCollectQueryData(
-    hQuery: isize,
+pub extern "pdh" fn PdhCloseLog(
+    hLog: isize,
+    dwFlags: u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6233,11 +6002,362 @@ pub extern "pdh" fn PdhCloseQuery(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetFormattedCounterValue(
+pub extern "pdh" fn PdhCollectQueryData(
+    hQuery: isize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhCollectQueryDataEx(
+    hQuery: isize,
+    dwIntervalTime: u32,
+    hNewDataEvent: ?HANDLE,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "pdh" fn PdhCollectQueryDataWithTime(
+    hQuery: isize,
+    pllTimeStamp: ?*i64,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhComputeCounterStatistics(
     hCounter: isize,
     dwFormat: PDH_FMT,
-    lpdwType: ?*u32,
-    pValue: ?*PDH_FMT_COUNTERVALUE,
+    dwFirstEntry: u32,
+    dwNumEntries: u32,
+    lpRawValueArray: ?*PDH_RAW_COUNTER,
+    data: ?*PDH_STATISTICS,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhConnectMachineA(
+    szMachineName: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhConnectMachineW(
+    szMachineName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+pub extern "pdh" fn PdhCreateSQLTablesA(
+    szDataSource: ?[*:0]const u8,
+) callconv(.winapi) i32;
+
+pub extern "pdh" fn PdhCreateSQLTablesW(
+    szDataSource: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumLogSetNamesA(
+    szDataSource: ?[*:0]const u8,
+    mszDataSetNameList: ?[*]u8,
+    pcchBufferLength: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumLogSetNamesW(
+    szDataSource: ?[*:0]const u16,
+    mszDataSetNameList: ?[*]u16,
+    pcchBufferLength: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumMachinesA(
+    szDataSource: ?[*:0]const u8,
+    mszMachineList: ?[*]u8,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumMachinesHA(
+    hDataSource: isize,
+    mszMachineList: ?[*]u8,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumMachinesHW(
+    hDataSource: isize,
+    mszMachineList: ?[*]u16,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumMachinesW(
+    szDataSource: ?[*:0]const u16,
+    mszMachineList: ?[*]u16,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectItemsA(
+    szDataSource: ?[*:0]const u8,
+    szMachineName: ?[*:0]const u8,
+    szObjectName: ?[*:0]const u8,
+    mszCounterList: ?[*]u8,
+    pcchCounterListLength: ?*u32,
+    mszInstanceList: ?[*]u8,
+    pcchInstanceListLength: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectItemsHA(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u8,
+    szObjectName: ?[*:0]const u8,
+    mszCounterList: ?[*]u8,
+    pcchCounterListLength: ?*u32,
+    mszInstanceList: ?[*]u8,
+    pcchInstanceListLength: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectItemsHW(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u16,
+    szObjectName: ?[*:0]const u16,
+    mszCounterList: ?[*]u16,
+    pcchCounterListLength: ?*u32,
+    mszInstanceList: ?[*]u16,
+    pcchInstanceListLength: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectItemsW(
+    szDataSource: ?[*:0]const u16,
+    szMachineName: ?[*:0]const u16,
+    szObjectName: ?[*:0]const u16,
+    mszCounterList: ?[*]u16,
+    pcchCounterListLength: ?*u32,
+    mszInstanceList: ?[*]u16,
+    pcchInstanceListLength: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectsA(
+    szDataSource: ?[*:0]const u8,
+    szMachineName: ?[*:0]const u8,
+    mszObjectList: ?[*]u8,
+    pcchBufferSize: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    bRefresh: BOOL,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectsHA(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u8,
+    mszObjectList: ?[*]u8,
+    pcchBufferSize: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    bRefresh: BOOL,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectsHW(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u16,
+    mszObjectList: ?[*]u16,
+    pcchBufferSize: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    bRefresh: BOOL,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhEnumObjectsW(
+    szDataSource: ?[*:0]const u16,
+    szMachineName: ?[*:0]const u16,
+    mszObjectList: ?[*]u16,
+    pcchBufferSize: ?*u32,
+    dwDetailLevel: PERF_DETAIL,
+    bRefresh: BOOL,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhExpandCounterPathA(
+    szWildCardPath: ?[*:0]const u8,
+    mszExpandedPathList: ?[*]u8,
+    pcchPathListLength: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhExpandCounterPathW(
+    szWildCardPath: ?[*:0]const u16,
+    mszExpandedPathList: ?[*]u16,
+    pcchPathListLength: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhExpandWildCardPathA(
+    szDataSource: ?[*:0]const u8,
+    szWildCardPath: ?[*:0]const u8,
+    mszExpandedPathList: ?[*]u8,
+    pcchPathListLength: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhExpandWildCardPathHA(
+    hDataSource: isize,
+    szWildCardPath: ?[*:0]const u8,
+    mszExpandedPathList: ?[*]u8,
+    pcchPathListLength: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhExpandWildCardPathHW(
+    hDataSource: isize,
+    szWildCardPath: ?[*:0]const u16,
+    mszExpandedPathList: ?[*]u16,
+    pcchPathListLength: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhExpandWildCardPathW(
+    szDataSource: ?[*:0]const u16,
+    szWildCardPath: ?[*:0]const u16,
+    mszExpandedPathList: ?[*]u16,
+    pcchPathListLength: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhFormatFromRawValue(
+    dwCounterType: u32,
+    dwFormat: PDH_FMT,
+    pTimeBase: ?*i64,
+    pRawValue1: ?*PDH_RAW_COUNTER,
+    pRawValue2: ?*PDH_RAW_COUNTER,
+    pFmtValue: ?*PDH_FMT_COUNTERVALUE,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetCounterInfoA(
+    hCounter: isize,
+    bRetrieveExplainText: BOOLEAN,
+    pdwBufferSize: ?*u32,
+    lpBuffer: ?*PDH_COUNTER_INFO_A,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetCounterInfoW(
+    hCounter: isize,
+    bRetrieveExplainText: BOOLEAN,
+    pdwBufferSize: ?*u32,
+    lpBuffer: ?*PDH_COUNTER_INFO_W,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetCounterTimeBase(
+    hCounter: isize,
+    pTimeBase: ?*i64,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDataSourceTimeRangeA(
+    szDataSource: ?[*:0]const u8,
+    pdwNumEntries: ?*u32,
+    pInfo: ?*PDH_TIME_INFO,
+    pdwBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDataSourceTimeRangeH(
+    hDataSource: isize,
+    pdwNumEntries: ?*u32,
+    pInfo: ?*PDH_TIME_INFO,
+    pdwBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDataSourceTimeRangeW(
+    szDataSource: ?[*:0]const u16,
+    pdwNumEntries: ?*u32,
+    pInfo: ?*PDH_TIME_INFO,
+    pdwBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfCounterA(
+    szDataSource: ?[*:0]const u8,
+    szMachineName: ?[*:0]const u8,
+    szObjectName: ?[*:0]const u8,
+    szDefaultCounterName: ?PSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfCounterHA(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u8,
+    szObjectName: ?[*:0]const u8,
+    szDefaultCounterName: ?PSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfCounterHW(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u16,
+    szObjectName: ?[*:0]const u16,
+    szDefaultCounterName: ?PWSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfCounterW(
+    szDataSource: ?[*:0]const u16,
+    szMachineName: ?[*:0]const u16,
+    szObjectName: ?[*:0]const u16,
+    szDefaultCounterName: ?PWSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfObjectA(
+    szDataSource: ?[*:0]const u8,
+    szMachineName: ?[*:0]const u8,
+    szDefaultObjectName: ?PSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u8,
+    szDefaultObjectName: ?PSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
+    hDataSource: isize,
+    szMachineName: ?[*:0]const u16,
+    szDefaultObjectName: ?PWSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDefaultPerfObjectW(
+    szDataSource: ?[*:0]const u16,
+    szMachineName: ?[*:0]const u16,
+    szDefaultObjectName: ?PWSTR,
+    pcchBufferSize: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetDllVersion(
+    lpdwVersion: ?*PDH_DLL_VERSION,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6259,10 +6379,23 @@ pub extern "pdh" fn PdhGetFormattedCounterArrayW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetRawCounterValue(
+pub extern "pdh" fn PdhGetFormattedCounterValue(
     hCounter: isize,
+    dwFormat: PDH_FMT,
     lpdwType: ?*u32,
-    pValue: ?*PDH_RAW_COUNTER,
+    pValue: ?*PDH_FMT_COUNTERVALUE,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhGetLogFileSize(
+    hLog: isize,
+    llSize: ?*i64,
+) callconv(.winapi) i32;
+
+pub extern "pdh" fn PdhGetLogSetGUID(
+    hLog: isize,
+    pGuid: ?*Guid,
+    pRunId: ?*i32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6282,242 +6415,29 @@ pub extern "pdh" fn PdhGetRawCounterArrayW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhCalculateCounterFromRawValue(
+pub extern "pdh" fn PdhGetRawCounterValue(
     hCounter: isize,
-    dwFormat: PDH_FMT,
-    rawValue1: ?*PDH_RAW_COUNTER,
-    rawValue2: ?*PDH_RAW_COUNTER,
-    fmtValue: ?*PDH_FMT_COUNTERVALUE,
+    lpdwType: ?*u32,
+    pValue: ?*PDH_RAW_COUNTER,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhComputeCounterStatistics(
-    hCounter: isize,
-    dwFormat: PDH_FMT,
-    dwFirstEntry: u32,
-    dwNumEntries: u32,
-    lpRawValueArray: ?*PDH_RAW_COUNTER,
-    data: ?*PDH_STATISTICS,
-) callconv(.winapi) i32;
+pub extern "pdh" fn PdhIsRealTimeQuery(
+    hQuery: isize,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetCounterInfoW(
-    hCounter: isize,
-    bRetrieveExplainText: BOOLEAN,
-    pdwBufferSize: ?*u32,
-    lpBuffer: ?*PDH_COUNTER_INFO_W,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetCounterInfoA(
-    hCounter: isize,
-    bRetrieveExplainText: BOOLEAN,
-    pdwBufferSize: ?*u32,
-    lpBuffer: ?*PDH_COUNTER_INFO_A,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhSetCounterScaleFactor(
-    hCounter: isize,
-    lFactor: i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhConnectMachineW(
-    szMachineName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhConnectMachineA(
+pub extern "pdh" fn PdhLookupPerfIndexByNameA(
     szMachineName: ?[*:0]const u8,
+    szNameBuffer: ?[*:0]const u8,
+    pdwIndex: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumMachinesW(
-    szDataSource: ?[*:0]const u16,
-    mszMachineList: ?[*]u16,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumMachinesA(
-    szDataSource: ?[*:0]const u8,
-    mszMachineList: ?[*]u8,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectsW(
-    szDataSource: ?[*:0]const u16,
+pub extern "pdh" fn PdhLookupPerfIndexByNameW(
     szMachineName: ?[*:0]const u16,
-    mszObjectList: ?[*]u16,
-    pcchBufferSize: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    bRefresh: BOOL,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectsA(
-    szDataSource: ?[*:0]const u8,
-    szMachineName: ?[*:0]const u8,
-    mszObjectList: ?[*]u8,
-    pcchBufferSize: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    bRefresh: BOOL,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectItemsW(
-    szDataSource: ?[*:0]const u16,
-    szMachineName: ?[*:0]const u16,
-    szObjectName: ?[*:0]const u16,
-    mszCounterList: ?[*]u16,
-    pcchCounterListLength: ?*u32,
-    mszInstanceList: ?[*]u16,
-    pcchInstanceListLength: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectItemsA(
-    szDataSource: ?[*:0]const u8,
-    szMachineName: ?[*:0]const u8,
-    szObjectName: ?[*:0]const u8,
-    mszCounterList: ?[*]u8,
-    pcchCounterListLength: ?*u32,
-    mszInstanceList: ?[*]u8,
-    pcchInstanceListLength: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhMakeCounterPathW(
-    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_W,
-    szFullPathBuffer: ?PWSTR,
-    pcchBufferSize: ?*u32,
-    dwFlags: PDH_PATH_FLAGS,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhMakeCounterPathA(
-    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_A,
-    szFullPathBuffer: ?PSTR,
-    pcchBufferSize: ?*u32,
-    dwFlags: PDH_PATH_FLAGS,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhParseCounterPathW(
-    szFullPathBuffer: ?[*:0]const u16,
-    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_W,
-    pdwBufferSize: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhParseCounterPathA(
-    szFullPathBuffer: ?[*:0]const u8,
-    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_A,
-    pdwBufferSize: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhParseInstanceNameW(
-    szInstanceString: ?[*:0]const u16,
-    szInstanceName: ?PWSTR,
-    pcchInstanceNameLength: ?*u32,
-    szParentName: ?PWSTR,
-    pcchParentNameLength: ?*u32,
-    lpIndex: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhParseInstanceNameA(
-    szInstanceString: ?[*:0]const u8,
-    szInstanceName: ?PSTR,
-    pcchInstanceNameLength: ?*u32,
-    szParentName: ?PSTR,
-    pcchParentNameLength: ?*u32,
-    lpIndex: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhValidatePathW(
-    szFullPathBuffer: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhValidatePathA(
-    szFullPathBuffer: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfObjectW(
-    szDataSource: ?[*:0]const u16,
-    szMachineName: ?[*:0]const u16,
-    szDefaultObjectName: ?PWSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfObjectA(
-    szDataSource: ?[*:0]const u8,
-    szMachineName: ?[*:0]const u8,
-    szDefaultObjectName: ?PSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfCounterW(
-    szDataSource: ?[*:0]const u16,
-    szMachineName: ?[*:0]const u16,
-    szObjectName: ?[*:0]const u16,
-    szDefaultCounterName: ?PWSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfCounterA(
-    szDataSource: ?[*:0]const u8,
-    szMachineName: ?[*:0]const u8,
-    szObjectName: ?[*:0]const u8,
-    szDefaultCounterName: ?PSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhBrowseCountersW(
-    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_W,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhBrowseCountersA(
-    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_A,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhExpandCounterPathW(
-    szWildCardPath: ?[*:0]const u16,
-    mszExpandedPathList: ?[*]u16,
-    pcchPathListLength: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhExpandCounterPathA(
-    szWildCardPath: ?[*:0]const u8,
-    mszExpandedPathList: ?[*]u8,
-    pcchPathListLength: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhLookupPerfNameByIndexW(
-    szMachineName: ?[*:0]const u16,
-    dwNameIndex: u32,
-    szNameBuffer: ?PWSTR,
-    pcchNameBufferSize: ?*u32,
+    szNameBuffer: ?[*:0]const u16,
+    pdwIndex: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6529,46 +6449,27 @@ pub extern "pdh" fn PdhLookupPerfNameByIndexA(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhLookupPerfIndexByNameW(
+pub extern "pdh" fn PdhLookupPerfNameByIndexW(
     szMachineName: ?[*:0]const u16,
-    szNameBuffer: ?[*:0]const u16,
-    pdwIndex: ?*u32,
+    dwNameIndex: u32,
+    szNameBuffer: ?PWSTR,
+    pcchNameBufferSize: ?*u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhLookupPerfIndexByNameA(
-    szMachineName: ?[*:0]const u8,
-    szNameBuffer: ?[*:0]const u8,
-    pdwIndex: ?*u32,
+pub extern "pdh" fn PdhMakeCounterPathA(
+    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_A,
+    szFullPathBuffer: ?PSTR,
+    pcchBufferSize: ?*u32,
+    dwFlags: PDH_PATH_FLAGS,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhExpandWildCardPathA(
-    szDataSource: ?[*:0]const u8,
-    szWildCardPath: ?[*:0]const u8,
-    mszExpandedPathList: ?[*]u8,
-    pcchPathListLength: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhExpandWildCardPathW(
-    szDataSource: ?[*:0]const u16,
-    szWildCardPath: ?[*:0]const u16,
-    mszExpandedPathList: ?[*]u16,
-    pcchPathListLength: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhOpenLogW(
-    szLogFileName: ?[*:0]const u16,
-    dwAccessFlags: PDH_LOG,
-    lpdwLogType: ?*PDH_LOG_TYPE,
-    hQuery: isize,
-    dwMaxSize: u32,
-    szUserCaption: ?[*:0]const u16,
-    phLog: ?*isize,
+pub extern "pdh" fn PdhMakeCounterPathW(
+    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_W,
+    szFullPathBuffer: ?PWSTR,
+    pcchBufferSize: ?*u32,
+    dwFlags: PDH_PATH_FLAGS,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6583,9 +6484,122 @@ pub extern "pdh" fn PdhOpenLogA(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhUpdateLogW(
+pub extern "pdh" fn PdhOpenLogW(
+    szLogFileName: ?[*:0]const u16,
+    dwAccessFlags: PDH_LOG,
+    lpdwLogType: ?*PDH_LOG_TYPE,
+    hQuery: isize,
+    dwMaxSize: u32,
+    szUserCaption: ?[*:0]const u16,
+    phLog: ?*isize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhOpenQueryA(
+    szDataSource: ?[*:0]const u8,
+    dwUserData: usize,
+    phQuery: ?*isize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhOpenQueryH(
+    hDataSource: isize,
+    dwUserData: usize,
+    phQuery: ?*isize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhOpenQueryW(
+    szDataSource: ?[*:0]const u16,
+    dwUserData: usize,
+    phQuery: ?*isize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhParseCounterPathA(
+    szFullPathBuffer: ?[*:0]const u8,
+    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_A,
+    pdwBufferSize: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhParseCounterPathW(
+    szFullPathBuffer: ?[*:0]const u16,
+    pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_W,
+    pdwBufferSize: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhParseInstanceNameA(
+    szInstanceString: ?[*:0]const u8,
+    szInstanceName: ?PSTR,
+    pcchInstanceNameLength: ?*u32,
+    szParentName: ?PSTR,
+    pcchParentNameLength: ?*u32,
+    lpIndex: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhParseInstanceNameW(
+    szInstanceString: ?[*:0]const u16,
+    szInstanceName: ?PWSTR,
+    pcchInstanceNameLength: ?*u32,
+    szParentName: ?PWSTR,
+    pcchParentNameLength: ?*u32,
+    lpIndex: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhReadRawLogRecord(
     hLog: isize,
-    szUserString: ?[*:0]const u16,
+    ftRecord: FILETIME,
+    pRawLogRecord: ?*PDH_RAW_LOG_RECORD,
+    pdwBufferLength: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhRemoveCounter(
+    hCounter: isize,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhSelectDataSourceA(
+    hWndOwner: ?HWND,
+    dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
+    szDataSource: ?PSTR,
+    pcchBufferLength: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhSelectDataSourceW(
+    hWndOwner: ?HWND,
+    dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
+    szDataSource: ?PWSTR,
+    pcchBufferLength: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhSetCounterScaleFactor(
+    hCounter: isize,
+    lFactor: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhSetDefaultRealTimeDataSource(
+    dwDataSourceId: REAL_TIME_DATA_SOURCE_ID_FLAGS,
+) callconv(.winapi) i32;
+
+pub extern "pdh" fn PdhSetLogSetRunID(
+    hLog: isize,
+    RunId: i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "pdh" fn PdhSetQueryTimeRange(
+    hQuery: isize,
+    pInfo: ?*PDH_TIME_INFO,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6600,302 +6614,295 @@ pub extern "pdh" fn PdhUpdateLogFileCatalog(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetLogFileSize(
+pub extern "pdh" fn PdhUpdateLogW(
     hLog: isize,
-    llSize: ?*i64,
+    szUserString: ?[*:0]const u16,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhCloseLog(
-    hLog: isize,
-    dwFlags: u32,
+pub extern "pdh" fn PdhValidatePathA(
+    szFullPathBuffer: ?[*:0]const u8,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhSelectDataSourceW(
-    hWndOwner: ?HWND,
-    dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
-    szDataSource: ?PWSTR,
-    pcchBufferLength: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhSelectDataSourceA(
-    hWndOwner: ?HWND,
-    dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
-    szDataSource: ?PSTR,
-    pcchBufferLength: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhIsRealTimeQuery(
-    hQuery: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhSetQueryTimeRange(
-    hQuery: isize,
-    pInfo: ?*PDH_TIME_INFO,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDataSourceTimeRangeW(
-    szDataSource: ?[*:0]const u16,
-    pdwNumEntries: ?*u32,
-    pInfo: ?*PDH_TIME_INFO,
-    pdwBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDataSourceTimeRangeA(
-    szDataSource: ?[*:0]const u8,
-    pdwNumEntries: ?*u32,
-    pInfo: ?*PDH_TIME_INFO,
-    pdwBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhCollectQueryDataEx(
-    hQuery: isize,
-    dwIntervalTime: u32,
-    hNewDataEvent: ?HANDLE,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhFormatFromRawValue(
-    dwCounterType: u32,
-    dwFormat: PDH_FMT,
-    pTimeBase: ?*i64,
-    pRawValue1: ?*PDH_RAW_COUNTER,
-    pRawValue2: ?*PDH_RAW_COUNTER,
-    pFmtValue: ?*PDH_FMT_COUNTERVALUE,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetCounterTimeBase(
-    hCounter: isize,
-    pTimeBase: ?*i64,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhReadRawLogRecord(
-    hLog: isize,
-    ftRecord: FILETIME,
-    pRawLogRecord: ?*PDH_RAW_LOG_RECORD,
-    pdwBufferLength: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhSetDefaultRealTimeDataSource(
-    dwDataSourceId: REAL_TIME_DATA_SOURCE_ID_FLAGS,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhBindInputDataSourceW(
-    phDataSource: ?*isize,
-    LogFileNameList: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhBindInputDataSourceA(
-    phDataSource: ?*isize,
-    LogFileNameList: ?[*:0]const u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhOpenQueryH(
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "pdh" fn PdhValidatePathExA(
     hDataSource: isize,
-    dwUserData: usize,
-    phQuery: ?*isize,
+    szFullPathBuffer: ?[*:0]const u8,
 ) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumMachinesHW(
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "pdh" fn PdhValidatePathExW(
     hDataSource: isize,
-    mszMachineList: ?[*]u16,
-    pcchBufferSize: ?*u32,
+    szFullPathBuffer: ?[*:0]const u16,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumMachinesHA(
-    hDataSource: isize,
-    mszMachineList: ?[*]u8,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectsHW(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u16,
-    mszObjectList: ?[*]u16,
-    pcchBufferSize: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    bRefresh: BOOL,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectsHA(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u8,
-    mszObjectList: ?[*]u8,
-    pcchBufferSize: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    bRefresh: BOOL,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectItemsHW(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u16,
-    szObjectName: ?[*:0]const u16,
-    mszCounterList: ?[*]u16,
-    pcchCounterListLength: ?*u32,
-    mszInstanceList: ?[*]u16,
-    pcchInstanceListLength: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumObjectItemsHA(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u8,
-    szObjectName: ?[*:0]const u8,
-    mszCounterList: ?[*]u8,
-    pcchCounterListLength: ?*u32,
-    mszInstanceList: ?[*]u8,
-    pcchInstanceListLength: ?*u32,
-    dwDetailLevel: PERF_DETAIL,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhExpandWildCardPathHW(
-    hDataSource: isize,
-    szWildCardPath: ?[*:0]const u16,
-    mszExpandedPathList: ?[*]u16,
-    pcchPathListLength: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhExpandWildCardPathHA(
-    hDataSource: isize,
-    szWildCardPath: ?[*:0]const u8,
-    mszExpandedPathList: ?[*]u8,
-    pcchPathListLength: ?*u32,
-    dwFlags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDataSourceTimeRangeH(
-    hDataSource: isize,
-    pdwNumEntries: ?*u32,
-    pInfo: ?*PDH_TIME_INFO,
-    pdwBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u16,
-    szDefaultObjectName: ?PWSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u8,
-    szDefaultObjectName: ?PSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfCounterHW(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u16,
-    szObjectName: ?[*:0]const u16,
-    szDefaultCounterName: ?PWSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhGetDefaultPerfCounterHA(
-    hDataSource: isize,
-    szMachineName: ?[*:0]const u8,
-    szObjectName: ?[*:0]const u8,
-    szDefaultCounterName: ?PSTR,
-    pcchBufferSize: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhBrowseCountersHW(
-    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_HW,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhBrowseCountersHA(
-    pBrowseDlgData: ?*PDH_BROWSE_DLG_CONFIG_HA,
-) callconv(.winapi) i32;
-
-pub extern "pdh" fn PdhVerifySQLDBW(
-    szDataSource: ?[*:0]const u16,
+pub extern "pdh" fn PdhValidatePathW(
+    szFullPathBuffer: ?[*:0]const u16,
 ) callconv(.winapi) i32;
 
 pub extern "pdh" fn PdhVerifySQLDBA(
     szDataSource: ?[*:0]const u8,
 ) callconv(.winapi) i32;
 
-pub extern "pdh" fn PdhCreateSQLTablesW(
+pub extern "pdh" fn PdhVerifySQLDBW(
     szDataSource: ?[*:0]const u16,
 ) callconv(.winapi) i32;
 
-pub extern "pdh" fn PdhCreateSQLTablesA(
-    szDataSource: ?[*:0]const u8,
-) callconv(.winapi) i32;
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfAddCounters(
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounters: ?*PERF_COUNTER_IDENTIFIER,
+    cbCounters: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfCloseQueryHandle(
+    hQuery: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfCreateInstance(
+    ProviderHandle: PerfProviderHandle,
+    CounterSetGuid: ?*const Guid,
+    Name: ?[*:0]const u16,
+    Id: u32,
+) callconv(.winapi) ?*PERF_COUNTERSET_INSTANCE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfDecrementULongCounterValue(
+    Provider: ?HANDLE,
+    Instance: ?*PERF_COUNTERSET_INSTANCE,
+    CounterId: u32,
+    Value: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfDecrementULongLongCounterValue(
+    Provider: ?HANDLE,
+    Instance: ?*PERF_COUNTERSET_INSTANCE,
+    CounterId: u32,
+    Value: u64,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfDeleteCounters(
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounters: ?*PERF_COUNTER_IDENTIFIER,
+    cbCounters: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfDeleteInstance(
+    Provider: PerfProviderHandle,
+    InstanceBlock: ?*PERF_COUNTERSET_INSTANCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfEnumerateCounterSet(
+    szMachine: ?[*:0]const u16,
+    pCounterSetIds: ?[*]Guid,
+    cCounterSetIds: u32,
+    pcCounterSetIdsActual: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfEnumerateCounterSetInstances(
+    szMachine: ?[*:0]const u16,
+    pCounterSetId: ?*const Guid,
+    // TODO: what to do with BytesParamIndex 3?
+    pInstances: ?*PERF_INSTANCE_HEADER,
+    cbInstances: u32,
+    pcbInstancesActual: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfIncrementULongCounterValue(
+    Provider: ?HANDLE,
+    Instance: ?*PERF_COUNTERSET_INSTANCE,
+    CounterId: u32,
+    Value: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfIncrementULongLongCounterValue(
+    Provider: ?HANDLE,
+    Instance: ?*PERF_COUNTERSET_INSTANCE,
+    CounterId: u32,
+    Value: u64,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfOpenQueryHandle(
+    szMachine: ?[*:0]const u16,
+    phQuery: ?*PerfQueryHandle,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfQueryCounterData(
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounterBlock: ?*PERF_DATA_HEADER,
+    cbCounterBlock: u32,
+    pcbCounterBlockActual: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfQueryCounterInfo(
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounters: ?*PERF_COUNTER_IDENTIFIER,
+    cbCounters: u32,
+    pcbCountersActual: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+pub extern "advapi32" fn PerfQueryCounterSetRegistrationInfo(
+    szMachine: ?[*:0]const u16,
+    pCounterSetId: ?*const Guid,
+    requestCode: PerfRegInfoType,
+    requestLangId: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    pbRegInfo: ?*u8,
+    cbRegInfo: u32,
+    pcbRegInfoActual: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfQueryInstance(
+    ProviderHandle: ?HANDLE,
+    CounterSetGuid: ?*const Guid,
+    Name: ?[*:0]const u16,
+    Id: u32,
+) callconv(.winapi) ?*PERF_COUNTERSET_INSTANCE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfSetCounterRefValue(
+    Provider: ?HANDLE,
+    Instance: ?*PERF_COUNTERSET_INSTANCE,
+    CounterId: u32,
+    Address: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfSetCounterSetInfo(
+    ProviderHandle: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    Template: ?*PERF_COUNTERSET_INFO,
+    TemplateSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfSetULongCounterValue(
+    Provider: ?HANDLE,
+    Instance: ?*PERF_COUNTERSET_INSTANCE,
+    CounterId: u32,
+    Value: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfSetULongLongCounterValue(
+    Provider: ?HANDLE,
+    Instance: ?*PERF_COUNTERSET_INSTANCE,
+    CounterId: u32,
+    Value: u64,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfStartProvider(
+    ProviderGuid: ?*Guid,
+    ControlCallback: ?PERFLIBREQUEST,
+    phProvider: ?*PerfProviderHandle,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfStartProviderEx(
+    ProviderGuid: ?*Guid,
+    ProviderContext: ?*PERF_PROVIDER_CONTEXT,
+    Provider: ?*PerfProviderHandle,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "advapi32" fn PerfStopProvider(
+    ProviderHandle: PerfProviderHandle,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn QueryPerformanceCounter(
+    lpPerformanceCount: ?*LARGE_INTEGER,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn QueryPerformanceFrequency(
+    lpFrequency: ?*LARGE_INTEGER,
+) callconv(.winapi) BOOL;
+
+pub extern "loadperf" fn RestorePerfRegistryFromFileW(
+    szFileName: ?[*:0]const u16,
+    szLangId: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "loadperf" fn SetServiceAsTrustedA(
+    szReserved: ?[*:0]const u8,
+    szServiceName: ?[*:0]const u8,
+) callconv(.winapi) u32;
+
+pub extern "loadperf" fn SetServiceAsTrustedW(
+    szReserved: ?[*:0]const u16,
+    szServiceName: ?[*:0]const u16,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumLogSetNamesW(
-    szDataSource: ?[*:0]const u16,
-    mszDataSetNameList: ?[*]u16,
-    pcchBufferLength: ?*u32,
-) callconv(.winapi) i32;
+pub extern "loadperf" fn UnloadPerfCounterTextStringsA(
+    lpCommandLine: ?PSTR,
+    bQuietModeArg: BOOL,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "pdh" fn PdhEnumLogSetNamesA(
-    szDataSource: ?[*:0]const u8,
-    mszDataSetNameList: ?[*]u8,
-    pcchBufferLength: ?*u32,
-) callconv(.winapi) i32;
+pub extern "loadperf" fn UnloadPerfCounterTextStringsW(
+    lpCommandLine: ?PWSTR,
+    bQuietModeArg: BOOL,
+) callconv(.winapi) u32;
 
-pub extern "pdh" fn PdhGetLogSetGUID(
-    hLog: isize,
-    pGuid: ?*Guid,
-    pRunId: ?*i32,
-) callconv(.winapi) i32;
+pub extern "loadperf" fn UpdatePerfNameFilesA(
+    szNewCtrFilePath: ?[*:0]const u8,
+    szNewHlpFilePath: ?[*:0]const u8,
+    szLanguageID: ?PSTR,
+    dwFlags: usize,
+) callconv(.winapi) u32;
 
-pub extern "pdh" fn PdhSetLogSetRunID(
-    hLog: isize,
-    RunId: i32,
-) callconv(.winapi) i32;
+pub extern "loadperf" fn UpdatePerfNameFilesW(
+    szNewCtrFilePath: ?[*:0]const u16,
+    szNewHlpFilePath: ?[*:0]const u16,
+    szLanguageID: ?PWSTR,
+    dwFlags: usize,
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (50)
 //--------------------------------------------------------------------------------
-pub const PDH_RAW_COUNTER_ITEM_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PDH_RAW_COUNTER_ITEM_A,
-    .wide => @This().PDH_RAW_COUNTER_ITEM_W,
+pub const PDH_BROWSE_DLG_CONFIG_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_BROWSE_DLG_CONFIG_A,
+    .wide => @This().PDH_BROWSE_DLG_CONFIG_W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PDH_RAW_COUNTER_ITEM_' requires that UNICODE be set to true or false in the root module",
+        "'PDH_BROWSE_DLG_CONFIG_' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PDH_FMT_COUNTERVALUE_ITEM_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PDH_FMT_COUNTERVALUE_ITEM_A,
-    .wide => @This().PDH_FMT_COUNTERVALUE_ITEM_W,
+pub const PDH_BROWSE_DLG_CONFIG_H = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_BROWSE_DLG_CONFIG_HA,
+    .wide => @This().PDH_BROWSE_DLG_CONFIG_HW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PDH_FMT_COUNTERVALUE_ITEM_' requires that UNICODE be set to true or false in the root module",
+        "'PDH_BROWSE_DLG_CONFIG_H' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PDH_COUNTER_INFO_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_COUNTER_INFO_A,
+    .wide => @This().PDH_COUNTER_INFO_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PDH_COUNTER_INFO_' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PDH_COUNTER_PATH_ELEMENTS_ = switch (@import("../zig.zig").unicode_mode) {
@@ -6912,11 +6919,11 @@ pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = switch (@import("../zig.zig").unicode_m
         "'PDH_DATA_ITEM_PATH_ELEMENTS_' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PDH_COUNTER_INFO_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PDH_COUNTER_INFO_A,
-    .wide => @This().PDH_COUNTER_INFO_W,
+pub const PDH_FMT_COUNTERVALUE_ITEM_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_FMT_COUNTERVALUE_ITEM_A,
+    .wide => @This().PDH_FMT_COUNTERVALUE_ITEM_W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PDH_COUNTER_INFO_' requires that UNICODE be set to true or false in the root module",
+        "'PDH_FMT_COUNTERVALUE_ITEM_' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PDH_LOG_SERVICE_QUERY_INFO_ = switch (@import("../zig.zig").unicode_mode) {
@@ -6926,18 +6933,11 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_ = switch (@import("../zig.zig").unicode_mo
         "'PDH_LOG_SERVICE_QUERY_INFO_' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PDH_BROWSE_DLG_CONFIG_H = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PDH_BROWSE_DLG_CONFIG_HA,
-    .wide => @This().PDH_BROWSE_DLG_CONFIG_HW,
+pub const PDH_RAW_COUNTER_ITEM_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PDH_RAW_COUNTER_ITEM_A,
+    .wide => @This().PDH_RAW_COUNTER_ITEM_W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PDH_BROWSE_DLG_CONFIG_H' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PDH_BROWSE_DLG_CONFIG_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PDH_BROWSE_DLG_CONFIG_A,
-    .wide => @This().PDH_BROWSE_DLG_CONFIG_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PDH_BROWSE_DLG_CONFIG_' requires that UNICODE be set to true or false in the root module",
+        "'PDH_RAW_COUNTER_ITEM_' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const InstallPerfDll = switch (@import("../zig.zig").unicode_mode) {
@@ -6954,34 +6954,6 @@ pub const LoadPerfCounterTextStrings = switch (@import("../zig.zig").unicode_mod
         "'LoadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const UnloadPerfCounterTextStrings = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().UnloadPerfCounterTextStringsA,
-    .wide => @This().UnloadPerfCounterTextStringsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'UnloadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const UpdatePerfNameFiles = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().UpdatePerfNameFilesA,
-    .wide => @This().UpdatePerfNameFilesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'UpdatePerfNameFiles' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetServiceAsTrusted = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetServiceAsTrustedA,
-    .wide => @This().SetServiceAsTrustedW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetServiceAsTrusted' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhOpenQuery = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhOpenQueryA,
-    .wide => @This().PdhOpenQueryW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhOpenQuery' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const PdhAddCounter = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().PdhAddCounterA,
     .wide => @This().PdhAddCounterW,
@@ -6996,11 +6968,151 @@ pub const PdhAddEnglishCounter = switch (@import("../zig.zig").unicode_mode) {
         "'PdhAddEnglishCounter' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhValidatePathEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhValidatePathExA,
-    .wide => @This().PdhValidatePathExW,
+pub const PdhBindInputDataSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhBindInputDataSourceA,
+    .wide => @This().PdhBindInputDataSourceW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhValidatePathEx' requires that UNICODE be set to true or false in the root module",
+        "'PdhBindInputDataSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhBrowseCounters = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhBrowseCountersA,
+    .wide => @This().PdhBrowseCountersW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhBrowseCounters' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhBrowseCountersH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhBrowseCountersHA,
+    .wide => @This().PdhBrowseCountersHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhBrowseCountersH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhConnectMachine = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhConnectMachineA,
+    .wide => @This().PdhConnectMachineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhConnectMachine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhCreateSQLTables = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhCreateSQLTablesA,
+    .wide => @This().PdhCreateSQLTablesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhCreateSQLTables' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumLogSetNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumLogSetNamesA,
+    .wide => @This().PdhEnumLogSetNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumLogSetNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumMachines = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumMachinesA,
+    .wide => @This().PdhEnumMachinesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumMachines' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumMachinesH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumMachinesHA,
+    .wide => @This().PdhEnumMachinesHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumMachinesH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjectItems = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectItemsA,
+    .wide => @This().PdhEnumObjectItemsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjectItems' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjectItemsH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectItemsHA,
+    .wide => @This().PdhEnumObjectItemsHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjectItemsH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjects = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectsA,
+    .wide => @This().PdhEnumObjectsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjects' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhEnumObjectsH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhEnumObjectsHA,
+    .wide => @This().PdhEnumObjectsHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhEnumObjectsH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhExpandCounterPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhExpandCounterPathA,
+    .wide => @This().PdhExpandCounterPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhExpandCounterPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhExpandWildCardPath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhExpandWildCardPathA,
+    .wide => @This().PdhExpandWildCardPathW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhExpandWildCardPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhExpandWildCardPathH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhExpandWildCardPathHA,
+    .wide => @This().PdhExpandWildCardPathHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhExpandWildCardPathH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetCounterInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetCounterInfoA,
+    .wide => @This().PdhGetCounterInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetCounterInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDataSourceTimeRange = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDataSourceTimeRangeA,
+    .wide => @This().PdhGetDataSourceTimeRangeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDataSourceTimeRange' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfCounter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfCounterA,
+    .wide => @This().PdhGetDefaultPerfCounterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfCounter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfCounterH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfCounterHA,
+    .wide => @This().PdhGetDefaultPerfCounterHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfCounterH' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfObjectA,
+    .wide => @This().PdhGetDefaultPerfObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfObject' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhGetDefaultPerfObjectH = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhGetDefaultPerfObjectHA,
+    .wide => @This().PdhGetDefaultPerfObjectHW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhGetDefaultPerfObjectH' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PdhGetFormattedCounterArray = switch (@import("../zig.zig").unicode_mode) {
@@ -7017,39 +7129,18 @@ pub const PdhGetRawCounterArray = switch (@import("../zig.zig").unicode_mode) {
         "'PdhGetRawCounterArray' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhGetCounterInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhGetCounterInfoA,
-    .wide => @This().PdhGetCounterInfoW,
+pub const PdhLookupPerfIndexByName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhLookupPerfIndexByNameA,
+    .wide => @This().PdhLookupPerfIndexByNameW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhGetCounterInfo' requires that UNICODE be set to true or false in the root module",
+        "'PdhLookupPerfIndexByName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhConnectMachine = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhConnectMachineA,
-    .wide => @This().PdhConnectMachineW,
+pub const PdhLookupPerfNameByIndex = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhLookupPerfNameByIndexA,
+    .wide => @This().PdhLookupPerfNameByIndexW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhConnectMachine' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhEnumMachines = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhEnumMachinesA,
-    .wide => @This().PdhEnumMachinesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhEnumMachines' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhEnumObjects = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhEnumObjectsA,
-    .wide => @This().PdhEnumObjectsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhEnumObjects' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhEnumObjectItems = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhEnumObjectItemsA,
-    .wide => @This().PdhEnumObjectItemsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhEnumObjectItems' requires that UNICODE be set to true or false in the root module",
+        "'PdhLookupPerfNameByIndex' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PdhMakeCounterPath = switch (@import("../zig.zig").unicode_mode) {
@@ -7057,6 +7148,20 @@ pub const PdhMakeCounterPath = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().PdhMakeCounterPathW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'PdhMakeCounterPath' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhOpenLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhOpenLogA,
+    .wide => @This().PdhOpenLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhOpenLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PdhOpenQuery = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhOpenQueryA,
+    .wide => @This().PdhOpenQueryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PdhOpenQuery' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PdhParseCounterPath = switch (@import("../zig.zig").unicode_mode) {
@@ -7073,67 +7178,11 @@ pub const PdhParseInstanceName = switch (@import("../zig.zig").unicode_mode) {
         "'PdhParseInstanceName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhValidatePath = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhValidatePathA,
-    .wide => @This().PdhValidatePathW,
+pub const PdhSelectDataSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhSelectDataSourceA,
+    .wide => @This().PdhSelectDataSourceW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhValidatePath' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhGetDefaultPerfObject = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhGetDefaultPerfObjectA,
-    .wide => @This().PdhGetDefaultPerfObjectW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhGetDefaultPerfObject' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhGetDefaultPerfCounter = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhGetDefaultPerfCounterA,
-    .wide => @This().PdhGetDefaultPerfCounterW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhGetDefaultPerfCounter' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhBrowseCounters = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhBrowseCountersA,
-    .wide => @This().PdhBrowseCountersW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhBrowseCounters' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhExpandCounterPath = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhExpandCounterPathA,
-    .wide => @This().PdhExpandCounterPathW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhExpandCounterPath' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhLookupPerfNameByIndex = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhLookupPerfNameByIndexA,
-    .wide => @This().PdhLookupPerfNameByIndexW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhLookupPerfNameByIndex' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhLookupPerfIndexByName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhLookupPerfIndexByNameA,
-    .wide => @This().PdhLookupPerfIndexByNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhLookupPerfIndexByName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhExpandWildCardPath = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhExpandWildCardPathA,
-    .wide => @This().PdhExpandWildCardPathW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhExpandWildCardPath' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhOpenLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhOpenLogA,
-    .wide => @This().PdhOpenLogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhOpenLog' requires that UNICODE be set to true or false in the root module",
+        "'PdhSelectDataSource' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PdhUpdateLog = switch (@import("../zig.zig").unicode_mode) {
@@ -7143,74 +7192,18 @@ pub const PdhUpdateLog = switch (@import("../zig.zig").unicode_mode) {
         "'PdhUpdateLog' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhSelectDataSource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhSelectDataSourceA,
-    .wide => @This().PdhSelectDataSourceW,
+pub const PdhValidatePath = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhValidatePathA,
+    .wide => @This().PdhValidatePathW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhSelectDataSource' requires that UNICODE be set to true or false in the root module",
+        "'PdhValidatePath' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhGetDataSourceTimeRange = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhGetDataSourceTimeRangeA,
-    .wide => @This().PdhGetDataSourceTimeRangeW,
+pub const PdhValidatePathEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PdhValidatePathExA,
+    .wide => @This().PdhValidatePathExW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhGetDataSourceTimeRange' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhBindInputDataSource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhBindInputDataSourceA,
-    .wide => @This().PdhBindInputDataSourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhBindInputDataSource' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhEnumMachinesH = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhEnumMachinesHA,
-    .wide => @This().PdhEnumMachinesHW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhEnumMachinesH' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhEnumObjectsH = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhEnumObjectsHA,
-    .wide => @This().PdhEnumObjectsHW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhEnumObjectsH' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhEnumObjectItemsH = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhEnumObjectItemsHA,
-    .wide => @This().PdhEnumObjectItemsHW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhEnumObjectItemsH' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhExpandWildCardPathH = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhExpandWildCardPathHA,
-    .wide => @This().PdhExpandWildCardPathHW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhExpandWildCardPathH' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhGetDefaultPerfObjectH = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhGetDefaultPerfObjectHA,
-    .wide => @This().PdhGetDefaultPerfObjectHW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhGetDefaultPerfObjectH' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhGetDefaultPerfCounterH = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhGetDefaultPerfCounterHA,
-    .wide => @This().PdhGetDefaultPerfCounterHW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhGetDefaultPerfCounterH' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const PdhBrowseCountersH = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhBrowseCountersHA,
-    .wide => @This().PdhBrowseCountersHW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhBrowseCountersH' requires that UNICODE be set to true or false in the root module",
+        "'PdhValidatePathEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PdhVerifySQLDB = switch (@import("../zig.zig").unicode_mode) {
@@ -7220,18 +7213,25 @@ pub const PdhVerifySQLDB = switch (@import("../zig.zig").unicode_mode) {
         "'PdhVerifySQLDB' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhCreateSQLTables = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhCreateSQLTablesA,
-    .wide => @This().PdhCreateSQLTablesW,
+pub const SetServiceAsTrusted = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetServiceAsTrustedA,
+    .wide => @This().SetServiceAsTrustedW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhCreateSQLTables' requires that UNICODE be set to true or false in the root module",
+        "'SetServiceAsTrusted' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PdhEnumLogSetNames = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PdhEnumLogSetNamesA,
-    .wide => @This().PdhEnumLogSetNamesW,
+pub const UnloadPerfCounterTextStrings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UnloadPerfCounterTextStringsA,
+    .wide => @This().UnloadPerfCounterTextStringsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PdhEnumLogSetNames' requires that UNICODE be set to true or false in the root module",
+        "'UnloadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdatePerfNameFiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdatePerfNameFilesA,
+    .wide => @This().UpdatePerfNameFilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdatePerfNameFiles' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -7257,14 +7257,14 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PLA_CABEXTRACT_CALLBACK")) { _ = PLA_CABEXTRACT_CALLBACK; }
-    if (@hasDecl(@This(), "PERFLIBREQUEST")) { _ = PERFLIBREQUEST; }
+    if (@hasDecl(@This(), "CounterPathCallBack")) { _ = CounterPathCallBack; }
     if (@hasDecl(@This(), "PERF_MEM_ALLOC")) { _ = PERF_MEM_ALLOC; }
     if (@hasDecl(@This(), "PERF_MEM_FREE")) { _ = PERF_MEM_FREE; }
-    if (@hasDecl(@This(), "PM_OPEN_PROC")) { _ = PM_OPEN_PROC; }
-    if (@hasDecl(@This(), "PM_COLLECT_PROC")) { _ = PM_COLLECT_PROC; }
+    if (@hasDecl(@This(), "PERFLIBREQUEST")) { _ = PERFLIBREQUEST; }
+    if (@hasDecl(@This(), "PLA_CABEXTRACT_CALLBACK")) { _ = PLA_CABEXTRACT_CALLBACK; }
     if (@hasDecl(@This(), "PM_CLOSE_PROC")) { _ = PM_CLOSE_PROC; }
-    if (@hasDecl(@This(), "CounterPathCallBack")) { _ = CounterPathCallBack; }
+    if (@hasDecl(@This(), "PM_COLLECT_PROC")) { _ = PM_COLLECT_PROC; }
+    if (@hasDecl(@This(), "PM_OPEN_PROC")) { _ = PM_OPEN_PROC; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

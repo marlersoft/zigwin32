@@ -2,169 +2,53 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (33)
 //--------------------------------------------------------------------------------
-pub const FSCTL_DFS_BASE = @as(u32, 6);
-pub const DFS_VOLUME_STATES = @as(u32, 15);
-pub const DFS_VOLUME_STATE_OK = @as(u32, 1);
-pub const DFS_VOLUME_STATE_INCONSISTENT = @as(u32, 2);
-pub const DFS_VOLUME_STATE_OFFLINE = @as(u32, 3);
-pub const DFS_VOLUME_STATE_ONLINE = @as(u32, 4);
-pub const DFS_VOLUME_STATE_RESYNCHRONIZE = @as(u32, 16);
-pub const DFS_VOLUME_STATE_STANDBY = @as(u32, 32);
-pub const DFS_VOLUME_STATE_FORCE_SYNC = @as(u32, 64);
-pub const DFS_VOLUME_FLAVORS = @as(u32, 768);
-pub const DFS_VOLUME_FLAVOR_UNUSED1 = @as(u32, 0);
-pub const DFS_VOLUME_FLAVOR_STANDALONE = @as(u32, 256);
-pub const DFS_VOLUME_FLAVOR_AD_BLOB = @as(u32, 512);
-pub const DFS_STORAGE_FLAVOR_UNUSED2 = @as(u32, 768);
-pub const DFS_STORAGE_STATES = @as(u32, 15);
-pub const DFS_STORAGE_STATE_OFFLINE = @as(u32, 1);
-pub const DFS_STORAGE_STATE_ONLINE = @as(u32, 2);
-pub const DFS_STORAGE_STATE_ACTIVE = @as(u32, 4);
+pub const DFS_ADD_VOLUME = @as(u32, 1);
+pub const DFS_FORCE_REMOVE = @as(u32, 2147483648);
+pub const DFS_MOVE_FLAG_REPLACE_IF_EXISTS = @as(u32, 1);
+pub const DFS_PROPERTY_FLAG_ABDE = @as(u32, 32);
+pub const DFS_PROPERTY_FLAG_CLUSTER_ENABLED = @as(u32, 16);
 pub const DFS_PROPERTY_FLAG_INSITE_REFERRALS = @as(u32, 1);
 pub const DFS_PROPERTY_FLAG_ROOT_SCALABILITY = @as(u32, 2);
 pub const DFS_PROPERTY_FLAG_SITE_COSTING = @as(u32, 4);
 pub const DFS_PROPERTY_FLAG_TARGET_FAILBACK = @as(u32, 8);
-pub const DFS_PROPERTY_FLAG_CLUSTER_ENABLED = @as(u32, 16);
-pub const DFS_PROPERTY_FLAG_ABDE = @as(u32, 32);
-pub const DFS_ADD_VOLUME = @as(u32, 1);
 pub const DFS_RESTORE_VOLUME = @as(u32, 2);
-pub const NET_DFS_SETDC_FLAGS = @as(u32, 0);
-pub const NET_DFS_SETDC_TIMEOUT = @as(u32, 1);
-pub const NET_DFS_SETDC_INITPKT = @as(u32, 2);
 pub const DFS_SITE_PRIMARY = @as(u32, 1);
-pub const DFS_MOVE_FLAG_REPLACE_IF_EXISTS = @as(u32, 1);
-pub const DFS_FORCE_REMOVE = @as(u32, 2147483648);
+pub const DFS_STORAGE_FLAVOR_UNUSED2 = @as(u32, 768);
+pub const DFS_STORAGE_STATE_ACTIVE = @as(u32, 4);
+pub const DFS_STORAGE_STATE_OFFLINE = @as(u32, 1);
+pub const DFS_STORAGE_STATE_ONLINE = @as(u32, 2);
+pub const DFS_STORAGE_STATES = @as(u32, 15);
+pub const DFS_VOLUME_FLAVOR_AD_BLOB = @as(u32, 512);
+pub const DFS_VOLUME_FLAVOR_STANDALONE = @as(u32, 256);
+pub const DFS_VOLUME_FLAVOR_UNUSED1 = @as(u32, 0);
+pub const DFS_VOLUME_FLAVORS = @as(u32, 768);
+pub const DFS_VOLUME_STATE_FORCE_SYNC = @as(u32, 64);
+pub const DFS_VOLUME_STATE_INCONSISTENT = @as(u32, 2);
+pub const DFS_VOLUME_STATE_OFFLINE = @as(u32, 3);
+pub const DFS_VOLUME_STATE_OK = @as(u32, 1);
+pub const DFS_VOLUME_STATE_ONLINE = @as(u32, 4);
+pub const DFS_VOLUME_STATE_RESYNCHRONIZE = @as(u32, 16);
+pub const DFS_VOLUME_STATE_STANDBY = @as(u32, 32);
+pub const DFS_VOLUME_STATES = @as(u32, 15);
+pub const FSCTL_DFS_BASE = @as(u32, 6);
 pub const FSCTL_DFS_GET_PKT_ENTRY_STATE = @as(u32, 401340);
+pub const NET_DFS_SETDC_FLAGS = @as(u32, 0);
+pub const NET_DFS_SETDC_INITPKT = @as(u32, 2);
+pub const NET_DFS_SETDC_TIMEOUT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (35)
 //--------------------------------------------------------------------------------
-pub const DFS_TARGET_PRIORITY_CLASS = enum(i32) {
-    InvalidPriorityClass = -1,
-    SiteCostNormalPriorityClass = 0,
-    GlobalHighPriorityClass = 1,
-    SiteCostHighPriorityClass = 2,
-    SiteCostLowPriorityClass = 3,
-    GlobalLowPriorityClass = 4,
-};
-pub const DfsInvalidPriorityClass = DFS_TARGET_PRIORITY_CLASS.InvalidPriorityClass;
-pub const DfsSiteCostNormalPriorityClass = DFS_TARGET_PRIORITY_CLASS.SiteCostNormalPriorityClass;
-pub const DfsGlobalHighPriorityClass = DFS_TARGET_PRIORITY_CLASS.GlobalHighPriorityClass;
-pub const DfsSiteCostHighPriorityClass = DFS_TARGET_PRIORITY_CLASS.SiteCostHighPriorityClass;
-pub const DfsSiteCostLowPriorityClass = DFS_TARGET_PRIORITY_CLASS.SiteCostLowPriorityClass;
-pub const DfsGlobalLowPriorityClass = DFS_TARGET_PRIORITY_CLASS.GlobalLowPriorityClass;
-
-pub const DFS_TARGET_PRIORITY = extern struct {
-    TargetPriorityClass: DFS_TARGET_PRIORITY_CLASS,
-    TargetPriorityRank: u16,
-    Reserved: u16,
+pub const DFS_GET_PKT_ENTRY_STATE_ARG = extern struct {
+    DfsEntryPathLen: u16,
+    ServerNameLen: u16,
+    ShareNameLen: u16,
+    Level: u32,
+    Buffer: [1]u16,
 };
 
 pub const DFS_INFO_1 = extern struct {
     EntryPath: ?PWSTR,
-};
-
-
-pub const DFS_INFO_2 = extern struct {
-    EntryPath: ?PWSTR,
-    Comment: ?PWSTR,
-    State: u32,
-    NumberOfStorages: u32,
-};
-
-
-pub const DFS_STORAGE_INFO = extern struct {
-    State: u32,
-    ServerName: ?PWSTR,
-    ShareName: ?PWSTR,
-};
-
-
-pub const DFS_STORAGE_INFO_1 = extern struct {
-    State: u32,
-    ServerName: ?PWSTR,
-    ShareName: ?PWSTR,
-    TargetPriority: DFS_TARGET_PRIORITY,
-};
-
-pub const DFS_INFO_3 = extern struct {
-    EntryPath: ?PWSTR,
-    Comment: ?PWSTR,
-    State: u32,
-    NumberOfStorages: u32,
-    Storage: ?*DFS_STORAGE_INFO,
-};
-
-
-pub const DFS_INFO_4 = extern struct {
-    EntryPath: ?PWSTR,
-    Comment: ?PWSTR,
-    State: u32,
-    Timeout: u32,
-    Guid: Guid,
-    NumberOfStorages: u32,
-    Storage: ?*DFS_STORAGE_INFO,
-};
-
-
-pub const DFS_INFO_5 = extern struct {
-    EntryPath: ?PWSTR,
-    Comment: ?PWSTR,
-    State: u32,
-    Timeout: u32,
-    Guid: Guid,
-    PropertyFlags: u32,
-    MetadataSize: u32,
-    NumberOfStorages: u32,
-};
-
-pub const DFS_INFO_6 = extern struct {
-    EntryPath: ?PWSTR,
-    Comment: ?PWSTR,
-    State: u32,
-    Timeout: u32,
-    Guid: Guid,
-    PropertyFlags: u32,
-    MetadataSize: u32,
-    NumberOfStorages: u32,
-    Storage: ?*DFS_STORAGE_INFO_1,
-};
-
-pub const DFS_INFO_7 = extern struct {
-    GenerationGuid: Guid,
-};
-
-pub const DFS_INFO_8 = extern struct {
-    EntryPath: ?PWSTR,
-    Comment: ?PWSTR,
-    State: u32,
-    Timeout: u32,
-    Guid: Guid,
-    PropertyFlags: u32,
-    MetadataSize: u32,
-    SdLengthReserved: u32,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    NumberOfStorages: u32,
-};
-
-pub const DFS_INFO_9 = extern struct {
-    EntryPath: ?PWSTR,
-    Comment: ?PWSTR,
-    State: u32,
-    Timeout: u32,
-    Guid: Guid,
-    PropertyFlags: u32,
-    MetadataSize: u32,
-    SdLengthReserved: u32,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    NumberOfStorages: u32,
-    Storage: ?*DFS_STORAGE_INFO_1,
-};
-
-pub const DFS_INFO_50 = extern struct {
-    NamespaceMajorVersion: u32,
-    NamespaceMinorVersion: u32,
-    NamespaceCapabilities: u64,
 };
 
 pub const DFS_INFO_100 = extern struct {
@@ -216,8 +100,25 @@ pub const DFS_INFO_150 = extern struct {
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
+
+pub const DFS_INFO_2 = extern struct {
+    EntryPath: ?PWSTR,
+    Comment: ?PWSTR,
+    State: u32,
+    NumberOfStorages: u32,
+};
+
 pub const DFS_INFO_200 = extern struct {
     FtDfsName: ?PWSTR,
+};
+
+
+pub const DFS_INFO_3 = extern struct {
+    EntryPath: ?PWSTR,
+    Comment: ?PWSTR,
+    State: u32,
+    NumberOfStorages: u32,
+    Storage: ?*DFS_STORAGE_INFO,
 };
 
 pub const DFS_INFO_300 = extern struct {
@@ -225,14 +126,76 @@ pub const DFS_INFO_300 = extern struct {
     DfsName: ?PWSTR,
 };
 
-pub const DFS_SITENAME_INFO = extern struct {
-    SiteFlags: u32,
-    SiteName: ?PWSTR,
+
+pub const DFS_INFO_4 = extern struct {
+    EntryPath: ?PWSTR,
+    Comment: ?PWSTR,
+    State: u32,
+    Timeout: u32,
+    Guid: Guid,
+    NumberOfStorages: u32,
+    Storage: ?*DFS_STORAGE_INFO,
 };
 
-pub const DFS_SITELIST_INFO = extern struct {
-    cSites: u32,
-    Site: [1]DFS_SITENAME_INFO,
+
+pub const DFS_INFO_5 = extern struct {
+    EntryPath: ?PWSTR,
+    Comment: ?PWSTR,
+    State: u32,
+    Timeout: u32,
+    Guid: Guid,
+    PropertyFlags: u32,
+    MetadataSize: u32,
+    NumberOfStorages: u32,
+};
+
+pub const DFS_INFO_50 = extern struct {
+    NamespaceMajorVersion: u32,
+    NamespaceMinorVersion: u32,
+    NamespaceCapabilities: u64,
+};
+
+pub const DFS_INFO_6 = extern struct {
+    EntryPath: ?PWSTR,
+    Comment: ?PWSTR,
+    State: u32,
+    Timeout: u32,
+    Guid: Guid,
+    PropertyFlags: u32,
+    MetadataSize: u32,
+    NumberOfStorages: u32,
+    Storage: ?*DFS_STORAGE_INFO_1,
+};
+
+pub const DFS_INFO_7 = extern struct {
+    GenerationGuid: Guid,
+};
+
+pub const DFS_INFO_8 = extern struct {
+    EntryPath: ?PWSTR,
+    Comment: ?PWSTR,
+    State: u32,
+    Timeout: u32,
+    Guid: Guid,
+    PropertyFlags: u32,
+    MetadataSize: u32,
+    SdLengthReserved: u32,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    NumberOfStorages: u32,
+};
+
+pub const DFS_INFO_9 = extern struct {
+    EntryPath: ?PWSTR,
+    Comment: ?PWSTR,
+    State: u32,
+    Timeout: u32,
+    Guid: Guid,
+    PropertyFlags: u32,
+    MetadataSize: u32,
+    SdLengthReserved: u32,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    NumberOfStorages: u32,
+    Storage: ?*DFS_STORAGE_INFO_1,
 };
 
 pub const DFS_NAMESPACE_VERSION_ORIGIN = enum(i32) {
@@ -244,6 +207,30 @@ pub const DFS_NAMESPACE_VERSION_ORIGIN_COMBINED = DFS_NAMESPACE_VERSION_ORIGIN.C
 pub const DFS_NAMESPACE_VERSION_ORIGIN_SERVER = DFS_NAMESPACE_VERSION_ORIGIN.SERVER;
 pub const DFS_NAMESPACE_VERSION_ORIGIN_DOMAIN = DFS_NAMESPACE_VERSION_ORIGIN.DOMAIN;
 
+pub const DFS_SITELIST_INFO = extern struct {
+    cSites: u32,
+    Site: [1]DFS_SITENAME_INFO,
+};
+
+pub const DFS_SITENAME_INFO = extern struct {
+    SiteFlags: u32,
+    SiteName: ?PWSTR,
+};
+
+pub const DFS_STORAGE_INFO = extern struct {
+    State: u32,
+    ServerName: ?PWSTR,
+    ShareName: ?PWSTR,
+};
+
+
+pub const DFS_STORAGE_INFO_1 = extern struct {
+    State: u32,
+    ServerName: ?PWSTR,
+    ShareName: ?PWSTR,
+    TargetPriority: DFS_TARGET_PRIORITY,
+};
+
 pub const DFS_SUPPORTED_NAMESPACE_VERSION_INFO = extern struct {
     DomainDfsMajorVersion: u32,
     DomainDfsMinorVersion: u32,
@@ -253,13 +240,26 @@ pub const DFS_SUPPORTED_NAMESPACE_VERSION_INFO = extern struct {
     StandaloneDfsCapabilities: u64,
 };
 
-pub const DFS_GET_PKT_ENTRY_STATE_ARG = extern struct {
-    DfsEntryPathLen: u16,
-    ServerNameLen: u16,
-    ShareNameLen: u16,
-    Level: u32,
-    Buffer: [1]u16,
+pub const DFS_TARGET_PRIORITY = extern struct {
+    TargetPriorityClass: DFS_TARGET_PRIORITY_CLASS,
+    TargetPriorityRank: u16,
+    Reserved: u16,
 };
+
+pub const DFS_TARGET_PRIORITY_CLASS = enum(i32) {
+    InvalidPriorityClass = -1,
+    SiteCostNormalPriorityClass = 0,
+    GlobalHighPriorityClass = 1,
+    SiteCostHighPriorityClass = 2,
+    SiteCostLowPriorityClass = 3,
+    GlobalLowPriorityClass = 4,
+};
+pub const DfsInvalidPriorityClass = DFS_TARGET_PRIORITY_CLASS.InvalidPriorityClass;
+pub const DfsSiteCostNormalPriorityClass = DFS_TARGET_PRIORITY_CLASS.SiteCostNormalPriorityClass;
+pub const DfsGlobalHighPriorityClass = DFS_TARGET_PRIORITY_CLASS.GlobalHighPriorityClass;
+pub const DfsSiteCostHighPriorityClass = DFS_TARGET_PRIORITY_CLASS.SiteCostHighPriorityClass;
+pub const DfsSiteCostLowPriorityClass = DFS_TARGET_PRIORITY_CLASS.SiteCostLowPriorityClass;
+pub const DfsGlobalLowPriorityClass = DFS_TARGET_PRIORITY_CLASS.GlobalLowPriorityClass;
 
 pub const DFS_INFO_1_32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
@@ -273,14 +273,6 @@ pub const DFS_INFO_2_32 = switch(@import("../zig.zig").arch) {
         Comment: u32,
         State: u32,
         NumberOfStorages: u32,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
-pub const DFS_STORAGE_INFO_0_32 = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        State: u32,
-        ServerName: u32,
-        ShareName: u32,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -306,6 +298,14 @@ pub const DFS_INFO_4_32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
+pub const DFS_STORAGE_INFO_0_32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        State: u32,
+        ServerName: u32,
+        ShareName: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (22)
@@ -320,6 +320,24 @@ pub extern "netapi32" fn NetDfsAdd(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsAddFtRoot(
+    ServerName: ?PWSTR,
+    RootShare: ?PWSTR,
+    FtDfsName: ?PWSTR,
+    Comment: ?PWSTR,
+    Flags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsAddRootTarget(
+    pDfsPath: ?PWSTR,
+    pTargetPath: ?PWSTR,
+    MajorVersion: u32,
+    pComment: ?PWSTR,
+    Flags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn NetDfsAddStdRoot(
     ServerName: ?PWSTR,
     RootShare: ?PWSTR,
@@ -328,19 +346,76 @@ pub extern "netapi32" fn NetDfsAddStdRoot(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsRemoveStdRoot(
+pub extern "netapi32" fn NetDfsEnum(
+    DfsName: ?PWSTR,
+    Level: u32,
+    PrefMaxLen: u32,
+    Buffer: ?*?*u8,
+    EntriesRead: ?*u32,
+    ResumeHandle: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsGetClientInfo(
+    DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
-    RootShare: ?PWSTR,
+    ShareName: ?PWSTR,
+    Level: u32,
+    Buffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsGetFtContainerSecurity(
+    DomainName: ?PWSTR,
+    SecurityInformation: u32,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+    lpcbSecurityDescriptor: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsGetInfo(
+    DfsEntryPath: ?PWSTR,
+    ServerName: ?PWSTR,
+    ShareName: ?PWSTR,
+    Level: u32,
+    Buffer: ?*?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsGetSecurity(
+    DfsEntryPath: ?PWSTR,
+    SecurityInformation: u32,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+    lpcbSecurityDescriptor: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsGetStdContainerSecurity(
+    MachineName: ?PWSTR,
+    SecurityInformation: u32,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+    lpcbSecurityDescriptor: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsGetSupportedNamespaceVersion(
+    Origin: DFS_NAMESPACE_VERSION_ORIGIN,
+    pName: ?PWSTR,
+    ppVersionInfo: ?*?*DFS_SUPPORTED_NAMESPACE_VERSION_INFO,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsMove(
+    OldDfsEntryPath: ?PWSTR,
+    NewDfsEntryPath: ?PWSTR,
     Flags: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsAddFtRoot(
+pub extern "netapi32" fn NetDfsRemove(
+    DfsEntryPath: ?PWSTR,
     ServerName: ?PWSTR,
-    RootShare: ?PWSTR,
-    FtDfsName: ?PWSTR,
-    Comment: ?PWSTR,
-    Flags: u32,
+    ShareName: ?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -361,47 +436,17 @@ pub extern "netapi32" fn NetDfsRemoveFtRootForced(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsRemove(
-    DfsEntryPath: ?PWSTR,
-    ServerName: ?PWSTR,
-    ShareName: ?PWSTR,
+pub extern "netapi32" fn NetDfsRemoveRootTarget(
+    pDfsPath: ?PWSTR,
+    pTargetPath: ?PWSTR,
+    Flags: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsEnum(
-    DfsName: ?PWSTR,
-    Level: u32,
-    PrefMaxLen: u32,
-    Buffer: ?*?*u8,
-    EntriesRead: ?*u32,
-    ResumeHandle: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsGetInfo(
-    DfsEntryPath: ?PWSTR,
+pub extern "netapi32" fn NetDfsRemoveStdRoot(
     ServerName: ?PWSTR,
-    ShareName: ?PWSTR,
-    Level: u32,
-    Buffer: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsSetInfo(
-    DfsEntryPath: ?PWSTR,
-    ServerName: ?PWSTR,
-    ShareName: ?PWSTR,
-    Level: u32,
-    Buffer: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsGetClientInfo(
-    DfsEntryPath: ?PWSTR,
-    ServerName: ?PWSTR,
-    ShareName: ?PWSTR,
-    Level: u32,
-    Buffer: ?*?*u8,
+    RootShare: ?PWSTR,
+    Flags: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -414,34 +459,19 @@ pub extern "netapi32" fn NetDfsSetClientInfo(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsMove(
-    OldDfsEntryPath: ?PWSTR,
-    NewDfsEntryPath: ?PWSTR,
-    Flags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsAddRootTarget(
-    pDfsPath: ?PWSTR,
-    pTargetPath: ?PWSTR,
-    MajorVersion: u32,
-    pComment: ?PWSTR,
-    Flags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsRemoveRootTarget(
-    pDfsPath: ?PWSTR,
-    pTargetPath: ?PWSTR,
-    Flags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsGetSecurity(
-    DfsEntryPath: ?PWSTR,
+pub extern "netapi32" fn NetDfsSetFtContainerSecurity(
+    DomainName: ?PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-    lpcbSecurityDescriptor: ?*u32,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "netapi32" fn NetDfsSetInfo(
+    DfsEntryPath: ?PWSTR,
+    ServerName: ?PWSTR,
+    ShareName: ?PWSTR,
+    Level: u32,
+    Buffer: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -452,40 +482,10 @@ pub extern "netapi32" fn NetDfsSetSecurity(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsGetStdContainerSecurity(
-    MachineName: ?PWSTR,
-    SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-    lpcbSecurityDescriptor: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn NetDfsSetStdContainerSecurity(
     MachineName: ?PWSTR,
     SecurityInformation: u32,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsGetFtContainerSecurity(
-    DomainName: ?PWSTR,
-    SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-    lpcbSecurityDescriptor: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsSetFtContainerSecurity(
-    DomainName: ?PWSTR,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn NetDfsGetSupportedNamespaceVersion(
-    Origin: DFS_NAMESPACE_VERSION_ORIGIN,
-    pName: ?PWSTR,
-    ppVersionInfo: ?*?*DFS_SUPPORTED_NAMESPACE_VERSION_INFO,
 ) callconv(.winapi) u32;
 
 

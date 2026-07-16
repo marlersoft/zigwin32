@@ -13,62 +13,23 @@ pub const HPSS = *opaque{};
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPSSWALK = *opaque{};
 
-pub const PSS_HANDLE_FLAGS = packed struct(u32) {
-    HAVE_TYPE: u1 = 0,
-    HAVE_NAME: u1 = 0,
-    HAVE_BASIC_INFORMATION: u1 = 0,
-    HAVE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const PSS_ALLOCATOR = extern struct {
+    Context: ?*anyopaque,
+    AllocRoutine: isize,
+    FreeRoutine: isize,
 };
-pub const PSS_HANDLE_NONE = PSS_HANDLE_FLAGS{ };
-pub const PSS_HANDLE_HAVE_TYPE = PSS_HANDLE_FLAGS{ .HAVE_TYPE = 1 };
-pub const PSS_HANDLE_HAVE_NAME = PSS_HANDLE_FLAGS{ .HAVE_NAME = 1 };
-pub const PSS_HANDLE_HAVE_BASIC_INFORMATION = PSS_HANDLE_FLAGS{ .HAVE_BASIC_INFORMATION = 1 };
-pub const PSS_HANDLE_HAVE_TYPE_SPECIFIC_INFORMATION = PSS_HANDLE_FLAGS{ .HAVE_TYPE_SPECIFIC_INFORMATION = 1 };
 
-pub const PSS_OBJECT_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    PROCESS = 1,
-    THREAD = 2,
-    MUTANT = 3,
-    EVENT = 4,
-    SECTION = 5,
-    SEMAPHORE = 6,
+pub const PSS_AUXILIARY_PAGE_ENTRY = extern struct {
+    Address: ?*anyopaque,
+    BasicInformation: MEMORY_BASIC_INFORMATION,
+    CaptureTime: FILETIME,
+    PageContents: ?*anyopaque,
+    PageSize: u32,
 };
-pub const PSS_OBJECT_TYPE_UNKNOWN = PSS_OBJECT_TYPE.UNKNOWN;
-pub const PSS_OBJECT_TYPE_PROCESS = PSS_OBJECT_TYPE.PROCESS;
-pub const PSS_OBJECT_TYPE_THREAD = PSS_OBJECT_TYPE.THREAD;
-pub const PSS_OBJECT_TYPE_MUTANT = PSS_OBJECT_TYPE.MUTANT;
-pub const PSS_OBJECT_TYPE_EVENT = PSS_OBJECT_TYPE.EVENT;
-pub const PSS_OBJECT_TYPE_SECTION = PSS_OBJECT_TYPE.SECTION;
-pub const PSS_OBJECT_TYPE_SEMAPHORE = PSS_OBJECT_TYPE.SEMAPHORE;
+
+pub const PSS_AUXILIARY_PAGES_INFORMATION = extern struct {
+    AuxPagesCaptured: u32,
+};
 
 pub const PSS_CAPTURE_FLAGS = packed struct(u32) {
     APTURE_VA_CLONE: u1 = 0,
@@ -127,36 +88,6 @@ pub const PSS_CREATE_USE_VM_ALLOCATIONS = PSS_CAPTURE_FLAGS{ .REATE_USE_VM_ALLOC
 pub const PSS_CREATE_MEASURE_PERFORMANCE = PSS_CAPTURE_FLAGS{ .REATE_MEASURE_PERFORMANCE = 1 };
 pub const PSS_CREATE_RELEASE_SECTION = PSS_CAPTURE_FLAGS{ .REATE_RELEASE_SECTION = 1 };
 
-pub const PSS_QUERY_INFORMATION_CLASS = enum(i32) {
-    PROCESS_INFORMATION = 0,
-    VA_CLONE_INFORMATION = 1,
-    AUXILIARY_PAGES_INFORMATION = 2,
-    VA_SPACE_INFORMATION = 3,
-    HANDLE_INFORMATION = 4,
-    THREAD_INFORMATION = 5,
-    HANDLE_TRACE_INFORMATION = 6,
-    PERFORMANCE_COUNTERS = 7,
-};
-pub const PSS_QUERY_PROCESS_INFORMATION = PSS_QUERY_INFORMATION_CLASS.PROCESS_INFORMATION;
-pub const PSS_QUERY_VA_CLONE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.VA_CLONE_INFORMATION;
-pub const PSS_QUERY_AUXILIARY_PAGES_INFORMATION = PSS_QUERY_INFORMATION_CLASS.AUXILIARY_PAGES_INFORMATION;
-pub const PSS_QUERY_VA_SPACE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.VA_SPACE_INFORMATION;
-pub const PSS_QUERY_HANDLE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.HANDLE_INFORMATION;
-pub const PSS_QUERY_THREAD_INFORMATION = PSS_QUERY_INFORMATION_CLASS.THREAD_INFORMATION;
-pub const PSS_QUERY_HANDLE_TRACE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.HANDLE_TRACE_INFORMATION;
-pub const PSS_QUERY_PERFORMANCE_COUNTERS = PSS_QUERY_INFORMATION_CLASS.PERFORMANCE_COUNTERS;
-
-pub const PSS_WALK_INFORMATION_CLASS = enum(i32) {
-    AUXILIARY_PAGES = 0,
-    VA_SPACE = 1,
-    HANDLES = 2,
-    THREADS = 3,
-};
-pub const PSS_WALK_AUXILIARY_PAGES = PSS_WALK_INFORMATION_CLASS.AUXILIARY_PAGES;
-pub const PSS_WALK_VA_SPACE = PSS_WALK_INFORMATION_CLASS.VA_SPACE;
-pub const PSS_WALK_HANDLES = PSS_WALK_INFORMATION_CLASS.HANDLES;
-pub const PSS_WALK_THREADS = PSS_WALK_INFORMATION_CLASS.THREADS;
-
 pub const PSS_DUPLICATE_FLAGS = packed struct(u32) {
     CLOSE_SOURCE: u1 = 0,
     _1: u1 = 0,
@@ -193,6 +124,145 @@ pub const PSS_DUPLICATE_FLAGS = packed struct(u32) {
 };
 pub const PSS_DUPLICATE_NONE = PSS_DUPLICATE_FLAGS{ };
 pub const PSS_DUPLICATE_CLOSE_SOURCE = PSS_DUPLICATE_FLAGS{ .CLOSE_SOURCE = 1 };
+
+pub const PSS_HANDLE_ENTRY = extern struct {
+    Handle: ?HANDLE,
+    Flags: PSS_HANDLE_FLAGS,
+    ObjectType: PSS_OBJECT_TYPE,
+    CaptureTime: FILETIME,
+    Attributes: u32,
+    GrantedAccess: u32,
+    HandleCount: u32,
+    PointerCount: u32,
+    PagedPoolCharge: u32,
+    NonPagedPoolCharge: u32,
+    CreationTime: FILETIME,
+    TypeNameLength: u16,
+    TypeName: ?[*:0]const u16,
+    ObjectNameLength: u16,
+    ObjectName: ?[*:0]const u16,
+    TypeSpecificInformation: extern union {
+        Process: extern struct {
+            ExitStatus: u32,
+            PebBaseAddress: ?*anyopaque,
+            AffinityMask: usize,
+            BasePriority: i32,
+            ProcessId: u32,
+            ParentProcessId: u32,
+            Flags: u32,
+        },
+        Thread: extern struct {
+            ExitStatus: u32,
+            TebBaseAddress: ?*anyopaque,
+            ProcessId: u32,
+            ThreadId: u32,
+            AffinityMask: usize,
+            Priority: i32,
+            BasePriority: i32,
+            Win32StartAddress: ?*anyopaque,
+        },
+        Mutant: extern struct {
+            CurrentCount: i32,
+            Abandoned: BOOL,
+            OwnerProcessId: u32,
+            OwnerThreadId: u32,
+        },
+        Event: extern struct {
+            ManualReset: BOOL,
+            Signaled: BOOL,
+        },
+        Section: extern struct {
+            BaseAddress: ?*anyopaque,
+            AllocationAttributes: u32,
+            MaximumSize: LARGE_INTEGER,
+        },
+        Semaphore: extern struct {
+            CurrentCount: i32,
+            MaximumCount: i32,
+        },
+    },
+};
+
+pub const PSS_HANDLE_FLAGS = packed struct(u32) {
+    HAVE_TYPE: u1 = 0,
+    HAVE_NAME: u1 = 0,
+    HAVE_BASIC_INFORMATION: u1 = 0,
+    HAVE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const PSS_HANDLE_NONE = PSS_HANDLE_FLAGS{ };
+pub const PSS_HANDLE_HAVE_TYPE = PSS_HANDLE_FLAGS{ .HAVE_TYPE = 1 };
+pub const PSS_HANDLE_HAVE_NAME = PSS_HANDLE_FLAGS{ .HAVE_NAME = 1 };
+pub const PSS_HANDLE_HAVE_BASIC_INFORMATION = PSS_HANDLE_FLAGS{ .HAVE_BASIC_INFORMATION = 1 };
+pub const PSS_HANDLE_HAVE_TYPE_SPECIFIC_INFORMATION = PSS_HANDLE_FLAGS{ .HAVE_TYPE_SPECIFIC_INFORMATION = 1 };
+
+pub const PSS_HANDLE_INFORMATION = extern struct {
+    HandlesCaptured: u32,
+};
+
+pub const PSS_HANDLE_TRACE_INFORMATION = extern struct {
+    SectionHandle: ?HANDLE,
+    Size: u32,
+};
+
+pub const PSS_OBJECT_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    PROCESS = 1,
+    THREAD = 2,
+    MUTANT = 3,
+    EVENT = 4,
+    SECTION = 5,
+    SEMAPHORE = 6,
+};
+pub const PSS_OBJECT_TYPE_UNKNOWN = PSS_OBJECT_TYPE.UNKNOWN;
+pub const PSS_OBJECT_TYPE_PROCESS = PSS_OBJECT_TYPE.PROCESS;
+pub const PSS_OBJECT_TYPE_THREAD = PSS_OBJECT_TYPE.THREAD;
+pub const PSS_OBJECT_TYPE_MUTANT = PSS_OBJECT_TYPE.MUTANT;
+pub const PSS_OBJECT_TYPE_EVENT = PSS_OBJECT_TYPE.EVENT;
+pub const PSS_OBJECT_TYPE_SECTION = PSS_OBJECT_TYPE.SECTION;
+pub const PSS_OBJECT_TYPE_SEMAPHORE = PSS_OBJECT_TYPE.SEMAPHORE;
+
+pub const PSS_PERFORMANCE_COUNTERS = extern struct {
+    TotalCycleCount: u64,
+    TotalWallClockPeriod: u64,
+    VaCloneCycleCount: u64,
+    VaCloneWallClockPeriod: u64,
+    VaSpaceCycleCount: u64,
+    VaSpaceWallClockPeriod: u64,
+    AuxPagesCycleCount: u64,
+    AuxPagesWallClockPeriod: u64,
+    HandlesCycleCount: u64,
+    HandlesWallClockPeriod: u64,
+    ThreadsCycleCount: u64,
+    ThreadsWallClockPeriod: u64,
+};
 
 pub const PSS_PROCESS_FLAGS = packed struct(u32) {
     PROTECTED: u1 = 0,
@@ -264,127 +334,45 @@ pub const PSS_PROCESS_INFORMATION = extern struct {
     ImageFileName: [260]u16,
 };
 
-pub const PSS_VA_CLONE_INFORMATION = extern struct {
-    VaCloneHandle: ?HANDLE,
+pub const PSS_QUERY_INFORMATION_CLASS = enum(i32) {
+    PROCESS_INFORMATION = 0,
+    VA_CLONE_INFORMATION = 1,
+    AUXILIARY_PAGES_INFORMATION = 2,
+    VA_SPACE_INFORMATION = 3,
+    HANDLE_INFORMATION = 4,
+    THREAD_INFORMATION = 5,
+    HANDLE_TRACE_INFORMATION = 6,
+    PERFORMANCE_COUNTERS = 7,
 };
+pub const PSS_QUERY_PROCESS_INFORMATION = PSS_QUERY_INFORMATION_CLASS.PROCESS_INFORMATION;
+pub const PSS_QUERY_VA_CLONE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.VA_CLONE_INFORMATION;
+pub const PSS_QUERY_AUXILIARY_PAGES_INFORMATION = PSS_QUERY_INFORMATION_CLASS.AUXILIARY_PAGES_INFORMATION;
+pub const PSS_QUERY_VA_SPACE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.VA_SPACE_INFORMATION;
+pub const PSS_QUERY_HANDLE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.HANDLE_INFORMATION;
+pub const PSS_QUERY_THREAD_INFORMATION = PSS_QUERY_INFORMATION_CLASS.THREAD_INFORMATION;
+pub const PSS_QUERY_HANDLE_TRACE_INFORMATION = PSS_QUERY_INFORMATION_CLASS.HANDLE_TRACE_INFORMATION;
+pub const PSS_QUERY_PERFORMANCE_COUNTERS = PSS_QUERY_INFORMATION_CLASS.PERFORMANCE_COUNTERS;
 
-pub const PSS_AUXILIARY_PAGES_INFORMATION = extern struct {
-    AuxPagesCaptured: u32,
-};
-
-pub const PSS_VA_SPACE_INFORMATION = extern struct {
-    RegionCount: u32,
-};
-
-pub const PSS_HANDLE_INFORMATION = extern struct {
-    HandlesCaptured: u32,
-};
-
-pub const PSS_THREAD_INFORMATION = extern struct {
-    ThreadsCaptured: u32,
-    ContextLength: u32,
-};
-
-pub const PSS_HANDLE_TRACE_INFORMATION = extern struct {
-    SectionHandle: ?HANDLE,
-    Size: u32,
-};
-
-pub const PSS_PERFORMANCE_COUNTERS = extern struct {
-    TotalCycleCount: u64,
-    TotalWallClockPeriod: u64,
-    VaCloneCycleCount: u64,
-    VaCloneWallClockPeriod: u64,
-    VaSpaceCycleCount: u64,
-    VaSpaceWallClockPeriod: u64,
-    AuxPagesCycleCount: u64,
-    AuxPagesWallClockPeriod: u64,
-    HandlesCycleCount: u64,
-    HandlesWallClockPeriod: u64,
-    ThreadsCycleCount: u64,
-    ThreadsWallClockPeriod: u64,
-};
-
-pub const PSS_AUXILIARY_PAGE_ENTRY = extern struct {
-    Address: ?*anyopaque,
-    BasicInformation: MEMORY_BASIC_INFORMATION,
+pub const PSS_THREAD_ENTRY = extern struct {
+    ExitStatus: u32,
+    TebBaseAddress: ?*anyopaque,
+    ProcessId: u32,
+    ThreadId: u32,
+    AffinityMask: usize,
+    Priority: i32,
+    BasePriority: i32,
+    LastSyscallFirstArgument: ?*anyopaque,
+    LastSyscallNumber: u16,
+    CreateTime: FILETIME,
+    ExitTime: FILETIME,
+    KernelTime: FILETIME,
+    UserTime: FILETIME,
+    Win32StartAddress: ?*anyopaque,
     CaptureTime: FILETIME,
-    PageContents: ?*anyopaque,
-    PageSize: u32,
-};
-
-pub const PSS_VA_SPACE_ENTRY = extern struct {
-    BaseAddress: ?*anyopaque,
-    AllocationBase: ?*anyopaque,
-    AllocationProtect: u32,
-    RegionSize: usize,
-    State: u32,
-    Protect: u32,
-    Type: u32,
-    TimeDateStamp: u32,
-    SizeOfImage: u32,
-    ImageBase: ?*anyopaque,
-    CheckSum: u32,
-    MappedFileNameLength: u16,
-    MappedFileName: ?[*:0]const u16,
-};
-
-pub const PSS_HANDLE_ENTRY = extern struct {
-    Handle: ?HANDLE,
-    Flags: PSS_HANDLE_FLAGS,
-    ObjectType: PSS_OBJECT_TYPE,
-    CaptureTime: FILETIME,
-    Attributes: u32,
-    GrantedAccess: u32,
-    HandleCount: u32,
-    PointerCount: u32,
-    PagedPoolCharge: u32,
-    NonPagedPoolCharge: u32,
-    CreationTime: FILETIME,
-    TypeNameLength: u16,
-    TypeName: ?[*:0]const u16,
-    ObjectNameLength: u16,
-    ObjectName: ?[*:0]const u16,
-    TypeSpecificInformation: extern union {
-        Process: extern struct {
-            ExitStatus: u32,
-            PebBaseAddress: ?*anyopaque,
-            AffinityMask: usize,
-            BasePriority: i32,
-            ProcessId: u32,
-            ParentProcessId: u32,
-            Flags: u32,
-        },
-        Thread: extern struct {
-            ExitStatus: u32,
-            TebBaseAddress: ?*anyopaque,
-            ProcessId: u32,
-            ThreadId: u32,
-            AffinityMask: usize,
-            Priority: i32,
-            BasePriority: i32,
-            Win32StartAddress: ?*anyopaque,
-        },
-        Mutant: extern struct {
-            CurrentCount: i32,
-            Abandoned: BOOL,
-            OwnerProcessId: u32,
-            OwnerThreadId: u32,
-        },
-        Event: extern struct {
-            ManualReset: BOOL,
-            Signaled: BOOL,
-        },
-        Section: extern struct {
-            BaseAddress: ?*anyopaque,
-            AllocationAttributes: u32,
-            MaximumSize: LARGE_INTEGER,
-        },
-        Semaphore: extern struct {
-            CurrentCount: i32,
-            MaximumCount: i32,
-        },
-    },
+    Flags: PSS_THREAD_FLAGS,
+    SuspendCount: u16,
+    SizeOfContextRecord: u16,
+    ContextRecord: ?*CONTEXT,
 };
 
 pub const PSS_THREAD_FLAGS = packed struct(u32) {
@@ -424,33 +412,45 @@ pub const PSS_THREAD_FLAGS = packed struct(u32) {
 pub const PSS_THREAD_FLAGS_NONE = PSS_THREAD_FLAGS{ };
 pub const PSS_THREAD_FLAGS_TERMINATED = PSS_THREAD_FLAGS{ .TERMINATED = 1 };
 
-pub const PSS_THREAD_ENTRY = extern struct {
-    ExitStatus: u32,
-    TebBaseAddress: ?*anyopaque,
-    ProcessId: u32,
-    ThreadId: u32,
-    AffinityMask: usize,
-    Priority: i32,
-    BasePriority: i32,
-    LastSyscallFirstArgument: ?*anyopaque,
-    LastSyscallNumber: u16,
-    CreateTime: FILETIME,
-    ExitTime: FILETIME,
-    KernelTime: FILETIME,
-    UserTime: FILETIME,
-    Win32StartAddress: ?*anyopaque,
-    CaptureTime: FILETIME,
-    Flags: PSS_THREAD_FLAGS,
-    SuspendCount: u16,
-    SizeOfContextRecord: u16,
-    ContextRecord: ?*CONTEXT,
+pub const PSS_THREAD_INFORMATION = extern struct {
+    ThreadsCaptured: u32,
+    ContextLength: u32,
 };
 
-pub const PSS_ALLOCATOR = extern struct {
-    Context: ?*anyopaque,
-    AllocRoutine: isize,
-    FreeRoutine: isize,
+pub const PSS_VA_CLONE_INFORMATION = extern struct {
+    VaCloneHandle: ?HANDLE,
 };
+
+pub const PSS_VA_SPACE_ENTRY = extern struct {
+    BaseAddress: ?*anyopaque,
+    AllocationBase: ?*anyopaque,
+    AllocationProtect: u32,
+    RegionSize: usize,
+    State: u32,
+    Protect: u32,
+    Type: u32,
+    TimeDateStamp: u32,
+    SizeOfImage: u32,
+    ImageBase: ?*anyopaque,
+    CheckSum: u32,
+    MappedFileNameLength: u16,
+    MappedFileName: ?[*:0]const u16,
+};
+
+pub const PSS_VA_SPACE_INFORMATION = extern struct {
+    RegionCount: u32,
+};
+
+pub const PSS_WALK_INFORMATION_CLASS = enum(i32) {
+    AUXILIARY_PAGES = 0,
+    VA_SPACE = 1,
+    HANDLES = 2,
+    THREADS = 3,
+};
+pub const PSS_WALK_AUXILIARY_PAGES = PSS_WALK_INFORMATION_CLASS.AUXILIARY_PAGES;
+pub const PSS_WALK_VA_SPACE = PSS_WALK_INFORMATION_CLASS.VA_SPACE;
+pub const PSS_WALK_HANDLES = PSS_WALK_INFORMATION_CLASS.HANDLES;
+pub const PSS_WALK_THREADS = PSS_WALK_INFORMATION_CLASS.THREADS;
 
 
 //--------------------------------------------------------------------------------
@@ -463,6 +463,10 @@ pub extern "kernel32" fn PssCaptureSnapshot(
     ThreadContextFlags: u32,
     SnapshotHandle: ?*?HPSS,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.1'
+// This function from dll 'KERNEL32.dll' is being skipped because it has some sort of issue
+pub fn PssDuplicateSnapshot() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssFreeSnapshot(
@@ -478,19 +482,6 @@ pub extern "kernel32" fn PssQuerySnapshot(
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn PssWalkSnapshot(
-    SnapshotHandle: ?HPSS,
-    InformationClass: PSS_WALK_INFORMATION_CLASS,
-    WalkMarkerHandle: ?HPSSWALK,
-    Buffer: ?[*]u8,
-    BufferLength: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.1'
-// This function from dll 'KERNEL32.dll' is being skipped because it has some sort of issue
-pub fn PssDuplicateSnapshot() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerCreate(
@@ -510,14 +501,23 @@ pub extern "kernel32" fn PssWalkMarkerGetPosition(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn PssWalkMarkerSeekToBeginning(
+    WalkMarkerHandle: ?HPSSWALK,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerSetPosition(
     WalkMarkerHandle: ?HPSSWALK,
     Position: usize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn PssWalkMarkerSeekToBeginning(
+pub extern "kernel32" fn PssWalkSnapshot(
+    SnapshotHandle: ?HPSS,
+    InformationClass: PSS_WALK_INFORMATION_CLASS,
     WalkMarkerHandle: ?HPSSWALK,
+    Buffer: ?[*]u8,
+    BufferLength: u32,
 ) callconv(.winapi) u32;
 
 

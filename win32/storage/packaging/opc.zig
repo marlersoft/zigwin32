@@ -2,850 +2,180 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (102)
 //--------------------------------------------------------------------------------
-pub const OPC_E_NONCONFORMING_URI = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175231));
-pub const OPC_E_RELATIVE_URI_REQUIRED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175230));
-pub const OPC_E_RELATIONSHIP_URI_REQUIRED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175229));
-pub const OPC_E_PART_CANNOT_BE_DIRECTORY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175228));
-pub const OPC_E_UNEXPECTED_CONTENT_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175227));
-pub const OPC_E_INVALID_CONTENT_TYPE_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175226));
-pub const OPC_E_MISSING_CONTENT_TYPES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175225));
-pub const OPC_E_NONCONFORMING_CONTENT_TYPES_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175224));
-pub const OPC_E_NONCONFORMING_RELS_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175223));
-pub const OPC_E_INVALID_RELS_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175222));
-pub const OPC_E_DUPLICATE_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175221));
-pub const OPC_E_INVALID_OVERRIDE_PART_NAME = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175220));
-pub const OPC_E_DUPLICATE_OVERRIDE_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175219));
-pub const OPC_E_INVALID_DEFAULT_EXTENSION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175218));
-pub const OPC_E_DUPLICATE_DEFAULT_EXTENSION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175217));
-pub const OPC_E_INVALID_RELATIONSHIP_ID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175216));
-pub const OPC_E_INVALID_RELATIONSHIP_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175215));
-pub const OPC_E_INVALID_RELATIONSHIP_TARGET = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175214));
-pub const OPC_E_DUPLICATE_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175213));
 pub const OPC_E_CONFLICTING_SETTINGS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175212));
-pub const OPC_E_DUPLICATE_PIECE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175211));
-pub const OPC_E_INVALID_PIECE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175210));
-pub const OPC_E_MISSING_PIECE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175209));
-pub const OPC_E_NO_SUCH_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175208));
-pub const OPC_E_DS_SIGNATURE_CORRUPT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175207));
+pub const OPC_E_COULD_NOT_RECOVER = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175154));
+pub const OPC_E_DS_DEFAULT_DIGEST_METHOD_NOT_SET = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175161));
 pub const OPC_E_DS_DIGEST_VALUE_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175206));
+pub const OPC_E_DS_DUPLICATE_PACKAGE_OBJECT_REFERENCES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175187));
 pub const OPC_E_DS_DUPLICATE_SIGNATURE_ORIGIN_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175205));
-pub const OPC_E_DS_INVALID_SIGNATURE_ORIGIN_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175204));
-pub const OPC_E_DS_INVALID_CERTIFICATE_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175203));
+pub const OPC_E_DS_DUPLICATE_SIGNATURE_PROPERTY_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175192));
 pub const OPC_E_DS_EXTERNAL_SIGNATURE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175202));
+pub const OPC_E_DS_EXTERNAL_SIGNATURE_REFERENCE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175185));
+pub const OPC_E_DS_INVALID_CANONICALIZATION_METHOD = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175198));
+pub const OPC_E_DS_INVALID_CERTIFICATE_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175203));
+pub const OPC_E_DS_INVALID_OPC_SIGNATURE_TIME_FORMAT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175196));
+pub const OPC_E_DS_INVALID_RELATIONSHIP_TRANSFORM_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175199));
+pub const OPC_E_DS_INVALID_RELATIONSHIPS_SIGNING_OPTION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175197));
+pub const OPC_E_DS_INVALID_SIGNATURE_COUNT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175189));
+pub const OPC_E_DS_INVALID_SIGNATURE_ORIGIN_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175204));
+pub const OPC_E_DS_INVALID_SIGNATURE_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175190));
+pub const OPC_E_DS_MISSING_CANONICALIZATION_TRANSFORM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175182));
+pub const OPC_E_DS_MISSING_CERTIFICATE_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175146));
+pub const OPC_E_DS_MISSING_PACKAGE_OBJECT_REFERENCE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175186));
+pub const OPC_E_DS_MISSING_SIGNATURE_ALGORITHM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175188));
 pub const OPC_E_DS_MISSING_SIGNATURE_ORIGIN_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175201));
 pub const OPC_E_DS_MISSING_SIGNATURE_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175200));
-pub const OPC_E_DS_INVALID_RELATIONSHIP_TRANSFORM_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175199));
-pub const OPC_E_DS_INVALID_CANONICALIZATION_METHOD = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175198));
-pub const OPC_E_DS_INVALID_RELATIONSHIPS_SIGNING_OPTION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175197));
-pub const OPC_E_DS_INVALID_OPC_SIGNATURE_TIME_FORMAT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175196));
-pub const OPC_E_DS_PACKAGE_REFERENCE_URI_RESERVED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175195));
 pub const OPC_E_DS_MISSING_SIGNATURE_PROPERTIES_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175194));
 pub const OPC_E_DS_MISSING_SIGNATURE_PROPERTY_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175193));
-pub const OPC_E_DS_DUPLICATE_SIGNATURE_PROPERTY_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175192));
 pub const OPC_E_DS_MISSING_SIGNATURE_TIME_PROPERTY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175191));
-pub const OPC_E_DS_INVALID_SIGNATURE_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175190));
-pub const OPC_E_DS_INVALID_SIGNATURE_COUNT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175189));
-pub const OPC_E_DS_MISSING_SIGNATURE_ALGORITHM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175188));
-pub const OPC_E_DS_DUPLICATE_PACKAGE_OBJECT_REFERENCES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175187));
-pub const OPC_E_DS_MISSING_PACKAGE_OBJECT_REFERENCE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175186));
-pub const OPC_E_DS_EXTERNAL_SIGNATURE_REFERENCE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175185));
-pub const OPC_E_DS_REFERENCE_MISSING_CONTENT_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175184));
 pub const OPC_E_DS_MULTIPLE_RELATIONSHIP_TRANSFORMS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175183));
-pub const OPC_E_DS_MISSING_CANONICALIZATION_TRANSFORM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175182));
-pub const OPC_E_MC_UNEXPECTED_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175181));
-pub const OPC_E_MC_UNEXPECTED_REQUIRES_ATTR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175180));
-pub const OPC_E_MC_MISSING_REQUIRES_ATTR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175179));
-pub const OPC_E_MC_UNEXPECTED_ATTR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175178));
-pub const OPC_E_MC_INVALID_PREFIX_LIST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175177));
-pub const OPC_E_MC_INVALID_QNAME_LIST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175176));
-pub const OPC_E_MC_NESTED_ALTERNATE_CONTENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175175));
-pub const OPC_E_MC_UNEXPECTED_CHOICE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175174));
-pub const OPC_E_MC_MISSING_CHOICE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175173));
-pub const OPC_E_MC_INVALID_ENUM_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175172));
-pub const OPC_E_MC_UNKNOWN_NAMESPACE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175170));
-pub const OPC_E_MC_UNKNOWN_PREFIX = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175169));
-pub const OPC_E_MC_INVALID_ATTRIBUTES_ON_IGNORABLE_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175168));
-pub const OPC_E_MC_INVALID_XMLNS_ATTRIBUTE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175167));
-pub const OPC_E_INVALID_XML_ENCODING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175166));
-pub const OPC_E_DS_SIGNATURE_REFERENCE_MISSING_URI = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175165));
-pub const OPC_E_INVALID_CONTENT_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175164));
-pub const OPC_E_DS_SIGNATURE_PROPERTY_MISSING_TARGET = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175163));
+pub const OPC_E_DS_PACKAGE_REFERENCE_URI_RESERVED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175195));
+pub const OPC_E_DS_REFERENCE_MISSING_CONTENT_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175184));
+pub const OPC_E_DS_SIGNATURE_CORRUPT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175207));
 pub const OPC_E_DS_SIGNATURE_METHOD_NOT_SET = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175162));
-pub const OPC_E_DS_DEFAULT_DIGEST_METHOD_NOT_SET = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175161));
-pub const OPC_E_NO_SUCH_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175160));
-pub const OPC_E_MC_MULTIPLE_FALLBACK_ELEMENTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175159));
-pub const OPC_E_MC_INCONSISTENT_PROCESS_CONTENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175158));
-pub const OPC_E_MC_INCONSISTENT_PRESERVE_ATTRIBUTES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175157));
-pub const OPC_E_MC_INCONSISTENT_PRESERVE_ELEMENTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175156));
-pub const OPC_E_INVALID_RELATIONSHIP_TARGET_MODE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175155));
-pub const OPC_E_COULD_NOT_RECOVER = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175154));
-pub const OPC_E_UNSUPPORTED_PACKAGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175153));
-pub const OPC_E_ENUM_COLLECTION_CHANGED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175152));
+pub const OPC_E_DS_SIGNATURE_ORIGIN_EXISTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175148));
+pub const OPC_E_DS_SIGNATURE_PROPERTY_MISSING_TARGET = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175163));
+pub const OPC_E_DS_SIGNATURE_REFERENCE_MISSING_URI = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175165));
+pub const OPC_E_DS_UNSIGNED_PACKAGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175147));
+pub const OPC_E_DUPLICATE_DEFAULT_EXTENSION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175217));
+pub const OPC_E_DUPLICATE_OVERRIDE_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175219));
+pub const OPC_E_DUPLICATE_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175221));
+pub const OPC_E_DUPLICATE_PIECE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175211));
+pub const OPC_E_DUPLICATE_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175213));
 pub const OPC_E_ENUM_CANNOT_MOVE_NEXT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175151));
 pub const OPC_E_ENUM_CANNOT_MOVE_PREVIOUS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175150));
+pub const OPC_E_ENUM_COLLECTION_CHANGED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175152));
 pub const OPC_E_ENUM_INVALID_POSITION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175149));
-pub const OPC_E_DS_SIGNATURE_ORIGIN_EXISTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175148));
-pub const OPC_E_DS_UNSIGNED_PACKAGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175147));
-pub const OPC_E_DS_MISSING_CERTIFICATE_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175146));
+pub const OPC_E_INVALID_CONTENT_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175164));
+pub const OPC_E_INVALID_CONTENT_TYPE_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175226));
+pub const OPC_E_INVALID_DEFAULT_EXTENSION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175218));
+pub const OPC_E_INVALID_OVERRIDE_PART_NAME = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175220));
+pub const OPC_E_INVALID_PIECE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175210));
+pub const OPC_E_INVALID_RELATIONSHIP_ID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175216));
+pub const OPC_E_INVALID_RELATIONSHIP_TARGET = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175214));
+pub const OPC_E_INVALID_RELATIONSHIP_TARGET_MODE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175155));
+pub const OPC_E_INVALID_RELATIONSHIP_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175215));
+pub const OPC_E_INVALID_RELS_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175222));
+pub const OPC_E_INVALID_XML_ENCODING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175166));
+pub const OPC_E_MC_INCONSISTENT_PRESERVE_ATTRIBUTES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175157));
+pub const OPC_E_MC_INCONSISTENT_PRESERVE_ELEMENTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175156));
+pub const OPC_E_MC_INCONSISTENT_PROCESS_CONTENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175158));
+pub const OPC_E_MC_INVALID_ATTRIBUTES_ON_IGNORABLE_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175168));
+pub const OPC_E_MC_INVALID_ENUM_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175172));
+pub const OPC_E_MC_INVALID_PREFIX_LIST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175177));
+pub const OPC_E_MC_INVALID_QNAME_LIST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175176));
+pub const OPC_E_MC_INVALID_XMLNS_ATTRIBUTE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175167));
+pub const OPC_E_MC_MISSING_CHOICE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175173));
+pub const OPC_E_MC_MISSING_REQUIRES_ATTR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175179));
+pub const OPC_E_MC_MULTIPLE_FALLBACK_ELEMENTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175159));
+pub const OPC_E_MC_NESTED_ALTERNATE_CONTENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175175));
+pub const OPC_E_MC_UNEXPECTED_ATTR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175178));
+pub const OPC_E_MC_UNEXPECTED_CHOICE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175174));
+pub const OPC_E_MC_UNEXPECTED_ELEMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175181));
+pub const OPC_E_MC_UNEXPECTED_REQUIRES_ATTR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175180));
+pub const OPC_E_MC_UNKNOWN_NAMESPACE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175170));
+pub const OPC_E_MC_UNKNOWN_PREFIX = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175169));
+pub const OPC_E_MISSING_CONTENT_TYPES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175225));
+pub const OPC_E_MISSING_PIECE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175209));
+pub const OPC_E_NO_SUCH_PART = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175208));
+pub const OPC_E_NO_SUCH_RELATIONSHIP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175160));
 pub const OPC_E_NO_SUCH_SETTINGS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175145));
-pub const OPC_E_ZIP_INCORRECT_DATA_SIZE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171135));
-pub const OPC_E_ZIP_CORRUPTED_ARCHIVE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171134));
-pub const OPC_E_ZIP_COMPRESSION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171133));
-pub const OPC_E_ZIP_DECOMPRESSION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171132));
-pub const OPC_E_ZIP_INCONSISTENT_FILEITEM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171131));
-pub const OPC_E_ZIP_INCONSISTENT_DIRECTORY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171130));
-pub const OPC_E_ZIP_MISSING_DATA_DESCRIPTOR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171129));
-pub const OPC_E_ZIP_UNSUPPORTEDARCHIVE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171128));
+pub const OPC_E_NONCONFORMING_CONTENT_TYPES_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175224));
+pub const OPC_E_NONCONFORMING_RELS_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175223));
+pub const OPC_E_NONCONFORMING_URI = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175231));
+pub const OPC_E_PART_CANNOT_BE_DIRECTORY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175228));
+pub const OPC_E_RELATIONSHIP_URI_REQUIRED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175229));
+pub const OPC_E_RELATIVE_URI_REQUIRED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175230));
+pub const OPC_E_UNEXPECTED_CONTENT_TYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175227));
+pub const OPC_E_UNSUPPORTED_PACKAGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142175153));
 pub const OPC_E_ZIP_CENTRAL_DIRECTORY_TOO_LARGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171127));
-pub const OPC_E_ZIP_NAME_TOO_LARGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171126));
-pub const OPC_E_ZIP_DUPLICATE_NAME = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171125));
 pub const OPC_E_ZIP_COMMENT_TOO_LARGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171124));
+pub const OPC_E_ZIP_COMPRESSION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171133));
+pub const OPC_E_ZIP_CORRUPTED_ARCHIVE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171134));
+pub const OPC_E_ZIP_DECOMPRESSION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171132));
+pub const OPC_E_ZIP_DUPLICATE_NAME = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171125));
 pub const OPC_E_ZIP_EXTRA_FIELDS_TOO_LARGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171123));
 pub const OPC_E_ZIP_FILE_HEADER_TOO_LARGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171122));
+pub const OPC_E_ZIP_INCONSISTENT_DIRECTORY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171130));
+pub const OPC_E_ZIP_INCONSISTENT_FILEITEM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171131));
+pub const OPC_E_ZIP_INCORRECT_DATA_SIZE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171135));
+pub const OPC_E_ZIP_MISSING_DATA_DESCRIPTOR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171129));
 pub const OPC_E_ZIP_MISSING_END_OF_CENTRAL_DIRECTORY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171121));
+pub const OPC_E_ZIP_NAME_TOO_LARGE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171126));
 pub const OPC_E_ZIP_REQUIRES_64_BIT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171120));
+pub const OPC_E_ZIP_UNSUPPORTEDARCHIVE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2142171128));
 
 //--------------------------------------------------------------------------------
 // Section: Types (43)
 //--------------------------------------------------------------------------------
-const CLSID_OpcFactory_Value = Guid.initString("6b2d6ba0-9f3e-4f27-920b-313cc426a39e");
-pub const CLSID_OpcFactory = &CLSID_OpcFactory_Value;
-
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcUri_Value = Guid.initString("bc9c1b9b-d62c-49eb-aef0-3b4e0b28ebed");
-pub const IID_IOpcUri = &IID_IOpcUri_Value;
-pub const IOpcUri = extern union {
-    pub const VTable = extern struct {
-        base: IUri.VTable,
-        GetRelationshipsPartUri: *const fn(
-            self: *const IOpcUri,
-            relationshipPartUri: ?*?*IOpcPartUri,
-        ) callconv(.winapi) HRESULT,
-        GetRelativeUri: *const fn(
-            self: *const IOpcUri,
-            targetPartUri: ?*IOpcPartUri,
-            relativeUri: ?*?*IUri,
-        ) callconv(.winapi) HRESULT,
-        CombinePartUri: *const fn(
-            self: *const IOpcUri,
-            relativeUri: ?*IUri,
-            combinedUri: ?*?*IOpcPartUri,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUri: IUri,
-    IUnknown: IUnknown,
-    pub fn GetRelationshipsPartUri(self: *const IOpcUri, relationshipPartUri: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationshipsPartUri(self, relationshipPartUri);
-    }
-    pub fn GetRelativeUri(self: *const IOpcUri, targetPartUri: ?*IOpcPartUri, relativeUri: ?*?*IUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelativeUri(self, targetPartUri, relativeUri);
-    }
-    pub fn CombinePartUri(self: *const IOpcUri, relativeUri: ?*IUri, combinedUri: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.CombinePartUri(self, relativeUri, combinedUri);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPartUri_Value = Guid.initString("7d3babe7-88b2-46ba-85cb-4203cb016c87");
-pub const IID_IOpcPartUri = &IID_IOpcPartUri_Value;
-pub const IOpcPartUri = extern union {
-    pub const VTable = extern struct {
-        base: IOpcUri.VTable,
-        ComparePartUri: *const fn(
-            self: *const IOpcPartUri,
-            partUri: ?*IOpcPartUri,
-            comparisonResult: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetSourceUri: *const fn(
-            self: *const IOpcPartUri,
-            sourceUri: ?*?*IOpcUri,
-        ) callconv(.winapi) HRESULT,
-        IsRelationshipsPartUri: *const fn(
-            self: *const IOpcPartUri,
-            isRelationshipUri: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IOpcUri: IOpcUri,
-    IUri: IUri,
-    IUnknown: IUnknown,
-    pub fn ComparePartUri(self: *const IOpcPartUri, partUri: ?*IOpcPartUri, comparisonResult: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ComparePartUri(self, partUri, comparisonResult);
-    }
-    pub fn GetSourceUri(self: *const IOpcPartUri, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSourceUri(self, sourceUri);
-    }
-    pub fn IsRelationshipsPartUri(self: *const IOpcPartUri, isRelationshipUri: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsRelationshipsPartUri(self, isRelationshipUri);
-    }
-};
-
-pub const OPC_URI_TARGET_MODE = enum(i32) {
-    INTERNAL = 0,
-    EXTERNAL = 1,
-};
-pub const OPC_URI_TARGET_MODE_INTERNAL = OPC_URI_TARGET_MODE.INTERNAL;
-pub const OPC_URI_TARGET_MODE_EXTERNAL = OPC_URI_TARGET_MODE.EXTERNAL;
-
-pub const OPC_COMPRESSION_OPTIONS = enum(i32) {
-    NONE = -1,
-    NORMAL = 0,
-    MAXIMUM = 1,
-    FAST = 2,
-    SUPERFAST = 3,
-};
-pub const OPC_COMPRESSION_NONE = OPC_COMPRESSION_OPTIONS.NONE;
-pub const OPC_COMPRESSION_NORMAL = OPC_COMPRESSION_OPTIONS.NORMAL;
-pub const OPC_COMPRESSION_MAXIMUM = OPC_COMPRESSION_OPTIONS.MAXIMUM;
-pub const OPC_COMPRESSION_FAST = OPC_COMPRESSION_OPTIONS.FAST;
-pub const OPC_COMPRESSION_SUPERFAST = OPC_COMPRESSION_OPTIONS.SUPERFAST;
-
-pub const OPC_STREAM_IO_MODE = enum(i32) {
-    READ = 1,
-    WRITE = 2,
-};
-pub const OPC_STREAM_IO_READ = OPC_STREAM_IO_MODE.READ;
-pub const OPC_STREAM_IO_WRITE = OPC_STREAM_IO_MODE.WRITE;
-
-pub const OPC_READ_FLAGS = packed struct(u32) {
-    VALIDATE_ON_LOAD: u1 = 0,
-    CACHE_ON_ACCESS: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const OPC_READ_DEFAULT = OPC_READ_FLAGS{ };
-pub const OPC_VALIDATE_ON_LOAD = OPC_READ_FLAGS{ .VALIDATE_ON_LOAD = 1 };
-pub const OPC_CACHE_ON_ACCESS = OPC_READ_FLAGS{ .CACHE_ON_ACCESS = 1 };
-
-pub const OPC_WRITE_FLAGS = packed struct(u32) {
-    FORCE_ZIP32: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const OPC_WRITE_DEFAULT = OPC_WRITE_FLAGS{ };
-pub const OPC_WRITE_FORCE_ZIP32 = OPC_WRITE_FLAGS{ .FORCE_ZIP32 = 1 };
-
-pub const OPC_SIGNATURE_VALIDATION_RESULT = enum(i32) {
-    VALID = 0,
-    INVALID = -1,
-};
-pub const OPC_SIGNATURE_VALID = OPC_SIGNATURE_VALIDATION_RESULT.VALID;
-pub const OPC_SIGNATURE_INVALID = OPC_SIGNATURE_VALIDATION_RESULT.INVALID;
-
-pub const OPC_CANONICALIZATION_METHOD = enum(i32) {
-    NONE = 0,
-    C14N = 1,
-    C14N_WITH_COMMENTS = 2,
-};
-pub const OPC_CANONICALIZATION_NONE = OPC_CANONICALIZATION_METHOD.NONE;
-pub const OPC_CANONICALIZATION_C14N = OPC_CANONICALIZATION_METHOD.C14N;
-pub const OPC_CANONICALIZATION_C14N_WITH_COMMENTS = OPC_CANONICALIZATION_METHOD.C14N_WITH_COMMENTS;
-
-pub const OPC_RELATIONSHIP_SELECTOR = enum(i32) {
-    ID = 0,
-    TYPE = 1,
-};
-pub const OPC_RELATIONSHIP_SELECT_BY_ID = OPC_RELATIONSHIP_SELECTOR.ID;
-pub const OPC_RELATIONSHIP_SELECT_BY_TYPE = OPC_RELATIONSHIP_SELECTOR.TYPE;
-
-pub const OPC_RELATIONSHIPS_SIGNING_OPTION = enum(i32) {
-    USING_SELECTORS = 0,
-    PART = 1,
-};
-pub const OPC_RELATIONSHIP_SIGN_USING_SELECTORS = OPC_RELATIONSHIPS_SIGNING_OPTION.USING_SELECTORS;
-pub const OPC_RELATIONSHIP_SIGN_PART = OPC_RELATIONSHIPS_SIGNING_OPTION.PART;
-
-pub const OPC_CERTIFICATE_EMBEDDING_OPTION = enum(i32) {
-    IN_CERTIFICATE_PART = 0,
-    IN_SIGNATURE_PART = 1,
-    NOT_EMBEDDED = 2,
-};
-pub const OPC_CERTIFICATE_IN_CERTIFICATE_PART = OPC_CERTIFICATE_EMBEDDING_OPTION.IN_CERTIFICATE_PART;
-pub const OPC_CERTIFICATE_IN_SIGNATURE_PART = OPC_CERTIFICATE_EMBEDDING_OPTION.IN_SIGNATURE_PART;
-pub const OPC_CERTIFICATE_NOT_EMBEDDED = OPC_CERTIFICATE_EMBEDDING_OPTION.NOT_EMBEDDED;
-
-pub const OPC_SIGNATURE_TIME_FORMAT = enum(i32) {
-    MILLISECONDS = 0,
-    SECONDS = 1,
-    MINUTES = 2,
-    DAYS = 3,
-    MONTHS = 4,
-    YEARS = 5,
-};
-pub const OPC_SIGNATURE_TIME_FORMAT_MILLISECONDS = OPC_SIGNATURE_TIME_FORMAT.MILLISECONDS;
-pub const OPC_SIGNATURE_TIME_FORMAT_SECONDS = OPC_SIGNATURE_TIME_FORMAT.SECONDS;
-pub const OPC_SIGNATURE_TIME_FORMAT_MINUTES = OPC_SIGNATURE_TIME_FORMAT.MINUTES;
-pub const OPC_SIGNATURE_TIME_FORMAT_DAYS = OPC_SIGNATURE_TIME_FORMAT.DAYS;
-pub const OPC_SIGNATURE_TIME_FORMAT_MONTHS = OPC_SIGNATURE_TIME_FORMAT.MONTHS;
-pub const OPC_SIGNATURE_TIME_FORMAT_YEARS = OPC_SIGNATURE_TIME_FORMAT.YEARS;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPackage_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee70");
-pub const IID_IOpcPackage = &IID_IOpcPackage_Value;
-pub const IOpcPackage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPartSet: *const fn(
-            self: *const IOpcPackage,
-            partSet: ?*?*IOpcPartSet,
-        ) callconv(.winapi) HRESULT,
-        GetRelationshipSet: *const fn(
-            self: *const IOpcPackage,
-            relationshipSet: ?*?*IOpcRelationshipSet,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPartSet(self: *const IOpcPackage, partSet: ?*?*IOpcPartSet) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPartSet(self, partSet);
-    }
-    pub fn GetRelationshipSet(self: *const IOpcPackage, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationshipSet(self, relationshipSet);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPart_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee71");
-pub const IID_IOpcPart = &IID_IOpcPart_Value;
-pub const IOpcPart = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRelationshipSet: *const fn(
-            self: *const IOpcPart,
-            relationshipSet: ?*?*IOpcRelationshipSet,
-        ) callconv(.winapi) HRESULT,
-        GetContentStream: *const fn(
-            self: *const IOpcPart,
-            stream: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-        GetName: *const fn(
-            self: *const IOpcPart,
-            name: ?*?*IOpcPartUri,
-        ) callconv(.winapi) HRESULT,
-        GetContentType: *const fn(
-            self: *const IOpcPart,
-            contentType: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetCompressionOptions: *const fn(
-            self: *const IOpcPart,
-            compressionOptions: ?*OPC_COMPRESSION_OPTIONS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRelationshipSet(self: *const IOpcPart, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationshipSet(self, relationshipSet);
-    }
-    pub fn GetContentStream(self: *const IOpcPart, stream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentStream(self, stream);
-    }
-    pub fn GetName(self: *const IOpcPart, name: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
-    }
-    pub fn GetContentType(self: *const IOpcPart, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentType(self, contentType);
-    }
-    pub fn GetCompressionOptions(self: *const IOpcPart, compressionOptions: ?*OPC_COMPRESSION_OPTIONS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCompressionOptions(self, compressionOptions);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationship_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee72");
-pub const IID_IOpcRelationship = &IID_IOpcRelationship_Value;
-pub const IOpcRelationship = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetId: *const fn(
-            self: *const IOpcRelationship,
-            relationshipIdentifier: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetRelationshipType: *const fn(
-            self: *const IOpcRelationship,
-            relationshipType: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetSourceUri: *const fn(
-            self: *const IOpcRelationship,
-            sourceUri: ?*?*IOpcUri,
-        ) callconv(.winapi) HRESULT,
-        GetTargetUri: *const fn(
-            self: *const IOpcRelationship,
-            targetUri: ?*?*IUri,
-        ) callconv(.winapi) HRESULT,
-        GetTargetMode: *const fn(
-            self: *const IOpcRelationship,
-            targetMode: ?*OPC_URI_TARGET_MODE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetId(self: *const IOpcRelationship, relationshipIdentifier: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetId(self, relationshipIdentifier);
-    }
-    pub fn GetRelationshipType(self: *const IOpcRelationship, relationshipType: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationshipType(self, relationshipType);
-    }
-    pub fn GetSourceUri(self: *const IOpcRelationship, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSourceUri(self, sourceUri);
-    }
-    pub fn GetTargetUri(self: *const IOpcRelationship, targetUri: ?*?*IUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTargetUri(self, targetUri);
-    }
-    pub fn GetTargetMode(self: *const IOpcRelationship, targetMode: ?*OPC_URI_TARGET_MODE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTargetMode(self, targetMode);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPartSet_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee73");
-pub const IID_IOpcPartSet = &IID_IOpcPartSet_Value;
-pub const IOpcPartSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPart: *const fn(
-            self: *const IOpcPartSet,
-            name: ?*IOpcPartUri,
-            part: ?*?*IOpcPart,
-        ) callconv(.winapi) HRESULT,
-        CreatePart: *const fn(
-            self: *const IOpcPartSet,
-            name: ?*IOpcPartUri,
-            contentType: ?[*:0]const u16,
-            compressionOptions: OPC_COMPRESSION_OPTIONS,
-            part: ?*?*IOpcPart,
-        ) callconv(.winapi) HRESULT,
-        DeletePart: *const fn(
-            self: *const IOpcPartSet,
-            name: ?*IOpcPartUri,
-        ) callconv(.winapi) HRESULT,
-        PartExists: *const fn(
-            self: *const IOpcPartSet,
-            name: ?*IOpcPartUri,
-            partExists: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcPartSet,
-            partEnumerator: ?*?*IOpcPartEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPart(self: *const IOpcPartSet, name: ?*IOpcPartUri, part: ?*?*IOpcPart) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPart(self, name, part);
-    }
-    pub fn CreatePart(self: *const IOpcPartSet, name: ?*IOpcPartUri, contentType: ?[*:0]const u16, compressionOptions: OPC_COMPRESSION_OPTIONS, part: ?*?*IOpcPart) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePart(self, name, contentType, compressionOptions, part);
-    }
-    pub fn DeletePart(self: *const IOpcPartSet, name: ?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePart(self, name);
-    }
-    pub fn PartExists(self: *const IOpcPartSet, name: ?*IOpcPartUri, partExists: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.PartExists(self, name, partExists);
-    }
-    pub fn GetEnumerator(self: *const IOpcPartSet, partEnumerator: ?*?*IOpcPartEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, partEnumerator);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSet_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee74");
-pub const IID_IOpcRelationshipSet = &IID_IOpcRelationshipSet_Value;
-pub const IOpcRelationshipSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRelationship: *const fn(
-            self: *const IOpcRelationshipSet,
-            relationshipIdentifier: ?[*:0]const u16,
-            relationship: ?*?*IOpcRelationship,
-        ) callconv(.winapi) HRESULT,
-        CreateRelationship: *const fn(
-            self: *const IOpcRelationshipSet,
-            relationshipIdentifier: ?[*:0]const u16,
-            relationshipType: ?[*:0]const u16,
-            targetUri: ?*IUri,
-            targetMode: OPC_URI_TARGET_MODE,
-            relationship: ?*?*IOpcRelationship,
-        ) callconv(.winapi) HRESULT,
-        DeleteRelationship: *const fn(
-            self: *const IOpcRelationshipSet,
-            relationshipIdentifier: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        RelationshipExists: *const fn(
-            self: *const IOpcRelationshipSet,
-            relationshipIdentifier: ?[*:0]const u16,
-            relationshipExists: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcRelationshipSet,
-            relationshipEnumerator: ?*?*IOpcRelationshipEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetEnumeratorForType: *const fn(
-            self: *const IOpcRelationshipSet,
-            relationshipType: ?[*:0]const u16,
-            relationshipEnumerator: ?*?*IOpcRelationshipEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetRelationshipsContentStream: *const fn(
-            self: *const IOpcRelationshipSet,
-            contents: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationship: ?*?*IOpcRelationship) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationship(self, relationshipIdentifier, relationship);
-    }
-    pub fn CreateRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipType: ?[*:0]const u16, targetUri: ?*IUri, targetMode: OPC_URI_TARGET_MODE, relationship: ?*?*IOpcRelationship) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRelationship(self, relationshipIdentifier, relationshipType, targetUri, targetMode, relationship);
-    }
-    pub fn DeleteRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteRelationship(self, relationshipIdentifier);
-    }
-    pub fn RelationshipExists(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipExists: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.RelationshipExists(self, relationshipIdentifier, relationshipExists);
-    }
-    pub fn GetEnumerator(self: *const IOpcRelationshipSet, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, relationshipEnumerator);
-    }
-    pub fn GetEnumeratorForType(self: *const IOpcRelationshipSet, relationshipType: ?[*:0]const u16, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumeratorForType(self, relationshipType, relationshipEnumerator);
-    }
-    pub fn GetRelationshipsContentStream(self: *const IOpcRelationshipSet, contents: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationshipsContentStream(self, contents);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPartEnumerator_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee75");
-pub const IID_IOpcPartEnumerator = &IID_IOpcPartEnumerator_Value;
-pub const IOpcPartEnumerator = extern union {
+const IID_IOpcCertificateEnumerator_Value = Guid.initString("85131937-8f24-421f-b439-59ab24d140b8");
+pub const IID_IOpcCertificateEnumerator = &IID_IOpcCertificateEnumerator_Value;
+pub const IOpcCertificateEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MoveNext: *const fn(
-            self: *const IOpcPartEnumerator,
+            self: *const IOpcCertificateEnumerator,
             hasNext: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
-            self: *const IOpcPartEnumerator,
+            self: *const IOpcCertificateEnumerator,
             hasPrevious: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
-            self: *const IOpcPartEnumerator,
-            part: ?*?*IOpcPart,
+            self: *const IOpcCertificateEnumerator,
+            certificate: ?*const ?*CERT_CONTEXT,
         ) callconv(.winapi) HRESULT,
         Clone: *const fn(
-            self: *const IOpcPartEnumerator,
-            copy: ?*?*IOpcPartEnumerator,
+            self: *const IOpcCertificateEnumerator,
+            copy: ?*?*IOpcCertificateEnumerator,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcPartEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn MoveNext(self: *const IOpcCertificateEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcPartEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn MovePrevious(self: *const IOpcCertificateEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcPartEnumerator, part: ?*?*IOpcPart) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, part);
+    pub fn GetCurrent(self: *const IOpcCertificateEnumerator, certificate: ?*const ?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, certificate);
     }
-    pub fn Clone(self: *const IOpcPartEnumerator, copy: ?*?*IOpcPartEnumerator) callconv(.@"inline") HRESULT {
+    pub fn Clone(self: *const IOpcCertificateEnumerator, copy: ?*?*IOpcCertificateEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipEnumerator_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee76");
-pub const IID_IOpcRelationshipEnumerator = &IID_IOpcRelationshipEnumerator_Value;
-pub const IOpcRelationshipEnumerator = extern union {
+const IID_IOpcCertificateSet_Value = Guid.initString("56ea4325-8e2d-4167-b1a4-e486d24c8fa7");
+pub const IID_IOpcCertificateSet = &IID_IOpcCertificateSet_Value;
+pub const IOpcCertificateSet = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcRelationshipEnumerator,
-            hasNext: ?*BOOL,
+        Add: *const fn(
+            self: *const IOpcCertificateSet,
+            certificate: ?*const CERT_CONTEXT,
         ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcRelationshipEnumerator,
-            hasPrevious: ?*BOOL,
+        Remove: *const fn(
+            self: *const IOpcCertificateSet,
+            certificate: ?*const CERT_CONTEXT,
         ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcRelationshipEnumerator,
-            relationship: ?*?*IOpcRelationship,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcRelationshipEnumerator,
-            copy: ?*?*IOpcRelationshipEnumerator,
+        GetEnumerator: *const fn(
+            self: *const IOpcCertificateSet,
+            certificateEnumerator: ?*?*IOpcCertificateEnumerator,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcRelationshipEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
+    pub fn Add(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, certificate);
     }
-    pub fn MovePrevious(self: *const IOpcRelationshipEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
+    pub fn Remove(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, certificate);
     }
-    pub fn GetCurrent(self: *const IOpcRelationshipEnumerator, relationship: ?*?*IOpcRelationship) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, relationship);
-    }
-    pub fn Clone(self: *const IOpcRelationshipEnumerator, copy: ?*?*IOpcRelationshipEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignaturePartReference_Value = Guid.initString("e24231ca-59f4-484e-b64b-36eeda36072c");
-pub const IID_IOpcSignaturePartReference = &IID_IOpcSignaturePartReference_Value;
-pub const IOpcSignaturePartReference = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPartName: *const fn(
-            self: *const IOpcSignaturePartReference,
-            partName: ?*?*IOpcPartUri,
-        ) callconv(.winapi) HRESULT,
-        GetContentType: *const fn(
-            self: *const IOpcSignaturePartReference,
-            contentType: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDigestMethod: *const fn(
-            self: *const IOpcSignaturePartReference,
-            digestMethod: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDigestValue: *const fn(
-            self: *const IOpcSignaturePartReference,
-            digestValue: [*]?*u8,
-            count: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTransformMethod: *const fn(
-            self: *const IOpcSignaturePartReference,
-            transformMethod: ?*OPC_CANONICALIZATION_METHOD,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPartName(self: *const IOpcSignaturePartReference, partName: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPartName(self, partName);
-    }
-    pub fn GetContentType(self: *const IOpcSignaturePartReference, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentType(self, contentType);
-    }
-    pub fn GetDigestMethod(self: *const IOpcSignaturePartReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDigestMethod(self, digestMethod);
-    }
-    pub fn GetDigestValue(self: *const IOpcSignaturePartReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDigestValue(self, digestValue, count);
-    }
-    pub fn GetTransformMethod(self: *const IOpcSignaturePartReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransformMethod(self, transformMethod);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureRelationshipReference_Value = Guid.initString("57babac6-9d4a-4e50-8b86-e5d4051eae7c");
-pub const IID_IOpcSignatureRelationshipReference = &IID_IOpcSignatureRelationshipReference_Value;
-pub const IOpcSignatureRelationshipReference = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSourceUri: *const fn(
-            self: *const IOpcSignatureRelationshipReference,
-            sourceUri: ?*?*IOpcUri,
-        ) callconv(.winapi) HRESULT,
-        GetDigestMethod: *const fn(
-            self: *const IOpcSignatureRelationshipReference,
-            digestMethod: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDigestValue: *const fn(
-            self: *const IOpcSignatureRelationshipReference,
-            digestValue: [*]?*u8,
-            count: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTransformMethod: *const fn(
-            self: *const IOpcSignatureRelationshipReference,
-            transformMethod: ?*OPC_CANONICALIZATION_METHOD,
-        ) callconv(.winapi) HRESULT,
-        GetRelationshipSigningOption: *const fn(
-            self: *const IOpcSignatureRelationshipReference,
-            relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION,
-        ) callconv(.winapi) HRESULT,
-        GetRelationshipSelectorEnumerator: *const fn(
-            self: *const IOpcSignatureRelationshipReference,
-            selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSourceUri(self: *const IOpcSignatureRelationshipReference, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSourceUri(self, sourceUri);
-    }
-    pub fn GetDigestMethod(self: *const IOpcSignatureRelationshipReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDigestMethod(self, digestMethod);
-    }
-    pub fn GetDigestValue(self: *const IOpcSignatureRelationshipReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDigestValue(self, digestValue, count);
-    }
-    pub fn GetTransformMethod(self: *const IOpcSignatureRelationshipReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransformMethod(self, transformMethod);
-    }
-    pub fn GetRelationshipSigningOption(self: *const IOpcSignatureRelationshipReference, relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationshipSigningOption(self, relationshipSigningOption);
-    }
-    pub fn GetRelationshipSelectorEnumerator(self: *const IOpcSignatureRelationshipReference, selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRelationshipSelectorEnumerator(self, selectorEnumerator);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSelector_Value = Guid.initString("f8f26c7f-b28f-4899-84c8-5d5639ede75f");
-pub const IID_IOpcRelationshipSelector = &IID_IOpcRelationshipSelector_Value;
-pub const IOpcRelationshipSelector = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSelectorType: *const fn(
-            self: *const IOpcRelationshipSelector,
-            selector: ?*OPC_RELATIONSHIP_SELECTOR,
-        ) callconv(.winapi) HRESULT,
-        GetSelectionCriterion: *const fn(
-            self: *const IOpcRelationshipSelector,
-            selectionCriterion: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSelectorType(self: *const IOpcRelationshipSelector, selector: ?*OPC_RELATIONSHIP_SELECTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelectorType(self, selector);
-    }
-    pub fn GetSelectionCriterion(self: *const IOpcRelationshipSelector, selectionCriterion: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSelectionCriterion(self, selectionCriterion);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureReference_Value = Guid.initString("1b47005e-3011-4edc-be6f-0f65e5ab0342");
-pub const IID_IOpcSignatureReference = &IID_IOpcSignatureReference_Value;
-pub const IOpcSignatureReference = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetId: *const fn(
-            self: *const IOpcSignatureReference,
-            referenceId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetUri: *const fn(
-            self: *const IOpcSignatureReference,
-            referenceUri: ?*?*IUri,
-        ) callconv(.winapi) HRESULT,
-        GetType: *const fn(
-            self: *const IOpcSignatureReference,
-            type: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetTransformMethod: *const fn(
-            self: *const IOpcSignatureReference,
-            transformMethod: ?*OPC_CANONICALIZATION_METHOD,
-        ) callconv(.winapi) HRESULT,
-        GetDigestMethod: *const fn(
-            self: *const IOpcSignatureReference,
-            digestMethod: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDigestValue: *const fn(
-            self: *const IOpcSignatureReference,
-            digestValue: [*]?*u8,
-            count: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetId(self: *const IOpcSignatureReference, referenceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetId(self, referenceId);
-    }
-    pub fn GetUri(self: *const IOpcSignatureReference, referenceUri: ?*?*IUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUri(self, referenceUri);
-    }
-    pub fn GetType(self: *const IOpcSignatureReference, @"type": ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, @"type");
-    }
-    pub fn GetTransformMethod(self: *const IOpcSignatureReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransformMethod(self, transformMethod);
-    }
-    pub fn GetDigestMethod(self: *const IOpcSignatureReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDigestMethod(self, digestMethod);
-    }
-    pub fn GetDigestValue(self: *const IOpcSignatureReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDigestValue(self, digestValue, count);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureCustomObject_Value = Guid.initString("5d77a19e-62c1-44e7-becd-45da5ae51a56");
-pub const IID_IOpcSignatureCustomObject = &IID_IOpcSignatureCustomObject_Value;
-pub const IOpcSignatureCustomObject = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetXml: *const fn(
-            self: *const IOpcSignatureCustomObject,
-            xmlMarkup: [*]?*u8,
-            count: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetXml(self: *const IOpcSignatureCustomObject, xmlMarkup: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetXml(self, xmlMarkup, count);
+    pub fn GetEnumerator(self: *const IOpcCertificateSet, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, certificateEnumerator);
     }
 };
 
@@ -966,6 +296,1115 @@ pub const IOpcDigitalSignature = extern union {
     }
     pub fn GetSignatureXml(self: *const IOpcDigitalSignature, signatureXml: ?*?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureXml(self, signatureXml, count);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcDigitalSignatureEnumerator_Value = Guid.initString("967b6882-0ba3-4358-b9e7-b64c75063c5e");
+pub const IID_IOpcDigitalSignatureEnumerator = &IID_IOpcDigitalSignatureEnumerator_Value;
+pub const IOpcDigitalSignatureEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcDigitalSignatureEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcDigitalSignatureEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcDigitalSignatureEnumerator,
+            digitalSignature: ?*?*IOpcDigitalSignature,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcDigitalSignatureEnumerator,
+            copy: ?*?*IOpcDigitalSignatureEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcDigitalSignatureEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcDigitalSignatureEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcDigitalSignatureEnumerator, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, digitalSignature);
+    }
+    pub fn Clone(self: *const IOpcDigitalSignatureEnumerator, copy: ?*?*IOpcDigitalSignatureEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcDigitalSignatureManager_Value = Guid.initString("d5e62a0b-696d-462f-94df-72e33cef2659");
+pub const IID_IOpcDigitalSignatureManager = &IID_IOpcDigitalSignatureManager_Value;
+pub const IOpcDigitalSignatureManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSignatureOriginPartName: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            signatureOriginPartName: ?*?*IOpcPartUri,
+        ) callconv(.winapi) HRESULT,
+        SetSignatureOriginPartName: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            signatureOriginPartName: ?*IOpcPartUri,
+        ) callconv(.winapi) HRESULT,
+        GetSignatureEnumerator: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator,
+        ) callconv(.winapi) HRESULT,
+        RemoveSignature: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            signaturePartName: ?*IOpcPartUri,
+        ) callconv(.winapi) HRESULT,
+        CreateSigningOptions: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            signingOptions: ?*?*IOpcSigningOptions,
+        ) callconv(.winapi) HRESULT,
+        Validate: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            signature: ?*IOpcDigitalSignature,
+            certificate: ?*const CERT_CONTEXT,
+            validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT,
+        ) callconv(.winapi) HRESULT,
+        Sign: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            certificate: ?*const CERT_CONTEXT,
+            signingOptions: ?*IOpcSigningOptions,
+            digitalSignature: ?*?*IOpcDigitalSignature,
+        ) callconv(.winapi) HRESULT,
+        ReplaceSignatureXml: *const fn(
+            self: *const IOpcDigitalSignatureManager,
+            signaturePartName: ?*IOpcPartUri,
+            newSignatureXml: ?*const u8,
+            count: u32,
+            digitalSignature: ?*?*IOpcDigitalSignature,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSignatureOriginPartName(self, signatureOriginPartName);
+    }
+    pub fn SetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSignatureOriginPartName(self, signatureOriginPartName);
+    }
+    pub fn GetSignatureEnumerator(self: *const IOpcDigitalSignatureManager, signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSignatureEnumerator(self, signatureEnumerator);
+    }
+    pub fn RemoveSignature(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveSignature(self, signaturePartName);
+    }
+    pub fn CreateSigningOptions(self: *const IOpcDigitalSignatureManager, signingOptions: ?*?*IOpcSigningOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateSigningOptions(self, signingOptions);
+    }
+    pub fn Validate(self: *const IOpcDigitalSignatureManager, signature: ?*IOpcDigitalSignature, certificate: ?*const CERT_CONTEXT, validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.Validate(self, signature, certificate, validationResult);
+    }
+    pub fn Sign(self: *const IOpcDigitalSignatureManager, certificate: ?*const CERT_CONTEXT, signingOptions: ?*IOpcSigningOptions, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.@"inline") HRESULT {
+        return self.vtable.Sign(self, certificate, signingOptions, digitalSignature);
+    }
+    pub fn ReplaceSignatureXml(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri, newSignatureXml: ?*const u8, count: u32, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.@"inline") HRESULT {
+        return self.vtable.ReplaceSignatureXml(self, signaturePartName, newSignatureXml, count, digitalSignature);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcFactory_Value = Guid.initString("6d0b4446-cd73-4ab3-94f4-8ccdf6116154");
+pub const IID_IOpcFactory = &IID_IOpcFactory_Value;
+pub const IOpcFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreatePackageRootUri: *const fn(
+            self: *const IOpcFactory,
+            rootUri: ?*?*IOpcUri,
+        ) callconv(.winapi) HRESULT,
+        CreatePartUri: *const fn(
+            self: *const IOpcFactory,
+            pwzUri: ?[*:0]const u16,
+            partUri: ?*?*IOpcPartUri,
+        ) callconv(.winapi) HRESULT,
+        CreateStreamOnFile: *const fn(
+            self: *const IOpcFactory,
+            filename: ?[*:0]const u16,
+            ioMode: OPC_STREAM_IO_MODE,
+            securityAttributes: ?*SECURITY_ATTRIBUTES,
+            dwFlagsAndAttributes: u32,
+            stream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+        CreatePackage: *const fn(
+            self: *const IOpcFactory,
+            package: ?*?*IOpcPackage,
+        ) callconv(.winapi) HRESULT,
+        ReadPackageFromStream: *const fn(
+            self: *const IOpcFactory,
+            stream: ?*IStream,
+            flags: OPC_READ_FLAGS,
+            package: ?*?*IOpcPackage,
+        ) callconv(.winapi) HRESULT,
+        WritePackageToStream: *const fn(
+            self: *const IOpcFactory,
+            package: ?*IOpcPackage,
+            flags: OPC_WRITE_FLAGS,
+            stream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        CreateDigitalSignatureManager: *const fn(
+            self: *const IOpcFactory,
+            package: ?*IOpcPackage,
+            signatureManager: ?*?*IOpcDigitalSignatureManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreatePackageRootUri(self: *const IOpcFactory, rootUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePackageRootUri(self, rootUri);
+    }
+    pub fn CreatePartUri(self: *const IOpcFactory, pwzUri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePartUri(self, pwzUri, partUri);
+    }
+    pub fn CreateStreamOnFile(self: *const IOpcFactory, filename: ?[*:0]const u16, ioMode: OPC_STREAM_IO_MODE, securityAttributes: ?*SECURITY_ATTRIBUTES, dwFlagsAndAttributes: u32, stream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateStreamOnFile(self, filename, ioMode, securityAttributes, dwFlagsAndAttributes, stream);
+    }
+    pub fn CreatePackage(self: *const IOpcFactory, package: ?*?*IOpcPackage) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePackage(self, package);
+    }
+    pub fn ReadPackageFromStream(self: *const IOpcFactory, stream: ?*IStream, flags: OPC_READ_FLAGS, package: ?*?*IOpcPackage) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadPackageFromStream(self, stream, flags, package);
+    }
+    pub fn WritePackageToStream(self: *const IOpcFactory, package: ?*IOpcPackage, flags: OPC_WRITE_FLAGS, stream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.WritePackageToStream(self, package, flags, stream);
+    }
+    pub fn CreateDigitalSignatureManager(self: *const IOpcFactory, package: ?*IOpcPackage, signatureManager: ?*?*IOpcDigitalSignatureManager) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDigitalSignatureManager(self, package, signatureManager);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcPackage_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee70");
+pub const IID_IOpcPackage = &IID_IOpcPackage_Value;
+pub const IOpcPackage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPartSet: *const fn(
+            self: *const IOpcPackage,
+            partSet: ?*?*IOpcPartSet,
+        ) callconv(.winapi) HRESULT,
+        GetRelationshipSet: *const fn(
+            self: *const IOpcPackage,
+            relationshipSet: ?*?*IOpcRelationshipSet,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPartSet(self: *const IOpcPackage, partSet: ?*?*IOpcPartSet) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPartSet(self, partSet);
+    }
+    pub fn GetRelationshipSet(self: *const IOpcPackage, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationshipSet(self, relationshipSet);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcPart_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee71");
+pub const IID_IOpcPart = &IID_IOpcPart_Value;
+pub const IOpcPart = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRelationshipSet: *const fn(
+            self: *const IOpcPart,
+            relationshipSet: ?*?*IOpcRelationshipSet,
+        ) callconv(.winapi) HRESULT,
+        GetContentStream: *const fn(
+            self: *const IOpcPart,
+            stream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+        GetName: *const fn(
+            self: *const IOpcPart,
+            name: ?*?*IOpcPartUri,
+        ) callconv(.winapi) HRESULT,
+        GetContentType: *const fn(
+            self: *const IOpcPart,
+            contentType: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetCompressionOptions: *const fn(
+            self: *const IOpcPart,
+            compressionOptions: ?*OPC_COMPRESSION_OPTIONS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRelationshipSet(self: *const IOpcPart, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationshipSet(self, relationshipSet);
+    }
+    pub fn GetContentStream(self: *const IOpcPart, stream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentStream(self, stream);
+    }
+    pub fn GetName(self: *const IOpcPart, name: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetContentType(self: *const IOpcPart, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentType(self, contentType);
+    }
+    pub fn GetCompressionOptions(self: *const IOpcPart, compressionOptions: ?*OPC_COMPRESSION_OPTIONS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCompressionOptions(self, compressionOptions);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcPartEnumerator_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee75");
+pub const IID_IOpcPartEnumerator = &IID_IOpcPartEnumerator_Value;
+pub const IOpcPartEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcPartEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcPartEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcPartEnumerator,
+            part: ?*?*IOpcPart,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcPartEnumerator,
+            copy: ?*?*IOpcPartEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcPartEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcPartEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcPartEnumerator, part: ?*?*IOpcPart) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, part);
+    }
+    pub fn Clone(self: *const IOpcPartEnumerator, copy: ?*?*IOpcPartEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcPartSet_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee73");
+pub const IID_IOpcPartSet = &IID_IOpcPartSet_Value;
+pub const IOpcPartSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPart: *const fn(
+            self: *const IOpcPartSet,
+            name: ?*IOpcPartUri,
+            part: ?*?*IOpcPart,
+        ) callconv(.winapi) HRESULT,
+        CreatePart: *const fn(
+            self: *const IOpcPartSet,
+            name: ?*IOpcPartUri,
+            contentType: ?[*:0]const u16,
+            compressionOptions: OPC_COMPRESSION_OPTIONS,
+            part: ?*?*IOpcPart,
+        ) callconv(.winapi) HRESULT,
+        DeletePart: *const fn(
+            self: *const IOpcPartSet,
+            name: ?*IOpcPartUri,
+        ) callconv(.winapi) HRESULT,
+        PartExists: *const fn(
+            self: *const IOpcPartSet,
+            name: ?*IOpcPartUri,
+            partExists: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IOpcPartSet,
+            partEnumerator: ?*?*IOpcPartEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPart(self: *const IOpcPartSet, name: ?*IOpcPartUri, part: ?*?*IOpcPart) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPart(self, name, part);
+    }
+    pub fn CreatePart(self: *const IOpcPartSet, name: ?*IOpcPartUri, contentType: ?[*:0]const u16, compressionOptions: OPC_COMPRESSION_OPTIONS, part: ?*?*IOpcPart) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePart(self, name, contentType, compressionOptions, part);
+    }
+    pub fn DeletePart(self: *const IOpcPartSet, name: ?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePart(self, name);
+    }
+    pub fn PartExists(self: *const IOpcPartSet, name: ?*IOpcPartUri, partExists: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.PartExists(self, name, partExists);
+    }
+    pub fn GetEnumerator(self: *const IOpcPartSet, partEnumerator: ?*?*IOpcPartEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, partEnumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcPartUri_Value = Guid.initString("7d3babe7-88b2-46ba-85cb-4203cb016c87");
+pub const IID_IOpcPartUri = &IID_IOpcPartUri_Value;
+pub const IOpcPartUri = extern union {
+    pub const VTable = extern struct {
+        base: IOpcUri.VTable,
+        ComparePartUri: *const fn(
+            self: *const IOpcPartUri,
+            partUri: ?*IOpcPartUri,
+            comparisonResult: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetSourceUri: *const fn(
+            self: *const IOpcPartUri,
+            sourceUri: ?*?*IOpcUri,
+        ) callconv(.winapi) HRESULT,
+        IsRelationshipsPartUri: *const fn(
+            self: *const IOpcPartUri,
+            isRelationshipUri: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IOpcUri: IOpcUri,
+    IUri: IUri,
+    IUnknown: IUnknown,
+    pub fn ComparePartUri(self: *const IOpcPartUri, partUri: ?*IOpcPartUri, comparisonResult: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ComparePartUri(self, partUri, comparisonResult);
+    }
+    pub fn GetSourceUri(self: *const IOpcPartUri, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSourceUri(self, sourceUri);
+    }
+    pub fn IsRelationshipsPartUri(self: *const IOpcPartUri, isRelationshipUri: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsRelationshipsPartUri(self, isRelationshipUri);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcRelationship_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee72");
+pub const IID_IOpcRelationship = &IID_IOpcRelationship_Value;
+pub const IOpcRelationship = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetId: *const fn(
+            self: *const IOpcRelationship,
+            relationshipIdentifier: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetRelationshipType: *const fn(
+            self: *const IOpcRelationship,
+            relationshipType: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetSourceUri: *const fn(
+            self: *const IOpcRelationship,
+            sourceUri: ?*?*IOpcUri,
+        ) callconv(.winapi) HRESULT,
+        GetTargetUri: *const fn(
+            self: *const IOpcRelationship,
+            targetUri: ?*?*IUri,
+        ) callconv(.winapi) HRESULT,
+        GetTargetMode: *const fn(
+            self: *const IOpcRelationship,
+            targetMode: ?*OPC_URI_TARGET_MODE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetId(self: *const IOpcRelationship, relationshipIdentifier: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetId(self, relationshipIdentifier);
+    }
+    pub fn GetRelationshipType(self: *const IOpcRelationship, relationshipType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationshipType(self, relationshipType);
+    }
+    pub fn GetSourceUri(self: *const IOpcRelationship, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSourceUri(self, sourceUri);
+    }
+    pub fn GetTargetUri(self: *const IOpcRelationship, targetUri: ?*?*IUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTargetUri(self, targetUri);
+    }
+    pub fn GetTargetMode(self: *const IOpcRelationship, targetMode: ?*OPC_URI_TARGET_MODE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTargetMode(self, targetMode);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcRelationshipEnumerator_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee76");
+pub const IID_IOpcRelationshipEnumerator = &IID_IOpcRelationshipEnumerator_Value;
+pub const IOpcRelationshipEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcRelationshipEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcRelationshipEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcRelationshipEnumerator,
+            relationship: ?*?*IOpcRelationship,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcRelationshipEnumerator,
+            copy: ?*?*IOpcRelationshipEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcRelationshipEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcRelationshipEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcRelationshipEnumerator, relationship: ?*?*IOpcRelationship) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, relationship);
+    }
+    pub fn Clone(self: *const IOpcRelationshipEnumerator, copy: ?*?*IOpcRelationshipEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcRelationshipSelector_Value = Guid.initString("f8f26c7f-b28f-4899-84c8-5d5639ede75f");
+pub const IID_IOpcRelationshipSelector = &IID_IOpcRelationshipSelector_Value;
+pub const IOpcRelationshipSelector = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSelectorType: *const fn(
+            self: *const IOpcRelationshipSelector,
+            selector: ?*OPC_RELATIONSHIP_SELECTOR,
+        ) callconv(.winapi) HRESULT,
+        GetSelectionCriterion: *const fn(
+            self: *const IOpcRelationshipSelector,
+            selectionCriterion: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSelectorType(self: *const IOpcRelationshipSelector, selector: ?*OPC_RELATIONSHIP_SELECTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelectorType(self, selector);
+    }
+    pub fn GetSelectionCriterion(self: *const IOpcRelationshipSelector, selectionCriterion: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSelectionCriterion(self, selectionCriterion);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcRelationshipSelectorEnumerator_Value = Guid.initString("5e50a181-a91b-48ac-88d2-bca3d8f8c0b1");
+pub const IID_IOpcRelationshipSelectorEnumerator = &IID_IOpcRelationshipSelectorEnumerator_Value;
+pub const IOpcRelationshipSelectorEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcRelationshipSelectorEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcRelationshipSelectorEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcRelationshipSelectorEnumerator,
+            relationshipSelector: ?*?*IOpcRelationshipSelector,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcRelationshipSelectorEnumerator,
+            copy: ?*?*IOpcRelationshipSelectorEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcRelationshipSelectorEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcRelationshipSelectorEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcRelationshipSelectorEnumerator, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, relationshipSelector);
+    }
+    pub fn Clone(self: *const IOpcRelationshipSelectorEnumerator, copy: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcRelationshipSelectorSet_Value = Guid.initString("6e34c269-a4d3-47c0-b5c4-87ff2b3b6136");
+pub const IID_IOpcRelationshipSelectorSet = &IID_IOpcRelationshipSelectorSet_Value;
+pub const IOpcRelationshipSelectorSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IOpcRelationshipSelectorSet,
+            selector: OPC_RELATIONSHIP_SELECTOR,
+            selectionCriterion: ?[*:0]const u16,
+            relationshipSelector: ?*?*IOpcRelationshipSelector,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IOpcRelationshipSelectorSet,
+            relationshipSelector: ?*IOpcRelationshipSelector,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IOpcRelationshipSelectorSet,
+            relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IOpcRelationshipSelectorSet, selector: OPC_RELATIONSHIP_SELECTOR, selectionCriterion: ?[*:0]const u16, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, selector, selectionCriterion, relationshipSelector);
+    }
+    pub fn Delete(self: *const IOpcRelationshipSelectorSet, relationshipSelector: ?*IOpcRelationshipSelector) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, relationshipSelector);
+    }
+    pub fn GetEnumerator(self: *const IOpcRelationshipSelectorSet, relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, relationshipSelectorEnumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcRelationshipSet_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee74");
+pub const IID_IOpcRelationshipSet = &IID_IOpcRelationshipSet_Value;
+pub const IOpcRelationshipSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRelationship: *const fn(
+            self: *const IOpcRelationshipSet,
+            relationshipIdentifier: ?[*:0]const u16,
+            relationship: ?*?*IOpcRelationship,
+        ) callconv(.winapi) HRESULT,
+        CreateRelationship: *const fn(
+            self: *const IOpcRelationshipSet,
+            relationshipIdentifier: ?[*:0]const u16,
+            relationshipType: ?[*:0]const u16,
+            targetUri: ?*IUri,
+            targetMode: OPC_URI_TARGET_MODE,
+            relationship: ?*?*IOpcRelationship,
+        ) callconv(.winapi) HRESULT,
+        DeleteRelationship: *const fn(
+            self: *const IOpcRelationshipSet,
+            relationshipIdentifier: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        RelationshipExists: *const fn(
+            self: *const IOpcRelationshipSet,
+            relationshipIdentifier: ?[*:0]const u16,
+            relationshipExists: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IOpcRelationshipSet,
+            relationshipEnumerator: ?*?*IOpcRelationshipEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetEnumeratorForType: *const fn(
+            self: *const IOpcRelationshipSet,
+            relationshipType: ?[*:0]const u16,
+            relationshipEnumerator: ?*?*IOpcRelationshipEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetRelationshipsContentStream: *const fn(
+            self: *const IOpcRelationshipSet,
+            contents: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationship: ?*?*IOpcRelationship) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationship(self, relationshipIdentifier, relationship);
+    }
+    pub fn CreateRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipType: ?[*:0]const u16, targetUri: ?*IUri, targetMode: OPC_URI_TARGET_MODE, relationship: ?*?*IOpcRelationship) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRelationship(self, relationshipIdentifier, relationshipType, targetUri, targetMode, relationship);
+    }
+    pub fn DeleteRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteRelationship(self, relationshipIdentifier);
+    }
+    pub fn RelationshipExists(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipExists: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.RelationshipExists(self, relationshipIdentifier, relationshipExists);
+    }
+    pub fn GetEnumerator(self: *const IOpcRelationshipSet, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, relationshipEnumerator);
+    }
+    pub fn GetEnumeratorForType(self: *const IOpcRelationshipSet, relationshipType: ?[*:0]const u16, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumeratorForType(self, relationshipType, relationshipEnumerator);
+    }
+    pub fn GetRelationshipsContentStream(self: *const IOpcRelationshipSet, contents: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationshipsContentStream(self, contents);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureCustomObject_Value = Guid.initString("5d77a19e-62c1-44e7-becd-45da5ae51a56");
+pub const IID_IOpcSignatureCustomObject = &IID_IOpcSignatureCustomObject_Value;
+pub const IOpcSignatureCustomObject = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetXml: *const fn(
+            self: *const IOpcSignatureCustomObject,
+            xmlMarkup: [*]?*u8,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetXml(self: *const IOpcSignatureCustomObject, xmlMarkup: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetXml(self, xmlMarkup, count);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureCustomObjectEnumerator_Value = Guid.initString("5ee4fe1d-e1b0-4683-8079-7ea0fcf80b4c");
+pub const IID_IOpcSignatureCustomObjectEnumerator = &IID_IOpcSignatureCustomObjectEnumerator_Value;
+pub const IOpcSignatureCustomObjectEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcSignatureCustomObjectEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcSignatureCustomObjectEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcSignatureCustomObjectEnumerator,
+            customObject: ?*?*IOpcSignatureCustomObject,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcSignatureCustomObjectEnumerator,
+            copy: ?*?*IOpcSignatureCustomObjectEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcSignatureCustomObjectEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignatureCustomObjectEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignatureCustomObjectEnumerator, customObject: ?*?*IOpcSignatureCustomObject) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, customObject);
+    }
+    pub fn Clone(self: *const IOpcSignatureCustomObjectEnumerator, copy: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureCustomObjectSet_Value = Guid.initString("8f792ac5-7947-4e11-bc3d-2659ff046ae1");
+pub const IID_IOpcSignatureCustomObjectSet = &IID_IOpcSignatureCustomObjectSet_Value;
+pub const IOpcSignatureCustomObjectSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IOpcSignatureCustomObjectSet,
+            xmlMarkup: [*:0]const u8,
+            count: u32,
+            customObject: ?*?*IOpcSignatureCustomObject,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IOpcSignatureCustomObjectSet,
+            customObject: ?*IOpcSignatureCustomObject,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IOpcSignatureCustomObjectSet,
+            customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IOpcSignatureCustomObjectSet, xmlMarkup: [*:0]const u8, count: u32, customObject: ?*?*IOpcSignatureCustomObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, xmlMarkup, count, customObject);
+    }
+    pub fn Delete(self: *const IOpcSignatureCustomObjectSet, customObject: ?*IOpcSignatureCustomObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, customObject);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignatureCustomObjectSet, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, customObjectEnumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignaturePartReference_Value = Guid.initString("e24231ca-59f4-484e-b64b-36eeda36072c");
+pub const IID_IOpcSignaturePartReference = &IID_IOpcSignaturePartReference_Value;
+pub const IOpcSignaturePartReference = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPartName: *const fn(
+            self: *const IOpcSignaturePartReference,
+            partName: ?*?*IOpcPartUri,
+        ) callconv(.winapi) HRESULT,
+        GetContentType: *const fn(
+            self: *const IOpcSignaturePartReference,
+            contentType: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDigestMethod: *const fn(
+            self: *const IOpcSignaturePartReference,
+            digestMethod: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDigestValue: *const fn(
+            self: *const IOpcSignaturePartReference,
+            digestValue: [*]?*u8,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetTransformMethod: *const fn(
+            self: *const IOpcSignaturePartReference,
+            transformMethod: ?*OPC_CANONICALIZATION_METHOD,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPartName(self: *const IOpcSignaturePartReference, partName: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPartName(self, partName);
+    }
+    pub fn GetContentType(self: *const IOpcSignaturePartReference, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentType(self, contentType);
+    }
+    pub fn GetDigestMethod(self: *const IOpcSignaturePartReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDigestMethod(self, digestMethod);
+    }
+    pub fn GetDigestValue(self: *const IOpcSignaturePartReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDigestValue(self, digestValue, count);
+    }
+    pub fn GetTransformMethod(self: *const IOpcSignaturePartReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransformMethod(self, transformMethod);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignaturePartReferenceEnumerator_Value = Guid.initString("80eb1561-8c77-49cf-8266-459b356ee99a");
+pub const IID_IOpcSignaturePartReferenceEnumerator = &IID_IOpcSignaturePartReferenceEnumerator_Value;
+pub const IOpcSignaturePartReferenceEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcSignaturePartReferenceEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcSignaturePartReferenceEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcSignaturePartReferenceEnumerator,
+            partReference: ?*?*IOpcSignaturePartReference,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcSignaturePartReferenceEnumerator,
+            copy: ?*?*IOpcSignaturePartReferenceEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcSignaturePartReferenceEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignaturePartReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignaturePartReferenceEnumerator, partReference: ?*?*IOpcSignaturePartReference) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, partReference);
+    }
+    pub fn Clone(self: *const IOpcSignaturePartReferenceEnumerator, copy: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignaturePartReferenceSet_Value = Guid.initString("6c9fe28c-ecd9-4b22-9d36-7fdde670fec0");
+pub const IID_IOpcSignaturePartReferenceSet = &IID_IOpcSignaturePartReferenceSet_Value;
+pub const IOpcSignaturePartReferenceSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IOpcSignaturePartReferenceSet,
+            partUri: ?*IOpcPartUri,
+            digestMethod: ?[*:0]const u16,
+            transformMethod: OPC_CANONICALIZATION_METHOD,
+            partReference: ?*?*IOpcSignaturePartReference,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IOpcSignaturePartReferenceSet,
+            partReference: ?*IOpcSignaturePartReference,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IOpcSignaturePartReferenceSet,
+            partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IOpcSignaturePartReferenceSet, partUri: ?*IOpcPartUri, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, partReference: ?*?*IOpcSignaturePartReference) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, partUri, digestMethod, transformMethod, partReference);
+    }
+    pub fn Delete(self: *const IOpcSignaturePartReferenceSet, partReference: ?*IOpcSignaturePartReference) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, partReference);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignaturePartReferenceSet, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, partReferenceEnumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureReference_Value = Guid.initString("1b47005e-3011-4edc-be6f-0f65e5ab0342");
+pub const IID_IOpcSignatureReference = &IID_IOpcSignatureReference_Value;
+pub const IOpcSignatureReference = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetId: *const fn(
+            self: *const IOpcSignatureReference,
+            referenceId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetUri: *const fn(
+            self: *const IOpcSignatureReference,
+            referenceUri: ?*?*IUri,
+        ) callconv(.winapi) HRESULT,
+        GetType: *const fn(
+            self: *const IOpcSignatureReference,
+            type: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetTransformMethod: *const fn(
+            self: *const IOpcSignatureReference,
+            transformMethod: ?*OPC_CANONICALIZATION_METHOD,
+        ) callconv(.winapi) HRESULT,
+        GetDigestMethod: *const fn(
+            self: *const IOpcSignatureReference,
+            digestMethod: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDigestValue: *const fn(
+            self: *const IOpcSignatureReference,
+            digestValue: [*]?*u8,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetId(self: *const IOpcSignatureReference, referenceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetId(self, referenceId);
+    }
+    pub fn GetUri(self: *const IOpcSignatureReference, referenceUri: ?*?*IUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUri(self, referenceUri);
+    }
+    pub fn GetType(self: *const IOpcSignatureReference, @"type": ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, @"type");
+    }
+    pub fn GetTransformMethod(self: *const IOpcSignatureReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransformMethod(self, transformMethod);
+    }
+    pub fn GetDigestMethod(self: *const IOpcSignatureReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDigestMethod(self, digestMethod);
+    }
+    pub fn GetDigestValue(self: *const IOpcSignatureReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDigestValue(self, digestValue, count);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureReferenceEnumerator_Value = Guid.initString("cfa59a45-28b1-4868-969e-fa8097fdc12a");
+pub const IID_IOpcSignatureReferenceEnumerator = &IID_IOpcSignatureReferenceEnumerator_Value;
+pub const IOpcSignatureReferenceEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcSignatureReferenceEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcSignatureReferenceEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcSignatureReferenceEnumerator,
+            reference: ?*?*IOpcSignatureReference,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcSignatureReferenceEnumerator,
+            copy: ?*?*IOpcSignatureReferenceEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcSignatureReferenceEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignatureReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignatureReferenceEnumerator, reference: ?*?*IOpcSignatureReference) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, reference);
+    }
+    pub fn Clone(self: *const IOpcSignatureReferenceEnumerator, copy: ?*?*IOpcSignatureReferenceEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureReferenceSet_Value = Guid.initString("f3b02d31-ab12-42dd-9e2f-2b16761c3c1e");
+pub const IID_IOpcSignatureReferenceSet = &IID_IOpcSignatureReferenceSet_Value;
+pub const IOpcSignatureReferenceSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IOpcSignatureReferenceSet,
+            referenceUri: ?*IUri,
+            referenceId: ?[*:0]const u16,
+            type: ?[*:0]const u16,
+            digestMethod: ?[*:0]const u16,
+            transformMethod: OPC_CANONICALIZATION_METHOD,
+            reference: ?*?*IOpcSignatureReference,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IOpcSignatureReferenceSet,
+            reference: ?*IOpcSignatureReference,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IOpcSignatureReferenceSet,
+            referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IOpcSignatureReferenceSet, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, @"type": ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?*?*IOpcSignatureReference) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, referenceUri, referenceId, @"type", digestMethod, transformMethod, reference);
+    }
+    pub fn Delete(self: *const IOpcSignatureReferenceSet, reference: ?*IOpcSignatureReference) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, reference);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignatureReferenceSet, referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, referenceEnumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureRelationshipReference_Value = Guid.initString("57babac6-9d4a-4e50-8b86-e5d4051eae7c");
+pub const IID_IOpcSignatureRelationshipReference = &IID_IOpcSignatureRelationshipReference_Value;
+pub const IOpcSignatureRelationshipReference = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSourceUri: *const fn(
+            self: *const IOpcSignatureRelationshipReference,
+            sourceUri: ?*?*IOpcUri,
+        ) callconv(.winapi) HRESULT,
+        GetDigestMethod: *const fn(
+            self: *const IOpcSignatureRelationshipReference,
+            digestMethod: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDigestValue: *const fn(
+            self: *const IOpcSignatureRelationshipReference,
+            digestValue: [*]?*u8,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetTransformMethod: *const fn(
+            self: *const IOpcSignatureRelationshipReference,
+            transformMethod: ?*OPC_CANONICALIZATION_METHOD,
+        ) callconv(.winapi) HRESULT,
+        GetRelationshipSigningOption: *const fn(
+            self: *const IOpcSignatureRelationshipReference,
+            relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION,
+        ) callconv(.winapi) HRESULT,
+        GetRelationshipSelectorEnumerator: *const fn(
+            self: *const IOpcSignatureRelationshipReference,
+            selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSourceUri(self: *const IOpcSignatureRelationshipReference, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSourceUri(self, sourceUri);
+    }
+    pub fn GetDigestMethod(self: *const IOpcSignatureRelationshipReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDigestMethod(self, digestMethod);
+    }
+    pub fn GetDigestValue(self: *const IOpcSignatureRelationshipReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDigestValue(self, digestValue, count);
+    }
+    pub fn GetTransformMethod(self: *const IOpcSignatureRelationshipReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransformMethod(self, transformMethod);
+    }
+    pub fn GetRelationshipSigningOption(self: *const IOpcSignatureRelationshipReference, relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationshipSigningOption(self, relationshipSigningOption);
+    }
+    pub fn GetRelationshipSelectorEnumerator(self: *const IOpcSignatureRelationshipReference, selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationshipSelectorEnumerator(self, selectorEnumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureRelationshipReferenceEnumerator_Value = Guid.initString("773ba3e4-f021-48e4-aa04-9816db5d3495");
+pub const IID_IOpcSignatureRelationshipReferenceEnumerator = &IID_IOpcSignatureRelationshipReferenceEnumerator_Value;
+pub const IOpcSignatureRelationshipReferenceEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        MoveNext: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MovePrevious: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceEnumerator,
+            hasPrevious: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceEnumerator,
+            relationshipReference: ?*?*IOpcSignatureRelationshipReference,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceEnumerator,
+            copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn MoveNext(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+    pub fn MovePrevious(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MovePrevious(self, hasPrevious);
+    }
+    pub fn GetCurrent(self: *const IOpcSignatureRelationshipReferenceEnumerator, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, relationshipReference);
+    }
+    pub fn Clone(self: *const IOpcSignatureRelationshipReferenceEnumerator, copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, copy);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IOpcSignatureRelationshipReferenceSet_Value = Guid.initString("9f863ca5-3631-404c-828d-807e0715069b");
+pub const IID_IOpcSignatureRelationshipReferenceSet = &IID_IOpcSignatureRelationshipReferenceSet_Value;
+pub const IOpcSignatureRelationshipReferenceSet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceSet,
+            sourceUri: ?*IOpcUri,
+            digestMethod: ?[*:0]const u16,
+            relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION,
+            selectorSet: ?*IOpcRelationshipSelectorSet,
+            transformMethod: OPC_CANONICALIZATION_METHOD,
+            relationshipReference: ?*?*IOpcSignatureRelationshipReference,
+        ) callconv(.winapi) HRESULT,
+        CreateRelationshipSelectorSet: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceSet,
+            selectorSet: ?*?*IOpcRelationshipSelectorSet,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceSet,
+            relationshipReference: ?*IOpcSignatureRelationshipReference,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IOpcSignatureRelationshipReferenceSet,
+            relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IOpcSignatureRelationshipReferenceSet, sourceUri: ?*IOpcUri, digestMethod: ?[*:0]const u16, relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION, selectorSet: ?*IOpcRelationshipSelectorSet, transformMethod: OPC_CANONICALIZATION_METHOD, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, sourceUri, digestMethod, relationshipSigningOption, selectorSet, transformMethod, relationshipReference);
+    }
+    pub fn CreateRelationshipSelectorSet(self: *const IOpcSignatureRelationshipReferenceSet, selectorSet: ?*?*IOpcRelationshipSelectorSet) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRelationshipSelectorSet(self, selectorSet);
+    }
+    pub fn Delete(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReference: ?*IOpcSignatureRelationshipReference) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, relationshipReference);
+    }
+    pub fn GetEnumerator(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, relationshipReferenceEnumerator);
     }
 };
 
@@ -1100,637 +1539,198 @@ pub const IOpcSigningOptions = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcDigitalSignatureManager_Value = Guid.initString("d5e62a0b-696d-462f-94df-72e33cef2659");
-pub const IID_IOpcDigitalSignatureManager = &IID_IOpcDigitalSignatureManager_Value;
-pub const IOpcDigitalSignatureManager = extern union {
+const IID_IOpcUri_Value = Guid.initString("bc9c1b9b-d62c-49eb-aef0-3b4e0b28ebed");
+pub const IID_IOpcUri = &IID_IOpcUri_Value;
+pub const IOpcUri = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSignatureOriginPartName: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            signatureOriginPartName: ?*?*IOpcPartUri,
+        base: IUri.VTable,
+        GetRelationshipsPartUri: *const fn(
+            self: *const IOpcUri,
+            relationshipPartUri: ?*?*IOpcPartUri,
         ) callconv(.winapi) HRESULT,
-        SetSignatureOriginPartName: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            signatureOriginPartName: ?*IOpcPartUri,
+        GetRelativeUri: *const fn(
+            self: *const IOpcUri,
+            targetPartUri: ?*IOpcPartUri,
+            relativeUri: ?*?*IUri,
         ) callconv(.winapi) HRESULT,
-        GetSignatureEnumerator: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator,
-        ) callconv(.winapi) HRESULT,
-        RemoveSignature: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            signaturePartName: ?*IOpcPartUri,
-        ) callconv(.winapi) HRESULT,
-        CreateSigningOptions: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            signingOptions: ?*?*IOpcSigningOptions,
-        ) callconv(.winapi) HRESULT,
-        Validate: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            signature: ?*IOpcDigitalSignature,
-            certificate: ?*const CERT_CONTEXT,
-            validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT,
-        ) callconv(.winapi) HRESULT,
-        Sign: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            certificate: ?*const CERT_CONTEXT,
-            signingOptions: ?*IOpcSigningOptions,
-            digitalSignature: ?*?*IOpcDigitalSignature,
-        ) callconv(.winapi) HRESULT,
-        ReplaceSignatureXml: *const fn(
-            self: *const IOpcDigitalSignatureManager,
-            signaturePartName: ?*IOpcPartUri,
-            newSignatureXml: ?*const u8,
-            count: u32,
-            digitalSignature: ?*?*IOpcDigitalSignature,
+        CombinePartUri: *const fn(
+            self: *const IOpcUri,
+            relativeUri: ?*IUri,
+            combinedUri: ?*?*IOpcPartUri,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IUri: IUri,
     IUnknown: IUnknown,
-    pub fn GetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSignatureOriginPartName(self, signatureOriginPartName);
+    pub fn GetRelationshipsPartUri(self: *const IOpcUri, relationshipPartUri: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelationshipsPartUri(self, relationshipPartUri);
     }
-    pub fn SetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSignatureOriginPartName(self, signatureOriginPartName);
+    pub fn GetRelativeUri(self: *const IOpcUri, targetPartUri: ?*IOpcPartUri, relativeUri: ?*?*IUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRelativeUri(self, targetPartUri, relativeUri);
     }
-    pub fn GetSignatureEnumerator(self: *const IOpcDigitalSignatureManager, signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSignatureEnumerator(self, signatureEnumerator);
-    }
-    pub fn RemoveSignature(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveSignature(self, signaturePartName);
-    }
-    pub fn CreateSigningOptions(self: *const IOpcDigitalSignatureManager, signingOptions: ?*?*IOpcSigningOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateSigningOptions(self, signingOptions);
-    }
-    pub fn Validate(self: *const IOpcDigitalSignatureManager, signature: ?*IOpcDigitalSignature, certificate: ?*const CERT_CONTEXT, validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.Validate(self, signature, certificate, validationResult);
-    }
-    pub fn Sign(self: *const IOpcDigitalSignatureManager, certificate: ?*const CERT_CONTEXT, signingOptions: ?*IOpcSigningOptions, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.@"inline") HRESULT {
-        return self.vtable.Sign(self, certificate, signingOptions, digitalSignature);
-    }
-    pub fn ReplaceSignatureXml(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri, newSignatureXml: ?*const u8, count: u32, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.@"inline") HRESULT {
-        return self.vtable.ReplaceSignatureXml(self, signaturePartName, newSignatureXml, count, digitalSignature);
+    pub fn CombinePartUri(self: *const IOpcUri, relativeUri: ?*IUri, combinedUri: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
+        return self.vtable.CombinePartUri(self, relativeUri, combinedUri);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignaturePartReferenceEnumerator_Value = Guid.initString("80eb1561-8c77-49cf-8266-459b356ee99a");
-pub const IID_IOpcSignaturePartReferenceEnumerator = &IID_IOpcSignaturePartReferenceEnumerator_Value;
-pub const IOpcSignaturePartReferenceEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcSignaturePartReferenceEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcSignaturePartReferenceEnumerator,
-            hasPrevious: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcSignaturePartReferenceEnumerator,
-            partReference: ?*?*IOpcSignaturePartReference,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcSignaturePartReferenceEnumerator,
-            copy: ?*?*IOpcSignaturePartReferenceEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignaturePartReferenceEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-    pub fn MovePrevious(self: *const IOpcSignaturePartReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
-    }
-    pub fn GetCurrent(self: *const IOpcSignaturePartReferenceEnumerator, partReference: ?*?*IOpcSignaturePartReference) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, partReference);
-    }
-    pub fn Clone(self: *const IOpcSignaturePartReferenceEnumerator, copy: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
+pub const OPC_CANONICALIZATION_METHOD = enum(i32) {
+    NONE = 0,
+    C14N = 1,
+    C14N_WITH_COMMENTS = 2,
 };
+pub const OPC_CANONICALIZATION_NONE = OPC_CANONICALIZATION_METHOD.NONE;
+pub const OPC_CANONICALIZATION_C14N = OPC_CANONICALIZATION_METHOD.C14N;
+pub const OPC_CANONICALIZATION_C14N_WITH_COMMENTS = OPC_CANONICALIZATION_METHOD.C14N_WITH_COMMENTS;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureRelationshipReferenceEnumerator_Value = Guid.initString("773ba3e4-f021-48e4-aa04-9816db5d3495");
-pub const IID_IOpcSignatureRelationshipReferenceEnumerator = &IID_IOpcSignatureRelationshipReferenceEnumerator_Value;
-pub const IOpcSignatureRelationshipReferenceEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceEnumerator,
-            hasPrevious: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceEnumerator,
-            relationshipReference: ?*?*IOpcSignatureRelationshipReference,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceEnumerator,
-            copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-    pub fn MovePrevious(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
-    }
-    pub fn GetCurrent(self: *const IOpcSignatureRelationshipReferenceEnumerator, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, relationshipReference);
-    }
-    pub fn Clone(self: *const IOpcSignatureRelationshipReferenceEnumerator, copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
+pub const OPC_CERTIFICATE_EMBEDDING_OPTION = enum(i32) {
+    IN_CERTIFICATE_PART = 0,
+    IN_SIGNATURE_PART = 1,
+    NOT_EMBEDDED = 2,
 };
+pub const OPC_CERTIFICATE_IN_CERTIFICATE_PART = OPC_CERTIFICATE_EMBEDDING_OPTION.IN_CERTIFICATE_PART;
+pub const OPC_CERTIFICATE_IN_SIGNATURE_PART = OPC_CERTIFICATE_EMBEDDING_OPTION.IN_SIGNATURE_PART;
+pub const OPC_CERTIFICATE_NOT_EMBEDDED = OPC_CERTIFICATE_EMBEDDING_OPTION.NOT_EMBEDDED;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSelectorEnumerator_Value = Guid.initString("5e50a181-a91b-48ac-88d2-bca3d8f8c0b1");
-pub const IID_IOpcRelationshipSelectorEnumerator = &IID_IOpcRelationshipSelectorEnumerator_Value;
-pub const IOpcRelationshipSelectorEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcRelationshipSelectorEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcRelationshipSelectorEnumerator,
-            hasPrevious: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcRelationshipSelectorEnumerator,
-            relationshipSelector: ?*?*IOpcRelationshipSelector,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcRelationshipSelectorEnumerator,
-            copy: ?*?*IOpcRelationshipSelectorEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcRelationshipSelectorEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-    pub fn MovePrevious(self: *const IOpcRelationshipSelectorEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
-    }
-    pub fn GetCurrent(self: *const IOpcRelationshipSelectorEnumerator, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, relationshipSelector);
-    }
-    pub fn Clone(self: *const IOpcRelationshipSelectorEnumerator, copy: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
+pub const OPC_COMPRESSION_OPTIONS = enum(i32) {
+    NONE = -1,
+    NORMAL = 0,
+    MAXIMUM = 1,
+    FAST = 2,
+    SUPERFAST = 3,
 };
+pub const OPC_COMPRESSION_NONE = OPC_COMPRESSION_OPTIONS.NONE;
+pub const OPC_COMPRESSION_NORMAL = OPC_COMPRESSION_OPTIONS.NORMAL;
+pub const OPC_COMPRESSION_MAXIMUM = OPC_COMPRESSION_OPTIONS.MAXIMUM;
+pub const OPC_COMPRESSION_FAST = OPC_COMPRESSION_OPTIONS.FAST;
+pub const OPC_COMPRESSION_SUPERFAST = OPC_COMPRESSION_OPTIONS.SUPERFAST;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureReferenceEnumerator_Value = Guid.initString("cfa59a45-28b1-4868-969e-fa8097fdc12a");
-pub const IID_IOpcSignatureReferenceEnumerator = &IID_IOpcSignatureReferenceEnumerator_Value;
-pub const IOpcSignatureReferenceEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcSignatureReferenceEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcSignatureReferenceEnumerator,
-            hasPrevious: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcSignatureReferenceEnumerator,
-            reference: ?*?*IOpcSignatureReference,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcSignatureReferenceEnumerator,
-            copy: ?*?*IOpcSignatureReferenceEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignatureReferenceEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-    pub fn MovePrevious(self: *const IOpcSignatureReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
-    }
-    pub fn GetCurrent(self: *const IOpcSignatureReferenceEnumerator, reference: ?*?*IOpcSignatureReference) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, reference);
-    }
-    pub fn Clone(self: *const IOpcSignatureReferenceEnumerator, copy: ?*?*IOpcSignatureReferenceEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
+pub const OPC_READ_FLAGS = packed struct(u32) {
+    VALIDATE_ON_LOAD: u1 = 0,
+    CACHE_ON_ACCESS: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
+pub const OPC_READ_DEFAULT = OPC_READ_FLAGS{ };
+pub const OPC_VALIDATE_ON_LOAD = OPC_READ_FLAGS{ .VALIDATE_ON_LOAD = 1 };
+pub const OPC_CACHE_ON_ACCESS = OPC_READ_FLAGS{ .CACHE_ON_ACCESS = 1 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureCustomObjectEnumerator_Value = Guid.initString("5ee4fe1d-e1b0-4683-8079-7ea0fcf80b4c");
-pub const IID_IOpcSignatureCustomObjectEnumerator = &IID_IOpcSignatureCustomObjectEnumerator_Value;
-pub const IOpcSignatureCustomObjectEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcSignatureCustomObjectEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcSignatureCustomObjectEnumerator,
-            hasPrevious: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcSignatureCustomObjectEnumerator,
-            customObject: ?*?*IOpcSignatureCustomObject,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcSignatureCustomObjectEnumerator,
-            copy: ?*?*IOpcSignatureCustomObjectEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignatureCustomObjectEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-    pub fn MovePrevious(self: *const IOpcSignatureCustomObjectEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
-    }
-    pub fn GetCurrent(self: *const IOpcSignatureCustomObjectEnumerator, customObject: ?*?*IOpcSignatureCustomObject) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, customObject);
-    }
-    pub fn Clone(self: *const IOpcSignatureCustomObjectEnumerator, copy: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
+pub const OPC_RELATIONSHIP_SELECTOR = enum(i32) {
+    ID = 0,
+    TYPE = 1,
 };
+pub const OPC_RELATIONSHIP_SELECT_BY_ID = OPC_RELATIONSHIP_SELECTOR.ID;
+pub const OPC_RELATIONSHIP_SELECT_BY_TYPE = OPC_RELATIONSHIP_SELECTOR.TYPE;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcCertificateEnumerator_Value = Guid.initString("85131937-8f24-421f-b439-59ab24d140b8");
-pub const IID_IOpcCertificateEnumerator = &IID_IOpcCertificateEnumerator_Value;
-pub const IOpcCertificateEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcCertificateEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcCertificateEnumerator,
-            hasPrevious: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcCertificateEnumerator,
-            certificate: ?*const ?*CERT_CONTEXT,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcCertificateEnumerator,
-            copy: ?*?*IOpcCertificateEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcCertificateEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-    pub fn MovePrevious(self: *const IOpcCertificateEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
-    }
-    pub fn GetCurrent(self: *const IOpcCertificateEnumerator, certificate: ?*const ?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, certificate);
-    }
-    pub fn Clone(self: *const IOpcCertificateEnumerator, copy: ?*?*IOpcCertificateEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
+pub const OPC_RELATIONSHIPS_SIGNING_OPTION = enum(i32) {
+    USING_SELECTORS = 0,
+    PART = 1,
 };
+pub const OPC_RELATIONSHIP_SIGN_USING_SELECTORS = OPC_RELATIONSHIPS_SIGNING_OPTION.USING_SELECTORS;
+pub const OPC_RELATIONSHIP_SIGN_PART = OPC_RELATIONSHIPS_SIGNING_OPTION.PART;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcDigitalSignatureEnumerator_Value = Guid.initString("967b6882-0ba3-4358-b9e7-b64c75063c5e");
-pub const IID_IOpcDigitalSignatureEnumerator = &IID_IOpcDigitalSignatureEnumerator_Value;
-pub const IOpcDigitalSignatureEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        MoveNext: *const fn(
-            self: *const IOpcDigitalSignatureEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MovePrevious: *const fn(
-            self: *const IOpcDigitalSignatureEnumerator,
-            hasPrevious: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetCurrent: *const fn(
-            self: *const IOpcDigitalSignatureEnumerator,
-            digitalSignature: ?*?*IOpcDigitalSignature,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IOpcDigitalSignatureEnumerator,
-            copy: ?*?*IOpcDigitalSignatureEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcDigitalSignatureEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-    pub fn MovePrevious(self: *const IOpcDigitalSignatureEnumerator, hasPrevious: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MovePrevious(self, hasPrevious);
-    }
-    pub fn GetCurrent(self: *const IOpcDigitalSignatureEnumerator, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, digitalSignature);
-    }
-    pub fn Clone(self: *const IOpcDigitalSignatureEnumerator, copy: ?*?*IOpcDigitalSignatureEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, copy);
-    }
+pub const OPC_SIGNATURE_TIME_FORMAT = enum(i32) {
+    MILLISECONDS = 0,
+    SECONDS = 1,
+    MINUTES = 2,
+    DAYS = 3,
+    MONTHS = 4,
+    YEARS = 5,
 };
+pub const OPC_SIGNATURE_TIME_FORMAT_MILLISECONDS = OPC_SIGNATURE_TIME_FORMAT.MILLISECONDS;
+pub const OPC_SIGNATURE_TIME_FORMAT_SECONDS = OPC_SIGNATURE_TIME_FORMAT.SECONDS;
+pub const OPC_SIGNATURE_TIME_FORMAT_MINUTES = OPC_SIGNATURE_TIME_FORMAT.MINUTES;
+pub const OPC_SIGNATURE_TIME_FORMAT_DAYS = OPC_SIGNATURE_TIME_FORMAT.DAYS;
+pub const OPC_SIGNATURE_TIME_FORMAT_MONTHS = OPC_SIGNATURE_TIME_FORMAT.MONTHS;
+pub const OPC_SIGNATURE_TIME_FORMAT_YEARS = OPC_SIGNATURE_TIME_FORMAT.YEARS;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignaturePartReferenceSet_Value = Guid.initString("6c9fe28c-ecd9-4b22-9d36-7fdde670fec0");
-pub const IID_IOpcSignaturePartReferenceSet = &IID_IOpcSignaturePartReferenceSet_Value;
-pub const IOpcSignaturePartReferenceSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IOpcSignaturePartReferenceSet,
-            partUri: ?*IOpcPartUri,
-            digestMethod: ?[*:0]const u16,
-            transformMethod: OPC_CANONICALIZATION_METHOD,
-            partReference: ?*?*IOpcSignaturePartReference,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IOpcSignaturePartReferenceSet,
-            partReference: ?*IOpcSignaturePartReference,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcSignaturePartReferenceSet,
-            partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignaturePartReferenceSet, partUri: ?*IOpcPartUri, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, partReference: ?*?*IOpcSignaturePartReference) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, partUri, digestMethod, transformMethod, partReference);
-    }
-    pub fn Delete(self: *const IOpcSignaturePartReferenceSet, partReference: ?*IOpcSignaturePartReference) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, partReference);
-    }
-    pub fn GetEnumerator(self: *const IOpcSignaturePartReferenceSet, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, partReferenceEnumerator);
-    }
+pub const OPC_SIGNATURE_VALIDATION_RESULT = enum(i32) {
+    VALID = 0,
+    INVALID = -1,
 };
+pub const OPC_SIGNATURE_VALID = OPC_SIGNATURE_VALIDATION_RESULT.VALID;
+pub const OPC_SIGNATURE_INVALID = OPC_SIGNATURE_VALIDATION_RESULT.INVALID;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureRelationshipReferenceSet_Value = Guid.initString("9f863ca5-3631-404c-828d-807e0715069b");
-pub const IID_IOpcSignatureRelationshipReferenceSet = &IID_IOpcSignatureRelationshipReferenceSet_Value;
-pub const IOpcSignatureRelationshipReferenceSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceSet,
-            sourceUri: ?*IOpcUri,
-            digestMethod: ?[*:0]const u16,
-            relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION,
-            selectorSet: ?*IOpcRelationshipSelectorSet,
-            transformMethod: OPC_CANONICALIZATION_METHOD,
-            relationshipReference: ?*?*IOpcSignatureRelationshipReference,
-        ) callconv(.winapi) HRESULT,
-        CreateRelationshipSelectorSet: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceSet,
-            selectorSet: ?*?*IOpcRelationshipSelectorSet,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceSet,
-            relationshipReference: ?*IOpcSignatureRelationshipReference,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcSignatureRelationshipReferenceSet,
-            relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignatureRelationshipReferenceSet, sourceUri: ?*IOpcUri, digestMethod: ?[*:0]const u16, relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION, selectorSet: ?*IOpcRelationshipSelectorSet, transformMethod: OPC_CANONICALIZATION_METHOD, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, sourceUri, digestMethod, relationshipSigningOption, selectorSet, transformMethod, relationshipReference);
-    }
-    pub fn CreateRelationshipSelectorSet(self: *const IOpcSignatureRelationshipReferenceSet, selectorSet: ?*?*IOpcRelationshipSelectorSet) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRelationshipSelectorSet(self, selectorSet);
-    }
-    pub fn Delete(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReference: ?*IOpcSignatureRelationshipReference) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, relationshipReference);
-    }
-    pub fn GetEnumerator(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, relationshipReferenceEnumerator);
-    }
+pub const OPC_STREAM_IO_MODE = enum(i32) {
+    READ = 1,
+    WRITE = 2,
 };
+pub const OPC_STREAM_IO_READ = OPC_STREAM_IO_MODE.READ;
+pub const OPC_STREAM_IO_WRITE = OPC_STREAM_IO_MODE.WRITE;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSelectorSet_Value = Guid.initString("6e34c269-a4d3-47c0-b5c4-87ff2b3b6136");
-pub const IID_IOpcRelationshipSelectorSet = &IID_IOpcRelationshipSelectorSet_Value;
-pub const IOpcRelationshipSelectorSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IOpcRelationshipSelectorSet,
-            selector: OPC_RELATIONSHIP_SELECTOR,
-            selectionCriterion: ?[*:0]const u16,
-            relationshipSelector: ?*?*IOpcRelationshipSelector,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IOpcRelationshipSelectorSet,
-            relationshipSelector: ?*IOpcRelationshipSelector,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcRelationshipSelectorSet,
-            relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcRelationshipSelectorSet, selector: OPC_RELATIONSHIP_SELECTOR, selectionCriterion: ?[*:0]const u16, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, selector, selectionCriterion, relationshipSelector);
-    }
-    pub fn Delete(self: *const IOpcRelationshipSelectorSet, relationshipSelector: ?*IOpcRelationshipSelector) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, relationshipSelector);
-    }
-    pub fn GetEnumerator(self: *const IOpcRelationshipSelectorSet, relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, relationshipSelectorEnumerator);
-    }
+pub const OPC_URI_TARGET_MODE = enum(i32) {
+    INTERNAL = 0,
+    EXTERNAL = 1,
 };
+pub const OPC_URI_TARGET_MODE_INTERNAL = OPC_URI_TARGET_MODE.INTERNAL;
+pub const OPC_URI_TARGET_MODE_EXTERNAL = OPC_URI_TARGET_MODE.EXTERNAL;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureReferenceSet_Value = Guid.initString("f3b02d31-ab12-42dd-9e2f-2b16761c3c1e");
-pub const IID_IOpcSignatureReferenceSet = &IID_IOpcSignatureReferenceSet_Value;
-pub const IOpcSignatureReferenceSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IOpcSignatureReferenceSet,
-            referenceUri: ?*IUri,
-            referenceId: ?[*:0]const u16,
-            type: ?[*:0]const u16,
-            digestMethod: ?[*:0]const u16,
-            transformMethod: OPC_CANONICALIZATION_METHOD,
-            reference: ?*?*IOpcSignatureReference,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IOpcSignatureReferenceSet,
-            reference: ?*IOpcSignatureReference,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcSignatureReferenceSet,
-            referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignatureReferenceSet, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, @"type": ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?*?*IOpcSignatureReference) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, referenceUri, referenceId, @"type", digestMethod, transformMethod, reference);
-    }
-    pub fn Delete(self: *const IOpcSignatureReferenceSet, reference: ?*IOpcSignatureReference) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, reference);
-    }
-    pub fn GetEnumerator(self: *const IOpcSignatureReferenceSet, referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, referenceEnumerator);
-    }
+pub const OPC_WRITE_FLAGS = packed struct(u32) {
+    FORCE_ZIP32: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
+pub const OPC_WRITE_DEFAULT = OPC_WRITE_FLAGS{ };
+pub const OPC_WRITE_FORCE_ZIP32 = OPC_WRITE_FLAGS{ .FORCE_ZIP32 = 1 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureCustomObjectSet_Value = Guid.initString("8f792ac5-7947-4e11-bc3d-2659ff046ae1");
-pub const IID_IOpcSignatureCustomObjectSet = &IID_IOpcSignatureCustomObjectSet_Value;
-pub const IOpcSignatureCustomObjectSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IOpcSignatureCustomObjectSet,
-            xmlMarkup: [*:0]const u8,
-            count: u32,
-            customObject: ?*?*IOpcSignatureCustomObject,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IOpcSignatureCustomObjectSet,
-            customObject: ?*IOpcSignatureCustomObject,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcSignatureCustomObjectSet,
-            customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignatureCustomObjectSet, xmlMarkup: [*:0]const u8, count: u32, customObject: ?*?*IOpcSignatureCustomObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, xmlMarkup, count, customObject);
-    }
-    pub fn Delete(self: *const IOpcSignatureCustomObjectSet, customObject: ?*IOpcSignatureCustomObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, customObject);
-    }
-    pub fn GetEnumerator(self: *const IOpcSignatureCustomObjectSet, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, customObjectEnumerator);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcCertificateSet_Value = Guid.initString("56ea4325-8e2d-4167-b1a4-e486d24c8fa7");
-pub const IID_IOpcCertificateSet = &IID_IOpcCertificateSet_Value;
-pub const IOpcCertificateSet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Add: *const fn(
-            self: *const IOpcCertificateSet,
-            certificate: ?*const CERT_CONTEXT,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IOpcCertificateSet,
-            certificate: ?*const CERT_CONTEXT,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IOpcCertificateSet,
-            certificateEnumerator: ?*?*IOpcCertificateEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Add(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, certificate);
-    }
-    pub fn Remove(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, certificate);
-    }
-    pub fn GetEnumerator(self: *const IOpcCertificateSet, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, certificateEnumerator);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcFactory_Value = Guid.initString("6d0b4446-cd73-4ab3-94f4-8ccdf6116154");
-pub const IID_IOpcFactory = &IID_IOpcFactory_Value;
-pub const IOpcFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreatePackageRootUri: *const fn(
-            self: *const IOpcFactory,
-            rootUri: ?*?*IOpcUri,
-        ) callconv(.winapi) HRESULT,
-        CreatePartUri: *const fn(
-            self: *const IOpcFactory,
-            pwzUri: ?[*:0]const u16,
-            partUri: ?*?*IOpcPartUri,
-        ) callconv(.winapi) HRESULT,
-        CreateStreamOnFile: *const fn(
-            self: *const IOpcFactory,
-            filename: ?[*:0]const u16,
-            ioMode: OPC_STREAM_IO_MODE,
-            securityAttributes: ?*SECURITY_ATTRIBUTES,
-            dwFlagsAndAttributes: u32,
-            stream: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-        CreatePackage: *const fn(
-            self: *const IOpcFactory,
-            package: ?*?*IOpcPackage,
-        ) callconv(.winapi) HRESULT,
-        ReadPackageFromStream: *const fn(
-            self: *const IOpcFactory,
-            stream: ?*IStream,
-            flags: OPC_READ_FLAGS,
-            package: ?*?*IOpcPackage,
-        ) callconv(.winapi) HRESULT,
-        WritePackageToStream: *const fn(
-            self: *const IOpcFactory,
-            package: ?*IOpcPackage,
-            flags: OPC_WRITE_FLAGS,
-            stream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        CreateDigitalSignatureManager: *const fn(
-            self: *const IOpcFactory,
-            package: ?*IOpcPackage,
-            signatureManager: ?*?*IOpcDigitalSignatureManager,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreatePackageRootUri(self: *const IOpcFactory, rootUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePackageRootUri(self, rootUri);
-    }
-    pub fn CreatePartUri(self: *const IOpcFactory, pwzUri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePartUri(self, pwzUri, partUri);
-    }
-    pub fn CreateStreamOnFile(self: *const IOpcFactory, filename: ?[*:0]const u16, ioMode: OPC_STREAM_IO_MODE, securityAttributes: ?*SECURITY_ATTRIBUTES, dwFlagsAndAttributes: u32, stream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateStreamOnFile(self, filename, ioMode, securityAttributes, dwFlagsAndAttributes, stream);
-    }
-    pub fn CreatePackage(self: *const IOpcFactory, package: ?*?*IOpcPackage) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePackage(self, package);
-    }
-    pub fn ReadPackageFromStream(self: *const IOpcFactory, stream: ?*IStream, flags: OPC_READ_FLAGS, package: ?*?*IOpcPackage) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadPackageFromStream(self, stream, flags, package);
-    }
-    pub fn WritePackageToStream(self: *const IOpcFactory, package: ?*IOpcPackage, flags: OPC_WRITE_FLAGS, stream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.WritePackageToStream(self, package, flags, stream);
-    }
-    pub fn CreateDigitalSignatureManager(self: *const IOpcFactory, package: ?*IOpcPackage, signatureManager: ?*?*IOpcDigitalSignatureManager) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDigitalSignatureManager(self, package, signatureManager);
-    }
-};
+const CLSID_OpcFactory_Value = Guid.initString("6b2d6ba0-9f3e-4f27-920b-313cc426a39e");
+pub const CLSID_OpcFactory = &CLSID_OpcFactory_Value;
 
 
 //--------------------------------------------------------------------------------

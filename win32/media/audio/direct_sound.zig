@@ -2,335 +2,389 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (325)
 //--------------------------------------------------------------------------------
-pub const DIRECTSOUND_VERSION = @as(u32, 1792);
 pub const _FACDS = @as(u32, 2168);
 pub const CLSID_DirectSound = Guid.initString("47d4d946-62e8-11cf-93bc-444553540000");
 pub const CLSID_DirectSound8 = Guid.initString("3901cc3f-84b5-4fa4-ba35-aa8172b8a09b");
 pub const CLSID_DirectSoundCapture = Guid.initString("b0210780-89cd-11d0-af08-00a0c925cd16");
 pub const CLSID_DirectSoundCapture8 = Guid.initString("e4bcac13-7f99-4908-9a8e-74e3bf24b6e1");
 pub const CLSID_DirectSoundFullDuplex = Guid.initString("fea4300c-7959-4147-b26a-2377b9e7a91d");
-pub const DSDEVID_DefaultPlayback = Guid.initString("def00000-9c6d-47ed-aaf1-4dda8f2b5c03");
-pub const DSDEVID_DefaultCapture = Guid.initString("def00001-9c6d-47ed-aaf1-4dda8f2b5c03");
-pub const DSDEVID_DefaultVoicePlayback = Guid.initString("def00002-9c6d-47ed-aaf1-4dda8f2b5c03");
-pub const DSDEVID_DefaultVoiceCapture = Guid.initString("def00003-9c6d-47ed-aaf1-4dda8f2b5c03");
-pub const DSFX_LOCHARDWARE = @as(u32, 1);
-pub const DSFX_LOCSOFTWARE = @as(u32, 2);
+pub const DIRECTSOUND_VERSION = @as(u32, 1792);
+pub const DS3D_DEFAULTCONEANGLE = @as(u32, 360);
+pub const DS3D_DEFAULTCONEOUTSIDEVOLUME = @as(u32, 0);
+pub const DS3D_DEFAULTDISTANCEFACTOR = @as(f32, 1.0);
+pub const DS3D_DEFAULTDOPPLERFACTOR = @as(f32, 1.0);
+pub const DS3D_DEFAULTMAXDISTANCE = @as(f32, 1000000000.0);
+pub const DS3D_DEFAULTMINDISTANCE = @as(f32, 1.0);
+pub const DS3D_DEFAULTROLLOFFFACTOR = @as(f32, 1.0);
+pub const DS3D_DEFERRED = @as(u32, 1);
+pub const DS3D_IMMEDIATE = @as(u32, 0);
+pub const DS3D_MAXCONEANGLE = @as(u32, 360);
+pub const DS3D_MAXDOPPLERFACTOR = @as(f32, 10.0);
+pub const DS3D_MAXROLLOFFFACTOR = @as(f32, 10.0);
+pub const DS3D_MINCONEANGLE = @as(u32, 0);
+pub const DS3D_MINDOPPLERFACTOR = @as(f32, 0.0);
+pub const DS3D_MINROLLOFFFACTOR = @as(f32, 0.0);
+pub const DS3DALG_HRTF_FULL = Guid.initString("c2413340-1c1b-11d2-94f5-00c04fc28aca");
+pub const DS3DALG_HRTF_LIGHT = Guid.initString("c2413342-1c1b-11d2-94f5-00c04fc28aca");
+pub const DS3DALG_NO_VIRTUALIZATION = Guid.initString("c241333f-1c1b-11d2-94f5-00c04fc28aca");
+pub const DS3DMODE_DISABLE = @as(u32, 2);
+pub const DS3DMODE_HEADRELATIVE = @as(u32, 1);
+pub const DS3DMODE_NORMAL = @as(u32, 0);
+pub const DS_CERTIFIED = @as(u32, 0);
+pub const DS_NO_VIRTUALIZATION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 142082058));
+pub const DS_UNCERTIFIED = @as(u32, 1);
+pub const DSBCAPS_CTRL3D = @as(u32, 16);
+pub const DSBCAPS_CTRLFREQUENCY = @as(u32, 32);
+pub const DSBCAPS_CTRLFX = @as(u32, 512);
+pub const DSBCAPS_CTRLPAN = @as(u32, 64);
+pub const DSBCAPS_CTRLPOSITIONNOTIFY = @as(u32, 256);
+pub const DSBCAPS_CTRLVOLUME = @as(u32, 128);
+pub const DSBCAPS_GETCURRENTPOSITION2 = @as(u32, 65536);
+pub const DSBCAPS_GLOBALFOCUS = @as(u32, 32768);
+pub const DSBCAPS_LOCDEFER = @as(u32, 262144);
+pub const DSBCAPS_LOCHARDWARE = @as(u32, 4);
+pub const DSBCAPS_LOCSOFTWARE = @as(u32, 8);
+pub const DSBCAPS_MUTE3DATMAXDISTANCE = @as(u32, 131072);
+pub const DSBCAPS_PRIMARYBUFFER = @as(u32, 1);
+pub const DSBCAPS_STATIC = @as(u32, 2);
+pub const DSBCAPS_STICKYFOCUS = @as(u32, 16384);
+pub const DSBCAPS_TRUEPLAYPOSITION = @as(u32, 524288);
+pub const DSBFREQUENCY_MAX = @as(u32, 200000);
+pub const DSBFREQUENCY_MIN = @as(u32, 100);
+pub const DSBFREQUENCY_ORIGINAL = @as(u32, 0);
+pub const DSBLOCK_ENTIREBUFFER = @as(u32, 2);
+pub const DSBLOCK_FROMWRITECURSOR = @as(u32, 1);
+pub const DSBNOTIFICATIONS_MAX = @as(u32, 100000);
+pub const DSBPAN_CENTER = @as(u32, 0);
+pub const DSBPAN_LEFT = @as(i32, -10000);
+pub const DSBPAN_RIGHT = @as(u32, 10000);
+pub const DSBPLAY_LOCHARDWARE = @as(u32, 2);
+pub const DSBPLAY_LOCSOFTWARE = @as(u32, 4);
+pub const DSBPLAY_LOOPING = @as(u32, 1);
+pub const DSBPLAY_TERMINATEBY_DISTANCE = @as(u64, 16);
+pub const DSBPLAY_TERMINATEBY_PRIORITY = @as(u64, 32);
+pub const DSBPLAY_TERMINATEBY_TIME = @as(u32, 8);
+pub const DSBPN_OFFSETSTOP = @as(u32, 4294967295);
+pub const DSBSIZE_FX_MIN = @as(u32, 150);
+pub const DSBSIZE_MAX = @as(u32, 268435455);
+pub const DSBSIZE_MIN = @as(u32, 4);
+pub const DSBSTATUS_BUFFERLOST = @as(u32, 2);
+pub const DSBSTATUS_LOCHARDWARE = @as(u32, 8);
+pub const DSBSTATUS_LOCSOFTWARE = @as(u32, 16);
+pub const DSBSTATUS_LOOPING = @as(u32, 4);
+pub const DSBSTATUS_PLAYING = @as(u32, 1);
+pub const DSBSTATUS_TERMINATED = @as(u32, 32);
+pub const DSBVOLUME_MAX = @as(u32, 0);
+pub const DSBVOLUME_MIN = @as(i32, -10000);
+pub const DSCAPS_CERTIFIED = @as(u32, 64);
+pub const DSCAPS_CONTINUOUSRATE = @as(u32, 16);
+pub const DSCAPS_EMULDRIVER = @as(u32, 32);
+pub const DSCAPS_PRIMARY16BIT = @as(u32, 8);
+pub const DSCAPS_PRIMARY8BIT = @as(u32, 4);
+pub const DSCAPS_PRIMARYMONO = @as(u32, 1);
+pub const DSCAPS_PRIMARYSTEREO = @as(u32, 2);
+pub const DSCAPS_SECONDARY16BIT = @as(u32, 2048);
+pub const DSCAPS_SECONDARY8BIT = @as(u32, 1024);
+pub const DSCAPS_SECONDARYMONO = @as(u32, 256);
+pub const DSCAPS_SECONDARYSTEREO = @as(u32, 512);
+pub const DSCBCAPS_CTRLFX = @as(u32, 512);
+pub const DSCBCAPS_WAVEMAPPED = @as(u32, 2147483648);
+pub const DSCBLOCK_ENTIREBUFFER = @as(u32, 1);
+pub const DSCBSTART_LOOPING = @as(u32, 1);
+pub const DSCBSTATUS_CAPTURING = @as(u32, 1);
+pub const DSCBSTATUS_LOOPING = @as(u32, 2);
+pub const DSCCAPS_CERTIFIED = @as(u32, 64);
+pub const DSCCAPS_EMULDRIVER = @as(u32, 32);
+pub const DSCCAPS_MULTIPLECAPTURE = @as(u32, 1);
+pub const DSCFX_AEC_MODE_FULL_DUPLEX = @as(u32, 2);
+pub const DSCFX_AEC_MODE_HALF_DUPLEX = @as(u32, 1);
+pub const DSCFX_AEC_MODE_PASS_THROUGH = @as(u32, 0);
+pub const DSCFX_AEC_STATUS_CURRENTLY_CONVERGED = @as(u32, 8);
+pub const DSCFX_AEC_STATUS_HISTORY_CONTINUOUSLY_CONVERGED = @as(u32, 1);
+pub const DSCFX_AEC_STATUS_HISTORY_PREVIOUSLY_DIVERGED = @as(u32, 2);
+pub const DSCFX_AEC_STATUS_HISTORY_UNINITIALIZED = @as(u32, 0);
 pub const DSCFX_LOCHARDWARE = @as(u32, 1);
 pub const DSCFX_LOCSOFTWARE = @as(u32, 2);
 pub const DSCFXR_LOCHARDWARE = @as(u32, 16);
 pub const DSCFXR_LOCSOFTWARE = @as(u32, 32);
-pub const GUID_All_Objects = Guid.initString("aa114de5-c262-4169-a1c8-23d698cc73b5");
-pub const KSPROPERTY_SUPPORT_GET = @as(u32, 1);
-pub const KSPROPERTY_SUPPORT_SET = @as(u32, 2);
-pub const DSFXGARGLE_WAVE_TRIANGLE = @as(u32, 0);
-pub const DSFXGARGLE_WAVE_SQUARE = @as(u32, 1);
-pub const DSFXGARGLE_RATEHZ_MIN = @as(u32, 1);
-pub const DSFXGARGLE_RATEHZ_MAX = @as(u32, 1000);
-pub const DSFXCHORUS_WAVE_TRIANGLE = @as(u32, 0);
-pub const DSFXCHORUS_WAVE_SIN = @as(u32, 1);
-pub const DSFXCHORUS_WETDRYMIX_MIN = @as(f32, 0.0);
-pub const DSFXCHORUS_WETDRYMIX_MAX = @as(f32, 100.0);
-pub const DSFXCHORUS_DEPTH_MIN = @as(f32, 0.0);
-pub const DSFXCHORUS_DEPTH_MAX = @as(f32, 100.0);
-pub const DSFXCHORUS_FEEDBACK_MIN = @as(f32, -99.0);
-pub const DSFXCHORUS_FEEDBACK_MAX = @as(f32, 99.0);
-pub const DSFXCHORUS_FREQUENCY_MIN = @as(f32, 0.0);
-pub const DSFXCHORUS_FREQUENCY_MAX = @as(f32, 10.0);
-pub const DSFXCHORUS_DELAY_MIN = @as(f32, 0.0);
+pub const DSDEVID_DefaultCapture = Guid.initString("def00001-9c6d-47ed-aaf1-4dda8f2b5c03");
+pub const DSDEVID_DefaultPlayback = Guid.initString("def00000-9c6d-47ed-aaf1-4dda8f2b5c03");
+pub const DSDEVID_DefaultVoiceCapture = Guid.initString("def00003-9c6d-47ed-aaf1-4dda8f2b5c03");
+pub const DSDEVID_DefaultVoicePlayback = Guid.initString("def00002-9c6d-47ed-aaf1-4dda8f2b5c03");
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_ALLEY = @as(i32, 15);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_ARENA = @as(i32, 10);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_AUDITORIUM = @as(i32, 7);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_BATHROOM = @as(i32, 4);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CARPETEDHALLWAY = @as(i32, 12);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CAVE = @as(i32, 9);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CITY = @as(i32, 17);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CONCERTHALL = @as(i32, 8);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_DEFAULT = @as(i32, 0);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_FOREST = @as(i32, 16);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_GENERIC = @as(i32, 1);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_HALLWAY = @as(i32, 13);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_HANGAR = @as(i32, 11);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_LARGEHALL = @as(i32, 28);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_LARGEROOM = @as(i32, 26);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_LIVINGROOM = @as(i32, 5);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_MEDIUMHALL = @as(i32, 27);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_MEDIUMROOM = @as(i32, 25);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_MOUNTAINS = @as(i32, 18);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PADDEDCELL = @as(i32, 2);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PARKINGLOT = @as(i32, 21);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PLAIN = @as(i32, 20);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PLATE = @as(i32, 29);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_QUARRY = @as(i32, 19);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_ROOM = @as(i32, 3);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_SEWERPIPE = @as(i32, 22);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_SMALLROOM = @as(i32, 24);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_STONECORRIDOR = @as(i32, 14);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_STONEROOM = @as(i32, 6);
+pub const DSFX_I3DL2_ENVIRONMENT_PRESET_UNDERWATER = @as(i32, 23);
+pub const DSFX_I3DL2_MATERIAL_PRESET_BRICKWALL = @as(i32, 5);
+pub const DSFX_I3DL2_MATERIAL_PRESET_CURTAIN = @as(i32, 7);
+pub const DSFX_I3DL2_MATERIAL_PRESET_DOUBLEWINDOW = @as(i32, 1);
+pub const DSFX_I3DL2_MATERIAL_PRESET_SINGLEWINDOW = @as(i32, 0);
+pub const DSFX_I3DL2_MATERIAL_PRESET_STONEWALL = @as(i32, 6);
+pub const DSFX_I3DL2_MATERIAL_PRESET_THICKDOOR = @as(i32, 3);
+pub const DSFX_I3DL2_MATERIAL_PRESET_THINDOOR = @as(i32, 2);
+pub const DSFX_I3DL2_MATERIAL_PRESET_WOODWALL = @as(i32, 4);
+pub const DSFX_I3DL2REVERB_DECAYHFRATIO_DEFAULT = @as(f32, 0.83);
+pub const DSFX_I3DL2REVERB_DECAYHFRATIO_MAX = @as(f32, 2.0);
+pub const DSFX_I3DL2REVERB_DECAYHFRATIO_MIN = @as(f32, 0.1);
+pub const DSFX_I3DL2REVERB_DECAYTIME_DEFAULT = @as(f32, 1.49);
+pub const DSFX_I3DL2REVERB_DECAYTIME_MAX = @as(f32, 20.0);
+pub const DSFX_I3DL2REVERB_DECAYTIME_MIN = @as(f32, 0.1);
+pub const DSFX_I3DL2REVERB_DENSITY_DEFAULT = @as(f32, 100.0);
+pub const DSFX_I3DL2REVERB_DENSITY_MAX = @as(f32, 100.0);
+pub const DSFX_I3DL2REVERB_DENSITY_MIN = @as(f32, 0.0);
+pub const DSFX_I3DL2REVERB_DIFFUSION_DEFAULT = @as(f32, 100.0);
+pub const DSFX_I3DL2REVERB_DIFFUSION_MAX = @as(f32, 100.0);
+pub const DSFX_I3DL2REVERB_DIFFUSION_MIN = @as(f32, 0.0);
+pub const DSFX_I3DL2REVERB_HFREFERENCE_DEFAULT = @as(f32, 5000.0);
+pub const DSFX_I3DL2REVERB_HFREFERENCE_MAX = @as(f32, 20000.0);
+pub const DSFX_I3DL2REVERB_HFREFERENCE_MIN = @as(f32, 20.0);
+pub const DSFX_I3DL2REVERB_QUALITY_DEFAULT = @as(u32, 2);
+pub const DSFX_I3DL2REVERB_QUALITY_MAX = @as(u32, 3);
+pub const DSFX_I3DL2REVERB_QUALITY_MIN = @as(u32, 0);
+pub const DSFX_I3DL2REVERB_REFLECTIONS_DEFAULT = @as(i32, -2602);
+pub const DSFX_I3DL2REVERB_REFLECTIONS_MAX = @as(u32, 1000);
+pub const DSFX_I3DL2REVERB_REFLECTIONS_MIN = @as(i32, -10000);
+pub const DSFX_I3DL2REVERB_REFLECTIONSDELAY_DEFAULT = @as(f32, 0.007);
+pub const DSFX_I3DL2REVERB_REFLECTIONSDELAY_MAX = @as(f32, 0.3);
+pub const DSFX_I3DL2REVERB_REFLECTIONSDELAY_MIN = @as(f32, 0.0);
+pub const DSFX_I3DL2REVERB_REVERB_DEFAULT = @as(u32, 200);
+pub const DSFX_I3DL2REVERB_REVERB_MAX = @as(u32, 2000);
+pub const DSFX_I3DL2REVERB_REVERB_MIN = @as(i32, -10000);
+pub const DSFX_I3DL2REVERB_REVERBDELAY_DEFAULT = @as(f32, 0.011);
+pub const DSFX_I3DL2REVERB_REVERBDELAY_MAX = @as(f32, 0.1);
+pub const DSFX_I3DL2REVERB_REVERBDELAY_MIN = @as(f32, 0.0);
+pub const DSFX_I3DL2REVERB_ROOM_DEFAULT = @as(i32, -1000);
+pub const DSFX_I3DL2REVERB_ROOM_MAX = @as(u32, 0);
+pub const DSFX_I3DL2REVERB_ROOM_MIN = @as(i32, -10000);
+pub const DSFX_I3DL2REVERB_ROOMHF_DEFAULT = @as(i32, -100);
+pub const DSFX_I3DL2REVERB_ROOMHF_MAX = @as(u32, 0);
+pub const DSFX_I3DL2REVERB_ROOMHF_MIN = @as(i32, -10000);
+pub const DSFX_I3DL2REVERB_ROOMROLLOFFFACTOR_DEFAULT = @as(f32, 0.0);
+pub const DSFX_I3DL2REVERB_ROOMROLLOFFFACTOR_MAX = @as(f32, 10.0);
+pub const DSFX_I3DL2REVERB_ROOMROLLOFFFACTOR_MIN = @as(f32, 0.0);
+pub const DSFX_LOCHARDWARE = @as(u32, 1);
+pub const DSFX_LOCSOFTWARE = @as(u32, 2);
+pub const DSFX_WAVESREVERB_HIGHFREQRTRATIO_DEFAULT = @as(f32, 0.001);
+pub const DSFX_WAVESREVERB_HIGHFREQRTRATIO_MAX = @as(f32, 0.999);
+pub const DSFX_WAVESREVERB_HIGHFREQRTRATIO_MIN = @as(f32, 0.001);
+pub const DSFX_WAVESREVERB_INGAIN_DEFAULT = @as(f32, 0.0);
+pub const DSFX_WAVESREVERB_INGAIN_MAX = @as(f32, 0.0);
+pub const DSFX_WAVESREVERB_INGAIN_MIN = @as(f32, -96.0);
+pub const DSFX_WAVESREVERB_REVERBMIX_DEFAULT = @as(f32, 0.0);
+pub const DSFX_WAVESREVERB_REVERBMIX_MAX = @as(f32, 0.0);
+pub const DSFX_WAVESREVERB_REVERBMIX_MIN = @as(f32, -96.0);
+pub const DSFX_WAVESREVERB_REVERBTIME_DEFAULT = @as(f32, 1000.0);
+pub const DSFX_WAVESREVERB_REVERBTIME_MAX = @as(f32, 3000.0);
+pub const DSFX_WAVESREVERB_REVERBTIME_MIN = @as(f32, 0.001);
 pub const DSFXCHORUS_DELAY_MAX = @as(f32, 20.0);
-pub const DSFXCHORUS_PHASE_MIN = @as(u32, 0);
+pub const DSFXCHORUS_DELAY_MIN = @as(f32, 0.0);
+pub const DSFXCHORUS_DEPTH_MAX = @as(f32, 100.0);
+pub const DSFXCHORUS_DEPTH_MIN = @as(f32, 0.0);
+pub const DSFXCHORUS_FEEDBACK_MAX = @as(f32, 99.0);
+pub const DSFXCHORUS_FEEDBACK_MIN = @as(f32, -99.0);
+pub const DSFXCHORUS_FREQUENCY_MAX = @as(f32, 10.0);
+pub const DSFXCHORUS_FREQUENCY_MIN = @as(f32, 0.0);
+pub const DSFXCHORUS_PHASE_180 = @as(u32, 4);
+pub const DSFXCHORUS_PHASE_90 = @as(u32, 3);
 pub const DSFXCHORUS_PHASE_MAX = @as(u32, 4);
+pub const DSFXCHORUS_PHASE_MIN = @as(u32, 0);
 pub const DSFXCHORUS_PHASE_NEG_180 = @as(u32, 0);
 pub const DSFXCHORUS_PHASE_NEG_90 = @as(u32, 1);
 pub const DSFXCHORUS_PHASE_ZERO = @as(u32, 2);
-pub const DSFXCHORUS_PHASE_90 = @as(u32, 3);
-pub const DSFXCHORUS_PHASE_180 = @as(u32, 4);
-pub const DSFXFLANGER_WAVE_TRIANGLE = @as(u32, 0);
-pub const DSFXFLANGER_WAVE_SIN = @as(u32, 1);
-pub const DSFXFLANGER_WETDRYMIX_MIN = @as(f32, 0.0);
-pub const DSFXFLANGER_WETDRYMIX_MAX = @as(f32, 100.0);
-pub const DSFXFLANGER_FREQUENCY_MIN = @as(f32, 0.0);
-pub const DSFXFLANGER_FREQUENCY_MAX = @as(f32, 10.0);
-pub const DSFXFLANGER_DEPTH_MIN = @as(f32, 0.0);
-pub const DSFXFLANGER_DEPTH_MAX = @as(f32, 100.0);
-pub const DSFXFLANGER_PHASE_MIN = @as(u32, 0);
-pub const DSFXFLANGER_PHASE_MAX = @as(u32, 4);
-pub const DSFXFLANGER_FEEDBACK_MIN = @as(f32, -99.0);
-pub const DSFXFLANGER_FEEDBACK_MAX = @as(f32, 99.0);
-pub const DSFXFLANGER_DELAY_MIN = @as(f32, 0.0);
+pub const DSFXCHORUS_WAVE_SIN = @as(u32, 1);
+pub const DSFXCHORUS_WAVE_TRIANGLE = @as(u32, 0);
+pub const DSFXCHORUS_WETDRYMIX_MAX = @as(f32, 100.0);
+pub const DSFXCHORUS_WETDRYMIX_MIN = @as(f32, 0.0);
+pub const DSFXCOMPRESSOR_ATTACK_MAX = @as(f32, 500.0);
+pub const DSFXCOMPRESSOR_ATTACK_MIN = @as(f32, 0.01);
+pub const DSFXCOMPRESSOR_GAIN_MAX = @as(f32, 60.0);
+pub const DSFXCOMPRESSOR_GAIN_MIN = @as(f32, -60.0);
+pub const DSFXCOMPRESSOR_PREDELAY_MAX = @as(f32, 4.0);
+pub const DSFXCOMPRESSOR_PREDELAY_MIN = @as(f32, 0.0);
+pub const DSFXCOMPRESSOR_RATIO_MAX = @as(f32, 100.0);
+pub const DSFXCOMPRESSOR_RATIO_MIN = @as(f32, 1.0);
+pub const DSFXCOMPRESSOR_RELEASE_MAX = @as(f32, 3000.0);
+pub const DSFXCOMPRESSOR_RELEASE_MIN = @as(f32, 50.0);
+pub const DSFXCOMPRESSOR_THRESHOLD_MAX = @as(f32, 0.0);
+pub const DSFXCOMPRESSOR_THRESHOLD_MIN = @as(f32, -60.0);
+pub const DSFXDISTORTION_EDGE_MAX = @as(f32, 100.0);
+pub const DSFXDISTORTION_EDGE_MIN = @as(f32, 0.0);
+pub const DSFXDISTORTION_GAIN_MAX = @as(f32, 0.0);
+pub const DSFXDISTORTION_GAIN_MIN = @as(f32, -60.0);
+pub const DSFXDISTORTION_POSTEQBANDWIDTH_MAX = @as(f32, 8000.0);
+pub const DSFXDISTORTION_POSTEQBANDWIDTH_MIN = @as(f32, 100.0);
+pub const DSFXDISTORTION_POSTEQCENTERFREQUENCY_MAX = @as(f32, 8000.0);
+pub const DSFXDISTORTION_POSTEQCENTERFREQUENCY_MIN = @as(f32, 100.0);
+pub const DSFXDISTORTION_PRELOWPASSCUTOFF_MAX = @as(f32, 8000.0);
+pub const DSFXDISTORTION_PRELOWPASSCUTOFF_MIN = @as(f32, 100.0);
+pub const DSFXECHO_FEEDBACK_MAX = @as(f32, 100.0);
+pub const DSFXECHO_FEEDBACK_MIN = @as(f32, 0.0);
+pub const DSFXECHO_LEFTDELAY_MAX = @as(f32, 2000.0);
+pub const DSFXECHO_LEFTDELAY_MIN = @as(f32, 1.0);
+pub const DSFXECHO_PANDELAY_MAX = @as(u32, 1);
+pub const DSFXECHO_PANDELAY_MIN = @as(u32, 0);
+pub const DSFXECHO_RIGHTDELAY_MAX = @as(f32, 2000.0);
+pub const DSFXECHO_RIGHTDELAY_MIN = @as(f32, 1.0);
+pub const DSFXECHO_WETDRYMIX_MAX = @as(f32, 100.0);
+pub const DSFXECHO_WETDRYMIX_MIN = @as(f32, 0.0);
 pub const DSFXFLANGER_DELAY_MAX = @as(f32, 4.0);
+pub const DSFXFLANGER_DELAY_MIN = @as(f32, 0.0);
+pub const DSFXFLANGER_DEPTH_MAX = @as(f32, 100.0);
+pub const DSFXFLANGER_DEPTH_MIN = @as(f32, 0.0);
+pub const DSFXFLANGER_FEEDBACK_MAX = @as(f32, 99.0);
+pub const DSFXFLANGER_FEEDBACK_MIN = @as(f32, -99.0);
+pub const DSFXFLANGER_FREQUENCY_MAX = @as(f32, 10.0);
+pub const DSFXFLANGER_FREQUENCY_MIN = @as(f32, 0.0);
+pub const DSFXFLANGER_PHASE_180 = @as(u32, 4);
+pub const DSFXFLANGER_PHASE_90 = @as(u32, 3);
+pub const DSFXFLANGER_PHASE_MAX = @as(u32, 4);
+pub const DSFXFLANGER_PHASE_MIN = @as(u32, 0);
 pub const DSFXFLANGER_PHASE_NEG_180 = @as(u32, 0);
 pub const DSFXFLANGER_PHASE_NEG_90 = @as(u32, 1);
 pub const DSFXFLANGER_PHASE_ZERO = @as(u32, 2);
-pub const DSFXFLANGER_PHASE_90 = @as(u32, 3);
-pub const DSFXFLANGER_PHASE_180 = @as(u32, 4);
-pub const DSFXECHO_WETDRYMIX_MIN = @as(f32, 0.0);
-pub const DSFXECHO_WETDRYMIX_MAX = @as(f32, 100.0);
-pub const DSFXECHO_FEEDBACK_MIN = @as(f32, 0.0);
-pub const DSFXECHO_FEEDBACK_MAX = @as(f32, 100.0);
-pub const DSFXECHO_LEFTDELAY_MIN = @as(f32, 1.0);
-pub const DSFXECHO_LEFTDELAY_MAX = @as(f32, 2000.0);
-pub const DSFXECHO_RIGHTDELAY_MIN = @as(f32, 1.0);
-pub const DSFXECHO_RIGHTDELAY_MAX = @as(f32, 2000.0);
-pub const DSFXECHO_PANDELAY_MIN = @as(u32, 0);
-pub const DSFXECHO_PANDELAY_MAX = @as(u32, 1);
-pub const DSFXDISTORTION_GAIN_MIN = @as(f32, -60.0);
-pub const DSFXDISTORTION_GAIN_MAX = @as(f32, 0.0);
-pub const DSFXDISTORTION_EDGE_MIN = @as(f32, 0.0);
-pub const DSFXDISTORTION_EDGE_MAX = @as(f32, 100.0);
-pub const DSFXDISTORTION_POSTEQCENTERFREQUENCY_MIN = @as(f32, 100.0);
-pub const DSFXDISTORTION_POSTEQCENTERFREQUENCY_MAX = @as(f32, 8000.0);
-pub const DSFXDISTORTION_POSTEQBANDWIDTH_MIN = @as(f32, 100.0);
-pub const DSFXDISTORTION_POSTEQBANDWIDTH_MAX = @as(f32, 8000.0);
-pub const DSFXDISTORTION_PRELOWPASSCUTOFF_MIN = @as(f32, 100.0);
-pub const DSFXDISTORTION_PRELOWPASSCUTOFF_MAX = @as(f32, 8000.0);
-pub const DSFXCOMPRESSOR_GAIN_MIN = @as(f32, -60.0);
-pub const DSFXCOMPRESSOR_GAIN_MAX = @as(f32, 60.0);
-pub const DSFXCOMPRESSOR_ATTACK_MIN = @as(f32, 0.01);
-pub const DSFXCOMPRESSOR_ATTACK_MAX = @as(f32, 500.0);
-pub const DSFXCOMPRESSOR_RELEASE_MIN = @as(f32, 50.0);
-pub const DSFXCOMPRESSOR_RELEASE_MAX = @as(f32, 3000.0);
-pub const DSFXCOMPRESSOR_THRESHOLD_MIN = @as(f32, -60.0);
-pub const DSFXCOMPRESSOR_THRESHOLD_MAX = @as(f32, 0.0);
-pub const DSFXCOMPRESSOR_RATIO_MIN = @as(f32, 1.0);
-pub const DSFXCOMPRESSOR_RATIO_MAX = @as(f32, 100.0);
-pub const DSFXCOMPRESSOR_PREDELAY_MIN = @as(f32, 0.0);
-pub const DSFXCOMPRESSOR_PREDELAY_MAX = @as(f32, 4.0);
-pub const DSFXPARAMEQ_CENTER_MIN = @as(f32, 80.0);
-pub const DSFXPARAMEQ_CENTER_MAX = @as(f32, 16000.0);
-pub const DSFXPARAMEQ_BANDWIDTH_MIN = @as(f32, 1.0);
+pub const DSFXFLANGER_WAVE_SIN = @as(u32, 1);
+pub const DSFXFLANGER_WAVE_TRIANGLE = @as(u32, 0);
+pub const DSFXFLANGER_WETDRYMIX_MAX = @as(f32, 100.0);
+pub const DSFXFLANGER_WETDRYMIX_MIN = @as(f32, 0.0);
+pub const DSFXGARGLE_RATEHZ_MAX = @as(u32, 1000);
+pub const DSFXGARGLE_RATEHZ_MIN = @as(u32, 1);
+pub const DSFXGARGLE_WAVE_SQUARE = @as(u32, 1);
+pub const DSFXGARGLE_WAVE_TRIANGLE = @as(u32, 0);
 pub const DSFXPARAMEQ_BANDWIDTH_MAX = @as(f32, 36.0);
-pub const DSFXPARAMEQ_GAIN_MIN = @as(f32, -15.0);
+pub const DSFXPARAMEQ_BANDWIDTH_MIN = @as(f32, 1.0);
+pub const DSFXPARAMEQ_CENTER_MAX = @as(f32, 16000.0);
+pub const DSFXPARAMEQ_CENTER_MIN = @as(f32, 80.0);
 pub const DSFXPARAMEQ_GAIN_MAX = @as(f32, 15.0);
-pub const DSFX_I3DL2REVERB_ROOM_MIN = @as(i32, -10000);
-pub const DSFX_I3DL2REVERB_ROOM_MAX = @as(u32, 0);
-pub const DSFX_I3DL2REVERB_ROOM_DEFAULT = @as(i32, -1000);
-pub const DSFX_I3DL2REVERB_ROOMHF_MIN = @as(i32, -10000);
-pub const DSFX_I3DL2REVERB_ROOMHF_MAX = @as(u32, 0);
-pub const DSFX_I3DL2REVERB_ROOMHF_DEFAULT = @as(i32, -100);
-pub const DSFX_I3DL2REVERB_ROOMROLLOFFFACTOR_MIN = @as(f32, 0.0);
-pub const DSFX_I3DL2REVERB_ROOMROLLOFFFACTOR_MAX = @as(f32, 10.0);
-pub const DSFX_I3DL2REVERB_ROOMROLLOFFFACTOR_DEFAULT = @as(f32, 0.0);
-pub const DSFX_I3DL2REVERB_DECAYTIME_MIN = @as(f32, 0.1);
-pub const DSFX_I3DL2REVERB_DECAYTIME_MAX = @as(f32, 20.0);
-pub const DSFX_I3DL2REVERB_DECAYTIME_DEFAULT = @as(f32, 1.49);
-pub const DSFX_I3DL2REVERB_DECAYHFRATIO_MIN = @as(f32, 0.1);
-pub const DSFX_I3DL2REVERB_DECAYHFRATIO_MAX = @as(f32, 2.0);
-pub const DSFX_I3DL2REVERB_DECAYHFRATIO_DEFAULT = @as(f32, 0.83);
-pub const DSFX_I3DL2REVERB_REFLECTIONS_MIN = @as(i32, -10000);
-pub const DSFX_I3DL2REVERB_REFLECTIONS_MAX = @as(u32, 1000);
-pub const DSFX_I3DL2REVERB_REFLECTIONS_DEFAULT = @as(i32, -2602);
-pub const DSFX_I3DL2REVERB_REFLECTIONSDELAY_MIN = @as(f32, 0.0);
-pub const DSFX_I3DL2REVERB_REFLECTIONSDELAY_MAX = @as(f32, 0.3);
-pub const DSFX_I3DL2REVERB_REFLECTIONSDELAY_DEFAULT = @as(f32, 0.007);
-pub const DSFX_I3DL2REVERB_REVERB_MIN = @as(i32, -10000);
-pub const DSFX_I3DL2REVERB_REVERB_MAX = @as(u32, 2000);
-pub const DSFX_I3DL2REVERB_REVERB_DEFAULT = @as(u32, 200);
-pub const DSFX_I3DL2REVERB_REVERBDELAY_MIN = @as(f32, 0.0);
-pub const DSFX_I3DL2REVERB_REVERBDELAY_MAX = @as(f32, 0.1);
-pub const DSFX_I3DL2REVERB_REVERBDELAY_DEFAULT = @as(f32, 0.011);
-pub const DSFX_I3DL2REVERB_DIFFUSION_MIN = @as(f32, 0.0);
-pub const DSFX_I3DL2REVERB_DIFFUSION_MAX = @as(f32, 100.0);
-pub const DSFX_I3DL2REVERB_DIFFUSION_DEFAULT = @as(f32, 100.0);
-pub const DSFX_I3DL2REVERB_DENSITY_MIN = @as(f32, 0.0);
-pub const DSFX_I3DL2REVERB_DENSITY_MAX = @as(f32, 100.0);
-pub const DSFX_I3DL2REVERB_DENSITY_DEFAULT = @as(f32, 100.0);
-pub const DSFX_I3DL2REVERB_HFREFERENCE_MIN = @as(f32, 20.0);
-pub const DSFX_I3DL2REVERB_HFREFERENCE_MAX = @as(f32, 20000.0);
-pub const DSFX_I3DL2REVERB_HFREFERENCE_DEFAULT = @as(f32, 5000.0);
-pub const DSFX_I3DL2REVERB_QUALITY_MIN = @as(u32, 0);
-pub const DSFX_I3DL2REVERB_QUALITY_MAX = @as(u32, 3);
-pub const DSFX_I3DL2REVERB_QUALITY_DEFAULT = @as(u32, 2);
-pub const DSFX_WAVESREVERB_INGAIN_MIN = @as(f32, -96.0);
-pub const DSFX_WAVESREVERB_INGAIN_MAX = @as(f32, 0.0);
-pub const DSFX_WAVESREVERB_INGAIN_DEFAULT = @as(f32, 0.0);
-pub const DSFX_WAVESREVERB_REVERBMIX_MIN = @as(f32, -96.0);
-pub const DSFX_WAVESREVERB_REVERBMIX_MAX = @as(f32, 0.0);
-pub const DSFX_WAVESREVERB_REVERBMIX_DEFAULT = @as(f32, 0.0);
-pub const DSFX_WAVESREVERB_REVERBTIME_MIN = @as(f32, 0.001);
-pub const DSFX_WAVESREVERB_REVERBTIME_MAX = @as(f32, 3000.0);
-pub const DSFX_WAVESREVERB_REVERBTIME_DEFAULT = @as(f32, 1000.0);
-pub const DSFX_WAVESREVERB_HIGHFREQRTRATIO_MIN = @as(f32, 0.001);
-pub const DSFX_WAVESREVERB_HIGHFREQRTRATIO_MAX = @as(f32, 0.999);
-pub const DSFX_WAVESREVERB_HIGHFREQRTRATIO_DEFAULT = @as(f32, 0.001);
-pub const DSCFX_AEC_MODE_PASS_THROUGH = @as(u32, 0);
-pub const DSCFX_AEC_MODE_HALF_DUPLEX = @as(u32, 1);
-pub const DSCFX_AEC_MODE_FULL_DUPLEX = @as(u32, 2);
-pub const DSCFX_AEC_STATUS_HISTORY_UNINITIALIZED = @as(u32, 0);
-pub const DSCFX_AEC_STATUS_HISTORY_CONTINUOUSLY_CONVERGED = @as(u32, 1);
-pub const DSCFX_AEC_STATUS_HISTORY_PREVIOUSLY_DIVERGED = @as(u32, 2);
-pub const DSCFX_AEC_STATUS_CURRENTLY_CONVERGED = @as(u32, 8);
-pub const DS_NO_VIRTUALIZATION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 142082058));
-pub const DSCAPS_PRIMARYMONO = @as(u32, 1);
-pub const DSCAPS_PRIMARYSTEREO = @as(u32, 2);
-pub const DSCAPS_PRIMARY8BIT = @as(u32, 4);
-pub const DSCAPS_PRIMARY16BIT = @as(u32, 8);
-pub const DSCAPS_CONTINUOUSRATE = @as(u32, 16);
-pub const DSCAPS_EMULDRIVER = @as(u32, 32);
-pub const DSCAPS_CERTIFIED = @as(u32, 64);
-pub const DSCAPS_SECONDARYMONO = @as(u32, 256);
-pub const DSCAPS_SECONDARYSTEREO = @as(u32, 512);
-pub const DSCAPS_SECONDARY8BIT = @as(u32, 1024);
-pub const DSCAPS_SECONDARY16BIT = @as(u32, 2048);
+pub const DSFXPARAMEQ_GAIN_MIN = @as(f32, -15.0);
+pub const DSFXR_FAILED = @as(i32, 4);
+pub const DSFXR_LOCHARDWARE = @as(i32, 1);
+pub const DSFXR_LOCSOFTWARE = @as(i32, 2);
+pub const DSFXR_PRESENT = @as(i32, 0);
+pub const DSFXR_SENDLOOP = @as(i32, 6);
+pub const DSFXR_UNALLOCATED = @as(i32, 3);
+pub const DSFXR_UNKNOWN = @as(i32, 5);
+pub const DSSCL_EXCLUSIVE = @as(u32, 3);
 pub const DSSCL_NORMAL = @as(u32, 1);
 pub const DSSCL_PRIORITY = @as(u32, 2);
-pub const DSSCL_EXCLUSIVE = @as(u32, 3);
 pub const DSSCL_WRITEPRIMARY = @as(u32, 4);
+pub const DSSPEAKER_5POINT1 = @as(u32, 6);
+pub const DSSPEAKER_5POINT1_BACK = @as(u32, 6);
+pub const DSSPEAKER_5POINT1_SURROUND = @as(u32, 9);
+pub const DSSPEAKER_7POINT1 = @as(u32, 7);
+pub const DSSPEAKER_7POINT1_SURROUND = @as(u32, 8);
+pub const DSSPEAKER_7POINT1_WIDE = @as(u32, 7);
 pub const DSSPEAKER_DIRECTOUT = @as(u32, 0);
+pub const DSSPEAKER_GEOMETRY_MAX = @as(u32, 180);
+pub const DSSPEAKER_GEOMETRY_MIN = @as(u32, 5);
+pub const DSSPEAKER_GEOMETRY_NARROW = @as(u32, 10);
+pub const DSSPEAKER_GEOMETRY_WIDE = @as(u32, 20);
 pub const DSSPEAKER_HEADPHONE = @as(u32, 1);
 pub const DSSPEAKER_MONO = @as(u32, 2);
 pub const DSSPEAKER_QUAD = @as(u32, 3);
 pub const DSSPEAKER_STEREO = @as(u32, 4);
 pub const DSSPEAKER_SURROUND = @as(u32, 5);
-pub const DSSPEAKER_5POINT1 = @as(u32, 6);
-pub const DSSPEAKER_7POINT1 = @as(u32, 7);
-pub const DSSPEAKER_7POINT1_SURROUND = @as(u32, 8);
-pub const DSSPEAKER_5POINT1_SURROUND = @as(u32, 9);
-pub const DSSPEAKER_7POINT1_WIDE = @as(u32, 7);
-pub const DSSPEAKER_5POINT1_BACK = @as(u32, 6);
-pub const DSSPEAKER_GEOMETRY_MIN = @as(u32, 5);
-pub const DSSPEAKER_GEOMETRY_NARROW = @as(u32, 10);
-pub const DSSPEAKER_GEOMETRY_WIDE = @as(u32, 20);
-pub const DSSPEAKER_GEOMETRY_MAX = @as(u32, 180);
-pub const DSBCAPS_PRIMARYBUFFER = @as(u32, 1);
-pub const DSBCAPS_STATIC = @as(u32, 2);
-pub const DSBCAPS_LOCHARDWARE = @as(u32, 4);
-pub const DSBCAPS_LOCSOFTWARE = @as(u32, 8);
-pub const DSBCAPS_CTRL3D = @as(u32, 16);
-pub const DSBCAPS_CTRLFREQUENCY = @as(u32, 32);
-pub const DSBCAPS_CTRLPAN = @as(u32, 64);
-pub const DSBCAPS_CTRLVOLUME = @as(u32, 128);
-pub const DSBCAPS_CTRLPOSITIONNOTIFY = @as(u32, 256);
-pub const DSBCAPS_CTRLFX = @as(u32, 512);
-pub const DSBCAPS_STICKYFOCUS = @as(u32, 16384);
-pub const DSBCAPS_GLOBALFOCUS = @as(u32, 32768);
-pub const DSBCAPS_GETCURRENTPOSITION2 = @as(u32, 65536);
-pub const DSBCAPS_MUTE3DATMAXDISTANCE = @as(u32, 131072);
-pub const DSBCAPS_LOCDEFER = @as(u32, 262144);
-pub const DSBCAPS_TRUEPLAYPOSITION = @as(u32, 524288);
-pub const DSBPLAY_LOOPING = @as(u32, 1);
-pub const DSBPLAY_LOCHARDWARE = @as(u32, 2);
-pub const DSBPLAY_LOCSOFTWARE = @as(u32, 4);
-pub const DSBPLAY_TERMINATEBY_TIME = @as(u32, 8);
-pub const DSBPLAY_TERMINATEBY_DISTANCE = @as(u64, 16);
-pub const DSBPLAY_TERMINATEBY_PRIORITY = @as(u64, 32);
-pub const DSBSTATUS_PLAYING = @as(u32, 1);
-pub const DSBSTATUS_BUFFERLOST = @as(u32, 2);
-pub const DSBSTATUS_LOOPING = @as(u32, 4);
-pub const DSBSTATUS_LOCHARDWARE = @as(u32, 8);
-pub const DSBSTATUS_LOCSOFTWARE = @as(u32, 16);
-pub const DSBSTATUS_TERMINATED = @as(u32, 32);
-pub const DSBLOCK_FROMWRITECURSOR = @as(u32, 1);
-pub const DSBLOCK_ENTIREBUFFER = @as(u32, 2);
-pub const DSBFREQUENCY_ORIGINAL = @as(u32, 0);
-pub const DSBFREQUENCY_MIN = @as(u32, 100);
-pub const DSBFREQUENCY_MAX = @as(u32, 200000);
-pub const DSBPAN_LEFT = @as(i32, -10000);
-pub const DSBPAN_CENTER = @as(u32, 0);
-pub const DSBPAN_RIGHT = @as(u32, 10000);
-pub const DSBVOLUME_MIN = @as(i32, -10000);
-pub const DSBVOLUME_MAX = @as(u32, 0);
-pub const DSBSIZE_MIN = @as(u32, 4);
-pub const DSBSIZE_MAX = @as(u32, 268435455);
-pub const DSBSIZE_FX_MIN = @as(u32, 150);
-pub const DSBNOTIFICATIONS_MAX = @as(u32, 100000);
-pub const DS3DMODE_NORMAL = @as(u32, 0);
-pub const DS3DMODE_HEADRELATIVE = @as(u32, 1);
-pub const DS3DMODE_DISABLE = @as(u32, 2);
-pub const DS3D_IMMEDIATE = @as(u32, 0);
-pub const DS3D_DEFERRED = @as(u32, 1);
-pub const DS3D_DEFAULTDISTANCEFACTOR = @as(f32, 1.0);
-pub const DS3D_MINROLLOFFFACTOR = @as(f32, 0.0);
-pub const DS3D_MAXROLLOFFFACTOR = @as(f32, 10.0);
-pub const DS3D_DEFAULTROLLOFFFACTOR = @as(f32, 1.0);
-pub const DS3D_MINDOPPLERFACTOR = @as(f32, 0.0);
-pub const DS3D_MAXDOPPLERFACTOR = @as(f32, 10.0);
-pub const DS3D_DEFAULTDOPPLERFACTOR = @as(f32, 1.0);
-pub const DS3D_DEFAULTMINDISTANCE = @as(f32, 1.0);
-pub const DS3D_DEFAULTMAXDISTANCE = @as(f32, 1000000000.0);
-pub const DS3D_MINCONEANGLE = @as(u32, 0);
-pub const DS3D_MAXCONEANGLE = @as(u32, 360);
-pub const DS3D_DEFAULTCONEANGLE = @as(u32, 360);
-pub const DS3D_DEFAULTCONEOUTSIDEVOLUME = @as(u32, 0);
-pub const DSCCAPS_EMULDRIVER = @as(u32, 32);
-pub const DSCCAPS_CERTIFIED = @as(u32, 64);
-pub const DSCCAPS_MULTIPLECAPTURE = @as(u32, 1);
-pub const DSCBCAPS_WAVEMAPPED = @as(u32, 2147483648);
-pub const DSCBCAPS_CTRLFX = @as(u32, 512);
-pub const DSCBLOCK_ENTIREBUFFER = @as(u32, 1);
-pub const DSCBSTATUS_CAPTURING = @as(u32, 1);
-pub const DSCBSTATUS_LOOPING = @as(u32, 2);
-pub const DSCBSTART_LOOPING = @as(u32, 1);
-pub const DSBPN_OFFSETSTOP = @as(u32, 4294967295);
-pub const DS_CERTIFIED = @as(u32, 0);
-pub const DS_UNCERTIFIED = @as(u32, 1);
-pub const DS3DALG_NO_VIRTUALIZATION = Guid.initString("c241333f-1c1b-11d2-94f5-00c04fc28aca");
-pub const DS3DALG_HRTF_FULL = Guid.initString("c2413340-1c1b-11d2-94f5-00c04fc28aca");
-pub const DS3DALG_HRTF_LIGHT = Guid.initString("c2413342-1c1b-11d2-94f5-00c04fc28aca");
-pub const GUID_DSFX_STANDARD_GARGLE = Guid.initString("dafd8210-5711-4b91-9fe3-f75b7ae279bf");
-pub const GUID_DSFX_STANDARD_CHORUS = Guid.initString("efe6629c-81f7-4281-bd91-c9d604a95af6");
-pub const GUID_DSFX_STANDARD_FLANGER = Guid.initString("efca3d92-dfd8-4672-a603-7420894bad98");
-pub const GUID_DSFX_STANDARD_ECHO = Guid.initString("ef3e932c-d40b-4f51-8ccf-3f98f1b29d5d");
-pub const GUID_DSFX_STANDARD_DISTORTION = Guid.initString("ef114c90-cd1d-484e-96e5-09cfaf912a21");
-pub const GUID_DSFX_STANDARD_COMPRESSOR = Guid.initString("ef011f79-4000-406d-87af-bffb3fc39d57");
-pub const GUID_DSFX_STANDARD_PARAMEQ = Guid.initString("120ced89-3bf4-4173-a132-3cb406cf3231");
-pub const GUID_DSFX_STANDARD_I3DL2REVERB = Guid.initString("ef985e71-d5c7-42d4-ba4d-2d073e2e96f4");
-pub const GUID_DSFX_WAVES_REVERB = Guid.initString("87fc0268-9a55-4360-95aa-004a1d9de26c");
+pub const GUID_All_Objects = Guid.initString("aa114de5-c262-4169-a1c8-23d698cc73b5");
 pub const GUID_DSCFX_CLASS_AEC = Guid.initString("bf963d80-c559-11d0-8a2b-00a0c9255ac1");
-pub const GUID_DSCFX_MS_AEC = Guid.initString("cdebb919-379a-488a-8765-f53cfd36de40");
-pub const GUID_DSCFX_SYSTEM_AEC = Guid.initString("1c22c56d-9879-4f5b-a389-27996ddc2810");
 pub const GUID_DSCFX_CLASS_NS = Guid.initString("e07f903f-62fd-4e60-8cdd-dea7236665b5");
+pub const GUID_DSCFX_MS_AEC = Guid.initString("cdebb919-379a-488a-8765-f53cfd36de40");
 pub const GUID_DSCFX_MS_NS = Guid.initString("11c5c73b-66e9-4ba1-a0ba-e814c6eed92d");
+pub const GUID_DSCFX_SYSTEM_AEC = Guid.initString("1c22c56d-9879-4f5b-a389-27996ddc2810");
 pub const GUID_DSCFX_SYSTEM_NS = Guid.initString("5ab0882e-7274-4516-877d-4eee99ba4fd0");
-pub const DSFXR_PRESENT = @as(i32, 0);
-pub const DSFXR_LOCHARDWARE = @as(i32, 1);
-pub const DSFXR_LOCSOFTWARE = @as(i32, 2);
-pub const DSFXR_UNALLOCATED = @as(i32, 3);
-pub const DSFXR_FAILED = @as(i32, 4);
-pub const DSFXR_UNKNOWN = @as(i32, 5);
-pub const DSFXR_SENDLOOP = @as(i32, 6);
-pub const DSFX_I3DL2_MATERIAL_PRESET_SINGLEWINDOW = @as(i32, 0);
-pub const DSFX_I3DL2_MATERIAL_PRESET_DOUBLEWINDOW = @as(i32, 1);
-pub const DSFX_I3DL2_MATERIAL_PRESET_THINDOOR = @as(i32, 2);
-pub const DSFX_I3DL2_MATERIAL_PRESET_THICKDOOR = @as(i32, 3);
-pub const DSFX_I3DL2_MATERIAL_PRESET_WOODWALL = @as(i32, 4);
-pub const DSFX_I3DL2_MATERIAL_PRESET_BRICKWALL = @as(i32, 5);
-pub const DSFX_I3DL2_MATERIAL_PRESET_STONEWALL = @as(i32, 6);
-pub const DSFX_I3DL2_MATERIAL_PRESET_CURTAIN = @as(i32, 7);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_DEFAULT = @as(i32, 0);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_GENERIC = @as(i32, 1);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PADDEDCELL = @as(i32, 2);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_ROOM = @as(i32, 3);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_BATHROOM = @as(i32, 4);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_LIVINGROOM = @as(i32, 5);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_STONEROOM = @as(i32, 6);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_AUDITORIUM = @as(i32, 7);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CONCERTHALL = @as(i32, 8);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CAVE = @as(i32, 9);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_ARENA = @as(i32, 10);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_HANGAR = @as(i32, 11);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CARPETEDHALLWAY = @as(i32, 12);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_HALLWAY = @as(i32, 13);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_STONECORRIDOR = @as(i32, 14);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_ALLEY = @as(i32, 15);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_FOREST = @as(i32, 16);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_CITY = @as(i32, 17);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_MOUNTAINS = @as(i32, 18);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_QUARRY = @as(i32, 19);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PLAIN = @as(i32, 20);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PARKINGLOT = @as(i32, 21);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_SEWERPIPE = @as(i32, 22);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_UNDERWATER = @as(i32, 23);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_SMALLROOM = @as(i32, 24);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_MEDIUMROOM = @as(i32, 25);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_LARGEROOM = @as(i32, 26);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_MEDIUMHALL = @as(i32, 27);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_LARGEHALL = @as(i32, 28);
-pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PLATE = @as(i32, 29);
+pub const GUID_DSFX_STANDARD_CHORUS = Guid.initString("efe6629c-81f7-4281-bd91-c9d604a95af6");
+pub const GUID_DSFX_STANDARD_COMPRESSOR = Guid.initString("ef011f79-4000-406d-87af-bffb3fc39d57");
+pub const GUID_DSFX_STANDARD_DISTORTION = Guid.initString("ef114c90-cd1d-484e-96e5-09cfaf912a21");
+pub const GUID_DSFX_STANDARD_ECHO = Guid.initString("ef3e932c-d40b-4f51-8ccf-3f98f1b29d5d");
+pub const GUID_DSFX_STANDARD_FLANGER = Guid.initString("efca3d92-dfd8-4672-a603-7420894bad98");
+pub const GUID_DSFX_STANDARD_GARGLE = Guid.initString("dafd8210-5711-4b91-9fe3-f75b7ae279bf");
+pub const GUID_DSFX_STANDARD_I3DL2REVERB = Guid.initString("ef985e71-d5c7-42d4-ba4d-2d073e2e96f4");
+pub const GUID_DSFX_STANDARD_PARAMEQ = Guid.initString("120ced89-3bf4-4173-a132-3cb406cf3231");
+pub const GUID_DSFX_WAVES_REVERB = Guid.initString("87fc0268-9a55-4360-95aa-004a1d9de26c");
+pub const KSPROPERTY_SUPPORT_GET = @as(u32, 1);
+pub const KSPROPERTY_SUPPORT_SET = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (48)
 //--------------------------------------------------------------------------------
+pub const DS3DBUFFER = extern struct {
+    dwSize: u32,
+    vPosition: D3DVECTOR,
+    vVelocity: D3DVECTOR,
+    dwInsideConeAngle: u32,
+    dwOutsideConeAngle: u32,
+    vConeOrientation: D3DVECTOR,
+    lConeOutsideVolume: i32,
+    flMinDistance: f32,
+    flMaxDistance: f32,
+    dwMode: u32,
+};
+
+pub const DS3DLISTENER = extern struct {
+    dwSize: u32,
+    vPosition: D3DVECTOR,
+    vVelocity: D3DVECTOR,
+    vOrientFront: D3DVECTOR,
+    vOrientTop: D3DVECTOR,
+    flDistanceFactor: f32,
+    flRolloffFactor: f32,
+    flDopplerFactor: f32,
+};
+
+pub const DSBCAPS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwBufferBytes: u32,
+    dwUnlockTransferRate: u32,
+    dwPlayCpuOverhead: u32,
+};
+
+pub const DSBPOSITIONNOTIFY = extern struct {
+    dwOffset: u32,
+    hEventNotify: ?HANDLE,
+};
+
+pub const DSBUFFERDESC = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwBufferBytes: u32,
+    dwReserved: u32,
+    lpwfxFormat: ?*WAVEFORMATEX,
+    guid3DAlgorithm: Guid,
+};
+
+pub const DSBUFFERDESC1 = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwBufferBytes: u32,
+    dwReserved: u32,
+    lpwfxFormat: ?*WAVEFORMATEX,
+};
+
 pub const DSCAPS = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -358,85 +412,11 @@ pub const DSCAPS = extern struct {
     dwReserved2: u32,
 };
 
-pub const DSBCAPS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwBufferBytes: u32,
-    dwUnlockTransferRate: u32,
-    dwPlayCpuOverhead: u32,
-};
-
-pub const DSEFFECTDESC = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    guidDSFXClass: Guid,
-    dwReserved1: usize,
-    dwReserved2: usize,
-};
-
-pub const DSCEFFECTDESC = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    guidDSCFXClass: Guid,
-    guidDSCFXInstance: Guid,
-    dwReserved1: u32,
-    dwReserved2: u32,
-};
-
-pub const DSBUFFERDESC = extern struct {
+pub const DSCBCAPS = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwBufferBytes: u32,
     dwReserved: u32,
-    lpwfxFormat: ?*WAVEFORMATEX,
-    guid3DAlgorithm: Guid,
-};
-
-pub const DSBUFFERDESC1 = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwBufferBytes: u32,
-    dwReserved: u32,
-    lpwfxFormat: ?*WAVEFORMATEX,
-};
-
-pub const DS3DBUFFER = extern struct {
-    dwSize: u32,
-    vPosition: D3DVECTOR,
-    vVelocity: D3DVECTOR,
-    dwInsideConeAngle: u32,
-    dwOutsideConeAngle: u32,
-    vConeOrientation: D3DVECTOR,
-    lConeOutsideVolume: i32,
-    flMinDistance: f32,
-    flMaxDistance: f32,
-    dwMode: u32,
-};
-
-pub const DS3DLISTENER = extern struct {
-    dwSize: u32,
-    vPosition: D3DVECTOR,
-    vVelocity: D3DVECTOR,
-    vOrientFront: D3DVECTOR,
-    vOrientTop: D3DVECTOR,
-    flDistanceFactor: f32,
-    flRolloffFactor: f32,
-    flDopplerFactor: f32,
-};
-
-pub const DSCCAPS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwFormats: u32,
-    dwChannels: u32,
-};
-
-pub const DSCBUFFERDESC1 = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwBufferBytes: u32,
-    dwReserved: u32,
-    lpwfxFormat: ?*WAVEFORMATEX,
 };
 
 pub const DSCBUFFERDESC = extern struct {
@@ -449,31 +429,125 @@ pub const DSCBUFFERDESC = extern struct {
     lpDSCFXDesc: ?*DSCEFFECTDESC,
 };
 
-pub const DSCBCAPS = extern struct {
+pub const DSCBUFFERDESC1 = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwBufferBytes: u32,
     dwReserved: u32,
+    lpwfxFormat: ?*WAVEFORMATEX,
 };
 
-pub const DSBPOSITIONNOTIFY = extern struct {
-    dwOffset: u32,
-    hEventNotify: ?HANDLE,
+pub const DSCCAPS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwFormats: u32,
+    dwChannels: u32,
 };
 
-pub const LPDSENUMCALLBACKA = *const fn(
-    param0: ?*Guid,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-    param3: ?*anyopaque,
-) callconv(.winapi) BOOL;
+pub const DSCEFFECTDESC = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    guidDSCFXClass: Guid,
+    guidDSCFXInstance: Guid,
+    dwReserved1: u32,
+    dwReserved2: u32,
+};
 
-pub const LPDSENUMCALLBACKW = *const fn(
-    param0: ?*Guid,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: ?*anyopaque,
-) callconv(.winapi) BOOL;
+pub const DSCFXAec = extern struct {
+    fEnable: BOOL,
+    fNoiseFill: BOOL,
+    dwMode: u32,
+};
+
+pub const DSCFXNoiseSuppress = extern struct {
+    fEnable: BOOL,
+};
+
+pub const DSEFFECTDESC = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    guidDSFXClass: Guid,
+    dwReserved1: usize,
+    dwReserved2: usize,
+};
+
+pub const DSFXChorus = extern struct {
+    fWetDryMix: f32,
+    fDepth: f32,
+    fFeedback: f32,
+    fFrequency: f32,
+    lWaveform: i32,
+    fDelay: f32,
+    lPhase: i32,
+};
+
+pub const DSFXCompressor = extern struct {
+    fGain: f32,
+    fAttack: f32,
+    fRelease: f32,
+    fThreshold: f32,
+    fRatio: f32,
+    fPredelay: f32,
+};
+
+pub const DSFXDistortion = extern struct {
+    fGain: f32,
+    fEdge: f32,
+    fPostEQCenterFrequency: f32,
+    fPostEQBandwidth: f32,
+    fPreLowpassCutoff: f32,
+};
+
+pub const DSFXEcho = extern struct {
+    fWetDryMix: f32,
+    fFeedback: f32,
+    fLeftDelay: f32,
+    fRightDelay: f32,
+    lPanDelay: i32,
+};
+
+pub const DSFXFlanger = extern struct {
+    fWetDryMix: f32,
+    fDepth: f32,
+    fFeedback: f32,
+    fFrequency: f32,
+    lWaveform: i32,
+    fDelay: f32,
+    lPhase: i32,
+};
+
+pub const DSFXGargle = extern struct {
+    dwRateHz: u32,
+    dwWaveShape: u32,
+};
+
+pub const DSFXI3DL2Reverb = extern struct {
+    lRoom: i32,
+    lRoomHF: i32,
+    flRoomRolloffFactor: f32,
+    flDecayTime: f32,
+    flDecayHFRatio: f32,
+    lReflections: i32,
+    flReflectionsDelay: f32,
+    lReverb: i32,
+    flReverbDelay: f32,
+    flDiffusion: f32,
+    flDensity: f32,
+    flHFReference: f32,
+};
+
+pub const DSFXParamEq = extern struct {
+    fCenter: f32,
+    fBandwidth: f32,
+    fGain: f32,
+};
+
+pub const DSFXWavesReverb = extern struct {
+    fInGain: f32,
+    fReverbMix: f32,
+    fReverbTime: f32,
+    fHighFreqRTRatio: f32,
+};
 
 const IID_IDirectSound_Value = Guid.initString("279afa83-4981-11ce-a521-0020af0be560");
 pub const IID_IDirectSound = &IID_IDirectSound_Value;
@@ -541,6 +615,290 @@ pub const IDirectSound = extern union {
     }
     pub fn Initialize(self: *const IDirectSound, pcGuidDevice: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pcGuidDevice);
+    }
+};
+
+const IID_IDirectSound3DBuffer_Value = Guid.initString("279afa86-4981-11ce-a521-0020af0be560");
+pub const IID_IDirectSound3DBuffer = &IID_IDirectSound3DBuffer_Value;
+pub const IDirectSound3DBuffer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAllParameters: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pDs3dBuffer: ?*DS3DBUFFER,
+        ) callconv(.winapi) HRESULT,
+        GetConeAngles: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pdwInsideConeAngle: ?*u32,
+            pdwOutsideConeAngle: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetConeOrientation: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pvOrientation: ?*D3DVECTOR,
+        ) callconv(.winapi) HRESULT,
+        GetConeOutsideVolume: *const fn(
+            self: *const IDirectSound3DBuffer,
+            plConeOutsideVolume: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetMaxDistance: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pflMaxDistance: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetMinDistance: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pflMinDistance: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetMode: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pdwMode: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPosition: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pvPosition: ?*D3DVECTOR,
+        ) callconv(.winapi) HRESULT,
+        GetVelocity: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pvVelocity: ?*D3DVECTOR,
+        ) callconv(.winapi) HRESULT,
+        SetAllParameters: *const fn(
+            self: *const IDirectSound3DBuffer,
+            pcDs3dBuffer: ?*DS3DBUFFER,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetConeAngles: *const fn(
+            self: *const IDirectSound3DBuffer,
+            dwInsideConeAngle: u32,
+            dwOutsideConeAngle: u32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetConeOrientation: *const fn(
+            self: *const IDirectSound3DBuffer,
+            x: f32,
+            y: f32,
+            z: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetConeOutsideVolume: *const fn(
+            self: *const IDirectSound3DBuffer,
+            lConeOutsideVolume: i32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetMaxDistance: *const fn(
+            self: *const IDirectSound3DBuffer,
+            flMaxDistance: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetMinDistance: *const fn(
+            self: *const IDirectSound3DBuffer,
+            flMinDistance: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetMode: *const fn(
+            self: *const IDirectSound3DBuffer,
+            dwMode: u32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetPosition: *const fn(
+            self: *const IDirectSound3DBuffer,
+            x: f32,
+            y: f32,
+            z: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetVelocity: *const fn(
+            self: *const IDirectSound3DBuffer,
+            x: f32,
+            y: f32,
+            z: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAllParameters(self: *const IDirectSound3DBuffer, pDs3dBuffer: ?*DS3DBUFFER) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDs3dBuffer);
+    }
+    pub fn GetConeAngles(self: *const IDirectSound3DBuffer, pdwInsideConeAngle: ?*u32, pdwOutsideConeAngle: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConeAngles(self, pdwInsideConeAngle, pdwOutsideConeAngle);
+    }
+    pub fn GetConeOrientation(self: *const IDirectSound3DBuffer, pvOrientation: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConeOrientation(self, pvOrientation);
+    }
+    pub fn GetConeOutsideVolume(self: *const IDirectSound3DBuffer, plConeOutsideVolume: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConeOutsideVolume(self, plConeOutsideVolume);
+    }
+    pub fn GetMaxDistance(self: *const IDirectSound3DBuffer, pflMaxDistance: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxDistance(self, pflMaxDistance);
+    }
+    pub fn GetMinDistance(self: *const IDirectSound3DBuffer, pflMinDistance: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMinDistance(self, pflMinDistance);
+    }
+    pub fn GetMode(self: *const IDirectSound3DBuffer, pdwMode: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMode(self, pdwMode);
+    }
+    pub fn GetPosition(self: *const IDirectSound3DBuffer, pvPosition: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPosition(self, pvPosition);
+    }
+    pub fn GetVelocity(self: *const IDirectSound3DBuffer, pvVelocity: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVelocity(self, pvVelocity);
+    }
+    pub fn SetAllParameters(self: *const IDirectSound3DBuffer, pcDs3dBuffer: ?*DS3DBUFFER, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDs3dBuffer, dwApply);
+    }
+    pub fn SetConeAngles(self: *const IDirectSound3DBuffer, dwInsideConeAngle: u32, dwOutsideConeAngle: u32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetConeAngles(self, dwInsideConeAngle, dwOutsideConeAngle, dwApply);
+    }
+    pub fn SetConeOrientation(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetConeOrientation(self, x, y, z, dwApply);
+    }
+    pub fn SetConeOutsideVolume(self: *const IDirectSound3DBuffer, lConeOutsideVolume: i32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetConeOutsideVolume(self, lConeOutsideVolume, dwApply);
+    }
+    pub fn SetMaxDistance(self: *const IDirectSound3DBuffer, flMaxDistance: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMaxDistance(self, flMaxDistance, dwApply);
+    }
+    pub fn SetMinDistance(self: *const IDirectSound3DBuffer, flMinDistance: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMinDistance(self, flMinDistance, dwApply);
+    }
+    pub fn SetMode(self: *const IDirectSound3DBuffer, dwMode: u32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMode(self, dwMode, dwApply);
+    }
+    pub fn SetPosition(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPosition(self, x, y, z, dwApply);
+    }
+    pub fn SetVelocity(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVelocity(self, x, y, z, dwApply);
+    }
+};
+
+const IID_IDirectSound3DListener_Value = Guid.initString("279afa84-4981-11ce-a521-0020af0be560");
+pub const IID_IDirectSound3DListener = &IID_IDirectSound3DListener_Value;
+pub const IDirectSound3DListener = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAllParameters: *const fn(
+            self: *const IDirectSound3DListener,
+            pListener: ?*DS3DLISTENER,
+        ) callconv(.winapi) HRESULT,
+        GetDistanceFactor: *const fn(
+            self: *const IDirectSound3DListener,
+            pflDistanceFactor: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetDopplerFactor: *const fn(
+            self: *const IDirectSound3DListener,
+            pflDopplerFactor: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetOrientation: *const fn(
+            self: *const IDirectSound3DListener,
+            pvOrientFront: ?*D3DVECTOR,
+            pvOrientTop: ?*D3DVECTOR,
+        ) callconv(.winapi) HRESULT,
+        GetPosition: *const fn(
+            self: *const IDirectSound3DListener,
+            pvPosition: ?*D3DVECTOR,
+        ) callconv(.winapi) HRESULT,
+        GetRolloffFactor: *const fn(
+            self: *const IDirectSound3DListener,
+            pflRolloffFactor: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetVelocity: *const fn(
+            self: *const IDirectSound3DListener,
+            pvVelocity: ?*D3DVECTOR,
+        ) callconv(.winapi) HRESULT,
+        SetAllParameters: *const fn(
+            self: *const IDirectSound3DListener,
+            pcListener: ?*DS3DLISTENER,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetDistanceFactor: *const fn(
+            self: *const IDirectSound3DListener,
+            flDistanceFactor: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetDopplerFactor: *const fn(
+            self: *const IDirectSound3DListener,
+            flDopplerFactor: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetOrientation: *const fn(
+            self: *const IDirectSound3DListener,
+            xFront: f32,
+            yFront: f32,
+            zFront: f32,
+            xTop: f32,
+            yTop: f32,
+            zTop: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetPosition: *const fn(
+            self: *const IDirectSound3DListener,
+            x: f32,
+            y: f32,
+            z: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetRolloffFactor: *const fn(
+            self: *const IDirectSound3DListener,
+            flRolloffFactor: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        SetVelocity: *const fn(
+            self: *const IDirectSound3DListener,
+            x: f32,
+            y: f32,
+            z: f32,
+            dwApply: u32,
+        ) callconv(.winapi) HRESULT,
+        CommitDeferredSettings: *const fn(
+            self: *const IDirectSound3DListener,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAllParameters(self: *const IDirectSound3DListener, pListener: ?*DS3DLISTENER) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pListener);
+    }
+    pub fn GetDistanceFactor(self: *const IDirectSound3DListener, pflDistanceFactor: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDistanceFactor(self, pflDistanceFactor);
+    }
+    pub fn GetDopplerFactor(self: *const IDirectSound3DListener, pflDopplerFactor: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDopplerFactor(self, pflDopplerFactor);
+    }
+    pub fn GetOrientation(self: *const IDirectSound3DListener, pvOrientFront: ?*D3DVECTOR, pvOrientTop: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOrientation(self, pvOrientFront, pvOrientTop);
+    }
+    pub fn GetPosition(self: *const IDirectSound3DListener, pvPosition: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPosition(self, pvPosition);
+    }
+    pub fn GetRolloffFactor(self: *const IDirectSound3DListener, pflRolloffFactor: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRolloffFactor(self, pflRolloffFactor);
+    }
+    pub fn GetVelocity(self: *const IDirectSound3DListener, pvVelocity: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVelocity(self, pvVelocity);
+    }
+    pub fn SetAllParameters(self: *const IDirectSound3DListener, pcListener: ?*DS3DLISTENER, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcListener, dwApply);
+    }
+    pub fn SetDistanceFactor(self: *const IDirectSound3DListener, flDistanceFactor: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDistanceFactor(self, flDistanceFactor, dwApply);
+    }
+    pub fn SetDopplerFactor(self: *const IDirectSound3DListener, flDopplerFactor: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDopplerFactor(self, flDopplerFactor, dwApply);
+    }
+    pub fn SetOrientation(self: *const IDirectSound3DListener, xFront: f32, yFront: f32, zFront: f32, xTop: f32, yTop: f32, zTop: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOrientation(self, xFront, yFront, zFront, xTop, yTop, zTop, dwApply);
+    }
+    pub fn SetPosition(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPosition(self, x, y, z, dwApply);
+    }
+    pub fn SetRolloffFactor(self: *const IDirectSound3DListener, flRolloffFactor: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRolloffFactor(self, flRolloffFactor, dwApply);
+    }
+    pub fn SetVelocity(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVelocity(self, x, y, z, dwApply);
+    }
+    pub fn CommitDeferredSettings(self: *const IDirectSound3DListener) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitDeferredSettings(self);
     }
 };
 
@@ -753,290 +1111,6 @@ pub const IDirectSoundBuffer8 = extern union {
     }
 };
 
-const IID_IDirectSound3DListener_Value = Guid.initString("279afa84-4981-11ce-a521-0020af0be560");
-pub const IID_IDirectSound3DListener = &IID_IDirectSound3DListener_Value;
-pub const IDirectSound3DListener = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAllParameters: *const fn(
-            self: *const IDirectSound3DListener,
-            pListener: ?*DS3DLISTENER,
-        ) callconv(.winapi) HRESULT,
-        GetDistanceFactor: *const fn(
-            self: *const IDirectSound3DListener,
-            pflDistanceFactor: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetDopplerFactor: *const fn(
-            self: *const IDirectSound3DListener,
-            pflDopplerFactor: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetOrientation: *const fn(
-            self: *const IDirectSound3DListener,
-            pvOrientFront: ?*D3DVECTOR,
-            pvOrientTop: ?*D3DVECTOR,
-        ) callconv(.winapi) HRESULT,
-        GetPosition: *const fn(
-            self: *const IDirectSound3DListener,
-            pvPosition: ?*D3DVECTOR,
-        ) callconv(.winapi) HRESULT,
-        GetRolloffFactor: *const fn(
-            self: *const IDirectSound3DListener,
-            pflRolloffFactor: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetVelocity: *const fn(
-            self: *const IDirectSound3DListener,
-            pvVelocity: ?*D3DVECTOR,
-        ) callconv(.winapi) HRESULT,
-        SetAllParameters: *const fn(
-            self: *const IDirectSound3DListener,
-            pcListener: ?*DS3DLISTENER,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetDistanceFactor: *const fn(
-            self: *const IDirectSound3DListener,
-            flDistanceFactor: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetDopplerFactor: *const fn(
-            self: *const IDirectSound3DListener,
-            flDopplerFactor: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetOrientation: *const fn(
-            self: *const IDirectSound3DListener,
-            xFront: f32,
-            yFront: f32,
-            zFront: f32,
-            xTop: f32,
-            yTop: f32,
-            zTop: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetPosition: *const fn(
-            self: *const IDirectSound3DListener,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetRolloffFactor: *const fn(
-            self: *const IDirectSound3DListener,
-            flRolloffFactor: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetVelocity: *const fn(
-            self: *const IDirectSound3DListener,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        CommitDeferredSettings: *const fn(
-            self: *const IDirectSound3DListener,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAllParameters(self: *const IDirectSound3DListener, pListener: ?*DS3DLISTENER) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pListener);
-    }
-    pub fn GetDistanceFactor(self: *const IDirectSound3DListener, pflDistanceFactor: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDistanceFactor(self, pflDistanceFactor);
-    }
-    pub fn GetDopplerFactor(self: *const IDirectSound3DListener, pflDopplerFactor: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDopplerFactor(self, pflDopplerFactor);
-    }
-    pub fn GetOrientation(self: *const IDirectSound3DListener, pvOrientFront: ?*D3DVECTOR, pvOrientTop: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOrientation(self, pvOrientFront, pvOrientTop);
-    }
-    pub fn GetPosition(self: *const IDirectSound3DListener, pvPosition: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPosition(self, pvPosition);
-    }
-    pub fn GetRolloffFactor(self: *const IDirectSound3DListener, pflRolloffFactor: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRolloffFactor(self, pflRolloffFactor);
-    }
-    pub fn GetVelocity(self: *const IDirectSound3DListener, pvVelocity: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVelocity(self, pvVelocity);
-    }
-    pub fn SetAllParameters(self: *const IDirectSound3DListener, pcListener: ?*DS3DLISTENER, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcListener, dwApply);
-    }
-    pub fn SetDistanceFactor(self: *const IDirectSound3DListener, flDistanceFactor: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDistanceFactor(self, flDistanceFactor, dwApply);
-    }
-    pub fn SetDopplerFactor(self: *const IDirectSound3DListener, flDopplerFactor: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDopplerFactor(self, flDopplerFactor, dwApply);
-    }
-    pub fn SetOrientation(self: *const IDirectSound3DListener, xFront: f32, yFront: f32, zFront: f32, xTop: f32, yTop: f32, zTop: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOrientation(self, xFront, yFront, zFront, xTop, yTop, zTop, dwApply);
-    }
-    pub fn SetPosition(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPosition(self, x, y, z, dwApply);
-    }
-    pub fn SetRolloffFactor(self: *const IDirectSound3DListener, flRolloffFactor: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRolloffFactor(self, flRolloffFactor, dwApply);
-    }
-    pub fn SetVelocity(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVelocity(self, x, y, z, dwApply);
-    }
-    pub fn CommitDeferredSettings(self: *const IDirectSound3DListener) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitDeferredSettings(self);
-    }
-};
-
-const IID_IDirectSound3DBuffer_Value = Guid.initString("279afa86-4981-11ce-a521-0020af0be560");
-pub const IID_IDirectSound3DBuffer = &IID_IDirectSound3DBuffer_Value;
-pub const IDirectSound3DBuffer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAllParameters: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pDs3dBuffer: ?*DS3DBUFFER,
-        ) callconv(.winapi) HRESULT,
-        GetConeAngles: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pdwInsideConeAngle: ?*u32,
-            pdwOutsideConeAngle: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetConeOrientation: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pvOrientation: ?*D3DVECTOR,
-        ) callconv(.winapi) HRESULT,
-        GetConeOutsideVolume: *const fn(
-            self: *const IDirectSound3DBuffer,
-            plConeOutsideVolume: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetMaxDistance: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pflMaxDistance: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetMinDistance: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pflMinDistance: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetMode: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pdwMode: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPosition: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pvPosition: ?*D3DVECTOR,
-        ) callconv(.winapi) HRESULT,
-        GetVelocity: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pvVelocity: ?*D3DVECTOR,
-        ) callconv(.winapi) HRESULT,
-        SetAllParameters: *const fn(
-            self: *const IDirectSound3DBuffer,
-            pcDs3dBuffer: ?*DS3DBUFFER,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetConeAngles: *const fn(
-            self: *const IDirectSound3DBuffer,
-            dwInsideConeAngle: u32,
-            dwOutsideConeAngle: u32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetConeOrientation: *const fn(
-            self: *const IDirectSound3DBuffer,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetConeOutsideVolume: *const fn(
-            self: *const IDirectSound3DBuffer,
-            lConeOutsideVolume: i32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetMaxDistance: *const fn(
-            self: *const IDirectSound3DBuffer,
-            flMaxDistance: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetMinDistance: *const fn(
-            self: *const IDirectSound3DBuffer,
-            flMinDistance: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetMode: *const fn(
-            self: *const IDirectSound3DBuffer,
-            dwMode: u32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetPosition: *const fn(
-            self: *const IDirectSound3DBuffer,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-        SetVelocity: *const fn(
-            self: *const IDirectSound3DBuffer,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAllParameters(self: *const IDirectSound3DBuffer, pDs3dBuffer: ?*DS3DBUFFER) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDs3dBuffer);
-    }
-    pub fn GetConeAngles(self: *const IDirectSound3DBuffer, pdwInsideConeAngle: ?*u32, pdwOutsideConeAngle: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConeAngles(self, pdwInsideConeAngle, pdwOutsideConeAngle);
-    }
-    pub fn GetConeOrientation(self: *const IDirectSound3DBuffer, pvOrientation: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConeOrientation(self, pvOrientation);
-    }
-    pub fn GetConeOutsideVolume(self: *const IDirectSound3DBuffer, plConeOutsideVolume: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConeOutsideVolume(self, plConeOutsideVolume);
-    }
-    pub fn GetMaxDistance(self: *const IDirectSound3DBuffer, pflMaxDistance: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxDistance(self, pflMaxDistance);
-    }
-    pub fn GetMinDistance(self: *const IDirectSound3DBuffer, pflMinDistance: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMinDistance(self, pflMinDistance);
-    }
-    pub fn GetMode(self: *const IDirectSound3DBuffer, pdwMode: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMode(self, pdwMode);
-    }
-    pub fn GetPosition(self: *const IDirectSound3DBuffer, pvPosition: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPosition(self, pvPosition);
-    }
-    pub fn GetVelocity(self: *const IDirectSound3DBuffer, pvVelocity: ?*D3DVECTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVelocity(self, pvVelocity);
-    }
-    pub fn SetAllParameters(self: *const IDirectSound3DBuffer, pcDs3dBuffer: ?*DS3DBUFFER, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDs3dBuffer, dwApply);
-    }
-    pub fn SetConeAngles(self: *const IDirectSound3DBuffer, dwInsideConeAngle: u32, dwOutsideConeAngle: u32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetConeAngles(self, dwInsideConeAngle, dwOutsideConeAngle, dwApply);
-    }
-    pub fn SetConeOrientation(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetConeOrientation(self, x, y, z, dwApply);
-    }
-    pub fn SetConeOutsideVolume(self: *const IDirectSound3DBuffer, lConeOutsideVolume: i32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetConeOutsideVolume(self, lConeOutsideVolume, dwApply);
-    }
-    pub fn SetMaxDistance(self: *const IDirectSound3DBuffer, flMaxDistance: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMaxDistance(self, flMaxDistance, dwApply);
-    }
-    pub fn SetMinDistance(self: *const IDirectSound3DBuffer, flMinDistance: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMinDistance(self, flMinDistance, dwApply);
-    }
-    pub fn SetMode(self: *const IDirectSound3DBuffer, dwMode: u32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMode(self, dwMode, dwApply);
-    }
-    pub fn SetPosition(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPosition(self, x, y, z, dwApply);
-    }
-    pub fn SetVelocity(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVelocity(self, x, y, z, dwApply);
-    }
-};
-
 const IID_IDirectSoundCapture_Value = Guid.initString("b0210781-89cd-11d0-af08-00a0c925cd16");
 pub const IID_IDirectSoundCapture = &IID_IDirectSoundCapture_Value;
 pub const IDirectSoundCapture = extern union {
@@ -1187,352 +1261,6 @@ pub const IDirectSoundCaptureBuffer8 = extern union {
     }
 };
 
-const IID_IDirectSoundNotify_Value = Guid.initString("b0210783-89cd-11d0-af08-00a0c925cd16");
-pub const IID_IDirectSoundNotify = &IID_IDirectSoundNotify_Value;
-pub const IDirectSoundNotify = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetNotificationPositions: *const fn(
-            self: *const IDirectSoundNotify,
-            dwPositionNotifies: u32,
-            pcPositionNotifies: [*]DSBPOSITIONNOTIFY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetNotificationPositions(self: *const IDirectSoundNotify, dwPositionNotifies: u32, pcPositionNotifies: [*]DSBPOSITIONNOTIFY) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNotificationPositions(self, dwPositionNotifies, pcPositionNotifies);
-    }
-};
-
-pub const DSFXGargle = extern struct {
-    dwRateHz: u32,
-    dwWaveShape: u32,
-};
-
-const IID_IDirectSoundFXGargle_Value = Guid.initString("d616f352-d622-11ce-aac5-0020af0b99a3");
-pub const IID_IDirectSoundFXGargle = &IID_IDirectSoundFXGargle_Value;
-pub const IDirectSoundFXGargle = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXGargle,
-            pcDsFxGargle: ?*DSFXGargle,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXGargle,
-            pDsFxGargle: ?*DSFXGargle,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXGargle, pcDsFxGargle: ?*DSFXGargle) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxGargle);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXGargle, pDsFxGargle: ?*DSFXGargle) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxGargle);
-    }
-};
-
-pub const DSFXChorus = extern struct {
-    fWetDryMix: f32,
-    fDepth: f32,
-    fFeedback: f32,
-    fFrequency: f32,
-    lWaveform: i32,
-    fDelay: f32,
-    lPhase: i32,
-};
-
-const IID_IDirectSoundFXChorus_Value = Guid.initString("880842e3-145f-43e6-a934-a71806e50547");
-pub const IID_IDirectSoundFXChorus = &IID_IDirectSoundFXChorus_Value;
-pub const IDirectSoundFXChorus = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXChorus,
-            pcDsFxChorus: ?*DSFXChorus,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXChorus,
-            pDsFxChorus: ?*DSFXChorus,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXChorus, pcDsFxChorus: ?*DSFXChorus) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxChorus);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXChorus, pDsFxChorus: ?*DSFXChorus) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxChorus);
-    }
-};
-
-pub const DSFXFlanger = extern struct {
-    fWetDryMix: f32,
-    fDepth: f32,
-    fFeedback: f32,
-    fFrequency: f32,
-    lWaveform: i32,
-    fDelay: f32,
-    lPhase: i32,
-};
-
-const IID_IDirectSoundFXFlanger_Value = Guid.initString("903e9878-2c92-4072-9b2c-ea68f5396783");
-pub const IID_IDirectSoundFXFlanger = &IID_IDirectSoundFXFlanger_Value;
-pub const IDirectSoundFXFlanger = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXFlanger,
-            pcDsFxFlanger: ?*DSFXFlanger,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXFlanger,
-            pDsFxFlanger: ?*DSFXFlanger,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXFlanger, pcDsFxFlanger: ?*DSFXFlanger) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxFlanger);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXFlanger, pDsFxFlanger: ?*DSFXFlanger) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxFlanger);
-    }
-};
-
-pub const DSFXEcho = extern struct {
-    fWetDryMix: f32,
-    fFeedback: f32,
-    fLeftDelay: f32,
-    fRightDelay: f32,
-    lPanDelay: i32,
-};
-
-const IID_IDirectSoundFXEcho_Value = Guid.initString("8bd28edf-50db-4e92-a2bd-445488d1ed42");
-pub const IID_IDirectSoundFXEcho = &IID_IDirectSoundFXEcho_Value;
-pub const IDirectSoundFXEcho = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXEcho,
-            pcDsFxEcho: ?*DSFXEcho,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXEcho,
-            pDsFxEcho: ?*DSFXEcho,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXEcho, pcDsFxEcho: ?*DSFXEcho) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxEcho);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXEcho, pDsFxEcho: ?*DSFXEcho) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxEcho);
-    }
-};
-
-pub const DSFXDistortion = extern struct {
-    fGain: f32,
-    fEdge: f32,
-    fPostEQCenterFrequency: f32,
-    fPostEQBandwidth: f32,
-    fPreLowpassCutoff: f32,
-};
-
-const IID_IDirectSoundFXDistortion_Value = Guid.initString("8ecf4326-455f-4d8b-bda9-8d5d3e9e3e0b");
-pub const IID_IDirectSoundFXDistortion = &IID_IDirectSoundFXDistortion_Value;
-pub const IDirectSoundFXDistortion = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXDistortion,
-            pcDsFxDistortion: ?*DSFXDistortion,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXDistortion,
-            pDsFxDistortion: ?*DSFXDistortion,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXDistortion, pcDsFxDistortion: ?*DSFXDistortion) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxDistortion);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXDistortion, pDsFxDistortion: ?*DSFXDistortion) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxDistortion);
-    }
-};
-
-pub const DSFXCompressor = extern struct {
-    fGain: f32,
-    fAttack: f32,
-    fRelease: f32,
-    fThreshold: f32,
-    fRatio: f32,
-    fPredelay: f32,
-};
-
-const IID_IDirectSoundFXCompressor_Value = Guid.initString("4bbd1154-62f6-4e2c-a15c-d3b6c417f7a0");
-pub const IID_IDirectSoundFXCompressor = &IID_IDirectSoundFXCompressor_Value;
-pub const IDirectSoundFXCompressor = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXCompressor,
-            pcDsFxCompressor: ?*DSFXCompressor,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXCompressor,
-            pDsFxCompressor: ?*DSFXCompressor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXCompressor, pcDsFxCompressor: ?*DSFXCompressor) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxCompressor);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXCompressor, pDsFxCompressor: ?*DSFXCompressor) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxCompressor);
-    }
-};
-
-pub const DSFXParamEq = extern struct {
-    fCenter: f32,
-    fBandwidth: f32,
-    fGain: f32,
-};
-
-const IID_IDirectSoundFXParamEq_Value = Guid.initString("c03ca9fe-fe90-4204-8078-82334cd177da");
-pub const IID_IDirectSoundFXParamEq = &IID_IDirectSoundFXParamEq_Value;
-pub const IDirectSoundFXParamEq = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXParamEq,
-            pcDsFxParamEq: ?*DSFXParamEq,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXParamEq,
-            pDsFxParamEq: ?*DSFXParamEq,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXParamEq, pcDsFxParamEq: ?*DSFXParamEq) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxParamEq);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXParamEq, pDsFxParamEq: ?*DSFXParamEq) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxParamEq);
-    }
-};
-
-pub const DSFXI3DL2Reverb = extern struct {
-    lRoom: i32,
-    lRoomHF: i32,
-    flRoomRolloffFactor: f32,
-    flDecayTime: f32,
-    flDecayHFRatio: f32,
-    lReflections: i32,
-    flReflectionsDelay: f32,
-    lReverb: i32,
-    flReverbDelay: f32,
-    flDiffusion: f32,
-    flDensity: f32,
-    flHFReference: f32,
-};
-
-const IID_IDirectSoundFXI3DL2Reverb_Value = Guid.initString("4b166a6a-0d66-43f3-80e3-ee6280dee1a4");
-pub const IID_IDirectSoundFXI3DL2Reverb = &IID_IDirectSoundFXI3DL2Reverb_Value;
-pub const IDirectSoundFXI3DL2Reverb = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
-        ) callconv(.winapi) HRESULT,
-        SetPreset: *const fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            dwPreset: u32,
-        ) callconv(.winapi) HRESULT,
-        GetPreset: *const fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            pdwPreset: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetQuality: *const fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            lQuality: i32,
-        ) callconv(.winapi) HRESULT,
-        GetQuality: *const fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            plQuality: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxI3DL2Reverb);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxI3DL2Reverb);
-    }
-    pub fn SetPreset(self: *const IDirectSoundFXI3DL2Reverb, dwPreset: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPreset(self, dwPreset);
-    }
-    pub fn GetPreset(self: *const IDirectSoundFXI3DL2Reverb, pdwPreset: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreset(self, pdwPreset);
-    }
-    pub fn SetQuality(self: *const IDirectSoundFXI3DL2Reverb, lQuality: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetQuality(self, lQuality);
-    }
-    pub fn GetQuality(self: *const IDirectSoundFXI3DL2Reverb, plQuality: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetQuality(self, plQuality);
-    }
-};
-
-pub const DSFXWavesReverb = extern struct {
-    fInGain: f32,
-    fReverbMix: f32,
-    fReverbTime: f32,
-    fHighFreqRTRatio: f32,
-};
-
-const IID_IDirectSoundFXWavesReverb_Value = Guid.initString("46858c3a-0dc6-45e3-b760-d4eef16cb325");
-pub const IID_IDirectSoundFXWavesReverb = &IID_IDirectSoundFXWavesReverb_Value;
-pub const IDirectSoundFXWavesReverb = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAllParameters: *const fn(
-            self: *const IDirectSoundFXWavesReverb,
-            pcDsFxWavesReverb: ?*DSFXWavesReverb,
-        ) callconv(.winapi) HRESULT,
-        GetAllParameters: *const fn(
-            self: *const IDirectSoundFXWavesReverb,
-            pDsFxWavesReverb: ?*DSFXWavesReverb,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXWavesReverb, pcDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllParameters(self, pcDsFxWavesReverb);
-    }
-    pub fn GetAllParameters(self: *const IDirectSoundFXWavesReverb, pDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAllParameters(self, pDsFxWavesReverb);
-    }
-};
-
-pub const DSCFXAec = extern struct {
-    fEnable: BOOL,
-    fNoiseFill: BOOL,
-    dwMode: u32,
-};
-
 const IID_IDirectSoundCaptureFXAec_Value = Guid.initString("ad74143d-903d-4ab7-8066-28d363036d65");
 pub const IID_IDirectSoundCaptureFXAec = &IID_IDirectSoundCaptureFXAec_Value;
 pub const IDirectSoundCaptureFXAec = extern union {
@@ -1568,10 +1296,6 @@ pub const IDirectSoundCaptureFXAec = extern union {
     pub fn Reset(self: *const IDirectSoundCaptureFXAec) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-};
-
-pub const DSCFXNoiseSuppress = extern struct {
-    fEnable: BOOL,
 };
 
 const IID_IDirectSoundCaptureFXNoiseSuppress_Value = Guid.initString("ed311e41-fbae-4175-9625-cd0854f693ca");
@@ -1628,29 +1352,295 @@ pub const IDirectSoundFullDuplex = extern union {
     }
 };
 
+const IID_IDirectSoundFXChorus_Value = Guid.initString("880842e3-145f-43e6-a934-a71806e50547");
+pub const IID_IDirectSoundFXChorus = &IID_IDirectSoundFXChorus_Value;
+pub const IDirectSoundFXChorus = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXChorus,
+            pcDsFxChorus: ?*DSFXChorus,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXChorus,
+            pDsFxChorus: ?*DSFXChorus,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXChorus, pcDsFxChorus: ?*DSFXChorus) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxChorus);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXChorus, pDsFxChorus: ?*DSFXChorus) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxChorus);
+    }
+};
+
+const IID_IDirectSoundFXCompressor_Value = Guid.initString("4bbd1154-62f6-4e2c-a15c-d3b6c417f7a0");
+pub const IID_IDirectSoundFXCompressor = &IID_IDirectSoundFXCompressor_Value;
+pub const IDirectSoundFXCompressor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXCompressor,
+            pcDsFxCompressor: ?*DSFXCompressor,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXCompressor,
+            pDsFxCompressor: ?*DSFXCompressor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXCompressor, pcDsFxCompressor: ?*DSFXCompressor) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxCompressor);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXCompressor, pDsFxCompressor: ?*DSFXCompressor) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxCompressor);
+    }
+};
+
+const IID_IDirectSoundFXDistortion_Value = Guid.initString("8ecf4326-455f-4d8b-bda9-8d5d3e9e3e0b");
+pub const IID_IDirectSoundFXDistortion = &IID_IDirectSoundFXDistortion_Value;
+pub const IDirectSoundFXDistortion = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXDistortion,
+            pcDsFxDistortion: ?*DSFXDistortion,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXDistortion,
+            pDsFxDistortion: ?*DSFXDistortion,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXDistortion, pcDsFxDistortion: ?*DSFXDistortion) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxDistortion);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXDistortion, pDsFxDistortion: ?*DSFXDistortion) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxDistortion);
+    }
+};
+
+const IID_IDirectSoundFXEcho_Value = Guid.initString("8bd28edf-50db-4e92-a2bd-445488d1ed42");
+pub const IID_IDirectSoundFXEcho = &IID_IDirectSoundFXEcho_Value;
+pub const IDirectSoundFXEcho = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXEcho,
+            pcDsFxEcho: ?*DSFXEcho,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXEcho,
+            pDsFxEcho: ?*DSFXEcho,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXEcho, pcDsFxEcho: ?*DSFXEcho) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxEcho);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXEcho, pDsFxEcho: ?*DSFXEcho) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxEcho);
+    }
+};
+
+const IID_IDirectSoundFXFlanger_Value = Guid.initString("903e9878-2c92-4072-9b2c-ea68f5396783");
+pub const IID_IDirectSoundFXFlanger = &IID_IDirectSoundFXFlanger_Value;
+pub const IDirectSoundFXFlanger = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXFlanger,
+            pcDsFxFlanger: ?*DSFXFlanger,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXFlanger,
+            pDsFxFlanger: ?*DSFXFlanger,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXFlanger, pcDsFxFlanger: ?*DSFXFlanger) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxFlanger);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXFlanger, pDsFxFlanger: ?*DSFXFlanger) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxFlanger);
+    }
+};
+
+const IID_IDirectSoundFXGargle_Value = Guid.initString("d616f352-d622-11ce-aac5-0020af0b99a3");
+pub const IID_IDirectSoundFXGargle = &IID_IDirectSoundFXGargle_Value;
+pub const IDirectSoundFXGargle = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXGargle,
+            pcDsFxGargle: ?*DSFXGargle,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXGargle,
+            pDsFxGargle: ?*DSFXGargle,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXGargle, pcDsFxGargle: ?*DSFXGargle) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxGargle);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXGargle, pDsFxGargle: ?*DSFXGargle) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxGargle);
+    }
+};
+
+const IID_IDirectSoundFXI3DL2Reverb_Value = Guid.initString("4b166a6a-0d66-43f3-80e3-ee6280dee1a4");
+pub const IID_IDirectSoundFXI3DL2Reverb = &IID_IDirectSoundFXI3DL2Reverb_Value;
+pub const IDirectSoundFXI3DL2Reverb = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXI3DL2Reverb,
+            pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXI3DL2Reverb,
+            pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
+        ) callconv(.winapi) HRESULT,
+        SetPreset: *const fn(
+            self: *const IDirectSoundFXI3DL2Reverb,
+            dwPreset: u32,
+        ) callconv(.winapi) HRESULT,
+        GetPreset: *const fn(
+            self: *const IDirectSoundFXI3DL2Reverb,
+            pdwPreset: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetQuality: *const fn(
+            self: *const IDirectSoundFXI3DL2Reverb,
+            lQuality: i32,
+        ) callconv(.winapi) HRESULT,
+        GetQuality: *const fn(
+            self: *const IDirectSoundFXI3DL2Reverb,
+            plQuality: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxI3DL2Reverb);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxI3DL2Reverb);
+    }
+    pub fn SetPreset(self: *const IDirectSoundFXI3DL2Reverb, dwPreset: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPreset(self, dwPreset);
+    }
+    pub fn GetPreset(self: *const IDirectSoundFXI3DL2Reverb, pdwPreset: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreset(self, pdwPreset);
+    }
+    pub fn SetQuality(self: *const IDirectSoundFXI3DL2Reverb, lQuality: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetQuality(self, lQuality);
+    }
+    pub fn GetQuality(self: *const IDirectSoundFXI3DL2Reverb, plQuality: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetQuality(self, plQuality);
+    }
+};
+
+const IID_IDirectSoundFXParamEq_Value = Guid.initString("c03ca9fe-fe90-4204-8078-82334cd177da");
+pub const IID_IDirectSoundFXParamEq = &IID_IDirectSoundFXParamEq_Value;
+pub const IDirectSoundFXParamEq = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXParamEq,
+            pcDsFxParamEq: ?*DSFXParamEq,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXParamEq,
+            pDsFxParamEq: ?*DSFXParamEq,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXParamEq, pcDsFxParamEq: ?*DSFXParamEq) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxParamEq);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXParamEq, pDsFxParamEq: ?*DSFXParamEq) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxParamEq);
+    }
+};
+
+const IID_IDirectSoundFXWavesReverb_Value = Guid.initString("46858c3a-0dc6-45e3-b760-d4eef16cb325");
+pub const IID_IDirectSoundFXWavesReverb = &IID_IDirectSoundFXWavesReverb_Value;
+pub const IDirectSoundFXWavesReverb = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAllParameters: *const fn(
+            self: *const IDirectSoundFXWavesReverb,
+            pcDsFxWavesReverb: ?*DSFXWavesReverb,
+        ) callconv(.winapi) HRESULT,
+        GetAllParameters: *const fn(
+            self: *const IDirectSoundFXWavesReverb,
+            pDsFxWavesReverb: ?*DSFXWavesReverb,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAllParameters(self: *const IDirectSoundFXWavesReverb, pcDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllParameters(self, pcDsFxWavesReverb);
+    }
+    pub fn GetAllParameters(self: *const IDirectSoundFXWavesReverb, pDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAllParameters(self, pDsFxWavesReverb);
+    }
+};
+
+const IID_IDirectSoundNotify_Value = Guid.initString("b0210783-89cd-11d0-af08-00a0c925cd16");
+pub const IID_IDirectSoundNotify = &IID_IDirectSoundNotify_Value;
+pub const IDirectSoundNotify = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetNotificationPositions: *const fn(
+            self: *const IDirectSoundNotify,
+            dwPositionNotifies: u32,
+            pcPositionNotifies: [*]DSBPOSITIONNOTIFY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetNotificationPositions(self: *const IDirectSoundNotify, dwPositionNotifies: u32, pcPositionNotifies: [*]DSBPOSITIONNOTIFY) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNotificationPositions(self, dwPositionNotifies, pcPositionNotifies);
+    }
+};
+
+pub const LPDSENUMCALLBACKA = *const fn(
+    param0: ?*Guid,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+    param3: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const LPDSENUMCALLBACKW = *const fn(
+    param0: ?*Guid,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+    param3: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
-pub extern "dsound" fn DirectSoundCreate(
-    pcGuidDevice: ?*const Guid,
-    ppDS: ?*?*IDirectSound,
-    pUnkOuter: ?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "dsound" fn DirectSoundEnumerateA(
-    pDSEnumCallback: ?LPDSENUMCALLBACKA,
-    pContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "dsound" fn DirectSoundEnumerateW(
-    pDSEnumCallback: ?LPDSENUMCALLBACKW,
-    pContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
 pub extern "dsound" fn DirectSoundCaptureCreate(
     pcGuidDevice: ?*const Guid,
     ppDSC: ?*?*IDirectSoundCapture,
+    pUnkOuter: ?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+pub extern "dsound" fn DirectSoundCaptureCreate8(
+    pcGuidDevice: ?*const Guid,
+    ppDSC8: ?*?*IDirectSoundCapture,
     pUnkOuter: ?*IUnknown,
 ) callconv(.winapi) HRESULT;
 
@@ -1664,16 +1654,26 @@ pub extern "dsound" fn DirectSoundCaptureEnumerateW(
     pContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
+pub extern "dsound" fn DirectSoundCreate(
+    pcGuidDevice: ?*const Guid,
+    ppDS: ?*?*IDirectSound,
+    pUnkOuter: ?*IUnknown,
+) callconv(.winapi) HRESULT;
+
 pub extern "dsound" fn DirectSoundCreate8(
     pcGuidDevice: ?*const Guid,
     ppDS8: ?*?*IDirectSound8,
     pUnkOuter: ?*IUnknown,
 ) callconv(.winapi) HRESULT;
 
-pub extern "dsound" fn DirectSoundCaptureCreate8(
-    pcGuidDevice: ?*const Guid,
-    ppDSC8: ?*?*IDirectSoundCapture,
-    pUnkOuter: ?*IUnknown,
+pub extern "dsound" fn DirectSoundEnumerateA(
+    pDSEnumCallback: ?LPDSENUMCALLBACKA,
+    pContext: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "dsound" fn DirectSoundEnumerateW(
+    pDSEnumCallback: ?LPDSENUMCALLBACKW,
+    pContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundFullDuplexCreate(
@@ -1705,18 +1705,18 @@ pub const LPDSENUMCALLBACK = switch (@import("../../zig.zig").unicode_mode) {
         "'LPDSENUMCALLBACK' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const DirectSoundEnumerate = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().DirectSoundEnumerateA,
-    .wide => @This().DirectSoundEnumerateW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DirectSoundEnumerate' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const DirectSoundCaptureEnumerate = switch (@import("../../zig.zig").unicode_mode) {
     .ansi => @This().DirectSoundCaptureEnumerateA,
     .wide => @This().DirectSoundCaptureEnumerateW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'DirectSoundCaptureEnumerate' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DirectSoundEnumerate = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().DirectSoundEnumerateA,
+    .wide => @This().DirectSoundEnumerateW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DirectSoundEnumerate' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

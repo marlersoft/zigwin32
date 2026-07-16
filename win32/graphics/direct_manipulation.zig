@@ -2,61 +2,29 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (8)
 //--------------------------------------------------------------------------------
-pub const DIRECTMANIPULATION_KEYBOARDFOCUS = @as(u32, 4294967294);
-pub const DIRECTMANIPULATION_MOUSEFOCUS = @as(u32, 4294967293);
-pub const CLSID_VerticalIndicatorContent = Guid.initString("a10b5f17-afe0-4aa2-91e9-3e7001d2e6b4");
-pub const CLSID_HorizontalIndicatorContent = Guid.initString("e7d18cf5-3ec7-44d5-a76b-3770f3cf903d");
-pub const CLSID_VirtualViewportContent = Guid.initString("3206a19a-86f0-4cb4-a7f3-16e3b7e2d852");
-pub const CLSID_DragDropConfigurationBehavior = Guid.initString("09b01b3e-ba6c-454d-82e8-95e352329f23");
 pub const CLSID_AutoScrollBehavior = Guid.initString("26126a51-3c70-4c9a-aec2-948849eeb093");
 pub const CLSID_DeferContactService = Guid.initString("d7b67cf4-84bb-434e-86ae-6592bbc9abd9");
+pub const CLSID_DragDropConfigurationBehavior = Guid.initString("09b01b3e-ba6c-454d-82e8-95e352329f23");
+pub const CLSID_HorizontalIndicatorContent = Guid.initString("e7d18cf5-3ec7-44d5-a76b-3770f3cf903d");
+pub const CLSID_VerticalIndicatorContent = Guid.initString("a10b5f17-afe0-4aa2-91e9-3e7001d2e6b4");
+pub const CLSID_VirtualViewportContent = Guid.initString("3206a19a-86f0-4cb4-a7f3-16e3b7e2d852");
+pub const DIRECTMANIPULATION_KEYBOARDFOCUS = @as(u32, 4294967294);
+pub const DIRECTMANIPULATION_MOUSEFOCUS = @as(u32, 4294967293);
 
 //--------------------------------------------------------------------------------
 // Section: Types (39)
 //--------------------------------------------------------------------------------
-const CLSID_DirectManipulationViewport_Value = Guid.initString("34e211b6-3650-4f75-8334-fa359598e1c5");
-pub const CLSID_DirectManipulationViewport = &CLSID_DirectManipulationViewport_Value;
-
-const CLSID_DirectManipulationUpdateManager_Value = Guid.initString("9fc1bfd5-1835-441a-b3b1-b6cc74b727d0");
-pub const CLSID_DirectManipulationUpdateManager = &CLSID_DirectManipulationUpdateManager_Value;
-
-const CLSID_DirectManipulationPrimaryContent_Value = Guid.initString("caa02661-d59e-41c7-8393-3ba3bacb6b57");
-pub const CLSID_DirectManipulationPrimaryContent = &CLSID_DirectManipulationPrimaryContent_Value;
-
-const CLSID_DirectManipulationManager_Value = Guid.initString("54e211b6-3650-4f75-8334-fa359598e1c5");
-pub const CLSID_DirectManipulationManager = &CLSID_DirectManipulationManager_Value;
-
-const CLSID_DirectManipulationSharedManager_Value = Guid.initString("99793286-77cc-4b57-96db-3b354f6f9fb5");
-pub const CLSID_DirectManipulationSharedManager = &CLSID_DirectManipulationSharedManager_Value;
-
 const CLSID_DCompManipulationCompositor_Value = Guid.initString("79dea627-a08a-43ac-8ef5-6900b9299126");
 pub const CLSID_DCompManipulationCompositor = &CLSID_DCompManipulationCompositor_Value;
 
-pub const DIRECTMANIPULATION_STATUS = enum(i32) {
-    BUILDING = 0,
-    ENABLED = 1,
-    DISABLED = 2,
-    RUNNING = 3,
-    INERTIA = 4,
-    READY = 5,
-    SUSPENDED = 6,
+pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION = enum(i32) {
+    STOP = 0,
+    FORWARD = 1,
+    REVERSE = 2,
 };
-pub const DIRECTMANIPULATION_BUILDING = DIRECTMANIPULATION_STATUS.BUILDING;
-pub const DIRECTMANIPULATION_ENABLED = DIRECTMANIPULATION_STATUS.ENABLED;
-pub const DIRECTMANIPULATION_DISABLED = DIRECTMANIPULATION_STATUS.DISABLED;
-pub const DIRECTMANIPULATION_RUNNING = DIRECTMANIPULATION_STATUS.RUNNING;
-pub const DIRECTMANIPULATION_INERTIA = DIRECTMANIPULATION_STATUS.INERTIA;
-pub const DIRECTMANIPULATION_READY = DIRECTMANIPULATION_STATUS.READY;
-pub const DIRECTMANIPULATION_SUSPENDED = DIRECTMANIPULATION_STATUS.SUSPENDED;
-
-pub const DIRECTMANIPULATION_HITTEST_TYPE = enum(i32) {
-    ASYNCHRONOUS = 0,
-    SYNCHRONOUS = 1,
-    AUTO_SYNCHRONOUS = 2,
-};
-pub const DIRECTMANIPULATION_HITTEST_TYPE_ASYNCHRONOUS = DIRECTMANIPULATION_HITTEST_TYPE.ASYNCHRONOUS;
-pub const DIRECTMANIPULATION_HITTEST_TYPE_SYNCHRONOUS = DIRECTMANIPULATION_HITTEST_TYPE.SYNCHRONOUS;
-pub const DIRECTMANIPULATION_HITTEST_TYPE_AUTO_SYNCHRONOUS = DIRECTMANIPULATION_HITTEST_TYPE.AUTO_SYNCHRONOUS;
+pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_STOP = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.STOP;
+pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_FORWARD = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.FORWARD;
+pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_REVERSE = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.REVERSE;
 
 pub const DIRECTMANIPULATION_CONFIGURATION = enum(i32) {
     NONE = 0,
@@ -79,6 +47,34 @@ pub const DIRECTMANIPULATION_CONFIGURATION_SCALING_INERTIA = DIRECTMANIPULATION_
 pub const DIRECTMANIPULATION_CONFIGURATION_RAILS_X = DIRECTMANIPULATION_CONFIGURATION.RAILS_X;
 pub const DIRECTMANIPULATION_CONFIGURATION_RAILS_Y = DIRECTMANIPULATION_CONFIGURATION.RAILS_Y;
 
+pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION = enum(i32) {
+    VERTICAL = 1,
+    HORIZONTAL = 2,
+    SELECT_ONLY = 16,
+    SELECT_DRAG = 32,
+    HOLD_DRAG = 64,
+};
+pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_VERTICAL = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.VERTICAL;
+pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_HORIZONTAL = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.HORIZONTAL;
+pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_SELECT_ONLY = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.SELECT_ONLY;
+pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_SELECT_DRAG = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.SELECT_DRAG;
+pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_HOLD_DRAG = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.HOLD_DRAG;
+
+pub const DIRECTMANIPULATION_DRAG_DROP_STATUS = enum(i32) {
+    READY = 0,
+    PRESELECT = 1,
+    SELECTING = 2,
+    DRAGGING = 3,
+    CANCELLED = 4,
+    COMMITTED = 5,
+};
+pub const DIRECTMANIPULATION_DRAG_DROP_READY = DIRECTMANIPULATION_DRAG_DROP_STATUS.READY;
+pub const DIRECTMANIPULATION_DRAG_DROP_PRESELECT = DIRECTMANIPULATION_DRAG_DROP_STATUS.PRESELECT;
+pub const DIRECTMANIPULATION_DRAG_DROP_SELECTING = DIRECTMANIPULATION_DRAG_DROP_STATUS.SELECTING;
+pub const DIRECTMANIPULATION_DRAG_DROP_DRAGGING = DIRECTMANIPULATION_DRAG_DROP_STATUS.DRAGGING;
+pub const DIRECTMANIPULATION_DRAG_DROP_CANCELLED = DIRECTMANIPULATION_DRAG_DROP_STATUS.CANCELLED;
+pub const DIRECTMANIPULATION_DRAG_DROP_COMMITTED = DIRECTMANIPULATION_DRAG_DROP_STATUS.COMMITTED;
+
 pub const DIRECTMANIPULATION_GESTURE_CONFIGURATION = enum(i32) {
     NONE = 0,
     CROSS_SLIDE_VERTICAL = 8,
@@ -91,6 +87,52 @@ pub const DIRECTMANIPULATION_GESTURE_DEFAULT = DIRECTMANIPULATION_GESTURE_CONFIG
 pub const DIRECTMANIPULATION_GESTURE_CROSS_SLIDE_VERTICAL = DIRECTMANIPULATION_GESTURE_CONFIGURATION.CROSS_SLIDE_VERTICAL;
 pub const DIRECTMANIPULATION_GESTURE_CROSS_SLIDE_HORIZONTAL = DIRECTMANIPULATION_GESTURE_CONFIGURATION.CROSS_SLIDE_HORIZONTAL;
 pub const DIRECTMANIPULATION_GESTURE_PINCH_ZOOM = DIRECTMANIPULATION_GESTURE_CONFIGURATION.PINCH_ZOOM;
+
+pub const DIRECTMANIPULATION_HITTEST_TYPE = enum(i32) {
+    ASYNCHRONOUS = 0,
+    SYNCHRONOUS = 1,
+    AUTO_SYNCHRONOUS = 2,
+};
+pub const DIRECTMANIPULATION_HITTEST_TYPE_ASYNCHRONOUS = DIRECTMANIPULATION_HITTEST_TYPE.ASYNCHRONOUS;
+pub const DIRECTMANIPULATION_HITTEST_TYPE_SYNCHRONOUS = DIRECTMANIPULATION_HITTEST_TYPE.SYNCHRONOUS;
+pub const DIRECTMANIPULATION_HITTEST_TYPE_AUTO_SYNCHRONOUS = DIRECTMANIPULATION_HITTEST_TYPE.AUTO_SYNCHRONOUS;
+
+pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT = enum(i32) {
+    NONE = 0,
+    LEFT = 1,
+    CENTER = 2,
+    RIGHT = 4,
+    UNLOCKCENTER = 8,
+};
+pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_NONE = DIRECTMANIPULATION_HORIZONTALALIGNMENT.NONE;
+pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_LEFT = DIRECTMANIPULATION_HORIZONTALALIGNMENT.LEFT;
+pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_CENTER = DIRECTMANIPULATION_HORIZONTALALIGNMENT.CENTER;
+pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_RIGHT = DIRECTMANIPULATION_HORIZONTALALIGNMENT.RIGHT;
+pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_UNLOCKCENTER = DIRECTMANIPULATION_HORIZONTALALIGNMENT.UNLOCKCENTER;
+
+pub const DIRECTMANIPULATION_INPUT_MODE = enum(i32) {
+    AUTOMATIC = 0,
+    MANUAL = 1,
+};
+pub const DIRECTMANIPULATION_INPUT_MODE_AUTOMATIC = DIRECTMANIPULATION_INPUT_MODE.AUTOMATIC;
+pub const DIRECTMANIPULATION_INPUT_MODE_MANUAL = DIRECTMANIPULATION_INPUT_MODE.MANUAL;
+
+pub const DIRECTMANIPULATION_INTERACTION_TYPE = enum(i32) {
+    BEGIN = 0,
+    TYPE_MANIPULATION = 1,
+    TYPE_GESTURE_TAP = 2,
+    TYPE_GESTURE_HOLD = 3,
+    TYPE_GESTURE_CROSS_SLIDE = 4,
+    TYPE_GESTURE_PINCH_ZOOM = 5,
+    END = 100,
+};
+pub const DIRECTMANIPULATION_INTERACTION_BEGIN = DIRECTMANIPULATION_INTERACTION_TYPE.BEGIN;
+pub const DIRECTMANIPULATION_INTERACTION_TYPE_MANIPULATION = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_MANIPULATION;
+pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_TAP = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_TAP;
+pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_HOLD = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_HOLD;
+pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_CROSS_SLIDE = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_CROSS_SLIDE;
+pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_PINCH_ZOOM = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_PINCH_ZOOM;
+pub const DIRECTMANIPULATION_INTERACTION_END = DIRECTMANIPULATION_INTERACTION_TYPE.END;
 
 pub const DIRECTMANIPULATION_MOTION_TYPES = enum(i32) {
     NONE = 0,
@@ -109,6 +151,56 @@ pub const DIRECTMANIPULATION_MOTION_CENTERX = DIRECTMANIPULATION_MOTION_TYPES.CE
 pub const DIRECTMANIPULATION_MOTION_CENTERY = DIRECTMANIPULATION_MOTION_TYPES.CENTERY;
 pub const DIRECTMANIPULATION_MOTION_ALL = DIRECTMANIPULATION_MOTION_TYPES.ALL;
 
+pub const DIRECTMANIPULATION_SNAPPOINT_COORDINATE = enum(i32) {
+    BOUNDARY = 0,
+    ORIGIN = 1,
+    MIRRORED = 16,
+};
+pub const DIRECTMANIPULATION_COORDINATE_BOUNDARY = DIRECTMANIPULATION_SNAPPOINT_COORDINATE.BOUNDARY;
+pub const DIRECTMANIPULATION_COORDINATE_ORIGIN = DIRECTMANIPULATION_SNAPPOINT_COORDINATE.ORIGIN;
+pub const DIRECTMANIPULATION_COORDINATE_MIRRORED = DIRECTMANIPULATION_SNAPPOINT_COORDINATE.MIRRORED;
+
+pub const DIRECTMANIPULATION_SNAPPOINT_TYPE = enum(i32) {
+    MANDATORY = 0,
+    OPTIONAL = 1,
+    MANDATORY_SINGLE = 2,
+    OPTIONAL_SINGLE = 3,
+};
+pub const DIRECTMANIPULATION_SNAPPOINT_MANDATORY = DIRECTMANIPULATION_SNAPPOINT_TYPE.MANDATORY;
+pub const DIRECTMANIPULATION_SNAPPOINT_OPTIONAL = DIRECTMANIPULATION_SNAPPOINT_TYPE.OPTIONAL;
+pub const DIRECTMANIPULATION_SNAPPOINT_MANDATORY_SINGLE = DIRECTMANIPULATION_SNAPPOINT_TYPE.MANDATORY_SINGLE;
+pub const DIRECTMANIPULATION_SNAPPOINT_OPTIONAL_SINGLE = DIRECTMANIPULATION_SNAPPOINT_TYPE.OPTIONAL_SINGLE;
+
+pub const DIRECTMANIPULATION_STATUS = enum(i32) {
+    BUILDING = 0,
+    ENABLED = 1,
+    DISABLED = 2,
+    RUNNING = 3,
+    INERTIA = 4,
+    READY = 5,
+    SUSPENDED = 6,
+};
+pub const DIRECTMANIPULATION_BUILDING = DIRECTMANIPULATION_STATUS.BUILDING;
+pub const DIRECTMANIPULATION_ENABLED = DIRECTMANIPULATION_STATUS.ENABLED;
+pub const DIRECTMANIPULATION_DISABLED = DIRECTMANIPULATION_STATUS.DISABLED;
+pub const DIRECTMANIPULATION_RUNNING = DIRECTMANIPULATION_STATUS.RUNNING;
+pub const DIRECTMANIPULATION_INERTIA = DIRECTMANIPULATION_STATUS.INERTIA;
+pub const DIRECTMANIPULATION_READY = DIRECTMANIPULATION_STATUS.READY;
+pub const DIRECTMANIPULATION_SUSPENDED = DIRECTMANIPULATION_STATUS.SUSPENDED;
+
+pub const DIRECTMANIPULATION_VERTICALALIGNMENT = enum(i32) {
+    NONE = 0,
+    TOP = 1,
+    CENTER = 2,
+    BOTTOM = 4,
+    UNLOCKCENTER = 8,
+};
+pub const DIRECTMANIPULATION_VERTICALALIGNMENT_NONE = DIRECTMANIPULATION_VERTICALALIGNMENT.NONE;
+pub const DIRECTMANIPULATION_VERTICALALIGNMENT_TOP = DIRECTMANIPULATION_VERTICALALIGNMENT.TOP;
+pub const DIRECTMANIPULATION_VERTICALALIGNMENT_CENTER = DIRECTMANIPULATION_VERTICALALIGNMENT.CENTER;
+pub const DIRECTMANIPULATION_VERTICALALIGNMENT_BOTTOM = DIRECTMANIPULATION_VERTICALALIGNMENT.BOTTOM;
+pub const DIRECTMANIPULATION_VERTICALALIGNMENT_UNLOCKCENTER = DIRECTMANIPULATION_VERTICALALIGNMENT.UNLOCKCENTER;
+
 pub const DIRECTMANIPULATION_VIEWPORT_OPTIONS = enum(i32) {
     DEFAULT = 0,
     AUTODISABLE = 1,
@@ -124,58 +216,293 @@ pub const DIRECTMANIPULATION_VIEWPORT_OPTIONS_INPUT = DIRECTMANIPULATION_VIEWPOR
 pub const DIRECTMANIPULATION_VIEWPORT_OPTIONS_EXPLICITHITTEST = DIRECTMANIPULATION_VIEWPORT_OPTIONS.EXPLICITHITTEST;
 pub const DIRECTMANIPULATION_VIEWPORT_OPTIONS_DISABLEPIXELSNAPPING = DIRECTMANIPULATION_VIEWPORT_OPTIONS.DISABLEPIXELSNAPPING;
 
-pub const DIRECTMANIPULATION_SNAPPOINT_TYPE = enum(i32) {
-    MANDATORY = 0,
-    OPTIONAL = 1,
-    MANDATORY_SINGLE = 2,
-    OPTIONAL_SINGLE = 3,
-};
-pub const DIRECTMANIPULATION_SNAPPOINT_MANDATORY = DIRECTMANIPULATION_SNAPPOINT_TYPE.MANDATORY;
-pub const DIRECTMANIPULATION_SNAPPOINT_OPTIONAL = DIRECTMANIPULATION_SNAPPOINT_TYPE.OPTIONAL;
-pub const DIRECTMANIPULATION_SNAPPOINT_MANDATORY_SINGLE = DIRECTMANIPULATION_SNAPPOINT_TYPE.MANDATORY_SINGLE;
-pub const DIRECTMANIPULATION_SNAPPOINT_OPTIONAL_SINGLE = DIRECTMANIPULATION_SNAPPOINT_TYPE.OPTIONAL_SINGLE;
+const CLSID_DirectManipulationManager_Value = Guid.initString("54e211b6-3650-4f75-8334-fa359598e1c5");
+pub const CLSID_DirectManipulationManager = &CLSID_DirectManipulationManager_Value;
 
-pub const DIRECTMANIPULATION_SNAPPOINT_COORDINATE = enum(i32) {
-    BOUNDARY = 0,
-    ORIGIN = 1,
-    MIRRORED = 16,
-};
-pub const DIRECTMANIPULATION_COORDINATE_BOUNDARY = DIRECTMANIPULATION_SNAPPOINT_COORDINATE.BOUNDARY;
-pub const DIRECTMANIPULATION_COORDINATE_ORIGIN = DIRECTMANIPULATION_SNAPPOINT_COORDINATE.ORIGIN;
-pub const DIRECTMANIPULATION_COORDINATE_MIRRORED = DIRECTMANIPULATION_SNAPPOINT_COORDINATE.MIRRORED;
+const CLSID_DirectManipulationPrimaryContent_Value = Guid.initString("caa02661-d59e-41c7-8393-3ba3bacb6b57");
+pub const CLSID_DirectManipulationPrimaryContent = &CLSID_DirectManipulationPrimaryContent_Value;
 
-pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT = enum(i32) {
-    NONE = 0,
-    LEFT = 1,
-    CENTER = 2,
-    RIGHT = 4,
-    UNLOCKCENTER = 8,
-};
-pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_NONE = DIRECTMANIPULATION_HORIZONTALALIGNMENT.NONE;
-pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_LEFT = DIRECTMANIPULATION_HORIZONTALALIGNMENT.LEFT;
-pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_CENTER = DIRECTMANIPULATION_HORIZONTALALIGNMENT.CENTER;
-pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_RIGHT = DIRECTMANIPULATION_HORIZONTALALIGNMENT.RIGHT;
-pub const DIRECTMANIPULATION_HORIZONTALALIGNMENT_UNLOCKCENTER = DIRECTMANIPULATION_HORIZONTALALIGNMENT.UNLOCKCENTER;
+const CLSID_DirectManipulationSharedManager_Value = Guid.initString("99793286-77cc-4b57-96db-3b354f6f9fb5");
+pub const CLSID_DirectManipulationSharedManager = &CLSID_DirectManipulationSharedManager_Value;
 
-pub const DIRECTMANIPULATION_VERTICALALIGNMENT = enum(i32) {
-    NONE = 0,
-    TOP = 1,
-    CENTER = 2,
-    BOTTOM = 4,
-    UNLOCKCENTER = 8,
-};
-pub const DIRECTMANIPULATION_VERTICALALIGNMENT_NONE = DIRECTMANIPULATION_VERTICALALIGNMENT.NONE;
-pub const DIRECTMANIPULATION_VERTICALALIGNMENT_TOP = DIRECTMANIPULATION_VERTICALALIGNMENT.TOP;
-pub const DIRECTMANIPULATION_VERTICALALIGNMENT_CENTER = DIRECTMANIPULATION_VERTICALALIGNMENT.CENTER;
-pub const DIRECTMANIPULATION_VERTICALALIGNMENT_BOTTOM = DIRECTMANIPULATION_VERTICALALIGNMENT.BOTTOM;
-pub const DIRECTMANIPULATION_VERTICALALIGNMENT_UNLOCKCENTER = DIRECTMANIPULATION_VERTICALALIGNMENT.UNLOCKCENTER;
+const CLSID_DirectManipulationUpdateManager_Value = Guid.initString("9fc1bfd5-1835-441a-b3b1-b6cc74b727d0");
+pub const CLSID_DirectManipulationUpdateManager = &CLSID_DirectManipulationUpdateManager_Value;
 
-pub const DIRECTMANIPULATION_INPUT_MODE = enum(i32) {
-    AUTOMATIC = 0,
-    MANUAL = 1,
+const CLSID_DirectManipulationViewport_Value = Guid.initString("34e211b6-3650-4f75-8334-fa359598e1c5");
+pub const CLSID_DirectManipulationViewport = &CLSID_DirectManipulationViewport_Value;
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IDirectManipulationAutoScrollBehavior_Value = Guid.initString("6d5954d4-2003-4356-9b31-d051c9ff0af7");
+pub const IID_IDirectManipulationAutoScrollBehavior = &IID_IDirectManipulationAutoScrollBehavior_Value;
+pub const IDirectManipulationAutoScrollBehavior = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetConfiguration: *const fn(
+            self: *const IDirectManipulationAutoScrollBehavior,
+            motionTypes: DIRECTMANIPULATION_MOTION_TYPES,
+            scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetConfiguration(self: *const IDirectManipulationAutoScrollBehavior, motionTypes: DIRECTMANIPULATION_MOTION_TYPES, scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION) callconv(.@"inline") HRESULT {
+        return self.vtable.SetConfiguration(self, motionTypes, scrollMotion);
+    }
 };
-pub const DIRECTMANIPULATION_INPUT_MODE_AUTOMATIC = DIRECTMANIPULATION_INPUT_MODE.AUTOMATIC;
-pub const DIRECTMANIPULATION_INPUT_MODE_MANUAL = DIRECTMANIPULATION_INPUT_MODE.MANUAL;
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDirectManipulationCompositor_Value = Guid.initString("537a0825-0387-4efa-b62f-71eb1f085a7e");
+pub const IID_IDirectManipulationCompositor = &IID_IDirectManipulationCompositor_Value;
+pub const IDirectManipulationCompositor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddContent: *const fn(
+            self: *const IDirectManipulationCompositor,
+            content: ?*IDirectManipulationContent,
+            device: ?*IUnknown,
+            parentVisual: ?*IUnknown,
+            childVisual: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        RemoveContent: *const fn(
+            self: *const IDirectManipulationCompositor,
+            content: ?*IDirectManipulationContent,
+        ) callconv(.winapi) HRESULT,
+        SetUpdateManager: *const fn(
+            self: *const IDirectManipulationCompositor,
+            updateManager: ?*IDirectManipulationUpdateManager,
+        ) callconv(.winapi) HRESULT,
+        Flush: *const fn(
+            self: *const IDirectManipulationCompositor,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.AddContent(self, content, device, parentVisual, childVisual);
+    }
+    pub fn RemoveContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveContent(self, content);
+    }
+    pub fn SetUpdateManager(self: *const IDirectManipulationCompositor, updateManager: ?*IDirectManipulationUpdateManager) callconv(.@"inline") HRESULT {
+        return self.vtable.SetUpdateManager(self, updateManager);
+    }
+    pub fn Flush(self: *const IDirectManipulationCompositor) callconv(.@"inline") HRESULT {
+        return self.vtable.Flush(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IDirectManipulationCompositor2_Value = Guid.initString("d38c7822-f1cb-43cb-b4b9-ac0c767a412e");
+pub const IID_IDirectManipulationCompositor2 = &IID_IDirectManipulationCompositor2_Value;
+pub const IDirectManipulationCompositor2 = extern union {
+    pub const VTable = extern struct {
+        base: IDirectManipulationCompositor.VTable,
+        AddContentWithCrossProcessChaining: *const fn(
+            self: *const IDirectManipulationCompositor2,
+            content: ?*IDirectManipulationPrimaryContent,
+            device: ?*IUnknown,
+            parentVisual: ?*IUnknown,
+            childVisual: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDirectManipulationCompositor: IDirectManipulationCompositor,
+    IUnknown: IUnknown,
+    pub fn AddContentWithCrossProcessChaining(self: *const IDirectManipulationCompositor2, content: ?*IDirectManipulationPrimaryContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.AddContentWithCrossProcessChaining(self, content, device, parentVisual, childVisual);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDirectManipulationContent_Value = Guid.initString("b89962cb-3d89-442b-bb58-5098fa0f9f16");
+pub const IID_IDirectManipulationContent = &IID_IDirectManipulationContent_Value;
+pub const IDirectManipulationContent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetContentRect: *const fn(
+            self: *const IDirectManipulationContent,
+            contentSize: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+        SetContentRect: *const fn(
+            self: *const IDirectManipulationContent,
+            contentSize: ?*const RECT,
+        ) callconv(.winapi) HRESULT,
+        GetViewport: *const fn(
+            self: *const IDirectManipulationContent,
+            riid: ?*const Guid,
+            object: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetTag: *const fn(
+            self: *const IDirectManipulationContent,
+            riid: ?*const Guid,
+            object: ?**anyopaque,
+            id: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetTag: *const fn(
+            self: *const IDirectManipulationContent,
+            object: ?*IUnknown,
+            id: u32,
+        ) callconv(.winapi) HRESULT,
+        GetOutputTransform: *const fn(
+            self: *const IDirectManipulationContent,
+            matrix: [*]f32,
+            pointCount: u32,
+        ) callconv(.winapi) HRESULT,
+        GetContentTransform: *const fn(
+            self: *const IDirectManipulationContent,
+            matrix: [*]f32,
+            pointCount: u32,
+        ) callconv(.winapi) HRESULT,
+        SyncContentTransform: *const fn(
+            self: *const IDirectManipulationContent,
+            matrix: [*]const f32,
+            pointCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetContentRect(self: *const IDirectManipulationContent, contentSize: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentRect(self, contentSize);
+    }
+    pub fn SetContentRect(self: *const IDirectManipulationContent, contentSize: ?*const RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetContentRect(self, contentSize);
+    }
+    pub fn GetViewport(self: *const IDirectManipulationContent, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetViewport(self, riid, object);
+    }
+    pub fn GetTag(self: *const IDirectManipulationContent, riid: ?*const Guid, object: ?**anyopaque, id: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTag(self, riid, object, id);
+    }
+    pub fn SetTag(self: *const IDirectManipulationContent, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTag(self, object, id);
+    }
+    pub fn GetOutputTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputTransform(self, matrix, pointCount);
+    }
+    pub fn GetContentTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentTransform(self, matrix, pointCount);
+    }
+    pub fn SyncContentTransform(self: *const IDirectManipulationContent, matrix: [*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SyncContentTransform(self, matrix, pointCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IDirectManipulationDeferContactService_Value = Guid.initString("652d5c71-fe60-4a98-be70-e5f21291e7f1");
+pub const IID_IDirectManipulationDeferContactService = &IID_IDirectManipulationDeferContactService_Value;
+pub const IDirectManipulationDeferContactService = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        DeferContact: *const fn(
+            self: *const IDirectManipulationDeferContactService,
+            pointerId: u32,
+            timeout: u32,
+        ) callconv(.winapi) HRESULT,
+        CancelContact: *const fn(
+            self: *const IDirectManipulationDeferContactService,
+            pointerId: u32,
+        ) callconv(.winapi) HRESULT,
+        CancelDeferral: *const fn(
+            self: *const IDirectManipulationDeferContactService,
+            pointerId: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DeferContact(self: *const IDirectManipulationDeferContactService, pointerId: u32, timeout: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeferContact(self, pointerId, timeout);
+    }
+    pub fn CancelContact(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelContact(self, pointerId);
+    }
+    pub fn CancelDeferral(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelDeferral(self, pointerId);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IDirectManipulationDragDropBehavior_Value = Guid.initString("814b5af5-c2c8-4270-a9b7-a198ce8d02fa");
+pub const IID_IDirectManipulationDragDropBehavior = &IID_IDirectManipulationDragDropBehavior_Value;
+pub const IDirectManipulationDragDropBehavior = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetConfiguration: *const fn(
+            self: *const IDirectManipulationDragDropBehavior,
+            configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION,
+        ) callconv(.winapi) HRESULT,
+        GetStatus: *const fn(
+            self: *const IDirectManipulationDragDropBehavior,
+            status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetConfiguration(self: *const IDirectManipulationDragDropBehavior, configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION) callconv(.@"inline") HRESULT {
+        return self.vtable.SetConfiguration(self, configuration);
+    }
+    pub fn GetStatus(self: *const IDirectManipulationDragDropBehavior, status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStatus(self, status);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IDirectManipulationDragDropEventHandler_Value = Guid.initString("1fa11b10-701b-41ae-b5f2-49e36bd595aa");
+pub const IID_IDirectManipulationDragDropEventHandler = &IID_IDirectManipulationDragDropEventHandler_Value;
+pub const IDirectManipulationDragDropEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnDragDropStatusChange: *const fn(
+            self: *const IDirectManipulationDragDropEventHandler,
+            viewport: ?*IDirectManipulationViewport2,
+            current: DIRECTMANIPULATION_DRAG_DROP_STATUS,
+            previous: DIRECTMANIPULATION_DRAG_DROP_STATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnDragDropStatusChange(self: *const IDirectManipulationDragDropEventHandler, viewport: ?*IDirectManipulationViewport2, current: DIRECTMANIPULATION_DRAG_DROP_STATUS, previous: DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDragDropStatusChange(self, viewport, current, previous);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDirectManipulationFrameInfoProvider_Value = Guid.initString("fb759dba-6f4c-4c01-874e-19c8a05907f9");
+pub const IID_IDirectManipulationFrameInfoProvider = &IID_IDirectManipulationFrameInfoProvider_Value;
+pub const IDirectManipulationFrameInfoProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNextFrameInfo: *const fn(
+            self: *const IDirectManipulationFrameInfoProvider,
+            time: ?*u64,
+            processTime: ?*u64,
+            compositionTime: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNextFrameInfo(self: *const IDirectManipulationFrameInfoProvider, time: ?*u64, processTime: ?*u64, compositionTime: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextFrameInfo(self, time, processTime, compositionTime);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IDirectManipulationInteractionEventHandler_Value = Guid.initString("e43f45b8-42b4-403e-b1f2-273b8f510830");
+pub const IID_IDirectManipulationInteractionEventHandler = &IID_IDirectManipulationInteractionEventHandler_Value;
+pub const IDirectManipulationInteractionEventHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnInteraction: *const fn(
+            self: *const IDirectManipulationInteractionEventHandler,
+            viewport: ?*IDirectManipulationViewport2,
+            interaction: DIRECTMANIPULATION_INTERACTION_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnInteraction(self: *const IDirectManipulationInteractionEventHandler, viewport: ?*IDirectManipulationViewport2, interaction: DIRECTMANIPULATION_INTERACTION_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.OnInteraction(self, viewport, interaction);
+    }
+};
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationManager_Value = Guid.initString("fbf5d3b4-70c7-4163-9322-5a6f660d6fbc");
@@ -287,6 +614,141 @@ pub const IDirectManipulationManager3 = extern union {
     IUnknown: IUnknown,
     pub fn GetService(self: *const IDirectManipulationManager3, clsid: ?*const Guid, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetService(self, clsid, riid, object);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDirectManipulationPrimaryContent_Value = Guid.initString("c12851e4-1698-4625-b9b1-7ca3ec18630b");
+pub const IID_IDirectManipulationPrimaryContent = &IID_IDirectManipulationPrimaryContent_Value;
+pub const IDirectManipulationPrimaryContent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetSnapInterval: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            motion: DIRECTMANIPULATION_MOTION_TYPES,
+            interval: f32,
+            offset: f32,
+        ) callconv(.winapi) HRESULT,
+        SetSnapPoints: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            motion: DIRECTMANIPULATION_MOTION_TYPES,
+            points: ?[*]const f32,
+            pointCount: u32,
+        ) callconv(.winapi) HRESULT,
+        SetSnapType: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            motion: DIRECTMANIPULATION_MOTION_TYPES,
+            type: DIRECTMANIPULATION_SNAPPOINT_TYPE,
+        ) callconv(.winapi) HRESULT,
+        SetSnapCoordinate: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            motion: DIRECTMANIPULATION_MOTION_TYPES,
+            coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE,
+            origin: f32,
+        ) callconv(.winapi) HRESULT,
+        SetZoomBoundaries: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            zoomMinimum: f32,
+            zoomMaximum: f32,
+        ) callconv(.winapi) HRESULT,
+        SetHorizontalAlignment: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT,
+        ) callconv(.winapi) HRESULT,
+        SetVerticalAlignment: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            alignment: DIRECTMANIPULATION_VERTICALALIGNMENT,
+        ) callconv(.winapi) HRESULT,
+        GetInertiaEndTransform: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            matrix: [*]f32,
+            pointCount: u32,
+        ) callconv(.winapi) HRESULT,
+        GetCenterPoint: *const fn(
+            self: *const IDirectManipulationPrimaryContent,
+            centerX: ?*f32,
+            centerY: ?*f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetSnapInterval(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, interval: f32, offset: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSnapInterval(self, motion, interval, offset);
+    }
+    pub fn SetSnapPoints(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, points: ?[*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSnapPoints(self, motion, points, pointCount);
+    }
+    pub fn SetSnapType(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, @"type": DIRECTMANIPULATION_SNAPPOINT_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSnapType(self, motion, @"type");
+    }
+    pub fn SetSnapCoordinate(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE, origin: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSnapCoordinate(self, motion, coordinate, origin);
+    }
+    pub fn SetZoomBoundaries(self: *const IDirectManipulationPrimaryContent, zoomMinimum: f32, zoomMaximum: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetZoomBoundaries(self, zoomMinimum, zoomMaximum);
+    }
+    pub fn SetHorizontalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHorizontalAlignment(self, alignment);
+    }
+    pub fn SetVerticalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_VERTICALALIGNMENT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVerticalAlignment(self, alignment);
+    }
+    pub fn GetInertiaEndTransform(self: *const IDirectManipulationPrimaryContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInertiaEndTransform(self, matrix, pointCount);
+    }
+    pub fn GetCenterPoint(self: *const IDirectManipulationPrimaryContent, centerX: ?*f32, centerY: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCenterPoint(self, centerX, centerY);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDirectManipulationUpdateHandler_Value = Guid.initString("790b6337-64f8-4ff5-a269-b32bc2af27a7");
+pub const IID_IDirectManipulationUpdateHandler = &IID_IDirectManipulationUpdateHandler_Value;
+pub const IDirectManipulationUpdateHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Update: *const fn(
+            self: *const IDirectManipulationUpdateHandler,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Update(self: *const IDirectManipulationUpdateHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.Update(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IDirectManipulationUpdateManager_Value = Guid.initString("b0ae62fd-be34-46e7-9caa-d361facbb9cc");
+pub const IID_IDirectManipulationUpdateManager = &IID_IDirectManipulationUpdateManager_Value;
+pub const IDirectManipulationUpdateManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterWaitHandleCallback: *const fn(
+            self: *const IDirectManipulationUpdateManager,
+            handle: ?HANDLE,
+            eventHandler: ?*IDirectManipulationUpdateHandler,
+            cookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UnregisterWaitHandleCallback: *const fn(
+            self: *const IDirectManipulationUpdateManager,
+            cookie: u32,
+        ) callconv(.winapi) HRESULT,
+        Update: *const fn(
+            self: *const IDirectManipulationUpdateManager,
+            frameInfo: ?*IDirectManipulationFrameInfoProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, handle: ?HANDLE, eventHandler: ?*IDirectManipulationUpdateHandler, cookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterWaitHandleCallback(self, handle, eventHandler, cookie);
+    }
+    pub fn UnregisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, cookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterWaitHandleCallback(self, cookie);
+    }
+    pub fn Update(self: *const IDirectManipulationUpdateManager, frameInfo: ?*IDirectManipulationFrameInfoProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Update(self, frameInfo);
     }
 };
 
@@ -569,468 +1031,6 @@ pub const IDirectManipulationViewportEventHandler = extern union {
     }
     pub fn OnContentUpdated(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.@"inline") HRESULT {
         return self.vtable.OnContentUpdated(self, viewport, content);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationContent_Value = Guid.initString("b89962cb-3d89-442b-bb58-5098fa0f9f16");
-pub const IID_IDirectManipulationContent = &IID_IDirectManipulationContent_Value;
-pub const IDirectManipulationContent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetContentRect: *const fn(
-            self: *const IDirectManipulationContent,
-            contentSize: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        SetContentRect: *const fn(
-            self: *const IDirectManipulationContent,
-            contentSize: ?*const RECT,
-        ) callconv(.winapi) HRESULT,
-        GetViewport: *const fn(
-            self: *const IDirectManipulationContent,
-            riid: ?*const Guid,
-            object: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetTag: *const fn(
-            self: *const IDirectManipulationContent,
-            riid: ?*const Guid,
-            object: ?**anyopaque,
-            id: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetTag: *const fn(
-            self: *const IDirectManipulationContent,
-            object: ?*IUnknown,
-            id: u32,
-        ) callconv(.winapi) HRESULT,
-        GetOutputTransform: *const fn(
-            self: *const IDirectManipulationContent,
-            matrix: [*]f32,
-            pointCount: u32,
-        ) callconv(.winapi) HRESULT,
-        GetContentTransform: *const fn(
-            self: *const IDirectManipulationContent,
-            matrix: [*]f32,
-            pointCount: u32,
-        ) callconv(.winapi) HRESULT,
-        SyncContentTransform: *const fn(
-            self: *const IDirectManipulationContent,
-            matrix: [*]const f32,
-            pointCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetContentRect(self: *const IDirectManipulationContent, contentSize: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentRect(self, contentSize);
-    }
-    pub fn SetContentRect(self: *const IDirectManipulationContent, contentSize: ?*const RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetContentRect(self, contentSize);
-    }
-    pub fn GetViewport(self: *const IDirectManipulationContent, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetViewport(self, riid, object);
-    }
-    pub fn GetTag(self: *const IDirectManipulationContent, riid: ?*const Guid, object: ?**anyopaque, id: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTag(self, riid, object, id);
-    }
-    pub fn SetTag(self: *const IDirectManipulationContent, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTag(self, object, id);
-    }
-    pub fn GetOutputTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputTransform(self, matrix, pointCount);
-    }
-    pub fn GetContentTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentTransform(self, matrix, pointCount);
-    }
-    pub fn SyncContentTransform(self: *const IDirectManipulationContent, matrix: [*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SyncContentTransform(self, matrix, pointCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationPrimaryContent_Value = Guid.initString("c12851e4-1698-4625-b9b1-7ca3ec18630b");
-pub const IID_IDirectManipulationPrimaryContent = &IID_IDirectManipulationPrimaryContent_Value;
-pub const IDirectManipulationPrimaryContent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetSnapInterval: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            motion: DIRECTMANIPULATION_MOTION_TYPES,
-            interval: f32,
-            offset: f32,
-        ) callconv(.winapi) HRESULT,
-        SetSnapPoints: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            motion: DIRECTMANIPULATION_MOTION_TYPES,
-            points: ?[*]const f32,
-            pointCount: u32,
-        ) callconv(.winapi) HRESULT,
-        SetSnapType: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            motion: DIRECTMANIPULATION_MOTION_TYPES,
-            type: DIRECTMANIPULATION_SNAPPOINT_TYPE,
-        ) callconv(.winapi) HRESULT,
-        SetSnapCoordinate: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            motion: DIRECTMANIPULATION_MOTION_TYPES,
-            coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE,
-            origin: f32,
-        ) callconv(.winapi) HRESULT,
-        SetZoomBoundaries: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            zoomMinimum: f32,
-            zoomMaximum: f32,
-        ) callconv(.winapi) HRESULT,
-        SetHorizontalAlignment: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT,
-        ) callconv(.winapi) HRESULT,
-        SetVerticalAlignment: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            alignment: DIRECTMANIPULATION_VERTICALALIGNMENT,
-        ) callconv(.winapi) HRESULT,
-        GetInertiaEndTransform: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            matrix: [*]f32,
-            pointCount: u32,
-        ) callconv(.winapi) HRESULT,
-        GetCenterPoint: *const fn(
-            self: *const IDirectManipulationPrimaryContent,
-            centerX: ?*f32,
-            centerY: ?*f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetSnapInterval(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, interval: f32, offset: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSnapInterval(self, motion, interval, offset);
-    }
-    pub fn SetSnapPoints(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, points: ?[*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSnapPoints(self, motion, points, pointCount);
-    }
-    pub fn SetSnapType(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, @"type": DIRECTMANIPULATION_SNAPPOINT_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSnapType(self, motion, @"type");
-    }
-    pub fn SetSnapCoordinate(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE, origin: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSnapCoordinate(self, motion, coordinate, origin);
-    }
-    pub fn SetZoomBoundaries(self: *const IDirectManipulationPrimaryContent, zoomMinimum: f32, zoomMaximum: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetZoomBoundaries(self, zoomMinimum, zoomMaximum);
-    }
-    pub fn SetHorizontalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHorizontalAlignment(self, alignment);
-    }
-    pub fn SetVerticalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_VERTICALALIGNMENT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVerticalAlignment(self, alignment);
-    }
-    pub fn GetInertiaEndTransform(self: *const IDirectManipulationPrimaryContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInertiaEndTransform(self, matrix, pointCount);
-    }
-    pub fn GetCenterPoint(self: *const IDirectManipulationPrimaryContent, centerX: ?*f32, centerY: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCenterPoint(self, centerX, centerY);
-    }
-};
-
-pub const DIRECTMANIPULATION_DRAG_DROP_STATUS = enum(i32) {
-    READY = 0,
-    PRESELECT = 1,
-    SELECTING = 2,
-    DRAGGING = 3,
-    CANCELLED = 4,
-    COMMITTED = 5,
-};
-pub const DIRECTMANIPULATION_DRAG_DROP_READY = DIRECTMANIPULATION_DRAG_DROP_STATUS.READY;
-pub const DIRECTMANIPULATION_DRAG_DROP_PRESELECT = DIRECTMANIPULATION_DRAG_DROP_STATUS.PRESELECT;
-pub const DIRECTMANIPULATION_DRAG_DROP_SELECTING = DIRECTMANIPULATION_DRAG_DROP_STATUS.SELECTING;
-pub const DIRECTMANIPULATION_DRAG_DROP_DRAGGING = DIRECTMANIPULATION_DRAG_DROP_STATUS.DRAGGING;
-pub const DIRECTMANIPULATION_DRAG_DROP_CANCELLED = DIRECTMANIPULATION_DRAG_DROP_STATUS.CANCELLED;
-pub const DIRECTMANIPULATION_DRAG_DROP_COMMITTED = DIRECTMANIPULATION_DRAG_DROP_STATUS.COMMITTED;
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationDragDropEventHandler_Value = Guid.initString("1fa11b10-701b-41ae-b5f2-49e36bd595aa");
-pub const IID_IDirectManipulationDragDropEventHandler = &IID_IDirectManipulationDragDropEventHandler_Value;
-pub const IDirectManipulationDragDropEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnDragDropStatusChange: *const fn(
-            self: *const IDirectManipulationDragDropEventHandler,
-            viewport: ?*IDirectManipulationViewport2,
-            current: DIRECTMANIPULATION_DRAG_DROP_STATUS,
-            previous: DIRECTMANIPULATION_DRAG_DROP_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnDragDropStatusChange(self: *const IDirectManipulationDragDropEventHandler, viewport: ?*IDirectManipulationViewport2, current: DIRECTMANIPULATION_DRAG_DROP_STATUS, previous: DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDragDropStatusChange(self, viewport, current, previous);
-    }
-};
-
-pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION = enum(i32) {
-    VERTICAL = 1,
-    HORIZONTAL = 2,
-    SELECT_ONLY = 16,
-    SELECT_DRAG = 32,
-    HOLD_DRAG = 64,
-};
-pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_VERTICAL = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.VERTICAL;
-pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_HORIZONTAL = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.HORIZONTAL;
-pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_SELECT_ONLY = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.SELECT_ONLY;
-pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_SELECT_DRAG = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.SELECT_DRAG;
-pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_HOLD_DRAG = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.HOLD_DRAG;
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationDragDropBehavior_Value = Guid.initString("814b5af5-c2c8-4270-a9b7-a198ce8d02fa");
-pub const IID_IDirectManipulationDragDropBehavior = &IID_IDirectManipulationDragDropBehavior_Value;
-pub const IDirectManipulationDragDropBehavior = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetConfiguration: *const fn(
-            self: *const IDirectManipulationDragDropBehavior,
-            configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION,
-        ) callconv(.winapi) HRESULT,
-        GetStatus: *const fn(
-            self: *const IDirectManipulationDragDropBehavior,
-            status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetConfiguration(self: *const IDirectManipulationDragDropBehavior, configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION) callconv(.@"inline") HRESULT {
-        return self.vtable.SetConfiguration(self, configuration);
-    }
-    pub fn GetStatus(self: *const IDirectManipulationDragDropBehavior, status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStatus(self, status);
-    }
-};
-
-pub const DIRECTMANIPULATION_INTERACTION_TYPE = enum(i32) {
-    BEGIN = 0,
-    TYPE_MANIPULATION = 1,
-    TYPE_GESTURE_TAP = 2,
-    TYPE_GESTURE_HOLD = 3,
-    TYPE_GESTURE_CROSS_SLIDE = 4,
-    TYPE_GESTURE_PINCH_ZOOM = 5,
-    END = 100,
-};
-pub const DIRECTMANIPULATION_INTERACTION_BEGIN = DIRECTMANIPULATION_INTERACTION_TYPE.BEGIN;
-pub const DIRECTMANIPULATION_INTERACTION_TYPE_MANIPULATION = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_MANIPULATION;
-pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_TAP = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_TAP;
-pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_HOLD = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_HOLD;
-pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_CROSS_SLIDE = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_CROSS_SLIDE;
-pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_PINCH_ZOOM = DIRECTMANIPULATION_INTERACTION_TYPE.TYPE_GESTURE_PINCH_ZOOM;
-pub const DIRECTMANIPULATION_INTERACTION_END = DIRECTMANIPULATION_INTERACTION_TYPE.END;
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationInteractionEventHandler_Value = Guid.initString("e43f45b8-42b4-403e-b1f2-273b8f510830");
-pub const IID_IDirectManipulationInteractionEventHandler = &IID_IDirectManipulationInteractionEventHandler_Value;
-pub const IDirectManipulationInteractionEventHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnInteraction: *const fn(
-            self: *const IDirectManipulationInteractionEventHandler,
-            viewport: ?*IDirectManipulationViewport2,
-            interaction: DIRECTMANIPULATION_INTERACTION_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnInteraction(self: *const IDirectManipulationInteractionEventHandler, viewport: ?*IDirectManipulationViewport2, interaction: DIRECTMANIPULATION_INTERACTION_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.OnInteraction(self, viewport, interaction);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationFrameInfoProvider_Value = Guid.initString("fb759dba-6f4c-4c01-874e-19c8a05907f9");
-pub const IID_IDirectManipulationFrameInfoProvider = &IID_IDirectManipulationFrameInfoProvider_Value;
-pub const IDirectManipulationFrameInfoProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNextFrameInfo: *const fn(
-            self: *const IDirectManipulationFrameInfoProvider,
-            time: ?*u64,
-            processTime: ?*u64,
-            compositionTime: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNextFrameInfo(self: *const IDirectManipulationFrameInfoProvider, time: ?*u64, processTime: ?*u64, compositionTime: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextFrameInfo(self, time, processTime, compositionTime);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationCompositor_Value = Guid.initString("537a0825-0387-4efa-b62f-71eb1f085a7e");
-pub const IID_IDirectManipulationCompositor = &IID_IDirectManipulationCompositor_Value;
-pub const IDirectManipulationCompositor = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddContent: *const fn(
-            self: *const IDirectManipulationCompositor,
-            content: ?*IDirectManipulationContent,
-            device: ?*IUnknown,
-            parentVisual: ?*IUnknown,
-            childVisual: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        RemoveContent: *const fn(
-            self: *const IDirectManipulationCompositor,
-            content: ?*IDirectManipulationContent,
-        ) callconv(.winapi) HRESULT,
-        SetUpdateManager: *const fn(
-            self: *const IDirectManipulationCompositor,
-            updateManager: ?*IDirectManipulationUpdateManager,
-        ) callconv(.winapi) HRESULT,
-        Flush: *const fn(
-            self: *const IDirectManipulationCompositor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.AddContent(self, content, device, parentVisual, childVisual);
-    }
-    pub fn RemoveContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveContent(self, content);
-    }
-    pub fn SetUpdateManager(self: *const IDirectManipulationCompositor, updateManager: ?*IDirectManipulationUpdateManager) callconv(.@"inline") HRESULT {
-        return self.vtable.SetUpdateManager(self, updateManager);
-    }
-    pub fn Flush(self: *const IDirectManipulationCompositor) callconv(.@"inline") HRESULT {
-        return self.vtable.Flush(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IDirectManipulationCompositor2_Value = Guid.initString("d38c7822-f1cb-43cb-b4b9-ac0c767a412e");
-pub const IID_IDirectManipulationCompositor2 = &IID_IDirectManipulationCompositor2_Value;
-pub const IDirectManipulationCompositor2 = extern union {
-    pub const VTable = extern struct {
-        base: IDirectManipulationCompositor.VTable,
-        AddContentWithCrossProcessChaining: *const fn(
-            self: *const IDirectManipulationCompositor2,
-            content: ?*IDirectManipulationPrimaryContent,
-            device: ?*IUnknown,
-            parentVisual: ?*IUnknown,
-            childVisual: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDirectManipulationCompositor: IDirectManipulationCompositor,
-    IUnknown: IUnknown,
-    pub fn AddContentWithCrossProcessChaining(self: *const IDirectManipulationCompositor2, content: ?*IDirectManipulationPrimaryContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.AddContentWithCrossProcessChaining(self, content, device, parentVisual, childVisual);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationUpdateHandler_Value = Guid.initString("790b6337-64f8-4ff5-a269-b32bc2af27a7");
-pub const IID_IDirectManipulationUpdateHandler = &IID_IDirectManipulationUpdateHandler_Value;
-pub const IDirectManipulationUpdateHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Update: *const fn(
-            self: *const IDirectManipulationUpdateHandler,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Update(self: *const IDirectManipulationUpdateHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.Update(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationUpdateManager_Value = Guid.initString("b0ae62fd-be34-46e7-9caa-d361facbb9cc");
-pub const IID_IDirectManipulationUpdateManager = &IID_IDirectManipulationUpdateManager_Value;
-pub const IDirectManipulationUpdateManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterWaitHandleCallback: *const fn(
-            self: *const IDirectManipulationUpdateManager,
-            handle: ?HANDLE,
-            eventHandler: ?*IDirectManipulationUpdateHandler,
-            cookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        UnregisterWaitHandleCallback: *const fn(
-            self: *const IDirectManipulationUpdateManager,
-            cookie: u32,
-        ) callconv(.winapi) HRESULT,
-        Update: *const fn(
-            self: *const IDirectManipulationUpdateManager,
-            frameInfo: ?*IDirectManipulationFrameInfoProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, handle: ?HANDLE, eventHandler: ?*IDirectManipulationUpdateHandler, cookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterWaitHandleCallback(self, handle, eventHandler, cookie);
-    }
-    pub fn UnregisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, cookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterWaitHandleCallback(self, cookie);
-    }
-    pub fn Update(self: *const IDirectManipulationUpdateManager, frameInfo: ?*IDirectManipulationFrameInfoProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Update(self, frameInfo);
-    }
-};
-
-pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION = enum(i32) {
-    STOP = 0,
-    FORWARD = 1,
-    REVERSE = 2,
-};
-pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_STOP = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.STOP;
-pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_FORWARD = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.FORWARD;
-pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_REVERSE = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.REVERSE;
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationAutoScrollBehavior_Value = Guid.initString("6d5954d4-2003-4356-9b31-d051c9ff0af7");
-pub const IID_IDirectManipulationAutoScrollBehavior = &IID_IDirectManipulationAutoScrollBehavior_Value;
-pub const IDirectManipulationAutoScrollBehavior = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetConfiguration: *const fn(
-            self: *const IDirectManipulationAutoScrollBehavior,
-            motionTypes: DIRECTMANIPULATION_MOTION_TYPES,
-            scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetConfiguration(self: *const IDirectManipulationAutoScrollBehavior, motionTypes: DIRECTMANIPULATION_MOTION_TYPES, scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION) callconv(.@"inline") HRESULT {
-        return self.vtable.SetConfiguration(self, motionTypes, scrollMotion);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IDirectManipulationDeferContactService_Value = Guid.initString("652d5c71-fe60-4a98-be70-e5f21291e7f1");
-pub const IID_IDirectManipulationDeferContactService = &IID_IDirectManipulationDeferContactService_Value;
-pub const IDirectManipulationDeferContactService = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DeferContact: *const fn(
-            self: *const IDirectManipulationDeferContactService,
-            pointerId: u32,
-            timeout: u32,
-        ) callconv(.winapi) HRESULT,
-        CancelContact: *const fn(
-            self: *const IDirectManipulationDeferContactService,
-            pointerId: u32,
-        ) callconv(.winapi) HRESULT,
-        CancelDeferral: *const fn(
-            self: *const IDirectManipulationDeferContactService,
-            pointerId: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DeferContact(self: *const IDirectManipulationDeferContactService, pointerId: u32, timeout: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeferContact(self, pointerId, timeout);
-    }
-    pub fn CancelContact(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelContact(self, pointerId);
-    }
-    pub fn CancelDeferral(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelDeferral(self, pointerId);
     }
 };
 

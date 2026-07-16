@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const MCAST_CLIENT_ID_LEN = @as(u32, 17);
 pub const MCAST_API_CURRENT_VERSION = @as(i32, 1);
 pub const MCAST_API_VERSION_0 = @as(i32, 0);
 pub const MCAST_API_VERSION_1 = @as(i32, 1);
+pub const MCAST_CLIENT_ID_LEN = @as(u32, 17);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
@@ -18,19 +18,6 @@ pub const IPNG_ADDRESS = extern union {
 pub const MCAST_CLIENT_UID = extern struct {
     ClientUID: ?*u8,
     ClientUIDLength: u32,
-};
-
-pub const MCAST_SCOPE_CTX = extern struct {
-    ScopeID: IPNG_ADDRESS,
-    Interface: IPNG_ADDRESS,
-    ServerID: IPNG_ADDRESS,
-};
-
-pub const MCAST_SCOPE_ENTRY = extern struct {
-    ScopeCtx: MCAST_SCOPE_CTX,
-    LastAddr: IPNG_ADDRESS,
-    TTL: u32,
-    ScopeDesc: UNICODE_STRING,
 };
 
 pub const MCAST_LEASE_REQUEST = extern struct {
@@ -52,22 +39,30 @@ pub const MCAST_LEASE_RESPONSE = extern struct {
     pAddrBuf: ?*u8,
 };
 
+pub const MCAST_SCOPE_CTX = extern struct {
+    ScopeID: IPNG_ADDRESS,
+    Interface: IPNG_ADDRESS,
+    ServerID: IPNG_ADDRESS,
+};
+
+pub const MCAST_SCOPE_ENTRY = extern struct {
+    ScopeCtx: MCAST_SCOPE_CTX,
+    LastAddr: IPNG_ADDRESS,
+    TTL: u32,
+    ScopeDesc: UNICODE_STRING,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastApiStartup(
-    Version: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastApiCleanup(
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastGenUID(
-    pRequestID: ?*MCAST_CLIENT_UID,
+pub extern "dhcpcsvc" fn McastApiStartup(
+    Version: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -80,12 +75,15 @@ pub extern "dhcpcsvc" fn McastEnumerateScopes(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastRequestAddress(
+pub extern "dhcpcsvc" fn McastGenUID(
+    pRequestID: ?*MCAST_CLIENT_UID,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "dhcpcsvc" fn McastReleaseAddress(
     AddrFamily: u16,
     pRequestID: ?*MCAST_CLIENT_UID,
-    pScopeCtx: ?*MCAST_SCOPE_CTX,
-    pAddrRequest: ?*MCAST_LEASE_REQUEST,
-    pAddrResponse: ?*MCAST_LEASE_RESPONSE,
+    pReleaseRequest: ?*MCAST_LEASE_REQUEST,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -97,10 +95,12 @@ pub extern "dhcpcsvc" fn McastRenewAddress(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastReleaseAddress(
+pub extern "dhcpcsvc" fn McastRequestAddress(
     AddrFamily: u16,
     pRequestID: ?*MCAST_CLIENT_UID,
-    pReleaseRequest: ?*MCAST_LEASE_REQUEST,
+    pScopeCtx: ?*MCAST_SCOPE_CTX,
+    pAddrRequest: ?*MCAST_LEASE_REQUEST,
+    pAddrResponse: ?*MCAST_LEASE_RESPONSE,
 ) callconv(.winapi) u32;
 
 

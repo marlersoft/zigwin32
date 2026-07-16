@@ -7,6 +7,14 @@ pub const PSAPI_VERSION = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
+pub const ENUM_PAGE_FILE_INFORMATION = extern struct {
+    cb: u32,
+    Reserved: u32,
+    TotalSize: usize,
+    TotalInUse: usize,
+    PeakUsage: usize,
+};
+
 pub const ENUM_PROCESS_MODULES_EX_FLAGS = enum(u32) {
     ALL = 3,
     DEFAULT = 0,
@@ -24,44 +32,33 @@ pub const MODULEINFO = extern struct {
     EntryPoint: ?*anyopaque,
 };
 
-pub const PSAPI_WS_WATCH_INFORMATION = extern struct {
-    FaultingPc: ?*anyopaque,
-    FaultingVa: ?*anyopaque,
-};
+pub const PENUM_PAGE_FILE_CALLBACKA = *const fn(
+    pContext: ?*anyopaque,
+    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+    lpFilename: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
 
-pub const PSAPI_WS_WATCH_INFORMATION_EX = extern struct {
-    BasicInfo: PSAPI_WS_WATCH_INFORMATION,
-    FaultingThreadId: usize,
-    Flags: usize,
-};
+pub const PENUM_PAGE_FILE_CALLBACKW = *const fn(
+    pContext: ?*anyopaque,
+    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+    lpFilename: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
 
-pub const PSAPI_WORKING_SET_BLOCK = extern union {
-    Flags: usize,
-    Anonymous: extern struct {
-        _bitfield: usize,
-    },
-};
-
-pub const PSAPI_WORKING_SET_INFORMATION = extern struct {
-    NumberOfEntries: usize,
-    WorkingSetInfo: [1]PSAPI_WORKING_SET_BLOCK,
-};
-
-pub const PSAPI_WORKING_SET_EX_BLOCK = extern union {
-    Flags: usize,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _bitfield: usize,
-        },
-        Invalid: extern struct {
-            _bitfield: usize,
-        },
-    },
-};
-
-pub const PSAPI_WORKING_SET_EX_INFORMATION = extern struct {
-    VirtualAddress: ?*anyopaque,
-    VirtualAttributes: PSAPI_WORKING_SET_EX_BLOCK,
+pub const PERFORMANCE_INFORMATION = extern struct {
+    cb: u32,
+    CommitTotal: usize,
+    CommitLimit: usize,
+    CommitPeak: usize,
+    PhysicalTotal: usize,
+    PhysicalAvailable: usize,
+    SystemCache: usize,
+    KernelTotal: usize,
+    KernelPaged: usize,
+    KernelNonpaged: usize,
+    PageSize: usize,
+    HandleCount: u32,
+    ProcessCount: u32,
+    ThreadCount: u32,
 };
 
 pub const PROCESS_MEMORY_COUNTERS = extern struct {
@@ -91,47 +88,71 @@ pub const PROCESS_MEMORY_COUNTERS_EX = extern struct {
     PrivateUsage: usize,
 };
 
-pub const PERFORMANCE_INFORMATION = extern struct {
-    cb: u32,
-    CommitTotal: usize,
-    CommitLimit: usize,
-    CommitPeak: usize,
-    PhysicalTotal: usize,
-    PhysicalAvailable: usize,
-    SystemCache: usize,
-    KernelTotal: usize,
-    KernelPaged: usize,
-    KernelNonpaged: usize,
-    PageSize: usize,
-    HandleCount: u32,
-    ProcessCount: u32,
-    ThreadCount: u32,
+pub const PSAPI_WORKING_SET_BLOCK = extern union {
+    Flags: usize,
+    Anonymous: extern struct {
+        _bitfield: usize,
+    },
 };
 
-pub const ENUM_PAGE_FILE_INFORMATION = extern struct {
-    cb: u32,
-    Reserved: u32,
-    TotalSize: usize,
-    TotalInUse: usize,
-    PeakUsage: usize,
+pub const PSAPI_WORKING_SET_EX_BLOCK = extern union {
+    Flags: usize,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: usize,
+        },
+        Invalid: extern struct {
+            _bitfield: usize,
+        },
+    },
 };
 
-pub const PENUM_PAGE_FILE_CALLBACKW = *const fn(
-    pContext: ?*anyopaque,
-    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-    lpFilename: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
+pub const PSAPI_WORKING_SET_EX_INFORMATION = extern struct {
+    VirtualAddress: ?*anyopaque,
+    VirtualAttributes: PSAPI_WORKING_SET_EX_BLOCK,
+};
 
-pub const PENUM_PAGE_FILE_CALLBACKA = *const fn(
-    pContext: ?*anyopaque,
-    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-    lpFilename: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
+pub const PSAPI_WORKING_SET_INFORMATION = extern struct {
+    NumberOfEntries: usize,
+    WorkingSetInfo: [1]PSAPI_WORKING_SET_BLOCK,
+};
+
+pub const PSAPI_WS_WATCH_INFORMATION = extern struct {
+    FaultingPc: ?*anyopaque,
+    FaultingVa: ?*anyopaque,
+};
+
+pub const PSAPI_WS_WATCH_INFORMATION_EX = extern struct {
+    BasicInfo: PSAPI_WS_WATCH_INFORMATION,
+    FaultingThreadId: usize,
+    Flags: usize,
+};
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
 //--------------------------------------------------------------------------------
+pub extern "kernel32" fn K32EmptyWorkingSet(
+    hProcess: ?HANDLE,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn K32EnumDeviceDrivers(
+    // TODO: what to do with BytesParamIndex 1?
+    lpImageBase: ?*?*anyopaque,
+    cb: u32,
+    lpcbNeeded: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn K32EnumPageFilesA(
+    pCallBackRoutine: ?PENUM_PAGE_FILE_CALLBACKA,
+    pContext: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn K32EnumPageFilesW(
+    pCallBackRoutine: ?PENUM_PAGE_FILE_CALLBACKW,
+    pContext: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
 pub extern "kernel32" fn K32EnumProcesses(
     // TODO: what to do with BytesParamIndex 1?
     lpidProcess: ?*u32,
@@ -155,6 +176,44 @@ pub extern "kernel32" fn K32EnumProcessModulesEx(
     lpcbNeeded: ?*u32,
     dwFilterFlag: ENUM_PROCESS_MODULES_EX_FLAGS,
 ) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn K32GetDeviceDriverBaseNameA(
+    ImageBase: ?*anyopaque,
+    lpFilename: [*:0]u8,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn K32GetDeviceDriverBaseNameW(
+    ImageBase: ?*anyopaque,
+    lpBaseName: [*:0]u16,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn K32GetDeviceDriverFileNameA(
+    ImageBase: ?*anyopaque,
+    lpFilename: [*:0]u8,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn K32GetDeviceDriverFileNameW(
+    ImageBase: ?*anyopaque,
+    lpFilename: [*:0]u16,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn K32GetMappedFileNameA(
+    hProcess: ?HANDLE,
+    lpv: ?*anyopaque,
+    lpFilename: [*:0]u8,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn K32GetMappedFileNameW(
+    hProcess: ?HANDLE,
+    lpv: ?*anyopaque,
+    lpFilename: [*:0]u16,
+    nSize: u32,
+) callconv(.winapi) u32;
 
 pub extern "kernel32" fn K32GetModuleBaseNameA(
     hProcess: ?HANDLE,
@@ -191,12 +250,27 @@ pub extern "kernel32" fn K32GetModuleInformation(
     cb: u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn K32EmptyWorkingSet(
-    hProcess: ?HANDLE,
+pub extern "kernel32" fn K32GetPerformanceInfo(
+    pPerformanceInformation: ?*PERFORMANCE_INFORMATION,
+    cb: u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn K32InitializeProcessForWsWatch(
+pub extern "kernel32" fn K32GetProcessImageFileNameA(
     hProcess: ?HANDLE,
+    lpImageFileName: [*:0]u8,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn K32GetProcessImageFileNameW(
+    hProcess: ?HANDLE,
+    lpImageFileName: [*:0]u16,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn K32GetProcessMemoryInfo(
+    Process: ?HANDLE,
+    ppsmemCounters: ?*PROCESS_MEMORY_COUNTERS,
+    cb: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn K32GetWsChanges(
@@ -213,50 +287,9 @@ pub extern "kernel32" fn K32GetWsChangesEx(
     cb: ?*u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn K32GetMappedFileNameW(
+pub extern "kernel32" fn K32InitializeProcessForWsWatch(
     hProcess: ?HANDLE,
-    lpv: ?*anyopaque,
-    lpFilename: [*:0]u16,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn K32GetMappedFileNameA(
-    hProcess: ?HANDLE,
-    lpv: ?*anyopaque,
-    lpFilename: [*:0]u8,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn K32EnumDeviceDrivers(
-    // TODO: what to do with BytesParamIndex 1?
-    lpImageBase: ?*?*anyopaque,
-    cb: u32,
-    lpcbNeeded: ?*u32,
 ) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn K32GetDeviceDriverBaseNameA(
-    ImageBase: ?*anyopaque,
-    lpFilename: [*:0]u8,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn K32GetDeviceDriverBaseNameW(
-    ImageBase: ?*anyopaque,
-    lpBaseName: [*:0]u16,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn K32GetDeviceDriverFileNameA(
-    ImageBase: ?*anyopaque,
-    lpFilename: [*:0]u8,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn K32GetDeviceDriverFileNameW(
-    ImageBase: ?*anyopaque,
-    lpFilename: [*:0]u16,
-    nSize: u32,
-) callconv(.winapi) u32;
 
 pub extern "kernel32" fn K32QueryWorkingSet(
     hProcess: ?HANDLE,
@@ -272,39 +305,6 @@ pub extern "kernel32" fn K32QueryWorkingSetEx(
     cb: u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn K32GetProcessMemoryInfo(
-    Process: ?HANDLE,
-    ppsmemCounters: ?*PROCESS_MEMORY_COUNTERS,
-    cb: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn K32GetPerformanceInfo(
-    pPerformanceInformation: ?*PERFORMANCE_INFORMATION,
-    cb: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn K32EnumPageFilesW(
-    pCallBackRoutine: ?PENUM_PAGE_FILE_CALLBACKW,
-    pContext: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn K32EnumPageFilesA(
-    pCallBackRoutine: ?PENUM_PAGE_FILE_CALLBACKA,
-    pContext: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn K32GetProcessImageFileNameA(
-    hProcess: ?HANDLE,
-    lpImageFileName: [*:0]u8,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn K32GetProcessImageFileNameW(
-    hProcess: ?HANDLE,
-    lpImageFileName: [*:0]u16,
-    nSize: u32,
-) callconv(.winapi) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (8)
@@ -316,25 +316,11 @@ pub const PENUM_PAGE_FILE_CALLBACK = switch (@import("../zig.zig").unicode_mode)
         "'PENUM_PAGE_FILE_CALLBACK' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const K32GetModuleBaseName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetModuleBaseNameA,
-    .wide => @This().K32GetModuleBaseNameW,
+pub const K32EnumPageFiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32EnumPageFilesA,
+    .wide => @This().K32EnumPageFilesW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetModuleFileNameEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetModuleFileNameExA,
-    .wide => @This().K32GetModuleFileNameExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetModuleFileNameEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetMappedFileName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetMappedFileNameA,
-    .wide => @This().K32GetMappedFileNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetMappedFileName' requires that UNICODE be set to true or false in the root module",
+        "'K32EnumPageFiles' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const K32GetDeviceDriverBaseName = switch (@import("../zig.zig").unicode_mode) {
@@ -351,11 +337,25 @@ pub const K32GetDeviceDriverFileName = switch (@import("../zig.zig").unicode_mod
         "'K32GetDeviceDriverFileName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const K32EnumPageFiles = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32EnumPageFilesA,
-    .wide => @This().K32EnumPageFilesW,
+pub const K32GetMappedFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetMappedFileNameA,
+    .wide => @This().K32GetMappedFileNameW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32EnumPageFiles' requires that UNICODE be set to true or false in the root module",
+        "'K32GetMappedFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetModuleBaseName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetModuleBaseNameA,
+    .wide => @This().K32GetModuleBaseNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetModuleFileNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetModuleFileNameExA,
+    .wide => @This().K32GetModuleFileNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetModuleFileNameEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const K32GetProcessImageFileName = switch (@import("../zig.zig").unicode_mode) {
@@ -376,8 +376,8 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKW")) { _ = PENUM_PAGE_FILE_CALLBACKW; }
     if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKA")) { _ = PENUM_PAGE_FILE_CALLBACKA; }
+    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKW")) { _ = PENUM_PAGE_FILE_CALLBACKW; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

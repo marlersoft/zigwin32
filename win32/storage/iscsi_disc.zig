@@ -2,282 +2,193 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (181)
 //--------------------------------------------------------------------------------
-pub const IOCTL_SCSI_BASE = @as(u32, 4);
-pub const ScsiRawInterfaceGuid = Guid.initString("53f56309-b6bf-11d0-94f2-00a0c91efb8b");
-pub const WmiScsiAddressGuid = Guid.initString("53f5630f-b6bf-11d0-94f2-00a0c91efb8b");
-pub const FILE_DEVICE_SCSI = @as(u32, 27);
-pub const DD_SCSI_DEVICE_NAME = "\\Device\\ScsiPort";
-pub const IOCTL_SCSI_PASS_THROUGH = @as(u32, 315396);
-pub const IOCTL_SCSI_MINIPORT = @as(u32, 315400);
-pub const IOCTL_SCSI_GET_INQUIRY_DATA = @as(u32, 266252);
-pub const IOCTL_SCSI_GET_CAPABILITIES = @as(u32, 266256);
-pub const IOCTL_SCSI_PASS_THROUGH_DIRECT = @as(u32, 315412);
-pub const IOCTL_SCSI_GET_ADDRESS = @as(u32, 266264);
-pub const IOCTL_SCSI_RESCAN_BUS = @as(u32, 266268);
-pub const IOCTL_SCSI_GET_DUMP_POINTERS = @as(u32, 266272);
-pub const IOCTL_SCSI_FREE_DUMP_POINTERS = @as(u32, 266276);
-pub const IOCTL_IDE_PASS_THROUGH = @as(u32, 315432);
-pub const IOCTL_ATA_PASS_THROUGH = @as(u32, 315436);
-pub const IOCTL_ATA_PASS_THROUGH_DIRECT = @as(u32, 315440);
-pub const IOCTL_ATA_MINIPORT = @as(u32, 315444);
-pub const IOCTL_MINIPORT_PROCESS_SERVICE_IRP = @as(u32, 315448);
-pub const IOCTL_MPIO_PASS_THROUGH_PATH = @as(u32, 315452);
-pub const IOCTL_MPIO_PASS_THROUGH_PATH_DIRECT = @as(u32, 315456);
-pub const IOCTL_SCSI_PASS_THROUGH_EX = @as(u32, 315460);
-pub const IOCTL_SCSI_PASS_THROUGH_DIRECT_EX = @as(u32, 315464);
-pub const IOCTL_MPIO_PASS_THROUGH_PATH_EX = @as(u32, 315468);
-pub const IOCTL_MPIO_PASS_THROUGH_PATH_DIRECT_EX = @as(u32, 315472);
-pub const ATA_FLAGS_DRDY_REQUIRED = @as(u32, 1);
+pub const ATA_FLAGS_48BIT_COMMAND = @as(u32, 8);
 pub const ATA_FLAGS_DATA_IN = @as(u32, 2);
 pub const ATA_FLAGS_DATA_OUT = @as(u32, 4);
-pub const ATA_FLAGS_48BIT_COMMAND = @as(u32, 8);
-pub const ATA_FLAGS_USE_DMA = @as(u32, 16);
+pub const ATA_FLAGS_DRDY_REQUIRED = @as(u32, 1);
 pub const ATA_FLAGS_NO_MULTIPLE = @as(u32, 32);
-pub const IOCTL_MINIPORT_SIGNATURE_SCSIDISK = "SCSIDISK";
-pub const IOCTL_MINIPORT_SIGNATURE_HYBRDISK = "HYBRDISK";
-pub const IOCTL_MINIPORT_SIGNATURE_DSM_NOTIFICATION = "MPDSM   ";
-pub const IOCTL_MINIPORT_SIGNATURE_DSM_GENERAL = "MPDSMGEN";
-pub const IOCTL_MINIPORT_SIGNATURE_FIRMWARE = "FIRMWARE";
-pub const IOCTL_MINIPORT_SIGNATURE_QUERY_PROTOCOL = "PROTOCOL";
-pub const IOCTL_MINIPORT_SIGNATURE_SET_PROTOCOL = "SETPROTO";
-pub const IOCTL_MINIPORT_SIGNATURE_QUERY_TEMPERATURE = "TEMPERAT";
-pub const IOCTL_MINIPORT_SIGNATURE_SET_TEMPERATURE_THRESHOLD = "SETTEMPT";
-pub const IOCTL_MINIPORT_SIGNATURE_QUERY_PHYSICAL_TOPOLOGY = "TOPOLOGY";
-pub const IOCTL_MINIPORT_SIGNATURE_ENDURANCE_INFO = "ENDURINF";
-pub const NRB_FUNCTION_NVCACHE_INFO = @as(u32, 236);
-pub const NRB_FUNCTION_SPINDLE_STATUS = @as(u32, 229);
-pub const NRB_FUNCTION_NVCACHE_POWER_MODE_SET = @as(u32, 0);
-pub const NRB_FUNCTION_NVCACHE_POWER_MODE_RETURN = @as(u32, 1);
-pub const NRB_FUNCTION_FLUSH_NVCACHE = @as(u32, 20);
-pub const NRB_FUNCTION_QUERY_PINNED_SET = @as(u32, 18);
-pub const NRB_FUNCTION_QUERY_CACHE_MISS = @as(u32, 19);
-pub const NRB_FUNCTION_ADD_LBAS_PINNED_SET = @as(u32, 16);
-pub const NRB_FUNCTION_REMOVE_LBAS_PINNED_SET = @as(u32, 17);
-pub const NRB_FUNCTION_QUERY_ASCENDER_STATUS = @as(u32, 208);
-pub const NRB_FUNCTION_QUERY_HYBRID_DISK_STATUS = @as(u32, 209);
-pub const NRB_FUNCTION_PASS_HINT_PAYLOAD = @as(u32, 224);
-pub const NRB_FUNCTION_NVSEPARATED_INFO = @as(u32, 192);
-pub const NRB_FUNCTION_NVSEPARATED_FLUSH = @as(u32, 193);
-pub const NRB_FUNCTION_NVSEPARATED_WB_DISABLE = @as(u32, 194);
-pub const NRB_FUNCTION_NVSEPARATED_WB_REVERT_DEFAULT = @as(u32, 195);
-pub const NRB_SUCCESS = @as(u32, 0);
-pub const NRB_ILLEGAL_REQUEST = @as(u32, 1);
-pub const NRB_INVALID_PARAMETER = @as(u32, 2);
-pub const NRB_INPUT_DATA_OVERRUN = @as(u32, 3);
-pub const NRB_INPUT_DATA_UNDERRUN = @as(u32, 4);
-pub const NRB_OUTPUT_DATA_OVERRUN = @as(u32, 5);
-pub const NRB_OUTPUT_DATA_UNDERRUN = @as(u32, 6);
-pub const NV_SEP_CACHE_PARAMETER_VERSION_1 = @as(u32, 1);
-pub const NV_SEP_CACHE_PARAMETER_VERSION = @as(u32, 1);
-pub const STORAGE_DIAGNOSTIC_STATUS_SUCCESS = @as(u32, 0);
-pub const STORAGE_DIAGNOSTIC_STATUS_BUFFER_TOO_SMALL = @as(u32, 1);
-pub const STORAGE_DIAGNOSTIC_STATUS_UNSUPPORTED_VERSION = @as(u32, 2);
-pub const STORAGE_DIAGNOSTIC_STATUS_INVALID_PARAMETER = @as(u32, 3);
-pub const STORAGE_DIAGNOSTIC_STATUS_INVALID_SIGNATURE = @as(u32, 4);
-pub const STORAGE_DIAGNOSTIC_STATUS_INVALID_TARGET_TYPE = @as(u32, 5);
-pub const STORAGE_DIAGNOSTIC_STATUS_MORE_DATA = @as(u32, 6);
-pub const MINIPORT_DSM_NOTIFICATION_VERSION_1 = @as(u32, 1);
-pub const MINIPORT_DSM_NOTIFICATION_VERSION = @as(u32, 1);
-pub const MINIPORT_DSM_PROFILE_UNKNOWN = @as(u32, 0);
-pub const MINIPORT_DSM_PROFILE_PAGE_FILE = @as(u32, 1);
-pub const MINIPORT_DSM_PROFILE_HIBERNATION_FILE = @as(u32, 2);
-pub const MINIPORT_DSM_PROFILE_CRASHDUMP_FILE = @as(u32, 3);
-pub const MINIPORT_DSM_NOTIFY_FLAG_BEGIN = @as(u32, 1);
-pub const MINIPORT_DSM_NOTIFY_FLAG_END = @as(u32, 2);
-pub const HYBRID_FUNCTION_GET_INFO = @as(u32, 1);
-pub const HYBRID_FUNCTION_DISABLE_CACHING_MEDIUM = @as(u32, 16);
-pub const HYBRID_FUNCTION_ENABLE_CACHING_MEDIUM = @as(u32, 17);
-pub const HYBRID_FUNCTION_SET_DIRTY_THRESHOLD = @as(u32, 18);
-pub const HYBRID_FUNCTION_DEMOTE_BY_SIZE = @as(u32, 19);
-pub const HYBRID_STATUS_SUCCESS = @as(u32, 0);
-pub const HYBRID_STATUS_ILLEGAL_REQUEST = @as(u32, 1);
-pub const HYBRID_STATUS_INVALID_PARAMETER = @as(u32, 2);
-pub const HYBRID_STATUS_OUTPUT_BUFFER_TOO_SMALL = @as(u32, 3);
-pub const HYBRID_STATUS_ENABLE_REFCOUNT_HOLD = @as(u32, 16);
-pub const HYBRID_REQUEST_BLOCK_STRUCTURE_VERSION = @as(u32, 1);
-pub const HYBRID_REQUEST_INFO_STRUCTURE_VERSION = @as(u32, 1);
-pub const FIRMWARE_FUNCTION_GET_INFO = @as(u32, 1);
-pub const FIRMWARE_FUNCTION_DOWNLOAD = @as(u32, 2);
-pub const FIRMWARE_FUNCTION_ACTIVATE = @as(u32, 3);
-pub const FIRMWARE_STATUS_SUCCESS = @as(u32, 0);
-pub const FIRMWARE_STATUS_ERROR = @as(u32, 1);
-pub const FIRMWARE_STATUS_ILLEGAL_REQUEST = @as(u32, 2);
-pub const FIRMWARE_STATUS_INVALID_PARAMETER = @as(u32, 3);
-pub const FIRMWARE_STATUS_INPUT_BUFFER_TOO_BIG = @as(u32, 4);
-pub const FIRMWARE_STATUS_OUTPUT_BUFFER_TOO_SMALL = @as(u32, 5);
-pub const FIRMWARE_STATUS_INVALID_SLOT = @as(u32, 6);
-pub const FIRMWARE_STATUS_INVALID_IMAGE = @as(u32, 7);
-pub const FIRMWARE_STATUS_CONTROLLER_ERROR = @as(u32, 16);
-pub const FIRMWARE_STATUS_POWER_CYCLE_REQUIRED = @as(u32, 32);
-pub const FIRMWARE_STATUS_DEVICE_ERROR = @as(u32, 64);
-pub const FIRMWARE_STATUS_INTERFACE_CRC_ERROR = @as(u32, 128);
-pub const FIRMWARE_STATUS_UNCORRECTABLE_DATA_ERROR = @as(u32, 129);
-pub const FIRMWARE_STATUS_MEDIA_CHANGE = @as(u32, 130);
-pub const FIRMWARE_STATUS_ID_NOT_FOUND = @as(u32, 131);
-pub const FIRMWARE_STATUS_MEDIA_CHANGE_REQUEST = @as(u32, 132);
-pub const FIRMWARE_STATUS_COMMAND_ABORT = @as(u32, 133);
-pub const FIRMWARE_STATUS_END_OF_MEDIA = @as(u32, 134);
-pub const FIRMWARE_STATUS_ILLEGAL_LENGTH = @as(u32, 135);
-pub const FIRMWARE_REQUEST_BLOCK_STRUCTURE_VERSION = @as(u32, 1);
-pub const FIRMWARE_REQUEST_FLAG_CONTROLLER = @as(u32, 1);
-pub const FIRMWARE_REQUEST_FLAG_LAST_SEGMENT = @as(u32, 2);
-pub const FIRMWARE_REQUEST_FLAG_FIRST_SEGMENT = @as(u32, 4);
-pub const FIRMWARE_REQUEST_FLAG_SWITCH_TO_EXISTING_FIRMWARE = @as(u32, 2147483648);
-pub const STORAGE_FIRMWARE_INFO_STRUCTURE_VERSION = @as(u32, 1);
-pub const STORAGE_FIRMWARE_INFO_STRUCTURE_VERSION_V2 = @as(u32, 2);
-pub const STORAGE_FIRMWARE_INFO_INVALID_SLOT = @as(u32, 255);
-pub const STORAGE_FIRMWARE_SLOT_INFO_V2_REVISION_LENGTH = @as(u32, 16);
-pub const STORAGE_FIRMWARE_DOWNLOAD_STRUCTURE_VERSION = @as(u32, 1);
-pub const STORAGE_FIRMWARE_DOWNLOAD_STRUCTURE_VERSION_V2 = @as(u32, 2);
-pub const STORAGE_FIRMWARE_ACTIVATE_STRUCTURE_VERSION = @as(u32, 1);
+pub const ATA_FLAGS_USE_DMA = @as(u32, 16);
+pub const DD_SCSI_DEVICE_NAME = "\\Device\\ScsiPort";
+pub const DUMP_DRIVER_NAME_LENGTH = @as(u32, 15);
+pub const DUMP_EX_FLAG_DRIVER_FULL_PATH_SUPPORT = @as(u32, 8);
+pub const DUMP_EX_FLAG_RESUME_SUPPORT = @as(u32, 4);
+pub const DUMP_EX_FLAG_SUPPORT_64BITMEMORY = @as(u32, 1);
+pub const DUMP_EX_FLAG_SUPPORT_DD_TELEMETRY = @as(u32, 2);
 pub const DUMP_POINTERS_VERSION_1 = @as(u32, 1);
 pub const DUMP_POINTERS_VERSION_2 = @as(u32, 2);
 pub const DUMP_POINTERS_VERSION_3 = @as(u32, 3);
 pub const DUMP_POINTERS_VERSION_4 = @as(u32, 4);
-pub const DUMP_DRIVER_NAME_LENGTH = @as(u32, 15);
-pub const DUMP_EX_FLAG_SUPPORT_64BITMEMORY = @as(u32, 1);
-pub const DUMP_EX_FLAG_SUPPORT_DD_TELEMETRY = @as(u32, 2);
-pub const DUMP_EX_FLAG_RESUME_SUPPORT = @as(u32, 4);
-pub const DUMP_EX_FLAG_DRIVER_FULL_PATH_SUPPORT = @as(u32, 8);
-pub const SCSI_IOCTL_DATA_OUT = @as(u32, 0);
-pub const SCSI_IOCTL_DATA_IN = @as(u32, 1);
-pub const SCSI_IOCTL_DATA_UNSPECIFIED = @as(u32, 2);
-pub const SCSI_IOCTL_DATA_BIDIRECTIONAL = @as(u32, 3);
-pub const MPIO_IOCTL_FLAG_USE_PATHID = @as(u32, 1);
-pub const MPIO_IOCTL_FLAG_USE_SCSIADDRESS = @as(u32, 2);
-pub const MPIO_IOCTL_FLAG_INVOLVE_DSM = @as(u32, 4);
-pub const MAX_ISCSI_HBANAME_LEN = @as(u32, 256);
-pub const MAX_ISCSI_NAME_LEN = @as(u32, 223);
-pub const MAX_ISCSI_ALIAS_LEN = @as(u32, 255);
-pub const MAX_ISCSI_PORTAL_NAME_LEN = @as(u32, 256);
-pub const MAX_ISCSI_PORTAL_ALIAS_LEN = @as(u32, 256);
-pub const MAX_ISCSI_TEXT_ADDRESS_LEN = @as(u32, 256);
-pub const MAX_ISCSI_PORTAL_ADDRESS_LEN = @as(u32, 256);
-pub const MAX_ISCSI_DISCOVERY_DOMAIN_LEN = @as(u32, 256);
-pub const MAX_RADIUS_ADDRESS_LEN = @as(u32, 41);
-pub const ISCSI_SECURITY_FLAG_TUNNEL_MODE_PREFERRED = "0x00000040";
-pub const ISCSI_SECURITY_FLAG_TRANSPORT_MODE_PREFERRED = "0x00000020";
-pub const ISCSI_SECURITY_FLAG_PFS_ENABLED = "0x00000010";
-pub const ISCSI_SECURITY_FLAG_AGGRESSIVE_MODE_ENABLED = "0x00000008";
-pub const ISCSI_SECURITY_FLAG_MAIN_MODE_ENABLED = "0x00000004";
-pub const ISCSI_SECURITY_FLAG_IKE_IPSEC_ENABLED = "0x00000002";
-pub const ISCSI_SECURITY_FLAG_VALID = "0x00000001";
-pub const ISCSI_LOGIN_OPTIONS_HEADER_DIGEST = "0x00000001";
-pub const ISCSI_LOGIN_OPTIONS_DATA_DIGEST = "0x00000002";
-pub const ISCSI_LOGIN_OPTIONS_MAXIMUM_CONNECTIONS = "0x00000004";
-pub const ISCSI_LOGIN_OPTIONS_DEFAULT_TIME_2_WAIT = "0x00000008";
-pub const ISCSI_LOGIN_OPTIONS_DEFAULT_TIME_2_RETAIN = "0x00000010";
-pub const ISCSI_LOGIN_OPTIONS_USERNAME = "0x00000020";
-pub const ISCSI_LOGIN_OPTIONS_PASSWORD = "0x00000040";
-pub const ISCSI_LOGIN_OPTIONS_AUTH_TYPE = "0x00000080";
-pub const ID_IPV4_ADDR = "1";
+pub const FILE_DEVICE_SCSI = @as(u32, 27);
+pub const FIRMWARE_FUNCTION_ACTIVATE = @as(u32, 3);
+pub const FIRMWARE_FUNCTION_DOWNLOAD = @as(u32, 2);
+pub const FIRMWARE_FUNCTION_GET_INFO = @as(u32, 1);
+pub const FIRMWARE_REQUEST_BLOCK_STRUCTURE_VERSION = @as(u32, 1);
+pub const FIRMWARE_REQUEST_FLAG_CONTROLLER = @as(u32, 1);
+pub const FIRMWARE_REQUEST_FLAG_FIRST_SEGMENT = @as(u32, 4);
+pub const FIRMWARE_REQUEST_FLAG_LAST_SEGMENT = @as(u32, 2);
+pub const FIRMWARE_REQUEST_FLAG_SWITCH_TO_EXISTING_FIRMWARE = @as(u32, 2147483648);
+pub const FIRMWARE_STATUS_COMMAND_ABORT = @as(u32, 133);
+pub const FIRMWARE_STATUS_CONTROLLER_ERROR = @as(u32, 16);
+pub const FIRMWARE_STATUS_DEVICE_ERROR = @as(u32, 64);
+pub const FIRMWARE_STATUS_END_OF_MEDIA = @as(u32, 134);
+pub const FIRMWARE_STATUS_ERROR = @as(u32, 1);
+pub const FIRMWARE_STATUS_ID_NOT_FOUND = @as(u32, 131);
+pub const FIRMWARE_STATUS_ILLEGAL_LENGTH = @as(u32, 135);
+pub const FIRMWARE_STATUS_ILLEGAL_REQUEST = @as(u32, 2);
+pub const FIRMWARE_STATUS_INPUT_BUFFER_TOO_BIG = @as(u32, 4);
+pub const FIRMWARE_STATUS_INTERFACE_CRC_ERROR = @as(u32, 128);
+pub const FIRMWARE_STATUS_INVALID_IMAGE = @as(u32, 7);
+pub const FIRMWARE_STATUS_INVALID_PARAMETER = @as(u32, 3);
+pub const FIRMWARE_STATUS_INVALID_SLOT = @as(u32, 6);
+pub const FIRMWARE_STATUS_MEDIA_CHANGE = @as(u32, 130);
+pub const FIRMWARE_STATUS_MEDIA_CHANGE_REQUEST = @as(u32, 132);
+pub const FIRMWARE_STATUS_OUTPUT_BUFFER_TOO_SMALL = @as(u32, 5);
+pub const FIRMWARE_STATUS_POWER_CYCLE_REQUIRED = @as(u32, 32);
+pub const FIRMWARE_STATUS_SUCCESS = @as(u32, 0);
+pub const FIRMWARE_STATUS_UNCORRECTABLE_DATA_ERROR = @as(u32, 129);
+pub const HYBRID_FUNCTION_DEMOTE_BY_SIZE = @as(u32, 19);
+pub const HYBRID_FUNCTION_DISABLE_CACHING_MEDIUM = @as(u32, 16);
+pub const HYBRID_FUNCTION_ENABLE_CACHING_MEDIUM = @as(u32, 17);
+pub const HYBRID_FUNCTION_GET_INFO = @as(u32, 1);
+pub const HYBRID_FUNCTION_SET_DIRTY_THRESHOLD = @as(u32, 18);
+pub const HYBRID_REQUEST_BLOCK_STRUCTURE_VERSION = @as(u32, 1);
+pub const HYBRID_REQUEST_INFO_STRUCTURE_VERSION = @as(u32, 1);
+pub const HYBRID_STATUS_ENABLE_REFCOUNT_HOLD = @as(u32, 16);
+pub const HYBRID_STATUS_ILLEGAL_REQUEST = @as(u32, 1);
+pub const HYBRID_STATUS_INVALID_PARAMETER = @as(u32, 2);
+pub const HYBRID_STATUS_OUTPUT_BUFFER_TOO_SMALL = @as(u32, 3);
+pub const HYBRID_STATUS_SUCCESS = @as(u32, 0);
 pub const ID_FQDN = "2";
-pub const ID_USER_FQDN = "3";
+pub const ID_IPV4_ADDR = "1";
 pub const ID_IPV6_ADDR = "5";
-pub const ISCSI_LOGIN_FLAG_REQUIRE_IPSEC = @as(u32, 1);
-pub const ISCSI_LOGIN_FLAG_MULTIPATH_ENABLED = @as(u32, 2);
-pub const ISCSI_LOGIN_FLAG_RESERVED1 = @as(u32, 4);
+pub const ID_USER_FQDN = "3";
+pub const IOCTL_ATA_MINIPORT = @as(u32, 315444);
+pub const IOCTL_ATA_PASS_THROUGH = @as(u32, 315436);
+pub const IOCTL_ATA_PASS_THROUGH_DIRECT = @as(u32, 315440);
+pub const IOCTL_IDE_PASS_THROUGH = @as(u32, 315432);
+pub const IOCTL_MINIPORT_PROCESS_SERVICE_IRP = @as(u32, 315448);
+pub const IOCTL_MINIPORT_SIGNATURE_DSM_GENERAL = "MPDSMGEN";
+pub const IOCTL_MINIPORT_SIGNATURE_DSM_NOTIFICATION = "MPDSM   ";
+pub const IOCTL_MINIPORT_SIGNATURE_ENDURANCE_INFO = "ENDURINF";
+pub const IOCTL_MINIPORT_SIGNATURE_FIRMWARE = "FIRMWARE";
+pub const IOCTL_MINIPORT_SIGNATURE_HYBRDISK = "HYBRDISK";
+pub const IOCTL_MINIPORT_SIGNATURE_QUERY_PHYSICAL_TOPOLOGY = "TOPOLOGY";
+pub const IOCTL_MINIPORT_SIGNATURE_QUERY_PROTOCOL = "PROTOCOL";
+pub const IOCTL_MINIPORT_SIGNATURE_QUERY_TEMPERATURE = "TEMPERAT";
+pub const IOCTL_MINIPORT_SIGNATURE_SCSIDISK = "SCSIDISK";
+pub const IOCTL_MINIPORT_SIGNATURE_SET_PROTOCOL = "SETPROTO";
+pub const IOCTL_MINIPORT_SIGNATURE_SET_TEMPERATURE_THRESHOLD = "SETTEMPT";
+pub const IOCTL_MPIO_PASS_THROUGH_PATH = @as(u32, 315452);
+pub const IOCTL_MPIO_PASS_THROUGH_PATH_DIRECT = @as(u32, 315456);
+pub const IOCTL_MPIO_PASS_THROUGH_PATH_DIRECT_EX = @as(u32, 315472);
+pub const IOCTL_MPIO_PASS_THROUGH_PATH_EX = @as(u32, 315468);
+pub const IOCTL_SCSI_BASE = @as(u32, 4);
+pub const IOCTL_SCSI_FREE_DUMP_POINTERS = @as(u32, 266276);
+pub const IOCTL_SCSI_GET_ADDRESS = @as(u32, 266264);
+pub const IOCTL_SCSI_GET_CAPABILITIES = @as(u32, 266256);
+pub const IOCTL_SCSI_GET_DUMP_POINTERS = @as(u32, 266272);
+pub const IOCTL_SCSI_GET_INQUIRY_DATA = @as(u32, 266252);
+pub const IOCTL_SCSI_MINIPORT = @as(u32, 315400);
+pub const IOCTL_SCSI_PASS_THROUGH = @as(u32, 315396);
+pub const IOCTL_SCSI_PASS_THROUGH_DIRECT = @as(u32, 315412);
+pub const IOCTL_SCSI_PASS_THROUGH_DIRECT_EX = @as(u32, 315464);
+pub const IOCTL_SCSI_PASS_THROUGH_EX = @as(u32, 315460);
+pub const IOCTL_SCSI_RESCAN_BUS = @as(u32, 266268);
 pub const ISCSI_LOGIN_FLAG_ALLOW_PORTAL_HOPPING = @as(u32, 8);
+pub const ISCSI_LOGIN_FLAG_MULTIPATH_ENABLED = @as(u32, 2);
+pub const ISCSI_LOGIN_FLAG_REQUIRE_IPSEC = @as(u32, 1);
+pub const ISCSI_LOGIN_FLAG_RESERVED1 = @as(u32, 4);
 pub const ISCSI_LOGIN_FLAG_USE_RADIUS_RESPONSE = @as(u32, 16);
 pub const ISCSI_LOGIN_FLAG_USE_RADIUS_VERIFICATION = @as(u32, 32);
+pub const ISCSI_LOGIN_OPTIONS_AUTH_TYPE = "0x00000080";
+pub const ISCSI_LOGIN_OPTIONS_DATA_DIGEST = "0x00000002";
+pub const ISCSI_LOGIN_OPTIONS_DEFAULT_TIME_2_RETAIN = "0x00000010";
+pub const ISCSI_LOGIN_OPTIONS_DEFAULT_TIME_2_WAIT = "0x00000008";
+pub const ISCSI_LOGIN_OPTIONS_HEADER_DIGEST = "0x00000001";
+pub const ISCSI_LOGIN_OPTIONS_MAXIMUM_CONNECTIONS = "0x00000004";
+pub const ISCSI_LOGIN_OPTIONS_PASSWORD = "0x00000040";
+pub const ISCSI_LOGIN_OPTIONS_USERNAME = "0x00000020";
 pub const ISCSI_LOGIN_OPTIONS_VERSION = @as(u32, 0);
+pub const ISCSI_SECURITY_FLAG_AGGRESSIVE_MODE_ENABLED = "0x00000008";
+pub const ISCSI_SECURITY_FLAG_IKE_IPSEC_ENABLED = "0x00000002";
+pub const ISCSI_SECURITY_FLAG_MAIN_MODE_ENABLED = "0x00000004";
+pub const ISCSI_SECURITY_FLAG_PFS_ENABLED = "0x00000010";
+pub const ISCSI_SECURITY_FLAG_TRANSPORT_MODE_PREFERRED = "0x00000020";
+pub const ISCSI_SECURITY_FLAG_TUNNEL_MODE_PREFERRED = "0x00000040";
+pub const ISCSI_SECURITY_FLAG_VALID = "0x00000001";
 pub const ISCSI_TARGET_FLAG_HIDE_STATIC_TARGET = @as(u32, 2);
 pub const ISCSI_TARGET_FLAG_MERGE_TARGET_INFORMATION = @as(u32, 4);
+pub const MAX_ISCSI_ALIAS_LEN = @as(u32, 255);
+pub const MAX_ISCSI_DISCOVERY_DOMAIN_LEN = @as(u32, 256);
+pub const MAX_ISCSI_HBANAME_LEN = @as(u32, 256);
+pub const MAX_ISCSI_NAME_LEN = @as(u32, 223);
+pub const MAX_ISCSI_PORTAL_ADDRESS_LEN = @as(u32, 256);
+pub const MAX_ISCSI_PORTAL_ALIAS_LEN = @as(u32, 256);
+pub const MAX_ISCSI_PORTAL_NAME_LEN = @as(u32, 256);
+pub const MAX_ISCSI_TEXT_ADDRESS_LEN = @as(u32, 256);
+pub const MAX_RADIUS_ADDRESS_LEN = @as(u32, 41);
+pub const MINIPORT_DSM_NOTIFICATION_VERSION = @as(u32, 1);
+pub const MINIPORT_DSM_NOTIFICATION_VERSION_1 = @as(u32, 1);
+pub const MINIPORT_DSM_NOTIFY_FLAG_BEGIN = @as(u32, 1);
+pub const MINIPORT_DSM_NOTIFY_FLAG_END = @as(u32, 2);
+pub const MINIPORT_DSM_PROFILE_CRASHDUMP_FILE = @as(u32, 3);
+pub const MINIPORT_DSM_PROFILE_HIBERNATION_FILE = @as(u32, 2);
+pub const MINIPORT_DSM_PROFILE_PAGE_FILE = @as(u32, 1);
+pub const MINIPORT_DSM_PROFILE_UNKNOWN = @as(u32, 0);
+pub const MPIO_IOCTL_FLAG_INVOLVE_DSM = @as(u32, 4);
+pub const MPIO_IOCTL_FLAG_USE_PATHID = @as(u32, 1);
+pub const MPIO_IOCTL_FLAG_USE_SCSIADDRESS = @as(u32, 2);
+pub const NRB_FUNCTION_ADD_LBAS_PINNED_SET = @as(u32, 16);
+pub const NRB_FUNCTION_FLUSH_NVCACHE = @as(u32, 20);
+pub const NRB_FUNCTION_NVCACHE_INFO = @as(u32, 236);
+pub const NRB_FUNCTION_NVCACHE_POWER_MODE_RETURN = @as(u32, 1);
+pub const NRB_FUNCTION_NVCACHE_POWER_MODE_SET = @as(u32, 0);
+pub const NRB_FUNCTION_NVSEPARATED_FLUSH = @as(u32, 193);
+pub const NRB_FUNCTION_NVSEPARATED_INFO = @as(u32, 192);
+pub const NRB_FUNCTION_NVSEPARATED_WB_DISABLE = @as(u32, 194);
+pub const NRB_FUNCTION_NVSEPARATED_WB_REVERT_DEFAULT = @as(u32, 195);
+pub const NRB_FUNCTION_PASS_HINT_PAYLOAD = @as(u32, 224);
+pub const NRB_FUNCTION_QUERY_ASCENDER_STATUS = @as(u32, 208);
+pub const NRB_FUNCTION_QUERY_CACHE_MISS = @as(u32, 19);
+pub const NRB_FUNCTION_QUERY_HYBRID_DISK_STATUS = @as(u32, 209);
+pub const NRB_FUNCTION_QUERY_PINNED_SET = @as(u32, 18);
+pub const NRB_FUNCTION_REMOVE_LBAS_PINNED_SET = @as(u32, 17);
+pub const NRB_FUNCTION_SPINDLE_STATUS = @as(u32, 229);
+pub const NRB_ILLEGAL_REQUEST = @as(u32, 1);
+pub const NRB_INPUT_DATA_OVERRUN = @as(u32, 3);
+pub const NRB_INPUT_DATA_UNDERRUN = @as(u32, 4);
+pub const NRB_INVALID_PARAMETER = @as(u32, 2);
+pub const NRB_OUTPUT_DATA_OVERRUN = @as(u32, 5);
+pub const NRB_OUTPUT_DATA_UNDERRUN = @as(u32, 6);
+pub const NRB_SUCCESS = @as(u32, 0);
+pub const NV_SEP_CACHE_PARAMETER_VERSION = @as(u32, 1);
+pub const NV_SEP_CACHE_PARAMETER_VERSION_1 = @as(u32, 1);
+pub const SCSI_IOCTL_DATA_BIDIRECTIONAL = @as(u32, 3);
+pub const SCSI_IOCTL_DATA_IN = @as(u32, 1);
+pub const SCSI_IOCTL_DATA_OUT = @as(u32, 0);
+pub const SCSI_IOCTL_DATA_UNSPECIFIED = @as(u32, 2);
+pub const ScsiRawInterfaceGuid = Guid.initString("53f56309-b6bf-11d0-94f2-00a0c91efb8b");
+pub const STORAGE_DIAGNOSTIC_STATUS_BUFFER_TOO_SMALL = @as(u32, 1);
+pub const STORAGE_DIAGNOSTIC_STATUS_INVALID_PARAMETER = @as(u32, 3);
+pub const STORAGE_DIAGNOSTIC_STATUS_INVALID_SIGNATURE = @as(u32, 4);
+pub const STORAGE_DIAGNOSTIC_STATUS_INVALID_TARGET_TYPE = @as(u32, 5);
+pub const STORAGE_DIAGNOSTIC_STATUS_MORE_DATA = @as(u32, 6);
+pub const STORAGE_DIAGNOSTIC_STATUS_SUCCESS = @as(u32, 0);
+pub const STORAGE_DIAGNOSTIC_STATUS_UNSUPPORTED_VERSION = @as(u32, 2);
+pub const STORAGE_FIRMWARE_ACTIVATE_STRUCTURE_VERSION = @as(u32, 1);
+pub const STORAGE_FIRMWARE_DOWNLOAD_STRUCTURE_VERSION = @as(u32, 1);
+pub const STORAGE_FIRMWARE_DOWNLOAD_STRUCTURE_VERSION_V2 = @as(u32, 2);
+pub const STORAGE_FIRMWARE_INFO_INVALID_SLOT = @as(u32, 255);
+pub const STORAGE_FIRMWARE_INFO_STRUCTURE_VERSION = @as(u32, 1);
+pub const STORAGE_FIRMWARE_INFO_STRUCTURE_VERSION_V2 = @as(u32, 2);
+pub const STORAGE_FIRMWARE_SLOT_INFO_V2_REVISION_LENGTH = @as(u32, 16);
+pub const WmiScsiAddressGuid = Guid.initString("53f5630f-b6bf-11d0-94f2-00a0c91efb8b");
 
 //--------------------------------------------------------------------------------
 // Section: Types (93)
 //--------------------------------------------------------------------------------
 pub const _ADAPTER_OBJECT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const SCSI_PASS_THROUGH = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBufferOffset: usize,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
-
-pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBuffer: ?*anyopaque,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
-
-
-
-pub const SCSI_PASS_THROUGH_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBufferOffset: usize,
-    DataInBufferOffset: usize,
-    Cdb: [1]u8,
-};
-
-pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBuffer: ?*anyopaque,
-    DataInBuffer: ?*anyopaque,
-    Cdb: [1]u8,
-};
-
-
-
-pub const ATA_PASS_THROUGH_EX = extern struct {
-    Length: u16,
-    AtaFlags: u16,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    ReservedAsUchar: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    ReservedAsUlong: u32,
-    DataBufferOffset: usize,
-    PreviousTaskFile: [8]u8,
-    CurrentTaskFile: [8]u8,
 };
 
 pub const ATA_PASS_THROUGH_DIRECT = extern struct {
@@ -296,185 +207,21 @@ pub const ATA_PASS_THROUGH_DIRECT = extern struct {
 };
 
 
-
-pub const IDE_IO_CONTROL = extern struct {
-    HeaderLength: u32,
-    Signature: [8]u8,
-    Timeout: u32,
-    ControlCode: u32,
-    ReturnStatus: u32,
-    DataLength: u32,
-};
-
-pub const MPIO_PASS_THROUGH_PATH = extern struct {
-    PassThrough: SCSI_PASS_THROUGH,
-    Version: u32,
+pub const ATA_PASS_THROUGH_EX = extern struct {
     Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT = extern struct {
-    PassThrough: SCSI_PASS_THROUGH_DIRECT,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-
-
-
-
-pub const SCSI_BUS_DATA = extern struct {
-    NumberOfLogicalUnits: u8,
-    InitiatorBusId: u8,
-    InquiryDataOffset: u32,
-};
-
-pub const SCSI_ADAPTER_BUS_INFO = extern struct {
-    NumberOfBuses: u8,
-    BusData: [1]SCSI_BUS_DATA,
-};
-
-pub const SCSI_INQUIRY_DATA = extern struct {
+    AtaFlags: u16,
     PathId: u8,
     TargetId: u8,
     Lun: u8,
-    DeviceClaimed: BOOLEAN,
-    InquiryDataLength: u32,
-    NextInquiryDataOffset: u32,
-    InquiryData: [1]u8,
+    ReservedAsUchar: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    ReservedAsUlong: u32,
+    DataBufferOffset: usize,
+    PreviousTaskFile: [8]u8,
+    CurrentTaskFile: [8]u8,
 };
 
-pub const SRB_IO_CONTROL = extern struct {
-    HeaderLength: u32,
-    Signature: [8]u8,
-    Timeout: u32,
-    ControlCode: u32,
-    ReturnCode: u32,
-    Length: u32,
-};
-
-pub const NVCACHE_REQUEST_BLOCK = extern struct {
-    NRBSize: u32,
-    Function: u16,
-    NRBFlags: u32,
-    NRBStatus: u32,
-    Count: u32,
-    LBA: u64,
-    DataBufSize: u32,
-    NVCacheStatus: u32,
-    NVCacheSubStatus: u32,
-};
-
-pub const NV_FEATURE_PARAMETER = extern struct {
-    NVPowerModeEnabled: u16,
-    NVParameterReserv1: u16,
-    NVCmdEnabled: u16,
-    NVParameterReserv2: u16,
-    NVPowerModeVer: u16,
-    NVCmdVer: u16,
-    NVSize: u32,
-    NVReadSpeed: u16,
-    NVWrtSpeed: u16,
-    DeviceSpinUpTime: u32,
-};
-
-pub const NVCACHE_HINT_PAYLOAD = extern struct {
-    Command: u8,
-    Feature7_0: u8,
-    Feature15_8: u8,
-    Count15_8: u8,
-    LBA7_0: u8,
-    LBA15_8: u8,
-    LBA23_16: u8,
-    LBA31_24: u8,
-    LBA39_32: u8,
-    LBA47_40: u8,
-    Auxiliary7_0: u8,
-    Auxiliary23_16: u8,
-    Reserved: [4]u8,
-};
-
-pub const NV_SEP_CACHE_PARAMETER = extern struct {
-    Version: u32,
-    Size: u32,
-    Flags: extern union {
-        CacheFlags: extern struct {
-            _bitfield: u8,
-        },
-        CacheFlagsSet: u8,
-    },
-    WriteCacheType: u8,
-    WriteCacheTypeEffective: u8,
-    ParameterReserve1: [3]u8,
-};
-
-pub const NV_SEP_WRITE_CACHE_TYPE = enum(i32) {
-    Unknown = 0,
-    None = 1,
-    WriteBack = 2,
-    WriteThrough = 3,
-};
-pub const NVSEPWriteCacheTypeUnknown = NV_SEP_WRITE_CACHE_TYPE.Unknown;
-pub const NVSEPWriteCacheTypeNone = NV_SEP_WRITE_CACHE_TYPE.None;
-pub const NVSEPWriteCacheTypeWriteBack = NV_SEP_WRITE_CACHE_TYPE.WriteBack;
-pub const NVSEPWriteCacheTypeWriteThrough = NV_SEP_WRITE_CACHE_TYPE.WriteThrough;
-
-pub const MP_STORAGE_DIAGNOSTIC_LEVEL = enum(i32) {
-    Default = 0,
-    Max = 1,
-};
-pub const MpStorageDiagnosticLevelDefault = MP_STORAGE_DIAGNOSTIC_LEVEL.Default;
-pub const MpStorageDiagnosticLevelMax = MP_STORAGE_DIAGNOSTIC_LEVEL.Max;
-
-pub const MP_STORAGE_DIAGNOSTIC_TARGET_TYPE = enum(i32) {
-    Undefined = 0,
-    Miniport = 2,
-    HbaFirmware = 3,
-    Max = 4,
-};
-pub const MpStorageDiagnosticTargetTypeUndefined = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.Undefined;
-pub const MpStorageDiagnosticTargetTypeMiniport = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.Miniport;
-pub const MpStorageDiagnosticTargetTypeHbaFirmware = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.HbaFirmware;
-pub const MpStorageDiagnosticTargetTypeMax = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.Max;
-
-pub const STORAGE_DIAGNOSTIC_MP_REQUEST = extern struct {
-    Version: u32,
-    Size: u32,
-    TargetType: MP_STORAGE_DIAGNOSTIC_TARGET_TYPE,
-    Level: MP_STORAGE_DIAGNOSTIC_LEVEL,
-    ProviderId: Guid,
-    BufferSize: u32,
-    Reserved: u32,
-    DataBuffer: [1]u8,
-};
-
-pub const MP_DEVICE_DATA_SET_RANGE = extern struct {
-    StartingOffset: i64,
-    LengthInBytes: u64,
-};
 
 pub const DSM_NOTIFICATION_REQUEST_BLOCK = extern struct {
     Size: u32,
@@ -486,196 +233,17 @@ pub const DSM_NOTIFICATION_REQUEST_BLOCK = extern struct {
     DataSetRanges: [1]MP_DEVICE_DATA_SET_RANGE,
 };
 
-pub const HYBRID_REQUEST_BLOCK = extern struct {
-    Version: u32,
-    Size: u32,
-    Function: u32,
-    Flags: u32,
-    DataBufferOffset: u32,
-    DataBufferLength: u32,
+pub const DUMP_DRIVER = extern struct {
+    DumpDriverList: ?*anyopaque,
+    DriverName: [15]u16,
+    BaseName: [15]u16,
 };
 
-pub const NVCACHE_TYPE = enum(i32) {
-    Unknown = 0,
-    None = 1,
-    WriteBack = 2,
-    WriteThrough = 3,
-};
-pub const NvCacheTypeUnknown = NVCACHE_TYPE.Unknown;
-pub const NvCacheTypeNone = NVCACHE_TYPE.None;
-pub const NvCacheTypeWriteBack = NVCACHE_TYPE.WriteBack;
-pub const NvCacheTypeWriteThrough = NVCACHE_TYPE.WriteThrough;
-
-pub const NVCACHE_STATUS = enum(i32) {
-    Unknown = 0,
-    Disabling = 1,
-    Disabled = 2,
-    Enabled = 3,
-};
-pub const NvCacheStatusUnknown = NVCACHE_STATUS.Unknown;
-pub const NvCacheStatusDisabling = NVCACHE_STATUS.Disabling;
-pub const NvCacheStatusDisabled = NVCACHE_STATUS.Disabled;
-pub const NvCacheStatusEnabled = NVCACHE_STATUS.Enabled;
-
-pub const NVCACHE_PRIORITY_LEVEL_DESCRIPTOR = extern struct {
-    PriorityLevel: u8,
-    Reserved0: [3]u8,
-    ConsumedNVMSizeFraction: u32,
-    ConsumedMappingResourcesFraction: u32,
-    ConsumedNVMSizeForDirtyDataFraction: u32,
-    ConsumedMappingResourcesForDirtyDataFraction: u32,
-    Reserved1: u32,
-};
-
-pub const HYBRID_INFORMATION = extern struct {
-    Version: u32,
-    Size: u32,
-    HybridSupported: BOOLEAN,
-    Status: NVCACHE_STATUS,
-    CacheTypeEffective: NVCACHE_TYPE,
-    CacheTypeDefault: NVCACHE_TYPE,
-    FractionBase: u32,
-    CacheSize: u64,
-    Attributes: extern struct {
-        _bitfield: u32,
-    },
-    Priorities: extern struct {
-        PriorityLevelCount: u8,
-        MaxPriorityBehavior: BOOLEAN,
-        OptimalWriteGranularity: u8,
-        Reserved: u8,
-        DirtyThresholdLow: u32,
-        DirtyThresholdHigh: u32,
-        SupportedCommands: extern struct {
-            _bitfield: u32,
-            MaxEvictCommands: u32,
-            MaxLbaRangeCountForEvict: u32,
-            MaxLbaRangeCountForChangeLba: u32,
-        },
-        Priority: [1]NVCACHE_PRIORITY_LEVEL_DESCRIPTOR,
-    },
-};
-
-pub const HYBRID_DIRTY_THRESHOLDS = extern struct {
-    Version: u32,
-    Size: u32,
-    DirtyLowThreshold: u32,
-    DirtyHighThreshold: u32,
-};
-
-pub const HYBRID_DEMOTE_BY_SIZE = extern struct {
-    Version: u32,
-    Size: u32,
-    SourcePriority: u8,
-    TargetPriority: u8,
-    Reserved0: u16,
-    Reserved1: u32,
-    LbaCount: u64,
-};
-
-pub const FIRMWARE_REQUEST_BLOCK = extern struct {
-    Version: u32,
-    Size: u32,
-    Function: u32,
-    Flags: u32,
-    DataBufferOffset: u32,
-    DataBufferLength: u32,
-};
-
-pub const STORAGE_FIRMWARE_SLOT_INFO = extern struct {
-    SlotNumber: u8,
-    ReadOnly: BOOLEAN,
-    Reserved: [6]u8,
-    Revision: extern union {
-        Info: [8]u8,
-        AsUlonglong: u64,
-    },
-};
-
-pub const STORAGE_FIRMWARE_SLOT_INFO_V2 = extern struct {
-    SlotNumber: u8,
-    ReadOnly: BOOLEAN,
-    Reserved: [6]u8,
-    Revision: [16]u8,
-};
-
-pub const STORAGE_FIRMWARE_INFO = extern struct {
-    Version: u32,
-    Size: u32,
-    UpgradeSupport: BOOLEAN,
-    SlotCount: u8,
-    ActiveSlot: u8,
-    PendingActivateSlot: u8,
-    Reserved: u32,
-    Slot: [1]STORAGE_FIRMWARE_SLOT_INFO,
-};
-
-pub const STORAGE_FIRMWARE_INFO_V2 = extern struct {
-    Version: u32,
-    Size: u32,
-    UpgradeSupport: BOOLEAN,
-    SlotCount: u8,
-    ActiveSlot: u8,
-    PendingActivateSlot: u8,
-    FirmwareShared: BOOLEAN,
-    Reserved: [3]u8,
-    ImagePayloadAlignment: u32,
-    ImagePayloadMaxSize: u32,
-    Slot: [1]STORAGE_FIRMWARE_SLOT_INFO_V2,
-};
-
-pub const STORAGE_FIRMWARE_DOWNLOAD = extern struct {
-    Version: u32,
-    Size: u32,
-    Offset: u64,
-    BufferSize: u64,
-    ImageBuffer: [1]u8,
-};
-
-pub const STORAGE_FIRMWARE_DOWNLOAD_V2 = extern struct {
-    Version: u32,
-    Size: u32,
-    Offset: u64,
-    BufferSize: u64,
-    Slot: u8,
-    Reserved: [3]u8,
-    ImageSize: u32,
-    ImageBuffer: [1]u8,
-};
-
-pub const STORAGE_FIRMWARE_ACTIVATE = extern struct {
-    Version: u32,
-    Size: u32,
-    SlotToActivate: u8,
-    Reserved0: [3]u8,
-};
-
-pub const IO_SCSI_CAPABILITIES = extern struct {
-    Length: u32,
-    MaximumTransferLength: u32,
-    MaximumPhysicalPages: u32,
-    SupportedAsynchronousEvents: u32,
-    AlignmentMask: u32,
-    TaggedQueuing: BOOLEAN,
-    AdapterScansDown: BOOLEAN,
-    AdapterUsesPio: BOOLEAN,
-};
-
-pub const SCSI_ADDRESS = extern struct {
-    Length: u32,
-    PortNumber: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-};
-
-pub const PDUMP_DEVICE_POWERON_ROUTINE = *const fn(
-    Context: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const DUMP_POINTERS_VERSION = extern struct {
-    Version: u32,
-    Size: u32,
+pub const DUMP_DRIVER_EX = extern struct {
+    DumpDriverList: ?*anyopaque,
+    DriverName: [15]u16,
+    BaseName: [15]u16,
+    DriverFullPath: NTSCSI_UNICODE_STRING,
 };
 
 pub const DUMP_POINTERS = extern struct {
@@ -710,72 +278,89 @@ pub const DUMP_POINTERS_EX = extern struct {
     DumpDevicePowerOnContext: ?*anyopaque,
 };
 
-pub const DUMP_DRIVER = extern struct {
-    DumpDriverList: ?*anyopaque,
-    DriverName: [15]u16,
-    BaseName: [15]u16,
-};
-
-pub const NTSCSI_UNICODE_STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: ?[*]u16,
-};
-
-pub const DUMP_DRIVER_EX = extern struct {
-    DumpDriverList: ?*anyopaque,
-    DriverName: [15]u16,
-    BaseName: [15]u16,
-    DriverFullPath: NTSCSI_UNICODE_STRING,
-};
-
-pub const STORAGE_ENDURANCE_INFO = extern struct {
-    ValidFields: u32,
-    GroupId: u32,
-    Flags: extern struct {
-        _bitfield: u32,
-    },
-    LifePercentage: u32,
-    BytesReadCount: [16]u8,
-    ByteWriteCount: [16]u8,
-};
-
-pub const STORAGE_ENDURANCE_DATA_DESCRIPTOR = extern struct {
+pub const DUMP_POINTERS_VERSION = extern struct {
     Version: u32,
     Size: u32,
-    EnduranceInfo: STORAGE_ENDURANCE_INFO,
 };
 
-pub const ISCSI_DIGEST_TYPES = enum(i32) {
-    NONE = 0,
-    CRC32C = 1,
-};
-pub const ISCSI_DIGEST_TYPE_NONE = ISCSI_DIGEST_TYPES.NONE;
-pub const ISCSI_DIGEST_TYPE_CRC32C = ISCSI_DIGEST_TYPES.CRC32C;
-
-pub const ISCSI_AUTH_TYPES = enum(i32) {
-    NO_AUTH_TYPE = 0,
-    CHAP_AUTH_TYPE = 1,
-    MUTUAL_CHAP_AUTH_TYPE = 2,
-};
-pub const ISCSI_NO_AUTH_TYPE = ISCSI_AUTH_TYPES.NO_AUTH_TYPE;
-pub const ISCSI_CHAP_AUTH_TYPE = ISCSI_AUTH_TYPES.CHAP_AUTH_TYPE;
-pub const ISCSI_MUTUAL_CHAP_AUTH_TYPE = ISCSI_AUTH_TYPES.MUTUAL_CHAP_AUTH_TYPE;
-
-pub const ISCSI_LOGIN_OPTIONS = extern struct {
+pub const FIRMWARE_REQUEST_BLOCK = extern struct {
     Version: u32,
-    InformationSpecified: u32,
-    LoginFlags: u32,
-    AuthType: ISCSI_AUTH_TYPES,
-    HeaderDigest: ISCSI_DIGEST_TYPES,
-    DataDigest: ISCSI_DIGEST_TYPES,
-    MaximumConnections: u32,
-    DefaultTime2Wait: u32,
-    DefaultTime2Retain: u32,
-    UsernameLength: u32,
-    PasswordLength: u32,
-    Username: ?*u8,
-    Password: ?*u8,
+    Size: u32,
+    Function: u32,
+    Flags: u32,
+    DataBufferOffset: u32,
+    DataBufferLength: u32,
+};
+
+pub const HYBRID_DEMOTE_BY_SIZE = extern struct {
+    Version: u32,
+    Size: u32,
+    SourcePriority: u8,
+    TargetPriority: u8,
+    Reserved0: u16,
+    Reserved1: u32,
+    LbaCount: u64,
+};
+
+pub const HYBRID_DIRTY_THRESHOLDS = extern struct {
+    Version: u32,
+    Size: u32,
+    DirtyLowThreshold: u32,
+    DirtyHighThreshold: u32,
+};
+
+pub const HYBRID_INFORMATION = extern struct {
+    Version: u32,
+    Size: u32,
+    HybridSupported: BOOLEAN,
+    Status: NVCACHE_STATUS,
+    CacheTypeEffective: NVCACHE_TYPE,
+    CacheTypeDefault: NVCACHE_TYPE,
+    FractionBase: u32,
+    CacheSize: u64,
+    Attributes: extern struct {
+        _bitfield: u32,
+    },
+    Priorities: extern struct {
+        PriorityLevelCount: u8,
+        MaxPriorityBehavior: BOOLEAN,
+        OptimalWriteGranularity: u8,
+        Reserved: u8,
+        DirtyThresholdLow: u32,
+        DirtyThresholdHigh: u32,
+        SupportedCommands: extern struct {
+            _bitfield: u32,
+            MaxEvictCommands: u32,
+            MaxLbaRangeCountForEvict: u32,
+            MaxLbaRangeCountForChangeLba: u32,
+        },
+        Priority: [1]NVCACHE_PRIORITY_LEVEL_DESCRIPTOR,
+    },
+};
+
+pub const HYBRID_REQUEST_BLOCK = extern struct {
+    Version: u32,
+    Size: u32,
+    Function: u32,
+    Flags: u32,
+    DataBufferOffset: u32,
+    DataBufferLength: u32,
+};
+
+pub const IDE_IO_CONTROL = extern struct {
+    HeaderLength: u32,
+    Signature: [8]u8,
+    Timeout: u32,
+    ControlCode: u32,
+    ReturnStatus: u32,
+    DataLength: u32,
+};
+
+pub const IKE_AUTHENTICATION_INFORMATION = extern struct {
+    AuthMethod: IKE_AUTHENTICATION_METHOD,
+    Anonymous: extern union {
+        PsKey: IKE_AUTHENTICATION_PRESHARED_KEY,
+    },
 };
 
 pub const IKE_AUTHENTICATION_METHOD = enum(i32) {
@@ -792,142 +377,25 @@ pub const IKE_AUTHENTICATION_PRESHARED_KEY = extern struct {
     Key: ?*u8,
 };
 
-pub const IKE_AUTHENTICATION_INFORMATION = extern struct {
-    AuthMethod: IKE_AUTHENTICATION_METHOD,
-    Anonymous: extern union {
-        PsKey: IKE_AUTHENTICATION_PRESHARED_KEY,
-    },
+pub const IO_SCSI_CAPABILITIES = extern struct {
+    Length: u32,
+    MaximumTransferLength: u32,
+    MaximumPhysicalPages: u32,
+    SupportedAsynchronousEvents: u32,
+    AlignmentMask: u32,
+    TaggedQueuing: BOOLEAN,
+    AdapterScansDown: BOOLEAN,
+    AdapterUsesPio: BOOLEAN,
 };
 
-pub const ISCSI_UNIQUE_SESSION_ID = extern struct {
-    AdapterUnique: u64,
-    AdapterSpecific: u64,
+pub const ISCSI_AUTH_TYPES = enum(i32) {
+    NO_AUTH_TYPE = 0,
+    CHAP_AUTH_TYPE = 1,
+    MUTUAL_CHAP_AUTH_TYPE = 2,
 };
-
-pub const SCSI_LUN_LIST = extern struct {
-    OSLUN: u32,
-    TargetLUN: u64,
-};
-
-pub const ISCSI_TARGET_MAPPINGW = extern struct {
-    InitiatorName: [256]u16,
-    TargetName: [224]u16,
-    OSDeviceName: [260]u16,
-    SessionId: ISCSI_UNIQUE_SESSION_ID,
-    OSBusNumber: u32,
-    OSTargetNumber: u32,
-    LUNCount: u32,
-    LUNList: ?*SCSI_LUN_LIST,
-};
-
-pub const ISCSI_TARGET_MAPPINGA = extern struct {
-    InitiatorName: [256]CHAR,
-    TargetName: [224]CHAR,
-    OSDeviceName: [260]CHAR,
-    SessionId: ISCSI_UNIQUE_SESSION_ID,
-    OSBusNumber: u32,
-    OSTargetNumber: u32,
-    LUNCount: u32,
-    LUNList: ?*SCSI_LUN_LIST,
-};
-
-pub const ISCSI_TARGET_PORTALW = extern struct {
-    SymbolicName: [256]u16,
-    Address: [256]u16,
-    Socket: u16,
-};
-
-pub const ISCSI_TARGET_PORTALA = extern struct {
-    SymbolicName: [256]CHAR,
-    Address: [256]CHAR,
-    Socket: u16,
-};
-
-pub const ISCSI_TARGET_PORTAL_INFOW = extern struct {
-    InitiatorName: [256]u16,
-    InitiatorPortNumber: u32,
-    SymbolicName: [256]u16,
-    Address: [256]u16,
-    Socket: u16,
-};
-
-pub const ISCSI_TARGET_PORTAL_INFOA = extern struct {
-    InitiatorName: [256]CHAR,
-    InitiatorPortNumber: u32,
-    SymbolicName: [256]CHAR,
-    Address: [256]CHAR,
-    Socket: u16,
-};
-
-pub const ISCSI_TARGET_PORTAL_INFO_EXW = extern struct {
-    InitiatorName: [256]u16,
-    InitiatorPortNumber: u32,
-    SymbolicName: [256]u16,
-    Address: [256]u16,
-    Socket: u16,
-    SecurityFlags: u64,
-    LoginOptions: ISCSI_LOGIN_OPTIONS,
-};
-
-pub const ISCSI_TARGET_PORTAL_INFO_EXA = extern struct {
-    InitiatorName: [256]CHAR,
-    InitiatorPortNumber: u32,
-    SymbolicName: [256]CHAR,
-    Address: [256]CHAR,
-    Socket: u16,
-    SecurityFlags: u64,
-    LoginOptions: ISCSI_LOGIN_OPTIONS,
-};
-
-pub const ISCSI_TARGET_PORTAL_GROUPW = extern struct {
-    Count: u32,
-    Portals: [1]ISCSI_TARGET_PORTALW,
-};
-
-pub const ISCSI_TARGET_PORTAL_GROUPA = extern struct {
-    Count: u32,
-    Portals: [1]ISCSI_TARGET_PORTALA,
-};
-
-pub const ISCSI_CONNECTION_INFOW = extern struct {
-    ConnectionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorAddress: ?[*]u16,
-    TargetAddress: ?[*]u16,
-    InitiatorSocket: u16,
-    TargetSocket: u16,
-    CID: [2]u8,
-};
-
-pub const ISCSI_SESSION_INFOW = extern struct {
-    SessionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorName: ?[*]u16,
-    TargetNodeName: ?[*]u16,
-    TargetName: ?[*]u16,
-    ISID: [6]u8,
-    TSID: [2]u8,
-    ConnectionCount: u32,
-    Connections: ?*ISCSI_CONNECTION_INFOW,
-};
-
-pub const ISCSI_CONNECTION_INFOA = extern struct {
-    ConnectionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorAddress: ?[*]u8,
-    TargetAddress: ?[*]u8,
-    InitiatorSocket: u16,
-    TargetSocket: u16,
-    CID: [2]u8,
-};
-
-pub const ISCSI_SESSION_INFOA = extern struct {
-    SessionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorName: ?[*]u8,
-    TargetNodeName: ?[*]u8,
-    TargetName: ?[*]u8,
-    ISID: [6]u8,
-    TSID: [2]u8,
-    ConnectionCount: u32,
-    Connections: ?*ISCSI_CONNECTION_INFOA,
-};
+pub const ISCSI_NO_AUTH_TYPE = ISCSI_AUTH_TYPES.NO_AUTH_TYPE;
+pub const ISCSI_CHAP_AUTH_TYPE = ISCSI_AUTH_TYPES.CHAP_AUTH_TYPE;
+pub const ISCSI_MUTUAL_CHAP_AUTH_TYPE = ISCSI_AUTH_TYPES.MUTUAL_CHAP_AUTH_TYPE;
 
 pub const ISCSI_CONNECTION_INFO_EX = extern struct {
     ConnectionId: ISCSI_UNIQUE_SESSION_ID,
@@ -939,6 +407,69 @@ pub const ISCSI_CONNECTION_INFO_EX = extern struct {
     AuthType: ISCSI_AUTH_TYPES,
     EstimatedThroughput: u64,
     MaxDatagramSize: u32,
+};
+
+pub const ISCSI_CONNECTION_INFOA = extern struct {
+    ConnectionId: ISCSI_UNIQUE_SESSION_ID,
+    InitiatorAddress: ?[*]u8,
+    TargetAddress: ?[*]u8,
+    InitiatorSocket: u16,
+    TargetSocket: u16,
+    CID: [2]u8,
+};
+
+pub const ISCSI_CONNECTION_INFOW = extern struct {
+    ConnectionId: ISCSI_UNIQUE_SESSION_ID,
+    InitiatorAddress: ?[*]u16,
+    TargetAddress: ?[*]u16,
+    InitiatorSocket: u16,
+    TargetSocket: u16,
+    CID: [2]u8,
+};
+
+pub const ISCSI_DEVICE_ON_SESSIONA = extern struct {
+    InitiatorName: [256]CHAR,
+    TargetName: [224]CHAR,
+    ScsiAddress: SCSI_ADDRESS,
+    DeviceInterfaceType: Guid,
+    DeviceInterfaceName: [260]CHAR,
+    LegacyName: [260]CHAR,
+    StorageDeviceNumber: STORAGE_DEVICE_NUMBER,
+    DeviceInstance: u32,
+};
+
+pub const ISCSI_DEVICE_ON_SESSIONW = extern struct {
+    InitiatorName: [256]u16,
+    TargetName: [224]u16,
+    ScsiAddress: SCSI_ADDRESS,
+    DeviceInterfaceType: Guid,
+    DeviceInterfaceName: [260]u16,
+    LegacyName: [260]u16,
+    StorageDeviceNumber: STORAGE_DEVICE_NUMBER,
+    DeviceInstance: u32,
+};
+
+pub const ISCSI_DIGEST_TYPES = enum(i32) {
+    NONE = 0,
+    CRC32C = 1,
+};
+pub const ISCSI_DIGEST_TYPE_NONE = ISCSI_DIGEST_TYPES.NONE;
+pub const ISCSI_DIGEST_TYPE_CRC32C = ISCSI_DIGEST_TYPES.CRC32C;
+
+pub const ISCSI_LOGIN_OPTIONS = extern struct {
+    Version: u32,
+    InformationSpecified: u32,
+    LoginFlags: u32,
+    AuthType: ISCSI_AUTH_TYPES,
+    HeaderDigest: ISCSI_DIGEST_TYPES,
+    DataDigest: ISCSI_DIGEST_TYPES,
+    MaximumConnections: u32,
+    DefaultTime2Wait: u32,
+    DefaultTime2Retain: u32,
+    UsernameLength: u32,
+    PasswordLength: u32,
+    Username: ?*u8,
+    Password: ?*u8,
 };
 
 pub const ISCSI_SESSION_INFO_EX = extern struct {
@@ -957,26 +488,299 @@ pub const ISCSI_SESSION_INFO_EX = extern struct {
     Connections: ?*ISCSI_CONNECTION_INFO_EX,
 };
 
-pub const ISCSI_DEVICE_ON_SESSIONW = extern struct {
-    InitiatorName: [256]u16,
-    TargetName: [224]u16,
-    ScsiAddress: SCSI_ADDRESS,
-    DeviceInterfaceType: Guid,
-    DeviceInterfaceName: [260]u16,
-    LegacyName: [260]u16,
-    StorageDeviceNumber: STORAGE_DEVICE_NUMBER,
-    DeviceInstance: u32,
+pub const ISCSI_SESSION_INFOA = extern struct {
+    SessionId: ISCSI_UNIQUE_SESSION_ID,
+    InitiatorName: ?[*]u8,
+    TargetNodeName: ?[*]u8,
+    TargetName: ?[*]u8,
+    ISID: [6]u8,
+    TSID: [2]u8,
+    ConnectionCount: u32,
+    Connections: ?*ISCSI_CONNECTION_INFOA,
 };
 
-pub const ISCSI_DEVICE_ON_SESSIONA = extern struct {
+pub const ISCSI_SESSION_INFOW = extern struct {
+    SessionId: ISCSI_UNIQUE_SESSION_ID,
+    InitiatorName: ?[*]u16,
+    TargetNodeName: ?[*]u16,
+    TargetName: ?[*]u16,
+    ISID: [6]u8,
+    TSID: [2]u8,
+    ConnectionCount: u32,
+    Connections: ?*ISCSI_CONNECTION_INFOW,
+};
+
+pub const ISCSI_TARGET_MAPPINGA = extern struct {
     InitiatorName: [256]CHAR,
     TargetName: [224]CHAR,
-    ScsiAddress: SCSI_ADDRESS,
-    DeviceInterfaceType: Guid,
-    DeviceInterfaceName: [260]CHAR,
-    LegacyName: [260]CHAR,
-    StorageDeviceNumber: STORAGE_DEVICE_NUMBER,
-    DeviceInstance: u32,
+    OSDeviceName: [260]CHAR,
+    SessionId: ISCSI_UNIQUE_SESSION_ID,
+    OSBusNumber: u32,
+    OSTargetNumber: u32,
+    LUNCount: u32,
+    LUNList: ?*SCSI_LUN_LIST,
+};
+
+pub const ISCSI_TARGET_MAPPINGW = extern struct {
+    InitiatorName: [256]u16,
+    TargetName: [224]u16,
+    OSDeviceName: [260]u16,
+    SessionId: ISCSI_UNIQUE_SESSION_ID,
+    OSBusNumber: u32,
+    OSTargetNumber: u32,
+    LUNCount: u32,
+    LUNList: ?*SCSI_LUN_LIST,
+};
+
+pub const ISCSI_TARGET_PORTAL_GROUPA = extern struct {
+    Count: u32,
+    Portals: [1]ISCSI_TARGET_PORTALA,
+};
+
+pub const ISCSI_TARGET_PORTAL_GROUPW = extern struct {
+    Count: u32,
+    Portals: [1]ISCSI_TARGET_PORTALW,
+};
+
+pub const ISCSI_TARGET_PORTAL_INFO_EXA = extern struct {
+    InitiatorName: [256]CHAR,
+    InitiatorPortNumber: u32,
+    SymbolicName: [256]CHAR,
+    Address: [256]CHAR,
+    Socket: u16,
+    SecurityFlags: u64,
+    LoginOptions: ISCSI_LOGIN_OPTIONS,
+};
+
+pub const ISCSI_TARGET_PORTAL_INFO_EXW = extern struct {
+    InitiatorName: [256]u16,
+    InitiatorPortNumber: u32,
+    SymbolicName: [256]u16,
+    Address: [256]u16,
+    Socket: u16,
+    SecurityFlags: u64,
+    LoginOptions: ISCSI_LOGIN_OPTIONS,
+};
+
+pub const ISCSI_TARGET_PORTAL_INFOA = extern struct {
+    InitiatorName: [256]CHAR,
+    InitiatorPortNumber: u32,
+    SymbolicName: [256]CHAR,
+    Address: [256]CHAR,
+    Socket: u16,
+};
+
+pub const ISCSI_TARGET_PORTAL_INFOW = extern struct {
+    InitiatorName: [256]u16,
+    InitiatorPortNumber: u32,
+    SymbolicName: [256]u16,
+    Address: [256]u16,
+    Socket: u16,
+};
+
+pub const ISCSI_TARGET_PORTALA = extern struct {
+    SymbolicName: [256]CHAR,
+    Address: [256]CHAR,
+    Socket: u16,
+};
+
+pub const ISCSI_TARGET_PORTALW = extern struct {
+    SymbolicName: [256]u16,
+    Address: [256]u16,
+    Socket: u16,
+};
+
+pub const ISCSI_UNIQUE_SESSION_ID = extern struct {
+    AdapterUnique: u64,
+    AdapterSpecific: u64,
+};
+
+pub const ISCSI_VERSION_INFO = extern struct {
+    MajorVersion: u32,
+    MinorVersion: u32,
+    BuildNumber: u32,
+};
+
+pub const MP_DEVICE_DATA_SET_RANGE = extern struct {
+    StartingOffset: i64,
+    LengthInBytes: u64,
+};
+
+pub const MP_STORAGE_DIAGNOSTIC_LEVEL = enum(i32) {
+    Default = 0,
+    Max = 1,
+};
+pub const MpStorageDiagnosticLevelDefault = MP_STORAGE_DIAGNOSTIC_LEVEL.Default;
+pub const MpStorageDiagnosticLevelMax = MP_STORAGE_DIAGNOSTIC_LEVEL.Max;
+
+pub const MP_STORAGE_DIAGNOSTIC_TARGET_TYPE = enum(i32) {
+    Undefined = 0,
+    Miniport = 2,
+    HbaFirmware = 3,
+    Max = 4,
+};
+pub const MpStorageDiagnosticTargetTypeUndefined = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.Undefined;
+pub const MpStorageDiagnosticTargetTypeMiniport = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.Miniport;
+pub const MpStorageDiagnosticTargetTypeHbaFirmware = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.HbaFirmware;
+pub const MpStorageDiagnosticTargetTypeMax = MP_STORAGE_DIAGNOSTIC_TARGET_TYPE.Max;
+
+pub const MPIO_PASS_THROUGH_PATH = extern struct {
+    PassThrough: SCSI_PASS_THROUGH,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT = extern struct {
+    PassThrough: SCSI_PASS_THROUGH_DIRECT,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const NTSCSI_UNICODE_STRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: ?[*]u16,
+};
+
+pub const NV_FEATURE_PARAMETER = extern struct {
+    NVPowerModeEnabled: u16,
+    NVParameterReserv1: u16,
+    NVCmdEnabled: u16,
+    NVParameterReserv2: u16,
+    NVPowerModeVer: u16,
+    NVCmdVer: u16,
+    NVSize: u32,
+    NVReadSpeed: u16,
+    NVWrtSpeed: u16,
+    DeviceSpinUpTime: u32,
+};
+
+pub const NV_SEP_CACHE_PARAMETER = extern struct {
+    Version: u32,
+    Size: u32,
+    Flags: extern union {
+        CacheFlags: extern struct {
+            _bitfield: u8,
+        },
+        CacheFlagsSet: u8,
+    },
+    WriteCacheType: u8,
+    WriteCacheTypeEffective: u8,
+    ParameterReserve1: [3]u8,
+};
+
+pub const NV_SEP_WRITE_CACHE_TYPE = enum(i32) {
+    Unknown = 0,
+    None = 1,
+    WriteBack = 2,
+    WriteThrough = 3,
+};
+pub const NVSEPWriteCacheTypeUnknown = NV_SEP_WRITE_CACHE_TYPE.Unknown;
+pub const NVSEPWriteCacheTypeNone = NV_SEP_WRITE_CACHE_TYPE.None;
+pub const NVSEPWriteCacheTypeWriteBack = NV_SEP_WRITE_CACHE_TYPE.WriteBack;
+pub const NVSEPWriteCacheTypeWriteThrough = NV_SEP_WRITE_CACHE_TYPE.WriteThrough;
+
+pub const NVCACHE_HINT_PAYLOAD = extern struct {
+    Command: u8,
+    Feature7_0: u8,
+    Feature15_8: u8,
+    Count15_8: u8,
+    LBA7_0: u8,
+    LBA15_8: u8,
+    LBA23_16: u8,
+    LBA31_24: u8,
+    LBA39_32: u8,
+    LBA47_40: u8,
+    Auxiliary7_0: u8,
+    Auxiliary23_16: u8,
+    Reserved: [4]u8,
+};
+
+pub const NVCACHE_PRIORITY_LEVEL_DESCRIPTOR = extern struct {
+    PriorityLevel: u8,
+    Reserved0: [3]u8,
+    ConsumedNVMSizeFraction: u32,
+    ConsumedMappingResourcesFraction: u32,
+    ConsumedNVMSizeForDirtyDataFraction: u32,
+    ConsumedMappingResourcesForDirtyDataFraction: u32,
+    Reserved1: u32,
+};
+
+pub const NVCACHE_REQUEST_BLOCK = extern struct {
+    NRBSize: u32,
+    Function: u16,
+    NRBFlags: u32,
+    NRBStatus: u32,
+    Count: u32,
+    LBA: u64,
+    DataBufSize: u32,
+    NVCacheStatus: u32,
+    NVCacheSubStatus: u32,
+};
+
+pub const NVCACHE_STATUS = enum(i32) {
+    Unknown = 0,
+    Disabling = 1,
+    Disabled = 2,
+    Enabled = 3,
+};
+pub const NvCacheStatusUnknown = NVCACHE_STATUS.Unknown;
+pub const NvCacheStatusDisabling = NVCACHE_STATUS.Disabling;
+pub const NvCacheStatusDisabled = NVCACHE_STATUS.Disabled;
+pub const NvCacheStatusEnabled = NVCACHE_STATUS.Enabled;
+
+pub const NVCACHE_TYPE = enum(i32) {
+    Unknown = 0,
+    None = 1,
+    WriteBack = 2,
+    WriteThrough = 3,
+};
+pub const NvCacheTypeUnknown = NVCACHE_TYPE.Unknown;
+pub const NvCacheTypeNone = NVCACHE_TYPE.None;
+pub const NvCacheTypeWriteBack = NVCACHE_TYPE.WriteBack;
+pub const NvCacheTypeWriteThrough = NVCACHE_TYPE.WriteThrough;
+
+pub const PDUMP_DEVICE_POWERON_ROUTINE = *const fn(
+    Context: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const PERSISTENT_ISCSI_LOGIN_INFOA = extern struct {
+    TargetName: [224]CHAR,
+    IsInformationalSession: BOOLEAN,
+    InitiatorInstance: [256]CHAR,
+    InitiatorPortNumber: u32,
+    TargetPortal: ISCSI_TARGET_PORTALA,
+    SecurityFlags: u64,
+    Mappings: ?*ISCSI_TARGET_MAPPINGA,
+    LoginOptions: ISCSI_LOGIN_OPTIONS,
 };
 
 pub const PERSISTENT_ISCSI_LOGIN_INFOW = extern struct {
@@ -990,21 +794,218 @@ pub const PERSISTENT_ISCSI_LOGIN_INFOW = extern struct {
     LoginOptions: ISCSI_LOGIN_OPTIONS,
 };
 
-pub const PERSISTENT_ISCSI_LOGIN_INFOA = extern struct {
-    TargetName: [224]CHAR,
-    IsInformationalSession: BOOLEAN,
-    InitiatorInstance: [256]CHAR,
-    InitiatorPortNumber: u32,
-    TargetPortal: ISCSI_TARGET_PORTALA,
-    SecurityFlags: u64,
-    Mappings: ?*ISCSI_TARGET_MAPPINGA,
-    LoginOptions: ISCSI_LOGIN_OPTIONS,
+pub const SCSI_ADAPTER_BUS_INFO = extern struct {
+    NumberOfBuses: u8,
+    BusData: [1]SCSI_BUS_DATA,
 };
 
-pub const TARGETPROTOCOLTYPE = enum(i32) {
-    E = 0,
+pub const SCSI_ADDRESS = extern struct {
+    Length: u32,
+    PortNumber: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
 };
-pub const ISCSI_TCP_PROTOCOL_TYPE = TARGETPROTOCOLTYPE.E;
+
+pub const SCSI_BUS_DATA = extern struct {
+    NumberOfLogicalUnits: u8,
+    InitiatorBusId: u8,
+    InquiryDataOffset: u32,
+};
+
+pub const SCSI_INQUIRY_DATA = extern struct {
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    DeviceClaimed: BOOLEAN,
+    InquiryDataLength: u32,
+    NextInquiryDataOffset: u32,
+    InquiryData: [1]u8,
+};
+
+pub const SCSI_LUN_LIST = extern struct {
+    OSLUN: u32,
+    TargetLUN: u64,
+};
+
+pub const SCSI_PASS_THROUGH = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBufferOffset: usize,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
+
+
+pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBuffer: ?*anyopaque,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
+
+
+pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBuffer: ?*anyopaque,
+    DataInBuffer: ?*anyopaque,
+    Cdb: [1]u8,
+};
+
+pub const SCSI_PASS_THROUGH_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBufferOffset: usize,
+    DataInBufferOffset: usize,
+    Cdb: [1]u8,
+};
+
+pub const SRB_IO_CONTROL = extern struct {
+    HeaderLength: u32,
+    Signature: [8]u8,
+    Timeout: u32,
+    ControlCode: u32,
+    ReturnCode: u32,
+    Length: u32,
+};
+
+pub const STORAGE_DIAGNOSTIC_MP_REQUEST = extern struct {
+    Version: u32,
+    Size: u32,
+    TargetType: MP_STORAGE_DIAGNOSTIC_TARGET_TYPE,
+    Level: MP_STORAGE_DIAGNOSTIC_LEVEL,
+    ProviderId: Guid,
+    BufferSize: u32,
+    Reserved: u32,
+    DataBuffer: [1]u8,
+};
+
+pub const STORAGE_ENDURANCE_DATA_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    EnduranceInfo: STORAGE_ENDURANCE_INFO,
+};
+
+pub const STORAGE_ENDURANCE_INFO = extern struct {
+    ValidFields: u32,
+    GroupId: u32,
+    Flags: extern struct {
+        _bitfield: u32,
+    },
+    LifePercentage: u32,
+    BytesReadCount: [16]u8,
+    ByteWriteCount: [16]u8,
+};
+
+pub const STORAGE_FIRMWARE_ACTIVATE = extern struct {
+    Version: u32,
+    Size: u32,
+    SlotToActivate: u8,
+    Reserved0: [3]u8,
+};
+
+pub const STORAGE_FIRMWARE_DOWNLOAD = extern struct {
+    Version: u32,
+    Size: u32,
+    Offset: u64,
+    BufferSize: u64,
+    ImageBuffer: [1]u8,
+};
+
+pub const STORAGE_FIRMWARE_DOWNLOAD_V2 = extern struct {
+    Version: u32,
+    Size: u32,
+    Offset: u64,
+    BufferSize: u64,
+    Slot: u8,
+    Reserved: [3]u8,
+    ImageSize: u32,
+    ImageBuffer: [1]u8,
+};
+
+pub const STORAGE_FIRMWARE_INFO = extern struct {
+    Version: u32,
+    Size: u32,
+    UpgradeSupport: BOOLEAN,
+    SlotCount: u8,
+    ActiveSlot: u8,
+    PendingActivateSlot: u8,
+    Reserved: u32,
+    Slot: [1]STORAGE_FIRMWARE_SLOT_INFO,
+};
+
+pub const STORAGE_FIRMWARE_INFO_V2 = extern struct {
+    Version: u32,
+    Size: u32,
+    UpgradeSupport: BOOLEAN,
+    SlotCount: u8,
+    ActiveSlot: u8,
+    PendingActivateSlot: u8,
+    FirmwareShared: BOOLEAN,
+    Reserved: [3]u8,
+    ImagePayloadAlignment: u32,
+    ImagePayloadMaxSize: u32,
+    Slot: [1]STORAGE_FIRMWARE_SLOT_INFO_V2,
+};
+
+pub const STORAGE_FIRMWARE_SLOT_INFO = extern struct {
+    SlotNumber: u8,
+    ReadOnly: BOOLEAN,
+    Reserved: [6]u8,
+    Revision: extern union {
+        Info: [8]u8,
+        AsUlonglong: u64,
+    },
+};
+
+pub const STORAGE_FIRMWARE_SLOT_INFO_V2 = extern struct {
+    SlotNumber: u8,
+    ReadOnly: BOOLEAN,
+    Reserved: [6]u8,
+    Revision: [16]u8,
+};
 
 pub const TARGET_INFORMATION_CLASS = enum(i32) {
     ProtocolType = 0,
@@ -1025,12 +1026,89 @@ pub const InitiatorName = TARGET_INFORMATION_CLASS.InitiatorName;
 pub const TargetFlags = TARGET_INFORMATION_CLASS.TargetFlags;
 pub const LoginOptions = TARGET_INFORMATION_CLASS.LoginOptions;
 
-pub const ISCSI_VERSION_INFO = extern struct {
-    MajorVersion: u32,
-    MinorVersion: u32,
-    BuildNumber: u32,
+pub const TARGETPROTOCOLTYPE = enum(i32) {
+    E = 0,
 };
+pub const ISCSI_TCP_PROTOCOL_TYPE = TARGETPROTOCOLTYPE.E;
 
+pub const ATA_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Length: u16,
+        AtaFlags: u16,
+        PathId: u8,
+        TargetId: u8,
+        Lun: u8,
+        ReservedAsUchar: u8,
+        DataTransferLength: u32,
+        TimeOutValue: u32,
+        ReservedAsUlong: u32,
+        DataBuffer: ?*anyopaque,
+        PreviousTaskFile: [8]u8,
+        CurrentTaskFile: [8]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const ATA_PASS_THROUGH_EX32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Length: u16,
+        AtaFlags: u16,
+        PathId: u8,
+        TargetId: u8,
+        Lun: u8,
+        ReservedAsUchar: u8,
+        DataTransferLength: u32,
+        TimeOutValue: u32,
+        ReservedAsUlong: u32,
+        DataBufferOffset: u32,
+        PreviousTaskFile: [8]u8,
+        CurrentTaskFile: [8]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThrough: SCSI_PASS_THROUGH32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH32_EX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThroughOffset: u32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH_DIRECT32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThrough: SCSI_PASS_THROUGH_DIRECT32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThroughOffset: u32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 pub const SCSI_PASS_THROUGH32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Length: u16,
@@ -1044,24 +1122,6 @@ pub const SCSI_PASS_THROUGH32 = switch(@import("../zig.zig").arch) {
         DataTransferLength: u32,
         TimeOutValue: u32,
         DataBufferOffset: u32,
-        SenseInfoOffset: u32,
-        Cdb: [16]u8,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
-pub const SCSI_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        Length: u16,
-        ScsiStatus: u8,
-        PathId: u8,
-        TargetId: u8,
-        Lun: u8,
-        CdbLength: u8,
-        SenseInfoLength: u8,
-        DataIn: u8,
-        DataTransferLength: u32,
-        TimeOutValue: u32,
-        DataBuffer: ?*anyopaque,
         SenseInfoOffset: u32,
         Cdb: [16]u8,
     },
@@ -1088,6 +1148,24 @@ pub const SCSI_PASS_THROUGH32_EX = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
+pub const SCSI_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Length: u16,
+        ScsiStatus: u8,
+        PathId: u8,
+        TargetId: u8,
+        Lun: u8,
+        CdbLength: u8,
+        SenseInfoLength: u8,
+        DataIn: u8,
+        DataTransferLength: u32,
+        TimeOutValue: u32,
+        DataBuffer: ?*anyopaque,
+        SenseInfoOffset: u32,
+        Cdb: [16]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 pub const SCSI_PASS_THROUGH_DIRECT32_EX = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Version: u32,
@@ -1109,109 +1187,21 @@ pub const SCSI_PASS_THROUGH_DIRECT32_EX = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const ATA_PASS_THROUGH_EX32 = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        Length: u16,
-        AtaFlags: u16,
-        PathId: u8,
-        TargetId: u8,
-        Lun: u8,
-        ReservedAsUchar: u8,
-        DataTransferLength: u32,
-        TimeOutValue: u32,
-        ReservedAsUlong: u32,
-        DataBufferOffset: u32,
-        PreviousTaskFile: [8]u8,
-        CurrentTaskFile: [8]u8,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
-pub const ATA_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        Length: u16,
-        AtaFlags: u16,
-        PathId: u8,
-        TargetId: u8,
-        Lun: u8,
-        ReservedAsUchar: u8,
-        DataTransferLength: u32,
-        TimeOutValue: u32,
-        ReservedAsUlong: u32,
-        DataBuffer: ?*anyopaque,
-        PreviousTaskFile: [8]u8,
-        CurrentTaskFile: [8]u8,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
-pub const MPIO_PASS_THROUGH_PATH32 = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        PassThrough: SCSI_PASS_THROUGH32,
-        Version: u32,
-        Length: u16,
-        Flags: u8,
-        PortNumber: u8,
-        MpioPathId: u64,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
-pub const MPIO_PASS_THROUGH_PATH_DIRECT32 = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        PassThrough: SCSI_PASS_THROUGH_DIRECT32,
-        Version: u32,
-        Length: u16,
-        Flags: u8,
-        PortNumber: u8,
-        MpioPathId: u64,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
-pub const MPIO_PASS_THROUGH_PATH32_EX = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        PassThroughOffset: u32,
-        Version: u32,
-        Length: u16,
-        Flags: u8,
-        PortNumber: u8,
-        MpioPathId: u64,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
-pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        PassThroughOffset: u32,
-        Version: u32,
-        Length: u16,
-        Flags: u8,
-        PortNumber: u8,
-        MpioPathId: u64,
-    },
-    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
-};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (79)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiVersionInformation(
-    VersionInfo: ?*ISCSI_VERSION_INFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiTargetInformationW(
-    TargetName: ?PWSTR,
-    DiscoveryMechanism: ?PWSTR,
-    InfoClass: TARGET_INFORMATION_CLASS,
-    BufferSize: ?*u32,
-    Buffer: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiTargetInformationA(
-    TargetName: ?PSTR,
-    DiscoveryMechanism: ?PSTR,
-    InfoClass: TARGET_INFORMATION_CLASS,
-    BufferSize: ?*u32,
-    Buffer: ?*anyopaque,
+pub extern "iscsidsc" fn AddIScsiConnectionA(
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    Reserved: ?*anyopaque,
+    InitiatorPortNumber: u32,
+    TargetPortal: ?*ISCSI_TARGET_PORTALA,
+    SecurityFlags: u64,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
+    KeySize: u32,
+    Key: ?[*]u8,
+    ConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1228,47 +1218,21 @@ pub extern "iscsidsc" fn AddIScsiConnectionW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddIScsiConnectionA(
-    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
-    Reserved: ?*anyopaque,
+pub extern "iscsidsc" fn AddIScsiSendTargetPortalA(
+    InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
-    TargetPortal: ?*ISCSI_TARGET_PORTALA,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     SecurityFlags: u64,
+    Portal: ?*ISCSI_TARGET_PORTALA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn AddIScsiSendTargetPortalW(
+    InitiatorInstance: ?PWSTR,
+    InitiatorPortNumber: u32,
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
-    KeySize: u32,
-    Key: ?[*]u8,
-    ConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveIScsiConnection(
-    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
-    ConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiTargetsW(
-    ForceUpdate: BOOLEAN,
-    BufferSize: ?*u32,
-    Buffer: ?[*]u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiTargetsA(
-    ForceUpdate: BOOLEAN,
-    BufferSize: ?*u32,
-    Buffer: ?[*]u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddIScsiStaticTargetW(
-    TargetName: ?PWSTR,
-    TargetAlias: ?PWSTR,
-    TargetFlags: u32,
-    Persist: BOOLEAN,
-    Mappings: ?*ISCSI_TARGET_MAPPINGW,
-    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
-    PortalGroup: ?*ISCSI_TARGET_PORTAL_GROUPW,
+    SecurityFlags: u64,
+    Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1283,102 +1247,131 @@ pub extern "iscsidsc" fn AddIScsiStaticTargetA(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveIScsiStaticTargetW(
+pub extern "iscsidsc" fn AddIScsiStaticTargetW(
     TargetName: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveIScsiStaticTargetA(
-    TargetName: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddIScsiSendTargetPortalW(
-    InitiatorInstance: ?PWSTR,
-    InitiatorPortNumber: u32,
-    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
-    SecurityFlags: u64,
-    Portal: ?*ISCSI_TARGET_PORTALW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddIScsiSendTargetPortalA(
-    InitiatorInstance: ?PSTR,
-    InitiatorPortNumber: u32,
-    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
-    SecurityFlags: u64,
-    Portal: ?*ISCSI_TARGET_PORTALA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveIScsiSendTargetPortalW(
-    InitiatorInstance: ?PWSTR,
-    InitiatorPortNumber: u32,
-    Portal: ?*ISCSI_TARGET_PORTALW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveIScsiSendTargetPortalA(
-    InitiatorInstance: ?PSTR,
-    InitiatorPortNumber: u32,
-    Portal: ?*ISCSI_TARGET_PORTALA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RefreshIScsiSendTargetPortalW(
-    InitiatorInstance: ?PWSTR,
-    InitiatorPortNumber: u32,
-    Portal: ?*ISCSI_TARGET_PORTALW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RefreshIScsiSendTargetPortalA(
-    InitiatorInstance: ?PSTR,
-    InitiatorPortNumber: u32,
-    Portal: ?*ISCSI_TARGET_PORTALA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsW(
-    PortalCount: ?*u32,
-    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFOW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsA(
-    PortalCount: ?*u32,
-    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFOA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsExW(
-    PortalCount: ?*u32,
-    PortalInfoSize: ?*u32,
-    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFO_EXW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsExA(
-    PortalCount: ?*u32,
-    PortalInfoSize: ?*u32,
-    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFO_EXA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn LoginIScsiTargetW(
-    TargetName: ?PWSTR,
-    IsInformationalSession: BOOLEAN,
-    InitiatorInstance: ?PWSTR,
-    InitiatorPortNumber: u32,
-    TargetPortal: ?*ISCSI_TARGET_PORTALW,
-    SecurityFlags: u64,
+    TargetAlias: ?PWSTR,
+    TargetFlags: u32,
+    Persist: BOOLEAN,
     Mappings: ?*ISCSI_TARGET_MAPPINGW,
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
-    KeySize: u32,
-    Key: ?[*]u8,
-    IsPersistent: BOOLEAN,
+    PortalGroup: ?*ISCSI_TARGET_PORTAL_GROUPW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn AddISNSServerA(
+    Address: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn AddISNSServerW(
+    Address: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn AddPersistentIScsiDeviceA(
+    DevicePath: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn AddPersistentIScsiDeviceW(
+    DevicePath: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn AddRadiusServerA(
+    Address: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn AddRadiusServerW(
+    Address: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ClearPersistentIScsiDevices(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetDevicesForIScsiSessionA(
     UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
-    UniqueConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    DeviceCount: ?*u32,
+    Devices: ?*ISCSI_DEVICE_ON_SESSIONA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetDevicesForIScsiSessionW(
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    DeviceCount: ?*u32,
+    Devices: ?*ISCSI_DEVICE_ON_SESSIONW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiIKEInfoA(
+    InitiatorName: ?PSTR,
+    InitiatorPortNumber: u32,
+    Reserved: ?*u32,
+    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiIKEInfoW(
+    InitiatorName: ?PWSTR,
+    InitiatorPortNumber: u32,
+    Reserved: ?*u32,
+    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiInitiatorNodeNameA(
+    InitiatorNodeName: ?[*]u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiInitiatorNodeNameW(
+    InitiatorNodeName: ?[*]u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiSessionListA(
+    BufferSize: ?*u32,
+    SessionCount: ?*u32,
+    SessionInfo: ?*ISCSI_SESSION_INFOA,
+) callconv(.winapi) u32;
+
+pub extern "iscsidsc" fn GetIScsiSessionListEx(
+    BufferSize: ?*u32,
+    SessionCountPtr: ?*u32,
+    SessionInfo: ?*ISCSI_SESSION_INFO_EX,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiSessionListW(
+    BufferSize: ?*u32,
+    SessionCount: ?*u32,
+    SessionInfo: ?*ISCSI_SESSION_INFOW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiTargetInformationA(
+    TargetName: ?PSTR,
+    DiscoveryMechanism: ?PSTR,
+    InfoClass: TARGET_INFORMATION_CLASS,
+    BufferSize: ?*u32,
+    Buffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiTargetInformationW(
+    TargetName: ?PWSTR,
+    DiscoveryMechanism: ?PWSTR,
+    InfoClass: TARGET_INFORMATION_CLASS,
+    BufferSize: ?*u32,
+    Buffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn GetIScsiVersionInformation(
+    VersionInfo: ?*ISCSI_VERSION_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1399,22 +1392,63 @@ pub extern "iscsidsc" fn LoginIScsiTargetA(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiPersistentLoginsW(
-    Count: ?*u32,
-    PersistentLoginInfo: ?*PERSISTENT_ISCSI_LOGIN_INFOW,
-    BufferSizeInBytes: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiPersistentLoginsA(
-    Count: ?*u32,
-    PersistentLoginInfo: ?*PERSISTENT_ISCSI_LOGIN_INFOA,
-    BufferSizeInBytes: ?*u32,
+pub extern "iscsidsc" fn LoginIScsiTargetW(
+    TargetName: ?PWSTR,
+    IsInformationalSession: BOOLEAN,
+    InitiatorInstance: ?PWSTR,
+    InitiatorPortNumber: u32,
+    TargetPortal: ?*ISCSI_TARGET_PORTALW,
+    SecurityFlags: u64,
+    Mappings: ?*ISCSI_TARGET_MAPPINGW,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
+    KeySize: u32,
+    Key: ?[*]u8,
+    IsPersistent: BOOLEAN,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    UniqueConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn LogoutIScsiTarget(
     UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RefreshIScsiSendTargetPortalA(
+    InitiatorInstance: ?PSTR,
+    InitiatorPortNumber: u32,
+    Portal: ?*ISCSI_TARGET_PORTALA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RefreshIScsiSendTargetPortalW(
+    InitiatorInstance: ?PWSTR,
+    InitiatorPortNumber: u32,
+    Portal: ?*ISCSI_TARGET_PORTALW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RefreshISNSServerA(
+    Address: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RefreshISNSServerW(
+    Address: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveIScsiConnection(
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    ConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveIScsiPersistentTargetA(
+    InitiatorInstance: ?PSTR,
+    InitiatorPortNumber: u32,
+    TargetName: ?PSTR,
+    Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1426,11 +1460,191 @@ pub extern "iscsidsc" fn RemoveIScsiPersistentTargetW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveIScsiPersistentTargetA(
+pub extern "iscsidsc" fn RemoveIScsiSendTargetPortalA(
     InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
-    TargetName: ?PSTR,
     Portal: ?*ISCSI_TARGET_PORTALA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveIScsiSendTargetPortalW(
+    InitiatorInstance: ?PWSTR,
+    InitiatorPortNumber: u32,
+    Portal: ?*ISCSI_TARGET_PORTALW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveIScsiStaticTargetA(
+    TargetName: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveIScsiStaticTargetW(
+    TargetName: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveISNSServerA(
+    Address: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveISNSServerW(
+    Address: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemovePersistentIScsiDeviceA(
+    DevicePath: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemovePersistentIScsiDeviceW(
+    DevicePath: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveRadiusServerA(
+    Address: ?PSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn RemoveRadiusServerW(
+    Address: ?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportActiveIScsiTargetMappingsA(
+    BufferSize: ?*u32,
+    MappingCount: ?*u32,
+    Mappings: ?*ISCSI_TARGET_MAPPINGA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportActiveIScsiTargetMappingsW(
+    BufferSize: ?*u32,
+    MappingCount: ?*u32,
+    Mappings: ?*ISCSI_TARGET_MAPPINGW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiInitiatorListA(
+    BufferSize: ?*u32,
+    Buffer: ?[*]u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiInitiatorListW(
+    BufferSize: ?*u32,
+    Buffer: ?[*]u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiPersistentLoginsA(
+    Count: ?*u32,
+    PersistentLoginInfo: ?*PERSISTENT_ISCSI_LOGIN_INFOA,
+    BufferSizeInBytes: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiPersistentLoginsW(
+    Count: ?*u32,
+    PersistentLoginInfo: ?*PERSISTENT_ISCSI_LOGIN_INFOW,
+    BufferSizeInBytes: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsA(
+    PortalCount: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFOA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsExA(
+    PortalCount: ?*u32,
+    PortalInfoSize: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFO_EXA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsExW(
+    PortalCount: ?*u32,
+    PortalInfoSize: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFO_EXW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsW(
+    PortalCount: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFOW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiTargetPortalsA(
+    InitiatorName: ?PSTR,
+    TargetName: ?PSTR,
+    TargetPortalTag: ?*u16,
+    ElementCount: ?*u32,
+    Portals: ?*ISCSI_TARGET_PORTALA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiTargetPortalsW(
+    InitiatorName: ?PWSTR,
+    TargetName: ?PWSTR,
+    TargetPortalTag: ?*u16,
+    ElementCount: ?*u32,
+    Portals: ?*ISCSI_TARGET_PORTALW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiTargetsA(
+    ForceUpdate: BOOLEAN,
+    BufferSize: ?*u32,
+    Buffer: ?[*]u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportIScsiTargetsW(
+    ForceUpdate: BOOLEAN,
+    BufferSize: ?*u32,
+    Buffer: ?[*]u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportISNSServerListA(
+    BufferSizeInChar: ?*u32,
+    Buffer: ?[*]u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportISNSServerListW(
+    BufferSizeInChar: ?*u32,
+    Buffer: ?[*]u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportPersistentIScsiDevicesA(
+    BufferSizeInChar: ?*u32,
+    Buffer: ?[*]u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportPersistentIScsiDevicesW(
+    BufferSizeInChar: ?*u32,
+    Buffer: ?[*]u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportRadiusServerListA(
+    BufferSizeInChar: ?*u32,
+    Buffer: ?[*]u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "iscsidsc" fn ReportRadiusServerListW(
+    BufferSizeInChar: ?*u32,
+    Buffer: ?[*]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1468,54 +1682,9 @@ pub extern "iscsidsc" fn SendScsiReportLuns(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiInitiatorListW(
-    BufferSize: ?*u32,
-    Buffer: ?[*]u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiInitiatorListA(
-    BufferSize: ?*u32,
-    Buffer: ?[*]u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportActiveIScsiTargetMappingsW(
-    BufferSize: ?*u32,
-    MappingCount: ?*u32,
-    Mappings: ?*ISCSI_TARGET_MAPPINGW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportActiveIScsiTargetMappingsA(
-    BufferSize: ?*u32,
-    MappingCount: ?*u32,
-    Mappings: ?*ISCSI_TARGET_MAPPINGA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn SetIScsiTunnelModeOuterAddressW(
-    InitiatorName: ?PWSTR,
-    InitiatorPortNumber: u32,
-    DestinationAddress: ?PWSTR,
-    OuterModeAddress: ?PWSTR,
-    Persist: BOOLEAN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn SetIScsiTunnelModeOuterAddressA(
-    InitiatorName: ?PSTR,
-    InitiatorPortNumber: u32,
-    DestinationAddress: ?PSTR,
-    OuterModeAddress: ?PSTR,
-    Persist: BOOLEAN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn SetIScsiIKEInfoW(
-    InitiatorName: ?PWSTR,
-    InitiatorPortNumber: u32,
-    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
+pub extern "iscsidsc" fn SetIScsiGroupPresharedKey(
+    KeyLength: u32,
+    Key: ?*u8,
     Persist: BOOLEAN,
 ) callconv(.winapi) u32;
 
@@ -1528,25 +1697,10 @@ pub extern "iscsidsc" fn SetIScsiIKEInfoA(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiIKEInfoW(
+pub extern "iscsidsc" fn SetIScsiIKEInfoW(
     InitiatorName: ?PWSTR,
     InitiatorPortNumber: u32,
-    Reserved: ?*u32,
     AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiIKEInfoA(
-    InitiatorName: ?PSTR,
-    InitiatorPortNumber: u32,
-    Reserved: ?*u32,
-    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn SetIScsiGroupPresharedKey(
-    KeyLength: u32,
-    Key: ?*u8,
     Persist: BOOLEAN,
 ) callconv(.winapi) u32;
 
@@ -1557,9 +1711,8 @@ pub extern "iscsidsc" fn SetIScsiInitiatorCHAPSharedSecret(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn SetIScsiInitiatorRADIUSSharedSecret(
-    SharedSecretLength: u32,
-    SharedSecret: ?*u8,
+pub extern "iscsidsc" fn SetIScsiInitiatorNodeNameA(
+    InitiatorNodeName: ?PSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1568,240 +1721,45 @@ pub extern "iscsidsc" fn SetIScsiInitiatorNodeNameW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn SetIScsiInitiatorNodeNameA(
-    InitiatorNodeName: ?PSTR,
+pub extern "iscsidsc" fn SetIScsiInitiatorRADIUSSharedSecret(
+    SharedSecretLength: u32,
+    SharedSecret: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiInitiatorNodeNameW(
-    InitiatorNodeName: ?[*]u16,
+pub extern "iscsidsc" fn SetIScsiTunnelModeOuterAddressA(
+    InitiatorName: ?PSTR,
+    InitiatorPortNumber: u32,
+    DestinationAddress: ?PSTR,
+    OuterModeAddress: ?PSTR,
+    Persist: BOOLEAN,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiInitiatorNodeNameA(
-    InitiatorNodeName: ?[*]u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddISNSServerW(
-    Address: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddISNSServerA(
-    Address: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveISNSServerW(
-    Address: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveISNSServerA(
-    Address: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RefreshISNSServerW(
-    Address: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RefreshISNSServerA(
-    Address: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportISNSServerListW(
-    BufferSizeInChar: ?*u32,
-    Buffer: ?[*]u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportISNSServerListA(
-    BufferSizeInChar: ?*u32,
-    Buffer: ?[*]u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiSessionListW(
-    BufferSize: ?*u32,
-    SessionCount: ?*u32,
-    SessionInfo: ?*ISCSI_SESSION_INFOW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetIScsiSessionListA(
-    BufferSize: ?*u32,
-    SessionCount: ?*u32,
-    SessionInfo: ?*ISCSI_SESSION_INFOA,
-) callconv(.winapi) u32;
-
-pub extern "iscsidsc" fn GetIScsiSessionListEx(
-    BufferSize: ?*u32,
-    SessionCountPtr: ?*u32,
-    SessionInfo: ?*ISCSI_SESSION_INFO_EX,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetDevicesForIScsiSessionW(
-    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
-    DeviceCount: ?*u32,
-    Devices: ?*ISCSI_DEVICE_ON_SESSIONW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn GetDevicesForIScsiSessionA(
-    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
-    DeviceCount: ?*u32,
-    Devices: ?*ISCSI_DEVICE_ON_SESSIONA,
-) callconv(.winapi) u32;
-
-pub extern "iscsidsc" fn SetupPersistentIScsiVolumes(
+pub extern "iscsidsc" fn SetIScsiTunnelModeOuterAddressW(
+    InitiatorName: ?PWSTR,
+    InitiatorPortNumber: u32,
+    DestinationAddress: ?PWSTR,
+    OuterModeAddress: ?PWSTR,
+    Persist: BOOLEAN,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn SetupPersistentIScsiDevices(
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddPersistentIScsiDeviceW(
-    DevicePath: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddPersistentIScsiDeviceA(
-    DevicePath: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemovePersistentIScsiDeviceW(
-    DevicePath: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemovePersistentIScsiDeviceA(
-    DevicePath: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ClearPersistentIScsiDevices(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportPersistentIScsiDevicesW(
-    BufferSizeInChar: ?*u32,
-    Buffer: ?[*]u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportPersistentIScsiDevicesA(
-    BufferSizeInChar: ?*u32,
-    Buffer: ?[*]u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiTargetPortalsW(
-    InitiatorName: ?PWSTR,
-    TargetName: ?PWSTR,
-    TargetPortalTag: ?*u16,
-    ElementCount: ?*u32,
-    Portals: ?*ISCSI_TARGET_PORTALW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportIScsiTargetPortalsA(
-    InitiatorName: ?PSTR,
-    TargetName: ?PSTR,
-    TargetPortalTag: ?*u16,
-    ElementCount: ?*u32,
-    Portals: ?*ISCSI_TARGET_PORTALA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddRadiusServerW(
-    Address: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn AddRadiusServerA(
-    Address: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveRadiusServerW(
-    Address: ?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn RemoveRadiusServerA(
-    Address: ?PSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportRadiusServerListW(
-    BufferSizeInChar: ?*u32,
-    Buffer: ?[*]u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "iscsidsc" fn ReportRadiusServerListA(
-    BufferSizeInChar: ?*u32,
-    Buffer: ?[*]u8,
+pub extern "iscsidsc" fn SetupPersistentIScsiVolumes(
 ) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (42)
 //--------------------------------------------------------------------------------
-pub const ISCSI_TARGET_MAPPING = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ISCSI_TARGET_MAPPINGA,
-    .wide => @This().ISCSI_TARGET_MAPPINGW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ISCSI_TARGET_MAPPING' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ISCSI_TARGET_PORTAL = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ISCSI_TARGET_PORTALA,
-    .wide => @This().ISCSI_TARGET_PORTALW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ISCSI_TARGET_PORTAL' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ISCSI_TARGET_PORTAL_INFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ISCSI_TARGET_PORTAL_INFOA,
-    .wide => @This().ISCSI_TARGET_PORTAL_INFOW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ISCSI_TARGET_PORTAL_INFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ISCSI_TARGET_PORTAL_INFO_EX = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ISCSI_TARGET_PORTAL_INFO_EXA,
-    .wide => @This().ISCSI_TARGET_PORTAL_INFO_EXW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ISCSI_TARGET_PORTAL_INFO_EX' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ISCSI_TARGET_PORTAL_GROUP = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ISCSI_TARGET_PORTAL_GROUPA,
-    .wide => @This().ISCSI_TARGET_PORTAL_GROUPW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ISCSI_TARGET_PORTAL_GROUP' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const ISCSI_CONNECTION_INFO = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().ISCSI_CONNECTION_INFOA,
     .wide => @This().ISCSI_CONNECTION_INFOW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'ISCSI_CONNECTION_INFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ISCSI_SESSION_INFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ISCSI_SESSION_INFOA,
-    .wide => @This().ISCSI_SESSION_INFOW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ISCSI_SESSION_INFO' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ISCSI_DEVICE_ON_SESSION = switch (@import("../zig.zig").unicode_mode) {
@@ -1811,18 +1769,53 @@ pub const ISCSI_DEVICE_ON_SESSION = switch (@import("../zig.zig").unicode_mode) 
         "'ISCSI_DEVICE_ON_SESSION' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const ISCSI_SESSION_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_SESSION_INFOA,
+    .wide => @This().ISCSI_SESSION_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_SESSION_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_MAPPING = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_MAPPINGA,
+    .wide => @This().ISCSI_TARGET_MAPPINGW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_MAPPING' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL_GROUP = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTAL_GROUPA,
+    .wide => @This().ISCSI_TARGET_PORTAL_GROUPW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL_GROUP' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL_INFO_EX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTAL_INFO_EXA,
+    .wide => @This().ISCSI_TARGET_PORTAL_INFO_EXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL_INFO_EX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTAL_INFOA,
+    .wide => @This().ISCSI_TARGET_PORTAL_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ISCSI_TARGET_PORTAL = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ISCSI_TARGET_PORTALA,
+    .wide => @This().ISCSI_TARGET_PORTALW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ISCSI_TARGET_PORTAL' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const PERSISTENT_ISCSI_LOGIN_INFO = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().PERSISTENT_ISCSI_LOGIN_INFOA,
     .wide => @This().PERSISTENT_ISCSI_LOGIN_INFOW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'PERSISTENT_ISCSI_LOGIN_INFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetIScsiTargetInformation = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetIScsiTargetInformationA,
-    .wide => @This().GetIScsiTargetInformationW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetIScsiTargetInformation' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const AddIScsiConnection = switch (@import("../zig.zig").unicode_mode) {
@@ -1832,11 +1825,11 @@ pub const AddIScsiConnection = switch (@import("../zig.zig").unicode_mode) {
         "'AddIScsiConnection' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ReportIScsiTargets = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReportIScsiTargetsA,
-    .wide => @This().ReportIScsiTargetsW,
+pub const AddIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddIScsiSendTargetPortalA,
+    .wide => @This().AddIScsiSendTargetPortalW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReportIScsiTargets' requires that UNICODE be set to true or false in the root module",
+        "'AddIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const AddIScsiStaticTarget = switch (@import("../zig.zig").unicode_mode) {
@@ -1846,18 +1839,88 @@ pub const AddIScsiStaticTarget = switch (@import("../zig.zig").unicode_mode) {
         "'AddIScsiStaticTarget' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RemoveIScsiStaticTarget = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RemoveIScsiStaticTargetA,
-    .wide => @This().RemoveIScsiStaticTargetW,
+pub const AddISNSServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddISNSServerA,
+    .wide => @This().AddISNSServerW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RemoveIScsiStaticTarget' requires that UNICODE be set to true or false in the root module",
+        "'AddISNSServer' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const AddIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AddIScsiSendTargetPortalA,
-    .wide => @This().AddIScsiSendTargetPortalW,
+pub const AddPersistentIScsiDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddPersistentIScsiDeviceA,
+    .wide => @This().AddPersistentIScsiDeviceW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AddIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
+        "'AddPersistentIScsiDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const AddRadiusServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddRadiusServerA,
+    .wide => @This().AddRadiusServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'AddRadiusServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDevicesForIScsiSession = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDevicesForIScsiSessionA,
+    .wide => @This().GetDevicesForIScsiSessionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDevicesForIScsiSession' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiIKEInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiIKEInfoA,
+    .wide => @This().GetIScsiIKEInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiInitiatorNodeName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiInitiatorNodeNameA,
+    .wide => @This().GetIScsiInitiatorNodeNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiSessionList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiSessionListA,
+    .wide => @This().GetIScsiSessionListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiSessionList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetIScsiTargetInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetIScsiTargetInformationA,
+    .wide => @This().GetIScsiTargetInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetIScsiTargetInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoginIScsiTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoginIScsiTargetA,
+    .wide => @This().LoginIScsiTargetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoginIScsiTarget' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RefreshIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RefreshIScsiSendTargetPortalA,
+    .wide => @This().RefreshIScsiSendTargetPortalW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RefreshIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RefreshISNSServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RefreshISNSServerA,
+    .wide => @This().RefreshISNSServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RefreshISNSServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveIScsiPersistentTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveIScsiPersistentTargetA,
+    .wide => @This().RemoveIScsiPersistentTargetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveIScsiPersistentTarget' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const RemoveIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
@@ -1867,11 +1930,53 @@ pub const RemoveIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mo
         "'RemoveIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RefreshIScsiSendTargetPortal = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RefreshIScsiSendTargetPortalA,
-    .wide => @This().RefreshIScsiSendTargetPortalW,
+pub const RemoveIScsiStaticTarget = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveIScsiStaticTargetA,
+    .wide => @This().RemoveIScsiStaticTargetW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RefreshIScsiSendTargetPortal' requires that UNICODE be set to true or false in the root module",
+        "'RemoveIScsiStaticTarget' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveISNSServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveISNSServerA,
+    .wide => @This().RemoveISNSServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveISNSServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemovePersistentIScsiDevice = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemovePersistentIScsiDeviceA,
+    .wide => @This().RemovePersistentIScsiDeviceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemovePersistentIScsiDevice' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RemoveRadiusServer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RemoveRadiusServerA,
+    .wide => @This().RemoveRadiusServerW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RemoveRadiusServer' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportActiveIScsiTargetMappings = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportActiveIScsiTargetMappingsA,
+    .wide => @This().ReportActiveIScsiTargetMappingsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportActiveIScsiTargetMappings' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiInitiatorList = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiInitiatorListA,
+    .wide => @This().ReportIScsiInitiatorListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiInitiatorList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportIScsiPersistentLogins = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiPersistentLoginsA,
+    .wide => @This().ReportIScsiPersistentLoginsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportIScsiPersistentLogins' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ReportIScsiSendTargetPortals = switch (@import("../zig.zig").unicode_mode) {
@@ -1888,95 +1993,18 @@ pub const ReportIScsiSendTargetPortalsEx = switch (@import("../zig.zig").unicode
         "'ReportIScsiSendTargetPortalsEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const LoginIScsiTarget = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LoginIScsiTargetA,
-    .wide => @This().LoginIScsiTargetW,
+pub const ReportIScsiTargetPortals = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiTargetPortalsA,
+    .wide => @This().ReportIScsiTargetPortalsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LoginIScsiTarget' requires that UNICODE be set to true or false in the root module",
+        "'ReportIScsiTargetPortals' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ReportIScsiPersistentLogins = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReportIScsiPersistentLoginsA,
-    .wide => @This().ReportIScsiPersistentLoginsW,
+pub const ReportIScsiTargets = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportIScsiTargetsA,
+    .wide => @This().ReportIScsiTargetsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReportIScsiPersistentLogins' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RemoveIScsiPersistentTarget = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RemoveIScsiPersistentTargetA,
-    .wide => @This().RemoveIScsiPersistentTargetW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RemoveIScsiPersistentTarget' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ReportIScsiInitiatorList = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReportIScsiInitiatorListA,
-    .wide => @This().ReportIScsiInitiatorListW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReportIScsiInitiatorList' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ReportActiveIScsiTargetMappings = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReportActiveIScsiTargetMappingsA,
-    .wide => @This().ReportActiveIScsiTargetMappingsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReportActiveIScsiTargetMappings' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetIScsiTunnelModeOuterAddress = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetIScsiTunnelModeOuterAddressA,
-    .wide => @This().SetIScsiTunnelModeOuterAddressW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetIScsiTunnelModeOuterAddress' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetIScsiIKEInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetIScsiIKEInfoA,
-    .wide => @This().SetIScsiIKEInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetIScsiIKEInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetIScsiIKEInfoA,
-    .wide => @This().GetIScsiIKEInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetIScsiInitiatorNodeName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetIScsiInitiatorNodeNameA,
-    .wide => @This().SetIScsiInitiatorNodeNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetIScsiInitiatorNodeName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetIScsiInitiatorNodeNameA,
-    .wide => @This().GetIScsiInitiatorNodeNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AddISNSServer = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AddISNSServerA,
-    .wide => @This().AddISNSServerW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AddISNSServer' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RemoveISNSServer = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RemoveISNSServerA,
-    .wide => @This().RemoveISNSServerW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RemoveISNSServer' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RefreshISNSServer = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RefreshISNSServerA,
-    .wide => @This().RefreshISNSServerW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RefreshISNSServer' requires that UNICODE be set to true or false in the root module",
+        "'ReportIScsiTargets' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ReportISNSServerList = switch (@import("../zig.zig").unicode_mode) {
@@ -1986,34 +2014,6 @@ pub const ReportISNSServerList = switch (@import("../zig.zig").unicode_mode) {
         "'ReportISNSServerList' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetIScsiSessionList = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetIScsiSessionListA,
-    .wide => @This().GetIScsiSessionListW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetIScsiSessionList' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetDevicesForIScsiSession = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetDevicesForIScsiSessionA,
-    .wide => @This().GetDevicesForIScsiSessionW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetDevicesForIScsiSession' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AddPersistentIScsiDevice = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AddPersistentIScsiDeviceA,
-    .wide => @This().AddPersistentIScsiDeviceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AddPersistentIScsiDevice' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RemovePersistentIScsiDevice = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RemovePersistentIScsiDeviceA,
-    .wide => @This().RemovePersistentIScsiDeviceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RemovePersistentIScsiDevice' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const ReportPersistentIScsiDevices = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().ReportPersistentIScsiDevicesA,
     .wide => @This().ReportPersistentIScsiDevicesW,
@@ -2021,32 +2021,32 @@ pub const ReportPersistentIScsiDevices = switch (@import("../zig.zig").unicode_m
         "'ReportPersistentIScsiDevices' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ReportIScsiTargetPortals = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReportIScsiTargetPortalsA,
-    .wide => @This().ReportIScsiTargetPortalsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReportIScsiTargetPortals' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AddRadiusServer = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AddRadiusServerA,
-    .wide => @This().AddRadiusServerW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AddRadiusServer' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RemoveRadiusServer = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RemoveRadiusServerA,
-    .wide => @This().RemoveRadiusServerW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RemoveRadiusServer' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const ReportRadiusServerList = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().ReportRadiusServerListA,
     .wide => @This().ReportRadiusServerListW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'ReportRadiusServerList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetIScsiIKEInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetIScsiIKEInfoA,
+    .wide => @This().SetIScsiIKEInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetIScsiIKEInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetIScsiInitiatorNodeName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetIScsiInitiatorNodeNameA,
+    .wide => @This().SetIScsiInitiatorNodeNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetIScsiInitiatorNodeName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetIScsiTunnelModeOuterAddress = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetIScsiTunnelModeOuterAddressA,
+    .wide => @This().SetIScsiTunnelModeOuterAddressW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetIScsiTunnelModeOuterAddress' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

@@ -6,82 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (7)
 //--------------------------------------------------------------------------------
-const CLSID_WindowsMediaLibrarySharingServices_Value = Guid.initString("ad581b00-7b64-4e59-a38d-d2c5bf51ddb3");
-pub const CLSID_WindowsMediaLibrarySharingServices = &CLSID_WindowsMediaLibrarySharingServices_Value;
-
-pub const WindowsMediaLibrarySharingDeviceAuthorizationStatus = enum(i32) {
-    UNKNOWN = 0,
-    ALLOWED = 1,
-    DENIED = 2,
-};
-pub const DEVICE_AUTHORIZATION_UNKNOWN = WindowsMediaLibrarySharingDeviceAuthorizationStatus.UNKNOWN;
-pub const DEVICE_AUTHORIZATION_ALLOWED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.ALLOWED;
-pub const DEVICE_AUTHORIZATION_DENIED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DENIED;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWindowsMediaLibrarySharingDeviceProperty_Value = Guid.initString("81e26927-7a7d-40a7-81d4-bddc02960e3e");
-pub const IID_IWindowsMediaLibrarySharingDeviceProperty = &IID_IWindowsMediaLibrarySharingDeviceProperty_Value;
-pub const IWindowsMediaLibrarySharingDeviceProperty = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IWindowsMediaLibrarySharingDeviceProperty,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IWindowsMediaLibrarySharingDeviceProperty,
-            value: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IWindowsMediaLibrarySharingDeviceProperty, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn get_Value(self: *const IWindowsMediaLibrarySharingDeviceProperty, value: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, value);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWindowsMediaLibrarySharingDeviceProperties_Value = Guid.initString("c4623214-6b06-40c5-a623-b2ff4c076bfd");
-pub const IID_IWindowsMediaLibrarySharingDeviceProperties = &IID_IWindowsMediaLibrarySharingDeviceProperties_Value;
-pub const IWindowsMediaLibrarySharingDeviceProperties = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Item: *const fn(
-            self: *const IWindowsMediaLibrarySharingDeviceProperties,
-            index: i32,
-            property: ?*?*IWindowsMediaLibrarySharingDeviceProperty,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IWindowsMediaLibrarySharingDeviceProperties,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IWindowsMediaLibrarySharingDeviceProperties,
-            name: ?BSTR,
-            property: ?*?*IWindowsMediaLibrarySharingDeviceProperty,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDeviceProperties, index: i32, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, property);
-    }
-    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDeviceProperties, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, count);
-    }
-    pub fn GetProperty(self: *const IWindowsMediaLibrarySharingDeviceProperties, name: ?BSTR, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, name, property);
-    }
-};
-
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWindowsMediaLibrarySharingDevice_Value = Guid.initString("3dccc293-4fd9-4191-a25b-8e57c5d27bd4");
 pub const IID_IWindowsMediaLibrarySharingDevice = &IID_IWindowsMediaLibrarySharingDevice_Value;
@@ -123,6 +47,70 @@ pub const IWindowsMediaLibrarySharingDevice = extern union {
     }
     pub fn get_Properties(self: *const IWindowsMediaLibrarySharingDevice, deviceProperties: ?*?*IWindowsMediaLibrarySharingDeviceProperties) callconv(.@"inline") HRESULT {
         return self.vtable.get_Properties(self, deviceProperties);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWindowsMediaLibrarySharingDeviceProperties_Value = Guid.initString("c4623214-6b06-40c5-a623-b2ff4c076bfd");
+pub const IID_IWindowsMediaLibrarySharingDeviceProperties = &IID_IWindowsMediaLibrarySharingDeviceProperties_Value;
+pub const IWindowsMediaLibrarySharingDeviceProperties = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Item: *const fn(
+            self: *const IWindowsMediaLibrarySharingDeviceProperties,
+            index: i32,
+            property: ?*?*IWindowsMediaLibrarySharingDeviceProperty,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IWindowsMediaLibrarySharingDeviceProperties,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IWindowsMediaLibrarySharingDeviceProperties,
+            name: ?BSTR,
+            property: ?*?*IWindowsMediaLibrarySharingDeviceProperty,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDeviceProperties, index: i32, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, property);
+    }
+    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDeviceProperties, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, count);
+    }
+    pub fn GetProperty(self: *const IWindowsMediaLibrarySharingDeviceProperties, name: ?BSTR, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, name, property);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWindowsMediaLibrarySharingDeviceProperty_Value = Guid.initString("81e26927-7a7d-40a7-81d4-bddc02960e3e");
+pub const IID_IWindowsMediaLibrarySharingDeviceProperty = &IID_IWindowsMediaLibrarySharingDeviceProperty_Value;
+pub const IWindowsMediaLibrarySharingDeviceProperty = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IWindowsMediaLibrarySharingDeviceProperty,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IWindowsMediaLibrarySharingDeviceProperty,
+            value: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IWindowsMediaLibrarySharingDeviceProperty, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn get_Value(self: *const IWindowsMediaLibrarySharingDeviceProperty, value: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, value);
     }
 };
 
@@ -324,6 +312,18 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
         return self.vtable.get_customSettingsApplied(self, customSettingsApplied);
     }
 };
+
+pub const WindowsMediaLibrarySharingDeviceAuthorizationStatus = enum(i32) {
+    UNKNOWN = 0,
+    ALLOWED = 1,
+    DENIED = 2,
+};
+pub const DEVICE_AUTHORIZATION_UNKNOWN = WindowsMediaLibrarySharingDeviceAuthorizationStatus.UNKNOWN;
+pub const DEVICE_AUTHORIZATION_ALLOWED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.ALLOWED;
+pub const DEVICE_AUTHORIZATION_DENIED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DENIED;
+
+const CLSID_WindowsMediaLibrarySharingServices_Value = Guid.initString("ad581b00-7b64-4e59-a38d-d2c5bf51ddb3");
+pub const CLSID_WindowsMediaLibrarySharingServices = &CLSID_WindowsMediaLibrarySharingServices_Value;
 
 
 //--------------------------------------------------------------------------------

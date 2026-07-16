@@ -2,142 +2,154 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (938)
 //--------------------------------------------------------------------------------
-pub const DIRECTDRAW_VERSION = @as(u32, 1792);
 pub const _FACDD = @as(u32, 2166);
+pub const ACCESSRECT_BROKEN = @as(i32, 4);
+pub const ACCESSRECT_NOTHOLDINGWIN16LOCK = @as(i32, 2);
+pub const ACCESSRECT_VRAMSTYLE = @as(i32, 1);
+pub const CCHDEVICENAME = @as(u32, 32);
 pub const CLSID_DirectDraw = Guid.initString("d7b70ee0-4340-11cf-b063-0020afc2cd35");
 pub const CLSID_DirectDraw7 = Guid.initString("3c305196-50db-11d3-9cfe-00c04fd930c5");
 pub const CLSID_DirectDrawClipper = Guid.initString("593817a0-7db3-11cf-a2de-00aa00b93356");
-pub const DDENUM_ATTACHEDSECONDARYDEVICES = @as(i32, 1);
-pub const DDENUM_DETACHEDSECONDARYDEVICES = @as(i32, 2);
-pub const DDENUM_NONDISPLAYDEVICES = @as(i32, 4);
-pub const REGSTR_KEY_DDHW_DESCRIPTION = "Description";
-pub const REGSTR_KEY_DDHW_DRIVERNAME = "DriverName";
-pub const REGSTR_PATH_DDHW = "Hardware\\DirectDrawDrivers";
-pub const DDCREATE_HARDWAREONLY = @as(i32, 1);
-pub const DDCREATE_EMULATIONONLY = @as(i32, 2);
-pub const MAX_DDDEVICEID_STRING = @as(u32, 512);
-pub const DDGDI_GETHOSTIDENTIFIER = @as(i32, 1);
-pub const DDSD_CAPS = @as(i32, 1);
-pub const DDSD_HEIGHT = @as(i32, 2);
-pub const DDSD_WIDTH = @as(i32, 4);
-pub const DDSD_PITCH = @as(i32, 8);
-pub const DDSD_BACKBUFFERCOUNT = @as(i32, 32);
-pub const DDSD_ZBUFFERBITDEPTH = @as(i32, 64);
-pub const DDSD_ALPHABITDEPTH = @as(i32, 128);
-pub const DDSD_LPSURFACE = @as(i32, 2048);
-pub const DDSD_PIXELFORMAT = @as(i32, 4096);
-pub const DDSD_CKDESTOVERLAY = @as(i32, 8192);
-pub const DDSD_CKDESTBLT = @as(i32, 16384);
-pub const DDSD_CKSRCOVERLAY = @as(i32, 32768);
-pub const DDSD_CKSRCBLT = @as(i32, 65536);
-pub const DDSD_MIPMAPCOUNT = @as(i32, 131072);
-pub const DDSD_REFRESHRATE = @as(i32, 262144);
-pub const DDSD_LINEARSIZE = @as(i32, 524288);
-pub const DDSD_TEXTURESTAGE = @as(i32, 1048576);
-pub const DDSD_FVF = @as(i32, 2097152);
-pub const DDSD_SRCVBHANDLE = @as(i32, 4194304);
-pub const DDSD_DEPTH = @as(i32, 8388608);
-pub const DDSD_ALL = @as(i32, 16775662);
-pub const DDOSD_GUID = @as(i32, 1);
-pub const DDOSD_COMPRESSION_RATIO = @as(i32, 2);
-pub const DDOSD_SCAPS = @as(i32, 4);
-pub const DDOSD_OSCAPS = @as(i32, 8);
-pub const DDOSD_ALL = @as(i32, 15);
-pub const DDOSDCAPS_OPTCOMPRESSED = @as(i32, 1);
-pub const DDOSDCAPS_OPTREORDERED = @as(i32, 2);
-pub const DDOSDCAPS_MONOLITHICMIPMAP = @as(i32, 4);
-pub const DDOSDCAPS_VALIDSCAPS = @as(i32, 805324800);
-pub const DDOSDCAPS_VALIDOSCAPS = @as(i32, 7);
-pub const DDCOLOR_BRIGHTNESS = @as(i32, 1);
-pub const DDCOLOR_CONTRAST = @as(i32, 2);
-pub const DDCOLOR_HUE = @as(i32, 4);
-pub const DDCOLOR_SATURATION = @as(i32, 8);
-pub const DDCOLOR_SHARPNESS = @as(i32, 16);
-pub const DDCOLOR_GAMMA = @as(i32, 32);
-pub const DDCOLOR_COLORENABLE = @as(i32, 64);
-pub const DDSCAPS_RESERVED1 = @as(i32, 1);
-pub const DDSCAPS_ALPHA = @as(i32, 2);
-pub const DDSCAPS_BACKBUFFER = @as(i32, 4);
-pub const DDSCAPS_COMPLEX = @as(i32, 8);
-pub const DDSCAPS_FLIP = @as(i32, 16);
-pub const DDSCAPS_FRONTBUFFER = @as(i32, 32);
-pub const DDSCAPS_OFFSCREENPLAIN = @as(i32, 64);
-pub const DDSCAPS_OVERLAY = @as(i32, 128);
-pub const DDSCAPS_PALETTE = @as(i32, 256);
-pub const DDSCAPS_PRIMARYSURFACE = @as(i32, 512);
-pub const DDSCAPS_RESERVED3 = @as(i32, 1024);
-pub const DDSCAPS_PRIMARYSURFACELEFT = @as(i32, 0);
-pub const DDSCAPS_SYSTEMMEMORY = @as(i32, 2048);
-pub const DDSCAPS_TEXTURE = @as(i32, 4096);
-pub const DDSCAPS_3DDEVICE = @as(i32, 8192);
-pub const DDSCAPS_VIDEOMEMORY = @as(i32, 16384);
-pub const DDSCAPS_VISIBLE = @as(i32, 32768);
-pub const DDSCAPS_WRITEONLY = @as(i32, 65536);
-pub const DDSCAPS_ZBUFFER = @as(i32, 131072);
-pub const DDSCAPS_OWNDC = @as(i32, 262144);
-pub const DDSCAPS_LIVEVIDEO = @as(i32, 524288);
-pub const DDSCAPS_HWCODEC = @as(i32, 1048576);
-pub const DDSCAPS_MODEX = @as(i32, 2097152);
-pub const DDSCAPS_MIPMAP = @as(i32, 4194304);
-pub const DDSCAPS_RESERVED2 = @as(i32, 8388608);
-pub const DDSCAPS_ALLOCONLOAD = @as(i32, 67108864);
-pub const DDSCAPS_VIDEOPORT = @as(i32, 134217728);
-pub const DDSCAPS_LOCALVIDMEM = @as(i32, 268435456);
-pub const DDSCAPS_NONLOCALVIDMEM = @as(i32, 536870912);
-pub const DDSCAPS_STANDARDVGAMODE = @as(i32, 1073741824);
-pub const DDSCAPS_OPTIMIZED = @as(i32, -2147483648);
-pub const DDSCAPS2_RESERVED4 = @as(i32, 2);
-pub const DDSCAPS2_HARDWAREDEINTERLACE = @as(i32, 0);
-pub const DDSCAPS2_HINTDYNAMIC = @as(i32, 4);
-pub const DDSCAPS2_HINTSTATIC = @as(i32, 8);
-pub const DDSCAPS2_TEXTUREMANAGE = @as(i32, 16);
-pub const DDSCAPS2_RESERVED1 = @as(i32, 32);
-pub const DDSCAPS2_RESERVED2 = @as(i32, 64);
-pub const DDSCAPS2_OPAQUE = @as(i32, 128);
-pub const DDSCAPS2_HINTANTIALIASING = @as(i32, 256);
-pub const DDSCAPS2_CUBEMAP = @as(i32, 512);
-pub const DDSCAPS2_CUBEMAP_POSITIVEX = @as(i32, 1024);
-pub const DDSCAPS2_CUBEMAP_NEGATIVEX = @as(i32, 2048);
-pub const DDSCAPS2_CUBEMAP_POSITIVEY = @as(i32, 4096);
-pub const DDSCAPS2_CUBEMAP_NEGATIVEY = @as(i32, 8192);
-pub const DDSCAPS2_CUBEMAP_POSITIVEZ = @as(i32, 16384);
-pub const DDSCAPS2_CUBEMAP_NEGATIVEZ = @as(i32, 32768);
-pub const DDSCAPS2_MIPMAPSUBLEVEL = @as(i32, 65536);
-pub const DDSCAPS2_D3DTEXTUREMANAGE = @as(i32, 131072);
-pub const DDSCAPS2_DONOTPERSIST = @as(i32, 262144);
-pub const DDSCAPS2_STEREOSURFACELEFT = @as(i32, 524288);
-pub const DDSCAPS2_VOLUME = @as(i32, 2097152);
-pub const DDSCAPS2_NOTUSERLOCKABLE = @as(i32, 4194304);
-pub const DDSCAPS2_POINTS = @as(i32, 8388608);
-pub const DDSCAPS2_RTPATCHES = @as(i32, 16777216);
-pub const DDSCAPS2_NPATCHES = @as(i32, 33554432);
-pub const DDSCAPS2_RESERVED3 = @as(i32, 67108864);
-pub const DDSCAPS2_DISCARDBACKBUFFER = @as(i32, 268435456);
-pub const DDSCAPS2_ENABLEALPHACHANNEL = @as(i32, 536870912);
-pub const DDSCAPS2_EXTENDEDFORMATPRIMARY = @as(i32, 1073741824);
-pub const DDSCAPS2_ADDITIONALPRIMARY = @as(i32, -2147483648);
-pub const DDSCAPS3_MULTISAMPLE_MASK = @as(i32, 31);
-pub const DDSCAPS3_MULTISAMPLE_QUALITY_MASK = @as(i32, 224);
-pub const DDSCAPS3_MULTISAMPLE_QUALITY_SHIFT = @as(u32, 5);
-pub const DDSCAPS3_RESERVED1 = @as(i32, 256);
-pub const DDSCAPS3_RESERVED2 = @as(i32, 512);
-pub const DDSCAPS3_LIGHTWEIGHTMIPMAP = @as(i32, 1024);
-pub const DDSCAPS3_AUTOGENMIPMAP = @as(i32, 2048);
-pub const DDSCAPS3_DMAP = @as(i32, 4096);
-pub const DDSCAPS3_CREATESHAREDRESOURCE = @as(i32, 8192);
-pub const DDSCAPS3_READONLYRESOURCE = @as(i32, 16384);
-pub const DDSCAPS3_OPENSHAREDRESOURCE = @as(i32, 32768);
+pub const D3DFMT_INTERNAL_D15S1 = @as(u32, 73);
+pub const D3DFMT_INTERNAL_D24S8 = @as(u32, 75);
+pub const D3DFMT_INTERNAL_D24X8 = @as(u32, 77);
+pub const D3DFMT_INTERNAL_D32 = @as(u32, 71);
+pub const D3DFMT_INTERNAL_S1D15 = @as(u32, 72);
+pub const D3DFMT_INTERNAL_S8D24 = @as(u32, 74);
+pub const D3DFMT_INTERNAL_X8D24 = @as(u32, 76);
+pub const D3DFORMAT_MEMBEROFGROUP_ARGB = @as(i32, 524288);
+pub const D3DFORMAT_OP_3DACCELERATION = @as(i32, 2048);
+pub const D3DFORMAT_OP_AUTOGENMIPMAP = @as(i32, 4194304);
+pub const D3DFORMAT_OP_BUMPMAP = @as(i32, 65536);
+pub const D3DFORMAT_OP_CONVERT_TO_ARGB = @as(i32, 8192);
+pub const D3DFORMAT_OP_CUBETEXTURE = @as(i32, 4);
+pub const D3DFORMAT_OP_DISPLAYMODE = @as(i32, 1024);
+pub const D3DFORMAT_OP_DMAP = @as(i32, 131072);
+pub const D3DFORMAT_OP_NOALPHABLEND = @as(i32, 2097152);
+pub const D3DFORMAT_OP_NOFILTER = @as(i32, 262144);
+pub const D3DFORMAT_OP_NOTEXCOORDWRAPNORMIP = @as(i32, 16777216);
+pub const D3DFORMAT_OP_OFFSCREEN_RENDERTARGET = @as(i32, 8);
+pub const D3DFORMAT_OP_OFFSCREENPLAIN = @as(i32, 16384);
+pub const D3DFORMAT_OP_PIXELSIZE = @as(i32, 4096);
+pub const D3DFORMAT_OP_SAME_FORMAT_RENDERTARGET = @as(i32, 16);
+pub const D3DFORMAT_OP_SAME_FORMAT_UP_TO_ALPHA_RENDERTARGET = @as(i32, 256);
+pub const D3DFORMAT_OP_SRGBREAD = @as(i32, 32768);
+pub const D3DFORMAT_OP_SRGBWRITE = @as(i32, 1048576);
+pub const D3DFORMAT_OP_TEXTURE = @as(i32, 1);
+pub const D3DFORMAT_OP_VERTEXTEXTURE = @as(i32, 8388608);
+pub const D3DFORMAT_OP_VOLUMETEXTURE = @as(i32, 2);
+pub const D3DFORMAT_OP_ZSTENCIL = @as(i32, 64);
+pub const D3DFORMAT_OP_ZSTENCIL_WITH_ARBITRARY_COLOR_DEPTH = @as(i32, 128);
+pub const DCICOMMAND = @as(u32, 3075);
+pub const DD_HAL_VERSION = @as(u32, 256);
+pub const DD_RUNTIME_VERSION = @as(i32, 2306);
+pub const DD_VERSION = @as(i32, 512);
+pub const DDABLT_SRCOVERDEST = @as(i32, 1);
+pub const DDAL_IMPLICIT = @as(i32, 1);
+pub const DDBD_1 = @as(i32, 16384);
+pub const DDBD_16 = @as(i32, 1024);
+pub const DDBD_2 = @as(i32, 8192);
+pub const DDBD_24 = @as(i32, 512);
+pub const DDBD_32 = @as(i32, 256);
+pub const DDBD_4 = @as(i32, 4096);
+pub const DDBD_8 = @as(i32, 2048);
+pub const DDBLT_AFLAGS = @as(i32, -2147483648);
+pub const DDBLT_ALPHADEST = @as(i32, 1);
+pub const DDBLT_ALPHADESTCONSTOVERRIDE = @as(i32, 2);
+pub const DDBLT_ALPHADESTNEG = @as(i32, 4);
+pub const DDBLT_ALPHADESTSURFACEOVERRIDE = @as(i32, 8);
+pub const DDBLT_ALPHAEDGEBLEND = @as(i32, 16);
+pub const DDBLT_ALPHASRC = @as(i32, 32);
+pub const DDBLT_ALPHASRCCONSTOVERRIDE = @as(i32, 64);
+pub const DDBLT_ALPHASRCNEG = @as(i32, 128);
+pub const DDBLT_ALPHASRCSURFACEOVERRIDE = @as(i32, 256);
+pub const DDBLT_ASYNC = @as(i32, 512);
+pub const DDBLT_COLORFILL = @as(i32, 1024);
+pub const DDBLT_DDFX = @as(i32, 2048);
+pub const DDBLT_DDROPS = @as(i32, 4096);
+pub const DDBLT_DEPTHFILL = @as(i32, 33554432);
+pub const DDBLT_DONOTWAIT = @as(i32, 134217728);
+pub const DDBLT_EXTENDED_FLAGS = @as(i32, 1073741824);
+pub const DDBLT_EXTENDED_LINEAR_CONTENT = @as(i32, 4);
+pub const DDBLT_KEYDEST = @as(i32, 8192);
+pub const DDBLT_KEYDESTOVERRIDE = @as(i32, 16384);
+pub const DDBLT_KEYSRC = @as(i32, 32768);
+pub const DDBLT_KEYSRCOVERRIDE = @as(i32, 65536);
+pub const DDBLT_LAST_PRESENTATION = @as(i32, 536870912);
+pub const DDBLT_PRESENTATION = @as(i32, 268435456);
+pub const DDBLT_ROP = @as(i32, 131072);
+pub const DDBLT_ROTATIONANGLE = @as(i32, 262144);
+pub const DDBLT_WAIT = @as(i32, 16777216);
+pub const DDBLT_ZBUFFER = @as(i32, 524288);
+pub const DDBLT_ZBUFFERDESTCONSTOVERRIDE = @as(i32, 1048576);
+pub const DDBLT_ZBUFFERDESTOVERRIDE = @as(i32, 2097152);
+pub const DDBLT_ZBUFFERSRCCONSTOVERRIDE = @as(i32, 4194304);
+pub const DDBLT_ZBUFFERSRCOVERRIDE = @as(i32, 8388608);
+pub const DDBLTFAST_DESTCOLORKEY = @as(u32, 2);
+pub const DDBLTFAST_DONOTWAIT = @as(u32, 32);
+pub const DDBLTFAST_NOCOLORKEY = @as(u32, 0);
+pub const DDBLTFAST_SRCCOLORKEY = @as(u32, 1);
+pub const DDBLTFAST_WAIT = @as(u32, 16);
+pub const DDBLTFX_ARITHSTRETCHY = @as(i32, 1);
+pub const DDBLTFX_MIRRORLEFTRIGHT = @as(i32, 2);
+pub const DDBLTFX_MIRRORUPDOWN = @as(i32, 4);
+pub const DDBLTFX_NOTEARING = @as(i32, 8);
+pub const DDBLTFX_ROTATE180 = @as(i32, 16);
+pub const DDBLTFX_ROTATE270 = @as(i32, 32);
+pub const DDBLTFX_ROTATE90 = @as(i32, 64);
+pub const DDBLTFX_ZBUFFERBASEDEST = @as(i32, 256);
+pub const DDBLTFX_ZBUFFERRANGE = @as(i32, 128);
+pub const DDCAPS2_AUTOFLIPOVERLAY = @as(i32, 8);
+pub const DDCAPS2_CANAUTOGENMIPMAP = @as(i32, 1073741824);
+pub const DDCAPS2_CANBOBHARDWARE = @as(i32, 16384);
+pub const DDCAPS2_CANBOBINTERLEAVED = @as(i32, 16);
+pub const DDCAPS2_CANBOBNONINTERLEAVED = @as(i32, 32);
+pub const DDCAPS2_CANCALIBRATEGAMMA = @as(i32, 1048576);
+pub const DDCAPS2_CANDROPZ16BIT = @as(i32, 256);
+pub const DDCAPS2_CANFLIPODDEVEN = @as(i32, 8192);
+pub const DDCAPS2_CANMANAGERESOURCE = @as(i32, 268435456);
+pub const DDCAPS2_CANMANAGETEXTURE = @as(i32, 8388608);
+pub const DDCAPS2_CANRENDERWINDOWED = @as(i32, 524288);
+pub const DDCAPS2_CANSHARERESOURCE = @as(i32, -2147483648);
+pub const DDCAPS2_CERTIFIED = @as(i32, 1);
+pub const DDCAPS2_COLORCONTROLOVERLAY = @as(i32, 64);
+pub const DDCAPS2_COLORCONTROLPRIMARY = @as(i32, 128);
+pub const DDCAPS2_COPYFOURCC = @as(i32, 32768);
+pub const DDCAPS2_DYNAMICTEXTURES = @as(i32, 536870912);
+pub const DDCAPS2_FLIPINTERVAL = @as(i32, 2097152);
+pub const DDCAPS2_FLIPNOVSYNC = @as(i32, 4194304);
+pub const DDCAPS2_NO2DDURING3DSCENE = @as(i32, 2);
+pub const DDCAPS2_NONLOCALVIDMEM = @as(i32, 512);
+pub const DDCAPS2_NONLOCALVIDMEMCAPS = @as(i32, 1024);
+pub const DDCAPS2_NOPAGELOCKREQUIRED = @as(i32, 2048);
+pub const DDCAPS2_PRIMARYGAMMA = @as(i32, 131072);
+pub const DDCAPS2_RESERVED1 = @as(i32, 134217728);
+pub const DDCAPS2_STEREO = @as(i32, 33554432);
+pub const DDCAPS2_SYSTONONLOCAL_AS_SYSTOLOCAL = @as(i32, 67108864);
+pub const DDCAPS2_TEXMANINNONLOCALVIDMEM = @as(i32, 16777216);
+pub const DDCAPS2_VIDEOPORT = @as(i32, 4);
+pub const DDCAPS2_WIDESURFACES = @as(i32, 4096);
 pub const DDCAPS_3D = @as(i32, 1);
 pub const DDCAPS_ALIGNBOUNDARYDEST = @as(i32, 2);
-pub const DDCAPS_ALIGNSIZEDEST = @as(i32, 4);
 pub const DDCAPS_ALIGNBOUNDARYSRC = @as(i32, 8);
+pub const DDCAPS_ALIGNSIZEDEST = @as(i32, 4);
 pub const DDCAPS_ALIGNSIZESRC = @as(i32, 16);
 pub const DDCAPS_ALIGNSTRIDE = @as(i32, 32);
+pub const DDCAPS_ALPHA = @as(i32, 8388608);
+pub const DDCAPS_BANKSWITCHED = @as(i32, 134217728);
 pub const DDCAPS_BLT = @as(i32, 64);
-pub const DDCAPS_BLTQUEUE = @as(i32, 128);
+pub const DDCAPS_BLTCOLORFILL = @as(i32, 67108864);
+pub const DDCAPS_BLTDEPTHFILL = @as(i32, 268435456);
 pub const DDCAPS_BLTFOURCC = @as(i32, 256);
+pub const DDCAPS_BLTQUEUE = @as(i32, 128);
 pub const DDCAPS_BLTSTRETCH = @as(i32, 512);
+pub const DDCAPS_CANBLTSYSMEM = @as(i32, -2147483648);
+pub const DDCAPS_CANCLIP = @as(i32, 536870912);
+pub const DDCAPS_CANCLIPSTRETCHED = @as(i32, 1073741824);
+pub const DDCAPS_COLORKEY = @as(i32, 4194304);
+pub const DDCAPS_COLORKEYHWASSIST = @as(i32, 16777216);
 pub const DDCAPS_GDI = @as(i32, 1024);
+pub const DDCAPS_NOHARDWARE = @as(i32, 33554432);
 pub const DDCAPS_OVERLAY = @as(i32, 2048);
 pub const DDCAPS_OVERLAYCANTCLIP = @as(i32, 4096);
 pub const DDCAPS_OVERLAYFOURCC = @as(i32, 8192);
@@ -149,112 +161,6 @@ pub const DDCAPS_RESERVED1 = @as(i32, 262144);
 pub const DDCAPS_VBI = @as(i32, 524288);
 pub const DDCAPS_ZBLTS = @as(i32, 1048576);
 pub const DDCAPS_ZOVERLAYS = @as(i32, 2097152);
-pub const DDCAPS_COLORKEY = @as(i32, 4194304);
-pub const DDCAPS_ALPHA = @as(i32, 8388608);
-pub const DDCAPS_COLORKEYHWASSIST = @as(i32, 16777216);
-pub const DDCAPS_NOHARDWARE = @as(i32, 33554432);
-pub const DDCAPS_BLTCOLORFILL = @as(i32, 67108864);
-pub const DDCAPS_BANKSWITCHED = @as(i32, 134217728);
-pub const DDCAPS_BLTDEPTHFILL = @as(i32, 268435456);
-pub const DDCAPS_CANCLIP = @as(i32, 536870912);
-pub const DDCAPS_CANCLIPSTRETCHED = @as(i32, 1073741824);
-pub const DDCAPS_CANBLTSYSMEM = @as(i32, -2147483648);
-pub const DDCAPS2_CERTIFIED = @as(i32, 1);
-pub const DDCAPS2_NO2DDURING3DSCENE = @as(i32, 2);
-pub const DDCAPS2_VIDEOPORT = @as(i32, 4);
-pub const DDCAPS2_AUTOFLIPOVERLAY = @as(i32, 8);
-pub const DDCAPS2_CANBOBINTERLEAVED = @as(i32, 16);
-pub const DDCAPS2_CANBOBNONINTERLEAVED = @as(i32, 32);
-pub const DDCAPS2_COLORCONTROLOVERLAY = @as(i32, 64);
-pub const DDCAPS2_COLORCONTROLPRIMARY = @as(i32, 128);
-pub const DDCAPS2_CANDROPZ16BIT = @as(i32, 256);
-pub const DDCAPS2_NONLOCALVIDMEM = @as(i32, 512);
-pub const DDCAPS2_NONLOCALVIDMEMCAPS = @as(i32, 1024);
-pub const DDCAPS2_NOPAGELOCKREQUIRED = @as(i32, 2048);
-pub const DDCAPS2_WIDESURFACES = @as(i32, 4096);
-pub const DDCAPS2_CANFLIPODDEVEN = @as(i32, 8192);
-pub const DDCAPS2_CANBOBHARDWARE = @as(i32, 16384);
-pub const DDCAPS2_COPYFOURCC = @as(i32, 32768);
-pub const DDCAPS2_PRIMARYGAMMA = @as(i32, 131072);
-pub const DDCAPS2_CANRENDERWINDOWED = @as(i32, 524288);
-pub const DDCAPS2_CANCALIBRATEGAMMA = @as(i32, 1048576);
-pub const DDCAPS2_FLIPINTERVAL = @as(i32, 2097152);
-pub const DDCAPS2_FLIPNOVSYNC = @as(i32, 4194304);
-pub const DDCAPS2_CANMANAGETEXTURE = @as(i32, 8388608);
-pub const DDCAPS2_TEXMANINNONLOCALVIDMEM = @as(i32, 16777216);
-pub const DDCAPS2_STEREO = @as(i32, 33554432);
-pub const DDCAPS2_SYSTONONLOCAL_AS_SYSTOLOCAL = @as(i32, 67108864);
-pub const DDCAPS2_RESERVED1 = @as(i32, 134217728);
-pub const DDCAPS2_CANMANAGERESOURCE = @as(i32, 268435456);
-pub const DDCAPS2_DYNAMICTEXTURES = @as(i32, 536870912);
-pub const DDCAPS2_CANAUTOGENMIPMAP = @as(i32, 1073741824);
-pub const DDCAPS2_CANSHARERESOURCE = @as(i32, -2147483648);
-pub const DDFXALPHACAPS_BLTALPHAEDGEBLEND = @as(i32, 1);
-pub const DDFXALPHACAPS_BLTALPHAPIXELS = @as(i32, 2);
-pub const DDFXALPHACAPS_BLTALPHAPIXELSNEG = @as(i32, 4);
-pub const DDFXALPHACAPS_BLTALPHASURFACES = @as(i32, 8);
-pub const DDFXALPHACAPS_BLTALPHASURFACESNEG = @as(i32, 16);
-pub const DDFXALPHACAPS_OVERLAYALPHAEDGEBLEND = @as(i32, 32);
-pub const DDFXALPHACAPS_OVERLAYALPHAPIXELS = @as(i32, 64);
-pub const DDFXALPHACAPS_OVERLAYALPHAPIXELSNEG = @as(i32, 128);
-pub const DDFXALPHACAPS_OVERLAYALPHASURFACES = @as(i32, 256);
-pub const DDFXALPHACAPS_OVERLAYALPHASURFACESNEG = @as(i32, 512);
-pub const DDFXCAPS_BLTARITHSTRETCHY = @as(i32, 32);
-pub const DDFXCAPS_BLTARITHSTRETCHYN = @as(i32, 16);
-pub const DDFXCAPS_BLTMIRRORLEFTRIGHT = @as(i32, 64);
-pub const DDFXCAPS_BLTMIRRORUPDOWN = @as(i32, 128);
-pub const DDFXCAPS_BLTROTATION = @as(i32, 256);
-pub const DDFXCAPS_BLTROTATION90 = @as(i32, 512);
-pub const DDFXCAPS_BLTSHRINKX = @as(i32, 1024);
-pub const DDFXCAPS_BLTSHRINKXN = @as(i32, 2048);
-pub const DDFXCAPS_BLTSHRINKY = @as(i32, 4096);
-pub const DDFXCAPS_BLTSHRINKYN = @as(i32, 8192);
-pub const DDFXCAPS_BLTSTRETCHX = @as(i32, 16384);
-pub const DDFXCAPS_BLTSTRETCHXN = @as(i32, 32768);
-pub const DDFXCAPS_BLTSTRETCHY = @as(i32, 65536);
-pub const DDFXCAPS_BLTSTRETCHYN = @as(i32, 131072);
-pub const DDFXCAPS_OVERLAYARITHSTRETCHY = @as(i32, 262144);
-pub const DDFXCAPS_OVERLAYARITHSTRETCHYN = @as(i32, 8);
-pub const DDFXCAPS_OVERLAYSHRINKX = @as(i32, 524288);
-pub const DDFXCAPS_OVERLAYSHRINKXN = @as(i32, 1048576);
-pub const DDFXCAPS_OVERLAYSHRINKY = @as(i32, 2097152);
-pub const DDFXCAPS_OVERLAYSHRINKYN = @as(i32, 4194304);
-pub const DDFXCAPS_OVERLAYSTRETCHX = @as(i32, 8388608);
-pub const DDFXCAPS_OVERLAYSTRETCHXN = @as(i32, 16777216);
-pub const DDFXCAPS_OVERLAYSTRETCHY = @as(i32, 33554432);
-pub const DDFXCAPS_OVERLAYSTRETCHYN = @as(i32, 67108864);
-pub const DDFXCAPS_OVERLAYMIRRORLEFTRIGHT = @as(i32, 134217728);
-pub const DDFXCAPS_OVERLAYMIRRORUPDOWN = @as(i32, 268435456);
-pub const DDFXCAPS_OVERLAYDEINTERLACE = @as(i32, 536870912);
-pub const DDFXCAPS_BLTALPHA = @as(i32, 1);
-pub const DDFXCAPS_BLTFILTER = @as(i32, 32);
-pub const DDFXCAPS_OVERLAYALPHA = @as(i32, 4);
-pub const DDFXCAPS_OVERLAYFILTER = @as(i32, 262144);
-pub const DDSVCAPS_RESERVED1 = @as(i32, 1);
-pub const DDSVCAPS_RESERVED2 = @as(i32, 2);
-pub const DDSVCAPS_RESERVED3 = @as(i32, 4);
-pub const DDSVCAPS_RESERVED4 = @as(i32, 8);
-pub const DDSVCAPS_STEREOSEQUENTIAL = @as(i32, 16);
-pub const DDPCAPS_4BIT = @as(i32, 1);
-pub const DDPCAPS_8BITENTRIES = @as(i32, 2);
-pub const DDPCAPS_8BIT = @as(i32, 4);
-pub const DDPCAPS_INITIALIZE = @as(i32, 0);
-pub const DDPCAPS_PRIMARYSURFACE = @as(i32, 16);
-pub const DDPCAPS_PRIMARYSURFACELEFT = @as(i32, 32);
-pub const DDPCAPS_ALLOW256 = @as(i32, 64);
-pub const DDPCAPS_VSYNC = @as(i32, 128);
-pub const DDPCAPS_1BIT = @as(i32, 256);
-pub const DDPCAPS_2BIT = @as(i32, 512);
-pub const DDPCAPS_ALPHA = @as(i32, 1024);
-pub const DDSPD_IUNKNOWNPOINTER = @as(i32, 1);
-pub const DDSPD_VOLATILE = @as(i32, 2);
-pub const DDBD_1 = @as(i32, 16384);
-pub const DDBD_2 = @as(i32, 8192);
-pub const DDBD_4 = @as(i32, 4096);
-pub const DDBD_8 = @as(i32, 2048);
-pub const DDBD_16 = @as(i32, 1024);
-pub const DDBD_24 = @as(i32, 512);
-pub const DDBD_32 = @as(i32, 256);
 pub const DDCKEY_COLORSPACE = @as(i32, 1);
 pub const DDCKEY_DESTBLT = @as(i32, 2);
 pub const DDCKEY_DESTOVERLAY = @as(i32, 4);
@@ -269,6 +175,7 @@ pub const DDCKEYCAPS_DESTOVERLAYCLRSPACE = @as(i32, 32);
 pub const DDCKEYCAPS_DESTOVERLAYCLRSPACEYUV = @as(i32, 64);
 pub const DDCKEYCAPS_DESTOVERLAYONEACTIVE = @as(i32, 128);
 pub const DDCKEYCAPS_DESTOVERLAYYUV = @as(i32, 256);
+pub const DDCKEYCAPS_NOCOSTOVERLAY = @as(i32, 262144);
 pub const DDCKEYCAPS_SRCBLT = @as(i32, 512);
 pub const DDCKEYCAPS_SRCBLTCLRSPACE = @as(i32, 1024);
 pub const DDCKEYCAPS_SRCBLTCLRSPACEYUV = @as(i32, 2048);
@@ -278,91 +185,246 @@ pub const DDCKEYCAPS_SRCOVERLAYCLRSPACE = @as(i32, 16384);
 pub const DDCKEYCAPS_SRCOVERLAYCLRSPACEYUV = @as(i32, 32768);
 pub const DDCKEYCAPS_SRCOVERLAYONEACTIVE = @as(i32, 65536);
 pub const DDCKEYCAPS_SRCOVERLAYYUV = @as(i32, 131072);
-pub const DDCKEYCAPS_NOCOSTOVERLAY = @as(i32, 262144);
-pub const DDPF_ALPHAPIXELS = @as(i32, 1);
-pub const DDPF_ALPHA = @as(i32, 2);
-pub const DDPF_FOURCC = @as(i32, 4);
-pub const DDPF_PALETTEINDEXED4 = @as(i32, 8);
-pub const DDPF_PALETTEINDEXEDTO8 = @as(i32, 16);
-pub const DDPF_PALETTEINDEXED8 = @as(i32, 32);
-pub const DDPF_RGB = @as(i32, 64);
-pub const DDPF_COMPRESSED = @as(i32, 128);
-pub const DDPF_RGBTOYUV = @as(i32, 256);
-pub const DDPF_YUV = @as(i32, 512);
-pub const DDPF_ZBUFFER = @as(i32, 1024);
-pub const DDPF_PALETTEINDEXED1 = @as(i32, 2048);
-pub const DDPF_PALETTEINDEXED2 = @as(i32, 4096);
-pub const DDPF_ZPIXELS = @as(i32, 8192);
-pub const DDPF_STENCILBUFFER = @as(i32, 16384);
-pub const DDPF_ALPHAPREMULT = @as(i32, 32768);
-pub const DDPF_LUMINANCE = @as(i32, 131072);
-pub const DDPF_BUMPLUMINANCE = @as(i32, 262144);
-pub const DDPF_BUMPDUDV = @as(i32, 524288);
-pub const DDENUMSURFACES_ALL = @as(i32, 1);
-pub const DDENUMSURFACES_MATCH = @as(i32, 2);
-pub const DDENUMSURFACES_NOMATCH = @as(i32, 4);
-pub const DDENUMSURFACES_CANBECREATED = @as(i32, 8);
-pub const DDENUMSURFACES_DOESEXIST = @as(i32, 16);
-pub const DDSDM_STANDARDVGAMODE = @as(i32, 1);
+pub const DDCOLOR_BRIGHTNESS = @as(i32, 1);
+pub const DDCOLOR_COLORENABLE = @as(i32, 64);
+pub const DDCOLOR_CONTRAST = @as(i32, 2);
+pub const DDCOLOR_GAMMA = @as(i32, 32);
+pub const DDCOLOR_HUE = @as(i32, 4);
+pub const DDCOLOR_SATURATION = @as(i32, 8);
+pub const DDCOLOR_SHARPNESS = @as(i32, 16);
+pub const DDCREATE_EMULATIONONLY = @as(i32, 2);
+pub const DDCREATE_HARDWAREONLY = @as(i32, 1);
+pub const DDCREATEDRIVEROBJECT = @as(u32, 10);
 pub const DDEDM_REFRESHRATES = @as(i32, 1);
 pub const DDEDM_STANDARDVGAMODES = @as(i32, 2);
-pub const DDSCL_FULLSCREEN = @as(i32, 1);
-pub const DDSCL_ALLOWREBOOT = @as(i32, 2);
-pub const DDSCL_NOWINDOWCHANGES = @as(i32, 4);
-pub const DDSCL_NORMAL = @as(i32, 8);
-pub const DDSCL_EXCLUSIVE = @as(i32, 16);
-pub const DDSCL_ALLOWMODEX = @as(i32, 64);
-pub const DDSCL_SETFOCUSWINDOW = @as(i32, 128);
-pub const DDSCL_SETDEVICEWINDOW = @as(i32, 256);
-pub const DDSCL_CREATEDEVICEWINDOW = @as(i32, 512);
-pub const DDSCL_MULTITHREADED = @as(i32, 1024);
-pub const DDSCL_FPUSETUP = @as(i32, 2048);
-pub const DDSCL_FPUPRESERVE = @as(i32, 4096);
-pub const DDBLT_ALPHADEST = @as(i32, 1);
-pub const DDBLT_ALPHADESTCONSTOVERRIDE = @as(i32, 2);
-pub const DDBLT_ALPHADESTNEG = @as(i32, 4);
-pub const DDBLT_ALPHADESTSURFACEOVERRIDE = @as(i32, 8);
-pub const DDBLT_ALPHAEDGEBLEND = @as(i32, 16);
-pub const DDBLT_ALPHASRC = @as(i32, 32);
-pub const DDBLT_ALPHASRCCONSTOVERRIDE = @as(i32, 64);
-pub const DDBLT_ALPHASRCNEG = @as(i32, 128);
-pub const DDBLT_ALPHASRCSURFACEOVERRIDE = @as(i32, 256);
-pub const DDBLT_ASYNC = @as(i32, 512);
-pub const DDBLT_COLORFILL = @as(i32, 1024);
-pub const DDBLT_DDFX = @as(i32, 2048);
-pub const DDBLT_DDROPS = @as(i32, 4096);
-pub const DDBLT_KEYDEST = @as(i32, 8192);
-pub const DDBLT_KEYDESTOVERRIDE = @as(i32, 16384);
-pub const DDBLT_KEYSRC = @as(i32, 32768);
-pub const DDBLT_KEYSRCOVERRIDE = @as(i32, 65536);
-pub const DDBLT_ROP = @as(i32, 131072);
-pub const DDBLT_ROTATIONANGLE = @as(i32, 262144);
-pub const DDBLT_ZBUFFER = @as(i32, 524288);
-pub const DDBLT_ZBUFFERDESTCONSTOVERRIDE = @as(i32, 1048576);
-pub const DDBLT_ZBUFFERDESTOVERRIDE = @as(i32, 2097152);
-pub const DDBLT_ZBUFFERSRCCONSTOVERRIDE = @as(i32, 4194304);
-pub const DDBLT_ZBUFFERSRCOVERRIDE = @as(i32, 8388608);
-pub const DDBLT_WAIT = @as(i32, 16777216);
-pub const DDBLT_DEPTHFILL = @as(i32, 33554432);
-pub const DDBLT_DONOTWAIT = @as(i32, 134217728);
-pub const DDBLT_PRESENTATION = @as(i32, 268435456);
-pub const DDBLT_LAST_PRESENTATION = @as(i32, 536870912);
-pub const DDBLT_EXTENDED_FLAGS = @as(i32, 1073741824);
-pub const DDBLT_EXTENDED_LINEAR_CONTENT = @as(i32, 4);
-pub const DDBLTFAST_NOCOLORKEY = @as(u32, 0);
-pub const DDBLTFAST_SRCCOLORKEY = @as(u32, 1);
-pub const DDBLTFAST_DESTCOLORKEY = @as(u32, 2);
-pub const DDBLTFAST_WAIT = @as(u32, 16);
-pub const DDBLTFAST_DONOTWAIT = @as(u32, 32);
-pub const DDFLIP_WAIT = @as(i32, 1);
+pub const DDEM_MODEFAILED = @as(i32, 2);
+pub const DDEM_MODEPASSED = @as(i32, 1);
+pub const DDENUM_ATTACHEDSECONDARYDEVICES = @as(i32, 1);
+pub const DDENUM_DETACHEDSECONDARYDEVICES = @as(i32, 2);
+pub const DDENUM_NONDISPLAYDEVICES = @as(i32, 4);
+pub const DDENUMOVERLAYZ_BACKTOFRONT = @as(i32, 0);
+pub const DDENUMOVERLAYZ_FRONTTOBACK = @as(i32, 1);
+pub const DDENUMRET_CANCEL = @as(u32, 0);
+pub const DDENUMRET_OK = @as(u32, 1);
+pub const DDENUMSURFACES_ALL = @as(i32, 1);
+pub const DDENUMSURFACES_CANBECREATED = @as(i32, 8);
+pub const DDENUMSURFACES_DOESEXIST = @as(i32, 16);
+pub const DDENUMSURFACES_MATCH = @as(i32, 2);
+pub const DDENUMSURFACES_NOMATCH = @as(i32, 4);
+pub const DDERR_NOTINITIALIZED = @as(i32, -2147221008);
+pub const DDFLIP_DONOTWAIT = @as(i32, 32);
 pub const DDFLIP_EVEN = @as(i32, 2);
-pub const DDFLIP_ODD = @as(i32, 4);
-pub const DDFLIP_NOVSYNC = @as(i32, 8);
 pub const DDFLIP_INTERVAL2 = @as(i32, 33554432);
 pub const DDFLIP_INTERVAL3 = @as(i32, 50331648);
 pub const DDFLIP_INTERVAL4 = @as(i32, 67108864);
+pub const DDFLIP_NOVSYNC = @as(i32, 8);
+pub const DDFLIP_ODD = @as(i32, 4);
 pub const DDFLIP_STEREO = @as(i32, 16);
-pub const DDFLIP_DONOTWAIT = @as(i32, 32);
+pub const DDFLIP_WAIT = @as(i32, 1);
+pub const DDFXALPHACAPS_BLTALPHAEDGEBLEND = @as(i32, 1);
+pub const DDFXALPHACAPS_BLTALPHAPIXELS = @as(i32, 2);
+pub const DDFXALPHACAPS_BLTALPHAPIXELSNEG = @as(i32, 4);
+pub const DDFXALPHACAPS_BLTALPHASURFACES = @as(i32, 8);
+pub const DDFXALPHACAPS_BLTALPHASURFACESNEG = @as(i32, 16);
+pub const DDFXALPHACAPS_OVERLAYALPHAEDGEBLEND = @as(i32, 32);
+pub const DDFXALPHACAPS_OVERLAYALPHAPIXELS = @as(i32, 64);
+pub const DDFXALPHACAPS_OVERLAYALPHAPIXELSNEG = @as(i32, 128);
+pub const DDFXALPHACAPS_OVERLAYALPHASURFACES = @as(i32, 256);
+pub const DDFXALPHACAPS_OVERLAYALPHASURFACESNEG = @as(i32, 512);
+pub const DDFXCAPS_BLTALPHA = @as(i32, 1);
+pub const DDFXCAPS_BLTARITHSTRETCHY = @as(i32, 32);
+pub const DDFXCAPS_BLTARITHSTRETCHYN = @as(i32, 16);
+pub const DDFXCAPS_BLTFILTER = @as(i32, 32);
+pub const DDFXCAPS_BLTMIRRORLEFTRIGHT = @as(i32, 64);
+pub const DDFXCAPS_BLTMIRRORUPDOWN = @as(i32, 128);
+pub const DDFXCAPS_BLTROTATION = @as(i32, 256);
+pub const DDFXCAPS_BLTROTATION90 = @as(i32, 512);
+pub const DDFXCAPS_BLTSHRINKX = @as(i32, 1024);
+pub const DDFXCAPS_BLTSHRINKXN = @as(i32, 2048);
+pub const DDFXCAPS_BLTSHRINKY = @as(i32, 4096);
+pub const DDFXCAPS_BLTSHRINKYN = @as(i32, 8192);
+pub const DDFXCAPS_BLTSTRETCHX = @as(i32, 16384);
+pub const DDFXCAPS_BLTSTRETCHXN = @as(i32, 32768);
+pub const DDFXCAPS_BLTSTRETCHY = @as(i32, 65536);
+pub const DDFXCAPS_BLTSTRETCHYN = @as(i32, 131072);
+pub const DDFXCAPS_OVERLAYALPHA = @as(i32, 4);
+pub const DDFXCAPS_OVERLAYARITHSTRETCHY = @as(i32, 262144);
+pub const DDFXCAPS_OVERLAYARITHSTRETCHYN = @as(i32, 8);
+pub const DDFXCAPS_OVERLAYDEINTERLACE = @as(i32, 536870912);
+pub const DDFXCAPS_OVERLAYFILTER = @as(i32, 262144);
+pub const DDFXCAPS_OVERLAYMIRRORLEFTRIGHT = @as(i32, 134217728);
+pub const DDFXCAPS_OVERLAYMIRRORUPDOWN = @as(i32, 268435456);
+pub const DDFXCAPS_OVERLAYSHRINKX = @as(i32, 524288);
+pub const DDFXCAPS_OVERLAYSHRINKXN = @as(i32, 1048576);
+pub const DDFXCAPS_OVERLAYSHRINKY = @as(i32, 2097152);
+pub const DDFXCAPS_OVERLAYSHRINKYN = @as(i32, 4194304);
+pub const DDFXCAPS_OVERLAYSTRETCHX = @as(i32, 8388608);
+pub const DDFXCAPS_OVERLAYSTRETCHXN = @as(i32, 16777216);
+pub const DDFXCAPS_OVERLAYSTRETCHY = @as(i32, 33554432);
+pub const DDFXCAPS_OVERLAYSTRETCHYN = @as(i32, 67108864);
+pub const DDGBS_CANBLT = @as(i32, 1);
+pub const DDGBS_ISBLTDONE = @as(i32, 2);
+pub const DDGDI_GETHOSTIDENTIFIER = @as(i32, 1);
+pub const DDGET32BITDRIVERNAME = @as(u32, 11);
+pub const DDGFS_CANFLIP = @as(i32, 1);
+pub const DDGFS_ISFLIPDONE = @as(i32, 2);
+pub const DDHAL_APP_DLLNAME = "DDRAW.DLL";
+pub const DDHAL_CB32_CANCREATESURFACE = @as(i32, 32);
+pub const DDHAL_CB32_CREATEPALETTE = @as(i32, 64);
+pub const DDHAL_CB32_CREATESURFACE = @as(i32, 2);
+pub const DDHAL_CB32_DESTROYDRIVER = @as(i32, 1);
+pub const DDHAL_CB32_FLIPTOGDISURFACE = @as(i32, 512);
+pub const DDHAL_CB32_GETSCANLINE = @as(i32, 128);
+pub const DDHAL_CB32_MAPMEMORY = @as(i32, -2147483648);
+pub const DDHAL_CB32_SETCOLORKEY = @as(i32, 4);
+pub const DDHAL_CB32_SETEXCLUSIVEMODE = @as(i32, 256);
+pub const DDHAL_CB32_SETMODE = @as(i32, 8);
+pub const DDHAL_CB32_WAITFORVERTICALBLANK = @as(i32, 16);
+pub const DDHAL_COLOR_COLORCONTROL = @as(i32, 1);
+pub const DDHAL_CREATESURFACEEX_SWAPHANDLES = @as(i32, 1);
+pub const DDHAL_D3DBUFCB32_CANCREATED3DBUF = @as(i32, 1);
+pub const DDHAL_D3DBUFCB32_CREATED3DBUF = @as(i32, 2);
+pub const DDHAL_D3DBUFCB32_DESTROYD3DBUF = @as(i32, 4);
+pub const DDHAL_D3DBUFCB32_LOCKD3DBUF = @as(i32, 8);
+pub const DDHAL_D3DBUFCB32_UNLOCKD3DBUF = @as(i32, 16);
+pub const DDHAL_DRIVER_DLLNAME = "DDRAW16.DLL";
+pub const DDHAL_DRIVER_HANDLED = @as(i32, 1);
+pub const DDHAL_DRIVER_NOCKEYHW = @as(i32, 2);
+pub const DDHAL_DRIVER_NOTHANDLED = @as(i32, 0);
+pub const DDHAL_EXEBUFCB32_CANCREATEEXEBUF = @as(i32, 1);
+pub const DDHAL_EXEBUFCB32_CREATEEXEBUF = @as(i32, 2);
+pub const DDHAL_EXEBUFCB32_DESTROYEXEBUF = @as(i32, 4);
+pub const DDHAL_EXEBUFCB32_LOCKEXEBUF = @as(i32, 8);
+pub const DDHAL_EXEBUFCB32_UNLOCKEXEBUF = @as(i32, 16);
+pub const DDHAL_KERNEL_SYNCSURFACEDATA = @as(i32, 1);
+pub const DDHAL_KERNEL_SYNCVIDEOPORTDATA = @as(i32, 2);
+pub const DDHAL_MISC2CB32_ALPHABLT = @as(i32, 1);
+pub const DDHAL_MISC2CB32_CREATESURFACEEX = @as(i32, 2);
+pub const DDHAL_MISC2CB32_DESTROYDDLOCAL = @as(i32, 8);
+pub const DDHAL_MISC2CB32_GETDRIVERSTATE = @as(i32, 4);
+pub const DDHAL_MISCCB32_GETAVAILDRIVERMEMORY = @as(i32, 1);
+pub const DDHAL_MISCCB32_GETHEAPALIGNMENT = @as(i32, 4);
+pub const DDHAL_MISCCB32_GETSYSMEMBLTSTATUS = @as(i32, 8);
+pub const DDHAL_MISCCB32_UPDATENONLOCALHEAP = @as(i32, 2);
+pub const DDHAL_MOCOMP32_BEGINFRAME = @as(u32, 32);
+pub const DDHAL_MOCOMP32_CREATE = @as(u32, 4);
+pub const DDHAL_MOCOMP32_DESTROY = @as(u32, 512);
+pub const DDHAL_MOCOMP32_ENDFRAME = @as(u32, 64);
+pub const DDHAL_MOCOMP32_GETCOMPBUFFINFO = @as(u32, 8);
+pub const DDHAL_MOCOMP32_GETFORMATS = @as(u32, 2);
+pub const DDHAL_MOCOMP32_GETGUIDS = @as(u32, 1);
+pub const DDHAL_MOCOMP32_GETINTERNALINFO = @as(u32, 16);
+pub const DDHAL_MOCOMP32_QUERYSTATUS = @as(u32, 256);
+pub const DDHAL_MOCOMP32_RENDER = @as(u32, 128);
+pub const DDHAL_NTCB32_FLIPTOGDISURFACE = @as(i32, 4);
+pub const DDHAL_NTCB32_FREEDRIVERMEMORY = @as(i32, 1);
+pub const DDHAL_NTCB32_SETEXCLUSIVEMODE = @as(i32, 2);
+pub const DDHAL_PALCB32_DESTROYPALETTE = @as(i32, 1);
+pub const DDHAL_PALCB32_SETENTRIES = @as(i32, 2);
+pub const DDHAL_PLEASEALLOC_BLOCKSIZE = @as(i32, 2);
+pub const DDHAL_PLEASEALLOC_LINEARSIZE = @as(i32, 3);
+pub const DDHAL_PLEASEALLOC_USERMEM = @as(i32, 4);
+pub const DDHAL_PRIVATECAP_ATOMICSURFACECREATION = @as(i32, 1);
+pub const DDHAL_PRIVATECAP_NOTIFYPRIMARYCREATION = @as(i32, 2);
+pub const DDHAL_PRIVATECAP_RESERVED1 = @as(i32, 4);
+pub const DDHAL_SURFCB32_ADDATTACHEDSURFACE = @as(i32, 128);
+pub const DDHAL_SURFCB32_BLT = @as(i32, 32);
+pub const DDHAL_SURFCB32_DESTROYSURFACE = @as(i32, 1);
+pub const DDHAL_SURFCB32_FLIP = @as(i32, 2);
+pub const DDHAL_SURFCB32_GETBLTSTATUS = @as(i32, 256);
+pub const DDHAL_SURFCB32_GETFLIPSTATUS = @as(i32, 512);
+pub const DDHAL_SURFCB32_LOCK = @as(i32, 8);
+pub const DDHAL_SURFCB32_RESERVED4 = @as(i32, 4096);
+pub const DDHAL_SURFCB32_SETCLIPLIST = @as(i32, 4);
+pub const DDHAL_SURFCB32_SETCOLORKEY = @as(i32, 64);
+pub const DDHAL_SURFCB32_SETOVERLAYPOSITION = @as(i32, 2048);
+pub const DDHAL_SURFCB32_SETPALETTE = @as(i32, 8192);
+pub const DDHAL_SURFCB32_UNLOCK = @as(i32, 16);
+pub const DDHAL_SURFCB32_UPDATEOVERLAY = @as(i32, 1024);
+pub const DDHAL_VPORT32_CANCREATEVIDEOPORT = @as(i32, 1);
+pub const DDHAL_VPORT32_COLORCONTROL = @as(i32, 32768);
+pub const DDHAL_VPORT32_CREATEVIDEOPORT = @as(i32, 2);
+pub const DDHAL_VPORT32_DESTROY = @as(i32, 1024);
+pub const DDHAL_VPORT32_FLIP = @as(i32, 4);
+pub const DDHAL_VPORT32_GETAUTOFLIPSURF = @as(i32, 64);
+pub const DDHAL_VPORT32_GETBANDWIDTH = @as(i32, 8);
+pub const DDHAL_VPORT32_GETCONNECT = @as(i32, 512);
+pub const DDHAL_VPORT32_GETFIELD = @as(i32, 128);
+pub const DDHAL_VPORT32_GETFLIPSTATUS = @as(i32, 2048);
+pub const DDHAL_VPORT32_GETINPUTFORMATS = @as(i32, 16);
+pub const DDHAL_VPORT32_GETLINE = @as(i32, 256);
+pub const DDHAL_VPORT32_GETOUTPUTFORMATS = @as(i32, 32);
+pub const DDHAL_VPORT32_GETSIGNALSTATUS = @as(i32, 16384);
+pub const DDHAL_VPORT32_UPDATE = @as(i32, 4096);
+pub const DDHAL_VPORT32_WAITFORSYNC = @as(i32, 8192);
+pub const DDHALINFO_GETDRIVERINFO2 = @as(i32, 8);
+pub const DDHALINFO_GETDRIVERINFOSET = @as(i32, 4);
+pub const DDHALINFO_ISPRIMARYDISPLAY = @as(i32, 1);
+pub const DDHALINFO_MODEXILLEGAL = @as(i32, 2);
+pub const DDIRQ_BUSMASTER = @as(i32, 2);
+pub const DDIRQ_DISPLAY_VSYNC = @as(i32, 1);
+pub const DDIRQ_RESERVED1 = @as(i32, 2);
+pub const DDIRQ_VPORT0_LINE = @as(i32, 8);
+pub const DDIRQ_VPORT0_VSYNC = @as(i32, 4);
+pub const DDIRQ_VPORT1_LINE = @as(i32, 32);
+pub const DDIRQ_VPORT1_VSYNC = @as(i32, 16);
+pub const DDIRQ_VPORT2_LINE = @as(i32, 128);
+pub const DDIRQ_VPORT2_VSYNC = @as(i32, 64);
+pub const DDIRQ_VPORT3_LINE = @as(i32, 512);
+pub const DDIRQ_VPORT3_VSYNC = @as(i32, 256);
+pub const DDIRQ_VPORT4_LINE = @as(i32, 2048);
+pub const DDIRQ_VPORT4_VSYNC = @as(i32, 1024);
+pub const DDIRQ_VPORT5_LINE = @as(i32, 8192);
+pub const DDIRQ_VPORT5_VSYNC = @as(i32, 4096);
+pub const DDIRQ_VPORT6_LINE = @as(i32, 32768);
+pub const DDIRQ_VPORT6_VSYNC = @as(i32, 16384);
+pub const DDIRQ_VPORT7_LINE = @as(i32, 131072);
+pub const DDIRQ_VPORT7_VSYNC = @as(i32, 65536);
+pub const DDIRQ_VPORT8_LINE = @as(i32, 524288);
+pub const DDIRQ_VPORT8_VSYNC = @as(i32, 262144);
+pub const DDIRQ_VPORT9_LINE = @as(i32, 131072);
+pub const DDIRQ_VPORT9_VSYNC = @as(i32, 65536);
+pub const DDKERNELCAPS_AUTOFLIP = @as(i32, 2);
+pub const DDKERNELCAPS_CAPTURE_INVERTED = @as(i32, 512);
+pub const DDKERNELCAPS_CAPTURE_NONLOCALVIDMEM = @as(i32, 128);
+pub const DDKERNELCAPS_CAPTURE_SYSMEM = @as(i32, 64);
+pub const DDKERNELCAPS_FIELDPOLARITY = @as(i32, 256);
+pub const DDKERNELCAPS_FLIPOVERLAY = @as(i32, 32);
+pub const DDKERNELCAPS_FLIPVIDEOPORT = @as(i32, 16);
+pub const DDKERNELCAPS_LOCK = @as(i32, 8);
+pub const DDKERNELCAPS_SETSTATE = @as(i32, 4);
+pub const DDKERNELCAPS_SKIPFIELDS = @as(i32, 1);
+pub const DDLOCK_DISCARDCONTENTS = @as(i32, 8192);
+pub const DDLOCK_DONOTWAIT = @as(i32, 16384);
+pub const DDLOCK_EVENT = @as(i32, 2);
+pub const DDLOCK_HASVOLUMETEXTUREBOXRECT = @as(i32, 32768);
+pub const DDLOCK_NODIRTYUPDATE = @as(i32, 65536);
+pub const DDLOCK_NOOVERWRITE = @as(i32, 4096);
+pub const DDLOCK_NOSYSLOCK = @as(i32, 2048);
+pub const DDLOCK_OKTOSWAP = @as(i32, 8192);
+pub const DDLOCK_READONLY = @as(i32, 16);
+pub const DDLOCK_SURFACEMEMORYPTR = @as(i32, 0);
+pub const DDLOCK_WAIT = @as(i32, 1);
+pub const DDLOCK_WRITEONLY = @as(i32, 32);
+pub const DDMCQUERY_READ = @as(u32, 1);
+pub const DDMODEINFO_MAXREFRESH = @as(u32, 16);
+pub const DDMODEINFO_MODEX = @as(u32, 2);
+pub const DDMODEINFO_PALETTIZED = @as(u32, 1);
+pub const DDMODEINFO_STANDARDVGA = @as(u32, 8);
+pub const DDMODEINFO_STEREO = @as(u32, 32);
+pub const DDMODEINFO_UNSUPPORTED = @as(u32, 4);
+pub const DDNEWCALLBACKFNS = @as(u32, 12);
+pub const DDOSD_ALL = @as(i32, 15);
+pub const DDOSD_COMPRESSION_RATIO = @as(i32, 2);
+pub const DDOSD_GUID = @as(i32, 1);
+pub const DDOSD_OSCAPS = @as(i32, 8);
+pub const DDOSD_SCAPS = @as(i32, 4);
+pub const DDOSDCAPS_MONOLITHICMIPMAP = @as(i32, 4);
+pub const DDOSDCAPS_OPTCOMPRESSED = @as(i32, 1);
+pub const DDOSDCAPS_OPTREORDERED = @as(i32, 2);
+pub const DDOSDCAPS_VALIDOSCAPS = @as(i32, 7);
+pub const DDOSDCAPS_VALIDSCAPS = @as(i32, 805324800);
+pub const DDOVER_ADDDIRTYRECT = @as(i32, 32768);
 pub const DDOVER_ALPHADEST = @as(i32, 1);
 pub const DDOVER_ALPHADESTCONSTOVERRIDE = @as(i32, 2);
 pub const DDOVER_ALPHADESTNEG = @as(i32, 4);
@@ -372,642 +434,1415 @@ pub const DDOVER_ALPHASRC = @as(i32, 32);
 pub const DDOVER_ALPHASRCCONSTOVERRIDE = @as(i32, 64);
 pub const DDOVER_ALPHASRCNEG = @as(i32, 128);
 pub const DDOVER_ALPHASRCSURFACEOVERRIDE = @as(i32, 256);
+pub const DDOVER_ARGBSCALEFACTORS = @as(i32, 33554432);
+pub const DDOVER_AUTOFLIP = @as(i32, 1048576);
+pub const DDOVER_BOB = @as(i32, 2097152);
+pub const DDOVER_BOBHARDWARE = @as(i32, 16777216);
+pub const DDOVER_DDFX = @as(i32, 524288);
+pub const DDOVER_DEGRADEARGBSCALING = @as(i32, 67108864);
 pub const DDOVER_HIDE = @as(i32, 512);
+pub const DDOVER_INTERLEAVED = @as(i32, 8388608);
 pub const DDOVER_KEYDEST = @as(i32, 1024);
 pub const DDOVER_KEYDESTOVERRIDE = @as(i32, 2048);
 pub const DDOVER_KEYSRC = @as(i32, 4096);
 pub const DDOVER_KEYSRCOVERRIDE = @as(i32, 8192);
-pub const DDOVER_SHOW = @as(i32, 16384);
-pub const DDOVER_ADDDIRTYRECT = @as(i32, 32768);
-pub const DDOVER_REFRESHDIRTYRECTS = @as(i32, 65536);
-pub const DDOVER_REFRESHALL = @as(i32, 131072);
-pub const DDOVER_DDFX = @as(i32, 524288);
-pub const DDOVER_AUTOFLIP = @as(i32, 1048576);
-pub const DDOVER_BOB = @as(i32, 2097152);
 pub const DDOVER_OVERRIDEBOBWEAVE = @as(i32, 4194304);
-pub const DDOVER_INTERLEAVED = @as(i32, 8388608);
-pub const DDOVER_BOBHARDWARE = @as(i32, 16777216);
-pub const DDOVER_ARGBSCALEFACTORS = @as(i32, 33554432);
-pub const DDOVER_DEGRADEARGBSCALING = @as(i32, 67108864);
-pub const DDSETSURFACEDESC_RECREATEDC = @as(i32, 0);
-pub const DDSETSURFACEDESC_PRESERVEDC = @as(i32, 1);
-pub const DDLOCK_SURFACEMEMORYPTR = @as(i32, 0);
-pub const DDLOCK_WAIT = @as(i32, 1);
-pub const DDLOCK_EVENT = @as(i32, 2);
-pub const DDLOCK_READONLY = @as(i32, 16);
-pub const DDLOCK_WRITEONLY = @as(i32, 32);
-pub const DDLOCK_NOSYSLOCK = @as(i32, 2048);
-pub const DDLOCK_NOOVERWRITE = @as(i32, 4096);
-pub const DDLOCK_DISCARDCONTENTS = @as(i32, 8192);
-pub const DDLOCK_OKTOSWAP = @as(i32, 8192);
-pub const DDLOCK_DONOTWAIT = @as(i32, 16384);
-pub const DDLOCK_HASVOLUMETEXTUREBOXRECT = @as(i32, 32768);
-pub const DDLOCK_NODIRTYUPDATE = @as(i32, 65536);
-pub const DDBLTFX_ARITHSTRETCHY = @as(i32, 1);
-pub const DDBLTFX_MIRRORLEFTRIGHT = @as(i32, 2);
-pub const DDBLTFX_MIRRORUPDOWN = @as(i32, 4);
-pub const DDBLTFX_NOTEARING = @as(i32, 8);
-pub const DDBLTFX_ROTATE180 = @as(i32, 16);
-pub const DDBLTFX_ROTATE270 = @as(i32, 32);
-pub const DDBLTFX_ROTATE90 = @as(i32, 64);
-pub const DDBLTFX_ZBUFFERRANGE = @as(i32, 128);
-pub const DDBLTFX_ZBUFFERBASEDEST = @as(i32, 256);
+pub const DDOVER_REFRESHALL = @as(i32, 131072);
+pub const DDOVER_REFRESHDIRTYRECTS = @as(i32, 65536);
+pub const DDOVER_SHOW = @as(i32, 16384);
 pub const DDOVERFX_ARITHSTRETCHY = @as(i32, 1);
+pub const DDOVERFX_DEINTERLACE = @as(i32, 8);
 pub const DDOVERFX_MIRRORLEFTRIGHT = @as(i32, 2);
 pub const DDOVERFX_MIRRORUPDOWN = @as(i32, 4);
-pub const DDOVERFX_DEINTERLACE = @as(i32, 8);
-pub const DDWAITVB_BLOCKBEGIN = @as(i32, 1);
-pub const DDWAITVB_BLOCKBEGINEVENT = @as(i32, 2);
-pub const DDWAITVB_BLOCKEND = @as(i32, 4);
-pub const DDGFS_CANFLIP = @as(i32, 1);
-pub const DDGFS_ISFLIPDONE = @as(i32, 2);
-pub const DDGBS_CANBLT = @as(i32, 1);
-pub const DDGBS_ISBLTDONE = @as(i32, 2);
-pub const DDENUMOVERLAYZ_BACKTOFRONT = @as(i32, 0);
-pub const DDENUMOVERLAYZ_FRONTTOBACK = @as(i32, 1);
-pub const DDOVERZ_SENDTOFRONT = @as(i32, 0);
-pub const DDOVERZ_SENDTOBACK = @as(i32, 1);
-pub const DDOVERZ_MOVEFORWARD = @as(i32, 2);
-pub const DDOVERZ_MOVEBACKWARD = @as(i32, 3);
-pub const DDOVERZ_INSERTINFRONTOF = @as(i32, 4);
 pub const DDOVERZ_INSERTINBACKOF = @as(i32, 5);
-pub const DDSGR_CALIBRATE = @as(i32, 1);
-pub const DDSMT_ISTESTREQUIRED = @as(i32, 1);
-pub const DDEM_MODEPASSED = @as(i32, 1);
-pub const DDEM_MODEFAILED = @as(i32, 2);
-pub const DDENUMRET_CANCEL = @as(u32, 0);
-pub const DDENUMRET_OK = @as(u32, 1);
-pub const DDERR_NOTINITIALIZED = @as(i32, -2147221008);
-pub const OBJECT_ISROOT = @as(i32, -2147483648);
-pub const DDUNSUPPORTEDMODE = @as(u32, 4294967295);
-pub const GUID_MiscellaneousCallbacks = Guid.initString("efd60cc0-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_VideoPortCallbacks = Guid.initString("efd60cc1-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_ColorControlCallbacks = Guid.initString("efd60cc2-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_VideoPortCaps = Guid.initString("efd60cc3-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_D3DCallbacks2 = Guid.initString("0ba584e1-70b6-11d0-889d-00aa00bbb76a");
-pub const GUID_D3DCallbacks3 = Guid.initString("ddf41230-ec0a-11d0-a9b6-00aa00c0993e");
-pub const GUID_NonLocalVidMemCaps = Guid.initString("86c4fa80-8d84-11d0-94e8-00c04fc34137");
-pub const GUID_KernelCallbacks = Guid.initString("80863800-6b06-11d0-9b06-00a0c903a3b8");
-pub const GUID_KernelCaps = Guid.initString("ffaa7540-7aa8-11d0-9b06-00a0c903a3b8");
-pub const GUID_D3DExtendedCaps = Guid.initString("7de41f80-9d93-11d0-89ab-00a0c9054129");
-pub const GUID_ZPixelFormats = Guid.initString("93869880-36cf-11d1-9b1b-00aa00bbb8ae");
-pub const GUID_DDMoreSurfaceCaps = Guid.initString("3b8a0466-f269-11d1-880b-00c04fd930c5");
-pub const GUID_DDStereoMode = Guid.initString("f828169c-a8e8-11d2-a1f2-00a0c983eaf6");
-pub const GUID_OptSurfaceKmodeInfo = Guid.initString("e05c8472-51d4-11d1-8cce-00a0c90629a8");
-pub const GUID_OptSurfaceUmodeInfo = Guid.initString("9d792804-5fa8-11d1-8cd0-00a0c90629a8");
-pub const GUID_UserModeDriverInfo = Guid.initString("f0b0e8e2-5f97-11d1-8cd0-00a0c90629a8");
-pub const GUID_UserModeDriverPassword = Guid.initString("97f861b6-60a1-11d1-8cd0-00a0c90629a8");
-pub const GUID_D3DParseUnknownCommandCallback = Guid.initString("2e04ffa0-98e4-11d1-8ce1-00a0c90629a8");
-pub const GUID_MotionCompCallbacks = Guid.initString("b1122b40-5da5-11d1-8fcf-00c04fc29b4e");
-pub const GUID_Miscellaneous2Callbacks = Guid.initString("406b2f00-3e5a-11d1-b640-00aa00a1f96a");
-pub const DDPF_NOVEL_TEXTURE_FORMAT = @as(i32, 1048576);
+pub const DDOVERZ_INSERTINFRONTOF = @as(i32, 4);
+pub const DDOVERZ_MOVEBACKWARD = @as(i32, 3);
+pub const DDOVERZ_MOVEFORWARD = @as(i32, 2);
+pub const DDOVERZ_SENDTOBACK = @as(i32, 1);
+pub const DDOVERZ_SENDTOFRONT = @as(i32, 0);
+pub const DDPCAPS_1BIT = @as(i32, 256);
+pub const DDPCAPS_2BIT = @as(i32, 512);
+pub const DDPCAPS_4BIT = @as(i32, 1);
+pub const DDPCAPS_8BIT = @as(i32, 4);
+pub const DDPCAPS_8BITENTRIES = @as(i32, 2);
+pub const DDPCAPS_ALLOW256 = @as(i32, 64);
+pub const DDPCAPS_ALPHA = @as(i32, 1024);
+pub const DDPCAPS_INITIALIZE = @as(i32, 0);
+pub const DDPCAPS_PRIMARYSURFACE = @as(i32, 16);
+pub const DDPCAPS_PRIMARYSURFACELEFT = @as(i32, 32);
+pub const DDPCAPS_VSYNC = @as(i32, 128);
+pub const DDPF_ALPHA = @as(i32, 2);
+pub const DDPF_ALPHAPIXELS = @as(i32, 1);
+pub const DDPF_ALPHAPREMULT = @as(i32, 32768);
+pub const DDPF_BUMPDUDV = @as(i32, 524288);
+pub const DDPF_BUMPLUMINANCE = @as(i32, 262144);
+pub const DDPF_COMPRESSED = @as(i32, 128);
 pub const DDPF_D3DFORMAT = @as(i32, 2097152);
-pub const D3DFORMAT_OP_TEXTURE = @as(i32, 1);
-pub const D3DFORMAT_OP_VOLUMETEXTURE = @as(i32, 2);
-pub const D3DFORMAT_OP_CUBETEXTURE = @as(i32, 4);
-pub const D3DFORMAT_OP_OFFSCREEN_RENDERTARGET = @as(i32, 8);
-pub const D3DFORMAT_OP_SAME_FORMAT_RENDERTARGET = @as(i32, 16);
-pub const D3DFORMAT_OP_ZSTENCIL = @as(i32, 64);
-pub const D3DFORMAT_OP_ZSTENCIL_WITH_ARBITRARY_COLOR_DEPTH = @as(i32, 128);
-pub const D3DFORMAT_OP_SAME_FORMAT_UP_TO_ALPHA_RENDERTARGET = @as(i32, 256);
-pub const D3DFORMAT_OP_DISPLAYMODE = @as(i32, 1024);
-pub const D3DFORMAT_OP_3DACCELERATION = @as(i32, 2048);
-pub const D3DFORMAT_OP_PIXELSIZE = @as(i32, 4096);
-pub const D3DFORMAT_OP_CONVERT_TO_ARGB = @as(i32, 8192);
-pub const D3DFORMAT_OP_OFFSCREENPLAIN = @as(i32, 16384);
-pub const D3DFORMAT_OP_SRGBREAD = @as(i32, 32768);
-pub const D3DFORMAT_OP_BUMPMAP = @as(i32, 65536);
-pub const D3DFORMAT_OP_DMAP = @as(i32, 131072);
-pub const D3DFORMAT_OP_NOFILTER = @as(i32, 262144);
-pub const D3DFORMAT_MEMBEROFGROUP_ARGB = @as(i32, 524288);
-pub const D3DFORMAT_OP_SRGBWRITE = @as(i32, 1048576);
-pub const D3DFORMAT_OP_NOALPHABLEND = @as(i32, 2097152);
-pub const D3DFORMAT_OP_AUTOGENMIPMAP = @as(i32, 4194304);
-pub const D3DFORMAT_OP_VERTEXTEXTURE = @as(i32, 8388608);
-pub const D3DFORMAT_OP_NOTEXCOORDWRAPNORMIP = @as(i32, 16777216);
-pub const DELETED_OK = @as(u32, 0);
-pub const DELETED_LASTONE = @as(u32, 1);
-pub const DELETED_NOTFOUND = @as(u32, 2);
-pub const DCICOMMAND = @as(u32, 3075);
-pub const DD_VERSION = @as(i32, 512);
-pub const DD_RUNTIME_VERSION = @as(i32, 2306);
-pub const DD_HAL_VERSION = @as(u32, 256);
-pub const DDCREATEDRIVEROBJECT = @as(u32, 10);
-pub const DDGET32BITDRIVERNAME = @as(u32, 11);
-pub const DDNEWCALLBACKFNS = @as(u32, 12);
-pub const DDVERSIONINFO = @as(u32, 13);
-pub const DDHAL_DRIVER_DLLNAME = "DDRAW16.DLL";
-pub const DDHAL_APP_DLLNAME = "DDRAW.DLL";
-pub const CCHDEVICENAME = @as(u32, 32);
-pub const MAX_DRIVER_NAME = @as(u32, 32);
-pub const MAX_PALETTE_SIZE = @as(u32, 256);
-pub const MAX_AUTOFLIP_BUFFERS = @as(u32, 10);
-pub const DDSCAPS_EXECUTEBUFFER = @as(i32, 8388608);
-pub const DDSCAPS2_VERTEXBUFFER = @as(i32, 32);
-pub const DDSCAPS2_COMMANDBUFFER = @as(i32, 64);
-pub const DDSCAPS2_INDEXBUFFER = @as(i32, 67108864);
-pub const DDSCAPS3_VIDEO = @as(i32, 512);
-pub const D3DFMT_INTERNAL_D32 = @as(u32, 71);
-pub const D3DFMT_INTERNAL_S1D15 = @as(u32, 72);
-pub const D3DFMT_INTERNAL_D15S1 = @as(u32, 73);
-pub const D3DFMT_INTERNAL_S8D24 = @as(u32, 74);
-pub const D3DFMT_INTERNAL_D24S8 = @as(u32, 75);
-pub const D3DFMT_INTERNAL_X8D24 = @as(u32, 76);
-pub const D3DFMT_INTERNAL_D24X8 = @as(u32, 77);
-pub const DDHAL_PLEASEALLOC_BLOCKSIZE = @as(i32, 2);
-pub const DDHAL_PLEASEALLOC_LINEARSIZE = @as(i32, 3);
-pub const VIDMEM_ISLINEAR = @as(i32, 1);
-pub const VIDMEM_ISRECTANGULAR = @as(i32, 2);
-pub const VIDMEM_ISHEAP = @as(i32, 4);
-pub const VIDMEM_ISNONLOCAL = @as(i32, 8);
-pub const VIDMEM_ISWC = @as(i32, 16);
-pub const VIDMEM_HEAPDISABLED = @as(i32, 32);
-pub const HEAPALIASINFO_MAPPEDREAL = @as(i32, 1);
-pub const HEAPALIASINFO_MAPPEDDUMMY = @as(i32, 2);
-pub const DDHAL_CB32_DESTROYDRIVER = @as(i32, 1);
-pub const DDHAL_CB32_CREATESURFACE = @as(i32, 2);
-pub const DDHAL_CB32_SETCOLORKEY = @as(i32, 4);
-pub const DDHAL_CB32_SETMODE = @as(i32, 8);
-pub const DDHAL_CB32_WAITFORVERTICALBLANK = @as(i32, 16);
-pub const DDHAL_CB32_CANCREATESURFACE = @as(i32, 32);
-pub const DDHAL_CB32_CREATEPALETTE = @as(i32, 64);
-pub const DDHAL_CB32_GETSCANLINE = @as(i32, 128);
-pub const DDHAL_CB32_SETEXCLUSIVEMODE = @as(i32, 256);
-pub const DDHAL_CB32_FLIPTOGDISURFACE = @as(i32, 512);
-pub const DDHAL_PALCB32_DESTROYPALETTE = @as(i32, 1);
-pub const DDHAL_PALCB32_SETENTRIES = @as(i32, 2);
-pub const DDHAL_SURFCB32_DESTROYSURFACE = @as(i32, 1);
-pub const DDHAL_SURFCB32_FLIP = @as(i32, 2);
-pub const DDHAL_SURFCB32_SETCLIPLIST = @as(i32, 4);
-pub const DDHAL_SURFCB32_LOCK = @as(i32, 8);
-pub const DDHAL_SURFCB32_UNLOCK = @as(i32, 16);
-pub const DDHAL_SURFCB32_BLT = @as(i32, 32);
-pub const DDHAL_SURFCB32_SETCOLORKEY = @as(i32, 64);
-pub const DDHAL_SURFCB32_ADDATTACHEDSURFACE = @as(i32, 128);
-pub const DDHAL_SURFCB32_GETBLTSTATUS = @as(i32, 256);
-pub const DDHAL_SURFCB32_GETFLIPSTATUS = @as(i32, 512);
-pub const DDHAL_SURFCB32_UPDATEOVERLAY = @as(i32, 1024);
-pub const DDHAL_SURFCB32_SETOVERLAYPOSITION = @as(i32, 2048);
-pub const DDHAL_SURFCB32_RESERVED4 = @as(i32, 4096);
-pub const DDHAL_SURFCB32_SETPALETTE = @as(i32, 8192);
-pub const DDHAL_MISCCB32_GETAVAILDRIVERMEMORY = @as(i32, 1);
-pub const DDHAL_MISCCB32_UPDATENONLOCALHEAP = @as(i32, 2);
-pub const DDHAL_MISCCB32_GETHEAPALIGNMENT = @as(i32, 4);
-pub const DDHAL_MISCCB32_GETSYSMEMBLTSTATUS = @as(i32, 8);
-pub const DDHAL_MISC2CB32_CREATESURFACEEX = @as(i32, 2);
-pub const DDHAL_MISC2CB32_GETDRIVERSTATE = @as(i32, 4);
-pub const DDHAL_MISC2CB32_DESTROYDDLOCAL = @as(i32, 8);
-pub const DDHAL_EXEBUFCB32_CANCREATEEXEBUF = @as(i32, 1);
-pub const DDHAL_EXEBUFCB32_CREATEEXEBUF = @as(i32, 2);
-pub const DDHAL_EXEBUFCB32_DESTROYEXEBUF = @as(i32, 4);
-pub const DDHAL_EXEBUFCB32_LOCKEXEBUF = @as(i32, 8);
-pub const DDHAL_EXEBUFCB32_UNLOCKEXEBUF = @as(i32, 16);
-pub const DDHAL_VPORT32_CANCREATEVIDEOPORT = @as(i32, 1);
-pub const DDHAL_VPORT32_CREATEVIDEOPORT = @as(i32, 2);
-pub const DDHAL_VPORT32_FLIP = @as(i32, 4);
-pub const DDHAL_VPORT32_GETBANDWIDTH = @as(i32, 8);
-pub const DDHAL_VPORT32_GETINPUTFORMATS = @as(i32, 16);
-pub const DDHAL_VPORT32_GETOUTPUTFORMATS = @as(i32, 32);
-pub const DDHAL_VPORT32_GETFIELD = @as(i32, 128);
-pub const DDHAL_VPORT32_GETLINE = @as(i32, 256);
-pub const DDHAL_VPORT32_GETCONNECT = @as(i32, 512);
-pub const DDHAL_VPORT32_DESTROY = @as(i32, 1024);
-pub const DDHAL_VPORT32_GETFLIPSTATUS = @as(i32, 2048);
-pub const DDHAL_VPORT32_UPDATE = @as(i32, 4096);
-pub const DDHAL_VPORT32_WAITFORSYNC = @as(i32, 8192);
-pub const DDHAL_VPORT32_GETSIGNALSTATUS = @as(i32, 16384);
-pub const DDHAL_VPORT32_COLORCONTROL = @as(i32, 32768);
-pub const DDHAL_COLOR_COLORCONTROL = @as(i32, 1);
-pub const DDHAL_KERNEL_SYNCSURFACEDATA = @as(i32, 1);
-pub const DDHAL_KERNEL_SYNCVIDEOPORTDATA = @as(i32, 2);
-pub const DDHAL_MOCOMP32_GETGUIDS = @as(u32, 1);
-pub const DDHAL_MOCOMP32_GETFORMATS = @as(u32, 2);
-pub const DDHAL_MOCOMP32_CREATE = @as(u32, 4);
-pub const DDHAL_MOCOMP32_GETCOMPBUFFINFO = @as(u32, 8);
-pub const DDHAL_MOCOMP32_GETINTERNALINFO = @as(u32, 16);
-pub const DDHAL_MOCOMP32_BEGINFRAME = @as(u32, 32);
-pub const DDHAL_MOCOMP32_ENDFRAME = @as(u32, 64);
-pub const DDHAL_MOCOMP32_RENDER = @as(u32, 128);
-pub const DDHAL_MOCOMP32_QUERYSTATUS = @as(u32, 256);
-pub const DDHAL_MOCOMP32_DESTROY = @as(u32, 512);
-pub const DDHAL_DRIVER_NOTHANDLED = @as(i32, 0);
-pub const DDHAL_DRIVER_HANDLED = @as(i32, 1);
-pub const DDHAL_DRIVER_NOCKEYHW = @as(i32, 2);
-pub const DDRAWIPAL_256 = @as(i32, 1);
-pub const DDRAWIPAL_16 = @as(i32, 2);
-pub const DDRAWIPAL_GDI = @as(i32, 4);
-pub const DDRAWIPAL_STORED_8 = @as(i32, 8);
-pub const DDRAWIPAL_STORED_16 = @as(i32, 16);
-pub const DDRAWIPAL_STORED_24 = @as(i32, 32);
-pub const DDRAWIPAL_EXCLUSIVE = @as(i32, 64);
-pub const DDRAWIPAL_INHEL = @as(i32, 128);
-pub const DDRAWIPAL_DIRTY = @as(i32, 256);
-pub const DDRAWIPAL_ALLOW256 = @as(i32, 512);
-pub const DDRAWIPAL_4 = @as(i32, 1024);
-pub const DDRAWIPAL_2 = @as(i32, 2048);
-pub const DDRAWIPAL_STORED_8INDEX = @as(i32, 4096);
-pub const DDRAWIPAL_ALPHA = @as(i32, 8192);
-pub const DDRAWICLIP_WATCHWINDOW = @as(i32, 1);
-pub const DDRAWICLIP_ISINITIALIZED = @as(i32, 2);
-pub const DDRAWICLIP_INMASTERSPRITELIST = @as(i32, 4);
-pub const DDAL_IMPLICIT = @as(i32, 1);
-pub const ACCESSRECT_VRAMSTYLE = @as(i32, 1);
-pub const ACCESSRECT_NOTHOLDINGWIN16LOCK = @as(i32, 2);
-pub const ACCESSRECT_BROKEN = @as(i32, 4);
-pub const PFINDEX_UNINITIALIZED = @as(u32, 0);
-pub const DDRAWISURFGBL_MEMFREE = @as(i32, 1);
-pub const DDRAWISURFGBL_SYSMEMREQUESTED = @as(i32, 2);
-pub const DDRAWISURFGBL_ISGDISURFACE = @as(i32, 4);
-pub const DDRAWISURFGBL_SOFTWAREAUTOFLIP = @as(i32, 8);
-pub const DDRAWISURFGBL_LOCKNOTHOLDINGWIN16LOCK = @as(i32, 16);
-pub const DDRAWISURFGBL_LOCKVRAMSTYLE = @as(i32, 32);
-pub const DDRAWISURFGBL_LOCKBROKEN = @as(i32, 64);
-pub const DDRAWISURFGBL_IMPLICITHANDLE = @as(i32, 128);
-pub const DDRAWISURFGBL_ISCLIENTMEM = @as(i32, 256);
-pub const DDRAWISURFGBL_HARDWAREOPSOURCE = @as(i32, 512);
-pub const DDRAWISURFGBL_HARDWAREOPDEST = @as(i32, 1024);
-pub const DDRAWISURFGBL_VPORTINTERLEAVED = @as(i32, 2048);
-pub const DDRAWISURFGBL_VPORTDATA = @as(i32, 4096);
-pub const DDRAWISURFGBL_LATEALLOCATELINEAR = @as(i32, 8192);
-pub const DDRAWISURFGBL_SYSMEMEXECUTEBUFFER = @as(i32, 16384);
-pub const DDRAWISURFGBL_FASTLOCKHELD = @as(i32, 32768);
-pub const DDRAWISURFGBL_READONLYLOCKHELD = @as(i32, 65536);
-pub const DDRAWISURFGBL_DX8SURFACE = @as(i32, 524288);
-pub const DDRAWISURFGBL_DDHELDONTFREE = @as(i32, 1048576);
-pub const DDRAWISURFGBL_NOTIFYWHENUNLOCKED = @as(i32, 2097152);
-pub const DDRAWISURFGBL_RESERVED0 = @as(i32, -2147483648);
-pub const DDRAWISURF_ATTACHED = @as(i32, 1);
-pub const DDRAWISURF_IMPLICITCREATE = @as(i32, 2);
-pub const DDRAWISURF_ISFREE = @as(i32, 4);
-pub const DDRAWISURF_ATTACHED_FROM = @as(i32, 8);
-pub const DDRAWISURF_IMPLICITROOT = @as(i32, 16);
-pub const DDRAWISURF_PARTOFPRIMARYCHAIN = @as(i32, 32);
-pub const DDRAWISURF_DATAISALIASED = @as(i32, 64);
-pub const DDRAWISURF_HASDC = @as(i32, 128);
-pub const DDRAWISURF_HASCKEYDESTOVERLAY = @as(i32, 256);
-pub const DDRAWISURF_HASCKEYDESTBLT = @as(i32, 512);
-pub const DDRAWISURF_HASCKEYSRCOVERLAY = @as(i32, 1024);
-pub const DDRAWISURF_HASCKEYSRCBLT = @as(i32, 2048);
-pub const DDRAWISURF_LOCKEXCLUDEDCURSOR = @as(i32, 4096);
-pub const DDRAWISURF_HASPIXELFORMAT = @as(i32, 8192);
-pub const DDRAWISURF_HASOVERLAYDATA = @as(i32, 16384);
-pub const DDRAWISURF_SETGAMMA = @as(i32, 32768);
-pub const DDRAWISURF_SW_CKEYDESTOVERLAY = @as(i32, 65536);
-pub const DDRAWISURF_SW_CKEYDESTBLT = @as(i32, 131072);
-pub const DDRAWISURF_SW_CKEYSRCOVERLAY = @as(i32, 262144);
-pub const DDRAWISURF_SW_CKEYSRCBLT = @as(i32, 524288);
-pub const DDRAWISURF_HW_CKEYDESTOVERLAY = @as(i32, 1048576);
-pub const DDRAWISURF_HW_CKEYDESTBLT = @as(i32, 2097152);
-pub const DDRAWISURF_HW_CKEYSRCOVERLAY = @as(i32, 4194304);
-pub const DDRAWISURF_HW_CKEYSRCBLT = @as(i32, 8388608);
-pub const DDRAWISURF_INMASTERSPRITELIST = @as(i32, 16777216);
-pub const DDRAWISURF_HELCB = @as(i32, 33554432);
-pub const DDRAWISURF_FRONTBUFFER = @as(i32, 67108864);
-pub const DDRAWISURF_BACKBUFFER = @as(i32, 134217728);
-pub const DDRAWISURF_INVALID = @as(i32, 268435456);
-pub const DDRAWISURF_DCIBUSY = @as(i32, 536870912);
-pub const DDRAWISURF_GETDCNULL = @as(i32, 1073741824);
-pub const DDRAWISURF_STEREOSURFACELEFT = @as(i32, 536870912);
-pub const DDRAWISURF_DRIVERMANAGED = @as(i32, 1073741824);
-pub const DDRAWISURF_DCILOCK = @as(i32, -2147483648);
-pub const ROP_HAS_SOURCE = @as(i32, 1);
-pub const ROP_HAS_PATTERN = @as(i32, 2);
-pub const DDMODEINFO_PALETTIZED = @as(u32, 1);
-pub const DDMODEINFO_MODEX = @as(u32, 2);
-pub const DDMODEINFO_UNSUPPORTED = @as(u32, 4);
-pub const DDMODEINFO_STANDARDVGA = @as(u32, 8);
-pub const DDMODEINFO_MAXREFRESH = @as(u32, 16);
-pub const DDMODEINFO_STEREO = @as(u32, 32);
-pub const DDRAWILCL_HASEXCLUSIVEMODE = @as(i32, 1);
-pub const DDRAWILCL_ISFULLSCREEN = @as(i32, 2);
-pub const DDRAWILCL_SETCOOPCALLED = @as(i32, 4);
-pub const DDRAWILCL_ACTIVEYES = @as(i32, 8);
-pub const DDRAWILCL_ACTIVENO = @as(i32, 16);
-pub const DDRAWILCL_HOOKEDHWND = @as(i32, 32);
-pub const DDRAWILCL_ALLOWMODEX = @as(i32, 64);
-pub const DDRAWILCL_V1SCLBEHAVIOUR = @as(i32, 128);
-pub const DDRAWILCL_MODEHASBEENCHANGED = @as(i32, 256);
-pub const DDRAWILCL_CREATEDWINDOW = @as(i32, 512);
-pub const DDRAWILCL_DIRTYDC = @as(i32, 1024);
-pub const DDRAWILCL_DISABLEINACTIVATE = @as(i32, 2048);
-pub const DDRAWILCL_CURSORCLIPPED = @as(i32, 4096);
-pub const DDRAWILCL_EXPLICITMONITOR = @as(i32, 8192);
-pub const DDRAWILCL_MULTITHREADED = @as(i32, 16384);
-pub const DDRAWILCL_FPUSETUP = @as(i32, 32768);
-pub const DDRAWILCL_POWEREDDOWN = @as(i32, 65536);
-pub const DDRAWILCL_DIRECTDRAW7 = @as(i32, 131072);
-pub const DDRAWILCL_ATTEMPTEDD3DCONTEXT = @as(i32, 262144);
-pub const DDRAWILCL_FPUPRESERVE = @as(i32, 524288);
-pub const DDRAWILCL_DX8DRIVER = @as(i32, 1048576);
-pub const DDRAWILCL_DIRECTDRAW8 = @as(i32, 2097152);
-pub const DDRAWI_xxxxxxxxx1 = @as(i32, 1);
-pub const DDRAWI_xxxxxxxxx2 = @as(i32, 2);
-pub const DDRAWI_VIRTUALDESKTOP = @as(i32, 8);
-pub const DDRAWI_MODEX = @as(i32, 16);
+pub const DDPF_FOURCC = @as(i32, 4);
+pub const DDPF_LUMINANCE = @as(i32, 131072);
+pub const DDPF_NOVEL_TEXTURE_FORMAT = @as(i32, 1048576);
+pub const DDPF_PALETTEINDEXED1 = @as(i32, 2048);
+pub const DDPF_PALETTEINDEXED2 = @as(i32, 4096);
+pub const DDPF_PALETTEINDEXED4 = @as(i32, 8);
+pub const DDPF_PALETTEINDEXED8 = @as(i32, 32);
+pub const DDPF_PALETTEINDEXEDTO8 = @as(i32, 16);
+pub const DDPF_RGB = @as(i32, 64);
+pub const DDPF_RGBTOYUV = @as(i32, 256);
+pub const DDPF_STENCILBUFFER = @as(i32, 16384);
+pub const DDPF_YUV = @as(i32, 512);
+pub const DDPF_ZBUFFER = @as(i32, 1024);
+pub const DDPF_ZPIXELS = @as(i32, 8192);
+pub const DDRAWI_ATTACHEDTODESKTOP = @as(i32, 16777216);
+pub const DDRAWI_BADPDEV = @as(i32, 1073741824);
+pub const DDRAWI_CHANGINGMODE = @as(i32, 4194304);
+pub const DDRAWI_DDRAWDATANOTFETCHED = @as(i32, 67108864);
 pub const DDRAWI_DISPLAYDRV = @as(i32, 32);
+pub const DDRAWI_DRIVERINFO2 = @as(i32, 536870912);
+pub const DDRAWI_EMULATIONINITIALIZED = @as(i32, 16384);
+pub const DDRAWI_EXTENDEDALIGNMENT = @as(i32, 2097152);
+pub const DDRAWI_FLIPPEDTOGDI = @as(i32, 131072);
 pub const DDRAWI_FULLSCREEN = @as(i32, 64);
-pub const DDRAWI_MODECHANGED = @as(i32, 128);
-pub const DDRAWI_NOHARDWARE = @as(i32, 256);
-pub const DDRAWI_PALETTEINIT = @as(i32, 512);
-pub const DDRAWI_NOEMULATION = @as(i32, 1024);
+pub const DDRAWI_GDIDRV = @as(i32, 8388608);
+pub const DDRAWI_GETCOLOR = @as(u32, 1);
 pub const DDRAWI_HASCKEYDESTOVERLAY = @as(i32, 2048);
 pub const DDRAWI_HASCKEYSRCOVERLAY = @as(i32, 4096);
 pub const DDRAWI_HASGDIPALETTE = @as(i32, 8192);
-pub const DDRAWI_EMULATIONINITIALIZED = @as(i32, 16384);
 pub const DDRAWI_HASGDIPALETTE_EXCLUSIVE = @as(i32, 32768);
+pub const DDRAWI_MODECHANGED = @as(i32, 128);
+pub const DDRAWI_MODEX = @as(i32, 16);
 pub const DDRAWI_MODEXILLEGAL = @as(i32, 65536);
-pub const DDRAWI_FLIPPEDTOGDI = @as(i32, 131072);
 pub const DDRAWI_NEEDSWIN16FORVRAMLOCK = @as(i32, 262144);
+pub const DDRAWI_NOEMULATION = @as(i32, 1024);
+pub const DDRAWI_NOHARDWARE = @as(i32, 256);
+pub const DDRAWI_PALETTEINIT = @as(i32, 512);
 pub const DDRAWI_PDEVICEVRAMBITCLEARED = @as(i32, 524288);
-pub const DDRAWI_STANDARDVGA = @as(i32, 1048576);
-pub const DDRAWI_EXTENDEDALIGNMENT = @as(i32, 2097152);
-pub const DDRAWI_CHANGINGMODE = @as(i32, 4194304);
-pub const DDRAWI_GDIDRV = @as(i32, 8388608);
-pub const DDRAWI_ATTACHEDTODESKTOP = @as(i32, 16777216);
-pub const DDRAWI_UMODELOADED = @as(i32, 33554432);
-pub const DDRAWI_DDRAWDATANOTFETCHED = @as(i32, 67108864);
 pub const DDRAWI_SECONDARYDRIVERLOADED = @as(i32, 134217728);
+pub const DDRAWI_SETCOLOR = @as(u32, 2);
+pub const DDRAWI_STANDARDVGA = @as(i32, 1048576);
 pub const DDRAWI_TESTINGMODES = @as(i32, 268435456);
-pub const DDRAWI_DRIVERINFO2 = @as(i32, 536870912);
-pub const DDRAWI_BADPDEV = @as(i32, 1073741824);
-pub const DDRAWIVPORT_ON = @as(u32, 1);
-pub const DDRAWIVPORT_SOFTWARE_AUTOFLIP = @as(u32, 2);
-pub const DDRAWIVPORT_COLORKEYANDINTERP = @as(u32, 4);
-pub const DDRAWIVPORT_NOKERNELHANDLES = @as(u32, 8);
-pub const DDRAWIVPORT_SOFTWARE_BOB = @as(u32, 16);
-pub const DDRAWIVPORT_VBION = @as(u32, 32);
-pub const DDRAWIVPORT_VIDEOON = @as(u32, 64);
-pub const DDHALINFO_ISPRIMARYDISPLAY = @as(i32, 1);
-pub const DDHALINFO_MODEXILLEGAL = @as(i32, 2);
-pub const DDHALINFO_GETDRIVERINFOSET = @as(i32, 4);
-pub const DDHALINFO_GETDRIVERINFO2 = @as(i32, 8);
-pub const DDWAITVB_I_TESTVB = @as(i32, -2147483642);
+pub const DDRAWI_UMODELOADED = @as(i32, 33554432);
+pub const DDRAWI_VIRTUALDESKTOP = @as(i32, 8);
+pub const DDRAWI_VPORTGETCOLOR = @as(u32, 1);
+pub const DDRAWI_VPORTSETCOLOR = @as(u32, 2);
 pub const DDRAWI_VPORTSTART = @as(u32, 1);
 pub const DDRAWI_VPORTSTOP = @as(u32, 2);
 pub const DDRAWI_VPORTUPDATE = @as(u32, 3);
-pub const DDRAWI_VPORTGETCOLOR = @as(u32, 1);
-pub const DDRAWI_VPORTSETCOLOR = @as(u32, 2);
-pub const DDRAWI_GETCOLOR = @as(u32, 1);
-pub const DDRAWI_SETCOLOR = @as(u32, 2);
-pub const DDMCQUERY_READ = @as(u32, 1);
-pub const GUID_D3DCaps = Guid.initString("7bf06991-8794-11d0-9139-080036d2ef02");
-pub const GUID_D3DCallbacks = Guid.initString("7bf06990-8794-11d0-9139-080036d2ef02");
-pub const GUID_DDMoreCaps = Guid.initString("880baf30-b030-11d0-8ea7-00609797ea5b");
-pub const GUID_NTCallbacks = Guid.initString("6fe9ecde-df89-11d1-9db0-0060082771ba");
-pub const GUID_GetHeapAlignment = Guid.initString("42e02f16-7b41-11d2-8bff-00a0c983eaf6");
-pub const GUID_UpdateNonLocalHeap = Guid.initString("42e02f17-7b41-11d2-8bff-00a0c983eaf6");
-pub const GUID_NTPrivateDriverCaps = Guid.initString("fad16a23-7b66-11d2-83d7-00c04f7ce58c");
-pub const GUID_VPE2Callbacks = Guid.initString("52882147-2d47-469a-a0d1-03455890f6c8");
+pub const DDRAWI_xxxxxxxxx1 = @as(i32, 1);
+pub const DDRAWI_xxxxxxxxx2 = @as(i32, 2);
+pub const DDRAWICLIP_INMASTERSPRITELIST = @as(i32, 4);
+pub const DDRAWICLIP_ISINITIALIZED = @as(i32, 2);
+pub const DDRAWICLIP_WATCHWINDOW = @as(i32, 1);
+pub const DDRAWILCL_ACTIVENO = @as(i32, 16);
+pub const DDRAWILCL_ACTIVEYES = @as(i32, 8);
+pub const DDRAWILCL_ALLOWMODEX = @as(i32, 64);
+pub const DDRAWILCL_ATTEMPTEDD3DCONTEXT = @as(i32, 262144);
+pub const DDRAWILCL_CREATEDWINDOW = @as(i32, 512);
+pub const DDRAWILCL_CURSORCLIPPED = @as(i32, 4096);
+pub const DDRAWILCL_DIRECTDRAW7 = @as(i32, 131072);
+pub const DDRAWILCL_DIRECTDRAW8 = @as(i32, 2097152);
+pub const DDRAWILCL_DIRTYDC = @as(i32, 1024);
+pub const DDRAWILCL_DISABLEINACTIVATE = @as(i32, 2048);
+pub const DDRAWILCL_DX8DRIVER = @as(i32, 1048576);
+pub const DDRAWILCL_EXPLICITMONITOR = @as(i32, 8192);
+pub const DDRAWILCL_FPUPRESERVE = @as(i32, 524288);
+pub const DDRAWILCL_FPUSETUP = @as(i32, 32768);
+pub const DDRAWILCL_HASEXCLUSIVEMODE = @as(i32, 1);
+pub const DDRAWILCL_HOOKEDHWND = @as(i32, 32);
+pub const DDRAWILCL_ISFULLSCREEN = @as(i32, 2);
+pub const DDRAWILCL_MODEHASBEENCHANGED = @as(i32, 256);
+pub const DDRAWILCL_MULTITHREADED = @as(i32, 16384);
+pub const DDRAWILCL_POWEREDDOWN = @as(i32, 65536);
+pub const DDRAWILCL_SETCOOPCALLED = @as(i32, 4);
+pub const DDRAWILCL_V1SCLBEHAVIOUR = @as(i32, 128);
+pub const DDRAWIPAL_16 = @as(i32, 2);
+pub const DDRAWIPAL_2 = @as(i32, 2048);
+pub const DDRAWIPAL_256 = @as(i32, 1);
+pub const DDRAWIPAL_4 = @as(i32, 1024);
+pub const DDRAWIPAL_ALLOW256 = @as(i32, 512);
+pub const DDRAWIPAL_ALPHA = @as(i32, 8192);
+pub const DDRAWIPAL_DIRTY = @as(i32, 256);
+pub const DDRAWIPAL_EXCLUSIVE = @as(i32, 64);
+pub const DDRAWIPAL_GDI = @as(i32, 4);
+pub const DDRAWIPAL_INHEL = @as(i32, 128);
+pub const DDRAWIPAL_STORED_16 = @as(i32, 16);
+pub const DDRAWIPAL_STORED_24 = @as(i32, 32);
+pub const DDRAWIPAL_STORED_8 = @as(i32, 8);
+pub const DDRAWIPAL_STORED_8INDEX = @as(i32, 4096);
+pub const DDRAWISURF_ATTACHED = @as(i32, 1);
+pub const DDRAWISURF_ATTACHED_FROM = @as(i32, 8);
+pub const DDRAWISURF_BACKBUFFER = @as(i32, 134217728);
+pub const DDRAWISURF_DATAISALIASED = @as(i32, 64);
+pub const DDRAWISURF_DCIBUSY = @as(i32, 536870912);
+pub const DDRAWISURF_DCILOCK = @as(i32, -2147483648);
+pub const DDRAWISURF_DRIVERMANAGED = @as(i32, 1073741824);
+pub const DDRAWISURF_FRONTBUFFER = @as(i32, 67108864);
+pub const DDRAWISURF_GETDCNULL = @as(i32, 1073741824);
+pub const DDRAWISURF_HASCKEYDESTBLT = @as(i32, 512);
+pub const DDRAWISURF_HASCKEYDESTOVERLAY = @as(i32, 256);
+pub const DDRAWISURF_HASCKEYSRCBLT = @as(i32, 2048);
+pub const DDRAWISURF_HASCKEYSRCOVERLAY = @as(i32, 1024);
+pub const DDRAWISURF_HASDC = @as(i32, 128);
+pub const DDRAWISURF_HASOVERLAYDATA = @as(i32, 16384);
+pub const DDRAWISURF_HASPIXELFORMAT = @as(i32, 8192);
+pub const DDRAWISURF_HELCB = @as(i32, 33554432);
+pub const DDRAWISURF_HW_CKEYDESTBLT = @as(i32, 2097152);
+pub const DDRAWISURF_HW_CKEYDESTOVERLAY = @as(i32, 1048576);
+pub const DDRAWISURF_HW_CKEYSRCBLT = @as(i32, 8388608);
+pub const DDRAWISURF_HW_CKEYSRCOVERLAY = @as(i32, 4194304);
+pub const DDRAWISURF_IMPLICITCREATE = @as(i32, 2);
+pub const DDRAWISURF_IMPLICITROOT = @as(i32, 16);
+pub const DDRAWISURF_INMASTERSPRITELIST = @as(i32, 16777216);
+pub const DDRAWISURF_INVALID = @as(i32, 268435456);
+pub const DDRAWISURF_ISFREE = @as(i32, 4);
+pub const DDRAWISURF_LOCKEXCLUDEDCURSOR = @as(i32, 4096);
+pub const DDRAWISURF_PARTOFPRIMARYCHAIN = @as(i32, 32);
+pub const DDRAWISURF_SETGAMMA = @as(i32, 32768);
+pub const DDRAWISURF_STEREOSURFACELEFT = @as(i32, 536870912);
+pub const DDRAWISURF_SW_CKEYDESTBLT = @as(i32, 131072);
+pub const DDRAWISURF_SW_CKEYDESTOVERLAY = @as(i32, 65536);
+pub const DDRAWISURF_SW_CKEYSRCBLT = @as(i32, 524288);
+pub const DDRAWISURF_SW_CKEYSRCOVERLAY = @as(i32, 262144);
+pub const DDRAWISURFGBL_DDHELDONTFREE = @as(i32, 1048576);
+pub const DDRAWISURFGBL_DX8SURFACE = @as(i32, 524288);
+pub const DDRAWISURFGBL_FASTLOCKHELD = @as(i32, 32768);
+pub const DDRAWISURFGBL_HARDWAREOPDEST = @as(i32, 1024);
+pub const DDRAWISURFGBL_HARDWAREOPSOURCE = @as(i32, 512);
+pub const DDRAWISURFGBL_IMPLICITHANDLE = @as(i32, 128);
+pub const DDRAWISURFGBL_ISCLIENTMEM = @as(i32, 256);
+pub const DDRAWISURFGBL_ISGDISURFACE = @as(i32, 4);
+pub const DDRAWISURFGBL_LATEALLOCATELINEAR = @as(i32, 8192);
+pub const DDRAWISURFGBL_LOCKBROKEN = @as(i32, 64);
+pub const DDRAWISURFGBL_LOCKNOTHOLDINGWIN16LOCK = @as(i32, 16);
+pub const DDRAWISURFGBL_LOCKVRAMSTYLE = @as(i32, 32);
+pub const DDRAWISURFGBL_MEMFREE = @as(i32, 1);
+pub const DDRAWISURFGBL_NOTIFYWHENUNLOCKED = @as(i32, 2097152);
+pub const DDRAWISURFGBL_READONLYLOCKHELD = @as(i32, 65536);
+pub const DDRAWISURFGBL_RESERVED0 = @as(i32, -2147483648);
+pub const DDRAWISURFGBL_SOFTWAREAUTOFLIP = @as(i32, 8);
+pub const DDRAWISURFGBL_SYSMEMEXECUTEBUFFER = @as(i32, 16384);
+pub const DDRAWISURFGBL_SYSMEMREQUESTED = @as(i32, 2);
+pub const DDRAWISURFGBL_VPORTDATA = @as(i32, 4096);
+pub const DDRAWISURFGBL_VPORTINTERLEAVED = @as(i32, 2048);
+pub const DDRAWIVPORT_COLORKEYANDINTERP = @as(u32, 4);
+pub const DDRAWIVPORT_NOKERNELHANDLES = @as(u32, 8);
+pub const DDRAWIVPORT_ON = @as(u32, 1);
+pub const DDRAWIVPORT_SOFTWARE_AUTOFLIP = @as(u32, 2);
+pub const DDRAWIVPORT_SOFTWARE_BOB = @as(u32, 16);
+pub const DDRAWIVPORT_VBION = @as(u32, 32);
+pub const DDRAWIVPORT_VIDEOON = @as(u32, 64);
+pub const DDSCAPS2_ADDITIONALPRIMARY = @as(i32, -2147483648);
+pub const DDSCAPS2_COMMANDBUFFER = @as(i32, 64);
+pub const DDSCAPS2_CUBEMAP = @as(i32, 512);
+pub const DDSCAPS2_CUBEMAP_NEGATIVEX = @as(i32, 2048);
+pub const DDSCAPS2_CUBEMAP_NEGATIVEY = @as(i32, 8192);
+pub const DDSCAPS2_CUBEMAP_NEGATIVEZ = @as(i32, 32768);
+pub const DDSCAPS2_CUBEMAP_POSITIVEX = @as(i32, 1024);
+pub const DDSCAPS2_CUBEMAP_POSITIVEY = @as(i32, 4096);
+pub const DDSCAPS2_CUBEMAP_POSITIVEZ = @as(i32, 16384);
+pub const DDSCAPS2_D3DTEXTUREMANAGE = @as(i32, 131072);
+pub const DDSCAPS2_DISCARDBACKBUFFER = @as(i32, 268435456);
+pub const DDSCAPS2_DONOTPERSIST = @as(i32, 262144);
+pub const DDSCAPS2_ENABLEALPHACHANNEL = @as(i32, 536870912);
+pub const DDSCAPS2_EXTENDEDFORMATPRIMARY = @as(i32, 1073741824);
+pub const DDSCAPS2_HARDWAREDEINTERLACE = @as(i32, 0);
+pub const DDSCAPS2_HINTANTIALIASING = @as(i32, 256);
+pub const DDSCAPS2_HINTDYNAMIC = @as(i32, 4);
+pub const DDSCAPS2_HINTSTATIC = @as(i32, 8);
+pub const DDSCAPS2_INDEXBUFFER = @as(i32, 67108864);
+pub const DDSCAPS2_MIPMAPSUBLEVEL = @as(i32, 65536);
+pub const DDSCAPS2_NOTUSERLOCKABLE = @as(i32, 4194304);
+pub const DDSCAPS2_NPATCHES = @as(i32, 33554432);
+pub const DDSCAPS2_OPAQUE = @as(i32, 128);
+pub const DDSCAPS2_POINTS = @as(i32, 8388608);
+pub const DDSCAPS2_RESERVED1 = @as(i32, 32);
+pub const DDSCAPS2_RESERVED2 = @as(i32, 64);
+pub const DDSCAPS2_RESERVED3 = @as(i32, 67108864);
+pub const DDSCAPS2_RESERVED4 = @as(i32, 2);
+pub const DDSCAPS2_RTPATCHES = @as(i32, 16777216);
+pub const DDSCAPS2_STEREOSURFACELEFT = @as(i32, 524288);
+pub const DDSCAPS2_TEXTUREMANAGE = @as(i32, 16);
+pub const DDSCAPS2_VERTEXBUFFER = @as(i32, 32);
+pub const DDSCAPS2_VOLUME = @as(i32, 2097152);
+pub const DDSCAPS3_AUTOGENMIPMAP = @as(i32, 2048);
+pub const DDSCAPS3_CREATESHAREDRESOURCE = @as(i32, 8192);
+pub const DDSCAPS3_DMAP = @as(i32, 4096);
+pub const DDSCAPS3_LIGHTWEIGHTMIPMAP = @as(i32, 1024);
+pub const DDSCAPS3_MULTISAMPLE_MASK = @as(i32, 31);
+pub const DDSCAPS3_MULTISAMPLE_QUALITY_MASK = @as(i32, 224);
+pub const DDSCAPS3_MULTISAMPLE_QUALITY_SHIFT = @as(u32, 5);
+pub const DDSCAPS3_OPENSHAREDRESOURCE = @as(i32, 32768);
+pub const DDSCAPS3_READONLYRESOURCE = @as(i32, 16384);
+pub const DDSCAPS3_RESERVED1 = @as(i32, 256);
+pub const DDSCAPS3_RESERVED2 = @as(i32, 512);
+pub const DDSCAPS3_VIDEO = @as(i32, 512);
+pub const DDSCAPS_3DDEVICE = @as(i32, 8192);
+pub const DDSCAPS_ALLOCONLOAD = @as(i32, 67108864);
+pub const DDSCAPS_ALPHA = @as(i32, 2);
+pub const DDSCAPS_BACKBUFFER = @as(i32, 4);
 pub const DDSCAPS_COMMANDBUFFER = @as(i32, 1024);
-pub const DDHAL_PLEASEALLOC_USERMEM = @as(i32, 4);
-pub const DDHAL_CB32_MAPMEMORY = @as(i32, -2147483648);
-pub const DDHAL_MISC2CB32_ALPHABLT = @as(i32, 1);
-pub const DDHAL_CREATESURFACEEX_SWAPHANDLES = @as(i32, 1);
-pub const DDHAL_NTCB32_FREEDRIVERMEMORY = @as(i32, 1);
-pub const DDHAL_NTCB32_SETEXCLUSIVEMODE = @as(i32, 2);
-pub const DDHAL_NTCB32_FLIPTOGDISURFACE = @as(i32, 4);
-pub const DDHAL_VPORT32_GETAUTOFLIPSURF = @as(i32, 64);
-pub const DDHAL_D3DBUFCB32_CANCREATED3DBUF = @as(i32, 1);
-pub const DDHAL_D3DBUFCB32_CREATED3DBUF = @as(i32, 2);
-pub const DDHAL_D3DBUFCB32_DESTROYD3DBUF = @as(i32, 4);
-pub const DDHAL_D3DBUFCB32_LOCKD3DBUF = @as(i32, 8);
-pub const DDHAL_D3DBUFCB32_UNLOCKD3DBUF = @as(i32, 16);
-pub const DDHAL_PRIVATECAP_ATOMICSURFACECREATION = @as(i32, 1);
-pub const DDHAL_PRIVATECAP_NOTIFYPRIMARYCREATION = @as(i32, 2);
-pub const DDHAL_PRIVATECAP_RESERVED1 = @as(i32, 4);
-pub const DDBLT_AFLAGS = @as(i32, -2147483648);
-pub const DDABLT_SRCOVERDEST = @as(i32, 1);
-pub const DDKERNELCAPS_SKIPFIELDS = @as(i32, 1);
-pub const DDKERNELCAPS_AUTOFLIP = @as(i32, 2);
-pub const DDKERNELCAPS_SETSTATE = @as(i32, 4);
-pub const DDKERNELCAPS_LOCK = @as(i32, 8);
-pub const DDKERNELCAPS_FLIPVIDEOPORT = @as(i32, 16);
-pub const DDKERNELCAPS_FLIPOVERLAY = @as(i32, 32);
-pub const DDKERNELCAPS_CAPTURE_SYSMEM = @as(i32, 64);
-pub const DDKERNELCAPS_CAPTURE_NONLOCALVIDMEM = @as(i32, 128);
-pub const DDKERNELCAPS_FIELDPOLARITY = @as(i32, 256);
-pub const DDKERNELCAPS_CAPTURE_INVERTED = @as(i32, 512);
-pub const DDIRQ_DISPLAY_VSYNC = @as(i32, 1);
-pub const DDIRQ_RESERVED1 = @as(i32, 2);
-pub const DDIRQ_VPORT0_VSYNC = @as(i32, 4);
-pub const DDIRQ_VPORT0_LINE = @as(i32, 8);
-pub const DDIRQ_VPORT1_VSYNC = @as(i32, 16);
-pub const DDIRQ_VPORT1_LINE = @as(i32, 32);
-pub const DDIRQ_VPORT2_VSYNC = @as(i32, 64);
-pub const DDIRQ_VPORT2_LINE = @as(i32, 128);
-pub const DDIRQ_VPORT3_VSYNC = @as(i32, 256);
-pub const DDIRQ_VPORT3_LINE = @as(i32, 512);
-pub const DDIRQ_VPORT4_VSYNC = @as(i32, 1024);
-pub const DDIRQ_VPORT4_LINE = @as(i32, 2048);
-pub const DDIRQ_VPORT5_VSYNC = @as(i32, 4096);
-pub const DDIRQ_VPORT5_LINE = @as(i32, 8192);
-pub const DDIRQ_VPORT6_VSYNC = @as(i32, 16384);
-pub const DDIRQ_VPORT6_LINE = @as(i32, 32768);
-pub const DDIRQ_VPORT7_VSYNC = @as(i32, 65536);
-pub const DDIRQ_VPORT7_LINE = @as(i32, 131072);
-pub const DDIRQ_VPORT8_VSYNC = @as(i32, 262144);
-pub const DDIRQ_VPORT8_LINE = @as(i32, 524288);
-pub const DDIRQ_VPORT9_VSYNC = @as(i32, 65536);
-pub const DDIRQ_VPORT9_LINE = @as(i32, 131072);
-pub const SURFACEALIGN_DISCARDABLE = @as(i32, 1);
-pub const VMEMHEAP_LINEAR = @as(i32, 1);
-pub const VMEMHEAP_RECTANGULAR = @as(i32, 2);
-pub const VMEMHEAP_ALIGNMENT = @as(i32, 4);
-pub const DDVPTYPE_E_HREFH_VREFH = Guid.initString("54f39980-da60-11cf-9b06-00a0c903a3b8");
-pub const DDVPTYPE_E_HREFH_VREFL = Guid.initString("92783220-da60-11cf-9b06-00a0c903a3b8");
-pub const DDVPTYPE_E_HREFL_VREFH = Guid.initString("a07a02e0-da60-11cf-9b06-00a0c903a3b8");
-pub const DDVPTYPE_E_HREFL_VREFL = Guid.initString("e09c77e0-da60-11cf-9b06-00a0c903a3b8");
-pub const DDVPTYPE_CCIR656 = Guid.initString("fca326a0-da60-11cf-9b06-00a0c903a3b8");
-pub const DDVPTYPE_BROOKTREE = Guid.initString("1352a560-da61-11cf-9b06-00a0c903a3b8");
-pub const DDVPTYPE_PHILIPS = Guid.initString("332cf160-da61-11cf-9b06-00a0c903a3b8");
-pub const DDVPD_WIDTH = @as(i32, 1);
-pub const DDVPD_HEIGHT = @as(i32, 2);
-pub const DDVPD_ID = @as(i32, 4);
-pub const DDVPD_CAPS = @as(i32, 8);
-pub const DDVPD_FX = @as(i32, 16);
-pub const DDVPD_AUTOFLIP = @as(i32, 32);
-pub const DDVPD_ALIGN = @as(i32, 64);
-pub const DDVPD_PREFERREDAUTOFLIP = @as(i32, 128);
-pub const DDVPD_FILTERQUALITY = @as(i32, 256);
-pub const DDVPCONNECT_DOUBLECLOCK = @as(i32, 1);
-pub const DDVPCONNECT_VACT = @as(i32, 2);
-pub const DDVPCONNECT_INVERTPOLARITY = @as(i32, 4);
-pub const DDVPCONNECT_DISCARDSVREFDATA = @as(i32, 8);
-pub const DDVPCONNECT_HALFLINE = @as(i32, 16);
-pub const DDVPCONNECT_INTERLACED = @as(i32, 32);
-pub const DDVPCONNECT_SHAREEVEN = @as(i32, 64);
-pub const DDVPCONNECT_SHAREODD = @as(i32, 128);
+pub const DDSCAPS_COMPLEX = @as(i32, 8);
+pub const DDSCAPS_EXECUTEBUFFER = @as(i32, 8388608);
+pub const DDSCAPS_FLIP = @as(i32, 16);
+pub const DDSCAPS_FRONTBUFFER = @as(i32, 32);
+pub const DDSCAPS_HWCODEC = @as(i32, 1048576);
+pub const DDSCAPS_LIVEVIDEO = @as(i32, 524288);
+pub const DDSCAPS_LOCALVIDMEM = @as(i32, 268435456);
+pub const DDSCAPS_MIPMAP = @as(i32, 4194304);
+pub const DDSCAPS_MODEX = @as(i32, 2097152);
+pub const DDSCAPS_NONLOCALVIDMEM = @as(i32, 536870912);
+pub const DDSCAPS_OFFSCREENPLAIN = @as(i32, 64);
+pub const DDSCAPS_OPTIMIZED = @as(i32, -2147483648);
+pub const DDSCAPS_OVERLAY = @as(i32, 128);
+pub const DDSCAPS_OWNDC = @as(i32, 262144);
+pub const DDSCAPS_PALETTE = @as(i32, 256);
+pub const DDSCAPS_PRIMARYSURFACE = @as(i32, 512);
+pub const DDSCAPS_PRIMARYSURFACELEFT = @as(i32, 0);
+pub const DDSCAPS_RESERVED1 = @as(i32, 1);
+pub const DDSCAPS_RESERVED2 = @as(i32, 8388608);
+pub const DDSCAPS_RESERVED3 = @as(i32, 1024);
+pub const DDSCAPS_STANDARDVGAMODE = @as(i32, 1073741824);
+pub const DDSCAPS_SYSTEMMEMORY = @as(i32, 2048);
+pub const DDSCAPS_TEXTURE = @as(i32, 4096);
+pub const DDSCAPS_VIDEOMEMORY = @as(i32, 16384);
+pub const DDSCAPS_VIDEOPORT = @as(i32, 134217728);
+pub const DDSCAPS_VISIBLE = @as(i32, 32768);
+pub const DDSCAPS_WRITEONLY = @as(i32, 65536);
+pub const DDSCAPS_ZBUFFER = @as(i32, 131072);
+pub const DDSCL_ALLOWMODEX = @as(i32, 64);
+pub const DDSCL_ALLOWREBOOT = @as(i32, 2);
+pub const DDSCL_CREATEDEVICEWINDOW = @as(i32, 512);
+pub const DDSCL_EXCLUSIVE = @as(i32, 16);
+pub const DDSCL_FPUPRESERVE = @as(i32, 4096);
+pub const DDSCL_FPUSETUP = @as(i32, 2048);
+pub const DDSCL_FULLSCREEN = @as(i32, 1);
+pub const DDSCL_MULTITHREADED = @as(i32, 1024);
+pub const DDSCL_NORMAL = @as(i32, 8);
+pub const DDSCL_NOWINDOWCHANGES = @as(i32, 4);
+pub const DDSCL_SETDEVICEWINDOW = @as(i32, 256);
+pub const DDSCL_SETFOCUSWINDOW = @as(i32, 128);
+pub const DDSD_ALL = @as(i32, 16775662);
+pub const DDSD_ALPHABITDEPTH = @as(i32, 128);
+pub const DDSD_BACKBUFFERCOUNT = @as(i32, 32);
+pub const DDSD_CAPS = @as(i32, 1);
+pub const DDSD_CKDESTBLT = @as(i32, 16384);
+pub const DDSD_CKDESTOVERLAY = @as(i32, 8192);
+pub const DDSD_CKSRCBLT = @as(i32, 65536);
+pub const DDSD_CKSRCOVERLAY = @as(i32, 32768);
+pub const DDSD_DEPTH = @as(i32, 8388608);
+pub const DDSD_FVF = @as(i32, 2097152);
+pub const DDSD_HEIGHT = @as(i32, 2);
+pub const DDSD_LINEARSIZE = @as(i32, 524288);
+pub const DDSD_LPSURFACE = @as(i32, 2048);
+pub const DDSD_MIPMAPCOUNT = @as(i32, 131072);
+pub const DDSD_PITCH = @as(i32, 8);
+pub const DDSD_PIXELFORMAT = @as(i32, 4096);
+pub const DDSD_REFRESHRATE = @as(i32, 262144);
+pub const DDSD_SRCVBHANDLE = @as(i32, 4194304);
+pub const DDSD_TEXTURESTAGE = @as(i32, 1048576);
+pub const DDSD_WIDTH = @as(i32, 4);
+pub const DDSD_ZBUFFERBITDEPTH = @as(i32, 64);
+pub const DDSDM_STANDARDVGAMODE = @as(i32, 1);
+pub const DDSETSURFACEDESC_PRESERVEDC = @as(i32, 1);
+pub const DDSETSURFACEDESC_RECREATEDC = @as(i32, 0);
+pub const DDSGR_CALIBRATE = @as(i32, 1);
+pub const DDSKIP_ENABLENEXT = @as(u32, 2);
+pub const DDSKIP_SKIPNEXT = @as(u32, 1);
+pub const DDSMT_ISTESTREQUIRED = @as(i32, 1);
+pub const DDSPD_IUNKNOWNPOINTER = @as(i32, 1);
+pub const DDSPD_VOLATILE = @as(i32, 2);
+pub const DDSVCAPS_RESERVED1 = @as(i32, 1);
+pub const DDSVCAPS_RESERVED2 = @as(i32, 2);
+pub const DDSVCAPS_RESERVED3 = @as(i32, 4);
+pub const DDSVCAPS_RESERVED4 = @as(i32, 8);
+pub const DDSVCAPS_STEREOSEQUENTIAL = @as(i32, 16);
+pub const DDTRANSFER_CANCEL = @as(u32, 128);
+pub const DDTRANSFER_HALFLINES = @as(u32, 256);
+pub const DDTRANSFER_INVERT = @as(u32, 4);
+pub const DDTRANSFER_NONLOCALVIDMEM = @as(u32, 2);
+pub const DDTRANSFER_SYSTEMMEMORY = @as(u32, 1);
+pub const DDUNSUPPORTEDMODE = @as(u32, 4294967295);
+pub const DDVERSIONINFO = @as(u32, 13);
+pub const DDVP_AUTOFLIP = @as(i32, 1);
+pub const DDVP_CONVERT = @as(i32, 2);
+pub const DDVP_CROP = @as(i32, 4);
+pub const DDVP_HARDWAREDEINTERLACE = @as(i32, 32768);
+pub const DDVP_IGNOREVBIXCROP = @as(i32, 8192);
+pub const DDVP_INTERLEAVE = @as(i32, 8);
+pub const DDVP_MIRRORLEFTRIGHT = @as(i32, 16);
+pub const DDVP_MIRRORUPDOWN = @as(i32, 32);
+pub const DDVP_OVERRIDEBOBWEAVE = @as(i32, 4096);
+pub const DDVP_PRESCALE = @as(i32, 64);
+pub const DDVP_SKIPEVENFIELDS = @as(i32, 128);
+pub const DDVP_SKIPODDFIELDS = @as(i32, 256);
+pub const DDVP_SYNCMASTER = @as(i32, 512);
+pub const DDVP_VBICONVERT = @as(i32, 1024);
+pub const DDVP_VBINOINTERLEAVE = @as(i32, 16384);
+pub const DDVP_VBINOSCALE = @as(i32, 2048);
+pub const DDVPB_OVERLAY = @as(i32, 2);
+pub const DDVPB_TYPE = @as(i32, 4);
+pub const DDVPB_VIDEOPORT = @as(i32, 1);
+pub const DDVPBCAPS_DESTINATION = @as(i32, 2);
+pub const DDVPBCAPS_SOURCE = @as(i32, 1);
 pub const DDVPCAPS_AUTOFLIP = @as(i32, 1);
+pub const DDVPCAPS_COLORCONTROL = @as(i32, 1024);
+pub const DDVPCAPS_HARDWAREDEINTERLACE = @as(i32, 16384);
 pub const DDVPCAPS_INTERLACED = @as(i32, 2);
 pub const DDVPCAPS_NONINTERLACED = @as(i32, 4);
+pub const DDVPCAPS_OVERSAMPLEDVBI = @as(i32, 2048);
 pub const DDVPCAPS_READBACKFIELD = @as(i32, 8);
 pub const DDVPCAPS_READBACKLINE = @as(i32, 16);
 pub const DDVPCAPS_SHAREABLE = @as(i32, 32);
 pub const DDVPCAPS_SKIPEVENFIELDS = @as(i32, 64);
 pub const DDVPCAPS_SKIPODDFIELDS = @as(i32, 128);
 pub const DDVPCAPS_SYNCMASTER = @as(i32, 256);
-pub const DDVPCAPS_VBISURFACE = @as(i32, 512);
-pub const DDVPCAPS_COLORCONTROL = @as(i32, 1024);
-pub const DDVPCAPS_OVERSAMPLEDVBI = @as(i32, 2048);
 pub const DDVPCAPS_SYSTEMMEMORY = @as(i32, 4096);
 pub const DDVPCAPS_VBIANDVIDEOINDEPENDENT = @as(i32, 8192);
-pub const DDVPCAPS_HARDWAREDEINTERLACE = @as(i32, 16384);
+pub const DDVPCAPS_VBISURFACE = @as(i32, 512);
+pub const DDVPCONNECT_DISCARDSVREFDATA = @as(i32, 8);
+pub const DDVPCONNECT_DOUBLECLOCK = @as(i32, 1);
+pub const DDVPCONNECT_HALFLINE = @as(i32, 16);
+pub const DDVPCONNECT_INTERLACED = @as(i32, 32);
+pub const DDVPCONNECT_INVERTPOLARITY = @as(i32, 4);
+pub const DDVPCONNECT_SHAREEVEN = @as(i32, 64);
+pub const DDVPCONNECT_SHAREODD = @as(i32, 128);
+pub const DDVPCONNECT_VACT = @as(i32, 2);
+pub const DDVPCREATE_VBIONLY = @as(i32, 1);
+pub const DDVPCREATE_VIDEOONLY = @as(i32, 2);
+pub const DDVPD_ALIGN = @as(i32, 64);
+pub const DDVPD_AUTOFLIP = @as(i32, 32);
+pub const DDVPD_CAPS = @as(i32, 8);
+pub const DDVPD_FILTERQUALITY = @as(i32, 256);
+pub const DDVPD_FX = @as(i32, 16);
+pub const DDVPD_HEIGHT = @as(i32, 2);
+pub const DDVPD_ID = @as(i32, 4);
+pub const DDVPD_PREFERREDAUTOFLIP = @as(i32, 128);
+pub const DDVPD_WIDTH = @as(i32, 1);
+pub const DDVPFLIP_VBI = @as(i32, 2);
+pub const DDVPFLIP_VIDEO = @as(i32, 1);
+pub const DDVPFORMAT_VBI = @as(i32, 2);
+pub const DDVPFORMAT_VIDEO = @as(i32, 1);
 pub const DDVPFX_CROPTOPDATA = @as(i32, 1);
 pub const DDVPFX_CROPX = @as(i32, 2);
 pub const DDVPFX_CROPY = @as(i32, 4);
+pub const DDVPFX_IGNOREVBIXCROP = @as(i32, 262144);
 pub const DDVPFX_INTERLEAVE = @as(i32, 8);
 pub const DDVPFX_MIRRORLEFTRIGHT = @as(i32, 16);
 pub const DDVPFX_MIRRORUPDOWN = @as(i32, 32);
 pub const DDVPFX_PRESHRINKX = @as(i32, 64);
-pub const DDVPFX_PRESHRINKY = @as(i32, 128);
 pub const DDVPFX_PRESHRINKXB = @as(i32, 256);
-pub const DDVPFX_PRESHRINKYB = @as(i32, 512);
 pub const DDVPFX_PRESHRINKXS = @as(i32, 1024);
+pub const DDVPFX_PRESHRINKY = @as(i32, 128);
+pub const DDVPFX_PRESHRINKYB = @as(i32, 512);
 pub const DDVPFX_PRESHRINKYS = @as(i32, 2048);
 pub const DDVPFX_PRESTRETCHX = @as(i32, 4096);
-pub const DDVPFX_PRESTRETCHY = @as(i32, 8192);
 pub const DDVPFX_PRESTRETCHXN = @as(i32, 16384);
+pub const DDVPFX_PRESTRETCHY = @as(i32, 8192);
 pub const DDVPFX_PRESTRETCHYN = @as(i32, 32768);
 pub const DDVPFX_VBICONVERT = @as(i32, 65536);
-pub const DDVPFX_VBINOSCALE = @as(i32, 131072);
-pub const DDVPFX_IGNOREVBIXCROP = @as(i32, 262144);
 pub const DDVPFX_VBINOINTERLEAVE = @as(i32, 524288);
-pub const DDVP_AUTOFLIP = @as(i32, 1);
-pub const DDVP_CONVERT = @as(i32, 2);
-pub const DDVP_CROP = @as(i32, 4);
-pub const DDVP_INTERLEAVE = @as(i32, 8);
-pub const DDVP_MIRRORLEFTRIGHT = @as(i32, 16);
-pub const DDVP_MIRRORUPDOWN = @as(i32, 32);
-pub const DDVP_PRESCALE = @as(i32, 64);
-pub const DDVP_SKIPEVENFIELDS = @as(i32, 128);
-pub const DDVP_SKIPODDFIELDS = @as(i32, 256);
-pub const DDVP_SYNCMASTER = @as(i32, 512);
-pub const DDVP_VBICONVERT = @as(i32, 1024);
-pub const DDVP_VBINOSCALE = @as(i32, 2048);
-pub const DDVP_OVERRIDEBOBWEAVE = @as(i32, 4096);
-pub const DDVP_IGNOREVBIXCROP = @as(i32, 8192);
-pub const DDVP_VBINOINTERLEAVE = @as(i32, 16384);
-pub const DDVP_HARDWAREDEINTERLACE = @as(i32, 32768);
-pub const DDVPFORMAT_VIDEO = @as(i32, 1);
-pub const DDVPFORMAT_VBI = @as(i32, 2);
-pub const DDVPTARGET_VIDEO = @as(i32, 1);
+pub const DDVPFX_VBINOSCALE = @as(i32, 131072);
+pub const DDVPSQ_NOSIGNAL = @as(i32, 1);
+pub const DDVPSQ_SIGNALOK = @as(i32, 2);
+pub const DDVPSTATUS_VBIONLY = @as(i32, 1);
+pub const DDVPSTATUS_VIDEOONLY = @as(i32, 2);
 pub const DDVPTARGET_VBI = @as(i32, 2);
+pub const DDVPTARGET_VIDEO = @as(i32, 1);
+pub const DDVPTYPE_BROOKTREE = Guid.initString("1352a560-da61-11cf-9b06-00a0c903a3b8");
+pub const DDVPTYPE_CCIR656 = Guid.initString("fca326a0-da60-11cf-9b06-00a0c903a3b8");
+pub const DDVPTYPE_E_HREFH_VREFH = Guid.initString("54f39980-da60-11cf-9b06-00a0c903a3b8");
+pub const DDVPTYPE_E_HREFH_VREFL = Guid.initString("92783220-da60-11cf-9b06-00a0c903a3b8");
+pub const DDVPTYPE_E_HREFL_VREFH = Guid.initString("a07a02e0-da60-11cf-9b06-00a0c903a3b8");
+pub const DDVPTYPE_E_HREFL_VREFL = Guid.initString("e09c77e0-da60-11cf-9b06-00a0c903a3b8");
+pub const DDVPTYPE_PHILIPS = Guid.initString("332cf160-da61-11cf-9b06-00a0c903a3b8");
 pub const DDVPWAIT_BEGIN = @as(i32, 1);
 pub const DDVPWAIT_END = @as(i32, 2);
 pub const DDVPWAIT_LINE = @as(i32, 3);
-pub const DDVPFLIP_VIDEO = @as(i32, 1);
-pub const DDVPFLIP_VBI = @as(i32, 2);
-pub const DDVPSQ_NOSIGNAL = @as(i32, 1);
-pub const DDVPSQ_SIGNALOK = @as(i32, 2);
-pub const DDVPB_VIDEOPORT = @as(i32, 1);
-pub const DDVPB_OVERLAY = @as(i32, 2);
-pub const DDVPB_TYPE = @as(i32, 4);
-pub const DDVPBCAPS_SOURCE = @as(i32, 1);
-pub const DDVPBCAPS_DESTINATION = @as(i32, 2);
-pub const DDVPCREATE_VBIONLY = @as(i32, 1);
-pub const DDVPCREATE_VIDEOONLY = @as(i32, 2);
-pub const DDVPSTATUS_VBIONLY = @as(i32, 1);
-pub const DDVPSTATUS_VIDEOONLY = @as(i32, 2);
-pub const GUID_DxApi = Guid.initString("8a79bef0-b915-11d0-9144-080036d2ef02");
-pub const MDL_MAPPED_TO_SYSTEM_VA = @as(u32, 1);
-pub const MDL_PAGES_LOCKED = @as(u32, 2);
-pub const MDL_SOURCE_IS_NONPAGED_POOL = @as(u32, 4);
-pub const MDL_ALLOCATED_FIXED_SIZE = @as(u32, 8);
-pub const MDL_PARTIAL = @as(u32, 16);
-pub const MDL_PARTIAL_HAS_BEEN_MAPPED = @as(u32, 32);
-pub const MDL_IO_PAGE_READ = @as(u32, 64);
-pub const MDL_WRITE_OPERATION = @as(u32, 128);
-pub const MDL_PARENT_MAPPED_SYSTEM_VA = @as(u32, 256);
-pub const MDL_LOCK_HELD = @as(u32, 512);
-pub const MDL_SCATTER_GATHER_VA = @as(u32, 1024);
-pub const MDL_IO_SPACE = @as(u32, 2048);
-pub const MDL_NETWORK_HEADER = @as(u32, 4096);
-pub const MDL_MAPPING_CAN_FAIL = @as(u32, 8192);
-pub const MDL_ALLOCATED_MUST_SUCCEED = @as(u32, 16384);
-pub const MDL_64_BIT_VA = @as(u32, 32768);
+pub const DDWAITVB_BLOCKBEGIN = @as(i32, 1);
+pub const DDWAITVB_BLOCKBEGINEVENT = @as(i32, 2);
+pub const DDWAITVB_BLOCKEND = @as(i32, 4);
+pub const DDWAITVB_I_TESTVB = @as(i32, -2147483642);
+pub const DELETED_LASTONE = @as(u32, 1);
+pub const DELETED_NOTFOUND = @as(u32, 2);
+pub const DELETED_OK = @as(u32, 0);
+pub const DIRECTDRAW_VERSION = @as(u32, 1792);
 pub const DX_OK = @as(u32, 0);
-pub const DXERR_UNSUPPORTED = @as(u32, 2147500033);
+pub const DXAPI_HALVERSION = @as(u32, 1);
 pub const DXERR_GENERIC = @as(u32, 2147500037);
 pub const DXERR_OUTOFCAPS = @as(u32, 2289434984);
-pub const DDIRQ_BUSMASTER = @as(i32, 2);
+pub const DXERR_UNSUPPORTED = @as(u32, 2147500033);
+pub const GUID_ColorControlCallbacks = Guid.initString("efd60cc2-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_D3DCallbacks = Guid.initString("7bf06990-8794-11d0-9139-080036d2ef02");
+pub const GUID_D3DCallbacks2 = Guid.initString("0ba584e1-70b6-11d0-889d-00aa00bbb76a");
+pub const GUID_D3DCallbacks3 = Guid.initString("ddf41230-ec0a-11d0-a9b6-00aa00c0993e");
+pub const GUID_D3DCaps = Guid.initString("7bf06991-8794-11d0-9139-080036d2ef02");
+pub const GUID_D3DExtendedCaps = Guid.initString("7de41f80-9d93-11d0-89ab-00a0c9054129");
+pub const GUID_D3DParseUnknownCommandCallback = Guid.initString("2e04ffa0-98e4-11d1-8ce1-00a0c90629a8");
+pub const GUID_DDMoreCaps = Guid.initString("880baf30-b030-11d0-8ea7-00609797ea5b");
+pub const GUID_DDMoreSurfaceCaps = Guid.initString("3b8a0466-f269-11d1-880b-00c04fd930c5");
+pub const GUID_DDStereoMode = Guid.initString("f828169c-a8e8-11d2-a1f2-00a0c983eaf6");
+pub const GUID_DxApi = Guid.initString("8a79bef0-b915-11d0-9144-080036d2ef02");
+pub const GUID_GetHeapAlignment = Guid.initString("42e02f16-7b41-11d2-8bff-00a0c983eaf6");
+pub const GUID_KernelCallbacks = Guid.initString("80863800-6b06-11d0-9b06-00a0c903a3b8");
+pub const GUID_KernelCaps = Guid.initString("ffaa7540-7aa8-11d0-9b06-00a0c903a3b8");
+pub const GUID_Miscellaneous2Callbacks = Guid.initString("406b2f00-3e5a-11d1-b640-00aa00a1f96a");
+pub const GUID_MiscellaneousCallbacks = Guid.initString("efd60cc0-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_MotionCompCallbacks = Guid.initString("b1122b40-5da5-11d1-8fcf-00c04fc29b4e");
+pub const GUID_NonLocalVidMemCaps = Guid.initString("86c4fa80-8d84-11d0-94e8-00c04fc34137");
+pub const GUID_NTCallbacks = Guid.initString("6fe9ecde-df89-11d1-9db0-0060082771ba");
+pub const GUID_NTPrivateDriverCaps = Guid.initString("fad16a23-7b66-11d2-83d7-00c04f7ce58c");
+pub const GUID_OptSurfaceKmodeInfo = Guid.initString("e05c8472-51d4-11d1-8cce-00a0c90629a8");
+pub const GUID_OptSurfaceUmodeInfo = Guid.initString("9d792804-5fa8-11d1-8cd0-00a0c90629a8");
+pub const GUID_UpdateNonLocalHeap = Guid.initString("42e02f17-7b41-11d2-8bff-00a0c983eaf6");
+pub const GUID_UserModeDriverInfo = Guid.initString("f0b0e8e2-5f97-11d1-8cd0-00a0c90629a8");
+pub const GUID_UserModeDriverPassword = Guid.initString("97f861b6-60a1-11d1-8cd0-00a0c90629a8");
+pub const GUID_VideoPortCallbacks = Guid.initString("efd60cc1-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_VideoPortCaps = Guid.initString("efd60cc3-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_VPE2Callbacks = Guid.initString("52882147-2d47-469a-a0d1-03455890f6c8");
+pub const GUID_ZPixelFormats = Guid.initString("93869880-36cf-11d1-9b1b-00aa00bbb8ae");
+pub const HEAPALIASINFO_MAPPEDDUMMY = @as(i32, 2);
+pub const HEAPALIASINFO_MAPPEDREAL = @as(i32, 1);
 pub const IRQINFO_HANDLED = @as(u32, 1);
 pub const IRQINFO_NOTHANDLED = @as(u32, 2);
-pub const DDSKIP_SKIPNEXT = @as(u32, 1);
-pub const DDSKIP_ENABLENEXT = @as(u32, 2);
-pub const DDTRANSFER_SYSTEMMEMORY = @as(u32, 1);
-pub const DDTRANSFER_NONLOCALVIDMEM = @as(u32, 2);
-pub const DDTRANSFER_INVERT = @as(u32, 4);
-pub const DDTRANSFER_CANCEL = @as(u32, 128);
-pub const DDTRANSFER_HALFLINES = @as(u32, 256);
-pub const DXAPI_HALVERSION = @as(u32, 1);
+pub const MAX_AUTOFLIP_BUFFERS = @as(u32, 10);
+pub const MAX_DDDEVICEID_STRING = @as(u32, 512);
+pub const MAX_DRIVER_NAME = @as(u32, 32);
+pub const MAX_PALETTE_SIZE = @as(u32, 256);
+pub const MDL_64_BIT_VA = @as(u32, 32768);
+pub const MDL_ALLOCATED_FIXED_SIZE = @as(u32, 8);
+pub const MDL_ALLOCATED_MUST_SUCCEED = @as(u32, 16384);
+pub const MDL_IO_PAGE_READ = @as(u32, 64);
+pub const MDL_IO_SPACE = @as(u32, 2048);
+pub const MDL_LOCK_HELD = @as(u32, 512);
+pub const MDL_MAPPED_TO_SYSTEM_VA = @as(u32, 1);
+pub const MDL_MAPPING_CAN_FAIL = @as(u32, 8192);
+pub const MDL_NETWORK_HEADER = @as(u32, 4096);
+pub const MDL_PAGES_LOCKED = @as(u32, 2);
+pub const MDL_PARENT_MAPPED_SYSTEM_VA = @as(u32, 256);
+pub const MDL_PARTIAL = @as(u32, 16);
+pub const MDL_PARTIAL_HAS_BEEN_MAPPED = @as(u32, 32);
+pub const MDL_SCATTER_GATHER_VA = @as(u32, 1024);
+pub const MDL_SOURCE_IS_NONPAGED_POOL = @as(u32, 4);
+pub const MDL_WRITE_OPERATION = @as(u32, 128);
+pub const OBJECT_ISROOT = @as(i32, -2147483648);
+pub const PFINDEX_UNINITIALIZED = @as(u32, 0);
+pub const REGSTR_KEY_DDHW_DESCRIPTION = "Description";
+pub const REGSTR_KEY_DDHW_DRIVERNAME = "DriverName";
+pub const REGSTR_PATH_DDHW = "Hardware\\DirectDrawDrivers";
+pub const ROP_HAS_PATTERN = @as(i32, 2);
+pub const ROP_HAS_SOURCE = @as(i32, 1);
+pub const SURFACEALIGN_DISCARDABLE = @as(i32, 1);
+pub const VIDMEM_HEAPDISABLED = @as(i32, 32);
+pub const VIDMEM_ISHEAP = @as(i32, 4);
+pub const VIDMEM_ISLINEAR = @as(i32, 1);
+pub const VIDMEM_ISNONLOCAL = @as(i32, 8);
+pub const VIDMEM_ISRECTANGULAR = @as(i32, 2);
+pub const VIDMEM_ISWC = @as(i32, 16);
+pub const VMEMHEAP_ALIGNMENT = @as(i32, 4);
+pub const VMEMHEAP_LINEAR = @as(i32, 1);
+pub const VMEMHEAP_RECTANGULAR = @as(i32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (466)
 //--------------------------------------------------------------------------------
+pub const _DD_DESTROYDRIVERDATA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _DD_GETVPORTAUTOFLIPSURFACEDATA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _DD_SETMODEDATA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const _DDFXROP = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const LPDDENUMCALLBACKA = *const fn(
-    param0: ?*Guid,
-    param1: ?PSTR,
-    param2: ?PSTR,
-    param3: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const LPDDENUMCALLBACKW = *const fn(
-    param0: ?*Guid,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
-    param3: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const LPDDENUMCALLBACKEXA = *const fn(
-    param0: ?*Guid,
-    param1: ?PSTR,
-    param2: ?PSTR,
-    param3: ?*anyopaque,
-    param4: ?HMONITOR,
-) callconv(.winapi) BOOL;
-
-pub const LPDDENUMCALLBACKEXW = *const fn(
-    param0: ?*Guid,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
-    param3: ?*anyopaque,
-    param4: ?HMONITOR,
-) callconv(.winapi) BOOL;
-
-pub const LPDIRECTDRAWENUMERATEEXA = *const fn(
-    lpCallback: ?LPDDENUMCALLBACKEXA,
-    lpContext: ?*anyopaque,
+pub const ACCESSRECTLIST = extern struct {
+    lpLink: ?*ACCESSRECTLIST,
+    rDest: RECT,
+    lpOwner: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpSurfaceData: ?*anyopaque,
     dwFlags: u32,
-) callconv(.winapi) HRESULT;
+    lpHeapAliasInfo: ?*HEAPALIASINFO,
+};
 
-pub const LPDIRECTDRAWENUMERATEEXW = *const fn(
-    lpCallback: ?LPDDENUMCALLBACKEXW,
-    lpContext: ?*anyopaque,
+pub const ATTACHLIST = extern struct {
     dwFlags: u32,
-) callconv(.winapi) HRESULT;
+    lpLink: ?*ATTACHLIST,
+    lpAttached: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpIAttached: ?*DDRAWI_DDRAWSURFACE_INT,
+};
 
-pub const LPDDENUMMODESCALLBACK = *const fn(
-    param0: ?*DDSURFACEDESC,
-    param1: ?*anyopaque,
-) callconv(.winapi) HRESULT;
+pub const DBLNODE = extern struct {
+    next: ?*DBLNODE,
+    prev: ?*DBLNODE,
+    object: ?*DDRAWI_DDRAWSURFACE_LCL,
+    object_int: ?*DDRAWI_DDRAWSURFACE_INT,
+};
 
-pub const LPDDENUMMODESCALLBACK2 = *const fn(
-    param0: ?*DDSURFACEDESC2,
-    param1: ?*anyopaque,
-) callconv(.winapi) HRESULT;
+pub const DD32BITDRIVERDATA = extern struct {
+    szName: [260]CHAR,
+    szEntryPoint: [64]CHAR,
+    dwContext: u32,
+};
 
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDENUMSURFACESCALLBACK = *const fn() callconv(.winapi) void;
+pub const DD_ADDATTACHEDSURFACEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    lpSurfAttached: ?*DD_SURFACE_LOCAL,
+    ddRVal: HRESULT,
+    AddAttachedSurface: ?*anyopaque,
+};
 
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDENUMSURFACESCALLBACK2 = *const fn() callconv(.winapi) void;
+pub const DD_ATTACHLIST = extern struct {
+    lpLink: ?*DD_ATTACHLIST,
+    lpAttached: ?*DD_SURFACE_LOCAL,
+};
 
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDENUMSURFACESCALLBACK7 = *const fn() callconv(.winapi) void;
+pub const DD_BEGINMOCOMPFRAMEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpDestSurface: ?*DD_SURFACE_LOCAL,
+    dwInputDataSize: u32,
+    lpInputData: ?*anyopaque,
+    dwOutputDataSize: u32,
+    lpOutputData: ?*anyopaque,
+    ddRVal: HRESULT,
+};
+
+pub const DD_BLTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
+    rDest: RECTL,
+    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
+    rSrc: RECTL,
+    dwFlags: u32,
+    dwROPFlags: u32,
+    bltFX: DDBLTFX,
+    ddRVal: HRESULT,
+    Blt: ?*anyopaque,
+    IsClipped: BOOL,
+    rOrigDest: RECTL,
+    rOrigSrc: RECTL,
+    dwRectCnt: u32,
+    prDestRects: ?*RECT,
+    dwAFlags: u32,
+    ddargbScaleFactors: DDARGB,
+};
+
+pub const DD_CALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    DestroyDriver: ?PDD_DESTROYDRIVER,
+    CreateSurface: ?PDD_CREATESURFACE,
+    SetColorKey: ?PDD_SETCOLORKEY,
+    SetMode: ?PDD_SETMODE,
+    WaitForVerticalBlank: ?PDD_WAITFORVERTICALBLANK,
+    CanCreateSurface: ?PDD_CANCREATESURFACE,
+    CreatePalette: ?PDD_CREATEPALETTE,
+    GetScanLine: ?PDD_GETSCANLINE,
+    MapMemory: ?PDD_MAPMEMORY,
+};
+
+pub const DD_CANCREATESURFACEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurfaceDesc: ?*DDSURFACEDESC,
+    bIsDifferentPixelFormat: u32,
+    ddRVal: HRESULT,
+    CanCreateSurface: ?*anyopaque,
+};
+
+pub const DD_CANCREATEVPORTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
+    ddRVal: HRESULT,
+    CanCreateVideoPort: ?*anyopaque,
+};
+
+pub const DD_CLIPPER_GLOBAL = extern struct {
+    dwReserved1: usize,
+};
+
+pub const DD_CLIPPER_LOCAL = extern struct {
+    dwReserved1: usize,
+};
+
+pub const DD_COLORCONTROLCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    ColorControl: ?PDD_COLORCB_COLORCONTROL,
+};
+
+pub const DD_COLORCONTROLDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    lpColorData: ?*DDCOLORCONTROL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    ColorControl: ?*anyopaque,
+};
+
+pub const DD_CREATEMOCOMPDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpGuid: ?*Guid,
+    dwUncompWidth: u32,
+    dwUncompHeight: u32,
+    ddUncompPixelFormat: DDPIXELFORMAT,
+    lpData: ?*anyopaque,
+    dwDataSize: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_CREATEPALETTEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
+    lpColorTable: ?*PALETTEENTRY,
+    ddRVal: HRESULT,
+    CreatePalette: ?*anyopaque,
+    is_excl: BOOL,
+};
+
+pub const DD_CREATESURFACEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurfaceDesc: ?*DDSURFACEDESC,
+    lplpSList: ?*?*DD_SURFACE_LOCAL,
+    dwSCnt: u32,
+    ddRVal: HRESULT,
+    CreateSurface: ?*anyopaque,
+};
+
+pub const DD_CREATESURFACEEXDATA = extern struct {
+    dwFlags: u32,
+    lpDDLcl: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDSLcl: ?*DD_SURFACE_LOCAL,
+    ddRVal: HRESULT,
+};
+
+pub const DD_CREATEVPORTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    ddRVal: HRESULT,
+    CreateVideoPort: ?*anyopaque,
+};
+
+pub const DD_D3DBUFCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    CanCreateD3DBuffer: ?PDD_CANCREATESURFACE,
+    CreateD3DBuffer: ?PDD_CREATESURFACE,
+    DestroyD3DBuffer: ?PDD_SURFCB_DESTROYSURFACE,
+    LockD3DBuffer: ?PDD_SURFCB_LOCK,
+    UnlockD3DBuffer: ?PDD_SURFCB_UNLOCK,
+};
+
+pub const DD_DESTROYDDLOCALDATA = extern struct {
+    dwFlags: u32,
+    pDDLcl: ?*DD_DIRECTDRAW_LOCAL,
+    ddRVal: HRESULT,
+};
+
+pub const DD_DESTROYMOCOMPDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    ddRVal: HRESULT,
+};
+
+pub const DD_DESTROYPALETTEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
+    ddRVal: HRESULT,
+    DestroyPalette: ?*anyopaque,
+};
+
+pub const DD_DESTROYSURFACEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    ddRVal: HRESULT,
+    DestroySurface: ?*anyopaque,
+};
+
+pub const DD_DESTROYVPORTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    ddRVal: HRESULT,
+    DestroyVideoPort: ?*anyopaque,
+};
+
+pub const DD_DIRECTDRAW_GLOBAL = extern struct {
+    dhpdev: ?*anyopaque,
+    dwReserved1: usize,
+    dwReserved2: usize,
+    lpDDVideoPortCaps: ?*DDVIDEOPORTCAPS,
+};
+
+pub const DD_DIRECTDRAW_LOCAL = extern struct {
+    lpGbl: ?*DD_DIRECTDRAW_GLOBAL,
+};
+
+pub const DD_DRVSETCOLORKEYDATA = extern struct {
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    dwFlags: u32,
+    ckNew: DDCOLORKEY,
+    ddRVal: HRESULT,
+    SetColorKey: ?*anyopaque,
+};
+
+pub const DD_ENDMOCOMPFRAMEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpInputData: ?*anyopaque,
+    dwInputDataSize: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_FLIPDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpSurfCurr: ?*DD_SURFACE_LOCAL,
+    lpSurfTarg: ?*DD_SURFACE_LOCAL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    Flip: ?*anyopaque,
+    lpSurfCurrLeft: ?*DD_SURFACE_LOCAL,
+    lpSurfTargLeft: ?*DD_SURFACE_LOCAL,
+};
+
+pub const DD_FLIPTOGDISURFACEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    dwToGDI: u32,
+    dwReserved: u32,
+    ddRVal: HRESULT,
+    FlipToGDISurface: ?*anyopaque,
+};
+
+pub const DD_FLIPVPORTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    lpSurfCurr: ?*DD_SURFACE_LOCAL,
+    lpSurfTarg: ?*DD_SURFACE_LOCAL,
+    ddRVal: HRESULT,
+    FlipVideoPort: ?*anyopaque,
+};
+
+pub const DD_FREEDRIVERMEMORYDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    ddRVal: HRESULT,
+    FreeDriverMemory: ?*anyopaque,
+};
+
+pub const DD_GETAVAILDRIVERMEMORYDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    DDSCaps: DDSCAPS,
+    dwTotal: u32,
+    dwFree: u32,
+    ddRVal: HRESULT,
+    GetAvailDriverMemory: ?*anyopaque,
+};
+
+pub const DD_GETBLTSTATUSDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    GetBltStatus: ?*anyopaque,
+};
+
+pub const DD_GETDRIVERINFODATA = extern struct {
+    dhpdev: ?*anyopaque,
+    dwSize: u32,
+    dwFlags: u32,
+    guidInfo: Guid,
+    dwExpectedSize: u32,
+    lpvData: ?*anyopaque,
+    dwActualSize: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_GETDRIVERSTATEDATA = extern struct {
+    dwFlags: u32,
+    Anonymous: extern union {
+        lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+        dwhContext: usize,
+    },
+    lpdwStates: ?*u32,
+    dwLength: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_GETFLIPSTATUSDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    GetFlipStatus: ?*anyopaque,
+};
+
+pub const DD_GETHEAPALIGNMENTDATA = extern struct {
+    dwInstance: usize,
+    dwHeap: u32,
+    ddRVal: HRESULT,
+    GetHeapAlignment: ?*anyopaque,
+    Alignment: HEAPALIGNMENT,
+};
+
+pub const DD_GETINTERNALMOCOMPDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpGuid: ?*Guid,
+    dwWidth: u32,
+    dwHeight: u32,
+    ddPixelFormat: DDPIXELFORMAT,
+    dwScratchMemAlloc: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_GETMOCOMPCOMPBUFFDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpGuid: ?*Guid,
+    dwWidth: u32,
+    dwHeight: u32,
+    ddPixelFormat: DDPIXELFORMAT,
+    dwNumTypesCompBuffs: u32,
+    lpCompBuffInfo: ?*DDCOMPBUFFERINFO,
+    ddRVal: HRESULT,
+};
+
+pub const DD_GETMOCOMPFORMATSDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpGuid: ?*Guid,
+    dwNumFormats: u32,
+    lpFormats: ?*DDPIXELFORMAT,
+    ddRVal: HRESULT,
+};
+
+pub const DD_GETMOCOMPGUIDSDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    dwNumGuids: u32,
+    lpGuids: ?*Guid,
+    ddRVal: HRESULT,
+};
+
+pub const DD_GETSCANLINEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    dwScanLine: u32,
+    ddRVal: HRESULT,
+    GetScanLine: ?*anyopaque,
+};
+
+pub const DD_GETVPORTBANDWIDTHDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    lpddpfFormat: ?*DDPIXELFORMAT,
+    dwWidth: u32,
+    dwHeight: u32,
+    dwFlags: u32,
+    lpBandwidth: ?*DDVIDEOPORTBANDWIDTH,
+    ddRVal: HRESULT,
+    GetVideoPortBandwidth: ?*anyopaque,
+};
+
+pub const DD_GETVPORTCONNECTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    dwPortId: u32,
+    lpConnect: ?*DDVIDEOPORTCONNECT,
+    dwNumEntries: u32,
+    ddRVal: HRESULT,
+    GetVideoPortConnectInfo: ?*anyopaque,
+};
+
+pub const DD_GETVPORTFIELDDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    bField: BOOL,
+    ddRVal: HRESULT,
+    GetVideoPortField: ?*anyopaque,
+};
+
+pub const DD_GETVPORTFLIPSTATUSDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    fpSurface: usize,
+    ddRVal: HRESULT,
+    GetVideoPortFlipStatus: ?*anyopaque,
+};
+
+pub const DD_GETVPORTINPUTFORMATDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwFlags: u32,
+    lpddpfFormat: ?*DDPIXELFORMAT,
+    dwNumFormats: u32,
+    ddRVal: HRESULT,
+    GetVideoPortInputFormats: ?*anyopaque,
+};
+
+pub const DD_GETVPORTLINEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwLine: u32,
+    ddRVal: HRESULT,
+    GetVideoPortLine: ?*anyopaque,
+};
+
+pub const DD_GETVPORTOUTPUTFORMATDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwFlags: u32,
+    lpddpfInputFormat: ?*DDPIXELFORMAT,
+    lpddpfOutputFormats: ?*DDPIXELFORMAT,
+    dwNumFormats: u32,
+    ddRVal: HRESULT,
+    GetVideoPortInputFormats: ?*anyopaque,
+};
+
+pub const DD_GETVPORTSIGNALDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwStatus: u32,
+    ddRVal: HRESULT,
+    GetVideoSignalStatus: ?*anyopaque,
+};
+
+pub const DD_HALINFO = extern struct {
+    dwSize: u32,
+    vmiData: VIDEOMEMORYINFO,
+    ddCaps: DDNTCORECAPS,
+    GetDriverInfo: ?PDD_GETDRIVERINFO,
+    dwFlags: u32,
+    lpD3DGlobalDriverData: ?*anyopaque,
+    lpD3DHALCallbacks: ?*anyopaque,
+    lpD3DBufCallbacks: ?*DD_D3DBUFCALLBACKS,
+};
+
+pub const DD_HALINFO_V4 = extern struct {
+    dwSize: u32,
+    vmiData: VIDEOMEMORYINFO,
+    ddCaps: DDNTCORECAPS,
+    GetDriverInfo: ?PDD_GETDRIVERINFO,
+    dwFlags: u32,
+};
+
+pub const DD_KERNELCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    SyncSurfaceData: ?PDD_KERNELCB_SYNCSURFACE,
+    SyncVideoPortData: ?PDD_KERNELCB_SYNCVIDEOPORT,
+};
+
+pub const DD_LOCKDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    bHasRect: u32,
+    rArea: RECTL,
+    lpSurfData: ?*anyopaque,
+    ddRVal: HRESULT,
+    Lock: ?*anyopaque,
+    dwFlags: u32,
+    fpProcess: usize,
+};
+
+pub const DD_MAPMEMORYDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    bMap: BOOL,
+    hProcess: ?HANDLE,
+    fpProcess: usize,
+    ddRVal: HRESULT,
+};
+
+pub const DD_MISCELLANEOUS2CALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    AlphaBlt: ?PDD_ALPHABLT,
+    CreateSurfaceEx: ?PDD_CREATESURFACEEX,
+    GetDriverState: ?PDD_GETDRIVERSTATE,
+    DestroyDDLocal: ?PDD_DESTROYDDLOCAL,
+};
+
+pub const DD_MISCELLANEOUSCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    GetAvailDriverMemory: ?PDD_GETAVAILDRIVERMEMORY,
+};
+
+pub const DD_MORECAPS = extern struct {
+    dwSize: u32,
+    dwAlphaCaps: u32,
+    dwSVBAlphaCaps: u32,
+    dwVSBAlphaCaps: u32,
+    dwSSBAlphaCaps: u32,
+    dwFilterCaps: u32,
+    dwSVBFilterCaps: u32,
+    dwVSBFilterCaps: u32,
+    dwSSBFilterCaps: u32,
+};
+
+pub const DD_MORESURFACECAPS = extern struct {
+    pub const NTExtendedHeapRestrictions = extern struct {
+        ddsCapsEx: DDSCAPSEX,
+        ddsCapsExAlt: DDSCAPSEX,
+    };
+    dwSize: u32,
+    ddsCapsMore: DDSCAPSEX,
+    ddsExtendedHeapRestrictions: [1]NTExtendedHeapRestrictions,
+};
+
+pub const DD_MOTIONCOMP_LOCAL = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    guid: Guid,
+    dwUncompWidth: u32,
+    dwUncompHeight: u32,
+    ddUncompPixelFormat: DDPIXELFORMAT,
+    dwDriverReserved1: u32,
+    dwDriverReserved2: u32,
+    dwDriverReserved3: u32,
+    lpDriverReserved1: ?*anyopaque,
+    lpDriverReserved2: ?*anyopaque,
+    lpDriverReserved3: ?*anyopaque,
+};
+
+pub const DD_MOTIONCOMPCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    GetMoCompGuids: ?PDD_MOCOMPCB_GETGUIDS,
+    GetMoCompFormats: ?PDD_MOCOMPCB_GETFORMATS,
+    CreateMoComp: ?PDD_MOCOMPCB_CREATE,
+    GetMoCompBuffInfo: ?PDD_MOCOMPCB_GETCOMPBUFFINFO,
+    GetInternalMoCompInfo: ?PDD_MOCOMPCB_GETINTERNALINFO,
+    BeginMoCompFrame: ?PDD_MOCOMPCB_BEGINFRAME,
+    EndMoCompFrame: ?PDD_MOCOMPCB_ENDFRAME,
+    RenderMoComp: ?PDD_MOCOMPCB_RENDER,
+    QueryMoCompStatus: ?PDD_MOCOMPCB_QUERYSTATUS,
+    DestroyMoComp: ?PDD_MOCOMPCB_DESTROY,
+};
+
+pub const DD_NONLOCALVIDMEMCAPS = extern struct {
+    dwSize: u32,
+    dwNLVBCaps: u32,
+    dwNLVBCaps2: u32,
+    dwNLVBCKeyCaps: u32,
+    dwNLVBFXCaps: u32,
+    dwNLVBRops: [8]u32,
+};
+
+pub const DD_NTCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    FreeDriverMemory: ?PDD_FREEDRIVERMEMORY,
+    SetExclusiveMode: ?PDD_SETEXCLUSIVEMODE,
+    FlipToGDISurface: ?PDD_FLIPTOGDISURFACE,
+};
+
+pub const DD_NTPRIVATEDRIVERCAPS = extern struct {
+    dwSize: u32,
+    dwPrivateCaps: u32,
+};
+
+pub const DD_PALETTE_GLOBAL = extern struct {
+    dwReserved1: usize,
+};
+
+pub const DD_PALETTE_LOCAL = extern struct {
+    dwReserved0: u32,
+    dwReserved1: usize,
+};
+
+pub const DD_PALETTECALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    DestroyPalette: ?PDD_PALCB_DESTROYPALETTE,
+    SetEntries: ?PDD_PALCB_SETENTRIES,
+};
+
+pub const DD_QUERYMOCOMPSTATUSDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    lpSurface: ?*DD_SURFACE_LOCAL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_RENDERMOCOMPDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
+    dwNumBuffers: u32,
+    lpBufferInfo: ?*DDMOCOMPBUFFERINFO,
+    dwFunction: u32,
+    lpInputData: ?*anyopaque,
+    dwInputDataSize: u32,
+    lpOutputData: ?*anyopaque,
+    dwOutputDataSize: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_SETCLIPLISTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    ddRVal: HRESULT,
+    SetClipList: ?*anyopaque,
+};
+
+pub const DD_SETCOLORKEYDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    dwFlags: u32,
+    ckNew: DDCOLORKEY,
+    ddRVal: HRESULT,
+    SetColorKey: ?*anyopaque,
+};
+
+pub const DD_SETENTRIESDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
+    dwBase: u32,
+    dwNumEntries: u32,
+    lpEntries: ?*PALETTEENTRY,
+    ddRVal: HRESULT,
+    SetEntries: ?*anyopaque,
+};
+
+pub const DD_SETEXCLUSIVEMODEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    dwEnterExcl: u32,
+    dwReserved: u32,
+    ddRVal: HRESULT,
+    SetExclusiveMode: ?*anyopaque,
+};
+
+pub const DD_SETOVERLAYPOSITIONDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
+    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
+    lXPos: i32,
+    lYPos: i32,
+    ddRVal: HRESULT,
+    SetOverlayPosition: ?*anyopaque,
+};
+
+pub const DD_SETPALETTEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    lpDDPalette: ?*DD_PALETTE_GLOBAL,
+    ddRVal: HRESULT,
+    SetPalette: ?*anyopaque,
+    Attach: BOOL,
+};
+
+pub const DD_STEREOMODE = extern struct {
+    dwSize: u32,
+    dwHeight: u32,
+    dwWidth: u32,
+    dwBpp: u32,
+    dwRefreshRate: u32,
+    bSupported: BOOL,
+};
+
+pub const DD_SURFACE_GLOBAL = extern struct {
+    Anonymous1: extern union {
+        dwBlockSizeY: u32,
+        lSlicePitch: i32,
+    },
+    Anonymous2: extern union {
+        lpVidMemHeap: ?*VIDEOMEMORY,
+        dwBlockSizeX: u32,
+        dwUserMemSize: u32,
+    },
+    fpVidMem: usize,
+    Anonymous3: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
+    yHint: i32,
+    xHint: i32,
+    wHeight: u32,
+    wWidth: u32,
+    dwReserved1: usize,
+    ddpfSurface: DDPIXELFORMAT,
+    fpHeapOffset: usize,
+    hCreatorProcess: ?HANDLE,
+};
+
+pub const DD_SURFACE_INT = extern struct {
+    lpLcl: ?*DD_SURFACE_LOCAL,
+};
+
+pub const DD_SURFACE_LOCAL = extern struct {
+    lpGbl: ?*DD_SURFACE_GLOBAL,
+    dwFlags: u32,
+    ddsCaps: DDSCAPS,
+    dwReserved1: usize,
+    Anonymous1: extern union {
+        ddckCKSrcOverlay: DDCOLORKEY,
+        ddckCKSrcBlt: DDCOLORKEY,
+    },
+    Anonymous2: extern union {
+        ddckCKDestOverlay: DDCOLORKEY,
+        ddckCKDestBlt: DDCOLORKEY,
+    },
+    lpSurfMore: ?*DD_SURFACE_MORE,
+    lpAttachList: ?*DD_ATTACHLIST,
+    lpAttachListFrom: ?*DD_ATTACHLIST,
+    rcOverlaySrc: RECT,
+};
+
+pub const DD_SURFACE_MORE = extern struct {
+    dwMipMapCount: u32,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwOverlayFlags: u32,
+    ddsCapsEx: DDSCAPSEX,
+    dwSurfaceHandle: u32,
+};
+
+pub const DD_SURFACECALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    DestroySurface: ?PDD_SURFCB_DESTROYSURFACE,
+    Flip: ?PDD_SURFCB_FLIP,
+    SetClipList: ?PDD_SURFCB_SETCLIPLIST,
+    Lock: ?PDD_SURFCB_LOCK,
+    Unlock: ?PDD_SURFCB_UNLOCK,
+    Blt: ?PDD_SURFCB_BLT,
+    SetColorKey: ?PDD_SURFCB_SETCOLORKEY,
+    AddAttachedSurface: ?PDD_SURFCB_ADDATTACHEDSURFACE,
+    GetBltStatus: ?PDD_SURFCB_GETBLTSTATUS,
+    GetFlipStatus: ?PDD_SURFCB_GETFLIPSTATUS,
+    UpdateOverlay: ?PDD_SURFCB_UPDATEOVERLAY,
+    SetOverlayPosition: ?PDD_SURFCB_SETOVERLAYPOSITION,
+    reserved4: ?*anyopaque,
+    SetPalette: ?PDD_SURFCB_SETPALETTE,
+};
+
+pub const DD_SYNCSURFACEDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    dwSurfaceOffset: u32,
+    fpLockPtr: usize,
+    lPitch: i32,
+    dwOverlayOffset: u32,
+    dwDriverReserved1: u32,
+    dwDriverReserved2: u32,
+    dwDriverReserved3: u32,
+    dwDriverReserved4: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_SYNCVIDEOPORTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwOriginOffset: u32,
+    dwHeight: u32,
+    dwVBIHeight: u32,
+    dwDriverReserved1: u32,
+    dwDriverReserved2: u32,
+    dwDriverReserved3: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DD_UNLOCKDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDSurface: ?*DD_SURFACE_LOCAL,
+    ddRVal: HRESULT,
+    Unlock: ?*anyopaque,
+};
+
+pub const DD_UPDATENONLOCALHEAPDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    dwHeap: u32,
+    fpGARTLin: usize,
+    fpGARTDev: usize,
+    ulPolicyMaxBytes: usize,
+    ddRVal: HRESULT,
+    UpdateNonLocalHeap: ?*anyopaque,
+};
+
+pub const DD_UPDATEOVERLAYDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
+    rDest: RECTL,
+    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
+    rSrc: RECTL,
+    dwFlags: u32,
+    overlayFX: DDOVERLAYFX,
+    ddRVal: HRESULT,
+    UpdateOverlay: ?*anyopaque,
+};
+
+pub const DD_UPDATEVPORTDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    lplpDDSurface: ?*?*DD_SURFACE_INT,
+    lplpDDVBISurface: ?*?*DD_SURFACE_INT,
+    lpVideoInfo: ?*DDVIDEOPORTINFO,
+    dwFlags: u32,
+    dwNumAutoflip: u32,
+    dwNumVBIAutoflip: u32,
+    ddRVal: HRESULT,
+    UpdateVideoPort: ?*anyopaque,
+};
+
+pub const DD_VIDEOPORT_LOCAL = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    ddvpDesc: DDVIDEOPORTDESC,
+    ddvpInfo: DDVIDEOPORTINFO,
+    lpSurface: ?*DD_SURFACE_INT,
+    lpVBISurface: ?*DD_SURFACE_INT,
+    dwNumAutoflip: u32,
+    dwNumVBIAutoflip: u32,
+    dwReserved1: usize,
+    dwReserved2: usize,
+    dwReserved3: usize,
+};
+
+pub const DD_VIDEOPORTCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    CanCreateVideoPort: ?PDD_VPORTCB_CANCREATEVIDEOPORT,
+    CreateVideoPort: ?PDD_VPORTCB_CREATEVIDEOPORT,
+    FlipVideoPort: ?PDD_VPORTCB_FLIP,
+    GetVideoPortBandwidth: ?PDD_VPORTCB_GETBANDWIDTH,
+    GetVideoPortInputFormats: ?PDD_VPORTCB_GETINPUTFORMATS,
+    GetVideoPortOutputFormats: ?PDD_VPORTCB_GETOUTPUTFORMATS,
+    lpReserved1: ?*anyopaque,
+    GetVideoPortField: ?PDD_VPORTCB_GETFIELD,
+    GetVideoPortLine: ?PDD_VPORTCB_GETLINE,
+    GetVideoPortConnectInfo: ?PDD_VPORTCB_GETVPORTCONNECT,
+    DestroyVideoPort: ?PDD_VPORTCB_DESTROYVPORT,
+    GetVideoPortFlipStatus: ?PDD_VPORTCB_GETFLIPSTATUS,
+    UpdateVideoPort: ?PDD_VPORTCB_UPDATE,
+    WaitForVideoPortSync: ?PDD_VPORTCB_WAITFORSYNC,
+    GetVideoSignalStatus: ?PDD_VPORTCB_GETSIGNALSTATUS,
+    ColorControl: ?PDD_VPORTCB_COLORCONTROL,
+};
+
+pub const DD_VPORTCOLORDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwFlags: u32,
+    lpColorData: ?*DDCOLORCONTROL,
+    ddRVal: HRESULT,
+    ColorControl: ?*anyopaque,
+};
+
+pub const DD_WAITFORVERTICALBLANKDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
+    dwFlags: u32,
+    bIsInVB: u32,
+    hEvent: usize,
+    ddRVal: HRESULT,
+    WaitForVerticalBlank: ?*anyopaque,
+};
+
+pub const DD_WAITFORVPORTSYNCDATA = extern struct {
+    lpDD: ?*DD_DIRECTDRAW_LOCAL,
+    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
+    dwFlags: u32,
+    dwLine: u32,
+    dwTimeOut: u32,
+    ddRVal: HRESULT,
+    UpdateVideoPort: ?*anyopaque,
+};
 
 pub const DDARGB = extern struct {
     blue: u8,
@@ -1016,16 +1851,12 @@ pub const DDARGB = extern struct {
     alpha: u8,
 };
 
-pub const DDRGBA = extern struct {
-    red: u8,
-    green: u8,
-    blue: u8,
-    alpha: u8,
-};
-
-pub const DDCOLORKEY = extern struct {
-    dwColorSpaceLowValue: u32,
-    dwColorSpaceHighValue: u32,
+pub const DDBLTBATCH = extern struct {
+    lprDest: ?*RECT,
+    lpDDSSrc: ?*IDirectDrawSurface,
+    lprSrc: ?*RECT,
+    dwFlags: u32,
+    lpDDBltFx: ?*DDBLTFX,
 };
 
 pub const DDBLTFX = extern struct {
@@ -1071,31 +1902,8 @@ pub const DDBLTFX = extern struct {
     ddckSrcColorkey: DDCOLORKEY,
 };
 
-pub const DDSCAPS = extern struct {
-    dwCaps: u32,
-};
-
-pub const DDOSCAPS = extern struct {
-    dwCaps: u32,
-};
-
-pub const DDSCAPSEX = extern struct {
-    dwCaps2: u32,
-    dwCaps3: u32,
-    Anonymous: extern union {
-        dwCaps4: u32,
-        dwVolumeDepth: u32,
-    },
-};
-
-pub const DDSCAPS2 = extern struct {
-    dwCaps: u32,
-    dwCaps2: u32,
-    dwCaps3: u32,
-    Anonymous: extern union {
-        dwCaps4: u32,
-        dwVolumeDepth: u32,
-    },
+pub const DDBOBNEXTFIELDINFO = extern struct {
+    lpSurface: ?*DDSURFACEDATA,
 };
 
 pub const DDCAPS_DX1 = extern struct {
@@ -1370,6 +2178,1082 @@ pub const DDCAPS_DX7 = extern struct {
     ddsCaps: DDSCAPS2,
 };
 
+pub const DDCOLORCONTROL = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    lBrightness: i32,
+    lContrast: i32,
+    lHue: i32,
+    lSaturation: i32,
+    lSharpness: i32,
+    lGamma: i32,
+    lColorEnable: i32,
+    dwReserved1: u32,
+};
+
+pub const DDCOLORKEY = extern struct {
+    dwColorSpaceLowValue: u32,
+    dwColorSpaceHighValue: u32,
+};
+
+pub const DDCOMPBUFFERINFO = extern struct {
+    dwSize: u32,
+    dwNumCompBuffers: u32,
+    dwWidthToCreate: u32,
+    dwHeightToCreate: u32,
+    dwBytesToAllocate: u32,
+    ddCompCaps: DDSCAPS2,
+    ddPixelFormat: DDPIXELFORMAT,
+};
+
+pub const DDCORECAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwCaps2: u32,
+    dwCKeyCaps: u32,
+    dwFXCaps: u32,
+    dwFXAlphaCaps: u32,
+    dwPalCaps: u32,
+    dwSVCaps: u32,
+    dwAlphaBltConstBitDepths: u32,
+    dwAlphaBltPixelBitDepths: u32,
+    dwAlphaBltSurfaceBitDepths: u32,
+    dwAlphaOverlayConstBitDepths: u32,
+    dwAlphaOverlayPixelBitDepths: u32,
+    dwAlphaOverlaySurfaceBitDepths: u32,
+    dwZBufferBitDepths: u32,
+    dwVidMemTotal: u32,
+    dwVidMemFree: u32,
+    dwMaxVisibleOverlays: u32,
+    dwCurrVisibleOverlays: u32,
+    dwNumFourCCCodes: u32,
+    dwAlignBoundarySrc: u32,
+    dwAlignSizeSrc: u32,
+    dwAlignBoundaryDest: u32,
+    dwAlignSizeDest: u32,
+    dwAlignStrideAlign: u32,
+    dwRops: [8]u32,
+    ddsCaps: DDSCAPS,
+    dwMinOverlayStretch: u32,
+    dwMaxOverlayStretch: u32,
+    dwMinLiveVideoStretch: u32,
+    dwMaxLiveVideoStretch: u32,
+    dwMinHwCodecStretch: u32,
+    dwMaxHwCodecStretch: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwReserved3: u32,
+    dwSVBCaps: u32,
+    dwSVBCKeyCaps: u32,
+    dwSVBFXCaps: u32,
+    dwSVBRops: [8]u32,
+    dwVSBCaps: u32,
+    dwVSBCKeyCaps: u32,
+    dwVSBFXCaps: u32,
+    dwVSBRops: [8]u32,
+    dwSSBCaps: u32,
+    dwSSBCKeyCaps: u32,
+    dwSSBFXCaps: u32,
+    dwSSBRops: [8]u32,
+    dwMaxVideoPorts: u32,
+    dwCurrVideoPorts: u32,
+    dwSVBCaps2: u32,
+};
+
+pub const DDDEVICEIDENTIFIER = extern struct {
+    szDriver: [512]CHAR,
+    szDescription: [512]CHAR,
+    liDriverVersion: LARGE_INTEGER,
+    dwVendorId: u32,
+    dwDeviceId: u32,
+    dwSubSysId: u32,
+    dwRevision: u32,
+    guidDeviceIdentifier: Guid,
+};
+
+pub const DDDEVICEIDENTIFIER2 = extern struct {
+    szDriver: [512]CHAR,
+    szDescription: [512]CHAR,
+    liDriverVersion: LARGE_INTEGER,
+    dwVendorId: u32,
+    dwDeviceId: u32,
+    dwSubSysId: u32,
+    dwRevision: u32,
+    guidDeviceIdentifier: Guid,
+    dwWHQLLevel: u32,
+};
+
+pub const DDENABLEIRQINFO = extern struct {
+    dwIRQSources: u32,
+    dwLine: u32,
+    IRQCallback: ?PDX_IRQCALLBACK,
+    lpIRQData: ?*DX_IRQDATA,
+};
+
+pub const DDFLIPOVERLAYINFO = extern struct {
+    lpCurrentSurface: ?*DDSURFACEDATA,
+    lpTargetSurface: ?*DDSURFACEDATA,
+    dwFlags: u32,
+};
+
+pub const DDFLIPVIDEOPORTINFO = extern struct {
+    lpVideoPortData: ?*DDVIDEOPORTDATA,
+    lpCurrentSurface: ?*DDSURFACEDATA,
+    lpTargetSurface: ?*DDSURFACEDATA,
+    dwFlipVPFlags: u32,
+};
+
+pub const DDGAMMARAMP = extern struct {
+    red: [256]u16,
+    green: [256]u16,
+    blue: [256]u16,
+};
+
+pub const DDGETCURRENTAUTOFLIPININFO = extern struct {
+    lpVideoPortData: ?*DDVIDEOPORTDATA,
+};
+
+pub const DDGETCURRENTAUTOFLIPOUTINFO = extern struct {
+    dwSurfaceIndex: u32,
+    dwVBISurfaceIndex: u32,
+};
+
+pub const DDGETIRQINFO = extern struct {
+    dwFlags: u32,
+};
+
+pub const DDGETPOLARITYININFO = extern struct {
+    lpVideoPortData: ?*DDVIDEOPORTDATA,
+};
+
+pub const DDGETPOLARITYOUTINFO = extern struct {
+    bPolarity: u32,
+};
+
+pub const DDGETPREVIOUSAUTOFLIPININFO = extern struct {
+    lpVideoPortData: ?*DDVIDEOPORTDATA,
+};
+
+pub const DDGETPREVIOUSAUTOFLIPOUTINFO = extern struct {
+    dwSurfaceIndex: u32,
+    dwVBISurfaceIndex: u32,
+};
+
+pub const DDGETTRANSFERSTATUSOUTINFO = extern struct {
+    dwTransferID: usize,
+};
+
+pub const DDHAL_ADDATTACHEDSURFACEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpSurfAttached: ?*DDRAWI_DDRAWSURFACE_LCL,
+    ddRVal: HRESULT,
+    AddAttachedSurface: ?LPDDHALSURFCB_ADDATTACHEDSURFACE,
+};
+
+pub const DDHAL_BEGINMOCOMPFRAMEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
+    lpDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwInputDataSize: u32,
+    lpInputData: ?*anyopaque,
+    dwOutputDataSize: u32,
+    lpOutputData: ?*anyopaque,
+    ddRVal: HRESULT,
+    BeginMoCompFrame: ?LPDDHALMOCOMPCB_BEGINFRAME,
+};
+
+pub const DDHAL_BLTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    rDest: RECTL,
+    lpDDSrcSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    rSrc: RECTL,
+    dwFlags: u32,
+    dwROPFlags: u32,
+    bltFX: DDBLTFX,
+    ddRVal: HRESULT,
+    Blt: ?LPDDHALSURFCB_BLT,
+    IsClipped: BOOL,
+    rOrigDest: RECTL,
+    rOrigSrc: RECTL,
+    dwRectCnt: u32,
+    prDestRects: ?*RECT,
+};
+
+pub const DDHAL_CALLBACKS = extern struct {
+    cbDDCallbacks: DDHAL_DDCALLBACKS,
+    cbDDSurfaceCallbacks: DDHAL_DDSURFACECALLBACKS,
+    cbDDPaletteCallbacks: DDHAL_DDPALETTECALLBACKS,
+    HALDD: DDHAL_DDCALLBACKS,
+    HALDDSurface: DDHAL_DDSURFACECALLBACKS,
+    HALDDPalette: DDHAL_DDPALETTECALLBACKS,
+    HELDD: DDHAL_DDCALLBACKS,
+    HELDDSurface: DDHAL_DDSURFACECALLBACKS,
+    HELDDPalette: DDHAL_DDPALETTECALLBACKS,
+    cbDDExeBufCallbacks: DDHAL_DDEXEBUFCALLBACKS,
+    HALDDExeBuf: DDHAL_DDEXEBUFCALLBACKS,
+    HELDDExeBuf: DDHAL_DDEXEBUFCALLBACKS,
+    cbDDVideoPortCallbacks: DDHAL_DDVIDEOPORTCALLBACKS,
+    HALDDVideoPort: DDHAL_DDVIDEOPORTCALLBACKS,
+    cbDDColorControlCallbacks: DDHAL_DDCOLORCONTROLCALLBACKS,
+    HALDDColorControl: DDHAL_DDCOLORCONTROLCALLBACKS,
+    cbDDMiscellaneousCallbacks: DDHAL_DDMISCELLANEOUSCALLBACKS,
+    HALDDMiscellaneous: DDHAL_DDMISCELLANEOUSCALLBACKS,
+    cbDDKernelCallbacks: DDHAL_DDKERNELCALLBACKS,
+    HALDDKernel: DDHAL_DDKERNELCALLBACKS,
+    cbDDMotionCompCallbacks: DDHAL_DDMOTIONCOMPCALLBACKS,
+    HALDDMotionComp: DDHAL_DDMOTIONCOMPCALLBACKS,
+};
+
+pub const DDHAL_CANCREATESURFACEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurfaceDesc: ?*DDSURFACEDESC,
+    bIsDifferentPixelFormat: u32,
+    ddRVal: HRESULT,
+    CanCreateSurface: ?LPDDHAL_CANCREATESURFACE,
+};
+
+pub const DDHAL_CANCREATEVPORTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
+    ddRVal: HRESULT,
+    CanCreateVideoPort: ?LPDDHALVPORTCB_CANCREATEVIDEOPORT,
+};
+
+pub const DDHAL_COLORCONTROLDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpColorData: ?*DDCOLORCONTROL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    ColorControl: ?LPDDHALCOLORCB_COLORCONTROL,
+};
+
+pub const DDHAL_CREATEMOCOMPDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
+    lpGuid: ?*Guid,
+    dwUncompWidth: u32,
+    dwUncompHeight: u32,
+    ddUncompPixelFormat: DDPIXELFORMAT,
+    lpData: ?*anyopaque,
+    dwDataSize: u32,
+    ddRVal: HRESULT,
+    CreateMoComp: ?LPDDHALMOCOMPCB_CREATE,
+};
+
+pub const DDHAL_CREATEPALETTEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
+    lpColorTable: ?*PALETTEENTRY,
+    ddRVal: HRESULT,
+    CreatePalette: ?LPDDHAL_CREATEPALETTE,
+    is_excl: BOOL,
+};
+
+pub const DDHAL_CREATESURFACEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurfaceDesc: ?*DDSURFACEDESC,
+    lplpSList: ?*?*DDRAWI_DDRAWSURFACE_LCL,
+    dwSCnt: u32,
+    ddRVal: HRESULT,
+    CreateSurface: ?LPDDHAL_CREATESURFACE,
+};
+
+pub const DDHAL_CREATESURFACEEXDATA = extern struct {
+    dwFlags: u32,
+    lpDDLcl: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpDDSLcl: ?*DDRAWI_DDRAWSURFACE_LCL,
+    ddRVal: HRESULT,
+};
+
+pub const DDHAL_CREATEVPORTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    ddRVal: HRESULT,
+    CreateVideoPort: ?LPDDHALVPORTCB_CREATEVIDEOPORT,
+};
+
+pub const DDHAL_DDCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    DestroyDriver: ?LPDDHAL_DESTROYDRIVER,
+    CreateSurface: ?LPDDHAL_CREATESURFACE,
+    SetColorKey: ?LPDDHAL_SETCOLORKEY,
+    SetMode: ?LPDDHAL_SETMODE,
+    WaitForVerticalBlank: ?LPDDHAL_WAITFORVERTICALBLANK,
+    CanCreateSurface: ?LPDDHAL_CANCREATESURFACE,
+    CreatePalette: ?LPDDHAL_CREATEPALETTE,
+    GetScanLine: ?LPDDHAL_GETSCANLINE,
+    SetExclusiveMode: ?LPDDHAL_SETEXCLUSIVEMODE,
+    FlipToGDISurface: ?LPDDHAL_FLIPTOGDISURFACE,
+};
+
+pub const DDHAL_DDCOLORCONTROLCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    ColorControl: ?LPDDHALCOLORCB_COLORCONTROL,
+};
+
+pub const DDHAL_DDEXEBUFCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    CanCreateExecuteBuffer: ?LPDDHALEXEBUFCB_CANCREATEEXEBUF,
+    CreateExecuteBuffer: ?LPDDHALEXEBUFCB_CREATEEXEBUF,
+    DestroyExecuteBuffer: ?LPDDHALEXEBUFCB_DESTROYEXEBUF,
+    LockExecuteBuffer: ?LPDDHALEXEBUFCB_LOCKEXEBUF,
+    UnlockExecuteBuffer: ?LPDDHALEXEBUFCB_UNLOCKEXEBUF,
+};
+
+pub const DDHAL_DDKERNELCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    SyncSurfaceData: ?LPDDHALKERNELCB_SYNCSURFACE,
+    SyncVideoPortData: ?LPDDHALKERNELCB_SYNCVIDEOPORT,
+};
+
+pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    Reserved: ?*anyopaque,
+    CreateSurfaceEx: ?LPDDHAL_CREATESURFACEEX,
+    GetDriverState: ?LPDDHAL_GETDRIVERSTATE,
+    DestroyDDLocal: ?LPDDHAL_DESTROYDDLOCAL,
+};
+
+pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    GetAvailDriverMemory: ?LPDDHAL_GETAVAILDRIVERMEMORY,
+    UpdateNonLocalHeap: ?LPDDHAL_UPDATENONLOCALHEAP,
+    GetHeapAlignment: ?LPDDHAL_GETHEAPALIGNMENT,
+    GetSysmemBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
+};
+
+pub const DDHAL_DDMOTIONCOMPCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    GetMoCompGuids: ?LPDDHALMOCOMPCB_GETGUIDS,
+    GetMoCompFormats: ?LPDDHALMOCOMPCB_GETFORMATS,
+    CreateMoComp: ?LPDDHALMOCOMPCB_CREATE,
+    GetMoCompBuffInfo: ?LPDDHALMOCOMPCB_GETCOMPBUFFINFO,
+    GetInternalMoCompInfo: ?LPDDHALMOCOMPCB_GETINTERNALINFO,
+    BeginMoCompFrame: ?LPDDHALMOCOMPCB_BEGINFRAME,
+    EndMoCompFrame: ?LPDDHALMOCOMPCB_ENDFRAME,
+    RenderMoComp: ?LPDDHALMOCOMPCB_RENDER,
+    QueryMoCompStatus: ?LPDDHALMOCOMPCB_QUERYSTATUS,
+    DestroyMoComp: ?LPDDHALMOCOMPCB_DESTROY,
+};
+
+pub const DDHAL_DDPALETTECALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    DestroyPalette: ?LPDDHALPALCB_DESTROYPALETTE,
+    SetEntries: ?LPDDHALPALCB_SETENTRIES,
+};
+
+pub const DDHAL_DDSURFACECALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    DestroySurface: ?LPDDHALSURFCB_DESTROYSURFACE,
+    Flip: ?LPDDHALSURFCB_FLIP,
+    SetClipList: ?LPDDHALSURFCB_SETCLIPLIST,
+    Lock: ?LPDDHALSURFCB_LOCK,
+    Unlock: ?LPDDHALSURFCB_UNLOCK,
+    Blt: ?LPDDHALSURFCB_BLT,
+    SetColorKey: ?LPDDHALSURFCB_SETCOLORKEY,
+    AddAttachedSurface: ?LPDDHALSURFCB_ADDATTACHEDSURFACE,
+    GetBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
+    GetFlipStatus: ?LPDDHALSURFCB_GETFLIPSTATUS,
+    UpdateOverlay: ?LPDDHALSURFCB_UPDATEOVERLAY,
+    SetOverlayPosition: ?LPDDHALSURFCB_SETOVERLAYPOSITION,
+    reserved4: ?*anyopaque,
+    SetPalette: ?LPDDHALSURFCB_SETPALETTE,
+};
+
+pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    CanCreateVideoPort: ?LPDDHALVPORTCB_CANCREATEVIDEOPORT,
+    CreateVideoPort: ?LPDDHALVPORTCB_CREATEVIDEOPORT,
+    FlipVideoPort: ?LPDDHALVPORTCB_FLIP,
+    GetVideoPortBandwidth: ?LPDDHALVPORTCB_GETBANDWIDTH,
+    GetVideoPortInputFormats: ?LPDDHALVPORTCB_GETINPUTFORMATS,
+    GetVideoPortOutputFormats: ?LPDDHALVPORTCB_GETOUTPUTFORMATS,
+    lpReserved1: ?*anyopaque,
+    GetVideoPortField: ?LPDDHALVPORTCB_GETFIELD,
+    GetVideoPortLine: ?LPDDHALVPORTCB_GETLINE,
+    GetVideoPortConnectInfo: ?LPDDHALVPORTCB_GETVPORTCONNECT,
+    DestroyVideoPort: ?LPDDHALVPORTCB_DESTROYVPORT,
+    GetVideoPortFlipStatus: ?LPDDHALVPORTCB_GETFLIPSTATUS,
+    UpdateVideoPort: ?LPDDHALVPORTCB_UPDATE,
+    WaitForVideoPortSync: ?LPDDHALVPORTCB_WAITFORSYNC,
+    GetVideoSignalStatus: ?LPDDHALVPORTCB_GETSIGNALSTATUS,
+    ColorControl: ?LPDDHALVPORTCB_COLORCONTROL,
+};
+
+pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
+    dwFlags: u32,
+    pDDLcl: ?*DDRAWI_DIRECTDRAW_LCL,
+    ddRVal: HRESULT,
+};
+
+pub const DDHAL_DESTROYDRIVERDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    ddRVal: HRESULT,
+    DestroyDriver: ?LPDDHAL_DESTROYDRIVER,
+};
+
+pub const DDHAL_DESTROYMOCOMPDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
+    ddRVal: HRESULT,
+    DestroyMoComp: ?LPDDHALMOCOMPCB_DESTROY,
+};
+
+pub const DDHAL_DESTROYPALETTEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
+    ddRVal: HRESULT,
+    DestroyPalette: ?LPDDHALPALCB_DESTROYPALETTE,
+};
+
+pub const DDHAL_DESTROYSURFACEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    ddRVal: HRESULT,
+    DestroySurface: ?LPDDHALSURFCB_DESTROYSURFACE,
+};
+
+pub const DDHAL_DESTROYVPORTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    ddRVal: HRESULT,
+    DestroyVideoPort: ?LPDDHALVPORTCB_DESTROYVPORT,
+};
+
+pub const DDHAL_DRVSETCOLORKEYDATA = extern struct {
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwFlags: u32,
+    ckNew: DDCOLORKEY,
+    ddRVal: HRESULT,
+    SetColorKey: ?LPDDHAL_SETCOLORKEY,
+};
+
+pub const DDHAL_ENDMOCOMPFRAMEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
+    lpInputData: ?*anyopaque,
+    dwInputDataSize: u32,
+    ddRVal: HRESULT,
+    EndMoCompFrame: ?LPDDHALMOCOMPCB_ENDFRAME,
+};
+
+pub const DDHAL_FLIPDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpSurfCurr: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpSurfTarg: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    Flip: ?LPDDHALSURFCB_FLIP,
+    lpSurfCurrLeft: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpSurfTargLeft: ?*DDRAWI_DDRAWSURFACE_LCL,
+};
+
+pub const DDHAL_FLIPTOGDISURFACEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwToGDI: u32,
+    dwReserved: u32,
+    ddRVal: HRESULT,
+    FlipToGDISurface: ?LPDDHAL_FLIPTOGDISURFACE,
+};
+
+pub const DDHAL_FLIPVPORTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    lpSurfCurr: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpSurfTarg: ?*DDRAWI_DDRAWSURFACE_LCL,
+    ddRVal: HRESULT,
+    FlipVideoPort: ?LPDDHALVPORTCB_FLIP,
+};
+
+pub const DDHAL_GETAVAILDRIVERMEMORYDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    DDSCaps: DDSCAPS,
+    dwTotal: u32,
+    dwFree: u32,
+    ddRVal: HRESULT,
+    GetAvailDriverMemory: ?LPDDHAL_GETAVAILDRIVERMEMORY,
+    ddsCapsEx: DDSCAPSEX,
+};
+
+pub const DDHAL_GETBLTSTATUSDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    GetBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
+};
+
+pub const DDHAL_GETDRIVERINFODATA = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    guidInfo: Guid,
+    dwExpectedSize: u32,
+    lpvData: ?*anyopaque,
+    dwActualSize: u32,
+    ddRVal: HRESULT,
+    dwContext: usize,
+};
+
+pub const DDHAL_GETDRIVERSTATEDATA = extern struct {
+    dwFlags: u32,
+    Anonymous: extern union {
+        dwhContext: usize,
+    },
+    lpdwStates: ?*u32,
+    dwLength: u32,
+    ddRVal: HRESULT,
+};
+
+pub const DDHAL_GETFLIPSTATUSDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    GetFlipStatus: ?LPDDHALSURFCB_GETFLIPSTATUS,
+};
+
+pub const DDHAL_GETHEAPALIGNMENTDATA = extern struct {
+    dwInstance: usize,
+    dwHeap: u32,
+    ddRVal: HRESULT,
+    GetHeapAlignment: ?LPDDHAL_GETHEAPALIGNMENT,
+    Alignment: HEAPALIGNMENT,
+};
+
+pub const DDHAL_GETINTERNALMOCOMPDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpGuid: ?*Guid,
+    dwWidth: u32,
+    dwHeight: u32,
+    ddPixelFormat: DDPIXELFORMAT,
+    dwScratchMemAlloc: u32,
+    ddRVal: HRESULT,
+    GetInternalMoCompInfo: ?LPDDHALMOCOMPCB_GETINTERNALINFO,
+};
+
+pub const DDHAL_GETMOCOMPCOMPBUFFDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpGuid: ?*Guid,
+    dwWidth: u32,
+    dwHeight: u32,
+    ddPixelFormat: DDPIXELFORMAT,
+    dwNumTypesCompBuffs: u32,
+    lpCompBuffInfo: ?*DDMCCOMPBUFFERINFO,
+    ddRVal: HRESULT,
+    GetMoCompBuffInfo: ?LPDDHALMOCOMPCB_GETCOMPBUFFINFO,
+};
+
+pub const DDHAL_GETMOCOMPFORMATSDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpGuid: ?*Guid,
+    dwNumFormats: u32,
+    lpFormats: ?*DDPIXELFORMAT,
+    ddRVal: HRESULT,
+    GetMoCompFormats: ?LPDDHALMOCOMPCB_GETFORMATS,
+};
+
+pub const DDHAL_GETMOCOMPGUIDSDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    dwNumGuids: u32,
+    lpGuids: ?*Guid,
+    ddRVal: HRESULT,
+    GetMoCompGuids: ?LPDDHALMOCOMPCB_GETGUIDS,
+};
+
+pub const DDHAL_GETSCANLINEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwScanLine: u32,
+    ddRVal: HRESULT,
+    GetScanLine: ?LPDDHAL_GETSCANLINE,
+};
+
+pub const DDHAL_GETVPORTBANDWIDTHDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    lpddpfFormat: ?*DDPIXELFORMAT,
+    dwWidth: u32,
+    dwHeight: u32,
+    dwFlags: u32,
+    lpBandwidth: ?*DDVIDEOPORTBANDWIDTH,
+    ddRVal: HRESULT,
+    GetVideoPortBandwidth: ?LPDDHALVPORTCB_GETBANDWIDTH,
+};
+
+pub const DDHAL_GETVPORTCONNECTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    dwPortId: u32,
+    lpConnect: ?*DDVIDEOPORTCONNECT,
+    dwNumEntries: u32,
+    ddRVal: HRESULT,
+    GetVideoPortConnectInfo: ?LPDDHALVPORTCB_GETVPORTCONNECT,
+};
+
+pub const DDHAL_GETVPORTFIELDDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    bField: BOOL,
+    ddRVal: HRESULT,
+    GetVideoPortField: ?LPDDHALVPORTCB_GETFIELD,
+};
+
+pub const DDHAL_GETVPORTFLIPSTATUSDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    fpSurface: usize,
+    ddRVal: HRESULT,
+    GetVideoPortFlipStatus: ?LPDDHALVPORTCB_GETFLIPSTATUS,
+};
+
+pub const DDHAL_GETVPORTINPUTFORMATDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    dwFlags: u32,
+    lpddpfFormat: ?*DDPIXELFORMAT,
+    dwNumFormats: u32,
+    ddRVal: HRESULT,
+    GetVideoPortInputFormats: ?LPDDHALVPORTCB_GETINPUTFORMATS,
+};
+
+pub const DDHAL_GETVPORTLINEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    dwLine: u32,
+    ddRVal: HRESULT,
+    GetVideoPortLine: ?LPDDHALVPORTCB_GETLINE,
+};
+
+pub const DDHAL_GETVPORTOUTPUTFORMATDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    dwFlags: u32,
+    lpddpfInputFormat: ?*DDPIXELFORMAT,
+    lpddpfOutputFormats: ?*DDPIXELFORMAT,
+    dwNumFormats: u32,
+    ddRVal: HRESULT,
+    GetVideoPortOutputFormats: ?LPDDHALVPORTCB_GETOUTPUTFORMATS,
+};
+
+pub const DDHAL_GETVPORTSIGNALDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    dwStatus: u32,
+    ddRVal: HRESULT,
+    GetVideoSignalStatus: ?LPDDHALVPORTCB_GETSIGNALSTATUS,
+};
+
+pub const DDHAL_LOCKDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    bHasRect: u32,
+    rArea: RECTL,
+    lpSurfData: ?*anyopaque,
+    ddRVal: HRESULT,
+    Lock: ?LPDDHALSURFCB_LOCK,
+    dwFlags: u32,
+};
+
+pub const DDHAL_QUERYMOCOMPSTATUSDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
+    lpSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwFlags: u32,
+    ddRVal: HRESULT,
+    QueryMoCompStatus: ?LPDDHALMOCOMPCB_QUERYSTATUS,
+};
+
+pub const DDHAL_RENDERMOCOMPDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
+    dwNumBuffers: u32,
+    lpBufferInfo: ?*DDMCBUFFERINFO,
+    dwFunction: u32,
+    lpInputData: ?*anyopaque,
+    dwInputDataSize: u32,
+    lpOutputData: ?*anyopaque,
+    dwOutputDataSize: u32,
+    ddRVal: HRESULT,
+    RenderMoComp: ?LPDDHALMOCOMPCB_RENDER,
+};
+
+pub const DDHAL_SETCLIPLISTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    ddRVal: HRESULT,
+    SetClipList: ?LPDDHALSURFCB_SETCLIPLIST,
+};
+
+pub const DDHAL_SETCOLORKEYDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwFlags: u32,
+    ckNew: DDCOLORKEY,
+    ddRVal: HRESULT,
+    SetColorKey: ?LPDDHALSURFCB_SETCOLORKEY,
+};
+
+pub const DDHAL_SETENTRIESDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
+    dwBase: u32,
+    dwNumEntries: u32,
+    lpEntries: ?*PALETTEENTRY,
+    ddRVal: HRESULT,
+    SetEntries: ?LPDDHALPALCB_SETENTRIES,
+};
+
+pub const DDHAL_SETEXCLUSIVEMODEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwEnterExcl: u32,
+    dwReserved: u32,
+    ddRVal: HRESULT,
+    SetExclusiveMode: ?LPDDHAL_SETEXCLUSIVEMODE,
+};
+
+pub const DDHAL_SETMODEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwModeIndex: u32,
+    ddRVal: HRESULT,
+    SetMode: ?LPDDHAL_SETMODE,
+    inexcl: BOOL,
+    useRefreshRate: BOOL,
+};
+
+pub const DDHAL_SETOVERLAYPOSITIONDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSrcSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpDDDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lXPos: i32,
+    lYPos: i32,
+    ddRVal: HRESULT,
+    SetOverlayPosition: ?LPDDHALSURFCB_SETOVERLAYPOSITION,
+};
+
+pub const DDHAL_SETPALETTEDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
+    ddRVal: HRESULT,
+    SetPalette: ?LPDDHALSURFCB_SETPALETTE,
+    Attach: BOOL,
+};
+
+pub const DDHAL_SYNCSURFACEDATA = extern struct {
+    dwSize: u32,
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwSurfaceOffset: u32,
+    fpLockPtr: usize,
+    lPitch: i32,
+    dwOverlayOffset: u32,
+    dwOverlaySrcWidth: u32,
+    dwOverlaySrcHeight: u32,
+    dwOverlayDestWidth: u32,
+    dwOverlayDestHeight: u32,
+    dwDriverReserved1: usize,
+    dwDriverReserved2: usize,
+    dwDriverReserved3: usize,
+    ddRVal: HRESULT,
+};
+
+pub const DDHAL_SYNCVIDEOPORTDATA = extern struct {
+    dwSize: u32,
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    dwOriginOffset: u32,
+    dwHeight: u32,
+    dwVBIHeight: u32,
+    dwDriverReserved1: usize,
+    dwDriverReserved2: usize,
+    dwDriverReserved3: usize,
+    ddRVal: HRESULT,
+};
+
+pub const DDHAL_UNLOCKDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    ddRVal: HRESULT,
+    Unlock: ?LPDDHALSURFCB_UNLOCK,
+};
+
+pub const DDHAL_UPDATENONLOCALHEAPDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwHeap: u32,
+    fpGARTLin: usize,
+    fpGARTDev: usize,
+    ulPolicyMaxBytes: usize,
+    ddRVal: HRESULT,
+    UpdateNonLocalHeap: ?LPDDHAL_UPDATENONLOCALHEAP,
+};
+
+pub const DDHAL_UPDATEOVERLAYDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    lpDDDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    rDest: RECTL,
+    lpDDSrcSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    rSrc: RECTL,
+    dwFlags: u32,
+    overlayFX: DDOVERLAYFX,
+    ddRVal: HRESULT,
+    UpdateOverlay: ?LPDDHALSURFCB_UPDATEOVERLAY,
+};
+
+pub const DDHAL_UPDATEVPORTDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    lplpDDSurface: ?*?*DDRAWI_DDRAWSURFACE_INT,
+    lplpDDVBISurface: ?*?*DDRAWI_DDRAWSURFACE_INT,
+    lpVideoInfo: ?*DDVIDEOPORTINFO,
+    dwFlags: u32,
+    dwNumAutoflip: u32,
+    dwNumVBIAutoflip: u32,
+    ddRVal: HRESULT,
+    UpdateVideoPort: ?LPDDHALVPORTCB_UPDATE,
+};
+
+pub const DDHAL_VPORTCOLORDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    dwFlags: u32,
+    lpColorData: ?*DDCOLORCONTROL,
+    ddRVal: HRESULT,
+    ColorControl: ?LPDDHALVPORTCB_COLORCONTROL,
+};
+
+pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwFlags: u32,
+    bIsInVB: u32,
+    hEvent: usize,
+    ddRVal: HRESULT,
+    WaitForVerticalBlank: ?LPDDHAL_WAITFORVERTICALBLANK,
+};
+
+pub const DDHAL_WAITFORVPORTSYNCDATA = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    dwFlags: u32,
+    dwLine: u32,
+    dwTimeOut: u32,
+    ddRVal: HRESULT,
+    WaitForVideoPortSync: ?LPDDHALVPORTCB_WAITFORSYNC,
+};
+
+pub const DDHALDDRAWFNS = extern struct {
+    dwSize: u32,
+    lpSetInfo: ?LPDDHAL_SETINFO,
+    lpVidMemAlloc: ?LPDDHAL_VIDMEMALLOC,
+    lpVidMemFree: ?LPDDHAL_VIDMEMFREE,
+};
+
+pub const DDHALINFO = extern struct {
+    dwSize: u32,
+    lpDDCallbacks: ?*DDHAL_DDCALLBACKS,
+    lpDDSurfaceCallbacks: ?*DDHAL_DDSURFACECALLBACKS,
+    lpDDPaletteCallbacks: ?*DDHAL_DDPALETTECALLBACKS,
+    vmiData: VIDMEMINFO,
+    ddCaps: DDCORECAPS,
+    dwMonitorFrequency: u32,
+    GetDriverInfo: ?LPDDHAL_GETDRIVERINFO,
+    dwModeIndex: u32,
+    lpdwFourCC: ?*u32,
+    dwNumModes: u32,
+    lpModeInfo: ?*DDHALMODEINFO,
+    dwFlags: u32,
+    lpPDevice: ?*anyopaque,
+    hInstance: u32,
+    lpD3DGlobalDriverData: usize,
+    lpD3DHALCallbacks: usize,
+    lpDDExeBufCallbacks: ?*DDHAL_DDEXEBUFCALLBACKS,
+};
+
+pub const DDHALMODEINFO = extern struct {
+    dwWidth: u32,
+    dwHeight: u32,
+    lPitch: i32,
+    dwBPP: u32,
+    wFlags: u16,
+    wRefreshRate: u16,
+    dwRBitMask: u32,
+    dwGBitMask: u32,
+    dwBBitMask: u32,
+    dwAlphaBitMask: u32,
+};
+
+pub const DDKERNELCAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwIRQCaps: u32,
+};
+
+pub const DDLOCKININFO = extern struct {
+    lpSurfaceData: ?*DDSURFACEDATA,
+};
+
+pub const DDLOCKOUTINFO = extern struct {
+    dwSurfacePtr: usize,
+};
+
+pub const DDMCBUFFERINFO = extern struct {
+    dwSize: u32,
+    lpCompSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
+    dwDataOffset: u32,
+    dwDataSize: u32,
+    lpPrivate: ?*anyopaque,
+};
+
+pub const DDMCCOMPBUFFERINFO = extern struct {
+    dwSize: u32,
+    dwNumCompBuffers: u32,
+    dwWidthToCreate: u32,
+    dwHeightToCreate: u32,
+    dwBytesToAllocate: u32,
+    ddCompCaps: DDSCAPS2,
+    ddPixelFormat: DDPIXELFORMAT,
+};
+
+pub const DDMOCOMPBUFFERINFO = extern struct {
+    dwSize: u32,
+    lpCompSurface: ?*DD_SURFACE_LOCAL,
+    dwDataOffset: u32,
+    dwDataSize: u32,
+    lpPrivate: ?*anyopaque,
+};
+
+pub const DDMONITORINFO = extern struct {
+    Manufacturer: u16,
+    Product: u16,
+    SerialNumber: u32,
+    DeviceIdentifier: Guid,
+    Mode640x480: i32,
+    Mode800x600: i32,
+    Mode1024x768: i32,
+    Mode1280x1024: i32,
+    Mode1600x1200: i32,
+    ModeReserved1: i32,
+    ModeReserved2: i32,
+    ModeReserved3: i32,
+};
+
+pub const DDMORESURFACECAPS = extern struct {
+    pub const ExtendedHeapRestrictions = extern struct {
+        ddsCapsEx: DDSCAPSEX,
+        ddsCapsExAlt: DDSCAPSEX,
+    };
+    dwSize: u32,
+    ddsCapsMore: DDSCAPSEX,
+    ddsExtendedHeapRestrictions: [1]ExtendedHeapRestrictions,
+};
+
+pub const DDNONLOCALVIDMEMCAPS = extern struct {
+    dwSize: u32,
+    dwNLVBCaps: u32,
+    dwNLVBCaps2: u32,
+    dwNLVBCKeyCaps: u32,
+    dwNLVBFXCaps: u32,
+    dwNLVBRops: [8]u32,
+};
+
+pub const DDNTCORECAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwCaps2: u32,
+    dwCKeyCaps: u32,
+    dwFXCaps: u32,
+    dwFXAlphaCaps: u32,
+    dwPalCaps: u32,
+    dwSVCaps: u32,
+    dwAlphaBltConstBitDepths: u32,
+    dwAlphaBltPixelBitDepths: u32,
+    dwAlphaBltSurfaceBitDepths: u32,
+    dwAlphaOverlayConstBitDepths: u32,
+    dwAlphaOverlayPixelBitDepths: u32,
+    dwAlphaOverlaySurfaceBitDepths: u32,
+    dwZBufferBitDepths: u32,
+    dwVidMemTotal: u32,
+    dwVidMemFree: u32,
+    dwMaxVisibleOverlays: u32,
+    dwCurrVisibleOverlays: u32,
+    dwNumFourCCCodes: u32,
+    dwAlignBoundarySrc: u32,
+    dwAlignSizeSrc: u32,
+    dwAlignBoundaryDest: u32,
+    dwAlignSizeDest: u32,
+    dwAlignStrideAlign: u32,
+    dwRops: [8]u32,
+    ddsCaps: DDSCAPS,
+    dwMinOverlayStretch: u32,
+    dwMaxOverlayStretch: u32,
+    dwMinLiveVideoStretch: u32,
+    dwMaxLiveVideoStretch: u32,
+    dwMinHwCodecStretch: u32,
+    dwMaxHwCodecStretch: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwReserved3: u32,
+    dwSVBCaps: u32,
+    dwSVBCKeyCaps: u32,
+    dwSVBFXCaps: u32,
+    dwSVBRops: [8]u32,
+    dwVSBCaps: u32,
+    dwVSBCKeyCaps: u32,
+    dwVSBFXCaps: u32,
+    dwVSBRops: [8]u32,
+    dwSSBCaps: u32,
+    dwSSBCKeyCaps: u32,
+    dwSSBFXCaps: u32,
+    dwSSBRops: [8]u32,
+    dwMaxVideoPorts: u32,
+    dwCurrVideoPorts: u32,
+    dwSVBCaps2: u32,
+};
+
+pub const DDOPTSURFACEDESC = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    ddSCaps: DDSCAPS2,
+    ddOSCaps: DDOSCAPS,
+    guid: Guid,
+    dwCompressionRatio: u32,
+};
+
+pub const DDOSCAPS = extern struct {
+    dwCaps: u32,
+};
+
+pub const DDOVERLAYFX = extern struct {
+    dwSize: u32,
+    dwAlphaEdgeBlendBitDepth: u32,
+    dwAlphaEdgeBlend: u32,
+    dwReserved: u32,
+    dwAlphaDestConstBitDepth: u32,
+    Anonymous1: extern union {
+        dwAlphaDestConst: u32,
+        lpDDSAlphaDest: ?*IDirectDrawSurface,
+    },
+    dwAlphaSrcConstBitDepth: u32,
+    Anonymous2: extern union {
+        dwAlphaSrcConst: u32,
+        lpDDSAlphaSrc: ?*IDirectDrawSurface,
+    },
+    dckDestColorkey: DDCOLORKEY,
+    dckSrcColorkey: DDCOLORKEY,
+    dwDDFX: u32,
+    dwFlags: u32,
+};
+
 pub const DDPIXELFORMAT = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -1416,70 +3300,729 @@ pub const DDPIXELFORMAT = extern struct {
     },
 };
 
-pub const DDOVERLAYFX = extern struct {
-    dwSize: u32,
-    dwAlphaEdgeBlendBitDepth: u32,
-    dwAlphaEdgeBlend: u32,
-    dwReserved: u32,
-    dwAlphaDestConstBitDepth: u32,
+pub const DDRAWI_DDMOTIONCOMP_INT = extern struct {
+    lpVtbl: ?*anyopaque,
+    lpLcl: ?*DDRAWI_DDMOTIONCOMP_LCL,
+    lpLink: ?*DDRAWI_DDMOTIONCOMP_INT,
+    dwIntRefCnt: u32,
+};
+
+pub const DDRAWI_DDMOTIONCOMP_LCL = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    guid: Guid,
+    dwUncompWidth: u32,
+    dwUncompHeight: u32,
+    ddUncompPixelFormat: DDPIXELFORMAT,
+    dwInternalFlags: u32,
+    dwRefCnt: u32,
+    dwProcessId: u32,
+    hMoComp: ?HANDLE,
+    dwDriverReserved1: u32,
+    dwDriverReserved2: u32,
+    dwDriverReserved3: u32,
+    lpDriverReserved1: ?*anyopaque,
+    lpDriverReserved2: ?*anyopaque,
+    lpDriverReserved3: ?*anyopaque,
+};
+
+pub const DDRAWI_DDRAWCLIPPER_GBL = extern struct {
+    dwRefCnt: u32,
+    dwFlags: u32,
+    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwProcessId: u32,
+    dwReserved1: usize,
+    hWnd: usize,
+    lpStaticClipList: ?*RGNDATA,
+};
+
+pub const DDRAWI_DDRAWCLIPPER_INT = extern struct {
+    lpVtbl: ?*anyopaque,
+    lpLcl: ?*DDRAWI_DDRAWCLIPPER_LCL,
+    lpLink: ?*DDRAWI_DDRAWCLIPPER_INT,
+    dwIntRefCnt: u32,
+};
+
+pub const DDRAWI_DDRAWCLIPPER_LCL = extern struct {
+    lpClipMore: u32,
+    lpGbl: ?*DDRAWI_DDRAWCLIPPER_GBL,
+    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
+    dwLocalRefCnt: u32,
+    pUnkOuter: ?*IUnknown,
+    lpDD_int: ?*DDRAWI_DIRECTDRAW_INT,
+    dwReserved1: usize,
+    pAddrefedThisOwner: ?*IUnknown,
+};
+
+pub const DDRAWI_DDRAWPALETTE_GBL = extern struct {
+    dwRefCnt: u32,
+    dwFlags: u32,
+    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
+    dwProcessId: u32,
+    lpColorTable: ?*PALETTEENTRY,
+    Anonymous: extern union {
+        dwReserved1: usize,
+        hHELGDIPalette: ?HPALETTE,
+    },
+    dwDriverReserved: u32,
+    dwContentsStamp: u32,
+    dwSaveStamp: u32,
+    dwHandle: u32,
+};
+
+pub const DDRAWI_DDRAWPALETTE_INT = extern struct {
+    lpVtbl: ?*anyopaque,
+    lpLcl: ?*DDRAWI_DDRAWPALETTE_LCL,
+    lpLink: ?*DDRAWI_DDRAWPALETTE_INT,
+    dwIntRefCnt: u32,
+};
+
+pub const DDRAWI_DDRAWPALETTE_LCL = extern struct {
+    lpPalMore: u32,
+    lpGbl: ?*DDRAWI_DDRAWPALETTE_GBL,
+    dwUnused0: usize,
+    dwLocalRefCnt: u32,
+    pUnkOuter: ?*IUnknown,
+    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
+    dwReserved1: usize,
+    dwDDRAWReserved1: usize,
+    dwDDRAWReserved2: usize,
+    dwDDRAWReserved3: usize,
+};
+
+pub const DDRAWI_DDRAWSURFACE_GBL = extern struct {
+    dwRefCnt: u32,
+    dwGlobalFlags: u32,
     Anonymous1: extern union {
-        dwAlphaDestConst: u32,
-        lpDDSAlphaDest: ?*IDirectDrawSurface,
+        lpRectList: ?*ACCESSRECTLIST,
+        dwBlockSizeY: u32,
+        lSlicePitch: i32,
     },
-    dwAlphaSrcConstBitDepth: u32,
     Anonymous2: extern union {
-        dwAlphaSrcConst: u32,
-        lpDDSAlphaSrc: ?*IDirectDrawSurface,
+        lpVidMemHeap: ?*VMEMHEAP,
+        dwBlockSizeX: u32,
     },
-    dckDestColorkey: DDCOLORKEY,
-    dckSrcColorkey: DDCOLORKEY,
-    dwDDFX: u32,
+    Anonymous3: extern union {
+        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+        lpDDHandle: ?*anyopaque,
+    },
+    fpVidMem: usize,
+    Anonymous4: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
+    wHeight: u16,
+    wWidth: u16,
+    dwUsageCount: u32,
+    dwReserved1: usize,
+    ddpfSurface: DDPIXELFORMAT,
+};
+
+pub const DDRAWI_DDRAWSURFACE_GBL_MORE = extern struct {
+    dwSize: u32,
+    Anonymous: extern union {
+        dwPhysicalPageTable: u32,
+        fpPhysicalVidMem: usize,
+    },
+    pPageTable: ?*u32,
+    cPages: u32,
+    dwSavedDCContext: usize,
+    fpAliasedVidMem: usize,
+    dwDriverReserved: usize,
+    dwHELReserved: usize,
+    cPageUnlocks: u32,
+    hKernelSurface: usize,
+    dwKernelRefCnt: u32,
+    lpColorInfo: ?*DDCOLORCONTROL,
+    fpNTAlias: usize,
+    dwContentsStamp: u32,
+    lpvUnswappedDriverReserved: ?*anyopaque,
+    lpDDRAWReserved2: ?*anyopaque,
+    dwDDRAWReserved1: u32,
+    dwDDRAWReserved2: u32,
+    fpAliasOfVidMem: usize,
+};
+
+pub const DDRAWI_DDRAWSURFACE_INT = extern struct {
+    lpVtbl: ?*anyopaque,
+    lpLcl: ?*DDRAWI_DDRAWSURFACE_LCL,
+    lpLink: ?*DDRAWI_DDRAWSURFACE_INT,
+    dwIntRefCnt: u32,
+};
+
+pub const DDRAWI_DDRAWSURFACE_LCL = extern struct {
+    lpSurfMore: ?*DDRAWI_DDRAWSURFACE_MORE,
+    lpGbl: ?*DDRAWI_DDRAWSURFACE_GBL,
+    hDDSurface: usize,
+    lpAttachList: ?*ATTACHLIST,
+    lpAttachListFrom: ?*ATTACHLIST,
+    dwLocalRefCnt: u32,
+    dwProcessId: u32,
+    dwFlags: u32,
+    ddsCaps: DDSCAPS,
+    Anonymous1: extern union {
+        lpDDPalette: ?*DDRAWI_DDRAWPALETTE_INT,
+        lp16DDPalette: ?*DDRAWI_DDRAWPALETTE_INT,
+    },
+    Anonymous2: extern union {
+        lpDDClipper: ?*DDRAWI_DDRAWCLIPPER_LCL,
+        lp16DDClipper: ?*DDRAWI_DDRAWCLIPPER_INT,
+    },
+    dwModeCreatedIn: u32,
+    dwBackBufferCount: u32,
+    ddckCKDestBlt: DDCOLORKEY,
+    ddckCKSrcBlt: DDCOLORKEY,
+    hDC: usize,
+    dwReserved1: usize,
+    ddckCKSrcOverlay: DDCOLORKEY,
+    ddckCKDestOverlay: DDCOLORKEY,
+    lpSurfaceOverlaying: ?*DDRAWI_DDRAWSURFACE_INT,
+    dbnOverlayNode: DBLNODE,
+    rcOverlaySrc: RECT,
+    rcOverlayDest: RECT,
+    dwClrXparent: u32,
+    dwAlpha: u32,
+    lOverlayX: i32,
+    lOverlayY: i32,
+};
+
+pub const DDRAWI_DDRAWSURFACE_MORE = extern struct {
+    dwSize: u32,
+    lpIUnknowns: ?*IUNKNOWN_LIST,
+    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
+    dwPageLockCount: u32,
+    dwBytesAllocated: u32,
+    lpDD_int: ?*DDRAWI_DIRECTDRAW_INT,
+    dwMipMapCount: u32,
+    lpDDIClipper: ?*DDRAWI_DDRAWCLIPPER_INT,
+    lpHeapAliasInfo: ?*HEAPALIASINFO,
+    dwOverlayFlags: u32,
+    rgjunc: ?*anyopaque,
+    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
+    lpddOverlayFX: ?*DDOVERLAYFX,
+    ddsCapsEx: DDSCAPSEX,
+    dwTextureStage: u32,
+    lpDDRAWReserved: ?*anyopaque,
+    lpDDRAWReserved2: ?*anyopaque,
+    lpDDrawReserved3: ?*anyopaque,
+    dwDDrawReserved4: u32,
+    lpDDrawReserved5: ?*anyopaque,
+    lpGammaRamp: ?*u32,
+    lpOriginalGammaRamp: ?*u32,
+    lpDDrawReserved6: ?*anyopaque,
+    dwSurfaceHandle: u32,
+    qwDDrawReserved8: [2]u32,
+    lpDDrawReserved9: ?*anyopaque,
+    cSurfaces: u32,
+    pCreatedDDSurfaceDesc2: ?*DDSURFACEDESC2,
+    slist: ?*?*DDRAWI_DDRAWSURFACE_LCL,
+    dwFVF: u32,
+    lpVB: ?*anyopaque,
+};
+
+pub const DDRAWI_DDVIDEOPORT_INT = extern struct {
+    lpVtbl: ?*anyopaque,
+    lpLcl: ?*DDRAWI_DDVIDEOPORT_LCL,
+    lpLink: ?*DDRAWI_DDVIDEOPORT_INT,
+    dwIntRefCnt: u32,
     dwFlags: u32,
 };
 
-pub const DDBLTBATCH = extern struct {
-    lprDest: ?*RECT,
-    lpDDSSrc: ?*IDirectDrawSurface,
-    lprSrc: ?*RECT,
+pub const DDRAWI_DDVIDEOPORT_LCL = extern struct {
+    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
+    ddvpDesc: DDVIDEOPORTDESC,
+    ddvpInfo: DDVIDEOPORTINFO,
+    lpSurface: ?*DDRAWI_DDRAWSURFACE_INT,
+    lpVBISurface: ?*DDRAWI_DDRAWSURFACE_INT,
+    lpFlipInts: ?*?*DDRAWI_DDRAWSURFACE_INT,
+    dwNumAutoflip: u32,
+    dwProcessID: u32,
+    dwStateFlags: u32,
     dwFlags: u32,
-    lpDDBltFx: ?*DDBLTFX,
+    dwRefCnt: u32,
+    fpLastFlip: usize,
+    dwReserved1: usize,
+    dwReserved2: usize,
+    hDDVideoPort: ?HANDLE,
+    dwNumVBIAutoflip: u32,
+    lpVBIDesc: ?*DDVIDEOPORTDESC,
+    lpVideoDesc: ?*DDVIDEOPORTDESC,
+    lpVBIInfo: ?*DDVIDEOPORTINFO,
+    lpVideoInfo: ?*DDVIDEOPORTINFO,
+    dwVBIProcessID: u32,
+    lpVPNotify: ?*DDRAWI_DDVIDEOPORT_INT,
 };
 
-pub const DDGAMMARAMP = extern struct {
-    red: [256]u16,
-    green: [256]u16,
-    blue: [256]u16,
+pub const DDRAWI_DIRECTDRAW_GBL = extern struct {
+    dwRefCnt: u32,
+    dwFlags: u32,
+    fpPrimaryOrig: usize,
+    ddCaps: DDCORECAPS,
+    dwInternal1: u32,
+    dwUnused1: [9]u32,
+    lpDDCBtmp: ?*DDHAL_CALLBACKS,
+    dsList: ?*DDRAWI_DDRAWSURFACE_INT,
+    palList: ?*DDRAWI_DDRAWPALETTE_INT,
+    clipperList: ?*DDRAWI_DDRAWCLIPPER_INT,
+    lp16DD: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwMaxOverlays: u32,
+    dwCurrOverlays: u32,
+    dwMonitorFrequency: u32,
+    ddHELCaps: DDCORECAPS,
+    dwUnused2: [50]u32,
+    ddckCKDestOverlay: DDCOLORKEY,
+    ddckCKSrcOverlay: DDCOLORKEY,
+    vmiData: VIDMEMINFO,
+    lpDriverHandle: ?*anyopaque,
+    lpExclusiveOwner: ?*DDRAWI_DIRECTDRAW_LCL,
+    dwModeIndex: u32,
+    dwModeIndexOrig: u32,
+    dwNumFourCC: u32,
+    lpdwFourCC: ?*u32,
+    dwNumModes: u32,
+    lpModeInfo: ?*DDHALMODEINFO,
+    plProcessList: PROCESS_LIST,
+    dwSurfaceLockCount: u32,
+    dwAliasedLockCnt: u32,
+    dwReserved3: usize,
+    hDD: usize,
+    cObsolete: [12]CHAR,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dbnOverlayRoot: DBLNODE,
+    lpwPDeviceFlags: ?*u16,
+    dwPDevice: u32,
+    dwWin16LockCnt: u32,
+    dwUnused3: u32,
+    hInstance: u32,
+    dwEvent16: u32,
+    dwSaveNumModes: u32,
+    lpD3DGlobalDriverData: usize,
+    lpD3DHALCallbacks: usize,
+    ddBothCaps: DDCORECAPS,
+    lpDDVideoPortCaps: ?*DDVIDEOPORTCAPS,
+    dvpList: ?*DDRAWI_DDVIDEOPORT_INT,
+    lpD3DHALCallbacks2: usize,
+    rectDevice: RECT,
+    cMonitors: u32,
+    gpbmiSrc: ?*anyopaque,
+    gpbmiDest: ?*anyopaque,
+    phaiHeapAliases: ?*HEAPALIASINFO,
+    hKernelHandle: usize,
+    pfnNotifyProc: usize,
+    lpDDKernelCaps: ?*DDKERNELCAPS,
+    lpddNLVCaps: ?*DDNONLOCALVIDMEMCAPS,
+    lpddNLVHELCaps: ?*DDNONLOCALVIDMEMCAPS,
+    lpddNLVBothCaps: ?*DDNONLOCALVIDMEMCAPS,
+    lpD3DExtendedCaps: usize,
+    dwDOSBoxEvent: u32,
+    rectDesktop: RECT,
+    cDriverName: [32]CHAR,
+    lpD3DHALCallbacks3: usize,
+    dwNumZPixelFormats: u32,
+    lpZPixelFormats: ?*DDPIXELFORMAT,
+    mcList: ?*DDRAWI_DDMOTIONCOMP_INT,
+    hDDVxd: u32,
+    ddsCapsMore: DDSCAPSEX,
 };
 
-pub const DDDEVICEIDENTIFIER = extern struct {
-    szDriver: [512]CHAR,
-    szDescription: [512]CHAR,
-    liDriverVersion: LARGE_INTEGER,
-    dwVendorId: u32,
-    dwDeviceId: u32,
-    dwSubSysId: u32,
-    dwRevision: u32,
-    guidDeviceIdentifier: Guid,
+pub const DDRAWI_DIRECTDRAW_INT = extern struct {
+    lpVtbl: ?*anyopaque,
+    lpLcl: ?*DDRAWI_DIRECTDRAW_LCL,
+    lpLink: ?*DDRAWI_DIRECTDRAW_INT,
+    dwIntRefCnt: u32,
 };
 
-pub const DDDEVICEIDENTIFIER2 = extern struct {
-    szDriver: [512]CHAR,
-    szDescription: [512]CHAR,
-    liDriverVersion: LARGE_INTEGER,
-    dwVendorId: u32,
-    dwDeviceId: u32,
-    dwSubSysId: u32,
-    dwRevision: u32,
-    guidDeviceIdentifier: Guid,
-    dwWHQLLevel: u32,
+pub const DDRAWI_DIRECTDRAW_LCL = extern struct {
+    lpDDMore: u32,
+    lpGbl: ?*DDRAWI_DIRECTDRAW_GBL,
+    dwUnused0: u32,
+    dwLocalFlags: u32,
+    dwLocalRefCnt: u32,
+    dwProcessId: u32,
+    pUnkOuter: ?*IUnknown,
+    dwObsolete1: u32,
+    hWnd: usize,
+    hDC: usize,
+    dwErrorMode: u32,
+    lpPrimary: ?*DDRAWI_DDRAWSURFACE_INT,
+    lpCB: ?*DDRAWI_DDRAWSURFACE_INT,
+    dwPreferredMode: u32,
+    hD3DInstance: ?HINSTANCE,
+    pD3DIUnknown: ?*IUnknown,
+    lpDDCB: ?*DDHAL_CALLBACKS,
+    hDDVxd: usize,
+    dwAppHackFlags: u32,
+    hFocusWnd: usize,
+    dwHotTracking: u32,
+    dwIMEState: u32,
+    hWndPopup: usize,
+    hDD: usize,
+    hGammaCalibrator: usize,
+    lpGammaCalibrator: ?LPDDGAMMACALIBRATORPROC,
 };
 
-pub const LPCLIPPERCALLBACK = *const fn(
-    lpDDClipper: ?*IDirectDrawClipper,
-    hWnd: ?HWND,
-    code: u32,
-    lpContext: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const DDRGBA = extern struct {
+    red: u8,
+    green: u8,
+    blue: u8,
+    alpha: u8,
+};
+
+pub const DDSCAPS = extern struct {
+    dwCaps: u32,
+};
+
+pub const DDSCAPS2 = extern struct {
+    dwCaps: u32,
+    dwCaps2: u32,
+    dwCaps3: u32,
+    Anonymous: extern union {
+        dwCaps4: u32,
+        dwVolumeDepth: u32,
+    },
+};
+
+pub const DDSCAPSEX = extern struct {
+    dwCaps2: u32,
+    dwCaps3: u32,
+    Anonymous: extern union {
+        dwCaps4: u32,
+        dwVolumeDepth: u32,
+    },
+};
+
+pub const DDSETSTATEININFO = extern struct {
+    lpSurfaceData: ?*DDSURFACEDATA,
+    lpVideoPortData: ?*DDVIDEOPORTDATA,
+};
+
+pub const DDSETSTATEOUTINFO = extern struct {
+    bSoftwareAutoflip: BOOL,
+    dwSurfaceIndex: u32,
+    dwVBISurfaceIndex: u32,
+};
+
+pub const DDSKIPNEXTFIELDINFO = extern struct {
+    lpVideoPortData: ?*DDVIDEOPORTDATA,
+    dwSkipFlags: u32,
+};
+
+pub const DDSTEREOMODE = extern struct {
+    dwSize: u32,
+    dwHeight: u32,
+    dwWidth: u32,
+    dwBpp: u32,
+    dwRefreshRate: u32,
+    bSupported: BOOL,
+};
+
+pub const DDSURFACEDATA = extern struct {
+    ddsCaps: u32,
+    dwSurfaceOffset: u32,
+    fpLockPtr: usize,
+    dwWidth: u32,
+    dwHeight: u32,
+    lPitch: i32,
+    dwOverlayFlags: u32,
+    dwOverlayOffset: u32,
+    dwOverlaySrcWidth: u32,
+    dwOverlaySrcHeight: u32,
+    dwOverlayDestWidth: u32,
+    dwOverlayDestHeight: u32,
+    dwVideoPortId: u32,
+    dwFormatFlags: u32,
+    dwFormatFourCC: u32,
+    dwFormatBitCount: u32,
+    dwRBitMask: u32,
+    dwGBitMask: u32,
+    dwBBitMask: u32,
+    dwDriverReserved1: u32,
+    dwDriverReserved2: u32,
+    dwDriverReserved3: u32,
+    dwDriverReserved4: u32,
+};
+
+pub const DDSURFACEDESC = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwHeight: u32,
+    dwWidth: u32,
+    Anonymous1: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
+    dwBackBufferCount: u32,
+    Anonymous2: extern union {
+        dwMipMapCount: u32,
+        dwZBufferBitDepth: u32,
+        dwRefreshRate: u32,
+    },
+    dwAlphaBitDepth: u32,
+    dwReserved: u32,
+    lpSurface: ?*anyopaque,
+    ddckCKDestOverlay: DDCOLORKEY,
+    ddckCKDestBlt: DDCOLORKEY,
+    ddckCKSrcOverlay: DDCOLORKEY,
+    ddckCKSrcBlt: DDCOLORKEY,
+    ddpfPixelFormat: DDPIXELFORMAT,
+    ddsCaps: DDSCAPS,
+};
+
+pub const DDSURFACEDESC2 = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwHeight: u32,
+    dwWidth: u32,
+    Anonymous1: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
+    Anonymous2: extern union {
+        dwBackBufferCount: u32,
+        dwDepth: u32,
+    },
+    Anonymous3: extern union {
+        dwMipMapCount: u32,
+        dwRefreshRate: u32,
+        dwSrcVBHandle: u32,
+    },
+    dwAlphaBitDepth: u32,
+    dwReserved: u32,
+    lpSurface: ?*anyopaque,
+    Anonymous4: extern union {
+        ddckCKDestOverlay: DDCOLORKEY,
+        dwEmptyFaceColor: u32,
+    },
+    ddckCKDestBlt: DDCOLORKEY,
+    ddckCKSrcOverlay: DDCOLORKEY,
+    ddckCKSrcBlt: DDCOLORKEY,
+    Anonymous5: extern union {
+        ddpfPixelFormat: DDPIXELFORMAT,
+        dwFVF: u32,
+    },
+    ddsCaps: DDSCAPS2,
+    dwTextureStage: u32,
+};
+
+pub const DDTRANSFERININFO = extern struct {
+    lpSurfaceData: ?*DDSURFACEDATA,
+    dwStartLine: u32,
+    dwEndLine: u32,
+    dwTransferID: usize,
+    dwTransferFlags: u32,
+    lpDestMDL: ?*MDL,
+};
+
+pub const DDTRANSFEROUTINFO = extern struct {
+    dwBufferPolarity: u32,
+};
+
+pub const DDVERSIONDATA = extern struct {
+    dwHALVersion: u32,
+    dwReserved1: usize,
+    dwReserved2: usize,
+};
+
+pub const DDVIDEOPORTBANDWIDTH = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwOverlay: u32,
+    dwColorkey: u32,
+    dwYInterpolate: u32,
+    dwYInterpAndColorkey: u32,
+    dwReserved1: usize,
+    dwReserved2: usize,
+};
+
+pub const DDVIDEOPORTCAPS = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwMaxWidth: u32,
+    dwMaxVBIWidth: u32,
+    dwMaxHeight: u32,
+    dwVideoPortID: u32,
+    dwCaps: u32,
+    dwFX: u32,
+    dwNumAutoFlipSurfaces: u32,
+    dwAlignVideoPortBoundary: u32,
+    dwAlignVideoPortPrescaleWidth: u32,
+    dwAlignVideoPortCropBoundary: u32,
+    dwAlignVideoPortCropWidth: u32,
+    dwPreshrinkXStep: u32,
+    dwPreshrinkYStep: u32,
+    dwNumVBIAutoFlipSurfaces: u32,
+    dwNumPreferredAutoflip: u32,
+    wNumFilterTapsX: u16,
+    wNumFilterTapsY: u16,
+};
+
+pub const DDVIDEOPORTCONNECT = extern struct {
+    dwSize: u32,
+    dwPortWidth: u32,
+    guidTypeID: Guid,
+    dwFlags: u32,
+    dwReserved1: usize,
+};
+
+pub const DDVIDEOPORTDATA = extern struct {
+    dwVideoPortId: u32,
+    dwVPFlags: u32,
+    dwOriginOffset: u32,
+    dwHeight: u32,
+    dwVBIHeight: u32,
+    dwDriverReserved1: u32,
+    dwDriverReserved2: u32,
+    dwDriverReserved3: u32,
+};
+
+pub const DDVIDEOPORTDESC = extern struct {
+    dwSize: u32,
+    dwFieldWidth: u32,
+    dwVBIWidth: u32,
+    dwFieldHeight: u32,
+    dwMicrosecondsPerField: u32,
+    dwMaxPixelsPerSecond: u32,
+    dwVideoPortID: u32,
+    dwReserved1: u32,
+    VideoPortType: DDVIDEOPORTCONNECT,
+    dwReserved2: usize,
+    dwReserved3: usize,
+};
+
+pub const DDVIDEOPORTINFO = extern struct {
+    dwSize: u32,
+    dwOriginX: u32,
+    dwOriginY: u32,
+    dwVPFlags: u32,
+    rCrop: RECT,
+    dwPrescaleWidth: u32,
+    dwPrescaleHeight: u32,
+    lpddpfInputFormat: ?*DDPIXELFORMAT,
+    lpddpfVBIInputFormat: ?*DDPIXELFORMAT,
+    lpddpfVBIOutputFormat: ?*DDPIXELFORMAT,
+    dwVBIHeight: u32,
+    dwReserved1: usize,
+    dwReserved2: usize,
+};
+
+pub const DDVIDEOPORTNOTIFY = extern struct {
+    ApproximateTimeStamp: LARGE_INTEGER,
+    lField: i32,
+    dwSurfaceIndex: u32,
+    lDone: i32,
+};
+
+pub const DDVIDEOPORTSTATUS = extern struct {
+    dwSize: u32,
+    bInUse: BOOL,
+    dwFlags: u32,
+    dwReserved1: u32,
+    VideoPortType: DDVIDEOPORTCONNECT,
+    dwReserved2: usize,
+    dwReserved3: usize,
+};
+
+pub const DX_IRQDATA = extern struct {
+    dwIrqFlags: u32,
+};
+
+pub const DXAPI_INTERFACE = extern struct {
+    Size: u16,
+    Version: u16,
+    Context: ?*anyopaque,
+    InterfaceReference: ?*anyopaque,
+    InterfaceDereference: ?*anyopaque,
+    DxGetIrqInfo: ?PDX_GETIRQINFO,
+    DxEnableIrq: ?PDX_ENABLEIRQ,
+    DxSkipNextField: ?PDX_SKIPNEXTFIELD,
+    DxBobNextField: ?PDX_BOBNEXTFIELD,
+    DxSetState: ?PDX_SETSTATE,
+    DxLock: ?PDX_LOCK,
+    DxFlipOverlay: ?PDX_FLIPOVERLAY,
+    DxFlipVideoPort: ?PDX_FLIPVIDEOPORT,
+    DxGetPolarity: ?PDX_GETPOLARITY,
+    DxGetCurrentAutoflip: ?PDX_GETCURRENTAUTOFLIP,
+    DxGetPreviousAutoflip: ?PDX_GETPREVIOUSAUTOFLIP,
+    DxTransfer: ?PDX_TRANSFER,
+    DxGetTransferStatus: ?PDX_GETTRANSFERSTATUS,
+};
+
+pub const HEAPALIAS = extern struct {
+    fpVidMem: usize,
+    lpAlias: ?*anyopaque,
+    dwAliasSize: u32,
+};
+
+pub const HEAPALIASINFO = extern struct {
+    dwRefCnt: u32,
+    dwFlags: u32,
+    dwNumHeaps: u32,
+    lpAliases: ?*HEAPALIAS,
+};
+
+pub const HEAPALIGNMENT = extern struct {
+    dwSize: u32,
+    ddsCaps: DDSCAPS,
+    dwReserved: u32,
+    ExecuteBuffer: SURFACEALIGNMENT,
+    Overlay: SURFACEALIGNMENT,
+    Texture: SURFACEALIGNMENT,
+    ZBuffer: SURFACEALIGNMENT,
+    AlphaBuffer: SURFACEALIGNMENT,
+    Offscreen: SURFACEALIGNMENT,
+    FlipTarget: SURFACEALIGNMENT,
+};
+
+const IID_IDDVideoPortContainer_Value = Guid.initString("6c142760-a733-11ce-a521-0020af0be560");
+pub const IID_IDDVideoPortContainer = &IID_IDDVideoPortContainer_Value;
+pub const IDDVideoPortContainer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateVideoPort: *const fn(
+            self: *const IDDVideoPortContainer,
+            param0: u32,
+            param1: ?*DDVIDEOPORTDESC,
+            param2: ?*?*IDirectDrawVideoPort,
+            param3: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        EnumVideoPorts: *const fn(
+            self: *const IDDVideoPortContainer,
+            param0: u32,
+            param1: ?*DDVIDEOPORTCAPS,
+            param2: ?*anyopaque,
+            param3: ?LPDDENUMVIDEOCALLBACK,
+        ) callconv(.winapi) HRESULT,
+        GetVideoPortConnectInfo: *const fn(
+            self: *const IDDVideoPortContainer,
+            param0: u32,
+            pcInfo: ?*u32,
+            param2: ?[*]DDVIDEOPORTCONNECT,
+        ) callconv(.winapi) HRESULT,
+        QueryVideoPortStatus: *const fn(
+            self: *const IDDVideoPortContainer,
+            param0: u32,
+            param1: ?*DDVIDEOPORTSTATUS,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateVideoPort(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateVideoPort(self, param0, param1, param2, param3);
+    }
+    pub fn EnumVideoPorts(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumVideoPorts(self, param0, param1, param2, param3);
+    }
+    pub fn GetVideoPortConnectInfo(self: *const IDDVideoPortContainer, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVideoPortConnectInfo(self, param0, pcInfo, param2);
+    }
+    pub fn QueryVideoPortStatus(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTSTATUS) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryVideoPortStatus(self, param0, param1);
+    }
+};
+
+pub const IDDVideoPortContainerVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 const IID_IDirectDraw_Value = Guid.initString("6c14db80-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDraw = &IID_IDirectDraw_Value;
@@ -1826,6 +4369,10 @@ pub const IDirectDraw2 = extern union {
     }
 };
 
+pub const IDirectDraw2Vtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 const IID_IDirectDraw4_Value = Guid.initString("9c59509a-39bd-11d1-8c4a-00c04fd930c5");
 pub const IID_IDirectDraw4 = &IID_IDirectDraw4_Value;
 pub const IDirectDraw4 = extern union {
@@ -2030,6 +4577,10 @@ pub const IDirectDraw4 = extern union {
     pub fn GetDeviceIdentifier(self: *const IDirectDraw4, param0: ?*DDDEVICEIDENTIFIER, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
+};
+
+pub const IDirectDraw4Vtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDraw7_Value = Guid.initString("15e65ec0-3b9c-11d2-b92f-00609797ea5b");
@@ -2255,50 +4806,8 @@ pub const IDirectDraw7 = extern union {
     }
 };
 
-const IID_IDirectDrawPalette_Value = Guid.initString("6c14db84-a733-11ce-a521-0020af0be560");
-pub const IID_IDirectDrawPalette = &IID_IDirectDrawPalette_Value;
-pub const IDirectDrawPalette = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCaps: *const fn(
-            self: *const IDirectDrawPalette,
-            param0: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetEntries: *const fn(
-            self: *const IDirectDrawPalette,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-            param3: ?*PALETTEENTRY,
-        ) callconv(.winapi) HRESULT,
-        Initialize: *const fn(
-            self: *const IDirectDrawPalette,
-            param0: ?*IDirectDraw,
-            param1: u32,
-            param2: ?*PALETTEENTRY,
-        ) callconv(.winapi) HRESULT,
-        SetEntries: *const fn(
-            self: *const IDirectDrawPalette,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-            param3: ?*PALETTEENTRY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectDrawPalette, param0: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCaps(self, param0);
-    }
-    pub fn GetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEntries(self, param0, param1, param2, param3);
-    }
-    pub fn Initialize(self: *const IDirectDrawPalette, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, param0, param1, param2);
-    }
-    pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEntries(self, param0, param1, param2, param3);
-    }
+pub const IDirectDraw7Vtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawClipper_Value = Guid.initString("6c14db85-a733-11ce-a521-0020af0be560");
@@ -2356,6 +4865,152 @@ pub const IDirectDrawClipper = extern union {
     pub fn SetHWnd(self: *const IDirectDrawClipper, param0: u32, param1: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetHWnd(self, param0, param1);
     }
+};
+
+pub const IDirectDrawClipperVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+const IID_IDirectDrawColorControl_Value = Guid.initString("4b9f0ee0-0d7e-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawColorControl = &IID_IDirectDrawColorControl_Value;
+pub const IDirectDrawColorControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetColorControls: *const fn(
+            self: *const IDirectDrawColorControl,
+            param0: ?*DDCOLORCONTROL,
+        ) callconv(.winapi) HRESULT,
+        SetColorControls: *const fn(
+            self: *const IDirectDrawColorControl,
+            param0: ?*DDCOLORCONTROL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColorControls(self, param0);
+    }
+    pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColorControls(self, param0);
+    }
+};
+
+pub const IDirectDrawColorControlVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+const IID_IDirectDrawGammaControl_Value = Guid.initString("69c11c3e-b46b-11d1-ad7a-00c04fc29b4e");
+pub const IID_IDirectDrawGammaControl = &IID_IDirectDrawGammaControl_Value;
+pub const IDirectDrawGammaControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetGammaRamp: *const fn(
+            self: *const IDirectDrawGammaControl,
+            param0: u32,
+            param1: ?*DDGAMMARAMP,
+        ) callconv(.winapi) HRESULT,
+        SetGammaRamp: *const fn(
+            self: *const IDirectDrawGammaControl,
+            param0: u32,
+            param1: ?*DDGAMMARAMP,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGammaRamp(self, param0, param1);
+    }
+    pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGammaRamp(self, param0, param1);
+    }
+};
+
+pub const IDirectDrawGammaControlVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+const IID_IDirectDrawKernel_Value = Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
+pub const IDirectDrawKernel = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCaps: *const fn(
+            self: *const IDirectDrawKernel,
+            param0: ?*DDKERNELCAPS,
+        ) callconv(.winapi) HRESULT,
+        GetKernelHandle: *const fn(
+            self: *const IDirectDrawKernel,
+            param0: ?*usize,
+        ) callconv(.winapi) HRESULT,
+        ReleaseKernelHandle: *const fn(
+            self: *const IDirectDrawKernel,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCaps(self: *const IDirectDrawKernel, param0: ?*DDKERNELCAPS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCaps(self, param0);
+    }
+    pub fn GetKernelHandle(self: *const IDirectDrawKernel, param0: ?*usize) callconv(.@"inline") HRESULT {
+        return self.vtable.GetKernelHandle(self, param0);
+    }
+    pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseKernelHandle(self);
+    }
+};
+
+pub const IDirectDrawKernelVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+const IID_IDirectDrawPalette_Value = Guid.initString("6c14db84-a733-11ce-a521-0020af0be560");
+pub const IID_IDirectDrawPalette = &IID_IDirectDrawPalette_Value;
+pub const IDirectDrawPalette = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCaps: *const fn(
+            self: *const IDirectDrawPalette,
+            param0: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetEntries: *const fn(
+            self: *const IDirectDrawPalette,
+            param0: u32,
+            param1: u32,
+            param2: u32,
+            param3: ?*PALETTEENTRY,
+        ) callconv(.winapi) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectDrawPalette,
+            param0: ?*IDirectDraw,
+            param1: u32,
+            param2: ?*PALETTEENTRY,
+        ) callconv(.winapi) HRESULT,
+        SetEntries: *const fn(
+            self: *const IDirectDrawPalette,
+            param0: u32,
+            param1: u32,
+            param2: u32,
+            param3: ?*PALETTEENTRY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCaps(self: *const IDirectDrawPalette, param0: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCaps(self, param0);
+    }
+    pub fn GetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEntries(self, param0, param1, param2, param3);
+    }
+    pub fn Initialize(self: *const IDirectDrawPalette, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, param0, param1, param2);
+    }
+    pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEntries(self, param0, param1, param2, param3);
+    }
+};
+
+pub const IDirectDrawPaletteVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawSurface_Value = Guid.initString("6c14db81-a733-11ce-a521-0020af0be560");
@@ -2915,6 +5570,10 @@ pub const IDirectDrawSurface2 = extern union {
     }
 };
 
+pub const IDirectDrawSurface2Vtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 const IID_IDirectDrawSurface3_Value = Guid.initString("da044e00-69b2-11d0-a1d5-00aa00b8dfbb");
 pub const IID_IDirectDrawSurface3 = &IID_IDirectDrawSurface3_Value;
 pub const IDirectDrawSurface3 = extern union {
@@ -3210,6 +5869,10 @@ pub const IDirectDrawSurface3 = extern union {
     pub fn SetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
+};
+
+pub const IDirectDrawSurface3Vtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawSurface4_Value = Guid.initString("0b2b8630-ad35-11d0-8ea6-00609797ea5b");
@@ -3546,6 +6209,10 @@ pub const IDirectDrawSurface4 = extern union {
     pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeUniquenessValue(self);
     }
+};
+
+pub const IDirectDrawSurface4Vtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawSurface7_Value = Guid.initString("06675a80-3b9b-11d2-b92f-00609797ea5b");
@@ -3912,202 +6579,39 @@ pub const IDirectDrawSurface7 = extern union {
     }
 };
 
-const IID_IDirectDrawColorControl_Value = Guid.initString("4b9f0ee0-0d7e-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawColorControl = &IID_IDirectDrawColorControl_Value;
-pub const IDirectDrawColorControl = extern union {
+pub const IDirectDrawSurface7Vtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+const IID_IDirectDrawSurfaceKernel_Value = Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
+pub const IDirectDrawSurfaceKernel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetColorControls: *const fn(
-            self: *const IDirectDrawColorControl,
-            param0: ?*DDCOLORCONTROL,
+        GetKernelHandle: *const fn(
+            self: *const IDirectDrawSurfaceKernel,
+            param0: ?*usize,
         ) callconv(.winapi) HRESULT,
-        SetColorControls: *const fn(
-            self: *const IDirectDrawColorControl,
-            param0: ?*DDCOLORCONTROL,
+        ReleaseKernelHandle: *const fn(
+            self: *const IDirectDrawSurfaceKernel,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColorControls(self, param0);
+    pub fn GetKernelHandle(self: *const IDirectDrawSurfaceKernel, param0: ?*usize) callconv(.@"inline") HRESULT {
+        return self.vtable.GetKernelHandle(self, param0);
     }
-    pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColorControls(self, param0);
-    }
-};
-
-const IID_IDirectDrawGammaControl_Value = Guid.initString("69c11c3e-b46b-11d1-ad7a-00c04fc29b4e");
-pub const IID_IDirectDrawGammaControl = &IID_IDirectDrawGammaControl_Value;
-pub const IDirectDrawGammaControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetGammaRamp: *const fn(
-            self: *const IDirectDrawGammaControl,
-            param0: u32,
-            param1: ?*DDGAMMARAMP,
-        ) callconv(.winapi) HRESULT,
-        SetGammaRamp: *const fn(
-            self: *const IDirectDrawGammaControl,
-            param0: u32,
-            param1: ?*DDGAMMARAMP,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGammaRamp(self, param0, param1);
-    }
-    pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGammaRamp(self, param0, param1);
+    pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseKernelHandle(self);
     }
 };
 
-pub const DDSURFACEDESC = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwHeight: u32,
-    dwWidth: u32,
-    Anonymous1: extern union {
-        lPitch: i32,
-        dwLinearSize: u32,
-    },
-    dwBackBufferCount: u32,
-    Anonymous2: extern union {
-        dwMipMapCount: u32,
-        dwZBufferBitDepth: u32,
-        dwRefreshRate: u32,
-    },
-    dwAlphaBitDepth: u32,
-    dwReserved: u32,
-    lpSurface: ?*anyopaque,
-    ddckCKDestOverlay: DDCOLORKEY,
-    ddckCKDestBlt: DDCOLORKEY,
-    ddckCKSrcOverlay: DDCOLORKEY,
-    ddckCKSrcBlt: DDCOLORKEY,
-    ddpfPixelFormat: DDPIXELFORMAT,
-    ddsCaps: DDSCAPS,
-};
-
-pub const DDSURFACEDESC2 = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwHeight: u32,
-    dwWidth: u32,
-    Anonymous1: extern union {
-        lPitch: i32,
-        dwLinearSize: u32,
-    },
-    Anonymous2: extern union {
-        dwBackBufferCount: u32,
-        dwDepth: u32,
-    },
-    Anonymous3: extern union {
-        dwMipMapCount: u32,
-        dwRefreshRate: u32,
-        dwSrcVBHandle: u32,
-    },
-    dwAlphaBitDepth: u32,
-    dwReserved: u32,
-    lpSurface: ?*anyopaque,
-    Anonymous4: extern union {
-        ddckCKDestOverlay: DDCOLORKEY,
-        dwEmptyFaceColor: u32,
-    },
-    ddckCKDestBlt: DDCOLORKEY,
-    ddckCKSrcOverlay: DDCOLORKEY,
-    ddckCKSrcBlt: DDCOLORKEY,
-    Anonymous5: extern union {
-        ddpfPixelFormat: DDPIXELFORMAT,
-        dwFVF: u32,
-    },
-    ddsCaps: DDSCAPS2,
-    dwTextureStage: u32,
-};
-
-pub const DDOPTSURFACEDESC = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    ddSCaps: DDSCAPS2,
-    ddOSCaps: DDOSCAPS,
-    guid: Guid,
-    dwCompressionRatio: u32,
-};
-
-pub const DDCOLORCONTROL = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    lBrightness: i32,
-    lContrast: i32,
-    lHue: i32,
-    lSaturation: i32,
-    lSharpness: i32,
-    lGamma: i32,
-    lColorEnable: i32,
-    dwReserved1: u32,
-};
-
-pub const IDDVideoPortContainerVtbl = extern struct {
+pub const IDirectDrawSurfaceKernelVtbl = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const IDirectDrawVideoPortVtbl = extern struct {
+pub const IDirectDrawSurfaceVtbl = extern struct {
     placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawVideoPortNotifyVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const LPDDENUMVIDEOCALLBACK = *const fn(
-    param0: ?*DDVIDEOPORTCAPS,
-    param1: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-const IID_IDDVideoPortContainer_Value = Guid.initString("6c142760-a733-11ce-a521-0020af0be560");
-pub const IID_IDDVideoPortContainer = &IID_IDDVideoPortContainer_Value;
-pub const IDDVideoPortContainer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateVideoPort: *const fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            param1: ?*DDVIDEOPORTDESC,
-            param2: ?*?*IDirectDrawVideoPort,
-            param3: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        EnumVideoPorts: *const fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            param1: ?*DDVIDEOPORTCAPS,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMVIDEOCALLBACK,
-        ) callconv(.winapi) HRESULT,
-        GetVideoPortConnectInfo: *const fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            pcInfo: ?*u32,
-            param2: ?[*]DDVIDEOPORTCONNECT,
-        ) callconv(.winapi) HRESULT,
-        QueryVideoPortStatus: *const fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            param1: ?*DDVIDEOPORTSTATUS,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateVideoPort(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateVideoPort(self, param0, param1, param2, param3);
-    }
-    pub fn EnumVideoPorts(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumVideoPorts(self, param0, param1, param2, param3);
-    }
-    pub fn GetVideoPortConnectInfo(self: *const IDDVideoPortContainer, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVideoPortConnectInfo(self, param0, pcInfo, param2);
-    }
-    pub fn QueryVideoPortStatus(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTSTATUS) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryVideoPortStatus(self, param0, param1);
-    }
 };
 
 const IID_IDirectDrawVideoPort_Value = Guid.initString("b36d93e0-2b43-11cf-a2de-00aa00b93356");
@@ -4255,151 +6759,665 @@ pub const IDirectDrawVideoPortNotify = extern union {
     }
 };
 
-pub const DDVIDEOPORTCONNECT = extern struct {
-    dwSize: u32,
-    dwPortWidth: u32,
-    guidTypeID: Guid,
+pub const IDirectDrawVideoPortNotifyVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const IDirectDrawVideoPortVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const IDirectDrawVtbl = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const IUNKNOWN_LIST = extern struct {
+    lpLink: ?*IUNKNOWN_LIST,
+    lpGuid: ?*Guid,
+    lpIUnknown: ?*IUnknown,
+};
+
+pub const LPCLIPPERCALLBACK = *const fn(
+    lpDDClipper: ?*IDirectDrawClipper,
+    hWnd: ?HWND,
+    code: u32,
+    lpContext: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const LPDD32BITDRIVERINIT = *const fn(
+    dwContext: u32,
+) callconv(.winapi) u32;
+
+pub const LPDDENUMCALLBACKA = *const fn(
+    param0: ?*Guid,
+    param1: ?PSTR,
+    param2: ?PSTR,
+    param3: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const LPDDENUMCALLBACKEXA = *const fn(
+    param0: ?*Guid,
+    param1: ?PSTR,
+    param2: ?PSTR,
+    param3: ?*anyopaque,
+    param4: ?HMONITOR,
+) callconv(.winapi) BOOL;
+
+pub const LPDDENUMCALLBACKEXW = *const fn(
+    param0: ?*Guid,
+    param1: ?PWSTR,
+    param2: ?PWSTR,
+    param3: ?*anyopaque,
+    param4: ?HMONITOR,
+) callconv(.winapi) BOOL;
+
+pub const LPDDENUMCALLBACKW = *const fn(
+    param0: ?*Guid,
+    param1: ?PWSTR,
+    param2: ?PWSTR,
+    param3: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const LPDDENUMMODESCALLBACK = *const fn(
+    param0: ?*DDSURFACEDESC,
+    param1: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const LPDDENUMMODESCALLBACK2 = *const fn(
+    param0: ?*DDSURFACEDESC2,
+    param1: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDENUMSURFACESCALLBACK = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDENUMSURFACESCALLBACK2 = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDENUMSURFACESCALLBACK7 = *const fn() callconv(.winapi) void;
+
+pub const LPDDENUMVIDEOCALLBACK = *const fn(
+    param0: ?*DDVIDEOPORTCAPS,
+    param1: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const LPDDGAMMACALIBRATORPROC = *const fn(
+    param0: ?*DDGAMMARAMP,
+    param1: ?*u8,
+) callconv(.winapi) HRESULT;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CANCREATESURFACE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CREATEPALETTE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CREATESURFACE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CREATESURFACEEX = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_DESTROYDDLOCAL = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_DESTROYDRIVER = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_FLIPTOGDISURFACE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETAVAILDRIVERMEMORY = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETDRIVERINFO = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETDRIVERSTATE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETHEAPALIGNMENT = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETSCANLINE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETCOLORKEY = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETEXCLUSIVEMODE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETINFO = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETMODE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_UPDATENONLOCALHEAP = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_VIDMEMALLOC = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_VIDMEMFREE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_WAITFORVERTICALBLANK = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALCOLORCB_COLORCONTROL = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALEXEBUFCB_CANCREATEEXEBUF = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALEXEBUFCB_CREATEEXEBUF = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALEXEBUFCB_DESTROYEXEBUF = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALEXEBUFCB_LOCKEXEBUF = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALEXEBUFCB_UNLOCKEXEBUF = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALKERNELCB_SYNCSURFACE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALKERNELCB_SYNCVIDEOPORT = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_BEGINFRAME = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_CREATE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_DESTROY = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_ENDFRAME = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETFORMATS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETGUIDS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETINTERNALINFO = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_QUERYSTATUS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_RENDER = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALPALCB_DESTROYPALETTE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALPALCB_SETENTRIES = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_BLT = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_DESTROYSURFACE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_FLIP = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_GETBLTSTATUS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_GETFLIPSTATUS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_LOCK = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETCLIPLIST = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETCOLORKEY = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETOVERLAYPOSITION = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETPALETTE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_UNLOCK = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_UPDATEOVERLAY = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_COLORCONTROL = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_CREATEVIDEOPORT = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_DESTROYVPORT = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_FLIP = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETBANDWIDTH = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETFIELD = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETFLIPSTATUS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETINPUTFORMATS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETLINE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETSIGNALSTATUS = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETVPORTCONNECT = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_UPDATE = *const fn() callconv(.winapi) void;
+
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_WAITFORSYNC = *const fn() callconv(.winapi) void;
+
+pub const LPDDHEL_INIT = *const fn(
+    param0: ?*DDRAWI_DIRECTDRAW_GBL,
+    param1: BOOL,
+) callconv(.winapi) BOOL;
+
+pub const LPDIRECTDRAWENUMERATEEXA = *const fn(
+    lpCallback: ?LPDDENUMCALLBACKEXA,
+    lpContext: ?*anyopaque,
     dwFlags: u32,
-    dwReserved1: usize,
-};
+) callconv(.winapi) HRESULT;
 
-pub const DDVIDEOPORTCAPS = extern struct {
-    dwSize: u32,
+pub const LPDIRECTDRAWENUMERATEEXW = *const fn(
+    lpCallback: ?LPDDENUMCALLBACKEXW,
+    lpContext: ?*anyopaque,
     dwFlags: u32,
-    dwMaxWidth: u32,
-    dwMaxVBIWidth: u32,
-    dwMaxHeight: u32,
-    dwVideoPortID: u32,
-    dwCaps: u32,
-    dwFX: u32,
-    dwNumAutoFlipSurfaces: u32,
-    dwAlignVideoPortBoundary: u32,
-    dwAlignVideoPortPrescaleWidth: u32,
-    dwAlignVideoPortCropBoundary: u32,
-    dwAlignVideoPortCropWidth: u32,
-    dwPreshrinkXStep: u32,
-    dwPreshrinkYStep: u32,
-    dwNumVBIAutoFlipSurfaces: u32,
-    dwNumPreferredAutoflip: u32,
-    wNumFilterTapsX: u16,
-    wNumFilterTapsY: u16,
-};
+) callconv(.winapi) HRESULT;
 
-pub const DDVIDEOPORTDESC = extern struct {
-    dwSize: u32,
-    dwFieldWidth: u32,
-    dwVBIWidth: u32,
-    dwFieldHeight: u32,
-    dwMicrosecondsPerField: u32,
-    dwMaxPixelsPerSecond: u32,
-    dwVideoPortID: u32,
-    dwReserved1: u32,
-    VideoPortType: DDVIDEOPORTCONNECT,
-    dwReserved2: usize,
-    dwReserved3: usize,
-};
-
-pub const DDVIDEOPORTINFO = extern struct {
-    dwSize: u32,
-    dwOriginX: u32,
-    dwOriginY: u32,
-    dwVPFlags: u32,
-    rCrop: RECT,
-    dwPrescaleWidth: u32,
-    dwPrescaleHeight: u32,
-    lpddpfInputFormat: ?*DDPIXELFORMAT,
-    lpddpfVBIInputFormat: ?*DDPIXELFORMAT,
-    lpddpfVBIOutputFormat: ?*DDPIXELFORMAT,
-    dwVBIHeight: u32,
-    dwReserved1: usize,
-    dwReserved2: usize,
-};
-
-pub const DDVIDEOPORTBANDWIDTH = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwOverlay: u32,
-    dwColorkey: u32,
-    dwYInterpolate: u32,
-    dwYInterpAndColorkey: u32,
-    dwReserved1: usize,
-    dwReserved2: usize,
-};
-
-pub const DDVIDEOPORTSTATUS = extern struct {
-    dwSize: u32,
-    bInUse: BOOL,
-    dwFlags: u32,
-    dwReserved1: u32,
-    VideoPortType: DDVIDEOPORTCONNECT,
-    dwReserved2: usize,
-    dwReserved3: usize,
-};
-
-pub const DDVIDEOPORTNOTIFY = extern struct {
-    ApproximateTimeStamp: LARGE_INTEGER,
-    lField: i32,
-    dwSurfaceIndex: u32,
-    lDone: i32,
-};
-
-const IID_IDirectDrawKernel_Value = Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
-pub const IDirectDrawKernel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCaps: *const fn(
-            self: *const IDirectDrawKernel,
-            param0: ?*DDKERNELCAPS,
-        ) callconv(.winapi) HRESULT,
-        GetKernelHandle: *const fn(
-            self: *const IDirectDrawKernel,
-            param0: ?*usize,
-        ) callconv(.winapi) HRESULT,
-        ReleaseKernelHandle: *const fn(
-            self: *const IDirectDrawKernel,
-        ) callconv(.winapi) HRESULT,
+pub const MDL = extern struct {
+    pub const _EPROCESS = extern struct {
+        placeholder: usize, // TODO: why is this type empty?
     };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectDrawKernel, param0: ?*DDKERNELCAPS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCaps(self, param0);
-    }
-    pub fn GetKernelHandle(self: *const IDirectDrawKernel, param0: ?*usize) callconv(.@"inline") HRESULT {
-        return self.vtable.GetKernelHandle(self, param0);
-    }
-    pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseKernelHandle(self);
-    }
+    MdlNext: ?*MDL,
+    MdlSize: i16,
+    MdlFlags: i16,
+    Process: ?*_EPROCESS,
+    lpMappedSystemVa: ?*u32,
+    lpStartVa: ?*u32,
+    ByteCount: u32,
+    ByteOffset: u32,
 };
 
-const IID_IDirectDrawSurfaceKernel_Value = Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
-pub const IDirectDrawSurfaceKernel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetKernelHandle: *const fn(
-            self: *const IDirectDrawSurfaceKernel,
-            param0: ?*usize,
-        ) callconv(.winapi) HRESULT,
-        ReleaseKernelHandle: *const fn(
-            self: *const IDirectDrawSurfaceKernel,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetKernelHandle(self: *const IDirectDrawSurfaceKernel, param0: ?*usize) callconv(.@"inline") HRESULT {
-        return self.vtable.GetKernelHandle(self, param0);
-    }
-    pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseKernelHandle(self);
-    }
-};
+pub const PDD_ALPHABLT = *const fn(
+    param0: ?*DD_BLTDATA,
+) callconv(.winapi) u32;
 
-pub const DDKERNELCAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwIRQCaps: u32,
+pub const PDD_CANCREATESURFACE = *const fn(
+    param0: ?*DD_CANCREATESURFACEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_COLORCB_COLORCONTROL = *const fn(
+    param0: ?*DD_COLORCONTROLDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_CREATEPALETTE = *const fn(
+    param0: ?*DD_CREATEPALETTEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_CREATESURFACE = *const fn(
+    param0: ?*DD_CREATESURFACEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_CREATESURFACEEX = *const fn(
+    param0: ?*DD_CREATESURFACEEXDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_DESTROYDDLOCAL = *const fn(
+    param0: ?*DD_DESTROYDDLOCALDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_DESTROYDRIVER = *const fn(
+    param0: ?*_DD_DESTROYDRIVERDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_FLIPTOGDISURFACE = *const fn(
+    param0: ?*DD_FLIPTOGDISURFACEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_FREEDRIVERMEMORY = *const fn(
+    param0: ?*DD_FREEDRIVERMEMORYDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_GETAVAILDRIVERMEMORY = *const fn(
+    param0: ?*DD_GETAVAILDRIVERMEMORYDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_GETDRIVERINFO = *const fn(
+    param0: ?*DD_GETDRIVERINFODATA,
+) callconv(.winapi) u32;
+
+pub const PDD_GETDRIVERSTATE = *const fn(
+    param0: ?*DD_GETDRIVERSTATEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_GETSCANLINE = *const fn(
+    param0: ?*DD_GETSCANLINEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_KERNELCB_SYNCSURFACE = *const fn(
+    param0: ?*DD_SYNCSURFACEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_KERNELCB_SYNCVIDEOPORT = *const fn(
+    param0: ?*DD_SYNCVIDEOPORTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MAPMEMORY = *const fn(
+    param0: ?*DD_MAPMEMORYDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_BEGINFRAME = *const fn(
+    param0: ?*DD_BEGINMOCOMPFRAMEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_CREATE = *const fn(
+    param0: ?*DD_CREATEMOCOMPDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_DESTROY = *const fn(
+    param0: ?*DD_DESTROYMOCOMPDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_ENDFRAME = *const fn(
+    param0: ?*DD_ENDMOCOMPFRAMEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_GETCOMPBUFFINFO = *const fn(
+    param0: ?*DD_GETMOCOMPCOMPBUFFDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_GETFORMATS = *const fn(
+    param0: ?*DD_GETMOCOMPFORMATSDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_GETGUIDS = *const fn(
+    param0: ?*DD_GETMOCOMPGUIDSDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_GETINTERNALINFO = *const fn(
+    param0: ?*DD_GETINTERNALMOCOMPDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_QUERYSTATUS = *const fn(
+    param0: ?*DD_QUERYMOCOMPSTATUSDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_MOCOMPCB_RENDER = *const fn(
+    param0: ?*DD_RENDERMOCOMPDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_PALCB_DESTROYPALETTE = *const fn(
+    param0: ?*DD_DESTROYPALETTEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_PALCB_SETENTRIES = *const fn(
+    param0: ?*DD_SETENTRIESDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SETCOLORKEY = *const fn(
+    param0: ?*DD_DRVSETCOLORKEYDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SETEXCLUSIVEMODE = *const fn(
+    param0: ?*DD_SETEXCLUSIVEMODEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SETMODE = *const fn(
+    param0: ?*_DD_SETMODEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_ADDATTACHEDSURFACE = *const fn(
+    param0: ?*DD_ADDATTACHEDSURFACEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_BLT = *const fn(
+    param0: ?*DD_BLTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_DESTROYSURFACE = *const fn(
+    param0: ?*DD_DESTROYSURFACEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_FLIP = *const fn(
+    param0: ?*DD_FLIPDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_GETBLTSTATUS = *const fn(
+    param0: ?*DD_GETBLTSTATUSDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_GETFLIPSTATUS = *const fn(
+    param0: ?*DD_GETFLIPSTATUSDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_LOCK = *const fn(
+    param0: ?*DD_LOCKDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_SETCLIPLIST = *const fn(
+    param0: ?*DD_SETCLIPLISTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_SETCOLORKEY = *const fn(
+    param0: ?*DD_SETCOLORKEYDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_SETOVERLAYPOSITION = *const fn(
+    param0: ?*DD_SETOVERLAYPOSITIONDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_SETPALETTE = *const fn(
+    param0: ?*DD_SETPALETTEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_UNLOCK = *const fn(
+    param0: ?*DD_UNLOCKDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_SURFCB_UPDATEOVERLAY = *const fn(
+    param0: ?*DD_UPDATEOVERLAYDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_CANCREATEVIDEOPORT = *const fn(
+    param0: ?*DD_CANCREATEVPORTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_COLORCONTROL = *const fn(
+    param0: ?*DD_VPORTCOLORDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_CREATEVIDEOPORT = *const fn(
+    param0: ?*DD_CREATEVPORTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_DESTROYVPORT = *const fn(
+    param0: ?*DD_DESTROYVPORTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_FLIP = *const fn(
+    param0: ?*DD_FLIPVPORTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETAUTOFLIPSURF = *const fn(
+    param0: ?*_DD_GETVPORTAUTOFLIPSURFACEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETBANDWIDTH = *const fn(
+    param0: ?*DD_GETVPORTBANDWIDTHDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETFIELD = *const fn(
+    param0: ?*DD_GETVPORTFIELDDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETFLIPSTATUS = *const fn(
+    param0: ?*DD_GETVPORTFLIPSTATUSDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETINPUTFORMATS = *const fn(
+    param0: ?*DD_GETVPORTINPUTFORMATDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETLINE = *const fn(
+    param0: ?*DD_GETVPORTLINEDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETOUTPUTFORMATS = *const fn(
+    param0: ?*DD_GETVPORTOUTPUTFORMATDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETSIGNALSTATUS = *const fn(
+    param0: ?*DD_GETVPORTSIGNALDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_GETVPORTCONNECT = *const fn(
+    param0: ?*DD_GETVPORTCONNECTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_UPDATE = *const fn(
+    param0: ?*DD_UPDATEVPORTDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_VPORTCB_WAITFORSYNC = *const fn(
+    param0: ?*DD_WAITFORVPORTSYNCDATA,
+) callconv(.winapi) u32;
+
+pub const PDD_WAITFORVERTICALBLANK = *const fn(
+    param0: ?*DD_WAITFORVERTICALBLANKDATA,
+) callconv(.winapi) u32;
+
+pub const PDX_BOBNEXTFIELD = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDBOBNEXTFIELDINFO,
+    param2: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PDX_ENABLEIRQ = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDENABLEIRQINFO,
+    param2: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PDX_FLIPOVERLAY = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDFLIPOVERLAYINFO,
+    param2: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PDX_FLIPVIDEOPORT = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDFLIPVIDEOPORTINFO,
+    param2: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PDX_GETCURRENTAUTOFLIP = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDGETCURRENTAUTOFLIPININFO,
+    param2: ?*DDGETCURRENTAUTOFLIPOUTINFO,
+) callconv(.winapi) u32;
+
+pub const PDX_GETIRQINFO = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
+    param2: ?*DDGETIRQINFO,
+) callconv(.winapi) u32;
+
+pub const PDX_GETPOLARITY = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDGETPOLARITYININFO,
+    param2: ?*DDGETPOLARITYOUTINFO,
+) callconv(.winapi) u32;
+
+pub const PDX_GETPREVIOUSAUTOFLIP = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDGETPREVIOUSAUTOFLIPININFO,
+    param2: ?*DDGETPREVIOUSAUTOFLIPOUTINFO,
+) callconv(.winapi) u32;
+
+pub const PDX_GETTRANSFERSTATUS = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
+    param2: ?*DDGETTRANSFERSTATUSOUTINFO,
+) callconv(.winapi) u32;
+
+pub const PDX_IRQCALLBACK = *const fn(
+    pIrqData: ?*DX_IRQDATA,
+) callconv(.winapi) void;
+
+pub const PDX_LOCK = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDLOCKININFO,
+    param2: ?*DDLOCKOUTINFO,
+) callconv(.winapi) u32;
+
+pub const PDX_SETSTATE = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDSETSTATEININFO,
+    param2: ?*DDSETSTATEOUTINFO,
+) callconv(.winapi) u32;
+
+pub const PDX_SKIPNEXTFIELD = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDSKIPNEXTFIELDINFO,
+    param2: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PDX_TRANSFER = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*DDTRANSFERININFO,
+    param2: ?*DDTRANSFEROUTINFO,
+) callconv(.winapi) u32;
+
+pub const PROCESS_LIST = extern struct {
+    lpLink: ?*PROCESS_LIST,
+    dwProcessId: u32,
+    dwRefCnt: u32,
+    dwAlphaDepth: u32,
+    dwZDepth: u32,
 };
 
 pub const SURFACEALIGNMENT = extern struct {
@@ -4417,1687 +7435,6 @@ pub const SURFACEALIGNMENT = extern struct {
             dwReserved2: u32,
         },
     },
-};
-
-pub const HEAPALIGNMENT = extern struct {
-    dwSize: u32,
-    ddsCaps: DDSCAPS,
-    dwReserved: u32,
-    ExecuteBuffer: SURFACEALIGNMENT,
-    Overlay: SURFACEALIGNMENT,
-    Texture: SURFACEALIGNMENT,
-    ZBuffer: SURFACEALIGNMENT,
-    AlphaBuffer: SURFACEALIGNMENT,
-    Offscreen: SURFACEALIGNMENT,
-    FlipTarget: SURFACEALIGNMENT,
-};
-
-pub const DD_GETHEAPALIGNMENTDATA = extern struct {
-    dwInstance: usize,
-    dwHeap: u32,
-    ddRVal: HRESULT,
-    GetHeapAlignment: ?*anyopaque,
-    Alignment: HEAPALIGNMENT,
-};
-
-pub const VMEML = extern struct {
-    next: ?*VMEML,
-    ptr: usize,
-    size: u32,
-    bDiscardable: BOOL,
-};
-
-pub const VMEMR = extern struct {
-    next: ?*VMEMR,
-    prev: ?*VMEMR,
-    pUp: ?*VMEMR,
-    pDown: ?*VMEMR,
-    pLeft: ?*VMEMR,
-    pRight: ?*VMEMR,
-    ptr: usize,
-    size: u32,
-    x: u32,
-    y: u32,
-    cx: u32,
-    cy: u32,
-    flags: u32,
-    pBits: usize,
-    bDiscardable: BOOL,
-};
-
-pub const VMEMHEAP = extern struct {
-    dwFlags: u32,
-    stride: u32,
-    freeList: ?*anyopaque,
-    allocList: ?*anyopaque,
-    dwTotalSize: u32,
-    fpGARTLin: usize,
-    fpGARTDev: usize,
-    dwCommitedSize: u32,
-    dwCoalesceCount: u32,
-    Alignment: HEAPALIGNMENT,
-    ddsCapsEx: DDSCAPSEX,
-    ddsCapsExAlt: DDSCAPSEX,
-    liPhysAGPBase: LARGE_INTEGER,
-    hdevAGP: ?HANDLE,
-    pvPhysRsrv: ?*anyopaque,
-    pAgpCommitMask: ?*u8,
-    dwAgpCommitMaskSize: u32,
-};
-
-pub const PROCESS_LIST = extern struct {
-    lpLink: ?*PROCESS_LIST,
-    dwProcessId: u32,
-    dwRefCnt: u32,
-    dwAlphaDepth: u32,
-    dwZDepth: u32,
-};
-
-pub const DDMONITORINFO = extern struct {
-    Manufacturer: u16,
-    Product: u16,
-    SerialNumber: u32,
-    DeviceIdentifier: Guid,
-    Mode640x480: i32,
-    Mode800x600: i32,
-    Mode1024x768: i32,
-    Mode1280x1024: i32,
-    Mode1600x1200: i32,
-    ModeReserved1: i32,
-    ModeReserved2: i32,
-    ModeReserved3: i32,
-};
-
-pub const IDirectDrawClipperVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawPaletteVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawSurfaceVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawSurface2Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawSurface3Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawSurface4Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawSurface7Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawColorControlVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDraw2Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDraw4Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDraw7Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawKernelVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawSurfaceKernelVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawGammaControlVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const DD32BITDRIVERDATA = extern struct {
-    szName: [260]CHAR,
-    szEntryPoint: [64]CHAR,
-    dwContext: u32,
-};
-
-pub const DDVERSIONDATA = extern struct {
-    dwHALVersion: u32,
-    dwReserved1: usize,
-    dwReserved2: usize,
-};
-
-pub const LPDD32BITDRIVERINIT = *const fn(
-    dwContext: u32,
-) callconv(.winapi) u32;
-
-pub const VIDMEM = extern struct {
-    dwFlags: u32,
-    fpStart: usize,
-    Anonymous1: extern union {
-        fpEnd: usize,
-        dwWidth: u32,
-    },
-    ddsCaps: DDSCAPS,
-    ddsCapsAlt: DDSCAPS,
-    Anonymous2: extern union {
-        lpHeap: ?*VMEMHEAP,
-        dwHeight: u32,
-    },
-};
-
-pub const VIDMEMINFO = extern struct {
-    fpPrimary: usize,
-    dwFlags: u32,
-    dwDisplayWidth: u32,
-    dwDisplayHeight: u32,
-    lDisplayPitch: i32,
-    ddpfDisplay: DDPIXELFORMAT,
-    dwOffscreenAlign: u32,
-    dwOverlayAlign: u32,
-    dwTextureAlign: u32,
-    dwZBufferAlign: u32,
-    dwAlphaAlign: u32,
-    dwNumHeaps: u32,
-    pvmList: ?*VIDMEM,
-};
-
-pub const HEAPALIAS = extern struct {
-    fpVidMem: usize,
-    lpAlias: ?*anyopaque,
-    dwAliasSize: u32,
-};
-
-pub const HEAPALIASINFO = extern struct {
-    dwRefCnt: u32,
-    dwFlags: u32,
-    dwNumHeaps: u32,
-    lpAliases: ?*HEAPALIAS,
-};
-
-pub const IUNKNOWN_LIST = extern struct {
-    lpLink: ?*IUNKNOWN_LIST,
-    lpGuid: ?*Guid,
-    lpIUnknown: ?*IUnknown,
-};
-
-pub const LPDDHEL_INIT = *const fn(
-    param0: ?*DDRAWI_DIRECTDRAW_GBL,
-    param1: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETCOLORKEY = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CANCREATESURFACE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_WAITFORVERTICALBLANK = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CREATESURFACE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_DESTROYDRIVER = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETMODE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CREATEPALETTE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETSCANLINE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETEXCLUSIVEMODE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_FLIPTOGDISURFACE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETDRIVERINFO = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    DestroyDriver: ?LPDDHAL_DESTROYDRIVER,
-    CreateSurface: ?LPDDHAL_CREATESURFACE,
-    SetColorKey: ?LPDDHAL_SETCOLORKEY,
-    SetMode: ?LPDDHAL_SETMODE,
-    WaitForVerticalBlank: ?LPDDHAL_WAITFORVERTICALBLANK,
-    CanCreateSurface: ?LPDDHAL_CANCREATESURFACE,
-    CreatePalette: ?LPDDHAL_CREATEPALETTE,
-    GetScanLine: ?LPDDHAL_GETSCANLINE,
-    SetExclusiveMode: ?LPDDHAL_SETEXCLUSIVEMODE,
-    FlipToGDISurface: ?LPDDHAL_FLIPTOGDISURFACE,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALPALCB_DESTROYPALETTE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALPALCB_SETENTRIES = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDPALETTECALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    DestroyPalette: ?LPDDHALPALCB_DESTROYPALETTE,
-    SetEntries: ?LPDDHALPALCB_SETENTRIES,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_LOCK = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_UNLOCK = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_BLT = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_UPDATEOVERLAY = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETOVERLAYPOSITION = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETPALETTE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_FLIP = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_DESTROYSURFACE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETCLIPLIST = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETCOLORKEY = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_GETBLTSTATUS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_GETFLIPSTATUS = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDSURFACECALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    DestroySurface: ?LPDDHALSURFCB_DESTROYSURFACE,
-    Flip: ?LPDDHALSURFCB_FLIP,
-    SetClipList: ?LPDDHALSURFCB_SETCLIPLIST,
-    Lock: ?LPDDHALSURFCB_LOCK,
-    Unlock: ?LPDDHALSURFCB_UNLOCK,
-    Blt: ?LPDDHALSURFCB_BLT,
-    SetColorKey: ?LPDDHALSURFCB_SETCOLORKEY,
-    AddAttachedSurface: ?LPDDHALSURFCB_ADDATTACHEDSURFACE,
-    GetBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
-    GetFlipStatus: ?LPDDHALSURFCB_GETFLIPSTATUS,
-    UpdateOverlay: ?LPDDHALSURFCB_UPDATEOVERLAY,
-    SetOverlayPosition: ?LPDDHALSURFCB_SETOVERLAYPOSITION,
-    reserved4: ?*anyopaque,
-    SetPalette: ?LPDDHALSURFCB_SETPALETTE,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETAVAILDRIVERMEMORY = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_UPDATENONLOCALHEAP = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETHEAPALIGNMENT = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    GetAvailDriverMemory: ?LPDDHAL_GETAVAILDRIVERMEMORY,
-    UpdateNonLocalHeap: ?LPDDHAL_UPDATENONLOCALHEAP,
-    GetHeapAlignment: ?LPDDHAL_GETHEAPALIGNMENT,
-    GetSysmemBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CREATESURFACEEX = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETDRIVERSTATE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_DESTROYDDLOCAL = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    Reserved: ?*anyopaque,
-    CreateSurfaceEx: ?LPDDHAL_CREATESURFACEEX,
-    GetDriverState: ?LPDDHAL_GETDRIVERSTATE,
-    DestroyDDLocal: ?LPDDHAL_DESTROYDDLOCAL,
-};
-
-pub const LPDDHALEXEBUFCB_CANCREATEEXEBUF = *const fn(
-    param0: ?*DDHAL_CANCREATESURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const LPDDHALEXEBUFCB_CREATEEXEBUF = *const fn(
-    param0: ?*DDHAL_CREATESURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const LPDDHALEXEBUFCB_DESTROYEXEBUF = *const fn(
-    param0: ?*DDHAL_DESTROYSURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const LPDDHALEXEBUFCB_LOCKEXEBUF = *const fn(
-    param0: ?*DDHAL_LOCKDATA,
-) callconv(.winapi) u32;
-
-pub const LPDDHALEXEBUFCB_UNLOCKEXEBUF = *const fn(
-    param0: ?*DDHAL_UNLOCKDATA,
-) callconv(.winapi) u32;
-
-pub const DDHAL_DDEXEBUFCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    CanCreateExecuteBuffer: ?LPDDHALEXEBUFCB_CANCREATEEXEBUF,
-    CreateExecuteBuffer: ?LPDDHALEXEBUFCB_CREATEEXEBUF,
-    DestroyExecuteBuffer: ?LPDDHALEXEBUFCB_DESTROYEXEBUF,
-    LockExecuteBuffer: ?LPDDHALEXEBUFCB_LOCKEXEBUF,
-    UnlockExecuteBuffer: ?LPDDHALEXEBUFCB_UNLOCKEXEBUF,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_CREATEVIDEOPORT = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_FLIP = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETBANDWIDTH = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETINPUTFORMATS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETFIELD = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETLINE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETVPORTCONNECT = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_DESTROYVPORT = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETFLIPSTATUS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_UPDATE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_WAITFORSYNC = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETSIGNALSTATUS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_COLORCONTROL = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    CanCreateVideoPort: ?LPDDHALVPORTCB_CANCREATEVIDEOPORT,
-    CreateVideoPort: ?LPDDHALVPORTCB_CREATEVIDEOPORT,
-    FlipVideoPort: ?LPDDHALVPORTCB_FLIP,
-    GetVideoPortBandwidth: ?LPDDHALVPORTCB_GETBANDWIDTH,
-    GetVideoPortInputFormats: ?LPDDHALVPORTCB_GETINPUTFORMATS,
-    GetVideoPortOutputFormats: ?LPDDHALVPORTCB_GETOUTPUTFORMATS,
-    lpReserved1: ?*anyopaque,
-    GetVideoPortField: ?LPDDHALVPORTCB_GETFIELD,
-    GetVideoPortLine: ?LPDDHALVPORTCB_GETLINE,
-    GetVideoPortConnectInfo: ?LPDDHALVPORTCB_GETVPORTCONNECT,
-    DestroyVideoPort: ?LPDDHALVPORTCB_DESTROYVPORT,
-    GetVideoPortFlipStatus: ?LPDDHALVPORTCB_GETFLIPSTATUS,
-    UpdateVideoPort: ?LPDDHALVPORTCB_UPDATE,
-    WaitForVideoPortSync: ?LPDDHALVPORTCB_WAITFORSYNC,
-    GetVideoSignalStatus: ?LPDDHALVPORTCB_GETSIGNALSTATUS,
-    ColorControl: ?LPDDHALVPORTCB_COLORCONTROL,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALCOLORCB_COLORCONTROL = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDCOLORCONTROLCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    ColorControl: ?LPDDHALCOLORCB_COLORCONTROL,
-};
-
-pub const LPDDHALKERNELCB_SYNCSURFACE = *const fn(
-    param0: ?*DDHAL_SYNCSURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const LPDDHALKERNELCB_SYNCVIDEOPORT = *const fn(
-    param0: ?*DDHAL_SYNCVIDEOPORTDATA,
-) callconv(.winapi) u32;
-
-pub const DDHAL_DDKERNELCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    SyncSurfaceData: ?LPDDHALKERNELCB_SYNCSURFACE,
-    SyncVideoPortData: ?LPDDHALKERNELCB_SYNCVIDEOPORT,
-};
-
-pub const LPDDGAMMACALIBRATORPROC = *const fn(
-    param0: ?*DDGAMMARAMP,
-    param1: ?*u8,
-) callconv(.winapi) HRESULT;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETGUIDS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETFORMATS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_CREATE = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETINTERNALINFO = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_BEGINFRAME = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_ENDFRAME = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_RENDER = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_QUERYSTATUS = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_DESTROY = *const fn() callconv(.winapi) void;
-
-pub const DDHAL_DDMOTIONCOMPCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    GetMoCompGuids: ?LPDDHALMOCOMPCB_GETGUIDS,
-    GetMoCompFormats: ?LPDDHALMOCOMPCB_GETFORMATS,
-    CreateMoComp: ?LPDDHALMOCOMPCB_CREATE,
-    GetMoCompBuffInfo: ?LPDDHALMOCOMPCB_GETCOMPBUFFINFO,
-    GetInternalMoCompInfo: ?LPDDHALMOCOMPCB_GETINTERNALINFO,
-    BeginMoCompFrame: ?LPDDHALMOCOMPCB_BEGINFRAME,
-    EndMoCompFrame: ?LPDDHALMOCOMPCB_ENDFRAME,
-    RenderMoComp: ?LPDDHALMOCOMPCB_RENDER,
-    QueryMoCompStatus: ?LPDDHALMOCOMPCB_QUERYSTATUS,
-    DestroyMoComp: ?LPDDHALMOCOMPCB_DESTROY,
-};
-
-pub const DDNONLOCALVIDMEMCAPS = extern struct {
-    dwSize: u32,
-    dwNLVBCaps: u32,
-    dwNLVBCaps2: u32,
-    dwNLVBCKeyCaps: u32,
-    dwNLVBFXCaps: u32,
-    dwNLVBRops: [8]u32,
-};
-
-pub const DDMORESURFACECAPS = extern struct {
-    pub const ExtendedHeapRestrictions = extern struct {
-        ddsCapsEx: DDSCAPSEX,
-        ddsCapsExAlt: DDSCAPSEX,
-    };
-    dwSize: u32,
-    ddsCapsMore: DDSCAPSEX,
-    ddsExtendedHeapRestrictions: [1]ExtendedHeapRestrictions,
-};
-
-pub const DDSTEREOMODE = extern struct {
-    dwSize: u32,
-    dwHeight: u32,
-    dwWidth: u32,
-    dwBpp: u32,
-    dwRefreshRate: u32,
-    bSupported: BOOL,
-};
-
-pub const DDRAWI_DDRAWPALETTE_INT = extern struct {
-    lpVtbl: ?*anyopaque,
-    lpLcl: ?*DDRAWI_DDRAWPALETTE_LCL,
-    lpLink: ?*DDRAWI_DDRAWPALETTE_INT,
-    dwIntRefCnt: u32,
-};
-
-pub const DDRAWI_DDRAWPALETTE_GBL = extern struct {
-    dwRefCnt: u32,
-    dwFlags: u32,
-    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
-    dwProcessId: u32,
-    lpColorTable: ?*PALETTEENTRY,
-    Anonymous: extern union {
-        dwReserved1: usize,
-        hHELGDIPalette: ?HPALETTE,
-    },
-    dwDriverReserved: u32,
-    dwContentsStamp: u32,
-    dwSaveStamp: u32,
-    dwHandle: u32,
-};
-
-pub const DDRAWI_DDRAWPALETTE_LCL = extern struct {
-    lpPalMore: u32,
-    lpGbl: ?*DDRAWI_DDRAWPALETTE_GBL,
-    dwUnused0: usize,
-    dwLocalRefCnt: u32,
-    pUnkOuter: ?*IUnknown,
-    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
-    dwReserved1: usize,
-    dwDDRAWReserved1: usize,
-    dwDDRAWReserved2: usize,
-    dwDDRAWReserved3: usize,
-};
-
-pub const DDRAWI_DDRAWCLIPPER_INT = extern struct {
-    lpVtbl: ?*anyopaque,
-    lpLcl: ?*DDRAWI_DDRAWCLIPPER_LCL,
-    lpLink: ?*DDRAWI_DDRAWCLIPPER_INT,
-    dwIntRefCnt: u32,
-};
-
-pub const DDRAWI_DDRAWCLIPPER_GBL = extern struct {
-    dwRefCnt: u32,
-    dwFlags: u32,
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwProcessId: u32,
-    dwReserved1: usize,
-    hWnd: usize,
-    lpStaticClipList: ?*RGNDATA,
-};
-
-pub const DDRAWI_DDRAWCLIPPER_LCL = extern struct {
-    lpClipMore: u32,
-    lpGbl: ?*DDRAWI_DDRAWCLIPPER_GBL,
-    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
-    dwLocalRefCnt: u32,
-    pUnkOuter: ?*IUnknown,
-    lpDD_int: ?*DDRAWI_DIRECTDRAW_INT,
-    dwReserved1: usize,
-    pAddrefedThisOwner: ?*IUnknown,
-};
-
-pub const ATTACHLIST = extern struct {
-    dwFlags: u32,
-    lpLink: ?*ATTACHLIST,
-    lpAttached: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpIAttached: ?*DDRAWI_DDRAWSURFACE_INT,
-};
-
-pub const DBLNODE = extern struct {
-    next: ?*DBLNODE,
-    prev: ?*DBLNODE,
-    object: ?*DDRAWI_DDRAWSURFACE_LCL,
-    object_int: ?*DDRAWI_DDRAWSURFACE_INT,
-};
-
-pub const ACCESSRECTLIST = extern struct {
-    lpLink: ?*ACCESSRECTLIST,
-    rDest: RECT,
-    lpOwner: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpSurfaceData: ?*anyopaque,
-    dwFlags: u32,
-    lpHeapAliasInfo: ?*HEAPALIASINFO,
-};
-
-pub const DDRAWI_DDRAWSURFACE_INT = extern struct {
-    lpVtbl: ?*anyopaque,
-    lpLcl: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpLink: ?*DDRAWI_DDRAWSURFACE_INT,
-    dwIntRefCnt: u32,
-};
-
-pub const DDRAWI_DDRAWSURFACE_GBL = extern struct {
-    dwRefCnt: u32,
-    dwGlobalFlags: u32,
-    Anonymous1: extern union {
-        lpRectList: ?*ACCESSRECTLIST,
-        dwBlockSizeY: u32,
-        lSlicePitch: i32,
-    },
-    Anonymous2: extern union {
-        lpVidMemHeap: ?*VMEMHEAP,
-        dwBlockSizeX: u32,
-    },
-    Anonymous3: extern union {
-        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-        lpDDHandle: ?*anyopaque,
-    },
-    fpVidMem: usize,
-    Anonymous4: extern union {
-        lPitch: i32,
-        dwLinearSize: u32,
-    },
-    wHeight: u16,
-    wWidth: u16,
-    dwUsageCount: u32,
-    dwReserved1: usize,
-    ddpfSurface: DDPIXELFORMAT,
-};
-
-pub const DDRAWI_DDRAWSURFACE_GBL_MORE = extern struct {
-    dwSize: u32,
-    Anonymous: extern union {
-        dwPhysicalPageTable: u32,
-        fpPhysicalVidMem: usize,
-    },
-    pPageTable: ?*u32,
-    cPages: u32,
-    dwSavedDCContext: usize,
-    fpAliasedVidMem: usize,
-    dwDriverReserved: usize,
-    dwHELReserved: usize,
-    cPageUnlocks: u32,
-    hKernelSurface: usize,
-    dwKernelRefCnt: u32,
-    lpColorInfo: ?*DDCOLORCONTROL,
-    fpNTAlias: usize,
-    dwContentsStamp: u32,
-    lpvUnswappedDriverReserved: ?*anyopaque,
-    lpDDRAWReserved2: ?*anyopaque,
-    dwDDRAWReserved1: u32,
-    dwDDRAWReserved2: u32,
-    fpAliasOfVidMem: usize,
-};
-
-pub const DDRAWI_DDRAWSURFACE_MORE = extern struct {
-    dwSize: u32,
-    lpIUnknowns: ?*IUNKNOWN_LIST,
-    lpDD_lcl: ?*DDRAWI_DIRECTDRAW_LCL,
-    dwPageLockCount: u32,
-    dwBytesAllocated: u32,
-    lpDD_int: ?*DDRAWI_DIRECTDRAW_INT,
-    dwMipMapCount: u32,
-    lpDDIClipper: ?*DDRAWI_DDRAWCLIPPER_INT,
-    lpHeapAliasInfo: ?*HEAPALIASINFO,
-    dwOverlayFlags: u32,
-    rgjunc: ?*anyopaque,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    lpddOverlayFX: ?*DDOVERLAYFX,
-    ddsCapsEx: DDSCAPSEX,
-    dwTextureStage: u32,
-    lpDDRAWReserved: ?*anyopaque,
-    lpDDRAWReserved2: ?*anyopaque,
-    lpDDrawReserved3: ?*anyopaque,
-    dwDDrawReserved4: u32,
-    lpDDrawReserved5: ?*anyopaque,
-    lpGammaRamp: ?*u32,
-    lpOriginalGammaRamp: ?*u32,
-    lpDDrawReserved6: ?*anyopaque,
-    dwSurfaceHandle: u32,
-    qwDDrawReserved8: [2]u32,
-    lpDDrawReserved9: ?*anyopaque,
-    cSurfaces: u32,
-    pCreatedDDSurfaceDesc2: ?*DDSURFACEDESC2,
-    slist: ?*?*DDRAWI_DDRAWSURFACE_LCL,
-    dwFVF: u32,
-    lpVB: ?*anyopaque,
-};
-
-pub const DDRAWI_DDRAWSURFACE_LCL = extern struct {
-    lpSurfMore: ?*DDRAWI_DDRAWSURFACE_MORE,
-    lpGbl: ?*DDRAWI_DDRAWSURFACE_GBL,
-    hDDSurface: usize,
-    lpAttachList: ?*ATTACHLIST,
-    lpAttachListFrom: ?*ATTACHLIST,
-    dwLocalRefCnt: u32,
-    dwProcessId: u32,
-    dwFlags: u32,
-    ddsCaps: DDSCAPS,
-    Anonymous1: extern union {
-        lpDDPalette: ?*DDRAWI_DDRAWPALETTE_INT,
-        lp16DDPalette: ?*DDRAWI_DDRAWPALETTE_INT,
-    },
-    Anonymous2: extern union {
-        lpDDClipper: ?*DDRAWI_DDRAWCLIPPER_LCL,
-        lp16DDClipper: ?*DDRAWI_DDRAWCLIPPER_INT,
-    },
-    dwModeCreatedIn: u32,
-    dwBackBufferCount: u32,
-    ddckCKDestBlt: DDCOLORKEY,
-    ddckCKSrcBlt: DDCOLORKEY,
-    hDC: usize,
-    dwReserved1: usize,
-    ddckCKSrcOverlay: DDCOLORKEY,
-    ddckCKDestOverlay: DDCOLORKEY,
-    lpSurfaceOverlaying: ?*DDRAWI_DDRAWSURFACE_INT,
-    dbnOverlayNode: DBLNODE,
-    rcOverlaySrc: RECT,
-    rcOverlayDest: RECT,
-    dwClrXparent: u32,
-    dwAlpha: u32,
-    lOverlayX: i32,
-    lOverlayY: i32,
-};
-
-pub const DDHALMODEINFO = extern struct {
-    dwWidth: u32,
-    dwHeight: u32,
-    lPitch: i32,
-    dwBPP: u32,
-    wFlags: u16,
-    wRefreshRate: u16,
-    dwRBitMask: u32,
-    dwGBitMask: u32,
-    dwBBitMask: u32,
-    dwAlphaBitMask: u32,
-};
-
-pub const DDRAWI_DIRECTDRAW_INT = extern struct {
-    lpVtbl: ?*anyopaque,
-    lpLcl: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpLink: ?*DDRAWI_DIRECTDRAW_INT,
-    dwIntRefCnt: u32,
-};
-
-pub const DDHAL_CALLBACKS = extern struct {
-    cbDDCallbacks: DDHAL_DDCALLBACKS,
-    cbDDSurfaceCallbacks: DDHAL_DDSURFACECALLBACKS,
-    cbDDPaletteCallbacks: DDHAL_DDPALETTECALLBACKS,
-    HALDD: DDHAL_DDCALLBACKS,
-    HALDDSurface: DDHAL_DDSURFACECALLBACKS,
-    HALDDPalette: DDHAL_DDPALETTECALLBACKS,
-    HELDD: DDHAL_DDCALLBACKS,
-    HELDDSurface: DDHAL_DDSURFACECALLBACKS,
-    HELDDPalette: DDHAL_DDPALETTECALLBACKS,
-    cbDDExeBufCallbacks: DDHAL_DDEXEBUFCALLBACKS,
-    HALDDExeBuf: DDHAL_DDEXEBUFCALLBACKS,
-    HELDDExeBuf: DDHAL_DDEXEBUFCALLBACKS,
-    cbDDVideoPortCallbacks: DDHAL_DDVIDEOPORTCALLBACKS,
-    HALDDVideoPort: DDHAL_DDVIDEOPORTCALLBACKS,
-    cbDDColorControlCallbacks: DDHAL_DDCOLORCONTROLCALLBACKS,
-    HALDDColorControl: DDHAL_DDCOLORCONTROLCALLBACKS,
-    cbDDMiscellaneousCallbacks: DDHAL_DDMISCELLANEOUSCALLBACKS,
-    HALDDMiscellaneous: DDHAL_DDMISCELLANEOUSCALLBACKS,
-    cbDDKernelCallbacks: DDHAL_DDKERNELCALLBACKS,
-    HALDDKernel: DDHAL_DDKERNELCALLBACKS,
-    cbDDMotionCompCallbacks: DDHAL_DDMOTIONCOMPCALLBACKS,
-    HALDDMotionComp: DDHAL_DDMOTIONCOMPCALLBACKS,
-};
-
-pub const DDCORECAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwCaps2: u32,
-    dwCKeyCaps: u32,
-    dwFXCaps: u32,
-    dwFXAlphaCaps: u32,
-    dwPalCaps: u32,
-    dwSVCaps: u32,
-    dwAlphaBltConstBitDepths: u32,
-    dwAlphaBltPixelBitDepths: u32,
-    dwAlphaBltSurfaceBitDepths: u32,
-    dwAlphaOverlayConstBitDepths: u32,
-    dwAlphaOverlayPixelBitDepths: u32,
-    dwAlphaOverlaySurfaceBitDepths: u32,
-    dwZBufferBitDepths: u32,
-    dwVidMemTotal: u32,
-    dwVidMemFree: u32,
-    dwMaxVisibleOverlays: u32,
-    dwCurrVisibleOverlays: u32,
-    dwNumFourCCCodes: u32,
-    dwAlignBoundarySrc: u32,
-    dwAlignSizeSrc: u32,
-    dwAlignBoundaryDest: u32,
-    dwAlignSizeDest: u32,
-    dwAlignStrideAlign: u32,
-    dwRops: [8]u32,
-    ddsCaps: DDSCAPS,
-    dwMinOverlayStretch: u32,
-    dwMaxOverlayStretch: u32,
-    dwMinLiveVideoStretch: u32,
-    dwMaxLiveVideoStretch: u32,
-    dwMinHwCodecStretch: u32,
-    dwMaxHwCodecStretch: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwReserved3: u32,
-    dwSVBCaps: u32,
-    dwSVBCKeyCaps: u32,
-    dwSVBFXCaps: u32,
-    dwSVBRops: [8]u32,
-    dwVSBCaps: u32,
-    dwVSBCKeyCaps: u32,
-    dwVSBFXCaps: u32,
-    dwVSBRops: [8]u32,
-    dwSSBCaps: u32,
-    dwSSBCKeyCaps: u32,
-    dwSSBFXCaps: u32,
-    dwSSBRops: [8]u32,
-    dwMaxVideoPorts: u32,
-    dwCurrVideoPorts: u32,
-    dwSVBCaps2: u32,
-};
-
-pub const DDRAWI_DIRECTDRAW_GBL = extern struct {
-    dwRefCnt: u32,
-    dwFlags: u32,
-    fpPrimaryOrig: usize,
-    ddCaps: DDCORECAPS,
-    dwInternal1: u32,
-    dwUnused1: [9]u32,
-    lpDDCBtmp: ?*DDHAL_CALLBACKS,
-    dsList: ?*DDRAWI_DDRAWSURFACE_INT,
-    palList: ?*DDRAWI_DDRAWPALETTE_INT,
-    clipperList: ?*DDRAWI_DDRAWCLIPPER_INT,
-    lp16DD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwMaxOverlays: u32,
-    dwCurrOverlays: u32,
-    dwMonitorFrequency: u32,
-    ddHELCaps: DDCORECAPS,
-    dwUnused2: [50]u32,
-    ddckCKDestOverlay: DDCOLORKEY,
-    ddckCKSrcOverlay: DDCOLORKEY,
-    vmiData: VIDMEMINFO,
-    lpDriverHandle: ?*anyopaque,
-    lpExclusiveOwner: ?*DDRAWI_DIRECTDRAW_LCL,
-    dwModeIndex: u32,
-    dwModeIndexOrig: u32,
-    dwNumFourCC: u32,
-    lpdwFourCC: ?*u32,
-    dwNumModes: u32,
-    lpModeInfo: ?*DDHALMODEINFO,
-    plProcessList: PROCESS_LIST,
-    dwSurfaceLockCount: u32,
-    dwAliasedLockCnt: u32,
-    dwReserved3: usize,
-    hDD: usize,
-    cObsolete: [12]CHAR,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dbnOverlayRoot: DBLNODE,
-    lpwPDeviceFlags: ?*u16,
-    dwPDevice: u32,
-    dwWin16LockCnt: u32,
-    dwUnused3: u32,
-    hInstance: u32,
-    dwEvent16: u32,
-    dwSaveNumModes: u32,
-    lpD3DGlobalDriverData: usize,
-    lpD3DHALCallbacks: usize,
-    ddBothCaps: DDCORECAPS,
-    lpDDVideoPortCaps: ?*DDVIDEOPORTCAPS,
-    dvpList: ?*DDRAWI_DDVIDEOPORT_INT,
-    lpD3DHALCallbacks2: usize,
-    rectDevice: RECT,
-    cMonitors: u32,
-    gpbmiSrc: ?*anyopaque,
-    gpbmiDest: ?*anyopaque,
-    phaiHeapAliases: ?*HEAPALIASINFO,
-    hKernelHandle: usize,
-    pfnNotifyProc: usize,
-    lpDDKernelCaps: ?*DDKERNELCAPS,
-    lpddNLVCaps: ?*DDNONLOCALVIDMEMCAPS,
-    lpddNLVHELCaps: ?*DDNONLOCALVIDMEMCAPS,
-    lpddNLVBothCaps: ?*DDNONLOCALVIDMEMCAPS,
-    lpD3DExtendedCaps: usize,
-    dwDOSBoxEvent: u32,
-    rectDesktop: RECT,
-    cDriverName: [32]CHAR,
-    lpD3DHALCallbacks3: usize,
-    dwNumZPixelFormats: u32,
-    lpZPixelFormats: ?*DDPIXELFORMAT,
-    mcList: ?*DDRAWI_DDMOTIONCOMP_INT,
-    hDDVxd: u32,
-    ddsCapsMore: DDSCAPSEX,
-};
-
-pub const DDRAWI_DIRECTDRAW_LCL = extern struct {
-    lpDDMore: u32,
-    lpGbl: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwUnused0: u32,
-    dwLocalFlags: u32,
-    dwLocalRefCnt: u32,
-    dwProcessId: u32,
-    pUnkOuter: ?*IUnknown,
-    dwObsolete1: u32,
-    hWnd: usize,
-    hDC: usize,
-    dwErrorMode: u32,
-    lpPrimary: ?*DDRAWI_DDRAWSURFACE_INT,
-    lpCB: ?*DDRAWI_DDRAWSURFACE_INT,
-    dwPreferredMode: u32,
-    hD3DInstance: ?HINSTANCE,
-    pD3DIUnknown: ?*IUnknown,
-    lpDDCB: ?*DDHAL_CALLBACKS,
-    hDDVxd: usize,
-    dwAppHackFlags: u32,
-    hFocusWnd: usize,
-    dwHotTracking: u32,
-    dwIMEState: u32,
-    hWndPopup: usize,
-    hDD: usize,
-    hGammaCalibrator: usize,
-    lpGammaCalibrator: ?LPDDGAMMACALIBRATORPROC,
-};
-
-pub const DDRAWI_DDVIDEOPORT_INT = extern struct {
-    lpVtbl: ?*anyopaque,
-    lpLcl: ?*DDRAWI_DDVIDEOPORT_LCL,
-    lpLink: ?*DDRAWI_DDVIDEOPORT_INT,
-    dwIntRefCnt: u32,
-    dwFlags: u32,
-};
-
-pub const DDRAWI_DDVIDEOPORT_LCL = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    ddvpDesc: DDVIDEOPORTDESC,
-    ddvpInfo: DDVIDEOPORTINFO,
-    lpSurface: ?*DDRAWI_DDRAWSURFACE_INT,
-    lpVBISurface: ?*DDRAWI_DDRAWSURFACE_INT,
-    lpFlipInts: ?*?*DDRAWI_DDRAWSURFACE_INT,
-    dwNumAutoflip: u32,
-    dwProcessID: u32,
-    dwStateFlags: u32,
-    dwFlags: u32,
-    dwRefCnt: u32,
-    fpLastFlip: usize,
-    dwReserved1: usize,
-    dwReserved2: usize,
-    hDDVideoPort: ?HANDLE,
-    dwNumVBIAutoflip: u32,
-    lpVBIDesc: ?*DDVIDEOPORTDESC,
-    lpVideoDesc: ?*DDVIDEOPORTDESC,
-    lpVBIInfo: ?*DDVIDEOPORTINFO,
-    lpVideoInfo: ?*DDVIDEOPORTINFO,
-    dwVBIProcessID: u32,
-    lpVPNotify: ?*DDRAWI_DDVIDEOPORT_INT,
-};
-
-pub const DDRAWI_DDMOTIONCOMP_INT = extern struct {
-    lpVtbl: ?*anyopaque,
-    lpLcl: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    lpLink: ?*DDRAWI_DDMOTIONCOMP_INT,
-    dwIntRefCnt: u32,
-};
-
-pub const DDRAWI_DDMOTIONCOMP_LCL = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    guid: Guid,
-    dwUncompWidth: u32,
-    dwUncompHeight: u32,
-    ddUncompPixelFormat: DDPIXELFORMAT,
-    dwInternalFlags: u32,
-    dwRefCnt: u32,
-    dwProcessId: u32,
-    hMoComp: ?HANDLE,
-    dwDriverReserved1: u32,
-    dwDriverReserved2: u32,
-    dwDriverReserved3: u32,
-    lpDriverReserved1: ?*anyopaque,
-    lpDriverReserved2: ?*anyopaque,
-    lpDriverReserved3: ?*anyopaque,
-};
-
-pub const DDHALINFO = extern struct {
-    dwSize: u32,
-    lpDDCallbacks: ?*DDHAL_DDCALLBACKS,
-    lpDDSurfaceCallbacks: ?*DDHAL_DDSURFACECALLBACKS,
-    lpDDPaletteCallbacks: ?*DDHAL_DDPALETTECALLBACKS,
-    vmiData: VIDMEMINFO,
-    ddCaps: DDCORECAPS,
-    dwMonitorFrequency: u32,
-    GetDriverInfo: ?LPDDHAL_GETDRIVERINFO,
-    dwModeIndex: u32,
-    lpdwFourCC: ?*u32,
-    dwNumModes: u32,
-    lpModeInfo: ?*DDHALMODEINFO,
-    dwFlags: u32,
-    lpPDevice: ?*anyopaque,
-    hInstance: u32,
-    lpD3DGlobalDriverData: usize,
-    lpD3DHALCallbacks: usize,
-    lpDDExeBufCallbacks: ?*DDHAL_DDEXEBUFCALLBACKS,
-};
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETINFO = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_VIDMEMALLOC = *const fn() callconv(.winapi) void;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_VIDMEMFREE = *const fn() callconv(.winapi) void;
-
-pub const DDHALDDRAWFNS = extern struct {
-    dwSize: u32,
-    lpSetInfo: ?LPDDHAL_SETINFO,
-    lpVidMemAlloc: ?LPDDHAL_VIDMEMALLOC,
-    lpVidMemFree: ?LPDDHAL_VIDMEMFREE,
-};
-
-pub const DDHAL_BLTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    rDest: RECTL,
-    lpDDSrcSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    rSrc: RECTL,
-    dwFlags: u32,
-    dwROPFlags: u32,
-    bltFX: DDBLTFX,
-    ddRVal: HRESULT,
-    Blt: ?LPDDHALSURFCB_BLT,
-    IsClipped: BOOL,
-    rOrigDest: RECTL,
-    rOrigSrc: RECTL,
-    dwRectCnt: u32,
-    prDestRects: ?*RECT,
-};
-
-pub const DDHAL_LOCKDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    bHasRect: u32,
-    rArea: RECTL,
-    lpSurfData: ?*anyopaque,
-    ddRVal: HRESULT,
-    Lock: ?LPDDHALSURFCB_LOCK,
-    dwFlags: u32,
-};
-
-pub const DDHAL_UNLOCKDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    ddRVal: HRESULT,
-    Unlock: ?LPDDHALSURFCB_UNLOCK,
-};
-
-pub const DDHAL_UPDATEOVERLAYDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    rDest: RECTL,
-    lpDDSrcSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    rSrc: RECTL,
-    dwFlags: u32,
-    overlayFX: DDOVERLAYFX,
-    ddRVal: HRESULT,
-    UpdateOverlay: ?LPDDHALSURFCB_UPDATEOVERLAY,
-};
-
-pub const DDHAL_SETOVERLAYPOSITIONDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSrcSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpDDDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lXPos: i32,
-    lYPos: i32,
-    ddRVal: HRESULT,
-    SetOverlayPosition: ?LPDDHALSURFCB_SETOVERLAYPOSITION,
-};
-
-pub const DDHAL_SETPALETTEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
-    ddRVal: HRESULT,
-    SetPalette: ?LPDDHALSURFCB_SETPALETTE,
-    Attach: BOOL,
-};
-
-pub const DDHAL_FLIPDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpSurfCurr: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpSurfTarg: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    Flip: ?LPDDHALSURFCB_FLIP,
-    lpSurfCurrLeft: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpSurfTargLeft: ?*DDRAWI_DDRAWSURFACE_LCL,
-};
-
-pub const DDHAL_DESTROYSURFACEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    ddRVal: HRESULT,
-    DestroySurface: ?LPDDHALSURFCB_DESTROYSURFACE,
-};
-
-pub const DDHAL_SETCLIPLISTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    ddRVal: HRESULT,
-    SetClipList: ?LPDDHALSURFCB_SETCLIPLIST,
-};
-
-pub const DDHAL_ADDATTACHEDSURFACEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpSurfAttached: ?*DDRAWI_DDRAWSURFACE_LCL,
-    ddRVal: HRESULT,
-    AddAttachedSurface: ?LPDDHALSURFCB_ADDATTACHEDSURFACE,
-};
-
-pub const DDHAL_SETCOLORKEYDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwFlags: u32,
-    ckNew: DDCOLORKEY,
-    ddRVal: HRESULT,
-    SetColorKey: ?LPDDHALSURFCB_SETCOLORKEY,
-};
-
-pub const DDHAL_GETBLTSTATUSDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    GetBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
-};
-
-pub const DDHAL_GETFLIPSTATUSDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    GetFlipStatus: ?LPDDHALSURFCB_GETFLIPSTATUS,
-};
-
-pub const DDHAL_DESTROYPALETTEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
-    ddRVal: HRESULT,
-    DestroyPalette: ?LPDDHALPALCB_DESTROYPALETTE,
-};
-
-pub const DDHAL_SETENTRIESDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
-    dwBase: u32,
-    dwNumEntries: u32,
-    lpEntries: ?*PALETTEENTRY,
-    ddRVal: HRESULT,
-    SetEntries: ?LPDDHALPALCB_SETENTRIES,
-};
-
-pub const DDHAL_CREATESURFACEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurfaceDesc: ?*DDSURFACEDESC,
-    lplpSList: ?*?*DDRAWI_DDRAWSURFACE_LCL,
-    dwSCnt: u32,
-    ddRVal: HRESULT,
-    CreateSurface: ?LPDDHAL_CREATESURFACE,
-};
-
-pub const DDHAL_CANCREATESURFACEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurfaceDesc: ?*DDSURFACEDESC,
-    bIsDifferentPixelFormat: u32,
-    ddRVal: HRESULT,
-    CanCreateSurface: ?LPDDHAL_CANCREATESURFACE,
-};
-
-pub const DDHAL_CREATEPALETTEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDPalette: ?*DDRAWI_DDRAWPALETTE_GBL,
-    lpColorTable: ?*PALETTEENTRY,
-    ddRVal: HRESULT,
-    CreatePalette: ?LPDDHAL_CREATEPALETTE,
-    is_excl: BOOL,
-};
-
-pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwFlags: u32,
-    bIsInVB: u32,
-    hEvent: usize,
-    ddRVal: HRESULT,
-    WaitForVerticalBlank: ?LPDDHAL_WAITFORVERTICALBLANK,
-};
-
-pub const DDHAL_DESTROYDRIVERDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    ddRVal: HRESULT,
-    DestroyDriver: ?LPDDHAL_DESTROYDRIVER,
-};
-
-pub const DDHAL_SETMODEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwModeIndex: u32,
-    ddRVal: HRESULT,
-    SetMode: ?LPDDHAL_SETMODE,
-    inexcl: BOOL,
-    useRefreshRate: BOOL,
-};
-
-pub const DDHAL_DRVSETCOLORKEYDATA = extern struct {
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwFlags: u32,
-    ckNew: DDCOLORKEY,
-    ddRVal: HRESULT,
-    SetColorKey: ?LPDDHAL_SETCOLORKEY,
-};
-
-pub const DDHAL_GETSCANLINEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwScanLine: u32,
-    ddRVal: HRESULT,
-    GetScanLine: ?LPDDHAL_GETSCANLINE,
-};
-
-pub const DDHAL_SETEXCLUSIVEMODEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwEnterExcl: u32,
-    dwReserved: u32,
-    ddRVal: HRESULT,
-    SetExclusiveMode: ?LPDDHAL_SETEXCLUSIVEMODE,
-};
-
-pub const DDHAL_FLIPTOGDISURFACEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwToGDI: u32,
-    dwReserved: u32,
-    ddRVal: HRESULT,
-    FlipToGDISurface: ?LPDDHAL_FLIPTOGDISURFACE,
-};
-
-pub const DDHAL_CANCREATEVPORTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
-    ddRVal: HRESULT,
-    CanCreateVideoPort: ?LPDDHALVPORTCB_CANCREATEVIDEOPORT,
-};
-
-pub const DDHAL_CREATEVPORTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    ddRVal: HRESULT,
-    CreateVideoPort: ?LPDDHALVPORTCB_CREATEVIDEOPORT,
-};
-
-pub const DDHAL_FLIPVPORTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    lpSurfCurr: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpSurfTarg: ?*DDRAWI_DDRAWSURFACE_LCL,
-    ddRVal: HRESULT,
-    FlipVideoPort: ?LPDDHALVPORTCB_FLIP,
-};
-
-pub const DDHAL_GETVPORTBANDWIDTHDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    lpddpfFormat: ?*DDPIXELFORMAT,
-    dwWidth: u32,
-    dwHeight: u32,
-    dwFlags: u32,
-    lpBandwidth: ?*DDVIDEOPORTBANDWIDTH,
-    ddRVal: HRESULT,
-    GetVideoPortBandwidth: ?LPDDHALVPORTCB_GETBANDWIDTH,
-};
-
-pub const DDHAL_GETVPORTINPUTFORMATDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    dwFlags: u32,
-    lpddpfFormat: ?*DDPIXELFORMAT,
-    dwNumFormats: u32,
-    ddRVal: HRESULT,
-    GetVideoPortInputFormats: ?LPDDHALVPORTCB_GETINPUTFORMATS,
-};
-
-pub const DDHAL_GETVPORTOUTPUTFORMATDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    dwFlags: u32,
-    lpddpfInputFormat: ?*DDPIXELFORMAT,
-    lpddpfOutputFormats: ?*DDPIXELFORMAT,
-    dwNumFormats: u32,
-    ddRVal: HRESULT,
-    GetVideoPortOutputFormats: ?LPDDHALVPORTCB_GETOUTPUTFORMATS,
-};
-
-pub const DDHAL_GETVPORTFIELDDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    bField: BOOL,
-    ddRVal: HRESULT,
-    GetVideoPortField: ?LPDDHALVPORTCB_GETFIELD,
-};
-
-pub const DDHAL_GETVPORTLINEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    dwLine: u32,
-    ddRVal: HRESULT,
-    GetVideoPortLine: ?LPDDHALVPORTCB_GETLINE,
-};
-
-pub const DDHAL_GETVPORTCONNECTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    dwPortId: u32,
-    lpConnect: ?*DDVIDEOPORTCONNECT,
-    dwNumEntries: u32,
-    ddRVal: HRESULT,
-    GetVideoPortConnectInfo: ?LPDDHALVPORTCB_GETVPORTCONNECT,
-};
-
-pub const DDHAL_DESTROYVPORTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    ddRVal: HRESULT,
-    DestroyVideoPort: ?LPDDHALVPORTCB_DESTROYVPORT,
-};
-
-pub const DDHAL_GETVPORTFLIPSTATUSDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    fpSurface: usize,
-    ddRVal: HRESULT,
-    GetVideoPortFlipStatus: ?LPDDHALVPORTCB_GETFLIPSTATUS,
-};
-
-pub const DDHAL_UPDATEVPORTDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    lplpDDSurface: ?*?*DDRAWI_DDRAWSURFACE_INT,
-    lplpDDVBISurface: ?*?*DDRAWI_DDRAWSURFACE_INT,
-    lpVideoInfo: ?*DDVIDEOPORTINFO,
-    dwFlags: u32,
-    dwNumAutoflip: u32,
-    dwNumVBIAutoflip: u32,
-    ddRVal: HRESULT,
-    UpdateVideoPort: ?LPDDHALVPORTCB_UPDATE,
-};
-
-pub const DDHAL_WAITFORVPORTSYNCDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    dwFlags: u32,
-    dwLine: u32,
-    dwTimeOut: u32,
-    ddRVal: HRESULT,
-    WaitForVideoPortSync: ?LPDDHALVPORTCB_WAITFORSYNC,
-};
-
-pub const DDHAL_GETVPORTSIGNALDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    dwStatus: u32,
-    ddRVal: HRESULT,
-    GetVideoSignalStatus: ?LPDDHALVPORTCB_GETSIGNALSTATUS,
-};
-
-pub const DDHAL_VPORTCOLORDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    dwFlags: u32,
-    lpColorData: ?*DDCOLORCONTROL,
-    ddRVal: HRESULT,
-    ColorControl: ?LPDDHALVPORTCB_COLORCONTROL,
-};
-
-pub const DDHAL_COLORCONTROLDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    lpColorData: ?*DDCOLORCONTROL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    ColorControl: ?LPDDHALCOLORCB_COLORCONTROL,
-};
-
-pub const DDHAL_GETDRIVERINFODATA = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    guidInfo: Guid,
-    dwExpectedSize: u32,
-    lpvData: ?*anyopaque,
-    dwActualSize: u32,
-    ddRVal: HRESULT,
-    dwContext: usize,
-};
-
-pub const DDHAL_GETAVAILDRIVERMEMORYDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    DDSCaps: DDSCAPS,
-    dwTotal: u32,
-    dwFree: u32,
-    ddRVal: HRESULT,
-    GetAvailDriverMemory: ?LPDDHAL_GETAVAILDRIVERMEMORY,
-    ddsCapsEx: DDSCAPSEX,
-};
-
-pub const DDHAL_UPDATENONLOCALHEAPDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    dwHeap: u32,
-    fpGARTLin: usize,
-    fpGARTDev: usize,
-    ulPolicyMaxBytes: usize,
-    ddRVal: HRESULT,
-    UpdateNonLocalHeap: ?LPDDHAL_UPDATENONLOCALHEAP,
-};
-
-pub const DDHAL_GETHEAPALIGNMENTDATA = extern struct {
-    dwInstance: usize,
-    dwHeap: u32,
-    ddRVal: HRESULT,
-    GetHeapAlignment: ?LPDDHAL_GETHEAPALIGNMENT,
-    Alignment: HEAPALIGNMENT,
-};
-
-pub const DDHAL_CREATESURFACEEXDATA = extern struct {
-    dwFlags: u32,
-    lpDDLcl: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpDDSLcl: ?*DDRAWI_DDRAWSURFACE_LCL,
-    ddRVal: HRESULT,
-};
-
-pub const DDHAL_GETDRIVERSTATEDATA = extern struct {
-    dwFlags: u32,
-    Anonymous: extern union {
-        dwhContext: usize,
-    },
-    lpdwStates: ?*u32,
-    dwLength: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
-    dwFlags: u32,
-    pDDLcl: ?*DDRAWI_DIRECTDRAW_LCL,
-    ddRVal: HRESULT,
-};
-
-pub const DDHAL_SYNCSURFACEDATA = extern struct {
-    dwSize: u32,
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwSurfaceOffset: u32,
-    fpLockPtr: usize,
-    lPitch: i32,
-    dwOverlayOffset: u32,
-    dwOverlaySrcWidth: u32,
-    dwOverlaySrcHeight: u32,
-    dwOverlayDestWidth: u32,
-    dwOverlayDestHeight: u32,
-    dwDriverReserved1: usize,
-    dwDriverReserved2: usize,
-    dwDriverReserved3: usize,
-    ddRVal: HRESULT,
-};
-
-pub const DDHAL_SYNCVIDEOPORTDATA = extern struct {
-    dwSize: u32,
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
-    dwOriginOffset: u32,
-    dwHeight: u32,
-    dwVBIHeight: u32,
-    dwDriverReserved1: usize,
-    dwDriverReserved2: usize,
-    dwDriverReserved3: usize,
-    ddRVal: HRESULT,
-};
-
-pub const DDHAL_GETMOCOMPGUIDSDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    dwNumGuids: u32,
-    lpGuids: ?*Guid,
-    ddRVal: HRESULT,
-    GetMoCompGuids: ?LPDDHALMOCOMPCB_GETGUIDS,
-};
-
-pub const DDHAL_GETMOCOMPFORMATSDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpGuid: ?*Guid,
-    dwNumFormats: u32,
-    lpFormats: ?*DDPIXELFORMAT,
-    ddRVal: HRESULT,
-    GetMoCompFormats: ?LPDDHALMOCOMPCB_GETFORMATS,
-};
-
-pub const DDHAL_CREATEMOCOMPDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    lpGuid: ?*Guid,
-    dwUncompWidth: u32,
-    dwUncompHeight: u32,
-    ddUncompPixelFormat: DDPIXELFORMAT,
-    lpData: ?*anyopaque,
-    dwDataSize: u32,
-    ddRVal: HRESULT,
-    CreateMoComp: ?LPDDHALMOCOMPCB_CREATE,
-};
-
-pub const DDMCCOMPBUFFERINFO = extern struct {
-    dwSize: u32,
-    dwNumCompBuffers: u32,
-    dwWidthToCreate: u32,
-    dwHeightToCreate: u32,
-    dwBytesToAllocate: u32,
-    ddCompCaps: DDSCAPS2,
-    ddPixelFormat: DDPIXELFORMAT,
-};
-
-pub const DDHAL_GETMOCOMPCOMPBUFFDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpGuid: ?*Guid,
-    dwWidth: u32,
-    dwHeight: u32,
-    ddPixelFormat: DDPIXELFORMAT,
-    dwNumTypesCompBuffs: u32,
-    lpCompBuffInfo: ?*DDMCCOMPBUFFERINFO,
-    ddRVal: HRESULT,
-    GetMoCompBuffInfo: ?LPDDHALMOCOMPCB_GETCOMPBUFFINFO,
-};
-
-pub const DDHAL_GETINTERNALMOCOMPDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpGuid: ?*Guid,
-    dwWidth: u32,
-    dwHeight: u32,
-    ddPixelFormat: DDPIXELFORMAT,
-    dwScratchMemAlloc: u32,
-    ddRVal: HRESULT,
-    GetInternalMoCompInfo: ?LPDDHALMOCOMPCB_GETINTERNALINFO,
-};
-
-pub const DDHAL_BEGINMOCOMPFRAMEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    lpDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwInputDataSize: u32,
-    lpInputData: ?*anyopaque,
-    dwOutputDataSize: u32,
-    lpOutputData: ?*anyopaque,
-    ddRVal: HRESULT,
-    BeginMoCompFrame: ?LPDDHALMOCOMPCB_BEGINFRAME,
-};
-
-pub const DDHAL_ENDMOCOMPFRAMEDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    lpInputData: ?*anyopaque,
-    dwInputDataSize: u32,
-    ddRVal: HRESULT,
-    EndMoCompFrame: ?LPDDHALMOCOMPCB_ENDFRAME,
-};
-
-pub const DDMCBUFFERINFO = extern struct {
-    dwSize: u32,
-    lpCompSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwDataOffset: u32,
-    dwDataSize: u32,
-    lpPrivate: ?*anyopaque,
-};
-
-pub const DDHAL_RENDERMOCOMPDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    dwNumBuffers: u32,
-    lpBufferInfo: ?*DDMCBUFFERINFO,
-    dwFunction: u32,
-    lpInputData: ?*anyopaque,
-    dwInputDataSize: u32,
-    lpOutputData: ?*anyopaque,
-    dwOutputDataSize: u32,
-    ddRVal: HRESULT,
-    RenderMoComp: ?LPDDHALMOCOMPCB_RENDER,
-};
-
-pub const DDHAL_QUERYMOCOMPSTATUSDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    lpSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    QueryMoCompStatus: ?LPDDHALMOCOMPCB_QUERYSTATUS,
-};
-
-pub const DDHAL_DESTROYMOCOMPDATA = extern struct {
-    lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    ddRVal: HRESULT,
-    DestroyMoComp: ?LPDDHALMOCOMPCB_DESTROY,
-};
-
-pub const _DD_DESTROYDRIVERDATA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _DD_SETMODEDATA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _DD_GETVPORTAUTOFLIPSURFACEDATA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const VIDEOMEMORY = extern struct {
@@ -6130,1455 +7467,95 @@ pub const VIDEOMEMORYINFO = extern struct {
     pvPrimary: ?*anyopaque,
 };
 
-pub const PDD_SETCOLORKEY = *const fn(
-    param0: ?*DD_DRVSETCOLORKEYDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_CANCREATESURFACE = *const fn(
-    param0: ?*DD_CANCREATESURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_WAITFORVERTICALBLANK = *const fn(
-    param0: ?*DD_WAITFORVERTICALBLANKDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_CREATESURFACE = *const fn(
-    param0: ?*DD_CREATESURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_DESTROYDRIVER = *const fn(
-    param0: ?*_DD_DESTROYDRIVERDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SETMODE = *const fn(
-    param0: ?*_DD_SETMODEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_CREATEPALETTE = *const fn(
-    param0: ?*DD_CREATEPALETTEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_GETSCANLINE = *const fn(
-    param0: ?*DD_GETSCANLINEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MAPMEMORY = *const fn(
-    param0: ?*DD_MAPMEMORYDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_GETDRIVERINFO = *const fn(
-    param0: ?*DD_GETDRIVERINFODATA,
-) callconv(.winapi) u32;
-
-pub const DD_CALLBACKS = extern struct {
-    dwSize: u32,
+pub const VIDMEM = extern struct {
     dwFlags: u32,
-    DestroyDriver: ?PDD_DESTROYDRIVER,
-    CreateSurface: ?PDD_CREATESURFACE,
-    SetColorKey: ?PDD_SETCOLORKEY,
-    SetMode: ?PDD_SETMODE,
-    WaitForVerticalBlank: ?PDD_WAITFORVERTICALBLANK,
-    CanCreateSurface: ?PDD_CANCREATESURFACE,
-    CreatePalette: ?PDD_CREATEPALETTE,
-    GetScanLine: ?PDD_GETSCANLINE,
-    MapMemory: ?PDD_MAPMEMORY,
-};
-
-pub const PDD_GETAVAILDRIVERMEMORY = *const fn(
-    param0: ?*DD_GETAVAILDRIVERMEMORYDATA,
-) callconv(.winapi) u32;
-
-pub const DD_MISCELLANEOUSCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    GetAvailDriverMemory: ?PDD_GETAVAILDRIVERMEMORY,
-};
-
-pub const PDD_ALPHABLT = *const fn(
-    param0: ?*DD_BLTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_CREATESURFACEEX = *const fn(
-    param0: ?*DD_CREATESURFACEEXDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_GETDRIVERSTATE = *const fn(
-    param0: ?*DD_GETDRIVERSTATEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_DESTROYDDLOCAL = *const fn(
-    param0: ?*DD_DESTROYDDLOCALDATA,
-) callconv(.winapi) u32;
-
-pub const DD_MISCELLANEOUS2CALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    AlphaBlt: ?PDD_ALPHABLT,
-    CreateSurfaceEx: ?PDD_CREATESURFACEEX,
-    GetDriverState: ?PDD_GETDRIVERSTATE,
-    DestroyDDLocal: ?PDD_DESTROYDDLOCAL,
-};
-
-pub const PDD_FREEDRIVERMEMORY = *const fn(
-    param0: ?*DD_FREEDRIVERMEMORYDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SETEXCLUSIVEMODE = *const fn(
-    param0: ?*DD_SETEXCLUSIVEMODEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_FLIPTOGDISURFACE = *const fn(
-    param0: ?*DD_FLIPTOGDISURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const DD_NTCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    FreeDriverMemory: ?PDD_FREEDRIVERMEMORY,
-    SetExclusiveMode: ?PDD_SETEXCLUSIVEMODE,
-    FlipToGDISurface: ?PDD_FLIPTOGDISURFACE,
-};
-
-pub const PDD_PALCB_DESTROYPALETTE = *const fn(
-    param0: ?*DD_DESTROYPALETTEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_PALCB_SETENTRIES = *const fn(
-    param0: ?*DD_SETENTRIESDATA,
-) callconv(.winapi) u32;
-
-pub const DD_PALETTECALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    DestroyPalette: ?PDD_PALCB_DESTROYPALETTE,
-    SetEntries: ?PDD_PALCB_SETENTRIES,
-};
-
-pub const PDD_SURFCB_LOCK = *const fn(
-    param0: ?*DD_LOCKDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_UNLOCK = *const fn(
-    param0: ?*DD_UNLOCKDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_BLT = *const fn(
-    param0: ?*DD_BLTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_UPDATEOVERLAY = *const fn(
-    param0: ?*DD_UPDATEOVERLAYDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_SETOVERLAYPOSITION = *const fn(
-    param0: ?*DD_SETOVERLAYPOSITIONDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_SETPALETTE = *const fn(
-    param0: ?*DD_SETPALETTEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_FLIP = *const fn(
-    param0: ?*DD_FLIPDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_DESTROYSURFACE = *const fn(
-    param0: ?*DD_DESTROYSURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_SETCLIPLIST = *const fn(
-    param0: ?*DD_SETCLIPLISTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_ADDATTACHEDSURFACE = *const fn(
-    param0: ?*DD_ADDATTACHEDSURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_SETCOLORKEY = *const fn(
-    param0: ?*DD_SETCOLORKEYDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_GETBLTSTATUS = *const fn(
-    param0: ?*DD_GETBLTSTATUSDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_SURFCB_GETFLIPSTATUS = *const fn(
-    param0: ?*DD_GETFLIPSTATUSDATA,
-) callconv(.winapi) u32;
-
-pub const DD_SURFACECALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    DestroySurface: ?PDD_SURFCB_DESTROYSURFACE,
-    Flip: ?PDD_SURFCB_FLIP,
-    SetClipList: ?PDD_SURFCB_SETCLIPLIST,
-    Lock: ?PDD_SURFCB_LOCK,
-    Unlock: ?PDD_SURFCB_UNLOCK,
-    Blt: ?PDD_SURFCB_BLT,
-    SetColorKey: ?PDD_SURFCB_SETCOLORKEY,
-    AddAttachedSurface: ?PDD_SURFCB_ADDATTACHEDSURFACE,
-    GetBltStatus: ?PDD_SURFCB_GETBLTSTATUS,
-    GetFlipStatus: ?PDD_SURFCB_GETFLIPSTATUS,
-    UpdateOverlay: ?PDD_SURFCB_UPDATEOVERLAY,
-    SetOverlayPosition: ?PDD_SURFCB_SETOVERLAYPOSITION,
-    reserved4: ?*anyopaque,
-    SetPalette: ?PDD_SURFCB_SETPALETTE,
-};
-
-pub const PDD_VPORTCB_CANCREATEVIDEOPORT = *const fn(
-    param0: ?*DD_CANCREATEVPORTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_CREATEVIDEOPORT = *const fn(
-    param0: ?*DD_CREATEVPORTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_FLIP = *const fn(
-    param0: ?*DD_FLIPVPORTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETBANDWIDTH = *const fn(
-    param0: ?*DD_GETVPORTBANDWIDTHDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETINPUTFORMATS = *const fn(
-    param0: ?*DD_GETVPORTINPUTFORMATDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETOUTPUTFORMATS = *const fn(
-    param0: ?*DD_GETVPORTOUTPUTFORMATDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETAUTOFLIPSURF = *const fn(
-    param0: ?*_DD_GETVPORTAUTOFLIPSURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETFIELD = *const fn(
-    param0: ?*DD_GETVPORTFIELDDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETLINE = *const fn(
-    param0: ?*DD_GETVPORTLINEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETVPORTCONNECT = *const fn(
-    param0: ?*DD_GETVPORTCONNECTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_DESTROYVPORT = *const fn(
-    param0: ?*DD_DESTROYVPORTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETFLIPSTATUS = *const fn(
-    param0: ?*DD_GETVPORTFLIPSTATUSDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_UPDATE = *const fn(
-    param0: ?*DD_UPDATEVPORTDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_WAITFORSYNC = *const fn(
-    param0: ?*DD_WAITFORVPORTSYNCDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_GETSIGNALSTATUS = *const fn(
-    param0: ?*DD_GETVPORTSIGNALDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_VPORTCB_COLORCONTROL = *const fn(
-    param0: ?*DD_VPORTCOLORDATA,
-) callconv(.winapi) u32;
-
-pub const DD_VIDEOPORTCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    CanCreateVideoPort: ?PDD_VPORTCB_CANCREATEVIDEOPORT,
-    CreateVideoPort: ?PDD_VPORTCB_CREATEVIDEOPORT,
-    FlipVideoPort: ?PDD_VPORTCB_FLIP,
-    GetVideoPortBandwidth: ?PDD_VPORTCB_GETBANDWIDTH,
-    GetVideoPortInputFormats: ?PDD_VPORTCB_GETINPUTFORMATS,
-    GetVideoPortOutputFormats: ?PDD_VPORTCB_GETOUTPUTFORMATS,
-    lpReserved1: ?*anyopaque,
-    GetVideoPortField: ?PDD_VPORTCB_GETFIELD,
-    GetVideoPortLine: ?PDD_VPORTCB_GETLINE,
-    GetVideoPortConnectInfo: ?PDD_VPORTCB_GETVPORTCONNECT,
-    DestroyVideoPort: ?PDD_VPORTCB_DESTROYVPORT,
-    GetVideoPortFlipStatus: ?PDD_VPORTCB_GETFLIPSTATUS,
-    UpdateVideoPort: ?PDD_VPORTCB_UPDATE,
-    WaitForVideoPortSync: ?PDD_VPORTCB_WAITFORSYNC,
-    GetVideoSignalStatus: ?PDD_VPORTCB_GETSIGNALSTATUS,
-    ColorControl: ?PDD_VPORTCB_COLORCONTROL,
-};
-
-pub const PDD_COLORCB_COLORCONTROL = *const fn(
-    param0: ?*DD_COLORCONTROLDATA,
-) callconv(.winapi) u32;
-
-pub const DD_COLORCONTROLCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    ColorControl: ?PDD_COLORCB_COLORCONTROL,
-};
-
-pub const PDD_KERNELCB_SYNCSURFACE = *const fn(
-    param0: ?*DD_SYNCSURFACEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_KERNELCB_SYNCVIDEOPORT = *const fn(
-    param0: ?*DD_SYNCVIDEOPORTDATA,
-) callconv(.winapi) u32;
-
-pub const DD_KERNELCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    SyncSurfaceData: ?PDD_KERNELCB_SYNCSURFACE,
-    SyncVideoPortData: ?PDD_KERNELCB_SYNCVIDEOPORT,
-};
-
-pub const PDD_MOCOMPCB_GETGUIDS = *const fn(
-    param0: ?*DD_GETMOCOMPGUIDSDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_GETFORMATS = *const fn(
-    param0: ?*DD_GETMOCOMPFORMATSDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_CREATE = *const fn(
-    param0: ?*DD_CREATEMOCOMPDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_GETCOMPBUFFINFO = *const fn(
-    param0: ?*DD_GETMOCOMPCOMPBUFFDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_GETINTERNALINFO = *const fn(
-    param0: ?*DD_GETINTERNALMOCOMPDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_BEGINFRAME = *const fn(
-    param0: ?*DD_BEGINMOCOMPFRAMEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_ENDFRAME = *const fn(
-    param0: ?*DD_ENDMOCOMPFRAMEDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_RENDER = *const fn(
-    param0: ?*DD_RENDERMOCOMPDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_QUERYSTATUS = *const fn(
-    param0: ?*DD_QUERYMOCOMPSTATUSDATA,
-) callconv(.winapi) u32;
-
-pub const PDD_MOCOMPCB_DESTROY = *const fn(
-    param0: ?*DD_DESTROYMOCOMPDATA,
-) callconv(.winapi) u32;
-
-pub const DD_MOTIONCOMPCALLBACKS = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    GetMoCompGuids: ?PDD_MOCOMPCB_GETGUIDS,
-    GetMoCompFormats: ?PDD_MOCOMPCB_GETFORMATS,
-    CreateMoComp: ?PDD_MOCOMPCB_CREATE,
-    GetMoCompBuffInfo: ?PDD_MOCOMPCB_GETCOMPBUFFINFO,
-    GetInternalMoCompInfo: ?PDD_MOCOMPCB_GETINTERNALINFO,
-    BeginMoCompFrame: ?PDD_MOCOMPCB_BEGINFRAME,
-    EndMoCompFrame: ?PDD_MOCOMPCB_ENDFRAME,
-    RenderMoComp: ?PDD_MOCOMPCB_RENDER,
-    QueryMoCompStatus: ?PDD_MOCOMPCB_QUERYSTATUS,
-    DestroyMoComp: ?PDD_MOCOMPCB_DESTROY,
-};
-
-pub const DD_NONLOCALVIDMEMCAPS = extern struct {
-    dwSize: u32,
-    dwNLVBCaps: u32,
-    dwNLVBCaps2: u32,
-    dwNLVBCKeyCaps: u32,
-    dwNLVBFXCaps: u32,
-    dwNLVBRops: [8]u32,
-};
-
-pub const DD_PALETTE_GLOBAL = extern struct {
-    dwReserved1: usize,
-};
-
-pub const DD_PALETTE_LOCAL = extern struct {
-    dwReserved0: u32,
-    dwReserved1: usize,
-};
-
-pub const DD_CLIPPER_GLOBAL = extern struct {
-    dwReserved1: usize,
-};
-
-pub const DD_CLIPPER_LOCAL = extern struct {
-    dwReserved1: usize,
-};
-
-pub const DD_ATTACHLIST = extern struct {
-    lpLink: ?*DD_ATTACHLIST,
-    lpAttached: ?*DD_SURFACE_LOCAL,
-};
-
-pub const DD_SURFACE_INT = extern struct {
-    lpLcl: ?*DD_SURFACE_LOCAL,
-};
-
-pub const DD_SURFACE_GLOBAL = extern struct {
+    fpStart: usize,
     Anonymous1: extern union {
-        dwBlockSizeY: u32,
-        lSlicePitch: i32,
+        fpEnd: usize,
+        dwWidth: u32,
     },
-    Anonymous2: extern union {
-        lpVidMemHeap: ?*VIDEOMEMORY,
-        dwBlockSizeX: u32,
-        dwUserMemSize: u32,
-    },
-    fpVidMem: usize,
-    Anonymous3: extern union {
-        lPitch: i32,
-        dwLinearSize: u32,
-    },
-    yHint: i32,
-    xHint: i32,
-    wHeight: u32,
-    wWidth: u32,
-    dwReserved1: usize,
-    ddpfSurface: DDPIXELFORMAT,
-    fpHeapOffset: usize,
-    hCreatorProcess: ?HANDLE,
-};
-
-pub const DD_SURFACE_MORE = extern struct {
-    dwMipMapCount: u32,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwOverlayFlags: u32,
-    ddsCapsEx: DDSCAPSEX,
-    dwSurfaceHandle: u32,
-};
-
-pub const DD_SURFACE_LOCAL = extern struct {
-    lpGbl: ?*DD_SURFACE_GLOBAL,
-    dwFlags: u32,
     ddsCaps: DDSCAPS,
-    dwReserved1: usize,
-    Anonymous1: extern union {
-        ddckCKSrcOverlay: DDCOLORKEY,
-        ddckCKSrcBlt: DDCOLORKEY,
-    },
+    ddsCapsAlt: DDSCAPS,
     Anonymous2: extern union {
-        ddckCKDestOverlay: DDCOLORKEY,
-        ddckCKDestBlt: DDCOLORKEY,
+        lpHeap: ?*VMEMHEAP,
+        dwHeight: u32,
     },
-    lpSurfMore: ?*DD_SURFACE_MORE,
-    lpAttachList: ?*DD_ATTACHLIST,
-    lpAttachListFrom: ?*DD_ATTACHLIST,
-    rcOverlaySrc: RECT,
 };
 
-pub const DD_MORECAPS = extern struct {
-    dwSize: u32,
-    dwAlphaCaps: u32,
-    dwSVBAlphaCaps: u32,
-    dwVSBAlphaCaps: u32,
-    dwSSBAlphaCaps: u32,
-    dwFilterCaps: u32,
-    dwSVBFilterCaps: u32,
-    dwVSBFilterCaps: u32,
-    dwSSBFilterCaps: u32,
-};
-
-pub const DDNTCORECAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwCaps2: u32,
-    dwCKeyCaps: u32,
-    dwFXCaps: u32,
-    dwFXAlphaCaps: u32,
-    dwPalCaps: u32,
-    dwSVCaps: u32,
-    dwAlphaBltConstBitDepths: u32,
-    dwAlphaBltPixelBitDepths: u32,
-    dwAlphaBltSurfaceBitDepths: u32,
-    dwAlphaOverlayConstBitDepths: u32,
-    dwAlphaOverlayPixelBitDepths: u32,
-    dwAlphaOverlaySurfaceBitDepths: u32,
-    dwZBufferBitDepths: u32,
-    dwVidMemTotal: u32,
-    dwVidMemFree: u32,
-    dwMaxVisibleOverlays: u32,
-    dwCurrVisibleOverlays: u32,
-    dwNumFourCCCodes: u32,
-    dwAlignBoundarySrc: u32,
-    dwAlignSizeSrc: u32,
-    dwAlignBoundaryDest: u32,
-    dwAlignSizeDest: u32,
-    dwAlignStrideAlign: u32,
-    dwRops: [8]u32,
-    ddsCaps: DDSCAPS,
-    dwMinOverlayStretch: u32,
-    dwMaxOverlayStretch: u32,
-    dwMinLiveVideoStretch: u32,
-    dwMaxLiveVideoStretch: u32,
-    dwMinHwCodecStretch: u32,
-    dwMaxHwCodecStretch: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwReserved3: u32,
-    dwSVBCaps: u32,
-    dwSVBCKeyCaps: u32,
-    dwSVBFXCaps: u32,
-    dwSVBRops: [8]u32,
-    dwVSBCaps: u32,
-    dwVSBCKeyCaps: u32,
-    dwVSBFXCaps: u32,
-    dwVSBRops: [8]u32,
-    dwSSBCaps: u32,
-    dwSSBCKeyCaps: u32,
-    dwSSBFXCaps: u32,
-    dwSSBRops: [8]u32,
-    dwMaxVideoPorts: u32,
-    dwCurrVideoPorts: u32,
-    dwSVBCaps2: u32,
-};
-
-pub const DD_D3DBUFCALLBACKS = extern struct {
-    dwSize: u32,
+pub const VIDMEMINFO = extern struct {
+    fpPrimary: usize,
     dwFlags: u32,
-    CanCreateD3DBuffer: ?PDD_CANCREATESURFACE,
-    CreateD3DBuffer: ?PDD_CREATESURFACE,
-    DestroyD3DBuffer: ?PDD_SURFCB_DESTROYSURFACE,
-    LockD3DBuffer: ?PDD_SURFCB_LOCK,
-    UnlockD3DBuffer: ?PDD_SURFCB_UNLOCK,
+    dwDisplayWidth: u32,
+    dwDisplayHeight: u32,
+    lDisplayPitch: i32,
+    ddpfDisplay: DDPIXELFORMAT,
+    dwOffscreenAlign: u32,
+    dwOverlayAlign: u32,
+    dwTextureAlign: u32,
+    dwZBufferAlign: u32,
+    dwAlphaAlign: u32,
+    dwNumHeaps: u32,
+    pvmList: ?*VIDMEM,
 };
 
-pub const DD_HALINFO_V4 = extern struct {
-    dwSize: u32,
-    vmiData: VIDEOMEMORYINFO,
-    ddCaps: DDNTCORECAPS,
-    GetDriverInfo: ?PDD_GETDRIVERINFO,
+pub const VMEMHEAP = extern struct {
     dwFlags: u32,
-};
-
-pub const DD_HALINFO = extern struct {
-    dwSize: u32,
-    vmiData: VIDEOMEMORYINFO,
-    ddCaps: DDNTCORECAPS,
-    GetDriverInfo: ?PDD_GETDRIVERINFO,
-    dwFlags: u32,
-    lpD3DGlobalDriverData: ?*anyopaque,
-    lpD3DHALCallbacks: ?*anyopaque,
-    lpD3DBufCallbacks: ?*DD_D3DBUFCALLBACKS,
-};
-
-pub const DD_DIRECTDRAW_GLOBAL = extern struct {
-    dhpdev: ?*anyopaque,
-    dwReserved1: usize,
-    dwReserved2: usize,
-    lpDDVideoPortCaps: ?*DDVIDEOPORTCAPS,
-};
-
-pub const DD_DIRECTDRAW_LOCAL = extern struct {
-    lpGbl: ?*DD_DIRECTDRAW_GLOBAL,
-};
-
-pub const DD_VIDEOPORT_LOCAL = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    ddvpDesc: DDVIDEOPORTDESC,
-    ddvpInfo: DDVIDEOPORTINFO,
-    lpSurface: ?*DD_SURFACE_INT,
-    lpVBISurface: ?*DD_SURFACE_INT,
-    dwNumAutoflip: u32,
-    dwNumVBIAutoflip: u32,
-    dwReserved1: usize,
-    dwReserved2: usize,
-    dwReserved3: usize,
-};
-
-pub const DD_MOTIONCOMP_LOCAL = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    guid: Guid,
-    dwUncompWidth: u32,
-    dwUncompHeight: u32,
-    ddUncompPixelFormat: DDPIXELFORMAT,
-    dwDriverReserved1: u32,
-    dwDriverReserved2: u32,
-    dwDriverReserved3: u32,
-    lpDriverReserved1: ?*anyopaque,
-    lpDriverReserved2: ?*anyopaque,
-    lpDriverReserved3: ?*anyopaque,
-};
-
-pub const DD_MORESURFACECAPS = extern struct {
-    pub const NTExtendedHeapRestrictions = extern struct {
-        ddsCapsEx: DDSCAPSEX,
-        ddsCapsExAlt: DDSCAPSEX,
-    };
-    dwSize: u32,
-    ddsCapsMore: DDSCAPSEX,
-    ddsExtendedHeapRestrictions: [1]NTExtendedHeapRestrictions,
-};
-
-pub const DD_STEREOMODE = extern struct {
-    dwSize: u32,
-    dwHeight: u32,
-    dwWidth: u32,
-    dwBpp: u32,
-    dwRefreshRate: u32,
-    bSupported: BOOL,
-};
-
-pub const DD_UPDATENONLOCALHEAPDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    dwHeap: u32,
+    stride: u32,
+    freeList: ?*anyopaque,
+    allocList: ?*anyopaque,
+    dwTotalSize: u32,
     fpGARTLin: usize,
     fpGARTDev: usize,
-    ulPolicyMaxBytes: usize,
-    ddRVal: HRESULT,
-    UpdateNonLocalHeap: ?*anyopaque,
-};
-
-pub const DD_NTPRIVATEDRIVERCAPS = extern struct {
-    dwSize: u32,
-    dwPrivateCaps: u32,
-};
-
-pub const DD_BLTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
-    rDest: RECTL,
-    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
-    rSrc: RECTL,
-    dwFlags: u32,
-    dwROPFlags: u32,
-    bltFX: DDBLTFX,
-    ddRVal: HRESULT,
-    Blt: ?*anyopaque,
-    IsClipped: BOOL,
-    rOrigDest: RECTL,
-    rOrigSrc: RECTL,
-    dwRectCnt: u32,
-    prDestRects: ?*RECT,
-    dwAFlags: u32,
-    ddargbScaleFactors: DDARGB,
-};
-
-pub const DD_LOCKDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    bHasRect: u32,
-    rArea: RECTL,
-    lpSurfData: ?*anyopaque,
-    ddRVal: HRESULT,
-    Lock: ?*anyopaque,
-    dwFlags: u32,
-    fpProcess: usize,
-};
-
-pub const DD_UNLOCKDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    ddRVal: HRESULT,
-    Unlock: ?*anyopaque,
-};
-
-pub const DD_UPDATEOVERLAYDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
-    rDest: RECTL,
-    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
-    rSrc: RECTL,
-    dwFlags: u32,
-    overlayFX: DDOVERLAYFX,
-    ddRVal: HRESULT,
-    UpdateOverlay: ?*anyopaque,
-};
-
-pub const DD_SETOVERLAYPOSITIONDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSrcSurface: ?*DD_SURFACE_LOCAL,
-    lpDDDestSurface: ?*DD_SURFACE_LOCAL,
-    lXPos: i32,
-    lYPos: i32,
-    ddRVal: HRESULT,
-    SetOverlayPosition: ?*anyopaque,
-};
-
-pub const DD_SETPALETTEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    lpDDPalette: ?*DD_PALETTE_GLOBAL,
-    ddRVal: HRESULT,
-    SetPalette: ?*anyopaque,
-    Attach: BOOL,
-};
-
-pub const DD_FLIPDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpSurfCurr: ?*DD_SURFACE_LOCAL,
-    lpSurfTarg: ?*DD_SURFACE_LOCAL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    Flip: ?*anyopaque,
-    lpSurfCurrLeft: ?*DD_SURFACE_LOCAL,
-    lpSurfTargLeft: ?*DD_SURFACE_LOCAL,
-};
-
-pub const DD_DESTROYSURFACEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    ddRVal: HRESULT,
-    DestroySurface: ?*anyopaque,
-};
-
-pub const DD_SETCLIPLISTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    ddRVal: HRESULT,
-    SetClipList: ?*anyopaque,
-};
-
-pub const DD_ADDATTACHEDSURFACEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    lpSurfAttached: ?*DD_SURFACE_LOCAL,
-    ddRVal: HRESULT,
-    AddAttachedSurface: ?*anyopaque,
-};
-
-pub const DD_SETCOLORKEYDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    dwFlags: u32,
-    ckNew: DDCOLORKEY,
-    ddRVal: HRESULT,
-    SetColorKey: ?*anyopaque,
-};
-
-pub const DD_GETBLTSTATUSDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    GetBltStatus: ?*anyopaque,
-};
-
-pub const DD_GETFLIPSTATUSDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    GetFlipStatus: ?*anyopaque,
-};
-
-pub const DD_DESTROYPALETTEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDPalette: ?*DD_PALETTE_GLOBAL,
-    ddRVal: HRESULT,
-    DestroyPalette: ?*anyopaque,
-};
-
-pub const DD_SETENTRIESDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDPalette: ?*DD_PALETTE_GLOBAL,
-    dwBase: u32,
-    dwNumEntries: u32,
-    lpEntries: ?*PALETTEENTRY,
-    ddRVal: HRESULT,
-    SetEntries: ?*anyopaque,
-};
-
-pub const DD_CREATESURFACEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurfaceDesc: ?*DDSURFACEDESC,
-    lplpSList: ?*?*DD_SURFACE_LOCAL,
-    dwSCnt: u32,
-    ddRVal: HRESULT,
-    CreateSurface: ?*anyopaque,
-};
-
-pub const DD_CANCREATESURFACEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurfaceDesc: ?*DDSURFACEDESC,
-    bIsDifferentPixelFormat: u32,
-    ddRVal: HRESULT,
-    CanCreateSurface: ?*anyopaque,
-};
-
-pub const DD_CREATEPALETTEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDPalette: ?*DD_PALETTE_GLOBAL,
-    lpColorTable: ?*PALETTEENTRY,
-    ddRVal: HRESULT,
-    CreatePalette: ?*anyopaque,
-    is_excl: BOOL,
-};
-
-pub const DD_WAITFORVERTICALBLANKDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    dwFlags: u32,
-    bIsInVB: u32,
-    hEvent: usize,
-    ddRVal: HRESULT,
-    WaitForVerticalBlank: ?*anyopaque,
-};
-
-pub const DD_DRVSETCOLORKEYDATA = extern struct {
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    dwFlags: u32,
-    ckNew: DDCOLORKEY,
-    ddRVal: HRESULT,
-    SetColorKey: ?*anyopaque,
-};
-
-pub const DD_GETSCANLINEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    dwScanLine: u32,
-    ddRVal: HRESULT,
-    GetScanLine: ?*anyopaque,
-};
-
-pub const DD_MAPMEMORYDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    bMap: BOOL,
-    hProcess: ?HANDLE,
-    fpProcess: usize,
-    ddRVal: HRESULT,
-};
-
-pub const DD_CANCREATEVPORTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
-    ddRVal: HRESULT,
-    CanCreateVideoPort: ?*anyopaque,
-};
-
-pub const DD_CREATEVPORTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    ddRVal: HRESULT,
-    CreateVideoPort: ?*anyopaque,
-};
-
-pub const DD_FLIPVPORTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    lpSurfCurr: ?*DD_SURFACE_LOCAL,
-    lpSurfTarg: ?*DD_SURFACE_LOCAL,
-    ddRVal: HRESULT,
-    FlipVideoPort: ?*anyopaque,
-};
-
-pub const DD_GETVPORTBANDWIDTHDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    lpddpfFormat: ?*DDPIXELFORMAT,
-    dwWidth: u32,
-    dwHeight: u32,
-    dwFlags: u32,
-    lpBandwidth: ?*DDVIDEOPORTBANDWIDTH,
-    ddRVal: HRESULT,
-    GetVideoPortBandwidth: ?*anyopaque,
-};
-
-pub const DD_GETVPORTINPUTFORMATDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwFlags: u32,
-    lpddpfFormat: ?*DDPIXELFORMAT,
-    dwNumFormats: u32,
-    ddRVal: HRESULT,
-    GetVideoPortInputFormats: ?*anyopaque,
-};
-
-pub const DD_GETVPORTOUTPUTFORMATDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwFlags: u32,
-    lpddpfInputFormat: ?*DDPIXELFORMAT,
-    lpddpfOutputFormats: ?*DDPIXELFORMAT,
-    dwNumFormats: u32,
-    ddRVal: HRESULT,
-    GetVideoPortInputFormats: ?*anyopaque,
-};
-
-pub const DD_GETVPORTFIELDDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    bField: BOOL,
-    ddRVal: HRESULT,
-    GetVideoPortField: ?*anyopaque,
-};
-
-pub const DD_GETVPORTLINEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwLine: u32,
-    ddRVal: HRESULT,
-    GetVideoPortLine: ?*anyopaque,
-};
-
-pub const DD_GETVPORTCONNECTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    dwPortId: u32,
-    lpConnect: ?*DDVIDEOPORTCONNECT,
-    dwNumEntries: u32,
-    ddRVal: HRESULT,
-    GetVideoPortConnectInfo: ?*anyopaque,
-};
-
-pub const DD_DESTROYVPORTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    ddRVal: HRESULT,
-    DestroyVideoPort: ?*anyopaque,
-};
-
-pub const DD_GETVPORTFLIPSTATUSDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    fpSurface: usize,
-    ddRVal: HRESULT,
-    GetVideoPortFlipStatus: ?*anyopaque,
-};
-
-pub const DD_UPDATEVPORTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    lplpDDSurface: ?*?*DD_SURFACE_INT,
-    lplpDDVBISurface: ?*?*DD_SURFACE_INT,
-    lpVideoInfo: ?*DDVIDEOPORTINFO,
-    dwFlags: u32,
-    dwNumAutoflip: u32,
-    dwNumVBIAutoflip: u32,
-    ddRVal: HRESULT,
-    UpdateVideoPort: ?*anyopaque,
-};
-
-pub const DD_WAITFORVPORTSYNCDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwFlags: u32,
-    dwLine: u32,
-    dwTimeOut: u32,
-    ddRVal: HRESULT,
-    UpdateVideoPort: ?*anyopaque,
-};
-
-pub const DD_GETVPORTSIGNALDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwStatus: u32,
-    ddRVal: HRESULT,
-    GetVideoSignalStatus: ?*anyopaque,
-};
-
-pub const DD_VPORTCOLORDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwFlags: u32,
-    lpColorData: ?*DDCOLORCONTROL,
-    ddRVal: HRESULT,
-    ColorControl: ?*anyopaque,
-};
-
-pub const DD_COLORCONTROLDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    lpColorData: ?*DDCOLORCONTROL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-    ColorControl: ?*anyopaque,
-};
-
-pub const DD_GETDRIVERINFODATA = extern struct {
-    dhpdev: ?*anyopaque,
-    dwSize: u32,
-    dwFlags: u32,
-    guidInfo: Guid,
-    dwExpectedSize: u32,
-    lpvData: ?*anyopaque,
-    dwActualSize: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DD_GETAVAILDRIVERMEMORYDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    DDSCaps: DDSCAPS,
-    dwTotal: u32,
-    dwFree: u32,
-    ddRVal: HRESULT,
-    GetAvailDriverMemory: ?*anyopaque,
-};
-
-pub const DD_FREEDRIVERMEMORYDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    ddRVal: HRESULT,
-    FreeDriverMemory: ?*anyopaque,
-};
-
-pub const DD_SETEXCLUSIVEMODEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    dwEnterExcl: u32,
-    dwReserved: u32,
-    ddRVal: HRESULT,
-    SetExclusiveMode: ?*anyopaque,
-};
-
-pub const DD_FLIPTOGDISURFACEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-    dwToGDI: u32,
-    dwReserved: u32,
-    ddRVal: HRESULT,
-    FlipToGDISurface: ?*anyopaque,
-};
-
-pub const DD_SYNCSURFACEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpDDSurface: ?*DD_SURFACE_LOCAL,
-    dwSurfaceOffset: u32,
-    fpLockPtr: usize,
-    lPitch: i32,
-    dwOverlayOffset: u32,
-    dwDriverReserved1: u32,
-    dwDriverReserved2: u32,
-    dwDriverReserved3: u32,
-    dwDriverReserved4: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DD_SYNCVIDEOPORTDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
-    dwOriginOffset: u32,
-    dwHeight: u32,
-    dwVBIHeight: u32,
-    dwDriverReserved1: u32,
-    dwDriverReserved2: u32,
-    dwDriverReserved3: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DD_GETMOCOMPGUIDSDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    dwNumGuids: u32,
-    lpGuids: ?*Guid,
-    ddRVal: HRESULT,
-};
-
-pub const DD_GETMOCOMPFORMATSDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpGuid: ?*Guid,
-    dwNumFormats: u32,
-    lpFormats: ?*DDPIXELFORMAT,
-    ddRVal: HRESULT,
-};
-
-pub const DD_CREATEMOCOMPDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
-    lpGuid: ?*Guid,
-    dwUncompWidth: u32,
-    dwUncompHeight: u32,
-    ddUncompPixelFormat: DDPIXELFORMAT,
-    lpData: ?*anyopaque,
-    dwDataSize: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DDCOMPBUFFERINFO = extern struct {
-    dwSize: u32,
-    dwNumCompBuffers: u32,
-    dwWidthToCreate: u32,
-    dwHeightToCreate: u32,
-    dwBytesToAllocate: u32,
-    ddCompCaps: DDSCAPS2,
-    ddPixelFormat: DDPIXELFORMAT,
-};
-
-pub const DD_GETMOCOMPCOMPBUFFDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpGuid: ?*Guid,
-    dwWidth: u32,
-    dwHeight: u32,
-    ddPixelFormat: DDPIXELFORMAT,
-    dwNumTypesCompBuffs: u32,
-    lpCompBuffInfo: ?*DDCOMPBUFFERINFO,
-    ddRVal: HRESULT,
-};
-
-pub const DD_GETINTERNALMOCOMPDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpGuid: ?*Guid,
-    dwWidth: u32,
-    dwHeight: u32,
-    ddPixelFormat: DDPIXELFORMAT,
-    dwScratchMemAlloc: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DD_BEGINMOCOMPFRAMEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
-    lpDestSurface: ?*DD_SURFACE_LOCAL,
-    dwInputDataSize: u32,
-    lpInputData: ?*anyopaque,
-    dwOutputDataSize: u32,
-    lpOutputData: ?*anyopaque,
-    ddRVal: HRESULT,
-};
-
-pub const DD_ENDMOCOMPFRAMEDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
-    lpInputData: ?*anyopaque,
-    dwInputDataSize: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DDMOCOMPBUFFERINFO = extern struct {
-    dwSize: u32,
-    lpCompSurface: ?*DD_SURFACE_LOCAL,
-    dwDataOffset: u32,
-    dwDataSize: u32,
-    lpPrivate: ?*anyopaque,
-};
-
-pub const DD_RENDERMOCOMPDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
-    dwNumBuffers: u32,
-    lpBufferInfo: ?*DDMOCOMPBUFFERINFO,
-    dwFunction: u32,
-    lpInputData: ?*anyopaque,
-    dwInputDataSize: u32,
-    lpOutputData: ?*anyopaque,
-    dwOutputDataSize: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DD_QUERYMOCOMPSTATUSDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
-    lpSurface: ?*DD_SURFACE_LOCAL,
-    dwFlags: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DD_DESTROYMOCOMPDATA = extern struct {
-    lpDD: ?*DD_DIRECTDRAW_LOCAL,
-    lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
-    ddRVal: HRESULT,
-};
-
-pub const DD_CREATESURFACEEXDATA = extern struct {
-    dwFlags: u32,
-    lpDDLcl: ?*DD_DIRECTDRAW_LOCAL,
-    lpDDSLcl: ?*DD_SURFACE_LOCAL,
-    ddRVal: HRESULT,
-};
-
-pub const DD_GETDRIVERSTATEDATA = extern struct {
-    dwFlags: u32,
-    Anonymous: extern union {
-        lpDD: ?*DD_DIRECTDRAW_GLOBAL,
-        dwhContext: usize,
-    },
-    lpdwStates: ?*u32,
-    dwLength: u32,
-    ddRVal: HRESULT,
-};
-
-pub const DD_DESTROYDDLOCALDATA = extern struct {
-    dwFlags: u32,
-    pDDLcl: ?*DD_DIRECTDRAW_LOCAL,
-    ddRVal: HRESULT,
-};
-
-pub const MDL = extern struct {
-    pub const _EPROCESS = extern struct {
-        placeholder: usize, // TODO: why is this type empty?
-    };
-    MdlNext: ?*MDL,
-    MdlSize: i16,
-    MdlFlags: i16,
-    Process: ?*_EPROCESS,
-    lpMappedSystemVa: ?*u32,
-    lpStartVa: ?*u32,
-    ByteCount: u32,
-    ByteOffset: u32,
-};
-
-pub const DDSURFACEDATA = extern struct {
-    ddsCaps: u32,
-    dwSurfaceOffset: u32,
-    fpLockPtr: usize,
-    dwWidth: u32,
-    dwHeight: u32,
-    lPitch: i32,
-    dwOverlayFlags: u32,
-    dwOverlayOffset: u32,
-    dwOverlaySrcWidth: u32,
-    dwOverlaySrcHeight: u32,
-    dwOverlayDestWidth: u32,
-    dwOverlayDestHeight: u32,
-    dwVideoPortId: u32,
-    dwFormatFlags: u32,
-    dwFormatFourCC: u32,
-    dwFormatBitCount: u32,
-    dwRBitMask: u32,
-    dwGBitMask: u32,
-    dwBBitMask: u32,
-    dwDriverReserved1: u32,
-    dwDriverReserved2: u32,
-    dwDriverReserved3: u32,
-    dwDriverReserved4: u32,
-};
-
-pub const DDVIDEOPORTDATA = extern struct {
-    dwVideoPortId: u32,
-    dwVPFlags: u32,
-    dwOriginOffset: u32,
-    dwHeight: u32,
-    dwVBIHeight: u32,
-    dwDriverReserved1: u32,
-    dwDriverReserved2: u32,
-    dwDriverReserved3: u32,
-};
-
-pub const DX_IRQDATA = extern struct {
-    dwIrqFlags: u32,
-};
-
-pub const PDX_IRQCALLBACK = *const fn(
-    pIrqData: ?*DX_IRQDATA,
-) callconv(.winapi) void;
-
-pub const DDGETIRQINFO = extern struct {
-    dwFlags: u32,
-};
-
-pub const DDENABLEIRQINFO = extern struct {
-    dwIRQSources: u32,
-    dwLine: u32,
-    IRQCallback: ?PDX_IRQCALLBACK,
-    lpIRQData: ?*DX_IRQDATA,
-};
-
-pub const DDSKIPNEXTFIELDINFO = extern struct {
-    lpVideoPortData: ?*DDVIDEOPORTDATA,
-    dwSkipFlags: u32,
-};
-
-pub const DDBOBNEXTFIELDINFO = extern struct {
-    lpSurface: ?*DDSURFACEDATA,
-};
-
-pub const DDSETSTATEININFO = extern struct {
-    lpSurfaceData: ?*DDSURFACEDATA,
-    lpVideoPortData: ?*DDVIDEOPORTDATA,
-};
-
-pub const DDSETSTATEOUTINFO = extern struct {
-    bSoftwareAutoflip: BOOL,
-    dwSurfaceIndex: u32,
-    dwVBISurfaceIndex: u32,
-};
-
-pub const DDLOCKININFO = extern struct {
-    lpSurfaceData: ?*DDSURFACEDATA,
-};
-
-pub const DDLOCKOUTINFO = extern struct {
-    dwSurfacePtr: usize,
-};
-
-pub const DDFLIPOVERLAYINFO = extern struct {
-    lpCurrentSurface: ?*DDSURFACEDATA,
-    lpTargetSurface: ?*DDSURFACEDATA,
-    dwFlags: u32,
-};
-
-pub const DDFLIPVIDEOPORTINFO = extern struct {
-    lpVideoPortData: ?*DDVIDEOPORTDATA,
-    lpCurrentSurface: ?*DDSURFACEDATA,
-    lpTargetSurface: ?*DDSURFACEDATA,
-    dwFlipVPFlags: u32,
-};
-
-pub const DDGETPOLARITYININFO = extern struct {
-    lpVideoPortData: ?*DDVIDEOPORTDATA,
-};
-
-pub const DDGETPOLARITYOUTINFO = extern struct {
-    bPolarity: u32,
-};
-
-pub const DDGETCURRENTAUTOFLIPININFO = extern struct {
-    lpVideoPortData: ?*DDVIDEOPORTDATA,
-};
-
-pub const DDGETCURRENTAUTOFLIPOUTINFO = extern struct {
-    dwSurfaceIndex: u32,
-    dwVBISurfaceIndex: u32,
-};
-
-pub const DDGETPREVIOUSAUTOFLIPININFO = extern struct {
-    lpVideoPortData: ?*DDVIDEOPORTDATA,
-};
-
-pub const DDGETPREVIOUSAUTOFLIPOUTINFO = extern struct {
-    dwSurfaceIndex: u32,
-    dwVBISurfaceIndex: u32,
-};
-
-pub const DDTRANSFERININFO = extern struct {
-    lpSurfaceData: ?*DDSURFACEDATA,
-    dwStartLine: u32,
-    dwEndLine: u32,
-    dwTransferID: usize,
-    dwTransferFlags: u32,
-    lpDestMDL: ?*MDL,
-};
-
-pub const DDTRANSFEROUTINFO = extern struct {
-    dwBufferPolarity: u32,
-};
-
-pub const DDGETTRANSFERSTATUSOUTINFO = extern struct {
-    dwTransferID: usize,
-};
-
-pub const PDX_GETIRQINFO = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*anyopaque,
-    param2: ?*DDGETIRQINFO,
-) callconv(.winapi) u32;
-
-pub const PDX_ENABLEIRQ = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDENABLEIRQINFO,
-    param2: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PDX_SKIPNEXTFIELD = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDSKIPNEXTFIELDINFO,
-    param2: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PDX_BOBNEXTFIELD = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDBOBNEXTFIELDINFO,
-    param2: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PDX_SETSTATE = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDSETSTATEININFO,
-    param2: ?*DDSETSTATEOUTINFO,
-) callconv(.winapi) u32;
-
-pub const PDX_LOCK = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDLOCKININFO,
-    param2: ?*DDLOCKOUTINFO,
-) callconv(.winapi) u32;
-
-pub const PDX_FLIPOVERLAY = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDFLIPOVERLAYINFO,
-    param2: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PDX_FLIPVIDEOPORT = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDFLIPVIDEOPORTINFO,
-    param2: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PDX_GETPOLARITY = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDGETPOLARITYININFO,
-    param2: ?*DDGETPOLARITYOUTINFO,
-) callconv(.winapi) u32;
-
-pub const PDX_GETCURRENTAUTOFLIP = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDGETCURRENTAUTOFLIPININFO,
-    param2: ?*DDGETCURRENTAUTOFLIPOUTINFO,
-) callconv(.winapi) u32;
-
-pub const PDX_GETPREVIOUSAUTOFLIP = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDGETPREVIOUSAUTOFLIPININFO,
-    param2: ?*DDGETPREVIOUSAUTOFLIPOUTINFO,
-) callconv(.winapi) u32;
-
-pub const PDX_TRANSFER = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*DDTRANSFERININFO,
-    param2: ?*DDTRANSFEROUTINFO,
-) callconv(.winapi) u32;
-
-pub const PDX_GETTRANSFERSTATUS = *const fn(
-    param0: ?*anyopaque,
-    param1: ?*anyopaque,
-    param2: ?*DDGETTRANSFERSTATUSOUTINFO,
-) callconv(.winapi) u32;
-
-pub const DXAPI_INTERFACE = extern struct {
-    Size: u16,
-    Version: u16,
-    Context: ?*anyopaque,
-    InterfaceReference: ?*anyopaque,
-    InterfaceDereference: ?*anyopaque,
-    DxGetIrqInfo: ?PDX_GETIRQINFO,
-    DxEnableIrq: ?PDX_ENABLEIRQ,
-    DxSkipNextField: ?PDX_SKIPNEXTFIELD,
-    DxBobNextField: ?PDX_BOBNEXTFIELD,
-    DxSetState: ?PDX_SETSTATE,
-    DxLock: ?PDX_LOCK,
-    DxFlipOverlay: ?PDX_FLIPOVERLAY,
-    DxFlipVideoPort: ?PDX_FLIPVIDEOPORT,
-    DxGetPolarity: ?PDX_GETPOLARITY,
-    DxGetCurrentAutoflip: ?PDX_GETCURRENTAUTOFLIP,
-    DxGetPreviousAutoflip: ?PDX_GETPREVIOUSAUTOFLIP,
-    DxTransfer: ?PDX_TRANSFER,
-    DxGetTransferStatus: ?PDX_GETTRANSFERSTATUS,
+    dwCommitedSize: u32,
+    dwCoalesceCount: u32,
+    Alignment: HEAPALIGNMENT,
+    ddsCapsEx: DDSCAPSEX,
+    ddsCapsExAlt: DDSCAPSEX,
+    liPhysAGPBase: LARGE_INTEGER,
+    hdevAGP: ?HANDLE,
+    pvPhysRsrv: ?*anyopaque,
+    pAgpCommitMask: ?*u8,
+    dwAgpCommitMaskSize: u32,
+};
+
+pub const VMEML = extern struct {
+    next: ?*VMEML,
+    ptr: usize,
+    size: u32,
+    bDiscardable: BOOL,
+};
+
+pub const VMEMR = extern struct {
+    next: ?*VMEMR,
+    prev: ?*VMEMR,
+    pUp: ?*VMEMR,
+    pDown: ?*VMEMR,
+    pLeft: ?*VMEMR,
+    pRight: ?*VMEMR,
+    ptr: usize,
+    size: u32,
+    x: u32,
+    y: u32,
+    cx: u32,
+    cy: u32,
+    flags: u32,
+    pBits: usize,
+    bDiscardable: BOOL,
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub extern "ddraw" fn DirectDrawEnumerateW(
-    lpCallback: ?LPDDENUMCALLBACKW,
-    lpContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawEnumerateA(
-    lpCallback: ?LPDDENUMCALLBACKA,
-    lpContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawEnumerateExW(
-    lpCallback: ?LPDDENUMCALLBACKEXW,
-    lpContext: ?*anyopaque,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawEnumerateExA(
-    lpCallback: ?LPDDENUMCALLBACKEXA,
-    lpContext: ?*anyopaque,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
 pub extern "ddraw" fn DirectDrawCreate(
     lpGUID: ?*Guid,
     lplpDD: ?*?*IDirectDraw,
+    pUnkOuter: ?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+pub extern "ddraw" fn DirectDrawCreateClipper(
+    dwFlags: u32,
+    lplpDDClipper: ?*?*IDirectDrawClipper,
     pUnkOuter: ?*IUnknown,
 ) callconv(.winapi) HRESULT;
 
@@ -7589,10 +7566,26 @@ pub extern "ddraw" fn DirectDrawCreateEx(
     pUnkOuter: ?*IUnknown,
 ) callconv(.winapi) HRESULT;
 
-pub extern "ddraw" fn DirectDrawCreateClipper(
+pub extern "ddraw" fn DirectDrawEnumerateA(
+    lpCallback: ?LPDDENUMCALLBACKA,
+    lpContext: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "ddraw" fn DirectDrawEnumerateExA(
+    lpCallback: ?LPDDENUMCALLBACKEXA,
+    lpContext: ?*anyopaque,
     dwFlags: u32,
-    lplpDDClipper: ?*?*IDirectDrawClipper,
-    pUnkOuter: ?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+pub extern "ddraw" fn DirectDrawEnumerateExW(
+    lpCallback: ?LPDDENUMCALLBACKEXW,
+    lpContext: ?*anyopaque,
+    dwFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ddraw" fn DirectDrawEnumerateW(
+    lpCallback: ?LPDDENUMCALLBACKW,
+    lpContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 
@@ -7659,102 +7652,95 @@ const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "LPCLIPPERCALLBACK")) { _ = LPCLIPPERCALLBACK; }
+    if (@hasDecl(@This(), "LPDD32BITDRIVERINIT")) { _ = LPDD32BITDRIVERINIT; }
     if (@hasDecl(@This(), "LPDDENUMCALLBACKA")) { _ = LPDDENUMCALLBACKA; }
-    if (@hasDecl(@This(), "LPDDENUMCALLBACKW")) { _ = LPDDENUMCALLBACKW; }
     if (@hasDecl(@This(), "LPDDENUMCALLBACKEXA")) { _ = LPDDENUMCALLBACKEXA; }
     if (@hasDecl(@This(), "LPDDENUMCALLBACKEXW")) { _ = LPDDENUMCALLBACKEXW; }
-    if (@hasDecl(@This(), "LPDIRECTDRAWENUMERATEEXA")) { _ = LPDIRECTDRAWENUMERATEEXA; }
-    if (@hasDecl(@This(), "LPDIRECTDRAWENUMERATEEXW")) { _ = LPDIRECTDRAWENUMERATEEXW; }
+    if (@hasDecl(@This(), "LPDDENUMCALLBACKW")) { _ = LPDDENUMCALLBACKW; }
     if (@hasDecl(@This(), "LPDDENUMMODESCALLBACK")) { _ = LPDDENUMMODESCALLBACK; }
     if (@hasDecl(@This(), "LPDDENUMMODESCALLBACK2")) { _ = LPDDENUMMODESCALLBACK2; }
-    if (@hasDecl(@This(), "LPCLIPPERCALLBACK")) { _ = LPCLIPPERCALLBACK; }
     if (@hasDecl(@This(), "LPDDENUMVIDEOCALLBACK")) { _ = LPDDENUMVIDEOCALLBACK; }
-    if (@hasDecl(@This(), "LPDD32BITDRIVERINIT")) { _ = LPDD32BITDRIVERINIT; }
-    if (@hasDecl(@This(), "LPDDHEL_INIT")) { _ = LPDDHEL_INIT; }
-    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_CANCREATEEXEBUF")) { _ = LPDDHALEXEBUFCB_CANCREATEEXEBUF; }
-    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_CREATEEXEBUF")) { _ = LPDDHALEXEBUFCB_CREATEEXEBUF; }
-    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_DESTROYEXEBUF")) { _ = LPDDHALEXEBUFCB_DESTROYEXEBUF; }
-    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_LOCKEXEBUF")) { _ = LPDDHALEXEBUFCB_LOCKEXEBUF; }
-    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_UNLOCKEXEBUF")) { _ = LPDDHALEXEBUFCB_UNLOCKEXEBUF; }
-    if (@hasDecl(@This(), "LPDDHALKERNELCB_SYNCSURFACE")) { _ = LPDDHALKERNELCB_SYNCSURFACE; }
-    if (@hasDecl(@This(), "LPDDHALKERNELCB_SYNCVIDEOPORT")) { _ = LPDDHALKERNELCB_SYNCVIDEOPORT; }
     if (@hasDecl(@This(), "LPDDGAMMACALIBRATORPROC")) { _ = LPDDGAMMACALIBRATORPROC; }
-    if (@hasDecl(@This(), "PDD_SETCOLORKEY")) { _ = PDD_SETCOLORKEY; }
-    if (@hasDecl(@This(), "PDD_CANCREATESURFACE")) { _ = PDD_CANCREATESURFACE; }
-    if (@hasDecl(@This(), "PDD_WAITFORVERTICALBLANK")) { _ = PDD_WAITFORVERTICALBLANK; }
-    if (@hasDecl(@This(), "PDD_CREATESURFACE")) { _ = PDD_CREATESURFACE; }
-    if (@hasDecl(@This(), "PDD_DESTROYDRIVER")) { _ = PDD_DESTROYDRIVER; }
-    if (@hasDecl(@This(), "PDD_SETMODE")) { _ = PDD_SETMODE; }
-    if (@hasDecl(@This(), "PDD_CREATEPALETTE")) { _ = PDD_CREATEPALETTE; }
-    if (@hasDecl(@This(), "PDD_GETSCANLINE")) { _ = PDD_GETSCANLINE; }
-    if (@hasDecl(@This(), "PDD_MAPMEMORY")) { _ = PDD_MAPMEMORY; }
-    if (@hasDecl(@This(), "PDD_GETDRIVERINFO")) { _ = PDD_GETDRIVERINFO; }
-    if (@hasDecl(@This(), "PDD_GETAVAILDRIVERMEMORY")) { _ = PDD_GETAVAILDRIVERMEMORY; }
+    if (@hasDecl(@This(), "LPDDHEL_INIT")) { _ = LPDDHEL_INIT; }
+    if (@hasDecl(@This(), "LPDIRECTDRAWENUMERATEEXA")) { _ = LPDIRECTDRAWENUMERATEEXA; }
+    if (@hasDecl(@This(), "LPDIRECTDRAWENUMERATEEXW")) { _ = LPDIRECTDRAWENUMERATEEXW; }
     if (@hasDecl(@This(), "PDD_ALPHABLT")) { _ = PDD_ALPHABLT; }
-    if (@hasDecl(@This(), "PDD_CREATESURFACEEX")) { _ = PDD_CREATESURFACEEX; }
-    if (@hasDecl(@This(), "PDD_GETDRIVERSTATE")) { _ = PDD_GETDRIVERSTATE; }
-    if (@hasDecl(@This(), "PDD_DESTROYDDLOCAL")) { _ = PDD_DESTROYDDLOCAL; }
-    if (@hasDecl(@This(), "PDD_FREEDRIVERMEMORY")) { _ = PDD_FREEDRIVERMEMORY; }
-    if (@hasDecl(@This(), "PDD_SETEXCLUSIVEMODE")) { _ = PDD_SETEXCLUSIVEMODE; }
-    if (@hasDecl(@This(), "PDD_FLIPTOGDISURFACE")) { _ = PDD_FLIPTOGDISURFACE; }
-    if (@hasDecl(@This(), "PDD_PALCB_DESTROYPALETTE")) { _ = PDD_PALCB_DESTROYPALETTE; }
-    if (@hasDecl(@This(), "PDD_PALCB_SETENTRIES")) { _ = PDD_PALCB_SETENTRIES; }
-    if (@hasDecl(@This(), "PDD_SURFCB_LOCK")) { _ = PDD_SURFCB_LOCK; }
-    if (@hasDecl(@This(), "PDD_SURFCB_UNLOCK")) { _ = PDD_SURFCB_UNLOCK; }
-    if (@hasDecl(@This(), "PDD_SURFCB_BLT")) { _ = PDD_SURFCB_BLT; }
-    if (@hasDecl(@This(), "PDD_SURFCB_UPDATEOVERLAY")) { _ = PDD_SURFCB_UPDATEOVERLAY; }
-    if (@hasDecl(@This(), "PDD_SURFCB_SETOVERLAYPOSITION")) { _ = PDD_SURFCB_SETOVERLAYPOSITION; }
-    if (@hasDecl(@This(), "PDD_SURFCB_SETPALETTE")) { _ = PDD_SURFCB_SETPALETTE; }
-    if (@hasDecl(@This(), "PDD_SURFCB_FLIP")) { _ = PDD_SURFCB_FLIP; }
-    if (@hasDecl(@This(), "PDD_SURFCB_DESTROYSURFACE")) { _ = PDD_SURFCB_DESTROYSURFACE; }
-    if (@hasDecl(@This(), "PDD_SURFCB_SETCLIPLIST")) { _ = PDD_SURFCB_SETCLIPLIST; }
-    if (@hasDecl(@This(), "PDD_SURFCB_ADDATTACHEDSURFACE")) { _ = PDD_SURFCB_ADDATTACHEDSURFACE; }
-    if (@hasDecl(@This(), "PDD_SURFCB_SETCOLORKEY")) { _ = PDD_SURFCB_SETCOLORKEY; }
-    if (@hasDecl(@This(), "PDD_SURFCB_GETBLTSTATUS")) { _ = PDD_SURFCB_GETBLTSTATUS; }
-    if (@hasDecl(@This(), "PDD_SURFCB_GETFLIPSTATUS")) { _ = PDD_SURFCB_GETFLIPSTATUS; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_CANCREATEVIDEOPORT")) { _ = PDD_VPORTCB_CANCREATEVIDEOPORT; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_CREATEVIDEOPORT")) { _ = PDD_VPORTCB_CREATEVIDEOPORT; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_FLIP")) { _ = PDD_VPORTCB_FLIP; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETBANDWIDTH")) { _ = PDD_VPORTCB_GETBANDWIDTH; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETINPUTFORMATS")) { _ = PDD_VPORTCB_GETINPUTFORMATS; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETOUTPUTFORMATS")) { _ = PDD_VPORTCB_GETOUTPUTFORMATS; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETAUTOFLIPSURF")) { _ = PDD_VPORTCB_GETAUTOFLIPSURF; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETFIELD")) { _ = PDD_VPORTCB_GETFIELD; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETLINE")) { _ = PDD_VPORTCB_GETLINE; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETVPORTCONNECT")) { _ = PDD_VPORTCB_GETVPORTCONNECT; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_DESTROYVPORT")) { _ = PDD_VPORTCB_DESTROYVPORT; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETFLIPSTATUS")) { _ = PDD_VPORTCB_GETFLIPSTATUS; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_UPDATE")) { _ = PDD_VPORTCB_UPDATE; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_WAITFORSYNC")) { _ = PDD_VPORTCB_WAITFORSYNC; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_GETSIGNALSTATUS")) { _ = PDD_VPORTCB_GETSIGNALSTATUS; }
-    if (@hasDecl(@This(), "PDD_VPORTCB_COLORCONTROL")) { _ = PDD_VPORTCB_COLORCONTROL; }
+    if (@hasDecl(@This(), "PDD_CANCREATESURFACE")) { _ = PDD_CANCREATESURFACE; }
     if (@hasDecl(@This(), "PDD_COLORCB_COLORCONTROL")) { _ = PDD_COLORCB_COLORCONTROL; }
+    if (@hasDecl(@This(), "PDD_CREATEPALETTE")) { _ = PDD_CREATEPALETTE; }
+    if (@hasDecl(@This(), "PDD_CREATESURFACE")) { _ = PDD_CREATESURFACE; }
+    if (@hasDecl(@This(), "PDD_CREATESURFACEEX")) { _ = PDD_CREATESURFACEEX; }
+    if (@hasDecl(@This(), "PDD_DESTROYDDLOCAL")) { _ = PDD_DESTROYDDLOCAL; }
+    if (@hasDecl(@This(), "PDD_DESTROYDRIVER")) { _ = PDD_DESTROYDRIVER; }
+    if (@hasDecl(@This(), "PDD_FLIPTOGDISURFACE")) { _ = PDD_FLIPTOGDISURFACE; }
+    if (@hasDecl(@This(), "PDD_FREEDRIVERMEMORY")) { _ = PDD_FREEDRIVERMEMORY; }
+    if (@hasDecl(@This(), "PDD_GETAVAILDRIVERMEMORY")) { _ = PDD_GETAVAILDRIVERMEMORY; }
+    if (@hasDecl(@This(), "PDD_GETDRIVERINFO")) { _ = PDD_GETDRIVERINFO; }
+    if (@hasDecl(@This(), "PDD_GETDRIVERSTATE")) { _ = PDD_GETDRIVERSTATE; }
+    if (@hasDecl(@This(), "PDD_GETSCANLINE")) { _ = PDD_GETSCANLINE; }
     if (@hasDecl(@This(), "PDD_KERNELCB_SYNCSURFACE")) { _ = PDD_KERNELCB_SYNCSURFACE; }
     if (@hasDecl(@This(), "PDD_KERNELCB_SYNCVIDEOPORT")) { _ = PDD_KERNELCB_SYNCVIDEOPORT; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETGUIDS")) { _ = PDD_MOCOMPCB_GETGUIDS; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETFORMATS")) { _ = PDD_MOCOMPCB_GETFORMATS; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_CREATE")) { _ = PDD_MOCOMPCB_CREATE; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETCOMPBUFFINFO")) { _ = PDD_MOCOMPCB_GETCOMPBUFFINFO; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETINTERNALINFO")) { _ = PDD_MOCOMPCB_GETINTERNALINFO; }
+    if (@hasDecl(@This(), "PDD_MAPMEMORY")) { _ = PDD_MAPMEMORY; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_BEGINFRAME")) { _ = PDD_MOCOMPCB_BEGINFRAME; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_ENDFRAME")) { _ = PDD_MOCOMPCB_ENDFRAME; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_RENDER")) { _ = PDD_MOCOMPCB_RENDER; }
-    if (@hasDecl(@This(), "PDD_MOCOMPCB_QUERYSTATUS")) { _ = PDD_MOCOMPCB_QUERYSTATUS; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_CREATE")) { _ = PDD_MOCOMPCB_CREATE; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_DESTROY")) { _ = PDD_MOCOMPCB_DESTROY; }
-    if (@hasDecl(@This(), "PDX_IRQCALLBACK")) { _ = PDX_IRQCALLBACK; }
-    if (@hasDecl(@This(), "PDX_GETIRQINFO")) { _ = PDX_GETIRQINFO; }
-    if (@hasDecl(@This(), "PDX_ENABLEIRQ")) { _ = PDX_ENABLEIRQ; }
-    if (@hasDecl(@This(), "PDX_SKIPNEXTFIELD")) { _ = PDX_SKIPNEXTFIELD; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_ENDFRAME")) { _ = PDD_MOCOMPCB_ENDFRAME; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETCOMPBUFFINFO")) { _ = PDD_MOCOMPCB_GETCOMPBUFFINFO; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETFORMATS")) { _ = PDD_MOCOMPCB_GETFORMATS; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETGUIDS")) { _ = PDD_MOCOMPCB_GETGUIDS; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_GETINTERNALINFO")) { _ = PDD_MOCOMPCB_GETINTERNALINFO; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_QUERYSTATUS")) { _ = PDD_MOCOMPCB_QUERYSTATUS; }
+    if (@hasDecl(@This(), "PDD_MOCOMPCB_RENDER")) { _ = PDD_MOCOMPCB_RENDER; }
+    if (@hasDecl(@This(), "PDD_PALCB_DESTROYPALETTE")) { _ = PDD_PALCB_DESTROYPALETTE; }
+    if (@hasDecl(@This(), "PDD_PALCB_SETENTRIES")) { _ = PDD_PALCB_SETENTRIES; }
+    if (@hasDecl(@This(), "PDD_SETCOLORKEY")) { _ = PDD_SETCOLORKEY; }
+    if (@hasDecl(@This(), "PDD_SETEXCLUSIVEMODE")) { _ = PDD_SETEXCLUSIVEMODE; }
+    if (@hasDecl(@This(), "PDD_SETMODE")) { _ = PDD_SETMODE; }
+    if (@hasDecl(@This(), "PDD_SURFCB_ADDATTACHEDSURFACE")) { _ = PDD_SURFCB_ADDATTACHEDSURFACE; }
+    if (@hasDecl(@This(), "PDD_SURFCB_BLT")) { _ = PDD_SURFCB_BLT; }
+    if (@hasDecl(@This(), "PDD_SURFCB_DESTROYSURFACE")) { _ = PDD_SURFCB_DESTROYSURFACE; }
+    if (@hasDecl(@This(), "PDD_SURFCB_FLIP")) { _ = PDD_SURFCB_FLIP; }
+    if (@hasDecl(@This(), "PDD_SURFCB_GETBLTSTATUS")) { _ = PDD_SURFCB_GETBLTSTATUS; }
+    if (@hasDecl(@This(), "PDD_SURFCB_GETFLIPSTATUS")) { _ = PDD_SURFCB_GETFLIPSTATUS; }
+    if (@hasDecl(@This(), "PDD_SURFCB_LOCK")) { _ = PDD_SURFCB_LOCK; }
+    if (@hasDecl(@This(), "PDD_SURFCB_SETCLIPLIST")) { _ = PDD_SURFCB_SETCLIPLIST; }
+    if (@hasDecl(@This(), "PDD_SURFCB_SETCOLORKEY")) { _ = PDD_SURFCB_SETCOLORKEY; }
+    if (@hasDecl(@This(), "PDD_SURFCB_SETOVERLAYPOSITION")) { _ = PDD_SURFCB_SETOVERLAYPOSITION; }
+    if (@hasDecl(@This(), "PDD_SURFCB_SETPALETTE")) { _ = PDD_SURFCB_SETPALETTE; }
+    if (@hasDecl(@This(), "PDD_SURFCB_UNLOCK")) { _ = PDD_SURFCB_UNLOCK; }
+    if (@hasDecl(@This(), "PDD_SURFCB_UPDATEOVERLAY")) { _ = PDD_SURFCB_UPDATEOVERLAY; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_CANCREATEVIDEOPORT")) { _ = PDD_VPORTCB_CANCREATEVIDEOPORT; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_COLORCONTROL")) { _ = PDD_VPORTCB_COLORCONTROL; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_CREATEVIDEOPORT")) { _ = PDD_VPORTCB_CREATEVIDEOPORT; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_DESTROYVPORT")) { _ = PDD_VPORTCB_DESTROYVPORT; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_FLIP")) { _ = PDD_VPORTCB_FLIP; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETAUTOFLIPSURF")) { _ = PDD_VPORTCB_GETAUTOFLIPSURF; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETBANDWIDTH")) { _ = PDD_VPORTCB_GETBANDWIDTH; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETFIELD")) { _ = PDD_VPORTCB_GETFIELD; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETFLIPSTATUS")) { _ = PDD_VPORTCB_GETFLIPSTATUS; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETINPUTFORMATS")) { _ = PDD_VPORTCB_GETINPUTFORMATS; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETLINE")) { _ = PDD_VPORTCB_GETLINE; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETOUTPUTFORMATS")) { _ = PDD_VPORTCB_GETOUTPUTFORMATS; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETSIGNALSTATUS")) { _ = PDD_VPORTCB_GETSIGNALSTATUS; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_GETVPORTCONNECT")) { _ = PDD_VPORTCB_GETVPORTCONNECT; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_UPDATE")) { _ = PDD_VPORTCB_UPDATE; }
+    if (@hasDecl(@This(), "PDD_VPORTCB_WAITFORSYNC")) { _ = PDD_VPORTCB_WAITFORSYNC; }
+    if (@hasDecl(@This(), "PDD_WAITFORVERTICALBLANK")) { _ = PDD_WAITFORVERTICALBLANK; }
     if (@hasDecl(@This(), "PDX_BOBNEXTFIELD")) { _ = PDX_BOBNEXTFIELD; }
-    if (@hasDecl(@This(), "PDX_SETSTATE")) { _ = PDX_SETSTATE; }
-    if (@hasDecl(@This(), "PDX_LOCK")) { _ = PDX_LOCK; }
+    if (@hasDecl(@This(), "PDX_ENABLEIRQ")) { _ = PDX_ENABLEIRQ; }
     if (@hasDecl(@This(), "PDX_FLIPOVERLAY")) { _ = PDX_FLIPOVERLAY; }
     if (@hasDecl(@This(), "PDX_FLIPVIDEOPORT")) { _ = PDX_FLIPVIDEOPORT; }
-    if (@hasDecl(@This(), "PDX_GETPOLARITY")) { _ = PDX_GETPOLARITY; }
     if (@hasDecl(@This(), "PDX_GETCURRENTAUTOFLIP")) { _ = PDX_GETCURRENTAUTOFLIP; }
+    if (@hasDecl(@This(), "PDX_GETIRQINFO")) { _ = PDX_GETIRQINFO; }
+    if (@hasDecl(@This(), "PDX_GETPOLARITY")) { _ = PDX_GETPOLARITY; }
     if (@hasDecl(@This(), "PDX_GETPREVIOUSAUTOFLIP")) { _ = PDX_GETPREVIOUSAUTOFLIP; }
-    if (@hasDecl(@This(), "PDX_TRANSFER")) { _ = PDX_TRANSFER; }
     if (@hasDecl(@This(), "PDX_GETTRANSFERSTATUS")) { _ = PDX_GETTRANSFERSTATUS; }
+    if (@hasDecl(@This(), "PDX_IRQCALLBACK")) { _ = PDX_IRQCALLBACK; }
+    if (@hasDecl(@This(), "PDX_LOCK")) { _ = PDX_LOCK; }
+    if (@hasDecl(@This(), "PDX_SETSTATE")) { _ = PDX_SETSTATE; }
+    if (@hasDecl(@This(), "PDX_SKIPNEXTFIELD")) { _ = PDX_SKIPNEXTFIELD; }
+    if (@hasDecl(@This(), "PDX_TRANSFER")) { _ = PDX_TRANSFER; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

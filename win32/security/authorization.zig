@@ -2,178 +2,47 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (282)
 //--------------------------------------------------------------------------------
-pub const SDDL_REVISION_1 = @as(u32, 1);
-pub const SDDL_REVISION = @as(u32, 1);
-pub const SDDL_OWNER = "O";
-pub const SDDL_GROUP = "G";
-pub const SDDL_DACL = "D";
-pub const SDDL_SACL = "S";
-pub const SDDL_PROTECTED = "P";
-pub const SDDL_AUTO_INHERIT_REQ = "AR";
-pub const SDDL_AUTO_INHERITED = "AI";
-pub const SDDL_NULL_ACL = "NO_ACCESS_CONTROL";
-pub const SDDL_ACCESS_ALLOWED = "A";
-pub const SDDL_ACCESS_DENIED = "D";
-pub const SDDL_OBJECT_ACCESS_ALLOWED = "OA";
-pub const SDDL_OBJECT_ACCESS_DENIED = "OD";
-pub const SDDL_AUDIT = "AU";
-pub const SDDL_ALARM = "AL";
-pub const SDDL_OBJECT_AUDIT = "OU";
-pub const SDDL_OBJECT_ALARM = "OL";
-pub const SDDL_MANDATORY_LABEL = "ML";
-pub const SDDL_PROCESS_TRUST_LABEL = "TL";
-pub const SDDL_CALLBACK_ACCESS_ALLOWED = "XA";
-pub const SDDL_CALLBACK_ACCESS_DENIED = "XD";
-pub const SDDL_RESOURCE_ATTRIBUTE = "RA";
-pub const SDDL_SCOPED_POLICY_ID = "SP";
-pub const SDDL_CALLBACK_AUDIT = "XU";
-pub const SDDL_CALLBACK_OBJECT_ACCESS_ALLOWED = "ZA";
-pub const SDDL_ACCESS_FILTER = "FL";
-pub const SDDL_INT = "TI";
-pub const SDDL_UINT = "TU";
-pub const SDDL_WSTRING = "TS";
-pub const SDDL_SID = "TD";
-pub const SDDL_BLOB = "TX";
-pub const SDDL_BOOLEAN = "TB";
-pub const SDDL_CONTAINER_INHERIT = "CI";
-pub const SDDL_OBJECT_INHERIT = "OI";
-pub const SDDL_NO_PROPAGATE = "NP";
-pub const SDDL_INHERIT_ONLY = "IO";
-pub const SDDL_INHERITED = "ID";
-pub const SDDL_CRITICAL = "CR";
-pub const SDDL_TRUST_PROTECTED_FILTER = "TP";
-pub const SDDL_AUDIT_SUCCESS = "SA";
-pub const SDDL_AUDIT_FAILURE = "FA";
-pub const SDDL_READ_PROPERTY = "RP";
-pub const SDDL_WRITE_PROPERTY = "WP";
-pub const SDDL_CREATE_CHILD = "CC";
-pub const SDDL_DELETE_CHILD = "DC";
-pub const SDDL_LIST_CHILDREN = "LC";
-pub const SDDL_SELF_WRITE = "SW";
-pub const SDDL_LIST_OBJECT = "LO";
-pub const SDDL_DELETE_TREE = "DT";
-pub const SDDL_CONTROL_ACCESS = "CR";
-pub const SDDL_READ_CONTROL = "RC";
-pub const SDDL_WRITE_DAC = "WD";
-pub const SDDL_WRITE_OWNER = "WO";
-pub const SDDL_STANDARD_DELETE = "SD";
-pub const SDDL_GENERIC_ALL = "GA";
-pub const SDDL_GENERIC_READ = "GR";
-pub const SDDL_GENERIC_WRITE = "GW";
-pub const SDDL_GENERIC_EXECUTE = "GX";
-pub const SDDL_FILE_ALL = "FA";
-pub const SDDL_FILE_READ = "FR";
-pub const SDDL_FILE_WRITE = "FW";
-pub const SDDL_FILE_EXECUTE = "FX";
-pub const SDDL_KEY_ALL = "KA";
-pub const SDDL_KEY_READ = "KR";
-pub const SDDL_KEY_WRITE = "KW";
-pub const SDDL_KEY_EXECUTE = "KX";
-pub const SDDL_NO_WRITE_UP = "NW";
-pub const SDDL_NO_READ_UP = "NR";
-pub const SDDL_NO_EXECUTE_UP = "NX";
-pub const SDDL_ALIAS_SIZE = @as(u32, 2);
-pub const SDDL_DOMAIN_ADMINISTRATORS = "DA";
-pub const SDDL_DOMAIN_GUESTS = "DG";
-pub const SDDL_DOMAIN_USERS = "DU";
-pub const SDDL_ENTERPRISE_DOMAIN_CONTROLLERS = "ED";
-pub const SDDL_DOMAIN_DOMAIN_CONTROLLERS = "DD";
-pub const SDDL_DOMAIN_COMPUTERS = "DC";
-pub const SDDL_BUILTIN_ADMINISTRATORS = "BA";
-pub const SDDL_BUILTIN_GUESTS = "BG";
-pub const SDDL_BUILTIN_USERS = "BU";
-pub const SDDL_LOCAL_ADMIN = "LA";
-pub const SDDL_LOCAL_GUEST = "LG";
-pub const SDDL_ACCOUNT_OPERATORS = "AO";
-pub const SDDL_BACKUP_OPERATORS = "BO";
-pub const SDDL_PRINTER_OPERATORS = "PO";
-pub const SDDL_SERVER_OPERATORS = "SO";
-pub const SDDL_AUTHENTICATED_USERS = "AU";
-pub const SDDL_PERSONAL_SELF = "PS";
-pub const SDDL_CREATOR_OWNER = "CO";
-pub const SDDL_CREATOR_GROUP = "CG";
-pub const SDDL_LOCAL_SYSTEM = "SY";
-pub const SDDL_POWER_USERS = "PU";
-pub const SDDL_EVERYONE = "WD";
-pub const SDDL_REPLICATOR = "RE";
-pub const SDDL_INTERACTIVE = "IU";
-pub const SDDL_NETWORK = "NU";
-pub const SDDL_SERVICE = "SU";
-pub const SDDL_RESTRICTED_CODE = "RC";
-pub const SDDL_WRITE_RESTRICTED_CODE = "WR";
-pub const SDDL_ANONYMOUS = "AN";
-pub const SDDL_SCHEMA_ADMINISTRATORS = "SA";
-pub const SDDL_CERT_SERV_ADMINISTRATORS = "CA";
-pub const SDDL_RAS_SERVERS = "RS";
-pub const SDDL_ENTERPRISE_ADMINS = "EA";
-pub const SDDL_GROUP_POLICY_ADMINS = "PA";
-pub const SDDL_ALIAS_PREW2KCOMPACC = "RU";
-pub const SDDL_LOCAL_SERVICE = "LS";
-pub const SDDL_NETWORK_SERVICE = "NS";
-pub const SDDL_REMOTE_DESKTOP = "RD";
-pub const SDDL_NETWORK_CONFIGURATION_OPS = "NO";
-pub const SDDL_PERFMON_USERS = "MU";
-pub const SDDL_PERFLOG_USERS = "LU";
-pub const SDDL_IIS_USERS = "IS";
-pub const SDDL_CRYPTO_OPERATORS = "CY";
-pub const SDDL_OWNER_RIGHTS = "OW";
-pub const SDDL_EVENT_LOG_READERS = "ER";
-pub const SDDL_ENTERPRISE_RO_DCs = "RO";
-pub const SDDL_CERTSVC_DCOM_ACCESS = "CD";
-pub const SDDL_ALL_APP_PACKAGES = "AC";
-pub const SDDL_RDS_REMOTE_ACCESS_SERVERS = "RA";
-pub const SDDL_RDS_ENDPOINT_SERVERS = "ES";
-pub const SDDL_RDS_MANAGEMENT_SERVERS = "MS";
-pub const SDDL_USER_MODE_DRIVERS = "UD";
-pub const SDDL_HYPER_V_ADMINS = "HA";
-pub const SDDL_CLONEABLE_CONTROLLERS = "CN";
-pub const SDDL_ACCESS_CONTROL_ASSISTANCE_OPS = "AA";
-pub const SDDL_REMOTE_MANAGEMENT_USERS = "RM";
-pub const SDDL_AUTHORITY_ASSERTED = "AS";
-pub const SDDL_SERVICE_ASSERTED = "SS";
-pub const SDDL_PROTECTED_USERS = "AP";
-pub const SDDL_KEY_ADMINS = "KA";
-pub const SDDL_ENTERPRISE_KEY_ADMINS = "EK";
-pub const SDDL_ML_LOW = "LW";
-pub const SDDL_ML_MEDIUM = "ME";
-pub const SDDL_ML_MEDIUM_PLUS = "MP";
-pub const SDDL_ML_HIGH = "HI";
-pub const SDDL_ML_SYSTEM = "SI";
-pub const SDDL_SEPERATOR = ";";
-pub const SDDL_DELIMINATOR = ":";
-pub const SDDL_ACE_BEGIN = "(";
-pub const SDDL_ACE_END = ")";
-pub const SDDL_ACE_COND_BEGIN = "(";
-pub const SDDL_ACE_COND_END = ")";
-pub const SDDL_SPACE = " ";
-pub const SDDL_ACE_COND_BLOB_PREFIX = "#";
-pub const SDDL_ACE_COND_SID_PREFIX = "SID";
-pub const SDDL_ACE_COND_ATTRIBUTE_PREFIX = "@";
-pub const SDDL_ACE_COND_USER_ATTRIBUTE_PREFIX = "@USER.";
-pub const SDDL_ACE_COND_RESOURCE_ATTRIBUTE_PREFIX = "@RESOURCE.";
-pub const SDDL_ACE_COND_DEVICE_ATTRIBUTE_PREFIX = "@DEVICE.";
-pub const SDDL_ACE_COND_TOKEN_ATTRIBUTE_PREFIX = "@TOKEN.";
-pub const INHERITED_ACCESS_ENTRY = @as(u32, 16);
-pub const INHERITED_PARENT = @as(u32, 268435456);
-pub const INHERITED_GRANDPARENT = @as(u32, 536870912);
+pub const _AUTHZ_SS_MAXSIZE = @as(u32, 128);
+pub const ACCCTRL_DEFAULT_PROVIDER = "Windows NT Access Provider";
 pub const ACCCTRL_DEFAULT_PROVIDERA = "Windows NT Access Provider";
 pub const ACCCTRL_DEFAULT_PROVIDERW = "Windows NT Access Provider";
-pub const ACCCTRL_DEFAULT_PROVIDER = "Windows NT Access Provider";
-pub const TRUSTEE_ACCESS_ALLOWED = @as(i32, 1);
-pub const TRUSTEE_ACCESS_READ = @as(i32, 2);
-pub const TRUSTEE_ACCESS_WRITE = @as(i32, 4);
-pub const TRUSTEE_ACCESS_EXPLICIT = @as(i32, 1);
-pub const TRUSTEE_ACCESS_ALL = @as(i32, -1);
-pub const ACTRL_RESERVED = @as(u32, 0);
+pub const ACTRL_ACCESS_NO_OPTIONS = @as(u32, 0);
+pub const ACTRL_ACCESS_PROTECTED = @as(u32, 1);
+pub const ACTRL_ACCESS_SUPPORTS_OBJECT_ENTRIES = @as(u32, 1);
+pub const ACTRL_CHANGE_ACCESS = @as(u32, 536870912);
+pub const ACTRL_CHANGE_OWNER = @as(u32, 1073741824);
+pub const ACTRL_DELETE = @as(u32, 134217728);
+pub const ACTRL_DIR_CREATE_CHILD = @as(u32, 4);
+pub const ACTRL_DIR_CREATE_OBJECT = @as(u32, 2);
+pub const ACTRL_DIR_DELETE_CHILD = @as(u32, 64);
+pub const ACTRL_DIR_LIST = @as(u32, 1);
+pub const ACTRL_DIR_TRAVERSE = @as(u32, 32);
+pub const ACTRL_FILE_APPEND = @as(u32, 4);
+pub const ACTRL_FILE_CREATE_PIPE = @as(u32, 512);
+pub const ACTRL_FILE_EXECUTE = @as(u32, 32);
+pub const ACTRL_FILE_READ = @as(u32, 1);
+pub const ACTRL_FILE_READ_ATTRIB = @as(u32, 128);
+pub const ACTRL_FILE_READ_PROP = @as(u32, 8);
+pub const ACTRL_FILE_WRITE = @as(u32, 2);
+pub const ACTRL_FILE_WRITE_ATTRIB = @as(u32, 256);
+pub const ACTRL_FILE_WRITE_PROP = @as(u32, 16);
+pub const ACTRL_KERNEL_ALERT = @as(u32, 1024);
+pub const ACTRL_KERNEL_CONTROL = @as(u32, 512);
+pub const ACTRL_KERNEL_DIMPERSONATE = @as(u32, 32768);
+pub const ACTRL_KERNEL_DUP_HANDLE = @as(u32, 32);
+pub const ACTRL_KERNEL_GET_CONTEXT = @as(u32, 2048);
+pub const ACTRL_KERNEL_GET_INFO = @as(u32, 256);
+pub const ACTRL_KERNEL_IMPERSONATE = @as(u32, 16384);
+pub const ACTRL_KERNEL_PROCESS = @as(u32, 64);
+pub const ACTRL_KERNEL_SET_CONTEXT = @as(u32, 4096);
+pub const ACTRL_KERNEL_SET_INFO = @as(u32, 128);
+pub const ACTRL_KERNEL_TERMINATE = @as(u32, 1);
+pub const ACTRL_KERNEL_THREAD = @as(u32, 2);
+pub const ACTRL_KERNEL_TOKEN = @as(u32, 8192);
+pub const ACTRL_KERNEL_VM = @as(u32, 4);
+pub const ACTRL_KERNEL_VM_READ = @as(u32, 8);
+pub const ACTRL_KERNEL_VM_WRITE = @as(u32, 16);
 pub const ACTRL_PERM_1 = @as(u32, 1);
-pub const ACTRL_PERM_2 = @as(u32, 2);
-pub const ACTRL_PERM_3 = @as(u32, 4);
-pub const ACTRL_PERM_4 = @as(u32, 8);
-pub const ACTRL_PERM_5 = @as(u32, 16);
-pub const ACTRL_PERM_6 = @as(u32, 32);
-pub const ACTRL_PERM_7 = @as(u32, 64);
-pub const ACTRL_PERM_8 = @as(u32, 128);
-pub const ACTRL_PERM_9 = @as(u32, 256);
 pub const ACTRL_PERM_10 = @as(u32, 512);
 pub const ACTRL_PERM_11 = @as(u32, 1024);
 pub const ACTRL_PERM_12 = @as(u32, 2048);
@@ -184,110 +53,555 @@ pub const ACTRL_PERM_16 = @as(u32, 32768);
 pub const ACTRL_PERM_17 = @as(u32, 65536);
 pub const ACTRL_PERM_18 = @as(u32, 131072);
 pub const ACTRL_PERM_19 = @as(u32, 262144);
+pub const ACTRL_PERM_2 = @as(u32, 2);
 pub const ACTRL_PERM_20 = @as(u32, 524288);
-pub const ACTRL_ACCESS_PROTECTED = @as(u32, 1);
-pub const ACTRL_SYSTEM_ACCESS = @as(u32, 67108864);
-pub const ACTRL_DELETE = @as(u32, 134217728);
-pub const ACTRL_READ_CONTROL = @as(u32, 268435456);
-pub const ACTRL_CHANGE_ACCESS = @as(u32, 536870912);
-pub const ACTRL_CHANGE_OWNER = @as(u32, 1073741824);
-pub const ACTRL_SYNCHRONIZE = @as(u32, 2147483648);
-pub const ACTRL_STD_RIGHTS_ALL = @as(u32, 4160749568);
-pub const ACTRL_FILE_READ = @as(u32, 1);
-pub const ACTRL_FILE_WRITE = @as(u32, 2);
-pub const ACTRL_FILE_APPEND = @as(u32, 4);
-pub const ACTRL_FILE_READ_PROP = @as(u32, 8);
-pub const ACTRL_FILE_WRITE_PROP = @as(u32, 16);
-pub const ACTRL_FILE_EXECUTE = @as(u32, 32);
-pub const ACTRL_FILE_READ_ATTRIB = @as(u32, 128);
-pub const ACTRL_FILE_WRITE_ATTRIB = @as(u32, 256);
-pub const ACTRL_FILE_CREATE_PIPE = @as(u32, 512);
-pub const ACTRL_DIR_LIST = @as(u32, 1);
-pub const ACTRL_DIR_CREATE_OBJECT = @as(u32, 2);
-pub const ACTRL_DIR_CREATE_CHILD = @as(u32, 4);
-pub const ACTRL_DIR_DELETE_CHILD = @as(u32, 64);
-pub const ACTRL_DIR_TRAVERSE = @as(u32, 32);
-pub const ACTRL_KERNEL_TERMINATE = @as(u32, 1);
-pub const ACTRL_KERNEL_THREAD = @as(u32, 2);
-pub const ACTRL_KERNEL_VM = @as(u32, 4);
-pub const ACTRL_KERNEL_VM_READ = @as(u32, 8);
-pub const ACTRL_KERNEL_VM_WRITE = @as(u32, 16);
-pub const ACTRL_KERNEL_DUP_HANDLE = @as(u32, 32);
-pub const ACTRL_KERNEL_PROCESS = @as(u32, 64);
-pub const ACTRL_KERNEL_SET_INFO = @as(u32, 128);
-pub const ACTRL_KERNEL_GET_INFO = @as(u32, 256);
-pub const ACTRL_KERNEL_CONTROL = @as(u32, 512);
-pub const ACTRL_KERNEL_ALERT = @as(u32, 1024);
-pub const ACTRL_KERNEL_GET_CONTEXT = @as(u32, 2048);
-pub const ACTRL_KERNEL_SET_CONTEXT = @as(u32, 4096);
-pub const ACTRL_KERNEL_TOKEN = @as(u32, 8192);
-pub const ACTRL_KERNEL_IMPERSONATE = @as(u32, 16384);
-pub const ACTRL_KERNEL_DIMPERSONATE = @as(u32, 32768);
-pub const ACTRL_PRINT_SADMIN = @as(u32, 1);
-pub const ACTRL_PRINT_SLIST = @as(u32, 2);
+pub const ACTRL_PERM_3 = @as(u32, 4);
+pub const ACTRL_PERM_4 = @as(u32, 8);
+pub const ACTRL_PERM_5 = @as(u32, 16);
+pub const ACTRL_PERM_6 = @as(u32, 32);
+pub const ACTRL_PERM_7 = @as(u32, 64);
+pub const ACTRL_PERM_8 = @as(u32, 128);
+pub const ACTRL_PERM_9 = @as(u32, 256);
+pub const ACTRL_PRINT_JADMIN = @as(u32, 16);
 pub const ACTRL_PRINT_PADMIN = @as(u32, 4);
 pub const ACTRL_PRINT_PUSE = @as(u32, 8);
-pub const ACTRL_PRINT_JADMIN = @as(u32, 16);
-pub const ACTRL_SVC_GET_INFO = @as(u32, 1);
-pub const ACTRL_SVC_SET_INFO = @as(u32, 2);
-pub const ACTRL_SVC_STATUS = @as(u32, 4);
-pub const ACTRL_SVC_LIST = @as(u32, 8);
-pub const ACTRL_SVC_START = @as(u32, 16);
-pub const ACTRL_SVC_STOP = @as(u32, 32);
-pub const ACTRL_SVC_PAUSE = @as(u32, 64);
-pub const ACTRL_SVC_INTERROGATE = @as(u32, 128);
-pub const ACTRL_SVC_UCONTROL = @as(u32, 256);
-pub const ACTRL_REG_QUERY = @as(u32, 1);
-pub const ACTRL_REG_SET = @as(u32, 2);
+pub const ACTRL_PRINT_SADMIN = @as(u32, 1);
+pub const ACTRL_PRINT_SLIST = @as(u32, 2);
+pub const ACTRL_READ_CONTROL = @as(u32, 268435456);
 pub const ACTRL_REG_CREATE_CHILD = @as(u32, 4);
+pub const ACTRL_REG_LINK = @as(u32, 32);
 pub const ACTRL_REG_LIST = @as(u32, 8);
 pub const ACTRL_REG_NOTIFY = @as(u32, 16);
-pub const ACTRL_REG_LINK = @as(u32, 32);
+pub const ACTRL_REG_QUERY = @as(u32, 1);
+pub const ACTRL_REG_SET = @as(u32, 2);
+pub const ACTRL_RESERVED = @as(u32, 0);
+pub const ACTRL_STD_RIGHTS_ALL = @as(u32, 4160749568);
+pub const ACTRL_SVC_GET_INFO = @as(u32, 1);
+pub const ACTRL_SVC_INTERROGATE = @as(u32, 128);
+pub const ACTRL_SVC_LIST = @as(u32, 8);
+pub const ACTRL_SVC_PAUSE = @as(u32, 64);
+pub const ACTRL_SVC_SET_INFO = @as(u32, 2);
+pub const ACTRL_SVC_START = @as(u32, 16);
+pub const ACTRL_SVC_STATUS = @as(u32, 4);
+pub const ACTRL_SVC_STOP = @as(u32, 32);
+pub const ACTRL_SVC_UCONTROL = @as(u32, 256);
+pub const ACTRL_SYNCHRONIZE = @as(u32, 2147483648);
+pub const ACTRL_SYSTEM_ACCESS = @as(u32, 67108864);
 pub const ACTRL_WIN_CLIPBRD = @as(u32, 1);
-pub const ACTRL_WIN_GLOBAL_ATOMS = @as(u32, 2);
 pub const ACTRL_WIN_CREATE = @as(u32, 4);
-pub const ACTRL_WIN_LIST_DESK = @as(u32, 8);
-pub const ACTRL_WIN_LIST = @as(u32, 16);
-pub const ACTRL_WIN_READ_ATTRIBS = @as(u32, 32);
-pub const ACTRL_WIN_WRITE_ATTRIBS = @as(u32, 64);
-pub const ACTRL_WIN_SCREEN = @as(u32, 128);
 pub const ACTRL_WIN_EXIT = @as(u32, 256);
-pub const ACTRL_ACCESS_NO_OPTIONS = @as(u32, 0);
-pub const ACTRL_ACCESS_SUPPORTS_OBJECT_ENTRIES = @as(u32, 1);
-pub const AUDIT_TYPE_LEGACY = @as(u32, 1);
-pub const AUDIT_TYPE_WMI = @as(u32, 2);
+pub const ACTRL_WIN_GLOBAL_ATOMS = @as(u32, 2);
+pub const ACTRL_WIN_LIST = @as(u32, 16);
+pub const ACTRL_WIN_LIST_DESK = @as(u32, 8);
+pub const ACTRL_WIN_READ_ATTRIBS = @as(u32, 32);
+pub const ACTRL_WIN_SCREEN = @as(u32, 128);
+pub const ACTRL_WIN_WRITE_ATTRIBS = @as(u32, 64);
 pub const AP_ParamTypeBits = @as(u32, 8);
 pub const AP_ParamTypeMask = @as(i32, 255);
-pub const _AUTHZ_SS_MAXSIZE = @as(u32, 128);
 pub const APF_AuditFailure = @as(u32, 0);
 pub const APF_AuditSuccess = @as(u32, 1);
 pub const APF_ValidFlags = @as(u32, 1);
-pub const AUTHZP_WPD_EVENT = @as(u32, 16);
+pub const AUDIT_TYPE_LEGACY = @as(u32, 1);
+pub const AUDIT_TYPE_WMI = @as(u32, 2);
 pub const AUTHZ_ALLOW_MULTIPLE_SOURCE_INSTANCES = @as(u32, 1);
-pub const AUTHZ_MIGRATED_LEGACY_PUBLISHER = @as(u32, 2);
 pub const AUTHZ_AUDIT_INSTANCE_INFORMATION = @as(u32, 2);
-pub const AUTHZ_SKIP_TOKEN_GROUPS = @as(u32, 2);
-pub const AUTHZ_REQUIRE_S4U_LOGON = @as(u32, 4);
 pub const AUTHZ_COMPUTE_PRIVILEGES = @as(u32, 8);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_INVALID = @as(u32, 0);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_INT64 = @as(u32, 1);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_UINT64 = @as(u32, 2);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_STRING = @as(u32, 3);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_FQBN = @as(u32, 4);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_SID = @as(u32, 5);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = @as(u32, 6);
-pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING = @as(u32, 16);
-pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1 = @as(u32, 1);
-pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION_VERSION = @as(u32, 1);
-pub const AUTHZ_RPC_INIT_INFO_CLIENT_VERSION_V1 = @as(u32, 1);
-pub const AUTHZ_INIT_INFO_VERSION_V1 = @as(u32, 1);
-pub const AUTHZ_WPD_CATEGORY_FLAG = @as(u32, 16);
 pub const AUTHZ_FLAG_ALLOW_MULTIPLE_SOURCE_INSTANCES = @as(u32, 1);
+pub const AUTHZ_INIT_INFO_VERSION_V1 = @as(u32, 1);
+pub const AUTHZ_MIGRATED_LEGACY_PUBLISHER = @as(u32, 2);
+pub const AUTHZ_REQUIRE_S4U_LOGON = @as(u32, 4);
+pub const AUTHZ_RPC_INIT_INFO_CLIENT_VERSION_V1 = @as(u32, 1);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = @as(u32, 6);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_FQBN = @as(u32, 4);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_INT64 = @as(u32, 1);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_INVALID = @as(u32, 0);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING = @as(u32, 16);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_SID = @as(u32, 5);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_STRING = @as(u32, 3);
+pub const AUTHZ_SECURITY_ATTRIBUTE_TYPE_UINT64 = @as(u32, 2);
+pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION_VERSION = @as(u32, 1);
+pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1 = @as(u32, 1);
+pub const AUTHZ_SKIP_TOKEN_GROUPS = @as(u32, 2);
+pub const AUTHZ_WPD_CATEGORY_FLAG = @as(u32, 16);
+pub const AUTHZP_WPD_EVENT = @as(u32, 16);
+pub const INHERITED_ACCESS_ENTRY = @as(u32, 16);
+pub const INHERITED_GRANDPARENT = @as(u32, 536870912);
+pub const INHERITED_PARENT = @as(u32, 268435456);
 pub const OLESCRIPT_E_SYNTAX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147352319));
+pub const SDDL_ACCESS_ALLOWED = "A";
+pub const SDDL_ACCESS_CONTROL_ASSISTANCE_OPS = "AA";
+pub const SDDL_ACCESS_DENIED = "D";
+pub const SDDL_ACCESS_FILTER = "FL";
+pub const SDDL_ACCOUNT_OPERATORS = "AO";
+pub const SDDL_ACE_BEGIN = "(";
+pub const SDDL_ACE_COND_ATTRIBUTE_PREFIX = "@";
+pub const SDDL_ACE_COND_BEGIN = "(";
+pub const SDDL_ACE_COND_BLOB_PREFIX = "#";
+pub const SDDL_ACE_COND_DEVICE_ATTRIBUTE_PREFIX = "@DEVICE.";
+pub const SDDL_ACE_COND_END = ")";
+pub const SDDL_ACE_COND_RESOURCE_ATTRIBUTE_PREFIX = "@RESOURCE.";
+pub const SDDL_ACE_COND_SID_PREFIX = "SID";
+pub const SDDL_ACE_COND_TOKEN_ATTRIBUTE_PREFIX = "@TOKEN.";
+pub const SDDL_ACE_COND_USER_ATTRIBUTE_PREFIX = "@USER.";
+pub const SDDL_ACE_END = ")";
+pub const SDDL_ALARM = "AL";
+pub const SDDL_ALIAS_PREW2KCOMPACC = "RU";
+pub const SDDL_ALIAS_SIZE = @as(u32, 2);
+pub const SDDL_ALL_APP_PACKAGES = "AC";
+pub const SDDL_ANONYMOUS = "AN";
+pub const SDDL_AUDIT = "AU";
+pub const SDDL_AUDIT_FAILURE = "FA";
+pub const SDDL_AUDIT_SUCCESS = "SA";
+pub const SDDL_AUTHENTICATED_USERS = "AU";
+pub const SDDL_AUTHORITY_ASSERTED = "AS";
+pub const SDDL_AUTO_INHERIT_REQ = "AR";
+pub const SDDL_AUTO_INHERITED = "AI";
+pub const SDDL_BACKUP_OPERATORS = "BO";
+pub const SDDL_BLOB = "TX";
+pub const SDDL_BOOLEAN = "TB";
+pub const SDDL_BUILTIN_ADMINISTRATORS = "BA";
+pub const SDDL_BUILTIN_GUESTS = "BG";
+pub const SDDL_BUILTIN_USERS = "BU";
+pub const SDDL_CALLBACK_ACCESS_ALLOWED = "XA";
+pub const SDDL_CALLBACK_ACCESS_DENIED = "XD";
+pub const SDDL_CALLBACK_AUDIT = "XU";
+pub const SDDL_CALLBACK_OBJECT_ACCESS_ALLOWED = "ZA";
+pub const SDDL_CERT_SERV_ADMINISTRATORS = "CA";
+pub const SDDL_CERTSVC_DCOM_ACCESS = "CD";
+pub const SDDL_CLONEABLE_CONTROLLERS = "CN";
+pub const SDDL_CONTAINER_INHERIT = "CI";
+pub const SDDL_CONTROL_ACCESS = "CR";
+pub const SDDL_CREATE_CHILD = "CC";
+pub const SDDL_CREATOR_GROUP = "CG";
+pub const SDDL_CREATOR_OWNER = "CO";
+pub const SDDL_CRITICAL = "CR";
+pub const SDDL_CRYPTO_OPERATORS = "CY";
+pub const SDDL_DACL = "D";
+pub const SDDL_DELETE_CHILD = "DC";
+pub const SDDL_DELETE_TREE = "DT";
+pub const SDDL_DELIMINATOR = ":";
+pub const SDDL_DOMAIN_ADMINISTRATORS = "DA";
+pub const SDDL_DOMAIN_COMPUTERS = "DC";
+pub const SDDL_DOMAIN_DOMAIN_CONTROLLERS = "DD";
+pub const SDDL_DOMAIN_GUESTS = "DG";
+pub const SDDL_DOMAIN_USERS = "DU";
+pub const SDDL_ENTERPRISE_ADMINS = "EA";
+pub const SDDL_ENTERPRISE_DOMAIN_CONTROLLERS = "ED";
+pub const SDDL_ENTERPRISE_KEY_ADMINS = "EK";
+pub const SDDL_ENTERPRISE_RO_DCs = "RO";
+pub const SDDL_EVENT_LOG_READERS = "ER";
+pub const SDDL_EVERYONE = "WD";
+pub const SDDL_FILE_ALL = "FA";
+pub const SDDL_FILE_EXECUTE = "FX";
+pub const SDDL_FILE_READ = "FR";
+pub const SDDL_FILE_WRITE = "FW";
+pub const SDDL_GENERIC_ALL = "GA";
+pub const SDDL_GENERIC_EXECUTE = "GX";
+pub const SDDL_GENERIC_READ = "GR";
+pub const SDDL_GENERIC_WRITE = "GW";
+pub const SDDL_GROUP = "G";
+pub const SDDL_GROUP_POLICY_ADMINS = "PA";
+pub const SDDL_HYPER_V_ADMINS = "HA";
+pub const SDDL_IIS_USERS = "IS";
+pub const SDDL_INHERIT_ONLY = "IO";
+pub const SDDL_INHERITED = "ID";
+pub const SDDL_INT = "TI";
+pub const SDDL_INTERACTIVE = "IU";
+pub const SDDL_KEY_ADMINS = "KA";
+pub const SDDL_KEY_ALL = "KA";
+pub const SDDL_KEY_EXECUTE = "KX";
+pub const SDDL_KEY_READ = "KR";
+pub const SDDL_KEY_WRITE = "KW";
+pub const SDDL_LIST_CHILDREN = "LC";
+pub const SDDL_LIST_OBJECT = "LO";
+pub const SDDL_LOCAL_ADMIN = "LA";
+pub const SDDL_LOCAL_GUEST = "LG";
+pub const SDDL_LOCAL_SERVICE = "LS";
+pub const SDDL_LOCAL_SYSTEM = "SY";
+pub const SDDL_MANDATORY_LABEL = "ML";
+pub const SDDL_ML_HIGH = "HI";
+pub const SDDL_ML_LOW = "LW";
+pub const SDDL_ML_MEDIUM = "ME";
+pub const SDDL_ML_MEDIUM_PLUS = "MP";
+pub const SDDL_ML_SYSTEM = "SI";
+pub const SDDL_NETWORK = "NU";
+pub const SDDL_NETWORK_CONFIGURATION_OPS = "NO";
+pub const SDDL_NETWORK_SERVICE = "NS";
+pub const SDDL_NO_EXECUTE_UP = "NX";
+pub const SDDL_NO_PROPAGATE = "NP";
+pub const SDDL_NO_READ_UP = "NR";
+pub const SDDL_NO_WRITE_UP = "NW";
+pub const SDDL_NULL_ACL = "NO_ACCESS_CONTROL";
+pub const SDDL_OBJECT_ACCESS_ALLOWED = "OA";
+pub const SDDL_OBJECT_ACCESS_DENIED = "OD";
+pub const SDDL_OBJECT_ALARM = "OL";
+pub const SDDL_OBJECT_AUDIT = "OU";
+pub const SDDL_OBJECT_INHERIT = "OI";
+pub const SDDL_OWNER = "O";
+pub const SDDL_OWNER_RIGHTS = "OW";
+pub const SDDL_PERFLOG_USERS = "LU";
+pub const SDDL_PERFMON_USERS = "MU";
+pub const SDDL_PERSONAL_SELF = "PS";
+pub const SDDL_POWER_USERS = "PU";
+pub const SDDL_PRINTER_OPERATORS = "PO";
+pub const SDDL_PROCESS_TRUST_LABEL = "TL";
+pub const SDDL_PROTECTED = "P";
+pub const SDDL_PROTECTED_USERS = "AP";
+pub const SDDL_RAS_SERVERS = "RS";
+pub const SDDL_RDS_ENDPOINT_SERVERS = "ES";
+pub const SDDL_RDS_MANAGEMENT_SERVERS = "MS";
+pub const SDDL_RDS_REMOTE_ACCESS_SERVERS = "RA";
+pub const SDDL_READ_CONTROL = "RC";
+pub const SDDL_READ_PROPERTY = "RP";
+pub const SDDL_REMOTE_DESKTOP = "RD";
+pub const SDDL_REMOTE_MANAGEMENT_USERS = "RM";
+pub const SDDL_REPLICATOR = "RE";
+pub const SDDL_RESOURCE_ATTRIBUTE = "RA";
+pub const SDDL_RESTRICTED_CODE = "RC";
+pub const SDDL_REVISION = @as(u32, 1);
+pub const SDDL_REVISION_1 = @as(u32, 1);
+pub const SDDL_SACL = "S";
+pub const SDDL_SCHEMA_ADMINISTRATORS = "SA";
+pub const SDDL_SCOPED_POLICY_ID = "SP";
+pub const SDDL_SELF_WRITE = "SW";
+pub const SDDL_SEPERATOR = ";";
+pub const SDDL_SERVER_OPERATORS = "SO";
+pub const SDDL_SERVICE = "SU";
+pub const SDDL_SERVICE_ASSERTED = "SS";
+pub const SDDL_SID = "TD";
+pub const SDDL_SPACE = " ";
+pub const SDDL_STANDARD_DELETE = "SD";
+pub const SDDL_TRUST_PROTECTED_FILTER = "TP";
+pub const SDDL_UINT = "TU";
+pub const SDDL_USER_MODE_DRIVERS = "UD";
+pub const SDDL_WRITE_DAC = "WD";
+pub const SDDL_WRITE_OWNER = "WO";
+pub const SDDL_WRITE_PROPERTY = "WP";
+pub const SDDL_WRITE_RESTRICTED_CODE = "WR";
+pub const SDDL_WSTRING = "TS";
+pub const TRUSTEE_ACCESS_ALL = @as(i32, -1);
+pub const TRUSTEE_ACCESS_ALLOWED = @as(i32, 1);
+pub const TRUSTEE_ACCESS_EXPLICIT = @as(i32, 1);
+pub const TRUSTEE_ACCESS_READ = @as(i32, 2);
+pub const TRUSTEE_ACCESS_WRITE = @as(i32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (112)
 //--------------------------------------------------------------------------------
+pub const ACCESS_MODE = enum(i32) {
+    NOT_USED_ACCESS = 0,
+    GRANT_ACCESS = 1,
+    SET_ACCESS = 2,
+    DENY_ACCESS = 3,
+    REVOKE_ACCESS = 4,
+    SET_AUDIT_SUCCESS = 5,
+    SET_AUDIT_FAILURE = 6,
+};
+pub const NOT_USED_ACCESS = ACCESS_MODE.NOT_USED_ACCESS;
+pub const GRANT_ACCESS = ACCESS_MODE.GRANT_ACCESS;
+pub const SET_ACCESS = ACCESS_MODE.SET_ACCESS;
+pub const DENY_ACCESS = ACCESS_MODE.DENY_ACCESS;
+pub const REVOKE_ACCESS = ACCESS_MODE.REVOKE_ACCESS;
+pub const SET_AUDIT_SUCCESS = ACCESS_MODE.SET_AUDIT_SUCCESS;
+pub const SET_AUDIT_FAILURE = ACCESS_MODE.SET_AUDIT_FAILURE;
+
+pub const ACTRL_ACCESS_ENTRY_ACCESS_FLAGS = enum(u32) {
+    CCESS_ALLOWED = 1,
+    CCESS_DENIED = 2,
+    UDIT_SUCCESS = 4,
+    UDIT_FAILURE = 8,
+};
+pub const ACTRL_ACCESS_ALLOWED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_ALLOWED;
+pub const ACTRL_ACCESS_DENIED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_DENIED;
+pub const ACTRL_AUDIT_SUCCESS = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_SUCCESS;
+pub const ACTRL_AUDIT_FAILURE = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_FAILURE;
+
+pub const ACTRL_ACCESS_ENTRY_LISTA = extern struct {
+    cEntries: u32,
+    pAccessList: ?*ACTRL_ACCESS_ENTRYA,
+};
+
+pub const ACTRL_ACCESS_ENTRY_LISTW = extern struct {
+    cEntries: u32,
+    pAccessList: ?*ACTRL_ACCESS_ENTRYW,
+};
+
+pub const ACTRL_ACCESS_ENTRYA = extern struct {
+    Trustee: TRUSTEE_A,
+    fAccessFlags: ACTRL_ACCESS_ENTRY_ACCESS_FLAGS,
+    Access: u32,
+    ProvSpecificAccess: u32,
+    Inheritance: ACE_FLAGS,
+    lpInheritProperty: ?PSTR,
+};
+
+pub const ACTRL_ACCESS_ENTRYW = extern struct {
+    Trustee: TRUSTEE_W,
+    fAccessFlags: ACTRL_ACCESS_ENTRY_ACCESS_FLAGS,
+    Access: u32,
+    ProvSpecificAccess: u32,
+    Inheritance: ACE_FLAGS,
+    lpInheritProperty: ?PWSTR,
+};
+
+pub const ACTRL_ACCESS_INFOA = extern struct {
+    fAccessPermission: u32,
+    lpAccessPermissionName: ?PSTR,
+};
+
+pub const ACTRL_ACCESS_INFOW = extern struct {
+    fAccessPermission: u32,
+    lpAccessPermissionName: ?PWSTR,
+};
+
+pub const ACTRL_ACCESSA = extern struct {
+    cEntries: u32,
+    pPropertyAccessList: ?*ACTRL_PROPERTY_ENTRYA,
+};
+
+pub const ACTRL_ACCESSW = extern struct {
+    cEntries: u32,
+    pPropertyAccessList: ?*ACTRL_PROPERTY_ENTRYW,
+};
+
+pub const ACTRL_CONTROL_INFOA = extern struct {
+    lpControlId: ?PSTR,
+    lpControlName: ?PSTR,
+};
+
+pub const ACTRL_CONTROL_INFOW = extern struct {
+    lpControlId: ?PWSTR,
+    lpControlName: ?PWSTR,
+};
+
+pub const ACTRL_OVERLAPPED = extern struct {
+    Anonymous: extern union {
+        Provider: ?*anyopaque,
+        Reserved1: u32,
+    },
+    Reserved2: u32,
+    hEvent: ?HANDLE,
+};
+
+pub const ACTRL_PROPERTY_ENTRYA = extern struct {
+    lpProperty: ?PSTR,
+    pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTA,
+    fListFlags: u32,
+};
+
+pub const ACTRL_PROPERTY_ENTRYW = extern struct {
+    lpProperty: ?PWSTR,
+    pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTW,
+    fListFlags: u32,
+};
+
+pub const AUDIT_IP_ADDRESS = extern struct {
+    pIpAddress: [128]u8,
+};
+
+pub const AUDIT_OBJECT_TYPE = extern struct {
+    ObjectType: Guid,
+    Flags: u16,
+    Level: u16,
+    AccessMask: u32,
+};
+
+pub const AUDIT_OBJECT_TYPES = extern struct {
+    Count: u16,
+    Flags: u16,
+    pObjectTypes: ?*AUDIT_OBJECT_TYPE,
+};
+
+pub const AUDIT_PARAM = extern struct {
+    Type: AUDIT_PARAM_TYPE,
+    Length: u32,
+    Flags: u32,
+    Anonymous1: extern union {
+        Data0: usize,
+        String: ?PWSTR,
+        u: usize,
+        psid: ?*SID,
+        pguid: ?*Guid,
+        LogonId_LowPart: u32,
+        pObjectTypes: ?*AUDIT_OBJECT_TYPES,
+        pIpAddress: ?*AUDIT_IP_ADDRESS,
+    },
+    Anonymous2: extern union {
+        Data1: usize,
+        LogonId_HighPart: i32,
+    },
+};
+
+pub const AUDIT_PARAM_TYPE = enum(i32) {
+    None = 1,
+    String = 2,
+    Ulong = 3,
+    Pointer = 4,
+    Sid = 5,
+    LogonId = 6,
+    ObjectTypeList = 7,
+    Luid = 8,
+    Guid = 9,
+    Time = 10,
+    Int64 = 11,
+    IpAddress = 12,
+    LogonIdWithSid = 13,
+};
+pub const APT_None = AUDIT_PARAM_TYPE.None;
+pub const APT_String = AUDIT_PARAM_TYPE.String;
+pub const APT_Ulong = AUDIT_PARAM_TYPE.Ulong;
+pub const APT_Pointer = AUDIT_PARAM_TYPE.Pointer;
+pub const APT_Sid = AUDIT_PARAM_TYPE.Sid;
+pub const APT_LogonId = AUDIT_PARAM_TYPE.LogonId;
+pub const APT_ObjectTypeList = AUDIT_PARAM_TYPE.ObjectTypeList;
+pub const APT_Luid = AUDIT_PARAM_TYPE.Luid;
+pub const APT_Guid = AUDIT_PARAM_TYPE.Guid;
+pub const APT_Time = AUDIT_PARAM_TYPE.Time;
+pub const APT_Int64 = AUDIT_PARAM_TYPE.Int64;
+pub const APT_IpAddress = AUDIT_PARAM_TYPE.IpAddress;
+pub const APT_LogonIdWithSid = AUDIT_PARAM_TYPE.LogonIdWithSid;
+
+pub const AUDIT_PARAMS = extern struct {
+    Length: u32,
+    Flags: u32,
+    Count: u16,
+    Parameters: ?*AUDIT_PARAM,
+};
+
+pub const AUTHZ_ACCESS_CHECK_FLAGS = enum(u32) {
+    D = 1,
+};
+pub const AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD = AUTHZ_ACCESS_CHECK_FLAGS.D;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
+
+pub const AUTHZ_ACCESS_REPLY = extern struct {
+    ResultListLength: u32,
+    GrantedAccessMask: ?*u32,
+    SaclEvaluationResults: ?*AUTHZ_GENERATE_RESULTS,
+    Error: ?*u32,
+};
+
+pub const AUTHZ_ACCESS_REQUEST = extern struct {
+    DesiredAccess: u32,
+    PrincipalSelfSid: ?PSID,
+    ObjectTypeList: ?*OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    OptionalArguments: ?*anyopaque,
+};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const AUTHZ_AUDIT_EVENT_HANDLE = *opaque{};
+
+pub const AUTHZ_AUDIT_EVENT_INFORMATION_CLASS = enum(i32) {
+    Flags = 1,
+    OperationType = 2,
+    ObjectType = 3,
+    ObjectName = 4,
+    AdditionalInfo = 5,
+};
+pub const AuthzAuditEventInfoFlags = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.Flags;
+pub const AuthzAuditEventInfoOperationType = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.OperationType;
+pub const AuthzAuditEventInfoObjectType = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.ObjectType;
+pub const AuthzAuditEventInfoObjectName = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.ObjectName;
+pub const AuthzAuditEventInfoAdditionalInfo = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.AdditionalInfo;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const AUTHZ_AUDIT_EVENT_TYPE_HANDLE = isize;
+
+pub const AUTHZ_AUDIT_EVENT_TYPE_LEGACY = extern struct {
+    CategoryId: u16,
+    AuditId: u16,
+    ParameterCount: u16,
+};
+
+pub const AUTHZ_AUDIT_EVENT_TYPE_OLD = extern struct {
+    Version: u32,
+    dwFlags: u32,
+    RefCount: i32,
+    hAudit: usize,
+    LinkId: LUID,
+    u: AUTHZ_AUDIT_EVENT_TYPE_UNION,
+};
+
+pub const AUTHZ_AUDIT_EVENT_TYPE_UNION = extern union {
+    Legacy: AUTHZ_AUDIT_EVENT_TYPE_LEGACY,
+};
+
+pub const AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__ = extern struct {
+    unused: i32,
+};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const AUTHZ_CLIENT_CONTEXT_HANDLE = isize;
+
+pub const AUTHZ_CONTEXT_INFORMATION_CLASS = enum(i32) {
+    UserSid = 1,
+    GroupsSids = 2,
+    RestrictedSids = 3,
+    Privileges = 4,
+    ExpirationTime = 5,
+    ServerContext = 6,
+    Identifier = 7,
+    Source = 8,
+    All = 9,
+    AuthenticationId = 10,
+    SecurityAttributes = 11,
+    DeviceSids = 12,
+    UserClaims = 13,
+    DeviceClaims = 14,
+    AppContainerSid = 15,
+    CapabilitySids = 16,
+};
+pub const AuthzContextInfoUserSid = AUTHZ_CONTEXT_INFORMATION_CLASS.UserSid;
+pub const AuthzContextInfoGroupsSids = AUTHZ_CONTEXT_INFORMATION_CLASS.GroupsSids;
+pub const AuthzContextInfoRestrictedSids = AUTHZ_CONTEXT_INFORMATION_CLASS.RestrictedSids;
+pub const AuthzContextInfoPrivileges = AUTHZ_CONTEXT_INFORMATION_CLASS.Privileges;
+pub const AuthzContextInfoExpirationTime = AUTHZ_CONTEXT_INFORMATION_CLASS.ExpirationTime;
+pub const AuthzContextInfoServerContext = AUTHZ_CONTEXT_INFORMATION_CLASS.ServerContext;
+pub const AuthzContextInfoIdentifier = AUTHZ_CONTEXT_INFORMATION_CLASS.Identifier;
+pub const AuthzContextInfoSource = AUTHZ_CONTEXT_INFORMATION_CLASS.Source;
+pub const AuthzContextInfoAll = AUTHZ_CONTEXT_INFORMATION_CLASS.All;
+pub const AuthzContextInfoAuthenticationId = AUTHZ_CONTEXT_INFORMATION_CLASS.AuthenticationId;
+pub const AuthzContextInfoSecurityAttributes = AUTHZ_CONTEXT_INFORMATION_CLASS.SecurityAttributes;
+pub const AuthzContextInfoDeviceSids = AUTHZ_CONTEXT_INFORMATION_CLASS.DeviceSids;
+pub const AuthzContextInfoUserClaims = AUTHZ_CONTEXT_INFORMATION_CLASS.UserClaims;
+pub const AuthzContextInfoDeviceClaims = AUTHZ_CONTEXT_INFORMATION_CLASS.DeviceClaims;
+pub const AuthzContextInfoAppContainerSid = AUTHZ_CONTEXT_INFORMATION_CLASS.AppContainerSid;
+pub const AuthzContextInfoCapabilitySids = AUTHZ_CONTEXT_INFORMATION_CLASS.CapabilitySids;
+
+pub const AUTHZ_GENERATE_RESULTS = enum(u32) {
+    SUCCESS_AUDIT = 1,
+    FAILURE_AUDIT = 2,
+};
+pub const AUTHZ_GENERATE_SUCCESS_AUDIT = AUTHZ_GENERATE_RESULTS.SUCCESS_AUDIT;
+pub const AUTHZ_GENERATE_FAILURE_AUDIT = AUTHZ_GENERATE_RESULTS.FAILURE_AUDIT;
+
+pub const AUTHZ_INIT_INFO = extern struct {
+    version: u16,
+    szResourceManagerName: ?[*:0]const u16,
+    pfnDynamicAccessCheck: ?PFN_AUTHZ_DYNAMIC_ACCESS_CHECK,
+    pfnComputeDynamicGroups: ?PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
+    pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
+    pfnGetCentralAccessPolicy: ?PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY,
+    pfnFreeCentralAccessPolicy: ?PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY,
+};
+
+pub const AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS = enum(u32) {
+    SUCCESS_AUDIT = 1,
+    FAILURE_AUDIT = 2,
+    ALLOC_STRINGS = 4,
+};
+pub const AUTHZ_NO_SUCCESS_AUDIT = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.SUCCESS_AUDIT;
+pub const AUTHZ_NO_FAILURE_AUDIT = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.FAILURE_AUDIT;
+pub const AUTHZ_NO_ALLOC_STRINGS = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.ALLOC_STRINGS;
+
+pub const AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET = extern struct {
+    szObjectTypeName: ?PWSTR,
+    dwOffset: u32,
+};
+
 pub const AUTHZ_RESOURCE_MANAGER_FLAGS = packed struct(u32) {
     NO_AUDIT: u1 = 0,
     INITIALIZE_UNDER_IMPERSONATION: u1 = 0,
@@ -326,46 +640,18 @@ pub const AUTHZ_RM_FLAG_NO_AUDIT = AUTHZ_RESOURCE_MANAGER_FLAGS{ .NO_AUDIT = 1 }
 pub const AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION = AUTHZ_RESOURCE_MANAGER_FLAGS{ .INITIALIZE_UNDER_IMPERSONATION = 1 };
 pub const AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES = AUTHZ_RESOURCE_MANAGER_FLAGS{ .NO_CENTRAL_ACCESS_POLICIES = 1 };
 
-pub const AUTHZ_ACCESS_CHECK_FLAGS = enum(u32) {
-    D = 1,
-};
-pub const AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD = AUTHZ_ACCESS_CHECK_FLAGS.D;
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
 
-pub const AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS = enum(u32) {
-    SUCCESS_AUDIT = 1,
-    FAILURE_AUDIT = 2,
-    ALLOC_STRINGS = 4,
+pub const AUTHZ_RPC_INIT_INFO_CLIENT = extern struct {
+    version: u16,
+    ObjectUuid: ?PWSTR,
+    ProtSeq: ?PWSTR,
+    NetworkAddr: ?PWSTR,
+    Endpoint: ?PWSTR,
+    Options: ?PWSTR,
+    ServerSpn: ?PWSTR,
 };
-pub const AUTHZ_NO_SUCCESS_AUDIT = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.SUCCESS_AUDIT;
-pub const AUTHZ_NO_FAILURE_AUDIT = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.FAILURE_AUDIT;
-pub const AUTHZ_NO_ALLOC_STRINGS = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.ALLOC_STRINGS;
-
-pub const TREE_SEC_INFO = enum(u32) {
-    SET = 1,
-    RESET = 2,
-    RESET_KEEP_EXPLICIT = 3,
-};
-pub const TREE_SEC_INFO_SET = TREE_SEC_INFO.SET;
-pub const TREE_SEC_INFO_RESET = TREE_SEC_INFO.RESET;
-pub const TREE_SEC_INFO_RESET_KEEP_EXPLICIT = TREE_SEC_INFO.RESET_KEEP_EXPLICIT;
-
-pub const AUTHZ_GENERATE_RESULTS = enum(u32) {
-    SUCCESS_AUDIT = 1,
-    FAILURE_AUDIT = 2,
-};
-pub const AUTHZ_GENERATE_SUCCESS_AUDIT = AUTHZ_GENERATE_RESULTS.SUCCESS_AUDIT;
-pub const AUTHZ_GENERATE_FAILURE_AUDIT = AUTHZ_GENERATE_RESULTS.FAILURE_AUDIT;
-
-pub const ACTRL_ACCESS_ENTRY_ACCESS_FLAGS = enum(u32) {
-    CCESS_ALLOWED = 1,
-    CCESS_DENIED = 2,
-    UDIT_SUCCESS = 4,
-    UDIT_FAILURE = 8,
-};
-pub const ACTRL_ACCESS_ALLOWED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_ALLOWED;
-pub const ACTRL_ACCESS_DENIED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_DENIED;
-pub const ACTRL_AUDIT_SUCCESS = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_SUCCESS;
-pub const ACTRL_AUDIT_FAILURE = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_FAILURE;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_FLAGS = packed struct(u32) {
     NON_INHERITABLE: u1 = 0,
@@ -404,413 +690,6 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_FLAGS = packed struct(u32) {
 pub const AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS{ .NON_INHERITABLE = 1 };
 pub const AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS{ .VALUE_CASE_SENSITIVE = 1 };
 
-pub const SE_OBJECT_TYPE = enum(i32) {
-    UNKNOWN_OBJECT_TYPE = 0,
-    FILE_OBJECT = 1,
-    SERVICE = 2,
-    PRINTER = 3,
-    REGISTRY_KEY = 4,
-    LMSHARE = 5,
-    KERNEL_OBJECT = 6,
-    WINDOW_OBJECT = 7,
-    DS_OBJECT = 8,
-    DS_OBJECT_ALL = 9,
-    PROVIDER_DEFINED_OBJECT = 10,
-    WMIGUID_OBJECT = 11,
-    REGISTRY_WOW64_32KEY = 12,
-    REGISTRY_WOW64_64KEY = 13,
-};
-pub const SE_UNKNOWN_OBJECT_TYPE = SE_OBJECT_TYPE.UNKNOWN_OBJECT_TYPE;
-pub const SE_FILE_OBJECT = SE_OBJECT_TYPE.FILE_OBJECT;
-pub const SE_SERVICE = SE_OBJECT_TYPE.SERVICE;
-pub const SE_PRINTER = SE_OBJECT_TYPE.PRINTER;
-pub const SE_REGISTRY_KEY = SE_OBJECT_TYPE.REGISTRY_KEY;
-pub const SE_LMSHARE = SE_OBJECT_TYPE.LMSHARE;
-pub const SE_KERNEL_OBJECT = SE_OBJECT_TYPE.KERNEL_OBJECT;
-pub const SE_WINDOW_OBJECT = SE_OBJECT_TYPE.WINDOW_OBJECT;
-pub const SE_DS_OBJECT = SE_OBJECT_TYPE.DS_OBJECT;
-pub const SE_DS_OBJECT_ALL = SE_OBJECT_TYPE.DS_OBJECT_ALL;
-pub const SE_PROVIDER_DEFINED_OBJECT = SE_OBJECT_TYPE.PROVIDER_DEFINED_OBJECT;
-pub const SE_WMIGUID_OBJECT = SE_OBJECT_TYPE.WMIGUID_OBJECT;
-pub const SE_REGISTRY_WOW64_32KEY = SE_OBJECT_TYPE.REGISTRY_WOW64_32KEY;
-pub const SE_REGISTRY_WOW64_64KEY = SE_OBJECT_TYPE.REGISTRY_WOW64_64KEY;
-
-pub const TRUSTEE_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    USER = 1,
-    GROUP = 2,
-    DOMAIN = 3,
-    ALIAS = 4,
-    WELL_KNOWN_GROUP = 5,
-    DELETED = 6,
-    INVALID = 7,
-    COMPUTER = 8,
-};
-pub const TRUSTEE_IS_UNKNOWN = TRUSTEE_TYPE.UNKNOWN;
-pub const TRUSTEE_IS_USER = TRUSTEE_TYPE.USER;
-pub const TRUSTEE_IS_GROUP = TRUSTEE_TYPE.GROUP;
-pub const TRUSTEE_IS_DOMAIN = TRUSTEE_TYPE.DOMAIN;
-pub const TRUSTEE_IS_ALIAS = TRUSTEE_TYPE.ALIAS;
-pub const TRUSTEE_IS_WELL_KNOWN_GROUP = TRUSTEE_TYPE.WELL_KNOWN_GROUP;
-pub const TRUSTEE_IS_DELETED = TRUSTEE_TYPE.DELETED;
-pub const TRUSTEE_IS_INVALID = TRUSTEE_TYPE.INVALID;
-pub const TRUSTEE_IS_COMPUTER = TRUSTEE_TYPE.COMPUTER;
-
-pub const TRUSTEE_FORM = enum(i32) {
-    IS_SID = 0,
-    IS_NAME = 1,
-    BAD_FORM = 2,
-    IS_OBJECTS_AND_SID = 3,
-    IS_OBJECTS_AND_NAME = 4,
-};
-pub const TRUSTEE_IS_SID = TRUSTEE_FORM.IS_SID;
-pub const TRUSTEE_IS_NAME = TRUSTEE_FORM.IS_NAME;
-pub const TRUSTEE_BAD_FORM = TRUSTEE_FORM.BAD_FORM;
-pub const TRUSTEE_IS_OBJECTS_AND_SID = TRUSTEE_FORM.IS_OBJECTS_AND_SID;
-pub const TRUSTEE_IS_OBJECTS_AND_NAME = TRUSTEE_FORM.IS_OBJECTS_AND_NAME;
-
-pub const MULTIPLE_TRUSTEE_OPERATION = enum(i32) {
-    NO_MULTIPLE_TRUSTEE = 0,
-    TRUSTEE_IS_IMPERSONATE = 1,
-};
-pub const NO_MULTIPLE_TRUSTEE = MULTIPLE_TRUSTEE_OPERATION.NO_MULTIPLE_TRUSTEE;
-pub const TRUSTEE_IS_IMPERSONATE = MULTIPLE_TRUSTEE_OPERATION.TRUSTEE_IS_IMPERSONATE;
-
-pub const OBJECTS_AND_SID = extern struct {
-    ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectTypeGuid: Guid,
-    InheritedObjectTypeGuid: Guid,
-    pSid: ?*SID,
-};
-
-pub const OBJECTS_AND_NAME_A = extern struct {
-    ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: SE_OBJECT_TYPE,
-    ObjectTypeName: ?PSTR,
-    InheritedObjectTypeName: ?PSTR,
-    ptstrName: ?PSTR,
-};
-
-pub const OBJECTS_AND_NAME_W = extern struct {
-    ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: SE_OBJECT_TYPE,
-    ObjectTypeName: ?PWSTR,
-    InheritedObjectTypeName: ?PWSTR,
-    ptstrName: ?PWSTR,
-};
-
-pub const TRUSTEE_A = extern struct {
-    pMultipleTrustee: ?*TRUSTEE_A,
-    MultipleTrusteeOperation: MULTIPLE_TRUSTEE_OPERATION,
-    TrusteeForm: TRUSTEE_FORM,
-    TrusteeType: TRUSTEE_TYPE,
-    ptstrName: ?[*]u8,
-};
-
-pub const TRUSTEE_W = extern struct {
-    pMultipleTrustee: ?*TRUSTEE_W,
-    MultipleTrusteeOperation: MULTIPLE_TRUSTEE_OPERATION,
-    TrusteeForm: TRUSTEE_FORM,
-    TrusteeType: TRUSTEE_TYPE,
-    ptstrName: ?[*]u16,
-};
-
-pub const ACCESS_MODE = enum(i32) {
-    NOT_USED_ACCESS = 0,
-    GRANT_ACCESS = 1,
-    SET_ACCESS = 2,
-    DENY_ACCESS = 3,
-    REVOKE_ACCESS = 4,
-    SET_AUDIT_SUCCESS = 5,
-    SET_AUDIT_FAILURE = 6,
-};
-pub const NOT_USED_ACCESS = ACCESS_MODE.NOT_USED_ACCESS;
-pub const GRANT_ACCESS = ACCESS_MODE.GRANT_ACCESS;
-pub const SET_ACCESS = ACCESS_MODE.SET_ACCESS;
-pub const DENY_ACCESS = ACCESS_MODE.DENY_ACCESS;
-pub const REVOKE_ACCESS = ACCESS_MODE.REVOKE_ACCESS;
-pub const SET_AUDIT_SUCCESS = ACCESS_MODE.SET_AUDIT_SUCCESS;
-pub const SET_AUDIT_FAILURE = ACCESS_MODE.SET_AUDIT_FAILURE;
-
-pub const EXPLICIT_ACCESS_A = extern struct {
-    grfAccessPermissions: u32,
-    grfAccessMode: ACCESS_MODE,
-    grfInheritance: ACE_FLAGS,
-    Trustee: TRUSTEE_A,
-};
-
-pub const EXPLICIT_ACCESS_W = extern struct {
-    grfAccessPermissions: u32,
-    grfAccessMode: ACCESS_MODE,
-    grfInheritance: ACE_FLAGS,
-    Trustee: TRUSTEE_W,
-};
-
-pub const ACTRL_ACCESS_ENTRYA = extern struct {
-    Trustee: TRUSTEE_A,
-    fAccessFlags: ACTRL_ACCESS_ENTRY_ACCESS_FLAGS,
-    Access: u32,
-    ProvSpecificAccess: u32,
-    Inheritance: ACE_FLAGS,
-    lpInheritProperty: ?PSTR,
-};
-
-pub const ACTRL_ACCESS_ENTRYW = extern struct {
-    Trustee: TRUSTEE_W,
-    fAccessFlags: ACTRL_ACCESS_ENTRY_ACCESS_FLAGS,
-    Access: u32,
-    ProvSpecificAccess: u32,
-    Inheritance: ACE_FLAGS,
-    lpInheritProperty: ?PWSTR,
-};
-
-pub const ACTRL_ACCESS_ENTRY_LISTA = extern struct {
-    cEntries: u32,
-    pAccessList: ?*ACTRL_ACCESS_ENTRYA,
-};
-
-pub const ACTRL_ACCESS_ENTRY_LISTW = extern struct {
-    cEntries: u32,
-    pAccessList: ?*ACTRL_ACCESS_ENTRYW,
-};
-
-pub const ACTRL_PROPERTY_ENTRYA = extern struct {
-    lpProperty: ?PSTR,
-    pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTA,
-    fListFlags: u32,
-};
-
-pub const ACTRL_PROPERTY_ENTRYW = extern struct {
-    lpProperty: ?PWSTR,
-    pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTW,
-    fListFlags: u32,
-};
-
-pub const ACTRL_ACCESSA = extern struct {
-    cEntries: u32,
-    pPropertyAccessList: ?*ACTRL_PROPERTY_ENTRYA,
-};
-
-pub const ACTRL_ACCESSW = extern struct {
-    cEntries: u32,
-    pPropertyAccessList: ?*ACTRL_PROPERTY_ENTRYW,
-};
-
-pub const TRUSTEE_ACCESSA = extern struct {
-    lpProperty: ?PSTR,
-    Access: u32,
-    fAccessFlags: u32,
-    fReturnedAccess: u32,
-};
-
-pub const TRUSTEE_ACCESSW = extern struct {
-    lpProperty: ?PWSTR,
-    Access: u32,
-    fAccessFlags: u32,
-    fReturnedAccess: u32,
-};
-
-pub const ACTRL_OVERLAPPED = extern struct {
-    Anonymous: extern union {
-        Provider: ?*anyopaque,
-        Reserved1: u32,
-    },
-    Reserved2: u32,
-    hEvent: ?HANDLE,
-};
-
-pub const ACTRL_ACCESS_INFOA = extern struct {
-    fAccessPermission: u32,
-    lpAccessPermissionName: ?PSTR,
-};
-
-pub const ACTRL_ACCESS_INFOW = extern struct {
-    fAccessPermission: u32,
-    lpAccessPermissionName: ?PWSTR,
-};
-
-pub const ACTRL_CONTROL_INFOA = extern struct {
-    lpControlId: ?PSTR,
-    lpControlName: ?PSTR,
-};
-
-pub const ACTRL_CONTROL_INFOW = extern struct {
-    lpControlId: ?PWSTR,
-    lpControlName: ?PWSTR,
-};
-
-pub const PROG_INVOKE_SETTING = enum(i32) {
-    InvokeNever = 1,
-    InvokeEveryObject = 2,
-    InvokeOnError = 3,
-    CancelOperation = 4,
-    RetryOperation = 5,
-    InvokePrePostError = 6,
-};
-pub const ProgressInvokeNever = PROG_INVOKE_SETTING.InvokeNever;
-pub const ProgressInvokeEveryObject = PROG_INVOKE_SETTING.InvokeEveryObject;
-pub const ProgressInvokeOnError = PROG_INVOKE_SETTING.InvokeOnError;
-pub const ProgressCancelOperation = PROG_INVOKE_SETTING.CancelOperation;
-pub const ProgressRetryOperation = PROG_INVOKE_SETTING.RetryOperation;
-pub const ProgressInvokePrePostError = PROG_INVOKE_SETTING.InvokePrePostError;
-
-pub const FN_OBJECT_MGR_FUNCTIONS = extern struct {
-    Placeholder: u32,
-};
-
-pub const INHERITED_FROMA = extern struct {
-    GenerationGap: i32,
-    AncestorName: ?PSTR,
-};
-
-pub const INHERITED_FROMW = extern struct {
-    GenerationGap: i32,
-    AncestorName: ?PWSTR,
-};
-
-pub const AUDIT_PARAM_TYPE = enum(i32) {
-    None = 1,
-    String = 2,
-    Ulong = 3,
-    Pointer = 4,
-    Sid = 5,
-    LogonId = 6,
-    ObjectTypeList = 7,
-    Luid = 8,
-    Guid = 9,
-    Time = 10,
-    Int64 = 11,
-    IpAddress = 12,
-    LogonIdWithSid = 13,
-};
-pub const APT_None = AUDIT_PARAM_TYPE.None;
-pub const APT_String = AUDIT_PARAM_TYPE.String;
-pub const APT_Ulong = AUDIT_PARAM_TYPE.Ulong;
-pub const APT_Pointer = AUDIT_PARAM_TYPE.Pointer;
-pub const APT_Sid = AUDIT_PARAM_TYPE.Sid;
-pub const APT_LogonId = AUDIT_PARAM_TYPE.LogonId;
-pub const APT_ObjectTypeList = AUDIT_PARAM_TYPE.ObjectTypeList;
-pub const APT_Luid = AUDIT_PARAM_TYPE.Luid;
-pub const APT_Guid = AUDIT_PARAM_TYPE.Guid;
-pub const APT_Time = AUDIT_PARAM_TYPE.Time;
-pub const APT_Int64 = AUDIT_PARAM_TYPE.Int64;
-pub const APT_IpAddress = AUDIT_PARAM_TYPE.IpAddress;
-pub const APT_LogonIdWithSid = AUDIT_PARAM_TYPE.LogonIdWithSid;
-
-pub const AUDIT_OBJECT_TYPE = extern struct {
-    ObjectType: Guid,
-    Flags: u16,
-    Level: u16,
-    AccessMask: u32,
-};
-
-pub const AUDIT_OBJECT_TYPES = extern struct {
-    Count: u16,
-    Flags: u16,
-    pObjectTypes: ?*AUDIT_OBJECT_TYPE,
-};
-
-pub const AUDIT_IP_ADDRESS = extern struct {
-    pIpAddress: [128]u8,
-};
-
-pub const AUDIT_PARAM = extern struct {
-    Type: AUDIT_PARAM_TYPE,
-    Length: u32,
-    Flags: u32,
-    Anonymous1: extern union {
-        Data0: usize,
-        String: ?PWSTR,
-        u: usize,
-        psid: ?*SID,
-        pguid: ?*Guid,
-        LogonId_LowPart: u32,
-        pObjectTypes: ?*AUDIT_OBJECT_TYPES,
-        pIpAddress: ?*AUDIT_IP_ADDRESS,
-    },
-    Anonymous2: extern union {
-        Data1: usize,
-        LogonId_HighPart: i32,
-    },
-};
-
-pub const AUDIT_PARAMS = extern struct {
-    Length: u32,
-    Flags: u32,
-    Count: u16,
-    Parameters: ?*AUDIT_PARAM,
-};
-
-pub const AUTHZ_AUDIT_EVENT_TYPE_LEGACY = extern struct {
-    CategoryId: u16,
-    AuditId: u16,
-    ParameterCount: u16,
-};
-
-pub const AUTHZ_AUDIT_EVENT_TYPE_UNION = extern union {
-    Legacy: AUTHZ_AUDIT_EVENT_TYPE_LEGACY,
-};
-
-pub const AUTHZ_AUDIT_EVENT_TYPE_OLD = extern struct {
-    Version: u32,
-    dwFlags: u32,
-    RefCount: i32,
-    hAudit: usize,
-    LinkId: LUID,
-    u: AUTHZ_AUDIT_EVENT_TYPE_UNION,
-};
-
-pub const AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__ = extern struct {
-    unused: i32,
-};
-
-pub const AUTHZ_ACCESS_REQUEST = extern struct {
-    DesiredAccess: u32,
-    PrincipalSelfSid: ?PSID,
-    ObjectTypeList: ?*OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    OptionalArguments: ?*anyopaque,
-};
-
-pub const AUTHZ_ACCESS_REPLY = extern struct {
-    ResultListLength: u32,
-    GrantedAccessMask: ?*u32,
-    SaclEvaluationResults: ?*AUTHZ_GENERATE_RESULTS,
-    Error: ?*u32,
-};
-
-pub const PFN_AUTHZ_DYNAMIC_ACCESS_CHECK = *const fn(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pAce: ?*ACE_HEADER,
-    pArgs: ?*anyopaque,
-    pbAceApplicable: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = *const fn(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    Args: ?*anyopaque,
-    pSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
-    pSidCount: ?*u32,
-    pRestrictedSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
-    pRestrictedSidCount: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub const PFN_AUTHZ_FREE_DYNAMIC_GROUPS = *const fn(
-    pSidAttrArray: ?*SID_AND_ATTRIBUTES,
-) callconv(.winapi) void;
-
-pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = *const fn(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    capid: ?PSID,
-    pArgs: ?*anyopaque,
-    pCentralAccessPolicyApplicable: ?*BOOL,
-    ppCentralAccessPolicy: ?*?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY = *const fn(
-    pCentralAccessPolicy: ?*anyopaque,
-) callconv(.winapi) void;
-
 pub const AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
     Version: u64,
     pName: ?PWSTR,
@@ -833,19 +712,6 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE_ALL = AUTHZ_SECURITY_ATTRIB
 pub const AUTHZ_SECURITY_ATTRIBUTE_OPERATION_ADD = AUTHZ_SECURITY_ATTRIBUTE_OPERATION.ADD;
 pub const AUTHZ_SECURITY_ATTRIBUTE_OPERATION_DELETE = AUTHZ_SECURITY_ATTRIBUTE_OPERATION.DELETE;
 pub const AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE = AUTHZ_SECURITY_ATTRIBUTE_OPERATION.REPLACE;
-
-pub const AUTHZ_SID_OPERATION = enum(i32) {
-    NONE = 0,
-    REPLACE_ALL = 1,
-    ADD = 2,
-    DELETE = 3,
-    REPLACE = 4,
-};
-pub const AUTHZ_SID_OPERATION_NONE = AUTHZ_SID_OPERATION.NONE;
-pub const AUTHZ_SID_OPERATION_REPLACE_ALL = AUTHZ_SID_OPERATION.REPLACE_ALL;
-pub const AUTHZ_SID_OPERATION_ADD = AUTHZ_SID_OPERATION.ADD;
-pub const AUTHZ_SID_OPERATION_DELETE = AUTHZ_SID_OPERATION.DELETE;
-pub const AUTHZ_SID_OPERATION_REPLACE = AUTHZ_SID_OPERATION.REPLACE;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_V1 = extern struct {
     pName: ?PWSTR,
@@ -871,78 +737,21 @@ pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
     },
 };
 
-pub const AUTHZ_RPC_INIT_INFO_CLIENT = extern struct {
-    version: u16,
-    ObjectUuid: ?PWSTR,
-    ProtSeq: ?PWSTR,
-    NetworkAddr: ?PWSTR,
-    Endpoint: ?PWSTR,
-    Options: ?PWSTR,
-    ServerSpn: ?PWSTR,
-};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE = isize;
 
-pub const AUTHZ_INIT_INFO = extern struct {
-    version: u16,
-    szResourceManagerName: ?[*:0]const u16,
-    pfnDynamicAccessCheck: ?PFN_AUTHZ_DYNAMIC_ACCESS_CHECK,
-    pfnComputeDynamicGroups: ?PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
-    pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
-    pfnGetCentralAccessPolicy: ?PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY,
-    pfnFreeCentralAccessPolicy: ?PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY,
+pub const AUTHZ_SID_OPERATION = enum(i32) {
+    NONE = 0,
+    REPLACE_ALL = 1,
+    ADD = 2,
+    DELETE = 3,
+    REPLACE = 4,
 };
-
-pub const AUTHZ_CONTEXT_INFORMATION_CLASS = enum(i32) {
-    UserSid = 1,
-    GroupsSids = 2,
-    RestrictedSids = 3,
-    Privileges = 4,
-    ExpirationTime = 5,
-    ServerContext = 6,
-    Identifier = 7,
-    Source = 8,
-    All = 9,
-    AuthenticationId = 10,
-    SecurityAttributes = 11,
-    DeviceSids = 12,
-    UserClaims = 13,
-    DeviceClaims = 14,
-    AppContainerSid = 15,
-    CapabilitySids = 16,
-};
-pub const AuthzContextInfoUserSid = AUTHZ_CONTEXT_INFORMATION_CLASS.UserSid;
-pub const AuthzContextInfoGroupsSids = AUTHZ_CONTEXT_INFORMATION_CLASS.GroupsSids;
-pub const AuthzContextInfoRestrictedSids = AUTHZ_CONTEXT_INFORMATION_CLASS.RestrictedSids;
-pub const AuthzContextInfoPrivileges = AUTHZ_CONTEXT_INFORMATION_CLASS.Privileges;
-pub const AuthzContextInfoExpirationTime = AUTHZ_CONTEXT_INFORMATION_CLASS.ExpirationTime;
-pub const AuthzContextInfoServerContext = AUTHZ_CONTEXT_INFORMATION_CLASS.ServerContext;
-pub const AuthzContextInfoIdentifier = AUTHZ_CONTEXT_INFORMATION_CLASS.Identifier;
-pub const AuthzContextInfoSource = AUTHZ_CONTEXT_INFORMATION_CLASS.Source;
-pub const AuthzContextInfoAll = AUTHZ_CONTEXT_INFORMATION_CLASS.All;
-pub const AuthzContextInfoAuthenticationId = AUTHZ_CONTEXT_INFORMATION_CLASS.AuthenticationId;
-pub const AuthzContextInfoSecurityAttributes = AUTHZ_CONTEXT_INFORMATION_CLASS.SecurityAttributes;
-pub const AuthzContextInfoDeviceSids = AUTHZ_CONTEXT_INFORMATION_CLASS.DeviceSids;
-pub const AuthzContextInfoUserClaims = AUTHZ_CONTEXT_INFORMATION_CLASS.UserClaims;
-pub const AuthzContextInfoDeviceClaims = AUTHZ_CONTEXT_INFORMATION_CLASS.DeviceClaims;
-pub const AuthzContextInfoAppContainerSid = AUTHZ_CONTEXT_INFORMATION_CLASS.AppContainerSid;
-pub const AuthzContextInfoCapabilitySids = AUTHZ_CONTEXT_INFORMATION_CLASS.CapabilitySids;
-
-pub const AUTHZ_AUDIT_EVENT_INFORMATION_CLASS = enum(i32) {
-    Flags = 1,
-    OperationType = 2,
-    ObjectType = 3,
-    ObjectName = 4,
-    AdditionalInfo = 5,
-};
-pub const AuthzAuditEventInfoFlags = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.Flags;
-pub const AuthzAuditEventInfoOperationType = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.OperationType;
-pub const AuthzAuditEventInfoObjectType = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.ObjectType;
-pub const AuthzAuditEventInfoObjectName = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.ObjectName;
-pub const AuthzAuditEventInfoAdditionalInfo = AUTHZ_AUDIT_EVENT_INFORMATION_CLASS.AdditionalInfo;
-
-pub const AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET = extern struct {
-    szObjectTypeName: ?PWSTR,
-    dwOffset: u32,
-};
+pub const AUTHZ_SID_OPERATION_NONE = AUTHZ_SID_OPERATION.NONE;
+pub const AUTHZ_SID_OPERATION_REPLACE_ALL = AUTHZ_SID_OPERATION.REPLACE_ALL;
+pub const AUTHZ_SID_OPERATION_ADD = AUTHZ_SID_OPERATION.ADD;
+pub const AUTHZ_SID_OPERATION_DELETE = AUTHZ_SID_OPERATION.DELETE;
+pub const AUTHZ_SID_OPERATION_REPLACE = AUTHZ_SID_OPERATION.REPLACE;
 
 pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     dwFlags: u32,
@@ -959,6 +768,205 @@ pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     ObjectTypeNames: [1]AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET,
 };
 
+pub const AZ_PROP_CONSTANTS = enum(i32) {
+    PROP_NAME = 1,
+    PROP_DESCRIPTION = 2,
+    PROP_WRITABLE = 3,
+    PROP_APPLICATION_DATA = 4,
+    PROP_CHILD_CREATE = 5,
+    MAX_APPLICATION_NAME_LENGTH = 512,
+    MAX_OPERATION_NAME_LENGTH = 64,
+    MAX_SCOPE_NAME_LENGTH = 65536,
+    MAX_DESCRIPTION_LENGTH = 1024,
+    MAX_APPLICATION_DATA_LENGTH = 4096,
+    AZSTORE_FLAG_AUDIT_IS_CRITICAL = 8,
+    AZSTORE_FORCE_APPLICATION_CLOSE = 16,
+    AZSTORE_NT6_FUNCTION_LEVEL = 32,
+    AZSTORE_FLAG_MANAGE_ONLY_PASSIVE_SUBMIT = 32768,
+    PROP_AZSTORE_DOMAIN_TIMEOUT = 100,
+    AZSTORE_DEFAULT_DOMAIN_TIMEOUT = 15000,
+    PROP_AZSTORE_SCRIPT_ENGINE_TIMEOUT = 101,
+    AZSTORE_MIN_DOMAIN_TIMEOUT = 500,
+    AZSTORE_MIN_SCRIPT_ENGINE_TIMEOUT = 5000,
+    AZSTORE_DEFAULT_SCRIPT_ENGINE_TIMEOUT = 45000,
+    PROP_AZSTORE_MAX_SCRIPT_ENGINES = 102,
+    AZSTORE_DEFAULT_MAX_SCRIPT_ENGINES = 120,
+    PROP_AZSTORE_MAJOR_VERSION = 103,
+    PROP_AZSTORE_MINOR_VERSION = 104,
+    PROP_AZSTORE_TARGET_MACHINE = 105,
+    PROP_AZTORE_IS_ADAM_INSTANCE = 106,
+    PROP_OPERATION_ID = 200,
+    PROP_TASK_OPERATIONS = 300,
+    PROP_TASK_BIZRULE = 301,
+    PROP_TASK_BIZRULE_LANGUAGE = 302,
+    PROP_TASK_TASKS = 303,
+    PROP_TASK_BIZRULE_IMPORTED_PATH = 304,
+    PROP_TASK_IS_ROLE_DEFINITION = 305,
+    PROP_GROUP_TYPE = 400,
+    PROP_GROUP_APP_MEMBERS = 401,
+    PROP_GROUP_APP_NON_MEMBERS = 402,
+    PROP_GROUP_LDAP_QUERY = 403,
+    PROP_GROUP_MEMBERS = 404,
+    PROP_GROUP_NON_MEMBERS = 405,
+    PROP_GROUP_MEMBERS_NAME = 406,
+    PROP_GROUP_NON_MEMBERS_NAME = 407,
+    PROP_GROUP_BIZRULE = 408,
+    PROP_GROUP_BIZRULE_LANGUAGE = 409,
+    PROP_GROUP_BIZRULE_IMPORTED_PATH = 410,
+    PROP_ROLE_MEMBERS = 501,
+    PROP_ROLE_OPERATIONS = 502,
+    PROP_ROLE_TASKS = 504,
+    PROP_ROLE_MEMBERS_NAME = 505,
+    PROP_SCOPE_BIZRULES_WRITABLE = 600,
+    PROP_SCOPE_CAN_BE_DELEGATED = 601,
+    PROP_CLIENT_CONTEXT_USER_DN = 700,
+    PROP_CLIENT_CONTEXT_USER_SAM_COMPAT = 701,
+    PROP_CLIENT_CONTEXT_USER_DISPLAY = 702,
+    PROP_CLIENT_CONTEXT_USER_GUID = 703,
+    PROP_CLIENT_CONTEXT_USER_CANONICAL = 704,
+    PROP_CLIENT_CONTEXT_USER_UPN = 705,
+    PROP_CLIENT_CONTEXT_USER_DNS_SAM_COMPAT = 707,
+    PROP_CLIENT_CONTEXT_ROLE_FOR_ACCESS_CHECK = 708,
+    PROP_CLIENT_CONTEXT_LDAP_QUERY_DN = 709,
+    PROP_APPLICATION_AUTHZ_INTERFACE_CLSID = 800,
+    PROP_APPLICATION_VERSION = 801,
+    PROP_APPLICATION_NAME = 802,
+    PROP_APPLICATION_BIZRULE_ENABLED = 803,
+    PROP_APPLY_STORE_SACL = 900,
+    PROP_GENERATE_AUDITS = 901,
+    PROP_POLICY_ADMINS = 902,
+    PROP_POLICY_READERS = 903,
+    PROP_DELEGATED_POLICY_USERS = 904,
+    PROP_POLICY_ADMINS_NAME = 905,
+    PROP_POLICY_READERS_NAME = 906,
+    PROP_DELEGATED_POLICY_USERS_NAME = 907,
+    pub const MAX_TASK_NAME_LENGTH = .MAX_OPERATION_NAME_LENGTH;
+    pub const MAX_GROUP_NAME_LENGTH = .MAX_OPERATION_NAME_LENGTH;
+    pub const MAX_ROLE_NAME_LENGTH = .MAX_OPERATION_NAME_LENGTH;
+    pub const MAX_NAME_LENGTH = .MAX_SCOPE_NAME_LENGTH;
+    pub const SUBMIT_FLAG_ABORT = .PROP_NAME;
+    pub const SUBMIT_FLAG_FLUSH = .PROP_DESCRIPTION;
+    pub const MAX_POLICY_URL_LENGTH = .MAX_SCOPE_NAME_LENGTH;
+    pub const AZSTORE_FLAG_CREATE = .PROP_NAME;
+    pub const AZSTORE_FLAG_MANAGE_STORE_ONLY = .PROP_DESCRIPTION;
+    pub const AZSTORE_FLAG_BATCH_UPDATE = .PROP_APPLICATION_DATA;
+    pub const MAX_TASK_BIZRULE_LENGTH = .MAX_SCOPE_NAME_LENGTH;
+    pub const MAX_TASK_BIZRULE_LANGUAGE_LENGTH = .MAX_OPERATION_NAME_LENGTH;
+    pub const MAX_TASK_BIZRULE_IMPORTED_PATH_LENGTH = .MAX_APPLICATION_NAME_LENGTH;
+    pub const MAX_BIZRULE_STRING = .MAX_SCOPE_NAME_LENGTH;
+    pub const GROUPTYPE_LDAP_QUERY = .PROP_NAME;
+    pub const GROUPTYPE_BASIC = .PROP_DESCRIPTION;
+    pub const GROUPTYPE_BIZRULE = .PROP_WRITABLE;
+    pub const MAX_GROUP_LDAP_QUERY_LENGTH = .MAX_APPLICATION_DATA_LENGTH;
+    pub const MAX_GROUP_BIZRULE_LENGTH = .MAX_SCOPE_NAME_LENGTH;
+    pub const MAX_GROUP_BIZRULE_LANGUAGE_LENGTH = .MAX_OPERATION_NAME_LENGTH;
+    pub const MAX_GROUP_BIZRULE_IMPORTED_PATH_LENGTH = .MAX_APPLICATION_NAME_LENGTH;
+    pub const PROP_ROLE_APP_MEMBERS = .AZSTORE_MIN_DOMAIN_TIMEOUT;
+    pub const MAX_APPLICATION_VERSION_LENGTH = .MAX_APPLICATION_NAME_LENGTH;
+    pub const CLIENT_CONTEXT_SKIP_GROUP = .PROP_NAME;
+    pub const CLIENT_CONTEXT_SKIP_LDAP_QUERY = .PROP_NAME;
+    pub const CLIENT_CONTEXT_GET_GROUP_RECURSIVE = .PROP_DESCRIPTION;
+    pub const CLIENT_CONTEXT_GET_GROUPS_STORE_LEVEL_ONLY = .PROP_DESCRIPTION;
+};
+pub const AZ_PROP_NAME = AZ_PROP_CONSTANTS.PROP_NAME;
+pub const AZ_PROP_DESCRIPTION = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
+pub const AZ_PROP_WRITABLE = AZ_PROP_CONSTANTS.PROP_WRITABLE;
+pub const AZ_PROP_APPLICATION_DATA = AZ_PROP_CONSTANTS.PROP_APPLICATION_DATA;
+pub const AZ_PROP_CHILD_CREATE = AZ_PROP_CONSTANTS.PROP_CHILD_CREATE;
+pub const AZ_MAX_APPLICATION_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
+pub const AZ_MAX_OPERATION_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
+pub const AZ_MAX_TASK_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
+pub const AZ_MAX_SCOPE_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
+pub const AZ_MAX_GROUP_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
+pub const AZ_MAX_ROLE_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
+pub const AZ_MAX_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
+pub const AZ_MAX_DESCRIPTION_LENGTH = AZ_PROP_CONSTANTS.MAX_DESCRIPTION_LENGTH;
+pub const AZ_MAX_APPLICATION_DATA_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_DATA_LENGTH;
+pub const AZ_SUBMIT_FLAG_ABORT = AZ_PROP_CONSTANTS.PROP_NAME;
+pub const AZ_SUBMIT_FLAG_FLUSH = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
+pub const AZ_MAX_POLICY_URL_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
+pub const AZ_AZSTORE_FLAG_CREATE = AZ_PROP_CONSTANTS.PROP_NAME;
+pub const AZ_AZSTORE_FLAG_MANAGE_STORE_ONLY = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
+pub const AZ_AZSTORE_FLAG_BATCH_UPDATE = AZ_PROP_CONSTANTS.PROP_APPLICATION_DATA;
+pub const AZ_AZSTORE_FLAG_AUDIT_IS_CRITICAL = AZ_PROP_CONSTANTS.AZSTORE_FLAG_AUDIT_IS_CRITICAL;
+pub const AZ_AZSTORE_FORCE_APPLICATION_CLOSE = AZ_PROP_CONSTANTS.AZSTORE_FORCE_APPLICATION_CLOSE;
+pub const AZ_AZSTORE_NT6_FUNCTION_LEVEL = AZ_PROP_CONSTANTS.AZSTORE_NT6_FUNCTION_LEVEL;
+pub const AZ_AZSTORE_FLAG_MANAGE_ONLY_PASSIVE_SUBMIT = AZ_PROP_CONSTANTS.AZSTORE_FLAG_MANAGE_ONLY_PASSIVE_SUBMIT;
+pub const AZ_PROP_AZSTORE_DOMAIN_TIMEOUT = AZ_PROP_CONSTANTS.PROP_AZSTORE_DOMAIN_TIMEOUT;
+pub const AZ_AZSTORE_DEFAULT_DOMAIN_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_DEFAULT_DOMAIN_TIMEOUT;
+pub const AZ_PROP_AZSTORE_SCRIPT_ENGINE_TIMEOUT = AZ_PROP_CONSTANTS.PROP_AZSTORE_SCRIPT_ENGINE_TIMEOUT;
+pub const AZ_AZSTORE_MIN_DOMAIN_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_MIN_DOMAIN_TIMEOUT;
+pub const AZ_AZSTORE_MIN_SCRIPT_ENGINE_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_MIN_SCRIPT_ENGINE_TIMEOUT;
+pub const AZ_AZSTORE_DEFAULT_SCRIPT_ENGINE_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_DEFAULT_SCRIPT_ENGINE_TIMEOUT;
+pub const AZ_PROP_AZSTORE_MAX_SCRIPT_ENGINES = AZ_PROP_CONSTANTS.PROP_AZSTORE_MAX_SCRIPT_ENGINES;
+pub const AZ_AZSTORE_DEFAULT_MAX_SCRIPT_ENGINES = AZ_PROP_CONSTANTS.AZSTORE_DEFAULT_MAX_SCRIPT_ENGINES;
+pub const AZ_PROP_AZSTORE_MAJOR_VERSION = AZ_PROP_CONSTANTS.PROP_AZSTORE_MAJOR_VERSION;
+pub const AZ_PROP_AZSTORE_MINOR_VERSION = AZ_PROP_CONSTANTS.PROP_AZSTORE_MINOR_VERSION;
+pub const AZ_PROP_AZSTORE_TARGET_MACHINE = AZ_PROP_CONSTANTS.PROP_AZSTORE_TARGET_MACHINE;
+pub const AZ_PROP_AZTORE_IS_ADAM_INSTANCE = AZ_PROP_CONSTANTS.PROP_AZTORE_IS_ADAM_INSTANCE;
+pub const AZ_PROP_OPERATION_ID = AZ_PROP_CONSTANTS.PROP_OPERATION_ID;
+pub const AZ_PROP_TASK_OPERATIONS = AZ_PROP_CONSTANTS.PROP_TASK_OPERATIONS;
+pub const AZ_PROP_TASK_BIZRULE = AZ_PROP_CONSTANTS.PROP_TASK_BIZRULE;
+pub const AZ_PROP_TASK_BIZRULE_LANGUAGE = AZ_PROP_CONSTANTS.PROP_TASK_BIZRULE_LANGUAGE;
+pub const AZ_PROP_TASK_TASKS = AZ_PROP_CONSTANTS.PROP_TASK_TASKS;
+pub const AZ_PROP_TASK_BIZRULE_IMPORTED_PATH = AZ_PROP_CONSTANTS.PROP_TASK_BIZRULE_IMPORTED_PATH;
+pub const AZ_PROP_TASK_IS_ROLE_DEFINITION = AZ_PROP_CONSTANTS.PROP_TASK_IS_ROLE_DEFINITION;
+pub const AZ_MAX_TASK_BIZRULE_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
+pub const AZ_MAX_TASK_BIZRULE_LANGUAGE_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
+pub const AZ_MAX_TASK_BIZRULE_IMPORTED_PATH_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
+pub const AZ_MAX_BIZRULE_STRING = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
+pub const AZ_PROP_GROUP_TYPE = AZ_PROP_CONSTANTS.PROP_GROUP_TYPE;
+pub const AZ_GROUPTYPE_LDAP_QUERY = AZ_PROP_CONSTANTS.PROP_NAME;
+pub const AZ_GROUPTYPE_BASIC = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
+pub const AZ_GROUPTYPE_BIZRULE = AZ_PROP_CONSTANTS.PROP_WRITABLE;
+pub const AZ_PROP_GROUP_APP_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_APP_MEMBERS;
+pub const AZ_PROP_GROUP_APP_NON_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_APP_NON_MEMBERS;
+pub const AZ_PROP_GROUP_LDAP_QUERY = AZ_PROP_CONSTANTS.PROP_GROUP_LDAP_QUERY;
+pub const AZ_MAX_GROUP_LDAP_QUERY_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_DATA_LENGTH;
+pub const AZ_PROP_GROUP_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_MEMBERS;
+pub const AZ_PROP_GROUP_NON_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_NON_MEMBERS;
+pub const AZ_PROP_GROUP_MEMBERS_NAME = AZ_PROP_CONSTANTS.PROP_GROUP_MEMBERS_NAME;
+pub const AZ_PROP_GROUP_NON_MEMBERS_NAME = AZ_PROP_CONSTANTS.PROP_GROUP_NON_MEMBERS_NAME;
+pub const AZ_PROP_GROUP_BIZRULE = AZ_PROP_CONSTANTS.PROP_GROUP_BIZRULE;
+pub const AZ_PROP_GROUP_BIZRULE_LANGUAGE = AZ_PROP_CONSTANTS.PROP_GROUP_BIZRULE_LANGUAGE;
+pub const AZ_PROP_GROUP_BIZRULE_IMPORTED_PATH = AZ_PROP_CONSTANTS.PROP_GROUP_BIZRULE_IMPORTED_PATH;
+pub const AZ_MAX_GROUP_BIZRULE_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
+pub const AZ_MAX_GROUP_BIZRULE_LANGUAGE_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
+pub const AZ_MAX_GROUP_BIZRULE_IMPORTED_PATH_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
+pub const AZ_PROP_ROLE_APP_MEMBERS = AZ_PROP_CONSTANTS.AZSTORE_MIN_DOMAIN_TIMEOUT;
+pub const AZ_PROP_ROLE_MEMBERS = AZ_PROP_CONSTANTS.PROP_ROLE_MEMBERS;
+pub const AZ_PROP_ROLE_OPERATIONS = AZ_PROP_CONSTANTS.PROP_ROLE_OPERATIONS;
+pub const AZ_PROP_ROLE_TASKS = AZ_PROP_CONSTANTS.PROP_ROLE_TASKS;
+pub const AZ_PROP_ROLE_MEMBERS_NAME = AZ_PROP_CONSTANTS.PROP_ROLE_MEMBERS_NAME;
+pub const AZ_PROP_SCOPE_BIZRULES_WRITABLE = AZ_PROP_CONSTANTS.PROP_SCOPE_BIZRULES_WRITABLE;
+pub const AZ_PROP_SCOPE_CAN_BE_DELEGATED = AZ_PROP_CONSTANTS.PROP_SCOPE_CAN_BE_DELEGATED;
+pub const AZ_PROP_CLIENT_CONTEXT_USER_DN = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_DN;
+pub const AZ_PROP_CLIENT_CONTEXT_USER_SAM_COMPAT = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_SAM_COMPAT;
+pub const AZ_PROP_CLIENT_CONTEXT_USER_DISPLAY = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_DISPLAY;
+pub const AZ_PROP_CLIENT_CONTEXT_USER_GUID = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_GUID;
+pub const AZ_PROP_CLIENT_CONTEXT_USER_CANONICAL = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_CANONICAL;
+pub const AZ_PROP_CLIENT_CONTEXT_USER_UPN = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_UPN;
+pub const AZ_PROP_CLIENT_CONTEXT_USER_DNS_SAM_COMPAT = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_DNS_SAM_COMPAT;
+pub const AZ_PROP_CLIENT_CONTEXT_ROLE_FOR_ACCESS_CHECK = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_ROLE_FOR_ACCESS_CHECK;
+pub const AZ_PROP_CLIENT_CONTEXT_LDAP_QUERY_DN = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_LDAP_QUERY_DN;
+pub const AZ_PROP_APPLICATION_AUTHZ_INTERFACE_CLSID = AZ_PROP_CONSTANTS.PROP_APPLICATION_AUTHZ_INTERFACE_CLSID;
+pub const AZ_PROP_APPLICATION_VERSION = AZ_PROP_CONSTANTS.PROP_APPLICATION_VERSION;
+pub const AZ_MAX_APPLICATION_VERSION_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
+pub const AZ_PROP_APPLICATION_NAME = AZ_PROP_CONSTANTS.PROP_APPLICATION_NAME;
+pub const AZ_PROP_APPLICATION_BIZRULE_ENABLED = AZ_PROP_CONSTANTS.PROP_APPLICATION_BIZRULE_ENABLED;
+pub const AZ_PROP_APPLY_STORE_SACL = AZ_PROP_CONSTANTS.PROP_APPLY_STORE_SACL;
+pub const AZ_PROP_GENERATE_AUDITS = AZ_PROP_CONSTANTS.PROP_GENERATE_AUDITS;
+pub const AZ_PROP_POLICY_ADMINS = AZ_PROP_CONSTANTS.PROP_POLICY_ADMINS;
+pub const AZ_PROP_POLICY_READERS = AZ_PROP_CONSTANTS.PROP_POLICY_READERS;
+pub const AZ_PROP_DELEGATED_POLICY_USERS = AZ_PROP_CONSTANTS.PROP_DELEGATED_POLICY_USERS;
+pub const AZ_PROP_POLICY_ADMINS_NAME = AZ_PROP_CONSTANTS.PROP_POLICY_ADMINS_NAME;
+pub const AZ_PROP_POLICY_READERS_NAME = AZ_PROP_CONSTANTS.PROP_POLICY_READERS_NAME;
+pub const AZ_PROP_DELEGATED_POLICY_USERS_NAME = AZ_PROP_CONSTANTS.PROP_DELEGATED_POLICY_USERS_NAME;
+pub const AZ_CLIENT_CONTEXT_SKIP_GROUP = AZ_PROP_CONSTANTS.PROP_NAME;
+pub const AZ_CLIENT_CONTEXT_SKIP_LDAP_QUERY = AZ_PROP_CONSTANTS.PROP_NAME;
+pub const AZ_CLIENT_CONTEXT_GET_GROUP_RECURSIVE = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
+pub const AZ_CLIENT_CONTEXT_GET_GROUPS_STORE_LEVEL_ONLY = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
+
 const CLSID_AzAuthorizationStore_Value = Guid.initString("b2bcff59-a757-4b0b-a1bc-ea69981da69e");
 pub const CLSID_AzAuthorizationStore = &CLSID_AzAuthorizationStore_Value;
 
@@ -968,514 +976,31 @@ pub const CLSID_AzBizRuleContext = &CLSID_AzBizRuleContext_Value;
 const CLSID_AzPrincipalLocator_Value = Guid.initString("483afb5d-70df-4e16-abdc-a1de4d015a3e");
 pub const CLSID_AzPrincipalLocator = &CLSID_AzPrincipalLocator_Value;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzAuthorizationStore_Value = Guid.initString("edbd9ca9-9b82-4f6a-9e8b-98301e450f14");
-pub const IID_IAzAuthorizationStore = &IID_IAzAuthorizationStore_Value;
-pub const IAzAuthorizationStore = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IAzAuthorizationStore,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrDescription: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationData: *const fn(
-            self: *const IAzAuthorizationStore,
-            pbstrApplicationData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ApplicationData: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrApplicationData: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainTimeout: *const fn(
-            self: *const IAzAuthorizationStore,
-            plProp: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DomainTimeout: *const fn(
-            self: *const IAzAuthorizationStore,
-            lProp: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ScriptEngineTimeout: *const fn(
-            self: *const IAzAuthorizationStore,
-            plProp: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ScriptEngineTimeout: *const fn(
-            self: *const IAzAuthorizationStore,
-            lProp: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxScriptEngines: *const fn(
-            self: *const IAzAuthorizationStore,
-            plProp: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxScriptEngines: *const fn(
-            self: *const IAzAuthorizationStore,
-            lProp: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GenerateAudits: *const fn(
-            self: *const IAzAuthorizationStore,
-            pbProp: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GenerateAudits: *const fn(
-            self: *const IAzAuthorizationStore,
-            bProp: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Writable: *const fn(
-            self: *const IAzAuthorizationStore,
-            pfProp: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IAzAuthorizationStore,
-            lPropId: i32,
-            varReserved: VARIANT,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const IAzAuthorizationStore,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPropertyItem: *const fn(
-            self: *const IAzAuthorizationStore,
-            lPropId: AZ_PROP_CONSTANTS,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePropertyItem: *const fn(
-            self: *const IAzAuthorizationStore,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PolicyAdministrators: *const fn(
-            self: *const IAzAuthorizationStore,
-            pvarAdmins: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PolicyReaders: *const fn(
-            self: *const IAzAuthorizationStore,
-            pvarReaders: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPolicyAdministrator: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrAdmin: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePolicyAdministrator: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrAdmin: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPolicyReader: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrReader: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePolicyReader: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrReader: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Initialize: *const fn(
-            self: *const IAzAuthorizationStore,
-            lFlags: AZ_PROP_CONSTANTS,
-            bstrPolicyURL: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        UpdateCache: *const fn(
-            self: *const IAzAuthorizationStore,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IAzAuthorizationStore,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Applications: *const fn(
-            self: *const IAzAuthorizationStore,
-            ppAppCollection: ?*?*IAzApplications,
-        ) callconv(.winapi) HRESULT,
-        OpenApplication: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrApplicationName: ?BSTR,
-            varReserved: VARIANT,
-            ppApplication: ?*?*IAzApplication,
-        ) callconv(.winapi) HRESULT,
-        CreateApplication: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrApplicationName: ?BSTR,
-            varReserved: VARIANT,
-            ppApplication: ?*?*IAzApplication,
-        ) callconv(.winapi) HRESULT,
-        DeleteApplication: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrApplicationName: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationGroups: *const fn(
-            self: *const IAzAuthorizationStore,
-            ppGroupCollection: ?*?*IAzApplicationGroups,
-        ) callconv(.winapi) HRESULT,
-        CreateApplicationGroup: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrGroupName: ?BSTR,
-            varReserved: VARIANT,
-            ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(.winapi) HRESULT,
-        OpenApplicationGroup: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrGroupName: ?BSTR,
-            varReserved: VARIANT,
-            ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(.winapi) HRESULT,
-        DeleteApplicationGroup: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrGroupName: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Submit: *const fn(
-            self: *const IAzAuthorizationStore,
-            lFlags: i32,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DelegatedPolicyUsers: *const fn(
-            self: *const IAzAuthorizationStore,
-            pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddDelegatedPolicyUser: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteDelegatedPolicyUser: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TargetMachine: *const fn(
-            self: *const IAzAuthorizationStore,
-            pbstrTargetMachine: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplyStoreSacl: *const fn(
-            self: *const IAzAuthorizationStore,
-            pbApplyStoreSacl: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ApplyStoreSacl: *const fn(
-            self: *const IAzAuthorizationStore,
-            bApplyStoreSacl: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PolicyAdministratorsName: *const fn(
-            self: *const IAzAuthorizationStore,
-            pvarAdmins: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PolicyReadersName: *const fn(
-            self: *const IAzAuthorizationStore,
-            pvarReaders: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPolicyAdministratorName: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrAdmin: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePolicyAdministratorName: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrAdmin: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPolicyReaderName: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrReader: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePolicyReaderName: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrReader: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DelegatedPolicyUsersName: *const fn(
-            self: *const IAzAuthorizationStore,
-            pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddDelegatedPolicyUserName: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteDelegatedPolicyUserName: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrDelegatedPolicyUser: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        CloseApplication: *const fn(
-            self: *const IAzAuthorizationStore,
-            bstrApplicationName: ?BSTR,
-            lFlag: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pbstrDescription);
-    }
-    pub fn put_Description(self: *const IAzAuthorizationStore, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, bstrDescription);
-    }
-    pub fn get_ApplicationData(self: *const IAzAuthorizationStore, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ApplicationData(self, pbstrApplicationData);
-    }
-    pub fn put_ApplicationData(self: *const IAzAuthorizationStore, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ApplicationData(self, bstrApplicationData);
-    }
-    pub fn get_DomainTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DomainTimeout(self, plProp);
-    }
-    pub fn put_DomainTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DomainTimeout(self, lProp);
-    }
-    pub fn get_ScriptEngineTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ScriptEngineTimeout(self, plProp);
-    }
-    pub fn put_ScriptEngineTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ScriptEngineTimeout(self, lProp);
-    }
-    pub fn get_MaxScriptEngines(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaxScriptEngines(self, plProp);
-    }
-    pub fn put_MaxScriptEngines(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MaxScriptEngines(self, lProp);
-    }
-    pub fn get_GenerateAudits(self: *const IAzAuthorizationStore, pbProp: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GenerateAudits(self, pbProp);
-    }
-    pub fn put_GenerateAudits(self: *const IAzAuthorizationStore, bProp: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_GenerateAudits(self, bProp);
-    }
-    pub fn get_Writable(self: *const IAzAuthorizationStore, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Writable(self, pfProp);
-    }
-    pub fn GetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
-    }
-    pub fn SetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
-    }
-    pub fn AddPropertyItem(self: *const IAzAuthorizationStore, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn DeletePropertyItem(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn get_PolicyAdministrators(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
-    }
-    pub fn get_PolicyReaders(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PolicyReaders(self, pvarReaders);
-    }
-    pub fn AddPolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
-    }
-    pub fn DeletePolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
-    }
-    pub fn AddPolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
-    }
-    pub fn DeletePolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
-    }
-    pub fn Initialize(self: *const IAzAuthorizationStore, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, lFlags, bstrPolicyURL, varReserved);
-    }
-    pub fn UpdateCache(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateCache(self, varReserved);
-    }
-    pub fn Delete(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, varReserved);
-    }
-    pub fn get_Applications(self: *const IAzAuthorizationStore, ppAppCollection: ?*?*IAzApplications) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Applications(self, ppAppCollection);
-    }
-    pub fn OpenApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenApplication(self, bstrApplicationName, varReserved, ppApplication);
-    }
-    pub fn CreateApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateApplication(self, bstrApplicationName, varReserved, ppApplication);
-    }
-    pub fn DeleteApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteApplication(self, bstrApplicationName, varReserved);
-    }
-    pub fn get_ApplicationGroups(self: *const IAzAuthorizationStore, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
-    }
-    pub fn CreateApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
-    }
-    pub fn OpenApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
-    }
-    pub fn DeleteApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
-    }
-    pub fn Submit(self: *const IAzAuthorizationStore, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Submit(self, lFlags, varReserved);
-    }
-    pub fn get_DelegatedPolicyUsers(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DelegatedPolicyUsers(self, pvarDelegatedPolicyUsers);
-    }
-    pub fn AddDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
-    }
-    pub fn DeleteDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
-    }
-    pub fn get_TargetMachine(self: *const IAzAuthorizationStore, pbstrTargetMachine: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TargetMachine(self, pbstrTargetMachine);
-    }
-    pub fn get_ApplyStoreSacl(self: *const IAzAuthorizationStore, pbApplyStoreSacl: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ApplyStoreSacl(self, pbApplyStoreSacl);
-    }
-    pub fn put_ApplyStoreSacl(self: *const IAzAuthorizationStore, bApplyStoreSacl: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ApplyStoreSacl(self, bApplyStoreSacl);
-    }
-    pub fn get_PolicyAdministratorsName(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
-    }
-    pub fn get_PolicyReadersName(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PolicyReadersName(self, pvarReaders);
-    }
-    pub fn AddPolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
-    }
-    pub fn DeletePolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
-    }
-    pub fn AddPolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
-    }
-    pub fn DeletePolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
-    }
-    pub fn get_DelegatedPolicyUsersName(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DelegatedPolicyUsersName(self, pvarDelegatedPolicyUsers);
-    }
-    pub fn AddDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
-    }
-    pub fn DeleteDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
-    }
-    pub fn CloseApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.CloseApplication(self, bstrApplicationName, lFlag);
-    }
+pub const EXPLICIT_ACCESS_A = extern struct {
+    grfAccessPermissions: u32,
+    grfAccessMode: ACCESS_MODE,
+    grfInheritance: ACE_FLAGS,
+    Trustee: TRUSTEE_A,
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IAzAuthorizationStore2_Value = Guid.initString("b11e5584-d577-4273-b6c5-0973e0f8e80d");
-pub const IID_IAzAuthorizationStore2 = &IID_IAzAuthorizationStore2_Value;
-pub const IAzAuthorizationStore2 = extern union {
-    pub const VTable = extern struct {
-        base: IAzAuthorizationStore.VTable,
-        OpenApplication2: *const fn(
-            self: *const IAzAuthorizationStore2,
-            bstrApplicationName: ?BSTR,
-            varReserved: VARIANT,
-            ppApplication: ?*?*IAzApplication2,
-        ) callconv(.winapi) HRESULT,
-        CreateApplication2: *const fn(
-            self: *const IAzAuthorizationStore2,
-            bstrApplicationName: ?BSTR,
-            varReserved: VARIANT,
-            ppApplication: ?*?*IAzApplication2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzAuthorizationStore: IAzAuthorizationStore,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenApplication2(self, bstrApplicationName, varReserved, ppApplication);
-    }
-    pub fn CreateApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateApplication2(self, bstrApplicationName, varReserved, ppApplication);
-    }
+pub const EXPLICIT_ACCESS_W = extern struct {
+    grfAccessPermissions: u32,
+    grfAccessMode: ACCESS_MODE,
+    grfInheritance: ACE_FLAGS,
+    Trustee: TRUSTEE_W,
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzAuthorizationStore3_Value = Guid.initString("abc08425-0c86-4fa0-9be3-7189956c926e");
-pub const IID_IAzAuthorizationStore3 = &IID_IAzAuthorizationStore3_Value;
-pub const IAzAuthorizationStore3 = extern union {
-    pub const VTable = extern struct {
-        base: IAzAuthorizationStore2.VTable,
-        IsUpdateNeeded: *const fn(
-            self: *const IAzAuthorizationStore3,
-            pbIsUpdateNeeded: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        BizruleGroupSupported: *const fn(
-            self: *const IAzAuthorizationStore3,
-            pbSupported: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        UpgradeStoresFunctionalLevel: *const fn(
-            self: *const IAzAuthorizationStore3,
-            lFunctionalLevel: i32,
-        ) callconv(.winapi) HRESULT,
-        IsFunctionalLevelUpgradeSupported: *const fn(
-            self: *const IAzAuthorizationStore3,
-            lFunctionalLevel: i32,
-            pbSupported: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetSchemaVersion: *const fn(
-            self: *const IAzAuthorizationStore3,
-            plMajorVersion: ?*i32,
-            plMinorVersion: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzAuthorizationStore2: IAzAuthorizationStore2,
-    IAzAuthorizationStore: IAzAuthorizationStore,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsUpdateNeeded(self, pbIsUpdateNeeded);
-    }
-    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.BizruleGroupSupported(self, pbSupported);
-    }
-    pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.UpgradeStoresFunctionalLevel(self, lFunctionalLevel);
-    }
-    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsFunctionalLevelUpgradeSupported(self, lFunctionalLevel, pbSupported);
-    }
-    pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSchemaVersion(self, plMajorVersion, plMinorVersion);
-    }
+pub const FN_OBJECT_MGR_FUNCTIONS = extern struct {
+    Placeholder: u32,
 };
+
+pub const FN_PROGRESS = *const fn(
+    pObjectName: ?PWSTR,
+    Status: u32,
+    pInvokeSetting: ?*PROG_INVOKE_SETTING,
+    Args: ?*anyopaque,
+    SecuritySet: BOOL,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAzApplication_Value = Guid.initString("987bc7c7-b813-4d27-bede-6ba5ae867e95");
@@ -2029,6 +1554,507 @@ pub const IAzApplication2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzApplication3_Value = Guid.initString("181c845e-7196-4a7d-ac2e-020c0bb7a303");
+pub const IID_IAzApplication3 = &IID_IAzApplication3_Value;
+pub const IAzApplication3 = extern union {
+    pub const VTable = extern struct {
+        base: IAzApplication2.VTable,
+        ScopeExists: *const fn(
+            self: *const IAzApplication3,
+            bstrScopeName: ?BSTR,
+            pbExist: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        OpenScope2: *const fn(
+            self: *const IAzApplication3,
+            bstrScopeName: ?BSTR,
+            ppScope2: ?*?*IAzScope2,
+        ) callconv(.winapi) HRESULT,
+        CreateScope2: *const fn(
+            self: *const IAzApplication3,
+            bstrScopeName: ?BSTR,
+            ppScope2: ?*?*IAzScope2,
+        ) callconv(.winapi) HRESULT,
+        DeleteScope2: *const fn(
+            self: *const IAzApplication3,
+            bstrScopeName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RoleDefinitions: *const fn(
+            self: *const IAzApplication3,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
+        ) callconv(.winapi) HRESULT,
+        CreateRoleDefinition: *const fn(
+            self: *const IAzApplication3,
+            bstrRoleDefinitionName: ?BSTR,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
+        ) callconv(.winapi) HRESULT,
+        OpenRoleDefinition: *const fn(
+            self: *const IAzApplication3,
+            bstrRoleDefinitionName: ?BSTR,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
+        ) callconv(.winapi) HRESULT,
+        DeleteRoleDefinition: *const fn(
+            self: *const IAzApplication3,
+            bstrRoleDefinitionName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RoleAssignments: *const fn(
+            self: *const IAzApplication3,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
+        ) callconv(.winapi) HRESULT,
+        CreateRoleAssignment: *const fn(
+            self: *const IAzApplication3,
+            bstrRoleAssignmentName: ?BSTR,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
+        ) callconv(.winapi) HRESULT,
+        OpenRoleAssignment: *const fn(
+            self: *const IAzApplication3,
+            bstrRoleAssignmentName: ?BSTR,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
+        ) callconv(.winapi) HRESULT,
+        DeleteRoleAssignment: *const fn(
+            self: *const IAzApplication3,
+            bstrRoleAssignmentName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BizRulesEnabled: *const fn(
+            self: *const IAzApplication3,
+            pbEnabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BizRulesEnabled: *const fn(
+            self: *const IAzApplication3,
+            bEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzApplication2: IAzApplication2,
+    IAzApplication: IAzApplication,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.ScopeExists(self, bstrScopeName, pbExist);
+    }
+    pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenScope2(self, bstrScopeName, ppScope2);
+    }
+    pub fn CreateScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateScope2(self, bstrScopeName, ppScope2);
+    }
+    pub fn DeleteScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteScope2(self, bstrScopeName);
+    }
+    pub fn get_RoleDefinitions(self: *const IAzApplication3, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
+    }
+    pub fn CreateRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
+    }
+    pub fn OpenRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
+    }
+    pub fn DeleteRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinitionName);
+    }
+    pub fn get_RoleAssignments(self: *const IAzApplication3, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RoleAssignments(self, ppRoleAssignments);
+    }
+    pub fn CreateRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
+    }
+    pub fn OpenRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
+    }
+    pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteRoleAssignment(self, bstrRoleAssignmentName);
+    }
+    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BizRulesEnabled(self, pbEnabled);
+    }
+    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BizRulesEnabled(self, bEnabled);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzApplicationGroup_Value = Guid.initString("f1b744cd-58a6-4e06-9fbf-36f6d779e21e");
+pub const IID_IAzApplicationGroup = &IID_IAzApplicationGroup_Value;
+pub const IAzApplicationGroup = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IAzApplicationGroup,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const IAzApplicationGroup,
+            plProp: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Type: *const fn(
+            self: *const IAzApplicationGroup,
+            lProp: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LdapQuery: *const fn(
+            self: *const IAzApplicationGroup,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LdapQuery: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AppMembers: *const fn(
+            self: *const IAzApplicationGroup,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AppNonMembers: *const fn(
+            self: *const IAzApplicationGroup,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Members: *const fn(
+            self: *const IAzApplicationGroup,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NonMembers: *const fn(
+            self: *const IAzApplicationGroup,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IAzApplicationGroup,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrDescription: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddAppMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteAppMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddAppNonMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteAppNonMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddNonMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteNonMember: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Writable: *const fn(
+            self: *const IAzApplicationGroup,
+            pfProp: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IAzApplicationGroup,
+            lPropId: i32,
+            varReserved: VARIANT,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetProperty: *const fn(
+            self: *const IAzApplicationGroup,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPropertyItem: *const fn(
+            self: *const IAzApplicationGroup,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePropertyItem: *const fn(
+            self: *const IAzApplicationGroup,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Submit: *const fn(
+            self: *const IAzApplicationGroup,
+            lFlags: i32,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddMemberName: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteMemberName: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddNonMemberName: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteNonMemberName: *const fn(
+            self: *const IAzApplicationGroup,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MembersName: *const fn(
+            self: *const IAzApplicationGroup,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NonMembersName: *const fn(
+            self: *const IAzApplicationGroup,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn put_Name(self: *const IAzApplicationGroup, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, bstrName);
+    }
+    pub fn get_Type(self: *const IAzApplicationGroup, plProp: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, plProp);
+    }
+    pub fn put_Type(self: *const IAzApplicationGroup, lProp: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Type(self, lProp);
+    }
+    pub fn get_LdapQuery(self: *const IAzApplicationGroup, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LdapQuery(self, pbstrProp);
+    }
+    pub fn put_LdapQuery(self: *const IAzApplicationGroup, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LdapQuery(self, bstrProp);
+    }
+    pub fn get_AppMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AppMembers(self, pvarProp);
+    }
+    pub fn get_AppNonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AppNonMembers(self, pvarProp);
+    }
+    pub fn get_Members(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Members(self, pvarProp);
+    }
+    pub fn get_NonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NonMembers(self, pvarProp);
+    }
+    pub fn get_Description(self: *const IAzApplicationGroup, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzApplicationGroup, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, bstrDescription);
+    }
+    pub fn AddAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAppMember(self, bstrProp, varReserved);
+    }
+    pub fn DeleteAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
+    }
+    pub fn AddAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAppNonMember(self, bstrProp, varReserved);
+    }
+    pub fn DeleteAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteAppNonMember(self, bstrProp, varReserved);
+    }
+    pub fn AddMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddMember(self, bstrProp, varReserved);
+    }
+    pub fn DeleteMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteMember(self, bstrProp, varReserved);
+    }
+    pub fn AddNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddNonMember(self, bstrProp, varReserved);
+    }
+    pub fn DeleteNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteNonMember(self, bstrProp, varReserved);
+    }
+    pub fn get_Writable(self: *const IAzApplicationGroup, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Writable(self, pfProp);
+    }
+    pub fn GetProperty(self: *const IAzApplicationGroup, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
+    }
+    pub fn AddPropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzApplicationGroup, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Submit(self, lFlags, varReserved);
+    }
+    pub fn AddMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddMemberName(self, bstrProp, varReserved);
+    }
+    pub fn DeleteMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
+    }
+    pub fn AddNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddNonMemberName(self, bstrProp, varReserved);
+    }
+    pub fn DeleteNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteNonMemberName(self, bstrProp, varReserved);
+    }
+    pub fn get_MembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MembersName(self, pvarProp);
+    }
+    pub fn get_NonMembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NonMembersName(self, pvarProp);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzApplicationGroup2_Value = Guid.initString("3f0613fc-b71a-464e-a11d-5b881a56cefa");
+pub const IID_IAzApplicationGroup2 = &IID_IAzApplicationGroup2_Value;
+pub const IAzApplicationGroup2 = extern union {
+    pub const VTable = extern struct {
+        base: IAzApplicationGroup.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BizRule: *const fn(
+            self: *const IAzApplicationGroup2,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BizRule: *const fn(
+            self: *const IAzApplicationGroup2,
+            bstrProp: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BizRuleLanguage: *const fn(
+            self: *const IAzApplicationGroup2,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BizRuleLanguage: *const fn(
+            self: *const IAzApplicationGroup2,
+            bstrProp: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BizRuleImportedPath: *const fn(
+            self: *const IAzApplicationGroup2,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BizRuleImportedPath: *const fn(
+            self: *const IAzApplicationGroup2,
+            bstrProp: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RoleAssignments: *const fn(
+            self: *const IAzApplicationGroup2,
+            bstrScopeName: ?BSTR,
+            bRecursive: i16,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzApplicationGroup: IAzApplicationGroup,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BizRule(self, pbstrProp);
+    }
+    pub fn put_BizRule(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BizRule(self, bstrProp);
+    }
+    pub fn get_BizRuleLanguage(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BizRuleLanguage(self, pbstrProp);
+    }
+    pub fn put_BizRuleLanguage(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BizRuleLanguage(self, bstrProp);
+    }
+    pub fn get_BizRuleImportedPath(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BizRuleImportedPath(self, pbstrProp);
+    }
+    pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BizRuleImportedPath(self, bstrProp);
+    }
+    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+        return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzApplicationGroups_Value = Guid.initString("4ce66ad5-9f3c-469d-a911-b99887a7e685");
+pub const IID_IAzApplicationGroups = &IID_IAzApplicationGroups_Value;
+pub const IAzApplicationGroups = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Item: *const fn(
+            self: *const IAzApplicationGroups,
+            Index: i32,
+            pvarObtPtr: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IAzApplicationGroups,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IAzApplicationGroups,
+            ppEnumPtr: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzApplicationGroups, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzApplicationGroups, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppEnumPtr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAzApplications_Value = Guid.initString("929b11a9-95c5-4a84-a29a-20ad42c2f16c");
 pub const IID_IAzApplications = &IID_IAzApplications_Value;
 pub const IAzApplications = extern union {
@@ -2061,6 +2087,1003 @@ pub const IAzApplications = extern union {
     }
     pub fn get__NewEnum(self: *const IAzApplications, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzAuthorizationStore_Value = Guid.initString("edbd9ca9-9b82-4f6a-9e8b-98301e450f14");
+pub const IID_IAzAuthorizationStore = &IID_IAzAuthorizationStore_Value;
+pub const IAzAuthorizationStore = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IAzAuthorizationStore,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrDescription: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ApplicationData: *const fn(
+            self: *const IAzAuthorizationStore,
+            pbstrApplicationData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ApplicationData: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrApplicationData: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DomainTimeout: *const fn(
+            self: *const IAzAuthorizationStore,
+            plProp: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DomainTimeout: *const fn(
+            self: *const IAzAuthorizationStore,
+            lProp: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ScriptEngineTimeout: *const fn(
+            self: *const IAzAuthorizationStore,
+            plProp: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ScriptEngineTimeout: *const fn(
+            self: *const IAzAuthorizationStore,
+            lProp: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaxScriptEngines: *const fn(
+            self: *const IAzAuthorizationStore,
+            plProp: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MaxScriptEngines: *const fn(
+            self: *const IAzAuthorizationStore,
+            lProp: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GenerateAudits: *const fn(
+            self: *const IAzAuthorizationStore,
+            pbProp: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_GenerateAudits: *const fn(
+            self: *const IAzAuthorizationStore,
+            bProp: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Writable: *const fn(
+            self: *const IAzAuthorizationStore,
+            pfProp: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IAzAuthorizationStore,
+            lPropId: i32,
+            varReserved: VARIANT,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetProperty: *const fn(
+            self: *const IAzAuthorizationStore,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPropertyItem: *const fn(
+            self: *const IAzAuthorizationStore,
+            lPropId: AZ_PROP_CONSTANTS,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePropertyItem: *const fn(
+            self: *const IAzAuthorizationStore,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PolicyAdministrators: *const fn(
+            self: *const IAzAuthorizationStore,
+            pvarAdmins: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PolicyReaders: *const fn(
+            self: *const IAzAuthorizationStore,
+            pvarReaders: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPolicyAdministrator: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrAdmin: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePolicyAdministrator: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrAdmin: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPolicyReader: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrReader: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePolicyReader: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrReader: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Initialize: *const fn(
+            self: *const IAzAuthorizationStore,
+            lFlags: AZ_PROP_CONSTANTS,
+            bstrPolicyURL: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        UpdateCache: *const fn(
+            self: *const IAzAuthorizationStore,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IAzAuthorizationStore,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Applications: *const fn(
+            self: *const IAzAuthorizationStore,
+            ppAppCollection: ?*?*IAzApplications,
+        ) callconv(.winapi) HRESULT,
+        OpenApplication: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrApplicationName: ?BSTR,
+            varReserved: VARIANT,
+            ppApplication: ?*?*IAzApplication,
+        ) callconv(.winapi) HRESULT,
+        CreateApplication: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrApplicationName: ?BSTR,
+            varReserved: VARIANT,
+            ppApplication: ?*?*IAzApplication,
+        ) callconv(.winapi) HRESULT,
+        DeleteApplication: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrApplicationName: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ApplicationGroups: *const fn(
+            self: *const IAzAuthorizationStore,
+            ppGroupCollection: ?*?*IAzApplicationGroups,
+        ) callconv(.winapi) HRESULT,
+        CreateApplicationGroup: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrGroupName: ?BSTR,
+            varReserved: VARIANT,
+            ppGroup: ?*?*IAzApplicationGroup,
+        ) callconv(.winapi) HRESULT,
+        OpenApplicationGroup: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrGroupName: ?BSTR,
+            varReserved: VARIANT,
+            ppGroup: ?*?*IAzApplicationGroup,
+        ) callconv(.winapi) HRESULT,
+        DeleteApplicationGroup: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrGroupName: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Submit: *const fn(
+            self: *const IAzAuthorizationStore,
+            lFlags: i32,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DelegatedPolicyUsers: *const fn(
+            self: *const IAzAuthorizationStore,
+            pvarDelegatedPolicyUsers: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddDelegatedPolicyUser: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrDelegatedPolicyUser: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteDelegatedPolicyUser: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrDelegatedPolicyUser: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TargetMachine: *const fn(
+            self: *const IAzAuthorizationStore,
+            pbstrTargetMachine: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ApplyStoreSacl: *const fn(
+            self: *const IAzAuthorizationStore,
+            pbApplyStoreSacl: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ApplyStoreSacl: *const fn(
+            self: *const IAzAuthorizationStore,
+            bApplyStoreSacl: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PolicyAdministratorsName: *const fn(
+            self: *const IAzAuthorizationStore,
+            pvarAdmins: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PolicyReadersName: *const fn(
+            self: *const IAzAuthorizationStore,
+            pvarReaders: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPolicyAdministratorName: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrAdmin: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePolicyAdministratorName: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrAdmin: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPolicyReaderName: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrReader: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePolicyReaderName: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrReader: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DelegatedPolicyUsersName: *const fn(
+            self: *const IAzAuthorizationStore,
+            pvarDelegatedPolicyUsers: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddDelegatedPolicyUserName: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrDelegatedPolicyUser: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteDelegatedPolicyUserName: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrDelegatedPolicyUser: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        CloseApplication: *const fn(
+            self: *const IAzAuthorizationStore,
+            bstrApplicationName: ?BSTR,
+            lFlag: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzAuthorizationStore, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzAuthorizationStore, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ApplicationData(self, pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzAuthorizationStore, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ApplicationData(self, bstrApplicationData);
+    }
+    pub fn get_DomainTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DomainTimeout(self, plProp);
+    }
+    pub fn put_DomainTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DomainTimeout(self, lProp);
+    }
+    pub fn get_ScriptEngineTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ScriptEngineTimeout(self, plProp);
+    }
+    pub fn put_ScriptEngineTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ScriptEngineTimeout(self, lProp);
+    }
+    pub fn get_MaxScriptEngines(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaxScriptEngines(self, plProp);
+    }
+    pub fn put_MaxScriptEngines(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MaxScriptEngines(self, lProp);
+    }
+    pub fn get_GenerateAudits(self: *const IAzAuthorizationStore, pbProp: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GenerateAudits(self, pbProp);
+    }
+    pub fn put_GenerateAudits(self: *const IAzAuthorizationStore, bProp: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_GenerateAudits(self, bProp);
+    }
+    pub fn get_Writable(self: *const IAzAuthorizationStore, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Writable(self, pfProp);
+    }
+    pub fn GetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
+    }
+    pub fn AddPropertyItem(self: *const IAzAuthorizationStore, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn get_PolicyAdministrators(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
+    }
+    pub fn get_PolicyReaders(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PolicyReaders(self, pvarReaders);
+    }
+    pub fn AddPolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
+    }
+    pub fn Initialize(self: *const IAzAuthorizationStore, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, lFlags, bstrPolicyURL, varReserved);
+    }
+    pub fn UpdateCache(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateCache(self, varReserved);
+    }
+    pub fn Delete(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, varReserved);
+    }
+    pub fn get_Applications(self: *const IAzAuthorizationStore, ppAppCollection: ?*?*IAzApplications) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Applications(self, ppAppCollection);
+    }
+    pub fn OpenApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenApplication(self, bstrApplicationName, varReserved, ppApplication);
+    }
+    pub fn CreateApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateApplication(self, bstrApplicationName, varReserved, ppApplication);
+    }
+    pub fn DeleteApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteApplication(self, bstrApplicationName, varReserved);
+    }
+    pub fn get_ApplicationGroups(self: *const IAzAuthorizationStore, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
+    }
+    pub fn CreateApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn OpenApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
+    }
+    pub fn DeleteApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
+    }
+    pub fn Submit(self: *const IAzAuthorizationStore, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Submit(self, lFlags, varReserved);
+    }
+    pub fn get_DelegatedPolicyUsers(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DelegatedPolicyUsers(self, pvarDelegatedPolicyUsers);
+    }
+    pub fn AddDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn DeleteDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn get_TargetMachine(self: *const IAzAuthorizationStore, pbstrTargetMachine: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TargetMachine(self, pbstrTargetMachine);
+    }
+    pub fn get_ApplyStoreSacl(self: *const IAzAuthorizationStore, pbApplyStoreSacl: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ApplyStoreSacl(self, pbApplyStoreSacl);
+    }
+    pub fn put_ApplyStoreSacl(self: *const IAzAuthorizationStore, bApplyStoreSacl: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ApplyStoreSacl(self, bApplyStoreSacl);
+    }
+    pub fn get_PolicyAdministratorsName(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
+    }
+    pub fn get_PolicyReadersName(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PolicyReadersName(self, pvarReaders);
+    }
+    pub fn AddPolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
+    }
+    pub fn DeletePolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
+    }
+    pub fn AddPolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
+    }
+    pub fn DeletePolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
+    }
+    pub fn get_DelegatedPolicyUsersName(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DelegatedPolicyUsersName(self, pvarDelegatedPolicyUsers);
+    }
+    pub fn AddDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn DeleteDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
+    }
+    pub fn CloseApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.CloseApplication(self, bstrApplicationName, lFlag);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IAzAuthorizationStore2_Value = Guid.initString("b11e5584-d577-4273-b6c5-0973e0f8e80d");
+pub const IID_IAzAuthorizationStore2 = &IID_IAzAuthorizationStore2_Value;
+pub const IAzAuthorizationStore2 = extern union {
+    pub const VTable = extern struct {
+        base: IAzAuthorizationStore.VTable,
+        OpenApplication2: *const fn(
+            self: *const IAzAuthorizationStore2,
+            bstrApplicationName: ?BSTR,
+            varReserved: VARIANT,
+            ppApplication: ?*?*IAzApplication2,
+        ) callconv(.winapi) HRESULT,
+        CreateApplication2: *const fn(
+            self: *const IAzAuthorizationStore2,
+            bstrApplicationName: ?BSTR,
+            varReserved: VARIANT,
+            ppApplication: ?*?*IAzApplication2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzAuthorizationStore: IAzAuthorizationStore,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenApplication2(self, bstrApplicationName, varReserved, ppApplication);
+    }
+    pub fn CreateApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateApplication2(self, bstrApplicationName, varReserved, ppApplication);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzAuthorizationStore3_Value = Guid.initString("abc08425-0c86-4fa0-9be3-7189956c926e");
+pub const IID_IAzAuthorizationStore3 = &IID_IAzAuthorizationStore3_Value;
+pub const IAzAuthorizationStore3 = extern union {
+    pub const VTable = extern struct {
+        base: IAzAuthorizationStore2.VTable,
+        IsUpdateNeeded: *const fn(
+            self: *const IAzAuthorizationStore3,
+            pbIsUpdateNeeded: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        BizruleGroupSupported: *const fn(
+            self: *const IAzAuthorizationStore3,
+            pbSupported: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        UpgradeStoresFunctionalLevel: *const fn(
+            self: *const IAzAuthorizationStore3,
+            lFunctionalLevel: i32,
+        ) callconv(.winapi) HRESULT,
+        IsFunctionalLevelUpgradeSupported: *const fn(
+            self: *const IAzAuthorizationStore3,
+            lFunctionalLevel: i32,
+            pbSupported: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetSchemaVersion: *const fn(
+            self: *const IAzAuthorizationStore3,
+            plMajorVersion: ?*i32,
+            plMinorVersion: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzAuthorizationStore2: IAzAuthorizationStore2,
+    IAzAuthorizationStore: IAzAuthorizationStore,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsUpdateNeeded(self, pbIsUpdateNeeded);
+    }
+    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.BizruleGroupSupported(self, pbSupported);
+    }
+    pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.UpgradeStoresFunctionalLevel(self, lFunctionalLevel);
+    }
+    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsFunctionalLevelUpgradeSupported(self, lFunctionalLevel, pbSupported);
+    }
+    pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSchemaVersion(self, plMajorVersion, plMinorVersion);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzBizRuleContext_Value = Guid.initString("e192f17d-d59f-455e-a152-940316cd77b2");
+pub const IID_IAzBizRuleContext = &IID_IAzBizRuleContext_Value;
+pub const IAzBizRuleContext = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BusinessRuleResult: *const fn(
+            self: *const IAzBizRuleContext,
+            bResult: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BusinessRuleString: *const fn(
+            self: *const IAzBizRuleContext,
+            bstrBusinessRuleString: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BusinessRuleString: *const fn(
+            self: *const IAzBizRuleContext,
+            pbstrBusinessRuleString: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetParameter: *const fn(
+            self: *const IAzBizRuleContext,
+            bstrParameterName: ?BSTR,
+            pvarParameterValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BusinessRuleResult(self, bResult);
+    }
+    pub fn put_BusinessRuleString(self: *const IAzBizRuleContext, bstrBusinessRuleString: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BusinessRuleString(self, bstrBusinessRuleString);
+    }
+    pub fn get_BusinessRuleString(self: *const IAzBizRuleContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BusinessRuleString(self, pbstrBusinessRuleString);
+    }
+    pub fn GetParameter(self: *const IAzBizRuleContext, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParameter(self, bstrParameterName, pvarParameterValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzBizRuleInterfaces_Value = Guid.initString("e94128c7-e9da-44cc-b0bd-53036f3aab3d");
+pub const IID_IAzBizRuleInterfaces = &IID_IAzBizRuleInterfaces_Value;
+pub const IAzBizRuleInterfaces = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        AddInterface: *const fn(
+            self: *const IAzBizRuleInterfaces,
+            bstrInterfaceName: ?BSTR,
+            lInterfaceFlag: i32,
+            varInterface: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddInterfaces: *const fn(
+            self: *const IAzBizRuleInterfaces,
+            varInterfaceNames: VARIANT,
+            varInterfaceFlags: VARIANT,
+            varInterfaces: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetInterfaceValue: *const fn(
+            self: *const IAzBizRuleInterfaces,
+            bstrInterfaceName: ?BSTR,
+            lInterfaceFlag: ?*i32,
+            varInterface: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IAzBizRuleInterfaces,
+            bstrInterfaceName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveAll: *const fn(
+            self: *const IAzBizRuleInterfaces,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IAzBizRuleInterfaces,
+            plCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddInterface(self, bstrInterfaceName, lInterfaceFlag, varInterface);
+    }
+    pub fn AddInterfaces(self: *const IAzBizRuleInterfaces, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddInterfaces(self, varInterfaceNames, varInterfaceFlags, varInterfaces);
+    }
+    pub fn GetInterfaceValue(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInterfaceValue(self, bstrInterfaceName, lInterfaceFlag, varInterface);
+    }
+    pub fn Remove(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, bstrInterfaceName);
+    }
+    pub fn RemoveAll(self: *const IAzBizRuleInterfaces) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAll(self);
+    }
+    pub fn get_Count(self: *const IAzBizRuleInterfaces, plCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzBizRuleParameters_Value = Guid.initString("fc17685f-e25d-4dcd-bae1-276ec9533cb5");
+pub const IID_IAzBizRuleParameters = &IID_IAzBizRuleParameters_Value;
+pub const IAzBizRuleParameters = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        AddParameter: *const fn(
+            self: *const IAzBizRuleParameters,
+            bstrParameterName: ?BSTR,
+            varParameterValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddParameters: *const fn(
+            self: *const IAzBizRuleParameters,
+            varParameterNames: VARIANT,
+            varParameterValues: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetParameterValue: *const fn(
+            self: *const IAzBizRuleParameters,
+            bstrParameterName: ?BSTR,
+            pvarParameterValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IAzBizRuleParameters,
+            varParameterName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveAll: *const fn(
+            self: *const IAzBizRuleParameters,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IAzBizRuleParameters,
+            plCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddParameter(self, bstrParameterName, varParameterValue);
+    }
+    pub fn AddParameters(self: *const IAzBizRuleParameters, varParameterNames: VARIANT, varParameterValues: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddParameters(self, varParameterNames, varParameterValues);
+    }
+    pub fn GetParameterValue(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParameterValue(self, bstrParameterName, pvarParameterValue);
+    }
+    pub fn Remove(self: *const IAzBizRuleParameters, varParameterName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, varParameterName);
+    }
+    pub fn RemoveAll(self: *const IAzBizRuleParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAll(self);
+    }
+    pub fn get_Count(self: *const IAzBizRuleParameters, plCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzClientContext_Value = Guid.initString("eff1f00b-488a-466d-afd9-a401c5f9eef5");
+pub const IID_IAzClientContext = &IID_IAzClientContext_Value;
+pub const IAzClientContext = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        AccessCheck: *const fn(
+            self: *const IAzClientContext,
+            bstrObjectName: ?BSTR,
+            varScopeNames: VARIANT,
+            varOperations: VARIANT,
+            varParameterNames: VARIANT,
+            varParameterValues: VARIANT,
+            varInterfaceNames: VARIANT,
+            varInterfaceFlags: VARIANT,
+            varInterfaces: VARIANT,
+            pvarResults: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetBusinessRuleString: *const fn(
+            self: *const IAzClientContext,
+            pbstrBusinessRuleString: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserDn: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserSamCompat: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserDisplay: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserGuid: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserCanonical: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserUpn: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserDnsSamCompat: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IAzClientContext,
+            lPropId: i32,
+            varReserved: VARIANT,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetRoles: *const fn(
+            self: *const IAzClientContext,
+            bstrScopeName: ?BSTR,
+            pvarRoleNames: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RoleForAccessCheck: *const fn(
+            self: *const IAzClientContext,
+            pbstrProp: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RoleForAccessCheck: *const fn(
+            self: *const IAzClientContext,
+            bstrProp: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AccessCheck(self, bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
+    }
+    pub fn GetBusinessRuleString(self: *const IAzClientContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBusinessRuleString(self, pbstrBusinessRuleString);
+    }
+    pub fn get_UserDn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserDn(self, pbstrProp);
+    }
+    pub fn get_UserSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserSamCompat(self, pbstrProp);
+    }
+    pub fn get_UserDisplay(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserDisplay(self, pbstrProp);
+    }
+    pub fn get_UserGuid(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserGuid(self, pbstrProp);
+    }
+    pub fn get_UserCanonical(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserCanonical(self, pbstrProp);
+    }
+    pub fn get_UserUpn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserUpn(self, pbstrProp);
+    }
+    pub fn get_UserDnsSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserDnsSamCompat(self, pbstrProp);
+    }
+    pub fn GetProperty(self: *const IAzClientContext, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
+    }
+    pub fn GetRoles(self: *const IAzClientContext, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRoles(self, bstrScopeName, pvarRoleNames);
+    }
+    pub fn get_RoleForAccessCheck(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RoleForAccessCheck(self, pbstrProp);
+    }
+    pub fn put_RoleForAccessCheck(self: *const IAzClientContext, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RoleForAccessCheck(self, bstrProp);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IAzClientContext2_Value = Guid.initString("2b0c92b8-208a-488a-8f81-e4edb22111cd");
+pub const IID_IAzClientContext2 = &IID_IAzClientContext2_Value;
+pub const IAzClientContext2 = extern union {
+    pub const VTable = extern struct {
+        base: IAzClientContext.VTable,
+        GetAssignedScopesPage: *const fn(
+            self: *const IAzClientContext2,
+            lOptions: i32,
+            PageSize: i32,
+            pvarCursor: ?*VARIANT,
+            pvarScopeNames: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddRoles: *const fn(
+            self: *const IAzClientContext2,
+            varRoles: VARIANT,
+            bstrScopeName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddApplicationGroups: *const fn(
+            self: *const IAzClientContext2,
+            varApplicationGroups: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddStringSids: *const fn(
+            self: *const IAzClientContext2,
+            varStringSids: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LDAPQueryDN: *const fn(
+            self: *const IAzClientContext2,
+            bstrLDAPQueryDN: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LDAPQueryDN: *const fn(
+            self: *const IAzClientContext2,
+            pbstrLDAPQueryDN: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzClientContext: IAzClientContext,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAssignedScopesPage(self, lOptions, PageSize, pvarCursor, pvarScopeNames);
+    }
+    pub fn AddRoles(self: *const IAzClientContext2, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRoles(self, varRoles, bstrScopeName);
+    }
+    pub fn AddApplicationGroups(self: *const IAzClientContext2, varApplicationGroups: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddApplicationGroups(self, varApplicationGroups);
+    }
+    pub fn AddStringSids(self: *const IAzClientContext2, varStringSids: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddStringSids(self, varStringSids);
+    }
+    pub fn put_LDAPQueryDN(self: *const IAzClientContext2, bstrLDAPQueryDN: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LDAPQueryDN(self, bstrLDAPQueryDN);
+    }
+    pub fn get_LDAPQueryDN(self: *const IAzClientContext2, pbstrLDAPQueryDN: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LDAPQueryDN(self, pbstrLDAPQueryDN);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzClientContext3_Value = Guid.initString("11894fde-1deb-4b4b-8907-6d1cda1f5d4f");
+pub const IID_IAzClientContext3 = &IID_IAzClientContext3_Value;
+pub const IAzClientContext3 = extern union {
+    pub const VTable = extern struct {
+        base: IAzClientContext2.VTable,
+        AccessCheck2: *const fn(
+            self: *const IAzClientContext3,
+            bstrObjectName: ?BSTR,
+            bstrScopeName: ?BSTR,
+            lOperation: i32,
+            plResult: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        IsInRoleAssignment: *const fn(
+            self: *const IAzClientContext3,
+            bstrScopeName: ?BSTR,
+            bstrRoleName: ?BSTR,
+            pbIsInRole: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetOperations: *const fn(
+            self: *const IAzClientContext3,
+            bstrScopeName: ?BSTR,
+            ppOperationCollection: ?*?*IAzOperations,
+        ) callconv(.winapi) HRESULT,
+        GetTasks: *const fn(
+            self: *const IAzClientContext3,
+            bstrScopeName: ?BSTR,
+            ppTaskCollection: ?*?*IAzTasks,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BizRuleParameters: *const fn(
+            self: *const IAzClientContext3,
+            ppBizRuleParam: ?*?*IAzBizRuleParameters,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BizRuleInterfaces: *const fn(
+            self: *const IAzClientContext3,
+            ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces,
+        ) callconv(.winapi) HRESULT,
+        GetGroups: *const fn(
+            self: *const IAzClientContext3,
+            bstrScopeName: ?BSTR,
+            ulOptions: AZ_PROP_CONSTANTS,
+            pGroupArray: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Sids: *const fn(
+            self: *const IAzClientContext3,
+            pStringSidArray: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzClientContext2: IAzClientContext2,
+    IAzClientContext: IAzClientContext,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AccessCheck2(self, bstrObjectName, bstrScopeName, lOperation, plResult);
+    }
+    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsInRoleAssignment(self, bstrScopeName, bstrRoleName, pbIsInRole);
+    }
+    pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOperations(self, bstrScopeName, ppOperationCollection);
+    }
+    pub fn GetTasks(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTasks(self, bstrScopeName, ppTaskCollection);
+    }
+    pub fn get_BizRuleParameters(self: *const IAzClientContext3, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BizRuleParameters(self, ppBizRuleParam);
+    }
+    pub fn get_BizRuleInterfaces(self: *const IAzClientContext3, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BizRuleInterfaces(self, ppBizRuleInterfaces);
+    }
+    pub fn GetGroups(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGroups(self, bstrScopeName, ulOptions, pGroupArray);
+    }
+    pub fn get_Sids(self: *const IAzClientContext3, pStringSidArray: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Sids(self, pStringSidArray);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzNameResolver_Value = Guid.initString("504d0f15-73e2-43df-a870-a64f40714f53");
+pub const IID_IAzNameResolver = &IID_IAzNameResolver_Value;
+pub const IAzNameResolver = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        NameFromSid: *const fn(
+            self: *const IAzNameResolver,
+            bstrSid: ?BSTR,
+            pSidType: ?*i32,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        NamesFromSids: *const fn(
+            self: *const IAzNameResolver,
+            vSids: VARIANT,
+            pvSidTypes: ?*VARIANT,
+            pvNames: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.NameFromSid(self, bstrSid, pSidType, pbstrName);
+    }
+    pub fn NamesFromSids(self: *const IAzNameResolver, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.NamesFromSids(self, vSids, pvSidTypes, pvNames);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzObjectPicker_Value = Guid.initString("63130a48-699a-42d8-bf01-c62ac3fb79f9");
+pub const IID_IAzObjectPicker = &IID_IAzObjectPicker_Value;
+pub const IAzObjectPicker = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetPrincipals: *const fn(
+            self: *const IAzObjectPicker,
+            hParentWnd: ?HWND,
+            bstrTitle: ?BSTR,
+            pvSidTypes: ?*VARIANT,
+            pvNames: ?*VARIANT,
+            pvSids: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IAzObjectPicker,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrincipals(self, hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
+    }
+    pub fn get_Name(self: *const IAzObjectPicker, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
     }
 };
 
@@ -2175,6 +3198,28 @@ pub const IAzOperation = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzOperation2_Value = Guid.initString("1f5ea01f-44a2-4184-9c48-a75b4dcc8ccc");
+pub const IID_IAzOperation2 = &IID_IAzOperation2_Value;
+pub const IAzOperation2 = extern union {
+    pub const VTable = extern struct {
+        base: IAzOperation.VTable,
+        RoleAssignments: *const fn(
+            self: *const IAzOperation2,
+            bstrScopeName: ?BSTR,
+            bRecursive: i16,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzOperation: IAzOperation,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+        return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAzOperations_Value = Guid.initString("90ef9c07-9706-49d9-af80-0438a5f3ec35");
 pub const IID_IAzOperations = &IID_IAzOperations_Value;
 pub const IAzOperations = extern union {
@@ -2211,261 +3256,456 @@ pub const IAzOperations = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzTask_Value = Guid.initString("cb94e592-2e0e-4a6c-a336-b89a6dc1e388");
-pub const IID_IAzTask = &IID_IAzTask_Value;
-pub const IAzTask = extern union {
+const IID_IAzPrincipalLocator_Value = Guid.initString("e5c3507d-ad6a-4992-9c7f-74ab480b44cc");
+pub const IID_IAzPrincipalLocator = &IID_IAzPrincipalLocator_Value;
+pub const IAzPrincipalLocator = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IAzTask,
-            pbstrName: ?*?BSTR,
+        get_NameResolver: *const fn(
+            self: *const IAzPrincipalLocator,
+            ppNameResolver: ?*?*IAzNameResolver,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IAzTask,
-            bstrName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IAzTask,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IAzTask,
-            bstrDescription: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationData: *const fn(
-            self: *const IAzTask,
-            pbstrApplicationData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ApplicationData: *const fn(
-            self: *const IAzTask,
-            bstrApplicationData: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BizRule: *const fn(
-            self: *const IAzTask,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BizRule: *const fn(
-            self: *const IAzTask,
-            bstrProp: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BizRuleLanguage: *const fn(
-            self: *const IAzTask,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BizRuleLanguage: *const fn(
-            self: *const IAzTask,
-            bstrProp: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BizRuleImportedPath: *const fn(
-            self: *const IAzTask,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BizRuleImportedPath: *const fn(
-            self: *const IAzTask,
-            bstrProp: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsRoleDefinition: *const fn(
-            self: *const IAzTask,
-            pfProp: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsRoleDefinition: *const fn(
-            self: *const IAzTask,
-            fProp: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Operations: *const fn(
-            self: *const IAzTask,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tasks: *const fn(
-            self: *const IAzTask,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddOperation: *const fn(
-            self: *const IAzTask,
-            bstrOp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteOperation: *const fn(
-            self: *const IAzTask,
-            bstrOp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddTask: *const fn(
-            self: *const IAzTask,
-            bstrTask: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteTask: *const fn(
-            self: *const IAzTask,
-            bstrTask: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Writable: *const fn(
-            self: *const IAzTask,
-            pfProp: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IAzTask,
-            lPropId: i32,
-            varReserved: VARIANT,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const IAzTask,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPropertyItem: *const fn(
-            self: *const IAzTask,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePropertyItem: *const fn(
-            self: *const IAzTask,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Submit: *const fn(
-            self: *const IAzTask,
-            lFlags: i32,
-            varReserved: VARIANT,
+        get_ObjectPicker: *const fn(
+            self: *const IAzPrincipalLocator,
+            ppObjectPicker: ?*?*IAzObjectPicker,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
+    pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NameResolver(self, ppNameResolver);
     }
-    pub fn put_Name(self: *const IAzTask, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, bstrName);
-    }
-    pub fn get_Description(self: *const IAzTask, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pbstrDescription);
-    }
-    pub fn put_Description(self: *const IAzTask, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, bstrDescription);
-    }
-    pub fn get_ApplicationData(self: *const IAzTask, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ApplicationData(self, pbstrApplicationData);
-    }
-    pub fn put_ApplicationData(self: *const IAzTask, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ApplicationData(self, bstrApplicationData);
-    }
-    pub fn get_BizRule(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BizRule(self, pbstrProp);
-    }
-    pub fn put_BizRule(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BizRule(self, bstrProp);
-    }
-    pub fn get_BizRuleLanguage(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BizRuleLanguage(self, pbstrProp);
-    }
-    pub fn put_BizRuleLanguage(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BizRuleLanguage(self, bstrProp);
-    }
-    pub fn get_BizRuleImportedPath(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BizRuleImportedPath(self, pbstrProp);
-    }
-    pub fn put_BizRuleImportedPath(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BizRuleImportedPath(self, bstrProp);
-    }
-    pub fn get_IsRoleDefinition(self: *const IAzTask, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsRoleDefinition(self, pfProp);
-    }
-    pub fn put_IsRoleDefinition(self: *const IAzTask, fProp: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IsRoleDefinition(self, fProp);
-    }
-    pub fn get_Operations(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Operations(self, pvarProp);
-    }
-    pub fn get_Tasks(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Tasks(self, pvarProp);
-    }
-    pub fn AddOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddOperation(self, bstrOp, varReserved);
-    }
-    pub fn DeleteOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteOperation(self, bstrOp, varReserved);
-    }
-    pub fn AddTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddTask(self, bstrTask, varReserved);
-    }
-    pub fn DeleteTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteTask(self, bstrTask, varReserved);
-    }
-    pub fn get_Writable(self: *const IAzTask, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Writable(self, pfProp);
-    }
-    pub fn GetProperty(self: *const IAzTask, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
-    }
-    pub fn SetProperty(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
-    }
-    pub fn AddPropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn DeletePropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn Submit(self: *const IAzTask, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Submit(self, lFlags, varReserved);
+    pub fn get_ObjectPicker(self: *const IAzPrincipalLocator, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ObjectPicker(self, ppObjectPicker);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzTasks_Value = Guid.initString("b338ccab-4c85-4388-8c0a-c58592bad398");
-pub const IID_IAzTasks = &IID_IAzTasks_Value;
-pub const IAzTasks = extern union {
+const IID_IAzRole_Value = Guid.initString("859e0d8d-62d7-41d8-a034-c0cd5d43fdfa");
+pub const IID_IAzRole = &IID_IAzRole_Value;
+pub const IAzRole = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IAzRole,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IAzRole,
+            bstrName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IAzRole,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IAzRole,
+            bstrDescription: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ApplicationData: *const fn(
+            self: *const IAzRole,
+            pbstrApplicationData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ApplicationData: *const fn(
+            self: *const IAzRole,
+            bstrApplicationData: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddAppMember: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteAppMember: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddTask: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteTask: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddOperation: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteOperation: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddMember: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteMember: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Writable: *const fn(
+            self: *const IAzRole,
+            pfProp: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IAzRole,
+            lPropId: i32,
+            varReserved: VARIANT,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetProperty: *const fn(
+            self: *const IAzRole,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AppMembers: *const fn(
+            self: *const IAzRole,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Members: *const fn(
+            self: *const IAzRole,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Operations: *const fn(
+            self: *const IAzRole,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Tasks: *const fn(
+            self: *const IAzRole,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPropertyItem: *const fn(
+            self: *const IAzRole,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePropertyItem: *const fn(
+            self: *const IAzRole,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Submit: *const fn(
+            self: *const IAzRole,
+            lFlags: i32,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddMemberName: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteMemberName: *const fn(
+            self: *const IAzRole,
+            bstrProp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MembersName: *const fn(
+            self: *const IAzRole,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn put_Name(self: *const IAzRole, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, bstrName);
+    }
+    pub fn get_Description(self: *const IAzRole, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzRole, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzRole, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ApplicationData(self, pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzRole, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ApplicationData(self, bstrApplicationData);
+    }
+    pub fn AddAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAppMember(self, bstrProp, varReserved);
+    }
+    pub fn DeleteAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
+    }
+    pub fn AddTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddTask(self, bstrProp, varReserved);
+    }
+    pub fn DeleteTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteTask(self, bstrProp, varReserved);
+    }
+    pub fn AddOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddOperation(self, bstrProp, varReserved);
+    }
+    pub fn DeleteOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteOperation(self, bstrProp, varReserved);
+    }
+    pub fn AddMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddMember(self, bstrProp, varReserved);
+    }
+    pub fn DeleteMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteMember(self, bstrProp, varReserved);
+    }
+    pub fn get_Writable(self: *const IAzRole, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Writable(self, pfProp);
+    }
+    pub fn GetProperty(self: *const IAzRole, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
+    }
+    pub fn get_AppMembers(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AppMembers(self, pvarProp);
+    }
+    pub fn get_Members(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Members(self, pvarProp);
+    }
+    pub fn get_Operations(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Operations(self, pvarProp);
+    }
+    pub fn get_Tasks(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Tasks(self, pvarProp);
+    }
+    pub fn AddPropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzRole, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Submit(self, lFlags, varReserved);
+    }
+    pub fn AddMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddMemberName(self, bstrProp, varReserved);
+    }
+    pub fn DeleteMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
+    }
+    pub fn get_MembersName(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MembersName(self, pvarProp);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzRoleAssignment_Value = Guid.initString("55647d31-0d5a-4fa3-b4ac-2b5f9ad5ab76");
+pub const IID_IAzRoleAssignment = &IID_IAzRoleAssignment_Value;
+pub const IAzRoleAssignment = extern union {
+    pub const VTable = extern struct {
+        base: IAzRole.VTable,
+        AddRoleDefinition: *const fn(
+            self: *const IAzRoleAssignment,
+            bstrRoleDefinition: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        DeleteRoleDefinition: *const fn(
+            self: *const IAzRoleAssignment,
+            bstrRoleDefinition: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RoleDefinitions: *const fn(
+            self: *const IAzRoleAssignment,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Scope: *const fn(
+            self: *const IAzRoleAssignment,
+            ppScope: ?*?*IAzScope,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzRole: IAzRole,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
+    }
+    pub fn DeleteRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
+    }
+    pub fn get_RoleDefinitions(self: *const IAzRoleAssignment, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
+    }
+    pub fn get_Scope(self: *const IAzRoleAssignment, ppScope: ?*?*IAzScope) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Scope(self, ppScope);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzRoleAssignments_Value = Guid.initString("9c80b900-fceb-4d73-a0f4-c83b0bbf2481");
+pub const IID_IAzRoleAssignments = &IID_IAzRoleAssignments_Value;
+pub const IAzRoleAssignments = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
-            self: *const IAzTasks,
+            self: *const IAzRoleAssignments,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const IAzTasks,
+            self: *const IAzRoleAssignments,
             plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const IAzTasks,
+            self: *const IAzRoleAssignments,
             ppEnumPtr: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzTasks, plCount: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const IAzRoleAssignments, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzTasks, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const IAzRoleAssignments, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppEnumPtr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzRoleDefinition_Value = Guid.initString("d97fcea1-2599-44f1-9fc3-58e9fbe09466");
+pub const IID_IAzRoleDefinition = &IID_IAzRoleDefinition_Value;
+pub const IAzRoleDefinition = extern union {
+    pub const VTable = extern struct {
+        base: IAzTask.VTable,
+        RoleAssignments: *const fn(
+            self: *const IAzRoleDefinition,
+            bstrScopeName: ?BSTR,
+            bRecursive: i16,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
+        ) callconv(.winapi) HRESULT,
+        AddRoleDefinition: *const fn(
+            self: *const IAzRoleDefinition,
+            bstrRoleDefinition: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        DeleteRoleDefinition: *const fn(
+            self: *const IAzRoleDefinition,
+            bstrRoleDefinition: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RoleDefinitions: *const fn(
+            self: *const IAzRoleDefinition,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAzTask: IAzTask,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+        return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
+    }
+    pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
+    }
+    pub fn DeleteRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
+    }
+    pub fn get_RoleDefinitions(self: *const IAzRoleDefinition, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzRoleDefinitions_Value = Guid.initString("881f25a5-d755-4550-957a-d503a3b34001");
+pub const IID_IAzRoleDefinitions = &IID_IAzRoleDefinitions_Value;
+pub const IAzRoleDefinitions = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Item: *const fn(
+            self: *const IAzRoleDefinitions,
+            Index: i32,
+            pvarObtPtr: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IAzRoleDefinitions,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IAzRoleDefinitions,
+            ppEnumPtr: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzRoleDefinitions, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzRoleDefinitions, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppEnumPtr);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzRoles_Value = Guid.initString("95e0f119-13b4-4dae-b65f-2f7d60d822e4");
+pub const IID_IAzRoles = &IID_IAzRoles_Value;
+pub const IAzRoles = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Item: *const fn(
+            self: *const IAzRoles,
+            Index: i32,
+            pvarObtPtr: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IAzRoles,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IAzRoles,
+            ppEnumPtr: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzRoles, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzRoles, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2797,1045 +4037,6 @@ pub const IAzScope = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzScopes_Value = Guid.initString("78e14853-9f5e-406d-9b91-6bdba6973510");
-pub const IID_IAzScopes = &IID_IAzScopes_Value;
-pub const IAzScopes = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Item: *const fn(
-            self: *const IAzScopes,
-            Index: i32,
-            pvarObtPtr: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IAzScopes,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IAzScopes,
-            ppEnumPtr: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, Index, pvarObtPtr);
-    }
-    pub fn get_Count(self: *const IAzScopes, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const IAzScopes, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppEnumPtr);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplicationGroup_Value = Guid.initString("f1b744cd-58a6-4e06-9fbf-36f6d779e21e");
-pub const IID_IAzApplicationGroup = &IID_IAzApplicationGroup_Value;
-pub const IAzApplicationGroup = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IAzApplicationGroup,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IAzApplicationGroup,
-            plProp: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: *const fn(
-            self: *const IAzApplicationGroup,
-            lProp: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LdapQuery: *const fn(
-            self: *const IAzApplicationGroup,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LdapQuery: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppMembers: *const fn(
-            self: *const IAzApplicationGroup,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppNonMembers: *const fn(
-            self: *const IAzApplicationGroup,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Members: *const fn(
-            self: *const IAzApplicationGroup,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NonMembers: *const fn(
-            self: *const IAzApplicationGroup,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IAzApplicationGroup,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrDescription: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddAppMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteAppMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddAppNonMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteAppNonMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddNonMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteNonMember: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Writable: *const fn(
-            self: *const IAzApplicationGroup,
-            pfProp: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IAzApplicationGroup,
-            lPropId: i32,
-            varReserved: VARIANT,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const IAzApplicationGroup,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPropertyItem: *const fn(
-            self: *const IAzApplicationGroup,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePropertyItem: *const fn(
-            self: *const IAzApplicationGroup,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Submit: *const fn(
-            self: *const IAzApplicationGroup,
-            lFlags: i32,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddMemberName: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteMemberName: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddNonMemberName: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteNonMemberName: *const fn(
-            self: *const IAzApplicationGroup,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MembersName: *const fn(
-            self: *const IAzApplicationGroup,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NonMembersName: *const fn(
-            self: *const IAzApplicationGroup,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn put_Name(self: *const IAzApplicationGroup, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, bstrName);
-    }
-    pub fn get_Type(self: *const IAzApplicationGroup, plProp: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, plProp);
-    }
-    pub fn put_Type(self: *const IAzApplicationGroup, lProp: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Type(self, lProp);
-    }
-    pub fn get_LdapQuery(self: *const IAzApplicationGroup, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LdapQuery(self, pbstrProp);
-    }
-    pub fn put_LdapQuery(self: *const IAzApplicationGroup, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LdapQuery(self, bstrProp);
-    }
-    pub fn get_AppMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AppMembers(self, pvarProp);
-    }
-    pub fn get_AppNonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AppNonMembers(self, pvarProp);
-    }
-    pub fn get_Members(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Members(self, pvarProp);
-    }
-    pub fn get_NonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NonMembers(self, pvarProp);
-    }
-    pub fn get_Description(self: *const IAzApplicationGroup, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pbstrDescription);
-    }
-    pub fn put_Description(self: *const IAzApplicationGroup, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, bstrDescription);
-    }
-    pub fn AddAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAppMember(self, bstrProp, varReserved);
-    }
-    pub fn DeleteAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
-    }
-    pub fn AddAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAppNonMember(self, bstrProp, varReserved);
-    }
-    pub fn DeleteAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteAppNonMember(self, bstrProp, varReserved);
-    }
-    pub fn AddMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddMember(self, bstrProp, varReserved);
-    }
-    pub fn DeleteMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteMember(self, bstrProp, varReserved);
-    }
-    pub fn AddNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddNonMember(self, bstrProp, varReserved);
-    }
-    pub fn DeleteNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteNonMember(self, bstrProp, varReserved);
-    }
-    pub fn get_Writable(self: *const IAzApplicationGroup, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Writable(self, pfProp);
-    }
-    pub fn GetProperty(self: *const IAzApplicationGroup, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
-    }
-    pub fn SetProperty(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
-    }
-    pub fn AddPropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn DeletePropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn Submit(self: *const IAzApplicationGroup, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Submit(self, lFlags, varReserved);
-    }
-    pub fn AddMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddMemberName(self, bstrProp, varReserved);
-    }
-    pub fn DeleteMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
-    }
-    pub fn AddNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddNonMemberName(self, bstrProp, varReserved);
-    }
-    pub fn DeleteNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteNonMemberName(self, bstrProp, varReserved);
-    }
-    pub fn get_MembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MembersName(self, pvarProp);
-    }
-    pub fn get_NonMembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NonMembersName(self, pvarProp);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplicationGroups_Value = Guid.initString("4ce66ad5-9f3c-469d-a911-b99887a7e685");
-pub const IID_IAzApplicationGroups = &IID_IAzApplicationGroups_Value;
-pub const IAzApplicationGroups = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Item: *const fn(
-            self: *const IAzApplicationGroups,
-            Index: i32,
-            pvarObtPtr: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IAzApplicationGroups,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IAzApplicationGroups,
-            ppEnumPtr: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, Index, pvarObtPtr);
-    }
-    pub fn get_Count(self: *const IAzApplicationGroups, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const IAzApplicationGroups, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppEnumPtr);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRole_Value = Guid.initString("859e0d8d-62d7-41d8-a034-c0cd5d43fdfa");
-pub const IID_IAzRole = &IID_IAzRole_Value;
-pub const IAzRole = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IAzRole,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IAzRole,
-            bstrName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IAzRole,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IAzRole,
-            bstrDescription: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationData: *const fn(
-            self: *const IAzRole,
-            pbstrApplicationData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ApplicationData: *const fn(
-            self: *const IAzRole,
-            bstrApplicationData: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddAppMember: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteAppMember: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddTask: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteTask: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddOperation: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteOperation: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddMember: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteMember: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Writable: *const fn(
-            self: *const IAzRole,
-            pfProp: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IAzRole,
-            lPropId: i32,
-            varReserved: VARIANT,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetProperty: *const fn(
-            self: *const IAzRole,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppMembers: *const fn(
-            self: *const IAzRole,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Members: *const fn(
-            self: *const IAzRole,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Operations: *const fn(
-            self: *const IAzRole,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tasks: *const fn(
-            self: *const IAzRole,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddPropertyItem: *const fn(
-            self: *const IAzRole,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeletePropertyItem: *const fn(
-            self: *const IAzRole,
-            lPropId: i32,
-            varProp: VARIANT,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Submit: *const fn(
-            self: *const IAzRole,
-            lFlags: i32,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddMemberName: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        DeleteMemberName: *const fn(
-            self: *const IAzRole,
-            bstrProp: ?BSTR,
-            varReserved: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MembersName: *const fn(
-            self: *const IAzRole,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn put_Name(self: *const IAzRole, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, bstrName);
-    }
-    pub fn get_Description(self: *const IAzRole, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pbstrDescription);
-    }
-    pub fn put_Description(self: *const IAzRole, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, bstrDescription);
-    }
-    pub fn get_ApplicationData(self: *const IAzRole, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ApplicationData(self, pbstrApplicationData);
-    }
-    pub fn put_ApplicationData(self: *const IAzRole, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ApplicationData(self, bstrApplicationData);
-    }
-    pub fn AddAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAppMember(self, bstrProp, varReserved);
-    }
-    pub fn DeleteAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
-    }
-    pub fn AddTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddTask(self, bstrProp, varReserved);
-    }
-    pub fn DeleteTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteTask(self, bstrProp, varReserved);
-    }
-    pub fn AddOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddOperation(self, bstrProp, varReserved);
-    }
-    pub fn DeleteOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteOperation(self, bstrProp, varReserved);
-    }
-    pub fn AddMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddMember(self, bstrProp, varReserved);
-    }
-    pub fn DeleteMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteMember(self, bstrProp, varReserved);
-    }
-    pub fn get_Writable(self: *const IAzRole, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Writable(self, pfProp);
-    }
-    pub fn GetProperty(self: *const IAzRole, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
-    }
-    pub fn SetProperty(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
-    }
-    pub fn get_AppMembers(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AppMembers(self, pvarProp);
-    }
-    pub fn get_Members(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Members(self, pvarProp);
-    }
-    pub fn get_Operations(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Operations(self, pvarProp);
-    }
-    pub fn get_Tasks(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Tasks(self, pvarProp);
-    }
-    pub fn AddPropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn DeletePropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
-    }
-    pub fn Submit(self: *const IAzRole, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Submit(self, lFlags, varReserved);
-    }
-    pub fn AddMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddMemberName(self, bstrProp, varReserved);
-    }
-    pub fn DeleteMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
-    }
-    pub fn get_MembersName(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MembersName(self, pvarProp);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoles_Value = Guid.initString("95e0f119-13b4-4dae-b65f-2f7d60d822e4");
-pub const IID_IAzRoles = &IID_IAzRoles_Value;
-pub const IAzRoles = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Item: *const fn(
-            self: *const IAzRoles,
-            Index: i32,
-            pvarObtPtr: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IAzRoles,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IAzRoles,
-            ppEnumPtr: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, Index, pvarObtPtr);
-    }
-    pub fn get_Count(self: *const IAzRoles, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const IAzRoles, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppEnumPtr);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzClientContext_Value = Guid.initString("eff1f00b-488a-466d-afd9-a401c5f9eef5");
-pub const IID_IAzClientContext = &IID_IAzClientContext_Value;
-pub const IAzClientContext = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        AccessCheck: *const fn(
-            self: *const IAzClientContext,
-            bstrObjectName: ?BSTR,
-            varScopeNames: VARIANT,
-            varOperations: VARIANT,
-            varParameterNames: VARIANT,
-            varParameterValues: VARIANT,
-            varInterfaceNames: VARIANT,
-            varInterfaceFlags: VARIANT,
-            varInterfaces: VARIANT,
-            pvarResults: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetBusinessRuleString: *const fn(
-            self: *const IAzClientContext,
-            pbstrBusinessRuleString: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserDn: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserSamCompat: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserDisplay: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserGuid: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserCanonical: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserUpn: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserDnsSamCompat: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetProperty: *const fn(
-            self: *const IAzClientContext,
-            lPropId: i32,
-            varReserved: VARIANT,
-            pvarProp: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetRoles: *const fn(
-            self: *const IAzClientContext,
-            bstrScopeName: ?BSTR,
-            pvarRoleNames: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RoleForAccessCheck: *const fn(
-            self: *const IAzClientContext,
-            pbstrProp: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RoleForAccessCheck: *const fn(
-            self: *const IAzClientContext,
-            bstrProp: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AccessCheck(self, bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
-    }
-    pub fn GetBusinessRuleString(self: *const IAzClientContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBusinessRuleString(self, pbstrBusinessRuleString);
-    }
-    pub fn get_UserDn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserDn(self, pbstrProp);
-    }
-    pub fn get_UserSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserSamCompat(self, pbstrProp);
-    }
-    pub fn get_UserDisplay(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserDisplay(self, pbstrProp);
-    }
-    pub fn get_UserGuid(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserGuid(self, pbstrProp);
-    }
-    pub fn get_UserCanonical(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserCanonical(self, pbstrProp);
-    }
-    pub fn get_UserUpn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserUpn(self, pbstrProp);
-    }
-    pub fn get_UserDnsSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserDnsSamCompat(self, pbstrProp);
-    }
-    pub fn GetProperty(self: *const IAzClientContext, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
-    }
-    pub fn GetRoles(self: *const IAzClientContext, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRoles(self, bstrScopeName, pvarRoleNames);
-    }
-    pub fn get_RoleForAccessCheck(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RoleForAccessCheck(self, pbstrProp);
-    }
-    pub fn put_RoleForAccessCheck(self: *const IAzClientContext, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RoleForAccessCheck(self, bstrProp);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IAzClientContext2_Value = Guid.initString("2b0c92b8-208a-488a-8f81-e4edb22111cd");
-pub const IID_IAzClientContext2 = &IID_IAzClientContext2_Value;
-pub const IAzClientContext2 = extern union {
-    pub const VTable = extern struct {
-        base: IAzClientContext.VTable,
-        GetAssignedScopesPage: *const fn(
-            self: *const IAzClientContext2,
-            lOptions: i32,
-            PageSize: i32,
-            pvarCursor: ?*VARIANT,
-            pvarScopeNames: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddRoles: *const fn(
-            self: *const IAzClientContext2,
-            varRoles: VARIANT,
-            bstrScopeName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddApplicationGroups: *const fn(
-            self: *const IAzClientContext2,
-            varApplicationGroups: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddStringSids: *const fn(
-            self: *const IAzClientContext2,
-            varStringSids: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LDAPQueryDN: *const fn(
-            self: *const IAzClientContext2,
-            bstrLDAPQueryDN: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LDAPQueryDN: *const fn(
-            self: *const IAzClientContext2,
-            pbstrLDAPQueryDN: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzClientContext: IAzClientContext,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAssignedScopesPage(self, lOptions, PageSize, pvarCursor, pvarScopeNames);
-    }
-    pub fn AddRoles(self: *const IAzClientContext2, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRoles(self, varRoles, bstrScopeName);
-    }
-    pub fn AddApplicationGroups(self: *const IAzClientContext2, varApplicationGroups: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddApplicationGroups(self, varApplicationGroups);
-    }
-    pub fn AddStringSids(self: *const IAzClientContext2, varStringSids: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddStringSids(self, varStringSids);
-    }
-    pub fn put_LDAPQueryDN(self: *const IAzClientContext2, bstrLDAPQueryDN: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LDAPQueryDN(self, bstrLDAPQueryDN);
-    }
-    pub fn get_LDAPQueryDN(self: *const IAzClientContext2, pbstrLDAPQueryDN: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LDAPQueryDN(self, pbstrLDAPQueryDN);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzBizRuleContext_Value = Guid.initString("e192f17d-d59f-455e-a152-940316cd77b2");
-pub const IID_IAzBizRuleContext = &IID_IAzBizRuleContext_Value;
-pub const IAzBizRuleContext = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BusinessRuleResult: *const fn(
-            self: *const IAzBizRuleContext,
-            bResult: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BusinessRuleString: *const fn(
-            self: *const IAzBizRuleContext,
-            bstrBusinessRuleString: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BusinessRuleString: *const fn(
-            self: *const IAzBizRuleContext,
-            pbstrBusinessRuleString: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetParameter: *const fn(
-            self: *const IAzBizRuleContext,
-            bstrParameterName: ?BSTR,
-            pvarParameterValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BusinessRuleResult(self, bResult);
-    }
-    pub fn put_BusinessRuleString(self: *const IAzBizRuleContext, bstrBusinessRuleString: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BusinessRuleString(self, bstrBusinessRuleString);
-    }
-    pub fn get_BusinessRuleString(self: *const IAzBizRuleContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BusinessRuleString(self, pbstrBusinessRuleString);
-    }
-    pub fn GetParameter(self: *const IAzBizRuleContext, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParameter(self, bstrParameterName, pvarParameterValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzBizRuleParameters_Value = Guid.initString("fc17685f-e25d-4dcd-bae1-276ec9533cb5");
-pub const IID_IAzBizRuleParameters = &IID_IAzBizRuleParameters_Value;
-pub const IAzBizRuleParameters = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        AddParameter: *const fn(
-            self: *const IAzBizRuleParameters,
-            bstrParameterName: ?BSTR,
-            varParameterValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddParameters: *const fn(
-            self: *const IAzBizRuleParameters,
-            varParameterNames: VARIANT,
-            varParameterValues: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetParameterValue: *const fn(
-            self: *const IAzBizRuleParameters,
-            bstrParameterName: ?BSTR,
-            pvarParameterValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IAzBizRuleParameters,
-            varParameterName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RemoveAll: *const fn(
-            self: *const IAzBizRuleParameters,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IAzBizRuleParameters,
-            plCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddParameter(self, bstrParameterName, varParameterValue);
-    }
-    pub fn AddParameters(self: *const IAzBizRuleParameters, varParameterNames: VARIANT, varParameterValues: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddParameters(self, varParameterNames, varParameterValues);
-    }
-    pub fn GetParameterValue(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParameterValue(self, bstrParameterName, pvarParameterValue);
-    }
-    pub fn Remove(self: *const IAzBizRuleParameters, varParameterName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, varParameterName);
-    }
-    pub fn RemoveAll(self: *const IAzBizRuleParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAll(self);
-    }
-    pub fn get_Count(self: *const IAzBizRuleParameters, plCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzBizRuleInterfaces_Value = Guid.initString("e94128c7-e9da-44cc-b0bd-53036f3aab3d");
-pub const IID_IAzBizRuleInterfaces = &IID_IAzBizRuleInterfaces_Value;
-pub const IAzBizRuleInterfaces = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        AddInterface: *const fn(
-            self: *const IAzBizRuleInterfaces,
-            bstrInterfaceName: ?BSTR,
-            lInterfaceFlag: i32,
-            varInterface: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddInterfaces: *const fn(
-            self: *const IAzBizRuleInterfaces,
-            varInterfaceNames: VARIANT,
-            varInterfaceFlags: VARIANT,
-            varInterfaces: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetInterfaceValue: *const fn(
-            self: *const IAzBizRuleInterfaces,
-            bstrInterfaceName: ?BSTR,
-            lInterfaceFlag: ?*i32,
-            varInterface: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IAzBizRuleInterfaces,
-            bstrInterfaceName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RemoveAll: *const fn(
-            self: *const IAzBizRuleInterfaces,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IAzBizRuleInterfaces,
-            plCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddInterface(self, bstrInterfaceName, lInterfaceFlag, varInterface);
-    }
-    pub fn AddInterfaces(self: *const IAzBizRuleInterfaces, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.AddInterfaces(self, varInterfaceNames, varInterfaceFlags, varInterfaces);
-    }
-    pub fn GetInterfaceValue(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInterfaceValue(self, bstrInterfaceName, lInterfaceFlag, varInterface);
-    }
-    pub fn Remove(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, bstrInterfaceName);
-    }
-    pub fn RemoveAll(self: *const IAzBizRuleInterfaces) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAll(self);
-    }
-    pub fn get_Count(self: *const IAzBizRuleInterfaces, plCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzClientContext3_Value = Guid.initString("11894fde-1deb-4b4b-8907-6d1cda1f5d4f");
-pub const IID_IAzClientContext3 = &IID_IAzClientContext3_Value;
-pub const IAzClientContext3 = extern union {
-    pub const VTable = extern struct {
-        base: IAzClientContext2.VTable,
-        AccessCheck2: *const fn(
-            self: *const IAzClientContext3,
-            bstrObjectName: ?BSTR,
-            bstrScopeName: ?BSTR,
-            lOperation: i32,
-            plResult: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        IsInRoleAssignment: *const fn(
-            self: *const IAzClientContext3,
-            bstrScopeName: ?BSTR,
-            bstrRoleName: ?BSTR,
-            pbIsInRole: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetOperations: *const fn(
-            self: *const IAzClientContext3,
-            bstrScopeName: ?BSTR,
-            ppOperationCollection: ?*?*IAzOperations,
-        ) callconv(.winapi) HRESULT,
-        GetTasks: *const fn(
-            self: *const IAzClientContext3,
-            bstrScopeName: ?BSTR,
-            ppTaskCollection: ?*?*IAzTasks,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BizRuleParameters: *const fn(
-            self: *const IAzClientContext3,
-            ppBizRuleParam: ?*?*IAzBizRuleParameters,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BizRuleInterfaces: *const fn(
-            self: *const IAzClientContext3,
-            ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces,
-        ) callconv(.winapi) HRESULT,
-        GetGroups: *const fn(
-            self: *const IAzClientContext3,
-            bstrScopeName: ?BSTR,
-            ulOptions: AZ_PROP_CONSTANTS,
-            pGroupArray: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Sids: *const fn(
-            self: *const IAzClientContext3,
-            pStringSidArray: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzClientContext2: IAzClientContext2,
-    IAzClientContext: IAzClientContext,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AccessCheck2(self, bstrObjectName, bstrScopeName, lOperation, plResult);
-    }
-    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsInRoleAssignment(self, bstrScopeName, bstrRoleName, pbIsInRole);
-    }
-    pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOperations(self, bstrScopeName, ppOperationCollection);
-    }
-    pub fn GetTasks(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTasks(self, bstrScopeName, ppTaskCollection);
-    }
-    pub fn get_BizRuleParameters(self: *const IAzClientContext3, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BizRuleParameters(self, ppBizRuleParam);
-    }
-    pub fn get_BizRuleInterfaces(self: *const IAzClientContext3, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BizRuleInterfaces(self, ppBizRuleInterfaces);
-    }
-    pub fn GetGroups(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGroups(self, bstrScopeName, ulOptions, pGroupArray);
-    }
-    pub fn get_Sids(self: *const IAzClientContext3, pStringSidArray: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Sids(self, pStringSidArray);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAzScope2_Value = Guid.initString("ee9fe8c9-c9f3-40e2-aa12-d1d8599727fd");
 pub const IID_IAzScope2 = &IID_IAzScope2_Value;
 pub const IAzScope2 = extern union {
@@ -3911,465 +4112,262 @@ pub const IAzScope2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplication3_Value = Guid.initString("181c845e-7196-4a7d-ac2e-020c0bb7a303");
-pub const IID_IAzApplication3 = &IID_IAzApplication3_Value;
-pub const IAzApplication3 = extern union {
-    pub const VTable = extern struct {
-        base: IAzApplication2.VTable,
-        ScopeExists: *const fn(
-            self: *const IAzApplication3,
-            bstrScopeName: ?BSTR,
-            pbExist: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        OpenScope2: *const fn(
-            self: *const IAzApplication3,
-            bstrScopeName: ?BSTR,
-            ppScope2: ?*?*IAzScope2,
-        ) callconv(.winapi) HRESULT,
-        CreateScope2: *const fn(
-            self: *const IAzApplication3,
-            bstrScopeName: ?BSTR,
-            ppScope2: ?*?*IAzScope2,
-        ) callconv(.winapi) HRESULT,
-        DeleteScope2: *const fn(
-            self: *const IAzApplication3,
-            bstrScopeName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RoleDefinitions: *const fn(
-            self: *const IAzApplication3,
-            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(.winapi) HRESULT,
-        CreateRoleDefinition: *const fn(
-            self: *const IAzApplication3,
-            bstrRoleDefinitionName: ?BSTR,
-            ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(.winapi) HRESULT,
-        OpenRoleDefinition: *const fn(
-            self: *const IAzApplication3,
-            bstrRoleDefinitionName: ?BSTR,
-            ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(.winapi) HRESULT,
-        DeleteRoleDefinition: *const fn(
-            self: *const IAzApplication3,
-            bstrRoleDefinitionName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RoleAssignments: *const fn(
-            self: *const IAzApplication3,
-            ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(.winapi) HRESULT,
-        CreateRoleAssignment: *const fn(
-            self: *const IAzApplication3,
-            bstrRoleAssignmentName: ?BSTR,
-            ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(.winapi) HRESULT,
-        OpenRoleAssignment: *const fn(
-            self: *const IAzApplication3,
-            bstrRoleAssignmentName: ?BSTR,
-            ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(.winapi) HRESULT,
-        DeleteRoleAssignment: *const fn(
-            self: *const IAzApplication3,
-            bstrRoleAssignmentName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BizRulesEnabled: *const fn(
-            self: *const IAzApplication3,
-            pbEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BizRulesEnabled: *const fn(
-            self: *const IAzApplication3,
-            bEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzApplication2: IAzApplication2,
-    IAzApplication: IAzApplication,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.ScopeExists(self, bstrScopeName, pbExist);
-    }
-    pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenScope2(self, bstrScopeName, ppScope2);
-    }
-    pub fn CreateScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateScope2(self, bstrScopeName, ppScope2);
-    }
-    pub fn DeleteScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteScope2(self, bstrScopeName);
-    }
-    pub fn get_RoleDefinitions(self: *const IAzApplication3, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
-    }
-    pub fn CreateRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
-    }
-    pub fn OpenRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
-    }
-    pub fn DeleteRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinitionName);
-    }
-    pub fn get_RoleAssignments(self: *const IAzApplication3, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RoleAssignments(self, ppRoleAssignments);
-    }
-    pub fn CreateRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
-    }
-    pub fn OpenRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
-    }
-    pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteRoleAssignment(self, bstrRoleAssignmentName);
-    }
-    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BizRulesEnabled(self, pbEnabled);
-    }
-    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BizRulesEnabled(self, bEnabled);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzOperation2_Value = Guid.initString("1f5ea01f-44a2-4184-9c48-a75b4dcc8ccc");
-pub const IID_IAzOperation2 = &IID_IAzOperation2_Value;
-pub const IAzOperation2 = extern union {
-    pub const VTable = extern struct {
-        base: IAzOperation.VTable,
-        RoleAssignments: *const fn(
-            self: *const IAzOperation2,
-            bstrScopeName: ?BSTR,
-            bRecursive: i16,
-            ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzOperation: IAzOperation,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
-        return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleDefinitions_Value = Guid.initString("881f25a5-d755-4550-957a-d503a3b34001");
-pub const IID_IAzRoleDefinitions = &IID_IAzRoleDefinitions_Value;
-pub const IAzRoleDefinitions = extern union {
+const IID_IAzScopes_Value = Guid.initString("78e14853-9f5e-406d-9b91-6bdba6973510");
+pub const IID_IAzScopes = &IID_IAzScopes_Value;
+pub const IAzScopes = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
-            self: *const IAzRoleDefinitions,
+            self: *const IAzScopes,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const IAzRoleDefinitions,
+            self: *const IAzScopes,
             plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const IAzRoleDefinitions,
+            self: *const IAzScopes,
             ppEnumPtr: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzRoleDefinitions, plCount: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const IAzScopes, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzRoleDefinitions, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const IAzScopes, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleDefinition_Value = Guid.initString("d97fcea1-2599-44f1-9fc3-58e9fbe09466");
-pub const IID_IAzRoleDefinition = &IID_IAzRoleDefinition_Value;
-pub const IAzRoleDefinition = extern union {
-    pub const VTable = extern struct {
-        base: IAzTask.VTable,
-        RoleAssignments: *const fn(
-            self: *const IAzRoleDefinition,
-            bstrScopeName: ?BSTR,
-            bRecursive: i16,
-            ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(.winapi) HRESULT,
-        AddRoleDefinition: *const fn(
-            self: *const IAzRoleDefinition,
-            bstrRoleDefinition: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        DeleteRoleDefinition: *const fn(
-            self: *const IAzRoleDefinition,
-            bstrRoleDefinition: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RoleDefinitions: *const fn(
-            self: *const IAzRoleDefinition,
-            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzTask: IAzTask,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
-        return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
-    }
-    pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
-    }
-    pub fn DeleteRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
-    }
-    pub fn get_RoleDefinitions(self: *const IAzRoleDefinition, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleAssignment_Value = Guid.initString("55647d31-0d5a-4fa3-b4ac-2b5f9ad5ab76");
-pub const IID_IAzRoleAssignment = &IID_IAzRoleAssignment_Value;
-pub const IAzRoleAssignment = extern union {
-    pub const VTable = extern struct {
-        base: IAzRole.VTable,
-        AddRoleDefinition: *const fn(
-            self: *const IAzRoleAssignment,
-            bstrRoleDefinition: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        DeleteRoleDefinition: *const fn(
-            self: *const IAzRoleAssignment,
-            bstrRoleDefinition: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RoleDefinitions: *const fn(
-            self: *const IAzRoleAssignment,
-            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: *const fn(
-            self: *const IAzRoleAssignment,
-            ppScope: ?*?*IAzScope,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAzRole: IAzRole,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
-    }
-    pub fn DeleteRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
-    }
-    pub fn get_RoleDefinitions(self: *const IAzRoleAssignment, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
-    }
-    pub fn get_Scope(self: *const IAzRoleAssignment, ppScope: ?*?*IAzScope) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Scope(self, ppScope);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleAssignments_Value = Guid.initString("9c80b900-fceb-4d73-a0f4-c83b0bbf2481");
-pub const IID_IAzRoleAssignments = &IID_IAzRoleAssignments_Value;
-pub const IAzRoleAssignments = extern union {
+const IID_IAzTask_Value = Guid.initString("cb94e592-2e0e-4a6c-a336-b89a6dc1e388");
+pub const IID_IAzTask = &IID_IAzTask_Value;
+pub const IAzTask = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        get_Item: *const fn(
-            self: *const IAzRoleAssignments,
-            Index: i32,
-            pvarObtPtr: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IAzRoleAssignments,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IAzRoleAssignments,
-            ppEnumPtr: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, Index, pvarObtPtr);
-    }
-    pub fn get_Count(self: *const IAzRoleAssignments, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const IAzRoleAssignments, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppEnumPtr);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzPrincipalLocator_Value = Guid.initString("e5c3507d-ad6a-4992-9c7f-74ab480b44cc");
-pub const IID_IAzPrincipalLocator = &IID_IAzPrincipalLocator_Value;
-pub const IAzPrincipalLocator = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NameResolver: *const fn(
-            self: *const IAzPrincipalLocator,
-            ppNameResolver: ?*?*IAzNameResolver,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ObjectPicker: *const fn(
-            self: *const IAzPrincipalLocator,
-            ppObjectPicker: ?*?*IAzObjectPicker,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NameResolver(self, ppNameResolver);
-    }
-    pub fn get_ObjectPicker(self: *const IAzPrincipalLocator, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ObjectPicker(self, ppObjectPicker);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzNameResolver_Value = Guid.initString("504d0f15-73e2-43df-a870-a64f40714f53");
-pub const IID_IAzNameResolver = &IID_IAzNameResolver_Value;
-pub const IAzNameResolver = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        NameFromSid: *const fn(
-            self: *const IAzNameResolver,
-            bstrSid: ?BSTR,
-            pSidType: ?*i32,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        NamesFromSids: *const fn(
-            self: *const IAzNameResolver,
-            vSids: VARIANT,
-            pvSidTypes: ?*VARIANT,
-            pvNames: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.NameFromSid(self, bstrSid, pSidType, pbstrName);
-    }
-    pub fn NamesFromSids(self: *const IAzNameResolver, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.NamesFromSids(self, vSids, pvSidTypes, pvNames);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzObjectPicker_Value = Guid.initString("63130a48-699a-42d8-bf01-c62ac3fb79f9");
-pub const IID_IAzObjectPicker = &IID_IAzObjectPicker_Value;
-pub const IAzObjectPicker = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        GetPrincipals: *const fn(
-            self: *const IAzObjectPicker,
-            hParentWnd: ?HWND,
-            bstrTitle: ?BSTR,
-            pvSidTypes: ?*VARIANT,
-            pvNames: ?*VARIANT,
-            pvSids: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
-            self: *const IAzObjectPicker,
+            self: *const IAzTask,
             pbstrName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrincipals(self, hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
-    }
-    pub fn get_Name(self: *const IAzObjectPicker, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplicationGroup2_Value = Guid.initString("3f0613fc-b71a-464e-a11d-5b881a56cefa");
-pub const IID_IAzApplicationGroup2 = &IID_IAzApplicationGroup2_Value;
-pub const IAzApplicationGroup2 = extern union {
-    pub const VTable = extern struct {
-        base: IAzApplicationGroup.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IAzTask,
+            bstrName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IAzTask,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IAzTask,
+            bstrDescription: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ApplicationData: *const fn(
+            self: *const IAzTask,
+            pbstrApplicationData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ApplicationData: *const fn(
+            self: *const IAzTask,
+            bstrApplicationData: ?BSTR,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRule: *const fn(
-            self: *const IAzApplicationGroup2,
+            self: *const IAzTask,
             pbstrProp: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRule: *const fn(
-            self: *const IAzApplicationGroup2,
+            self: *const IAzTask,
             bstrProp: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleLanguage: *const fn(
-            self: *const IAzApplicationGroup2,
+            self: *const IAzTask,
             pbstrProp: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleLanguage: *const fn(
-            self: *const IAzApplicationGroup2,
+            self: *const IAzTask,
             bstrProp: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleImportedPath: *const fn(
-            self: *const IAzApplicationGroup2,
+            self: *const IAzTask,
             pbstrProp: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleImportedPath: *const fn(
-            self: *const IAzApplicationGroup2,
+            self: *const IAzTask,
             bstrProp: ?BSTR,
         ) callconv(.winapi) HRESULT,
-        RoleAssignments: *const fn(
-            self: *const IAzApplicationGroup2,
-            bstrScopeName: ?BSTR,
-            bRecursive: i16,
-            ppRoleAssignments: ?*?*IAzRoleAssignments,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsRoleDefinition: *const fn(
+            self: *const IAzTask,
+            pfProp: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_IsRoleDefinition: *const fn(
+            self: *const IAzTask,
+            fProp: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Operations: *const fn(
+            self: *const IAzTask,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Tasks: *const fn(
+            self: *const IAzTask,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddOperation: *const fn(
+            self: *const IAzTask,
+            bstrOp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteOperation: *const fn(
+            self: *const IAzTask,
+            bstrOp: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddTask: *const fn(
+            self: *const IAzTask,
+            bstrTask: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeleteTask: *const fn(
+            self: *const IAzTask,
+            bstrTask: ?BSTR,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Writable: *const fn(
+            self: *const IAzTask,
+            pfProp: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetProperty: *const fn(
+            self: *const IAzTask,
+            lPropId: i32,
+            varReserved: VARIANT,
+            pvarProp: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetProperty: *const fn(
+            self: *const IAzTask,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddPropertyItem: *const fn(
+            self: *const IAzTask,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        DeletePropertyItem: *const fn(
+            self: *const IAzTask,
+            lPropId: i32,
+            varProp: VARIANT,
+            varReserved: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Submit: *const fn(
+            self: *const IAzTask,
+            lFlags: i32,
+            varReserved: VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IAzApplicationGroup: IAzApplicationGroup,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn put_Name(self: *const IAzTask, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, bstrName);
+    }
+    pub fn get_Description(self: *const IAzTask, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pbstrDescription);
+    }
+    pub fn put_Description(self: *const IAzTask, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, bstrDescription);
+    }
+    pub fn get_ApplicationData(self: *const IAzTask, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ApplicationData(self, pbstrApplicationData);
+    }
+    pub fn put_ApplicationData(self: *const IAzTask, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ApplicationData(self, bstrApplicationData);
+    }
+    pub fn get_BizRule(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRule(self, pbstrProp);
     }
-    pub fn put_BizRule(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn put_BizRule(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRule(self, bstrProp);
     }
-    pub fn get_BizRuleLanguage(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_BizRuleLanguage(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleLanguage(self, pbstrProp);
     }
-    pub fn put_BizRuleLanguage(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn put_BizRuleLanguage(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRuleLanguage(self, bstrProp);
     }
-    pub fn get_BizRuleImportedPath(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_BizRuleImportedPath(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleImportedPath(self, pbstrProp);
     }
-    pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn put_BizRuleImportedPath(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRuleImportedPath(self, bstrProp);
     }
-    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
-        return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
+    pub fn get_IsRoleDefinition(self: *const IAzTask, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsRoleDefinition(self, pfProp);
+    }
+    pub fn put_IsRoleDefinition(self: *const IAzTask, fProp: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IsRoleDefinition(self, fProp);
+    }
+    pub fn get_Operations(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Operations(self, pvarProp);
+    }
+    pub fn get_Tasks(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Tasks(self, pvarProp);
+    }
+    pub fn AddOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddOperation(self, bstrOp, varReserved);
+    }
+    pub fn DeleteOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteOperation(self, bstrOp, varReserved);
+    }
+    pub fn AddTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddTask(self, bstrTask, varReserved);
+    }
+    pub fn DeleteTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteTask(self, bstrTask, varReserved);
+    }
+    pub fn get_Writable(self: *const IAzTask, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Writable(self, pfProp);
+    }
+    pub fn GetProperty(self: *const IAzTask, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
+    }
+    pub fn SetProperty(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
+    }
+    pub fn AddPropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn DeletePropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
+    }
+    pub fn Submit(self: *const IAzTask, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Submit(self, lFlags, varReserved);
     }
 };
 
@@ -4395,230 +4393,232 @@ pub const IAzTask2 = extern union {
     }
 };
 
-pub const AZ_PROP_CONSTANTS = enum(i32) {
-    PROP_NAME = 1,
-    PROP_DESCRIPTION = 2,
-    PROP_WRITABLE = 3,
-    PROP_APPLICATION_DATA = 4,
-    PROP_CHILD_CREATE = 5,
-    MAX_APPLICATION_NAME_LENGTH = 512,
-    MAX_OPERATION_NAME_LENGTH = 64,
-    MAX_SCOPE_NAME_LENGTH = 65536,
-    MAX_DESCRIPTION_LENGTH = 1024,
-    MAX_APPLICATION_DATA_LENGTH = 4096,
-    AZSTORE_FLAG_AUDIT_IS_CRITICAL = 8,
-    AZSTORE_FORCE_APPLICATION_CLOSE = 16,
-    AZSTORE_NT6_FUNCTION_LEVEL = 32,
-    AZSTORE_FLAG_MANAGE_ONLY_PASSIVE_SUBMIT = 32768,
-    PROP_AZSTORE_DOMAIN_TIMEOUT = 100,
-    AZSTORE_DEFAULT_DOMAIN_TIMEOUT = 15000,
-    PROP_AZSTORE_SCRIPT_ENGINE_TIMEOUT = 101,
-    AZSTORE_MIN_DOMAIN_TIMEOUT = 500,
-    AZSTORE_MIN_SCRIPT_ENGINE_TIMEOUT = 5000,
-    AZSTORE_DEFAULT_SCRIPT_ENGINE_TIMEOUT = 45000,
-    PROP_AZSTORE_MAX_SCRIPT_ENGINES = 102,
-    AZSTORE_DEFAULT_MAX_SCRIPT_ENGINES = 120,
-    PROP_AZSTORE_MAJOR_VERSION = 103,
-    PROP_AZSTORE_MINOR_VERSION = 104,
-    PROP_AZSTORE_TARGET_MACHINE = 105,
-    PROP_AZTORE_IS_ADAM_INSTANCE = 106,
-    PROP_OPERATION_ID = 200,
-    PROP_TASK_OPERATIONS = 300,
-    PROP_TASK_BIZRULE = 301,
-    PROP_TASK_BIZRULE_LANGUAGE = 302,
-    PROP_TASK_TASKS = 303,
-    PROP_TASK_BIZRULE_IMPORTED_PATH = 304,
-    PROP_TASK_IS_ROLE_DEFINITION = 305,
-    PROP_GROUP_TYPE = 400,
-    PROP_GROUP_APP_MEMBERS = 401,
-    PROP_GROUP_APP_NON_MEMBERS = 402,
-    PROP_GROUP_LDAP_QUERY = 403,
-    PROP_GROUP_MEMBERS = 404,
-    PROP_GROUP_NON_MEMBERS = 405,
-    PROP_GROUP_MEMBERS_NAME = 406,
-    PROP_GROUP_NON_MEMBERS_NAME = 407,
-    PROP_GROUP_BIZRULE = 408,
-    PROP_GROUP_BIZRULE_LANGUAGE = 409,
-    PROP_GROUP_BIZRULE_IMPORTED_PATH = 410,
-    PROP_ROLE_MEMBERS = 501,
-    PROP_ROLE_OPERATIONS = 502,
-    PROP_ROLE_TASKS = 504,
-    PROP_ROLE_MEMBERS_NAME = 505,
-    PROP_SCOPE_BIZRULES_WRITABLE = 600,
-    PROP_SCOPE_CAN_BE_DELEGATED = 601,
-    PROP_CLIENT_CONTEXT_USER_DN = 700,
-    PROP_CLIENT_CONTEXT_USER_SAM_COMPAT = 701,
-    PROP_CLIENT_CONTEXT_USER_DISPLAY = 702,
-    PROP_CLIENT_CONTEXT_USER_GUID = 703,
-    PROP_CLIENT_CONTEXT_USER_CANONICAL = 704,
-    PROP_CLIENT_CONTEXT_USER_UPN = 705,
-    PROP_CLIENT_CONTEXT_USER_DNS_SAM_COMPAT = 707,
-    PROP_CLIENT_CONTEXT_ROLE_FOR_ACCESS_CHECK = 708,
-    PROP_CLIENT_CONTEXT_LDAP_QUERY_DN = 709,
-    PROP_APPLICATION_AUTHZ_INTERFACE_CLSID = 800,
-    PROP_APPLICATION_VERSION = 801,
-    PROP_APPLICATION_NAME = 802,
-    PROP_APPLICATION_BIZRULE_ENABLED = 803,
-    PROP_APPLY_STORE_SACL = 900,
-    PROP_GENERATE_AUDITS = 901,
-    PROP_POLICY_ADMINS = 902,
-    PROP_POLICY_READERS = 903,
-    PROP_DELEGATED_POLICY_USERS = 904,
-    PROP_POLICY_ADMINS_NAME = 905,
-    PROP_POLICY_READERS_NAME = 906,
-    PROP_DELEGATED_POLICY_USERS_NAME = 907,
-    pub const MAX_TASK_NAME_LENGTH = .MAX_OPERATION_NAME_LENGTH;
-    pub const MAX_GROUP_NAME_LENGTH = .MAX_OPERATION_NAME_LENGTH;
-    pub const MAX_ROLE_NAME_LENGTH = .MAX_OPERATION_NAME_LENGTH;
-    pub const MAX_NAME_LENGTH = .MAX_SCOPE_NAME_LENGTH;
-    pub const SUBMIT_FLAG_ABORT = .PROP_NAME;
-    pub const SUBMIT_FLAG_FLUSH = .PROP_DESCRIPTION;
-    pub const MAX_POLICY_URL_LENGTH = .MAX_SCOPE_NAME_LENGTH;
-    pub const AZSTORE_FLAG_CREATE = .PROP_NAME;
-    pub const AZSTORE_FLAG_MANAGE_STORE_ONLY = .PROP_DESCRIPTION;
-    pub const AZSTORE_FLAG_BATCH_UPDATE = .PROP_APPLICATION_DATA;
-    pub const MAX_TASK_BIZRULE_LENGTH = .MAX_SCOPE_NAME_LENGTH;
-    pub const MAX_TASK_BIZRULE_LANGUAGE_LENGTH = .MAX_OPERATION_NAME_LENGTH;
-    pub const MAX_TASK_BIZRULE_IMPORTED_PATH_LENGTH = .MAX_APPLICATION_NAME_LENGTH;
-    pub const MAX_BIZRULE_STRING = .MAX_SCOPE_NAME_LENGTH;
-    pub const GROUPTYPE_LDAP_QUERY = .PROP_NAME;
-    pub const GROUPTYPE_BASIC = .PROP_DESCRIPTION;
-    pub const GROUPTYPE_BIZRULE = .PROP_WRITABLE;
-    pub const MAX_GROUP_LDAP_QUERY_LENGTH = .MAX_APPLICATION_DATA_LENGTH;
-    pub const MAX_GROUP_BIZRULE_LENGTH = .MAX_SCOPE_NAME_LENGTH;
-    pub const MAX_GROUP_BIZRULE_LANGUAGE_LENGTH = .MAX_OPERATION_NAME_LENGTH;
-    pub const MAX_GROUP_BIZRULE_IMPORTED_PATH_LENGTH = .MAX_APPLICATION_NAME_LENGTH;
-    pub const PROP_ROLE_APP_MEMBERS = .AZSTORE_MIN_DOMAIN_TIMEOUT;
-    pub const MAX_APPLICATION_VERSION_LENGTH = .MAX_APPLICATION_NAME_LENGTH;
-    pub const CLIENT_CONTEXT_SKIP_GROUP = .PROP_NAME;
-    pub const CLIENT_CONTEXT_SKIP_LDAP_QUERY = .PROP_NAME;
-    pub const CLIENT_CONTEXT_GET_GROUP_RECURSIVE = .PROP_DESCRIPTION;
-    pub const CLIENT_CONTEXT_GET_GROUPS_STORE_LEVEL_ONLY = .PROP_DESCRIPTION;
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IAzTasks_Value = Guid.initString("b338ccab-4c85-4388-8c0a-c58592bad398");
+pub const IID_IAzTasks = &IID_IAzTasks_Value;
+pub const IAzTasks = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Item: *const fn(
+            self: *const IAzTasks,
+            Index: i32,
+            pvarObtPtr: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IAzTasks,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IAzTasks,
+            ppEnumPtr: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, Index, pvarObtPtr);
+    }
+    pub fn get_Count(self: *const IAzTasks, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const IAzTasks, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppEnumPtr);
+    }
 };
-pub const AZ_PROP_NAME = AZ_PROP_CONSTANTS.PROP_NAME;
-pub const AZ_PROP_DESCRIPTION = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
-pub const AZ_PROP_WRITABLE = AZ_PROP_CONSTANTS.PROP_WRITABLE;
-pub const AZ_PROP_APPLICATION_DATA = AZ_PROP_CONSTANTS.PROP_APPLICATION_DATA;
-pub const AZ_PROP_CHILD_CREATE = AZ_PROP_CONSTANTS.PROP_CHILD_CREATE;
-pub const AZ_MAX_APPLICATION_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
-pub const AZ_MAX_OPERATION_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
-pub const AZ_MAX_TASK_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
-pub const AZ_MAX_SCOPE_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
-pub const AZ_MAX_GROUP_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
-pub const AZ_MAX_ROLE_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
-pub const AZ_MAX_NAME_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
-pub const AZ_MAX_DESCRIPTION_LENGTH = AZ_PROP_CONSTANTS.MAX_DESCRIPTION_LENGTH;
-pub const AZ_MAX_APPLICATION_DATA_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_DATA_LENGTH;
-pub const AZ_SUBMIT_FLAG_ABORT = AZ_PROP_CONSTANTS.PROP_NAME;
-pub const AZ_SUBMIT_FLAG_FLUSH = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
-pub const AZ_MAX_POLICY_URL_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
-pub const AZ_AZSTORE_FLAG_CREATE = AZ_PROP_CONSTANTS.PROP_NAME;
-pub const AZ_AZSTORE_FLAG_MANAGE_STORE_ONLY = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
-pub const AZ_AZSTORE_FLAG_BATCH_UPDATE = AZ_PROP_CONSTANTS.PROP_APPLICATION_DATA;
-pub const AZ_AZSTORE_FLAG_AUDIT_IS_CRITICAL = AZ_PROP_CONSTANTS.AZSTORE_FLAG_AUDIT_IS_CRITICAL;
-pub const AZ_AZSTORE_FORCE_APPLICATION_CLOSE = AZ_PROP_CONSTANTS.AZSTORE_FORCE_APPLICATION_CLOSE;
-pub const AZ_AZSTORE_NT6_FUNCTION_LEVEL = AZ_PROP_CONSTANTS.AZSTORE_NT6_FUNCTION_LEVEL;
-pub const AZ_AZSTORE_FLAG_MANAGE_ONLY_PASSIVE_SUBMIT = AZ_PROP_CONSTANTS.AZSTORE_FLAG_MANAGE_ONLY_PASSIVE_SUBMIT;
-pub const AZ_PROP_AZSTORE_DOMAIN_TIMEOUT = AZ_PROP_CONSTANTS.PROP_AZSTORE_DOMAIN_TIMEOUT;
-pub const AZ_AZSTORE_DEFAULT_DOMAIN_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_DEFAULT_DOMAIN_TIMEOUT;
-pub const AZ_PROP_AZSTORE_SCRIPT_ENGINE_TIMEOUT = AZ_PROP_CONSTANTS.PROP_AZSTORE_SCRIPT_ENGINE_TIMEOUT;
-pub const AZ_AZSTORE_MIN_DOMAIN_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_MIN_DOMAIN_TIMEOUT;
-pub const AZ_AZSTORE_MIN_SCRIPT_ENGINE_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_MIN_SCRIPT_ENGINE_TIMEOUT;
-pub const AZ_AZSTORE_DEFAULT_SCRIPT_ENGINE_TIMEOUT = AZ_PROP_CONSTANTS.AZSTORE_DEFAULT_SCRIPT_ENGINE_TIMEOUT;
-pub const AZ_PROP_AZSTORE_MAX_SCRIPT_ENGINES = AZ_PROP_CONSTANTS.PROP_AZSTORE_MAX_SCRIPT_ENGINES;
-pub const AZ_AZSTORE_DEFAULT_MAX_SCRIPT_ENGINES = AZ_PROP_CONSTANTS.AZSTORE_DEFAULT_MAX_SCRIPT_ENGINES;
-pub const AZ_PROP_AZSTORE_MAJOR_VERSION = AZ_PROP_CONSTANTS.PROP_AZSTORE_MAJOR_VERSION;
-pub const AZ_PROP_AZSTORE_MINOR_VERSION = AZ_PROP_CONSTANTS.PROP_AZSTORE_MINOR_VERSION;
-pub const AZ_PROP_AZSTORE_TARGET_MACHINE = AZ_PROP_CONSTANTS.PROP_AZSTORE_TARGET_MACHINE;
-pub const AZ_PROP_AZTORE_IS_ADAM_INSTANCE = AZ_PROP_CONSTANTS.PROP_AZTORE_IS_ADAM_INSTANCE;
-pub const AZ_PROP_OPERATION_ID = AZ_PROP_CONSTANTS.PROP_OPERATION_ID;
-pub const AZ_PROP_TASK_OPERATIONS = AZ_PROP_CONSTANTS.PROP_TASK_OPERATIONS;
-pub const AZ_PROP_TASK_BIZRULE = AZ_PROP_CONSTANTS.PROP_TASK_BIZRULE;
-pub const AZ_PROP_TASK_BIZRULE_LANGUAGE = AZ_PROP_CONSTANTS.PROP_TASK_BIZRULE_LANGUAGE;
-pub const AZ_PROP_TASK_TASKS = AZ_PROP_CONSTANTS.PROP_TASK_TASKS;
-pub const AZ_PROP_TASK_BIZRULE_IMPORTED_PATH = AZ_PROP_CONSTANTS.PROP_TASK_BIZRULE_IMPORTED_PATH;
-pub const AZ_PROP_TASK_IS_ROLE_DEFINITION = AZ_PROP_CONSTANTS.PROP_TASK_IS_ROLE_DEFINITION;
-pub const AZ_MAX_TASK_BIZRULE_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
-pub const AZ_MAX_TASK_BIZRULE_LANGUAGE_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
-pub const AZ_MAX_TASK_BIZRULE_IMPORTED_PATH_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
-pub const AZ_MAX_BIZRULE_STRING = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
-pub const AZ_PROP_GROUP_TYPE = AZ_PROP_CONSTANTS.PROP_GROUP_TYPE;
-pub const AZ_GROUPTYPE_LDAP_QUERY = AZ_PROP_CONSTANTS.PROP_NAME;
-pub const AZ_GROUPTYPE_BASIC = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
-pub const AZ_GROUPTYPE_BIZRULE = AZ_PROP_CONSTANTS.PROP_WRITABLE;
-pub const AZ_PROP_GROUP_APP_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_APP_MEMBERS;
-pub const AZ_PROP_GROUP_APP_NON_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_APP_NON_MEMBERS;
-pub const AZ_PROP_GROUP_LDAP_QUERY = AZ_PROP_CONSTANTS.PROP_GROUP_LDAP_QUERY;
-pub const AZ_MAX_GROUP_LDAP_QUERY_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_DATA_LENGTH;
-pub const AZ_PROP_GROUP_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_MEMBERS;
-pub const AZ_PROP_GROUP_NON_MEMBERS = AZ_PROP_CONSTANTS.PROP_GROUP_NON_MEMBERS;
-pub const AZ_PROP_GROUP_MEMBERS_NAME = AZ_PROP_CONSTANTS.PROP_GROUP_MEMBERS_NAME;
-pub const AZ_PROP_GROUP_NON_MEMBERS_NAME = AZ_PROP_CONSTANTS.PROP_GROUP_NON_MEMBERS_NAME;
-pub const AZ_PROP_GROUP_BIZRULE = AZ_PROP_CONSTANTS.PROP_GROUP_BIZRULE;
-pub const AZ_PROP_GROUP_BIZRULE_LANGUAGE = AZ_PROP_CONSTANTS.PROP_GROUP_BIZRULE_LANGUAGE;
-pub const AZ_PROP_GROUP_BIZRULE_IMPORTED_PATH = AZ_PROP_CONSTANTS.PROP_GROUP_BIZRULE_IMPORTED_PATH;
-pub const AZ_MAX_GROUP_BIZRULE_LENGTH = AZ_PROP_CONSTANTS.MAX_SCOPE_NAME_LENGTH;
-pub const AZ_MAX_GROUP_BIZRULE_LANGUAGE_LENGTH = AZ_PROP_CONSTANTS.MAX_OPERATION_NAME_LENGTH;
-pub const AZ_MAX_GROUP_BIZRULE_IMPORTED_PATH_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
-pub const AZ_PROP_ROLE_APP_MEMBERS = AZ_PROP_CONSTANTS.AZSTORE_MIN_DOMAIN_TIMEOUT;
-pub const AZ_PROP_ROLE_MEMBERS = AZ_PROP_CONSTANTS.PROP_ROLE_MEMBERS;
-pub const AZ_PROP_ROLE_OPERATIONS = AZ_PROP_CONSTANTS.PROP_ROLE_OPERATIONS;
-pub const AZ_PROP_ROLE_TASKS = AZ_PROP_CONSTANTS.PROP_ROLE_TASKS;
-pub const AZ_PROP_ROLE_MEMBERS_NAME = AZ_PROP_CONSTANTS.PROP_ROLE_MEMBERS_NAME;
-pub const AZ_PROP_SCOPE_BIZRULES_WRITABLE = AZ_PROP_CONSTANTS.PROP_SCOPE_BIZRULES_WRITABLE;
-pub const AZ_PROP_SCOPE_CAN_BE_DELEGATED = AZ_PROP_CONSTANTS.PROP_SCOPE_CAN_BE_DELEGATED;
-pub const AZ_PROP_CLIENT_CONTEXT_USER_DN = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_DN;
-pub const AZ_PROP_CLIENT_CONTEXT_USER_SAM_COMPAT = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_SAM_COMPAT;
-pub const AZ_PROP_CLIENT_CONTEXT_USER_DISPLAY = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_DISPLAY;
-pub const AZ_PROP_CLIENT_CONTEXT_USER_GUID = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_GUID;
-pub const AZ_PROP_CLIENT_CONTEXT_USER_CANONICAL = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_CANONICAL;
-pub const AZ_PROP_CLIENT_CONTEXT_USER_UPN = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_UPN;
-pub const AZ_PROP_CLIENT_CONTEXT_USER_DNS_SAM_COMPAT = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_USER_DNS_SAM_COMPAT;
-pub const AZ_PROP_CLIENT_CONTEXT_ROLE_FOR_ACCESS_CHECK = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_ROLE_FOR_ACCESS_CHECK;
-pub const AZ_PROP_CLIENT_CONTEXT_LDAP_QUERY_DN = AZ_PROP_CONSTANTS.PROP_CLIENT_CONTEXT_LDAP_QUERY_DN;
-pub const AZ_PROP_APPLICATION_AUTHZ_INTERFACE_CLSID = AZ_PROP_CONSTANTS.PROP_APPLICATION_AUTHZ_INTERFACE_CLSID;
-pub const AZ_PROP_APPLICATION_VERSION = AZ_PROP_CONSTANTS.PROP_APPLICATION_VERSION;
-pub const AZ_MAX_APPLICATION_VERSION_LENGTH = AZ_PROP_CONSTANTS.MAX_APPLICATION_NAME_LENGTH;
-pub const AZ_PROP_APPLICATION_NAME = AZ_PROP_CONSTANTS.PROP_APPLICATION_NAME;
-pub const AZ_PROP_APPLICATION_BIZRULE_ENABLED = AZ_PROP_CONSTANTS.PROP_APPLICATION_BIZRULE_ENABLED;
-pub const AZ_PROP_APPLY_STORE_SACL = AZ_PROP_CONSTANTS.PROP_APPLY_STORE_SACL;
-pub const AZ_PROP_GENERATE_AUDITS = AZ_PROP_CONSTANTS.PROP_GENERATE_AUDITS;
-pub const AZ_PROP_POLICY_ADMINS = AZ_PROP_CONSTANTS.PROP_POLICY_ADMINS;
-pub const AZ_PROP_POLICY_READERS = AZ_PROP_CONSTANTS.PROP_POLICY_READERS;
-pub const AZ_PROP_DELEGATED_POLICY_USERS = AZ_PROP_CONSTANTS.PROP_DELEGATED_POLICY_USERS;
-pub const AZ_PROP_POLICY_ADMINS_NAME = AZ_PROP_CONSTANTS.PROP_POLICY_ADMINS_NAME;
-pub const AZ_PROP_POLICY_READERS_NAME = AZ_PROP_CONSTANTS.PROP_POLICY_READERS_NAME;
-pub const AZ_PROP_DELEGATED_POLICY_USERS_NAME = AZ_PROP_CONSTANTS.PROP_DELEGATED_POLICY_USERS_NAME;
-pub const AZ_CLIENT_CONTEXT_SKIP_GROUP = AZ_PROP_CONSTANTS.PROP_NAME;
-pub const AZ_CLIENT_CONTEXT_SKIP_LDAP_QUERY = AZ_PROP_CONSTANTS.PROP_NAME;
-pub const AZ_CLIENT_CONTEXT_GET_GROUP_RECURSIVE = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
-pub const AZ_CLIENT_CONTEXT_GET_GROUPS_STORE_LEVEL_ONLY = AZ_PROP_CONSTANTS.PROP_DESCRIPTION;
 
-pub const FN_PROGRESS = *const fn(
-    pObjectName: ?PWSTR,
-    Status: u32,
-    pInvokeSetting: ?*PROG_INVOKE_SETTING,
+pub const INHERITED_FROMA = extern struct {
+    GenerationGap: i32,
+    AncestorName: ?PSTR,
+};
+
+pub const INHERITED_FROMW = extern struct {
+    GenerationGap: i32,
+    AncestorName: ?PWSTR,
+};
+
+pub const MULTIPLE_TRUSTEE_OPERATION = enum(i32) {
+    NO_MULTIPLE_TRUSTEE = 0,
+    TRUSTEE_IS_IMPERSONATE = 1,
+};
+pub const NO_MULTIPLE_TRUSTEE = MULTIPLE_TRUSTEE_OPERATION.NO_MULTIPLE_TRUSTEE;
+pub const TRUSTEE_IS_IMPERSONATE = MULTIPLE_TRUSTEE_OPERATION.TRUSTEE_IS_IMPERSONATE;
+
+pub const OBJECTS_AND_NAME_A = extern struct {
+    ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: SE_OBJECT_TYPE,
+    ObjectTypeName: ?PSTR,
+    InheritedObjectTypeName: ?PSTR,
+    ptstrName: ?PSTR,
+};
+
+pub const OBJECTS_AND_NAME_W = extern struct {
+    ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: SE_OBJECT_TYPE,
+    ObjectTypeName: ?PWSTR,
+    InheritedObjectTypeName: ?PWSTR,
+    ptstrName: ?PWSTR,
+};
+
+pub const OBJECTS_AND_SID = extern struct {
+    ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectTypeGuid: Guid,
+    InheritedObjectTypeGuid: Guid,
+    pSid: ?*SID,
+};
+
+pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = *const fn(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     Args: ?*anyopaque,
-    SecuritySet: BOOL,
+    pSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
+    pSidCount: ?*u32,
+    pRestrictedSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
+    pRestrictedSidCount: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub const PFN_AUTHZ_DYNAMIC_ACCESS_CHECK = *const fn(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    pAce: ?*ACE_HEADER,
+    pArgs: ?*anyopaque,
+    pbAceApplicable: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+pub const PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY = *const fn(
+    pCentralAccessPolicy: ?*anyopaque,
 ) callconv(.winapi) void;
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
+pub const PFN_AUTHZ_FREE_DYNAMIC_GROUPS = *const fn(
+    pSidAttrArray: ?*SID_AND_ATTRIBUTES,
+) callconv(.winapi) void;
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const AUTHZ_CLIENT_CONTEXT_HANDLE = isize;
+pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = *const fn(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    capid: ?PSID,
+    pArgs: ?*anyopaque,
+    pCentralAccessPolicyApplicable: ?*BOOL,
+    ppCentralAccessPolicy: ?*?*anyopaque,
+) callconv(.winapi) BOOL;
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
+pub const PROG_INVOKE_SETTING = enum(i32) {
+    InvokeNever = 1,
+    InvokeEveryObject = 2,
+    InvokeOnError = 3,
+    CancelOperation = 4,
+    RetryOperation = 5,
+    InvokePrePostError = 6,
+};
+pub const ProgressInvokeNever = PROG_INVOKE_SETTING.InvokeNever;
+pub const ProgressInvokeEveryObject = PROG_INVOKE_SETTING.InvokeEveryObject;
+pub const ProgressInvokeOnError = PROG_INVOKE_SETTING.InvokeOnError;
+pub const ProgressCancelOperation = PROG_INVOKE_SETTING.CancelOperation;
+pub const ProgressRetryOperation = PROG_INVOKE_SETTING.RetryOperation;
+pub const ProgressInvokePrePostError = PROG_INVOKE_SETTING.InvokePrePostError;
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const AUTHZ_AUDIT_EVENT_HANDLE = *opaque{};
+pub const SE_OBJECT_TYPE = enum(i32) {
+    UNKNOWN_OBJECT_TYPE = 0,
+    FILE_OBJECT = 1,
+    SERVICE = 2,
+    PRINTER = 3,
+    REGISTRY_KEY = 4,
+    LMSHARE = 5,
+    KERNEL_OBJECT = 6,
+    WINDOW_OBJECT = 7,
+    DS_OBJECT = 8,
+    DS_OBJECT_ALL = 9,
+    PROVIDER_DEFINED_OBJECT = 10,
+    WMIGUID_OBJECT = 11,
+    REGISTRY_WOW64_32KEY = 12,
+    REGISTRY_WOW64_64KEY = 13,
+};
+pub const SE_UNKNOWN_OBJECT_TYPE = SE_OBJECT_TYPE.UNKNOWN_OBJECT_TYPE;
+pub const SE_FILE_OBJECT = SE_OBJECT_TYPE.FILE_OBJECT;
+pub const SE_SERVICE = SE_OBJECT_TYPE.SERVICE;
+pub const SE_PRINTER = SE_OBJECT_TYPE.PRINTER;
+pub const SE_REGISTRY_KEY = SE_OBJECT_TYPE.REGISTRY_KEY;
+pub const SE_LMSHARE = SE_OBJECT_TYPE.LMSHARE;
+pub const SE_KERNEL_OBJECT = SE_OBJECT_TYPE.KERNEL_OBJECT;
+pub const SE_WINDOW_OBJECT = SE_OBJECT_TYPE.WINDOW_OBJECT;
+pub const SE_DS_OBJECT = SE_OBJECT_TYPE.DS_OBJECT;
+pub const SE_DS_OBJECT_ALL = SE_OBJECT_TYPE.DS_OBJECT_ALL;
+pub const SE_PROVIDER_DEFINED_OBJECT = SE_OBJECT_TYPE.PROVIDER_DEFINED_OBJECT;
+pub const SE_WMIGUID_OBJECT = SE_OBJECT_TYPE.WMIGUID_OBJECT;
+pub const SE_REGISTRY_WOW64_32KEY = SE_OBJECT_TYPE.REGISTRY_WOW64_32KEY;
+pub const SE_REGISTRY_WOW64_64KEY = SE_OBJECT_TYPE.REGISTRY_WOW64_64KEY;
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const AUTHZ_AUDIT_EVENT_TYPE_HANDLE = isize;
+pub const TREE_SEC_INFO = enum(u32) {
+    SET = 1,
+    RESET = 2,
+    RESET_KEEP_EXPLICIT = 3,
+};
+pub const TREE_SEC_INFO_SET = TREE_SEC_INFO.SET;
+pub const TREE_SEC_INFO_RESET = TREE_SEC_INFO.RESET;
+pub const TREE_SEC_INFO_RESET_KEEP_EXPLICIT = TREE_SEC_INFO.RESET_KEEP_EXPLICIT;
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE = isize;
+pub const TRUSTEE_A = extern struct {
+    pMultipleTrustee: ?*TRUSTEE_A,
+    MultipleTrusteeOperation: MULTIPLE_TRUSTEE_OPERATION,
+    TrusteeForm: TRUSTEE_FORM,
+    TrusteeType: TRUSTEE_TYPE,
+    ptstrName: ?[*]u8,
+};
+
+pub const TRUSTEE_ACCESSA = extern struct {
+    lpProperty: ?PSTR,
+    Access: u32,
+    fAccessFlags: u32,
+    fReturnedAccess: u32,
+};
+
+pub const TRUSTEE_ACCESSW = extern struct {
+    lpProperty: ?PWSTR,
+    Access: u32,
+    fAccessFlags: u32,
+    fReturnedAccess: u32,
+};
+
+pub const TRUSTEE_FORM = enum(i32) {
+    IS_SID = 0,
+    IS_NAME = 1,
+    BAD_FORM = 2,
+    IS_OBJECTS_AND_SID = 3,
+    IS_OBJECTS_AND_NAME = 4,
+};
+pub const TRUSTEE_IS_SID = TRUSTEE_FORM.IS_SID;
+pub const TRUSTEE_IS_NAME = TRUSTEE_FORM.IS_NAME;
+pub const TRUSTEE_BAD_FORM = TRUSTEE_FORM.BAD_FORM;
+pub const TRUSTEE_IS_OBJECTS_AND_SID = TRUSTEE_FORM.IS_OBJECTS_AND_SID;
+pub const TRUSTEE_IS_OBJECTS_AND_NAME = TRUSTEE_FORM.IS_OBJECTS_AND_NAME;
+
+pub const TRUSTEE_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    USER = 1,
+    GROUP = 2,
+    DOMAIN = 3,
+    ALIAS = 4,
+    WELL_KNOWN_GROUP = 5,
+    DELETED = 6,
+    INVALID = 7,
+    COMPUTER = 8,
+};
+pub const TRUSTEE_IS_UNKNOWN = TRUSTEE_TYPE.UNKNOWN;
+pub const TRUSTEE_IS_USER = TRUSTEE_TYPE.USER;
+pub const TRUSTEE_IS_GROUP = TRUSTEE_TYPE.GROUP;
+pub const TRUSTEE_IS_DOMAIN = TRUSTEE_TYPE.DOMAIN;
+pub const TRUSTEE_IS_ALIAS = TRUSTEE_TYPE.ALIAS;
+pub const TRUSTEE_IS_WELL_KNOWN_GROUP = TRUSTEE_TYPE.WELL_KNOWN_GROUP;
+pub const TRUSTEE_IS_DELETED = TRUSTEE_TYPE.DELETED;
+pub const TRUSTEE_IS_INVALID = TRUSTEE_TYPE.INVALID;
+pub const TRUSTEE_IS_COMPUTER = TRUSTEE_TYPE.COMPUTER;
+
+pub const TRUSTEE_W = extern struct {
+    pMultipleTrustee: ?*TRUSTEE_W,
+    MultipleTrusteeOperation: MULTIPLE_TRUSTEE_OPERATION,
+    TrusteeForm: TRUSTEE_FORM,
+    TrusteeType: TRUSTEE_TYPE,
+    ptstrName: ?[*]u16,
+};
 
 
 //--------------------------------------------------------------------------------
@@ -4638,6 +4638,16 @@ pub extern "authz" fn AuthzAccessCheck(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "authz" fn AuthzAddSidsToContext(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    Sids: ?*SID_AND_ATTRIBUTES,
+    SidCount: u32,
+    RestrictedSids: ?*SID_AND_ATTRIBUTES,
+    RestrictedSidCount: u32,
+    phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzCachedAccessCheck(
     Flags: u32,
     hAccessCheckResults: AUTHZ_ACCESS_CHECK_RESULTS_HANDLE,
@@ -4646,16 +4656,35 @@ pub extern "authz" fn AuthzCachedAccessCheck(
     pReply: ?*AUTHZ_ACCESS_REPLY,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzOpenObjectAudit(
-    Flags: u32,
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "authz" fn AuthzEnumerateSecurityEventSources(
+    dwFlags: u32,
+    Buffer: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
+    pdwCount: ?*u32,
+    pdwLength: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "authz" fn AuthzEvaluateSacl(
+    AuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
+    Sacl: ?*ACL,
+    GrantedAccess: u32,
+    AccessGranted: BOOL,
+    pbGenerateAudit: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "authz" fn AuthzFreeAuditEvent(
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    OptionalSecurityDescriptorArray: ?[*]?PSECURITY_DESCRIPTOR,
-    OptionalSecurityDescriptorCount: u32,
-    pReply: ?*AUTHZ_ACCESS_REPLY,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "authz" fn AuthzFreeCentralAccessPolicyCache(
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "authz" fn AuthzFreeContext(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4664,39 +4693,34 @@ pub extern "authz" fn AuthzFreeHandle(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzInitializeResourceManager(
-    Flags: u32,
-    pfnDynamicAccessCheck: ?PFN_AUTHZ_DYNAMIC_ACCESS_CHECK,
-    pfnComputeDynamicGroups: ?PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
-    pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
-    szResourceManagerName: ?[*:0]const u16,
-    phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-// This function from dll 'AUTHZ.dll' is being skipped because it has some sort of issue
-pub fn AuthzInitializeResourceManagerEx() void { @panic("this function is not working"); }
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "authz" fn AuthzInitializeRemoteResourceManager(
-    pRpcInitInfo: ?*AUTHZ_RPC_INIT_INFO_CLIENT,
-    phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeResourceManager(
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzInitializeContextFromToken(
+pub extern "authz" fn AuthzGetInformationFromContext(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    InfoClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
+    BufferSize: u32,
+    pSizeRequired: ?*u32,
+    Buffer: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "authz" fn AuthzInitializeCompoundContext(
+    UserContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    DeviceContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    phCompoundContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
     Flags: u32,
-    TokenHandle: ?HANDLE,
-    hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
-    phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
+    phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4711,75 +4735,14 @@ pub extern "authz" fn AuthzInitializeContextFromSid(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
+pub extern "authz" fn AuthzInitializeContextFromToken(
     Flags: u32,
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    TokenHandle: ?HANDLE,
+    hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
-    phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "authz" fn AuthzInitializeCompoundContext(
-    UserContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    DeviceContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    phCompoundContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzAddSidsToContext(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    Sids: ?*SID_AND_ATTRIBUTES,
-    SidCount: u32,
-    RestrictedSids: ?*SID_AND_ATTRIBUTES,
-    RestrictedSidCount: u32,
-    phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "authz" fn AuthzModifySecurityAttributes(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-    pAttributes: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "authz" fn AuthzModifyClaims(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    ClaimClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
-    pClaimOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-    pClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "authz" fn AuthzModifySids(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    SidClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
-    pSidOperations: ?*AUTHZ_SID_OPERATION,
-    pSids: ?*TOKEN_GROUPS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "authz" fn AuthzSetAppContainerInformation(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pAppContainerSid: ?PSID,
-    CapabilityCount: u32,
-    pCapabilitySids: ?[*]SID_AND_ATTRIBUTES,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzGetInformationFromContext(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    InfoClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
-    BufferSize: u32,
-    pSizeRequired: ?*u32,
-    Buffer: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzFreeContext(
-    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4807,19 +4770,25 @@ pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
     dwAdditionalParameterCount: u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "authz" fn AuthzFreeAuditEvent(
-    hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "authz" fn AuthzInitializeRemoteResourceManager(
+    pRpcInitInfo: ?*AUTHZ_RPC_INIT_INFO_CLIENT,
+    phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
 ) callconv(.winapi) BOOL;
 
-pub extern "authz" fn AuthzEvaluateSacl(
-    AuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    pRequest: ?*AUTHZ_ACCESS_REQUEST,
-    Sacl: ?*ACL,
-    GrantedAccess: u32,
-    AccessGranted: BOOL,
-    pbGenerateAudit: ?*BOOL,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "authz" fn AuthzInitializeResourceManager(
+    Flags: u32,
+    pfnDynamicAccessCheck: ?PFN_AUTHZ_DYNAMIC_ACCESS_CHECK,
+    pfnComputeDynamicGroups: ?PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
+    pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
+    szResourceManagerName: ?[*:0]const u16,
+    phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+// This function from dll 'AUTHZ.dll' is being skipped because it has some sort of issue
+pub fn AuthzInitializeResourceManagerEx() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzInstallSecurityEventSource(
@@ -4827,30 +4796,52 @@ pub extern "authz" fn AuthzInstallSecurityEventSource(
     pRegistration: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "authz" fn AuthzUninstallSecurityEventSource(
-    dwFlags: u32,
-    szEventSourceName: ?[*:0]const u16,
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "authz" fn AuthzModifyClaims(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    ClaimClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
+    pClaimOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+    pClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "authz" fn AuthzEnumerateSecurityEventSources(
-    dwFlags: u32,
-    Buffer: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
-    pdwCount: ?*u32,
-    pdwLength: ?*u32,
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "authz" fn AuthzModifySecurityAttributes(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    pOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+    pAttributes: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "authz" fn AuthzModifySids(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    SidClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
+    pSidOperations: ?*AUTHZ_SID_OPERATION,
+    pSids: ?*TOKEN_GROUPS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "authz" fn AuthzOpenObjectAudit(
+    Flags: u32,
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    pRequest: ?*AUTHZ_ACCESS_REQUEST,
+    hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    OptionalSecurityDescriptorArray: ?[*]?PSECURITY_DESCRIPTOR,
+    OptionalSecurityDescriptorCount: u32,
+    pReply: ?*AUTHZ_ACCESS_REPLY,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "authz" fn AuthzRegisterCapChangeNotification(
+    phCapChangeSubscription: ?*?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
+    pfnCapChangeCallback: ?LPTHREAD_START_ROUTINE,
+    pCallbackContext: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzRegisterSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
-    phEventProvider: ?*isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "authz" fn AuthzUnregisterSecurityEventSource(
-    dwFlags: u32,
     phEventProvider: ?*isize,
 ) callconv(.winapi) BOOL;
 
@@ -4873,10 +4864,17 @@ pub extern "authz" fn AuthzReportSecurityEventFromParams(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "authz" fn AuthzRegisterCapChangeNotification(
-    phCapChangeSubscription: ?*?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
-    pfnCapChangeCallback: ?LPTHREAD_START_ROUTINE,
-    pCallbackContext: ?*anyopaque,
+pub extern "authz" fn AuthzSetAppContainerInformation(
+    hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
+    pAppContainerSid: ?PSID,
+    CapabilityCount: u32,
+    pCapabilitySids: ?[*]SID_AND_ATTRIBUTES,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "authz" fn AuthzUninstallSecurityEventSource(
+    dwFlags: u32,
+    szEventSourceName: ?[*:0]const u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -4884,52 +4882,197 @@ pub extern "authz" fn AuthzUnregisterCapChangeNotification(
     hCapChangeSubscription: ?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "authz" fn AuthzFreeCentralAccessPolicyCache(
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "authz" fn AuthzUnregisterSecurityEventSource(
+    dwFlags: u32,
+    phEventProvider: ?*isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SetEntriesInAclA(
-    cCountOfExplicitEntries: u32,
-    pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_A,
-    OldAcl: ?*ACL,
-    NewAcl: ?*?*ACL,
-) callconv(.winapi) u32;
+pub extern "advapi32" fn BuildExplicitAccessWithNameA(
+    pExplicitAccess: ?*EXPLICIT_ACCESS_A,
+    pTrusteeName: ?PSTR,
+    AccessPermissions: u32,
+    AccessMode: ACCESS_MODE,
+    Inheritance: ACE_FLAGS,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SetEntriesInAclW(
-    cCountOfExplicitEntries: u32,
-    pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_W,
-    OldAcl: ?*ACL,
-    NewAcl: ?*?*ACL,
-) callconv(.winapi) u32;
+pub extern "advapi32" fn BuildExplicitAccessWithNameW(
+    pExplicitAccess: ?*EXPLICIT_ACCESS_W,
+    pTrusteeName: ?PWSTR,
+    AccessPermissions: u32,
+    AccessMode: ACCESS_MODE,
+    Inheritance: ACE_FLAGS,
+) callconv(.winapi) void;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetExplicitEntriesFromAclA(
-    pacl: ?*ACL,
-    pcCountOfExplicitEntries: ?*u32,
-    pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_A,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetExplicitEntriesFromAclW(
-    pacl: ?*ACL,
-    pcCountOfExplicitEntries: ?*u32,
-    pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_W,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetEffectiveRightsFromAclA(
-    pacl: ?*ACL,
+pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
+    pExplicitAccess: ?*EXPLICIT_ACCESS_A,
+    pTrusteeName: ?PSTR,
     pTrustee: ?*TRUSTEE_A,
-    pAccessRights: ?*u32,
+    AccessPermissions: u32,
+    AccessMode: ACCESS_MODE,
+    Inheritance: u32,
+) callconv(.winapi) void;
+
+pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
+    pExplicitAccess: ?*EXPLICIT_ACCESS_W,
+    pTrusteeName: ?PWSTR,
+    pTrustee: ?*TRUSTEE_W,
+    AccessPermissions: u32,
+    AccessMode: ACCESS_MODE,
+    Inheritance: u32,
+) callconv(.winapi) void;
+
+pub extern "advapi32" fn BuildImpersonateTrusteeA(
+    pTrustee: ?*TRUSTEE_A,
+    pImpersonateTrustee: ?*TRUSTEE_A,
+) callconv(.winapi) void;
+
+pub extern "advapi32" fn BuildImpersonateTrusteeW(
+    pTrustee: ?*TRUSTEE_W,
+    pImpersonateTrustee: ?*TRUSTEE_W,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn BuildSecurityDescriptorA(
+    pOwner: ?*TRUSTEE_A,
+    pGroup: ?*TRUSTEE_A,
+    cCountOfAccessEntries: u32,
+    pListOfAccessEntries: ?[*]EXPLICIT_ACCESS_A,
+    cCountOfAuditEntries: u32,
+    pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_A,
+    pOldSD: ?PSECURITY_DESCRIPTOR,
+    pSizeNewSD: ?*u32,
+    pNewSD: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetEffectiveRightsFromAclW(
-    pacl: ?*ACL,
+pub extern "advapi32" fn BuildSecurityDescriptorW(
+    pOwner: ?*TRUSTEE_W,
+    pGroup: ?*TRUSTEE_W,
+    cCountOfAccessEntries: u32,
+    pListOfAccessEntries: ?[*]EXPLICIT_ACCESS_W,
+    cCountOfAuditEntries: u32,
+    pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_W,
+    pOldSD: ?PSECURITY_DESCRIPTOR,
+    pSizeNewSD: ?*u32,
+    pNewSD: ?*?PSECURITY_DESCRIPTOR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn BuildTrusteeWithNameA(
+    pTrustee: ?*TRUSTEE_A,
+    pName: ?PSTR,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn BuildTrusteeWithNameW(
     pTrustee: ?*TRUSTEE_W,
-    pAccessRights: ?*u32,
+    pName: ?PWSTR,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+// This function from dll 'ADVAPI32.dll' is being skipped because it has some sort of issue
+pub fn BuildTrusteeWithObjectsAndNameA() void { @panic("this function is not working"); }
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+// This function from dll 'ADVAPI32.dll' is being skipped because it has some sort of issue
+pub fn BuildTrusteeWithObjectsAndNameW() void { @panic("this function is not working"); }
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidA(
+    pTrustee: ?*TRUSTEE_A,
+    pObjSid: ?*OBJECTS_AND_SID,
+    pObjectGuid: ?*Guid,
+    pInheritedObjectGuid: ?*Guid,
+    pSid: ?PSID,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidW(
+    pTrustee: ?*TRUSTEE_W,
+    pObjSid: ?*OBJECTS_AND_SID,
+    pObjectGuid: ?*Guid,
+    pInheritedObjectGuid: ?*Guid,
+    pSid: ?PSID,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn BuildTrusteeWithSidA(
+    pTrustee: ?*TRUSTEE_A,
+    pSid: ?PSID,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn BuildTrusteeWithSidW(
+    pTrustee: ?*TRUSTEE_W,
+    pSid: ?PSID,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    RequestedStringSDRevision: u32,
+    SecurityInformation: u32,
+    StringSecurityDescriptor: ?*?PSTR,
+    StringSecurityDescriptorLen: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    RequestedStringSDRevision: u32,
+    SecurityInformation: u32,
+    StringSecurityDescriptor: ?*?PWSTR,
+    StringSecurityDescriptorLen: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertSidToStringSidA(
+    Sid: ?PSID,
+    StringSid: ?*?PSTR,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertSidToStringSidW(
+    Sid: ?PSID,
+    StringSid: ?*?PWSTR,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
+    StringSecurityDescriptor: ?[*:0]const u8,
+    StringSDRevision: u32,
+    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+    SecurityDescriptorSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
+    StringSecurityDescriptor: ?[*:0]const u16,
+    StringSDRevision: u32,
+    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+    SecurityDescriptorSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertStringSidToSidA(
+    StringSid: ?[*:0]const u8,
+    Sid: ?*?PSID,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ConvertStringSidToSidW(
+    StringSid: ?[*:0]const u16,
+    Sid: ?*?PSID,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn FreeInheritedFromArray(
+    pInheritArray: [*]INHERITED_FROMW,
+    AceCnt: u16,
+    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4947,6 +5090,78 @@ pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
     pSuccessfulAuditedRights: ?*u32,
     pFailedAuditRights: ?*u32,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetEffectiveRightsFromAclA(
+    pacl: ?*ACL,
+    pTrustee: ?*TRUSTEE_A,
+    pAccessRights: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetEffectiveRightsFromAclW(
+    pacl: ?*ACL,
+    pTrustee: ?*TRUSTEE_W,
+    pAccessRights: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetExplicitEntriesFromAclA(
+    pacl: ?*ACL,
+    pcCountOfExplicitEntries: ?*u32,
+    pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_A,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetExplicitEntriesFromAclW(
+    pacl: ?*ACL,
+    pcCountOfExplicitEntries: ?*u32,
+    pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_W,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetInheritanceSourceA(
+    pObjectName: ?PSTR,
+    ObjectType: SE_OBJECT_TYPE,
+    SecurityInfo: u32,
+    Container: BOOL,
+    pObjectClassGuids: ?[*]?*Guid,
+    GuidCount: u32,
+    pAcl: ?*ACL,
+    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
+    pGenericMapping: ?*GENERIC_MAPPING,
+    pInheritArray: ?*INHERITED_FROMA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetInheritanceSourceW(
+    pObjectName: ?PWSTR,
+    ObjectType: SE_OBJECT_TYPE,
+    SecurityInfo: u32,
+    Container: BOOL,
+    pObjectClassGuids: ?[*]?*Guid,
+    GuidCount: u32,
+    pAcl: ?*ACL,
+    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
+    pGenericMapping: ?*GENERIC_MAPPING,
+    pInheritArray: ?*INHERITED_FROMW,
+) callconv(.winapi) u32;
+
+pub extern "advapi32" fn GetMultipleTrusteeA(
+    pTrustee: ?*TRUSTEE_A,
+) callconv(.winapi) ?*TRUSTEE_A;
+
+pub extern "advapi32" fn GetMultipleTrusteeOperationA(
+    pTrustee: ?*TRUSTEE_A,
+) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
+
+pub extern "advapi32" fn GetMultipleTrusteeOperationW(
+    pTrustee: ?*TRUSTEE_W,
+) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
+
+pub extern "advapi32" fn GetMultipleTrusteeW(
+    pTrustee: ?*TRUSTEE_W,
+) callconv(.winapi) ?*TRUSTEE_W;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetNamedSecurityInfoA(
@@ -4985,6 +5200,74 @@ pub extern "advapi32" fn GetSecurityInfo(
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetTrusteeFormA(
+    pTrustee: ?*TRUSTEE_A,
+) callconv(.winapi) TRUSTEE_FORM;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetTrusteeFormW(
+    pTrustee: ?*TRUSTEE_W,
+) callconv(.winapi) TRUSTEE_FORM;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetTrusteeNameA(
+    pTrustee: ?*TRUSTEE_A,
+) callconv(.winapi) ?PSTR;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetTrusteeNameW(
+    pTrustee: ?*TRUSTEE_W,
+) callconv(.winapi) ?PWSTR;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetTrusteeTypeA(
+    pTrustee: ?*TRUSTEE_A,
+) callconv(.winapi) TRUSTEE_TYPE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetTrusteeTypeW(
+    pTrustee: ?*TRUSTEE_W,
+) callconv(.winapi) TRUSTEE_TYPE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
+    ppOwner: ?*?*TRUSTEE_A,
+    ppGroup: ?*?*TRUSTEE_A,
+    pcCountOfAccessEntries: ?*u32,
+    ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_A,
+    pcCountOfAuditEntries: ?*u32,
+    ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_A,
+    pSD: ?PSECURITY_DESCRIPTOR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
+    ppOwner: ?*?*TRUSTEE_W,
+    ppGroup: ?*?*TRUSTEE_W,
+    pcCountOfAccessEntries: ?*u32,
+    ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_W,
+    pcCountOfAuditEntries: ?*u32,
+    ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_W,
+    pSD: ?PSECURITY_DESCRIPTOR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn SetEntriesInAclA(
+    cCountOfExplicitEntries: u32,
+    pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_A,
+    OldAcl: ?*ACL,
+    NewAcl: ?*?*ACL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn SetEntriesInAclW(
+    cCountOfExplicitEntries: u32,
+    pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_W,
+    OldAcl: ?*ACL,
+    NewAcl: ?*?*ACL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoA(
     pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
@@ -5015,41 +5298,6 @@ pub extern "advapi32" fn SetSecurityInfo(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetInheritanceSourceA(
-    pObjectName: ?PSTR,
-    ObjectType: SE_OBJECT_TYPE,
-    SecurityInfo: u32,
-    Container: BOOL,
-    pObjectClassGuids: ?[*]?*Guid,
-    GuidCount: u32,
-    pAcl: ?*ACL,
-    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
-    pGenericMapping: ?*GENERIC_MAPPING,
-    pInheritArray: ?*INHERITED_FROMA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetInheritanceSourceW(
-    pObjectName: ?PWSTR,
-    ObjectType: SE_OBJECT_TYPE,
-    SecurityInfo: u32,
-    Container: BOOL,
-    pObjectClassGuids: ?[*]?*Guid,
-    GuidCount: u32,
-    pAcl: ?*ACL,
-    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
-    pGenericMapping: ?*GENERIC_MAPPING,
-    pInheritArray: ?*INHERITED_FROMW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn FreeInheritedFromArray(
-    pInheritArray: [*]INHERITED_FROMW,
-    AceCnt: u16,
-    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5112,258 +5360,66 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
     Args: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildSecurityDescriptorA(
-    pOwner: ?*TRUSTEE_A,
-    pGroup: ?*TRUSTEE_A,
-    cCountOfAccessEntries: u32,
-    pListOfAccessEntries: ?[*]EXPLICIT_ACCESS_A,
-    cCountOfAuditEntries: u32,
-    pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_A,
-    pOldSD: ?PSECURITY_DESCRIPTOR,
-    pSizeNewSD: ?*u32,
-    pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildSecurityDescriptorW(
-    pOwner: ?*TRUSTEE_W,
-    pGroup: ?*TRUSTEE_W,
-    cCountOfAccessEntries: u32,
-    pListOfAccessEntries: ?[*]EXPLICIT_ACCESS_W,
-    cCountOfAuditEntries: u32,
-    pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_W,
-    pOldSD: ?PSECURITY_DESCRIPTOR,
-    pSizeNewSD: ?*u32,
-    pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
-    ppOwner: ?*?*TRUSTEE_A,
-    ppGroup: ?*?*TRUSTEE_A,
-    pcCountOfAccessEntries: ?*u32,
-    ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_A,
-    pcCountOfAuditEntries: ?*u32,
-    ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_A,
-    pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
-    ppOwner: ?*?*TRUSTEE_W,
-    ppGroup: ?*?*TRUSTEE_W,
-    pcCountOfAccessEntries: ?*u32,
-    ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_W,
-    pcCountOfAuditEntries: ?*u32,
-    ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_W,
-    pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildExplicitAccessWithNameA(
-    pExplicitAccess: ?*EXPLICIT_ACCESS_A,
-    pTrusteeName: ?PSTR,
-    AccessPermissions: u32,
-    AccessMode: ACCESS_MODE,
-    Inheritance: ACE_FLAGS,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildExplicitAccessWithNameW(
-    pExplicitAccess: ?*EXPLICIT_ACCESS_W,
-    pTrusteeName: ?PWSTR,
-    AccessPermissions: u32,
-    AccessMode: ACCESS_MODE,
-    Inheritance: ACE_FLAGS,
-) callconv(.winapi) void;
-
-pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
-    pExplicitAccess: ?*EXPLICIT_ACCESS_A,
-    pTrusteeName: ?PSTR,
-    pTrustee: ?*TRUSTEE_A,
-    AccessPermissions: u32,
-    AccessMode: ACCESS_MODE,
-    Inheritance: u32,
-) callconv(.winapi) void;
-
-pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
-    pExplicitAccess: ?*EXPLICIT_ACCESS_W,
-    pTrusteeName: ?PWSTR,
-    pTrustee: ?*TRUSTEE_W,
-    AccessPermissions: u32,
-    AccessMode: ACCESS_MODE,
-    Inheritance: u32,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildTrusteeWithNameA(
-    pTrustee: ?*TRUSTEE_A,
-    pName: ?PSTR,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildTrusteeWithNameW(
-    pTrustee: ?*TRUSTEE_W,
-    pName: ?PWSTR,
-) callconv(.winapi) void;
-
-pub extern "advapi32" fn BuildImpersonateTrusteeA(
-    pTrustee: ?*TRUSTEE_A,
-    pImpersonateTrustee: ?*TRUSTEE_A,
-) callconv(.winapi) void;
-
-pub extern "advapi32" fn BuildImpersonateTrusteeW(
-    pTrustee: ?*TRUSTEE_W,
-    pImpersonateTrustee: ?*TRUSTEE_W,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildTrusteeWithSidA(
-    pTrustee: ?*TRUSTEE_A,
-    pSid: ?PSID,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildTrusteeWithSidW(
-    pTrustee: ?*TRUSTEE_W,
-    pSid: ?PSID,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidA(
-    pTrustee: ?*TRUSTEE_A,
-    pObjSid: ?*OBJECTS_AND_SID,
-    pObjectGuid: ?*Guid,
-    pInheritedObjectGuid: ?*Guid,
-    pSid: ?PSID,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidW(
-    pTrustee: ?*TRUSTEE_W,
-    pObjSid: ?*OBJECTS_AND_SID,
-    pObjectGuid: ?*Guid,
-    pInheritedObjectGuid: ?*Guid,
-    pSid: ?PSID,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-// This function from dll 'ADVAPI32.dll' is being skipped because it has some sort of issue
-pub fn BuildTrusteeWithObjectsAndNameA() void { @panic("this function is not working"); }
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-// This function from dll 'ADVAPI32.dll' is being skipped because it has some sort of issue
-pub fn BuildTrusteeWithObjectsAndNameW() void { @panic("this function is not working"); }
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetTrusteeNameA(
-    pTrustee: ?*TRUSTEE_A,
-) callconv(.winapi) ?PSTR;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetTrusteeNameW(
-    pTrustee: ?*TRUSTEE_W,
-) callconv(.winapi) ?PWSTR;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetTrusteeTypeA(
-    pTrustee: ?*TRUSTEE_A,
-) callconv(.winapi) TRUSTEE_TYPE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetTrusteeTypeW(
-    pTrustee: ?*TRUSTEE_W,
-) callconv(.winapi) TRUSTEE_TYPE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetTrusteeFormA(
-    pTrustee: ?*TRUSTEE_A,
-) callconv(.winapi) TRUSTEE_FORM;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetTrusteeFormW(
-    pTrustee: ?*TRUSTEE_W,
-) callconv(.winapi) TRUSTEE_FORM;
-
-pub extern "advapi32" fn GetMultipleTrusteeOperationA(
-    pTrustee: ?*TRUSTEE_A,
-) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
-
-pub extern "advapi32" fn GetMultipleTrusteeOperationW(
-    pTrustee: ?*TRUSTEE_W,
-) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
-
-pub extern "advapi32" fn GetMultipleTrusteeA(
-    pTrustee: ?*TRUSTEE_A,
-) callconv(.winapi) ?*TRUSTEE_A;
-
-pub extern "advapi32" fn GetMultipleTrusteeW(
-    pTrustee: ?*TRUSTEE_W,
-) callconv(.winapi) ?*TRUSTEE_W;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertSidToStringSidA(
-    Sid: ?PSID,
-    StringSid: ?*?PSTR,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertSidToStringSidW(
-    Sid: ?PSID,
-    StringSid: ?*?PWSTR,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertStringSidToSidA(
-    StringSid: ?[*:0]const u8,
-    Sid: ?*?PSID,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertStringSidToSidW(
-    StringSid: ?[*:0]const u16,
-    Sid: ?*?PSID,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
-    StringSecurityDescriptor: ?[*:0]const u8,
-    StringSDRevision: u32,
-    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-    SecurityDescriptorSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
-    StringSecurityDescriptor: ?[*:0]const u16,
-    StringSDRevision: u32,
-    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-    SecurityDescriptorSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
-    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    RequestedStringSDRevision: u32,
-    SecurityInformation: u32,
-    StringSecurityDescriptor: ?*?PSTR,
-    StringSecurityDescriptorLen: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
-    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    RequestedStringSDRevision: u32,
-    SecurityInformation: u32,
-    StringSecurityDescriptor: ?*?PWSTR,
-    StringSecurityDescriptorLen: ?*u32,
-) callconv(.winapi) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (38)
 //--------------------------------------------------------------------------------
+pub const ACTRL_ACCESS_ENTRY_LIST = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACTRL_ACCESS_ENTRY_LISTA,
+    .wide => @This().ACTRL_ACCESS_ENTRY_LISTW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACTRL_ACCESS_ENTRY_LIST' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACTRL_ACCESS_ENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACTRL_ACCESS_ENTRYA,
+    .wide => @This().ACTRL_ACCESS_ENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACTRL_ACCESS_ENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACTRL_ACCESS_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACTRL_ACCESS_INFOA,
+    .wide => @This().ACTRL_ACCESS_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACTRL_ACCESS_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACTRL_ACCESS = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACTRL_ACCESSA,
+    .wide => @This().ACTRL_ACCESSW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACTRL_ACCESS' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACTRL_CONTROL_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACTRL_CONTROL_INFOA,
+    .wide => @This().ACTRL_CONTROL_INFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACTRL_CONTROL_INFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ACTRL_PROPERTY_ENTRY = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACTRL_PROPERTY_ENTRYA,
+    .wide => @This().ACTRL_PROPERTY_ENTRYW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACTRL_PROPERTY_ENTRY' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EXPLICIT_ACCESS_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EXPLICIT_ACCESS_A,
+    .wide => @This().EXPLICIT_ACCESS_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EXPLICIT_ACCESS_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const INHERITED_FROM = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().INHERITED_FROMA,
+    .wide => @This().INHERITED_FROMW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'INHERITED_FROM' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const OBJECTS_AND_NAME_ = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().OBJECTS_AND_NAME_A,
     .wide => @This().OBJECTS_AND_NAME_W,
@@ -5378,144 +5434,11 @@ pub const TRUSTEE_ = switch (@import("../zig.zig").unicode_mode) {
         "'TRUSTEE_' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const EXPLICIT_ACCESS_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EXPLICIT_ACCESS_A,
-    .wide => @This().EXPLICIT_ACCESS_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EXPLICIT_ACCESS_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACTRL_ACCESS_ENTRY = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACTRL_ACCESS_ENTRYA,
-    .wide => @This().ACTRL_ACCESS_ENTRYW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACTRL_ACCESS_ENTRY' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACTRL_ACCESS_ENTRY_LIST = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACTRL_ACCESS_ENTRY_LISTA,
-    .wide => @This().ACTRL_ACCESS_ENTRY_LISTW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACTRL_ACCESS_ENTRY_LIST' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACTRL_PROPERTY_ENTRY = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACTRL_PROPERTY_ENTRYA,
-    .wide => @This().ACTRL_PROPERTY_ENTRYW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACTRL_PROPERTY_ENTRY' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACTRL_ACCESS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACTRL_ACCESSA,
-    .wide => @This().ACTRL_ACCESSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACTRL_ACCESS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const TRUSTEE_ACCESS = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().TRUSTEE_ACCESSA,
     .wide => @This().TRUSTEE_ACCESSW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'TRUSTEE_ACCESS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACTRL_ACCESS_INFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACTRL_ACCESS_INFOA,
-    .wide => @This().ACTRL_ACCESS_INFOW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACTRL_ACCESS_INFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ACTRL_CONTROL_INFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ACTRL_CONTROL_INFOA,
-    .wide => @This().ACTRL_CONTROL_INFOW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ACTRL_CONTROL_INFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const INHERITED_FROM = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().INHERITED_FROMA,
-    .wide => @This().INHERITED_FROMW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'INHERITED_FROM' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetEntriesInAcl = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetEntriesInAclA,
-    .wide => @This().SetEntriesInAclW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetEntriesInAcl' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetExplicitEntriesFromAcl = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetExplicitEntriesFromAclA,
-    .wide => @This().GetExplicitEntriesFromAclW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetExplicitEntriesFromAcl' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetEffectiveRightsFromAcl = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetEffectiveRightsFromAclA,
-    .wide => @This().GetEffectiveRightsFromAclW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetEffectiveRightsFromAcl' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetAuditedPermissionsFromAcl = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetAuditedPermissionsFromAclA,
-    .wide => @This().GetAuditedPermissionsFromAclW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetAuditedPermissionsFromAcl' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetNamedSecurityInfoA,
-    .wide => @This().GetNamedSecurityInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetNamedSecurityInfoA,
-    .wide => @This().SetNamedSecurityInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetInheritanceSource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetInheritanceSourceA,
-    .wide => @This().GetInheritanceSourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetInheritanceSource' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TreeResetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TreeResetNamedSecurityInfoA,
-    .wide => @This().TreeResetNamedSecurityInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TreeResetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TreeSetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TreeSetNamedSecurityInfoA,
-    .wide => @This().TreeSetNamedSecurityInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TreeSetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const BuildSecurityDescriptor = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BuildSecurityDescriptorA,
-    .wide => @This().BuildSecurityDescriptorW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BuildSecurityDescriptor' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LookupSecurityDescriptorParts = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LookupSecurityDescriptorPartsA,
-    .wide => @This().LookupSecurityDescriptorPartsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupSecurityDescriptorParts' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const BuildExplicitAccessWithName = switch (@import("../zig.zig").unicode_mode) {
@@ -5532,13 +5455,6 @@ pub const BuildImpersonateExplicitAccessWithName = switch (@import("../zig.zig")
         "'BuildImpersonateExplicitAccessWithName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const BuildTrusteeWithName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BuildTrusteeWithNameA,
-    .wide => @This().BuildTrusteeWithNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BuildTrusteeWithName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const BuildImpersonateTrustee = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().BuildImpersonateTrusteeA,
     .wide => @This().BuildImpersonateTrusteeW,
@@ -5546,11 +5462,25 @@ pub const BuildImpersonateTrustee = switch (@import("../zig.zig").unicode_mode) 
         "'BuildImpersonateTrustee' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const BuildTrusteeWithSid = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BuildTrusteeWithSidA,
-    .wide => @This().BuildTrusteeWithSidW,
+pub const BuildSecurityDescriptor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildSecurityDescriptorA,
+    .wide => @This().BuildSecurityDescriptorW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BuildTrusteeWithSid' requires that UNICODE be set to true or false in the root module",
+        "'BuildSecurityDescriptor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BuildTrusteeWithName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildTrusteeWithNameA,
+    .wide => @This().BuildTrusteeWithNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BuildTrusteeWithName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BuildTrusteeWithObjectsAndName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildTrusteeWithObjectsAndNameA,
+    .wide => @This().BuildTrusteeWithObjectsAndNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BuildTrusteeWithObjectsAndName' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const BuildTrusteeWithObjectsAndSid = switch (@import("../zig.zig").unicode_mode) {
@@ -5560,11 +5490,95 @@ pub const BuildTrusteeWithObjectsAndSid = switch (@import("../zig.zig").unicode_
         "'BuildTrusteeWithObjectsAndSid' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const BuildTrusteeWithObjectsAndName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BuildTrusteeWithObjectsAndNameA,
-    .wide => @This().BuildTrusteeWithObjectsAndNameW,
+pub const BuildTrusteeWithSid = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildTrusteeWithSidA,
+    .wide => @This().BuildTrusteeWithSidW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BuildTrusteeWithObjectsAndName' requires that UNICODE be set to true or false in the root module",
+        "'BuildTrusteeWithSid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ConvertSecurityDescriptorToStringSecurityDescriptor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ConvertSecurityDescriptorToStringSecurityDescriptorA,
+    .wide => @This().ConvertSecurityDescriptorToStringSecurityDescriptorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ConvertSecurityDescriptorToStringSecurityDescriptor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ConvertSidToStringSid = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ConvertSidToStringSidA,
+    .wide => @This().ConvertSidToStringSidW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ConvertSidToStringSid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ConvertStringSecurityDescriptorToSecurityDescriptor = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ConvertStringSecurityDescriptorToSecurityDescriptorA,
+    .wide => @This().ConvertStringSecurityDescriptorToSecurityDescriptorW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ConvertStringSecurityDescriptorToSecurityDescriptor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ConvertStringSidToSid = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ConvertStringSidToSidA,
+    .wide => @This().ConvertStringSidToSidW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ConvertStringSidToSid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetAuditedPermissionsFromAcl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetAuditedPermissionsFromAclA,
+    .wide => @This().GetAuditedPermissionsFromAclW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetAuditedPermissionsFromAcl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetEffectiveRightsFromAcl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetEffectiveRightsFromAclA,
+    .wide => @This().GetEffectiveRightsFromAclW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetEffectiveRightsFromAcl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetExplicitEntriesFromAcl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetExplicitEntriesFromAclA,
+    .wide => @This().GetExplicitEntriesFromAclW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetExplicitEntriesFromAcl' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetInheritanceSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetInheritanceSourceA,
+    .wide => @This().GetInheritanceSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetInheritanceSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetMultipleTrustee = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetMultipleTrusteeA,
+    .wide => @This().GetMultipleTrusteeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetMultipleTrustee' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetMultipleTrusteeOperation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetMultipleTrusteeOperationA,
+    .wide => @This().GetMultipleTrusteeOperationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetMultipleTrusteeOperation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetNamedSecurityInfoA,
+    .wide => @This().GetNamedSecurityInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetTrusteeForm = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetTrusteeFormA,
+    .wide => @This().GetTrusteeFormW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetTrusteeForm' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const GetTrusteeName = switch (@import("../zig.zig").unicode_mode) {
@@ -5581,53 +5595,39 @@ pub const GetTrusteeType = switch (@import("../zig.zig").unicode_mode) {
         "'GetTrusteeType' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetTrusteeForm = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetTrusteeFormA,
-    .wide => @This().GetTrusteeFormW,
+pub const LookupSecurityDescriptorParts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LookupSecurityDescriptorPartsA,
+    .wide => @This().LookupSecurityDescriptorPartsW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetTrusteeForm' requires that UNICODE be set to true or false in the root module",
+        "'LookupSecurityDescriptorParts' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetMultipleTrusteeOperation = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetMultipleTrusteeOperationA,
-    .wide => @This().GetMultipleTrusteeOperationW,
+pub const SetEntriesInAcl = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetEntriesInAclA,
+    .wide => @This().SetEntriesInAclW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetMultipleTrusteeOperation' requires that UNICODE be set to true or false in the root module",
+        "'SetEntriesInAcl' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetMultipleTrustee = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetMultipleTrusteeA,
-    .wide => @This().GetMultipleTrusteeW,
+pub const SetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetNamedSecurityInfoA,
+    .wide => @This().SetNamedSecurityInfoW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetMultipleTrustee' requires that UNICODE be set to true or false in the root module",
+        "'SetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ConvertSidToStringSid = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ConvertSidToStringSidA,
-    .wide => @This().ConvertSidToStringSidW,
+pub const TreeResetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TreeResetNamedSecurityInfoA,
+    .wide => @This().TreeResetNamedSecurityInfoW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ConvertSidToStringSid' requires that UNICODE be set to true or false in the root module",
+        "'TreeResetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ConvertStringSidToSid = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ConvertStringSidToSidA,
-    .wide => @This().ConvertStringSidToSidW,
+pub const TreeSetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().TreeSetNamedSecurityInfoA,
+    .wide => @This().TreeSetNamedSecurityInfoW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ConvertStringSidToSid' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ConvertStringSecurityDescriptorToSecurityDescriptor = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ConvertStringSecurityDescriptorToSecurityDescriptorA,
-    .wide => @This().ConvertStringSecurityDescriptorToSecurityDescriptorW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ConvertStringSecurityDescriptorToSecurityDescriptor' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ConvertSecurityDescriptorToStringSecurityDescriptor = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ConvertSecurityDescriptorToStringSecurityDescriptorA,
-    .wide => @This().ConvertSecurityDescriptorToStringSecurityDescriptorW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ConvertSecurityDescriptorToStringSecurityDescriptor' requires that UNICODE be set to true or false in the root module",
+        "'TreeSetNamedSecurityInfo' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -5663,12 +5663,12 @@ const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_AUTHZ_DYNAMIC_ACCESS_CHECK")) { _ = PFN_AUTHZ_DYNAMIC_ACCESS_CHECK; }
+    if (@hasDecl(@This(), "FN_PROGRESS")) { _ = FN_PROGRESS; }
     if (@hasDecl(@This(), "PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS")) { _ = PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS; }
+    if (@hasDecl(@This(), "PFN_AUTHZ_DYNAMIC_ACCESS_CHECK")) { _ = PFN_AUTHZ_DYNAMIC_ACCESS_CHECK; }
+    if (@hasDecl(@This(), "PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY")) { _ = PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY; }
     if (@hasDecl(@This(), "PFN_AUTHZ_FREE_DYNAMIC_GROUPS")) { _ = PFN_AUTHZ_FREE_DYNAMIC_GROUPS; }
     if (@hasDecl(@This(), "PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY")) { _ = PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY; }
-    if (@hasDecl(@This(), "PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY")) { _ = PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY; }
-    if (@hasDecl(@This(), "FN_PROGRESS")) { _ = FN_PROGRESS; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

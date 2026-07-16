@@ -2,249 +2,151 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (333)
 //--------------------------------------------------------------------------------
-pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
-pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
-pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
-pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
-pub const SAFE_PARTIAL = @as(u32, 1);
+pub const ASYNC_RECO_ADDSTROKE_FAILED = @as(u32, 4);
+pub const ASYNC_RECO_INTERRUPTED = @as(u32, 1);
+pub const ASYNC_RECO_PROCESS_FAILED = @as(u32, 2);
+pub const ASYNC_RECO_RESETCONTEXT_FAILED = @as(u32, 16);
+pub const ASYNC_RECO_SETCACMODE_FAILED = @as(u32, 8);
+pub const ASYNC_RECO_SETFACTOID_FAILED = @as(u32, 128);
+pub const ASYNC_RECO_SETFLAGS_FAILED = @as(u32, 64);
+pub const ASYNC_RECO_SETGUIDE_FAILED = @as(u32, 32);
+pub const ASYNC_RECO_SETTEXTCONTEXT_FAILED = @as(u32, 256);
+pub const ASYNC_RECO_SETWORDLIST_FAILED = @as(u32, 512);
 pub const BEST_COMPLETE = @as(u32, 2);
-pub const MAX_VENDORNAME = @as(u32, 32);
-pub const MAX_FRIENDLYNAME = @as(u32, 64);
-pub const MAX_LANGUAGES = @as(u32, 64);
 pub const CAC_FULL = @as(u32, 0);
 pub const CAC_PREFIX = @as(u32, 1);
 pub const CAC_RANDOM = @as(u32, 2);
-pub const ASYNC_RECO_INTERRUPTED = @as(u32, 1);
-pub const ASYNC_RECO_PROCESS_FAILED = @as(u32, 2);
-pub const ASYNC_RECO_ADDSTROKE_FAILED = @as(u32, 4);
-pub const ASYNC_RECO_SETCACMODE_FAILED = @as(u32, 8);
-pub const ASYNC_RECO_RESETCONTEXT_FAILED = @as(u32, 16);
-pub const ASYNC_RECO_SETGUIDE_FAILED = @as(u32, 32);
-pub const ASYNC_RECO_SETFLAGS_FAILED = @as(u32, 64);
-pub const ASYNC_RECO_SETFACTOID_FAILED = @as(u32, 128);
-pub const ASYNC_RECO_SETTEXTCONTEXT_FAILED = @as(u32, 256);
-pub const ASYNC_RECO_SETWORDLIST_FAILED = @as(u32, 512);
-pub const RF_DONTCARE = @as(i32, 1);
-pub const RF_OBJECT = @as(i32, 2);
-pub const RF_FREE_INPUT = @as(i32, 4);
-pub const RF_LINED_INPUT = @as(i32, 8);
-pub const RF_BOXED_INPUT = @as(i32, 16);
-pub const RF_CAC_INPUT = @as(i32, 32);
-pub const RF_RIGHT_AND_DOWN = @as(i32, 64);
-pub const RF_LEFT_AND_DOWN = @as(i32, 128);
-pub const RF_DOWN_AND_LEFT = @as(i32, 256);
-pub const RF_DOWN_AND_RIGHT = @as(i32, 512);
-pub const RF_ARBITRARY_ANGLE = @as(i32, 1024);
-pub const RF_LATTICE = @as(i32, 2048);
-pub const RF_ADVISEINKCHANGE = @as(i32, 4096);
-pub const RF_STROKEREORDER = @as(i32, 8192);
-pub const RF_PERSONALIZABLE = @as(i32, 16384);
-pub const RF_PERFORMSLINEBREAKING = @as(i32, 65536);
-pub const RF_REQUIRESSEGMENTATIONBREAKING = @as(i32, 131072);
-pub const FLICK_WM_HANDLED_MASK = @as(u32, 1);
-pub const NUM_FLICK_DIRECTIONS = @as(u32, 8);
-pub const WM_TABLET_DEFBASE = @as(u32, 704);
-pub const WM_TABLET_MAXOFFSET = @as(u32, 32);
-pub const WM_TABLET_ADDED = @as(u32, 712);
-pub const WM_TABLET_DELETED = @as(u32, 713);
-pub const WM_TABLET_FLICK = @as(u32, 715);
-pub const WM_TABLET_QUERYSYSTEMGESTURESTATUS = @as(u32, 716);
-pub const TABLET_DISABLE_PRESSANDHOLD = @as(u32, 1);
-pub const TABLET_DISABLE_PENTAPFEEDBACK = @as(u32, 8);
-pub const TABLET_DISABLE_PENBARRELFEEDBACK = @as(u32, 16);
-pub const TABLET_DISABLE_TOUCHUIFORCEON = @as(u32, 256);
-pub const TABLET_DISABLE_TOUCHUIFORCEOFF = @as(u32, 512);
-pub const TABLET_DISABLE_TOUCHSWITCH = @as(u32, 32768);
-pub const TABLET_DISABLE_FLICKS = @as(u32, 65536);
-pub const TABLET_ENABLE_FLICKSONCONTEXT = @as(u32, 131072);
-pub const TABLET_ENABLE_FLICKLEARNINGMODE = @as(u32, 262144);
-pub const TABLET_DISABLE_SMOOTHSCROLLING = @as(u32, 524288);
-pub const TABLET_DISABLE_FLICKFALLBACKKEYS = @as(u32, 1048576);
-pub const TABLET_ENABLE_MULTITOUCHDATA = @as(u32, 16777216);
-pub const MAX_PACKET_PROPERTY_COUNT = @as(u32, 32);
-pub const MAX_PACKET_BUTTON_COUNT = @as(u32, 32);
-pub const IP_CURSOR_DOWN = @as(u32, 1);
-pub const IP_INVERTED = @as(u32, 2);
-pub const IP_MARGIN = @as(u32, 4);
-pub const INK_SERIALIZED_FORMAT = "Ink Serialized Format";
-pub const STR_GUID_X = "{598A6A8F-52C0-4BA0-93AF-AF357411A561}";
-pub const STR_GUID_Y = "{B53F9F75-04E0-4498-A7EE-C30DBB5A9011}";
-pub const STR_GUID_Z = "{735ADB30-0EBB-4788-A0E4-0F316490055D}";
-pub const STR_GUID_PAKETSTATUS = "{6E0E07BF-AFE7-4CF7-87D1-AF6446208418}";
-pub const STR_GUID_TIMERTICK = "{436510C5-FED3-45D1-8B76-71D3EA7A829D}";
-pub const STR_GUID_SERIALNUMBER = "{78A81B56-0935-4493-BAAE-00541A8A16C4}";
-pub const STR_GUID_NORMALPRESSURE = "{7307502D-F9F4-4E18-B3F2-2CE1B1A3610C}";
-pub const STR_GUID_TANGENTPRESSURE = "{6DA4488B-5244-41EC-905B-32D89AB80809}";
-pub const STR_GUID_BUTTONPRESSURE = "{8B7FEFC4-96AA-4BFE-AC26-8A5F0BE07BF5}";
-pub const STR_GUID_XTILTORIENTATION = "{A8D07B3A-8BF0-40B0-95A9-B80A6BB787BF}";
-pub const STR_GUID_YTILTORIENTATION = "{0E932389-1D77-43AF-AC00-5B950D6D4B2D}";
-pub const STR_GUID_AZIMUTHORIENTATION = "{029123B4-8828-410B-B250-A0536595E5DC}";
-pub const STR_GUID_ALTITUDEORIENTATION = "{82DEC5C7-F6BA-4906-894F-66D68DFC456C}";
-pub const STR_GUID_TWISTORIENTATION = "{0D324960-13B2-41E4-ACE6-7AE9D43D2D3B}";
-pub const STR_GUID_PITCHROTATION = "{7F7E57B7-BE37-4BE1-A356-7A84160E1893}";
-pub const STR_GUID_ROLLROTATION = "{5D5D5E56-6BA9-4C5B-9FB0-851C91714E56}";
-pub const STR_GUID_YAWROTATION = "{6A849980-7C3A-45B7-AA82-90A262950E89}";
-pub const STR_GUID_WIDTH = "{BAABE94D-2712-48F5-BE9D-8F8B5EA0711A}";
-pub const STR_GUID_HEIGHT = "{E61858D2-E447-4218-9D3F-18865C203DF4}";
-pub const STR_GUID_FINGERCONTACTCONFIDENCE = "{E706C804-57F0-4F00-8A0C-853D57789BE9}";
-pub const STR_GUID_DEVICE_CONTACT_ID = "{02585B91-049B-4750-9615-DF8948AB3C9C}";
-pub const INKRECOGNITIONPROPERTY_LINENUMBER = "{DBF29F2C-5289-4BE8-B3D8-6EF63246253E}";
-pub const INKRECOGNITIONPROPERTY_BOXNUMBER = "{2C243E3A-F733-4EB6-B1F8-B5DC5C2C4CDA}";
-pub const INKRECOGNITIONPROPERTY_SEGMENTATION = "{B3C0FE6C-FB51-4164-BA2F-844AF8F983DA}";
-pub const INKRECOGNITIONPROPERTY_HOTPOINT = "{CA6F40DC-5292-452a-91FB-2181C0BEC0DE}";
-pub const INKRECOGNITIONPROPERTY_MAXIMUMSTROKECOUNT = "{BF0EEC4E-4B7D-47a9-8CFA-234DD24BD22A}";
-pub const INKRECOGNITIONPROPERTY_POINTSPERINCH = "{7ED16B76-889C-468e-8276-0021B770187E}";
-pub const INKRECOGNITIONPROPERTY_CONFIDENCELEVEL = "{7DFE11A7-FB5D-4958-8765-154ADF0D833F}";
-pub const INKRECOGNITIONPROPERTY_LINEMETRICS = "{8CC24B27-30A9-4b96-9056-2D3A90DA0727}";
-pub const FACTOID_NONE = "NONE";
-pub const FACTOID_DEFAULT = "DEFAULT";
-pub const FACTOID_SYSTEMDICTIONARY = "SYSDICT";
-pub const FACTOID_WORDLIST = "WORDLIST";
-pub const FACTOID_EMAIL = "EMAIL";
-pub const FACTOID_WEB = "WEB";
-pub const FACTOID_ONECHAR = "ONECHAR";
-pub const FACTOID_NUMBER = "NUMBER";
-pub const FACTOID_DIGIT = "DIGIT";
-pub const FACTOID_NUMBERSIMPLE = "NUMSIMPLE";
-pub const FACTOID_CURRENCY = "CURRENCY";
-pub const FACTOID_POSTALCODE = "POSTALCODE";
-pub const FACTOID_PERCENT = "PERCENT";
-pub const FACTOID_DATE = "DATE";
-pub const FACTOID_TIME = "TIME";
-pub const FACTOID_TELEPHONE = "TELEPHONE";
-pub const FACTOID_FILENAME = "FILENAME";
-pub const FACTOID_UPPERCHAR = "UPPERCHAR";
-pub const FACTOID_LOWERCHAR = "LOWERCHAR";
-pub const FACTOID_PUNCCHAR = "PUNCCHAR";
-pub const FACTOID_JAPANESECOMMON = "JPN_COMMON";
+pub const EM_GETDRAWATTR = @as(u32, 1541);
+pub const EM_GETFACTOID = @as(u32, 1549);
+pub const EM_GETGESTURESTATUS = @as(u32, 1545);
+pub const EM_GETINKINSERTMODE = @as(u32, 1539);
+pub const EM_GETINKMODE = @as(u32, 1537);
+pub const EM_GETMOUSEICON = @as(u32, 1553);
+pub const EM_GETMOUSEPOINTER = @as(u32, 1555);
+pub const EM_GETRECOGNIZER = @as(u32, 1547);
+pub const EM_GETRECOTIMEOUT = @as(u32, 1543);
+pub const EM_GETSELINK = @as(u32, 1551);
+pub const EM_GETSELINKDISPLAYMODE = @as(u32, 1562);
+pub const EM_GETSTATUS = @as(u32, 1557);
+pub const EM_GETUSEMOUSEFORINPUT = @as(u32, 1559);
+pub const EM_RECOGNIZE = @as(u32, 1558);
+pub const EM_SETDRAWATTR = @as(u32, 1542);
+pub const EM_SETFACTOID = @as(u32, 1550);
+pub const EM_SETGESTURESTATUS = @as(u32, 1546);
+pub const EM_SETINKINSERTMODE = @as(u32, 1540);
+pub const EM_SETINKMODE = @as(u32, 1538);
+pub const EM_SETMOUSEICON = @as(u32, 1554);
+pub const EM_SETMOUSEPOINTER = @as(u32, 1556);
+pub const EM_SETRECOGNIZER = @as(u32, 1548);
+pub const EM_SETRECOTIMEOUT = @as(u32, 1544);
+pub const EM_SETSELINK = @as(u32, 1552);
+pub const EM_SETSELINKDISPLAYMODE = @as(u32, 1561);
+pub const EM_SETUSEMOUSEFORINPUT = @as(u32, 1560);
+pub const FACILITY_INK = @as(u32, 40);
+pub const FACTOID_BOPOMOFO = "BOPOMOFO";
 pub const FACTOID_CHINESESIMPLECOMMON = "CHS_COMMON";
 pub const FACTOID_CHINESETRADITIONALCOMMON = "CHT_COMMON";
-pub const FACTOID_KOREANCOMMON = "KOR_COMMON";
-pub const FACTOID_HIRAGANA = "HIRAGANA";
-pub const FACTOID_KATAKANA = "KATAKANA";
-pub const FACTOID_KANJICOMMON = "KANJI_COMMON";
-pub const FACTOID_KANJIRARE = "KANJI_RARE";
-pub const FACTOID_BOPOMOFO = "BOPOMOFO";
-pub const FACTOID_JAMO = "JAMO";
+pub const FACTOID_CURRENCY = "CURRENCY";
+pub const FACTOID_DATE = "DATE";
+pub const FACTOID_DEFAULT = "DEFAULT";
+pub const FACTOID_DIGIT = "DIGIT";
+pub const FACTOID_EMAIL = "EMAIL";
+pub const FACTOID_FILENAME = "FILENAME";
 pub const FACTOID_HANGULCOMMON = "HANGUL_COMMON";
 pub const FACTOID_HANGULRARE = "HANGUL_RARE";
-pub const MICROSOFT_PENINPUT_PANEL_PROPERTY_T = "Microsoft PenInputPanel 1.5";
-pub const INKEDIT_CLASSW = "INKEDIT";
-pub const INKEDIT_CLASS = "INKEDIT";
-pub const IEC__BASE = @as(u32, 1536);
-pub const EM_GETINKMODE = @as(u32, 1537);
-pub const EM_SETINKMODE = @as(u32, 1538);
-pub const EM_GETINKINSERTMODE = @as(u32, 1539);
-pub const EM_SETINKINSERTMODE = @as(u32, 1540);
-pub const EM_GETDRAWATTR = @as(u32, 1541);
-pub const EM_SETDRAWATTR = @as(u32, 1542);
-pub const EM_GETRECOTIMEOUT = @as(u32, 1543);
-pub const EM_SETRECOTIMEOUT = @as(u32, 1544);
-pub const EM_GETGESTURESTATUS = @as(u32, 1545);
-pub const EM_SETGESTURESTATUS = @as(u32, 1546);
-pub const EM_GETRECOGNIZER = @as(u32, 1547);
-pub const EM_SETRECOGNIZER = @as(u32, 1548);
-pub const EM_GETFACTOID = @as(u32, 1549);
-pub const EM_SETFACTOID = @as(u32, 1550);
-pub const EM_GETSELINK = @as(u32, 1551);
-pub const EM_SETSELINK = @as(u32, 1552);
-pub const EM_GETMOUSEICON = @as(u32, 1553);
-pub const EM_SETMOUSEICON = @as(u32, 1554);
-pub const EM_GETMOUSEPOINTER = @as(u32, 1555);
-pub const EM_SETMOUSEPOINTER = @as(u32, 1556);
-pub const EM_GETSTATUS = @as(u32, 1557);
-pub const EM_RECOGNIZE = @as(u32, 1558);
-pub const EM_GETUSEMOUSEFORINPUT = @as(u32, 1559);
-pub const EM_SETUSEMOUSEFORINPUT = @as(u32, 1560);
-pub const EM_SETSELINKDISPLAYMODE = @as(u32, 1561);
-pub const EM_GETSELINKDISPLAYMODE = @as(u32, 1562);
-pub const IECN__BASE = @as(u32, 2048);
-pub const IECN_STROKE = @as(u32, 2049);
-pub const IECN_GESTURE = @as(u32, 2050);
-pub const IECN_RECOGNITIONRESULT = @as(u32, 2051);
-pub const RECOFLAG_WORDMODE = @as(u32, 1);
-pub const RECOFLAG_COERCE = @as(u32, 2);
-pub const RECOFLAG_SINGLESEG = @as(u32, 4);
-pub const RECOFLAG_PREFIXOK = @as(u32, 8);
-pub const RECOFLAG_LINEMODE = @as(u32, 16);
-pub const RECOFLAG_DISABLEPERSONALIZATION = @as(u32, 32);
-pub const RECOFLAG_AUTOSPACE = @as(u32, 64);
-pub const RECOCONF_LOWCONFIDENCE = @as(i32, -1);
-pub const RECOCONF_MEDIUMCONFIDENCE = @as(u32, 0);
-pub const RECOCONF_HIGHCONFIDENCE = @as(u32, 1);
-pub const RECOCONF_NOTSET = @as(u32, 128);
-pub const GESTURE_NULL = @as(u32, 61440);
-pub const GESTURE_SCRATCHOUT = @as(u32, 61441);
-pub const GESTURE_TRIANGLE = @as(u32, 61442);
-pub const GESTURE_SQUARE = @as(u32, 61443);
-pub const GESTURE_STAR = @as(u32, 61444);
-pub const GESTURE_CHECK = @as(u32, 61445);
-pub const GESTURE_INFINITY = @as(u32, 61446);
-pub const GESTURE_CROSS = @as(u32, 61447);
-pub const GESTURE_PARAGRAPH = @as(u32, 61448);
-pub const GESTURE_SECTION = @as(u32, 61449);
-pub const GESTURE_BULLET = @as(u32, 61450);
-pub const GESTURE_BULLET_CROSS = @as(u32, 61451);
-pub const GESTURE_SQUIGGLE = @as(u32, 61452);
-pub const GESTURE_SWAP = @as(u32, 61453);
-pub const GESTURE_OPENUP = @as(u32, 61454);
-pub const GESTURE_CLOSEUP = @as(u32, 61455);
-pub const GESTURE_CURLICUE = @as(u32, 61456);
-pub const GESTURE_DOUBLE_CURLICUE = @as(u32, 61457);
-pub const GESTURE_RECTANGLE = @as(u32, 61458);
-pub const GESTURE_CIRCLE = @as(u32, 61472);
-pub const GESTURE_DOUBLE_CIRCLE = @as(u32, 61473);
-pub const GESTURE_CIRCLE_TAP = @as(u32, 61474);
-pub const GESTURE_CIRCLE_CIRCLE = @as(u32, 61475);
-pub const GESTURE_CIRCLE_CROSS = @as(u32, 61477);
-pub const GESTURE_CIRCLE_LINE_VERT = @as(u32, 61478);
-pub const GESTURE_CIRCLE_LINE_HORZ = @as(u32, 61479);
-pub const GESTURE_SEMICIRCLE_LEFT = @as(u32, 61480);
-pub const GESTURE_SEMICIRCLE_RIGHT = @as(u32, 61481);
-pub const GESTURE_CHEVRON_UP = @as(u32, 61488);
-pub const GESTURE_CHEVRON_DOWN = @as(u32, 61489);
-pub const GESTURE_CHEVRON_LEFT = @as(u32, 61490);
-pub const GESTURE_CHEVRON_RIGHT = @as(u32, 61491);
-pub const GESTURE_ARROW_UP = @as(u32, 61496);
+pub const FACTOID_HIRAGANA = "HIRAGANA";
+pub const FACTOID_JAMO = "JAMO";
+pub const FACTOID_JAPANESECOMMON = "JPN_COMMON";
+pub const FACTOID_KANJICOMMON = "KANJI_COMMON";
+pub const FACTOID_KANJIRARE = "KANJI_RARE";
+pub const FACTOID_KATAKANA = "KATAKANA";
+pub const FACTOID_KOREANCOMMON = "KOR_COMMON";
+pub const FACTOID_LOWERCHAR = "LOWERCHAR";
+pub const FACTOID_NONE = "NONE";
+pub const FACTOID_NUMBER = "NUMBER";
+pub const FACTOID_NUMBERSIMPLE = "NUMSIMPLE";
+pub const FACTOID_ONECHAR = "ONECHAR";
+pub const FACTOID_PERCENT = "PERCENT";
+pub const FACTOID_POSTALCODE = "POSTALCODE";
+pub const FACTOID_PUNCCHAR = "PUNCCHAR";
+pub const FACTOID_SYSTEMDICTIONARY = "SYSDICT";
+pub const FACTOID_TELEPHONE = "TELEPHONE";
+pub const FACTOID_TIME = "TIME";
+pub const FACTOID_UPPERCHAR = "UPPERCHAR";
+pub const FACTOID_WEB = "WEB";
+pub const FACTOID_WORDLIST = "WORDLIST";
+pub const FLICK_WM_HANDLED_MASK = @as(u32, 1);
 pub const GESTURE_ARROW_DOWN = @as(u32, 61497);
 pub const GESTURE_ARROW_LEFT = @as(u32, 61498);
 pub const GESTURE_ARROW_RIGHT = @as(u32, 61499);
-pub const GESTURE_DOUBLE_ARROW_UP = @as(u32, 61500);
+pub const GESTURE_ARROW_UP = @as(u32, 61496);
+pub const GESTURE_ASTERISK = @as(u32, 61608);
+pub const GESTURE_BRACE_LEFT = @as(u32, 61674);
+pub const GESTURE_BRACE_OVER = @as(u32, 61672);
+pub const GESTURE_BRACE_RIGHT = @as(u32, 61675);
+pub const GESTURE_BRACE_UNDER = @as(u32, 61673);
+pub const GESTURE_BRACKET_LEFT = @as(u32, 61670);
+pub const GESTURE_BRACKET_OVER = @as(u32, 61668);
+pub const GESTURE_BRACKET_RIGHT = @as(u32, 61671);
+pub const GESTURE_BRACKET_UNDER = @as(u32, 61669);
+pub const GESTURE_BULLET = @as(u32, 61450);
+pub const GESTURE_BULLET_CROSS = @as(u32, 61451);
+pub const GESTURE_CHECK = @as(u32, 61445);
+pub const GESTURE_CHEVRON_DOWN = @as(u32, 61489);
+pub const GESTURE_CHEVRON_LEFT = @as(u32, 61490);
+pub const GESTURE_CHEVRON_RIGHT = @as(u32, 61491);
+pub const GESTURE_CHEVRON_UP = @as(u32, 61488);
+pub const GESTURE_CIRCLE = @as(u32, 61472);
+pub const GESTURE_CIRCLE_CIRCLE = @as(u32, 61475);
+pub const GESTURE_CIRCLE_CROSS = @as(u32, 61477);
+pub const GESTURE_CIRCLE_LINE_HORZ = @as(u32, 61479);
+pub const GESTURE_CIRCLE_LINE_VERT = @as(u32, 61478);
+pub const GESTURE_CIRCLE_TAP = @as(u32, 61474);
+pub const GESTURE_CLOSEUP = @as(u32, 61455);
+pub const GESTURE_CROSS = @as(u32, 61447);
+pub const GESTURE_CURLICUE = @as(u32, 61456);
+pub const GESTURE_DIAGONAL_LEFTDOWN = @as(u32, 61534);
+pub const GESTURE_DIAGONAL_LEFTUP = @as(u32, 61532);
+pub const GESTURE_DIAGONAL_RIGHTDOWN = @as(u32, 61535);
+pub const GESTURE_DIAGONAL_RIGHTUP = @as(u32, 61533);
+pub const GESTURE_DIGIT_0 = @as(u32, 61594);
+pub const GESTURE_DIGIT_1 = @as(u32, 61595);
+pub const GESTURE_DIGIT_2 = @as(u32, 61596);
+pub const GESTURE_DIGIT_3 = @as(u32, 61597);
+pub const GESTURE_DIGIT_4 = @as(u32, 61598);
+pub const GESTURE_DIGIT_5 = @as(u32, 61599);
+pub const GESTURE_DIGIT_6 = @as(u32, 61600);
+pub const GESTURE_DIGIT_7 = @as(u32, 61601);
+pub const GESTURE_DIGIT_8 = @as(u32, 61602);
+pub const GESTURE_DIGIT_9 = @as(u32, 61603);
+pub const GESTURE_DOLLAR = @as(u32, 61607);
 pub const GESTURE_DOUBLE_ARROW_DOWN = @as(u32, 61501);
 pub const GESTURE_DOUBLE_ARROW_LEFT = @as(u32, 61502);
 pub const GESTURE_DOUBLE_ARROW_RIGHT = @as(u32, 61503);
-pub const GESTURE_UP_ARROW_LEFT = @as(u32, 61504);
-pub const GESTURE_UP_ARROW_RIGHT = @as(u32, 61505);
+pub const GESTURE_DOUBLE_ARROW_UP = @as(u32, 61500);
+pub const GESTURE_DOUBLE_CIRCLE = @as(u32, 61473);
+pub const GESTURE_DOUBLE_CURLICUE = @as(u32, 61457);
+pub const GESTURE_DOUBLE_DOWN = @as(u32, 61625);
+pub const GESTURE_DOUBLE_LEFT = @as(u32, 61626);
+pub const GESTURE_DOUBLE_RIGHT = @as(u32, 61627);
+pub const GESTURE_DOUBLE_TAP = @as(u32, 61681);
+pub const GESTURE_DOUBLE_UP = @as(u32, 61624);
+pub const GESTURE_DOWN = @as(u32, 61529);
 pub const GESTURE_DOWN_ARROW_LEFT = @as(u32, 61506);
 pub const GESTURE_DOWN_ARROW_RIGHT = @as(u32, 61507);
-pub const GESTURE_LEFT_ARROW_UP = @as(u32, 61508);
-pub const GESTURE_LEFT_ARROW_DOWN = @as(u32, 61509);
-pub const GESTURE_RIGHT_ARROW_UP = @as(u32, 61510);
-pub const GESTURE_RIGHT_ARROW_DOWN = @as(u32, 61511);
-pub const GESTURE_UP = @as(u32, 61528);
-pub const GESTURE_DOWN = @as(u32, 61529);
-pub const GESTURE_LEFT = @as(u32, 61530);
-pub const GESTURE_RIGHT = @as(u32, 61531);
-pub const GESTURE_DIAGONAL_LEFTUP = @as(u32, 61532);
-pub const GESTURE_DIAGONAL_RIGHTUP = @as(u32, 61533);
-pub const GESTURE_DIAGONAL_LEFTDOWN = @as(u32, 61534);
-pub const GESTURE_DIAGONAL_RIGHTDOWN = @as(u32, 61535);
-pub const GESTURE_UP_DOWN = @as(u32, 61536);
-pub const GESTURE_DOWN_UP = @as(u32, 61537);
-pub const GESTURE_LEFT_RIGHT = @as(u32, 61538);
-pub const GESTURE_RIGHT_LEFT = @as(u32, 61539);
-pub const GESTURE_UP_LEFT_LONG = @as(u32, 61540);
-pub const GESTURE_UP_RIGHT_LONG = @as(u32, 61541);
-pub const GESTURE_DOWN_LEFT_LONG = @as(u32, 61542);
-pub const GESTURE_DOWN_RIGHT_LONG = @as(u32, 61543);
-pub const GESTURE_UP_LEFT = @as(u32, 61544);
-pub const GESTURE_UP_RIGHT = @as(u32, 61545);
 pub const GESTURE_DOWN_LEFT = @as(u32, 61546);
+pub const GESTURE_DOWN_LEFT_LONG = @as(u32, 61542);
 pub const GESTURE_DOWN_RIGHT = @as(u32, 61547);
-pub const GESTURE_LEFT_UP = @as(u32, 61548);
+pub const GESTURE_DOWN_RIGHT_LONG = @as(u32, 61543);
+pub const GESTURE_DOWN_UP = @as(u32, 61537);
+pub const GESTURE_EXCLAMATION = @as(u32, 61604);
+pub const GESTURE_INFINITY = @as(u32, 61446);
+pub const GESTURE_LEFT = @as(u32, 61530);
+pub const GESTURE_LEFT_ARROW_DOWN = @as(u32, 61509);
+pub const GESTURE_LEFT_ARROW_UP = @as(u32, 61508);
 pub const GESTURE_LEFT_DOWN = @as(u32, 61549);
-pub const GESTURE_RIGHT_UP = @as(u32, 61550);
-pub const GESTURE_RIGHT_DOWN = @as(u32, 61551);
+pub const GESTURE_LEFT_RIGHT = @as(u32, 61538);
+pub const GESTURE_LEFT_UP = @as(u32, 61548);
 pub const GESTURE_LETTER_A = @as(u32, 61568);
 pub const GESTURE_LETTER_B = @as(u32, 61569);
 pub const GESTURE_LETTER_C = @as(u32, 61570);
@@ -271,488 +173,641 @@ pub const GESTURE_LETTER_W = @as(u32, 61590);
 pub const GESTURE_LETTER_X = @as(u32, 61591);
 pub const GESTURE_LETTER_Y = @as(u32, 61592);
 pub const GESTURE_LETTER_Z = @as(u32, 61593);
-pub const GESTURE_DIGIT_0 = @as(u32, 61594);
-pub const GESTURE_DIGIT_1 = @as(u32, 61595);
-pub const GESTURE_DIGIT_2 = @as(u32, 61596);
-pub const GESTURE_DIGIT_3 = @as(u32, 61597);
-pub const GESTURE_DIGIT_4 = @as(u32, 61598);
-pub const GESTURE_DIGIT_5 = @as(u32, 61599);
-pub const GESTURE_DIGIT_6 = @as(u32, 61600);
-pub const GESTURE_DIGIT_7 = @as(u32, 61601);
-pub const GESTURE_DIGIT_8 = @as(u32, 61602);
-pub const GESTURE_DIGIT_9 = @as(u32, 61603);
-pub const GESTURE_EXCLAMATION = @as(u32, 61604);
-pub const GESTURE_QUESTION = @as(u32, 61605);
-pub const GESTURE_SHARP = @as(u32, 61606);
-pub const GESTURE_DOLLAR = @as(u32, 61607);
-pub const GESTURE_ASTERISK = @as(u32, 61608);
+pub const GESTURE_NULL = @as(u32, 61440);
+pub const GESTURE_OPENUP = @as(u32, 61454);
+pub const GESTURE_PARAGRAPH = @as(u32, 61448);
 pub const GESTURE_PLUS = @as(u32, 61609);
-pub const GESTURE_DOUBLE_UP = @as(u32, 61624);
-pub const GESTURE_DOUBLE_DOWN = @as(u32, 61625);
-pub const GESTURE_DOUBLE_LEFT = @as(u32, 61626);
-pub const GESTURE_DOUBLE_RIGHT = @as(u32, 61627);
-pub const GESTURE_TRIPLE_UP = @as(u32, 61628);
+pub const GESTURE_QUAD_TAP = @as(u32, 61683);
+pub const GESTURE_QUESTION = @as(u32, 61605);
+pub const GESTURE_RECTANGLE = @as(u32, 61458);
+pub const GESTURE_RIGHT = @as(u32, 61531);
+pub const GESTURE_RIGHT_ARROW_DOWN = @as(u32, 61511);
+pub const GESTURE_RIGHT_ARROW_UP = @as(u32, 61510);
+pub const GESTURE_RIGHT_DOWN = @as(u32, 61551);
+pub const GESTURE_RIGHT_LEFT = @as(u32, 61539);
+pub const GESTURE_RIGHT_UP = @as(u32, 61550);
+pub const GESTURE_SCRATCHOUT = @as(u32, 61441);
+pub const GESTURE_SECTION = @as(u32, 61449);
+pub const GESTURE_SEMICIRCLE_LEFT = @as(u32, 61480);
+pub const GESTURE_SEMICIRCLE_RIGHT = @as(u32, 61481);
+pub const GESTURE_SHARP = @as(u32, 61606);
+pub const GESTURE_SQUARE = @as(u32, 61443);
+pub const GESTURE_SQUIGGLE = @as(u32, 61452);
+pub const GESTURE_STAR = @as(u32, 61444);
+pub const GESTURE_SWAP = @as(u32, 61453);
+pub const GESTURE_TAP = @as(u32, 61680);
+pub const GESTURE_TRIANGLE = @as(u32, 61442);
 pub const GESTURE_TRIPLE_DOWN = @as(u32, 61629);
 pub const GESTURE_TRIPLE_LEFT = @as(u32, 61630);
 pub const GESTURE_TRIPLE_RIGHT = @as(u32, 61631);
-pub const GESTURE_BRACKET_OVER = @as(u32, 61668);
-pub const GESTURE_BRACKET_UNDER = @as(u32, 61669);
-pub const GESTURE_BRACKET_LEFT = @as(u32, 61670);
-pub const GESTURE_BRACKET_RIGHT = @as(u32, 61671);
-pub const GESTURE_BRACE_OVER = @as(u32, 61672);
-pub const GESTURE_BRACE_UNDER = @as(u32, 61673);
-pub const GESTURE_BRACE_LEFT = @as(u32, 61674);
-pub const GESTURE_BRACE_RIGHT = @as(u32, 61675);
-pub const GESTURE_TAP = @as(u32, 61680);
-pub const GESTURE_DOUBLE_TAP = @as(u32, 61681);
 pub const GESTURE_TRIPLE_TAP = @as(u32, 61682);
-pub const GESTURE_QUAD_TAP = @as(u32, 61683);
-pub const FACILITY_INK = @as(u32, 40);
-pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
-pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
-pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
-pub const GUID_PACKETPROPERTY_GUID_PACKET_STATUS = Guid.initString("6e0e07bf-afe7-4cf7-87d1-af6446208418");
-pub const GUID_PACKETPROPERTY_GUID_TIMER_TICK = Guid.initString("436510c5-fed3-45d1-8b76-71d3ea7a829d");
-pub const GUID_PACKETPROPERTY_GUID_SERIAL_NUMBER = Guid.initString("78a81b56-0935-4493-baae-00541a8a16c4");
-pub const GUID_PACKETPROPERTY_GUID_NORMAL_PRESSURE = Guid.initString("7307502d-f9f4-4e18-b3f2-2ce1b1a3610c");
-pub const GUID_PACKETPROPERTY_GUID_TANGENT_PRESSURE = Guid.initString("6da4488b-5244-41ec-905b-32d89ab80809");
-pub const GUID_PACKETPROPERTY_GUID_BUTTON_PRESSURE = Guid.initString("8b7fefc4-96aa-4bfe-ac26-8a5f0be07bf5");
-pub const GUID_PACKETPROPERTY_GUID_X_TILT_ORIENTATION = Guid.initString("a8d07b3a-8bf0-40b0-95a9-b80a6bb787bf");
-pub const GUID_PACKETPROPERTY_GUID_Y_TILT_ORIENTATION = Guid.initString("0e932389-1d77-43af-ac00-5b950d6d4b2d");
-pub const GUID_PACKETPROPERTY_GUID_AZIMUTH_ORIENTATION = Guid.initString("029123b4-8828-410b-b250-a0536595e5dc");
+pub const GESTURE_TRIPLE_UP = @as(u32, 61628);
+pub const GESTURE_UP = @as(u32, 61528);
+pub const GESTURE_UP_ARROW_LEFT = @as(u32, 61504);
+pub const GESTURE_UP_ARROW_RIGHT = @as(u32, 61505);
+pub const GESTURE_UP_DOWN = @as(u32, 61536);
+pub const GESTURE_UP_LEFT = @as(u32, 61544);
+pub const GESTURE_UP_LEFT_LONG = @as(u32, 61540);
+pub const GESTURE_UP_RIGHT = @as(u32, 61545);
+pub const GESTURE_UP_RIGHT_LONG = @as(u32, 61541);
+pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a95-89ad-0e476b34b4f5");
+pub const GUID_GESTURE_DATA = Guid.initString("41e4ec0f-26aa-455a-9aa5-2cd36cf63fb9");
 pub const GUID_PACKETPROPERTY_GUID_ALTITUDE_ORIENTATION = Guid.initString("82dec5c7-f6ba-4906-894f-66d68dfc456c");
-pub const GUID_PACKETPROPERTY_GUID_TWIST_ORIENTATION = Guid.initString("0d324960-13b2-41e4-ace6-7ae9d43d2d3b");
+pub const GUID_PACKETPROPERTY_GUID_AZIMUTH_ORIENTATION = Guid.initString("029123b4-8828-410b-b250-a0536595e5dc");
+pub const GUID_PACKETPROPERTY_GUID_BUTTON_PRESSURE = Guid.initString("8b7fefc4-96aa-4bfe-ac26-8a5f0be07bf5");
+pub const GUID_PACKETPROPERTY_GUID_DEVICE_CONTACT_ID = Guid.initString("02585b91-049b-4750-9615-df8948ab3c9c");
+pub const GUID_PACKETPROPERTY_GUID_FINGERCONTACTCONFIDENCE = Guid.initString("e706c804-57f0-4f00-8a0c-853d57789be9");
+pub const GUID_PACKETPROPERTY_GUID_HEIGHT = Guid.initString("e61858d2-e447-4218-9d3f-18865c203df4");
+pub const GUID_PACKETPROPERTY_GUID_NORMAL_PRESSURE = Guid.initString("7307502d-f9f4-4e18-b3f2-2ce1b1a3610c");
+pub const GUID_PACKETPROPERTY_GUID_PACKET_STATUS = Guid.initString("6e0e07bf-afe7-4cf7-87d1-af6446208418");
 pub const GUID_PACKETPROPERTY_GUID_PITCH_ROTATION = Guid.initString("7f7e57b7-be37-4be1-a356-7a84160e1893");
 pub const GUID_PACKETPROPERTY_GUID_ROLL_ROTATION = Guid.initString("5d5d5e56-6ba9-4c5b-9fb0-851c91714e56");
-pub const GUID_PACKETPROPERTY_GUID_YAW_ROTATION = Guid.initString("6a849980-7c3a-45b7-aa82-90a262950e89");
+pub const GUID_PACKETPROPERTY_GUID_SERIAL_NUMBER = Guid.initString("78a81b56-0935-4493-baae-00541a8a16c4");
+pub const GUID_PACKETPROPERTY_GUID_TANGENT_PRESSURE = Guid.initString("6da4488b-5244-41ec-905b-32d89ab80809");
+pub const GUID_PACKETPROPERTY_GUID_TIMER_TICK = Guid.initString("436510c5-fed3-45d1-8b76-71d3ea7a829d");
+pub const GUID_PACKETPROPERTY_GUID_TWIST_ORIENTATION = Guid.initString("0d324960-13b2-41e4-ace6-7ae9d43d2d3b");
 pub const GUID_PACKETPROPERTY_GUID_WIDTH = Guid.initString("baabe94d-2712-48f5-be9d-8f8b5ea0711a");
-pub const GUID_PACKETPROPERTY_GUID_HEIGHT = Guid.initString("e61858d2-e447-4218-9d3f-18865c203df4");
-pub const GUID_PACKETPROPERTY_GUID_FINGERCONTACTCONFIDENCE = Guid.initString("e706c804-57f0-4f00-8a0c-853d57789be9");
-pub const GUID_PACKETPROPERTY_GUID_DEVICE_CONTACT_ID = Guid.initString("02585b91-049b-4750-9615-df8948ab3c9c");
-pub const InkMinTransparencyValue = @as(i32, 0);
-pub const InkMaxTransparencyValue = @as(i32, 255);
+pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
+pub const GUID_PACKETPROPERTY_GUID_X_TILT_ORIENTATION = Guid.initString("a8d07b3a-8bf0-40b0-95a9-b80a6bb787bf");
+pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
+pub const GUID_PACKETPROPERTY_GUID_Y_TILT_ORIENTATION = Guid.initString("0e932389-1d77-43af-ac00-5b950d6d4b2d");
+pub const GUID_PACKETPROPERTY_GUID_YAW_ROTATION = Guid.initString("6a849980-7c3a-45b7-aa82-90a262950e89");
+pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
+pub const IEC__BASE = @as(u32, 1536);
+pub const IECN__BASE = @as(u32, 2048);
+pub const IECN_GESTURE = @as(u32, 2050);
+pub const IECN_RECOGNITIONRESULT = @as(u32, 2051);
+pub const IECN_STROKE = @as(u32, 2049);
+pub const INK_SERIALIZED_FORMAT = "Ink Serialized Format";
 pub const InkCollectorClipInkToMargin = @as(i32, 0);
 pub const InkCollectorDefaultMargin = @as(i32, -2147483648);
-pub const GUID_GESTURE_DATA = Guid.initString("41e4ec0f-26aa-455a-9aa5-2cd36cf63fb9");
-pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a95-89ad-0e476b34b4f5");
+pub const INKEDIT_CLASS = "INKEDIT";
+pub const INKEDIT_CLASSW = "INKEDIT";
+pub const InkMaxTransparencyValue = @as(i32, 255);
+pub const InkMinTransparencyValue = @as(i32, 0);
+pub const INKRECOGNITIONPROPERTY_BOXNUMBER = "{2C243E3A-F733-4EB6-B1F8-B5DC5C2C4CDA}";
+pub const INKRECOGNITIONPROPERTY_CONFIDENCELEVEL = "{7DFE11A7-FB5D-4958-8765-154ADF0D833F}";
+pub const INKRECOGNITIONPROPERTY_HOTPOINT = "{CA6F40DC-5292-452a-91FB-2181C0BEC0DE}";
+pub const INKRECOGNITIONPROPERTY_LINEMETRICS = "{8CC24B27-30A9-4b96-9056-2D3A90DA0727}";
+pub const INKRECOGNITIONPROPERTY_LINENUMBER = "{DBF29F2C-5289-4BE8-B3D8-6EF63246253E}";
+pub const INKRECOGNITIONPROPERTY_MAXIMUMSTROKECOUNT = "{BF0EEC4E-4B7D-47a9-8CFA-234DD24BD22A}";
+pub const INKRECOGNITIONPROPERTY_POINTSPERINCH = "{7ED16B76-889C-468e-8276-0021B770187E}";
+pub const INKRECOGNITIONPROPERTY_SEGMENTATION = "{B3C0FE6C-FB51-4164-BA2F-844AF8F983DA}";
+pub const IP_CURSOR_DOWN = @as(u32, 1);
+pub const IP_INVERTED = @as(u32, 2);
+pub const IP_MARGIN = @as(u32, 4);
+pub const MAX_FRIENDLYNAME = @as(u32, 64);
+pub const MAX_LANGUAGES = @as(u32, 64);
+pub const MAX_PACKET_BUTTON_COUNT = @as(u32, 32);
+pub const MAX_PACKET_PROPERTY_COUNT = @as(u32, 32);
+pub const MAX_VENDORNAME = @as(u32, 32);
+pub const MICROSOFT_PENINPUT_PANEL_PROPERTY_T = "Microsoft PenInputPanel 1.5";
+pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
+pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
+pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
+pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
+pub const NUM_FLICK_DIRECTIONS = @as(u32, 8);
+pub const RECOCONF_HIGHCONFIDENCE = @as(u32, 1);
+pub const RECOCONF_LOWCONFIDENCE = @as(i32, -1);
+pub const RECOCONF_MEDIUMCONFIDENCE = @as(u32, 0);
+pub const RECOCONF_NOTSET = @as(u32, 128);
+pub const RECOFLAG_AUTOSPACE = @as(u32, 64);
+pub const RECOFLAG_COERCE = @as(u32, 2);
+pub const RECOFLAG_DISABLEPERSONALIZATION = @as(u32, 32);
+pub const RECOFLAG_LINEMODE = @as(u32, 16);
+pub const RECOFLAG_PREFIXOK = @as(u32, 8);
+pub const RECOFLAG_SINGLESEG = @as(u32, 4);
+pub const RECOFLAG_WORDMODE = @as(u32, 1);
+pub const RF_ADVISEINKCHANGE = @as(i32, 4096);
+pub const RF_ARBITRARY_ANGLE = @as(i32, 1024);
+pub const RF_BOXED_INPUT = @as(i32, 16);
+pub const RF_CAC_INPUT = @as(i32, 32);
+pub const RF_DONTCARE = @as(i32, 1);
+pub const RF_DOWN_AND_LEFT = @as(i32, 256);
+pub const RF_DOWN_AND_RIGHT = @as(i32, 512);
+pub const RF_FREE_INPUT = @as(i32, 4);
+pub const RF_LATTICE = @as(i32, 2048);
+pub const RF_LEFT_AND_DOWN = @as(i32, 128);
+pub const RF_LINED_INPUT = @as(i32, 8);
+pub const RF_OBJECT = @as(i32, 2);
+pub const RF_PERFORMSLINEBREAKING = @as(i32, 65536);
+pub const RF_PERSONALIZABLE = @as(i32, 16384);
+pub const RF_REQUIRESSEGMENTATIONBREAKING = @as(i32, 131072);
+pub const RF_RIGHT_AND_DOWN = @as(i32, 64);
+pub const RF_STROKEREORDER = @as(i32, 8192);
+pub const SAFE_PARTIAL = @as(u32, 1);
+pub const STR_GUID_ALTITUDEORIENTATION = "{82DEC5C7-F6BA-4906-894F-66D68DFC456C}";
+pub const STR_GUID_AZIMUTHORIENTATION = "{029123B4-8828-410B-B250-A0536595E5DC}";
+pub const STR_GUID_BUTTONPRESSURE = "{8B7FEFC4-96AA-4BFE-AC26-8A5F0BE07BF5}";
+pub const STR_GUID_DEVICE_CONTACT_ID = "{02585B91-049B-4750-9615-DF8948AB3C9C}";
+pub const STR_GUID_FINGERCONTACTCONFIDENCE = "{E706C804-57F0-4F00-8A0C-853D57789BE9}";
+pub const STR_GUID_HEIGHT = "{E61858D2-E447-4218-9D3F-18865C203DF4}";
+pub const STR_GUID_NORMALPRESSURE = "{7307502D-F9F4-4E18-B3F2-2CE1B1A3610C}";
+pub const STR_GUID_PAKETSTATUS = "{6E0E07BF-AFE7-4CF7-87D1-AF6446208418}";
+pub const STR_GUID_PITCHROTATION = "{7F7E57B7-BE37-4BE1-A356-7A84160E1893}";
+pub const STR_GUID_ROLLROTATION = "{5D5D5E56-6BA9-4C5B-9FB0-851C91714E56}";
+pub const STR_GUID_SERIALNUMBER = "{78A81B56-0935-4493-BAAE-00541A8A16C4}";
+pub const STR_GUID_TANGENTPRESSURE = "{6DA4488B-5244-41EC-905B-32D89AB80809}";
+pub const STR_GUID_TIMERTICK = "{436510C5-FED3-45D1-8B76-71D3EA7A829D}";
+pub const STR_GUID_TWISTORIENTATION = "{0D324960-13B2-41E4-ACE6-7AE9D43D2D3B}";
+pub const STR_GUID_WIDTH = "{BAABE94D-2712-48F5-BE9D-8F8B5EA0711A}";
+pub const STR_GUID_X = "{598A6A8F-52C0-4BA0-93AF-AF357411A561}";
+pub const STR_GUID_XTILTORIENTATION = "{A8D07B3A-8BF0-40B0-95A9-B80A6BB787BF}";
+pub const STR_GUID_Y = "{B53F9F75-04E0-4498-A7EE-C30DBB5A9011}";
+pub const STR_GUID_YAWROTATION = "{6A849980-7C3A-45B7-AA82-90A262950E89}";
+pub const STR_GUID_YTILTORIENTATION = "{0E932389-1D77-43AF-AC00-5B950D6D4B2D}";
+pub const STR_GUID_Z = "{735ADB30-0EBB-4788-A0E4-0F316490055D}";
+pub const TABLET_DISABLE_FLICKFALLBACKKEYS = @as(u32, 1048576);
+pub const TABLET_DISABLE_FLICKS = @as(u32, 65536);
+pub const TABLET_DISABLE_PENBARRELFEEDBACK = @as(u32, 16);
+pub const TABLET_DISABLE_PENTAPFEEDBACK = @as(u32, 8);
+pub const TABLET_DISABLE_PRESSANDHOLD = @as(u32, 1);
+pub const TABLET_DISABLE_SMOOTHSCROLLING = @as(u32, 524288);
+pub const TABLET_DISABLE_TOUCHSWITCH = @as(u32, 32768);
+pub const TABLET_DISABLE_TOUCHUIFORCEOFF = @as(u32, 512);
+pub const TABLET_DISABLE_TOUCHUIFORCEON = @as(u32, 256);
+pub const TABLET_ENABLE_FLICKLEARNINGMODE = @as(u32, 262144);
+pub const TABLET_ENABLE_FLICKSONCONTEXT = @as(u32, 131072);
+pub const TABLET_ENABLE_MULTITOUCHDATA = @as(u32, 16777216);
+pub const WM_TABLET_ADDED = @as(u32, 712);
+pub const WM_TABLET_DEFBASE = @as(u32, 704);
+pub const WM_TABLET_DELETED = @as(u32, 713);
+pub const WM_TABLET_FLICK = @as(u32, 715);
+pub const WM_TABLET_MAXOFFSET = @as(u32, 32);
+pub const WM_TABLET_QUERYSYSTEMGESTURESTATUS = @as(u32, 716);
 
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
-pub const PfnRecoCallback = *const fn(
-    param0: u32,
-    param1: ?*u8,
-    param2: ?HRECOCONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HRECOALT = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HRECOCONTEXT = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HRECOGNIZER = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HRECOLATTICE = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HRECOWORDLIST = *opaque{};
-
-const CLSID_InkDisp_Value = Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
-pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
-
-const CLSID_InkOverlay_Value = Guid.initString("65d00646-cde3-4a88-9163-6769f0f1a97d");
-pub const CLSID_InkOverlay = &CLSID_InkOverlay_Value;
-
-const CLSID_InkPicture_Value = Guid.initString("04a1e553-fe36-4fde-865e-344194e69424");
-pub const CLSID_InkPicture = &CLSID_InkPicture_Value;
-
-const CLSID_InkCollector_Value = Guid.initString("43fb1553-ad74-4ee8-88e4-3e6daac915db");
-pub const CLSID_InkCollector = &CLSID_InkCollector_Value;
-
-const CLSID_InkDrawingAttributes_Value = Guid.initString("d8bf32a2-05a5-44c3-b3aa-5e80ac7d2576");
-pub const CLSID_InkDrawingAttributes = &CLSID_InkDrawingAttributes_Value;
-
-const CLSID_InkRectangle_Value = Guid.initString("43b07326-aae0-4b62-a83d-5fd768b7353c");
-pub const CLSID_InkRectangle = &CLSID_InkRectangle_Value;
-
-const CLSID_InkRenderer_Value = Guid.initString("9c1cc6e4-d7eb-4eeb-9091-15a7c8791ed9");
-pub const CLSID_InkRenderer = &CLSID_InkRenderer_Value;
-
-const CLSID_InkTransform_Value = Guid.initString("e3d5d93c-1663-4a78-a1a7-22375dfebaee");
-pub const CLSID_InkTransform = &CLSID_InkTransform_Value;
-
-const CLSID_InkRecognizers_Value = Guid.initString("9fd4e808-f6e6-4e65-98d3-aa39054c1255");
-pub const CLSID_InkRecognizers = &CLSID_InkRecognizers_Value;
-
-const CLSID_InkRecognizerContext_Value = Guid.initString("aac46a37-9229-4fc0-8cce-4497569bf4d1");
-pub const CLSID_InkRecognizerContext = &CLSID_InkRecognizerContext_Value;
-
-const CLSID_InkRecognizerGuide_Value = Guid.initString("8770d941-a63a-4671-a375-2855a18eba73");
-pub const CLSID_InkRecognizerGuide = &CLSID_InkRecognizerGuide_Value;
-
-const CLSID_InkTablets_Value = Guid.initString("6e4fcb12-510a-4d40-9304-1da10ae9147c");
-pub const CLSID_InkTablets = &CLSID_InkTablets_Value;
-
-const CLSID_InkWordList_Value = Guid.initString("9de85094-f71f-44f1-8471-15a2fa76fcf3");
-pub const CLSID_InkWordList = &CLSID_InkWordList_Value;
-
-const CLSID_InkStrokes_Value = Guid.initString("48f491bc-240e-4860-b079-a1e94d3d2c86");
-pub const CLSID_InkStrokes = &CLSID_InkStrokes_Value;
-
-const CLSID_Ink_Value = Guid.initString("13de4a42-8d21-4c8e-bf9c-8f69cb068fca");
-pub const CLSID_Ink = &CLSID_Ink_Value;
-
-const CLSID_SketchInk_Value = Guid.initString("f0291081-e87c-4e07-97da-a0a03761e586");
-pub const CLSID_SketchInk = &CLSID_SketchInk_Value;
-
-pub const PROPERTY_UNITS = enum(i32) {
-    DEFAULT = 0,
-    INCHES = 1,
-    CENTIMETERS = 2,
-    DEGREES = 3,
-    RADIANS = 4,
-    SECONDS = 5,
-    POUNDS = 6,
-    GRAMS = 7,
-    SILINEAR = 8,
-    SIROTATION = 9,
-    ENGLINEAR = 10,
-    ENGROTATION = 11,
-    SLUGS = 12,
-    KELVIN = 13,
-    FAHRENHEIT = 14,
-    AMPERE = 15,
-    CANDELA = 16,
-};
-pub const PROPERTY_UNITS_DEFAULT = PROPERTY_UNITS.DEFAULT;
-pub const PROPERTY_UNITS_INCHES = PROPERTY_UNITS.INCHES;
-pub const PROPERTY_UNITS_CENTIMETERS = PROPERTY_UNITS.CENTIMETERS;
-pub const PROPERTY_UNITS_DEGREES = PROPERTY_UNITS.DEGREES;
-pub const PROPERTY_UNITS_RADIANS = PROPERTY_UNITS.RADIANS;
-pub const PROPERTY_UNITS_SECONDS = PROPERTY_UNITS.SECONDS;
-pub const PROPERTY_UNITS_POUNDS = PROPERTY_UNITS.POUNDS;
-pub const PROPERTY_UNITS_GRAMS = PROPERTY_UNITS.GRAMS;
-pub const PROPERTY_UNITS_SILINEAR = PROPERTY_UNITS.SILINEAR;
-pub const PROPERTY_UNITS_SIROTATION = PROPERTY_UNITS.SIROTATION;
-pub const PROPERTY_UNITS_ENGLINEAR = PROPERTY_UNITS.ENGLINEAR;
-pub const PROPERTY_UNITS_ENGROTATION = PROPERTY_UNITS.ENGROTATION;
-pub const PROPERTY_UNITS_SLUGS = PROPERTY_UNITS.SLUGS;
-pub const PROPERTY_UNITS_KELVIN = PROPERTY_UNITS.KELVIN;
-pub const PROPERTY_UNITS_FAHRENHEIT = PROPERTY_UNITS.FAHRENHEIT;
-pub const PROPERTY_UNITS_AMPERE = PROPERTY_UNITS.AMPERE;
-pub const PROPERTY_UNITS_CANDELA = PROPERTY_UNITS.CANDELA;
-
-pub const SYSTEM_EVENT_DATA = extern struct {
-    bModifier: u8,
-    wKey: u16,
-    xPos: i32,
-    yPos: i32,
-    bCursorMode: u8,
-    dwButtonState: u32,
+const IID__IInkCollectorEvents_Value = Guid.initString("11a583f2-712d-4fea-abcf-ab4af38ea06b");
+pub const IID__IInkCollectorEvents = &IID__IInkCollectorEvents_Value;
+pub const _IInkCollectorEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
-pub const STROKE_RANGE = extern struct {
-    iStrokeBegin: u32,
-    iStrokeEnd: u32,
+const IID__IInkEditEvents_Value = Guid.initString("e3b0b797-a72e-46db-a0d7-6c9eba8e9bbc");
+pub const IID__IInkEditEvents = &IID__IInkEditEvents_Value;
+pub const _IInkEditEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
-pub const PROPERTY_METRICS = extern struct {
-    nLogicalMin: i32,
-    nLogicalMax: i32,
-    Units: PROPERTY_UNITS,
-    fResolution: f32,
+const IID__IInkEvents_Value = Guid.initString("427b1865-ca3f-479a-83a9-0f420f2a0073");
+pub const IID__IInkEvents = &IID__IInkEvents_Value;
+pub const _IInkEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
-pub const PACKET_PROPERTY = extern struct {
-    guid: Guid,
-    PropertyMetrics: PROPERTY_METRICS,
+const IID__IInkOverlayEvents_Value = Guid.initString("31179b69-e563-489e-b16f-712f1e8a0651");
+pub const IID__IInkOverlayEvents = &IID__IInkOverlayEvents_Value;
+pub const _IInkOverlayEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
-pub const PACKET_DESCRIPTION = extern struct {
-    cbPacketSize: u32,
-    cPacketProperties: u32,
-    pPacketProperties: ?*PACKET_PROPERTY,
-    cButtons: u32,
-    pguidButtons: ?*Guid,
+const IID__IInkPictureEvents_Value = Guid.initString("60ff4fee-22ff-4484-acc1-d308d9cd7ea3");
+pub const IID__IInkPictureEvents = &IID__IInkPictureEvents_Value;
+pub const _IInkPictureEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
-pub const enumINKMETRIC_FLAGS = enum(i32) {
-    FONT_SELECTED_IN_HDC = 1,
-    ITALIC = 2,
-    BOLD = 4,
-};
-pub const IMF_FONT_SELECTED_IN_HDC = enumINKMETRIC_FLAGS.FONT_SELECTED_IN_HDC;
-pub const IMF_ITALIC = enumINKMETRIC_FLAGS.ITALIC;
-pub const IMF_BOLD = enumINKMETRIC_FLAGS.BOLD;
-
-pub const enumGetCandidateFlags = enum(i32) {
-    ALLOW_RECOGNITION = 1,
-    FORCE_RECOGNITION = 2,
-};
-pub const TCF_ALLOW_RECOGNITION = enumGetCandidateFlags.ALLOW_RECOGNITION;
-pub const TCF_FORCE_RECOGNITION = enumGetCandidateFlags.FORCE_RECOGNITION;
-
-pub const INKMETRIC = extern struct {
-    iHeight: i32,
-    iFontAscent: i32,
-    iFontDescent: i32,
-    dwFlags: u32,
-    color: COLORREF,
+const IID__IInkRecognitionEvents_Value = Guid.initString("17bce92f-2e21-47fd-9d33-3c6afbfd8c59");
+pub const IID__IInkRecognitionEvents = &IID__IInkRecognitionEvents_Value;
+pub const _IInkRecognitionEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
-pub const InkSelectionConstants = enum(i32) {
-    FirstElement = 0,
-    AllElements = -1,
+const IID__IInkStrokesEvents_Value = Guid.initString("f33053ec-5d25-430a-928f-76a6491dde15");
+pub const IID__IInkStrokesEvents = &IID__IInkStrokesEvents_Value;
+pub const _IInkStrokesEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
-pub const ISC_FirstElement = InkSelectionConstants.FirstElement;
-pub const ISC_AllElements = InkSelectionConstants.AllElements;
 
-pub const InkBoundingBoxMode = enum(i32) {
-    Default = 0,
-    NoCurveFit = 1,
-    CurveFit = 2,
-    PointsOnly = 3,
-    Union = 4,
+const IID__IMathInputControlEvents_Value = Guid.initString("683336b5-a47d-4358-96f9-875a472ae70a");
+pub const IID__IMathInputControlEvents = &IID__IMathInputControlEvents_Value;
+pub const _IMathInputControlEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
-pub const IBBM_Default = InkBoundingBoxMode.Default;
-pub const IBBM_NoCurveFit = InkBoundingBoxMode.NoCurveFit;
-pub const IBBM_CurveFit = InkBoundingBoxMode.CurveFit;
-pub const IBBM_PointsOnly = InkBoundingBoxMode.PointsOnly;
-pub const IBBM_Union = InkBoundingBoxMode.Union;
 
-pub const InkExtractFlags = enum(i32) {
-    CopyFromOriginal = 0,
-    RemoveFromOriginal = 1,
-    pub const Default = .RemoveFromOriginal;
+const IID__IPenInputPanelEvents_Value = Guid.initString("b7e489da-3719-439f-848f-e7acbd820f17");
+pub const IID__IPenInputPanelEvents = &IID__IPenInputPanelEvents_Value;
+pub const _IPenInputPanelEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
-pub const IEF_CopyFromOriginal = InkExtractFlags.CopyFromOriginal;
-pub const IEF_RemoveFromOriginal = InkExtractFlags.RemoveFromOriginal;
-pub const IEF_Default = InkExtractFlags.RemoveFromOriginal;
 
-pub const InkPersistenceFormat = enum(i32) {
-    InkSerializedFormat = 0,
-    Base64InkSerializedFormat = 1,
-    GIF = 2,
-    Base64GIF = 3,
+pub const ALT_BREAKS = enum(i32) {
+    SAME = 0,
+    UNIQUE = 1,
+    FULL = 2,
 };
-pub const IPF_InkSerializedFormat = InkPersistenceFormat.InkSerializedFormat;
-pub const IPF_Base64InkSerializedFormat = InkPersistenceFormat.Base64InkSerializedFormat;
-pub const IPF_GIF = InkPersistenceFormat.GIF;
-pub const IPF_Base64GIF = InkPersistenceFormat.Base64GIF;
+pub const ALT_BREAKS_SAME = ALT_BREAKS.SAME;
+pub const ALT_BREAKS_UNIQUE = ALT_BREAKS.UNIQUE;
+pub const ALT_BREAKS_FULL = ALT_BREAKS.FULL;
 
-pub const InkPersistenceCompressionMode = enum(i32) {
-    Default = 0,
-    MaximumCompression = 1,
-    NoCompression = 2,
+pub const AppearanceConstants = enum(i32) {
+    Flat = 0,
+    ThreeD = 1,
 };
-pub const IPCM_Default = InkPersistenceCompressionMode.Default;
-pub const IPCM_MaximumCompression = InkPersistenceCompressionMode.MaximumCompression;
-pub const IPCM_NoCompression = InkPersistenceCompressionMode.NoCompression;
+pub const rtfFlat = AppearanceConstants.Flat;
+pub const rtfThreeD = AppearanceConstants.ThreeD;
 
-pub const InkPenTip = enum(i32) {
-    Ball = 0,
-    Rectangle = 1,
+pub const BorderStyleConstants = enum(i32) {
+    NoBorder = 0,
+    FixedSingle = 1,
 };
-pub const IPT_Ball = InkPenTip.Ball;
-pub const IPT_Rectangle = InkPenTip.Rectangle;
+pub const rtfNoBorder = BorderStyleConstants.NoBorder;
+pub const rtfFixedSingle = BorderStyleConstants.FixedSingle;
 
-pub const InkRasterOperation = enum(i32) {
-    Black = 1,
-    NotMergePen = 2,
-    MaskNotPen = 3,
-    NotCopyPen = 4,
-    MaskPenNot = 5,
-    Not = 6,
-    XOrPen = 7,
-    NotMaskPen = 8,
-    MaskPen = 9,
-    NotXOrPen = 10,
-    NoOperation = 11,
-    MergeNotPen = 12,
-    CopyPen = 13,
-    MergePenNot = 14,
-    MergePen = 15,
-    White = 16,
+pub const CHARACTER_RANGE = extern struct {
+    wcLow: u16,
+    cChars: u16,
 };
-pub const IRO_Black = InkRasterOperation.Black;
-pub const IRO_NotMergePen = InkRasterOperation.NotMergePen;
-pub const IRO_MaskNotPen = InkRasterOperation.MaskNotPen;
-pub const IRO_NotCopyPen = InkRasterOperation.NotCopyPen;
-pub const IRO_MaskPenNot = InkRasterOperation.MaskPenNot;
-pub const IRO_Not = InkRasterOperation.Not;
-pub const IRO_XOrPen = InkRasterOperation.XOrPen;
-pub const IRO_NotMaskPen = InkRasterOperation.NotMaskPen;
-pub const IRO_MaskPen = InkRasterOperation.MaskPen;
-pub const IRO_NotXOrPen = InkRasterOperation.NotXOrPen;
-pub const IRO_NoOperation = InkRasterOperation.NoOperation;
-pub const IRO_MergeNotPen = InkRasterOperation.MergeNotPen;
-pub const IRO_CopyPen = InkRasterOperation.CopyPen;
-pub const IRO_MergePenNot = InkRasterOperation.MergePenNot;
-pub const IRO_MergePen = InkRasterOperation.MergePen;
-pub const IRO_White = InkRasterOperation.White;
 
-pub const InkMousePointer = enum(i32) {
-    Default = 0,
-    Arrow = 1,
-    Crosshair = 2,
-    Ibeam = 3,
-    SizeNESW = 4,
-    SizeNS = 5,
-    SizeNWSE = 6,
-    SizeWE = 7,
-    UpArrow = 8,
-    Hourglass = 9,
-    NoDrop = 10,
-    ArrowHourglass = 11,
-    ArrowQuestion = 12,
-    SizeAll = 13,
-    Hand = 14,
-    Custom = 99,
+pub const CONFIDENCE_LEVEL = enum(i32) {
+    STRONG = 0,
+    INTERMEDIATE = 1,
+    POOR = 2,
 };
-pub const IMP_Default = InkMousePointer.Default;
-pub const IMP_Arrow = InkMousePointer.Arrow;
-pub const IMP_Crosshair = InkMousePointer.Crosshair;
-pub const IMP_Ibeam = InkMousePointer.Ibeam;
-pub const IMP_SizeNESW = InkMousePointer.SizeNESW;
-pub const IMP_SizeNS = InkMousePointer.SizeNS;
-pub const IMP_SizeNWSE = InkMousePointer.SizeNWSE;
-pub const IMP_SizeWE = InkMousePointer.SizeWE;
-pub const IMP_UpArrow = InkMousePointer.UpArrow;
-pub const IMP_Hourglass = InkMousePointer.Hourglass;
-pub const IMP_NoDrop = InkMousePointer.NoDrop;
-pub const IMP_ArrowHourglass = InkMousePointer.ArrowHourglass;
-pub const IMP_ArrowQuestion = InkMousePointer.ArrowQuestion;
-pub const IMP_SizeAll = InkMousePointer.SizeAll;
-pub const IMP_Hand = InkMousePointer.Hand;
-pub const IMP_Custom = InkMousePointer.Custom;
+pub const CFL_STRONG = CONFIDENCE_LEVEL.STRONG;
+pub const CFL_INTERMEDIATE = CONFIDENCE_LEVEL.INTERMEDIATE;
+pub const CFL_POOR = CONFIDENCE_LEVEL.POOR;
 
-pub const InkClipboardModes = enum(i32) {
-    Copy = 0,
-    Cut = 1,
-    ExtractOnly = 48,
-    DelayedCopy = 32,
-    pub const Default = .Copy;
+pub const CorrectionMode = enum(i32) {
+    NotVisible = 0,
+    PreInsertion = 1,
+    PostInsertionCollapsed = 2,
+    PostInsertionExpanded = 3,
 };
-pub const ICB_Copy = InkClipboardModes.Copy;
-pub const ICB_Cut = InkClipboardModes.Cut;
-pub const ICB_ExtractOnly = InkClipboardModes.ExtractOnly;
-pub const ICB_DelayedCopy = InkClipboardModes.DelayedCopy;
-pub const ICB_Default = InkClipboardModes.Copy;
+pub const CorrectionMode_NotVisible = CorrectionMode.NotVisible;
+pub const CorrectionMode_PreInsertion = CorrectionMode.PreInsertion;
+pub const CorrectionMode_PostInsertionCollapsed = CorrectionMode.PostInsertionCollapsed;
+pub const CorrectionMode_PostInsertionExpanded = CorrectionMode.PostInsertionExpanded;
 
-pub const InkClipboardFormats = enum(i32) {
-    None = 0,
-    InkSerializedFormat = 1,
-    SketchInk = 2,
-    TextInk = 6,
-    EnhancedMetafile = 8,
-    Metafile = 32,
-    Bitmap = 64,
-    PasteMask = 7,
-    CopyMask = 127,
-    pub const Default = .CopyMask;
+pub const CorrectionPosition = enum(i32) {
+    Auto = 0,
+    Bottom = 1,
+    Top = 2,
 };
-pub const ICF_None = InkClipboardFormats.None;
-pub const ICF_InkSerializedFormat = InkClipboardFormats.InkSerializedFormat;
-pub const ICF_SketchInk = InkClipboardFormats.SketchInk;
-pub const ICF_TextInk = InkClipboardFormats.TextInk;
-pub const ICF_EnhancedMetafile = InkClipboardFormats.EnhancedMetafile;
-pub const ICF_Metafile = InkClipboardFormats.Metafile;
-pub const ICF_Bitmap = InkClipboardFormats.Bitmap;
-pub const ICF_PasteMask = InkClipboardFormats.PasteMask;
-pub const ICF_CopyMask = InkClipboardFormats.CopyMask;
-pub const ICF_Default = InkClipboardFormats.CopyMask;
+pub const CorrectionPosition_Auto = CorrectionPosition.Auto;
+pub const CorrectionPosition_Bottom = CorrectionPosition.Bottom;
+pub const CorrectionPosition_Top = CorrectionPosition.Top;
 
-pub const SelectionHitResult = enum(i32) {
-    None = 0,
-    NW = 1,
-    SE = 2,
-    NE = 3,
-    SW = 4,
-    E = 5,
-    W = 6,
-    N = 7,
-    S = 8,
-    Selection = 9,
+pub const DISPID_Ink = enum(i32) {
+    Strokes = 1,
+    ExtendedProperties = 2,
+    GetBoundingBox = 3,
+    DeleteStrokes = 4,
+    DeleteStroke = 5,
+    ExtractStrokes = 6,
+    ExtractWithRectangle = 7,
+    Dirty = 8,
+    CustomStrokes = 9,
+    Clone = 10,
+    HitTestCircle = 11,
+    HitTestWithRectangle = 12,
+    HitTestWithLasso = 13,
+    NearestPoint = 14,
+    CreateStrokes = 15,
+    CreateStroke = 16,
+    AddStrokesAtRectangle = 17,
+    Clip = 18,
+    Save = 19,
+    Load = 20,
+    CreateStrokeFromPoints = 21,
+    ClipboardCopyWithRectangle = 22,
+    ClipboardCopy = 23,
+    CanPaste = 24,
+    ClipboardPaste = 25,
 };
-pub const SHR_None = SelectionHitResult.None;
-pub const SHR_NW = SelectionHitResult.NW;
-pub const SHR_SE = SelectionHitResult.SE;
-pub const SHR_NE = SelectionHitResult.NE;
-pub const SHR_SW = SelectionHitResult.SW;
-pub const SHR_E = SelectionHitResult.E;
-pub const SHR_W = SelectionHitResult.W;
-pub const SHR_N = SelectionHitResult.N;
-pub const SHR_S = SelectionHitResult.S;
-pub const SHR_Selection = SelectionHitResult.Selection;
+pub const DISPID_IStrokes = DISPID_Ink.Strokes;
+pub const DISPID_IExtendedProperties = DISPID_Ink.ExtendedProperties;
+pub const DISPID_IGetBoundingBox = DISPID_Ink.GetBoundingBox;
+pub const DISPID_IDeleteStrokes = DISPID_Ink.DeleteStrokes;
+pub const DISPID_IDeleteStroke = DISPID_Ink.DeleteStroke;
+pub const DISPID_IExtractStrokes = DISPID_Ink.ExtractStrokes;
+pub const DISPID_IExtractWithRectangle = DISPID_Ink.ExtractWithRectangle;
+pub const DISPID_IDirty = DISPID_Ink.Dirty;
+pub const DISPID_ICustomStrokes = DISPID_Ink.CustomStrokes;
+pub const DISPID_IClone = DISPID_Ink.Clone;
+pub const DISPID_IHitTestCircle = DISPID_Ink.HitTestCircle;
+pub const DISPID_IHitTestWithRectangle = DISPID_Ink.HitTestWithRectangle;
+pub const DISPID_IHitTestWithLasso = DISPID_Ink.HitTestWithLasso;
+pub const DISPID_INearestPoint = DISPID_Ink.NearestPoint;
+pub const DISPID_ICreateStrokes = DISPID_Ink.CreateStrokes;
+pub const DISPID_ICreateStroke = DISPID_Ink.CreateStroke;
+pub const DISPID_IAddStrokesAtRectangle = DISPID_Ink.AddStrokesAtRectangle;
+pub const DISPID_IClip = DISPID_Ink.Clip;
+pub const DISPID_ISave = DISPID_Ink.Save;
+pub const DISPID_ILoad = DISPID_Ink.Load;
+pub const DISPID_ICreateStrokeFromPoints = DISPID_Ink.CreateStrokeFromPoints;
+pub const DISPID_IClipboardCopyWithRectangle = DISPID_Ink.ClipboardCopyWithRectangle;
+pub const DISPID_IClipboardCopy = DISPID_Ink.ClipboardCopy;
+pub const DISPID_ICanPaste = DISPID_Ink.CanPaste;
+pub const DISPID_IClipboardPaste = DISPID_Ink.ClipboardPaste;
 
-pub const InkRecognitionStatus = enum(i32) {
-    NoError = 0,
-    Interrupted = 1,
-    ProcessFailed = 2,
-    InkAddedFailed = 4,
-    SetAutoCompletionModeFailed = 8,
-    SetStrokesFailed = 16,
-    SetGuideFailed = 32,
-    SetFlagsFailed = 64,
-    SetFactoidFailed = 128,
-    SetPrefixSuffixFailed = 256,
-    SetWordListFailed = 512,
+pub const DISPID_InkCollector = enum(i32) {
+    CEnabled = 1,
+    CHwnd = 2,
+    CPaint = 3,
+    CText = 4,
+    CDefaultDrawingAttributes = 5,
+    CRenderer = 6,
+    CInk = 7,
+    CAutoRedraw = 8,
+    CCollectingInk = 9,
+    CSetEventInterest = 10,
+    CGetEventInterest = 11,
+    OEditingMode = 12,
+    OSelection = 13,
+    OAttachMode = 14,
+    OHitTestSelection = 15,
+    ODraw = 16,
+    PPicture = 17,
+    PSizeMode = 18,
+    PBackColor = 19,
+    CCursors = 20,
+    CMarginX = 21,
+    CMarginY = 22,
+    CSetWindowInputRectangle = 23,
+    CGetWindowInputRectangle = 24,
+    CTablet = 25,
+    CSetAllTabletsMode = 26,
+    CSetSingleTabletIntegratedMode = 27,
+    CCollectionMode = 28,
+    CSetGestureStatus = 29,
+    CGetGestureStatus = 30,
+    CDynamicRendering = 31,
+    CDesiredPacketDescription = 32,
+    OEraserMode = 33,
+    OEraserWidth = 34,
+    CMouseIcon = 35,
+    CMousePointer = 36,
+    PInkEnabled = 37,
+    CSupportHighContrastInk = 38,
+    OSupportHighContrastSelectionUI = 39,
 };
-pub const IRS_NoError = InkRecognitionStatus.NoError;
-pub const IRS_Interrupted = InkRecognitionStatus.Interrupted;
-pub const IRS_ProcessFailed = InkRecognitionStatus.ProcessFailed;
-pub const IRS_InkAddedFailed = InkRecognitionStatus.InkAddedFailed;
-pub const IRS_SetAutoCompletionModeFailed = InkRecognitionStatus.SetAutoCompletionModeFailed;
-pub const IRS_SetStrokesFailed = InkRecognitionStatus.SetStrokesFailed;
-pub const IRS_SetGuideFailed = InkRecognitionStatus.SetGuideFailed;
-pub const IRS_SetFlagsFailed = InkRecognitionStatus.SetFlagsFailed;
-pub const IRS_SetFactoidFailed = InkRecognitionStatus.SetFactoidFailed;
-pub const IRS_SetPrefixSuffixFailed = InkRecognitionStatus.SetPrefixSuffixFailed;
-pub const IRS_SetWordListFailed = InkRecognitionStatus.SetWordListFailed;
+pub const DISPID_ICEnabled = DISPID_InkCollector.CEnabled;
+pub const DISPID_ICHwnd = DISPID_InkCollector.CHwnd;
+pub const DISPID_ICPaint = DISPID_InkCollector.CPaint;
+pub const DISPID_ICText = DISPID_InkCollector.CText;
+pub const DISPID_ICDefaultDrawingAttributes = DISPID_InkCollector.CDefaultDrawingAttributes;
+pub const DISPID_ICRenderer = DISPID_InkCollector.CRenderer;
+pub const DISPID_ICInk = DISPID_InkCollector.CInk;
+pub const DISPID_ICAutoRedraw = DISPID_InkCollector.CAutoRedraw;
+pub const DISPID_ICCollectingInk = DISPID_InkCollector.CCollectingInk;
+pub const DISPID_ICSetEventInterest = DISPID_InkCollector.CSetEventInterest;
+pub const DISPID_ICGetEventInterest = DISPID_InkCollector.CGetEventInterest;
+pub const DISPID_IOEditingMode = DISPID_InkCollector.OEditingMode;
+pub const DISPID_IOSelection = DISPID_InkCollector.OSelection;
+pub const DISPID_IOAttachMode = DISPID_InkCollector.OAttachMode;
+pub const DISPID_IOHitTestSelection = DISPID_InkCollector.OHitTestSelection;
+pub const DISPID_IODraw = DISPID_InkCollector.ODraw;
+pub const DISPID_IPPicture = DISPID_InkCollector.PPicture;
+pub const DISPID_IPSizeMode = DISPID_InkCollector.PSizeMode;
+pub const DISPID_IPBackColor = DISPID_InkCollector.PBackColor;
+pub const DISPID_ICCursors = DISPID_InkCollector.CCursors;
+pub const DISPID_ICMarginX = DISPID_InkCollector.CMarginX;
+pub const DISPID_ICMarginY = DISPID_InkCollector.CMarginY;
+pub const DISPID_ICSetWindowInputRectangle = DISPID_InkCollector.CSetWindowInputRectangle;
+pub const DISPID_ICGetWindowInputRectangle = DISPID_InkCollector.CGetWindowInputRectangle;
+pub const DISPID_ICTablet = DISPID_InkCollector.CTablet;
+pub const DISPID_ICSetAllTabletsMode = DISPID_InkCollector.CSetAllTabletsMode;
+pub const DISPID_ICSetSingleTabletIntegratedMode = DISPID_InkCollector.CSetSingleTabletIntegratedMode;
+pub const DISPID_ICCollectionMode = DISPID_InkCollector.CCollectionMode;
+pub const DISPID_ICSetGestureStatus = DISPID_InkCollector.CSetGestureStatus;
+pub const DISPID_ICGetGestureStatus = DISPID_InkCollector.CGetGestureStatus;
+pub const DISPID_ICDynamicRendering = DISPID_InkCollector.CDynamicRendering;
+pub const DISPID_ICDesiredPacketDescription = DISPID_InkCollector.CDesiredPacketDescription;
+pub const DISPID_IOEraserMode = DISPID_InkCollector.OEraserMode;
+pub const DISPID_IOEraserWidth = DISPID_InkCollector.OEraserWidth;
+pub const DISPID_ICMouseIcon = DISPID_InkCollector.CMouseIcon;
+pub const DISPID_ICMousePointer = DISPID_InkCollector.CMousePointer;
+pub const DISPID_IPInkEnabled = DISPID_InkCollector.PInkEnabled;
+pub const DISPID_ICSupportHighContrastInk = DISPID_InkCollector.CSupportHighContrastInk;
+pub const DISPID_IOSupportHighContrastSelectionUI = DISPID_InkCollector.OSupportHighContrastSelectionUI;
 
-pub const DISPID_InkRectangle = enum(i32) {
-    Top = 1,
-    Left = 2,
-    Bottom = 3,
-    Right = 4,
-    GetRectangle = 5,
-    SetRectangle = 6,
-    Data = 7,
+pub const DISPID_InkCollectorEvent = enum(i32) {
+    CEStroke = 1,
+    CECursorDown = 2,
+    CENewPackets = 3,
+    CENewInAirPackets = 4,
+    CECursorButtonDown = 5,
+    CECursorButtonUp = 6,
+    CECursorInRange = 7,
+    CECursorOutOfRange = 8,
+    CESystemGesture = 9,
+    CEGesture = 10,
+    CETabletAdded = 11,
+    CETabletRemoved = 12,
+    OEPainting = 13,
+    OEPainted = 14,
+    OESelectionChanging = 15,
+    OESelectionChanged = 16,
+    OESelectionMoving = 17,
+    OESelectionMoved = 18,
+    OESelectionResizing = 19,
+    OESelectionResized = 20,
+    OEStrokesDeleting = 21,
+    OEStrokesDeleted = 22,
+    PEChangeUICues = 23,
+    PEClick = 24,
+    PEDblClick = 25,
+    PEInvalidated = 26,
+    PEMouseDown = 27,
+    PEMouseEnter = 28,
+    PEMouseHover = 29,
+    PEMouseLeave = 30,
+    PEMouseMove = 31,
+    PEMouseUp = 32,
+    PEMouseWheel = 33,
+    PESizeModeChanged = 34,
+    PEStyleChanged = 35,
+    PESystemColorsChanged = 36,
+    PEKeyDown = 37,
+    PEKeyPress = 38,
+    PEKeyUp = 39,
+    PEResize = 40,
+    PESizeChanged = 41,
 };
-pub const DISPID_IRTop = DISPID_InkRectangle.Top;
-pub const DISPID_IRLeft = DISPID_InkRectangle.Left;
-pub const DISPID_IRBottom = DISPID_InkRectangle.Bottom;
-pub const DISPID_IRRight = DISPID_InkRectangle.Right;
-pub const DISPID_IRGetRectangle = DISPID_InkRectangle.GetRectangle;
-pub const DISPID_IRSetRectangle = DISPID_InkRectangle.SetRectangle;
-pub const DISPID_IRData = DISPID_InkRectangle.Data;
+pub const DISPID_ICEStroke = DISPID_InkCollectorEvent.CEStroke;
+pub const DISPID_ICECursorDown = DISPID_InkCollectorEvent.CECursorDown;
+pub const DISPID_ICENewPackets = DISPID_InkCollectorEvent.CENewPackets;
+pub const DISPID_ICENewInAirPackets = DISPID_InkCollectorEvent.CENewInAirPackets;
+pub const DISPID_ICECursorButtonDown = DISPID_InkCollectorEvent.CECursorButtonDown;
+pub const DISPID_ICECursorButtonUp = DISPID_InkCollectorEvent.CECursorButtonUp;
+pub const DISPID_ICECursorInRange = DISPID_InkCollectorEvent.CECursorInRange;
+pub const DISPID_ICECursorOutOfRange = DISPID_InkCollectorEvent.CECursorOutOfRange;
+pub const DISPID_ICESystemGesture = DISPID_InkCollectorEvent.CESystemGesture;
+pub const DISPID_ICEGesture = DISPID_InkCollectorEvent.CEGesture;
+pub const DISPID_ICETabletAdded = DISPID_InkCollectorEvent.CETabletAdded;
+pub const DISPID_ICETabletRemoved = DISPID_InkCollectorEvent.CETabletRemoved;
+pub const DISPID_IOEPainting = DISPID_InkCollectorEvent.OEPainting;
+pub const DISPID_IOEPainted = DISPID_InkCollectorEvent.OEPainted;
+pub const DISPID_IOESelectionChanging = DISPID_InkCollectorEvent.OESelectionChanging;
+pub const DISPID_IOESelectionChanged = DISPID_InkCollectorEvent.OESelectionChanged;
+pub const DISPID_IOESelectionMoving = DISPID_InkCollectorEvent.OESelectionMoving;
+pub const DISPID_IOESelectionMoved = DISPID_InkCollectorEvent.OESelectionMoved;
+pub const DISPID_IOESelectionResizing = DISPID_InkCollectorEvent.OESelectionResizing;
+pub const DISPID_IOESelectionResized = DISPID_InkCollectorEvent.OESelectionResized;
+pub const DISPID_IOEStrokesDeleting = DISPID_InkCollectorEvent.OEStrokesDeleting;
+pub const DISPID_IOEStrokesDeleted = DISPID_InkCollectorEvent.OEStrokesDeleted;
+pub const DISPID_IPEChangeUICues = DISPID_InkCollectorEvent.PEChangeUICues;
+pub const DISPID_IPEClick = DISPID_InkCollectorEvent.PEClick;
+pub const DISPID_IPEDblClick = DISPID_InkCollectorEvent.PEDblClick;
+pub const DISPID_IPEInvalidated = DISPID_InkCollectorEvent.PEInvalidated;
+pub const DISPID_IPEMouseDown = DISPID_InkCollectorEvent.PEMouseDown;
+pub const DISPID_IPEMouseEnter = DISPID_InkCollectorEvent.PEMouseEnter;
+pub const DISPID_IPEMouseHover = DISPID_InkCollectorEvent.PEMouseHover;
+pub const DISPID_IPEMouseLeave = DISPID_InkCollectorEvent.PEMouseLeave;
+pub const DISPID_IPEMouseMove = DISPID_InkCollectorEvent.PEMouseMove;
+pub const DISPID_IPEMouseUp = DISPID_InkCollectorEvent.PEMouseUp;
+pub const DISPID_IPEMouseWheel = DISPID_InkCollectorEvent.PEMouseWheel;
+pub const DISPID_IPESizeModeChanged = DISPID_InkCollectorEvent.PESizeModeChanged;
+pub const DISPID_IPEStyleChanged = DISPID_InkCollectorEvent.PEStyleChanged;
+pub const DISPID_IPESystemColorsChanged = DISPID_InkCollectorEvent.PESystemColorsChanged;
+pub const DISPID_IPEKeyDown = DISPID_InkCollectorEvent.PEKeyDown;
+pub const DISPID_IPEKeyPress = DISPID_InkCollectorEvent.PEKeyPress;
+pub const DISPID_IPEKeyUp = DISPID_InkCollectorEvent.PEKeyUp;
+pub const DISPID_IPEResize = DISPID_InkCollectorEvent.PEResize;
+pub const DISPID_IPESizeChanged = DISPID_InkCollectorEvent.PESizeChanged;
 
-pub const DISPID_InkExtendedProperty = enum(i32) {
-    Guid = 1,
-    Data = 2,
+pub const DISPID_InkCursor = enum(i32) {
+    Name = 0,
+    Id = 1,
+    DrawingAttributes = 2,
+    Buttons = 3,
+    Inverted = 4,
+    Tablet = 5,
 };
-pub const DISPID_IEPGuid = DISPID_InkExtendedProperty.Guid;
-pub const DISPID_IEPData = DISPID_InkExtendedProperty.Data;
+pub const DISPID_ICsrName = DISPID_InkCursor.Name;
+pub const DISPID_ICsrId = DISPID_InkCursor.Id;
+pub const DISPID_ICsrDrawingAttributes = DISPID_InkCursor.DrawingAttributes;
+pub const DISPID_ICsrButtons = DISPID_InkCursor.Buttons;
+pub const DISPID_ICsrInverted = DISPID_InkCursor.Inverted;
+pub const DISPID_ICsrTablet = DISPID_InkCursor.Tablet;
 
-pub const DISPID_InkExtendedProperties = enum(i32) {
+pub const DISPID_InkCursorButton = enum(i32) {
+    Name = 0,
+    Id = 1,
+    State = 2,
+};
+pub const DISPID_ICBName = DISPID_InkCursorButton.Name;
+pub const DISPID_ICBId = DISPID_InkCursorButton.Id;
+pub const DISPID_ICBState = DISPID_InkCursorButton.State;
+
+pub const DISPID_InkCursorButtons = enum(i32) {
+    _NewEnum = -4,
+    Item = 0,
+    Count = 1,
+};
+pub const DISPID_ICBs_NewEnum = DISPID_InkCursorButtons._NewEnum;
+pub const DISPID_ICBsItem = DISPID_InkCursorButtons.Item;
+pub const DISPID_ICBsCount = DISPID_InkCursorButtons.Count;
+
+pub const DISPID_InkCursors = enum(i32) {
+    _NewEnum = -4,
+    Item = 0,
+    Count = 1,
+};
+pub const DISPID_ICs_NewEnum = DISPID_InkCursors._NewEnum;
+pub const DISPID_ICsItem = DISPID_InkCursors.Item;
+pub const DISPID_ICsCount = DISPID_InkCursors.Count;
+
+pub const DISPID_InkCustomStrokes = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
     Add = 2,
     Remove = 3,
     Clear = 4,
-    DoesPropertyExist = 5,
 };
-pub const DISPID_IEPs_NewEnum = DISPID_InkExtendedProperties._NewEnum;
-pub const DISPID_IEPsItem = DISPID_InkExtendedProperties.Item;
-pub const DISPID_IEPsCount = DISPID_InkExtendedProperties.Count;
-pub const DISPID_IEPsAdd = DISPID_InkExtendedProperties.Add;
-pub const DISPID_IEPsRemove = DISPID_InkExtendedProperties.Remove;
-pub const DISPID_IEPsClear = DISPID_InkExtendedProperties.Clear;
-pub const DISPID_IEPsDoesPropertyExist = DISPID_InkExtendedProperties.DoesPropertyExist;
+pub const DISPID_ICSs_NewEnum = DISPID_InkCustomStrokes._NewEnum;
+pub const DISPID_ICSsItem = DISPID_InkCustomStrokes.Item;
+pub const DISPID_ICSsCount = DISPID_InkCustomStrokes.Count;
+pub const DISPID_ICSsAdd = DISPID_InkCustomStrokes.Add;
+pub const DISPID_ICSsRemove = DISPID_InkCustomStrokes.Remove;
+pub const DISPID_ICSsClear = DISPID_InkCustomStrokes.Clear;
+
+pub const DISPID_InkDivider = enum(i32) {
+    Strokes = 1,
+    RecognizerContext = 2,
+    LineHeight = 3,
+    Divide = 4,
+};
+pub const DISPID_IInkDivider_Strokes = DISPID_InkDivider.Strokes;
+pub const DISPID_IInkDivider_RecognizerContext = DISPID_InkDivider.RecognizerContext;
+pub const DISPID_IInkDivider_LineHeight = DISPID_InkDivider.LineHeight;
+pub const DISPID_IInkDivider_Divide = DISPID_InkDivider.Divide;
+
+pub const DISPID_InkDivisionResult = enum(i32) {
+    Strokes = 1,
+    ResultByType = 2,
+};
+pub const DISPID_IInkDivisionResult_Strokes = DISPID_InkDivisionResult.Strokes;
+pub const DISPID_IInkDivisionResult_ResultByType = DISPID_InkDivisionResult.ResultByType;
+
+pub const DISPID_InkDivisionUnit = enum(i32) {
+    Strokes = 1,
+    DivisionType = 2,
+    RecognizedString = 3,
+    RotationTransform = 4,
+};
+pub const DISPID_IInkDivisionUnit_Strokes = DISPID_InkDivisionUnit.Strokes;
+pub const DISPID_IInkDivisionUnit_DivisionType = DISPID_InkDivisionUnit.DivisionType;
+pub const DISPID_IInkDivisionUnit_RecognizedString = DISPID_InkDivisionUnit.RecognizedString;
+pub const DISPID_IInkDivisionUnit_RotationTransform = DISPID_InkDivisionUnit.RotationTransform;
+
+pub const DISPID_InkDivisionUnits = enum(i32) {
+    NewEnum = -4,
+    Item = 0,
+    Count = 1,
+};
+pub const DISPID_IInkDivisionUnits_NewEnum = DISPID_InkDivisionUnits.NewEnum;
+pub const DISPID_IInkDivisionUnits_Item = DISPID_InkDivisionUnits.Item;
+pub const DISPID_IInkDivisionUnits_Count = DISPID_InkDivisionUnits.Count;
 
 pub const DISPID_InkDrawingAttributes = enum(i32) {
     Height = 1,
@@ -779,161 +834,142 @@ pub const DISPID_DAPenTip = DISPID_InkDrawingAttributes.PenTip;
 pub const DISPID_DAClone = DISPID_InkDrawingAttributes.Clone;
 pub const DISPID_DAExtendedProperties = DISPID_InkDrawingAttributes.ExtendedProperties;
 
-pub const DISPID_InkTransform = enum(i32) {
-    Reset = 1,
-    Translate = 2,
-    Rotate = 3,
-    Reflect = 4,
-    Shear = 5,
-    Scale = 6,
-    eM11 = 7,
-    eM12 = 8,
-    eM21 = 9,
-    eM22 = 10,
-    eDx = 11,
-    eDy = 12,
-    GetTransform = 13,
-    SetTransform = 14,
-    Data = 15,
+pub const DISPID_InkEdit = enum(i32) {
+    Text = 0,
+    TextRTF = 1,
+    Hwnd = 2,
+    DisableNoScroll = 3,
+    Locked = 4,
+    Enabled = 5,
+    MaxLength = 6,
+    MultiLine = 7,
+    ScrollBars = 8,
+    RTSelStart = 9,
+    RTSelLength = 10,
+    RTSelText = 11,
+    SelAlignment = 12,
+    SelBold = 13,
+    SelCharOffset = 14,
+    SelColor = 15,
+    SelFontName = 16,
+    SelFontSize = 17,
+    SelItalic = 18,
+    SelRTF = 19,
+    SelUnderline = 20,
+    DragIcon = 21,
+    Status = 22,
+    UseMouseForInput = 23,
+    InkMode = 24,
+    InkInsertMode = 25,
+    RecoTimeout = 26,
+    DrawAttr = 27,
+    Recognizer = 28,
+    Factoid = 29,
+    SelInk = 30,
+    SelInksDisplayMode = 31,
+    Recognize = 32,
+    GetGestStatus = 33,
+    SetGestStatus = 34,
+    Refresh = 35,
 };
-pub const DISPID_ITReset = DISPID_InkTransform.Reset;
-pub const DISPID_ITTranslate = DISPID_InkTransform.Translate;
-pub const DISPID_ITRotate = DISPID_InkTransform.Rotate;
-pub const DISPID_ITReflect = DISPID_InkTransform.Reflect;
-pub const DISPID_ITShear = DISPID_InkTransform.Shear;
-pub const DISPID_ITScale = DISPID_InkTransform.Scale;
-pub const DISPID_ITeM11 = DISPID_InkTransform.eM11;
-pub const DISPID_ITeM12 = DISPID_InkTransform.eM12;
-pub const DISPID_ITeM21 = DISPID_InkTransform.eM21;
-pub const DISPID_ITeM22 = DISPID_InkTransform.eM22;
-pub const DISPID_ITeDx = DISPID_InkTransform.eDx;
-pub const DISPID_ITeDy = DISPID_InkTransform.eDy;
-pub const DISPID_ITGetTransform = DISPID_InkTransform.GetTransform;
-pub const DISPID_ITSetTransform = DISPID_InkTransform.SetTransform;
-pub const DISPID_ITData = DISPID_InkTransform.Data;
+pub const DISPID_Text = DISPID_InkEdit.Text;
+pub const DISPID_TextRTF = DISPID_InkEdit.TextRTF;
+pub const DISPID_Hwnd = DISPID_InkEdit.Hwnd;
+pub const DISPID_DisableNoScroll = DISPID_InkEdit.DisableNoScroll;
+pub const DISPID_Locked = DISPID_InkEdit.Locked;
+pub const DISPID_Enabled = DISPID_InkEdit.Enabled;
+pub const DISPID_MaxLength = DISPID_InkEdit.MaxLength;
+pub const DISPID_MultiLine = DISPID_InkEdit.MultiLine;
+pub const DISPID_ScrollBars = DISPID_InkEdit.ScrollBars;
+pub const DISPID_RTSelStart = DISPID_InkEdit.RTSelStart;
+pub const DISPID_RTSelLength = DISPID_InkEdit.RTSelLength;
+pub const DISPID_RTSelText = DISPID_InkEdit.RTSelText;
+pub const DISPID_SelAlignment = DISPID_InkEdit.SelAlignment;
+pub const DISPID_SelBold = DISPID_InkEdit.SelBold;
+pub const DISPID_SelCharOffset = DISPID_InkEdit.SelCharOffset;
+pub const DISPID_SelColor = DISPID_InkEdit.SelColor;
+pub const DISPID_SelFontName = DISPID_InkEdit.SelFontName;
+pub const DISPID_SelFontSize = DISPID_InkEdit.SelFontSize;
+pub const DISPID_SelItalic = DISPID_InkEdit.SelItalic;
+pub const DISPID_SelRTF = DISPID_InkEdit.SelRTF;
+pub const DISPID_SelUnderline = DISPID_InkEdit.SelUnderline;
+pub const DISPID_DragIcon = DISPID_InkEdit.DragIcon;
+pub const DISPID_Status = DISPID_InkEdit.Status;
+pub const DISPID_UseMouseForInput = DISPID_InkEdit.UseMouseForInput;
+pub const DISPID_InkMode = DISPID_InkEdit.InkMode;
+pub const DISPID_InkInsertMode = DISPID_InkEdit.InkInsertMode;
+pub const DISPID_RecoTimeout = DISPID_InkEdit.RecoTimeout;
+pub const DISPID_DrawAttr = DISPID_InkEdit.DrawAttr;
+pub const DISPID_Recognizer = DISPID_InkEdit.Recognizer;
+pub const DISPID_Factoid = DISPID_InkEdit.Factoid;
+pub const DISPID_SelInk = DISPID_InkEdit.SelInk;
+pub const DISPID_SelInksDisplayMode = DISPID_InkEdit.SelInksDisplayMode;
+pub const DISPID_Recognize = DISPID_InkEdit.Recognize;
+pub const DISPID_GetGestStatus = DISPID_InkEdit.GetGestStatus;
+pub const DISPID_SetGestStatus = DISPID_InkEdit.SetGestStatus;
+pub const DISPID_Refresh = DISPID_InkEdit.Refresh;
 
-pub const InkApplicationGesture = enum(i32) {
-    AllGestures = 0,
-    NoGesture = 61440,
-    Scratchout = 61441,
-    Triangle = 61442,
-    Square = 61443,
-    Star = 61444,
-    Check = 61445,
-    Curlicue = 61456,
-    DoubleCurlicue = 61457,
-    Circle = 61472,
-    DoubleCircle = 61473,
-    SemiCircleLeft = 61480,
-    SemiCircleRight = 61481,
-    ChevronUp = 61488,
-    ChevronDown = 61489,
-    ChevronLeft = 61490,
-    ChevronRight = 61491,
-    ArrowUp = 61496,
-    ArrowDown = 61497,
-    ArrowLeft = 61498,
-    ArrowRight = 61499,
-    Up = 61528,
-    Down = 61529,
-    Left = 61530,
-    Right = 61531,
-    UpDown = 61536,
-    DownUp = 61537,
-    LeftRight = 61538,
-    RightLeft = 61539,
-    UpLeftLong = 61540,
-    UpRightLong = 61541,
-    DownLeftLong = 61542,
-    DownRightLong = 61543,
-    UpLeft = 61544,
-    UpRight = 61545,
-    DownLeft = 61546,
-    DownRight = 61547,
-    LeftUp = 61548,
-    LeftDown = 61549,
-    RightUp = 61550,
-    RightDown = 61551,
-    Exclamation = 61604,
-    Tap = 61680,
-    DoubleTap = 61681,
+pub const DISPID_InkEditEvents = enum(i32) {
+    Change = 1,
+    SelChange = 2,
+    KeyDown = 3,
+    KeyUp = 4,
+    MouseUp = 5,
+    MouseDown = 6,
+    KeyPress = 7,
+    DblClick = 8,
+    Click = 9,
+    MouseMove = 10,
+    CursorDown = 21,
+    Stroke = 22,
+    Gesture = 23,
+    RecognitionResult = 24,
 };
-pub const IAG_AllGestures = InkApplicationGesture.AllGestures;
-pub const IAG_NoGesture = InkApplicationGesture.NoGesture;
-pub const IAG_Scratchout = InkApplicationGesture.Scratchout;
-pub const IAG_Triangle = InkApplicationGesture.Triangle;
-pub const IAG_Square = InkApplicationGesture.Square;
-pub const IAG_Star = InkApplicationGesture.Star;
-pub const IAG_Check = InkApplicationGesture.Check;
-pub const IAG_Curlicue = InkApplicationGesture.Curlicue;
-pub const IAG_DoubleCurlicue = InkApplicationGesture.DoubleCurlicue;
-pub const IAG_Circle = InkApplicationGesture.Circle;
-pub const IAG_DoubleCircle = InkApplicationGesture.DoubleCircle;
-pub const IAG_SemiCircleLeft = InkApplicationGesture.SemiCircleLeft;
-pub const IAG_SemiCircleRight = InkApplicationGesture.SemiCircleRight;
-pub const IAG_ChevronUp = InkApplicationGesture.ChevronUp;
-pub const IAG_ChevronDown = InkApplicationGesture.ChevronDown;
-pub const IAG_ChevronLeft = InkApplicationGesture.ChevronLeft;
-pub const IAG_ChevronRight = InkApplicationGesture.ChevronRight;
-pub const IAG_ArrowUp = InkApplicationGesture.ArrowUp;
-pub const IAG_ArrowDown = InkApplicationGesture.ArrowDown;
-pub const IAG_ArrowLeft = InkApplicationGesture.ArrowLeft;
-pub const IAG_ArrowRight = InkApplicationGesture.ArrowRight;
-pub const IAG_Up = InkApplicationGesture.Up;
-pub const IAG_Down = InkApplicationGesture.Down;
-pub const IAG_Left = InkApplicationGesture.Left;
-pub const IAG_Right = InkApplicationGesture.Right;
-pub const IAG_UpDown = InkApplicationGesture.UpDown;
-pub const IAG_DownUp = InkApplicationGesture.DownUp;
-pub const IAG_LeftRight = InkApplicationGesture.LeftRight;
-pub const IAG_RightLeft = InkApplicationGesture.RightLeft;
-pub const IAG_UpLeftLong = InkApplicationGesture.UpLeftLong;
-pub const IAG_UpRightLong = InkApplicationGesture.UpRightLong;
-pub const IAG_DownLeftLong = InkApplicationGesture.DownLeftLong;
-pub const IAG_DownRightLong = InkApplicationGesture.DownRightLong;
-pub const IAG_UpLeft = InkApplicationGesture.UpLeft;
-pub const IAG_UpRight = InkApplicationGesture.UpRight;
-pub const IAG_DownLeft = InkApplicationGesture.DownLeft;
-pub const IAG_DownRight = InkApplicationGesture.DownRight;
-pub const IAG_LeftUp = InkApplicationGesture.LeftUp;
-pub const IAG_LeftDown = InkApplicationGesture.LeftDown;
-pub const IAG_RightUp = InkApplicationGesture.RightUp;
-pub const IAG_RightDown = InkApplicationGesture.RightDown;
-pub const IAG_Exclamation = InkApplicationGesture.Exclamation;
-pub const IAG_Tap = InkApplicationGesture.Tap;
-pub const IAG_DoubleTap = InkApplicationGesture.DoubleTap;
+pub const DISPID_IeeChange = DISPID_InkEditEvents.Change;
+pub const DISPID_IeeSelChange = DISPID_InkEditEvents.SelChange;
+pub const DISPID_IeeKeyDown = DISPID_InkEditEvents.KeyDown;
+pub const DISPID_IeeKeyUp = DISPID_InkEditEvents.KeyUp;
+pub const DISPID_IeeMouseUp = DISPID_InkEditEvents.MouseUp;
+pub const DISPID_IeeMouseDown = DISPID_InkEditEvents.MouseDown;
+pub const DISPID_IeeKeyPress = DISPID_InkEditEvents.KeyPress;
+pub const DISPID_IeeDblClick = DISPID_InkEditEvents.DblClick;
+pub const DISPID_IeeClick = DISPID_InkEditEvents.Click;
+pub const DISPID_IeeMouseMove = DISPID_InkEditEvents.MouseMove;
+pub const DISPID_IeeCursorDown = DISPID_InkEditEvents.CursorDown;
+pub const DISPID_IeeStroke = DISPID_InkEditEvents.Stroke;
+pub const DISPID_IeeGesture = DISPID_InkEditEvents.Gesture;
+pub const DISPID_IeeRecognitionResult = DISPID_InkEditEvents.RecognitionResult;
 
-pub const InkSystemGesture = enum(i32) {
-    Tap = 16,
-    DoubleTap = 17,
-    RightTap = 18,
-    Drag = 19,
-    RightDrag = 20,
-    HoldEnter = 21,
-    HoldLeave = 22,
-    HoverEnter = 23,
-    HoverLeave = 24,
-    Flick = 31,
+pub const DISPID_InkEvent = enum(i32) {
+    Added = 1,
+    Deleted = 2,
 };
-pub const ISG_Tap = InkSystemGesture.Tap;
-pub const ISG_DoubleTap = InkSystemGesture.DoubleTap;
-pub const ISG_RightTap = InkSystemGesture.RightTap;
-pub const ISG_Drag = InkSystemGesture.Drag;
-pub const ISG_RightDrag = InkSystemGesture.RightDrag;
-pub const ISG_HoldEnter = InkSystemGesture.HoldEnter;
-pub const ISG_HoldLeave = InkSystemGesture.HoldLeave;
-pub const ISG_HoverEnter = InkSystemGesture.HoverEnter;
-pub const ISG_HoverLeave = InkSystemGesture.HoverLeave;
-pub const ISG_Flick = InkSystemGesture.Flick;
+pub const DISPID_IEInkAdded = DISPID_InkEvent.Added;
+pub const DISPID_IEInkDeleted = DISPID_InkEvent.Deleted;
 
-pub const InkRecognitionConfidence = enum(i32) {
-    Strong = 0,
-    Intermediate = 1,
-    Poor = 2,
+pub const DISPID_InkExtendedProperties = enum(i32) {
+    _NewEnum = -4,
+    Item = 0,
+    Count = 1,
+    Add = 2,
+    Remove = 3,
+    Clear = 4,
+    DoesPropertyExist = 5,
 };
-pub const IRC_Strong = InkRecognitionConfidence.Strong;
-pub const IRC_Intermediate = InkRecognitionConfidence.Intermediate;
-pub const IRC_Poor = InkRecognitionConfidence.Poor;
+pub const DISPID_IEPs_NewEnum = DISPID_InkExtendedProperties._NewEnum;
+pub const DISPID_IEPsItem = DISPID_InkExtendedProperties.Item;
+pub const DISPID_IEPsCount = DISPID_InkExtendedProperties.Count;
+pub const DISPID_IEPsAdd = DISPID_InkExtendedProperties.Add;
+pub const DISPID_IEPsRemove = DISPID_InkExtendedProperties.Remove;
+pub const DISPID_IEPsClear = DISPID_InkExtendedProperties.Clear;
+pub const DISPID_IEPsDoesPropertyExist = DISPID_InkExtendedProperties.DoesPropertyExist;
+
+pub const DISPID_InkExtendedProperty = enum(i32) {
+    Guid = 1,
+    Data = 2,
+};
+pub const DISPID_IEPGuid = DISPID_InkExtendedProperty.Guid;
+pub const DISPID_IEPData = DISPID_InkExtendedProperty.Data;
 
 pub const DISPID_InkGesture = enum(i32) {
     Id = 0,
@@ -944,135 +980,217 @@ pub const DISPID_IGId = DISPID_InkGesture.Id;
 pub const DISPID_IGGetHotPoint = DISPID_InkGesture.GetHotPoint;
 pub const DISPID_IGConfidence = DISPID_InkGesture.Confidence;
 
-pub const DISPID_InkCursor = enum(i32) {
-    Name = 0,
-    Id = 1,
-    DrawingAttributes = 2,
-    Buttons = 3,
-    Inverted = 4,
-    Tablet = 5,
+pub const DISPID_InkRecoAlternate = enum(i32) {
+    String = 1,
+    LineNumber = 2,
+    Baseline = 3,
+    Midline = 4,
+    Ascender = 5,
+    Descender = 6,
+    Confidence = 7,
+    Strokes = 8,
+    GetStrokesFromStrokeRanges = 9,
+    GetStrokesFromTextRange = 10,
+    GetTextRangeFromStrokes = 11,
+    GetPropertyValue = 12,
+    LineAlternates = 13,
+    ConfidenceAlternates = 14,
+    AlternatesWithConstantPropertyValues = 15,
 };
-pub const DISPID_ICsrName = DISPID_InkCursor.Name;
-pub const DISPID_ICsrId = DISPID_InkCursor.Id;
-pub const DISPID_ICsrDrawingAttributes = DISPID_InkCursor.DrawingAttributes;
-pub const DISPID_ICsrButtons = DISPID_InkCursor.Buttons;
-pub const DISPID_ICsrInverted = DISPID_InkCursor.Inverted;
-pub const DISPID_ICsrTablet = DISPID_InkCursor.Tablet;
+pub const DISPID_InkRecoAlternate_String = DISPID_InkRecoAlternate.String;
+pub const DISPID_InkRecoAlternate_LineNumber = DISPID_InkRecoAlternate.LineNumber;
+pub const DISPID_InkRecoAlternate_Baseline = DISPID_InkRecoAlternate.Baseline;
+pub const DISPID_InkRecoAlternate_Midline = DISPID_InkRecoAlternate.Midline;
+pub const DISPID_InkRecoAlternate_Ascender = DISPID_InkRecoAlternate.Ascender;
+pub const DISPID_InkRecoAlternate_Descender = DISPID_InkRecoAlternate.Descender;
+pub const DISPID_InkRecoAlternate_Confidence = DISPID_InkRecoAlternate.Confidence;
+pub const DISPID_InkRecoAlternate_Strokes = DISPID_InkRecoAlternate.Strokes;
+pub const DISPID_InkRecoAlternate_GetStrokesFromStrokeRanges = DISPID_InkRecoAlternate.GetStrokesFromStrokeRanges;
+pub const DISPID_InkRecoAlternate_GetStrokesFromTextRange = DISPID_InkRecoAlternate.GetStrokesFromTextRange;
+pub const DISPID_InkRecoAlternate_GetTextRangeFromStrokes = DISPID_InkRecoAlternate.GetTextRangeFromStrokes;
+pub const DISPID_InkRecoAlternate_GetPropertyValue = DISPID_InkRecoAlternate.GetPropertyValue;
+pub const DISPID_InkRecoAlternate_LineAlternates = DISPID_InkRecoAlternate.LineAlternates;
+pub const DISPID_InkRecoAlternate_ConfidenceAlternates = DISPID_InkRecoAlternate.ConfidenceAlternates;
+pub const DISPID_InkRecoAlternate_AlternatesWithConstantPropertyValues = DISPID_InkRecoAlternate.AlternatesWithConstantPropertyValues;
 
-pub const DISPID_InkCursors = enum(i32) {
+pub const DISPID_InkRecoContext = enum(i32) {
+    Strokes = 1,
+    CharacterAutoCompletionMode = 2,
+    Factoid = 3,
+    WordList = 4,
+    Recognizer = 5,
+    Guide = 6,
+    Flags = 7,
+    PrefixText = 8,
+    SuffixText = 9,
+    StopRecognition = 10,
+    Clone = 11,
+    Recognize = 12,
+    StopBackgroundRecognition = 13,
+    EndInkInput = 14,
+    BackgroundRecognize = 15,
+    BackgroundRecognizeWithAlternates = 16,
+    IsStringSupported = 17,
+};
+pub const DISPID_IRecoCtx_Strokes = DISPID_InkRecoContext.Strokes;
+pub const DISPID_IRecoCtx_CharacterAutoCompletionMode = DISPID_InkRecoContext.CharacterAutoCompletionMode;
+pub const DISPID_IRecoCtx_Factoid = DISPID_InkRecoContext.Factoid;
+pub const DISPID_IRecoCtx_WordList = DISPID_InkRecoContext.WordList;
+pub const DISPID_IRecoCtx_Recognizer = DISPID_InkRecoContext.Recognizer;
+pub const DISPID_IRecoCtx_Guide = DISPID_InkRecoContext.Guide;
+pub const DISPID_IRecoCtx_Flags = DISPID_InkRecoContext.Flags;
+pub const DISPID_IRecoCtx_PrefixText = DISPID_InkRecoContext.PrefixText;
+pub const DISPID_IRecoCtx_SuffixText = DISPID_InkRecoContext.SuffixText;
+pub const DISPID_IRecoCtx_StopRecognition = DISPID_InkRecoContext.StopRecognition;
+pub const DISPID_IRecoCtx_Clone = DISPID_InkRecoContext.Clone;
+pub const DISPID_IRecoCtx_Recognize = DISPID_InkRecoContext.Recognize;
+pub const DISPID_IRecoCtx_StopBackgroundRecognition = DISPID_InkRecoContext.StopBackgroundRecognition;
+pub const DISPID_IRecoCtx_EndInkInput = DISPID_InkRecoContext.EndInkInput;
+pub const DISPID_IRecoCtx_BackgroundRecognize = DISPID_InkRecoContext.BackgroundRecognize;
+pub const DISPID_IRecoCtx_BackgroundRecognizeWithAlternates = DISPID_InkRecoContext.BackgroundRecognizeWithAlternates;
+pub const DISPID_IRecoCtx_IsStringSupported = DISPID_InkRecoContext.IsStringSupported;
+
+pub const DISPID_InkRecoContext2 = enum(i32) {
+    s = 0,
+};
+pub const DISPID_IRecoCtx2_EnabledUnicodeRanges = DISPID_InkRecoContext2.s;
+
+pub const DISPID_InkRecognitionAlternates = enum(i32) {
+    NewEnum = -4,
+    Item = 0,
+    Count = 1,
+    Strokes = 2,
+};
+pub const DISPID_InkRecognitionAlternates_NewEnum = DISPID_InkRecognitionAlternates.NewEnum;
+pub const DISPID_InkRecognitionAlternates_Item = DISPID_InkRecognitionAlternates.Item;
+pub const DISPID_InkRecognitionAlternates_Count = DISPID_InkRecognitionAlternates.Count;
+pub const DISPID_InkRecognitionAlternates_Strokes = DISPID_InkRecognitionAlternates.Strokes;
+
+pub const DISPID_InkRecognitionEvent = enum(i32) {
+    WithAlternates = 1,
+    n = 2,
+};
+pub const DISPID_IRERecognitionWithAlternates = DISPID_InkRecognitionEvent.WithAlternates;
+pub const DISPID_IRERecognition = DISPID_InkRecognitionEvent.n;
+
+pub const DISPID_InkRecognitionResult = enum(i32) {
+    TopString = 1,
+    TopAlternate = 2,
+    Strokes = 3,
+    TopConfidence = 4,
+    AlternatesFromSelection = 5,
+    ModifyTopAlternate = 6,
+    SetResultOnStrokes = 7,
+};
+pub const DISPID_InkRecognitionResult_TopString = DISPID_InkRecognitionResult.TopString;
+pub const DISPID_InkRecognitionResult_TopAlternate = DISPID_InkRecognitionResult.TopAlternate;
+pub const DISPID_InkRecognitionResult_Strokes = DISPID_InkRecognitionResult.Strokes;
+pub const DISPID_InkRecognitionResult_TopConfidence = DISPID_InkRecognitionResult.TopConfidence;
+pub const DISPID_InkRecognitionResult_AlternatesFromSelection = DISPID_InkRecognitionResult.AlternatesFromSelection;
+pub const DISPID_InkRecognitionResult_ModifyTopAlternate = DISPID_InkRecognitionResult.ModifyTopAlternate;
+pub const DISPID_InkRecognitionResult_SetResultOnStrokes = DISPID_InkRecognitionResult.SetResultOnStrokes;
+
+pub const DISPID_InkRecognizer = enum(i32) {
+    Clsid = 1,
+    Name = 2,
+    Vendor = 3,
+    Capabilities = 4,
+    LanguageID = 5,
+    PreferredPacketDescription = 6,
+    CreateRecognizerContext = 7,
+    SupportedProperties = 8,
+};
+pub const DISPID_RecoClsid = DISPID_InkRecognizer.Clsid;
+pub const DISPID_RecoName = DISPID_InkRecognizer.Name;
+pub const DISPID_RecoVendor = DISPID_InkRecognizer.Vendor;
+pub const DISPID_RecoCapabilities = DISPID_InkRecognizer.Capabilities;
+pub const DISPID_RecoLanguageID = DISPID_InkRecognizer.LanguageID;
+pub const DISPID_RecoPreferredPacketDescription = DISPID_InkRecognizer.PreferredPacketDescription;
+pub const DISPID_RecoCreateRecognizerContext = DISPID_InkRecognizer.CreateRecognizerContext;
+pub const DISPID_RecoSupportedProperties = DISPID_InkRecognizer.SupportedProperties;
+
+pub const DISPID_InkRecognizer2 = enum(i32) {
+    Id = 0,
+    UnicodeRanges = 1,
+};
+pub const DISPID_RecoId = DISPID_InkRecognizer2.Id;
+pub const DISPID_RecoUnicodeRanges = DISPID_InkRecognizer2.UnicodeRanges;
+
+pub const DISPID_InkRecognizerGuide = enum(i32) {
+    WritingBox = 1,
+    DrawnBox = 2,
+    Rows = 3,
+    Columns = 4,
+    Midline = 5,
+    GuideData = 6,
+};
+pub const DISPID_IRGWritingBox = DISPID_InkRecognizerGuide.WritingBox;
+pub const DISPID_IRGDrawnBox = DISPID_InkRecognizerGuide.DrawnBox;
+pub const DISPID_IRGRows = DISPID_InkRecognizerGuide.Rows;
+pub const DISPID_IRGColumns = DISPID_InkRecognizerGuide.Columns;
+pub const DISPID_IRGMidline = DISPID_InkRecognizerGuide.Midline;
+pub const DISPID_IRGGuideData = DISPID_InkRecognizerGuide.GuideData;
+
+pub const DISPID_InkRecognizers = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
+    GetDefaultRecognizer = 2,
 };
-pub const DISPID_ICs_NewEnum = DISPID_InkCursors._NewEnum;
-pub const DISPID_ICsItem = DISPID_InkCursors.Item;
-pub const DISPID_ICsCount = DISPID_InkCursors.Count;
+pub const DISPID_IRecos_NewEnum = DISPID_InkRecognizers._NewEnum;
+pub const DISPID_IRecosItem = DISPID_InkRecognizers.Item;
+pub const DISPID_IRecosCount = DISPID_InkRecognizers.Count;
+pub const DISPID_IRecosGetDefaultRecognizer = DISPID_InkRecognizers.GetDefaultRecognizer;
 
-pub const InkCursorButtonState = enum(i32) {
-    Unavailable = 0,
-    Up = 1,
-    Down = 2,
+pub const DISPID_InkRectangle = enum(i32) {
+    Top = 1,
+    Left = 2,
+    Bottom = 3,
+    Right = 4,
+    GetRectangle = 5,
+    SetRectangle = 6,
+    Data = 7,
 };
-pub const ICBS_Unavailable = InkCursorButtonState.Unavailable;
-pub const ICBS_Up = InkCursorButtonState.Up;
-pub const ICBS_Down = InkCursorButtonState.Down;
+pub const DISPID_IRTop = DISPID_InkRectangle.Top;
+pub const DISPID_IRLeft = DISPID_InkRectangle.Left;
+pub const DISPID_IRBottom = DISPID_InkRectangle.Bottom;
+pub const DISPID_IRRight = DISPID_InkRectangle.Right;
+pub const DISPID_IRGetRectangle = DISPID_InkRectangle.GetRectangle;
+pub const DISPID_IRSetRectangle = DISPID_InkRectangle.SetRectangle;
+pub const DISPID_IRData = DISPID_InkRectangle.Data;
 
-pub const DISPID_InkCursorButton = enum(i32) {
-    Name = 0,
-    Id = 1,
-    State = 2,
+pub const DISPID_InkRenderer = enum(i32) {
+    GetViewTransform = 1,
+    SetViewTransform = 2,
+    GetObjectTransform = 3,
+    SetObjectTransform = 4,
+    Draw = 5,
+    DrawStroke = 6,
+    PixelToInkSpace = 7,
+    InkSpaceToPixel = 8,
+    PixelToInkSpaceFromPoints = 9,
+    InkSpaceToPixelFromPoints = 10,
+    Measure = 11,
+    MeasureStroke = 12,
+    Move = 13,
+    Rotate = 14,
+    Scale = 15,
 };
-pub const DISPID_ICBName = DISPID_InkCursorButton.Name;
-pub const DISPID_ICBId = DISPID_InkCursorButton.Id;
-pub const DISPID_ICBState = DISPID_InkCursorButton.State;
-
-pub const DISPID_InkCursorButtons = enum(i32) {
-    _NewEnum = -4,
-    Item = 0,
-    Count = 1,
-};
-pub const DISPID_ICBs_NewEnum = DISPID_InkCursorButtons._NewEnum;
-pub const DISPID_ICBsItem = DISPID_InkCursorButtons.Item;
-pub const DISPID_ICBsCount = DISPID_InkCursorButtons.Count;
-
-pub const TabletHardwareCapabilities = enum(i32) {
-    Integrated = 1,
-    CursorMustTouch = 2,
-    HardProximity = 4,
-    CursorsHavePhysicalIds = 8,
-};
-pub const THWC_Integrated = TabletHardwareCapabilities.Integrated;
-pub const THWC_CursorMustTouch = TabletHardwareCapabilities.CursorMustTouch;
-pub const THWC_HardProximity = TabletHardwareCapabilities.HardProximity;
-pub const THWC_CursorsHavePhysicalIds = TabletHardwareCapabilities.CursorsHavePhysicalIds;
-
-pub const TabletPropertyMetricUnit = enum(i32) {
-    Default = 0,
-    Inches = 1,
-    Centimeters = 2,
-    Degrees = 3,
-    Radians = 4,
-    Seconds = 5,
-    Pounds = 6,
-    Grams = 7,
-};
-pub const TPMU_Default = TabletPropertyMetricUnit.Default;
-pub const TPMU_Inches = TabletPropertyMetricUnit.Inches;
-pub const TPMU_Centimeters = TabletPropertyMetricUnit.Centimeters;
-pub const TPMU_Degrees = TabletPropertyMetricUnit.Degrees;
-pub const TPMU_Radians = TabletPropertyMetricUnit.Radians;
-pub const TPMU_Seconds = TabletPropertyMetricUnit.Seconds;
-pub const TPMU_Pounds = TabletPropertyMetricUnit.Pounds;
-pub const TPMU_Grams = TabletPropertyMetricUnit.Grams;
-
-pub const DISPID_InkTablet = enum(i32) {
-    Name = 0,
-    PlugAndPlayId = 1,
-    PropertyMetrics = 2,
-    IsPacketPropertySupported = 3,
-    MaximumInputRectangle = 4,
-    HardwareCapabilities = 5,
-};
-pub const DISPID_ITName = DISPID_InkTablet.Name;
-pub const DISPID_ITPlugAndPlayId = DISPID_InkTablet.PlugAndPlayId;
-pub const DISPID_ITPropertyMetrics = DISPID_InkTablet.PropertyMetrics;
-pub const DISPID_ITIsPacketPropertySupported = DISPID_InkTablet.IsPacketPropertySupported;
-pub const DISPID_ITMaximumInputRectangle = DISPID_InkTablet.MaximumInputRectangle;
-pub const DISPID_ITHardwareCapabilities = DISPID_InkTablet.HardwareCapabilities;
-
-pub const TabletDeviceKind = enum(i32) {
-    Mouse = 0,
-    Pen = 1,
-    Touch = 2,
-};
-pub const TDK_Mouse = TabletDeviceKind.Mouse;
-pub const TDK_Pen = TabletDeviceKind.Pen;
-pub const TDK_Touch = TabletDeviceKind.Touch;
-
-pub const DISPID_InkTablet2 = enum(i32) {
-    d = 0,
-};
-pub const DISPID_IT2DeviceKind = DISPID_InkTablet2.d;
-
-pub const DISPID_InkTablet3 = enum(i32) {
-    IsMultiTouch = 0,
-    MaximumCursors = 1,
-};
-pub const DISPID_IT3IsMultiTouch = DISPID_InkTablet3.IsMultiTouch;
-pub const DISPID_IT3MaximumCursors = DISPID_InkTablet3.MaximumCursors;
-
-pub const DISPID_InkTablets = enum(i32) {
-    _NewEnum = -4,
-    Item = 0,
-    DefaultTablet = 1,
-    Count = 2,
-    IsPacketPropertySupported = 3,
-};
-pub const DISPID_ITs_NewEnum = DISPID_InkTablets._NewEnum;
-pub const DISPID_ITsItem = DISPID_InkTablets.Item;
-pub const DISPID_ITsDefaultTablet = DISPID_InkTablets.DefaultTablet;
-pub const DISPID_ITsCount = DISPID_InkTablets.Count;
-pub const DISPID_ITsIsPacketPropertySupported = DISPID_InkTablets.IsPacketPropertySupported;
+pub const DISPID_IRGetViewTransform = DISPID_InkRenderer.GetViewTransform;
+pub const DISPID_IRSetViewTransform = DISPID_InkRenderer.SetViewTransform;
+pub const DISPID_IRGetObjectTransform = DISPID_InkRenderer.GetObjectTransform;
+pub const DISPID_IRSetObjectTransform = DISPID_InkRenderer.SetObjectTransform;
+pub const DISPID_IRDraw = DISPID_InkRenderer.Draw;
+pub const DISPID_IRDrawStroke = DISPID_InkRenderer.DrawStroke;
+pub const DISPID_IRPixelToInkSpace = DISPID_InkRenderer.PixelToInkSpace;
+pub const DISPID_IRInkSpaceToPixel = DISPID_InkRenderer.InkSpaceToPixel;
+pub const DISPID_IRPixelToInkSpaceFromPoints = DISPID_InkRenderer.PixelToInkSpaceFromPoints;
+pub const DISPID_IRInkSpaceToPixelFromPoints = DISPID_InkRenderer.InkSpaceToPixelFromPoints;
+pub const DISPID_IRMeasure = DISPID_InkRenderer.Measure;
+pub const DISPID_IRMeasureStroke = DISPID_InkRenderer.MeasureStroke;
+pub const DISPID_IRMove = DISPID_InkRenderer.Move;
+pub const DISPID_IRRotate = DISPID_InkRenderer.Rotate;
+pub const DISPID_IRScale = DISPID_InkRenderer.Scale;
 
 pub const DISPID_InkStrokeDisp = enum(i32) {
     InkIndex = 1,
@@ -1188,642 +1306,78 @@ pub const DISPID_ISsClip = DISPID_InkStrokes.Clip;
 pub const DISPID_ISsRecognitionResult = DISPID_InkStrokes.RecognitionResult;
 pub const DISPID_ISsRemoveRecognitionResult = DISPID_InkStrokes.RemoveRecognitionResult;
 
-pub const DISPID_InkCustomStrokes = enum(i32) {
+pub const DISPID_InkTablet = enum(i32) {
+    Name = 0,
+    PlugAndPlayId = 1,
+    PropertyMetrics = 2,
+    IsPacketPropertySupported = 3,
+    MaximumInputRectangle = 4,
+    HardwareCapabilities = 5,
+};
+pub const DISPID_ITName = DISPID_InkTablet.Name;
+pub const DISPID_ITPlugAndPlayId = DISPID_InkTablet.PlugAndPlayId;
+pub const DISPID_ITPropertyMetrics = DISPID_InkTablet.PropertyMetrics;
+pub const DISPID_ITIsPacketPropertySupported = DISPID_InkTablet.IsPacketPropertySupported;
+pub const DISPID_ITMaximumInputRectangle = DISPID_InkTablet.MaximumInputRectangle;
+pub const DISPID_ITHardwareCapabilities = DISPID_InkTablet.HardwareCapabilities;
+
+pub const DISPID_InkTablet2 = enum(i32) {
+    d = 0,
+};
+pub const DISPID_IT2DeviceKind = DISPID_InkTablet2.d;
+
+pub const DISPID_InkTablet3 = enum(i32) {
+    IsMultiTouch = 0,
+    MaximumCursors = 1,
+};
+pub const DISPID_IT3IsMultiTouch = DISPID_InkTablet3.IsMultiTouch;
+pub const DISPID_IT3MaximumCursors = DISPID_InkTablet3.MaximumCursors;
+
+pub const DISPID_InkTablets = enum(i32) {
     _NewEnum = -4,
     Item = 0,
-    Count = 1,
-    Add = 2,
-    Remove = 3,
-    Clear = 4,
+    DefaultTablet = 1,
+    Count = 2,
+    IsPacketPropertySupported = 3,
 };
-pub const DISPID_ICSs_NewEnum = DISPID_InkCustomStrokes._NewEnum;
-pub const DISPID_ICSsItem = DISPID_InkCustomStrokes.Item;
-pub const DISPID_ICSsCount = DISPID_InkCustomStrokes.Count;
-pub const DISPID_ICSsAdd = DISPID_InkCustomStrokes.Add;
-pub const DISPID_ICSsRemove = DISPID_InkCustomStrokes.Remove;
-pub const DISPID_ICSsClear = DISPID_InkCustomStrokes.Clear;
+pub const DISPID_ITs_NewEnum = DISPID_InkTablets._NewEnum;
+pub const DISPID_ITsItem = DISPID_InkTablets.Item;
+pub const DISPID_ITsDefaultTablet = DISPID_InkTablets.DefaultTablet;
+pub const DISPID_ITsCount = DISPID_InkTablets.Count;
+pub const DISPID_ITsIsPacketPropertySupported = DISPID_InkTablets.IsPacketPropertySupported;
 
-pub const DISPID_StrokeEvent = enum(i32) {
-    Added = 1,
-    Removed = 2,
+pub const DISPID_InkTransform = enum(i32) {
+    Reset = 1,
+    Translate = 2,
+    Rotate = 3,
+    Reflect = 4,
+    Shear = 5,
+    Scale = 6,
+    eM11 = 7,
+    eM12 = 8,
+    eM21 = 9,
+    eM22 = 10,
+    eDx = 11,
+    eDy = 12,
+    GetTransform = 13,
+    SetTransform = 14,
+    Data = 15,
 };
-pub const DISPID_SEStrokesAdded = DISPID_StrokeEvent.Added;
-pub const DISPID_SEStrokesRemoved = DISPID_StrokeEvent.Removed;
-
-pub const DISPID_Ink = enum(i32) {
-    Strokes = 1,
-    ExtendedProperties = 2,
-    GetBoundingBox = 3,
-    DeleteStrokes = 4,
-    DeleteStroke = 5,
-    ExtractStrokes = 6,
-    ExtractWithRectangle = 7,
-    Dirty = 8,
-    CustomStrokes = 9,
-    Clone = 10,
-    HitTestCircle = 11,
-    HitTestWithRectangle = 12,
-    HitTestWithLasso = 13,
-    NearestPoint = 14,
-    CreateStrokes = 15,
-    CreateStroke = 16,
-    AddStrokesAtRectangle = 17,
-    Clip = 18,
-    Save = 19,
-    Load = 20,
-    CreateStrokeFromPoints = 21,
-    ClipboardCopyWithRectangle = 22,
-    ClipboardCopy = 23,
-    CanPaste = 24,
-    ClipboardPaste = 25,
-};
-pub const DISPID_IStrokes = DISPID_Ink.Strokes;
-pub const DISPID_IExtendedProperties = DISPID_Ink.ExtendedProperties;
-pub const DISPID_IGetBoundingBox = DISPID_Ink.GetBoundingBox;
-pub const DISPID_IDeleteStrokes = DISPID_Ink.DeleteStrokes;
-pub const DISPID_IDeleteStroke = DISPID_Ink.DeleteStroke;
-pub const DISPID_IExtractStrokes = DISPID_Ink.ExtractStrokes;
-pub const DISPID_IExtractWithRectangle = DISPID_Ink.ExtractWithRectangle;
-pub const DISPID_IDirty = DISPID_Ink.Dirty;
-pub const DISPID_ICustomStrokes = DISPID_Ink.CustomStrokes;
-pub const DISPID_IClone = DISPID_Ink.Clone;
-pub const DISPID_IHitTestCircle = DISPID_Ink.HitTestCircle;
-pub const DISPID_IHitTestWithRectangle = DISPID_Ink.HitTestWithRectangle;
-pub const DISPID_IHitTestWithLasso = DISPID_Ink.HitTestWithLasso;
-pub const DISPID_INearestPoint = DISPID_Ink.NearestPoint;
-pub const DISPID_ICreateStrokes = DISPID_Ink.CreateStrokes;
-pub const DISPID_ICreateStroke = DISPID_Ink.CreateStroke;
-pub const DISPID_IAddStrokesAtRectangle = DISPID_Ink.AddStrokesAtRectangle;
-pub const DISPID_IClip = DISPID_Ink.Clip;
-pub const DISPID_ISave = DISPID_Ink.Save;
-pub const DISPID_ILoad = DISPID_Ink.Load;
-pub const DISPID_ICreateStrokeFromPoints = DISPID_Ink.CreateStrokeFromPoints;
-pub const DISPID_IClipboardCopyWithRectangle = DISPID_Ink.ClipboardCopyWithRectangle;
-pub const DISPID_IClipboardCopy = DISPID_Ink.ClipboardCopy;
-pub const DISPID_ICanPaste = DISPID_Ink.CanPaste;
-pub const DISPID_IClipboardPaste = DISPID_Ink.ClipboardPaste;
-
-pub const DISPID_InkEvent = enum(i32) {
-    Added = 1,
-    Deleted = 2,
-};
-pub const DISPID_IEInkAdded = DISPID_InkEvent.Added;
-pub const DISPID_IEInkDeleted = DISPID_InkEvent.Deleted;
-
-pub const DISPID_InkRenderer = enum(i32) {
-    GetViewTransform = 1,
-    SetViewTransform = 2,
-    GetObjectTransform = 3,
-    SetObjectTransform = 4,
-    Draw = 5,
-    DrawStroke = 6,
-    PixelToInkSpace = 7,
-    InkSpaceToPixel = 8,
-    PixelToInkSpaceFromPoints = 9,
-    InkSpaceToPixelFromPoints = 10,
-    Measure = 11,
-    MeasureStroke = 12,
-    Move = 13,
-    Rotate = 14,
-    Scale = 15,
-};
-pub const DISPID_IRGetViewTransform = DISPID_InkRenderer.GetViewTransform;
-pub const DISPID_IRSetViewTransform = DISPID_InkRenderer.SetViewTransform;
-pub const DISPID_IRGetObjectTransform = DISPID_InkRenderer.GetObjectTransform;
-pub const DISPID_IRSetObjectTransform = DISPID_InkRenderer.SetObjectTransform;
-pub const DISPID_IRDraw = DISPID_InkRenderer.Draw;
-pub const DISPID_IRDrawStroke = DISPID_InkRenderer.DrawStroke;
-pub const DISPID_IRPixelToInkSpace = DISPID_InkRenderer.PixelToInkSpace;
-pub const DISPID_IRInkSpaceToPixel = DISPID_InkRenderer.InkSpaceToPixel;
-pub const DISPID_IRPixelToInkSpaceFromPoints = DISPID_InkRenderer.PixelToInkSpaceFromPoints;
-pub const DISPID_IRInkSpaceToPixelFromPoints = DISPID_InkRenderer.InkSpaceToPixelFromPoints;
-pub const DISPID_IRMeasure = DISPID_InkRenderer.Measure;
-pub const DISPID_IRMeasureStroke = DISPID_InkRenderer.MeasureStroke;
-pub const DISPID_IRMove = DISPID_InkRenderer.Move;
-pub const DISPID_IRRotate = DISPID_InkRenderer.Rotate;
-pub const DISPID_IRScale = DISPID_InkRenderer.Scale;
-
-pub const InkCollectorEventInterest = enum(i32) {
-    DefaultEvents = -1,
-    CursorDown = 0,
-    Stroke = 1,
-    NewPackets = 2,
-    NewInAirPackets = 3,
-    CursorButtonDown = 4,
-    CursorButtonUp = 5,
-    CursorInRange = 6,
-    CursorOutOfRange = 7,
-    SystemGesture = 8,
-    TabletAdded = 9,
-    TabletRemoved = 10,
-    MouseDown = 11,
-    MouseMove = 12,
-    MouseUp = 13,
-    MouseWheel = 14,
-    DblClick = 15,
-    AllEvents = 16,
-};
-pub const ICEI_DefaultEvents = InkCollectorEventInterest.DefaultEvents;
-pub const ICEI_CursorDown = InkCollectorEventInterest.CursorDown;
-pub const ICEI_Stroke = InkCollectorEventInterest.Stroke;
-pub const ICEI_NewPackets = InkCollectorEventInterest.NewPackets;
-pub const ICEI_NewInAirPackets = InkCollectorEventInterest.NewInAirPackets;
-pub const ICEI_CursorButtonDown = InkCollectorEventInterest.CursorButtonDown;
-pub const ICEI_CursorButtonUp = InkCollectorEventInterest.CursorButtonUp;
-pub const ICEI_CursorInRange = InkCollectorEventInterest.CursorInRange;
-pub const ICEI_CursorOutOfRange = InkCollectorEventInterest.CursorOutOfRange;
-pub const ICEI_SystemGesture = InkCollectorEventInterest.SystemGesture;
-pub const ICEI_TabletAdded = InkCollectorEventInterest.TabletAdded;
-pub const ICEI_TabletRemoved = InkCollectorEventInterest.TabletRemoved;
-pub const ICEI_MouseDown = InkCollectorEventInterest.MouseDown;
-pub const ICEI_MouseMove = InkCollectorEventInterest.MouseMove;
-pub const ICEI_MouseUp = InkCollectorEventInterest.MouseUp;
-pub const ICEI_MouseWheel = InkCollectorEventInterest.MouseWheel;
-pub const ICEI_DblClick = InkCollectorEventInterest.DblClick;
-pub const ICEI_AllEvents = InkCollectorEventInterest.AllEvents;
-
-pub const InkMouseButton = enum(i32) {
-    Left = 1,
-    Right = 2,
-    Middle = 4,
-};
-pub const IMF_Left = InkMouseButton.Left;
-pub const IMF_Right = InkMouseButton.Right;
-pub const IMF_Middle = InkMouseButton.Middle;
-
-pub const InkShiftKeyModifierFlags = enum(i32) {
-    Shift = 1,
-    Control = 2,
-    Alt = 4,
-};
-pub const IKM_Shift = InkShiftKeyModifierFlags.Shift;
-pub const IKM_Control = InkShiftKeyModifierFlags.Control;
-pub const IKM_Alt = InkShiftKeyModifierFlags.Alt;
-
-pub const DISPID_InkCollectorEvent = enum(i32) {
-    CEStroke = 1,
-    CECursorDown = 2,
-    CENewPackets = 3,
-    CENewInAirPackets = 4,
-    CECursorButtonDown = 5,
-    CECursorButtonUp = 6,
-    CECursorInRange = 7,
-    CECursorOutOfRange = 8,
-    CESystemGesture = 9,
-    CEGesture = 10,
-    CETabletAdded = 11,
-    CETabletRemoved = 12,
-    OEPainting = 13,
-    OEPainted = 14,
-    OESelectionChanging = 15,
-    OESelectionChanged = 16,
-    OESelectionMoving = 17,
-    OESelectionMoved = 18,
-    OESelectionResizing = 19,
-    OESelectionResized = 20,
-    OEStrokesDeleting = 21,
-    OEStrokesDeleted = 22,
-    PEChangeUICues = 23,
-    PEClick = 24,
-    PEDblClick = 25,
-    PEInvalidated = 26,
-    PEMouseDown = 27,
-    PEMouseEnter = 28,
-    PEMouseHover = 29,
-    PEMouseLeave = 30,
-    PEMouseMove = 31,
-    PEMouseUp = 32,
-    PEMouseWheel = 33,
-    PESizeModeChanged = 34,
-    PEStyleChanged = 35,
-    PESystemColorsChanged = 36,
-    PEKeyDown = 37,
-    PEKeyPress = 38,
-    PEKeyUp = 39,
-    PEResize = 40,
-    PESizeChanged = 41,
-};
-pub const DISPID_ICEStroke = DISPID_InkCollectorEvent.CEStroke;
-pub const DISPID_ICECursorDown = DISPID_InkCollectorEvent.CECursorDown;
-pub const DISPID_ICENewPackets = DISPID_InkCollectorEvent.CENewPackets;
-pub const DISPID_ICENewInAirPackets = DISPID_InkCollectorEvent.CENewInAirPackets;
-pub const DISPID_ICECursorButtonDown = DISPID_InkCollectorEvent.CECursorButtonDown;
-pub const DISPID_ICECursorButtonUp = DISPID_InkCollectorEvent.CECursorButtonUp;
-pub const DISPID_ICECursorInRange = DISPID_InkCollectorEvent.CECursorInRange;
-pub const DISPID_ICECursorOutOfRange = DISPID_InkCollectorEvent.CECursorOutOfRange;
-pub const DISPID_ICESystemGesture = DISPID_InkCollectorEvent.CESystemGesture;
-pub const DISPID_ICEGesture = DISPID_InkCollectorEvent.CEGesture;
-pub const DISPID_ICETabletAdded = DISPID_InkCollectorEvent.CETabletAdded;
-pub const DISPID_ICETabletRemoved = DISPID_InkCollectorEvent.CETabletRemoved;
-pub const DISPID_IOEPainting = DISPID_InkCollectorEvent.OEPainting;
-pub const DISPID_IOEPainted = DISPID_InkCollectorEvent.OEPainted;
-pub const DISPID_IOESelectionChanging = DISPID_InkCollectorEvent.OESelectionChanging;
-pub const DISPID_IOESelectionChanged = DISPID_InkCollectorEvent.OESelectionChanged;
-pub const DISPID_IOESelectionMoving = DISPID_InkCollectorEvent.OESelectionMoving;
-pub const DISPID_IOESelectionMoved = DISPID_InkCollectorEvent.OESelectionMoved;
-pub const DISPID_IOESelectionResizing = DISPID_InkCollectorEvent.OESelectionResizing;
-pub const DISPID_IOESelectionResized = DISPID_InkCollectorEvent.OESelectionResized;
-pub const DISPID_IOEStrokesDeleting = DISPID_InkCollectorEvent.OEStrokesDeleting;
-pub const DISPID_IOEStrokesDeleted = DISPID_InkCollectorEvent.OEStrokesDeleted;
-pub const DISPID_IPEChangeUICues = DISPID_InkCollectorEvent.PEChangeUICues;
-pub const DISPID_IPEClick = DISPID_InkCollectorEvent.PEClick;
-pub const DISPID_IPEDblClick = DISPID_InkCollectorEvent.PEDblClick;
-pub const DISPID_IPEInvalidated = DISPID_InkCollectorEvent.PEInvalidated;
-pub const DISPID_IPEMouseDown = DISPID_InkCollectorEvent.PEMouseDown;
-pub const DISPID_IPEMouseEnter = DISPID_InkCollectorEvent.PEMouseEnter;
-pub const DISPID_IPEMouseHover = DISPID_InkCollectorEvent.PEMouseHover;
-pub const DISPID_IPEMouseLeave = DISPID_InkCollectorEvent.PEMouseLeave;
-pub const DISPID_IPEMouseMove = DISPID_InkCollectorEvent.PEMouseMove;
-pub const DISPID_IPEMouseUp = DISPID_InkCollectorEvent.PEMouseUp;
-pub const DISPID_IPEMouseWheel = DISPID_InkCollectorEvent.PEMouseWheel;
-pub const DISPID_IPESizeModeChanged = DISPID_InkCollectorEvent.PESizeModeChanged;
-pub const DISPID_IPEStyleChanged = DISPID_InkCollectorEvent.PEStyleChanged;
-pub const DISPID_IPESystemColorsChanged = DISPID_InkCollectorEvent.PESystemColorsChanged;
-pub const DISPID_IPEKeyDown = DISPID_InkCollectorEvent.PEKeyDown;
-pub const DISPID_IPEKeyPress = DISPID_InkCollectorEvent.PEKeyPress;
-pub const DISPID_IPEKeyUp = DISPID_InkCollectorEvent.PEKeyUp;
-pub const DISPID_IPEResize = DISPID_InkCollectorEvent.PEResize;
-pub const DISPID_IPESizeChanged = DISPID_InkCollectorEvent.PESizeChanged;
-
-pub const InkOverlayEditingMode = enum(i32) {
-    Ink = 0,
-    Delete = 1,
-    Select = 2,
-};
-pub const IOEM_Ink = InkOverlayEditingMode.Ink;
-pub const IOEM_Delete = InkOverlayEditingMode.Delete;
-pub const IOEM_Select = InkOverlayEditingMode.Select;
-
-pub const InkOverlayAttachMode = enum(i32) {
-    Behind = 0,
-    InFront = 1,
-};
-pub const IOAM_Behind = InkOverlayAttachMode.Behind;
-pub const IOAM_InFront = InkOverlayAttachMode.InFront;
-
-pub const InkPictureSizeMode = enum(i32) {
-    AutoSize = 0,
-    CenterImage = 1,
-    Normal = 2,
-    StretchImage = 3,
-};
-pub const IPSM_AutoSize = InkPictureSizeMode.AutoSize;
-pub const IPSM_CenterImage = InkPictureSizeMode.CenterImage;
-pub const IPSM_Normal = InkPictureSizeMode.Normal;
-pub const IPSM_StretchImage = InkPictureSizeMode.StretchImage;
-
-pub const InkOverlayEraserMode = enum(i32) {
-    StrokeErase = 0,
-    PointErase = 1,
-};
-pub const IOERM_StrokeErase = InkOverlayEraserMode.StrokeErase;
-pub const IOERM_PointErase = InkOverlayEraserMode.PointErase;
-
-pub const InkCollectionMode = enum(i32) {
-    InkOnly = 0,
-    GestureOnly = 1,
-    InkAndGesture = 2,
-};
-pub const ICM_InkOnly = InkCollectionMode.InkOnly;
-pub const ICM_GestureOnly = InkCollectionMode.GestureOnly;
-pub const ICM_InkAndGesture = InkCollectionMode.InkAndGesture;
-
-pub const DISPID_InkCollector = enum(i32) {
-    CEnabled = 1,
-    CHwnd = 2,
-    CPaint = 3,
-    CText = 4,
-    CDefaultDrawingAttributes = 5,
-    CRenderer = 6,
-    CInk = 7,
-    CAutoRedraw = 8,
-    CCollectingInk = 9,
-    CSetEventInterest = 10,
-    CGetEventInterest = 11,
-    OEditingMode = 12,
-    OSelection = 13,
-    OAttachMode = 14,
-    OHitTestSelection = 15,
-    ODraw = 16,
-    PPicture = 17,
-    PSizeMode = 18,
-    PBackColor = 19,
-    CCursors = 20,
-    CMarginX = 21,
-    CMarginY = 22,
-    CSetWindowInputRectangle = 23,
-    CGetWindowInputRectangle = 24,
-    CTablet = 25,
-    CSetAllTabletsMode = 26,
-    CSetSingleTabletIntegratedMode = 27,
-    CCollectionMode = 28,
-    CSetGestureStatus = 29,
-    CGetGestureStatus = 30,
-    CDynamicRendering = 31,
-    CDesiredPacketDescription = 32,
-    OEraserMode = 33,
-    OEraserWidth = 34,
-    CMouseIcon = 35,
-    CMousePointer = 36,
-    PInkEnabled = 37,
-    CSupportHighContrastInk = 38,
-    OSupportHighContrastSelectionUI = 39,
-};
-pub const DISPID_ICEnabled = DISPID_InkCollector.CEnabled;
-pub const DISPID_ICHwnd = DISPID_InkCollector.CHwnd;
-pub const DISPID_ICPaint = DISPID_InkCollector.CPaint;
-pub const DISPID_ICText = DISPID_InkCollector.CText;
-pub const DISPID_ICDefaultDrawingAttributes = DISPID_InkCollector.CDefaultDrawingAttributes;
-pub const DISPID_ICRenderer = DISPID_InkCollector.CRenderer;
-pub const DISPID_ICInk = DISPID_InkCollector.CInk;
-pub const DISPID_ICAutoRedraw = DISPID_InkCollector.CAutoRedraw;
-pub const DISPID_ICCollectingInk = DISPID_InkCollector.CCollectingInk;
-pub const DISPID_ICSetEventInterest = DISPID_InkCollector.CSetEventInterest;
-pub const DISPID_ICGetEventInterest = DISPID_InkCollector.CGetEventInterest;
-pub const DISPID_IOEditingMode = DISPID_InkCollector.OEditingMode;
-pub const DISPID_IOSelection = DISPID_InkCollector.OSelection;
-pub const DISPID_IOAttachMode = DISPID_InkCollector.OAttachMode;
-pub const DISPID_IOHitTestSelection = DISPID_InkCollector.OHitTestSelection;
-pub const DISPID_IODraw = DISPID_InkCollector.ODraw;
-pub const DISPID_IPPicture = DISPID_InkCollector.PPicture;
-pub const DISPID_IPSizeMode = DISPID_InkCollector.PSizeMode;
-pub const DISPID_IPBackColor = DISPID_InkCollector.PBackColor;
-pub const DISPID_ICCursors = DISPID_InkCollector.CCursors;
-pub const DISPID_ICMarginX = DISPID_InkCollector.CMarginX;
-pub const DISPID_ICMarginY = DISPID_InkCollector.CMarginY;
-pub const DISPID_ICSetWindowInputRectangle = DISPID_InkCollector.CSetWindowInputRectangle;
-pub const DISPID_ICGetWindowInputRectangle = DISPID_InkCollector.CGetWindowInputRectangle;
-pub const DISPID_ICTablet = DISPID_InkCollector.CTablet;
-pub const DISPID_ICSetAllTabletsMode = DISPID_InkCollector.CSetAllTabletsMode;
-pub const DISPID_ICSetSingleTabletIntegratedMode = DISPID_InkCollector.CSetSingleTabletIntegratedMode;
-pub const DISPID_ICCollectionMode = DISPID_InkCollector.CCollectionMode;
-pub const DISPID_ICSetGestureStatus = DISPID_InkCollector.CSetGestureStatus;
-pub const DISPID_ICGetGestureStatus = DISPID_InkCollector.CGetGestureStatus;
-pub const DISPID_ICDynamicRendering = DISPID_InkCollector.CDynamicRendering;
-pub const DISPID_ICDesiredPacketDescription = DISPID_InkCollector.CDesiredPacketDescription;
-pub const DISPID_IOEraserMode = DISPID_InkCollector.OEraserMode;
-pub const DISPID_IOEraserWidth = DISPID_InkCollector.OEraserWidth;
-pub const DISPID_ICMouseIcon = DISPID_InkCollector.CMouseIcon;
-pub const DISPID_ICMousePointer = DISPID_InkCollector.CMousePointer;
-pub const DISPID_IPInkEnabled = DISPID_InkCollector.PInkEnabled;
-pub const DISPID_ICSupportHighContrastInk = DISPID_InkCollector.CSupportHighContrastInk;
-pub const DISPID_IOSupportHighContrastSelectionUI = DISPID_InkCollector.OSupportHighContrastSelectionUI;
-
-pub const DISPID_InkRecognizer = enum(i32) {
-    Clsid = 1,
-    Name = 2,
-    Vendor = 3,
-    Capabilities = 4,
-    LanguageID = 5,
-    PreferredPacketDescription = 6,
-    CreateRecognizerContext = 7,
-    SupportedProperties = 8,
-};
-pub const DISPID_RecoClsid = DISPID_InkRecognizer.Clsid;
-pub const DISPID_RecoName = DISPID_InkRecognizer.Name;
-pub const DISPID_RecoVendor = DISPID_InkRecognizer.Vendor;
-pub const DISPID_RecoCapabilities = DISPID_InkRecognizer.Capabilities;
-pub const DISPID_RecoLanguageID = DISPID_InkRecognizer.LanguageID;
-pub const DISPID_RecoPreferredPacketDescription = DISPID_InkRecognizer.PreferredPacketDescription;
-pub const DISPID_RecoCreateRecognizerContext = DISPID_InkRecognizer.CreateRecognizerContext;
-pub const DISPID_RecoSupportedProperties = DISPID_InkRecognizer.SupportedProperties;
-
-pub const InkRecognizerCapabilities = enum(i32) {
-    DontCare = 1,
-    Object = 2,
-    FreeInput = 4,
-    LinedInput = 8,
-    BoxedInput = 16,
-    CharacterAutoCompletionInput = 32,
-    RightAndDown = 64,
-    LeftAndDown = 128,
-    DownAndLeft = 256,
-    DownAndRight = 512,
-    ArbitraryAngle = 1024,
-    Lattice = 2048,
-    AdviseInkChange = 4096,
-    StrokeReorder = 8192,
-    Personalizable = 16384,
-    PrefersArbitraryAngle = 32768,
-    PrefersParagraphBreaking = 65536,
-    PrefersSegmentation = 131072,
-    Cursive = 262144,
-    TextPrediction = 524288,
-    Alpha = 1048576,
-    Beta = 2097152,
-};
-pub const IRC_DontCare = InkRecognizerCapabilities.DontCare;
-pub const IRC_Object = InkRecognizerCapabilities.Object;
-pub const IRC_FreeInput = InkRecognizerCapabilities.FreeInput;
-pub const IRC_LinedInput = InkRecognizerCapabilities.LinedInput;
-pub const IRC_BoxedInput = InkRecognizerCapabilities.BoxedInput;
-pub const IRC_CharacterAutoCompletionInput = InkRecognizerCapabilities.CharacterAutoCompletionInput;
-pub const IRC_RightAndDown = InkRecognizerCapabilities.RightAndDown;
-pub const IRC_LeftAndDown = InkRecognizerCapabilities.LeftAndDown;
-pub const IRC_DownAndLeft = InkRecognizerCapabilities.DownAndLeft;
-pub const IRC_DownAndRight = InkRecognizerCapabilities.DownAndRight;
-pub const IRC_ArbitraryAngle = InkRecognizerCapabilities.ArbitraryAngle;
-pub const IRC_Lattice = InkRecognizerCapabilities.Lattice;
-pub const IRC_AdviseInkChange = InkRecognizerCapabilities.AdviseInkChange;
-pub const IRC_StrokeReorder = InkRecognizerCapabilities.StrokeReorder;
-pub const IRC_Personalizable = InkRecognizerCapabilities.Personalizable;
-pub const IRC_PrefersArbitraryAngle = InkRecognizerCapabilities.PrefersArbitraryAngle;
-pub const IRC_PrefersParagraphBreaking = InkRecognizerCapabilities.PrefersParagraphBreaking;
-pub const IRC_PrefersSegmentation = InkRecognizerCapabilities.PrefersSegmentation;
-pub const IRC_Cursive = InkRecognizerCapabilities.Cursive;
-pub const IRC_TextPrediction = InkRecognizerCapabilities.TextPrediction;
-pub const IRC_Alpha = InkRecognizerCapabilities.Alpha;
-pub const IRC_Beta = InkRecognizerCapabilities.Beta;
-
-pub const DISPID_InkRecognizer2 = enum(i32) {
-    Id = 0,
-    UnicodeRanges = 1,
-};
-pub const DISPID_RecoId = DISPID_InkRecognizer2.Id;
-pub const DISPID_RecoUnicodeRanges = DISPID_InkRecognizer2.UnicodeRanges;
-
-pub const DISPID_InkRecognizers = enum(i32) {
-    _NewEnum = -4,
-    Item = 0,
-    Count = 1,
-    GetDefaultRecognizer = 2,
-};
-pub const DISPID_IRecos_NewEnum = DISPID_InkRecognizers._NewEnum;
-pub const DISPID_IRecosItem = DISPID_InkRecognizers.Item;
-pub const DISPID_IRecosCount = DISPID_InkRecognizers.Count;
-pub const DISPID_IRecosGetDefaultRecognizer = DISPID_InkRecognizers.GetDefaultRecognizer;
-
-pub const InkRecognizerCharacterAutoCompletionMode = enum(i32) {
-    Full = 0,
-    Prefix = 1,
-    Random = 2,
-};
-pub const IRCACM_Full = InkRecognizerCharacterAutoCompletionMode.Full;
-pub const IRCACM_Prefix = InkRecognizerCharacterAutoCompletionMode.Prefix;
-pub const IRCACM_Random = InkRecognizerCharacterAutoCompletionMode.Random;
-
-pub const InkRecognitionModes = enum(i32) {
-    None = 0,
-    WordModeOnly = 1,
-    Coerce = 2,
-    TopInkBreaksOnly = 4,
-    PrefixOk = 8,
-    LineMode = 16,
-    DisablePersonalization = 32,
-    AutoSpace = 64,
-    Max = 128,
-};
-pub const IRM_None = InkRecognitionModes.None;
-pub const IRM_WordModeOnly = InkRecognitionModes.WordModeOnly;
-pub const IRM_Coerce = InkRecognitionModes.Coerce;
-pub const IRM_TopInkBreaksOnly = InkRecognitionModes.TopInkBreaksOnly;
-pub const IRM_PrefixOk = InkRecognitionModes.PrefixOk;
-pub const IRM_LineMode = InkRecognitionModes.LineMode;
-pub const IRM_DisablePersonalization = InkRecognitionModes.DisablePersonalization;
-pub const IRM_AutoSpace = InkRecognitionModes.AutoSpace;
-pub const IRM_Max = InkRecognitionModes.Max;
-
-pub const DISPID_InkRecognitionEvent = enum(i32) {
-    WithAlternates = 1,
-    n = 2,
-};
-pub const DISPID_IRERecognitionWithAlternates = DISPID_InkRecognitionEvent.WithAlternates;
-pub const DISPID_IRERecognition = DISPID_InkRecognitionEvent.n;
-
-pub const DISPID_InkRecoContext = enum(i32) {
-    Strokes = 1,
-    CharacterAutoCompletionMode = 2,
-    Factoid = 3,
-    WordList = 4,
-    Recognizer = 5,
-    Guide = 6,
-    Flags = 7,
-    PrefixText = 8,
-    SuffixText = 9,
-    StopRecognition = 10,
-    Clone = 11,
-    Recognize = 12,
-    StopBackgroundRecognition = 13,
-    EndInkInput = 14,
-    BackgroundRecognize = 15,
-    BackgroundRecognizeWithAlternates = 16,
-    IsStringSupported = 17,
-};
-pub const DISPID_IRecoCtx_Strokes = DISPID_InkRecoContext.Strokes;
-pub const DISPID_IRecoCtx_CharacterAutoCompletionMode = DISPID_InkRecoContext.CharacterAutoCompletionMode;
-pub const DISPID_IRecoCtx_Factoid = DISPID_InkRecoContext.Factoid;
-pub const DISPID_IRecoCtx_WordList = DISPID_InkRecoContext.WordList;
-pub const DISPID_IRecoCtx_Recognizer = DISPID_InkRecoContext.Recognizer;
-pub const DISPID_IRecoCtx_Guide = DISPID_InkRecoContext.Guide;
-pub const DISPID_IRecoCtx_Flags = DISPID_InkRecoContext.Flags;
-pub const DISPID_IRecoCtx_PrefixText = DISPID_InkRecoContext.PrefixText;
-pub const DISPID_IRecoCtx_SuffixText = DISPID_InkRecoContext.SuffixText;
-pub const DISPID_IRecoCtx_StopRecognition = DISPID_InkRecoContext.StopRecognition;
-pub const DISPID_IRecoCtx_Clone = DISPID_InkRecoContext.Clone;
-pub const DISPID_IRecoCtx_Recognize = DISPID_InkRecoContext.Recognize;
-pub const DISPID_IRecoCtx_StopBackgroundRecognition = DISPID_InkRecoContext.StopBackgroundRecognition;
-pub const DISPID_IRecoCtx_EndInkInput = DISPID_InkRecoContext.EndInkInput;
-pub const DISPID_IRecoCtx_BackgroundRecognize = DISPID_InkRecoContext.BackgroundRecognize;
-pub const DISPID_IRecoCtx_BackgroundRecognizeWithAlternates = DISPID_InkRecoContext.BackgroundRecognizeWithAlternates;
-pub const DISPID_IRecoCtx_IsStringSupported = DISPID_InkRecoContext.IsStringSupported;
-
-pub const DISPID_InkRecoContext2 = enum(i32) {
-    s = 0,
-};
-pub const DISPID_IRecoCtx2_EnabledUnicodeRanges = DISPID_InkRecoContext2.s;
-
-pub const InkRecognitionAlternatesSelection = enum(i32) {
-    Start = 0,
-    DefaultCount = 10,
-    All = -1,
-};
-pub const IRAS_Start = InkRecognitionAlternatesSelection.Start;
-pub const IRAS_DefaultCount = InkRecognitionAlternatesSelection.DefaultCount;
-pub const IRAS_All = InkRecognitionAlternatesSelection.All;
-
-pub const DISPID_InkRecognitionResult = enum(i32) {
-    TopString = 1,
-    TopAlternate = 2,
-    Strokes = 3,
-    TopConfidence = 4,
-    AlternatesFromSelection = 5,
-    ModifyTopAlternate = 6,
-    SetResultOnStrokes = 7,
-};
-pub const DISPID_InkRecognitionResult_TopString = DISPID_InkRecognitionResult.TopString;
-pub const DISPID_InkRecognitionResult_TopAlternate = DISPID_InkRecognitionResult.TopAlternate;
-pub const DISPID_InkRecognitionResult_Strokes = DISPID_InkRecognitionResult.Strokes;
-pub const DISPID_InkRecognitionResult_TopConfidence = DISPID_InkRecognitionResult.TopConfidence;
-pub const DISPID_InkRecognitionResult_AlternatesFromSelection = DISPID_InkRecognitionResult.AlternatesFromSelection;
-pub const DISPID_InkRecognitionResult_ModifyTopAlternate = DISPID_InkRecognitionResult.ModifyTopAlternate;
-pub const DISPID_InkRecognitionResult_SetResultOnStrokes = DISPID_InkRecognitionResult.SetResultOnStrokes;
-
-pub const DISPID_InkRecoAlternate = enum(i32) {
-    String = 1,
-    LineNumber = 2,
-    Baseline = 3,
-    Midline = 4,
-    Ascender = 5,
-    Descender = 6,
-    Confidence = 7,
-    Strokes = 8,
-    GetStrokesFromStrokeRanges = 9,
-    GetStrokesFromTextRange = 10,
-    GetTextRangeFromStrokes = 11,
-    GetPropertyValue = 12,
-    LineAlternates = 13,
-    ConfidenceAlternates = 14,
-    AlternatesWithConstantPropertyValues = 15,
-};
-pub const DISPID_InkRecoAlternate_String = DISPID_InkRecoAlternate.String;
-pub const DISPID_InkRecoAlternate_LineNumber = DISPID_InkRecoAlternate.LineNumber;
-pub const DISPID_InkRecoAlternate_Baseline = DISPID_InkRecoAlternate.Baseline;
-pub const DISPID_InkRecoAlternate_Midline = DISPID_InkRecoAlternate.Midline;
-pub const DISPID_InkRecoAlternate_Ascender = DISPID_InkRecoAlternate.Ascender;
-pub const DISPID_InkRecoAlternate_Descender = DISPID_InkRecoAlternate.Descender;
-pub const DISPID_InkRecoAlternate_Confidence = DISPID_InkRecoAlternate.Confidence;
-pub const DISPID_InkRecoAlternate_Strokes = DISPID_InkRecoAlternate.Strokes;
-pub const DISPID_InkRecoAlternate_GetStrokesFromStrokeRanges = DISPID_InkRecoAlternate.GetStrokesFromStrokeRanges;
-pub const DISPID_InkRecoAlternate_GetStrokesFromTextRange = DISPID_InkRecoAlternate.GetStrokesFromTextRange;
-pub const DISPID_InkRecoAlternate_GetTextRangeFromStrokes = DISPID_InkRecoAlternate.GetTextRangeFromStrokes;
-pub const DISPID_InkRecoAlternate_GetPropertyValue = DISPID_InkRecoAlternate.GetPropertyValue;
-pub const DISPID_InkRecoAlternate_LineAlternates = DISPID_InkRecoAlternate.LineAlternates;
-pub const DISPID_InkRecoAlternate_ConfidenceAlternates = DISPID_InkRecoAlternate.ConfidenceAlternates;
-pub const DISPID_InkRecoAlternate_AlternatesWithConstantPropertyValues = DISPID_InkRecoAlternate.AlternatesWithConstantPropertyValues;
-
-pub const DISPID_InkRecognitionAlternates = enum(i32) {
-    NewEnum = -4,
-    Item = 0,
-    Count = 1,
-    Strokes = 2,
-};
-pub const DISPID_InkRecognitionAlternates_NewEnum = DISPID_InkRecognitionAlternates.NewEnum;
-pub const DISPID_InkRecognitionAlternates_Item = DISPID_InkRecognitionAlternates.Item;
-pub const DISPID_InkRecognitionAlternates_Count = DISPID_InkRecognitionAlternates.Count;
-pub const DISPID_InkRecognitionAlternates_Strokes = DISPID_InkRecognitionAlternates.Strokes;
-
-pub const InkRecoGuide = extern struct {
-    rectWritingBox: RECT,
-    rectDrawnBox: RECT,
-    cRows: i32,
-    cColumns: i32,
-    midline: i32,
-};
-
-pub const DISPID_InkRecognizerGuide = enum(i32) {
-    WritingBox = 1,
-    DrawnBox = 2,
-    Rows = 3,
-    Columns = 4,
-    Midline = 5,
-    GuideData = 6,
-};
-pub const DISPID_IRGWritingBox = DISPID_InkRecognizerGuide.WritingBox;
-pub const DISPID_IRGDrawnBox = DISPID_InkRecognizerGuide.DrawnBox;
-pub const DISPID_IRGRows = DISPID_InkRecognizerGuide.Rows;
-pub const DISPID_IRGColumns = DISPID_InkRecognizerGuide.Columns;
-pub const DISPID_IRGMidline = DISPID_InkRecognizerGuide.Midline;
-pub const DISPID_IRGGuideData = DISPID_InkRecognizerGuide.GuideData;
+pub const DISPID_ITReset = DISPID_InkTransform.Reset;
+pub const DISPID_ITTranslate = DISPID_InkTransform.Translate;
+pub const DISPID_ITRotate = DISPID_InkTransform.Rotate;
+pub const DISPID_ITReflect = DISPID_InkTransform.Reflect;
+pub const DISPID_ITShear = DISPID_InkTransform.Shear;
+pub const DISPID_ITScale = DISPID_InkTransform.Scale;
+pub const DISPID_ITeM11 = DISPID_InkTransform.eM11;
+pub const DISPID_ITeM12 = DISPID_InkTransform.eM12;
+pub const DISPID_ITeM21 = DISPID_InkTransform.eM21;
+pub const DISPID_ITeM22 = DISPID_InkTransform.eM22;
+pub const DISPID_ITeDx = DISPID_InkTransform.eDx;
+pub const DISPID_ITeDy = DISPID_InkTransform.eDy;
+pub const DISPID_ITGetTransform = DISPID_InkTransform.GetTransform;
+pub const DISPID_ITSetTransform = DISPID_InkTransform.SetTransform;
+pub const DISPID_ITData = DISPID_InkTransform.Data;
 
 pub const DISPID_InkWordList = enum(i32) {
     AddWord = 0,
@@ -1839,1842 +1393,457 @@ pub const DISPID_InkWordList2 = enum(i32) {
 };
 pub const DISPID_InkWordList2_AddWords = DISPID_InkWordList2.s;
 
-const IID_IInkRectangle_Value = Guid.initString("9794ff82-6071-4717-8a8b-6ac7c64a686e");
-pub const IID_IInkRectangle = &IID_IInkRectangle_Value;
-pub const IInkRectangle = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Top: *const fn(
-            self: *const IInkRectangle,
-            Units: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Top: *const fn(
-            self: *const IInkRectangle,
-            Units: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Left: *const fn(
-            self: *const IInkRectangle,
-            Units: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Left: *const fn(
-            self: *const IInkRectangle,
-            Units: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Bottom: *const fn(
-            self: *const IInkRectangle,
-            Units: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Bottom: *const fn(
-            self: *const IInkRectangle,
-            Units: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Right: *const fn(
-            self: *const IInkRectangle,
-            Units: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Right: *const fn(
-            self: *const IInkRectangle,
-            Units: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: *const fn(
-            self: *const IInkRectangle,
-            Rect: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: *const fn(
-            self: *const IInkRectangle,
-            Rect: RECT,
-        ) callconv(.winapi) HRESULT,
-        GetRectangle: *const fn(
-            self: *const IInkRectangle,
-            Top: ?*i32,
-            Left: ?*i32,
-            Bottom: ?*i32,
-            Right: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        SetRectangle: *const fn(
-            self: *const IInkRectangle,
-            Top: i32,
-            Left: i32,
-            Bottom: i32,
-            Right: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Top(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Top(self, Units);
-    }
-    pub fn put_Top(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Top(self, Units);
-    }
-    pub fn get_Left(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Left(self, Units);
-    }
-    pub fn put_Left(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Left(self, Units);
-    }
-    pub fn get_Bottom(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Bottom(self, Units);
-    }
-    pub fn put_Bottom(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Bottom(self, Units);
-    }
-    pub fn get_Right(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Right(self, Units);
-    }
-    pub fn put_Right(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Right(self, Units);
-    }
-    pub fn get_Data(self: *const IInkRectangle, Rect: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Data(self, Rect);
-    }
-    pub fn put_Data(self: *const IInkRectangle, Rect: RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Data(self, Rect);
-    }
-    pub fn GetRectangle(self: *const IInkRectangle, Top: ?*i32, Left: ?*i32, Bottom: ?*i32, Right: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRectangle(self, Top, Left, Bottom, Right);
-    }
-    pub fn SetRectangle(self: *const IInkRectangle, Top: i32, Left: i32, Bottom: i32, Right: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetRectangle(self, Top, Left, Bottom, Right);
-    }
+pub const DISPID_MathInputControlEvents = enum(i32) {
+    Insert = 0,
+    Close = 1,
+    Paint = 2,
+    Clear = 3,
 };
+pub const DISPID_MICInsert = DISPID_MathInputControlEvents.Insert;
+pub const DISPID_MICClose = DISPID_MathInputControlEvents.Close;
+pub const DISPID_MICPaint = DISPID_MathInputControlEvents.Paint;
+pub const DISPID_MICClear = DISPID_MathInputControlEvents.Clear;
+
+pub const DISPID_PenInputPanel = enum(i32) {
+    AttachedEditWindow = 0,
+    Factoid = 1,
+    CurrentPanel = 2,
+    DefaultPanel = 3,
+    Visible = 4,
+    Top = 5,
+    Left = 6,
+    Width = 7,
+    Height = 8,
+    MoveTo = 9,
+    CommitPendingInput = 10,
+    Refresh = 11,
+    Busy = 12,
+    VerticalOffset = 13,
+    HorizontalOffset = 14,
+    EnableTsf = 15,
+    AutoShow = 16,
+};
+pub const DISPID_PIPAttachedEditWindow = DISPID_PenInputPanel.AttachedEditWindow;
+pub const DISPID_PIPFactoid = DISPID_PenInputPanel.Factoid;
+pub const DISPID_PIPCurrentPanel = DISPID_PenInputPanel.CurrentPanel;
+pub const DISPID_PIPDefaultPanel = DISPID_PenInputPanel.DefaultPanel;
+pub const DISPID_PIPVisible = DISPID_PenInputPanel.Visible;
+pub const DISPID_PIPTop = DISPID_PenInputPanel.Top;
+pub const DISPID_PIPLeft = DISPID_PenInputPanel.Left;
+pub const DISPID_PIPWidth = DISPID_PenInputPanel.Width;
+pub const DISPID_PIPHeight = DISPID_PenInputPanel.Height;
+pub const DISPID_PIPMoveTo = DISPID_PenInputPanel.MoveTo;
+pub const DISPID_PIPCommitPendingInput = DISPID_PenInputPanel.CommitPendingInput;
+pub const DISPID_PIPRefresh = DISPID_PenInputPanel.Refresh;
+pub const DISPID_PIPBusy = DISPID_PenInputPanel.Busy;
+pub const DISPID_PIPVerticalOffset = DISPID_PenInputPanel.VerticalOffset;
+pub const DISPID_PIPHorizontalOffset = DISPID_PenInputPanel.HorizontalOffset;
+pub const DISPID_PIPEnableTsf = DISPID_PenInputPanel.EnableTsf;
+pub const DISPID_PIPAutoShow = DISPID_PenInputPanel.AutoShow;
+
+pub const DISPID_PenInputPanelEvents = enum(i32) {
+    VisibleChanged = 0,
+    PanelChanged = 1,
+    InputFailed = 2,
+    PanelMoving = 3,
+};
+pub const DISPID_PIPEVisibleChanged = DISPID_PenInputPanelEvents.VisibleChanged;
+pub const DISPID_PIPEPanelChanged = DISPID_PenInputPanelEvents.PanelChanged;
+pub const DISPID_PIPEInputFailed = DISPID_PenInputPanelEvents.InputFailed;
+pub const DISPID_PIPEPanelMoving = DISPID_PenInputPanelEvents.PanelMoving;
+
+pub const DISPID_StrokeEvent = enum(i32) {
+    Added = 1,
+    Removed = 2,
+};
+pub const DISPID_SEStrokesAdded = DISPID_StrokeEvent.Added;
+pub const DISPID_SEStrokesRemoved = DISPID_StrokeEvent.Removed;
+
+pub const DYNAMIC_RENDERER_CACHED_DATA = extern struct {
+    strokeId: i32,
+    dynamicRenderer: ?*IDynamicRenderer,
+};
+
+const CLSID_DynamicRenderer_Value = Guid.initString("ecd32aea-746f-4dcb-bf68-082757faff18");
+pub const CLSID_DynamicRenderer = &CLSID_DynamicRenderer_Value;
+
+pub const enumGetCandidateFlags = enum(i32) {
+    ALLOW_RECOGNITION = 1,
+    FORCE_RECOGNITION = 2,
+};
+pub const TCF_ALLOW_RECOGNITION = enumGetCandidateFlags.ALLOW_RECOGNITION;
+pub const TCF_FORCE_RECOGNITION = enumGetCandidateFlags.FORCE_RECOGNITION;
+
+pub const enumINKMETRIC_FLAGS = enum(i32) {
+    FONT_SELECTED_IN_HDC = 1,
+    ITALIC = 2,
+    BOLD = 4,
+};
+pub const IMF_FONT_SELECTED_IN_HDC = enumINKMETRIC_FLAGS.FONT_SELECTED_IN_HDC;
+pub const IMF_ITALIC = enumINKMETRIC_FLAGS.ITALIC;
+pub const IMF_BOLD = enumINKMETRIC_FLAGS.BOLD;
+
+pub const enumRECO_TYPE = enum(i32) {
+    STRING = 0,
+    CHAR = 1,
+};
+pub const RECO_TYPE_WSTRING = enumRECO_TYPE.STRING;
+pub const RECO_TYPE_WCHAR = enumRECO_TYPE.CHAR;
+
+pub const EventMask = enum(i32) {
+    InPlaceStateChanging = 1,
+    InPlaceStateChanged = 2,
+    InPlaceSizeChanging = 4,
+    InPlaceSizeChanged = 8,
+    InputAreaChanging = 16,
+    InputAreaChanged = 32,
+    CorrectionModeChanging = 64,
+    CorrectionModeChanged = 128,
+    InPlaceVisibilityChanging = 256,
+    InPlaceVisibilityChanged = 512,
+    TextInserting = 1024,
+    TextInserted = 2048,
+    All = 4095,
+};
+pub const EventMask_InPlaceStateChanging = EventMask.InPlaceStateChanging;
+pub const EventMask_InPlaceStateChanged = EventMask.InPlaceStateChanged;
+pub const EventMask_InPlaceSizeChanging = EventMask.InPlaceSizeChanging;
+pub const EventMask_InPlaceSizeChanged = EventMask.InPlaceSizeChanged;
+pub const EventMask_InputAreaChanging = EventMask.InputAreaChanging;
+pub const EventMask_InputAreaChanged = EventMask.InputAreaChanged;
+pub const EventMask_CorrectionModeChanging = EventMask.CorrectionModeChanging;
+pub const EventMask_CorrectionModeChanged = EventMask.CorrectionModeChanged;
+pub const EventMask_InPlaceVisibilityChanging = EventMask.InPlaceVisibilityChanging;
+pub const EventMask_InPlaceVisibilityChanged = EventMask.InPlaceVisibilityChanged;
+pub const EventMask_TextInserting = EventMask.TextInserting;
+pub const EventMask_TextInserted = EventMask.TextInserted;
+pub const EventMask_All = EventMask.All;
+
+pub const FLICK_DATA = extern struct {
+    _bitfield: i32,
+};
+
+pub const FLICK_POINT = extern struct {
+    _bitfield: i32,
+};
+
+pub const FLICKACTION_COMMANDCODE = enum(i32) {
+    NULL = 0,
+    SCROLL = 1,
+    APPCOMMAND = 2,
+    CUSTOMKEY = 3,
+    KEYMODIFIER = 4,
+};
+pub const FLICKACTION_COMMANDCODE_NULL = FLICKACTION_COMMANDCODE.NULL;
+pub const FLICKACTION_COMMANDCODE_SCROLL = FLICKACTION_COMMANDCODE.SCROLL;
+pub const FLICKACTION_COMMANDCODE_APPCOMMAND = FLICKACTION_COMMANDCODE.APPCOMMAND;
+pub const FLICKACTION_COMMANDCODE_CUSTOMKEY = FLICKACTION_COMMANDCODE.CUSTOMKEY;
+pub const FLICKACTION_COMMANDCODE_KEYMODIFIER = FLICKACTION_COMMANDCODE.KEYMODIFIER;
+
+pub const FLICKDIRECTION = enum(i32) {
+    MIN = 0,
+    UPRIGHT = 1,
+    UP = 2,
+    UPLEFT = 3,
+    LEFT = 4,
+    DOWNLEFT = 5,
+    DOWN = 6,
+    DOWNRIGHT = 7,
+    INVALID = 8,
+    pub const RIGHT = .MIN;
+};
+pub const FLICKDIRECTION_MIN = FLICKDIRECTION.MIN;
+pub const FLICKDIRECTION_RIGHT = FLICKDIRECTION.MIN;
+pub const FLICKDIRECTION_UPRIGHT = FLICKDIRECTION.UPRIGHT;
+pub const FLICKDIRECTION_UP = FLICKDIRECTION.UP;
+pub const FLICKDIRECTION_UPLEFT = FLICKDIRECTION.UPLEFT;
+pub const FLICKDIRECTION_LEFT = FLICKDIRECTION.LEFT;
+pub const FLICKDIRECTION_DOWNLEFT = FLICKDIRECTION.DOWNLEFT;
+pub const FLICKDIRECTION_DOWN = FLICKDIRECTION.DOWN;
+pub const FLICKDIRECTION_DOWNRIGHT = FLICKDIRECTION.DOWNRIGHT;
+pub const FLICKDIRECTION_INVALID = FLICKDIRECTION.INVALID;
+
+pub const FLICKMODE = enum(i32) {
+    MIN = 0,
+    ON = 1,
+    LEARNING = 2,
+    pub const OFF = .MIN;
+    pub const MAX = .LEARNING;
+    pub const DEFAULT = .ON;
+};
+pub const FLICKMODE_MIN = FLICKMODE.MIN;
+pub const FLICKMODE_OFF = FLICKMODE.MIN;
+pub const FLICKMODE_ON = FLICKMODE.ON;
+pub const FLICKMODE_LEARNING = FLICKMODE.LEARNING;
+pub const FLICKMODE_MAX = FLICKMODE.LEARNING;
+pub const FLICKMODE_DEFAULT = FLICKMODE.ON;
+
+pub const GESTURE_DATA = extern struct {
+    gestureId: i32,
+    recoConfidence: i32,
+    strokeCount: i32,
+};
+
+const CLSID_GestureRecognizer_Value = Guid.initString("ea30c654-c62c-441f-ac00-95f9a196782c");
+pub const CLSID_GestureRecognizer = &CLSID_GestureRecognizer_Value;
+
+const CLSID_HandwrittenTextInsertion_Value = Guid.initString("9f074ee2-e6e9-4d8a-a047-eb5b5c3c55da");
+pub const CLSID_HandwrittenTextInsertion = &CLSID_HandwrittenTextInsertion_Value;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HRECOALT = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HRECOCONTEXT = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HRECOGNIZER = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HRECOLATTICE = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HRECOWORDLIST = *opaque{};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkExtendedProperty_Value = Guid.initString("db489209-b7c3-411d-90f6-1548cfff271e");
-pub const IID_IInkExtendedProperty = &IID_IInkExtendedProperty_Value;
-pub const IInkExtendedProperty = extern union {
+const IID_IDynamicRenderer_Value = Guid.initString("a079468e-7165-46f9-b7af-98ad01a93009");
+pub const IID_IDynamicRenderer = &IID_IDynamicRenderer_Value;
+pub const IDynamicRenderer = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
+        base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guid: *const fn(
-            self: *const IInkExtendedProperty,
-            Guid: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: *const fn(
-            self: *const IInkExtendedProperty,
-            Data: ?*VARIANT,
+        get_Enabled: *const fn(
+            self: *const IDynamicRenderer,
+            bEnabled: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: *const fn(
-            self: *const IInkExtendedProperty,
-            Data: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Guid(self: *const IInkExtendedProperty, _param_Guid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Guid(self, _param_Guid);
-    }
-    pub fn get_Data(self: *const IInkExtendedProperty, Data: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Data(self, Data);
-    }
-    pub fn put_Data(self: *const IInkExtendedProperty, Data: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Data(self, Data);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkExtendedProperties_Value = Guid.initString("89f2a8be-95a9-4530-8b8f-88e971e3e25f");
-pub const IID_IInkExtendedProperties = &IID_IInkExtendedProperties_Value;
-pub const IInkExtendedProperties = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IInkExtendedProperties,
-            Count: ?*i32,
+        put_Enabled: *const fn(
+            self: *const IDynamicRenderer,
+            bEnabled: BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IInkExtendedProperties,
-            _NewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IInkExtendedProperties,
-            Identifier: VARIANT,
-            Item: ?*?*IInkExtendedProperty,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IInkExtendedProperties,
-            Guid: ?BSTR,
-            Data: VARIANT,
-            InkExtendedProperty: ?*?*IInkExtendedProperty,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IInkExtendedProperties,
-            Identifier: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IInkExtendedProperties,
-        ) callconv(.winapi) HRESULT,
-        DoesPropertyExist: *const fn(
-            self: *const IInkExtendedProperties,
-            Guid: ?BSTR,
-            DoesPropertyExist: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkExtendedProperties, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const IInkExtendedProperties, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, _NewEnum);
-    }
-    pub fn Item(self: *const IInkExtendedProperties, Identifier: VARIANT, _param_Item: ?*?*IInkExtendedProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Identifier, _param_Item);
-    }
-    pub fn Add(self: *const IInkExtendedProperties, _param_Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, _param_Guid, Data, InkExtendedProperty);
-    }
-    pub fn Remove(self: *const IInkExtendedProperties, Identifier: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, Identifier);
-    }
-    pub fn Clear(self: *const IInkExtendedProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-    pub fn DoesPropertyExist(self: *const IInkExtendedProperties, _param_Guid: ?BSTR, _param_DoesPropertyExist: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.DoesPropertyExist(self, _param_Guid, _param_DoesPropertyExist);
-    }
-};
-
-const IID_IInkDrawingAttributes_Value = Guid.initString("bf519b75-0a15-4623-adc9-c00d436a8092");
-pub const IID_IInkDrawingAttributes = &IID_IInkDrawingAttributes_Value;
-pub const IInkDrawingAttributes = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Color: *const fn(
-            self: *const IInkDrawingAttributes,
-            CurrentColor: ?*i32,
+        get_HWND: *const fn(
+            self: *const IDynamicRenderer,
+            hwnd: ?*HANDLE_PTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Color: *const fn(
-            self: *const IInkDrawingAttributes,
-            NewColor: i32,
+        put_HWND: *const fn(
+            self: *const IDynamicRenderer,
+            hwnd: HANDLE_PTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: *const fn(
-            self: *const IInkDrawingAttributes,
-            CurrentWidth: ?*f32,
+        get_ClipRectangle: *const fn(
+            self: *const IDynamicRenderer,
+            prcClipRect: ?*RECT,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Width: *const fn(
-            self: *const IInkDrawingAttributes,
-            NewWidth: f32,
+        put_ClipRectangle: *const fn(
+            self: *const IDynamicRenderer,
+            prcClipRect: ?*const RECT,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Height: *const fn(
-            self: *const IInkDrawingAttributes,
-            CurrentHeight: ?*f32,
+        get_ClipRegion: *const fn(
+            self: *const IDynamicRenderer,
+            phClipRgn: ?*HANDLE_PTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Height: *const fn(
-            self: *const IInkDrawingAttributes,
-            NewHeight: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FitToCurve: *const fn(
-            self: *const IInkDrawingAttributes,
-            Flag: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FitToCurve: *const fn(
-            self: *const IInkDrawingAttributes,
-            Flag: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IgnorePressure: *const fn(
-            self: *const IInkDrawingAttributes,
-            Flag: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IgnorePressure: *const fn(
-            self: *const IInkDrawingAttributes,
-            Flag: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntiAliased: *const fn(
-            self: *const IInkDrawingAttributes,
-            Flag: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AntiAliased: *const fn(
-            self: *const IInkDrawingAttributes,
-            Flag: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Transparency: *const fn(
-            self: *const IInkDrawingAttributes,
-            CurrentTransparency: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Transparency: *const fn(
-            self: *const IInkDrawingAttributes,
-            NewTransparency: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RasterOperation: *const fn(
-            self: *const IInkDrawingAttributes,
-            CurrentRasterOperation: ?*InkRasterOperation,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RasterOperation: *const fn(
-            self: *const IInkDrawingAttributes,
-            NewRasterOperation: InkRasterOperation,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PenTip: *const fn(
-            self: *const IInkDrawingAttributes,
-            CurrentPenTip: ?*InkPenTip,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PenTip: *const fn(
-            self: *const IInkDrawingAttributes,
-            NewPenTip: InkPenTip,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtendedProperties: *const fn(
-            self: *const IInkDrawingAttributes,
-            Properties: ?*?*IInkExtendedProperties,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IInkDrawingAttributes,
-            DrawingAttributes: ?*?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Color(self: *const IInkDrawingAttributes, CurrentColor: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Color(self, CurrentColor);
-    }
-    pub fn put_Color(self: *const IInkDrawingAttributes, NewColor: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Color(self, NewColor);
-    }
-    pub fn get_Width(self: *const IInkDrawingAttributes, CurrentWidth: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Width(self, CurrentWidth);
-    }
-    pub fn put_Width(self: *const IInkDrawingAttributes, NewWidth: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Width(self, NewWidth);
-    }
-    pub fn get_Height(self: *const IInkDrawingAttributes, CurrentHeight: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Height(self, CurrentHeight);
-    }
-    pub fn put_Height(self: *const IInkDrawingAttributes, NewHeight: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Height(self, NewHeight);
-    }
-    pub fn get_FitToCurve(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FitToCurve(self, Flag);
-    }
-    pub fn put_FitToCurve(self: *const IInkDrawingAttributes, Flag: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FitToCurve(self, Flag);
-    }
-    pub fn get_IgnorePressure(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IgnorePressure(self, Flag);
-    }
-    pub fn put_IgnorePressure(self: *const IInkDrawingAttributes, Flag: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_IgnorePressure(self, Flag);
-    }
-    pub fn get_AntiAliased(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AntiAliased(self, Flag);
-    }
-    pub fn put_AntiAliased(self: *const IInkDrawingAttributes, Flag: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AntiAliased(self, Flag);
-    }
-    pub fn get_Transparency(self: *const IInkDrawingAttributes, CurrentTransparency: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Transparency(self, CurrentTransparency);
-    }
-    pub fn put_Transparency(self: *const IInkDrawingAttributes, NewTransparency: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Transparency(self, NewTransparency);
-    }
-    pub fn get_RasterOperation(self: *const IInkDrawingAttributes, CurrentRasterOperation: ?*InkRasterOperation) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RasterOperation(self, CurrentRasterOperation);
-    }
-    pub fn put_RasterOperation(self: *const IInkDrawingAttributes, NewRasterOperation: InkRasterOperation) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RasterOperation(self, NewRasterOperation);
-    }
-    pub fn get_PenTip(self: *const IInkDrawingAttributes, CurrentPenTip: ?*InkPenTip) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PenTip(self, CurrentPenTip);
-    }
-    pub fn put_PenTip(self: *const IInkDrawingAttributes, NewPenTip: InkPenTip) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PenTip(self, NewPenTip);
-    }
-    pub fn get_ExtendedProperties(self: *const IInkDrawingAttributes, Properties: ?*?*IInkExtendedProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExtendedProperties(self, Properties);
-    }
-    pub fn Clone(self: *const IInkDrawingAttributes, DrawingAttributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, DrawingAttributes);
-    }
-};
-
-const IID_IInkTransform_Value = Guid.initString("615f1d43-8703-4565-88e2-8201d2ecd7b7");
-pub const IID_IInkTransform = &IID_IInkTransform_Value;
-pub const IInkTransform = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Reset: *const fn(
-            self: *const IInkTransform,
-        ) callconv(.winapi) HRESULT,
-        Translate: *const fn(
-            self: *const IInkTransform,
-            HorizontalComponent: f32,
-            VerticalComponent: f32,
-        ) callconv(.winapi) HRESULT,
-        Rotate: *const fn(
-            self: *const IInkTransform,
-            Degrees: f32,
-            x: f32,
-            y: f32,
-        ) callconv(.winapi) HRESULT,
-        Reflect: *const fn(
-            self: *const IInkTransform,
-            Horizontally: i16,
-            Vertically: i16,
-        ) callconv(.winapi) HRESULT,
-        Shear: *const fn(
-            self: *const IInkTransform,
-            HorizontalComponent: f32,
-            VerticalComponent: f32,
-        ) callconv(.winapi) HRESULT,
-        ScaleTransform: *const fn(
-            self: *const IInkTransform,
-            HorizontalMultiplier: f32,
-            VerticalMultiplier: f32,
-        ) callconv(.winapi) HRESULT,
-        GetTransform: *const fn(
-            self: *const IInkTransform,
-            eM11: ?*f32,
-            eM12: ?*f32,
-            eM21: ?*f32,
-            eM22: ?*f32,
-            eDx: ?*f32,
-            eDy: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        SetTransform: *const fn(
-            self: *const IInkTransform,
-            eM11: f32,
-            eM12: f32,
-            eM21: f32,
-            eM22: f32,
-            eDx: f32,
-            eDy: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM11: *const fn(
-            self: *const IInkTransform,
-            Value: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM11: *const fn(
-            self: *const IInkTransform,
-            Value: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM12: *const fn(
-            self: *const IInkTransform,
-            Value: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM12: *const fn(
-            self: *const IInkTransform,
-            Value: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM21: *const fn(
-            self: *const IInkTransform,
-            Value: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM21: *const fn(
-            self: *const IInkTransform,
-            Value: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM22: *const fn(
-            self: *const IInkTransform,
-            Value: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM22: *const fn(
-            self: *const IInkTransform,
-            Value: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eDx: *const fn(
-            self: *const IInkTransform,
-            Value: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eDx: *const fn(
-            self: *const IInkTransform,
-            Value: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eDy: *const fn(
-            self: *const IInkTransform,
-            Value: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eDy: *const fn(
-            self: *const IInkTransform,
-            Value: f32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: *const fn(
-            self: *const IInkTransform,
-            XForm: ?*XFORM,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: *const fn(
-            self: *const IInkTransform,
-            XForm: XFORM,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Reset(self: *const IInkTransform) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Translate(self: *const IInkTransform, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Translate(self, HorizontalComponent, VerticalComponent);
-    }
-    pub fn Rotate(self: *const IInkTransform, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Rotate(self, Degrees, x, y);
-    }
-    pub fn Reflect(self: *const IInkTransform, Horizontally: i16, Vertically: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.Reflect(self, Horizontally, Vertically);
-    }
-    pub fn Shear(self: *const IInkTransform, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Shear(self, HorizontalComponent, VerticalComponent);
-    }
-    pub fn ScaleTransform(self: *const IInkTransform, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier);
-    }
-    pub fn GetTransform(self: *const IInkTransform, eM11: ?*f32, eM12: ?*f32, eM21: ?*f32, eM22: ?*f32, eDx: ?*f32, eDy: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransform(self, eM11, eM12, eM21, eM22, eDx, eDy);
-    }
-    pub fn SetTransform(self: *const IInkTransform, eM11: f32, eM12: f32, eM21: f32, eM22: f32, eDx: f32, eDy: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTransform(self, eM11, eM12, eM21, eM22, eDx, eDy);
-    }
-    pub fn get_eM11(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_eM11(self, Value);
-    }
-    pub fn put_eM11(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_eM11(self, Value);
-    }
-    pub fn get_eM12(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_eM12(self, Value);
-    }
-    pub fn put_eM12(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_eM12(self, Value);
-    }
-    pub fn get_eM21(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_eM21(self, Value);
-    }
-    pub fn put_eM21(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_eM21(self, Value);
-    }
-    pub fn get_eM22(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_eM22(self, Value);
-    }
-    pub fn put_eM22(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_eM22(self, Value);
-    }
-    pub fn get_eDx(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_eDx(self, Value);
-    }
-    pub fn put_eDx(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_eDx(self, Value);
-    }
-    pub fn get_eDy(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_eDy(self, Value);
-    }
-    pub fn put_eDy(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_eDy(self, Value);
-    }
-    pub fn get_Data(self: *const IInkTransform, XForm: ?*XFORM) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Data(self, XForm);
-    }
-    pub fn put_Data(self: *const IInkTransform, XForm: XFORM) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Data(self, XForm);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkGesture_Value = Guid.initString("3bdc0a97-04e5-4e26-b813-18f052d41def");
-pub const IID_IInkGesture = &IID_IInkGesture_Value;
-pub const IInkGesture = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Confidence: *const fn(
-            self: *const IInkGesture,
-            Confidence: ?*InkRecognitionConfidence,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IInkGesture,
-            Id: ?*InkApplicationGesture,
-        ) callconv(.winapi) HRESULT,
-        GetHotPoint: *const fn(
-            self: *const IInkGesture,
-            X: ?*i32,
-            Y: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Confidence(self: *const IInkGesture, Confidence: ?*InkRecognitionConfidence) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Confidence(self, Confidence);
-    }
-    pub fn get_Id(self: *const IInkGesture, Id: ?*InkApplicationGesture) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, Id);
-    }
-    pub fn GetHotPoint(self: *const IInkGesture, X: ?*i32, Y: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHotPoint(self, X, Y);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursor_Value = Guid.initString("ad30c630-40c5-4350-8405-9c71012fc558");
-pub const IID_IInkCursor = &IID_IInkCursor_Value;
-pub const IInkCursor = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IInkCursor,
-            Name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IInkCursor,
-            Id: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Inverted: *const fn(
-            self: *const IInkCursor,
-            Status: ?*i16,
+        put_ClipRegion: *const fn(
+            self: *const IDynamicRenderer,
+            hClipRgn: HANDLE_PTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DrawingAttributes: *const fn(
-            self: *const IInkCursor,
-            Attributes: ?*?*IInkDrawingAttributes,
+            self: *const IDynamicRenderer,
+            ppiDA: ?*?*IInkDrawingAttributes,
         ) callconv(.winapi) HRESULT,
         putref_DrawingAttributes: *const fn(
-            self: *const IInkCursor,
-            Attributes: ?*IInkDrawingAttributes,
+            self: *const IDynamicRenderer,
+            piDA: ?*IInkDrawingAttributes,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tablet: *const fn(
-            self: *const IInkCursor,
-            Tablet: ?*?*IInkTablet,
+        get_DataCacheEnabled: *const fn(
+            self: *const IDynamicRenderer,
+            pfCacheData: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buttons: *const fn(
-            self: *const IInkCursor,
-            Buttons: ?*?*IInkCursorButtons,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IInkCursor, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, Name);
-    }
-    pub fn get_Id(self: *const IInkCursor, Id: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, Id);
-    }
-    pub fn get_Inverted(self: *const IInkCursor, Status: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Inverted(self, Status);
-    }
-    pub fn get_DrawingAttributes(self: *const IInkCursor, Attributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DrawingAttributes(self, Attributes);
-    }
-    pub fn putref_DrawingAttributes(self: *const IInkCursor, Attributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_DrawingAttributes(self, Attributes);
-    }
-    pub fn get_Tablet(self: *const IInkCursor, Tablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Tablet(self, Tablet);
-    }
-    pub fn get_Buttons(self: *const IInkCursor, Buttons: ?*?*IInkCursorButtons) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Buttons(self, Buttons);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursors_Value = Guid.initString("a248c1ac-c698-4e06-9e5c-d57f77c7e647");
-pub const IID_IInkCursors = &IID_IInkCursors_Value;
-pub const IInkCursors = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IInkCursors,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IInkCursors,
-            _NewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IInkCursors,
-            Index: i32,
-            Cursor: ?*?*IInkCursor,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkCursors, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const IInkCursors, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, _NewEnum);
-    }
-    pub fn Item(self: *const IInkCursors, Index: i32, Cursor: ?*?*IInkCursor) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, Cursor);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursorButton_Value = Guid.initString("85ef9417-1d59-49b2-a13c-702c85430894");
-pub const IID_IInkCursorButton = &IID_IInkCursorButton_Value;
-pub const IInkCursorButton = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IInkCursorButton,
-            Name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IInkCursorButton,
-            Id: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IInkCursorButton,
-            CurrentState: ?*InkCursorButtonState,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IInkCursorButton, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, Name);
-    }
-    pub fn get_Id(self: *const IInkCursorButton, Id: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, Id);
-    }
-    pub fn get_State(self: *const IInkCursorButton, CurrentState: ?*InkCursorButtonState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, CurrentState);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursorButtons_Value = Guid.initString("3671cc40-b624-4671-9fa0-db119d952d54");
-pub const IID_IInkCursorButtons = &IID_IInkCursorButtons_Value;
-pub const IInkCursorButtons = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IInkCursorButtons,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IInkCursorButtons,
-            _NewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IInkCursorButtons,
-            Identifier: VARIANT,
-            Button: ?*?*IInkCursorButton,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkCursorButtons, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const IInkCursorButtons, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, _NewEnum);
-    }
-    pub fn Item(self: *const IInkCursorButtons, Identifier: VARIANT, Button: ?*?*IInkCursorButton) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Identifier, Button);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkTablet_Value = Guid.initString("2de25eaa-6ef8-42d5-aee9-185bc81b912d");
-pub const IID_IInkTablet = &IID_IInkTablet_Value;
-pub const IInkTablet = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IInkTablet,
-            Name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlugAndPlayId: *const fn(
-            self: *const IInkTablet,
-            Id: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumInputRectangle: *const fn(
-            self: *const IInkTablet,
-            Rectangle: ?*?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HardwareCapabilities: *const fn(
-            self: *const IInkTablet,
-            Capabilities: ?*TabletHardwareCapabilities,
-        ) callconv(.winapi) HRESULT,
-        IsPacketPropertySupported: *const fn(
-            self: *const IInkTablet,
-            packetPropertyName: ?BSTR,
-            Supported: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyMetrics: *const fn(
-            self: *const IInkTablet,
-            propertyName: ?BSTR,
-            Minimum: ?*i32,
-            Maximum: ?*i32,
-            Units: ?*TabletPropertyMetricUnit,
-            Resolution: ?*f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IInkTablet, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, Name);
-    }
-    pub fn get_PlugAndPlayId(self: *const IInkTablet, Id: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PlugAndPlayId(self, Id);
-    }
-    pub fn get_MaximumInputRectangle(self: *const IInkTablet, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaximumInputRectangle(self, Rectangle);
-    }
-    pub fn get_HardwareCapabilities(self: *const IInkTablet, Capabilities: ?*TabletHardwareCapabilities) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HardwareCapabilities(self, Capabilities);
-    }
-    pub fn IsPacketPropertySupported(self: *const IInkTablet, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsPacketPropertySupported(self, packetPropertyName, Supported);
-    }
-    pub fn GetPropertyMetrics(self: *const IInkTablet, propertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyMetrics(self, propertyName, Minimum, Maximum, Units, Resolution);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkTablet2_Value = Guid.initString("90c91ad2-fa36-49d6-9516-ce8d570f6f85");
-pub const IID_IInkTablet2 = &IID_IInkTablet2_Value;
-pub const IInkTablet2 = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceKind: *const fn(
-            self: *const IInkTablet2,
-            Kind: ?*TabletDeviceKind,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_DeviceKind(self: *const IInkTablet2, Kind: ?*TabletDeviceKind) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceKind(self, Kind);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IInkTablet3_Value = Guid.initString("7e313997-1327-41dd-8ca9-79f24be17250");
-pub const IID_IInkTablet3 = &IID_IInkTablet3_Value;
-pub const IInkTablet3 = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsMultiTouch: *const fn(
-            self: *const IInkTablet3,
-            pIsMultiTouch: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumCursors: *const fn(
-            self: *const IInkTablet3,
-            pMaximumCursors: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_IsMultiTouch(self: *const IInkTablet3, pIsMultiTouch: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsMultiTouch(self, pIsMultiTouch);
-    }
-    pub fn get_MaximumCursors(self: *const IInkTablet3, pMaximumCursors: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaximumCursors(self, pMaximumCursors);
-    }
-};
-
-const IID_IInkTablets_Value = Guid.initString("112086d9-7779-4535-a699-862b43ac1863");
-pub const IID_IInkTablets = &IID_IInkTablets_Value;
-pub const IInkTablets = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IInkTablets,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IInkTablets,
-            _NewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultTablet: *const fn(
-            self: *const IInkTablets,
-            DefaultTablet: ?*?*IInkTablet,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IInkTablets,
-            Index: i32,
-            Tablet: ?*?*IInkTablet,
-        ) callconv(.winapi) HRESULT,
-        IsPacketPropertySupported: *const fn(
-            self: *const IInkTablets,
-            packetPropertyName: ?BSTR,
-            Supported: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkTablets, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const IInkTablets, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, _NewEnum);
-    }
-    pub fn get_DefaultTablet(self: *const IInkTablets, DefaultTablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultTablet(self, DefaultTablet);
-    }
-    pub fn Item(self: *const IInkTablets, Index: i32, Tablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, Tablet);
-    }
-    pub fn IsPacketPropertySupported(self: *const IInkTablets, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsPacketPropertySupported(self, packetPropertyName, Supported);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkStrokeDisp_Value = Guid.initString("43242fea-91d1-4a72-963e-fbb91829cfa2");
-pub const IID_IInkStrokeDisp = &IID_IInkStrokeDisp_Value;
-pub const IInkStrokeDisp = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ID: *const fn(
-            self: *const IInkStrokeDisp,
-            ID: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BezierPoints: *const fn(
-            self: *const IInkStrokeDisp,
-            Points: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawingAttributes: *const fn(
-            self: *const IInkStrokeDisp,
-            DrawAttrs: ?*?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-        putref_DrawingAttributes: *const fn(
-            self: *const IInkStrokeDisp,
-            DrawAttrs: ?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: *const fn(
-            self: *const IInkStrokeDisp,
-            Ink: ?*?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtendedProperties: *const fn(
-            self: *const IInkStrokeDisp,
-            Properties: ?*?*IInkExtendedProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PolylineCusps: *const fn(
-            self: *const IInkStrokeDisp,
-            Cusps: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BezierCusps: *const fn(
-            self: *const IInkStrokeDisp,
-            Cusps: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelfIntersections: *const fn(
-            self: *const IInkStrokeDisp,
-            Intersections: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PacketCount: *const fn(
-            self: *const IInkStrokeDisp,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PacketSize: *const fn(
-            self: *const IInkStrokeDisp,
-            plSize: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PacketDescription: *const fn(
-            self: *const IInkStrokeDisp,
-            PacketDescription: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Deleted: *const fn(
-            self: *const IInkStrokeDisp,
-            Deleted: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetBoundingBox: *const fn(
-            self: *const IInkStrokeDisp,
-            BoundingBoxMode: InkBoundingBoxMode,
-            Rectangle: ?*?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        FindIntersections: *const fn(
-            self: *const IInkStrokeDisp,
-            Strokes: ?*IInkStrokes,
-            Intersections: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetRectangleIntersections: *const fn(
-            self: *const IInkStrokeDisp,
-            Rectangle: ?*IInkRectangle,
-            Intersections: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clip: *const fn(
-            self: *const IInkStrokeDisp,
-            Rectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        HitTestCircle: *const fn(
-            self: *const IInkStrokeDisp,
-            X: i32,
-            Y: i32,
-            Radius: f32,
-            Intersects: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        NearestPoint: *const fn(
-            self: *const IInkStrokeDisp,
-            X: i32,
-            Y: i32,
-            Distance: ?*f32,
-            Point: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        Split: *const fn(
-            self: *const IInkStrokeDisp,
-            SplitAt: f32,
-            NewStroke: ?*?*IInkStrokeDisp,
-        ) callconv(.winapi) HRESULT,
-        GetPacketDescriptionPropertyMetrics: *const fn(
-            self: *const IInkStrokeDisp,
-            PropertyName: ?BSTR,
-            Minimum: ?*i32,
-            Maximum: ?*i32,
-            Units: ?*TabletPropertyMetricUnit,
-            Resolution: ?*f32,
-        ) callconv(.winapi) HRESULT,
-        GetPoints: *const fn(
-            self: *const IInkStrokeDisp,
-            Index: i32,
-            Count: i32,
-            Points: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetPoints: *const fn(
-            self: *const IInkStrokeDisp,
-            Points: VARIANT,
-            Index: i32,
-            Count: i32,
-            NumberOfPointsSet: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetPacketData: *const fn(
-            self: *const IInkStrokeDisp,
-            Index: i32,
-            Count: i32,
-            PacketData: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetPacketValuesByProperty: *const fn(
-            self: *const IInkStrokeDisp,
-            PropertyName: ?BSTR,
-            Index: i32,
-            Count: i32,
-            PacketValues: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetPacketValuesByProperty: *const fn(
-            self: *const IInkStrokeDisp,
-            bstrPropertyName: ?BSTR,
-            PacketValues: VARIANT,
-            Index: i32,
-            Count: i32,
-            NumberOfPacketsSet: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetFlattenedBezierPoints: *const fn(
-            self: *const IInkStrokeDisp,
-            FittingError: i32,
-            FlattenedBezierPoints: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Transform: *const fn(
-            self: *const IInkStrokeDisp,
-            Transform: ?*IInkTransform,
-            ApplyOnPenWidth: i16,
-        ) callconv(.winapi) HRESULT,
-        ScaleToRectangle: *const fn(
-            self: *const IInkStrokeDisp,
-            Rectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IInkStrokeDisp,
-            HorizontalComponent: f32,
-            VerticalComponent: f32,
-        ) callconv(.winapi) HRESULT,
-        Rotate: *const fn(
-            self: *const IInkStrokeDisp,
-            Degrees: f32,
-            x: f32,
-            y: f32,
-        ) callconv(.winapi) HRESULT,
-        Shear: *const fn(
-            self: *const IInkStrokeDisp,
-            HorizontalMultiplier: f32,
-            VerticalMultiplier: f32,
-        ) callconv(.winapi) HRESULT,
-        ScaleTransform: *const fn(
-            self: *const IInkStrokeDisp,
-            HorizontalMultiplier: f32,
-            VerticalMultiplier: f32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ID(self: *const IInkStrokeDisp, ID: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ID(self, ID);
-    }
-    pub fn get_BezierPoints(self: *const IInkStrokeDisp, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BezierPoints(self, Points);
-    }
-    pub fn get_DrawingAttributes(self: *const IInkStrokeDisp, DrawAttrs: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DrawingAttributes(self, DrawAttrs);
-    }
-    pub fn putref_DrawingAttributes(self: *const IInkStrokeDisp, DrawAttrs: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_DrawingAttributes(self, DrawAttrs);
-    }
-    pub fn get_Ink(self: *const IInkStrokeDisp, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Ink(self, _param_Ink);
-    }
-    pub fn get_ExtendedProperties(self: *const IInkStrokeDisp, Properties: ?*?*IInkExtendedProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExtendedProperties(self, Properties);
-    }
-    pub fn get_PolylineCusps(self: *const IInkStrokeDisp, Cusps: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PolylineCusps(self, Cusps);
-    }
-    pub fn get_BezierCusps(self: *const IInkStrokeDisp, Cusps: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BezierCusps(self, Cusps);
-    }
-    pub fn get_SelfIntersections(self: *const IInkStrokeDisp, Intersections: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SelfIntersections(self, Intersections);
-    }
-    pub fn get_PacketCount(self: *const IInkStrokeDisp, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PacketCount(self, plCount);
-    }
-    pub fn get_PacketSize(self: *const IInkStrokeDisp, plSize: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PacketSize(self, plSize);
-    }
-    pub fn get_PacketDescription(self: *const IInkStrokeDisp, PacketDescription: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PacketDescription(self, PacketDescription);
-    }
-    pub fn get_Deleted(self: *const IInkStrokeDisp, Deleted: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Deleted(self, Deleted);
-    }
-    pub fn GetBoundingBox(self: *const IInkStrokeDisp, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBoundingBox(self, BoundingBoxMode, Rectangle);
-    }
-    pub fn FindIntersections(self: *const IInkStrokeDisp, Strokes: ?*IInkStrokes, Intersections: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.FindIntersections(self, Strokes, Intersections);
-    }
-    pub fn GetRectangleIntersections(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle, Intersections: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRectangleIntersections(self, Rectangle, Intersections);
-    }
-    pub fn Clip(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.Clip(self, Rectangle);
-    }
-    pub fn HitTestCircle(self: *const IInkStrokeDisp, X: i32, Y: i32, Radius: f32, Intersects: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.HitTestCircle(self, X, Y, Radius, Intersects);
-    }
-    pub fn NearestPoint(self: *const IInkStrokeDisp, X: i32, Y: i32, Distance: ?*f32, Point: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.NearestPoint(self, X, Y, Distance, Point);
-    }
-    pub fn Split(self: *const IInkStrokeDisp, SplitAt: f32, NewStroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.Split(self, SplitAt, NewStroke);
-    }
-    pub fn GetPacketDescriptionPropertyMetrics(self: *const IInkStrokeDisp, PropertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPacketDescriptionPropertyMetrics(self, PropertyName, Minimum, Maximum, Units, Resolution);
-    }
-    pub fn GetPoints(self: *const IInkStrokeDisp, Index: i32, Count: i32, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPoints(self, Index, Count, Points);
-    }
-    pub fn SetPoints(self: *const IInkStrokeDisp, Points: VARIANT, Index: i32, Count: i32, NumberOfPointsSet: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPoints(self, Points, Index, Count, NumberOfPointsSet);
-    }
-    pub fn GetPacketData(self: *const IInkStrokeDisp, Index: i32, Count: i32, PacketData: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPacketData(self, Index, Count, PacketData);
-    }
-    pub fn GetPacketValuesByProperty(self: *const IInkStrokeDisp, PropertyName: ?BSTR, Index: i32, Count: i32, PacketValues: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPacketValuesByProperty(self, PropertyName, Index, Count, PacketValues);
-    }
-    pub fn SetPacketValuesByProperty(self: *const IInkStrokeDisp, bstrPropertyName: ?BSTR, PacketValues: VARIANT, Index: i32, Count: i32, NumberOfPacketsSet: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPacketValuesByProperty(self, bstrPropertyName, PacketValues, Index, Count, NumberOfPacketsSet);
-    }
-    pub fn GetFlattenedBezierPoints(self: *const IInkStrokeDisp, FittingError: i32, FlattenedBezierPoints: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFlattenedBezierPoints(self, FittingError, FlattenedBezierPoints);
-    }
-    pub fn Transform(self: *const IInkStrokeDisp, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.Transform(self, _param_Transform, ApplyOnPenWidth);
-    }
-    pub fn ScaleToRectangle(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.ScaleToRectangle(self, Rectangle);
-    }
-    pub fn Move(self: *const IInkStrokeDisp, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, HorizontalComponent, VerticalComponent);
-    }
-    pub fn Rotate(self: *const IInkStrokeDisp, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Rotate(self, Degrees, x, y);
-    }
-    pub fn Shear(self: *const IInkStrokeDisp, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Shear(self, HorizontalMultiplier, VerticalMultiplier);
-    }
-    pub fn ScaleTransform(self: *const IInkStrokeDisp, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier);
-    }
-};
-
-const IID_IInkStrokes_Value = Guid.initString("f1f4c9d8-590a-4963-b3ae-1935671bb6f3");
-pub const IID_IInkStrokes = &IID_IInkStrokes_Value;
-pub const IInkStrokes = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IInkStrokes,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IInkStrokes,
-            _NewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: *const fn(
-            self: *const IInkStrokes,
-            Ink: ?*?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecognitionResult: *const fn(
-            self: *const IInkStrokes,
-            RecognitionResult: ?*?*IInkRecognitionResult,
-        ) callconv(.winapi) HRESULT,
-        ToString: *const fn(
-            self: *const IInkStrokes,
-            ToString: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IInkStrokes,
-            Index: i32,
-            Stroke: ?*?*IInkStrokeDisp,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IInkStrokes,
-            InkStroke: ?*IInkStrokeDisp,
-        ) callconv(.winapi) HRESULT,
-        AddStrokes: *const fn(
-            self: *const IInkStrokes,
-            InkStrokes: ?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IInkStrokes,
-            InkStroke: ?*IInkStrokeDisp,
-        ) callconv(.winapi) HRESULT,
-        RemoveStrokes: *const fn(
-            self: *const IInkStrokes,
-            InkStrokes: ?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        ModifyDrawingAttributes: *const fn(
-            self: *const IInkStrokes,
-            DrawAttrs: ?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-        GetBoundingBox: *const fn(
-            self: *const IInkStrokes,
-            BoundingBoxMode: InkBoundingBoxMode,
-            BoundingBox: ?*?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        Transform: *const fn(
-            self: *const IInkStrokes,
-            Transform: ?*IInkTransform,
-            ApplyOnPenWidth: i16,
-        ) callconv(.winapi) HRESULT,
-        ScaleToRectangle: *const fn(
-            self: *const IInkStrokes,
-            Rectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IInkStrokes,
-            HorizontalComponent: f32,
-            VerticalComponent: f32,
-        ) callconv(.winapi) HRESULT,
-        Rotate: *const fn(
-            self: *const IInkStrokes,
-            Degrees: f32,
-            x: f32,
-            y: f32,
-        ) callconv(.winapi) HRESULT,
-        Shear: *const fn(
-            self: *const IInkStrokes,
-            HorizontalMultiplier: f32,
-            VerticalMultiplier: f32,
-        ) callconv(.winapi) HRESULT,
-        ScaleTransform: *const fn(
-            self: *const IInkStrokes,
-            HorizontalMultiplier: f32,
-            VerticalMultiplier: f32,
-        ) callconv(.winapi) HRESULT,
-        Clip: *const fn(
-            self: *const IInkStrokes,
-            Rectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        RemoveRecognitionResult: *const fn(
-            self: *const IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkStrokes, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const IInkStrokes, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, _NewEnum);
-    }
-    pub fn get_Ink(self: *const IInkStrokes, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Ink(self, _param_Ink);
-    }
-    pub fn get_RecognitionResult(self: *const IInkStrokes, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RecognitionResult(self, RecognitionResult);
-    }
-    pub fn ToString(self: *const IInkStrokes, _param_ToString: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ToString(self, _param_ToString);
-    }
-    pub fn Item(self: *const IInkStrokes, Index: i32, Stroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, Stroke);
-    }
-    pub fn Add(self: *const IInkStrokes, InkStroke: ?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, InkStroke);
-    }
-    pub fn AddStrokes(self: *const IInkStrokes, _param_InkStrokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.AddStrokes(self, _param_InkStrokes);
-    }
-    pub fn Remove(self: *const IInkStrokes, InkStroke: ?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, InkStroke);
-    }
-    pub fn RemoveStrokes(self: *const IInkStrokes, _param_InkStrokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveStrokes(self, _param_InkStrokes);
-    }
-    pub fn ModifyDrawingAttributes(self: *const IInkStrokes, DrawAttrs: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.ModifyDrawingAttributes(self, DrawAttrs);
-    }
-    pub fn GetBoundingBox(self: *const IInkStrokes, BoundingBoxMode: InkBoundingBoxMode, BoundingBox: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBoundingBox(self, BoundingBoxMode, BoundingBox);
-    }
-    pub fn Transform(self: *const IInkStrokes, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.Transform(self, _param_Transform, ApplyOnPenWidth);
-    }
-    pub fn ScaleToRectangle(self: *const IInkStrokes, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.ScaleToRectangle(self, Rectangle);
-    }
-    pub fn Move(self: *const IInkStrokes, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, HorizontalComponent, VerticalComponent);
-    }
-    pub fn Rotate(self: *const IInkStrokes, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Rotate(self, Degrees, x, y);
-    }
-    pub fn Shear(self: *const IInkStrokes, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Shear(self, HorizontalMultiplier, VerticalMultiplier);
-    }
-    pub fn ScaleTransform(self: *const IInkStrokes, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier);
-    }
-    pub fn Clip(self: *const IInkStrokes, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.Clip(self, Rectangle);
-    }
-    pub fn RemoveRecognitionResult(self: *const IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveRecognitionResult(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCustomStrokes_Value = Guid.initString("7e23a88f-c30e-420f-9bdb-28902543f0c1");
-pub const IID_IInkCustomStrokes = &IID_IInkCustomStrokes_Value;
-pub const IInkCustomStrokes = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IInkCustomStrokes,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IInkCustomStrokes,
-            _NewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IInkCustomStrokes,
-            Identifier: VARIANT,
-            Strokes: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IInkCustomStrokes,
-            Name: ?BSTR,
-            Strokes: ?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IInkCustomStrokes,
-            Identifier: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IInkCustomStrokes,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkCustomStrokes, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const IInkCustomStrokes, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, _NewEnum);
-    }
-    pub fn Item(self: *const IInkCustomStrokes, Identifier: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Identifier, Strokes);
-    }
-    pub fn Add(self: *const IInkCustomStrokes, Name: ?BSTR, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, Name, Strokes);
-    }
-    pub fn Remove(self: *const IInkCustomStrokes, Identifier: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, Identifier);
-    }
-    pub fn Clear(self: *const IInkCustomStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-};
-
-const IID__IInkStrokesEvents_Value = Guid.initString("f33053ec-5d25-430a-928f-76a6491dde15");
-pub const IID__IInkStrokesEvents = &IID__IInkStrokesEvents_Value;
-pub const _IInkStrokesEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID_IInkDisp_Value = Guid.initString("9d398fa0-c4e2-4fcd-9973-975caaf47ea6");
-pub const IID_IInkDisp = &IID_IInkDisp_Value;
-pub const IInkDisp = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: *const fn(
-            self: *const IInkDisp,
-            Strokes: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtendedProperties: *const fn(
-            self: *const IInkDisp,
-            Properties: ?*?*IInkExtendedProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Dirty: *const fn(
-            self: *const IInkDisp,
-            Dirty: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Dirty: *const fn(
-            self: *const IInkDisp,
-            Dirty: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CustomStrokes: *const fn(
-            self: *const IInkDisp,
-            ppunkInkCustomStrokes: ?*?*IInkCustomStrokes,
-        ) callconv(.winapi) HRESULT,
-        GetBoundingBox: *const fn(
-            self: *const IInkDisp,
-            BoundingBoxMode: InkBoundingBoxMode,
-            Rectangle: ?*?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        DeleteStrokes: *const fn(
-            self: *const IInkDisp,
-            Strokes: ?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        DeleteStroke: *const fn(
-            self: *const IInkDisp,
-            Stroke: ?*IInkStrokeDisp,
-        ) callconv(.winapi) HRESULT,
-        ExtractStrokes: *const fn(
-            self: *const IInkDisp,
-            Strokes: ?*IInkStrokes,
-            ExtractFlags: InkExtractFlags,
-            ExtractedInk: ?*?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        ExtractWithRectangle: *const fn(
-            self: *const IInkDisp,
-            Rectangle: ?*IInkRectangle,
-            extractFlags: InkExtractFlags,
-            ExtractedInk: ?*?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        Clip: *const fn(
-            self: *const IInkDisp,
-            Rectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IInkDisp,
-            NewInk: ?*?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        HitTestCircle: *const fn(
-            self: *const IInkDisp,
-            X: i32,
-            Y: i32,
-            radius: f32,
-            Strokes: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        HitTestWithRectangle: *const fn(
-            self: *const IInkDisp,
-            SelectionRectangle: ?*IInkRectangle,
-            IntersectPercent: f32,
-            Strokes: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        HitTestWithLasso: *const fn(
-            self: *const IInkDisp,
-            Points: VARIANT,
-            IntersectPercent: f32,
-            LassoPoints: ?*VARIANT,
-            Strokes: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        NearestPoint: *const fn(
-            self: *const IInkDisp,
-            X: i32,
-            Y: i32,
-            PointOnStroke: ?*f32,
-            DistanceFromPacket: ?*f32,
-            Stroke: ?*?*IInkStrokeDisp,
-        ) callconv(.winapi) HRESULT,
-        CreateStrokes: *const fn(
-            self: *const IInkDisp,
-            StrokeIds: VARIANT,
-            Strokes: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        AddStrokesAtRectangle: *const fn(
-            self: *const IInkDisp,
-            SourceStrokes: ?*IInkStrokes,
-            TargetRectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        Save: *const fn(
-            self: *const IInkDisp,
-            PersistenceFormat: InkPersistenceFormat,
-            CompressionMode: InkPersistenceCompressionMode,
-            Data: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Load: *const fn(
-            self: *const IInkDisp,
-            Data: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        CreateStroke: *const fn(
-            self: *const IInkDisp,
-            PacketData: VARIANT,
-            PacketDescription: VARIANT,
-            Stroke: ?*?*IInkStrokeDisp,
-        ) callconv(.winapi) HRESULT,
-        ClipboardCopyWithRectangle: *const fn(
-            self: *const IInkDisp,
-            Rectangle: ?*IInkRectangle,
-            ClipboardFormats: InkClipboardFormats,
-            ClipboardModes: InkClipboardModes,
-            DataObject: ?*?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        ClipboardCopy: *const fn(
-            self: *const IInkDisp,
-            strokes: ?*IInkStrokes,
-            ClipboardFormats: InkClipboardFormats,
-            ClipboardModes: InkClipboardModes,
-            DataObject: ?*?*IDataObject,
-        ) callconv(.winapi) HRESULT,
-        CanPaste: *const fn(
-            self: *const IInkDisp,
-            DataObject: ?*IDataObject,
-            CanPaste: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        ClipboardPaste: *const fn(
-            self: *const IInkDisp,
-            x: i32,
-            y: i32,
-            DataObject: ?*IDataObject,
-            Strokes: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Strokes(self: *const IInkDisp, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Strokes(self, Strokes);
-    }
-    pub fn get_ExtendedProperties(self: *const IInkDisp, Properties: ?*?*IInkExtendedProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExtendedProperties(self, Properties);
-    }
-    pub fn get_Dirty(self: *const IInkDisp, Dirty: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Dirty(self, Dirty);
-    }
-    pub fn put_Dirty(self: *const IInkDisp, Dirty: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Dirty(self, Dirty);
-    }
-    pub fn get_CustomStrokes(self: *const IInkDisp, ppunkInkCustomStrokes: ?*?*IInkCustomStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CustomStrokes(self, ppunkInkCustomStrokes);
-    }
-    pub fn GetBoundingBox(self: *const IInkDisp, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBoundingBox(self, BoundingBoxMode, Rectangle);
-    }
-    pub fn DeleteStrokes(self: *const IInkDisp, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteStrokes(self, Strokes);
-    }
-    pub fn DeleteStroke(self: *const IInkDisp, Stroke: ?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteStroke(self, Stroke);
-    }
-    pub fn ExtractStrokes(self: *const IInkDisp, Strokes: ?*IInkStrokes, ExtractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.ExtractStrokes(self, Strokes, ExtractFlags, ExtractedInk);
-    }
-    pub fn ExtractWithRectangle(self: *const IInkDisp, Rectangle: ?*IInkRectangle, extractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.ExtractWithRectangle(self, Rectangle, extractFlags, ExtractedInk);
-    }
-    pub fn Clip(self: *const IInkDisp, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.Clip(self, Rectangle);
-    }
-    pub fn Clone(self: *const IInkDisp, NewInk: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, NewInk);
-    }
-    pub fn HitTestCircle(self: *const IInkDisp, X: i32, Y: i32, radius: f32, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.HitTestCircle(self, X, Y, radius, Strokes);
-    }
-    pub fn HitTestWithRectangle(self: *const IInkDisp, SelectionRectangle: ?*IInkRectangle, IntersectPercent: f32, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.HitTestWithRectangle(self, SelectionRectangle, IntersectPercent, Strokes);
-    }
-    pub fn HitTestWithLasso(self: *const IInkDisp, Points: VARIANT, IntersectPercent: f32, LassoPoints: ?*VARIANT, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.HitTestWithLasso(self, Points, IntersectPercent, LassoPoints, Strokes);
-    }
-    pub fn NearestPoint(self: *const IInkDisp, X: i32, Y: i32, PointOnStroke: ?*f32, DistanceFromPacket: ?*f32, Stroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.NearestPoint(self, X, Y, PointOnStroke, DistanceFromPacket, Stroke);
-    }
-    pub fn CreateStrokes(self: *const IInkDisp, StrokeIds: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateStrokes(self, StrokeIds, Strokes);
-    }
-    pub fn AddStrokesAtRectangle(self: *const IInkDisp, SourceStrokes: ?*IInkStrokes, TargetRectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.AddStrokesAtRectangle(self, SourceStrokes, TargetRectangle);
-    }
-    pub fn Save(self: *const IInkDisp, PersistenceFormat: InkPersistenceFormat, CompressionMode: InkPersistenceCompressionMode, Data: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Save(self, PersistenceFormat, CompressionMode, Data);
-    }
-    pub fn Load(self: *const IInkDisp, Data: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Load(self, Data);
-    }
-    pub fn CreateStroke(self: *const IInkDisp, PacketData: VARIANT, PacketDescription: VARIANT, Stroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateStroke(self, PacketData, PacketDescription, Stroke);
-    }
-    pub fn ClipboardCopyWithRectangle(self: *const IInkDisp, Rectangle: ?*IInkRectangle, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.ClipboardCopyWithRectangle(self, Rectangle, ClipboardFormats, ClipboardModes, DataObject);
-    }
-    pub fn ClipboardCopy(self: *const IInkDisp, strokes: ?*IInkStrokes, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
-        return self.vtable.ClipboardCopy(self, strokes, ClipboardFormats, ClipboardModes, DataObject);
-    }
-    pub fn CanPaste(self: *const IInkDisp, DataObject: ?*IDataObject, _param_CanPaste: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.CanPaste(self, DataObject, _param_CanPaste);
-    }
-    pub fn ClipboardPaste(self: *const IInkDisp, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.ClipboardPaste(self, x, y, DataObject, Strokes);
-    }
-};
-
-const IID__IInkEvents_Value = Guid.initString("427b1865-ca3f-479a-83a9-0f420f2a0073");
-pub const IID__IInkEvents = &IID__IInkEvents_Value;
-pub const _IInkEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID_IInkRenderer_Value = Guid.initString("e6257a9c-b511-4f4c-a8b0-a7dbc9506b83");
-pub const IID_IInkRenderer = &IID_IInkRenderer_Value;
-pub const IInkRenderer = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        GetViewTransform: *const fn(
-            self: *const IInkRenderer,
-            ViewTransform: ?*IInkTransform,
-        ) callconv(.winapi) HRESULT,
-        SetViewTransform: *const fn(
-            self: *const IInkRenderer,
-            ViewTransform: ?*IInkTransform,
-        ) callconv(.winapi) HRESULT,
-        GetObjectTransform: *const fn(
-            self: *const IInkRenderer,
-            ObjectTransform: ?*IInkTransform,
-        ) callconv(.winapi) HRESULT,
-        SetObjectTransform: *const fn(
-            self: *const IInkRenderer,
-            ObjectTransform: ?*IInkTransform,
+        put_DataCacheEnabled: *const fn(
+            self: *const IDynamicRenderer,
+            fCacheData: BOOL,
+        ) callconv(.winapi) HRESULT,
+        ReleaseCachedData: *const fn(
+            self: *const IDynamicRenderer,
+            strokeId: u32,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const IDynamicRenderer,
         ) callconv(.winapi) HRESULT,
         Draw: *const fn(
-            self: *const IInkRenderer,
-            hDC: isize,
-            Strokes: ?*IInkStrokes,
+            self: *const IDynamicRenderer,
+            hDC: HANDLE_PTR,
         ) callconv(.winapi) HRESULT,
-        DrawStroke: *const fn(
-            self: *const IInkRenderer,
-            hDC: isize,
-            Stroke: ?*IInkStrokeDisp,
-            DrawingAttributes: ?*IInkDrawingAttributes,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Enabled(self: *const IDynamicRenderer, bEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, bEnabled);
+    }
+    pub fn put_Enabled(self: *const IDynamicRenderer, bEnabled: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, bEnabled);
+    }
+    pub fn get_HWND(self: *const IDynamicRenderer, hwnd: ?*HANDLE_PTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HWND(self, hwnd);
+    }
+    pub fn put_HWND(self: *const IDynamicRenderer, hwnd: HANDLE_PTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_HWND(self, hwnd);
+    }
+    pub fn get_ClipRectangle(self: *const IDynamicRenderer, prcClipRect: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClipRectangle(self, prcClipRect);
+    }
+    pub fn put_ClipRectangle(self: *const IDynamicRenderer, prcClipRect: ?*const RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClipRectangle(self, prcClipRect);
+    }
+    pub fn get_ClipRegion(self: *const IDynamicRenderer, phClipRgn: ?*HANDLE_PTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClipRegion(self, phClipRgn);
+    }
+    pub fn put_ClipRegion(self: *const IDynamicRenderer, hClipRgn: HANDLE_PTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClipRegion(self, hClipRgn);
+    }
+    pub fn get_DrawingAttributes(self: *const IDynamicRenderer, ppiDA: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DrawingAttributes(self, ppiDA);
+    }
+    pub fn putref_DrawingAttributes(self: *const IDynamicRenderer, piDA: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_DrawingAttributes(self, piDA);
+    }
+    pub fn get_DataCacheEnabled(self: *const IDynamicRenderer, pfCacheData: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DataCacheEnabled(self, pfCacheData);
+    }
+    pub fn put_DataCacheEnabled(self: *const IDynamicRenderer, fCacheData: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DataCacheEnabled(self, fCacheData);
+    }
+    pub fn ReleaseCachedData(self: *const IDynamicRenderer, strokeId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseCachedData(self, strokeId);
+    }
+    pub fn Refresh(self: *const IDynamicRenderer) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn Draw(self: *const IDynamicRenderer, hDC: HANDLE_PTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Draw(self, hDC);
+    }
+};
+
+pub const IEC_GESTUREINFO = extern struct {
+    nmhdr: NMHDR,
+    Cursor: ?*IInkCursor,
+    Strokes: ?*IInkStrokes,
+    Gestures: VARIANT,
+};
+
+pub const IEC_RECOGNITIONRESULTINFO = extern struct {
+    nmhdr: NMHDR,
+    RecognitionResult: ?*IInkRecognitionResult,
+};
+
+pub const IEC_STROKEINFO = extern struct {
+    nmhdr: NMHDR,
+    Cursor: ?*IInkCursor,
+    Stroke: ?*IInkStrokeDisp,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IGestureRecognizer_Value = Guid.initString("ae9ef86b-7054-45e3-ae22-3174dc8811b7");
+pub const IID_IGestureRecognizer = &IID_IGestureRecognizer_Value;
+pub const IGestureRecognizer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const IGestureRecognizer,
+            pfEnabled: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        PixelToInkSpace: *const fn(
-            self: *const IInkRenderer,
-            hDC: isize,
-            x: ?*i32,
-            y: ?*i32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enabled: *const fn(
+            self: *const IGestureRecognizer,
+            fEnabled: BOOL,
         ) callconv(.winapi) HRESULT,
-        InkSpaceToPixel: *const fn(
-            self: *const IInkRenderer,
-            hdcDisplay: isize,
-            x: ?*i32,
-            y: ?*i32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaxStrokeCount: *const fn(
+            self: *const IGestureRecognizer,
+            pcStrokes: ?*i32,
         ) callconv(.winapi) HRESULT,
-        PixelToInkSpaceFromPoints: *const fn(
-            self: *const IInkRenderer,
-            hDC: isize,
-            Points: ?*VARIANT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MaxStrokeCount: *const fn(
+            self: *const IGestureRecognizer,
+            cStrokes: i32,
         ) callconv(.winapi) HRESULT,
-        InkSpaceToPixelFromPoints: *const fn(
-            self: *const IInkRenderer,
-            hDC: isize,
-            Points: ?*VARIANT,
+        EnableGestures: *const fn(
+            self: *const IGestureRecognizer,
+            cGestures: u32,
+            pGestures: [*]const i32,
         ) callconv(.winapi) HRESULT,
-        Measure: *const fn(
-            self: *const IInkRenderer,
-            Strokes: ?*IInkStrokes,
-            Rectangle: ?*?*IInkRectangle,
+        Reset: *const fn(
+            self: *const IGestureRecognizer,
         ) callconv(.winapi) HRESULT,
-        MeasureStroke: *const fn(
-            self: *const IInkRenderer,
-            Stroke: ?*IInkStrokeDisp,
-            DrawingAttributes: ?*IInkDrawingAttributes,
-            Rectangle: ?*?*IInkRectangle,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_Enabled(self: *const IGestureRecognizer, pfEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, pfEnabled);
+    }
+    pub fn put_Enabled(self: *const IGestureRecognizer, fEnabled: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, fEnabled);
+    }
+    pub fn get_MaxStrokeCount(self: *const IGestureRecognizer, pcStrokes: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaxStrokeCount(self, pcStrokes);
+    }
+    pub fn put_MaxStrokeCount(self: *const IGestureRecognizer, cStrokes: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MaxStrokeCount(self, cStrokes);
+    }
+    pub fn EnableGestures(self: *const IGestureRecognizer, cGestures: u32, pGestures: [*]const i32) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableGestures(self, cGestures, pGestures);
+    }
+    pub fn Reset(self: *const IGestureRecognizer) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IHandwrittenTextInsertion_Value = Guid.initString("56fdea97-ecd6-43e7-aa3a-816be7785860");
+pub const IID_IHandwrittenTextInsertion = &IID_IHandwrittenTextInsertion_Value;
+pub const IHandwrittenTextInsertion = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InsertRecognitionResultsArray: *const fn(
+            self: *const IHandwrittenTextInsertion,
+            psaAlternates: ?*SAFEARRAY,
+            locale: u32,
+            fAlternateContainsAutoSpacingInformation: BOOL,
         ) callconv(.winapi) HRESULT,
-        Move: *const fn(
-            self: *const IInkRenderer,
-            HorizontalComponent: f32,
-            VerticalComponent: f32,
+        InsertInkRecognitionResult: *const fn(
+            self: *const IHandwrittenTextInsertion,
+            pIInkRecoResult: ?*IInkRecognitionResult,
+            locale: u32,
+            fAlternateContainsAutoSpacingInformation: BOOL,
         ) callconv(.winapi) HRESULT,
-        Rotate: *const fn(
-            self: *const IInkRenderer,
-            Degrees: f32,
-            x: f32,
-            y: f32,
-        ) callconv(.winapi) HRESULT,
-        ScaleTransform: *const fn(
-            self: *const IInkRenderer,
-            HorizontalMultiplier: f32,
-            VerticalMultiplier: f32,
-            ApplyOnPenWidth: i16,
-        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InsertRecognitionResultsArray(self: *const IHandwrittenTextInsertion, psaAlternates: ?*SAFEARRAY, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertRecognitionResultsArray(self, psaAlternates, locale, fAlternateContainsAutoSpacingInformation);
+    }
+    pub fn InsertInkRecognitionResult(self: *const IHandwrittenTextInsertion, pIInkRecoResult: ?*IInkRecognitionResult, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertInkRecognitionResult(self, pIInkRecoResult, locale, fAlternateContainsAutoSpacingInformation);
+    }
+};
+
+const IID_IInk_Value = Guid.initString("03f8e511-43a1-11d3-8bb6-0080c7d6bad5");
+pub const IID_IInk = &IID_IInk_Value;
+pub const IInk = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetViewTransform(self: *const IInkRenderer, ViewTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
-        return self.vtable.GetViewTransform(self, ViewTransform);
-    }
-    pub fn SetViewTransform(self: *const IInkRenderer, ViewTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
-        return self.vtable.SetViewTransform(self, ViewTransform);
-    }
-    pub fn GetObjectTransform(self: *const IInkRenderer, ObjectTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectTransform(self, ObjectTransform);
-    }
-    pub fn SetObjectTransform(self: *const IInkRenderer, ObjectTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
-        return self.vtable.SetObjectTransform(self, ObjectTransform);
-    }
-    pub fn Draw(self: *const IInkRenderer, hDC: isize, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.Draw(self, hDC, Strokes);
-    }
-    pub fn DrawStroke(self: *const IInkRenderer, hDC: isize, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.DrawStroke(self, hDC, Stroke, DrawingAttributes);
-    }
-    pub fn PixelToInkSpace(self: *const IInkRenderer, hDC: isize, x: ?*i32, y: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.PixelToInkSpace(self, hDC, x, y);
-    }
-    pub fn InkSpaceToPixel(self: *const IInkRenderer, hdcDisplay: isize, x: ?*i32, y: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.InkSpaceToPixel(self, hdcDisplay, x, y);
-    }
-    pub fn PixelToInkSpaceFromPoints(self: *const IInkRenderer, hDC: isize, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.PixelToInkSpaceFromPoints(self, hDC, Points);
-    }
-    pub fn InkSpaceToPixelFromPoints(self: *const IInkRenderer, hDC: isize, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.InkSpaceToPixelFromPoints(self, hDC, Points);
-    }
-    pub fn Measure(self: *const IInkRenderer, Strokes: ?*IInkStrokes, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.Measure(self, Strokes, Rectangle);
-    }
-    pub fn MeasureStroke(self: *const IInkRenderer, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.MeasureStroke(self, Stroke, DrawingAttributes, Rectangle);
-    }
-    pub fn Move(self: *const IInkRenderer, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Move(self, HorizontalComponent, VerticalComponent);
-    }
-    pub fn Rotate(self: *const IInkRenderer, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
-        return self.vtable.Rotate(self, Degrees, x, y);
-    }
-    pub fn ScaleTransform(self: *const IInkRenderer, HorizontalMultiplier: f32, VerticalMultiplier: f32, ApplyOnPenWidth: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier, ApplyOnPenWidth);
-    }
 };
 
 const IID_IInkCollector_Value = Guid.initString("f0f060b5-8b1f-4a7c-89ec-880692588a4f");
@@ -4000,1852 +2169,461 @@ pub const IInkCollector = extern union {
     }
 };
 
-const IID__IInkCollectorEvents_Value = Guid.initString("11a583f2-712d-4fea-abcf-ab4af38ea06b");
-pub const IID__IInkCollectorEvents = &IID__IInkCollectorEvents_Value;
-pub const _IInkCollectorEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID_IInkOverlay_Value = Guid.initString("b82a463b-c1c5-45a3-997c-deab5651b67a");
-pub const IID_IInkOverlay = &IID_IInkOverlay_Value;
-pub const IInkOverlay = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_hWnd: *const fn(
-            self: *const IInkOverlay,
-            CurrentWindow: ?*isize,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_hWnd: *const fn(
-            self: *const IInkOverlay,
-            NewWindow: isize,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IInkOverlay,
-            Collecting: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const IInkOverlay,
-            Collecting: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultDrawingAttributes: *const fn(
-            self: *const IInkOverlay,
-            CurrentAttributes: ?*?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-        putref_DefaultDrawingAttributes: *const fn(
-            self: *const IInkOverlay,
-            NewAttributes: ?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Renderer: *const fn(
-            self: *const IInkOverlay,
-            CurrentInkRenderer: ?*?*IInkRenderer,
-        ) callconv(.winapi) HRESULT,
-        putref_Renderer: *const fn(
-            self: *const IInkOverlay,
-            NewInkRenderer: ?*IInkRenderer,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: *const fn(
-            self: *const IInkOverlay,
-            Ink: ?*?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        putref_Ink: *const fn(
-            self: *const IInkOverlay,
-            NewInk: ?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoRedraw: *const fn(
-            self: *const IInkOverlay,
-            AutoRedraw: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoRedraw: *const fn(
-            self: *const IInkOverlay,
-            AutoRedraw: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectingInk: *const fn(
-            self: *const IInkOverlay,
-            Collecting: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectionMode: *const fn(
-            self: *const IInkOverlay,
-            Mode: ?*InkCollectionMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CollectionMode: *const fn(
-            self: *const IInkOverlay,
-            Mode: InkCollectionMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DynamicRendering: *const fn(
-            self: *const IInkOverlay,
-            Enabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DynamicRendering: *const fn(
-            self: *const IInkOverlay,
-            Enabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredPacketDescription: *const fn(
-            self: *const IInkOverlay,
-            PacketGuids: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredPacketDescription: *const fn(
-            self: *const IInkOverlay,
-            PacketGuids: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MouseIcon: *const fn(
-            self: *const IInkOverlay,
-            MouseIcon: ?*?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MouseIcon: *const fn(
-            self: *const IInkOverlay,
-            MouseIcon: ?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        putref_MouseIcon: *const fn(
-            self: *const IInkOverlay,
-            MouseIcon: ?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MousePointer: *const fn(
-            self: *const IInkOverlay,
-            MousePointer: ?*InkMousePointer,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MousePointer: *const fn(
-            self: *const IInkOverlay,
-            MousePointer: InkMousePointer,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EditingMode: *const fn(
-            self: *const IInkOverlay,
-            EditingMode: ?*InkOverlayEditingMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EditingMode: *const fn(
-            self: *const IInkOverlay,
-            EditingMode: InkOverlayEditingMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Selection: *const fn(
-            self: *const IInkOverlay,
-            Selection: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Selection: *const fn(
-            self: *const IInkOverlay,
-            Selection: ?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserMode: *const fn(
-            self: *const IInkOverlay,
-            EraserMode: ?*InkOverlayEraserMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserMode: *const fn(
-            self: *const IInkOverlay,
-            EraserMode: InkOverlayEraserMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserWidth: *const fn(
-            self: *const IInkOverlay,
-            EraserWidth: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserWidth: *const fn(
-            self: *const IInkOverlay,
-            newEraserWidth: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachMode: *const fn(
-            self: *const IInkOverlay,
-            AttachMode: ?*InkOverlayAttachMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachMode: *const fn(
-            self: *const IInkOverlay,
-            AttachMode: InkOverlayAttachMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cursors: *const fn(
-            self: *const IInkOverlay,
-            Cursors: ?*?*IInkCursors,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginX: *const fn(
-            self: *const IInkOverlay,
-            MarginX: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginX: *const fn(
-            self: *const IInkOverlay,
-            MarginX: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginY: *const fn(
-            self: *const IInkOverlay,
-            MarginY: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginY: *const fn(
-            self: *const IInkOverlay,
-            MarginY: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tablet: *const fn(
-            self: *const IInkOverlay,
-            SingleTablet: ?*?*IInkTablet,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastInk: *const fn(
-            self: *const IInkOverlay,
-            Support: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastInk: *const fn(
-            self: *const IInkOverlay,
-            Support: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastSelectionUI: *const fn(
-            self: *const IInkOverlay,
-            Support: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastSelectionUI: *const fn(
-            self: *const IInkOverlay,
-            Support: i16,
-        ) callconv(.winapi) HRESULT,
-        HitTestSelection: *const fn(
-            self: *const IInkOverlay,
-            x: i32,
-            y: i32,
-            SelArea: ?*SelectionHitResult,
-        ) callconv(.winapi) HRESULT,
-        Draw: *const fn(
-            self: *const IInkOverlay,
-            Rect: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        SetGestureStatus: *const fn(
-            self: *const IInkOverlay,
-            Gesture: InkApplicationGesture,
-            Listen: i16,
-        ) callconv(.winapi) HRESULT,
-        GetGestureStatus: *const fn(
-            self: *const IInkOverlay,
-            Gesture: InkApplicationGesture,
-            Listening: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetWindowInputRectangle: *const fn(
-            self: *const IInkOverlay,
-            WindowInputRectangle: ?*?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        SetWindowInputRectangle: *const fn(
-            self: *const IInkOverlay,
-            WindowInputRectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        SetAllTabletsMode: *const fn(
-            self: *const IInkOverlay,
-            UseMouseForInput: i16,
-        ) callconv(.winapi) HRESULT,
-        SetSingleTabletIntegratedMode: *const fn(
-            self: *const IInkOverlay,
-            Tablet: ?*IInkTablet,
-        ) callconv(.winapi) HRESULT,
-        GetEventInterest: *const fn(
-            self: *const IInkOverlay,
-            EventId: InkCollectorEventInterest,
-            Listen: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        SetEventInterest: *const fn(
-            self: *const IInkOverlay,
-            EventId: InkCollectorEventInterest,
-            Listen: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_hWnd(self: *const IInkOverlay, CurrentWindow: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_hWnd(self, CurrentWindow);
-    }
-    pub fn put_hWnd(self: *const IInkOverlay, NewWindow: isize) callconv(.@"inline") HRESULT {
-        return self.vtable.put_hWnd(self, NewWindow);
-    }
-    pub fn get_Enabled(self: *const IInkOverlay, Collecting: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, Collecting);
-    }
-    pub fn put_Enabled(self: *const IInkOverlay, Collecting: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, Collecting);
-    }
-    pub fn get_DefaultDrawingAttributes(self: *const IInkOverlay, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultDrawingAttributes(self, CurrentAttributes);
-    }
-    pub fn putref_DefaultDrawingAttributes(self: *const IInkOverlay, NewAttributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_DefaultDrawingAttributes(self, NewAttributes);
-    }
-    pub fn get_Renderer(self: *const IInkOverlay, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Renderer(self, CurrentInkRenderer);
-    }
-    pub fn putref_Renderer(self: *const IInkOverlay, NewInkRenderer: ?*IInkRenderer) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Renderer(self, NewInkRenderer);
-    }
-    pub fn get_Ink(self: *const IInkOverlay, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Ink(self, _param_Ink);
-    }
-    pub fn putref_Ink(self: *const IInkOverlay, NewInk: ?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Ink(self, NewInk);
-    }
-    pub fn get_AutoRedraw(self: *const IInkOverlay, AutoRedraw: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AutoRedraw(self, AutoRedraw);
-    }
-    pub fn put_AutoRedraw(self: *const IInkOverlay, AutoRedraw: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AutoRedraw(self, AutoRedraw);
-    }
-    pub fn get_CollectingInk(self: *const IInkOverlay, Collecting: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CollectingInk(self, Collecting);
-    }
-    pub fn get_CollectionMode(self: *const IInkOverlay, Mode: ?*InkCollectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CollectionMode(self, Mode);
-    }
-    pub fn put_CollectionMode(self: *const IInkOverlay, Mode: InkCollectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_CollectionMode(self, Mode);
-    }
-    pub fn get_DynamicRendering(self: *const IInkOverlay, Enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DynamicRendering(self, Enabled);
-    }
-    pub fn put_DynamicRendering(self: *const IInkOverlay, Enabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DynamicRendering(self, Enabled);
-    }
-    pub fn get_DesiredPacketDescription(self: *const IInkOverlay, PacketGuids: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DesiredPacketDescription(self, PacketGuids);
-    }
-    pub fn put_DesiredPacketDescription(self: *const IInkOverlay, PacketGuids: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DesiredPacketDescription(self, PacketGuids);
-    }
-    pub fn get_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MouseIcon(self, MouseIcon);
-    }
-    pub fn put_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MouseIcon(self, MouseIcon);
-    }
-    pub fn putref_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_MouseIcon(self, MouseIcon);
-    }
-    pub fn get_MousePointer(self: *const IInkOverlay, MousePointer: ?*InkMousePointer) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MousePointer(self, MousePointer);
-    }
-    pub fn put_MousePointer(self: *const IInkOverlay, MousePointer: InkMousePointer) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MousePointer(self, MousePointer);
-    }
-    pub fn get_EditingMode(self: *const IInkOverlay, EditingMode: ?*InkOverlayEditingMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EditingMode(self, EditingMode);
-    }
-    pub fn put_EditingMode(self: *const IInkOverlay, EditingMode: InkOverlayEditingMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EditingMode(self, EditingMode);
-    }
-    pub fn get_Selection(self: *const IInkOverlay, Selection: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Selection(self, Selection);
-    }
-    pub fn put_Selection(self: *const IInkOverlay, Selection: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Selection(self, Selection);
-    }
-    pub fn get_EraserMode(self: *const IInkOverlay, EraserMode: ?*InkOverlayEraserMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EraserMode(self, EraserMode);
-    }
-    pub fn put_EraserMode(self: *const IInkOverlay, EraserMode: InkOverlayEraserMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EraserMode(self, EraserMode);
-    }
-    pub fn get_EraserWidth(self: *const IInkOverlay, EraserWidth: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EraserWidth(self, EraserWidth);
-    }
-    pub fn put_EraserWidth(self: *const IInkOverlay, newEraserWidth: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EraserWidth(self, newEraserWidth);
-    }
-    pub fn get_AttachMode(self: *const IInkOverlay, AttachMode: ?*InkOverlayAttachMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AttachMode(self, AttachMode);
-    }
-    pub fn put_AttachMode(self: *const IInkOverlay, AttachMode: InkOverlayAttachMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AttachMode(self, AttachMode);
-    }
-    pub fn get_Cursors(self: *const IInkOverlay, Cursors: ?*?*IInkCursors) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Cursors(self, Cursors);
-    }
-    pub fn get_MarginX(self: *const IInkOverlay, MarginX: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MarginX(self, MarginX);
-    }
-    pub fn put_MarginX(self: *const IInkOverlay, MarginX: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MarginX(self, MarginX);
-    }
-    pub fn get_MarginY(self: *const IInkOverlay, MarginY: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MarginY(self, MarginY);
-    }
-    pub fn put_MarginY(self: *const IInkOverlay, MarginY: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MarginY(self, MarginY);
-    }
-    pub fn get_Tablet(self: *const IInkOverlay, SingleTablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Tablet(self, SingleTablet);
-    }
-    pub fn get_SupportHighContrastInk(self: *const IInkOverlay, Support: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SupportHighContrastInk(self, Support);
-    }
-    pub fn put_SupportHighContrastInk(self: *const IInkOverlay, Support: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SupportHighContrastInk(self, Support);
-    }
-    pub fn get_SupportHighContrastSelectionUI(self: *const IInkOverlay, Support: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SupportHighContrastSelectionUI(self, Support);
-    }
-    pub fn put_SupportHighContrastSelectionUI(self: *const IInkOverlay, Support: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SupportHighContrastSelectionUI(self, Support);
-    }
-    pub fn HitTestSelection(self: *const IInkOverlay, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.@"inline") HRESULT {
-        return self.vtable.HitTestSelection(self, x, y, SelArea);
-    }
-    pub fn Draw(self: *const IInkOverlay, Rect: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.Draw(self, Rect);
-    }
-    pub fn SetGestureStatus(self: *const IInkOverlay, Gesture: InkApplicationGesture, Listen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGestureStatus(self, Gesture, Listen);
-    }
-    pub fn GetGestureStatus(self: *const IInkOverlay, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGestureStatus(self, Gesture, Listening);
-    }
-    pub fn GetWindowInputRectangle(self: *const IInkOverlay, WindowInputRectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWindowInputRectangle(self, WindowInputRectangle);
-    }
-    pub fn SetWindowInputRectangle(self: *const IInkOverlay, WindowInputRectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWindowInputRectangle(self, WindowInputRectangle);
-    }
-    pub fn SetAllTabletsMode(self: *const IInkOverlay, UseMouseForInput: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllTabletsMode(self, UseMouseForInput);
-    }
-    pub fn SetSingleTabletIntegratedMode(self: *const IInkOverlay, Tablet: ?*IInkTablet) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSingleTabletIntegratedMode(self, Tablet);
-    }
-    pub fn GetEventInterest(self: *const IInkOverlay, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEventInterest(self, EventId, Listen);
-    }
-    pub fn SetEventInterest(self: *const IInkOverlay, EventId: InkCollectorEventInterest, Listen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEventInterest(self, EventId, Listen);
-    }
-};
-
-const IID__IInkOverlayEvents_Value = Guid.initString("31179b69-e563-489e-b16f-712f1e8a0651");
-pub const IID__IInkOverlayEvents = &IID__IInkOverlayEvents_Value;
-pub const _IInkOverlayEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const IID_IInkPicture_Value = Guid.initString("e85662e0-379a-40d7-9b5c-757d233f9923");
-pub const IID_IInkPicture = &IID_IInkPicture_Value;
-pub const IInkPicture = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_hWnd: *const fn(
-            self: *const IInkPicture,
-            CurrentWindow: ?*isize,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultDrawingAttributes: *const fn(
-            self: *const IInkPicture,
-            CurrentAttributes: ?*?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-        putref_DefaultDrawingAttributes: *const fn(
-            self: *const IInkPicture,
-            NewAttributes: ?*IInkDrawingAttributes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Renderer: *const fn(
-            self: *const IInkPicture,
-            CurrentInkRenderer: ?*?*IInkRenderer,
-        ) callconv(.winapi) HRESULT,
-        putref_Renderer: *const fn(
-            self: *const IInkPicture,
-            NewInkRenderer: ?*IInkRenderer,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: *const fn(
-            self: *const IInkPicture,
-            Ink: ?*?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        putref_Ink: *const fn(
-            self: *const IInkPicture,
-            NewInk: ?*IInkDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoRedraw: *const fn(
-            self: *const IInkPicture,
-            AutoRedraw: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoRedraw: *const fn(
-            self: *const IInkPicture,
-            AutoRedraw: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectingInk: *const fn(
-            self: *const IInkPicture,
-            Collecting: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectionMode: *const fn(
-            self: *const IInkPicture,
-            Mode: ?*InkCollectionMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CollectionMode: *const fn(
-            self: *const IInkPicture,
-            Mode: InkCollectionMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DynamicRendering: *const fn(
-            self: *const IInkPicture,
-            Enabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DynamicRendering: *const fn(
-            self: *const IInkPicture,
-            Enabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredPacketDescription: *const fn(
-            self: *const IInkPicture,
-            PacketGuids: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredPacketDescription: *const fn(
-            self: *const IInkPicture,
-            PacketGuids: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MouseIcon: *const fn(
-            self: *const IInkPicture,
-            MouseIcon: ?*?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MouseIcon: *const fn(
-            self: *const IInkPicture,
-            MouseIcon: ?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        putref_MouseIcon: *const fn(
-            self: *const IInkPicture,
-            MouseIcon: ?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MousePointer: *const fn(
-            self: *const IInkPicture,
-            MousePointer: ?*InkMousePointer,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MousePointer: *const fn(
-            self: *const IInkPicture,
-            MousePointer: InkMousePointer,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EditingMode: *const fn(
-            self: *const IInkPicture,
-            EditingMode: ?*InkOverlayEditingMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EditingMode: *const fn(
-            self: *const IInkPicture,
-            EditingMode: InkOverlayEditingMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Selection: *const fn(
-            self: *const IInkPicture,
-            Selection: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Selection: *const fn(
-            self: *const IInkPicture,
-            Selection: ?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserMode: *const fn(
-            self: *const IInkPicture,
-            EraserMode: ?*InkOverlayEraserMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserMode: *const fn(
-            self: *const IInkPicture,
-            EraserMode: InkOverlayEraserMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserWidth: *const fn(
-            self: *const IInkPicture,
-            EraserWidth: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserWidth: *const fn(
-            self: *const IInkPicture,
-            newEraserWidth: i32,
-        ) callconv(.winapi) HRESULT,
-        putref_Picture: *const fn(
-            self: *const IInkPicture,
-            pPicture: ?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Picture: *const fn(
-            self: *const IInkPicture,
-            pPicture: ?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Picture: *const fn(
-            self: *const IInkPicture,
-            ppPicture: ?*?*IPictureDisp,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SizeMode: *const fn(
-            self: *const IInkPicture,
-            smNewSizeMode: InkPictureSizeMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SizeMode: *const fn(
-            self: *const IInkPicture,
-            smSizeMode: ?*InkPictureSizeMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BackColor: *const fn(
-            self: *const IInkPicture,
-            newColor: u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackColor: *const fn(
-            self: *const IInkPicture,
-            pColor: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cursors: *const fn(
-            self: *const IInkPicture,
-            Cursors: ?*?*IInkCursors,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginX: *const fn(
-            self: *const IInkPicture,
-            MarginX: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginX: *const fn(
-            self: *const IInkPicture,
-            MarginX: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginY: *const fn(
-            self: *const IInkPicture,
-            MarginY: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginY: *const fn(
-            self: *const IInkPicture,
-            MarginY: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tablet: *const fn(
-            self: *const IInkPicture,
-            SingleTablet: ?*?*IInkTablet,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastInk: *const fn(
-            self: *const IInkPicture,
-            Support: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastInk: *const fn(
-            self: *const IInkPicture,
-            Support: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastSelectionUI: *const fn(
-            self: *const IInkPicture,
-            Support: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastSelectionUI: *const fn(
-            self: *const IInkPicture,
-            Support: i16,
-        ) callconv(.winapi) HRESULT,
-        HitTestSelection: *const fn(
-            self: *const IInkPicture,
-            x: i32,
-            y: i32,
-            SelArea: ?*SelectionHitResult,
-        ) callconv(.winapi) HRESULT,
-        SetGestureStatus: *const fn(
-            self: *const IInkPicture,
-            Gesture: InkApplicationGesture,
-            Listen: i16,
-        ) callconv(.winapi) HRESULT,
-        GetGestureStatus: *const fn(
-            self: *const IInkPicture,
-            Gesture: InkApplicationGesture,
-            Listening: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetWindowInputRectangle: *const fn(
-            self: *const IInkPicture,
-            WindowInputRectangle: ?*?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        SetWindowInputRectangle: *const fn(
-            self: *const IInkPicture,
-            WindowInputRectangle: ?*IInkRectangle,
-        ) callconv(.winapi) HRESULT,
-        SetAllTabletsMode: *const fn(
-            self: *const IInkPicture,
-            UseMouseForInput: i16,
-        ) callconv(.winapi) HRESULT,
-        SetSingleTabletIntegratedMode: *const fn(
-            self: *const IInkPicture,
-            Tablet: ?*IInkTablet,
-        ) callconv(.winapi) HRESULT,
-        GetEventInterest: *const fn(
-            self: *const IInkPicture,
-            EventId: InkCollectorEventInterest,
-            Listen: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        SetEventInterest: *const fn(
-            self: *const IInkPicture,
-            EventId: InkCollectorEventInterest,
-            Listen: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InkEnabled: *const fn(
-            self: *const IInkPicture,
-            Collecting: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InkEnabled: *const fn(
-            self: *const IInkPicture,
-            Collecting: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IInkPicture,
-            pbool: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const IInkPicture,
-            vbool: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_hWnd(self: *const IInkPicture, CurrentWindow: ?*isize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_hWnd(self, CurrentWindow);
-    }
-    pub fn get_DefaultDrawingAttributes(self: *const IInkPicture, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultDrawingAttributes(self, CurrentAttributes);
-    }
-    pub fn putref_DefaultDrawingAttributes(self: *const IInkPicture, NewAttributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_DefaultDrawingAttributes(self, NewAttributes);
-    }
-    pub fn get_Renderer(self: *const IInkPicture, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Renderer(self, CurrentInkRenderer);
-    }
-    pub fn putref_Renderer(self: *const IInkPicture, NewInkRenderer: ?*IInkRenderer) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Renderer(self, NewInkRenderer);
-    }
-    pub fn get_Ink(self: *const IInkPicture, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Ink(self, _param_Ink);
-    }
-    pub fn putref_Ink(self: *const IInkPicture, NewInk: ?*IInkDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Ink(self, NewInk);
-    }
-    pub fn get_AutoRedraw(self: *const IInkPicture, AutoRedraw: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AutoRedraw(self, AutoRedraw);
-    }
-    pub fn put_AutoRedraw(self: *const IInkPicture, AutoRedraw: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AutoRedraw(self, AutoRedraw);
-    }
-    pub fn get_CollectingInk(self: *const IInkPicture, Collecting: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CollectingInk(self, Collecting);
-    }
-    pub fn get_CollectionMode(self: *const IInkPicture, Mode: ?*InkCollectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CollectionMode(self, Mode);
-    }
-    pub fn put_CollectionMode(self: *const IInkPicture, Mode: InkCollectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_CollectionMode(self, Mode);
-    }
-    pub fn get_DynamicRendering(self: *const IInkPicture, Enabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DynamicRendering(self, Enabled);
-    }
-    pub fn put_DynamicRendering(self: *const IInkPicture, Enabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DynamicRendering(self, Enabled);
-    }
-    pub fn get_DesiredPacketDescription(self: *const IInkPicture, PacketGuids: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DesiredPacketDescription(self, PacketGuids);
-    }
-    pub fn put_DesiredPacketDescription(self: *const IInkPicture, PacketGuids: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DesiredPacketDescription(self, PacketGuids);
-    }
-    pub fn get_MouseIcon(self: *const IInkPicture, MouseIcon: ?*?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MouseIcon(self, MouseIcon);
-    }
-    pub fn put_MouseIcon(self: *const IInkPicture, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MouseIcon(self, MouseIcon);
-    }
-    pub fn putref_MouseIcon(self: *const IInkPicture, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_MouseIcon(self, MouseIcon);
-    }
-    pub fn get_MousePointer(self: *const IInkPicture, MousePointer: ?*InkMousePointer) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MousePointer(self, MousePointer);
-    }
-    pub fn put_MousePointer(self: *const IInkPicture, MousePointer: InkMousePointer) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MousePointer(self, MousePointer);
-    }
-    pub fn get_EditingMode(self: *const IInkPicture, EditingMode: ?*InkOverlayEditingMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EditingMode(self, EditingMode);
-    }
-    pub fn put_EditingMode(self: *const IInkPicture, EditingMode: InkOverlayEditingMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EditingMode(self, EditingMode);
-    }
-    pub fn get_Selection(self: *const IInkPicture, Selection: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Selection(self, Selection);
-    }
-    pub fn put_Selection(self: *const IInkPicture, Selection: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Selection(self, Selection);
-    }
-    pub fn get_EraserMode(self: *const IInkPicture, EraserMode: ?*InkOverlayEraserMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EraserMode(self, EraserMode);
-    }
-    pub fn put_EraserMode(self: *const IInkPicture, EraserMode: InkOverlayEraserMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EraserMode(self, EraserMode);
-    }
-    pub fn get_EraserWidth(self: *const IInkPicture, EraserWidth: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EraserWidth(self, EraserWidth);
-    }
-    pub fn put_EraserWidth(self: *const IInkPicture, newEraserWidth: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EraserWidth(self, newEraserWidth);
-    }
-    pub fn putref_Picture(self: *const IInkPicture, pPicture: ?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Picture(self, pPicture);
-    }
-    pub fn put_Picture(self: *const IInkPicture, pPicture: ?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Picture(self, pPicture);
-    }
-    pub fn get_Picture(self: *const IInkPicture, ppPicture: ?*?*IPictureDisp) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Picture(self, ppPicture);
-    }
-    pub fn put_SizeMode(self: *const IInkPicture, smNewSizeMode: InkPictureSizeMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SizeMode(self, smNewSizeMode);
-    }
-    pub fn get_SizeMode(self: *const IInkPicture, smSizeMode: ?*InkPictureSizeMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SizeMode(self, smSizeMode);
-    }
-    pub fn put_BackColor(self: *const IInkPicture, newColor: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BackColor(self, newColor);
-    }
-    pub fn get_BackColor(self: *const IInkPicture, pColor: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BackColor(self, pColor);
-    }
-    pub fn get_Cursors(self: *const IInkPicture, Cursors: ?*?*IInkCursors) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Cursors(self, Cursors);
-    }
-    pub fn get_MarginX(self: *const IInkPicture, MarginX: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MarginX(self, MarginX);
-    }
-    pub fn put_MarginX(self: *const IInkPicture, MarginX: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MarginX(self, MarginX);
-    }
-    pub fn get_MarginY(self: *const IInkPicture, MarginY: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MarginY(self, MarginY);
-    }
-    pub fn put_MarginY(self: *const IInkPicture, MarginY: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MarginY(self, MarginY);
-    }
-    pub fn get_Tablet(self: *const IInkPicture, SingleTablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Tablet(self, SingleTablet);
-    }
-    pub fn get_SupportHighContrastInk(self: *const IInkPicture, Support: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SupportHighContrastInk(self, Support);
-    }
-    pub fn put_SupportHighContrastInk(self: *const IInkPicture, Support: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SupportHighContrastInk(self, Support);
-    }
-    pub fn get_SupportHighContrastSelectionUI(self: *const IInkPicture, Support: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SupportHighContrastSelectionUI(self, Support);
-    }
-    pub fn put_SupportHighContrastSelectionUI(self: *const IInkPicture, Support: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SupportHighContrastSelectionUI(self, Support);
-    }
-    pub fn HitTestSelection(self: *const IInkPicture, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.@"inline") HRESULT {
-        return self.vtable.HitTestSelection(self, x, y, SelArea);
-    }
-    pub fn SetGestureStatus(self: *const IInkPicture, Gesture: InkApplicationGesture, Listen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGestureStatus(self, Gesture, Listen);
-    }
-    pub fn GetGestureStatus(self: *const IInkPicture, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGestureStatus(self, Gesture, Listening);
-    }
-    pub fn GetWindowInputRectangle(self: *const IInkPicture, WindowInputRectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWindowInputRectangle(self, WindowInputRectangle);
-    }
-    pub fn SetWindowInputRectangle(self: *const IInkPicture, WindowInputRectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWindowInputRectangle(self, WindowInputRectangle);
-    }
-    pub fn SetAllTabletsMode(self: *const IInkPicture, UseMouseForInput: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAllTabletsMode(self, UseMouseForInput);
-    }
-    pub fn SetSingleTabletIntegratedMode(self: *const IInkPicture, Tablet: ?*IInkTablet) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSingleTabletIntegratedMode(self, Tablet);
-    }
-    pub fn GetEventInterest(self: *const IInkPicture, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEventInterest(self, EventId, Listen);
-    }
-    pub fn SetEventInterest(self: *const IInkPicture, EventId: InkCollectorEventInterest, Listen: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEventInterest(self, EventId, Listen);
-    }
-    pub fn get_InkEnabled(self: *const IInkPicture, Collecting: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InkEnabled(self, Collecting);
-    }
-    pub fn put_InkEnabled(self: *const IInkPicture, Collecting: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_InkEnabled(self, Collecting);
-    }
-    pub fn get_Enabled(self: *const IInkPicture, pbool: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, pbool);
-    }
-    pub fn put_Enabled(self: *const IInkPicture, vbool: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, vbool);
-    }
-};
-
-const IID__IInkPictureEvents_Value = Guid.initString("60ff4fee-22ff-4484-acc1-d308d9cd7ea3");
-pub const IID__IInkPictureEvents = &IID__IInkPictureEvents_Value;
-pub const _IInkPictureEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognizer_Value = Guid.initString("782bf7cf-034b-4396-8a32-3a1833cf6b56");
-pub const IID_IInkRecognizer = &IID_IInkRecognizer_Value;
-pub const IInkRecognizer = extern union {
+const IID_IInkCursor_Value = Guid.initString("ad30c630-40c5-4350-8405-9c71012fc558");
+pub const IID_IInkCursor = &IID_IInkCursor_Value;
+pub const IInkCursor = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
-            self: *const IInkRecognizer,
+            self: *const IInkCursor,
             Name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Vendor: *const fn(
-            self: *const IInkRecognizer,
-            Vendor: ?*?BSTR,
+        get_Id: *const fn(
+            self: *const IInkCursor,
+            Id: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Capabilities: *const fn(
-            self: *const IInkRecognizer,
-            CapabilitiesFlags: ?*InkRecognizerCapabilities,
+        get_Inverted: *const fn(
+            self: *const IInkCursor,
+            Status: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Languages: *const fn(
-            self: *const IInkRecognizer,
-            Languages: ?*VARIANT,
+        get_DrawingAttributes: *const fn(
+            self: *const IInkCursor,
+            Attributes: ?*?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        putref_DrawingAttributes: *const fn(
+            self: *const IInkCursor,
+            Attributes: ?*IInkDrawingAttributes,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedProperties: *const fn(
-            self: *const IInkRecognizer,
-            SupportedProperties: ?*VARIANT,
+        get_Tablet: *const fn(
+            self: *const IInkCursor,
+            Tablet: ?*?*IInkTablet,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredPacketDescription: *const fn(
-            self: *const IInkRecognizer,
-            PreferredPacketDescription: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        CreateRecognizerContext: *const fn(
-            self: *const IInkRecognizer,
-            Context: ?*?*IInkRecognizerContext,
+        get_Buttons: *const fn(
+            self: *const IInkCursor,
+            Buttons: ?*?*IInkCursorButtons,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IInkRecognizer, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const IInkCursor, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, Name);
     }
-    pub fn get_Vendor(self: *const IInkRecognizer, Vendor: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Vendor(self, Vendor);
+    pub fn get_Id(self: *const IInkCursor, Id: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, Id);
     }
-    pub fn get_Capabilities(self: *const IInkRecognizer, CapabilitiesFlags: ?*InkRecognizerCapabilities) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Capabilities(self, CapabilitiesFlags);
+    pub fn get_Inverted(self: *const IInkCursor, Status: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Inverted(self, Status);
     }
-    pub fn get_Languages(self: *const IInkRecognizer, Languages: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Languages(self, Languages);
+    pub fn get_DrawingAttributes(self: *const IInkCursor, Attributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DrawingAttributes(self, Attributes);
     }
-    pub fn get_SupportedProperties(self: *const IInkRecognizer, SupportedProperties: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SupportedProperties(self, SupportedProperties);
+    pub fn putref_DrawingAttributes(self: *const IInkCursor, Attributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_DrawingAttributes(self, Attributes);
     }
-    pub fn get_PreferredPacketDescription(self: *const IInkRecognizer, PreferredPacketDescription: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PreferredPacketDescription(self, PreferredPacketDescription);
+    pub fn get_Tablet(self: *const IInkCursor, Tablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Tablet(self, Tablet);
     }
-    pub fn CreateRecognizerContext(self: *const IInkRecognizer, Context: ?*?*IInkRecognizerContext) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRecognizerContext(self, Context);
+    pub fn get_Buttons(self: *const IInkCursor, Buttons: ?*?*IInkCursorButtons) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Buttons(self, Buttons);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognizer2_Value = Guid.initString("6110118a-3a75-4ad6-b2aa-04b2b72bbe65");
-pub const IID_IInkRecognizer2 = &IID_IInkRecognizer2_Value;
-pub const IInkRecognizer2 = extern union {
+const IID_IInkCursorButton_Value = Guid.initString("85ef9417-1d59-49b2-a13c-702c85430894");
+pub const IID_IInkCursorButton = &IID_IInkCursorButton_Value;
+pub const IInkCursorButton = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IInkCursorButton,
+            Name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
-            self: *const IInkRecognizer2,
-            pbstrId: ?*?BSTR,
+            self: *const IInkCursorButton,
+            Id: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UnicodeRanges: *const fn(
-            self: *const IInkRecognizer2,
-            UnicodeRanges: ?*VARIANT,
+        get_State: *const fn(
+            self: *const IInkCursorButton,
+            CurrentState: ?*InkCursorButtonState,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IInkRecognizer2, pbstrId: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, pbstrId);
+    pub fn get_Name(self: *const IInkCursorButton, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, Name);
     }
-    pub fn get_UnicodeRanges(self: *const IInkRecognizer2, UnicodeRanges: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UnicodeRanges(self, UnicodeRanges);
+    pub fn get_Id(self: *const IInkCursorButton, Id: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, Id);
+    }
+    pub fn get_State(self: *const IInkCursorButton, CurrentState: ?*InkCursorButtonState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, CurrentState);
     }
 };
 
-const IID_IInkRecognizers_Value = Guid.initString("9ccc4f12-b0b7-4a8b-bf58-4aeca4e8cefd");
-pub const IID_IInkRecognizers = &IID_IInkRecognizers_Value;
-pub const IInkRecognizers = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkCursorButtons_Value = Guid.initString("3671cc40-b624-4671-9fa0-db119d952d54");
+pub const IID_IInkCursorButtons = &IID_IInkCursorButtons_Value;
+pub const IInkCursorButtons = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const IInkRecognizers,
+            self: *const IInkCursorButtons,
             Count: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const IInkRecognizers,
+            self: *const IInkCursorButtons,
             _NewEnum: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        GetDefaultRecognizer: *const fn(
-            self: *const IInkRecognizers,
-            lcid: i32,
-            DefaultRecognizer: ?*?*IInkRecognizer,
-        ) callconv(.winapi) HRESULT,
         Item: *const fn(
-            self: *const IInkRecognizers,
-            Index: i32,
-            InkRecognizer: ?*?*IInkRecognizer,
+            self: *const IInkCursorButtons,
+            Identifier: VARIANT,
+            Button: ?*?*IInkCursorButton,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkRecognizers, Count: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const IInkCursorButtons, Count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn get__NewEnum(self: *const IInkRecognizers, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const IInkCursorButtons, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, _NewEnum);
     }
-    pub fn GetDefaultRecognizer(self: *const IInkRecognizers, lcid: i32, DefaultRecognizer: ?*?*IInkRecognizer) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultRecognizer(self, lcid, DefaultRecognizer);
-    }
-    pub fn Item(self: *const IInkRecognizers, Index: i32, InkRecognizer: ?*?*IInkRecognizer) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, InkRecognizer);
+    pub fn Item(self: *const IInkCursorButtons, Identifier: VARIANT, Button: ?*?*IInkCursorButton) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Identifier, Button);
     }
 };
 
-const IID__IInkRecognitionEvents_Value = Guid.initString("17bce92f-2e21-47fd-9d33-3c6afbfd8c59");
-pub const IID__IInkRecognitionEvents = &IID__IInkRecognitionEvents_Value;
-pub const _IInkRecognitionEvents = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkCursors_Value = Guid.initString("a248c1ac-c698-4e06-9e5c-d57f77c7e647");
+pub const IID_IInkCursors = &IID_IInkCursors_Value;
+pub const IInkCursors = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IInkCursors,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IInkCursors,
+            _NewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IInkCursors,
+            Index: i32,
+            Cursor: ?*?*IInkCursor,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
+    pub fn get_Count(self: *const IInkCursors, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn get__NewEnum(self: *const IInkCursors, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, _NewEnum);
+    }
+    pub fn Item(self: *const IInkCursors, Index: i32, Cursor: ?*?*IInkCursor) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, Cursor);
+    }
 };
 
-const IID_IInkRecognizerContext_Value = Guid.initString("c68f52f9-32a3-4625-906c-44fc23b40958");
-pub const IID_IInkRecognizerContext = &IID_IInkRecognizerContext_Value;
-pub const IInkRecognizerContext = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkCustomStrokes_Value = Guid.initString("7e23a88f-c30e-420f-9bdb-28902543f0c1");
+pub const IID_IInkCustomStrokes = &IID_IInkCustomStrokes_Value;
+pub const IInkCustomStrokes = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IInkCustomStrokes,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IInkCustomStrokes,
+            _NewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IInkCustomStrokes,
+            Identifier: VARIANT,
+            Strokes: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IInkCustomStrokes,
+            Name: ?BSTR,
+            Strokes: ?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IInkCustomStrokes,
+            Identifier: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IInkCustomStrokes,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IInkCustomStrokes, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn get__NewEnum(self: *const IInkCustomStrokes, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, _NewEnum);
+    }
+    pub fn Item(self: *const IInkCustomStrokes, Identifier: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Identifier, Strokes);
+    }
+    pub fn Add(self: *const IInkCustomStrokes, Name: ?BSTR, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, Name, Strokes);
+    }
+    pub fn Remove(self: *const IInkCustomStrokes, Identifier: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, Identifier);
+    }
+    pub fn Clear(self: *const IInkCustomStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+};
+
+const IID_IInkDisp_Value = Guid.initString("9d398fa0-c4e2-4fcd-9973-975caaf47ea6");
+pub const IID_IInkDisp = &IID_IInkDisp_Value;
+pub const IInkDisp = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Strokes: *const fn(
-            self: *const IInkRecognizerContext,
+            self: *const IInkDisp,
             Strokes: ?*?*IInkStrokes,
         ) callconv(.winapi) HRESULT,
-        putref_Strokes: *const fn(
-            self: *const IInkRecognizerContext,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExtendedProperties: *const fn(
+            self: *const IInkDisp,
+            Properties: ?*?*IInkExtendedProperties,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Dirty: *const fn(
+            self: *const IInkDisp,
+            Dirty: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Dirty: *const fn(
+            self: *const IInkDisp,
+            Dirty: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CustomStrokes: *const fn(
+            self: *const IInkDisp,
+            ppunkInkCustomStrokes: ?*?*IInkCustomStrokes,
+        ) callconv(.winapi) HRESULT,
+        GetBoundingBox: *const fn(
+            self: *const IInkDisp,
+            BoundingBoxMode: InkBoundingBoxMode,
+            Rectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        DeleteStrokes: *const fn(
+            self: *const IInkDisp,
             Strokes: ?*IInkStrokes,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CharacterAutoCompletionMode: *const fn(
-            self: *const IInkRecognizerContext,
-            Mode: ?*InkRecognizerCharacterAutoCompletionMode,
+        DeleteStroke: *const fn(
+            self: *const IInkDisp,
+            Stroke: ?*IInkStrokeDisp,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CharacterAutoCompletionMode: *const fn(
-            self: *const IInkRecognizerContext,
-            Mode: InkRecognizerCharacterAutoCompletionMode,
+        ExtractStrokes: *const fn(
+            self: *const IInkDisp,
+            Strokes: ?*IInkStrokes,
+            ExtractFlags: InkExtractFlags,
+            ExtractedInk: ?*?*IInkDisp,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Factoid: *const fn(
-            self: *const IInkRecognizerContext,
-            Factoid: ?*?BSTR,
+        ExtractWithRectangle: *const fn(
+            self: *const IInkDisp,
+            Rectangle: ?*IInkRectangle,
+            extractFlags: InkExtractFlags,
+            ExtractedInk: ?*?*IInkDisp,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Factoid: *const fn(
-            self: *const IInkRecognizerContext,
-            factoid: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guide: *const fn(
-            self: *const IInkRecognizerContext,
-            RecognizerGuide: ?*?*IInkRecognizerGuide,
-        ) callconv(.winapi) HRESULT,
-        putref_Guide: *const fn(
-            self: *const IInkRecognizerContext,
-            RecognizerGuide: ?*IInkRecognizerGuide,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrefixText: *const fn(
-            self: *const IInkRecognizerContext,
-            Prefix: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrefixText: *const fn(
-            self: *const IInkRecognizerContext,
-            Prefix: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SuffixText: *const fn(
-            self: *const IInkRecognizerContext,
-            Suffix: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SuffixText: *const fn(
-            self: *const IInkRecognizerContext,
-            Suffix: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecognitionFlags: *const fn(
-            self: *const IInkRecognizerContext,
-            Modes: ?*InkRecognitionModes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RecognitionFlags: *const fn(
-            self: *const IInkRecognizerContext,
-            Modes: InkRecognitionModes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WordList: *const fn(
-            self: *const IInkRecognizerContext,
-            WordList: ?*?*IInkWordList,
-        ) callconv(.winapi) HRESULT,
-        putref_WordList: *const fn(
-            self: *const IInkRecognizerContext,
-            WordList: ?*IInkWordList,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Recognizer: *const fn(
-            self: *const IInkRecognizerContext,
-            Recognizer: ?*?*IInkRecognizer,
-        ) callconv(.winapi) HRESULT,
-        Recognize: *const fn(
-            self: *const IInkRecognizerContext,
-            RecognitionStatus: ?*InkRecognitionStatus,
-            RecognitionResult: ?*?*IInkRecognitionResult,
-        ) callconv(.winapi) HRESULT,
-        StopBackgroundRecognition: *const fn(
-            self: *const IInkRecognizerContext,
-        ) callconv(.winapi) HRESULT,
-        EndInkInput: *const fn(
-            self: *const IInkRecognizerContext,
-        ) callconv(.winapi) HRESULT,
-        BackgroundRecognize: *const fn(
-            self: *const IInkRecognizerContext,
-            CustomData: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        BackgroundRecognizeWithAlternates: *const fn(
-            self: *const IInkRecognizerContext,
-            CustomData: VARIANT,
+        Clip: *const fn(
+            self: *const IInkDisp,
+            Rectangle: ?*IInkRectangle,
         ) callconv(.winapi) HRESULT,
         Clone: *const fn(
-            self: *const IInkRecognizerContext,
-            RecoContext: ?*?*IInkRecognizerContext,
+            self: *const IInkDisp,
+            NewInk: ?*?*IInkDisp,
         ) callconv(.winapi) HRESULT,
-        IsStringSupported: *const fn(
-            self: *const IInkRecognizerContext,
-            String: ?BSTR,
-            Supported: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Strokes(self: *const IInkRecognizerContext, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Strokes(self, Strokes);
-    }
-    pub fn putref_Strokes(self: *const IInkRecognizerContext, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Strokes(self, Strokes);
-    }
-    pub fn get_CharacterAutoCompletionMode(self: *const IInkRecognizerContext, Mode: ?*InkRecognizerCharacterAutoCompletionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CharacterAutoCompletionMode(self, Mode);
-    }
-    pub fn put_CharacterAutoCompletionMode(self: *const IInkRecognizerContext, Mode: InkRecognizerCharacterAutoCompletionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.put_CharacterAutoCompletionMode(self, Mode);
-    }
-    pub fn get_Factoid(self: *const IInkRecognizerContext, Factoid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Factoid(self, Factoid);
-    }
-    pub fn put_Factoid(self: *const IInkRecognizerContext, factoid: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Factoid(self, factoid);
-    }
-    pub fn get_Guide(self: *const IInkRecognizerContext, RecognizerGuide: ?*?*IInkRecognizerGuide) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Guide(self, RecognizerGuide);
-    }
-    pub fn putref_Guide(self: *const IInkRecognizerContext, RecognizerGuide: ?*IInkRecognizerGuide) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_Guide(self, RecognizerGuide);
-    }
-    pub fn get_PrefixText(self: *const IInkRecognizerContext, Prefix: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PrefixText(self, Prefix);
-    }
-    pub fn put_PrefixText(self: *const IInkRecognizerContext, Prefix: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PrefixText(self, Prefix);
-    }
-    pub fn get_SuffixText(self: *const IInkRecognizerContext, Suffix: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SuffixText(self, Suffix);
-    }
-    pub fn put_SuffixText(self: *const IInkRecognizerContext, Suffix: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SuffixText(self, Suffix);
-    }
-    pub fn get_RecognitionFlags(self: *const IInkRecognizerContext, Modes: ?*InkRecognitionModes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RecognitionFlags(self, Modes);
-    }
-    pub fn put_RecognitionFlags(self: *const IInkRecognizerContext, Modes: InkRecognitionModes) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RecognitionFlags(self, Modes);
-    }
-    pub fn get_WordList(self: *const IInkRecognizerContext, WordList: ?*?*IInkWordList) callconv(.@"inline") HRESULT {
-        return self.vtable.get_WordList(self, WordList);
-    }
-    pub fn putref_WordList(self: *const IInkRecognizerContext, WordList: ?*IInkWordList) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_WordList(self, WordList);
-    }
-    pub fn get_Recognizer(self: *const IInkRecognizerContext, Recognizer: ?*?*IInkRecognizer) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Recognizer(self, Recognizer);
-    }
-    pub fn Recognize(self: *const IInkRecognizerContext, RecognitionStatus: ?*InkRecognitionStatus, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.@"inline") HRESULT {
-        return self.vtable.Recognize(self, RecognitionStatus, RecognitionResult);
-    }
-    pub fn StopBackgroundRecognition(self: *const IInkRecognizerContext) callconv(.@"inline") HRESULT {
-        return self.vtable.StopBackgroundRecognition(self);
-    }
-    pub fn EndInkInput(self: *const IInkRecognizerContext) callconv(.@"inline") HRESULT {
-        return self.vtable.EndInkInput(self);
-    }
-    pub fn BackgroundRecognize(self: *const IInkRecognizerContext, CustomData: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.BackgroundRecognize(self, CustomData);
-    }
-    pub fn BackgroundRecognizeWithAlternates(self: *const IInkRecognizerContext, CustomData: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.BackgroundRecognizeWithAlternates(self, CustomData);
-    }
-    pub fn Clone(self: *const IInkRecognizerContext, RecoContext: ?*?*IInkRecognizerContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, RecoContext);
-    }
-    pub fn IsStringSupported(self: *const IInkRecognizerContext, String: ?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsStringSupported(self, String, Supported);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognizerContext2_Value = Guid.initString("d6f0e32f-73d8-408e-8e9f-5fea592c363f");
-pub const IID_IInkRecognizerContext2 = &IID_IInkRecognizerContext2_Value;
-pub const IInkRecognizerContext2 = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnabledUnicodeRanges: *const fn(
-            self: *const IInkRecognizerContext2,
-            UnicodeRanges: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EnabledUnicodeRanges: *const fn(
-            self: *const IInkRecognizerContext2,
-            UnicodeRanges: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_EnabledUnicodeRanges(self: *const IInkRecognizerContext2, UnicodeRanges: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnabledUnicodeRanges(self, UnicodeRanges);
-    }
-    pub fn put_EnabledUnicodeRanges(self: *const IInkRecognizerContext2, UnicodeRanges: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EnabledUnicodeRanges(self, UnicodeRanges);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognitionResult_Value = Guid.initString("3bc129a8-86cd-45ad-bde8-e0d32d61c16d");
-pub const IID_IInkRecognitionResult = &IID_IInkRecognitionResult_Value;
-pub const IInkRecognitionResult = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TopString: *const fn(
-            self: *const IInkRecognitionResult,
-            TopString: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TopAlternate: *const fn(
-            self: *const IInkRecognitionResult,
-            TopAlternate: ?*?*IInkRecognitionAlternate,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TopConfidence: *const fn(
-            self: *const IInkRecognitionResult,
-            TopConfidence: ?*InkRecognitionConfidence,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: *const fn(
-            self: *const IInkRecognitionResult,
+        HitTestCircle: *const fn(
+            self: *const IInkDisp,
+            X: i32,
+            Y: i32,
+            radius: f32,
             Strokes: ?*?*IInkStrokes,
         ) callconv(.winapi) HRESULT,
-        AlternatesFromSelection: *const fn(
-            self: *const IInkRecognitionResult,
-            selectionStart: i32,
-            selectionLength: i32,
-            maximumAlternates: i32,
-            AlternatesFromSelection: ?*?*IInkRecognitionAlternates,
-        ) callconv(.winapi) HRESULT,
-        ModifyTopAlternate: *const fn(
-            self: *const IInkRecognitionResult,
-            Alternate: ?*IInkRecognitionAlternate,
-        ) callconv(.winapi) HRESULT,
-        SetResultOnStrokes: *const fn(
-            self: *const IInkRecognitionResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_TopString(self: *const IInkRecognitionResult, TopString: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TopString(self, TopString);
-    }
-    pub fn get_TopAlternate(self: *const IInkRecognitionResult, TopAlternate: ?*?*IInkRecognitionAlternate) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TopAlternate(self, TopAlternate);
-    }
-    pub fn get_TopConfidence(self: *const IInkRecognitionResult, TopConfidence: ?*InkRecognitionConfidence) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TopConfidence(self, TopConfidence);
-    }
-    pub fn get_Strokes(self: *const IInkRecognitionResult, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Strokes(self, Strokes);
-    }
-    pub fn AlternatesFromSelection(self: *const IInkRecognitionResult, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, _param_AlternatesFromSelection: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
-        return self.vtable.AlternatesFromSelection(self, selectionStart, selectionLength, maximumAlternates, _param_AlternatesFromSelection);
-    }
-    pub fn ModifyTopAlternate(self: *const IInkRecognitionResult, Alternate: ?*IInkRecognitionAlternate) callconv(.@"inline") HRESULT {
-        return self.vtable.ModifyTopAlternate(self, Alternate);
-    }
-    pub fn SetResultOnStrokes(self: *const IInkRecognitionResult) callconv(.@"inline") HRESULT {
-        return self.vtable.SetResultOnStrokes(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognitionAlternate_Value = Guid.initString("b7e660ad-77e4-429b-adda-873780d1fc4a");
-pub const IID_IInkRecognitionAlternate = &IID_IInkRecognitionAlternate_Value;
-pub const IInkRecognitionAlternate = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_String: *const fn(
-            self: *const IInkRecognitionAlternate,
-            RecoString: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Confidence: *const fn(
-            self: *const IInkRecognitionAlternate,
-            Confidence: ?*InkRecognitionConfidence,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Baseline: *const fn(
-            self: *const IInkRecognitionAlternate,
-            Baseline: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Midline: *const fn(
-            self: *const IInkRecognitionAlternate,
-            Midline: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ascender: *const fn(
-            self: *const IInkRecognitionAlternate,
-            Ascender: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Descender: *const fn(
-            self: *const IInkRecognitionAlternate,
-            Descender: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LineNumber: *const fn(
-            self: *const IInkRecognitionAlternate,
-            LineNumber: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: *const fn(
-            self: *const IInkRecognitionAlternate,
+        HitTestWithRectangle: *const fn(
+            self: *const IInkDisp,
+            SelectionRectangle: ?*IInkRectangle,
+            IntersectPercent: f32,
             Strokes: ?*?*IInkStrokes,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LineAlternates: *const fn(
-            self: *const IInkRecognitionAlternate,
-            LineAlternates: ?*?*IInkRecognitionAlternates,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConfidenceAlternates: *const fn(
-            self: *const IInkRecognitionAlternate,
-            ConfidenceAlternates: ?*?*IInkRecognitionAlternates,
-        ) callconv(.winapi) HRESULT,
-        GetStrokesFromStrokeRanges: *const fn(
-            self: *const IInkRecognitionAlternate,
-            Strokes: ?*IInkStrokes,
-            GetStrokesFromStrokeRanges: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        GetStrokesFromTextRange: *const fn(
-            self: *const IInkRecognitionAlternate,
-            selectionStart: ?*i32,
-            selectionLength: ?*i32,
-            GetStrokesFromTextRange: ?*?*IInkStrokes,
-        ) callconv(.winapi) HRESULT,
-        GetTextRangeFromStrokes: *const fn(
-            self: *const IInkRecognitionAlternate,
-            Strokes: ?*IInkStrokes,
-            selectionStart: ?*i32,
-            selectionLength: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        AlternatesWithConstantPropertyValues: *const fn(
-            self: *const IInkRecognitionAlternate,
-            PropertyType: ?BSTR,
-            AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyValue: *const fn(
-            self: *const IInkRecognitionAlternate,
-            PropertyType: ?BSTR,
-            PropertyValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_String(self: *const IInkRecognitionAlternate, RecoString: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_String(self, RecoString);
-    }
-    pub fn get_Confidence(self: *const IInkRecognitionAlternate, Confidence: ?*InkRecognitionConfidence) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Confidence(self, Confidence);
-    }
-    pub fn get_Baseline(self: *const IInkRecognitionAlternate, Baseline: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Baseline(self, Baseline);
-    }
-    pub fn get_Midline(self: *const IInkRecognitionAlternate, Midline: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Midline(self, Midline);
-    }
-    pub fn get_Ascender(self: *const IInkRecognitionAlternate, Ascender: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Ascender(self, Ascender);
-    }
-    pub fn get_Descender(self: *const IInkRecognitionAlternate, Descender: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Descender(self, Descender);
-    }
-    pub fn get_LineNumber(self: *const IInkRecognitionAlternate, LineNumber: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LineNumber(self, LineNumber);
-    }
-    pub fn get_Strokes(self: *const IInkRecognitionAlternate, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Strokes(self, Strokes);
-    }
-    pub fn get_LineAlternates(self: *const IInkRecognitionAlternate, LineAlternates: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LineAlternates(self, LineAlternates);
-    }
-    pub fn get_ConfidenceAlternates(self: *const IInkRecognitionAlternate, ConfidenceAlternates: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ConfidenceAlternates(self, ConfidenceAlternates);
-    }
-    pub fn GetStrokesFromStrokeRanges(self: *const IInkRecognitionAlternate, Strokes: ?*IInkStrokes, _param_GetStrokesFromStrokeRanges: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStrokesFromStrokeRanges(self, Strokes, _param_GetStrokesFromStrokeRanges);
-    }
-    pub fn GetStrokesFromTextRange(self: *const IInkRecognitionAlternate, selectionStart: ?*i32, selectionLength: ?*i32, _param_GetStrokesFromTextRange: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStrokesFromTextRange(self, selectionStart, selectionLength, _param_GetStrokesFromTextRange);
-    }
-    pub fn GetTextRangeFromStrokes(self: *const IInkRecognitionAlternate, Strokes: ?*IInkStrokes, selectionStart: ?*i32, selectionLength: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTextRangeFromStrokes(self, Strokes, selectionStart, selectionLength);
-    }
-    pub fn AlternatesWithConstantPropertyValues(self: *const IInkRecognitionAlternate, PropertyType: ?BSTR, _param_AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
-        return self.vtable.AlternatesWithConstantPropertyValues(self, PropertyType, _param_AlternatesWithConstantPropertyValues);
-    }
-    pub fn GetPropertyValue(self: *const IInkRecognitionAlternate, PropertyType: ?BSTR, PropertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyValue(self, PropertyType, PropertyValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognitionAlternates_Value = Guid.initString("286a167f-9f19-4c61-9d53-4f07be622b84");
-pub const IID_IInkRecognitionAlternates = &IID_IInkRecognitionAlternates_Value;
-pub const IInkRecognitionAlternates = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IInkRecognitionAlternates,
-            Count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IInkRecognitionAlternates,
-            _NewEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: *const fn(
-            self: *const IInkRecognitionAlternates,
+        HitTestWithLasso: *const fn(
+            self: *const IInkDisp,
+            Points: VARIANT,
+            IntersectPercent: f32,
+            LassoPoints: ?*VARIANT,
             Strokes: ?*?*IInkStrokes,
         ) callconv(.winapi) HRESULT,
-        Item: *const fn(
-            self: *const IInkRecognitionAlternates,
-            Index: i32,
-            InkRecoAlternate: ?*?*IInkRecognitionAlternate,
+        NearestPoint: *const fn(
+            self: *const IInkDisp,
+            X: i32,
+            Y: i32,
+            PointOnStroke: ?*f32,
+            DistanceFromPacket: ?*f32,
+            Stroke: ?*?*IInkStrokeDisp,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IInkRecognitionAlternates, Count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, Count);
-    }
-    pub fn get__NewEnum(self: *const IInkRecognitionAlternates, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, _NewEnum);
-    }
-    pub fn get_Strokes(self: *const IInkRecognitionAlternates, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Strokes(self, Strokes);
-    }
-    pub fn Item(self: *const IInkRecognitionAlternates, Index: i32, InkRecoAlternate: ?*?*IInkRecognitionAlternate) callconv(.@"inline") HRESULT {
-        return self.vtable.Item(self, Index, InkRecoAlternate);
-    }
-};
-
-const IID_IInkRecognizerGuide_Value = Guid.initString("d934be07-7b84-4208-9136-83c20994e905");
-pub const IID_IInkRecognizerGuide = &IID_IInkRecognizerGuide_Value;
-pub const IInkRecognizerGuide = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WritingBox: *const fn(
-            self: *const IInkRecognizerGuide,
-            Rectangle: ?*?*IInkRectangle,
+        CreateStrokes: *const fn(
+            self: *const IInkDisp,
+            StrokeIds: VARIANT,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_WritingBox: *const fn(
-            self: *const IInkRecognizerGuide,
+        AddStrokesAtRectangle: *const fn(
+            self: *const IInkDisp,
+            SourceStrokes: ?*IInkStrokes,
+            TargetRectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        Save: *const fn(
+            self: *const IInkDisp,
+            PersistenceFormat: InkPersistenceFormat,
+            CompressionMode: InkPersistenceCompressionMode,
+            Data: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Load: *const fn(
+            self: *const IInkDisp,
+            Data: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        CreateStroke: *const fn(
+            self: *const IInkDisp,
+            PacketData: VARIANT,
+            PacketDescription: VARIANT,
+            Stroke: ?*?*IInkStrokeDisp,
+        ) callconv(.winapi) HRESULT,
+        ClipboardCopyWithRectangle: *const fn(
+            self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
+            ClipboardFormats: InkClipboardFormats,
+            ClipboardModes: InkClipboardModes,
+            DataObject: ?*?*IDataObject,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawnBox: *const fn(
-            self: *const IInkRecognizerGuide,
-            Rectangle: ?*?*IInkRectangle,
+        ClipboardCopy: *const fn(
+            self: *const IInkDisp,
+            strokes: ?*IInkStrokes,
+            ClipboardFormats: InkClipboardFormats,
+            ClipboardModes: InkClipboardModes,
+            DataObject: ?*?*IDataObject,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DrawnBox: *const fn(
-            self: *const IInkRecognizerGuide,
-            Rectangle: ?*IInkRectangle,
+        CanPaste: *const fn(
+            self: *const IInkDisp,
+            DataObject: ?*IDataObject,
+            CanPaste: ?*i16,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Rows: *const fn(
-            self: *const IInkRecognizerGuide,
-            Units: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Rows: *const fn(
-            self: *const IInkRecognizerGuide,
-            Units: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Columns: *const fn(
-            self: *const IInkRecognizerGuide,
-            Units: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Columns: *const fn(
-            self: *const IInkRecognizerGuide,
-            Units: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Midline: *const fn(
-            self: *const IInkRecognizerGuide,
-            Units: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Midline: *const fn(
-            self: *const IInkRecognizerGuide,
-            Units: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GuideData: *const fn(
-            self: *const IInkRecognizerGuide,
-            pRecoGuide: ?*InkRecoGuide,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GuideData: *const fn(
-            self: *const IInkRecognizerGuide,
-            recoGuide: InkRecoGuide,
+        ClipboardPaste: *const fn(
+            self: *const IInkDisp,
+            x: i32,
+            y: i32,
+            DataObject: ?*IDataObject,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_WritingBox(self: *const IInkRecognizerGuide, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.get_WritingBox(self, Rectangle);
+    pub fn get_Strokes(self: *const IInkDisp, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Strokes(self, Strokes);
     }
-    pub fn put_WritingBox(self: *const IInkRecognizerGuide, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.put_WritingBox(self, Rectangle);
+    pub fn get_ExtendedProperties(self: *const IInkDisp, Properties: ?*?*IInkExtendedProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExtendedProperties(self, Properties);
     }
-    pub fn get_DrawnBox(self: *const IInkRecognizerGuide, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DrawnBox(self, Rectangle);
+    pub fn get_Dirty(self: *const IInkDisp, Dirty: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Dirty(self, Dirty);
     }
-    pub fn put_DrawnBox(self: *const IInkRecognizerGuide, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DrawnBox(self, Rectangle);
+    pub fn put_Dirty(self: *const IInkDisp, Dirty: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Dirty(self, Dirty);
     }
-    pub fn get_Rows(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Rows(self, Units);
+    pub fn get_CustomStrokes(self: *const IInkDisp, ppunkInkCustomStrokes: ?*?*IInkCustomStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CustomStrokes(self, ppunkInkCustomStrokes);
     }
-    pub fn put_Rows(self: *const IInkRecognizerGuide, Units: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Rows(self, Units);
+    pub fn GetBoundingBox(self: *const IInkDisp, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBoundingBox(self, BoundingBoxMode, Rectangle);
     }
-    pub fn get_Columns(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Columns(self, Units);
+    pub fn DeleteStrokes(self: *const IInkDisp, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteStrokes(self, Strokes);
     }
-    pub fn put_Columns(self: *const IInkRecognizerGuide, Units: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Columns(self, Units);
+    pub fn DeleteStroke(self: *const IInkDisp, Stroke: ?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteStroke(self, Stroke);
     }
-    pub fn get_Midline(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Midline(self, Units);
+    pub fn ExtractStrokes(self: *const IInkDisp, Strokes: ?*IInkStrokes, ExtractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.ExtractStrokes(self, Strokes, ExtractFlags, ExtractedInk);
     }
-    pub fn put_Midline(self: *const IInkRecognizerGuide, Units: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Midline(self, Units);
+    pub fn ExtractWithRectangle(self: *const IInkDisp, Rectangle: ?*IInkRectangle, extractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.ExtractWithRectangle(self, Rectangle, extractFlags, ExtractedInk);
     }
-    pub fn get_GuideData(self: *const IInkRecognizerGuide, pRecoGuide: ?*InkRecoGuide) callconv(.@"inline") HRESULT {
-        return self.vtable.get_GuideData(self, pRecoGuide);
+    pub fn Clip(self: *const IInkDisp, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.Clip(self, Rectangle);
     }
-    pub fn put_GuideData(self: *const IInkRecognizerGuide, recoGuide: InkRecoGuide) callconv(.@"inline") HRESULT {
-        return self.vtable.put_GuideData(self, recoGuide);
+    pub fn Clone(self: *const IInkDisp, NewInk: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, NewInk);
     }
-};
-
-const IID_IInkWordList_Value = Guid.initString("76ba3491-cb2f-406b-9961-0e0c4cdaaef2");
-pub const IID_IInkWordList = &IID_IInkWordList_Value;
-pub const IInkWordList = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        AddWord: *const fn(
-            self: *const IInkWordList,
-            NewWord: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RemoveWord: *const fn(
-            self: *const IInkWordList,
-            RemoveWord: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Merge: *const fn(
-            self: *const IInkWordList,
-            MergeWordList: ?*IInkWordList,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn AddWord(self: *const IInkWordList, NewWord: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddWord(self, NewWord);
+    pub fn HitTestCircle(self: *const IInkDisp, X: i32, Y: i32, radius: f32, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.HitTestCircle(self, X, Y, radius, Strokes);
     }
-    pub fn RemoveWord(self: *const IInkWordList, _param_RemoveWord: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveWord(self, _param_RemoveWord);
+    pub fn HitTestWithRectangle(self: *const IInkDisp, SelectionRectangle: ?*IInkRectangle, IntersectPercent: f32, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.HitTestWithRectangle(self, SelectionRectangle, IntersectPercent, Strokes);
     }
-    pub fn Merge(self: *const IInkWordList, MergeWordList: ?*IInkWordList) callconv(.@"inline") HRESULT {
-        return self.vtable.Merge(self, MergeWordList);
+    pub fn HitTestWithLasso(self: *const IInkDisp, Points: VARIANT, IntersectPercent: f32, LassoPoints: ?*VARIANT, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.HitTestWithLasso(self, Points, IntersectPercent, LassoPoints, Strokes);
     }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkWordList2_Value = Guid.initString("14542586-11bf-4f5f-b6e7-49d0744aab6e");
-pub const IID_IInkWordList2 = &IID_IInkWordList2_Value;
-pub const IInkWordList2 = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        AddWords: *const fn(
-            self: *const IInkWordList2,
-            NewWords: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn AddWords(self: *const IInkWordList2, NewWords: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddWords(self, NewWords);
+    pub fn NearestPoint(self: *const IInkDisp, X: i32, Y: i32, PointOnStroke: ?*f32, DistanceFromPacket: ?*f32, Stroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.NearestPoint(self, X, Y, PointOnStroke, DistanceFromPacket, Stroke);
+    }
+    pub fn CreateStrokes(self: *const IInkDisp, StrokeIds: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateStrokes(self, StrokeIds, Strokes);
+    }
+    pub fn AddStrokesAtRectangle(self: *const IInkDisp, SourceStrokes: ?*IInkStrokes, TargetRectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.AddStrokesAtRectangle(self, SourceStrokes, TargetRectangle);
+    }
+    pub fn Save(self: *const IInkDisp, PersistenceFormat: InkPersistenceFormat, CompressionMode: InkPersistenceCompressionMode, Data: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Save(self, PersistenceFormat, CompressionMode, Data);
+    }
+    pub fn Load(self: *const IInkDisp, Data: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Load(self, Data);
+    }
+    pub fn CreateStroke(self: *const IInkDisp, PacketData: VARIANT, PacketDescription: VARIANT, Stroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateStroke(self, PacketData, PacketDescription, Stroke);
+    }
+    pub fn ClipboardCopyWithRectangle(self: *const IInkDisp, Rectangle: ?*IInkRectangle, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.ClipboardCopyWithRectangle(self, Rectangle, ClipboardFormats, ClipboardModes, DataObject);
+    }
+    pub fn ClipboardCopy(self: *const IInkDisp, strokes: ?*IInkStrokes, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
+        return self.vtable.ClipboardCopy(self, strokes, ClipboardFormats, ClipboardModes, DataObject);
+    }
+    pub fn CanPaste(self: *const IInkDisp, DataObject: ?*IDataObject, _param_CanPaste: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.CanPaste(self, DataObject, _param_CanPaste);
+    }
+    pub fn ClipboardPaste(self: *const IInkDisp, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.ClipboardPaste(self, x, y, DataObject, Strokes);
     }
 };
-
-const IID_IInk_Value = Guid.initString("03f8e511-43a1-11d3-8bb6-0080c7d6bad5");
-pub const IID_IInk = &IID_IInk_Value;
-pub const IInk = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkLineInfo_Value = Guid.initString("9c1c5ad6-f22f-4de4-b453-a2cc482e7c33");
-pub const IID_IInkLineInfo = &IID_IInkLineInfo_Value;
-pub const IInkLineInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetFormat: *const fn(
-            self: *const IInkLineInfo,
-            pim: ?*INKMETRIC,
-        ) callconv(.winapi) HRESULT,
-        GetFormat: *const fn(
-            self: *const IInkLineInfo,
-            pim: ?*INKMETRIC,
-        ) callconv(.winapi) HRESULT,
-        GetInkExtent: *const fn(
-            self: *const IInkLineInfo,
-            pim: ?*INKMETRIC,
-            pnWidth: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCandidate: *const fn(
-            self: *const IInkLineInfo,
-            nCandidateNum: u32,
-            pwcRecogWord: ?PWSTR,
-            pcwcRecogWord: ?*u32,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        SetCandidate: *const fn(
-            self: *const IInkLineInfo,
-            nCandidateNum: u32,
-            strRecogWord: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        Recognize: *const fn(
-            self: *const IInkLineInfo,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetFormat(self: *const IInkLineInfo, pim: ?*INKMETRIC) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFormat(self, pim);
-    }
-    pub fn GetFormat(self: *const IInkLineInfo, pim: ?*INKMETRIC) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFormat(self, pim);
-    }
-    pub fn GetInkExtent(self: *const IInkLineInfo, pim: ?*INKMETRIC, pnWidth: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInkExtent(self, pim, pnWidth);
-    }
-    pub fn GetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, pwcRecogWord: ?PWSTR, pcwcRecogWord: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCandidate(self, nCandidateNum, pwcRecogWord, pcwcRecogWord, dwFlags);
-    }
-    pub fn SetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, strRecogWord: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCandidate(self, nCandidateNum, strRecogWord);
-    }
-    pub fn Recognize(self: *const IInkLineInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.Recognize(self);
-    }
-};
-
-const IID_ISketchInk_Value = Guid.initString("b4563688-98eb-4646-b279-44da14d45748");
-pub const IID_ISketchInk = &IID_ISketchInk_Value;
-pub const ISketchInk = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-const CLSID_InkDivider_Value = Guid.initString("8854f6a0-4683-4ae7-9191-752fe64612c3");
-pub const CLSID_InkDivider = &CLSID_InkDivider_Value;
-
-pub const InkDivisionType = enum(i32) {
-    Segment = 0,
-    Line = 1,
-    Paragraph = 2,
-    Drawing = 3,
-};
-pub const IDT_Segment = InkDivisionType.Segment;
-pub const IDT_Line = InkDivisionType.Line;
-pub const IDT_Paragraph = InkDivisionType.Paragraph;
-pub const IDT_Drawing = InkDivisionType.Drawing;
-
-pub const DISPID_InkDivider = enum(i32) {
-    Strokes = 1,
-    RecognizerContext = 2,
-    LineHeight = 3,
-    Divide = 4,
-};
-pub const DISPID_IInkDivider_Strokes = DISPID_InkDivider.Strokes;
-pub const DISPID_IInkDivider_RecognizerContext = DISPID_InkDivider.RecognizerContext;
-pub const DISPID_IInkDivider_LineHeight = DISPID_InkDivider.LineHeight;
-pub const DISPID_IInkDivider_Divide = DISPID_InkDivider.Divide;
-
-pub const DISPID_InkDivisionResult = enum(i32) {
-    Strokes = 1,
-    ResultByType = 2,
-};
-pub const DISPID_IInkDivisionResult_Strokes = DISPID_InkDivisionResult.Strokes;
-pub const DISPID_IInkDivisionResult_ResultByType = DISPID_InkDivisionResult.ResultByType;
-
-pub const DISPID_InkDivisionUnit = enum(i32) {
-    Strokes = 1,
-    DivisionType = 2,
-    RecognizedString = 3,
-    RotationTransform = 4,
-};
-pub const DISPID_IInkDivisionUnit_Strokes = DISPID_InkDivisionUnit.Strokes;
-pub const DISPID_IInkDivisionUnit_DivisionType = DISPID_InkDivisionUnit.DivisionType;
-pub const DISPID_IInkDivisionUnit_RecognizedString = DISPID_InkDivisionUnit.RecognizedString;
-pub const DISPID_IInkDivisionUnit_RotationTransform = DISPID_InkDivisionUnit.RotationTransform;
-
-pub const DISPID_InkDivisionUnits = enum(i32) {
-    NewEnum = -4,
-    Item = 0,
-    Count = 1,
-};
-pub const DISPID_IInkDivisionUnits_NewEnum = DISPID_InkDivisionUnits.NewEnum;
-pub const DISPID_IInkDivisionUnits_Item = DISPID_InkDivisionUnits.Item;
-pub const DISPID_IInkDivisionUnits_Count = DISPID_InkDivisionUnits.Count;
 
 const IID_IInkDivider_Value = Guid.initString("5de00405-f9a4-4651-b0c5-c317defd58b9");
 pub const IID_IInkDivider = &IID_IInkDivider_Value;
@@ -6019,1082 +2797,175 @@ pub const IInkDivisionUnits = extern union {
     }
 };
 
-const CLSID_HandwrittenTextInsertion_Value = Guid.initString("9f074ee2-e6e9-4d8a-a047-eb5b5c3c55da");
-pub const CLSID_HandwrittenTextInsertion = &CLSID_HandwrittenTextInsertion_Value;
-
-const CLSID_PenInputPanel_Value = Guid.initString("f744e496-1b5a-489e-81dc-fbd7ac6298a8");
-pub const CLSID_PenInputPanel = &CLSID_PenInputPanel_Value;
-
-const CLSID_TextInputPanel_Value = Guid.initString("f9b189d7-228b-4f2b-8650-b97f59e02c8c");
-pub const CLSID_TextInputPanel = &CLSID_TextInputPanel_Value;
-
-const CLSID_PenInputPanel_Internal_Value = Guid.initString("802b1fb9-056b-4720-b0cc-80d23b71171e");
-pub const CLSID_PenInputPanel_Internal = &CLSID_PenInputPanel_Internal_Value;
-
-pub const DISPID_PenInputPanel = enum(i32) {
-    AttachedEditWindow = 0,
-    Factoid = 1,
-    CurrentPanel = 2,
-    DefaultPanel = 3,
-    Visible = 4,
-    Top = 5,
-    Left = 6,
-    Width = 7,
-    Height = 8,
-    MoveTo = 9,
-    CommitPendingInput = 10,
-    Refresh = 11,
-    Busy = 12,
-    VerticalOffset = 13,
-    HorizontalOffset = 14,
-    EnableTsf = 15,
-    AutoShow = 16,
-};
-pub const DISPID_PIPAttachedEditWindow = DISPID_PenInputPanel.AttachedEditWindow;
-pub const DISPID_PIPFactoid = DISPID_PenInputPanel.Factoid;
-pub const DISPID_PIPCurrentPanel = DISPID_PenInputPanel.CurrentPanel;
-pub const DISPID_PIPDefaultPanel = DISPID_PenInputPanel.DefaultPanel;
-pub const DISPID_PIPVisible = DISPID_PenInputPanel.Visible;
-pub const DISPID_PIPTop = DISPID_PenInputPanel.Top;
-pub const DISPID_PIPLeft = DISPID_PenInputPanel.Left;
-pub const DISPID_PIPWidth = DISPID_PenInputPanel.Width;
-pub const DISPID_PIPHeight = DISPID_PenInputPanel.Height;
-pub const DISPID_PIPMoveTo = DISPID_PenInputPanel.MoveTo;
-pub const DISPID_PIPCommitPendingInput = DISPID_PenInputPanel.CommitPendingInput;
-pub const DISPID_PIPRefresh = DISPID_PenInputPanel.Refresh;
-pub const DISPID_PIPBusy = DISPID_PenInputPanel.Busy;
-pub const DISPID_PIPVerticalOffset = DISPID_PenInputPanel.VerticalOffset;
-pub const DISPID_PIPHorizontalOffset = DISPID_PenInputPanel.HorizontalOffset;
-pub const DISPID_PIPEnableTsf = DISPID_PenInputPanel.EnableTsf;
-pub const DISPID_PIPAutoShow = DISPID_PenInputPanel.AutoShow;
-
-pub const DISPID_PenInputPanelEvents = enum(i32) {
-    VisibleChanged = 0,
-    PanelChanged = 1,
-    InputFailed = 2,
-    PanelMoving = 3,
-};
-pub const DISPID_PIPEVisibleChanged = DISPID_PenInputPanelEvents.VisibleChanged;
-pub const DISPID_PIPEPanelChanged = DISPID_PenInputPanelEvents.PanelChanged;
-pub const DISPID_PIPEInputFailed = DISPID_PenInputPanelEvents.InputFailed;
-pub const DISPID_PIPEPanelMoving = DISPID_PenInputPanelEvents.PanelMoving;
-
-pub const VisualState = enum(i32) {
-    InPlace = 0,
-    Floating = 1,
-    DockedTop = 2,
-    DockedBottom = 3,
-    Closed = 4,
-};
-pub const InPlace = VisualState.InPlace;
-pub const Floating = VisualState.Floating;
-pub const DockedTop = VisualState.DockedTop;
-pub const DockedBottom = VisualState.DockedBottom;
-pub const Closed = VisualState.Closed;
-
-pub const InteractionMode = enum(i32) {
-    InPlace = 0,
-    Floating = 1,
-    DockedTop = 2,
-    DockedBottom = 3,
-};
-pub const InteractionMode_InPlace = InteractionMode.InPlace;
-pub const InteractionMode_Floating = InteractionMode.Floating;
-pub const InteractionMode_DockedTop = InteractionMode.DockedTop;
-pub const InteractionMode_DockedBottom = InteractionMode.DockedBottom;
-
-pub const InPlaceState = enum(i32) {
-    Auto = 0,
-    HoverTarget = 1,
-    Expanded = 2,
-};
-pub const InPlaceState_Auto = InPlaceState.Auto;
-pub const InPlaceState_HoverTarget = InPlaceState.HoverTarget;
-pub const InPlaceState_Expanded = InPlaceState.Expanded;
-
-pub const PanelInputArea = enum(i32) {
-    Auto = 0,
-    Keyboard = 1,
-    WritingPad = 2,
-    CharacterPad = 3,
-};
-pub const PanelInputArea_Auto = PanelInputArea.Auto;
-pub const PanelInputArea_Keyboard = PanelInputArea.Keyboard;
-pub const PanelInputArea_WritingPad = PanelInputArea.WritingPad;
-pub const PanelInputArea_CharacterPad = PanelInputArea.CharacterPad;
-
-pub const CorrectionMode = enum(i32) {
-    NotVisible = 0,
-    PreInsertion = 1,
-    PostInsertionCollapsed = 2,
-    PostInsertionExpanded = 3,
-};
-pub const CorrectionMode_NotVisible = CorrectionMode.NotVisible;
-pub const CorrectionMode_PreInsertion = CorrectionMode.PreInsertion;
-pub const CorrectionMode_PostInsertionCollapsed = CorrectionMode.PostInsertionCollapsed;
-pub const CorrectionMode_PostInsertionExpanded = CorrectionMode.PostInsertionExpanded;
-
-pub const CorrectionPosition = enum(i32) {
-    Auto = 0,
-    Bottom = 1,
-    Top = 2,
-};
-pub const CorrectionPosition_Auto = CorrectionPosition.Auto;
-pub const CorrectionPosition_Bottom = CorrectionPosition.Bottom;
-pub const CorrectionPosition_Top = CorrectionPosition.Top;
-
-pub const InPlaceDirection = enum(i32) {
-    Auto = 0,
-    Bottom = 1,
-    Top = 2,
-};
-pub const InPlaceDirection_Auto = InPlaceDirection.Auto;
-pub const InPlaceDirection_Bottom = InPlaceDirection.Bottom;
-pub const InPlaceDirection_Top = InPlaceDirection.Top;
-
-pub const EventMask = enum(i32) {
-    InPlaceStateChanging = 1,
-    InPlaceStateChanged = 2,
-    InPlaceSizeChanging = 4,
-    InPlaceSizeChanged = 8,
-    InputAreaChanging = 16,
-    InputAreaChanged = 32,
-    CorrectionModeChanging = 64,
-    CorrectionModeChanged = 128,
-    InPlaceVisibilityChanging = 256,
-    InPlaceVisibilityChanged = 512,
-    TextInserting = 1024,
-    TextInserted = 2048,
-    All = 4095,
-};
-pub const EventMask_InPlaceStateChanging = EventMask.InPlaceStateChanging;
-pub const EventMask_InPlaceStateChanged = EventMask.InPlaceStateChanged;
-pub const EventMask_InPlaceSizeChanging = EventMask.InPlaceSizeChanging;
-pub const EventMask_InPlaceSizeChanged = EventMask.InPlaceSizeChanged;
-pub const EventMask_InputAreaChanging = EventMask.InputAreaChanging;
-pub const EventMask_InputAreaChanged = EventMask.InputAreaChanged;
-pub const EventMask_CorrectionModeChanging = EventMask.CorrectionModeChanging;
-pub const EventMask_CorrectionModeChanged = EventMask.CorrectionModeChanged;
-pub const EventMask_InPlaceVisibilityChanging = EventMask.InPlaceVisibilityChanging;
-pub const EventMask_InPlaceVisibilityChanged = EventMask.InPlaceVisibilityChanged;
-pub const EventMask_TextInserting = EventMask.TextInserting;
-pub const EventMask_TextInserted = EventMask.TextInserted;
-pub const EventMask_All = EventMask.All;
-
-pub const PanelType = enum(i32) {
-    Default = 0,
-    Inactive = 1,
-    Handwriting = 2,
-    Keyboard = 3,
-};
-pub const PT_Default = PanelType.Default;
-pub const PT_Inactive = PanelType.Inactive;
-pub const PT_Handwriting = PanelType.Handwriting;
-pub const PT_Keyboard = PanelType.Keyboard;
-
-const IID_IPenInputPanel_Value = Guid.initString("fa7a4083-5747-4040-a182-0b0e9fd4fac7");
-pub const IID_IPenInputPanel = &IID_IPenInputPanel_Value;
-pub const IPenInputPanel = extern union {
+const IID_IInkDrawingAttributes_Value = Guid.initString("bf519b75-0a15-4623-adc9-c00d436a8092");
+pub const IID_IInkDrawingAttributes = &IID_IInkDrawingAttributes_Value;
+pub const IInkDrawingAttributes = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Busy: *const fn(
-            self: *const IPenInputPanel,
-            Busy: ?*i16,
+        get_Color: *const fn(
+            self: *const IInkDrawingAttributes,
+            CurrentColor: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Factoid: *const fn(
-            self: *const IPenInputPanel,
-            Factoid: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Factoid: *const fn(
-            self: *const IPenInputPanel,
-            Factoid: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow: *const fn(
-            self: *const IPenInputPanel,
-            AttachedEditWindow: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow: *const fn(
-            self: *const IPenInputPanel,
-            AttachedEditWindow: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentPanel: *const fn(
-            self: *const IPenInputPanel,
-            CurrentPanel: ?*PanelType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CurrentPanel: *const fn(
-            self: *const IPenInputPanel,
-            CurrentPanel: PanelType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultPanel: *const fn(
-            self: *const IPenInputPanel,
-            pDefaultPanel: ?*PanelType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultPanel: *const fn(
-            self: *const IPenInputPanel,
-            DefaultPanel: PanelType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Visible: *const fn(
-            self: *const IPenInputPanel,
-            Visible: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Visible: *const fn(
-            self: *const IPenInputPanel,
-            Visible: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Top: *const fn(
-            self: *const IPenInputPanel,
-            Top: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Left: *const fn(
-            self: *const IPenInputPanel,
-            Left: ?*i32,
+        put_Color: *const fn(
+            self: *const IInkDrawingAttributes,
+            NewColor: i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: *const fn(
-            self: *const IPenInputPanel,
-            Width: ?*i32,
+            self: *const IInkDrawingAttributes,
+            CurrentWidth: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Width: *const fn(
+            self: *const IInkDrawingAttributes,
+            NewWidth: f32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Height: *const fn(
-            self: *const IPenInputPanel,
-            Height: ?*i32,
+            self: *const IInkDrawingAttributes,
+            CurrentHeight: ?*f32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VerticalOffset: *const fn(
-            self: *const IPenInputPanel,
-            VerticalOffset: ?*i32,
+        put_Height: *const fn(
+            self: *const IInkDrawingAttributes,
+            NewHeight: f32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_VerticalOffset: *const fn(
-            self: *const IPenInputPanel,
-            VerticalOffset: i32,
+        get_FitToCurve: *const fn(
+            self: *const IInkDrawingAttributes,
+            Flag: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HorizontalOffset: *const fn(
-            self: *const IPenInputPanel,
-            HorizontalOffset: ?*i32,
+        put_FitToCurve: *const fn(
+            self: *const IInkDrawingAttributes,
+            Flag: i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HorizontalOffset: *const fn(
-            self: *const IPenInputPanel,
-            HorizontalOffset: i32,
+        get_IgnorePressure: *const fn(
+            self: *const IInkDrawingAttributes,
+            Flag: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoShow: *const fn(
-            self: *const IPenInputPanel,
-            pAutoShow: ?*i16,
+        put_IgnorePressure: *const fn(
+            self: *const IInkDrawingAttributes,
+            Flag: i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoShow: *const fn(
-            self: *const IPenInputPanel,
-            AutoShow: i16,
+        get_AntiAliased: *const fn(
+            self: *const IInkDrawingAttributes,
+            Flag: ?*i16,
         ) callconv(.winapi) HRESULT,
-        MoveTo: *const fn(
-            self: *const IPenInputPanel,
-            Left: i32,
-            Top: i32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AntiAliased: *const fn(
+            self: *const IInkDrawingAttributes,
+            Flag: i16,
         ) callconv(.winapi) HRESULT,
-        CommitPendingInput: *const fn(
-            self: *const IPenInputPanel,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Transparency: *const fn(
+            self: *const IInkDrawingAttributes,
+            CurrentTransparency: ?*i32,
         ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const IPenInputPanel,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Transparency: *const fn(
+            self: *const IInkDrawingAttributes,
+            NewTransparency: i32,
         ) callconv(.winapi) HRESULT,
-        EnableTsf: *const fn(
-            self: *const IPenInputPanel,
-            Enable: i16,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RasterOperation: *const fn(
+            self: *const IInkDrawingAttributes,
+            CurrentRasterOperation: ?*InkRasterOperation,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RasterOperation: *const fn(
+            self: *const IInkDrawingAttributes,
+            NewRasterOperation: InkRasterOperation,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PenTip: *const fn(
+            self: *const IInkDrawingAttributes,
+            CurrentPenTip: ?*InkPenTip,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PenTip: *const fn(
+            self: *const IInkDrawingAttributes,
+            NewPenTip: InkPenTip,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExtendedProperties: *const fn(
+            self: *const IInkDrawingAttributes,
+            Properties: ?*?*IInkExtendedProperties,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IInkDrawingAttributes,
+            DrawingAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Busy(self: *const IPenInputPanel, Busy: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Busy(self, Busy);
+    pub fn get_Color(self: *const IInkDrawingAttributes, CurrentColor: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Color(self, CurrentColor);
     }
-    pub fn get_Factoid(self: *const IPenInputPanel, Factoid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Factoid(self, Factoid);
+    pub fn put_Color(self: *const IInkDrawingAttributes, NewColor: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Color(self, NewColor);
     }
-    pub fn put_Factoid(self: *const IPenInputPanel, Factoid: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Factoid(self, Factoid);
+    pub fn get_Width(self: *const IInkDrawingAttributes, CurrentWidth: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Width(self, CurrentWidth);
     }
-    pub fn get_AttachedEditWindow(self: *const IPenInputPanel, AttachedEditWindow: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AttachedEditWindow(self, AttachedEditWindow);
+    pub fn put_Width(self: *const IInkDrawingAttributes, NewWidth: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Width(self, NewWidth);
     }
-    pub fn put_AttachedEditWindow(self: *const IPenInputPanel, AttachedEditWindow: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AttachedEditWindow(self, AttachedEditWindow);
+    pub fn get_Height(self: *const IInkDrawingAttributes, CurrentHeight: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Height(self, CurrentHeight);
     }
-    pub fn get_CurrentPanel(self: *const IPenInputPanel, CurrentPanel: ?*PanelType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentPanel(self, CurrentPanel);
+    pub fn put_Height(self: *const IInkDrawingAttributes, NewHeight: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Height(self, NewHeight);
     }
-    pub fn put_CurrentPanel(self: *const IPenInputPanel, CurrentPanel: PanelType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_CurrentPanel(self, CurrentPanel);
+    pub fn get_FitToCurve(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FitToCurve(self, Flag);
     }
-    pub fn get_DefaultPanel(self: *const IPenInputPanel, pDefaultPanel: ?*PanelType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultPanel(self, pDefaultPanel);
+    pub fn put_FitToCurve(self: *const IInkDrawingAttributes, Flag: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FitToCurve(self, Flag);
     }
-    pub fn put_DefaultPanel(self: *const IPenInputPanel, DefaultPanel: PanelType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DefaultPanel(self, DefaultPanel);
+    pub fn get_IgnorePressure(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IgnorePressure(self, Flag);
     }
-    pub fn get_Visible(self: *const IPenInputPanel, Visible: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Visible(self, Visible);
+    pub fn put_IgnorePressure(self: *const IInkDrawingAttributes, Flag: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_IgnorePressure(self, Flag);
     }
-    pub fn put_Visible(self: *const IPenInputPanel, Visible: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Visible(self, Visible);
+    pub fn get_AntiAliased(self: *const IInkDrawingAttributes, Flag: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AntiAliased(self, Flag);
     }
-    pub fn get_Top(self: *const IPenInputPanel, Top: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Top(self, Top);
+    pub fn put_AntiAliased(self: *const IInkDrawingAttributes, Flag: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AntiAliased(self, Flag);
     }
-    pub fn get_Left(self: *const IPenInputPanel, Left: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Left(self, Left);
+    pub fn get_Transparency(self: *const IInkDrawingAttributes, CurrentTransparency: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Transparency(self, CurrentTransparency);
     }
-    pub fn get_Width(self: *const IPenInputPanel, Width: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Width(self, Width);
+    pub fn put_Transparency(self: *const IInkDrawingAttributes, NewTransparency: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Transparency(self, NewTransparency);
     }
-    pub fn get_Height(self: *const IPenInputPanel, Height: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Height(self, Height);
+    pub fn get_RasterOperation(self: *const IInkDrawingAttributes, CurrentRasterOperation: ?*InkRasterOperation) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RasterOperation(self, CurrentRasterOperation);
     }
-    pub fn get_VerticalOffset(self: *const IPenInputPanel, VerticalOffset: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_VerticalOffset(self, VerticalOffset);
+    pub fn put_RasterOperation(self: *const IInkDrawingAttributes, NewRasterOperation: InkRasterOperation) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RasterOperation(self, NewRasterOperation);
     }
-    pub fn put_VerticalOffset(self: *const IPenInputPanel, VerticalOffset: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_VerticalOffset(self, VerticalOffset);
+    pub fn get_PenTip(self: *const IInkDrawingAttributes, CurrentPenTip: ?*InkPenTip) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PenTip(self, CurrentPenTip);
     }
-    pub fn get_HorizontalOffset(self: *const IPenInputPanel, HorizontalOffset: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HorizontalOffset(self, HorizontalOffset);
+    pub fn put_PenTip(self: *const IInkDrawingAttributes, NewPenTip: InkPenTip) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PenTip(self, NewPenTip);
     }
-    pub fn put_HorizontalOffset(self: *const IPenInputPanel, HorizontalOffset: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_HorizontalOffset(self, HorizontalOffset);
+    pub fn get_ExtendedProperties(self: *const IInkDrawingAttributes, Properties: ?*?*IInkExtendedProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExtendedProperties(self, Properties);
     }
-    pub fn get_AutoShow(self: *const IPenInputPanel, pAutoShow: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AutoShow(self, pAutoShow);
-    }
-    pub fn put_AutoShow(self: *const IPenInputPanel, AutoShow: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AutoShow(self, AutoShow);
-    }
-    pub fn MoveTo(self: *const IPenInputPanel, Left: i32, Top: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveTo(self, Left, Top);
-    }
-    pub fn CommitPendingInput(self: *const IPenInputPanel) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitPendingInput(self);
-    }
-    pub fn Refresh(self: *const IPenInputPanel) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn EnableTsf(self: *const IPenInputPanel, Enable: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableTsf(self, Enable);
+    pub fn Clone(self: *const IInkDrawingAttributes, DrawingAttributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, DrawingAttributes);
     }
 };
-
-const IID__IPenInputPanelEvents_Value = Guid.initString("b7e489da-3719-439f-848f-e7acbd820f17");
-pub const IID__IPenInputPanelEvents = &IID__IPenInputPanelEvents_Value;
-pub const _IPenInputPanelEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IHandwrittenTextInsertion_Value = Guid.initString("56fdea97-ecd6-43e7-aa3a-816be7785860");
-pub const IID_IHandwrittenTextInsertion = &IID_IHandwrittenTextInsertion_Value;
-pub const IHandwrittenTextInsertion = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InsertRecognitionResultsArray: *const fn(
-            self: *const IHandwrittenTextInsertion,
-            psaAlternates: ?*SAFEARRAY,
-            locale: u32,
-            fAlternateContainsAutoSpacingInformation: BOOL,
-        ) callconv(.winapi) HRESULT,
-        InsertInkRecognitionResult: *const fn(
-            self: *const IHandwrittenTextInsertion,
-            pIInkRecoResult: ?*IInkRecognitionResult,
-            locale: u32,
-            fAlternateContainsAutoSpacingInformation: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InsertRecognitionResultsArray(self: *const IHandwrittenTextInsertion, psaAlternates: ?*SAFEARRAY, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertRecognitionResultsArray(self, psaAlternates, locale, fAlternateContainsAutoSpacingInformation);
-    }
-    pub fn InsertInkRecognitionResult(self: *const IHandwrittenTextInsertion, pIInkRecoResult: ?*IInkRecognitionResult, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertInkRecognitionResult(self, pIInkRecoResult, locale, fAlternateContainsAutoSpacingInformation);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITextInputPanelEventSink_Value = Guid.initString("27560408-8e64-4fe1-804e-421201584b31");
-pub const IID_ITextInputPanelEventSink = &IID_ITextInputPanelEventSink_Value;
-pub const ITextInputPanelEventSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InPlaceStateChanging: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldInPlaceState: InPlaceState,
-            newInPlaceState: InPlaceState,
-        ) callconv(.winapi) HRESULT,
-        InPlaceStateChanged: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldInPlaceState: InPlaceState,
-            newInPlaceState: InPlaceState,
-        ) callconv(.winapi) HRESULT,
-        InPlaceSizeChanging: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldBoundingRectangle: RECT,
-            newBoundingRectangle: RECT,
-        ) callconv(.winapi) HRESULT,
-        InPlaceSizeChanged: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldBoundingRectangle: RECT,
-            newBoundingRectangle: RECT,
-        ) callconv(.winapi) HRESULT,
-        InputAreaChanging: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldInputArea: PanelInputArea,
-            newInputArea: PanelInputArea,
-        ) callconv(.winapi) HRESULT,
-        InputAreaChanged: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldInputArea: PanelInputArea,
-            newInputArea: PanelInputArea,
-        ) callconv(.winapi) HRESULT,
-        CorrectionModeChanging: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldCorrectionMode: CorrectionMode,
-            newCorrectionMode: CorrectionMode,
-        ) callconv(.winapi) HRESULT,
-        CorrectionModeChanged: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldCorrectionMode: CorrectionMode,
-            newCorrectionMode: CorrectionMode,
-        ) callconv(.winapi) HRESULT,
-        InPlaceVisibilityChanging: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldVisible: BOOL,
-            newVisible: BOOL,
-        ) callconv(.winapi) HRESULT,
-        InPlaceVisibilityChanged: *const fn(
-            self: *const ITextInputPanelEventSink,
-            oldVisible: BOOL,
-            newVisible: BOOL,
-        ) callconv(.winapi) HRESULT,
-        TextInserting: *const fn(
-            self: *const ITextInputPanelEventSink,
-            Ink: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        TextInserted: *const fn(
-            self: *const ITextInputPanelEventSink,
-            Ink: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InPlaceStateChanging(self: *const ITextInputPanelEventSink, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.@"inline") HRESULT {
-        return self.vtable.InPlaceStateChanging(self, oldInPlaceState, newInPlaceState);
-    }
-    pub fn InPlaceStateChanged(self: *const ITextInputPanelEventSink, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.@"inline") HRESULT {
-        return self.vtable.InPlaceStateChanged(self, oldInPlaceState, newInPlaceState);
-    }
-    pub fn InPlaceSizeChanging(self: *const ITextInputPanelEventSink, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.InPlaceSizeChanging(self, oldBoundingRectangle, newBoundingRectangle);
-    }
-    pub fn InPlaceSizeChanged(self: *const ITextInputPanelEventSink, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.InPlaceSizeChanged(self, oldBoundingRectangle, newBoundingRectangle);
-    }
-    pub fn InputAreaChanging(self: *const ITextInputPanelEventSink, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.@"inline") HRESULT {
-        return self.vtable.InputAreaChanging(self, oldInputArea, newInputArea);
-    }
-    pub fn InputAreaChanged(self: *const ITextInputPanelEventSink, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.@"inline") HRESULT {
-        return self.vtable.InputAreaChanged(self, oldInputArea, newInputArea);
-    }
-    pub fn CorrectionModeChanging(self: *const ITextInputPanelEventSink, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.CorrectionModeChanging(self, oldCorrectionMode, newCorrectionMode);
-    }
-    pub fn CorrectionModeChanged(self: *const ITextInputPanelEventSink, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.CorrectionModeChanged(self, oldCorrectionMode, newCorrectionMode);
-    }
-    pub fn InPlaceVisibilityChanging(self: *const ITextInputPanelEventSink, oldVisible: BOOL, newVisible: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InPlaceVisibilityChanging(self, oldVisible, newVisible);
-    }
-    pub fn InPlaceVisibilityChanged(self: *const ITextInputPanelEventSink, oldVisible: BOOL, newVisible: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InPlaceVisibilityChanged(self, oldVisible, newVisible);
-    }
-    pub fn TextInserting(self: *const ITextInputPanelEventSink, _param_Ink: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.TextInserting(self, _param_Ink);
-    }
-    pub fn TextInserted(self: *const ITextInputPanelEventSink, _param_Ink: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.TextInserted(self, _param_Ink);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITextInputPanel_Value = Guid.initString("6b6a65a5-6af3-46c2-b6ea-56cd1f80df71");
-pub const IID_ITextInputPanel = &IID_ITextInputPanel_Value;
-pub const ITextInputPanel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow: *const fn(
-            self: *const ITextInputPanel,
-            AttachedEditWindow: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow: *const fn(
-            self: *const ITextInputPanel,
-            AttachedEditWindow: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentInteractionMode: *const fn(
-            self: *const ITextInputPanel,
-            CurrentInteractionMode: ?*InteractionMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultInPlaceState: *const fn(
-            self: *const ITextInputPanel,
-            State: ?*InPlaceState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultInPlaceState: *const fn(
-            self: *const ITextInputPanel,
-            State: InPlaceState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentInPlaceState: *const fn(
-            self: *const ITextInputPanel,
-            State: ?*InPlaceState,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultInputArea: *const fn(
-            self: *const ITextInputPanel,
-            Area: ?*PanelInputArea,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultInputArea: *const fn(
-            self: *const ITextInputPanel,
-            Area: PanelInputArea,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentInputArea: *const fn(
-            self: *const ITextInputPanel,
-            Area: ?*PanelInputArea,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCorrectionMode: *const fn(
-            self: *const ITextInputPanel,
-            Mode: ?*CorrectionMode,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredInPlaceDirection: *const fn(
-            self: *const ITextInputPanel,
-            Direction: ?*InPlaceDirection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredInPlaceDirection: *const fn(
-            self: *const ITextInputPanel,
-            Direction: InPlaceDirection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExpandPostInsertionCorrection: *const fn(
-            self: *const ITextInputPanel,
-            Expand: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExpandPostInsertionCorrection: *const fn(
-            self: *const ITextInputPanel,
-            Expand: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InPlaceVisibleOnFocus: *const fn(
-            self: *const ITextInputPanel,
-            Visible: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InPlaceVisibleOnFocus: *const fn(
-            self: *const ITextInputPanel,
-            Visible: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InPlaceBoundingRectangle: *const fn(
-            self: *const ITextInputPanel,
-            BoundingRectangle: ?*RECT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PopUpCorrectionHeight: *const fn(
-            self: *const ITextInputPanel,
-            Height: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PopDownCorrectionHeight: *const fn(
-            self: *const ITextInputPanel,
-            Height: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        CommitPendingInput: *const fn(
-            self: *const ITextInputPanel,
-        ) callconv(.winapi) HRESULT,
-        SetInPlaceVisibility: *const fn(
-            self: *const ITextInputPanel,
-            Visible: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetInPlacePosition: *const fn(
-            self: *const ITextInputPanel,
-            xPosition: i32,
-            yPosition: i32,
-            position: CorrectionPosition,
-        ) callconv(.winapi) HRESULT,
-        SetInPlaceHoverTargetPosition: *const fn(
-            self: *const ITextInputPanel,
-            xPosition: i32,
-            yPosition: i32,
-        ) callconv(.winapi) HRESULT,
-        Advise: *const fn(
-            self: *const ITextInputPanel,
-            EventSink: ?*ITextInputPanelEventSink,
-            EventMask: u32,
-        ) callconv(.winapi) HRESULT,
-        Unadvise: *const fn(
-            self: *const ITextInputPanel,
-            EventSink: ?*ITextInputPanelEventSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_AttachedEditWindow(self: *const ITextInputPanel, AttachedEditWindow: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AttachedEditWindow(self, AttachedEditWindow);
-    }
-    pub fn put_AttachedEditWindow(self: *const ITextInputPanel, AttachedEditWindow: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AttachedEditWindow(self, AttachedEditWindow);
-    }
-    pub fn get_CurrentInteractionMode(self: *const ITextInputPanel, CurrentInteractionMode: ?*InteractionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentInteractionMode(self, CurrentInteractionMode);
-    }
-    pub fn get_DefaultInPlaceState(self: *const ITextInputPanel, State: ?*InPlaceState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultInPlaceState(self, State);
-    }
-    pub fn put_DefaultInPlaceState(self: *const ITextInputPanel, State: InPlaceState) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DefaultInPlaceState(self, State);
-    }
-    pub fn get_CurrentInPlaceState(self: *const ITextInputPanel, State: ?*InPlaceState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentInPlaceState(self, State);
-    }
-    pub fn get_DefaultInputArea(self: *const ITextInputPanel, Area: ?*PanelInputArea) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DefaultInputArea(self, Area);
-    }
-    pub fn put_DefaultInputArea(self: *const ITextInputPanel, Area: PanelInputArea) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DefaultInputArea(self, Area);
-    }
-    pub fn get_CurrentInputArea(self: *const ITextInputPanel, Area: ?*PanelInputArea) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentInputArea(self, Area);
-    }
-    pub fn get_CurrentCorrectionMode(self: *const ITextInputPanel, Mode: ?*CorrectionMode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CurrentCorrectionMode(self, Mode);
-    }
-    pub fn get_PreferredInPlaceDirection(self: *const ITextInputPanel, Direction: ?*InPlaceDirection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PreferredInPlaceDirection(self, Direction);
-    }
-    pub fn put_PreferredInPlaceDirection(self: *const ITextInputPanel, Direction: InPlaceDirection) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PreferredInPlaceDirection(self, Direction);
-    }
-    pub fn get_ExpandPostInsertionCorrection(self: *const ITextInputPanel, Expand: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExpandPostInsertionCorrection(self, Expand);
-    }
-    pub fn put_ExpandPostInsertionCorrection(self: *const ITextInputPanel, Expand: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExpandPostInsertionCorrection(self, Expand);
-    }
-    pub fn get_InPlaceVisibleOnFocus(self: *const ITextInputPanel, Visible: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InPlaceVisibleOnFocus(self, Visible);
-    }
-    pub fn put_InPlaceVisibleOnFocus(self: *const ITextInputPanel, Visible: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_InPlaceVisibleOnFocus(self, Visible);
-    }
-    pub fn get_InPlaceBoundingRectangle(self: *const ITextInputPanel, BoundingRectangle: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InPlaceBoundingRectangle(self, BoundingRectangle);
-    }
-    pub fn get_PopUpCorrectionHeight(self: *const ITextInputPanel, Height: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PopUpCorrectionHeight(self, Height);
-    }
-    pub fn get_PopDownCorrectionHeight(self: *const ITextInputPanel, Height: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PopDownCorrectionHeight(self, Height);
-    }
-    pub fn CommitPendingInput(self: *const ITextInputPanel) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitPendingInput(self);
-    }
-    pub fn SetInPlaceVisibility(self: *const ITextInputPanel, Visible: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetInPlaceVisibility(self, Visible);
-    }
-    pub fn SetInPlacePosition(self: *const ITextInputPanel, xPosition: i32, yPosition: i32, position: CorrectionPosition) callconv(.@"inline") HRESULT {
-        return self.vtable.SetInPlacePosition(self, xPosition, yPosition, position);
-    }
-    pub fn SetInPlaceHoverTargetPosition(self: *const ITextInputPanel, xPosition: i32, yPosition: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetInPlaceHoverTargetPosition(self, xPosition, yPosition);
-    }
-    pub fn Advise(self: *const ITextInputPanel, EventSink: ?*ITextInputPanelEventSink, _param_EventMask: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Advise(self, EventSink, _param_EventMask);
-    }
-    pub fn Unadvise(self: *const ITextInputPanel, EventSink: ?*ITextInputPanelEventSink) callconv(.@"inline") HRESULT {
-        return self.vtable.Unadvise(self, EventSink);
-    }
-};
-
-const IID_IInputPanelWindowHandle_Value = Guid.initString("4af81847-fdc4-4fc3-ad0b-422479c1b935");
-pub const IID_IInputPanelWindowHandle = &IID_IInputPanelWindowHandle_Value;
-pub const IInputPanelWindowHandle = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow32: *const fn(
-            self: *const IInputPanelWindowHandle,
-            AttachedEditWindow: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow32: *const fn(
-            self: *const IInputPanelWindowHandle,
-            AttachedEditWindow: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow64: *const fn(
-            self: *const IInputPanelWindowHandle,
-            AttachedEditWindow: ?*i64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow64: *const fn(
-            self: *const IInputPanelWindowHandle,
-            AttachedEditWindow: i64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_AttachedEditWindow32(self: *const IInputPanelWindowHandle, AttachedEditWindow: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AttachedEditWindow32(self, AttachedEditWindow);
-    }
-    pub fn put_AttachedEditWindow32(self: *const IInputPanelWindowHandle, AttachedEditWindow: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AttachedEditWindow32(self, AttachedEditWindow);
-    }
-    pub fn get_AttachedEditWindow64(self: *const IInputPanelWindowHandle, AttachedEditWindow: ?*i64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AttachedEditWindow64(self, AttachedEditWindow);
-    }
-    pub fn put_AttachedEditWindow64(self: *const IInputPanelWindowHandle, AttachedEditWindow: i64) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AttachedEditWindow64(self, AttachedEditWindow);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITextInputPanelRunInfo_Value = Guid.initString("9f424568-1920-48cc-9811-a993cbf5adba");
-pub const IID_ITextInputPanelRunInfo = &IID_ITextInputPanelRunInfo_Value;
-pub const ITextInputPanelRunInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsTipRunning: *const fn(
-            self: *const ITextInputPanelRunInfo,
-            pfRunning: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsTipRunning(self: *const ITextInputPanelRunInfo, pfRunning: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsTipRunning(self, pfRunning);
-    }
-};
-
-pub const FLICKDIRECTION = enum(i32) {
-    MIN = 0,
-    UPRIGHT = 1,
-    UP = 2,
-    UPLEFT = 3,
-    LEFT = 4,
-    DOWNLEFT = 5,
-    DOWN = 6,
-    DOWNRIGHT = 7,
-    INVALID = 8,
-    pub const RIGHT = .MIN;
-};
-pub const FLICKDIRECTION_MIN = FLICKDIRECTION.MIN;
-pub const FLICKDIRECTION_RIGHT = FLICKDIRECTION.MIN;
-pub const FLICKDIRECTION_UPRIGHT = FLICKDIRECTION.UPRIGHT;
-pub const FLICKDIRECTION_UP = FLICKDIRECTION.UP;
-pub const FLICKDIRECTION_UPLEFT = FLICKDIRECTION.UPLEFT;
-pub const FLICKDIRECTION_LEFT = FLICKDIRECTION.LEFT;
-pub const FLICKDIRECTION_DOWNLEFT = FLICKDIRECTION.DOWNLEFT;
-pub const FLICKDIRECTION_DOWN = FLICKDIRECTION.DOWN;
-pub const FLICKDIRECTION_DOWNRIGHT = FLICKDIRECTION.DOWNRIGHT;
-pub const FLICKDIRECTION_INVALID = FLICKDIRECTION.INVALID;
-
-pub const FLICKMODE = enum(i32) {
-    MIN = 0,
-    ON = 1,
-    LEARNING = 2,
-    pub const OFF = .MIN;
-    pub const MAX = .LEARNING;
-    pub const DEFAULT = .ON;
-};
-pub const FLICKMODE_MIN = FLICKMODE.MIN;
-pub const FLICKMODE_OFF = FLICKMODE.MIN;
-pub const FLICKMODE_ON = FLICKMODE.ON;
-pub const FLICKMODE_LEARNING = FLICKMODE.LEARNING;
-pub const FLICKMODE_MAX = FLICKMODE.LEARNING;
-pub const FLICKMODE_DEFAULT = FLICKMODE.ON;
-
-pub const FLICKACTION_COMMANDCODE = enum(i32) {
-    NULL = 0,
-    SCROLL = 1,
-    APPCOMMAND = 2,
-    CUSTOMKEY = 3,
-    KEYMODIFIER = 4,
-};
-pub const FLICKACTION_COMMANDCODE_NULL = FLICKACTION_COMMANDCODE.NULL;
-pub const FLICKACTION_COMMANDCODE_SCROLL = FLICKACTION_COMMANDCODE.SCROLL;
-pub const FLICKACTION_COMMANDCODE_APPCOMMAND = FLICKACTION_COMMANDCODE.APPCOMMAND;
-pub const FLICKACTION_COMMANDCODE_CUSTOMKEY = FLICKACTION_COMMANDCODE.CUSTOMKEY;
-pub const FLICKACTION_COMMANDCODE_KEYMODIFIER = FLICKACTION_COMMANDCODE.KEYMODIFIER;
-
-pub const FLICK_POINT = extern struct {
-    _bitfield: i32,
-};
-
-pub const FLICK_DATA = extern struct {
-    _bitfield: i32,
-};
-
-pub const SCROLLDIRECTION = enum(i32) {
-    UP = 0,
-    DOWN = 1,
-};
-pub const SCROLLDIRECTION_UP = SCROLLDIRECTION.UP;
-pub const SCROLLDIRECTION_DOWN = SCROLLDIRECTION.DOWN;
-
-pub const KEYMODIFIER = enum(i32) {
-    CONTROL = 1,
-    MENU = 2,
-    SHIFT = 4,
-    WIN = 8,
-    ALTGR = 16,
-    EXT = 32,
-};
-pub const KEYMODIFIER_CONTROL = KEYMODIFIER.CONTROL;
-pub const KEYMODIFIER_MENU = KEYMODIFIER.MENU;
-pub const KEYMODIFIER_SHIFT = KEYMODIFIER.SHIFT;
-pub const KEYMODIFIER_WIN = KEYMODIFIER.WIN;
-pub const KEYMODIFIER_ALTGR = KEYMODIFIER.ALTGR;
-pub const KEYMODIFIER_EXT = KEYMODIFIER.EXT;
-
-const CLSID_InkEdit_Value = Guid.initString("e5ca59f5-57c4-4dd8-9bd6-1deeedd27af4");
-pub const CLSID_InkEdit = &CLSID_InkEdit_Value;
-
-pub const IEC_STROKEINFO = extern struct {
-    nmhdr: NMHDR,
-    Cursor: ?*IInkCursor,
-    Stroke: ?*IInkStrokeDisp,
-};
-
-pub const IEC_GESTUREINFO = extern struct {
-    nmhdr: NMHDR,
-    Cursor: ?*IInkCursor,
-    Strokes: ?*IInkStrokes,
-    Gestures: VARIANT,
-};
-
-pub const IEC_RECOGNITIONRESULTINFO = extern struct {
-    nmhdr: NMHDR,
-    RecognitionResult: ?*IInkRecognitionResult,
-};
-
-pub const MouseButton = enum(i32) {
-    NO_BUTTON = 0,
-    LEFT_BUTTON = 1,
-    RIGHT_BUTTON = 2,
-    MIDDLE_BUTTON = 4,
-};
-pub const NO_BUTTON = MouseButton.NO_BUTTON;
-pub const LEFT_BUTTON = MouseButton.LEFT_BUTTON;
-pub const RIGHT_BUTTON = MouseButton.RIGHT_BUTTON;
-pub const MIDDLE_BUTTON = MouseButton.MIDDLE_BUTTON;
-
-pub const SelAlignmentConstants = enum(i32) {
-    Left = 0,
-    Right = 1,
-    Center = 2,
-};
-pub const rtfLeft = SelAlignmentConstants.Left;
-pub const rtfRight = SelAlignmentConstants.Right;
-pub const rtfCenter = SelAlignmentConstants.Center;
-
-pub const DISPID_InkEdit = enum(i32) {
-    Text = 0,
-    TextRTF = 1,
-    Hwnd = 2,
-    DisableNoScroll = 3,
-    Locked = 4,
-    Enabled = 5,
-    MaxLength = 6,
-    MultiLine = 7,
-    ScrollBars = 8,
-    RTSelStart = 9,
-    RTSelLength = 10,
-    RTSelText = 11,
-    SelAlignment = 12,
-    SelBold = 13,
-    SelCharOffset = 14,
-    SelColor = 15,
-    SelFontName = 16,
-    SelFontSize = 17,
-    SelItalic = 18,
-    SelRTF = 19,
-    SelUnderline = 20,
-    DragIcon = 21,
-    Status = 22,
-    UseMouseForInput = 23,
-    InkMode = 24,
-    InkInsertMode = 25,
-    RecoTimeout = 26,
-    DrawAttr = 27,
-    Recognizer = 28,
-    Factoid = 29,
-    SelInk = 30,
-    SelInksDisplayMode = 31,
-    Recognize = 32,
-    GetGestStatus = 33,
-    SetGestStatus = 34,
-    Refresh = 35,
-};
-pub const DISPID_Text = DISPID_InkEdit.Text;
-pub const DISPID_TextRTF = DISPID_InkEdit.TextRTF;
-pub const DISPID_Hwnd = DISPID_InkEdit.Hwnd;
-pub const DISPID_DisableNoScroll = DISPID_InkEdit.DisableNoScroll;
-pub const DISPID_Locked = DISPID_InkEdit.Locked;
-pub const DISPID_Enabled = DISPID_InkEdit.Enabled;
-pub const DISPID_MaxLength = DISPID_InkEdit.MaxLength;
-pub const DISPID_MultiLine = DISPID_InkEdit.MultiLine;
-pub const DISPID_ScrollBars = DISPID_InkEdit.ScrollBars;
-pub const DISPID_RTSelStart = DISPID_InkEdit.RTSelStart;
-pub const DISPID_RTSelLength = DISPID_InkEdit.RTSelLength;
-pub const DISPID_RTSelText = DISPID_InkEdit.RTSelText;
-pub const DISPID_SelAlignment = DISPID_InkEdit.SelAlignment;
-pub const DISPID_SelBold = DISPID_InkEdit.SelBold;
-pub const DISPID_SelCharOffset = DISPID_InkEdit.SelCharOffset;
-pub const DISPID_SelColor = DISPID_InkEdit.SelColor;
-pub const DISPID_SelFontName = DISPID_InkEdit.SelFontName;
-pub const DISPID_SelFontSize = DISPID_InkEdit.SelFontSize;
-pub const DISPID_SelItalic = DISPID_InkEdit.SelItalic;
-pub const DISPID_SelRTF = DISPID_InkEdit.SelRTF;
-pub const DISPID_SelUnderline = DISPID_InkEdit.SelUnderline;
-pub const DISPID_DragIcon = DISPID_InkEdit.DragIcon;
-pub const DISPID_Status = DISPID_InkEdit.Status;
-pub const DISPID_UseMouseForInput = DISPID_InkEdit.UseMouseForInput;
-pub const DISPID_InkMode = DISPID_InkEdit.InkMode;
-pub const DISPID_InkInsertMode = DISPID_InkEdit.InkInsertMode;
-pub const DISPID_RecoTimeout = DISPID_InkEdit.RecoTimeout;
-pub const DISPID_DrawAttr = DISPID_InkEdit.DrawAttr;
-pub const DISPID_Recognizer = DISPID_InkEdit.Recognizer;
-pub const DISPID_Factoid = DISPID_InkEdit.Factoid;
-pub const DISPID_SelInk = DISPID_InkEdit.SelInk;
-pub const DISPID_SelInksDisplayMode = DISPID_InkEdit.SelInksDisplayMode;
-pub const DISPID_Recognize = DISPID_InkEdit.Recognize;
-pub const DISPID_GetGestStatus = DISPID_InkEdit.GetGestStatus;
-pub const DISPID_SetGestStatus = DISPID_InkEdit.SetGestStatus;
-pub const DISPID_Refresh = DISPID_InkEdit.Refresh;
-
-pub const DISPID_InkEditEvents = enum(i32) {
-    Change = 1,
-    SelChange = 2,
-    KeyDown = 3,
-    KeyUp = 4,
-    MouseUp = 5,
-    MouseDown = 6,
-    KeyPress = 7,
-    DblClick = 8,
-    Click = 9,
-    MouseMove = 10,
-    CursorDown = 21,
-    Stroke = 22,
-    Gesture = 23,
-    RecognitionResult = 24,
-};
-pub const DISPID_IeeChange = DISPID_InkEditEvents.Change;
-pub const DISPID_IeeSelChange = DISPID_InkEditEvents.SelChange;
-pub const DISPID_IeeKeyDown = DISPID_InkEditEvents.KeyDown;
-pub const DISPID_IeeKeyUp = DISPID_InkEditEvents.KeyUp;
-pub const DISPID_IeeMouseUp = DISPID_InkEditEvents.MouseUp;
-pub const DISPID_IeeMouseDown = DISPID_InkEditEvents.MouseDown;
-pub const DISPID_IeeKeyPress = DISPID_InkEditEvents.KeyPress;
-pub const DISPID_IeeDblClick = DISPID_InkEditEvents.DblClick;
-pub const DISPID_IeeClick = DISPID_InkEditEvents.Click;
-pub const DISPID_IeeMouseMove = DISPID_InkEditEvents.MouseMove;
-pub const DISPID_IeeCursorDown = DISPID_InkEditEvents.CursorDown;
-pub const DISPID_IeeStroke = DISPID_InkEditEvents.Stroke;
-pub const DISPID_IeeGesture = DISPID_InkEditEvents.Gesture;
-pub const DISPID_IeeRecognitionResult = DISPID_InkEditEvents.RecognitionResult;
-
-pub const InkMode = enum(i32) {
-    Disabled = 0,
-    Ink = 1,
-    InkAndGesture = 2,
-};
-pub const IEM_Disabled = InkMode.Disabled;
-pub const IEM_Ink = InkMode.Ink;
-pub const IEM_InkAndGesture = InkMode.InkAndGesture;
-
-pub const InkInsertMode = enum(i32) {
-    Text = 0,
-    Ink = 1,
-};
-pub const IEM_InsertText = InkInsertMode.Text;
-pub const IEM_InsertInk = InkInsertMode.Ink;
-
-pub const InkEditStatus = enum(i32) {
-    Idle = 0,
-    Collecting = 1,
-    Recognizing = 2,
-};
-pub const IES_Idle = InkEditStatus.Idle;
-pub const IES_Collecting = InkEditStatus.Collecting;
-pub const IES_Recognizing = InkEditStatus.Recognizing;
-
-pub const InkDisplayMode = enum(i32) {
-    Ink = 0,
-    Text = 1,
-};
-pub const IDM_Ink = InkDisplayMode.Ink;
-pub const IDM_Text = InkDisplayMode.Text;
-
-pub const AppearanceConstants = enum(i32) {
-    Flat = 0,
-    ThreeD = 1,
-};
-pub const rtfFlat = AppearanceConstants.Flat;
-pub const rtfThreeD = AppearanceConstants.ThreeD;
-
-pub const BorderStyleConstants = enum(i32) {
-    NoBorder = 0,
-    FixedSingle = 1,
-};
-pub const rtfNoBorder = BorderStyleConstants.NoBorder;
-pub const rtfFixedSingle = BorderStyleConstants.FixedSingle;
-
-pub const ScrollBarsConstants = enum(i32) {
-    None = 0,
-    Horizontal = 1,
-    Vertical = 2,
-    Both = 3,
-};
-pub const rtfNone = ScrollBarsConstants.None;
-pub const rtfHorizontal = ScrollBarsConstants.Horizontal;
-pub const rtfVertical = ScrollBarsConstants.Vertical;
-pub const rtfBoth = ScrollBarsConstants.Both;
 
 const IID_IInkEdit_Value = Guid.initString("f2127a19-fbfb-4aed-8464-3f36d78cfefb");
 pub const IID_IInkEdit = &IID_IInkEdit_Value;
@@ -7715,64 +3586,2966 @@ pub const IInkEdit = extern union {
     }
 };
 
-const IID__IInkEditEvents_Value = Guid.initString("e3b0b797-a72e-46db-a0d7-6c9eba8e9bbc");
-pub const IID__IInkEditEvents = &IID__IInkEditEvents_Value;
-pub const _IInkEditEvents = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkExtendedProperties_Value = Guid.initString("89f2a8be-95a9-4530-8b8f-88e971e3e25f");
+pub const IID_IInkExtendedProperties = &IID_IInkExtendedProperties_Value;
+pub const IInkExtendedProperties = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IInkExtendedProperties,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IInkExtendedProperties,
+            _NewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IInkExtendedProperties,
+            Identifier: VARIANT,
+            Item: ?*?*IInkExtendedProperty,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IInkExtendedProperties,
+            Guid: ?BSTR,
+            Data: VARIANT,
+            InkExtendedProperty: ?*?*IInkExtendedProperty,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IInkExtendedProperties,
+            Identifier: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IInkExtendedProperties,
+        ) callconv(.winapi) HRESULT,
+        DoesPropertyExist: *const fn(
+            self: *const IInkExtendedProperties,
+            Guid: ?BSTR,
+            DoesPropertyExist: ?*i16,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
+    pub fn get_Count(self: *const IInkExtendedProperties, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn get__NewEnum(self: *const IInkExtendedProperties, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, _NewEnum);
+    }
+    pub fn Item(self: *const IInkExtendedProperties, Identifier: VARIANT, _param_Item: ?*?*IInkExtendedProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Identifier, _param_Item);
+    }
+    pub fn Add(self: *const IInkExtendedProperties, _param_Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, _param_Guid, Data, InkExtendedProperty);
+    }
+    pub fn Remove(self: *const IInkExtendedProperties, Identifier: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, Identifier);
+    }
+    pub fn Clear(self: *const IInkExtendedProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+    pub fn DoesPropertyExist(self: *const IInkExtendedProperties, _param_Guid: ?BSTR, _param_DoesPropertyExist: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.DoesPropertyExist(self, _param_Guid, _param_DoesPropertyExist);
+    }
 };
 
-const CLSID_MathInputControl_Value = Guid.initString("c561816c-14d8-4090-830c-98d994b21c7b");
-pub const CLSID_MathInputControl = &CLSID_MathInputControl_Value;
-
-pub const MICUIELEMENT = enum(i32) {
-    BUTTON_WRITE = 1,
-    BUTTON_ERASE = 2,
-    BUTTON_CORRECT = 4,
-    BUTTON_CLEAR = 8,
-    BUTTON_UNDO = 16,
-    BUTTON_REDO = 32,
-    BUTTON_INSERT = 64,
-    BUTTON_CANCEL = 128,
-    INKPANEL_BACKGROUND = 256,
-    RESULTPANEL_BACKGROUND = 512,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkExtendedProperty_Value = Guid.initString("db489209-b7c3-411d-90f6-1548cfff271e");
+pub const IID_IInkExtendedProperty = &IID_IInkExtendedProperty_Value;
+pub const IInkExtendedProperty = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Guid: *const fn(
+            self: *const IInkExtendedProperty,
+            Guid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Data: *const fn(
+            self: *const IInkExtendedProperty,
+            Data: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Data: *const fn(
+            self: *const IInkExtendedProperty,
+            Data: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Guid(self: *const IInkExtendedProperty, _param_Guid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Guid(self, _param_Guid);
+    }
+    pub fn get_Data(self: *const IInkExtendedProperty, Data: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Data(self, Data);
+    }
+    pub fn put_Data(self: *const IInkExtendedProperty, Data: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Data(self, Data);
+    }
 };
-pub const MICUIELEMENT_BUTTON_WRITE = MICUIELEMENT.BUTTON_WRITE;
-pub const MICUIELEMENT_BUTTON_ERASE = MICUIELEMENT.BUTTON_ERASE;
-pub const MICUIELEMENT_BUTTON_CORRECT = MICUIELEMENT.BUTTON_CORRECT;
-pub const MICUIELEMENT_BUTTON_CLEAR = MICUIELEMENT.BUTTON_CLEAR;
-pub const MICUIELEMENT_BUTTON_UNDO = MICUIELEMENT.BUTTON_UNDO;
-pub const MICUIELEMENT_BUTTON_REDO = MICUIELEMENT.BUTTON_REDO;
-pub const MICUIELEMENT_BUTTON_INSERT = MICUIELEMENT.BUTTON_INSERT;
-pub const MICUIELEMENT_BUTTON_CANCEL = MICUIELEMENT.BUTTON_CANCEL;
-pub const MICUIELEMENT_INKPANEL_BACKGROUND = MICUIELEMENT.INKPANEL_BACKGROUND;
-pub const MICUIELEMENT_RESULTPANEL_BACKGROUND = MICUIELEMENT.RESULTPANEL_BACKGROUND;
 
-pub const MICUIELEMENTSTATE = enum(i32) {
-    NORMAL = 1,
-    HOT = 2,
-    PRESSED = 3,
-    DISABLED = 4,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkGesture_Value = Guid.initString("3bdc0a97-04e5-4e26-b813-18f052d41def");
+pub const IID_IInkGesture = &IID_IInkGesture_Value;
+pub const IInkGesture = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Confidence: *const fn(
+            self: *const IInkGesture,
+            Confidence: ?*InkRecognitionConfidence,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IInkGesture,
+            Id: ?*InkApplicationGesture,
+        ) callconv(.winapi) HRESULT,
+        GetHotPoint: *const fn(
+            self: *const IInkGesture,
+            X: ?*i32,
+            Y: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Confidence(self: *const IInkGesture, Confidence: ?*InkRecognitionConfidence) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Confidence(self, Confidence);
+    }
+    pub fn get_Id(self: *const IInkGesture, Id: ?*InkApplicationGesture) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, Id);
+    }
+    pub fn GetHotPoint(self: *const IInkGesture, X: ?*i32, Y: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHotPoint(self, X, Y);
+    }
 };
-pub const MICUIELEMENTSTATE_NORMAL = MICUIELEMENTSTATE.NORMAL;
-pub const MICUIELEMENTSTATE_HOT = MICUIELEMENTSTATE.HOT;
-pub const MICUIELEMENTSTATE_PRESSED = MICUIELEMENTSTATE.PRESSED;
-pub const MICUIELEMENTSTATE_DISABLED = MICUIELEMENTSTATE.DISABLED;
 
-pub const DISPID_MathInputControlEvents = enum(i32) {
-    Insert = 0,
-    Close = 1,
-    Paint = 2,
-    Clear = 3,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkLineInfo_Value = Guid.initString("9c1c5ad6-f22f-4de4-b453-a2cc482e7c33");
+pub const IID_IInkLineInfo = &IID_IInkLineInfo_Value;
+pub const IInkLineInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetFormat: *const fn(
+            self: *const IInkLineInfo,
+            pim: ?*INKMETRIC,
+        ) callconv(.winapi) HRESULT,
+        GetFormat: *const fn(
+            self: *const IInkLineInfo,
+            pim: ?*INKMETRIC,
+        ) callconv(.winapi) HRESULT,
+        GetInkExtent: *const fn(
+            self: *const IInkLineInfo,
+            pim: ?*INKMETRIC,
+            pnWidth: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCandidate: *const fn(
+            self: *const IInkLineInfo,
+            nCandidateNum: u32,
+            pwcRecogWord: ?PWSTR,
+            pcwcRecogWord: ?*u32,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        SetCandidate: *const fn(
+            self: *const IInkLineInfo,
+            nCandidateNum: u32,
+            strRecogWord: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        Recognize: *const fn(
+            self: *const IInkLineInfo,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetFormat(self: *const IInkLineInfo, pim: ?*INKMETRIC) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFormat(self, pim);
+    }
+    pub fn GetFormat(self: *const IInkLineInfo, pim: ?*INKMETRIC) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFormat(self, pim);
+    }
+    pub fn GetInkExtent(self: *const IInkLineInfo, pim: ?*INKMETRIC, pnWidth: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInkExtent(self, pim, pnWidth);
+    }
+    pub fn GetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, pwcRecogWord: ?PWSTR, pcwcRecogWord: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCandidate(self, nCandidateNum, pwcRecogWord, pcwcRecogWord, dwFlags);
+    }
+    pub fn SetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, strRecogWord: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCandidate(self, nCandidateNum, strRecogWord);
+    }
+    pub fn Recognize(self: *const IInkLineInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.Recognize(self);
+    }
 };
-pub const DISPID_MICInsert = DISPID_MathInputControlEvents.Insert;
-pub const DISPID_MICClose = DISPID_MathInputControlEvents.Close;
-pub const DISPID_MICPaint = DISPID_MathInputControlEvents.Paint;
-pub const DISPID_MICClear = DISPID_MathInputControlEvents.Clear;
+
+const IID_IInkOverlay_Value = Guid.initString("b82a463b-c1c5-45a3-997c-deab5651b67a");
+pub const IID_IInkOverlay = &IID_IInkOverlay_Value;
+pub const IInkOverlay = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_hWnd: *const fn(
+            self: *const IInkOverlay,
+            CurrentWindow: ?*isize,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_hWnd: *const fn(
+            self: *const IInkOverlay,
+            NewWindow: isize,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const IInkOverlay,
+            Collecting: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enabled: *const fn(
+            self: *const IInkOverlay,
+            Collecting: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultDrawingAttributes: *const fn(
+            self: *const IInkOverlay,
+            CurrentAttributes: ?*?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        putref_DefaultDrawingAttributes: *const fn(
+            self: *const IInkOverlay,
+            NewAttributes: ?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Renderer: *const fn(
+            self: *const IInkOverlay,
+            CurrentInkRenderer: ?*?*IInkRenderer,
+        ) callconv(.winapi) HRESULT,
+        putref_Renderer: *const fn(
+            self: *const IInkOverlay,
+            NewInkRenderer: ?*IInkRenderer,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Ink: *const fn(
+            self: *const IInkOverlay,
+            Ink: ?*?*IInkDisp,
+        ) callconv(.winapi) HRESULT,
+        putref_Ink: *const fn(
+            self: *const IInkOverlay,
+            NewInk: ?*IInkDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AutoRedraw: *const fn(
+            self: *const IInkOverlay,
+            AutoRedraw: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AutoRedraw: *const fn(
+            self: *const IInkOverlay,
+            AutoRedraw: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CollectingInk: *const fn(
+            self: *const IInkOverlay,
+            Collecting: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CollectionMode: *const fn(
+            self: *const IInkOverlay,
+            Mode: ?*InkCollectionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_CollectionMode: *const fn(
+            self: *const IInkOverlay,
+            Mode: InkCollectionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DynamicRendering: *const fn(
+            self: *const IInkOverlay,
+            Enabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DynamicRendering: *const fn(
+            self: *const IInkOverlay,
+            Enabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DesiredPacketDescription: *const fn(
+            self: *const IInkOverlay,
+            PacketGuids: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DesiredPacketDescription: *const fn(
+            self: *const IInkOverlay,
+            PacketGuids: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MouseIcon: *const fn(
+            self: *const IInkOverlay,
+            MouseIcon: ?*?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MouseIcon: *const fn(
+            self: *const IInkOverlay,
+            MouseIcon: ?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        putref_MouseIcon: *const fn(
+            self: *const IInkOverlay,
+            MouseIcon: ?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MousePointer: *const fn(
+            self: *const IInkOverlay,
+            MousePointer: ?*InkMousePointer,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MousePointer: *const fn(
+            self: *const IInkOverlay,
+            MousePointer: InkMousePointer,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EditingMode: *const fn(
+            self: *const IInkOverlay,
+            EditingMode: ?*InkOverlayEditingMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EditingMode: *const fn(
+            self: *const IInkOverlay,
+            EditingMode: InkOverlayEditingMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Selection: *const fn(
+            self: *const IInkOverlay,
+            Selection: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Selection: *const fn(
+            self: *const IInkOverlay,
+            Selection: ?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EraserMode: *const fn(
+            self: *const IInkOverlay,
+            EraserMode: ?*InkOverlayEraserMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EraserMode: *const fn(
+            self: *const IInkOverlay,
+            EraserMode: InkOverlayEraserMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EraserWidth: *const fn(
+            self: *const IInkOverlay,
+            EraserWidth: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EraserWidth: *const fn(
+            self: *const IInkOverlay,
+            newEraserWidth: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AttachMode: *const fn(
+            self: *const IInkOverlay,
+            AttachMode: ?*InkOverlayAttachMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AttachMode: *const fn(
+            self: *const IInkOverlay,
+            AttachMode: InkOverlayAttachMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Cursors: *const fn(
+            self: *const IInkOverlay,
+            Cursors: ?*?*IInkCursors,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MarginX: *const fn(
+            self: *const IInkOverlay,
+            MarginX: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MarginX: *const fn(
+            self: *const IInkOverlay,
+            MarginX: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MarginY: *const fn(
+            self: *const IInkOverlay,
+            MarginY: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MarginY: *const fn(
+            self: *const IInkOverlay,
+            MarginY: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Tablet: *const fn(
+            self: *const IInkOverlay,
+            SingleTablet: ?*?*IInkTablet,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SupportHighContrastInk: *const fn(
+            self: *const IInkOverlay,
+            Support: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SupportHighContrastInk: *const fn(
+            self: *const IInkOverlay,
+            Support: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SupportHighContrastSelectionUI: *const fn(
+            self: *const IInkOverlay,
+            Support: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SupportHighContrastSelectionUI: *const fn(
+            self: *const IInkOverlay,
+            Support: i16,
+        ) callconv(.winapi) HRESULT,
+        HitTestSelection: *const fn(
+            self: *const IInkOverlay,
+            x: i32,
+            y: i32,
+            SelArea: ?*SelectionHitResult,
+        ) callconv(.winapi) HRESULT,
+        Draw: *const fn(
+            self: *const IInkOverlay,
+            Rect: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        SetGestureStatus: *const fn(
+            self: *const IInkOverlay,
+            Gesture: InkApplicationGesture,
+            Listen: i16,
+        ) callconv(.winapi) HRESULT,
+        GetGestureStatus: *const fn(
+            self: *const IInkOverlay,
+            Gesture: InkApplicationGesture,
+            Listening: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetWindowInputRectangle: *const fn(
+            self: *const IInkOverlay,
+            WindowInputRectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        SetWindowInputRectangle: *const fn(
+            self: *const IInkOverlay,
+            WindowInputRectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        SetAllTabletsMode: *const fn(
+            self: *const IInkOverlay,
+            UseMouseForInput: i16,
+        ) callconv(.winapi) HRESULT,
+        SetSingleTabletIntegratedMode: *const fn(
+            self: *const IInkOverlay,
+            Tablet: ?*IInkTablet,
+        ) callconv(.winapi) HRESULT,
+        GetEventInterest: *const fn(
+            self: *const IInkOverlay,
+            EventId: InkCollectorEventInterest,
+            Listen: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        SetEventInterest: *const fn(
+            self: *const IInkOverlay,
+            EventId: InkCollectorEventInterest,
+            Listen: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_hWnd(self: *const IInkOverlay, CurrentWindow: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_hWnd(self, CurrentWindow);
+    }
+    pub fn put_hWnd(self: *const IInkOverlay, NewWindow: isize) callconv(.@"inline") HRESULT {
+        return self.vtable.put_hWnd(self, NewWindow);
+    }
+    pub fn get_Enabled(self: *const IInkOverlay, Collecting: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, Collecting);
+    }
+    pub fn put_Enabled(self: *const IInkOverlay, Collecting: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, Collecting);
+    }
+    pub fn get_DefaultDrawingAttributes(self: *const IInkOverlay, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultDrawingAttributes(self, CurrentAttributes);
+    }
+    pub fn putref_DefaultDrawingAttributes(self: *const IInkOverlay, NewAttributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_DefaultDrawingAttributes(self, NewAttributes);
+    }
+    pub fn get_Renderer(self: *const IInkOverlay, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Renderer(self, CurrentInkRenderer);
+    }
+    pub fn putref_Renderer(self: *const IInkOverlay, NewInkRenderer: ?*IInkRenderer) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Renderer(self, NewInkRenderer);
+    }
+    pub fn get_Ink(self: *const IInkOverlay, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Ink(self, _param_Ink);
+    }
+    pub fn putref_Ink(self: *const IInkOverlay, NewInk: ?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Ink(self, NewInk);
+    }
+    pub fn get_AutoRedraw(self: *const IInkOverlay, AutoRedraw: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AutoRedraw(self, AutoRedraw);
+    }
+    pub fn put_AutoRedraw(self: *const IInkOverlay, AutoRedraw: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AutoRedraw(self, AutoRedraw);
+    }
+    pub fn get_CollectingInk(self: *const IInkOverlay, Collecting: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CollectingInk(self, Collecting);
+    }
+    pub fn get_CollectionMode(self: *const IInkOverlay, Mode: ?*InkCollectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CollectionMode(self, Mode);
+    }
+    pub fn put_CollectionMode(self: *const IInkOverlay, Mode: InkCollectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_CollectionMode(self, Mode);
+    }
+    pub fn get_DynamicRendering(self: *const IInkOverlay, Enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DynamicRendering(self, Enabled);
+    }
+    pub fn put_DynamicRendering(self: *const IInkOverlay, Enabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DynamicRendering(self, Enabled);
+    }
+    pub fn get_DesiredPacketDescription(self: *const IInkOverlay, PacketGuids: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DesiredPacketDescription(self, PacketGuids);
+    }
+    pub fn put_DesiredPacketDescription(self: *const IInkOverlay, PacketGuids: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DesiredPacketDescription(self, PacketGuids);
+    }
+    pub fn get_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MouseIcon(self, MouseIcon);
+    }
+    pub fn put_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MouseIcon(self, MouseIcon);
+    }
+    pub fn putref_MouseIcon(self: *const IInkOverlay, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_MouseIcon(self, MouseIcon);
+    }
+    pub fn get_MousePointer(self: *const IInkOverlay, MousePointer: ?*InkMousePointer) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MousePointer(self, MousePointer);
+    }
+    pub fn put_MousePointer(self: *const IInkOverlay, MousePointer: InkMousePointer) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MousePointer(self, MousePointer);
+    }
+    pub fn get_EditingMode(self: *const IInkOverlay, EditingMode: ?*InkOverlayEditingMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EditingMode(self, EditingMode);
+    }
+    pub fn put_EditingMode(self: *const IInkOverlay, EditingMode: InkOverlayEditingMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EditingMode(self, EditingMode);
+    }
+    pub fn get_Selection(self: *const IInkOverlay, Selection: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Selection(self, Selection);
+    }
+    pub fn put_Selection(self: *const IInkOverlay, Selection: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Selection(self, Selection);
+    }
+    pub fn get_EraserMode(self: *const IInkOverlay, EraserMode: ?*InkOverlayEraserMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EraserMode(self, EraserMode);
+    }
+    pub fn put_EraserMode(self: *const IInkOverlay, EraserMode: InkOverlayEraserMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EraserMode(self, EraserMode);
+    }
+    pub fn get_EraserWidth(self: *const IInkOverlay, EraserWidth: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EraserWidth(self, EraserWidth);
+    }
+    pub fn put_EraserWidth(self: *const IInkOverlay, newEraserWidth: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EraserWidth(self, newEraserWidth);
+    }
+    pub fn get_AttachMode(self: *const IInkOverlay, AttachMode: ?*InkOverlayAttachMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AttachMode(self, AttachMode);
+    }
+    pub fn put_AttachMode(self: *const IInkOverlay, AttachMode: InkOverlayAttachMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AttachMode(self, AttachMode);
+    }
+    pub fn get_Cursors(self: *const IInkOverlay, Cursors: ?*?*IInkCursors) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Cursors(self, Cursors);
+    }
+    pub fn get_MarginX(self: *const IInkOverlay, MarginX: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MarginX(self, MarginX);
+    }
+    pub fn put_MarginX(self: *const IInkOverlay, MarginX: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MarginX(self, MarginX);
+    }
+    pub fn get_MarginY(self: *const IInkOverlay, MarginY: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MarginY(self, MarginY);
+    }
+    pub fn put_MarginY(self: *const IInkOverlay, MarginY: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MarginY(self, MarginY);
+    }
+    pub fn get_Tablet(self: *const IInkOverlay, SingleTablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Tablet(self, SingleTablet);
+    }
+    pub fn get_SupportHighContrastInk(self: *const IInkOverlay, Support: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SupportHighContrastInk(self, Support);
+    }
+    pub fn put_SupportHighContrastInk(self: *const IInkOverlay, Support: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SupportHighContrastInk(self, Support);
+    }
+    pub fn get_SupportHighContrastSelectionUI(self: *const IInkOverlay, Support: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SupportHighContrastSelectionUI(self, Support);
+    }
+    pub fn put_SupportHighContrastSelectionUI(self: *const IInkOverlay, Support: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SupportHighContrastSelectionUI(self, Support);
+    }
+    pub fn HitTestSelection(self: *const IInkOverlay, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.@"inline") HRESULT {
+        return self.vtable.HitTestSelection(self, x, y, SelArea);
+    }
+    pub fn Draw(self: *const IInkOverlay, Rect: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.Draw(self, Rect);
+    }
+    pub fn SetGestureStatus(self: *const IInkOverlay, Gesture: InkApplicationGesture, Listen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGestureStatus(self, Gesture, Listen);
+    }
+    pub fn GetGestureStatus(self: *const IInkOverlay, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGestureStatus(self, Gesture, Listening);
+    }
+    pub fn GetWindowInputRectangle(self: *const IInkOverlay, WindowInputRectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWindowInputRectangle(self, WindowInputRectangle);
+    }
+    pub fn SetWindowInputRectangle(self: *const IInkOverlay, WindowInputRectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWindowInputRectangle(self, WindowInputRectangle);
+    }
+    pub fn SetAllTabletsMode(self: *const IInkOverlay, UseMouseForInput: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllTabletsMode(self, UseMouseForInput);
+    }
+    pub fn SetSingleTabletIntegratedMode(self: *const IInkOverlay, Tablet: ?*IInkTablet) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSingleTabletIntegratedMode(self, Tablet);
+    }
+    pub fn GetEventInterest(self: *const IInkOverlay, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEventInterest(self, EventId, Listen);
+    }
+    pub fn SetEventInterest(self: *const IInkOverlay, EventId: InkCollectorEventInterest, Listen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEventInterest(self, EventId, Listen);
+    }
+};
+
+const IID_IInkPicture_Value = Guid.initString("e85662e0-379a-40d7-9b5c-757d233f9923");
+pub const IID_IInkPicture = &IID_IInkPicture_Value;
+pub const IInkPicture = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_hWnd: *const fn(
+            self: *const IInkPicture,
+            CurrentWindow: ?*isize,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultDrawingAttributes: *const fn(
+            self: *const IInkPicture,
+            CurrentAttributes: ?*?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        putref_DefaultDrawingAttributes: *const fn(
+            self: *const IInkPicture,
+            NewAttributes: ?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Renderer: *const fn(
+            self: *const IInkPicture,
+            CurrentInkRenderer: ?*?*IInkRenderer,
+        ) callconv(.winapi) HRESULT,
+        putref_Renderer: *const fn(
+            self: *const IInkPicture,
+            NewInkRenderer: ?*IInkRenderer,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Ink: *const fn(
+            self: *const IInkPicture,
+            Ink: ?*?*IInkDisp,
+        ) callconv(.winapi) HRESULT,
+        putref_Ink: *const fn(
+            self: *const IInkPicture,
+            NewInk: ?*IInkDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AutoRedraw: *const fn(
+            self: *const IInkPicture,
+            AutoRedraw: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AutoRedraw: *const fn(
+            self: *const IInkPicture,
+            AutoRedraw: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CollectingInk: *const fn(
+            self: *const IInkPicture,
+            Collecting: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CollectionMode: *const fn(
+            self: *const IInkPicture,
+            Mode: ?*InkCollectionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_CollectionMode: *const fn(
+            self: *const IInkPicture,
+            Mode: InkCollectionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DynamicRendering: *const fn(
+            self: *const IInkPicture,
+            Enabled: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DynamicRendering: *const fn(
+            self: *const IInkPicture,
+            Enabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DesiredPacketDescription: *const fn(
+            self: *const IInkPicture,
+            PacketGuids: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DesiredPacketDescription: *const fn(
+            self: *const IInkPicture,
+            PacketGuids: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MouseIcon: *const fn(
+            self: *const IInkPicture,
+            MouseIcon: ?*?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MouseIcon: *const fn(
+            self: *const IInkPicture,
+            MouseIcon: ?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        putref_MouseIcon: *const fn(
+            self: *const IInkPicture,
+            MouseIcon: ?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MousePointer: *const fn(
+            self: *const IInkPicture,
+            MousePointer: ?*InkMousePointer,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MousePointer: *const fn(
+            self: *const IInkPicture,
+            MousePointer: InkMousePointer,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EditingMode: *const fn(
+            self: *const IInkPicture,
+            EditingMode: ?*InkOverlayEditingMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EditingMode: *const fn(
+            self: *const IInkPicture,
+            EditingMode: InkOverlayEditingMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Selection: *const fn(
+            self: *const IInkPicture,
+            Selection: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Selection: *const fn(
+            self: *const IInkPicture,
+            Selection: ?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EraserMode: *const fn(
+            self: *const IInkPicture,
+            EraserMode: ?*InkOverlayEraserMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EraserMode: *const fn(
+            self: *const IInkPicture,
+            EraserMode: InkOverlayEraserMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EraserWidth: *const fn(
+            self: *const IInkPicture,
+            EraserWidth: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EraserWidth: *const fn(
+            self: *const IInkPicture,
+            newEraserWidth: i32,
+        ) callconv(.winapi) HRESULT,
+        putref_Picture: *const fn(
+            self: *const IInkPicture,
+            pPicture: ?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Picture: *const fn(
+            self: *const IInkPicture,
+            pPicture: ?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Picture: *const fn(
+            self: *const IInkPicture,
+            ppPicture: ?*?*IPictureDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SizeMode: *const fn(
+            self: *const IInkPicture,
+            smNewSizeMode: InkPictureSizeMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SizeMode: *const fn(
+            self: *const IInkPicture,
+            smSizeMode: ?*InkPictureSizeMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BackColor: *const fn(
+            self: *const IInkPicture,
+            newColor: u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BackColor: *const fn(
+            self: *const IInkPicture,
+            pColor: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Cursors: *const fn(
+            self: *const IInkPicture,
+            Cursors: ?*?*IInkCursors,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MarginX: *const fn(
+            self: *const IInkPicture,
+            MarginX: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MarginX: *const fn(
+            self: *const IInkPicture,
+            MarginX: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MarginY: *const fn(
+            self: *const IInkPicture,
+            MarginY: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MarginY: *const fn(
+            self: *const IInkPicture,
+            MarginY: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Tablet: *const fn(
+            self: *const IInkPicture,
+            SingleTablet: ?*?*IInkTablet,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SupportHighContrastInk: *const fn(
+            self: *const IInkPicture,
+            Support: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SupportHighContrastInk: *const fn(
+            self: *const IInkPicture,
+            Support: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SupportHighContrastSelectionUI: *const fn(
+            self: *const IInkPicture,
+            Support: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SupportHighContrastSelectionUI: *const fn(
+            self: *const IInkPicture,
+            Support: i16,
+        ) callconv(.winapi) HRESULT,
+        HitTestSelection: *const fn(
+            self: *const IInkPicture,
+            x: i32,
+            y: i32,
+            SelArea: ?*SelectionHitResult,
+        ) callconv(.winapi) HRESULT,
+        SetGestureStatus: *const fn(
+            self: *const IInkPicture,
+            Gesture: InkApplicationGesture,
+            Listen: i16,
+        ) callconv(.winapi) HRESULT,
+        GetGestureStatus: *const fn(
+            self: *const IInkPicture,
+            Gesture: InkApplicationGesture,
+            Listening: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetWindowInputRectangle: *const fn(
+            self: *const IInkPicture,
+            WindowInputRectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        SetWindowInputRectangle: *const fn(
+            self: *const IInkPicture,
+            WindowInputRectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        SetAllTabletsMode: *const fn(
+            self: *const IInkPicture,
+            UseMouseForInput: i16,
+        ) callconv(.winapi) HRESULT,
+        SetSingleTabletIntegratedMode: *const fn(
+            self: *const IInkPicture,
+            Tablet: ?*IInkTablet,
+        ) callconv(.winapi) HRESULT,
+        GetEventInterest: *const fn(
+            self: *const IInkPicture,
+            EventId: InkCollectorEventInterest,
+            Listen: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        SetEventInterest: *const fn(
+            self: *const IInkPicture,
+            EventId: InkCollectorEventInterest,
+            Listen: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InkEnabled: *const fn(
+            self: *const IInkPicture,
+            Collecting: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_InkEnabled: *const fn(
+            self: *const IInkPicture,
+            Collecting: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Enabled: *const fn(
+            self: *const IInkPicture,
+            pbool: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Enabled: *const fn(
+            self: *const IInkPicture,
+            vbool: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_hWnd(self: *const IInkPicture, CurrentWindow: ?*isize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_hWnd(self, CurrentWindow);
+    }
+    pub fn get_DefaultDrawingAttributes(self: *const IInkPicture, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultDrawingAttributes(self, CurrentAttributes);
+    }
+    pub fn putref_DefaultDrawingAttributes(self: *const IInkPicture, NewAttributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_DefaultDrawingAttributes(self, NewAttributes);
+    }
+    pub fn get_Renderer(self: *const IInkPicture, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Renderer(self, CurrentInkRenderer);
+    }
+    pub fn putref_Renderer(self: *const IInkPicture, NewInkRenderer: ?*IInkRenderer) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Renderer(self, NewInkRenderer);
+    }
+    pub fn get_Ink(self: *const IInkPicture, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Ink(self, _param_Ink);
+    }
+    pub fn putref_Ink(self: *const IInkPicture, NewInk: ?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Ink(self, NewInk);
+    }
+    pub fn get_AutoRedraw(self: *const IInkPicture, AutoRedraw: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AutoRedraw(self, AutoRedraw);
+    }
+    pub fn put_AutoRedraw(self: *const IInkPicture, AutoRedraw: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AutoRedraw(self, AutoRedraw);
+    }
+    pub fn get_CollectingInk(self: *const IInkPicture, Collecting: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CollectingInk(self, Collecting);
+    }
+    pub fn get_CollectionMode(self: *const IInkPicture, Mode: ?*InkCollectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CollectionMode(self, Mode);
+    }
+    pub fn put_CollectionMode(self: *const IInkPicture, Mode: InkCollectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_CollectionMode(self, Mode);
+    }
+    pub fn get_DynamicRendering(self: *const IInkPicture, Enabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DynamicRendering(self, Enabled);
+    }
+    pub fn put_DynamicRendering(self: *const IInkPicture, Enabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DynamicRendering(self, Enabled);
+    }
+    pub fn get_DesiredPacketDescription(self: *const IInkPicture, PacketGuids: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DesiredPacketDescription(self, PacketGuids);
+    }
+    pub fn put_DesiredPacketDescription(self: *const IInkPicture, PacketGuids: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DesiredPacketDescription(self, PacketGuids);
+    }
+    pub fn get_MouseIcon(self: *const IInkPicture, MouseIcon: ?*?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MouseIcon(self, MouseIcon);
+    }
+    pub fn put_MouseIcon(self: *const IInkPicture, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MouseIcon(self, MouseIcon);
+    }
+    pub fn putref_MouseIcon(self: *const IInkPicture, MouseIcon: ?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_MouseIcon(self, MouseIcon);
+    }
+    pub fn get_MousePointer(self: *const IInkPicture, MousePointer: ?*InkMousePointer) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MousePointer(self, MousePointer);
+    }
+    pub fn put_MousePointer(self: *const IInkPicture, MousePointer: InkMousePointer) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MousePointer(self, MousePointer);
+    }
+    pub fn get_EditingMode(self: *const IInkPicture, EditingMode: ?*InkOverlayEditingMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EditingMode(self, EditingMode);
+    }
+    pub fn put_EditingMode(self: *const IInkPicture, EditingMode: InkOverlayEditingMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EditingMode(self, EditingMode);
+    }
+    pub fn get_Selection(self: *const IInkPicture, Selection: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Selection(self, Selection);
+    }
+    pub fn put_Selection(self: *const IInkPicture, Selection: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Selection(self, Selection);
+    }
+    pub fn get_EraserMode(self: *const IInkPicture, EraserMode: ?*InkOverlayEraserMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EraserMode(self, EraserMode);
+    }
+    pub fn put_EraserMode(self: *const IInkPicture, EraserMode: InkOverlayEraserMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EraserMode(self, EraserMode);
+    }
+    pub fn get_EraserWidth(self: *const IInkPicture, EraserWidth: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EraserWidth(self, EraserWidth);
+    }
+    pub fn put_EraserWidth(self: *const IInkPicture, newEraserWidth: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EraserWidth(self, newEraserWidth);
+    }
+    pub fn putref_Picture(self: *const IInkPicture, pPicture: ?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Picture(self, pPicture);
+    }
+    pub fn put_Picture(self: *const IInkPicture, pPicture: ?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Picture(self, pPicture);
+    }
+    pub fn get_Picture(self: *const IInkPicture, ppPicture: ?*?*IPictureDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Picture(self, ppPicture);
+    }
+    pub fn put_SizeMode(self: *const IInkPicture, smNewSizeMode: InkPictureSizeMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SizeMode(self, smNewSizeMode);
+    }
+    pub fn get_SizeMode(self: *const IInkPicture, smSizeMode: ?*InkPictureSizeMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SizeMode(self, smSizeMode);
+    }
+    pub fn put_BackColor(self: *const IInkPicture, newColor: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BackColor(self, newColor);
+    }
+    pub fn get_BackColor(self: *const IInkPicture, pColor: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BackColor(self, pColor);
+    }
+    pub fn get_Cursors(self: *const IInkPicture, Cursors: ?*?*IInkCursors) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Cursors(self, Cursors);
+    }
+    pub fn get_MarginX(self: *const IInkPicture, MarginX: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MarginX(self, MarginX);
+    }
+    pub fn put_MarginX(self: *const IInkPicture, MarginX: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MarginX(self, MarginX);
+    }
+    pub fn get_MarginY(self: *const IInkPicture, MarginY: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MarginY(self, MarginY);
+    }
+    pub fn put_MarginY(self: *const IInkPicture, MarginY: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MarginY(self, MarginY);
+    }
+    pub fn get_Tablet(self: *const IInkPicture, SingleTablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Tablet(self, SingleTablet);
+    }
+    pub fn get_SupportHighContrastInk(self: *const IInkPicture, Support: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SupportHighContrastInk(self, Support);
+    }
+    pub fn put_SupportHighContrastInk(self: *const IInkPicture, Support: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SupportHighContrastInk(self, Support);
+    }
+    pub fn get_SupportHighContrastSelectionUI(self: *const IInkPicture, Support: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SupportHighContrastSelectionUI(self, Support);
+    }
+    pub fn put_SupportHighContrastSelectionUI(self: *const IInkPicture, Support: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SupportHighContrastSelectionUI(self, Support);
+    }
+    pub fn HitTestSelection(self: *const IInkPicture, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.@"inline") HRESULT {
+        return self.vtable.HitTestSelection(self, x, y, SelArea);
+    }
+    pub fn SetGestureStatus(self: *const IInkPicture, Gesture: InkApplicationGesture, Listen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGestureStatus(self, Gesture, Listen);
+    }
+    pub fn GetGestureStatus(self: *const IInkPicture, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGestureStatus(self, Gesture, Listening);
+    }
+    pub fn GetWindowInputRectangle(self: *const IInkPicture, WindowInputRectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWindowInputRectangle(self, WindowInputRectangle);
+    }
+    pub fn SetWindowInputRectangle(self: *const IInkPicture, WindowInputRectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWindowInputRectangle(self, WindowInputRectangle);
+    }
+    pub fn SetAllTabletsMode(self: *const IInkPicture, UseMouseForInput: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAllTabletsMode(self, UseMouseForInput);
+    }
+    pub fn SetSingleTabletIntegratedMode(self: *const IInkPicture, Tablet: ?*IInkTablet) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSingleTabletIntegratedMode(self, Tablet);
+    }
+    pub fn GetEventInterest(self: *const IInkPicture, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEventInterest(self, EventId, Listen);
+    }
+    pub fn SetEventInterest(self: *const IInkPicture, EventId: InkCollectorEventInterest, Listen: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEventInterest(self, EventId, Listen);
+    }
+    pub fn get_InkEnabled(self: *const IInkPicture, Collecting: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InkEnabled(self, Collecting);
+    }
+    pub fn put_InkEnabled(self: *const IInkPicture, Collecting: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_InkEnabled(self, Collecting);
+    }
+    pub fn get_Enabled(self: *const IInkPicture, pbool: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Enabled(self, pbool);
+    }
+    pub fn put_Enabled(self: *const IInkPicture, vbool: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Enabled(self, vbool);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkRecognitionAlternate_Value = Guid.initString("b7e660ad-77e4-429b-adda-873780d1fc4a");
+pub const IID_IInkRecognitionAlternate = &IID_IInkRecognitionAlternate_Value;
+pub const IInkRecognitionAlternate = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_String: *const fn(
+            self: *const IInkRecognitionAlternate,
+            RecoString: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Confidence: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Confidence: ?*InkRecognitionConfidence,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Baseline: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Baseline: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Midline: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Midline: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Ascender: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Ascender: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Descender: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Descender: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LineNumber: *const fn(
+            self: *const IInkRecognitionAlternate,
+            LineNumber: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Strokes: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Strokes: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LineAlternates: *const fn(
+            self: *const IInkRecognitionAlternate,
+            LineAlternates: ?*?*IInkRecognitionAlternates,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ConfidenceAlternates: *const fn(
+            self: *const IInkRecognitionAlternate,
+            ConfidenceAlternates: ?*?*IInkRecognitionAlternates,
+        ) callconv(.winapi) HRESULT,
+        GetStrokesFromStrokeRanges: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Strokes: ?*IInkStrokes,
+            GetStrokesFromStrokeRanges: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        GetStrokesFromTextRange: *const fn(
+            self: *const IInkRecognitionAlternate,
+            selectionStart: ?*i32,
+            selectionLength: ?*i32,
+            GetStrokesFromTextRange: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        GetTextRangeFromStrokes: *const fn(
+            self: *const IInkRecognitionAlternate,
+            Strokes: ?*IInkStrokes,
+            selectionStart: ?*i32,
+            selectionLength: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        AlternatesWithConstantPropertyValues: *const fn(
+            self: *const IInkRecognitionAlternate,
+            PropertyType: ?BSTR,
+            AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyValue: *const fn(
+            self: *const IInkRecognitionAlternate,
+            PropertyType: ?BSTR,
+            PropertyValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_String(self: *const IInkRecognitionAlternate, RecoString: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_String(self, RecoString);
+    }
+    pub fn get_Confidence(self: *const IInkRecognitionAlternate, Confidence: ?*InkRecognitionConfidence) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Confidence(self, Confidence);
+    }
+    pub fn get_Baseline(self: *const IInkRecognitionAlternate, Baseline: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Baseline(self, Baseline);
+    }
+    pub fn get_Midline(self: *const IInkRecognitionAlternate, Midline: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Midline(self, Midline);
+    }
+    pub fn get_Ascender(self: *const IInkRecognitionAlternate, Ascender: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Ascender(self, Ascender);
+    }
+    pub fn get_Descender(self: *const IInkRecognitionAlternate, Descender: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Descender(self, Descender);
+    }
+    pub fn get_LineNumber(self: *const IInkRecognitionAlternate, LineNumber: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LineNumber(self, LineNumber);
+    }
+    pub fn get_Strokes(self: *const IInkRecognitionAlternate, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Strokes(self, Strokes);
+    }
+    pub fn get_LineAlternates(self: *const IInkRecognitionAlternate, LineAlternates: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LineAlternates(self, LineAlternates);
+    }
+    pub fn get_ConfidenceAlternates(self: *const IInkRecognitionAlternate, ConfidenceAlternates: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ConfidenceAlternates(self, ConfidenceAlternates);
+    }
+    pub fn GetStrokesFromStrokeRanges(self: *const IInkRecognitionAlternate, Strokes: ?*IInkStrokes, _param_GetStrokesFromStrokeRanges: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStrokesFromStrokeRanges(self, Strokes, _param_GetStrokesFromStrokeRanges);
+    }
+    pub fn GetStrokesFromTextRange(self: *const IInkRecognitionAlternate, selectionStart: ?*i32, selectionLength: ?*i32, _param_GetStrokesFromTextRange: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStrokesFromTextRange(self, selectionStart, selectionLength, _param_GetStrokesFromTextRange);
+    }
+    pub fn GetTextRangeFromStrokes(self: *const IInkRecognitionAlternate, Strokes: ?*IInkStrokes, selectionStart: ?*i32, selectionLength: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTextRangeFromStrokes(self, Strokes, selectionStart, selectionLength);
+    }
+    pub fn AlternatesWithConstantPropertyValues(self: *const IInkRecognitionAlternate, PropertyType: ?BSTR, _param_AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
+        return self.vtable.AlternatesWithConstantPropertyValues(self, PropertyType, _param_AlternatesWithConstantPropertyValues);
+    }
+    pub fn GetPropertyValue(self: *const IInkRecognitionAlternate, PropertyType: ?BSTR, PropertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyValue(self, PropertyType, PropertyValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkRecognitionAlternates_Value = Guid.initString("286a167f-9f19-4c61-9d53-4f07be622b84");
+pub const IID_IInkRecognitionAlternates = &IID_IInkRecognitionAlternates_Value;
+pub const IInkRecognitionAlternates = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IInkRecognitionAlternates,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IInkRecognitionAlternates,
+            _NewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Strokes: *const fn(
+            self: *const IInkRecognitionAlternates,
+            Strokes: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IInkRecognitionAlternates,
+            Index: i32,
+            InkRecoAlternate: ?*?*IInkRecognitionAlternate,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IInkRecognitionAlternates, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn get__NewEnum(self: *const IInkRecognitionAlternates, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, _NewEnum);
+    }
+    pub fn get_Strokes(self: *const IInkRecognitionAlternates, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Strokes(self, Strokes);
+    }
+    pub fn Item(self: *const IInkRecognitionAlternates, Index: i32, InkRecoAlternate: ?*?*IInkRecognitionAlternate) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, InkRecoAlternate);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkRecognitionResult_Value = Guid.initString("3bc129a8-86cd-45ad-bde8-e0d32d61c16d");
+pub const IID_IInkRecognitionResult = &IID_IInkRecognitionResult_Value;
+pub const IInkRecognitionResult = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TopString: *const fn(
+            self: *const IInkRecognitionResult,
+            TopString: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TopAlternate: *const fn(
+            self: *const IInkRecognitionResult,
+            TopAlternate: ?*?*IInkRecognitionAlternate,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TopConfidence: *const fn(
+            self: *const IInkRecognitionResult,
+            TopConfidence: ?*InkRecognitionConfidence,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Strokes: *const fn(
+            self: *const IInkRecognitionResult,
+            Strokes: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        AlternatesFromSelection: *const fn(
+            self: *const IInkRecognitionResult,
+            selectionStart: i32,
+            selectionLength: i32,
+            maximumAlternates: i32,
+            AlternatesFromSelection: ?*?*IInkRecognitionAlternates,
+        ) callconv(.winapi) HRESULT,
+        ModifyTopAlternate: *const fn(
+            self: *const IInkRecognitionResult,
+            Alternate: ?*IInkRecognitionAlternate,
+        ) callconv(.winapi) HRESULT,
+        SetResultOnStrokes: *const fn(
+            self: *const IInkRecognitionResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_TopString(self: *const IInkRecognitionResult, TopString: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TopString(self, TopString);
+    }
+    pub fn get_TopAlternate(self: *const IInkRecognitionResult, TopAlternate: ?*?*IInkRecognitionAlternate) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TopAlternate(self, TopAlternate);
+    }
+    pub fn get_TopConfidence(self: *const IInkRecognitionResult, TopConfidence: ?*InkRecognitionConfidence) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TopConfidence(self, TopConfidence);
+    }
+    pub fn get_Strokes(self: *const IInkRecognitionResult, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Strokes(self, Strokes);
+    }
+    pub fn AlternatesFromSelection(self: *const IInkRecognitionResult, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, _param_AlternatesFromSelection: ?*?*IInkRecognitionAlternates) callconv(.@"inline") HRESULT {
+        return self.vtable.AlternatesFromSelection(self, selectionStart, selectionLength, maximumAlternates, _param_AlternatesFromSelection);
+    }
+    pub fn ModifyTopAlternate(self: *const IInkRecognitionResult, Alternate: ?*IInkRecognitionAlternate) callconv(.@"inline") HRESULT {
+        return self.vtable.ModifyTopAlternate(self, Alternate);
+    }
+    pub fn SetResultOnStrokes(self: *const IInkRecognitionResult) callconv(.@"inline") HRESULT {
+        return self.vtable.SetResultOnStrokes(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkRecognizer_Value = Guid.initString("782bf7cf-034b-4396-8a32-3a1833cf6b56");
+pub const IID_IInkRecognizer = &IID_IInkRecognizer_Value;
+pub const IInkRecognizer = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IInkRecognizer,
+            Name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Vendor: *const fn(
+            self: *const IInkRecognizer,
+            Vendor: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Capabilities: *const fn(
+            self: *const IInkRecognizer,
+            CapabilitiesFlags: ?*InkRecognizerCapabilities,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Languages: *const fn(
+            self: *const IInkRecognizer,
+            Languages: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SupportedProperties: *const fn(
+            self: *const IInkRecognizer,
+            SupportedProperties: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PreferredPacketDescription: *const fn(
+            self: *const IInkRecognizer,
+            PreferredPacketDescription: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        CreateRecognizerContext: *const fn(
+            self: *const IInkRecognizer,
+            Context: ?*?*IInkRecognizerContext,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IInkRecognizer, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, Name);
+    }
+    pub fn get_Vendor(self: *const IInkRecognizer, Vendor: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Vendor(self, Vendor);
+    }
+    pub fn get_Capabilities(self: *const IInkRecognizer, CapabilitiesFlags: ?*InkRecognizerCapabilities) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Capabilities(self, CapabilitiesFlags);
+    }
+    pub fn get_Languages(self: *const IInkRecognizer, Languages: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Languages(self, Languages);
+    }
+    pub fn get_SupportedProperties(self: *const IInkRecognizer, SupportedProperties: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SupportedProperties(self, SupportedProperties);
+    }
+    pub fn get_PreferredPacketDescription(self: *const IInkRecognizer, PreferredPacketDescription: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PreferredPacketDescription(self, PreferredPacketDescription);
+    }
+    pub fn CreateRecognizerContext(self: *const IInkRecognizer, Context: ?*?*IInkRecognizerContext) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRecognizerContext(self, Context);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkRecognizer2_Value = Guid.initString("6110118a-3a75-4ad6-b2aa-04b2b72bbe65");
+pub const IID_IInkRecognizer2 = &IID_IInkRecognizer2_Value;
+pub const IInkRecognizer2 = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IInkRecognizer2,
+            pbstrId: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UnicodeRanges: *const fn(
+            self: *const IInkRecognizer2,
+            UnicodeRanges: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IInkRecognizer2, pbstrId: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, pbstrId);
+    }
+    pub fn get_UnicodeRanges(self: *const IInkRecognizer2, UnicodeRanges: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UnicodeRanges(self, UnicodeRanges);
+    }
+};
+
+const IID_IInkRecognizerContext_Value = Guid.initString("c68f52f9-32a3-4625-906c-44fc23b40958");
+pub const IID_IInkRecognizerContext = &IID_IInkRecognizerContext_Value;
+pub const IInkRecognizerContext = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Strokes: *const fn(
+            self: *const IInkRecognizerContext,
+            Strokes: ?*?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        putref_Strokes: *const fn(
+            self: *const IInkRecognizerContext,
+            Strokes: ?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CharacterAutoCompletionMode: *const fn(
+            self: *const IInkRecognizerContext,
+            Mode: ?*InkRecognizerCharacterAutoCompletionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_CharacterAutoCompletionMode: *const fn(
+            self: *const IInkRecognizerContext,
+            Mode: InkRecognizerCharacterAutoCompletionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Factoid: *const fn(
+            self: *const IInkRecognizerContext,
+            Factoid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Factoid: *const fn(
+            self: *const IInkRecognizerContext,
+            factoid: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Guide: *const fn(
+            self: *const IInkRecognizerContext,
+            RecognizerGuide: ?*?*IInkRecognizerGuide,
+        ) callconv(.winapi) HRESULT,
+        putref_Guide: *const fn(
+            self: *const IInkRecognizerContext,
+            RecognizerGuide: ?*IInkRecognizerGuide,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PrefixText: *const fn(
+            self: *const IInkRecognizerContext,
+            Prefix: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PrefixText: *const fn(
+            self: *const IInkRecognizerContext,
+            Prefix: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SuffixText: *const fn(
+            self: *const IInkRecognizerContext,
+            Suffix: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SuffixText: *const fn(
+            self: *const IInkRecognizerContext,
+            Suffix: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RecognitionFlags: *const fn(
+            self: *const IInkRecognizerContext,
+            Modes: ?*InkRecognitionModes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RecognitionFlags: *const fn(
+            self: *const IInkRecognizerContext,
+            Modes: InkRecognitionModes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WordList: *const fn(
+            self: *const IInkRecognizerContext,
+            WordList: ?*?*IInkWordList,
+        ) callconv(.winapi) HRESULT,
+        putref_WordList: *const fn(
+            self: *const IInkRecognizerContext,
+            WordList: ?*IInkWordList,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Recognizer: *const fn(
+            self: *const IInkRecognizerContext,
+            Recognizer: ?*?*IInkRecognizer,
+        ) callconv(.winapi) HRESULT,
+        Recognize: *const fn(
+            self: *const IInkRecognizerContext,
+            RecognitionStatus: ?*InkRecognitionStatus,
+            RecognitionResult: ?*?*IInkRecognitionResult,
+        ) callconv(.winapi) HRESULT,
+        StopBackgroundRecognition: *const fn(
+            self: *const IInkRecognizerContext,
+        ) callconv(.winapi) HRESULT,
+        EndInkInput: *const fn(
+            self: *const IInkRecognizerContext,
+        ) callconv(.winapi) HRESULT,
+        BackgroundRecognize: *const fn(
+            self: *const IInkRecognizerContext,
+            CustomData: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        BackgroundRecognizeWithAlternates: *const fn(
+            self: *const IInkRecognizerContext,
+            CustomData: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IInkRecognizerContext,
+            RecoContext: ?*?*IInkRecognizerContext,
+        ) callconv(.winapi) HRESULT,
+        IsStringSupported: *const fn(
+            self: *const IInkRecognizerContext,
+            String: ?BSTR,
+            Supported: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Strokes(self: *const IInkRecognizerContext, Strokes: ?*?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Strokes(self, Strokes);
+    }
+    pub fn putref_Strokes(self: *const IInkRecognizerContext, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Strokes(self, Strokes);
+    }
+    pub fn get_CharacterAutoCompletionMode(self: *const IInkRecognizerContext, Mode: ?*InkRecognizerCharacterAutoCompletionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CharacterAutoCompletionMode(self, Mode);
+    }
+    pub fn put_CharacterAutoCompletionMode(self: *const IInkRecognizerContext, Mode: InkRecognizerCharacterAutoCompletionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.put_CharacterAutoCompletionMode(self, Mode);
+    }
+    pub fn get_Factoid(self: *const IInkRecognizerContext, Factoid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Factoid(self, Factoid);
+    }
+    pub fn put_Factoid(self: *const IInkRecognizerContext, factoid: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Factoid(self, factoid);
+    }
+    pub fn get_Guide(self: *const IInkRecognizerContext, RecognizerGuide: ?*?*IInkRecognizerGuide) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Guide(self, RecognizerGuide);
+    }
+    pub fn putref_Guide(self: *const IInkRecognizerContext, RecognizerGuide: ?*IInkRecognizerGuide) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_Guide(self, RecognizerGuide);
+    }
+    pub fn get_PrefixText(self: *const IInkRecognizerContext, Prefix: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PrefixText(self, Prefix);
+    }
+    pub fn put_PrefixText(self: *const IInkRecognizerContext, Prefix: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PrefixText(self, Prefix);
+    }
+    pub fn get_SuffixText(self: *const IInkRecognizerContext, Suffix: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SuffixText(self, Suffix);
+    }
+    pub fn put_SuffixText(self: *const IInkRecognizerContext, Suffix: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SuffixText(self, Suffix);
+    }
+    pub fn get_RecognitionFlags(self: *const IInkRecognizerContext, Modes: ?*InkRecognitionModes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RecognitionFlags(self, Modes);
+    }
+    pub fn put_RecognitionFlags(self: *const IInkRecognizerContext, Modes: InkRecognitionModes) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RecognitionFlags(self, Modes);
+    }
+    pub fn get_WordList(self: *const IInkRecognizerContext, WordList: ?*?*IInkWordList) callconv(.@"inline") HRESULT {
+        return self.vtable.get_WordList(self, WordList);
+    }
+    pub fn putref_WordList(self: *const IInkRecognizerContext, WordList: ?*IInkWordList) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_WordList(self, WordList);
+    }
+    pub fn get_Recognizer(self: *const IInkRecognizerContext, Recognizer: ?*?*IInkRecognizer) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Recognizer(self, Recognizer);
+    }
+    pub fn Recognize(self: *const IInkRecognizerContext, RecognitionStatus: ?*InkRecognitionStatus, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.@"inline") HRESULT {
+        return self.vtable.Recognize(self, RecognitionStatus, RecognitionResult);
+    }
+    pub fn StopBackgroundRecognition(self: *const IInkRecognizerContext) callconv(.@"inline") HRESULT {
+        return self.vtable.StopBackgroundRecognition(self);
+    }
+    pub fn EndInkInput(self: *const IInkRecognizerContext) callconv(.@"inline") HRESULT {
+        return self.vtable.EndInkInput(self);
+    }
+    pub fn BackgroundRecognize(self: *const IInkRecognizerContext, CustomData: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.BackgroundRecognize(self, CustomData);
+    }
+    pub fn BackgroundRecognizeWithAlternates(self: *const IInkRecognizerContext, CustomData: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.BackgroundRecognizeWithAlternates(self, CustomData);
+    }
+    pub fn Clone(self: *const IInkRecognizerContext, RecoContext: ?*?*IInkRecognizerContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, RecoContext);
+    }
+    pub fn IsStringSupported(self: *const IInkRecognizerContext, String: ?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsStringSupported(self, String, Supported);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkRecognizerContext2_Value = Guid.initString("d6f0e32f-73d8-408e-8e9f-5fea592c363f");
+pub const IID_IInkRecognizerContext2 = &IID_IInkRecognizerContext2_Value;
+pub const IInkRecognizerContext2 = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EnabledUnicodeRanges: *const fn(
+            self: *const IInkRecognizerContext2,
+            UnicodeRanges: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EnabledUnicodeRanges: *const fn(
+            self: *const IInkRecognizerContext2,
+            UnicodeRanges: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EnabledUnicodeRanges(self: *const IInkRecognizerContext2, UnicodeRanges: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnabledUnicodeRanges(self, UnicodeRanges);
+    }
+    pub fn put_EnabledUnicodeRanges(self: *const IInkRecognizerContext2, UnicodeRanges: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EnabledUnicodeRanges(self, UnicodeRanges);
+    }
+};
+
+const IID_IInkRecognizerGuide_Value = Guid.initString("d934be07-7b84-4208-9136-83c20994e905");
+pub const IID_IInkRecognizerGuide = &IID_IInkRecognizerGuide_Value;
+pub const IInkRecognizerGuide = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WritingBox: *const fn(
+            self: *const IInkRecognizerGuide,
+            Rectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_WritingBox: *const fn(
+            self: *const IInkRecognizerGuide,
+            Rectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DrawnBox: *const fn(
+            self: *const IInkRecognizerGuide,
+            Rectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DrawnBox: *const fn(
+            self: *const IInkRecognizerGuide,
+            Rectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Rows: *const fn(
+            self: *const IInkRecognizerGuide,
+            Units: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Rows: *const fn(
+            self: *const IInkRecognizerGuide,
+            Units: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Columns: *const fn(
+            self: *const IInkRecognizerGuide,
+            Units: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Columns: *const fn(
+            self: *const IInkRecognizerGuide,
+            Units: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Midline: *const fn(
+            self: *const IInkRecognizerGuide,
+            Units: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Midline: *const fn(
+            self: *const IInkRecognizerGuide,
+            Units: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_GuideData: *const fn(
+            self: *const IInkRecognizerGuide,
+            pRecoGuide: ?*InkRecoGuide,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_GuideData: *const fn(
+            self: *const IInkRecognizerGuide,
+            recoGuide: InkRecoGuide,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_WritingBox(self: *const IInkRecognizerGuide, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.get_WritingBox(self, Rectangle);
+    }
+    pub fn put_WritingBox(self: *const IInkRecognizerGuide, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.put_WritingBox(self, Rectangle);
+    }
+    pub fn get_DrawnBox(self: *const IInkRecognizerGuide, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DrawnBox(self, Rectangle);
+    }
+    pub fn put_DrawnBox(self: *const IInkRecognizerGuide, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DrawnBox(self, Rectangle);
+    }
+    pub fn get_Rows(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Rows(self, Units);
+    }
+    pub fn put_Rows(self: *const IInkRecognizerGuide, Units: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Rows(self, Units);
+    }
+    pub fn get_Columns(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Columns(self, Units);
+    }
+    pub fn put_Columns(self: *const IInkRecognizerGuide, Units: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Columns(self, Units);
+    }
+    pub fn get_Midline(self: *const IInkRecognizerGuide, Units: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Midline(self, Units);
+    }
+    pub fn put_Midline(self: *const IInkRecognizerGuide, Units: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Midline(self, Units);
+    }
+    pub fn get_GuideData(self: *const IInkRecognizerGuide, pRecoGuide: ?*InkRecoGuide) callconv(.@"inline") HRESULT {
+        return self.vtable.get_GuideData(self, pRecoGuide);
+    }
+    pub fn put_GuideData(self: *const IInkRecognizerGuide, recoGuide: InkRecoGuide) callconv(.@"inline") HRESULT {
+        return self.vtable.put_GuideData(self, recoGuide);
+    }
+};
+
+const IID_IInkRecognizers_Value = Guid.initString("9ccc4f12-b0b7-4a8b-bf58-4aeca4e8cefd");
+pub const IID_IInkRecognizers = &IID_IInkRecognizers_Value;
+pub const IInkRecognizers = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IInkRecognizers,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IInkRecognizers,
+            _NewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultRecognizer: *const fn(
+            self: *const IInkRecognizers,
+            lcid: i32,
+            DefaultRecognizer: ?*?*IInkRecognizer,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IInkRecognizers,
+            Index: i32,
+            InkRecognizer: ?*?*IInkRecognizer,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IInkRecognizers, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn get__NewEnum(self: *const IInkRecognizers, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, _NewEnum);
+    }
+    pub fn GetDefaultRecognizer(self: *const IInkRecognizers, lcid: i32, DefaultRecognizer: ?*?*IInkRecognizer) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultRecognizer(self, lcid, DefaultRecognizer);
+    }
+    pub fn Item(self: *const IInkRecognizers, Index: i32, InkRecognizer: ?*?*IInkRecognizer) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, InkRecognizer);
+    }
+};
+
+const IID_IInkRectangle_Value = Guid.initString("9794ff82-6071-4717-8a8b-6ac7c64a686e");
+pub const IID_IInkRectangle = &IID_IInkRectangle_Value;
+pub const IInkRectangle = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Top: *const fn(
+            self: *const IInkRectangle,
+            Units: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Top: *const fn(
+            self: *const IInkRectangle,
+            Units: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Left: *const fn(
+            self: *const IInkRectangle,
+            Units: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Left: *const fn(
+            self: *const IInkRectangle,
+            Units: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Bottom: *const fn(
+            self: *const IInkRectangle,
+            Units: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Bottom: *const fn(
+            self: *const IInkRectangle,
+            Units: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Right: *const fn(
+            self: *const IInkRectangle,
+            Units: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Right: *const fn(
+            self: *const IInkRectangle,
+            Units: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Data: *const fn(
+            self: *const IInkRectangle,
+            Rect: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Data: *const fn(
+            self: *const IInkRectangle,
+            Rect: RECT,
+        ) callconv(.winapi) HRESULT,
+        GetRectangle: *const fn(
+            self: *const IInkRectangle,
+            Top: ?*i32,
+            Left: ?*i32,
+            Bottom: ?*i32,
+            Right: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        SetRectangle: *const fn(
+            self: *const IInkRectangle,
+            Top: i32,
+            Left: i32,
+            Bottom: i32,
+            Right: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Top(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Top(self, Units);
+    }
+    pub fn put_Top(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Top(self, Units);
+    }
+    pub fn get_Left(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Left(self, Units);
+    }
+    pub fn put_Left(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Left(self, Units);
+    }
+    pub fn get_Bottom(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Bottom(self, Units);
+    }
+    pub fn put_Bottom(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Bottom(self, Units);
+    }
+    pub fn get_Right(self: *const IInkRectangle, Units: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Right(self, Units);
+    }
+    pub fn put_Right(self: *const IInkRectangle, Units: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Right(self, Units);
+    }
+    pub fn get_Data(self: *const IInkRectangle, Rect: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Data(self, Rect);
+    }
+    pub fn put_Data(self: *const IInkRectangle, Rect: RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Data(self, Rect);
+    }
+    pub fn GetRectangle(self: *const IInkRectangle, Top: ?*i32, Left: ?*i32, Bottom: ?*i32, Right: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRectangle(self, Top, Left, Bottom, Right);
+    }
+    pub fn SetRectangle(self: *const IInkRectangle, Top: i32, Left: i32, Bottom: i32, Right: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetRectangle(self, Top, Left, Bottom, Right);
+    }
+};
+
+const IID_IInkRenderer_Value = Guid.initString("e6257a9c-b511-4f4c-a8b0-a7dbc9506b83");
+pub const IID_IInkRenderer = &IID_IInkRenderer_Value;
+pub const IInkRenderer = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetViewTransform: *const fn(
+            self: *const IInkRenderer,
+            ViewTransform: ?*IInkTransform,
+        ) callconv(.winapi) HRESULT,
+        SetViewTransform: *const fn(
+            self: *const IInkRenderer,
+            ViewTransform: ?*IInkTransform,
+        ) callconv(.winapi) HRESULT,
+        GetObjectTransform: *const fn(
+            self: *const IInkRenderer,
+            ObjectTransform: ?*IInkTransform,
+        ) callconv(.winapi) HRESULT,
+        SetObjectTransform: *const fn(
+            self: *const IInkRenderer,
+            ObjectTransform: ?*IInkTransform,
+        ) callconv(.winapi) HRESULT,
+        Draw: *const fn(
+            self: *const IInkRenderer,
+            hDC: isize,
+            Strokes: ?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        DrawStroke: *const fn(
+            self: *const IInkRenderer,
+            hDC: isize,
+            Stroke: ?*IInkStrokeDisp,
+            DrawingAttributes: ?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        PixelToInkSpace: *const fn(
+            self: *const IInkRenderer,
+            hDC: isize,
+            x: ?*i32,
+            y: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        InkSpaceToPixel: *const fn(
+            self: *const IInkRenderer,
+            hdcDisplay: isize,
+            x: ?*i32,
+            y: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        PixelToInkSpaceFromPoints: *const fn(
+            self: *const IInkRenderer,
+            hDC: isize,
+            Points: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        InkSpaceToPixelFromPoints: *const fn(
+            self: *const IInkRenderer,
+            hDC: isize,
+            Points: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Measure: *const fn(
+            self: *const IInkRenderer,
+            Strokes: ?*IInkStrokes,
+            Rectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        MeasureStroke: *const fn(
+            self: *const IInkRenderer,
+            Stroke: ?*IInkStrokeDisp,
+            DrawingAttributes: ?*IInkDrawingAttributes,
+            Rectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IInkRenderer,
+            HorizontalComponent: f32,
+            VerticalComponent: f32,
+        ) callconv(.winapi) HRESULT,
+        Rotate: *const fn(
+            self: *const IInkRenderer,
+            Degrees: f32,
+            x: f32,
+            y: f32,
+        ) callconv(.winapi) HRESULT,
+        ScaleTransform: *const fn(
+            self: *const IInkRenderer,
+            HorizontalMultiplier: f32,
+            VerticalMultiplier: f32,
+            ApplyOnPenWidth: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetViewTransform(self: *const IInkRenderer, ViewTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
+        return self.vtable.GetViewTransform(self, ViewTransform);
+    }
+    pub fn SetViewTransform(self: *const IInkRenderer, ViewTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
+        return self.vtable.SetViewTransform(self, ViewTransform);
+    }
+    pub fn GetObjectTransform(self: *const IInkRenderer, ObjectTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectTransform(self, ObjectTransform);
+    }
+    pub fn SetObjectTransform(self: *const IInkRenderer, ObjectTransform: ?*IInkTransform) callconv(.@"inline") HRESULT {
+        return self.vtable.SetObjectTransform(self, ObjectTransform);
+    }
+    pub fn Draw(self: *const IInkRenderer, hDC: isize, Strokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.Draw(self, hDC, Strokes);
+    }
+    pub fn DrawStroke(self: *const IInkRenderer, hDC: isize, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.DrawStroke(self, hDC, Stroke, DrawingAttributes);
+    }
+    pub fn PixelToInkSpace(self: *const IInkRenderer, hDC: isize, x: ?*i32, y: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.PixelToInkSpace(self, hDC, x, y);
+    }
+    pub fn InkSpaceToPixel(self: *const IInkRenderer, hdcDisplay: isize, x: ?*i32, y: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.InkSpaceToPixel(self, hdcDisplay, x, y);
+    }
+    pub fn PixelToInkSpaceFromPoints(self: *const IInkRenderer, hDC: isize, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.PixelToInkSpaceFromPoints(self, hDC, Points);
+    }
+    pub fn InkSpaceToPixelFromPoints(self: *const IInkRenderer, hDC: isize, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.InkSpaceToPixelFromPoints(self, hDC, Points);
+    }
+    pub fn Measure(self: *const IInkRenderer, Strokes: ?*IInkStrokes, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.Measure(self, Strokes, Rectangle);
+    }
+    pub fn MeasureStroke(self: *const IInkRenderer, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.MeasureStroke(self, Stroke, DrawingAttributes, Rectangle);
+    }
+    pub fn Move(self: *const IInkRenderer, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkRenderer, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Rotate(self, Degrees, x, y);
+    }
+    pub fn ScaleTransform(self: *const IInkRenderer, HorizontalMultiplier: f32, VerticalMultiplier: f32, ApplyOnPenWidth: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier, ApplyOnPenWidth);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkStrokeDisp_Value = Guid.initString("43242fea-91d1-4a72-963e-fbb91829cfa2");
+pub const IID_IInkStrokeDisp = &IID_IInkStrokeDisp_Value;
+pub const IInkStrokeDisp = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ID: *const fn(
+            self: *const IInkStrokeDisp,
+            ID: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BezierPoints: *const fn(
+            self: *const IInkStrokeDisp,
+            Points: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DrawingAttributes: *const fn(
+            self: *const IInkStrokeDisp,
+            DrawAttrs: ?*?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        putref_DrawingAttributes: *const fn(
+            self: *const IInkStrokeDisp,
+            DrawAttrs: ?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Ink: *const fn(
+            self: *const IInkStrokeDisp,
+            Ink: ?*?*IInkDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExtendedProperties: *const fn(
+            self: *const IInkStrokeDisp,
+            Properties: ?*?*IInkExtendedProperties,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PolylineCusps: *const fn(
+            self: *const IInkStrokeDisp,
+            Cusps: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BezierCusps: *const fn(
+            self: *const IInkStrokeDisp,
+            Cusps: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SelfIntersections: *const fn(
+            self: *const IInkStrokeDisp,
+            Intersections: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PacketCount: *const fn(
+            self: *const IInkStrokeDisp,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PacketSize: *const fn(
+            self: *const IInkStrokeDisp,
+            plSize: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PacketDescription: *const fn(
+            self: *const IInkStrokeDisp,
+            PacketDescription: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Deleted: *const fn(
+            self: *const IInkStrokeDisp,
+            Deleted: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetBoundingBox: *const fn(
+            self: *const IInkStrokeDisp,
+            BoundingBoxMode: InkBoundingBoxMode,
+            Rectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        FindIntersections: *const fn(
+            self: *const IInkStrokeDisp,
+            Strokes: ?*IInkStrokes,
+            Intersections: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetRectangleIntersections: *const fn(
+            self: *const IInkStrokeDisp,
+            Rectangle: ?*IInkRectangle,
+            Intersections: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Clip: *const fn(
+            self: *const IInkStrokeDisp,
+            Rectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        HitTestCircle: *const fn(
+            self: *const IInkStrokeDisp,
+            X: i32,
+            Y: i32,
+            Radius: f32,
+            Intersects: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        NearestPoint: *const fn(
+            self: *const IInkStrokeDisp,
+            X: i32,
+            Y: i32,
+            Distance: ?*f32,
+            Point: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        Split: *const fn(
+            self: *const IInkStrokeDisp,
+            SplitAt: f32,
+            NewStroke: ?*?*IInkStrokeDisp,
+        ) callconv(.winapi) HRESULT,
+        GetPacketDescriptionPropertyMetrics: *const fn(
+            self: *const IInkStrokeDisp,
+            PropertyName: ?BSTR,
+            Minimum: ?*i32,
+            Maximum: ?*i32,
+            Units: ?*TabletPropertyMetricUnit,
+            Resolution: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        GetPoints: *const fn(
+            self: *const IInkStrokeDisp,
+            Index: i32,
+            Count: i32,
+            Points: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetPoints: *const fn(
+            self: *const IInkStrokeDisp,
+            Points: VARIANT,
+            Index: i32,
+            Count: i32,
+            NumberOfPointsSet: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetPacketData: *const fn(
+            self: *const IInkStrokeDisp,
+            Index: i32,
+            Count: i32,
+            PacketData: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetPacketValuesByProperty: *const fn(
+            self: *const IInkStrokeDisp,
+            PropertyName: ?BSTR,
+            Index: i32,
+            Count: i32,
+            PacketValues: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetPacketValuesByProperty: *const fn(
+            self: *const IInkStrokeDisp,
+            bstrPropertyName: ?BSTR,
+            PacketValues: VARIANT,
+            Index: i32,
+            Count: i32,
+            NumberOfPacketsSet: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetFlattenedBezierPoints: *const fn(
+            self: *const IInkStrokeDisp,
+            FittingError: i32,
+            FlattenedBezierPoints: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Transform: *const fn(
+            self: *const IInkStrokeDisp,
+            Transform: ?*IInkTransform,
+            ApplyOnPenWidth: i16,
+        ) callconv(.winapi) HRESULT,
+        ScaleToRectangle: *const fn(
+            self: *const IInkStrokeDisp,
+            Rectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IInkStrokeDisp,
+            HorizontalComponent: f32,
+            VerticalComponent: f32,
+        ) callconv(.winapi) HRESULT,
+        Rotate: *const fn(
+            self: *const IInkStrokeDisp,
+            Degrees: f32,
+            x: f32,
+            y: f32,
+        ) callconv(.winapi) HRESULT,
+        Shear: *const fn(
+            self: *const IInkStrokeDisp,
+            HorizontalMultiplier: f32,
+            VerticalMultiplier: f32,
+        ) callconv(.winapi) HRESULT,
+        ScaleTransform: *const fn(
+            self: *const IInkStrokeDisp,
+            HorizontalMultiplier: f32,
+            VerticalMultiplier: f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ID(self: *const IInkStrokeDisp, ID: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ID(self, ID);
+    }
+    pub fn get_BezierPoints(self: *const IInkStrokeDisp, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BezierPoints(self, Points);
+    }
+    pub fn get_DrawingAttributes(self: *const IInkStrokeDisp, DrawAttrs: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DrawingAttributes(self, DrawAttrs);
+    }
+    pub fn putref_DrawingAttributes(self: *const IInkStrokeDisp, DrawAttrs: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.putref_DrawingAttributes(self, DrawAttrs);
+    }
+    pub fn get_Ink(self: *const IInkStrokeDisp, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Ink(self, _param_Ink);
+    }
+    pub fn get_ExtendedProperties(self: *const IInkStrokeDisp, Properties: ?*?*IInkExtendedProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExtendedProperties(self, Properties);
+    }
+    pub fn get_PolylineCusps(self: *const IInkStrokeDisp, Cusps: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PolylineCusps(self, Cusps);
+    }
+    pub fn get_BezierCusps(self: *const IInkStrokeDisp, Cusps: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BezierCusps(self, Cusps);
+    }
+    pub fn get_SelfIntersections(self: *const IInkStrokeDisp, Intersections: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SelfIntersections(self, Intersections);
+    }
+    pub fn get_PacketCount(self: *const IInkStrokeDisp, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PacketCount(self, plCount);
+    }
+    pub fn get_PacketSize(self: *const IInkStrokeDisp, plSize: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PacketSize(self, plSize);
+    }
+    pub fn get_PacketDescription(self: *const IInkStrokeDisp, PacketDescription: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PacketDescription(self, PacketDescription);
+    }
+    pub fn get_Deleted(self: *const IInkStrokeDisp, Deleted: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Deleted(self, Deleted);
+    }
+    pub fn GetBoundingBox(self: *const IInkStrokeDisp, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBoundingBox(self, BoundingBoxMode, Rectangle);
+    }
+    pub fn FindIntersections(self: *const IInkStrokeDisp, Strokes: ?*IInkStrokes, Intersections: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.FindIntersections(self, Strokes, Intersections);
+    }
+    pub fn GetRectangleIntersections(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle, Intersections: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRectangleIntersections(self, Rectangle, Intersections);
+    }
+    pub fn Clip(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.Clip(self, Rectangle);
+    }
+    pub fn HitTestCircle(self: *const IInkStrokeDisp, X: i32, Y: i32, Radius: f32, Intersects: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.HitTestCircle(self, X, Y, Radius, Intersects);
+    }
+    pub fn NearestPoint(self: *const IInkStrokeDisp, X: i32, Y: i32, Distance: ?*f32, Point: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.NearestPoint(self, X, Y, Distance, Point);
+    }
+    pub fn Split(self: *const IInkStrokeDisp, SplitAt: f32, NewStroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.Split(self, SplitAt, NewStroke);
+    }
+    pub fn GetPacketDescriptionPropertyMetrics(self: *const IInkStrokeDisp, PropertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPacketDescriptionPropertyMetrics(self, PropertyName, Minimum, Maximum, Units, Resolution);
+    }
+    pub fn GetPoints(self: *const IInkStrokeDisp, Index: i32, Count: i32, Points: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPoints(self, Index, Count, Points);
+    }
+    pub fn SetPoints(self: *const IInkStrokeDisp, Points: VARIANT, Index: i32, Count: i32, NumberOfPointsSet: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPoints(self, Points, Index, Count, NumberOfPointsSet);
+    }
+    pub fn GetPacketData(self: *const IInkStrokeDisp, Index: i32, Count: i32, PacketData: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPacketData(self, Index, Count, PacketData);
+    }
+    pub fn GetPacketValuesByProperty(self: *const IInkStrokeDisp, PropertyName: ?BSTR, Index: i32, Count: i32, PacketValues: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPacketValuesByProperty(self, PropertyName, Index, Count, PacketValues);
+    }
+    pub fn SetPacketValuesByProperty(self: *const IInkStrokeDisp, bstrPropertyName: ?BSTR, PacketValues: VARIANT, Index: i32, Count: i32, NumberOfPacketsSet: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPacketValuesByProperty(self, bstrPropertyName, PacketValues, Index, Count, NumberOfPacketsSet);
+    }
+    pub fn GetFlattenedBezierPoints(self: *const IInkStrokeDisp, FittingError: i32, FlattenedBezierPoints: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFlattenedBezierPoints(self, FittingError, FlattenedBezierPoints);
+    }
+    pub fn Transform(self: *const IInkStrokeDisp, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.Transform(self, _param_Transform, ApplyOnPenWidth);
+    }
+    pub fn ScaleToRectangle(self: *const IInkStrokeDisp, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.ScaleToRectangle(self, Rectangle);
+    }
+    pub fn Move(self: *const IInkStrokeDisp, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkStrokeDisp, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Rotate(self, Degrees, x, y);
+    }
+    pub fn Shear(self: *const IInkStrokeDisp, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Shear(self, HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn ScaleTransform(self: *const IInkStrokeDisp, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier);
+    }
+};
+
+const IID_IInkStrokes_Value = Guid.initString("f1f4c9d8-590a-4963-b3ae-1935671bb6f3");
+pub const IID_IInkStrokes = &IID_IInkStrokes_Value;
+pub const IInkStrokes = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IInkStrokes,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IInkStrokes,
+            _NewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Ink: *const fn(
+            self: *const IInkStrokes,
+            Ink: ?*?*IInkDisp,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RecognitionResult: *const fn(
+            self: *const IInkStrokes,
+            RecognitionResult: ?*?*IInkRecognitionResult,
+        ) callconv(.winapi) HRESULT,
+        ToString: *const fn(
+            self: *const IInkStrokes,
+            ToString: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IInkStrokes,
+            Index: i32,
+            Stroke: ?*?*IInkStrokeDisp,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IInkStrokes,
+            InkStroke: ?*IInkStrokeDisp,
+        ) callconv(.winapi) HRESULT,
+        AddStrokes: *const fn(
+            self: *const IInkStrokes,
+            InkStrokes: ?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IInkStrokes,
+            InkStroke: ?*IInkStrokeDisp,
+        ) callconv(.winapi) HRESULT,
+        RemoveStrokes: *const fn(
+            self: *const IInkStrokes,
+            InkStrokes: ?*IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+        ModifyDrawingAttributes: *const fn(
+            self: *const IInkStrokes,
+            DrawAttrs: ?*IInkDrawingAttributes,
+        ) callconv(.winapi) HRESULT,
+        GetBoundingBox: *const fn(
+            self: *const IInkStrokes,
+            BoundingBoxMode: InkBoundingBoxMode,
+            BoundingBox: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        Transform: *const fn(
+            self: *const IInkStrokes,
+            Transform: ?*IInkTransform,
+            ApplyOnPenWidth: i16,
+        ) callconv(.winapi) HRESULT,
+        ScaleToRectangle: *const fn(
+            self: *const IInkStrokes,
+            Rectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        Move: *const fn(
+            self: *const IInkStrokes,
+            HorizontalComponent: f32,
+            VerticalComponent: f32,
+        ) callconv(.winapi) HRESULT,
+        Rotate: *const fn(
+            self: *const IInkStrokes,
+            Degrees: f32,
+            x: f32,
+            y: f32,
+        ) callconv(.winapi) HRESULT,
+        Shear: *const fn(
+            self: *const IInkStrokes,
+            HorizontalMultiplier: f32,
+            VerticalMultiplier: f32,
+        ) callconv(.winapi) HRESULT,
+        ScaleTransform: *const fn(
+            self: *const IInkStrokes,
+            HorizontalMultiplier: f32,
+            VerticalMultiplier: f32,
+        ) callconv(.winapi) HRESULT,
+        Clip: *const fn(
+            self: *const IInkStrokes,
+            Rectangle: ?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        RemoveRecognitionResult: *const fn(
+            self: *const IInkStrokes,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IInkStrokes, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn get__NewEnum(self: *const IInkStrokes, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, _NewEnum);
+    }
+    pub fn get_Ink(self: *const IInkStrokes, _param_Ink: ?*?*IInkDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Ink(self, _param_Ink);
+    }
+    pub fn get_RecognitionResult(self: *const IInkStrokes, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RecognitionResult(self, RecognitionResult);
+    }
+    pub fn ToString(self: *const IInkStrokes, _param_ToString: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ToString(self, _param_ToString);
+    }
+    pub fn Item(self: *const IInkStrokes, Index: i32, Stroke: ?*?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, Stroke);
+    }
+    pub fn Add(self: *const IInkStrokes, InkStroke: ?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, InkStroke);
+    }
+    pub fn AddStrokes(self: *const IInkStrokes, _param_InkStrokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.AddStrokes(self, _param_InkStrokes);
+    }
+    pub fn Remove(self: *const IInkStrokes, InkStroke: ?*IInkStrokeDisp) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, InkStroke);
+    }
+    pub fn RemoveStrokes(self: *const IInkStrokes, _param_InkStrokes: ?*IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveStrokes(self, _param_InkStrokes);
+    }
+    pub fn ModifyDrawingAttributes(self: *const IInkStrokes, DrawAttrs: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
+        return self.vtable.ModifyDrawingAttributes(self, DrawAttrs);
+    }
+    pub fn GetBoundingBox(self: *const IInkStrokes, BoundingBoxMode: InkBoundingBoxMode, BoundingBox: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBoundingBox(self, BoundingBoxMode, BoundingBox);
+    }
+    pub fn Transform(self: *const IInkStrokes, _param_Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.Transform(self, _param_Transform, ApplyOnPenWidth);
+    }
+    pub fn ScaleToRectangle(self: *const IInkStrokes, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.ScaleToRectangle(self, Rectangle);
+    }
+    pub fn Move(self: *const IInkStrokes, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Move(self, HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkStrokes, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Rotate(self, Degrees, x, y);
+    }
+    pub fn Shear(self: *const IInkStrokes, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Shear(self, HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn ScaleTransform(self: *const IInkStrokes, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn Clip(self: *const IInkStrokes, Rectangle: ?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.Clip(self, Rectangle);
+    }
+    pub fn RemoveRecognitionResult(self: *const IInkStrokes) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveRecognitionResult(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkTablet_Value = Guid.initString("2de25eaa-6ef8-42d5-aee9-185bc81b912d");
+pub const IID_IInkTablet = &IID_IInkTablet_Value;
+pub const IInkTablet = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IInkTablet,
+            Name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PlugAndPlayId: *const fn(
+            self: *const IInkTablet,
+            Id: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaximumInputRectangle: *const fn(
+            self: *const IInkTablet,
+            Rectangle: ?*?*IInkRectangle,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HardwareCapabilities: *const fn(
+            self: *const IInkTablet,
+            Capabilities: ?*TabletHardwareCapabilities,
+        ) callconv(.winapi) HRESULT,
+        IsPacketPropertySupported: *const fn(
+            self: *const IInkTablet,
+            packetPropertyName: ?BSTR,
+            Supported: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyMetrics: *const fn(
+            self: *const IInkTablet,
+            propertyName: ?BSTR,
+            Minimum: ?*i32,
+            Maximum: ?*i32,
+            Units: ?*TabletPropertyMetricUnit,
+            Resolution: ?*f32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IInkTablet, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, Name);
+    }
+    pub fn get_PlugAndPlayId(self: *const IInkTablet, Id: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PlugAndPlayId(self, Id);
+    }
+    pub fn get_MaximumInputRectangle(self: *const IInkTablet, Rectangle: ?*?*IInkRectangle) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaximumInputRectangle(self, Rectangle);
+    }
+    pub fn get_HardwareCapabilities(self: *const IInkTablet, Capabilities: ?*TabletHardwareCapabilities) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HardwareCapabilities(self, Capabilities);
+    }
+    pub fn IsPacketPropertySupported(self: *const IInkTablet, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsPacketPropertySupported(self, packetPropertyName, Supported);
+    }
+    pub fn GetPropertyMetrics(self: *const IInkTablet, propertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyMetrics(self, propertyName, Minimum, Maximum, Units, Resolution);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkTablet2_Value = Guid.initString("90c91ad2-fa36-49d6-9516-ce8d570f6f85");
+pub const IID_IInkTablet2 = &IID_IInkTablet2_Value;
+pub const IInkTablet2 = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceKind: *const fn(
+            self: *const IInkTablet2,
+            Kind: ?*TabletDeviceKind,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DeviceKind(self: *const IInkTablet2, Kind: ?*TabletDeviceKind) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceKind(self, Kind);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IInkTablet3_Value = Guid.initString("7e313997-1327-41dd-8ca9-79f24be17250");
+pub const IID_IInkTablet3 = &IID_IInkTablet3_Value;
+pub const IInkTablet3 = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsMultiTouch: *const fn(
+            self: *const IInkTablet3,
+            pIsMultiTouch: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaximumCursors: *const fn(
+            self: *const IInkTablet3,
+            pMaximumCursors: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_IsMultiTouch(self: *const IInkTablet3, pIsMultiTouch: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsMultiTouch(self, pIsMultiTouch);
+    }
+    pub fn get_MaximumCursors(self: *const IInkTablet3, pMaximumCursors: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaximumCursors(self, pMaximumCursors);
+    }
+};
+
+const IID_IInkTablets_Value = Guid.initString("112086d9-7779-4535-a699-862b43ac1863");
+pub const IID_IInkTablets = &IID_IInkTablets_Value;
+pub const IInkTablets = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IInkTablets,
+            Count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IInkTablets,
+            _NewEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultTablet: *const fn(
+            self: *const IInkTablets,
+            DefaultTablet: ?*?*IInkTablet,
+        ) callconv(.winapi) HRESULT,
+        Item: *const fn(
+            self: *const IInkTablets,
+            Index: i32,
+            Tablet: ?*?*IInkTablet,
+        ) callconv(.winapi) HRESULT,
+        IsPacketPropertySupported: *const fn(
+            self: *const IInkTablets,
+            packetPropertyName: ?BSTR,
+            Supported: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IInkTablets, Count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, Count);
+    }
+    pub fn get__NewEnum(self: *const IInkTablets, _NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, _NewEnum);
+    }
+    pub fn get_DefaultTablet(self: *const IInkTablets, DefaultTablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultTablet(self, DefaultTablet);
+    }
+    pub fn Item(self: *const IInkTablets, Index: i32, Tablet: ?*?*IInkTablet) callconv(.@"inline") HRESULT {
+        return self.vtable.Item(self, Index, Tablet);
+    }
+    pub fn IsPacketPropertySupported(self: *const IInkTablets, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsPacketPropertySupported(self, packetPropertyName, Supported);
+    }
+};
+
+const IID_IInkTransform_Value = Guid.initString("615f1d43-8703-4565-88e2-8201d2ecd7b7");
+pub const IID_IInkTransform = &IID_IInkTransform_Value;
+pub const IInkTransform = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Reset: *const fn(
+            self: *const IInkTransform,
+        ) callconv(.winapi) HRESULT,
+        Translate: *const fn(
+            self: *const IInkTransform,
+            HorizontalComponent: f32,
+            VerticalComponent: f32,
+        ) callconv(.winapi) HRESULT,
+        Rotate: *const fn(
+            self: *const IInkTransform,
+            Degrees: f32,
+            x: f32,
+            y: f32,
+        ) callconv(.winapi) HRESULT,
+        Reflect: *const fn(
+            self: *const IInkTransform,
+            Horizontally: i16,
+            Vertically: i16,
+        ) callconv(.winapi) HRESULT,
+        Shear: *const fn(
+            self: *const IInkTransform,
+            HorizontalComponent: f32,
+            VerticalComponent: f32,
+        ) callconv(.winapi) HRESULT,
+        ScaleTransform: *const fn(
+            self: *const IInkTransform,
+            HorizontalMultiplier: f32,
+            VerticalMultiplier: f32,
+        ) callconv(.winapi) HRESULT,
+        GetTransform: *const fn(
+            self: *const IInkTransform,
+            eM11: ?*f32,
+            eM12: ?*f32,
+            eM21: ?*f32,
+            eM22: ?*f32,
+            eDx: ?*f32,
+            eDy: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        SetTransform: *const fn(
+            self: *const IInkTransform,
+            eM11: f32,
+            eM12: f32,
+            eM21: f32,
+            eM22: f32,
+            eDx: f32,
+            eDy: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_eM11: *const fn(
+            self: *const IInkTransform,
+            Value: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_eM11: *const fn(
+            self: *const IInkTransform,
+            Value: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_eM12: *const fn(
+            self: *const IInkTransform,
+            Value: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_eM12: *const fn(
+            self: *const IInkTransform,
+            Value: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_eM21: *const fn(
+            self: *const IInkTransform,
+            Value: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_eM21: *const fn(
+            self: *const IInkTransform,
+            Value: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_eM22: *const fn(
+            self: *const IInkTransform,
+            Value: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_eM22: *const fn(
+            self: *const IInkTransform,
+            Value: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_eDx: *const fn(
+            self: *const IInkTransform,
+            Value: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_eDx: *const fn(
+            self: *const IInkTransform,
+            Value: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_eDy: *const fn(
+            self: *const IInkTransform,
+            Value: ?*f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_eDy: *const fn(
+            self: *const IInkTransform,
+            Value: f32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Data: *const fn(
+            self: *const IInkTransform,
+            XForm: ?*XFORM,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Data: *const fn(
+            self: *const IInkTransform,
+            XForm: XFORM,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Reset(self: *const IInkTransform) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Translate(self: *const IInkTransform, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Translate(self, HorizontalComponent, VerticalComponent);
+    }
+    pub fn Rotate(self: *const IInkTransform, Degrees: f32, x: f32, y: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Rotate(self, Degrees, x, y);
+    }
+    pub fn Reflect(self: *const IInkTransform, Horizontally: i16, Vertically: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.Reflect(self, Horizontally, Vertically);
+    }
+    pub fn Shear(self: *const IInkTransform, HorizontalComponent: f32, VerticalComponent: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.Shear(self, HorizontalComponent, VerticalComponent);
+    }
+    pub fn ScaleTransform(self: *const IInkTransform, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.ScaleTransform(self, HorizontalMultiplier, VerticalMultiplier);
+    }
+    pub fn GetTransform(self: *const IInkTransform, eM11: ?*f32, eM12: ?*f32, eM21: ?*f32, eM22: ?*f32, eDx: ?*f32, eDy: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransform(self, eM11, eM12, eM21, eM22, eDx, eDy);
+    }
+    pub fn SetTransform(self: *const IInkTransform, eM11: f32, eM12: f32, eM21: f32, eM22: f32, eDx: f32, eDy: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTransform(self, eM11, eM12, eM21, eM22, eDx, eDy);
+    }
+    pub fn get_eM11(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_eM11(self, Value);
+    }
+    pub fn put_eM11(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_eM11(self, Value);
+    }
+    pub fn get_eM12(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_eM12(self, Value);
+    }
+    pub fn put_eM12(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_eM12(self, Value);
+    }
+    pub fn get_eM21(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_eM21(self, Value);
+    }
+    pub fn put_eM21(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_eM21(self, Value);
+    }
+    pub fn get_eM22(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_eM22(self, Value);
+    }
+    pub fn put_eM22(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_eM22(self, Value);
+    }
+    pub fn get_eDx(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_eDx(self, Value);
+    }
+    pub fn put_eDx(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_eDx(self, Value);
+    }
+    pub fn get_eDy(self: *const IInkTransform, Value: ?*f32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_eDy(self, Value);
+    }
+    pub fn put_eDy(self: *const IInkTransform, Value: f32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_eDy(self, Value);
+    }
+    pub fn get_Data(self: *const IInkTransform, XForm: ?*XFORM) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Data(self, XForm);
+    }
+    pub fn put_Data(self: *const IInkTransform, XForm: XFORM) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Data(self, XForm);
+    }
+};
+
+const IID_IInkWordList_Value = Guid.initString("76ba3491-cb2f-406b-9961-0e0c4cdaaef2");
+pub const IID_IInkWordList = &IID_IInkWordList_Value;
+pub const IInkWordList = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        AddWord: *const fn(
+            self: *const IInkWordList,
+            NewWord: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveWord: *const fn(
+            self: *const IInkWordList,
+            RemoveWord: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Merge: *const fn(
+            self: *const IInkWordList,
+            MergeWordList: ?*IInkWordList,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn AddWord(self: *const IInkWordList, NewWord: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddWord(self, NewWord);
+    }
+    pub fn RemoveWord(self: *const IInkWordList, _param_RemoveWord: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveWord(self, _param_RemoveWord);
+    }
+    pub fn Merge(self: *const IInkWordList, MergeWordList: ?*IInkWordList) callconv(.@"inline") HRESULT {
+        return self.vtable.Merge(self, MergeWordList);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IInkWordList2_Value = Guid.initString("14542586-11bf-4f5f-b6e7-49d0744aab6e");
+pub const IID_IInkWordList2 = &IID_IInkWordList2_Value;
+pub const IInkWordList2 = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        AddWords: *const fn(
+            self: *const IInkWordList2,
+            NewWords: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn AddWords(self: *const IInkWordList2, NewWords: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddWords(self, NewWords);
+    }
+};
+
+const IID_IInputPanelWindowHandle_Value = Guid.initString("4af81847-fdc4-4fc3-ad0b-422479c1b935");
+pub const IID_IInputPanelWindowHandle = &IID_IInputPanelWindowHandle_Value;
+pub const IInputPanelWindowHandle = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AttachedEditWindow32: *const fn(
+            self: *const IInputPanelWindowHandle,
+            AttachedEditWindow: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AttachedEditWindow32: *const fn(
+            self: *const IInputPanelWindowHandle,
+            AttachedEditWindow: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AttachedEditWindow64: *const fn(
+            self: *const IInputPanelWindowHandle,
+            AttachedEditWindow: ?*i64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AttachedEditWindow64: *const fn(
+            self: *const IInputPanelWindowHandle,
+            AttachedEditWindow: i64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_AttachedEditWindow32(self: *const IInputPanelWindowHandle, AttachedEditWindow: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AttachedEditWindow32(self, AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow32(self: *const IInputPanelWindowHandle, AttachedEditWindow: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AttachedEditWindow32(self, AttachedEditWindow);
+    }
+    pub fn get_AttachedEditWindow64(self: *const IInputPanelWindowHandle, AttachedEditWindow: ?*i64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AttachedEditWindow64(self, AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow64(self: *const IInputPanelWindowHandle, AttachedEditWindow: i64) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AttachedEditWindow64(self, AttachedEditWindow);
+    }
+};
 
 const IID_IMathInputControl_Value = Guid.initString("eba615aa-fac6-4738-ba5f-ff09e9fe473e");
 pub const IID_IMathInputControl = &IID_IMathInputControl_Value;
@@ -7908,111 +6681,854 @@ pub const IMathInputControl = extern union {
     }
 };
 
-const IID__IMathInputControlEvents_Value = Guid.initString("683336b5-a47d-4358-96f9-875a472ae70a");
-pub const IID__IMathInputControlEvents = &IID__IMathInputControlEvents_Value;
-pub const _IMathInputControlEvents = extern union {
+const CLSID_Ink_Value = Guid.initString("13de4a42-8d21-4c8e-bf9c-8f69cb068fca");
+pub const CLSID_Ink = &CLSID_Ink_Value;
+
+pub const InkApplicationGesture = enum(i32) {
+    AllGestures = 0,
+    NoGesture = 61440,
+    Scratchout = 61441,
+    Triangle = 61442,
+    Square = 61443,
+    Star = 61444,
+    Check = 61445,
+    Curlicue = 61456,
+    DoubleCurlicue = 61457,
+    Circle = 61472,
+    DoubleCircle = 61473,
+    SemiCircleLeft = 61480,
+    SemiCircleRight = 61481,
+    ChevronUp = 61488,
+    ChevronDown = 61489,
+    ChevronLeft = 61490,
+    ChevronRight = 61491,
+    ArrowUp = 61496,
+    ArrowDown = 61497,
+    ArrowLeft = 61498,
+    ArrowRight = 61499,
+    Up = 61528,
+    Down = 61529,
+    Left = 61530,
+    Right = 61531,
+    UpDown = 61536,
+    DownUp = 61537,
+    LeftRight = 61538,
+    RightLeft = 61539,
+    UpLeftLong = 61540,
+    UpRightLong = 61541,
+    DownLeftLong = 61542,
+    DownRightLong = 61543,
+    UpLeft = 61544,
+    UpRight = 61545,
+    DownLeft = 61546,
+    DownRight = 61547,
+    LeftUp = 61548,
+    LeftDown = 61549,
+    RightUp = 61550,
+    RightDown = 61551,
+    Exclamation = 61604,
+    Tap = 61680,
+    DoubleTap = 61681,
+};
+pub const IAG_AllGestures = InkApplicationGesture.AllGestures;
+pub const IAG_NoGesture = InkApplicationGesture.NoGesture;
+pub const IAG_Scratchout = InkApplicationGesture.Scratchout;
+pub const IAG_Triangle = InkApplicationGesture.Triangle;
+pub const IAG_Square = InkApplicationGesture.Square;
+pub const IAG_Star = InkApplicationGesture.Star;
+pub const IAG_Check = InkApplicationGesture.Check;
+pub const IAG_Curlicue = InkApplicationGesture.Curlicue;
+pub const IAG_DoubleCurlicue = InkApplicationGesture.DoubleCurlicue;
+pub const IAG_Circle = InkApplicationGesture.Circle;
+pub const IAG_DoubleCircle = InkApplicationGesture.DoubleCircle;
+pub const IAG_SemiCircleLeft = InkApplicationGesture.SemiCircleLeft;
+pub const IAG_SemiCircleRight = InkApplicationGesture.SemiCircleRight;
+pub const IAG_ChevronUp = InkApplicationGesture.ChevronUp;
+pub const IAG_ChevronDown = InkApplicationGesture.ChevronDown;
+pub const IAG_ChevronLeft = InkApplicationGesture.ChevronLeft;
+pub const IAG_ChevronRight = InkApplicationGesture.ChevronRight;
+pub const IAG_ArrowUp = InkApplicationGesture.ArrowUp;
+pub const IAG_ArrowDown = InkApplicationGesture.ArrowDown;
+pub const IAG_ArrowLeft = InkApplicationGesture.ArrowLeft;
+pub const IAG_ArrowRight = InkApplicationGesture.ArrowRight;
+pub const IAG_Up = InkApplicationGesture.Up;
+pub const IAG_Down = InkApplicationGesture.Down;
+pub const IAG_Left = InkApplicationGesture.Left;
+pub const IAG_Right = InkApplicationGesture.Right;
+pub const IAG_UpDown = InkApplicationGesture.UpDown;
+pub const IAG_DownUp = InkApplicationGesture.DownUp;
+pub const IAG_LeftRight = InkApplicationGesture.LeftRight;
+pub const IAG_RightLeft = InkApplicationGesture.RightLeft;
+pub const IAG_UpLeftLong = InkApplicationGesture.UpLeftLong;
+pub const IAG_UpRightLong = InkApplicationGesture.UpRightLong;
+pub const IAG_DownLeftLong = InkApplicationGesture.DownLeftLong;
+pub const IAG_DownRightLong = InkApplicationGesture.DownRightLong;
+pub const IAG_UpLeft = InkApplicationGesture.UpLeft;
+pub const IAG_UpRight = InkApplicationGesture.UpRight;
+pub const IAG_DownLeft = InkApplicationGesture.DownLeft;
+pub const IAG_DownRight = InkApplicationGesture.DownRight;
+pub const IAG_LeftUp = InkApplicationGesture.LeftUp;
+pub const IAG_LeftDown = InkApplicationGesture.LeftDown;
+pub const IAG_RightUp = InkApplicationGesture.RightUp;
+pub const IAG_RightDown = InkApplicationGesture.RightDown;
+pub const IAG_Exclamation = InkApplicationGesture.Exclamation;
+pub const IAG_Tap = InkApplicationGesture.Tap;
+pub const IAG_DoubleTap = InkApplicationGesture.DoubleTap;
+
+pub const InkBoundingBoxMode = enum(i32) {
+    Default = 0,
+    NoCurveFit = 1,
+    CurveFit = 2,
+    PointsOnly = 3,
+    Union = 4,
+};
+pub const IBBM_Default = InkBoundingBoxMode.Default;
+pub const IBBM_NoCurveFit = InkBoundingBoxMode.NoCurveFit;
+pub const IBBM_CurveFit = InkBoundingBoxMode.CurveFit;
+pub const IBBM_PointsOnly = InkBoundingBoxMode.PointsOnly;
+pub const IBBM_Union = InkBoundingBoxMode.Union;
+
+pub const InkClipboardFormats = enum(i32) {
+    None = 0,
+    InkSerializedFormat = 1,
+    SketchInk = 2,
+    TextInk = 6,
+    EnhancedMetafile = 8,
+    Metafile = 32,
+    Bitmap = 64,
+    PasteMask = 7,
+    CopyMask = 127,
+    pub const Default = .CopyMask;
+};
+pub const ICF_None = InkClipboardFormats.None;
+pub const ICF_InkSerializedFormat = InkClipboardFormats.InkSerializedFormat;
+pub const ICF_SketchInk = InkClipboardFormats.SketchInk;
+pub const ICF_TextInk = InkClipboardFormats.TextInk;
+pub const ICF_EnhancedMetafile = InkClipboardFormats.EnhancedMetafile;
+pub const ICF_Metafile = InkClipboardFormats.Metafile;
+pub const ICF_Bitmap = InkClipboardFormats.Bitmap;
+pub const ICF_PasteMask = InkClipboardFormats.PasteMask;
+pub const ICF_CopyMask = InkClipboardFormats.CopyMask;
+pub const ICF_Default = InkClipboardFormats.CopyMask;
+
+pub const InkClipboardModes = enum(i32) {
+    Copy = 0,
+    Cut = 1,
+    ExtractOnly = 48,
+    DelayedCopy = 32,
+    pub const Default = .Copy;
+};
+pub const ICB_Copy = InkClipboardModes.Copy;
+pub const ICB_Cut = InkClipboardModes.Cut;
+pub const ICB_ExtractOnly = InkClipboardModes.ExtractOnly;
+pub const ICB_DelayedCopy = InkClipboardModes.DelayedCopy;
+pub const ICB_Default = InkClipboardModes.Copy;
+
+pub const InkCollectionMode = enum(i32) {
+    InkOnly = 0,
+    GestureOnly = 1,
+    InkAndGesture = 2,
+};
+pub const ICM_InkOnly = InkCollectionMode.InkOnly;
+pub const ICM_GestureOnly = InkCollectionMode.GestureOnly;
+pub const ICM_InkAndGesture = InkCollectionMode.InkAndGesture;
+
+const CLSID_InkCollector_Value = Guid.initString("43fb1553-ad74-4ee8-88e4-3e6daac915db");
+pub const CLSID_InkCollector = &CLSID_InkCollector_Value;
+
+pub const InkCollectorEventInterest = enum(i32) {
+    DefaultEvents = -1,
+    CursorDown = 0,
+    Stroke = 1,
+    NewPackets = 2,
+    NewInAirPackets = 3,
+    CursorButtonDown = 4,
+    CursorButtonUp = 5,
+    CursorInRange = 6,
+    CursorOutOfRange = 7,
+    SystemGesture = 8,
+    TabletAdded = 9,
+    TabletRemoved = 10,
+    MouseDown = 11,
+    MouseMove = 12,
+    MouseUp = 13,
+    MouseWheel = 14,
+    DblClick = 15,
+    AllEvents = 16,
+};
+pub const ICEI_DefaultEvents = InkCollectorEventInterest.DefaultEvents;
+pub const ICEI_CursorDown = InkCollectorEventInterest.CursorDown;
+pub const ICEI_Stroke = InkCollectorEventInterest.Stroke;
+pub const ICEI_NewPackets = InkCollectorEventInterest.NewPackets;
+pub const ICEI_NewInAirPackets = InkCollectorEventInterest.NewInAirPackets;
+pub const ICEI_CursorButtonDown = InkCollectorEventInterest.CursorButtonDown;
+pub const ICEI_CursorButtonUp = InkCollectorEventInterest.CursorButtonUp;
+pub const ICEI_CursorInRange = InkCollectorEventInterest.CursorInRange;
+pub const ICEI_CursorOutOfRange = InkCollectorEventInterest.CursorOutOfRange;
+pub const ICEI_SystemGesture = InkCollectorEventInterest.SystemGesture;
+pub const ICEI_TabletAdded = InkCollectorEventInterest.TabletAdded;
+pub const ICEI_TabletRemoved = InkCollectorEventInterest.TabletRemoved;
+pub const ICEI_MouseDown = InkCollectorEventInterest.MouseDown;
+pub const ICEI_MouseMove = InkCollectorEventInterest.MouseMove;
+pub const ICEI_MouseUp = InkCollectorEventInterest.MouseUp;
+pub const ICEI_MouseWheel = InkCollectorEventInterest.MouseWheel;
+pub const ICEI_DblClick = InkCollectorEventInterest.DblClick;
+pub const ICEI_AllEvents = InkCollectorEventInterest.AllEvents;
+
+pub const InkCursorButtonState = enum(i32) {
+    Unavailable = 0,
+    Up = 1,
+    Down = 2,
+};
+pub const ICBS_Unavailable = InkCursorButtonState.Unavailable;
+pub const ICBS_Up = InkCursorButtonState.Up;
+pub const ICBS_Down = InkCursorButtonState.Down;
+
+const CLSID_InkDisp_Value = Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
+pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
+
+pub const InkDisplayMode = enum(i32) {
+    Ink = 0,
+    Text = 1,
+};
+pub const IDM_Ink = InkDisplayMode.Ink;
+pub const IDM_Text = InkDisplayMode.Text;
+
+const CLSID_InkDivider_Value = Guid.initString("8854f6a0-4683-4ae7-9191-752fe64612c3");
+pub const CLSID_InkDivider = &CLSID_InkDivider_Value;
+
+pub const InkDivisionType = enum(i32) {
+    Segment = 0,
+    Line = 1,
+    Paragraph = 2,
+    Drawing = 3,
+};
+pub const IDT_Segment = InkDivisionType.Segment;
+pub const IDT_Line = InkDivisionType.Line;
+pub const IDT_Paragraph = InkDivisionType.Paragraph;
+pub const IDT_Drawing = InkDivisionType.Drawing;
+
+const CLSID_InkDrawingAttributes_Value = Guid.initString("d8bf32a2-05a5-44c3-b3aa-5e80ac7d2576");
+pub const CLSID_InkDrawingAttributes = &CLSID_InkDrawingAttributes_Value;
+
+const CLSID_InkEdit_Value = Guid.initString("e5ca59f5-57c4-4dd8-9bd6-1deeedd27af4");
+pub const CLSID_InkEdit = &CLSID_InkEdit_Value;
+
+pub const InkEditStatus = enum(i32) {
+    Idle = 0,
+    Collecting = 1,
+    Recognizing = 2,
+};
+pub const IES_Idle = InkEditStatus.Idle;
+pub const IES_Collecting = InkEditStatus.Collecting;
+pub const IES_Recognizing = InkEditStatus.Recognizing;
+
+pub const InkExtractFlags = enum(i32) {
+    CopyFromOriginal = 0,
+    RemoveFromOriginal = 1,
+    pub const Default = .RemoveFromOriginal;
+};
+pub const IEF_CopyFromOriginal = InkExtractFlags.CopyFromOriginal;
+pub const IEF_RemoveFromOriginal = InkExtractFlags.RemoveFromOriginal;
+pub const IEF_Default = InkExtractFlags.RemoveFromOriginal;
+
+pub const InkInsertMode = enum(i32) {
+    Text = 0,
+    Ink = 1,
+};
+pub const IEM_InsertText = InkInsertMode.Text;
+pub const IEM_InsertInk = InkInsertMode.Ink;
+
+pub const INKMETRIC = extern struct {
+    iHeight: i32,
+    iFontAscent: i32,
+    iFontDescent: i32,
+    dwFlags: u32,
+    color: COLORREF,
+};
+
+pub const InkMode = enum(i32) {
+    Disabled = 0,
+    Ink = 1,
+    InkAndGesture = 2,
+};
+pub const IEM_Disabled = InkMode.Disabled;
+pub const IEM_Ink = InkMode.Ink;
+pub const IEM_InkAndGesture = InkMode.InkAndGesture;
+
+pub const InkMouseButton = enum(i32) {
+    Left = 1,
+    Right = 2,
+    Middle = 4,
+};
+pub const IMF_Left = InkMouseButton.Left;
+pub const IMF_Right = InkMouseButton.Right;
+pub const IMF_Middle = InkMouseButton.Middle;
+
+pub const InkMousePointer = enum(i32) {
+    Default = 0,
+    Arrow = 1,
+    Crosshair = 2,
+    Ibeam = 3,
+    SizeNESW = 4,
+    SizeNS = 5,
+    SizeNWSE = 6,
+    SizeWE = 7,
+    UpArrow = 8,
+    Hourglass = 9,
+    NoDrop = 10,
+    ArrowHourglass = 11,
+    ArrowQuestion = 12,
+    SizeAll = 13,
+    Hand = 14,
+    Custom = 99,
+};
+pub const IMP_Default = InkMousePointer.Default;
+pub const IMP_Arrow = InkMousePointer.Arrow;
+pub const IMP_Crosshair = InkMousePointer.Crosshair;
+pub const IMP_Ibeam = InkMousePointer.Ibeam;
+pub const IMP_SizeNESW = InkMousePointer.SizeNESW;
+pub const IMP_SizeNS = InkMousePointer.SizeNS;
+pub const IMP_SizeNWSE = InkMousePointer.SizeNWSE;
+pub const IMP_SizeWE = InkMousePointer.SizeWE;
+pub const IMP_UpArrow = InkMousePointer.UpArrow;
+pub const IMP_Hourglass = InkMousePointer.Hourglass;
+pub const IMP_NoDrop = InkMousePointer.NoDrop;
+pub const IMP_ArrowHourglass = InkMousePointer.ArrowHourglass;
+pub const IMP_ArrowQuestion = InkMousePointer.ArrowQuestion;
+pub const IMP_SizeAll = InkMousePointer.SizeAll;
+pub const IMP_Hand = InkMousePointer.Hand;
+pub const IMP_Custom = InkMousePointer.Custom;
+
+const CLSID_InkOverlay_Value = Guid.initString("65d00646-cde3-4a88-9163-6769f0f1a97d");
+pub const CLSID_InkOverlay = &CLSID_InkOverlay_Value;
+
+pub const InkOverlayAttachMode = enum(i32) {
+    Behind = 0,
+    InFront = 1,
+};
+pub const IOAM_Behind = InkOverlayAttachMode.Behind;
+pub const IOAM_InFront = InkOverlayAttachMode.InFront;
+
+pub const InkOverlayEditingMode = enum(i32) {
+    Ink = 0,
+    Delete = 1,
+    Select = 2,
+};
+pub const IOEM_Ink = InkOverlayEditingMode.Ink;
+pub const IOEM_Delete = InkOverlayEditingMode.Delete;
+pub const IOEM_Select = InkOverlayEditingMode.Select;
+
+pub const InkOverlayEraserMode = enum(i32) {
+    StrokeErase = 0,
+    PointErase = 1,
+};
+pub const IOERM_StrokeErase = InkOverlayEraserMode.StrokeErase;
+pub const IOERM_PointErase = InkOverlayEraserMode.PointErase;
+
+pub const InkPenTip = enum(i32) {
+    Ball = 0,
+    Rectangle = 1,
+};
+pub const IPT_Ball = InkPenTip.Ball;
+pub const IPT_Rectangle = InkPenTip.Rectangle;
+
+pub const InkPersistenceCompressionMode = enum(i32) {
+    Default = 0,
+    MaximumCompression = 1,
+    NoCompression = 2,
+};
+pub const IPCM_Default = InkPersistenceCompressionMode.Default;
+pub const IPCM_MaximumCompression = InkPersistenceCompressionMode.MaximumCompression;
+pub const IPCM_NoCompression = InkPersistenceCompressionMode.NoCompression;
+
+pub const InkPersistenceFormat = enum(i32) {
+    InkSerializedFormat = 0,
+    Base64InkSerializedFormat = 1,
+    GIF = 2,
+    Base64GIF = 3,
+};
+pub const IPF_InkSerializedFormat = InkPersistenceFormat.InkSerializedFormat;
+pub const IPF_Base64InkSerializedFormat = InkPersistenceFormat.Base64InkSerializedFormat;
+pub const IPF_GIF = InkPersistenceFormat.GIF;
+pub const IPF_Base64GIF = InkPersistenceFormat.Base64GIF;
+
+const CLSID_InkPicture_Value = Guid.initString("04a1e553-fe36-4fde-865e-344194e69424");
+pub const CLSID_InkPicture = &CLSID_InkPicture_Value;
+
+pub const InkPictureSizeMode = enum(i32) {
+    AutoSize = 0,
+    CenterImage = 1,
+    Normal = 2,
+    StretchImage = 3,
+};
+pub const IPSM_AutoSize = InkPictureSizeMode.AutoSize;
+pub const IPSM_CenterImage = InkPictureSizeMode.CenterImage;
+pub const IPSM_Normal = InkPictureSizeMode.Normal;
+pub const IPSM_StretchImage = InkPictureSizeMode.StretchImage;
+
+pub const InkRasterOperation = enum(i32) {
+    Black = 1,
+    NotMergePen = 2,
+    MaskNotPen = 3,
+    NotCopyPen = 4,
+    MaskPenNot = 5,
+    Not = 6,
+    XOrPen = 7,
+    NotMaskPen = 8,
+    MaskPen = 9,
+    NotXOrPen = 10,
+    NoOperation = 11,
+    MergeNotPen = 12,
+    CopyPen = 13,
+    MergePenNot = 14,
+    MergePen = 15,
+    White = 16,
+};
+pub const IRO_Black = InkRasterOperation.Black;
+pub const IRO_NotMergePen = InkRasterOperation.NotMergePen;
+pub const IRO_MaskNotPen = InkRasterOperation.MaskNotPen;
+pub const IRO_NotCopyPen = InkRasterOperation.NotCopyPen;
+pub const IRO_MaskPenNot = InkRasterOperation.MaskPenNot;
+pub const IRO_Not = InkRasterOperation.Not;
+pub const IRO_XOrPen = InkRasterOperation.XOrPen;
+pub const IRO_NotMaskPen = InkRasterOperation.NotMaskPen;
+pub const IRO_MaskPen = InkRasterOperation.MaskPen;
+pub const IRO_NotXOrPen = InkRasterOperation.NotXOrPen;
+pub const IRO_NoOperation = InkRasterOperation.NoOperation;
+pub const IRO_MergeNotPen = InkRasterOperation.MergeNotPen;
+pub const IRO_CopyPen = InkRasterOperation.CopyPen;
+pub const IRO_MergePenNot = InkRasterOperation.MergePenNot;
+pub const IRO_MergePen = InkRasterOperation.MergePen;
+pub const IRO_White = InkRasterOperation.White;
+
+pub const InkRecognitionAlternatesSelection = enum(i32) {
+    Start = 0,
+    DefaultCount = 10,
+    All = -1,
+};
+pub const IRAS_Start = InkRecognitionAlternatesSelection.Start;
+pub const IRAS_DefaultCount = InkRecognitionAlternatesSelection.DefaultCount;
+pub const IRAS_All = InkRecognitionAlternatesSelection.All;
+
+pub const InkRecognitionConfidence = enum(i32) {
+    Strong = 0,
+    Intermediate = 1,
+    Poor = 2,
+};
+pub const IRC_Strong = InkRecognitionConfidence.Strong;
+pub const IRC_Intermediate = InkRecognitionConfidence.Intermediate;
+pub const IRC_Poor = InkRecognitionConfidence.Poor;
+
+pub const InkRecognitionModes = enum(i32) {
+    None = 0,
+    WordModeOnly = 1,
+    Coerce = 2,
+    TopInkBreaksOnly = 4,
+    PrefixOk = 8,
+    LineMode = 16,
+    DisablePersonalization = 32,
+    AutoSpace = 64,
+    Max = 128,
+};
+pub const IRM_None = InkRecognitionModes.None;
+pub const IRM_WordModeOnly = InkRecognitionModes.WordModeOnly;
+pub const IRM_Coerce = InkRecognitionModes.Coerce;
+pub const IRM_TopInkBreaksOnly = InkRecognitionModes.TopInkBreaksOnly;
+pub const IRM_PrefixOk = InkRecognitionModes.PrefixOk;
+pub const IRM_LineMode = InkRecognitionModes.LineMode;
+pub const IRM_DisablePersonalization = InkRecognitionModes.DisablePersonalization;
+pub const IRM_AutoSpace = InkRecognitionModes.AutoSpace;
+pub const IRM_Max = InkRecognitionModes.Max;
+
+pub const InkRecognitionStatus = enum(i32) {
+    NoError = 0,
+    Interrupted = 1,
+    ProcessFailed = 2,
+    InkAddedFailed = 4,
+    SetAutoCompletionModeFailed = 8,
+    SetStrokesFailed = 16,
+    SetGuideFailed = 32,
+    SetFlagsFailed = 64,
+    SetFactoidFailed = 128,
+    SetPrefixSuffixFailed = 256,
+    SetWordListFailed = 512,
+};
+pub const IRS_NoError = InkRecognitionStatus.NoError;
+pub const IRS_Interrupted = InkRecognitionStatus.Interrupted;
+pub const IRS_ProcessFailed = InkRecognitionStatus.ProcessFailed;
+pub const IRS_InkAddedFailed = InkRecognitionStatus.InkAddedFailed;
+pub const IRS_SetAutoCompletionModeFailed = InkRecognitionStatus.SetAutoCompletionModeFailed;
+pub const IRS_SetStrokesFailed = InkRecognitionStatus.SetStrokesFailed;
+pub const IRS_SetGuideFailed = InkRecognitionStatus.SetGuideFailed;
+pub const IRS_SetFlagsFailed = InkRecognitionStatus.SetFlagsFailed;
+pub const IRS_SetFactoidFailed = InkRecognitionStatus.SetFactoidFailed;
+pub const IRS_SetPrefixSuffixFailed = InkRecognitionStatus.SetPrefixSuffixFailed;
+pub const IRS_SetWordListFailed = InkRecognitionStatus.SetWordListFailed;
+
+pub const InkRecognizerCapabilities = enum(i32) {
+    DontCare = 1,
+    Object = 2,
+    FreeInput = 4,
+    LinedInput = 8,
+    BoxedInput = 16,
+    CharacterAutoCompletionInput = 32,
+    RightAndDown = 64,
+    LeftAndDown = 128,
+    DownAndLeft = 256,
+    DownAndRight = 512,
+    ArbitraryAngle = 1024,
+    Lattice = 2048,
+    AdviseInkChange = 4096,
+    StrokeReorder = 8192,
+    Personalizable = 16384,
+    PrefersArbitraryAngle = 32768,
+    PrefersParagraphBreaking = 65536,
+    PrefersSegmentation = 131072,
+    Cursive = 262144,
+    TextPrediction = 524288,
+    Alpha = 1048576,
+    Beta = 2097152,
+};
+pub const IRC_DontCare = InkRecognizerCapabilities.DontCare;
+pub const IRC_Object = InkRecognizerCapabilities.Object;
+pub const IRC_FreeInput = InkRecognizerCapabilities.FreeInput;
+pub const IRC_LinedInput = InkRecognizerCapabilities.LinedInput;
+pub const IRC_BoxedInput = InkRecognizerCapabilities.BoxedInput;
+pub const IRC_CharacterAutoCompletionInput = InkRecognizerCapabilities.CharacterAutoCompletionInput;
+pub const IRC_RightAndDown = InkRecognizerCapabilities.RightAndDown;
+pub const IRC_LeftAndDown = InkRecognizerCapabilities.LeftAndDown;
+pub const IRC_DownAndLeft = InkRecognizerCapabilities.DownAndLeft;
+pub const IRC_DownAndRight = InkRecognizerCapabilities.DownAndRight;
+pub const IRC_ArbitraryAngle = InkRecognizerCapabilities.ArbitraryAngle;
+pub const IRC_Lattice = InkRecognizerCapabilities.Lattice;
+pub const IRC_AdviseInkChange = InkRecognizerCapabilities.AdviseInkChange;
+pub const IRC_StrokeReorder = InkRecognizerCapabilities.StrokeReorder;
+pub const IRC_Personalizable = InkRecognizerCapabilities.Personalizable;
+pub const IRC_PrefersArbitraryAngle = InkRecognizerCapabilities.PrefersArbitraryAngle;
+pub const IRC_PrefersParagraphBreaking = InkRecognizerCapabilities.PrefersParagraphBreaking;
+pub const IRC_PrefersSegmentation = InkRecognizerCapabilities.PrefersSegmentation;
+pub const IRC_Cursive = InkRecognizerCapabilities.Cursive;
+pub const IRC_TextPrediction = InkRecognizerCapabilities.TextPrediction;
+pub const IRC_Alpha = InkRecognizerCapabilities.Alpha;
+pub const IRC_Beta = InkRecognizerCapabilities.Beta;
+
+pub const InkRecognizerCharacterAutoCompletionMode = enum(i32) {
+    Full = 0,
+    Prefix = 1,
+    Random = 2,
+};
+pub const IRCACM_Full = InkRecognizerCharacterAutoCompletionMode.Full;
+pub const IRCACM_Prefix = InkRecognizerCharacterAutoCompletionMode.Prefix;
+pub const IRCACM_Random = InkRecognizerCharacterAutoCompletionMode.Random;
+
+const CLSID_InkRecognizerContext_Value = Guid.initString("aac46a37-9229-4fc0-8cce-4497569bf4d1");
+pub const CLSID_InkRecognizerContext = &CLSID_InkRecognizerContext_Value;
+
+const CLSID_InkRecognizerGuide_Value = Guid.initString("8770d941-a63a-4671-a375-2855a18eba73");
+pub const CLSID_InkRecognizerGuide = &CLSID_InkRecognizerGuide_Value;
+
+const CLSID_InkRecognizers_Value = Guid.initString("9fd4e808-f6e6-4e65-98d3-aa39054c1255");
+pub const CLSID_InkRecognizers = &CLSID_InkRecognizers_Value;
+
+pub const InkRecoGuide = extern struct {
+    rectWritingBox: RECT,
+    rectDrawnBox: RECT,
+    cRows: i32,
+    cColumns: i32,
+    midline: i32,
+};
+
+const CLSID_InkRectangle_Value = Guid.initString("43b07326-aae0-4b62-a83d-5fd768b7353c");
+pub const CLSID_InkRectangle = &CLSID_InkRectangle_Value;
+
+const CLSID_InkRenderer_Value = Guid.initString("9c1cc6e4-d7eb-4eeb-9091-15a7c8791ed9");
+pub const CLSID_InkRenderer = &CLSID_InkRenderer_Value;
+
+pub const InkSelectionConstants = enum(i32) {
+    FirstElement = 0,
+    AllElements = -1,
+};
+pub const ISC_FirstElement = InkSelectionConstants.FirstElement;
+pub const ISC_AllElements = InkSelectionConstants.AllElements;
+
+pub const InkShiftKeyModifierFlags = enum(i32) {
+    Shift = 1,
+    Control = 2,
+    Alt = 4,
+};
+pub const IKM_Shift = InkShiftKeyModifierFlags.Shift;
+pub const IKM_Control = InkShiftKeyModifierFlags.Control;
+pub const IKM_Alt = InkShiftKeyModifierFlags.Alt;
+
+const CLSID_InkStrokes_Value = Guid.initString("48f491bc-240e-4860-b079-a1e94d3d2c86");
+pub const CLSID_InkStrokes = &CLSID_InkStrokes_Value;
+
+pub const InkSystemGesture = enum(i32) {
+    Tap = 16,
+    DoubleTap = 17,
+    RightTap = 18,
+    Drag = 19,
+    RightDrag = 20,
+    HoldEnter = 21,
+    HoldLeave = 22,
+    HoverEnter = 23,
+    HoverLeave = 24,
+    Flick = 31,
+};
+pub const ISG_Tap = InkSystemGesture.Tap;
+pub const ISG_DoubleTap = InkSystemGesture.DoubleTap;
+pub const ISG_RightTap = InkSystemGesture.RightTap;
+pub const ISG_Drag = InkSystemGesture.Drag;
+pub const ISG_RightDrag = InkSystemGesture.RightDrag;
+pub const ISG_HoldEnter = InkSystemGesture.HoldEnter;
+pub const ISG_HoldLeave = InkSystemGesture.HoldLeave;
+pub const ISG_HoverEnter = InkSystemGesture.HoverEnter;
+pub const ISG_HoverLeave = InkSystemGesture.HoverLeave;
+pub const ISG_Flick = InkSystemGesture.Flick;
+
+const CLSID_InkTablets_Value = Guid.initString("6e4fcb12-510a-4d40-9304-1da10ae9147c");
+pub const CLSID_InkTablets = &CLSID_InkTablets_Value;
+
+const CLSID_InkTransform_Value = Guid.initString("e3d5d93c-1663-4a78-a1a7-22375dfebaee");
+pub const CLSID_InkTransform = &CLSID_InkTransform_Value;
+
+const CLSID_InkWordList_Value = Guid.initString("9de85094-f71f-44f1-8471-15a2fa76fcf3");
+pub const CLSID_InkWordList = &CLSID_InkWordList_Value;
+
+pub const InPlaceDirection = enum(i32) {
+    Auto = 0,
+    Bottom = 1,
+    Top = 2,
+};
+pub const InPlaceDirection_Auto = InPlaceDirection.Auto;
+pub const InPlaceDirection_Bottom = InPlaceDirection.Bottom;
+pub const InPlaceDirection_Top = InPlaceDirection.Top;
+
+pub const InPlaceState = enum(i32) {
+    Auto = 0,
+    HoverTarget = 1,
+    Expanded = 2,
+};
+pub const InPlaceState_Auto = InPlaceState.Auto;
+pub const InPlaceState_HoverTarget = InPlaceState.HoverTarget;
+pub const InPlaceState_Expanded = InPlaceState.Expanded;
+
+pub const InteractionMode = enum(i32) {
+    InPlace = 0,
+    Floating = 1,
+    DockedTop = 2,
+    DockedBottom = 3,
+};
+pub const InteractionMode_InPlace = InteractionMode.InPlace;
+pub const InteractionMode_Floating = InteractionMode.Floating;
+pub const InteractionMode_DockedTop = InteractionMode.DockedTop;
+pub const InteractionMode_DockedBottom = InteractionMode.DockedBottom;
+
+const IID_IPenInputPanel_Value = Guid.initString("fa7a4083-5747-4040-a182-0b0e9fd4fac7");
+pub const IID_IPenInputPanel = &IID_IPenInputPanel_Value;
+pub const IPenInputPanel = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Busy: *const fn(
+            self: *const IPenInputPanel,
+            Busy: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Factoid: *const fn(
+            self: *const IPenInputPanel,
+            Factoid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Factoid: *const fn(
+            self: *const IPenInputPanel,
+            Factoid: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AttachedEditWindow: *const fn(
+            self: *const IPenInputPanel,
+            AttachedEditWindow: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AttachedEditWindow: *const fn(
+            self: *const IPenInputPanel,
+            AttachedEditWindow: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentPanel: *const fn(
+            self: *const IPenInputPanel,
+            CurrentPanel: ?*PanelType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_CurrentPanel: *const fn(
+            self: *const IPenInputPanel,
+            CurrentPanel: PanelType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultPanel: *const fn(
+            self: *const IPenInputPanel,
+            pDefaultPanel: ?*PanelType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DefaultPanel: *const fn(
+            self: *const IPenInputPanel,
+            DefaultPanel: PanelType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Visible: *const fn(
+            self: *const IPenInputPanel,
+            Visible: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Visible: *const fn(
+            self: *const IPenInputPanel,
+            Visible: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Top: *const fn(
+            self: *const IPenInputPanel,
+            Top: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Left: *const fn(
+            self: *const IPenInputPanel,
+            Left: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Width: *const fn(
+            self: *const IPenInputPanel,
+            Width: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Height: *const fn(
+            self: *const IPenInputPanel,
+            Height: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_VerticalOffset: *const fn(
+            self: *const IPenInputPanel,
+            VerticalOffset: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_VerticalOffset: *const fn(
+            self: *const IPenInputPanel,
+            VerticalOffset: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HorizontalOffset: *const fn(
+            self: *const IPenInputPanel,
+            HorizontalOffset: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_HorizontalOffset: *const fn(
+            self: *const IPenInputPanel,
+            HorizontalOffset: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AutoShow: *const fn(
+            self: *const IPenInputPanel,
+            pAutoShow: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AutoShow: *const fn(
+            self: *const IPenInputPanel,
+            AutoShow: i16,
+        ) callconv(.winapi) HRESULT,
+        MoveTo: *const fn(
+            self: *const IPenInputPanel,
+            Left: i32,
+            Top: i32,
+        ) callconv(.winapi) HRESULT,
+        CommitPendingInput: *const fn(
+            self: *const IPenInputPanel,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const IPenInputPanel,
+        ) callconv(.winapi) HRESULT,
+        EnableTsf: *const fn(
+            self: *const IPenInputPanel,
+            Enable: i16,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-};
-
-const CLSID_RealTimeStylus_Value = Guid.initString("e26b366d-f998-43ce-836f-cb6d904432b0");
-pub const CLSID_RealTimeStylus = &CLSID_RealTimeStylus_Value;
-
-const CLSID_DynamicRenderer_Value = Guid.initString("ecd32aea-746f-4dcb-bf68-082757faff18");
-pub const CLSID_DynamicRenderer = &CLSID_DynamicRenderer_Value;
-
-const CLSID_GestureRecognizer_Value = Guid.initString("ea30c654-c62c-441f-ac00-95f9a196782c");
-pub const CLSID_GestureRecognizer = &CLSID_GestureRecognizer_Value;
-
-const CLSID_StrokeBuilder_Value = Guid.initString("e810cee7-6e51-4cb0-aa3a-0b985b70daf7");
-pub const CLSID_StrokeBuilder = &CLSID_StrokeBuilder_Value;
-
-pub const RealTimeStylusDataInterest = enum(i32) {
-    AllData = -1,
-    None = 0,
-    Error = 1,
-    RealTimeStylusEnabled = 2,
-    RealTimeStylusDisabled = 4,
-    StylusNew = 8,
-    StylusInRange = 16,
-    InAirPackets = 32,
-    StylusOutOfRange = 64,
-    StylusDown = 128,
-    Packets = 256,
-    StylusUp = 512,
-    StylusButtonUp = 1024,
-    StylusButtonDown = 2048,
-    SystemEvents = 4096,
-    TabletAdded = 8192,
-    TabletRemoved = 16384,
-    CustomStylusDataAdded = 32768,
-    UpdateMapping = 65536,
-    DefaultEvents = 37766,
-};
-pub const RTSDI_AllData = RealTimeStylusDataInterest.AllData;
-pub const RTSDI_None = RealTimeStylusDataInterest.None;
-pub const RTSDI_Error = RealTimeStylusDataInterest.Error;
-pub const RTSDI_RealTimeStylusEnabled = RealTimeStylusDataInterest.RealTimeStylusEnabled;
-pub const RTSDI_RealTimeStylusDisabled = RealTimeStylusDataInterest.RealTimeStylusDisabled;
-pub const RTSDI_StylusNew = RealTimeStylusDataInterest.StylusNew;
-pub const RTSDI_StylusInRange = RealTimeStylusDataInterest.StylusInRange;
-pub const RTSDI_InAirPackets = RealTimeStylusDataInterest.InAirPackets;
-pub const RTSDI_StylusOutOfRange = RealTimeStylusDataInterest.StylusOutOfRange;
-pub const RTSDI_StylusDown = RealTimeStylusDataInterest.StylusDown;
-pub const RTSDI_Packets = RealTimeStylusDataInterest.Packets;
-pub const RTSDI_StylusUp = RealTimeStylusDataInterest.StylusUp;
-pub const RTSDI_StylusButtonUp = RealTimeStylusDataInterest.StylusButtonUp;
-pub const RTSDI_StylusButtonDown = RealTimeStylusDataInterest.StylusButtonDown;
-pub const RTSDI_SystemEvents = RealTimeStylusDataInterest.SystemEvents;
-pub const RTSDI_TabletAdded = RealTimeStylusDataInterest.TabletAdded;
-pub const RTSDI_TabletRemoved = RealTimeStylusDataInterest.TabletRemoved;
-pub const RTSDI_CustomStylusDataAdded = RealTimeStylusDataInterest.CustomStylusDataAdded;
-pub const RTSDI_UpdateMapping = RealTimeStylusDataInterest.UpdateMapping;
-pub const RTSDI_DefaultEvents = RealTimeStylusDataInterest.DefaultEvents;
-
-pub const StylusInfo = extern struct {
-    tcid: u32,
-    cid: u32,
-    bIsInvertedCursor: BOOL,
-};
-
-pub const StylusQueue = enum(i32) {
-    SyncStylusQueue = 1,
-    AsyncStylusQueueImmediate = 2,
-    AsyncStylusQueue = 3,
-};
-pub const SyncStylusQueue = StylusQueue.SyncStylusQueue;
-pub const AsyncStylusQueueImmediate = StylusQueue.AsyncStylusQueueImmediate;
-pub const AsyncStylusQueue = StylusQueue.AsyncStylusQueue;
-
-pub const RealTimeStylusLockType = enum(i32) {
-    ObjLock = 1,
-    SyncEventLock = 2,
-    AsyncEventLock = 4,
-    ExcludeCallback = 8,
-    SyncObjLock = 11,
-    AsyncObjLock = 13,
-};
-pub const RTSLT_ObjLock = RealTimeStylusLockType.ObjLock;
-pub const RTSLT_SyncEventLock = RealTimeStylusLockType.SyncEventLock;
-pub const RTSLT_AsyncEventLock = RealTimeStylusLockType.AsyncEventLock;
-pub const RTSLT_ExcludeCallback = RealTimeStylusLockType.ExcludeCallback;
-pub const RTSLT_SyncObjLock = RealTimeStylusLockType.SyncObjLock;
-pub const RTSLT_AsyncObjLock = RealTimeStylusLockType.AsyncObjLock;
-
-pub const GESTURE_DATA = extern struct {
-    gestureId: i32,
-    recoConfidence: i32,
-    strokeCount: i32,
-};
-
-pub const DYNAMIC_RENDERER_CACHED_DATA = extern struct {
-    strokeId: i32,
-    dynamicRenderer: ?*IDynamicRenderer,
+    pub fn get_Busy(self: *const IPenInputPanel, Busy: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Busy(self, Busy);
+    }
+    pub fn get_Factoid(self: *const IPenInputPanel, Factoid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Factoid(self, Factoid);
+    }
+    pub fn put_Factoid(self: *const IPenInputPanel, Factoid: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Factoid(self, Factoid);
+    }
+    pub fn get_AttachedEditWindow(self: *const IPenInputPanel, AttachedEditWindow: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AttachedEditWindow(self, AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow(self: *const IPenInputPanel, AttachedEditWindow: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AttachedEditWindow(self, AttachedEditWindow);
+    }
+    pub fn get_CurrentPanel(self: *const IPenInputPanel, CurrentPanel: ?*PanelType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentPanel(self, CurrentPanel);
+    }
+    pub fn put_CurrentPanel(self: *const IPenInputPanel, CurrentPanel: PanelType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_CurrentPanel(self, CurrentPanel);
+    }
+    pub fn get_DefaultPanel(self: *const IPenInputPanel, pDefaultPanel: ?*PanelType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultPanel(self, pDefaultPanel);
+    }
+    pub fn put_DefaultPanel(self: *const IPenInputPanel, DefaultPanel: PanelType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DefaultPanel(self, DefaultPanel);
+    }
+    pub fn get_Visible(self: *const IPenInputPanel, Visible: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Visible(self, Visible);
+    }
+    pub fn put_Visible(self: *const IPenInputPanel, Visible: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Visible(self, Visible);
+    }
+    pub fn get_Top(self: *const IPenInputPanel, Top: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Top(self, Top);
+    }
+    pub fn get_Left(self: *const IPenInputPanel, Left: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Left(self, Left);
+    }
+    pub fn get_Width(self: *const IPenInputPanel, Width: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Width(self, Width);
+    }
+    pub fn get_Height(self: *const IPenInputPanel, Height: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Height(self, Height);
+    }
+    pub fn get_VerticalOffset(self: *const IPenInputPanel, VerticalOffset: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_VerticalOffset(self, VerticalOffset);
+    }
+    pub fn put_VerticalOffset(self: *const IPenInputPanel, VerticalOffset: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_VerticalOffset(self, VerticalOffset);
+    }
+    pub fn get_HorizontalOffset(self: *const IPenInputPanel, HorizontalOffset: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HorizontalOffset(self, HorizontalOffset);
+    }
+    pub fn put_HorizontalOffset(self: *const IPenInputPanel, HorizontalOffset: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_HorizontalOffset(self, HorizontalOffset);
+    }
+    pub fn get_AutoShow(self: *const IPenInputPanel, pAutoShow: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AutoShow(self, pAutoShow);
+    }
+    pub fn put_AutoShow(self: *const IPenInputPanel, AutoShow: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AutoShow(self, AutoShow);
+    }
+    pub fn MoveTo(self: *const IPenInputPanel, Left: i32, Top: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveTo(self, Left, Top);
+    }
+    pub fn CommitPendingInput(self: *const IPenInputPanel) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitPendingInput(self);
+    }
+    pub fn Refresh(self: *const IPenInputPanel) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn EnableTsf(self: *const IPenInputPanel, Enable: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableTsf(self, Enable);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8345,6 +7861,17 @@ pub const IRealTimeStylusSynchronization = extern union {
     }
 };
 
+const IID_ISketchInk_Value = Guid.initString("b4563688-98eb-4646-b279-44da14d45748");
+pub const IID_ISketchInk = &IID_ISketchInk_Value;
+pub const ISketchInk = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IStrokeBuilder_Value = Guid.initString("a5fd4e2d-c44b-4092-9177-260905eb672b");
 pub const IID_IStrokeBuilder = &IID_IStrokeBuilder_Value;
@@ -8416,6 +7943,18 @@ pub const IStrokeBuilder = extern union {
     pub fn putref_Ink(self: *const IStrokeBuilder, piInkObj: ?*IInkDisp) callconv(.@"inline") HRESULT {
         return self.vtable.putref_Ink(self, piInkObj);
     }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IStylusAsyncPlugin_Value = Guid.initString("a7cca85a-31bc-4cd2-aadc-3289a3af11c8");
+pub const IID_IStylusAsyncPlugin = &IID_IStylusAsyncPlugin_Value;
+pub const IStylusAsyncPlugin = extern union {
+    pub const VTable = extern struct {
+        base: IStylusPlugin.VTable,
+    };
+    vtable: *const VTable,
+    IStylusPlugin: IStylusPlugin,
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8608,338 +8147,333 @@ pub const IStylusSyncPlugin = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStylusAsyncPlugin_Value = Guid.initString("a7cca85a-31bc-4cd2-aadc-3289a3af11c8");
-pub const IID_IStylusAsyncPlugin = &IID_IStylusAsyncPlugin_Value;
-pub const IStylusAsyncPlugin = extern union {
+const IID_ITextInputPanel_Value = Guid.initString("6b6a65a5-6af3-46c2-b6ea-56cd1f80df71");
+pub const IID_ITextInputPanel = &IID_ITextInputPanel_Value;
+pub const ITextInputPanel = extern union {
     pub const VTable = extern struct {
-        base: IStylusPlugin.VTable,
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AttachedEditWindow: *const fn(
+            self: *const ITextInputPanel,
+            AttachedEditWindow: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AttachedEditWindow: *const fn(
+            self: *const ITextInputPanel,
+            AttachedEditWindow: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentInteractionMode: *const fn(
+            self: *const ITextInputPanel,
+            CurrentInteractionMode: ?*InteractionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultInPlaceState: *const fn(
+            self: *const ITextInputPanel,
+            State: ?*InPlaceState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DefaultInPlaceState: *const fn(
+            self: *const ITextInputPanel,
+            State: InPlaceState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentInPlaceState: *const fn(
+            self: *const ITextInputPanel,
+            State: ?*InPlaceState,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DefaultInputArea: *const fn(
+            self: *const ITextInputPanel,
+            Area: ?*PanelInputArea,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DefaultInputArea: *const fn(
+            self: *const ITextInputPanel,
+            Area: PanelInputArea,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentInputArea: *const fn(
+            self: *const ITextInputPanel,
+            Area: ?*PanelInputArea,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CurrentCorrectionMode: *const fn(
+            self: *const ITextInputPanel,
+            Mode: ?*CorrectionMode,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PreferredInPlaceDirection: *const fn(
+            self: *const ITextInputPanel,
+            Direction: ?*InPlaceDirection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PreferredInPlaceDirection: *const fn(
+            self: *const ITextInputPanel,
+            Direction: InPlaceDirection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExpandPostInsertionCorrection: *const fn(
+            self: *const ITextInputPanel,
+            Expand: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExpandPostInsertionCorrection: *const fn(
+            self: *const ITextInputPanel,
+            Expand: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InPlaceVisibleOnFocus: *const fn(
+            self: *const ITextInputPanel,
+            Visible: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_InPlaceVisibleOnFocus: *const fn(
+            self: *const ITextInputPanel,
+            Visible: BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InPlaceBoundingRectangle: *const fn(
+            self: *const ITextInputPanel,
+            BoundingRectangle: ?*RECT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PopUpCorrectionHeight: *const fn(
+            self: *const ITextInputPanel,
+            Height: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PopDownCorrectionHeight: *const fn(
+            self: *const ITextInputPanel,
+            Height: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        CommitPendingInput: *const fn(
+            self: *const ITextInputPanel,
+        ) callconv(.winapi) HRESULT,
+        SetInPlaceVisibility: *const fn(
+            self: *const ITextInputPanel,
+            Visible: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetInPlacePosition: *const fn(
+            self: *const ITextInputPanel,
+            xPosition: i32,
+            yPosition: i32,
+            position: CorrectionPosition,
+        ) callconv(.winapi) HRESULT,
+        SetInPlaceHoverTargetPosition: *const fn(
+            self: *const ITextInputPanel,
+            xPosition: i32,
+            yPosition: i32,
+        ) callconv(.winapi) HRESULT,
+        Advise: *const fn(
+            self: *const ITextInputPanel,
+            EventSink: ?*ITextInputPanelEventSink,
+            EventMask: u32,
+        ) callconv(.winapi) HRESULT,
+        Unadvise: *const fn(
+            self: *const ITextInputPanel,
+            EventSink: ?*ITextInputPanelEventSink,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IStylusPlugin: IStylusPlugin,
     IUnknown: IUnknown,
+    pub fn get_AttachedEditWindow(self: *const ITextInputPanel, AttachedEditWindow: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AttachedEditWindow(self, AttachedEditWindow);
+    }
+    pub fn put_AttachedEditWindow(self: *const ITextInputPanel, AttachedEditWindow: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AttachedEditWindow(self, AttachedEditWindow);
+    }
+    pub fn get_CurrentInteractionMode(self: *const ITextInputPanel, CurrentInteractionMode: ?*InteractionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentInteractionMode(self, CurrentInteractionMode);
+    }
+    pub fn get_DefaultInPlaceState(self: *const ITextInputPanel, State: ?*InPlaceState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultInPlaceState(self, State);
+    }
+    pub fn put_DefaultInPlaceState(self: *const ITextInputPanel, State: InPlaceState) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DefaultInPlaceState(self, State);
+    }
+    pub fn get_CurrentInPlaceState(self: *const ITextInputPanel, State: ?*InPlaceState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentInPlaceState(self, State);
+    }
+    pub fn get_DefaultInputArea(self: *const ITextInputPanel, Area: ?*PanelInputArea) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DefaultInputArea(self, Area);
+    }
+    pub fn put_DefaultInputArea(self: *const ITextInputPanel, Area: PanelInputArea) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DefaultInputArea(self, Area);
+    }
+    pub fn get_CurrentInputArea(self: *const ITextInputPanel, Area: ?*PanelInputArea) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentInputArea(self, Area);
+    }
+    pub fn get_CurrentCorrectionMode(self: *const ITextInputPanel, Mode: ?*CorrectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CurrentCorrectionMode(self, Mode);
+    }
+    pub fn get_PreferredInPlaceDirection(self: *const ITextInputPanel, Direction: ?*InPlaceDirection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PreferredInPlaceDirection(self, Direction);
+    }
+    pub fn put_PreferredInPlaceDirection(self: *const ITextInputPanel, Direction: InPlaceDirection) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PreferredInPlaceDirection(self, Direction);
+    }
+    pub fn get_ExpandPostInsertionCorrection(self: *const ITextInputPanel, Expand: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExpandPostInsertionCorrection(self, Expand);
+    }
+    pub fn put_ExpandPostInsertionCorrection(self: *const ITextInputPanel, Expand: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExpandPostInsertionCorrection(self, Expand);
+    }
+    pub fn get_InPlaceVisibleOnFocus(self: *const ITextInputPanel, Visible: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InPlaceVisibleOnFocus(self, Visible);
+    }
+    pub fn put_InPlaceVisibleOnFocus(self: *const ITextInputPanel, Visible: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_InPlaceVisibleOnFocus(self, Visible);
+    }
+    pub fn get_InPlaceBoundingRectangle(self: *const ITextInputPanel, BoundingRectangle: ?*RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InPlaceBoundingRectangle(self, BoundingRectangle);
+    }
+    pub fn get_PopUpCorrectionHeight(self: *const ITextInputPanel, Height: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PopUpCorrectionHeight(self, Height);
+    }
+    pub fn get_PopDownCorrectionHeight(self: *const ITextInputPanel, Height: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PopDownCorrectionHeight(self, Height);
+    }
+    pub fn CommitPendingInput(self: *const ITextInputPanel) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitPendingInput(self);
+    }
+    pub fn SetInPlaceVisibility(self: *const ITextInputPanel, Visible: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetInPlaceVisibility(self, Visible);
+    }
+    pub fn SetInPlacePosition(self: *const ITextInputPanel, xPosition: i32, yPosition: i32, position: CorrectionPosition) callconv(.@"inline") HRESULT {
+        return self.vtable.SetInPlacePosition(self, xPosition, yPosition, position);
+    }
+    pub fn SetInPlaceHoverTargetPosition(self: *const ITextInputPanel, xPosition: i32, yPosition: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetInPlaceHoverTargetPosition(self, xPosition, yPosition);
+    }
+    pub fn Advise(self: *const ITextInputPanel, EventSink: ?*ITextInputPanelEventSink, _param_EventMask: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Advise(self, EventSink, _param_EventMask);
+    }
+    pub fn Unadvise(self: *const ITextInputPanel, EventSink: ?*ITextInputPanelEventSink) callconv(.@"inline") HRESULT {
+        return self.vtable.Unadvise(self, EventSink);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDynamicRenderer_Value = Guid.initString("a079468e-7165-46f9-b7af-98ad01a93009");
-pub const IID_IDynamicRenderer = &IID_IDynamicRenderer_Value;
-pub const IDynamicRenderer = extern union {
+const IID_ITextInputPanelEventSink_Value = Guid.initString("27560408-8e64-4fe1-804e-421201584b31");
+pub const IID_ITextInputPanelEventSink = &IID_ITextInputPanelEventSink_Value;
+pub const ITextInputPanelEventSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IDynamicRenderer,
-            bEnabled: ?*BOOL,
+        InPlaceStateChanging: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldInPlaceState: InPlaceState,
+            newInPlaceState: InPlaceState,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const IDynamicRenderer,
-            bEnabled: BOOL,
+        InPlaceStateChanged: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldInPlaceState: InPlaceState,
+            newInPlaceState: InPlaceState,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HWND: *const fn(
-            self: *const IDynamicRenderer,
-            hwnd: ?*HANDLE_PTR,
+        InPlaceSizeChanging: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldBoundingRectangle: RECT,
+            newBoundingRectangle: RECT,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HWND: *const fn(
-            self: *const IDynamicRenderer,
-            hwnd: HANDLE_PTR,
+        InPlaceSizeChanged: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldBoundingRectangle: RECT,
+            newBoundingRectangle: RECT,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClipRectangle: *const fn(
-            self: *const IDynamicRenderer,
-            prcClipRect: ?*RECT,
+        InputAreaChanging: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldInputArea: PanelInputArea,
+            newInputArea: PanelInputArea,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClipRectangle: *const fn(
-            self: *const IDynamicRenderer,
-            prcClipRect: ?*const RECT,
+        InputAreaChanged: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldInputArea: PanelInputArea,
+            newInputArea: PanelInputArea,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClipRegion: *const fn(
-            self: *const IDynamicRenderer,
-            phClipRgn: ?*HANDLE_PTR,
+        CorrectionModeChanging: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldCorrectionMode: CorrectionMode,
+            newCorrectionMode: CorrectionMode,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClipRegion: *const fn(
-            self: *const IDynamicRenderer,
-            hClipRgn: HANDLE_PTR,
+        CorrectionModeChanged: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldCorrectionMode: CorrectionMode,
+            newCorrectionMode: CorrectionMode,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawingAttributes: *const fn(
-            self: *const IDynamicRenderer,
-            ppiDA: ?*?*IInkDrawingAttributes,
+        InPlaceVisibilityChanging: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldVisible: BOOL,
+            newVisible: BOOL,
         ) callconv(.winapi) HRESULT,
-        putref_DrawingAttributes: *const fn(
-            self: *const IDynamicRenderer,
-            piDA: ?*IInkDrawingAttributes,
+        InPlaceVisibilityChanged: *const fn(
+            self: *const ITextInputPanelEventSink,
+            oldVisible: BOOL,
+            newVisible: BOOL,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataCacheEnabled: *const fn(
-            self: *const IDynamicRenderer,
-            pfCacheData: ?*BOOL,
+        TextInserting: *const fn(
+            self: *const ITextInputPanelEventSink,
+            Ink: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DataCacheEnabled: *const fn(
-            self: *const IDynamicRenderer,
-            fCacheData: BOOL,
-        ) callconv(.winapi) HRESULT,
-        ReleaseCachedData: *const fn(
-            self: *const IDynamicRenderer,
-            strokeId: u32,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const IDynamicRenderer,
-        ) callconv(.winapi) HRESULT,
-        Draw: *const fn(
-            self: *const IDynamicRenderer,
-            hDC: HANDLE_PTR,
+        TextInserted: *const fn(
+            self: *const ITextInputPanelEventSink,
+            Ink: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Enabled(self: *const IDynamicRenderer, bEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, bEnabled);
+    pub fn InPlaceStateChanging(self: *const ITextInputPanelEventSink, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.@"inline") HRESULT {
+        return self.vtable.InPlaceStateChanging(self, oldInPlaceState, newInPlaceState);
     }
-    pub fn put_Enabled(self: *const IDynamicRenderer, bEnabled: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, bEnabled);
+    pub fn InPlaceStateChanged(self: *const ITextInputPanelEventSink, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.@"inline") HRESULT {
+        return self.vtable.InPlaceStateChanged(self, oldInPlaceState, newInPlaceState);
     }
-    pub fn get_HWND(self: *const IDynamicRenderer, hwnd: ?*HANDLE_PTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HWND(self, hwnd);
+    pub fn InPlaceSizeChanging(self: *const ITextInputPanelEventSink, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.InPlaceSizeChanging(self, oldBoundingRectangle, newBoundingRectangle);
     }
-    pub fn put_HWND(self: *const IDynamicRenderer, hwnd: HANDLE_PTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_HWND(self, hwnd);
+    pub fn InPlaceSizeChanged(self: *const ITextInputPanelEventSink, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.@"inline") HRESULT {
+        return self.vtable.InPlaceSizeChanged(self, oldBoundingRectangle, newBoundingRectangle);
     }
-    pub fn get_ClipRectangle(self: *const IDynamicRenderer, prcClipRect: ?*RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClipRectangle(self, prcClipRect);
+    pub fn InputAreaChanging(self: *const ITextInputPanelEventSink, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.@"inline") HRESULT {
+        return self.vtable.InputAreaChanging(self, oldInputArea, newInputArea);
     }
-    pub fn put_ClipRectangle(self: *const IDynamicRenderer, prcClipRect: ?*const RECT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClipRectangle(self, prcClipRect);
+    pub fn InputAreaChanged(self: *const ITextInputPanelEventSink, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.@"inline") HRESULT {
+        return self.vtable.InputAreaChanged(self, oldInputArea, newInputArea);
     }
-    pub fn get_ClipRegion(self: *const IDynamicRenderer, phClipRgn: ?*HANDLE_PTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClipRegion(self, phClipRgn);
+    pub fn CorrectionModeChanging(self: *const ITextInputPanelEventSink, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.CorrectionModeChanging(self, oldCorrectionMode, newCorrectionMode);
     }
-    pub fn put_ClipRegion(self: *const IDynamicRenderer, hClipRgn: HANDLE_PTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClipRegion(self, hClipRgn);
+    pub fn CorrectionModeChanged(self: *const ITextInputPanelEventSink, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.@"inline") HRESULT {
+        return self.vtable.CorrectionModeChanged(self, oldCorrectionMode, newCorrectionMode);
     }
-    pub fn get_DrawingAttributes(self: *const IDynamicRenderer, ppiDA: ?*?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DrawingAttributes(self, ppiDA);
+    pub fn InPlaceVisibilityChanging(self: *const ITextInputPanelEventSink, oldVisible: BOOL, newVisible: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InPlaceVisibilityChanging(self, oldVisible, newVisible);
     }
-    pub fn putref_DrawingAttributes(self: *const IDynamicRenderer, piDA: ?*IInkDrawingAttributes) callconv(.@"inline") HRESULT {
-        return self.vtable.putref_DrawingAttributes(self, piDA);
+    pub fn InPlaceVisibilityChanged(self: *const ITextInputPanelEventSink, oldVisible: BOOL, newVisible: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InPlaceVisibilityChanged(self, oldVisible, newVisible);
     }
-    pub fn get_DataCacheEnabled(self: *const IDynamicRenderer, pfCacheData: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DataCacheEnabled(self, pfCacheData);
+    pub fn TextInserting(self: *const ITextInputPanelEventSink, _param_Ink: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.TextInserting(self, _param_Ink);
     }
-    pub fn put_DataCacheEnabled(self: *const IDynamicRenderer, fCacheData: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DataCacheEnabled(self, fCacheData);
-    }
-    pub fn ReleaseCachedData(self: *const IDynamicRenderer, strokeId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseCachedData(self, strokeId);
-    }
-    pub fn Refresh(self: *const IDynamicRenderer) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn Draw(self: *const IDynamicRenderer, hDC: HANDLE_PTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Draw(self, hDC);
+    pub fn TextInserted(self: *const ITextInputPanelEventSink, _param_Ink: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.TextInserted(self, _param_Ink);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IGestureRecognizer_Value = Guid.initString("ae9ef86b-7054-45e3-ae22-3174dc8811b7");
-pub const IID_IGestureRecognizer = &IID_IGestureRecognizer_Value;
-pub const IGestureRecognizer = extern union {
+const IID_ITextInputPanelRunInfo_Value = Guid.initString("9f424568-1920-48cc-9811-a993cbf5adba");
+pub const IID_ITextInputPanelRunInfo = &IID_ITextInputPanelRunInfo_Value;
+pub const ITextInputPanelRunInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: *const fn(
-            self: *const IGestureRecognizer,
-            pfEnabled: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: *const fn(
-            self: *const IGestureRecognizer,
-            fEnabled: BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxStrokeCount: *const fn(
-            self: *const IGestureRecognizer,
-            pcStrokes: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxStrokeCount: *const fn(
-            self: *const IGestureRecognizer,
-            cStrokes: i32,
-        ) callconv(.winapi) HRESULT,
-        EnableGestures: *const fn(
-            self: *const IGestureRecognizer,
-            cGestures: u32,
-            pGestures: [*]const i32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IGestureRecognizer,
+        IsTipRunning: *const fn(
+            self: *const ITextInputPanelRunInfo,
+            pfRunning: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Enabled(self: *const IGestureRecognizer, pfEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Enabled(self, pfEnabled);
-    }
-    pub fn put_Enabled(self: *const IGestureRecognizer, fEnabled: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Enabled(self, fEnabled);
-    }
-    pub fn get_MaxStrokeCount(self: *const IGestureRecognizer, pcStrokes: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaxStrokeCount(self, pcStrokes);
-    }
-    pub fn put_MaxStrokeCount(self: *const IGestureRecognizer, cStrokes: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MaxStrokeCount(self, cStrokes);
-    }
-    pub fn EnableGestures(self: *const IGestureRecognizer, cGestures: u32, pGestures: [*]const i32) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableGestures(self, cGestures, pGestures);
-    }
-    pub fn Reset(self: *const IGestureRecognizer) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-};
-
-pub const RECO_GUIDE = extern struct {
-    xOrigin: i32,
-    yOrigin: i32,
-    cxBox: i32,
-    cyBox: i32,
-    cxBase: i32,
-    cyBase: i32,
-    cHorzBox: i32,
-    cVertBox: i32,
-    cyMid: i32,
-};
-
-pub const RECO_ATTRS = extern struct {
-    dwRecoCapabilityFlags: u32,
-    awcVendorName: [32]u16,
-    awcFriendlyName: [64]u16,
-    awLanguageId: [64]u16,
-};
-
-pub const RECO_RANGE = extern struct {
-    iwcBegin: u32,
-    cCount: u32,
-};
-
-pub const LINE_SEGMENT = extern struct {
-    PtA: POINT,
-    PtB: POINT,
-};
-
-pub const LATTICE_METRICS = extern struct {
-    lsBaseline: LINE_SEGMENT,
-    iMidlineOffset: i16,
-};
-
-pub const LINE_METRICS = enum(i32) {
-    BASELINE = 0,
-    MIDLINE = 1,
-    ASCENDER = 2,
-    DESCENDER = 3,
-};
-pub const LM_BASELINE = LINE_METRICS.BASELINE;
-pub const LM_MIDLINE = LINE_METRICS.MIDLINE;
-pub const LM_ASCENDER = LINE_METRICS.ASCENDER;
-pub const LM_DESCENDER = LINE_METRICS.DESCENDER;
-
-pub const CONFIDENCE_LEVEL = enum(i32) {
-    STRONG = 0,
-    INTERMEDIATE = 1,
-    POOR = 2,
-};
-pub const CFL_STRONG = CONFIDENCE_LEVEL.STRONG;
-pub const CFL_INTERMEDIATE = CONFIDENCE_LEVEL.INTERMEDIATE;
-pub const CFL_POOR = CONFIDENCE_LEVEL.POOR;
-
-pub const ALT_BREAKS = enum(i32) {
-    SAME = 0,
-    UNIQUE = 1,
-    FULL = 2,
-};
-pub const ALT_BREAKS_SAME = ALT_BREAKS.SAME;
-pub const ALT_BREAKS_UNIQUE = ALT_BREAKS.UNIQUE;
-pub const ALT_BREAKS_FULL = ALT_BREAKS.FULL;
-
-pub const enumRECO_TYPE = enum(i32) {
-    STRING = 0,
-    CHAR = 1,
-};
-pub const RECO_TYPE_WSTRING = enumRECO_TYPE.STRING;
-pub const RECO_TYPE_WCHAR = enumRECO_TYPE.CHAR;
-
-pub const RECO_LATTICE_PROPERTY = extern struct {
-    guidProperty: Guid,
-    cbPropertyValue: u16,
-    pPropertyValue: ?*u8,
-};
-
-pub const RECO_LATTICE_PROPERTIES = extern struct {
-    cProperties: u32,
-    apProps: ?*?*RECO_LATTICE_PROPERTY,
-};
-
-pub const RECO_LATTICE_ELEMENT = extern struct {
-    score: i32,
-    type: u16,
-    pData: ?*u8,
-    ulNextColumn: u32,
-    ulStrokeNumber: u32,
-    epProp: RECO_LATTICE_PROPERTIES,
-};
-
-pub const RECO_LATTICE_COLUMN = extern struct {
-    key: u32,
-    cpProp: RECO_LATTICE_PROPERTIES,
-    cStrokes: u32,
-    pStrokes: ?*u32,
-    cLatticeElements: u32,
-    pLatticeElements: ?*RECO_LATTICE_ELEMENT,
-};
-
-pub const RECO_LATTICE = extern struct {
-    ulColumnCount: u32,
-    pLatticeColumns: ?*RECO_LATTICE_COLUMN,
-    ulPropertyCount: u32,
-    pGuidProperties: ?*Guid,
-    ulBestResultColumnCount: u32,
-    pulBestResultColumns: ?*u32,
-    pulBestResultIndexes: ?*u32,
-};
-
-pub const CHARACTER_RANGE = extern struct {
-    wcLow: u16,
-    cChars: u16,
-};
-
-const CLSID_TipAutoCompleteClient_Value = Guid.initString("807c1e6c-1d00-453f-b920-b61bb7cdd997");
-pub const CLSID_TipAutoCompleteClient = &CLSID_TipAutoCompleteClient_Value;
-
-const IID_ITipAutoCompleteProvider_Value = Guid.initString("7c6cf46d-8404-46b9-ad33-f5b6036d4007");
-pub const IID_ITipAutoCompleteProvider = &IID_ITipAutoCompleteProvider_Value;
-pub const ITipAutoCompleteProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        UpdatePendingText: *const fn(
-            self: *const ITipAutoCompleteProvider,
-            bstrPendingText: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Show: *const fn(
-            self: *const ITipAutoCompleteProvider,
-            fShow: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn UpdatePendingText(self: *const ITipAutoCompleteProvider, bstrPendingText: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdatePendingText(self, bstrPendingText);
-    }
-    pub fn Show(self: *const ITipAutoCompleteProvider, fShow: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, fShow);
+    pub fn IsTipRunning(self: *const ITextInputPanelRunInfo, pfRunning: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsTipRunning(self, pfRunning);
     }
 };
 
@@ -8993,52 +8527,476 @@ pub const ITipAutoCompleteClient = extern union {
     }
 };
 
+const IID_ITipAutoCompleteProvider_Value = Guid.initString("7c6cf46d-8404-46b9-ad33-f5b6036d4007");
+pub const IID_ITipAutoCompleteProvider = &IID_ITipAutoCompleteProvider_Value;
+pub const ITipAutoCompleteProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        UpdatePendingText: *const fn(
+            self: *const ITipAutoCompleteProvider,
+            bstrPendingText: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Show: *const fn(
+            self: *const ITipAutoCompleteProvider,
+            fShow: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn UpdatePendingText(self: *const ITipAutoCompleteProvider, bstrPendingText: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdatePendingText(self, bstrPendingText);
+    }
+    pub fn Show(self: *const ITipAutoCompleteProvider, fShow: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, fShow);
+    }
+};
+
+pub const KEYMODIFIER = enum(i32) {
+    CONTROL = 1,
+    MENU = 2,
+    SHIFT = 4,
+    WIN = 8,
+    ALTGR = 16,
+    EXT = 32,
+};
+pub const KEYMODIFIER_CONTROL = KEYMODIFIER.CONTROL;
+pub const KEYMODIFIER_MENU = KEYMODIFIER.MENU;
+pub const KEYMODIFIER_SHIFT = KEYMODIFIER.SHIFT;
+pub const KEYMODIFIER_WIN = KEYMODIFIER.WIN;
+pub const KEYMODIFIER_ALTGR = KEYMODIFIER.ALTGR;
+pub const KEYMODIFIER_EXT = KEYMODIFIER.EXT;
+
+pub const LATTICE_METRICS = extern struct {
+    lsBaseline: LINE_SEGMENT,
+    iMidlineOffset: i16,
+};
+
+pub const LINE_METRICS = enum(i32) {
+    BASELINE = 0,
+    MIDLINE = 1,
+    ASCENDER = 2,
+    DESCENDER = 3,
+};
+pub const LM_BASELINE = LINE_METRICS.BASELINE;
+pub const LM_MIDLINE = LINE_METRICS.MIDLINE;
+pub const LM_ASCENDER = LINE_METRICS.ASCENDER;
+pub const LM_DESCENDER = LINE_METRICS.DESCENDER;
+
+pub const LINE_SEGMENT = extern struct {
+    PtA: POINT,
+    PtB: POINT,
+};
+
+const CLSID_MathInputControl_Value = Guid.initString("c561816c-14d8-4090-830c-98d994b21c7b");
+pub const CLSID_MathInputControl = &CLSID_MathInputControl_Value;
+
+pub const MICUIELEMENT = enum(i32) {
+    BUTTON_WRITE = 1,
+    BUTTON_ERASE = 2,
+    BUTTON_CORRECT = 4,
+    BUTTON_CLEAR = 8,
+    BUTTON_UNDO = 16,
+    BUTTON_REDO = 32,
+    BUTTON_INSERT = 64,
+    BUTTON_CANCEL = 128,
+    INKPANEL_BACKGROUND = 256,
+    RESULTPANEL_BACKGROUND = 512,
+};
+pub const MICUIELEMENT_BUTTON_WRITE = MICUIELEMENT.BUTTON_WRITE;
+pub const MICUIELEMENT_BUTTON_ERASE = MICUIELEMENT.BUTTON_ERASE;
+pub const MICUIELEMENT_BUTTON_CORRECT = MICUIELEMENT.BUTTON_CORRECT;
+pub const MICUIELEMENT_BUTTON_CLEAR = MICUIELEMENT.BUTTON_CLEAR;
+pub const MICUIELEMENT_BUTTON_UNDO = MICUIELEMENT.BUTTON_UNDO;
+pub const MICUIELEMENT_BUTTON_REDO = MICUIELEMENT.BUTTON_REDO;
+pub const MICUIELEMENT_BUTTON_INSERT = MICUIELEMENT.BUTTON_INSERT;
+pub const MICUIELEMENT_BUTTON_CANCEL = MICUIELEMENT.BUTTON_CANCEL;
+pub const MICUIELEMENT_INKPANEL_BACKGROUND = MICUIELEMENT.INKPANEL_BACKGROUND;
+pub const MICUIELEMENT_RESULTPANEL_BACKGROUND = MICUIELEMENT.RESULTPANEL_BACKGROUND;
+
+pub const MICUIELEMENTSTATE = enum(i32) {
+    NORMAL = 1,
+    HOT = 2,
+    PRESSED = 3,
+    DISABLED = 4,
+};
+pub const MICUIELEMENTSTATE_NORMAL = MICUIELEMENTSTATE.NORMAL;
+pub const MICUIELEMENTSTATE_HOT = MICUIELEMENTSTATE.HOT;
+pub const MICUIELEMENTSTATE_PRESSED = MICUIELEMENTSTATE.PRESSED;
+pub const MICUIELEMENTSTATE_DISABLED = MICUIELEMENTSTATE.DISABLED;
+
+pub const MouseButton = enum(i32) {
+    NO_BUTTON = 0,
+    LEFT_BUTTON = 1,
+    RIGHT_BUTTON = 2,
+    MIDDLE_BUTTON = 4,
+};
+pub const NO_BUTTON = MouseButton.NO_BUTTON;
+pub const LEFT_BUTTON = MouseButton.LEFT_BUTTON;
+pub const RIGHT_BUTTON = MouseButton.RIGHT_BUTTON;
+pub const MIDDLE_BUTTON = MouseButton.MIDDLE_BUTTON;
+
+pub const PACKET_DESCRIPTION = extern struct {
+    cbPacketSize: u32,
+    cPacketProperties: u32,
+    pPacketProperties: ?*PACKET_PROPERTY,
+    cButtons: u32,
+    pguidButtons: ?*Guid,
+};
+
+pub const PACKET_PROPERTY = extern struct {
+    guid: Guid,
+    PropertyMetrics: PROPERTY_METRICS,
+};
+
+pub const PanelInputArea = enum(i32) {
+    Auto = 0,
+    Keyboard = 1,
+    WritingPad = 2,
+    CharacterPad = 3,
+};
+pub const PanelInputArea_Auto = PanelInputArea.Auto;
+pub const PanelInputArea_Keyboard = PanelInputArea.Keyboard;
+pub const PanelInputArea_WritingPad = PanelInputArea.WritingPad;
+pub const PanelInputArea_CharacterPad = PanelInputArea.CharacterPad;
+
+pub const PanelType = enum(i32) {
+    Default = 0,
+    Inactive = 1,
+    Handwriting = 2,
+    Keyboard = 3,
+};
+pub const PT_Default = PanelType.Default;
+pub const PT_Inactive = PanelType.Inactive;
+pub const PT_Handwriting = PanelType.Handwriting;
+pub const PT_Keyboard = PanelType.Keyboard;
+
+const CLSID_PenInputPanel_Value = Guid.initString("f744e496-1b5a-489e-81dc-fbd7ac6298a8");
+pub const CLSID_PenInputPanel = &CLSID_PenInputPanel_Value;
+
+const CLSID_PenInputPanel_Internal_Value = Guid.initString("802b1fb9-056b-4720-b0cc-80d23b71171e");
+pub const CLSID_PenInputPanel_Internal = &CLSID_PenInputPanel_Internal_Value;
+
+pub const PfnRecoCallback = *const fn(
+    param0: u32,
+    param1: ?*u8,
+    param2: ?HRECOCONTEXT,
+) callconv(.winapi) HRESULT;
+
+pub const PROPERTY_METRICS = extern struct {
+    nLogicalMin: i32,
+    nLogicalMax: i32,
+    Units: PROPERTY_UNITS,
+    fResolution: f32,
+};
+
+pub const PROPERTY_UNITS = enum(i32) {
+    DEFAULT = 0,
+    INCHES = 1,
+    CENTIMETERS = 2,
+    DEGREES = 3,
+    RADIANS = 4,
+    SECONDS = 5,
+    POUNDS = 6,
+    GRAMS = 7,
+    SILINEAR = 8,
+    SIROTATION = 9,
+    ENGLINEAR = 10,
+    ENGROTATION = 11,
+    SLUGS = 12,
+    KELVIN = 13,
+    FAHRENHEIT = 14,
+    AMPERE = 15,
+    CANDELA = 16,
+};
+pub const PROPERTY_UNITS_DEFAULT = PROPERTY_UNITS.DEFAULT;
+pub const PROPERTY_UNITS_INCHES = PROPERTY_UNITS.INCHES;
+pub const PROPERTY_UNITS_CENTIMETERS = PROPERTY_UNITS.CENTIMETERS;
+pub const PROPERTY_UNITS_DEGREES = PROPERTY_UNITS.DEGREES;
+pub const PROPERTY_UNITS_RADIANS = PROPERTY_UNITS.RADIANS;
+pub const PROPERTY_UNITS_SECONDS = PROPERTY_UNITS.SECONDS;
+pub const PROPERTY_UNITS_POUNDS = PROPERTY_UNITS.POUNDS;
+pub const PROPERTY_UNITS_GRAMS = PROPERTY_UNITS.GRAMS;
+pub const PROPERTY_UNITS_SILINEAR = PROPERTY_UNITS.SILINEAR;
+pub const PROPERTY_UNITS_SIROTATION = PROPERTY_UNITS.SIROTATION;
+pub const PROPERTY_UNITS_ENGLINEAR = PROPERTY_UNITS.ENGLINEAR;
+pub const PROPERTY_UNITS_ENGROTATION = PROPERTY_UNITS.ENGROTATION;
+pub const PROPERTY_UNITS_SLUGS = PROPERTY_UNITS.SLUGS;
+pub const PROPERTY_UNITS_KELVIN = PROPERTY_UNITS.KELVIN;
+pub const PROPERTY_UNITS_FAHRENHEIT = PROPERTY_UNITS.FAHRENHEIT;
+pub const PROPERTY_UNITS_AMPERE = PROPERTY_UNITS.AMPERE;
+pub const PROPERTY_UNITS_CANDELA = PROPERTY_UNITS.CANDELA;
+
+const CLSID_RealTimeStylus_Value = Guid.initString("e26b366d-f998-43ce-836f-cb6d904432b0");
+pub const CLSID_RealTimeStylus = &CLSID_RealTimeStylus_Value;
+
+pub const RealTimeStylusDataInterest = enum(i32) {
+    AllData = -1,
+    None = 0,
+    Error = 1,
+    RealTimeStylusEnabled = 2,
+    RealTimeStylusDisabled = 4,
+    StylusNew = 8,
+    StylusInRange = 16,
+    InAirPackets = 32,
+    StylusOutOfRange = 64,
+    StylusDown = 128,
+    Packets = 256,
+    StylusUp = 512,
+    StylusButtonUp = 1024,
+    StylusButtonDown = 2048,
+    SystemEvents = 4096,
+    TabletAdded = 8192,
+    TabletRemoved = 16384,
+    CustomStylusDataAdded = 32768,
+    UpdateMapping = 65536,
+    DefaultEvents = 37766,
+};
+pub const RTSDI_AllData = RealTimeStylusDataInterest.AllData;
+pub const RTSDI_None = RealTimeStylusDataInterest.None;
+pub const RTSDI_Error = RealTimeStylusDataInterest.Error;
+pub const RTSDI_RealTimeStylusEnabled = RealTimeStylusDataInterest.RealTimeStylusEnabled;
+pub const RTSDI_RealTimeStylusDisabled = RealTimeStylusDataInterest.RealTimeStylusDisabled;
+pub const RTSDI_StylusNew = RealTimeStylusDataInterest.StylusNew;
+pub const RTSDI_StylusInRange = RealTimeStylusDataInterest.StylusInRange;
+pub const RTSDI_InAirPackets = RealTimeStylusDataInterest.InAirPackets;
+pub const RTSDI_StylusOutOfRange = RealTimeStylusDataInterest.StylusOutOfRange;
+pub const RTSDI_StylusDown = RealTimeStylusDataInterest.StylusDown;
+pub const RTSDI_Packets = RealTimeStylusDataInterest.Packets;
+pub const RTSDI_StylusUp = RealTimeStylusDataInterest.StylusUp;
+pub const RTSDI_StylusButtonUp = RealTimeStylusDataInterest.StylusButtonUp;
+pub const RTSDI_StylusButtonDown = RealTimeStylusDataInterest.StylusButtonDown;
+pub const RTSDI_SystemEvents = RealTimeStylusDataInterest.SystemEvents;
+pub const RTSDI_TabletAdded = RealTimeStylusDataInterest.TabletAdded;
+pub const RTSDI_TabletRemoved = RealTimeStylusDataInterest.TabletRemoved;
+pub const RTSDI_CustomStylusDataAdded = RealTimeStylusDataInterest.CustomStylusDataAdded;
+pub const RTSDI_UpdateMapping = RealTimeStylusDataInterest.UpdateMapping;
+pub const RTSDI_DefaultEvents = RealTimeStylusDataInterest.DefaultEvents;
+
+pub const RealTimeStylusLockType = enum(i32) {
+    ObjLock = 1,
+    SyncEventLock = 2,
+    AsyncEventLock = 4,
+    ExcludeCallback = 8,
+    SyncObjLock = 11,
+    AsyncObjLock = 13,
+};
+pub const RTSLT_ObjLock = RealTimeStylusLockType.ObjLock;
+pub const RTSLT_SyncEventLock = RealTimeStylusLockType.SyncEventLock;
+pub const RTSLT_AsyncEventLock = RealTimeStylusLockType.AsyncEventLock;
+pub const RTSLT_ExcludeCallback = RealTimeStylusLockType.ExcludeCallback;
+pub const RTSLT_SyncObjLock = RealTimeStylusLockType.SyncObjLock;
+pub const RTSLT_AsyncObjLock = RealTimeStylusLockType.AsyncObjLock;
+
+pub const RECO_ATTRS = extern struct {
+    dwRecoCapabilityFlags: u32,
+    awcVendorName: [32]u16,
+    awcFriendlyName: [64]u16,
+    awLanguageId: [64]u16,
+};
+
+pub const RECO_GUIDE = extern struct {
+    xOrigin: i32,
+    yOrigin: i32,
+    cxBox: i32,
+    cyBox: i32,
+    cxBase: i32,
+    cyBase: i32,
+    cHorzBox: i32,
+    cVertBox: i32,
+    cyMid: i32,
+};
+
+pub const RECO_LATTICE = extern struct {
+    ulColumnCount: u32,
+    pLatticeColumns: ?*RECO_LATTICE_COLUMN,
+    ulPropertyCount: u32,
+    pGuidProperties: ?*Guid,
+    ulBestResultColumnCount: u32,
+    pulBestResultColumns: ?*u32,
+    pulBestResultIndexes: ?*u32,
+};
+
+pub const RECO_LATTICE_COLUMN = extern struct {
+    key: u32,
+    cpProp: RECO_LATTICE_PROPERTIES,
+    cStrokes: u32,
+    pStrokes: ?*u32,
+    cLatticeElements: u32,
+    pLatticeElements: ?*RECO_LATTICE_ELEMENT,
+};
+
+pub const RECO_LATTICE_ELEMENT = extern struct {
+    score: i32,
+    type: u16,
+    pData: ?*u8,
+    ulNextColumn: u32,
+    ulStrokeNumber: u32,
+    epProp: RECO_LATTICE_PROPERTIES,
+};
+
+pub const RECO_LATTICE_PROPERTIES = extern struct {
+    cProperties: u32,
+    apProps: ?*?*RECO_LATTICE_PROPERTY,
+};
+
+pub const RECO_LATTICE_PROPERTY = extern struct {
+    guidProperty: Guid,
+    cbPropertyValue: u16,
+    pPropertyValue: ?*u8,
+};
+
+pub const RECO_RANGE = extern struct {
+    iwcBegin: u32,
+    cCount: u32,
+};
+
+pub const ScrollBarsConstants = enum(i32) {
+    None = 0,
+    Horizontal = 1,
+    Vertical = 2,
+    Both = 3,
+};
+pub const rtfNone = ScrollBarsConstants.None;
+pub const rtfHorizontal = ScrollBarsConstants.Horizontal;
+pub const rtfVertical = ScrollBarsConstants.Vertical;
+pub const rtfBoth = ScrollBarsConstants.Both;
+
+pub const SCROLLDIRECTION = enum(i32) {
+    UP = 0,
+    DOWN = 1,
+};
+pub const SCROLLDIRECTION_UP = SCROLLDIRECTION.UP;
+pub const SCROLLDIRECTION_DOWN = SCROLLDIRECTION.DOWN;
+
+pub const SelAlignmentConstants = enum(i32) {
+    Left = 0,
+    Right = 1,
+    Center = 2,
+};
+pub const rtfLeft = SelAlignmentConstants.Left;
+pub const rtfRight = SelAlignmentConstants.Right;
+pub const rtfCenter = SelAlignmentConstants.Center;
+
+pub const SelectionHitResult = enum(i32) {
+    None = 0,
+    NW = 1,
+    SE = 2,
+    NE = 3,
+    SW = 4,
+    E = 5,
+    W = 6,
+    N = 7,
+    S = 8,
+    Selection = 9,
+};
+pub const SHR_None = SelectionHitResult.None;
+pub const SHR_NW = SelectionHitResult.NW;
+pub const SHR_SE = SelectionHitResult.SE;
+pub const SHR_NE = SelectionHitResult.NE;
+pub const SHR_SW = SelectionHitResult.SW;
+pub const SHR_E = SelectionHitResult.E;
+pub const SHR_W = SelectionHitResult.W;
+pub const SHR_N = SelectionHitResult.N;
+pub const SHR_S = SelectionHitResult.S;
+pub const SHR_Selection = SelectionHitResult.Selection;
+
+const CLSID_SketchInk_Value = Guid.initString("f0291081-e87c-4e07-97da-a0a03761e586");
+pub const CLSID_SketchInk = &CLSID_SketchInk_Value;
+
+pub const STROKE_RANGE = extern struct {
+    iStrokeBegin: u32,
+    iStrokeEnd: u32,
+};
+
+const CLSID_StrokeBuilder_Value = Guid.initString("e810cee7-6e51-4cb0-aa3a-0b985b70daf7");
+pub const CLSID_StrokeBuilder = &CLSID_StrokeBuilder_Value;
+
+pub const StylusInfo = extern struct {
+    tcid: u32,
+    cid: u32,
+    bIsInvertedCursor: BOOL,
+};
+
+pub const StylusQueue = enum(i32) {
+    SyncStylusQueue = 1,
+    AsyncStylusQueueImmediate = 2,
+    AsyncStylusQueue = 3,
+};
+pub const SyncStylusQueue = StylusQueue.SyncStylusQueue;
+pub const AsyncStylusQueueImmediate = StylusQueue.AsyncStylusQueueImmediate;
+pub const AsyncStylusQueue = StylusQueue.AsyncStylusQueue;
+
+pub const SYSTEM_EVENT_DATA = extern struct {
+    bModifier: u8,
+    wKey: u16,
+    xPos: i32,
+    yPos: i32,
+    bCursorMode: u8,
+    dwButtonState: u32,
+};
+
+pub const TabletDeviceKind = enum(i32) {
+    Mouse = 0,
+    Pen = 1,
+    Touch = 2,
+};
+pub const TDK_Mouse = TabletDeviceKind.Mouse;
+pub const TDK_Pen = TabletDeviceKind.Pen;
+pub const TDK_Touch = TabletDeviceKind.Touch;
+
+pub const TabletHardwareCapabilities = enum(i32) {
+    Integrated = 1,
+    CursorMustTouch = 2,
+    HardProximity = 4,
+    CursorsHavePhysicalIds = 8,
+};
+pub const THWC_Integrated = TabletHardwareCapabilities.Integrated;
+pub const THWC_CursorMustTouch = TabletHardwareCapabilities.CursorMustTouch;
+pub const THWC_HardProximity = TabletHardwareCapabilities.HardProximity;
+pub const THWC_CursorsHavePhysicalIds = TabletHardwareCapabilities.CursorsHavePhysicalIds;
+
+pub const TabletPropertyMetricUnit = enum(i32) {
+    Default = 0,
+    Inches = 1,
+    Centimeters = 2,
+    Degrees = 3,
+    Radians = 4,
+    Seconds = 5,
+    Pounds = 6,
+    Grams = 7,
+};
+pub const TPMU_Default = TabletPropertyMetricUnit.Default;
+pub const TPMU_Inches = TabletPropertyMetricUnit.Inches;
+pub const TPMU_Centimeters = TabletPropertyMetricUnit.Centimeters;
+pub const TPMU_Degrees = TabletPropertyMetricUnit.Degrees;
+pub const TPMU_Radians = TabletPropertyMetricUnit.Radians;
+pub const TPMU_Seconds = TabletPropertyMetricUnit.Seconds;
+pub const TPMU_Pounds = TabletPropertyMetricUnit.Pounds;
+pub const TPMU_Grams = TabletPropertyMetricUnit.Grams;
+
+const CLSID_TextInputPanel_Value = Guid.initString("f9b189d7-228b-4f2b-8650-b97f59e02c8c");
+pub const CLSID_TextInputPanel = &CLSID_TextInputPanel_Value;
+
+const CLSID_TipAutoCompleteClient_Value = Guid.initString("807c1e6c-1d00-453f-b920-b61bb7cdd997");
+pub const CLSID_TipAutoCompleteClient = &CLSID_TipAutoCompleteClient_Value;
+
+pub const VisualState = enum(i32) {
+    InPlace = 0,
+    Floating = 1,
+    DockedTop = 2,
+    DockedBottom = 3,
+    Closed = 4,
+};
+pub const InPlace = VisualState.InPlace;
+pub const Floating = VisualState.Floating;
+pub const DockedTop = VisualState.DockedTop;
+pub const DockedBottom = VisualState.DockedBottom;
+pub const Closed = VisualState.Closed;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn CreateRecognizer(
-    pCLSID: ?*Guid,
-    phrec: ?*?HRECOGNIZER,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn DestroyRecognizer(
-    hrec: ?HRECOGNIZER,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetRecoAttributes(
-    hrec: ?HRECOGNIZER,
-    pRecoAttrs: ?*RECO_ATTRS,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn CreateContext(
-    hrec: ?HRECOGNIZER,
-    phrc: ?*?HRECOCONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn DestroyContext(
-    hrc: ?HRECOCONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetResultPropertyList(
-    hrec: ?HRECOGNIZER,
-    pPropertyCount: ?*u32,
-    pPropertyGuid: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetUnicodeRanges(
-    hrec: ?HRECOGNIZER,
-    pcRanges: ?*u32,
-    pcr: ?*CHARACTER_RANGE,
-) callconv(.winapi) HRESULT;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AddStroke(
     hrc: ?HRECOCONTEXT,
@@ -9049,17 +9007,9 @@ pub extern "inkobjcore" fn AddStroke(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetBestResultString(
-    hrc: ?HRECOCONTEXT,
-    pcSize: ?*u32,
-    pwcBestResult: ?[*:0]u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn SetGuide(
-    hrc: ?HRECOCONTEXT,
-    pGuide: ?*const RECO_GUIDE,
-    iIndex: u32,
+pub extern "inkobjcore" fn AddWordsToWordList(
+    hwl: ?HRECOWORDLIST,
+    pwcWords: ?PWSTR,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9069,14 +9019,121 @@ pub extern "inkobjcore" fn AdviseInkChange(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn CreateContext(
+    hrec: ?HRECOGNIZER,
+    phrc: ?*?HRECOCONTEXT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn CreateRecognizer(
+    pCLSID: ?*Guid,
+    phrec: ?*?HRECOGNIZER,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn DestroyContext(
+    hrc: ?HRECOCONTEXT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn DestroyRecognizer(
+    hrec: ?HRECOGNIZER,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn DestroyWordList(
+    hwl: ?HRECOWORDLIST,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn EndInkInput(
     hrc: ?HRECOCONTEXT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetAllRecognizers(
+    recognizerClsids: ?*?*Guid,
+    count: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetBestResultString(
+    hrc: ?HRECOCONTEXT,
+    pcSize: ?*u32,
+    pwcBestResult: ?[*:0]u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetLatticePtr(
+    hrc: ?HRECOCONTEXT,
+    ppLattice: ?*?*RECO_LATTICE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetLeftSeparator(
+    hrc: ?HRECOCONTEXT,
+    pcSize: ?*u32,
+    pwcLeftSeparator: [*:0]u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetRecoAttributes(
+    hrec: ?HRECOGNIZER,
+    pRecoAttrs: ?*RECO_ATTRS,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetResultPropertyList(
+    hrec: ?HRECOGNIZER,
+    pPropertyCount: ?*u32,
+    pPropertyGuid: ?*Guid,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetRightSeparator(
+    hrc: ?HRECOCONTEXT,
+    pcSize: ?*u32,
+    pwcRightSeparator: [*:0]u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn GetUnicodeRanges(
+    hrec: ?HRECOGNIZER,
+    pcRanges: ?*u32,
+    pcr: ?*CHARACTER_RANGE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn IsStringSupported(
+    hrc: ?HRECOCONTEXT,
+    wcString: u32,
+    pwcString: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn LoadCachedAttributes(
+    clsid: Guid,
+    pRecoAttributes: ?*RECO_ATTRS,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn MakeWordList(
+    hrec: ?HRECOGNIZER,
+    pBuffer: ?PWSTR,
+    phwl: ?*?HRECOWORDLIST,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn Process(
     hrc: ?HRECOCONTEXT,
     pbPartialProcessing: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "inkobjcore" fn SetEnabledUnicodeRanges(
+    hrc: ?HRECOCONTEXT,
+    cRanges: u32,
+    pcr: ?*CHARACTER_RANGE,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9093,9 +9150,10 @@ pub extern "inkobjcore" fn SetFlags(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetLatticePtr(
+pub extern "inkobjcore" fn SetGuide(
     hrc: ?HRECOCONTEXT,
-    ppLattice: ?*?*RECO_LATTICE,
+    pGuide: ?*const RECO_GUIDE,
+    iIndex: u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9108,67 +9166,9 @@ pub extern "inkobjcore" fn SetTextContext(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn SetEnabledUnicodeRanges(
-    hrc: ?HRECOCONTEXT,
-    cRanges: u32,
-    pcr: ?*CHARACTER_RANGE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn IsStringSupported(
-    hrc: ?HRECOCONTEXT,
-    wcString: u32,
-    pwcString: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn SetWordList(
     hrc: ?HRECOCONTEXT,
     hwl: ?HRECOWORDLIST,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetRightSeparator(
-    hrc: ?HRECOCONTEXT,
-    pcSize: ?*u32,
-    pwcRightSeparator: [*:0]u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetLeftSeparator(
-    hrc: ?HRECOCONTEXT,
-    pcSize: ?*u32,
-    pwcLeftSeparator: [*:0]u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn DestroyWordList(
-    hwl: ?HRECOWORDLIST,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn AddWordsToWordList(
-    hwl: ?HRECOWORDLIST,
-    pwcWords: ?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn MakeWordList(
-    hrec: ?HRECOGNIZER,
-    pBuffer: ?PWSTR,
-    phwl: ?*?HRECOWORDLIST,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn GetAllRecognizers(
-    recognizerClsids: ?*?*Guid,
-    count: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "inkobjcore" fn LoadCachedAttributes(
-    clsid: Guid,
-    pRecoAttributes: ?*RECO_ATTRS,
 ) callconv(.winapi) HRESULT;
 
 

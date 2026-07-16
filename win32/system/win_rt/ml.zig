@@ -6,6 +6,24 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+const IID_ILearningModelDeviceFactoryNative_Value = Guid.initString("1e9b31a1-662e-4ae0-af67-f63bb337e634");
+pub const IID_ILearningModelDeviceFactoryNative = &IID_ILearningModelDeviceFactoryNative_Value;
+pub const ILearningModelDeviceFactoryNative = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateFromD3D12CommandQueue: *const fn(
+            self: *const ILearningModelDeviceFactoryNative,
+            value: ?*ID3D12CommandQueue,
+            result: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateFromD3D12CommandQueue(self: *const ILearningModelDeviceFactoryNative, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFromD3D12CommandQueue(self, value, result);
+    }
+};
+
 const IID_ILearningModelOperatorProviderNative_Value = Guid.initString("1adaa23a-eb67-41f3-aad8-5d984e9bacd4");
 pub const IID_ILearningModelOperatorProviderNative = &IID_ILearningModelOperatorProviderNative_Value;
 pub const ILearningModelOperatorProviderNative = extern union {
@@ -20,6 +38,23 @@ pub const ILearningModelOperatorProviderNative = extern union {
     IUnknown: IUnknown,
     pub fn GetRegistry(self: *const ILearningModelOperatorProviderNative, ppOperatorRegistry: ?*?*IMLOperatorRegistry) callconv(.@"inline") HRESULT {
         return self.vtable.GetRegistry(self, ppOperatorRegistry);
+    }
+};
+
+const IID_ILearningModelSessionOptionsNative_Value = Guid.initString("c71e953f-37b4-4564-8658-d8396866db0d");
+pub const IID_ILearningModelSessionOptionsNative = &IID_ILearningModelSessionOptionsNative_Value;
+pub const ILearningModelSessionOptionsNative = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetIntraOpNumThreadsOverride: *const fn(
+            self: *const ILearningModelSessionOptionsNative,
+            intraOpNumThreads: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetIntraOpNumThreadsOverride(self: *const ILearningModelSessionOptionsNative, intraOpNumThreads: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetIntraOpNumThreadsOverride(self, intraOpNumThreads);
     }
 };
 
@@ -65,41 +100,6 @@ pub const ITensorStaticsNative = extern union {
     IUnknown: IUnknown,
     pub fn CreateFromD3D12Resource(self: *const ITensorStaticsNative, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromD3D12Resource(self, value, shape, shapeCount, result);
-    }
-};
-
-const IID_ILearningModelDeviceFactoryNative_Value = Guid.initString("1e9b31a1-662e-4ae0-af67-f63bb337e634");
-pub const IID_ILearningModelDeviceFactoryNative = &IID_ILearningModelDeviceFactoryNative_Value;
-pub const ILearningModelDeviceFactoryNative = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateFromD3D12CommandQueue: *const fn(
-            self: *const ILearningModelDeviceFactoryNative,
-            value: ?*ID3D12CommandQueue,
-            result: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateFromD3D12CommandQueue(self: *const ILearningModelDeviceFactoryNative, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFromD3D12CommandQueue(self, value, result);
-    }
-};
-
-const IID_ILearningModelSessionOptionsNative_Value = Guid.initString("c71e953f-37b4-4564-8658-d8396866db0d");
-pub const IID_ILearningModelSessionOptionsNative = &IID_ILearningModelSessionOptionsNative_Value;
-pub const ILearningModelSessionOptionsNative = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetIntraOpNumThreadsOverride: *const fn(
-            self: *const ILearningModelSessionOptionsNative,
-            intraOpNumThreads: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetIntraOpNumThreadsOverride(self: *const ILearningModelSessionOptionsNative, intraOpNumThreads: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetIntraOpNumThreadsOverride(self, intraOpNumThreads);
     }
 };
 

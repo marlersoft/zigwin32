@@ -27,6 +27,27 @@ pub const IAudioFrameNative = extern union {
     }
 };
 
+const IID_IAudioFrameNativeFactory_Value = Guid.initString("7bd67cf8-bf7d-43e6-af8d-b170ee0c0110");
+pub const IID_IAudioFrameNativeFactory = &IID_IAudioFrameNativeFactory_Value;
+pub const IAudioFrameNativeFactory = extern union {
+    pub const VTable = extern struct {
+        base: IInspectable.VTable,
+        CreateFromMFSample: *const fn(
+            self: *const IAudioFrameNativeFactory,
+            data: ?*IMFSample,
+            forceReadOnly: BOOL,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IInspectable: IInspectable,
+    IUnknown: IUnknown,
+    pub fn CreateFromMFSample(self: *const IAudioFrameNativeFactory, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFromMFSample(self, data, forceReadOnly, riid, ppv);
+    }
+};
+
 const IID_IVideoFrameNative_Value = Guid.initString("26ba702b-314a-4620-aaf6-7a51aa58fa18");
 pub const IID_IVideoFrameNative = &IID_IVideoFrameNative_Value;
 pub const IVideoFrameNative = extern union {
@@ -51,27 +72,6 @@ pub const IVideoFrameNative = extern union {
     }
     pub fn GetDevice(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, riid, ppv);
-    }
-};
-
-const IID_IAudioFrameNativeFactory_Value = Guid.initString("7bd67cf8-bf7d-43e6-af8d-b170ee0c0110");
-pub const IID_IAudioFrameNativeFactory = &IID_IAudioFrameNativeFactory_Value;
-pub const IAudioFrameNativeFactory = extern union {
-    pub const VTable = extern struct {
-        base: IInspectable.VTable,
-        CreateFromMFSample: *const fn(
-            self: *const IAudioFrameNativeFactory,
-            data: ?*IMFSample,
-            forceReadOnly: BOOL,
-            riid: ?*const Guid,
-            ppv: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IInspectable: IInspectable,
-    IUnknown: IUnknown,
-    pub fn CreateFromMFSample(self: *const IAudioFrameNativeFactory, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFromMFSample(self, data, forceReadOnly, riid, ppv);
     }
 };
 

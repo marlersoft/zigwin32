@@ -6,17 +6,26 @@
 //--------------------------------------------------------------------------------
 // Section: Types (92)
 //--------------------------------------------------------------------------------
-const CLSID_MbnConnectionProfileManager_Value = Guid.initString("bdfee05a-4418-11dd-90ed-001c257ccff1");
-pub const CLSID_MbnConnectionProfileManager = &CLSID_MbnConnectionProfileManager_Value;
+pub const __DummyPinType__ = extern struct {
+    pinType: u32,
+};
 
-const CLSID_MbnInterfaceManager_Value = Guid.initString("bdfee05b-4418-11dd-90ed-001c257ccff1");
-pub const CLSID_MbnInterfaceManager = &CLSID_MbnInterfaceManager_Value;
-
-const CLSID_MbnConnectionManager_Value = Guid.initString("bdfee05c-4418-11dd-90ed-001c257ccff1");
-pub const CLSID_MbnConnectionManager = &CLSID_MbnConnectionManager_Value;
-
-const CLSID_MbnDeviceServicesManager_Value = Guid.initString("2269daa3-2a9f-4165-a501-ce00a6f7a75b");
-pub const CLSID_MbnDeviceServicesManager = &CLSID_MbnDeviceServicesManager_Value;
+pub const __mbnapi_ReferenceRemainingTypes__ = extern struct {
+    bandClass: MBN_BAND_CLASS,
+    contextConstants: MBN_CONTEXT_CONSTANTS,
+    ctrlCaps: MBN_CTRL_CAPS,
+    dataClass: MBN_DATA_CLASS,
+    interfaceCapsConstants: MBN_INTERFACE_CAPS_CONSTANTS,
+    pinConstants: MBN_PIN_CONSTANTS,
+    providerConstants: MBN_PROVIDER_CONSTANTS,
+    providerState: MBN_PROVIDER_STATE,
+    registrationConstants: MBN_REGISTRATION_CONSTANTS,
+    signalConstants: MBN_SIGNAL_CONSTANTS,
+    smsCaps: MBN_SMS_CAPS,
+    smsConstants: WWAEXT_SMS_CONSTANTS,
+    wwaextSmsConstants: WWAEXT_SMS_CONSTANTS,
+    smsStatusFlag: MBN_SMS_STATUS_FLAG,
+};
 
 const IID_IDummyMBNUCMExt_Value = Guid.initString("dcbbbab6-ffff-4bbb-aaee-338e368af6fa");
 pub const IID_IDummyMBNUCMExt = &IID_IDummyMBNUCMExt_Value;
@@ -28,548 +37,6 @@ pub const IDummyMBNUCMExt = extern union {
     IDispatch: IDispatch,
     IUnknown: IUnknown,
 };
-
-pub const MBN_SIGNAL_CONSTANTS = enum(i32) {
-    RSSI_DEFAULT = -1,
-    RSSI_DISABLE = 0,
-    RSSI_UNKNOWN = 99,
-    pub const ERROR_RATE_UNKNOWN = .RSSI_UNKNOWN;
-};
-pub const MBN_RSSI_DEFAULT = MBN_SIGNAL_CONSTANTS.RSSI_DEFAULT;
-pub const MBN_RSSI_DISABLE = MBN_SIGNAL_CONSTANTS.RSSI_DISABLE;
-pub const MBN_RSSI_UNKNOWN = MBN_SIGNAL_CONSTANTS.RSSI_UNKNOWN;
-pub const MBN_ERROR_RATE_UNKNOWN = MBN_SIGNAL_CONSTANTS.RSSI_UNKNOWN;
-
-pub const MBN_CELLULAR_CLASS = enum(i32) {
-    NONE = 0,
-    GSM = 1,
-    CDMA = 2,
-};
-pub const MBN_CELLULAR_CLASS_NONE = MBN_CELLULAR_CLASS.NONE;
-pub const MBN_CELLULAR_CLASS_GSM = MBN_CELLULAR_CLASS.GSM;
-pub const MBN_CELLULAR_CLASS_CDMA = MBN_CELLULAR_CLASS.CDMA;
-
-pub const MBN_VOICE_CLASS = enum(i32) {
-    NONE = 0,
-    NO_VOICE = 1,
-    SEPARATE_VOICE_DATA = 2,
-    SIMULTANEOUS_VOICE_DATA = 3,
-};
-pub const MBN_VOICE_CLASS_NONE = MBN_VOICE_CLASS.NONE;
-pub const MBN_VOICE_CLASS_NO_VOICE = MBN_VOICE_CLASS.NO_VOICE;
-pub const MBN_VOICE_CLASS_SEPARATE_VOICE_DATA = MBN_VOICE_CLASS.SEPARATE_VOICE_DATA;
-pub const MBN_VOICE_CLASS_SIMULTANEOUS_VOICE_DATA = MBN_VOICE_CLASS.SIMULTANEOUS_VOICE_DATA;
-
-pub const MBN_PROVIDER_STATE = enum(i32) {
-    NONE = 0,
-    HOME = 1,
-    FORBIDDEN = 2,
-    PREFERRED = 4,
-    VISIBLE = 8,
-    REGISTERED = 16,
-    PREFERRED_MULTICARRIER = 32,
-};
-pub const MBN_PROVIDER_STATE_NONE = MBN_PROVIDER_STATE.NONE;
-pub const MBN_PROVIDER_STATE_HOME = MBN_PROVIDER_STATE.HOME;
-pub const MBN_PROVIDER_STATE_FORBIDDEN = MBN_PROVIDER_STATE.FORBIDDEN;
-pub const MBN_PROVIDER_STATE_PREFERRED = MBN_PROVIDER_STATE.PREFERRED;
-pub const MBN_PROVIDER_STATE_VISIBLE = MBN_PROVIDER_STATE.VISIBLE;
-pub const MBN_PROVIDER_STATE_REGISTERED = MBN_PROVIDER_STATE.REGISTERED;
-pub const MBN_PROVIDER_STATE_PREFERRED_MULTICARRIER = MBN_PROVIDER_STATE.PREFERRED_MULTICARRIER;
-
-pub const MBN_PROVIDER_CONSTANTS = enum(i32) {
-    NAME_LEN = 20,
-    ID_LEN = 6,
-};
-pub const MBN_PROVIDERNAME_LEN = MBN_PROVIDER_CONSTANTS.NAME_LEN;
-pub const MBN_PROVIDERID_LEN = MBN_PROVIDER_CONSTANTS.ID_LEN;
-
-pub const MBN_INTERFACE_CAPS_CONSTANTS = enum(i32) {
-    DEVICEID_LEN = 18,
-    MANUFACTURER_LEN = 32,
-    pub const MODEL_LEN = .MANUFACTURER_LEN;
-    pub const FIRMWARE_LEN = .MANUFACTURER_LEN;
-};
-pub const MBN_DEVICEID_LEN = MBN_INTERFACE_CAPS_CONSTANTS.DEVICEID_LEN;
-pub const MBN_MANUFACTURER_LEN = MBN_INTERFACE_CAPS_CONSTANTS.MANUFACTURER_LEN;
-pub const MBN_MODEL_LEN = MBN_INTERFACE_CAPS_CONSTANTS.MANUFACTURER_LEN;
-pub const MBN_FIRMWARE_LEN = MBN_INTERFACE_CAPS_CONSTANTS.MANUFACTURER_LEN;
-
-pub const MBN_DATA_CLASS = enum(i32) {
-    NONE = 0,
-    GPRS = 1,
-    EDGE = 2,
-    UMTS = 4,
-    HSDPA = 8,
-    HSUPA = 16,
-    LTE = 32,
-    @"5G_NSA" = 64,
-    @"5G_SA" = 128,
-    @"1XRTT" = 65536,
-    @"1XEVDO" = 131072,
-    @"1XEVDO_REVA" = 262144,
-    @"1XEVDV" = 524288,
-    @"3XRTT" = 1048576,
-    @"1XEVDO_REVB" = 2097152,
-    UMB = 4194304,
-    CUSTOM = -2147483648,
-};
-pub const MBN_DATA_CLASS_NONE = MBN_DATA_CLASS.NONE;
-pub const MBN_DATA_CLASS_GPRS = MBN_DATA_CLASS.GPRS;
-pub const MBN_DATA_CLASS_EDGE = MBN_DATA_CLASS.EDGE;
-pub const MBN_DATA_CLASS_UMTS = MBN_DATA_CLASS.UMTS;
-pub const MBN_DATA_CLASS_HSDPA = MBN_DATA_CLASS.HSDPA;
-pub const MBN_DATA_CLASS_HSUPA = MBN_DATA_CLASS.HSUPA;
-pub const MBN_DATA_CLASS_LTE = MBN_DATA_CLASS.LTE;
-pub const MBN_DATA_CLASS_5G_NSA = MBN_DATA_CLASS.@"5G_NSA";
-pub const MBN_DATA_CLASS_5G_SA = MBN_DATA_CLASS.@"5G_SA";
-pub const MBN_DATA_CLASS_1XRTT = MBN_DATA_CLASS.@"1XRTT";
-pub const MBN_DATA_CLASS_1XEVDO = MBN_DATA_CLASS.@"1XEVDO";
-pub const MBN_DATA_CLASS_1XEVDO_REVA = MBN_DATA_CLASS.@"1XEVDO_REVA";
-pub const MBN_DATA_CLASS_1XEVDV = MBN_DATA_CLASS.@"1XEVDV";
-pub const MBN_DATA_CLASS_3XRTT = MBN_DATA_CLASS.@"3XRTT";
-pub const MBN_DATA_CLASS_1XEVDO_REVB = MBN_DATA_CLASS.@"1XEVDO_REVB";
-pub const MBN_DATA_CLASS_UMB = MBN_DATA_CLASS.UMB;
-pub const MBN_DATA_CLASS_CUSTOM = MBN_DATA_CLASS.CUSTOM;
-
-pub const MBN_CTRL_CAPS = enum(i32) {
-    NONE = 0,
-    REG_MANUAL = 1,
-    HW_RADIO_SWITCH = 2,
-    CDMA_MOBILE_IP = 4,
-    CDMA_SIMPLE_IP = 8,
-    PROTECT_UNIQUEID = 16,
-    MODEL_MULTI_CARRIER = 32,
-    USSD = 64,
-    MULTI_MODE = 128,
-};
-pub const MBN_CTRL_CAPS_NONE = MBN_CTRL_CAPS.NONE;
-pub const MBN_CTRL_CAPS_REG_MANUAL = MBN_CTRL_CAPS.REG_MANUAL;
-pub const MBN_CTRL_CAPS_HW_RADIO_SWITCH = MBN_CTRL_CAPS.HW_RADIO_SWITCH;
-pub const MBN_CTRL_CAPS_CDMA_MOBILE_IP = MBN_CTRL_CAPS.CDMA_MOBILE_IP;
-pub const MBN_CTRL_CAPS_CDMA_SIMPLE_IP = MBN_CTRL_CAPS.CDMA_SIMPLE_IP;
-pub const MBN_CTRL_CAPS_PROTECT_UNIQUEID = MBN_CTRL_CAPS.PROTECT_UNIQUEID;
-pub const MBN_CTRL_CAPS_MODEL_MULTI_CARRIER = MBN_CTRL_CAPS.MODEL_MULTI_CARRIER;
-pub const MBN_CTRL_CAPS_USSD = MBN_CTRL_CAPS.USSD;
-pub const MBN_CTRL_CAPS_MULTI_MODE = MBN_CTRL_CAPS.MULTI_MODE;
-
-pub const MBN_SMS_CAPS = enum(i32) {
-    NONE = 0,
-    PDU_RECEIVE = 1,
-    PDU_SEND = 2,
-    TEXT_RECEIVE = 4,
-    TEXT_SEND = 8,
-};
-pub const MBN_SMS_CAPS_NONE = MBN_SMS_CAPS.NONE;
-pub const MBN_SMS_CAPS_PDU_RECEIVE = MBN_SMS_CAPS.PDU_RECEIVE;
-pub const MBN_SMS_CAPS_PDU_SEND = MBN_SMS_CAPS.PDU_SEND;
-pub const MBN_SMS_CAPS_TEXT_RECEIVE = MBN_SMS_CAPS.TEXT_RECEIVE;
-pub const MBN_SMS_CAPS_TEXT_SEND = MBN_SMS_CAPS.TEXT_SEND;
-
-pub const MBN_BAND_CLASS = enum(i32) {
-    NONE = 0,
-    @"0" = 1,
-    I = 2,
-    II = 4,
-    III = 8,
-    IV = 16,
-    V = 32,
-    VI = 64,
-    VII = 128,
-    VIII = 256,
-    IX = 512,
-    X = 1024,
-    XI = 2048,
-    XII = 4096,
-    XIII = 8192,
-    XIV = 16384,
-    XV = 32768,
-    XVI = 65536,
-    XVII = 131072,
-    CUSTOM = -2147483648,
-};
-pub const MBN_BAND_CLASS_NONE = MBN_BAND_CLASS.NONE;
-pub const MBN_BAND_CLASS_0 = MBN_BAND_CLASS.@"0";
-pub const MBN_BAND_CLASS_I = MBN_BAND_CLASS.I;
-pub const MBN_BAND_CLASS_II = MBN_BAND_CLASS.II;
-pub const MBN_BAND_CLASS_III = MBN_BAND_CLASS.III;
-pub const MBN_BAND_CLASS_IV = MBN_BAND_CLASS.IV;
-pub const MBN_BAND_CLASS_V = MBN_BAND_CLASS.V;
-pub const MBN_BAND_CLASS_VI = MBN_BAND_CLASS.VI;
-pub const MBN_BAND_CLASS_VII = MBN_BAND_CLASS.VII;
-pub const MBN_BAND_CLASS_VIII = MBN_BAND_CLASS.VIII;
-pub const MBN_BAND_CLASS_IX = MBN_BAND_CLASS.IX;
-pub const MBN_BAND_CLASS_X = MBN_BAND_CLASS.X;
-pub const MBN_BAND_CLASS_XI = MBN_BAND_CLASS.XI;
-pub const MBN_BAND_CLASS_XII = MBN_BAND_CLASS.XII;
-pub const MBN_BAND_CLASS_XIII = MBN_BAND_CLASS.XIII;
-pub const MBN_BAND_CLASS_XIV = MBN_BAND_CLASS.XIV;
-pub const MBN_BAND_CLASS_XV = MBN_BAND_CLASS.XV;
-pub const MBN_BAND_CLASS_XVI = MBN_BAND_CLASS.XVI;
-pub const MBN_BAND_CLASS_XVII = MBN_BAND_CLASS.XVII;
-pub const MBN_BAND_CLASS_CUSTOM = MBN_BAND_CLASS.CUSTOM;
-
-pub const MBN_INTERFACE_CAPS = extern struct {
-    cellularClass: MBN_CELLULAR_CLASS,
-    voiceClass: MBN_VOICE_CLASS,
-    dataClass: u32,
-    customDataClass: ?BSTR,
-    gsmBandClass: u32,
-    cdmaBandClass: u32,
-    customBandClass: ?BSTR,
-    smsCaps: u32,
-    controlCaps: u32,
-    deviceID: ?BSTR,
-    manufacturer: ?BSTR,
-    model: ?BSTR,
-    firmwareInfo: ?BSTR,
-};
-
-pub const MBN_PROVIDER = extern struct {
-    providerID: ?BSTR,
-    providerState: u32,
-    providerName: ?BSTR,
-    dataClass: u32,
-};
-
-pub const MBN_PROVIDER2 = extern struct {
-    provider: MBN_PROVIDER,
-    cellularClass: MBN_CELLULAR_CLASS,
-    signalStrength: u32,
-    signalError: u32,
-};
-
-pub const MBN_READY_STATE = enum(i32) {
-    OFF = 0,
-    INITIALIZED = 1,
-    SIM_NOT_INSERTED = 2,
-    BAD_SIM = 3,
-    FAILURE = 4,
-    NOT_ACTIVATED = 5,
-    DEVICE_LOCKED = 6,
-    DEVICE_BLOCKED = 7,
-    NO_ESIM_PROFILE = 8,
-};
-pub const MBN_READY_STATE_OFF = MBN_READY_STATE.OFF;
-pub const MBN_READY_STATE_INITIALIZED = MBN_READY_STATE.INITIALIZED;
-pub const MBN_READY_STATE_SIM_NOT_INSERTED = MBN_READY_STATE.SIM_NOT_INSERTED;
-pub const MBN_READY_STATE_BAD_SIM = MBN_READY_STATE.BAD_SIM;
-pub const MBN_READY_STATE_FAILURE = MBN_READY_STATE.FAILURE;
-pub const MBN_READY_STATE_NOT_ACTIVATED = MBN_READY_STATE.NOT_ACTIVATED;
-pub const MBN_READY_STATE_DEVICE_LOCKED = MBN_READY_STATE.DEVICE_LOCKED;
-pub const MBN_READY_STATE_DEVICE_BLOCKED = MBN_READY_STATE.DEVICE_BLOCKED;
-pub const MBN_READY_STATE_NO_ESIM_PROFILE = MBN_READY_STATE.NO_ESIM_PROFILE;
-
-pub const MBN_ACTIVATION_STATE = enum(i32) {
-    NONE = 0,
-    ACTIVATED = 1,
-    ACTIVATING = 2,
-    DEACTIVATED = 3,
-    DEACTIVATING = 4,
-};
-pub const MBN_ACTIVATION_STATE_NONE = MBN_ACTIVATION_STATE.NONE;
-pub const MBN_ACTIVATION_STATE_ACTIVATED = MBN_ACTIVATION_STATE.ACTIVATED;
-pub const MBN_ACTIVATION_STATE_ACTIVATING = MBN_ACTIVATION_STATE.ACTIVATING;
-pub const MBN_ACTIVATION_STATE_DEACTIVATED = MBN_ACTIVATION_STATE.DEACTIVATED;
-pub const MBN_ACTIVATION_STATE_DEACTIVATING = MBN_ACTIVATION_STATE.DEACTIVATING;
-
-pub const MBN_CONNECTION_MODE = enum(i32) {
-    PROFILE = 0,
-    TMP_PROFILE = 1,
-};
-pub const MBN_CONNECTION_MODE_PROFILE = MBN_CONNECTION_MODE.PROFILE;
-pub const MBN_CONNECTION_MODE_TMP_PROFILE = MBN_CONNECTION_MODE.TMP_PROFILE;
-
-pub const MBN_VOICE_CALL_STATE = enum(i32) {
-    NONE = 0,
-    IN_PROGRESS = 1,
-    HANGUP = 2,
-};
-pub const MBN_VOICE_CALL_STATE_NONE = MBN_VOICE_CALL_STATE.NONE;
-pub const MBN_VOICE_CALL_STATE_IN_PROGRESS = MBN_VOICE_CALL_STATE.IN_PROGRESS;
-pub const MBN_VOICE_CALL_STATE_HANGUP = MBN_VOICE_CALL_STATE.HANGUP;
-
-pub const MBN_REGISTRATION_CONSTANTS = enum(i32) {
-    ROAMTEXT_LEN = 64,
-    CDMA_DEFAULT_PROVIDER_ID = 0,
-};
-pub const MBN_ROAMTEXT_LEN = MBN_REGISTRATION_CONSTANTS.ROAMTEXT_LEN;
-pub const MBN_CDMA_DEFAULT_PROVIDER_ID = MBN_REGISTRATION_CONSTANTS.CDMA_DEFAULT_PROVIDER_ID;
-
-pub const MBN_REGISTER_STATE = enum(i32) {
-    NONE = 0,
-    DEREGISTERED = 1,
-    SEARCHING = 2,
-    HOME = 3,
-    ROAMING = 4,
-    PARTNER = 5,
-    DENIED = 6,
-};
-pub const MBN_REGISTER_STATE_NONE = MBN_REGISTER_STATE.NONE;
-pub const MBN_REGISTER_STATE_DEREGISTERED = MBN_REGISTER_STATE.DEREGISTERED;
-pub const MBN_REGISTER_STATE_SEARCHING = MBN_REGISTER_STATE.SEARCHING;
-pub const MBN_REGISTER_STATE_HOME = MBN_REGISTER_STATE.HOME;
-pub const MBN_REGISTER_STATE_ROAMING = MBN_REGISTER_STATE.ROAMING;
-pub const MBN_REGISTER_STATE_PARTNER = MBN_REGISTER_STATE.PARTNER;
-pub const MBN_REGISTER_STATE_DENIED = MBN_REGISTER_STATE.DENIED;
-
-pub const MBN_REGISTER_MODE = enum(i32) {
-    NONE = 0,
-    AUTOMATIC = 1,
-    MANUAL = 2,
-};
-pub const MBN_REGISTER_MODE_NONE = MBN_REGISTER_MODE.NONE;
-pub const MBN_REGISTER_MODE_AUTOMATIC = MBN_REGISTER_MODE.AUTOMATIC;
-pub const MBN_REGISTER_MODE_MANUAL = MBN_REGISTER_MODE.MANUAL;
-
-pub const MBN_PIN_CONSTANTS = enum(i32) {
-    ATTEMPTS_REMAINING_UNKNOWN = -1,
-    pub const PIN_LENGTH_UNKNOWN = .ATTEMPTS_REMAINING_UNKNOWN;
-};
-pub const MBN_ATTEMPTS_REMAINING_UNKNOWN = MBN_PIN_CONSTANTS.ATTEMPTS_REMAINING_UNKNOWN;
-pub const MBN_PIN_LENGTH_UNKNOWN = MBN_PIN_CONSTANTS.ATTEMPTS_REMAINING_UNKNOWN;
-
-pub const MBN_PIN_STATE = enum(i32) {
-    NONE = 0,
-    ENTER = 1,
-    UNBLOCK = 2,
-};
-pub const MBN_PIN_STATE_NONE = MBN_PIN_STATE.NONE;
-pub const MBN_PIN_STATE_ENTER = MBN_PIN_STATE.ENTER;
-pub const MBN_PIN_STATE_UNBLOCK = MBN_PIN_STATE.UNBLOCK;
-
-pub const MBN_PIN_TYPE = enum(i32) {
-    NONE = 0,
-    CUSTOM = 1,
-    PIN1 = 2,
-    PIN2 = 3,
-    DEVICE_SIM_PIN = 4,
-    DEVICE_FIRST_SIM_PIN = 5,
-    NETWORK_PIN = 6,
-    NETWORK_SUBSET_PIN = 7,
-    SVC_PROVIDER_PIN = 8,
-    CORPORATE_PIN = 9,
-    SUBSIDY_LOCK = 10,
-};
-pub const MBN_PIN_TYPE_NONE = MBN_PIN_TYPE.NONE;
-pub const MBN_PIN_TYPE_CUSTOM = MBN_PIN_TYPE.CUSTOM;
-pub const MBN_PIN_TYPE_PIN1 = MBN_PIN_TYPE.PIN1;
-pub const MBN_PIN_TYPE_PIN2 = MBN_PIN_TYPE.PIN2;
-pub const MBN_PIN_TYPE_DEVICE_SIM_PIN = MBN_PIN_TYPE.DEVICE_SIM_PIN;
-pub const MBN_PIN_TYPE_DEVICE_FIRST_SIM_PIN = MBN_PIN_TYPE.DEVICE_FIRST_SIM_PIN;
-pub const MBN_PIN_TYPE_NETWORK_PIN = MBN_PIN_TYPE.NETWORK_PIN;
-pub const MBN_PIN_TYPE_NETWORK_SUBSET_PIN = MBN_PIN_TYPE.NETWORK_SUBSET_PIN;
-pub const MBN_PIN_TYPE_SVC_PROVIDER_PIN = MBN_PIN_TYPE.SVC_PROVIDER_PIN;
-pub const MBN_PIN_TYPE_CORPORATE_PIN = MBN_PIN_TYPE.CORPORATE_PIN;
-pub const MBN_PIN_TYPE_SUBSIDY_LOCK = MBN_PIN_TYPE.SUBSIDY_LOCK;
-
-pub const MBN_PIN_INFO = extern struct {
-    pinState: MBN_PIN_STATE,
-    pinType: MBN_PIN_TYPE,
-    attemptsRemaining: u32,
-};
-
-pub const MBN_PIN_MODE = enum(i32) {
-    ENABLED = 1,
-    DISABLED = 2,
-};
-pub const MBN_PIN_MODE_ENABLED = MBN_PIN_MODE.ENABLED;
-pub const MBN_PIN_MODE_DISABLED = MBN_PIN_MODE.DISABLED;
-
-pub const MBN_PIN_FORMAT = enum(i32) {
-    NONE = 0,
-    NUMERIC = 1,
-    ALPHANUMERIC = 2,
-};
-pub const MBN_PIN_FORMAT_NONE = MBN_PIN_FORMAT.NONE;
-pub const MBN_PIN_FORMAT_NUMERIC = MBN_PIN_FORMAT.NUMERIC;
-pub const MBN_PIN_FORMAT_ALPHANUMERIC = MBN_PIN_FORMAT.ALPHANUMERIC;
-
-pub const MBN_CONTEXT_CONSTANTS = enum(i32) {
-    ACCESSSTRING_LEN = 100,
-    USERNAME_LEN = 255,
-    CONTEXT_ID_APPEND = -1,
-    pub const PASSWORD_LEN = .USERNAME_LEN;
-};
-pub const MBN_ACCESSSTRING_LEN = MBN_CONTEXT_CONSTANTS.ACCESSSTRING_LEN;
-pub const MBN_USERNAME_LEN = MBN_CONTEXT_CONSTANTS.USERNAME_LEN;
-pub const MBN_PASSWORD_LEN = MBN_CONTEXT_CONSTANTS.USERNAME_LEN;
-pub const MBN_CONTEXT_ID_APPEND = MBN_CONTEXT_CONSTANTS.CONTEXT_ID_APPEND;
-
-pub const MBN_AUTH_PROTOCOL = enum(i32) {
-    NONE = 0,
-    PAP = 1,
-    CHAP = 2,
-    MSCHAPV2 = 3,
-};
-pub const MBN_AUTH_PROTOCOL_NONE = MBN_AUTH_PROTOCOL.NONE;
-pub const MBN_AUTH_PROTOCOL_PAP = MBN_AUTH_PROTOCOL.PAP;
-pub const MBN_AUTH_PROTOCOL_CHAP = MBN_AUTH_PROTOCOL.CHAP;
-pub const MBN_AUTH_PROTOCOL_MSCHAPV2 = MBN_AUTH_PROTOCOL.MSCHAPV2;
-
-pub const MBN_COMPRESSION = enum(i32) {
-    NONE = 0,
-    ENABLE = 1,
-};
-pub const MBN_COMPRESSION_NONE = MBN_COMPRESSION.NONE;
-pub const MBN_COMPRESSION_ENABLE = MBN_COMPRESSION.ENABLE;
-
-pub const MBN_CONTEXT_TYPE = enum(i32) {
-    NONE = 0,
-    INTERNET = 1,
-    VPN = 2,
-    VOICE = 3,
-    VIDEO_SHARE = 4,
-    CUSTOM = 5,
-    PURCHASE = 6,
-};
-pub const MBN_CONTEXT_TYPE_NONE = MBN_CONTEXT_TYPE.NONE;
-pub const MBN_CONTEXT_TYPE_INTERNET = MBN_CONTEXT_TYPE.INTERNET;
-pub const MBN_CONTEXT_TYPE_VPN = MBN_CONTEXT_TYPE.VPN;
-pub const MBN_CONTEXT_TYPE_VOICE = MBN_CONTEXT_TYPE.VOICE;
-pub const MBN_CONTEXT_TYPE_VIDEO_SHARE = MBN_CONTEXT_TYPE.VIDEO_SHARE;
-pub const MBN_CONTEXT_TYPE_CUSTOM = MBN_CONTEXT_TYPE.CUSTOM;
-pub const MBN_CONTEXT_TYPE_PURCHASE = MBN_CONTEXT_TYPE.PURCHASE;
-
-pub const MBN_CONTEXT = extern struct {
-    contextID: u32,
-    contextType: MBN_CONTEXT_TYPE,
-    accessString: ?BSTR,
-    userName: ?BSTR,
-    password: ?BSTR,
-    compression: MBN_COMPRESSION,
-    authType: MBN_AUTH_PROTOCOL,
-};
-
-pub const WWAEXT_SMS_CONSTANTS = enum(i32) {
-    MESSAGE_INDEX_NONE = 0,
-    CDMA_SHORT_MSG_SIZE_MAX = 160,
-    pub const CDMA_SHORT_MSG_SIZE_UNKNOWN = .MESSAGE_INDEX_NONE;
-};
-pub const MBN_MESSAGE_INDEX_NONE = WWAEXT_SMS_CONSTANTS.MESSAGE_INDEX_NONE;
-pub const MBN_CDMA_SHORT_MSG_SIZE_UNKNOWN = WWAEXT_SMS_CONSTANTS.MESSAGE_INDEX_NONE;
-pub const MBN_CDMA_SHORT_MSG_SIZE_MAX = WWAEXT_SMS_CONSTANTS.CDMA_SHORT_MSG_SIZE_MAX;
-
-pub const MBN_MSG_STATUS = enum(i32) {
-    NEW = 0,
-    OLD = 1,
-    DRAFT = 2,
-    SENT = 3,
-};
-pub const MBN_MSG_STATUS_NEW = MBN_MSG_STATUS.NEW;
-pub const MBN_MSG_STATUS_OLD = MBN_MSG_STATUS.OLD;
-pub const MBN_MSG_STATUS_DRAFT = MBN_MSG_STATUS.DRAFT;
-pub const MBN_MSG_STATUS_SENT = MBN_MSG_STATUS.SENT;
-
-pub const MBN_SMS_CDMA_LANG = enum(i32) {
-    NONE = 0,
-    ENGLISH = 1,
-    FRENCH = 2,
-    SPANISH = 3,
-    JAPANESE = 4,
-    KOREAN = 5,
-    CHINESE = 6,
-    HEBREW = 7,
-};
-pub const MBN_SMS_CDMA_LANG_NONE = MBN_SMS_CDMA_LANG.NONE;
-pub const MBN_SMS_CDMA_LANG_ENGLISH = MBN_SMS_CDMA_LANG.ENGLISH;
-pub const MBN_SMS_CDMA_LANG_FRENCH = MBN_SMS_CDMA_LANG.FRENCH;
-pub const MBN_SMS_CDMA_LANG_SPANISH = MBN_SMS_CDMA_LANG.SPANISH;
-pub const MBN_SMS_CDMA_LANG_JAPANESE = MBN_SMS_CDMA_LANG.JAPANESE;
-pub const MBN_SMS_CDMA_LANG_KOREAN = MBN_SMS_CDMA_LANG.KOREAN;
-pub const MBN_SMS_CDMA_LANG_CHINESE = MBN_SMS_CDMA_LANG.CHINESE;
-pub const MBN_SMS_CDMA_LANG_HEBREW = MBN_SMS_CDMA_LANG.HEBREW;
-
-pub const MBN_SMS_CDMA_ENCODING = enum(i32) {
-    OCTET = 0,
-    EPM = 1,
-    @"7BIT_ASCII" = 2,
-    IA5 = 3,
-    UNICODE = 4,
-    SHIFT_JIS = 5,
-    KOREAN = 6,
-    LATIN_HEBREW = 7,
-    LATIN = 8,
-    GSM_7BIT = 9,
-};
-pub const MBN_SMS_CDMA_ENCODING_OCTET = MBN_SMS_CDMA_ENCODING.OCTET;
-pub const MBN_SMS_CDMA_ENCODING_EPM = MBN_SMS_CDMA_ENCODING.EPM;
-pub const MBN_SMS_CDMA_ENCODING_7BIT_ASCII = MBN_SMS_CDMA_ENCODING.@"7BIT_ASCII";
-pub const MBN_SMS_CDMA_ENCODING_IA5 = MBN_SMS_CDMA_ENCODING.IA5;
-pub const MBN_SMS_CDMA_ENCODING_UNICODE = MBN_SMS_CDMA_ENCODING.UNICODE;
-pub const MBN_SMS_CDMA_ENCODING_SHIFT_JIS = MBN_SMS_CDMA_ENCODING.SHIFT_JIS;
-pub const MBN_SMS_CDMA_ENCODING_KOREAN = MBN_SMS_CDMA_ENCODING.KOREAN;
-pub const MBN_SMS_CDMA_ENCODING_LATIN_HEBREW = MBN_SMS_CDMA_ENCODING.LATIN_HEBREW;
-pub const MBN_SMS_CDMA_ENCODING_LATIN = MBN_SMS_CDMA_ENCODING.LATIN;
-pub const MBN_SMS_CDMA_ENCODING_GSM_7BIT = MBN_SMS_CDMA_ENCODING.GSM_7BIT;
-
-pub const MBN_SMS_FLAG = enum(i32) {
-    ALL = 0,
-    INDEX = 1,
-    NEW = 2,
-    OLD = 3,
-    SENT = 4,
-    DRAFT = 5,
-};
-pub const MBN_SMS_FLAG_ALL = MBN_SMS_FLAG.ALL;
-pub const MBN_SMS_FLAG_INDEX = MBN_SMS_FLAG.INDEX;
-pub const MBN_SMS_FLAG_NEW = MBN_SMS_FLAG.NEW;
-pub const MBN_SMS_FLAG_OLD = MBN_SMS_FLAG.OLD;
-pub const MBN_SMS_FLAG_SENT = MBN_SMS_FLAG.SENT;
-pub const MBN_SMS_FLAG_DRAFT = MBN_SMS_FLAG.DRAFT;
-
-pub const MBN_SMS_FILTER = extern struct {
-    flag: MBN_SMS_FLAG,
-    messageIndex: u32,
-};
-
-pub const MBN_SMS_STATUS_FLAG = enum(i32) {
-    NONE = 0,
-    MESSAGE_STORE_FULL = 1,
-    NEW_MESSAGE = 2,
-};
-pub const MBN_SMS_FLAG_NONE = MBN_SMS_STATUS_FLAG.NONE;
-pub const MBN_SMS_FLAG_MESSAGE_STORE_FULL = MBN_SMS_STATUS_FLAG.MESSAGE_STORE_FULL;
-pub const MBN_SMS_FLAG_NEW_MESSAGE = MBN_SMS_STATUS_FLAG.NEW_MESSAGE;
-
-pub const MBN_SMS_STATUS_INFO = extern struct {
-    flag: u32,
-    messageIndex: u32,
-};
-
-pub const MBN_SMS_FORMAT = enum(i32) {
-    NONE = 0,
-    PDU = 1,
-    TEXT = 2,
-};
-pub const MBN_SMS_FORMAT_NONE = MBN_SMS_FORMAT.NONE;
-pub const MBN_SMS_FORMAT_PDU = MBN_SMS_FORMAT.PDU;
-pub const MBN_SMS_FORMAT_TEXT = MBN_SMS_FORMAT.TEXT;
-
-pub const MBN_RADIO = enum(i32) {
-    FF = 0,
-    N = 1,
-};
-pub const MBN_RADIO_OFF = MBN_RADIO.FF;
-pub const MBN_RADIO_ON = MBN_RADIO.N;
-
-pub const MBN_DEVICE_SERVICE_SESSIONS_STATE = enum(i32) {
-    D = 0,
-};
-pub const MBN_DEVICE_SERVICE_SESSIONS_RESTORED = MBN_DEVICE_SERVICE_SESSIONS_STATE.D;
-
-pub const MBN_DEVICE_SERVICE = extern struct {
-    deviceServiceID: ?BSTR,
-    dataWriteSupported: i16,
-    dataReadSupported: i16,
-};
-
-pub const MBN_DEVICE_SERVICES_INTERFACE_STATE = enum(i32) {
-    ARRIVAL = 0,
-    REMOVAL = 1,
-};
-pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_ARRIVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.ARRIVAL;
-pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_REMOVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.REMOVAL;
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnection_Value = Guid.initString("dcbbbab6-200d-4bbb-aaee-338e368af6fa");
@@ -637,6 +104,60 @@ pub const IMbnConnection = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionContext_Value = Guid.initString("dcbbbab6-200b-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionContext = &IID_IMbnConnectionContext_Value;
+pub const IMbnConnectionContext = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProvisionedContexts: *const fn(
+            self: *const IMbnConnectionContext,
+            provisionedContexts: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        SetProvisionedContext: *const fn(
+            self: *const IMbnConnectionContext,
+            provisionedContexts: MBN_CONTEXT,
+            providerID: ?[*:0]const u16,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProvisionedContexts(self: *const IMbnConnectionContext, provisionedContexts: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProvisionedContexts(self, provisionedContexts);
+    }
+    pub fn SetProvisionedContext(self: *const IMbnConnectionContext, provisionedContexts: MBN_CONTEXT, providerID: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetProvisionedContext(self, provisionedContexts, providerID, requestID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionContextEvents_Value = Guid.initString("dcbbbab6-200c-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionContextEvents = &IID_IMbnConnectionContextEvents_Value;
+pub const IMbnConnectionContextEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnProvisionedContextListChange: *const fn(
+            self: *const IMbnConnectionContextEvents,
+            newInterface: ?*IMbnConnectionContext,
+        ) callconv(.winapi) HRESULT,
+        OnSetProvisionedContextComplete: *const fn(
+            self: *const IMbnConnectionContextEvents,
+            newInterface: ?*IMbnConnectionContext,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnProvisionedContextListChange(self: *const IMbnConnectionContextEvents, newInterface: ?*IMbnConnectionContext) callconv(.@"inline") HRESULT {
+        return self.vtable.OnProvisionedContextListChange(self, newInterface);
+    }
+    pub fn OnSetProvisionedContextComplete(self: *const IMbnConnectionContextEvents, newInterface: ?*IMbnConnectionContext, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetProvisionedContextComplete(self, newInterface, requestID, status);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnConnectionEvents_Value = Guid.initString("dcbbbab6-200e-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionEvents = &IID_IMbnConnectionEvents_Value;
 pub const IMbnConnectionEvents = extern union {
@@ -676,6 +197,462 @@ pub const IMbnConnectionEvents = extern union {
     }
     pub fn OnVoiceCallStateChange(self: *const IMbnConnectionEvents, newConnection: ?*IMbnConnection) callconv(.@"inline") HRESULT {
         return self.vtable.OnVoiceCallStateChange(self, newConnection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionManager_Value = Guid.initString("dcbbbab6-201d-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionManager = &IID_IMbnConnectionManager_Value;
+pub const IMbnConnectionManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetConnection: *const fn(
+            self: *const IMbnConnectionManager,
+            connectionID: ?[*:0]const u16,
+            mbnConnection: ?*?*IMbnConnection,
+        ) callconv(.winapi) HRESULT,
+        GetConnections: *const fn(
+            self: *const IMbnConnectionManager,
+            mbnConnections: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetConnection(self: *const IMbnConnectionManager, connectionID: ?[*:0]const u16, mbnConnection: ?*?*IMbnConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnection(self, connectionID, mbnConnection);
+    }
+    pub fn GetConnections(self: *const IMbnConnectionManager, mbnConnections: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnections(self, mbnConnections);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionManagerEvents_Value = Guid.initString("dcbbbab6-201e-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionManagerEvents = &IID_IMbnConnectionManagerEvents_Value;
+pub const IMbnConnectionManagerEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnConnectionArrival: *const fn(
+            self: *const IMbnConnectionManagerEvents,
+            newConnection: ?*IMbnConnection,
+        ) callconv(.winapi) HRESULT,
+        OnConnectionRemoval: *const fn(
+            self: *const IMbnConnectionManagerEvents,
+            oldConnection: ?*IMbnConnection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnConnectionArrival(self: *const IMbnConnectionManagerEvents, newConnection: ?*IMbnConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.OnConnectionArrival(self, newConnection);
+    }
+    pub fn OnConnectionRemoval(self: *const IMbnConnectionManagerEvents, oldConnection: ?*IMbnConnection) callconv(.@"inline") HRESULT {
+        return self.vtable.OnConnectionRemoval(self, oldConnection);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionProfile_Value = Guid.initString("dcbbbab6-2010-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionProfile = &IID_IMbnConnectionProfile_Value;
+pub const IMbnConnectionProfile = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProfileXmlData: *const fn(
+            self: *const IMbnConnectionProfile,
+            profileData: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        UpdateProfile: *const fn(
+            self: *const IMbnConnectionProfile,
+            strProfile: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IMbnConnectionProfile,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetProfileXmlData(self: *const IMbnConnectionProfile, profileData: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProfileXmlData(self, profileData);
+    }
+    pub fn UpdateProfile(self: *const IMbnConnectionProfile, strProfile: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateProfile(self, strProfile);
+    }
+    pub fn Delete(self: *const IMbnConnectionProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionProfileEvents_Value = Guid.initString("dcbbbab6-2011-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionProfileEvents = &IID_IMbnConnectionProfileEvents_Value;
+pub const IMbnConnectionProfileEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnProfileUpdate: *const fn(
+            self: *const IMbnConnectionProfileEvents,
+            newProfile: ?*IMbnConnectionProfile,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnProfileUpdate(self: *const IMbnConnectionProfileEvents, newProfile: ?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.OnProfileUpdate(self, newProfile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionProfileManager_Value = Guid.initString("dcbbbab6-200f-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionProfileManager = &IID_IMbnConnectionProfileManager_Value;
+pub const IMbnConnectionProfileManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetConnectionProfiles: *const fn(
+            self: *const IMbnConnectionProfileManager,
+            mbnInterface: ?*IMbnInterface,
+            connectionProfiles: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetConnectionProfile: *const fn(
+            self: *const IMbnConnectionProfileManager,
+            mbnInterface: ?*IMbnInterface,
+            profileName: ?[*:0]const u16,
+            connectionProfile: ?*?*IMbnConnectionProfile,
+        ) callconv(.winapi) HRESULT,
+        CreateConnectionProfile: *const fn(
+            self: *const IMbnConnectionProfileManager,
+            xmlProfile: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetConnectionProfiles(self: *const IMbnConnectionProfileManager, mbnInterface: ?*IMbnInterface, connectionProfiles: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectionProfiles(self, mbnInterface, connectionProfiles);
+    }
+    pub fn GetConnectionProfile(self: *const IMbnConnectionProfileManager, mbnInterface: ?*IMbnInterface, profileName: ?[*:0]const u16, connectionProfile: ?*?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConnectionProfile(self, mbnInterface, profileName, connectionProfile);
+    }
+    pub fn CreateConnectionProfile(self: *const IMbnConnectionProfileManager, xmlProfile: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateConnectionProfile(self, xmlProfile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnConnectionProfileManagerEvents_Value = Guid.initString("dcbbbab6-201f-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnConnectionProfileManagerEvents = &IID_IMbnConnectionProfileManagerEvents_Value;
+pub const IMbnConnectionProfileManagerEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnConnectionProfileArrival: *const fn(
+            self: *const IMbnConnectionProfileManagerEvents,
+            newConnectionProfile: ?*IMbnConnectionProfile,
+        ) callconv(.winapi) HRESULT,
+        OnConnectionProfileRemoval: *const fn(
+            self: *const IMbnConnectionProfileManagerEvents,
+            oldConnectionProfile: ?*IMbnConnectionProfile,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnConnectionProfileArrival(self: *const IMbnConnectionProfileManagerEvents, newConnectionProfile: ?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.OnConnectionProfileArrival(self, newConnectionProfile);
+    }
+    pub fn OnConnectionProfileRemoval(self: *const IMbnConnectionProfileManagerEvents, oldConnectionProfile: ?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
+        return self.vtable.OnConnectionProfileRemoval(self, oldConnectionProfile);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IMbnDeviceService_Value = Guid.initString("b3bb9a71-dc70-4be9-a4da-7886ae8b191b");
+pub const IID_IMbnDeviceService = &IID_IMbnDeviceService_Value;
+pub const IMbnDeviceService = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QuerySupportedCommands: *const fn(
+            self: *const IMbnDeviceService,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        OpenCommandSession: *const fn(
+            self: *const IMbnDeviceService,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        CloseCommandSession: *const fn(
+            self: *const IMbnDeviceService,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetCommand: *const fn(
+            self: *const IMbnDeviceService,
+            commandID: u32,
+            deviceServiceData: ?*SAFEARRAY,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        QueryCommand: *const fn(
+            self: *const IMbnDeviceService,
+            commandID: u32,
+            deviceServiceData: ?*SAFEARRAY,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        OpenDataSession: *const fn(
+            self: *const IMbnDeviceService,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        CloseDataSession: *const fn(
+            self: *const IMbnDeviceService,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        WriteData: *const fn(
+            self: *const IMbnDeviceService,
+            deviceServiceData: ?*SAFEARRAY,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_InterfaceID: *const fn(
+            self: *const IMbnDeviceService,
+            InterfaceID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceServiceID: *const fn(
+            self: *const IMbnDeviceService,
+            DeviceServiceID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsCommandSessionOpen: *const fn(
+            self: *const IMbnDeviceService,
+            value: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsDataSessionOpen: *const fn(
+            self: *const IMbnDeviceService,
+            value: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QuerySupportedCommands(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QuerySupportedCommands(self, requestID);
+    }
+    pub fn OpenCommandSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenCommandSession(self, requestID);
+    }
+    pub fn CloseCommandSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CloseCommandSession(self, requestID);
+    }
+    pub fn SetCommand(self: *const IMbnDeviceService, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCommand(self, commandID, deviceServiceData, requestID);
+    }
+    pub fn QueryCommand(self: *const IMbnDeviceService, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryCommand(self, commandID, deviceServiceData, requestID);
+    }
+    pub fn OpenDataSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenDataSession(self, requestID);
+    }
+    pub fn CloseDataSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CloseDataSession(self, requestID);
+    }
+    pub fn WriteData(self: *const IMbnDeviceService, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteData(self, deviceServiceData, requestID);
+    }
+    pub fn get_InterfaceID(self: *const IMbnDeviceService, InterfaceID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_InterfaceID(self, InterfaceID);
+    }
+    pub fn get_DeviceServiceID(self: *const IMbnDeviceService, DeviceServiceID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceServiceID(self, DeviceServiceID);
+    }
+    pub fn get_IsCommandSessionOpen(self: *const IMbnDeviceService, value: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsCommandSessionOpen(self, value);
+    }
+    pub fn get_IsDataSessionOpen(self: *const IMbnDeviceService, value: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_IsDataSessionOpen(self, value);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IMbnDeviceServicesContext_Value = Guid.initString("fc5ac347-1592-4068-80bb-6a57580150d8");
+pub const IID_IMbnDeviceServicesContext = &IID_IMbnDeviceServicesContext_Value;
+pub const IMbnDeviceServicesContext = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumerateDeviceServices: *const fn(
+            self: *const IMbnDeviceServicesContext,
+            deviceServices: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetDeviceService: *const fn(
+            self: *const IMbnDeviceServicesContext,
+            deviceServiceID: ?BSTR,
+            mbnDeviceService: ?*?*IMbnDeviceService,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaxCommandSize: *const fn(
+            self: *const IMbnDeviceServicesContext,
+            maxCommandSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaxDataSize: *const fn(
+            self: *const IMbnDeviceServicesContext,
+            maxDataSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnumerateDeviceServices(self: *const IMbnDeviceServicesContext, deviceServices: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumerateDeviceServices(self, deviceServices);
+    }
+    pub fn GetDeviceService(self: *const IMbnDeviceServicesContext, deviceServiceID: ?BSTR, mbnDeviceService: ?*?*IMbnDeviceService) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceService(self, deviceServiceID, mbnDeviceService);
+    }
+    pub fn get_MaxCommandSize(self: *const IMbnDeviceServicesContext, maxCommandSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaxCommandSize(self, maxCommandSize);
+    }
+    pub fn get_MaxDataSize(self: *const IMbnDeviceServicesContext, maxDataSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaxDataSize(self, maxDataSize);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IMbnDeviceServicesEvents_Value = Guid.initString("0a900c19-6824-4e97-b76e-cf239d0ca642");
+pub const IID_IMbnDeviceServicesEvents = &IID_IMbnDeviceServicesEvents_Value;
+pub const IMbnDeviceServicesEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnQuerySupportedCommandsComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            commandIDList: ?*SAFEARRAY,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnOpenCommandSessionComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnCloseCommandSessionComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnSetCommandComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            responseID: u32,
+            deviceServiceData: ?*SAFEARRAY,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnQueryCommandComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            responseID: u32,
+            deviceServiceData: ?*SAFEARRAY,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnEventNotification: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            eventID: u32,
+            deviceServiceData: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        OnOpenDataSessionComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnCloseDataSessionComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnWriteDataComplete: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            status: HRESULT,
+            requestID: u32,
+        ) callconv(.winapi) HRESULT,
+        OnReadData: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            deviceService: ?*IMbnDeviceService,
+            deviceServiceData: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        OnInterfaceStateChange: *const fn(
+            self: *const IMbnDeviceServicesEvents,
+            interfaceID: ?BSTR,
+            stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnQuerySupportedCommandsComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, commandIDList: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnQuerySupportedCommandsComplete(self, deviceService, commandIDList, status, requestID);
+    }
+    pub fn OnOpenCommandSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOpenCommandSessionComplete(self, deviceService, status, requestID);
+    }
+    pub fn OnCloseCommandSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnCloseCommandSessionComplete(self, deviceService, status, requestID);
+    }
+    pub fn OnSetCommandComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetCommandComplete(self, deviceService, responseID, deviceServiceData, status, requestID);
+    }
+    pub fn OnQueryCommandComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnQueryCommandComplete(self, deviceService, responseID, deviceServiceData, status, requestID);
+    }
+    pub fn OnEventNotification(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, eventID: u32, deviceServiceData: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEventNotification(self, deviceService, eventID, deviceServiceData);
+    }
+    pub fn OnOpenDataSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOpenDataSessionComplete(self, deviceService, status, requestID);
+    }
+    pub fn OnCloseDataSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnCloseDataSessionComplete(self, deviceService, status, requestID);
+    }
+    pub fn OnWriteDataComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnWriteDataComplete(self, deviceService, status, requestID);
+    }
+    pub fn OnReadData(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, deviceServiceData: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.OnReadData(self, deviceService, deviceServiceData);
+    }
+    pub fn OnInterfaceStateChange(self: *const IMbnDeviceServicesEvents, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.OnInterfaceStateChange(self, interfaceID, stateChange);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IMbnDeviceServicesManager_Value = Guid.initString("20a26258-6811-4478-ac1d-13324e45e41c");
+pub const IID_IMbnDeviceServicesManager = &IID_IMbnDeviceServicesManager_Value;
+pub const IMbnDeviceServicesManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDeviceServicesContext: *const fn(
+            self: *const IMbnDeviceServicesManager,
+            networkInterfaceID: ?BSTR,
+            mbnDevicesContext: ?*?*IMbnDeviceServicesContext,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDeviceServicesContext(self: *const IMbnDeviceServicesManager, networkInterfaceID: ?BSTR, mbnDevicesContext: ?*?*IMbnDeviceServicesContext) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDeviceServicesContext(self, networkInterfaceID, mbnDevicesContext);
+    }
+};
+
+const IID_IMbnDeviceServiceStateEvents_Value = Guid.initString("5d3ff196-89ee-49d8-8b60-33ffddffc58d");
+pub const IID_IMbnDeviceServiceStateEvents = &IID_IMbnDeviceServiceStateEvents_Value;
+pub const IMbnDeviceServiceStateEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnSessionsStateChange: *const fn(
+            self: *const IMbnDeviceServiceStateEvents,
+            interfaceID: ?BSTR,
+            stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnSessionsStateChange(self: *const IMbnDeviceServiceStateEvents, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSessionsStateChange(self, interfaceID, stateChange);
     }
 };
 
@@ -892,6 +869,395 @@ pub const IMbnInterfaceManagerEvents = extern union {
     }
 };
 
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IMbnMultiCarrier_Value = Guid.initString("dcbbbab6-2020-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnMultiCarrier = &IID_IMbnMultiCarrier_Value;
+pub const IMbnMultiCarrier = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetHomeProvider: *const fn(
+            self: *const IMbnMultiCarrier,
+            homeProvider: ?*MBN_PROVIDER2,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPreferredProviders: *const fn(
+            self: *const IMbnMultiCarrier,
+            preferredMulticarrierProviders: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetVisibleProviders: *const fn(
+            self: *const IMbnMultiCarrier,
+            age: ?*u32,
+            visibleProviders: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetSupportedCellularClasses: *const fn(
+            self: *const IMbnMultiCarrier,
+            cellularClasses: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentCellularClass: *const fn(
+            self: *const IMbnMultiCarrier,
+            currentCellularClass: ?*MBN_CELLULAR_CLASS,
+        ) callconv(.winapi) HRESULT,
+        ScanNetwork: *const fn(
+            self: *const IMbnMultiCarrier,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetHomeProvider(self: *const IMbnMultiCarrier, homeProvider: ?*MBN_PROVIDER2, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHomeProvider(self, homeProvider, requestID);
+    }
+    pub fn GetPreferredProviders(self: *const IMbnMultiCarrier, preferredMulticarrierProviders: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreferredProviders(self, preferredMulticarrierProviders);
+    }
+    pub fn GetVisibleProviders(self: *const IMbnMultiCarrier, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVisibleProviders(self, age, visibleProviders);
+    }
+    pub fn GetSupportedCellularClasses(self: *const IMbnMultiCarrier, cellularClasses: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSupportedCellularClasses(self, cellularClasses);
+    }
+    pub fn GetCurrentCellularClass(self: *const IMbnMultiCarrier, currentCellularClass: ?*MBN_CELLULAR_CLASS) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentCellularClass(self, currentCellularClass);
+    }
+    pub fn ScanNetwork(self: *const IMbnMultiCarrier, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ScanNetwork(self, requestID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IMbnMultiCarrierEvents_Value = Guid.initString("dcdddab6-2021-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnMultiCarrierEvents = &IID_IMbnMultiCarrierEvents_Value;
+pub const IMbnMultiCarrierEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnSetHomeProviderComplete: *const fn(
+            self: *const IMbnMultiCarrierEvents,
+            mbnInterface: ?*IMbnMultiCarrier,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnCurrentCellularClassChange: *const fn(
+            self: *const IMbnMultiCarrierEvents,
+            mbnInterface: ?*IMbnMultiCarrier,
+        ) callconv(.winapi) HRESULT,
+        OnPreferredProvidersChange: *const fn(
+            self: *const IMbnMultiCarrierEvents,
+            mbnInterface: ?*IMbnMultiCarrier,
+        ) callconv(.winapi) HRESULT,
+        OnScanNetworkComplete: *const fn(
+            self: *const IMbnMultiCarrierEvents,
+            mbnInterface: ?*IMbnMultiCarrier,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnInterfaceCapabilityChange: *const fn(
+            self: *const IMbnMultiCarrierEvents,
+            mbnInterface: ?*IMbnMultiCarrier,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnSetHomeProviderComplete(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetHomeProviderComplete(self, mbnInterface, requestID, status);
+    }
+    pub fn OnCurrentCellularClassChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.@"inline") HRESULT {
+        return self.vtable.OnCurrentCellularClassChange(self, mbnInterface);
+    }
+    pub fn OnPreferredProvidersChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPreferredProvidersChange(self, mbnInterface);
+    }
+    pub fn OnScanNetworkComplete(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnScanNetworkComplete(self, mbnInterface, requestID, status);
+    }
+    pub fn OnInterfaceCapabilityChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.@"inline") HRESULT {
+        return self.vtable.OnInterfaceCapabilityChange(self, mbnInterface);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnPin_Value = Guid.initString("dcbbbab6-2007-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnPin = &IID_IMbnPin_Value;
+pub const IMbnPin = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PinType: *const fn(
+            self: *const IMbnPin,
+            PinType: ?*MBN_PIN_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PinFormat: *const fn(
+            self: *const IMbnPin,
+            PinFormat: ?*MBN_PIN_FORMAT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PinLengthMin: *const fn(
+            self: *const IMbnPin,
+            PinLengthMin: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PinLengthMax: *const fn(
+            self: *const IMbnPin,
+            PinLengthMax: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PinMode: *const fn(
+            self: *const IMbnPin,
+            PinMode: ?*MBN_PIN_MODE,
+        ) callconv(.winapi) HRESULT,
+        Enable: *const fn(
+            self: *const IMbnPin,
+            pin: ?[*:0]const u16,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Disable: *const fn(
+            self: *const IMbnPin,
+            pin: ?[*:0]const u16,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Enter: *const fn(
+            self: *const IMbnPin,
+            pin: ?[*:0]const u16,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Change: *const fn(
+            self: *const IMbnPin,
+            pin: ?[*:0]const u16,
+            newPin: ?[*:0]const u16,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Unblock: *const fn(
+            self: *const IMbnPin,
+            puk: ?[*:0]const u16,
+            newPin: ?[*:0]const u16,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPinManager: *const fn(
+            self: *const IMbnPin,
+            pinManager: ?*?*IMbnPinManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_PinType(self: *const IMbnPin, PinType: ?*MBN_PIN_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PinType(self, PinType);
+    }
+    pub fn get_PinFormat(self: *const IMbnPin, PinFormat: ?*MBN_PIN_FORMAT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PinFormat(self, PinFormat);
+    }
+    pub fn get_PinLengthMin(self: *const IMbnPin, PinLengthMin: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PinLengthMin(self, PinLengthMin);
+    }
+    pub fn get_PinLengthMax(self: *const IMbnPin, PinLengthMax: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PinLengthMax(self, PinLengthMax);
+    }
+    pub fn get_PinMode(self: *const IMbnPin, PinMode: ?*MBN_PIN_MODE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PinMode(self, PinMode);
+    }
+    pub fn Enable(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Enable(self, pin, requestID);
+    }
+    pub fn Disable(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Disable(self, pin, requestID);
+    }
+    pub fn Enter(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Enter(self, pin, requestID);
+    }
+    pub fn Change(self: *const IMbnPin, pin: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Change(self, pin, newPin, requestID);
+    }
+    pub fn Unblock(self: *const IMbnPin, puk: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Unblock(self, puk, newPin, requestID);
+    }
+    pub fn GetPinManager(self: *const IMbnPin, pinManager: ?*?*IMbnPinManager) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPinManager(self, pinManager);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnPinEvents_Value = Guid.initString("dcbbbab6-2008-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnPinEvents = &IID_IMbnPinEvents_Value;
+pub const IMbnPinEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnEnableComplete: *const fn(
+            self: *const IMbnPinEvents,
+            pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnDisableComplete: *const fn(
+            self: *const IMbnPinEvents,
+            pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnEnterComplete: *const fn(
+            self: *const IMbnPinEvents,
+            Pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnChangeComplete: *const fn(
+            self: *const IMbnPinEvents,
+            Pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnUnblockComplete: *const fn(
+            self: *const IMbnPinEvents,
+            Pin: ?*IMbnPin,
+            pinInfo: ?*MBN_PIN_INFO,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnEnableComplete(self: *const IMbnPinEvents, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEnableComplete(self, pin, pinInfo, requestID, status);
+    }
+    pub fn OnDisableComplete(self: *const IMbnPinEvents, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDisableComplete(self, pin, pinInfo, requestID, status);
+    }
+    pub fn OnEnterComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEnterComplete(self, Pin, pinInfo, requestID, status);
+    }
+    pub fn OnChangeComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnChangeComplete(self, Pin, pinInfo, requestID, status);
+    }
+    pub fn OnUnblockComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUnblockComplete(self, Pin, pinInfo, requestID, status);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnPinManager_Value = Guid.initString("dcbbbab6-2005-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnPinManager = &IID_IMbnPinManager_Value;
+pub const IMbnPinManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPinList: *const fn(
+            self: *const IMbnPinManager,
+            pinList: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        GetPin: *const fn(
+            self: *const IMbnPinManager,
+            pinType: MBN_PIN_TYPE,
+            pin: ?*?*IMbnPin,
+        ) callconv(.winapi) HRESULT,
+        GetPinState: *const fn(
+            self: *const IMbnPinManager,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPinList(self: *const IMbnPinManager, pinList: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPinList(self, pinList);
+    }
+    pub fn GetPin(self: *const IMbnPinManager, pinType: MBN_PIN_TYPE, pin: ?*?*IMbnPin) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPin(self, pinType, pin);
+    }
+    pub fn GetPinState(self: *const IMbnPinManager, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPinState(self, requestID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnPinManagerEvents_Value = Guid.initString("dcbbbab6-2006-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnPinManagerEvents = &IID_IMbnPinManagerEvents_Value;
+pub const IMbnPinManagerEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnPinListAvailable: *const fn(
+            self: *const IMbnPinManagerEvents,
+            pinManager: ?*IMbnPinManager,
+        ) callconv(.winapi) HRESULT,
+        OnGetPinStateComplete: *const fn(
+            self: *const IMbnPinManagerEvents,
+            pinManager: ?*IMbnPinManager,
+            pinInfo: MBN_PIN_INFO,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnPinListAvailable(self: *const IMbnPinManagerEvents, pinManager: ?*IMbnPinManager) callconv(.@"inline") HRESULT {
+        return self.vtable.OnPinListAvailable(self, pinManager);
+    }
+    pub fn OnGetPinStateComplete(self: *const IMbnPinManagerEvents, pinManager: ?*IMbnPinManager, pinInfo: MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnGetPinStateComplete(self, pinManager, pinInfo, requestID, status);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnRadio_Value = Guid.initString("dccccab6-201f-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnRadio = &IID_IMbnRadio_Value;
+pub const IMbnRadio = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SoftwareRadioState: *const fn(
+            self: *const IMbnRadio,
+            SoftwareRadioState: ?*MBN_RADIO,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HardwareRadioState: *const fn(
+            self: *const IMbnRadio,
+            HardwareRadioState: ?*MBN_RADIO,
+        ) callconv(.winapi) HRESULT,
+        SetSoftwareRadioState: *const fn(
+            self: *const IMbnRadio,
+            radioState: MBN_RADIO,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn get_SoftwareRadioState(self: *const IMbnRadio, SoftwareRadioState: ?*MBN_RADIO) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SoftwareRadioState(self, SoftwareRadioState);
+    }
+    pub fn get_HardwareRadioState(self: *const IMbnRadio, HardwareRadioState: ?*MBN_RADIO) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HardwareRadioState(self, HardwareRadioState);
+    }
+    pub fn SetSoftwareRadioState(self: *const IMbnRadio, radioState: MBN_RADIO, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSoftwareRadioState(self, radioState, requestID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnRadioEvents_Value = Guid.initString("dcdddab6-201f-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnRadioEvents = &IID_IMbnRadioEvents_Value;
+pub const IMbnRadioEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnRadioStateChange: *const fn(
+            self: *const IMbnRadioEvents,
+            newInterface: ?*IMbnRadio,
+        ) callconv(.winapi) HRESULT,
+        OnSetSoftwareRadioStateComplete: *const fn(
+            self: *const IMbnRadioEvents,
+            newInterface: ?*IMbnRadio,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnRadioStateChange(self: *const IMbnRadioEvents, newInterface: ?*IMbnRadio) callconv(.@"inline") HRESULT {
+        return self.vtable.OnRadioStateChange(self, newInterface);
+    }
+    pub fn OnSetSoftwareRadioStateComplete(self: *const IMbnRadioEvents, newInterface: ?*IMbnRadio, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetSoftwareRadioStateComplete(self, newInterface, requestID, status);
+    }
+};
+
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IMbnRegistration_Value = Guid.initString("dcbbbab6-2009-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRegistration = &IID_IMbnRegistration_Value;
@@ -1018,210 +1384,43 @@ pub const IMbnRegistrationEvents = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionManager_Value = Guid.initString("dcbbbab6-201d-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionManager = &IID_IMbnConnectionManager_Value;
-pub const IMbnConnectionManager = extern union {
+const IID_IMbnServiceActivation_Value = Guid.initString("dcbbbab6-2017-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnServiceActivation = &IID_IMbnServiceActivation_Value;
+pub const IMbnServiceActivation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetConnection: *const fn(
-            self: *const IMbnConnectionManager,
-            connectionID: ?[*:0]const u16,
-            mbnConnection: ?*?*IMbnConnection,
-        ) callconv(.winapi) HRESULT,
-        GetConnections: *const fn(
-            self: *const IMbnConnectionManager,
-            mbnConnections: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetConnection(self: *const IMbnConnectionManager, connectionID: ?[*:0]const u16, mbnConnection: ?*?*IMbnConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnection(self, connectionID, mbnConnection);
-    }
-    pub fn GetConnections(self: *const IMbnConnectionManager, mbnConnections: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnections(self, mbnConnections);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionManagerEvents_Value = Guid.initString("dcbbbab6-201e-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionManagerEvents = &IID_IMbnConnectionManagerEvents_Value;
-pub const IMbnConnectionManagerEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnConnectionArrival: *const fn(
-            self: *const IMbnConnectionManagerEvents,
-            newConnection: ?*IMbnConnection,
-        ) callconv(.winapi) HRESULT,
-        OnConnectionRemoval: *const fn(
-            self: *const IMbnConnectionManagerEvents,
-            oldConnection: ?*IMbnConnection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnConnectionArrival(self: *const IMbnConnectionManagerEvents, newConnection: ?*IMbnConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.OnConnectionArrival(self, newConnection);
-    }
-    pub fn OnConnectionRemoval(self: *const IMbnConnectionManagerEvents, oldConnection: ?*IMbnConnection) callconv(.@"inline") HRESULT {
-        return self.vtable.OnConnectionRemoval(self, oldConnection);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnPinManager_Value = Guid.initString("dcbbbab6-2005-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnPinManager = &IID_IMbnPinManager_Value;
-pub const IMbnPinManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPinList: *const fn(
-            self: *const IMbnPinManager,
-            pinList: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetPin: *const fn(
-            self: *const IMbnPinManager,
-            pinType: MBN_PIN_TYPE,
-            pin: ?*?*IMbnPin,
-        ) callconv(.winapi) HRESULT,
-        GetPinState: *const fn(
-            self: *const IMbnPinManager,
+        Activate: *const fn(
+            self: *const IMbnServiceActivation,
+            vendorSpecificData: ?*SAFEARRAY,
             requestID: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPinList(self: *const IMbnPinManager, pinList: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPinList(self, pinList);
-    }
-    pub fn GetPin(self: *const IMbnPinManager, pinType: MBN_PIN_TYPE, pin: ?*?*IMbnPin) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPin(self, pinType, pin);
-    }
-    pub fn GetPinState(self: *const IMbnPinManager, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPinState(self, requestID);
+    pub fn Activate(self: *const IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, vendorSpecificData, requestID);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnPinManagerEvents_Value = Guid.initString("dcbbbab6-2006-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnPinManagerEvents = &IID_IMbnPinManagerEvents_Value;
-pub const IMbnPinManagerEvents = extern union {
+const IID_IMbnServiceActivationEvents_Value = Guid.initString("dcbbbab6-2018-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnServiceActivationEvents = &IID_IMbnServiceActivationEvents_Value;
+pub const IMbnServiceActivationEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnPinListAvailable: *const fn(
-            self: *const IMbnPinManagerEvents,
-            pinManager: ?*IMbnPinManager,
-        ) callconv(.winapi) HRESULT,
-        OnGetPinStateComplete: *const fn(
-            self: *const IMbnPinManagerEvents,
-            pinManager: ?*IMbnPinManager,
-            pinInfo: MBN_PIN_INFO,
+        OnActivationComplete: *const fn(
+            self: *const IMbnServiceActivationEvents,
+            serviceActivation: ?*IMbnServiceActivation,
+            vendorSpecificData: ?*SAFEARRAY,
             requestID: u32,
             status: HRESULT,
+            networkError: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPinListAvailable(self: *const IMbnPinManagerEvents, pinManager: ?*IMbnPinManager) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPinListAvailable(self, pinManager);
-    }
-    pub fn OnGetPinStateComplete(self: *const IMbnPinManagerEvents, pinManager: ?*IMbnPinManager, pinInfo: MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnGetPinStateComplete(self, pinManager, pinInfo, requestID, status);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnPinEvents_Value = Guid.initString("dcbbbab6-2008-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnPinEvents = &IID_IMbnPinEvents_Value;
-pub const IMbnPinEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnEnableComplete: *const fn(
-            self: *const IMbnPinEvents,
-            pin: ?*IMbnPin,
-            pinInfo: ?*MBN_PIN_INFO,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnDisableComplete: *const fn(
-            self: *const IMbnPinEvents,
-            pin: ?*IMbnPin,
-            pinInfo: ?*MBN_PIN_INFO,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnEnterComplete: *const fn(
-            self: *const IMbnPinEvents,
-            Pin: ?*IMbnPin,
-            pinInfo: ?*MBN_PIN_INFO,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnChangeComplete: *const fn(
-            self: *const IMbnPinEvents,
-            Pin: ?*IMbnPin,
-            pinInfo: ?*MBN_PIN_INFO,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnUnblockComplete: *const fn(
-            self: *const IMbnPinEvents,
-            Pin: ?*IMbnPin,
-            pinInfo: ?*MBN_PIN_INFO,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnEnableComplete(self: *const IMbnPinEvents, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEnableComplete(self, pin, pinInfo, requestID, status);
-    }
-    pub fn OnDisableComplete(self: *const IMbnPinEvents, pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDisableComplete(self, pin, pinInfo, requestID, status);
-    }
-    pub fn OnEnterComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEnterComplete(self, Pin, pinInfo, requestID, status);
-    }
-    pub fn OnChangeComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnChangeComplete(self, Pin, pinInfo, requestID, status);
-    }
-    pub fn OnUnblockComplete(self: *const IMbnPinEvents, Pin: ?*IMbnPin, pinInfo: ?*MBN_PIN_INFO, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUnblockComplete(self, Pin, pinInfo, requestID, status);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnSubscriberInformation_Value = Guid.initString("459ecc43-bcf5-11dc-a8a8-001321f1405f");
-pub const IID_IMbnSubscriberInformation = &IID_IMbnSubscriberInformation_Value;
-pub const IMbnSubscriberInformation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SubscriberID: *const fn(
-            self: *const IMbnSubscriberInformation,
-            SubscriberID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SimIccID: *const fn(
-            self: *const IMbnSubscriberInformation,
-            SimIccID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TelephoneNumbers: *const fn(
-            self: *const IMbnSubscriberInformation,
-            TelephoneNumbers: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_SubscriberID(self: *const IMbnSubscriberInformation, SubscriberID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SubscriberID(self, SubscriberID);
-    }
-    pub fn get_SimIccID(self: *const IMbnSubscriberInformation, SimIccID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SimIccID(self, SimIccID);
-    }
-    pub fn get_TelephoneNumbers(self: *const IMbnSubscriberInformation, TelephoneNumbers: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TelephoneNumbers(self, TelephoneNumbers);
+    pub fn OnActivationComplete(self: *const IMbnServiceActivationEvents, serviceActivation: ?*IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: u32, status: HRESULT, networkError: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnActivationComplete(self, serviceActivation, vendorSpecificData, requestID, status, networkError);
     }
 };
 
@@ -1269,140 +1468,81 @@ pub const IMbnSignalEvents = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionContext_Value = Guid.initString("dcbbbab6-200b-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionContext = &IID_IMbnConnectionContext_Value;
-pub const IMbnConnectionContext = extern union {
+const IID_IMbnSms_Value = Guid.initString("dcbbbab6-2015-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnSms = &IID_IMbnSms_Value;
+pub const IMbnSms = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetProvisionedContexts: *const fn(
-            self: *const IMbnConnectionContext,
-            provisionedContexts: ?*?*SAFEARRAY,
+        GetSmsConfiguration: *const fn(
+            self: *const IMbnSms,
+            smsConfiguration: ?*?*IMbnSmsConfiguration,
         ) callconv(.winapi) HRESULT,
-        SetProvisionedContext: *const fn(
-            self: *const IMbnConnectionContext,
-            provisionedContexts: MBN_CONTEXT,
-            providerID: ?[*:0]const u16,
+        SetSmsConfiguration: *const fn(
+            self: *const IMbnSms,
+            smsConfiguration: ?*IMbnSmsConfiguration,
             requestID: ?*u32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProvisionedContexts(self: *const IMbnConnectionContext, provisionedContexts: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProvisionedContexts(self, provisionedContexts);
-    }
-    pub fn SetProvisionedContext(self: *const IMbnConnectionContext, provisionedContexts: MBN_CONTEXT, providerID: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetProvisionedContext(self, provisionedContexts, providerID, requestID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionContextEvents_Value = Guid.initString("dcbbbab6-200c-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionContextEvents = &IID_IMbnConnectionContextEvents_Value;
-pub const IMbnConnectionContextEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnProvisionedContextListChange: *const fn(
-            self: *const IMbnConnectionContextEvents,
-            newInterface: ?*IMbnConnectionContext,
+        SmsSendPdu: *const fn(
+            self: *const IMbnSms,
+            pduData: ?[*:0]const u16,
+            size: u8,
+            requestID: ?*u32,
         ) callconv(.winapi) HRESULT,
-        OnSetProvisionedContextComplete: *const fn(
-            self: *const IMbnConnectionContextEvents,
-            newInterface: ?*IMbnConnectionContext,
-            requestID: u32,
-            status: HRESULT,
+        SmsSendCdma: *const fn(
+            self: *const IMbnSms,
+            address: ?[*:0]const u16,
+            encoding: MBN_SMS_CDMA_ENCODING,
+            language: MBN_SMS_CDMA_LANG,
+            sizeInCharacters: u32,
+            message: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnProvisionedContextListChange(self: *const IMbnConnectionContextEvents, newInterface: ?*IMbnConnectionContext) callconv(.@"inline") HRESULT {
-        return self.vtable.OnProvisionedContextListChange(self, newInterface);
-    }
-    pub fn OnSetProvisionedContextComplete(self: *const IMbnConnectionContextEvents, newInterface: ?*IMbnConnectionContext, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetProvisionedContextComplete(self, newInterface, requestID, status);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionProfileManager_Value = Guid.initString("dcbbbab6-200f-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionProfileManager = &IID_IMbnConnectionProfileManager_Value;
-pub const IMbnConnectionProfileManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetConnectionProfiles: *const fn(
-            self: *const IMbnConnectionProfileManager,
-            mbnInterface: ?*IMbnInterface,
-            connectionProfiles: ?*?*SAFEARRAY,
+        SmsSendCdmaPdu: *const fn(
+            self: *const IMbnSms,
+            message: ?*SAFEARRAY,
+            requestID: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetConnectionProfile: *const fn(
-            self: *const IMbnConnectionProfileManager,
-            mbnInterface: ?*IMbnInterface,
-            profileName: ?[*:0]const u16,
-            connectionProfile: ?*?*IMbnConnectionProfile,
+        SmsRead: *const fn(
+            self: *const IMbnSms,
+            smsFilter: ?*MBN_SMS_FILTER,
+            smsFormat: MBN_SMS_FORMAT,
+            requestID: ?*u32,
         ) callconv(.winapi) HRESULT,
-        CreateConnectionProfile: *const fn(
-            self: *const IMbnConnectionProfileManager,
-            xmlProfile: ?[*:0]const u16,
+        SmsDelete: *const fn(
+            self: *const IMbnSms,
+            smsFilter: ?*MBN_SMS_FILTER,
+            requestID: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSmsStatus: *const fn(
+            self: *const IMbnSms,
+            smsStatusInfo: ?*MBN_SMS_STATUS_INFO,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConnectionProfiles(self: *const IMbnConnectionProfileManager, mbnInterface: ?*IMbnInterface, connectionProfiles: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectionProfiles(self, mbnInterface, connectionProfiles);
+    pub fn GetSmsConfiguration(self: *const IMbnSms, smsConfiguration: ?*?*IMbnSmsConfiguration) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSmsConfiguration(self, smsConfiguration);
     }
-    pub fn GetConnectionProfile(self: *const IMbnConnectionProfileManager, mbnInterface: ?*IMbnInterface, profileName: ?[*:0]const u16, connectionProfile: ?*?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConnectionProfile(self, mbnInterface, profileName, connectionProfile);
+    pub fn SetSmsConfiguration(self: *const IMbnSms, smsConfiguration: ?*IMbnSmsConfiguration, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSmsConfiguration(self, smsConfiguration, requestID);
     }
-    pub fn CreateConnectionProfile(self: *const IMbnConnectionProfileManager, xmlProfile: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateConnectionProfile(self, xmlProfile);
+    pub fn SmsSendPdu(self: *const IMbnSms, pduData: ?[*:0]const u16, size: u8, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SmsSendPdu(self, pduData, size, requestID);
     }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionProfile_Value = Guid.initString("dcbbbab6-2010-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionProfile = &IID_IMbnConnectionProfile_Value;
-pub const IMbnConnectionProfile = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProfileXmlData: *const fn(
-            self: *const IMbnConnectionProfile,
-            profileData: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        UpdateProfile: *const fn(
-            self: *const IMbnConnectionProfile,
-            strProfile: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IMbnConnectionProfile,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetProfileXmlData(self: *const IMbnConnectionProfile, profileData: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProfileXmlData(self, profileData);
+    pub fn SmsSendCdma(self: *const IMbnSms, address: ?[*:0]const u16, encoding: MBN_SMS_CDMA_ENCODING, language: MBN_SMS_CDMA_LANG, sizeInCharacters: u32, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SmsSendCdma(self, address, encoding, language, sizeInCharacters, message, requestID);
     }
-    pub fn UpdateProfile(self: *const IMbnConnectionProfile, strProfile: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateProfile(self, strProfile);
+    pub fn SmsSendCdmaPdu(self: *const IMbnSms, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SmsSendCdmaPdu(self, message, requestID);
     }
-    pub fn Delete(self: *const IMbnConnectionProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
+    pub fn SmsRead(self: *const IMbnSms, smsFilter: ?*MBN_SMS_FILTER, smsFormat: MBN_SMS_FORMAT, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SmsRead(self, smsFilter, smsFormat, requestID);
     }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionProfileEvents_Value = Guid.initString("dcbbbab6-2011-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionProfileEvents = &IID_IMbnConnectionProfileEvents_Value;
-pub const IMbnConnectionProfileEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnProfileUpdate: *const fn(
-            self: *const IMbnConnectionProfileEvents,
-            newProfile: ?*IMbnConnectionProfile,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnProfileUpdate(self: *const IMbnConnectionProfileEvents, newProfile: ?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.OnProfileUpdate(self, newProfile);
+    pub fn SmsDelete(self: *const IMbnSms, smsFilter: ?*MBN_SMS_FILTER, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SmsDelete(self, smsFilter, requestID);
+    }
+    pub fn GetSmsStatus(self: *const IMbnSms, smsStatusInfo: ?*MBN_SMS_STATUS_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSmsStatus(self, smsStatusInfo);
     }
 };
 
@@ -1462,6 +1602,79 @@ pub const IMbnSmsConfiguration = extern union {
     }
     pub fn put_SmsFormat(self: *const IMbnSmsConfiguration, smsFormat: MBN_SMS_FORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.put_SmsFormat(self, smsFormat);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IMbnSmsEvents_Value = Guid.initString("dcbbbab6-2016-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnSmsEvents = &IID_IMbnSmsEvents_Value;
+pub const IMbnSmsEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnSmsConfigurationChange: *const fn(
+            self: *const IMbnSmsEvents,
+            sms: ?*IMbnSms,
+        ) callconv(.winapi) HRESULT,
+        OnSetSmsConfigurationComplete: *const fn(
+            self: *const IMbnSmsEvents,
+            sms: ?*IMbnSms,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnSmsSendComplete: *const fn(
+            self: *const IMbnSmsEvents,
+            sms: ?*IMbnSms,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnSmsReadComplete: *const fn(
+            self: *const IMbnSmsEvents,
+            sms: ?*IMbnSms,
+            smsFormat: MBN_SMS_FORMAT,
+            readMsgs: ?*SAFEARRAY,
+            moreMsgs: i16,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnSmsNewClass0Message: *const fn(
+            self: *const IMbnSmsEvents,
+            sms: ?*IMbnSms,
+            smsFormat: MBN_SMS_FORMAT,
+            readMsgs: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        OnSmsDeleteComplete: *const fn(
+            self: *const IMbnSmsEvents,
+            sms: ?*IMbnSms,
+            requestID: u32,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        OnSmsStatusChange: *const fn(
+            self: *const IMbnSmsEvents,
+            sms: ?*IMbnSms,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnSmsConfigurationChange(self: *const IMbnSmsEvents, sms: ?*IMbnSms) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSmsConfigurationChange(self, sms);
+    }
+    pub fn OnSetSmsConfigurationComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSetSmsConfigurationComplete(self, sms, requestID, status);
+    }
+    pub fn OnSmsSendComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSmsSendComplete(self, sms, requestID, status);
+    }
+    pub fn OnSmsReadComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY, moreMsgs: i16, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSmsReadComplete(self, sms, smsFormat, readMsgs, moreMsgs, requestID, status);
+    }
+    pub fn OnSmsNewClass0Message(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSmsNewClass0Message(self, sms, smsFormat, readMsgs);
+    }
+    pub fn OnSmsDeleteComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSmsDeleteComplete(self, sms, requestID, status);
+    }
+    pub fn OnSmsStatusChange(self: *const IMbnSmsEvents, sms: ?*IMbnSms) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSmsStatusChange(self, sms);
     }
 };
 
@@ -1584,214 +1797,37 @@ pub const IMbnSmsReadMsgTextCdma = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnSms_Value = Guid.initString("dcbbbab6-2015-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnSms = &IID_IMbnSms_Value;
-pub const IMbnSms = extern union {
+const IID_IMbnSubscriberInformation_Value = Guid.initString("459ecc43-bcf5-11dc-a8a8-001321f1405f");
+pub const IID_IMbnSubscriberInformation = &IID_IMbnSubscriberInformation_Value;
+pub const IMbnSubscriberInformation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSmsConfiguration: *const fn(
-            self: *const IMbnSms,
-            smsConfiguration: ?*?*IMbnSmsConfiguration,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SubscriberID: *const fn(
+            self: *const IMbnSubscriberInformation,
+            SubscriberID: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        SetSmsConfiguration: *const fn(
-            self: *const IMbnSms,
-            smsConfiguration: ?*IMbnSmsConfiguration,
-            requestID: ?*u32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SimIccID: *const fn(
+            self: *const IMbnSubscriberInformation,
+            SimIccID: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        SmsSendPdu: *const fn(
-            self: *const IMbnSms,
-            pduData: ?[*:0]const u16,
-            size: u8,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SmsSendCdma: *const fn(
-            self: *const IMbnSms,
-            address: ?[*:0]const u16,
-            encoding: MBN_SMS_CDMA_ENCODING,
-            language: MBN_SMS_CDMA_LANG,
-            sizeInCharacters: u32,
-            message: ?*SAFEARRAY,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SmsSendCdmaPdu: *const fn(
-            self: *const IMbnSms,
-            message: ?*SAFEARRAY,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SmsRead: *const fn(
-            self: *const IMbnSms,
-            smsFilter: ?*MBN_SMS_FILTER,
-            smsFormat: MBN_SMS_FORMAT,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SmsDelete: *const fn(
-            self: *const IMbnSms,
-            smsFilter: ?*MBN_SMS_FILTER,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSmsStatus: *const fn(
-            self: *const IMbnSms,
-            smsStatusInfo: ?*MBN_SMS_STATUS_INFO,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TelephoneNumbers: *const fn(
+            self: *const IMbnSubscriberInformation,
+            TelephoneNumbers: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSmsConfiguration(self: *const IMbnSms, smsConfiguration: ?*?*IMbnSmsConfiguration) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSmsConfiguration(self, smsConfiguration);
+    pub fn get_SubscriberID(self: *const IMbnSubscriberInformation, SubscriberID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SubscriberID(self, SubscriberID);
     }
-    pub fn SetSmsConfiguration(self: *const IMbnSms, smsConfiguration: ?*IMbnSmsConfiguration, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSmsConfiguration(self, smsConfiguration, requestID);
+    pub fn get_SimIccID(self: *const IMbnSubscriberInformation, SimIccID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SimIccID(self, SimIccID);
     }
-    pub fn SmsSendPdu(self: *const IMbnSms, pduData: ?[*:0]const u16, size: u8, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SmsSendPdu(self, pduData, size, requestID);
-    }
-    pub fn SmsSendCdma(self: *const IMbnSms, address: ?[*:0]const u16, encoding: MBN_SMS_CDMA_ENCODING, language: MBN_SMS_CDMA_LANG, sizeInCharacters: u32, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SmsSendCdma(self, address, encoding, language, sizeInCharacters, message, requestID);
-    }
-    pub fn SmsSendCdmaPdu(self: *const IMbnSms, message: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SmsSendCdmaPdu(self, message, requestID);
-    }
-    pub fn SmsRead(self: *const IMbnSms, smsFilter: ?*MBN_SMS_FILTER, smsFormat: MBN_SMS_FORMAT, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SmsRead(self, smsFilter, smsFormat, requestID);
-    }
-    pub fn SmsDelete(self: *const IMbnSms, smsFilter: ?*MBN_SMS_FILTER, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SmsDelete(self, smsFilter, requestID);
-    }
-    pub fn GetSmsStatus(self: *const IMbnSms, smsStatusInfo: ?*MBN_SMS_STATUS_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSmsStatus(self, smsStatusInfo);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnSmsEvents_Value = Guid.initString("dcbbbab6-2016-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnSmsEvents = &IID_IMbnSmsEvents_Value;
-pub const IMbnSmsEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnSmsConfigurationChange: *const fn(
-            self: *const IMbnSmsEvents,
-            sms: ?*IMbnSms,
-        ) callconv(.winapi) HRESULT,
-        OnSetSmsConfigurationComplete: *const fn(
-            self: *const IMbnSmsEvents,
-            sms: ?*IMbnSms,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnSmsSendComplete: *const fn(
-            self: *const IMbnSmsEvents,
-            sms: ?*IMbnSms,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnSmsReadComplete: *const fn(
-            self: *const IMbnSmsEvents,
-            sms: ?*IMbnSms,
-            smsFormat: MBN_SMS_FORMAT,
-            readMsgs: ?*SAFEARRAY,
-            moreMsgs: i16,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnSmsNewClass0Message: *const fn(
-            self: *const IMbnSmsEvents,
-            sms: ?*IMbnSms,
-            smsFormat: MBN_SMS_FORMAT,
-            readMsgs: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        OnSmsDeleteComplete: *const fn(
-            self: *const IMbnSmsEvents,
-            sms: ?*IMbnSms,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnSmsStatusChange: *const fn(
-            self: *const IMbnSmsEvents,
-            sms: ?*IMbnSms,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnSmsConfigurationChange(self: *const IMbnSmsEvents, sms: ?*IMbnSms) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSmsConfigurationChange(self, sms);
-    }
-    pub fn OnSetSmsConfigurationComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetSmsConfigurationComplete(self, sms, requestID, status);
-    }
-    pub fn OnSmsSendComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSmsSendComplete(self, sms, requestID, status);
-    }
-    pub fn OnSmsReadComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY, moreMsgs: i16, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSmsReadComplete(self, sms, smsFormat, readMsgs, moreMsgs, requestID, status);
-    }
-    pub fn OnSmsNewClass0Message(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSmsNewClass0Message(self, sms, smsFormat, readMsgs);
-    }
-    pub fn OnSmsDeleteComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSmsDeleteComplete(self, sms, requestID, status);
-    }
-    pub fn OnSmsStatusChange(self: *const IMbnSmsEvents, sms: ?*IMbnSms) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSmsStatusChange(self, sms);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnServiceActivation_Value = Guid.initString("dcbbbab6-2017-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnServiceActivation = &IID_IMbnServiceActivation_Value;
-pub const IMbnServiceActivation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Activate: *const fn(
-            self: *const IMbnServiceActivation,
-            vendorSpecificData: ?*SAFEARRAY,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Activate(self: *const IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, vendorSpecificData, requestID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnServiceActivationEvents_Value = Guid.initString("dcbbbab6-2018-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnServiceActivationEvents = &IID_IMbnServiceActivationEvents_Value;
-pub const IMbnServiceActivationEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnActivationComplete: *const fn(
-            self: *const IMbnServiceActivationEvents,
-            serviceActivation: ?*IMbnServiceActivation,
-            vendorSpecificData: ?*SAFEARRAY,
-            requestID: u32,
-            status: HRESULT,
-            networkError: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnActivationComplete(self: *const IMbnServiceActivationEvents, serviceActivation: ?*IMbnServiceActivation, vendorSpecificData: ?*SAFEARRAY, requestID: u32, status: HRESULT, networkError: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnActivationComplete(self, serviceActivation, vendorSpecificData, requestID, status, networkError);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnVendorSpecificOperation_Value = Guid.initString("dcbbbab6-2019-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnVendorSpecificOperation = &IID_IMbnVendorSpecificOperation_Value;
-pub const IMbnVendorSpecificOperation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetVendorSpecific: *const fn(
-            self: *const IMbnVendorSpecificOperation,
-            vendorSpecificData: ?*SAFEARRAY,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetVendorSpecific(self: *const IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetVendorSpecific(self, vendorSpecificData, requestID);
+    pub fn get_TelephoneNumbers(self: *const IMbnSubscriberInformation, TelephoneNumbers: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TelephoneNumbers(self, TelephoneNumbers);
     }
 };
 
@@ -1824,613 +1860,577 @@ pub const IMbnVendorSpecificEvents = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnConnectionProfileManagerEvents_Value = Guid.initString("dcbbbab6-201f-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnConnectionProfileManagerEvents = &IID_IMbnConnectionProfileManagerEvents_Value;
-pub const IMbnConnectionProfileManagerEvents = extern union {
+const IID_IMbnVendorSpecificOperation_Value = Guid.initString("dcbbbab6-2019-4bbb-aaee-338e368af6fa");
+pub const IID_IMbnVendorSpecificOperation = &IID_IMbnVendorSpecificOperation_Value;
+pub const IMbnVendorSpecificOperation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnConnectionProfileArrival: *const fn(
-            self: *const IMbnConnectionProfileManagerEvents,
-            newConnectionProfile: ?*IMbnConnectionProfile,
-        ) callconv(.winapi) HRESULT,
-        OnConnectionProfileRemoval: *const fn(
-            self: *const IMbnConnectionProfileManagerEvents,
-            oldConnectionProfile: ?*IMbnConnectionProfile,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnConnectionProfileArrival(self: *const IMbnConnectionProfileManagerEvents, newConnectionProfile: ?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.OnConnectionProfileArrival(self, newConnectionProfile);
-    }
-    pub fn OnConnectionProfileRemoval(self: *const IMbnConnectionProfileManagerEvents, oldConnectionProfile: ?*IMbnConnectionProfile) callconv(.@"inline") HRESULT {
-        return self.vtable.OnConnectionProfileRemoval(self, oldConnectionProfile);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnRadio_Value = Guid.initString("dccccab6-201f-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnRadio = &IID_IMbnRadio_Value;
-pub const IMbnRadio = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SoftwareRadioState: *const fn(
-            self: *const IMbnRadio,
-            SoftwareRadioState: ?*MBN_RADIO,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HardwareRadioState: *const fn(
-            self: *const IMbnRadio,
-            HardwareRadioState: ?*MBN_RADIO,
-        ) callconv(.winapi) HRESULT,
-        SetSoftwareRadioState: *const fn(
-            self: *const IMbnRadio,
-            radioState: MBN_RADIO,
+        SetVendorSpecific: *const fn(
+            self: *const IMbnVendorSpecificOperation,
+            vendorSpecificData: ?*SAFEARRAY,
             requestID: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SoftwareRadioState(self: *const IMbnRadio, SoftwareRadioState: ?*MBN_RADIO) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SoftwareRadioState(self, SoftwareRadioState);
-    }
-    pub fn get_HardwareRadioState(self: *const IMbnRadio, HardwareRadioState: ?*MBN_RADIO) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HardwareRadioState(self, HardwareRadioState);
-    }
-    pub fn SetSoftwareRadioState(self: *const IMbnRadio, radioState: MBN_RADIO, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSoftwareRadioState(self, radioState, requestID);
+    pub fn SetVendorSpecific(self: *const IMbnVendorSpecificOperation, vendorSpecificData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetVendorSpecific(self, vendorSpecificData, requestID);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnRadioEvents_Value = Guid.initString("dcdddab6-201f-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnRadioEvents = &IID_IMbnRadioEvents_Value;
-pub const IMbnRadioEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnRadioStateChange: *const fn(
-            self: *const IMbnRadioEvents,
-            newInterface: ?*IMbnRadio,
-        ) callconv(.winapi) HRESULT,
-        OnSetSoftwareRadioStateComplete: *const fn(
-            self: *const IMbnRadioEvents,
-            newInterface: ?*IMbnRadio,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnRadioStateChange(self: *const IMbnRadioEvents, newInterface: ?*IMbnRadio) callconv(.@"inline") HRESULT {
-        return self.vtable.OnRadioStateChange(self, newInterface);
-    }
-    pub fn OnSetSoftwareRadioStateComplete(self: *const IMbnRadioEvents, newInterface: ?*IMbnRadio, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetSoftwareRadioStateComplete(self, newInterface, requestID, status);
-    }
+pub const MBN_ACTIVATION_STATE = enum(i32) {
+    NONE = 0,
+    ACTIVATED = 1,
+    ACTIVATING = 2,
+    DEACTIVATED = 3,
+    DEACTIVATING = 4,
+};
+pub const MBN_ACTIVATION_STATE_NONE = MBN_ACTIVATION_STATE.NONE;
+pub const MBN_ACTIVATION_STATE_ACTIVATED = MBN_ACTIVATION_STATE.ACTIVATED;
+pub const MBN_ACTIVATION_STATE_ACTIVATING = MBN_ACTIVATION_STATE.ACTIVATING;
+pub const MBN_ACTIVATION_STATE_DEACTIVATED = MBN_ACTIVATION_STATE.DEACTIVATED;
+pub const MBN_ACTIVATION_STATE_DEACTIVATING = MBN_ACTIVATION_STATE.DEACTIVATING;
+
+pub const MBN_AUTH_PROTOCOL = enum(i32) {
+    NONE = 0,
+    PAP = 1,
+    CHAP = 2,
+    MSCHAPV2 = 3,
+};
+pub const MBN_AUTH_PROTOCOL_NONE = MBN_AUTH_PROTOCOL.NONE;
+pub const MBN_AUTH_PROTOCOL_PAP = MBN_AUTH_PROTOCOL.PAP;
+pub const MBN_AUTH_PROTOCOL_CHAP = MBN_AUTH_PROTOCOL.CHAP;
+pub const MBN_AUTH_PROTOCOL_MSCHAPV2 = MBN_AUTH_PROTOCOL.MSCHAPV2;
+
+pub const MBN_BAND_CLASS = enum(i32) {
+    NONE = 0,
+    @"0" = 1,
+    I = 2,
+    II = 4,
+    III = 8,
+    IV = 16,
+    V = 32,
+    VI = 64,
+    VII = 128,
+    VIII = 256,
+    IX = 512,
+    X = 1024,
+    XI = 2048,
+    XII = 4096,
+    XIII = 8192,
+    XIV = 16384,
+    XV = 32768,
+    XVI = 65536,
+    XVII = 131072,
+    CUSTOM = -2147483648,
+};
+pub const MBN_BAND_CLASS_NONE = MBN_BAND_CLASS.NONE;
+pub const MBN_BAND_CLASS_0 = MBN_BAND_CLASS.@"0";
+pub const MBN_BAND_CLASS_I = MBN_BAND_CLASS.I;
+pub const MBN_BAND_CLASS_II = MBN_BAND_CLASS.II;
+pub const MBN_BAND_CLASS_III = MBN_BAND_CLASS.III;
+pub const MBN_BAND_CLASS_IV = MBN_BAND_CLASS.IV;
+pub const MBN_BAND_CLASS_V = MBN_BAND_CLASS.V;
+pub const MBN_BAND_CLASS_VI = MBN_BAND_CLASS.VI;
+pub const MBN_BAND_CLASS_VII = MBN_BAND_CLASS.VII;
+pub const MBN_BAND_CLASS_VIII = MBN_BAND_CLASS.VIII;
+pub const MBN_BAND_CLASS_IX = MBN_BAND_CLASS.IX;
+pub const MBN_BAND_CLASS_X = MBN_BAND_CLASS.X;
+pub const MBN_BAND_CLASS_XI = MBN_BAND_CLASS.XI;
+pub const MBN_BAND_CLASS_XII = MBN_BAND_CLASS.XII;
+pub const MBN_BAND_CLASS_XIII = MBN_BAND_CLASS.XIII;
+pub const MBN_BAND_CLASS_XIV = MBN_BAND_CLASS.XIV;
+pub const MBN_BAND_CLASS_XV = MBN_BAND_CLASS.XV;
+pub const MBN_BAND_CLASS_XVI = MBN_BAND_CLASS.XVI;
+pub const MBN_BAND_CLASS_XVII = MBN_BAND_CLASS.XVII;
+pub const MBN_BAND_CLASS_CUSTOM = MBN_BAND_CLASS.CUSTOM;
+
+pub const MBN_CELLULAR_CLASS = enum(i32) {
+    NONE = 0,
+    GSM = 1,
+    CDMA = 2,
+};
+pub const MBN_CELLULAR_CLASS_NONE = MBN_CELLULAR_CLASS.NONE;
+pub const MBN_CELLULAR_CLASS_GSM = MBN_CELLULAR_CLASS.GSM;
+pub const MBN_CELLULAR_CLASS_CDMA = MBN_CELLULAR_CLASS.CDMA;
+
+pub const MBN_COMPRESSION = enum(i32) {
+    NONE = 0,
+    ENABLE = 1,
+};
+pub const MBN_COMPRESSION_NONE = MBN_COMPRESSION.NONE;
+pub const MBN_COMPRESSION_ENABLE = MBN_COMPRESSION.ENABLE;
+
+pub const MBN_CONNECTION_MODE = enum(i32) {
+    PROFILE = 0,
+    TMP_PROFILE = 1,
+};
+pub const MBN_CONNECTION_MODE_PROFILE = MBN_CONNECTION_MODE.PROFILE;
+pub const MBN_CONNECTION_MODE_TMP_PROFILE = MBN_CONNECTION_MODE.TMP_PROFILE;
+
+pub const MBN_CONTEXT = extern struct {
+    contextID: u32,
+    contextType: MBN_CONTEXT_TYPE,
+    accessString: ?BSTR,
+    userName: ?BSTR,
+    password: ?BSTR,
+    compression: MBN_COMPRESSION,
+    authType: MBN_AUTH_PROTOCOL,
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IMbnMultiCarrier_Value = Guid.initString("dcbbbab6-2020-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnMultiCarrier = &IID_IMbnMultiCarrier_Value;
-pub const IMbnMultiCarrier = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetHomeProvider: *const fn(
-            self: *const IMbnMultiCarrier,
-            homeProvider: ?*MBN_PROVIDER2,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPreferredProviders: *const fn(
-            self: *const IMbnMultiCarrier,
-            preferredMulticarrierProviders: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetVisibleProviders: *const fn(
-            self: *const IMbnMultiCarrier,
-            age: ?*u32,
-            visibleProviders: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetSupportedCellularClasses: *const fn(
-            self: *const IMbnMultiCarrier,
-            cellularClasses: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentCellularClass: *const fn(
-            self: *const IMbnMultiCarrier,
-            currentCellularClass: ?*MBN_CELLULAR_CLASS,
-        ) callconv(.winapi) HRESULT,
-        ScanNetwork: *const fn(
-            self: *const IMbnMultiCarrier,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetHomeProvider(self: *const IMbnMultiCarrier, homeProvider: ?*MBN_PROVIDER2, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHomeProvider(self, homeProvider, requestID);
-    }
-    pub fn GetPreferredProviders(self: *const IMbnMultiCarrier, preferredMulticarrierProviders: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreferredProviders(self, preferredMulticarrierProviders);
-    }
-    pub fn GetVisibleProviders(self: *const IMbnMultiCarrier, age: ?*u32, visibleProviders: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVisibleProviders(self, age, visibleProviders);
-    }
-    pub fn GetSupportedCellularClasses(self: *const IMbnMultiCarrier, cellularClasses: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSupportedCellularClasses(self, cellularClasses);
-    }
-    pub fn GetCurrentCellularClass(self: *const IMbnMultiCarrier, currentCellularClass: ?*MBN_CELLULAR_CLASS) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentCellularClass(self, currentCellularClass);
-    }
-    pub fn ScanNetwork(self: *const IMbnMultiCarrier, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ScanNetwork(self, requestID);
-    }
+pub const MBN_CONTEXT_CONSTANTS = enum(i32) {
+    ACCESSSTRING_LEN = 100,
+    USERNAME_LEN = 255,
+    CONTEXT_ID_APPEND = -1,
+    pub const PASSWORD_LEN = .USERNAME_LEN;
+};
+pub const MBN_ACCESSSTRING_LEN = MBN_CONTEXT_CONSTANTS.ACCESSSTRING_LEN;
+pub const MBN_USERNAME_LEN = MBN_CONTEXT_CONSTANTS.USERNAME_LEN;
+pub const MBN_PASSWORD_LEN = MBN_CONTEXT_CONSTANTS.USERNAME_LEN;
+pub const MBN_CONTEXT_ID_APPEND = MBN_CONTEXT_CONSTANTS.CONTEXT_ID_APPEND;
+
+pub const MBN_CONTEXT_TYPE = enum(i32) {
+    NONE = 0,
+    INTERNET = 1,
+    VPN = 2,
+    VOICE = 3,
+    VIDEO_SHARE = 4,
+    CUSTOM = 5,
+    PURCHASE = 6,
+};
+pub const MBN_CONTEXT_TYPE_NONE = MBN_CONTEXT_TYPE.NONE;
+pub const MBN_CONTEXT_TYPE_INTERNET = MBN_CONTEXT_TYPE.INTERNET;
+pub const MBN_CONTEXT_TYPE_VPN = MBN_CONTEXT_TYPE.VPN;
+pub const MBN_CONTEXT_TYPE_VOICE = MBN_CONTEXT_TYPE.VOICE;
+pub const MBN_CONTEXT_TYPE_VIDEO_SHARE = MBN_CONTEXT_TYPE.VIDEO_SHARE;
+pub const MBN_CONTEXT_TYPE_CUSTOM = MBN_CONTEXT_TYPE.CUSTOM;
+pub const MBN_CONTEXT_TYPE_PURCHASE = MBN_CONTEXT_TYPE.PURCHASE;
+
+pub const MBN_CTRL_CAPS = enum(i32) {
+    NONE = 0,
+    REG_MANUAL = 1,
+    HW_RADIO_SWITCH = 2,
+    CDMA_MOBILE_IP = 4,
+    CDMA_SIMPLE_IP = 8,
+    PROTECT_UNIQUEID = 16,
+    MODEL_MULTI_CARRIER = 32,
+    USSD = 64,
+    MULTI_MODE = 128,
+};
+pub const MBN_CTRL_CAPS_NONE = MBN_CTRL_CAPS.NONE;
+pub const MBN_CTRL_CAPS_REG_MANUAL = MBN_CTRL_CAPS.REG_MANUAL;
+pub const MBN_CTRL_CAPS_HW_RADIO_SWITCH = MBN_CTRL_CAPS.HW_RADIO_SWITCH;
+pub const MBN_CTRL_CAPS_CDMA_MOBILE_IP = MBN_CTRL_CAPS.CDMA_MOBILE_IP;
+pub const MBN_CTRL_CAPS_CDMA_SIMPLE_IP = MBN_CTRL_CAPS.CDMA_SIMPLE_IP;
+pub const MBN_CTRL_CAPS_PROTECT_UNIQUEID = MBN_CTRL_CAPS.PROTECT_UNIQUEID;
+pub const MBN_CTRL_CAPS_MODEL_MULTI_CARRIER = MBN_CTRL_CAPS.MODEL_MULTI_CARRIER;
+pub const MBN_CTRL_CAPS_USSD = MBN_CTRL_CAPS.USSD;
+pub const MBN_CTRL_CAPS_MULTI_MODE = MBN_CTRL_CAPS.MULTI_MODE;
+
+pub const MBN_DATA_CLASS = enum(i32) {
+    NONE = 0,
+    GPRS = 1,
+    EDGE = 2,
+    UMTS = 4,
+    HSDPA = 8,
+    HSUPA = 16,
+    LTE = 32,
+    @"5G_NSA" = 64,
+    @"5G_SA" = 128,
+    @"1XRTT" = 65536,
+    @"1XEVDO" = 131072,
+    @"1XEVDO_REVA" = 262144,
+    @"1XEVDV" = 524288,
+    @"3XRTT" = 1048576,
+    @"1XEVDO_REVB" = 2097152,
+    UMB = 4194304,
+    CUSTOM = -2147483648,
+};
+pub const MBN_DATA_CLASS_NONE = MBN_DATA_CLASS.NONE;
+pub const MBN_DATA_CLASS_GPRS = MBN_DATA_CLASS.GPRS;
+pub const MBN_DATA_CLASS_EDGE = MBN_DATA_CLASS.EDGE;
+pub const MBN_DATA_CLASS_UMTS = MBN_DATA_CLASS.UMTS;
+pub const MBN_DATA_CLASS_HSDPA = MBN_DATA_CLASS.HSDPA;
+pub const MBN_DATA_CLASS_HSUPA = MBN_DATA_CLASS.HSUPA;
+pub const MBN_DATA_CLASS_LTE = MBN_DATA_CLASS.LTE;
+pub const MBN_DATA_CLASS_5G_NSA = MBN_DATA_CLASS.@"5G_NSA";
+pub const MBN_DATA_CLASS_5G_SA = MBN_DATA_CLASS.@"5G_SA";
+pub const MBN_DATA_CLASS_1XRTT = MBN_DATA_CLASS.@"1XRTT";
+pub const MBN_DATA_CLASS_1XEVDO = MBN_DATA_CLASS.@"1XEVDO";
+pub const MBN_DATA_CLASS_1XEVDO_REVA = MBN_DATA_CLASS.@"1XEVDO_REVA";
+pub const MBN_DATA_CLASS_1XEVDV = MBN_DATA_CLASS.@"1XEVDV";
+pub const MBN_DATA_CLASS_3XRTT = MBN_DATA_CLASS.@"3XRTT";
+pub const MBN_DATA_CLASS_1XEVDO_REVB = MBN_DATA_CLASS.@"1XEVDO_REVB";
+pub const MBN_DATA_CLASS_UMB = MBN_DATA_CLASS.UMB;
+pub const MBN_DATA_CLASS_CUSTOM = MBN_DATA_CLASS.CUSTOM;
+
+pub const MBN_DEVICE_SERVICE = extern struct {
+    deviceServiceID: ?BSTR,
+    dataWriteSupported: i16,
+    dataReadSupported: i16,
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IMbnMultiCarrierEvents_Value = Guid.initString("dcdddab6-2021-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnMultiCarrierEvents = &IID_IMbnMultiCarrierEvents_Value;
-pub const IMbnMultiCarrierEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnSetHomeProviderComplete: *const fn(
-            self: *const IMbnMultiCarrierEvents,
-            mbnInterface: ?*IMbnMultiCarrier,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnCurrentCellularClassChange: *const fn(
-            self: *const IMbnMultiCarrierEvents,
-            mbnInterface: ?*IMbnMultiCarrier,
-        ) callconv(.winapi) HRESULT,
-        OnPreferredProvidersChange: *const fn(
-            self: *const IMbnMultiCarrierEvents,
-            mbnInterface: ?*IMbnMultiCarrier,
-        ) callconv(.winapi) HRESULT,
-        OnScanNetworkComplete: *const fn(
-            self: *const IMbnMultiCarrierEvents,
-            mbnInterface: ?*IMbnMultiCarrier,
-            requestID: u32,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        OnInterfaceCapabilityChange: *const fn(
-            self: *const IMbnMultiCarrierEvents,
-            mbnInterface: ?*IMbnMultiCarrier,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnSetHomeProviderComplete(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetHomeProviderComplete(self, mbnInterface, requestID, status);
-    }
-    pub fn OnCurrentCellularClassChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.@"inline") HRESULT {
-        return self.vtable.OnCurrentCellularClassChange(self, mbnInterface);
-    }
-    pub fn OnPreferredProvidersChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.@"inline") HRESULT {
-        return self.vtable.OnPreferredProvidersChange(self, mbnInterface);
-    }
-    pub fn OnScanNetworkComplete(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.OnScanNetworkComplete(self, mbnInterface, requestID, status);
-    }
-    pub fn OnInterfaceCapabilityChange(self: *const IMbnMultiCarrierEvents, mbnInterface: ?*IMbnMultiCarrier) callconv(.@"inline") HRESULT {
-        return self.vtable.OnInterfaceCapabilityChange(self, mbnInterface);
-    }
+pub const MBN_DEVICE_SERVICE_SESSIONS_STATE = enum(i32) {
+    D = 0,
+};
+pub const MBN_DEVICE_SERVICE_SESSIONS_RESTORED = MBN_DEVICE_SERVICE_SESSIONS_STATE.D;
+
+pub const MBN_DEVICE_SERVICES_INTERFACE_STATE = enum(i32) {
+    ARRIVAL = 0,
+    REMOVAL = 1,
+};
+pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_ARRIVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.ARRIVAL;
+pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_REMOVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.REMOVAL;
+
+pub const MBN_INTERFACE_CAPS = extern struct {
+    cellularClass: MBN_CELLULAR_CLASS,
+    voiceClass: MBN_VOICE_CLASS,
+    dataClass: u32,
+    customDataClass: ?BSTR,
+    gsmBandClass: u32,
+    cdmaBandClass: u32,
+    customBandClass: ?BSTR,
+    smsCaps: u32,
+    controlCaps: u32,
+    deviceID: ?BSTR,
+    manufacturer: ?BSTR,
+    model: ?BSTR,
+    firmwareInfo: ?BSTR,
 };
 
-const IID_IMbnDeviceServiceStateEvents_Value = Guid.initString("5d3ff196-89ee-49d8-8b60-33ffddffc58d");
-pub const IID_IMbnDeviceServiceStateEvents = &IID_IMbnDeviceServiceStateEvents_Value;
-pub const IMbnDeviceServiceStateEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnSessionsStateChange: *const fn(
-            self: *const IMbnDeviceServiceStateEvents,
-            interfaceID: ?BSTR,
-            stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnSessionsStateChange(self: *const IMbnDeviceServiceStateEvents, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICE_SESSIONS_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSessionsStateChange(self, interfaceID, stateChange);
-    }
+pub const MBN_INTERFACE_CAPS_CONSTANTS = enum(i32) {
+    DEVICEID_LEN = 18,
+    MANUFACTURER_LEN = 32,
+    pub const MODEL_LEN = .MANUFACTURER_LEN;
+    pub const FIRMWARE_LEN = .MANUFACTURER_LEN;
+};
+pub const MBN_DEVICEID_LEN = MBN_INTERFACE_CAPS_CONSTANTS.DEVICEID_LEN;
+pub const MBN_MANUFACTURER_LEN = MBN_INTERFACE_CAPS_CONSTANTS.MANUFACTURER_LEN;
+pub const MBN_MODEL_LEN = MBN_INTERFACE_CAPS_CONSTANTS.MANUFACTURER_LEN;
+pub const MBN_FIRMWARE_LEN = MBN_INTERFACE_CAPS_CONSTANTS.MANUFACTURER_LEN;
+
+pub const MBN_MSG_STATUS = enum(i32) {
+    NEW = 0,
+    OLD = 1,
+    DRAFT = 2,
+    SENT = 3,
+};
+pub const MBN_MSG_STATUS_NEW = MBN_MSG_STATUS.NEW;
+pub const MBN_MSG_STATUS_OLD = MBN_MSG_STATUS.OLD;
+pub const MBN_MSG_STATUS_DRAFT = MBN_MSG_STATUS.DRAFT;
+pub const MBN_MSG_STATUS_SENT = MBN_MSG_STATUS.SENT;
+
+pub const MBN_PIN_CONSTANTS = enum(i32) {
+    ATTEMPTS_REMAINING_UNKNOWN = -1,
+    pub const PIN_LENGTH_UNKNOWN = .ATTEMPTS_REMAINING_UNKNOWN;
+};
+pub const MBN_ATTEMPTS_REMAINING_UNKNOWN = MBN_PIN_CONSTANTS.ATTEMPTS_REMAINING_UNKNOWN;
+pub const MBN_PIN_LENGTH_UNKNOWN = MBN_PIN_CONSTANTS.ATTEMPTS_REMAINING_UNKNOWN;
+
+pub const MBN_PIN_FORMAT = enum(i32) {
+    NONE = 0,
+    NUMERIC = 1,
+    ALPHANUMERIC = 2,
+};
+pub const MBN_PIN_FORMAT_NONE = MBN_PIN_FORMAT.NONE;
+pub const MBN_PIN_FORMAT_NUMERIC = MBN_PIN_FORMAT.NUMERIC;
+pub const MBN_PIN_FORMAT_ALPHANUMERIC = MBN_PIN_FORMAT.ALPHANUMERIC;
+
+pub const MBN_PIN_INFO = extern struct {
+    pinState: MBN_PIN_STATE,
+    pinType: MBN_PIN_TYPE,
+    attemptsRemaining: u32,
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IMbnDeviceServicesManager_Value = Guid.initString("20a26258-6811-4478-ac1d-13324e45e41c");
-pub const IID_IMbnDeviceServicesManager = &IID_IMbnDeviceServicesManager_Value;
-pub const IMbnDeviceServicesManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDeviceServicesContext: *const fn(
-            self: *const IMbnDeviceServicesManager,
-            networkInterfaceID: ?BSTR,
-            mbnDevicesContext: ?*?*IMbnDeviceServicesContext,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDeviceServicesContext(self: *const IMbnDeviceServicesManager, networkInterfaceID: ?BSTR, mbnDevicesContext: ?*?*IMbnDeviceServicesContext) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceServicesContext(self, networkInterfaceID, mbnDevicesContext);
-    }
+pub const MBN_PIN_MODE = enum(i32) {
+    ENABLED = 1,
+    DISABLED = 2,
+};
+pub const MBN_PIN_MODE_ENABLED = MBN_PIN_MODE.ENABLED;
+pub const MBN_PIN_MODE_DISABLED = MBN_PIN_MODE.DISABLED;
+
+pub const MBN_PIN_STATE = enum(i32) {
+    NONE = 0,
+    ENTER = 1,
+    UNBLOCK = 2,
+};
+pub const MBN_PIN_STATE_NONE = MBN_PIN_STATE.NONE;
+pub const MBN_PIN_STATE_ENTER = MBN_PIN_STATE.ENTER;
+pub const MBN_PIN_STATE_UNBLOCK = MBN_PIN_STATE.UNBLOCK;
+
+pub const MBN_PIN_TYPE = enum(i32) {
+    NONE = 0,
+    CUSTOM = 1,
+    PIN1 = 2,
+    PIN2 = 3,
+    DEVICE_SIM_PIN = 4,
+    DEVICE_FIRST_SIM_PIN = 5,
+    NETWORK_PIN = 6,
+    NETWORK_SUBSET_PIN = 7,
+    SVC_PROVIDER_PIN = 8,
+    CORPORATE_PIN = 9,
+    SUBSIDY_LOCK = 10,
+};
+pub const MBN_PIN_TYPE_NONE = MBN_PIN_TYPE.NONE;
+pub const MBN_PIN_TYPE_CUSTOM = MBN_PIN_TYPE.CUSTOM;
+pub const MBN_PIN_TYPE_PIN1 = MBN_PIN_TYPE.PIN1;
+pub const MBN_PIN_TYPE_PIN2 = MBN_PIN_TYPE.PIN2;
+pub const MBN_PIN_TYPE_DEVICE_SIM_PIN = MBN_PIN_TYPE.DEVICE_SIM_PIN;
+pub const MBN_PIN_TYPE_DEVICE_FIRST_SIM_PIN = MBN_PIN_TYPE.DEVICE_FIRST_SIM_PIN;
+pub const MBN_PIN_TYPE_NETWORK_PIN = MBN_PIN_TYPE.NETWORK_PIN;
+pub const MBN_PIN_TYPE_NETWORK_SUBSET_PIN = MBN_PIN_TYPE.NETWORK_SUBSET_PIN;
+pub const MBN_PIN_TYPE_SVC_PROVIDER_PIN = MBN_PIN_TYPE.SVC_PROVIDER_PIN;
+pub const MBN_PIN_TYPE_CORPORATE_PIN = MBN_PIN_TYPE.CORPORATE_PIN;
+pub const MBN_PIN_TYPE_SUBSIDY_LOCK = MBN_PIN_TYPE.SUBSIDY_LOCK;
+
+pub const MBN_PROVIDER = extern struct {
+    providerID: ?BSTR,
+    providerState: u32,
+    providerName: ?BSTR,
+    dataClass: u32,
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IMbnDeviceServicesContext_Value = Guid.initString("fc5ac347-1592-4068-80bb-6a57580150d8");
-pub const IID_IMbnDeviceServicesContext = &IID_IMbnDeviceServicesContext_Value;
-pub const IMbnDeviceServicesContext = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumerateDeviceServices: *const fn(
-            self: *const IMbnDeviceServicesContext,
-            deviceServices: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        GetDeviceService: *const fn(
-            self: *const IMbnDeviceServicesContext,
-            deviceServiceID: ?BSTR,
-            mbnDeviceService: ?*?*IMbnDeviceService,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxCommandSize: *const fn(
-            self: *const IMbnDeviceServicesContext,
-            maxCommandSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxDataSize: *const fn(
-            self: *const IMbnDeviceServicesContext,
-            maxDataSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnumerateDeviceServices(self: *const IMbnDeviceServicesContext, deviceServices: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumerateDeviceServices(self, deviceServices);
-    }
-    pub fn GetDeviceService(self: *const IMbnDeviceServicesContext, deviceServiceID: ?BSTR, mbnDeviceService: ?*?*IMbnDeviceService) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDeviceService(self, deviceServiceID, mbnDeviceService);
-    }
-    pub fn get_MaxCommandSize(self: *const IMbnDeviceServicesContext, maxCommandSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaxCommandSize(self, maxCommandSize);
-    }
-    pub fn get_MaxDataSize(self: *const IMbnDeviceServicesContext, maxDataSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaxDataSize(self, maxDataSize);
-    }
+pub const MBN_PROVIDER2 = extern struct {
+    provider: MBN_PROVIDER,
+    cellularClass: MBN_CELLULAR_CLASS,
+    signalStrength: u32,
+    signalError: u32,
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IMbnDeviceServicesEvents_Value = Guid.initString("0a900c19-6824-4e97-b76e-cf239d0ca642");
-pub const IID_IMbnDeviceServicesEvents = &IID_IMbnDeviceServicesEvents_Value;
-pub const IMbnDeviceServicesEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnQuerySupportedCommandsComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            commandIDList: ?*SAFEARRAY,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnOpenCommandSessionComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnCloseCommandSessionComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnSetCommandComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            responseID: u32,
-            deviceServiceData: ?*SAFEARRAY,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnQueryCommandComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            responseID: u32,
-            deviceServiceData: ?*SAFEARRAY,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnEventNotification: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            eventID: u32,
-            deviceServiceData: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        OnOpenDataSessionComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnCloseDataSessionComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnWriteDataComplete: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            status: HRESULT,
-            requestID: u32,
-        ) callconv(.winapi) HRESULT,
-        OnReadData: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            deviceService: ?*IMbnDeviceService,
-            deviceServiceData: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        OnInterfaceStateChange: *const fn(
-            self: *const IMbnDeviceServicesEvents,
-            interfaceID: ?BSTR,
-            stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnQuerySupportedCommandsComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, commandIDList: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnQuerySupportedCommandsComplete(self, deviceService, commandIDList, status, requestID);
-    }
-    pub fn OnOpenCommandSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOpenCommandSessionComplete(self, deviceService, status, requestID);
-    }
-    pub fn OnCloseCommandSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnCloseCommandSessionComplete(self, deviceService, status, requestID);
-    }
-    pub fn OnSetCommandComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSetCommandComplete(self, deviceService, responseID, deviceServiceData, status, requestID);
-    }
-    pub fn OnQueryCommandComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, responseID: u32, deviceServiceData: ?*SAFEARRAY, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnQueryCommandComplete(self, deviceService, responseID, deviceServiceData, status, requestID);
-    }
-    pub fn OnEventNotification(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, eventID: u32, deviceServiceData: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEventNotification(self, deviceService, eventID, deviceServiceData);
-    }
-    pub fn OnOpenDataSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOpenDataSessionComplete(self, deviceService, status, requestID);
-    }
-    pub fn OnCloseDataSessionComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnCloseDataSessionComplete(self, deviceService, status, requestID);
-    }
-    pub fn OnWriteDataComplete(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, status: HRESULT, requestID: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnWriteDataComplete(self, deviceService, status, requestID);
-    }
-    pub fn OnReadData(self: *const IMbnDeviceServicesEvents, deviceService: ?*IMbnDeviceService, deviceServiceData: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.OnReadData(self, deviceService, deviceServiceData);
-    }
-    pub fn OnInterfaceStateChange(self: *const IMbnDeviceServicesEvents, interfaceID: ?BSTR, stateChange: MBN_DEVICE_SERVICES_INTERFACE_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.OnInterfaceStateChange(self, interfaceID, stateChange);
-    }
+pub const MBN_PROVIDER_CONSTANTS = enum(i32) {
+    NAME_LEN = 20,
+    ID_LEN = 6,
+};
+pub const MBN_PROVIDERNAME_LEN = MBN_PROVIDER_CONSTANTS.NAME_LEN;
+pub const MBN_PROVIDERID_LEN = MBN_PROVIDER_CONSTANTS.ID_LEN;
+
+pub const MBN_PROVIDER_STATE = enum(i32) {
+    NONE = 0,
+    HOME = 1,
+    FORBIDDEN = 2,
+    PREFERRED = 4,
+    VISIBLE = 8,
+    REGISTERED = 16,
+    PREFERRED_MULTICARRIER = 32,
+};
+pub const MBN_PROVIDER_STATE_NONE = MBN_PROVIDER_STATE.NONE;
+pub const MBN_PROVIDER_STATE_HOME = MBN_PROVIDER_STATE.HOME;
+pub const MBN_PROVIDER_STATE_FORBIDDEN = MBN_PROVIDER_STATE.FORBIDDEN;
+pub const MBN_PROVIDER_STATE_PREFERRED = MBN_PROVIDER_STATE.PREFERRED;
+pub const MBN_PROVIDER_STATE_VISIBLE = MBN_PROVIDER_STATE.VISIBLE;
+pub const MBN_PROVIDER_STATE_REGISTERED = MBN_PROVIDER_STATE.REGISTERED;
+pub const MBN_PROVIDER_STATE_PREFERRED_MULTICARRIER = MBN_PROVIDER_STATE.PREFERRED_MULTICARRIER;
+
+pub const MBN_RADIO = enum(i32) {
+    FF = 0,
+    N = 1,
+};
+pub const MBN_RADIO_OFF = MBN_RADIO.FF;
+pub const MBN_RADIO_ON = MBN_RADIO.N;
+
+pub const MBN_READY_STATE = enum(i32) {
+    OFF = 0,
+    INITIALIZED = 1,
+    SIM_NOT_INSERTED = 2,
+    BAD_SIM = 3,
+    FAILURE = 4,
+    NOT_ACTIVATED = 5,
+    DEVICE_LOCKED = 6,
+    DEVICE_BLOCKED = 7,
+    NO_ESIM_PROFILE = 8,
+};
+pub const MBN_READY_STATE_OFF = MBN_READY_STATE.OFF;
+pub const MBN_READY_STATE_INITIALIZED = MBN_READY_STATE.INITIALIZED;
+pub const MBN_READY_STATE_SIM_NOT_INSERTED = MBN_READY_STATE.SIM_NOT_INSERTED;
+pub const MBN_READY_STATE_BAD_SIM = MBN_READY_STATE.BAD_SIM;
+pub const MBN_READY_STATE_FAILURE = MBN_READY_STATE.FAILURE;
+pub const MBN_READY_STATE_NOT_ACTIVATED = MBN_READY_STATE.NOT_ACTIVATED;
+pub const MBN_READY_STATE_DEVICE_LOCKED = MBN_READY_STATE.DEVICE_LOCKED;
+pub const MBN_READY_STATE_DEVICE_BLOCKED = MBN_READY_STATE.DEVICE_BLOCKED;
+pub const MBN_READY_STATE_NO_ESIM_PROFILE = MBN_READY_STATE.NO_ESIM_PROFILE;
+
+pub const MBN_REGISTER_MODE = enum(i32) {
+    NONE = 0,
+    AUTOMATIC = 1,
+    MANUAL = 2,
+};
+pub const MBN_REGISTER_MODE_NONE = MBN_REGISTER_MODE.NONE;
+pub const MBN_REGISTER_MODE_AUTOMATIC = MBN_REGISTER_MODE.AUTOMATIC;
+pub const MBN_REGISTER_MODE_MANUAL = MBN_REGISTER_MODE.MANUAL;
+
+pub const MBN_REGISTER_STATE = enum(i32) {
+    NONE = 0,
+    DEREGISTERED = 1,
+    SEARCHING = 2,
+    HOME = 3,
+    ROAMING = 4,
+    PARTNER = 5,
+    DENIED = 6,
+};
+pub const MBN_REGISTER_STATE_NONE = MBN_REGISTER_STATE.NONE;
+pub const MBN_REGISTER_STATE_DEREGISTERED = MBN_REGISTER_STATE.DEREGISTERED;
+pub const MBN_REGISTER_STATE_SEARCHING = MBN_REGISTER_STATE.SEARCHING;
+pub const MBN_REGISTER_STATE_HOME = MBN_REGISTER_STATE.HOME;
+pub const MBN_REGISTER_STATE_ROAMING = MBN_REGISTER_STATE.ROAMING;
+pub const MBN_REGISTER_STATE_PARTNER = MBN_REGISTER_STATE.PARTNER;
+pub const MBN_REGISTER_STATE_DENIED = MBN_REGISTER_STATE.DENIED;
+
+pub const MBN_REGISTRATION_CONSTANTS = enum(i32) {
+    ROAMTEXT_LEN = 64,
+    CDMA_DEFAULT_PROVIDER_ID = 0,
+};
+pub const MBN_ROAMTEXT_LEN = MBN_REGISTRATION_CONSTANTS.ROAMTEXT_LEN;
+pub const MBN_CDMA_DEFAULT_PROVIDER_ID = MBN_REGISTRATION_CONSTANTS.CDMA_DEFAULT_PROVIDER_ID;
+
+pub const MBN_SIGNAL_CONSTANTS = enum(i32) {
+    RSSI_DEFAULT = -1,
+    RSSI_DISABLE = 0,
+    RSSI_UNKNOWN = 99,
+    pub const ERROR_RATE_UNKNOWN = .RSSI_UNKNOWN;
+};
+pub const MBN_RSSI_DEFAULT = MBN_SIGNAL_CONSTANTS.RSSI_DEFAULT;
+pub const MBN_RSSI_DISABLE = MBN_SIGNAL_CONSTANTS.RSSI_DISABLE;
+pub const MBN_RSSI_UNKNOWN = MBN_SIGNAL_CONSTANTS.RSSI_UNKNOWN;
+pub const MBN_ERROR_RATE_UNKNOWN = MBN_SIGNAL_CONSTANTS.RSSI_UNKNOWN;
+
+pub const MBN_SMS_CAPS = enum(i32) {
+    NONE = 0,
+    PDU_RECEIVE = 1,
+    PDU_SEND = 2,
+    TEXT_RECEIVE = 4,
+    TEXT_SEND = 8,
+};
+pub const MBN_SMS_CAPS_NONE = MBN_SMS_CAPS.NONE;
+pub const MBN_SMS_CAPS_PDU_RECEIVE = MBN_SMS_CAPS.PDU_RECEIVE;
+pub const MBN_SMS_CAPS_PDU_SEND = MBN_SMS_CAPS.PDU_SEND;
+pub const MBN_SMS_CAPS_TEXT_RECEIVE = MBN_SMS_CAPS.TEXT_RECEIVE;
+pub const MBN_SMS_CAPS_TEXT_SEND = MBN_SMS_CAPS.TEXT_SEND;
+
+pub const MBN_SMS_CDMA_ENCODING = enum(i32) {
+    OCTET = 0,
+    EPM = 1,
+    @"7BIT_ASCII" = 2,
+    IA5 = 3,
+    UNICODE = 4,
+    SHIFT_JIS = 5,
+    KOREAN = 6,
+    LATIN_HEBREW = 7,
+    LATIN = 8,
+    GSM_7BIT = 9,
+};
+pub const MBN_SMS_CDMA_ENCODING_OCTET = MBN_SMS_CDMA_ENCODING.OCTET;
+pub const MBN_SMS_CDMA_ENCODING_EPM = MBN_SMS_CDMA_ENCODING.EPM;
+pub const MBN_SMS_CDMA_ENCODING_7BIT_ASCII = MBN_SMS_CDMA_ENCODING.@"7BIT_ASCII";
+pub const MBN_SMS_CDMA_ENCODING_IA5 = MBN_SMS_CDMA_ENCODING.IA5;
+pub const MBN_SMS_CDMA_ENCODING_UNICODE = MBN_SMS_CDMA_ENCODING.UNICODE;
+pub const MBN_SMS_CDMA_ENCODING_SHIFT_JIS = MBN_SMS_CDMA_ENCODING.SHIFT_JIS;
+pub const MBN_SMS_CDMA_ENCODING_KOREAN = MBN_SMS_CDMA_ENCODING.KOREAN;
+pub const MBN_SMS_CDMA_ENCODING_LATIN_HEBREW = MBN_SMS_CDMA_ENCODING.LATIN_HEBREW;
+pub const MBN_SMS_CDMA_ENCODING_LATIN = MBN_SMS_CDMA_ENCODING.LATIN;
+pub const MBN_SMS_CDMA_ENCODING_GSM_7BIT = MBN_SMS_CDMA_ENCODING.GSM_7BIT;
+
+pub const MBN_SMS_CDMA_LANG = enum(i32) {
+    NONE = 0,
+    ENGLISH = 1,
+    FRENCH = 2,
+    SPANISH = 3,
+    JAPANESE = 4,
+    KOREAN = 5,
+    CHINESE = 6,
+    HEBREW = 7,
+};
+pub const MBN_SMS_CDMA_LANG_NONE = MBN_SMS_CDMA_LANG.NONE;
+pub const MBN_SMS_CDMA_LANG_ENGLISH = MBN_SMS_CDMA_LANG.ENGLISH;
+pub const MBN_SMS_CDMA_LANG_FRENCH = MBN_SMS_CDMA_LANG.FRENCH;
+pub const MBN_SMS_CDMA_LANG_SPANISH = MBN_SMS_CDMA_LANG.SPANISH;
+pub const MBN_SMS_CDMA_LANG_JAPANESE = MBN_SMS_CDMA_LANG.JAPANESE;
+pub const MBN_SMS_CDMA_LANG_KOREAN = MBN_SMS_CDMA_LANG.KOREAN;
+pub const MBN_SMS_CDMA_LANG_CHINESE = MBN_SMS_CDMA_LANG.CHINESE;
+pub const MBN_SMS_CDMA_LANG_HEBREW = MBN_SMS_CDMA_LANG.HEBREW;
+
+pub const MBN_SMS_FILTER = extern struct {
+    flag: MBN_SMS_FLAG,
+    messageIndex: u32,
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IMbnDeviceService_Value = Guid.initString("b3bb9a71-dc70-4be9-a4da-7886ae8b191b");
-pub const IID_IMbnDeviceService = &IID_IMbnDeviceService_Value;
-pub const IMbnDeviceService = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QuerySupportedCommands: *const fn(
-            self: *const IMbnDeviceService,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        OpenCommandSession: *const fn(
-            self: *const IMbnDeviceService,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        CloseCommandSession: *const fn(
-            self: *const IMbnDeviceService,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetCommand: *const fn(
-            self: *const IMbnDeviceService,
-            commandID: u32,
-            deviceServiceData: ?*SAFEARRAY,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        QueryCommand: *const fn(
-            self: *const IMbnDeviceService,
-            commandID: u32,
-            deviceServiceData: ?*SAFEARRAY,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        OpenDataSession: *const fn(
-            self: *const IMbnDeviceService,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        CloseDataSession: *const fn(
-            self: *const IMbnDeviceService,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        WriteData: *const fn(
-            self: *const IMbnDeviceService,
-            deviceServiceData: ?*SAFEARRAY,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InterfaceID: *const fn(
-            self: *const IMbnDeviceService,
-            InterfaceID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceServiceID: *const fn(
-            self: *const IMbnDeviceService,
-            DeviceServiceID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsCommandSessionOpen: *const fn(
-            self: *const IMbnDeviceService,
-            value: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsDataSessionOpen: *const fn(
-            self: *const IMbnDeviceService,
-            value: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QuerySupportedCommands(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QuerySupportedCommands(self, requestID);
-    }
-    pub fn OpenCommandSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenCommandSession(self, requestID);
-    }
-    pub fn CloseCommandSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CloseCommandSession(self, requestID);
-    }
-    pub fn SetCommand(self: *const IMbnDeviceService, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCommand(self, commandID, deviceServiceData, requestID);
-    }
-    pub fn QueryCommand(self: *const IMbnDeviceService, commandID: u32, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryCommand(self, commandID, deviceServiceData, requestID);
-    }
-    pub fn OpenDataSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenDataSession(self, requestID);
-    }
-    pub fn CloseDataSession(self: *const IMbnDeviceService, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CloseDataSession(self, requestID);
-    }
-    pub fn WriteData(self: *const IMbnDeviceService, deviceServiceData: ?*SAFEARRAY, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteData(self, deviceServiceData, requestID);
-    }
-    pub fn get_InterfaceID(self: *const IMbnDeviceService, InterfaceID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_InterfaceID(self, InterfaceID);
-    }
-    pub fn get_DeviceServiceID(self: *const IMbnDeviceService, DeviceServiceID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceServiceID(self, DeviceServiceID);
-    }
-    pub fn get_IsCommandSessionOpen(self: *const IMbnDeviceService, value: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsCommandSessionOpen(self, value);
-    }
-    pub fn get_IsDataSessionOpen(self: *const IMbnDeviceService, value: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_IsDataSessionOpen(self, value);
-    }
+pub const MBN_SMS_FLAG = enum(i32) {
+    ALL = 0,
+    INDEX = 1,
+    NEW = 2,
+    OLD = 3,
+    SENT = 4,
+    DRAFT = 5,
+};
+pub const MBN_SMS_FLAG_ALL = MBN_SMS_FLAG.ALL;
+pub const MBN_SMS_FLAG_INDEX = MBN_SMS_FLAG.INDEX;
+pub const MBN_SMS_FLAG_NEW = MBN_SMS_FLAG.NEW;
+pub const MBN_SMS_FLAG_OLD = MBN_SMS_FLAG.OLD;
+pub const MBN_SMS_FLAG_SENT = MBN_SMS_FLAG.SENT;
+pub const MBN_SMS_FLAG_DRAFT = MBN_SMS_FLAG.DRAFT;
+
+pub const MBN_SMS_FORMAT = enum(i32) {
+    NONE = 0,
+    PDU = 1,
+    TEXT = 2,
+};
+pub const MBN_SMS_FORMAT_NONE = MBN_SMS_FORMAT.NONE;
+pub const MBN_SMS_FORMAT_PDU = MBN_SMS_FORMAT.PDU;
+pub const MBN_SMS_FORMAT_TEXT = MBN_SMS_FORMAT.TEXT;
+
+pub const MBN_SMS_STATUS_FLAG = enum(i32) {
+    NONE = 0,
+    MESSAGE_STORE_FULL = 1,
+    NEW_MESSAGE = 2,
+};
+pub const MBN_SMS_FLAG_NONE = MBN_SMS_STATUS_FLAG.NONE;
+pub const MBN_SMS_FLAG_MESSAGE_STORE_FULL = MBN_SMS_STATUS_FLAG.MESSAGE_STORE_FULL;
+pub const MBN_SMS_FLAG_NEW_MESSAGE = MBN_SMS_STATUS_FLAG.NEW_MESSAGE;
+
+pub const MBN_SMS_STATUS_INFO = extern struct {
+    flag: u32,
+    messageIndex: u32,
 };
 
-pub const __mbnapi_ReferenceRemainingTypes__ = extern struct {
-    bandClass: MBN_BAND_CLASS,
-    contextConstants: MBN_CONTEXT_CONSTANTS,
-    ctrlCaps: MBN_CTRL_CAPS,
-    dataClass: MBN_DATA_CLASS,
-    interfaceCapsConstants: MBN_INTERFACE_CAPS_CONSTANTS,
-    pinConstants: MBN_PIN_CONSTANTS,
-    providerConstants: MBN_PROVIDER_CONSTANTS,
-    providerState: MBN_PROVIDER_STATE,
-    registrationConstants: MBN_REGISTRATION_CONSTANTS,
-    signalConstants: MBN_SIGNAL_CONSTANTS,
-    smsCaps: MBN_SMS_CAPS,
-    smsConstants: WWAEXT_SMS_CONSTANTS,
-    wwaextSmsConstants: WWAEXT_SMS_CONSTANTS,
-    smsStatusFlag: MBN_SMS_STATUS_FLAG,
+pub const MBN_VOICE_CALL_STATE = enum(i32) {
+    NONE = 0,
+    IN_PROGRESS = 1,
+    HANGUP = 2,
 };
+pub const MBN_VOICE_CALL_STATE_NONE = MBN_VOICE_CALL_STATE.NONE;
+pub const MBN_VOICE_CALL_STATE_IN_PROGRESS = MBN_VOICE_CALL_STATE.IN_PROGRESS;
+pub const MBN_VOICE_CALL_STATE_HANGUP = MBN_VOICE_CALL_STATE.HANGUP;
 
-pub const __DummyPinType__ = extern struct {
-    pinType: u32,
+pub const MBN_VOICE_CLASS = enum(i32) {
+    NONE = 0,
+    NO_VOICE = 1,
+    SEPARATE_VOICE_DATA = 2,
+    SIMULTANEOUS_VOICE_DATA = 3,
 };
+pub const MBN_VOICE_CLASS_NONE = MBN_VOICE_CLASS.NONE;
+pub const MBN_VOICE_CLASS_NO_VOICE = MBN_VOICE_CLASS.NO_VOICE;
+pub const MBN_VOICE_CLASS_SEPARATE_VOICE_DATA = MBN_VOICE_CLASS.SEPARATE_VOICE_DATA;
+pub const MBN_VOICE_CLASS_SIMULTANEOUS_VOICE_DATA = MBN_VOICE_CLASS.SIMULTANEOUS_VOICE_DATA;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IMbnPin_Value = Guid.initString("dcbbbab6-2007-4bbb-aaee-338e368af6fa");
-pub const IID_IMbnPin = &IID_IMbnPin_Value;
-pub const IMbnPin = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PinType: *const fn(
-            self: *const IMbnPin,
-            PinType: ?*MBN_PIN_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PinFormat: *const fn(
-            self: *const IMbnPin,
-            PinFormat: ?*MBN_PIN_FORMAT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PinLengthMin: *const fn(
-            self: *const IMbnPin,
-            PinLengthMin: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PinLengthMax: *const fn(
-            self: *const IMbnPin,
-            PinLengthMax: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PinMode: *const fn(
-            self: *const IMbnPin,
-            PinMode: ?*MBN_PIN_MODE,
-        ) callconv(.winapi) HRESULT,
-        Enable: *const fn(
-            self: *const IMbnPin,
-            pin: ?[*:0]const u16,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Disable: *const fn(
-            self: *const IMbnPin,
-            pin: ?[*:0]const u16,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Enter: *const fn(
-            self: *const IMbnPin,
-            pin: ?[*:0]const u16,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Change: *const fn(
-            self: *const IMbnPin,
-            pin: ?[*:0]const u16,
-            newPin: ?[*:0]const u16,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Unblock: *const fn(
-            self: *const IMbnPin,
-            puk: ?[*:0]const u16,
-            newPin: ?[*:0]const u16,
-            requestID: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPinManager: *const fn(
-            self: *const IMbnPin,
-            pinManager: ?*?*IMbnPinManager,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn get_PinType(self: *const IMbnPin, PinType: ?*MBN_PIN_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PinType(self, PinType);
-    }
-    pub fn get_PinFormat(self: *const IMbnPin, PinFormat: ?*MBN_PIN_FORMAT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PinFormat(self, PinFormat);
-    }
-    pub fn get_PinLengthMin(self: *const IMbnPin, PinLengthMin: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PinLengthMin(self, PinLengthMin);
-    }
-    pub fn get_PinLengthMax(self: *const IMbnPin, PinLengthMax: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PinLengthMax(self, PinLengthMax);
-    }
-    pub fn get_PinMode(self: *const IMbnPin, PinMode: ?*MBN_PIN_MODE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PinMode(self, PinMode);
-    }
-    pub fn Enable(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Enable(self, pin, requestID);
-    }
-    pub fn Disable(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Disable(self, pin, requestID);
-    }
-    pub fn Enter(self: *const IMbnPin, pin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Enter(self, pin, requestID);
-    }
-    pub fn Change(self: *const IMbnPin, pin: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Change(self, pin, newPin, requestID);
-    }
-    pub fn Unblock(self: *const IMbnPin, puk: ?[*:0]const u16, newPin: ?[*:0]const u16, requestID: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Unblock(self, puk, newPin, requestID);
-    }
-    pub fn GetPinManager(self: *const IMbnPin, pinManager: ?*?*IMbnPinManager) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPinManager(self, pinManager);
-    }
+const CLSID_MbnConnectionManager_Value = Guid.initString("bdfee05c-4418-11dd-90ed-001c257ccff1");
+pub const CLSID_MbnConnectionManager = &CLSID_MbnConnectionManager_Value;
+
+const CLSID_MbnConnectionProfileManager_Value = Guid.initString("bdfee05a-4418-11dd-90ed-001c257ccff1");
+pub const CLSID_MbnConnectionProfileManager = &CLSID_MbnConnectionProfileManager_Value;
+
+const CLSID_MbnDeviceServicesManager_Value = Guid.initString("2269daa3-2a9f-4165-a501-ce00a6f7a75b");
+pub const CLSID_MbnDeviceServicesManager = &CLSID_MbnDeviceServicesManager_Value;
+
+const CLSID_MbnInterfaceManager_Value = Guid.initString("bdfee05b-4418-11dd-90ed-001c257ccff1");
+pub const CLSID_MbnInterfaceManager = &CLSID_MbnInterfaceManager_Value;
+
+pub const WWAEXT_SMS_CONSTANTS = enum(i32) {
+    MESSAGE_INDEX_NONE = 0,
+    CDMA_SHORT_MSG_SIZE_MAX = 160,
+    pub const CDMA_SHORT_MSG_SIZE_UNKNOWN = .MESSAGE_INDEX_NONE;
 };
+pub const MBN_MESSAGE_INDEX_NONE = WWAEXT_SMS_CONSTANTS.MESSAGE_INDEX_NONE;
+pub const MBN_CDMA_SHORT_MSG_SIZE_UNKNOWN = WWAEXT_SMS_CONSTANTS.MESSAGE_INDEX_NONE;
+pub const MBN_CDMA_SHORT_MSG_SIZE_MAX = WWAEXT_SMS_CONSTANTS.CDMA_SHORT_MSG_SIZE_MAX;
 
 
 //--------------------------------------------------------------------------------

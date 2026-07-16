@@ -2,238 +2,218 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (151)
 //--------------------------------------------------------------------------------
+pub const FSRM_DISPID_FEATURE_CLASSIFICATION = @as(u32, 83886080);
+pub const FSRM_DISPID_FEATURE_FILESCREEN = @as(u32, 50331648);
+pub const FSRM_DISPID_FEATURE_GENERAL = @as(u32, 16777216);
 pub const FSRM_DISPID_FEATURE_MASK = @as(u32, 251658240);
+pub const FSRM_DISPID_FEATURE_PIPELINE = @as(u32, 100663296);
+pub const FSRM_DISPID_FEATURE_QUOTA = @as(u32, 33554432);
+pub const FSRM_DISPID_FEATURE_REPORTS = @as(u32, 67108864);
 pub const FSRM_DISPID_INTERFACE_A_MASK = @as(u32, 15728640);
 pub const FSRM_DISPID_INTERFACE_B_MASK = @as(u32, 983040);
 pub const FSRM_DISPID_INTERFACE_C_MASK = @as(u32, 61440);
 pub const FSRM_DISPID_INTERFACE_D_MASK = @as(u32, 3840);
 pub const FSRM_DISPID_IS_PROPERTY = @as(u32, 128);
 pub const FSRM_DISPID_METHOD_NUM_MASK = @as(u32, 127);
-pub const FSRM_DISPID_FEATURE_GENERAL = @as(u32, 16777216);
-pub const FSRM_DISPID_FEATURE_QUOTA = @as(u32, 33554432);
-pub const FSRM_DISPID_FEATURE_FILESCREEN = @as(u32, 50331648);
-pub const FSRM_DISPID_FEATURE_REPORTS = @as(u32, 67108864);
-pub const FSRM_DISPID_FEATURE_CLASSIFICATION = @as(u32, 83886080);
-pub const FSRM_DISPID_FEATURE_PIPELINE = @as(u32, 100663296);
-pub const FsrmMaxNumberThresholds = @as(u32, 16);
-pub const FsrmMinThresholdValue = @as(u32, 1);
-pub const FsrmMaxThresholdValue = @as(u32, 250);
-pub const FsrmMinQuotaLimit = @as(u32, 1024);
-pub const FsrmMaxExcludeFolders = @as(u32, 32);
-pub const FsrmMaxNumberPropertyDefinitions = @as(u32, 100);
-pub const MessageSizeLimit = @as(u32, 4096);
-pub const FsrmDaysNotSpecified = @as(i32, -1);
-pub const FSRM_S_PARTIAL_BATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, 283396));
-pub const FSRM_S_PARTIAL_CLASSIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 283397));
-pub const FSRM_S_CLASSIFICATION_SCAN_FAILURES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 283398));
-pub const FSRM_E_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200255));
-pub const FSRM_E_INVALID_SCHEDULER_ARGUMENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200254));
+pub const FSRM_E_ADR_MAX_EMAILS_SENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200130));
+pub const FSRM_E_ADR_NOT_DOMAIN_JOINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200110));
+pub const FSRM_E_ADR_PATH_IS_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200111));
+pub const FSRM_E_ADR_SRV_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200112));
 pub const FSRM_E_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200253));
-pub const FSRM_E_PATH_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200252));
-pub const FSRM_E_INVALID_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200251));
-pub const FSRM_E_INVALID_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200250));
-pub const FSRM_E_INVALID_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200249));
-pub const FSRM_E_INVALID_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200248));
-pub const FSRM_E_FAIL_BATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200247));
-pub const FSRM_E_INVALID_TEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200246));
-pub const FSRM_E_INVALID_IMPORT_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200245));
-pub const FSRM_E_OUT_OF_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200243));
-pub const FSRM_E_REQD_PARAM_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200242));
-pub const FSRM_E_INVALID_COMBINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200241));
-pub const FSRM_E_DUPLICATE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200240));
-pub const FSRM_E_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200239));
-pub const FSRM_E_DRIVER_NOT_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200237));
-pub const FSRM_E_INSUFFICIENT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200236));
-pub const FSRM_E_VOLUME_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200235));
-pub const FSRM_E_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200234));
-pub const FSRM_E_INSECURE_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200233));
-pub const FSRM_E_INVALID_SMTP_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200232));
 pub const FSRM_E_AUTO_QUOTA = @import("../zig.zig").typedConst(HRESULT, @as(i32, 283419));
-pub const FSRM_E_EMAIL_NOT_SENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200228));
-pub const FSRM_E_INVALID_EMAIL_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200226));
-pub const FSRM_E_FILE_SYSTEM_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200225));
-pub const FSRM_E_LONG_CMDLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200224));
-pub const FSRM_E_INVALID_FILEGROUP_DEFINITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200223));
-pub const FSRM_E_INVALID_DATASCREEN_DEFINITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200220));
-pub const FSRM_E_INVALID_REPORT_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200216));
-pub const FSRM_E_INVALID_REPORT_DESC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200215));
-pub const FSRM_E_INVALID_FILENAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200214));
-pub const FSRM_E_SHADOW_COPY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200212));
-pub const FSRM_E_XML_CORRUPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200211));
-pub const FSRM_E_CLUSTER_NOT_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200210));
-pub const FSRM_E_STORE_NOT_INSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200209));
-pub const FSRM_E_NOT_CLUSTER_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200208));
-pub const FSRM_E_DIFFERENT_CLUSTER_GROUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200207));
-pub const FSRM_E_REPORT_TYPE_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200206));
-pub const FSRM_E_REPORT_JOB_ALREADY_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200205));
-pub const FSRM_E_REPORT_GENERATION_ERR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200204));
-pub const FSRM_E_REPORT_TASK_TRIGGER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200203));
-pub const FSRM_E_LOADING_DISABLED_MODULE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200202));
-pub const FSRM_E_CANNOT_AGGREGATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200201));
-pub const FSRM_E_MESSAGE_LIMIT_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200200));
-pub const FSRM_E_OBJECT_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200199));
-pub const FSRM_E_CANNOT_RENAME_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200198));
-pub const FSRM_E_CANNOT_CHANGE_PROPERTY_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200197));
-pub const FSRM_E_MAX_PROPERTY_DEFINITIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200196));
-pub const FSRM_E_CLASSIFICATION_ALREADY_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200195));
-pub const FSRM_E_CLASSIFICATION_NOT_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200194));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_ALREADY_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200193));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_EXPIRATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200192));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_CUSTOM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200191));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_NOTIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200190));
-pub const FSRM_E_FILE_OPEN_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200189));
-pub const FSRM_E_UNSECURE_LINK_TO_HOSTED_MODULE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200188));
 pub const FSRM_E_CACHE_INVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200187));
 pub const FSRM_E_CACHE_MODULE_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200186));
-pub const FSRM_E_FILE_MANAGEMENT_EXPIRATION_DIR_IN_SCOPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200185));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200184));
-pub const FSRM_E_PROPERTY_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200183));
-pub const FSRM_E_LAST_ACCESS_UPDATE_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200176));
-pub const FSRM_E_NO_PROPERTY_VALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200175));
-pub const FSRM_E_INPROC_MODULE_BLOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200174));
-pub const FSRM_E_ENUM_PROPERTIES_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200173));
-pub const FSRM_E_SET_PROPERTY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200172));
-pub const FSRM_E_CANNOT_STORE_PROPERTIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200171));
+pub const FSRM_E_CANNOT_AGGREGATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200201));
 pub const FSRM_E_CANNOT_ALLOW_REPARSE_POINT_TAG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200170));
-pub const FSRM_E_PARTIAL_CLASSIFICATION_PROPERTY_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200169));
-pub const FSRM_E_TEXTREADER_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200168));
-pub const FSRM_E_TEXTREADER_IFILTER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200167));
-pub const FSRM_E_PERSIST_PROPERTIES_FAILED_ENCRYPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200166));
-pub const FSRM_E_TEXTREADER_IFILTER_CLSID_MALFORMED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200160));
-pub const FSRM_E_TEXTREADER_STREAM_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200159));
-pub const FSRM_E_TEXTREADER_FILENAME_TOO_LONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200158));
-pub const FSRM_E_INCOMPATIBLE_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200157));
-pub const FSRM_E_FILE_ENCRYPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200156));
-pub const FSRM_E_PERSIST_PROPERTIES_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200155));
-pub const FSRM_E_VOLUME_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200154));
-pub const FSRM_E_FILE_MANAGEMENT_ACTION_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200153));
-pub const FSRM_E_FILE_MANAGEMENT_ACTION_GET_EXITCODE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200152));
-pub const FSRM_E_MODULE_INVALID_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200151));
-pub const FSRM_E_MODULE_INITIALIZATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200150));
-pub const FSRM_E_MODULE_SESSION_INITIALIZATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200149));
-pub const FSRM_E_CLASSIFICATION_SCAN_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200148));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_NOT_LEGACY_ACCESSIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200147));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_MAX_FILE_CONDITIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200146));
-pub const FSRM_E_CANNOT_USE_DEPRECATED_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200145));
-pub const FSRM_E_SYNC_TASK_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200144));
-pub const FSRM_E_CANNOT_USE_DELETED_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200143));
-pub const FSRM_E_INVALID_AD_CLAIM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200142));
-pub const FSRM_E_CLASSIFICATION_CANCELED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200141));
-pub const FSRM_E_INVALID_FOLDER_PROPERTY_STORE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200140));
-pub const FSRM_E_REBUILDING_FODLER_TYPE_INDEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200139));
-pub const FSRM_E_PROPERTY_MUST_APPLY_TO_FILES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200138));
-pub const FSRM_E_CLASSIFICATION_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200137));
-pub const FSRM_E_CLASSIFICATION_PARTIAL_BATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200136));
-pub const FSRM_E_CANNOT_DELETE_SYSTEM_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200135));
-pub const FSRM_E_FILE_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200134));
-pub const FSRM_E_ERROR_NOT_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200133));
+pub const FSRM_E_CANNOT_CHANGE_PROPERTY_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200197));
 pub const FSRM_E_CANNOT_CREATE_TEMP_COPY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200132));
-pub const FSRM_E_NO_EMAIL_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200131));
-pub const FSRM_E_ADR_MAX_EMAILS_SENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200130));
-pub const FSRM_E_PATH_NOT_IN_NAMESPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200129));
-pub const FSRM_E_RMS_TEMPLATE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200128));
-pub const FSRM_E_SECURE_PROPERTIES_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200127));
-pub const FSRM_E_RMS_NO_PROTECTORS_INSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200126));
-pub const FSRM_E_RMS_NO_PROTECTOR_INSTALLED_FOR_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200125));
-pub const FSRM_E_PROPERTY_MUST_APPLY_TO_FOLDERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200124));
-pub const FSRM_E_PROPERTY_MUST_BE_SECURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200123));
-pub const FSRM_E_PROPERTY_MUST_BE_GLOBAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200122));
-pub const FSRM_E_WMI_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200121));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_RMS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200120));
-pub const FSRM_E_SYNC_TASK_HAD_ERRORS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200119));
-pub const FSRM_E_ADR_SRV_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200112));
-pub const FSRM_E_ADR_PATH_IS_LOCAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200111));
-pub const FSRM_E_ADR_NOT_DOMAIN_JOINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200110));
+pub const FSRM_E_CANNOT_DELETE_SYSTEM_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200135));
 pub const FSRM_E_CANNOT_REMOVE_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200109));
-pub const FSRM_E_FILE_MANAGEMENT_JOB_INVALID_CONTINUOUS_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200108));
-pub const FSRM_E_LEGACY_SCHEDULE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200107));
+pub const FSRM_E_CANNOT_RENAME_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200198));
+pub const FSRM_E_CANNOT_STORE_PROPERTIES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200171));
+pub const FSRM_E_CANNOT_USE_DELETED_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200143));
+pub const FSRM_E_CANNOT_USE_DEPRECATED_PROPERTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200145));
+pub const FSRM_E_CLASSIFICATION_ALREADY_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200195));
+pub const FSRM_E_CLASSIFICATION_CANCELED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200141));
+pub const FSRM_E_CLASSIFICATION_NOT_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200194));
+pub const FSRM_E_CLASSIFICATION_PARTIAL_BATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200136));
+pub const FSRM_E_CLASSIFICATION_SCAN_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200148));
+pub const FSRM_E_CLASSIFICATION_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200137));
+pub const FSRM_E_CLUSTER_NOT_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200210));
 pub const FSRM_E_CSC_PATH_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200106));
+pub const FSRM_E_DIFFERENT_CLUSTER_GROUP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200207));
+pub const FSRM_E_DRIVER_NOT_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200237));
+pub const FSRM_E_DUPLICATE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200240));
+pub const FSRM_E_EMAIL_NOT_SENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200228));
+pub const FSRM_E_ENUM_PROPERTIES_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200173));
+pub const FSRM_E_ERROR_NOT_ENABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200133));
 pub const FSRM_E_EXPIRATION_PATH_NOT_WRITEABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200105));
 pub const FSRM_E_EXPIRATION_PATH_TOO_LONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200104));
 pub const FSRM_E_EXPIRATION_VOLUME_NOT_NTFS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200103));
+pub const FSRM_E_FAIL_BATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200247));
+pub const FSRM_E_FILE_ENCRYPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200156));
+pub const FSRM_E_FILE_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200134));
+pub const FSRM_E_FILE_MANAGEMENT_ACTION_GET_EXITCODE_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200152));
+pub const FSRM_E_FILE_MANAGEMENT_ACTION_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200153));
+pub const FSRM_E_FILE_MANAGEMENT_EXPIRATION_DIR_IN_SCOPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200185));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200184));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_ALREADY_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200193));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_CUSTOM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200191));
 pub const FSRM_E_FILE_MANAGEMENT_JOB_DEPRECATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200102));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_EXPIRATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200192));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_INVALID_CONTINUOUS_CONFIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200108));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_MAX_FILE_CONDITIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200146));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_NOT_LEGACY_ACCESSIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200147));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_NOTIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200190));
+pub const FSRM_E_FILE_MANAGEMENT_JOB_RMS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200120));
+pub const FSRM_E_FILE_OPEN_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200189));
+pub const FSRM_E_FILE_SYSTEM_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200225));
+pub const FSRM_E_INCOMPATIBLE_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200157));
+pub const FSRM_E_INPROC_MODULE_BLOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200174));
+pub const FSRM_E_INSECURE_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200233));
+pub const FSRM_E_INSUFFICIENT_DISK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200236));
+pub const FSRM_E_INVALID_AD_CLAIM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200142));
+pub const FSRM_E_INVALID_COMBINATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200241));
+pub const FSRM_E_INVALID_DATASCREEN_DEFINITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200220));
+pub const FSRM_E_INVALID_EMAIL_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200226));
+pub const FSRM_E_INVALID_FILEGROUP_DEFINITION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200223));
+pub const FSRM_E_INVALID_FILENAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200214));
+pub const FSRM_E_INVALID_FOLDER_PROPERTY_STORE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200140));
+pub const FSRM_E_INVALID_IMPORT_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200245));
+pub const FSRM_E_INVALID_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200249));
+pub const FSRM_E_INVALID_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200248));
+pub const FSRM_E_INVALID_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200250));
+pub const FSRM_E_INVALID_REPORT_DESC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200215));
+pub const FSRM_E_INVALID_REPORT_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200216));
+pub const FSRM_E_INVALID_SCHEDULER_ARGUMENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200254));
+pub const FSRM_E_INVALID_SMTP_SERVER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200232));
+pub const FSRM_E_INVALID_TEXT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200246));
+pub const FSRM_E_INVALID_USER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200251));
+pub const FSRM_E_LAST_ACCESS_UPDATE_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200176));
+pub const FSRM_E_LEGACY_SCHEDULE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200107));
+pub const FSRM_E_LOADING_DISABLED_MODULE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200202));
+pub const FSRM_E_LONG_CMDLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200224));
+pub const FSRM_E_MAX_PROPERTY_DEFINITIONS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200196));
+pub const FSRM_E_MESSAGE_LIMIT_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200200));
+pub const FSRM_E_MODULE_INITIALIZATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200150));
+pub const FSRM_E_MODULE_INVALID_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200151));
+pub const FSRM_E_MODULE_SESSION_INITIALIZATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200149));
 pub const FSRM_E_MODULE_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200101));
+pub const FSRM_E_NO_EMAIL_ADDRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200131));
+pub const FSRM_E_NO_PROPERTY_VALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200175));
+pub const FSRM_E_NOT_CLUSTER_VOLUME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200208));
+pub const FSRM_E_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200255));
+pub const FSRM_E_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200239));
+pub const FSRM_E_OBJECT_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200199));
+pub const FSRM_E_OUT_OF_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200243));
+pub const FSRM_E_PARTIAL_CLASSIFICATION_PROPERTY_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200169));
+pub const FSRM_E_PATH_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200252));
+pub const FSRM_E_PATH_NOT_IN_NAMESPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200129));
+pub const FSRM_E_PERSIST_PROPERTIES_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200155));
+pub const FSRM_E_PERSIST_PROPERTIES_FAILED_ENCRYPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200166));
+pub const FSRM_E_PROPERTY_DELETED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200183));
+pub const FSRM_E_PROPERTY_MUST_APPLY_TO_FILES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200138));
+pub const FSRM_E_PROPERTY_MUST_APPLY_TO_FOLDERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200124));
+pub const FSRM_E_PROPERTY_MUST_BE_GLOBAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200122));
+pub const FSRM_E_PROPERTY_MUST_BE_SECURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200123));
+pub const FSRM_E_REBUILDING_FODLER_TYPE_INDEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200139));
+pub const FSRM_E_REPORT_GENERATION_ERR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200204));
+pub const FSRM_E_REPORT_JOB_ALREADY_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200205));
+pub const FSRM_E_REPORT_TASK_TRIGGER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200203));
+pub const FSRM_E_REPORT_TYPE_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200206));
+pub const FSRM_E_REQD_PARAM_MISSING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200242));
+pub const FSRM_E_RMS_NO_PROTECTOR_INSTALLED_FOR_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200125));
+pub const FSRM_E_RMS_NO_PROTECTORS_INSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200126));
+pub const FSRM_E_RMS_TEMPLATE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200128));
+pub const FSRM_E_SECURE_PROPERTIES_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200127));
+pub const FSRM_E_SET_PROPERTY_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200172));
+pub const FSRM_E_SHADOW_COPY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200212));
+pub const FSRM_E_STORE_NOT_INSTALLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200209));
+pub const FSRM_E_SYNC_TASK_HAD_ERRORS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200119));
+pub const FSRM_E_SYNC_TASK_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200144));
+pub const FSRM_E_TEXTREADER_FILENAME_TOO_LONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200158));
+pub const FSRM_E_TEXTREADER_IFILTER_CLSID_MALFORMED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200160));
+pub const FSRM_E_TEXTREADER_IFILTER_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200167));
+pub const FSRM_E_TEXTREADER_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200168));
+pub const FSRM_E_TEXTREADER_STREAM_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200159));
+pub const FSRM_E_UNEXPECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200234));
+pub const FSRM_E_UNSECURE_LINK_TO_HOSTED_MODULE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200188));
+pub const FSRM_E_VOLUME_OFFLINE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200154));
+pub const FSRM_E_VOLUME_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200235));
+pub const FSRM_E_WMI_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200121));
+pub const FSRM_E_XML_CORRUPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147200211));
+pub const FSRM_S_CLASSIFICATION_SCAN_FAILURES = @import("../zig.zig").typedConst(HRESULT, @as(i32, 283398));
+pub const FSRM_S_PARTIAL_BATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, 283396));
+pub const FSRM_S_PARTIAL_CLASSIFICATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, 283397));
+pub const FsrmDaysNotSpecified = @as(i32, -1);
+pub const FsrmMaxExcludeFolders = @as(u32, 32);
+pub const FsrmMaxNumberPropertyDefinitions = @as(u32, 100);
+pub const FsrmMaxNumberThresholds = @as(u32, 16);
+pub const FsrmMaxThresholdValue = @as(u32, 250);
+pub const FsrmMinQuotaLimit = @as(u32, 1024);
+pub const FsrmMinThresholdValue = @as(u32, 1);
+pub const MessageSizeLimit = @as(u32, 4096);
 
 //--------------------------------------------------------------------------------
 // Section: Types (117)
 //--------------------------------------------------------------------------------
-pub const FsrmQuotaFlags = enum(i32) {
-    Enforce = 256,
-    Disable = 512,
-    StatusIncomplete = 65536,
-    StatusRebuilding = 131072,
+pub const AdrClientDisplayFlags = enum(i32) {
+    AllowEmailRequests = 1,
+    ShowDeviceTroubleshooting = 2,
 };
-pub const FsrmQuotaFlags_Enforce = FsrmQuotaFlags.Enforce;
-pub const FsrmQuotaFlags_Disable = FsrmQuotaFlags.Disable;
-pub const FsrmQuotaFlags_StatusIncomplete = FsrmQuotaFlags.StatusIncomplete;
-pub const FsrmQuotaFlags_StatusRebuilding = FsrmQuotaFlags.StatusRebuilding;
+pub const AdrClientDisplayFlags_AllowEmailRequests = AdrClientDisplayFlags.AllowEmailRequests;
+pub const AdrClientDisplayFlags_ShowDeviceTroubleshooting = AdrClientDisplayFlags.ShowDeviceTroubleshooting;
 
-pub const FsrmFileScreenFlags = enum(i32) {
-    e = 1,
-};
-pub const FsrmFileScreenFlags_Enforce = FsrmFileScreenFlags.e;
-
-pub const FsrmCollectionState = enum(i32) {
-    Fetching = 1,
-    Committing = 2,
-    Complete = 3,
-    Cancelled = 4,
-};
-pub const FsrmCollectionState_Fetching = FsrmCollectionState.Fetching;
-pub const FsrmCollectionState_Committing = FsrmCollectionState.Committing;
-pub const FsrmCollectionState_Complete = FsrmCollectionState.Complete;
-pub const FsrmCollectionState_Cancelled = FsrmCollectionState.Cancelled;
-
-pub const FsrmEnumOptions = enum(i32) {
-    None = 0,
-    Asynchronous = 1,
-    CheckRecycleBin = 2,
-    IncludeClusterNodes = 4,
-    IncludeDeprecatedObjects = 8,
-};
-pub const FsrmEnumOptions_None = FsrmEnumOptions.None;
-pub const FsrmEnumOptions_Asynchronous = FsrmEnumOptions.Asynchronous;
-pub const FsrmEnumOptions_CheckRecycleBin = FsrmEnumOptions.CheckRecycleBin;
-pub const FsrmEnumOptions_IncludeClusterNodes = FsrmEnumOptions.IncludeClusterNodes;
-pub const FsrmEnumOptions_IncludeDeprecatedObjects = FsrmEnumOptions.IncludeDeprecatedObjects;
-
-pub const FsrmCommitOptions = enum(i32) {
-    None = 0,
-    Asynchronous = 1,
-};
-pub const FsrmCommitOptions_None = FsrmCommitOptions.None;
-pub const FsrmCommitOptions_Asynchronous = FsrmCommitOptions.Asynchronous;
-
-pub const FsrmTemplateApplyOptions = enum(i32) {
-    Matching = 1,
-    All = 2,
-};
-pub const FsrmTemplateApplyOptions_ApplyToDerivedMatching = FsrmTemplateApplyOptions.Matching;
-pub const FsrmTemplateApplyOptions_ApplyToDerivedAll = FsrmTemplateApplyOptions.All;
-
-pub const FsrmActionType = enum(i32) {
+pub const AdrClientErrorType = enum(i32) {
     Unknown = 0,
-    EventLog = 1,
-    Email = 2,
-    Command = 3,
-    Report = 4,
+    AccessDenied = 1,
+    FileNotFound = 2,
 };
-pub const FsrmActionType_Unknown = FsrmActionType.Unknown;
-pub const FsrmActionType_EventLog = FsrmActionType.EventLog;
-pub const FsrmActionType_Email = FsrmActionType.Email;
-pub const FsrmActionType_Command = FsrmActionType.Command;
-pub const FsrmActionType_Report = FsrmActionType.Report;
+pub const AdrClientErrorType_Unknown = AdrClientErrorType.Unknown;
+pub const AdrClientErrorType_AccessDenied = AdrClientErrorType.AccessDenied;
+pub const AdrClientErrorType_FileNotFound = AdrClientErrorType.FileNotFound;
 
-pub const FsrmEventType = enum(i32) {
-    Unknown = 0,
-    Information = 1,
-    Warning = 2,
-    Error = 3,
+pub const AdrClientFlags = enum(i32) {
+    None = 0,
+    FailForLocalPaths = 1,
+    FailIfNotSupportedByServer = 2,
+    FailIfNotDomainJoined = 4,
 };
-pub const FsrmEventType_Unknown = FsrmEventType.Unknown;
-pub const FsrmEventType_Information = FsrmEventType.Information;
-pub const FsrmEventType_Warning = FsrmEventType.Warning;
-pub const FsrmEventType_Error = FsrmEventType.Error;
+pub const AdrClientFlags_None = AdrClientFlags.None;
+pub const AdrClientFlags_FailForLocalPaths = AdrClientFlags.FailForLocalPaths;
+pub const AdrClientFlags_FailIfNotSupportedByServer = AdrClientFlags.FailIfNotSupportedByServer;
+pub const AdrClientFlags_FailIfNotDomainJoined = AdrClientFlags.FailIfNotDomainJoined;
+
+pub const AdrEmailFlags = enum(i32) {
+    PutDataOwnerOnToLine = 1,
+    PutAdminOnToLine = 2,
+    IncludeDeviceClaims = 4,
+    IncludeUserInfo = 8,
+    GenerateEventLog = 16,
+};
+pub const AdrEmailFlags_PutDataOwnerOnToLine = AdrEmailFlags.PutDataOwnerOnToLine;
+pub const AdrEmailFlags_PutAdminOnToLine = AdrEmailFlags.PutAdminOnToLine;
+pub const AdrEmailFlags_IncludeDeviceClaims = AdrEmailFlags.IncludeDeviceClaims;
+pub const AdrEmailFlags_IncludeUserInfo = AdrEmailFlags.IncludeUserInfo;
+pub const AdrEmailFlags_GenerateEventLog = AdrEmailFlags.GenerateEventLog;
+
+const CLSID_AdSyncTask_Value = Guid.initString("2ae64751-b728-4d6b-97a0-b2da2e7d2a3b");
+pub const CLSID_AdSyncTask = &CLSID_AdSyncTask_Value;
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_DIFsrmClassificationEvents_Value = Guid.initString("26942db0-dabf-41d8-bbdd-b129a9f70424");
+pub const IID_DIFsrmClassificationEvents = &IID_DIFsrmClassificationEvents_Value;
+pub const DIFsrmClassificationEvents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+};
+
+const CLSID_FsrmAccessDeniedRemediationClient_Value = Guid.initString("100b4fc8-74c1-470f-b1b7-dd7b6bae79bd");
+pub const CLSID_FsrmAccessDeniedRemediationClient = &CLSID_FsrmAccessDeniedRemediationClient_Value;
 
 pub const FsrmAccountType = enum(i32) {
     Unknown = 0,
@@ -252,119 +232,262 @@ pub const FsrmAccountType_InProc = FsrmAccountType.InProc;
 pub const FsrmAccountType_External = FsrmAccountType.External;
 pub const FsrmAccountType_Automatic = FsrmAccountType.Automatic;
 
-pub const FsrmReportType = enum(i32) {
+pub const FsrmActionType = enum(i32) {
     Unknown = 0,
-    LargeFiles = 1,
-    FilesByType = 2,
-    LeastRecentlyAccessed = 3,
-    MostRecentlyAccessed = 4,
-    QuotaUsage = 5,
-    FilesByOwner = 6,
-    ExportReport = 7,
-    DuplicateFiles = 8,
-    FileScreenAudit = 9,
-    FilesByProperty = 10,
-    AutomaticClassification = 11,
-    Expiration = 12,
-    FoldersByProperty = 13,
+    EventLog = 1,
+    Email = 2,
+    Command = 3,
+    Report = 4,
 };
-pub const FsrmReportType_Unknown = FsrmReportType.Unknown;
-pub const FsrmReportType_LargeFiles = FsrmReportType.LargeFiles;
-pub const FsrmReportType_FilesByType = FsrmReportType.FilesByType;
-pub const FsrmReportType_LeastRecentlyAccessed = FsrmReportType.LeastRecentlyAccessed;
-pub const FsrmReportType_MostRecentlyAccessed = FsrmReportType.MostRecentlyAccessed;
-pub const FsrmReportType_QuotaUsage = FsrmReportType.QuotaUsage;
-pub const FsrmReportType_FilesByOwner = FsrmReportType.FilesByOwner;
-pub const FsrmReportType_ExportReport = FsrmReportType.ExportReport;
-pub const FsrmReportType_DuplicateFiles = FsrmReportType.DuplicateFiles;
-pub const FsrmReportType_FileScreenAudit = FsrmReportType.FileScreenAudit;
-pub const FsrmReportType_FilesByProperty = FsrmReportType.FilesByProperty;
-pub const FsrmReportType_AutomaticClassification = FsrmReportType.AutomaticClassification;
-pub const FsrmReportType_Expiration = FsrmReportType.Expiration;
-pub const FsrmReportType_FoldersByProperty = FsrmReportType.FoldersByProperty;
+pub const FsrmActionType_Unknown = FsrmActionType.Unknown;
+pub const FsrmActionType_EventLog = FsrmActionType.EventLog;
+pub const FsrmActionType_Email = FsrmActionType.Email;
+pub const FsrmActionType_Command = FsrmActionType.Command;
+pub const FsrmActionType_Report = FsrmActionType.Report;
 
-pub const FsrmReportFormat = enum(i32) {
+pub const FsrmClassificationLoggingFlags = enum(i32) {
+    None = 0,
+    ClassificationsInLogFile = 1,
+    ErrorsInLogFile = 2,
+    ClassificationsInSystemLog = 4,
+    ErrorsInSystemLog = 8,
+};
+pub const FsrmClassificationLoggingFlags_None = FsrmClassificationLoggingFlags.None;
+pub const FsrmClassificationLoggingFlags_ClassificationsInLogFile = FsrmClassificationLoggingFlags.ClassificationsInLogFile;
+pub const FsrmClassificationLoggingFlags_ErrorsInLogFile = FsrmClassificationLoggingFlags.ErrorsInLogFile;
+pub const FsrmClassificationLoggingFlags_ClassificationsInSystemLog = FsrmClassificationLoggingFlags.ClassificationsInSystemLog;
+pub const FsrmClassificationLoggingFlags_ErrorsInSystemLog = FsrmClassificationLoggingFlags.ErrorsInSystemLog;
+
+const CLSID_FsrmClassificationManager_Value = Guid.initString("b15c0e47-c391-45b9-95c8-eb596c853f3a");
+pub const CLSID_FsrmClassificationManager = &CLSID_FsrmClassificationManager_Value;
+
+pub const FsrmCollectionState = enum(i32) {
+    Fetching = 1,
+    Committing = 2,
+    Complete = 3,
+    Cancelled = 4,
+};
+pub const FsrmCollectionState_Fetching = FsrmCollectionState.Fetching;
+pub const FsrmCollectionState_Committing = FsrmCollectionState.Committing;
+pub const FsrmCollectionState_Complete = FsrmCollectionState.Complete;
+pub const FsrmCollectionState_Cancelled = FsrmCollectionState.Cancelled;
+
+pub const FsrmCommitOptions = enum(i32) {
+    None = 0,
+    Asynchronous = 1,
+};
+pub const FsrmCommitOptions_None = FsrmCommitOptions.None;
+pub const FsrmCommitOptions_Asynchronous = FsrmCommitOptions.Asynchronous;
+
+pub const FsrmEnumOptions = enum(i32) {
+    None = 0,
+    Asynchronous = 1,
+    CheckRecycleBin = 2,
+    IncludeClusterNodes = 4,
+    IncludeDeprecatedObjects = 8,
+};
+pub const FsrmEnumOptions_None = FsrmEnumOptions.None;
+pub const FsrmEnumOptions_Asynchronous = FsrmEnumOptions.Asynchronous;
+pub const FsrmEnumOptions_CheckRecycleBin = FsrmEnumOptions.CheckRecycleBin;
+pub const FsrmEnumOptions_IncludeClusterNodes = FsrmEnumOptions.IncludeClusterNodes;
+pub const FsrmEnumOptions_IncludeDeprecatedObjects = FsrmEnumOptions.IncludeDeprecatedObjects;
+
+pub const FsrmEventType = enum(i32) {
     Unknown = 0,
-    DHtml = 1,
-    Html = 2,
-    Txt = 3,
-    Csv = 4,
-    Xml = 5,
+    Information = 1,
+    Warning = 2,
+    Error = 3,
 };
-pub const FsrmReportFormat_Unknown = FsrmReportFormat.Unknown;
-pub const FsrmReportFormat_DHtml = FsrmReportFormat.DHtml;
-pub const FsrmReportFormat_Html = FsrmReportFormat.Html;
-pub const FsrmReportFormat_Txt = FsrmReportFormat.Txt;
-pub const FsrmReportFormat_Csv = FsrmReportFormat.Csv;
-pub const FsrmReportFormat_Xml = FsrmReportFormat.Xml;
+pub const FsrmEventType_Unknown = FsrmEventType.Unknown;
+pub const FsrmEventType_Information = FsrmEventType.Information;
+pub const FsrmEventType_Warning = FsrmEventType.Warning;
+pub const FsrmEventType_Error = FsrmEventType.Error;
 
-pub const FsrmReportRunningStatus = enum(i32) {
+pub const FsrmExecutionOption = enum(i32) {
     Unknown = 0,
-    NotRunning = 1,
-    Queued = 2,
-    Running = 3,
+    EvaluateUnset = 1,
+    ReEvaluate_ConsiderExistingValue = 2,
+    ReEvaluate_IgnoreExistingValue = 3,
 };
-pub const FsrmReportRunningStatus_Unknown = FsrmReportRunningStatus.Unknown;
-pub const FsrmReportRunningStatus_NotRunning = FsrmReportRunningStatus.NotRunning;
-pub const FsrmReportRunningStatus_Queued = FsrmReportRunningStatus.Queued;
-pub const FsrmReportRunningStatus_Running = FsrmReportRunningStatus.Running;
+pub const FsrmExecutionOption_Unknown = FsrmExecutionOption.Unknown;
+pub const FsrmExecutionOption_EvaluateUnset = FsrmExecutionOption.EvaluateUnset;
+pub const FsrmExecutionOption_ReEvaluate_ConsiderExistingValue = FsrmExecutionOption.ReEvaluate_ConsiderExistingValue;
+pub const FsrmExecutionOption_ReEvaluate_IgnoreExistingValue = FsrmExecutionOption.ReEvaluate_IgnoreExistingValue;
 
-pub const FsrmReportGenerationContext = enum(i32) {
-    Undefined = 1,
-    ScheduledReport = 2,
-    InteractiveReport = 3,
-    IncidentReport = 4,
-};
-pub const FsrmReportGenerationContext_Undefined = FsrmReportGenerationContext.Undefined;
-pub const FsrmReportGenerationContext_ScheduledReport = FsrmReportGenerationContext.ScheduledReport;
-pub const FsrmReportGenerationContext_InteractiveReport = FsrmReportGenerationContext.InteractiveReport;
-pub const FsrmReportGenerationContext_IncidentReport = FsrmReportGenerationContext.IncidentReport;
+const CLSID_FsrmExportImport_Value = Guid.initString("1482dc37-fae9-4787-9025-8ce4e024ab56");
+pub const CLSID_FsrmExportImport = &CLSID_FsrmExportImport_Value;
 
-pub const FsrmReportFilter = enum(i32) {
-    MinSize = 1,
-    MinAgeDays = 2,
-    MaxAgeDays = 3,
-    MinQuotaUsage = 4,
-    FileGroups = 5,
-    Owners = 6,
-    NamePattern = 7,
-    Property = 8,
+pub const FsrmFileConditionType = enum(i32) {
+    Unknown = 0,
+    Property = 1,
 };
-pub const FsrmReportFilter_MinSize = FsrmReportFilter.MinSize;
-pub const FsrmReportFilter_MinAgeDays = FsrmReportFilter.MinAgeDays;
-pub const FsrmReportFilter_MaxAgeDays = FsrmReportFilter.MaxAgeDays;
-pub const FsrmReportFilter_MinQuotaUsage = FsrmReportFilter.MinQuotaUsage;
-pub const FsrmReportFilter_FileGroups = FsrmReportFilter.FileGroups;
-pub const FsrmReportFilter_Owners = FsrmReportFilter.Owners;
-pub const FsrmReportFilter_NamePattern = FsrmReportFilter.NamePattern;
-pub const FsrmReportFilter_Property = FsrmReportFilter.Property;
+pub const FsrmFileConditionType_Unknown = FsrmFileConditionType.Unknown;
+pub const FsrmFileConditionType_Property = FsrmFileConditionType.Property;
 
-pub const FsrmReportLimit = enum(i32) {
-    Files = 1,
-    FileGroups = 2,
-    Owners = 3,
-    FilesPerFileGroup = 4,
-    FilesPerOwner = 5,
-    FilesPerDuplGroup = 6,
-    DuplicateGroups = 7,
-    Quotas = 8,
-    FileScreenEvents = 9,
-    PropertyValues = 10,
-    FilesPerPropertyValue = 11,
-    Folders = 12,
+const CLSID_FsrmFileGroupManager_Value = Guid.initString("8f1363f6-656f-4496-9226-13aecbd7718f");
+pub const CLSID_FsrmFileGroupManager = &CLSID_FsrmFileGroupManager_Value;
+
+const CLSID_FsrmFileManagementJobManager_Value = Guid.initString("eb18f9b2-4c3a-4321-b203-205120cff614");
+pub const CLSID_FsrmFileManagementJobManager = &CLSID_FsrmFileManagementJobManager_Value;
+
+pub const FsrmFileManagementLoggingFlags = enum(i32) {
+    None = 0,
+    Error = 1,
+    Information = 2,
+    Audit = 4,
 };
-pub const FsrmReportLimit_MaxFiles = FsrmReportLimit.Files;
-pub const FsrmReportLimit_MaxFileGroups = FsrmReportLimit.FileGroups;
-pub const FsrmReportLimit_MaxOwners = FsrmReportLimit.Owners;
-pub const FsrmReportLimit_MaxFilesPerFileGroup = FsrmReportLimit.FilesPerFileGroup;
-pub const FsrmReportLimit_MaxFilesPerOwner = FsrmReportLimit.FilesPerOwner;
-pub const FsrmReportLimit_MaxFilesPerDuplGroup = FsrmReportLimit.FilesPerDuplGroup;
-pub const FsrmReportLimit_MaxDuplicateGroups = FsrmReportLimit.DuplicateGroups;
-pub const FsrmReportLimit_MaxQuotas = FsrmReportLimit.Quotas;
-pub const FsrmReportLimit_MaxFileScreenEvents = FsrmReportLimit.FileScreenEvents;
-pub const FsrmReportLimit_MaxPropertyValues = FsrmReportLimit.PropertyValues;
-pub const FsrmReportLimit_MaxFilesPerPropertyValue = FsrmReportLimit.FilesPerPropertyValue;
-pub const FsrmReportLimit_MaxFolders = FsrmReportLimit.Folders;
+pub const FsrmFileManagementLoggingFlags_None = FsrmFileManagementLoggingFlags.None;
+pub const FsrmFileManagementLoggingFlags_Error = FsrmFileManagementLoggingFlags.Error;
+pub const FsrmFileManagementLoggingFlags_Information = FsrmFileManagementLoggingFlags.Information;
+pub const FsrmFileManagementLoggingFlags_Audit = FsrmFileManagementLoggingFlags.Audit;
+
+pub const FsrmFileManagementType = enum(i32) {
+    Unknown = 0,
+    Expiration = 1,
+    Custom = 2,
+    Rms = 3,
+};
+pub const FsrmFileManagementType_Unknown = FsrmFileManagementType.Unknown;
+pub const FsrmFileManagementType_Expiration = FsrmFileManagementType.Expiration;
+pub const FsrmFileManagementType_Custom = FsrmFileManagementType.Custom;
+pub const FsrmFileManagementType_Rms = FsrmFileManagementType.Rms;
+
+pub const FsrmFileScreenFlags = enum(i32) {
+    e = 1,
+};
+pub const FsrmFileScreenFlags_Enforce = FsrmFileScreenFlags.e;
+
+const CLSID_FsrmFileScreenManager_Value = Guid.initString("95941183-db53-4c5f-b37b-7d0921cf9dc7");
+pub const CLSID_FsrmFileScreenManager = &CLSID_FsrmFileScreenManager_Value;
+
+const CLSID_FsrmFileScreenTemplateManager_Value = Guid.initString("243111df-e474-46aa-a054-eaa33edc292a");
+pub const CLSID_FsrmFileScreenTemplateManager = &CLSID_FsrmFileScreenTemplateManager_Value;
+
+pub const FsrmFileStreamingInterfaceType = enum(i32) {
+    Unknown = 0,
+    ILockBytes = 1,
+    IStream = 2,
+};
+pub const FsrmFileStreamingInterfaceType_Unknown = FsrmFileStreamingInterfaceType.Unknown;
+pub const FsrmFileStreamingInterfaceType_ILockBytes = FsrmFileStreamingInterfaceType.ILockBytes;
+pub const FsrmFileStreamingInterfaceType_IStream = FsrmFileStreamingInterfaceType.IStream;
+
+pub const FsrmFileStreamingMode = enum(i32) {
+    Unknown = 0,
+    Read = 1,
+    Write = 2,
+};
+pub const FsrmFileStreamingMode_Unknown = FsrmFileStreamingMode.Unknown;
+pub const FsrmFileStreamingMode_Read = FsrmFileStreamingMode.Read;
+pub const FsrmFileStreamingMode_Write = FsrmFileStreamingMode.Write;
+
+pub const FsrmFileSystemPropertyId = enum(i32) {
+    Undefined = 0,
+    FileName = 1,
+    DateCreated = 2,
+    DateLastAccessed = 3,
+    DateLastModified = 4,
+    DateNow = 5,
+};
+pub const FsrmFileSystemPropertyId_Undefined = FsrmFileSystemPropertyId.Undefined;
+pub const FsrmFileSystemPropertyId_FileName = FsrmFileSystemPropertyId.FileName;
+pub const FsrmFileSystemPropertyId_DateCreated = FsrmFileSystemPropertyId.DateCreated;
+pub const FsrmFileSystemPropertyId_DateLastAccessed = FsrmFileSystemPropertyId.DateLastAccessed;
+pub const FsrmFileSystemPropertyId_DateLastModified = FsrmFileSystemPropertyId.DateLastModified;
+pub const FsrmFileSystemPropertyId_DateNow = FsrmFileSystemPropertyId.DateNow;
+
+pub const FsrmGetFilePropertyOptions = enum(i32) {
+    None = 0,
+    NoRuleEvaluation = 1,
+    Persistent = 2,
+    FailOnPersistErrors = 4,
+    SkipOrphaned = 8,
+};
+pub const FsrmGetFilePropertyOptions_None = FsrmGetFilePropertyOptions.None;
+pub const FsrmGetFilePropertyOptions_NoRuleEvaluation = FsrmGetFilePropertyOptions.NoRuleEvaluation;
+pub const FsrmGetFilePropertyOptions_Persistent = FsrmGetFilePropertyOptions.Persistent;
+pub const FsrmGetFilePropertyOptions_FailOnPersistErrors = FsrmGetFilePropertyOptions.FailOnPersistErrors;
+pub const FsrmGetFilePropertyOptions_SkipOrphaned = FsrmGetFilePropertyOptions.SkipOrphaned;
+
+const CLSID_FsrmPathMapper_Value = Guid.initString("f3be42bd-8ac2-409e-bbd8-faf9b6b41feb");
+pub const CLSID_FsrmPathMapper = &CLSID_FsrmPathMapper_Value;
+
+const CLSID_FsrmPipelineModuleConnector_Value = Guid.initString("c7643375-1eb5-44de-a062-623547d933bc");
+pub const CLSID_FsrmPipelineModuleConnector = &CLSID_FsrmPipelineModuleConnector_Value;
+
+pub const FsrmPipelineModuleType = enum(i32) {
+    Unknown = 0,
+    Storage = 1,
+    Classifier = 2,
+};
+pub const FsrmPipelineModuleType_Unknown = FsrmPipelineModuleType.Unknown;
+pub const FsrmPipelineModuleType_Storage = FsrmPipelineModuleType.Storage;
+pub const FsrmPipelineModuleType_Classifier = FsrmPipelineModuleType.Classifier;
+
+pub const FsrmPropertyBagField = enum(i32) {
+    AccessVolume = 0,
+    VolumeGuidName = 1,
+};
+pub const FsrmPropertyBagField_AccessVolume = FsrmPropertyBagField.AccessVolume;
+pub const FsrmPropertyBagField_VolumeGuidName = FsrmPropertyBagField.VolumeGuidName;
+
+pub const FsrmPropertyBagFlags = enum(i32) {
+    UpdatedByClassifier = 1,
+    FailedLoadingProperties = 2,
+    FailedSavingProperties = 4,
+    FailedClassifyingProperties = 8,
+};
+pub const FsrmPropertyBagFlags_UpdatedByClassifier = FsrmPropertyBagFlags.UpdatedByClassifier;
+pub const FsrmPropertyBagFlags_FailedLoadingProperties = FsrmPropertyBagFlags.FailedLoadingProperties;
+pub const FsrmPropertyBagFlags_FailedSavingProperties = FsrmPropertyBagFlags.FailedSavingProperties;
+pub const FsrmPropertyBagFlags_FailedClassifyingProperties = FsrmPropertyBagFlags.FailedClassifyingProperties;
+
+pub const FsrmPropertyConditionType = enum(i32) {
+    Unknown = 0,
+    Equal = 1,
+    NotEqual = 2,
+    GreaterThan = 3,
+    LessThan = 4,
+    Contain = 5,
+    Exist = 6,
+    NotExist = 7,
+    StartWith = 8,
+    EndWith = 9,
+    ContainedIn = 10,
+    PrefixOf = 11,
+    SuffixOf = 12,
+    MatchesPattern = 13,
+};
+pub const FsrmPropertyConditionType_Unknown = FsrmPropertyConditionType.Unknown;
+pub const FsrmPropertyConditionType_Equal = FsrmPropertyConditionType.Equal;
+pub const FsrmPropertyConditionType_NotEqual = FsrmPropertyConditionType.NotEqual;
+pub const FsrmPropertyConditionType_GreaterThan = FsrmPropertyConditionType.GreaterThan;
+pub const FsrmPropertyConditionType_LessThan = FsrmPropertyConditionType.LessThan;
+pub const FsrmPropertyConditionType_Contain = FsrmPropertyConditionType.Contain;
+pub const FsrmPropertyConditionType_Exist = FsrmPropertyConditionType.Exist;
+pub const FsrmPropertyConditionType_NotExist = FsrmPropertyConditionType.NotExist;
+pub const FsrmPropertyConditionType_StartWith = FsrmPropertyConditionType.StartWith;
+pub const FsrmPropertyConditionType_EndWith = FsrmPropertyConditionType.EndWith;
+pub const FsrmPropertyConditionType_ContainedIn = FsrmPropertyConditionType.ContainedIn;
+pub const FsrmPropertyConditionType_PrefixOf = FsrmPropertyConditionType.PrefixOf;
+pub const FsrmPropertyConditionType_SuffixOf = FsrmPropertyConditionType.SuffixOf;
+pub const FsrmPropertyConditionType_MatchesPattern = FsrmPropertyConditionType.MatchesPattern;
+
+pub const FsrmPropertyDefinitionAppliesTo = enum(i32) {
+    iles = 1,
+    olders = 2,
+};
+pub const FsrmPropertyDefinitionAppliesTo_Files = FsrmPropertyDefinitionAppliesTo.iles;
+pub const FsrmPropertyDefinitionAppliesTo_Folders = FsrmPropertyDefinitionAppliesTo.olders;
+
+pub const FsrmPropertyDefinitionFlags = enum(i32) {
+    Global = 1,
+    Deprecated = 2,
+    Secure = 4,
+};
+pub const FsrmPropertyDefinitionFlags_Global = FsrmPropertyDefinitionFlags.Global;
+pub const FsrmPropertyDefinitionFlags_Deprecated = FsrmPropertyDefinitionFlags.Deprecated;
+pub const FsrmPropertyDefinitionFlags_Secure = FsrmPropertyDefinitionFlags.Secure;
 
 pub const FsrmPropertyDefinitionType = enum(i32) {
     Unknown = 0,
@@ -386,110 +509,6 @@ pub const FsrmPropertyDefinitionType_MultiString = FsrmPropertyDefinitionType.Mu
 pub const FsrmPropertyDefinitionType_Int = FsrmPropertyDefinitionType.Int;
 pub const FsrmPropertyDefinitionType_Bool = FsrmPropertyDefinitionType.Bool;
 pub const FsrmPropertyDefinitionType_Date = FsrmPropertyDefinitionType.Date;
-
-pub const FsrmPropertyDefinitionFlags = enum(i32) {
-    Global = 1,
-    Deprecated = 2,
-    Secure = 4,
-};
-pub const FsrmPropertyDefinitionFlags_Global = FsrmPropertyDefinitionFlags.Global;
-pub const FsrmPropertyDefinitionFlags_Deprecated = FsrmPropertyDefinitionFlags.Deprecated;
-pub const FsrmPropertyDefinitionFlags_Secure = FsrmPropertyDefinitionFlags.Secure;
-
-pub const FsrmPropertyDefinitionAppliesTo = enum(i32) {
-    iles = 1,
-    olders = 2,
-};
-pub const FsrmPropertyDefinitionAppliesTo_Files = FsrmPropertyDefinitionAppliesTo.iles;
-pub const FsrmPropertyDefinitionAppliesTo_Folders = FsrmPropertyDefinitionAppliesTo.olders;
-
-pub const FsrmRuleType = enum(i32) {
-    Unknown = 0,
-    Classification = 1,
-    Generic = 2,
-};
-pub const FsrmRuleType_Unknown = FsrmRuleType.Unknown;
-pub const FsrmRuleType_Classification = FsrmRuleType.Classification;
-pub const FsrmRuleType_Generic = FsrmRuleType.Generic;
-
-pub const FsrmRuleFlags = enum(i32) {
-    Disabled = 256,
-    ClearAutomaticallyClassifiedProperty = 1024,
-    ClearManuallyClassifiedProperty = 2048,
-    Invalid = 4096,
-};
-pub const FsrmRuleFlags_Disabled = FsrmRuleFlags.Disabled;
-pub const FsrmRuleFlags_ClearAutomaticallyClassifiedProperty = FsrmRuleFlags.ClearAutomaticallyClassifiedProperty;
-pub const FsrmRuleFlags_ClearManuallyClassifiedProperty = FsrmRuleFlags.ClearManuallyClassifiedProperty;
-pub const FsrmRuleFlags_Invalid = FsrmRuleFlags.Invalid;
-
-pub const FsrmClassificationLoggingFlags = enum(i32) {
-    None = 0,
-    ClassificationsInLogFile = 1,
-    ErrorsInLogFile = 2,
-    ClassificationsInSystemLog = 4,
-    ErrorsInSystemLog = 8,
-};
-pub const FsrmClassificationLoggingFlags_None = FsrmClassificationLoggingFlags.None;
-pub const FsrmClassificationLoggingFlags_ClassificationsInLogFile = FsrmClassificationLoggingFlags.ClassificationsInLogFile;
-pub const FsrmClassificationLoggingFlags_ErrorsInLogFile = FsrmClassificationLoggingFlags.ErrorsInLogFile;
-pub const FsrmClassificationLoggingFlags_ClassificationsInSystemLog = FsrmClassificationLoggingFlags.ClassificationsInSystemLog;
-pub const FsrmClassificationLoggingFlags_ErrorsInSystemLog = FsrmClassificationLoggingFlags.ErrorsInSystemLog;
-
-pub const FsrmExecutionOption = enum(i32) {
-    Unknown = 0,
-    EvaluateUnset = 1,
-    ReEvaluate_ConsiderExistingValue = 2,
-    ReEvaluate_IgnoreExistingValue = 3,
-};
-pub const FsrmExecutionOption_Unknown = FsrmExecutionOption.Unknown;
-pub const FsrmExecutionOption_EvaluateUnset = FsrmExecutionOption.EvaluateUnset;
-pub const FsrmExecutionOption_ReEvaluate_ConsiderExistingValue = FsrmExecutionOption.ReEvaluate_ConsiderExistingValue;
-pub const FsrmExecutionOption_ReEvaluate_IgnoreExistingValue = FsrmExecutionOption.ReEvaluate_IgnoreExistingValue;
-
-pub const FsrmStorageModuleCaps = enum(i32) {
-    Unknown = 0,
-    CanGet = 1,
-    CanSet = 2,
-    CanHandleDirectories = 4,
-    CanHandleFiles = 8,
-};
-pub const FsrmStorageModuleCaps_Unknown = FsrmStorageModuleCaps.Unknown;
-pub const FsrmStorageModuleCaps_CanGet = FsrmStorageModuleCaps.CanGet;
-pub const FsrmStorageModuleCaps_CanSet = FsrmStorageModuleCaps.CanSet;
-pub const FsrmStorageModuleCaps_CanHandleDirectories = FsrmStorageModuleCaps.CanHandleDirectories;
-pub const FsrmStorageModuleCaps_CanHandleFiles = FsrmStorageModuleCaps.CanHandleFiles;
-
-pub const FsrmStorageModuleType = enum(i32) {
-    Unknown = 0,
-    Cache = 1,
-    InFile = 2,
-    Database = 3,
-    System = 100,
-};
-pub const FsrmStorageModuleType_Unknown = FsrmStorageModuleType.Unknown;
-pub const FsrmStorageModuleType_Cache = FsrmStorageModuleType.Cache;
-pub const FsrmStorageModuleType_InFile = FsrmStorageModuleType.InFile;
-pub const FsrmStorageModuleType_Database = FsrmStorageModuleType.Database;
-pub const FsrmStorageModuleType_System = FsrmStorageModuleType.System;
-
-pub const FsrmPropertyBagFlags = enum(i32) {
-    UpdatedByClassifier = 1,
-    FailedLoadingProperties = 2,
-    FailedSavingProperties = 4,
-    FailedClassifyingProperties = 8,
-};
-pub const FsrmPropertyBagFlags_UpdatedByClassifier = FsrmPropertyBagFlags.UpdatedByClassifier;
-pub const FsrmPropertyBagFlags_FailedLoadingProperties = FsrmPropertyBagFlags.FailedLoadingProperties;
-pub const FsrmPropertyBagFlags_FailedSavingProperties = FsrmPropertyBagFlags.FailedSavingProperties;
-pub const FsrmPropertyBagFlags_FailedClassifyingProperties = FsrmPropertyBagFlags.FailedClassifyingProperties;
-
-pub const FsrmPropertyBagField = enum(i32) {
-    AccessVolume = 0,
-    VolumeGuidName = 1,
-};
-pub const FsrmPropertyBagField_AccessVolume = FsrmPropertyBagField.AccessVolume;
-pub const FsrmPropertyBagField_VolumeGuidName = FsrmPropertyBagField.VolumeGuidName;
 
 pub const FsrmPropertyFlags = enum(i32) {
     None = 0,
@@ -534,121 +553,6 @@ pub const FsrmPropertyFlags_PropertyDeletedFromClear = FsrmPropertyFlags.Propert
 pub const FsrmPropertyFlags_PropertySourceMask = FsrmPropertyFlags.PropertySourceMask;
 pub const FsrmPropertyFlags_PersistentMask = FsrmPropertyFlags.PersistentMask;
 
-pub const FsrmPipelineModuleType = enum(i32) {
-    Unknown = 0,
-    Storage = 1,
-    Classifier = 2,
-};
-pub const FsrmPipelineModuleType_Unknown = FsrmPipelineModuleType.Unknown;
-pub const FsrmPipelineModuleType_Storage = FsrmPipelineModuleType.Storage;
-pub const FsrmPipelineModuleType_Classifier = FsrmPipelineModuleType.Classifier;
-
-pub const FsrmGetFilePropertyOptions = enum(i32) {
-    None = 0,
-    NoRuleEvaluation = 1,
-    Persistent = 2,
-    FailOnPersistErrors = 4,
-    SkipOrphaned = 8,
-};
-pub const FsrmGetFilePropertyOptions_None = FsrmGetFilePropertyOptions.None;
-pub const FsrmGetFilePropertyOptions_NoRuleEvaluation = FsrmGetFilePropertyOptions.NoRuleEvaluation;
-pub const FsrmGetFilePropertyOptions_Persistent = FsrmGetFilePropertyOptions.Persistent;
-pub const FsrmGetFilePropertyOptions_FailOnPersistErrors = FsrmGetFilePropertyOptions.FailOnPersistErrors;
-pub const FsrmGetFilePropertyOptions_SkipOrphaned = FsrmGetFilePropertyOptions.SkipOrphaned;
-
-pub const FsrmFileManagementType = enum(i32) {
-    Unknown = 0,
-    Expiration = 1,
-    Custom = 2,
-    Rms = 3,
-};
-pub const FsrmFileManagementType_Unknown = FsrmFileManagementType.Unknown;
-pub const FsrmFileManagementType_Expiration = FsrmFileManagementType.Expiration;
-pub const FsrmFileManagementType_Custom = FsrmFileManagementType.Custom;
-pub const FsrmFileManagementType_Rms = FsrmFileManagementType.Rms;
-
-pub const FsrmFileManagementLoggingFlags = enum(i32) {
-    None = 0,
-    Error = 1,
-    Information = 2,
-    Audit = 4,
-};
-pub const FsrmFileManagementLoggingFlags_None = FsrmFileManagementLoggingFlags.None;
-pub const FsrmFileManagementLoggingFlags_Error = FsrmFileManagementLoggingFlags.Error;
-pub const FsrmFileManagementLoggingFlags_Information = FsrmFileManagementLoggingFlags.Information;
-pub const FsrmFileManagementLoggingFlags_Audit = FsrmFileManagementLoggingFlags.Audit;
-
-pub const FsrmPropertyConditionType = enum(i32) {
-    Unknown = 0,
-    Equal = 1,
-    NotEqual = 2,
-    GreaterThan = 3,
-    LessThan = 4,
-    Contain = 5,
-    Exist = 6,
-    NotExist = 7,
-    StartWith = 8,
-    EndWith = 9,
-    ContainedIn = 10,
-    PrefixOf = 11,
-    SuffixOf = 12,
-    MatchesPattern = 13,
-};
-pub const FsrmPropertyConditionType_Unknown = FsrmPropertyConditionType.Unknown;
-pub const FsrmPropertyConditionType_Equal = FsrmPropertyConditionType.Equal;
-pub const FsrmPropertyConditionType_NotEqual = FsrmPropertyConditionType.NotEqual;
-pub const FsrmPropertyConditionType_GreaterThan = FsrmPropertyConditionType.GreaterThan;
-pub const FsrmPropertyConditionType_LessThan = FsrmPropertyConditionType.LessThan;
-pub const FsrmPropertyConditionType_Contain = FsrmPropertyConditionType.Contain;
-pub const FsrmPropertyConditionType_Exist = FsrmPropertyConditionType.Exist;
-pub const FsrmPropertyConditionType_NotExist = FsrmPropertyConditionType.NotExist;
-pub const FsrmPropertyConditionType_StartWith = FsrmPropertyConditionType.StartWith;
-pub const FsrmPropertyConditionType_EndWith = FsrmPropertyConditionType.EndWith;
-pub const FsrmPropertyConditionType_ContainedIn = FsrmPropertyConditionType.ContainedIn;
-pub const FsrmPropertyConditionType_PrefixOf = FsrmPropertyConditionType.PrefixOf;
-pub const FsrmPropertyConditionType_SuffixOf = FsrmPropertyConditionType.SuffixOf;
-pub const FsrmPropertyConditionType_MatchesPattern = FsrmPropertyConditionType.MatchesPattern;
-
-pub const FsrmFileStreamingMode = enum(i32) {
-    Unknown = 0,
-    Read = 1,
-    Write = 2,
-};
-pub const FsrmFileStreamingMode_Unknown = FsrmFileStreamingMode.Unknown;
-pub const FsrmFileStreamingMode_Read = FsrmFileStreamingMode.Read;
-pub const FsrmFileStreamingMode_Write = FsrmFileStreamingMode.Write;
-
-pub const FsrmFileStreamingInterfaceType = enum(i32) {
-    Unknown = 0,
-    ILockBytes = 1,
-    IStream = 2,
-};
-pub const FsrmFileStreamingInterfaceType_Unknown = FsrmFileStreamingInterfaceType.Unknown;
-pub const FsrmFileStreamingInterfaceType_ILockBytes = FsrmFileStreamingInterfaceType.ILockBytes;
-pub const FsrmFileStreamingInterfaceType_IStream = FsrmFileStreamingInterfaceType.IStream;
-
-pub const FsrmFileConditionType = enum(i32) {
-    Unknown = 0,
-    Property = 1,
-};
-pub const FsrmFileConditionType_Unknown = FsrmFileConditionType.Unknown;
-pub const FsrmFileConditionType_Property = FsrmFileConditionType.Property;
-
-pub const FsrmFileSystemPropertyId = enum(i32) {
-    Undefined = 0,
-    FileName = 1,
-    DateCreated = 2,
-    DateLastAccessed = 3,
-    DateLastModified = 4,
-    DateNow = 5,
-};
-pub const FsrmFileSystemPropertyId_Undefined = FsrmFileSystemPropertyId.Undefined;
-pub const FsrmFileSystemPropertyId_FileName = FsrmFileSystemPropertyId.FileName;
-pub const FsrmFileSystemPropertyId_DateCreated = FsrmFileSystemPropertyId.DateCreated;
-pub const FsrmFileSystemPropertyId_DateLastAccessed = FsrmFileSystemPropertyId.DateLastAccessed;
-pub const FsrmFileSystemPropertyId_DateLastModified = FsrmFileSystemPropertyId.DateLastModified;
-pub const FsrmFileSystemPropertyId_DateNow = FsrmFileSystemPropertyId.DateNow;
-
 pub const FsrmPropertyValueType = enum(i32) {
     Undefined = 0,
     Literal = 1,
@@ -658,220 +562,221 @@ pub const FsrmPropertyValueType_Undefined = FsrmPropertyValueType.Undefined;
 pub const FsrmPropertyValueType_Literal = FsrmPropertyValueType.Literal;
 pub const FsrmPropertyValueType_DateOffset = FsrmPropertyValueType.DateOffset;
 
-pub const AdrClientDisplayFlags = enum(i32) {
-    AllowEmailRequests = 1,
-    ShowDeviceTroubleshooting = 2,
+pub const FsrmQuotaFlags = enum(i32) {
+    Enforce = 256,
+    Disable = 512,
+    StatusIncomplete = 65536,
+    StatusRebuilding = 131072,
 };
-pub const AdrClientDisplayFlags_AllowEmailRequests = AdrClientDisplayFlags.AllowEmailRequests;
-pub const AdrClientDisplayFlags_ShowDeviceTroubleshooting = AdrClientDisplayFlags.ShowDeviceTroubleshooting;
+pub const FsrmQuotaFlags_Enforce = FsrmQuotaFlags.Enforce;
+pub const FsrmQuotaFlags_Disable = FsrmQuotaFlags.Disable;
+pub const FsrmQuotaFlags_StatusIncomplete = FsrmQuotaFlags.StatusIncomplete;
+pub const FsrmQuotaFlags_StatusRebuilding = FsrmQuotaFlags.StatusRebuilding;
 
-pub const AdrEmailFlags = enum(i32) {
-    PutDataOwnerOnToLine = 1,
-    PutAdminOnToLine = 2,
-    IncludeDeviceClaims = 4,
-    IncludeUserInfo = 8,
-    GenerateEventLog = 16,
+const CLSID_FsrmQuotaManager_Value = Guid.initString("90dcab7f-347c-4bfc-b543-540326305fbe");
+pub const CLSID_FsrmQuotaManager = &CLSID_FsrmQuotaManager_Value;
+
+const CLSID_FsrmQuotaTemplateManager_Value = Guid.initString("97d3d443-251c-4337-81e7-b32e8f4ee65e");
+pub const CLSID_FsrmQuotaTemplateManager = &CLSID_FsrmQuotaTemplateManager_Value;
+
+pub const FsrmReportFilter = enum(i32) {
+    MinSize = 1,
+    MinAgeDays = 2,
+    MaxAgeDays = 3,
+    MinQuotaUsage = 4,
+    FileGroups = 5,
+    Owners = 6,
+    NamePattern = 7,
+    Property = 8,
 };
-pub const AdrEmailFlags_PutDataOwnerOnToLine = AdrEmailFlags.PutDataOwnerOnToLine;
-pub const AdrEmailFlags_PutAdminOnToLine = AdrEmailFlags.PutAdminOnToLine;
-pub const AdrEmailFlags_IncludeDeviceClaims = AdrEmailFlags.IncludeDeviceClaims;
-pub const AdrEmailFlags_IncludeUserInfo = AdrEmailFlags.IncludeUserInfo;
-pub const AdrEmailFlags_GenerateEventLog = AdrEmailFlags.GenerateEventLog;
+pub const FsrmReportFilter_MinSize = FsrmReportFilter.MinSize;
+pub const FsrmReportFilter_MinAgeDays = FsrmReportFilter.MinAgeDays;
+pub const FsrmReportFilter_MaxAgeDays = FsrmReportFilter.MaxAgeDays;
+pub const FsrmReportFilter_MinQuotaUsage = FsrmReportFilter.MinQuotaUsage;
+pub const FsrmReportFilter_FileGroups = FsrmReportFilter.FileGroups;
+pub const FsrmReportFilter_Owners = FsrmReportFilter.Owners;
+pub const FsrmReportFilter_NamePattern = FsrmReportFilter.NamePattern;
+pub const FsrmReportFilter_Property = FsrmReportFilter.Property;
 
-pub const AdrClientErrorType = enum(i32) {
+pub const FsrmReportFormat = enum(i32) {
     Unknown = 0,
-    AccessDenied = 1,
-    FileNotFound = 2,
+    DHtml = 1,
+    Html = 2,
+    Txt = 3,
+    Csv = 4,
+    Xml = 5,
 };
-pub const AdrClientErrorType_Unknown = AdrClientErrorType.Unknown;
-pub const AdrClientErrorType_AccessDenied = AdrClientErrorType.AccessDenied;
-pub const AdrClientErrorType_FileNotFound = AdrClientErrorType.FileNotFound;
+pub const FsrmReportFormat_Unknown = FsrmReportFormat.Unknown;
+pub const FsrmReportFormat_DHtml = FsrmReportFormat.DHtml;
+pub const FsrmReportFormat_Html = FsrmReportFormat.Html;
+pub const FsrmReportFormat_Txt = FsrmReportFormat.Txt;
+pub const FsrmReportFormat_Csv = FsrmReportFormat.Csv;
+pub const FsrmReportFormat_Xml = FsrmReportFormat.Xml;
 
-pub const AdrClientFlags = enum(i32) {
-    None = 0,
-    FailForLocalPaths = 1,
-    FailIfNotSupportedByServer = 2,
-    FailIfNotDomainJoined = 4,
+pub const FsrmReportGenerationContext = enum(i32) {
+    Undefined = 1,
+    ScheduledReport = 2,
+    InteractiveReport = 3,
+    IncidentReport = 4,
 };
-pub const AdrClientFlags_None = AdrClientFlags.None;
-pub const AdrClientFlags_FailForLocalPaths = AdrClientFlags.FailForLocalPaths;
-pub const AdrClientFlags_FailIfNotSupportedByServer = AdrClientFlags.FailIfNotSupportedByServer;
-pub const AdrClientFlags_FailIfNotDomainJoined = AdrClientFlags.FailIfNotDomainJoined;
+pub const FsrmReportGenerationContext_Undefined = FsrmReportGenerationContext.Undefined;
+pub const FsrmReportGenerationContext_ScheduledReport = FsrmReportGenerationContext.ScheduledReport;
+pub const FsrmReportGenerationContext_InteractiveReport = FsrmReportGenerationContext.InteractiveReport;
+pub const FsrmReportGenerationContext_IncidentReport = FsrmReportGenerationContext.IncidentReport;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmObject_Value = Guid.initString("22bcef93-4a3f-4183-89f9-2f8b8a628aee");
-pub const IID_IFsrmObject = &IID_IFsrmObject_Value;
-pub const IFsrmObject = extern union {
+pub const FsrmReportLimit = enum(i32) {
+    Files = 1,
+    FileGroups = 2,
+    Owners = 3,
+    FilesPerFileGroup = 4,
+    FilesPerOwner = 5,
+    FilesPerDuplGroup = 6,
+    DuplicateGroups = 7,
+    Quotas = 8,
+    FileScreenEvents = 9,
+    PropertyValues = 10,
+    FilesPerPropertyValue = 11,
+    Folders = 12,
+};
+pub const FsrmReportLimit_MaxFiles = FsrmReportLimit.Files;
+pub const FsrmReportLimit_MaxFileGroups = FsrmReportLimit.FileGroups;
+pub const FsrmReportLimit_MaxOwners = FsrmReportLimit.Owners;
+pub const FsrmReportLimit_MaxFilesPerFileGroup = FsrmReportLimit.FilesPerFileGroup;
+pub const FsrmReportLimit_MaxFilesPerOwner = FsrmReportLimit.FilesPerOwner;
+pub const FsrmReportLimit_MaxFilesPerDuplGroup = FsrmReportLimit.FilesPerDuplGroup;
+pub const FsrmReportLimit_MaxDuplicateGroups = FsrmReportLimit.DuplicateGroups;
+pub const FsrmReportLimit_MaxQuotas = FsrmReportLimit.Quotas;
+pub const FsrmReportLimit_MaxFileScreenEvents = FsrmReportLimit.FileScreenEvents;
+pub const FsrmReportLimit_MaxPropertyValues = FsrmReportLimit.PropertyValues;
+pub const FsrmReportLimit_MaxFilesPerPropertyValue = FsrmReportLimit.FilesPerPropertyValue;
+pub const FsrmReportLimit_MaxFolders = FsrmReportLimit.Folders;
+
+const CLSID_FsrmReportManager_Value = Guid.initString("0058ef37-aa66-4c48-bd5b-2fce432ab0c8");
+pub const CLSID_FsrmReportManager = &CLSID_FsrmReportManager_Value;
+
+pub const FsrmReportRunningStatus = enum(i32) {
+    Unknown = 0,
+    NotRunning = 1,
+    Queued = 2,
+    Running = 3,
+};
+pub const FsrmReportRunningStatus_Unknown = FsrmReportRunningStatus.Unknown;
+pub const FsrmReportRunningStatus_NotRunning = FsrmReportRunningStatus.NotRunning;
+pub const FsrmReportRunningStatus_Queued = FsrmReportRunningStatus.Queued;
+pub const FsrmReportRunningStatus_Running = FsrmReportRunningStatus.Running;
+
+const CLSID_FsrmReportScheduler_Value = Guid.initString("ea25f1b8-1b8d-4290-8ee8-e17c12c2fe20");
+pub const CLSID_FsrmReportScheduler = &CLSID_FsrmReportScheduler_Value;
+
+pub const FsrmReportType = enum(i32) {
+    Unknown = 0,
+    LargeFiles = 1,
+    FilesByType = 2,
+    LeastRecentlyAccessed = 3,
+    MostRecentlyAccessed = 4,
+    QuotaUsage = 5,
+    FilesByOwner = 6,
+    ExportReport = 7,
+    DuplicateFiles = 8,
+    FileScreenAudit = 9,
+    FilesByProperty = 10,
+    AutomaticClassification = 11,
+    Expiration = 12,
+    FoldersByProperty = 13,
+};
+pub const FsrmReportType_Unknown = FsrmReportType.Unknown;
+pub const FsrmReportType_LargeFiles = FsrmReportType.LargeFiles;
+pub const FsrmReportType_FilesByType = FsrmReportType.FilesByType;
+pub const FsrmReportType_LeastRecentlyAccessed = FsrmReportType.LeastRecentlyAccessed;
+pub const FsrmReportType_MostRecentlyAccessed = FsrmReportType.MostRecentlyAccessed;
+pub const FsrmReportType_QuotaUsage = FsrmReportType.QuotaUsage;
+pub const FsrmReportType_FilesByOwner = FsrmReportType.FilesByOwner;
+pub const FsrmReportType_ExportReport = FsrmReportType.ExportReport;
+pub const FsrmReportType_DuplicateFiles = FsrmReportType.DuplicateFiles;
+pub const FsrmReportType_FileScreenAudit = FsrmReportType.FileScreenAudit;
+pub const FsrmReportType_FilesByProperty = FsrmReportType.FilesByProperty;
+pub const FsrmReportType_AutomaticClassification = FsrmReportType.AutomaticClassification;
+pub const FsrmReportType_Expiration = FsrmReportType.Expiration;
+pub const FsrmReportType_FoldersByProperty = FsrmReportType.FoldersByProperty;
+
+pub const FsrmRuleFlags = enum(i32) {
+    Disabled = 256,
+    ClearAutomaticallyClassifiedProperty = 1024,
+    ClearManuallyClassifiedProperty = 2048,
+    Invalid = 4096,
+};
+pub const FsrmRuleFlags_Disabled = FsrmRuleFlags.Disabled;
+pub const FsrmRuleFlags_ClearAutomaticallyClassifiedProperty = FsrmRuleFlags.ClearAutomaticallyClassifiedProperty;
+pub const FsrmRuleFlags_ClearManuallyClassifiedProperty = FsrmRuleFlags.ClearManuallyClassifiedProperty;
+pub const FsrmRuleFlags_Invalid = FsrmRuleFlags.Invalid;
+
+pub const FsrmRuleType = enum(i32) {
+    Unknown = 0,
+    Classification = 1,
+    Generic = 2,
+};
+pub const FsrmRuleType_Unknown = FsrmRuleType.Unknown;
+pub const FsrmRuleType_Classification = FsrmRuleType.Classification;
+pub const FsrmRuleType_Generic = FsrmRuleType.Generic;
+
+const CLSID_FsrmSetting_Value = Guid.initString("f556d708-6d4d-4594-9c61-7dbb0dae2a46");
+pub const CLSID_FsrmSetting = &CLSID_FsrmSetting_Value;
+
+pub const FsrmStorageModuleCaps = enum(i32) {
+    Unknown = 0,
+    CanGet = 1,
+    CanSet = 2,
+    CanHandleDirectories = 4,
+    CanHandleFiles = 8,
+};
+pub const FsrmStorageModuleCaps_Unknown = FsrmStorageModuleCaps.Unknown;
+pub const FsrmStorageModuleCaps_CanGet = FsrmStorageModuleCaps.CanGet;
+pub const FsrmStorageModuleCaps_CanSet = FsrmStorageModuleCaps.CanSet;
+pub const FsrmStorageModuleCaps_CanHandleDirectories = FsrmStorageModuleCaps.CanHandleDirectories;
+pub const FsrmStorageModuleCaps_CanHandleFiles = FsrmStorageModuleCaps.CanHandleFiles;
+
+pub const FsrmStorageModuleType = enum(i32) {
+    Unknown = 0,
+    Cache = 1,
+    InFile = 2,
+    Database = 3,
+    System = 100,
+};
+pub const FsrmStorageModuleType_Unknown = FsrmStorageModuleType.Unknown;
+pub const FsrmStorageModuleType_Cache = FsrmStorageModuleType.Cache;
+pub const FsrmStorageModuleType_InFile = FsrmStorageModuleType.InFile;
+pub const FsrmStorageModuleType_Database = FsrmStorageModuleType.Database;
+pub const FsrmStorageModuleType_System = FsrmStorageModuleType.System;
+
+pub const FsrmTemplateApplyOptions = enum(i32) {
+    Matching = 1,
+    All = 2,
+};
+pub const FsrmTemplateApplyOptions_ApplyToDerivedMatching = FsrmTemplateApplyOptions.Matching;
+pub const FsrmTemplateApplyOptions_ApplyToDerivedAll = FsrmTemplateApplyOptions.All;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+const IID_IFsrmAccessDeniedRemediationClient_Value = Guid.initString("40002314-590b-45a5-8e1b-8c05da527e52");
+pub const IID_IFsrmAccessDeniedRemediationClient = &IID_IFsrmAccessDeniedRemediationClient_Value;
+pub const IFsrmAccessDeniedRemediationClient = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IFsrmObject,
-            id: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IFsrmObject,
-            description: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IFsrmObject,
-            description: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IFsrmObject,
-        ) callconv(.winapi) HRESULT,
-        Commit: *const fn(
-            self: *const IFsrmObject,
+        Show: *const fn(
+            self: *const IFsrmAccessDeniedRemediationClient,
+            parentWnd: usize,
+            accessPath: ?BSTR,
+            errorType: AdrClientErrorType,
+            flags: i32,
+            windowTitle: ?BSTR,
+            windowMessage: ?BSTR,
+            result: ?*i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IFsrmObject, id: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, id);
-    }
-    pub fn get_Description(self: *const IFsrmObject, description: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, description);
-    }
-    pub fn put_Description(self: *const IFsrmObject, description: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, description);
-    }
-    pub fn Delete(self: *const IFsrmObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-    pub fn Commit(self: *const IFsrmObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmCollection_Value = Guid.initString("f76fbf3b-8ddd-4b42-b05a-cb1c3ff1fee8");
-pub const IID_IFsrmCollection = &IID_IFsrmCollection_Value;
-pub const IFsrmCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IFsrmCollection,
-            unknown: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IFsrmCollection,
-            index: i32,
-            item: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IFsrmCollection,
-            count: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const IFsrmCollection,
-            state: ?*FsrmCollectionState,
-        ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        WaitForCompletion: *const fn(
-            self: *const IFsrmCollection,
-            waitSeconds: i32,
-            completed: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetById: *const fn(
-            self: *const IFsrmCollection,
-            id: Guid,
-            entry: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IFsrmCollection, unknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, unknown);
-    }
-    pub fn get_Item(self: *const IFsrmCollection, index: i32, item: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, index, item);
-    }
-    pub fn get_Count(self: *const IFsrmCollection, count: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, count);
-    }
-    pub fn get_State(self: *const IFsrmCollection, state: ?*FsrmCollectionState) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, state);
-    }
-    pub fn Cancel(self: *const IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-    pub fn WaitForCompletion(self: *const IFsrmCollection, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.WaitForCompletion(self, waitSeconds, completed);
-    }
-    pub fn GetById(self: *const IFsrmCollection, id: Guid, entry: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetById(self, id, entry);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmMutableCollection_Value = Guid.initString("1bb617b8-3886-49dc-af82-a6c90fa35dda");
-pub const IID_IFsrmMutableCollection = &IID_IFsrmMutableCollection_Value;
-pub const IFsrmMutableCollection = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmCollection.VTable,
-        Add: *const fn(
-            self: *const IFsrmMutableCollection,
-            item: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IFsrmMutableCollection,
-            index: i32,
-        ) callconv(.winapi) HRESULT,
-        RemoveById: *const fn(
-            self: *const IFsrmMutableCollection,
-            id: Guid,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IFsrmMutableCollection,
-            collection: ?*?*IFsrmMutableCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmCollection: IFsrmCollection,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Add(self: *const IFsrmMutableCollection, item: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, item);
-    }
-    pub fn Remove(self: *const IFsrmMutableCollection, index: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, index);
-    }
-    pub fn RemoveById(self: *const IFsrmMutableCollection, id: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveById(self, id);
-    }
-    pub fn Clone(self: *const IFsrmMutableCollection, collection: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, collection);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmCommittableCollection_Value = Guid.initString("96deb3b5-8b91-4a2a-9d93-80a35d8aa847");
-pub const IID_IFsrmCommittableCollection = &IID_IFsrmCommittableCollection_Value;
-pub const IFsrmCommittableCollection = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmMutableCollection.VTable,
-        Commit: *const fn(
-            self: *const IFsrmCommittableCollection,
-            options: FsrmCommitOptions,
-            results: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmMutableCollection: IFsrmMutableCollection,
-    IFsrmCollection: IFsrmCollection,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn Commit(self: *const IFsrmCommittableCollection, options: FsrmCommitOptions, results: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self, options, results);
+    pub fn Show(self: *const IFsrmAccessDeniedRemediationClient, parentWnd: usize, accessPath: ?BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: ?BSTR, windowMessage: ?BSTR, result: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Show(self, parentWnd, accessPath, errorType, flags, windowTitle, windowMessage, result);
     }
 };
 
@@ -922,6 +827,131 @@ pub const IFsrmAction = extern union {
     }
     pub fn Delete(self: *const IFsrmAction) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmActionCommand_Value = Guid.initString("12937789-e247-4917-9c20-f3ee9c7ee783");
+pub const IID_IFsrmActionCommand = &IID_IFsrmActionCommand_Value;
+pub const IFsrmActionCommand = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmAction.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExecutablePath: *const fn(
+            self: *const IFsrmActionCommand,
+            executablePath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExecutablePath: *const fn(
+            self: *const IFsrmActionCommand,
+            executablePath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Arguments: *const fn(
+            self: *const IFsrmActionCommand,
+            arguments: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Arguments: *const fn(
+            self: *const IFsrmActionCommand,
+            arguments: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Account: *const fn(
+            self: *const IFsrmActionCommand,
+            account: ?*FsrmAccountType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Account: *const fn(
+            self: *const IFsrmActionCommand,
+            account: FsrmAccountType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WorkingDirectory: *const fn(
+            self: *const IFsrmActionCommand,
+            workingDirectory: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_WorkingDirectory: *const fn(
+            self: *const IFsrmActionCommand,
+            workingDirectory: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MonitorCommand: *const fn(
+            self: *const IFsrmActionCommand,
+            monitorCommand: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MonitorCommand: *const fn(
+            self: *const IFsrmActionCommand,
+            monitorCommand: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_KillTimeOut: *const fn(
+            self: *const IFsrmActionCommand,
+            minutes: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_KillTimeOut: *const fn(
+            self: *const IFsrmActionCommand,
+            minutes: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LogResult: *const fn(
+            self: *const IFsrmActionCommand,
+            logResults: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_LogResult: *const fn(
+            self: *const IFsrmActionCommand,
+            logResults: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmAction: IFsrmAction,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExecutablePath(self, executablePath);
+    }
+    pub fn put_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExecutablePath(self, executablePath);
+    }
+    pub fn get_Arguments(self: *const IFsrmActionCommand, arguments: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Arguments(self, arguments);
+    }
+    pub fn put_Arguments(self: *const IFsrmActionCommand, arguments: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Arguments(self, arguments);
+    }
+    pub fn get_Account(self: *const IFsrmActionCommand, account: ?*FsrmAccountType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Account(self, account);
+    }
+    pub fn put_Account(self: *const IFsrmActionCommand, account: FsrmAccountType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Account(self, account);
+    }
+    pub fn get_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_WorkingDirectory(self, workingDirectory);
+    }
+    pub fn put_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_WorkingDirectory(self, workingDirectory);
+    }
+    pub fn get_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MonitorCommand(self, monitorCommand);
+    }
+    pub fn put_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MonitorCommand(self, monitorCommand);
+    }
+    pub fn get_KillTimeOut(self: *const IFsrmActionCommand, minutes: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_KillTimeOut(self, minutes);
+    }
+    pub fn put_KillTimeOut(self: *const IFsrmActionCommand, minutes: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_KillTimeOut(self, minutes);
+    }
+    pub fn get_LogResult(self: *const IFsrmActionCommand, logResults: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LogResult(self, logResults);
+    }
+    pub fn put_LogResult(self: *const IFsrmActionCommand, logResults: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_LogResult(self, logResults);
     }
 };
 
@@ -1081,51 +1111,6 @@ pub const IFsrmActionEmail2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmActionReport_Value = Guid.initString("2dbe63c4-b340-48a0-a5b0-158e07fc567e");
-pub const IID_IFsrmActionReport = &IID_IFsrmActionReport_Value;
-pub const IFsrmActionReport = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmAction.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReportTypes: *const fn(
-            self: *const IFsrmActionReport,
-            reportTypes: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ReportTypes: *const fn(
-            self: *const IFsrmActionReport,
-            reportTypes: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailTo: *const fn(
-            self: *const IFsrmActionReport,
-            mailTo: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailTo: *const fn(
-            self: *const IFsrmActionReport,
-            mailTo: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmAction: IFsrmAction,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReportTypes(self, reportTypes);
-    }
-    pub fn put_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ReportTypes(self, reportTypes);
-    }
-    pub fn get_MailTo(self: *const IFsrmActionReport, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MailTo(self, mailTo);
-    }
-    pub fn put_MailTo(self: *const IFsrmActionReport, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MailTo(self, mailTo);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionEventLog_Value = Guid.initString("4c8f96c3-5d94-4f37-a4f4-f56ab463546f");
 pub const IID_IFsrmActionEventLog = &IID_IFsrmActionEventLog_Value;
 pub const IFsrmActionEventLog = extern union {
@@ -1171,262 +1156,647 @@ pub const IFsrmActionEventLog = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmActionCommand_Value = Guid.initString("12937789-e247-4917-9c20-f3ee9c7ee783");
-pub const IID_IFsrmActionCommand = &IID_IFsrmActionCommand_Value;
-pub const IFsrmActionCommand = extern union {
+const IID_IFsrmActionReport_Value = Guid.initString("2dbe63c4-b340-48a0-a5b0-158e07fc567e");
+pub const IID_IFsrmActionReport = &IID_IFsrmActionReport_Value;
+pub const IFsrmActionReport = extern union {
     pub const VTable = extern struct {
         base: IFsrmAction.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExecutablePath: *const fn(
-            self: *const IFsrmActionCommand,
-            executablePath: ?*?BSTR,
+        get_ReportTypes: *const fn(
+            self: *const IFsrmActionReport,
+            reportTypes: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExecutablePath: *const fn(
-            self: *const IFsrmActionCommand,
-            executablePath: ?BSTR,
+        put_ReportTypes: *const fn(
+            self: *const IFsrmActionReport,
+            reportTypes: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Arguments: *const fn(
-            self: *const IFsrmActionCommand,
-            arguments: ?*?BSTR,
+        get_MailTo: *const fn(
+            self: *const IFsrmActionReport,
+            mailTo: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Arguments: *const fn(
-            self: *const IFsrmActionCommand,
-            arguments: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Account: *const fn(
-            self: *const IFsrmActionCommand,
-            account: ?*FsrmAccountType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Account: *const fn(
-            self: *const IFsrmActionCommand,
-            account: FsrmAccountType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WorkingDirectory: *const fn(
-            self: *const IFsrmActionCommand,
-            workingDirectory: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_WorkingDirectory: *const fn(
-            self: *const IFsrmActionCommand,
-            workingDirectory: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MonitorCommand: *const fn(
-            self: *const IFsrmActionCommand,
-            monitorCommand: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MonitorCommand: *const fn(
-            self: *const IFsrmActionCommand,
-            monitorCommand: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_KillTimeOut: *const fn(
-            self: *const IFsrmActionCommand,
-            minutes: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_KillTimeOut: *const fn(
-            self: *const IFsrmActionCommand,
-            minutes: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogResult: *const fn(
-            self: *const IFsrmActionCommand,
-            logResults: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogResult: *const fn(
-            self: *const IFsrmActionCommand,
-            logResults: i16,
+        put_MailTo: *const fn(
+            self: *const IFsrmActionReport,
+            mailTo: ?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmAction: IFsrmAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExecutablePath(self, executablePath);
+    pub fn get_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReportTypes(self, reportTypes);
     }
-    pub fn put_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExecutablePath(self, executablePath);
+    pub fn put_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ReportTypes(self, reportTypes);
     }
-    pub fn get_Arguments(self: *const IFsrmActionCommand, arguments: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Arguments(self, arguments);
+    pub fn get_MailTo(self: *const IFsrmActionReport, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MailTo(self, mailTo);
     }
-    pub fn put_Arguments(self: *const IFsrmActionCommand, arguments: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Arguments(self, arguments);
-    }
-    pub fn get_Account(self: *const IFsrmActionCommand, account: ?*FsrmAccountType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Account(self, account);
-    }
-    pub fn put_Account(self: *const IFsrmActionCommand, account: FsrmAccountType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Account(self, account);
-    }
-    pub fn get_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_WorkingDirectory(self, workingDirectory);
-    }
-    pub fn put_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_WorkingDirectory(self, workingDirectory);
-    }
-    pub fn get_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MonitorCommand(self, monitorCommand);
-    }
-    pub fn put_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MonitorCommand(self, monitorCommand);
-    }
-    pub fn get_KillTimeOut(self: *const IFsrmActionCommand, minutes: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_KillTimeOut(self, minutes);
-    }
-    pub fn put_KillTimeOut(self: *const IFsrmActionCommand, minutes: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_KillTimeOut(self, minutes);
-    }
-    pub fn get_LogResult(self: *const IFsrmActionCommand, logResults: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LogResult(self, logResults);
-    }
-    pub fn put_LogResult(self: *const IFsrmActionCommand, logResults: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_LogResult(self, logResults);
+    pub fn put_MailTo(self: *const IFsrmActionReport, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MailTo(self, mailTo);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmSetting_Value = Guid.initString("f411d4fd-14be-4260-8c40-03b7c95e608a");
-pub const IID_IFsrmSetting = &IID_IFsrmSetting_Value;
-pub const IFsrmSetting = extern union {
+const IID_IFsrmAutoApplyQuota_Value = Guid.initString("f82e5729-6aba-4740-bfc7-c7f58f75fb7b");
+pub const IID_IFsrmAutoApplyQuota = &IID_IFsrmAutoApplyQuota_Value;
+pub const IFsrmAutoApplyQuota = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmQuotaObject.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExcludeFolders: *const fn(
+            self: *const IFsrmAutoApplyQuota,
+            folders: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExcludeFolders: *const fn(
+            self: *const IFsrmAutoApplyQuota,
+            folders: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        CommitAndUpdateDerived: *const fn(
+            self: *const IFsrmAutoApplyQuota,
+            commitOptions: FsrmCommitOptions,
+            applyOptions: FsrmTemplateApplyOptions,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmQuotaObject: IFsrmQuotaObject,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExcludeFolders(self, folders);
+    }
+    pub fn put_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExcludeFolders(self, folders);
+    }
+    pub fn CommitAndUpdateDerived(self: *const IFsrmAutoApplyQuota, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IFsrmClassificationManager_Value = Guid.initString("d2dc89da-ee91-48a0-85d8-cc72a56f7d04");
+pub const IID_IFsrmClassificationManager = &IID_IFsrmClassificationManager_Value;
+pub const IFsrmClassificationManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SmtpServer: *const fn(
-            self: *const IFsrmSetting,
-            smtpServer: ?*?BSTR,
+        get_ClassificationReportFormats: *const fn(
+            self: *const IFsrmClassificationManager,
+            formats: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SmtpServer: *const fn(
-            self: *const IFsrmSetting,
-            smtpServer: ?BSTR,
+        put_ClassificationReportFormats: *const fn(
+            self: *const IFsrmClassificationManager,
+            formats: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailFrom: *const fn(
-            self: *const IFsrmSetting,
-            mailFrom: ?*?BSTR,
+        get_Logging: *const fn(
+            self: *const IFsrmClassificationManager,
+            logging: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailFrom: *const fn(
-            self: *const IFsrmSetting,
-            mailFrom: ?BSTR,
+        put_Logging: *const fn(
+            self: *const IFsrmClassificationManager,
+            logging: i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminEmail: *const fn(
-            self: *const IFsrmSetting,
-            adminEmail: ?*?BSTR,
+        get_ClassificationReportMailTo: *const fn(
+            self: *const IFsrmClassificationManager,
+            mailTo: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AdminEmail: *const fn(
-            self: *const IFsrmSetting,
-            adminEmail: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisableCommandLine: *const fn(
-            self: *const IFsrmSetting,
-            disableCommandLine: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisableCommandLine: *const fn(
-            self: *const IFsrmSetting,
-            disableCommandLine: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnableScreeningAudit: *const fn(
-            self: *const IFsrmSetting,
-            enableScreeningAudit: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EnableScreeningAudit: *const fn(
-            self: *const IFsrmSetting,
-            enableScreeningAudit: i16,
-        ) callconv(.winapi) HRESULT,
-        EmailTest: *const fn(
-            self: *const IFsrmSetting,
+        put_ClassificationReportMailTo: *const fn(
+            self: *const IFsrmClassificationManager,
             mailTo: ?BSTR,
         ) callconv(.winapi) HRESULT,
-        SetActionRunLimitInterval: *const fn(
-            self: *const IFsrmSetting,
-            actionType: FsrmActionType,
-            delayTimeMinutes: i32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClassificationReportEnabled: *const fn(
+            self: *const IFsrmClassificationManager,
+            reportEnabled: ?*i16,
         ) callconv(.winapi) HRESULT,
-        GetActionRunLimitInterval: *const fn(
-            self: *const IFsrmSetting,
-            actionType: FsrmActionType,
-            delayTimeMinutes: ?*i32,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ClassificationReportEnabled: *const fn(
+            self: *const IFsrmClassificationManager,
+            reportEnabled: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClassificationLastReportPathWithoutExtension: *const fn(
+            self: *const IFsrmClassificationManager,
+            lastReportPath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClassificationLastError: *const fn(
+            self: *const IFsrmClassificationManager,
+            lastError: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClassificationRunningStatus: *const fn(
+            self: *const IFsrmClassificationManager,
+            runningStatus: ?*FsrmReportRunningStatus,
+        ) callconv(.winapi) HRESULT,
+        EnumPropertyDefinitions: *const fn(
+            self: *const IFsrmClassificationManager,
+            options: FsrmEnumOptions,
+            propertyDefinitions: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        CreatePropertyDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            propertyDefinition: ?*?*IFsrmPropertyDefinition,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            propertyName: ?BSTR,
+            propertyDefinition: ?*?*IFsrmPropertyDefinition,
+        ) callconv(.winapi) HRESULT,
+        EnumRules: *const fn(
+            self: *const IFsrmClassificationManager,
+            ruleType: FsrmRuleType,
+            options: FsrmEnumOptions,
+            Rules: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateRule: *const fn(
+            self: *const IFsrmClassificationManager,
+            ruleType: FsrmRuleType,
+            Rule: ?*?*IFsrmRule,
+        ) callconv(.winapi) HRESULT,
+        GetRule: *const fn(
+            self: *const IFsrmClassificationManager,
+            ruleName: ?BSTR,
+            ruleType: FsrmRuleType,
+            Rule: ?*?*IFsrmRule,
+        ) callconv(.winapi) HRESULT,
+        EnumModuleDefinitions: *const fn(
+            self: *const IFsrmClassificationManager,
+            moduleType: FsrmPipelineModuleType,
+            options: FsrmEnumOptions,
+            moduleDefinitions: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateModuleDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            moduleType: FsrmPipelineModuleType,
+            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
+        ) callconv(.winapi) HRESULT,
+        GetModuleDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            moduleName: ?BSTR,
+            moduleType: FsrmPipelineModuleType,
+            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
+        ) callconv(.winapi) HRESULT,
+        RunClassification: *const fn(
+            self: *const IFsrmClassificationManager,
+            context: FsrmReportGenerationContext,
+            reserved: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        WaitForClassificationCompletion: *const fn(
+            self: *const IFsrmClassificationManager,
+            waitSeconds: i32,
+            completed: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        CancelClassification: *const fn(
+            self: *const IFsrmClassificationManager,
+        ) callconv(.winapi) HRESULT,
+        EnumFileProperties: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            options: FsrmGetFilePropertyOptions,
+            fileProperties: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        GetFileProperty: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            propertyName: ?BSTR,
+            options: FsrmGetFilePropertyOptions,
+            property: ?*?*IFsrmProperty,
+        ) callconv(.winapi) HRESULT,
+        SetFileProperty: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            propertyName: ?BSTR,
+            propertyValue: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ClearFileProperty: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            property: ?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SmtpServer(self: *const IFsrmSetting, smtpServer: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SmtpServer(self, smtpServer);
+    pub fn get_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClassificationReportFormats(self, formats);
     }
-    pub fn put_SmtpServer(self: *const IFsrmSetting, smtpServer: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_SmtpServer(self, smtpServer);
+    pub fn put_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClassificationReportFormats(self, formats);
     }
-    pub fn get_MailFrom(self: *const IFsrmSetting, mailFrom: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MailFrom(self, mailFrom);
+    pub fn get_Logging(self: *const IFsrmClassificationManager, logging: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Logging(self, logging);
     }
-    pub fn put_MailFrom(self: *const IFsrmSetting, mailFrom: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MailFrom(self, mailFrom);
+    pub fn put_Logging(self: *const IFsrmClassificationManager, logging: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Logging(self, logging);
     }
-    pub fn get_AdminEmail(self: *const IFsrmSetting, adminEmail: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AdminEmail(self, adminEmail);
+    pub fn get_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClassificationReportMailTo(self, mailTo);
     }
-    pub fn put_AdminEmail(self: *const IFsrmSetting, adminEmail: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AdminEmail(self, adminEmail);
+    pub fn put_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClassificationReportMailTo(self, mailTo);
     }
-    pub fn get_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisableCommandLine(self, disableCommandLine);
+    pub fn get_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClassificationReportEnabled(self, reportEnabled);
     }
-    pub fn put_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisableCommandLine(self, disableCommandLine);
+    pub fn put_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ClassificationReportEnabled(self, reportEnabled);
     }
-    pub fn get_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EnableScreeningAudit(self, enableScreeningAudit);
+    pub fn get_ClassificationLastReportPathWithoutExtension(self: *const IFsrmClassificationManager, lastReportPath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClassificationLastReportPathWithoutExtension(self, lastReportPath);
     }
-    pub fn put_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_EnableScreeningAudit(self, enableScreeningAudit);
+    pub fn get_ClassificationLastError(self: *const IFsrmClassificationManager, lastError: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClassificationLastError(self, lastError);
     }
-    pub fn EmailTest(self: *const IFsrmSetting, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.EmailTest(self, mailTo);
+    pub fn get_ClassificationRunningStatus(self: *const IFsrmClassificationManager, runningStatus: ?*FsrmReportRunningStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClassificationRunningStatus(self, runningStatus);
     }
-    pub fn SetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetActionRunLimitInterval(self, actionType, delayTimeMinutes);
+    pub fn EnumPropertyDefinitions(self: *const IFsrmClassificationManager, options: FsrmEnumOptions, propertyDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumPropertyDefinitions(self, options, propertyDefinitions);
     }
-    pub fn GetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetActionRunLimitInterval(self, actionType, delayTimeMinutes);
+    pub fn CreatePropertyDefinition(self: *const IFsrmClassificationManager, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePropertyDefinition(self, propertyDefinition);
+    }
+    pub fn GetPropertyDefinition(self: *const IFsrmClassificationManager, propertyName: ?BSTR, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyDefinition(self, propertyName, propertyDefinition);
+    }
+    pub fn EnumRules(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumRules(self, ruleType, options, Rules);
+    }
+    pub fn CreateRule(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRule(self, ruleType, Rule);
+    }
+    pub fn GetRule(self: *const IFsrmClassificationManager, ruleName: ?BSTR, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRule(self, ruleName, ruleType, Rule);
+    }
+    pub fn EnumModuleDefinitions(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumModuleDefinitions(self, moduleType, options, moduleDefinitions);
+    }
+    pub fn CreateModuleDefinition(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateModuleDefinition(self, moduleType, moduleDefinition);
+    }
+    pub fn GetModuleDefinition(self: *const IFsrmClassificationManager, moduleName: ?BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.@"inline") HRESULT {
+        return self.vtable.GetModuleDefinition(self, moduleName, moduleType, moduleDefinition);
+    }
+    pub fn RunClassification(self: *const IFsrmClassificationManager, context: FsrmReportGenerationContext, reserved: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RunClassification(self, context, reserved);
+    }
+    pub fn WaitForClassificationCompletion(self: *const IFsrmClassificationManager, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.WaitForClassificationCompletion(self, waitSeconds, completed);
+    }
+    pub fn CancelClassification(self: *const IFsrmClassificationManager) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelClassification(self);
+    }
+    pub fn EnumFileProperties(self: *const IFsrmClassificationManager, filePath: ?BSTR, options: FsrmGetFilePropertyOptions, fileProperties: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumFileProperties(self, filePath, options, fileProperties);
+    }
+    pub fn GetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, options: FsrmGetFilePropertyOptions, property: ?*?*IFsrmProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileProperty(self, filePath, propertyName, options, property);
+    }
+    pub fn SetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, propertyValue: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFileProperty(self, filePath, propertyName, propertyValue);
+    }
+    pub fn ClearFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, property: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ClearFileProperty(self, filePath, property);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IFsrmClassificationManager2_Value = Guid.initString("0004c1c9-127e-4765-ba07-6a3147bca112");
+pub const IID_IFsrmClassificationManager2 = &IID_IFsrmClassificationManager2_Value;
+pub const IFsrmClassificationManager2 = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmClassificationManager.VTable,
+        ClassifyFiles: *const fn(
+            self: *const IFsrmClassificationManager2,
+            filePaths: ?*SAFEARRAY,
+            propertyNames: ?*SAFEARRAY,
+            propertyValues: ?*SAFEARRAY,
+            options: FsrmGetFilePropertyOptions,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmClassificationManager: IFsrmClassificationManager,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn ClassifyFiles(self: *const IFsrmClassificationManager2, filePaths: ?*SAFEARRAY, propertyNames: ?*SAFEARRAY, propertyValues: ?*SAFEARRAY, options: FsrmGetFilePropertyOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.ClassifyFiles(self, filePaths, propertyNames, propertyValues, options);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmPathMapper_Value = Guid.initString("6f4dbfff-6920-4821-a6c3-b7e94c1fd60c");
-pub const IID_IFsrmPathMapper = &IID_IFsrmPathMapper_Value;
-pub const IFsrmPathMapper = extern union {
+const IID_IFsrmClassificationRule_Value = Guid.initString("afc052c2-5315-45ab-841b-c6db0e120148");
+pub const IID_IFsrmClassificationRule = &IID_IFsrmClassificationRule_Value;
+pub const IFsrmClassificationRule = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmRule.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ExecutionOption: *const fn(
+            self: *const IFsrmClassificationRule,
+            executionOption: ?*FsrmExecutionOption,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ExecutionOption: *const fn(
+            self: *const IFsrmClassificationRule,
+            executionOption: FsrmExecutionOption,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertyAffected: *const fn(
+            self: *const IFsrmClassificationRule,
+            property: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PropertyAffected: *const fn(
+            self: *const IFsrmClassificationRule,
+            property: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IFsrmClassificationRule,
+            value: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const IFsrmClassificationRule,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmRule: IFsrmRule,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: ?*FsrmExecutionOption) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ExecutionOption(self, executionOption);
+    }
+    pub fn put_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: FsrmExecutionOption) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ExecutionOption(self, executionOption);
+    }
+    pub fn get_PropertyAffected(self: *const IFsrmClassificationRule, property: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyAffected(self, property);
+    }
+    pub fn put_PropertyAffected(self: *const IFsrmClassificationRule, property: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PropertyAffected(self, property);
+    }
+    pub fn get_Value(self: *const IFsrmClassificationRule, value: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, value);
+    }
+    pub fn put_Value(self: *const IFsrmClassificationRule, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, value);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmClassifierModuleDefinition_Value = Guid.initString("bb36ea26-6318-4b8c-8592-f72dd602e7a5");
+pub const IID_IFsrmClassifierModuleDefinition = &IID_IFsrmClassifierModuleDefinition_Value;
+pub const IFsrmClassifierModuleDefinition = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmPipelineModuleDefinition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertiesAffected: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesAffected: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PropertiesAffected: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesAffected: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertiesUsed: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesUsed: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PropertiesUsed: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesUsed: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NeedsExplicitValue: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            needsExplicitValue: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NeedsExplicitValue: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            needsExplicitValue: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertiesAffected(self, propertiesAffected);
+    }
+    pub fn put_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PropertiesAffected(self, propertiesAffected);
+    }
+    pub fn get_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertiesUsed(self, propertiesUsed);
+    }
+    pub fn put_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PropertiesUsed(self, propertiesUsed);
+    }
+    pub fn get_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NeedsExplicitValue(self, needsExplicitValue);
+    }
+    pub fn put_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NeedsExplicitValue(self, needsExplicitValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmClassifierModuleImplementation_Value = Guid.initString("4c968fc6-6edb-4051-9c18-73b7291ae106");
+pub const IID_IFsrmClassifierModuleImplementation = &IID_IFsrmClassifierModuleImplementation_Value;
+pub const IFsrmClassifierModuleImplementation = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmPipelineModuleImplementation.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastModified: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            lastModified: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        UseRulesAndDefinitions: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            rules: ?*IFsrmCollection,
+            propertyDefinitions: ?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        OnBeginFile: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            propertyBag: ?*IFsrmPropertyBag,
+            arrayRuleIds: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        DoesPropertyValueApply: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            property: ?BSTR,
+            value: ?BSTR,
+            applyValue: ?*i16,
+            idRule: Guid,
+            idPropDef: Guid,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyValueToApply: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            property: ?BSTR,
+            value: ?*?BSTR,
+            idRule: Guid,
+            idPropDef: Guid,
+        ) callconv(.winapi) HRESULT,
+        OnEndFile: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_LastModified(self: *const IFsrmClassifierModuleImplementation, lastModified: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastModified(self, lastModified);
+    }
+    pub fn UseRulesAndDefinitions(self: *const IFsrmClassifierModuleImplementation, rules: ?*IFsrmCollection, propertyDefinitions: ?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.UseRulesAndDefinitions(self, rules, propertyDefinitions);
+    }
+    pub fn OnBeginFile(self: *const IFsrmClassifierModuleImplementation, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.OnBeginFile(self, propertyBag, arrayRuleIds);
+    }
+    pub fn DoesPropertyValueApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.DoesPropertyValueApply(self, property, value, applyValue, idRule, idPropDef);
+    }
+    pub fn GetPropertyValueToApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyValueToApply(self, property, value, idRule, idPropDef);
+    }
+    pub fn OnEndFile(self: *const IFsrmClassifierModuleImplementation) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEndFile(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmCollection_Value = Guid.initString("f76fbf3b-8ddd-4b42-b05a-cb1c3ff1fee8");
+pub const IID_IFsrmCollection = &IID_IFsrmCollection_Value;
+pub const IFsrmCollection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetSharePathsForLocalPath: *const fn(
-            self: *const IFsrmPathMapper,
-            localPath: ?BSTR,
-            sharePaths: ?*?*SAFEARRAY,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IFsrmCollection,
+            unknown: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IFsrmCollection,
+            index: i32,
+            item: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IFsrmCollection,
+            count: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const IFsrmCollection,
+            state: ?*FsrmCollectionState,
+        ) callconv(.winapi) HRESULT,
+        Cancel: *const fn(
+            self: *const IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        WaitForCompletion: *const fn(
+            self: *const IFsrmCollection,
+            waitSeconds: i32,
+            completed: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetById: *const fn(
+            self: *const IFsrmCollection,
+            id: Guid,
+            entry: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetSharePathsForLocalPath(self: *const IFsrmPathMapper, localPath: ?BSTR, sharePaths: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSharePathsForLocalPath(self, localPath, sharePaths);
+    pub fn get__NewEnum(self: *const IFsrmCollection, unknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, unknown);
+    }
+    pub fn get_Item(self: *const IFsrmCollection, index: i32, item: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, index, item);
+    }
+    pub fn get_Count(self: *const IFsrmCollection, count: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, count);
+    }
+    pub fn get_State(self: *const IFsrmCollection, state: ?*FsrmCollectionState) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, state);
+    }
+    pub fn Cancel(self: *const IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn WaitForCompletion(self: *const IFsrmCollection, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.WaitForCompletion(self, waitSeconds, completed);
+    }
+    pub fn GetById(self: *const IFsrmCollection, id: Guid, entry: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetById(self, id, entry);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmCommittableCollection_Value = Guid.initString("96deb3b5-8b91-4a2a-9d93-80a35d8aa847");
+pub const IID_IFsrmCommittableCollection = &IID_IFsrmCommittableCollection_Value;
+pub const IFsrmCommittableCollection = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmMutableCollection.VTable,
+        Commit: *const fn(
+            self: *const IFsrmCommittableCollection,
+            options: FsrmCommitOptions,
+            results: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmMutableCollection: IFsrmMutableCollection,
+    IFsrmCollection: IFsrmCollection,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Commit(self: *const IFsrmCommittableCollection, options: FsrmCommitOptions, results: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self, options, results);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmDerivedObjectsResult_Value = Guid.initString("39322a2d-38ee-4d0d-8095-421a80849a82");
+pub const IID_IFsrmDerivedObjectsResult = &IID_IFsrmDerivedObjectsResult_Value;
+pub const IFsrmDerivedObjectsResult = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DerivedObjects: *const fn(
+            self: *const IFsrmDerivedObjectsResult,
+            derivedObjects: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Results: *const fn(
+            self: *const IFsrmDerivedObjectsResult,
+            results: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DerivedObjects(self: *const IFsrmDerivedObjectsResult, derivedObjects: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DerivedObjects(self, derivedObjects);
+    }
+    pub fn get_Results(self: *const IFsrmDerivedObjectsResult, results: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Results(self, results);
     }
 };
 
@@ -1499,606 +1869,121 @@ pub const IFsrmExportImport = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmDerivedObjectsResult_Value = Guid.initString("39322a2d-38ee-4d0d-8095-421a80849a82");
-pub const IID_IFsrmDerivedObjectsResult = &IID_IFsrmDerivedObjectsResult_Value;
-pub const IFsrmDerivedObjectsResult = extern union {
+const IID_IFsrmFileCondition_Value = Guid.initString("70684ffc-691a-4a1a-b922-97752e138cc1");
+pub const IID_IFsrmFileCondition = &IID_IFsrmFileCondition_Value;
+pub const IFsrmFileCondition = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DerivedObjects: *const fn(
-            self: *const IFsrmDerivedObjectsResult,
-            derivedObjects: ?*?*IFsrmCollection,
+        get_Type: *const fn(
+            self: *const IFsrmFileCondition,
+            pVal: ?*FsrmFileConditionType,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Results: *const fn(
-            self: *const IFsrmDerivedObjectsResult,
-            results: ?*?*IFsrmCollection,
+        Delete: *const fn(
+            self: *const IFsrmFileCondition,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DerivedObjects(self: *const IFsrmDerivedObjectsResult, derivedObjects: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DerivedObjects(self, derivedObjects);
+    pub fn get_Type(self: *const IFsrmFileCondition, pVal: ?*FsrmFileConditionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, pVal);
     }
-    pub fn get_Results(self: *const IFsrmDerivedObjectsResult, results: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Results(self, results);
+    pub fn Delete(self: *const IFsrmFileCondition) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
-const IID_IFsrmAccessDeniedRemediationClient_Value = Guid.initString("40002314-590b-45a5-8e1b-8c05da527e52");
-pub const IID_IFsrmAccessDeniedRemediationClient = &IID_IFsrmAccessDeniedRemediationClient_Value;
-pub const IFsrmAccessDeniedRemediationClient = extern union {
+const IID_IFsrmFileConditionProperty_Value = Guid.initString("81926775-b981-4479-988f-da171d627360");
+pub const IID_IFsrmFileConditionProperty = &IID_IFsrmFileConditionProperty_Value;
+pub const IFsrmFileConditionProperty = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Show: *const fn(
-            self: *const IFsrmAccessDeniedRemediationClient,
-            parentWnd: usize,
-            accessPath: ?BSTR,
-            errorType: AdrClientErrorType,
-            flags: i32,
-            windowTitle: ?BSTR,
-            windowMessage: ?BSTR,
-            result: ?*i32,
+        base: IFsrmFileCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertyName: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PropertyName: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertyId: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*FsrmFileSystemPropertyId,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PropertyId: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: FsrmFileSystemPropertyId,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Operator: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*FsrmPropertyConditionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Operator: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: FsrmPropertyConditionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ValueType: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*FsrmPropertyValueType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ValueType: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: FsrmPropertyValueType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IFsrmFileCondition: IFsrmFileCondition,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Show(self: *const IFsrmAccessDeniedRemediationClient, parentWnd: usize, accessPath: ?BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: ?BSTR, windowMessage: ?BSTR, result: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Show(self, parentWnd, accessPath, errorType, flags, windowTitle, windowMessage, result);
+    pub fn get_PropertyName(self: *const IFsrmFileConditionProperty, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyName(self, pVal);
     }
-};
-
-const CLSID_FsrmSetting_Value = Guid.initString("f556d708-6d4d-4594-9c61-7dbb0dae2a46");
-pub const CLSID_FsrmSetting = &CLSID_FsrmSetting_Value;
-
-const CLSID_FsrmPathMapper_Value = Guid.initString("f3be42bd-8ac2-409e-bbd8-faf9b6b41feb");
-pub const CLSID_FsrmPathMapper = &CLSID_FsrmPathMapper_Value;
-
-const CLSID_FsrmExportImport_Value = Guid.initString("1482dc37-fae9-4787-9025-8ce4e024ab56");
-pub const CLSID_FsrmExportImport = &CLSID_FsrmExportImport_Value;
-
-const CLSID_FsrmQuotaManager_Value = Guid.initString("90dcab7f-347c-4bfc-b543-540326305fbe");
-pub const CLSID_FsrmQuotaManager = &CLSID_FsrmQuotaManager_Value;
-
-const CLSID_FsrmQuotaTemplateManager_Value = Guid.initString("97d3d443-251c-4337-81e7-b32e8f4ee65e");
-pub const CLSID_FsrmQuotaTemplateManager = &CLSID_FsrmQuotaTemplateManager_Value;
-
-const CLSID_FsrmFileGroupManager_Value = Guid.initString("8f1363f6-656f-4496-9226-13aecbd7718f");
-pub const CLSID_FsrmFileGroupManager = &CLSID_FsrmFileGroupManager_Value;
-
-const CLSID_FsrmFileScreenManager_Value = Guid.initString("95941183-db53-4c5f-b37b-7d0921cf9dc7");
-pub const CLSID_FsrmFileScreenManager = &CLSID_FsrmFileScreenManager_Value;
-
-const CLSID_FsrmFileScreenTemplateManager_Value = Guid.initString("243111df-e474-46aa-a054-eaa33edc292a");
-pub const CLSID_FsrmFileScreenTemplateManager = &CLSID_FsrmFileScreenTemplateManager_Value;
-
-const CLSID_FsrmReportManager_Value = Guid.initString("0058ef37-aa66-4c48-bd5b-2fce432ab0c8");
-pub const CLSID_FsrmReportManager = &CLSID_FsrmReportManager_Value;
-
-const CLSID_FsrmReportScheduler_Value = Guid.initString("ea25f1b8-1b8d-4290-8ee8-e17c12c2fe20");
-pub const CLSID_FsrmReportScheduler = &CLSID_FsrmReportScheduler_Value;
-
-const CLSID_FsrmFileManagementJobManager_Value = Guid.initString("eb18f9b2-4c3a-4321-b203-205120cff614");
-pub const CLSID_FsrmFileManagementJobManager = &CLSID_FsrmFileManagementJobManager_Value;
-
-const CLSID_FsrmClassificationManager_Value = Guid.initString("b15c0e47-c391-45b9-95c8-eb596c853f3a");
-pub const CLSID_FsrmClassificationManager = &CLSID_FsrmClassificationManager_Value;
-
-const CLSID_FsrmPipelineModuleConnector_Value = Guid.initString("c7643375-1eb5-44de-a062-623547d933bc");
-pub const CLSID_FsrmPipelineModuleConnector = &CLSID_FsrmPipelineModuleConnector_Value;
-
-const CLSID_AdSyncTask_Value = Guid.initString("2ae64751-b728-4d6b-97a0-b2da2e7d2a3b");
-pub const CLSID_AdSyncTask = &CLSID_AdSyncTask_Value;
-
-const CLSID_FsrmAccessDeniedRemediationClient_Value = Guid.initString("100b4fc8-74c1-470f-b1b7-dd7b6bae79bd");
-pub const CLSID_FsrmAccessDeniedRemediationClient = &CLSID_FsrmAccessDeniedRemediationClient_Value;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuotaBase_Value = Guid.initString("1568a795-3924-4118-b74b-68d8f0fa5daf");
-pub const IID_IFsrmQuotaBase = &IID_IFsrmQuotaBase_Value;
-pub const IFsrmQuotaBase = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmObject.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaLimit: *const fn(
-            self: *const IFsrmQuotaBase,
-            quotaLimit: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuotaLimit: *const fn(
-            self: *const IFsrmQuotaBase,
-            quotaLimit: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaFlags: *const fn(
-            self: *const IFsrmQuotaBase,
-            quotaFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuotaFlags: *const fn(
-            self: *const IFsrmQuotaBase,
-            quotaFlags: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Thresholds: *const fn(
-            self: *const IFsrmQuotaBase,
-            thresholds: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        AddThreshold: *const fn(
-            self: *const IFsrmQuotaBase,
-            threshold: i32,
-        ) callconv(.winapi) HRESULT,
-        DeleteThreshold: *const fn(
-            self: *const IFsrmQuotaBase,
-            threshold: i32,
-        ) callconv(.winapi) HRESULT,
-        ModifyThreshold: *const fn(
-            self: *const IFsrmQuotaBase,
-            threshold: i32,
-            newThreshold: i32,
-        ) callconv(.winapi) HRESULT,
-        CreateThresholdAction: *const fn(
-            self: *const IFsrmQuotaBase,
-            threshold: i32,
-            actionType: FsrmActionType,
-            action: ?*?*IFsrmAction,
-        ) callconv(.winapi) HRESULT,
-        EnumThresholdActions: *const fn(
-            self: *const IFsrmQuotaBase,
-            threshold: i32,
-            actions: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuotaLimit(self, quotaLimit);
+    pub fn put_PropertyName(self: *const IFsrmFileConditionProperty, newVal: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PropertyName(self, newVal);
     }
-    pub fn put_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_QuotaLimit(self, quotaLimit);
+    pub fn get_PropertyId(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmFileSystemPropertyId) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyId(self, pVal);
     }
-    pub fn get_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuotaFlags(self, quotaFlags);
+    pub fn put_PropertyId(self: *const IFsrmFileConditionProperty, newVal: FsrmFileSystemPropertyId) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PropertyId(self, newVal);
     }
-    pub fn put_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_QuotaFlags(self, quotaFlags);
+    pub fn get_Operator(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Operator(self, pVal);
     }
-    pub fn get_Thresholds(self: *const IFsrmQuotaBase, thresholds: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Thresholds(self, thresholds);
+    pub fn put_Operator(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Operator(self, newVal);
     }
-    pub fn AddThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddThreshold(self, threshold);
+    pub fn get_ValueType(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyValueType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ValueType(self, pVal);
     }
-    pub fn DeleteThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteThreshold(self, threshold);
+    pub fn put_ValueType(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyValueType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ValueType(self, newVal);
     }
-    pub fn ModifyThreshold(self: *const IFsrmQuotaBase, threshold: i32, newThreshold: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ModifyThreshold(self, threshold, newThreshold);
+    pub fn get_Value(self: *const IFsrmFileConditionProperty, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pVal);
     }
-    pub fn CreateThresholdAction(self: *const IFsrmQuotaBase, threshold: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateThresholdAction(self, threshold, actionType, action);
-    }
-    pub fn EnumThresholdActions(self: *const IFsrmQuotaBase, threshold: i32, actions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumThresholdActions(self, threshold, actions);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuotaObject_Value = Guid.initString("42dc3511-61d5-48ae-b6dc-59fc00c0a8d6");
-pub const IID_IFsrmQuotaObject = &IID_IFsrmQuotaObject_Value;
-pub const IFsrmQuotaObject = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmQuotaBase.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IFsrmQuotaObject,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserSid: *const fn(
-            self: *const IFsrmQuotaObject,
-            userSid: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserAccount: *const fn(
-            self: *const IFsrmQuotaObject,
-            userAccount: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceTemplateName: *const fn(
-            self: *const IFsrmQuotaObject,
-            quotaTemplateName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MatchesSourceTemplate: *const fn(
-            self: *const IFsrmQuotaObject,
-            matches: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        ApplyTemplate: *const fn(
-            self: *const IFsrmQuotaObject,
-            quotaTemplateName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmQuotaBase: IFsrmQuotaBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Path(self: *const IFsrmQuotaObject, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, path);
-    }
-    pub fn get_UserSid(self: *const IFsrmQuotaObject, userSid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserSid(self, userSid);
-    }
-    pub fn get_UserAccount(self: *const IFsrmQuotaObject, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserAccount(self, userAccount);
-    }
-    pub fn get_SourceTemplateName(self: *const IFsrmQuotaObject, quotaTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SourceTemplateName(self, quotaTemplateName);
-    }
-    pub fn get_MatchesSourceTemplate(self: *const IFsrmQuotaObject, matches: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MatchesSourceTemplate(self, matches);
-    }
-    pub fn ApplyTemplate(self: *const IFsrmQuotaObject, quotaTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplyTemplate(self, quotaTemplateName);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuota_Value = Guid.initString("377f739d-9647-4b8e-97d2-5ffce6d759cd");
-pub const IID_IFsrmQuota = &IID_IFsrmQuota_Value;
-pub const IFsrmQuota = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmQuotaObject.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaUsed: *const fn(
-            self: *const IFsrmQuota,
-            used: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaPeakUsage: *const fn(
-            self: *const IFsrmQuota,
-            peakUsage: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaPeakUsageTime: *const fn(
-            self: *const IFsrmQuota,
-            peakUsageDateTime: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        ResetPeakUsage: *const fn(
-            self: *const IFsrmQuota,
-        ) callconv(.winapi) HRESULT,
-        RefreshUsageProperties: *const fn(
-            self: *const IFsrmQuota,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmQuotaObject: IFsrmQuotaObject,
-    IFsrmQuotaBase: IFsrmQuotaBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_QuotaUsed(self: *const IFsrmQuota, used: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuotaUsed(self, used);
-    }
-    pub fn get_QuotaPeakUsage(self: *const IFsrmQuota, peakUsage: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuotaPeakUsage(self, peakUsage);
-    }
-    pub fn get_QuotaPeakUsageTime(self: *const IFsrmQuota, peakUsageDateTime: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuotaPeakUsageTime(self, peakUsageDateTime);
-    }
-    pub fn ResetPeakUsage(self: *const IFsrmQuota) callconv(.@"inline") HRESULT {
-        return self.vtable.ResetPeakUsage(self);
-    }
-    pub fn RefreshUsageProperties(self: *const IFsrmQuota) callconv(.@"inline") HRESULT {
-        return self.vtable.RefreshUsageProperties(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmAutoApplyQuota_Value = Guid.initString("f82e5729-6aba-4740-bfc7-c7f58f75fb7b");
-pub const IID_IFsrmAutoApplyQuota = &IID_IFsrmAutoApplyQuota_Value;
-pub const IFsrmAutoApplyQuota = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmQuotaObject.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExcludeFolders: *const fn(
-            self: *const IFsrmAutoApplyQuota,
-            folders: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExcludeFolders: *const fn(
-            self: *const IFsrmAutoApplyQuota,
-            folders: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        CommitAndUpdateDerived: *const fn(
-            self: *const IFsrmAutoApplyQuota,
-            commitOptions: FsrmCommitOptions,
-            applyOptions: FsrmTemplateApplyOptions,
-            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmQuotaObject: IFsrmQuotaObject,
-    IFsrmQuotaBase: IFsrmQuotaBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExcludeFolders(self, folders);
-    }
-    pub fn put_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExcludeFolders(self, folders);
-    }
-    pub fn CommitAndUpdateDerived(self: *const IFsrmAutoApplyQuota, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuotaManager_Value = Guid.initString("8bb68c7d-19d8-4ffb-809e-be4fc1734014");
-pub const IID_IFsrmQuotaManager = &IID_IFsrmQuotaManager_Value;
-pub const IFsrmQuotaManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariables: *const fn(
-            self: *const IFsrmQuotaManager,
-            variables: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariableDescriptions: *const fn(
-            self: *const IFsrmQuotaManager,
-            descriptions: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        CreateQuota: *const fn(
-            self: *const IFsrmQuotaManager,
-            path: ?BSTR,
-            quota: ?*?*IFsrmQuota,
-        ) callconv(.winapi) HRESULT,
-        CreateAutoApplyQuota: *const fn(
-            self: *const IFsrmQuotaManager,
-            quotaTemplateName: ?BSTR,
-            path: ?BSTR,
-            quota: ?*?*IFsrmAutoApplyQuota,
-        ) callconv(.winapi) HRESULT,
-        GetQuota: *const fn(
-            self: *const IFsrmQuotaManager,
-            path: ?BSTR,
-            quota: ?*?*IFsrmQuota,
-        ) callconv(.winapi) HRESULT,
-        GetAutoApplyQuota: *const fn(
-            self: *const IFsrmQuotaManager,
-            path: ?BSTR,
-            quota: ?*?*IFsrmAutoApplyQuota,
-        ) callconv(.winapi) HRESULT,
-        GetRestrictiveQuota: *const fn(
-            self: *const IFsrmQuotaManager,
-            path: ?BSTR,
-            quota: ?*?*IFsrmQuota,
-        ) callconv(.winapi) HRESULT,
-        EnumQuotas: *const fn(
-            self: *const IFsrmQuotaManager,
-            path: ?BSTR,
-            options: FsrmEnumOptions,
-            quotas: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-        EnumAutoApplyQuotas: *const fn(
-            self: *const IFsrmQuotaManager,
-            path: ?BSTR,
-            options: FsrmEnumOptions,
-            quotas: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-        EnumEffectiveQuotas: *const fn(
-            self: *const IFsrmQuotaManager,
-            path: ?BSTR,
-            options: FsrmEnumOptions,
-            quotas: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-        Scan: *const fn(
-            self: *const IFsrmQuotaManager,
-            strPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CreateQuotaCollection: *const fn(
-            self: *const IFsrmQuotaManager,
-            collection: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ActionVariables(self: *const IFsrmQuotaManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ActionVariables(self, variables);
-    }
-    pub fn get_ActionVariableDescriptions(self: *const IFsrmQuotaManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
-    }
-    pub fn CreateQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateQuota(self, path, quota);
-    }
-    pub fn CreateAutoApplyQuota(self: *const IFsrmQuotaManager, quotaTemplateName: ?BSTR, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateAutoApplyQuota(self, quotaTemplateName, path, quota);
-    }
-    pub fn GetQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
-        return self.vtable.GetQuota(self, path, quota);
-    }
-    pub fn GetAutoApplyQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAutoApplyQuota(self, path, quota);
-    }
-    pub fn GetRestrictiveQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRestrictiveQuota(self, path, quota);
-    }
-    pub fn EnumQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumQuotas(self, path, options, quotas);
-    }
-    pub fn EnumAutoApplyQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumAutoApplyQuotas(self, path, options, quotas);
-    }
-    pub fn EnumEffectiveQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumEffectiveQuotas(self, path, options, quotas);
-    }
-    pub fn Scan(self: *const IFsrmQuotaManager, strPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Scan(self, strPath);
-    }
-    pub fn CreateQuotaCollection(self: *const IFsrmQuotaManager, collection: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateQuotaCollection(self, collection);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuotaManagerEx_Value = Guid.initString("4846cb01-d430-494f-abb4-b1054999fb09");
-pub const IID_IFsrmQuotaManagerEx = &IID_IFsrmQuotaManagerEx_Value;
-pub const IFsrmQuotaManagerEx = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmQuotaManager.VTable,
-        IsAffectedByQuota: *const fn(
-            self: *const IFsrmQuotaManagerEx,
-            path: ?BSTR,
-            options: FsrmEnumOptions,
-            affected: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmQuotaManager: IFsrmQuotaManager,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn IsAffectedByQuota(self: *const IFsrmQuotaManagerEx, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsAffectedByQuota(self, path, options, affected);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuotaTemplate_Value = Guid.initString("a2efab31-295e-46bb-b976-e86d58b52e8b");
-pub const IID_IFsrmQuotaTemplate = &IID_IFsrmQuotaTemplate_Value;
-pub const IFsrmQuotaTemplate = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmQuotaBase.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFsrmQuotaTemplate,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IFsrmQuotaTemplate,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CopyTemplate: *const fn(
-            self: *const IFsrmQuotaTemplate,
-            quotaTemplateName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CommitAndUpdateDerived: *const fn(
-            self: *const IFsrmQuotaTemplate,
-            commitOptions: FsrmCommitOptions,
-            applyOptions: FsrmTemplateApplyOptions,
-            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmQuotaBase: IFsrmQuotaBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmQuotaTemplate, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn put_Name(self: *const IFsrmQuotaTemplate, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, name);
-    }
-    pub fn CopyTemplate(self: *const IFsrmQuotaTemplate, quotaTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyTemplate(self, quotaTemplateName);
-    }
-    pub fn CommitAndUpdateDerived(self: *const IFsrmQuotaTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuotaTemplateImported_Value = Guid.initString("9a2bf113-a329-44cc-809a-5c00fce8da40");
-pub const IID_IFsrmQuotaTemplateImported = &IID_IFsrmQuotaTemplateImported_Value;
-pub const IFsrmQuotaTemplateImported = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmQuotaTemplate.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OverwriteOnCommit: *const fn(
-            self: *const IFsrmQuotaTemplateImported,
-            overwrite: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OverwriteOnCommit: *const fn(
-            self: *const IFsrmQuotaTemplateImported,
-            overwrite: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmQuotaTemplate: IFsrmQuotaTemplate,
-    IFsrmQuotaBase: IFsrmQuotaBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_OverwriteOnCommit(self, overwrite);
-    }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_OverwriteOnCommit(self, overwrite);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmQuotaTemplateManager_Value = Guid.initString("4173ac41-172d-4d52-963c-fdc7e415f717");
-pub const IID_IFsrmQuotaTemplateManager = &IID_IFsrmQuotaTemplateManager_Value;
-pub const IFsrmQuotaTemplateManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        CreateTemplate: *const fn(
-            self: *const IFsrmQuotaTemplateManager,
-            quotaTemplate: ?*?*IFsrmQuotaTemplate,
-        ) callconv(.winapi) HRESULT,
-        GetTemplate: *const fn(
-            self: *const IFsrmQuotaTemplateManager,
-            name: ?BSTR,
-            quotaTemplate: ?*?*IFsrmQuotaTemplate,
-        ) callconv(.winapi) HRESULT,
-        EnumTemplates: *const fn(
-            self: *const IFsrmQuotaTemplateManager,
-            options: FsrmEnumOptions,
-            quotaTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-        ExportTemplates: *const fn(
-            self: *const IFsrmQuotaTemplateManager,
-            quotaTemplateNamesArray: ?*VARIANT,
-            serializedQuotaTemplates: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ImportTemplates: *const fn(
-            self: *const IFsrmQuotaTemplateManager,
-            serializedQuotaTemplates: ?BSTR,
-            quotaTemplateNamesArray: ?*VARIANT,
-            quotaTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn CreateTemplate(self: *const IFsrmQuotaTemplateManager, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTemplate(self, quotaTemplate);
-    }
-    pub fn GetTemplate(self: *const IFsrmQuotaTemplateManager, name: ?BSTR, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTemplate(self, name, quotaTemplate);
-    }
-    pub fn EnumTemplates(self: *const IFsrmQuotaTemplateManager, options: FsrmEnumOptions, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumTemplates(self, options, quotaTemplates);
-    }
-    pub fn ExportTemplates(self: *const IFsrmQuotaTemplateManager, quotaTemplateNamesArray: ?*VARIANT, serializedQuotaTemplates: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ExportTemplates(self, quotaTemplateNamesArray, serializedQuotaTemplates);
-    }
-    pub fn ImportTemplates(self: *const IFsrmQuotaTemplateManager, serializedQuotaTemplates: ?BSTR, quotaTemplateNamesArray: ?*VARIANT, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.ImportTemplates(self, serializedQuotaTemplates, quotaTemplateNamesArray, quotaTemplates);
+    pub fn put_Value(self: *const IFsrmFileConditionProperty, newVal: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, newVal);
     }
 };
 
@@ -2242,794 +2127,6 @@ pub const IFsrmFileGroupManager = extern union {
     }
     pub fn ImportFileGroups(self: *const IFsrmFileGroupManager, serializedFileGroups: ?BSTR, fileGroupNamesArray: ?*VARIANT, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.ImportFileGroups(self, serializedFileGroups, fileGroupNamesArray, fileGroups);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileScreenBase_Value = Guid.initString("f3637e80-5b22-4a2b-a637-bbb642b41cfc");
-pub const IID_IFsrmFileScreenBase = &IID_IFsrmFileScreenBase_Value;
-pub const IFsrmFileScreenBase = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmObject.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BlockedFileGroups: *const fn(
-            self: *const IFsrmFileScreenBase,
-            blockList: ?*?*IFsrmMutableCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BlockedFileGroups: *const fn(
-            self: *const IFsrmFileScreenBase,
-            blockList: ?*IFsrmMutableCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileScreenFlags: *const fn(
-            self: *const IFsrmFileScreenBase,
-            fileScreenFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileScreenFlags: *const fn(
-            self: *const IFsrmFileScreenBase,
-            fileScreenFlags: i32,
-        ) callconv(.winapi) HRESULT,
-        CreateAction: *const fn(
-            self: *const IFsrmFileScreenBase,
-            actionType: FsrmActionType,
-            action: ?*?*IFsrmAction,
-        ) callconv(.winapi) HRESULT,
-        EnumActions: *const fn(
-            self: *const IFsrmFileScreenBase,
-            actions: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BlockedFileGroups(self, blockList);
-    }
-    pub fn put_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.put_BlockedFileGroups(self, blockList);
-    }
-    pub fn get_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileScreenFlags(self, fileScreenFlags);
-    }
-    pub fn put_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_FileScreenFlags(self, fileScreenFlags);
-    }
-    pub fn CreateAction(self: *const IFsrmFileScreenBase, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateAction(self, actionType, action);
-    }
-    pub fn EnumActions(self: *const IFsrmFileScreenBase, actions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumActions(self, actions);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileScreen_Value = Guid.initString("5f6325d3-ce88-4733-84c1-2d6aefc5ea07");
-pub const IID_IFsrmFileScreen = &IID_IFsrmFileScreen_Value;
-pub const IFsrmFileScreen = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmFileScreenBase.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IFsrmFileScreen,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceTemplateName: *const fn(
-            self: *const IFsrmFileScreen,
-            fileScreenTemplateName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MatchesSourceTemplate: *const fn(
-            self: *const IFsrmFileScreen,
-            matches: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserSid: *const fn(
-            self: *const IFsrmFileScreen,
-            userSid: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserAccount: *const fn(
-            self: *const IFsrmFileScreen,
-            userAccount: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ApplyTemplate: *const fn(
-            self: *const IFsrmFileScreen,
-            fileScreenTemplateName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmFileScreenBase: IFsrmFileScreenBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Path(self: *const IFsrmFileScreen, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, path);
-    }
-    pub fn get_SourceTemplateName(self: *const IFsrmFileScreen, fileScreenTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SourceTemplateName(self, fileScreenTemplateName);
-    }
-    pub fn get_MatchesSourceTemplate(self: *const IFsrmFileScreen, matches: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MatchesSourceTemplate(self, matches);
-    }
-    pub fn get_UserSid(self: *const IFsrmFileScreen, userSid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserSid(self, userSid);
-    }
-    pub fn get_UserAccount(self: *const IFsrmFileScreen, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UserAccount(self, userAccount);
-    }
-    pub fn ApplyTemplate(self: *const IFsrmFileScreen, fileScreenTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ApplyTemplate(self, fileScreenTemplateName);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileScreenException_Value = Guid.initString("bee7ce02-df77-4515-9389-78f01c5afc1a");
-pub const IID_IFsrmFileScreenException = &IID_IFsrmFileScreenException_Value;
-pub const IFsrmFileScreenException = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmObject.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: *const fn(
-            self: *const IFsrmFileScreenException,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowedFileGroups: *const fn(
-            self: *const IFsrmFileScreenException,
-            allowList: ?*?*IFsrmMutableCollection,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowedFileGroups: *const fn(
-            self: *const IFsrmFileScreenException,
-            allowList: ?*IFsrmMutableCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Path(self: *const IFsrmFileScreenException, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Path(self, path);
-    }
-    pub fn get_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AllowedFileGroups(self, allowList);
-    }
-    pub fn put_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AllowedFileGroups(self, allowList);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileScreenManager_Value = Guid.initString("ff4fa04e-5a94-4bda-a3a0-d5b4d3c52eba");
-pub const IID_IFsrmFileScreenManager = &IID_IFsrmFileScreenManager_Value;
-pub const IFsrmFileScreenManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariables: *const fn(
-            self: *const IFsrmFileScreenManager,
-            variables: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariableDescriptions: *const fn(
-            self: *const IFsrmFileScreenManager,
-            descriptions: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        CreateFileScreen: *const fn(
-            self: *const IFsrmFileScreenManager,
-            path: ?BSTR,
-            fileScreen: ?*?*IFsrmFileScreen,
-        ) callconv(.winapi) HRESULT,
-        GetFileScreen: *const fn(
-            self: *const IFsrmFileScreenManager,
-            path: ?BSTR,
-            fileScreen: ?*?*IFsrmFileScreen,
-        ) callconv(.winapi) HRESULT,
-        EnumFileScreens: *const fn(
-            self: *const IFsrmFileScreenManager,
-            path: ?BSTR,
-            options: FsrmEnumOptions,
-            fileScreens: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateFileScreenException: *const fn(
-            self: *const IFsrmFileScreenManager,
-            path: ?BSTR,
-            fileScreenException: ?*?*IFsrmFileScreenException,
-        ) callconv(.winapi) HRESULT,
-        GetFileScreenException: *const fn(
-            self: *const IFsrmFileScreenManager,
-            path: ?BSTR,
-            fileScreenException: ?*?*IFsrmFileScreenException,
-        ) callconv(.winapi) HRESULT,
-        EnumFileScreenExceptions: *const fn(
-            self: *const IFsrmFileScreenManager,
-            path: ?BSTR,
-            options: FsrmEnumOptions,
-            fileScreenExceptions: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateFileScreenCollection: *const fn(
-            self: *const IFsrmFileScreenManager,
-            collection: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ActionVariables(self: *const IFsrmFileScreenManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ActionVariables(self, variables);
-    }
-    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileScreenManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
-    }
-    pub fn CreateFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFileScreen(self, path, fileScreen);
-    }
-    pub fn GetFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileScreen(self, path, fileScreen);
-    }
-    pub fn EnumFileScreens(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreens: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumFileScreens(self, path, options, fileScreens);
-    }
-    pub fn CreateFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFileScreenException(self, path, fileScreenException);
-    }
-    pub fn GetFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileScreenException(self, path, fileScreenException);
-    }
-    pub fn EnumFileScreenExceptions(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreenExceptions: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumFileScreenExceptions(self, path, options, fileScreenExceptions);
-    }
-    pub fn CreateFileScreenCollection(self: *const IFsrmFileScreenManager, collection: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFileScreenCollection(self, collection);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileScreenTemplate_Value = Guid.initString("205bebf8-dd93-452a-95a6-32b566b35828");
-pub const IID_IFsrmFileScreenTemplate = &IID_IFsrmFileScreenTemplate_Value;
-pub const IFsrmFileScreenTemplate = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmFileScreenBase.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFsrmFileScreenTemplate,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IFsrmFileScreenTemplate,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CopyTemplate: *const fn(
-            self: *const IFsrmFileScreenTemplate,
-            fileScreenTemplateName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CommitAndUpdateDerived: *const fn(
-            self: *const IFsrmFileScreenTemplate,
-            commitOptions: FsrmCommitOptions,
-            applyOptions: FsrmTemplateApplyOptions,
-            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmFileScreenBase: IFsrmFileScreenBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmFileScreenTemplate, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn put_Name(self: *const IFsrmFileScreenTemplate, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, name);
-    }
-    pub fn CopyTemplate(self: *const IFsrmFileScreenTemplate, fileScreenTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyTemplate(self, fileScreenTemplateName);
-    }
-    pub fn CommitAndUpdateDerived(self: *const IFsrmFileScreenTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileScreenTemplateImported_Value = Guid.initString("e1010359-3e5d-4ecd-9fe4-ef48622fdf30");
-pub const IID_IFsrmFileScreenTemplateImported = &IID_IFsrmFileScreenTemplateImported_Value;
-pub const IFsrmFileScreenTemplateImported = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmFileScreenTemplate.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OverwriteOnCommit: *const fn(
-            self: *const IFsrmFileScreenTemplateImported,
-            overwrite: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OverwriteOnCommit: *const fn(
-            self: *const IFsrmFileScreenTemplateImported,
-            overwrite: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmFileScreenTemplate: IFsrmFileScreenTemplate,
-    IFsrmFileScreenBase: IFsrmFileScreenBase,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_OverwriteOnCommit(self, overwrite);
-    }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_OverwriteOnCommit(self, overwrite);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileScreenTemplateManager_Value = Guid.initString("cfe36cba-1949-4e74-a14f-f1d580ceaf13");
-pub const IID_IFsrmFileScreenTemplateManager = &IID_IFsrmFileScreenTemplateManager_Value;
-pub const IFsrmFileScreenTemplateManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        CreateTemplate: *const fn(
-            self: *const IFsrmFileScreenTemplateManager,
-            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-        ) callconv(.winapi) HRESULT,
-        GetTemplate: *const fn(
-            self: *const IFsrmFileScreenTemplateManager,
-            name: ?BSTR,
-            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-        ) callconv(.winapi) HRESULT,
-        EnumTemplates: *const fn(
-            self: *const IFsrmFileScreenTemplateManager,
-            options: FsrmEnumOptions,
-            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-        ExportTemplates: *const fn(
-            self: *const IFsrmFileScreenTemplateManager,
-            fileScreenTemplateNamesArray: ?*VARIANT,
-            serializedFileScreenTemplates: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ImportTemplates: *const fn(
-            self: *const IFsrmFileScreenTemplateManager,
-            serializedFileScreenTemplates: ?BSTR,
-            fileScreenTemplateNamesArray: ?*VARIANT,
-            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn CreateTemplate(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTemplate(self, fileScreenTemplate);
-    }
-    pub fn GetTemplate(self: *const IFsrmFileScreenTemplateManager, name: ?BSTR, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTemplate(self, name, fileScreenTemplate);
-    }
-    pub fn EnumTemplates(self: *const IFsrmFileScreenTemplateManager, options: FsrmEnumOptions, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumTemplates(self, options, fileScreenTemplates);
-    }
-    pub fn ExportTemplates(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplateNamesArray: ?*VARIANT, serializedFileScreenTemplates: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ExportTemplates(self, fileScreenTemplateNamesArray, serializedFileScreenTemplates);
-    }
-    pub fn ImportTemplates(self: *const IFsrmFileScreenTemplateManager, serializedFileScreenTemplates: ?BSTR, fileScreenTemplateNamesArray: ?*VARIANT, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.ImportTemplates(self, serializedFileScreenTemplates, fileScreenTemplateNamesArray, fileScreenTemplates);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmReportManager_Value = Guid.initString("27b899fe-6ffa-4481-a184-d3daade8a02b");
-pub const IID_IFsrmReportManager = &IID_IFsrmReportManager_Value;
-pub const IFsrmReportManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        EnumReportJobs: *const fn(
-            self: *const IFsrmReportManager,
-            options: FsrmEnumOptions,
-            reportJobs: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateReportJob: *const fn(
-            self: *const IFsrmReportManager,
-            reportJob: ?*?*IFsrmReportJob,
-        ) callconv(.winapi) HRESULT,
-        GetReportJob: *const fn(
-            self: *const IFsrmReportManager,
-            taskName: ?BSTR,
-            reportJob: ?*?*IFsrmReportJob,
-        ) callconv(.winapi) HRESULT,
-        GetOutputDirectory: *const fn(
-            self: *const IFsrmReportManager,
-            context: FsrmReportGenerationContext,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SetOutputDirectory: *const fn(
-            self: *const IFsrmReportManager,
-            context: FsrmReportGenerationContext,
-            path: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        IsFilterValidForReportType: *const fn(
-            self: *const IFsrmReportManager,
-            reportType: FsrmReportType,
-            filter: FsrmReportFilter,
-            valid: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultFilter: *const fn(
-            self: *const IFsrmReportManager,
-            reportType: FsrmReportType,
-            filter: FsrmReportFilter,
-            filterValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetDefaultFilter: *const fn(
-            self: *const IFsrmReportManager,
-            reportType: FsrmReportType,
-            filter: FsrmReportFilter,
-            filterValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetReportSizeLimit: *const fn(
-            self: *const IFsrmReportManager,
-            limit: FsrmReportLimit,
-            limitValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetReportSizeLimit: *const fn(
-            self: *const IFsrmReportManager,
-            limit: FsrmReportLimit,
-            limitValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn EnumReportJobs(self: *const IFsrmReportManager, options: FsrmEnumOptions, reportJobs: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumReportJobs(self, options, reportJobs);
-    }
-    pub fn CreateReportJob(self: *const IFsrmReportManager, reportJob: ?*?*IFsrmReportJob) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateReportJob(self, reportJob);
-    }
-    pub fn GetReportJob(self: *const IFsrmReportManager, taskName: ?BSTR, reportJob: ?*?*IFsrmReportJob) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReportJob(self, taskName, reportJob);
-    }
-    pub fn GetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputDirectory(self, context, path);
-    }
-    pub fn SetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOutputDirectory(self, context, path);
-    }
-    pub fn IsFilterValidForReportType(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.IsFilterValidForReportType(self, reportType, filter, valid);
-    }
-    pub fn GetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultFilter(self, reportType, filter, filterValue);
-    }
-    pub fn SetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultFilter(self, reportType, filter, filterValue);
-    }
-    pub fn GetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReportSizeLimit(self, limit, limitValue);
-    }
-    pub fn SetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReportSizeLimit(self, limit, limitValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmReportJob_Value = Guid.initString("38e87280-715c-4c7d-a280-ea1651a19fef");
-pub const IID_IFsrmReportJob = &IID_IFsrmReportJob_Value;
-pub const IFsrmReportJob = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmObject.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Task: *const fn(
-            self: *const IFsrmReportJob,
-            taskName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Task: *const fn(
-            self: *const IFsrmReportJob,
-            taskName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NamespaceRoots: *const fn(
-            self: *const IFsrmReportJob,
-            namespaceRoots: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NamespaceRoots: *const fn(
-            self: *const IFsrmReportJob,
-            namespaceRoots: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Formats: *const fn(
-            self: *const IFsrmReportJob,
-            formats: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Formats: *const fn(
-            self: *const IFsrmReportJob,
-            formats: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailTo: *const fn(
-            self: *const IFsrmReportJob,
-            mailTo: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailTo: *const fn(
-            self: *const IFsrmReportJob,
-            mailTo: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RunningStatus: *const fn(
-            self: *const IFsrmReportJob,
-            runningStatus: ?*FsrmReportRunningStatus,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastRun: *const fn(
-            self: *const IFsrmReportJob,
-            lastRun: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastError: *const fn(
-            self: *const IFsrmReportJob,
-            lastError: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastGeneratedInDirectory: *const fn(
-            self: *const IFsrmReportJob,
-            path: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        EnumReports: *const fn(
-            self: *const IFsrmReportJob,
-            reports: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateReport: *const fn(
-            self: *const IFsrmReportJob,
-            reportType: FsrmReportType,
-            report: ?*?*IFsrmReport,
-        ) callconv(.winapi) HRESULT,
-        Run: *const fn(
-            self: *const IFsrmReportJob,
-            context: FsrmReportGenerationContext,
-        ) callconv(.winapi) HRESULT,
-        WaitForCompletion: *const fn(
-            self: *const IFsrmReportJob,
-            waitSeconds: i32,
-            completed: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        Cancel: *const fn(
-            self: *const IFsrmReportJob,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Task(self: *const IFsrmReportJob, taskName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Task(self, taskName);
-    }
-    pub fn put_Task(self: *const IFsrmReportJob, taskName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Task(self, taskName);
-    }
-    pub fn get_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NamespaceRoots(self, namespaceRoots);
-    }
-    pub fn put_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NamespaceRoots(self, namespaceRoots);
-    }
-    pub fn get_Formats(self: *const IFsrmReportJob, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Formats(self, formats);
-    }
-    pub fn put_Formats(self: *const IFsrmReportJob, formats: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Formats(self, formats);
-    }
-    pub fn get_MailTo(self: *const IFsrmReportJob, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MailTo(self, mailTo);
-    }
-    pub fn put_MailTo(self: *const IFsrmReportJob, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_MailTo(self, mailTo);
-    }
-    pub fn get_RunningStatus(self: *const IFsrmReportJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RunningStatus(self, runningStatus);
-    }
-    pub fn get_LastRun(self: *const IFsrmReportJob, lastRun: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastRun(self, lastRun);
-    }
-    pub fn get_LastError(self: *const IFsrmReportJob, lastError: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastError(self, lastError);
-    }
-    pub fn get_LastGeneratedInDirectory(self: *const IFsrmReportJob, path: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastGeneratedInDirectory(self, path);
-    }
-    pub fn EnumReports(self: *const IFsrmReportJob, reports: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumReports(self, reports);
-    }
-    pub fn CreateReport(self: *const IFsrmReportJob, reportType: FsrmReportType, report: ?*?*IFsrmReport) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateReport(self, reportType, report);
-    }
-    pub fn Run(self: *const IFsrmReportJob, context: FsrmReportGenerationContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Run(self, context);
-    }
-    pub fn WaitForCompletion(self: *const IFsrmReportJob, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.WaitForCompletion(self, waitSeconds, completed);
-    }
-    pub fn Cancel(self: *const IFsrmReportJob) callconv(.@"inline") HRESULT {
-        return self.vtable.Cancel(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmReport_Value = Guid.initString("d8cc81d9-46b8-4fa4-bfa5-4aa9dec9b638");
-pub const IID_IFsrmReport = &IID_IFsrmReport_Value;
-pub const IFsrmReport = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IFsrmReport,
-            reportType: ?*FsrmReportType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFsrmReport,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IFsrmReport,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IFsrmReport,
-            description: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IFsrmReport,
-            description: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastGeneratedFileNamePrefix: *const fn(
-            self: *const IFsrmReport,
-            prefix: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetFilter: *const fn(
-            self: *const IFsrmReport,
-            filter: FsrmReportFilter,
-            filterValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetFilter: *const fn(
-            self: *const IFsrmReport,
-            filter: FsrmReportFilter,
-            filterValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IFsrmReport,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Type(self: *const IFsrmReport, reportType: ?*FsrmReportType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, reportType);
-    }
-    pub fn get_Name(self: *const IFsrmReport, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn put_Name(self: *const IFsrmReport, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, name);
-    }
-    pub fn get_Description(self: *const IFsrmReport, description: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, description);
-    }
-    pub fn put_Description(self: *const IFsrmReport, description: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, description);
-    }
-    pub fn get_LastGeneratedFileNamePrefix(self: *const IFsrmReport, prefix: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastGeneratedFileNamePrefix(self, prefix);
-    }
-    pub fn GetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFilter(self, filter, filterValue);
-    }
-    pub fn SetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFilter(self, filter, filterValue);
-    }
-    pub fn Delete(self: *const IFsrmReport) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmReportScheduler_Value = Guid.initString("6879caf9-6617-4484-8719-71c3d8645f94");
-pub const IID_IFsrmReportScheduler = &IID_IFsrmReportScheduler_Value;
-pub const IFsrmReportScheduler = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        VerifyNamespaces: *const fn(
-            self: *const IFsrmReportScheduler,
-            namespacesSafeArray: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        CreateScheduleTask: *const fn(
-            self: *const IFsrmReportScheduler,
-            taskName: ?BSTR,
-            namespacesSafeArray: ?*VARIANT,
-            serializedTask: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ModifyScheduleTask: *const fn(
-            self: *const IFsrmReportScheduler,
-            taskName: ?BSTR,
-            namespacesSafeArray: ?*VARIANT,
-            serializedTask: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        DeleteScheduleTask: *const fn(
-            self: *const IFsrmReportScheduler,
-            taskName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn VerifyNamespaces(self: *const IFsrmReportScheduler, namespacesSafeArray: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.VerifyNamespaces(self, namespacesSafeArray);
-    }
-    pub fn CreateScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
-    }
-    pub fn ModifyScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ModifyScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
-    }
-    pub fn DeleteScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteScheduleTask(self, taskName);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmFileManagementJobManager_Value = Guid.initString("ee321ecb-d95e-48e9-907c-c7685a013235");
-pub const IID_IFsrmFileManagementJobManager = &IID_IFsrmFileManagementJobManager_Value;
-pub const IFsrmFileManagementJobManager = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariables: *const fn(
-            self: *const IFsrmFileManagementJobManager,
-            variables: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariableDescriptions: *const fn(
-            self: *const IFsrmFileManagementJobManager,
-            descriptions: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        EnumFileManagementJobs: *const fn(
-            self: *const IFsrmFileManagementJobManager,
-            options: FsrmEnumOptions,
-            fileManagementJobs: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateFileManagementJob: *const fn(
-            self: *const IFsrmFileManagementJobManager,
-            fileManagementJob: ?*?*IFsrmFileManagementJob,
-        ) callconv(.winapi) HRESULT,
-        GetFileManagementJob: *const fn(
-            self: *const IFsrmFileManagementJobManager,
-            name: ?BSTR,
-            fileManagementJob: ?*?*IFsrmFileManagementJob,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ActionVariables(self: *const IFsrmFileManagementJobManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ActionVariables(self, variables);
-    }
-    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileManagementJobManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
-    }
-    pub fn EnumFileManagementJobs(self: *const IFsrmFileManagementJobManager, options: FsrmEnumOptions, fileManagementJobs: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumFileManagementJobs(self, options, fileManagementJobs);
-    }
-    pub fn CreateFileManagementJob(self: *const IFsrmFileManagementJobManager, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFileManagementJob(self, fileManagementJob);
-    }
-    pub fn GetFileManagementJob(self: *const IFsrmFileManagementJobManager, name: ?BSTR, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileManagementJob(self, name, fileManagementJob);
     }
 };
 
@@ -3434,592 +2531,586 @@ pub const IFsrmFileManagementJob = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmPropertyCondition_Value = Guid.initString("326af66f-2ac0-4f68-bf8c-4759f054fa29");
-pub const IID_IFsrmPropertyCondition = &IID_IFsrmPropertyCondition_Value;
-pub const IFsrmPropertyCondition = extern union {
+const IID_IFsrmFileManagementJobManager_Value = Guid.initString("ee321ecb-d95e-48e9-907c-c7685a013235");
+pub const IID_IFsrmFileManagementJobManager = &IID_IFsrmFileManagementJobManager_Value;
+pub const IFsrmFileManagementJobManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFsrmPropertyCondition,
-            name: ?*?BSTR,
+        get_ActionVariables: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            variables: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IFsrmPropertyCondition,
+        get_ActionVariableDescriptions: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            descriptions: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        EnumFileManagementJobs: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            options: FsrmEnumOptions,
+            fileManagementJobs: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateFileManagementJob: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            fileManagementJob: ?*?*IFsrmFileManagementJob,
+        ) callconv(.winapi) HRESULT,
+        GetFileManagementJob: *const fn(
+            self: *const IFsrmFileManagementJobManager,
             name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IFsrmPropertyCondition,
-            type: ?*FsrmPropertyConditionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: *const fn(
-            self: *const IFsrmPropertyCondition,
-            type: FsrmPropertyConditionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IFsrmPropertyCondition,
-            value: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const IFsrmPropertyCondition,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IFsrmPropertyCondition,
+            fileManagementJob: ?*?*IFsrmFileManagementJob,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmPropertyCondition, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
+    pub fn get_ActionVariables(self: *const IFsrmFileManagementJobManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ActionVariables(self, variables);
     }
-    pub fn put_Name(self: *const IFsrmPropertyCondition, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, name);
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileManagementJobManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
     }
-    pub fn get_Type(self: *const IFsrmPropertyCondition, @"type": ?*FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, @"type");
+    pub fn EnumFileManagementJobs(self: *const IFsrmFileManagementJobManager, options: FsrmEnumOptions, fileManagementJobs: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumFileManagementJobs(self, options, fileManagementJobs);
     }
-    pub fn put_Type(self: *const IFsrmPropertyCondition, @"type": FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Type(self, @"type");
+    pub fn CreateFileManagementJob(self: *const IFsrmFileManagementJobManager, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFileManagementJob(self, fileManagementJob);
     }
-    pub fn get_Value(self: *const IFsrmPropertyCondition, value: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, value);
-    }
-    pub fn put_Value(self: *const IFsrmPropertyCondition, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, value);
-    }
-    pub fn Delete(self: *const IFsrmPropertyCondition) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-};
-
-const IID_IFsrmFileCondition_Value = Guid.initString("70684ffc-691a-4a1a-b922-97752e138cc1");
-pub const IID_IFsrmFileCondition = &IID_IFsrmFileCondition_Value;
-pub const IFsrmFileCondition = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IFsrmFileCondition,
-            pVal: ?*FsrmFileConditionType,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IFsrmFileCondition,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Type(self: *const IFsrmFileCondition, pVal: ?*FsrmFileConditionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, pVal);
-    }
-    pub fn Delete(self: *const IFsrmFileCondition) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2012'
-const IID_IFsrmFileConditionProperty_Value = Guid.initString("81926775-b981-4479-988f-da171d627360");
-pub const IID_IFsrmFileConditionProperty = &IID_IFsrmFileConditionProperty_Value;
-pub const IFsrmFileConditionProperty = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmFileCondition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyName: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertyName: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            newVal: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyId: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            pVal: ?*FsrmFileSystemPropertyId,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertyId: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            newVal: FsrmFileSystemPropertyId,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Operator: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            pVal: ?*FsrmPropertyConditionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Operator: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            newVal: FsrmPropertyConditionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueType: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            pVal: ?*FsrmPropertyValueType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ValueType: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            newVal: FsrmPropertyValueType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            pVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const IFsrmFileConditionProperty,
-            newVal: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmFileCondition: IFsrmFileCondition,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_PropertyName(self: *const IFsrmFileConditionProperty, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyName(self, pVal);
-    }
-    pub fn put_PropertyName(self: *const IFsrmFileConditionProperty, newVal: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PropertyName(self, newVal);
-    }
-    pub fn get_PropertyId(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmFileSystemPropertyId) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyId(self, pVal);
-    }
-    pub fn put_PropertyId(self: *const IFsrmFileConditionProperty, newVal: FsrmFileSystemPropertyId) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PropertyId(self, newVal);
-    }
-    pub fn get_Operator(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Operator(self, pVal);
-    }
-    pub fn put_Operator(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Operator(self, newVal);
-    }
-    pub fn get_ValueType(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyValueType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ValueType(self, pVal);
-    }
-    pub fn put_ValueType(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyValueType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ValueType(self, newVal);
-    }
-    pub fn get_Value(self: *const IFsrmFileConditionProperty, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pVal);
-    }
-    pub fn put_Value(self: *const IFsrmFileConditionProperty, newVal: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, newVal);
+    pub fn GetFileManagementJob(self: *const IFsrmFileManagementJobManager, name: ?BSTR, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileManagementJob(self, name, fileManagementJob);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmPropertyDefinition_Value = Guid.initString("ede0150f-e9a3-419c-877c-01fe5d24c5d3");
-pub const IID_IFsrmPropertyDefinition = &IID_IFsrmPropertyDefinition_Value;
-pub const IFsrmPropertyDefinition = extern union {
+const IID_IFsrmFileScreen_Value = Guid.initString("5f6325d3-ce88-4733-84c1-2d6aefc5ea07");
+pub const IID_IFsrmFileScreen = &IID_IFsrmFileScreen_Value;
+pub const IFsrmFileScreen = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmFileScreenBase.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const IFsrmFileScreen,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SourceTemplateName: *const fn(
+            self: *const IFsrmFileScreen,
+            fileScreenTemplateName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MatchesSourceTemplate: *const fn(
+            self: *const IFsrmFileScreen,
+            matches: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserSid: *const fn(
+            self: *const IFsrmFileScreen,
+            userSid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserAccount: *const fn(
+            self: *const IFsrmFileScreen,
+            userAccount: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ApplyTemplate: *const fn(
+            self: *const IFsrmFileScreen,
+            fileScreenTemplateName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmFileScreenBase: IFsrmFileScreenBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Path(self: *const IFsrmFileScreen, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, path);
+    }
+    pub fn get_SourceTemplateName(self: *const IFsrmFileScreen, fileScreenTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SourceTemplateName(self, fileScreenTemplateName);
+    }
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmFileScreen, matches: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MatchesSourceTemplate(self, matches);
+    }
+    pub fn get_UserSid(self: *const IFsrmFileScreen, userSid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserSid(self, userSid);
+    }
+    pub fn get_UserAccount(self: *const IFsrmFileScreen, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserAccount(self, userAccount);
+    }
+    pub fn ApplyTemplate(self: *const IFsrmFileScreen, fileScreenTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplyTemplate(self, fileScreenTemplateName);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmFileScreenBase_Value = Guid.initString("f3637e80-5b22-4a2b-a637-bbb642b41cfc");
+pub const IID_IFsrmFileScreenBase = &IID_IFsrmFileScreenBase_Value;
+pub const IFsrmFileScreenBase = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BlockedFileGroups: *const fn(
+            self: *const IFsrmFileScreenBase,
+            blockList: ?*?*IFsrmMutableCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_BlockedFileGroups: *const fn(
+            self: *const IFsrmFileScreenBase,
+            blockList: ?*IFsrmMutableCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileScreenFlags: *const fn(
+            self: *const IFsrmFileScreenBase,
+            fileScreenFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_FileScreenFlags: *const fn(
+            self: *const IFsrmFileScreenBase,
+            fileScreenFlags: i32,
+        ) callconv(.winapi) HRESULT,
+        CreateAction: *const fn(
+            self: *const IFsrmFileScreenBase,
+            actionType: FsrmActionType,
+            action: ?*?*IFsrmAction,
+        ) callconv(.winapi) HRESULT,
+        EnumActions: *const fn(
+            self: *const IFsrmFileScreenBase,
+            actions: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BlockedFileGroups(self, blockList);
+    }
+    pub fn put_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.put_BlockedFileGroups(self, blockList);
+    }
+    pub fn get_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileScreenFlags(self, fileScreenFlags);
+    }
+    pub fn put_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_FileScreenFlags(self, fileScreenFlags);
+    }
+    pub fn CreateAction(self: *const IFsrmFileScreenBase, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateAction(self, actionType, action);
+    }
+    pub fn EnumActions(self: *const IFsrmFileScreenBase, actions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumActions(self, actions);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmFileScreenException_Value = Guid.initString("bee7ce02-df77-4515-9389-78f01c5afc1a");
+pub const IID_IFsrmFileScreenException = &IID_IFsrmFileScreenException_Value;
+pub const IFsrmFileScreenException = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmObject.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const IFsrmFileScreenException,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AllowedFileGroups: *const fn(
+            self: *const IFsrmFileScreenException,
+            allowList: ?*?*IFsrmMutableCollection,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AllowedFileGroups: *const fn(
+            self: *const IFsrmFileScreenException,
+            allowList: ?*IFsrmMutableCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Path(self: *const IFsrmFileScreenException, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, path);
+    }
+    pub fn get_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AllowedFileGroups(self, allowList);
+    }
+    pub fn put_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AllowedFileGroups(self, allowList);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmFileScreenManager_Value = Guid.initString("ff4fa04e-5a94-4bda-a3a0-d5b4d3c52eba");
+pub const IID_IFsrmFileScreenManager = &IID_IFsrmFileScreenManager_Value;
+pub const IFsrmFileScreenManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ActionVariables: *const fn(
+            self: *const IFsrmFileScreenManager,
+            variables: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ActionVariableDescriptions: *const fn(
+            self: *const IFsrmFileScreenManager,
+            descriptions: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        CreateFileScreen: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreen: ?*?*IFsrmFileScreen,
+        ) callconv(.winapi) HRESULT,
+        GetFileScreen: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreen: ?*?*IFsrmFileScreen,
+        ) callconv(.winapi) HRESULT,
+        EnumFileScreens: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            fileScreens: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateFileScreenException: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreenException: ?*?*IFsrmFileScreenException,
+        ) callconv(.winapi) HRESULT,
+        GetFileScreenException: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreenException: ?*?*IFsrmFileScreenException,
+        ) callconv(.winapi) HRESULT,
+        EnumFileScreenExceptions: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            fileScreenExceptions: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateFileScreenCollection: *const fn(
+            self: *const IFsrmFileScreenManager,
+            collection: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ActionVariables(self: *const IFsrmFileScreenManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ActionVariables(self, variables);
+    }
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileScreenManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
+    }
+    pub fn CreateFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFileScreen(self, path, fileScreen);
+    }
+    pub fn GetFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileScreen(self, path, fileScreen);
+    }
+    pub fn EnumFileScreens(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreens: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumFileScreens(self, path, options, fileScreens);
+    }
+    pub fn CreateFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFileScreenException(self, path, fileScreenException);
+    }
+    pub fn GetFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileScreenException(self, path, fileScreenException);
+    }
+    pub fn EnumFileScreenExceptions(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreenExceptions: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumFileScreenExceptions(self, path, options, fileScreenExceptions);
+    }
+    pub fn CreateFileScreenCollection(self: *const IFsrmFileScreenManager, collection: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFileScreenCollection(self, collection);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmFileScreenTemplate_Value = Guid.initString("205bebf8-dd93-452a-95a6-32b566b35828");
+pub const IID_IFsrmFileScreenTemplate = &IID_IFsrmFileScreenTemplate_Value;
+pub const IFsrmFileScreenTemplate = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmFileScreenBase.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
-            self: *const IFsrmPropertyDefinition,
+            self: *const IFsrmFileScreenTemplate,
             name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
-            self: *const IFsrmPropertyDefinition,
+            self: *const IFsrmFileScreenTemplate,
             name: ?BSTR,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            type: ?*FsrmPropertyDefinitionType,
+        CopyTemplate: *const fn(
+            self: *const IFsrmFileScreenTemplate,
+            fileScreenTemplateName: ?BSTR,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            type: FsrmPropertyDefinitionType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PossibleValues: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            possibleValues: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PossibleValues: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            possibleValues: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueDescriptions: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            valueDescriptions: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ValueDescriptions: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            valueDescriptions: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parameters: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            parameters: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Parameters: *const fn(
-            self: *const IFsrmPropertyDefinition,
-            parameters: ?*SAFEARRAY,
+        CommitAndUpdateDerived: *const fn(
+            self: *const IFsrmFileScreenTemplate,
+            commitOptions: FsrmCommitOptions,
+            applyOptions: FsrmTemplateApplyOptions,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IFsrmFileScreenBase: IFsrmFileScreenBase,
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmPropertyDefinition, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const IFsrmFileScreenTemplate, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmPropertyDefinition, name: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn put_Name(self: *const IFsrmFileScreenTemplate, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Type(self: *const IFsrmPropertyDefinition, @"type": ?*FsrmPropertyDefinitionType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, @"type");
+    pub fn CopyTemplate(self: *const IFsrmFileScreenTemplate, fileScreenTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyTemplate(self, fileScreenTemplateName);
     }
-    pub fn put_Type(self: *const IFsrmPropertyDefinition, @"type": FsrmPropertyDefinitionType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Type(self, @"type");
-    }
-    pub fn get_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PossibleValues(self, possibleValues);
-    }
-    pub fn put_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PossibleValues(self, possibleValues);
-    }
-    pub fn get_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ValueDescriptions(self, valueDescriptions);
-    }
-    pub fn put_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ValueDescriptions(self, valueDescriptions);
-    }
-    pub fn get_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Parameters(self, parameters);
-    }
-    pub fn put_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Parameters(self, parameters);
+    pub fn CommitAndUpdateDerived(self: *const IFsrmFileScreenTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
-const IID_IFsrmPropertyDefinition2_Value = Guid.initString("47782152-d16c-4229-b4e1-0ddfe308b9f6");
-pub const IID_IFsrmPropertyDefinition2 = &IID_IFsrmPropertyDefinition2_Value;
-pub const IFsrmPropertyDefinition2 = extern union {
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmFileScreenTemplateImported_Value = Guid.initString("e1010359-3e5d-4ecd-9fe4-ef48622fdf30");
+pub const IID_IFsrmFileScreenTemplateImported = &IID_IFsrmFileScreenTemplateImported_Value;
+pub const IFsrmFileScreenTemplateImported = extern union {
     pub const VTable = extern struct {
-        base: IFsrmPropertyDefinition.VTable,
+        base: IFsrmFileScreenTemplate.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyDefinitionFlags: *const fn(
-            self: *const IFsrmPropertyDefinition2,
-            propertyDefinitionFlags: ?*i32,
+        get_OverwriteOnCommit: *const fn(
+            self: *const IFsrmFileScreenTemplateImported,
+            overwrite: ?*i16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: *const fn(
-            self: *const IFsrmPropertyDefinition2,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayName: *const fn(
-            self: *const IFsrmPropertyDefinition2,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppliesTo: *const fn(
-            self: *const IFsrmPropertyDefinition2,
-            appliesTo: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueDefinitions: *const fn(
-            self: *const IFsrmPropertyDefinition2,
-            valueDefinitions: ?*?*IFsrmCollection,
+        put_OverwriteOnCommit: *const fn(
+            self: *const IFsrmFileScreenTemplateImported,
+            overwrite: i16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IFsrmPropertyDefinition: IFsrmPropertyDefinition,
+    IFsrmFileScreenTemplate: IFsrmFileScreenTemplate,
+    IFsrmFileScreenBase: IFsrmFileScreenBase,
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PropertyDefinitionFlags(self: *const IFsrmPropertyDefinition2, propertyDefinitionFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyDefinitionFlags(self, propertyDefinitionFlags);
+    pub fn get_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub fn get_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayName(self, name);
-    }
-    pub fn put_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_DisplayName(self, name);
-    }
-    pub fn get_AppliesTo(self: *const IFsrmPropertyDefinition2, appliesTo: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AppliesTo(self, appliesTo);
-    }
-    pub fn get_ValueDefinitions(self: *const IFsrmPropertyDefinition2, valueDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ValueDefinitions(self, valueDefinitions);
+    pub fn put_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_OverwriteOnCommit(self, overwrite);
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
-const IID_IFsrmPropertyDefinitionValue_Value = Guid.initString("e946d148-bd67-4178-8e22-1c44925ed710");
-pub const IID_IFsrmPropertyDefinitionValue = &IID_IFsrmPropertyDefinitionValue_Value;
-pub const IFsrmPropertyDefinitionValue = extern union {
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmFileScreenTemplateManager_Value = Guid.initString("cfe36cba-1949-4e74-a14f-f1d580ceaf13");
+pub const IID_IFsrmFileScreenTemplateManager = &IID_IFsrmFileScreenTemplateManager_Value;
+pub const IFsrmFileScreenTemplateManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        CreateTemplate: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
+        ) callconv(.winapi) HRESULT,
+        GetTemplate: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            name: ?BSTR,
+            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
+        ) callconv(.winapi) HRESULT,
+        EnumTemplates: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            options: FsrmEnumOptions,
+            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+        ExportTemplates: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            fileScreenTemplateNamesArray: ?*VARIANT,
+            serializedFileScreenTemplates: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ImportTemplates: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            serializedFileScreenTemplates: ?BSTR,
+            fileScreenTemplateNamesArray: ?*VARIANT,
+            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateTemplate(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTemplate(self, fileScreenTemplate);
+    }
+    pub fn GetTemplate(self: *const IFsrmFileScreenTemplateManager, name: ?BSTR, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTemplate(self, name, fileScreenTemplate);
+    }
+    pub fn EnumTemplates(self: *const IFsrmFileScreenTemplateManager, options: FsrmEnumOptions, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumTemplates(self, options, fileScreenTemplates);
+    }
+    pub fn ExportTemplates(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplateNamesArray: ?*VARIANT, serializedFileScreenTemplates: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ExportTemplates(self, fileScreenTemplateNamesArray, serializedFileScreenTemplates);
+    }
+    pub fn ImportTemplates(self: *const IFsrmFileScreenTemplateManager, serializedFileScreenTemplates: ?BSTR, fileScreenTemplateNamesArray: ?*VARIANT, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.ImportTemplates(self, serializedFileScreenTemplates, fileScreenTemplateNamesArray, fileScreenTemplates);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmMutableCollection_Value = Guid.initString("1bb617b8-3886-49dc-af82-a6c90fa35dda");
+pub const IID_IFsrmMutableCollection = &IID_IFsrmMutableCollection_Value;
+pub const IFsrmMutableCollection = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmCollection.VTable,
+        Add: *const fn(
+            self: *const IFsrmMutableCollection,
+            item: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IFsrmMutableCollection,
+            index: i32,
+        ) callconv(.winapi) HRESULT,
+        RemoveById: *const fn(
+            self: *const IFsrmMutableCollection,
+            id: Guid,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IFsrmMutableCollection,
+            collection: ?*?*IFsrmMutableCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmCollection: IFsrmCollection,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Add(self: *const IFsrmMutableCollection, item: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, item);
+    }
+    pub fn Remove(self: *const IFsrmMutableCollection, index: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, index);
+    }
+    pub fn RemoveById(self: *const IFsrmMutableCollection, id: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveById(self, id);
+    }
+    pub fn Clone(self: *const IFsrmMutableCollection, collection: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, collection);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmObject_Value = Guid.initString("22bcef93-4a3f-4183-89f9-2f8b8a628aee");
+pub const IID_IFsrmObject = &IID_IFsrmObject_Value;
+pub const IFsrmObject = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFsrmPropertyDefinitionValue,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: *const fn(
-            self: *const IFsrmPropertyDefinitionValue,
-            displayName: ?*?BSTR,
+        get_Id: *const fn(
+            self: *const IFsrmObject,
+            id: ?*Guid,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
-            self: *const IFsrmPropertyDefinitionValue,
+            self: *const IFsrmObject,
             description: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UniqueID: *const fn(
-            self: *const IFsrmPropertyDefinitionValue,
-            uniqueID: ?*?BSTR,
+        put_Description: *const fn(
+            self: *const IFsrmObject,
+            description: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmObject,
+        ) callconv(.winapi) HRESULT,
+        Commit: *const fn(
+            self: *const IFsrmObject,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmPropertyDefinitionValue, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
+    pub fn get_Id(self: *const IFsrmObject, id: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, id);
     }
-    pub fn get_DisplayName(self: *const IFsrmPropertyDefinitionValue, displayName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DisplayName(self, displayName);
-    }
-    pub fn get_Description(self: *const IFsrmPropertyDefinitionValue, description: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Description(self: *const IFsrmObject, description: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, description);
     }
-    pub fn get_UniqueID(self: *const IFsrmPropertyDefinitionValue, uniqueID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UniqueID(self, uniqueID);
+    pub fn put_Description(self: *const IFsrmObject, description: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, description);
+    }
+    pub fn Delete(self: *const IFsrmObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn Commit(self: *const IFsrmObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmProperty_Value = Guid.initString("4a73fee4-4102-4fcc-9ffb-38614f9ee768");
-pub const IID_IFsrmProperty = &IID_IFsrmProperty_Value;
-pub const IFsrmProperty = extern union {
+const IID_IFsrmPathMapper_Value = Guid.initString("6f4dbfff-6920-4821-a6c3-b7e94c1fd60c");
+pub const IID_IFsrmPathMapper = &IID_IFsrmPathMapper_Value;
+pub const IFsrmPathMapper = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        GetSharePathsForLocalPath: *const fn(
+            self: *const IFsrmPathMapper,
+            localPath: ?BSTR,
+            sharePaths: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetSharePathsForLocalPath(self: *const IFsrmPathMapper, localPath: ?BSTR, sharePaths: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSharePathsForLocalPath(self, localPath, sharePaths);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmPipelineModuleConnector_Value = Guid.initString("c16014f3-9aa1-46b3-b0a7-ab146eb205f2");
+pub const IID_IFsrmPipelineModuleConnector = &IID_IFsrmPipelineModuleConnector_Value;
+pub const IFsrmPipelineModuleConnector = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFsrmProperty,
-            name: ?*?BSTR,
+        get_ModuleImplementation: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IFsrmProperty,
-            value: ?*?BSTR,
+        get_ModuleName: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            userName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Sources: *const fn(
-            self: *const IFsrmProperty,
-            sources: ?*?*SAFEARRAY,
+        get_HostingUserAccount: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            userAccount: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyFlags: *const fn(
-            self: *const IFsrmProperty,
-            flags: ?*i32,
+        get_HostingProcessPid: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            pid: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Bind: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
+            moduleImplementation: ?*IFsrmPipelineModuleImplementation,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmProperty, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
+    pub fn get_ModuleImplementation(self: *const IFsrmPipelineModuleConnector, pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ModuleImplementation(self, pipelineModuleImplementation);
     }
-    pub fn get_Value(self: *const IFsrmProperty, value: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, value);
+    pub fn get_ModuleName(self: *const IFsrmPipelineModuleConnector, userName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ModuleName(self, userName);
     }
-    pub fn get_Sources(self: *const IFsrmProperty, sources: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Sources(self, sources);
+    pub fn get_HostingUserAccount(self: *const IFsrmPipelineModuleConnector, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HostingUserAccount(self, userAccount);
     }
-    pub fn get_PropertyFlags(self: *const IFsrmProperty, flags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyFlags(self, flags);
+    pub fn get_HostingProcessPid(self: *const IFsrmPipelineModuleConnector, pid: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_HostingProcessPid(self, pid);
     }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmRule_Value = Guid.initString("cb0df960-16f5-4495-9079-3f9360d831df");
-pub const IID_IFsrmRule = &IID_IFsrmRule_Value;
-pub const IFsrmRule = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmObject.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IFsrmRule,
-            name: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IFsrmRule,
-            name: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RuleType: *const fn(
-            self: *const IFsrmRule,
-            ruleType: ?*FsrmRuleType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleDefinitionName: *const fn(
-            self: *const IFsrmRule,
-            moduleDefinitionName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ModuleDefinitionName: *const fn(
-            self: *const IFsrmRule,
-            moduleDefinitionName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NamespaceRoots: *const fn(
-            self: *const IFsrmRule,
-            namespaceRoots: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NamespaceRoots: *const fn(
-            self: *const IFsrmRule,
-            namespaceRoots: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RuleFlags: *const fn(
-            self: *const IFsrmRule,
-            ruleFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RuleFlags: *const fn(
-            self: *const IFsrmRule,
-            ruleFlags: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parameters: *const fn(
-            self: *const IFsrmRule,
-            parameters: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Parameters: *const fn(
-            self: *const IFsrmRule,
-            parameters: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastModified: *const fn(
-            self: *const IFsrmRule,
-            lastModified: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmRule, name: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, name);
-    }
-    pub fn put_Name(self: *const IFsrmRule, name: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, name);
-    }
-    pub fn get_RuleType(self: *const IFsrmRule, ruleType: ?*FsrmRuleType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RuleType(self, ruleType);
-    }
-    pub fn get_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ModuleDefinitionName(self, moduleDefinitionName);
-    }
-    pub fn put_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ModuleDefinitionName(self, moduleDefinitionName);
-    }
-    pub fn get_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NamespaceRoots(self, namespaceRoots);
-    }
-    pub fn put_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NamespaceRoots(self, namespaceRoots);
-    }
-    pub fn get_RuleFlags(self: *const IFsrmRule, ruleFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_RuleFlags(self, ruleFlags);
-    }
-    pub fn put_RuleFlags(self: *const IFsrmRule, ruleFlags: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_RuleFlags(self, ruleFlags);
-    }
-    pub fn get_Parameters(self: *const IFsrmRule, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Parameters(self, parameters);
-    }
-    pub fn put_Parameters(self: *const IFsrmRule, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Parameters(self, parameters);
-    }
-    pub fn get_LastModified(self: *const IFsrmRule, lastModified: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastModified(self, lastModified);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmClassificationRule_Value = Guid.initString("afc052c2-5315-45ab-841b-c6db0e120148");
-pub const IID_IFsrmClassificationRule = &IID_IFsrmClassificationRule_Value;
-pub const IFsrmClassificationRule = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmRule.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExecutionOption: *const fn(
-            self: *const IFsrmClassificationRule,
-            executionOption: ?*FsrmExecutionOption,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExecutionOption: *const fn(
-            self: *const IFsrmClassificationRule,
-            executionOption: FsrmExecutionOption,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyAffected: *const fn(
-            self: *const IFsrmClassificationRule,
-            property: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertyAffected: *const fn(
-            self: *const IFsrmClassificationRule,
-            property: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IFsrmClassificationRule,
-            value: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const IFsrmClassificationRule,
-            value: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmRule: IFsrmRule,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: ?*FsrmExecutionOption) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ExecutionOption(self, executionOption);
-    }
-    pub fn put_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: FsrmExecutionOption) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ExecutionOption(self, executionOption);
-    }
-    pub fn get_PropertyAffected(self: *const IFsrmClassificationRule, property: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertyAffected(self, property);
-    }
-    pub fn put_PropertyAffected(self: *const IFsrmClassificationRule, property: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PropertyAffected(self, property);
-    }
-    pub fn get_Value(self: *const IFsrmClassificationRule, value: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, value);
-    }
-    pub fn put_Value(self: *const IFsrmClassificationRule, value: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, value);
+    pub fn Bind(self: *const IFsrmPipelineModuleConnector, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleImplementation: ?*IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
+        return self.vtable.Bind(self, moduleDefinition, moduleImplementation);
     }
 };
 
@@ -4189,382 +3280,72 @@ pub const IFsrmPipelineModuleDefinition = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmClassifierModuleDefinition_Value = Guid.initString("bb36ea26-6318-4b8c-8592-f72dd602e7a5");
-pub const IID_IFsrmClassifierModuleDefinition = &IID_IFsrmClassifierModuleDefinition_Value;
-pub const IFsrmClassifierModuleDefinition = extern union {
+const IID_IFsrmPipelineModuleImplementation_Value = Guid.initString("b7907906-2b02-4cb5-84a9-fdf54613d6cd");
+pub const IID_IFsrmPipelineModuleImplementation = &IID_IFsrmPipelineModuleImplementation_Value;
+pub const IFsrmPipelineModuleImplementation = extern union {
     pub const VTable = extern struct {
-        base: IFsrmPipelineModuleDefinition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertiesAffected: *const fn(
-            self: *const IFsrmClassifierModuleDefinition,
-            propertiesAffected: ?*?*SAFEARRAY,
+        base: IDispatch.VTable,
+        OnLoad: *const fn(
+            self: *const IFsrmPipelineModuleImplementation,
+            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
+            moduleConnector: ?*?*IFsrmPipelineModuleConnector,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertiesAffected: *const fn(
-            self: *const IFsrmClassifierModuleDefinition,
-            propertiesAffected: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertiesUsed: *const fn(
-            self: *const IFsrmClassifierModuleDefinition,
-            propertiesUsed: ?*?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertiesUsed: *const fn(
-            self: *const IFsrmClassifierModuleDefinition,
-            propertiesUsed: ?*SAFEARRAY,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NeedsExplicitValue: *const fn(
-            self: *const IFsrmClassifierModuleDefinition,
-            needsExplicitValue: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NeedsExplicitValue: *const fn(
-            self: *const IFsrmClassifierModuleDefinition,
-            needsExplicitValue: i16,
+        OnUnload: *const fn(
+            self: *const IFsrmPipelineModuleImplementation,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
-    IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertiesAffected(self, propertiesAffected);
+    pub fn OnLoad(self: *const IFsrmPipelineModuleImplementation, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleConnector: ?*?*IFsrmPipelineModuleConnector) callconv(.@"inline") HRESULT {
+        return self.vtable.OnLoad(self, moduleDefinition, moduleConnector);
     }
-    pub fn put_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PropertiesAffected(self, propertiesAffected);
-    }
-    pub fn get_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PropertiesUsed(self, propertiesUsed);
-    }
-    pub fn put_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PropertiesUsed(self, propertiesUsed);
-    }
-    pub fn get_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NeedsExplicitValue(self, needsExplicitValue);
-    }
-    pub fn put_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_NeedsExplicitValue(self, needsExplicitValue);
+    pub fn OnUnload(self: *const IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
+        return self.vtable.OnUnload(self);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmStorageModuleDefinition_Value = Guid.initString("15a81350-497d-4aba-80e9-d4dbcc5521fe");
-pub const IID_IFsrmStorageModuleDefinition = &IID_IFsrmStorageModuleDefinition_Value;
-pub const IFsrmStorageModuleDefinition = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmPipelineModuleDefinition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Capabilities: *const fn(
-            self: *const IFsrmStorageModuleDefinition,
-            capabilities: ?*FsrmStorageModuleCaps,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Capabilities: *const fn(
-            self: *const IFsrmStorageModuleDefinition,
-            capabilities: FsrmStorageModuleCaps,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StorageType: *const fn(
-            self: *const IFsrmStorageModuleDefinition,
-            storageType: ?*FsrmStorageModuleType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_StorageType: *const fn(
-            self: *const IFsrmStorageModuleDefinition,
-            storageType: FsrmStorageModuleType,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UpdatesFileContent: *const fn(
-            self: *const IFsrmStorageModuleDefinition,
-            updatesFileContent: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UpdatesFileContent: *const fn(
-            self: *const IFsrmStorageModuleDefinition,
-            updatesFileContent: i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
-    IFsrmObject: IFsrmObject,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: ?*FsrmStorageModuleCaps) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Capabilities(self, capabilities);
-    }
-    pub fn put_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: FsrmStorageModuleCaps) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Capabilities(self, capabilities);
-    }
-    pub fn get_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: ?*FsrmStorageModuleType) callconv(.@"inline") HRESULT {
-        return self.vtable.get_StorageType(self, storageType);
-    }
-    pub fn put_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: FsrmStorageModuleType) callconv(.@"inline") HRESULT {
-        return self.vtable.put_StorageType(self, storageType);
-    }
-    pub fn get_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_UpdatesFileContent(self, updatesFileContent);
-    }
-    pub fn put_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_UpdatesFileContent(self, updatesFileContent);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IFsrmClassificationManager_Value = Guid.initString("d2dc89da-ee91-48a0-85d8-cc72a56f7d04");
-pub const IID_IFsrmClassificationManager = &IID_IFsrmClassificationManager_Value;
-pub const IFsrmClassificationManager = extern union {
+const IID_IFsrmProperty_Value = Guid.initString("4a73fee4-4102-4fcc-9ffb-38614f9ee768");
+pub const IID_IFsrmProperty = &IID_IFsrmProperty_Value;
+pub const IFsrmProperty = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationReportFormats: *const fn(
-            self: *const IFsrmClassificationManager,
-            formats: ?*?*SAFEARRAY,
+        get_Name: *const fn(
+            self: *const IFsrmProperty,
+            name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClassificationReportFormats: *const fn(
-            self: *const IFsrmClassificationManager,
-            formats: ?*SAFEARRAY,
+        get_Value: *const fn(
+            self: *const IFsrmProperty,
+            value: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Logging: *const fn(
-            self: *const IFsrmClassificationManager,
-            logging: ?*i32,
+        get_Sources: *const fn(
+            self: *const IFsrmProperty,
+            sources: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Logging: *const fn(
-            self: *const IFsrmClassificationManager,
-            logging: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationReportMailTo: *const fn(
-            self: *const IFsrmClassificationManager,
-            mailTo: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClassificationReportMailTo: *const fn(
-            self: *const IFsrmClassificationManager,
-            mailTo: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationReportEnabled: *const fn(
-            self: *const IFsrmClassificationManager,
-            reportEnabled: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClassificationReportEnabled: *const fn(
-            self: *const IFsrmClassificationManager,
-            reportEnabled: i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationLastReportPathWithoutExtension: *const fn(
-            self: *const IFsrmClassificationManager,
-            lastReportPath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationLastError: *const fn(
-            self: *const IFsrmClassificationManager,
-            lastError: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationRunningStatus: *const fn(
-            self: *const IFsrmClassificationManager,
-            runningStatus: ?*FsrmReportRunningStatus,
-        ) callconv(.winapi) HRESULT,
-        EnumPropertyDefinitions: *const fn(
-            self: *const IFsrmClassificationManager,
-            options: FsrmEnumOptions,
-            propertyDefinitions: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        CreatePropertyDefinition: *const fn(
-            self: *const IFsrmClassificationManager,
-            propertyDefinition: ?*?*IFsrmPropertyDefinition,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyDefinition: *const fn(
-            self: *const IFsrmClassificationManager,
-            propertyName: ?BSTR,
-            propertyDefinition: ?*?*IFsrmPropertyDefinition,
-        ) callconv(.winapi) HRESULT,
-        EnumRules: *const fn(
-            self: *const IFsrmClassificationManager,
-            ruleType: FsrmRuleType,
-            options: FsrmEnumOptions,
-            Rules: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateRule: *const fn(
-            self: *const IFsrmClassificationManager,
-            ruleType: FsrmRuleType,
-            Rule: ?*?*IFsrmRule,
-        ) callconv(.winapi) HRESULT,
-        GetRule: *const fn(
-            self: *const IFsrmClassificationManager,
-            ruleName: ?BSTR,
-            ruleType: FsrmRuleType,
-            Rule: ?*?*IFsrmRule,
-        ) callconv(.winapi) HRESULT,
-        EnumModuleDefinitions: *const fn(
-            self: *const IFsrmClassificationManager,
-            moduleType: FsrmPipelineModuleType,
-            options: FsrmEnumOptions,
-            moduleDefinitions: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        CreateModuleDefinition: *const fn(
-            self: *const IFsrmClassificationManager,
-            moduleType: FsrmPipelineModuleType,
-            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-        ) callconv(.winapi) HRESULT,
-        GetModuleDefinition: *const fn(
-            self: *const IFsrmClassificationManager,
-            moduleName: ?BSTR,
-            moduleType: FsrmPipelineModuleType,
-            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-        ) callconv(.winapi) HRESULT,
-        RunClassification: *const fn(
-            self: *const IFsrmClassificationManager,
-            context: FsrmReportGenerationContext,
-            reserved: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        WaitForClassificationCompletion: *const fn(
-            self: *const IFsrmClassificationManager,
-            waitSeconds: i32,
-            completed: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        CancelClassification: *const fn(
-            self: *const IFsrmClassificationManager,
-        ) callconv(.winapi) HRESULT,
-        EnumFileProperties: *const fn(
-            self: *const IFsrmClassificationManager,
-            filePath: ?BSTR,
-            options: FsrmGetFilePropertyOptions,
-            fileProperties: ?*?*IFsrmCollection,
-        ) callconv(.winapi) HRESULT,
-        GetFileProperty: *const fn(
-            self: *const IFsrmClassificationManager,
-            filePath: ?BSTR,
-            propertyName: ?BSTR,
-            options: FsrmGetFilePropertyOptions,
-            property: ?*?*IFsrmProperty,
-        ) callconv(.winapi) HRESULT,
-        SetFileProperty: *const fn(
-            self: *const IFsrmClassificationManager,
-            filePath: ?BSTR,
-            propertyName: ?BSTR,
-            propertyValue: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ClearFileProperty: *const fn(
-            self: *const IFsrmClassificationManager,
-            filePath: ?BSTR,
-            property: ?BSTR,
+        get_PropertyFlags: *const fn(
+            self: *const IFsrmProperty,
+            flags: ?*i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClassificationReportFormats(self, formats);
+    pub fn get_Name(self: *const IFsrmProperty, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub fn put_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClassificationReportFormats(self, formats);
+    pub fn get_Value(self: *const IFsrmProperty, value: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, value);
     }
-    pub fn get_Logging(self: *const IFsrmClassificationManager, logging: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Logging(self, logging);
+    pub fn get_Sources(self: *const IFsrmProperty, sources: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Sources(self, sources);
     }
-    pub fn put_Logging(self: *const IFsrmClassificationManager, logging: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Logging(self, logging);
-    }
-    pub fn get_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClassificationReportMailTo(self, mailTo);
-    }
-    pub fn put_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClassificationReportMailTo(self, mailTo);
-    }
-    pub fn get_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClassificationReportEnabled(self, reportEnabled);
-    }
-    pub fn put_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.put_ClassificationReportEnabled(self, reportEnabled);
-    }
-    pub fn get_ClassificationLastReportPathWithoutExtension(self: *const IFsrmClassificationManager, lastReportPath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClassificationLastReportPathWithoutExtension(self, lastReportPath);
-    }
-    pub fn get_ClassificationLastError(self: *const IFsrmClassificationManager, lastError: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClassificationLastError(self, lastError);
-    }
-    pub fn get_ClassificationRunningStatus(self: *const IFsrmClassificationManager, runningStatus: ?*FsrmReportRunningStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClassificationRunningStatus(self, runningStatus);
-    }
-    pub fn EnumPropertyDefinitions(self: *const IFsrmClassificationManager, options: FsrmEnumOptions, propertyDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumPropertyDefinitions(self, options, propertyDefinitions);
-    }
-    pub fn CreatePropertyDefinition(self: *const IFsrmClassificationManager, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePropertyDefinition(self, propertyDefinition);
-    }
-    pub fn GetPropertyDefinition(self: *const IFsrmClassificationManager, propertyName: ?BSTR, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyDefinition(self, propertyName, propertyDefinition);
-    }
-    pub fn EnumRules(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumRules(self, ruleType, options, Rules);
-    }
-    pub fn CreateRule(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRule(self, ruleType, Rule);
-    }
-    pub fn GetRule(self: *const IFsrmClassificationManager, ruleName: ?BSTR, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRule(self, ruleName, ruleType, Rule);
-    }
-    pub fn EnumModuleDefinitions(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumModuleDefinitions(self, moduleType, options, moduleDefinitions);
-    }
-    pub fn CreateModuleDefinition(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateModuleDefinition(self, moduleType, moduleDefinition);
-    }
-    pub fn GetModuleDefinition(self: *const IFsrmClassificationManager, moduleName: ?BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.@"inline") HRESULT {
-        return self.vtable.GetModuleDefinition(self, moduleName, moduleType, moduleDefinition);
-    }
-    pub fn RunClassification(self: *const IFsrmClassificationManager, context: FsrmReportGenerationContext, reserved: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RunClassification(self, context, reserved);
-    }
-    pub fn WaitForClassificationCompletion(self: *const IFsrmClassificationManager, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.WaitForClassificationCompletion(self, waitSeconds, completed);
-    }
-    pub fn CancelClassification(self: *const IFsrmClassificationManager) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelClassification(self);
-    }
-    pub fn EnumFileProperties(self: *const IFsrmClassificationManager, filePath: ?BSTR, options: FsrmGetFilePropertyOptions, fileProperties: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumFileProperties(self, filePath, options, fileProperties);
-    }
-    pub fn GetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, options: FsrmGetFilePropertyOptions, property: ?*?*IFsrmProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileProperty(self, filePath, propertyName, options, property);
-    }
-    pub fn SetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, propertyValue: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFileProperty(self, filePath, propertyName, propertyValue);
-    }
-    pub fn ClearFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, property: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ClearFileProperty(self, filePath, property);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IFsrmClassificationManager2_Value = Guid.initString("0004c1c9-127e-4765-ba07-6a3147bca112");
-pub const IID_IFsrmClassificationManager2 = &IID_IFsrmClassificationManager2_Value;
-pub const IFsrmClassificationManager2 = extern union {
-    pub const VTable = extern struct {
-        base: IFsrmClassificationManager.VTable,
-        ClassifyFiles: *const fn(
-            self: *const IFsrmClassificationManager2,
-            filePaths: ?*SAFEARRAY,
-            propertyNames: ?*SAFEARRAY,
-            propertyValues: ?*SAFEARRAY,
-            options: FsrmGetFilePropertyOptions,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IFsrmClassificationManager: IFsrmClassificationManager,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn ClassifyFiles(self: *const IFsrmClassificationManager2, filePaths: ?*SAFEARRAY, propertyNames: ?*SAFEARRAY, propertyValues: ?*SAFEARRAY, options: FsrmGetFilePropertyOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.ClassifyFiles(self, filePaths, propertyNames, propertyValues, options);
+    pub fn get_PropertyFlags(self: *const IFsrmProperty, flags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyFlags(self, flags);
     }
 };
 
@@ -4777,92 +3558,1375 @@ pub const IFsrmPropertyBag2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmPipelineModuleImplementation_Value = Guid.initString("b7907906-2b02-4cb5-84a9-fdf54613d6cd");
-pub const IID_IFsrmPipelineModuleImplementation = &IID_IFsrmPipelineModuleImplementation_Value;
-pub const IFsrmPipelineModuleImplementation = extern union {
+const IID_IFsrmPropertyCondition_Value = Guid.initString("326af66f-2ac0-4f68-bf8c-4759f054fa29");
+pub const IID_IFsrmPropertyCondition = &IID_IFsrmPropertyCondition_Value;
+pub const IFsrmPropertyCondition = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        OnLoad: *const fn(
-            self: *const IFsrmPipelineModuleImplementation,
-            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
-            moduleConnector: ?*?*IFsrmPipelineModuleConnector,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IFsrmPropertyCondition,
+            name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        OnUnload: *const fn(
-            self: *const IFsrmPipelineModuleImplementation,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IFsrmPropertyCondition,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const IFsrmPropertyCondition,
+            type: ?*FsrmPropertyConditionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Type: *const fn(
+            self: *const IFsrmPropertyCondition,
+            type: FsrmPropertyConditionType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IFsrmPropertyCondition,
+            value: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const IFsrmPropertyCondition,
+            value: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmPropertyCondition,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OnLoad(self: *const IFsrmPipelineModuleImplementation, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleConnector: ?*?*IFsrmPipelineModuleConnector) callconv(.@"inline") HRESULT {
-        return self.vtable.OnLoad(self, moduleDefinition, moduleConnector);
+    pub fn get_Name(self: *const IFsrmPropertyCondition, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub fn OnUnload(self: *const IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
-        return self.vtable.OnUnload(self);
+    pub fn put_Name(self: *const IFsrmPropertyCondition, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Type(self: *const IFsrmPropertyCondition, @"type": ?*FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, @"type");
+    }
+    pub fn put_Type(self: *const IFsrmPropertyCondition, @"type": FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Type(self, @"type");
+    }
+    pub fn get_Value(self: *const IFsrmPropertyCondition, value: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, value);
+    }
+    pub fn put_Value(self: *const IFsrmPropertyCondition, value: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, value);
+    }
+    pub fn Delete(self: *const IFsrmPropertyCondition) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
     }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmClassifierModuleImplementation_Value = Guid.initString("4c968fc6-6edb-4051-9c18-73b7291ae106");
-pub const IID_IFsrmClassifierModuleImplementation = &IID_IFsrmClassifierModuleImplementation_Value;
-pub const IFsrmClassifierModuleImplementation = extern union {
+const IID_IFsrmPropertyDefinition_Value = Guid.initString("ede0150f-e9a3-419c-877c-01fe5d24c5d3");
+pub const IID_IFsrmPropertyDefinition = &IID_IFsrmPropertyDefinition_Value;
+pub const IFsrmPropertyDefinition = extern union {
     pub const VTable = extern struct {
-        base: IFsrmPipelineModuleImplementation.VTable,
+        base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastModified: *const fn(
-            self: *const IFsrmClassifierModuleImplementation,
-            lastModified: ?*VARIANT,
+        get_Name: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        UseRulesAndDefinitions: *const fn(
-            self: *const IFsrmClassifierModuleImplementation,
-            rules: ?*IFsrmCollection,
-            propertyDefinitions: ?*IFsrmCollection,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            name: ?BSTR,
         ) callconv(.winapi) HRESULT,
-        OnBeginFile: *const fn(
-            self: *const IFsrmClassifierModuleImplementation,
-            propertyBag: ?*IFsrmPropertyBag,
-            arrayRuleIds: ?*SAFEARRAY,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            type: ?*FsrmPropertyDefinitionType,
         ) callconv(.winapi) HRESULT,
-        DoesPropertyValueApply: *const fn(
-            self: *const IFsrmClassifierModuleImplementation,
-            property: ?BSTR,
-            value: ?BSTR,
-            applyValue: ?*i16,
-            idRule: Guid,
-            idPropDef: Guid,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Type: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            type: FsrmPropertyDefinitionType,
         ) callconv(.winapi) HRESULT,
-        GetPropertyValueToApply: *const fn(
-            self: *const IFsrmClassifierModuleImplementation,
-            property: ?BSTR,
-            value: ?*?BSTR,
-            idRule: Guid,
-            idPropDef: Guid,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PossibleValues: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            possibleValues: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
-        OnEndFile: *const fn(
-            self: *const IFsrmClassifierModuleImplementation,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PossibleValues: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            possibleValues: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ValueDescriptions: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            valueDescriptions: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ValueDescriptions: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            valueDescriptions: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Parameters: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            parameters: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Parameters: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            parameters: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
+    IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LastModified(self: *const IFsrmClassifierModuleImplementation, lastModified: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const IFsrmPropertyDefinition, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const IFsrmPropertyDefinition, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Type(self: *const IFsrmPropertyDefinition, @"type": ?*FsrmPropertyDefinitionType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, @"type");
+    }
+    pub fn put_Type(self: *const IFsrmPropertyDefinition, @"type": FsrmPropertyDefinitionType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Type(self, @"type");
+    }
+    pub fn get_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PossibleValues(self, possibleValues);
+    }
+    pub fn put_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PossibleValues(self, possibleValues);
+    }
+    pub fn get_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ValueDescriptions(self, valueDescriptions);
+    }
+    pub fn put_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ValueDescriptions(self, valueDescriptions);
+    }
+    pub fn get_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Parameters(self, parameters);
+    }
+    pub fn put_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Parameters(self, parameters);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2012'
+const IID_IFsrmPropertyDefinition2_Value = Guid.initString("47782152-d16c-4229-b4e1-0ddfe308b9f6");
+pub const IID_IFsrmPropertyDefinition2 = &IID_IFsrmPropertyDefinition2_Value;
+pub const IFsrmPropertyDefinition2 = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmPropertyDefinition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PropertyDefinitionFlags: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            propertyDefinitionFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayName: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisplayName: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AppliesTo: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            appliesTo: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ValueDefinitions: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            valueDefinitions: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmPropertyDefinition: IFsrmPropertyDefinition,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_PropertyDefinitionFlags(self: *const IFsrmPropertyDefinition2, propertyDefinitionFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PropertyDefinitionFlags(self, propertyDefinitionFlags);
+    }
+    pub fn get_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayName(self, name);
+    }
+    pub fn put_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisplayName(self, name);
+    }
+    pub fn get_AppliesTo(self: *const IFsrmPropertyDefinition2, appliesTo: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AppliesTo(self, appliesTo);
+    }
+    pub fn get_ValueDefinitions(self: *const IFsrmPropertyDefinition2, valueDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ValueDefinitions(self, valueDefinitions);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2012'
+const IID_IFsrmPropertyDefinitionValue_Value = Guid.initString("e946d148-bd67-4178-8e22-1c44925ed710");
+pub const IID_IFsrmPropertyDefinitionValue = &IID_IFsrmPropertyDefinitionValue_Value;
+pub const IFsrmPropertyDefinitionValue = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisplayName: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            displayName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            description: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UniqueID: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            uniqueID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmPropertyDefinitionValue, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn get_DisplayName(self: *const IFsrmPropertyDefinitionValue, displayName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisplayName(self, displayName);
+    }
+    pub fn get_Description(self: *const IFsrmPropertyDefinitionValue, description: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn get_UniqueID(self: *const IFsrmPropertyDefinitionValue, uniqueID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UniqueID(self, uniqueID);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuota_Value = Guid.initString("377f739d-9647-4b8e-97d2-5ffce6d759cd");
+pub const IID_IFsrmQuota = &IID_IFsrmQuota_Value;
+pub const IFsrmQuota = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmQuotaObject.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuotaUsed: *const fn(
+            self: *const IFsrmQuota,
+            used: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuotaPeakUsage: *const fn(
+            self: *const IFsrmQuota,
+            peakUsage: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuotaPeakUsageTime: *const fn(
+            self: *const IFsrmQuota,
+            peakUsageDateTime: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        ResetPeakUsage: *const fn(
+            self: *const IFsrmQuota,
+        ) callconv(.winapi) HRESULT,
+        RefreshUsageProperties: *const fn(
+            self: *const IFsrmQuota,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmQuotaObject: IFsrmQuotaObject,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_QuotaUsed(self: *const IFsrmQuota, used: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuotaUsed(self, used);
+    }
+    pub fn get_QuotaPeakUsage(self: *const IFsrmQuota, peakUsage: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuotaPeakUsage(self, peakUsage);
+    }
+    pub fn get_QuotaPeakUsageTime(self: *const IFsrmQuota, peakUsageDateTime: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuotaPeakUsageTime(self, peakUsageDateTime);
+    }
+    pub fn ResetPeakUsage(self: *const IFsrmQuota) callconv(.@"inline") HRESULT {
+        return self.vtable.ResetPeakUsage(self);
+    }
+    pub fn RefreshUsageProperties(self: *const IFsrmQuota) callconv(.@"inline") HRESULT {
+        return self.vtable.RefreshUsageProperties(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuotaBase_Value = Guid.initString("1568a795-3924-4118-b74b-68d8f0fa5daf");
+pub const IID_IFsrmQuotaBase = &IID_IFsrmQuotaBase_Value;
+pub const IFsrmQuotaBase = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmObject.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuotaLimit: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaLimit: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_QuotaLimit: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaLimit: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuotaFlags: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_QuotaFlags: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaFlags: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Thresholds: *const fn(
+            self: *const IFsrmQuotaBase,
+            thresholds: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        AddThreshold: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+        ) callconv(.winapi) HRESULT,
+        DeleteThreshold: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+        ) callconv(.winapi) HRESULT,
+        ModifyThreshold: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+            newThreshold: i32,
+        ) callconv(.winapi) HRESULT,
+        CreateThresholdAction: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+            actionType: FsrmActionType,
+            action: ?*?*IFsrmAction,
+        ) callconv(.winapi) HRESULT,
+        EnumThresholdActions: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+            actions: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuotaLimit(self, quotaLimit);
+    }
+    pub fn put_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_QuotaLimit(self, quotaLimit);
+    }
+    pub fn get_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuotaFlags(self, quotaFlags);
+    }
+    pub fn put_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_QuotaFlags(self, quotaFlags);
+    }
+    pub fn get_Thresholds(self: *const IFsrmQuotaBase, thresholds: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Thresholds(self, thresholds);
+    }
+    pub fn AddThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddThreshold(self, threshold);
+    }
+    pub fn DeleteThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteThreshold(self, threshold);
+    }
+    pub fn ModifyThreshold(self: *const IFsrmQuotaBase, threshold: i32, newThreshold: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ModifyThreshold(self, threshold, newThreshold);
+    }
+    pub fn CreateThresholdAction(self: *const IFsrmQuotaBase, threshold: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateThresholdAction(self, threshold, actionType, action);
+    }
+    pub fn EnumThresholdActions(self: *const IFsrmQuotaBase, threshold: i32, actions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumThresholdActions(self, threshold, actions);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuotaManager_Value = Guid.initString("8bb68c7d-19d8-4ffb-809e-be4fc1734014");
+pub const IID_IFsrmQuotaManager = &IID_IFsrmQuotaManager_Value;
+pub const IFsrmQuotaManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ActionVariables: *const fn(
+            self: *const IFsrmQuotaManager,
+            variables: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ActionVariableDescriptions: *const fn(
+            self: *const IFsrmQuotaManager,
+            descriptions: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        CreateQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
+        ) callconv(.winapi) HRESULT,
+        CreateAutoApplyQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            quotaTemplateName: ?BSTR,
+            path: ?BSTR,
+            quota: ?*?*IFsrmAutoApplyQuota,
+        ) callconv(.winapi) HRESULT,
+        GetQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
+        ) callconv(.winapi) HRESULT,
+        GetAutoApplyQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmAutoApplyQuota,
+        ) callconv(.winapi) HRESULT,
+        GetRestrictiveQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
+        ) callconv(.winapi) HRESULT,
+        EnumQuotas: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            quotas: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+        EnumAutoApplyQuotas: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            quotas: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+        EnumEffectiveQuotas: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            quotas: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+        Scan: *const fn(
+            self: *const IFsrmQuotaManager,
+            strPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        CreateQuotaCollection: *const fn(
+            self: *const IFsrmQuotaManager,
+            collection: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ActionVariables(self: *const IFsrmQuotaManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ActionVariables(self, variables);
+    }
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmQuotaManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
+    }
+    pub fn CreateQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateQuota(self, path, quota);
+    }
+    pub fn CreateAutoApplyQuota(self: *const IFsrmQuotaManager, quotaTemplateName: ?BSTR, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateAutoApplyQuota(self, quotaTemplateName, path, quota);
+    }
+    pub fn GetQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
+        return self.vtable.GetQuota(self, path, quota);
+    }
+    pub fn GetAutoApplyQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAutoApplyQuota(self, path, quota);
+    }
+    pub fn GetRestrictiveQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRestrictiveQuota(self, path, quota);
+    }
+    pub fn EnumQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumQuotas(self, path, options, quotas);
+    }
+    pub fn EnumAutoApplyQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumAutoApplyQuotas(self, path, options, quotas);
+    }
+    pub fn EnumEffectiveQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumEffectiveQuotas(self, path, options, quotas);
+    }
+    pub fn Scan(self: *const IFsrmQuotaManager, strPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Scan(self, strPath);
+    }
+    pub fn CreateQuotaCollection(self: *const IFsrmQuotaManager, collection: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateQuotaCollection(self, collection);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuotaManagerEx_Value = Guid.initString("4846cb01-d430-494f-abb4-b1054999fb09");
+pub const IID_IFsrmQuotaManagerEx = &IID_IFsrmQuotaManagerEx_Value;
+pub const IFsrmQuotaManagerEx = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmQuotaManager.VTable,
+        IsAffectedByQuota: *const fn(
+            self: *const IFsrmQuotaManagerEx,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            affected: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmQuotaManager: IFsrmQuotaManager,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn IsAffectedByQuota(self: *const IFsrmQuotaManagerEx, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsAffectedByQuota(self, path, options, affected);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuotaObject_Value = Guid.initString("42dc3511-61d5-48ae-b6dc-59fc00c0a8d6");
+pub const IID_IFsrmQuotaObject = &IID_IFsrmQuotaObject_Value;
+pub const IFsrmQuotaObject = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmQuotaBase.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Path: *const fn(
+            self: *const IFsrmQuotaObject,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserSid: *const fn(
+            self: *const IFsrmQuotaObject,
+            userSid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UserAccount: *const fn(
+            self: *const IFsrmQuotaObject,
+            userAccount: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SourceTemplateName: *const fn(
+            self: *const IFsrmQuotaObject,
+            quotaTemplateName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MatchesSourceTemplate: *const fn(
+            self: *const IFsrmQuotaObject,
+            matches: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        ApplyTemplate: *const fn(
+            self: *const IFsrmQuotaObject,
+            quotaTemplateName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Path(self: *const IFsrmQuotaObject, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Path(self, path);
+    }
+    pub fn get_UserSid(self: *const IFsrmQuotaObject, userSid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserSid(self, userSid);
+    }
+    pub fn get_UserAccount(self: *const IFsrmQuotaObject, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UserAccount(self, userAccount);
+    }
+    pub fn get_SourceTemplateName(self: *const IFsrmQuotaObject, quotaTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SourceTemplateName(self, quotaTemplateName);
+    }
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmQuotaObject, matches: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MatchesSourceTemplate(self, matches);
+    }
+    pub fn ApplyTemplate(self: *const IFsrmQuotaObject, quotaTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ApplyTemplate(self, quotaTemplateName);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuotaTemplate_Value = Guid.initString("a2efab31-295e-46bb-b976-e86d58b52e8b");
+pub const IID_IFsrmQuotaTemplate = &IID_IFsrmQuotaTemplate_Value;
+pub const IFsrmQuotaTemplate = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmQuotaBase.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        CopyTemplate: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            quotaTemplateName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        CommitAndUpdateDerived: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            commitOptions: FsrmCommitOptions,
+            applyOptions: FsrmTemplateApplyOptions,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmQuotaTemplate, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const IFsrmQuotaTemplate, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn CopyTemplate(self: *const IFsrmQuotaTemplate, quotaTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyTemplate(self, quotaTemplateName);
+    }
+    pub fn CommitAndUpdateDerived(self: *const IFsrmQuotaTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuotaTemplateImported_Value = Guid.initString("9a2bf113-a329-44cc-809a-5c00fce8da40");
+pub const IID_IFsrmQuotaTemplateImported = &IID_IFsrmQuotaTemplateImported_Value;
+pub const IFsrmQuotaTemplateImported = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmQuotaTemplate.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_OverwriteOnCommit: *const fn(
+            self: *const IFsrmQuotaTemplateImported,
+            overwrite: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_OverwriteOnCommit: *const fn(
+            self: *const IFsrmQuotaTemplateImported,
+            overwrite: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmQuotaTemplate: IFsrmQuotaTemplate,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_OverwriteOnCommit(self, overwrite);
+    }
+    pub fn put_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_OverwriteOnCommit(self, overwrite);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmQuotaTemplateManager_Value = Guid.initString("4173ac41-172d-4d52-963c-fdc7e415f717");
+pub const IID_IFsrmQuotaTemplateManager = &IID_IFsrmQuotaTemplateManager_Value;
+pub const IFsrmQuotaTemplateManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        CreateTemplate: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            quotaTemplate: ?*?*IFsrmQuotaTemplate,
+        ) callconv(.winapi) HRESULT,
+        GetTemplate: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            name: ?BSTR,
+            quotaTemplate: ?*?*IFsrmQuotaTemplate,
+        ) callconv(.winapi) HRESULT,
+        EnumTemplates: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            options: FsrmEnumOptions,
+            quotaTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+        ExportTemplates: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            quotaTemplateNamesArray: ?*VARIANT,
+            serializedQuotaTemplates: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ImportTemplates: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            serializedQuotaTemplates: ?BSTR,
+            quotaTemplateNamesArray: ?*VARIANT,
+            quotaTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateTemplate(self: *const IFsrmQuotaTemplateManager, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTemplate(self, quotaTemplate);
+    }
+    pub fn GetTemplate(self: *const IFsrmQuotaTemplateManager, name: ?BSTR, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTemplate(self, name, quotaTemplate);
+    }
+    pub fn EnumTemplates(self: *const IFsrmQuotaTemplateManager, options: FsrmEnumOptions, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumTemplates(self, options, quotaTemplates);
+    }
+    pub fn ExportTemplates(self: *const IFsrmQuotaTemplateManager, quotaTemplateNamesArray: ?*VARIANT, serializedQuotaTemplates: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ExportTemplates(self, quotaTemplateNamesArray, serializedQuotaTemplates);
+    }
+    pub fn ImportTemplates(self: *const IFsrmQuotaTemplateManager, serializedQuotaTemplates: ?BSTR, quotaTemplateNamesArray: ?*VARIANT, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.ImportTemplates(self, serializedQuotaTemplates, quotaTemplateNamesArray, quotaTemplates);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmReport_Value = Guid.initString("d8cc81d9-46b8-4fa4-bfa5-4aa9dec9b638");
+pub const IID_IFsrmReport = &IID_IFsrmReport_Value;
+pub const IFsrmReport = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const IFsrmReport,
+            reportType: ?*FsrmReportType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IFsrmReport,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IFsrmReport,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IFsrmReport,
+            description: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IFsrmReport,
+            description: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastGeneratedFileNamePrefix: *const fn(
+            self: *const IFsrmReport,
+            prefix: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetFilter: *const fn(
+            self: *const IFsrmReport,
+            filter: FsrmReportFilter,
+            filterValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetFilter: *const fn(
+            self: *const IFsrmReport,
+            filter: FsrmReportFilter,
+            filterValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmReport,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Type(self: *const IFsrmReport, reportType: ?*FsrmReportType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, reportType);
+    }
+    pub fn get_Name(self: *const IFsrmReport, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const IFsrmReport, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Description(self: *const IFsrmReport, description: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn put_Description(self: *const IFsrmReport, description: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, description);
+    }
+    pub fn get_LastGeneratedFileNamePrefix(self: *const IFsrmReport, prefix: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastGeneratedFileNamePrefix(self, prefix);
+    }
+    pub fn GetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFilter(self, filter, filterValue);
+    }
+    pub fn SetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFilter(self, filter, filterValue);
+    }
+    pub fn Delete(self: *const IFsrmReport) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmReportJob_Value = Guid.initString("38e87280-715c-4c7d-a280-ea1651a19fef");
+pub const IID_IFsrmReportJob = &IID_IFsrmReportJob_Value;
+pub const IFsrmReportJob = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmObject.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Task: *const fn(
+            self: *const IFsrmReportJob,
+            taskName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Task: *const fn(
+            self: *const IFsrmReportJob,
+            taskName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NamespaceRoots: *const fn(
+            self: *const IFsrmReportJob,
+            namespaceRoots: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NamespaceRoots: *const fn(
+            self: *const IFsrmReportJob,
+            namespaceRoots: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Formats: *const fn(
+            self: *const IFsrmReportJob,
+            formats: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Formats: *const fn(
+            self: *const IFsrmReportJob,
+            formats: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MailTo: *const fn(
+            self: *const IFsrmReportJob,
+            mailTo: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MailTo: *const fn(
+            self: *const IFsrmReportJob,
+            mailTo: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RunningStatus: *const fn(
+            self: *const IFsrmReportJob,
+            runningStatus: ?*FsrmReportRunningStatus,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastRun: *const fn(
+            self: *const IFsrmReportJob,
+            lastRun: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastError: *const fn(
+            self: *const IFsrmReportJob,
+            lastError: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastGeneratedInDirectory: *const fn(
+            self: *const IFsrmReportJob,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        EnumReports: *const fn(
+            self: *const IFsrmReportJob,
+            reports: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateReport: *const fn(
+            self: *const IFsrmReportJob,
+            reportType: FsrmReportType,
+            report: ?*?*IFsrmReport,
+        ) callconv(.winapi) HRESULT,
+        Run: *const fn(
+            self: *const IFsrmReportJob,
+            context: FsrmReportGenerationContext,
+        ) callconv(.winapi) HRESULT,
+        WaitForCompletion: *const fn(
+            self: *const IFsrmReportJob,
+            waitSeconds: i32,
+            completed: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        Cancel: *const fn(
+            self: *const IFsrmReportJob,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Task(self: *const IFsrmReportJob, taskName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Task(self, taskName);
+    }
+    pub fn put_Task(self: *const IFsrmReportJob, taskName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Task(self, taskName);
+    }
+    pub fn get_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn put_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn get_Formats(self: *const IFsrmReportJob, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Formats(self, formats);
+    }
+    pub fn put_Formats(self: *const IFsrmReportJob, formats: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Formats(self, formats);
+    }
+    pub fn get_MailTo(self: *const IFsrmReportJob, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MailTo(self, mailTo);
+    }
+    pub fn put_MailTo(self: *const IFsrmReportJob, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MailTo(self, mailTo);
+    }
+    pub fn get_RunningStatus(self: *const IFsrmReportJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RunningStatus(self, runningStatus);
+    }
+    pub fn get_LastRun(self: *const IFsrmReportJob, lastRun: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastRun(self, lastRun);
+    }
+    pub fn get_LastError(self: *const IFsrmReportJob, lastError: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastError(self, lastError);
+    }
+    pub fn get_LastGeneratedInDirectory(self: *const IFsrmReportJob, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastGeneratedInDirectory(self, path);
+    }
+    pub fn EnumReports(self: *const IFsrmReportJob, reports: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumReports(self, reports);
+    }
+    pub fn CreateReport(self: *const IFsrmReportJob, reportType: FsrmReportType, report: ?*?*IFsrmReport) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateReport(self, reportType, report);
+    }
+    pub fn Run(self: *const IFsrmReportJob, context: FsrmReportGenerationContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Run(self, context);
+    }
+    pub fn WaitForCompletion(self: *const IFsrmReportJob, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.WaitForCompletion(self, waitSeconds, completed);
+    }
+    pub fn Cancel(self: *const IFsrmReportJob) callconv(.@"inline") HRESULT {
+        return self.vtable.Cancel(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmReportManager_Value = Guid.initString("27b899fe-6ffa-4481-a184-d3daade8a02b");
+pub const IID_IFsrmReportManager = &IID_IFsrmReportManager_Value;
+pub const IFsrmReportManager = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        EnumReportJobs: *const fn(
+            self: *const IFsrmReportManager,
+            options: FsrmEnumOptions,
+            reportJobs: ?*?*IFsrmCollection,
+        ) callconv(.winapi) HRESULT,
+        CreateReportJob: *const fn(
+            self: *const IFsrmReportManager,
+            reportJob: ?*?*IFsrmReportJob,
+        ) callconv(.winapi) HRESULT,
+        GetReportJob: *const fn(
+            self: *const IFsrmReportManager,
+            taskName: ?BSTR,
+            reportJob: ?*?*IFsrmReportJob,
+        ) callconv(.winapi) HRESULT,
+        GetOutputDirectory: *const fn(
+            self: *const IFsrmReportManager,
+            context: FsrmReportGenerationContext,
+            path: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetOutputDirectory: *const fn(
+            self: *const IFsrmReportManager,
+            context: FsrmReportGenerationContext,
+            path: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        IsFilterValidForReportType: *const fn(
+            self: *const IFsrmReportManager,
+            reportType: FsrmReportType,
+            filter: FsrmReportFilter,
+            valid: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultFilter: *const fn(
+            self: *const IFsrmReportManager,
+            reportType: FsrmReportType,
+            filter: FsrmReportFilter,
+            filterValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetDefaultFilter: *const fn(
+            self: *const IFsrmReportManager,
+            reportType: FsrmReportType,
+            filter: FsrmReportFilter,
+            filterValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetReportSizeLimit: *const fn(
+            self: *const IFsrmReportManager,
+            limit: FsrmReportLimit,
+            limitValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetReportSizeLimit: *const fn(
+            self: *const IFsrmReportManager,
+            limit: FsrmReportLimit,
+            limitValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn EnumReportJobs(self: *const IFsrmReportManager, options: FsrmEnumOptions, reportJobs: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumReportJobs(self, options, reportJobs);
+    }
+    pub fn CreateReportJob(self: *const IFsrmReportManager, reportJob: ?*?*IFsrmReportJob) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateReportJob(self, reportJob);
+    }
+    pub fn GetReportJob(self: *const IFsrmReportManager, taskName: ?BSTR, reportJob: ?*?*IFsrmReportJob) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReportJob(self, taskName, reportJob);
+    }
+    pub fn GetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputDirectory(self, context, path);
+    }
+    pub fn SetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOutputDirectory(self, context, path);
+    }
+    pub fn IsFilterValidForReportType(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.IsFilterValidForReportType(self, reportType, filter, valid);
+    }
+    pub fn GetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultFilter(self, reportType, filter, filterValue);
+    }
+    pub fn SetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultFilter(self, reportType, filter, filterValue);
+    }
+    pub fn GetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReportSizeLimit(self, limit, limitValue);
+    }
+    pub fn SetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReportSizeLimit(self, limit, limitValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmReportScheduler_Value = Guid.initString("6879caf9-6617-4484-8719-71c3d8645f94");
+pub const IID_IFsrmReportScheduler = &IID_IFsrmReportScheduler_Value;
+pub const IFsrmReportScheduler = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        VerifyNamespaces: *const fn(
+            self: *const IFsrmReportScheduler,
+            namespacesSafeArray: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        CreateScheduleTask: *const fn(
+            self: *const IFsrmReportScheduler,
+            taskName: ?BSTR,
+            namespacesSafeArray: ?*VARIANT,
+            serializedTask: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ModifyScheduleTask: *const fn(
+            self: *const IFsrmReportScheduler,
+            taskName: ?BSTR,
+            namespacesSafeArray: ?*VARIANT,
+            serializedTask: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        DeleteScheduleTask: *const fn(
+            self: *const IFsrmReportScheduler,
+            taskName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn VerifyNamespaces(self: *const IFsrmReportScheduler, namespacesSafeArray: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.VerifyNamespaces(self, namespacesSafeArray);
+    }
+    pub fn CreateScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
+    }
+    pub fn ModifyScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ModifyScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
+    }
+    pub fn DeleteScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteScheduleTask(self, taskName);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmRule_Value = Guid.initString("cb0df960-16f5-4495-9079-3f9360d831df");
+pub const IID_IFsrmRule = &IID_IFsrmRule_Value;
+pub const IFsrmRule = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmObject.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IFsrmRule,
+            name: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IFsrmRule,
+            name: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RuleType: *const fn(
+            self: *const IFsrmRule,
+            ruleType: ?*FsrmRuleType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ModuleDefinitionName: *const fn(
+            self: *const IFsrmRule,
+            moduleDefinitionName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ModuleDefinitionName: *const fn(
+            self: *const IFsrmRule,
+            moduleDefinitionName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NamespaceRoots: *const fn(
+            self: *const IFsrmRule,
+            namespaceRoots: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_NamespaceRoots: *const fn(
+            self: *const IFsrmRule,
+            namespaceRoots: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_RuleFlags: *const fn(
+            self: *const IFsrmRule,
+            ruleFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_RuleFlags: *const fn(
+            self: *const IFsrmRule,
+            ruleFlags: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Parameters: *const fn(
+            self: *const IFsrmRule,
+            parameters: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Parameters: *const fn(
+            self: *const IFsrmRule,
+            parameters: ?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastModified: *const fn(
+            self: *const IFsrmRule,
+            lastModified: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmRule, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const IFsrmRule, name: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_RuleType(self: *const IFsrmRule, ruleType: ?*FsrmRuleType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RuleType(self, ruleType);
+    }
+    pub fn get_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ModuleDefinitionName(self, moduleDefinitionName);
+    }
+    pub fn put_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_ModuleDefinitionName(self, moduleDefinitionName);
+    }
+    pub fn get_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn put_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn get_RuleFlags(self: *const IFsrmRule, ruleFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_RuleFlags(self, ruleFlags);
+    }
+    pub fn put_RuleFlags(self: *const IFsrmRule, ruleFlags: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_RuleFlags(self, ruleFlags);
+    }
+    pub fn get_Parameters(self: *const IFsrmRule, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Parameters(self, parameters);
+    }
+    pub fn put_Parameters(self: *const IFsrmRule, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Parameters(self, parameters);
+    }
+    pub fn get_LastModified(self: *const IFsrmRule, lastModified: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastModified(self, lastModified);
     }
-    pub fn UseRulesAndDefinitions(self: *const IFsrmClassifierModuleImplementation, rules: ?*IFsrmCollection, propertyDefinitions: ?*IFsrmCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.UseRulesAndDefinitions(self, rules, propertyDefinitions);
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmSetting_Value = Guid.initString("f411d4fd-14be-4260-8c40-03b7c95e608a");
+pub const IID_IFsrmSetting = &IID_IFsrmSetting_Value;
+pub const IFsrmSetting = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SmtpServer: *const fn(
+            self: *const IFsrmSetting,
+            smtpServer: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_SmtpServer: *const fn(
+            self: *const IFsrmSetting,
+            smtpServer: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MailFrom: *const fn(
+            self: *const IFsrmSetting,
+            mailFrom: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MailFrom: *const fn(
+            self: *const IFsrmSetting,
+            mailFrom: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AdminEmail: *const fn(
+            self: *const IFsrmSetting,
+            adminEmail: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AdminEmail: *const fn(
+            self: *const IFsrmSetting,
+            adminEmail: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DisableCommandLine: *const fn(
+            self: *const IFsrmSetting,
+            disableCommandLine: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DisableCommandLine: *const fn(
+            self: *const IFsrmSetting,
+            disableCommandLine: i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EnableScreeningAudit: *const fn(
+            self: *const IFsrmSetting,
+            enableScreeningAudit: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_EnableScreeningAudit: *const fn(
+            self: *const IFsrmSetting,
+            enableScreeningAudit: i16,
+        ) callconv(.winapi) HRESULT,
+        EmailTest: *const fn(
+            self: *const IFsrmSetting,
+            mailTo: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SetActionRunLimitInterval: *const fn(
+            self: *const IFsrmSetting,
+            actionType: FsrmActionType,
+            delayTimeMinutes: i32,
+        ) callconv(.winapi) HRESULT,
+        GetActionRunLimitInterval: *const fn(
+            self: *const IFsrmSetting,
+            actionType: FsrmActionType,
+            delayTimeMinutes: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_SmtpServer(self: *const IFsrmSetting, smtpServer: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SmtpServer(self, smtpServer);
     }
-    pub fn OnBeginFile(self: *const IFsrmClassifierModuleImplementation, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.OnBeginFile(self, propertyBag, arrayRuleIds);
+    pub fn put_SmtpServer(self: *const IFsrmSetting, smtpServer: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_SmtpServer(self, smtpServer);
     }
-    pub fn DoesPropertyValueApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.DoesPropertyValueApply(self, property, value, applyValue, idRule, idPropDef);
+    pub fn get_MailFrom(self: *const IFsrmSetting, mailFrom: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MailFrom(self, mailFrom);
     }
-    pub fn GetPropertyValueToApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyValueToApply(self, property, value, idRule, idPropDef);
+    pub fn put_MailFrom(self: *const IFsrmSetting, mailFrom: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_MailFrom(self, mailFrom);
     }
-    pub fn OnEndFile(self: *const IFsrmClassifierModuleImplementation) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEndFile(self);
+    pub fn get_AdminEmail(self: *const IFsrmSetting, adminEmail: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AdminEmail(self, adminEmail);
+    }
+    pub fn put_AdminEmail(self: *const IFsrmSetting, adminEmail: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AdminEmail(self, adminEmail);
+    }
+    pub fn get_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DisableCommandLine(self, disableCommandLine);
+    }
+    pub fn put_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_DisableCommandLine(self, disableCommandLine);
+    }
+    pub fn get_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EnableScreeningAudit(self, enableScreeningAudit);
+    }
+    pub fn put_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_EnableScreeningAudit(self, enableScreeningAudit);
+    }
+    pub fn EmailTest(self: *const IFsrmSetting, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.EmailTest(self, mailTo);
+    }
+    pub fn SetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetActionRunLimitInterval(self, actionType, delayTimeMinutes);
+    }
+    pub fn GetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetActionRunLimitInterval(self, actionType, delayTimeMinutes);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IFsrmStorageModuleDefinition_Value = Guid.initString("15a81350-497d-4aba-80e9-d4dbcc5521fe");
+pub const IID_IFsrmStorageModuleDefinition = &IID_IFsrmStorageModuleDefinition_Value;
+pub const IFsrmStorageModuleDefinition = extern union {
+    pub const VTable = extern struct {
+        base: IFsrmPipelineModuleDefinition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Capabilities: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            capabilities: ?*FsrmStorageModuleCaps,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Capabilities: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            capabilities: FsrmStorageModuleCaps,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_StorageType: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            storageType: ?*FsrmStorageModuleType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_StorageType: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            storageType: FsrmStorageModuleType,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_UpdatesFileContent: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            updatesFileContent: ?*i16,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_UpdatesFileContent: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            updatesFileContent: i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: ?*FsrmStorageModuleCaps) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Capabilities(self, capabilities);
+    }
+    pub fn put_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: FsrmStorageModuleCaps) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Capabilities(self, capabilities);
+    }
+    pub fn get_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: ?*FsrmStorageModuleType) callconv(.@"inline") HRESULT {
+        return self.vtable.get_StorageType(self, storageType);
+    }
+    pub fn put_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: FsrmStorageModuleType) callconv(.@"inline") HRESULT {
+        return self.vtable.put_StorageType(self, storageType);
+    }
+    pub fn get_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_UpdatesFileContent(self, updatesFileContent);
+    }
+    pub fn put_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: i16) callconv(.@"inline") HRESULT {
+        return self.vtable.put_UpdatesFileContent(self, updatesFileContent);
     }
 };
 
@@ -4898,70 +4962,6 @@ pub const IFsrmStorageModuleImplementation = extern union {
     pub fn SaveProperties(self: *const IFsrmStorageModuleImplementation, propertyBag: ?*IFsrmPropertyBag) callconv(.@"inline") HRESULT {
         return self.vtable.SaveProperties(self, propertyBag);
     }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IFsrmPipelineModuleConnector_Value = Guid.initString("c16014f3-9aa1-46b3-b0a7-ab146eb205f2");
-pub const IID_IFsrmPipelineModuleConnector = &IID_IFsrmPipelineModuleConnector_Value;
-pub const IFsrmPipelineModuleConnector = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleImplementation: *const fn(
-            self: *const IFsrmPipelineModuleConnector,
-            pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleName: *const fn(
-            self: *const IFsrmPipelineModuleConnector,
-            userName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HostingUserAccount: *const fn(
-            self: *const IFsrmPipelineModuleConnector,
-            userAccount: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HostingProcessPid: *const fn(
-            self: *const IFsrmPipelineModuleConnector,
-            pid: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Bind: *const fn(
-            self: *const IFsrmPipelineModuleConnector,
-            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
-            moduleImplementation: ?*IFsrmPipelineModuleImplementation,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_ModuleImplementation(self: *const IFsrmPipelineModuleConnector, pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ModuleImplementation(self, pipelineModuleImplementation);
-    }
-    pub fn get_ModuleName(self: *const IFsrmPipelineModuleConnector, userName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ModuleName(self, userName);
-    }
-    pub fn get_HostingUserAccount(self: *const IFsrmPipelineModuleConnector, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HostingUserAccount(self, userAccount);
-    }
-    pub fn get_HostingProcessPid(self: *const IFsrmPipelineModuleConnector, pid: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_HostingProcessPid(self, pid);
-    }
-    pub fn Bind(self: *const IFsrmPipelineModuleConnector, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleImplementation: ?*IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
-        return self.vtable.Bind(self, moduleDefinition, moduleImplementation);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_DIFsrmClassificationEvents_Value = Guid.initString("26942db0-dabf-41d8-bbdd-b129a9f70424");
-pub const IID_DIFsrmClassificationEvents = &IID_DIFsrmClassificationEvents_Value;
-pub const DIFsrmClassificationEvents = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
 };
 
 

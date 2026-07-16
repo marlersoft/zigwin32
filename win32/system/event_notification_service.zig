@@ -2,134 +2,22 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (12)
 //--------------------------------------------------------------------------------
-pub const NETWORK_ALIVE_LAN = @as(u32, 1);
-pub const NETWORK_ALIVE_WAN = @as(u32, 2);
+pub const CONNECTION_AOL = @as(u32, 4);
 pub const NETWORK_ALIVE_AOL = @as(u32, 4);
 pub const NETWORK_ALIVE_INTERNET = @as(u32, 8);
-pub const CONNECTION_AOL = @as(u32, 4);
+pub const NETWORK_ALIVE_LAN = @as(u32, 1);
+pub const NETWORK_ALIVE_WAN = @as(u32, 2);
+pub const SENSGUID_EVENTCLASS_LOGON = Guid.initString("d5978630-5b9f-11d1-8dd2-00aa004abd5e");
+pub const SENSGUID_EVENTCLASS_LOGON2 = Guid.initString("d5978650-5b9f-11d1-8dd2-00aa004abd5e");
+pub const SENSGUID_EVENTCLASS_NETWORK = Guid.initString("d5978620-5b9f-11d1-8dd2-00aa004abd5e");
+pub const SENSGUID_EVENTCLASS_ONNOW = Guid.initString("d5978640-5b9f-11d1-8dd2-00aa004abd5e");
 pub const SENSGUID_PUBLISHER = Guid.initString("5fee1bd6-5b9b-11d1-8dd2-00aa004abd5e");
 pub const SENSGUID_SUBSCRIBER_LCE = Guid.initString("d3938ab0-5b9d-11d1-8dd2-00aa004abd5e");
 pub const SENSGUID_SUBSCRIBER_WININET = Guid.initString("d3938ab5-5b9d-11d1-8dd2-00aa004abd5e");
-pub const SENSGUID_EVENTCLASS_NETWORK = Guid.initString("d5978620-5b9f-11d1-8dd2-00aa004abd5e");
-pub const SENSGUID_EVENTCLASS_LOGON = Guid.initString("d5978630-5b9f-11d1-8dd2-00aa004abd5e");
-pub const SENSGUID_EVENTCLASS_ONNOW = Guid.initString("d5978640-5b9f-11d1-8dd2-00aa004abd5e");
-pub const SENSGUID_EVENTCLASS_LOGON2 = Guid.initString("d5978650-5b9f-11d1-8dd2-00aa004abd5e");
 
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
-pub const SENS_CONNECTION_TYPE = enum(u32) {
-    LAN = 0,
-    WAN = 1,
-};
-pub const CONNECTION_LAN = SENS_CONNECTION_TYPE.LAN;
-pub const CONNECTION_WAN = SENS_CONNECTION_TYPE.WAN;
-
-pub const QOCINFO = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwInSpeed: u32,
-    dwOutSpeed: u32,
-};
-
-const CLSID_SENS_Value = Guid.initString("d597cafe-5b9f-11d1-8dd2-00aa004abd5e");
-pub const CLSID_SENS = &CLSID_SENS_Value;
-
-pub const SENS_QOCINFO = extern struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwOutSpeed: u32,
-    dwInSpeed: u32,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISensNetwork_Value = Guid.initString("d597bab1-5b9f-11d1-8dd2-00aa004abd5e");
-pub const IID_ISensNetwork = &IID_ISensNetwork_Value;
-pub const ISensNetwork = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        ConnectionMade: *const fn(
-            self: *const ISensNetwork,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-            lpQOCInfo: ?*SENS_QOCINFO,
-        ) callconv(.winapi) HRESULT,
-        ConnectionMadeNoQOCInfo: *const fn(
-            self: *const ISensNetwork,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-        ) callconv(.winapi) HRESULT,
-        ConnectionLost: *const fn(
-            self: *const ISensNetwork,
-            bstrConnection: ?BSTR,
-            ulType: SENS_CONNECTION_TYPE,
-        ) callconv(.winapi) HRESULT,
-        DestinationReachable: *const fn(
-            self: *const ISensNetwork,
-            bstrDestination: ?BSTR,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-            lpQOCInfo: ?*SENS_QOCINFO,
-        ) callconv(.winapi) HRESULT,
-        DestinationReachableNoQOCInfo: *const fn(
-            self: *const ISensNetwork,
-            bstrDestination: ?BSTR,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn ConnectionMade(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectionMade(self, bstrConnection, ulType, lpQOCInfo);
-    }
-    pub fn ConnectionMadeNoQOCInfo(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectionMadeNoQOCInfo(self, bstrConnection, ulType);
-    }
-    pub fn ConnectionLost(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: SENS_CONNECTION_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.ConnectionLost(self, bstrConnection, ulType);
-    }
-    pub fn DestinationReachable(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.DestinationReachable(self, bstrDestination, bstrConnection, ulType, lpQOCInfo);
-    }
-    pub fn DestinationReachableNoQOCInfo(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DestinationReachableNoQOCInfo(self, bstrDestination, bstrConnection, ulType);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISensOnNow_Value = Guid.initString("d597bab2-5b9f-11d1-8dd2-00aa004abd5e");
-pub const IID_ISensOnNow = &IID_ISensOnNow_Value;
-pub const ISensOnNow = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        OnACPower: *const fn(
-            self: *const ISensOnNow,
-        ) callconv(.winapi) HRESULT,
-        OnBatteryPower: *const fn(
-            self: *const ISensOnNow,
-            dwBatteryLifePercent: u32,
-        ) callconv(.winapi) HRESULT,
-        BatteryLow: *const fn(
-            self: *const ISensOnNow,
-            dwBatteryLifePercent: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn OnACPower(self: *const ISensOnNow) callconv(.@"inline") HRESULT {
-        return self.vtable.OnACPower(self);
-    }
-    pub fn OnBatteryPower(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnBatteryPower(self, dwBatteryLifePercent);
-    }
-    pub fn BatteryLow(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.BatteryLow(self, dwBatteryLifePercent);
-    }
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensLogon_Value = Guid.initString("d597bab3-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensLogon = &IID_ISensLogon_Value;
@@ -241,6 +129,118 @@ pub const ISensLogon2 = extern union {
     pub fn PostShell(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PostShell(self, bstrUserName, dwSessionId);
     }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ISensNetwork_Value = Guid.initString("d597bab1-5b9f-11d1-8dd2-00aa004abd5e");
+pub const IID_ISensNetwork = &IID_ISensNetwork_Value;
+pub const ISensNetwork = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        ConnectionMade: *const fn(
+            self: *const ISensNetwork,
+            bstrConnection: ?BSTR,
+            ulType: u32,
+            lpQOCInfo: ?*SENS_QOCINFO,
+        ) callconv(.winapi) HRESULT,
+        ConnectionMadeNoQOCInfo: *const fn(
+            self: *const ISensNetwork,
+            bstrConnection: ?BSTR,
+            ulType: u32,
+        ) callconv(.winapi) HRESULT,
+        ConnectionLost: *const fn(
+            self: *const ISensNetwork,
+            bstrConnection: ?BSTR,
+            ulType: SENS_CONNECTION_TYPE,
+        ) callconv(.winapi) HRESULT,
+        DestinationReachable: *const fn(
+            self: *const ISensNetwork,
+            bstrDestination: ?BSTR,
+            bstrConnection: ?BSTR,
+            ulType: u32,
+            lpQOCInfo: ?*SENS_QOCINFO,
+        ) callconv(.winapi) HRESULT,
+        DestinationReachableNoQOCInfo: *const fn(
+            self: *const ISensNetwork,
+            bstrDestination: ?BSTR,
+            bstrConnection: ?BSTR,
+            ulType: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn ConnectionMade(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectionMade(self, bstrConnection, ulType, lpQOCInfo);
+    }
+    pub fn ConnectionMadeNoQOCInfo(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectionMadeNoQOCInfo(self, bstrConnection, ulType);
+    }
+    pub fn ConnectionLost(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: SENS_CONNECTION_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.ConnectionLost(self, bstrConnection, ulType);
+    }
+    pub fn DestinationReachable(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.DestinationReachable(self, bstrDestination, bstrConnection, ulType, lpQOCInfo);
+    }
+    pub fn DestinationReachableNoQOCInfo(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DestinationReachableNoQOCInfo(self, bstrDestination, bstrConnection, ulType);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ISensOnNow_Value = Guid.initString("d597bab2-5b9f-11d1-8dd2-00aa004abd5e");
+pub const IID_ISensOnNow = &IID_ISensOnNow_Value;
+pub const ISensOnNow = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        OnACPower: *const fn(
+            self: *const ISensOnNow,
+        ) callconv(.winapi) HRESULT,
+        OnBatteryPower: *const fn(
+            self: *const ISensOnNow,
+            dwBatteryLifePercent: u32,
+        ) callconv(.winapi) HRESULT,
+        BatteryLow: *const fn(
+            self: *const ISensOnNow,
+            dwBatteryLifePercent: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn OnACPower(self: *const ISensOnNow) callconv(.@"inline") HRESULT {
+        return self.vtable.OnACPower(self);
+    }
+    pub fn OnBatteryPower(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnBatteryPower(self, dwBatteryLifePercent);
+    }
+    pub fn BatteryLow(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.BatteryLow(self, dwBatteryLifePercent);
+    }
+};
+
+pub const QOCINFO = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwInSpeed: u32,
+    dwOutSpeed: u32,
+};
+
+const CLSID_SENS_Value = Guid.initString("d597cafe-5b9f-11d1-8dd2-00aa004abd5e");
+pub const CLSID_SENS = &CLSID_SENS_Value;
+
+pub const SENS_CONNECTION_TYPE = enum(u32) {
+    LAN = 0,
+    WAN = 1,
+};
+pub const CONNECTION_LAN = SENS_CONNECTION_TYPE.LAN;
+pub const CONNECTION_WAN = SENS_CONNECTION_TYPE.WAN;
+
+pub const SENS_QOCINFO = extern struct {
+    dwSize: u32,
+    dwFlags: u32,
+    dwOutSpeed: u32,
+    dwInSpeed: u32,
 };
 
 

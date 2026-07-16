@@ -7,351 +7,6 @@ pub const WINML_TENSOR_DIMENSION_COUNT_MAX = @as(u32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (47)
 //--------------------------------------------------------------------------------
-pub const WINML_TENSOR_DATA_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    FLOAT = 1,
-    UINT8 = 2,
-    INT8 = 3,
-    UINT16 = 4,
-    INT16 = 5,
-    INT32 = 6,
-    INT64 = 7,
-    STRING = 8,
-    BOOLEAN = 9,
-    FLOAT16 = 10,
-    DOUBLE = 11,
-    UINT32 = 12,
-    UINT64 = 13,
-    COMPLEX64 = 14,
-    COMPLEX128 = 15,
-};
-pub const WINML_TENSOR_UNDEFINED = WINML_TENSOR_DATA_TYPE.UNDEFINED;
-pub const WINML_TENSOR_FLOAT = WINML_TENSOR_DATA_TYPE.FLOAT;
-pub const WINML_TENSOR_UINT8 = WINML_TENSOR_DATA_TYPE.UINT8;
-pub const WINML_TENSOR_INT8 = WINML_TENSOR_DATA_TYPE.INT8;
-pub const WINML_TENSOR_UINT16 = WINML_TENSOR_DATA_TYPE.UINT16;
-pub const WINML_TENSOR_INT16 = WINML_TENSOR_DATA_TYPE.INT16;
-pub const WINML_TENSOR_INT32 = WINML_TENSOR_DATA_TYPE.INT32;
-pub const WINML_TENSOR_INT64 = WINML_TENSOR_DATA_TYPE.INT64;
-pub const WINML_TENSOR_STRING = WINML_TENSOR_DATA_TYPE.STRING;
-pub const WINML_TENSOR_BOOLEAN = WINML_TENSOR_DATA_TYPE.BOOLEAN;
-pub const WINML_TENSOR_FLOAT16 = WINML_TENSOR_DATA_TYPE.FLOAT16;
-pub const WINML_TENSOR_DOUBLE = WINML_TENSOR_DATA_TYPE.DOUBLE;
-pub const WINML_TENSOR_UINT32 = WINML_TENSOR_DATA_TYPE.UINT32;
-pub const WINML_TENSOR_UINT64 = WINML_TENSOR_DATA_TYPE.UINT64;
-pub const WINML_TENSOR_COMPLEX64 = WINML_TENSOR_DATA_TYPE.COMPLEX64;
-pub const WINML_TENSOR_COMPLEX128 = WINML_TENSOR_DATA_TYPE.COMPLEX128;
-
-pub const WINML_FEATURE_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    TENSOR = 1,
-    SEQUENCE = 2,
-    MAP = 3,
-    IMAGE = 4,
-};
-pub const WINML_FEATURE_UNDEFINED = WINML_FEATURE_TYPE.UNDEFINED;
-pub const WINML_FEATURE_TENSOR = WINML_FEATURE_TYPE.TENSOR;
-pub const WINML_FEATURE_SEQUENCE = WINML_FEATURE_TYPE.SEQUENCE;
-pub const WINML_FEATURE_MAP = WINML_FEATURE_TYPE.MAP;
-pub const WINML_FEATURE_IMAGE = WINML_FEATURE_TYPE.IMAGE;
-
-pub const WINML_BINDING_TYPE = enum(i32) {
-    UNDEFINED = 0,
-    TENSOR = 1,
-    SEQUENCE = 2,
-    MAP = 3,
-    IMAGE = 4,
-    RESOURCE = 5,
-};
-pub const WINML_BINDING_UNDEFINED = WINML_BINDING_TYPE.UNDEFINED;
-pub const WINML_BINDING_TENSOR = WINML_BINDING_TYPE.TENSOR;
-pub const WINML_BINDING_SEQUENCE = WINML_BINDING_TYPE.SEQUENCE;
-pub const WINML_BINDING_MAP = WINML_BINDING_TYPE.MAP;
-pub const WINML_BINDING_IMAGE = WINML_BINDING_TYPE.IMAGE;
-pub const WINML_BINDING_RESOURCE = WINML_BINDING_TYPE.RESOURCE;
-
-pub const WINML_TENSOR_BINDING_DESC = extern struct {
-    DataType: WINML_TENSOR_DATA_TYPE,
-    NumDimensions: u32,
-    pShape: ?*i64,
-    DataSize: u32,
-    pData: ?*anyopaque,
-};
-
-pub const WINML_SEQUENCE_BINDING_DESC = extern struct {
-    ElementCount: u32,
-    ElementType: WINML_TENSOR_DATA_TYPE,
-    Anonymous: extern union {
-        pStrings: ?*?PWSTR,
-        pInts: ?*i64,
-        pFloats: ?*f32,
-        pDoubles: ?*f64,
-    },
-};
-
-pub const WINML_MAP_BINDING_DESC = extern struct {
-    ElementCount: u32,
-    KeyType: WINML_TENSOR_DATA_TYPE,
-    Anonymous1: extern union {
-        pStringKeys: ?*?PWSTR,
-        pIntKeys: ?*i64,
-    },
-    Fields: WINML_TENSOR_DATA_TYPE,
-    Anonymous2: extern union {
-        pStringFields: ?*?PWSTR,
-        pIntFields: ?*i64,
-        pFloatFields: ?*f32,
-        pDoubleFields: ?*f64,
-    },
-};
-
-pub const WINML_IMAGE_BINDING_DESC = extern struct {
-    ElementType: WINML_TENSOR_DATA_TYPE,
-    NumDimensions: u32,
-    pShape: ?*i64,
-    DataSize: u32,
-    pData: ?*anyopaque,
-};
-
-pub const WINML_RESOURCE_BINDING_DESC = extern struct {
-    ElementType: WINML_TENSOR_DATA_TYPE,
-    NumDimensions: u32,
-    pShape: ?*i64,
-    pResource: ?*ID3D12Resource,
-};
-
-pub const WINML_BINDING_DESC = extern struct {
-    Name: ?[*:0]const u16,
-    BindType: WINML_BINDING_TYPE,
-    Anonymous: extern union {
-        Tensor: WINML_TENSOR_BINDING_DESC,
-        Sequence: WINML_SEQUENCE_BINDING_DESC,
-        Map: WINML_MAP_BINDING_DESC,
-        Image: WINML_IMAGE_BINDING_DESC,
-        Resource: WINML_RESOURCE_BINDING_DESC,
-    },
-};
-
-pub const WINML_TENSOR_VARIABLE_DESC = extern struct {
-    ElementType: WINML_TENSOR_DATA_TYPE,
-    NumDimensions: u32,
-    pShape: ?*i64,
-};
-
-pub const WINML_SEQUENCE_VARIABLE_DESC = extern struct {
-    ElementType: WINML_TENSOR_DATA_TYPE,
-};
-
-pub const WINML_MAP_VARIABLE_DESC = extern struct {
-    KeyType: WINML_TENSOR_DATA_TYPE,
-    Fields: WINML_TENSOR_DATA_TYPE,
-};
-
-pub const WINML_IMAGE_VARIABLE_DESC = extern struct {
-    ElementType: WINML_TENSOR_DATA_TYPE,
-    NumDimensions: u32,
-    pShape: ?*i64,
-};
-
-pub const WINML_VARIABLE_DESC = extern struct {
-    Name: ?PWSTR,
-    Description: ?PWSTR,
-    FeatureType: WINML_FEATURE_TYPE,
-    Required: BOOL,
-    Anonymous: extern union {
-        Tensor: WINML_TENSOR_VARIABLE_DESC,
-        Sequence: WINML_SEQUENCE_VARIABLE_DESC,
-        Map: WINML_MAP_VARIABLE_DESC,
-        Image: WINML_IMAGE_VARIABLE_DESC,
-    },
-};
-
-pub const WINML_MODEL_DESC = extern struct {
-    Author: ?PWSTR,
-    Name: ?PWSTR,
-    Domain: ?PWSTR,
-    Description: ?PWSTR,
-    Version: usize,
-};
-
-// TODO: this type is limited to platform 'windows10.0.17134'
-const IID_IWinMLModel_Value = Guid.initString("e2eeb6a9-f31f-4055-a521-e30b5b33664a");
-pub const IID_IWinMLModel = &IID_IWinMLModel_Value;
-pub const IWinMLModel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDescription: *const fn(
-            self: *const IWinMLModel,
-            ppDescription: ?*?*WINML_MODEL_DESC,
-        ) callconv(.winapi) HRESULT,
-        EnumerateMetadata: *const fn(
-            self: *const IWinMLModel,
-            Index: u32,
-            pKey: ?*?PWSTR,
-            pValue: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        EnumerateModelInputs: *const fn(
-            self: *const IWinMLModel,
-            Index: u32,
-            ppInputDescriptor: ?*?*WINML_VARIABLE_DESC,
-        ) callconv(.winapi) HRESULT,
-        EnumerateModelOutputs: *const fn(
-            self: *const IWinMLModel,
-            Index: u32,
-            ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDescription(self: *const IWinMLModel, ppDescription: ?*?*WINML_MODEL_DESC) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDescription(self, ppDescription);
-    }
-    pub fn EnumerateMetadata(self: *const IWinMLModel, Index: u32, pKey: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumerateMetadata(self, Index, pKey, pValue);
-    }
-    pub fn EnumerateModelInputs(self: *const IWinMLModel, Index: u32, ppInputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumerateModelInputs(self, Index, ppInputDescriptor);
-    }
-    pub fn EnumerateModelOutputs(self: *const IWinMLModel, Index: u32, ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumerateModelOutputs(self, Index, ppOutputDescriptor);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.17134'
-const IID_IWinMLEvaluationContext_Value = Guid.initString("95848f9e-583d-4054-af12-916387cd8426");
-pub const IID_IWinMLEvaluationContext = &IID_IWinMLEvaluationContext_Value;
-pub const IWinMLEvaluationContext = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BindValue: *const fn(
-            self: *const IWinMLEvaluationContext,
-            pDescriptor: ?*WINML_BINDING_DESC,
-        ) callconv(.winapi) HRESULT,
-        GetValueByName: *const fn(
-            self: *const IWinMLEvaluationContext,
-            Name: ?[*:0]const u16,
-            pDescriptor: ?*?*WINML_BINDING_DESC,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IWinMLEvaluationContext,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn BindValue(self: *const IWinMLEvaluationContext, pDescriptor: ?*WINML_BINDING_DESC) callconv(.@"inline") HRESULT {
-        return self.vtable.BindValue(self, pDescriptor);
-    }
-    pub fn GetValueByName(self: *const IWinMLEvaluationContext, Name: ?[*:0]const u16, pDescriptor: ?*?*WINML_BINDING_DESC) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValueByName(self, Name, pDescriptor);
-    }
-    pub fn Clear(self: *const IWinMLEvaluationContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.17134'
-const IID_IWinMLRuntime_Value = Guid.initString("a0425329-40ae-48d9-bce3-829ef7b8a41a");
-pub const IID_IWinMLRuntime = &IID_IWinMLRuntime_Value;
-pub const IWinMLRuntime = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LoadModel: *const fn(
-            self: *const IWinMLRuntime,
-            Path: ?[*:0]const u16,
-            ppModel: **IWinMLModel,
-        ) callconv(.winapi) HRESULT,
-        CreateEvaluationContext: *const fn(
-            self: *const IWinMLRuntime,
-            device: ?*ID3D12Device,
-            ppContext: **IWinMLEvaluationContext,
-        ) callconv(.winapi) HRESULT,
-        EvaluateModel: *const fn(
-            self: *const IWinMLRuntime,
-            pContext: ?*IWinMLEvaluationContext,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn LoadModel(self: *const IWinMLRuntime, Path: ?[*:0]const u16, ppModel: **IWinMLModel) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadModel(self, Path, ppModel);
-    }
-    pub fn CreateEvaluationContext(self: *const IWinMLRuntime, device: ?*ID3D12Device, ppContext: **IWinMLEvaluationContext) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEvaluationContext(self, device, ppContext);
-    }
-    pub fn EvaluateModel(self: *const IWinMLRuntime, pContext: ?*IWinMLEvaluationContext) callconv(.@"inline") HRESULT {
-        return self.vtable.EvaluateModel(self, pContext);
-    }
-};
-
-pub const WINML_RUNTIME_TYPE = enum(i32) {
-    K = 0,
-};
-pub const WINML_RUNTIME_CNTK = WINML_RUNTIME_TYPE.K;
-
-// TODO: this type is limited to platform 'windows10.0.17134'
-const IID_IWinMLRuntimeFactory_Value = Guid.initString("a807b84d-4ae5-4bc0-a76a-941aa246bd41");
-pub const IID_IWinMLRuntimeFactory = &IID_IWinMLRuntimeFactory_Value;
-pub const IWinMLRuntimeFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateRuntime: *const fn(
-            self: *const IWinMLRuntimeFactory,
-            RuntimeType: WINML_RUNTIME_TYPE,
-            ppRuntime: **IWinMLRuntime,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateRuntime(self: *const IWinMLRuntimeFactory, RuntimeType: WINML_RUNTIME_TYPE, ppRuntime: **IWinMLRuntime) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateRuntime(self, RuntimeType, ppRuntime);
-    }
-};
-
-pub const MLOperatorAttributeType = enum(u32) {
-    Undefined = 0,
-    Float = 2,
-    Int = 3,
-    String = 4,
-    FloatArray = 7,
-    IntArray = 8,
-    StringArray = 9,
-};
-// NOTE: not creating aliases because this enum is 'Scoped'
-
-pub const MLOperatorTensorDataType = enum(u32) {
-    Undefined = 0,
-    Float = 1,
-    UInt8 = 2,
-    Int8 = 3,
-    UInt16 = 4,
-    Int16 = 5,
-    Int32 = 6,
-    Int64 = 7,
-    String = 8,
-    Bool = 9,
-    Float16 = 10,
-    Double = 11,
-    UInt32 = 12,
-    UInt64 = 13,
-    Complex64 = 14,
-    Complex128 = 15,
-};
-// NOTE: not creating aliases because this enum is 'Scoped'
-
-pub const MLOperatorEdgeType = enum(u32) {
-    Undefined = 0,
-    Tensor = 1,
-};
-// NOTE: not creating aliases because this enum is 'Scoped'
-
-pub const MLOperatorEdgeDescription = extern struct {
-    edgeType: MLOperatorEdgeType,
-    Anonymous: extern union {
-        reserved: u64,
-        tensorDataType: MLOperatorTensorDataType,
-    },
-};
-
 const IID_IMLOperatorAttributes_Value = Guid.initString("4b1b1759-ec40-466c-aab4-beb5347fd24c");
 pub const IID_IMLOperatorAttributes = &IID_IMLOperatorAttributes_Value;
 pub const IMLOperatorAttributes = extern union {
@@ -401,53 +56,72 @@ pub const IMLOperatorAttributes = extern union {
     }
 };
 
-const IID_IMLOperatorTensorShapeDescription_Value = Guid.initString("f20e8cbe-3b28-4248-be95-f96fbc6e4643");
-pub const IID_IMLOperatorTensorShapeDescription = &IID_IMLOperatorTensorShapeDescription_Value;
-pub const IMLOperatorTensorShapeDescription = extern union {
+const IID_IMLOperatorKernel_Value = Guid.initString("11c4b4a0-b467-4eaa-a1a6-b961d8d0ed79");
+pub const IID_IMLOperatorKernel = &IID_IMLOperatorKernel_Value;
+pub const IMLOperatorKernel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInputTensorDimensionCount: *const fn(
-            self: *const IMLOperatorTensorShapeDescription,
-            inputIndex: u32,
-            dimensionCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetInputTensorShape: *const fn(
-            self: *const IMLOperatorTensorShapeDescription,
-            inputIndex: u32,
-            dimensionCount: u32,
-            dimensions: [*]u32,
-        ) callconv(.winapi) HRESULT,
-        HasOutputShapeDescription: *const fn(
-            self: *const IMLOperatorTensorShapeDescription,
-        ) callconv(.winapi) bool,
-        GetOutputTensorDimensionCount: *const fn(
-            self: *const IMLOperatorTensorShapeDescription,
-            outputIndex: u32,
-            dimensionCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetOutputTensorShape: *const fn(
-            self: *const IMLOperatorTensorShapeDescription,
-            outputIndex: u32,
-            dimensionCount: u32,
-            dimensions: [*]u32,
+        Compute: *const fn(
+            self: *const IMLOperatorKernel,
+            context: ?*IMLOperatorKernelContext,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputTensorDimensionCount(self, inputIndex, dimensionCount);
+    pub fn Compute(self: *const IMLOperatorKernel, context: ?*IMLOperatorKernelContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Compute(self, context);
     }
-    pub fn GetInputTensorShape(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputTensorShape(self, inputIndex, dimensionCount, dimensions);
+};
+
+const IID_IMLOperatorKernelContext_Value = Guid.initString("82536a28-f022-4769-9d3f-8b278f84c0c3");
+pub const IID_IMLOperatorKernelContext = &IID_IMLOperatorKernelContext_Value;
+pub const IMLOperatorKernelContext = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInputTensor: *const fn(
+            self: *const IMLOperatorKernelContext,
+            inputIndex: u32,
+            tensor: ?**IMLOperatorTensor,
+        ) callconv(.winapi) HRESULT,
+        GetOutputTensorWithShape: *const fn(
+            self: *const IMLOperatorKernelContext,
+            outputIndex: u32,
+            dimensionCount: u32,
+            dimensionSizes: [*]const u32,
+            tensor: ?**IMLOperatorTensor,
+        ) callconv(.winapi) HRESULT,
+        GetOutputTensorDefault: *const fn(
+            self: *const IMLOperatorKernelContext,
+            outputIndex: u32,
+            tensor: ?**IMLOperatorTensor,
+        ) callconv(.winapi) HRESULT,
+        AllocateTemporaryData: *const fn(
+            self: *const IMLOperatorKernelContext,
+            size: usize,
+            data: **IUnknown,
+        ) callconv(.winapi) HRESULT,
+        GetExecutionInterface: *const fn(
+            self: *const IMLOperatorKernelContext,
+            executionObject: ?*?*IUnknown,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub const GetOutputTensor = @compileError("COM method 'GetOutputTensor' must be called using one of the following overload names: GetOutputTensorDefault, GetOutputTensorWithShape");
+    pub fn GetInputTensor(self: *const IMLOperatorKernelContext, inputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputTensor(self, inputIndex, tensor);
     }
-    pub fn HasOutputShapeDescription(self: *const IMLOperatorTensorShapeDescription) callconv(.@"inline") bool {
-        return self.vtable.HasOutputShapeDescription(self);
+    pub fn GetOutputTensorWithShape(self: *const IMLOperatorKernelContext, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputTensorWithShape(self, outputIndex, dimensionCount, dimensionSizes, tensor);
     }
-    pub fn GetOutputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputTensorDimensionCount(self, outputIndex, dimensionCount);
+    pub fn GetOutputTensorDefault(self: *const IMLOperatorKernelContext, outputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputTensorDefault(self, outputIndex, tensor);
     }
-    pub fn GetOutputTensorShape(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputTensorShape(self, outputIndex, dimensionCount, dimensions);
+    pub fn AllocateTemporaryData(self: *const IMLOperatorKernelContext, size: usize, data: **IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.AllocateTemporaryData(self, size, data);
+    }
+    pub fn GetExecutionInterface(self: *const IMLOperatorKernelContext, executionObject: ?*?*IUnknown) callconv(.@"inline") void {
+        return self.vtable.GetExecutionInterface(self, executionObject);
     }
 };
 
@@ -524,186 +198,53 @@ pub const IMLOperatorKernelCreationContext = extern union {
     }
 };
 
-const IID_IMLOperatorTensor_Value = Guid.initString("7fe41f41-f430-440e-aece-54416dc8b9db");
-pub const IID_IMLOperatorTensor = &IID_IMLOperatorTensor_Value;
-pub const IMLOperatorTensor = extern union {
+const IID_IMLOperatorKernelFactory_Value = Guid.initString("ef15ad6f-0dc9-4908-ab35-a575a30dfbf8");
+pub const IID_IMLOperatorKernelFactory = &IID_IMLOperatorKernelFactory_Value;
+pub const IMLOperatorKernelFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDimensionCount: *const fn(
-            self: *const IMLOperatorTensor,
-        ) callconv(.winapi) u32,
-        GetShape: *const fn(
-            self: *const IMLOperatorTensor,
-            dimensionCount: u32,
-            dimensions: [*]u32,
-        ) callconv(.winapi) HRESULT,
-        GetTensorDataType: *const fn(
-            self: *const IMLOperatorTensor,
-        ) callconv(.winapi) MLOperatorTensorDataType,
-        IsCpuData: *const fn(
-            self: *const IMLOperatorTensor,
-        ) callconv(.winapi) bool,
-        IsDataInterface: *const fn(
-            self: *const IMLOperatorTensor,
-        ) callconv(.winapi) bool,
-        GetData: *const fn(
-            self: *const IMLOperatorTensor,
-        ) callconv(.winapi) ?*anyopaque,
-        GetDataInterface: *const fn(
-            self: *const IMLOperatorTensor,
-            dataInterface: ?**IUnknown,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDimensionCount(self: *const IMLOperatorTensor) callconv(.@"inline") u32 {
-        return self.vtable.GetDimensionCount(self);
-    }
-    pub fn GetShape(self: *const IMLOperatorTensor, dimensionCount: u32, dimensions: [*]u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetShape(self, dimensionCount, dimensions);
-    }
-    pub fn GetTensorDataType(self: *const IMLOperatorTensor) callconv(.@"inline") MLOperatorTensorDataType {
-        return self.vtable.GetTensorDataType(self);
-    }
-    pub fn IsCpuData(self: *const IMLOperatorTensor) callconv(.@"inline") bool {
-        return self.vtable.IsCpuData(self);
-    }
-    pub fn IsDataInterface(self: *const IMLOperatorTensor) callconv(.@"inline") bool {
-        return self.vtable.IsDataInterface(self);
-    }
-    pub fn GetData(self: *const IMLOperatorTensor) callconv(.@"inline") ?*anyopaque {
-        return self.vtable.GetData(self);
-    }
-    pub fn GetDataInterface(self: *const IMLOperatorTensor, dataInterface: ?**IUnknown) callconv(.@"inline") void {
-        return self.vtable.GetDataInterface(self, dataInterface);
-    }
-};
-
-const IID_IMLOperatorKernelContext_Value = Guid.initString("82536a28-f022-4769-9d3f-8b278f84c0c3");
-pub const IID_IMLOperatorKernelContext = &IID_IMLOperatorKernelContext_Value;
-pub const IMLOperatorKernelContext = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInputTensor: *const fn(
-            self: *const IMLOperatorKernelContext,
-            inputIndex: u32,
-            tensor: ?**IMLOperatorTensor,
-        ) callconv(.winapi) HRESULT,
-        GetOutputTensorWithShape: *const fn(
-            self: *const IMLOperatorKernelContext,
-            outputIndex: u32,
-            dimensionCount: u32,
-            dimensionSizes: [*]const u32,
-            tensor: ?**IMLOperatorTensor,
-        ) callconv(.winapi) HRESULT,
-        GetOutputTensorDefault: *const fn(
-            self: *const IMLOperatorKernelContext,
-            outputIndex: u32,
-            tensor: ?**IMLOperatorTensor,
-        ) callconv(.winapi) HRESULT,
-        AllocateTemporaryData: *const fn(
-            self: *const IMLOperatorKernelContext,
-            size: usize,
-            data: **IUnknown,
-        ) callconv(.winapi) HRESULT,
-        GetExecutionInterface: *const fn(
-            self: *const IMLOperatorKernelContext,
-            executionObject: ?*?*IUnknown,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub const GetOutputTensor = @compileError("COM method 'GetOutputTensor' must be called using one of the following overload names: GetOutputTensorDefault, GetOutputTensorWithShape");
-    pub fn GetInputTensor(self: *const IMLOperatorKernelContext, inputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
-        return self.vtable.GetInputTensor(self, inputIndex, tensor);
-    }
-    pub fn GetOutputTensorWithShape(self: *const IMLOperatorKernelContext, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputTensorWithShape(self, outputIndex, dimensionCount, dimensionSizes, tensor);
-    }
-    pub fn GetOutputTensorDefault(self: *const IMLOperatorKernelContext, outputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOutputTensorDefault(self, outputIndex, tensor);
-    }
-    pub fn AllocateTemporaryData(self: *const IMLOperatorKernelContext, size: usize, data: **IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.AllocateTemporaryData(self, size, data);
-    }
-    pub fn GetExecutionInterface(self: *const IMLOperatorKernelContext, executionObject: ?*?*IUnknown) callconv(.@"inline") void {
-        return self.vtable.GetExecutionInterface(self, executionObject);
-    }
-};
-
-const IID_IMLOperatorKernel_Value = Guid.initString("11c4b4a0-b467-4eaa-a1a6-b961d8d0ed79");
-pub const IID_IMLOperatorKernel = &IID_IMLOperatorKernel_Value;
-pub const IMLOperatorKernel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Compute: *const fn(
-            self: *const IMLOperatorKernel,
-            context: ?*IMLOperatorKernelContext,
+        CreateKernel: *const fn(
+            self: *const IMLOperatorKernelFactory,
+            context: ?*IMLOperatorKernelCreationContext,
+            kernel: **IMLOperatorKernel,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compute(self: *const IMLOperatorKernel, context: ?*IMLOperatorKernelContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Compute(self, context);
+    pub fn CreateKernel(self: *const IMLOperatorKernelFactory, context: ?*IMLOperatorKernelCreationContext, kernel: **IMLOperatorKernel) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateKernel(self, context, kernel);
     }
 };
 
-pub const MLOperatorParameterOptions = packed struct(u32) {
-    Optional: u1 = 0,
-    Variadic: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-// NOTE: not creating aliases because this enum is 'Scoped'
-
-pub const MLOperatorSchemaEdgeTypeFormat = enum(i32) {
-    EdgeDescription = 0,
-    Label = 1,
-};
-// NOTE: not creating aliases because this enum is 'Scoped'
-
-pub const MLOperatorSchemaEdgeDescription = extern struct {
-    options: MLOperatorParameterOptions,
-    typeFormat: MLOperatorSchemaEdgeTypeFormat,
-    Anonymous: extern union {
-        reserved: ?*const anyopaque,
-        typeLabel: ?[*:0]const u8,
-        edgeDescription: MLOperatorEdgeDescription,
-    },
-};
-
-pub const MLOperatorEdgeTypeConstraint = extern struct {
-    typeLabel: ?[*:0]const u8,
-    allowedTypes: ?*const MLOperatorEdgeDescription,
-    allowedTypeCount: u32,
+const IID_IMLOperatorRegistry_Value = Guid.initString("2af9dd2d-b516-4672-9ab5-530c208493ad");
+pub const IID_IMLOperatorRegistry = &IID_IMLOperatorRegistry_Value;
+pub const IMLOperatorRegistry = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RegisterOperatorSetSchema: *const fn(
+            self: *const IMLOperatorRegistry,
+            operatorSetId: ?*const MLOperatorSetId,
+            baselineVersion: i32,
+            schema: ?[*]const ?*const MLOperatorSchemaDescription,
+            schemaCount: u32,
+            typeInferrer: ?*IMLOperatorTypeInferrer,
+            shapeInferrer: ?*IMLOperatorShapeInferrer,
+        ) callconv(.winapi) HRESULT,
+        RegisterOperatorKernel: *const fn(
+            self: *const IMLOperatorRegistry,
+            operatorKernel: ?*const MLOperatorKernelDescription,
+            operatorKernelFactory: ?*IMLOperatorKernelFactory,
+            shapeInferrer: ?*IMLOperatorShapeInferrer,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RegisterOperatorSetSchema(self: *const IMLOperatorRegistry, operatorSetId: ?*const MLOperatorSetId, baselineVersion: i32, schema: ?[*]const ?*const MLOperatorSchemaDescription, schemaCount: u32, typeInferrer: ?*IMLOperatorTypeInferrer, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterOperatorSetSchema(self, operatorSetId, baselineVersion, schema, schemaCount, typeInferrer, shapeInferrer);
+    }
+    pub fn RegisterOperatorKernel(self: *const IMLOperatorRegistry, operatorKernel: ?*const MLOperatorKernelDescription, operatorKernelFactory: ?*IMLOperatorKernelFactory, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterOperatorKernel(self, operatorKernel, operatorKernelFactory, shapeInferrer);
+    }
 };
 
 const IID_IMLOperatorShapeInferenceContext_Value = Guid.initString("105b6b29-5408-4a68-9959-09b5955a3492");
@@ -777,6 +318,128 @@ pub const IMLOperatorShapeInferenceContext = extern union {
     }
 };
 
+const IID_IMLOperatorShapeInferrer_Value = Guid.initString("540be5be-a6c9-40ee-83f6-d2b8b40a7798");
+pub const IID_IMLOperatorShapeInferrer = &IID_IMLOperatorShapeInferrer_Value;
+pub const IMLOperatorShapeInferrer = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InferOutputShapes: *const fn(
+            self: *const IMLOperatorShapeInferrer,
+            context: ?*IMLOperatorShapeInferenceContext,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InferOutputShapes(self: *const IMLOperatorShapeInferrer, context: ?*IMLOperatorShapeInferenceContext) callconv(.@"inline") HRESULT {
+        return self.vtable.InferOutputShapes(self, context);
+    }
+};
+
+const IID_IMLOperatorTensor_Value = Guid.initString("7fe41f41-f430-440e-aece-54416dc8b9db");
+pub const IID_IMLOperatorTensor = &IID_IMLOperatorTensor_Value;
+pub const IMLOperatorTensor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDimensionCount: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(.winapi) u32,
+        GetShape: *const fn(
+            self: *const IMLOperatorTensor,
+            dimensionCount: u32,
+            dimensions: [*]u32,
+        ) callconv(.winapi) HRESULT,
+        GetTensorDataType: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(.winapi) MLOperatorTensorDataType,
+        IsCpuData: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(.winapi) bool,
+        IsDataInterface: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(.winapi) bool,
+        GetData: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(.winapi) ?*anyopaque,
+        GetDataInterface: *const fn(
+            self: *const IMLOperatorTensor,
+            dataInterface: ?**IUnknown,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDimensionCount(self: *const IMLOperatorTensor) callconv(.@"inline") u32 {
+        return self.vtable.GetDimensionCount(self);
+    }
+    pub fn GetShape(self: *const IMLOperatorTensor, dimensionCount: u32, dimensions: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetShape(self, dimensionCount, dimensions);
+    }
+    pub fn GetTensorDataType(self: *const IMLOperatorTensor) callconv(.@"inline") MLOperatorTensorDataType {
+        return self.vtable.GetTensorDataType(self);
+    }
+    pub fn IsCpuData(self: *const IMLOperatorTensor) callconv(.@"inline") bool {
+        return self.vtable.IsCpuData(self);
+    }
+    pub fn IsDataInterface(self: *const IMLOperatorTensor) callconv(.@"inline") bool {
+        return self.vtable.IsDataInterface(self);
+    }
+    pub fn GetData(self: *const IMLOperatorTensor) callconv(.@"inline") ?*anyopaque {
+        return self.vtable.GetData(self);
+    }
+    pub fn GetDataInterface(self: *const IMLOperatorTensor, dataInterface: ?**IUnknown) callconv(.@"inline") void {
+        return self.vtable.GetDataInterface(self, dataInterface);
+    }
+};
+
+const IID_IMLOperatorTensorShapeDescription_Value = Guid.initString("f20e8cbe-3b28-4248-be95-f96fbc6e4643");
+pub const IID_IMLOperatorTensorShapeDescription = &IID_IMLOperatorTensorShapeDescription_Value;
+pub const IMLOperatorTensorShapeDescription = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInputTensorDimensionCount: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            inputIndex: u32,
+            dimensionCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetInputTensorShape: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            inputIndex: u32,
+            dimensionCount: u32,
+            dimensions: [*]u32,
+        ) callconv(.winapi) HRESULT,
+        HasOutputShapeDescription: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+        ) callconv(.winapi) bool,
+        GetOutputTensorDimensionCount: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            outputIndex: u32,
+            dimensionCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetOutputTensorShape: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            outputIndex: u32,
+            dimensionCount: u32,
+            dimensions: [*]u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetInputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputTensorDimensionCount(self, inputIndex, dimensionCount);
+    }
+    pub fn GetInputTensorShape(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetInputTensorShape(self, inputIndex, dimensionCount, dimensions);
+    }
+    pub fn HasOutputShapeDescription(self: *const IMLOperatorTensorShapeDescription) callconv(.@"inline") bool {
+        return self.vtable.HasOutputShapeDescription(self);
+    }
+    pub fn GetOutputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputTensorDimensionCount(self, outputIndex, dimensionCount);
+    }
+    pub fn GetOutputTensorShape(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOutputTensorShape(self, outputIndex, dimensionCount, dimensions);
+    }
+};
+
 const IID_IMLOperatorTypeInferenceContext_Value = Guid.initString("ec893bb1-f938-427b-8488-c8dcf775f138");
 pub const IID_IMLOperatorTypeInferenceContext = &IID_IMLOperatorTypeInferenceContext_Value;
 pub const IMLOperatorTypeInferenceContext = extern union {
@@ -847,20 +510,131 @@ pub const IMLOperatorTypeInferrer = extern union {
     }
 };
 
-const IID_IMLOperatorShapeInferrer_Value = Guid.initString("540be5be-a6c9-40ee-83f6-d2b8b40a7798");
-pub const IID_IMLOperatorShapeInferrer = &IID_IMLOperatorShapeInferrer_Value;
-pub const IMLOperatorShapeInferrer = extern union {
+// TODO: this type is limited to platform 'windows10.0.17134'
+const IID_IWinMLEvaluationContext_Value = Guid.initString("95848f9e-583d-4054-af12-916387cd8426");
+pub const IID_IWinMLEvaluationContext = &IID_IWinMLEvaluationContext_Value;
+pub const IWinMLEvaluationContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InferOutputShapes: *const fn(
-            self: *const IMLOperatorShapeInferrer,
-            context: ?*IMLOperatorShapeInferenceContext,
+        BindValue: *const fn(
+            self: *const IWinMLEvaluationContext,
+            pDescriptor: ?*WINML_BINDING_DESC,
+        ) callconv(.winapi) HRESULT,
+        GetValueByName: *const fn(
+            self: *const IWinMLEvaluationContext,
+            Name: ?[*:0]const u16,
+            pDescriptor: ?*?*WINML_BINDING_DESC,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IWinMLEvaluationContext,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InferOutputShapes(self: *const IMLOperatorShapeInferrer, context: ?*IMLOperatorShapeInferenceContext) callconv(.@"inline") HRESULT {
-        return self.vtable.InferOutputShapes(self, context);
+    pub fn BindValue(self: *const IWinMLEvaluationContext, pDescriptor: ?*WINML_BINDING_DESC) callconv(.@"inline") HRESULT {
+        return self.vtable.BindValue(self, pDescriptor);
+    }
+    pub fn GetValueByName(self: *const IWinMLEvaluationContext, Name: ?[*:0]const u16, pDescriptor: ?*?*WINML_BINDING_DESC) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValueByName(self, Name, pDescriptor);
+    }
+    pub fn Clear(self: *const IWinMLEvaluationContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.17134'
+const IID_IWinMLModel_Value = Guid.initString("e2eeb6a9-f31f-4055-a521-e30b5b33664a");
+pub const IID_IWinMLModel = &IID_IWinMLModel_Value;
+pub const IWinMLModel = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDescription: *const fn(
+            self: *const IWinMLModel,
+            ppDescription: ?*?*WINML_MODEL_DESC,
+        ) callconv(.winapi) HRESULT,
+        EnumerateMetadata: *const fn(
+            self: *const IWinMLModel,
+            Index: u32,
+            pKey: ?*?PWSTR,
+            pValue: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        EnumerateModelInputs: *const fn(
+            self: *const IWinMLModel,
+            Index: u32,
+            ppInputDescriptor: ?*?*WINML_VARIABLE_DESC,
+        ) callconv(.winapi) HRESULT,
+        EnumerateModelOutputs: *const fn(
+            self: *const IWinMLModel,
+            Index: u32,
+            ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDescription(self: *const IWinMLModel, ppDescription: ?*?*WINML_MODEL_DESC) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDescription(self, ppDescription);
+    }
+    pub fn EnumerateMetadata(self: *const IWinMLModel, Index: u32, pKey: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumerateMetadata(self, Index, pKey, pValue);
+    }
+    pub fn EnumerateModelInputs(self: *const IWinMLModel, Index: u32, ppInputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumerateModelInputs(self, Index, ppInputDescriptor);
+    }
+    pub fn EnumerateModelOutputs(self: *const IWinMLModel, Index: u32, ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumerateModelOutputs(self, Index, ppOutputDescriptor);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.17134'
+const IID_IWinMLRuntime_Value = Guid.initString("a0425329-40ae-48d9-bce3-829ef7b8a41a");
+pub const IID_IWinMLRuntime = &IID_IWinMLRuntime_Value;
+pub const IWinMLRuntime = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        LoadModel: *const fn(
+            self: *const IWinMLRuntime,
+            Path: ?[*:0]const u16,
+            ppModel: **IWinMLModel,
+        ) callconv(.winapi) HRESULT,
+        CreateEvaluationContext: *const fn(
+            self: *const IWinMLRuntime,
+            device: ?*ID3D12Device,
+            ppContext: **IWinMLEvaluationContext,
+        ) callconv(.winapi) HRESULT,
+        EvaluateModel: *const fn(
+            self: *const IWinMLRuntime,
+            pContext: ?*IWinMLEvaluationContext,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn LoadModel(self: *const IWinMLRuntime, Path: ?[*:0]const u16, ppModel: **IWinMLModel) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadModel(self, Path, ppModel);
+    }
+    pub fn CreateEvaluationContext(self: *const IWinMLRuntime, device: ?*ID3D12Device, ppContext: **IWinMLEvaluationContext) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEvaluationContext(self, device, ppContext);
+    }
+    pub fn EvaluateModel(self: *const IWinMLRuntime, pContext: ?*IWinMLEvaluationContext) callconv(.@"inline") HRESULT {
+        return self.vtable.EvaluateModel(self, pContext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.17134'
+const IID_IWinMLRuntimeFactory_Value = Guid.initString("a807b84d-4ae5-4bc0-a76a-941aa246bd41");
+pub const IID_IWinMLRuntimeFactory = &IID_IWinMLRuntimeFactory_Value;
+pub const IWinMLRuntimeFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateRuntime: *const fn(
+            self: *const IWinMLRuntimeFactory,
+            RuntimeType: WINML_RUNTIME_TYPE,
+            ppRuntime: **IWinMLRuntime,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateRuntime(self: *const IWinMLRuntimeFactory, RuntimeType: WINML_RUNTIME_TYPE, ppRuntime: **IWinMLRuntime) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateRuntime(self, RuntimeType, ppRuntime);
     }
 };
 
@@ -882,24 +656,55 @@ pub const MLOperatorAttributeNameValue = extern struct {
     },
 };
 
-pub const MLOperatorSchemaDescription = extern struct {
-    name: ?[*:0]const u8,
-    operatorSetVersionAtLastChange: i32,
-    inputs: ?*const MLOperatorSchemaEdgeDescription,
-    inputCount: u32,
-    outputs: ?*const MLOperatorSchemaEdgeDescription,
-    outputCount: u32,
-    typeConstraints: ?*const MLOperatorEdgeTypeConstraint,
-    typeConstraintCount: u32,
-    attributes: ?*const MLOperatorAttribute,
-    attributeCount: u32,
-    defaultAttributes: ?*const MLOperatorAttributeNameValue,
-    defaultAttributeCount: u32,
+pub const MLOperatorAttributeType = enum(u32) {
+    Undefined = 0,
+    Float = 2,
+    Int = 3,
+    String = 4,
+    FloatArray = 7,
+    IntArray = 8,
+    StringArray = 9,
+};
+// NOTE: not creating aliases because this enum is 'Scoped'
+
+pub const MLOperatorEdgeDescription = extern struct {
+    edgeType: MLOperatorEdgeType,
+    Anonymous: extern union {
+        reserved: u64,
+        tensorDataType: MLOperatorTensorDataType,
+    },
 };
 
-pub const MLOperatorSetId = extern struct {
+pub const MLOperatorEdgeType = enum(u32) {
+    Undefined = 0,
+    Tensor = 1,
+};
+// NOTE: not creating aliases because this enum is 'Scoped'
+
+pub const MLOperatorEdgeTypeConstraint = extern struct {
+    typeLabel: ?[*:0]const u8,
+    allowedTypes: ?*const MLOperatorEdgeDescription,
+    allowedTypeCount: u32,
+};
+
+pub const MLOperatorExecutionType = enum(u32) {
+    Undefined = 0,
+    Cpu = 1,
+    D3D12 = 2,
+};
+// NOTE: not creating aliases because this enum is 'Scoped'
+
+pub const MLOperatorKernelDescription = extern struct {
     domain: ?[*:0]const u8,
-    version: i32,
+    name: ?[*:0]const u8,
+    minimumOperatorSetVersion: i32,
+    executionType: MLOperatorExecutionType,
+    typeConstraints: ?*const MLOperatorEdgeTypeConstraint,
+    typeConstraintCount: u32,
+    defaultAttributes: ?*const MLOperatorAttributeNameValue,
+    defaultAttributeCount: u32,
+    options: MLOperatorKernelOptions,
+    executionOptions: u32,
 };
 
 pub const MLOperatorKernelOptions = packed struct(u32) {
@@ -938,85 +743,280 @@ pub const MLOperatorKernelOptions = packed struct(u32) {
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const MLOperatorExecutionType = enum(u32) {
-    Undefined = 0,
-    Cpu = 1,
-    D3D12 = 2,
+pub const MLOperatorParameterOptions = packed struct(u32) {
+    Optional: u1 = 0,
+    Variadic: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const MLOperatorKernelDescription = extern struct {
-    domain: ?[*:0]const u8,
+pub const MLOperatorSchemaDescription = extern struct {
     name: ?[*:0]const u8,
-    minimumOperatorSetVersion: i32,
-    executionType: MLOperatorExecutionType,
+    operatorSetVersionAtLastChange: i32,
+    inputs: ?*const MLOperatorSchemaEdgeDescription,
+    inputCount: u32,
+    outputs: ?*const MLOperatorSchemaEdgeDescription,
+    outputCount: u32,
     typeConstraints: ?*const MLOperatorEdgeTypeConstraint,
     typeConstraintCount: u32,
+    attributes: ?*const MLOperatorAttribute,
+    attributeCount: u32,
     defaultAttributes: ?*const MLOperatorAttributeNameValue,
     defaultAttributeCount: u32,
-    options: MLOperatorKernelOptions,
-    executionOptions: u32,
 };
 
-const IID_IMLOperatorKernelFactory_Value = Guid.initString("ef15ad6f-0dc9-4908-ab35-a575a30dfbf8");
-pub const IID_IMLOperatorKernelFactory = &IID_IMLOperatorKernelFactory_Value;
-pub const IMLOperatorKernelFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateKernel: *const fn(
-            self: *const IMLOperatorKernelFactory,
-            context: ?*IMLOperatorKernelCreationContext,
-            kernel: **IMLOperatorKernel,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateKernel(self: *const IMLOperatorKernelFactory, context: ?*IMLOperatorKernelCreationContext, kernel: **IMLOperatorKernel) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateKernel(self, context, kernel);
-    }
+pub const MLOperatorSchemaEdgeDescription = extern struct {
+    options: MLOperatorParameterOptions,
+    typeFormat: MLOperatorSchemaEdgeTypeFormat,
+    Anonymous: extern union {
+        reserved: ?*const anyopaque,
+        typeLabel: ?[*:0]const u8,
+        edgeDescription: MLOperatorEdgeDescription,
+    },
 };
 
-const IID_IMLOperatorRegistry_Value = Guid.initString("2af9dd2d-b516-4672-9ab5-530c208493ad");
-pub const IID_IMLOperatorRegistry = &IID_IMLOperatorRegistry_Value;
-pub const IMLOperatorRegistry = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterOperatorSetSchema: *const fn(
-            self: *const IMLOperatorRegistry,
-            operatorSetId: ?*const MLOperatorSetId,
-            baselineVersion: i32,
-            schema: ?[*]const ?*const MLOperatorSchemaDescription,
-            schemaCount: u32,
-            typeInferrer: ?*IMLOperatorTypeInferrer,
-            shapeInferrer: ?*IMLOperatorShapeInferrer,
-        ) callconv(.winapi) HRESULT,
-        RegisterOperatorKernel: *const fn(
-            self: *const IMLOperatorRegistry,
-            operatorKernel: ?*const MLOperatorKernelDescription,
-            operatorKernelFactory: ?*IMLOperatorKernelFactory,
-            shapeInferrer: ?*IMLOperatorShapeInferrer,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterOperatorSetSchema(self: *const IMLOperatorRegistry, operatorSetId: ?*const MLOperatorSetId, baselineVersion: i32, schema: ?[*]const ?*const MLOperatorSchemaDescription, schemaCount: u32, typeInferrer: ?*IMLOperatorTypeInferrer, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterOperatorSetSchema(self, operatorSetId, baselineVersion, schema, schemaCount, typeInferrer, shapeInferrer);
-    }
-    pub fn RegisterOperatorKernel(self: *const IMLOperatorRegistry, operatorKernel: ?*const MLOperatorKernelDescription, operatorKernelFactory: ?*IMLOperatorKernelFactory, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterOperatorKernel(self, operatorKernel, operatorKernelFactory, shapeInferrer);
-    }
+pub const MLOperatorSchemaEdgeTypeFormat = enum(i32) {
+    EdgeDescription = 0,
+    Label = 1,
+};
+// NOTE: not creating aliases because this enum is 'Scoped'
+
+pub const MLOperatorSetId = extern struct {
+    domain: ?[*:0]const u8,
+    version: i32,
+};
+
+pub const MLOperatorTensorDataType = enum(u32) {
+    Undefined = 0,
+    Float = 1,
+    UInt8 = 2,
+    Int8 = 3,
+    UInt16 = 4,
+    Int16 = 5,
+    Int32 = 6,
+    Int64 = 7,
+    String = 8,
+    Bool = 9,
+    Float16 = 10,
+    Double = 11,
+    UInt32 = 12,
+    UInt64 = 13,
+    Complex64 = 14,
+    Complex128 = 15,
+};
+// NOTE: not creating aliases because this enum is 'Scoped'
+
+pub const WINML_BINDING_DESC = extern struct {
+    Name: ?[*:0]const u16,
+    BindType: WINML_BINDING_TYPE,
+    Anonymous: extern union {
+        Tensor: WINML_TENSOR_BINDING_DESC,
+        Sequence: WINML_SEQUENCE_BINDING_DESC,
+        Map: WINML_MAP_BINDING_DESC,
+        Image: WINML_IMAGE_BINDING_DESC,
+        Resource: WINML_RESOURCE_BINDING_DESC,
+    },
+};
+
+pub const WINML_BINDING_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    TENSOR = 1,
+    SEQUENCE = 2,
+    MAP = 3,
+    IMAGE = 4,
+    RESOURCE = 5,
+};
+pub const WINML_BINDING_UNDEFINED = WINML_BINDING_TYPE.UNDEFINED;
+pub const WINML_BINDING_TENSOR = WINML_BINDING_TYPE.TENSOR;
+pub const WINML_BINDING_SEQUENCE = WINML_BINDING_TYPE.SEQUENCE;
+pub const WINML_BINDING_MAP = WINML_BINDING_TYPE.MAP;
+pub const WINML_BINDING_IMAGE = WINML_BINDING_TYPE.IMAGE;
+pub const WINML_BINDING_RESOURCE = WINML_BINDING_TYPE.RESOURCE;
+
+pub const WINML_FEATURE_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    TENSOR = 1,
+    SEQUENCE = 2,
+    MAP = 3,
+    IMAGE = 4,
+};
+pub const WINML_FEATURE_UNDEFINED = WINML_FEATURE_TYPE.UNDEFINED;
+pub const WINML_FEATURE_TENSOR = WINML_FEATURE_TYPE.TENSOR;
+pub const WINML_FEATURE_SEQUENCE = WINML_FEATURE_TYPE.SEQUENCE;
+pub const WINML_FEATURE_MAP = WINML_FEATURE_TYPE.MAP;
+pub const WINML_FEATURE_IMAGE = WINML_FEATURE_TYPE.IMAGE;
+
+pub const WINML_IMAGE_BINDING_DESC = extern struct {
+    ElementType: WINML_TENSOR_DATA_TYPE,
+    NumDimensions: u32,
+    pShape: ?*i64,
+    DataSize: u32,
+    pData: ?*anyopaque,
+};
+
+pub const WINML_IMAGE_VARIABLE_DESC = extern struct {
+    ElementType: WINML_TENSOR_DATA_TYPE,
+    NumDimensions: u32,
+    pShape: ?*i64,
+};
+
+pub const WINML_MAP_BINDING_DESC = extern struct {
+    ElementCount: u32,
+    KeyType: WINML_TENSOR_DATA_TYPE,
+    Anonymous1: extern union {
+        pStringKeys: ?*?PWSTR,
+        pIntKeys: ?*i64,
+    },
+    Fields: WINML_TENSOR_DATA_TYPE,
+    Anonymous2: extern union {
+        pStringFields: ?*?PWSTR,
+        pIntFields: ?*i64,
+        pFloatFields: ?*f32,
+        pDoubleFields: ?*f64,
+    },
+};
+
+pub const WINML_MAP_VARIABLE_DESC = extern struct {
+    KeyType: WINML_TENSOR_DATA_TYPE,
+    Fields: WINML_TENSOR_DATA_TYPE,
+};
+
+pub const WINML_MODEL_DESC = extern struct {
+    Author: ?PWSTR,
+    Name: ?PWSTR,
+    Domain: ?PWSTR,
+    Description: ?PWSTR,
+    Version: usize,
+};
+
+pub const WINML_RESOURCE_BINDING_DESC = extern struct {
+    ElementType: WINML_TENSOR_DATA_TYPE,
+    NumDimensions: u32,
+    pShape: ?*i64,
+    pResource: ?*ID3D12Resource,
+};
+
+pub const WINML_RUNTIME_TYPE = enum(i32) {
+    K = 0,
+};
+pub const WINML_RUNTIME_CNTK = WINML_RUNTIME_TYPE.K;
+
+pub const WINML_SEQUENCE_BINDING_DESC = extern struct {
+    ElementCount: u32,
+    ElementType: WINML_TENSOR_DATA_TYPE,
+    Anonymous: extern union {
+        pStrings: ?*?PWSTR,
+        pInts: ?*i64,
+        pFloats: ?*f32,
+        pDoubles: ?*f64,
+    },
+};
+
+pub const WINML_SEQUENCE_VARIABLE_DESC = extern struct {
+    ElementType: WINML_TENSOR_DATA_TYPE,
+};
+
+pub const WINML_TENSOR_BINDING_DESC = extern struct {
+    DataType: WINML_TENSOR_DATA_TYPE,
+    NumDimensions: u32,
+    pShape: ?*i64,
+    DataSize: u32,
+    pData: ?*anyopaque,
+};
+
+pub const WINML_TENSOR_DATA_TYPE = enum(i32) {
+    UNDEFINED = 0,
+    FLOAT = 1,
+    UINT8 = 2,
+    INT8 = 3,
+    UINT16 = 4,
+    INT16 = 5,
+    INT32 = 6,
+    INT64 = 7,
+    STRING = 8,
+    BOOLEAN = 9,
+    FLOAT16 = 10,
+    DOUBLE = 11,
+    UINT32 = 12,
+    UINT64 = 13,
+    COMPLEX64 = 14,
+    COMPLEX128 = 15,
+};
+pub const WINML_TENSOR_UNDEFINED = WINML_TENSOR_DATA_TYPE.UNDEFINED;
+pub const WINML_TENSOR_FLOAT = WINML_TENSOR_DATA_TYPE.FLOAT;
+pub const WINML_TENSOR_UINT8 = WINML_TENSOR_DATA_TYPE.UINT8;
+pub const WINML_TENSOR_INT8 = WINML_TENSOR_DATA_TYPE.INT8;
+pub const WINML_TENSOR_UINT16 = WINML_TENSOR_DATA_TYPE.UINT16;
+pub const WINML_TENSOR_INT16 = WINML_TENSOR_DATA_TYPE.INT16;
+pub const WINML_TENSOR_INT32 = WINML_TENSOR_DATA_TYPE.INT32;
+pub const WINML_TENSOR_INT64 = WINML_TENSOR_DATA_TYPE.INT64;
+pub const WINML_TENSOR_STRING = WINML_TENSOR_DATA_TYPE.STRING;
+pub const WINML_TENSOR_BOOLEAN = WINML_TENSOR_DATA_TYPE.BOOLEAN;
+pub const WINML_TENSOR_FLOAT16 = WINML_TENSOR_DATA_TYPE.FLOAT16;
+pub const WINML_TENSOR_DOUBLE = WINML_TENSOR_DATA_TYPE.DOUBLE;
+pub const WINML_TENSOR_UINT32 = WINML_TENSOR_DATA_TYPE.UINT32;
+pub const WINML_TENSOR_UINT64 = WINML_TENSOR_DATA_TYPE.UINT64;
+pub const WINML_TENSOR_COMPLEX64 = WINML_TENSOR_DATA_TYPE.COMPLEX64;
+pub const WINML_TENSOR_COMPLEX128 = WINML_TENSOR_DATA_TYPE.COMPLEX128;
+
+pub const WINML_TENSOR_VARIABLE_DESC = extern struct {
+    ElementType: WINML_TENSOR_DATA_TYPE,
+    NumDimensions: u32,
+    pShape: ?*i64,
+};
+
+pub const WINML_VARIABLE_DESC = extern struct {
+    Name: ?PWSTR,
+    Description: ?PWSTR,
+    FeatureType: WINML_FEATURE_TYPE,
+    Required: BOOL,
+    Anonymous: extern union {
+        Tensor: WINML_TENSOR_VARIABLE_DESC,
+        Sequence: WINML_SEQUENCE_VARIABLE_DESC,
+        Map: WINML_MAP_VARIABLE_DESC,
+        Image: WINML_IMAGE_VARIABLE_DESC,
+    },
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
-pub extern "winml" fn WinMLCreateRuntime(
-    runtime: **IWinMLRuntime,
-) callconv(.winapi) HRESULT;
-
 pub extern "windows.ai.machinelearning" fn MLCreateOperatorRegistry(
     registry: **IMLOperatorRegistry,
+) callconv(.winapi) HRESULT;
+
+pub extern "winml" fn WinMLCreateRuntime(
+    runtime: **IWinMLRuntime,
 ) callconv(.winapi) HRESULT;
 
 

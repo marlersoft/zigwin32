@@ -6,6 +6,96 @@
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
+pub const DEV_OBJECT = extern struct {
+    ObjectType: DEV_OBJECT_TYPE,
+    pszObjectId: ?[*:0]const u16,
+    cPropertyCount: u32,
+    pProperties: ?*const DEVPROPERTY,
+};
+
+pub const DEV_OBJECT_TYPE = enum(i32) {
+    Unknown = 0,
+    DeviceInterface = 1,
+    DeviceContainer = 2,
+    Device = 3,
+    DeviceInterfaceClass = 4,
+    AEP = 5,
+    AEPContainer = 6,
+    DeviceInstallerClass = 7,
+    DeviceInterfaceDisplay = 8,
+    DeviceContainerDisplay = 9,
+    AEPService = 10,
+    DevicePanel = 11,
+};
+pub const DevObjectTypeUnknown = DEV_OBJECT_TYPE.Unknown;
+pub const DevObjectTypeDeviceInterface = DEV_OBJECT_TYPE.DeviceInterface;
+pub const DevObjectTypeDeviceContainer = DEV_OBJECT_TYPE.DeviceContainer;
+pub const DevObjectTypeDevice = DEV_OBJECT_TYPE.Device;
+pub const DevObjectTypeDeviceInterfaceClass = DEV_OBJECT_TYPE.DeviceInterfaceClass;
+pub const DevObjectTypeAEP = DEV_OBJECT_TYPE.AEP;
+pub const DevObjectTypeAEPContainer = DEV_OBJECT_TYPE.AEPContainer;
+pub const DevObjectTypeDeviceInstallerClass = DEV_OBJECT_TYPE.DeviceInstallerClass;
+pub const DevObjectTypeDeviceInterfaceDisplay = DEV_OBJECT_TYPE.DeviceInterfaceDisplay;
+pub const DevObjectTypeDeviceContainerDisplay = DEV_OBJECT_TYPE.DeviceContainerDisplay;
+pub const DevObjectTypeAEPService = DEV_OBJECT_TYPE.AEPService;
+pub const DevObjectTypeDevicePanel = DEV_OBJECT_TYPE.DevicePanel;
+
+pub const DEV_QUERY_FLAGS = enum(i32) {
+    None = 0,
+    UpdateResults = 1,
+    AllProperties = 2,
+    Localize = 4,
+    AsyncClose = 8,
+};
+pub const DevQueryFlagNone = DEV_QUERY_FLAGS.None;
+pub const DevQueryFlagUpdateResults = DEV_QUERY_FLAGS.UpdateResults;
+pub const DevQueryFlagAllProperties = DEV_QUERY_FLAGS.AllProperties;
+pub const DevQueryFlagLocalize = DEV_QUERY_FLAGS.Localize;
+pub const DevQueryFlagAsyncClose = DEV_QUERY_FLAGS.AsyncClose;
+
+pub const DEV_QUERY_PARAMETER = extern struct {
+    Key: DEVPROPKEY,
+    Type: u32,
+    BufferSize: u32,
+    Buffer: ?*anyopaque,
+};
+
+pub const DEV_QUERY_RESULT_ACTION = enum(i32) {
+    StateChange = 0,
+    Add = 1,
+    Update = 2,
+    Remove = 3,
+};
+pub const DevQueryResultStateChange = DEV_QUERY_RESULT_ACTION.StateChange;
+pub const DevQueryResultAdd = DEV_QUERY_RESULT_ACTION.Add;
+pub const DevQueryResultUpdate = DEV_QUERY_RESULT_ACTION.Update;
+pub const DevQueryResultRemove = DEV_QUERY_RESULT_ACTION.Remove;
+
+pub const DEV_QUERY_RESULT_ACTION_DATA = extern struct {
+    pub const _DEV_QUERY_RESULT_UPDATE_PAYLOAD = extern union {
+        State: DEV_QUERY_STATE,
+        DeviceObject: DEV_OBJECT,
+    };
+    Action: DEV_QUERY_RESULT_ACTION,
+    Data: _DEV_QUERY_RESULT_UPDATE_PAYLOAD,
+};
+
+pub const DEV_QUERY_STATE = enum(i32) {
+    Initialized = 0,
+    EnumCompleted = 1,
+    Aborted = 2,
+    Closed = 3,
+};
+pub const DevQueryStateInitialized = DEV_QUERY_STATE.Initialized;
+pub const DevQueryStateEnumCompleted = DEV_QUERY_STATE.EnumCompleted;
+pub const DevQueryStateAborted = DEV_QUERY_STATE.Aborted;
+pub const DevQueryStateClosed = DEV_QUERY_STATE.Closed;
+
+pub const DEVPROP_FILTER_EXPRESSION = extern struct {
+    Operator: DEVPROP_OPERATOR,
+    Property: DEVPROPERTY,
+};
+
 pub const DEVPROP_OPERATOR = packed struct(u32) {
     EXISTS: u1 = 0,
     EQUALS: u1 = 0,
@@ -219,96 +309,6 @@ pub const DEVPROP_OPERATOR_MASK_ARRAY = DEVPROP_OPERATOR{
     ._31 = 1,
 };
 
-pub const DEVPROP_FILTER_EXPRESSION = extern struct {
-    Operator: DEVPROP_OPERATOR,
-    Property: DEVPROPERTY,
-};
-
-pub const DEV_OBJECT_TYPE = enum(i32) {
-    Unknown = 0,
-    DeviceInterface = 1,
-    DeviceContainer = 2,
-    Device = 3,
-    DeviceInterfaceClass = 4,
-    AEP = 5,
-    AEPContainer = 6,
-    DeviceInstallerClass = 7,
-    DeviceInterfaceDisplay = 8,
-    DeviceContainerDisplay = 9,
-    AEPService = 10,
-    DevicePanel = 11,
-};
-pub const DevObjectTypeUnknown = DEV_OBJECT_TYPE.Unknown;
-pub const DevObjectTypeDeviceInterface = DEV_OBJECT_TYPE.DeviceInterface;
-pub const DevObjectTypeDeviceContainer = DEV_OBJECT_TYPE.DeviceContainer;
-pub const DevObjectTypeDevice = DEV_OBJECT_TYPE.Device;
-pub const DevObjectTypeDeviceInterfaceClass = DEV_OBJECT_TYPE.DeviceInterfaceClass;
-pub const DevObjectTypeAEP = DEV_OBJECT_TYPE.AEP;
-pub const DevObjectTypeAEPContainer = DEV_OBJECT_TYPE.AEPContainer;
-pub const DevObjectTypeDeviceInstallerClass = DEV_OBJECT_TYPE.DeviceInstallerClass;
-pub const DevObjectTypeDeviceInterfaceDisplay = DEV_OBJECT_TYPE.DeviceInterfaceDisplay;
-pub const DevObjectTypeDeviceContainerDisplay = DEV_OBJECT_TYPE.DeviceContainerDisplay;
-pub const DevObjectTypeAEPService = DEV_OBJECT_TYPE.AEPService;
-pub const DevObjectTypeDevicePanel = DEV_OBJECT_TYPE.DevicePanel;
-
-pub const DEV_QUERY_FLAGS = enum(i32) {
-    None = 0,
-    UpdateResults = 1,
-    AllProperties = 2,
-    Localize = 4,
-    AsyncClose = 8,
-};
-pub const DevQueryFlagNone = DEV_QUERY_FLAGS.None;
-pub const DevQueryFlagUpdateResults = DEV_QUERY_FLAGS.UpdateResults;
-pub const DevQueryFlagAllProperties = DEV_QUERY_FLAGS.AllProperties;
-pub const DevQueryFlagLocalize = DEV_QUERY_FLAGS.Localize;
-pub const DevQueryFlagAsyncClose = DEV_QUERY_FLAGS.AsyncClose;
-
-pub const DEV_QUERY_STATE = enum(i32) {
-    Initialized = 0,
-    EnumCompleted = 1,
-    Aborted = 2,
-    Closed = 3,
-};
-pub const DevQueryStateInitialized = DEV_QUERY_STATE.Initialized;
-pub const DevQueryStateEnumCompleted = DEV_QUERY_STATE.EnumCompleted;
-pub const DevQueryStateAborted = DEV_QUERY_STATE.Aborted;
-pub const DevQueryStateClosed = DEV_QUERY_STATE.Closed;
-
-pub const DEV_QUERY_RESULT_ACTION = enum(i32) {
-    StateChange = 0,
-    Add = 1,
-    Update = 2,
-    Remove = 3,
-};
-pub const DevQueryResultStateChange = DEV_QUERY_RESULT_ACTION.StateChange;
-pub const DevQueryResultAdd = DEV_QUERY_RESULT_ACTION.Add;
-pub const DevQueryResultUpdate = DEV_QUERY_RESULT_ACTION.Update;
-pub const DevQueryResultRemove = DEV_QUERY_RESULT_ACTION.Remove;
-
-pub const DEV_OBJECT = extern struct {
-    ObjectType: DEV_OBJECT_TYPE,
-    pszObjectId: ?[*:0]const u16,
-    cPropertyCount: u32,
-    pProperties: ?*const DEVPROPERTY,
-};
-
-pub const DEV_QUERY_RESULT_ACTION_DATA = extern struct {
-    pub const _DEV_QUERY_RESULT_UPDATE_PAYLOAD = extern union {
-        State: DEV_QUERY_STATE,
-        DeviceObject: DEV_OBJECT,
-    };
-    Action: DEV_QUERY_RESULT_ACTION,
-    Data: _DEV_QUERY_RESULT_UPDATE_PAYLOAD,
-};
-
-pub const DEV_QUERY_PARAMETER = extern struct {
-    Key: DEVPROPKEY,
-    Type: u32,
-    BufferSize: u32,
-    Buffer: ?*anyopaque,
-};
-
 pub const HDEVQUERY__ = extern struct {
     unused: i32,
 };
@@ -323,6 +323,10 @@ pub const PDEV_QUERY_RESULT_CALLBACK = *const fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
+pub extern "api-ms-win-devices-query-l1-1-0" fn DevCloseObjectQuery(
+    hDevQuery: ?*HDEVQUERY__,
+) callconv(.winapi) void;
+
 pub extern "api-ms-win-devices-query-l1-1-0" fn DevCreateObjectQuery(
     ObjectType: DEV_OBJECT_TYPE,
     QueryFlags: u32,
@@ -405,33 +409,18 @@ pub extern "api-ms-win-devices-query-l1-1-1" fn DevCreateObjectQueryFromIdsEx(
     phDevQuery: ?*?*HDEVQUERY__,
 ) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-devices-query-l1-1-0" fn DevCloseObjectQuery(
-    hDevQuery: ?*HDEVQUERY__,
+pub extern "api-ms-win-devices-query-l1-1-0" fn DevFindProperty(
+    pKey: ?*const DEVPROPKEY,
+    Store: DEVPROPSTORE,
+    pszLocaleName: ?[*:0]const u16,
+    cProperties: u32,
+    pProperties: ?[*]const DEVPROPERTY,
+) callconv(.winapi) ?*DEVPROPERTY;
+
+pub extern "api-ms-win-devices-query-l1-1-0" fn DevFreeObjectProperties(
+    cPropertyCount: u32,
+    pProperties: [*]const DEVPROPERTY,
 ) callconv(.winapi) void;
-
-pub extern "api-ms-win-devices-query-l1-1-0" fn DevGetObjects(
-    ObjectType: DEV_OBJECT_TYPE,
-    QueryFlags: u32,
-    cRequestedProperties: u32,
-    pRequestedProperties: ?[*]const DEVPROPCOMPKEY,
-    cFilterExpressionCount: u32,
-    pFilter: ?[*]const DEVPROP_FILTER_EXPRESSION,
-    pcObjectCount: ?*u32,
-    ppObjects: ?*const ?*DEV_OBJECT,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-devices-query-l1-1-1" fn DevGetObjectsEx(
-    ObjectType: DEV_OBJECT_TYPE,
-    QueryFlags: u32,
-    cRequestedProperties: u32,
-    pRequestedProperties: ?[*]const DEVPROPCOMPKEY,
-    cFilterExpressionCount: u32,
-    pFilter: ?[*]const DEVPROP_FILTER_EXPRESSION,
-    cExtendedParameterCount: u32,
-    pExtendedParameters: ?[*]const DEV_QUERY_PARAMETER,
-    pcObjectCount: ?*u32,
-    ppObjects: ?*const ?*DEV_OBJECT,
-) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-devices-query-l1-1-0" fn DevFreeObjects(
     cObjectCount: u32,
@@ -460,18 +449,29 @@ pub extern "api-ms-win-devices-query-l1-1-1" fn DevGetObjectPropertiesEx(
     ppProperties: ?*const ?*DEVPROPERTY,
 ) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-devices-query-l1-1-0" fn DevFreeObjectProperties(
-    cPropertyCount: u32,
-    pProperties: [*]const DEVPROPERTY,
-) callconv(.winapi) void;
+pub extern "api-ms-win-devices-query-l1-1-0" fn DevGetObjects(
+    ObjectType: DEV_OBJECT_TYPE,
+    QueryFlags: u32,
+    cRequestedProperties: u32,
+    pRequestedProperties: ?[*]const DEVPROPCOMPKEY,
+    cFilterExpressionCount: u32,
+    pFilter: ?[*]const DEVPROP_FILTER_EXPRESSION,
+    pcObjectCount: ?*u32,
+    ppObjects: ?*const ?*DEV_OBJECT,
+) callconv(.winapi) HRESULT;
 
-pub extern "api-ms-win-devices-query-l1-1-0" fn DevFindProperty(
-    pKey: ?*const DEVPROPKEY,
-    Store: DEVPROPSTORE,
-    pszLocaleName: ?[*:0]const u16,
-    cProperties: u32,
-    pProperties: ?[*]const DEVPROPERTY,
-) callconv(.winapi) ?*DEVPROPERTY;
+pub extern "api-ms-win-devices-query-l1-1-1" fn DevGetObjectsEx(
+    ObjectType: DEV_OBJECT_TYPE,
+    QueryFlags: u32,
+    cRequestedProperties: u32,
+    pRequestedProperties: ?[*]const DEVPROPCOMPKEY,
+    cFilterExpressionCount: u32,
+    pFilter: ?[*]const DEVPROP_FILTER_EXPRESSION,
+    cExtendedParameterCount: u32,
+    pExtendedParameters: ?[*]const DEV_QUERY_PARAMETER,
+    pcObjectCount: ?*u32,
+    ppObjects: ?*const ?*DEV_OBJECT,
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

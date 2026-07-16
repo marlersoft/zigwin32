@@ -2,59 +2,131 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (49)
 //--------------------------------------------------------------------------------
-pub const CONSOLE_TEXTMODE_BUFFER = @as(u32, 1);
+pub const ALTNUMPAD_BIT = @as(u32, 67108864);
 pub const ATTACH_PARENT_PROCESS = @as(u32, 4294967295);
-pub const CTRL_C_EVENT = @as(u32, 0);
-pub const CTRL_BREAK_EVENT = @as(u32, 1);
-pub const CTRL_CLOSE_EVENT = @as(u32, 2);
-pub const CTRL_LOGOFF_EVENT = @as(u32, 5);
-pub const CTRL_SHUTDOWN_EVENT = @as(u32, 6);
-pub const PSEUDOCONSOLE_INHERIT_CURSOR = @as(u32, 1);
-pub const CONSOLE_NO_SELECTION = @as(u32, 0);
-pub const CONSOLE_SELECTION_IN_PROGRESS = @as(u32, 1);
-pub const CONSOLE_SELECTION_NOT_EMPTY = @as(u32, 2);
-pub const CONSOLE_MOUSE_SELECTION = @as(u32, 4);
-pub const CONSOLE_MOUSE_DOWN = @as(u32, 8);
-pub const HISTORY_NO_DUP_FLAG = @as(u32, 1);
+pub const CAPSLOCK_ON = @as(u32, 128);
 pub const CONSOLE_FULLSCREEN = @as(u32, 1);
 pub const CONSOLE_FULLSCREEN_HARDWARE = @as(u32, 2);
 pub const CONSOLE_FULLSCREEN_MODE = @as(u32, 1);
+pub const CONSOLE_MOUSE_DOWN = @as(u32, 8);
+pub const CONSOLE_MOUSE_SELECTION = @as(u32, 4);
+pub const CONSOLE_NO_SELECTION = @as(u32, 0);
+pub const CONSOLE_SELECTION_IN_PROGRESS = @as(u32, 1);
+pub const CONSOLE_SELECTION_NOT_EMPTY = @as(u32, 2);
+pub const CONSOLE_TEXTMODE_BUFFER = @as(u32, 1);
 pub const CONSOLE_WINDOWED_MODE = @as(u32, 2);
-pub const RIGHT_ALT_PRESSED = @as(u32, 1);
-pub const LEFT_ALT_PRESSED = @as(u32, 2);
-pub const RIGHT_CTRL_PRESSED = @as(u32, 4);
-pub const LEFT_CTRL_PRESSED = @as(u32, 8);
-pub const SHIFT_PRESSED = @as(u32, 16);
-pub const NUMLOCK_ON = @as(u32, 32);
-pub const SCROLLLOCK_ON = @as(u32, 64);
-pub const CAPSLOCK_ON = @as(u32, 128);
+pub const CTRL_BREAK_EVENT = @as(u32, 1);
+pub const CTRL_C_EVENT = @as(u32, 0);
+pub const CTRL_CLOSE_EVENT = @as(u32, 2);
+pub const CTRL_LOGOFF_EVENT = @as(u32, 5);
+pub const CTRL_SHUTDOWN_EVENT = @as(u32, 6);
+pub const DOUBLE_CLICK = @as(u32, 2);
 pub const ENHANCED_KEY = @as(u32, 256);
-pub const NLS_DBCSCHAR = @as(u32, 65536);
-pub const NLS_ALPHANUMERIC = @as(u32, 0);
-pub const NLS_KATAKANA = @as(u32, 131072);
-pub const NLS_HIRAGANA = @as(u32, 262144);
-pub const NLS_ROMAN = @as(u32, 4194304);
-pub const NLS_IME_CONVERSION = @as(u32, 8388608);
-pub const ALTNUMPAD_BIT = @as(u32, 67108864);
-pub const NLS_IME_DISABLE = @as(u32, 536870912);
+pub const FOCUS_EVENT = @as(u32, 16);
 pub const FROM_LEFT_1ST_BUTTON_PRESSED = @as(u32, 1);
-pub const RIGHTMOST_BUTTON_PRESSED = @as(u32, 2);
 pub const FROM_LEFT_2ND_BUTTON_PRESSED = @as(u32, 4);
 pub const FROM_LEFT_3RD_BUTTON_PRESSED = @as(u32, 8);
 pub const FROM_LEFT_4TH_BUTTON_PRESSED = @as(u32, 16);
-pub const MOUSE_MOVED = @as(u32, 1);
-pub const DOUBLE_CLICK = @as(u32, 2);
-pub const MOUSE_WHEELED = @as(u32, 4);
-pub const MOUSE_HWHEELED = @as(u32, 8);
+pub const HISTORY_NO_DUP_FLAG = @as(u32, 1);
 pub const KEY_EVENT = @as(u32, 1);
-pub const MOUSE_EVENT = @as(u32, 2);
-pub const WINDOW_BUFFER_SIZE_EVENT = @as(u32, 4);
+pub const LEFT_ALT_PRESSED = @as(u32, 2);
+pub const LEFT_CTRL_PRESSED = @as(u32, 8);
 pub const MENU_EVENT = @as(u32, 8);
-pub const FOCUS_EVENT = @as(u32, 16);
+pub const MOUSE_EVENT = @as(u32, 2);
+pub const MOUSE_HWHEELED = @as(u32, 8);
+pub const MOUSE_MOVED = @as(u32, 1);
+pub const MOUSE_WHEELED = @as(u32, 4);
+pub const NLS_ALPHANUMERIC = @as(u32, 0);
+pub const NLS_DBCSCHAR = @as(u32, 65536);
+pub const NLS_HIRAGANA = @as(u32, 262144);
+pub const NLS_IME_CONVERSION = @as(u32, 8388608);
+pub const NLS_IME_DISABLE = @as(u32, 536870912);
+pub const NLS_KATAKANA = @as(u32, 131072);
+pub const NLS_ROMAN = @as(u32, 4194304);
+pub const NUMLOCK_ON = @as(u32, 32);
+pub const PSEUDOCONSOLE_INHERIT_CURSOR = @as(u32, 1);
+pub const RIGHT_ALT_PRESSED = @as(u32, 1);
+pub const RIGHT_CTRL_PRESSED = @as(u32, 4);
+pub const RIGHTMOST_BUTTON_PRESSED = @as(u32, 2);
+pub const SCROLLLOCK_ON = @as(u32, 64);
+pub const SHIFT_PRESSED = @as(u32, 16);
+pub const WINDOW_BUFFER_SIZE_EVENT = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (22)
 //--------------------------------------------------------------------------------
+pub const CHAR_INFO = extern struct {
+    Char: extern union {
+        UnicodeChar: u16,
+        AsciiChar: CHAR,
+    },
+    Attributes: u16,
+};
+
+pub const CONSOLE_CHARACTER_ATTRIBUTES = packed struct(u16) {
+    FOREGROUND_BLUE: u1 = 0,
+    FOREGROUND_GREEN: u1 = 0,
+    FOREGROUND_RED: u1 = 0,
+    FOREGROUND_INTENSITY: u1 = 0,
+    BACKGROUND_BLUE: u1 = 0,
+    BACKGROUND_GREEN: u1 = 0,
+    BACKGROUND_RED: u1 = 0,
+    BACKGROUND_INTENSITY: u1 = 0,
+    COMMON_LVB_LEADING_BYTE: u1 = 0,
+    COMMON_LVB_TRAILING_BYTE: u1 = 0,
+    COMMON_LVB_GRID_HORIZONTAL: u1 = 0,
+    COMMON_LVB_GRID_LVERTICAL: u1 = 0,
+    COMMON_LVB_GRID_RVERTICAL: u1 = 0,
+    _13: u1 = 0,
+    COMMON_LVB_REVERSE_VIDEO: u1 = 0,
+    COMMON_LVB_UNDERSCORE: u1 = 0,
+};
+pub const FOREGROUND_BLUE = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_BLUE = 1 };
+pub const FOREGROUND_GREEN = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_GREEN = 1 };
+pub const FOREGROUND_RED = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_RED = 1 };
+pub const FOREGROUND_INTENSITY = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_INTENSITY = 1 };
+pub const BACKGROUND_BLUE = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_BLUE = 1 };
+pub const BACKGROUND_GREEN = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_GREEN = 1 };
+pub const BACKGROUND_RED = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_RED = 1 };
+pub const BACKGROUND_INTENSITY = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_INTENSITY = 1 };
+pub const COMMON_LVB_LEADING_BYTE = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_LEADING_BYTE = 1 };
+pub const COMMON_LVB_TRAILING_BYTE = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_TRAILING_BYTE = 1 };
+pub const COMMON_LVB_GRID_HORIZONTAL = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_GRID_HORIZONTAL = 1 };
+pub const COMMON_LVB_GRID_LVERTICAL = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_GRID_LVERTICAL = 1 };
+pub const COMMON_LVB_GRID_RVERTICAL = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_GRID_RVERTICAL = 1 };
+pub const COMMON_LVB_REVERSE_VIDEO = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_REVERSE_VIDEO = 1 };
+pub const COMMON_LVB_UNDERSCORE = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_UNDERSCORE = 1 };
+pub const COMMON_LVB_SBCSDBCS = CONSOLE_CHARACTER_ATTRIBUTES{
+    .COMMON_LVB_LEADING_BYTE = 1,
+    .COMMON_LVB_TRAILING_BYTE = 1,
+};
+
+pub const CONSOLE_CURSOR_INFO = extern struct {
+    dwSize: u32,
+    bVisible: BOOL,
+};
+
+pub const CONSOLE_FONT_INFO = extern struct {
+    nFont: u32,
+    dwFontSize: COORD,
+};
+
+pub const CONSOLE_FONT_INFOEX = extern struct {
+    cbSize: u32,
+    nFont: u32,
+    dwFontSize: COORD,
+    FontFamily: u32,
+    FontWeight: u32,
+    FaceName: [32]u16,
+};
+
+pub const CONSOLE_HISTORY_INFO = extern struct {
+    cbSize: u32,
+    HistoryBufferSize: u32,
+    NumberOfHistoryBuffers: u32,
+    dwFlags: u32,
+};
+
 pub const CONSOLE_MODE = packed struct(u32) {
     ENABLE_PROCESSED_INPUT: u1 = 0,
     ENABLE_LINE_INPUT: u1 = 0,
@@ -110,138 +182,11 @@ pub const ENABLE_VIRTUAL_TERMINAL_PROCESSING = CONSOLE_MODE{ .ENABLE_ECHO_INPUT 
 pub const DISABLE_NEWLINE_AUTO_RETURN = CONSOLE_MODE{ .ENABLE_WINDOW_INPUT = 1 };
 pub const ENABLE_LVB_GRID_WORLDWIDE = CONSOLE_MODE{ .ENABLE_MOUSE_INPUT = 1 };
 
-pub const STD_HANDLE = enum(u32) {
-    INPUT_HANDLE = 4294967286,
-    OUTPUT_HANDLE = 4294967285,
-    ERROR_HANDLE = 4294967284,
-};
-pub const STD_INPUT_HANDLE = STD_HANDLE.INPUT_HANDLE;
-pub const STD_OUTPUT_HANDLE = STD_HANDLE.OUTPUT_HANDLE;
-pub const STD_ERROR_HANDLE = STD_HANDLE.ERROR_HANDLE;
-
-pub const CONSOLE_CHARACTER_ATTRIBUTES = packed struct(u16) {
-    FOREGROUND_BLUE: u1 = 0,
-    FOREGROUND_GREEN: u1 = 0,
-    FOREGROUND_RED: u1 = 0,
-    FOREGROUND_INTENSITY: u1 = 0,
-    BACKGROUND_BLUE: u1 = 0,
-    BACKGROUND_GREEN: u1 = 0,
-    BACKGROUND_RED: u1 = 0,
-    BACKGROUND_INTENSITY: u1 = 0,
-    COMMON_LVB_LEADING_BYTE: u1 = 0,
-    COMMON_LVB_TRAILING_BYTE: u1 = 0,
-    COMMON_LVB_GRID_HORIZONTAL: u1 = 0,
-    COMMON_LVB_GRID_LVERTICAL: u1 = 0,
-    COMMON_LVB_GRID_RVERTICAL: u1 = 0,
-    _13: u1 = 0,
-    COMMON_LVB_REVERSE_VIDEO: u1 = 0,
-    COMMON_LVB_UNDERSCORE: u1 = 0,
-};
-pub const FOREGROUND_BLUE = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_BLUE = 1 };
-pub const FOREGROUND_GREEN = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_GREEN = 1 };
-pub const FOREGROUND_RED = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_RED = 1 };
-pub const FOREGROUND_INTENSITY = CONSOLE_CHARACTER_ATTRIBUTES{ .FOREGROUND_INTENSITY = 1 };
-pub const BACKGROUND_BLUE = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_BLUE = 1 };
-pub const BACKGROUND_GREEN = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_GREEN = 1 };
-pub const BACKGROUND_RED = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_RED = 1 };
-pub const BACKGROUND_INTENSITY = CONSOLE_CHARACTER_ATTRIBUTES{ .BACKGROUND_INTENSITY = 1 };
-pub const COMMON_LVB_LEADING_BYTE = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_LEADING_BYTE = 1 };
-pub const COMMON_LVB_TRAILING_BYTE = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_TRAILING_BYTE = 1 };
-pub const COMMON_LVB_GRID_HORIZONTAL = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_GRID_HORIZONTAL = 1 };
-pub const COMMON_LVB_GRID_LVERTICAL = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_GRID_LVERTICAL = 1 };
-pub const COMMON_LVB_GRID_RVERTICAL = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_GRID_RVERTICAL = 1 };
-pub const COMMON_LVB_REVERSE_VIDEO = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_REVERSE_VIDEO = 1 };
-pub const COMMON_LVB_UNDERSCORE = CONSOLE_CHARACTER_ATTRIBUTES{ .COMMON_LVB_UNDERSCORE = 1 };
-pub const COMMON_LVB_SBCSDBCS = CONSOLE_CHARACTER_ATTRIBUTES{
-    .COMMON_LVB_LEADING_BYTE = 1,
-    .COMMON_LVB_TRAILING_BYTE = 1,
-};
-
-// TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HPCON = *opaque{};
-
-pub const COORD = extern struct {
-    X: i16,
-    Y: i16,
-};
-
-pub const SMALL_RECT = extern struct {
-    Left: i16,
-    Top: i16,
-    Right: i16,
-    Bottom: i16,
-};
-
-pub const KEY_EVENT_RECORD = extern struct {
-    bKeyDown: BOOL,
-    wRepeatCount: u16,
-    wVirtualKeyCode: u16,
-    wVirtualScanCode: u16,
-    uChar: extern union {
-        UnicodeChar: u16,
-        AsciiChar: CHAR,
-    },
-    dwControlKeyState: u32,
-};
-
-pub const MOUSE_EVENT_RECORD = extern struct {
-    dwMousePosition: COORD,
-    dwButtonState: u32,
-    dwControlKeyState: u32,
-    dwEventFlags: u32,
-};
-
-pub const WINDOW_BUFFER_SIZE_RECORD = extern struct {
-    dwSize: COORD,
-};
-
-pub const MENU_EVENT_RECORD = extern struct {
-    dwCommandId: u32,
-};
-
-pub const FOCUS_EVENT_RECORD = extern struct {
-    bSetFocus: BOOL,
-};
-
-pub const INPUT_RECORD = extern struct {
-    EventType: u16,
-    Event: extern union {
-        KeyEvent: KEY_EVENT_RECORD,
-        MouseEvent: MOUSE_EVENT_RECORD,
-        WindowBufferSizeEvent: WINDOW_BUFFER_SIZE_RECORD,
-        MenuEvent: MENU_EVENT_RECORD,
-        FocusEvent: FOCUS_EVENT_RECORD,
-    },
-};
-
-pub const CHAR_INFO = extern struct {
-    Char: extern union {
-        UnicodeChar: u16,
-        AsciiChar: CHAR,
-    },
-    Attributes: u16,
-};
-
-pub const CONSOLE_FONT_INFO = extern struct {
-    nFont: u32,
-    dwFontSize: COORD,
-};
-
 pub const CONSOLE_READCONSOLE_CONTROL = extern struct {
     nLength: u32,
     nInitialChars: u32,
     dwCtrlWakeupMask: u32,
     dwControlKeyState: u32,
-};
-
-pub const PHANDLER_ROUTINE = *const fn(
-    CtrlType: u32,
-) callconv(.winapi) BOOL;
-
-pub const CONSOLE_CURSOR_INFO = extern struct {
-    dwSize: u32,
-    bVisible: BOOL,
 };
 
 pub const CONSOLE_SCREEN_BUFFER_INFO = extern struct {
@@ -264,76 +209,341 @@ pub const CONSOLE_SCREEN_BUFFER_INFOEX = extern struct {
     ColorTable: [16]COLORREF,
 };
 
-pub const CONSOLE_FONT_INFOEX = extern struct {
-    cbSize: u32,
-    nFont: u32,
-    dwFontSize: COORD,
-    FontFamily: u32,
-    FontWeight: u32,
-    FaceName: [32]u16,
-};
-
 pub const CONSOLE_SELECTION_INFO = extern struct {
     dwFlags: u32,
     dwSelectionAnchor: COORD,
     srSelection: SMALL_RECT,
 };
 
-pub const CONSOLE_HISTORY_INFO = extern struct {
-    cbSize: u32,
-    HistoryBufferSize: u32,
-    NumberOfHistoryBuffers: u32,
-    dwFlags: u32,
+pub const COORD = extern struct {
+    X: i16,
+    Y: i16,
+};
+
+pub const FOCUS_EVENT_RECORD = extern struct {
+    bSetFocus: BOOL,
+};
+
+// TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HPCON = *opaque{};
+
+pub const INPUT_RECORD = extern struct {
+    EventType: u16,
+    Event: extern union {
+        KeyEvent: KEY_EVENT_RECORD,
+        MouseEvent: MOUSE_EVENT_RECORD,
+        WindowBufferSizeEvent: WINDOW_BUFFER_SIZE_RECORD,
+        MenuEvent: MENU_EVENT_RECORD,
+        FocusEvent: FOCUS_EVENT_RECORD,
+    },
+};
+
+pub const KEY_EVENT_RECORD = extern struct {
+    bKeyDown: BOOL,
+    wRepeatCount: u16,
+    wVirtualKeyCode: u16,
+    wVirtualScanCode: u16,
+    uChar: extern union {
+        UnicodeChar: u16,
+        AsciiChar: CHAR,
+    },
+    dwControlKeyState: u32,
+};
+
+pub const MENU_EVENT_RECORD = extern struct {
+    dwCommandId: u32,
+};
+
+pub const MOUSE_EVENT_RECORD = extern struct {
+    dwMousePosition: COORD,
+    dwButtonState: u32,
+    dwControlKeyState: u32,
+    dwEventFlags: u32,
+};
+
+pub const PHANDLER_ROUTINE = *const fn(
+    CtrlType: u32,
+) callconv(.winapi) BOOL;
+
+pub const SMALL_RECT = extern struct {
+    Left: i16,
+    Top: i16,
+    Right: i16,
+    Bottom: i16,
+};
+
+pub const STD_HANDLE = enum(u32) {
+    INPUT_HANDLE = 4294967286,
+    OUTPUT_HANDLE = 4294967285,
+    ERROR_HANDLE = 4294967284,
+};
+pub const STD_INPUT_HANDLE = STD_HANDLE.INPUT_HANDLE;
+pub const STD_OUTPUT_HANDLE = STD_HANDLE.OUTPUT_HANDLE;
+pub const STD_ERROR_HANDLE = STD_HANDLE.ERROR_HANDLE;
+
+pub const WINDOW_BUFFER_SIZE_RECORD = extern struct {
+    dwSize: COORD,
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (94)
 //--------------------------------------------------------------------------------
-pub extern "kernel32" fn AllocConsole(
+pub extern "kernel32" fn AddConsoleAliasA(
+    Source: ?PSTR,
+    Target: ?PSTR,
+    ExeName: ?PSTR,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn FreeConsole(
+pub extern "kernel32" fn AddConsoleAliasW(
+    Source: ?PWSTR,
+    Target: ?PWSTR,
+    ExeName: ?PWSTR,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn AllocConsole(
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn AttachConsole(
     dwProcessId: u32,
 ) callconv(.winapi) BOOL;
 
+pub extern "kernel32" fn ClosePseudoConsole(
+    hPC: ?HPCON,
+) callconv(.winapi) void;
+
+pub extern "kernel32" fn CreateConsoleScreenBuffer(
+    dwDesiredAccess: u32,
+    dwShareMode: u32,
+    lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
+    dwFlags: u32,
+    lpScreenBufferData: ?*anyopaque,
+) callconv(.winapi) ?HANDLE;
+
+pub extern "kernel32" fn CreatePseudoConsole(
+    size: COORD,
+    hInput: ?HANDLE,
+    hOutput: ?HANDLE,
+    dwFlags: u32,
+    phPC: ?*?HPCON,
+) callconv(.winapi) HRESULT;
+
+pub extern "kernel32" fn ExpungeConsoleCommandHistoryA(
+    ExeName: ?PSTR,
+) callconv(.winapi) void;
+
+pub extern "kernel32" fn ExpungeConsoleCommandHistoryW(
+    ExeName: ?PWSTR,
+) callconv(.winapi) void;
+
+pub extern "kernel32" fn FillConsoleOutputAttribute(
+    hConsoleOutput: ?HANDLE,
+    wAttribute: u16,
+    nLength: u32,
+    dwWriteCoord: COORD,
+    lpNumberOfAttrsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn FillConsoleOutputCharacterA(
+    hConsoleOutput: ?HANDLE,
+    cCharacter: CHAR,
+    nLength: u32,
+    dwWriteCoord: COORD,
+    lpNumberOfCharsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn FillConsoleOutputCharacterW(
+    hConsoleOutput: ?HANDLE,
+    cCharacter: u16,
+    nLength: u32,
+    dwWriteCoord: COORD,
+    lpNumberOfCharsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn FlushConsoleInputBuffer(
+    hConsoleInput: ?HANDLE,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn FreeConsole(
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GenerateConsoleCtrlEvent(
+    dwCtrlEvent: u32,
+    dwProcessGroupId: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetConsoleAliasA(
+    Source: ?PSTR,
+    TargetBuffer: [*:0]u8,
+    TargetBufferLength: u32,
+    ExeName: ?PSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasesA(
+    AliasBuffer: [*:0]u8,
+    AliasBufferLength: u32,
+    ExeName: ?PSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasesLengthA(
+    ExeName: ?PSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasesLengthW(
+    ExeName: ?PWSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasesW(
+    AliasBuffer: [*:0]u16,
+    AliasBufferLength: u32,
+    ExeName: ?PWSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasExesA(
+    ExeNameBuffer: [*:0]u8,
+    ExeNameBufferLength: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasExesLengthA(
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasExesLengthW(
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasExesW(
+    ExeNameBuffer: [*:0]u16,
+    ExeNameBufferLength: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleAliasW(
+    Source: ?PWSTR,
+    TargetBuffer: [*:0]u16,
+    TargetBufferLength: u32,
+    ExeName: ?PWSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleCommandHistoryA(
+    // TODO: what to do with BytesParamIndex 1?
+    Commands: ?PSTR,
+    CommandBufferLength: u32,
+    ExeName: ?PSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleCommandHistoryLengthA(
+    ExeName: ?PSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleCommandHistoryLengthW(
+    ExeName: ?PWSTR,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleCommandHistoryW(
+    // TODO: what to do with BytesParamIndex 1?
+    Commands: ?PWSTR,
+    CommandBufferLength: u32,
+    ExeName: ?PWSTR,
+) callconv(.winapi) u32;
+
 pub extern "kernel32" fn GetConsoleCP(
 ) callconv(.winapi) u32;
 
-pub extern "kernel32" fn GetConsoleOutputCP(
-) callconv(.winapi) u32;
+pub extern "kernel32" fn GetConsoleCursorInfo(
+    hConsoleOutput: ?HANDLE,
+    lpConsoleCursorInfo: ?*CONSOLE_CURSOR_INFO,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetConsoleDisplayMode(
+    lpModeFlags: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetConsoleFontSize(
+    hConsoleOutput: ?HANDLE,
+    nFont: u32,
+) callconv(.winapi) COORD;
+
+pub extern "kernel32" fn GetConsoleHistoryInfo(
+    lpConsoleHistoryInfo: ?*CONSOLE_HISTORY_INFO,
+) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn GetConsoleMode(
     hConsoleHandle: ?HANDLE,
     lpMode: ?*CONSOLE_MODE,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn SetConsoleMode(
-    hConsoleHandle: ?HANDLE,
-    dwMode: CONSOLE_MODE,
+pub extern "kernel32" fn GetConsoleOriginalTitleA(
+    lpConsoleTitle: [*:0]u8,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleOriginalTitleW(
+    lpConsoleTitle: [*:0]u16,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleOutputCP(
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleProcessList(
+    lpdwProcessList: [*]u32,
+    dwProcessCount: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleScreenBufferInfo(
+    hConsoleOutput: ?HANDLE,
+    lpConsoleScreenBufferInfo: ?*CONSOLE_SCREEN_BUFFER_INFO,
 ) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetConsoleScreenBufferInfoEx(
+    hConsoleOutput: ?HANDLE,
+    lpConsoleScreenBufferInfoEx: ?*CONSOLE_SCREEN_BUFFER_INFOEX,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetConsoleSelectionInfo(
+    lpConsoleSelectionInfo: ?*CONSOLE_SELECTION_INFO,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetConsoleTitleA(
+    lpConsoleTitle: [*:0]u8,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleTitleW(
+    lpConsoleTitle: [*:0]u16,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+pub extern "kernel32" fn GetConsoleWindow(
+) callconv(.winapi) ?HWND;
+
+pub extern "kernel32" fn GetCurrentConsoleFont(
+    hConsoleOutput: ?HANDLE,
+    bMaximumWindow: BOOL,
+    lpConsoleCurrentFont: ?*CONSOLE_FONT_INFO,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetCurrentConsoleFontEx(
+    hConsoleOutput: ?HANDLE,
+    bMaximumWindow: BOOL,
+    lpConsoleCurrentFontEx: ?*CONSOLE_FONT_INFOEX,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetLargestConsoleWindowSize(
+    hConsoleOutput: ?HANDLE,
+) callconv(.winapi) COORD;
 
 pub extern "kernel32" fn GetNumberOfConsoleInputEvents(
     hConsoleInput: ?HANDLE,
     lpNumberOfEvents: ?*u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn ReadConsoleInputA(
-    hConsoleInput: ?HANDLE,
-    lpBuffer: [*]INPUT_RECORD,
-    nLength: u32,
-    lpNumberOfEventsRead: ?*u32,
+pub extern "kernel32" fn GetNumberOfConsoleMouseButtons(
+    lpNumberOfMouseButtons: ?*u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn ReadConsoleInputW(
-    hConsoleInput: ?HANDLE,
-    lpBuffer: [*]INPUT_RECORD,
-    nLength: u32,
-    lpNumberOfEventsRead: ?*u32,
-) callconv(.winapi) BOOL;
+pub extern "kernel32" fn GetStdHandle(
+    nStdHandle: STD_HANDLE,
+) callconv(.winapi) HANDLE;
 
 pub extern "kernel32" fn PeekConsoleInputA(
     hConsoleInput: ?HANDLE,
@@ -357,177 +567,34 @@ pub extern "kernel32" fn ReadConsoleA(
     pInputControl: ?*CONSOLE_READCONSOLE_CONTROL,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn ReadConsoleW(
+pub extern "kernel32" fn ReadConsoleInputA(
     hConsoleInput: ?HANDLE,
-    lpBuffer: ?*anyopaque,
-    nNumberOfCharsToRead: u32,
-    lpNumberOfCharsRead: ?*u32,
-    pInputControl: ?*CONSOLE_READCONSOLE_CONTROL,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn WriteConsoleA(
-    hConsoleOutput: ?HANDLE,
-    lpBuffer: [*]const u8,
-    nNumberOfCharsToWrite: u32,
-    lpNumberOfCharsWritten: ?*u32,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn WriteConsoleW(
-    hConsoleOutput: ?HANDLE,
-    lpBuffer: [*]const u8,
-    nNumberOfCharsToWrite: u32,
-    lpNumberOfCharsWritten: ?*u32,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleCtrlHandler(
-    HandlerRoutine: ?PHANDLER_ROUTINE,
-    Add: BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn CreatePseudoConsole(
-    size: COORD,
-    hInput: ?HANDLE,
-    hOutput: ?HANDLE,
-    dwFlags: u32,
-    phPC: ?*?HPCON,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernel32" fn ResizePseudoConsole(
-    hPC: ?HPCON,
-    size: COORD,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernel32" fn ClosePseudoConsole(
-    hPC: ?HPCON,
-) callconv(.winapi) void;
-
-pub extern "kernel32" fn FillConsoleOutputCharacterA(
-    hConsoleOutput: ?HANDLE,
-    cCharacter: CHAR,
+    lpBuffer: [*]INPUT_RECORD,
     nLength: u32,
-    dwWriteCoord: COORD,
-    lpNumberOfCharsWritten: ?*u32,
+    lpNumberOfEventsRead: ?*u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn FillConsoleOutputCharacterW(
-    hConsoleOutput: ?HANDLE,
-    cCharacter: u16,
-    nLength: u32,
-    dwWriteCoord: COORD,
-    lpNumberOfCharsWritten: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn FillConsoleOutputAttribute(
-    hConsoleOutput: ?HANDLE,
-    wAttribute: u16,
-    nLength: u32,
-    dwWriteCoord: COORD,
-    lpNumberOfAttrsWritten: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GenerateConsoleCtrlEvent(
-    dwCtrlEvent: u32,
-    dwProcessGroupId: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn CreateConsoleScreenBuffer(
-    dwDesiredAccess: u32,
-    dwShareMode: u32,
-    lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
-    dwFlags: u32,
-    lpScreenBufferData: ?*anyopaque,
-) callconv(.winapi) ?HANDLE;
-
-pub extern "kernel32" fn SetConsoleActiveScreenBuffer(
-    hConsoleOutput: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn FlushConsoleInputBuffer(
+pub extern "kernel32" fn ReadConsoleInputW(
     hConsoleInput: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleCP(
-    wCodePageID: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleOutputCP(
-    wCodePageID: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleCursorInfo(
-    hConsoleOutput: ?HANDLE,
-    lpConsoleCursorInfo: ?*CONSOLE_CURSOR_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleCursorInfo(
-    hConsoleOutput: ?HANDLE,
-    lpConsoleCursorInfo: ?*const CONSOLE_CURSOR_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleScreenBufferInfo(
-    hConsoleOutput: ?HANDLE,
-    lpConsoleScreenBufferInfo: ?*CONSOLE_SCREEN_BUFFER_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleScreenBufferInfoEx(
-    hConsoleOutput: ?HANDLE,
-    lpConsoleScreenBufferInfoEx: ?*CONSOLE_SCREEN_BUFFER_INFOEX,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleScreenBufferInfoEx(
-    hConsoleOutput: ?HANDLE,
-    lpConsoleScreenBufferInfoEx: ?*CONSOLE_SCREEN_BUFFER_INFOEX,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleScreenBufferSize(
-    hConsoleOutput: ?HANDLE,
-    dwSize: COORD,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleCursorPosition(
-    hConsoleOutput: ?HANDLE,
-    dwCursorPosition: COORD,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetLargestConsoleWindowSize(
-    hConsoleOutput: ?HANDLE,
-) callconv(.winapi) COORD;
-
-pub extern "kernel32" fn SetConsoleTextAttribute(
-    hConsoleOutput: ?HANDLE,
-    wAttributes: CONSOLE_CHARACTER_ATTRIBUTES,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleWindowInfo(
-    hConsoleOutput: ?HANDLE,
-    bAbsolute: BOOL,
-    lpConsoleWindow: ?*const SMALL_RECT,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn WriteConsoleOutputCharacterA(
-    hConsoleOutput: ?HANDLE,
-    lpCharacter: [*:0]const u8,
+    lpBuffer: [*]INPUT_RECORD,
     nLength: u32,
-    dwWriteCoord: COORD,
-    lpNumberOfCharsWritten: ?*u32,
+    lpNumberOfEventsRead: ?*u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn WriteConsoleOutputCharacterW(
+pub extern "kernel32" fn ReadConsoleOutputA(
     hConsoleOutput: ?HANDLE,
-    lpCharacter: [*:0]const u16,
-    nLength: u32,
-    dwWriteCoord: COORD,
-    lpNumberOfCharsWritten: ?*u32,
+    lpBuffer: ?*CHAR_INFO,
+    dwBufferSize: COORD,
+    dwBufferCoord: COORD,
+    lpReadRegion: ?*SMALL_RECT,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn WriteConsoleOutputAttribute(
+pub extern "kernel32" fn ReadConsoleOutputAttribute(
     hConsoleOutput: ?HANDLE,
-    lpAttribute: [*:0]const u16,
+    lpAttribute: [*:0]u16,
     nLength: u32,
-    dwWriteCoord: COORD,
-    lpNumberOfAttrsWritten: ?*u32,
+    dwReadCoord: COORD,
+    lpNumberOfAttrsRead: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn ReadConsoleOutputCharacterA(
@@ -546,27 +613,26 @@ pub extern "kernel32" fn ReadConsoleOutputCharacterW(
     lpNumberOfCharsRead: ?*u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn ReadConsoleOutputAttribute(
+pub extern "kernel32" fn ReadConsoleOutputW(
     hConsoleOutput: ?HANDLE,
-    lpAttribute: [*:0]u16,
-    nLength: u32,
-    dwReadCoord: COORD,
-    lpNumberOfAttrsRead: ?*u32,
+    lpBuffer: ?*CHAR_INFO,
+    dwBufferSize: COORD,
+    dwBufferCoord: COORD,
+    lpReadRegion: ?*SMALL_RECT,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn WriteConsoleInputA(
+pub extern "kernel32" fn ReadConsoleW(
     hConsoleInput: ?HANDLE,
-    lpBuffer: [*]const INPUT_RECORD,
-    nLength: u32,
-    lpNumberOfEventsWritten: ?*u32,
+    lpBuffer: ?*anyopaque,
+    nNumberOfCharsToRead: u32,
+    lpNumberOfCharsRead: ?*u32,
+    pInputControl: ?*CONSOLE_READCONSOLE_CONTROL,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn WriteConsoleInputW(
-    hConsoleInput: ?HANDLE,
-    lpBuffer: [*]const INPUT_RECORD,
-    nLength: u32,
-    lpNumberOfEventsWritten: ?*u32,
-) callconv(.winapi) BOOL;
+pub extern "kernel32" fn ResizePseudoConsole(
+    hPC: ?HPCON,
+    size: COORD,
+) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn ScrollConsoleScreenBufferA(
     hConsoleOutput: ?HANDLE,
@@ -584,107 +650,27 @@ pub extern "kernel32" fn ScrollConsoleScreenBufferW(
     lpFill: ?*const CHAR_INFO,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn WriteConsoleOutputA(
+pub extern "kernel32" fn SetConsoleActiveScreenBuffer(
     hConsoleOutput: ?HANDLE,
-    lpBuffer: ?*const CHAR_INFO,
-    dwBufferSize: COORD,
-    dwBufferCoord: COORD,
-    lpWriteRegion: ?*SMALL_RECT,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn WriteConsoleOutputW(
+pub extern "kernel32" fn SetConsoleCP(
+    wCodePageID: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn SetConsoleCtrlHandler(
+    HandlerRoutine: ?PHANDLER_ROUTINE,
+    Add: BOOL,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn SetConsoleCursorInfo(
     hConsoleOutput: ?HANDLE,
-    lpBuffer: ?*const CHAR_INFO,
-    dwBufferSize: COORD,
-    dwBufferCoord: COORD,
-    lpWriteRegion: ?*SMALL_RECT,
+    lpConsoleCursorInfo: ?*const CONSOLE_CURSOR_INFO,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn ReadConsoleOutputA(
+pub extern "kernel32" fn SetConsoleCursorPosition(
     hConsoleOutput: ?HANDLE,
-    lpBuffer: ?*CHAR_INFO,
-    dwBufferSize: COORD,
-    dwBufferCoord: COORD,
-    lpReadRegion: ?*SMALL_RECT,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn ReadConsoleOutputW(
-    hConsoleOutput: ?HANDLE,
-    lpBuffer: ?*CHAR_INFO,
-    dwBufferSize: COORD,
-    dwBufferCoord: COORD,
-    lpReadRegion: ?*SMALL_RECT,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleTitleA(
-    lpConsoleTitle: [*:0]u8,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleTitleW(
-    lpConsoleTitle: [*:0]u16,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleOriginalTitleA(
-    lpConsoleTitle: [*:0]u8,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleOriginalTitleW(
-    lpConsoleTitle: [*:0]u16,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn SetConsoleTitleA(
-    lpConsoleTitle: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleTitleW(
-    lpConsoleTitle: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetNumberOfConsoleMouseButtons(
-    lpNumberOfMouseButtons: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleFontSize(
-    hConsoleOutput: ?HANDLE,
-    nFont: u32,
-) callconv(.winapi) COORD;
-
-pub extern "kernel32" fn GetCurrentConsoleFont(
-    hConsoleOutput: ?HANDLE,
-    bMaximumWindow: BOOL,
-    lpConsoleCurrentFont: ?*CONSOLE_FONT_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetCurrentConsoleFontEx(
-    hConsoleOutput: ?HANDLE,
-    bMaximumWindow: BOOL,
-    lpConsoleCurrentFontEx: ?*CONSOLE_FONT_INFOEX,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetCurrentConsoleFontEx(
-    hConsoleOutput: ?HANDLE,
-    bMaximumWindow: BOOL,
-    lpConsoleCurrentFontEx: ?*CONSOLE_FONT_INFOEX,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleSelectionInfo(
-    lpConsoleSelectionInfo: ?*CONSOLE_SELECTION_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleHistoryInfo(
-    lpConsoleHistoryInfo: ?*CONSOLE_HISTORY_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn SetConsoleHistoryInfo(
-    lpConsoleHistoryInfo: ?*CONSOLE_HISTORY_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleDisplayMode(
-    lpModeFlags: ?*u32,
+    dwCursorPosition: COORD,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn SetConsoleDisplayMode(
@@ -693,78 +679,14 @@ pub extern "kernel32" fn SetConsoleDisplayMode(
     lpNewScreenBufferDimensions: ?*COORD,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetConsoleWindow(
-) callconv(.winapi) ?HWND;
-
-pub extern "kernel32" fn AddConsoleAliasA(
-    Source: ?PSTR,
-    Target: ?PSTR,
-    ExeName: ?PSTR,
+pub extern "kernel32" fn SetConsoleHistoryInfo(
+    lpConsoleHistoryInfo: ?*CONSOLE_HISTORY_INFO,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn AddConsoleAliasW(
-    Source: ?PWSTR,
-    Target: ?PWSTR,
-    ExeName: ?PWSTR,
+pub extern "kernel32" fn SetConsoleMode(
+    hConsoleHandle: ?HANDLE,
+    dwMode: CONSOLE_MODE,
 ) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetConsoleAliasA(
-    Source: ?PSTR,
-    TargetBuffer: [*:0]u8,
-    TargetBufferLength: u32,
-    ExeName: ?PSTR,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasW(
-    Source: ?PWSTR,
-    TargetBuffer: [*:0]u16,
-    TargetBufferLength: u32,
-    ExeName: ?PWSTR,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasesLengthA(
-    ExeName: ?PSTR,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasesLengthW(
-    ExeName: ?PWSTR,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasExesLengthA(
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasExesLengthW(
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasesA(
-    AliasBuffer: [*:0]u8,
-    AliasBufferLength: u32,
-    ExeName: ?PSTR,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasesW(
-    AliasBuffer: [*:0]u16,
-    AliasBufferLength: u32,
-    ExeName: ?PWSTR,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasExesA(
-    ExeNameBuffer: [*:0]u8,
-    ExeNameBufferLength: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn GetConsoleAliasExesW(
-    ExeNameBuffer: [*:0]u16,
-    ExeNameBufferLength: u32,
-) callconv(.winapi) u32;
-
-pub extern "kernel32" fn ExpungeConsoleCommandHistoryA(
-    ExeName: ?PSTR,
-) callconv(.winapi) void;
-
-pub extern "kernel32" fn ExpungeConsoleCommandHistoryW(
-    ExeName: ?PWSTR,
-) callconv(.winapi) void;
 
 pub extern "kernel32" fn SetConsoleNumberOfCommandsA(
     Number: u32,
@@ -776,36 +698,44 @@ pub extern "kernel32" fn SetConsoleNumberOfCommandsW(
     ExeName: ?PWSTR,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetConsoleCommandHistoryLengthA(
-    ExeName: ?PSTR,
-) callconv(.winapi) u32;
+pub extern "kernel32" fn SetConsoleOutputCP(
+    wCodePageID: u32,
+) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetConsoleCommandHistoryLengthW(
-    ExeName: ?PWSTR,
-) callconv(.winapi) u32;
+pub extern "kernel32" fn SetConsoleScreenBufferInfoEx(
+    hConsoleOutput: ?HANDLE,
+    lpConsoleScreenBufferInfoEx: ?*CONSOLE_SCREEN_BUFFER_INFOEX,
+) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetConsoleCommandHistoryA(
-    // TODO: what to do with BytesParamIndex 1?
-    Commands: ?PSTR,
-    CommandBufferLength: u32,
-    ExeName: ?PSTR,
-) callconv(.winapi) u32;
+pub extern "kernel32" fn SetConsoleScreenBufferSize(
+    hConsoleOutput: ?HANDLE,
+    dwSize: COORD,
+) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetConsoleCommandHistoryW(
-    // TODO: what to do with BytesParamIndex 1?
-    Commands: ?PWSTR,
-    CommandBufferLength: u32,
-    ExeName: ?PWSTR,
-) callconv(.winapi) u32;
+pub extern "kernel32" fn SetConsoleTextAttribute(
+    hConsoleOutput: ?HANDLE,
+    wAttributes: CONSOLE_CHARACTER_ATTRIBUTES,
+) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetConsoleProcessList(
-    lpdwProcessList: [*]u32,
-    dwProcessCount: u32,
-) callconv(.winapi) u32;
+pub extern "kernel32" fn SetConsoleTitleA(
+    lpConsoleTitle: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetStdHandle(
-    nStdHandle: STD_HANDLE,
-) callconv(.winapi) HANDLE;
+pub extern "kernel32" fn SetConsoleTitleW(
+    lpConsoleTitle: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn SetConsoleWindowInfo(
+    hConsoleOutput: ?HANDLE,
+    bAbsolute: BOOL,
+    lpConsoleWindow: ?*const SMALL_RECT,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn SetCurrentConsoleFontEx(
+    hConsoleOutput: ?HANDLE,
+    bMaximumWindow: BOOL,
+    lpConsoleCurrentFontEx: ?*CONSOLE_FONT_INFOEX,
+) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn SetStdHandle(
     nStdHandle: STD_HANDLE,
@@ -818,15 +748,162 @@ pub extern "kernel32" fn SetStdHandleEx(
     phPrevValue: ?*?HANDLE,
 ) callconv(.winapi) BOOL;
 
+pub extern "kernel32" fn WriteConsoleA(
+    hConsoleOutput: ?HANDLE,
+    lpBuffer: [*]const u8,
+    nNumberOfCharsToWrite: u32,
+    lpNumberOfCharsWritten: ?*u32,
+    lpReserved: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleInputA(
+    hConsoleInput: ?HANDLE,
+    lpBuffer: [*]const INPUT_RECORD,
+    nLength: u32,
+    lpNumberOfEventsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleInputW(
+    hConsoleInput: ?HANDLE,
+    lpBuffer: [*]const INPUT_RECORD,
+    nLength: u32,
+    lpNumberOfEventsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleOutputA(
+    hConsoleOutput: ?HANDLE,
+    lpBuffer: ?*const CHAR_INFO,
+    dwBufferSize: COORD,
+    dwBufferCoord: COORD,
+    lpWriteRegion: ?*SMALL_RECT,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleOutputAttribute(
+    hConsoleOutput: ?HANDLE,
+    lpAttribute: [*:0]const u16,
+    nLength: u32,
+    dwWriteCoord: COORD,
+    lpNumberOfAttrsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleOutputCharacterA(
+    hConsoleOutput: ?HANDLE,
+    lpCharacter: [*:0]const u8,
+    nLength: u32,
+    dwWriteCoord: COORD,
+    lpNumberOfCharsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleOutputCharacterW(
+    hConsoleOutput: ?HANDLE,
+    lpCharacter: [*:0]const u16,
+    nLength: u32,
+    dwWriteCoord: COORD,
+    lpNumberOfCharsWritten: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleOutputW(
+    hConsoleOutput: ?HANDLE,
+    lpBuffer: ?*const CHAR_INFO,
+    dwBufferSize: COORD,
+    dwBufferCoord: COORD,
+    lpWriteRegion: ?*SMALL_RECT,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WriteConsoleW(
+    hConsoleOutput: ?HANDLE,
+    lpBuffer: [*]const u8,
+    nNumberOfCharsToWrite: u32,
+    lpNumberOfCharsWritten: ?*u32,
+    lpReserved: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (24)
 //--------------------------------------------------------------------------------
-pub const ReadConsoleInput = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReadConsoleInputA,
-    .wide => @This().ReadConsoleInputW,
+pub const AddConsoleAlias = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddConsoleAliasA,
+    .wide => @This().AddConsoleAliasW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReadConsoleInput' requires that UNICODE be set to true or false in the root module",
+        "'AddConsoleAlias' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ExpungeConsoleCommandHistory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ExpungeConsoleCommandHistoryA,
+    .wide => @This().ExpungeConsoleCommandHistoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ExpungeConsoleCommandHistory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FillConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FillConsoleOutputCharacterA,
+    .wide => @This().FillConsoleOutputCharacterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FillConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAlias = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasA,
+    .wide => @This().GetConsoleAliasW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAlias' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliases = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasesA,
+    .wide => @This().GetConsoleAliasesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliases' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliasesLength = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasesLengthA,
+    .wide => @This().GetConsoleAliasesLengthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliasesLength' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliasExes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasExesA,
+    .wide => @This().GetConsoleAliasExesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliasExes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleAliasExesLength = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleAliasExesLengthA,
+    .wide => @This().GetConsoleAliasExesLengthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleAliasExesLength' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleCommandHistory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleCommandHistoryA,
+    .wide => @This().GetConsoleCommandHistoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleCommandHistory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleCommandHistoryLength = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleCommandHistoryLengthA,
+    .wide => @This().GetConsoleCommandHistoryLengthW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleCommandHistoryLength' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleOriginalTitle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleOriginalTitleA,
+    .wide => @This().GetConsoleOriginalTitleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleOriginalTitle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetConsoleTitle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetConsoleTitleA,
+    .wide => @This().GetConsoleTitleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetConsoleTitle' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PeekConsoleInput = switch (@import("../zig.zig").unicode_mode) {
@@ -843,53 +920,11 @@ pub const ReadConsole = switch (@import("../zig.zig").unicode_mode) {
         "'ReadConsole' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const WriteConsole = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WriteConsoleA,
-    .wide => @This().WriteConsoleW,
+pub const ReadConsoleInput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadConsoleInputA,
+    .wide => @This().ReadConsoleInputW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WriteConsole' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FillConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().FillConsoleOutputCharacterA,
-    .wide => @This().FillConsoleOutputCharacterW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FillConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WriteConsoleOutputCharacterA,
-    .wide => @This().WriteConsoleOutputCharacterW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WriteConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ReadConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReadConsoleOutputCharacterA,
-    .wide => @This().ReadConsoleOutputCharacterW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReadConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WriteConsoleInput = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WriteConsoleInputA,
-    .wide => @This().WriteConsoleInputW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WriteConsoleInput' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ScrollConsoleScreenBuffer = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ScrollConsoleScreenBufferA,
-    .wide => @This().ScrollConsoleScreenBufferW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ScrollConsoleScreenBuffer' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WriteConsoleOutput = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WriteConsoleOutputA,
-    .wide => @This().WriteConsoleOutputW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WriteConsoleOutput' requires that UNICODE be set to true or false in the root module",
+        "'ReadConsoleInput' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ReadConsoleOutput = switch (@import("../zig.zig").unicode_mode) {
@@ -899,74 +934,18 @@ pub const ReadConsoleOutput = switch (@import("../zig.zig").unicode_mode) {
         "'ReadConsoleOutput' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetConsoleTitle = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleTitleA,
-    .wide => @This().GetConsoleTitleW,
+pub const ReadConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadConsoleOutputCharacterA,
+    .wide => @This().ReadConsoleOutputCharacterW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleTitle' requires that UNICODE be set to true or false in the root module",
+        "'ReadConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetConsoleOriginalTitle = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleOriginalTitleA,
-    .wide => @This().GetConsoleOriginalTitleW,
+pub const ScrollConsoleScreenBuffer = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ScrollConsoleScreenBufferA,
+    .wide => @This().ScrollConsoleScreenBufferW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleOriginalTitle' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetConsoleTitle = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetConsoleTitleA,
-    .wide => @This().SetConsoleTitleW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetConsoleTitle' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AddConsoleAlias = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AddConsoleAliasA,
-    .wide => @This().AddConsoleAliasW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AddConsoleAlias' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetConsoleAlias = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleAliasA,
-    .wide => @This().GetConsoleAliasW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleAlias' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetConsoleAliasesLength = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleAliasesLengthA,
-    .wide => @This().GetConsoleAliasesLengthW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleAliasesLength' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetConsoleAliasExesLength = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleAliasExesLengthA,
-    .wide => @This().GetConsoleAliasExesLengthW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleAliasExesLength' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetConsoleAliases = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleAliasesA,
-    .wide => @This().GetConsoleAliasesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleAliases' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetConsoleAliasExes = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleAliasExesA,
-    .wide => @This().GetConsoleAliasExesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleAliasExes' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ExpungeConsoleCommandHistory = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ExpungeConsoleCommandHistoryA,
-    .wide => @This().ExpungeConsoleCommandHistoryW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ExpungeConsoleCommandHistory' requires that UNICODE be set to true or false in the root module",
+        "'ScrollConsoleScreenBuffer' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const SetConsoleNumberOfCommands = switch (@import("../zig.zig").unicode_mode) {
@@ -976,18 +955,39 @@ pub const SetConsoleNumberOfCommands = switch (@import("../zig.zig").unicode_mod
         "'SetConsoleNumberOfCommands' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetConsoleCommandHistoryLength = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleCommandHistoryLengthA,
-    .wide => @This().GetConsoleCommandHistoryLengthW,
+pub const SetConsoleTitle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetConsoleTitleA,
+    .wide => @This().SetConsoleTitleW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleCommandHistoryLength' requires that UNICODE be set to true or false in the root module",
+        "'SetConsoleTitle' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetConsoleCommandHistory = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetConsoleCommandHistoryA,
-    .wide => @This().GetConsoleCommandHistoryW,
+pub const WriteConsole = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleA,
+    .wide => @This().WriteConsoleW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetConsoleCommandHistory' requires that UNICODE be set to true or false in the root module",
+        "'WriteConsole' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteConsoleInput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleInputA,
+    .wide => @This().WriteConsoleInputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteConsoleInput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteConsoleOutput = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleOutputA,
+    .wide => @This().WriteConsoleOutputW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteConsoleOutput' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WriteConsoleOutputCharacterA,
+    .wide => @This().WriteConsoleOutputCharacterW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WriteConsoleOutputCharacter' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

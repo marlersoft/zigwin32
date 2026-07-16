@@ -6,14 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-const CLSID_IsolatedAppLauncher_Value = Guid.initString("bc812430-e75e-4fd1-9641-1f9f1e2d9a1f");
-pub const CLSID_IsolatedAppLauncher = &CLSID_IsolatedAppLauncher_Value;
-
-pub const IsolatedAppLauncherTelemetryParameters = extern struct {
-    EnableForLaunch: BOOL,
-    CorrelationGUID: Guid,
-};
-
 const IID_IIsolatedAppLauncher_Value = Guid.initString("f686878f-7b42-4cc4-96fb-f4f3b6e3d24d");
 pub const IID_IIsolatedAppLauncher = &IID_IIsolatedAppLauncher_Value;
 pub const IIsolatedAppLauncher = extern union {
@@ -33,32 +25,18 @@ pub const IIsolatedAppLauncher = extern union {
     }
 };
 
+const CLSID_IsolatedAppLauncher_Value = Guid.initString("bc812430-e75e-4fd1-9641-1f9f1e2d9a1f");
+pub const CLSID_IsolatedAppLauncher = &CLSID_IsolatedAppLauncher_Value;
+
+pub const IsolatedAppLauncherTelemetryParameters = extern struct {
+    EnableForLaunch: BOOL,
+    CorrelationGUID: Guid,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetAppContainerNamedObjectPath(
-    Token: ?HANDLE,
-    AppContainerSid: ?PSID,
-    ObjectPathLength: u32,
-    ObjectPath: ?[*:0]u16,
-    ReturnLength: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "api-ms-win-security-isolatedcontainer-l1-1-1" fn IsProcessInWDAGContainer(
-    Reserved: ?*anyopaque,
-    isProcessInWDAGContainer: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-security-isolatedcontainer-l1-1-0" fn IsProcessInIsolatedContainer(
-    isProcessInIsolatedContainer: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "isolatedwindowsenvironmentutils" fn IsProcessInIsolatedWindowsEnvironment(
-    isProcessInIsolatedWindowsEnvironment: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "userenv" fn CreateAppContainerProfile(
     pszAppContainerName: ?[*:0]const u16,
@@ -75,15 +53,9 @@ pub extern "userenv" fn DeleteAppContainerProfile(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "userenv" fn GetAppContainerRegistryLocation(
-    desiredAccess: u32,
-    phAppContainerKey: ?*?HKEY,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "userenv" fn GetAppContainerFolderPath(
-    pszAppContainerSid: ?[*:0]const u16,
-    ppszPath: ?*?PWSTR,
+pub extern "userenv" fn DeriveAppContainerSidFromAppContainerName(
+    pszAppContainerName: ?[*:0]const u16,
+    ppsidAppContainerSid: ?*?PSID,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -94,9 +66,37 @@ pub extern "userenv" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRes
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "userenv" fn DeriveAppContainerSidFromAppContainerName(
-    pszAppContainerName: ?[*:0]const u16,
-    ppsidAppContainerSid: ?*?PSID,
+pub extern "userenv" fn GetAppContainerFolderPath(
+    pszAppContainerSid: ?[*:0]const u16,
+    ppszPath: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetAppContainerNamedObjectPath(
+    Token: ?HANDLE,
+    AppContainerSid: ?PSID,
+    ObjectPathLength: u32,
+    ObjectPath: ?[*:0]u16,
+    ReturnLength: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "userenv" fn GetAppContainerRegistryLocation(
+    desiredAccess: u32,
+    phAppContainerKey: ?*?HKEY,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-security-isolatedcontainer-l1-1-0" fn IsProcessInIsolatedContainer(
+    isProcessInIsolatedContainer: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "isolatedwindowsenvironmentutils" fn IsProcessInIsolatedWindowsEnvironment(
+    isProcessInIsolatedWindowsEnvironment: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "api-ms-win-security-isolatedcontainer-l1-1-1" fn IsProcessInWDAGContainer(
+    Reserved: ?*anyopaque,
+    isProcessInWDAGContainer: ?*BOOL,
 ) callconv(.winapi) HRESULT;
 
 

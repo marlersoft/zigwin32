@@ -8,26 +8,6 @@ pub const WNV_API_MINOR_VERSION_0 = @as(u32, 0);
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const WNV_NOTIFICATION_TYPE = enum(i32) {
-    PolicyMismatchType = 0,
-    RedirectType = 1,
-    ObjectChangeType = 2,
-    NotificationTypeMax = 3,
-};
-pub const WnvPolicyMismatchType = WNV_NOTIFICATION_TYPE.PolicyMismatchType;
-pub const WnvRedirectType = WNV_NOTIFICATION_TYPE.RedirectType;
-pub const WnvObjectChangeType = WNV_NOTIFICATION_TYPE.ObjectChangeType;
-pub const WnvNotificationTypeMax = WNV_NOTIFICATION_TYPE.NotificationTypeMax;
-
-pub const WNV_OBJECT_TYPE = enum(i32) {
-    ProviderAddressType = 0,
-    CustomerAddressType = 1,
-    ObjectTypeMax = 2,
-};
-pub const WnvProviderAddressType = WNV_OBJECT_TYPE.ProviderAddressType;
-pub const WnvCustomerAddressType = WNV_OBJECT_TYPE.CustomerAddressType;
-pub const WnvObjectTypeMax = WNV_OBJECT_TYPE.ObjectTypeMax;
-
 pub const WNV_CA_NOTIFICATION_TYPE = enum(i32) {
     Added = 0,
     Deleted = 1,
@@ -39,17 +19,14 @@ pub const WnvCustomerAddressDeleted = WNV_CA_NOTIFICATION_TYPE.Deleted;
 pub const WnvCustomerAddressMoved = WNV_CA_NOTIFICATION_TYPE.Moved;
 pub const WnvCustomerAddressMax = WNV_CA_NOTIFICATION_TYPE.Max;
 
-pub const WNV_OBJECT_HEADER = extern struct {
-    MajorVersion: u8,
-    MinorVersion: u8,
-    Size: u32,
-};
-
-pub const WNV_NOTIFICATION_PARAM = extern struct {
-    Header: WNV_OBJECT_HEADER,
-    NotificationType: WNV_NOTIFICATION_TYPE,
-    PendingNotifications: u32,
-    Buffer: ?*u8,
+pub const WNV_CUSTOMER_ADDRESS_CHANGE_PARAM = extern struct {
+    MACAddress: DL_EUI48,
+    CAFamily: u16,
+    CA: WNV_IP_ADDRESS,
+    VirtualSubnetId: u32,
+    PAFamily: u16,
+    PA: WNV_IP_ADDRESS,
+    NotificationReason: WNV_CA_NOTIFICATION_TYPE,
 };
 
 pub const WNV_IP_ADDRESS = extern struct {
@@ -59,6 +36,47 @@ pub const WNV_IP_ADDRESS = extern struct {
         Addr: [16]u8,
     },
 };
+
+pub const WNV_NOTIFICATION_PARAM = extern struct {
+    Header: WNV_OBJECT_HEADER,
+    NotificationType: WNV_NOTIFICATION_TYPE,
+    PendingNotifications: u32,
+    Buffer: ?*u8,
+};
+
+pub const WNV_NOTIFICATION_TYPE = enum(i32) {
+    PolicyMismatchType = 0,
+    RedirectType = 1,
+    ObjectChangeType = 2,
+    NotificationTypeMax = 3,
+};
+pub const WnvPolicyMismatchType = WNV_NOTIFICATION_TYPE.PolicyMismatchType;
+pub const WnvRedirectType = WNV_NOTIFICATION_TYPE.RedirectType;
+pub const WnvObjectChangeType = WNV_NOTIFICATION_TYPE.ObjectChangeType;
+pub const WnvNotificationTypeMax = WNV_NOTIFICATION_TYPE.NotificationTypeMax;
+
+pub const WNV_OBJECT_CHANGE_PARAM = extern struct {
+    ObjectType: WNV_OBJECT_TYPE,
+    ObjectParam: extern union {
+        ProviderAddressChange: WNV_PROVIDER_ADDRESS_CHANGE_PARAM,
+        CustomerAddressChange: WNV_CUSTOMER_ADDRESS_CHANGE_PARAM,
+    },
+};
+
+pub const WNV_OBJECT_HEADER = extern struct {
+    MajorVersion: u8,
+    MinorVersion: u8,
+    Size: u32,
+};
+
+pub const WNV_OBJECT_TYPE = enum(i32) {
+    ProviderAddressType = 0,
+    CustomerAddressType = 1,
+    ObjectTypeMax = 2,
+};
+pub const WnvProviderAddressType = WNV_OBJECT_TYPE.ProviderAddressType;
+pub const WnvCustomerAddressType = WNV_OBJECT_TYPE.CustomerAddressType;
+pub const WnvObjectTypeMax = WNV_OBJECT_TYPE.ObjectTypeMax;
 
 pub const WNV_POLICY_MISMATCH_PARAM = extern struct {
     CAFamily: u16,
@@ -72,24 +90,6 @@ pub const WNV_PROVIDER_ADDRESS_CHANGE_PARAM = extern struct {
     PAFamily: u16,
     PA: WNV_IP_ADDRESS,
     AddressState: NL_DAD_STATE,
-};
-
-pub const WNV_CUSTOMER_ADDRESS_CHANGE_PARAM = extern struct {
-    MACAddress: DL_EUI48,
-    CAFamily: u16,
-    CA: WNV_IP_ADDRESS,
-    VirtualSubnetId: u32,
-    PAFamily: u16,
-    PA: WNV_IP_ADDRESS,
-    NotificationReason: WNV_CA_NOTIFICATION_TYPE,
-};
-
-pub const WNV_OBJECT_CHANGE_PARAM = extern struct {
-    ObjectType: WNV_OBJECT_TYPE,
-    ObjectParam: extern union {
-        ProviderAddressChange: WNV_PROVIDER_ADDRESS_CHANGE_PARAM,
-        CustomerAddressChange: WNV_CUSTOMER_ADDRESS_CHANGE_PARAM,
-    },
 };
 
 pub const WNV_REDIRECT_PARAM = extern struct {

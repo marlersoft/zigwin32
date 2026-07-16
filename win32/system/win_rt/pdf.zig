@@ -6,19 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-pub const PFN_PDF_CREATE_RENDERER = *const fn(
-    param0: ?*IDXGIDevice,
-    param1: ?*?*IPdfRendererNative,
-) callconv(.winapi) HRESULT;
-
-pub const PDF_RENDER_PARAMS = extern struct {
-    SourceRect: D2D_RECT_F,
-    DestinationWidth: u32,
-    DestinationHeight: u32,
-    BackgroundColor: D2D_COLOR_F,
-    IgnoreHighContrast: BOOLEAN,
-};
-
 const IID_IPdfRendererNative_Value = Guid.initString("7d9dcd91-d277-4947-8527-07a0daeda94a");
 pub const IID_IPdfRendererNative = &IID_IPdfRendererNative_Value;
 pub const IPdfRendererNative = extern union {
@@ -47,6 +34,19 @@ pub const IPdfRendererNative = extern union {
         return self.vtable.RenderPageToDeviceContext(self, pdfPage, pD2DDeviceContext, pRenderParams);
     }
 };
+
+pub const PDF_RENDER_PARAMS = extern struct {
+    SourceRect: D2D_RECT_F,
+    DestinationWidth: u32,
+    DestinationHeight: u32,
+    BackgroundColor: D2D_COLOR_F,
+    IgnoreHighContrast: BOOLEAN,
+};
+
+pub const PFN_PDF_CREATE_RENDERER = *const fn(
+    param0: ?*IDXGIDevice,
+    param1: ?*?*IPdfRendererNative,
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

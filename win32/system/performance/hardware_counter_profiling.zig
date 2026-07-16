@@ -6,18 +6,18 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
+pub const HARDWARE_COUNTER_DATA = extern struct {
+    Type: HARDWARE_COUNTER_TYPE,
+    Reserved: u32,
+    Value: u64,
+};
+
 pub const HARDWARE_COUNTER_TYPE = enum(i32) {
     PMCCounter = 0,
     MaxHardwareCounterType = 1,
 };
 pub const PMCCounter = HARDWARE_COUNTER_TYPE.PMCCounter;
 pub const MaxHardwareCounterType = HARDWARE_COUNTER_TYPE.MaxHardwareCounterType;
-
-pub const HARDWARE_COUNTER_DATA = extern struct {
-    Type: HARDWARE_COUNTER_TYPE,
-    Reserved: u32,
-    Value: u64,
-};
 
 pub const PERFORMANCE_DATA = extern struct {
     Size: u16,
@@ -36,16 +36,16 @@ pub const PERFORMANCE_DATA = extern struct {
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn DisableThreadProfiling(
+    PerformanceDataHandle: ?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn EnableThreadProfiling(
     ThreadHandle: ?HANDLE,
     Flags: u32,
     HardwareCounters: u64,
     PerformanceDataHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn DisableThreadProfiling(
-    PerformanceDataHandle: ?HANDLE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'

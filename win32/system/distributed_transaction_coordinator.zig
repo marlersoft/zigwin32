@@ -2,101 +2,183 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (69)
 //--------------------------------------------------------------------------------
+pub const CLSID_MSDtcTransaction = Guid.initString("39f8d76b-0928-11d1-97df-00c04fb9618a");
+pub const CLSID_MSDtcTransactionManager = Guid.initString("5b18ab61-091d-11d1-97df-00c04fb9618a");
+pub const DTC_INSTALL_OVERWRITE_CLIENT = @as(u32, 1);
+pub const DTC_INSTALL_OVERWRITE_SERVER = @as(u32, 2);
 pub const DTCINSTALL_E_CLIENT_ALREADY_INSTALLED = @as(i32, 384);
 pub const DTCINSTALL_E_SERVER_ALREADY_INSTALLED = @as(i32, 385);
-pub const XA_SWITCH_F_DTC = @as(u32, 1);
-pub const XA_FMTID_DTC = @as(u32, 4478019);
-pub const XA_FMTID_DTC_VER1 = @as(u32, 21255235);
-pub const XIDDATASIZE = @as(u32, 128);
-pub const MAXGTRIDSIZE = @as(u32, 64);
 pub const MAXBQUALSIZE = @as(u32, 64);
-pub const RMNAMESZ = @as(u32, 32);
+pub const MAXGTRIDSIZE = @as(u32, 64);
 pub const MAXINFOSIZE = @as(u32, 256);
-pub const TMNOFLAGS = @as(i32, 0);
-pub const TMREGISTER = @as(i32, 1);
-pub const TMNOMIGRATE = @as(i32, 2);
-pub const TMUSEASYNC = @as(i32, 4);
-pub const TMASYNC = @as(i32, -2147483648);
-pub const TMONEPHASE = @as(i32, 1073741824);
-pub const TMFAIL = @as(i32, 536870912);
-pub const TMNOWAIT = @as(i32, 268435456);
-pub const TMRESUME = @as(i32, 134217728);
-pub const TMSUCCESS = @as(i32, 67108864);
-pub const TMSUSPEND = @as(i32, 33554432);
-pub const TMSTARTRSCAN = @as(i32, 16777216);
-pub const TMENDRSCAN = @as(i32, 8388608);
-pub const TMMULTIPLE = @as(i32, 4194304);
-pub const TMJOIN = @as(i32, 2097152);
-pub const TMMIGRATE = @as(i32, 1048576);
+pub const OLE_TM_CONFIG_VERSION_1 = @as(u32, 1);
+pub const OLE_TM_CONFIG_VERSION_2 = @as(u32, 2);
+pub const OLE_TM_FLAG_INTERNAL_TO_TM = @as(u32, 1073741824);
+pub const OLE_TM_FLAG_NOAGILERECOVERY = @as(u32, 2);
+pub const OLE_TM_FLAG_NODEMANDSTART = @as(u32, 1);
+pub const OLE_TM_FLAG_NONE = @as(u32, 0);
+pub const OLE_TM_FLAG_QUERY_SERVICE_LOCKSTATUS = @as(u32, 2147483648);
+pub const RMNAMESZ = @as(u32, 32);
 pub const TM_JOIN = @as(u32, 2);
-pub const TM_RESUME = @as(u32, 1);
 pub const TM_OK = @as(u32, 0);
-pub const TMER_TMERR = @as(i32, -1);
+pub const TM_RESUME = @as(u32, 1);
+pub const TMASYNC = @as(i32, -2147483648);
+pub const TMENDRSCAN = @as(i32, 8388608);
 pub const TMER_INVAL = @as(i32, -2);
 pub const TMER_PROTO = @as(i32, -3);
+pub const TMER_TMERR = @as(i32, -1);
+pub const TMFAIL = @as(i32, 536870912);
+pub const TMJOIN = @as(i32, 2097152);
+pub const TMMIGRATE = @as(i32, 1048576);
+pub const TMMULTIPLE = @as(i32, 4194304);
+pub const TMNOFLAGS = @as(i32, 0);
+pub const TMNOMIGRATE = @as(i32, 2);
+pub const TMNOWAIT = @as(i32, 268435456);
+pub const TMONEPHASE = @as(i32, 1073741824);
+pub const TMREGISTER = @as(i32, 1);
+pub const TMRESUME = @as(i32, 134217728);
+pub const TMSTARTRSCAN = @as(i32, 16777216);
+pub const TMSUCCESS = @as(i32, 67108864);
+pub const TMSUSPEND = @as(i32, 33554432);
+pub const TMUSEASYNC = @as(i32, 4);
+pub const XA_FMTID_DTC = @as(u32, 4478019);
+pub const XA_FMTID_DTC_VER1 = @as(u32, 21255235);
+pub const XA_HEURCOM = @as(u32, 7);
+pub const XA_HEURHAZ = @as(u32, 8);
+pub const XA_HEURMIX = @as(u32, 5);
+pub const XA_HEURRB = @as(u32, 6);
+pub const XA_NOMIGRATE = @as(u32, 9);
+pub const XA_OK = @as(u32, 0);
 pub const XA_RBBASE = @as(u32, 100);
-pub const XA_RBROLLBACK = @as(u32, 100);
 pub const XA_RBCOMMFAIL = @as(u32, 101);
 pub const XA_RBDEADLOCK = @as(u32, 102);
+pub const XA_RBEND = @as(u32, 107);
 pub const XA_RBINTEGRITY = @as(u32, 103);
 pub const XA_RBOTHER = @as(u32, 104);
 pub const XA_RBPROTO = @as(u32, 105);
+pub const XA_RBROLLBACK = @as(u32, 100);
 pub const XA_RBTIMEOUT = @as(u32, 106);
 pub const XA_RBTRANSIENT = @as(u32, 107);
-pub const XA_RBEND = @as(u32, 107);
-pub const XA_NOMIGRATE = @as(u32, 9);
-pub const XA_HEURHAZ = @as(u32, 8);
-pub const XA_HEURCOM = @as(u32, 7);
-pub const XA_HEURRB = @as(u32, 6);
-pub const XA_HEURMIX = @as(u32, 5);
-pub const XA_RETRY = @as(u32, 4);
 pub const XA_RDONLY = @as(u32, 3);
-pub const XA_OK = @as(u32, 0);
+pub const XA_RETRY = @as(u32, 4);
+pub const XA_SWITCH_F_DTC = @as(u32, 1);
 pub const XAER_ASYNC = @as(i32, -2);
-pub const XAER_RMERR = @as(i32, -3);
-pub const XAER_NOTA = @as(i32, -4);
-pub const XAER_INVAL = @as(i32, -5);
-pub const XAER_PROTO = @as(i32, -6);
-pub const XAER_RMFAIL = @as(i32, -7);
 pub const XAER_DUPID = @as(i32, -8);
+pub const XAER_INVAL = @as(i32, -5);
+pub const XAER_NOTA = @as(i32, -4);
 pub const XAER_OUTSIDE = @as(i32, -9);
-pub const DTC_INSTALL_OVERWRITE_CLIENT = @as(u32, 1);
-pub const DTC_INSTALL_OVERWRITE_SERVER = @as(u32, 2);
-pub const OLE_TM_CONFIG_VERSION_1 = @as(u32, 1);
-pub const OLE_TM_CONFIG_VERSION_2 = @as(u32, 2);
-pub const OLE_TM_FLAG_NONE = @as(u32, 0);
-pub const OLE_TM_FLAG_NODEMANDSTART = @as(u32, 1);
-pub const OLE_TM_FLAG_NOAGILERECOVERY = @as(u32, 2);
-pub const OLE_TM_FLAG_QUERY_SERVICE_LOCKSTATUS = @as(u32, 2147483648);
-pub const OLE_TM_FLAG_INTERNAL_TO_TM = @as(u32, 1073741824);
-pub const CLSID_MSDtcTransactionManager = Guid.initString("5b18ab61-091d-11d1-97df-00c04fb9618a");
-pub const CLSID_MSDtcTransaction = Guid.initString("39f8d76b-0928-11d1-97df-00c04fb9618a");
+pub const XAER_PROTO = @as(i32, -6);
+pub const XAER_RMERR = @as(i32, -3);
+pub const XAER_RMFAIL = @as(i32, -7);
+pub const XIDDATASIZE = @as(u32, 128);
 
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const DTC_STATUS_ = enum(i32) {
-    UNKNOWN = 0,
-    STARTING = 1,
-    STARTED = 2,
-    PAUSING = 3,
-    PAUSED = 4,
-    CONTINUING = 5,
-    STOPPING = 6,
-    STOPPED = 7,
-    E_CANTCONTROL = 8,
-    FAILED = 9,
+pub const _DtcLu_CompareState = enum(i32) {
+    COMMITTED = 1,
+    HEURISTICCOMMITTED = 2,
+    HEURISTICMIXED = 3,
+    HEURISTICRESET = 4,
+    INDOUBT = 5,
+    RESET = 6,
 };
-pub const DTC_STATUS_UNKNOWN = DTC_STATUS_.UNKNOWN;
-pub const DTC_STATUS_STARTING = DTC_STATUS_.STARTING;
-pub const DTC_STATUS_STARTED = DTC_STATUS_.STARTED;
-pub const DTC_STATUS_PAUSING = DTC_STATUS_.PAUSING;
-pub const DTC_STATUS_PAUSED = DTC_STATUS_.PAUSED;
-pub const DTC_STATUS_CONTINUING = DTC_STATUS_.CONTINUING;
-pub const DTC_STATUS_STOPPING = DTC_STATUS_.STOPPING;
-pub const DTC_STATUS_STOPPED = DTC_STATUS_.STOPPED;
-pub const DTC_STATUS_E_CANTCONTROL = DTC_STATUS_.E_CANTCONTROL;
-pub const DTC_STATUS_FAILED = DTC_STATUS_.FAILED;
+pub const DTCLUCOMPARESTATE_COMMITTED = _DtcLu_CompareState.COMMITTED;
+pub const DTCLUCOMPARESTATE_HEURISTICCOMMITTED = _DtcLu_CompareState.HEURISTICCOMMITTED;
+pub const DTCLUCOMPARESTATE_HEURISTICMIXED = _DtcLu_CompareState.HEURISTICMIXED;
+pub const DTCLUCOMPARESTATE_HEURISTICRESET = _DtcLu_CompareState.HEURISTICRESET;
+pub const DTCLUCOMPARESTATE_INDOUBT = _DtcLu_CompareState.INDOUBT;
+pub const DTCLUCOMPARESTATE_RESET = _DtcLu_CompareState.RESET;
+
+pub const _DtcLu_CompareStates_Confirmation = enum(i32) {
+    CONFIRM = 1,
+    PROTOCOL = 2,
+};
+pub const DTCLUCOMPARESTATESCONFIRMATION_CONFIRM = _DtcLu_CompareStates_Confirmation.CONFIRM;
+pub const DTCLUCOMPARESTATESCONFIRMATION_PROTOCOL = _DtcLu_CompareStates_Confirmation.PROTOCOL;
+
+pub const _DtcLu_CompareStates_Error = enum(i32) {
+    L = 1,
+};
+pub const DTCLUCOMPARESTATESERROR_PROTOCOL = _DtcLu_CompareStates_Error.L;
+
+pub const _DtcLu_CompareStates_Response = enum(i32) {
+    OK = 1,
+    PROTOCOL = 2,
+};
+pub const DTCLUCOMPARESTATESRESPONSE_OK = _DtcLu_CompareStates_Response.OK;
+pub const DTCLUCOMPARESTATESRESPONSE_PROTOCOL = _DtcLu_CompareStates_Response.PROTOCOL;
+
+pub const _DtcLu_LocalRecovery_Work = enum(i32) {
+    CHECKLUSTATUS = 1,
+    TRANS = 2,
+    TMDOWN = 3,
+};
+pub const DTCINITIATEDRECOVERYWORK_CHECKLUSTATUS = _DtcLu_LocalRecovery_Work.CHECKLUSTATUS;
+pub const DTCINITIATEDRECOVERYWORK_TRANS = _DtcLu_LocalRecovery_Work.TRANS;
+pub const DTCINITIATEDRECOVERYWORK_TMDOWN = _DtcLu_LocalRecovery_Work.TMDOWN;
+
+pub const _DtcLu_Xln = enum(i32) {
+    COLD = 1,
+    WARM = 2,
+};
+pub const DTCLUXLN_COLD = _DtcLu_Xln.COLD;
+pub const DTCLUXLN_WARM = _DtcLu_Xln.WARM;
+
+pub const _DtcLu_Xln_Confirmation = enum(i32) {
+    CONFIRM = 1,
+    LOGNAMEMISMATCH = 2,
+    COLDWARMMISMATCH = 3,
+    OBSOLETE = 4,
+};
+pub const DTCLUXLNCONFIRMATION_CONFIRM = _DtcLu_Xln_Confirmation.CONFIRM;
+pub const DTCLUXLNCONFIRMATION_LOGNAMEMISMATCH = _DtcLu_Xln_Confirmation.LOGNAMEMISMATCH;
+pub const DTCLUXLNCONFIRMATION_COLDWARMMISMATCH = _DtcLu_Xln_Confirmation.COLDWARMMISMATCH;
+pub const DTCLUXLNCONFIRMATION_OBSOLETE = _DtcLu_Xln_Confirmation.OBSOLETE;
+
+pub const _DtcLu_Xln_Error = enum(i32) {
+    PROTOCOL = 1,
+    LOGNAMEMISMATCH = 2,
+    COLDWARMMISMATCH = 3,
+};
+pub const DTCLUXLNERROR_PROTOCOL = _DtcLu_Xln_Error.PROTOCOL;
+pub const DTCLUXLNERROR_LOGNAMEMISMATCH = _DtcLu_Xln_Error.LOGNAMEMISMATCH;
+pub const DTCLUXLNERROR_COLDWARMMISMATCH = _DtcLu_Xln_Error.COLDWARMMISMATCH;
+
+pub const _DtcLu_Xln_Response = enum(i32) {
+    OK_SENDOURXLNBACK = 1,
+    OK_SENDCONFIRMATION = 2,
+    LOGNAMEMISMATCH = 3,
+    COLDWARMMISMATCH = 4,
+};
+pub const DTCLUXLNRESPONSE_OK_SENDOURXLNBACK = _DtcLu_Xln_Response.OK_SENDOURXLNBACK;
+pub const DTCLUXLNRESPONSE_OK_SENDCONFIRMATION = _DtcLu_Xln_Response.OK_SENDCONFIRMATION;
+pub const DTCLUXLNRESPONSE_LOGNAMEMISMATCH = _DtcLu_Xln_Response.LOGNAMEMISMATCH;
+pub const DTCLUXLNRESPONSE_COLDWARMMISMATCH = _DtcLu_Xln_Response.COLDWARMMISMATCH;
+
+pub const _ProxyConfigParams = extern struct {
+    wcThreadsMax: u16,
+};
+
+pub const APPLICATIONTYPE = enum(i32) {
+    LOCAL_APPLICATIONTYPE = 0,
+    CLUSTERRESOURCE_APPLICATIONTYPE = 1,
+};
+pub const LOCAL_APPLICATIONTYPE = APPLICATIONTYPE.LOCAL_APPLICATIONTYPE;
+pub const CLUSTERRESOURCE_APPLICATIONTYPE = APPLICATIONTYPE.CLUSTERRESOURCE_APPLICATIONTYPE;
+
+pub const AUTHENTICATION_LEVEL = enum(i32) {
+    NO_AUTHENTICATION_REQUIRED = 0,
+    INCOMING_AUTHENTICATION_REQUIRED = 1,
+    MUTUAL_AUTHENTICATION_REQUIRED = 2,
+};
+pub const NO_AUTHENTICATION_REQUIRED = AUTHENTICATION_LEVEL.NO_AUTHENTICATION_REQUIRED;
+pub const INCOMING_AUTHENTICATION_REQUIRED = AUTHENTICATION_LEVEL.INCOMING_AUTHENTICATION_REQUIRED;
+pub const MUTUAL_AUTHENTICATION_REQUIRED = AUTHENTICATION_LEVEL.MUTUAL_AUTHENTICATION_REQUIRED;
+
+pub const BOID = extern struct {
+    rgb: [16]u8,
+};
 
 pub const DTC_GET_TRANSACTION_MANAGER = *const fn(
     pszHost: ?PSTR,
@@ -132,1811 +214,28 @@ pub const DTC_INSTALL_CLIENT = *const fn(
     i_dwOverwrite: u32,
 ) callconv(.winapi) HRESULT;
 
-pub const BOID = extern struct {
-    rgb: [16]u8,
-};
-
-pub const TX_MISC_CONSTANTS = enum(i32) {
-    C = 40,
-};
-pub const MAX_TRAN_DESC = TX_MISC_CONSTANTS.C;
-
-pub const ISOLATIONLEVEL = enum(i32) {
-    UNSPECIFIED = -1,
-    CHAOS = 16,
-    READUNCOMMITTED = 256,
-    CURSORSTABILITY = 4096,
-    REPEATABLEREAD = 65536,
-    SERIALIZABLE = 1048576,
-    pub const BROWSE = .READUNCOMMITTED;
-    pub const READCOMMITTED = .CURSORSTABILITY;
-    pub const ISOLATED = .SERIALIZABLE;
-};
-pub const ISOLATIONLEVEL_UNSPECIFIED = ISOLATIONLEVEL.UNSPECIFIED;
-pub const ISOLATIONLEVEL_CHAOS = ISOLATIONLEVEL.CHAOS;
-pub const ISOLATIONLEVEL_READUNCOMMITTED = ISOLATIONLEVEL.READUNCOMMITTED;
-pub const ISOLATIONLEVEL_BROWSE = ISOLATIONLEVEL.READUNCOMMITTED;
-pub const ISOLATIONLEVEL_CURSORSTABILITY = ISOLATIONLEVEL.CURSORSTABILITY;
-pub const ISOLATIONLEVEL_READCOMMITTED = ISOLATIONLEVEL.CURSORSTABILITY;
-pub const ISOLATIONLEVEL_REPEATABLEREAD = ISOLATIONLEVEL.REPEATABLEREAD;
-pub const ISOLATIONLEVEL_SERIALIZABLE = ISOLATIONLEVEL.SERIALIZABLE;
-pub const ISOLATIONLEVEL_ISOLATED = ISOLATIONLEVEL.SERIALIZABLE;
-
-pub const XACTTRANSINFO = extern struct {
-    uow: BOID,
-    isoLevel: i32,
-    isoFlags: u32,
-    grfTCSupported: u32,
-    grfRMSupported: u32,
-    grfTCSupportedRetaining: u32,
-    grfRMSupportedRetaining: u32,
-};
-
-pub const XACTSTATS = extern struct {
-    cOpen: u32,
-    cCommitting: u32,
-    cCommitted: u32,
-    cAborting: u32,
-    cAborted: u32,
-    cInDoubt: u32,
-    cHeuristicDecision: u32,
-    timeTransactionsUp: FILETIME,
-};
-
-pub const ISOFLAG = enum(i32) {
-    RETAIN_COMMIT_DC = 1,
-    RETAIN_COMMIT = 2,
-    RETAIN_COMMIT_NO = 3,
-    RETAIN_ABORT_DC = 4,
-    RETAIN_ABORT = 8,
-    RETAIN_ABORT_NO = 12,
-    RETAIN_DONTCARE = 5,
-    RETAIN_BOTH = 10,
-    RETAIN_NONE = 15,
-    OPTIMISTIC = 16,
-    READONLY = 32,
-};
-pub const ISOFLAG_RETAIN_COMMIT_DC = ISOFLAG.RETAIN_COMMIT_DC;
-pub const ISOFLAG_RETAIN_COMMIT = ISOFLAG.RETAIN_COMMIT;
-pub const ISOFLAG_RETAIN_COMMIT_NO = ISOFLAG.RETAIN_COMMIT_NO;
-pub const ISOFLAG_RETAIN_ABORT_DC = ISOFLAG.RETAIN_ABORT_DC;
-pub const ISOFLAG_RETAIN_ABORT = ISOFLAG.RETAIN_ABORT;
-pub const ISOFLAG_RETAIN_ABORT_NO = ISOFLAG.RETAIN_ABORT_NO;
-pub const ISOFLAG_RETAIN_DONTCARE = ISOFLAG.RETAIN_DONTCARE;
-pub const ISOFLAG_RETAIN_BOTH = ISOFLAG.RETAIN_BOTH;
-pub const ISOFLAG_RETAIN_NONE = ISOFLAG.RETAIN_NONE;
-pub const ISOFLAG_OPTIMISTIC = ISOFLAG.OPTIMISTIC;
-pub const ISOFLAG_READONLY = ISOFLAG.READONLY;
-
-pub const XACTTC = enum(i32) {
-    NONE = 0,
-    SYNC_PHASEONE = 1,
-    SYNC_PHASETWO = 2,
-    ASYNC_PHASEONE = 4,
-    pub const SYNC = .SYNC_PHASETWO;
-    pub const ASYNC = .ASYNC_PHASEONE;
-};
-pub const XACTTC_NONE = XACTTC.NONE;
-pub const XACTTC_SYNC_PHASEONE = XACTTC.SYNC_PHASEONE;
-pub const XACTTC_SYNC_PHASETWO = XACTTC.SYNC_PHASETWO;
-pub const XACTTC_SYNC = XACTTC.SYNC_PHASETWO;
-pub const XACTTC_ASYNC_PHASEONE = XACTTC.ASYNC_PHASEONE;
-pub const XACTTC_ASYNC = XACTTC.ASYNC_PHASEONE;
-
-pub const XACTRM = enum(i32) {
-    OPTIMISTICLASTWINS = 1,
-    NOREADONLYPREPARES = 2,
-};
-pub const XACTRM_OPTIMISTICLASTWINS = XACTRM.OPTIMISTICLASTWINS;
-pub const XACTRM_NOREADONLYPREPARES = XACTRM.NOREADONLYPREPARES;
-
-pub const XACTCONST = enum(i32) {
-    E = 0,
-};
-pub const XACTCONST_TIMEOUTINFINITE = XACTCONST.E;
-
-pub const XACTHEURISTIC = enum(i32) {
-    ABORT = 1,
-    COMMIT = 2,
-    DAMAGE = 3,
-    DANGER = 4,
-};
-pub const XACTHEURISTIC_ABORT = XACTHEURISTIC.ABORT;
-pub const XACTHEURISTIC_COMMIT = XACTHEURISTIC.COMMIT;
-pub const XACTHEURISTIC_DAMAGE = XACTHEURISTIC.DAMAGE;
-pub const XACTHEURISTIC_DANGER = XACTHEURISTIC.DANGER;
-
-pub const XACTSTAT = enum(i32) {
-    NONE = 0,
-    OPENNORMAL = 1,
-    OPENREFUSED = 2,
-    PREPARING = 4,
-    PREPARED = 8,
-    PREPARERETAINING = 16,
-    PREPARERETAINED = 32,
-    COMMITTING = 64,
-    COMMITRETAINING = 128,
-    ABORTING = 256,
-    ABORTED = 512,
-    COMMITTED = 1024,
-    HEURISTIC_ABORT = 2048,
-    HEURISTIC_COMMIT = 4096,
-    HEURISTIC_DAMAGE = 8192,
-    HEURISTIC_DANGER = 16384,
-    FORCED_ABORT = 32768,
-    FORCED_COMMIT = 65536,
-    INDOUBT = 131072,
-    CLOSED = 262144,
-    OPEN = 3,
-    NOTPREPARED = 524227,
-    ALL = 524287,
-};
-pub const XACTSTAT_NONE = XACTSTAT.NONE;
-pub const XACTSTAT_OPENNORMAL = XACTSTAT.OPENNORMAL;
-pub const XACTSTAT_OPENREFUSED = XACTSTAT.OPENREFUSED;
-pub const XACTSTAT_PREPARING = XACTSTAT.PREPARING;
-pub const XACTSTAT_PREPARED = XACTSTAT.PREPARED;
-pub const XACTSTAT_PREPARERETAINING = XACTSTAT.PREPARERETAINING;
-pub const XACTSTAT_PREPARERETAINED = XACTSTAT.PREPARERETAINED;
-pub const XACTSTAT_COMMITTING = XACTSTAT.COMMITTING;
-pub const XACTSTAT_COMMITRETAINING = XACTSTAT.COMMITRETAINING;
-pub const XACTSTAT_ABORTING = XACTSTAT.ABORTING;
-pub const XACTSTAT_ABORTED = XACTSTAT.ABORTED;
-pub const XACTSTAT_COMMITTED = XACTSTAT.COMMITTED;
-pub const XACTSTAT_HEURISTIC_ABORT = XACTSTAT.HEURISTIC_ABORT;
-pub const XACTSTAT_HEURISTIC_COMMIT = XACTSTAT.HEURISTIC_COMMIT;
-pub const XACTSTAT_HEURISTIC_DAMAGE = XACTSTAT.HEURISTIC_DAMAGE;
-pub const XACTSTAT_HEURISTIC_DANGER = XACTSTAT.HEURISTIC_DANGER;
-pub const XACTSTAT_FORCED_ABORT = XACTSTAT.FORCED_ABORT;
-pub const XACTSTAT_FORCED_COMMIT = XACTSTAT.FORCED_COMMIT;
-pub const XACTSTAT_INDOUBT = XACTSTAT.INDOUBT;
-pub const XACTSTAT_CLOSED = XACTSTAT.CLOSED;
-pub const XACTSTAT_OPEN = XACTSTAT.OPEN;
-pub const XACTSTAT_NOTPREPARED = XACTSTAT.NOTPREPARED;
-pub const XACTSTAT_ALL = XACTSTAT.ALL;
-
-pub const XACTOPT = extern struct {
-    ulTimeout: u32,
-    szDescription: [40]u8,
-};
-
-const IID_ITransaction_Value = Guid.initString("0fb15084-af41-11ce-bd2b-204c4f4f5020");
-pub const IID_ITransaction = &IID_ITransaction_Value;
-pub const ITransaction = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Commit: *const fn(
-            self: *const ITransaction,
-            fRetaining: BOOL,
-            grfTC: u32,
-            grfRM: u32,
-        ) callconv(.winapi) HRESULT,
-        Abort: *const fn(
-            self: *const ITransaction,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            fAsync: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetTransactionInfo: *const fn(
-            self: *const ITransaction,
-            pinfo: ?*XACTTRANSINFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Commit(self: *const ITransaction, fRetaining: BOOL, grfTC: u32, grfRM: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self, fRetaining, grfTC, grfRM);
-    }
-    pub fn Abort(self: *const ITransaction, pboidReason: ?*BOID, fRetaining: BOOL, fAsync: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Abort(self, pboidReason, fRetaining, fAsync);
-    }
-    pub fn GetTransactionInfo(self: *const ITransaction, pinfo: ?*XACTTRANSINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransactionInfo(self, pinfo);
-    }
-};
-
-const IID_ITransactionCloner_Value = Guid.initString("02656950-2152-11d0-944c-00a0c905416e");
-pub const IID_ITransactionCloner = &IID_ITransactionCloner_Value;
-pub const ITransactionCloner = extern union {
-    pub const VTable = extern struct {
-        base: ITransaction.VTable,
-        CloneWithCommitDisabled: *const fn(
-            self: *const ITransactionCloner,
-            ppITransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITransaction: ITransaction,
-    IUnknown: IUnknown,
-    pub fn CloneWithCommitDisabled(self: *const ITransactionCloner, ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.CloneWithCommitDisabled(self, ppITransaction);
-    }
-};
-
-const IID_ITransaction2_Value = Guid.initString("34021548-0065-11d3-bac1-00c04f797be2");
-pub const IID_ITransaction2 = &IID_ITransaction2_Value;
-pub const ITransaction2 = extern union {
-    pub const VTable = extern struct {
-        base: ITransactionCloner.VTable,
-        GetTransactionInfo2: *const fn(
-            self: *const ITransaction2,
-            pinfo: ?*XACTTRANSINFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITransactionCloner: ITransactionCloner,
-    ITransaction: ITransaction,
-    IUnknown: IUnknown,
-    pub fn GetTransactionInfo2(self: *const ITransaction2, pinfo: ?*XACTTRANSINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransactionInfo2(self, pinfo);
-    }
-};
-
-const IID_ITransactionDispenser_Value = Guid.initString("3a6ad9e1-23b9-11cf-ad60-00aa00a74ccd");
-pub const IID_ITransactionDispenser = &IID_ITransactionDispenser_Value;
-pub const ITransactionDispenser = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOptionsObject: *const fn(
-            self: *const ITransactionDispenser,
-            ppOptions: ?*?*ITransactionOptions,
-        ) callconv(.winapi) HRESULT,
-        BeginTransaction: *const fn(
-            self: *const ITransactionDispenser,
-            punkOuter: ?*IUnknown,
-            isoLevel: i32,
-            isoFlags: u32,
-            pOptions: ?*ITransactionOptions,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetOptionsObject(self: *const ITransactionDispenser, ppOptions: ?*?*ITransactionOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOptionsObject(self, ppOptions);
-    }
-    pub fn BeginTransaction(self: *const ITransactionDispenser, punkOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginTransaction(self, punkOuter, isoLevel, isoFlags, pOptions, ppTransaction);
-    }
-};
-
-const IID_ITransactionOptions_Value = Guid.initString("3a6ad9e0-23b9-11cf-ad60-00aa00a74ccd");
-pub const IID_ITransactionOptions = &IID_ITransactionOptions_Value;
-pub const ITransactionOptions = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetOptions: *const fn(
-            self: *const ITransactionOptions,
-            pOptions: ?*XACTOPT,
-        ) callconv(.winapi) HRESULT,
-        GetOptions: *const fn(
-            self: *const ITransactionOptions,
-            pOptions: ?*XACTOPT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetOptions(self, pOptions);
-    }
-    pub fn GetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOptions(self, pOptions);
-    }
-};
-
-const IID_ITransactionOutcomeEvents_Value = Guid.initString("3a6ad9e2-23b9-11cf-ad60-00aa00a74ccd");
-pub const IID_ITransactionOutcomeEvents = &IID_ITransactionOutcomeEvents_Value;
-pub const ITransactionOutcomeEvents = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Committed: *const fn(
-            self: *const ITransactionOutcomeEvents,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-            hr: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        Aborted: *const fn(
-            self: *const ITransactionOutcomeEvents,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-            hr: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        HeuristicDecision: *const fn(
-            self: *const ITransactionOutcomeEvents,
-            dwDecision: u32,
-            pboidReason: ?*BOID,
-            hr: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        Indoubt: *const fn(
-            self: *const ITransactionOutcomeEvents,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Committed(self: *const ITransactionOutcomeEvents, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.Committed(self, fRetaining, pNewUOW, hr);
-    }
-    pub fn Aborted(self: *const ITransactionOutcomeEvents, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.Aborted(self, pboidReason, fRetaining, pNewUOW, hr);
-    }
-    pub fn HeuristicDecision(self: *const ITransactionOutcomeEvents, dwDecision: u32, pboidReason: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.HeuristicDecision(self, dwDecision, pboidReason, hr);
-    }
-    pub fn Indoubt(self: *const ITransactionOutcomeEvents) callconv(.@"inline") HRESULT {
-        return self.vtable.Indoubt(self);
-    }
-};
-
-const IID_ITmNodeName_Value = Guid.initString("30274f88-6ee4-474e-9b95-7807bc9ef8cf");
-pub const IID_ITmNodeName = &IID_ITmNodeName_Value;
-pub const ITmNodeName = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNodeNameSize: *const fn(
-            self: *const ITmNodeName,
-            pcbNodeNameSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetNodeName: *const fn(
-            self: *const ITmNodeName,
-            cbNodeNameBufferSize: u32,
-            pNodeNameBuffer: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNodeNameSize(self: *const ITmNodeName, pcbNodeNameSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNodeNameSize(self, pcbNodeNameSize);
-    }
-    pub fn GetNodeName(self: *const ITmNodeName, cbNodeNameBufferSize: u32, pNodeNameBuffer: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNodeName(self, cbNodeNameBufferSize, pNodeNameBuffer);
-    }
-};
-
-const IID_IKernelTransaction_Value = Guid.initString("79427a2b-f895-40e0-be79-b57dc82ed231");
-pub const IID_IKernelTransaction = &IID_IKernelTransaction_Value;
-pub const IKernelTransaction = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetHandle: *const fn(
-            self: *const IKernelTransaction,
-            pHandle: ?*?HANDLE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetHandle(self: *const IKernelTransaction, pHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHandle(self, pHandle);
-    }
-};
-
-const IID_ITransactionResourceAsync_Value = Guid.initString("69e971f0-23ce-11cf-ad60-00aa00a74ccd");
-pub const IID_ITransactionResourceAsync = &IID_ITransactionResourceAsync_Value;
-pub const ITransactionResourceAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PrepareRequest: *const fn(
-            self: *const ITransactionResourceAsync,
-            fRetaining: BOOL,
-            grfRM: u32,
-            fWantMoniker: BOOL,
-            fSinglePhase: BOOL,
-        ) callconv(.winapi) HRESULT,
-        CommitRequest: *const fn(
-            self: *const ITransactionResourceAsync,
-            grfRM: u32,
-            pNewUOW: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-        AbortRequest: *const fn(
-            self: *const ITransactionResourceAsync,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-        TMDown: *const fn(
-            self: *const ITransactionResourceAsync,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PrepareRequest(self: *const ITransactionResourceAsync, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.PrepareRequest(self, fRetaining, grfRM, fWantMoniker, fSinglePhase);
-    }
-    pub fn CommitRequest(self: *const ITransactionResourceAsync, grfRM: u32, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitRequest(self, grfRM, pNewUOW);
-    }
-    pub fn AbortRequest(self: *const ITransactionResourceAsync, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.AbortRequest(self, pboidReason, fRetaining, pNewUOW);
-    }
-    pub fn TMDown(self: *const ITransactionResourceAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.TMDown(self);
-    }
-};
-
-const IID_ITransactionLastResourceAsync_Value = Guid.initString("c82bd532-5b30-11d3-8a91-00c04f79eb6d");
-pub const IID_ITransactionLastResourceAsync = &IID_ITransactionLastResourceAsync_Value;
-pub const ITransactionLastResourceAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DelegateCommit: *const fn(
-            self: *const ITransactionLastResourceAsync,
-            grfRM: u32,
-        ) callconv(.winapi) HRESULT,
-        ForgetRequest: *const fn(
-            self: *const ITransactionLastResourceAsync,
-            pNewUOW: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DelegateCommit(self: *const ITransactionLastResourceAsync, grfRM: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DelegateCommit(self, grfRM);
-    }
-    pub fn ForgetRequest(self: *const ITransactionLastResourceAsync, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.ForgetRequest(self, pNewUOW);
-    }
-};
-
-const IID_ITransactionResource_Value = Guid.initString("ee5ff7b3-4572-11d0-9452-00a0c905416e");
-pub const IID_ITransactionResource = &IID_ITransactionResource_Value;
-pub const ITransactionResource = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PrepareRequest: *const fn(
-            self: *const ITransactionResource,
-            fRetaining: BOOL,
-            grfRM: u32,
-            fWantMoniker: BOOL,
-            fSinglePhase: BOOL,
-        ) callconv(.winapi) HRESULT,
-        CommitRequest: *const fn(
-            self: *const ITransactionResource,
-            grfRM: u32,
-            pNewUOW: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-        AbortRequest: *const fn(
-            self: *const ITransactionResource,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-        TMDown: *const fn(
-            self: *const ITransactionResource,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PrepareRequest(self: *const ITransactionResource, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.PrepareRequest(self, fRetaining, grfRM, fWantMoniker, fSinglePhase);
-    }
-    pub fn CommitRequest(self: *const ITransactionResource, grfRM: u32, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitRequest(self, grfRM, pNewUOW);
-    }
-    pub fn AbortRequest(self: *const ITransactionResource, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.AbortRequest(self, pboidReason, fRetaining, pNewUOW);
-    }
-    pub fn TMDown(self: *const ITransactionResource) callconv(.@"inline") HRESULT {
-        return self.vtable.TMDown(self);
-    }
-};
-
-const IID_ITransactionEnlistmentAsync_Value = Guid.initString("0fb15081-af41-11ce-bd2b-204c4f4f5020");
-pub const IID_ITransactionEnlistmentAsync = &IID_ITransactionEnlistmentAsync_Value;
-pub const ITransactionEnlistmentAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PrepareRequestDone: *const fn(
-            self: *const ITransactionEnlistmentAsync,
-            hr: HRESULT,
-            pmk: ?*IMoniker,
-            pboidReason: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-        CommitRequestDone: *const fn(
-            self: *const ITransactionEnlistmentAsync,
-            hr: HRESULT,
-        ) callconv(.winapi) HRESULT,
-        AbortRequestDone: *const fn(
-            self: *const ITransactionEnlistmentAsync,
-            hr: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PrepareRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT, pmk: ?*IMoniker, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.PrepareRequestDone(self, hr, pmk, pboidReason);
-    }
-    pub fn CommitRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.CommitRequestDone(self, hr);
-    }
-    pub fn AbortRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.AbortRequestDone(self, hr);
-    }
-};
-
-const IID_ITransactionLastEnlistmentAsync_Value = Guid.initString("c82bd533-5b30-11d3-8a91-00c04f79eb6d");
-pub const IID_ITransactionLastEnlistmentAsync = &IID_ITransactionLastEnlistmentAsync_Value;
-pub const ITransactionLastEnlistmentAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        TransactionOutcome: *const fn(
-            self: *const ITransactionLastEnlistmentAsync,
-            XactStat: XACTSTAT,
-            pboidReason: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn TransactionOutcome(self: *const ITransactionLastEnlistmentAsync, XactStat: XACTSTAT, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.TransactionOutcome(self, XactStat, pboidReason);
-    }
-};
-
-const IID_ITransactionExportFactory_Value = Guid.initString("e1cf9b53-8745-11ce-a9ba-00aa006c3706");
-pub const IID_ITransactionExportFactory = &IID_ITransactionExportFactory_Value;
-pub const ITransactionExportFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRemoteClassId: *const fn(
-            self: *const ITransactionExportFactory,
-            pclsid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        Create: *const fn(
-            self: *const ITransactionExportFactory,
-            cbWhereabouts: u32,
-            rgbWhereabouts: [*:0]u8,
-            ppExport: ?*?*ITransactionExport,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRemoteClassId(self: *const ITransactionExportFactory, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRemoteClassId(self, pclsid);
-    }
-    pub fn Create(self: *const ITransactionExportFactory, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, ppExport: ?*?*ITransactionExport) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, cbWhereabouts, rgbWhereabouts, ppExport);
-    }
-};
-
-const IID_ITransactionImportWhereabouts_Value = Guid.initString("0141fda4-8fc0-11ce-bd18-204c4f4f5020");
-pub const IID_ITransactionImportWhereabouts = &IID_ITransactionImportWhereabouts_Value;
-pub const ITransactionImportWhereabouts = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWhereaboutsSize: *const fn(
-            self: *const ITransactionImportWhereabouts,
-            pcbWhereabouts: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetWhereabouts: *const fn(
-            self: *const ITransactionImportWhereabouts,
-            cbWhereabouts: u32,
-            rgbWhereabouts: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetWhereaboutsSize(self: *const ITransactionImportWhereabouts, pcbWhereabouts: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWhereaboutsSize(self, pcbWhereabouts);
-    }
-    pub fn GetWhereabouts(self: *const ITransactionImportWhereabouts, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWhereabouts(self, cbWhereabouts, rgbWhereabouts, pcbUsed);
-    }
-};
-
-const IID_ITransactionExport_Value = Guid.initString("0141fda5-8fc0-11ce-bd18-204c4f4f5020");
-pub const IID_ITransactionExport = &IID_ITransactionExport_Value;
-pub const ITransactionExport = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Export: *const fn(
-            self: *const ITransactionExport,
-            punkTransaction: ?*IUnknown,
-            pcbTransactionCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetTransactionCookie: *const fn(
-            self: *const ITransactionExport,
-            punkTransaction: ?*IUnknown,
-            cbTransactionCookie: u32,
-            rgbTransactionCookie: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Export(self: *const ITransactionExport, punkTransaction: ?*IUnknown, pcbTransactionCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Export(self, punkTransaction, pcbTransactionCookie);
-    }
-    pub fn GetTransactionCookie(self: *const ITransactionExport, punkTransaction: ?*IUnknown, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransactionCookie(self, punkTransaction, cbTransactionCookie, rgbTransactionCookie, pcbUsed);
-    }
-};
-
-const IID_ITransactionImport_Value = Guid.initString("e1cf9b5a-8745-11ce-a9ba-00aa006c3706");
-pub const IID_ITransactionImport = &IID_ITransactionImport_Value;
-pub const ITransactionImport = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Import: *const fn(
-            self: *const ITransactionImport,
-            cbTransactionCookie: u32,
-            rgbTransactionCookie: [*:0]u8,
-            piid: ?*const Guid,
-            ppvTransaction: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Import(self: *const ITransactionImport, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.Import(self, cbTransactionCookie, rgbTransactionCookie, piid, ppvTransaction);
-    }
-};
-
-const IID_ITipTransaction_Value = Guid.initString("17cf72d0-bac5-11d1-b1bf-00c04fc2f3ef");
-pub const IID_ITipTransaction = &IID_ITipTransaction_Value;
-pub const ITipTransaction = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Push: *const fn(
-            self: *const ITipTransaction,
-            i_pszRemoteTmUrl: ?*u8,
-            o_ppszRemoteTxUrl: ?*?PSTR,
-        ) callconv(.winapi) HRESULT,
-        GetTransactionUrl: *const fn(
-            self: *const ITipTransaction,
-            o_ppszLocalTxUrl: ?*?PSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Push(self: *const ITipTransaction, i_pszRemoteTmUrl: ?*u8, o_ppszRemoteTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Push(self, i_pszRemoteTmUrl, o_ppszRemoteTxUrl);
-    }
-    pub fn GetTransactionUrl(self: *const ITipTransaction, o_ppszLocalTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransactionUrl(self, o_ppszLocalTxUrl);
-    }
-};
-
-const IID_ITipHelper_Value = Guid.initString("17cf72d1-bac5-11d1-b1bf-00c04fc2f3ef");
-pub const IID_ITipHelper = &IID_ITipHelper_Value;
-pub const ITipHelper = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Pull: *const fn(
-            self: *const ITipHelper,
-            i_pszTxUrl: ?*u8,
-            o_ppITransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-        PullAsync: *const fn(
-            self: *const ITipHelper,
-            i_pszTxUrl: ?*u8,
-            i_pTipPullSink: ?*ITipPullSink,
-            o_ppITransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-        GetLocalTmUrl: *const fn(
-            self: *const ITipHelper,
-            o_ppszLocalTmUrl: ?*?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Pull(self: *const ITipHelper, i_pszTxUrl: ?*u8, o_ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.Pull(self, i_pszTxUrl, o_ppITransaction);
-    }
-    pub fn PullAsync(self: *const ITipHelper, i_pszTxUrl: ?*u8, i_pTipPullSink: ?*ITipPullSink, o_ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.PullAsync(self, i_pszTxUrl, i_pTipPullSink, o_ppITransaction);
-    }
-    pub fn GetLocalTmUrl(self: *const ITipHelper, o_ppszLocalTmUrl: ?*?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalTmUrl(self, o_ppszLocalTmUrl);
-    }
-};
-
-const IID_ITipPullSink_Value = Guid.initString("17cf72d2-bac5-11d1-b1bf-00c04fc2f3ef");
-pub const IID_ITipPullSink = &IID_ITipPullSink_Value;
-pub const ITipPullSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PullComplete: *const fn(
-            self: *const ITipPullSink,
-            i_hrPull: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PullComplete(self: *const ITipPullSink, i_hrPull: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.PullComplete(self, i_hrPull);
-    }
-};
-
-const IID_IDtcNetworkAccessConfig_Value = Guid.initString("9797c15d-a428-4291-87b6-0995031a678d");
-pub const IID_IDtcNetworkAccessConfig = &IID_IDtcNetworkAccessConfig_Value;
-pub const IDtcNetworkAccessConfig = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAnyNetworkAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbAnyNetworkAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetAnyNetworkAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            bAnyNetworkAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkAdministrationAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkAdministrationAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkAdministrationAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkAdministrationAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkTransactionAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkTransactionAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkTransactionAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkTransactionAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkClientAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkClientAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkClientAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkClientAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkTIPAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkTIPAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkTIPAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkTIPAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetXAAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbXAAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetXAAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-            bXAAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-        RestartDtcService: *const fn(
-            self: *const IDtcNetworkAccessConfig,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, pbAnyNetworkAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAnyNetworkAccess(self, pbAnyNetworkAccess);
-    }
-    pub fn SetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, bAnyNetworkAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAnyNetworkAccess(self, bAnyNetworkAccess);
-    }
-    pub fn GetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, pbNetworkAdministrationAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkAdministrationAccess(self, pbNetworkAdministrationAccess);
-    }
-    pub fn SetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, bNetworkAdministrationAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkAdministrationAccess(self, bNetworkAdministrationAccess);
-    }
-    pub fn GetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTransactionAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkTransactionAccess(self, pbNetworkTransactionAccess);
-    }
-    pub fn SetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, bNetworkTransactionAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkTransactionAccess(self, bNetworkTransactionAccess);
-    }
-    pub fn GetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, pbNetworkClientAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkClientAccess(self, pbNetworkClientAccess);
-    }
-    pub fn SetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, bNetworkClientAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkClientAccess(self, bNetworkClientAccess);
-    }
-    pub fn GetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTIPAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkTIPAccess(self, pbNetworkTIPAccess);
-    }
-    pub fn SetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, bNetworkTIPAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkTIPAccess(self, bNetworkTIPAccess);
-    }
-    pub fn GetXAAccess(self: *const IDtcNetworkAccessConfig, pbXAAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetXAAccess(self, pbXAAccess);
-    }
-    pub fn SetXAAccess(self: *const IDtcNetworkAccessConfig, bXAAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetXAAccess(self, bXAAccess);
-    }
-    pub fn RestartDtcService(self: *const IDtcNetworkAccessConfig) callconv(.@"inline") HRESULT {
-        return self.vtable.RestartDtcService(self);
-    }
-};
-
-pub const AUTHENTICATION_LEVEL = enum(i32) {
-    NO_AUTHENTICATION_REQUIRED = 0,
-    INCOMING_AUTHENTICATION_REQUIRED = 1,
-    MUTUAL_AUTHENTICATION_REQUIRED = 2,
-};
-pub const NO_AUTHENTICATION_REQUIRED = AUTHENTICATION_LEVEL.NO_AUTHENTICATION_REQUIRED;
-pub const INCOMING_AUTHENTICATION_REQUIRED = AUTHENTICATION_LEVEL.INCOMING_AUTHENTICATION_REQUIRED;
-pub const MUTUAL_AUTHENTICATION_REQUIRED = AUTHENTICATION_LEVEL.MUTUAL_AUTHENTICATION_REQUIRED;
-
-const IID_IDtcNetworkAccessConfig2_Value = Guid.initString("a7aa013b-eb7d-4f42-b41c-b2dec09ae034");
-pub const IID_IDtcNetworkAccessConfig2 = &IID_IDtcNetworkAccessConfig2_Value;
-pub const IDtcNetworkAccessConfig2 = extern union {
-    pub const VTable = extern struct {
-        base: IDtcNetworkAccessConfig.VTable,
-        GetNetworkInboundAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig2,
-            pbInbound: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetNetworkOutboundAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig2,
-            pbOutbound: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkInboundAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig2,
-            bInbound: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetNetworkOutboundAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig2,
-            bOutbound: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetAuthenticationLevel: *const fn(
-            self: *const IDtcNetworkAccessConfig2,
-            pAuthLevel: ?*AUTHENTICATION_LEVEL,
-        ) callconv(.winapi) HRESULT,
-        SetAuthenticationLevel: *const fn(
-            self: *const IDtcNetworkAccessConfig2,
-            AuthLevel: AUTHENTICATION_LEVEL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDtcNetworkAccessConfig: IDtcNetworkAccessConfig,
-    IUnknown: IUnknown,
-    pub fn GetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, pbInbound: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkInboundAccess(self, pbInbound);
-    }
-    pub fn GetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, pbOutbound: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNetworkOutboundAccess(self, pbOutbound);
-    }
-    pub fn SetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, bInbound: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkInboundAccess(self, bInbound);
-    }
-    pub fn SetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, bOutbound: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetNetworkOutboundAccess(self, bOutbound);
-    }
-    pub fn GetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, pAuthLevel: ?*AUTHENTICATION_LEVEL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAuthenticationLevel(self, pAuthLevel);
-    }
-    pub fn SetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, AuthLevel: AUTHENTICATION_LEVEL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAuthenticationLevel(self, AuthLevel);
-    }
-};
-
-const IID_IDtcNetworkAccessConfig3_Value = Guid.initString("76e4b4f3-2ca5-466b-89d5-fd218ee75b49");
-pub const IID_IDtcNetworkAccessConfig3 = &IID_IDtcNetworkAccessConfig3_Value;
-pub const IDtcNetworkAccessConfig3 = extern union {
-    pub const VTable = extern struct {
-        base: IDtcNetworkAccessConfig2.VTable,
-        GetLUAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig3,
-            pbLUAccess: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetLUAccess: *const fn(
-            self: *const IDtcNetworkAccessConfig3,
-            bLUAccess: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDtcNetworkAccessConfig2: IDtcNetworkAccessConfig2,
-    IDtcNetworkAccessConfig: IDtcNetworkAccessConfig,
-    IUnknown: IUnknown,
-    pub fn GetLUAccess(self: *const IDtcNetworkAccessConfig3, pbLUAccess: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLUAccess(self, pbLUAccess);
-    }
-    pub fn SetLUAccess(self: *const IDtcNetworkAccessConfig3, bLUAccess: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLUAccess(self, bLUAccess);
-    }
-};
-
-pub const xid_t = extern struct {
-    formatID: i32,
-    gtrid_length: i32,
-    bqual_length: i32,
-    data: [128]CHAR,
-};
-
-pub const xa_switch_t = extern struct {
-    name: [32]CHAR,
-    flags: i32,
-    version: i32,
-    xa_open_entry: isize,
-    xa_close_entry: isize,
-    xa_start_entry: isize,
-    xa_end_entry: isize,
-    xa_rollback_entry: isize,
-    xa_prepare_entry: isize,
-    xa_commit_entry: isize,
-    xa_recover_entry: isize,
-    xa_forget_entry: isize,
-    xa_complete_entry: isize,
-};
-
-pub const XA_OPEN_EPT = *const fn(
-    param0: ?PSTR,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_CLOSE_EPT = *const fn(
-    param0: ?PSTR,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_START_EPT = *const fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_END_EPT = *const fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_ROLLBACK_EPT = *const fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_PREPARE_EPT = *const fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_COMMIT_EPT = *const fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_RECOVER_EPT = *const fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-    param3: i32,
-) callconv(.winapi) i32;
-
-pub const XA_FORGET_EPT = *const fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(.winapi) i32;
-
-pub const XA_COMPLETE_EPT = *const fn(
-    param0: ?*i32,
-    param1: ?*i32,
-    param2: i32,
-    param3: i32,
-) callconv(.winapi) i32;
-
-const IID_IDtcToXaMapper_Value = Guid.initString("64ffabe0-7ce9-11d0-8ce6-00c04fdc877e");
-pub const IID_IDtcToXaMapper = &IID_IDtcToXaMapper_Value;
-pub const IDtcToXaMapper = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RequestNewResourceManager: *const fn(
-            self: *const IDtcToXaMapper,
-            pszDSN: ?PSTR,
-            pszClientDllName: ?PSTR,
-            pdwRMCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        TranslateTridToXid: *const fn(
-            self: *const IDtcToXaMapper,
-            pdwITransaction: ?*u32,
-            dwRMCookie: u32,
-            pXid: ?*xid_t,
-        ) callconv(.winapi) HRESULT,
-        EnlistResourceManager: *const fn(
-            self: *const IDtcToXaMapper,
-            dwRMCookie: u32,
-            pdwITransaction: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ReleaseResourceManager: *const fn(
-            self: *const IDtcToXaMapper,
-            dwRMCookie: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RequestNewResourceManager(self: *const IDtcToXaMapper, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RequestNewResourceManager(self, pszDSN, pszClientDllName, pdwRMCookie);
-    }
-    pub fn TranslateTridToXid(self: *const IDtcToXaMapper, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
-        return self.vtable.TranslateTridToXid(self, pdwITransaction, dwRMCookie, pXid);
-    }
-    pub fn EnlistResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32, pdwITransaction: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.EnlistResourceManager(self, dwRMCookie, pdwITransaction);
-    }
-    pub fn ReleaseResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseResourceManager(self, dwRMCookie);
-    }
-};
-
-const IID_IDtcToXaHelperFactory_Value = Guid.initString("a9861610-304a-11d1-9813-00a0c905416e");
-pub const IID_IDtcToXaHelperFactory = &IID_IDtcToXaHelperFactory_Value;
-pub const IDtcToXaHelperFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IDtcToXaHelperFactory,
-            pszDSN: ?PSTR,
-            pszClientDllName: ?PSTR,
-            pguidRm: ?*Guid,
-            ppXaHelper: ?*?*IDtcToXaHelper,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcToXaHelperFactory, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pguidRm: ?*Guid, ppXaHelper: ?*?*IDtcToXaHelper) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, pszDSN, pszClientDllName, pguidRm, ppXaHelper);
-    }
-};
-
-const IID_IDtcToXaHelper_Value = Guid.initString("a9861611-304a-11d1-9813-00a0c905416e");
-pub const IID_IDtcToXaHelper = &IID_IDtcToXaHelper_Value;
-pub const IDtcToXaHelper = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Close: *const fn(
-            self: *const IDtcToXaHelper,
-            i_fDoRecovery: BOOL,
-        ) callconv(.winapi) HRESULT,
-        TranslateTridToXid: *const fn(
-            self: *const IDtcToXaHelper,
-            pITransaction: ?*ITransaction,
-            pguidBqual: ?*Guid,
-            pXid: ?*xid_t,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Close(self: *const IDtcToXaHelper, i_fDoRecovery: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self, i_fDoRecovery);
-    }
-    pub fn TranslateTridToXid(self: *const IDtcToXaHelper, pITransaction: ?*ITransaction, pguidBqual: ?*Guid, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
-        return self.vtable.TranslateTridToXid(self, pITransaction, pguidBqual, pXid);
-    }
-};
-
-const IID_IDtcToXaHelperSinglePipe_Value = Guid.initString("47ed4971-53b3-11d1-bbb9-00c04fd658f6");
-pub const IID_IDtcToXaHelperSinglePipe = &IID_IDtcToXaHelperSinglePipe_Value;
-pub const IDtcToXaHelperSinglePipe = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        XARMCreate: *const fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            pszDSN: ?PSTR,
-            pszClientDll: ?PSTR,
-            pdwRMCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertTridToXID: *const fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            pdwITrans: ?*u32,
-            dwRMCookie: u32,
-            pxid: ?*xid_t,
-        ) callconv(.winapi) HRESULT,
-        EnlistWithRM: *const fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            dwRMCookie: u32,
-            i_pITransaction: ?*ITransaction,
-            i_pITransRes: ?*ITransactionResourceAsync,
-            o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-        ReleaseRMCookie: *const fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            i_dwRMCookie: u32,
-            i_fNormal: BOOL,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn XARMCreate(self: *const IDtcToXaHelperSinglePipe, pszDSN: ?PSTR, pszClientDll: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.XARMCreate(self, pszDSN, pszClientDll, pdwRMCookie);
-    }
-    pub fn ConvertTridToXID(self: *const IDtcToXaHelperSinglePipe, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*xid_t) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertTridToXID(self, pdwITrans, dwRMCookie, pxid);
-    }
-    pub fn EnlistWithRM(self: *const IDtcToXaHelperSinglePipe, dwRMCookie: u32, i_pITransaction: ?*ITransaction, i_pITransRes: ?*ITransactionResourceAsync, o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.EnlistWithRM(self, dwRMCookie, i_pITransaction, i_pITransRes, o_ppITransEnslitment);
-    }
-    pub fn ReleaseRMCookie(self: *const IDtcToXaHelperSinglePipe, i_dwRMCookie: u32, i_fNormal: BOOL) callconv(.@"inline") void {
-        return self.vtable.ReleaseRMCookie(self, i_dwRMCookie, i_fNormal);
-    }
-};
-
-pub const APPLICATIONTYPE = enum(i32) {
-    LOCAL_APPLICATIONTYPE = 0,
-    CLUSTERRESOURCE_APPLICATIONTYPE = 1,
-};
-pub const LOCAL_APPLICATIONTYPE = APPLICATIONTYPE.LOCAL_APPLICATIONTYPE;
-pub const CLUSTERRESOURCE_APPLICATIONTYPE = APPLICATIONTYPE.CLUSTERRESOURCE_APPLICATIONTYPE;
-
-pub const OLE_TM_CONFIG_PARAMS_V1 = extern struct {
-    dwVersion: u32,
-    dwcConcurrencyHint: u32,
-};
-
-pub const OLE_TM_CONFIG_PARAMS_V2 = extern struct {
-    dwVersion: u32,
-    dwcConcurrencyHint: u32,
-    applicationType: APPLICATIONTYPE,
-    clusterResourceId: Guid,
-};
-
-pub const XACT_DTC_CONSTANTS = enum(i32) {
-    XACT_E_CONNECTION_REQUEST_DENIED = -2147168000,
-    XACT_E_TOOMANY_ENLISTMENTS = -2147167999,
-    XACT_E_DUPLICATE_GUID = -2147167998,
-    XACT_E_NOTSINGLEPHASE = -2147167997,
-    XACT_E_RECOVERYALREADYDONE = -2147167996,
-    XACT_E_PROTOCOL = -2147167995,
-    XACT_E_RM_FAILURE = -2147167994,
-    XACT_E_RECOVERY_FAILED = -2147167993,
-    XACT_E_LU_NOT_FOUND = -2147167992,
-    XACT_E_DUPLICATE_LU = -2147167991,
-    XACT_E_LU_NOT_CONNECTED = -2147167990,
-    XACT_E_DUPLICATE_TRANSID = -2147167989,
-    XACT_E_LU_BUSY = -2147167988,
-    XACT_E_LU_NO_RECOVERY_PROCESS = -2147167987,
-    XACT_E_LU_DOWN = -2147167986,
-    XACT_E_LU_RECOVERING = -2147167985,
-    XACT_E_LU_RECOVERY_MISMATCH = -2147167984,
-    XACT_E_RM_UNAVAILABLE = -2147167983,
-    XACT_E_LRMRECOVERYALREADYDONE = -2147167982,
-    XACT_E_NOLASTRESOURCEINTERFACE = -2147167981,
-    XACT_S_NONOTIFY = 315648,
-    XACT_OK_NONOTIFY = 315649,
-    dwUSER_MS_SQLSERVER = 65535,
-};
-pub const XACT_E_CONNECTION_REQUEST_DENIED = XACT_DTC_CONSTANTS.XACT_E_CONNECTION_REQUEST_DENIED;
-pub const XACT_E_TOOMANY_ENLISTMENTS = XACT_DTC_CONSTANTS.XACT_E_TOOMANY_ENLISTMENTS;
-pub const XACT_E_DUPLICATE_GUID = XACT_DTC_CONSTANTS.XACT_E_DUPLICATE_GUID;
-pub const XACT_E_NOTSINGLEPHASE = XACT_DTC_CONSTANTS.XACT_E_NOTSINGLEPHASE;
-pub const XACT_E_RECOVERYALREADYDONE = XACT_DTC_CONSTANTS.XACT_E_RECOVERYALREADYDONE;
-pub const XACT_E_PROTOCOL = XACT_DTC_CONSTANTS.XACT_E_PROTOCOL;
-pub const XACT_E_RM_FAILURE = XACT_DTC_CONSTANTS.XACT_E_RM_FAILURE;
-pub const XACT_E_RECOVERY_FAILED = XACT_DTC_CONSTANTS.XACT_E_RECOVERY_FAILED;
-pub const XACT_E_LU_NOT_FOUND = XACT_DTC_CONSTANTS.XACT_E_LU_NOT_FOUND;
-pub const XACT_E_DUPLICATE_LU = XACT_DTC_CONSTANTS.XACT_E_DUPLICATE_LU;
-pub const XACT_E_LU_NOT_CONNECTED = XACT_DTC_CONSTANTS.XACT_E_LU_NOT_CONNECTED;
-pub const XACT_E_DUPLICATE_TRANSID = XACT_DTC_CONSTANTS.XACT_E_DUPLICATE_TRANSID;
-pub const XACT_E_LU_BUSY = XACT_DTC_CONSTANTS.XACT_E_LU_BUSY;
-pub const XACT_E_LU_NO_RECOVERY_PROCESS = XACT_DTC_CONSTANTS.XACT_E_LU_NO_RECOVERY_PROCESS;
-pub const XACT_E_LU_DOWN = XACT_DTC_CONSTANTS.XACT_E_LU_DOWN;
-pub const XACT_E_LU_RECOVERING = XACT_DTC_CONSTANTS.XACT_E_LU_RECOVERING;
-pub const XACT_E_LU_RECOVERY_MISMATCH = XACT_DTC_CONSTANTS.XACT_E_LU_RECOVERY_MISMATCH;
-pub const XACT_E_RM_UNAVAILABLE = XACT_DTC_CONSTANTS.XACT_E_RM_UNAVAILABLE;
-pub const XACT_E_LRMRECOVERYALREADYDONE = XACT_DTC_CONSTANTS.XACT_E_LRMRECOVERYALREADYDONE;
-pub const XACT_E_NOLASTRESOURCEINTERFACE = XACT_DTC_CONSTANTS.XACT_E_NOLASTRESOURCEINTERFACE;
-pub const XACT_S_NONOTIFY = XACT_DTC_CONSTANTS.XACT_S_NONOTIFY;
-pub const XACT_OK_NONOTIFY = XACT_DTC_CONSTANTS.XACT_OK_NONOTIFY;
-pub const dwUSER_MS_SQLSERVER = XACT_DTC_CONSTANTS.dwUSER_MS_SQLSERVER;
-
-const IID_IXATransLookup_Value = Guid.initString("f3b1f131-eeda-11ce-aed4-00aa0051e2c4");
-pub const IID_IXATransLookup = &IID_IXATransLookup_Value;
-pub const IXATransLookup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Lookup: *const fn(
-            self: *const IXATransLookup,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Lookup(self: *const IXATransLookup, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.Lookup(self, ppTransaction);
-    }
-};
-
-const IID_IXATransLookup2_Value = Guid.initString("bf193c85-0d1a-4290-b88f-d2cb8873d1e7");
-pub const IID_IXATransLookup2 = &IID_IXATransLookup2_Value;
-pub const IXATransLookup2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Lookup: *const fn(
-            self: *const IXATransLookup2,
-            pXID: ?*xid_t,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Lookup(self: *const IXATransLookup2, pXID: ?*xid_t, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.Lookup(self, pXID, ppTransaction);
-    }
-};
-
-const IID_IResourceManagerSink_Value = Guid.initString("0d563181-defb-11ce-aed1-00aa0051e2c4");
-pub const IID_IResourceManagerSink = &IID_IResourceManagerSink_Value;
-pub const IResourceManagerSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        TMDown: *const fn(
-            self: *const IResourceManagerSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn TMDown(self: *const IResourceManagerSink) callconv(.@"inline") HRESULT {
-        return self.vtable.TMDown(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IResourceManager_Value = Guid.initString("13741d21-87eb-11ce-8081-0080c758527e");
-pub const IID_IResourceManager = &IID_IResourceManager_Value;
-pub const IResourceManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Enlist: *const fn(
-            self: *const IResourceManager,
-            pTransaction: ?*ITransaction,
-            pRes: ?*ITransactionResourceAsync,
-            pUOW: ?*BOID,
-            pisoLevel: ?*i32,
-            ppEnlist: ?*?*ITransactionEnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-        Reenlist: *const fn(
-            self: *const IResourceManager,
-            pPrepInfo: [*:0]u8,
-            cbPrepInfo: u32,
-            lTimeout: u32,
-            pXactStat: ?*XACTSTAT,
-        ) callconv(.winapi) HRESULT,
-        ReenlistmentComplete: *const fn(
-            self: *const IResourceManager,
-        ) callconv(.winapi) HRESULT,
-        GetDistributedTransactionManager: *const fn(
-            self: *const IResourceManager,
-            iid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Enlist(self: *const IResourceManager, pTransaction: ?*ITransaction, pRes: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Enlist(self, pTransaction, pRes, pUOW, pisoLevel, ppEnlist);
-    }
-    pub fn Reenlist(self: *const IResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
-        return self.vtable.Reenlist(self, pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
-    }
-    pub fn ReenlistmentComplete(self: *const IResourceManager) callconv(.@"inline") HRESULT {
-        return self.vtable.ReenlistmentComplete(self);
-    }
-    pub fn GetDistributedTransactionManager(self: *const IResourceManager, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDistributedTransactionManager(self, iid, ppvObject);
-    }
-};
-
-const IID_ILastResourceManager_Value = Guid.initString("4d964ad4-5b33-11d3-8a91-00c04f79eb6d");
-pub const IID_ILastResourceManager = &IID_ILastResourceManager_Value;
-pub const ILastResourceManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        TransactionCommitted: *const fn(
-            self: *const ILastResourceManager,
-            pPrepInfo: [*:0]u8,
-            cbPrepInfo: u32,
-        ) callconv(.winapi) HRESULT,
-        RecoveryDone: *const fn(
-            self: *const ILastResourceManager,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn TransactionCommitted(self: *const ILastResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.TransactionCommitted(self, pPrepInfo, cbPrepInfo);
-    }
-    pub fn RecoveryDone(self: *const ILastResourceManager) callconv(.@"inline") HRESULT {
-        return self.vtable.RecoveryDone(self);
-    }
-};
-
-const IID_IResourceManager2_Value = Guid.initString("d136c69a-f749-11d1-8f47-00c04f8ee57d");
-pub const IID_IResourceManager2 = &IID_IResourceManager2_Value;
-pub const IResourceManager2 = extern union {
-    pub const VTable = extern struct {
-        base: IResourceManager.VTable,
-        Enlist2: *const fn(
-            self: *const IResourceManager2,
-            pTransaction: ?*ITransaction,
-            pResAsync: ?*ITransactionResourceAsync,
-            pUOW: ?*BOID,
-            pisoLevel: ?*i32,
-            pXid: ?*xid_t,
-            ppEnlist: ?*?*ITransactionEnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-        Reenlist2: *const fn(
-            self: *const IResourceManager2,
-            pXid: ?*xid_t,
-            dwTimeout: u32,
-            pXactStat: ?*XACTSTAT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IResourceManager: IResourceManager,
-    IUnknown: IUnknown,
-    pub fn Enlist2(self: *const IResourceManager2, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, pXid: ?*xid_t, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Enlist2(self, pTransaction, pResAsync, pUOW, pisoLevel, pXid, ppEnlist);
-    }
-    pub fn Reenlist2(self: *const IResourceManager2, pXid: ?*xid_t, dwTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
-        return self.vtable.Reenlist2(self, pXid, dwTimeout, pXactStat);
-    }
-};
-
-const IID_IResourceManagerRejoinable_Value = Guid.initString("6f6de620-b5df-4f3e-9cfa-c8aebd05172b");
-pub const IID_IResourceManagerRejoinable = &IID_IResourceManagerRejoinable_Value;
-pub const IResourceManagerRejoinable = extern union {
-    pub const VTable = extern struct {
-        base: IResourceManager2.VTable,
-        Rejoin: *const fn(
-            self: *const IResourceManagerRejoinable,
-            pPrepInfo: [*:0]u8,
-            cbPrepInfo: u32,
-            lTimeout: u32,
-            pXactStat: ?*XACTSTAT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IResourceManager2: IResourceManager2,
-    IResourceManager: IResourceManager,
-    IUnknown: IUnknown,
-    pub fn Rejoin(self: *const IResourceManagerRejoinable, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
-        return self.vtable.Rejoin(self, pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
-    }
-};
-
-const IID_IXAConfig_Value = Guid.initString("c8a6e3a1-9a8c-11cf-a308-00a0c905416e");
-pub const IID_IXAConfig = &IID_IXAConfig_Value;
-pub const IXAConfig = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IXAConfig,
-            clsidHelperDll: Guid,
-        ) callconv(.winapi) HRESULT,
-        Terminate: *const fn(
-            self: *const IXAConfig,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IXAConfig, clsidHelperDll: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, clsidHelperDll);
-    }
-    pub fn Terminate(self: *const IXAConfig) callconv(.@"inline") HRESULT {
-        return self.vtable.Terminate(self);
-    }
-};
-
-const IID_IRMHelper_Value = Guid.initString("e793f6d1-f53d-11cf-a60d-00a0c905416e");
-pub const IID_IRMHelper = &IID_IRMHelper_Value;
-pub const IRMHelper = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RMCount: *const fn(
-            self: *const IRMHelper,
-            dwcTotalNumberOfRMs: u32,
-        ) callconv(.winapi) HRESULT,
-        RMInfo: *const fn(
-            self: *const IRMHelper,
-            pXa_Switch: ?*xa_switch_t,
-            fCDeclCallingConv: BOOL,
-            pszOpenString: ?PSTR,
-            pszCloseString: ?PSTR,
-            guidRMRecovery: Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RMCount(self: *const IRMHelper, dwcTotalNumberOfRMs: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RMCount(self, dwcTotalNumberOfRMs);
-    }
-    pub fn RMInfo(self: *const IRMHelper, pXa_Switch: ?*xa_switch_t, fCDeclCallingConv: BOOL, pszOpenString: ?PSTR, pszCloseString: ?PSTR, guidRMRecovery: Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.RMInfo(self, pXa_Switch, fCDeclCallingConv, pszOpenString, pszCloseString, guidRMRecovery);
-    }
-};
-
-const IID_IXAObtainRMInfo_Value = Guid.initString("e793f6d2-f53d-11cf-a60d-00a0c905416e");
-pub const IID_IXAObtainRMInfo = &IID_IXAObtainRMInfo_Value;
-pub const IXAObtainRMInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ObtainRMInfo: *const fn(
-            self: *const IXAObtainRMInfo,
-            pIRMHelper: ?*IRMHelper,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ObtainRMInfo(self: *const IXAObtainRMInfo, pIRMHelper: ?*IRMHelper) callconv(.@"inline") HRESULT {
-        return self.vtable.ObtainRMInfo(self, pIRMHelper);
-    }
-};
-
-const IID_IResourceManagerFactory_Value = Guid.initString("13741d20-87eb-11ce-8081-0080c758527e");
-pub const IID_IResourceManagerFactory = &IID_IResourceManagerFactory_Value;
-pub const IResourceManagerFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IResourceManagerFactory,
-            pguidRM: ?*Guid,
-            pszRMName: ?PSTR,
-            pIResMgrSink: ?*IResourceManagerSink,
-            ppResMgr: ?*?*IResourceManager,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IResourceManagerFactory, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, pguidRM, pszRMName, pIResMgrSink, ppResMgr);
-    }
-};
-
-const IID_IResourceManagerFactory2_Value = Guid.initString("6b369c21-fbd2-11d1-8f47-00c04f8ee57d");
-pub const IID_IResourceManagerFactory2 = &IID_IResourceManagerFactory2_Value;
-pub const IResourceManagerFactory2 = extern union {
-    pub const VTable = extern struct {
-        base: IResourceManagerFactory.VTable,
-        CreateEx: *const fn(
-            self: *const IResourceManagerFactory2,
-            pguidRM: ?*Guid,
-            pszRMName: ?PSTR,
-            pIResMgrSink: ?*IResourceManagerSink,
-            riidRequested: ?*const Guid,
-            ppvResMgr: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IResourceManagerFactory: IResourceManagerFactory,
-    IUnknown: IUnknown,
-    pub fn CreateEx(self: *const IResourceManagerFactory2, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEx(self, pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
-    }
-};
-
-const IID_IPrepareInfo_Value = Guid.initString("80c7bfd0-87ee-11ce-8081-0080c758527e");
-pub const IID_IPrepareInfo = &IID_IPrepareInfo_Value;
-pub const IPrepareInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPrepareInfoSize: *const fn(
-            self: *const IPrepareInfo,
-            pcbPrepInfo: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPrepareInfo: *const fn(
-            self: *const IPrepareInfo,
-            pPrepInfo: ?*u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPrepareInfoSize(self: *const IPrepareInfo, pcbPrepInfo: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrepareInfoSize(self, pcbPrepInfo);
-    }
-    pub fn GetPrepareInfo(self: *const IPrepareInfo, pPrepInfo: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrepareInfo(self, pPrepInfo);
-    }
-};
-
-const IID_IPrepareInfo2_Value = Guid.initString("5fab2547-9779-11d1-b886-00c04fb9618a");
-pub const IID_IPrepareInfo2 = &IID_IPrepareInfo2_Value;
-pub const IPrepareInfo2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPrepareInfoSize: *const fn(
-            self: *const IPrepareInfo2,
-            pcbPrepInfo: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPrepareInfo: *const fn(
-            self: *const IPrepareInfo2,
-            cbPrepareInfo: u32,
-            pPrepInfo: [*:0]u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPrepareInfoSize(self: *const IPrepareInfo2, pcbPrepInfo: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrepareInfoSize(self, pcbPrepInfo);
-    }
-    pub fn GetPrepareInfo(self: *const IPrepareInfo2, cbPrepareInfo: u32, pPrepInfo: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPrepareInfo(self, cbPrepareInfo, pPrepInfo);
-    }
-};
-
-const IID_IGetDispenser_Value = Guid.initString("c23cc370-87ef-11ce-8081-0080c758527e");
-pub const IID_IGetDispenser = &IID_IGetDispenser_Value;
-pub const IGetDispenser = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDispenser: *const fn(
-            self: *const IGetDispenser,
-            iid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDispenser(self: *const IGetDispenser, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDispenser(self, iid, ppvObject);
-    }
-};
-
-const IID_ITransactionVoterBallotAsync2_Value = Guid.initString("5433376c-414d-11d3-b206-00c04fc2f3ef");
-pub const IID_ITransactionVoterBallotAsync2 = &IID_ITransactionVoterBallotAsync2_Value;
-pub const ITransactionVoterBallotAsync2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        VoteRequestDone: *const fn(
-            self: *const ITransactionVoterBallotAsync2,
-            hr: HRESULT,
-            pboidReason: ?*BOID,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn VoteRequestDone(self: *const ITransactionVoterBallotAsync2, hr: HRESULT, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
-        return self.vtable.VoteRequestDone(self, hr, pboidReason);
-    }
-};
-
-const IID_ITransactionVoterNotifyAsync2_Value = Guid.initString("5433376b-414d-11d3-b206-00c04fc2f3ef");
-pub const IID_ITransactionVoterNotifyAsync2 = &IID_ITransactionVoterNotifyAsync2_Value;
-pub const ITransactionVoterNotifyAsync2 = extern union {
-    pub const VTable = extern struct {
-        base: ITransactionOutcomeEvents.VTable,
-        VoteRequest: *const fn(
-            self: *const ITransactionVoterNotifyAsync2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ITransactionOutcomeEvents: ITransactionOutcomeEvents,
-    IUnknown: IUnknown,
-    pub fn VoteRequest(self: *const ITransactionVoterNotifyAsync2) callconv(.@"inline") HRESULT {
-        return self.vtable.VoteRequest(self);
-    }
-};
-
-const IID_ITransactionVoterFactory2_Value = Guid.initString("5433376a-414d-11d3-b206-00c04fc2f3ef");
-pub const IID_ITransactionVoterFactory2 = &IID_ITransactionVoterFactory2_Value;
-pub const ITransactionVoterFactory2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const ITransactionVoterFactory2,
-            pTransaction: ?*ITransaction,
-            pVoterNotify: ?*ITransactionVoterNotifyAsync2,
-            ppVoterBallot: ?*?*ITransactionVoterBallotAsync2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionVoterFactory2, pTransaction: ?*ITransaction, pVoterNotify: ?*ITransactionVoterNotifyAsync2, ppVoterBallot: ?*?*ITransactionVoterBallotAsync2) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, pTransaction, pVoterNotify, ppVoterBallot);
-    }
-};
-
-const IID_ITransactionPhase0EnlistmentAsync_Value = Guid.initString("82dc88e1-a954-11d1-8f88-00600895e7d5");
-pub const IID_ITransactionPhase0EnlistmentAsync = &IID_ITransactionPhase0EnlistmentAsync_Value;
-pub const ITransactionPhase0EnlistmentAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Enable: *const fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-        WaitForEnlistment: *const fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-        Phase0Done: *const fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-        Unenlist: *const fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-        GetTransaction: *const fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-            ppITransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Enable(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Enable(self);
-    }
-    pub fn WaitForEnlistment(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.WaitForEnlistment(self);
-    }
-    pub fn Phase0Done(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Phase0Done(self);
-    }
-    pub fn Unenlist(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Unenlist(self);
-    }
-    pub fn GetTransaction(self: *const ITransactionPhase0EnlistmentAsync, ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTransaction(self, ppITransaction);
-    }
-};
-
-const IID_ITransactionPhase0NotifyAsync_Value = Guid.initString("ef081809-0c76-11d2-87a6-00c04f990f34");
-pub const IID_ITransactionPhase0NotifyAsync = &IID_ITransactionPhase0NotifyAsync_Value;
-pub const ITransactionPhase0NotifyAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Phase0Request: *const fn(
-            self: *const ITransactionPhase0NotifyAsync,
-            fAbortingHint: BOOL,
-        ) callconv(.winapi) HRESULT,
-        EnlistCompleted: *const fn(
-            self: *const ITransactionPhase0NotifyAsync,
-            status: HRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Phase0Request(self: *const ITransactionPhase0NotifyAsync, fAbortingHint: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Phase0Request(self, fAbortingHint);
-    }
-    pub fn EnlistCompleted(self: *const ITransactionPhase0NotifyAsync, status: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.EnlistCompleted(self, status);
-    }
-};
-
-const IID_ITransactionPhase0Factory_Value = Guid.initString("82dc88e0-a954-11d1-8f88-00600895e7d5");
-pub const IID_ITransactionPhase0Factory = &IID_ITransactionPhase0Factory_Value;
-pub const ITransactionPhase0Factory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const ITransactionPhase0Factory,
-            pPhase0Notify: ?*ITransactionPhase0NotifyAsync,
-            ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionPhase0Factory, pPhase0Notify: ?*ITransactionPhase0NotifyAsync, ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, pPhase0Notify, ppPhase0Enlistment);
-    }
-};
-
-const IID_ITransactionTransmitter_Value = Guid.initString("59313e01-b36c-11cf-a539-00aa006887c3");
-pub const IID_ITransactionTransmitter = &IID_ITransactionTransmitter_Value;
-pub const ITransactionTransmitter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Set: *const fn(
-            self: *const ITransactionTransmitter,
-            pTransaction: ?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-        GetPropagationTokenSize: *const fn(
-            self: *const ITransactionTransmitter,
-            pcbToken: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        MarshalPropagationToken: *const fn(
-            self: *const ITransactionTransmitter,
-            cbToken: u32,
-            rgbToken: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        UnmarshalReturnToken: *const fn(
-            self: *const ITransactionTransmitter,
-            cbReturnToken: u32,
-            rgbReturnToken: [*:0]u8,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const ITransactionTransmitter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Set(self: *const ITransactionTransmitter, pTransaction: ?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.Set(self, pTransaction);
-    }
-    pub fn GetPropagationTokenSize(self: *const ITransactionTransmitter, pcbToken: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropagationTokenSize(self, pcbToken);
-    }
-    pub fn MarshalPropagationToken(self: *const ITransactionTransmitter, cbToken: u32, rgbToken: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.MarshalPropagationToken(self, cbToken, rgbToken, pcbUsed);
-    }
-    pub fn UnmarshalReturnToken(self: *const ITransactionTransmitter, cbReturnToken: u32, rgbReturnToken: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.UnmarshalReturnToken(self, cbReturnToken, rgbReturnToken);
-    }
-    pub fn Reset(self: *const ITransactionTransmitter) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-};
-
-const IID_ITransactionTransmitterFactory_Value = Guid.initString("59313e00-b36c-11cf-a539-00aa006887c3");
-pub const IID_ITransactionTransmitterFactory = &IID_ITransactionTransmitterFactory_Value;
-pub const ITransactionTransmitterFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const ITransactionTransmitterFactory,
-            ppTransmitter: ?*?*ITransactionTransmitter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionTransmitterFactory, ppTransmitter: ?*?*ITransactionTransmitter) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, ppTransmitter);
-    }
-};
-
-const IID_ITransactionReceiver_Value = Guid.initString("59313e03-b36c-11cf-a539-00aa006887c3");
-pub const IID_ITransactionReceiver = &IID_ITransactionReceiver_Value;
-pub const ITransactionReceiver = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        UnmarshalPropagationToken: *const fn(
-            self: *const ITransactionReceiver,
-            cbToken: u32,
-            rgbToken: [*:0]u8,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(.winapi) HRESULT,
-        GetReturnTokenSize: *const fn(
-            self: *const ITransactionReceiver,
-            pcbReturnToken: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        MarshalReturnToken: *const fn(
-            self: *const ITransactionReceiver,
-            cbReturnToken: u32,
-            rgbReturnToken: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const ITransactionReceiver,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn UnmarshalPropagationToken(self: *const ITransactionReceiver, cbToken: u32, rgbToken: [*:0]u8, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
-        return self.vtable.UnmarshalPropagationToken(self, cbToken, rgbToken, ppTransaction);
-    }
-    pub fn GetReturnTokenSize(self: *const ITransactionReceiver, pcbReturnToken: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetReturnTokenSize(self, pcbReturnToken);
-    }
-    pub fn MarshalReturnToken(self: *const ITransactionReceiver, cbReturnToken: u32, rgbReturnToken: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.MarshalReturnToken(self, cbReturnToken, rgbReturnToken, pcbUsed);
-    }
-    pub fn Reset(self: *const ITransactionReceiver) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-};
-
-const IID_ITransactionReceiverFactory_Value = Guid.initString("59313e02-b36c-11cf-a539-00aa006887c3");
-pub const IID_ITransactionReceiverFactory = &IID_ITransactionReceiverFactory_Value;
-pub const ITransactionReceiverFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const ITransactionReceiverFactory,
-            ppReceiver: ?*?*ITransactionReceiver,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionReceiverFactory, ppReceiver: ?*?*ITransactionReceiver) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, ppReceiver);
-    }
-};
-
-pub const _ProxyConfigParams = extern struct {
-    wcThreadsMax: u16,
-};
+pub const DTC_STATUS_ = enum(i32) {
+    UNKNOWN = 0,
+    STARTING = 1,
+    STARTED = 2,
+    PAUSING = 3,
+    PAUSED = 4,
+    CONTINUING = 5,
+    STOPPING = 6,
+    STOPPED = 7,
+    E_CANTCONTROL = 8,
+    FAILED = 9,
+};
+pub const DTC_STATUS_UNKNOWN = DTC_STATUS_.UNKNOWN;
+pub const DTC_STATUS_STARTING = DTC_STATUS_.STARTING;
+pub const DTC_STATUS_STARTED = DTC_STATUS_.STARTED;
+pub const DTC_STATUS_PAUSING = DTC_STATUS_.PAUSING;
+pub const DTC_STATUS_PAUSED = DTC_STATUS_.PAUSED;
+pub const DTC_STATUS_CONTINUING = DTC_STATUS_.CONTINUING;
+pub const DTC_STATUS_STOPPING = DTC_STATUS_.STOPPING;
+pub const DTC_STATUS_STOPPED = DTC_STATUS_.STOPPED;
+pub const DTC_STATUS_E_CANTCONTROL = DTC_STATUS_.E_CANTCONTROL;
+pub const DTC_STATUS_FAILED = DTC_STATUS_.FAILED;
 
 const IID_IDtcLuConfigure_Value = Guid.initString("4131e760-1aea-11d0-944b-00a0c905416e");
 pub const IID_IDtcLuConfigure = &IID_IDtcLuConfigure_Value;
@@ -1993,86 +292,40 @@ pub const IDtcLuRecoveryFactory = extern union {
     }
 };
 
-pub const _DtcLu_LocalRecovery_Work = enum(i32) {
-    CHECKLUSTATUS = 1,
-    TRANS = 2,
-    TMDOWN = 3,
+const IID_IDtcLuRecoveryInitiatedByDtc_Value = Guid.initString("4131e764-1aea-11d0-944b-00a0c905416e");
+pub const IID_IDtcLuRecoveryInitiatedByDtc = &IID_IDtcLuRecoveryInitiatedByDtc_Value;
+pub const IDtcLuRecoveryInitiatedByDtc = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetWork: *const fn(
+            self: *const IDtcLuRecoveryInitiatedByDtc,
+            pWork: ?*_DtcLu_LocalRecovery_Work,
+            ppv: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetWork(self: *const IDtcLuRecoveryInitiatedByDtc, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWork(self, pWork, ppv);
+    }
 };
-pub const DTCINITIATEDRECOVERYWORK_CHECKLUSTATUS = _DtcLu_LocalRecovery_Work.CHECKLUSTATUS;
-pub const DTCINITIATEDRECOVERYWORK_TRANS = _DtcLu_LocalRecovery_Work.TRANS;
-pub const DTCINITIATEDRECOVERYWORK_TMDOWN = _DtcLu_LocalRecovery_Work.TMDOWN;
 
-pub const _DtcLu_Xln = enum(i32) {
-    COLD = 1,
-    WARM = 2,
+const IID_IDtcLuRecoveryInitiatedByDtcStatusWork_Value = Guid.initString("4131e766-1aea-11d0-944b-00a0c905416e");
+pub const IID_IDtcLuRecoveryInitiatedByDtcStatusWork = &IID_IDtcLuRecoveryInitiatedByDtcStatusWork_Value;
+pub const IDtcLuRecoveryInitiatedByDtcStatusWork = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        HandleCheckLuStatus: *const fn(
+            self: *const IDtcLuRecoveryInitiatedByDtcStatusWork,
+            lRecoverySeqNum: i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn HandleCheckLuStatus(self: *const IDtcLuRecoveryInitiatedByDtcStatusWork, lRecoverySeqNum: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleCheckLuStatus(self, lRecoverySeqNum);
+    }
 };
-pub const DTCLUXLN_COLD = _DtcLu_Xln.COLD;
-pub const DTCLUXLN_WARM = _DtcLu_Xln.WARM;
-
-pub const _DtcLu_Xln_Confirmation = enum(i32) {
-    CONFIRM = 1,
-    LOGNAMEMISMATCH = 2,
-    COLDWARMMISMATCH = 3,
-    OBSOLETE = 4,
-};
-pub const DTCLUXLNCONFIRMATION_CONFIRM = _DtcLu_Xln_Confirmation.CONFIRM;
-pub const DTCLUXLNCONFIRMATION_LOGNAMEMISMATCH = _DtcLu_Xln_Confirmation.LOGNAMEMISMATCH;
-pub const DTCLUXLNCONFIRMATION_COLDWARMMISMATCH = _DtcLu_Xln_Confirmation.COLDWARMMISMATCH;
-pub const DTCLUXLNCONFIRMATION_OBSOLETE = _DtcLu_Xln_Confirmation.OBSOLETE;
-
-pub const _DtcLu_Xln_Response = enum(i32) {
-    OK_SENDOURXLNBACK = 1,
-    OK_SENDCONFIRMATION = 2,
-    LOGNAMEMISMATCH = 3,
-    COLDWARMMISMATCH = 4,
-};
-pub const DTCLUXLNRESPONSE_OK_SENDOURXLNBACK = _DtcLu_Xln_Response.OK_SENDOURXLNBACK;
-pub const DTCLUXLNRESPONSE_OK_SENDCONFIRMATION = _DtcLu_Xln_Response.OK_SENDCONFIRMATION;
-pub const DTCLUXLNRESPONSE_LOGNAMEMISMATCH = _DtcLu_Xln_Response.LOGNAMEMISMATCH;
-pub const DTCLUXLNRESPONSE_COLDWARMMISMATCH = _DtcLu_Xln_Response.COLDWARMMISMATCH;
-
-pub const _DtcLu_Xln_Error = enum(i32) {
-    PROTOCOL = 1,
-    LOGNAMEMISMATCH = 2,
-    COLDWARMMISMATCH = 3,
-};
-pub const DTCLUXLNERROR_PROTOCOL = _DtcLu_Xln_Error.PROTOCOL;
-pub const DTCLUXLNERROR_LOGNAMEMISMATCH = _DtcLu_Xln_Error.LOGNAMEMISMATCH;
-pub const DTCLUXLNERROR_COLDWARMMISMATCH = _DtcLu_Xln_Error.COLDWARMMISMATCH;
-
-pub const _DtcLu_CompareState = enum(i32) {
-    COMMITTED = 1,
-    HEURISTICCOMMITTED = 2,
-    HEURISTICMIXED = 3,
-    HEURISTICRESET = 4,
-    INDOUBT = 5,
-    RESET = 6,
-};
-pub const DTCLUCOMPARESTATE_COMMITTED = _DtcLu_CompareState.COMMITTED;
-pub const DTCLUCOMPARESTATE_HEURISTICCOMMITTED = _DtcLu_CompareState.HEURISTICCOMMITTED;
-pub const DTCLUCOMPARESTATE_HEURISTICMIXED = _DtcLu_CompareState.HEURISTICMIXED;
-pub const DTCLUCOMPARESTATE_HEURISTICRESET = _DtcLu_CompareState.HEURISTICRESET;
-pub const DTCLUCOMPARESTATE_INDOUBT = _DtcLu_CompareState.INDOUBT;
-pub const DTCLUCOMPARESTATE_RESET = _DtcLu_CompareState.RESET;
-
-pub const _DtcLu_CompareStates_Confirmation = enum(i32) {
-    CONFIRM = 1,
-    PROTOCOL = 2,
-};
-pub const DTCLUCOMPARESTATESCONFIRMATION_CONFIRM = _DtcLu_CompareStates_Confirmation.CONFIRM;
-pub const DTCLUCOMPARESTATESCONFIRMATION_PROTOCOL = _DtcLu_CompareStates_Confirmation.PROTOCOL;
-
-pub const _DtcLu_CompareStates_Error = enum(i32) {
-    L = 1,
-};
-pub const DTCLUCOMPARESTATESERROR_PROTOCOL = _DtcLu_CompareStates_Error.L;
-
-pub const _DtcLu_CompareStates_Response = enum(i32) {
-    OK = 1,
-    PROTOCOL = 2,
-};
-pub const DTCLUCOMPARESTATESRESPONSE_OK = _DtcLu_CompareStates_Response.OK;
-pub const DTCLUCOMPARESTATESRESPONSE_PROTOCOL = _DtcLu_CompareStates_Response.PROTOCOL;
 
 const IID_IDtcLuRecoveryInitiatedByDtcTransWork_Value = Guid.initString("4131e765-1aea-11d0-944b-00a0c905416e");
 pub const IID_IDtcLuRecoveryInitiatedByDtcTransWork = &IID_IDtcLuRecoveryInitiatedByDtcTransWork_Value;
@@ -2184,38 +437,20 @@ pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern union {
     }
 };
 
-const IID_IDtcLuRecoveryInitiatedByDtcStatusWork_Value = Guid.initString("4131e766-1aea-11d0-944b-00a0c905416e");
-pub const IID_IDtcLuRecoveryInitiatedByDtcStatusWork = &IID_IDtcLuRecoveryInitiatedByDtcStatusWork_Value;
-pub const IDtcLuRecoveryInitiatedByDtcStatusWork = extern union {
+const IID_IDtcLuRecoveryInitiatedByLu_Value = Guid.initString("4131e768-1aea-11d0-944b-00a0c905416e");
+pub const IID_IDtcLuRecoveryInitiatedByLu = &IID_IDtcLuRecoveryInitiatedByLu_Value;
+pub const IDtcLuRecoveryInitiatedByLu = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        HandleCheckLuStatus: *const fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcStatusWork,
-            lRecoverySeqNum: i32,
+        GetObjectToHandleWorkFromLu: *const fn(
+            self: *const IDtcLuRecoveryInitiatedByLu,
+            ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandleCheckLuStatus(self: *const IDtcLuRecoveryInitiatedByDtcStatusWork, lRecoverySeqNum: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleCheckLuStatus(self, lRecoverySeqNum);
-    }
-};
-
-const IID_IDtcLuRecoveryInitiatedByDtc_Value = Guid.initString("4131e764-1aea-11d0-944b-00a0c905416e");
-pub const IID_IDtcLuRecoveryInitiatedByDtc = &IID_IDtcLuRecoveryInitiatedByDtc_Value;
-pub const IDtcLuRecoveryInitiatedByDtc = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWork: *const fn(
-            self: *const IDtcLuRecoveryInitiatedByDtc,
-            pWork: ?*_DtcLu_LocalRecovery_Work,
-            ppv: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetWork(self: *const IDtcLuRecoveryInitiatedByDtc, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWork(self, pWork, ppv);
+    pub fn GetObjectToHandleWorkFromLu(self: *const IDtcLuRecoveryInitiatedByLu, ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectToHandleWorkFromLu(self, ppWork);
     }
 };
 
@@ -2297,23 +532,6 @@ pub const IDtcLuRecoveryInitiatedByLuWork = extern union {
     }
 };
 
-const IID_IDtcLuRecoveryInitiatedByLu_Value = Guid.initString("4131e768-1aea-11d0-944b-00a0c905416e");
-pub const IID_IDtcLuRecoveryInitiatedByLu = &IID_IDtcLuRecoveryInitiatedByLu_Value;
-pub const IDtcLuRecoveryInitiatedByLu = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetObjectToHandleWorkFromLu: *const fn(
-            self: *const IDtcLuRecoveryInitiatedByLu,
-            ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetObjectToHandleWorkFromLu(self: *const IDtcLuRecoveryInitiatedByLu, ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectToHandleWorkFromLu(self, ppWork);
-    }
-};
-
 const IID_IDtcLuRmEnlistment_Value = Guid.initString("4131e769-1aea-11d0-944b-00a0c905416e");
 pub const IID_IDtcLuRmEnlistment = &IID_IDtcLuRmEnlistment_Value;
 pub const IDtcLuRmEnlistment = extern union {
@@ -2358,6 +576,29 @@ pub const IDtcLuRmEnlistment = extern union {
     }
     pub fn RequestCommit(self: *const IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
         return self.vtable.RequestCommit(self);
+    }
+};
+
+const IID_IDtcLuRmEnlistmentFactory_Value = Guid.initString("4131e771-1aea-11d0-944b-00a0c905416e");
+pub const IID_IDtcLuRmEnlistmentFactory = &IID_IDtcLuRmEnlistmentFactory_Value;
+pub const IDtcLuRmEnlistmentFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IDtcLuRmEnlistmentFactory,
+            pucLuPair: ?*u8,
+            cbLuPair: u32,
+            pITransaction: ?*ITransaction,
+            pTransId: ?*u8,
+            cbTransId: u32,
+            pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink,
+            ppRmEnlistment: ?*?*IDtcLuRmEnlistment,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IDtcLuRmEnlistmentFactory, pucLuPair: ?*u8, cbLuPair: u32, pITransaction: ?*ITransaction, pTransId: ?*u8, cbTransId: u32, pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink, ppRmEnlistment: ?*?*IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, pucLuPair, cbLuPair, pITransaction, pTransId, cbTransId, pRmEnlistmentSink, ppRmEnlistment);
     }
 };
 
@@ -2425,29 +666,6 @@ pub const IDtcLuRmEnlistmentSink = extern union {
     }
 };
 
-const IID_IDtcLuRmEnlistmentFactory_Value = Guid.initString("4131e771-1aea-11d0-944b-00a0c905416e");
-pub const IID_IDtcLuRmEnlistmentFactory = &IID_IDtcLuRmEnlistmentFactory_Value;
-pub const IDtcLuRmEnlistmentFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IDtcLuRmEnlistmentFactory,
-            pucLuPair: ?*u8,
-            cbLuPair: u32,
-            pITransaction: ?*ITransaction,
-            pTransId: ?*u8,
-            cbTransId: u32,
-            pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink,
-            ppRmEnlistment: ?*?*IDtcLuRmEnlistment,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcLuRmEnlistmentFactory, pucLuPair: ?*u8, cbLuPair: u32, pITransaction: ?*ITransaction, pTransId: ?*u8, cbTransId: u32, pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink, ppRmEnlistment: ?*?*IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, pucLuPair, cbLuPair, pITransaction, pTransId, cbTransId, pRmEnlistmentSink, ppRmEnlistment);
-    }
-};
-
 const IID_IDtcLuSubordinateDtc_Value = Guid.initString("4131e773-1aea-11d0-944b-00a0c905416e");
 pub const IID_IDtcLuSubordinateDtc = &IID_IDtcLuSubordinateDtc_Value;
 pub const IDtcLuSubordinateDtc = extern union {
@@ -2498,6 +716,33 @@ pub const IDtcLuSubordinateDtc = extern union {
     }
     pub fn RequestCommit(self: *const IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.RequestCommit(self);
+    }
+};
+
+const IID_IDtcLuSubordinateDtcFactory_Value = Guid.initString("4131e775-1aea-11d0-944b-00a0c905416e");
+pub const IID_IDtcLuSubordinateDtcFactory = &IID_IDtcLuSubordinateDtcFactory_Value;
+pub const IDtcLuSubordinateDtcFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IDtcLuSubordinateDtcFactory,
+            pucLuPair: ?*u8,
+            cbLuPair: u32,
+            punkTransactionOuter: ?*IUnknown,
+            isoLevel: i32,
+            isoFlags: u32,
+            pOptions: ?*ITransactionOptions,
+            ppTransaction: ?*?*ITransaction,
+            pTransId: ?*u8,
+            cbTransId: u32,
+            pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink,
+            ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IDtcLuSubordinateDtcFactory, pucLuPair: ?*u8, cbLuPair: u32, punkTransactionOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction, pTransId: ?*u8, cbTransId: u32, pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink, ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, pucLuPair, cbLuPair, punkTransactionOuter, isoLevel, isoFlags, pOptions, ppTransaction, pTransId, cbTransId, pSubordinateDtcSink, ppSubordinateDtc);
     }
 };
 
@@ -2559,31 +804,1786 @@ pub const IDtcLuSubordinateDtcSink = extern union {
     }
 };
 
-const IID_IDtcLuSubordinateDtcFactory_Value = Guid.initString("4131e775-1aea-11d0-944b-00a0c905416e");
-pub const IID_IDtcLuSubordinateDtcFactory = &IID_IDtcLuSubordinateDtcFactory_Value;
-pub const IDtcLuSubordinateDtcFactory = extern union {
+const IID_IDtcNetworkAccessConfig_Value = Guid.initString("9797c15d-a428-4291-87b6-0995031a678d");
+pub const IID_IDtcNetworkAccessConfig = &IID_IDtcNetworkAccessConfig_Value;
+pub const IDtcNetworkAccessConfig = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IDtcLuSubordinateDtcFactory,
-            pucLuPair: ?*u8,
-            cbLuPair: u32,
-            punkTransactionOuter: ?*IUnknown,
-            isoLevel: i32,
-            isoFlags: u32,
-            pOptions: ?*ITransactionOptions,
-            ppTransaction: ?*?*ITransaction,
-            pTransId: ?*u8,
-            cbTransId: u32,
-            pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink,
-            ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc,
+        GetAnyNetworkAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            pbAnyNetworkAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetAnyNetworkAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            bAnyNetworkAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkAdministrationAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            pbNetworkAdministrationAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkAdministrationAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            bNetworkAdministrationAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkTransactionAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            pbNetworkTransactionAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkTransactionAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            bNetworkTransactionAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkClientAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            pbNetworkClientAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkClientAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            bNetworkClientAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkTIPAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            pbNetworkTIPAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkTIPAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            bNetworkTIPAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetXAAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            pbXAAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetXAAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig,
+            bXAAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+        RestartDtcService: *const fn(
+            self: *const IDtcNetworkAccessConfig,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcLuSubordinateDtcFactory, pucLuPair: ?*u8, cbLuPair: u32, punkTransactionOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction, pTransId: ?*u8, cbTransId: u32, pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink, ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, pucLuPair, cbLuPair, punkTransactionOuter, isoLevel, isoFlags, pOptions, ppTransaction, pTransId, cbTransId, pSubordinateDtcSink, ppSubordinateDtc);
+    pub fn GetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, pbAnyNetworkAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAnyNetworkAccess(self, pbAnyNetworkAccess);
     }
+    pub fn SetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, bAnyNetworkAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAnyNetworkAccess(self, bAnyNetworkAccess);
+    }
+    pub fn GetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, pbNetworkAdministrationAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkAdministrationAccess(self, pbNetworkAdministrationAccess);
+    }
+    pub fn SetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, bNetworkAdministrationAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkAdministrationAccess(self, bNetworkAdministrationAccess);
+    }
+    pub fn GetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTransactionAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkTransactionAccess(self, pbNetworkTransactionAccess);
+    }
+    pub fn SetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, bNetworkTransactionAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkTransactionAccess(self, bNetworkTransactionAccess);
+    }
+    pub fn GetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, pbNetworkClientAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkClientAccess(self, pbNetworkClientAccess);
+    }
+    pub fn SetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, bNetworkClientAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkClientAccess(self, bNetworkClientAccess);
+    }
+    pub fn GetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTIPAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkTIPAccess(self, pbNetworkTIPAccess);
+    }
+    pub fn SetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, bNetworkTIPAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkTIPAccess(self, bNetworkTIPAccess);
+    }
+    pub fn GetXAAccess(self: *const IDtcNetworkAccessConfig, pbXAAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetXAAccess(self, pbXAAccess);
+    }
+    pub fn SetXAAccess(self: *const IDtcNetworkAccessConfig, bXAAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetXAAccess(self, bXAAccess);
+    }
+    pub fn RestartDtcService(self: *const IDtcNetworkAccessConfig) callconv(.@"inline") HRESULT {
+        return self.vtable.RestartDtcService(self);
+    }
+};
+
+const IID_IDtcNetworkAccessConfig2_Value = Guid.initString("a7aa013b-eb7d-4f42-b41c-b2dec09ae034");
+pub const IID_IDtcNetworkAccessConfig2 = &IID_IDtcNetworkAccessConfig2_Value;
+pub const IDtcNetworkAccessConfig2 = extern union {
+    pub const VTable = extern struct {
+        base: IDtcNetworkAccessConfig.VTable,
+        GetNetworkInboundAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig2,
+            pbInbound: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetNetworkOutboundAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig2,
+            pbOutbound: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkInboundAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig2,
+            bInbound: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetNetworkOutboundAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig2,
+            bOutbound: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetAuthenticationLevel: *const fn(
+            self: *const IDtcNetworkAccessConfig2,
+            pAuthLevel: ?*AUTHENTICATION_LEVEL,
+        ) callconv(.winapi) HRESULT,
+        SetAuthenticationLevel: *const fn(
+            self: *const IDtcNetworkAccessConfig2,
+            AuthLevel: AUTHENTICATION_LEVEL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDtcNetworkAccessConfig: IDtcNetworkAccessConfig,
+    IUnknown: IUnknown,
+    pub fn GetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, pbInbound: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkInboundAccess(self, pbInbound);
+    }
+    pub fn GetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, pbOutbound: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNetworkOutboundAccess(self, pbOutbound);
+    }
+    pub fn SetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, bInbound: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkInboundAccess(self, bInbound);
+    }
+    pub fn SetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, bOutbound: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetNetworkOutboundAccess(self, bOutbound);
+    }
+    pub fn GetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, pAuthLevel: ?*AUTHENTICATION_LEVEL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAuthenticationLevel(self, pAuthLevel);
+    }
+    pub fn SetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, AuthLevel: AUTHENTICATION_LEVEL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAuthenticationLevel(self, AuthLevel);
+    }
+};
+
+const IID_IDtcNetworkAccessConfig3_Value = Guid.initString("76e4b4f3-2ca5-466b-89d5-fd218ee75b49");
+pub const IID_IDtcNetworkAccessConfig3 = &IID_IDtcNetworkAccessConfig3_Value;
+pub const IDtcNetworkAccessConfig3 = extern union {
+    pub const VTable = extern struct {
+        base: IDtcNetworkAccessConfig2.VTable,
+        GetLUAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig3,
+            pbLUAccess: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        SetLUAccess: *const fn(
+            self: *const IDtcNetworkAccessConfig3,
+            bLUAccess: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDtcNetworkAccessConfig2: IDtcNetworkAccessConfig2,
+    IDtcNetworkAccessConfig: IDtcNetworkAccessConfig,
+    IUnknown: IUnknown,
+    pub fn GetLUAccess(self: *const IDtcNetworkAccessConfig3, pbLUAccess: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLUAccess(self, pbLUAccess);
+    }
+    pub fn SetLUAccess(self: *const IDtcNetworkAccessConfig3, bLUAccess: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLUAccess(self, bLUAccess);
+    }
+};
+
+const IID_IDtcToXaHelper_Value = Guid.initString("a9861611-304a-11d1-9813-00a0c905416e");
+pub const IID_IDtcToXaHelper = &IID_IDtcToXaHelper_Value;
+pub const IDtcToXaHelper = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Close: *const fn(
+            self: *const IDtcToXaHelper,
+            i_fDoRecovery: BOOL,
+        ) callconv(.winapi) HRESULT,
+        TranslateTridToXid: *const fn(
+            self: *const IDtcToXaHelper,
+            pITransaction: ?*ITransaction,
+            pguidBqual: ?*Guid,
+            pXid: ?*xid_t,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Close(self: *const IDtcToXaHelper, i_fDoRecovery: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self, i_fDoRecovery);
+    }
+    pub fn TranslateTridToXid(self: *const IDtcToXaHelper, pITransaction: ?*ITransaction, pguidBqual: ?*Guid, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
+        return self.vtable.TranslateTridToXid(self, pITransaction, pguidBqual, pXid);
+    }
+};
+
+const IID_IDtcToXaHelperFactory_Value = Guid.initString("a9861610-304a-11d1-9813-00a0c905416e");
+pub const IID_IDtcToXaHelperFactory = &IID_IDtcToXaHelperFactory_Value;
+pub const IDtcToXaHelperFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IDtcToXaHelperFactory,
+            pszDSN: ?PSTR,
+            pszClientDllName: ?PSTR,
+            pguidRm: ?*Guid,
+            ppXaHelper: ?*?*IDtcToXaHelper,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IDtcToXaHelperFactory, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pguidRm: ?*Guid, ppXaHelper: ?*?*IDtcToXaHelper) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, pszDSN, pszClientDllName, pguidRm, ppXaHelper);
+    }
+};
+
+const IID_IDtcToXaHelperSinglePipe_Value = Guid.initString("47ed4971-53b3-11d1-bbb9-00c04fd658f6");
+pub const IID_IDtcToXaHelperSinglePipe = &IID_IDtcToXaHelperSinglePipe_Value;
+pub const IDtcToXaHelperSinglePipe = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        XARMCreate: *const fn(
+            self: *const IDtcToXaHelperSinglePipe,
+            pszDSN: ?PSTR,
+            pszClientDll: ?PSTR,
+            pdwRMCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertTridToXID: *const fn(
+            self: *const IDtcToXaHelperSinglePipe,
+            pdwITrans: ?*u32,
+            dwRMCookie: u32,
+            pxid: ?*xid_t,
+        ) callconv(.winapi) HRESULT,
+        EnlistWithRM: *const fn(
+            self: *const IDtcToXaHelperSinglePipe,
+            dwRMCookie: u32,
+            i_pITransaction: ?*ITransaction,
+            i_pITransRes: ?*ITransactionResourceAsync,
+            o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+        ReleaseRMCookie: *const fn(
+            self: *const IDtcToXaHelperSinglePipe,
+            i_dwRMCookie: u32,
+            i_fNormal: BOOL,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn XARMCreate(self: *const IDtcToXaHelperSinglePipe, pszDSN: ?PSTR, pszClientDll: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.XARMCreate(self, pszDSN, pszClientDll, pdwRMCookie);
+    }
+    pub fn ConvertTridToXID(self: *const IDtcToXaHelperSinglePipe, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*xid_t) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertTridToXID(self, pdwITrans, dwRMCookie, pxid);
+    }
+    pub fn EnlistWithRM(self: *const IDtcToXaHelperSinglePipe, dwRMCookie: u32, i_pITransaction: ?*ITransaction, i_pITransRes: ?*ITransactionResourceAsync, o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.EnlistWithRM(self, dwRMCookie, i_pITransaction, i_pITransRes, o_ppITransEnslitment);
+    }
+    pub fn ReleaseRMCookie(self: *const IDtcToXaHelperSinglePipe, i_dwRMCookie: u32, i_fNormal: BOOL) callconv(.@"inline") void {
+        return self.vtable.ReleaseRMCookie(self, i_dwRMCookie, i_fNormal);
+    }
+};
+
+const IID_IDtcToXaMapper_Value = Guid.initString("64ffabe0-7ce9-11d0-8ce6-00c04fdc877e");
+pub const IID_IDtcToXaMapper = &IID_IDtcToXaMapper_Value;
+pub const IDtcToXaMapper = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RequestNewResourceManager: *const fn(
+            self: *const IDtcToXaMapper,
+            pszDSN: ?PSTR,
+            pszClientDllName: ?PSTR,
+            pdwRMCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        TranslateTridToXid: *const fn(
+            self: *const IDtcToXaMapper,
+            pdwITransaction: ?*u32,
+            dwRMCookie: u32,
+            pXid: ?*xid_t,
+        ) callconv(.winapi) HRESULT,
+        EnlistResourceManager: *const fn(
+            self: *const IDtcToXaMapper,
+            dwRMCookie: u32,
+            pdwITransaction: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ReleaseResourceManager: *const fn(
+            self: *const IDtcToXaMapper,
+            dwRMCookie: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RequestNewResourceManager(self: *const IDtcToXaMapper, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RequestNewResourceManager(self, pszDSN, pszClientDllName, pdwRMCookie);
+    }
+    pub fn TranslateTridToXid(self: *const IDtcToXaMapper, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
+        return self.vtable.TranslateTridToXid(self, pdwITransaction, dwRMCookie, pXid);
+    }
+    pub fn EnlistResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32, pdwITransaction: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.EnlistResourceManager(self, dwRMCookie, pdwITransaction);
+    }
+    pub fn ReleaseResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseResourceManager(self, dwRMCookie);
+    }
+};
+
+const IID_IGetDispenser_Value = Guid.initString("c23cc370-87ef-11ce-8081-0080c758527e");
+pub const IID_IGetDispenser = &IID_IGetDispenser_Value;
+pub const IGetDispenser = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDispenser: *const fn(
+            self: *const IGetDispenser,
+            iid: ?*const Guid,
+            ppvObject: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDispenser(self: *const IGetDispenser, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDispenser(self, iid, ppvObject);
+    }
+};
+
+const IID_IKernelTransaction_Value = Guid.initString("79427a2b-f895-40e0-be79-b57dc82ed231");
+pub const IID_IKernelTransaction = &IID_IKernelTransaction_Value;
+pub const IKernelTransaction = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetHandle: *const fn(
+            self: *const IKernelTransaction,
+            pHandle: ?*?HANDLE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetHandle(self: *const IKernelTransaction, pHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHandle(self, pHandle);
+    }
+};
+
+const IID_ILastResourceManager_Value = Guid.initString("4d964ad4-5b33-11d3-8a91-00c04f79eb6d");
+pub const IID_ILastResourceManager = &IID_ILastResourceManager_Value;
+pub const ILastResourceManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        TransactionCommitted: *const fn(
+            self: *const ILastResourceManager,
+            pPrepInfo: [*:0]u8,
+            cbPrepInfo: u32,
+        ) callconv(.winapi) HRESULT,
+        RecoveryDone: *const fn(
+            self: *const ILastResourceManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn TransactionCommitted(self: *const ILastResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.TransactionCommitted(self, pPrepInfo, cbPrepInfo);
+    }
+    pub fn RecoveryDone(self: *const ILastResourceManager) callconv(.@"inline") HRESULT {
+        return self.vtable.RecoveryDone(self);
+    }
+};
+
+const IID_IPrepareInfo_Value = Guid.initString("80c7bfd0-87ee-11ce-8081-0080c758527e");
+pub const IID_IPrepareInfo = &IID_IPrepareInfo_Value;
+pub const IPrepareInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPrepareInfoSize: *const fn(
+            self: *const IPrepareInfo,
+            pcbPrepInfo: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPrepareInfo: *const fn(
+            self: *const IPrepareInfo,
+            pPrepInfo: ?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPrepareInfoSize(self: *const IPrepareInfo, pcbPrepInfo: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrepareInfoSize(self, pcbPrepInfo);
+    }
+    pub fn GetPrepareInfo(self: *const IPrepareInfo, pPrepInfo: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrepareInfo(self, pPrepInfo);
+    }
+};
+
+const IID_IPrepareInfo2_Value = Guid.initString("5fab2547-9779-11d1-b886-00c04fb9618a");
+pub const IID_IPrepareInfo2 = &IID_IPrepareInfo2_Value;
+pub const IPrepareInfo2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPrepareInfoSize: *const fn(
+            self: *const IPrepareInfo2,
+            pcbPrepInfo: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPrepareInfo: *const fn(
+            self: *const IPrepareInfo2,
+            cbPrepareInfo: u32,
+            pPrepInfo: [*:0]u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPrepareInfoSize(self: *const IPrepareInfo2, pcbPrepInfo: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrepareInfoSize(self, pcbPrepInfo);
+    }
+    pub fn GetPrepareInfo(self: *const IPrepareInfo2, cbPrepareInfo: u32, pPrepInfo: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPrepareInfo(self, cbPrepareInfo, pPrepInfo);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IResourceManager_Value = Guid.initString("13741d21-87eb-11ce-8081-0080c758527e");
+pub const IID_IResourceManager = &IID_IResourceManager_Value;
+pub const IResourceManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Enlist: *const fn(
+            self: *const IResourceManager,
+            pTransaction: ?*ITransaction,
+            pRes: ?*ITransactionResourceAsync,
+            pUOW: ?*BOID,
+            pisoLevel: ?*i32,
+            ppEnlist: ?*?*ITransactionEnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+        Reenlist: *const fn(
+            self: *const IResourceManager,
+            pPrepInfo: [*:0]u8,
+            cbPrepInfo: u32,
+            lTimeout: u32,
+            pXactStat: ?*XACTSTAT,
+        ) callconv(.winapi) HRESULT,
+        ReenlistmentComplete: *const fn(
+            self: *const IResourceManager,
+        ) callconv(.winapi) HRESULT,
+        GetDistributedTransactionManager: *const fn(
+            self: *const IResourceManager,
+            iid: ?*const Guid,
+            ppvObject: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Enlist(self: *const IResourceManager, pTransaction: ?*ITransaction, pRes: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Enlist(self, pTransaction, pRes, pUOW, pisoLevel, ppEnlist);
+    }
+    pub fn Reenlist(self: *const IResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
+        return self.vtable.Reenlist(self, pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
+    }
+    pub fn ReenlistmentComplete(self: *const IResourceManager) callconv(.@"inline") HRESULT {
+        return self.vtable.ReenlistmentComplete(self);
+    }
+    pub fn GetDistributedTransactionManager(self: *const IResourceManager, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDistributedTransactionManager(self, iid, ppvObject);
+    }
+};
+
+const IID_IResourceManager2_Value = Guid.initString("d136c69a-f749-11d1-8f47-00c04f8ee57d");
+pub const IID_IResourceManager2 = &IID_IResourceManager2_Value;
+pub const IResourceManager2 = extern union {
+    pub const VTable = extern struct {
+        base: IResourceManager.VTable,
+        Enlist2: *const fn(
+            self: *const IResourceManager2,
+            pTransaction: ?*ITransaction,
+            pResAsync: ?*ITransactionResourceAsync,
+            pUOW: ?*BOID,
+            pisoLevel: ?*i32,
+            pXid: ?*xid_t,
+            ppEnlist: ?*?*ITransactionEnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+        Reenlist2: *const fn(
+            self: *const IResourceManager2,
+            pXid: ?*xid_t,
+            dwTimeout: u32,
+            pXactStat: ?*XACTSTAT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IResourceManager: IResourceManager,
+    IUnknown: IUnknown,
+    pub fn Enlist2(self: *const IResourceManager2, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, pXid: ?*xid_t, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Enlist2(self, pTransaction, pResAsync, pUOW, pisoLevel, pXid, ppEnlist);
+    }
+    pub fn Reenlist2(self: *const IResourceManager2, pXid: ?*xid_t, dwTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
+        return self.vtable.Reenlist2(self, pXid, dwTimeout, pXactStat);
+    }
+};
+
+const IID_IResourceManagerFactory_Value = Guid.initString("13741d20-87eb-11ce-8081-0080c758527e");
+pub const IID_IResourceManagerFactory = &IID_IResourceManagerFactory_Value;
+pub const IResourceManagerFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IResourceManagerFactory,
+            pguidRM: ?*Guid,
+            pszRMName: ?PSTR,
+            pIResMgrSink: ?*IResourceManagerSink,
+            ppResMgr: ?*?*IResourceManager,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IResourceManagerFactory, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, pguidRM, pszRMName, pIResMgrSink, ppResMgr);
+    }
+};
+
+const IID_IResourceManagerFactory2_Value = Guid.initString("6b369c21-fbd2-11d1-8f47-00c04f8ee57d");
+pub const IID_IResourceManagerFactory2 = &IID_IResourceManagerFactory2_Value;
+pub const IResourceManagerFactory2 = extern union {
+    pub const VTable = extern struct {
+        base: IResourceManagerFactory.VTable,
+        CreateEx: *const fn(
+            self: *const IResourceManagerFactory2,
+            pguidRM: ?*Guid,
+            pszRMName: ?PSTR,
+            pIResMgrSink: ?*IResourceManagerSink,
+            riidRequested: ?*const Guid,
+            ppvResMgr: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IResourceManagerFactory: IResourceManagerFactory,
+    IUnknown: IUnknown,
+    pub fn CreateEx(self: *const IResourceManagerFactory2, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEx(self, pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
+    }
+};
+
+const IID_IResourceManagerRejoinable_Value = Guid.initString("6f6de620-b5df-4f3e-9cfa-c8aebd05172b");
+pub const IID_IResourceManagerRejoinable = &IID_IResourceManagerRejoinable_Value;
+pub const IResourceManagerRejoinable = extern union {
+    pub const VTable = extern struct {
+        base: IResourceManager2.VTable,
+        Rejoin: *const fn(
+            self: *const IResourceManagerRejoinable,
+            pPrepInfo: [*:0]u8,
+            cbPrepInfo: u32,
+            lTimeout: u32,
+            pXactStat: ?*XACTSTAT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IResourceManager2: IResourceManager2,
+    IResourceManager: IResourceManager,
+    IUnknown: IUnknown,
+    pub fn Rejoin(self: *const IResourceManagerRejoinable, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
+        return self.vtable.Rejoin(self, pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
+    }
+};
+
+const IID_IResourceManagerSink_Value = Guid.initString("0d563181-defb-11ce-aed1-00aa0051e2c4");
+pub const IID_IResourceManagerSink = &IID_IResourceManagerSink_Value;
+pub const IResourceManagerSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        TMDown: *const fn(
+            self: *const IResourceManagerSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn TMDown(self: *const IResourceManagerSink) callconv(.@"inline") HRESULT {
+        return self.vtable.TMDown(self);
+    }
+};
+
+const IID_IRMHelper_Value = Guid.initString("e793f6d1-f53d-11cf-a60d-00a0c905416e");
+pub const IID_IRMHelper = &IID_IRMHelper_Value;
+pub const IRMHelper = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        RMCount: *const fn(
+            self: *const IRMHelper,
+            dwcTotalNumberOfRMs: u32,
+        ) callconv(.winapi) HRESULT,
+        RMInfo: *const fn(
+            self: *const IRMHelper,
+            pXa_Switch: ?*xa_switch_t,
+            fCDeclCallingConv: BOOL,
+            pszOpenString: ?PSTR,
+            pszCloseString: ?PSTR,
+            guidRMRecovery: Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn RMCount(self: *const IRMHelper, dwcTotalNumberOfRMs: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RMCount(self, dwcTotalNumberOfRMs);
+    }
+    pub fn RMInfo(self: *const IRMHelper, pXa_Switch: ?*xa_switch_t, fCDeclCallingConv: BOOL, pszOpenString: ?PSTR, pszCloseString: ?PSTR, guidRMRecovery: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.RMInfo(self, pXa_Switch, fCDeclCallingConv, pszOpenString, pszCloseString, guidRMRecovery);
+    }
+};
+
+pub const ISOFLAG = enum(i32) {
+    RETAIN_COMMIT_DC = 1,
+    RETAIN_COMMIT = 2,
+    RETAIN_COMMIT_NO = 3,
+    RETAIN_ABORT_DC = 4,
+    RETAIN_ABORT = 8,
+    RETAIN_ABORT_NO = 12,
+    RETAIN_DONTCARE = 5,
+    RETAIN_BOTH = 10,
+    RETAIN_NONE = 15,
+    OPTIMISTIC = 16,
+    READONLY = 32,
+};
+pub const ISOFLAG_RETAIN_COMMIT_DC = ISOFLAG.RETAIN_COMMIT_DC;
+pub const ISOFLAG_RETAIN_COMMIT = ISOFLAG.RETAIN_COMMIT;
+pub const ISOFLAG_RETAIN_COMMIT_NO = ISOFLAG.RETAIN_COMMIT_NO;
+pub const ISOFLAG_RETAIN_ABORT_DC = ISOFLAG.RETAIN_ABORT_DC;
+pub const ISOFLAG_RETAIN_ABORT = ISOFLAG.RETAIN_ABORT;
+pub const ISOFLAG_RETAIN_ABORT_NO = ISOFLAG.RETAIN_ABORT_NO;
+pub const ISOFLAG_RETAIN_DONTCARE = ISOFLAG.RETAIN_DONTCARE;
+pub const ISOFLAG_RETAIN_BOTH = ISOFLAG.RETAIN_BOTH;
+pub const ISOFLAG_RETAIN_NONE = ISOFLAG.RETAIN_NONE;
+pub const ISOFLAG_OPTIMISTIC = ISOFLAG.OPTIMISTIC;
+pub const ISOFLAG_READONLY = ISOFLAG.READONLY;
+
+pub const ISOLATIONLEVEL = enum(i32) {
+    UNSPECIFIED = -1,
+    CHAOS = 16,
+    READUNCOMMITTED = 256,
+    CURSORSTABILITY = 4096,
+    REPEATABLEREAD = 65536,
+    SERIALIZABLE = 1048576,
+    pub const BROWSE = .READUNCOMMITTED;
+    pub const READCOMMITTED = .CURSORSTABILITY;
+    pub const ISOLATED = .SERIALIZABLE;
+};
+pub const ISOLATIONLEVEL_UNSPECIFIED = ISOLATIONLEVEL.UNSPECIFIED;
+pub const ISOLATIONLEVEL_CHAOS = ISOLATIONLEVEL.CHAOS;
+pub const ISOLATIONLEVEL_READUNCOMMITTED = ISOLATIONLEVEL.READUNCOMMITTED;
+pub const ISOLATIONLEVEL_BROWSE = ISOLATIONLEVEL.READUNCOMMITTED;
+pub const ISOLATIONLEVEL_CURSORSTABILITY = ISOLATIONLEVEL.CURSORSTABILITY;
+pub const ISOLATIONLEVEL_READCOMMITTED = ISOLATIONLEVEL.CURSORSTABILITY;
+pub const ISOLATIONLEVEL_REPEATABLEREAD = ISOLATIONLEVEL.REPEATABLEREAD;
+pub const ISOLATIONLEVEL_SERIALIZABLE = ISOLATIONLEVEL.SERIALIZABLE;
+pub const ISOLATIONLEVEL_ISOLATED = ISOLATIONLEVEL.SERIALIZABLE;
+
+const IID_ITipHelper_Value = Guid.initString("17cf72d1-bac5-11d1-b1bf-00c04fc2f3ef");
+pub const IID_ITipHelper = &IID_ITipHelper_Value;
+pub const ITipHelper = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Pull: *const fn(
+            self: *const ITipHelper,
+            i_pszTxUrl: ?*u8,
+            o_ppITransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+        PullAsync: *const fn(
+            self: *const ITipHelper,
+            i_pszTxUrl: ?*u8,
+            i_pTipPullSink: ?*ITipPullSink,
+            o_ppITransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+        GetLocalTmUrl: *const fn(
+            self: *const ITipHelper,
+            o_ppszLocalTmUrl: ?*?*u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Pull(self: *const ITipHelper, i_pszTxUrl: ?*u8, o_ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.Pull(self, i_pszTxUrl, o_ppITransaction);
+    }
+    pub fn PullAsync(self: *const ITipHelper, i_pszTxUrl: ?*u8, i_pTipPullSink: ?*ITipPullSink, o_ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.PullAsync(self, i_pszTxUrl, i_pTipPullSink, o_ppITransaction);
+    }
+    pub fn GetLocalTmUrl(self: *const ITipHelper, o_ppszLocalTmUrl: ?*?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalTmUrl(self, o_ppszLocalTmUrl);
+    }
+};
+
+const IID_ITipPullSink_Value = Guid.initString("17cf72d2-bac5-11d1-b1bf-00c04fc2f3ef");
+pub const IID_ITipPullSink = &IID_ITipPullSink_Value;
+pub const ITipPullSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PullComplete: *const fn(
+            self: *const ITipPullSink,
+            i_hrPull: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PullComplete(self: *const ITipPullSink, i_hrPull: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.PullComplete(self, i_hrPull);
+    }
+};
+
+const IID_ITipTransaction_Value = Guid.initString("17cf72d0-bac5-11d1-b1bf-00c04fc2f3ef");
+pub const IID_ITipTransaction = &IID_ITipTransaction_Value;
+pub const ITipTransaction = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Push: *const fn(
+            self: *const ITipTransaction,
+            i_pszRemoteTmUrl: ?*u8,
+            o_ppszRemoteTxUrl: ?*?PSTR,
+        ) callconv(.winapi) HRESULT,
+        GetTransactionUrl: *const fn(
+            self: *const ITipTransaction,
+            o_ppszLocalTxUrl: ?*?PSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Push(self: *const ITipTransaction, i_pszRemoteTmUrl: ?*u8, o_ppszRemoteTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Push(self, i_pszRemoteTmUrl, o_ppszRemoteTxUrl);
+    }
+    pub fn GetTransactionUrl(self: *const ITipTransaction, o_ppszLocalTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransactionUrl(self, o_ppszLocalTxUrl);
+    }
+};
+
+const IID_ITmNodeName_Value = Guid.initString("30274f88-6ee4-474e-9b95-7807bc9ef8cf");
+pub const IID_ITmNodeName = &IID_ITmNodeName_Value;
+pub const ITmNodeName = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNodeNameSize: *const fn(
+            self: *const ITmNodeName,
+            pcbNodeNameSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetNodeName: *const fn(
+            self: *const ITmNodeName,
+            cbNodeNameBufferSize: u32,
+            pNodeNameBuffer: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNodeNameSize(self: *const ITmNodeName, pcbNodeNameSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNodeNameSize(self, pcbNodeNameSize);
+    }
+    pub fn GetNodeName(self: *const ITmNodeName, cbNodeNameBufferSize: u32, pNodeNameBuffer: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNodeName(self, cbNodeNameBufferSize, pNodeNameBuffer);
+    }
+};
+
+const IID_ITransaction_Value = Guid.initString("0fb15084-af41-11ce-bd2b-204c4f4f5020");
+pub const IID_ITransaction = &IID_ITransaction_Value;
+pub const ITransaction = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Commit: *const fn(
+            self: *const ITransaction,
+            fRetaining: BOOL,
+            grfTC: u32,
+            grfRM: u32,
+        ) callconv(.winapi) HRESULT,
+        Abort: *const fn(
+            self: *const ITransaction,
+            pboidReason: ?*BOID,
+            fRetaining: BOOL,
+            fAsync: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetTransactionInfo: *const fn(
+            self: *const ITransaction,
+            pinfo: ?*XACTTRANSINFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Commit(self: *const ITransaction, fRetaining: BOOL, grfTC: u32, grfRM: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self, fRetaining, grfTC, grfRM);
+    }
+    pub fn Abort(self: *const ITransaction, pboidReason: ?*BOID, fRetaining: BOOL, fAsync: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Abort(self, pboidReason, fRetaining, fAsync);
+    }
+    pub fn GetTransactionInfo(self: *const ITransaction, pinfo: ?*XACTTRANSINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransactionInfo(self, pinfo);
+    }
+};
+
+const IID_ITransaction2_Value = Guid.initString("34021548-0065-11d3-bac1-00c04f797be2");
+pub const IID_ITransaction2 = &IID_ITransaction2_Value;
+pub const ITransaction2 = extern union {
+    pub const VTable = extern struct {
+        base: ITransactionCloner.VTable,
+        GetTransactionInfo2: *const fn(
+            self: *const ITransaction2,
+            pinfo: ?*XACTTRANSINFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITransactionCloner: ITransactionCloner,
+    ITransaction: ITransaction,
+    IUnknown: IUnknown,
+    pub fn GetTransactionInfo2(self: *const ITransaction2, pinfo: ?*XACTTRANSINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransactionInfo2(self, pinfo);
+    }
+};
+
+const IID_ITransactionCloner_Value = Guid.initString("02656950-2152-11d0-944c-00a0c905416e");
+pub const IID_ITransactionCloner = &IID_ITransactionCloner_Value;
+pub const ITransactionCloner = extern union {
+    pub const VTable = extern struct {
+        base: ITransaction.VTable,
+        CloneWithCommitDisabled: *const fn(
+            self: *const ITransactionCloner,
+            ppITransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITransaction: ITransaction,
+    IUnknown: IUnknown,
+    pub fn CloneWithCommitDisabled(self: *const ITransactionCloner, ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.CloneWithCommitDisabled(self, ppITransaction);
+    }
+};
+
+const IID_ITransactionDispenser_Value = Guid.initString("3a6ad9e1-23b9-11cf-ad60-00aa00a74ccd");
+pub const IID_ITransactionDispenser = &IID_ITransactionDispenser_Value;
+pub const ITransactionDispenser = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOptionsObject: *const fn(
+            self: *const ITransactionDispenser,
+            ppOptions: ?*?*ITransactionOptions,
+        ) callconv(.winapi) HRESULT,
+        BeginTransaction: *const fn(
+            self: *const ITransactionDispenser,
+            punkOuter: ?*IUnknown,
+            isoLevel: i32,
+            isoFlags: u32,
+            pOptions: ?*ITransactionOptions,
+            ppTransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetOptionsObject(self: *const ITransactionDispenser, ppOptions: ?*?*ITransactionOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOptionsObject(self, ppOptions);
+    }
+    pub fn BeginTransaction(self: *const ITransactionDispenser, punkOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginTransaction(self, punkOuter, isoLevel, isoFlags, pOptions, ppTransaction);
+    }
+};
+
+const IID_ITransactionEnlistmentAsync_Value = Guid.initString("0fb15081-af41-11ce-bd2b-204c4f4f5020");
+pub const IID_ITransactionEnlistmentAsync = &IID_ITransactionEnlistmentAsync_Value;
+pub const ITransactionEnlistmentAsync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PrepareRequestDone: *const fn(
+            self: *const ITransactionEnlistmentAsync,
+            hr: HRESULT,
+            pmk: ?*IMoniker,
+            pboidReason: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+        CommitRequestDone: *const fn(
+            self: *const ITransactionEnlistmentAsync,
+            hr: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        AbortRequestDone: *const fn(
+            self: *const ITransactionEnlistmentAsync,
+            hr: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PrepareRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT, pmk: ?*IMoniker, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.PrepareRequestDone(self, hr, pmk, pboidReason);
+    }
+    pub fn CommitRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitRequestDone(self, hr);
+    }
+    pub fn AbortRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.AbortRequestDone(self, hr);
+    }
+};
+
+const IID_ITransactionExport_Value = Guid.initString("0141fda5-8fc0-11ce-bd18-204c4f4f5020");
+pub const IID_ITransactionExport = &IID_ITransactionExport_Value;
+pub const ITransactionExport = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Export: *const fn(
+            self: *const ITransactionExport,
+            punkTransaction: ?*IUnknown,
+            pcbTransactionCookie: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetTransactionCookie: *const fn(
+            self: *const ITransactionExport,
+            punkTransaction: ?*IUnknown,
+            cbTransactionCookie: u32,
+            rgbTransactionCookie: [*:0]u8,
+            pcbUsed: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Export(self: *const ITransactionExport, punkTransaction: ?*IUnknown, pcbTransactionCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Export(self, punkTransaction, pcbTransactionCookie);
+    }
+    pub fn GetTransactionCookie(self: *const ITransactionExport, punkTransaction: ?*IUnknown, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransactionCookie(self, punkTransaction, cbTransactionCookie, rgbTransactionCookie, pcbUsed);
+    }
+};
+
+const IID_ITransactionExportFactory_Value = Guid.initString("e1cf9b53-8745-11ce-a9ba-00aa006c3706");
+pub const IID_ITransactionExportFactory = &IID_ITransactionExportFactory_Value;
+pub const ITransactionExportFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRemoteClassId: *const fn(
+            self: *const ITransactionExportFactory,
+            pclsid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        Create: *const fn(
+            self: *const ITransactionExportFactory,
+            cbWhereabouts: u32,
+            rgbWhereabouts: [*:0]u8,
+            ppExport: ?*?*ITransactionExport,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRemoteClassId(self: *const ITransactionExportFactory, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRemoteClassId(self, pclsid);
+    }
+    pub fn Create(self: *const ITransactionExportFactory, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, ppExport: ?*?*ITransactionExport) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, cbWhereabouts, rgbWhereabouts, ppExport);
+    }
+};
+
+const IID_ITransactionImport_Value = Guid.initString("e1cf9b5a-8745-11ce-a9ba-00aa006c3706");
+pub const IID_ITransactionImport = &IID_ITransactionImport_Value;
+pub const ITransactionImport = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Import: *const fn(
+            self: *const ITransactionImport,
+            cbTransactionCookie: u32,
+            rgbTransactionCookie: [*:0]u8,
+            piid: ?*const Guid,
+            ppvTransaction: **anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Import(self: *const ITransactionImport, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.Import(self, cbTransactionCookie, rgbTransactionCookie, piid, ppvTransaction);
+    }
+};
+
+const IID_ITransactionImportWhereabouts_Value = Guid.initString("0141fda4-8fc0-11ce-bd18-204c4f4f5020");
+pub const IID_ITransactionImportWhereabouts = &IID_ITransactionImportWhereabouts_Value;
+pub const ITransactionImportWhereabouts = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetWhereaboutsSize: *const fn(
+            self: *const ITransactionImportWhereabouts,
+            pcbWhereabouts: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetWhereabouts: *const fn(
+            self: *const ITransactionImportWhereabouts,
+            cbWhereabouts: u32,
+            rgbWhereabouts: [*:0]u8,
+            pcbUsed: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetWhereaboutsSize(self: *const ITransactionImportWhereabouts, pcbWhereabouts: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWhereaboutsSize(self, pcbWhereabouts);
+    }
+    pub fn GetWhereabouts(self: *const ITransactionImportWhereabouts, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWhereabouts(self, cbWhereabouts, rgbWhereabouts, pcbUsed);
+    }
+};
+
+const IID_ITransactionLastEnlistmentAsync_Value = Guid.initString("c82bd533-5b30-11d3-8a91-00c04f79eb6d");
+pub const IID_ITransactionLastEnlistmentAsync = &IID_ITransactionLastEnlistmentAsync_Value;
+pub const ITransactionLastEnlistmentAsync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        TransactionOutcome: *const fn(
+            self: *const ITransactionLastEnlistmentAsync,
+            XactStat: XACTSTAT,
+            pboidReason: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn TransactionOutcome(self: *const ITransactionLastEnlistmentAsync, XactStat: XACTSTAT, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.TransactionOutcome(self, XactStat, pboidReason);
+    }
+};
+
+const IID_ITransactionLastResourceAsync_Value = Guid.initString("c82bd532-5b30-11d3-8a91-00c04f79eb6d");
+pub const IID_ITransactionLastResourceAsync = &IID_ITransactionLastResourceAsync_Value;
+pub const ITransactionLastResourceAsync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        DelegateCommit: *const fn(
+            self: *const ITransactionLastResourceAsync,
+            grfRM: u32,
+        ) callconv(.winapi) HRESULT,
+        ForgetRequest: *const fn(
+            self: *const ITransactionLastResourceAsync,
+            pNewUOW: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DelegateCommit(self: *const ITransactionLastResourceAsync, grfRM: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DelegateCommit(self, grfRM);
+    }
+    pub fn ForgetRequest(self: *const ITransactionLastResourceAsync, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.ForgetRequest(self, pNewUOW);
+    }
+};
+
+const IID_ITransactionOptions_Value = Guid.initString("3a6ad9e0-23b9-11cf-ad60-00aa00a74ccd");
+pub const IID_ITransactionOptions = &IID_ITransactionOptions_Value;
+pub const ITransactionOptions = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetOptions: *const fn(
+            self: *const ITransactionOptions,
+            pOptions: ?*XACTOPT,
+        ) callconv(.winapi) HRESULT,
+        GetOptions: *const fn(
+            self: *const ITransactionOptions,
+            pOptions: ?*XACTOPT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetOptions(self, pOptions);
+    }
+    pub fn GetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOptions(self, pOptions);
+    }
+};
+
+const IID_ITransactionOutcomeEvents_Value = Guid.initString("3a6ad9e2-23b9-11cf-ad60-00aa00a74ccd");
+pub const IID_ITransactionOutcomeEvents = &IID_ITransactionOutcomeEvents_Value;
+pub const ITransactionOutcomeEvents = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Committed: *const fn(
+            self: *const ITransactionOutcomeEvents,
+            fRetaining: BOOL,
+            pNewUOW: ?*BOID,
+            hr: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        Aborted: *const fn(
+            self: *const ITransactionOutcomeEvents,
+            pboidReason: ?*BOID,
+            fRetaining: BOOL,
+            pNewUOW: ?*BOID,
+            hr: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        HeuristicDecision: *const fn(
+            self: *const ITransactionOutcomeEvents,
+            dwDecision: u32,
+            pboidReason: ?*BOID,
+            hr: HRESULT,
+        ) callconv(.winapi) HRESULT,
+        Indoubt: *const fn(
+            self: *const ITransactionOutcomeEvents,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Committed(self: *const ITransactionOutcomeEvents, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.Committed(self, fRetaining, pNewUOW, hr);
+    }
+    pub fn Aborted(self: *const ITransactionOutcomeEvents, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.Aborted(self, pboidReason, fRetaining, pNewUOW, hr);
+    }
+    pub fn HeuristicDecision(self: *const ITransactionOutcomeEvents, dwDecision: u32, pboidReason: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.HeuristicDecision(self, dwDecision, pboidReason, hr);
+    }
+    pub fn Indoubt(self: *const ITransactionOutcomeEvents) callconv(.@"inline") HRESULT {
+        return self.vtable.Indoubt(self);
+    }
+};
+
+const IID_ITransactionPhase0EnlistmentAsync_Value = Guid.initString("82dc88e1-a954-11d1-8f88-00600895e7d5");
+pub const IID_ITransactionPhase0EnlistmentAsync = &IID_ITransactionPhase0EnlistmentAsync_Value;
+pub const ITransactionPhase0EnlistmentAsync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Enable: *const fn(
+            self: *const ITransactionPhase0EnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+        WaitForEnlistment: *const fn(
+            self: *const ITransactionPhase0EnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+        Phase0Done: *const fn(
+            self: *const ITransactionPhase0EnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+        Unenlist: *const fn(
+            self: *const ITransactionPhase0EnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+        GetTransaction: *const fn(
+            self: *const ITransactionPhase0EnlistmentAsync,
+            ppITransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Enable(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Enable(self);
+    }
+    pub fn WaitForEnlistment(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.WaitForEnlistment(self);
+    }
+    pub fn Phase0Done(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Phase0Done(self);
+    }
+    pub fn Unenlist(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Unenlist(self);
+    }
+    pub fn GetTransaction(self: *const ITransactionPhase0EnlistmentAsync, ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTransaction(self, ppITransaction);
+    }
+};
+
+const IID_ITransactionPhase0Factory_Value = Guid.initString("82dc88e0-a954-11d1-8f88-00600895e7d5");
+pub const IID_ITransactionPhase0Factory = &IID_ITransactionPhase0Factory_Value;
+pub const ITransactionPhase0Factory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const ITransactionPhase0Factory,
+            pPhase0Notify: ?*ITransactionPhase0NotifyAsync,
+            ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const ITransactionPhase0Factory, pPhase0Notify: ?*ITransactionPhase0NotifyAsync, ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, pPhase0Notify, ppPhase0Enlistment);
+    }
+};
+
+const IID_ITransactionPhase0NotifyAsync_Value = Guid.initString("ef081809-0c76-11d2-87a6-00c04f990f34");
+pub const IID_ITransactionPhase0NotifyAsync = &IID_ITransactionPhase0NotifyAsync_Value;
+pub const ITransactionPhase0NotifyAsync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Phase0Request: *const fn(
+            self: *const ITransactionPhase0NotifyAsync,
+            fAbortingHint: BOOL,
+        ) callconv(.winapi) HRESULT,
+        EnlistCompleted: *const fn(
+            self: *const ITransactionPhase0NotifyAsync,
+            status: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Phase0Request(self: *const ITransactionPhase0NotifyAsync, fAbortingHint: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Phase0Request(self, fAbortingHint);
+    }
+    pub fn EnlistCompleted(self: *const ITransactionPhase0NotifyAsync, status: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.EnlistCompleted(self, status);
+    }
+};
+
+const IID_ITransactionReceiver_Value = Guid.initString("59313e03-b36c-11cf-a539-00aa006887c3");
+pub const IID_ITransactionReceiver = &IID_ITransactionReceiver_Value;
+pub const ITransactionReceiver = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        UnmarshalPropagationToken: *const fn(
+            self: *const ITransactionReceiver,
+            cbToken: u32,
+            rgbToken: [*:0]u8,
+            ppTransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+        GetReturnTokenSize: *const fn(
+            self: *const ITransactionReceiver,
+            pcbReturnToken: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        MarshalReturnToken: *const fn(
+            self: *const ITransactionReceiver,
+            cbReturnToken: u32,
+            rgbReturnToken: [*:0]u8,
+            pcbUsed: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const ITransactionReceiver,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn UnmarshalPropagationToken(self: *const ITransactionReceiver, cbToken: u32, rgbToken: [*:0]u8, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.UnmarshalPropagationToken(self, cbToken, rgbToken, ppTransaction);
+    }
+    pub fn GetReturnTokenSize(self: *const ITransactionReceiver, pcbReturnToken: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetReturnTokenSize(self, pcbReturnToken);
+    }
+    pub fn MarshalReturnToken(self: *const ITransactionReceiver, cbReturnToken: u32, rgbReturnToken: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.MarshalReturnToken(self, cbReturnToken, rgbReturnToken, pcbUsed);
+    }
+    pub fn Reset(self: *const ITransactionReceiver) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+};
+
+const IID_ITransactionReceiverFactory_Value = Guid.initString("59313e02-b36c-11cf-a539-00aa006887c3");
+pub const IID_ITransactionReceiverFactory = &IID_ITransactionReceiverFactory_Value;
+pub const ITransactionReceiverFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const ITransactionReceiverFactory,
+            ppReceiver: ?*?*ITransactionReceiver,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const ITransactionReceiverFactory, ppReceiver: ?*?*ITransactionReceiver) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, ppReceiver);
+    }
+};
+
+const IID_ITransactionResource_Value = Guid.initString("ee5ff7b3-4572-11d0-9452-00a0c905416e");
+pub const IID_ITransactionResource = &IID_ITransactionResource_Value;
+pub const ITransactionResource = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PrepareRequest: *const fn(
+            self: *const ITransactionResource,
+            fRetaining: BOOL,
+            grfRM: u32,
+            fWantMoniker: BOOL,
+            fSinglePhase: BOOL,
+        ) callconv(.winapi) HRESULT,
+        CommitRequest: *const fn(
+            self: *const ITransactionResource,
+            grfRM: u32,
+            pNewUOW: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+        AbortRequest: *const fn(
+            self: *const ITransactionResource,
+            pboidReason: ?*BOID,
+            fRetaining: BOOL,
+            pNewUOW: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+        TMDown: *const fn(
+            self: *const ITransactionResource,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PrepareRequest(self: *const ITransactionResource, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.PrepareRequest(self, fRetaining, grfRM, fWantMoniker, fSinglePhase);
+    }
+    pub fn CommitRequest(self: *const ITransactionResource, grfRM: u32, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitRequest(self, grfRM, pNewUOW);
+    }
+    pub fn AbortRequest(self: *const ITransactionResource, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.AbortRequest(self, pboidReason, fRetaining, pNewUOW);
+    }
+    pub fn TMDown(self: *const ITransactionResource) callconv(.@"inline") HRESULT {
+        return self.vtable.TMDown(self);
+    }
+};
+
+const IID_ITransactionResourceAsync_Value = Guid.initString("69e971f0-23ce-11cf-ad60-00aa00a74ccd");
+pub const IID_ITransactionResourceAsync = &IID_ITransactionResourceAsync_Value;
+pub const ITransactionResourceAsync = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PrepareRequest: *const fn(
+            self: *const ITransactionResourceAsync,
+            fRetaining: BOOL,
+            grfRM: u32,
+            fWantMoniker: BOOL,
+            fSinglePhase: BOOL,
+        ) callconv(.winapi) HRESULT,
+        CommitRequest: *const fn(
+            self: *const ITransactionResourceAsync,
+            grfRM: u32,
+            pNewUOW: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+        AbortRequest: *const fn(
+            self: *const ITransactionResourceAsync,
+            pboidReason: ?*BOID,
+            fRetaining: BOOL,
+            pNewUOW: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+        TMDown: *const fn(
+            self: *const ITransactionResourceAsync,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PrepareRequest(self: *const ITransactionResourceAsync, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.PrepareRequest(self, fRetaining, grfRM, fWantMoniker, fSinglePhase);
+    }
+    pub fn CommitRequest(self: *const ITransactionResourceAsync, grfRM: u32, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.CommitRequest(self, grfRM, pNewUOW);
+    }
+    pub fn AbortRequest(self: *const ITransactionResourceAsync, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.AbortRequest(self, pboidReason, fRetaining, pNewUOW);
+    }
+    pub fn TMDown(self: *const ITransactionResourceAsync) callconv(.@"inline") HRESULT {
+        return self.vtable.TMDown(self);
+    }
+};
+
+const IID_ITransactionTransmitter_Value = Guid.initString("59313e01-b36c-11cf-a539-00aa006887c3");
+pub const IID_ITransactionTransmitter = &IID_ITransactionTransmitter_Value;
+pub const ITransactionTransmitter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Set: *const fn(
+            self: *const ITransactionTransmitter,
+            pTransaction: ?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+        GetPropagationTokenSize: *const fn(
+            self: *const ITransactionTransmitter,
+            pcbToken: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        MarshalPropagationToken: *const fn(
+            self: *const ITransactionTransmitter,
+            cbToken: u32,
+            rgbToken: [*:0]u8,
+            pcbUsed: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        UnmarshalReturnToken: *const fn(
+            self: *const ITransactionTransmitter,
+            cbReturnToken: u32,
+            rgbReturnToken: [*:0]u8,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const ITransactionTransmitter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Set(self: *const ITransactionTransmitter, pTransaction: ?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.Set(self, pTransaction);
+    }
+    pub fn GetPropagationTokenSize(self: *const ITransactionTransmitter, pcbToken: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropagationTokenSize(self, pcbToken);
+    }
+    pub fn MarshalPropagationToken(self: *const ITransactionTransmitter, cbToken: u32, rgbToken: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.MarshalPropagationToken(self, cbToken, rgbToken, pcbUsed);
+    }
+    pub fn UnmarshalReturnToken(self: *const ITransactionTransmitter, cbReturnToken: u32, rgbReturnToken: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.UnmarshalReturnToken(self, cbReturnToken, rgbReturnToken);
+    }
+    pub fn Reset(self: *const ITransactionTransmitter) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+};
+
+const IID_ITransactionTransmitterFactory_Value = Guid.initString("59313e00-b36c-11cf-a539-00aa006887c3");
+pub const IID_ITransactionTransmitterFactory = &IID_ITransactionTransmitterFactory_Value;
+pub const ITransactionTransmitterFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const ITransactionTransmitterFactory,
+            ppTransmitter: ?*?*ITransactionTransmitter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const ITransactionTransmitterFactory, ppTransmitter: ?*?*ITransactionTransmitter) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, ppTransmitter);
+    }
+};
+
+const IID_ITransactionVoterBallotAsync2_Value = Guid.initString("5433376c-414d-11d3-b206-00c04fc2f3ef");
+pub const IID_ITransactionVoterBallotAsync2 = &IID_ITransactionVoterBallotAsync2_Value;
+pub const ITransactionVoterBallotAsync2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        VoteRequestDone: *const fn(
+            self: *const ITransactionVoterBallotAsync2,
+            hr: HRESULT,
+            pboidReason: ?*BOID,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn VoteRequestDone(self: *const ITransactionVoterBallotAsync2, hr: HRESULT, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
+        return self.vtable.VoteRequestDone(self, hr, pboidReason);
+    }
+};
+
+const IID_ITransactionVoterFactory2_Value = Guid.initString("5433376a-414d-11d3-b206-00c04fc2f3ef");
+pub const IID_ITransactionVoterFactory2 = &IID_ITransactionVoterFactory2_Value;
+pub const ITransactionVoterFactory2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const ITransactionVoterFactory2,
+            pTransaction: ?*ITransaction,
+            pVoterNotify: ?*ITransactionVoterNotifyAsync2,
+            ppVoterBallot: ?*?*ITransactionVoterBallotAsync2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const ITransactionVoterFactory2, pTransaction: ?*ITransaction, pVoterNotify: ?*ITransactionVoterNotifyAsync2, ppVoterBallot: ?*?*ITransactionVoterBallotAsync2) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, pTransaction, pVoterNotify, ppVoterBallot);
+    }
+};
+
+const IID_ITransactionVoterNotifyAsync2_Value = Guid.initString("5433376b-414d-11d3-b206-00c04fc2f3ef");
+pub const IID_ITransactionVoterNotifyAsync2 = &IID_ITransactionVoterNotifyAsync2_Value;
+pub const ITransactionVoterNotifyAsync2 = extern union {
+    pub const VTable = extern struct {
+        base: ITransactionOutcomeEvents.VTable,
+        VoteRequest: *const fn(
+            self: *const ITransactionVoterNotifyAsync2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ITransactionOutcomeEvents: ITransactionOutcomeEvents,
+    IUnknown: IUnknown,
+    pub fn VoteRequest(self: *const ITransactionVoterNotifyAsync2) callconv(.@"inline") HRESULT {
+        return self.vtable.VoteRequest(self);
+    }
+};
+
+const IID_IXAConfig_Value = Guid.initString("c8a6e3a1-9a8c-11cf-a308-00a0c905416e");
+pub const IID_IXAConfig = &IID_IXAConfig_Value;
+pub const IXAConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IXAConfig,
+            clsidHelperDll: Guid,
+        ) callconv(.winapi) HRESULT,
+        Terminate: *const fn(
+            self: *const IXAConfig,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IXAConfig, clsidHelperDll: Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, clsidHelperDll);
+    }
+    pub fn Terminate(self: *const IXAConfig) callconv(.@"inline") HRESULT {
+        return self.vtable.Terminate(self);
+    }
+};
+
+const IID_IXAObtainRMInfo_Value = Guid.initString("e793f6d2-f53d-11cf-a60d-00a0c905416e");
+pub const IID_IXAObtainRMInfo = &IID_IXAObtainRMInfo_Value;
+pub const IXAObtainRMInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ObtainRMInfo: *const fn(
+            self: *const IXAObtainRMInfo,
+            pIRMHelper: ?*IRMHelper,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ObtainRMInfo(self: *const IXAObtainRMInfo, pIRMHelper: ?*IRMHelper) callconv(.@"inline") HRESULT {
+        return self.vtable.ObtainRMInfo(self, pIRMHelper);
+    }
+};
+
+const IID_IXATransLookup_Value = Guid.initString("f3b1f131-eeda-11ce-aed4-00aa0051e2c4");
+pub const IID_IXATransLookup = &IID_IXATransLookup_Value;
+pub const IXATransLookup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Lookup: *const fn(
+            self: *const IXATransLookup,
+            ppTransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Lookup(self: *const IXATransLookup, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.Lookup(self, ppTransaction);
+    }
+};
+
+const IID_IXATransLookup2_Value = Guid.initString("bf193c85-0d1a-4290-b88f-d2cb8873d1e7");
+pub const IID_IXATransLookup2 = &IID_IXATransLookup2_Value;
+pub const IXATransLookup2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Lookup: *const fn(
+            self: *const IXATransLookup2,
+            pXID: ?*xid_t,
+            ppTransaction: ?*?*ITransaction,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Lookup(self: *const IXATransLookup2, pXID: ?*xid_t, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+        return self.vtable.Lookup(self, pXID, ppTransaction);
+    }
+};
+
+pub const OLE_TM_CONFIG_PARAMS_V1 = extern struct {
+    dwVersion: u32,
+    dwcConcurrencyHint: u32,
+};
+
+pub const OLE_TM_CONFIG_PARAMS_V2 = extern struct {
+    dwVersion: u32,
+    dwcConcurrencyHint: u32,
+    applicationType: APPLICATIONTYPE,
+    clusterResourceId: Guid,
+};
+
+pub const TX_MISC_CONSTANTS = enum(i32) {
+    C = 40,
+};
+pub const MAX_TRAN_DESC = TX_MISC_CONSTANTS.C;
+
+pub const XA_CLOSE_EPT = *const fn(
+    param0: ?PSTR,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const XA_COMMIT_EPT = *const fn(
+    param0: ?*xid_t,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const XA_COMPLETE_EPT = *const fn(
+    param0: ?*i32,
+    param1: ?*i32,
+    param2: i32,
+    param3: i32,
+) callconv(.winapi) i32;
+
+pub const XA_END_EPT = *const fn(
+    param0: ?*xid_t,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const XA_FORGET_EPT = *const fn(
+    param0: ?*xid_t,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const XA_OPEN_EPT = *const fn(
+    param0: ?PSTR,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const XA_PREPARE_EPT = *const fn(
+    param0: ?*xid_t,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const XA_RECOVER_EPT = *const fn(
+    param0: ?*xid_t,
+    param1: i32,
+    param2: i32,
+    param3: i32,
+) callconv(.winapi) i32;
+
+pub const XA_ROLLBACK_EPT = *const fn(
+    param0: ?*xid_t,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const XA_START_EPT = *const fn(
+    param0: ?*xid_t,
+    param1: i32,
+    param2: i32,
+) callconv(.winapi) i32;
+
+pub const xa_switch_t = extern struct {
+    name: [32]CHAR,
+    flags: i32,
+    version: i32,
+    xa_open_entry: isize,
+    xa_close_entry: isize,
+    xa_start_entry: isize,
+    xa_end_entry: isize,
+    xa_rollback_entry: isize,
+    xa_prepare_entry: isize,
+    xa_commit_entry: isize,
+    xa_recover_entry: isize,
+    xa_forget_entry: isize,
+    xa_complete_entry: isize,
+};
+
+pub const XACT_DTC_CONSTANTS = enum(i32) {
+    XACT_E_CONNECTION_REQUEST_DENIED = -2147168000,
+    XACT_E_TOOMANY_ENLISTMENTS = -2147167999,
+    XACT_E_DUPLICATE_GUID = -2147167998,
+    XACT_E_NOTSINGLEPHASE = -2147167997,
+    XACT_E_RECOVERYALREADYDONE = -2147167996,
+    XACT_E_PROTOCOL = -2147167995,
+    XACT_E_RM_FAILURE = -2147167994,
+    XACT_E_RECOVERY_FAILED = -2147167993,
+    XACT_E_LU_NOT_FOUND = -2147167992,
+    XACT_E_DUPLICATE_LU = -2147167991,
+    XACT_E_LU_NOT_CONNECTED = -2147167990,
+    XACT_E_DUPLICATE_TRANSID = -2147167989,
+    XACT_E_LU_BUSY = -2147167988,
+    XACT_E_LU_NO_RECOVERY_PROCESS = -2147167987,
+    XACT_E_LU_DOWN = -2147167986,
+    XACT_E_LU_RECOVERING = -2147167985,
+    XACT_E_LU_RECOVERY_MISMATCH = -2147167984,
+    XACT_E_RM_UNAVAILABLE = -2147167983,
+    XACT_E_LRMRECOVERYALREADYDONE = -2147167982,
+    XACT_E_NOLASTRESOURCEINTERFACE = -2147167981,
+    XACT_S_NONOTIFY = 315648,
+    XACT_OK_NONOTIFY = 315649,
+    dwUSER_MS_SQLSERVER = 65535,
+};
+pub const XACT_E_CONNECTION_REQUEST_DENIED = XACT_DTC_CONSTANTS.XACT_E_CONNECTION_REQUEST_DENIED;
+pub const XACT_E_TOOMANY_ENLISTMENTS = XACT_DTC_CONSTANTS.XACT_E_TOOMANY_ENLISTMENTS;
+pub const XACT_E_DUPLICATE_GUID = XACT_DTC_CONSTANTS.XACT_E_DUPLICATE_GUID;
+pub const XACT_E_NOTSINGLEPHASE = XACT_DTC_CONSTANTS.XACT_E_NOTSINGLEPHASE;
+pub const XACT_E_RECOVERYALREADYDONE = XACT_DTC_CONSTANTS.XACT_E_RECOVERYALREADYDONE;
+pub const XACT_E_PROTOCOL = XACT_DTC_CONSTANTS.XACT_E_PROTOCOL;
+pub const XACT_E_RM_FAILURE = XACT_DTC_CONSTANTS.XACT_E_RM_FAILURE;
+pub const XACT_E_RECOVERY_FAILED = XACT_DTC_CONSTANTS.XACT_E_RECOVERY_FAILED;
+pub const XACT_E_LU_NOT_FOUND = XACT_DTC_CONSTANTS.XACT_E_LU_NOT_FOUND;
+pub const XACT_E_DUPLICATE_LU = XACT_DTC_CONSTANTS.XACT_E_DUPLICATE_LU;
+pub const XACT_E_LU_NOT_CONNECTED = XACT_DTC_CONSTANTS.XACT_E_LU_NOT_CONNECTED;
+pub const XACT_E_DUPLICATE_TRANSID = XACT_DTC_CONSTANTS.XACT_E_DUPLICATE_TRANSID;
+pub const XACT_E_LU_BUSY = XACT_DTC_CONSTANTS.XACT_E_LU_BUSY;
+pub const XACT_E_LU_NO_RECOVERY_PROCESS = XACT_DTC_CONSTANTS.XACT_E_LU_NO_RECOVERY_PROCESS;
+pub const XACT_E_LU_DOWN = XACT_DTC_CONSTANTS.XACT_E_LU_DOWN;
+pub const XACT_E_LU_RECOVERING = XACT_DTC_CONSTANTS.XACT_E_LU_RECOVERING;
+pub const XACT_E_LU_RECOVERY_MISMATCH = XACT_DTC_CONSTANTS.XACT_E_LU_RECOVERY_MISMATCH;
+pub const XACT_E_RM_UNAVAILABLE = XACT_DTC_CONSTANTS.XACT_E_RM_UNAVAILABLE;
+pub const XACT_E_LRMRECOVERYALREADYDONE = XACT_DTC_CONSTANTS.XACT_E_LRMRECOVERYALREADYDONE;
+pub const XACT_E_NOLASTRESOURCEINTERFACE = XACT_DTC_CONSTANTS.XACT_E_NOLASTRESOURCEINTERFACE;
+pub const XACT_S_NONOTIFY = XACT_DTC_CONSTANTS.XACT_S_NONOTIFY;
+pub const XACT_OK_NONOTIFY = XACT_DTC_CONSTANTS.XACT_OK_NONOTIFY;
+pub const dwUSER_MS_SQLSERVER = XACT_DTC_CONSTANTS.dwUSER_MS_SQLSERVER;
+
+pub const XACTCONST = enum(i32) {
+    E = 0,
+};
+pub const XACTCONST_TIMEOUTINFINITE = XACTCONST.E;
+
+pub const XACTHEURISTIC = enum(i32) {
+    ABORT = 1,
+    COMMIT = 2,
+    DAMAGE = 3,
+    DANGER = 4,
+};
+pub const XACTHEURISTIC_ABORT = XACTHEURISTIC.ABORT;
+pub const XACTHEURISTIC_COMMIT = XACTHEURISTIC.COMMIT;
+pub const XACTHEURISTIC_DAMAGE = XACTHEURISTIC.DAMAGE;
+pub const XACTHEURISTIC_DANGER = XACTHEURISTIC.DANGER;
+
+pub const XACTOPT = extern struct {
+    ulTimeout: u32,
+    szDescription: [40]u8,
+};
+
+pub const XACTRM = enum(i32) {
+    OPTIMISTICLASTWINS = 1,
+    NOREADONLYPREPARES = 2,
+};
+pub const XACTRM_OPTIMISTICLASTWINS = XACTRM.OPTIMISTICLASTWINS;
+pub const XACTRM_NOREADONLYPREPARES = XACTRM.NOREADONLYPREPARES;
+
+pub const XACTSTAT = enum(i32) {
+    NONE = 0,
+    OPENNORMAL = 1,
+    OPENREFUSED = 2,
+    PREPARING = 4,
+    PREPARED = 8,
+    PREPARERETAINING = 16,
+    PREPARERETAINED = 32,
+    COMMITTING = 64,
+    COMMITRETAINING = 128,
+    ABORTING = 256,
+    ABORTED = 512,
+    COMMITTED = 1024,
+    HEURISTIC_ABORT = 2048,
+    HEURISTIC_COMMIT = 4096,
+    HEURISTIC_DAMAGE = 8192,
+    HEURISTIC_DANGER = 16384,
+    FORCED_ABORT = 32768,
+    FORCED_COMMIT = 65536,
+    INDOUBT = 131072,
+    CLOSED = 262144,
+    OPEN = 3,
+    NOTPREPARED = 524227,
+    ALL = 524287,
+};
+pub const XACTSTAT_NONE = XACTSTAT.NONE;
+pub const XACTSTAT_OPENNORMAL = XACTSTAT.OPENNORMAL;
+pub const XACTSTAT_OPENREFUSED = XACTSTAT.OPENREFUSED;
+pub const XACTSTAT_PREPARING = XACTSTAT.PREPARING;
+pub const XACTSTAT_PREPARED = XACTSTAT.PREPARED;
+pub const XACTSTAT_PREPARERETAINING = XACTSTAT.PREPARERETAINING;
+pub const XACTSTAT_PREPARERETAINED = XACTSTAT.PREPARERETAINED;
+pub const XACTSTAT_COMMITTING = XACTSTAT.COMMITTING;
+pub const XACTSTAT_COMMITRETAINING = XACTSTAT.COMMITRETAINING;
+pub const XACTSTAT_ABORTING = XACTSTAT.ABORTING;
+pub const XACTSTAT_ABORTED = XACTSTAT.ABORTED;
+pub const XACTSTAT_COMMITTED = XACTSTAT.COMMITTED;
+pub const XACTSTAT_HEURISTIC_ABORT = XACTSTAT.HEURISTIC_ABORT;
+pub const XACTSTAT_HEURISTIC_COMMIT = XACTSTAT.HEURISTIC_COMMIT;
+pub const XACTSTAT_HEURISTIC_DAMAGE = XACTSTAT.HEURISTIC_DAMAGE;
+pub const XACTSTAT_HEURISTIC_DANGER = XACTSTAT.HEURISTIC_DANGER;
+pub const XACTSTAT_FORCED_ABORT = XACTSTAT.FORCED_ABORT;
+pub const XACTSTAT_FORCED_COMMIT = XACTSTAT.FORCED_COMMIT;
+pub const XACTSTAT_INDOUBT = XACTSTAT.INDOUBT;
+pub const XACTSTAT_CLOSED = XACTSTAT.CLOSED;
+pub const XACTSTAT_OPEN = XACTSTAT.OPEN;
+pub const XACTSTAT_NOTPREPARED = XACTSTAT.NOTPREPARED;
+pub const XACTSTAT_ALL = XACTSTAT.ALL;
+
+pub const XACTSTATS = extern struct {
+    cOpen: u32,
+    cCommitting: u32,
+    cCommitted: u32,
+    cAborting: u32,
+    cAborted: u32,
+    cInDoubt: u32,
+    cHeuristicDecision: u32,
+    timeTransactionsUp: FILETIME,
+};
+
+pub const XACTTC = enum(i32) {
+    NONE = 0,
+    SYNC_PHASEONE = 1,
+    SYNC_PHASETWO = 2,
+    ASYNC_PHASEONE = 4,
+    pub const SYNC = .SYNC_PHASETWO;
+    pub const ASYNC = .ASYNC_PHASEONE;
+};
+pub const XACTTC_NONE = XACTTC.NONE;
+pub const XACTTC_SYNC_PHASEONE = XACTTC.SYNC_PHASEONE;
+pub const XACTTC_SYNC_PHASETWO = XACTTC.SYNC_PHASETWO;
+pub const XACTTC_SYNC = XACTTC.SYNC_PHASETWO;
+pub const XACTTC_ASYNC_PHASEONE = XACTTC.ASYNC_PHASEONE;
+pub const XACTTC_ASYNC = XACTTC.ASYNC_PHASEONE;
+
+pub const XACTTRANSINFO = extern struct {
+    uow: BOID,
+    isoLevel: i32,
+    isoFlags: u32,
+    grfTCSupported: u32,
+    grfRMSupported: u32,
+    grfTCSupportedRetaining: u32,
+    grfRMSupportedRetaining: u32,
+};
+
+pub const xid_t = extern struct {
+    formatID: i32,
+    gtrid_length: i32,
+    bqual_length: i32,
+    data: [128]CHAR,
 };
 
 
@@ -2668,16 +2668,16 @@ test {
     if (@hasDecl(@This(), "DTC_GET_TRANSACTION_MANAGER_EX_A")) { _ = DTC_GET_TRANSACTION_MANAGER_EX_A; }
     if (@hasDecl(@This(), "DTC_GET_TRANSACTION_MANAGER_EX_W")) { _ = DTC_GET_TRANSACTION_MANAGER_EX_W; }
     if (@hasDecl(@This(), "DTC_INSTALL_CLIENT")) { _ = DTC_INSTALL_CLIENT; }
-    if (@hasDecl(@This(), "XA_OPEN_EPT")) { _ = XA_OPEN_EPT; }
     if (@hasDecl(@This(), "XA_CLOSE_EPT")) { _ = XA_CLOSE_EPT; }
-    if (@hasDecl(@This(), "XA_START_EPT")) { _ = XA_START_EPT; }
-    if (@hasDecl(@This(), "XA_END_EPT")) { _ = XA_END_EPT; }
-    if (@hasDecl(@This(), "XA_ROLLBACK_EPT")) { _ = XA_ROLLBACK_EPT; }
-    if (@hasDecl(@This(), "XA_PREPARE_EPT")) { _ = XA_PREPARE_EPT; }
     if (@hasDecl(@This(), "XA_COMMIT_EPT")) { _ = XA_COMMIT_EPT; }
-    if (@hasDecl(@This(), "XA_RECOVER_EPT")) { _ = XA_RECOVER_EPT; }
-    if (@hasDecl(@This(), "XA_FORGET_EPT")) { _ = XA_FORGET_EPT; }
     if (@hasDecl(@This(), "XA_COMPLETE_EPT")) { _ = XA_COMPLETE_EPT; }
+    if (@hasDecl(@This(), "XA_END_EPT")) { _ = XA_END_EPT; }
+    if (@hasDecl(@This(), "XA_FORGET_EPT")) { _ = XA_FORGET_EPT; }
+    if (@hasDecl(@This(), "XA_OPEN_EPT")) { _ = XA_OPEN_EPT; }
+    if (@hasDecl(@This(), "XA_PREPARE_EPT")) { _ = XA_PREPARE_EPT; }
+    if (@hasDecl(@This(), "XA_RECOVER_EPT")) { _ = XA_RECOVER_EPT; }
+    if (@hasDecl(@This(), "XA_ROLLBACK_EPT")) { _ = XA_ROLLBACK_EPT; }
+    if (@hasDecl(@This(), "XA_START_EPT")) { _ = XA_START_EPT; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

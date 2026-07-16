@@ -2,27 +2,47 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (17)
 //--------------------------------------------------------------------------------
-pub const OBJ_HANDLE_TAGBITS = @as(i32, 3);
-pub const RTL_BALANCED_NODE_RESERVED_PARENT_MASK = @as(u32, 3);
-pub const OBJ_INHERIT = @as(i32, 2);
-pub const OBJ_PERMANENT = @as(i32, 16);
-pub const OBJ_EXCLUSIVE = @as(i32, 32);
+pub const MAXUCHAR = @as(u32, 255);
+pub const MAXULONG = @as(u32, 4294967295);
+pub const MAXUSHORT = @as(u32, 65535);
+pub const NULL64 = @as(u32, 0);
 pub const OBJ_CASE_INSENSITIVE = @as(i32, 64);
+pub const OBJ_DONT_REPARSE = @as(i32, 4096);
+pub const OBJ_EXCLUSIVE = @as(i32, 32);
+pub const OBJ_FORCE_ACCESS_CHECK = @as(i32, 1024);
+pub const OBJ_HANDLE_TAGBITS = @as(i32, 3);
+pub const OBJ_IGNORE_IMPERSONATED_DEVICEMAP = @as(i32, 2048);
+pub const OBJ_INHERIT = @as(i32, 2);
+pub const OBJ_KERNEL_HANDLE = @as(i32, 512);
 pub const OBJ_OPENIF = @as(i32, 128);
 pub const OBJ_OPENLINK = @as(i32, 256);
-pub const OBJ_KERNEL_HANDLE = @as(i32, 512);
-pub const OBJ_FORCE_ACCESS_CHECK = @as(i32, 1024);
-pub const OBJ_IGNORE_IMPERSONATED_DEVICEMAP = @as(i32, 2048);
-pub const OBJ_DONT_REPARSE = @as(i32, 4096);
+pub const OBJ_PERMANENT = @as(i32, 16);
 pub const OBJ_VALID_ATTRIBUTES = @as(i32, 8178);
-pub const NULL64 = @as(u32, 0);
-pub const MAXUCHAR = @as(u32, 255);
-pub const MAXUSHORT = @as(u32, 65535);
-pub const MAXULONG = @as(u32, 4294967295);
+pub const RTL_BALANCED_NODE_RESERVED_PARENT_MASK = @as(u32, 3);
 
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
+pub const COMPARTMENT_ID = enum(i32) {
+    UNSPECIFIED_COMPARTMENT_ID = 0,
+    DEFAULT_COMPARTMENT_ID = 1,
+};
+pub const UNSPECIFIED_COMPARTMENT_ID = COMPARTMENT_ID.UNSPECIFIED_COMPARTMENT_ID;
+pub const DEFAULT_COMPARTMENT_ID = COMPARTMENT_ID.DEFAULT_COMPARTMENT_ID;
+
+pub const CSTRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: ?[*:0]const u8,
+};
+
+pub const EVENT_TYPE = enum(i32) {
+    NotificationEvent = 0,
+    SynchronizationEvent = 1,
+};
+pub const NotificationEvent = EVENT_TYPE.NotificationEvent;
+pub const SynchronizationEvent = EVENT_TYPE.SynchronizationEvent;
+
 pub const EXCEPTION_DISPOSITION = enum(i32) {
     ContinueExecution = 0,
     ContinueSearch = 1,
@@ -34,16 +54,78 @@ pub const ExceptionContinueSearch = EXCEPTION_DISPOSITION.ContinueSearch;
 pub const ExceptionNestedException = EXCEPTION_DISPOSITION.NestedException;
 pub const ExceptionCollidedUnwind = EXCEPTION_DISPOSITION.CollidedUnwind;
 
-pub const SLIST_ENTRY = extern struct {
-    Next: ?*SLIST_ENTRY,
+pub const EXCEPTION_REGISTRATION_RECORD = extern struct {
+    Next: ?*EXCEPTION_REGISTRATION_RECORD,
+    Handler: ?EXCEPTION_ROUTINE,
 };
 
+pub const EXCEPTION_ROUTINE = *const fn(
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+    EstablisherFrame: ?*anyopaque,
+    ContextRecord: ?*CONTEXT,
+    DispatcherContext: ?*anyopaque,
+) callconv(.winapi) EXCEPTION_DISPOSITION;
 
-pub const QUAD = extern struct {
+
+
+pub const LIST_ENTRY = extern struct {
+    Flink: ?*LIST_ENTRY,
+    Blink: ?*LIST_ENTRY,
+};
+
+pub const LIST_ENTRY32 = extern struct {
+    Flink: u32,
+    Blink: u32,
+};
+
+pub const LIST_ENTRY64 = extern struct {
+    Flink: u64,
+    Blink: u64,
+};
+
+pub const NT_PRODUCT_TYPE = enum(i32) {
+    WinNt = 1,
+    LanManNt = 2,
+    Server = 3,
+};
+pub const NtProductWinNt = NT_PRODUCT_TYPE.WinNt;
+pub const NtProductLanManNt = NT_PRODUCT_TYPE.LanManNt;
+pub const NtProductServer = NT_PRODUCT_TYPE.Server;
+
+pub const NT_TIB = extern struct {
+    ExceptionList: ?*EXCEPTION_REGISTRATION_RECORD,
+    StackBase: ?*anyopaque,
+    StackLimit: ?*anyopaque,
+    SubSystemTib: ?*anyopaque,
     Anonymous: extern union {
-        UseThisFieldToCopy: i64,
-        DoNotUseThisField: f64,
+        FiberData: ?*anyopaque,
+        Version: u32,
     },
+    ArbitraryUserPointer: ?*anyopaque,
+    Self: ?*NT_TIB,
+};
+
+pub const OBJECT_ATTRIBUTES32 = extern struct {
+    Length: u32,
+    RootDirectory: u32,
+    ObjectName: u32,
+    Attributes: u32,
+    SecurityDescriptor: u32,
+    SecurityQualityOfService: u32,
+};
+
+pub const OBJECT_ATTRIBUTES64 = extern struct {
+    Length: u32,
+    RootDirectory: u64,
+    ObjectName: u64,
+    Attributes: u32,
+    SecurityDescriptor: u64,
+    SecurityQualityOfService: u64,
+};
+
+pub const OBJECTID = extern struct {
+    Lineage: Guid,
+    Uniquifier: u32,
 };
 
 pub const PROCESSOR_NUMBER = extern struct {
@@ -52,52 +134,11 @@ pub const PROCESSOR_NUMBER = extern struct {
     Reserved: u8,
 };
 
-pub const EVENT_TYPE = enum(i32) {
-    NotificationEvent = 0,
-    SynchronizationEvent = 1,
-};
-pub const NotificationEvent = EVENT_TYPE.NotificationEvent;
-pub const SynchronizationEvent = EVENT_TYPE.SynchronizationEvent;
-
-pub const TIMER_TYPE = enum(i32) {
-    NotificationTimer = 0,
-    SynchronizationTimer = 1,
-};
-pub const NotificationTimer = TIMER_TYPE.NotificationTimer;
-pub const SynchronizationTimer = TIMER_TYPE.SynchronizationTimer;
-
-pub const WAIT_TYPE = enum(i32) {
-    All = 0,
-    Any = 1,
-    Notification = 2,
-    Dequeue = 3,
-    Dpc = 4,
-};
-pub const WaitAll = WAIT_TYPE.All;
-pub const WaitAny = WAIT_TYPE.Any;
-pub const WaitNotification = WAIT_TYPE.Notification;
-pub const WaitDequeue = WAIT_TYPE.Dequeue;
-pub const WaitDpc = WAIT_TYPE.Dpc;
-
-pub const STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: ?[*]u8,
-};
-
-pub const CSTRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: ?[*:0]const u8,
-};
-
-pub const LIST_ENTRY = extern struct {
-    Flink: ?*LIST_ENTRY,
-    Blink: ?*LIST_ENTRY,
-};
-
-pub const SINGLE_LIST_ENTRY = extern struct {
-    Next: ?*SINGLE_LIST_ENTRY,
+pub const QUAD = extern struct {
+    Anonymous: extern union {
+        UseThisFieldToCopy: i64,
+        DoNotUseThisField: f64,
+    },
 };
 
 pub const RTL_BALANCED_NODE = extern struct {
@@ -114,22 +155,25 @@ pub const RTL_BALANCED_NODE = extern struct {
     },
 };
 
-pub const LIST_ENTRY32 = extern struct {
-    Flink: u32,
-    Blink: u32,
-};
-
-pub const LIST_ENTRY64 = extern struct {
-    Flink: u64,
-    Blink: u64,
+pub const SINGLE_LIST_ENTRY = extern struct {
+    Next: ?*SINGLE_LIST_ENTRY,
 };
 
 pub const SINGLE_LIST_ENTRY32 = extern struct {
     Next: u32,
 };
 
-pub const WNF_STATE_NAME = extern struct {
-    Data: [2]u32,
+pub const SLIST_ENTRY = extern struct {
+    Next: ?*SLIST_ENTRY,
+};
+
+
+
+
+pub const STRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: ?[*]u8,
 };
 
 pub const STRING32 = extern struct {
@@ -143,45 +187,6 @@ pub const STRING64 = extern struct {
     MaximumLength: u16,
     Buffer: u64,
 };
-
-pub const OBJECT_ATTRIBUTES64 = extern struct {
-    Length: u32,
-    RootDirectory: u64,
-    ObjectName: u64,
-    Attributes: u32,
-    SecurityDescriptor: u64,
-    SecurityQualityOfService: u64,
-};
-
-pub const OBJECT_ATTRIBUTES32 = extern struct {
-    Length: u32,
-    RootDirectory: u32,
-    ObjectName: u32,
-    Attributes: u32,
-    SecurityDescriptor: u32,
-    SecurityQualityOfService: u32,
-};
-
-pub const OBJECTID = extern struct {
-    Lineage: Guid,
-    Uniquifier: u32,
-};
-
-pub const EXCEPTION_ROUTINE = *const fn(
-    ExceptionRecord: ?*EXCEPTION_RECORD,
-    EstablisherFrame: ?*anyopaque,
-    ContextRecord: ?*CONTEXT,
-    DispatcherContext: ?*anyopaque,
-) callconv(.winapi) EXCEPTION_DISPOSITION;
-
-pub const NT_PRODUCT_TYPE = enum(i32) {
-    WinNt = 1,
-    LanManNt = 2,
-    Server = 3,
-};
-pub const NtProductWinNt = NT_PRODUCT_TYPE.WinNt;
-pub const NtProductLanManNt = NT_PRODUCT_TYPE.LanManNt;
-pub const NtProductServer = NT_PRODUCT_TYPE.Server;
 
 pub const SUITE_TYPE = enum(i32) {
     SmallBusiness = 0,
@@ -224,35 +229,54 @@ pub const PhoneNT = SUITE_TYPE.PhoneNT;
 pub const MultiUserTS = SUITE_TYPE.MultiUserTS;
 pub const MaxSuiteType = SUITE_TYPE.MaxSuiteType;
 
-pub const COMPARTMENT_ID = enum(i32) {
-    UNSPECIFIED_COMPARTMENT_ID = 0,
-    DEFAULT_COMPARTMENT_ID = 1,
+pub const TIMER_TYPE = enum(i32) {
+    NotificationTimer = 0,
+    SynchronizationTimer = 1,
 };
-pub const UNSPECIFIED_COMPARTMENT_ID = COMPARTMENT_ID.UNSPECIFIED_COMPARTMENT_ID;
-pub const DEFAULT_COMPARTMENT_ID = COMPARTMENT_ID.DEFAULT_COMPARTMENT_ID;
+pub const NotificationTimer = TIMER_TYPE.NotificationTimer;
+pub const SynchronizationTimer = TIMER_TYPE.SynchronizationTimer;
 
-pub const EXCEPTION_REGISTRATION_RECORD = extern struct {
-    Next: ?*EXCEPTION_REGISTRATION_RECORD,
-    Handler: ?EXCEPTION_ROUTINE,
+pub const WAIT_TYPE = enum(i32) {
+    All = 0,
+    Any = 1,
+    Notification = 2,
+    Dequeue = 3,
+    Dpc = 4,
+};
+pub const WaitAll = WAIT_TYPE.All;
+pub const WaitAny = WAIT_TYPE.Any;
+pub const WaitNotification = WAIT_TYPE.Notification;
+pub const WaitDequeue = WAIT_TYPE.Dequeue;
+pub const WaitDpc = WAIT_TYPE.Dpc;
+
+pub const WNF_STATE_NAME = extern struct {
+    Data: [2]u32,
 };
 
-pub const NT_TIB = extern struct {
-    ExceptionList: ?*EXCEPTION_REGISTRATION_RECORD,
-    StackBase: ?*anyopaque,
-    StackLimit: ?*anyopaque,
-    SubSystemTib: ?*anyopaque,
-    Anonymous: extern union {
-        FiberData: ?*anyopaque,
-        Version: u32,
+pub const FLOATING_SAVE_AREA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ControlWord: u32,
+        StatusWord: u32,
+        TagWord: u32,
+        ErrorOffset: u32,
+        ErrorSelector: u32,
+        DataOffset: u32,
+        DataSelector: u32,
+        RegisterArea: [80]u8,
+        Cr0NpxState: u32,
     },
-    ArbitraryUserPointer: ?*anyopaque,
-    Self: ?*NT_TIB,
+    .X86 => extern struct {
+        ControlWord: u32,
+        StatusWord: u32,
+        TagWord: u32,
+        ErrorOffset: u32,
+        ErrorSelector: u32,
+        DataOffset: u32,
+        DataSelector: u32,
+        RegisterArea: [80]u8,
+        Spare0: u32,
+    },
 };
-
-
-
-
-
 pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
     .Arm64 => extern union {
         Anonymous: extern struct {
@@ -283,42 +307,23 @@ pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
         },
     },
 };
-pub const FLOATING_SAVE_AREA = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        ControlWord: u32,
-        StatusWord: u32,
-        TagWord: u32,
-        ErrorOffset: u32,
-        ErrorSelector: u32,
-        DataOffset: u32,
-        DataSelector: u32,
-        RegisterArea: [80]u8,
-        Cr0NpxState: u32,
-    },
-    .X86 => extern struct {
-        ControlWord: u32,
-        StatusWord: u32,
-        TagWord: u32,
-        ErrorOffset: u32,
-        ErrorSelector: u32,
-        DataOffset: u32,
-        DataSelector: u32,
-        RegisterArea: [80]u8,
-        Spare0: u32,
-    },
-};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlFirstEntrySList(
+    ListHead: ?*const SLIST_HEADER,
+) callconv(.winapi) ?*SLIST_ENTRY;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInitializeSListHead(
     ListHead: ?*SLIST_HEADER,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlFirstEntrySList(
-    ListHead: ?*const SLIST_HEADER,
+pub extern "ntdll" fn RtlInterlockedFlushSList(
+    ListHead: ?*SLIST_HEADER,
 ) callconv(.winapi) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -337,11 +342,6 @@ pub extern "ntdll" fn RtlInterlockedPushListSListEx(
     List: ?*SLIST_ENTRY,
     ListEnd: ?*SLIST_ENTRY,
     Count: u32,
-) callconv(.winapi) ?*SLIST_ENTRY;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlInterlockedFlushSList(
-    ListHead: ?*SLIST_HEADER,
 ) callconv(.winapi) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

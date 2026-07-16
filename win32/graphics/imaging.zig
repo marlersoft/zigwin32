@@ -2,1239 +2,311 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (301)
 //--------------------------------------------------------------------------------
-pub const WINCODEC_SDK_VERSION1 = @as(u32, 566);
-pub const WINCODEC_SDK_VERSION2 = @as(u32, 567);
-pub const CLSID_WICImagingFactory = Guid.initString("cacaf262-9370-4615-a13b-9f5539da4c0a");
-pub const CLSID_WICImagingFactory1 = Guid.initString("cacaf262-9370-4615-a13b-9f5539da4c0a");
-pub const CLSID_WICImagingFactory2 = Guid.initString("317d06e8-5f24-433d-bdf7-79ce68d8abc2");
-pub const WINCODEC_SDK_VERSION = @as(u32, 567);
-pub const GUID_VendorMicrosoft = Guid.initString("f0e749ca-edef-4589-a73a-ee0e626a2a2b");
-pub const GUID_VendorMicrosoftBuiltIn = Guid.initString("257a30fd-06b6-462b-aea4-63f70b86e533");
-pub const CLSID_WICPngDecoder = Guid.initString("389ea17b-5078-4cde-b6ef-25c15175c751");
-pub const CLSID_WICPngDecoder1 = Guid.initString("389ea17b-5078-4cde-b6ef-25c15175c751");
-pub const CLSID_WICPngDecoder2 = Guid.initString("e018945b-aa86-4008-9bd4-6777a1e40c11");
-pub const CLSID_WICBmpDecoder = Guid.initString("6b462062-7cbf-400d-9fdb-813dd10f2778");
-pub const CLSID_WICIcoDecoder = Guid.initString("c61bfcdf-2e0f-4aad-a8d7-e06bafebcdfe");
-pub const CLSID_WICJpegDecoder = Guid.initString("9456a480-e88b-43ea-9e73-0b2d9b71b1ca");
-pub const CLSID_WICGifDecoder = Guid.initString("381dda3c-9ce9-4834-a23e-1f98f8fc52be");
-pub const CLSID_WICTiffDecoder = Guid.initString("b54e85d9-fe23-499f-8b88-6acea713752b");
-pub const CLSID_WICWmpDecoder = Guid.initString("a26cec36-234c-4950-ae16-e34aace71d0d");
-pub const CLSID_WICDdsDecoder = Guid.initString("9053699f-a341-429d-9e90-ee437cf80c73");
-pub const CLSID_WICBmpEncoder = Guid.initString("69be8bb4-d66d-47c8-865a-ed1589433782");
-pub const CLSID_WICPngEncoder = Guid.initString("27949969-876a-41d7-9447-568f6a35a4dc");
-pub const CLSID_WICJpegEncoder = Guid.initString("1a34f5c1-4a5a-46dc-b644-1f4567e7a676");
-pub const CLSID_WICGifEncoder = Guid.initString("114f5598-0b22-40a0-86a1-c83ea495adbd");
-pub const CLSID_WICTiffEncoder = Guid.initString("0131be10-2001-4c5f-a9b0-cc88fab64ce8");
-pub const CLSID_WICWmpEncoder = Guid.initString("ac4ce3cb-e1c1-44cd-8215-5a1665509ec2");
-pub const CLSID_WICDdsEncoder = Guid.initString("a61dde94-66ce-4ac1-881b-71680588895e");
-pub const CLSID_WICAdngDecoder = Guid.initString("981d9411-909e-42a7-8f5d-a747ff052edb");
-pub const CLSID_WICJpegQualcommPhoneEncoder = Guid.initString("68ed5c62-f534-4979-b2b3-686a12b2b34c");
-pub const CLSID_WICHeifDecoder = Guid.initString("e9a4a80a-44fe-4de4-8971-7150b10a5199");
-pub const CLSID_WICHeifEncoder = Guid.initString("0dbecec1-9eb3-4860-9c6f-ddbe86634575");
-pub const CLSID_WICWebpDecoder = Guid.initString("7693e886-51c9-4070-8419-9f70738ec8fa");
-pub const CLSID_WICRAWDecoder = Guid.initString("41945702-8302-44a6-9445-ac98e8afa086");
-pub const GUID_ContainerFormatBmp = Guid.initString("0af1d87e-fcfe-4188-bdeb-a7906471cbe3");
-pub const GUID_ContainerFormatPng = Guid.initString("1b7cfaf4-713f-473c-bbcd-6137425faeaf");
-pub const GUID_ContainerFormatIco = Guid.initString("a3a860c4-338f-4c17-919a-fba4b5628f21");
-pub const GUID_ContainerFormatJpeg = Guid.initString("19e4a5aa-5662-4fc5-a0c0-1758028e1057");
-pub const GUID_ContainerFormatTiff = Guid.initString("163bcc30-e2e9-4f0b-961d-a3e9fdb788a3");
-pub const GUID_ContainerFormatGif = Guid.initString("1f8a5601-7d4d-4cbd-9c82-1bc8d4eeb9a5");
-pub const GUID_ContainerFormatWmp = Guid.initString("57a37caa-367a-4540-916b-f183c5093a4b");
-pub const GUID_ContainerFormatDds = Guid.initString("9967cb95-2e85-4ac8-8ca2-83d7ccd425c9");
-pub const GUID_ContainerFormatAdng = Guid.initString("f3ff6d0d-38c0-41c4-b1fe-1f3824f17b84");
-pub const GUID_ContainerFormatHeif = Guid.initString("e1e62521-6787-405b-a339-500715b5763f");
-pub const GUID_ContainerFormatWebp = Guid.initString("e094b0e2-67f2-45b3-b0ea-115337ca7cf3");
-pub const GUID_ContainerFormatRaw = Guid.initString("fe99ce60-f19c-433c-a3ae-00acefa9ca21");
-pub const CLSID_WICImagingCategories = Guid.initString("fae3d380-fea4-4623-8c75-c6b61110b681");
 pub const CATID_WICBitmapDecoders = Guid.initString("7ed96837-96f0-4812-b211-f13c24117ed3");
 pub const CATID_WICBitmapEncoders = Guid.initString("ac757296-3522-4e11-9862-c17be5a1767e");
-pub const CATID_WICPixelFormats = Guid.initString("2b46e70f-cda7-473e-89f6-dc9630a2390b");
 pub const CATID_WICFormatConverters = Guid.initString("7835eae8-bf14-49d1-93ce-533a407b2248");
 pub const CATID_WICMetadataReader = Guid.initString("05af94d8-7174-4cd2-be4a-4124b80ee4b8");
 pub const CATID_WICMetadataWriter = Guid.initString("abe3b9a4-257d-4b97-bd1a-294af496222e");
+pub const CATID_WICPixelFormats = Guid.initString("2b46e70f-cda7-473e-89f6-dc9630a2390b");
+pub const CLSID_WIC8BIMIPTCDigestMetadataReader = Guid.initString("02805f1e-d5aa-415b-82c5-61c033a988a6");
+pub const CLSID_WIC8BIMIPTCDigestMetadataWriter = Guid.initString("2db5e62b-0d67-495f-8f9d-c2f0188647ac");
+pub const CLSID_WIC8BIMIPTCMetadataReader = Guid.initString("0010668c-0801-4da6-a4a4-826522b6d28f");
+pub const CLSID_WIC8BIMIPTCMetadataWriter = Guid.initString("00108226-ee41-44a2-9e9c-4be4d5b1d2cd");
+pub const CLSID_WIC8BIMResolutionInfoMetadataReader = Guid.initString("5805137a-e348-4f7c-b3cc-6db9965a0599");
+pub const CLSID_WIC8BIMResolutionInfoMetadataWriter = Guid.initString("4ff2fe0e-e74a-4b71-98c4-ab7dc16707ba");
+pub const CLSID_WICAdngDecoder = Guid.initString("981d9411-909e-42a7-8f5d-a747ff052edb");
+pub const CLSID_WICAPEMetadataReader = Guid.initString("1767b93a-b021-44ea-920f-863c11f4f768");
+pub const CLSID_WICAPEMetadataWriter = Guid.initString("bd6edfca-2890-482f-b233-8d7339a1cf8d");
+pub const CLSID_WICApp0MetadataReader = Guid.initString("43324b33-a78f-480f-9111-9638aaccc832");
+pub const CLSID_WICApp0MetadataWriter = Guid.initString("f3c633a2-46c8-498e-8fbb-cc6f721bbcde");
+pub const CLSID_WICApp13MetadataReader = Guid.initString("aa7e3c50-864c-4604-bc04-8b0b76e637f6");
+pub const CLSID_WICApp13MetadataWriter = Guid.initString("7b19a919-a9d6-49e5-bd45-02c34e4e4cd5");
+pub const CLSID_WICApp1MetadataReader = Guid.initString("dde33513-774e-4bcd-ae79-02f4adfe62fc");
+pub const CLSID_WICApp1MetadataWriter = Guid.initString("ee366069-1832-420f-b381-0479ad066f19");
+pub const CLSID_WICBmpDecoder = Guid.initString("6b462062-7cbf-400d-9fdb-813dd10f2778");
+pub const CLSID_WICBmpEncoder = Guid.initString("69be8bb4-d66d-47c8-865a-ed1589433782");
+pub const CLSID_WICDdsDecoder = Guid.initString("9053699f-a341-429d-9e90-ee437cf80c73");
+pub const CLSID_WICDdsEncoder = Guid.initString("a61dde94-66ce-4ac1-881b-71680588895e");
+pub const CLSID_WICDdsMetadataReader = Guid.initString("276c88ca-7533-4a86-b676-66b36080d484");
+pub const CLSID_WICDdsMetadataWriter = Guid.initString("fd688bbd-31ed-4db7-a723-934927d38367");
 pub const CLSID_WICDefaultFormatConverter = Guid.initString("1a3f11dc-b514-4b17-8c5f-2154513852f1");
+pub const CLSID_WICExifMetadataReader = Guid.initString("d9403860-297f-4a49-bf9b-77898150a442");
+pub const CLSID_WICExifMetadataWriter = Guid.initString("c9a14cda-c339-460b-9078-d4debcfabe91");
 pub const CLSID_WICFormatConverterHighColor = Guid.initString("ac75d454-9f37-48f8-b972-4e19bc856011");
 pub const CLSID_WICFormatConverterNChannel = Guid.initString("c17cabb2-d4a3-47d7-a557-339b2efbd4f1");
 pub const CLSID_WICFormatConverterWMPhoto = Guid.initString("9cb5172b-d600-46ba-ab77-77bb7e3a00d9");
+pub const CLSID_WICGCEMetadataReader = Guid.initString("b92e345d-f52d-41f3-b562-081bc772e3b9");
+pub const CLSID_WICGCEMetadataWriter = Guid.initString("af95dc76-16b2-47f4-b3ea-3c31796693e7");
+pub const CLSID_WICGifCommentMetadataReader = Guid.initString("32557d3b-69dc-4f95-836e-f5972b2f6159");
+pub const CLSID_WICGifCommentMetadataWriter = Guid.initString("a02797fc-c4ae-418c-af95-e637c7ead2a1");
+pub const CLSID_WICGifDecoder = Guid.initString("381dda3c-9ce9-4834-a23e-1f98f8fc52be");
+pub const CLSID_WICGifEncoder = Guid.initString("114f5598-0b22-40a0-86a1-c83ea495adbd");
+pub const CLSID_WICGpsMetadataReader = Guid.initString("3697790b-223b-484e-9925-c4869218f17a");
+pub const CLSID_WICGpsMetadataWriter = Guid.initString("cb8c13e4-62b5-4c96-a48b-6ba6ace39c76");
+pub const CLSID_WICHeifDecoder = Guid.initString("e9a4a80a-44fe-4de4-8971-7150b10a5199");
+pub const CLSID_WICHeifEncoder = Guid.initString("0dbecec1-9eb3-4860-9c6f-ddbe86634575");
+pub const CLSID_WICHeifHDRMetadataReader = Guid.initString("2438de3d-94d9-4be8-84a8-4de95a575e75");
+pub const CLSID_WICHeifMetadataReader = Guid.initString("acddfc3f-85ec-41bc-bdef-1bc262e4db05");
+pub const CLSID_WICHeifMetadataWriter = Guid.initString("3ae45e79-40bc-4401-ace5-dd3cb16e6afe");
+pub const CLSID_WICIcoDecoder = Guid.initString("c61bfcdf-2e0f-4aad-a8d7-e06bafebcdfe");
+pub const CLSID_WICIfdMetadataReader = Guid.initString("8f914656-9d0a-4eb2-9019-0bf96d8a9ee6");
+pub const CLSID_WICIfdMetadataWriter = Guid.initString("b1ebfc28-c9bd-47a2-8d33-b948769777a7");
+pub const CLSID_WICImagingCategories = Guid.initString("fae3d380-fea4-4623-8c75-c6b61110b681");
+pub const CLSID_WICImagingFactory = Guid.initString("cacaf262-9370-4615-a13b-9f5539da4c0a");
+pub const CLSID_WICImagingFactory1 = Guid.initString("cacaf262-9370-4615-a13b-9f5539da4c0a");
+pub const CLSID_WICImagingFactory2 = Guid.initString("317d06e8-5f24-433d-bdf7-79ce68d8abc2");
+pub const CLSID_WICIMDMetadataReader = Guid.initString("7447a267-0015-42c8-a8f1-fb3b94c68361");
+pub const CLSID_WICIMDMetadataWriter = Guid.initString("8c89071f-452e-4e95-9682-9d1024627172");
+pub const CLSID_WICInteropMetadataReader = Guid.initString("b5c8b898-0074-459f-b700-860d4651ea14");
+pub const CLSID_WICInteropMetadataWriter = Guid.initString("122ec645-cd7e-44d8-b186-2c8c20c3b50f");
+pub const CLSID_WICIPTCMetadataReader = Guid.initString("03012959-f4f6-44d7-9d09-daa087a9db57");
+pub const CLSID_WICIPTCMetadataWriter = Guid.initString("1249b20c-5dd0-44fe-b0b3-8f92c8e6d080");
+pub const CLSID_WICIRBMetadataReader = Guid.initString("d4dcd3d7-b4c2-47d9-a6bf-b89ba396a4a3");
+pub const CLSID_WICIRBMetadataWriter = Guid.initString("5c5c1935-0235-4434-80bc-251bc1ec39c6");
+pub const CLSID_WICJpegChrominanceMetadataReader = Guid.initString("50b1904b-f28f-4574-93f4-0bade82c69e9");
+pub const CLSID_WICJpegChrominanceMetadataWriter = Guid.initString("3ff566f0-6e6b-49d4-96e6-b78886692c62");
+pub const CLSID_WICJpegCommentMetadataReader = Guid.initString("9f66347c-60c4-4c4d-ab58-d2358685f607");
+pub const CLSID_WICJpegCommentMetadataWriter = Guid.initString("e573236f-55b1-4eda-81ea-9f65db0290d3");
+pub const CLSID_WICJpegDecoder = Guid.initString("9456a480-e88b-43ea-9e73-0b2d9b71b1ca");
+pub const CLSID_WICJpegEncoder = Guid.initString("1a34f5c1-4a5a-46dc-b644-1f4567e7a676");
+pub const CLSID_WICJpegLuminanceMetadataReader = Guid.initString("356f2f88-05a6-4728-b9a4-1bfbce04d838");
+pub const CLSID_WICJpegLuminanceMetadataWriter = Guid.initString("1d583abc-8a0e-4657-9982-a380ca58fb4b");
+pub const CLSID_WICJpegQualcommPhoneEncoder = Guid.initString("68ed5c62-f534-4979-b2b3-686a12b2b34c");
+pub const CLSID_WICLSDMetadataReader = Guid.initString("41070793-59e4-479a-a1f7-954adc2ef5fc");
+pub const CLSID_WICLSDMetadataWriter = Guid.initString("73c037e7-e5d9-4954-876a-6da81d6e5768");
 pub const CLSID_WICPlanarFormatConverter = Guid.initString("184132b8-32f8-4784-9131-dd7224b23438");
+pub const CLSID_WICPngBkgdMetadataReader = Guid.initString("0ce7a4a6-03e8-4a60-9d15-282ef32ee7da");
+pub const CLSID_WICPngBkgdMetadataWriter = Guid.initString("68e3f2fd-31ae-4441-bb6a-fd7047525f90");
+pub const CLSID_WICPngChrmMetadataReader = Guid.initString("f90b5f36-367b-402a-9dd1-bc0fd59d8f62");
+pub const CLSID_WICPngChrmMetadataWriter = Guid.initString("e23ce3eb-5608-4e83-bcef-27b1987e51d7");
+pub const CLSID_WICPngDecoder = Guid.initString("389ea17b-5078-4cde-b6ef-25c15175c751");
+pub const CLSID_WICPngDecoder1 = Guid.initString("389ea17b-5078-4cde-b6ef-25c15175c751");
+pub const CLSID_WICPngDecoder2 = Guid.initString("e018945b-aa86-4008-9bd4-6777a1e40c11");
+pub const CLSID_WICPngEncoder = Guid.initString("27949969-876a-41d7-9447-568f6a35a4dc");
+pub const CLSID_WICPngGamaMetadataReader = Guid.initString("3692ca39-e082-4350-9e1f-3704cb083cd5");
+pub const CLSID_WICPngGamaMetadataWriter = Guid.initString("ff036d13-5d4b-46dd-b10f-106693d9fe4f");
+pub const CLSID_WICPngHistMetadataReader = Guid.initString("877a0bb7-a313-4491-87b5-2e6d0594f520");
+pub const CLSID_WICPngHistMetadataWriter = Guid.initString("8a03e749-672e-446e-bf1f-2c11d233b6ff");
+pub const CLSID_WICPngIccpMetadataReader = Guid.initString("f5d3e63b-cb0f-4628-a478-6d8244be36b1");
+pub const CLSID_WICPngIccpMetadataWriter = Guid.initString("16671e5f-0ce6-4cc4-9768-e89fe5018ade");
+pub const CLSID_WICPngItxtMetadataReader = Guid.initString("aabfb2fa-3e1e-4a8f-8977-5556fb94ea23");
+pub const CLSID_WICPngItxtMetadataWriter = Guid.initString("31879719-e751-4df8-981d-68dff67704ed");
+pub const CLSID_WICPngSrgbMetadataReader = Guid.initString("fb40360c-547e-4956-a3b9-d4418859ba66");
+pub const CLSID_WICPngSrgbMetadataWriter = Guid.initString("a6ee35c6-87ec-47df-9f22-1d5aad840c82");
+pub const CLSID_WICPngTextMetadataReader = Guid.initString("4b59afcc-b8c3-408a-b670-89e5fab6fda7");
+pub const CLSID_WICPngTextMetadataWriter = Guid.initString("b5ebafb9-253e-4a72-a744-0762d2685683");
+pub const CLSID_WICPngTimeMetadataReader = Guid.initString("d94edf02-efe5-4f0d-85c8-f5a68b3000b1");
+pub const CLSID_WICPngTimeMetadataWriter = Guid.initString("1ab78400-b5a3-4d91-8ace-33fcd1499be6");
+pub const CLSID_WICRAWDecoder = Guid.initString("41945702-8302-44a6-9445-ac98e8afa086");
+pub const CLSID_WICSubIfdMetadataReader = Guid.initString("50d42f09-ecd1-4b41-b65d-da1fdaa75663");
+pub const CLSID_WICSubIfdMetadataWriter = Guid.initString("8ade5386-8e9b-4f4c-acf2-f0008706b238");
+pub const CLSID_WICThumbnailMetadataReader = Guid.initString("fb012959-f4f6-44d7-9d09-daa087a9db57");
+pub const CLSID_WICThumbnailMetadataWriter = Guid.initString("d049b20c-5dd0-44fe-b0b3-8f92c8e6d080");
+pub const CLSID_WICTiffDecoder = Guid.initString("b54e85d9-fe23-499f-8b88-6acea713752b");
+pub const CLSID_WICTiffEncoder = Guid.initString("0131be10-2001-4c5f-a9b0-cc88fab64ce8");
+pub const CLSID_WICUnknownMetadataReader = Guid.initString("699745c2-5066-4b82-a8e3-d40478dbec8c");
+pub const CLSID_WICUnknownMetadataWriter = Guid.initString("a09cca86-27ba-4f39-9053-121fa4dc08fc");
+pub const CLSID_WICWebpAnimMetadataReader = Guid.initString("076f9911-a348-465c-a807-a252f3f2d3de");
+pub const CLSID_WICWebpAnmfMetadataReader = Guid.initString("85a10b03-c9f6-439f-be5e-c0fbef67807c");
+pub const CLSID_WICWebpDecoder = Guid.initString("7693e886-51c9-4070-8419-9f70738ec8fa");
+pub const CLSID_WICWmpDecoder = Guid.initString("a26cec36-234c-4950-ae16-e34aace71d0d");
+pub const CLSID_WICWmpEncoder = Guid.initString("ac4ce3cb-e1c1-44cd-8215-5a1665509ec2");
+pub const CLSID_WICXMPAltMetadataReader = Guid.initString("aa94dcc2-b8b0-4898-b835-000aabd74393");
+pub const CLSID_WICXMPAltMetadataWriter = Guid.initString("076c2a6c-f78f-4c46-a723-3583e70876ea");
+pub const CLSID_WICXMPBagMetadataReader = Guid.initString("e7e79a30-4f2c-4fab-8d00-394f2d6bbebe");
+pub const CLSID_WICXMPBagMetadataWriter = Guid.initString("ed822c8c-d6be-4301-a631-0e1416bad28f");
+pub const CLSID_WICXMPMetadataReader = Guid.initString("72b624df-ae11-4948-a65c-351eb0829419");
+pub const CLSID_WICXMPMetadataWriter = Guid.initString("1765e14e-1bd4-462e-b6b1-590bf1262ac6");
+pub const CLSID_WICXMPSeqMetadataReader = Guid.initString("7f12e753-fc71-43d7-a51d-92f35977abb5");
+pub const CLSID_WICXMPSeqMetadataWriter = Guid.initString("6d68d1de-d432-4b0f-923a-091183a9bda7");
+pub const CLSID_WICXMPStructMetadataReader = Guid.initString("01b90d9a-8209-47f7-9c52-e1244bf50ced");
+pub const CLSID_WICXMPStructMetadataWriter = Guid.initString("22c21f93-7ddb-411c-9b17-c5b7bd064abc");
+pub const FACILITY_WINCODEC_ERR = @as(u32, 2200);
+pub const GUID_ContainerFormatAdng = Guid.initString("f3ff6d0d-38c0-41c4-b1fe-1f3824f17b84");
+pub const GUID_ContainerFormatBmp = Guid.initString("0af1d87e-fcfe-4188-bdeb-a7906471cbe3");
+pub const GUID_ContainerFormatDds = Guid.initString("9967cb95-2e85-4ac8-8ca2-83d7ccd425c9");
+pub const GUID_ContainerFormatGif = Guid.initString("1f8a5601-7d4d-4cbd-9c82-1bc8d4eeb9a5");
+pub const GUID_ContainerFormatHeif = Guid.initString("e1e62521-6787-405b-a339-500715b5763f");
+pub const GUID_ContainerFormatIco = Guid.initString("a3a860c4-338f-4c17-919a-fba4b5628f21");
+pub const GUID_ContainerFormatJpeg = Guid.initString("19e4a5aa-5662-4fc5-a0c0-1758028e1057");
+pub const GUID_ContainerFormatPng = Guid.initString("1b7cfaf4-713f-473c-bbcd-6137425faeaf");
+pub const GUID_ContainerFormatRaw = Guid.initString("fe99ce60-f19c-433c-a3ae-00acefa9ca21");
+pub const GUID_ContainerFormatTiff = Guid.initString("163bcc30-e2e9-4f0b-961d-a3e9fdb788a3");
+pub const GUID_ContainerFormatWebp = Guid.initString("e094b0e2-67f2-45b3-b0ea-115337ca7cf3");
+pub const GUID_ContainerFormatWmp = Guid.initString("57a37caa-367a-4540-916b-f183c5093a4b");
+pub const GUID_MetadataFormat8BIMIPTC = Guid.initString("0010568c-0852-4e6a-b191-5c33ac5b0430");
+pub const GUID_MetadataFormat8BIMIPTCDigest = Guid.initString("1ca32285-9ccd-4786-8bd8-79539db6a006");
+pub const GUID_MetadataFormat8BIMResolutionInfo = Guid.initString("739f305d-81db-43cb-ac5e-55013ef9f003");
+pub const GUID_MetadataFormatAPE = Guid.initString("2e043dc2-c967-4e05-875e-618bf67e85c3");
+pub const GUID_MetadataFormatApp0 = Guid.initString("79007028-268d-45d6-a3c2-354e6a504bc9");
+pub const GUID_MetadataFormatApp1 = Guid.initString("8fd3dfc3-f951-492b-817f-69c2e6d9a5b0");
+pub const GUID_MetadataFormatApp13 = Guid.initString("326556a2-f502-4354-9cc0-8e3f48eaf6b5");
+pub const GUID_MetadataFormatChunkbKGD = Guid.initString("e14d3571-6b47-4dea-b60a-87ce0a78dfb7");
+pub const GUID_MetadataFormatChunkcHRM = Guid.initString("9db3655b-2842-44b3-8067-12e9b375556a");
+pub const GUID_MetadataFormatChunkgAMA = Guid.initString("f00935a5-1d5d-4cd1-81b2-9324d7eca781");
+pub const GUID_MetadataFormatChunkhIST = Guid.initString("c59a82da-db74-48a4-bd6a-b69c4931ef95");
+pub const GUID_MetadataFormatChunkiCCP = Guid.initString("eb4349ab-b685-450f-91b5-e802e892536c");
+pub const GUID_MetadataFormatChunkiTXt = Guid.initString("c2bec729-0b68-4b77-aa0e-6295a6ac1814");
+pub const GUID_MetadataFormatChunksRGB = Guid.initString("c115fd36-cc6f-4e3f-8363-524b87c6b0d9");
+pub const GUID_MetadataFormatChunktEXt = Guid.initString("568d8936-c0a9-4923-905d-df2b38238fbc");
+pub const GUID_MetadataFormatChunktIME = Guid.initString("6b00ae2d-e24b-460a-98b6-878bd03072fd");
+pub const GUID_MetadataFormatDds = Guid.initString("4a064603-8c33-4e60-9c29-136231702d08");
+pub const GUID_MetadataFormatExif = Guid.initString("1c3c4f9d-b84a-467d-9493-36cfbd59ea57");
+pub const GUID_MetadataFormatGCE = Guid.initString("2a25cad8-deeb-4c69-a788-0ec2266dcafd");
+pub const GUID_MetadataFormatGifComment = Guid.initString("c4b6e0e0-cfb4-4ad3-ab33-9aad2355a34a");
+pub const GUID_MetadataFormatGps = Guid.initString("7134ab8a-9351-44ad-af62-448db6b502ec");
+pub const GUID_MetadataFormatHeif = Guid.initString("817ef3e1-1288-45f4-a852-260d9e7cce83");
+pub const GUID_MetadataFormatHeifHDR = Guid.initString("568b8d8a-1e65-438c-8968-d60e1012beb9");
+pub const GUID_MetadataFormatIfd = Guid.initString("537396c6-2d8a-4bb6-9bf8-2f0a8e2a3adf");
+pub const GUID_MetadataFormatIMD = Guid.initString("bd2bb086-4d52-48dd-9677-db483e85ae8f");
+pub const GUID_MetadataFormatInterop = Guid.initString("ed686f8e-681f-4c8b-bd41-a8addbf6b3fc");
+pub const GUID_MetadataFormatIPTC = Guid.initString("4fab0914-e129-4087-a1d1-bc812d45a7b5");
+pub const GUID_MetadataFormatIRB = Guid.initString("16100d66-8570-4bb9-b92d-fda4b23ece67");
+pub const GUID_MetadataFormatJpegChrominance = Guid.initString("f73d0dcf-cec6-4f85-9b0e-1c3956b1bef7");
+pub const GUID_MetadataFormatJpegComment = Guid.initString("220e5f33-afd3-474e-9d31-7d4fe730f557");
+pub const GUID_MetadataFormatJpegLuminance = Guid.initString("86908007-edfc-4860-8d4b-4ee6e83e6058");
+pub const GUID_MetadataFormatLSD = Guid.initString("e256031e-6299-4929-b98d-5ac884afba92");
+pub const GUID_MetadataFormatSubIfd = Guid.initString("58a2e128-2db9-4e57-bb14-5177891ed331");
+pub const GUID_MetadataFormatThumbnail = Guid.initString("243dcee9-8703-40ee-8ef0-22a600b8058c");
+pub const GUID_MetadataFormatUnknown = Guid.initString("a45e592f-9078-4a7c-adb5-4edc4fd61b1f");
+pub const GUID_MetadataFormatWebpANIM = Guid.initString("6dc4fda6-78e6-4102-ae35-bcfa1edcc78b");
+pub const GUID_MetadataFormatWebpANMF = Guid.initString("43c105ee-b93b-4abb-b003-a08c0d870471");
+pub const GUID_MetadataFormatXMP = Guid.initString("bb5acc38-f216-4cec-a6c5-5f6e739763a9");
+pub const GUID_MetadataFormatXMPAlt = Guid.initString("7b08a675-91aa-481b-a798-4da94908613b");
+pub const GUID_MetadataFormatXMPBag = Guid.initString("833cca5f-dcb7-4516-806f-6596ab26dce4");
+pub const GUID_MetadataFormatXMPSeq = Guid.initString("63e8df02-eb6c-456c-a224-b25e794fd648");
+pub const GUID_MetadataFormatXMPStruct = Guid.initString("22383cf1-ed17-4e2e-af17-d85b8f6b30d0");
+pub const GUID_VendorMicrosoft = Guid.initString("f0e749ca-edef-4589-a73a-ee0e626a2a2b");
+pub const GUID_VendorMicrosoftBuiltIn = Guid.initString("257a30fd-06b6-462b-aea4-63f70b86e533");
+pub const GUID_WICPixelFormat112bpp6ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc937");
+pub const GUID_WICPixelFormat112bpp7Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92a");
+pub const GUID_WICPixelFormat128bpp7ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc938");
+pub const GUID_WICPixelFormat128bpp8Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92b");
+pub const GUID_WICPixelFormat128bppPRGBAFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91a");
+pub const GUID_WICPixelFormat128bppRGBAFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91e");
+pub const GUID_WICPixelFormat128bppRGBAFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc919");
+pub const GUID_WICPixelFormat128bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc941");
+pub const GUID_WICPixelFormat128bppRGBFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91b");
+pub const GUID_WICPixelFormat144bpp8ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc939");
+pub const GUID_WICPixelFormat16bppBGR555 = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc909");
+pub const GUID_WICPixelFormat16bppBGR565 = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90a");
+pub const GUID_WICPixelFormat16bppBGRA5551 = Guid.initString("05ec7c2b-f1e6-4961-ad46-e1cc810a87d2");
+pub const GUID_WICPixelFormat16bppCbCr = Guid.initString("ff95ba6e-11e0-4263-bb45-01721f3460a4");
+pub const GUID_WICPixelFormat16bppCbQuantizedDctCoefficients = Guid.initString("d2c4ff61-56a5-49c2-8b5c-4c1925964837");
+pub const GUID_WICPixelFormat16bppCrQuantizedDctCoefficients = Guid.initString("2fe354f0-1680-42d8-9231-e73c0565bfc1");
+pub const GUID_WICPixelFormat16bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90b");
+pub const GUID_WICPixelFormat16bppGrayFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc913");
+pub const GUID_WICPixelFormat16bppGrayHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93e");
+pub const GUID_WICPixelFormat16bppYQuantizedDctCoefficients = Guid.initString("a355f433-48e8-4a42-84d8-e2aa26ca80a4");
+pub const GUID_WICPixelFormat1bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc901");
+pub const GUID_WICPixelFormat24bpp3Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc920");
+pub const GUID_WICPixelFormat24bppBGR = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90c");
+pub const GUID_WICPixelFormat24bppRGB = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90d");
+pub const GUID_WICPixelFormat2bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc906");
+pub const GUID_WICPixelFormat2bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc902");
+pub const GUID_WICPixelFormat32bpp3ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92e");
+pub const GUID_WICPixelFormat32bpp4Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc921");
+pub const GUID_WICPixelFormat32bppBGR = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90e");
+pub const GUID_WICPixelFormat32bppBGR101010 = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc914");
+pub const GUID_WICPixelFormat32bppBGRA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90f");
+pub const GUID_WICPixelFormat32bppCMYK = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91c");
+pub const GUID_WICPixelFormat32bppGrayFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93f");
+pub const GUID_WICPixelFormat32bppGrayFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc911");
+pub const GUID_WICPixelFormat32bppPBGRA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc910");
+pub const GUID_WICPixelFormat32bppPRGBA = Guid.initString("3cc4a650-a527-4d37-a916-3142c7ebedba");
+pub const GUID_WICPixelFormat32bppR10G10B10A2 = Guid.initString("604e1bb5-8a3c-4b65-b11c-bc0b8dd75b7f");
+pub const GUID_WICPixelFormat32bppR10G10B10A2HDR10 = Guid.initString("9c215c5d-1acc-4f0e-a4bc-70fb3ae8fd28");
+pub const GUID_WICPixelFormat32bppRGB = Guid.initString("d98c6b95-3efe-47d6-bb25-eb1748ab0cf1");
+pub const GUID_WICPixelFormat32bppRGBA = Guid.initString("f5c7ad2d-6a8d-43dd-a7a8-a29935261ae9");
+pub const GUID_WICPixelFormat32bppRGBA1010102 = Guid.initString("25238d72-fcf9-4522-b514-5578e5ad55e0");
+pub const GUID_WICPixelFormat32bppRGBA1010102XR = Guid.initString("00de6b9a-c101-434b-b502-d0165ee1122c");
+pub const GUID_WICPixelFormat32bppRGBE = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93d");
+pub const GUID_WICPixelFormat40bpp4ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92f");
+pub const GUID_WICPixelFormat40bpp5Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc922");
+pub const GUID_WICPixelFormat40bppCMYKAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92c");
+pub const GUID_WICPixelFormat48bpp3Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc926");
+pub const GUID_WICPixelFormat48bpp5ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc930");
+pub const GUID_WICPixelFormat48bpp6Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc923");
+pub const GUID_WICPixelFormat48bppBGR = Guid.initString("e605a384-b468-46ce-bb2e-36f180e64313");
+pub const GUID_WICPixelFormat48bppBGRFixedPoint = Guid.initString("49ca140e-cab6-493b-9ddf-60187c37532a");
+pub const GUID_WICPixelFormat48bppRGB = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc915");
+pub const GUID_WICPixelFormat48bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc912");
+pub const GUID_WICPixelFormat48bppRGBHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93b");
+pub const GUID_WICPixelFormat4bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc907");
+pub const GUID_WICPixelFormat4bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc903");
+pub const GUID_WICPixelFormat56bpp6ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc931");
+pub const GUID_WICPixelFormat56bpp7Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc924");
+pub const GUID_WICPixelFormat64bpp3ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc934");
+pub const GUID_WICPixelFormat64bpp4Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc927");
+pub const GUID_WICPixelFormat64bpp7ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc932");
+pub const GUID_WICPixelFormat64bpp8Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc925");
+pub const GUID_WICPixelFormat64bppBGRA = Guid.initString("1562ff7c-d352-46f9-979e-42976b792246");
+pub const GUID_WICPixelFormat64bppBGRAFixedPoint = Guid.initString("356de33c-54d2-4a23-bb04-9b7bf9b1d42d");
+pub const GUID_WICPixelFormat64bppCMYK = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91f");
+pub const GUID_WICPixelFormat64bppPBGRA = Guid.initString("8c518e8e-a4ec-468b-ae70-c9a35a9c5530");
+pub const GUID_WICPixelFormat64bppPRGBA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc917");
+pub const GUID_WICPixelFormat64bppPRGBAHalf = Guid.initString("58ad26c2-c623-4d9d-b320-387e49f8c442");
+pub const GUID_WICPixelFormat64bppRGB = Guid.initString("a1182111-186d-4d42-bc6a-9c8303a8dff9");
+pub const GUID_WICPixelFormat64bppRGBA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc916");
+pub const GUID_WICPixelFormat64bppRGBAFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91d");
+pub const GUID_WICPixelFormat64bppRGBAHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93a");
+pub const GUID_WICPixelFormat64bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc940");
+pub const GUID_WICPixelFormat64bppRGBHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc942");
+pub const GUID_WICPixelFormat72bpp8ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc933");
+pub const GUID_WICPixelFormat80bpp4ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc935");
+pub const GUID_WICPixelFormat80bpp5Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc928");
+pub const GUID_WICPixelFormat80bppCMYKAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92d");
+pub const GUID_WICPixelFormat8bppAlpha = Guid.initString("e6cd0116-eeba-4161-aa85-27dd9fb3a895");
+pub const GUID_WICPixelFormat8bppCb = Guid.initString("1339f224-6bfe-4c3e-9302-e4f3a6d0ca2a");
+pub const GUID_WICPixelFormat8bppCr = Guid.initString("b8145053-2116-49f0-8835-ed844b205c51");
+pub const GUID_WICPixelFormat8bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc908");
+pub const GUID_WICPixelFormat8bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc904");
+pub const GUID_WICPixelFormat8bppY = Guid.initString("91b4db54-2df9-42f0-b449-2909bb3df88e");
+pub const GUID_WICPixelFormat96bpp5ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc936");
+pub const GUID_WICPixelFormat96bpp6Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc929");
+pub const GUID_WICPixelFormat96bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc918");
+pub const GUID_WICPixelFormat96bppRGBFloat = Guid.initString("e3fed78f-e8db-4acf-84c1-e97f6136b327");
+pub const GUID_WICPixelFormatBlackWhite = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc905");
+pub const GUID_WICPixelFormatDontCare = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc900");
+pub const WIC_JPEG_HUFFMAN_BASELINE_ONE = @as(u32, 0);
+pub const WIC_JPEG_HUFFMAN_BASELINE_THREE = @as(u32, 1118464);
 pub const WIC_JPEG_MAX_COMPONENT_COUNT = @as(u32, 4);
 pub const WIC_JPEG_MAX_TABLE_INDEX = @as(u32, 3);
+pub const WIC_JPEG_QUANTIZATION_BASELINE_ONE = @as(u32, 0);
+pub const WIC_JPEG_QUANTIZATION_BASELINE_THREE = @as(u32, 65792);
 pub const WIC_JPEG_SAMPLE_FACTORS_ONE = @as(u32, 17);
 pub const WIC_JPEG_SAMPLE_FACTORS_THREE_420 = @as(u32, 1118498);
 pub const WIC_JPEG_SAMPLE_FACTORS_THREE_422 = @as(u32, 1118497);
 pub const WIC_JPEG_SAMPLE_FACTORS_THREE_440 = @as(u32, 1118482);
 pub const WIC_JPEG_SAMPLE_FACTORS_THREE_444 = @as(u32, 1118481);
-pub const WIC_JPEG_QUANTIZATION_BASELINE_ONE = @as(u32, 0);
-pub const WIC_JPEG_QUANTIZATION_BASELINE_THREE = @as(u32, 65792);
-pub const WIC_JPEG_HUFFMAN_BASELINE_ONE = @as(u32, 0);
-pub const WIC_JPEG_HUFFMAN_BASELINE_THREE = @as(u32, 1118464);
-pub const GUID_WICPixelFormatDontCare = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc900");
-pub const GUID_WICPixelFormat1bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc901");
-pub const GUID_WICPixelFormat2bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc902");
-pub const GUID_WICPixelFormat4bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc903");
-pub const GUID_WICPixelFormat8bppIndexed = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc904");
-pub const GUID_WICPixelFormatBlackWhite = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc905");
-pub const GUID_WICPixelFormat2bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc906");
-pub const GUID_WICPixelFormat4bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc907");
-pub const GUID_WICPixelFormat8bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc908");
-pub const GUID_WICPixelFormat8bppAlpha = Guid.initString("e6cd0116-eeba-4161-aa85-27dd9fb3a895");
-pub const GUID_WICPixelFormat16bppBGR555 = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc909");
-pub const GUID_WICPixelFormat16bppBGR565 = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90a");
-pub const GUID_WICPixelFormat16bppBGRA5551 = Guid.initString("05ec7c2b-f1e6-4961-ad46-e1cc810a87d2");
-pub const GUID_WICPixelFormat16bppGray = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90b");
-pub const GUID_WICPixelFormat24bppBGR = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90c");
-pub const GUID_WICPixelFormat24bppRGB = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90d");
-pub const GUID_WICPixelFormat32bppBGR = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90e");
-pub const GUID_WICPixelFormat32bppBGRA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc90f");
-pub const GUID_WICPixelFormat32bppPBGRA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc910");
-pub const GUID_WICPixelFormat32bppGrayFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc911");
-pub const GUID_WICPixelFormat32bppRGB = Guid.initString("d98c6b95-3efe-47d6-bb25-eb1748ab0cf1");
-pub const GUID_WICPixelFormat32bppRGBA = Guid.initString("f5c7ad2d-6a8d-43dd-a7a8-a29935261ae9");
-pub const GUID_WICPixelFormat32bppPRGBA = Guid.initString("3cc4a650-a527-4d37-a916-3142c7ebedba");
-pub const GUID_WICPixelFormat48bppRGB = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc915");
-pub const GUID_WICPixelFormat48bppBGR = Guid.initString("e605a384-b468-46ce-bb2e-36f180e64313");
-pub const GUID_WICPixelFormat64bppRGB = Guid.initString("a1182111-186d-4d42-bc6a-9c8303a8dff9");
-pub const GUID_WICPixelFormat64bppRGBA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc916");
-pub const GUID_WICPixelFormat64bppBGRA = Guid.initString("1562ff7c-d352-46f9-979e-42976b792246");
-pub const GUID_WICPixelFormat64bppPRGBA = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc917");
-pub const GUID_WICPixelFormat64bppPBGRA = Guid.initString("8c518e8e-a4ec-468b-ae70-c9a35a9c5530");
-pub const GUID_WICPixelFormat16bppGrayFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc913");
-pub const GUID_WICPixelFormat32bppBGR101010 = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc914");
-pub const GUID_WICPixelFormat48bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc912");
-pub const GUID_WICPixelFormat48bppBGRFixedPoint = Guid.initString("49ca140e-cab6-493b-9ddf-60187c37532a");
-pub const GUID_WICPixelFormat96bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc918");
-pub const GUID_WICPixelFormat96bppRGBFloat = Guid.initString("e3fed78f-e8db-4acf-84c1-e97f6136b327");
-pub const GUID_WICPixelFormat128bppRGBAFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc919");
-pub const GUID_WICPixelFormat128bppPRGBAFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91a");
-pub const GUID_WICPixelFormat128bppRGBFloat = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91b");
-pub const GUID_WICPixelFormat32bppCMYK = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91c");
-pub const GUID_WICPixelFormat64bppRGBAFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91d");
-pub const GUID_WICPixelFormat64bppBGRAFixedPoint = Guid.initString("356de33c-54d2-4a23-bb04-9b7bf9b1d42d");
-pub const GUID_WICPixelFormat64bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc940");
-pub const GUID_WICPixelFormat128bppRGBAFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91e");
-pub const GUID_WICPixelFormat128bppRGBFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc941");
-pub const GUID_WICPixelFormat64bppRGBAHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93a");
-pub const GUID_WICPixelFormat64bppPRGBAHalf = Guid.initString("58ad26c2-c623-4d9d-b320-387e49f8c442");
-pub const GUID_WICPixelFormat64bppRGBHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc942");
-pub const GUID_WICPixelFormat48bppRGBHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93b");
-pub const GUID_WICPixelFormat32bppRGBE = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93d");
-pub const GUID_WICPixelFormat16bppGrayHalf = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93e");
-pub const GUID_WICPixelFormat32bppGrayFixedPoint = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc93f");
-pub const GUID_WICPixelFormat32bppRGBA1010102 = Guid.initString("25238d72-fcf9-4522-b514-5578e5ad55e0");
-pub const GUID_WICPixelFormat32bppRGBA1010102XR = Guid.initString("00de6b9a-c101-434b-b502-d0165ee1122c");
-pub const GUID_WICPixelFormat32bppR10G10B10A2 = Guid.initString("604e1bb5-8a3c-4b65-b11c-bc0b8dd75b7f");
-pub const GUID_WICPixelFormat32bppR10G10B10A2HDR10 = Guid.initString("9c215c5d-1acc-4f0e-a4bc-70fb3ae8fd28");
-pub const GUID_WICPixelFormat64bppCMYK = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc91f");
-pub const GUID_WICPixelFormat24bpp3Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc920");
-pub const GUID_WICPixelFormat32bpp4Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc921");
-pub const GUID_WICPixelFormat40bpp5Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc922");
-pub const GUID_WICPixelFormat48bpp6Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc923");
-pub const GUID_WICPixelFormat56bpp7Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc924");
-pub const GUID_WICPixelFormat64bpp8Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc925");
-pub const GUID_WICPixelFormat48bpp3Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc926");
-pub const GUID_WICPixelFormat64bpp4Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc927");
-pub const GUID_WICPixelFormat80bpp5Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc928");
-pub const GUID_WICPixelFormat96bpp6Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc929");
-pub const GUID_WICPixelFormat112bpp7Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92a");
-pub const GUID_WICPixelFormat128bpp8Channels = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92b");
-pub const GUID_WICPixelFormat40bppCMYKAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92c");
-pub const GUID_WICPixelFormat80bppCMYKAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92d");
-pub const GUID_WICPixelFormat32bpp3ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92e");
-pub const GUID_WICPixelFormat40bpp4ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc92f");
-pub const GUID_WICPixelFormat48bpp5ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc930");
-pub const GUID_WICPixelFormat56bpp6ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc931");
-pub const GUID_WICPixelFormat64bpp7ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc932");
-pub const GUID_WICPixelFormat72bpp8ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc933");
-pub const GUID_WICPixelFormat64bpp3ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc934");
-pub const GUID_WICPixelFormat80bpp4ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc935");
-pub const GUID_WICPixelFormat96bpp5ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc936");
-pub const GUID_WICPixelFormat112bpp6ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc937");
-pub const GUID_WICPixelFormat128bpp7ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc938");
-pub const GUID_WICPixelFormat144bpp8ChannelsAlpha = Guid.initString("6fddc324-4e03-4bfe-b185-3d77768dc939");
-pub const GUID_WICPixelFormat8bppY = Guid.initString("91b4db54-2df9-42f0-b449-2909bb3df88e");
-pub const GUID_WICPixelFormat8bppCb = Guid.initString("1339f224-6bfe-4c3e-9302-e4f3a6d0ca2a");
-pub const GUID_WICPixelFormat8bppCr = Guid.initString("b8145053-2116-49f0-8835-ed844b205c51");
-pub const GUID_WICPixelFormat16bppCbCr = Guid.initString("ff95ba6e-11e0-4263-bb45-01721f3460a4");
-pub const GUID_WICPixelFormat16bppYQuantizedDctCoefficients = Guid.initString("a355f433-48e8-4a42-84d8-e2aa26ca80a4");
-pub const GUID_WICPixelFormat16bppCbQuantizedDctCoefficients = Guid.initString("d2c4ff61-56a5-49c2-8b5c-4c1925964837");
-pub const GUID_WICPixelFormat16bppCrQuantizedDctCoefficients = Guid.initString("2fe354f0-1680-42d8-9231-e73c0565bfc1");
-pub const FACILITY_WINCODEC_ERR = @as(u32, 2200);
+pub const WICRawChangeNotification_Contrast = @as(u32, 16);
+pub const WICRawChangeNotification_DestinationColorContext = @as(u32, 1024);
+pub const WICRawChangeNotification_ExposureCompensation = @as(u32, 1);
+pub const WICRawChangeNotification_Gamma = @as(u32, 32);
+pub const WICRawChangeNotification_KelvinWhitePoint = @as(u32, 4);
+pub const WICRawChangeNotification_NamedWhitePoint = @as(u32, 2);
+pub const WICRawChangeNotification_NoiseReduction = @as(u32, 512);
+pub const WICRawChangeNotification_RenderMode = @as(u32, 8192);
+pub const WICRawChangeNotification_RGBWhitePoint = @as(u32, 8);
+pub const WICRawChangeNotification_Rotation = @as(u32, 4096);
+pub const WICRawChangeNotification_Saturation = @as(u32, 128);
+pub const WICRawChangeNotification_Sharpness = @as(u32, 64);
+pub const WICRawChangeNotification_Tint = @as(u32, 256);
+pub const WICRawChangeNotification_ToneCurve = @as(u32, 2048);
+pub const WINCODEC_ERR_ABORTED = @as(i32, -2147467260);
+pub const WINCODEC_ERR_ACCESSDENIED = @as(i32, -2147024891);
 pub const WINCODEC_ERR_BASE = @as(u32, 8192);
 pub const WINCODEC_ERR_GENERIC_ERROR = @as(i32, -2147467259);
 pub const WINCODEC_ERR_INVALIDPARAMETER = @as(i32, -2147024809);
-pub const WINCODEC_ERR_OUTOFMEMORY = @as(i32, -2147024882);
 pub const WINCODEC_ERR_NOTIMPLEMENTED = @as(i32, -2147467263);
-pub const WINCODEC_ERR_ABORTED = @as(i32, -2147467260);
-pub const WINCODEC_ERR_ACCESSDENIED = @as(i32, -2147024891);
-pub const WICRawChangeNotification_ExposureCompensation = @as(u32, 1);
-pub const WICRawChangeNotification_NamedWhitePoint = @as(u32, 2);
-pub const WICRawChangeNotification_KelvinWhitePoint = @as(u32, 4);
-pub const WICRawChangeNotification_RGBWhitePoint = @as(u32, 8);
-pub const WICRawChangeNotification_Contrast = @as(u32, 16);
-pub const WICRawChangeNotification_Gamma = @as(u32, 32);
-pub const WICRawChangeNotification_Sharpness = @as(u32, 64);
-pub const WICRawChangeNotification_Saturation = @as(u32, 128);
-pub const WICRawChangeNotification_Tint = @as(u32, 256);
-pub const WICRawChangeNotification_NoiseReduction = @as(u32, 512);
-pub const WICRawChangeNotification_DestinationColorContext = @as(u32, 1024);
-pub const WICRawChangeNotification_ToneCurve = @as(u32, 2048);
-pub const WICRawChangeNotification_Rotation = @as(u32, 4096);
-pub const WICRawChangeNotification_RenderMode = @as(u32, 8192);
-pub const GUID_MetadataFormatUnknown = Guid.initString("a45e592f-9078-4a7c-adb5-4edc4fd61b1f");
-pub const GUID_MetadataFormatIfd = Guid.initString("537396c6-2d8a-4bb6-9bf8-2f0a8e2a3adf");
-pub const GUID_MetadataFormatSubIfd = Guid.initString("58a2e128-2db9-4e57-bb14-5177891ed331");
-pub const GUID_MetadataFormatExif = Guid.initString("1c3c4f9d-b84a-467d-9493-36cfbd59ea57");
-pub const GUID_MetadataFormatGps = Guid.initString("7134ab8a-9351-44ad-af62-448db6b502ec");
-pub const GUID_MetadataFormatInterop = Guid.initString("ed686f8e-681f-4c8b-bd41-a8addbf6b3fc");
-pub const GUID_MetadataFormatApp0 = Guid.initString("79007028-268d-45d6-a3c2-354e6a504bc9");
-pub const GUID_MetadataFormatApp1 = Guid.initString("8fd3dfc3-f951-492b-817f-69c2e6d9a5b0");
-pub const GUID_MetadataFormatApp13 = Guid.initString("326556a2-f502-4354-9cc0-8e3f48eaf6b5");
-pub const GUID_MetadataFormatIPTC = Guid.initString("4fab0914-e129-4087-a1d1-bc812d45a7b5");
-pub const GUID_MetadataFormatIRB = Guid.initString("16100d66-8570-4bb9-b92d-fda4b23ece67");
-pub const GUID_MetadataFormat8BIMIPTC = Guid.initString("0010568c-0852-4e6a-b191-5c33ac5b0430");
-pub const GUID_MetadataFormat8BIMResolutionInfo = Guid.initString("739f305d-81db-43cb-ac5e-55013ef9f003");
-pub const GUID_MetadataFormat8BIMIPTCDigest = Guid.initString("1ca32285-9ccd-4786-8bd8-79539db6a006");
-pub const GUID_MetadataFormatXMP = Guid.initString("bb5acc38-f216-4cec-a6c5-5f6e739763a9");
-pub const GUID_MetadataFormatThumbnail = Guid.initString("243dcee9-8703-40ee-8ef0-22a600b8058c");
-pub const GUID_MetadataFormatChunktEXt = Guid.initString("568d8936-c0a9-4923-905d-df2b38238fbc");
-pub const GUID_MetadataFormatXMPStruct = Guid.initString("22383cf1-ed17-4e2e-af17-d85b8f6b30d0");
-pub const GUID_MetadataFormatXMPBag = Guid.initString("833cca5f-dcb7-4516-806f-6596ab26dce4");
-pub const GUID_MetadataFormatXMPSeq = Guid.initString("63e8df02-eb6c-456c-a224-b25e794fd648");
-pub const GUID_MetadataFormatXMPAlt = Guid.initString("7b08a675-91aa-481b-a798-4da94908613b");
-pub const GUID_MetadataFormatLSD = Guid.initString("e256031e-6299-4929-b98d-5ac884afba92");
-pub const GUID_MetadataFormatIMD = Guid.initString("bd2bb086-4d52-48dd-9677-db483e85ae8f");
-pub const GUID_MetadataFormatGCE = Guid.initString("2a25cad8-deeb-4c69-a788-0ec2266dcafd");
-pub const GUID_MetadataFormatAPE = Guid.initString("2e043dc2-c967-4e05-875e-618bf67e85c3");
-pub const GUID_MetadataFormatJpegChrominance = Guid.initString("f73d0dcf-cec6-4f85-9b0e-1c3956b1bef7");
-pub const GUID_MetadataFormatJpegLuminance = Guid.initString("86908007-edfc-4860-8d4b-4ee6e83e6058");
-pub const GUID_MetadataFormatJpegComment = Guid.initString("220e5f33-afd3-474e-9d31-7d4fe730f557");
-pub const GUID_MetadataFormatGifComment = Guid.initString("c4b6e0e0-cfb4-4ad3-ab33-9aad2355a34a");
-pub const GUID_MetadataFormatChunkgAMA = Guid.initString("f00935a5-1d5d-4cd1-81b2-9324d7eca781");
-pub const GUID_MetadataFormatChunkbKGD = Guid.initString("e14d3571-6b47-4dea-b60a-87ce0a78dfb7");
-pub const GUID_MetadataFormatChunkiTXt = Guid.initString("c2bec729-0b68-4b77-aa0e-6295a6ac1814");
-pub const GUID_MetadataFormatChunkcHRM = Guid.initString("9db3655b-2842-44b3-8067-12e9b375556a");
-pub const GUID_MetadataFormatChunkhIST = Guid.initString("c59a82da-db74-48a4-bd6a-b69c4931ef95");
-pub const GUID_MetadataFormatChunkiCCP = Guid.initString("eb4349ab-b685-450f-91b5-e802e892536c");
-pub const GUID_MetadataFormatChunksRGB = Guid.initString("c115fd36-cc6f-4e3f-8363-524b87c6b0d9");
-pub const GUID_MetadataFormatChunktIME = Guid.initString("6b00ae2d-e24b-460a-98b6-878bd03072fd");
-pub const GUID_MetadataFormatDds = Guid.initString("4a064603-8c33-4e60-9c29-136231702d08");
-pub const GUID_MetadataFormatHeif = Guid.initString("817ef3e1-1288-45f4-a852-260d9e7cce83");
-pub const GUID_MetadataFormatHeifHDR = Guid.initString("568b8d8a-1e65-438c-8968-d60e1012beb9");
-pub const GUID_MetadataFormatWebpANIM = Guid.initString("6dc4fda6-78e6-4102-ae35-bcfa1edcc78b");
-pub const GUID_MetadataFormatWebpANMF = Guid.initString("43c105ee-b93b-4abb-b003-a08c0d870471");
-pub const CLSID_WICUnknownMetadataReader = Guid.initString("699745c2-5066-4b82-a8e3-d40478dbec8c");
-pub const CLSID_WICUnknownMetadataWriter = Guid.initString("a09cca86-27ba-4f39-9053-121fa4dc08fc");
-pub const CLSID_WICApp0MetadataWriter = Guid.initString("f3c633a2-46c8-498e-8fbb-cc6f721bbcde");
-pub const CLSID_WICApp0MetadataReader = Guid.initString("43324b33-a78f-480f-9111-9638aaccc832");
-pub const CLSID_WICApp1MetadataWriter = Guid.initString("ee366069-1832-420f-b381-0479ad066f19");
-pub const CLSID_WICApp1MetadataReader = Guid.initString("dde33513-774e-4bcd-ae79-02f4adfe62fc");
-pub const CLSID_WICApp13MetadataWriter = Guid.initString("7b19a919-a9d6-49e5-bd45-02c34e4e4cd5");
-pub const CLSID_WICApp13MetadataReader = Guid.initString("aa7e3c50-864c-4604-bc04-8b0b76e637f6");
-pub const CLSID_WICIfdMetadataReader = Guid.initString("8f914656-9d0a-4eb2-9019-0bf96d8a9ee6");
-pub const CLSID_WICIfdMetadataWriter = Guid.initString("b1ebfc28-c9bd-47a2-8d33-b948769777a7");
-pub const CLSID_WICSubIfdMetadataReader = Guid.initString("50d42f09-ecd1-4b41-b65d-da1fdaa75663");
-pub const CLSID_WICSubIfdMetadataWriter = Guid.initString("8ade5386-8e9b-4f4c-acf2-f0008706b238");
-pub const CLSID_WICExifMetadataReader = Guid.initString("d9403860-297f-4a49-bf9b-77898150a442");
-pub const CLSID_WICExifMetadataWriter = Guid.initString("c9a14cda-c339-460b-9078-d4debcfabe91");
-pub const CLSID_WICGpsMetadataReader = Guid.initString("3697790b-223b-484e-9925-c4869218f17a");
-pub const CLSID_WICGpsMetadataWriter = Guid.initString("cb8c13e4-62b5-4c96-a48b-6ba6ace39c76");
-pub const CLSID_WICInteropMetadataReader = Guid.initString("b5c8b898-0074-459f-b700-860d4651ea14");
-pub const CLSID_WICInteropMetadataWriter = Guid.initString("122ec645-cd7e-44d8-b186-2c8c20c3b50f");
-pub const CLSID_WICThumbnailMetadataReader = Guid.initString("fb012959-f4f6-44d7-9d09-daa087a9db57");
-pub const CLSID_WICThumbnailMetadataWriter = Guid.initString("d049b20c-5dd0-44fe-b0b3-8f92c8e6d080");
-pub const CLSID_WICIPTCMetadataReader = Guid.initString("03012959-f4f6-44d7-9d09-daa087a9db57");
-pub const CLSID_WICIPTCMetadataWriter = Guid.initString("1249b20c-5dd0-44fe-b0b3-8f92c8e6d080");
-pub const CLSID_WICIRBMetadataReader = Guid.initString("d4dcd3d7-b4c2-47d9-a6bf-b89ba396a4a3");
-pub const CLSID_WICIRBMetadataWriter = Guid.initString("5c5c1935-0235-4434-80bc-251bc1ec39c6");
-pub const CLSID_WIC8BIMIPTCMetadataReader = Guid.initString("0010668c-0801-4da6-a4a4-826522b6d28f");
-pub const CLSID_WIC8BIMIPTCMetadataWriter = Guid.initString("00108226-ee41-44a2-9e9c-4be4d5b1d2cd");
-pub const CLSID_WIC8BIMResolutionInfoMetadataReader = Guid.initString("5805137a-e348-4f7c-b3cc-6db9965a0599");
-pub const CLSID_WIC8BIMResolutionInfoMetadataWriter = Guid.initString("4ff2fe0e-e74a-4b71-98c4-ab7dc16707ba");
-pub const CLSID_WIC8BIMIPTCDigestMetadataReader = Guid.initString("02805f1e-d5aa-415b-82c5-61c033a988a6");
-pub const CLSID_WIC8BIMIPTCDigestMetadataWriter = Guid.initString("2db5e62b-0d67-495f-8f9d-c2f0188647ac");
-pub const CLSID_WICPngTextMetadataReader = Guid.initString("4b59afcc-b8c3-408a-b670-89e5fab6fda7");
-pub const CLSID_WICPngTextMetadataWriter = Guid.initString("b5ebafb9-253e-4a72-a744-0762d2685683");
-pub const CLSID_WICXMPMetadataReader = Guid.initString("72b624df-ae11-4948-a65c-351eb0829419");
-pub const CLSID_WICXMPMetadataWriter = Guid.initString("1765e14e-1bd4-462e-b6b1-590bf1262ac6");
-pub const CLSID_WICXMPStructMetadataReader = Guid.initString("01b90d9a-8209-47f7-9c52-e1244bf50ced");
-pub const CLSID_WICXMPStructMetadataWriter = Guid.initString("22c21f93-7ddb-411c-9b17-c5b7bd064abc");
-pub const CLSID_WICXMPBagMetadataReader = Guid.initString("e7e79a30-4f2c-4fab-8d00-394f2d6bbebe");
-pub const CLSID_WICXMPBagMetadataWriter = Guid.initString("ed822c8c-d6be-4301-a631-0e1416bad28f");
-pub const CLSID_WICXMPSeqMetadataReader = Guid.initString("7f12e753-fc71-43d7-a51d-92f35977abb5");
-pub const CLSID_WICXMPSeqMetadataWriter = Guid.initString("6d68d1de-d432-4b0f-923a-091183a9bda7");
-pub const CLSID_WICXMPAltMetadataReader = Guid.initString("aa94dcc2-b8b0-4898-b835-000aabd74393");
-pub const CLSID_WICXMPAltMetadataWriter = Guid.initString("076c2a6c-f78f-4c46-a723-3583e70876ea");
-pub const CLSID_WICLSDMetadataReader = Guid.initString("41070793-59e4-479a-a1f7-954adc2ef5fc");
-pub const CLSID_WICLSDMetadataWriter = Guid.initString("73c037e7-e5d9-4954-876a-6da81d6e5768");
-pub const CLSID_WICGCEMetadataReader = Guid.initString("b92e345d-f52d-41f3-b562-081bc772e3b9");
-pub const CLSID_WICGCEMetadataWriter = Guid.initString("af95dc76-16b2-47f4-b3ea-3c31796693e7");
-pub const CLSID_WICIMDMetadataReader = Guid.initString("7447a267-0015-42c8-a8f1-fb3b94c68361");
-pub const CLSID_WICIMDMetadataWriter = Guid.initString("8c89071f-452e-4e95-9682-9d1024627172");
-pub const CLSID_WICAPEMetadataReader = Guid.initString("1767b93a-b021-44ea-920f-863c11f4f768");
-pub const CLSID_WICAPEMetadataWriter = Guid.initString("bd6edfca-2890-482f-b233-8d7339a1cf8d");
-pub const CLSID_WICJpegChrominanceMetadataReader = Guid.initString("50b1904b-f28f-4574-93f4-0bade82c69e9");
-pub const CLSID_WICJpegChrominanceMetadataWriter = Guid.initString("3ff566f0-6e6b-49d4-96e6-b78886692c62");
-pub const CLSID_WICJpegLuminanceMetadataReader = Guid.initString("356f2f88-05a6-4728-b9a4-1bfbce04d838");
-pub const CLSID_WICJpegLuminanceMetadataWriter = Guid.initString("1d583abc-8a0e-4657-9982-a380ca58fb4b");
-pub const CLSID_WICJpegCommentMetadataReader = Guid.initString("9f66347c-60c4-4c4d-ab58-d2358685f607");
-pub const CLSID_WICJpegCommentMetadataWriter = Guid.initString("e573236f-55b1-4eda-81ea-9f65db0290d3");
-pub const CLSID_WICGifCommentMetadataReader = Guid.initString("32557d3b-69dc-4f95-836e-f5972b2f6159");
-pub const CLSID_WICGifCommentMetadataWriter = Guid.initString("a02797fc-c4ae-418c-af95-e637c7ead2a1");
-pub const CLSID_WICPngGamaMetadataReader = Guid.initString("3692ca39-e082-4350-9e1f-3704cb083cd5");
-pub const CLSID_WICPngGamaMetadataWriter = Guid.initString("ff036d13-5d4b-46dd-b10f-106693d9fe4f");
-pub const CLSID_WICPngBkgdMetadataReader = Guid.initString("0ce7a4a6-03e8-4a60-9d15-282ef32ee7da");
-pub const CLSID_WICPngBkgdMetadataWriter = Guid.initString("68e3f2fd-31ae-4441-bb6a-fd7047525f90");
-pub const CLSID_WICPngItxtMetadataReader = Guid.initString("aabfb2fa-3e1e-4a8f-8977-5556fb94ea23");
-pub const CLSID_WICPngItxtMetadataWriter = Guid.initString("31879719-e751-4df8-981d-68dff67704ed");
-pub const CLSID_WICPngChrmMetadataReader = Guid.initString("f90b5f36-367b-402a-9dd1-bc0fd59d8f62");
-pub const CLSID_WICPngChrmMetadataWriter = Guid.initString("e23ce3eb-5608-4e83-bcef-27b1987e51d7");
-pub const CLSID_WICPngHistMetadataReader = Guid.initString("877a0bb7-a313-4491-87b5-2e6d0594f520");
-pub const CLSID_WICPngHistMetadataWriter = Guid.initString("8a03e749-672e-446e-bf1f-2c11d233b6ff");
-pub const CLSID_WICPngIccpMetadataReader = Guid.initString("f5d3e63b-cb0f-4628-a478-6d8244be36b1");
-pub const CLSID_WICPngIccpMetadataWriter = Guid.initString("16671e5f-0ce6-4cc4-9768-e89fe5018ade");
-pub const CLSID_WICPngSrgbMetadataReader = Guid.initString("fb40360c-547e-4956-a3b9-d4418859ba66");
-pub const CLSID_WICPngSrgbMetadataWriter = Guid.initString("a6ee35c6-87ec-47df-9f22-1d5aad840c82");
-pub const CLSID_WICPngTimeMetadataReader = Guid.initString("d94edf02-efe5-4f0d-85c8-f5a68b3000b1");
-pub const CLSID_WICPngTimeMetadataWriter = Guid.initString("1ab78400-b5a3-4d91-8ace-33fcd1499be6");
-pub const CLSID_WICDdsMetadataReader = Guid.initString("276c88ca-7533-4a86-b676-66b36080d484");
-pub const CLSID_WICDdsMetadataWriter = Guid.initString("fd688bbd-31ed-4db7-a723-934927d38367");
-pub const CLSID_WICHeifMetadataReader = Guid.initString("acddfc3f-85ec-41bc-bdef-1bc262e4db05");
-pub const CLSID_WICHeifMetadataWriter = Guid.initString("3ae45e79-40bc-4401-ace5-dd3cb16e6afe");
-pub const CLSID_WICHeifHDRMetadataReader = Guid.initString("2438de3d-94d9-4be8-84a8-4de95a575e75");
-pub const CLSID_WICWebpAnimMetadataReader = Guid.initString("076f9911-a348-465c-a807-a252f3f2d3de");
-pub const CLSID_WICWebpAnmfMetadataReader = Guid.initString("85a10b03-c9f6-439f-be5e-c0fbef67807c");
+pub const WINCODEC_ERR_OUTOFMEMORY = @as(i32, -2147024882);
+pub const WINCODEC_SDK_VERSION = @as(u32, 567);
+pub const WINCODEC_SDK_VERSION1 = @as(u32, 566);
+pub const WINCODEC_SDK_VERSION2 = @as(u32, 567);
 
 //--------------------------------------------------------------------------------
 // Section: Types (123)
 //--------------------------------------------------------------------------------
-pub const WICRect = extern struct {
-    X: i32,
-    Y: i32,
-    Width: i32,
-    Height: i32,
-};
-
-pub const WICColorContextType = enum(i32) {
-    Uninitialized = 0,
-    Profile = 1,
-    ExifColorSpace = 2,
-};
-pub const WICColorContextUninitialized = WICColorContextType.Uninitialized;
-pub const WICColorContextProfile = WICColorContextType.Profile;
-pub const WICColorContextExifColorSpace = WICColorContextType.ExifColorSpace;
-
-pub const WICBitmapCreateCacheOption = enum(i32) {
-    itmapNoCache = 0,
-    itmapCacheOnDemand = 1,
-    itmapCacheOnLoad = 2,
-    ITMAPCREATECACHEOPTION_FORCE_DWORD = 2147483647,
-};
-pub const WICBitmapNoCache = WICBitmapCreateCacheOption.itmapNoCache;
-pub const WICBitmapCacheOnDemand = WICBitmapCreateCacheOption.itmapCacheOnDemand;
-pub const WICBitmapCacheOnLoad = WICBitmapCreateCacheOption.itmapCacheOnLoad;
-pub const WICBITMAPCREATECACHEOPTION_FORCE_DWORD = WICBitmapCreateCacheOption.ITMAPCREATECACHEOPTION_FORCE_DWORD;
-
-pub const WICDecodeOptions = enum(i32) {
-    DecodeMetadataCacheOnDemand = 0,
-    DecodeMetadataCacheOnLoad = 1,
-    METADATACACHEOPTION_FORCE_DWORD = 2147483647,
-};
-pub const WICDecodeMetadataCacheOnDemand = WICDecodeOptions.DecodeMetadataCacheOnDemand;
-pub const WICDecodeMetadataCacheOnLoad = WICDecodeOptions.DecodeMetadataCacheOnLoad;
-pub const WICMETADATACACHEOPTION_FORCE_DWORD = WICDecodeOptions.METADATACACHEOPTION_FORCE_DWORD;
-
-pub const WICBitmapEncoderCacheOption = enum(i32) {
-    itmapEncoderCacheInMemory = 0,
-    itmapEncoderCacheTempFile = 1,
-    itmapEncoderNoCache = 2,
-    ITMAPENCODERCACHEOPTION_FORCE_DWORD = 2147483647,
-};
-pub const WICBitmapEncoderCacheInMemory = WICBitmapEncoderCacheOption.itmapEncoderCacheInMemory;
-pub const WICBitmapEncoderCacheTempFile = WICBitmapEncoderCacheOption.itmapEncoderCacheTempFile;
-pub const WICBitmapEncoderNoCache = WICBitmapEncoderCacheOption.itmapEncoderNoCache;
-pub const WICBITMAPENCODERCACHEOPTION_FORCE_DWORD = WICBitmapEncoderCacheOption.ITMAPENCODERCACHEOPTION_FORCE_DWORD;
-
-pub const WICComponentType = enum(i32) {
-    Decoder = 1,
-    Encoder = 2,
-    PixelFormatConverter = 4,
-    MetadataReader = 8,
-    MetadataWriter = 16,
-    PixelFormat = 32,
-    AllComponents = 63,
-    COMPONENTTYPE_FORCE_DWORD = 2147483647,
-};
-pub const WICDecoder = WICComponentType.Decoder;
-pub const WICEncoder = WICComponentType.Encoder;
-pub const WICPixelFormatConverter = WICComponentType.PixelFormatConverter;
-pub const WICMetadataReader = WICComponentType.MetadataReader;
-pub const WICMetadataWriter = WICComponentType.MetadataWriter;
-pub const WICPixelFormat = WICComponentType.PixelFormat;
-pub const WICAllComponents = WICComponentType.AllComponents;
-pub const WICCOMPONENTTYPE_FORCE_DWORD = WICComponentType.COMPONENTTYPE_FORCE_DWORD;
-
-pub const WICComponentEnumerateOptions = enum(i32) {
-    omponentEnumerateDefault = 0,
-    omponentEnumerateRefresh = 1,
-    omponentEnumerateDisabled = -2147483648,
-    omponentEnumerateUnsigned = 1073741824,
-    omponentEnumerateBuiltInOnly = 536870912,
-    OMPONENTENUMERATEOPTIONS_FORCE_DWORD = 2147483647,
-};
-pub const WICComponentEnumerateDefault = WICComponentEnumerateOptions.omponentEnumerateDefault;
-pub const WICComponentEnumerateRefresh = WICComponentEnumerateOptions.omponentEnumerateRefresh;
-pub const WICComponentEnumerateDisabled = WICComponentEnumerateOptions.omponentEnumerateDisabled;
-pub const WICComponentEnumerateUnsigned = WICComponentEnumerateOptions.omponentEnumerateUnsigned;
-pub const WICComponentEnumerateBuiltInOnly = WICComponentEnumerateOptions.omponentEnumerateBuiltInOnly;
-pub const WICCOMPONENTENUMERATEOPTIONS_FORCE_DWORD = WICComponentEnumerateOptions.OMPONENTENUMERATEOPTIONS_FORCE_DWORD;
-
-pub const WICBitmapPattern = extern struct {
-    Position: ULARGE_INTEGER,
-    Length: u32,
-    Pattern: ?*u8,
-    Mask: ?*u8,
-    EndOfStream: BOOL,
-};
-
-pub const WICBitmapInterpolationMode = enum(i32) {
-    itmapInterpolationModeNearestNeighbor = 0,
-    itmapInterpolationModeLinear = 1,
-    itmapInterpolationModeCubic = 2,
-    itmapInterpolationModeFant = 3,
-    itmapInterpolationModeHighQualityCubic = 4,
-    ITMAPINTERPOLATIONMODE_FORCE_DWORD = 2147483647,
-};
-pub const WICBitmapInterpolationModeNearestNeighbor = WICBitmapInterpolationMode.itmapInterpolationModeNearestNeighbor;
-pub const WICBitmapInterpolationModeLinear = WICBitmapInterpolationMode.itmapInterpolationModeLinear;
-pub const WICBitmapInterpolationModeCubic = WICBitmapInterpolationMode.itmapInterpolationModeCubic;
-pub const WICBitmapInterpolationModeFant = WICBitmapInterpolationMode.itmapInterpolationModeFant;
-pub const WICBitmapInterpolationModeHighQualityCubic = WICBitmapInterpolationMode.itmapInterpolationModeHighQualityCubic;
-pub const WICBITMAPINTERPOLATIONMODE_FORCE_DWORD = WICBitmapInterpolationMode.ITMAPINTERPOLATIONMODE_FORCE_DWORD;
-
-pub const WICBitmapPaletteType = enum(i32) {
-    itmapPaletteTypeCustom = 0,
-    itmapPaletteTypeMedianCut = 1,
-    itmapPaletteTypeFixedBW = 2,
-    itmapPaletteTypeFixedHalftone8 = 3,
-    itmapPaletteTypeFixedHalftone27 = 4,
-    itmapPaletteTypeFixedHalftone64 = 5,
-    itmapPaletteTypeFixedHalftone125 = 6,
-    itmapPaletteTypeFixedHalftone216 = 7,
-    itmapPaletteTypeFixedHalftone252 = 8,
-    itmapPaletteTypeFixedHalftone256 = 9,
-    itmapPaletteTypeFixedGray4 = 10,
-    itmapPaletteTypeFixedGray16 = 11,
-    itmapPaletteTypeFixedGray256 = 12,
-    ITMAPPALETTETYPE_FORCE_DWORD = 2147483647,
-    pub const itmapPaletteTypeFixedWebPalette = .itmapPaletteTypeFixedHalftone216;
-};
-pub const WICBitmapPaletteTypeCustom = WICBitmapPaletteType.itmapPaletteTypeCustom;
-pub const WICBitmapPaletteTypeMedianCut = WICBitmapPaletteType.itmapPaletteTypeMedianCut;
-pub const WICBitmapPaletteTypeFixedBW = WICBitmapPaletteType.itmapPaletteTypeFixedBW;
-pub const WICBitmapPaletteTypeFixedHalftone8 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone8;
-pub const WICBitmapPaletteTypeFixedHalftone27 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone27;
-pub const WICBitmapPaletteTypeFixedHalftone64 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone64;
-pub const WICBitmapPaletteTypeFixedHalftone125 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone125;
-pub const WICBitmapPaletteTypeFixedHalftone216 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone216;
-pub const WICBitmapPaletteTypeFixedWebPalette = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone216;
-pub const WICBitmapPaletteTypeFixedHalftone252 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone252;
-pub const WICBitmapPaletteTypeFixedHalftone256 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone256;
-pub const WICBitmapPaletteTypeFixedGray4 = WICBitmapPaletteType.itmapPaletteTypeFixedGray4;
-pub const WICBitmapPaletteTypeFixedGray16 = WICBitmapPaletteType.itmapPaletteTypeFixedGray16;
-pub const WICBitmapPaletteTypeFixedGray256 = WICBitmapPaletteType.itmapPaletteTypeFixedGray256;
-pub const WICBITMAPPALETTETYPE_FORCE_DWORD = WICBitmapPaletteType.ITMAPPALETTETYPE_FORCE_DWORD;
-
-pub const WICBitmapDitherType = enum(i32) {
-    itmapDitherTypeNone = 0,
-    itmapDitherTypeOrdered4x4 = 1,
-    itmapDitherTypeOrdered8x8 = 2,
-    itmapDitherTypeOrdered16x16 = 3,
-    itmapDitherTypeSpiral4x4 = 4,
-    itmapDitherTypeSpiral8x8 = 5,
-    itmapDitherTypeDualSpiral4x4 = 6,
-    itmapDitherTypeDualSpiral8x8 = 7,
-    itmapDitherTypeErrorDiffusion = 8,
-    ITMAPDITHERTYPE_FORCE_DWORD = 2147483647,
-    pub const itmapDitherTypeSolid = .itmapDitherTypeNone;
-};
-pub const WICBitmapDitherTypeNone = WICBitmapDitherType.itmapDitherTypeNone;
-pub const WICBitmapDitherTypeSolid = WICBitmapDitherType.itmapDitherTypeNone;
-pub const WICBitmapDitherTypeOrdered4x4 = WICBitmapDitherType.itmapDitherTypeOrdered4x4;
-pub const WICBitmapDitherTypeOrdered8x8 = WICBitmapDitherType.itmapDitherTypeOrdered8x8;
-pub const WICBitmapDitherTypeOrdered16x16 = WICBitmapDitherType.itmapDitherTypeOrdered16x16;
-pub const WICBitmapDitherTypeSpiral4x4 = WICBitmapDitherType.itmapDitherTypeSpiral4x4;
-pub const WICBitmapDitherTypeSpiral8x8 = WICBitmapDitherType.itmapDitherTypeSpiral8x8;
-pub const WICBitmapDitherTypeDualSpiral4x4 = WICBitmapDitherType.itmapDitherTypeDualSpiral4x4;
-pub const WICBitmapDitherTypeDualSpiral8x8 = WICBitmapDitherType.itmapDitherTypeDualSpiral8x8;
-pub const WICBitmapDitherTypeErrorDiffusion = WICBitmapDitherType.itmapDitherTypeErrorDiffusion;
-pub const WICBITMAPDITHERTYPE_FORCE_DWORD = WICBitmapDitherType.ITMAPDITHERTYPE_FORCE_DWORD;
-
-pub const WICBitmapAlphaChannelOption = enum(i32) {
-    itmapUseAlpha = 0,
-    itmapUsePremultipliedAlpha = 1,
-    itmapIgnoreAlpha = 2,
-    ITMAPALPHACHANNELOPTIONS_FORCE_DWORD = 2147483647,
-};
-pub const WICBitmapUseAlpha = WICBitmapAlphaChannelOption.itmapUseAlpha;
-pub const WICBitmapUsePremultipliedAlpha = WICBitmapAlphaChannelOption.itmapUsePremultipliedAlpha;
-pub const WICBitmapIgnoreAlpha = WICBitmapAlphaChannelOption.itmapIgnoreAlpha;
-pub const WICBITMAPALPHACHANNELOPTIONS_FORCE_DWORD = WICBitmapAlphaChannelOption.ITMAPALPHACHANNELOPTIONS_FORCE_DWORD;
-
-pub const WICBitmapTransformOptions = enum(i32) {
-    itmapTransformRotate0 = 0,
-    itmapTransformRotate90 = 1,
-    itmapTransformRotate180 = 2,
-    itmapTransformRotate270 = 3,
-    itmapTransformFlipHorizontal = 8,
-    itmapTransformFlipVertical = 16,
-    ITMAPTRANSFORMOPTIONS_FORCE_DWORD = 2147483647,
-};
-pub const WICBitmapTransformRotate0 = WICBitmapTransformOptions.itmapTransformRotate0;
-pub const WICBitmapTransformRotate90 = WICBitmapTransformOptions.itmapTransformRotate90;
-pub const WICBitmapTransformRotate180 = WICBitmapTransformOptions.itmapTransformRotate180;
-pub const WICBitmapTransformRotate270 = WICBitmapTransformOptions.itmapTransformRotate270;
-pub const WICBitmapTransformFlipHorizontal = WICBitmapTransformOptions.itmapTransformFlipHorizontal;
-pub const WICBitmapTransformFlipVertical = WICBitmapTransformOptions.itmapTransformFlipVertical;
-pub const WICBITMAPTRANSFORMOPTIONS_FORCE_DWORD = WICBitmapTransformOptions.ITMAPTRANSFORMOPTIONS_FORCE_DWORD;
-
-pub const WICBitmapLockFlags = enum(i32) {
-    itmapLockRead = 1,
-    itmapLockWrite = 2,
-    ITMAPLOCKFLAGS_FORCE_DWORD = 2147483647,
-};
-pub const WICBitmapLockRead = WICBitmapLockFlags.itmapLockRead;
-pub const WICBitmapLockWrite = WICBitmapLockFlags.itmapLockWrite;
-pub const WICBITMAPLOCKFLAGS_FORCE_DWORD = WICBitmapLockFlags.ITMAPLOCKFLAGS_FORCE_DWORD;
-
-pub const WICBitmapDecoderCapabilities = enum(i32) {
-    itmapDecoderCapabilitySameEncoder = 1,
-    itmapDecoderCapabilityCanDecodeAllImages = 2,
-    itmapDecoderCapabilityCanDecodeSomeImages = 4,
-    itmapDecoderCapabilityCanEnumerateMetadata = 8,
-    itmapDecoderCapabilityCanDecodeThumbnail = 16,
-    ITMAPDECODERCAPABILITIES_FORCE_DWORD = 2147483647,
-};
-pub const WICBitmapDecoderCapabilitySameEncoder = WICBitmapDecoderCapabilities.itmapDecoderCapabilitySameEncoder;
-pub const WICBitmapDecoderCapabilityCanDecodeAllImages = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanDecodeAllImages;
-pub const WICBitmapDecoderCapabilityCanDecodeSomeImages = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanDecodeSomeImages;
-pub const WICBitmapDecoderCapabilityCanEnumerateMetadata = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanEnumerateMetadata;
-pub const WICBitmapDecoderCapabilityCanDecodeThumbnail = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanDecodeThumbnail;
-pub const WICBITMAPDECODERCAPABILITIES_FORCE_DWORD = WICBitmapDecoderCapabilities.ITMAPDECODERCAPABILITIES_FORCE_DWORD;
-
-pub const WICProgressOperation = enum(i32) {
-    rogressOperationCopyPixels = 1,
-    rogressOperationWritePixels = 2,
-    rogressOperationAll = 65535,
-    ROGRESSOPERATION_FORCE_DWORD = 2147483647,
-};
-pub const WICProgressOperationCopyPixels = WICProgressOperation.rogressOperationCopyPixels;
-pub const WICProgressOperationWritePixels = WICProgressOperation.rogressOperationWritePixels;
-pub const WICProgressOperationAll = WICProgressOperation.rogressOperationAll;
-pub const WICPROGRESSOPERATION_FORCE_DWORD = WICProgressOperation.ROGRESSOPERATION_FORCE_DWORD;
-
-pub const WICProgressNotification = enum(i32) {
-    rogressNotificationBegin = 65536,
-    rogressNotificationEnd = 131072,
-    rogressNotificationFrequent = 262144,
-    rogressNotificationAll = -65536,
-    ROGRESSNOTIFICATION_FORCE_DWORD = 2147483647,
-};
-pub const WICProgressNotificationBegin = WICProgressNotification.rogressNotificationBegin;
-pub const WICProgressNotificationEnd = WICProgressNotification.rogressNotificationEnd;
-pub const WICProgressNotificationFrequent = WICProgressNotification.rogressNotificationFrequent;
-pub const WICProgressNotificationAll = WICProgressNotification.rogressNotificationAll;
-pub const WICPROGRESSNOTIFICATION_FORCE_DWORD = WICProgressNotification.ROGRESSNOTIFICATION_FORCE_DWORD;
-
-pub const WICComponentSigning = enum(i32) {
-    omponentSigned = 1,
-    omponentUnsigned = 2,
-    omponentSafe = 4,
-    omponentDisabled = -2147483648,
-    OMPONENTSIGNING_FORCE_DWORD = 2147483647,
-};
-pub const WICComponentSigned = WICComponentSigning.omponentSigned;
-pub const WICComponentUnsigned = WICComponentSigning.omponentUnsigned;
-pub const WICComponentSafe = WICComponentSigning.omponentSafe;
-pub const WICComponentDisabled = WICComponentSigning.omponentDisabled;
-pub const WICCOMPONENTSIGNING_FORCE_DWORD = WICComponentSigning.OMPONENTSIGNING_FORCE_DWORD;
-
-pub const WICGifLogicalScreenDescriptorProperties = enum(u32) {
-    Signature = 1,
-    DescriptorWidth = 2,
-    DescriptorHeight = 3,
-    DescriptorGlobalColorTableFlag = 4,
-    DescriptorColorResolution = 5,
-    DescriptorSortFlag = 6,
-    DescriptorGlobalColorTableSize = 7,
-    DescriptorBackgroundColorIndex = 8,
-    DescriptorPixelAspectRatio = 9,
-    DescriptorProperties_FORCE_DWORD = 2147483647,
-};
-pub const WICGifLogicalScreenSignature = WICGifLogicalScreenDescriptorProperties.Signature;
-pub const WICGifLogicalScreenDescriptorWidth = WICGifLogicalScreenDescriptorProperties.DescriptorWidth;
-pub const WICGifLogicalScreenDescriptorHeight = WICGifLogicalScreenDescriptorProperties.DescriptorHeight;
-pub const WICGifLogicalScreenDescriptorGlobalColorTableFlag = WICGifLogicalScreenDescriptorProperties.DescriptorGlobalColorTableFlag;
-pub const WICGifLogicalScreenDescriptorColorResolution = WICGifLogicalScreenDescriptorProperties.DescriptorColorResolution;
-pub const WICGifLogicalScreenDescriptorSortFlag = WICGifLogicalScreenDescriptorProperties.DescriptorSortFlag;
-pub const WICGifLogicalScreenDescriptorGlobalColorTableSize = WICGifLogicalScreenDescriptorProperties.DescriptorGlobalColorTableSize;
-pub const WICGifLogicalScreenDescriptorBackgroundColorIndex = WICGifLogicalScreenDescriptorProperties.DescriptorBackgroundColorIndex;
-pub const WICGifLogicalScreenDescriptorPixelAspectRatio = WICGifLogicalScreenDescriptorProperties.DescriptorPixelAspectRatio;
-pub const WICGifLogicalScreenDescriptorProperties_FORCE_DWORD = WICGifLogicalScreenDescriptorProperties.DescriptorProperties_FORCE_DWORD;
-
-pub const WICGifImageDescriptorProperties = enum(u32) {
-    Left = 1,
-    Top = 2,
-    Width = 3,
-    Height = 4,
-    LocalColorTableFlag = 5,
-    InterlaceFlag = 6,
-    SortFlag = 7,
-    LocalColorTableSize = 8,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICGifImageDescriptorLeft = WICGifImageDescriptorProperties.Left;
-pub const WICGifImageDescriptorTop = WICGifImageDescriptorProperties.Top;
-pub const WICGifImageDescriptorWidth = WICGifImageDescriptorProperties.Width;
-pub const WICGifImageDescriptorHeight = WICGifImageDescriptorProperties.Height;
-pub const WICGifImageDescriptorLocalColorTableFlag = WICGifImageDescriptorProperties.LocalColorTableFlag;
-pub const WICGifImageDescriptorInterlaceFlag = WICGifImageDescriptorProperties.InterlaceFlag;
-pub const WICGifImageDescriptorSortFlag = WICGifImageDescriptorProperties.SortFlag;
-pub const WICGifImageDescriptorLocalColorTableSize = WICGifImageDescriptorProperties.LocalColorTableSize;
-pub const WICGifImageDescriptorProperties_FORCE_DWORD = WICGifImageDescriptorProperties.Properties_FORCE_DWORD;
-
-pub const WICGifGraphicControlExtensionProperties = enum(u32) {
-    Disposal = 1,
-    UserInputFlag = 2,
-    TransparencyFlag = 3,
-    Delay = 4,
-    TransparentColorIndex = 5,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICGifGraphicControlExtensionDisposal = WICGifGraphicControlExtensionProperties.Disposal;
-pub const WICGifGraphicControlExtensionUserInputFlag = WICGifGraphicControlExtensionProperties.UserInputFlag;
-pub const WICGifGraphicControlExtensionTransparencyFlag = WICGifGraphicControlExtensionProperties.TransparencyFlag;
-pub const WICGifGraphicControlExtensionDelay = WICGifGraphicControlExtensionProperties.Delay;
-pub const WICGifGraphicControlExtensionTransparentColorIndex = WICGifGraphicControlExtensionProperties.TransparentColorIndex;
-pub const WICGifGraphicControlExtensionProperties_FORCE_DWORD = WICGifGraphicControlExtensionProperties.Properties_FORCE_DWORD;
-
-pub const WICGifApplicationExtensionProperties = enum(u32) {
-    Application = 1,
-    Data = 2,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICGifApplicationExtensionApplication = WICGifApplicationExtensionProperties.Application;
-pub const WICGifApplicationExtensionData = WICGifApplicationExtensionProperties.Data;
-pub const WICGifApplicationExtensionProperties_FORCE_DWORD = WICGifApplicationExtensionProperties.Properties_FORCE_DWORD;
-
-pub const WICGifCommentExtensionProperties = enum(u32) {
-    Text = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICGifCommentExtensionText = WICGifCommentExtensionProperties.Text;
-pub const WICGifCommentExtensionProperties_FORCE_DWORD = WICGifCommentExtensionProperties.Properties_FORCE_DWORD;
-
-pub const WICJpegCommentProperties = enum(u32) {
-    Text = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICJpegCommentText = WICJpegCommentProperties.Text;
-pub const WICJpegCommentProperties_FORCE_DWORD = WICJpegCommentProperties.Properties_FORCE_DWORD;
-
-pub const WICJpegLuminanceProperties = enum(u32) {
-    Table = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICJpegLuminanceTable = WICJpegLuminanceProperties.Table;
-pub const WICJpegLuminanceProperties_FORCE_DWORD = WICJpegLuminanceProperties.Properties_FORCE_DWORD;
-
-pub const WICJpegChrominanceProperties = enum(u32) {
-    Table = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICJpegChrominanceTable = WICJpegChrominanceProperties.Table;
-pub const WICJpegChrominanceProperties_FORCE_DWORD = WICJpegChrominanceProperties.Properties_FORCE_DWORD;
-
-pub const WIC8BIMIptcProperties = enum(u32) {
-    PString = 0,
-    EmbeddedIPTC = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WIC8BIMIptcPString = WIC8BIMIptcProperties.PString;
-pub const WIC8BIMIptcEmbeddedIPTC = WIC8BIMIptcProperties.EmbeddedIPTC;
-pub const WIC8BIMIptcProperties_FORCE_DWORD = WIC8BIMIptcProperties.Properties_FORCE_DWORD;
-
-pub const WIC8BIMResolutionInfoProperties = enum(u32) {
-    PString = 1,
-    HResolution = 2,
-    HResolutionUnit = 3,
-    WidthUnit = 4,
-    VResolution = 5,
-    VResolutionUnit = 6,
-    HeightUnit = 7,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WIC8BIMResolutionInfoPString = WIC8BIMResolutionInfoProperties.PString;
-pub const WIC8BIMResolutionInfoHResolution = WIC8BIMResolutionInfoProperties.HResolution;
-pub const WIC8BIMResolutionInfoHResolutionUnit = WIC8BIMResolutionInfoProperties.HResolutionUnit;
-pub const WIC8BIMResolutionInfoWidthUnit = WIC8BIMResolutionInfoProperties.WidthUnit;
-pub const WIC8BIMResolutionInfoVResolution = WIC8BIMResolutionInfoProperties.VResolution;
-pub const WIC8BIMResolutionInfoVResolutionUnit = WIC8BIMResolutionInfoProperties.VResolutionUnit;
-pub const WIC8BIMResolutionInfoHeightUnit = WIC8BIMResolutionInfoProperties.HeightUnit;
-pub const WIC8BIMResolutionInfoProperties_FORCE_DWORD = WIC8BIMResolutionInfoProperties.Properties_FORCE_DWORD;
-
-pub const WIC8BIMIptcDigestProperties = enum(u32) {
-    PString = 1,
-    IptcDigest = 2,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WIC8BIMIptcDigestPString = WIC8BIMIptcDigestProperties.PString;
-pub const WIC8BIMIptcDigestIptcDigest = WIC8BIMIptcDigestProperties.IptcDigest;
-pub const WIC8BIMIptcDigestProperties_FORCE_DWORD = WIC8BIMIptcDigestProperties.Properties_FORCE_DWORD;
-
-pub const WICPngGamaProperties = enum(u32) {
-    Gamma = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngGamaGamma = WICPngGamaProperties.Gamma;
-pub const WICPngGamaProperties_FORCE_DWORD = WICPngGamaProperties.Properties_FORCE_DWORD;
-
-pub const WICPngBkgdProperties = enum(u32) {
-    BackgroundColor = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngBkgdBackgroundColor = WICPngBkgdProperties.BackgroundColor;
-pub const WICPngBkgdProperties_FORCE_DWORD = WICPngBkgdProperties.Properties_FORCE_DWORD;
-
-pub const WICPngItxtProperties = enum(u32) {
-    Keyword = 1,
-    CompressionFlag = 2,
-    LanguageTag = 3,
-    TranslatedKeyword = 4,
-    Text = 5,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngItxtKeyword = WICPngItxtProperties.Keyword;
-pub const WICPngItxtCompressionFlag = WICPngItxtProperties.CompressionFlag;
-pub const WICPngItxtLanguageTag = WICPngItxtProperties.LanguageTag;
-pub const WICPngItxtTranslatedKeyword = WICPngItxtProperties.TranslatedKeyword;
-pub const WICPngItxtText = WICPngItxtProperties.Text;
-pub const WICPngItxtProperties_FORCE_DWORD = WICPngItxtProperties.Properties_FORCE_DWORD;
-
-pub const WICPngChrmProperties = enum(u32) {
-    WhitePointX = 1,
-    WhitePointY = 2,
-    RedX = 3,
-    RedY = 4,
-    GreenX = 5,
-    GreenY = 6,
-    BlueX = 7,
-    BlueY = 8,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngChrmWhitePointX = WICPngChrmProperties.WhitePointX;
-pub const WICPngChrmWhitePointY = WICPngChrmProperties.WhitePointY;
-pub const WICPngChrmRedX = WICPngChrmProperties.RedX;
-pub const WICPngChrmRedY = WICPngChrmProperties.RedY;
-pub const WICPngChrmGreenX = WICPngChrmProperties.GreenX;
-pub const WICPngChrmGreenY = WICPngChrmProperties.GreenY;
-pub const WICPngChrmBlueX = WICPngChrmProperties.BlueX;
-pub const WICPngChrmBlueY = WICPngChrmProperties.BlueY;
-pub const WICPngChrmProperties_FORCE_DWORD = WICPngChrmProperties.Properties_FORCE_DWORD;
-
-pub const WICPngHistProperties = enum(u32) {
-    Frequencies = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngHistFrequencies = WICPngHistProperties.Frequencies;
-pub const WICPngHistProperties_FORCE_DWORD = WICPngHistProperties.Properties_FORCE_DWORD;
-
-pub const WICPngIccpProperties = enum(u32) {
-    fileName = 1,
-    fileData = 2,
-    perties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngIccpProfileName = WICPngIccpProperties.fileName;
-pub const WICPngIccpProfileData = WICPngIccpProperties.fileData;
-pub const WICPngIccpProperties_FORCE_DWORD = WICPngIccpProperties.perties_FORCE_DWORD;
-
-pub const WICPngSrgbProperties = enum(u32) {
-    RenderingIntent = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngSrgbRenderingIntent = WICPngSrgbProperties.RenderingIntent;
-pub const WICPngSrgbProperties_FORCE_DWORD = WICPngSrgbProperties.Properties_FORCE_DWORD;
-
-pub const WICPngTimeProperties = enum(u32) {
-    Year = 1,
-    Month = 2,
-    Day = 3,
-    Hour = 4,
-    Minute = 5,
-    Second = 6,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICPngTimeYear = WICPngTimeProperties.Year;
-pub const WICPngTimeMonth = WICPngTimeProperties.Month;
-pub const WICPngTimeDay = WICPngTimeProperties.Day;
-pub const WICPngTimeHour = WICPngTimeProperties.Hour;
-pub const WICPngTimeMinute = WICPngTimeProperties.Minute;
-pub const WICPngTimeSecond = WICPngTimeProperties.Second;
-pub const WICPngTimeProperties_FORCE_DWORD = WICPngTimeProperties.Properties_FORCE_DWORD;
-
-pub const WICHeifProperties = enum(u32) {
-    Orientation = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICHeifOrientation = WICHeifProperties.Orientation;
-pub const WICHeifProperties_FORCE_DWORD = WICHeifProperties.Properties_FORCE_DWORD;
-
-pub const WICHeifHdrProperties = enum(u32) {
-    MaximumLuminanceLevel = 1,
-    MaximumFrameAverageLuminanceLevel = 2,
-    MinimumMasteringDisplayLuminanceLevel = 3,
-    MaximumMasteringDisplayLuminanceLevel = 4,
-    CustomVideoPrimaries = 5,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICHeifHdrMaximumLuminanceLevel = WICHeifHdrProperties.MaximumLuminanceLevel;
-pub const WICHeifHdrMaximumFrameAverageLuminanceLevel = WICHeifHdrProperties.MaximumFrameAverageLuminanceLevel;
-pub const WICHeifHdrMinimumMasteringDisplayLuminanceLevel = WICHeifHdrProperties.MinimumMasteringDisplayLuminanceLevel;
-pub const WICHeifHdrMaximumMasteringDisplayLuminanceLevel = WICHeifHdrProperties.MaximumMasteringDisplayLuminanceLevel;
-pub const WICHeifHdrCustomVideoPrimaries = WICHeifHdrProperties.CustomVideoPrimaries;
-pub const WICHeifHdrProperties_FORCE_DWORD = WICHeifHdrProperties.Properties_FORCE_DWORD;
-
-pub const WICWebpAnimProperties = enum(u32) {
-    LoopCount = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICWebpAnimLoopCount = WICWebpAnimProperties.LoopCount;
-pub const WICWebpAnimProperties_FORCE_DWORD = WICWebpAnimProperties.Properties_FORCE_DWORD;
-
-pub const WICWebpAnmfProperties = enum(u32) {
-    FrameDuration = 1,
-    Properties_FORCE_DWORD = 2147483647,
-};
-pub const WICWebpAnmfFrameDuration = WICWebpAnmfProperties.FrameDuration;
-pub const WICWebpAnmfProperties_FORCE_DWORD = WICWebpAnmfProperties.Properties_FORCE_DWORD;
-
-pub const WICSectionAccessLevel = enum(u32) {
-    Read = 1,
-    ReadWrite = 3,
-    _FORCE_DWORD = 2147483647,
-};
-pub const WICSectionAccessLevelRead = WICSectionAccessLevel.Read;
-pub const WICSectionAccessLevelReadWrite = WICSectionAccessLevel.ReadWrite;
-pub const WICSectionAccessLevel_FORCE_DWORD = WICSectionAccessLevel._FORCE_DWORD;
-
-pub const WICPixelFormatNumericRepresentation = enum(u32) {
-    Unspecified = 0,
-    Indexed = 1,
-    UnsignedInteger = 2,
-    SignedInteger = 3,
-    Fixed = 4,
-    Float = 5,
-    _FORCE_DWORD = 2147483647,
-};
-pub const WICPixelFormatNumericRepresentationUnspecified = WICPixelFormatNumericRepresentation.Unspecified;
-pub const WICPixelFormatNumericRepresentationIndexed = WICPixelFormatNumericRepresentation.Indexed;
-pub const WICPixelFormatNumericRepresentationUnsignedInteger = WICPixelFormatNumericRepresentation.UnsignedInteger;
-pub const WICPixelFormatNumericRepresentationSignedInteger = WICPixelFormatNumericRepresentation.SignedInteger;
-pub const WICPixelFormatNumericRepresentationFixed = WICPixelFormatNumericRepresentation.Fixed;
-pub const WICPixelFormatNumericRepresentationFloat = WICPixelFormatNumericRepresentation.Float;
-pub const WICPixelFormatNumericRepresentation_FORCE_DWORD = WICPixelFormatNumericRepresentation._FORCE_DWORD;
-
-pub const WICPlanarOptions = enum(i32) {
-    lanarOptionsDefault = 0,
-    lanarOptionsPreserveSubsampling = 1,
-    LANAROPTIONS_FORCE_DWORD = 2147483647,
-};
-pub const WICPlanarOptionsDefault = WICPlanarOptions.lanarOptionsDefault;
-pub const WICPlanarOptionsPreserveSubsampling = WICPlanarOptions.lanarOptionsPreserveSubsampling;
-pub const WICPLANAROPTIONS_FORCE_DWORD = WICPlanarOptions.LANAROPTIONS_FORCE_DWORD;
-
-pub const WICJpegIndexingOptions = enum(u32) {
-    GenerateOnDemand = 0,
-    GenerateOnLoad = 1,
-    _FORCE_DWORD = 2147483647,
-};
-pub const WICJpegIndexingOptionsGenerateOnDemand = WICJpegIndexingOptions.GenerateOnDemand;
-pub const WICJpegIndexingOptionsGenerateOnLoad = WICJpegIndexingOptions.GenerateOnLoad;
-pub const WICJpegIndexingOptions_FORCE_DWORD = WICJpegIndexingOptions._FORCE_DWORD;
-
-pub const WICJpegTransferMatrix = enum(u32) {
-    Identity = 0,
-    BT601 = 1,
-    _FORCE_DWORD = 2147483647,
-};
-pub const WICJpegTransferMatrixIdentity = WICJpegTransferMatrix.Identity;
-pub const WICJpegTransferMatrixBT601 = WICJpegTransferMatrix.BT601;
-pub const WICJpegTransferMatrix_FORCE_DWORD = WICJpegTransferMatrix._FORCE_DWORD;
-
-pub const WICJpegScanType = enum(u32) {
-    Interleaved = 0,
-    PlanarComponents = 1,
-    Progressive = 2,
-    _FORCE_DWORD = 2147483647,
-};
-pub const WICJpegScanTypeInterleaved = WICJpegScanType.Interleaved;
-pub const WICJpegScanTypePlanarComponents = WICJpegScanType.PlanarComponents;
-pub const WICJpegScanTypeProgressive = WICJpegScanType.Progressive;
-pub const WICJpegScanType_FORCE_DWORD = WICJpegScanType._FORCE_DWORD;
-
-pub const WICImageParameters = extern struct {
-    PixelFormat: D2D1_PIXEL_FORMAT,
-    DpiX: f32,
-    DpiY: f32,
-    Top: f32,
-    Left: f32,
-    PixelWidth: u32,
-    PixelHeight: u32,
-};
-
-pub const WICBitmapPlaneDescription = extern struct {
-    Format: Guid,
-    Width: u32,
-    Height: u32,
-};
-
-pub const WICBitmapPlane = extern struct {
-    Format: Guid,
-    pbBuffer: ?*u8,
-    cbStride: u32,
-    cbBufferSize: u32,
-};
-
-pub const WICJpegFrameHeader = extern struct {
-    Width: u32,
-    Height: u32,
-    TransferMatrix: WICJpegTransferMatrix,
-    ScanType: WICJpegScanType,
-    cComponents: u32,
-    ComponentIdentifiers: u32,
-    SampleFactors: u32,
-    QuantizationTableIndices: u32,
-};
-
-pub const WICJpegScanHeader = extern struct {
-    cComponents: u32,
-    RestartInterval: u32,
-    ComponentSelectors: u32,
-    HuffmanTableIndices: u32,
-    StartSpectralSelection: u8,
-    EndSpectralSelection: u8,
-    SuccessiveApproximationHigh: u8,
-    SuccessiveApproximationLow: u8,
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICPalette_Value = Guid.initString("00000040-a8f2-4877-ba0a-fd2b6645fb94");
-pub const IID_IWICPalette = &IID_IWICPalette_Value;
-pub const IWICPalette = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitializePredefined: *const fn(
-            self: *const IWICPalette,
-            ePaletteType: WICBitmapPaletteType,
-            fAddTransparentColor: BOOL,
-        ) callconv(.winapi) HRESULT,
-        InitializeCustom: *const fn(
-            self: *const IWICPalette,
-            pColors: [*]u32,
-            cCount: u32,
-        ) callconv(.winapi) HRESULT,
-        InitializeFromBitmap: *const fn(
-            self: *const IWICPalette,
-            pISurface: ?*IWICBitmapSource,
-            cCount: u32,
-            fAddTransparentColor: BOOL,
-        ) callconv(.winapi) HRESULT,
-        InitializeFromPalette: *const fn(
-            self: *const IWICPalette,
-            pIPalette: ?*IWICPalette,
-        ) callconv(.winapi) HRESULT,
-        GetType: *const fn(
-            self: *const IWICPalette,
-            pePaletteType: ?*WICBitmapPaletteType,
-        ) callconv(.winapi) HRESULT,
-        GetColorCount: *const fn(
-            self: *const IWICPalette,
-            pcCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetColors: *const fn(
-            self: *const IWICPalette,
-            cCount: u32,
-            pColors: [*]u32,
-            pcActualColors: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        IsBlackWhite: *const fn(
-            self: *const IWICPalette,
-            pfIsBlackWhite: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        IsGrayscale: *const fn(
-            self: *const IWICPalette,
-            pfIsGrayscale: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        HasAlpha: *const fn(
-            self: *const IWICPalette,
-            pfHasAlpha: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitializePredefined(self: *const IWICPalette, ePaletteType: WICBitmapPaletteType, fAddTransparentColor: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializePredefined(self, ePaletteType, fAddTransparentColor);
-    }
-    pub fn InitializeCustom(self: *const IWICPalette, pColors: [*]u32, cCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeCustom(self, pColors, cCount);
-    }
-    pub fn InitializeFromBitmap(self: *const IWICPalette, pISurface: ?*IWICBitmapSource, cCount: u32, fAddTransparentColor: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromBitmap(self, pISurface, cCount, fAddTransparentColor);
-    }
-    pub fn InitializeFromPalette(self: *const IWICPalette, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromPalette(self, pIPalette);
-    }
-    pub fn GetType(self: *const IWICPalette, pePaletteType: ?*WICBitmapPaletteType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pePaletteType);
-    }
-    pub fn GetColorCount(self: *const IWICPalette, pcCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColorCount(self, pcCount);
-    }
-    pub fn GetColors(self: *const IWICPalette, cCount: u32, pColors: [*]u32, pcActualColors: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColors(self, cCount, pColors, pcActualColors);
-    }
-    pub fn IsBlackWhite(self: *const IWICPalette, pfIsBlackWhite: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsBlackWhite(self, pfIsBlackWhite);
-    }
-    pub fn IsGrayscale(self: *const IWICPalette, pfIsGrayscale: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.IsGrayscale(self, pfIsGrayscale);
-    }
-    pub fn HasAlpha(self: *const IWICPalette, pfHasAlpha: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.HasAlpha(self, pfHasAlpha);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapSource_Value = Guid.initString("00000120-a8f2-4877-ba0a-fd2b6645fb94");
-pub const IID_IWICBitmapSource = &IID_IWICBitmapSource_Value;
-pub const IWICBitmapSource = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSize: *const fn(
-            self: *const IWICBitmapSource,
-            puiWidth: ?*u32,
-            puiHeight: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPixelFormat: *const fn(
-            self: *const IWICBitmapSource,
-            pPixelFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetResolution: *const fn(
-            self: *const IWICBitmapSource,
-            pDpiX: ?*f64,
-            pDpiY: ?*f64,
-        ) callconv(.winapi) HRESULT,
-        CopyPalette: *const fn(
-            self: *const IWICBitmapSource,
-            pIPalette: ?*IWICPalette,
-        ) callconv(.winapi) HRESULT,
-        CopyPixels: *const fn(
-            self: *const IWICBitmapSource,
-            prc: ?*const WICRect,
-            cbStride: u32,
-            cbBufferSize: u32,
-            pbBuffer: [*:0]u8,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSize(self: *const IWICBitmapSource, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSize(self, puiWidth, puiHeight);
-    }
-    pub fn GetPixelFormat(self: *const IWICBitmapSource, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPixelFormat(self, pPixelFormat);
-    }
-    pub fn GetResolution(self: *const IWICBitmapSource, pDpiX: ?*f64, pDpiY: ?*f64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetResolution(self, pDpiX, pDpiY);
-    }
-    pub fn CopyPalette(self: *const IWICBitmapSource, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyPalette(self, pIPalette);
-    }
-    pub fn CopyPixels(self: *const IWICBitmapSource, prc: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyPixels(self, prc, cbStride, cbBufferSize, pbBuffer);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICFormatConverter_Value = Guid.initString("00000301-a8f2-4877-ba0a-fd2b6645fb94");
-pub const IID_IWICFormatConverter = &IID_IWICFormatConverter_Value;
-pub const IWICFormatConverter = extern union {
-    pub const VTable = extern struct {
-        base: IWICBitmapSource.VTable,
-        Initialize: *const fn(
-            self: *const IWICFormatConverter,
-            pISource: ?*IWICBitmapSource,
-            dstFormat: ?*Guid,
-            dither: WICBitmapDitherType,
-            pIPalette: ?*IWICPalette,
-            alphaThresholdPercent: f64,
-            paletteTranslate: WICBitmapPaletteType,
-        ) callconv(.winapi) HRESULT,
-        CanConvert: *const fn(
-            self: *const IWICFormatConverter,
-            srcPixelFormat: ?*Guid,
-            dstPixelFormat: ?*Guid,
-            pfCanConvert: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICBitmapSource: IWICBitmapSource,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICFormatConverter, pISource: ?*IWICBitmapSource, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pISource, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
-    }
-    pub fn CanConvert(self: *const IWICFormatConverter, srcPixelFormat: ?*Guid, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.CanConvert(self, srcPixelFormat, dstPixelFormat, pfCanConvert);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IWICPlanarFormatConverter_Value = Guid.initString("bebee9cb-83b0-4dcc-8132-b0aaa55eac96");
-pub const IID_IWICPlanarFormatConverter = &IID_IWICPlanarFormatConverter_Value;
-pub const IWICPlanarFormatConverter = extern union {
-    pub const VTable = extern struct {
-        base: IWICBitmapSource.VTable,
-        Initialize: *const fn(
-            self: *const IWICPlanarFormatConverter,
-            ppPlanes: [*]?*IWICBitmapSource,
-            cPlanes: u32,
-            dstFormat: ?*Guid,
-            dither: WICBitmapDitherType,
-            pIPalette: ?*IWICPalette,
-            alphaThresholdPercent: f64,
-            paletteTranslate: WICBitmapPaletteType,
-        ) callconv(.winapi) HRESULT,
-        CanConvert: *const fn(
-            self: *const IWICPlanarFormatConverter,
-            pSrcPixelFormats: [*]const Guid,
-            cSrcPlanes: u32,
-            dstPixelFormat: ?*Guid,
-            pfCanConvert: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICBitmapSource: IWICBitmapSource,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICPlanarFormatConverter, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, ppPlanes, cPlanes, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
-    }
-    pub fn CanConvert(self: *const IWICPlanarFormatConverter, pSrcPixelFormats: [*]const Guid, cSrcPlanes: u32, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.CanConvert(self, pSrcPixelFormats, cSrcPlanes, dstPixelFormat, pfCanConvert);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapScaler_Value = Guid.initString("00000302-a8f2-4877-ba0a-fd2b6645fb94");
-pub const IID_IWICBitmapScaler = &IID_IWICBitmapScaler_Value;
-pub const IWICBitmapScaler = extern union {
-    pub const VTable = extern struct {
-        base: IWICBitmapSource.VTable,
-        Initialize: *const fn(
-            self: *const IWICBitmapScaler,
-            pISource: ?*IWICBitmapSource,
-            uiWidth: u32,
-            uiHeight: u32,
-            mode: WICBitmapInterpolationMode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICBitmapSource: IWICBitmapSource,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapScaler, pISource: ?*IWICBitmapSource, uiWidth: u32, uiHeight: u32, mode: WICBitmapInterpolationMode) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pISource, uiWidth, uiHeight, mode);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapClipper_Value = Guid.initString("e4fbcf03-223d-4e81-9333-d635556dd1b5");
-pub const IID_IWICBitmapClipper = &IID_IWICBitmapClipper_Value;
-pub const IWICBitmapClipper = extern union {
-    pub const VTable = extern struct {
-        base: IWICBitmapSource.VTable,
-        Initialize: *const fn(
-            self: *const IWICBitmapClipper,
-            pISource: ?*IWICBitmapSource,
-            prc: ?*const WICRect,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICBitmapSource: IWICBitmapSource,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapClipper, pISource: ?*IWICBitmapSource, prc: ?*const WICRect) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pISource, prc);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapFlipRotator_Value = Guid.initString("5009834f-2d6a-41ce-9e1b-17c5aff7a782");
-pub const IID_IWICBitmapFlipRotator = &IID_IWICBitmapFlipRotator_Value;
-pub const IWICBitmapFlipRotator = extern union {
-    pub const VTable = extern struct {
-        base: IWICBitmapSource.VTable,
-        Initialize: *const fn(
-            self: *const IWICBitmapFlipRotator,
-            pISource: ?*IWICBitmapSource,
-            options: WICBitmapTransformOptions,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICBitmapSource: IWICBitmapSource,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapFlipRotator, pISource: ?*IWICBitmapSource, options: WICBitmapTransformOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pISource, options);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapLock_Value = Guid.initString("00000123-a8f2-4877-ba0a-fd2b6645fb94");
-pub const IID_IWICBitmapLock = &IID_IWICBitmapLock_Value;
-pub const IWICBitmapLock = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSize: *const fn(
-            self: *const IWICBitmapLock,
-            puiWidth: ?*u32,
-            puiHeight: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetStride: *const fn(
-            self: *const IWICBitmapLock,
-            pcbStride: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDataPointer: *const fn(
-            self: *const IWICBitmapLock,
-            pcbBufferSize: ?*u32,
-            ppbData: [*]?*u8,
-        ) callconv(.winapi) HRESULT,
-        GetPixelFormat: *const fn(
-            self: *const IWICBitmapLock,
-            pPixelFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSize(self: *const IWICBitmapLock, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSize(self, puiWidth, puiHeight);
-    }
-    pub fn GetStride(self: *const IWICBitmapLock, pcbStride: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStride(self, pcbStride);
-    }
-    pub fn GetDataPointer(self: *const IWICBitmapLock, pcbBufferSize: ?*u32, ppbData: [*]?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataPointer(self, pcbBufferSize, ppbData);
-    }
-    pub fn GetPixelFormat(self: *const IWICBitmapLock, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPixelFormat(self, pPixelFormat);
-    }
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmap_Value = Guid.initString("00000121-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICBitmap = &IID_IWICBitmap_Value;
@@ -1272,861 +344,22 @@ pub const IWICBitmap = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICColorContext_Value = Guid.initString("3c613a02-34b2-44ea-9a7c-45aea9c6fd6d");
-pub const IID_IWICColorContext = &IID_IWICColorContext_Value;
-pub const IWICColorContext = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitializeFromFilename: *const fn(
-            self: *const IWICColorContext,
-            wzFilename: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        InitializeFromMemory: *const fn(
-            self: *const IWICColorContext,
-            pbBuffer: [*:0]const u8,
-            cbBufferSize: u32,
-        ) callconv(.winapi) HRESULT,
-        InitializeFromExifColorSpace: *const fn(
-            self: *const IWICColorContext,
-            value: u32,
-        ) callconv(.winapi) HRESULT,
-        GetType: *const fn(
-            self: *const IWICColorContext,
-            pType: ?*WICColorContextType,
-        ) callconv(.winapi) HRESULT,
-        GetProfileBytes: *const fn(
-            self: *const IWICColorContext,
-            cbBuffer: u32,
-            pbBuffer: [*:0]u8,
-            pcbActual: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetExifColorSpace: *const fn(
-            self: *const IWICColorContext,
-            pValue: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitializeFromFilename(self: *const IWICColorContext, wzFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromFilename(self, wzFilename);
-    }
-    pub fn InitializeFromMemory(self: *const IWICColorContext, pbBuffer: [*:0]const u8, cbBufferSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromMemory(self, pbBuffer, cbBufferSize);
-    }
-    pub fn InitializeFromExifColorSpace(self: *const IWICColorContext, value: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromExifColorSpace(self, value);
-    }
-    pub fn GetType(self: *const IWICColorContext, pType: ?*WICColorContextType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetType(self, pType);
-    }
-    pub fn GetProfileBytes(self: *const IWICColorContext, cbBuffer: u32, pbBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetProfileBytes(self, cbBuffer, pbBuffer, pcbActual);
-    }
-    pub fn GetExifColorSpace(self: *const IWICColorContext, pValue: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetExifColorSpace(self, pValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICColorTransform_Value = Guid.initString("b66f034f-d0e2-40ab-b436-6de39e321a94");
-pub const IID_IWICColorTransform = &IID_IWICColorTransform_Value;
-pub const IWICColorTransform = extern union {
+const IID_IWICBitmapClipper_Value = Guid.initString("e4fbcf03-223d-4e81-9333-d635556dd1b5");
+pub const IID_IWICBitmapClipper = &IID_IWICBitmapClipper_Value;
+pub const IWICBitmapClipper = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Initialize: *const fn(
-            self: *const IWICColorTransform,
-            pIBitmapSource: ?*IWICBitmapSource,
-            pIContextSource: ?*IWICColorContext,
-            pIContextDest: ?*IWICColorContext,
-            pixelFmtDest: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICBitmapSource: IWICBitmapSource,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICColorTransform, pIBitmapSource: ?*IWICBitmapSource, pIContextSource: ?*IWICColorContext, pIContextDest: ?*IWICColorContext, pixelFmtDest: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pIBitmapSource, pIContextSource, pIContextDest, pixelFmtDest);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICFastMetadataEncoder_Value = Guid.initString("b84e2c09-78c9-4ac4-8bd3-524ae1663a2f");
-pub const IID_IWICFastMetadataEncoder = &IID_IWICFastMetadataEncoder_Value;
-pub const IWICFastMetadataEncoder = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Commit: *const fn(
-            self: *const IWICFastMetadataEncoder,
-        ) callconv(.winapi) HRESULT,
-        GetMetadataQueryWriter: *const fn(
-            self: *const IWICFastMetadataEncoder,
-            ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Commit(self: *const IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self);
-    }
-    pub fn GetMetadataQueryWriter(self: *const IWICFastMetadataEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICStream_Value = Guid.initString("135ff860-22b7-4ddf-b0f6-218f4f299a43");
-pub const IID_IWICStream = &IID_IWICStream_Value;
-pub const IWICStream = extern union {
-    pub const VTable = extern struct {
-        base: IStream.VTable,
-        InitializeFromIStream: *const fn(
-            self: *const IWICStream,
-            pIStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        InitializeFromFilename: *const fn(
-            self: *const IWICStream,
-            wzFileName: ?[*:0]const u16,
-            dwDesiredAccess: u32,
-        ) callconv(.winapi) HRESULT,
-        InitializeFromMemory: *const fn(
-            self: *const IWICStream,
-            pbBuffer: [*:0]u8,
-            cbBufferSize: u32,
-        ) callconv(.winapi) HRESULT,
-        InitializeFromIStreamRegion: *const fn(
-            self: *const IWICStream,
-            pIStream: ?*IStream,
-            ulOffset: ULARGE_INTEGER,
-            ulMaxSize: ULARGE_INTEGER,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IStream: IStream,
-    ISequentialStream: ISequentialStream,
-    IUnknown: IUnknown,
-    pub fn InitializeFromIStream(self: *const IWICStream, pIStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromIStream(self, pIStream);
-    }
-    pub fn InitializeFromFilename(self: *const IWICStream, wzFileName: ?[*:0]const u16, dwDesiredAccess: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromFilename(self, wzFileName, dwDesiredAccess);
-    }
-    pub fn InitializeFromMemory(self: *const IWICStream, pbBuffer: [*:0]u8, cbBufferSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromMemory(self, pbBuffer, cbBufferSize);
-    }
-    pub fn InitializeFromIStreamRegion(self: *const IWICStream, pIStream: ?*IStream, ulOffset: ULARGE_INTEGER, ulMaxSize: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
-        return self.vtable.InitializeFromIStreamRegion(self, pIStream, ulOffset, ulMaxSize);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICEnumMetadataItem_Value = Guid.initString("dc2bb46d-3f07-481e-8625-220c4aedbb33");
-pub const IID_IWICEnumMetadataItem = &IID_IWICEnumMetadataItem_Value;
-pub const IWICEnumMetadataItem = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IWICEnumMetadataItem,
-            celt: u32,
-            rgeltSchema: [*]PROPVARIANT,
-            rgeltId: [*]PROPVARIANT,
-            rgeltValue: [*]PROPVARIANT,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IWICEnumMetadataItem,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IWICEnumMetadataItem,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IWICEnumMetadataItem,
-            ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IWICEnumMetadataItem, celt: u32, rgeltSchema: [*]PROPVARIANT, rgeltId: [*]PROPVARIANT, rgeltValue: [*]PROPVARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgeltSchema, rgeltId, rgeltValue, pceltFetched);
-    }
-    pub fn Skip(self: *const IWICEnumMetadataItem, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IWICEnumMetadataItem, ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppIEnumMetadataItem);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICMetadataQueryReader_Value = Guid.initString("30989668-e1c9-4597-b395-458eedb808df");
-pub const IID_IWICMetadataQueryReader = &IID_IWICMetadataQueryReader_Value;
-pub const IWICMetadataQueryReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetContainerFormat: *const fn(
-            self: *const IWICMetadataQueryReader,
-            pguidContainerFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetLocation: *const fn(
-            self: *const IWICMetadataQueryReader,
-            cchMaxLength: u32,
-            wzNamespace: [*:0]u16,
-            pcchActualLength: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetMetadataByName: *const fn(
-            self: *const IWICMetadataQueryReader,
-            wzName: ?[*:0]const u16,
-            pvarValue: ?*PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IWICMetadataQueryReader,
-            ppIEnumString: ?*?*IEnumString,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetContainerFormat(self: *const IWICMetadataQueryReader, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContainerFormat(self, pguidContainerFormat);
-    }
-    pub fn GetLocation(self: *const IWICMetadataQueryReader, cchMaxLength: u32, wzNamespace: [*:0]u16, pcchActualLength: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocation(self, cchMaxLength, wzNamespace, pcchActualLength);
-    }
-    pub fn GetMetadataByName(self: *const IWICMetadataQueryReader, wzName: ?[*:0]const u16, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataByName(self, wzName, pvarValue);
-    }
-    pub fn GetEnumerator(self: *const IWICMetadataQueryReader, ppIEnumString: ?*?*IEnumString) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, ppIEnumString);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICMetadataQueryWriter_Value = Guid.initString("a721791a-0def-4d06-bd91-2118bf1db10b");
-pub const IID_IWICMetadataQueryWriter = &IID_IWICMetadataQueryWriter_Value;
-pub const IWICMetadataQueryWriter = extern union {
-    pub const VTable = extern struct {
-        base: IWICMetadataQueryReader.VTable,
-        SetMetadataByName: *const fn(
-            self: *const IWICMetadataQueryWriter,
-            wzName: ?[*:0]const u16,
-            pvarValue: ?*const PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        RemoveMetadataByName: *const fn(
-            self: *const IWICMetadataQueryWriter,
-            wzName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICMetadataQueryReader: IWICMetadataQueryReader,
-    IUnknown: IUnknown,
-    pub fn SetMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMetadataByName(self, wzName, pvarValue);
-    }
-    pub fn RemoveMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveMetadataByName(self, wzName);
-    }
-};
-
-const IID_IWICBitmapEncoder_Value = Guid.initString("00000103-a8f2-4877-ba0a-fd2b6645fb94");
-pub const IID_IWICBitmapEncoder = &IID_IWICBitmapEncoder_Value;
-pub const IWICBitmapEncoder = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IWICBitmapEncoder,
-            pIStream: ?*IStream,
-            cacheOption: WICBitmapEncoderCacheOption,
-        ) callconv(.winapi) HRESULT,
-        GetContainerFormat: *const fn(
-            self: *const IWICBitmapEncoder,
-            pguidContainerFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetEncoderInfo: *const fn(
-            self: *const IWICBitmapEncoder,
-            ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo,
-        ) callconv(.winapi) HRESULT,
-        SetColorContexts: *const fn(
-            self: *const IWICBitmapEncoder,
-            cCount: u32,
-            ppIColorContext: [*]?*IWICColorContext,
-        ) callconv(.winapi) HRESULT,
-        SetPalette: *const fn(
-            self: *const IWICBitmapEncoder,
-            pIPalette: ?*IWICPalette,
-        ) callconv(.winapi) HRESULT,
-        SetThumbnail: *const fn(
-            self: *const IWICBitmapEncoder,
-            pIThumbnail: ?*IWICBitmapSource,
-        ) callconv(.winapi) HRESULT,
-        SetPreview: *const fn(
-            self: *const IWICBitmapEncoder,
-            pIPreview: ?*IWICBitmapSource,
-        ) callconv(.winapi) HRESULT,
-        CreateNewFrame: *const fn(
-            self: *const IWICBitmapEncoder,
-            ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
-            ppIEncoderOptions: ?*?*IPropertyBag2,
-        ) callconv(.winapi) HRESULT,
-        Commit: *const fn(
-            self: *const IWICBitmapEncoder,
-        ) callconv(.winapi) HRESULT,
-        GetMetadataQueryWriter: *const fn(
-            self: *const IWICBitmapEncoder,
-            ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapEncoder, pIStream: ?*IStream, cacheOption: WICBitmapEncoderCacheOption) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pIStream, cacheOption);
-    }
-    pub fn GetContainerFormat(self: *const IWICBitmapEncoder, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContainerFormat(self, pguidContainerFormat);
-    }
-    pub fn GetEncoderInfo(self: *const IWICBitmapEncoder, ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEncoderInfo(self, ppIEncoderInfo);
-    }
-    pub fn SetColorContexts(self: *const IWICBitmapEncoder, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColorContexts(self, cCount, ppIColorContext);
-    }
-    pub fn SetPalette(self: *const IWICBitmapEncoder, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPalette(self, pIPalette);
-    }
-    pub fn SetThumbnail(self: *const IWICBitmapEncoder, pIThumbnail: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.SetThumbnail(self, pIThumbnail);
-    }
-    pub fn SetPreview(self: *const IWICBitmapEncoder, pIPreview: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPreview(self, pIPreview);
-    }
-    pub fn CreateNewFrame(self: *const IWICBitmapEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, ppIEncoderOptions: ?*?*IPropertyBag2) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateNewFrame(self, ppIFrameEncode, ppIEncoderOptions);
-    }
-    pub fn Commit(self: *const IWICBitmapEncoder) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self);
-    }
-    pub fn GetMetadataQueryWriter(self: *const IWICBitmapEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapFrameEncode_Value = Guid.initString("00000105-a8f2-4877-ba0a-fd2b6645fb94");
-pub const IID_IWICBitmapFrameEncode = &IID_IWICBitmapFrameEncode_Value;
-pub const IWICBitmapFrameEncode = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            pIEncoderOptions: ?*IPropertyBag2,
-        ) callconv(.winapi) HRESULT,
-        SetSize: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            uiWidth: u32,
-            uiHeight: u32,
-        ) callconv(.winapi) HRESULT,
-        SetResolution: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            dpiX: f64,
-            dpiY: f64,
-        ) callconv(.winapi) HRESULT,
-        SetPixelFormat: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            pPixelFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        SetColorContexts: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            cCount: u32,
-            ppIColorContext: [*]?*IWICColorContext,
-        ) callconv(.winapi) HRESULT,
-        SetPalette: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            pIPalette: ?*IWICPalette,
-        ) callconv(.winapi) HRESULT,
-        SetThumbnail: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            pIThumbnail: ?*IWICBitmapSource,
-        ) callconv(.winapi) HRESULT,
-        WritePixels: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            lineCount: u32,
-            cbStride: u32,
-            cbBufferSize: u32,
-            pbPixels: [*:0]u8,
-        ) callconv(.winapi) HRESULT,
-        WriteSource: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            pIBitmapSource: ?*IWICBitmapSource,
-            prc: ?*WICRect,
-        ) callconv(.winapi) HRESULT,
-        Commit: *const fn(
-            self: *const IWICBitmapFrameEncode,
-        ) callconv(.winapi) HRESULT,
-        GetMetadataQueryWriter: *const fn(
-            self: *const IWICBitmapFrameEncode,
-            ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapFrameEncode, pIEncoderOptions: ?*IPropertyBag2) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pIEncoderOptions);
-    }
-    pub fn SetSize(self: *const IWICBitmapFrameEncode, uiWidth: u32, uiHeight: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSize(self, uiWidth, uiHeight);
-    }
-    pub fn SetResolution(self: *const IWICBitmapFrameEncode, dpiX: f64, dpiY: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.SetResolution(self, dpiX, dpiY);
-    }
-    pub fn SetPixelFormat(self: *const IWICBitmapFrameEncode, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPixelFormat(self, pPixelFormat);
-    }
-    pub fn SetColorContexts(self: *const IWICBitmapFrameEncode, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.@"inline") HRESULT {
-        return self.vtable.SetColorContexts(self, cCount, ppIColorContext);
-    }
-    pub fn SetPalette(self: *const IWICBitmapFrameEncode, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPalette(self, pIPalette);
-    }
-    pub fn SetThumbnail(self: *const IWICBitmapFrameEncode, pIThumbnail: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.SetThumbnail(self, pIThumbnail);
-    }
-    pub fn WritePixels(self: *const IWICBitmapFrameEncode, lineCount: u32, cbStride: u32, cbBufferSize: u32, pbPixels: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.WritePixels(self, lineCount, cbStride, cbBufferSize, pbPixels);
-    }
-    pub fn WriteSource(self: *const IWICBitmapFrameEncode, pIBitmapSource: ?*IWICBitmapSource, prc: ?*WICRect) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteSource(self, pIBitmapSource, prc);
-    }
-    pub fn Commit(self: *const IWICBitmapFrameEncode) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self);
-    }
-    pub fn GetMetadataQueryWriter(self: *const IWICBitmapFrameEncode, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IWICPlanarBitmapFrameEncode_Value = Guid.initString("f928b7b8-2221-40c1-b72e-7e82f1974d1a");
-pub const IID_IWICPlanarBitmapFrameEncode = &IID_IWICPlanarBitmapFrameEncode_Value;
-pub const IWICPlanarBitmapFrameEncode = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        WritePixels: *const fn(
-            self: *const IWICPlanarBitmapFrameEncode,
-            lineCount: u32,
-            pPlanes: [*]WICBitmapPlane,
-            cPlanes: u32,
-        ) callconv(.winapi) HRESULT,
-        WriteSource: *const fn(
-            self: *const IWICPlanarBitmapFrameEncode,
-            ppPlanes: [*]?*IWICBitmapSource,
-            cPlanes: u32,
-            prcSource: ?*WICRect,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn WritePixels(self: *const IWICPlanarBitmapFrameEncode, lineCount: u32, pPlanes: [*]WICBitmapPlane, cPlanes: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WritePixels(self, lineCount, pPlanes, cPlanes);
-    }
-    pub fn WriteSource(self: *const IWICPlanarBitmapFrameEncode, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, prcSource: ?*WICRect) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteSource(self, ppPlanes, cPlanes, prcSource);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapDecoder_Value = Guid.initString("9edde9e7-8dee-47ea-99df-e6faf2ed44bf");
-pub const IID_IWICBitmapDecoder = &IID_IWICBitmapDecoder_Value;
-pub const IWICBitmapDecoder = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryCapability: *const fn(
-            self: *const IWICBitmapDecoder,
-            pIStream: ?*IStream,
-            pdwCapability: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Initialize: *const fn(
-            self: *const IWICBitmapDecoder,
-            pIStream: ?*IStream,
-            cacheOptions: WICDecodeOptions,
-        ) callconv(.winapi) HRESULT,
-        GetContainerFormat: *const fn(
-            self: *const IWICBitmapDecoder,
-            pguidContainerFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetDecoderInfo: *const fn(
-            self: *const IWICBitmapDecoder,
-            ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo,
-        ) callconv(.winapi) HRESULT,
-        CopyPalette: *const fn(
-            self: *const IWICBitmapDecoder,
-            pIPalette: ?*IWICPalette,
-        ) callconv(.winapi) HRESULT,
-        GetMetadataQueryReader: *const fn(
-            self: *const IWICBitmapDecoder,
-            ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
-        ) callconv(.winapi) HRESULT,
-        GetPreview: *const fn(
-            self: *const IWICBitmapDecoder,
-            ppIBitmapSource: ?*?*IWICBitmapSource,
-        ) callconv(.winapi) HRESULT,
-        GetColorContexts: *const fn(
-            self: *const IWICBitmapDecoder,
-            cCount: u32,
-            ppIColorContexts: [*]?*IWICColorContext,
-            pcActualCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetThumbnail: *const fn(
-            self: *const IWICBitmapDecoder,
-            ppIThumbnail: ?*?*IWICBitmapSource,
-        ) callconv(.winapi) HRESULT,
-        GetFrameCount: *const fn(
-            self: *const IWICBitmapDecoder,
-            pCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetFrame: *const fn(
-            self: *const IWICBitmapDecoder,
-            index: u32,
-            ppIBitmapFrame: ?*?*IWICBitmapFrameDecode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryCapability(self: *const IWICBitmapDecoder, pIStream: ?*IStream, pdwCapability: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryCapability(self, pIStream, pdwCapability);
-    }
-    pub fn Initialize(self: *const IWICBitmapDecoder, pIStream: ?*IStream, cacheOptions: WICDecodeOptions) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pIStream, cacheOptions);
-    }
-    pub fn GetContainerFormat(self: *const IWICBitmapDecoder, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContainerFormat(self, pguidContainerFormat);
-    }
-    pub fn GetDecoderInfo(self: *const IWICBitmapDecoder, ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDecoderInfo(self, ppIDecoderInfo);
-    }
-    pub fn CopyPalette(self: *const IWICBitmapDecoder, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyPalette(self, pIPalette);
-    }
-    pub fn GetMetadataQueryReader(self: *const IWICBitmapDecoder, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataQueryReader(self, ppIMetadataQueryReader);
-    }
-    pub fn GetPreview(self: *const IWICBitmapDecoder, ppIBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreview(self, ppIBitmapSource);
-    }
-    pub fn GetColorContexts(self: *const IWICBitmapDecoder, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColorContexts(self, cCount, ppIColorContexts, pcActualCount);
-    }
-    pub fn GetThumbnail(self: *const IWICBitmapDecoder, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.GetThumbnail(self, ppIThumbnail);
-    }
-    pub fn GetFrameCount(self: *const IWICBitmapDecoder, pCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFrameCount(self, pCount);
-    }
-    pub fn GetFrame(self: *const IWICBitmapDecoder, index: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFrame(self, index, ppIBitmapFrame);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapSourceTransform_Value = Guid.initString("3b16811b-6a43-4ec9-b713-3d5a0c13b940");
-pub const IID_IWICBitmapSourceTransform = &IID_IWICBitmapSourceTransform_Value;
-pub const IWICBitmapSourceTransform = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CopyPixels: *const fn(
-            self: *const IWICBitmapSourceTransform,
+            self: *const IWICBitmapClipper,
+            pISource: ?*IWICBitmapSource,
             prc: ?*const WICRect,
-            uiWidth: u32,
-            uiHeight: u32,
-            pguidDstFormat: ?*Guid,
-            dstTransform: WICBitmapTransformOptions,
-            nStride: u32,
-            cbBufferSize: u32,
-            pbBuffer: [*:0]u8,
-        ) callconv(.winapi) HRESULT,
-        GetClosestSize: *const fn(
-            self: *const IWICBitmapSourceTransform,
-            puiWidth: ?*u32,
-            puiHeight: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetClosestPixelFormat: *const fn(
-            self: *const IWICBitmapSourceTransform,
-            pguidDstFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        DoesSupportTransform: *const fn(
-            self: *const IWICBitmapSourceTransform,
-            dstTransform: WICBitmapTransformOptions,
-            pfIsSupported: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CopyPixels(self: *const IWICBitmapSourceTransform, prc: ?*const WICRect, uiWidth: u32, uiHeight: u32, pguidDstFormat: ?*Guid, dstTransform: WICBitmapTransformOptions, nStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyPixels(self, prc, uiWidth, uiHeight, pguidDstFormat, dstTransform, nStride, cbBufferSize, pbBuffer);
-    }
-    pub fn GetClosestSize(self: *const IWICBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClosestSize(self, puiWidth, puiHeight);
-    }
-    pub fn GetClosestPixelFormat(self: *const IWICBitmapSourceTransform, pguidDstFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClosestPixelFormat(self, pguidDstFormat);
-    }
-    pub fn DoesSupportTransform(self: *const IWICBitmapSourceTransform, dstTransform: WICBitmapTransformOptions, pfIsSupported: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.DoesSupportTransform(self, dstTransform, pfIsSupported);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IWICPlanarBitmapSourceTransform_Value = Guid.initString("3aff9cce-be95-4303-b927-e7d16ff4a613");
-pub const IID_IWICPlanarBitmapSourceTransform = &IID_IWICPlanarBitmapSourceTransform_Value;
-pub const IWICPlanarBitmapSourceTransform = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DoesSupportTransform: *const fn(
-            self: *const IWICPlanarBitmapSourceTransform,
-            puiWidth: ?*u32,
-            puiHeight: ?*u32,
-            dstTransform: WICBitmapTransformOptions,
-            dstPlanarOptions: WICPlanarOptions,
-            pguidDstFormats: [*]const Guid,
-            pPlaneDescriptions: [*]WICBitmapPlaneDescription,
-            cPlanes: u32,
-            pfIsSupported: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        CopyPixels: *const fn(
-            self: *const IWICPlanarBitmapSourceTransform,
-            prcSource: ?*const WICRect,
-            uiWidth: u32,
-            uiHeight: u32,
-            dstTransform: WICBitmapTransformOptions,
-            dstPlanarOptions: WICPlanarOptions,
-            pDstPlanes: [*]const WICBitmapPlane,
-            cPlanes: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DoesSupportTransform(self: *const IWICPlanarBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pguidDstFormats: [*]const Guid, pPlaneDescriptions: [*]WICBitmapPlaneDescription, cPlanes: u32, pfIsSupported: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.DoesSupportTransform(self, puiWidth, puiHeight, dstTransform, dstPlanarOptions, pguidDstFormats, pPlaneDescriptions, cPlanes, pfIsSupported);
-    }
-    pub fn CopyPixels(self: *const IWICPlanarBitmapSourceTransform, prcSource: ?*const WICRect, uiWidth: u32, uiHeight: u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pDstPlanes: [*]const WICBitmapPlane, cPlanes: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyPixels(self, prcSource, uiWidth, uiHeight, dstTransform, dstPlanarOptions, pDstPlanes, cPlanes);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapFrameDecode_Value = Guid.initString("3b16811b-6a43-4ec9-a813-3d930c13b940");
-pub const IID_IWICBitmapFrameDecode = &IID_IWICBitmapFrameDecode_Value;
-pub const IWICBitmapFrameDecode = extern union {
-    pub const VTable = extern struct {
-        base: IWICBitmapSource.VTable,
-        GetMetadataQueryReader: *const fn(
-            self: *const IWICBitmapFrameDecode,
-            ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
-        ) callconv(.winapi) HRESULT,
-        GetColorContexts: *const fn(
-            self: *const IWICBitmapFrameDecode,
-            cCount: u32,
-            ppIColorContexts: [*]?*IWICColorContext,
-            pcActualCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetThumbnail: *const fn(
-            self: *const IWICBitmapFrameDecode,
-            ppIThumbnail: ?*?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn GetMetadataQueryReader(self: *const IWICBitmapFrameDecode, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataQueryReader(self, ppIMetadataQueryReader);
-    }
-    pub fn GetColorContexts(self: *const IWICBitmapFrameDecode, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColorContexts(self, cCount, ppIColorContexts, pcActualCount);
-    }
-    pub fn GetThumbnail(self: *const IWICBitmapFrameDecode, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
-        return self.vtable.GetThumbnail(self, ppIThumbnail);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWICProgressiveLevelControl_Value = Guid.initString("daac296f-7aa5-4dbf-8d15-225c5976f891");
-pub const IID_IWICProgressiveLevelControl = &IID_IWICProgressiveLevelControl_Value;
-pub const IWICProgressiveLevelControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLevelCount: *const fn(
-            self: *const IWICProgressiveLevelControl,
-            pcLevels: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentLevel: *const fn(
-            self: *const IWICProgressiveLevelControl,
-            pnLevel: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetCurrentLevel: *const fn(
-            self: *const IWICProgressiveLevelControl,
-            nLevel: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetLevelCount(self: *const IWICProgressiveLevelControl, pcLevels: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLevelCount(self, pcLevels);
-    }
-    pub fn GetCurrentLevel(self: *const IWICProgressiveLevelControl, pnLevel: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentLevel(self, pnLevel);
-    }
-    pub fn SetCurrentLevel(self: *const IWICProgressiveLevelControl, nLevel: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCurrentLevel(self, nLevel);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWICProgressCallback_Value = Guid.initString("4776f9cd-9517-45fa-bf24-e89c5ec5c60c");
-pub const IID_IWICProgressCallback = &IID_IWICProgressCallback_Value;
-pub const IWICProgressCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Notify: *const fn(
-            self: *const IWICProgressCallback,
-            uFrameNum: u32,
-            operation: WICProgressOperation,
-            dblProgress: f64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Notify(self: *const IWICProgressCallback, uFrameNum: u32, operation: WICProgressOperation, dblProgress: f64) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, uFrameNum, operation, dblProgress);
-    }
-};
-
-pub const PFNProgressNotification = *const fn(
-    pvData: ?*anyopaque,
-    uFrameNum: u32,
-    operation: WICProgressOperation,
-    dblProgress: f64,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapCodecProgressNotification_Value = Guid.initString("64c1024e-c3cf-4462-8078-88c2b11c46d9");
-pub const IID_IWICBitmapCodecProgressNotification = &IID_IWICBitmapCodecProgressNotification_Value;
-pub const IWICBitmapCodecProgressNotification = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterProgressNotification: *const fn(
-            self: *const IWICBitmapCodecProgressNotification,
-            pfnProgressNotification: ?PFNProgressNotification,
-            pvData: ?*anyopaque,
-            dwProgressFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterProgressNotification(self: *const IWICBitmapCodecProgressNotification, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*anyopaque, dwProgressFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterProgressNotification(self, pfnProgressNotification, pvData, dwProgressFlags);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICComponentInfo_Value = Guid.initString("23bc3f0a-698b-4357-886b-f24d50671334");
-pub const IID_IWICComponentInfo = &IID_IWICComponentInfo_Value;
-pub const IWICComponentInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetComponentType: *const fn(
-            self: *const IWICComponentInfo,
-            pType: ?*WICComponentType,
-        ) callconv(.winapi) HRESULT,
-        GetCLSID: *const fn(
-            self: *const IWICComponentInfo,
-            pclsid: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetSigningStatus: *const fn(
-            self: *const IWICComponentInfo,
-            pStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetAuthor: *const fn(
-            self: *const IWICComponentInfo,
-            cchAuthor: u32,
-            wzAuthor: [*:0]u16,
-            pcchActual: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetVendorGUID: *const fn(
-            self: *const IWICComponentInfo,
-            pguidVendor: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetVersion: *const fn(
-            self: *const IWICComponentInfo,
-            cchVersion: u32,
-            wzVersion: [*:0]u16,
-            pcchActual: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSpecVersion: *const fn(
-            self: *const IWICComponentInfo,
-            cchSpecVersion: u32,
-            wzSpecVersion: [*:0]u16,
-            pcchActual: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetFriendlyName: *const fn(
-            self: *const IWICComponentInfo,
-            cchFriendlyName: u32,
-            wzFriendlyName: [*:0]u16,
-            pcchActual: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetComponentType(self: *const IWICComponentInfo, pType: ?*WICComponentType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetComponentType(self, pType);
-    }
-    pub fn GetCLSID(self: *const IWICComponentInfo, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCLSID(self, pclsid);
-    }
-    pub fn GetSigningStatus(self: *const IWICComponentInfo, pStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSigningStatus(self, pStatus);
-    }
-    pub fn GetAuthor(self: *const IWICComponentInfo, cchAuthor: u32, wzAuthor: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAuthor(self, cchAuthor, wzAuthor, pcchActual);
-    }
-    pub fn GetVendorGUID(self: *const IWICComponentInfo, pguidVendor: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVendorGUID(self, pguidVendor);
-    }
-    pub fn GetVersion(self: *const IWICComponentInfo, cchVersion: u32, wzVersion: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVersion(self, cchVersion, wzVersion, pcchActual);
-    }
-    pub fn GetSpecVersion(self: *const IWICComponentInfo, cchSpecVersion: u32, wzSpecVersion: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSpecVersion(self, cchSpecVersion, wzSpecVersion, pcchActual);
-    }
-    pub fn GetFriendlyName(self: *const IWICComponentInfo, cchFriendlyName: u32, wzFriendlyName: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFriendlyName(self, cchFriendlyName, wzFriendlyName, pcchActual);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICFormatConverterInfo_Value = Guid.initString("9f34fb65-13f4-4f15-bc57-3726b5e53d9f");
-pub const IID_IWICFormatConverterInfo = &IID_IWICFormatConverterInfo_Value;
-pub const IWICFormatConverterInfo = extern union {
-    pub const VTable = extern struct {
-        base: IWICComponentInfo.VTable,
-        GetPixelFormats: *const fn(
-            self: *const IWICFormatConverterInfo,
-            cFormats: u32,
-            pPixelFormatGUIDs: [*]Guid,
-            pcActual: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        CreateInstance: *const fn(
-            self: *const IWICFormatConverterInfo,
-            ppIConverter: ?*?*IWICFormatConverter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICComponentInfo: IWICComponentInfo,
-    IUnknown: IUnknown,
-    pub fn GetPixelFormats(self: *const IWICFormatConverterInfo, cFormats: u32, pPixelFormatGUIDs: [*]Guid, pcActual: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPixelFormats(self, cFormats, pPixelFormatGUIDs, pcActual);
-    }
-    pub fn CreateInstance(self: *const IWICFormatConverterInfo, ppIConverter: ?*?*IWICFormatConverter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateInstance(self, ppIConverter);
+    pub fn Initialize(self: *const IWICBitmapClipper, pISource: ?*IWICBitmapSource, prc: ?*const WICRect) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pISource, prc);
     }
 };
 
@@ -2240,22 +473,115 @@ pub const IWICBitmapCodecInfo = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICBitmapEncoderInfo_Value = Guid.initString("94c9b4ee-a09f-4f92-8a1e-4a9bce7e76fb");
-pub const IID_IWICBitmapEncoderInfo = &IID_IWICBitmapEncoderInfo_Value;
-pub const IWICBitmapEncoderInfo = extern union {
+const IID_IWICBitmapCodecProgressNotification_Value = Guid.initString("64c1024e-c3cf-4462-8078-88c2b11c46d9");
+pub const IID_IWICBitmapCodecProgressNotification = &IID_IWICBitmapCodecProgressNotification_Value;
+pub const IWICBitmapCodecProgressNotification = extern union {
     pub const VTable = extern struct {
-        base: IWICBitmapCodecInfo.VTable,
-        CreateInstance: *const fn(
-            self: *const IWICBitmapEncoderInfo,
-            ppIBitmapEncoder: **IWICBitmapEncoder,
+        base: IUnknown.VTable,
+        RegisterProgressNotification: *const fn(
+            self: *const IWICBitmapCodecProgressNotification,
+            pfnProgressNotification: ?PFNProgressNotification,
+            pvData: ?*anyopaque,
+            dwProgressFlags: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWICBitmapCodecInfo: IWICBitmapCodecInfo,
-    IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const IWICBitmapEncoderInfo, ppIBitmapEncoder: **IWICBitmapEncoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateInstance(self, ppIBitmapEncoder);
+    pub fn RegisterProgressNotification(self: *const IWICBitmapCodecProgressNotification, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*anyopaque, dwProgressFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterProgressNotification(self, pfnProgressNotification, pvData, dwProgressFlags);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapDecoder_Value = Guid.initString("9edde9e7-8dee-47ea-99df-e6faf2ed44bf");
+pub const IID_IWICBitmapDecoder = &IID_IWICBitmapDecoder_Value;
+pub const IWICBitmapDecoder = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryCapability: *const fn(
+            self: *const IWICBitmapDecoder,
+            pIStream: ?*IStream,
+            pdwCapability: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Initialize: *const fn(
+            self: *const IWICBitmapDecoder,
+            pIStream: ?*IStream,
+            cacheOptions: WICDecodeOptions,
+        ) callconv(.winapi) HRESULT,
+        GetContainerFormat: *const fn(
+            self: *const IWICBitmapDecoder,
+            pguidContainerFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetDecoderInfo: *const fn(
+            self: *const IWICBitmapDecoder,
+            ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo,
+        ) callconv(.winapi) HRESULT,
+        CopyPalette: *const fn(
+            self: *const IWICBitmapDecoder,
+            pIPalette: ?*IWICPalette,
+        ) callconv(.winapi) HRESULT,
+        GetMetadataQueryReader: *const fn(
+            self: *const IWICBitmapDecoder,
+            ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
+        ) callconv(.winapi) HRESULT,
+        GetPreview: *const fn(
+            self: *const IWICBitmapDecoder,
+            ppIBitmapSource: ?*?*IWICBitmapSource,
+        ) callconv(.winapi) HRESULT,
+        GetColorContexts: *const fn(
+            self: *const IWICBitmapDecoder,
+            cCount: u32,
+            ppIColorContexts: [*]?*IWICColorContext,
+            pcActualCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetThumbnail: *const fn(
+            self: *const IWICBitmapDecoder,
+            ppIThumbnail: ?*?*IWICBitmapSource,
+        ) callconv(.winapi) HRESULT,
+        GetFrameCount: *const fn(
+            self: *const IWICBitmapDecoder,
+            pCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetFrame: *const fn(
+            self: *const IWICBitmapDecoder,
+            index: u32,
+            ppIBitmapFrame: ?*?*IWICBitmapFrameDecode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryCapability(self: *const IWICBitmapDecoder, pIStream: ?*IStream, pdwCapability: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryCapability(self, pIStream, pdwCapability);
+    }
+    pub fn Initialize(self: *const IWICBitmapDecoder, pIStream: ?*IStream, cacheOptions: WICDecodeOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pIStream, cacheOptions);
+    }
+    pub fn GetContainerFormat(self: *const IWICBitmapDecoder, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContainerFormat(self, pguidContainerFormat);
+    }
+    pub fn GetDecoderInfo(self: *const IWICBitmapDecoder, ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDecoderInfo(self, ppIDecoderInfo);
+    }
+    pub fn CopyPalette(self: *const IWICBitmapDecoder, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyPalette(self, pIPalette);
+    }
+    pub fn GetMetadataQueryReader(self: *const IWICBitmapDecoder, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataQueryReader(self, ppIMetadataQueryReader);
+    }
+    pub fn GetPreview(self: *const IWICBitmapDecoder, ppIBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreview(self, ppIBitmapSource);
+    }
+    pub fn GetColorContexts(self: *const IWICBitmapDecoder, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColorContexts(self, cCount, ppIColorContexts, pcActualCount);
+    }
+    pub fn GetThumbnail(self: *const IWICBitmapDecoder, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.GetThumbnail(self, ppIThumbnail);
+    }
+    pub fn GetFrameCount(self: *const IWICBitmapDecoder, pCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFrameCount(self, pCount);
+    }
+    pub fn GetFrame(self: *const IWICBitmapDecoder, index: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFrame(self, index, ppIBitmapFrame);
     }
 };
 
@@ -2298,487 +624,746 @@ pub const IWICBitmapDecoderInfo = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICPixelFormatInfo_Value = Guid.initString("e8eda601-3d48-431a-ab44-69059be88bbe");
-pub const IID_IWICPixelFormatInfo = &IID_IWICPixelFormatInfo_Value;
-pub const IWICPixelFormatInfo = extern union {
-    pub const VTable = extern struct {
-        base: IWICComponentInfo.VTable,
-        GetFormatGUID: *const fn(
-            self: *const IWICPixelFormatInfo,
-            pFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetColorContext: *const fn(
-            self: *const IWICPixelFormatInfo,
-            ppIColorContext: ?*?*IWICColorContext,
-        ) callconv(.winapi) HRESULT,
-        GetBitsPerPixel: *const fn(
-            self: *const IWICPixelFormatInfo,
-            puiBitsPerPixel: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetChannelCount: *const fn(
-            self: *const IWICPixelFormatInfo,
-            puiChannelCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetChannelMask: *const fn(
-            self: *const IWICPixelFormatInfo,
-            uiChannelIndex: u32,
-            cbMaskBuffer: u32,
-            pbMaskBuffer: [*:0]u8,
-            pcbActual: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICComponentInfo: IWICComponentInfo,
-    IUnknown: IUnknown,
-    pub fn GetFormatGUID(self: *const IWICPixelFormatInfo, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFormatGUID(self, pFormat);
-    }
-    pub fn GetColorContext(self: *const IWICPixelFormatInfo, ppIColorContext: ?*?*IWICColorContext) callconv(.@"inline") HRESULT {
-        return self.vtable.GetColorContext(self, ppIColorContext);
-    }
-    pub fn GetBitsPerPixel(self: *const IWICPixelFormatInfo, puiBitsPerPixel: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBitsPerPixel(self, puiBitsPerPixel);
-    }
-    pub fn GetChannelCount(self: *const IWICPixelFormatInfo, puiChannelCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelCount(self, puiChannelCount);
-    }
-    pub fn GetChannelMask(self: *const IWICPixelFormatInfo, uiChannelIndex: u32, cbMaskBuffer: u32, pbMaskBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetChannelMask(self, uiChannelIndex, cbMaskBuffer, pbMaskBuffer, pcbActual);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IWICPixelFormatInfo2_Value = Guid.initString("a9db33a2-af5f-43c7-b679-74f5984b5aa4");
-pub const IID_IWICPixelFormatInfo2 = &IID_IWICPixelFormatInfo2_Value;
-pub const IWICPixelFormatInfo2 = extern union {
-    pub const VTable = extern struct {
-        base: IWICPixelFormatInfo.VTable,
-        SupportsTransparency: *const fn(
-            self: *const IWICPixelFormatInfo2,
-            pfSupportsTransparency: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetNumericRepresentation: *const fn(
-            self: *const IWICPixelFormatInfo2,
-            pNumericRepresentation: ?*WICPixelFormatNumericRepresentation,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICPixelFormatInfo: IWICPixelFormatInfo,
-    IWICComponentInfo: IWICComponentInfo,
-    IUnknown: IUnknown,
-    pub fn SupportsTransparency(self: *const IWICPixelFormatInfo2, pfSupportsTransparency: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SupportsTransparency(self, pfSupportsTransparency);
-    }
-    pub fn GetNumericRepresentation(self: *const IWICPixelFormatInfo2, pNumericRepresentation: ?*WICPixelFormatNumericRepresentation) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNumericRepresentation(self, pNumericRepresentation);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICImagingFactory_Value = Guid.initString("ec5ec8a9-c395-4314-9c77-54d7a935ff70");
-pub const IID_IWICImagingFactory = &IID_IWICImagingFactory_Value;
-pub const IWICImagingFactory = extern union {
+const IID_IWICBitmapEncoder_Value = Guid.initString("00000103-a8f2-4877-ba0a-fd2b6645fb94");
+pub const IID_IWICBitmapEncoder = &IID_IWICBitmapEncoder_Value;
+pub const IWICBitmapEncoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDecoderFromFilename: *const fn(
-            self: *const IWICImagingFactory,
-            wzFilename: ?[*:0]const u16,
-            pguidVendor: ?*const Guid,
-            dwDesiredAccess: u32,
-            metadataOptions: WICDecodeOptions,
-            ppIDecoder: ?*?*IWICBitmapDecoder,
-        ) callconv(.winapi) HRESULT,
-        CreateDecoderFromStream: *const fn(
-            self: *const IWICImagingFactory,
+        Initialize: *const fn(
+            self: *const IWICBitmapEncoder,
             pIStream: ?*IStream,
-            pguidVendor: ?*const Guid,
-            metadataOptions: WICDecodeOptions,
-            ppIDecoder: ?*?*IWICBitmapDecoder,
+            cacheOption: WICBitmapEncoderCacheOption,
         ) callconv(.winapi) HRESULT,
-        CreateDecoderFromFileHandle: *const fn(
-            self: *const IWICImagingFactory,
-            hFile: usize,
-            pguidVendor: ?*const Guid,
-            metadataOptions: WICDecodeOptions,
-            ppIDecoder: ?*?*IWICBitmapDecoder,
+        GetContainerFormat: *const fn(
+            self: *const IWICBitmapEncoder,
+            pguidContainerFormat: ?*Guid,
         ) callconv(.winapi) HRESULT,
-        CreateComponentInfo: *const fn(
-            self: *const IWICImagingFactory,
-            clsidComponent: ?*const Guid,
-            ppIInfo: ?*?*IWICComponentInfo,
+        GetEncoderInfo: *const fn(
+            self: *const IWICBitmapEncoder,
+            ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo,
         ) callconv(.winapi) HRESULT,
-        CreateDecoder: *const fn(
-            self: *const IWICImagingFactory,
-            guidContainerFormat: ?*const Guid,
-            pguidVendor: ?*const Guid,
-            ppIDecoder: ?*?*IWICBitmapDecoder,
+        SetColorContexts: *const fn(
+            self: *const IWICBitmapEncoder,
+            cCount: u32,
+            ppIColorContext: [*]?*IWICColorContext,
         ) callconv(.winapi) HRESULT,
-        CreateEncoder: *const fn(
-            self: *const IWICImagingFactory,
-            guidContainerFormat: ?*const Guid,
-            pguidVendor: ?*const Guid,
-            ppIEncoder: ?*?*IWICBitmapEncoder,
+        SetPalette: *const fn(
+            self: *const IWICBitmapEncoder,
+            pIPalette: ?*IWICPalette,
         ) callconv(.winapi) HRESULT,
-        CreatePalette: *const fn(
-            self: *const IWICImagingFactory,
-            ppIPalette: ?*?*IWICPalette,
+        SetThumbnail: *const fn(
+            self: *const IWICBitmapEncoder,
+            pIThumbnail: ?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
-        CreateFormatConverter: *const fn(
-            self: *const IWICImagingFactory,
-            ppIFormatConverter: ?*?*IWICFormatConverter,
+        SetPreview: *const fn(
+            self: *const IWICBitmapEncoder,
+            pIPreview: ?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
-        CreateBitmapScaler: *const fn(
-            self: *const IWICImagingFactory,
-            ppIBitmapScaler: ?*?*IWICBitmapScaler,
+        CreateNewFrame: *const fn(
+            self: *const IWICBitmapEncoder,
+            ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
+            ppIEncoderOptions: ?*?*IPropertyBag2,
         ) callconv(.winapi) HRESULT,
-        CreateBitmapClipper: *const fn(
-            self: *const IWICImagingFactory,
-            ppIBitmapClipper: ?*?*IWICBitmapClipper,
+        Commit: *const fn(
+            self: *const IWICBitmapEncoder,
         ) callconv(.winapi) HRESULT,
-        CreateBitmapFlipRotator: *const fn(
-            self: *const IWICImagingFactory,
-            ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator,
+        GetMetadataQueryWriter: *const fn(
+            self: *const IWICBitmapEncoder,
+            ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(.winapi) HRESULT,
-        CreateStream: *const fn(
-            self: *const IWICImagingFactory,
-            ppIWICStream: ?*?*IWICStream,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWICBitmapEncoder, pIStream: ?*IStream, cacheOption: WICBitmapEncoderCacheOption) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pIStream, cacheOption);
+    }
+    pub fn GetContainerFormat(self: *const IWICBitmapEncoder, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContainerFormat(self, pguidContainerFormat);
+    }
+    pub fn GetEncoderInfo(self: *const IWICBitmapEncoder, ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEncoderInfo(self, ppIEncoderInfo);
+    }
+    pub fn SetColorContexts(self: *const IWICBitmapEncoder, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColorContexts(self, cCount, ppIColorContext);
+    }
+    pub fn SetPalette(self: *const IWICBitmapEncoder, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPalette(self, pIPalette);
+    }
+    pub fn SetThumbnail(self: *const IWICBitmapEncoder, pIThumbnail: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.SetThumbnail(self, pIThumbnail);
+    }
+    pub fn SetPreview(self: *const IWICBitmapEncoder, pIPreview: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPreview(self, pIPreview);
+    }
+    pub fn CreateNewFrame(self: *const IWICBitmapEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, ppIEncoderOptions: ?*?*IPropertyBag2) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateNewFrame(self, ppIFrameEncode, ppIEncoderOptions);
+    }
+    pub fn Commit(self: *const IWICBitmapEncoder) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self);
+    }
+    pub fn GetMetadataQueryWriter(self: *const IWICBitmapEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapEncoderInfo_Value = Guid.initString("94c9b4ee-a09f-4f92-8a1e-4a9bce7e76fb");
+pub const IID_IWICBitmapEncoderInfo = &IID_IWICBitmapEncoderInfo_Value;
+pub const IWICBitmapEncoderInfo = extern union {
+    pub const VTable = extern struct {
+        base: IWICBitmapCodecInfo.VTable,
+        CreateInstance: *const fn(
+            self: *const IWICBitmapEncoderInfo,
+            ppIBitmapEncoder: **IWICBitmapEncoder,
         ) callconv(.winapi) HRESULT,
-        CreateColorContext: *const fn(
-            self: *const IWICImagingFactory,
-            ppIWICColorContext: ?*?*IWICColorContext,
+    };
+    vtable: *const VTable,
+    IWICBitmapCodecInfo: IWICBitmapCodecInfo,
+    IWICComponentInfo: IWICComponentInfo,
+    IUnknown: IUnknown,
+    pub fn CreateInstance(self: *const IWICBitmapEncoderInfo, ppIBitmapEncoder: **IWICBitmapEncoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateInstance(self, ppIBitmapEncoder);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapFlipRotator_Value = Guid.initString("5009834f-2d6a-41ce-9e1b-17c5aff7a782");
+pub const IID_IWICBitmapFlipRotator = &IID_IWICBitmapFlipRotator_Value;
+pub const IWICBitmapFlipRotator = extern union {
+    pub const VTable = extern struct {
+        base: IWICBitmapSource.VTable,
+        Initialize: *const fn(
+            self: *const IWICBitmapFlipRotator,
+            pISource: ?*IWICBitmapSource,
+            options: WICBitmapTransformOptions,
         ) callconv(.winapi) HRESULT,
-        CreateColorTransformer: *const fn(
-            self: *const IWICImagingFactory,
-            ppIWICColorTransform: ?*?*IWICColorTransform,
+    };
+    vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWICBitmapFlipRotator, pISource: ?*IWICBitmapSource, options: WICBitmapTransformOptions) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pISource, options);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapFrameDecode_Value = Guid.initString("3b16811b-6a43-4ec9-a813-3d930c13b940");
+pub const IID_IWICBitmapFrameDecode = &IID_IWICBitmapFrameDecode_Value;
+pub const IWICBitmapFrameDecode = extern union {
+    pub const VTable = extern struct {
+        base: IWICBitmapSource.VTable,
+        GetMetadataQueryReader: *const fn(
+            self: *const IWICBitmapFrameDecode,
+            ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
         ) callconv(.winapi) HRESULT,
-        CreateBitmap: *const fn(
-            self: *const IWICImagingFactory,
+        GetColorContexts: *const fn(
+            self: *const IWICBitmapFrameDecode,
+            cCount: u32,
+            ppIColorContexts: [*]?*IWICColorContext,
+            pcActualCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetThumbnail: *const fn(
+            self: *const IWICBitmapFrameDecode,
+            ppIThumbnail: ?*?*IWICBitmapSource,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
+    IUnknown: IUnknown,
+    pub fn GetMetadataQueryReader(self: *const IWICBitmapFrameDecode, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataQueryReader(self, ppIMetadataQueryReader);
+    }
+    pub fn GetColorContexts(self: *const IWICBitmapFrameDecode, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColorContexts(self, cCount, ppIColorContexts, pcActualCount);
+    }
+    pub fn GetThumbnail(self: *const IWICBitmapFrameDecode, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.GetThumbnail(self, ppIThumbnail);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapFrameEncode_Value = Guid.initString("00000105-a8f2-4877-ba0a-fd2b6645fb94");
+pub const IID_IWICBitmapFrameEncode = &IID_IWICBitmapFrameEncode_Value;
+pub const IWICBitmapFrameEncode = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            pIEncoderOptions: ?*IPropertyBag2,
+        ) callconv(.winapi) HRESULT,
+        SetSize: *const fn(
+            self: *const IWICBitmapFrameEncode,
             uiWidth: u32,
             uiHeight: u32,
-            pixelFormat: ?*Guid,
-            option: WICBitmapCreateCacheOption,
-            ppIBitmap: ?*?*IWICBitmap,
         ) callconv(.winapi) HRESULT,
-        CreateBitmapFromSource: *const fn(
-            self: *const IWICImagingFactory,
+        SetResolution: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            dpiX: f64,
+            dpiY: f64,
+        ) callconv(.winapi) HRESULT,
+        SetPixelFormat: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            pPixelFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        SetColorContexts: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            cCount: u32,
+            ppIColorContext: [*]?*IWICColorContext,
+        ) callconv(.winapi) HRESULT,
+        SetPalette: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            pIPalette: ?*IWICPalette,
+        ) callconv(.winapi) HRESULT,
+        SetThumbnail: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            pIThumbnail: ?*IWICBitmapSource,
+        ) callconv(.winapi) HRESULT,
+        WritePixels: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            lineCount: u32,
+            cbStride: u32,
+            cbBufferSize: u32,
+            pbPixels: [*:0]u8,
+        ) callconv(.winapi) HRESULT,
+        WriteSource: *const fn(
+            self: *const IWICBitmapFrameEncode,
             pIBitmapSource: ?*IWICBitmapSource,
-            option: WICBitmapCreateCacheOption,
-            ppIBitmap: ?*?*IWICBitmap,
+            prc: ?*WICRect,
         ) callconv(.winapi) HRESULT,
-        CreateBitmapFromSourceRect: *const fn(
-            self: *const IWICImagingFactory,
-            pIBitmapSource: ?*IWICBitmapSource,
-            x: u32,
-            y: u32,
-            width: u32,
-            height: u32,
-            ppIBitmap: ?*?*IWICBitmap,
+        Commit: *const fn(
+            self: *const IWICBitmapFrameEncode,
         ) callconv(.winapi) HRESULT,
-        CreateBitmapFromMemory: *const fn(
-            self: *const IWICImagingFactory,
+        GetMetadataQueryWriter: *const fn(
+            self: *const IWICBitmapFrameEncode,
+            ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWICBitmapFrameEncode, pIEncoderOptions: ?*IPropertyBag2) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pIEncoderOptions);
+    }
+    pub fn SetSize(self: *const IWICBitmapFrameEncode, uiWidth: u32, uiHeight: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSize(self, uiWidth, uiHeight);
+    }
+    pub fn SetResolution(self: *const IWICBitmapFrameEncode, dpiX: f64, dpiY: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.SetResolution(self, dpiX, dpiY);
+    }
+    pub fn SetPixelFormat(self: *const IWICBitmapFrameEncode, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPixelFormat(self, pPixelFormat);
+    }
+    pub fn SetColorContexts(self: *const IWICBitmapFrameEncode, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.@"inline") HRESULT {
+        return self.vtable.SetColorContexts(self, cCount, ppIColorContext);
+    }
+    pub fn SetPalette(self: *const IWICBitmapFrameEncode, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPalette(self, pIPalette);
+    }
+    pub fn SetThumbnail(self: *const IWICBitmapFrameEncode, pIThumbnail: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+        return self.vtable.SetThumbnail(self, pIThumbnail);
+    }
+    pub fn WritePixels(self: *const IWICBitmapFrameEncode, lineCount: u32, cbStride: u32, cbBufferSize: u32, pbPixels: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.WritePixels(self, lineCount, cbStride, cbBufferSize, pbPixels);
+    }
+    pub fn WriteSource(self: *const IWICBitmapFrameEncode, pIBitmapSource: ?*IWICBitmapSource, prc: ?*WICRect) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteSource(self, pIBitmapSource, prc);
+    }
+    pub fn Commit(self: *const IWICBitmapFrameEncode) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self);
+    }
+    pub fn GetMetadataQueryWriter(self: *const IWICBitmapFrameEncode, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapLock_Value = Guid.initString("00000123-a8f2-4877-ba0a-fd2b6645fb94");
+pub const IID_IWICBitmapLock = &IID_IWICBitmapLock_Value;
+pub const IWICBitmapLock = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSize: *const fn(
+            self: *const IWICBitmapLock,
+            puiWidth: ?*u32,
+            puiHeight: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStride: *const fn(
+            self: *const IWICBitmapLock,
+            pcbStride: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetDataPointer: *const fn(
+            self: *const IWICBitmapLock,
+            pcbBufferSize: ?*u32,
+            ppbData: [*]?*u8,
+        ) callconv(.winapi) HRESULT,
+        GetPixelFormat: *const fn(
+            self: *const IWICBitmapLock,
+            pPixelFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSize(self: *const IWICBitmapLock, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSize(self, puiWidth, puiHeight);
+    }
+    pub fn GetStride(self: *const IWICBitmapLock, pcbStride: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStride(self, pcbStride);
+    }
+    pub fn GetDataPointer(self: *const IWICBitmapLock, pcbBufferSize: ?*u32, ppbData: [*]?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataPointer(self, pcbBufferSize, ppbData);
+    }
+    pub fn GetPixelFormat(self: *const IWICBitmapLock, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPixelFormat(self, pPixelFormat);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapScaler_Value = Guid.initString("00000302-a8f2-4877-ba0a-fd2b6645fb94");
+pub const IID_IWICBitmapScaler = &IID_IWICBitmapScaler_Value;
+pub const IWICBitmapScaler = extern union {
+    pub const VTable = extern struct {
+        base: IWICBitmapSource.VTable,
+        Initialize: *const fn(
+            self: *const IWICBitmapScaler,
+            pISource: ?*IWICBitmapSource,
             uiWidth: u32,
             uiHeight: u32,
-            pixelFormat: ?*Guid,
+            mode: WICBitmapInterpolationMode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWICBitmapScaler, pISource: ?*IWICBitmapSource, uiWidth: u32, uiHeight: u32, mode: WICBitmapInterpolationMode) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pISource, uiWidth, uiHeight, mode);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICBitmapSource_Value = Guid.initString("00000120-a8f2-4877-ba0a-fd2b6645fb94");
+pub const IID_IWICBitmapSource = &IID_IWICBitmapSource_Value;
+pub const IWICBitmapSource = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSize: *const fn(
+            self: *const IWICBitmapSource,
+            puiWidth: ?*u32,
+            puiHeight: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPixelFormat: *const fn(
+            self: *const IWICBitmapSource,
+            pPixelFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetResolution: *const fn(
+            self: *const IWICBitmapSource,
+            pDpiX: ?*f64,
+            pDpiY: ?*f64,
+        ) callconv(.winapi) HRESULT,
+        CopyPalette: *const fn(
+            self: *const IWICBitmapSource,
+            pIPalette: ?*IWICPalette,
+        ) callconv(.winapi) HRESULT,
+        CopyPixels: *const fn(
+            self: *const IWICBitmapSource,
+            prc: ?*const WICRect,
             cbStride: u32,
             cbBufferSize: u32,
             pbBuffer: [*:0]u8,
-            ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(.winapi) HRESULT,
-        CreateBitmapFromHBITMAP: *const fn(
-            self: *const IWICImagingFactory,
-            hBitmap: ?HBITMAP,
-            hPalette: ?HPALETTE,
-            options: WICBitmapAlphaChannelOption,
-            ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(.winapi) HRESULT,
-        CreateBitmapFromHICON: *const fn(
-            self: *const IWICImagingFactory,
-            hIcon: ?HICON,
-            ppIBitmap: ?*?*IWICBitmap,
-        ) callconv(.winapi) HRESULT,
-        CreateComponentEnumerator: *const fn(
-            self: *const IWICImagingFactory,
-            componentTypes: u32,
-            options: u32,
-            ppIEnumUnknown: ?*?*IEnumUnknown,
-        ) callconv(.winapi) HRESULT,
-        CreateFastMetadataEncoderFromDecoder: *const fn(
-            self: *const IWICImagingFactory,
-            pIDecoder: ?*IWICBitmapDecoder,
-            ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
-        ) callconv(.winapi) HRESULT,
-        CreateFastMetadataEncoderFromFrameDecode: *const fn(
-            self: *const IWICImagingFactory,
-            pIFrameDecoder: ?*IWICBitmapFrameDecode,
-            ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
-        ) callconv(.winapi) HRESULT,
-        CreateQueryWriter: *const fn(
-            self: *const IWICImagingFactory,
-            guidMetadataFormat: ?*const Guid,
-            pguidVendor: ?*const Guid,
-            ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(.winapi) HRESULT,
-        CreateQueryWriterFromReader: *const fn(
-            self: *const IWICImagingFactory,
-            pIQueryReader: ?*IWICMetadataQueryReader,
-            pguidVendor: ?*const Guid,
-            ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDecoderFromFilename(self: *const IWICImagingFactory, wzFilename: ?[*:0]const u16, pguidVendor: ?*const Guid, dwDesiredAccess: u32, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDecoderFromFilename(self, wzFilename, pguidVendor, dwDesiredAccess, metadataOptions, ppIDecoder);
+    pub fn GetSize(self: *const IWICBitmapSource, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSize(self, puiWidth, puiHeight);
     }
-    pub fn CreateDecoderFromStream(self: *const IWICImagingFactory, pIStream: ?*IStream, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDecoderFromStream(self, pIStream, pguidVendor, metadataOptions, ppIDecoder);
+    pub fn GetPixelFormat(self: *const IWICBitmapSource, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPixelFormat(self, pPixelFormat);
     }
-    pub fn CreateDecoderFromFileHandle(self: *const IWICImagingFactory, hFile: usize, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDecoderFromFileHandle(self, hFile, pguidVendor, metadataOptions, ppIDecoder);
+    pub fn GetResolution(self: *const IWICBitmapSource, pDpiX: ?*f64, pDpiY: ?*f64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetResolution(self, pDpiX, pDpiY);
     }
-    pub fn CreateComponentInfo(self: *const IWICImagingFactory, clsidComponent: ?*const Guid, ppIInfo: ?*?*IWICComponentInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateComponentInfo(self, clsidComponent, ppIInfo);
+    pub fn CopyPalette(self: *const IWICBitmapSource, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyPalette(self, pIPalette);
     }
-    pub fn CreateDecoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateDecoder(self, guidContainerFormat, pguidVendor, ppIDecoder);
+    pub fn CopyPixels(self: *const IWICBitmapSource, prc: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyPixels(self, prc, cbStride, cbBufferSize, pbBuffer);
     }
-    pub fn CreateEncoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIEncoder: ?*?*IWICBitmapEncoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncoder(self, guidContainerFormat, pguidVendor, ppIEncoder);
-    }
-    pub fn CreatePalette(self: *const IWICImagingFactory, ppIPalette: ?*?*IWICPalette) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePalette(self, ppIPalette);
-    }
-    pub fn CreateFormatConverter(self: *const IWICImagingFactory, ppIFormatConverter: ?*?*IWICFormatConverter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFormatConverter(self, ppIFormatConverter);
-    }
-    pub fn CreateBitmapScaler(self: *const IWICImagingFactory, ppIBitmapScaler: ?*?*IWICBitmapScaler) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapScaler(self, ppIBitmapScaler);
-    }
-    pub fn CreateBitmapClipper(self: *const IWICImagingFactory, ppIBitmapClipper: ?*?*IWICBitmapClipper) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapClipper(self, ppIBitmapClipper);
-    }
-    pub fn CreateBitmapFlipRotator(self: *const IWICImagingFactory, ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapFlipRotator(self, ppIBitmapFlipRotator);
-    }
-    pub fn CreateStream(self: *const IWICImagingFactory, ppIWICStream: ?*?*IWICStream) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateStream(self, ppIWICStream);
-    }
-    pub fn CreateColorContext(self: *const IWICImagingFactory, ppIWICColorContext: ?*?*IWICColorContext) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateColorContext(self, ppIWICColorContext);
-    }
-    pub fn CreateColorTransformer(self: *const IWICImagingFactory, ppIWICColorTransform: ?*?*IWICColorTransform) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateColorTransformer(self, ppIWICColorTransform);
-    }
-    pub fn CreateBitmap(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmap(self, uiWidth, uiHeight, pixelFormat, option, ppIBitmap);
-    }
-    pub fn CreateBitmapFromSource(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapFromSource(self, pIBitmapSource, option, ppIBitmap);
-    }
-    pub fn CreateBitmapFromSourceRect(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, x: u32, y: u32, width: u32, height: u32, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapFromSourceRect(self, pIBitmapSource, x, y, width, height, ppIBitmap);
-    }
-    pub fn CreateBitmapFromMemory(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapFromMemory(self, uiWidth, uiHeight, pixelFormat, cbStride, cbBufferSize, pbBuffer, ppIBitmap);
-    }
-    pub fn CreateBitmapFromHBITMAP(self: *const IWICImagingFactory, hBitmap: ?HBITMAP, hPalette: ?HPALETTE, options: WICBitmapAlphaChannelOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapFromHBITMAP(self, hBitmap, hPalette, options, ppIBitmap);
-    }
-    pub fn CreateBitmapFromHICON(self: *const IWICImagingFactory, hIcon: ?HICON, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBitmapFromHICON(self, hIcon, ppIBitmap);
-    }
-    pub fn CreateComponentEnumerator(self: *const IWICImagingFactory, componentTypes: u32, options: u32, ppIEnumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateComponentEnumerator(self, componentTypes, options, ppIEnumUnknown);
-    }
-    pub fn CreateFastMetadataEncoderFromDecoder(self: *const IWICImagingFactory, pIDecoder: ?*IWICBitmapDecoder, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFastMetadataEncoderFromDecoder(self, pIDecoder, ppIFastEncoder);
-    }
-    pub fn CreateFastMetadataEncoderFromFrameDecode(self: *const IWICImagingFactory, pIFrameDecoder: ?*IWICBitmapFrameDecode, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFastMetadataEncoderFromFrameDecode(self, pIFrameDecoder, ppIFastEncoder);
-    }
-    pub fn CreateQueryWriter(self: *const IWICImagingFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateQueryWriter(self, guidMetadataFormat, pguidVendor, ppIQueryWriter);
-    }
-    pub fn CreateQueryWriterFromReader(self: *const IWICImagingFactory, pIQueryReader: ?*IWICMetadataQueryReader, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateQueryWriterFromReader(self, pIQueryReader, pguidVendor, ppIQueryWriter);
-    }
-};
-
-pub const WICTiffCompressionOption = enum(i32) {
-    iffCompressionDontCare = 0,
-    iffCompressionNone = 1,
-    iffCompressionCCITT3 = 2,
-    iffCompressionCCITT4 = 3,
-    iffCompressionLZW = 4,
-    iffCompressionRLE = 5,
-    iffCompressionZIP = 6,
-    iffCompressionLZWHDifferencing = 7,
-    IFFCOMPRESSIONOPTION_FORCE_DWORD = 2147483647,
-};
-pub const WICTiffCompressionDontCare = WICTiffCompressionOption.iffCompressionDontCare;
-pub const WICTiffCompressionNone = WICTiffCompressionOption.iffCompressionNone;
-pub const WICTiffCompressionCCITT3 = WICTiffCompressionOption.iffCompressionCCITT3;
-pub const WICTiffCompressionCCITT4 = WICTiffCompressionOption.iffCompressionCCITT4;
-pub const WICTiffCompressionLZW = WICTiffCompressionOption.iffCompressionLZW;
-pub const WICTiffCompressionRLE = WICTiffCompressionOption.iffCompressionRLE;
-pub const WICTiffCompressionZIP = WICTiffCompressionOption.iffCompressionZIP;
-pub const WICTiffCompressionLZWHDifferencing = WICTiffCompressionOption.iffCompressionLZWHDifferencing;
-pub const WICTIFFCOMPRESSIONOPTION_FORCE_DWORD = WICTiffCompressionOption.IFFCOMPRESSIONOPTION_FORCE_DWORD;
-
-pub const WICJpegYCrCbSubsamplingOption = enum(i32) {
-    pegYCrCbSubsamplingDefault = 0,
-    pegYCrCbSubsampling420 = 1,
-    pegYCrCbSubsampling422 = 2,
-    pegYCrCbSubsampling444 = 3,
-    pegYCrCbSubsampling440 = 4,
-    PEGYCRCBSUBSAMPLING_FORCE_DWORD = 2147483647,
-};
-pub const WICJpegYCrCbSubsamplingDefault = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsamplingDefault;
-pub const WICJpegYCrCbSubsampling420 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling420;
-pub const WICJpegYCrCbSubsampling422 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling422;
-pub const WICJpegYCrCbSubsampling444 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling444;
-pub const WICJpegYCrCbSubsampling440 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling440;
-pub const WICJPEGYCRCBSUBSAMPLING_FORCE_DWORD = WICJpegYCrCbSubsamplingOption.PEGYCRCBSUBSAMPLING_FORCE_DWORD;
-
-pub const WICPngFilterOption = enum(i32) {
-    ngFilterUnspecified = 0,
-    ngFilterNone = 1,
-    ngFilterSub = 2,
-    ngFilterUp = 3,
-    ngFilterAverage = 4,
-    ngFilterPaeth = 5,
-    ngFilterAdaptive = 6,
-    NGFILTEROPTION_FORCE_DWORD = 2147483647,
-};
-pub const WICPngFilterUnspecified = WICPngFilterOption.ngFilterUnspecified;
-pub const WICPngFilterNone = WICPngFilterOption.ngFilterNone;
-pub const WICPngFilterSub = WICPngFilterOption.ngFilterSub;
-pub const WICPngFilterUp = WICPngFilterOption.ngFilterUp;
-pub const WICPngFilterAverage = WICPngFilterOption.ngFilterAverage;
-pub const WICPngFilterPaeth = WICPngFilterOption.ngFilterPaeth;
-pub const WICPngFilterAdaptive = WICPngFilterOption.ngFilterAdaptive;
-pub const WICPNGFILTEROPTION_FORCE_DWORD = WICPngFilterOption.NGFILTEROPTION_FORCE_DWORD;
-
-pub const WICNamedWhitePoint = enum(i32) {
-    WhitePointDefault = 1,
-    WhitePointDaylight = 2,
-    WhitePointCloudy = 4,
-    WhitePointShade = 8,
-    WhitePointTungsten = 16,
-    WhitePointFluorescent = 32,
-    WhitePointFlash = 64,
-    WhitePointUnderwater = 128,
-    WhitePointCustom = 256,
-    WhitePointAutoWhiteBalance = 512,
-    NAMEDWHITEPOINT_FORCE_DWORD = 2147483647,
-    pub const WhitePointAsShot = .WhitePointDefault;
-};
-pub const WICWhitePointDefault = WICNamedWhitePoint.WhitePointDefault;
-pub const WICWhitePointDaylight = WICNamedWhitePoint.WhitePointDaylight;
-pub const WICWhitePointCloudy = WICNamedWhitePoint.WhitePointCloudy;
-pub const WICWhitePointShade = WICNamedWhitePoint.WhitePointShade;
-pub const WICWhitePointTungsten = WICNamedWhitePoint.WhitePointTungsten;
-pub const WICWhitePointFluorescent = WICNamedWhitePoint.WhitePointFluorescent;
-pub const WICWhitePointFlash = WICNamedWhitePoint.WhitePointFlash;
-pub const WICWhitePointUnderwater = WICNamedWhitePoint.WhitePointUnderwater;
-pub const WICWhitePointCustom = WICNamedWhitePoint.WhitePointCustom;
-pub const WICWhitePointAutoWhiteBalance = WICNamedWhitePoint.WhitePointAutoWhiteBalance;
-pub const WICWhitePointAsShot = WICNamedWhitePoint.WhitePointDefault;
-pub const WICNAMEDWHITEPOINT_FORCE_DWORD = WICNamedWhitePoint.NAMEDWHITEPOINT_FORCE_DWORD;
-
-pub const WICRawCapabilities = enum(i32) {
-    awCapabilityNotSupported = 0,
-    awCapabilityGetSupported = 1,
-    awCapabilityFullySupported = 2,
-    AWCAPABILITIES_FORCE_DWORD = 2147483647,
-};
-pub const WICRawCapabilityNotSupported = WICRawCapabilities.awCapabilityNotSupported;
-pub const WICRawCapabilityGetSupported = WICRawCapabilities.awCapabilityGetSupported;
-pub const WICRawCapabilityFullySupported = WICRawCapabilities.awCapabilityFullySupported;
-pub const WICRAWCAPABILITIES_FORCE_DWORD = WICRawCapabilities.AWCAPABILITIES_FORCE_DWORD;
-
-pub const WICRawRotationCapabilities = enum(i32) {
-    awRotationCapabilityNotSupported = 0,
-    awRotationCapabilityGetSupported = 1,
-    awRotationCapabilityNinetyDegreesSupported = 2,
-    awRotationCapabilityFullySupported = 3,
-    AWROTATIONCAPABILITIES_FORCE_DWORD = 2147483647,
-};
-pub const WICRawRotationCapabilityNotSupported = WICRawRotationCapabilities.awRotationCapabilityNotSupported;
-pub const WICRawRotationCapabilityGetSupported = WICRawRotationCapabilities.awRotationCapabilityGetSupported;
-pub const WICRawRotationCapabilityNinetyDegreesSupported = WICRawRotationCapabilities.awRotationCapabilityNinetyDegreesSupported;
-pub const WICRawRotationCapabilityFullySupported = WICRawRotationCapabilities.awRotationCapabilityFullySupported;
-pub const WICRAWROTATIONCAPABILITIES_FORCE_DWORD = WICRawRotationCapabilities.AWROTATIONCAPABILITIES_FORCE_DWORD;
-
-pub const WICRawCapabilitiesInfo = extern struct {
-    cbSize: u32,
-    CodecMajorVersion: u32,
-    CodecMinorVersion: u32,
-    ExposureCompensationSupport: WICRawCapabilities,
-    ContrastSupport: WICRawCapabilities,
-    RGBWhitePointSupport: WICRawCapabilities,
-    NamedWhitePointSupport: WICRawCapabilities,
-    NamedWhitePointSupportMask: u32,
-    KelvinWhitePointSupport: WICRawCapabilities,
-    GammaSupport: WICRawCapabilities,
-    TintSupport: WICRawCapabilities,
-    SaturationSupport: WICRawCapabilities,
-    SharpnessSupport: WICRawCapabilities,
-    NoiseReductionSupport: WICRawCapabilities,
-    DestinationColorProfileSupport: WICRawCapabilities,
-    ToneCurveSupport: WICRawCapabilities,
-    RotationSupport: WICRawRotationCapabilities,
-    RenderModeSupport: WICRawCapabilities,
-};
-
-pub const WICRawParameterSet = enum(i32) {
-    AsShotParameterSet = 1,
-    UserAdjustedParameterSet = 2,
-    AutoAdjustedParameterSet = 3,
-    RAWPARAMETERSET_FORCE_DWORD = 2147483647,
-};
-pub const WICAsShotParameterSet = WICRawParameterSet.AsShotParameterSet;
-pub const WICUserAdjustedParameterSet = WICRawParameterSet.UserAdjustedParameterSet;
-pub const WICAutoAdjustedParameterSet = WICRawParameterSet.AutoAdjustedParameterSet;
-pub const WICRAWPARAMETERSET_FORCE_DWORD = WICRawParameterSet.RAWPARAMETERSET_FORCE_DWORD;
-
-pub const WICRawRenderMode = enum(i32) {
-    awRenderModeDraft = 1,
-    awRenderModeNormal = 2,
-    awRenderModeBestQuality = 3,
-    AWRENDERMODE_FORCE_DWORD = 2147483647,
-};
-pub const WICRawRenderModeDraft = WICRawRenderMode.awRenderModeDraft;
-pub const WICRawRenderModeNormal = WICRawRenderMode.awRenderModeNormal;
-pub const WICRawRenderModeBestQuality = WICRawRenderMode.awRenderModeBestQuality;
-pub const WICRAWRENDERMODE_FORCE_DWORD = WICRawRenderMode.AWRENDERMODE_FORCE_DWORD;
-
-pub const WICRawToneCurvePoint = extern struct {
-    Input: f64,
-    Output: f64,
-};
-
-pub const WICRawToneCurve = extern struct {
-    cPoints: u32,
-    aPoints: [1]WICRawToneCurvePoint,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICDevelopRawNotificationCallback_Value = Guid.initString("95c75a6e-3e8c-4ec2-85a8-aebcc551e59b");
-pub const IID_IWICDevelopRawNotificationCallback = &IID_IWICDevelopRawNotificationCallback_Value;
-pub const IWICDevelopRawNotificationCallback = extern union {
+const IID_IWICBitmapSourceTransform_Value = Guid.initString("3b16811b-6a43-4ec9-b713-3d5a0c13b940");
+pub const IID_IWICBitmapSourceTransform = &IID_IWICBitmapSourceTransform_Value;
+pub const IWICBitmapSourceTransform = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Notify: *const fn(
-            self: *const IWICDevelopRawNotificationCallback,
-            NotificationMask: u32,
+        CopyPixels: *const fn(
+            self: *const IWICBitmapSourceTransform,
+            prc: ?*const WICRect,
+            uiWidth: u32,
+            uiHeight: u32,
+            pguidDstFormat: ?*Guid,
+            dstTransform: WICBitmapTransformOptions,
+            nStride: u32,
+            cbBufferSize: u32,
+            pbBuffer: [*:0]u8,
+        ) callconv(.winapi) HRESULT,
+        GetClosestSize: *const fn(
+            self: *const IWICBitmapSourceTransform,
+            puiWidth: ?*u32,
+            puiHeight: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetClosestPixelFormat: *const fn(
+            self: *const IWICBitmapSourceTransform,
+            pguidDstFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        DoesSupportTransform: *const fn(
+            self: *const IWICBitmapSourceTransform,
+            dstTransform: WICBitmapTransformOptions,
+            pfIsSupported: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Notify(self: *const IWICDevelopRawNotificationCallback, NotificationMask: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, NotificationMask);
+    pub fn CopyPixels(self: *const IWICBitmapSourceTransform, prc: ?*const WICRect, uiWidth: u32, uiHeight: u32, pguidDstFormat: ?*Guid, dstTransform: WICBitmapTransformOptions, nStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyPixels(self, prc, uiWidth, uiHeight, pguidDstFormat, dstTransform, nStride, cbBufferSize, pbBuffer);
+    }
+    pub fn GetClosestSize(self: *const IWICBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClosestSize(self, puiWidth, puiHeight);
+    }
+    pub fn GetClosestPixelFormat(self: *const IWICBitmapSourceTransform, pguidDstFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClosestPixelFormat(self, pguidDstFormat);
+    }
+    pub fn DoesSupportTransform(self: *const IWICBitmapSourceTransform, dstTransform: WICBitmapTransformOptions, pfIsSupported: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.DoesSupportTransform(self, dstTransform, pfIsSupported);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICColorContext_Value = Guid.initString("3c613a02-34b2-44ea-9a7c-45aea9c6fd6d");
+pub const IID_IWICColorContext = &IID_IWICColorContext_Value;
+pub const IWICColorContext = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitializeFromFilename: *const fn(
+            self: *const IWICColorContext,
+            wzFilename: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        InitializeFromMemory: *const fn(
+            self: *const IWICColorContext,
+            pbBuffer: [*:0]const u8,
+            cbBufferSize: u32,
+        ) callconv(.winapi) HRESULT,
+        InitializeFromExifColorSpace: *const fn(
+            self: *const IWICColorContext,
+            value: u32,
+        ) callconv(.winapi) HRESULT,
+        GetType: *const fn(
+            self: *const IWICColorContext,
+            pType: ?*WICColorContextType,
+        ) callconv(.winapi) HRESULT,
+        GetProfileBytes: *const fn(
+            self: *const IWICColorContext,
+            cbBuffer: u32,
+            pbBuffer: [*:0]u8,
+            pcbActual: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetExifColorSpace: *const fn(
+            self: *const IWICColorContext,
+            pValue: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitializeFromFilename(self: *const IWICColorContext, wzFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromFilename(self, wzFilename);
+    }
+    pub fn InitializeFromMemory(self: *const IWICColorContext, pbBuffer: [*:0]const u8, cbBufferSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromMemory(self, pbBuffer, cbBufferSize);
+    }
+    pub fn InitializeFromExifColorSpace(self: *const IWICColorContext, value: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromExifColorSpace(self, value);
+    }
+    pub fn GetType(self: *const IWICColorContext, pType: ?*WICColorContextType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pType);
+    }
+    pub fn GetProfileBytes(self: *const IWICColorContext, cbBuffer: u32, pbBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetProfileBytes(self, cbBuffer, pbBuffer, pcbActual);
+    }
+    pub fn GetExifColorSpace(self: *const IWICColorContext, pValue: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetExifColorSpace(self, pValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICColorTransform_Value = Guid.initString("b66f034f-d0e2-40ab-b436-6de39e321a94");
+pub const IID_IWICColorTransform = &IID_IWICColorTransform_Value;
+pub const IWICColorTransform = extern union {
+    pub const VTable = extern struct {
+        base: IWICBitmapSource.VTable,
+        Initialize: *const fn(
+            self: *const IWICColorTransform,
+            pIBitmapSource: ?*IWICBitmapSource,
+            pIContextSource: ?*IWICColorContext,
+            pIContextDest: ?*IWICColorContext,
+            pixelFmtDest: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWICColorTransform, pIBitmapSource: ?*IWICBitmapSource, pIContextSource: ?*IWICColorContext, pIContextDest: ?*IWICColorContext, pixelFmtDest: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pIBitmapSource, pIContextSource, pIContextDest, pixelFmtDest);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICComponentFactory_Value = Guid.initString("412d0c3a-9650-44fa-af5b-dd2a06c8e8fb");
+pub const IID_IWICComponentFactory = &IID_IWICComponentFactory_Value;
+pub const IWICComponentFactory = extern union {
+    pub const VTable = extern struct {
+        base: IWICImagingFactory.VTable,
+        CreateMetadataReader: *const fn(
+            self: *const IWICComponentFactory,
+            guidMetadataFormat: ?*const Guid,
+            pguidVendor: ?*const Guid,
+            dwOptions: u32,
+            pIStream: ?*IStream,
+            ppIReader: ?*?*IWICMetadataReader,
+        ) callconv(.winapi) HRESULT,
+        CreateMetadataReaderFromContainer: *const fn(
+            self: *const IWICComponentFactory,
+            guidContainerFormat: ?*const Guid,
+            pguidVendor: ?*const Guid,
+            dwOptions: u32,
+            pIStream: ?*IStream,
+            ppIReader: ?*?*IWICMetadataReader,
+        ) callconv(.winapi) HRESULT,
+        CreateMetadataWriter: *const fn(
+            self: *const IWICComponentFactory,
+            guidMetadataFormat: ?*const Guid,
+            pguidVendor: ?*const Guid,
+            dwMetadataOptions: u32,
+            ppIWriter: ?*?*IWICMetadataWriter,
+        ) callconv(.winapi) HRESULT,
+        CreateMetadataWriterFromReader: *const fn(
+            self: *const IWICComponentFactory,
+            pIReader: ?*IWICMetadataReader,
+            pguidVendor: ?*const Guid,
+            ppIWriter: ?*?*IWICMetadataWriter,
+        ) callconv(.winapi) HRESULT,
+        CreateQueryReaderFromBlockReader: *const fn(
+            self: *const IWICComponentFactory,
+            pIBlockReader: ?*IWICMetadataBlockReader,
+            ppIQueryReader: ?*?*IWICMetadataQueryReader,
+        ) callconv(.winapi) HRESULT,
+        CreateQueryWriterFromBlockWriter: *const fn(
+            self: *const IWICComponentFactory,
+            pIBlockWriter: ?*IWICMetadataBlockWriter,
+            ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
+        ) callconv(.winapi) HRESULT,
+        CreateEncoderPropertyBag: *const fn(
+            self: *const IWICComponentFactory,
+            ppropOptions: [*]PROPBAG2,
+            cCount: u32,
+            ppIPropertyBag: ?*?*IPropertyBag2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICImagingFactory: IWICImagingFactory,
+    IUnknown: IUnknown,
+    pub fn CreateMetadataReader(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateMetadataReader(self, guidMetadataFormat, pguidVendor, dwOptions, pIStream, ppIReader);
+    }
+    pub fn CreateMetadataReaderFromContainer(self: *const IWICComponentFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateMetadataReaderFromContainer(self, guidContainerFormat, pguidVendor, dwOptions, pIStream, ppIReader);
+    }
+    pub fn CreateMetadataWriter(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwMetadataOptions: u32, ppIWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateMetadataWriter(self, guidMetadataFormat, pguidVendor, dwMetadataOptions, ppIWriter);
+    }
+    pub fn CreateMetadataWriterFromReader(self: *const IWICComponentFactory, pIReader: ?*IWICMetadataReader, pguidVendor: ?*const Guid, ppIWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateMetadataWriterFromReader(self, pIReader, pguidVendor, ppIWriter);
+    }
+    pub fn CreateQueryReaderFromBlockReader(self: *const IWICComponentFactory, pIBlockReader: ?*IWICMetadataBlockReader, ppIQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateQueryReaderFromBlockReader(self, pIBlockReader, ppIQueryReader);
+    }
+    pub fn CreateQueryWriterFromBlockWriter(self: *const IWICComponentFactory, pIBlockWriter: ?*IWICMetadataBlockWriter, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateQueryWriterFromBlockWriter(self, pIBlockWriter, ppIQueryWriter);
+    }
+    pub fn CreateEncoderPropertyBag(self: *const IWICComponentFactory, ppropOptions: [*]PROPBAG2, cCount: u32, ppIPropertyBag: ?*?*IPropertyBag2) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncoderPropertyBag(self, ppropOptions, cCount, ppIPropertyBag);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICComponentInfo_Value = Guid.initString("23bc3f0a-698b-4357-886b-f24d50671334");
+pub const IID_IWICComponentInfo = &IID_IWICComponentInfo_Value;
+pub const IWICComponentInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetComponentType: *const fn(
+            self: *const IWICComponentInfo,
+            pType: ?*WICComponentType,
+        ) callconv(.winapi) HRESULT,
+        GetCLSID: *const fn(
+            self: *const IWICComponentInfo,
+            pclsid: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetSigningStatus: *const fn(
+            self: *const IWICComponentInfo,
+            pStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetAuthor: *const fn(
+            self: *const IWICComponentInfo,
+            cchAuthor: u32,
+            wzAuthor: [*:0]u16,
+            pcchActual: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetVendorGUID: *const fn(
+            self: *const IWICComponentInfo,
+            pguidVendor: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetVersion: *const fn(
+            self: *const IWICComponentInfo,
+            cchVersion: u32,
+            wzVersion: [*:0]u16,
+            pcchActual: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSpecVersion: *const fn(
+            self: *const IWICComponentInfo,
+            cchSpecVersion: u32,
+            wzSpecVersion: [*:0]u16,
+            pcchActual: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetFriendlyName: *const fn(
+            self: *const IWICComponentInfo,
+            cchFriendlyName: u32,
+            wzFriendlyName: [*:0]u16,
+            pcchActual: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetComponentType(self: *const IWICComponentInfo, pType: ?*WICComponentType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetComponentType(self, pType);
+    }
+    pub fn GetCLSID(self: *const IWICComponentInfo, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCLSID(self, pclsid);
+    }
+    pub fn GetSigningStatus(self: *const IWICComponentInfo, pStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSigningStatus(self, pStatus);
+    }
+    pub fn GetAuthor(self: *const IWICComponentInfo, cchAuthor: u32, wzAuthor: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAuthor(self, cchAuthor, wzAuthor, pcchActual);
+    }
+    pub fn GetVendorGUID(self: *const IWICComponentInfo, pguidVendor: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVendorGUID(self, pguidVendor);
+    }
+    pub fn GetVersion(self: *const IWICComponentInfo, cchVersion: u32, wzVersion: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVersion(self, cchVersion, wzVersion, pcchActual);
+    }
+    pub fn GetSpecVersion(self: *const IWICComponentInfo, cchSpecVersion: u32, wzSpecVersion: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSpecVersion(self, cchSpecVersion, wzSpecVersion, pcchActual);
+    }
+    pub fn GetFriendlyName(self: *const IWICComponentInfo, cchFriendlyName: u32, wzFriendlyName: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFriendlyName(self, cchFriendlyName, wzFriendlyName, pcchActual);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IWICDdsDecoder_Value = Guid.initString("409cd537-8532-40cb-9774-e2feb2df4e9c");
+pub const IID_IWICDdsDecoder = &IID_IWICDdsDecoder_Value;
+pub const IWICDdsDecoder = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetParameters: *const fn(
+            self: *const IWICDdsDecoder,
+            pParameters: ?*WICDdsParameters,
+        ) callconv(.winapi) HRESULT,
+        GetFrame: *const fn(
+            self: *const IWICDdsDecoder,
+            arrayIndex: u32,
+            mipLevel: u32,
+            sliceIndex: u32,
+            ppIBitmapFrame: ?*?*IWICBitmapFrameDecode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetParameters(self: *const IWICDdsDecoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParameters(self, pParameters);
+    }
+    pub fn GetFrame(self: *const IWICDdsDecoder, arrayIndex: u32, mipLevel: u32, sliceIndex: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFrame(self, arrayIndex, mipLevel, sliceIndex, ppIBitmapFrame);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IWICDdsEncoder_Value = Guid.initString("5cacdb4c-407e-41b3-b936-d0f010cd6732");
+pub const IID_IWICDdsEncoder = &IID_IWICDdsEncoder_Value;
+pub const IWICDdsEncoder = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetParameters: *const fn(
+            self: *const IWICDdsEncoder,
+            pParameters: ?*WICDdsParameters,
+        ) callconv(.winapi) HRESULT,
+        GetParameters: *const fn(
+            self: *const IWICDdsEncoder,
+            pParameters: ?*WICDdsParameters,
+        ) callconv(.winapi) HRESULT,
+        CreateNewFrame: *const fn(
+            self: *const IWICDdsEncoder,
+            ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
+            pArrayIndex: ?*u32,
+            pMipLevel: ?*u32,
+            pSliceIndex: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.SetParameters(self, pParameters);
+    }
+    pub fn GetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParameters(self, pParameters);
+    }
+    pub fn CreateNewFrame(self: *const IWICDdsEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, pArrayIndex: ?*u32, pMipLevel: ?*u32, pSliceIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateNewFrame(self, ppIFrameEncode, pArrayIndex, pMipLevel, pSliceIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IWICDdsFrameDecode_Value = Guid.initString("3d4c0c61-18a4-41e4-bd80-481a4fc9f464");
+pub const IID_IWICDdsFrameDecode = &IID_IWICDdsFrameDecode_Value;
+pub const IWICDdsFrameDecode = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSizeInBlocks: *const fn(
+            self: *const IWICDdsFrameDecode,
+            pWidthInBlocks: ?*u32,
+            pHeightInBlocks: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetFormatInfo: *const fn(
+            self: *const IWICDdsFrameDecode,
+            pFormatInfo: ?*WICDdsFormatInfo,
+        ) callconv(.winapi) HRESULT,
+        CopyBlocks: *const fn(
+            self: *const IWICDdsFrameDecode,
+            prcBoundsInBlocks: ?*const WICRect,
+            cbStride: u32,
+            cbBufferSize: u32,
+            pbBuffer: [*:0]u8,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetSizeInBlocks(self: *const IWICDdsFrameDecode, pWidthInBlocks: ?*u32, pHeightInBlocks: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSizeInBlocks(self, pWidthInBlocks, pHeightInBlocks);
+    }
+    pub fn GetFormatInfo(self: *const IWICDdsFrameDecode, pFormatInfo: ?*WICDdsFormatInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFormatInfo(self, pFormatInfo);
+    }
+    pub fn CopyBlocks(self: *const IWICDdsFrameDecode, prcBoundsInBlocks: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyBlocks(self, prcBoundsInBlocks, cbStride, cbBufferSize, pbBuffer);
     }
 };
 
@@ -3030,148 +1615,378 @@ pub const IWICDevelopRaw = extern union {
     }
 };
 
-pub const WICDdsDimension = enum(i32) {
-    dsTexture1D = 0,
-    dsTexture2D = 1,
-    dsTexture3D = 2,
-    dsTextureCube = 3,
-    DSTEXTURE_FORCE_DWORD = 2147483647,
-};
-pub const WICDdsTexture1D = WICDdsDimension.dsTexture1D;
-pub const WICDdsTexture2D = WICDdsDimension.dsTexture2D;
-pub const WICDdsTexture3D = WICDdsDimension.dsTexture3D;
-pub const WICDdsTextureCube = WICDdsDimension.dsTextureCube;
-pub const WICDDSTEXTURE_FORCE_DWORD = WICDdsDimension.DSTEXTURE_FORCE_DWORD;
-
-pub const WICDdsAlphaMode = enum(i32) {
-    dsAlphaModeUnknown = 0,
-    dsAlphaModeStraight = 1,
-    dsAlphaModePremultiplied = 2,
-    dsAlphaModeOpaque = 3,
-    dsAlphaModeCustom = 4,
-    DSALPHAMODE_FORCE_DWORD = 2147483647,
-};
-pub const WICDdsAlphaModeUnknown = WICDdsAlphaMode.dsAlphaModeUnknown;
-pub const WICDdsAlphaModeStraight = WICDdsAlphaMode.dsAlphaModeStraight;
-pub const WICDdsAlphaModePremultiplied = WICDdsAlphaMode.dsAlphaModePremultiplied;
-pub const WICDdsAlphaModeOpaque = WICDdsAlphaMode.dsAlphaModeOpaque;
-pub const WICDdsAlphaModeCustom = WICDdsAlphaMode.dsAlphaModeCustom;
-pub const WICDDSALPHAMODE_FORCE_DWORD = WICDdsAlphaMode.DSALPHAMODE_FORCE_DWORD;
-
-pub const WICDdsParameters = extern struct {
-    Width: u32,
-    Height: u32,
-    Depth: u32,
-    MipLevels: u32,
-    ArraySize: u32,
-    DxgiFormat: DXGI_FORMAT,
-    Dimension: WICDdsDimension,
-    AlphaMode: WICDdsAlphaMode,
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IWICDdsDecoder_Value = Guid.initString("409cd537-8532-40cb-9774-e2feb2df4e9c");
-pub const IID_IWICDdsDecoder = &IID_IWICDdsDecoder_Value;
-pub const IWICDdsDecoder = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICDevelopRawNotificationCallback_Value = Guid.initString("95c75a6e-3e8c-4ec2-85a8-aebcc551e59b");
+pub const IID_IWICDevelopRawNotificationCallback = &IID_IWICDevelopRawNotificationCallback_Value;
+pub const IWICDevelopRawNotificationCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetParameters: *const fn(
-            self: *const IWICDdsDecoder,
-            pParameters: ?*WICDdsParameters,
-        ) callconv(.winapi) HRESULT,
-        GetFrame: *const fn(
-            self: *const IWICDdsDecoder,
-            arrayIndex: u32,
-            mipLevel: u32,
-            sliceIndex: u32,
-            ppIBitmapFrame: ?*?*IWICBitmapFrameDecode,
+        Notify: *const fn(
+            self: *const IWICDevelopRawNotificationCallback,
+            NotificationMask: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetParameters(self: *const IWICDdsDecoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParameters(self, pParameters);
-    }
-    pub fn GetFrame(self: *const IWICDdsDecoder, arrayIndex: u32, mipLevel: u32, sliceIndex: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFrame(self, arrayIndex, mipLevel, sliceIndex, ppIBitmapFrame);
+    pub fn Notify(self: *const IWICDevelopRawNotificationCallback, NotificationMask: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, NotificationMask);
     }
 };
 
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IWICDdsEncoder_Value = Guid.initString("5cacdb4c-407e-41b3-b936-d0f010cd6732");
-pub const IID_IWICDdsEncoder = &IID_IWICDdsEncoder_Value;
-pub const IWICDdsEncoder = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICEnumMetadataItem_Value = Guid.initString("dc2bb46d-3f07-481e-8625-220c4aedbb33");
+pub const IID_IWICEnumMetadataItem = &IID_IWICEnumMetadataItem_Value;
+pub const IWICEnumMetadataItem = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetParameters: *const fn(
-            self: *const IWICDdsEncoder,
-            pParameters: ?*WICDdsParameters,
+        Next: *const fn(
+            self: *const IWICEnumMetadataItem,
+            celt: u32,
+            rgeltSchema: [*]PROPVARIANT,
+            rgeltId: [*]PROPVARIANT,
+            rgeltValue: [*]PROPVARIANT,
+            pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetParameters: *const fn(
-            self: *const IWICDdsEncoder,
-            pParameters: ?*WICDdsParameters,
+        Skip: *const fn(
+            self: *const IWICEnumMetadataItem,
+            celt: u32,
         ) callconv(.winapi) HRESULT,
-        CreateNewFrame: *const fn(
-            self: *const IWICDdsEncoder,
-            ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
-            pArrayIndex: ?*u32,
-            pMipLevel: ?*u32,
-            pSliceIndex: ?*u32,
+        Reset: *const fn(
+            self: *const IWICEnumMetadataItem,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IWICEnumMetadataItem,
+            ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.SetParameters(self, pParameters);
+    pub fn Next(self: *const IWICEnumMetadataItem, celt: u32, rgeltSchema: [*]PROPVARIANT, rgeltId: [*]PROPVARIANT, rgeltValue: [*]PROPVARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgeltSchema, rgeltId, rgeltValue, pceltFetched);
     }
-    pub fn GetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParameters(self, pParameters);
+    pub fn Skip(self: *const IWICEnumMetadataItem, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
     }
-    pub fn CreateNewFrame(self: *const IWICDdsEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, pArrayIndex: ?*u32, pMipLevel: ?*u32, pSliceIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateNewFrame(self, ppIFrameEncode, pArrayIndex, pMipLevel, pSliceIndex);
+    pub fn Reset(self: *const IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IWICEnumMetadataItem, ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppIEnumMetadataItem);
     }
 };
 
-pub const WICDdsFormatInfo = extern struct {
-    DxgiFormat: DXGI_FORMAT,
-    BytesPerBlock: u32,
-    BlockWidth: u32,
-    BlockHeight: u32,
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IWICDdsFrameDecode_Value = Guid.initString("3d4c0c61-18a4-41e4-bd80-481a4fc9f464");
-pub const IID_IWICDdsFrameDecode = &IID_IWICDdsFrameDecode_Value;
-pub const IWICDdsFrameDecode = extern union {
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICFastMetadataEncoder_Value = Guid.initString("b84e2c09-78c9-4ac4-8bd3-524ae1663a2f");
+pub const IID_IWICFastMetadataEncoder = &IID_IWICFastMetadataEncoder_Value;
+pub const IWICFastMetadataEncoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSizeInBlocks: *const fn(
-            self: *const IWICDdsFrameDecode,
-            pWidthInBlocks: ?*u32,
-            pHeightInBlocks: ?*u32,
+        Commit: *const fn(
+            self: *const IWICFastMetadataEncoder,
         ) callconv(.winapi) HRESULT,
-        GetFormatInfo: *const fn(
-            self: *const IWICDdsFrameDecode,
-            pFormatInfo: ?*WICDdsFormatInfo,
+        GetMetadataQueryWriter: *const fn(
+            self: *const IWICFastMetadataEncoder,
+            ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(.winapi) HRESULT,
-        CopyBlocks: *const fn(
-            self: *const IWICDdsFrameDecode,
-            prcBoundsInBlocks: ?*const WICRect,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Commit(self: *const IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self);
+    }
+    pub fn GetMetadataQueryWriter(self: *const IWICFastMetadataEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICFormatConverter_Value = Guid.initString("00000301-a8f2-4877-ba0a-fd2b6645fb94");
+pub const IID_IWICFormatConverter = &IID_IWICFormatConverter_Value;
+pub const IWICFormatConverter = extern union {
+    pub const VTable = extern struct {
+        base: IWICBitmapSource.VTable,
+        Initialize: *const fn(
+            self: *const IWICFormatConverter,
+            pISource: ?*IWICBitmapSource,
+            dstFormat: ?*Guid,
+            dither: WICBitmapDitherType,
+            pIPalette: ?*IWICPalette,
+            alphaThresholdPercent: f64,
+            paletteTranslate: WICBitmapPaletteType,
+        ) callconv(.winapi) HRESULT,
+        CanConvert: *const fn(
+            self: *const IWICFormatConverter,
+            srcPixelFormat: ?*Guid,
+            dstPixelFormat: ?*Guid,
+            pfCanConvert: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWICFormatConverter, pISource: ?*IWICBitmapSource, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pISource, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
+    }
+    pub fn CanConvert(self: *const IWICFormatConverter, srcPixelFormat: ?*Guid, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.CanConvert(self, srcPixelFormat, dstPixelFormat, pfCanConvert);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICFormatConverterInfo_Value = Guid.initString("9f34fb65-13f4-4f15-bc57-3726b5e53d9f");
+pub const IID_IWICFormatConverterInfo = &IID_IWICFormatConverterInfo_Value;
+pub const IWICFormatConverterInfo = extern union {
+    pub const VTable = extern struct {
+        base: IWICComponentInfo.VTable,
+        GetPixelFormats: *const fn(
+            self: *const IWICFormatConverterInfo,
+            cFormats: u32,
+            pPixelFormatGUIDs: [*]Guid,
+            pcActual: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        CreateInstance: *const fn(
+            self: *const IWICFormatConverterInfo,
+            ppIConverter: ?*?*IWICFormatConverter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICComponentInfo: IWICComponentInfo,
+    IUnknown: IUnknown,
+    pub fn GetPixelFormats(self: *const IWICFormatConverterInfo, cFormats: u32, pPixelFormatGUIDs: [*]Guid, pcActual: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPixelFormats(self, cFormats, pPixelFormatGUIDs, pcActual);
+    }
+    pub fn CreateInstance(self: *const IWICFormatConverterInfo, ppIConverter: ?*?*IWICFormatConverter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateInstance(self, ppIConverter);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICImagingFactory_Value = Guid.initString("ec5ec8a9-c395-4314-9c77-54d7a935ff70");
+pub const IID_IWICImagingFactory = &IID_IWICImagingFactory_Value;
+pub const IWICImagingFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateDecoderFromFilename: *const fn(
+            self: *const IWICImagingFactory,
+            wzFilename: ?[*:0]const u16,
+            pguidVendor: ?*const Guid,
+            dwDesiredAccess: u32,
+            metadataOptions: WICDecodeOptions,
+            ppIDecoder: ?*?*IWICBitmapDecoder,
+        ) callconv(.winapi) HRESULT,
+        CreateDecoderFromStream: *const fn(
+            self: *const IWICImagingFactory,
+            pIStream: ?*IStream,
+            pguidVendor: ?*const Guid,
+            metadataOptions: WICDecodeOptions,
+            ppIDecoder: ?*?*IWICBitmapDecoder,
+        ) callconv(.winapi) HRESULT,
+        CreateDecoderFromFileHandle: *const fn(
+            self: *const IWICImagingFactory,
+            hFile: usize,
+            pguidVendor: ?*const Guid,
+            metadataOptions: WICDecodeOptions,
+            ppIDecoder: ?*?*IWICBitmapDecoder,
+        ) callconv(.winapi) HRESULT,
+        CreateComponentInfo: *const fn(
+            self: *const IWICImagingFactory,
+            clsidComponent: ?*const Guid,
+            ppIInfo: ?*?*IWICComponentInfo,
+        ) callconv(.winapi) HRESULT,
+        CreateDecoder: *const fn(
+            self: *const IWICImagingFactory,
+            guidContainerFormat: ?*const Guid,
+            pguidVendor: ?*const Guid,
+            ppIDecoder: ?*?*IWICBitmapDecoder,
+        ) callconv(.winapi) HRESULT,
+        CreateEncoder: *const fn(
+            self: *const IWICImagingFactory,
+            guidContainerFormat: ?*const Guid,
+            pguidVendor: ?*const Guid,
+            ppIEncoder: ?*?*IWICBitmapEncoder,
+        ) callconv(.winapi) HRESULT,
+        CreatePalette: *const fn(
+            self: *const IWICImagingFactory,
+            ppIPalette: ?*?*IWICPalette,
+        ) callconv(.winapi) HRESULT,
+        CreateFormatConverter: *const fn(
+            self: *const IWICImagingFactory,
+            ppIFormatConverter: ?*?*IWICFormatConverter,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapScaler: *const fn(
+            self: *const IWICImagingFactory,
+            ppIBitmapScaler: ?*?*IWICBitmapScaler,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapClipper: *const fn(
+            self: *const IWICImagingFactory,
+            ppIBitmapClipper: ?*?*IWICBitmapClipper,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapFlipRotator: *const fn(
+            self: *const IWICImagingFactory,
+            ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator,
+        ) callconv(.winapi) HRESULT,
+        CreateStream: *const fn(
+            self: *const IWICImagingFactory,
+            ppIWICStream: ?*?*IWICStream,
+        ) callconv(.winapi) HRESULT,
+        CreateColorContext: *const fn(
+            self: *const IWICImagingFactory,
+            ppIWICColorContext: ?*?*IWICColorContext,
+        ) callconv(.winapi) HRESULT,
+        CreateColorTransformer: *const fn(
+            self: *const IWICImagingFactory,
+            ppIWICColorTransform: ?*?*IWICColorTransform,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmap: *const fn(
+            self: *const IWICImagingFactory,
+            uiWidth: u32,
+            uiHeight: u32,
+            pixelFormat: ?*Guid,
+            option: WICBitmapCreateCacheOption,
+            ppIBitmap: ?*?*IWICBitmap,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapFromSource: *const fn(
+            self: *const IWICImagingFactory,
+            pIBitmapSource: ?*IWICBitmapSource,
+            option: WICBitmapCreateCacheOption,
+            ppIBitmap: ?*?*IWICBitmap,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapFromSourceRect: *const fn(
+            self: *const IWICImagingFactory,
+            pIBitmapSource: ?*IWICBitmapSource,
+            x: u32,
+            y: u32,
+            width: u32,
+            height: u32,
+            ppIBitmap: ?*?*IWICBitmap,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapFromMemory: *const fn(
+            self: *const IWICImagingFactory,
+            uiWidth: u32,
+            uiHeight: u32,
+            pixelFormat: ?*Guid,
             cbStride: u32,
             cbBufferSize: u32,
             pbBuffer: [*:0]u8,
+            ppIBitmap: ?*?*IWICBitmap,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapFromHBITMAP: *const fn(
+            self: *const IWICImagingFactory,
+            hBitmap: ?HBITMAP,
+            hPalette: ?HPALETTE,
+            options: WICBitmapAlphaChannelOption,
+            ppIBitmap: ?*?*IWICBitmap,
+        ) callconv(.winapi) HRESULT,
+        CreateBitmapFromHICON: *const fn(
+            self: *const IWICImagingFactory,
+            hIcon: ?HICON,
+            ppIBitmap: ?*?*IWICBitmap,
+        ) callconv(.winapi) HRESULT,
+        CreateComponentEnumerator: *const fn(
+            self: *const IWICImagingFactory,
+            componentTypes: u32,
+            options: u32,
+            ppIEnumUnknown: ?*?*IEnumUnknown,
+        ) callconv(.winapi) HRESULT,
+        CreateFastMetadataEncoderFromDecoder: *const fn(
+            self: *const IWICImagingFactory,
+            pIDecoder: ?*IWICBitmapDecoder,
+            ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
+        ) callconv(.winapi) HRESULT,
+        CreateFastMetadataEncoderFromFrameDecode: *const fn(
+            self: *const IWICImagingFactory,
+            pIFrameDecoder: ?*IWICBitmapFrameDecode,
+            ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
+        ) callconv(.winapi) HRESULT,
+        CreateQueryWriter: *const fn(
+            self: *const IWICImagingFactory,
+            guidMetadataFormat: ?*const Guid,
+            pguidVendor: ?*const Guid,
+            ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
+        ) callconv(.winapi) HRESULT,
+        CreateQueryWriterFromReader: *const fn(
+            self: *const IWICImagingFactory,
+            pIQueryReader: ?*IWICMetadataQueryReader,
+            pguidVendor: ?*const Guid,
+            ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSizeInBlocks(self: *const IWICDdsFrameDecode, pWidthInBlocks: ?*u32, pHeightInBlocks: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSizeInBlocks(self, pWidthInBlocks, pHeightInBlocks);
+    pub fn CreateDecoderFromFilename(self: *const IWICImagingFactory, wzFilename: ?[*:0]const u16, pguidVendor: ?*const Guid, dwDesiredAccess: u32, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDecoderFromFilename(self, wzFilename, pguidVendor, dwDesiredAccess, metadataOptions, ppIDecoder);
     }
-    pub fn GetFormatInfo(self: *const IWICDdsFrameDecode, pFormatInfo: ?*WICDdsFormatInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFormatInfo(self, pFormatInfo);
+    pub fn CreateDecoderFromStream(self: *const IWICImagingFactory, pIStream: ?*IStream, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDecoderFromStream(self, pIStream, pguidVendor, metadataOptions, ppIDecoder);
     }
-    pub fn CopyBlocks(self: *const IWICDdsFrameDecode, prcBoundsInBlocks: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyBlocks(self, prcBoundsInBlocks, cbStride, cbBufferSize, pbBuffer);
+    pub fn CreateDecoderFromFileHandle(self: *const IWICImagingFactory, hFile: usize, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDecoderFromFileHandle(self, hFile, pguidVendor, metadataOptions, ppIDecoder);
+    }
+    pub fn CreateComponentInfo(self: *const IWICImagingFactory, clsidComponent: ?*const Guid, ppIInfo: ?*?*IWICComponentInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateComponentInfo(self, clsidComponent, ppIInfo);
+    }
+    pub fn CreateDecoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateDecoder(self, guidContainerFormat, pguidVendor, ppIDecoder);
+    }
+    pub fn CreateEncoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIEncoder: ?*?*IWICBitmapEncoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncoder(self, guidContainerFormat, pguidVendor, ppIEncoder);
+    }
+    pub fn CreatePalette(self: *const IWICImagingFactory, ppIPalette: ?*?*IWICPalette) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePalette(self, ppIPalette);
+    }
+    pub fn CreateFormatConverter(self: *const IWICImagingFactory, ppIFormatConverter: ?*?*IWICFormatConverter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFormatConverter(self, ppIFormatConverter);
+    }
+    pub fn CreateBitmapScaler(self: *const IWICImagingFactory, ppIBitmapScaler: ?*?*IWICBitmapScaler) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapScaler(self, ppIBitmapScaler);
+    }
+    pub fn CreateBitmapClipper(self: *const IWICImagingFactory, ppIBitmapClipper: ?*?*IWICBitmapClipper) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapClipper(self, ppIBitmapClipper);
+    }
+    pub fn CreateBitmapFlipRotator(self: *const IWICImagingFactory, ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapFlipRotator(self, ppIBitmapFlipRotator);
+    }
+    pub fn CreateStream(self: *const IWICImagingFactory, ppIWICStream: ?*?*IWICStream) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateStream(self, ppIWICStream);
+    }
+    pub fn CreateColorContext(self: *const IWICImagingFactory, ppIWICColorContext: ?*?*IWICColorContext) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateColorContext(self, ppIWICColorContext);
+    }
+    pub fn CreateColorTransformer(self: *const IWICImagingFactory, ppIWICColorTransform: ?*?*IWICColorTransform) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateColorTransformer(self, ppIWICColorTransform);
+    }
+    pub fn CreateBitmap(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmap(self, uiWidth, uiHeight, pixelFormat, option, ppIBitmap);
+    }
+    pub fn CreateBitmapFromSource(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapFromSource(self, pIBitmapSource, option, ppIBitmap);
+    }
+    pub fn CreateBitmapFromSourceRect(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, x: u32, y: u32, width: u32, height: u32, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapFromSourceRect(self, pIBitmapSource, x, y, width, height, ppIBitmap);
+    }
+    pub fn CreateBitmapFromMemory(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapFromMemory(self, uiWidth, uiHeight, pixelFormat, cbStride, cbBufferSize, pbBuffer, ppIBitmap);
+    }
+    pub fn CreateBitmapFromHBITMAP(self: *const IWICImagingFactory, hBitmap: ?HBITMAP, hPalette: ?HPALETTE, options: WICBitmapAlphaChannelOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapFromHBITMAP(self, hBitmap, hPalette, options, ppIBitmap);
+    }
+    pub fn CreateBitmapFromHICON(self: *const IWICImagingFactory, hIcon: ?HICON, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBitmapFromHICON(self, hIcon, ppIBitmap);
+    }
+    pub fn CreateComponentEnumerator(self: *const IWICImagingFactory, componentTypes: u32, options: u32, ppIEnumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateComponentEnumerator(self, componentTypes, options, ppIEnumUnknown);
+    }
+    pub fn CreateFastMetadataEncoderFromDecoder(self: *const IWICImagingFactory, pIDecoder: ?*IWICBitmapDecoder, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFastMetadataEncoderFromDecoder(self, pIDecoder, ppIFastEncoder);
+    }
+    pub fn CreateFastMetadataEncoderFromFrameDecode(self: *const IWICImagingFactory, pIFrameDecoder: ?*IWICBitmapFrameDecode, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFastMetadataEncoderFromFrameDecode(self, pIFrameDecoder, ppIFastEncoder);
+    }
+    pub fn CreateQueryWriter(self: *const IWICImagingFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateQueryWriter(self, guidMetadataFormat, pguidVendor, ppIQueryWriter);
+    }
+    pub fn CreateQueryWriterFromReader(self: *const IWICImagingFactory, pIQueryReader: ?*IWICMetadataQueryReader, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateQueryWriterFromReader(self, pIQueryReader, pguidVendor, ppIQueryWriter);
     }
 };
 
@@ -3316,34 +2131,6 @@ pub const IWICJpegFrameEncode = extern union {
     }
 };
 
-pub const WICMetadataCreationOptions = enum(i32) {
-    Default = 0,
-    FailUnknown = 65536,
-    Mask = -65536,
-    pub const AllowUnknown = .Default;
-};
-pub const WICMetadataCreationDefault = WICMetadataCreationOptions.Default;
-pub const WICMetadataCreationAllowUnknown = WICMetadataCreationOptions.Default;
-pub const WICMetadataCreationFailUnknown = WICMetadataCreationOptions.FailUnknown;
-pub const WICMetadataCreationMask = WICMetadataCreationOptions.Mask;
-
-pub const WICPersistOptions = enum(i32) {
-    Default = 0,
-    BigEndian = 1,
-    StrictFormat = 2,
-    NoCacheStream = 4,
-    PreferUTF8 = 8,
-    Mask = 65535,
-    pub const LittleEndian = .Default;
-};
-pub const WICPersistOptionDefault = WICPersistOptions.Default;
-pub const WICPersistOptionLittleEndian = WICPersistOptions.Default;
-pub const WICPersistOptionBigEndian = WICPersistOptions.BigEndian;
-pub const WICPersistOptionStrictFormat = WICPersistOptions.StrictFormat;
-pub const WICPersistOptionNoCacheStream = WICPersistOptions.NoCacheStream;
-pub const WICPersistOptionPreferUTF8 = WICPersistOptions.PreferUTF8;
-pub const WICPersistOptionMask = WICPersistOptions.Mask;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataBlockReader_Value = Guid.initString("feaa2a8d-b3f3-43e4-b25c-d1de990a1ae1");
 pub const IID_IWICMetadataBlockReader = &IID_IWICMetadataBlockReader_Value;
@@ -3434,179 +2221,6 @@ pub const IWICMetadataBlockWriter = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICMetadataReader_Value = Guid.initString("9204fe99-d8fc-4fd5-a001-9536b067a899");
-pub const IID_IWICMetadataReader = &IID_IWICMetadataReader_Value;
-pub const IWICMetadataReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetMetadataFormat: *const fn(
-            self: *const IWICMetadataReader,
-            pguidMetadataFormat: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        GetMetadataHandlerInfo: *const fn(
-            self: *const IWICMetadataReader,
-            ppIHandler: ?*?*IWICMetadataHandlerInfo,
-        ) callconv(.winapi) HRESULT,
-        GetCount: *const fn(
-            self: *const IWICMetadataReader,
-            pcCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetValueByIndex: *const fn(
-            self: *const IWICMetadataReader,
-            nIndex: u32,
-            pvarSchema: ?*PROPVARIANT,
-            pvarId: ?*PROPVARIANT,
-            pvarValue: ?*PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetValue: *const fn(
-            self: *const IWICMetadataReader,
-            pvarSchema: ?*const PROPVARIANT,
-            pvarId: ?*const PROPVARIANT,
-            pvarValue: ?*PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        GetEnumerator: *const fn(
-            self: *const IWICMetadataReader,
-            ppIEnumMetadata: ?*?*IWICEnumMetadataItem,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetMetadataFormat(self: *const IWICMetadataReader, pguidMetadataFormat: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataFormat(self, pguidMetadataFormat);
-    }
-    pub fn GetMetadataHandlerInfo(self: *const IWICMetadataReader, ppIHandler: ?*?*IWICMetadataHandlerInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMetadataHandlerInfo(self, ppIHandler);
-    }
-    pub fn GetCount(self: *const IWICMetadataReader, pcCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, pcCount);
-    }
-    pub fn GetValueByIndex(self: *const IWICMetadataReader, nIndex: u32, pvarSchema: ?*PROPVARIANT, pvarId: ?*PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValueByIndex(self, nIndex, pvarSchema, pvarId, pvarValue);
-    }
-    pub fn GetValue(self: *const IWICMetadataReader, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, pvarSchema, pvarId, pvarValue);
-    }
-    pub fn GetEnumerator(self: *const IWICMetadataReader, ppIEnumMetadata: ?*?*IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
-        return self.vtable.GetEnumerator(self, ppIEnumMetadata);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICMetadataWriter_Value = Guid.initString("f7836e16-3be0-470b-86bb-160d0aecd7de");
-pub const IID_IWICMetadataWriter = &IID_IWICMetadataWriter_Value;
-pub const IWICMetadataWriter = extern union {
-    pub const VTable = extern struct {
-        base: IWICMetadataReader.VTable,
-        SetValue: *const fn(
-            self: *const IWICMetadataWriter,
-            pvarSchema: ?*const PROPVARIANT,
-            pvarId: ?*const PROPVARIANT,
-            pvarValue: ?*const PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        SetValueByIndex: *const fn(
-            self: *const IWICMetadataWriter,
-            nIndex: u32,
-            pvarSchema: ?*const PROPVARIANT,
-            pvarId: ?*const PROPVARIANT,
-            pvarValue: ?*const PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        RemoveValue: *const fn(
-            self: *const IWICMetadataWriter,
-            pvarSchema: ?*const PROPVARIANT,
-            pvarId: ?*const PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        RemoveValueByIndex: *const fn(
-            self: *const IWICMetadataWriter,
-            nIndex: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWICMetadataReader: IWICMetadataReader,
-    IUnknown: IUnknown,
-    pub fn SetValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValue(self, pvarSchema, pvarId, pvarValue);
-    }
-    pub fn SetValueByIndex(self: *const IWICMetadataWriter, nIndex: u32, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SetValueByIndex(self, nIndex, pvarSchema, pvarId, pvarValue);
-    }
-    pub fn RemoveValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveValue(self, pvarSchema, pvarId);
-    }
-    pub fn RemoveValueByIndex(self: *const IWICMetadataWriter, nIndex: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveValueByIndex(self, nIndex);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICStreamProvider_Value = Guid.initString("449494bc-b468-4927-96d7-ba90d31ab505");
-pub const IID_IWICStreamProvider = &IID_IWICStreamProvider_Value;
-pub const IWICStreamProvider = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStream: *const fn(
-            self: *const IWICStreamProvider,
-            ppIStream: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-        GetPersistOptions: *const fn(
-            self: *const IWICStreamProvider,
-            pdwPersistOptions: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPreferredVendorGUID: *const fn(
-            self: *const IWICStreamProvider,
-            pguidPreferredVendor: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        RefreshStream: *const fn(
-            self: *const IWICStreamProvider,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStream(self: *const IWICStreamProvider, ppIStream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStream(self, ppIStream);
-    }
-    pub fn GetPersistOptions(self: *const IWICStreamProvider, pdwPersistOptions: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPersistOptions(self, pdwPersistOptions);
-    }
-    pub fn GetPreferredVendorGUID(self: *const IWICStreamProvider, pguidPreferredVendor: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPreferredVendorGUID(self, pguidPreferredVendor);
-    }
-    pub fn RefreshStream(self: *const IWICStreamProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.RefreshStream(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICPersistStream_Value = Guid.initString("00675040-6908-45f8-86a3-49c7dfd6d9ad");
-pub const IID_IWICPersistStream = &IID_IWICPersistStream_Value;
-pub const IWICPersistStream = extern union {
-    pub const VTable = extern struct {
-        base: IPersistStream.VTable,
-        LoadEx: *const fn(
-            self: *const IWICPersistStream,
-            pIStream: ?*IStream,
-            pguidPreferredVendor: ?*const Guid,
-            dwPersistOptions: u32,
-        ) callconv(.winapi) HRESULT,
-        SaveEx: *const fn(
-            self: *const IWICPersistStream,
-            pIStream: ?*IStream,
-            dwPersistOptions: u32,
-            fClearDirty: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IPersistStream: IPersistStream,
-    IPersist: IPersist,
-    IUnknown: IUnknown,
-    pub fn LoadEx(self: *const IWICPersistStream, pIStream: ?*IStream, pguidPreferredVendor: ?*const Guid, dwPersistOptions: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadEx(self, pIStream, pguidPreferredVendor, dwPersistOptions);
-    }
-    pub fn SaveEx(self: *const IWICPersistStream, pIStream: ?*IStream, dwPersistOptions: u32, fClearDirty: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveEx(self, pIStream, dwPersistOptions, fClearDirty);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataHandlerInfo_Value = Guid.initString("aba958bf-c672-44d1-8d61-ce6df2e682c2");
 pub const IID_IWICMetadataHandlerInfo = &IID_IWICMetadataHandlerInfo_Value;
 pub const IWICMetadataHandlerInfo = extern union {
@@ -3673,12 +2287,131 @@ pub const IWICMetadataHandlerInfo = extern union {
     }
 };
 
-pub const WICMetadataPattern = extern struct {
-    Position: ULARGE_INTEGER,
-    Length: u32,
-    Pattern: ?*u8,
-    Mask: ?*u8,
-    DataOffset: ULARGE_INTEGER,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICMetadataQueryReader_Value = Guid.initString("30989668-e1c9-4597-b395-458eedb808df");
+pub const IID_IWICMetadataQueryReader = &IID_IWICMetadataQueryReader_Value;
+pub const IWICMetadataQueryReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetContainerFormat: *const fn(
+            self: *const IWICMetadataQueryReader,
+            pguidContainerFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetLocation: *const fn(
+            self: *const IWICMetadataQueryReader,
+            cchMaxLength: u32,
+            wzNamespace: [*:0]u16,
+            pcchActualLength: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetMetadataByName: *const fn(
+            self: *const IWICMetadataQueryReader,
+            wzName: ?[*:0]const u16,
+            pvarValue: ?*PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IWICMetadataQueryReader,
+            ppIEnumString: ?*?*IEnumString,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetContainerFormat(self: *const IWICMetadataQueryReader, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContainerFormat(self, pguidContainerFormat);
+    }
+    pub fn GetLocation(self: *const IWICMetadataQueryReader, cchMaxLength: u32, wzNamespace: [*:0]u16, pcchActualLength: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocation(self, cchMaxLength, wzNamespace, pcchActualLength);
+    }
+    pub fn GetMetadataByName(self: *const IWICMetadataQueryReader, wzName: ?[*:0]const u16, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataByName(self, wzName, pvarValue);
+    }
+    pub fn GetEnumerator(self: *const IWICMetadataQueryReader, ppIEnumString: ?*?*IEnumString) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, ppIEnumString);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICMetadataQueryWriter_Value = Guid.initString("a721791a-0def-4d06-bd91-2118bf1db10b");
+pub const IID_IWICMetadataQueryWriter = &IID_IWICMetadataQueryWriter_Value;
+pub const IWICMetadataQueryWriter = extern union {
+    pub const VTable = extern struct {
+        base: IWICMetadataQueryReader.VTable,
+        SetMetadataByName: *const fn(
+            self: *const IWICMetadataQueryWriter,
+            wzName: ?[*:0]const u16,
+            pvarValue: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        RemoveMetadataByName: *const fn(
+            self: *const IWICMetadataQueryWriter,
+            wzName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICMetadataQueryReader: IWICMetadataQueryReader,
+    IUnknown: IUnknown,
+    pub fn SetMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMetadataByName(self, wzName, pvarValue);
+    }
+    pub fn RemoveMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveMetadataByName(self, wzName);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICMetadataReader_Value = Guid.initString("9204fe99-d8fc-4fd5-a001-9536b067a899");
+pub const IID_IWICMetadataReader = &IID_IWICMetadataReader_Value;
+pub const IWICMetadataReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetMetadataFormat: *const fn(
+            self: *const IWICMetadataReader,
+            pguidMetadataFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetMetadataHandlerInfo: *const fn(
+            self: *const IWICMetadataReader,
+            ppIHandler: ?*?*IWICMetadataHandlerInfo,
+        ) callconv(.winapi) HRESULT,
+        GetCount: *const fn(
+            self: *const IWICMetadataReader,
+            pcCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetValueByIndex: *const fn(
+            self: *const IWICMetadataReader,
+            nIndex: u32,
+            pvarSchema: ?*PROPVARIANT,
+            pvarId: ?*PROPVARIANT,
+            pvarValue: ?*PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetValue: *const fn(
+            self: *const IWICMetadataReader,
+            pvarSchema: ?*const PROPVARIANT,
+            pvarId: ?*const PROPVARIANT,
+            pvarValue: ?*PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const IWICMetadataReader,
+            ppIEnumMetadata: ?*?*IWICEnumMetadataItem,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetMetadataFormat(self: *const IWICMetadataReader, pguidMetadataFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataFormat(self, pguidMetadataFormat);
+    }
+    pub fn GetMetadataHandlerInfo(self: *const IWICMetadataReader, ppIHandler: ?*?*IWICMetadataHandlerInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMetadataHandlerInfo(self, ppIHandler);
+    }
+    pub fn GetCount(self: *const IWICMetadataReader, pcCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, pcCount);
+    }
+    pub fn GetValueByIndex(self: *const IWICMetadataReader, nIndex: u32, pvarSchema: ?*PROPVARIANT, pvarId: ?*PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValueByIndex(self, nIndex, pvarSchema, pvarId, pvarValue);
+    }
+    pub fn GetValue(self: *const IWICMetadataReader, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, pvarSchema, pvarId, pvarValue);
+    }
+    pub fn GetEnumerator(self: *const IWICMetadataReader, ppIEnumMetadata: ?*?*IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
+        return self.vtable.GetEnumerator(self, ppIEnumMetadata);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3722,11 +2455,50 @@ pub const IWICMetadataReaderInfo = extern union {
     }
 };
 
-pub const WICMetadataHeader = extern struct {
-    Position: ULARGE_INTEGER,
-    Length: u32,
-    Header: ?*u8,
-    DataOffset: ULARGE_INTEGER,
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICMetadataWriter_Value = Guid.initString("f7836e16-3be0-470b-86bb-160d0aecd7de");
+pub const IID_IWICMetadataWriter = &IID_IWICMetadataWriter_Value;
+pub const IWICMetadataWriter = extern union {
+    pub const VTable = extern struct {
+        base: IWICMetadataReader.VTable,
+        SetValue: *const fn(
+            self: *const IWICMetadataWriter,
+            pvarSchema: ?*const PROPVARIANT,
+            pvarId: ?*const PROPVARIANT,
+            pvarValue: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        SetValueByIndex: *const fn(
+            self: *const IWICMetadataWriter,
+            nIndex: u32,
+            pvarSchema: ?*const PROPVARIANT,
+            pvarId: ?*const PROPVARIANT,
+            pvarValue: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        RemoveValue: *const fn(
+            self: *const IWICMetadataWriter,
+            pvarSchema: ?*const PROPVARIANT,
+            pvarId: ?*const PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        RemoveValueByIndex: *const fn(
+            self: *const IWICMetadataWriter,
+            nIndex: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICMetadataReader: IWICMetadataReader,
+    IUnknown: IUnknown,
+    pub fn SetValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValue(self, pvarSchema, pvarId, pvarValue);
+    }
+    pub fn SetValueByIndex(self: *const IWICMetadataWriter, nIndex: u32, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SetValueByIndex(self, nIndex, pvarSchema, pvarId, pvarValue);
+    }
+    pub fn RemoveValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveValue(self, pvarSchema, pvarId);
+    }
+    pub fn RemoveValueByIndex(self: *const IWICMetadataWriter, nIndex: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveValueByIndex(self, nIndex);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3761,82 +2533,1310 @@ pub const IWICMetadataWriterInfo = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IWICComponentFactory_Value = Guid.initString("412d0c3a-9650-44fa-af5b-dd2a06c8e8fb");
-pub const IID_IWICComponentFactory = &IID_IWICComponentFactory_Value;
-pub const IWICComponentFactory = extern union {
+const IID_IWICPalette_Value = Guid.initString("00000040-a8f2-4877-ba0a-fd2b6645fb94");
+pub const IID_IWICPalette = &IID_IWICPalette_Value;
+pub const IWICPalette = extern union {
     pub const VTable = extern struct {
-        base: IWICImagingFactory.VTable,
-        CreateMetadataReader: *const fn(
-            self: *const IWICComponentFactory,
-            guidMetadataFormat: ?*const Guid,
-            pguidVendor: ?*const Guid,
-            dwOptions: u32,
-            pIStream: ?*IStream,
-            ppIReader: ?*?*IWICMetadataReader,
+        base: IUnknown.VTable,
+        InitializePredefined: *const fn(
+            self: *const IWICPalette,
+            ePaletteType: WICBitmapPaletteType,
+            fAddTransparentColor: BOOL,
         ) callconv(.winapi) HRESULT,
-        CreateMetadataReaderFromContainer: *const fn(
-            self: *const IWICComponentFactory,
-            guidContainerFormat: ?*const Guid,
-            pguidVendor: ?*const Guid,
-            dwOptions: u32,
-            pIStream: ?*IStream,
-            ppIReader: ?*?*IWICMetadataReader,
-        ) callconv(.winapi) HRESULT,
-        CreateMetadataWriter: *const fn(
-            self: *const IWICComponentFactory,
-            guidMetadataFormat: ?*const Guid,
-            pguidVendor: ?*const Guid,
-            dwMetadataOptions: u32,
-            ppIWriter: ?*?*IWICMetadataWriter,
-        ) callconv(.winapi) HRESULT,
-        CreateMetadataWriterFromReader: *const fn(
-            self: *const IWICComponentFactory,
-            pIReader: ?*IWICMetadataReader,
-            pguidVendor: ?*const Guid,
-            ppIWriter: ?*?*IWICMetadataWriter,
-        ) callconv(.winapi) HRESULT,
-        CreateQueryReaderFromBlockReader: *const fn(
-            self: *const IWICComponentFactory,
-            pIBlockReader: ?*IWICMetadataBlockReader,
-            ppIQueryReader: ?*?*IWICMetadataQueryReader,
-        ) callconv(.winapi) HRESULT,
-        CreateQueryWriterFromBlockWriter: *const fn(
-            self: *const IWICComponentFactory,
-            pIBlockWriter: ?*IWICMetadataBlockWriter,
-            ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
-        ) callconv(.winapi) HRESULT,
-        CreateEncoderPropertyBag: *const fn(
-            self: *const IWICComponentFactory,
-            ppropOptions: [*]PROPBAG2,
+        InitializeCustom: *const fn(
+            self: *const IWICPalette,
+            pColors: [*]u32,
             cCount: u32,
-            ppIPropertyBag: ?*?*IPropertyBag2,
+        ) callconv(.winapi) HRESULT,
+        InitializeFromBitmap: *const fn(
+            self: *const IWICPalette,
+            pISurface: ?*IWICBitmapSource,
+            cCount: u32,
+            fAddTransparentColor: BOOL,
+        ) callconv(.winapi) HRESULT,
+        InitializeFromPalette: *const fn(
+            self: *const IWICPalette,
+            pIPalette: ?*IWICPalette,
+        ) callconv(.winapi) HRESULT,
+        GetType: *const fn(
+            self: *const IWICPalette,
+            pePaletteType: ?*WICBitmapPaletteType,
+        ) callconv(.winapi) HRESULT,
+        GetColorCount: *const fn(
+            self: *const IWICPalette,
+            pcCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetColors: *const fn(
+            self: *const IWICPalette,
+            cCount: u32,
+            pColors: [*]u32,
+            pcActualColors: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        IsBlackWhite: *const fn(
+            self: *const IWICPalette,
+            pfIsBlackWhite: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        IsGrayscale: *const fn(
+            self: *const IWICPalette,
+            pfIsGrayscale: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        HasAlpha: *const fn(
+            self: *const IWICPalette,
+            pfHasAlpha: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IWICImagingFactory: IWICImagingFactory,
     IUnknown: IUnknown,
-    pub fn CreateMetadataReader(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateMetadataReader(self, guidMetadataFormat, pguidVendor, dwOptions, pIStream, ppIReader);
+    pub fn InitializePredefined(self: *const IWICPalette, ePaletteType: WICBitmapPaletteType, fAddTransparentColor: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializePredefined(self, ePaletteType, fAddTransparentColor);
     }
-    pub fn CreateMetadataReaderFromContainer(self: *const IWICComponentFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateMetadataReaderFromContainer(self, guidContainerFormat, pguidVendor, dwOptions, pIStream, ppIReader);
+    pub fn InitializeCustom(self: *const IWICPalette, pColors: [*]u32, cCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeCustom(self, pColors, cCount);
     }
-    pub fn CreateMetadataWriter(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwMetadataOptions: u32, ppIWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateMetadataWriter(self, guidMetadataFormat, pguidVendor, dwMetadataOptions, ppIWriter);
+    pub fn InitializeFromBitmap(self: *const IWICPalette, pISurface: ?*IWICBitmapSource, cCount: u32, fAddTransparentColor: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromBitmap(self, pISurface, cCount, fAddTransparentColor);
     }
-    pub fn CreateMetadataWriterFromReader(self: *const IWICComponentFactory, pIReader: ?*IWICMetadataReader, pguidVendor: ?*const Guid, ppIWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateMetadataWriterFromReader(self, pIReader, pguidVendor, ppIWriter);
+    pub fn InitializeFromPalette(self: *const IWICPalette, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromPalette(self, pIPalette);
     }
-    pub fn CreateQueryReaderFromBlockReader(self: *const IWICComponentFactory, pIBlockReader: ?*IWICMetadataBlockReader, ppIQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateQueryReaderFromBlockReader(self, pIBlockReader, ppIQueryReader);
+    pub fn GetType(self: *const IWICPalette, pePaletteType: ?*WICBitmapPaletteType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetType(self, pePaletteType);
     }
-    pub fn CreateQueryWriterFromBlockWriter(self: *const IWICComponentFactory, pIBlockWriter: ?*IWICMetadataBlockWriter, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateQueryWriterFromBlockWriter(self, pIBlockWriter, ppIQueryWriter);
+    pub fn GetColorCount(self: *const IWICPalette, pcCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColorCount(self, pcCount);
     }
-    pub fn CreateEncoderPropertyBag(self: *const IWICComponentFactory, ppropOptions: [*]PROPBAG2, cCount: u32, ppIPropertyBag: ?*?*IPropertyBag2) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncoderPropertyBag(self, ppropOptions, cCount, ppIPropertyBag);
+    pub fn GetColors(self: *const IWICPalette, cCount: u32, pColors: [*]u32, pcActualColors: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColors(self, cCount, pColors, pcActualColors);
+    }
+    pub fn IsBlackWhite(self: *const IWICPalette, pfIsBlackWhite: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsBlackWhite(self, pfIsBlackWhite);
+    }
+    pub fn IsGrayscale(self: *const IWICPalette, pfIsGrayscale: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.IsGrayscale(self, pfIsGrayscale);
+    }
+    pub fn HasAlpha(self: *const IWICPalette, pfHasAlpha: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.HasAlpha(self, pfHasAlpha);
     }
 };
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICPersistStream_Value = Guid.initString("00675040-6908-45f8-86a3-49c7dfd6d9ad");
+pub const IID_IWICPersistStream = &IID_IWICPersistStream_Value;
+pub const IWICPersistStream = extern union {
+    pub const VTable = extern struct {
+        base: IPersistStream.VTable,
+        LoadEx: *const fn(
+            self: *const IWICPersistStream,
+            pIStream: ?*IStream,
+            pguidPreferredVendor: ?*const Guid,
+            dwPersistOptions: u32,
+        ) callconv(.winapi) HRESULT,
+        SaveEx: *const fn(
+            self: *const IWICPersistStream,
+            pIStream: ?*IStream,
+            dwPersistOptions: u32,
+            fClearDirty: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IPersistStream: IPersistStream,
+    IPersist: IPersist,
+    IUnknown: IUnknown,
+    pub fn LoadEx(self: *const IWICPersistStream, pIStream: ?*IStream, pguidPreferredVendor: ?*const Guid, dwPersistOptions: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadEx(self, pIStream, pguidPreferredVendor, dwPersistOptions);
+    }
+    pub fn SaveEx(self: *const IWICPersistStream, pIStream: ?*IStream, dwPersistOptions: u32, fClearDirty: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveEx(self, pIStream, dwPersistOptions, fClearDirty);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICPixelFormatInfo_Value = Guid.initString("e8eda601-3d48-431a-ab44-69059be88bbe");
+pub const IID_IWICPixelFormatInfo = &IID_IWICPixelFormatInfo_Value;
+pub const IWICPixelFormatInfo = extern union {
+    pub const VTable = extern struct {
+        base: IWICComponentInfo.VTable,
+        GetFormatGUID: *const fn(
+            self: *const IWICPixelFormatInfo,
+            pFormat: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        GetColorContext: *const fn(
+            self: *const IWICPixelFormatInfo,
+            ppIColorContext: ?*?*IWICColorContext,
+        ) callconv(.winapi) HRESULT,
+        GetBitsPerPixel: *const fn(
+            self: *const IWICPixelFormatInfo,
+            puiBitsPerPixel: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetChannelCount: *const fn(
+            self: *const IWICPixelFormatInfo,
+            puiChannelCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetChannelMask: *const fn(
+            self: *const IWICPixelFormatInfo,
+            uiChannelIndex: u32,
+            cbMaskBuffer: u32,
+            pbMaskBuffer: [*:0]u8,
+            pcbActual: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICComponentInfo: IWICComponentInfo,
+    IUnknown: IUnknown,
+    pub fn GetFormatGUID(self: *const IWICPixelFormatInfo, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFormatGUID(self, pFormat);
+    }
+    pub fn GetColorContext(self: *const IWICPixelFormatInfo, ppIColorContext: ?*?*IWICColorContext) callconv(.@"inline") HRESULT {
+        return self.vtable.GetColorContext(self, ppIColorContext);
+    }
+    pub fn GetBitsPerPixel(self: *const IWICPixelFormatInfo, puiBitsPerPixel: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBitsPerPixel(self, puiBitsPerPixel);
+    }
+    pub fn GetChannelCount(self: *const IWICPixelFormatInfo, puiChannelCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelCount(self, puiChannelCount);
+    }
+    pub fn GetChannelMask(self: *const IWICPixelFormatInfo, uiChannelIndex: u32, cbMaskBuffer: u32, pbMaskBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetChannelMask(self, uiChannelIndex, cbMaskBuffer, pbMaskBuffer, pcbActual);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWICPixelFormatInfo2_Value = Guid.initString("a9db33a2-af5f-43c7-b679-74f5984b5aa4");
+pub const IID_IWICPixelFormatInfo2 = &IID_IWICPixelFormatInfo2_Value;
+pub const IWICPixelFormatInfo2 = extern union {
+    pub const VTable = extern struct {
+        base: IWICPixelFormatInfo.VTable,
+        SupportsTransparency: *const fn(
+            self: *const IWICPixelFormatInfo2,
+            pfSupportsTransparency: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetNumericRepresentation: *const fn(
+            self: *const IWICPixelFormatInfo2,
+            pNumericRepresentation: ?*WICPixelFormatNumericRepresentation,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICPixelFormatInfo: IWICPixelFormatInfo,
+    IWICComponentInfo: IWICComponentInfo,
+    IUnknown: IUnknown,
+    pub fn SupportsTransparency(self: *const IWICPixelFormatInfo2, pfSupportsTransparency: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SupportsTransparency(self, pfSupportsTransparency);
+    }
+    pub fn GetNumericRepresentation(self: *const IWICPixelFormatInfo2, pNumericRepresentation: ?*WICPixelFormatNumericRepresentation) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNumericRepresentation(self, pNumericRepresentation);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IWICPlanarBitmapFrameEncode_Value = Guid.initString("f928b7b8-2221-40c1-b72e-7e82f1974d1a");
+pub const IID_IWICPlanarBitmapFrameEncode = &IID_IWICPlanarBitmapFrameEncode_Value;
+pub const IWICPlanarBitmapFrameEncode = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        WritePixels: *const fn(
+            self: *const IWICPlanarBitmapFrameEncode,
+            lineCount: u32,
+            pPlanes: [*]WICBitmapPlane,
+            cPlanes: u32,
+        ) callconv(.winapi) HRESULT,
+        WriteSource: *const fn(
+            self: *const IWICPlanarBitmapFrameEncode,
+            ppPlanes: [*]?*IWICBitmapSource,
+            cPlanes: u32,
+            prcSource: ?*WICRect,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn WritePixels(self: *const IWICPlanarBitmapFrameEncode, lineCount: u32, pPlanes: [*]WICBitmapPlane, cPlanes: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WritePixels(self, lineCount, pPlanes, cPlanes);
+    }
+    pub fn WriteSource(self: *const IWICPlanarBitmapFrameEncode, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, prcSource: ?*WICRect) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteSource(self, ppPlanes, cPlanes, prcSource);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IWICPlanarBitmapSourceTransform_Value = Guid.initString("3aff9cce-be95-4303-b927-e7d16ff4a613");
+pub const IID_IWICPlanarBitmapSourceTransform = &IID_IWICPlanarBitmapSourceTransform_Value;
+pub const IWICPlanarBitmapSourceTransform = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        DoesSupportTransform: *const fn(
+            self: *const IWICPlanarBitmapSourceTransform,
+            puiWidth: ?*u32,
+            puiHeight: ?*u32,
+            dstTransform: WICBitmapTransformOptions,
+            dstPlanarOptions: WICPlanarOptions,
+            pguidDstFormats: [*]const Guid,
+            pPlaneDescriptions: [*]WICBitmapPlaneDescription,
+            cPlanes: u32,
+            pfIsSupported: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        CopyPixels: *const fn(
+            self: *const IWICPlanarBitmapSourceTransform,
+            prcSource: ?*const WICRect,
+            uiWidth: u32,
+            uiHeight: u32,
+            dstTransform: WICBitmapTransformOptions,
+            dstPlanarOptions: WICPlanarOptions,
+            pDstPlanes: [*]const WICBitmapPlane,
+            cPlanes: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DoesSupportTransform(self: *const IWICPlanarBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pguidDstFormats: [*]const Guid, pPlaneDescriptions: [*]WICBitmapPlaneDescription, cPlanes: u32, pfIsSupported: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.DoesSupportTransform(self, puiWidth, puiHeight, dstTransform, dstPlanarOptions, pguidDstFormats, pPlaneDescriptions, cPlanes, pfIsSupported);
+    }
+    pub fn CopyPixels(self: *const IWICPlanarBitmapSourceTransform, prcSource: ?*const WICRect, uiWidth: u32, uiHeight: u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pDstPlanes: [*]const WICBitmapPlane, cPlanes: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyPixels(self, prcSource, uiWidth, uiHeight, dstTransform, dstPlanarOptions, pDstPlanes, cPlanes);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IWICPlanarFormatConverter_Value = Guid.initString("bebee9cb-83b0-4dcc-8132-b0aaa55eac96");
+pub const IID_IWICPlanarFormatConverter = &IID_IWICPlanarFormatConverter_Value;
+pub const IWICPlanarFormatConverter = extern union {
+    pub const VTable = extern struct {
+        base: IWICBitmapSource.VTable,
+        Initialize: *const fn(
+            self: *const IWICPlanarFormatConverter,
+            ppPlanes: [*]?*IWICBitmapSource,
+            cPlanes: u32,
+            dstFormat: ?*Guid,
+            dither: WICBitmapDitherType,
+            pIPalette: ?*IWICPalette,
+            alphaThresholdPercent: f64,
+            paletteTranslate: WICBitmapPaletteType,
+        ) callconv(.winapi) HRESULT,
+        CanConvert: *const fn(
+            self: *const IWICPlanarFormatConverter,
+            pSrcPixelFormats: [*]const Guid,
+            cSrcPlanes: u32,
+            dstPixelFormat: ?*Guid,
+            pfCanConvert: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IWICPlanarFormatConverter, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, ppPlanes, cPlanes, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
+    }
+    pub fn CanConvert(self: *const IWICPlanarFormatConverter, pSrcPixelFormats: [*]const Guid, cSrcPlanes: u32, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.CanConvert(self, pSrcPixelFormats, cSrcPlanes, dstPixelFormat, pfCanConvert);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWICProgressCallback_Value = Guid.initString("4776f9cd-9517-45fa-bf24-e89c5ec5c60c");
+pub const IID_IWICProgressCallback = &IID_IWICProgressCallback_Value;
+pub const IWICProgressCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Notify: *const fn(
+            self: *const IWICProgressCallback,
+            uFrameNum: u32,
+            operation: WICProgressOperation,
+            dblProgress: f64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Notify(self: *const IWICProgressCallback, uFrameNum: u32, operation: WICProgressOperation, dblProgress: f64) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, uFrameNum, operation, dblProgress);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IWICProgressiveLevelControl_Value = Guid.initString("daac296f-7aa5-4dbf-8d15-225c5976f891");
+pub const IID_IWICProgressiveLevelControl = &IID_IWICProgressiveLevelControl_Value;
+pub const IWICProgressiveLevelControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLevelCount: *const fn(
+            self: *const IWICProgressiveLevelControl,
+            pcLevels: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentLevel: *const fn(
+            self: *const IWICProgressiveLevelControl,
+            pnLevel: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetCurrentLevel: *const fn(
+            self: *const IWICProgressiveLevelControl,
+            nLevel: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLevelCount(self: *const IWICProgressiveLevelControl, pcLevels: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLevelCount(self, pcLevels);
+    }
+    pub fn GetCurrentLevel(self: *const IWICProgressiveLevelControl, pnLevel: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentLevel(self, pnLevel);
+    }
+    pub fn SetCurrentLevel(self: *const IWICProgressiveLevelControl, nLevel: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCurrentLevel(self, nLevel);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICStream_Value = Guid.initString("135ff860-22b7-4ddf-b0f6-218f4f299a43");
+pub const IID_IWICStream = &IID_IWICStream_Value;
+pub const IWICStream = extern union {
+    pub const VTable = extern struct {
+        base: IStream.VTable,
+        InitializeFromIStream: *const fn(
+            self: *const IWICStream,
+            pIStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        InitializeFromFilename: *const fn(
+            self: *const IWICStream,
+            wzFileName: ?[*:0]const u16,
+            dwDesiredAccess: u32,
+        ) callconv(.winapi) HRESULT,
+        InitializeFromMemory: *const fn(
+            self: *const IWICStream,
+            pbBuffer: [*:0]u8,
+            cbBufferSize: u32,
+        ) callconv(.winapi) HRESULT,
+        InitializeFromIStreamRegion: *const fn(
+            self: *const IWICStream,
+            pIStream: ?*IStream,
+            ulOffset: ULARGE_INTEGER,
+            ulMaxSize: ULARGE_INTEGER,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IStream: IStream,
+    ISequentialStream: ISequentialStream,
+    IUnknown: IUnknown,
+    pub fn InitializeFromIStream(self: *const IWICStream, pIStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromIStream(self, pIStream);
+    }
+    pub fn InitializeFromFilename(self: *const IWICStream, wzFileName: ?[*:0]const u16, dwDesiredAccess: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromFilename(self, wzFileName, dwDesiredAccess);
+    }
+    pub fn InitializeFromMemory(self: *const IWICStream, pbBuffer: [*:0]u8, cbBufferSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromMemory(self, pbBuffer, cbBufferSize);
+    }
+    pub fn InitializeFromIStreamRegion(self: *const IWICStream, pIStream: ?*IStream, ulOffset: ULARGE_INTEGER, ulMaxSize: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
+        return self.vtable.InitializeFromIStreamRegion(self, pIStream, ulOffset, ulMaxSize);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IWICStreamProvider_Value = Guid.initString("449494bc-b468-4927-96d7-ba90d31ab505");
+pub const IID_IWICStreamProvider = &IID_IWICStreamProvider_Value;
+pub const IWICStreamProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStream: *const fn(
+            self: *const IWICStreamProvider,
+            ppIStream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+        GetPersistOptions: *const fn(
+            self: *const IWICStreamProvider,
+            pdwPersistOptions: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPreferredVendorGUID: *const fn(
+            self: *const IWICStreamProvider,
+            pguidPreferredVendor: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        RefreshStream: *const fn(
+            self: *const IWICStreamProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetStream(self: *const IWICStreamProvider, ppIStream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStream(self, ppIStream);
+    }
+    pub fn GetPersistOptions(self: *const IWICStreamProvider, pdwPersistOptions: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPersistOptions(self, pdwPersistOptions);
+    }
+    pub fn GetPreferredVendorGUID(self: *const IWICStreamProvider, pguidPreferredVendor: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPreferredVendorGUID(self, pguidPreferredVendor);
+    }
+    pub fn RefreshStream(self: *const IWICStreamProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.RefreshStream(self);
+    }
+};
+
+pub const PFNProgressNotification = *const fn(
+    pvData: ?*anyopaque,
+    uFrameNum: u32,
+    operation: WICProgressOperation,
+    dblProgress: f64,
+) callconv(.winapi) HRESULT;
+
+pub const WIC8BIMIptcDigestProperties = enum(u32) {
+    PString = 1,
+    IptcDigest = 2,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WIC8BIMIptcDigestPString = WIC8BIMIptcDigestProperties.PString;
+pub const WIC8BIMIptcDigestIptcDigest = WIC8BIMIptcDigestProperties.IptcDigest;
+pub const WIC8BIMIptcDigestProperties_FORCE_DWORD = WIC8BIMIptcDigestProperties.Properties_FORCE_DWORD;
+
+pub const WIC8BIMIptcProperties = enum(u32) {
+    PString = 0,
+    EmbeddedIPTC = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WIC8BIMIptcPString = WIC8BIMIptcProperties.PString;
+pub const WIC8BIMIptcEmbeddedIPTC = WIC8BIMIptcProperties.EmbeddedIPTC;
+pub const WIC8BIMIptcProperties_FORCE_DWORD = WIC8BIMIptcProperties.Properties_FORCE_DWORD;
+
+pub const WIC8BIMResolutionInfoProperties = enum(u32) {
+    PString = 1,
+    HResolution = 2,
+    HResolutionUnit = 3,
+    WidthUnit = 4,
+    VResolution = 5,
+    VResolutionUnit = 6,
+    HeightUnit = 7,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WIC8BIMResolutionInfoPString = WIC8BIMResolutionInfoProperties.PString;
+pub const WIC8BIMResolutionInfoHResolution = WIC8BIMResolutionInfoProperties.HResolution;
+pub const WIC8BIMResolutionInfoHResolutionUnit = WIC8BIMResolutionInfoProperties.HResolutionUnit;
+pub const WIC8BIMResolutionInfoWidthUnit = WIC8BIMResolutionInfoProperties.WidthUnit;
+pub const WIC8BIMResolutionInfoVResolution = WIC8BIMResolutionInfoProperties.VResolution;
+pub const WIC8BIMResolutionInfoVResolutionUnit = WIC8BIMResolutionInfoProperties.VResolutionUnit;
+pub const WIC8BIMResolutionInfoHeightUnit = WIC8BIMResolutionInfoProperties.HeightUnit;
+pub const WIC8BIMResolutionInfoProperties_FORCE_DWORD = WIC8BIMResolutionInfoProperties.Properties_FORCE_DWORD;
+
+pub const WICBitmapAlphaChannelOption = enum(i32) {
+    itmapUseAlpha = 0,
+    itmapUsePremultipliedAlpha = 1,
+    itmapIgnoreAlpha = 2,
+    ITMAPALPHACHANNELOPTIONS_FORCE_DWORD = 2147483647,
+};
+pub const WICBitmapUseAlpha = WICBitmapAlphaChannelOption.itmapUseAlpha;
+pub const WICBitmapUsePremultipliedAlpha = WICBitmapAlphaChannelOption.itmapUsePremultipliedAlpha;
+pub const WICBitmapIgnoreAlpha = WICBitmapAlphaChannelOption.itmapIgnoreAlpha;
+pub const WICBITMAPALPHACHANNELOPTIONS_FORCE_DWORD = WICBitmapAlphaChannelOption.ITMAPALPHACHANNELOPTIONS_FORCE_DWORD;
+
+pub const WICBitmapCreateCacheOption = enum(i32) {
+    itmapNoCache = 0,
+    itmapCacheOnDemand = 1,
+    itmapCacheOnLoad = 2,
+    ITMAPCREATECACHEOPTION_FORCE_DWORD = 2147483647,
+};
+pub const WICBitmapNoCache = WICBitmapCreateCacheOption.itmapNoCache;
+pub const WICBitmapCacheOnDemand = WICBitmapCreateCacheOption.itmapCacheOnDemand;
+pub const WICBitmapCacheOnLoad = WICBitmapCreateCacheOption.itmapCacheOnLoad;
+pub const WICBITMAPCREATECACHEOPTION_FORCE_DWORD = WICBitmapCreateCacheOption.ITMAPCREATECACHEOPTION_FORCE_DWORD;
+
+pub const WICBitmapDecoderCapabilities = enum(i32) {
+    itmapDecoderCapabilitySameEncoder = 1,
+    itmapDecoderCapabilityCanDecodeAllImages = 2,
+    itmapDecoderCapabilityCanDecodeSomeImages = 4,
+    itmapDecoderCapabilityCanEnumerateMetadata = 8,
+    itmapDecoderCapabilityCanDecodeThumbnail = 16,
+    ITMAPDECODERCAPABILITIES_FORCE_DWORD = 2147483647,
+};
+pub const WICBitmapDecoderCapabilitySameEncoder = WICBitmapDecoderCapabilities.itmapDecoderCapabilitySameEncoder;
+pub const WICBitmapDecoderCapabilityCanDecodeAllImages = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanDecodeAllImages;
+pub const WICBitmapDecoderCapabilityCanDecodeSomeImages = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanDecodeSomeImages;
+pub const WICBitmapDecoderCapabilityCanEnumerateMetadata = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanEnumerateMetadata;
+pub const WICBitmapDecoderCapabilityCanDecodeThumbnail = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanDecodeThumbnail;
+pub const WICBITMAPDECODERCAPABILITIES_FORCE_DWORD = WICBitmapDecoderCapabilities.ITMAPDECODERCAPABILITIES_FORCE_DWORD;
+
+pub const WICBitmapDitherType = enum(i32) {
+    itmapDitherTypeNone = 0,
+    itmapDitherTypeOrdered4x4 = 1,
+    itmapDitherTypeOrdered8x8 = 2,
+    itmapDitherTypeOrdered16x16 = 3,
+    itmapDitherTypeSpiral4x4 = 4,
+    itmapDitherTypeSpiral8x8 = 5,
+    itmapDitherTypeDualSpiral4x4 = 6,
+    itmapDitherTypeDualSpiral8x8 = 7,
+    itmapDitherTypeErrorDiffusion = 8,
+    ITMAPDITHERTYPE_FORCE_DWORD = 2147483647,
+    pub const itmapDitherTypeSolid = .itmapDitherTypeNone;
+};
+pub const WICBitmapDitherTypeNone = WICBitmapDitherType.itmapDitherTypeNone;
+pub const WICBitmapDitherTypeSolid = WICBitmapDitherType.itmapDitherTypeNone;
+pub const WICBitmapDitherTypeOrdered4x4 = WICBitmapDitherType.itmapDitherTypeOrdered4x4;
+pub const WICBitmapDitherTypeOrdered8x8 = WICBitmapDitherType.itmapDitherTypeOrdered8x8;
+pub const WICBitmapDitherTypeOrdered16x16 = WICBitmapDitherType.itmapDitherTypeOrdered16x16;
+pub const WICBitmapDitherTypeSpiral4x4 = WICBitmapDitherType.itmapDitherTypeSpiral4x4;
+pub const WICBitmapDitherTypeSpiral8x8 = WICBitmapDitherType.itmapDitherTypeSpiral8x8;
+pub const WICBitmapDitherTypeDualSpiral4x4 = WICBitmapDitherType.itmapDitherTypeDualSpiral4x4;
+pub const WICBitmapDitherTypeDualSpiral8x8 = WICBitmapDitherType.itmapDitherTypeDualSpiral8x8;
+pub const WICBitmapDitherTypeErrorDiffusion = WICBitmapDitherType.itmapDitherTypeErrorDiffusion;
+pub const WICBITMAPDITHERTYPE_FORCE_DWORD = WICBitmapDitherType.ITMAPDITHERTYPE_FORCE_DWORD;
+
+pub const WICBitmapEncoderCacheOption = enum(i32) {
+    itmapEncoderCacheInMemory = 0,
+    itmapEncoderCacheTempFile = 1,
+    itmapEncoderNoCache = 2,
+    ITMAPENCODERCACHEOPTION_FORCE_DWORD = 2147483647,
+};
+pub const WICBitmapEncoderCacheInMemory = WICBitmapEncoderCacheOption.itmapEncoderCacheInMemory;
+pub const WICBitmapEncoderCacheTempFile = WICBitmapEncoderCacheOption.itmapEncoderCacheTempFile;
+pub const WICBitmapEncoderNoCache = WICBitmapEncoderCacheOption.itmapEncoderNoCache;
+pub const WICBITMAPENCODERCACHEOPTION_FORCE_DWORD = WICBitmapEncoderCacheOption.ITMAPENCODERCACHEOPTION_FORCE_DWORD;
+
+pub const WICBitmapInterpolationMode = enum(i32) {
+    itmapInterpolationModeNearestNeighbor = 0,
+    itmapInterpolationModeLinear = 1,
+    itmapInterpolationModeCubic = 2,
+    itmapInterpolationModeFant = 3,
+    itmapInterpolationModeHighQualityCubic = 4,
+    ITMAPINTERPOLATIONMODE_FORCE_DWORD = 2147483647,
+};
+pub const WICBitmapInterpolationModeNearestNeighbor = WICBitmapInterpolationMode.itmapInterpolationModeNearestNeighbor;
+pub const WICBitmapInterpolationModeLinear = WICBitmapInterpolationMode.itmapInterpolationModeLinear;
+pub const WICBitmapInterpolationModeCubic = WICBitmapInterpolationMode.itmapInterpolationModeCubic;
+pub const WICBitmapInterpolationModeFant = WICBitmapInterpolationMode.itmapInterpolationModeFant;
+pub const WICBitmapInterpolationModeHighQualityCubic = WICBitmapInterpolationMode.itmapInterpolationModeHighQualityCubic;
+pub const WICBITMAPINTERPOLATIONMODE_FORCE_DWORD = WICBitmapInterpolationMode.ITMAPINTERPOLATIONMODE_FORCE_DWORD;
+
+pub const WICBitmapLockFlags = enum(i32) {
+    itmapLockRead = 1,
+    itmapLockWrite = 2,
+    ITMAPLOCKFLAGS_FORCE_DWORD = 2147483647,
+};
+pub const WICBitmapLockRead = WICBitmapLockFlags.itmapLockRead;
+pub const WICBitmapLockWrite = WICBitmapLockFlags.itmapLockWrite;
+pub const WICBITMAPLOCKFLAGS_FORCE_DWORD = WICBitmapLockFlags.ITMAPLOCKFLAGS_FORCE_DWORD;
+
+pub const WICBitmapPaletteType = enum(i32) {
+    itmapPaletteTypeCustom = 0,
+    itmapPaletteTypeMedianCut = 1,
+    itmapPaletteTypeFixedBW = 2,
+    itmapPaletteTypeFixedHalftone8 = 3,
+    itmapPaletteTypeFixedHalftone27 = 4,
+    itmapPaletteTypeFixedHalftone64 = 5,
+    itmapPaletteTypeFixedHalftone125 = 6,
+    itmapPaletteTypeFixedHalftone216 = 7,
+    itmapPaletteTypeFixedHalftone252 = 8,
+    itmapPaletteTypeFixedHalftone256 = 9,
+    itmapPaletteTypeFixedGray4 = 10,
+    itmapPaletteTypeFixedGray16 = 11,
+    itmapPaletteTypeFixedGray256 = 12,
+    ITMAPPALETTETYPE_FORCE_DWORD = 2147483647,
+    pub const itmapPaletteTypeFixedWebPalette = .itmapPaletteTypeFixedHalftone216;
+};
+pub const WICBitmapPaletteTypeCustom = WICBitmapPaletteType.itmapPaletteTypeCustom;
+pub const WICBitmapPaletteTypeMedianCut = WICBitmapPaletteType.itmapPaletteTypeMedianCut;
+pub const WICBitmapPaletteTypeFixedBW = WICBitmapPaletteType.itmapPaletteTypeFixedBW;
+pub const WICBitmapPaletteTypeFixedHalftone8 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone8;
+pub const WICBitmapPaletteTypeFixedHalftone27 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone27;
+pub const WICBitmapPaletteTypeFixedHalftone64 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone64;
+pub const WICBitmapPaletteTypeFixedHalftone125 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone125;
+pub const WICBitmapPaletteTypeFixedHalftone216 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone216;
+pub const WICBitmapPaletteTypeFixedWebPalette = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone216;
+pub const WICBitmapPaletteTypeFixedHalftone252 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone252;
+pub const WICBitmapPaletteTypeFixedHalftone256 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone256;
+pub const WICBitmapPaletteTypeFixedGray4 = WICBitmapPaletteType.itmapPaletteTypeFixedGray4;
+pub const WICBitmapPaletteTypeFixedGray16 = WICBitmapPaletteType.itmapPaletteTypeFixedGray16;
+pub const WICBitmapPaletteTypeFixedGray256 = WICBitmapPaletteType.itmapPaletteTypeFixedGray256;
+pub const WICBITMAPPALETTETYPE_FORCE_DWORD = WICBitmapPaletteType.ITMAPPALETTETYPE_FORCE_DWORD;
+
+pub const WICBitmapPattern = extern struct {
+    Position: ULARGE_INTEGER,
+    Length: u32,
+    Pattern: ?*u8,
+    Mask: ?*u8,
+    EndOfStream: BOOL,
+};
+
+pub const WICBitmapPlane = extern struct {
+    Format: Guid,
+    pbBuffer: ?*u8,
+    cbStride: u32,
+    cbBufferSize: u32,
+};
+
+pub const WICBitmapPlaneDescription = extern struct {
+    Format: Guid,
+    Width: u32,
+    Height: u32,
+};
+
+pub const WICBitmapTransformOptions = enum(i32) {
+    itmapTransformRotate0 = 0,
+    itmapTransformRotate90 = 1,
+    itmapTransformRotate180 = 2,
+    itmapTransformRotate270 = 3,
+    itmapTransformFlipHorizontal = 8,
+    itmapTransformFlipVertical = 16,
+    ITMAPTRANSFORMOPTIONS_FORCE_DWORD = 2147483647,
+};
+pub const WICBitmapTransformRotate0 = WICBitmapTransformOptions.itmapTransformRotate0;
+pub const WICBitmapTransformRotate90 = WICBitmapTransformOptions.itmapTransformRotate90;
+pub const WICBitmapTransformRotate180 = WICBitmapTransformOptions.itmapTransformRotate180;
+pub const WICBitmapTransformRotate270 = WICBitmapTransformOptions.itmapTransformRotate270;
+pub const WICBitmapTransformFlipHorizontal = WICBitmapTransformOptions.itmapTransformFlipHorizontal;
+pub const WICBitmapTransformFlipVertical = WICBitmapTransformOptions.itmapTransformFlipVertical;
+pub const WICBITMAPTRANSFORMOPTIONS_FORCE_DWORD = WICBitmapTransformOptions.ITMAPTRANSFORMOPTIONS_FORCE_DWORD;
+
+pub const WICColorContextType = enum(i32) {
+    Uninitialized = 0,
+    Profile = 1,
+    ExifColorSpace = 2,
+};
+pub const WICColorContextUninitialized = WICColorContextType.Uninitialized;
+pub const WICColorContextProfile = WICColorContextType.Profile;
+pub const WICColorContextExifColorSpace = WICColorContextType.ExifColorSpace;
+
+pub const WICComponentEnumerateOptions = enum(i32) {
+    omponentEnumerateDefault = 0,
+    omponentEnumerateRefresh = 1,
+    omponentEnumerateDisabled = -2147483648,
+    omponentEnumerateUnsigned = 1073741824,
+    omponentEnumerateBuiltInOnly = 536870912,
+    OMPONENTENUMERATEOPTIONS_FORCE_DWORD = 2147483647,
+};
+pub const WICComponentEnumerateDefault = WICComponentEnumerateOptions.omponentEnumerateDefault;
+pub const WICComponentEnumerateRefresh = WICComponentEnumerateOptions.omponentEnumerateRefresh;
+pub const WICComponentEnumerateDisabled = WICComponentEnumerateOptions.omponentEnumerateDisabled;
+pub const WICComponentEnumerateUnsigned = WICComponentEnumerateOptions.omponentEnumerateUnsigned;
+pub const WICComponentEnumerateBuiltInOnly = WICComponentEnumerateOptions.omponentEnumerateBuiltInOnly;
+pub const WICCOMPONENTENUMERATEOPTIONS_FORCE_DWORD = WICComponentEnumerateOptions.OMPONENTENUMERATEOPTIONS_FORCE_DWORD;
+
+pub const WICComponentSigning = enum(i32) {
+    omponentSigned = 1,
+    omponentUnsigned = 2,
+    omponentSafe = 4,
+    omponentDisabled = -2147483648,
+    OMPONENTSIGNING_FORCE_DWORD = 2147483647,
+};
+pub const WICComponentSigned = WICComponentSigning.omponentSigned;
+pub const WICComponentUnsigned = WICComponentSigning.omponentUnsigned;
+pub const WICComponentSafe = WICComponentSigning.omponentSafe;
+pub const WICComponentDisabled = WICComponentSigning.omponentDisabled;
+pub const WICCOMPONENTSIGNING_FORCE_DWORD = WICComponentSigning.OMPONENTSIGNING_FORCE_DWORD;
+
+pub const WICComponentType = enum(i32) {
+    Decoder = 1,
+    Encoder = 2,
+    PixelFormatConverter = 4,
+    MetadataReader = 8,
+    MetadataWriter = 16,
+    PixelFormat = 32,
+    AllComponents = 63,
+    COMPONENTTYPE_FORCE_DWORD = 2147483647,
+};
+pub const WICDecoder = WICComponentType.Decoder;
+pub const WICEncoder = WICComponentType.Encoder;
+pub const WICPixelFormatConverter = WICComponentType.PixelFormatConverter;
+pub const WICMetadataReader = WICComponentType.MetadataReader;
+pub const WICMetadataWriter = WICComponentType.MetadataWriter;
+pub const WICPixelFormat = WICComponentType.PixelFormat;
+pub const WICAllComponents = WICComponentType.AllComponents;
+pub const WICCOMPONENTTYPE_FORCE_DWORD = WICComponentType.COMPONENTTYPE_FORCE_DWORD;
+
+pub const WICDdsAlphaMode = enum(i32) {
+    dsAlphaModeUnknown = 0,
+    dsAlphaModeStraight = 1,
+    dsAlphaModePremultiplied = 2,
+    dsAlphaModeOpaque = 3,
+    dsAlphaModeCustom = 4,
+    DSALPHAMODE_FORCE_DWORD = 2147483647,
+};
+pub const WICDdsAlphaModeUnknown = WICDdsAlphaMode.dsAlphaModeUnknown;
+pub const WICDdsAlphaModeStraight = WICDdsAlphaMode.dsAlphaModeStraight;
+pub const WICDdsAlphaModePremultiplied = WICDdsAlphaMode.dsAlphaModePremultiplied;
+pub const WICDdsAlphaModeOpaque = WICDdsAlphaMode.dsAlphaModeOpaque;
+pub const WICDdsAlphaModeCustom = WICDdsAlphaMode.dsAlphaModeCustom;
+pub const WICDDSALPHAMODE_FORCE_DWORD = WICDdsAlphaMode.DSALPHAMODE_FORCE_DWORD;
+
+pub const WICDdsDimension = enum(i32) {
+    dsTexture1D = 0,
+    dsTexture2D = 1,
+    dsTexture3D = 2,
+    dsTextureCube = 3,
+    DSTEXTURE_FORCE_DWORD = 2147483647,
+};
+pub const WICDdsTexture1D = WICDdsDimension.dsTexture1D;
+pub const WICDdsTexture2D = WICDdsDimension.dsTexture2D;
+pub const WICDdsTexture3D = WICDdsDimension.dsTexture3D;
+pub const WICDdsTextureCube = WICDdsDimension.dsTextureCube;
+pub const WICDDSTEXTURE_FORCE_DWORD = WICDdsDimension.DSTEXTURE_FORCE_DWORD;
+
+pub const WICDdsFormatInfo = extern struct {
+    DxgiFormat: DXGI_FORMAT,
+    BytesPerBlock: u32,
+    BlockWidth: u32,
+    BlockHeight: u32,
+};
+
+pub const WICDdsParameters = extern struct {
+    Width: u32,
+    Height: u32,
+    Depth: u32,
+    MipLevels: u32,
+    ArraySize: u32,
+    DxgiFormat: DXGI_FORMAT,
+    Dimension: WICDdsDimension,
+    AlphaMode: WICDdsAlphaMode,
+};
+
+pub const WICDecodeOptions = enum(i32) {
+    DecodeMetadataCacheOnDemand = 0,
+    DecodeMetadataCacheOnLoad = 1,
+    METADATACACHEOPTION_FORCE_DWORD = 2147483647,
+};
+pub const WICDecodeMetadataCacheOnDemand = WICDecodeOptions.DecodeMetadataCacheOnDemand;
+pub const WICDecodeMetadataCacheOnLoad = WICDecodeOptions.DecodeMetadataCacheOnLoad;
+pub const WICMETADATACACHEOPTION_FORCE_DWORD = WICDecodeOptions.METADATACACHEOPTION_FORCE_DWORD;
+
+pub const WICGifApplicationExtensionProperties = enum(u32) {
+    Application = 1,
+    Data = 2,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICGifApplicationExtensionApplication = WICGifApplicationExtensionProperties.Application;
+pub const WICGifApplicationExtensionData = WICGifApplicationExtensionProperties.Data;
+pub const WICGifApplicationExtensionProperties_FORCE_DWORD = WICGifApplicationExtensionProperties.Properties_FORCE_DWORD;
+
+pub const WICGifCommentExtensionProperties = enum(u32) {
+    Text = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICGifCommentExtensionText = WICGifCommentExtensionProperties.Text;
+pub const WICGifCommentExtensionProperties_FORCE_DWORD = WICGifCommentExtensionProperties.Properties_FORCE_DWORD;
+
+pub const WICGifGraphicControlExtensionProperties = enum(u32) {
+    Disposal = 1,
+    UserInputFlag = 2,
+    TransparencyFlag = 3,
+    Delay = 4,
+    TransparentColorIndex = 5,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICGifGraphicControlExtensionDisposal = WICGifGraphicControlExtensionProperties.Disposal;
+pub const WICGifGraphicControlExtensionUserInputFlag = WICGifGraphicControlExtensionProperties.UserInputFlag;
+pub const WICGifGraphicControlExtensionTransparencyFlag = WICGifGraphicControlExtensionProperties.TransparencyFlag;
+pub const WICGifGraphicControlExtensionDelay = WICGifGraphicControlExtensionProperties.Delay;
+pub const WICGifGraphicControlExtensionTransparentColorIndex = WICGifGraphicControlExtensionProperties.TransparentColorIndex;
+pub const WICGifGraphicControlExtensionProperties_FORCE_DWORD = WICGifGraphicControlExtensionProperties.Properties_FORCE_DWORD;
+
+pub const WICGifImageDescriptorProperties = enum(u32) {
+    Left = 1,
+    Top = 2,
+    Width = 3,
+    Height = 4,
+    LocalColorTableFlag = 5,
+    InterlaceFlag = 6,
+    SortFlag = 7,
+    LocalColorTableSize = 8,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICGifImageDescriptorLeft = WICGifImageDescriptorProperties.Left;
+pub const WICGifImageDescriptorTop = WICGifImageDescriptorProperties.Top;
+pub const WICGifImageDescriptorWidth = WICGifImageDescriptorProperties.Width;
+pub const WICGifImageDescriptorHeight = WICGifImageDescriptorProperties.Height;
+pub const WICGifImageDescriptorLocalColorTableFlag = WICGifImageDescriptorProperties.LocalColorTableFlag;
+pub const WICGifImageDescriptorInterlaceFlag = WICGifImageDescriptorProperties.InterlaceFlag;
+pub const WICGifImageDescriptorSortFlag = WICGifImageDescriptorProperties.SortFlag;
+pub const WICGifImageDescriptorLocalColorTableSize = WICGifImageDescriptorProperties.LocalColorTableSize;
+pub const WICGifImageDescriptorProperties_FORCE_DWORD = WICGifImageDescriptorProperties.Properties_FORCE_DWORD;
+
+pub const WICGifLogicalScreenDescriptorProperties = enum(u32) {
+    Signature = 1,
+    DescriptorWidth = 2,
+    DescriptorHeight = 3,
+    DescriptorGlobalColorTableFlag = 4,
+    DescriptorColorResolution = 5,
+    DescriptorSortFlag = 6,
+    DescriptorGlobalColorTableSize = 7,
+    DescriptorBackgroundColorIndex = 8,
+    DescriptorPixelAspectRatio = 9,
+    DescriptorProperties_FORCE_DWORD = 2147483647,
+};
+pub const WICGifLogicalScreenSignature = WICGifLogicalScreenDescriptorProperties.Signature;
+pub const WICGifLogicalScreenDescriptorWidth = WICGifLogicalScreenDescriptorProperties.DescriptorWidth;
+pub const WICGifLogicalScreenDescriptorHeight = WICGifLogicalScreenDescriptorProperties.DescriptorHeight;
+pub const WICGifLogicalScreenDescriptorGlobalColorTableFlag = WICGifLogicalScreenDescriptorProperties.DescriptorGlobalColorTableFlag;
+pub const WICGifLogicalScreenDescriptorColorResolution = WICGifLogicalScreenDescriptorProperties.DescriptorColorResolution;
+pub const WICGifLogicalScreenDescriptorSortFlag = WICGifLogicalScreenDescriptorProperties.DescriptorSortFlag;
+pub const WICGifLogicalScreenDescriptorGlobalColorTableSize = WICGifLogicalScreenDescriptorProperties.DescriptorGlobalColorTableSize;
+pub const WICGifLogicalScreenDescriptorBackgroundColorIndex = WICGifLogicalScreenDescriptorProperties.DescriptorBackgroundColorIndex;
+pub const WICGifLogicalScreenDescriptorPixelAspectRatio = WICGifLogicalScreenDescriptorProperties.DescriptorPixelAspectRatio;
+pub const WICGifLogicalScreenDescriptorProperties_FORCE_DWORD = WICGifLogicalScreenDescriptorProperties.DescriptorProperties_FORCE_DWORD;
+
+pub const WICHeifHdrProperties = enum(u32) {
+    MaximumLuminanceLevel = 1,
+    MaximumFrameAverageLuminanceLevel = 2,
+    MinimumMasteringDisplayLuminanceLevel = 3,
+    MaximumMasteringDisplayLuminanceLevel = 4,
+    CustomVideoPrimaries = 5,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICHeifHdrMaximumLuminanceLevel = WICHeifHdrProperties.MaximumLuminanceLevel;
+pub const WICHeifHdrMaximumFrameAverageLuminanceLevel = WICHeifHdrProperties.MaximumFrameAverageLuminanceLevel;
+pub const WICHeifHdrMinimumMasteringDisplayLuminanceLevel = WICHeifHdrProperties.MinimumMasteringDisplayLuminanceLevel;
+pub const WICHeifHdrMaximumMasteringDisplayLuminanceLevel = WICHeifHdrProperties.MaximumMasteringDisplayLuminanceLevel;
+pub const WICHeifHdrCustomVideoPrimaries = WICHeifHdrProperties.CustomVideoPrimaries;
+pub const WICHeifHdrProperties_FORCE_DWORD = WICHeifHdrProperties.Properties_FORCE_DWORD;
+
+pub const WICHeifProperties = enum(u32) {
+    Orientation = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICHeifOrientation = WICHeifProperties.Orientation;
+pub const WICHeifProperties_FORCE_DWORD = WICHeifProperties.Properties_FORCE_DWORD;
+
+pub const WICImageParameters = extern struct {
+    PixelFormat: D2D1_PIXEL_FORMAT,
+    DpiX: f32,
+    DpiY: f32,
+    Top: f32,
+    Left: f32,
+    PixelWidth: u32,
+    PixelHeight: u32,
+};
+
+pub const WICJpegChrominanceProperties = enum(u32) {
+    Table = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICJpegChrominanceTable = WICJpegChrominanceProperties.Table;
+pub const WICJpegChrominanceProperties_FORCE_DWORD = WICJpegChrominanceProperties.Properties_FORCE_DWORD;
+
+pub const WICJpegCommentProperties = enum(u32) {
+    Text = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICJpegCommentText = WICJpegCommentProperties.Text;
+pub const WICJpegCommentProperties_FORCE_DWORD = WICJpegCommentProperties.Properties_FORCE_DWORD;
+
+pub const WICJpegFrameHeader = extern struct {
+    Width: u32,
+    Height: u32,
+    TransferMatrix: WICJpegTransferMatrix,
+    ScanType: WICJpegScanType,
+    cComponents: u32,
+    ComponentIdentifiers: u32,
+    SampleFactors: u32,
+    QuantizationTableIndices: u32,
+};
+
+pub const WICJpegIndexingOptions = enum(u32) {
+    GenerateOnDemand = 0,
+    GenerateOnLoad = 1,
+    _FORCE_DWORD = 2147483647,
+};
+pub const WICJpegIndexingOptionsGenerateOnDemand = WICJpegIndexingOptions.GenerateOnDemand;
+pub const WICJpegIndexingOptionsGenerateOnLoad = WICJpegIndexingOptions.GenerateOnLoad;
+pub const WICJpegIndexingOptions_FORCE_DWORD = WICJpegIndexingOptions._FORCE_DWORD;
+
+pub const WICJpegLuminanceProperties = enum(u32) {
+    Table = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICJpegLuminanceTable = WICJpegLuminanceProperties.Table;
+pub const WICJpegLuminanceProperties_FORCE_DWORD = WICJpegLuminanceProperties.Properties_FORCE_DWORD;
+
+pub const WICJpegScanHeader = extern struct {
+    cComponents: u32,
+    RestartInterval: u32,
+    ComponentSelectors: u32,
+    HuffmanTableIndices: u32,
+    StartSpectralSelection: u8,
+    EndSpectralSelection: u8,
+    SuccessiveApproximationHigh: u8,
+    SuccessiveApproximationLow: u8,
+};
+
+pub const WICJpegScanType = enum(u32) {
+    Interleaved = 0,
+    PlanarComponents = 1,
+    Progressive = 2,
+    _FORCE_DWORD = 2147483647,
+};
+pub const WICJpegScanTypeInterleaved = WICJpegScanType.Interleaved;
+pub const WICJpegScanTypePlanarComponents = WICJpegScanType.PlanarComponents;
+pub const WICJpegScanTypeProgressive = WICJpegScanType.Progressive;
+pub const WICJpegScanType_FORCE_DWORD = WICJpegScanType._FORCE_DWORD;
+
+pub const WICJpegTransferMatrix = enum(u32) {
+    Identity = 0,
+    BT601 = 1,
+    _FORCE_DWORD = 2147483647,
+};
+pub const WICJpegTransferMatrixIdentity = WICJpegTransferMatrix.Identity;
+pub const WICJpegTransferMatrixBT601 = WICJpegTransferMatrix.BT601;
+pub const WICJpegTransferMatrix_FORCE_DWORD = WICJpegTransferMatrix._FORCE_DWORD;
+
+pub const WICJpegYCrCbSubsamplingOption = enum(i32) {
+    pegYCrCbSubsamplingDefault = 0,
+    pegYCrCbSubsampling420 = 1,
+    pegYCrCbSubsampling422 = 2,
+    pegYCrCbSubsampling444 = 3,
+    pegYCrCbSubsampling440 = 4,
+    PEGYCRCBSUBSAMPLING_FORCE_DWORD = 2147483647,
+};
+pub const WICJpegYCrCbSubsamplingDefault = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsamplingDefault;
+pub const WICJpegYCrCbSubsampling420 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling420;
+pub const WICJpegYCrCbSubsampling422 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling422;
+pub const WICJpegYCrCbSubsampling444 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling444;
+pub const WICJpegYCrCbSubsampling440 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling440;
+pub const WICJPEGYCRCBSUBSAMPLING_FORCE_DWORD = WICJpegYCrCbSubsamplingOption.PEGYCRCBSUBSAMPLING_FORCE_DWORD;
+
+pub const WICMetadataCreationOptions = enum(i32) {
+    Default = 0,
+    FailUnknown = 65536,
+    Mask = -65536,
+    pub const AllowUnknown = .Default;
+};
+pub const WICMetadataCreationDefault = WICMetadataCreationOptions.Default;
+pub const WICMetadataCreationAllowUnknown = WICMetadataCreationOptions.Default;
+pub const WICMetadataCreationFailUnknown = WICMetadataCreationOptions.FailUnknown;
+pub const WICMetadataCreationMask = WICMetadataCreationOptions.Mask;
+
+pub const WICMetadataHeader = extern struct {
+    Position: ULARGE_INTEGER,
+    Length: u32,
+    Header: ?*u8,
+    DataOffset: ULARGE_INTEGER,
+};
+
+pub const WICMetadataPattern = extern struct {
+    Position: ULARGE_INTEGER,
+    Length: u32,
+    Pattern: ?*u8,
+    Mask: ?*u8,
+    DataOffset: ULARGE_INTEGER,
+};
+
+pub const WICNamedWhitePoint = enum(i32) {
+    WhitePointDefault = 1,
+    WhitePointDaylight = 2,
+    WhitePointCloudy = 4,
+    WhitePointShade = 8,
+    WhitePointTungsten = 16,
+    WhitePointFluorescent = 32,
+    WhitePointFlash = 64,
+    WhitePointUnderwater = 128,
+    WhitePointCustom = 256,
+    WhitePointAutoWhiteBalance = 512,
+    NAMEDWHITEPOINT_FORCE_DWORD = 2147483647,
+    pub const WhitePointAsShot = .WhitePointDefault;
+};
+pub const WICWhitePointDefault = WICNamedWhitePoint.WhitePointDefault;
+pub const WICWhitePointDaylight = WICNamedWhitePoint.WhitePointDaylight;
+pub const WICWhitePointCloudy = WICNamedWhitePoint.WhitePointCloudy;
+pub const WICWhitePointShade = WICNamedWhitePoint.WhitePointShade;
+pub const WICWhitePointTungsten = WICNamedWhitePoint.WhitePointTungsten;
+pub const WICWhitePointFluorescent = WICNamedWhitePoint.WhitePointFluorescent;
+pub const WICWhitePointFlash = WICNamedWhitePoint.WhitePointFlash;
+pub const WICWhitePointUnderwater = WICNamedWhitePoint.WhitePointUnderwater;
+pub const WICWhitePointCustom = WICNamedWhitePoint.WhitePointCustom;
+pub const WICWhitePointAutoWhiteBalance = WICNamedWhitePoint.WhitePointAutoWhiteBalance;
+pub const WICWhitePointAsShot = WICNamedWhitePoint.WhitePointDefault;
+pub const WICNAMEDWHITEPOINT_FORCE_DWORD = WICNamedWhitePoint.NAMEDWHITEPOINT_FORCE_DWORD;
+
+pub const WICPersistOptions = enum(i32) {
+    Default = 0,
+    BigEndian = 1,
+    StrictFormat = 2,
+    NoCacheStream = 4,
+    PreferUTF8 = 8,
+    Mask = 65535,
+    pub const LittleEndian = .Default;
+};
+pub const WICPersistOptionDefault = WICPersistOptions.Default;
+pub const WICPersistOptionLittleEndian = WICPersistOptions.Default;
+pub const WICPersistOptionBigEndian = WICPersistOptions.BigEndian;
+pub const WICPersistOptionStrictFormat = WICPersistOptions.StrictFormat;
+pub const WICPersistOptionNoCacheStream = WICPersistOptions.NoCacheStream;
+pub const WICPersistOptionPreferUTF8 = WICPersistOptions.PreferUTF8;
+pub const WICPersistOptionMask = WICPersistOptions.Mask;
+
+pub const WICPixelFormatNumericRepresentation = enum(u32) {
+    Unspecified = 0,
+    Indexed = 1,
+    UnsignedInteger = 2,
+    SignedInteger = 3,
+    Fixed = 4,
+    Float = 5,
+    _FORCE_DWORD = 2147483647,
+};
+pub const WICPixelFormatNumericRepresentationUnspecified = WICPixelFormatNumericRepresentation.Unspecified;
+pub const WICPixelFormatNumericRepresentationIndexed = WICPixelFormatNumericRepresentation.Indexed;
+pub const WICPixelFormatNumericRepresentationUnsignedInteger = WICPixelFormatNumericRepresentation.UnsignedInteger;
+pub const WICPixelFormatNumericRepresentationSignedInteger = WICPixelFormatNumericRepresentation.SignedInteger;
+pub const WICPixelFormatNumericRepresentationFixed = WICPixelFormatNumericRepresentation.Fixed;
+pub const WICPixelFormatNumericRepresentationFloat = WICPixelFormatNumericRepresentation.Float;
+pub const WICPixelFormatNumericRepresentation_FORCE_DWORD = WICPixelFormatNumericRepresentation._FORCE_DWORD;
+
+pub const WICPlanarOptions = enum(i32) {
+    lanarOptionsDefault = 0,
+    lanarOptionsPreserveSubsampling = 1,
+    LANAROPTIONS_FORCE_DWORD = 2147483647,
+};
+pub const WICPlanarOptionsDefault = WICPlanarOptions.lanarOptionsDefault;
+pub const WICPlanarOptionsPreserveSubsampling = WICPlanarOptions.lanarOptionsPreserveSubsampling;
+pub const WICPLANAROPTIONS_FORCE_DWORD = WICPlanarOptions.LANAROPTIONS_FORCE_DWORD;
+
+pub const WICPngBkgdProperties = enum(u32) {
+    BackgroundColor = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngBkgdBackgroundColor = WICPngBkgdProperties.BackgroundColor;
+pub const WICPngBkgdProperties_FORCE_DWORD = WICPngBkgdProperties.Properties_FORCE_DWORD;
+
+pub const WICPngChrmProperties = enum(u32) {
+    WhitePointX = 1,
+    WhitePointY = 2,
+    RedX = 3,
+    RedY = 4,
+    GreenX = 5,
+    GreenY = 6,
+    BlueX = 7,
+    BlueY = 8,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngChrmWhitePointX = WICPngChrmProperties.WhitePointX;
+pub const WICPngChrmWhitePointY = WICPngChrmProperties.WhitePointY;
+pub const WICPngChrmRedX = WICPngChrmProperties.RedX;
+pub const WICPngChrmRedY = WICPngChrmProperties.RedY;
+pub const WICPngChrmGreenX = WICPngChrmProperties.GreenX;
+pub const WICPngChrmGreenY = WICPngChrmProperties.GreenY;
+pub const WICPngChrmBlueX = WICPngChrmProperties.BlueX;
+pub const WICPngChrmBlueY = WICPngChrmProperties.BlueY;
+pub const WICPngChrmProperties_FORCE_DWORD = WICPngChrmProperties.Properties_FORCE_DWORD;
+
+pub const WICPngFilterOption = enum(i32) {
+    ngFilterUnspecified = 0,
+    ngFilterNone = 1,
+    ngFilterSub = 2,
+    ngFilterUp = 3,
+    ngFilterAverage = 4,
+    ngFilterPaeth = 5,
+    ngFilterAdaptive = 6,
+    NGFILTEROPTION_FORCE_DWORD = 2147483647,
+};
+pub const WICPngFilterUnspecified = WICPngFilterOption.ngFilterUnspecified;
+pub const WICPngFilterNone = WICPngFilterOption.ngFilterNone;
+pub const WICPngFilterSub = WICPngFilterOption.ngFilterSub;
+pub const WICPngFilterUp = WICPngFilterOption.ngFilterUp;
+pub const WICPngFilterAverage = WICPngFilterOption.ngFilterAverage;
+pub const WICPngFilterPaeth = WICPngFilterOption.ngFilterPaeth;
+pub const WICPngFilterAdaptive = WICPngFilterOption.ngFilterAdaptive;
+pub const WICPNGFILTEROPTION_FORCE_DWORD = WICPngFilterOption.NGFILTEROPTION_FORCE_DWORD;
+
+pub const WICPngGamaProperties = enum(u32) {
+    Gamma = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngGamaGamma = WICPngGamaProperties.Gamma;
+pub const WICPngGamaProperties_FORCE_DWORD = WICPngGamaProperties.Properties_FORCE_DWORD;
+
+pub const WICPngHistProperties = enum(u32) {
+    Frequencies = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngHistFrequencies = WICPngHistProperties.Frequencies;
+pub const WICPngHistProperties_FORCE_DWORD = WICPngHistProperties.Properties_FORCE_DWORD;
+
+pub const WICPngIccpProperties = enum(u32) {
+    fileName = 1,
+    fileData = 2,
+    perties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngIccpProfileName = WICPngIccpProperties.fileName;
+pub const WICPngIccpProfileData = WICPngIccpProperties.fileData;
+pub const WICPngIccpProperties_FORCE_DWORD = WICPngIccpProperties.perties_FORCE_DWORD;
+
+pub const WICPngItxtProperties = enum(u32) {
+    Keyword = 1,
+    CompressionFlag = 2,
+    LanguageTag = 3,
+    TranslatedKeyword = 4,
+    Text = 5,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngItxtKeyword = WICPngItxtProperties.Keyword;
+pub const WICPngItxtCompressionFlag = WICPngItxtProperties.CompressionFlag;
+pub const WICPngItxtLanguageTag = WICPngItxtProperties.LanguageTag;
+pub const WICPngItxtTranslatedKeyword = WICPngItxtProperties.TranslatedKeyword;
+pub const WICPngItxtText = WICPngItxtProperties.Text;
+pub const WICPngItxtProperties_FORCE_DWORD = WICPngItxtProperties.Properties_FORCE_DWORD;
+
+pub const WICPngSrgbProperties = enum(u32) {
+    RenderingIntent = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngSrgbRenderingIntent = WICPngSrgbProperties.RenderingIntent;
+pub const WICPngSrgbProperties_FORCE_DWORD = WICPngSrgbProperties.Properties_FORCE_DWORD;
+
+pub const WICPngTimeProperties = enum(u32) {
+    Year = 1,
+    Month = 2,
+    Day = 3,
+    Hour = 4,
+    Minute = 5,
+    Second = 6,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICPngTimeYear = WICPngTimeProperties.Year;
+pub const WICPngTimeMonth = WICPngTimeProperties.Month;
+pub const WICPngTimeDay = WICPngTimeProperties.Day;
+pub const WICPngTimeHour = WICPngTimeProperties.Hour;
+pub const WICPngTimeMinute = WICPngTimeProperties.Minute;
+pub const WICPngTimeSecond = WICPngTimeProperties.Second;
+pub const WICPngTimeProperties_FORCE_DWORD = WICPngTimeProperties.Properties_FORCE_DWORD;
+
+pub const WICProgressNotification = enum(i32) {
+    rogressNotificationBegin = 65536,
+    rogressNotificationEnd = 131072,
+    rogressNotificationFrequent = 262144,
+    rogressNotificationAll = -65536,
+    ROGRESSNOTIFICATION_FORCE_DWORD = 2147483647,
+};
+pub const WICProgressNotificationBegin = WICProgressNotification.rogressNotificationBegin;
+pub const WICProgressNotificationEnd = WICProgressNotification.rogressNotificationEnd;
+pub const WICProgressNotificationFrequent = WICProgressNotification.rogressNotificationFrequent;
+pub const WICProgressNotificationAll = WICProgressNotification.rogressNotificationAll;
+pub const WICPROGRESSNOTIFICATION_FORCE_DWORD = WICProgressNotification.ROGRESSNOTIFICATION_FORCE_DWORD;
+
+pub const WICProgressOperation = enum(i32) {
+    rogressOperationCopyPixels = 1,
+    rogressOperationWritePixels = 2,
+    rogressOperationAll = 65535,
+    ROGRESSOPERATION_FORCE_DWORD = 2147483647,
+};
+pub const WICProgressOperationCopyPixels = WICProgressOperation.rogressOperationCopyPixels;
+pub const WICProgressOperationWritePixels = WICProgressOperation.rogressOperationWritePixels;
+pub const WICProgressOperationAll = WICProgressOperation.rogressOperationAll;
+pub const WICPROGRESSOPERATION_FORCE_DWORD = WICProgressOperation.ROGRESSOPERATION_FORCE_DWORD;
+
+pub const WICRawCapabilities = enum(i32) {
+    awCapabilityNotSupported = 0,
+    awCapabilityGetSupported = 1,
+    awCapabilityFullySupported = 2,
+    AWCAPABILITIES_FORCE_DWORD = 2147483647,
+};
+pub const WICRawCapabilityNotSupported = WICRawCapabilities.awCapabilityNotSupported;
+pub const WICRawCapabilityGetSupported = WICRawCapabilities.awCapabilityGetSupported;
+pub const WICRawCapabilityFullySupported = WICRawCapabilities.awCapabilityFullySupported;
+pub const WICRAWCAPABILITIES_FORCE_DWORD = WICRawCapabilities.AWCAPABILITIES_FORCE_DWORD;
+
+pub const WICRawCapabilitiesInfo = extern struct {
+    cbSize: u32,
+    CodecMajorVersion: u32,
+    CodecMinorVersion: u32,
+    ExposureCompensationSupport: WICRawCapabilities,
+    ContrastSupport: WICRawCapabilities,
+    RGBWhitePointSupport: WICRawCapabilities,
+    NamedWhitePointSupport: WICRawCapabilities,
+    NamedWhitePointSupportMask: u32,
+    KelvinWhitePointSupport: WICRawCapabilities,
+    GammaSupport: WICRawCapabilities,
+    TintSupport: WICRawCapabilities,
+    SaturationSupport: WICRawCapabilities,
+    SharpnessSupport: WICRawCapabilities,
+    NoiseReductionSupport: WICRawCapabilities,
+    DestinationColorProfileSupport: WICRawCapabilities,
+    ToneCurveSupport: WICRawCapabilities,
+    RotationSupport: WICRawRotationCapabilities,
+    RenderModeSupport: WICRawCapabilities,
+};
+
+pub const WICRawParameterSet = enum(i32) {
+    AsShotParameterSet = 1,
+    UserAdjustedParameterSet = 2,
+    AutoAdjustedParameterSet = 3,
+    RAWPARAMETERSET_FORCE_DWORD = 2147483647,
+};
+pub const WICAsShotParameterSet = WICRawParameterSet.AsShotParameterSet;
+pub const WICUserAdjustedParameterSet = WICRawParameterSet.UserAdjustedParameterSet;
+pub const WICAutoAdjustedParameterSet = WICRawParameterSet.AutoAdjustedParameterSet;
+pub const WICRAWPARAMETERSET_FORCE_DWORD = WICRawParameterSet.RAWPARAMETERSET_FORCE_DWORD;
+
+pub const WICRawRenderMode = enum(i32) {
+    awRenderModeDraft = 1,
+    awRenderModeNormal = 2,
+    awRenderModeBestQuality = 3,
+    AWRENDERMODE_FORCE_DWORD = 2147483647,
+};
+pub const WICRawRenderModeDraft = WICRawRenderMode.awRenderModeDraft;
+pub const WICRawRenderModeNormal = WICRawRenderMode.awRenderModeNormal;
+pub const WICRawRenderModeBestQuality = WICRawRenderMode.awRenderModeBestQuality;
+pub const WICRAWRENDERMODE_FORCE_DWORD = WICRawRenderMode.AWRENDERMODE_FORCE_DWORD;
+
+pub const WICRawRotationCapabilities = enum(i32) {
+    awRotationCapabilityNotSupported = 0,
+    awRotationCapabilityGetSupported = 1,
+    awRotationCapabilityNinetyDegreesSupported = 2,
+    awRotationCapabilityFullySupported = 3,
+    AWROTATIONCAPABILITIES_FORCE_DWORD = 2147483647,
+};
+pub const WICRawRotationCapabilityNotSupported = WICRawRotationCapabilities.awRotationCapabilityNotSupported;
+pub const WICRawRotationCapabilityGetSupported = WICRawRotationCapabilities.awRotationCapabilityGetSupported;
+pub const WICRawRotationCapabilityNinetyDegreesSupported = WICRawRotationCapabilities.awRotationCapabilityNinetyDegreesSupported;
+pub const WICRawRotationCapabilityFullySupported = WICRawRotationCapabilities.awRotationCapabilityFullySupported;
+pub const WICRAWROTATIONCAPABILITIES_FORCE_DWORD = WICRawRotationCapabilities.AWROTATIONCAPABILITIES_FORCE_DWORD;
+
+pub const WICRawToneCurve = extern struct {
+    cPoints: u32,
+    aPoints: [1]WICRawToneCurvePoint,
+};
+
+pub const WICRawToneCurvePoint = extern struct {
+    Input: f64,
+    Output: f64,
+};
+
+pub const WICRect = extern struct {
+    X: i32,
+    Y: i32,
+    Width: i32,
+    Height: i32,
+};
+
+pub const WICSectionAccessLevel = enum(u32) {
+    Read = 1,
+    ReadWrite = 3,
+    _FORCE_DWORD = 2147483647,
+};
+pub const WICSectionAccessLevelRead = WICSectionAccessLevel.Read;
+pub const WICSectionAccessLevelReadWrite = WICSectionAccessLevel.ReadWrite;
+pub const WICSectionAccessLevel_FORCE_DWORD = WICSectionAccessLevel._FORCE_DWORD;
+
+pub const WICTiffCompressionOption = enum(i32) {
+    iffCompressionDontCare = 0,
+    iffCompressionNone = 1,
+    iffCompressionCCITT3 = 2,
+    iffCompressionCCITT4 = 3,
+    iffCompressionLZW = 4,
+    iffCompressionRLE = 5,
+    iffCompressionZIP = 6,
+    iffCompressionLZWHDifferencing = 7,
+    IFFCOMPRESSIONOPTION_FORCE_DWORD = 2147483647,
+};
+pub const WICTiffCompressionDontCare = WICTiffCompressionOption.iffCompressionDontCare;
+pub const WICTiffCompressionNone = WICTiffCompressionOption.iffCompressionNone;
+pub const WICTiffCompressionCCITT3 = WICTiffCompressionOption.iffCompressionCCITT3;
+pub const WICTiffCompressionCCITT4 = WICTiffCompressionOption.iffCompressionCCITT4;
+pub const WICTiffCompressionLZW = WICTiffCompressionOption.iffCompressionLZW;
+pub const WICTiffCompressionRLE = WICTiffCompressionOption.iffCompressionRLE;
+pub const WICTiffCompressionZIP = WICTiffCompressionOption.iffCompressionZIP;
+pub const WICTiffCompressionLZWHDifferencing = WICTiffCompressionOption.iffCompressionLZWHDifferencing;
+pub const WICTIFFCOMPRESSIONOPTION_FORCE_DWORD = WICTiffCompressionOption.IFFCOMPRESSIONOPTION_FORCE_DWORD;
+
+pub const WICWebpAnimProperties = enum(u32) {
+    LoopCount = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICWebpAnimLoopCount = WICWebpAnimProperties.LoopCount;
+pub const WICWebpAnimProperties_FORCE_DWORD = WICWebpAnimProperties.Properties_FORCE_DWORD;
+
+pub const WICWebpAnmfProperties = enum(u32) {
+    FrameDuration = 1,
+    Properties_FORCE_DWORD = 2147483647,
+};
+pub const WICWebpAnmfFrameDuration = WICWebpAnmfProperties.FrameDuration;
+pub const WICWebpAnmfProperties_FORCE_DWORD = WICWebpAnmfProperties.Properties_FORCE_DWORD;
 
 
 //--------------------------------------------------------------------------------
@@ -3873,17 +3873,18 @@ pub extern "windowscodecs" fn WICCreateBitmapFromSectionEx(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "windowscodecs" fn WICGetMetadataContentSize(
+    guidContainerFormat: ?*const Guid,
+    pIWriter: ?*IWICMetadataWriter,
+    pcbSize: ?*ULARGE_INTEGER,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICMapGuidToShortName(
     guid: ?*const Guid,
     cchName: u32,
     wzName: ?[*:0]u16,
     pcchActual: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICMapShortNameToGuid(
-    wzName: ?[*:0]const u16,
-    pguid: ?*Guid,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3893,6 +3894,12 @@ pub extern "windowscodecs" fn WICMapSchemaToName(
     cchName: u32,
     wzName: ?[*:0]u16,
     pcchActual: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "windowscodecs" fn WICMapShortNameToGuid(
+    wzName: ?[*:0]const u16,
+    pguid: ?*Guid,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3909,13 +3916,6 @@ pub extern "windowscodecs" fn WICSerializeMetadataContent(
     pIWriter: ?*IWICMetadataWriter,
     dwPersistOptions: u32,
     pIStream: ?*IStream,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICGetMetadataContentSize(
-    guidContainerFormat: ?*const Guid,
-    pIWriter: ?*IWICMetadataWriter,
-    pcbSize: ?*ULARGE_INTEGER,
 ) callconv(.winapi) HRESULT;
 
 

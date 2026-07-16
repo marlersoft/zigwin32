@@ -2,84 +2,106 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (22)
 //--------------------------------------------------------------------------------
-pub const PACKAGE_PROPERTY_FRAMEWORK = @as(u32, 1);
-pub const PACKAGE_PROPERTY_RESOURCE = @as(u32, 2);
-pub const PACKAGE_PROPERTY_BUNDLE = @as(u32, 4);
-pub const PACKAGE_PROPERTY_OPTIONAL = @as(u32, 8);
-pub const PACKAGE_FILTER_HEAD = @as(u32, 16);
-pub const PACKAGE_FILTER_DIRECT = @as(u32, 32);
-pub const PACKAGE_FILTER_RESOURCE = @as(u32, 64);
+pub const PACKAGE_DEPENDENCY_RANK_DEFAULT = @as(u32, 0);
+pub const PACKAGE_FILTER_ALL_LOADED = @as(u32, 0);
 pub const PACKAGE_FILTER_BUNDLE = @as(u32, 128);
+pub const PACKAGE_FILTER_DIRECT = @as(u32, 32);
+pub const PACKAGE_FILTER_DYNAMIC = @as(u32, 1048576);
+pub const PACKAGE_FILTER_HEAD = @as(u32, 16);
+pub const PACKAGE_FILTER_HOSTRUNTIME = @as(u32, 2097152);
+pub const PACKAGE_FILTER_IS_IN_RELATED_SET = @as(u32, 262144);
+pub const PACKAGE_FILTER_OPTIONAL = @as(u32, 131072);
+pub const PACKAGE_FILTER_RESOURCE = @as(u32, 64);
+pub const PACKAGE_FILTER_STATIC = @as(u32, 524288);
 pub const PACKAGE_INFORMATION_BASIC = @as(u32, 0);
 pub const PACKAGE_INFORMATION_FULL = @as(u32, 256);
+pub const PACKAGE_PROPERTY_BUNDLE = @as(u32, 4);
 pub const PACKAGE_PROPERTY_DEVELOPMENT_MODE = @as(u32, 65536);
-pub const PACKAGE_FILTER_OPTIONAL = @as(u32, 131072);
-pub const PACKAGE_PROPERTY_IS_IN_RELATED_SET = @as(u32, 262144);
-pub const PACKAGE_FILTER_IS_IN_RELATED_SET = @as(u32, 262144);
-pub const PACKAGE_PROPERTY_STATIC = @as(u32, 524288);
-pub const PACKAGE_FILTER_STATIC = @as(u32, 524288);
 pub const PACKAGE_PROPERTY_DYNAMIC = @as(u32, 1048576);
-pub const PACKAGE_FILTER_DYNAMIC = @as(u32, 1048576);
+pub const PACKAGE_PROPERTY_FRAMEWORK = @as(u32, 1);
 pub const PACKAGE_PROPERTY_HOSTRUNTIME = @as(u32, 2097152);
-pub const PACKAGE_FILTER_HOSTRUNTIME = @as(u32, 2097152);
-pub const PACKAGE_FILTER_ALL_LOADED = @as(u32, 0);
-pub const PACKAGE_DEPENDENCY_RANK_DEFAULT = @as(u32, 0);
+pub const PACKAGE_PROPERTY_IS_IN_RELATED_SET = @as(u32, 262144);
+pub const PACKAGE_PROPERTY_OPTIONAL = @as(u32, 8);
+pub const PACKAGE_PROPERTY_RESOURCE = @as(u32, 2);
+pub const PACKAGE_PROPERTY_STATIC = @as(u32, 524288);
 
 //--------------------------------------------------------------------------------
 // Section: Types (125)
 //--------------------------------------------------------------------------------
-const CLSID_AppxFactory_Value = Guid.initString("5842a140-ff9f-4166-8f5c-62f5b7b0c781");
-pub const CLSID_AppxFactory = &CLSID_AppxFactory_Value;
-
-const CLSID_AppxBundleFactory_Value = Guid.initString("378e0446-5384-43b7-8877-e7dbdd883446");
-pub const CLSID_AppxBundleFactory = &CLSID_AppxBundleFactory_Value;
-
-const CLSID_AppxPackagingDiagnosticEventSinkManager_Value = Guid.initString("50ca0a46-1588-4161-8ed2-ef9e469ced5d");
-pub const CLSID_AppxPackagingDiagnosticEventSinkManager = &CLSID_AppxPackagingDiagnosticEventSinkManager_Value;
-
-const CLSID_AppxEncryptionFactory_Value = Guid.initString("dc664fdd-d868-46ee-8780-8d196cb739f7");
-pub const CLSID_AppxEncryptionFactory = &CLSID_AppxEncryptionFactory_Value;
-
-const CLSID_AppxPackageEditor_Value = Guid.initString("f004f2ca-aebc-4b0d-bf58-e516d5bcc0ab");
-pub const CLSID_AppxPackageEditor = &CLSID_AppxPackageEditor_Value;
-
-pub const APPX_PACKAGE_SETTINGS = extern struct {
-    forceZip32: BOOL,
-    hashMethod: ?*IUri,
+pub const _PACKAGE_INFO_REFERENCE = extern struct {
+    reserved: ?*anyopaque,
 };
 
-pub const APPX_COMPRESSION_OPTION = enum(i32) {
-    NONE = 0,
-    NORMAL = 1,
-    MAXIMUM = 2,
-    FAST = 3,
-    SUPERFAST = 4,
+pub const AddPackageDependencyOptions = enum(i32) {
+    None = 0,
+    PrependIfRankCollision = 1,
 };
-pub const APPX_COMPRESSION_OPTION_NONE = APPX_COMPRESSION_OPTION.NONE;
-pub const APPX_COMPRESSION_OPTION_NORMAL = APPX_COMPRESSION_OPTION.NORMAL;
-pub const APPX_COMPRESSION_OPTION_MAXIMUM = APPX_COMPRESSION_OPTION.MAXIMUM;
-pub const APPX_COMPRESSION_OPTION_FAST = APPX_COMPRESSION_OPTION.FAST;
-pub const APPX_COMPRESSION_OPTION_SUPERFAST = APPX_COMPRESSION_OPTION.SUPERFAST;
+pub const AddPackageDependencyOptions_None = AddPackageDependencyOptions.None;
+pub const AddPackageDependencyOptions_PrependIfRankCollision = AddPackageDependencyOptions.PrependIfRankCollision;
 
-pub const APPX_PACKAGE_WRITER_PAYLOAD_STREAM = extern struct {
-    inputStream: ?*IStream,
-    fileName: ?[*:0]const u16,
-    contentType: ?[*:0]const u16,
-    compressionOption: APPX_COMPRESSION_OPTION,
+pub const AppPolicyClrCompat = enum(i32) {
+    Other = 0,
+    ClassicDesktop = 1,
+    Universal = 2,
+    PackagedDesktop = 3,
 };
+pub const AppPolicyClrCompat_Other = AppPolicyClrCompat.Other;
+pub const AppPolicyClrCompat_ClassicDesktop = AppPolicyClrCompat.ClassicDesktop;
+pub const AppPolicyClrCompat_Universal = AppPolicyClrCompat.Universal;
+pub const AppPolicyClrCompat_PackagedDesktop = AppPolicyClrCompat.PackagedDesktop;
 
-pub const APPX_FOOTPRINT_FILE_TYPE = enum(i32) {
-    MANIFEST = 0,
-    BLOCKMAP = 1,
-    SIGNATURE = 2,
-    CODEINTEGRITY = 3,
-    CONTENTGROUPMAP = 4,
+pub const AppPolicyCreateFileAccess = enum(i32) {
+    Full = 0,
+    Limited = 1,
 };
-pub const APPX_FOOTPRINT_FILE_TYPE_MANIFEST = APPX_FOOTPRINT_FILE_TYPE.MANIFEST;
-pub const APPX_FOOTPRINT_FILE_TYPE_BLOCKMAP = APPX_FOOTPRINT_FILE_TYPE.BLOCKMAP;
-pub const APPX_FOOTPRINT_FILE_TYPE_SIGNATURE = APPX_FOOTPRINT_FILE_TYPE.SIGNATURE;
-pub const APPX_FOOTPRINT_FILE_TYPE_CODEINTEGRITY = APPX_FOOTPRINT_FILE_TYPE.CODEINTEGRITY;
-pub const APPX_FOOTPRINT_FILE_TYPE_CONTENTGROUPMAP = APPX_FOOTPRINT_FILE_TYPE.CONTENTGROUPMAP;
+pub const AppPolicyCreateFileAccess_Full = AppPolicyCreateFileAccess.Full;
+pub const AppPolicyCreateFileAccess_Limited = AppPolicyCreateFileAccess.Limited;
+
+pub const AppPolicyLifecycleManagement = enum(i32) {
+    Unmanaged = 0,
+    Managed = 1,
+};
+pub const AppPolicyLifecycleManagement_Unmanaged = AppPolicyLifecycleManagement.Unmanaged;
+pub const AppPolicyLifecycleManagement_Managed = AppPolicyLifecycleManagement.Managed;
+
+pub const AppPolicyMediaFoundationCodecLoading = enum(i32) {
+    All = 0,
+    InboxOnly = 1,
+};
+pub const AppPolicyMediaFoundationCodecLoading_All = AppPolicyMediaFoundationCodecLoading.All;
+pub const AppPolicyMediaFoundationCodecLoading_InboxOnly = AppPolicyMediaFoundationCodecLoading.InboxOnly;
+
+pub const AppPolicyProcessTerminationMethod = enum(i32) {
+    ExitProcess = 0,
+    TerminateProcess = 1,
+};
+pub const AppPolicyProcessTerminationMethod_ExitProcess = AppPolicyProcessTerminationMethod.ExitProcess;
+pub const AppPolicyProcessTerminationMethod_TerminateProcess = AppPolicyProcessTerminationMethod.TerminateProcess;
+
+pub const AppPolicyShowDeveloperDiagnostic = enum(i32) {
+    None = 0,
+    ShowUI = 1,
+};
+pub const AppPolicyShowDeveloperDiagnostic_None = AppPolicyShowDeveloperDiagnostic.None;
+pub const AppPolicyShowDeveloperDiagnostic_ShowUI = AppPolicyShowDeveloperDiagnostic.ShowUI;
+
+pub const AppPolicyThreadInitializationType = enum(i32) {
+    None = 0,
+    InitializeWinRT = 1,
+};
+pub const AppPolicyThreadInitializationType_None = AppPolicyThreadInitializationType.None;
+pub const AppPolicyThreadInitializationType_InitializeWinRT = AppPolicyThreadInitializationType.InitializeWinRT;
+
+pub const AppPolicyWindowingModel = enum(i32) {
+    None = 0,
+    Universal = 1,
+    ClassicDesktop = 2,
+    ClassicPhone = 3,
+};
+pub const AppPolicyWindowingModel_None = AppPolicyWindowingModel.None;
+pub const AppPolicyWindowingModel_Universal = AppPolicyWindowingModel.Universal;
+pub const AppPolicyWindowingModel_ClassicDesktop = AppPolicyWindowingModel.ClassicDesktop;
+pub const AppPolicyWindowingModel_ClassicPhone = AppPolicyWindowingModel.ClassicPhone;
 
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE = enum(i32) {
     FIRST = 0,
@@ -93,6 +115,13 @@ pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_MANIFEST = APPX_BUNDLE_FOOTPRINT_FILE_
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_BLOCKMAP = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.BLOCKMAP;
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_SIGNATURE = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.SIGNATURE;
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_LAST = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.SIGNATURE;
+
+pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE = enum(i32) {
+    APPLICATION = 0,
+    RESOURCE = 1,
+};
+pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE_APPLICATION = APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE.APPLICATION;
+pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE_RESOURCE = APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE.RESOURCE;
 
 pub const APPX_CAPABILITIES = packed struct(u32) {
     INTERNET_CLIENT: u1 = 0,
@@ -141,6 +170,111 @@ pub const APPX_CAPABILITY_REMOVABLE_STORAGE = APPX_CAPABILITIES{ .REMOVABLE_STOR
 pub const APPX_CAPABILITY_APPOINTMENTS = APPX_CAPABILITIES{ .APPOINTMENTS = 1 };
 pub const APPX_CAPABILITY_CONTACTS = APPX_CAPABILITIES{ .CONTACTS = 1 };
 
+pub const APPX_CAPABILITY_CLASS_TYPE = enum(i32) {
+    DEFAULT = 0,
+    GENERAL = 1,
+    RESTRICTED = 2,
+    WINDOWS = 4,
+    ALL = 7,
+    CUSTOM = 8,
+};
+pub const APPX_CAPABILITY_CLASS_DEFAULT = APPX_CAPABILITY_CLASS_TYPE.DEFAULT;
+pub const APPX_CAPABILITY_CLASS_GENERAL = APPX_CAPABILITY_CLASS_TYPE.GENERAL;
+pub const APPX_CAPABILITY_CLASS_RESTRICTED = APPX_CAPABILITY_CLASS_TYPE.RESTRICTED;
+pub const APPX_CAPABILITY_CLASS_WINDOWS = APPX_CAPABILITY_CLASS_TYPE.WINDOWS;
+pub const APPX_CAPABILITY_CLASS_ALL = APPX_CAPABILITY_CLASS_TYPE.ALL;
+pub const APPX_CAPABILITY_CLASS_CUSTOM = APPX_CAPABILITY_CLASS_TYPE.CUSTOM;
+
+pub const APPX_COMPRESSION_OPTION = enum(i32) {
+    NONE = 0,
+    NORMAL = 1,
+    MAXIMUM = 2,
+    FAST = 3,
+    SUPERFAST = 4,
+};
+pub const APPX_COMPRESSION_OPTION_NONE = APPX_COMPRESSION_OPTION.NONE;
+pub const APPX_COMPRESSION_OPTION_NORMAL = APPX_COMPRESSION_OPTION.NORMAL;
+pub const APPX_COMPRESSION_OPTION_MAXIMUM = APPX_COMPRESSION_OPTION.MAXIMUM;
+pub const APPX_COMPRESSION_OPTION_FAST = APPX_COMPRESSION_OPTION.FAST;
+pub const APPX_COMPRESSION_OPTION_SUPERFAST = APPX_COMPRESSION_OPTION.SUPERFAST;
+
+pub const APPX_ENCRYPTED_EXEMPTIONS = extern struct {
+    count: u32,
+    plainTextFiles: ?*?PWSTR,
+};
+
+pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = packed struct(u32) {
+    DIFFUSION: u1 = 0,
+    PAGE_HASHING: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const APPX_ENCRYPTED_PACKAGE_OPTION_NONE = APPX_ENCRYPTED_PACKAGE_OPTIONS{ };
+pub const APPX_ENCRYPTED_PACKAGE_OPTION_DIFFUSION = APPX_ENCRYPTED_PACKAGE_OPTIONS{ .DIFFUSION = 1 };
+pub const APPX_ENCRYPTED_PACKAGE_OPTION_PAGE_HASHING = APPX_ENCRYPTED_PACKAGE_OPTIONS{ .PAGE_HASHING = 1 };
+
+pub const APPX_ENCRYPTED_PACKAGE_SETTINGS = extern struct {
+    keyLength: u32,
+    encryptionAlgorithm: ?[*:0]const u16,
+    useDiffusion: BOOL,
+    blockMapHashAlgorithm: ?*IUri,
+};
+
+pub const APPX_ENCRYPTED_PACKAGE_SETTINGS2 = extern struct {
+    keyLength: u32,
+    encryptionAlgorithm: ?[*:0]const u16,
+    blockMapHashAlgorithm: ?*IUri,
+    options: u32,
+};
+
+pub const APPX_FOOTPRINT_FILE_TYPE = enum(i32) {
+    MANIFEST = 0,
+    BLOCKMAP = 1,
+    SIGNATURE = 2,
+    CODEINTEGRITY = 3,
+    CONTENTGROUPMAP = 4,
+};
+pub const APPX_FOOTPRINT_FILE_TYPE_MANIFEST = APPX_FOOTPRINT_FILE_TYPE.MANIFEST;
+pub const APPX_FOOTPRINT_FILE_TYPE_BLOCKMAP = APPX_FOOTPRINT_FILE_TYPE.BLOCKMAP;
+pub const APPX_FOOTPRINT_FILE_TYPE_SIGNATURE = APPX_FOOTPRINT_FILE_TYPE.SIGNATURE;
+pub const APPX_FOOTPRINT_FILE_TYPE_CODEINTEGRITY = APPX_FOOTPRINT_FILE_TYPE.CODEINTEGRITY;
+pub const APPX_FOOTPRINT_FILE_TYPE_CONTENTGROUPMAP = APPX_FOOTPRINT_FILE_TYPE.CONTENTGROUPMAP;
+
+pub const APPX_KEY_INFO = extern struct {
+    keyLength: u32,
+    keyIdLength: u32,
+    key: ?*u8,
+    keyId: ?*u8,
+};
+
 pub const APPX_PACKAGE_ARCHITECTURE = enum(i32) {
     X86 = 0,
     ARM = 5,
@@ -171,12 +305,95 @@ pub const APPX_PACKAGE_ARCHITECTURE2_ARM64 = APPX_PACKAGE_ARCHITECTURE2.ARM64;
 pub const APPX_PACKAGE_ARCHITECTURE2_X86_ON_ARM64 = APPX_PACKAGE_ARCHITECTURE2.X86_ON_ARM64;
 pub const APPX_PACKAGE_ARCHITECTURE2_UNKNOWN = APPX_PACKAGE_ARCHITECTURE2.UNKNOWN;
 
-pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE = enum(i32) {
-    APPLICATION = 0,
-    RESOURCE = 1,
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS = packed struct(u32) {
+    SKIP_VALIDATION: u1 = 0,
+    LOCALIZED: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE_APPLICATION = APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE.APPLICATION;
-pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE_RESOURCE = APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE.RESOURCE;
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_NONE = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS{ };
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_SKIP_VALIDATION = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS{ .SKIP_VALIDATION = 1 };
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_LOCALIZED = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS{ .LOCALIZED = 1 };
+
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION = enum(i32) {
+    A = 0,
+};
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION_APPEND_DELTA = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION.A;
+
+pub const APPX_PACKAGE_SETTINGS = extern struct {
+    forceZip32: BOOL,
+    hashMethod: ?*IUri,
+};
+
+pub const APPX_PACKAGE_WRITER_PAYLOAD_STREAM = extern struct {
+    inputStream: ?*IStream,
+    fileName: ?[*:0]const u16,
+    contentType: ?[*:0]const u16,
+    compressionOption: APPX_COMPRESSION_OPTION,
+};
+
+pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE = enum(i32) {
+    START = 0,
+    CHANGE = 1,
+    DETAILS = 2,
+    END = 3,
+};
+pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_START = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.START;
+pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_CHANGE = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.CHANGE;
+pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_DETAILS = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.DETAILS;
+pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_END = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.END;
+
+const CLSID_AppxBundleFactory_Value = Guid.initString("378e0446-5384-43b7-8877-e7dbdd883446");
+pub const CLSID_AppxBundleFactory = &CLSID_AppxBundleFactory_Value;
+
+const CLSID_AppxEncryptionFactory_Value = Guid.initString("dc664fdd-d868-46ee-8780-8d196cb739f7");
+pub const CLSID_AppxEncryptionFactory = &CLSID_AppxEncryptionFactory_Value;
+
+const CLSID_AppxFactory_Value = Guid.initString("5842a140-ff9f-4166-8f5c-62f5b7b0c781");
+pub const CLSID_AppxFactory = &CLSID_AppxFactory_Value;
+
+const CLSID_AppxPackageEditor_Value = Guid.initString("f004f2ca-aebc-4b0d-bf58-e516d5bcc0ab");
+pub const CLSID_AppxPackageEditor = &CLSID_AppxPackageEditor_Value;
+
+const CLSID_AppxPackagingDiagnosticEventSinkManager_Value = Guid.initString("50ca0a46-1588-4161-8ed2-ef9e469ced5d");
+pub const CLSID_AppxPackagingDiagnosticEventSinkManager = &CLSID_AppxPackagingDiagnosticEventSinkManager_Value;
+
+pub const CreatePackageDependencyOptions = enum(i32) {
+    None = 0,
+    DoNotVerifyDependencyResolution = 1,
+    ScopeIsSystem = 2,
+};
+pub const CreatePackageDependencyOptions_None = CreatePackageDependencyOptions.None;
+pub const CreatePackageDependencyOptions_DoNotVerifyDependencyResolution = CreatePackageDependencyOptions.DoNotVerifyDependencyResolution;
+pub const CreatePackageDependencyOptions_ScopeIsSystem = CreatePackageDependencyOptions.ScopeIsSystem;
 
 pub const DX_FEATURE_LEVEL = enum(i32) {
     UNSPECIFIED = 0,
@@ -189,31 +406,1101 @@ pub const DX_FEATURE_LEVEL_9 = DX_FEATURE_LEVEL.@"9";
 pub const DX_FEATURE_LEVEL_10 = DX_FEATURE_LEVEL.@"10";
 pub const DX_FEATURE_LEVEL_11 = DX_FEATURE_LEVEL.@"11";
 
-pub const APPX_CAPABILITY_CLASS_TYPE = enum(i32) {
-    DEFAULT = 0,
-    GENERAL = 1,
-    RESTRICTED = 2,
-    WINDOWS = 4,
-    ALL = 7,
-    CUSTOM = 8,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxBlockMapBlock_Value = Guid.initString("75cf3930-3244-4fe0-a8c8-e0bcb270b889");
+pub const IID_IAppxBlockMapBlock = &IID_IAppxBlockMapBlock_Value;
+pub const IAppxBlockMapBlock = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetHash: *const fn(
+            self: *const IAppxBlockMapBlock,
+            bufferSize: ?*u32,
+            buffer: ?*?*u8,
+        ) callconv(.winapi) HRESULT,
+        GetCompressedSize: *const fn(
+            self: *const IAppxBlockMapBlock,
+            size: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetHash(self: *const IAppxBlockMapBlock, bufferSize: ?*u32, buffer: ?*?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHash(self, bufferSize, buffer);
+    }
+    pub fn GetCompressedSize(self: *const IAppxBlockMapBlock, size: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCompressedSize(self, size);
+    }
 };
-pub const APPX_CAPABILITY_CLASS_DEFAULT = APPX_CAPABILITY_CLASS_TYPE.DEFAULT;
-pub const APPX_CAPABILITY_CLASS_GENERAL = APPX_CAPABILITY_CLASS_TYPE.GENERAL;
-pub const APPX_CAPABILITY_CLASS_RESTRICTED = APPX_CAPABILITY_CLASS_TYPE.RESTRICTED;
-pub const APPX_CAPABILITY_CLASS_WINDOWS = APPX_CAPABILITY_CLASS_TYPE.WINDOWS;
-pub const APPX_CAPABILITY_CLASS_ALL = APPX_CAPABILITY_CLASS_TYPE.ALL;
-pub const APPX_CAPABILITY_CLASS_CUSTOM = APPX_CAPABILITY_CLASS_TYPE.CUSTOM;
 
-pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE = enum(i32) {
-    START = 0,
-    CHANGE = 1,
-    DETAILS = 2,
-    END = 3,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxBlockMapBlocksEnumerator_Value = Guid.initString("6b429b5b-36ef-479e-b9eb-0c1482b49e16");
+pub const IID_IAppxBlockMapBlocksEnumerator = &IID_IAppxBlockMapBlocksEnumerator_Value;
+pub const IAppxBlockMapBlocksEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxBlockMapBlocksEnumerator,
+            block: ?*?*IAppxBlockMapBlock,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxBlockMapBlocksEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxBlockMapBlocksEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxBlockMapBlocksEnumerator, block: ?*?*IAppxBlockMapBlock) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, block);
+    }
+    pub fn GetHasCurrent(self: *const IAppxBlockMapBlocksEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxBlockMapBlocksEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
 };
-pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_START = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.START;
-pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_CHANGE = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.CHANGE;
-pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_DETAILS = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.DETAILS;
-pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE_END = APPX_PACKAGING_CONTEXT_CHANGE_TYPE.END;
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxBlockMapFile_Value = Guid.initString("277672ac-4f63-42c1-8abc-beae3600eb59");
+pub const IID_IAppxBlockMapFile = &IID_IAppxBlockMapFile_Value;
+pub const IAppxBlockMapFile = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBlocks: *const fn(
+            self: *const IAppxBlockMapFile,
+            blocks: ?*?*IAppxBlockMapBlocksEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetLocalFileHeaderSize: *const fn(
+            self: *const IAppxBlockMapFile,
+            lfhSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetName: *const fn(
+            self: *const IAppxBlockMapFile,
+            name: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetUncompressedSize: *const fn(
+            self: *const IAppxBlockMapFile,
+            size: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        ValidateFileHash: *const fn(
+            self: *const IAppxBlockMapFile,
+            fileStream: ?*IStream,
+            isValid: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetBlocks(self: *const IAppxBlockMapFile, blocks: ?*?*IAppxBlockMapBlocksEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBlocks(self, blocks);
+    }
+    pub fn GetLocalFileHeaderSize(self: *const IAppxBlockMapFile, lfhSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocalFileHeaderSize(self, lfhSize);
+    }
+    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetUncompressedSize(self: *const IAppxBlockMapFile, size: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetUncompressedSize(self, size);
+    }
+    pub fn ValidateFileHash(self: *const IAppxBlockMapFile, fileStream: ?*IStream, isValid: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ValidateFileHash(self, fileStream, isValid);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxBlockMapFilesEnumerator_Value = Guid.initString("02b856a2-4262-4070-bacb-1a8cbbc42305");
+pub const IID_IAppxBlockMapFilesEnumerator = &IID_IAppxBlockMapFilesEnumerator_Value;
+pub const IAppxBlockMapFilesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxBlockMapFilesEnumerator,
+            file: ?*?*IAppxBlockMapFile,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxBlockMapFilesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxBlockMapFilesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxBlockMapFilesEnumerator, file: ?*?*IAppxBlockMapFile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, file);
+    }
+    pub fn GetHasCurrent(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasCurrent);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxBlockMapReader_Value = Guid.initString("5efec991-bca3-42d1-9ec2-e92d609ec22a");
+pub const IID_IAppxBlockMapReader = &IID_IAppxBlockMapReader_Value;
+pub const IAppxBlockMapReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetFile: *const fn(
+            self: *const IAppxBlockMapReader,
+            filename: ?[*:0]const u16,
+            file: ?*?*IAppxBlockMapFile,
+        ) callconv(.winapi) HRESULT,
+        GetFiles: *const fn(
+            self: *const IAppxBlockMapReader,
+            enumerator: ?*?*IAppxBlockMapFilesEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetHashMethod: *const fn(
+            self: *const IAppxBlockMapReader,
+            hashMethod: ?*?*IUri,
+        ) callconv(.winapi) HRESULT,
+        GetStream: *const fn(
+            self: *const IAppxBlockMapReader,
+            blockMapStream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetFile(self: *const IAppxBlockMapReader, filename: ?[*:0]const u16, file: ?*?*IAppxBlockMapFile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFile(self, filename, file);
+    }
+    pub fn GetFiles(self: *const IAppxBlockMapReader, enumerator: ?*?*IAppxBlockMapFilesEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFiles(self, enumerator);
+    }
+    pub fn GetHashMethod(self: *const IAppxBlockMapReader, hashMethod: ?*?*IUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHashMethod(self, hashMethod);
+    }
+    pub fn GetStream(self: *const IAppxBlockMapReader, blockMapStream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStream(self, blockMapStream);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IAppxBundleFactory_Value = Guid.initString("bba65864-965f-4a5f-855f-f074bdbf3a7b");
+pub const IID_IAppxBundleFactory = &IID_IAppxBundleFactory_Value;
+pub const IAppxBundleFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateBundleWriter: *const fn(
+            self: *const IAppxBundleFactory,
+            outputStream: ?*IStream,
+            bundleVersion: u64,
+            bundleWriter: ?*?*IAppxBundleWriter,
+        ) callconv(.winapi) HRESULT,
+        CreateBundleReader: *const fn(
+            self: *const IAppxBundleFactory,
+            inputStream: ?*IStream,
+            bundleReader: ?*?*IAppxBundleReader,
+        ) callconv(.winapi) HRESULT,
+        CreateBundleManifestReader: *const fn(
+            self: *const IAppxBundleFactory,
+            inputStream: ?*IStream,
+            manifestReader: ?*?*IAppxBundleManifestReader,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateBundleWriter(self: *const IAppxBundleFactory, outputStream: ?*IStream, bundleVersion: u64, bundleWriter: ?*?*IAppxBundleWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBundleWriter(self, outputStream, bundleVersion, bundleWriter);
+    }
+    pub fn CreateBundleReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, bundleReader: ?*?*IAppxBundleReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBundleReader(self, inputStream, bundleReader);
+    }
+    pub fn CreateBundleManifestReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBundleManifestReader(self, inputStream, manifestReader);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxBundleManifestOptionalBundleInfo_Value = Guid.initString("515bf2e8-bcb0-4d69-8c48-e383147b6e12");
+pub const IID_IAppxBundleManifestOptionalBundleInfo = &IID_IAppxBundleManifestOptionalBundleInfo_Value;
+pub const IAppxBundleManifestOptionalBundleInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPackageId: *const fn(
+            self: *const IAppxBundleManifestOptionalBundleInfo,
+            packageId: ?*?*IAppxManifestPackageId,
+        ) callconv(.winapi) HRESULT,
+        GetFileName: *const fn(
+            self: *const IAppxBundleManifestOptionalBundleInfo,
+            fileName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPackageInfoItems: *const fn(
+            self: *const IAppxBundleManifestOptionalBundleInfo,
+            packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPackageId(self: *const IAppxBundleManifestOptionalBundleInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageId(self, packageId);
+    }
+    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileName(self, fileName);
+    }
+    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestOptionalBundleInfo, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageInfoItems(self, packageInfoItems);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxBundleManifestOptionalBundleInfoEnumerator_Value = Guid.initString("9a178793-f97e-46ac-aaca-dd5ba4c177c8");
+pub const IID_IAppxBundleManifestOptionalBundleInfoEnumerator = &IID_IAppxBundleManifestOptionalBundleInfoEnumerator_Value;
+pub const IAppxBundleManifestOptionalBundleInfoEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
+            optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, optionalBundle);
+    }
+    pub fn GetHasCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IAppxBundleManifestPackageInfo_Value = Guid.initString("54cd06c1-268f-40bb-8ed2-757a9ebaec8d");
+pub const IID_IAppxBundleManifestPackageInfo = &IID_IAppxBundleManifestPackageInfo_Value;
+pub const IAppxBundleManifestPackageInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPackageType: *const fn(
+            self: *const IAppxBundleManifestPackageInfo,
+            packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE,
+        ) callconv(.winapi) HRESULT,
+        GetPackageId: *const fn(
+            self: *const IAppxBundleManifestPackageInfo,
+            packageId: ?*?*IAppxManifestPackageId,
+        ) callconv(.winapi) HRESULT,
+        GetFileName: *const fn(
+            self: *const IAppxBundleManifestPackageInfo,
+            fileName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetOffset: *const fn(
+            self: *const IAppxBundleManifestPackageInfo,
+            offset: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetSize: *const fn(
+            self: *const IAppxBundleManifestPackageInfo,
+            size: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetResources: *const fn(
+            self: *const IAppxBundleManifestPackageInfo,
+            resources: ?*?*IAppxManifestQualifiedResourcesEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPackageType(self: *const IAppxBundleManifestPackageInfo, packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageType(self, packageType);
+    }
+    pub fn GetPackageId(self: *const IAppxBundleManifestPackageInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageId(self, packageId);
+    }
+    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFileName(self, fileName);
+    }
+    pub fn GetOffset(self: *const IAppxBundleManifestPackageInfo, offset: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOffset(self, offset);
+    }
+    pub fn GetSize(self: *const IAppxBundleManifestPackageInfo, size: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSize(self, size);
+    }
+    pub fn GetResources(self: *const IAppxBundleManifestPackageInfo, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetResources(self, resources);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxBundleManifestPackageInfo2_Value = Guid.initString("44c2acbc-b2cf-4ccb-bbdb-9c6da8c3bc9e");
+pub const IID_IAppxBundleManifestPackageInfo2 = &IID_IAppxBundleManifestPackageInfo2_Value;
+pub const IAppxBundleManifestPackageInfo2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetIsPackageReference: *const fn(
+            self: *const IAppxBundleManifestPackageInfo2,
+            isPackageReference: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetIsNonQualifiedResourcePackage: *const fn(
+            self: *const IAppxBundleManifestPackageInfo2,
+            isNonQualifiedResourcePackage: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetIsDefaultApplicablePackage: *const fn(
+            self: *const IAppxBundleManifestPackageInfo2,
+            isDefaultApplicablePackage: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetIsPackageReference(self: *const IAppxBundleManifestPackageInfo2, isPackageReference: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIsPackageReference(self, isPackageReference);
+    }
+    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxBundleManifestPackageInfo2, isNonQualifiedResourcePackage: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIsNonQualifiedResourcePackage(self, isNonQualifiedResourcePackage);
+    }
+    pub fn GetIsDefaultApplicablePackage(self: *const IAppxBundleManifestPackageInfo2, isDefaultApplicablePackage: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIsDefaultApplicablePackage(self, isDefaultApplicablePackage);
+    }
+};
+
+const IID_IAppxBundleManifestPackageInfo3_Value = Guid.initString("6ba74b98-bb74-4296-80d0-5f4256a99675");
+pub const IID_IAppxBundleManifestPackageInfo3 = &IID_IAppxBundleManifestPackageInfo3_Value;
+pub const IAppxBundleManifestPackageInfo3 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetTargetDeviceFamilies: *const fn(
+            self: *const IAppxBundleManifestPackageInfo3,
+            targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetTargetDeviceFamilies(self: *const IAppxBundleManifestPackageInfo3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetTargetDeviceFamilies(self, targetDeviceFamilies);
+    }
+};
+
+const IID_IAppxBundleManifestPackageInfo4_Value = Guid.initString("5da6f13d-a8a7-4532-857c-1393d659371d");
+pub const IID_IAppxBundleManifestPackageInfo4 = &IID_IAppxBundleManifestPackageInfo4_Value;
+pub const IAppxBundleManifestPackageInfo4 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetIsStub: *const fn(
+            self: *const IAppxBundleManifestPackageInfo4,
+            isStub: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetIsStub(self: *const IAppxBundleManifestPackageInfo4, isStub: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIsStub(self, isStub);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IAppxBundleManifestPackageInfoEnumerator_Value = Guid.initString("f9b856ee-49a6-4e19-b2b0-6a2406d63a32");
+pub const IID_IAppxBundleManifestPackageInfoEnumerator = &IID_IAppxBundleManifestPackageInfoEnumerator_Value;
+pub const IAppxBundleManifestPackageInfoEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxBundleManifestPackageInfoEnumerator,
+            packageInfo: ?*?*IAppxBundleManifestPackageInfo,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxBundleManifestPackageInfoEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxBundleManifestPackageInfoEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, packageInfo: ?*?*IAppxBundleManifestPackageInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, packageInfo);
+    }
+    pub fn GetHasCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxBundleManifestPackageInfoEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IAppxBundleManifestReader_Value = Guid.initString("cf0ebbc1-cc99-4106-91eb-e67462e04fb0");
+pub const IID_IAppxBundleManifestReader = &IID_IAppxBundleManifestReader_Value;
+pub const IAppxBundleManifestReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPackageId: *const fn(
+            self: *const IAppxBundleManifestReader,
+            packageId: ?*?*IAppxManifestPackageId,
+        ) callconv(.winapi) HRESULT,
+        GetPackageInfoItems: *const fn(
+            self: *const IAppxBundleManifestReader,
+            packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetStream: *const fn(
+            self: *const IAppxBundleManifestReader,
+            manifestStream: ?*?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPackageId(self: *const IAppxBundleManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageId(self, packageId);
+    }
+    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestReader, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageInfoItems(self, packageInfoItems);
+    }
+    pub fn GetStream(self: *const IAppxBundleManifestReader, manifestStream: ?*?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStream(self, manifestStream);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxBundleManifestReader2_Value = Guid.initString("5517df70-033f-4af2-8213-87d766805c02");
+pub const IID_IAppxBundleManifestReader2 = &IID_IAppxBundleManifestReader2_Value;
+pub const IAppxBundleManifestReader2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOptionalBundles: *const fn(
+            self: *const IAppxBundleManifestReader2,
+            optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetOptionalBundles(self: *const IAppxBundleManifestReader2, optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOptionalBundles(self, optionalBundles);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IAppxBundleReader_Value = Guid.initString("dd75b8c0-ba76-43b0-ae0f-68656a1dc5c8");
+pub const IID_IAppxBundleReader = &IID_IAppxBundleReader_Value;
+pub const IAppxBundleReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetFootprintFile: *const fn(
+            self: *const IAppxBundleReader,
+            fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE,
+            footprintFile: ?*?*IAppxFile,
+        ) callconv(.winapi) HRESULT,
+        GetBlockMap: *const fn(
+            self: *const IAppxBundleReader,
+            blockMapReader: ?*?*IAppxBlockMapReader,
+        ) callconv(.winapi) HRESULT,
+        GetManifest: *const fn(
+            self: *const IAppxBundleReader,
+            manifestReader: ?*?*IAppxBundleManifestReader,
+        ) callconv(.winapi) HRESULT,
+        GetPayloadPackages: *const fn(
+            self: *const IAppxBundleReader,
+            payloadPackages: ?*?*IAppxFilesEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetPayloadPackage: *const fn(
+            self: *const IAppxBundleReader,
+            fileName: ?[*:0]const u16,
+            payloadPackage: ?*?*IAppxFile,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetFootprintFile(self: *const IAppxBundleReader, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFootprintFile(self, fileType, footprintFile);
+    }
+    pub fn GetBlockMap(self: *const IAppxBundleReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBlockMap(self, blockMapReader);
+    }
+    pub fn GetManifest(self: *const IAppxBundleReader, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.@"inline") HRESULT {
+        return self.vtable.GetManifest(self, manifestReader);
+    }
+    pub fn GetPayloadPackages(self: *const IAppxBundleReader, payloadPackages: ?*?*IAppxFilesEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPayloadPackages(self, payloadPackages);
+    }
+    pub fn GetPayloadPackage(self: *const IAppxBundleReader, fileName: ?[*:0]const u16, payloadPackage: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPayloadPackage(self, fileName, payloadPackage);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.1'
+const IID_IAppxBundleWriter_Value = Guid.initString("ec446fe8-bfec-4c64-ab4f-49f038f0c6d2");
+pub const IID_IAppxBundleWriter = &IID_IAppxBundleWriter_Value;
+pub const IAppxBundleWriter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadPackage: *const fn(
+            self: *const IAppxBundleWriter,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IAppxBundleWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadPackage(self: *const IAppxBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadPackage(self, fileName, packageStream);
+    }
+    pub fn Close(self: *const IAppxBundleWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxBundleWriter2_Value = Guid.initString("6d8fe971-01cc-49a0-b685-233851279962");
+pub const IID_IAppxBundleWriter2 = &IID_IAppxBundleWriter2_Value;
+pub const IAppxBundleWriter2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddExternalPackageReference: *const fn(
+            self: *const IAppxBundleWriter2,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxBundleWriter3_Value = Guid.initString("ad711152-f969-4193-82d5-9ddf2786d21a");
+pub const IID_IAppxBundleWriter3 = &IID_IAppxBundleWriter3_Value;
+pub const IAppxBundleWriter3 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPackageReference: *const fn(
+            self: *const IAppxBundleWriter3,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IAppxBundleWriter3,
+            hashMethodString: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPackageReference(self: *const IAppxBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPackageReference(self, fileName, inputStream);
+    }
+    pub fn Close(self: *const IAppxBundleWriter3, hashMethodString: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self, hashMethodString);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxBundleWriter4_Value = Guid.initString("9cd9d523-5009-4c01-9882-dc029fbd47a3");
+pub const IID_IAppxBundleWriter4 = &IID_IAppxBundleWriter4_Value;
+pub const IAppxBundleWriter4 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadPackage: *const fn(
+            self: *const IAppxBundleWriter4,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
+            isDefaultApplicablePackage: BOOL,
+        ) callconv(.winapi) HRESULT,
+        AddPackageReference: *const fn(
+            self: *const IAppxBundleWriter4,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
+            isDefaultApplicablePackage: BOOL,
+        ) callconv(.winapi) HRESULT,
+        AddExternalPackageReference: *const fn(
+            self: *const IAppxBundleWriter4,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
+            isDefaultApplicablePackage: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadPackage(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadPackage(self, fileName, packageStream, isDefaultApplicablePackage);
+    }
+    pub fn AddPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
+    }
+    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxContentGroup_Value = Guid.initString("328f6468-c04f-4e3c-b6fa-6b8d27f3003a");
+pub const IID_IAppxContentGroup = &IID_IAppxContentGroup_Value;
+pub const IAppxContentGroup = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IAppxContentGroup,
+            groupName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetFiles: *const fn(
+            self: *const IAppxContentGroup,
+            enumerator: ?*?*IAppxContentGroupFilesEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, groupName);
+    }
+    pub fn GetFiles(self: *const IAppxContentGroup, enumerator: ?*?*IAppxContentGroupFilesEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFiles(self, enumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxContentGroupFilesEnumerator_Value = Guid.initString("1a09a2fd-7440-44eb-8c84-848205a6a1cc");
+pub const IID_IAppxContentGroupFilesEnumerator = &IID_IAppxContentGroupFilesEnumerator_Value;
+pub const IAppxContentGroupFilesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxContentGroupFilesEnumerator,
+            file: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxContentGroupFilesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxContentGroupFilesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, file);
+    }
+    pub fn GetHasCurrent(self: *const IAppxContentGroupFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxContentGroupFilesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxContentGroupMapReader_Value = Guid.initString("418726d8-dd99-4f5d-9886-157add20de01");
+pub const IID_IAppxContentGroupMapReader = &IID_IAppxContentGroupMapReader_Value;
+pub const IAppxContentGroupMapReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRequiredGroup: *const fn(
+            self: *const IAppxContentGroupMapReader,
+            requiredGroup: ?*?*IAppxContentGroup,
+        ) callconv(.winapi) HRESULT,
+        GetAutomaticGroups: *const fn(
+            self: *const IAppxContentGroupMapReader,
+            automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRequiredGroup(self: *const IAppxContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRequiredGroup(self, requiredGroup);
+    }
+    pub fn GetAutomaticGroups(self: *const IAppxContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxContentGroupMapWriter_Value = Guid.initString("d07ab776-a9de-4798-8c14-3db31e687c78");
+pub const IID_IAppxContentGroupMapWriter = &IID_IAppxContentGroupMapWriter_Value;
+pub const IAppxContentGroupMapWriter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddAutomaticGroup: *const fn(
+            self: *const IAppxContentGroupMapWriter,
+            groupName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        AddAutomaticFile: *const fn(
+            self: *const IAppxContentGroupMapWriter,
+            fileName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IAppxContentGroupMapWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddAutomaticGroup(self: *const IAppxContentGroupMapWriter, groupName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAutomaticGroup(self, groupName);
+    }
+    pub fn AddAutomaticFile(self: *const IAppxContentGroupMapWriter, fileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAutomaticFile(self, fileName);
+    }
+    pub fn Close(self: *const IAppxContentGroupMapWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxContentGroupsEnumerator_Value = Guid.initString("3264e477-16d1-4d63-823e-7d2984696634");
+pub const IID_IAppxContentGroupsEnumerator = &IID_IAppxContentGroupsEnumerator_Value;
+pub const IAppxContentGroupsEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxContentGroupsEnumerator,
+            stream: ?*?*IAppxContentGroup,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxContentGroupsEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxContentGroupsEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxContentGroupsEnumerator, stream: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, stream);
+    }
+    pub fn GetHasCurrent(self: *const IAppxContentGroupsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxContentGroupsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+const IID_IAppxEncryptedBundleWriter_Value = Guid.initString("80b0902f-7bf0-4117-b8c6-4279ef81ee77");
+pub const IID_IAppxEncryptedBundleWriter = &IID_IAppxEncryptedBundleWriter_Value;
+pub const IAppxEncryptedBundleWriter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadPackageEncrypted: *const fn(
+            self: *const IAppxEncryptedBundleWriter,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IAppxEncryptedBundleWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream);
+    }
+    pub fn Close(self: *const IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxEncryptedBundleWriter2_Value = Guid.initString("e644be82-f0fa-42b8-a956-8d1cb48ee379");
+pub const IID_IAppxEncryptedBundleWriter2 = &IID_IAppxEncryptedBundleWriter2_Value;
+pub const IAppxEncryptedBundleWriter2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddExternalPackageReference: *const fn(
+            self: *const IAppxEncryptedBundleWriter2,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxEncryptedBundleWriter3_Value = Guid.initString("0d34deb3-5cae-4dd3-977c-504932a51d31");
+pub const IID_IAppxEncryptedBundleWriter3 = &IID_IAppxEncryptedBundleWriter3_Value;
+pub const IAppxEncryptedBundleWriter3 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadPackageEncrypted: *const fn(
+            self: *const IAppxEncryptedBundleWriter3,
+            fileName: ?[*:0]const u16,
+            packageStream: ?*IStream,
+            isDefaultApplicablePackage: BOOL,
+        ) callconv(.winapi) HRESULT,
+        AddExternalPackageReference: *const fn(
+            self: *const IAppxEncryptedBundleWriter3,
+            fileName: ?[*:0]const u16,
+            inputStream: ?*IStream,
+            isDefaultApplicablePackage: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream, isDefaultApplicablePackage);
+    }
+    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+const IID_IAppxEncryptedPackageWriter_Value = Guid.initString("f43d0b0b-1379-40e2-9b29-682ea2bf42af");
+pub const IID_IAppxEncryptedPackageWriter = &IID_IAppxEncryptedPackageWriter_Value;
+pub const IAppxEncryptedPackageWriter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadFileEncrypted: *const fn(
+            self: *const IAppxEncryptedPackageWriter,
+            fileName: ?[*:0]const u16,
+            compressionOption: APPX_COMPRESSION_OPTION,
+            inputStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IAppxEncryptedPackageWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadFileEncrypted(self: *const IAppxEncryptedPackageWriter, fileName: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadFileEncrypted(self, fileName, compressionOption, inputStream);
+    }
+    pub fn Close(self: *const IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+const IID_IAppxEncryptedPackageWriter2_Value = Guid.initString("3e475447-3a25-40b5-8ad2-f953ae50c92d");
+pub const IID_IAppxEncryptedPackageWriter2 = &IID_IAppxEncryptedPackageWriter2_Value;
+pub const IAppxEncryptedPackageWriter2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadFilesEncrypted: *const fn(
+            self: *const IAppxEncryptedPackageWriter2,
+            fileCount: u32,
+            payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM,
+            memoryLimit: u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadFilesEncrypted(self: *const IAppxEncryptedPackageWriter2, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadFilesEncrypted(self, fileCount, payloadFiles, memoryLimit);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.14393'
+const IID_IAppxEncryptionFactory_Value = Guid.initString("80e8e04d-8c88-44ae-a011-7cadf6fb2e72");
+pub const IID_IAppxEncryptionFactory = &IID_IAppxEncryptionFactory_Value;
+pub const IAppxEncryptionFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EncryptPackage: *const fn(
+            self: *const IAppxEncryptionFactory,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+        ) callconv(.winapi) HRESULT,
+        DecryptPackage: *const fn(
+            self: *const IAppxEncryptionFactory,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
+        ) callconv(.winapi) HRESULT,
+        CreateEncryptedPackageWriter: *const fn(
+            self: *const IAppxEncryptionFactory,
+            outputStream: ?*IStream,
+            manifestStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            packageWriter: ?*?*IAppxEncryptedPackageWriter,
+        ) callconv(.winapi) HRESULT,
+        CreateEncryptedPackageReader: *const fn(
+            self: *const IAppxEncryptionFactory,
+            inputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
+            packageReader: ?*?*IAppxPackageReader,
+        ) callconv(.winapi) HRESULT,
+        EncryptBundle: *const fn(
+            self: *const IAppxEncryptionFactory,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+        ) callconv(.winapi) HRESULT,
+        DecryptBundle: *const fn(
+            self: *const IAppxEncryptionFactory,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
+        ) callconv(.winapi) HRESULT,
+        CreateEncryptedBundleWriter: *const fn(
+            self: *const IAppxEncryptionFactory,
+            outputStream: ?*IStream,
+            bundleVersion: u64,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            bundleWriter: ?*?*IAppxEncryptedBundleWriter,
+        ) callconv(.winapi) HRESULT,
+        CreateEncryptedBundleReader: *const fn(
+            self: *const IAppxEncryptionFactory,
+            inputStream: ?*IStream,
+            keyInfo: ?*const APPX_KEY_INFO,
+            bundleReader: ?*?*IAppxBundleReader,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
+        return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
+    }
+    pub fn DecryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.DecryptPackage(self, inputStream, outputStream, keyInfo);
+    }
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, manifestStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, settings, keyInfo, exemptedFiles, packageWriter);
+    }
+    pub fn CreateEncryptedPackageReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, packageReader: ?*?*IAppxPackageReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncryptedPackageReader(self, inputStream, keyInfo, packageReader);
+    }
+    pub fn EncryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
+        return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
+    }
+    pub fn DecryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.@"inline") HRESULT {
+        return self.vtable.DecryptBundle(self, inputStream, outputStream, keyInfo);
+    }
+    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
+    }
+    pub fn CreateEncryptedBundleReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, bundleReader: ?*?*IAppxBundleReader) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncryptedBundleReader(self, inputStream, keyInfo, bundleReader);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxEncryptionFactory2_Value = Guid.initString("c1b11eee-c4ba-4ab2-a55d-d015fe8ff64f");
+pub const IID_IAppxEncryptionFactory2 = &IID_IAppxEncryptionFactory2_Value;
+pub const IAppxEncryptionFactory2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateEncryptedPackageWriter: *const fn(
+            self: *const IAppxEncryptionFactory2,
+            outputStream: ?*IStream,
+            manifestStream: ?*IStream,
+            contentGroupMapStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            packageWriter: ?*?*IAppxEncryptedPackageWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory2, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxEncryptionFactory3_Value = Guid.initString("09edca37-cd64-47d6-b7e8-1cb11d4f7e05");
+pub const IID_IAppxEncryptionFactory3 = &IID_IAppxEncryptionFactory3_Value;
+pub const IAppxEncryptionFactory3 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EncryptPackage: *const fn(
+            self: *const IAppxEncryptionFactory3,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+        ) callconv(.winapi) HRESULT,
+        CreateEncryptedPackageWriter: *const fn(
+            self: *const IAppxEncryptionFactory3,
+            outputStream: ?*IStream,
+            manifestStream: ?*IStream,
+            contentGroupMapStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            packageWriter: ?*?*IAppxEncryptedPackageWriter,
+        ) callconv(.winapi) HRESULT,
+        EncryptBundle: *const fn(
+            self: *const IAppxEncryptionFactory3,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+        ) callconv(.winapi) HRESULT,
+        CreateEncryptedBundleWriter: *const fn(
+            self: *const IAppxEncryptionFactory3,
+            outputStream: ?*IStream,
+            bundleVersion: u64,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            bundleWriter: ?*?*IAppxEncryptedBundleWriter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
+        return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
+    }
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
+    }
+    pub fn EncryptBundle(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
+        return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
+    }
+    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxEncryptionFactory4_Value = Guid.initString("a879611f-12fd-41fe-85d5-06ae779bbaf5");
+pub const IID_IAppxEncryptionFactory4 = &IID_IAppxEncryptionFactory4_Value;
+pub const IAppxEncryptionFactory4 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EncryptPackage: *const fn(
+            self: *const IAppxEncryptionFactory4,
+            inputStream: ?*IStream,
+            outputStream: ?*IStream,
+            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
+            keyInfo: ?*const APPX_KEY_INFO,
+            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
+            memoryLimit: u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory4, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles, memoryLimit);
+    }
+};
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxFactory_Value = Guid.initString("beb94909-e451-438b-b5a7-d79e767b75d8");
@@ -304,121 +1591,6 @@ pub const IAppxFactory2 = extern union {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxPackageReader_Value = Guid.initString("b5c49650-99bc-481c-9a34-3d53a4106708");
-pub const IID_IAppxPackageReader = &IID_IAppxPackageReader_Value;
-pub const IAppxPackageReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetBlockMap: *const fn(
-            self: *const IAppxPackageReader,
-            blockMapReader: ?*?*IAppxBlockMapReader,
-        ) callconv(.winapi) HRESULT,
-        GetFootprintFile: *const fn(
-            self: *const IAppxPackageReader,
-            type: APPX_FOOTPRINT_FILE_TYPE,
-            file: ?*?*IAppxFile,
-        ) callconv(.winapi) HRESULT,
-        GetPayloadFile: *const fn(
-            self: *const IAppxPackageReader,
-            fileName: ?[*:0]const u16,
-            file: ?*?*IAppxFile,
-        ) callconv(.winapi) HRESULT,
-        GetPayloadFiles: *const fn(
-            self: *const IAppxPackageReader,
-            filesEnumerator: ?*?*IAppxFilesEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetManifest: *const fn(
-            self: *const IAppxPackageReader,
-            manifestReader: ?*?*IAppxManifestReader,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetBlockMap(self: *const IAppxPackageReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBlockMap(self, blockMapReader);
-    }
-    pub fn GetFootprintFile(self: *const IAppxPackageReader, @"type": APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFootprintFile(self, @"type", file);
-    }
-    pub fn GetPayloadFile(self: *const IAppxPackageReader, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPayloadFile(self, fileName, file);
-    }
-    pub fn GetPayloadFiles(self: *const IAppxPackageReader, filesEnumerator: ?*?*IAppxFilesEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPayloadFiles(self, filesEnumerator);
-    }
-    pub fn GetManifest(self: *const IAppxPackageReader, manifestReader: ?*?*IAppxManifestReader) callconv(.@"inline") HRESULT {
-        return self.vtable.GetManifest(self, manifestReader);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxPackageWriter_Value = Guid.initString("9099e33b-246f-41e4-881a-008eb613f858");
-pub const IID_IAppxPackageWriter = &IID_IAppxPackageWriter_Value;
-pub const IAppxPackageWriter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadFile: *const fn(
-            self: *const IAppxPackageWriter,
-            fileName: ?[*:0]const u16,
-            contentType: ?[*:0]const u16,
-            compressionOption: APPX_COMPRESSION_OPTION,
-            inputStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IAppxPackageWriter,
-            manifest: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadFile(self: *const IAppxPackageWriter, fileName: ?[*:0]const u16, contentType: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadFile(self, fileName, contentType, compressionOption, inputStream);
-    }
-    pub fn Close(self: *const IAppxPackageWriter, manifest: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self, manifest);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxPackageWriter2_Value = Guid.initString("2cf5c4fd-e54c-4ea5-ba4e-f8c4b105a8c8");
-pub const IID_IAppxPackageWriter2 = &IID_IAppxPackageWriter2_Value;
-pub const IAppxPackageWriter2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Close: *const fn(
-            self: *const IAppxPackageWriter2,
-            manifest: ?*IStream,
-            contentGroupMap: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Close(self: *const IAppxPackageWriter2, manifest: ?*IStream, contentGroupMap: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self, manifest, contentGroupMap);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxPackageWriter3_Value = Guid.initString("a83aacd3-41c0-4501-b8a3-74164f50b2fd");
-pub const IID_IAppxPackageWriter3 = &IID_IAppxPackageWriter3_Value;
-pub const IAppxPackageWriter3 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadFiles: *const fn(
-            self: *const IAppxPackageWriter3,
-            fileCount: u32,
-            payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM,
-            memoryLimit: u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadFiles(self: *const IAppxPackageWriter3, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadFiles(self, fileCount, payloadFiles, memoryLimit);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
 const IID_IAppxFile_Value = Guid.initString("91df827b-94fd-468f-827b-57f41b2f6f2e");
 pub const IID_IAppxFile = &IID_IAppxFile_Value;
 pub const IAppxFile = extern union {
@@ -497,178 +1669,731 @@ pub const IAppxFilesEnumerator = extern union {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxBlockMapReader_Value = Guid.initString("5efec991-bca3-42d1-9ec2-e92d609ec22a");
-pub const IID_IAppxBlockMapReader = &IID_IAppxBlockMapReader_Value;
-pub const IAppxBlockMapReader = extern union {
+const IID_IAppxManifestApplication_Value = Guid.initString("5da89bf4-3773-46be-b650-7e744863b7e8");
+pub const IID_IAppxManifestApplication = &IID_IAppxManifestApplication_Value;
+pub const IAppxManifestApplication = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFile: *const fn(
-            self: *const IAppxBlockMapReader,
-            filename: ?[*:0]const u16,
-            file: ?*?*IAppxBlockMapFile,
+        GetStringValue: *const fn(
+            self: *const IAppxManifestApplication,
+            name: ?[*:0]const u16,
+            value: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
-        GetFiles: *const fn(
-            self: *const IAppxBlockMapReader,
-            enumerator: ?*?*IAppxBlockMapFilesEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetHashMethod: *const fn(
-            self: *const IAppxBlockMapReader,
-            hashMethod: ?*?*IUri,
-        ) callconv(.winapi) HRESULT,
-        GetStream: *const fn(
-            self: *const IAppxBlockMapReader,
-            blockMapStream: ?*?*IStream,
+        GetAppUserModelId: *const fn(
+            self: *const IAppxManifestApplication,
+            appUserModelId: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFile(self: *const IAppxBlockMapReader, filename: ?[*:0]const u16, file: ?*?*IAppxBlockMapFile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFile(self, filename, file);
+    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringValue(self, name, value);
     }
-    pub fn GetFiles(self: *const IAppxBlockMapReader, enumerator: ?*?*IAppxBlockMapFilesEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFiles(self, enumerator);
-    }
-    pub fn GetHashMethod(self: *const IAppxBlockMapReader, hashMethod: ?*?*IUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHashMethod(self, hashMethod);
-    }
-    pub fn GetStream(self: *const IAppxBlockMapReader, blockMapStream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStream(self, blockMapStream);
+    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAppUserModelId(self, appUserModelId);
     }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxBlockMapFile_Value = Guid.initString("277672ac-4f63-42c1-8abc-beae3600eb59");
-pub const IID_IAppxBlockMapFile = &IID_IAppxBlockMapFile_Value;
-pub const IAppxBlockMapFile = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetBlocks: *const fn(
-            self: *const IAppxBlockMapFile,
-            blocks: ?*?*IAppxBlockMapBlocksEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetLocalFileHeaderSize: *const fn(
-            self: *const IAppxBlockMapFile,
-            lfhSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetName: *const fn(
-            self: *const IAppxBlockMapFile,
-            name: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetUncompressedSize: *const fn(
-            self: *const IAppxBlockMapFile,
-            size: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        ValidateFileHash: *const fn(
-            self: *const IAppxBlockMapFile,
-            fileStream: ?*IStream,
-            isValid: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetBlocks(self: *const IAppxBlockMapFile, blocks: ?*?*IAppxBlockMapBlocksEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBlocks(self, blocks);
-    }
-    pub fn GetLocalFileHeaderSize(self: *const IAppxBlockMapFile, lfhSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocalFileHeaderSize(self, lfhSize);
-    }
-    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
-    }
-    pub fn GetUncompressedSize(self: *const IAppxBlockMapFile, size: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetUncompressedSize(self, size);
-    }
-    pub fn ValidateFileHash(self: *const IAppxBlockMapFile, fileStream: ?*IStream, isValid: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ValidateFileHash(self, fileStream, isValid);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxBlockMapFilesEnumerator_Value = Guid.initString("02b856a2-4262-4070-bacb-1a8cbbc42305");
-pub const IID_IAppxBlockMapFilesEnumerator = &IID_IAppxBlockMapFilesEnumerator_Value;
-pub const IAppxBlockMapFilesEnumerator = extern union {
+const IID_IAppxManifestApplicationsEnumerator_Value = Guid.initString("9eb8a55a-f04b-4d0d-808d-686185d4847a");
+pub const IID_IAppxManifestApplicationsEnumerator = &IID_IAppxManifestApplicationsEnumerator_Value;
+pub const IAppxManifestApplicationsEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCurrent: *const fn(
-            self: *const IAppxBlockMapFilesEnumerator,
-            file: ?*?*IAppxBlockMapFile,
+            self: *const IAppxManifestApplicationsEnumerator,
+            application: ?*?*IAppxManifestApplication,
         ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
-            self: *const IAppxBlockMapFilesEnumerator,
+            self: *const IAppxManifestApplicationsEnumerator,
             hasCurrent: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
-            self: *const IAppxBlockMapFilesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBlockMapFilesEnumerator, file: ?*?*IAppxBlockMapFile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, file);
-    }
-    pub fn GetHasCurrent(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasCurrent);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxBlockMapBlock_Value = Guid.initString("75cf3930-3244-4fe0-a8c8-e0bcb270b889");
-pub const IID_IAppxBlockMapBlock = &IID_IAppxBlockMapBlock_Value;
-pub const IAppxBlockMapBlock = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetHash: *const fn(
-            self: *const IAppxBlockMapBlock,
-            bufferSize: ?*u32,
-            buffer: ?*?*u8,
-        ) callconv(.winapi) HRESULT,
-        GetCompressedSize: *const fn(
-            self: *const IAppxBlockMapBlock,
-            size: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetHash(self: *const IAppxBlockMapBlock, bufferSize: ?*u32, buffer: ?*?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHash(self, bufferSize, buffer);
-    }
-    pub fn GetCompressedSize(self: *const IAppxBlockMapBlock, size: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCompressedSize(self, size);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxBlockMapBlocksEnumerator_Value = Guid.initString("6b429b5b-36ef-479e-b9eb-0c1482b49e16");
-pub const IID_IAppxBlockMapBlocksEnumerator = &IID_IAppxBlockMapBlocksEnumerator_Value;
-pub const IAppxBlockMapBlocksEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxBlockMapBlocksEnumerator,
-            block: ?*?*IAppxBlockMapBlock,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxBlockMapBlocksEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxBlockMapBlocksEnumerator,
+            self: *const IAppxManifestApplicationsEnumerator,
             hasNext: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBlockMapBlocksEnumerator, block: ?*?*IAppxBlockMapBlock) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, block);
+    pub fn GetCurrent(self: *const IAppxManifestApplicationsEnumerator, application: ?*?*IAppxManifestApplication) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, application);
     }
-    pub fn GetHasCurrent(self: *const IAppxBlockMapBlocksEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestApplicationsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBlockMapBlocksEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestApplicationsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+const IID_IAppxManifestCapabilitiesEnumerator_Value = Guid.initString("11d22258-f470-42c1-b291-8361c5437e41");
+pub const IID_IAppxManifestCapabilitiesEnumerator = &IID_IAppxManifestCapabilitiesEnumerator_Value;
+pub const IAppxManifestCapabilitiesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestCapabilitiesEnumerator,
+            capability: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestCapabilitiesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestCapabilitiesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, capability);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxManifestDeviceCapabilitiesEnumerator_Value = Guid.initString("30204541-427b-4a1c-bacf-655bf463a540");
+pub const IID_IAppxManifestDeviceCapabilitiesEnumerator = &IID_IAppxManifestDeviceCapabilitiesEnumerator_Value;
+pub const IAppxManifestDeviceCapabilitiesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestDeviceCapabilitiesEnumerator,
+            deviceCapability: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestDeviceCapabilitiesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestDeviceCapabilitiesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, deviceCapability);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+const IID_IAppxManifestDriverConstraint_Value = Guid.initString("c031bee4-bbcc-48ea-a237-c34045c80a07");
+pub const IID_IAppxManifestDriverConstraint = &IID_IAppxManifestDriverConstraint_Value;
+pub const IAppxManifestDriverConstraint = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IAppxManifestDriverConstraint,
+            name: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetMinVersion: *const fn(
+            self: *const IAppxManifestDriverConstraint,
+            minVersion: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetMinDate: *const fn(
+            self: *const IAppxManifestDriverConstraint,
+            minDate: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetMinVersion(self: *const IAppxManifestDriverConstraint, minVersion: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMinVersion(self, minVersion);
+    }
+    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMinDate(self, minDate);
+    }
+};
+
+const IID_IAppxManifestDriverConstraintsEnumerator_Value = Guid.initString("d402b2d1-f600-49e0-95e6-975d8da13d89");
+pub const IID_IAppxManifestDriverConstraintsEnumerator = &IID_IAppxManifestDriverConstraintsEnumerator_Value;
+pub const IAppxManifestDriverConstraintsEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestDriverConstraintsEnumerator,
+            driverConstraint: ?*?*IAppxManifestDriverConstraint,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestDriverConstraintsEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestDriverConstraintsEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, driverConstraint: ?*?*IAppxManifestDriverConstraint) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, driverConstraint);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestDriverConstraintsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+const IID_IAppxManifestDriverDependenciesEnumerator_Value = Guid.initString("fe039db2-467f-4755-8404-8f5eb6865b33");
+pub const IID_IAppxManifestDriverDependenciesEnumerator = &IID_IAppxManifestDriverDependenciesEnumerator_Value;
+pub const IAppxManifestDriverDependenciesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestDriverDependenciesEnumerator,
+            driverDependency: ?*?*IAppxManifestDriverDependency,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestDriverDependenciesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestDriverDependenciesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, driverDependency: ?*?*IAppxManifestDriverDependency) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, driverDependency);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestDriverDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+const IID_IAppxManifestDriverDependency_Value = Guid.initString("1210cb94-5a92-4602-be24-79f318af4af9");
+pub const IID_IAppxManifestDriverDependency = &IID_IAppxManifestDriverDependency_Value;
+pub const IAppxManifestDriverDependency = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDriverConstraints: *const fn(
+            self: *const IAppxManifestDriverDependency,
+            driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDriverConstraints(self: *const IAppxManifestDriverDependency, driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDriverConstraints(self, driverConstraints);
+    }
+};
+
+const IID_IAppxManifestHostRuntimeDependenciesEnumerator_Value = Guid.initString("6427a646-7f49-433e-b1a6-0da309f6885a");
+pub const IID_IAppxManifestHostRuntimeDependenciesEnumerator = &IID_IAppxManifestHostRuntimeDependenciesEnumerator_Value;
+pub const IAppxManifestHostRuntimeDependenciesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
+            hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, hostRuntimeDependency);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+const IID_IAppxManifestHostRuntimeDependency_Value = Guid.initString("3455d234-8414-410d-95c7-7b35255b8391");
+pub const IID_IAppxManifestHostRuntimeDependency = &IID_IAppxManifestHostRuntimeDependency_Value;
+pub const IAppxManifestHostRuntimeDependency = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IAppxManifestHostRuntimeDependency,
+            name: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPublisher: *const fn(
+            self: *const IAppxManifestHostRuntimeDependency,
+            publisher: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetMinVersion: *const fn(
+            self: *const IAppxManifestHostRuntimeDependency,
+            minVersion: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPublisher(self, publisher);
+    }
+    pub fn GetMinVersion(self: *const IAppxManifestHostRuntimeDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMinVersion(self, minVersion);
+    }
+};
+
+const IID_IAppxManifestHostRuntimeDependency2_Value = Guid.initString("c26f23a8-ee10-4ad6-b898-2b4d7aebfe6a");
+pub const IID_IAppxManifestHostRuntimeDependency2 = &IID_IAppxManifestHostRuntimeDependency2_Value;
+pub const IAppxManifestHostRuntimeDependency2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPackageFamilyName: *const fn(
+            self: *const IAppxManifestHostRuntimeDependency2,
+            packageFamilyName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageFamilyName(self, packageFamilyName);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxManifestMainPackageDependenciesEnumerator_Value = Guid.initString("a99c4f00-51d2-4f0f-ba46-7ed5255ebdff");
+pub const IID_IAppxManifestMainPackageDependenciesEnumerator = &IID_IAppxManifestMainPackageDependenciesEnumerator_Value;
+pub const IAppxManifestMainPackageDependenciesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestMainPackageDependenciesEnumerator,
+            mainPackageDependency: ?*?*IAppxManifestMainPackageDependency,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestMainPackageDependenciesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestMainPackageDependenciesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, mainPackageDependency: ?*?*IAppxManifestMainPackageDependency) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, mainPackageDependency);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxManifestMainPackageDependency_Value = Guid.initString("05d0611c-bc29-46d5-97e2-84b9c79bd8ae");
+pub const IID_IAppxManifestMainPackageDependency = &IID_IAppxManifestMainPackageDependency_Value;
+pub const IAppxManifestMainPackageDependency = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IAppxManifestMainPackageDependency,
+            name: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPublisher: *const fn(
+            self: *const IAppxManifestMainPackageDependency,
+            publisher: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPackageFamilyName: *const fn(
+            self: *const IAppxManifestMainPackageDependency,
+            packageFamilyName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPublisher(self, publisher);
+    }
+    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageFamilyName(self, packageFamilyName);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxManifestOptionalPackageInfo_Value = Guid.initString("2634847d-5b5d-4fe5-a243-002ff95edc7e");
+pub const IID_IAppxManifestOptionalPackageInfo = &IID_IAppxManifestOptionalPackageInfo_Value;
+pub const IAppxManifestOptionalPackageInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetIsOptionalPackage: *const fn(
+            self: *const IAppxManifestOptionalPackageInfo,
+            isOptionalPackage: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetMainPackageName: *const fn(
+            self: *const IAppxManifestOptionalPackageInfo,
+            mainPackageName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetIsOptionalPackage(self: *const IAppxManifestOptionalPackageInfo, isOptionalPackage: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIsOptionalPackage(self, isOptionalPackage);
+    }
+    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMainPackageName(self, mainPackageName);
+    }
+};
+
+const IID_IAppxManifestOSPackageDependenciesEnumerator_Value = Guid.initString("b84e2fc3-f8ec-4bc1-8ae2-156346f5ffea");
+pub const IID_IAppxManifestOSPackageDependenciesEnumerator = &IID_IAppxManifestOSPackageDependenciesEnumerator_Value;
+pub const IAppxManifestOSPackageDependenciesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestOSPackageDependenciesEnumerator,
+            osPackageDependency: ?*?*IAppxManifestOSPackageDependency,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestOSPackageDependenciesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestOSPackageDependenciesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, osPackageDependency: ?*?*IAppxManifestOSPackageDependency) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, osPackageDependency);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+const IID_IAppxManifestOSPackageDependency_Value = Guid.initString("154995ee-54a6-4f14-ac97-d8cf0519644b");
+pub const IID_IAppxManifestOSPackageDependency = &IID_IAppxManifestOSPackageDependency_Value;
+pub const IAppxManifestOSPackageDependency = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IAppxManifestOSPackageDependency,
+            name: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetVersion: *const fn(
+            self: *const IAppxManifestOSPackageDependency,
+            version: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetVersion(self: *const IAppxManifestOSPackageDependency, version: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVersion(self, version);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxManifestPackageDependenciesEnumerator_Value = Guid.initString("b43bbcf9-65a6-42dd-bac0-8c6741e7f5a4");
+pub const IID_IAppxManifestPackageDependenciesEnumerator = &IID_IAppxManifestPackageDependenciesEnumerator_Value;
+pub const IAppxManifestPackageDependenciesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestPackageDependenciesEnumerator,
+            dependency: ?*?*IAppxManifestPackageDependency,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestPackageDependenciesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestPackageDependenciesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, dependency: ?*?*IAppxManifestPackageDependency) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, dependency);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxManifestPackageDependency_Value = Guid.initString("e4946b59-733e-43f0-a724-3bde4c1285a0");
+pub const IID_IAppxManifestPackageDependency = &IID_IAppxManifestPackageDependency_Value;
+pub const IAppxManifestPackageDependency = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IAppxManifestPackageDependency,
+            name: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPublisher: *const fn(
+            self: *const IAppxManifestPackageDependency,
+            publisher: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetMinVersion: *const fn(
+            self: *const IAppxManifestPackageDependency,
+            minVersion: ?*u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPublisher(self, publisher);
+    }
+    pub fn GetMinVersion(self: *const IAppxManifestPackageDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMinVersion(self, minVersion);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxManifestPackageDependency2_Value = Guid.initString("dda0b713-f3ff-49d3-898a-2786780c5d98");
+pub const IID_IAppxManifestPackageDependency2 = &IID_IAppxManifestPackageDependency2_Value;
+pub const IAppxManifestPackageDependency2 = extern union {
+    pub const VTable = extern struct {
+        base: IAppxManifestPackageDependency.VTable,
+        GetMaxMajorVersionTested: *const fn(
+            self: *const IAppxManifestPackageDependency2,
+            maxMajorVersionTested: ?*u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAppxManifestPackageDependency: IAppxManifestPackageDependency,
+    IUnknown: IUnknown,
+    pub fn GetMaxMajorVersionTested(self: *const IAppxManifestPackageDependency2, maxMajorVersionTested: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMaxMajorVersionTested(self, maxMajorVersionTested);
+    }
+};
+
+const IID_IAppxManifestPackageDependency3_Value = Guid.initString("1ac56374-6198-4d6b-92e4-749d5ab8a895");
+pub const IID_IAppxManifestPackageDependency3 = &IID_IAppxManifestPackageDependency3_Value;
+pub const IAppxManifestPackageDependency3 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetIsOptional: *const fn(
+            self: *const IAppxManifestPackageDependency3,
+            isOptional: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetIsOptional(self: *const IAppxManifestPackageDependency3, isOptional: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIsOptional(self, isOptional);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxManifestPackageId_Value = Guid.initString("283ce2d7-7153-4a91-9649-7a0f7240945f");
+pub const IID_IAppxManifestPackageId = &IID_IAppxManifestPackageId_Value;
+pub const IAppxManifestPackageId = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: *const fn(
+            self: *const IAppxManifestPackageId,
+            name: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetArchitecture: *const fn(
+            self: *const IAppxManifestPackageId,
+            architecture: ?*APPX_PACKAGE_ARCHITECTURE,
+        ) callconv(.winapi) HRESULT,
+        GetPublisher: *const fn(
+            self: *const IAppxManifestPackageId,
+            publisher: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetVersion: *const fn(
+            self: *const IAppxManifestPackageId,
+            packageVersion: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        GetResourceId: *const fn(
+            self: *const IAppxManifestPackageId,
+            resourceId: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        ComparePublisher: *const fn(
+            self: *const IAppxManifestPackageId,
+            other: ?[*:0]const u16,
+            isSame: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetPackageFullName: *const fn(
+            self: *const IAppxManifestPackageId,
+            packageFullName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetPackageFamilyName: *const fn(
+            self: *const IAppxManifestPackageId,
+            packageFamilyName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn GetArchitecture(self: *const IAppxManifestPackageId, architecture: ?*APPX_PACKAGE_ARCHITECTURE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetArchitecture(self, architecture);
+    }
+    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPublisher(self, publisher);
+    }
+    pub fn GetVersion(self: *const IAppxManifestPackageId, packageVersion: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.GetVersion(self, packageVersion);
+    }
+    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetResourceId(self, resourceId);
+    }
+    pub fn ComparePublisher(self: *const IAppxManifestPackageId, other: ?[*:0]const u16, isSame: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ComparePublisher(self, other, isSame);
+    }
+    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageFullName(self, packageFullName);
+    }
+    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPackageFamilyName(self, packageFamilyName);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxManifestPackageId2_Value = Guid.initString("2256999d-d617-42f1-880e-0ba4542319d5");
+pub const IID_IAppxManifestPackageId2 = &IID_IAppxManifestPackageId2_Value;
+pub const IAppxManifestPackageId2 = extern union {
+    pub const VTable = extern struct {
+        base: IAppxManifestPackageId.VTable,
+        GetArchitecture2: *const fn(
+            self: *const IAppxManifestPackageId2,
+            architecture: ?*APPX_PACKAGE_ARCHITECTURE2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAppxManifestPackageId: IAppxManifestPackageId,
+    IUnknown: IUnknown,
+    pub fn GetArchitecture2(self: *const IAppxManifestPackageId2, architecture: ?*APPX_PACKAGE_ARCHITECTURE2) callconv(.@"inline") HRESULT {
+        return self.vtable.GetArchitecture2(self, architecture);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxManifestProperties_Value = Guid.initString("03faf64d-f26f-4b2c-aaf7-8fe7789b8bca");
+pub const IID_IAppxManifestProperties = &IID_IAppxManifestProperties_Value;
+pub const IAppxManifestProperties = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBoolValue: *const fn(
+            self: *const IAppxManifestProperties,
+            name: ?[*:0]const u16,
+            value: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetStringValue: *const fn(
+            self: *const IAppxManifestProperties,
+            name: ?[*:0]const u16,
+            value: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetBoolValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBoolValue(self, name, value);
+    }
+    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringValue(self, name, value);
+    }
+};
+
+const IID_IAppxManifestQualifiedResource_Value = Guid.initString("3b53a497-3c5c-48d1-9ea3-bb7eac8cd7d4");
+pub const IID_IAppxManifestQualifiedResource = &IID_IAppxManifestQualifiedResource_Value;
+pub const IAppxManifestQualifiedResource = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLanguage: *const fn(
+            self: *const IAppxManifestQualifiedResource,
+            language: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        GetScale: *const fn(
+            self: *const IAppxManifestQualifiedResource,
+            scale: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetDXFeatureLevel: *const fn(
+            self: *const IAppxManifestQualifiedResource,
+            dxFeatureLevel: ?*DX_FEATURE_LEVEL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLanguage(self, language);
+    }
+    pub fn GetScale(self: *const IAppxManifestQualifiedResource, scale: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetScale(self, scale);
+    }
+    pub fn GetDXFeatureLevel(self: *const IAppxManifestQualifiedResource, dxFeatureLevel: ?*DX_FEATURE_LEVEL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDXFeatureLevel(self, dxFeatureLevel);
+    }
+};
+
+const IID_IAppxManifestQualifiedResourcesEnumerator_Value = Guid.initString("8ef6adfe-3762-4a8f-9373-2fc5d444c8d2");
+pub const IID_IAppxManifestQualifiedResourcesEnumerator = &IID_IAppxManifestQualifiedResourcesEnumerator_Value;
+pub const IAppxManifestQualifiedResourcesEnumerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestQualifiedResourcesEnumerator,
+            resource: ?*?*IAppxManifestQualifiedResource,
+        ) callconv(.winapi) HRESULT,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestQualifiedResourcesEnumerator,
+            hasCurrent: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        MoveNext: *const fn(
+            self: *const IAppxManifestQualifiedResourcesEnumerator,
+            hasNext: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, resource: ?*?*IAppxManifestQualifiedResource) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, resource);
+    }
+    pub fn GetHasCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
+    }
+    pub fn MoveNext(self: *const IAppxManifestQualifiedResourcesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -881,450 +2606,35 @@ pub const IAppxManifestReader7 = extern union {
     }
 };
 
-const IID_IAppxManifestDriverDependenciesEnumerator_Value = Guid.initString("fe039db2-467f-4755-8404-8f5eb6865b33");
-pub const IID_IAppxManifestDriverDependenciesEnumerator = &IID_IAppxManifestDriverDependenciesEnumerator_Value;
-pub const IAppxManifestDriverDependenciesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestDriverDependenciesEnumerator,
-            driverDependency: ?*?*IAppxManifestDriverDependency,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestDriverDependenciesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestDriverDependenciesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, driverDependency: ?*?*IAppxManifestDriverDependency) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, driverDependency);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestDriverDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-const IID_IAppxManifestDriverDependency_Value = Guid.initString("1210cb94-5a92-4602-be24-79f318af4af9");
-pub const IID_IAppxManifestDriverDependency = &IID_IAppxManifestDriverDependency_Value;
-pub const IAppxManifestDriverDependency = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDriverConstraints: *const fn(
-            self: *const IAppxManifestDriverDependency,
-            driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDriverConstraints(self: *const IAppxManifestDriverDependency, driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDriverConstraints(self, driverConstraints);
-    }
-};
-
-const IID_IAppxManifestDriverConstraintsEnumerator_Value = Guid.initString("d402b2d1-f600-49e0-95e6-975d8da13d89");
-pub const IID_IAppxManifestDriverConstraintsEnumerator = &IID_IAppxManifestDriverConstraintsEnumerator_Value;
-pub const IAppxManifestDriverConstraintsEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestDriverConstraintsEnumerator,
-            driverConstraint: ?*?*IAppxManifestDriverConstraint,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestDriverConstraintsEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestDriverConstraintsEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, driverConstraint: ?*?*IAppxManifestDriverConstraint) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, driverConstraint);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestDriverConstraintsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-const IID_IAppxManifestDriverConstraint_Value = Guid.initString("c031bee4-bbcc-48ea-a237-c34045c80a07");
-pub const IID_IAppxManifestDriverConstraint = &IID_IAppxManifestDriverConstraint_Value;
-pub const IAppxManifestDriverConstraint = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IAppxManifestDriverConstraint,
-            name: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetMinVersion: *const fn(
-            self: *const IAppxManifestDriverConstraint,
-            minVersion: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetMinDate: *const fn(
-            self: *const IAppxManifestDriverConstraint,
-            minDate: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
-    }
-    pub fn GetMinVersion(self: *const IAppxManifestDriverConstraint, minVersion: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMinVersion(self, minVersion);
-    }
-    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMinDate(self, minDate);
-    }
-};
-
-const IID_IAppxManifestOSPackageDependenciesEnumerator_Value = Guid.initString("b84e2fc3-f8ec-4bc1-8ae2-156346f5ffea");
-pub const IID_IAppxManifestOSPackageDependenciesEnumerator = &IID_IAppxManifestOSPackageDependenciesEnumerator_Value;
-pub const IAppxManifestOSPackageDependenciesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestOSPackageDependenciesEnumerator,
-            osPackageDependency: ?*?*IAppxManifestOSPackageDependency,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestOSPackageDependenciesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestOSPackageDependenciesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, osPackageDependency: ?*?*IAppxManifestOSPackageDependency) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, osPackageDependency);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-const IID_IAppxManifestOSPackageDependency_Value = Guid.initString("154995ee-54a6-4f14-ac97-d8cf0519644b");
-pub const IID_IAppxManifestOSPackageDependency = &IID_IAppxManifestOSPackageDependency_Value;
-pub const IAppxManifestOSPackageDependency = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IAppxManifestOSPackageDependency,
-            name: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetVersion: *const fn(
-            self: *const IAppxManifestOSPackageDependency,
-            version: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
-    }
-    pub fn GetVersion(self: *const IAppxManifestOSPackageDependency, version: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVersion(self, version);
-    }
-};
-
-const IID_IAppxManifestHostRuntimeDependenciesEnumerator_Value = Guid.initString("6427a646-7f49-433e-b1a6-0da309f6885a");
-pub const IID_IAppxManifestHostRuntimeDependenciesEnumerator = &IID_IAppxManifestHostRuntimeDependenciesEnumerator_Value;
-pub const IAppxManifestHostRuntimeDependenciesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
-            hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, hostRuntimeDependency);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-const IID_IAppxManifestHostRuntimeDependency_Value = Guid.initString("3455d234-8414-410d-95c7-7b35255b8391");
-pub const IID_IAppxManifestHostRuntimeDependency = &IID_IAppxManifestHostRuntimeDependency_Value;
-pub const IAppxManifestHostRuntimeDependency = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IAppxManifestHostRuntimeDependency,
-            name: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPublisher: *const fn(
-            self: *const IAppxManifestHostRuntimeDependency,
-            publisher: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetMinVersion: *const fn(
-            self: *const IAppxManifestHostRuntimeDependency,
-            minVersion: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
-    }
-    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPublisher(self, publisher);
-    }
-    pub fn GetMinVersion(self: *const IAppxManifestHostRuntimeDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMinVersion(self, minVersion);
-    }
-};
-
-const IID_IAppxManifestHostRuntimeDependency2_Value = Guid.initString("c26f23a8-ee10-4ad6-b898-2b4d7aebfe6a");
-pub const IID_IAppxManifestHostRuntimeDependency2 = &IID_IAppxManifestHostRuntimeDependency2_Value;
-pub const IAppxManifestHostRuntimeDependency2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPackageFamilyName: *const fn(
-            self: *const IAppxManifestHostRuntimeDependency2,
-            packageFamilyName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageFamilyName(self, packageFamilyName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxManifestOptionalPackageInfo_Value = Guid.initString("2634847d-5b5d-4fe5-a243-002ff95edc7e");
-pub const IID_IAppxManifestOptionalPackageInfo = &IID_IAppxManifestOptionalPackageInfo_Value;
-pub const IAppxManifestOptionalPackageInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetIsOptionalPackage: *const fn(
-            self: *const IAppxManifestOptionalPackageInfo,
-            isOptionalPackage: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetMainPackageName: *const fn(
-            self: *const IAppxManifestOptionalPackageInfo,
-            mainPackageName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetIsOptionalPackage(self: *const IAppxManifestOptionalPackageInfo, isOptionalPackage: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIsOptionalPackage(self, isOptionalPackage);
-    }
-    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMainPackageName(self, mainPackageName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxManifestMainPackageDependenciesEnumerator_Value = Guid.initString("a99c4f00-51d2-4f0f-ba46-7ed5255ebdff");
-pub const IID_IAppxManifestMainPackageDependenciesEnumerator = &IID_IAppxManifestMainPackageDependenciesEnumerator_Value;
-pub const IAppxManifestMainPackageDependenciesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestMainPackageDependenciesEnumerator,
-            mainPackageDependency: ?*?*IAppxManifestMainPackageDependency,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestMainPackageDependenciesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestMainPackageDependenciesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, mainPackageDependency: ?*?*IAppxManifestMainPackageDependency) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, mainPackageDependency);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxManifestMainPackageDependency_Value = Guid.initString("05d0611c-bc29-46d5-97e2-84b9c79bd8ae");
-pub const IID_IAppxManifestMainPackageDependency = &IID_IAppxManifestMainPackageDependency_Value;
-pub const IAppxManifestMainPackageDependency = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IAppxManifestMainPackageDependency,
-            name: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPublisher: *const fn(
-            self: *const IAppxManifestMainPackageDependency,
-            publisher: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPackageFamilyName: *const fn(
-            self: *const IAppxManifestMainPackageDependency,
-            packageFamilyName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
-    }
-    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPublisher(self, publisher);
-    }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageFamilyName(self, packageFamilyName);
-    }
-};
-
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestPackageId_Value = Guid.initString("283ce2d7-7153-4a91-9649-7a0f7240945f");
-pub const IID_IAppxManifestPackageId = &IID_IAppxManifestPackageId_Value;
-pub const IAppxManifestPackageId = extern union {
+const IID_IAppxManifestResourcesEnumerator_Value = Guid.initString("de4dfbbd-881a-48bb-858c-d6f2baeae6ed");
+pub const IID_IAppxManifestResourcesEnumerator = &IID_IAppxManifestResourcesEnumerator_Value;
+pub const IAppxManifestResourcesEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IAppxManifestPackageId,
-            name: ?*?PWSTR,
+        GetCurrent: *const fn(
+            self: *const IAppxManifestResourcesEnumerator,
+            resource: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
-        GetArchitecture: *const fn(
-            self: *const IAppxManifestPackageId,
-            architecture: ?*APPX_PACKAGE_ARCHITECTURE,
+        GetHasCurrent: *const fn(
+            self: *const IAppxManifestResourcesEnumerator,
+            hasCurrent: ?*BOOL,
         ) callconv(.winapi) HRESULT,
-        GetPublisher: *const fn(
-            self: *const IAppxManifestPackageId,
-            publisher: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetVersion: *const fn(
-            self: *const IAppxManifestPackageId,
-            packageVersion: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetResourceId: *const fn(
-            self: *const IAppxManifestPackageId,
-            resourceId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        ComparePublisher: *const fn(
-            self: *const IAppxManifestPackageId,
-            other: ?[*:0]const u16,
-            isSame: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetPackageFullName: *const fn(
-            self: *const IAppxManifestPackageId,
-            packageFullName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPackageFamilyName: *const fn(
-            self: *const IAppxManifestPackageId,
-            packageFamilyName: ?*?PWSTR,
+        MoveNext: *const fn(
+            self: *const IAppxManifestResourcesEnumerator,
+            hasNext: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
+    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrent(self, resource);
     }
-    pub fn GetArchitecture(self: *const IAppxManifestPackageId, architecture: ?*APPX_PACKAGE_ARCHITECTURE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetArchitecture(self, architecture);
+    pub fn GetHasCurrent(self: *const IAppxManifestResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPublisher(self, publisher);
-    }
-    pub fn GetVersion(self: *const IAppxManifestPackageId, packageVersion: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetVersion(self, packageVersion);
-    }
-    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetResourceId(self, resourceId);
-    }
-    pub fn ComparePublisher(self: *const IAppxManifestPackageId, other: ?[*:0]const u16, isSame: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ComparePublisher(self, other, isSame);
-    }
-    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageFullName(self, packageFullName);
-    }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageFamilyName(self, packageFamilyName);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxManifestPackageId2_Value = Guid.initString("2256999d-d617-42f1-880e-0ba4542319d5");
-pub const IID_IAppxManifestPackageId2 = &IID_IAppxManifestPackageId2_Value;
-pub const IAppxManifestPackageId2 = extern union {
-    pub const VTable = extern struct {
-        base: IAppxManifestPackageId.VTable,
-        GetArchitecture2: *const fn(
-            self: *const IAppxManifestPackageId2,
-            architecture: ?*APPX_PACKAGE_ARCHITECTURE2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAppxManifestPackageId: IAppxManifestPackageId,
-    IUnknown: IUnknown,
-    pub fn GetArchitecture2(self: *const IAppxManifestPackageId2, architecture: ?*APPX_PACKAGE_ARCHITECTURE2) callconv(.@"inline") HRESULT {
-        return self.vtable.GetArchitecture2(self, architecture);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestProperties_Value = Guid.initString("03faf64d-f26f-4b2c-aaf7-8fe7789b8bca");
-pub const IID_IAppxManifestProperties = &IID_IAppxManifestProperties_Value;
-pub const IAppxManifestProperties = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetBoolValue: *const fn(
-            self: *const IAppxManifestProperties,
-            name: ?[*:0]const u16,
-            value: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetStringValue: *const fn(
-            self: *const IAppxManifestProperties,
-            name: ?[*:0]const u16,
-            value: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetBoolValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBoolValue(self, name, value);
-    }
-    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringValue(self, name, value);
+    pub fn MoveNext(self: *const IAppxManifestResourcesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.MoveNext(self, hasNext);
     }
 };
 
@@ -1388,1417 +2698,6 @@ pub const IAppxManifestTargetDeviceFamily = extern union {
     }
     pub fn GetMaxVersionTested(self: *const IAppxManifestTargetDeviceFamily, maxVersionTested: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxVersionTested(self, maxVersionTested);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestPackageDependenciesEnumerator_Value = Guid.initString("b43bbcf9-65a6-42dd-bac0-8c6741e7f5a4");
-pub const IID_IAppxManifestPackageDependenciesEnumerator = &IID_IAppxManifestPackageDependenciesEnumerator_Value;
-pub const IAppxManifestPackageDependenciesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestPackageDependenciesEnumerator,
-            dependency: ?*?*IAppxManifestPackageDependency,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestPackageDependenciesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestPackageDependenciesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, dependency: ?*?*IAppxManifestPackageDependency) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, dependency);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestPackageDependency_Value = Guid.initString("e4946b59-733e-43f0-a724-3bde4c1285a0");
-pub const IID_IAppxManifestPackageDependency = &IID_IAppxManifestPackageDependency_Value;
-pub const IAppxManifestPackageDependency = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IAppxManifestPackageDependency,
-            name: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPublisher: *const fn(
-            self: *const IAppxManifestPackageDependency,
-            publisher: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetMinVersion: *const fn(
-            self: *const IAppxManifestPackageDependency,
-            minVersion: ?*u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, name);
-    }
-    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPublisher(self, publisher);
-    }
-    pub fn GetMinVersion(self: *const IAppxManifestPackageDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMinVersion(self, minVersion);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestPackageDependency2_Value = Guid.initString("dda0b713-f3ff-49d3-898a-2786780c5d98");
-pub const IID_IAppxManifestPackageDependency2 = &IID_IAppxManifestPackageDependency2_Value;
-pub const IAppxManifestPackageDependency2 = extern union {
-    pub const VTable = extern struct {
-        base: IAppxManifestPackageDependency.VTable,
-        GetMaxMajorVersionTested: *const fn(
-            self: *const IAppxManifestPackageDependency2,
-            maxMajorVersionTested: ?*u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAppxManifestPackageDependency: IAppxManifestPackageDependency,
-    IUnknown: IUnknown,
-    pub fn GetMaxMajorVersionTested(self: *const IAppxManifestPackageDependency2, maxMajorVersionTested: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMaxMajorVersionTested(self, maxMajorVersionTested);
-    }
-};
-
-const IID_IAppxManifestPackageDependency3_Value = Guid.initString("1ac56374-6198-4d6b-92e4-749d5ab8a895");
-pub const IID_IAppxManifestPackageDependency3 = &IID_IAppxManifestPackageDependency3_Value;
-pub const IAppxManifestPackageDependency3 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetIsOptional: *const fn(
-            self: *const IAppxManifestPackageDependency3,
-            isOptional: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetIsOptional(self: *const IAppxManifestPackageDependency3, isOptional: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIsOptional(self, isOptional);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestResourcesEnumerator_Value = Guid.initString("de4dfbbd-881a-48bb-858c-d6f2baeae6ed");
-pub const IID_IAppxManifestResourcesEnumerator = &IID_IAppxManifestResourcesEnumerator_Value;
-pub const IAppxManifestResourcesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestResourcesEnumerator,
-            resource: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestResourcesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestResourcesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, resource);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestResourcesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestDeviceCapabilitiesEnumerator_Value = Guid.initString("30204541-427b-4a1c-bacf-655bf463a540");
-pub const IID_IAppxManifestDeviceCapabilitiesEnumerator = &IID_IAppxManifestDeviceCapabilitiesEnumerator_Value;
-pub const IAppxManifestDeviceCapabilitiesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestDeviceCapabilitiesEnumerator,
-            deviceCapability: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestDeviceCapabilitiesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestDeviceCapabilitiesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, deviceCapability);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-const IID_IAppxManifestCapabilitiesEnumerator_Value = Guid.initString("11d22258-f470-42c1-b291-8361c5437e41");
-pub const IID_IAppxManifestCapabilitiesEnumerator = &IID_IAppxManifestCapabilitiesEnumerator_Value;
-pub const IAppxManifestCapabilitiesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestCapabilitiesEnumerator,
-            capability: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestCapabilitiesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestCapabilitiesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, capability);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestApplicationsEnumerator_Value = Guid.initString("9eb8a55a-f04b-4d0d-808d-686185d4847a");
-pub const IID_IAppxManifestApplicationsEnumerator = &IID_IAppxManifestApplicationsEnumerator_Value;
-pub const IAppxManifestApplicationsEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestApplicationsEnumerator,
-            application: ?*?*IAppxManifestApplication,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestApplicationsEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestApplicationsEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestApplicationsEnumerator, application: ?*?*IAppxManifestApplication) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, application);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestApplicationsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestApplicationsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAppxManifestApplication_Value = Guid.initString("5da89bf4-3773-46be-b650-7e744863b7e8");
-pub const IID_IAppxManifestApplication = &IID_IAppxManifestApplication_Value;
-pub const IAppxManifestApplication = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStringValue: *const fn(
-            self: *const IAppxManifestApplication,
-            name: ?[*:0]const u16,
-            value: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetAppUserModelId: *const fn(
-            self: *const IAppxManifestApplication,
-            appUserModelId: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringValue(self, name, value);
-    }
-    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAppUserModelId(self, appUserModelId);
-    }
-};
-
-const IID_IAppxManifestQualifiedResourcesEnumerator_Value = Guid.initString("8ef6adfe-3762-4a8f-9373-2fc5d444c8d2");
-pub const IID_IAppxManifestQualifiedResourcesEnumerator = &IID_IAppxManifestQualifiedResourcesEnumerator_Value;
-pub const IAppxManifestQualifiedResourcesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxManifestQualifiedResourcesEnumerator,
-            resource: ?*?*IAppxManifestQualifiedResource,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxManifestQualifiedResourcesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxManifestQualifiedResourcesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, resource: ?*?*IAppxManifestQualifiedResource) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, resource);
-    }
-    pub fn GetHasCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxManifestQualifiedResourcesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-const IID_IAppxManifestQualifiedResource_Value = Guid.initString("3b53a497-3c5c-48d1-9ea3-bb7eac8cd7d4");
-pub const IID_IAppxManifestQualifiedResource = &IID_IAppxManifestQualifiedResource_Value;
-pub const IAppxManifestQualifiedResource = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLanguage: *const fn(
-            self: *const IAppxManifestQualifiedResource,
-            language: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetScale: *const fn(
-            self: *const IAppxManifestQualifiedResource,
-            scale: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetDXFeatureLevel: *const fn(
-            self: *const IAppxManifestQualifiedResource,
-            dxFeatureLevel: ?*DX_FEATURE_LEVEL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLanguage(self, language);
-    }
-    pub fn GetScale(self: *const IAppxManifestQualifiedResource, scale: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetScale(self, scale);
-    }
-    pub fn GetDXFeatureLevel(self: *const IAppxManifestQualifiedResource, dxFeatureLevel: ?*DX_FEATURE_LEVEL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDXFeatureLevel(self, dxFeatureLevel);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IAppxBundleFactory_Value = Guid.initString("bba65864-965f-4a5f-855f-f074bdbf3a7b");
-pub const IID_IAppxBundleFactory = &IID_IAppxBundleFactory_Value;
-pub const IAppxBundleFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateBundleWriter: *const fn(
-            self: *const IAppxBundleFactory,
-            outputStream: ?*IStream,
-            bundleVersion: u64,
-            bundleWriter: ?*?*IAppxBundleWriter,
-        ) callconv(.winapi) HRESULT,
-        CreateBundleReader: *const fn(
-            self: *const IAppxBundleFactory,
-            inputStream: ?*IStream,
-            bundleReader: ?*?*IAppxBundleReader,
-        ) callconv(.winapi) HRESULT,
-        CreateBundleManifestReader: *const fn(
-            self: *const IAppxBundleFactory,
-            inputStream: ?*IStream,
-            manifestReader: ?*?*IAppxBundleManifestReader,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateBundleWriter(self: *const IAppxBundleFactory, outputStream: ?*IStream, bundleVersion: u64, bundleWriter: ?*?*IAppxBundleWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBundleWriter(self, outputStream, bundleVersion, bundleWriter);
-    }
-    pub fn CreateBundleReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, bundleReader: ?*?*IAppxBundleReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBundleReader(self, inputStream, bundleReader);
-    }
-    pub fn CreateBundleManifestReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBundleManifestReader(self, inputStream, manifestReader);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IAppxBundleWriter_Value = Guid.initString("ec446fe8-bfec-4c64-ab4f-49f038f0c6d2");
-pub const IID_IAppxBundleWriter = &IID_IAppxBundleWriter_Value;
-pub const IAppxBundleWriter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadPackage: *const fn(
-            self: *const IAppxBundleWriter,
-            fileName: ?[*:0]const u16,
-            packageStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IAppxBundleWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadPackage(self: *const IAppxBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadPackage(self, fileName, packageStream);
-    }
-    pub fn Close(self: *const IAppxBundleWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxBundleWriter2_Value = Guid.initString("6d8fe971-01cc-49a0-b685-233851279962");
-pub const IID_IAppxBundleWriter2 = &IID_IAppxBundleWriter2_Value;
-pub const IAppxBundleWriter2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddExternalPackageReference: *const fn(
-            self: *const IAppxBundleWriter2,
-            fileName: ?[*:0]const u16,
-            inputStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxBundleWriter3_Value = Guid.initString("ad711152-f969-4193-82d5-9ddf2786d21a");
-pub const IID_IAppxBundleWriter3 = &IID_IAppxBundleWriter3_Value;
-pub const IAppxBundleWriter3 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPackageReference: *const fn(
-            self: *const IAppxBundleWriter3,
-            fileName: ?[*:0]const u16,
-            inputStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IAppxBundleWriter3,
-            hashMethodString: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPackageReference(self: *const IAppxBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPackageReference(self, fileName, inputStream);
-    }
-    pub fn Close(self: *const IAppxBundleWriter3, hashMethodString: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self, hashMethodString);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxBundleWriter4_Value = Guid.initString("9cd9d523-5009-4c01-9882-dc029fbd47a3");
-pub const IID_IAppxBundleWriter4 = &IID_IAppxBundleWriter4_Value;
-pub const IAppxBundleWriter4 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadPackage: *const fn(
-            self: *const IAppxBundleWriter4,
-            fileName: ?[*:0]const u16,
-            packageStream: ?*IStream,
-            isDefaultApplicablePackage: BOOL,
-        ) callconv(.winapi) HRESULT,
-        AddPackageReference: *const fn(
-            self: *const IAppxBundleWriter4,
-            fileName: ?[*:0]const u16,
-            inputStream: ?*IStream,
-            isDefaultApplicablePackage: BOOL,
-        ) callconv(.winapi) HRESULT,
-        AddExternalPackageReference: *const fn(
-            self: *const IAppxBundleWriter4,
-            fileName: ?[*:0]const u16,
-            inputStream: ?*IStream,
-            isDefaultApplicablePackage: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadPackage(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadPackage(self, fileName, packageStream, isDefaultApplicablePackage);
-    }
-    pub fn AddPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
-    }
-    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IAppxBundleReader_Value = Guid.initString("dd75b8c0-ba76-43b0-ae0f-68656a1dc5c8");
-pub const IID_IAppxBundleReader = &IID_IAppxBundleReader_Value;
-pub const IAppxBundleReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetFootprintFile: *const fn(
-            self: *const IAppxBundleReader,
-            fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE,
-            footprintFile: ?*?*IAppxFile,
-        ) callconv(.winapi) HRESULT,
-        GetBlockMap: *const fn(
-            self: *const IAppxBundleReader,
-            blockMapReader: ?*?*IAppxBlockMapReader,
-        ) callconv(.winapi) HRESULT,
-        GetManifest: *const fn(
-            self: *const IAppxBundleReader,
-            manifestReader: ?*?*IAppxBundleManifestReader,
-        ) callconv(.winapi) HRESULT,
-        GetPayloadPackages: *const fn(
-            self: *const IAppxBundleReader,
-            payloadPackages: ?*?*IAppxFilesEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetPayloadPackage: *const fn(
-            self: *const IAppxBundleReader,
-            fileName: ?[*:0]const u16,
-            payloadPackage: ?*?*IAppxFile,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetFootprintFile(self: *const IAppxBundleReader, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFootprintFile(self, fileType, footprintFile);
-    }
-    pub fn GetBlockMap(self: *const IAppxBundleReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBlockMap(self, blockMapReader);
-    }
-    pub fn GetManifest(self: *const IAppxBundleReader, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.@"inline") HRESULT {
-        return self.vtable.GetManifest(self, manifestReader);
-    }
-    pub fn GetPayloadPackages(self: *const IAppxBundleReader, payloadPackages: ?*?*IAppxFilesEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPayloadPackages(self, payloadPackages);
-    }
-    pub fn GetPayloadPackage(self: *const IAppxBundleReader, fileName: ?[*:0]const u16, payloadPackage: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPayloadPackage(self, fileName, payloadPackage);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IAppxBundleManifestReader_Value = Guid.initString("cf0ebbc1-cc99-4106-91eb-e67462e04fb0");
-pub const IID_IAppxBundleManifestReader = &IID_IAppxBundleManifestReader_Value;
-pub const IAppxBundleManifestReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPackageId: *const fn(
-            self: *const IAppxBundleManifestReader,
-            packageId: ?*?*IAppxManifestPackageId,
-        ) callconv(.winapi) HRESULT,
-        GetPackageInfoItems: *const fn(
-            self: *const IAppxBundleManifestReader,
-            packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
-        ) callconv(.winapi) HRESULT,
-        GetStream: *const fn(
-            self: *const IAppxBundleManifestReader,
-            manifestStream: ?*?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxBundleManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageId(self, packageId);
-    }
-    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestReader, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageInfoItems(self, packageInfoItems);
-    }
-    pub fn GetStream(self: *const IAppxBundleManifestReader, manifestStream: ?*?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStream(self, manifestStream);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxBundleManifestReader2_Value = Guid.initString("5517df70-033f-4af2-8213-87d766805c02");
-pub const IID_IAppxBundleManifestReader2 = &IID_IAppxBundleManifestReader2_Value;
-pub const IAppxBundleManifestReader2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOptionalBundles: *const fn(
-            self: *const IAppxBundleManifestReader2,
-            optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetOptionalBundles(self: *const IAppxBundleManifestReader2, optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOptionalBundles(self, optionalBundles);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IAppxBundleManifestPackageInfoEnumerator_Value = Guid.initString("f9b856ee-49a6-4e19-b2b0-6a2406d63a32");
-pub const IID_IAppxBundleManifestPackageInfoEnumerator = &IID_IAppxBundleManifestPackageInfoEnumerator_Value;
-pub const IAppxBundleManifestPackageInfoEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxBundleManifestPackageInfoEnumerator,
-            packageInfo: ?*?*IAppxBundleManifestPackageInfo,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxBundleManifestPackageInfoEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxBundleManifestPackageInfoEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, packageInfo: ?*?*IAppxBundleManifestPackageInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, packageInfo);
-    }
-    pub fn GetHasCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxBundleManifestPackageInfoEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.1'
-const IID_IAppxBundleManifestPackageInfo_Value = Guid.initString("54cd06c1-268f-40bb-8ed2-757a9ebaec8d");
-pub const IID_IAppxBundleManifestPackageInfo = &IID_IAppxBundleManifestPackageInfo_Value;
-pub const IAppxBundleManifestPackageInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPackageType: *const fn(
-            self: *const IAppxBundleManifestPackageInfo,
-            packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE,
-        ) callconv(.winapi) HRESULT,
-        GetPackageId: *const fn(
-            self: *const IAppxBundleManifestPackageInfo,
-            packageId: ?*?*IAppxManifestPackageId,
-        ) callconv(.winapi) HRESULT,
-        GetFileName: *const fn(
-            self: *const IAppxBundleManifestPackageInfo,
-            fileName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetOffset: *const fn(
-            self: *const IAppxBundleManifestPackageInfo,
-            offset: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetSize: *const fn(
-            self: *const IAppxBundleManifestPackageInfo,
-            size: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        GetResources: *const fn(
-            self: *const IAppxBundleManifestPackageInfo,
-            resources: ?*?*IAppxManifestQualifiedResourcesEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPackageType(self: *const IAppxBundleManifestPackageInfo, packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageType(self, packageType);
-    }
-    pub fn GetPackageId(self: *const IAppxBundleManifestPackageInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageId(self, packageId);
-    }
-    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileName(self, fileName);
-    }
-    pub fn GetOffset(self: *const IAppxBundleManifestPackageInfo, offset: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOffset(self, offset);
-    }
-    pub fn GetSize(self: *const IAppxBundleManifestPackageInfo, size: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSize(self, size);
-    }
-    pub fn GetResources(self: *const IAppxBundleManifestPackageInfo, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetResources(self, resources);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxBundleManifestPackageInfo2_Value = Guid.initString("44c2acbc-b2cf-4ccb-bbdb-9c6da8c3bc9e");
-pub const IID_IAppxBundleManifestPackageInfo2 = &IID_IAppxBundleManifestPackageInfo2_Value;
-pub const IAppxBundleManifestPackageInfo2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetIsPackageReference: *const fn(
-            self: *const IAppxBundleManifestPackageInfo2,
-            isPackageReference: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetIsNonQualifiedResourcePackage: *const fn(
-            self: *const IAppxBundleManifestPackageInfo2,
-            isNonQualifiedResourcePackage: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetIsDefaultApplicablePackage: *const fn(
-            self: *const IAppxBundleManifestPackageInfo2,
-            isDefaultApplicablePackage: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetIsPackageReference(self: *const IAppxBundleManifestPackageInfo2, isPackageReference: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIsPackageReference(self, isPackageReference);
-    }
-    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxBundleManifestPackageInfo2, isNonQualifiedResourcePackage: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIsNonQualifiedResourcePackage(self, isNonQualifiedResourcePackage);
-    }
-    pub fn GetIsDefaultApplicablePackage(self: *const IAppxBundleManifestPackageInfo2, isDefaultApplicablePackage: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIsDefaultApplicablePackage(self, isDefaultApplicablePackage);
-    }
-};
-
-const IID_IAppxBundleManifestPackageInfo3_Value = Guid.initString("6ba74b98-bb74-4296-80d0-5f4256a99675");
-pub const IID_IAppxBundleManifestPackageInfo3 = &IID_IAppxBundleManifestPackageInfo3_Value;
-pub const IAppxBundleManifestPackageInfo3 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetTargetDeviceFamilies: *const fn(
-            self: *const IAppxBundleManifestPackageInfo3,
-            targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetTargetDeviceFamilies(self: *const IAppxBundleManifestPackageInfo3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetTargetDeviceFamilies(self, targetDeviceFamilies);
-    }
-};
-
-const IID_IAppxBundleManifestPackageInfo4_Value = Guid.initString("5da6f13d-a8a7-4532-857c-1393d659371d");
-pub const IID_IAppxBundleManifestPackageInfo4 = &IID_IAppxBundleManifestPackageInfo4_Value;
-pub const IAppxBundleManifestPackageInfo4 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetIsStub: *const fn(
-            self: *const IAppxBundleManifestPackageInfo4,
-            isStub: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetIsStub(self: *const IAppxBundleManifestPackageInfo4, isStub: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIsStub(self, isStub);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxBundleManifestOptionalBundleInfoEnumerator_Value = Guid.initString("9a178793-f97e-46ac-aaca-dd5ba4c177c8");
-pub const IID_IAppxBundleManifestOptionalBundleInfoEnumerator = &IID_IAppxBundleManifestOptionalBundleInfoEnumerator_Value;
-pub const IAppxBundleManifestOptionalBundleInfoEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
-            optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, optionalBundle);
-    }
-    pub fn GetHasCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxBundleManifestOptionalBundleInfo_Value = Guid.initString("515bf2e8-bcb0-4d69-8c48-e383147b6e12");
-pub const IID_IAppxBundleManifestOptionalBundleInfo = &IID_IAppxBundleManifestOptionalBundleInfo_Value;
-pub const IAppxBundleManifestOptionalBundleInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPackageId: *const fn(
-            self: *const IAppxBundleManifestOptionalBundleInfo,
-            packageId: ?*?*IAppxManifestPackageId,
-        ) callconv(.winapi) HRESULT,
-        GetFileName: *const fn(
-            self: *const IAppxBundleManifestOptionalBundleInfo,
-            fileName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetPackageInfoItems: *const fn(
-            self: *const IAppxBundleManifestOptionalBundleInfo,
-            packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxBundleManifestOptionalBundleInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageId(self, packageId);
-    }
-    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFileName(self, fileName);
-    }
-    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestOptionalBundleInfo, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPackageInfoItems(self, packageInfoItems);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxContentGroupFilesEnumerator_Value = Guid.initString("1a09a2fd-7440-44eb-8c84-848205a6a1cc");
-pub const IID_IAppxContentGroupFilesEnumerator = &IID_IAppxContentGroupFilesEnumerator_Value;
-pub const IAppxContentGroupFilesEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxContentGroupFilesEnumerator,
-            file: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxContentGroupFilesEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxContentGroupFilesEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, file);
-    }
-    pub fn GetHasCurrent(self: *const IAppxContentGroupFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxContentGroupFilesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxContentGroup_Value = Guid.initString("328f6468-c04f-4e3c-b6fa-6b8d27f3003a");
-pub const IID_IAppxContentGroup = &IID_IAppxContentGroup_Value;
-pub const IAppxContentGroup = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: *const fn(
-            self: *const IAppxContentGroup,
-            groupName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetFiles: *const fn(
-            self: *const IAppxContentGroup,
-            enumerator: ?*?*IAppxContentGroupFilesEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetName(self, groupName);
-    }
-    pub fn GetFiles(self: *const IAppxContentGroup, enumerator: ?*?*IAppxContentGroupFilesEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetFiles(self, enumerator);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxContentGroupsEnumerator_Value = Guid.initString("3264e477-16d1-4d63-823e-7d2984696634");
-pub const IID_IAppxContentGroupsEnumerator = &IID_IAppxContentGroupsEnumerator_Value;
-pub const IAppxContentGroupsEnumerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrent: *const fn(
-            self: *const IAppxContentGroupsEnumerator,
-            stream: ?*?*IAppxContentGroup,
-        ) callconv(.winapi) HRESULT,
-        GetHasCurrent: *const fn(
-            self: *const IAppxContentGroupsEnumerator,
-            hasCurrent: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        MoveNext: *const fn(
-            self: *const IAppxContentGroupsEnumerator,
-            hasNext: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxContentGroupsEnumerator, stream: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrent(self, stream);
-    }
-    pub fn GetHasCurrent(self: *const IAppxContentGroupsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHasCurrent(self, hasCurrent);
-    }
-    pub fn MoveNext(self: *const IAppxContentGroupsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.MoveNext(self, hasNext);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxContentGroupMapReader_Value = Guid.initString("418726d8-dd99-4f5d-9886-157add20de01");
-pub const IID_IAppxContentGroupMapReader = &IID_IAppxContentGroupMapReader_Value;
-pub const IAppxContentGroupMapReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRequiredGroup: *const fn(
-            self: *const IAppxContentGroupMapReader,
-            requiredGroup: ?*?*IAppxContentGroup,
-        ) callconv(.winapi) HRESULT,
-        GetAutomaticGroups: *const fn(
-            self: *const IAppxContentGroupMapReader,
-            automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRequiredGroup(self: *const IAppxContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRequiredGroup(self, requiredGroup);
-    }
-    pub fn GetAutomaticGroups(self: *const IAppxContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxSourceContentGroupMapReader_Value = Guid.initString("f329791d-540b-4a9f-bc75-3282b7d73193");
-pub const IID_IAppxSourceContentGroupMapReader = &IID_IAppxSourceContentGroupMapReader_Value;
-pub const IAppxSourceContentGroupMapReader = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRequiredGroup: *const fn(
-            self: *const IAppxSourceContentGroupMapReader,
-            requiredGroup: ?*?*IAppxContentGroup,
-        ) callconv(.winapi) HRESULT,
-        GetAutomaticGroups: *const fn(
-            self: *const IAppxSourceContentGroupMapReader,
-            automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRequiredGroup(self: *const IAppxSourceContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRequiredGroup(self, requiredGroup);
-    }
-    pub fn GetAutomaticGroups(self: *const IAppxSourceContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxContentGroupMapWriter_Value = Guid.initString("d07ab776-a9de-4798-8c14-3db31e687c78");
-pub const IID_IAppxContentGroupMapWriter = &IID_IAppxContentGroupMapWriter_Value;
-pub const IAppxContentGroupMapWriter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddAutomaticGroup: *const fn(
-            self: *const IAppxContentGroupMapWriter,
-            groupName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        AddAutomaticFile: *const fn(
-            self: *const IAppxContentGroupMapWriter,
-            fileName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IAppxContentGroupMapWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddAutomaticGroup(self: *const IAppxContentGroupMapWriter, groupName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAutomaticGroup(self, groupName);
-    }
-    pub fn AddAutomaticFile(self: *const IAppxContentGroupMapWriter, fileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAutomaticFile(self, fileName);
-    }
-    pub fn Close(self: *const IAppxContentGroupMapWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-};
-
-const IID_IAppxPackagingDiagnosticEventSink_Value = Guid.initString("17239d47-6adb-45d2-80f6-f9cbc3bf059d");
-pub const IID_IAppxPackagingDiagnosticEventSink = &IID_IAppxPackagingDiagnosticEventSink_Value;
-pub const IAppxPackagingDiagnosticEventSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReportContextChange: *const fn(
-            self: *const IAppxPackagingDiagnosticEventSink,
-            changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE,
-            contextId: i32,
-            contextName: ?[*:0]const u8,
-            contextMessage: ?[*:0]const u16,
-            detailsMessage: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        ReportError: *const fn(
-            self: *const IAppxPackagingDiagnosticEventSink,
-            errorMessage: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ReportContextChange(self: *const IAppxPackagingDiagnosticEventSink, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: ?[*:0]const u8, contextMessage: ?[*:0]const u16, detailsMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ReportContextChange(self, changeType, contextId, contextName, contextMessage, detailsMessage);
-    }
-    pub fn ReportError(self: *const IAppxPackagingDiagnosticEventSink, errorMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.ReportError(self, errorMessage);
-    }
-};
-
-const IID_IAppxPackagingDiagnosticEventSinkManager_Value = Guid.initString("369648fa-a7eb-4909-a15d-6954a078f18a");
-pub const IID_IAppxPackagingDiagnosticEventSinkManager = &IID_IAppxPackagingDiagnosticEventSinkManager_Value;
-pub const IAppxPackagingDiagnosticEventSinkManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetSinkForProcess: *const fn(
-            self: *const IAppxPackagingDiagnosticEventSinkManager,
-            sink: ?*IAppxPackagingDiagnosticEventSink,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetSinkForProcess(self: *const IAppxPackagingDiagnosticEventSinkManager, sink: ?*IAppxPackagingDiagnosticEventSink) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSinkForProcess(self, sink);
-    }
-};
-
-pub const APPX_ENCRYPTED_PACKAGE_SETTINGS = extern struct {
-    keyLength: u32,
-    encryptionAlgorithm: ?[*:0]const u16,
-    useDiffusion: BOOL,
-    blockMapHashAlgorithm: ?*IUri,
-};
-
-pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = packed struct(u32) {
-    DIFFUSION: u1 = 0,
-    PAGE_HASHING: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const APPX_ENCRYPTED_PACKAGE_OPTION_NONE = APPX_ENCRYPTED_PACKAGE_OPTIONS{ };
-pub const APPX_ENCRYPTED_PACKAGE_OPTION_DIFFUSION = APPX_ENCRYPTED_PACKAGE_OPTIONS{ .DIFFUSION = 1 };
-pub const APPX_ENCRYPTED_PACKAGE_OPTION_PAGE_HASHING = APPX_ENCRYPTED_PACKAGE_OPTIONS{ .PAGE_HASHING = 1 };
-
-pub const APPX_ENCRYPTED_PACKAGE_SETTINGS2 = extern struct {
-    keyLength: u32,
-    encryptionAlgorithm: ?[*:0]const u16,
-    blockMapHashAlgorithm: ?*IUri,
-    options: u32,
-};
-
-pub const APPX_KEY_INFO = extern struct {
-    keyLength: u32,
-    keyIdLength: u32,
-    key: ?*u8,
-    keyId: ?*u8,
-};
-
-pub const APPX_ENCRYPTED_EXEMPTIONS = extern struct {
-    count: u32,
-    plainTextFiles: ?*?PWSTR,
-};
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IAppxEncryptionFactory_Value = Guid.initString("80e8e04d-8c88-44ae-a011-7cadf6fb2e72");
-pub const IID_IAppxEncryptionFactory = &IID_IAppxEncryptionFactory_Value;
-pub const IAppxEncryptionFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EncryptPackage: *const fn(
-            self: *const IAppxEncryptionFactory,
-            inputStream: ?*IStream,
-            outputStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(.winapi) HRESULT,
-        DecryptPackage: *const fn(
-            self: *const IAppxEncryptionFactory,
-            inputStream: ?*IStream,
-            outputStream: ?*IStream,
-            keyInfo: ?*const APPX_KEY_INFO,
-        ) callconv(.winapi) HRESULT,
-        CreateEncryptedPackageWriter: *const fn(
-            self: *const IAppxEncryptionFactory,
-            outputStream: ?*IStream,
-            manifestStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-            packageWriter: ?*?*IAppxEncryptedPackageWriter,
-        ) callconv(.winapi) HRESULT,
-        CreateEncryptedPackageReader: *const fn(
-            self: *const IAppxEncryptionFactory,
-            inputStream: ?*IStream,
-            keyInfo: ?*const APPX_KEY_INFO,
-            packageReader: ?*?*IAppxPackageReader,
-        ) callconv(.winapi) HRESULT,
-        EncryptBundle: *const fn(
-            self: *const IAppxEncryptionFactory,
-            inputStream: ?*IStream,
-            outputStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(.winapi) HRESULT,
-        DecryptBundle: *const fn(
-            self: *const IAppxEncryptionFactory,
-            inputStream: ?*IStream,
-            outputStream: ?*IStream,
-            keyInfo: ?*const APPX_KEY_INFO,
-        ) callconv(.winapi) HRESULT,
-        CreateEncryptedBundleWriter: *const fn(
-            self: *const IAppxEncryptionFactory,
-            outputStream: ?*IStream,
-            bundleVersion: u64,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-            bundleWriter: ?*?*IAppxEncryptedBundleWriter,
-        ) callconv(.winapi) HRESULT,
-        CreateEncryptedBundleReader: *const fn(
-            self: *const IAppxEncryptionFactory,
-            inputStream: ?*IStream,
-            keyInfo: ?*const APPX_KEY_INFO,
-            bundleReader: ?*?*IAppxBundleReader,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
-        return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
-    }
-    pub fn DecryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.DecryptPackage(self, inputStream, outputStream, keyInfo);
-    }
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, manifestStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, settings, keyInfo, exemptedFiles, packageWriter);
-    }
-    pub fn CreateEncryptedPackageReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, packageReader: ?*?*IAppxPackageReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncryptedPackageReader(self, inputStream, keyInfo, packageReader);
-    }
-    pub fn EncryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
-        return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
-    }
-    pub fn DecryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.@"inline") HRESULT {
-        return self.vtable.DecryptBundle(self, inputStream, outputStream, keyInfo);
-    }
-    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
-    }
-    pub fn CreateEncryptedBundleReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, bundleReader: ?*?*IAppxBundleReader) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncryptedBundleReader(self, inputStream, keyInfo, bundleReader);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxEncryptionFactory2_Value = Guid.initString("c1b11eee-c4ba-4ab2-a55d-d015fe8ff64f");
-pub const IID_IAppxEncryptionFactory2 = &IID_IAppxEncryptionFactory2_Value;
-pub const IAppxEncryptionFactory2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateEncryptedPackageWriter: *const fn(
-            self: *const IAppxEncryptionFactory2,
-            outputStream: ?*IStream,
-            manifestStream: ?*IStream,
-            contentGroupMapStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-            packageWriter: ?*?*IAppxEncryptedPackageWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory2, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxEncryptionFactory3_Value = Guid.initString("09edca37-cd64-47d6-b7e8-1cb11d4f7e05");
-pub const IID_IAppxEncryptionFactory3 = &IID_IAppxEncryptionFactory3_Value;
-pub const IAppxEncryptionFactory3 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EncryptPackage: *const fn(
-            self: *const IAppxEncryptionFactory3,
-            inputStream: ?*IStream,
-            outputStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(.winapi) HRESULT,
-        CreateEncryptedPackageWriter: *const fn(
-            self: *const IAppxEncryptionFactory3,
-            outputStream: ?*IStream,
-            manifestStream: ?*IStream,
-            contentGroupMapStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-            packageWriter: ?*?*IAppxEncryptedPackageWriter,
-        ) callconv(.winapi) HRESULT,
-        EncryptBundle: *const fn(
-            self: *const IAppxEncryptionFactory3,
-            inputStream: ?*IStream,
-            outputStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(.winapi) HRESULT,
-        CreateEncryptedBundleWriter: *const fn(
-            self: *const IAppxEncryptionFactory3,
-            outputStream: ?*IStream,
-            bundleVersion: u64,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-            bundleWriter: ?*?*IAppxEncryptedBundleWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
-        return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
-    }
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
-    }
-    pub fn EncryptBundle(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
-        return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
-    }
-    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxEncryptionFactory4_Value = Guid.initString("a879611f-12fd-41fe-85d5-06ae779bbaf5");
-pub const IID_IAppxEncryptionFactory4 = &IID_IAppxEncryptionFactory4_Value;
-pub const IAppxEncryptionFactory4 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EncryptPackage: *const fn(
-            self: *const IAppxEncryptionFactory4,
-            inputStream: ?*IStream,
-            outputStream: ?*IStream,
-            settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
-            keyInfo: ?*const APPX_KEY_INFO,
-            exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-            memoryLimit: u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory4, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles, memoryLimit);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IAppxEncryptedPackageWriter_Value = Guid.initString("f43d0b0b-1379-40e2-9b29-682ea2bf42af");
-pub const IID_IAppxEncryptedPackageWriter = &IID_IAppxEncryptedPackageWriter_Value;
-pub const IAppxEncryptedPackageWriter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadFileEncrypted: *const fn(
-            self: *const IAppxEncryptedPackageWriter,
-            fileName: ?[*:0]const u16,
-            compressionOption: APPX_COMPRESSION_OPTION,
-            inputStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IAppxEncryptedPackageWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadFileEncrypted(self: *const IAppxEncryptedPackageWriter, fileName: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadFileEncrypted(self, fileName, compressionOption, inputStream);
-    }
-    pub fn Close(self: *const IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IAppxEncryptedPackageWriter2_Value = Guid.initString("3e475447-3a25-40b5-8ad2-f953ae50c92d");
-pub const IID_IAppxEncryptedPackageWriter2 = &IID_IAppxEncryptedPackageWriter2_Value;
-pub const IAppxEncryptedPackageWriter2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadFilesEncrypted: *const fn(
-            self: *const IAppxEncryptedPackageWriter2,
-            fileCount: u32,
-            payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM,
-            memoryLimit: u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadFilesEncrypted(self: *const IAppxEncryptedPackageWriter2, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadFilesEncrypted(self, fileCount, payloadFiles, memoryLimit);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IAppxEncryptedBundleWriter_Value = Guid.initString("80b0902f-7bf0-4117-b8c6-4279ef81ee77");
-pub const IID_IAppxEncryptedBundleWriter = &IID_IAppxEncryptedBundleWriter_Value;
-pub const IAppxEncryptedBundleWriter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadPackageEncrypted: *const fn(
-            self: *const IAppxEncryptedBundleWriter,
-            fileName: ?[*:0]const u16,
-            packageStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IAppxEncryptedBundleWriter,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream);
-    }
-    pub fn Close(self: *const IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-};
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxEncryptedBundleWriter2_Value = Guid.initString("e644be82-f0fa-42b8-a956-8d1cb48ee379");
-pub const IID_IAppxEncryptedBundleWriter2 = &IID_IAppxEncryptedBundleWriter2_Value;
-pub const IAppxEncryptedBundleWriter2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddExternalPackageReference: *const fn(
-            self: *const IAppxEncryptedBundleWriter2,
-            fileName: ?[*:0]const u16,
-            inputStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
-    }
-};
-
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION = enum(i32) {
-    A = 0,
-};
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION_APPEND_DELTA = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION.A;
-
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS = packed struct(u32) {
-    SKIP_VALIDATION: u1 = 0,
-    LOCALIZED: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_NONE = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS{ };
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_SKIP_VALIDATION = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS{ .SKIP_VALIDATION = 1 };
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_LOCALIZED = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS{ .LOCALIZED = 1 };
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IAppxEncryptedBundleWriter3_Value = Guid.initString("0d34deb3-5cae-4dd3-977c-504932a51d31");
-pub const IID_IAppxEncryptedBundleWriter3 = &IID_IAppxEncryptedBundleWriter3_Value;
-pub const IAppxEncryptedBundleWriter3 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPayloadPackageEncrypted: *const fn(
-            self: *const IAppxEncryptedBundleWriter3,
-            fileName: ?[*:0]const u16,
-            packageStream: ?*IStream,
-            isDefaultApplicablePackage: BOOL,
-        ) callconv(.winapi) HRESULT,
-        AddExternalPackageReference: *const fn(
-            self: *const IAppxEncryptedBundleWriter3,
-            fileName: ?[*:0]const u16,
-            inputStream: ?*IStream,
-            isDefaultApplicablePackage: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream, isDefaultApplicablePackage);
-    }
-    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
     }
 };
 
@@ -2869,16 +2768,189 @@ pub const IAppxPackageEditor = extern union {
     }
 };
 
-pub const PACKAGE_VERSION = extern struct {
-    Anonymous: extern union {
-        Version: u64 align(4),
-        Anonymous: extern struct {
-            Revision: u16,
-            Build: u16,
-            Minor: u16,
-            Major: u16,
-        } align(4),
-    },
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxPackageReader_Value = Guid.initString("b5c49650-99bc-481c-9a34-3d53a4106708");
+pub const IID_IAppxPackageReader = &IID_IAppxPackageReader_Value;
+pub const IAppxPackageReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBlockMap: *const fn(
+            self: *const IAppxPackageReader,
+            blockMapReader: ?*?*IAppxBlockMapReader,
+        ) callconv(.winapi) HRESULT,
+        GetFootprintFile: *const fn(
+            self: *const IAppxPackageReader,
+            type: APPX_FOOTPRINT_FILE_TYPE,
+            file: ?*?*IAppxFile,
+        ) callconv(.winapi) HRESULT,
+        GetPayloadFile: *const fn(
+            self: *const IAppxPackageReader,
+            fileName: ?[*:0]const u16,
+            file: ?*?*IAppxFile,
+        ) callconv(.winapi) HRESULT,
+        GetPayloadFiles: *const fn(
+            self: *const IAppxPackageReader,
+            filesEnumerator: ?*?*IAppxFilesEnumerator,
+        ) callconv(.winapi) HRESULT,
+        GetManifest: *const fn(
+            self: *const IAppxPackageReader,
+            manifestReader: ?*?*IAppxManifestReader,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetBlockMap(self: *const IAppxPackageReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBlockMap(self, blockMapReader);
+    }
+    pub fn GetFootprintFile(self: *const IAppxPackageReader, @"type": APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetFootprintFile(self, @"type", file);
+    }
+    pub fn GetPayloadFile(self: *const IAppxPackageReader, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPayloadFile(self, fileName, file);
+    }
+    pub fn GetPayloadFiles(self: *const IAppxPackageReader, filesEnumerator: ?*?*IAppxFilesEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPayloadFiles(self, filesEnumerator);
+    }
+    pub fn GetManifest(self: *const IAppxPackageReader, manifestReader: ?*?*IAppxManifestReader) callconv(.@"inline") HRESULT {
+        return self.vtable.GetManifest(self, manifestReader);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAppxPackageWriter_Value = Guid.initString("9099e33b-246f-41e4-881a-008eb613f858");
+pub const IID_IAppxPackageWriter = &IID_IAppxPackageWriter_Value;
+pub const IAppxPackageWriter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadFile: *const fn(
+            self: *const IAppxPackageWriter,
+            fileName: ?[*:0]const u16,
+            contentType: ?[*:0]const u16,
+            compressionOption: APPX_COMPRESSION_OPTION,
+            inputStream: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IAppxPackageWriter,
+            manifest: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadFile(self: *const IAppxPackageWriter, fileName: ?[*:0]const u16, contentType: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadFile(self, fileName, contentType, compressionOption, inputStream);
+    }
+    pub fn Close(self: *const IAppxPackageWriter, manifest: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self, manifest);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxPackageWriter2_Value = Guid.initString("2cf5c4fd-e54c-4ea5-ba4e-f8c4b105a8c8");
+pub const IID_IAppxPackageWriter2 = &IID_IAppxPackageWriter2_Value;
+pub const IAppxPackageWriter2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Close: *const fn(
+            self: *const IAppxPackageWriter2,
+            manifest: ?*IStream,
+            contentGroupMap: ?*IStream,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Close(self: *const IAppxPackageWriter2, manifest: ?*IStream, contentGroupMap: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self, manifest, contentGroupMap);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxPackageWriter3_Value = Guid.initString("a83aacd3-41c0-4501-b8a3-74164f50b2fd");
+pub const IID_IAppxPackageWriter3 = &IID_IAppxPackageWriter3_Value;
+pub const IAppxPackageWriter3 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPayloadFiles: *const fn(
+            self: *const IAppxPackageWriter3,
+            fileCount: u32,
+            payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM,
+            memoryLimit: u64,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPayloadFiles(self: *const IAppxPackageWriter3, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPayloadFiles(self, fileCount, payloadFiles, memoryLimit);
+    }
+};
+
+const IID_IAppxPackagingDiagnosticEventSink_Value = Guid.initString("17239d47-6adb-45d2-80f6-f9cbc3bf059d");
+pub const IID_IAppxPackagingDiagnosticEventSink = &IID_IAppxPackagingDiagnosticEventSink_Value;
+pub const IAppxPackagingDiagnosticEventSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReportContextChange: *const fn(
+            self: *const IAppxPackagingDiagnosticEventSink,
+            changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE,
+            contextId: i32,
+            contextName: ?[*:0]const u8,
+            contextMessage: ?[*:0]const u16,
+            detailsMessage: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        ReportError: *const fn(
+            self: *const IAppxPackagingDiagnosticEventSink,
+            errorMessage: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReportContextChange(self: *const IAppxPackagingDiagnosticEventSink, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: ?[*:0]const u8, contextMessage: ?[*:0]const u16, detailsMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ReportContextChange(self, changeType, contextId, contextName, contextMessage, detailsMessage);
+    }
+    pub fn ReportError(self: *const IAppxPackagingDiagnosticEventSink, errorMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.ReportError(self, errorMessage);
+    }
+};
+
+const IID_IAppxPackagingDiagnosticEventSinkManager_Value = Guid.initString("369648fa-a7eb-4909-a15d-6954a078f18a");
+pub const IID_IAppxPackagingDiagnosticEventSinkManager = &IID_IAppxPackagingDiagnosticEventSinkManager_Value;
+pub const IAppxPackagingDiagnosticEventSinkManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetSinkForProcess: *const fn(
+            self: *const IAppxPackagingDiagnosticEventSinkManager,
+            sink: ?*IAppxPackagingDiagnosticEventSink,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetSinkForProcess(self: *const IAppxPackagingDiagnosticEventSinkManager, sink: ?*IAppxPackagingDiagnosticEventSink) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSinkForProcess(self, sink);
+    }
+};
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+const IID_IAppxSourceContentGroupMapReader_Value = Guid.initString("f329791d-540b-4a9f-bc75-3282b7d73193");
+pub const IID_IAppxSourceContentGroupMapReader = &IID_IAppxSourceContentGroupMapReader_Value;
+pub const IAppxSourceContentGroupMapReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRequiredGroup: *const fn(
+            self: *const IAppxSourceContentGroupMapReader,
+            requiredGroup: ?*?*IAppxContentGroup,
+        ) callconv(.winapi) HRESULT,
+        GetAutomaticGroups: *const fn(
+            self: *const IAppxSourceContentGroupMapReader,
+            automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRequiredGroup(self: *const IAppxSourceContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRequiredGroup(self, requiredGroup);
+    }
+    pub fn GetAutomaticGroups(self: *const IAppxSourceContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
+    }
 };
 
 pub const PACKAGE_ID = extern struct {
@@ -2891,42 +2963,6 @@ pub const PACKAGE_ID = extern struct {
     publisherId: ?PWSTR align(4),
 };
 
-pub const PackagePathType = enum(i32) {
-    Install = 0,
-    Mutable = 1,
-    Effective = 2,
-    MachineExternal = 3,
-    UserExternal = 4,
-    EffectiveExternal = 5,
-};
-pub const PackagePathType_Install = PackagePathType.Install;
-pub const PackagePathType_Mutable = PackagePathType.Mutable;
-pub const PackagePathType_Effective = PackagePathType.Effective;
-pub const PackagePathType_MachineExternal = PackagePathType.MachineExternal;
-pub const PackagePathType_UserExternal = PackagePathType.UserExternal;
-pub const PackagePathType_EffectiveExternal = PackagePathType.EffectiveExternal;
-
-pub const PackageOrigin = enum(i32) {
-    Unknown = 0,
-    Unsigned = 1,
-    Inbox = 2,
-    Store = 3,
-    DeveloperUnsigned = 4,
-    DeveloperSigned = 5,
-    LineOfBusiness = 6,
-};
-pub const PackageOrigin_Unknown = PackageOrigin.Unknown;
-pub const PackageOrigin_Unsigned = PackageOrigin.Unsigned;
-pub const PackageOrigin_Inbox = PackageOrigin.Inbox;
-pub const PackageOrigin_Store = PackageOrigin.Store;
-pub const PackageOrigin_DeveloperUnsigned = PackageOrigin.DeveloperUnsigned;
-pub const PackageOrigin_DeveloperSigned = PackageOrigin.DeveloperSigned;
-pub const PackageOrigin_LineOfBusiness = PackageOrigin.LineOfBusiness;
-
-pub const _PACKAGE_INFO_REFERENCE = extern struct {
-    reserved: ?*anyopaque,
-};
-
 pub const PACKAGE_INFO = extern struct {
     reserved: u32 align(4),
     flags: u32 align(4),
@@ -2936,14 +2972,25 @@ pub const PACKAGE_INFO = extern struct {
     packageId: PACKAGE_ID align(4),
 };
 
-pub const CreatePackageDependencyOptions = enum(i32) {
-    None = 0,
-    DoNotVerifyDependencyResolution = 1,
-    ScopeIsSystem = 2,
+pub const PACKAGE_VERSION = extern struct {
+    Anonymous: extern union {
+        Version: u64 align(4),
+        Anonymous: extern struct {
+            Revision: u16,
+            Build: u16,
+            Minor: u16,
+            Major: u16,
+        } align(4),
+    },
 };
-pub const CreatePackageDependencyOptions_None = CreatePackageDependencyOptions.None;
-pub const CreatePackageDependencyOptions_DoNotVerifyDependencyResolution = CreatePackageDependencyOptions.DoNotVerifyDependencyResolution;
-pub const CreatePackageDependencyOptions_ScopeIsSystem = CreatePackageDependencyOptions.ScopeIsSystem;
+
+pub const PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__ = extern struct {
+    unused: i32,
+};
+
+pub const PACKAGEDEPENDENCY_CONTEXT__ = extern struct {
+    unused: i32,
+};
 
 pub const PackageDependencyLifetimeKind = enum(i32) {
     Process = 0,
@@ -2953,13 +3000,6 @@ pub const PackageDependencyLifetimeKind = enum(i32) {
 pub const PackageDependencyLifetimeKind_Process = PackageDependencyLifetimeKind.Process;
 pub const PackageDependencyLifetimeKind_FilePath = PackageDependencyLifetimeKind.FilePath;
 pub const PackageDependencyLifetimeKind_RegistryKey = PackageDependencyLifetimeKind.RegistryKey;
-
-pub const AddPackageDependencyOptions = enum(i32) {
-    None = 0,
-    PrependIfRankCollision = 1,
-};
-pub const AddPackageDependencyOptions_None = AddPackageDependencyOptions.None;
-pub const AddPackageDependencyOptions_PrependIfRankCollision = AddPackageDependencyOptions.PrependIfRankCollision;
 
 pub const PackageDependencyProcessorArchitectures = enum(i32) {
     None = 0,
@@ -2978,93 +3018,157 @@ pub const PackageDependencyProcessorArchitectures_Arm = PackageDependencyProcess
 pub const PackageDependencyProcessorArchitectures_Arm64 = PackageDependencyProcessorArchitectures.Arm64;
 pub const PackageDependencyProcessorArchitectures_X86A64 = PackageDependencyProcessorArchitectures.X86A64;
 
-pub const PACKAGEDEPENDENCY_CONTEXT__ = extern struct {
-    unused: i32,
+pub const PackageOrigin = enum(i32) {
+    Unknown = 0,
+    Unsigned = 1,
+    Inbox = 2,
+    Store = 3,
+    DeveloperUnsigned = 4,
+    DeveloperSigned = 5,
+    LineOfBusiness = 6,
 };
+pub const PackageOrigin_Unknown = PackageOrigin.Unknown;
+pub const PackageOrigin_Unsigned = PackageOrigin.Unsigned;
+pub const PackageOrigin_Inbox = PackageOrigin.Inbox;
+pub const PackageOrigin_Store = PackageOrigin.Store;
+pub const PackageOrigin_DeveloperUnsigned = PackageOrigin.DeveloperUnsigned;
+pub const PackageOrigin_DeveloperSigned = PackageOrigin.DeveloperSigned;
+pub const PackageOrigin_LineOfBusiness = PackageOrigin.LineOfBusiness;
 
-pub const AppPolicyLifecycleManagement = enum(i32) {
-    Unmanaged = 0,
-    Managed = 1,
+pub const PackagePathType = enum(i32) {
+    Install = 0,
+    Mutable = 1,
+    Effective = 2,
+    MachineExternal = 3,
+    UserExternal = 4,
+    EffectiveExternal = 5,
 };
-pub const AppPolicyLifecycleManagement_Unmanaged = AppPolicyLifecycleManagement.Unmanaged;
-pub const AppPolicyLifecycleManagement_Managed = AppPolicyLifecycleManagement.Managed;
-
-pub const AppPolicyWindowingModel = enum(i32) {
-    None = 0,
-    Universal = 1,
-    ClassicDesktop = 2,
-    ClassicPhone = 3,
-};
-pub const AppPolicyWindowingModel_None = AppPolicyWindowingModel.None;
-pub const AppPolicyWindowingModel_Universal = AppPolicyWindowingModel.Universal;
-pub const AppPolicyWindowingModel_ClassicDesktop = AppPolicyWindowingModel.ClassicDesktop;
-pub const AppPolicyWindowingModel_ClassicPhone = AppPolicyWindowingModel.ClassicPhone;
-
-pub const AppPolicyMediaFoundationCodecLoading = enum(i32) {
-    All = 0,
-    InboxOnly = 1,
-};
-pub const AppPolicyMediaFoundationCodecLoading_All = AppPolicyMediaFoundationCodecLoading.All;
-pub const AppPolicyMediaFoundationCodecLoading_InboxOnly = AppPolicyMediaFoundationCodecLoading.InboxOnly;
-
-pub const AppPolicyClrCompat = enum(i32) {
-    Other = 0,
-    ClassicDesktop = 1,
-    Universal = 2,
-    PackagedDesktop = 3,
-};
-pub const AppPolicyClrCompat_Other = AppPolicyClrCompat.Other;
-pub const AppPolicyClrCompat_ClassicDesktop = AppPolicyClrCompat.ClassicDesktop;
-pub const AppPolicyClrCompat_Universal = AppPolicyClrCompat.Universal;
-pub const AppPolicyClrCompat_PackagedDesktop = AppPolicyClrCompat.PackagedDesktop;
-
-pub const AppPolicyThreadInitializationType = enum(i32) {
-    None = 0,
-    InitializeWinRT = 1,
-};
-pub const AppPolicyThreadInitializationType_None = AppPolicyThreadInitializationType.None;
-pub const AppPolicyThreadInitializationType_InitializeWinRT = AppPolicyThreadInitializationType.InitializeWinRT;
-
-pub const AppPolicyShowDeveloperDiagnostic = enum(i32) {
-    None = 0,
-    ShowUI = 1,
-};
-pub const AppPolicyShowDeveloperDiagnostic_None = AppPolicyShowDeveloperDiagnostic.None;
-pub const AppPolicyShowDeveloperDiagnostic_ShowUI = AppPolicyShowDeveloperDiagnostic.ShowUI;
-
-pub const AppPolicyProcessTerminationMethod = enum(i32) {
-    ExitProcess = 0,
-    TerminateProcess = 1,
-};
-pub const AppPolicyProcessTerminationMethod_ExitProcess = AppPolicyProcessTerminationMethod.ExitProcess;
-pub const AppPolicyProcessTerminationMethod_TerminateProcess = AppPolicyProcessTerminationMethod.TerminateProcess;
-
-pub const AppPolicyCreateFileAccess = enum(i32) {
-    Full = 0,
-    Limited = 1,
-};
-pub const AppPolicyCreateFileAccess_Full = AppPolicyCreateFileAccess.Full;
-pub const AppPolicyCreateFileAccess_Limited = AppPolicyCreateFileAccess.Limited;
-
-pub const PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__ = extern struct {
-    unused: i32,
-};
+pub const PackagePathType_Install = PackagePathType.Install;
+pub const PackagePathType_Mutable = PackagePathType.Mutable;
+pub const PackagePathType_Effective = PackagePathType.Effective;
+pub const PackagePathType_MachineExternal = PackagePathType.MachineExternal;
+pub const PackagePathType_UserExternal = PackagePathType.UserExternal;
+pub const PackagePathType_EffectiveExternal = PackagePathType.EffectiveExternal;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (63)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetCurrentPackageId(
-    bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 0?
-    buffer: ?*u8,
+pub extern "kernel32" fn ActivatePackageVirtualizationContext(
+    context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
+    cookie: ?*usize,
+) callconv(.winapi) HRESULT;
+
+pub extern "kernelbase" fn AddPackageDependency(
+    packageDependencyId: ?[*:0]const u16,
+    rank: i32,
+    options: AddPackageDependencyOptions,
+    packageDependencyContext: ?*?*PACKAGEDEPENDENCY_CONTEXT__,
+    packageFullName: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "kernel32" fn AppPolicyGetClrCompat(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyClrCompat,
 ) callconv(.winapi) WIN32_ERROR;
 
+pub extern "kernel32" fn AppPolicyGetCreateFileAccess(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyCreateFileAccess,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn AppPolicyGetLifecycleManagement(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyLifecycleManagement,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn AppPolicyGetMediaFoundationCodecLoading(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyMediaFoundationCodecLoading,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn AppPolicyGetProcessTerminationMethod(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyProcessTerminationMethod,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn AppPolicyGetShowDeveloperDiagnostic(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyShowDeveloperDiagnostic,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn AppPolicyGetThreadInitializationType(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyThreadInitializationType,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn AppPolicyGetWindowingModel(
+    processToken: ?HANDLE,
+    policy: ?*AppPolicyWindowingModel,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn CheckIsMSIXPackage(
+    packageFullName: ?[*:0]const u16,
+    isMSIXPackage: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetCurrentPackageFullName(
-    packageFullNameLength: ?*u32,
-    packageFullName: ?[*:0]u16,
+pub extern "kernel32" fn ClosePackageInfo(
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn CreatePackageVirtualizationContext(
+    packageFamilyName: ?[*:0]const u16,
+    context: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
+) callconv(.winapi) HRESULT;
+
+pub extern "kernel32" fn DeactivatePackageVirtualizationContext(
+    cookie: usize,
+) callconv(.winapi) void;
+
+pub extern "kernelbase" fn DeletePackageDependency(
+    packageDependencyId: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "kernel32" fn DuplicatePackageVirtualizationContext(
+    sourceContext: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
+    destContext: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn FindPackagesByPackageFamily(
+    packageFamilyName: ?[*:0]const u16,
+    packageFilters: u32,
+    count: ?*u32,
+    packageFullNames: ?[*]?PWSTR,
+    bufferLength: ?*u32,
+    buffer: ?[*:0]u16,
+    packageProperties: ?[*]u32,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn FormatApplicationUserModelId(
+    packageFamilyName: ?[*:0]const u16,
+    packageRelativeApplicationId: ?[*:0]const u16,
+    applicationUserModelIdLength: ?*u32,
+    applicationUserModelId: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn GetApplicationUserModelId(
+    hProcess: ?HANDLE,
+    applicationUserModelIdLength: ?*u32,
+    applicationUserModelId: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetApplicationUserModelIdFromToken(
+    token: ?HANDLE,
+    applicationUserModelIdLength: ?*u32,
+    applicationUserModelId: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn GetCurrentApplicationUserModelId(
+    applicationUserModelIdLength: ?*u32,
+    applicationUserModelId: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3074,31 +3178,65 @@ pub extern "kernel32" fn GetCurrentPackageFamilyName(
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetCurrentPackageFullName(
+    packageFullNameLength: ?*u32,
+    packageFullName: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetCurrentPackageId(
+    bufferLength: ?*u32,
+    // TODO: what to do with BytesParamIndex 0?
+    buffer: ?*u8,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetCurrentPackageInfo(
+    flags: u32,
+    bufferLength: ?*u32,
+    // TODO: what to do with BytesParamIndex 1?
+    buffer: ?*u8,
+    count: ?*u32,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
+    flags: u32,
+    packagePathType: PackagePathType,
+    bufferLength: ?*u32,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*u8,
+    count: ?*u32,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackagePath(
     pathLength: ?*u32,
     path: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetPackageId(
-    hProcess: ?HANDLE,
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackagePath2(
+    packagePathType: PackagePathType,
+    pathLength: ?*u32,
+    path: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+pub extern "kernel32" fn GetCurrentPackageVirtualizationContext(
+) callconv(.winapi) ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__;
+
+pub extern "kernelbase" fn GetIdForPackageDependencyContext(
+    packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
+    packageDependencyId: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn GetPackageApplicationIds(
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetPackageFullName(
-    hProcess: ?HANDLE,
-    packageFullNameLength: ?*u32,
-    packageFullName: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
-    token: ?HANDLE,
-    packageFullNameLength: ?*u32,
-    packageFullName: ?[*:0]u16,
+    count: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3116,6 +3254,49 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFamilyNameFromToken
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetPackageFullName(
+    hProcess: ?HANDLE,
+    packageFullNameLength: ?*u32,
+    packageFullName: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
+    token: ?HANDLE,
+    packageFullNameLength: ?*u32,
+    packageFullName: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetPackageId(
+    hProcess: ?HANDLE,
+    bufferLength: ?*u32,
+    // TODO: what to do with BytesParamIndex 1?
+    buffer: ?*u8,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn GetPackageInfo(
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
+    flags: u32,
+    bufferLength: ?*u32,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*u8,
+    count: ?*u32,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
+    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
+    flags: u32,
+    packagePathType: PackagePathType,
+    bufferLength: ?*u32,
+    // TODO: what to do with BytesParamIndex 3?
+    buffer: ?*u8,
+    count: ?*u32,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackagePath(
     packageId: ?*const PACKAGE_ID,
     reserved: u32,
@@ -3130,137 +3311,12 @@ pub extern "kernel32" fn GetPackagePathByFullName(
     path: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn GetStagedPackagePathByFullName(
-    packageFullName: ?[*:0]const u16,
-    pathLength: ?*u32,
-    path: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
     packageFullName: ?[*:0]const u16,
     packagePathType: PackagePathType,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullName2(
-    packageFullName: ?[*:0]const u16,
-    packagePathType: PackagePathType,
-    pathLength: ?*u32,
-    path: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
-    flags: u32,
-    packagePathType: PackagePathType,
-    bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
-    buffer: ?*u8,
-    count: ?*u32,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackagePath2(
-    packagePathType: PackagePathType,
-    pathLength: ?*u32,
-    path: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn GetCurrentApplicationUserModelId(
-    applicationUserModelIdLength: ?*u32,
-    applicationUserModelId: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn GetApplicationUserModelId(
-    hProcess: ?HANDLE,
-    applicationUserModelIdLength: ?*u32,
-    applicationUserModelId: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetApplicationUserModelIdFromToken(
-    token: ?HANDLE,
-    applicationUserModelIdLength: ?*u32,
-    applicationUserModelId: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFullName(
-    packageFullName: ?[*:0]const u16,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFamilyName(
-    packageFamilyName: ?[*:0]const u16,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageId(
-    packageId: ?*const PACKAGE_ID,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyApplicationUserModelId(
-    applicationUserModelId: ?[*:0]const u16,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicationId(
-    packageRelativeApplicationId: ?[*:0]const u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn PackageIdFromFullName(
-    packageFullName: ?[*:0]const u16,
-    flags: u32,
-    bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
-    buffer: ?*u8,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn PackageFullNameFromId(
-    packageId: ?*const PACKAGE_ID,
-    packageFullNameLength: ?*u32,
-    packageFullName: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn PackageFamilyNameFromId(
-    packageId: ?*const PACKAGE_ID,
-    packageFamilyNameLength: ?*u32,
-    packageFamilyName: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn PackageFamilyNameFromFullName(
-    packageFullName: ?[*:0]const u16,
-    packageFamilyNameLength: ?*u32,
-    packageFamilyName: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn PackageNameAndPublisherIdFromFamilyName(
-    packageFamilyName: ?[*:0]const u16,
-    packageNameLength: ?*u32,
-    packageName: ?[*:0]u16,
-    packagePublisherIdLength: ?*u32,
-    packagePublisherId: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn FormatApplicationUserModelId(
-    packageFamilyName: ?[*:0]const u16,
-    packageRelativeApplicationId: ?[*:0]const u16,
-    applicationUserModelIdLength: ?*u32,
-    applicationUserModelId: ?[*:0]u16,
-) callconv(.winapi) WIN32_ERROR;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn ParseApplicationUserModelId(
-    applicationUserModelId: ?[*:0]const u16,
-    packageFamilyNameLength: ?*u32,
-    packageFamilyName: ?[*:0]u16,
-    packageRelativeApplicationIdLength: ?*u32,
-    packageRelativeApplicationId: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3272,16 +3328,16 @@ pub extern "kernel32" fn GetPackagesByPackageFamily(
     buffer: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn FindPackagesByPackageFamily(
+pub extern "kernel32" fn GetProcessesInVirtualizationContext(
     packageFamilyName: ?[*:0]const u16,
-    packageFilters: u32,
     count: ?*u32,
-    packageFullNames: ?[*]?PWSTR,
-    bufferLength: ?*u32,
-    buffer: ?[*:0]u16,
-    packageProperties: ?[*]u32,
-) callconv(.winapi) WIN32_ERROR;
+    processes: ?*?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "kernelbase" fn GetResolvedPackageFullNameForPackageDependency(
+    packageDependencyId: ?[*:0]const u16,
+    packageFullName: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
@@ -3289,13 +3345,19 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
     origin: ?*PackageOrigin,
 ) callconv(.winapi) WIN32_ERROR;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetCurrentPackageInfo(
-    flags: u32,
-    bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
-    buffer: ?*u8,
-    count: ?*u32,
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "kernel32" fn GetStagedPackagePathByFullName(
+    packageFullName: ?[*:0]const u16,
+    pathLength: ?*u32,
+    path: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullName2(
+    packageFullName: ?[*:0]const u16,
+    packagePathType: PackagePathType,
+    pathLength: ?*u32,
+    path: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3313,43 +3375,59 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn OpenPackageInfoByFullNameForU
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn ClosePackageInfo(
-    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
+pub extern "kernel32" fn PackageFamilyNameFromFullName(
+    packageFullName: ?[*:0]const u16,
+    packageFamilyNameLength: ?*u32,
+    packageFamilyName: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn GetPackageInfo(
-    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
+pub extern "kernel32" fn PackageFamilyNameFromId(
+    packageId: ?*const PACKAGE_ID,
+    packageFamilyNameLength: ?*u32,
+    packageFamilyName: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn PackageFullNameFromId(
+    packageId: ?*const PACKAGE_ID,
+    packageFullNameLength: ?*u32,
+    packageFullName: ?[*:0]u16,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn PackageIdFromFullName(
+    packageFullName: ?[*:0]const u16,
     flags: u32,
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
-    count: ?*u32,
+) callconv(.winapi) WIN32_ERROR;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn PackageNameAndPublisherIdFromFamilyName(
+    packageFamilyName: ?[*:0]const u16,
+    packageNameLength: ?*u32,
+    packageName: ?[*:0]u16,
+    packagePublisherIdLength: ?*u32,
+    packagePublisherId: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "kernel32" fn GetPackageApplicationIds(
-    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
-    bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
-    buffer: ?*u8,
-    count: ?*u32,
+pub extern "kernel32" fn ParseApplicationUserModelId(
+    applicationUserModelId: ?[*:0]const u16,
+    packageFamilyNameLength: ?*u32,
+    packageFamilyName: ?[*:0]u16,
+    packageRelativeApplicationIdLength: ?*u32,
+    packageRelativeApplicationId: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
-    packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
-    flags: u32,
-    packagePathType: PackagePathType,
-    bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
-    buffer: ?*u8,
-    count: ?*u32,
-) callconv(.winapi) WIN32_ERROR;
+pub extern "kernel32" fn ReleasePackageVirtualizationContext(
+    context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
+) callconv(.winapi) void;
 
-pub extern "kernel32" fn CheckIsMSIXPackage(
-    packageFullName: ?[*:0]const u16,
-    isMSIXPackage: ?*BOOL,
+pub extern "kernelbase" fn RemovePackageDependency(
+    packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
 ) callconv(.winapi) HRESULT;
 
 pub extern "kernelbase" fn TryCreatePackageDependency(
@@ -3363,103 +3441,25 @@ pub extern "kernelbase" fn TryCreatePackageDependency(
     packageDependencyId: ?*?PWSTR,
 ) callconv(.winapi) HRESULT;
 
-pub extern "kernelbase" fn DeletePackageDependency(
-    packageDependencyId: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernelbase" fn AddPackageDependency(
-    packageDependencyId: ?[*:0]const u16,
-    rank: i32,
-    options: AddPackageDependencyOptions,
-    packageDependencyContext: ?*?*PACKAGEDEPENDENCY_CONTEXT__,
-    packageFullName: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernelbase" fn RemovePackageDependency(
-    packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernelbase" fn GetResolvedPackageFullNameForPackageDependency(
-    packageDependencyId: ?[*:0]const u16,
-    packageFullName: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernelbase" fn GetIdForPackageDependencyContext(
-    packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
-    packageDependencyId: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernel32" fn AppPolicyGetLifecycleManagement(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyLifecycleManagement,
+pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyApplicationUserModelId(
+    applicationUserModelId: ?[*:0]const u16,
 ) callconv(.winapi) WIN32_ERROR;
 
-pub extern "kernel32" fn AppPolicyGetWindowingModel(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyWindowingModel,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn AppPolicyGetMediaFoundationCodecLoading(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyMediaFoundationCodecLoading,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn AppPolicyGetClrCompat(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyClrCompat,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn AppPolicyGetThreadInitializationType(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyThreadInitializationType,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn AppPolicyGetShowDeveloperDiagnostic(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyShowDeveloperDiagnostic,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn AppPolicyGetProcessTerminationMethod(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyProcessTerminationMethod,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn AppPolicyGetCreateFileAccess(
-    processToken: ?HANDLE,
-    policy: ?*AppPolicyCreateFileAccess,
-) callconv(.winapi) WIN32_ERROR;
-
-pub extern "kernel32" fn CreatePackageVirtualizationContext(
+pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFamilyName(
     packageFamilyName: ?[*:0]const u16,
-    context: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-) callconv(.winapi) HRESULT;
+) callconv(.winapi) WIN32_ERROR;
 
-pub extern "kernel32" fn ActivatePackageVirtualizationContext(
-    context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-    cookie: ?*usize,
-) callconv(.winapi) HRESULT;
+pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFullName(
+    packageFullName: ?[*:0]const u16,
+) callconv(.winapi) WIN32_ERROR;
 
-pub extern "kernel32" fn ReleasePackageVirtualizationContext(
-    context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-) callconv(.winapi) void;
+pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageId(
+    packageId: ?*const PACKAGE_ID,
+) callconv(.winapi) WIN32_ERROR;
 
-pub extern "kernel32" fn DeactivatePackageVirtualizationContext(
-    cookie: usize,
-) callconv(.winapi) void;
-
-pub extern "kernel32" fn DuplicatePackageVirtualizationContext(
-    sourceContext: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-    destContext: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-) callconv(.winapi) HRESULT;
-
-pub extern "kernel32" fn GetCurrentPackageVirtualizationContext(
-) callconv(.winapi) ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__;
-
-pub extern "kernel32" fn GetProcessesInVirtualizationContext(
-    packageFamilyName: ?[*:0]const u16,
-    count: ?*u32,
-    processes: ?*?*?HANDLE,
-) callconv(.winapi) HRESULT;
+pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicationId(
+    packageRelativeApplicationId: ?[*:0]const u16,
+) callconv(.winapi) WIN32_ERROR;
 
 
 //--------------------------------------------------------------------------------

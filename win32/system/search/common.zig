@@ -6,17 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-pub const CONDITION_TYPE = enum(i32) {
-    AND_CONDITION = 0,
-    OR_CONDITION = 1,
-    NOT_CONDITION = 2,
-    LEAF_CONDITION = 3,
-};
-pub const CT_AND_CONDITION = CONDITION_TYPE.AND_CONDITION;
-pub const CT_OR_CONDITION = CONDITION_TYPE.OR_CONDITION;
-pub const CT_NOT_CONDITION = CONDITION_TYPE.NOT_CONDITION;
-pub const CT_LEAF_CONDITION = CONDITION_TYPE.LEAF_CONDITION;
-
 pub const CONDITION_OPERATION = enum(i32) {
     IMPLICIT = 0,
     EQUAL = 1,
@@ -49,6 +38,17 @@ pub const COP_DOSWILDCARDS = CONDITION_OPERATION.DOSWILDCARDS;
 pub const COP_WORD_EQUAL = CONDITION_OPERATION.WORD_EQUAL;
 pub const COP_WORD_STARTSWITH = CONDITION_OPERATION.WORD_STARTSWITH;
 pub const COP_APPLICATION_SPECIFIC = CONDITION_OPERATION.APPLICATION_SPECIFIC;
+
+pub const CONDITION_TYPE = enum(i32) {
+    AND_CONDITION = 0,
+    OR_CONDITION = 1,
+    NOT_CONDITION = 2,
+    LEAF_CONDITION = 3,
+};
+pub const CT_AND_CONDITION = CONDITION_TYPE.AND_CONDITION;
+pub const CT_OR_CONDITION = CONDITION_TYPE.OR_CONDITION;
+pub const CT_NOT_CONDITION = CONDITION_TYPE.NOT_CONDITION;
+pub const CT_LEAF_CONDITION = CONDITION_TYPE.LEAF_CONDITION;
 
 
 //--------------------------------------------------------------------------------

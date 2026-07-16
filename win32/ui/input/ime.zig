@@ -2,950 +2,638 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (600)
 //--------------------------------------------------------------------------------
+pub const ATTR_CONVERTED = @as(u32, 2);
+pub const ATTR_FIXEDCONVERTED = @as(u32, 5);
+pub const ATTR_INPUT = @as(u32, 0);
+pub const ATTR_INPUT_ERROR = @as(u32, 4);
+pub const ATTR_TARGET_CONVERTED = @as(u32, 1);
+pub const ATTR_TARGET_NOTCONVERTED = @as(u32, 3);
+pub const CATID_MSIME_IImePadApplet = Guid.initString("7566cad1-4ec9-4478-9fe9-8ed766619edf");
+pub const CATID_MSIME_IImePadApplet1000 = Guid.initString("e081e1d6-2389-43cb-b66f-609f823d9f9c");
+pub const CATID_MSIME_IImePadApplet1200 = Guid.initString("a47fb5fc-7d15-4223-a789-b781bf9ae667");
+pub const CATID_MSIME_IImePadApplet900 = Guid.initString("faae51bf-5e5b-4a1d-8de1-17c1d9e1728d");
 pub const CATID_MSIME_IImePadApplet_VER7 = Guid.initString("4a0f8e31-c3ee-11d1-afef-00805f0c8b6d");
 pub const CATID_MSIME_IImePadApplet_VER80 = Guid.initString("56f7a792-fef1-11d3-8463-00c04f7a06e5");
 pub const CATID_MSIME_IImePadApplet_VER81 = Guid.initString("656520b0-bb88-11d4-84c0-00c04f7a06e5");
-pub const CATID_MSIME_IImePadApplet900 = Guid.initString("faae51bf-5e5b-4a1d-8de1-17c1d9e1728d");
-pub const CATID_MSIME_IImePadApplet1000 = Guid.initString("e081e1d6-2389-43cb-b66f-609f823d9f9c");
-pub const CATID_MSIME_IImePadApplet1200 = Guid.initString("a47fb5fc-7d15-4223-a789-b781bf9ae667");
-pub const CATID_MSIME_IImePadApplet = Guid.initString("7566cad1-4ec9-4478-9fe9-8ed766619edf");
-pub const FEID_NONE = @as(u32, 0);
-pub const FEID_CHINESE_TRADITIONAL = @as(u32, 1);
-pub const FEID_CHINESE_SIMPLIFIED = @as(u32, 2);
+pub const cbCommentMax = @as(u32, 256);
+pub const CFS_CANDIDATEPOS = @as(u32, 64);
+pub const CFS_DEFAULT = @as(u32, 0);
+pub const CFS_EXCLUDE = @as(u32, 128);
+pub const CFS_FORCE_POSITION = @as(u32, 32);
+pub const CFS_POINT = @as(u32, 2);
+pub const CFS_RECT = @as(u32, 1);
+pub const CHARINFO_APPLETID_MASK = @as(u32, 4278190080);
+pub const CHARINFO_CHARID_MASK = @as(u32, 65535);
+pub const CHARINFO_FEID_MASK = @as(u32, 15728640);
+pub const CLSID_ImePlugInDictDictionaryList_CHS = Guid.initString("7bf0129b-5bef-4de4-9b0b-5edb66ac2fa6");
+pub const CLSID_ImePlugInDictDictionaryList_JPN = Guid.initString("4fe2776b-b0f9-4396-b5fc-e9d4cf1ec195");
+pub const CLSID_VERSION_DEPENDENT_MSIME_JAPANESE = Guid.initString("6a91029e-aa49-471b-aee7-7d332785660d");
+pub const CS_INSERTCHAR = @as(u32, 8192);
+pub const CS_NOMOVECARET = @as(u32, 16384);
+pub const E_LARGEINPUT = @as(u32, 51);
+pub const E_NOCAND = @as(u32, 48);
+pub const E_NOTENOUGH_BUFFER = @as(u32, 49);
+pub const E_NOTENOUGH_WDD = @as(u32, 50);
 pub const FEID_CHINESE_HONGKONG = @as(u32, 3);
+pub const FEID_CHINESE_SIMPLIFIED = @as(u32, 2);
 pub const FEID_CHINESE_SINGAPORE = @as(u32, 4);
+pub const FEID_CHINESE_TRADITIONAL = @as(u32, 1);
 pub const FEID_JAPANESE = @as(u32, 5);
 pub const FEID_KOREAN = @as(u32, 6);
 pub const FEID_KOREAN_JOHAB = @as(u32, 7);
-pub const INFOMASK_NONE = @as(u32, 0);
-pub const INFOMASK_QUERY_CAND = @as(u32, 1);
-pub const INFOMASK_APPLY_CAND = @as(u32, 2);
-pub const INFOMASK_APPLY_CAND_EX = @as(u32, 4);
-pub const INFOMASK_STRING_FIX = @as(u32, 65536);
-pub const INFOMASK_HIDE_CAND = @as(u32, 131072);
-pub const INFOMASK_BLOCK_CAND = @as(u32, 262144);
-pub const IMEFAREASTINFO_TYPE_DEFAULT = @as(u32, 0);
-pub const IMEFAREASTINFO_TYPE_READING = @as(u32, 1);
-pub const IMEFAREASTINFO_TYPE_COMMENT = @as(u32, 2);
-pub const IMEFAREASTINFO_TYPE_COSTTIME = @as(u32, 3);
-pub const CHARINFO_APPLETID_MASK = @as(u32, 4278190080);
-pub const CHARINFO_FEID_MASK = @as(u32, 15728640);
-pub const CHARINFO_CHARID_MASK = @as(u32, 65535);
-pub const MAX_APPLETTITLE = @as(u32, 64);
-pub const MAX_FONTFACE = @as(u32, 32);
-pub const IPACFG_NONE = @as(i32, 0);
-pub const IPACFG_PROPERTY = @as(i32, 1);
-pub const IPACFG_HELP = @as(i32, 2);
-pub const IPACFG_TITLE = @as(i32, 65536);
-pub const IPACFG_TITLEFONTFACE = @as(i32, 131072);
-pub const IPACFG_CATEGORY = @as(i32, 262144);
-pub const IPACFG_LANG = @as(i32, 16);
-pub const IPACID_NONE = @as(u32, 0);
-pub const IPACID_SOFTKEY = @as(u32, 1);
-pub const IPACID_HANDWRITING = @as(u32, 2);
-pub const IPACID_STROKESEARCH = @as(u32, 3);
-pub const IPACID_RADICALSEARCH = @as(u32, 4);
-pub const IPACID_SYMBOLSEARCH = @as(u32, 5);
-pub const IPACID_VOICE = @as(u32, 6);
-pub const IPACID_EPWING = @as(u32, 7);
-pub const IPACID_OCR = @as(u32, 8);
-pub const IPACID_CHARLIST = @as(u32, 9);
-pub const IPACID_USER = @as(u32, 256);
-pub const IMEPADREQ_FIRST = @as(u32, 4096);
-pub const IMEPADREQ_INSERTSTRINGCANDIDATE = @as(u32, 4098);
-pub const IMEPADREQ_INSERTITEMCANDIDATE = @as(u32, 4099);
-pub const IMEPADREQ_SENDKEYCONTROL = @as(u32, 4101);
-pub const IMEPADREQ_GETSELECTEDSTRING = @as(u32, 4103);
-pub const IMEPADREQ_SETAPPLETDATA = @as(u32, 4105);
-pub const IMEPADREQ_GETAPPLETDATA = @as(u32, 4106);
-pub const IMEPADREQ_SETTITLEFONT = @as(u32, 4107);
-pub const IMEPADREQ_GETCOMPOSITIONSTRINGID = @as(u32, 4109);
-pub const IMEPADREQ_INSERTSTRINGCANDIDATEINFO = @as(u32, 4110);
-pub const IMEPADREQ_CHANGESTRINGCANDIDATEINFO = @as(u32, 4111);
-pub const IMEPADREQ_INSERTSTRINGINFO = @as(u32, 4114);
-pub const IMEPADREQ_CHANGESTRINGINFO = @as(u32, 4115);
-pub const IMEPADREQ_GETCURRENTUILANGID = @as(u32, 4120);
-pub const IMEPADCTRL_CONVERTALL = @as(u32, 1);
-pub const IMEPADCTRL_DETERMINALL = @as(u32, 2);
-pub const IMEPADCTRL_DETERMINCHAR = @as(u32, 3);
-pub const IMEPADCTRL_CLEARALL = @as(u32, 4);
-pub const IMEPADCTRL_CARETSET = @as(u32, 5);
-pub const IMEPADCTRL_CARETLEFT = @as(u32, 6);
-pub const IMEPADCTRL_CARETRIGHT = @as(u32, 7);
-pub const IMEPADCTRL_CARETTOP = @as(u32, 8);
-pub const IMEPADCTRL_CARETBOTTOM = @as(u32, 9);
-pub const IMEPADCTRL_CARETBACKSPACE = @as(u32, 10);
-pub const IMEPADCTRL_CARETDELETE = @as(u32, 11);
-pub const IMEPADCTRL_PHRASEDELETE = @as(u32, 12);
-pub const IMEPADCTRL_INSERTSPACE = @as(u32, 13);
-pub const IMEPADCTRL_INSERTFULLSPACE = @as(u32, 14);
-pub const IMEPADCTRL_INSERTHALFSPACE = @as(u32, 15);
-pub const IMEPADCTRL_ONIME = @as(u32, 16);
-pub const IMEPADCTRL_OFFIME = @as(u32, 17);
-pub const IMEPADCTRL_ONPRECONVERSION = @as(u32, 18);
-pub const IMEPADCTRL_OFFPRECONVERSION = @as(u32, 19);
-pub const IMEPADCTRL_PHONETICCANDIDATE = @as(u32, 20);
-pub const IMEKEYCTRLMASK_ALT = @as(u32, 1);
-pub const IMEKEYCTRLMASK_CTRL = @as(u32, 2);
-pub const IMEKEYCTRLMASK_SHIFT = @as(u32, 4);
-pub const IMEKEYCTRL_UP = @as(u32, 1);
-pub const IMEKEYCTRL_DOWN = @as(u32, 0);
-pub const IMEPN_FIRST = @as(u32, 256);
-pub const IMEPN_ACTIVATE = @as(u32, 257);
-pub const IMEPN_INACTIVATE = @as(u32, 258);
-pub const IMEPN_SHOW = @as(u32, 260);
-pub const IMEPN_HIDE = @as(u32, 261);
-pub const IMEPN_SIZECHANGING = @as(u32, 262);
-pub const IMEPN_SIZECHANGED = @as(u32, 263);
-pub const IMEPN_CONFIG = @as(u32, 264);
-pub const IMEPN_HELP = @as(u32, 265);
-pub const IMEPN_QUERYCAND = @as(u32, 266);
-pub const IMEPN_APPLYCAND = @as(u32, 267);
-pub const IMEPN_APPLYCANDEX = @as(u32, 268);
-pub const IMEPN_SETTINGCHANGED = @as(u32, 269);
-pub const IMEPN_USER = @as(u32, 356);
-pub const IPAWS_ENABLED = @as(i32, 1);
-pub const IPAWS_SIZINGNOTIFY = @as(i32, 4);
-pub const IPAWS_VERTICALFIXED = @as(i32, 256);
-pub const IPAWS_HORIZONTALFIXED = @as(i32, 512);
-pub const IPAWS_SIZEFIXED = @as(i32, 768);
-pub const IPAWS_MAXWIDTHFIXED = @as(i32, 4096);
-pub const IPAWS_MAXHEIGHTFIXED = @as(i32, 8192);
-pub const IPAWS_MAXSIZEFIXED = @as(i32, 12288);
-pub const IPAWS_MINWIDTHFIXED = @as(i32, 65536);
-pub const IPAWS_MINHEIGHTFIXED = @as(i32, 131072);
-pub const IPAWS_MINSIZEFIXED = @as(i32, 196608);
-pub const STYLE_DESCRIPTION_SIZE = @as(u32, 32);
-pub const IMEMENUITEM_STRING_SIZE = @as(u32, 80);
-pub const IMC_GETCANDIDATEPOS = @as(u32, 7);
-pub const IMC_SETCANDIDATEPOS = @as(u32, 8);
-pub const IMC_GETCOMPOSITIONFONT = @as(u32, 9);
-pub const IMC_SETCOMPOSITIONFONT = @as(u32, 10);
-pub const IMC_GETCOMPOSITIONWINDOW = @as(u32, 11);
-pub const IMC_SETCOMPOSITIONWINDOW = @as(u32, 12);
-pub const IMC_GETSTATUSWINDOWPOS = @as(u32, 15);
-pub const IMC_SETSTATUSWINDOWPOS = @as(u32, 16);
+pub const FEID_NONE = @as(u32, 0);
+pub const FELANG_CLMN_FIXD = @as(u32, 32);
+pub const FELANG_CLMN_FIXR = @as(u32, 16);
+pub const FELANG_CLMN_NOPBREAK = @as(u32, 8);
+pub const FELANG_CLMN_NOWBREAK = @as(u32, 2);
+pub const FELANG_CLMN_PBREAK = @as(u32, 4);
+pub const FELANG_CLMN_WBREAK = @as(u32, 1);
+pub const FELANG_CMODE_AUTOMATIC = @as(u32, 134217728);
+pub const FELANG_CMODE_BESTFIRST = @as(u32, 16384);
+pub const FELANG_CMODE_BOPOMOFO = @as(u32, 64);
+pub const FELANG_CMODE_CONVERSATION = @as(u32, 536870912);
+pub const FELANG_CMODE_FULLWIDTHOUT = @as(u32, 32);
+pub const FELANG_CMODE_HALFWIDTHOUT = @as(u32, 16);
+pub const FELANG_CMODE_HANGUL = @as(u32, 128);
+pub const FELANG_CMODE_HIRAGANAOUT = @as(u32, 0);
+pub const FELANG_CMODE_KATAKANAOUT = @as(u32, 8);
+pub const FELANG_CMODE_MERGECAND = @as(u32, 4096);
+pub const FELANG_CMODE_MONORUBY = @as(u32, 2);
+pub const FELANG_CMODE_NAME = @as(u32, 268435456);
+pub const FELANG_CMODE_NOINVISIBLECHAR = @as(u32, 1073741824);
+pub const FELANG_CMODE_NONE = @as(u32, 16777216);
+pub const FELANG_CMODE_NOPRUNING = @as(u32, 4);
+pub const FELANG_CMODE_PHRASEPREDICT = @as(u32, 268435456);
+pub const FELANG_CMODE_PINYIN = @as(u32, 256);
+pub const FELANG_CMODE_PLAURALCLAUSE = @as(u32, 33554432);
+pub const FELANG_CMODE_PRECONV = @as(u32, 512);
+pub const FELANG_CMODE_RADICAL = @as(u32, 1024);
+pub const FELANG_CMODE_ROMAN = @as(u32, 8192);
+pub const FELANG_CMODE_SINGLECONVERT = @as(u32, 67108864);
+pub const FELANG_CMODE_UNKNOWNREADING = @as(u32, 2048);
+pub const FELANG_CMODE_USENOREVWORDS = @as(u32, 32768);
+pub const FELANG_INVALD_PO = @as(u32, 65535);
+pub const FELANG_REQ_CONV = @as(u32, 65536);
+pub const FELANG_REQ_RECONV = @as(u32, 131072);
+pub const FELANG_REQ_REV = @as(u32, 196608);
+pub const FID_MSIME_KMS_DEL_KEYLIST = @as(u32, 4);
+pub const FID_MSIME_KMS_FUNCDESC = @as(u32, 9);
+pub const FID_MSIME_KMS_GETMAP = @as(u32, 6);
+pub const FID_MSIME_KMS_GETMAPFAST = @as(u32, 11);
+pub const FID_MSIME_KMS_GETMAPSEAMLESS = @as(u32, 10);
+pub const FID_MSIME_KMS_INIT = @as(u32, 2);
+pub const FID_MSIME_KMS_INVOKE = @as(u32, 7);
+pub const FID_MSIME_KMS_NOTIFY = @as(u32, 5);
+pub const FID_MSIME_KMS_SETMAP = @as(u32, 8);
+pub const FID_MSIME_KMS_TERM = @as(u32, 3);
+pub const FID_MSIME_KMS_VERSION = @as(u32, 1);
+pub const FID_MSIME_VERSION = @as(u32, 0);
+pub const FID_RECONVERT_VERSION = @as(u32, 268435456);
+pub const GCSEX_CANCELRECONVERT = @as(u32, 268435456);
+pub const GL_ID_CANNOTSAVE = @as(u32, 17);
+pub const GL_ID_CHOOSECANDIDATE = @as(u32, 40);
+pub const GL_ID_INPUTCODE = @as(u32, 38);
+pub const GL_ID_INPUTRADICAL = @as(u32, 37);
+pub const GL_ID_INPUTREADING = @as(u32, 36);
+pub const GL_ID_INPUTSYMBOL = @as(u32, 39);
+pub const GL_ID_NOCONVERT = @as(u32, 32);
+pub const GL_ID_NODICTIONARY = @as(u32, 16);
+pub const GL_ID_NOMODULE = @as(u32, 1);
+pub const GL_ID_PRIVATE_FIRST = @as(u32, 32768);
+pub const GL_ID_PRIVATE_LAST = @as(u32, 65535);
+pub const GL_ID_READINGCONFLICT = @as(u32, 35);
+pub const GL_ID_REVERSECONVERSION = @as(u32, 41);
+pub const GL_ID_TOOMANYSTROKE = @as(u32, 34);
+pub const GL_ID_TYPINGERROR = @as(u32, 33);
+pub const GL_ID_UNKNOWN = @as(u32, 0);
+pub const GL_LEVEL_ERROR = @as(u32, 2);
+pub const GL_LEVEL_FATAL = @as(u32, 1);
+pub const GL_LEVEL_INFORMATION = @as(u32, 4);
+pub const GL_LEVEL_NOGUIDELINE = @as(u32, 0);
+pub const GL_LEVEL_WARNING = @as(u32, 3);
+pub const IACE_CHILDREN = @as(u32, 1);
+pub const IACE_DEFAULT = @as(u32, 16);
+pub const IACE_IGNORENOCONTEXT = @as(u32, 32);
+pub const IFEC_S_ALREADY_DEFAULT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291840));
+pub const IFED_E_INVALID_FORMAT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192063));
+pub const IFED_E_NO_ENTRY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192060));
+pub const IFED_E_NOT_FOUND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192064));
+pub const IFED_E_NOT_SUPPORTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192057));
+pub const IFED_E_NOT_USER_DIC = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192058));
+pub const IFED_E_OPEN_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192062));
+pub const IFED_E_REGISTER_DISCONNECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192053));
+pub const IFED_E_REGISTER_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192059));
+pub const IFED_E_REGISTER_ILLEGAL_POS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192055));
+pub const IFED_E_REGISTER_IMPROPER_WORD = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192054));
+pub const IFED_E_USER_COMMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192056));
+pub const IFED_E_WRITE_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192061));
+pub const IFED_POS_ADJECTIVE = @as(u32, 4);
+pub const IFED_POS_ADJECTIVE_VERB = @as(u32, 8);
+pub const IFED_POS_ADNOUN = @as(u32, 32);
+pub const IFED_POS_ADVERB = @as(u32, 16);
+pub const IFED_POS_AFFIX = @as(u32, 1536);
+pub const IFED_POS_ALL = @as(u32, 131071);
+pub const IFED_POS_AUXILIARY_VERB = @as(u32, 32768);
+pub const IFED_POS_CONJUNCTION = @as(u32, 64);
+pub const IFED_POS_DEPENDENT = @as(u32, 114688);
+pub const IFED_POS_IDIOMS = @as(u32, 4096);
+pub const IFED_POS_INDEPENDENT = @as(u32, 255);
+pub const IFED_POS_INFLECTIONALSUFFIX = @as(u32, 256);
+pub const IFED_POS_INTERJECTION = @as(u32, 128);
+pub const IFED_POS_NONE = @as(u32, 0);
+pub const IFED_POS_NOUN = @as(u32, 1);
+pub const IFED_POS_PARTICLE = @as(u32, 16384);
+pub const IFED_POS_PREFIX = @as(u32, 512);
+pub const IFED_POS_SUB_VERB = @as(u32, 65536);
+pub const IFED_POS_SUFFIX = @as(u32, 1024);
+pub const IFED_POS_SYMBOLS = @as(u32, 8192);
+pub const IFED_POS_TANKANJI = @as(u32, 2048);
+pub const IFED_POS_VERB = @as(u32, 2);
+pub const IFED_REG_ALL = @as(u32, 7);
+pub const IFED_REG_AUTO = @as(u32, 2);
+pub const IFED_REG_GRAMMAR = @as(u32, 4);
+pub const IFED_REG_NONE = @as(u32, 0);
+pub const IFED_REG_USER = @as(u32, 1);
+pub const IFED_S_COMMENT_CHANGED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291331));
+pub const IFED_S_EMPTY_DICTIONARY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291329));
+pub const IFED_S_MORE_ENTRIES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291328));
+pub const IFED_S_WORD_EXISTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291330));
+pub const IFED_SELECT_ALL = @as(u32, 15);
+pub const IFED_SELECT_COMMENT = @as(u32, 8);
+pub const IFED_SELECT_DISPLAY = @as(u32, 2);
+pub const IFED_SELECT_NONE = @as(u32, 0);
+pub const IFED_SELECT_POS = @as(u32, 4);
+pub const IFED_SELECT_READING = @as(u32, 1);
+pub const IFED_TYPE_ALL = @as(u32, 31);
+pub const IFED_TYPE_ENGLISH = @as(u32, 16);
+pub const IFED_TYPE_GENERAL = @as(u32, 1);
+pub const IFED_TYPE_NAMEPLACE = @as(u32, 2);
+pub const IFED_TYPE_NONE = @as(u32, 0);
+pub const IFED_TYPE_REVERSE = @as(u32, 8);
+pub const IFED_TYPE_SPEECH = @as(u32, 4);
+pub const IGIMIF_RIGHTMENU = @as(u32, 1);
+pub const IGIMII_CMODE = @as(u32, 1);
+pub const IGIMII_CONFIGURE = @as(u32, 4);
+pub const IGIMII_HELP = @as(u32, 16);
+pub const IGIMII_INPUTTOOLS = @as(u32, 64);
+pub const IGIMII_OTHER = @as(u32, 32);
+pub const IGIMII_SMODE = @as(u32, 2);
+pub const IGIMII_TOOLS = @as(u32, 8);
 pub const IMC_CLOSESTATUSWINDOW = @as(u32, 33);
+pub const IMC_GETCANDIDATEPOS = @as(u32, 7);
+pub const IMC_GETCOMPOSITIONFONT = @as(u32, 9);
+pub const IMC_GETCOMPOSITIONWINDOW = @as(u32, 11);
+pub const IMC_GETSOFTKBDFONT = @as(u32, 17);
+pub const IMC_GETSOFTKBDPOS = @as(u32, 19);
+pub const IMC_GETSOFTKBDSUBTYPE = @as(u32, 21);
+pub const IMC_GETSTATUSWINDOWPOS = @as(u32, 15);
 pub const IMC_OPENSTATUSWINDOW = @as(u32, 34);
-pub const NI_FINALIZECONVERSIONRESULT = @as(u32, 20);
-pub const ISC_SHOWUICANDIDATEWINDOW = @as(u32, 1);
-pub const ISC_SHOWUICOMPOSITIONWINDOW = @as(u32, 2147483648);
-pub const ISC_SHOWUIGUIDELINE = @as(u32, 1073741824);
-pub const ISC_SHOWUIALLCANDIDATEWINDOW = @as(u32, 15);
-pub const ISC_SHOWUIALL = @as(u32, 3221225487);
-pub const MOD_LEFT = @as(u32, 32768);
-pub const MOD_RIGHT = @as(u32, 16384);
-pub const MOD_ON_KEYUP = @as(u32, 2048);
-pub const MOD_IGNORE_ALL_MODIFIER = @as(u32, 1024);
+pub const IMC_SETCANDIDATEPOS = @as(u32, 8);
+pub const IMC_SETCOMPOSITIONFONT = @as(u32, 10);
+pub const IMC_SETCOMPOSITIONWINDOW = @as(u32, 12);
+pub const IMC_SETCONVERSIONMODE = @as(u32, 2);
+pub const IMC_SETOPENSTATUS = @as(u32, 6);
+pub const IMC_SETSENTENCEMODE = @as(u32, 4);
+pub const IMC_SETSOFTKBDDATA = @as(u32, 24);
+pub const IMC_SETSOFTKBDFONT = @as(u32, 18);
+pub const IMC_SETSOFTKBDPOS = @as(u32, 20);
+pub const IMC_SETSOFTKBDSUBTYPE = @as(u32, 22);
+pub const IMC_SETSTATUSWINDOWPOS = @as(u32, 16);
+pub const IME_CAND_CODE = @as(u32, 2);
+pub const IME_CAND_MEANING = @as(u32, 3);
+pub const IME_CAND_RADICAL = @as(u32, 4);
+pub const IME_CAND_READ = @as(u32, 1);
+pub const IME_CAND_STROKE = @as(u32, 5);
+pub const IME_CAND_UNKNOWN = @as(u32, 0);
+pub const IME_CONFIG_GENERAL = @as(u32, 1);
+pub const IME_CONFIG_REGISTERWORD = @as(u32, 2);
+pub const IME_CONFIG_SELECTDICTIONARY = @as(u32, 3);
+pub const IME_ESC_STRING_BUFFER_SIZE = @as(u32, 80);
 pub const IME_HOTKEY_DSWITCH_FIRST = @as(u32, 256);
 pub const IME_HOTKEY_DSWITCH_LAST = @as(u32, 287);
 pub const IME_HOTKEY_PRIVATE_FIRST = @as(u32, 512);
 pub const IME_HOTKEY_PRIVATE_LAST = @as(u32, 543);
-pub const CS_INSERTCHAR = @as(u32, 8192);
-pub const CS_NOMOVECARET = @as(u32, 16384);
-pub const IMEVER_0310 = @as(u32, 196618);
-pub const IMEVER_0400 = @as(u32, 262144);
+pub const IME_PROP_ACCEPT_WIDE_VKEY = @as(u32, 32);
 pub const IME_PROP_AT_CARET = @as(u32, 65536);
-pub const IME_PROP_SPECIAL_UI = @as(u32, 131072);
 pub const IME_PROP_CANDLIST_START_FROM_1 = @as(u32, 262144);
-pub const IME_PROP_UNICODE = @as(u32, 524288);
 pub const IME_PROP_COMPLETE_ON_UNSELECT = @as(u32, 1048576);
-pub const UI_CAP_2700 = @as(u32, 1);
-pub const UI_CAP_ROT90 = @as(u32, 2);
-pub const UI_CAP_ROTANY = @as(u32, 4);
-pub const SCS_CAP_COMPSTR = @as(u32, 1);
-pub const SCS_CAP_MAKEREAD = @as(u32, 2);
-pub const SCS_CAP_SETRECONVERTSTRING = @as(u32, 4);
-pub const SELECT_CAP_CONVERSION = @as(u32, 1);
-pub const SELECT_CAP_SENTENCE = @as(u32, 2);
-pub const GL_LEVEL_NOGUIDELINE = @as(u32, 0);
-pub const GL_LEVEL_FATAL = @as(u32, 1);
-pub const GL_LEVEL_ERROR = @as(u32, 2);
-pub const GL_LEVEL_WARNING = @as(u32, 3);
-pub const GL_LEVEL_INFORMATION = @as(u32, 4);
-pub const GL_ID_UNKNOWN = @as(u32, 0);
-pub const GL_ID_NOMODULE = @as(u32, 1);
-pub const GL_ID_NODICTIONARY = @as(u32, 16);
-pub const GL_ID_CANNOTSAVE = @as(u32, 17);
-pub const GL_ID_NOCONVERT = @as(u32, 32);
-pub const GL_ID_TYPINGERROR = @as(u32, 33);
-pub const GL_ID_TOOMANYSTROKE = @as(u32, 34);
-pub const GL_ID_READINGCONFLICT = @as(u32, 35);
-pub const GL_ID_INPUTREADING = @as(u32, 36);
-pub const GL_ID_INPUTRADICAL = @as(u32, 37);
-pub const GL_ID_INPUTCODE = @as(u32, 38);
-pub const GL_ID_INPUTSYMBOL = @as(u32, 39);
-pub const GL_ID_CHOOSECANDIDATE = @as(u32, 40);
-pub const GL_ID_REVERSECONVERSION = @as(u32, 41);
-pub const GL_ID_PRIVATE_FIRST = @as(u32, 32768);
-pub const GL_ID_PRIVATE_LAST = @as(u32, 65535);
-pub const ATTR_INPUT = @as(u32, 0);
-pub const ATTR_TARGET_CONVERTED = @as(u32, 1);
-pub const ATTR_CONVERTED = @as(u32, 2);
-pub const ATTR_TARGET_NOTCONVERTED = @as(u32, 3);
-pub const ATTR_INPUT_ERROR = @as(u32, 4);
-pub const ATTR_FIXEDCONVERTED = @as(u32, 5);
-pub const CFS_DEFAULT = @as(u32, 0);
-pub const CFS_RECT = @as(u32, 1);
-pub const CFS_POINT = @as(u32, 2);
-pub const CFS_FORCE_POSITION = @as(u32, 32);
-pub const CFS_CANDIDATEPOS = @as(u32, 64);
-pub const CFS_EXCLUDE = @as(u32, 128);
-pub const IME_CAND_UNKNOWN = @as(u32, 0);
-pub const IME_CAND_READ = @as(u32, 1);
-pub const IME_CAND_CODE = @as(u32, 2);
-pub const IME_CAND_MEANING = @as(u32, 3);
-pub const IME_CAND_RADICAL = @as(u32, 4);
-pub const IME_CAND_STROKE = @as(u32, 5);
-pub const IMN_CLOSESTATUSWINDOW = @as(u32, 1);
-pub const IMN_OPENSTATUSWINDOW = @as(u32, 2);
-pub const IMN_CHANGECANDIDATE = @as(u32, 3);
-pub const IMN_CLOSECANDIDATE = @as(u32, 4);
-pub const IMN_OPENCANDIDATE = @as(u32, 5);
-pub const IMN_SETCONVERSIONMODE = @as(u32, 6);
-pub const IMN_SETSENTENCEMODE = @as(u32, 7);
-pub const IMN_SETOPENSTATUS = @as(u32, 8);
-pub const IMN_SETCANDIDATEPOS = @as(u32, 9);
-pub const IMN_SETCOMPOSITIONFONT = @as(u32, 10);
-pub const IMN_SETCOMPOSITIONWINDOW = @as(u32, 11);
-pub const IMN_SETSTATUSWINDOWPOS = @as(u32, 12);
-pub const IMN_GUIDELINE = @as(u32, 13);
-pub const IMN_PRIVATE = @as(u32, 14);
-pub const IMR_COMPOSITIONWINDOW = @as(u32, 1);
-pub const IMR_CANDIDATEWINDOW = @as(u32, 2);
-pub const IMR_COMPOSITIONFONT = @as(u32, 3);
-pub const IMR_RECONVERTSTRING = @as(u32, 4);
-pub const IMR_CONFIRMRECONVERTSTRING = @as(u32, 5);
-pub const IMR_QUERYCHARPOSITION = @as(u32, 6);
-pub const IMR_DOCUMENTFEED = @as(u32, 7);
-pub const IMM_ERROR_NODATA = @as(i32, -1);
-pub const IMM_ERROR_GENERAL = @as(i32, -2);
-pub const IME_CONFIG_GENERAL = @as(u32, 1);
-pub const IME_CONFIG_REGISTERWORD = @as(u32, 2);
-pub const IME_CONFIG_SELECTDICTIONARY = @as(u32, 3);
+pub const IME_PROP_END_UNLOAD = @as(u32, 1);
+pub const IME_PROP_IGNORE_UPKEYS = @as(u32, 4);
+pub const IME_PROP_KBD_CHAR_FIRST = @as(u32, 2);
+pub const IME_PROP_NEED_ALTKEY = @as(u32, 8);
+pub const IME_PROP_NO_KEYS_ON_CLOSE = @as(u32, 16);
+pub const IME_PROP_SPECIAL_UI = @as(u32, 131072);
+pub const IME_PROP_UNICODE = @as(u32, 524288);
 pub const IME_REGWORD_STYLE_EUDC = @as(u32, 1);
 pub const IME_REGWORD_STYLE_USER_FIRST = @as(u32, 2147483648);
 pub const IME_REGWORD_STYLE_USER_LAST = @as(u32, 4294967295);
-pub const IACE_CHILDREN = @as(u32, 1);
-pub const IACE_DEFAULT = @as(u32, 16);
-pub const IACE_IGNORENOCONTEXT = @as(u32, 32);
-pub const IGIMIF_RIGHTMENU = @as(u32, 1);
-pub const IGIMII_CMODE = @as(u32, 1);
-pub const IGIMII_SMODE = @as(u32, 2);
-pub const IGIMII_CONFIGURE = @as(u32, 4);
-pub const IGIMII_TOOLS = @as(u32, 8);
-pub const IGIMII_HELP = @as(u32, 16);
-pub const IGIMII_OTHER = @as(u32, 32);
-pub const IGIMII_INPUTTOOLS = @as(u32, 64);
+pub const IME_SYSINFO_WINLOGON = @as(u32, 1);
+pub const IME_SYSINFO_WOW16 = @as(u32, 2);
+pub const IME_UI_CLASS_NAME_SIZE = @as(u32, 16);
+pub const IMEFAREASTINFO_TYPE_COMMENT = @as(u32, 2);
+pub const IMEFAREASTINFO_TYPE_COSTTIME = @as(u32, 3);
+pub const IMEFAREASTINFO_TYPE_DEFAULT = @as(u32, 0);
+pub const IMEFAREASTINFO_TYPE_READING = @as(u32, 1);
+pub const IMEKEYCTRL_DOWN = @as(u32, 0);
+pub const IMEKEYCTRL_UP = @as(u32, 1);
+pub const IMEKEYCTRLMASK_ALT = @as(u32, 1);
+pub const IMEKEYCTRLMASK_CTRL = @as(u32, 2);
+pub const IMEKEYCTRLMASK_SHIFT = @as(u32, 4);
+pub const IMEKMS_2NDLEVEL = @as(u32, 4);
+pub const IMEKMS_CANDIDATE = @as(u32, 6);
+pub const IMEKMS_COMPOSITION = @as(u32, 1);
+pub const IMEKMS_IMEOFF = @as(u32, 3);
+pub const IMEKMS_INPTGL = @as(u32, 5);
+pub const IMEKMS_NOCOMPOSITION = @as(u32, 0);
+pub const IMEKMS_SELECTION = @as(u32, 2);
+pub const IMEKMS_TYPECAND = @as(u32, 7);
+pub const IMEMENUITEM_STRING_SIZE = @as(u32, 80);
+pub const IMEMOUSE_LDOWN = @as(u32, 1);
+pub const IMEMOUSE_MDOWN = @as(u32, 4);
+pub const IMEMOUSE_NONE = @as(u32, 0);
+pub const IMEMOUSE_RDOWN = @as(u32, 2);
+pub const IMEMOUSE_VERSION = @as(u32, 255);
+pub const IMEMOUSE_WDOWN = @as(u32, 32);
+pub const IMEMOUSE_WUP = @as(u32, 16);
+pub const IMEMOUSERET_NOTHANDLED = @as(i32, -1);
+pub const IMEPADCTRL_CARETBACKSPACE = @as(u32, 10);
+pub const IMEPADCTRL_CARETBOTTOM = @as(u32, 9);
+pub const IMEPADCTRL_CARETDELETE = @as(u32, 11);
+pub const IMEPADCTRL_CARETLEFT = @as(u32, 6);
+pub const IMEPADCTRL_CARETRIGHT = @as(u32, 7);
+pub const IMEPADCTRL_CARETSET = @as(u32, 5);
+pub const IMEPADCTRL_CARETTOP = @as(u32, 8);
+pub const IMEPADCTRL_CLEARALL = @as(u32, 4);
+pub const IMEPADCTRL_CONVERTALL = @as(u32, 1);
+pub const IMEPADCTRL_DETERMINALL = @as(u32, 2);
+pub const IMEPADCTRL_DETERMINCHAR = @as(u32, 3);
+pub const IMEPADCTRL_INSERTFULLSPACE = @as(u32, 14);
+pub const IMEPADCTRL_INSERTHALFSPACE = @as(u32, 15);
+pub const IMEPADCTRL_INSERTSPACE = @as(u32, 13);
+pub const IMEPADCTRL_OFFIME = @as(u32, 17);
+pub const IMEPADCTRL_OFFPRECONVERSION = @as(u32, 19);
+pub const IMEPADCTRL_ONIME = @as(u32, 16);
+pub const IMEPADCTRL_ONPRECONVERSION = @as(u32, 18);
+pub const IMEPADCTRL_PHONETICCANDIDATE = @as(u32, 20);
+pub const IMEPADCTRL_PHRASEDELETE = @as(u32, 12);
+pub const IMEPADREQ_CHANGESTRINGCANDIDATEINFO = @as(u32, 4111);
+pub const IMEPADREQ_CHANGESTRINGINFO = @as(u32, 4115);
+pub const IMEPADREQ_FIRST = @as(u32, 4096);
+pub const IMEPADREQ_GETAPPLETDATA = @as(u32, 4106);
+pub const IMEPADREQ_GETCOMPOSITIONSTRINGID = @as(u32, 4109);
+pub const IMEPADREQ_GETCURRENTUILANGID = @as(u32, 4120);
+pub const IMEPADREQ_GETSELECTEDSTRING = @as(u32, 4103);
+pub const IMEPADREQ_INSERTITEMCANDIDATE = @as(u32, 4099);
+pub const IMEPADREQ_INSERTSTRINGCANDIDATE = @as(u32, 4098);
+pub const IMEPADREQ_INSERTSTRINGCANDIDATEINFO = @as(u32, 4110);
+pub const IMEPADREQ_INSERTSTRINGINFO = @as(u32, 4114);
+pub const IMEPADREQ_SENDKEYCONTROL = @as(u32, 4101);
+pub const IMEPADREQ_SETAPPLETDATA = @as(u32, 4105);
+pub const IMEPADREQ_SETTITLEFONT = @as(u32, 4107);
+pub const IMEPN_ACTIVATE = @as(u32, 257);
+pub const IMEPN_APPLYCAND = @as(u32, 267);
+pub const IMEPN_APPLYCANDEX = @as(u32, 268);
+pub const IMEPN_CONFIG = @as(u32, 264);
+pub const IMEPN_FIRST = @as(u32, 256);
+pub const IMEPN_HELP = @as(u32, 265);
+pub const IMEPN_HIDE = @as(u32, 261);
+pub const IMEPN_INACTIVATE = @as(u32, 258);
+pub const IMEPN_QUERYCAND = @as(u32, 266);
+pub const IMEPN_SETTINGCHANGED = @as(u32, 269);
+pub const IMEPN_SHOW = @as(u32, 260);
+pub const IMEPN_SIZECHANGED = @as(u32, 263);
+pub const IMEPN_SIZECHANGING = @as(u32, 262);
+pub const IMEPN_USER = @as(u32, 356);
+pub const IMEVER_0310 = @as(u32, 196618);
+pub const IMEVER_0400 = @as(u32, 262144);
 pub const IMFT_RADIOCHECK = @as(u32, 1);
 pub const IMFT_SEPARATOR = @as(u32, 2);
 pub const IMFT_SUBMENU = @as(u32, 4);
-pub const SOFTKEYBOARD_TYPE_T1 = @as(u32, 1);
-pub const SOFTKEYBOARD_TYPE_C1 = @as(u32, 2);
+pub const IMM_ERROR_GENERAL = @as(i32, -2);
+pub const IMM_ERROR_NODATA = @as(i32, -1);
 pub const IMMGWL_IMC = @as(u32, 0);
 pub const IMMGWLP_IMC = @as(u32, 0);
-pub const IMC_SETCONVERSIONMODE = @as(u32, 2);
-pub const IMC_SETSENTENCEMODE = @as(u32, 4);
-pub const IMC_SETOPENSTATUS = @as(u32, 6);
-pub const IMC_GETSOFTKBDFONT = @as(u32, 17);
-pub const IMC_SETSOFTKBDFONT = @as(u32, 18);
-pub const IMC_GETSOFTKBDPOS = @as(u32, 19);
-pub const IMC_SETSOFTKBDPOS = @as(u32, 20);
-pub const IMC_GETSOFTKBDSUBTYPE = @as(u32, 21);
-pub const IMC_SETSOFTKBDSUBTYPE = @as(u32, 22);
-pub const IMC_SETSOFTKBDDATA = @as(u32, 24);
-pub const NI_CONTEXTUPDATED = @as(u32, 3);
-pub const IME_SYSINFO_WINLOGON = @as(u32, 1);
-pub const IME_SYSINFO_WOW16 = @as(u32, 2);
-pub const INIT_STATUSWNDPOS = @as(u32, 1);
-pub const INIT_CONVERSION = @as(u32, 2);
-pub const INIT_SENTENCE = @as(u32, 4);
-pub const INIT_LOGFONT = @as(u32, 8);
-pub const INIT_COMPFORM = @as(u32, 16);
-pub const INIT_SOFTKBDPOS = @as(u32, 32);
-pub const IME_PROP_END_UNLOAD = @as(u32, 1);
-pub const IME_PROP_KBD_CHAR_FIRST = @as(u32, 2);
-pub const IME_PROP_IGNORE_UPKEYS = @as(u32, 4);
-pub const IME_PROP_NEED_ALTKEY = @as(u32, 8);
-pub const IME_PROP_NO_KEYS_ON_CLOSE = @as(u32, 16);
-pub const IME_PROP_ACCEPT_WIDE_VKEY = @as(u32, 32);
-pub const UI_CAP_SOFTKBD = @as(u32, 65536);
+pub const IMN_CHANGECANDIDATE = @as(u32, 3);
+pub const IMN_CLOSECANDIDATE = @as(u32, 4);
+pub const IMN_CLOSESTATUSWINDOW = @as(u32, 1);
+pub const IMN_GUIDELINE = @as(u32, 13);
+pub const IMN_OPENCANDIDATE = @as(u32, 5);
+pub const IMN_OPENSTATUSWINDOW = @as(u32, 2);
+pub const IMN_PRIVATE = @as(u32, 14);
+pub const IMN_SETCANDIDATEPOS = @as(u32, 9);
+pub const IMN_SETCOMPOSITIONFONT = @as(u32, 10);
+pub const IMN_SETCOMPOSITIONWINDOW = @as(u32, 11);
+pub const IMN_SETCONVERSIONMODE = @as(u32, 6);
+pub const IMN_SETOPENSTATUS = @as(u32, 8);
+pub const IMN_SETSENTENCEMODE = @as(u32, 7);
+pub const IMN_SETSTATUSWINDOWPOS = @as(u32, 12);
 pub const IMN_SOFTKBDDESTROYED = @as(u32, 17);
-pub const IME_UI_CLASS_NAME_SIZE = @as(u32, 16);
-pub const IME_ESC_STRING_BUFFER_SIZE = @as(u32, 80);
-pub const szImeJapan = "MSIME.Japan";
-pub const szImeKorea = "MSIME.Korea";
-pub const szImeChina = "MSIME.China";
-pub const szImeTaiwan = "MSIME.Taiwan";
-pub const CLSID_VERSION_DEPENDENT_MSIME_JAPANESE = Guid.initString("6a91029e-aa49-471b-aee7-7d332785660d");
-pub const IFEC_S_ALREADY_DEFAULT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291840));
-pub const FELANG_REQ_CONV = @as(u32, 65536);
-pub const FELANG_REQ_RECONV = @as(u32, 131072);
-pub const FELANG_REQ_REV = @as(u32, 196608);
-pub const FELANG_CMODE_MONORUBY = @as(u32, 2);
-pub const FELANG_CMODE_NOPRUNING = @as(u32, 4);
-pub const FELANG_CMODE_KATAKANAOUT = @as(u32, 8);
-pub const FELANG_CMODE_HIRAGANAOUT = @as(u32, 0);
-pub const FELANG_CMODE_HALFWIDTHOUT = @as(u32, 16);
-pub const FELANG_CMODE_FULLWIDTHOUT = @as(u32, 32);
-pub const FELANG_CMODE_BOPOMOFO = @as(u32, 64);
-pub const FELANG_CMODE_HANGUL = @as(u32, 128);
-pub const FELANG_CMODE_PINYIN = @as(u32, 256);
-pub const FELANG_CMODE_PRECONV = @as(u32, 512);
-pub const FELANG_CMODE_RADICAL = @as(u32, 1024);
-pub const FELANG_CMODE_UNKNOWNREADING = @as(u32, 2048);
-pub const FELANG_CMODE_MERGECAND = @as(u32, 4096);
-pub const FELANG_CMODE_ROMAN = @as(u32, 8192);
-pub const FELANG_CMODE_BESTFIRST = @as(u32, 16384);
-pub const FELANG_CMODE_USENOREVWORDS = @as(u32, 32768);
-pub const FELANG_CMODE_NONE = @as(u32, 16777216);
-pub const FELANG_CMODE_PLAURALCLAUSE = @as(u32, 33554432);
-pub const FELANG_CMODE_SINGLECONVERT = @as(u32, 67108864);
-pub const FELANG_CMODE_AUTOMATIC = @as(u32, 134217728);
-pub const FELANG_CMODE_PHRASEPREDICT = @as(u32, 268435456);
-pub const FELANG_CMODE_CONVERSATION = @as(u32, 536870912);
-pub const FELANG_CMODE_NAME = @as(u32, 268435456);
-pub const FELANG_CMODE_NOINVISIBLECHAR = @as(u32, 1073741824);
-pub const E_NOCAND = @as(u32, 48);
-pub const E_NOTENOUGH_BUFFER = @as(u32, 49);
-pub const E_NOTENOUGH_WDD = @as(u32, 50);
-pub const E_LARGEINPUT = @as(u32, 51);
-pub const FELANG_CLMN_WBREAK = @as(u32, 1);
-pub const FELANG_CLMN_NOWBREAK = @as(u32, 2);
-pub const FELANG_CLMN_PBREAK = @as(u32, 4);
-pub const FELANG_CLMN_NOPBREAK = @as(u32, 8);
-pub const FELANG_CLMN_FIXR = @as(u32, 16);
-pub const FELANG_CLMN_FIXD = @as(u32, 32);
-pub const FELANG_INVALD_PO = @as(u32, 65535);
-pub const IFED_POS_NONE = @as(u32, 0);
-pub const IFED_POS_NOUN = @as(u32, 1);
-pub const IFED_POS_VERB = @as(u32, 2);
-pub const IFED_POS_ADJECTIVE = @as(u32, 4);
-pub const IFED_POS_ADJECTIVE_VERB = @as(u32, 8);
-pub const IFED_POS_ADVERB = @as(u32, 16);
-pub const IFED_POS_ADNOUN = @as(u32, 32);
-pub const IFED_POS_CONJUNCTION = @as(u32, 64);
-pub const IFED_POS_INTERJECTION = @as(u32, 128);
-pub const IFED_POS_INDEPENDENT = @as(u32, 255);
-pub const IFED_POS_INFLECTIONALSUFFIX = @as(u32, 256);
-pub const IFED_POS_PREFIX = @as(u32, 512);
-pub const IFED_POS_SUFFIX = @as(u32, 1024);
-pub const IFED_POS_AFFIX = @as(u32, 1536);
-pub const IFED_POS_TANKANJI = @as(u32, 2048);
-pub const IFED_POS_IDIOMS = @as(u32, 4096);
-pub const IFED_POS_SYMBOLS = @as(u32, 8192);
-pub const IFED_POS_PARTICLE = @as(u32, 16384);
-pub const IFED_POS_AUXILIARY_VERB = @as(u32, 32768);
-pub const IFED_POS_SUB_VERB = @as(u32, 65536);
-pub const IFED_POS_DEPENDENT = @as(u32, 114688);
-pub const IFED_POS_ALL = @as(u32, 131071);
-pub const IFED_SELECT_NONE = @as(u32, 0);
-pub const IFED_SELECT_READING = @as(u32, 1);
-pub const IFED_SELECT_DISPLAY = @as(u32, 2);
-pub const IFED_SELECT_POS = @as(u32, 4);
-pub const IFED_SELECT_COMMENT = @as(u32, 8);
-pub const IFED_SELECT_ALL = @as(u32, 15);
-pub const IFED_REG_NONE = @as(u32, 0);
-pub const IFED_REG_USER = @as(u32, 1);
-pub const IFED_REG_AUTO = @as(u32, 2);
-pub const IFED_REG_GRAMMAR = @as(u32, 4);
-pub const IFED_REG_ALL = @as(u32, 7);
-pub const IFED_TYPE_NONE = @as(u32, 0);
-pub const IFED_TYPE_GENERAL = @as(u32, 1);
-pub const IFED_TYPE_NAMEPLACE = @as(u32, 2);
-pub const IFED_TYPE_SPEECH = @as(u32, 4);
-pub const IFED_TYPE_REVERSE = @as(u32, 8);
-pub const IFED_TYPE_ENGLISH = @as(u32, 16);
-pub const IFED_TYPE_ALL = @as(u32, 31);
-pub const IFED_S_MORE_ENTRIES = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291328));
-pub const IFED_S_EMPTY_DICTIONARY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291329));
-pub const IFED_S_WORD_EXISTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291330));
-pub const IFED_S_COMMENT_CHANGED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 291331));
-pub const IFED_E_NOT_FOUND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192064));
-pub const IFED_E_INVALID_FORMAT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192063));
-pub const IFED_E_OPEN_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192062));
-pub const IFED_E_WRITE_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192061));
-pub const IFED_E_NO_ENTRY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192060));
-pub const IFED_E_REGISTER_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192059));
-pub const IFED_E_NOT_USER_DIC = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192058));
-pub const IFED_E_NOT_SUPPORTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192057));
-pub const IFED_E_USER_COMMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192056));
-pub const IFED_E_REGISTER_ILLEGAL_POS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192055));
-pub const IFED_E_REGISTER_IMPROPER_WORD = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192054));
-pub const IFED_E_REGISTER_DISCONNECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147192053));
-pub const cbCommentMax = @as(u32, 256);
-pub const wchPrivate1 = @as(u32, 57344);
-pub const POS_UNDEFINED = @as(u32, 0);
-pub const JPOS_UNDEFINED = @as(u32, 0);
-pub const JPOS_MEISHI_FUTSU = @as(u32, 100);
-pub const JPOS_MEISHI_SAHEN = @as(u32, 101);
-pub const JPOS_MEISHI_ZAHEN = @as(u32, 102);
-pub const JPOS_MEISHI_KEIYOUDOUSHI = @as(u32, 103);
-pub const JPOS_HUKUSIMEISHI = @as(u32, 104);
-pub const JPOS_MEISA_KEIDOU = @as(u32, 105);
-pub const JPOS_JINMEI = @as(u32, 106);
-pub const JPOS_JINMEI_SEI = @as(u32, 107);
-pub const JPOS_JINMEI_MEI = @as(u32, 108);
+pub const IMR_CANDIDATEWINDOW = @as(u32, 2);
+pub const IMR_COMPOSITIONFONT = @as(u32, 3);
+pub const IMR_COMPOSITIONWINDOW = @as(u32, 1);
+pub const IMR_CONFIRMRECONVERTSTRING = @as(u32, 5);
+pub const IMR_DOCUMENTFEED = @as(u32, 7);
+pub const IMR_QUERYCHARPOSITION = @as(u32, 6);
+pub const IMR_RECONVERTSTRING = @as(u32, 4);
+pub const INFOMASK_APPLY_CAND = @as(u32, 2);
+pub const INFOMASK_APPLY_CAND_EX = @as(u32, 4);
+pub const INFOMASK_BLOCK_CAND = @as(u32, 262144);
+pub const INFOMASK_HIDE_CAND = @as(u32, 131072);
+pub const INFOMASK_NONE = @as(u32, 0);
+pub const INFOMASK_QUERY_CAND = @as(u32, 1);
+pub const INFOMASK_STRING_FIX = @as(u32, 65536);
+pub const INIT_COMPFORM = @as(u32, 16);
+pub const INIT_CONVERSION = @as(u32, 2);
+pub const INIT_LOGFONT = @as(u32, 8);
+pub const INIT_SENTENCE = @as(u32, 4);
+pub const INIT_SOFTKBDPOS = @as(u32, 32);
+pub const INIT_STATUSWNDPOS = @as(u32, 1);
+pub const IPACFG_CATEGORY = @as(i32, 262144);
+pub const IPACFG_HELP = @as(i32, 2);
+pub const IPACFG_LANG = @as(i32, 16);
+pub const IPACFG_NONE = @as(i32, 0);
+pub const IPACFG_PROPERTY = @as(i32, 1);
+pub const IPACFG_TITLE = @as(i32, 65536);
+pub const IPACFG_TITLEFONTFACE = @as(i32, 131072);
+pub const IPACID_CHARLIST = @as(u32, 9);
+pub const IPACID_EPWING = @as(u32, 7);
+pub const IPACID_HANDWRITING = @as(u32, 2);
+pub const IPACID_NONE = @as(u32, 0);
+pub const IPACID_OCR = @as(u32, 8);
+pub const IPACID_RADICALSEARCH = @as(u32, 4);
+pub const IPACID_SOFTKEY = @as(u32, 1);
+pub const IPACID_STROKESEARCH = @as(u32, 3);
+pub const IPACID_SYMBOLSEARCH = @as(u32, 5);
+pub const IPACID_USER = @as(u32, 256);
+pub const IPACID_VOICE = @as(u32, 6);
+pub const IPAWS_ENABLED = @as(i32, 1);
+pub const IPAWS_HORIZONTALFIXED = @as(i32, 512);
+pub const IPAWS_MAXHEIGHTFIXED = @as(i32, 8192);
+pub const IPAWS_MAXSIZEFIXED = @as(i32, 12288);
+pub const IPAWS_MAXWIDTHFIXED = @as(i32, 4096);
+pub const IPAWS_MINHEIGHTFIXED = @as(i32, 131072);
+pub const IPAWS_MINSIZEFIXED = @as(i32, 196608);
+pub const IPAWS_MINWIDTHFIXED = @as(i32, 65536);
+pub const IPAWS_SIZEFIXED = @as(i32, 768);
+pub const IPAWS_SIZINGNOTIFY = @as(i32, 4);
+pub const IPAWS_VERTICALFIXED = @as(i32, 256);
+pub const ISC_SHOWUIALL = @as(u32, 3221225487);
+pub const ISC_SHOWUIALLCANDIDATEWINDOW = @as(u32, 15);
+pub const ISC_SHOWUICANDIDATEWINDOW = @as(u32, 1);
+pub const ISC_SHOWUICOMPOSITIONWINDOW = @as(u32, 2147483648);
+pub const ISC_SHOWUIGUIDELINE = @as(u32, 1073741824);
+pub const JPOS_1DAN = @as(u32, 213);
+pub const JPOS_4DAN_HA = @as(u32, 212);
+pub const JPOS_5DAN_AWA = @as(u32, 200);
+pub const JPOS_5DAN_AWAUON = @as(u32, 209);
+pub const JPOS_5DAN_BA = @as(u32, 206);
+pub const JPOS_5DAN_GA = @as(u32, 202);
+pub const JPOS_5DAN_KA = @as(u32, 201);
+pub const JPOS_5DAN_KASOKUON = @as(u32, 210);
+pub const JPOS_5DAN_MA = @as(u32, 207);
+pub const JPOS_5DAN_NA = @as(u32, 205);
+pub const JPOS_5DAN_RA = @as(u32, 208);
+pub const JPOS_5DAN_RAHEN = @as(u32, 211);
+pub const JPOS_5DAN_SA = @as(u32, 203);
+pub const JPOS_5DAN_TA = @as(u32, 204);
+pub const JPOS_BUPPIN = @as(u32, 122);
 pub const JPOS_CHIMEI = @as(u32, 109);
-pub const JPOS_CHIMEI_KUNI = @as(u32, 110);
-pub const JPOS_CHIMEI_KEN = @as(u32, 111);
+pub const JPOS_CHIMEI_EKI = @as(u32, 117);
 pub const JPOS_CHIMEI_GUN = @as(u32, 112);
+pub const JPOS_CHIMEI_KEN = @as(u32, 111);
 pub const JPOS_CHIMEI_KU = @as(u32, 113);
-pub const JPOS_CHIMEI_SHI = @as(u32, 114);
+pub const JPOS_CHIMEI_KUNI = @as(u32, 110);
 pub const JPOS_CHIMEI_MACHI = @as(u32, 115);
 pub const JPOS_CHIMEI_MURA = @as(u32, 116);
-pub const JPOS_CHIMEI_EKI = @as(u32, 117);
-pub const JPOS_SONOTA = @as(u32, 118);
-pub const JPOS_SHAMEI = @as(u32, 119);
-pub const JPOS_SOSHIKI = @as(u32, 120);
-pub const JPOS_KENCHIKU = @as(u32, 121);
-pub const JPOS_BUPPIN = @as(u32, 122);
+pub const JPOS_CHIMEI_SHI = @as(u32, 114);
+pub const JPOS_CLOSEBRACE = @as(u32, 911);
 pub const JPOS_DAIMEISHI = @as(u32, 123);
 pub const JPOS_DAIMEISHI_NINSHOU = @as(u32, 124);
 pub const JPOS_DAIMEISHI_SHIJI = @as(u32, 125);
+pub const JPOS_DOKURITSUGO = @as(u32, 903);
+pub const JPOS_EIJI = @as(u32, 906);
+pub const JPOS_FUKUSHI = @as(u32, 500);
+pub const JPOS_FUKUSHI_DA = @as(u32, 504);
+pub const JPOS_FUKUSHI_NANO = @as(u32, 503);
+pub const JPOS_FUKUSHI_NI = @as(u32, 502);
+pub const JPOS_FUKUSHI_SAHEN = @as(u32, 501);
+pub const JPOS_FUKUSHI_TO = @as(u32, 505);
+pub const JPOS_FUKUSHI_TOSURU = @as(u32, 506);
+pub const JPOS_FUTEIGO = @as(u32, 904);
+pub const JPOS_HUKUSIMEISHI = @as(u32, 104);
+pub const JPOS_JINMEI = @as(u32, 106);
+pub const JPOS_JINMEI_MEI = @as(u32, 108);
+pub const JPOS_JINMEI_SEI = @as(u32, 107);
+pub const JPOS_KANDOUSHI = @as(u32, 670);
+pub const JPOS_KANJI = @as(u32, 909);
+pub const JPOS_KANYOUKU = @as(u32, 902);
 pub const JPOS_KAZU = @as(u32, 126);
 pub const JPOS_KAZU_SURYOU = @as(u32, 127);
 pub const JPOS_KAZU_SUSHI = @as(u32, 128);
-pub const JPOS_5DAN_AWA = @as(u32, 200);
-pub const JPOS_5DAN_KA = @as(u32, 201);
-pub const JPOS_5DAN_GA = @as(u32, 202);
-pub const JPOS_5DAN_SA = @as(u32, 203);
-pub const JPOS_5DAN_TA = @as(u32, 204);
-pub const JPOS_5DAN_NA = @as(u32, 205);
-pub const JPOS_5DAN_BA = @as(u32, 206);
-pub const JPOS_5DAN_MA = @as(u32, 207);
-pub const JPOS_5DAN_RA = @as(u32, 208);
-pub const JPOS_5DAN_AWAUON = @as(u32, 209);
-pub const JPOS_5DAN_KASOKUON = @as(u32, 210);
-pub const JPOS_5DAN_RAHEN = @as(u32, 211);
-pub const JPOS_4DAN_HA = @as(u32, 212);
-pub const JPOS_1DAN = @as(u32, 213);
-pub const JPOS_TOKUSHU_KAHEN = @as(u32, 214);
-pub const JPOS_TOKUSHU_SAHENSURU = @as(u32, 215);
-pub const JPOS_TOKUSHU_SAHEN = @as(u32, 216);
-pub const JPOS_TOKUSHU_ZAHEN = @as(u32, 217);
-pub const JPOS_TOKUSHU_NAHEN = @as(u32, 218);
+pub const JPOS_KEIDOU = @as(u32, 400);
+pub const JPOS_KEIDOU_GARU = @as(u32, 403);
+pub const JPOS_KEIDOU_NO = @as(u32, 401);
+pub const JPOS_KEIDOU_TARU = @as(u32, 402);
+pub const JPOS_KEIYOU = @as(u32, 300);
+pub const JPOS_KEIYOU_GARU = @as(u32, 301);
+pub const JPOS_KEIYOU_GE = @as(u32, 302);
+pub const JPOS_KEIYOU_ME = @as(u32, 303);
+pub const JPOS_KEIYOU_U = @as(u32, 305);
+pub const JPOS_KEIYOU_YUU = @as(u32, 304);
+pub const JPOS_KENCHIKU = @as(u32, 121);
+pub const JPOS_KIGOU = @as(u32, 905);
 pub const JPOS_KURU_KI = @as(u32, 219);
 pub const JPOS_KURU_KITA = @as(u32, 220);
 pub const JPOS_KURU_KITARA = @as(u32, 221);
 pub const JPOS_KURU_KITARI = @as(u32, 222);
 pub const JPOS_KURU_KITAROU = @as(u32, 223);
 pub const JPOS_KURU_KITE = @as(u32, 224);
-pub const JPOS_KURU_KUREBA = @as(u32, 225);
 pub const JPOS_KURU_KO = @as(u32, 226);
 pub const JPOS_KURU_KOI = @as(u32, 227);
 pub const JPOS_KURU_KOYOU = @as(u32, 228);
+pub const JPOS_KURU_KUREBA = @as(u32, 225);
+pub const JPOS_KUTEN = @as(u32, 907);
+pub const JPOS_MEISA_KEIDOU = @as(u32, 105);
+pub const JPOS_MEISHI_FUTSU = @as(u32, 100);
+pub const JPOS_MEISHI_KEIYOUDOUSHI = @as(u32, 103);
+pub const JPOS_MEISHI_SAHEN = @as(u32, 101);
+pub const JPOS_MEISHI_ZAHEN = @as(u32, 102);
+pub const JPOS_OPENBRACE = @as(u32, 910);
+pub const JPOS_RENTAISHI = @as(u32, 600);
+pub const JPOS_RENTAISHI_SHIJI = @as(u32, 601);
+pub const JPOS_RENYOU_SETSUBI = @as(u32, 826);
+pub const JPOS_SETSUBI = @as(u32, 800);
+pub const JPOS_SETSUBI_CHIMEI = @as(u32, 811);
+pub const JPOS_SETSUBI_CHOU = @as(u32, 818);
+pub const JPOS_SETSUBI_CHU = @as(u32, 804);
+pub const JPOS_SETSUBI_DONO = @as(u32, 835);
+pub const JPOS_SETSUBI_EKI = @as(u32, 821);
+pub const JPOS_SETSUBI_FU = @as(u32, 805);
+pub const JPOS_SETSUBI_FUKUSU = @as(u32, 836);
+pub const JPOS_SETSUBI_GUN = @as(u32, 814);
+pub const JPOS_SETSUBI_JIKAN = @as(u32, 829);
+pub const JPOS_SETSUBI_JIKANPLUS = @as(u32, 830);
+pub const JPOS_SETSUBI_JINMEI = @as(u32, 810);
+pub const JPOS_SETSUBI_JOSUSHI = @as(u32, 827);
+pub const JPOS_SETSUBI_JOSUSHIPLUS = @as(u32, 828);
+pub const JPOS_SETSUBI_KA = @as(u32, 803);
+pub const JPOS_SETSUBI_KATA = @as(u32, 808);
+pub const JPOS_SETSUBI_KEN = @as(u32, 813);
+pub const JPOS_SETSUBI_KENCHIKU = @as(u32, 825);
+pub const JPOS_SETSUBI_KU = @as(u32, 815);
+pub const JPOS_SETSUBI_KUN = @as(u32, 833);
+pub const JPOS_SETSUBI_KUNI = @as(u32, 812);
+pub const JPOS_SETSUBI_MACHI = @as(u32, 817);
+pub const JPOS_SETSUBI_MEISHIRENDAKU = @as(u32, 809);
+pub const JPOS_SETSUBI_MURA = @as(u32, 819);
+pub const JPOS_SETSUBI_RA = @as(u32, 838);
+pub const JPOS_SETSUBI_RYU = @as(u32, 806);
+pub const JPOS_SETSUBI_SAMA = @as(u32, 834);
+pub const JPOS_SETSUBI_SAN = @as(u32, 832);
+pub const JPOS_SETSUBI_SEI = @as(u32, 802);
+pub const JPOS_SETSUBI_SHAMEI = @as(u32, 823);
+pub const JPOS_SETSUBI_SHI = @as(u32, 816);
+pub const JPOS_SETSUBI_SON = @as(u32, 820);
+pub const JPOS_SETSUBI_SONOTA = @as(u32, 822);
+pub const JPOS_SETSUBI_SOSHIKI = @as(u32, 824);
+pub const JPOS_SETSUBI_TACHI = @as(u32, 837);
+pub const JPOS_SETSUBI_TEINEI = @as(u32, 831);
+pub const JPOS_SETSUBI_TEKI = @as(u32, 801);
+pub const JPOS_SETSUBI_YOU = @as(u32, 807);
+pub const JPOS_SETSUZOKUSHI = @as(u32, 650);
+pub const JPOS_SETTOU = @as(u32, 700);
+pub const JPOS_SETTOU_CHIMEI = @as(u32, 710);
+pub const JPOS_SETTOU_CHOUTAN = @as(u32, 707);
+pub const JPOS_SETTOU_DAISHOU = @as(u32, 705);
+pub const JPOS_SETTOU_FUKU = @as(u32, 703);
+pub const JPOS_SETTOU_JINMEI = @as(u32, 709);
+pub const JPOS_SETTOU_JOSUSHI = @as(u32, 712);
+pub const JPOS_SETTOU_KAKU = @as(u32, 701);
+pub const JPOS_SETTOU_KOUTEI = @as(u32, 706);
+pub const JPOS_SETTOU_MI = @as(u32, 704);
+pub const JPOS_SETTOU_SAI = @as(u32, 702);
+pub const JPOS_SETTOU_SHINKYU = @as(u32, 708);
+pub const JPOS_SETTOU_SONOTA = @as(u32, 711);
+pub const JPOS_SETTOU_TEINEI_GO = @as(u32, 714);
+pub const JPOS_SETTOU_TEINEI_O = @as(u32, 713);
+pub const JPOS_SETTOU_TEINEI_ON = @as(u32, 715);
+pub const JPOS_SHAMEI = @as(u32, 119);
+pub const JPOS_SONOTA = @as(u32, 118);
+pub const JPOS_SOSHIKI = @as(u32, 120);
 pub const JPOS_SURU_SA = @as(u32, 229);
+pub const JPOS_SURU_SE = @as(u32, 238);
+pub const JPOS_SURU_SEYO = @as(u32, 239);
 pub const JPOS_SURU_SI = @as(u32, 230);
+pub const JPOS_SURU_SIATRI = @as(u32, 233);
 pub const JPOS_SURU_SITA = @as(u32, 231);
 pub const JPOS_SURU_SITARA = @as(u32, 232);
-pub const JPOS_SURU_SIATRI = @as(u32, 233);
 pub const JPOS_SURU_SITAROU = @as(u32, 234);
 pub const JPOS_SURU_SITE = @as(u32, 235);
 pub const JPOS_SURU_SIYOU = @as(u32, 236);
 pub const JPOS_SURU_SUREBA = @as(u32, 237);
-pub const JPOS_SURU_SE = @as(u32, 238);
-pub const JPOS_SURU_SEYO = @as(u32, 239);
-pub const JPOS_KEIYOU = @as(u32, 300);
-pub const JPOS_KEIYOU_GARU = @as(u32, 301);
-pub const JPOS_KEIYOU_GE = @as(u32, 302);
-pub const JPOS_KEIYOU_ME = @as(u32, 303);
-pub const JPOS_KEIYOU_YUU = @as(u32, 304);
-pub const JPOS_KEIYOU_U = @as(u32, 305);
-pub const JPOS_KEIDOU = @as(u32, 400);
-pub const JPOS_KEIDOU_NO = @as(u32, 401);
-pub const JPOS_KEIDOU_TARU = @as(u32, 402);
-pub const JPOS_KEIDOU_GARU = @as(u32, 403);
-pub const JPOS_FUKUSHI = @as(u32, 500);
-pub const JPOS_FUKUSHI_SAHEN = @as(u32, 501);
-pub const JPOS_FUKUSHI_NI = @as(u32, 502);
-pub const JPOS_FUKUSHI_NANO = @as(u32, 503);
-pub const JPOS_FUKUSHI_DA = @as(u32, 504);
-pub const JPOS_FUKUSHI_TO = @as(u32, 505);
-pub const JPOS_FUKUSHI_TOSURU = @as(u32, 506);
-pub const JPOS_RENTAISHI = @as(u32, 600);
-pub const JPOS_RENTAISHI_SHIJI = @as(u32, 601);
-pub const JPOS_SETSUZOKUSHI = @as(u32, 650);
-pub const JPOS_KANDOUSHI = @as(u32, 670);
-pub const JPOS_SETTOU = @as(u32, 700);
-pub const JPOS_SETTOU_KAKU = @as(u32, 701);
-pub const JPOS_SETTOU_SAI = @as(u32, 702);
-pub const JPOS_SETTOU_FUKU = @as(u32, 703);
-pub const JPOS_SETTOU_MI = @as(u32, 704);
-pub const JPOS_SETTOU_DAISHOU = @as(u32, 705);
-pub const JPOS_SETTOU_KOUTEI = @as(u32, 706);
-pub const JPOS_SETTOU_CHOUTAN = @as(u32, 707);
-pub const JPOS_SETTOU_SHINKYU = @as(u32, 708);
-pub const JPOS_SETTOU_JINMEI = @as(u32, 709);
-pub const JPOS_SETTOU_CHIMEI = @as(u32, 710);
-pub const JPOS_SETTOU_SONOTA = @as(u32, 711);
-pub const JPOS_SETTOU_JOSUSHI = @as(u32, 712);
-pub const JPOS_SETTOU_TEINEI_O = @as(u32, 713);
-pub const JPOS_SETTOU_TEINEI_GO = @as(u32, 714);
-pub const JPOS_SETTOU_TEINEI_ON = @as(u32, 715);
-pub const JPOS_SETSUBI = @as(u32, 800);
-pub const JPOS_SETSUBI_TEKI = @as(u32, 801);
-pub const JPOS_SETSUBI_SEI = @as(u32, 802);
-pub const JPOS_SETSUBI_KA = @as(u32, 803);
-pub const JPOS_SETSUBI_CHU = @as(u32, 804);
-pub const JPOS_SETSUBI_FU = @as(u32, 805);
-pub const JPOS_SETSUBI_RYU = @as(u32, 806);
-pub const JPOS_SETSUBI_YOU = @as(u32, 807);
-pub const JPOS_SETSUBI_KATA = @as(u32, 808);
-pub const JPOS_SETSUBI_MEISHIRENDAKU = @as(u32, 809);
-pub const JPOS_SETSUBI_JINMEI = @as(u32, 810);
-pub const JPOS_SETSUBI_CHIMEI = @as(u32, 811);
-pub const JPOS_SETSUBI_KUNI = @as(u32, 812);
-pub const JPOS_SETSUBI_KEN = @as(u32, 813);
-pub const JPOS_SETSUBI_GUN = @as(u32, 814);
-pub const JPOS_SETSUBI_KU = @as(u32, 815);
-pub const JPOS_SETSUBI_SHI = @as(u32, 816);
-pub const JPOS_SETSUBI_MACHI = @as(u32, 817);
-pub const JPOS_SETSUBI_CHOU = @as(u32, 818);
-pub const JPOS_SETSUBI_MURA = @as(u32, 819);
-pub const JPOS_SETSUBI_SON = @as(u32, 820);
-pub const JPOS_SETSUBI_EKI = @as(u32, 821);
-pub const JPOS_SETSUBI_SONOTA = @as(u32, 822);
-pub const JPOS_SETSUBI_SHAMEI = @as(u32, 823);
-pub const JPOS_SETSUBI_SOSHIKI = @as(u32, 824);
-pub const JPOS_SETSUBI_KENCHIKU = @as(u32, 825);
-pub const JPOS_RENYOU_SETSUBI = @as(u32, 826);
-pub const JPOS_SETSUBI_JOSUSHI = @as(u32, 827);
-pub const JPOS_SETSUBI_JOSUSHIPLUS = @as(u32, 828);
-pub const JPOS_SETSUBI_JIKAN = @as(u32, 829);
-pub const JPOS_SETSUBI_JIKANPLUS = @as(u32, 830);
-pub const JPOS_SETSUBI_TEINEI = @as(u32, 831);
-pub const JPOS_SETSUBI_SAN = @as(u32, 832);
-pub const JPOS_SETSUBI_KUN = @as(u32, 833);
-pub const JPOS_SETSUBI_SAMA = @as(u32, 834);
-pub const JPOS_SETSUBI_DONO = @as(u32, 835);
-pub const JPOS_SETSUBI_FUKUSU = @as(u32, 836);
-pub const JPOS_SETSUBI_TACHI = @as(u32, 837);
-pub const JPOS_SETSUBI_RA = @as(u32, 838);
 pub const JPOS_TANKANJI = @as(u32, 900);
 pub const JPOS_TANKANJI_KAO = @as(u32, 901);
-pub const JPOS_KANYOUKU = @as(u32, 902);
-pub const JPOS_DOKURITSUGO = @as(u32, 903);
-pub const JPOS_FUTEIGO = @as(u32, 904);
-pub const JPOS_KIGOU = @as(u32, 905);
-pub const JPOS_EIJI = @as(u32, 906);
-pub const JPOS_KUTEN = @as(u32, 907);
-pub const JPOS_TOUTEN = @as(u32, 908);
-pub const JPOS_KANJI = @as(u32, 909);
-pub const JPOS_OPENBRACE = @as(u32, 910);
-pub const JPOS_CLOSEBRACE = @as(u32, 911);
-pub const JPOS_YOKUSEI = @as(u32, 912);
 pub const JPOS_TANSHUKU = @as(u32, 913);
-pub const VERSION_ID_JAPANESE = @as(u32, 16777216);
-pub const VERSION_ID_KOREAN = @as(u32, 33554432);
-pub const VERSION_ID_CHINESE_TRADITIONAL = @as(u32, 67108864);
-pub const VERSION_ID_CHINESE_SIMPLIFIED = @as(u32, 134217728);
-pub const RWM_SERVICE = "MSIMEService";
-pub const FID_MSIME_VERSION = @as(u32, 0);
-pub const RWM_UIREADY = "MSIMEUIReady";
-pub const RWM_MOUSE = "MSIMEMouseOperation";
-pub const VERSION_MOUSE_OPERATION = @as(u32, 1);
-pub const IMEMOUSERET_NOTHANDLED = @as(i32, -1);
-pub const IMEMOUSE_VERSION = @as(u32, 255);
-pub const IMEMOUSE_NONE = @as(u32, 0);
-pub const IMEMOUSE_LDOWN = @as(u32, 1);
-pub const IMEMOUSE_RDOWN = @as(u32, 2);
-pub const IMEMOUSE_MDOWN = @as(u32, 4);
-pub const IMEMOUSE_WUP = @as(u32, 16);
-pub const IMEMOUSE_WDOWN = @as(u32, 32);
-pub const RWM_RECONVERT = "MSIMEReconvert";
-pub const FID_RECONVERT_VERSION = @as(u32, 268435456);
-pub const VERSION_RECONVERSION = @as(u32, 1);
-pub const RWM_RECONVERTREQUEST = "MSIMEReconvertRequest";
-pub const VERSION_DOCUMENTFEED = @as(u32, 1);
-pub const RWM_DOCUMENTFEED = "MSIMEDocumentFeed";
-pub const VERSION_QUERYPOSITION = @as(u32, 1);
-pub const RWM_QUERYPOSITION = "MSIMEQueryPosition";
-pub const RWM_MODEBIAS = "MSIMEModeBias";
-pub const VERSION_MODEBIAS = @as(u32, 1);
+pub const JPOS_TOKUSHU_KAHEN = @as(u32, 214);
+pub const JPOS_TOKUSHU_NAHEN = @as(u32, 218);
+pub const JPOS_TOKUSHU_SAHEN = @as(u32, 216);
+pub const JPOS_TOKUSHU_SAHENSURU = @as(u32, 215);
+pub const JPOS_TOKUSHU_ZAHEN = @as(u32, 217);
+pub const JPOS_TOUTEN = @as(u32, 908);
+pub const JPOS_UNDEFINED = @as(u32, 0);
+pub const JPOS_YOKUSEI = @as(u32, 912);
+pub const MAX_APPLETTITLE = @as(u32, 64);
+pub const MAX_FONTFACE = @as(u32, 32);
+pub const MOD_IGNORE_ALL_MODIFIER = @as(u32, 1024);
+pub const MOD_LEFT = @as(u32, 32768);
+pub const MOD_ON_KEYUP = @as(u32, 2048);
+pub const MOD_RIGHT = @as(u32, 16384);
+pub const MODEBIAS_GETVALUE = @as(u32, 2);
 pub const MODEBIAS_GETVERSION = @as(u32, 0);
 pub const MODEBIAS_SETVALUE = @as(u32, 1);
-pub const MODEBIAS_GETVALUE = @as(u32, 2);
 pub const MODEBIASMODE_DEFAULT = @as(u32, 0);
+pub const MODEBIASMODE_DIGIT = @as(u32, 4);
 pub const MODEBIASMODE_FILENAME = @as(u32, 1);
 pub const MODEBIASMODE_READING = @as(u32, 2);
-pub const MODEBIASMODE_DIGIT = @as(u32, 4);
-pub const RWM_SHOWIMEPAD = "MSIMEShowImePad";
-pub const SHOWIMEPAD_DEFAULT = @as(u32, 0);
-pub const SHOWIMEPAD_CATEGORY = @as(u32, 1);
-pub const SHOWIMEPAD_GUID = @as(u32, 2);
-pub const RWM_KEYMAP = "MSIMEKeyMap";
-pub const RWM_CHGKEYMAP = "MSIMEChangeKeyMap";
-pub const RWM_NTFYKEYMAP = "MSIMENotifyKeyMap";
-pub const FID_MSIME_KMS_VERSION = @as(u32, 1);
-pub const FID_MSIME_KMS_INIT = @as(u32, 2);
-pub const FID_MSIME_KMS_TERM = @as(u32, 3);
-pub const FID_MSIME_KMS_DEL_KEYLIST = @as(u32, 4);
-pub const FID_MSIME_KMS_NOTIFY = @as(u32, 5);
-pub const FID_MSIME_KMS_GETMAP = @as(u32, 6);
-pub const FID_MSIME_KMS_INVOKE = @as(u32, 7);
-pub const FID_MSIME_KMS_SETMAP = @as(u32, 8);
-pub const FID_MSIME_KMS_FUNCDESC = @as(u32, 9);
-pub const FID_MSIME_KMS_GETMAPSEAMLESS = @as(u32, 10);
-pub const FID_MSIME_KMS_GETMAPFAST = @as(u32, 11);
-pub const IMEKMS_NOCOMPOSITION = @as(u32, 0);
-pub const IMEKMS_COMPOSITION = @as(u32, 1);
-pub const IMEKMS_SELECTION = @as(u32, 2);
-pub const IMEKMS_IMEOFF = @as(u32, 3);
-pub const IMEKMS_2NDLEVEL = @as(u32, 4);
-pub const IMEKMS_INPTGL = @as(u32, 5);
-pub const IMEKMS_CANDIDATE = @as(u32, 6);
-pub const IMEKMS_TYPECAND = @as(u32, 7);
-pub const RWM_RECONVERTOPTIONS = "MSIMEReconvertOptions";
+pub const NI_CONTEXTUPDATED = @as(u32, 3);
+pub const NI_FINALIZECONVERSIONRESULT = @as(u32, 20);
+pub const POS_UNDEFINED = @as(u32, 0);
 pub const RECONVOPT_NONE = @as(u32, 0);
 pub const RECONVOPT_USECANCELNOTIFY = @as(u32, 1);
-pub const GCSEX_CANCELRECONVERT = @as(u32, 268435456);
-pub const CLSID_ImePlugInDictDictionaryList_CHS = Guid.initString("7bf0129b-5bef-4de4-9b0b-5edb66ac2fa6");
-pub const CLSID_ImePlugInDictDictionaryList_JPN = Guid.initString("4fe2776b-b0f9-4396-b5fc-e9d4cf1ec195");
+pub const RWM_CHGKEYMAP = "MSIMEChangeKeyMap";
+pub const RWM_DOCUMENTFEED = "MSIMEDocumentFeed";
+pub const RWM_KEYMAP = "MSIMEKeyMap";
+pub const RWM_MODEBIAS = "MSIMEModeBias";
+pub const RWM_MOUSE = "MSIMEMouseOperation";
+pub const RWM_NTFYKEYMAP = "MSIMENotifyKeyMap";
+pub const RWM_QUERYPOSITION = "MSIMEQueryPosition";
+pub const RWM_RECONVERT = "MSIMEReconvert";
+pub const RWM_RECONVERTOPTIONS = "MSIMEReconvertOptions";
+pub const RWM_RECONVERTREQUEST = "MSIMEReconvertRequest";
+pub const RWM_SERVICE = "MSIMEService";
+pub const RWM_SHOWIMEPAD = "MSIMEShowImePad";
+pub const RWM_UIREADY = "MSIMEUIReady";
+pub const SCS_CAP_COMPSTR = @as(u32, 1);
+pub const SCS_CAP_MAKEREAD = @as(u32, 2);
+pub const SCS_CAP_SETRECONVERTSTRING = @as(u32, 4);
+pub const SELECT_CAP_CONVERSION = @as(u32, 1);
+pub const SELECT_CAP_SENTENCE = @as(u32, 2);
+pub const SHOWIMEPAD_CATEGORY = @as(u32, 1);
+pub const SHOWIMEPAD_DEFAULT = @as(u32, 0);
+pub const SHOWIMEPAD_GUID = @as(u32, 2);
+pub const SOFTKEYBOARD_TYPE_C1 = @as(u32, 2);
+pub const SOFTKEYBOARD_TYPE_T1 = @as(u32, 1);
+pub const STYLE_DESCRIPTION_SIZE = @as(u32, 32);
+pub const szImeChina = "MSIME.China";
+pub const szImeJapan = "MSIME.Japan";
+pub const szImeKorea = "MSIME.Korea";
+pub const szImeTaiwan = "MSIME.Taiwan";
+pub const UI_CAP_2700 = @as(u32, 1);
+pub const UI_CAP_ROT90 = @as(u32, 2);
+pub const UI_CAP_ROTANY = @as(u32, 4);
+pub const UI_CAP_SOFTKBD = @as(u32, 65536);
+pub const VERSION_DOCUMENTFEED = @as(u32, 1);
+pub const VERSION_ID_CHINESE_SIMPLIFIED = @as(u32, 134217728);
+pub const VERSION_ID_CHINESE_TRADITIONAL = @as(u32, 67108864);
+pub const VERSION_ID_JAPANESE = @as(u32, 16777216);
+pub const VERSION_ID_KOREAN = @as(u32, 33554432);
+pub const VERSION_MODEBIAS = @as(u32, 1);
+pub const VERSION_MOUSE_OPERATION = @as(u32, 1);
+pub const VERSION_QUERYPOSITION = @as(u32, 1);
+pub const VERSION_RECONVERSION = @as(u32, 1);
+pub const wchPrivate1 = @as(u32, 57344);
 
 //--------------------------------------------------------------------------------
 // Section: Types (85)
 //--------------------------------------------------------------------------------
-pub const SET_COMPOSITION_STRING_TYPE = enum(u32) {
-    SETSTR = 9,
-    CHANGEATTR = 18,
-    CHANGECLAUSE = 36,
-    SETRECONVERTSTRING = 65536,
-    QUERYRECONVERTSTRING = 131072,
-};
-pub const SCS_SETSTR = SET_COMPOSITION_STRING_TYPE.SETSTR;
-pub const SCS_CHANGEATTR = SET_COMPOSITION_STRING_TYPE.CHANGEATTR;
-pub const SCS_CHANGECLAUSE = SET_COMPOSITION_STRING_TYPE.CHANGECLAUSE;
-pub const SCS_SETRECONVERTSTRING = SET_COMPOSITION_STRING_TYPE.SETRECONVERTSTRING;
-pub const SCS_QUERYRECONVERTSTRING = SET_COMPOSITION_STRING_TYPE.QUERYRECONVERTSTRING;
-
-pub const GET_GUIDE_LINE_TYPE = enum(u32) {
-    LEVEL = 1,
-    INDEX = 2,
-    STRING = 3,
-    PRIVATE = 4,
-};
-pub const GGL_LEVEL = GET_GUIDE_LINE_TYPE.LEVEL;
-pub const GGL_INDEX = GET_GUIDE_LINE_TYPE.INDEX;
-pub const GGL_STRING = GET_GUIDE_LINE_TYPE.STRING;
-pub const GGL_PRIVATE = GET_GUIDE_LINE_TYPE.PRIVATE;
-
-pub const NOTIFY_IME_INDEX = enum(u32) {
-    CANCEL = 4,
-    COMPLETE = 1,
-    CONVERT = 2,
-    REVERT = 3,
-};
-pub const CPS_CANCEL = NOTIFY_IME_INDEX.CANCEL;
-pub const CPS_COMPLETE = NOTIFY_IME_INDEX.COMPLETE;
-pub const CPS_CONVERT = NOTIFY_IME_INDEX.CONVERT;
-pub const CPS_REVERT = NOTIFY_IME_INDEX.REVERT;
-
-pub const NOTIFY_IME_ACTION = enum(u32) {
-    CHANGECANDIDATELIST = 19,
-    CLOSECANDIDATE = 17,
-    COMPOSITIONSTR = 21,
-    IMEMENUSELECTED = 24,
-    OPENCANDIDATE = 16,
-    SELECTCANDIDATESTR = 18,
-    SETCANDIDATE_PAGESIZE = 23,
-    SETCANDIDATE_PAGESTART = 22,
-};
-pub const NI_CHANGECANDIDATELIST = NOTIFY_IME_ACTION.CHANGECANDIDATELIST;
-pub const NI_CLOSECANDIDATE = NOTIFY_IME_ACTION.CLOSECANDIDATE;
-pub const NI_COMPOSITIONSTR = NOTIFY_IME_ACTION.COMPOSITIONSTR;
-pub const NI_IMEMENUSELECTED = NOTIFY_IME_ACTION.IMEMENUSELECTED;
-pub const NI_OPENCANDIDATE = NOTIFY_IME_ACTION.OPENCANDIDATE;
-pub const NI_SELECTCANDIDATESTR = NOTIFY_IME_ACTION.SELECTCANDIDATESTR;
-pub const NI_SETCANDIDATE_PAGESIZE = NOTIFY_IME_ACTION.SETCANDIDATE_PAGESIZE;
-pub const NI_SETCANDIDATE_PAGESTART = NOTIFY_IME_ACTION.SETCANDIDATE_PAGESTART;
-
-pub const GET_CONVERSION_LIST_FLAG = enum(u32) {
-    CONVERSION = 1,
-    REVERSECONVERSION = 2,
-    REVERSE_LENGTH = 3,
-};
-pub const GCL_CONVERSION = GET_CONVERSION_LIST_FLAG.CONVERSION;
-pub const GCL_REVERSECONVERSION = GET_CONVERSION_LIST_FLAG.REVERSECONVERSION;
-pub const GCL_REVERSE_LENGTH = GET_CONVERSION_LIST_FLAG.REVERSE_LENGTH;
-
-pub const IME_PAD_REQUEST_FLAGS = enum(u32) {
-    INSERTSTRING = 4097,
-    SENDCONTROL = 4100,
-    SETAPPLETSIZE = 4104,
-    GETCOMPOSITIONSTRING = 4102,
-    GETCOMPOSITIONSTRINGINFO = 4108,
-    DELETESTRING = 4112,
-    CHANGESTRING = 4113,
-    GETAPPLHWND = 4116,
-    FORCEIMEPADWINDOWSHOW = 4117,
-    POSTMODALNOTIFY = 4118,
-    GETDEFAULTUILANGID = 4119,
-    GETAPPLETUISTYLE = 4121,
-    SETAPPLETUISTYLE = 4122,
-    ISAPPLETACTIVE = 4123,
-    ISIMEPADWINDOWVISIBLE = 4124,
-    SETAPPLETMINMAXSIZE = 4125,
-    GETCONVERSIONSTATUS = 4126,
-    GETVERSION = 4127,
-    GETCURRENTIMEINFO = 4128,
-};
-pub const IMEPADREQ_INSERTSTRING = IME_PAD_REQUEST_FLAGS.INSERTSTRING;
-pub const IMEPADREQ_SENDCONTROL = IME_PAD_REQUEST_FLAGS.SENDCONTROL;
-pub const IMEPADREQ_SETAPPLETSIZE = IME_PAD_REQUEST_FLAGS.SETAPPLETSIZE;
-pub const IMEPADREQ_GETCOMPOSITIONSTRING = IME_PAD_REQUEST_FLAGS.GETCOMPOSITIONSTRING;
-pub const IMEPADREQ_GETCOMPOSITIONSTRINGINFO = IME_PAD_REQUEST_FLAGS.GETCOMPOSITIONSTRINGINFO;
-pub const IMEPADREQ_DELETESTRING = IME_PAD_REQUEST_FLAGS.DELETESTRING;
-pub const IMEPADREQ_CHANGESTRING = IME_PAD_REQUEST_FLAGS.CHANGESTRING;
-pub const IMEPADREQ_GETAPPLHWND = IME_PAD_REQUEST_FLAGS.GETAPPLHWND;
-pub const IMEPADREQ_FORCEIMEPADWINDOWSHOW = IME_PAD_REQUEST_FLAGS.FORCEIMEPADWINDOWSHOW;
-pub const IMEPADREQ_POSTMODALNOTIFY = IME_PAD_REQUEST_FLAGS.POSTMODALNOTIFY;
-pub const IMEPADREQ_GETDEFAULTUILANGID = IME_PAD_REQUEST_FLAGS.GETDEFAULTUILANGID;
-pub const IMEPADREQ_GETAPPLETUISTYLE = IME_PAD_REQUEST_FLAGS.GETAPPLETUISTYLE;
-pub const IMEPADREQ_SETAPPLETUISTYLE = IME_PAD_REQUEST_FLAGS.SETAPPLETUISTYLE;
-pub const IMEPADREQ_ISAPPLETACTIVE = IME_PAD_REQUEST_FLAGS.ISAPPLETACTIVE;
-pub const IMEPADREQ_ISIMEPADWINDOWVISIBLE = IME_PAD_REQUEST_FLAGS.ISIMEPADWINDOWVISIBLE;
-pub const IMEPADREQ_SETAPPLETMINMAXSIZE = IME_PAD_REQUEST_FLAGS.SETAPPLETMINMAXSIZE;
-pub const IMEPADREQ_GETCONVERSIONSTATUS = IME_PAD_REQUEST_FLAGS.GETCONVERSIONSTATUS;
-pub const IMEPADREQ_GETVERSION = IME_PAD_REQUEST_FLAGS.GETVERSION;
-pub const IMEPADREQ_GETCURRENTIMEINFO = IME_PAD_REQUEST_FLAGS.GETCURRENTIMEINFO;
-
-pub const IME_CONVERSION_MODE = packed struct(u32) {
-    NATIVE: u1 = 0,
-    KATAKANA: u1 = 0,
-    _2: u1 = 0,
-    FULLSHAPE: u1 = 0,
-    ROMAN: u1 = 0,
-    CHARCODE: u1 = 0,
-    HANJACONVERT: u1 = 0,
-    NATIVESYMBOL: u1 = 0,
-    NOCONVERSION: u1 = 0,
-    EUDC: u1 = 0,
-    SYMBOL: u1 = 0,
-    FIXED: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-    // CHINESE (bit index 0) conflicts with NATIVE
-    // HANGUL (bit index 0) conflicts with NATIVE
-    // JAPANESE (bit index 0) conflicts with NATIVE
-    // HANGEUL (bit index 0) conflicts with NATIVE
-    // SOFTKBD (bit index 7) conflicts with NATIVESYMBOL
-};
-pub const IME_CMODE_ALPHANUMERIC = IME_CONVERSION_MODE{ };
-pub const IME_CMODE_NATIVE = IME_CONVERSION_MODE{ .NATIVE = 1 };
-pub const IME_CMODE_CHINESE = IME_CONVERSION_MODE{ .NATIVE = 1 };
-pub const IME_CMODE_HANGUL = IME_CONVERSION_MODE{ .NATIVE = 1 };
-pub const IME_CMODE_JAPANESE = IME_CONVERSION_MODE{ .NATIVE = 1 };
-pub const IME_CMODE_KATAKANA = IME_CONVERSION_MODE{ .KATAKANA = 1 };
-pub const IME_CMODE_LANGUAGE = IME_CONVERSION_MODE{
-    .NATIVE = 1,
-    .KATAKANA = 1,
-};
-pub const IME_CMODE_FULLSHAPE = IME_CONVERSION_MODE{ .FULLSHAPE = 1 };
-pub const IME_CMODE_ROMAN = IME_CONVERSION_MODE{ .ROMAN = 1 };
-pub const IME_CMODE_CHARCODE = IME_CONVERSION_MODE{ .CHARCODE = 1 };
-pub const IME_CMODE_HANJACONVERT = IME_CONVERSION_MODE{ .HANJACONVERT = 1 };
-pub const IME_CMODE_NATIVESYMBOL = IME_CONVERSION_MODE{ .NATIVESYMBOL = 1 };
-pub const IME_CMODE_HANGEUL = IME_CONVERSION_MODE{ .NATIVE = 1 };
-pub const IME_CMODE_SOFTKBD = IME_CONVERSION_MODE{ .NATIVESYMBOL = 1 };
-pub const IME_CMODE_NOCONVERSION = IME_CONVERSION_MODE{ .NOCONVERSION = 1 };
-pub const IME_CMODE_EUDC = IME_CONVERSION_MODE{ .EUDC = 1 };
-pub const IME_CMODE_SYMBOL = IME_CONVERSION_MODE{ .SYMBOL = 1 };
-pub const IME_CMODE_FIXED = IME_CONVERSION_MODE{ .FIXED = 1 };
-pub const IME_CMODE_RESERVED = IME_CONVERSION_MODE{
-    ._28 = 1,
-    ._29 = 1,
-    ._30 = 1,
-    ._31 = 1,
+pub const APPLETIDLIST = extern struct {
+    count: i32,
+    pIIDList: ?*Guid,
 };
 
-pub const IME_SENTENCE_MODE = packed struct(u32) {
-    PLAURALCLAUSE: u1 = 0,
-    SINGLECONVERT: u1 = 0,
-    AUTOMATIC: u1 = 0,
-    PHRASEPREDICT: u1 = 0,
-    CONVERSATION: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const IME_SMODE_NONE = IME_SENTENCE_MODE{ };
-pub const IME_SMODE_PLAURALCLAUSE = IME_SENTENCE_MODE{ .PLAURALCLAUSE = 1 };
-pub const IME_SMODE_SINGLECONVERT = IME_SENTENCE_MODE{ .SINGLECONVERT = 1 };
-pub const IME_SMODE_AUTOMATIC = IME_SENTENCE_MODE{ .AUTOMATIC = 1 };
-pub const IME_SMODE_PHRASEPREDICT = IME_SENTENCE_MODE{ .PHRASEPREDICT = 1 };
-pub const IME_SMODE_CONVERSATION = IME_SENTENCE_MODE{ .CONVERSATION = 1 };
-pub const IME_SMODE_RESERVED = IME_SENTENCE_MODE{
-    ._12 = 1,
-    ._13 = 1,
-    ._14 = 1,
-    ._15 = 1,
+pub const APPLYCANDEXPARAM = extern struct {
+    dwSize: u32,
+    lpwstrDisplay: ?PWSTR,
+    lpwstrReading: ?PWSTR,
+    dwReserved: u32,
 };
 
-pub const IME_COMPOSITION_STRING = packed struct(u32) {
-    COMPREADSTR: u1 = 0,
-    COMPREADATTR: u1 = 0,
-    COMPREADCLAUSE: u1 = 0,
-    COMPSTR: u1 = 0,
-    COMPATTR: u1 = 0,
-    COMPCLAUSE: u1 = 0,
-    _6: u1 = 0,
-    CURSORPOS: u1 = 0,
-    DELTASTART: u1 = 0,
-    RESULTREADSTR: u1 = 0,
-    RESULTREADCLAUSE: u1 = 0,
-    RESULTSTR: u1 = 0,
-    RESULTCLAUSE: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const GCS_COMPREADSTR = IME_COMPOSITION_STRING{ .COMPREADSTR = 1 };
-pub const GCS_COMPREADATTR = IME_COMPOSITION_STRING{ .COMPREADATTR = 1 };
-pub const GCS_COMPREADCLAUSE = IME_COMPOSITION_STRING{ .COMPREADCLAUSE = 1 };
-pub const GCS_COMPSTR = IME_COMPOSITION_STRING{ .COMPSTR = 1 };
-pub const GCS_COMPATTR = IME_COMPOSITION_STRING{ .COMPATTR = 1 };
-pub const GCS_COMPCLAUSE = IME_COMPOSITION_STRING{ .COMPCLAUSE = 1 };
-pub const GCS_CURSORPOS = IME_COMPOSITION_STRING{ .CURSORPOS = 1 };
-pub const GCS_DELTASTART = IME_COMPOSITION_STRING{ .DELTASTART = 1 };
-pub const GCS_RESULTREADSTR = IME_COMPOSITION_STRING{ .RESULTREADSTR = 1 };
-pub const GCS_RESULTREADCLAUSE = IME_COMPOSITION_STRING{ .RESULTREADCLAUSE = 1 };
-pub const GCS_RESULTSTR = IME_COMPOSITION_STRING{ .RESULTSTR = 1 };
-pub const GCS_RESULTCLAUSE = IME_COMPOSITION_STRING{ .RESULTCLAUSE = 1 };
-
-pub const IME_ESCAPE = enum(u32) {
-    QUERY_SUPPORT = 3,
-    RESERVED_FIRST = 4,
-    RESERVED_LAST = 2047,
-    PRIVATE_FIRST = 2048,
-    PRIVATE_LAST = 4095,
-    SEQUENCE_TO_INTERNAL = 4097,
-    GET_EUDC_DICTIONARY = 4099,
-    SET_EUDC_DICTIONARY = 4100,
-    MAX_KEY = 4101,
-    IME_NAME = 4102,
-    SYNC_HOTKEY = 4103,
-    HANJA_MODE = 4104,
-    AUTOMATA = 4105,
-    PRIVATE_HOTKEY = 4106,
-    GETHELPFILENAME = 4107,
-};
-pub const IME_ESC_QUERY_SUPPORT = IME_ESCAPE.QUERY_SUPPORT;
-pub const IME_ESC_RESERVED_FIRST = IME_ESCAPE.RESERVED_FIRST;
-pub const IME_ESC_RESERVED_LAST = IME_ESCAPE.RESERVED_LAST;
-pub const IME_ESC_PRIVATE_FIRST = IME_ESCAPE.PRIVATE_FIRST;
-pub const IME_ESC_PRIVATE_LAST = IME_ESCAPE.PRIVATE_LAST;
-pub const IME_ESC_SEQUENCE_TO_INTERNAL = IME_ESCAPE.SEQUENCE_TO_INTERNAL;
-pub const IME_ESC_GET_EUDC_DICTIONARY = IME_ESCAPE.GET_EUDC_DICTIONARY;
-pub const IME_ESC_SET_EUDC_DICTIONARY = IME_ESCAPE.SET_EUDC_DICTIONARY;
-pub const IME_ESC_MAX_KEY = IME_ESCAPE.MAX_KEY;
-pub const IME_ESC_IME_NAME = IME_ESCAPE.IME_NAME;
-pub const IME_ESC_SYNC_HOTKEY = IME_ESCAPE.SYNC_HOTKEY;
-pub const IME_ESC_HANJA_MODE = IME_ESCAPE.HANJA_MODE;
-pub const IME_ESC_AUTOMATA = IME_ESCAPE.AUTOMATA;
-pub const IME_ESC_PRIVATE_HOTKEY = IME_ESCAPE.PRIVATE_HOTKEY;
-pub const IME_ESC_GETHELPFILENAME = IME_ESCAPE.GETHELPFILENAME;
-
-pub const IME_HOTKEY_IDENTIFIER = enum(u32) {
-    CHOTKEY_IME_NONIME_TOGGLE = 16,
-    CHOTKEY_SHAPE_TOGGLE = 17,
-    CHOTKEY_SYMBOL_TOGGLE = 18,
-    JHOTKEY_CLOSE_OPEN = 48,
-    KHOTKEY_SHAPE_TOGGLE = 80,
-    KHOTKEY_HANJACONVERT = 81,
-    KHOTKEY_ENGLISH = 82,
-    THOTKEY_IME_NONIME_TOGGLE = 112,
-    THOTKEY_SHAPE_TOGGLE = 113,
-    THOTKEY_SYMBOL_TOGGLE = 114,
-    ITHOTKEY_RESEND_RESULTSTR = 512,
-    ITHOTKEY_PREVIOUS_COMPOSITION = 513,
-    ITHOTKEY_UISTYLE_TOGGLE = 514,
-    ITHOTKEY_RECONVERTSTRING = 515,
-};
-pub const IME_CHOTKEY_IME_NONIME_TOGGLE = IME_HOTKEY_IDENTIFIER.CHOTKEY_IME_NONIME_TOGGLE;
-pub const IME_CHOTKEY_SHAPE_TOGGLE = IME_HOTKEY_IDENTIFIER.CHOTKEY_SHAPE_TOGGLE;
-pub const IME_CHOTKEY_SYMBOL_TOGGLE = IME_HOTKEY_IDENTIFIER.CHOTKEY_SYMBOL_TOGGLE;
-pub const IME_JHOTKEY_CLOSE_OPEN = IME_HOTKEY_IDENTIFIER.JHOTKEY_CLOSE_OPEN;
-pub const IME_KHOTKEY_SHAPE_TOGGLE = IME_HOTKEY_IDENTIFIER.KHOTKEY_SHAPE_TOGGLE;
-pub const IME_KHOTKEY_HANJACONVERT = IME_HOTKEY_IDENTIFIER.KHOTKEY_HANJACONVERT;
-pub const IME_KHOTKEY_ENGLISH = IME_HOTKEY_IDENTIFIER.KHOTKEY_ENGLISH;
-pub const IME_THOTKEY_IME_NONIME_TOGGLE = IME_HOTKEY_IDENTIFIER.THOTKEY_IME_NONIME_TOGGLE;
-pub const IME_THOTKEY_SHAPE_TOGGLE = IME_HOTKEY_IDENTIFIER.THOTKEY_SHAPE_TOGGLE;
-pub const IME_THOTKEY_SYMBOL_TOGGLE = IME_HOTKEY_IDENTIFIER.THOTKEY_SYMBOL_TOGGLE;
-pub const IME_ITHOTKEY_RESEND_RESULTSTR = IME_HOTKEY_IDENTIFIER.ITHOTKEY_RESEND_RESULTSTR;
-pub const IME_ITHOTKEY_PREVIOUS_COMPOSITION = IME_HOTKEY_IDENTIFIER.ITHOTKEY_PREVIOUS_COMPOSITION;
-pub const IME_ITHOTKEY_UISTYLE_TOGGLE = IME_HOTKEY_IDENTIFIER.ITHOTKEY_UISTYLE_TOGGLE;
-pub const IME_ITHOTKEY_RECONVERTSTRING = IME_HOTKEY_IDENTIFIER.ITHOTKEY_RECONVERTSTRING;
-
-pub const COMPOSITIONFORM = extern struct {
-    dwStyle: u32,
-    ptCurrentPos: POINT,
-    rcArea: RECT,
-};
+const CLSID_CActiveIMM_Value = Guid.initString("4955dd33-b159-11d0-8fcf-00aa006bcc59");
+pub const CLSID_CActiveIMM = &CLSID_CActiveIMM_Value;
 
 pub const CANDIDATEFORM = extern struct {
     dwIndex: u32,
     dwStyle: u32,
     ptCurrentPos: POINT,
     rcArea: RECT,
+};
+
+pub const CANDIDATEINFO = extern struct {
+    dwSize: u32,
+    dwCount: u32,
+    dwOffset: [32]u32,
+    dwPrivateSize: u32,
+    dwPrivateOffset: u32,
 };
 
 pub const CANDIDATELIST = extern struct {
@@ -958,643 +646,11 @@ pub const CANDIDATELIST = extern struct {
     dwOffset: [1]u32,
 };
 
-pub const REGISTERWORDA = extern struct {
-    lpReading: ?PSTR,
-    lpWord: ?PSTR,
-};
-
-pub const REGISTERWORDW = extern struct {
-    lpReading: ?PWSTR,
-    lpWord: ?PWSTR,
-};
-
-pub const RECONVERTSTRING = extern struct {
-    dwSize: u32,
-    dwVersion: u32,
-    dwStrLen: u32,
-    dwStrOffset: u32,
-    dwCompStrLen: u32,
-    dwCompStrOffset: u32,
-    dwTargetStrLen: u32,
-    dwTargetStrOffset: u32,
-};
-
-pub const STYLEBUFA = extern struct {
+pub const COMPOSITIONFORM = extern struct {
     dwStyle: u32,
-    szDescription: [32]CHAR,
+    ptCurrentPos: POINT,
+    rcArea: RECT,
 };
-
-pub const STYLEBUFW = extern struct {
-    dwStyle: u32,
-    szDescription: [32]u16,
-};
-
-pub const IMEMENUITEMINFOA = extern struct {
-    cbSize: u32,
-    fType: u32,
-    fState: u32,
-    wID: u32,
-    hbmpChecked: ?HBITMAP,
-    hbmpUnchecked: ?HBITMAP,
-    dwItemData: u32,
-    szString: [80]CHAR,
-    hbmpItem: ?HBITMAP,
-};
-
-pub const IMEMENUITEMINFOW = extern struct {
-    cbSize: u32,
-    fType: u32,
-    fState: u32,
-    wID: u32,
-    hbmpChecked: ?HBITMAP,
-    hbmpUnchecked: ?HBITMAP,
-    dwItemData: u32,
-    szString: [80]u16,
-    hbmpItem: ?HBITMAP,
-};
-
-pub const IMECHARPOSITION = extern struct {
-    dwSize: u32,
-    dwCharPos: u32,
-    pt: POINT,
-    cLineHeight: u32,
-    rcDocument: RECT,
-};
-
-pub const IMCENUMPROC = *const fn(
-    param0: ?HIMC,
-    param1: LPARAM,
-) callconv(.winapi) BOOL;
-
-pub const REGISTERWORDENUMPROCA = *const fn(
-    lpszReading: ?[*:0]const u8,
-    param1: u32,
-    lpszString: ?[*:0]const u8,
-    param3: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const REGISTERWORDENUMPROCW = *const fn(
-    lpszReading: ?[*:0]const u16,
-    param1: u32,
-    lpszString: ?[*:0]const u16,
-    param3: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub const IFEClassFactory = extern union {
-    pub const VTable = extern struct {
-        base: IClassFactory.VTable,
-    };
-    vtable: *const VTable,
-    IClassFactory: IClassFactory,
-    IUnknown: IUnknown,
-};
-
-pub const IMEDLG = extern struct {
-    cbIMEDLG: i32 align(1),
-    hwnd: ?HWND align(1),
-    lpwstrWord: ?PWSTR align(1),
-    nTabId: i32 align(1),
-};
-
-const IID_IFECommon_Value = Guid.initString("019f7151-e6db-11d0-83c3-00c04fddb82e");
-pub const IID_IFECommon = &IID_IFECommon_Value;
-pub const IFECommon = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsDefaultIME: *const fn(
-            self: *const IFECommon,
-            szName: [*:0]const u8,
-            cszName: i32,
-        ) callconv(.winapi) HRESULT,
-        SetDefaultIME: *const fn(
-            self: *const IFECommon,
-        ) callconv(.winapi) HRESULT,
-        InvokeWordRegDialog: *const fn(
-            self: *const IFECommon,
-            pimedlg: ?*IMEDLG,
-        ) callconv(.winapi) HRESULT,
-        InvokeDictToolDialog: *const fn(
-            self: *const IFECommon,
-            pimedlg: ?*IMEDLG,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn IsDefaultIME(self: *const IFECommon, szName: [*:0]const u8, cszName: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.IsDefaultIME(self, szName, cszName);
-    }
-    pub fn SetDefaultIME(self: *const IFECommon) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultIME(self);
-    }
-    pub fn InvokeWordRegDialog(self: *const IFECommon, pimedlg: ?*IMEDLG) callconv(.@"inline") HRESULT {
-        return self.vtable.InvokeWordRegDialog(self, pimedlg);
-    }
-    pub fn InvokeDictToolDialog(self: *const IFECommon, pimedlg: ?*IMEDLG) callconv(.@"inline") HRESULT {
-        return self.vtable.InvokeDictToolDialog(self, pimedlg);
-    }
-};
-
-pub const WDD = extern struct {
-    wDispPos: u16 align(1),
-    Anonymous1: extern union {
-        wReadPos: u16 align(1),
-        wCompPos: u16 align(1),
-    } align(1),
-    cchDisp: u16 align(1),
-    Anonymous2: extern union {
-        cchRead: u16 align(1),
-        cchComp: u16 align(1),
-    } align(1),
-    WDD_nReserve1: u32 align(1),
-    nPos: u16 align(1),
-    _bitfield: u16 align(1),
-    pReserved: ?*anyopaque align(1),
-};
-
-pub const MORRSLT = extern struct {
-    dwSize: u32 align(1),
-    pwchOutput: ?PWSTR align(1),
-    cchOutput: u16 align(1),
-    Anonymous1: extern union {
-        pwchRead: ?PWSTR align(1),
-        pwchComp: ?PWSTR align(1),
-    } align(1),
-    Anonymous2: extern union {
-        cchRead: u16 align(1),
-        cchComp: u16 align(1),
-    } align(1),
-    pchInputPos: ?*u16 align(1),
-    pchOutputIdxWDD: ?*u16 align(1),
-    Anonymous3: extern union {
-        pchReadIdxWDD: ?*u16 align(1),
-        pchCompIdxWDD: ?*u16 align(1),
-    } align(1),
-    paMonoRubyPos: ?*u16 align(1),
-    pWDD: ?*WDD align(1),
-    cWDD: i32 align(1),
-    pPrivate: ?*anyopaque align(1),
-    BLKBuff: [1]u16 align(1),
-};
-
-const IID_IFELanguage_Value = Guid.initString("019f7152-e6db-11d0-83c3-00c04fddb82e");
-pub const IID_IFELanguage = &IID_IFELanguage_Value;
-pub const IFELanguage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IFELanguage,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IFELanguage,
-        ) callconv(.winapi) HRESULT,
-        GetJMorphResult: *const fn(
-            self: *const IFELanguage,
-            dwRequest: u32,
-            dwCMode: u32,
-            cwchInput: i32,
-            pwchInput: ?[*:0]const u16,
-            pfCInfo: ?*u32,
-            ppResult: ?*?*MORRSLT,
-        ) callconv(.winapi) HRESULT,
-        GetConversionModeCaps: *const fn(
-            self: *const IFELanguage,
-            pdwCaps: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPhonetic: *const fn(
-            self: *const IFELanguage,
-            string: ?BSTR,
-            start: i32,
-            length: i32,
-            phonetic: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetConversion: *const fn(
-            self: *const IFELanguage,
-            string: ?BSTR,
-            start: i32,
-            length: i32,
-            result: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IFELanguage) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self);
-    }
-    pub fn Close(self: *const IFELanguage) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn GetJMorphResult(self: *const IFELanguage, dwRequest: u32, dwCMode: u32, cwchInput: i32, pwchInput: ?[*:0]const u16, pfCInfo: ?*u32, ppResult: ?*?*MORRSLT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetJMorphResult(self, dwRequest, dwCMode, cwchInput, pwchInput, pfCInfo, ppResult);
-    }
-    pub fn GetConversionModeCaps(self: *const IFELanguage, pdwCaps: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConversionModeCaps(self, pdwCaps);
-    }
-    pub fn GetPhonetic(self: *const IFELanguage, string: ?BSTR, start: i32, length: i32, phonetic: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPhonetic(self, string, start, length, phonetic);
-    }
-    pub fn GetConversion(self: *const IFELanguage, string: ?BSTR, start: i32, length: i32, result: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetConversion(self, string, start, length, result);
-    }
-};
-
-pub const IMEREG = enum(i32) {
-    HEAD = 0,
-    TAIL = 1,
-    DEL = 2,
-};
-pub const IFED_REG_HEAD = IMEREG.HEAD;
-pub const IFED_REG_TAIL = IMEREG.TAIL;
-pub const IFED_REG_DEL = IMEREG.DEL;
-
-pub const IMEFMT = enum(i32) {
-    UNKNOWN = 0,
-    MSIME2_BIN_SYSTEM = 1,
-    MSIME2_BIN_USER = 2,
-    MSIME2_TEXT_USER = 3,
-    MSIME95_BIN_SYSTEM = 4,
-    MSIME95_BIN_USER = 5,
-    MSIME95_TEXT_USER = 6,
-    MSIME97_BIN_SYSTEM = 7,
-    MSIME97_BIN_USER = 8,
-    MSIME97_TEXT_USER = 9,
-    MSIME98_BIN_SYSTEM = 10,
-    MSIME98_BIN_USER = 11,
-    MSIME98_TEXT_USER = 12,
-    ACTIVE_DICT = 13,
-    ATOK9 = 14,
-    ATOK10 = 15,
-    NEC_AI_ = 16,
-    WX_II = 17,
-    WX_III = 18,
-    VJE_20 = 19,
-    MSIME98_SYSTEM_CE = 20,
-    MSIME_BIN_SYSTEM = 21,
-    MSIME_BIN_USER = 22,
-    MSIME_TEXT_USER = 23,
-    PIME2_BIN_USER = 24,
-    PIME2_BIN_SYSTEM = 25,
-    PIME2_BIN_STANDARD_SYSTEM = 26,
-};
-pub const IFED_UNKNOWN = IMEFMT.UNKNOWN;
-pub const IFED_MSIME2_BIN_SYSTEM = IMEFMT.MSIME2_BIN_SYSTEM;
-pub const IFED_MSIME2_BIN_USER = IMEFMT.MSIME2_BIN_USER;
-pub const IFED_MSIME2_TEXT_USER = IMEFMT.MSIME2_TEXT_USER;
-pub const IFED_MSIME95_BIN_SYSTEM = IMEFMT.MSIME95_BIN_SYSTEM;
-pub const IFED_MSIME95_BIN_USER = IMEFMT.MSIME95_BIN_USER;
-pub const IFED_MSIME95_TEXT_USER = IMEFMT.MSIME95_TEXT_USER;
-pub const IFED_MSIME97_BIN_SYSTEM = IMEFMT.MSIME97_BIN_SYSTEM;
-pub const IFED_MSIME97_BIN_USER = IMEFMT.MSIME97_BIN_USER;
-pub const IFED_MSIME97_TEXT_USER = IMEFMT.MSIME97_TEXT_USER;
-pub const IFED_MSIME98_BIN_SYSTEM = IMEFMT.MSIME98_BIN_SYSTEM;
-pub const IFED_MSIME98_BIN_USER = IMEFMT.MSIME98_BIN_USER;
-pub const IFED_MSIME98_TEXT_USER = IMEFMT.MSIME98_TEXT_USER;
-pub const IFED_ACTIVE_DICT = IMEFMT.ACTIVE_DICT;
-pub const IFED_ATOK9 = IMEFMT.ATOK9;
-pub const IFED_ATOK10 = IMEFMT.ATOK10;
-pub const IFED_NEC_AI_ = IMEFMT.NEC_AI_;
-pub const IFED_WX_II = IMEFMT.WX_II;
-pub const IFED_WX_III = IMEFMT.WX_III;
-pub const IFED_VJE_20 = IMEFMT.VJE_20;
-pub const IFED_MSIME98_SYSTEM_CE = IMEFMT.MSIME98_SYSTEM_CE;
-pub const IFED_MSIME_BIN_SYSTEM = IMEFMT.MSIME_BIN_SYSTEM;
-pub const IFED_MSIME_BIN_USER = IMEFMT.MSIME_BIN_USER;
-pub const IFED_MSIME_TEXT_USER = IMEFMT.MSIME_TEXT_USER;
-pub const IFED_PIME2_BIN_USER = IMEFMT.PIME2_BIN_USER;
-pub const IFED_PIME2_BIN_SYSTEM = IMEFMT.PIME2_BIN_SYSTEM;
-pub const IFED_PIME2_BIN_STANDARD_SYSTEM = IMEFMT.PIME2_BIN_STANDARD_SYSTEM;
-
-pub const IMEUCT = enum(i32) {
-    NONE = 0,
-    STRING_SJIS = 1,
-    STRING_UNICODE = 2,
-    USER_DEFINED = 3,
-    MAX = 4,
-};
-pub const IFED_UCT_NONE = IMEUCT.NONE;
-pub const IFED_UCT_STRING_SJIS = IMEUCT.STRING_SJIS;
-pub const IFED_UCT_STRING_UNICODE = IMEUCT.STRING_UNICODE;
-pub const IFED_UCT_USER_DEFINED = IMEUCT.USER_DEFINED;
-pub const IFED_UCT_MAX = IMEUCT.MAX;
-
-pub const IMEWRD = extern struct {
-    pwchReading: ?PWSTR align(1),
-    pwchDisplay: ?PWSTR align(1),
-    Anonymous: extern union {
-        ulPos: u32 align(1),
-        Anonymous: extern struct {
-            nPos1: u16 align(1),
-            nPos2: u16 align(1),
-        } align(1),
-    } align(1),
-    rgulAttrs: [2]u32 align(1),
-    cbComment: i32 align(1),
-    uct: IMEUCT align(1),
-    pvComment: ?*anyopaque align(1),
-};
-
-pub const IMESHF = extern struct {
-    cbShf: u16 align(1),
-    verDic: u16 align(1),
-    szTitle: [48]CHAR align(1),
-    szDescription: [256]CHAR align(1),
-    szCopyright: [128]CHAR align(1),
-};
-
-pub const POSTBL = extern struct {
-    nPos: u16 align(1),
-    szName: ?*u8 align(1),
-};
-
-pub const IMEREL = enum(i32) {
-    NONE = 0,
-    NO = 1,
-    GA = 2,
-    WO = 3,
-    NI = 4,
-    DE = 5,
-    YORI = 6,
-    KARA = 7,
-    MADE = 8,
-    HE = 9,
-    TO = 10,
-    IDEOM = 11,
-    FUKU_YOUGEN = 12,
-    KEIYOU_YOUGEN = 13,
-    KEIDOU1_YOUGEN = 14,
-    KEIDOU2_YOUGEN = 15,
-    TAIGEN = 16,
-    YOUGEN = 17,
-    RENTAI_MEI = 18,
-    RENSOU = 19,
-    KEIYOU_TO_YOUGEN = 20,
-    KEIYOU_TARU_YOUGEN = 21,
-    UNKNOWN1 = 22,
-    UNKNOWN2 = 23,
-    ALL = 24,
-};
-pub const IFED_REL_NONE = IMEREL.NONE;
-pub const IFED_REL_NO = IMEREL.NO;
-pub const IFED_REL_GA = IMEREL.GA;
-pub const IFED_REL_WO = IMEREL.WO;
-pub const IFED_REL_NI = IMEREL.NI;
-pub const IFED_REL_DE = IMEREL.DE;
-pub const IFED_REL_YORI = IMEREL.YORI;
-pub const IFED_REL_KARA = IMEREL.KARA;
-pub const IFED_REL_MADE = IMEREL.MADE;
-pub const IFED_REL_HE = IMEREL.HE;
-pub const IFED_REL_TO = IMEREL.TO;
-pub const IFED_REL_IDEOM = IMEREL.IDEOM;
-pub const IFED_REL_FUKU_YOUGEN = IMEREL.FUKU_YOUGEN;
-pub const IFED_REL_KEIYOU_YOUGEN = IMEREL.KEIYOU_YOUGEN;
-pub const IFED_REL_KEIDOU1_YOUGEN = IMEREL.KEIDOU1_YOUGEN;
-pub const IFED_REL_KEIDOU2_YOUGEN = IMEREL.KEIDOU2_YOUGEN;
-pub const IFED_REL_TAIGEN = IMEREL.TAIGEN;
-pub const IFED_REL_YOUGEN = IMEREL.YOUGEN;
-pub const IFED_REL_RENTAI_MEI = IMEREL.RENTAI_MEI;
-pub const IFED_REL_RENSOU = IMEREL.RENSOU;
-pub const IFED_REL_KEIYOU_TO_YOUGEN = IMEREL.KEIYOU_TO_YOUGEN;
-pub const IFED_REL_KEIYOU_TARU_YOUGEN = IMEREL.KEIYOU_TARU_YOUGEN;
-pub const IFED_REL_UNKNOWN1 = IMEREL.UNKNOWN1;
-pub const IFED_REL_UNKNOWN2 = IMEREL.UNKNOWN2;
-pub const IFED_REL_ALL = IMEREL.ALL;
-
-pub const IMEDP = extern struct {
-    wrdModifier: IMEWRD align(1),
-    wrdModifiee: IMEWRD align(1),
-    relID: IMEREL align(1),
-};
-
-pub const PFNLOG = *const fn(
-    param0: ?*IMEDP,
-    param1: HRESULT,
-) callconv(.winapi) BOOL;
-
-const IID_IFEDictionary_Value = Guid.initString("019f7153-e6db-11d0-83c3-00c04fddb82e");
-pub const IID_IFEDictionary = &IID_IFEDictionary_Value;
-pub const IFEDictionary = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IFEDictionary,
-            pchDictPath: ?*[260]u8,
-            pshf: ?*IMESHF,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IFEDictionary,
-        ) callconv(.winapi) HRESULT,
-        GetHeader: *const fn(
-            self: *const IFEDictionary,
-            pchDictPath: ?*[260]u8,
-            pshf: ?*IMESHF,
-            pjfmt: ?*IMEFMT,
-            pulType: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        DisplayProperty: *const fn(
-            self: *const IFEDictionary,
-            hwnd: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        GetPosTable: *const fn(
-            self: *const IFEDictionary,
-            prgPosTbl: ?*?*POSTBL,
-            pcPosTbl: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetWords: *const fn(
-            self: *const IFEDictionary,
-            pwchFirst: ?[*:0]const u16,
-            pwchLast: ?[*:0]const u16,
-            pwchDisplay: ?[*:0]const u16,
-            ulPos: u32,
-            ulSelect: u32,
-            ulWordSrc: u32,
-            pchBuffer: ?*u8,
-            cbBuffer: u32,
-            pcWrd: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        NextWords: *const fn(
-            self: *const IFEDictionary,
-            pchBuffer: ?*u8,
-            cbBuffer: u32,
-            pcWrd: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Create: *const fn(
-            self: *const IFEDictionary,
-            pchDictPath: ?[*:0]const u8,
-            pshf: ?*IMESHF,
-        ) callconv(.winapi) HRESULT,
-        SetHeader: *const fn(
-            self: *const IFEDictionary,
-            pshf: ?*IMESHF,
-        ) callconv(.winapi) HRESULT,
-        ExistWord: *const fn(
-            self: *const IFEDictionary,
-            pwrd: ?*IMEWRD,
-        ) callconv(.winapi) HRESULT,
-        ExistDependency: *const fn(
-            self: *const IFEDictionary,
-            pdp: ?*IMEDP,
-        ) callconv(.winapi) HRESULT,
-        RegisterWord: *const fn(
-            self: *const IFEDictionary,
-            reg: IMEREG,
-            pwrd: ?*IMEWRD,
-        ) callconv(.winapi) HRESULT,
-        RegisterDependency: *const fn(
-            self: *const IFEDictionary,
-            reg: IMEREG,
-            pdp: ?*IMEDP,
-        ) callconv(.winapi) HRESULT,
-        GetDependencies: *const fn(
-            self: *const IFEDictionary,
-            pwchKakariReading: ?[*:0]const u16,
-            pwchKakariDisplay: ?[*:0]const u16,
-            ulKakariPos: u32,
-            pwchUkeReading: ?[*:0]const u16,
-            pwchUkeDisplay: ?[*:0]const u16,
-            ulUkePos: u32,
-            jrel: IMEREL,
-            ulWordSrc: u32,
-            pchBuffer: ?*u8,
-            cbBuffer: u32,
-            pcdp: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        NextDependencies: *const fn(
-            self: *const IFEDictionary,
-            pchBuffer: ?*u8,
-            cbBuffer: u32,
-            pcDp: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        ConvertFromOldMSIME: *const fn(
-            self: *const IFEDictionary,
-            pchDic: ?[*:0]const u8,
-            pfnLog: ?PFNLOG,
-            reg: IMEREG,
-        ) callconv(.winapi) HRESULT,
-        ConvertFromUserToSys: *const fn(
-            self: *const IFEDictionary,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IFEDictionary, pchDictPath: ?*[260]u8, pshf: ?*IMESHF) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, pchDictPath, pshf);
-    }
-    pub fn Close(self: *const IFEDictionary) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn GetHeader(self: *const IFEDictionary, pchDictPath: ?*[260]u8, pshf: ?*IMESHF, pjfmt: ?*IMEFMT, pulType: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHeader(self, pchDictPath, pshf, pjfmt, pulType);
-    }
-    pub fn DisplayProperty(self: *const IFEDictionary, hwnd: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.DisplayProperty(self, hwnd);
-    }
-    pub fn GetPosTable(self: *const IFEDictionary, prgPosTbl: ?*?*POSTBL, pcPosTbl: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPosTable(self, prgPosTbl, pcPosTbl);
-    }
-    pub fn GetWords(self: *const IFEDictionary, pwchFirst: ?[*:0]const u16, pwchLast: ?[*:0]const u16, pwchDisplay: ?[*:0]const u16, ulPos: u32, ulSelect: u32, ulWordSrc: u32, pchBuffer: ?*u8, cbBuffer: u32, pcWrd: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWords(self, pwchFirst, pwchLast, pwchDisplay, ulPos, ulSelect, ulWordSrc, pchBuffer, cbBuffer, pcWrd);
-    }
-    pub fn NextWords(self: *const IFEDictionary, pchBuffer: ?*u8, cbBuffer: u32, pcWrd: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.NextWords(self, pchBuffer, cbBuffer, pcWrd);
-    }
-    pub fn Create(self: *const IFEDictionary, pchDictPath: ?[*:0]const u8, pshf: ?*IMESHF) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, pchDictPath, pshf);
-    }
-    pub fn SetHeader(self: *const IFEDictionary, pshf: ?*IMESHF) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHeader(self, pshf);
-    }
-    pub fn ExistWord(self: *const IFEDictionary, pwrd: ?*IMEWRD) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistWord(self, pwrd);
-    }
-    pub fn ExistDependency(self: *const IFEDictionary, pdp: ?*IMEDP) callconv(.@"inline") HRESULT {
-        return self.vtable.ExistDependency(self, pdp);
-    }
-    pub fn RegisterWord(self: *const IFEDictionary, reg: IMEREG, pwrd: ?*IMEWRD) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterWord(self, reg, pwrd);
-    }
-    pub fn RegisterDependency(self: *const IFEDictionary, reg: IMEREG, pdp: ?*IMEDP) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterDependency(self, reg, pdp);
-    }
-    pub fn GetDependencies(self: *const IFEDictionary, pwchKakariReading: ?[*:0]const u16, pwchKakariDisplay: ?[*:0]const u16, ulKakariPos: u32, pwchUkeReading: ?[*:0]const u16, pwchUkeDisplay: ?[*:0]const u16, ulUkePos: u32, jrel: IMEREL, ulWordSrc: u32, pchBuffer: ?*u8, cbBuffer: u32, pcdp: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDependencies(self, pwchKakariReading, pwchKakariDisplay, ulKakariPos, pwchUkeReading, pwchUkeDisplay, ulUkePos, jrel, ulWordSrc, pchBuffer, cbBuffer, pcdp);
-    }
-    pub fn NextDependencies(self: *const IFEDictionary, pchBuffer: ?*u8, cbBuffer: u32, pcDp: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.NextDependencies(self, pchBuffer, cbBuffer, pcDp);
-    }
-    pub fn ConvertFromOldMSIME(self: *const IFEDictionary, pchDic: ?[*:0]const u8, pfnLog: ?PFNLOG, reg: IMEREG) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertFromOldMSIME(self, pchDic, pfnLog, reg);
-    }
-    pub fn ConvertFromUserToSys(self: *const IFEDictionary) callconv(.@"inline") HRESULT {
-        return self.vtable.ConvertFromUserToSys(self);
-    }
-};
-
-pub const IMEKMSINIT = extern struct {
-    cbSize: i32 align(1),
-    hWnd: ?HWND align(1),
-};
-
-pub const IMEKMSKEY = extern struct {
-    dwStatus: u32 align(1),
-    dwCompStatus: u32 align(1),
-    dwVKEY: u32 align(1),
-    Anonymous1: extern union {
-        dwControl: u32 align(1),
-        dwNotUsed: u32 align(1),
-    } align(1),
-    Anonymous2: extern union {
-        pwszDscr: [31]u16 align(1),
-        pwszNoUse: [31]u16 align(1),
-    } align(1),
-};
-
-pub const IMEKMS = extern struct {
-    cbSize: i32 align(1),
-    hIMC: ?HIMC align(1),
-    cKeyList: u32 align(1),
-    pKeyList: ?*IMEKMSKEY align(1),
-};
-
-pub const IMEKMSNTFY = extern struct {
-    cbSize: i32 align(1),
-    hIMC: ?HIMC align(1),
-    fSelect: BOOL align(1),
-};
-
-pub const IMEKMSKMP = extern struct {
-    cbSize: i32 align(1),
-    hIMC: ?HIMC align(1),
-    idLang: u16 align(1),
-    wVKStart: u16 align(1),
-    wVKEnd: u16 align(1),
-    cKeyList: i32 align(1),
-    pKeyList: ?*IMEKMSKEY align(1),
-};
-
-pub const IMEKMSINVK = extern struct {
-    cbSize: i32 align(1),
-    hIMC: ?HIMC align(1),
-    dwControl: u32 align(1),
-};
-
-pub const IMEKMSFUNCDESC = extern struct {
-    cbSize: i32 align(1),
-    idLang: u16 align(1),
-    dwControl: u32 align(1),
-    pwszDescription: [128]u16 align(1),
-};
-
-pub const fpCreateIFECommonInstanceType = *const fn(
-    ppvObj: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const fpCreateIFELanguageInstanceType = *const fn(
-    clsid: ?*const Guid,
-    ppvObj: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const fpCreateIFEDictionaryInstanceType = *const fn(
-    ppvObj: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
 
 pub const COMPOSITIONSTRING = extern struct {
     dwSize: u32,
@@ -1624,6 +680,39 @@ pub const COMPOSITIONSTRING = extern struct {
     dwPrivateOffset: u32,
 };
 
+pub const fpCreateIFECommonInstanceType = *const fn(
+    ppvObj: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const fpCreateIFEDictionaryInstanceType = *const fn(
+    ppvObj: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const fpCreateIFELanguageInstanceType = *const fn(
+    clsid: ?*const Guid,
+    ppvObj: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const GET_CONVERSION_LIST_FLAG = enum(u32) {
+    CONVERSION = 1,
+    REVERSECONVERSION = 2,
+    REVERSE_LENGTH = 3,
+};
+pub const GCL_CONVERSION = GET_CONVERSION_LIST_FLAG.CONVERSION;
+pub const GCL_REVERSECONVERSION = GET_CONVERSION_LIST_FLAG.REVERSECONVERSION;
+pub const GCL_REVERSE_LENGTH = GET_CONVERSION_LIST_FLAG.REVERSE_LENGTH;
+
+pub const GET_GUIDE_LINE_TYPE = enum(u32) {
+    LEVEL = 1,
+    INDEX = 2,
+    STRING = 3,
+    PRIVATE = 4,
+};
+pub const GGL_LEVEL = GET_GUIDE_LINE_TYPE.LEVEL;
+pub const GGL_INDEX = GET_GUIDE_LINE_TYPE.INDEX;
+pub const GGL_STRING = GET_GUIDE_LINE_TYPE.STRING;
+pub const GGL_PRIVATE = GET_GUIDE_LINE_TYPE.PRIVATE;
+
 pub const GUIDELINE = extern struct {
     dwSize: u32,
     dwLevel: u32,
@@ -1634,450 +723,199 @@ pub const GUIDELINE = extern struct {
     dwPrivateOffset: u32,
 };
 
-pub const TRANSMSG = extern struct {
-    message: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-};
-
-pub const TRANSMSGLIST = extern struct {
-    uMsgCount: u32,
-    TransMsg: [1]TRANSMSG,
-};
-
-pub const CANDIDATEINFO = extern struct {
-    dwSize: u32,
-    dwCount: u32,
-    dwOffset: [32]u32,
-    dwPrivateSize: u32,
-    dwPrivateOffset: u32,
-};
-
-pub const INPUTCONTEXT = extern struct {
-    hWnd: ?HWND,
-    fOpen: BOOL,
-    ptStatusWndPos: POINT,
-    ptSoftKbdPos: POINT,
-    fdwConversion: u32,
-    fdwSentence: u32,
-    lfFont: extern union {
-        A: LOGFONTA,
-        W: LOGFONTW,
-    },
-    cfCompForm: COMPOSITIONFORM,
-    cfCandForm: [4]CANDIDATEFORM,
-    hCompStr: ?HIMCC,
-    hCandInfo: ?HIMCC,
-    hGuideLine: ?HIMCC,
-    hPrivate: ?HIMCC,
-    dwNumMsgBuf: u32,
-    hMsgBuf: ?HIMCC,
-    fdwInit: u32,
-    dwReserve: [3]u32,
-};
-
-pub const IMEINFO = extern struct {
-    dwPrivateDataSize: u32,
-    fdwProperty: u32,
-    fdwConversionCaps: u32,
-    fdwSentenceCaps: u32,
-    fdwUICaps: u32,
-    fdwSCSCaps: u32,
-    fdwSelectCaps: u32,
-};
-
-pub const SOFTKBDDATA = extern struct {
-    uCount: u32,
-    wCode: [256]u16,
-};
-
-pub const APPLETIDLIST = extern struct {
-    count: i32,
-    pIIDList: ?*Guid,
-};
-
-pub const IMESTRINGCANDIDATE = extern struct {
-    uCount: u32,
-    lpwstr: [1]?PWSTR,
-};
-
-pub const IMEITEM = extern struct {
-    cbSize: i32,
-    iType: i32,
-    lpItemData: ?*anyopaque,
-};
-
-pub const IMEITEMCANDIDATE = extern struct {
-    uCount: u32,
-    imeItem: [1]IMEITEM,
-};
-
-pub const tabIMESTRINGINFO = extern struct {
-    dwFarEastId: u32,
-    lpwstr: ?PWSTR,
-};
-
-pub const tabIMEFAREASTINFO = extern struct {
-    dwSize: u32,
-    dwType: u32,
-    dwData: [1]u32,
-};
-
-pub const IMESTRINGCANDIDATEINFO = extern struct {
-    dwFarEastId: u32,
-    lpFarEastInfo: ?*tabIMEFAREASTINFO,
-    fInfoMask: u32,
-    iSelIndex: i32,
-    uCount: u32,
-    lpwstr: [1]?PWSTR,
-};
-
-pub const IMECOMPOSITIONSTRINGINFO = extern struct {
-    iCompStrLen: i32,
-    iCaretPos: i32,
-    iEditStart: i32,
-    iEditLen: i32,
-    iTargetStart: i32,
-    iTargetLen: i32,
-};
-
-pub const IMECHARINFO = extern struct {
-    wch: u16,
-    dwCharInfo: u32,
-};
-
-pub const IMEAPPLETCFG = extern struct {
-    dwConfig: u32,
-    wchTitle: [64]u16,
-    wchTitleFontFace: [32]u16,
-    dwCharSet: u32,
-    iCategory: i32,
-    hIcon: ?HICON,
-    langID: u16,
-    dummy: u16,
-    lReserved1: LPARAM,
-};
-
-pub const IMEAPPLETUI = extern struct {
-    hwnd: ?HWND,
-    dwStyle: u32,
-    width: i32,
-    height: i32,
-    minWidth: i32,
-    minHeight: i32,
-    maxWidth: i32,
-    maxHeight: i32,
-    lReserved1: LPARAM,
-    lReserved2: LPARAM,
-};
-
-pub const APPLYCANDEXPARAM = extern struct {
-    dwSize: u32,
-    lpwstrDisplay: ?PWSTR,
-    lpwstrReading: ?PWSTR,
-    dwReserved: u32,
-};
-
-const IID_IImeSpecifyApplets_Value = Guid.initString("5d8e643c-c3a9-11d1-afef-00805f0c8b6d");
-pub const IID_IImeSpecifyApplets = &IID_IImeSpecifyApplets_Value;
-pub const IImeSpecifyApplets = extern union {
+const IID_IActiveIME_Value = Guid.initString("6fe20962-d077-11d0-8fe7-00aa006bcc59");
+pub const IID_IActiveIME = &IID_IActiveIME_Value;
+pub const IActiveIME = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAppletIIDList: *const fn(
-            self: *const IImeSpecifyApplets,
-            refiid: ?*const Guid,
-            lpIIDList: ?*APPLETIDLIST,
+        Inquire: *const fn(
+            self: *const IActiveIME,
+            dwSystemInfoFlags: u32,
+            pIMEInfo: ?*IMEINFO,
+            szWndClass: ?PWSTR,
+            pdwPrivate: ?*u32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetAppletIIDList(self: *const IImeSpecifyApplets, refiid: ?*const Guid, lpIIDList: ?*APPLETIDLIST) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAppletIIDList(self, refiid, lpIIDList);
-    }
-};
-
-const IID_IImePadApplet_Value = Guid.initString("5d8e643b-c3a9-11d1-afef-00805f0c8b6d");
-pub const IID_IImePadApplet = &IID_IImePadApplet_Value;
-pub const IImePadApplet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IImePadApplet,
-            lpIImePad: ?*IUnknown,
+        ConversionList: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            szSource: ?PWSTR,
+            uFlag: u32,
+            uBufLen: u32,
+            pDest: ?*CANDIDATELIST,
+            puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
-        Terminate: *const fn(
-            self: *const IImePadApplet,
+        Configure: *const fn(
+            self: *const IActiveIME,
+            hKL: ?HKL,
+            hWnd: ?HWND,
+            dwMode: u32,
+            pRegisterWord: ?*REGISTERWORDW,
         ) callconv(.winapi) HRESULT,
-        GetAppletConfig: *const fn(
-            self: *const IImePadApplet,
-            lpAppletCfg: ?*IMEAPPLETCFG,
+        Destroy: *const fn(
+            self: *const IActiveIME,
+            uReserved: u32,
         ) callconv(.winapi) HRESULT,
-        CreateUI: *const fn(
-            self: *const IImePadApplet,
-            hwndParent: ?HWND,
-            lpImeAppletUI: ?*IMEAPPLETUI,
+        Escape: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            uEscape: u32,
+            pData: ?*anyopaque,
+            plResult: ?*LRESULT,
+        ) callconv(.winapi) HRESULT,
+        SetActiveContext: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            fFlag: BOOL,
+        ) callconv(.winapi) HRESULT,
+        ProcessKey: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            uVirKey: u32,
+            lParam: u32,
+            pbKeyState: ?*u8,
         ) callconv(.winapi) HRESULT,
         Notify: *const fn(
-            self: *const IImePadApplet,
-            lpImePad: ?*IUnknown,
-            notify: i32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            dwAction: u32,
+            dwIndex: u32,
+            dwValue: u32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IImePadApplet, lpIImePad: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, lpIImePad);
-    }
-    pub fn Terminate(self: *const IImePadApplet) callconv(.@"inline") HRESULT {
-        return self.vtable.Terminate(self);
-    }
-    pub fn GetAppletConfig(self: *const IImePadApplet, lpAppletCfg: ?*IMEAPPLETCFG) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAppletConfig(self, lpAppletCfg);
-    }
-    pub fn CreateUI(self: *const IImePadApplet, hwndParent: ?HWND, lpImeAppletUI: ?*IMEAPPLETUI) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateUI(self, hwndParent, lpImeAppletUI);
-    }
-    pub fn Notify(self: *const IImePadApplet, lpImePad: ?*IUnknown, notify: i32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, lpImePad, notify, wParam, lParam);
-    }
-};
-
-const IID_IImePad_Value = Guid.initString("5d8e643a-c3a9-11d1-afef-00805f0c8b6d");
-pub const IID_IImePad = &IID_IImePad_Value;
-pub const IImePad = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Request: *const fn(
-            self: *const IImePad,
-            pIImePadApplet: ?*IImePadApplet,
-            reqId: IME_PAD_REQUEST_FLAGS,
-            wParam: WPARAM,
-            lParam: LPARAM,
+        Select: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            fSelect: BOOL,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Request(self: *const IImePad, pIImePadApplet: ?*IImePadApplet, reqId: IME_PAD_REQUEST_FLAGS, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
-        return self.vtable.Request(self, pIImePadApplet, reqId, wParam, lParam);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IImePlugInDictDictionaryList_Value = Guid.initString("98752974-b0a6-489b-8f6f-bff3769c8eeb");
-pub const IID_IImePlugInDictDictionaryList = &IID_IImePlugInDictDictionaryList_Value;
-pub const IImePlugInDictDictionaryList = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDictionariesInUse: *const fn(
-            self: *const IImePlugInDictDictionaryList,
-            prgDictionaryGUID: ?*?*SAFEARRAY,
-            prgDateCreated: ?*?*SAFEARRAY,
-            prgfEncrypted: ?*?*SAFEARRAY,
+        SetCompositionString: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pComp: ?*anyopaque,
+            dwCompLen: u32,
+            pRead: ?*anyopaque,
+            dwReadLen: u32,
         ) callconv(.winapi) HRESULT,
-        DeleteDictionary: *const fn(
-            self: *const IImePlugInDictDictionaryList,
-            bstrDictionaryGUID: ?BSTR,
+        ToAsciiEx: *const fn(
+            self: *const IActiveIME,
+            uVirKey: u32,
+            uScanCode: u32,
+            pbKeyState: ?*u8,
+            fuState: u32,
+            hIMC: ?HIMC,
+            pdwTransBuf: ?*u32,
+            puSize: ?*u32,
         ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDictionariesInUse(self: *const IImePlugInDictDictionaryList, prgDictionaryGUID: ?*?*SAFEARRAY, prgDateCreated: ?*?*SAFEARRAY, prgfEncrypted: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDictionariesInUse(self, prgDictionaryGUID, prgDateCreated, prgfEncrypted);
-    }
-    pub fn DeleteDictionary(self: *const IImePlugInDictDictionaryList, bstrDictionaryGUID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteDictionary(self, bstrDictionaryGUID);
-    }
-};
-
-const CLSID_CActiveIMM_Value = Guid.initString("4955dd33-b159-11d0-8fcf-00aa006bcc59");
-pub const CLSID_CActiveIMM = &CLSID_CActiveIMM_Value;
-
-const IID_IEnumRegisterWordA_Value = Guid.initString("08c03412-f96b-11d0-a475-00aa006bcc59");
-pub const IID_IEnumRegisterWordA = &IID_IEnumRegisterWordA_Value;
-pub const IEnumRegisterWordA = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumRegisterWordA,
-            ppEnum: ?*?*IEnumRegisterWordA,
+        RegisterWord: *const fn(
+            self: *const IActiveIME,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szString: ?PWSTR,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumRegisterWordA,
-            ulCount: u32,
-            rgRegisterWord: ?*REGISTERWORDA,
-            pcFetched: ?*u32,
+        UnregisterWord: *const fn(
+            self: *const IActiveIME,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szString: ?PWSTR,
         ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumRegisterWordA,
+        GetRegisterWordStyle: *const fn(
+            self: *const IActiveIME,
+            nItem: u32,
+            pStyleBuf: ?*STYLEBUFW,
+            puBufSize: ?*u32,
         ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumRegisterWordA,
-            ulCount: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumRegisterWordA, ppEnum: ?*?*IEnumRegisterWordA) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
-    }
-    pub fn Next(self: *const IEnumRegisterWordA, ulCount: u32, rgRegisterWord: ?*REGISTERWORDA, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgRegisterWord, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumRegisterWordA) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumRegisterWordA, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-const IID_IEnumRegisterWordW_Value = Guid.initString("4955dd31-b159-11d0-8fcf-00aa006bcc59");
-pub const IID_IEnumRegisterWordW = &IID_IEnumRegisterWordW_Value;
-pub const IEnumRegisterWordW = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumRegisterWordW,
+        EnumRegisterWord: *const fn(
+            self: *const IActiveIME,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szRegister: ?PWSTR,
+            pData: ?*anyopaque,
             ppEnum: ?*?*IEnumRegisterWordW,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumRegisterWordW,
-            ulCount: u32,
-            rgRegisterWord: ?*REGISTERWORDW,
-            pcFetched: ?*u32,
+        GetCodePageA: *const fn(
+            self: *const IActiveIME,
+            uCodePage: ?*u32,
         ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumRegisterWordW,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumRegisterWordW,
-            ulCount: u32,
+        GetLangId: *const fn(
+            self: *const IActiveIME,
+            plid: ?*u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumRegisterWordW, ppEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
+    pub fn Inquire(self: *const IActiveIME, dwSystemInfoFlags: u32, pIMEInfo: ?*IMEINFO, szWndClass: ?PWSTR, pdwPrivate: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Inquire(self, dwSystemInfoFlags, pIMEInfo, szWndClass, pdwPrivate);
     }
-    pub fn Next(self: *const IEnumRegisterWordW, ulCount: u32, rgRegisterWord: ?*REGISTERWORDW, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgRegisterWord, pcFetched);
+    pub fn ConversionList(self: *const IActiveIME, hIMC: ?HIMC, szSource: ?PWSTR, uFlag: u32, uBufLen: u32, pDest: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ConversionList(self, hIMC, szSource, uFlag, uBufLen, pDest, puCopied);
     }
-    pub fn Reset(self: *const IEnumRegisterWordW) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
+    pub fn Configure(self: *const IActiveIME, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pRegisterWord: ?*REGISTERWORDW) callconv(.@"inline") HRESULT {
+        return self.vtable.Configure(self, hKL, hWnd, dwMode, pRegisterWord);
     }
-    pub fn Skip(self: *const IEnumRegisterWordW, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
+    pub fn Destroy(self: *const IActiveIME, uReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Destroy(self, uReserved);
+    }
+    pub fn Escape(self: *const IActiveIME, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.Escape(self, hIMC, uEscape, pData, plResult);
+    }
+    pub fn SetActiveContext(self: *const IActiveIME, hIMC: ?HIMC, fFlag: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.SetActiveContext(self, hIMC, fFlag);
+    }
+    pub fn ProcessKey(self: *const IActiveIME, hIMC: ?HIMC, uVirKey: u32, lParam: u32, pbKeyState: ?*u8) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessKey(self, hIMC, uVirKey, lParam, pbKeyState);
+    }
+    pub fn Notify(self: *const IActiveIME, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, hIMC, dwAction, dwIndex, dwValue);
+    }
+    pub fn Select(self: *const IActiveIME, hIMC: ?HIMC, fSelect: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Select(self, hIMC, fSelect);
+    }
+    pub fn SetCompositionString(self: *const IActiveIME, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCompositionString(self, hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
+    }
+    pub fn ToAsciiEx(self: *const IActiveIME, uVirKey: u32, uScanCode: u32, pbKeyState: ?*u8, fuState: u32, hIMC: ?HIMC, pdwTransBuf: ?*u32, puSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ToAsciiEx(self, uVirKey, uScanCode, pbKeyState, fuState, hIMC, pdwTransBuf, puSize);
+    }
+    pub fn RegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterWord(self, szReading, dwStyle, szString);
+    }
+    pub fn UnregisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterWord(self, szReading, dwStyle, szString);
+    }
+    pub fn GetRegisterWordStyle(self: *const IActiveIME, nItem: u32, pStyleBuf: ?*STYLEBUFW, puBufSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRegisterWordStyle(self, nItem, pStyleBuf, puBufSize);
+    }
+    pub fn EnumRegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, ppEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
+        return self.vtable.EnumRegisterWord(self, szReading, dwStyle, szRegister, pData, ppEnum);
+    }
+    pub fn GetCodePageA(self: *const IActiveIME, uCodePage: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCodePageA(self, uCodePage);
+    }
+    pub fn GetLangId(self: *const IActiveIME, plid: ?*u16) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLangId(self, plid);
     }
 };
 
-const IID_IEnumInputContext_Value = Guid.initString("09b5eab0-f997-11d1-93d4-0060b067b86e");
-pub const IID_IEnumInputContext = &IID_IEnumInputContext_Value;
-pub const IEnumInputContext = extern union {
+const IID_IActiveIME2_Value = Guid.initString("e1c4bf0e-2d53-11d2-93e1-0060b067b86e");
+pub const IID_IActiveIME2 = &IID_IActiveIME2_Value;
+pub const IActiveIME2 = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumInputContext,
-            ppEnum: ?*?*IEnumInputContext,
+        base: IActiveIME.VTable,
+        Sleep: *const fn(
+            self: *const IActiveIME2,
         ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumInputContext,
-            ulCount: u32,
-            rgInputContext: ?*?HIMC,
-            pcFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumInputContext,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumInputContext,
-            ulCount: u32,
+        Unsleep: *const fn(
+            self: *const IActiveIME2,
+            fDead: BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IActiveIME: IActiveIME,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumInputContext, ppEnum: ?*?*IEnumInputContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppEnum);
+    pub fn Sleep(self: *const IActiveIME2) callconv(.@"inline") HRESULT {
+        return self.vtable.Sleep(self);
     }
-    pub fn Next(self: *const IEnumInputContext, ulCount: u32, rgInputContext: ?*?HIMC, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, ulCount, rgInputContext, pcFetched);
-    }
-    pub fn Reset(self: *const IEnumInputContext) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumInputContext, ulCount: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, ulCount);
-    }
-};
-
-const IID_IActiveIMMRegistrar_Value = Guid.initString("b3458082-bd00-11d1-939b-0060b067b86e");
-pub const IID_IActiveIMMRegistrar = &IID_IActiveIMMRegistrar_Value;
-pub const IActiveIMMRegistrar = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterIME: *const fn(
-            self: *const IActiveIMMRegistrar,
-            rclsid: ?*const Guid,
-            lgid: u16,
-            pszIconFile: ?[*:0]const u16,
-            pszDesc: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        UnregisterIME: *const fn(
-            self: *const IActiveIMMRegistrar,
-            rclsid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterIME(self: *const IActiveIMMRegistrar, rclsid: ?*const Guid, lgid: u16, pszIconFile: ?[*:0]const u16, pszDesc: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterIME(self, rclsid, lgid, pszIconFile, pszDesc);
-    }
-    pub fn UnregisterIME(self: *const IActiveIMMRegistrar, rclsid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterIME(self, rclsid);
-    }
-};
-
-const IID_IActiveIMMMessagePumpOwner_Value = Guid.initString("b5cf2cfa-8aeb-11d1-9364-0060b067b86e");
-pub const IID_IActiveIMMMessagePumpOwner = &IID_IActiveIMMMessagePumpOwner_Value;
-pub const IActiveIMMMessagePumpOwner = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Start: *const fn(
-            self: *const IActiveIMMMessagePumpOwner,
-        ) callconv(.winapi) HRESULT,
-        End: *const fn(
-            self: *const IActiveIMMMessagePumpOwner,
-        ) callconv(.winapi) HRESULT,
-        OnTranslateMessage: *const fn(
-            self: *const IActiveIMMMessagePumpOwner,
-            pMsg: ?*const MSG,
-        ) callconv(.winapi) HRESULT,
-        Pause: *const fn(
-            self: *const IActiveIMMMessagePumpOwner,
-            pdwCookie: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Resume: *const fn(
-            self: *const IActiveIMMMessagePumpOwner,
-            dwCookie: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Start(self: *const IActiveIMMMessagePumpOwner) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self);
-    }
-    pub fn End(self: *const IActiveIMMMessagePumpOwner) callconv(.@"inline") HRESULT {
-        return self.vtable.End(self);
-    }
-    pub fn OnTranslateMessage(self: *const IActiveIMMMessagePumpOwner, pMsg: ?*const MSG) callconv(.@"inline") HRESULT {
-        return self.vtable.OnTranslateMessage(self, pMsg);
-    }
-    pub fn Pause(self: *const IActiveIMMMessagePumpOwner, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Pause(self, pdwCookie);
-    }
-    pub fn Resume(self: *const IActiveIMMMessagePumpOwner, dwCookie: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Resume(self, dwCookie);
+    pub fn Unsleep(self: *const IActiveIME2, fDead: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Unsleep(self, fDead);
     }
 };
 
@@ -3549,200 +2387,1362 @@ pub const IActiveIMMIME = extern union {
     }
 };
 
-const IID_IActiveIME_Value = Guid.initString("6fe20962-d077-11d0-8fe7-00aa006bcc59");
-pub const IID_IActiveIME = &IID_IActiveIME_Value;
-pub const IActiveIME = extern union {
+const IID_IActiveIMMMessagePumpOwner_Value = Guid.initString("b5cf2cfa-8aeb-11d1-9364-0060b067b86e");
+pub const IID_IActiveIMMMessagePumpOwner = &IID_IActiveIMMMessagePumpOwner_Value;
+pub const IActiveIMMMessagePumpOwner = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Inquire: *const fn(
-            self: *const IActiveIME,
-            dwSystemInfoFlags: u32,
-            pIMEInfo: ?*IMEINFO,
-            szWndClass: ?PWSTR,
-            pdwPrivate: ?*u32,
+        Start: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
         ) callconv(.winapi) HRESULT,
-        ConversionList: *const fn(
-            self: *const IActiveIME,
-            hIMC: ?HIMC,
-            szSource: ?PWSTR,
-            uFlag: u32,
-            uBufLen: u32,
-            pDest: ?*CANDIDATELIST,
-            puCopied: ?*u32,
+        End: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
         ) callconv(.winapi) HRESULT,
-        Configure: *const fn(
-            self: *const IActiveIME,
-            hKL: ?HKL,
-            hWnd: ?HWND,
-            dwMode: u32,
-            pRegisterWord: ?*REGISTERWORDW,
+        OnTranslateMessage: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+            pMsg: ?*const MSG,
         ) callconv(.winapi) HRESULT,
-        Destroy: *const fn(
-            self: *const IActiveIME,
-            uReserved: u32,
+        Pause: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+            pdwCookie: ?*u32,
         ) callconv(.winapi) HRESULT,
-        Escape: *const fn(
-            self: *const IActiveIME,
-            hIMC: ?HIMC,
-            uEscape: u32,
-            pData: ?*anyopaque,
-            plResult: ?*LRESULT,
-        ) callconv(.winapi) HRESULT,
-        SetActiveContext: *const fn(
-            self: *const IActiveIME,
-            hIMC: ?HIMC,
-            fFlag: BOOL,
-        ) callconv(.winapi) HRESULT,
-        ProcessKey: *const fn(
-            self: *const IActiveIME,
-            hIMC: ?HIMC,
-            uVirKey: u32,
-            lParam: u32,
-            pbKeyState: ?*u8,
-        ) callconv(.winapi) HRESULT,
-        Notify: *const fn(
-            self: *const IActiveIME,
-            hIMC: ?HIMC,
-            dwAction: u32,
-            dwIndex: u32,
-            dwValue: u32,
-        ) callconv(.winapi) HRESULT,
-        Select: *const fn(
-            self: *const IActiveIME,
-            hIMC: ?HIMC,
-            fSelect: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SetCompositionString: *const fn(
-            self: *const IActiveIME,
-            hIMC: ?HIMC,
-            dwIndex: u32,
-            pComp: ?*anyopaque,
-            dwCompLen: u32,
-            pRead: ?*anyopaque,
-            dwReadLen: u32,
-        ) callconv(.winapi) HRESULT,
-        ToAsciiEx: *const fn(
-            self: *const IActiveIME,
-            uVirKey: u32,
-            uScanCode: u32,
-            pbKeyState: ?*u8,
-            fuState: u32,
-            hIMC: ?HIMC,
-            pdwTransBuf: ?*u32,
-            puSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        RegisterWord: *const fn(
-            self: *const IActiveIME,
-            szReading: ?PWSTR,
-            dwStyle: u32,
-            szString: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        UnregisterWord: *const fn(
-            self: *const IActiveIME,
-            szReading: ?PWSTR,
-            dwStyle: u32,
-            szString: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        GetRegisterWordStyle: *const fn(
-            self: *const IActiveIME,
-            nItem: u32,
-            pStyleBuf: ?*STYLEBUFW,
-            puBufSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        EnumRegisterWord: *const fn(
-            self: *const IActiveIME,
-            szReading: ?PWSTR,
-            dwStyle: u32,
-            szRegister: ?PWSTR,
-            pData: ?*anyopaque,
-            ppEnum: ?*?*IEnumRegisterWordW,
-        ) callconv(.winapi) HRESULT,
-        GetCodePageA: *const fn(
-            self: *const IActiveIME,
-            uCodePage: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetLangId: *const fn(
-            self: *const IActiveIME,
-            plid: ?*u16,
+        Resume: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+            dwCookie: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Inquire(self: *const IActiveIME, dwSystemInfoFlags: u32, pIMEInfo: ?*IMEINFO, szWndClass: ?PWSTR, pdwPrivate: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Inquire(self, dwSystemInfoFlags, pIMEInfo, szWndClass, pdwPrivate);
+    pub fn Start(self: *const IActiveIMMMessagePumpOwner) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self);
     }
-    pub fn ConversionList(self: *const IActiveIME, hIMC: ?HIMC, szSource: ?PWSTR, uFlag: u32, uBufLen: u32, pDest: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ConversionList(self, hIMC, szSource, uFlag, uBufLen, pDest, puCopied);
+    pub fn End(self: *const IActiveIMMMessagePumpOwner) callconv(.@"inline") HRESULT {
+        return self.vtable.End(self);
     }
-    pub fn Configure(self: *const IActiveIME, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pRegisterWord: ?*REGISTERWORDW) callconv(.@"inline") HRESULT {
-        return self.vtable.Configure(self, hKL, hWnd, dwMode, pRegisterWord);
+    pub fn OnTranslateMessage(self: *const IActiveIMMMessagePumpOwner, pMsg: ?*const MSG) callconv(.@"inline") HRESULT {
+        return self.vtable.OnTranslateMessage(self, pMsg);
     }
-    pub fn Destroy(self: *const IActiveIME, uReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Destroy(self, uReserved);
+    pub fn Pause(self: *const IActiveIMMMessagePumpOwner, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Pause(self, pdwCookie);
     }
-    pub fn Escape(self: *const IActiveIME, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.Escape(self, hIMC, uEscape, pData, plResult);
-    }
-    pub fn SetActiveContext(self: *const IActiveIME, hIMC: ?HIMC, fFlag: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.SetActiveContext(self, hIMC, fFlag);
-    }
-    pub fn ProcessKey(self: *const IActiveIME, hIMC: ?HIMC, uVirKey: u32, lParam: u32, pbKeyState: ?*u8) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessKey(self, hIMC, uVirKey, lParam, pbKeyState);
-    }
-    pub fn Notify(self: *const IActiveIME, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Notify(self, hIMC, dwAction, dwIndex, dwValue);
-    }
-    pub fn Select(self: *const IActiveIME, hIMC: ?HIMC, fSelect: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Select(self, hIMC, fSelect);
-    }
-    pub fn SetCompositionString(self: *const IActiveIME, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCompositionString(self, hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
-    }
-    pub fn ToAsciiEx(self: *const IActiveIME, uVirKey: u32, uScanCode: u32, pbKeyState: ?*u8, fuState: u32, hIMC: ?HIMC, pdwTransBuf: ?*u32, puSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ToAsciiEx(self, uVirKey, uScanCode, pbKeyState, fuState, hIMC, pdwTransBuf, puSize);
-    }
-    pub fn RegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterWord(self, szReading, dwStyle, szString);
-    }
-    pub fn UnregisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterWord(self, szReading, dwStyle, szString);
-    }
-    pub fn GetRegisterWordStyle(self: *const IActiveIME, nItem: u32, pStyleBuf: ?*STYLEBUFW, puBufSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRegisterWordStyle(self, nItem, pStyleBuf, puBufSize);
-    }
-    pub fn EnumRegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, ppEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
-        return self.vtable.EnumRegisterWord(self, szReading, dwStyle, szRegister, pData, ppEnum);
-    }
-    pub fn GetCodePageA(self: *const IActiveIME, uCodePage: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCodePageA(self, uCodePage);
-    }
-    pub fn GetLangId(self: *const IActiveIME, plid: ?*u16) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLangId(self, plid);
+    pub fn Resume(self: *const IActiveIMMMessagePumpOwner, dwCookie: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Resume(self, dwCookie);
     }
 };
 
-const IID_IActiveIME2_Value = Guid.initString("e1c4bf0e-2d53-11d2-93e1-0060b067b86e");
-pub const IID_IActiveIME2 = &IID_IActiveIME2_Value;
-pub const IActiveIME2 = extern union {
+const IID_IActiveIMMRegistrar_Value = Guid.initString("b3458082-bd00-11d1-939b-0060b067b86e");
+pub const IID_IActiveIMMRegistrar = &IID_IActiveIMMRegistrar_Value;
+pub const IActiveIMMRegistrar = extern union {
     pub const VTable = extern struct {
-        base: IActiveIME.VTable,
-        Sleep: *const fn(
-            self: *const IActiveIME2,
+        base: IUnknown.VTable,
+        RegisterIME: *const fn(
+            self: *const IActiveIMMRegistrar,
+            rclsid: ?*const Guid,
+            lgid: u16,
+            pszIconFile: ?[*:0]const u16,
+            pszDesc: ?[*:0]const u16,
         ) callconv(.winapi) HRESULT,
-        Unsleep: *const fn(
-            self: *const IActiveIME2,
-            fDead: BOOL,
+        UnregisterIME: *const fn(
+            self: *const IActiveIMMRegistrar,
+            rclsid: ?*const Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IActiveIME: IActiveIME,
     IUnknown: IUnknown,
-    pub fn Sleep(self: *const IActiveIME2) callconv(.@"inline") HRESULT {
-        return self.vtable.Sleep(self);
+    pub fn RegisterIME(self: *const IActiveIMMRegistrar, rclsid: ?*const Guid, lgid: u16, pszIconFile: ?[*:0]const u16, pszDesc: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterIME(self, rclsid, lgid, pszIconFile, pszDesc);
     }
-    pub fn Unsleep(self: *const IActiveIME2, fDead: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Unsleep(self, fDead);
+    pub fn UnregisterIME(self: *const IActiveIMMRegistrar, rclsid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterIME(self, rclsid);
     }
+};
+
+const IID_IEnumInputContext_Value = Guid.initString("09b5eab0-f997-11d1-93d4-0060b067b86e");
+pub const IID_IEnumInputContext = &IID_IEnumInputContext_Value;
+pub const IEnumInputContext = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumInputContext,
+            ppEnum: ?*?*IEnumInputContext,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumInputContext,
+            ulCount: u32,
+            rgInputContext: ?*?HIMC,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumInputContext,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumInputContext,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumInputContext, ppEnum: ?*?*IEnumInputContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumInputContext, ulCount: u32, rgInputContext: ?*?HIMC, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgInputContext, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumInputContext) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumInputContext, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+const IID_IEnumRegisterWordA_Value = Guid.initString("08c03412-f96b-11d0-a475-00aa006bcc59");
+pub const IID_IEnumRegisterWordA = &IID_IEnumRegisterWordA_Value;
+pub const IEnumRegisterWordA = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumRegisterWordA,
+            ppEnum: ?*?*IEnumRegisterWordA,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumRegisterWordA,
+            ulCount: u32,
+            rgRegisterWord: ?*REGISTERWORDA,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRegisterWordA,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRegisterWordA,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumRegisterWordA, ppEnum: ?*?*IEnumRegisterWordA) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumRegisterWordA, ulCount: u32, rgRegisterWord: ?*REGISTERWORDA, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgRegisterWord, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumRegisterWordA) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumRegisterWordA, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+const IID_IEnumRegisterWordW_Value = Guid.initString("4955dd31-b159-11d0-8fcf-00aa006bcc59");
+pub const IID_IEnumRegisterWordW = &IID_IEnumRegisterWordW_Value;
+pub const IEnumRegisterWordW = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumRegisterWordW,
+            ppEnum: ?*?*IEnumRegisterWordW,
+        ) callconv(.winapi) HRESULT,
+        Next: *const fn(
+            self: *const IEnumRegisterWordW,
+            ulCount: u32,
+            rgRegisterWord: ?*REGISTERWORDW,
+            pcFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRegisterWordW,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRegisterWordW,
+            ulCount: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Clone(self: *const IEnumRegisterWordW, ppEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
+    pub fn Next(self: *const IEnumRegisterWordW, ulCount: u32, rgRegisterWord: ?*REGISTERWORDW, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, ulCount, rgRegisterWord, pcFetched);
+    }
+    pub fn Reset(self: *const IEnumRegisterWordW) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Skip(self: *const IEnumRegisterWordW, ulCount: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, ulCount);
+    }
+};
+
+pub const IFEClassFactory = extern union {
+    pub const VTable = extern struct {
+        base: IClassFactory.VTable,
+    };
+    vtable: *const VTable,
+    IClassFactory: IClassFactory,
+    IUnknown: IUnknown,
+};
+
+const IID_IFECommon_Value = Guid.initString("019f7151-e6db-11d0-83c3-00c04fddb82e");
+pub const IID_IFECommon = &IID_IFECommon_Value;
+pub const IFECommon = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsDefaultIME: *const fn(
+            self: *const IFECommon,
+            szName: [*:0]const u8,
+            cszName: i32,
+        ) callconv(.winapi) HRESULT,
+        SetDefaultIME: *const fn(
+            self: *const IFECommon,
+        ) callconv(.winapi) HRESULT,
+        InvokeWordRegDialog: *const fn(
+            self: *const IFECommon,
+            pimedlg: ?*IMEDLG,
+        ) callconv(.winapi) HRESULT,
+        InvokeDictToolDialog: *const fn(
+            self: *const IFECommon,
+            pimedlg: ?*IMEDLG,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn IsDefaultIME(self: *const IFECommon, szName: [*:0]const u8, cszName: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.IsDefaultIME(self, szName, cszName);
+    }
+    pub fn SetDefaultIME(self: *const IFECommon) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultIME(self);
+    }
+    pub fn InvokeWordRegDialog(self: *const IFECommon, pimedlg: ?*IMEDLG) callconv(.@"inline") HRESULT {
+        return self.vtable.InvokeWordRegDialog(self, pimedlg);
+    }
+    pub fn InvokeDictToolDialog(self: *const IFECommon, pimedlg: ?*IMEDLG) callconv(.@"inline") HRESULT {
+        return self.vtable.InvokeDictToolDialog(self, pimedlg);
+    }
+};
+
+const IID_IFEDictionary_Value = Guid.initString("019f7153-e6db-11d0-83c3-00c04fddb82e");
+pub const IID_IFEDictionary = &IID_IFEDictionary_Value;
+pub const IFEDictionary = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IFEDictionary,
+            pchDictPath: ?*[260]u8,
+            pshf: ?*IMESHF,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IFEDictionary,
+        ) callconv(.winapi) HRESULT,
+        GetHeader: *const fn(
+            self: *const IFEDictionary,
+            pchDictPath: ?*[260]u8,
+            pshf: ?*IMESHF,
+            pjfmt: ?*IMEFMT,
+            pulType: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        DisplayProperty: *const fn(
+            self: *const IFEDictionary,
+            hwnd: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        GetPosTable: *const fn(
+            self: *const IFEDictionary,
+            prgPosTbl: ?*?*POSTBL,
+            pcPosTbl: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        GetWords: *const fn(
+            self: *const IFEDictionary,
+            pwchFirst: ?[*:0]const u16,
+            pwchLast: ?[*:0]const u16,
+            pwchDisplay: ?[*:0]const u16,
+            ulPos: u32,
+            ulSelect: u32,
+            ulWordSrc: u32,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcWrd: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        NextWords: *const fn(
+            self: *const IFEDictionary,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcWrd: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Create: *const fn(
+            self: *const IFEDictionary,
+            pchDictPath: ?[*:0]const u8,
+            pshf: ?*IMESHF,
+        ) callconv(.winapi) HRESULT,
+        SetHeader: *const fn(
+            self: *const IFEDictionary,
+            pshf: ?*IMESHF,
+        ) callconv(.winapi) HRESULT,
+        ExistWord: *const fn(
+            self: *const IFEDictionary,
+            pwrd: ?*IMEWRD,
+        ) callconv(.winapi) HRESULT,
+        ExistDependency: *const fn(
+            self: *const IFEDictionary,
+            pdp: ?*IMEDP,
+        ) callconv(.winapi) HRESULT,
+        RegisterWord: *const fn(
+            self: *const IFEDictionary,
+            reg: IMEREG,
+            pwrd: ?*IMEWRD,
+        ) callconv(.winapi) HRESULT,
+        RegisterDependency: *const fn(
+            self: *const IFEDictionary,
+            reg: IMEREG,
+            pdp: ?*IMEDP,
+        ) callconv(.winapi) HRESULT,
+        GetDependencies: *const fn(
+            self: *const IFEDictionary,
+            pwchKakariReading: ?[*:0]const u16,
+            pwchKakariDisplay: ?[*:0]const u16,
+            ulKakariPos: u32,
+            pwchUkeReading: ?[*:0]const u16,
+            pwchUkeDisplay: ?[*:0]const u16,
+            ulUkePos: u32,
+            jrel: IMEREL,
+            ulWordSrc: u32,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcdp: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        NextDependencies: *const fn(
+            self: *const IFEDictionary,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcDp: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        ConvertFromOldMSIME: *const fn(
+            self: *const IFEDictionary,
+            pchDic: ?[*:0]const u8,
+            pfnLog: ?PFNLOG,
+            reg: IMEREG,
+        ) callconv(.winapi) HRESULT,
+        ConvertFromUserToSys: *const fn(
+            self: *const IFEDictionary,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IFEDictionary, pchDictPath: ?*[260]u8, pshf: ?*IMESHF) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, pchDictPath, pshf);
+    }
+    pub fn Close(self: *const IFEDictionary) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn GetHeader(self: *const IFEDictionary, pchDictPath: ?*[260]u8, pshf: ?*IMESHF, pjfmt: ?*IMEFMT, pulType: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHeader(self, pchDictPath, pshf, pjfmt, pulType);
+    }
+    pub fn DisplayProperty(self: *const IFEDictionary, hwnd: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.DisplayProperty(self, hwnd);
+    }
+    pub fn GetPosTable(self: *const IFEDictionary, prgPosTbl: ?*?*POSTBL, pcPosTbl: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPosTable(self, prgPosTbl, pcPosTbl);
+    }
+    pub fn GetWords(self: *const IFEDictionary, pwchFirst: ?[*:0]const u16, pwchLast: ?[*:0]const u16, pwchDisplay: ?[*:0]const u16, ulPos: u32, ulSelect: u32, ulWordSrc: u32, pchBuffer: ?*u8, cbBuffer: u32, pcWrd: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWords(self, pwchFirst, pwchLast, pwchDisplay, ulPos, ulSelect, ulWordSrc, pchBuffer, cbBuffer, pcWrd);
+    }
+    pub fn NextWords(self: *const IFEDictionary, pchBuffer: ?*u8, cbBuffer: u32, pcWrd: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.NextWords(self, pchBuffer, cbBuffer, pcWrd);
+    }
+    pub fn Create(self: *const IFEDictionary, pchDictPath: ?[*:0]const u8, pshf: ?*IMESHF) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, pchDictPath, pshf);
+    }
+    pub fn SetHeader(self: *const IFEDictionary, pshf: ?*IMESHF) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHeader(self, pshf);
+    }
+    pub fn ExistWord(self: *const IFEDictionary, pwrd: ?*IMEWRD) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistWord(self, pwrd);
+    }
+    pub fn ExistDependency(self: *const IFEDictionary, pdp: ?*IMEDP) callconv(.@"inline") HRESULT {
+        return self.vtable.ExistDependency(self, pdp);
+    }
+    pub fn RegisterWord(self: *const IFEDictionary, reg: IMEREG, pwrd: ?*IMEWRD) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterWord(self, reg, pwrd);
+    }
+    pub fn RegisterDependency(self: *const IFEDictionary, reg: IMEREG, pdp: ?*IMEDP) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterDependency(self, reg, pdp);
+    }
+    pub fn GetDependencies(self: *const IFEDictionary, pwchKakariReading: ?[*:0]const u16, pwchKakariDisplay: ?[*:0]const u16, ulKakariPos: u32, pwchUkeReading: ?[*:0]const u16, pwchUkeDisplay: ?[*:0]const u16, ulUkePos: u32, jrel: IMEREL, ulWordSrc: u32, pchBuffer: ?*u8, cbBuffer: u32, pcdp: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDependencies(self, pwchKakariReading, pwchKakariDisplay, ulKakariPos, pwchUkeReading, pwchUkeDisplay, ulUkePos, jrel, ulWordSrc, pchBuffer, cbBuffer, pcdp);
+    }
+    pub fn NextDependencies(self: *const IFEDictionary, pchBuffer: ?*u8, cbBuffer: u32, pcDp: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.NextDependencies(self, pchBuffer, cbBuffer, pcDp);
+    }
+    pub fn ConvertFromOldMSIME(self: *const IFEDictionary, pchDic: ?[*:0]const u8, pfnLog: ?PFNLOG, reg: IMEREG) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertFromOldMSIME(self, pchDic, pfnLog, reg);
+    }
+    pub fn ConvertFromUserToSys(self: *const IFEDictionary) callconv(.@"inline") HRESULT {
+        return self.vtable.ConvertFromUserToSys(self);
+    }
+};
+
+const IID_IFELanguage_Value = Guid.initString("019f7152-e6db-11d0-83c3-00c04fddb82e");
+pub const IID_IFELanguage = &IID_IFELanguage_Value;
+pub const IFELanguage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IFELanguage,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IFELanguage,
+        ) callconv(.winapi) HRESULT,
+        GetJMorphResult: *const fn(
+            self: *const IFELanguage,
+            dwRequest: u32,
+            dwCMode: u32,
+            cwchInput: i32,
+            pwchInput: ?[*:0]const u16,
+            pfCInfo: ?*u32,
+            ppResult: ?*?*MORRSLT,
+        ) callconv(.winapi) HRESULT,
+        GetConversionModeCaps: *const fn(
+            self: *const IFELanguage,
+            pdwCaps: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPhonetic: *const fn(
+            self: *const IFELanguage,
+            string: ?BSTR,
+            start: i32,
+            length: i32,
+            phonetic: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetConversion: *const fn(
+            self: *const IFELanguage,
+            string: ?BSTR,
+            start: i32,
+            length: i32,
+            result: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IFELanguage) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self);
+    }
+    pub fn Close(self: *const IFELanguage) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn GetJMorphResult(self: *const IFELanguage, dwRequest: u32, dwCMode: u32, cwchInput: i32, pwchInput: ?[*:0]const u16, pfCInfo: ?*u32, ppResult: ?*?*MORRSLT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetJMorphResult(self, dwRequest, dwCMode, cwchInput, pwchInput, pfCInfo, ppResult);
+    }
+    pub fn GetConversionModeCaps(self: *const IFELanguage, pdwCaps: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConversionModeCaps(self, pdwCaps);
+    }
+    pub fn GetPhonetic(self: *const IFELanguage, string: ?BSTR, start: i32, length: i32, phonetic: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPhonetic(self, string, start, length, phonetic);
+    }
+    pub fn GetConversion(self: *const IFELanguage, string: ?BSTR, start: i32, length: i32, result: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetConversion(self, string, start, length, result);
+    }
+};
+
+const IID_IImePad_Value = Guid.initString("5d8e643a-c3a9-11d1-afef-00805f0c8b6d");
+pub const IID_IImePad = &IID_IImePad_Value;
+pub const IImePad = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Request: *const fn(
+            self: *const IImePad,
+            pIImePadApplet: ?*IImePadApplet,
+            reqId: IME_PAD_REQUEST_FLAGS,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Request(self: *const IImePad, pIImePadApplet: ?*IImePadApplet, reqId: IME_PAD_REQUEST_FLAGS, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.Request(self, pIImePadApplet, reqId, wParam, lParam);
+    }
+};
+
+const IID_IImePadApplet_Value = Guid.initString("5d8e643b-c3a9-11d1-afef-00805f0c8b6d");
+pub const IID_IImePadApplet = &IID_IImePadApplet_Value;
+pub const IImePadApplet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IImePadApplet,
+            lpIImePad: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Terminate: *const fn(
+            self: *const IImePadApplet,
+        ) callconv(.winapi) HRESULT,
+        GetAppletConfig: *const fn(
+            self: *const IImePadApplet,
+            lpAppletCfg: ?*IMEAPPLETCFG,
+        ) callconv(.winapi) HRESULT,
+        CreateUI: *const fn(
+            self: *const IImePadApplet,
+            hwndParent: ?HWND,
+            lpImeAppletUI: ?*IMEAPPLETUI,
+        ) callconv(.winapi) HRESULT,
+        Notify: *const fn(
+            self: *const IImePadApplet,
+            lpImePad: ?*IUnknown,
+            notify: i32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IImePadApplet, lpIImePad: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, lpIImePad);
+    }
+    pub fn Terminate(self: *const IImePadApplet) callconv(.@"inline") HRESULT {
+        return self.vtable.Terminate(self);
+    }
+    pub fn GetAppletConfig(self: *const IImePadApplet, lpAppletCfg: ?*IMEAPPLETCFG) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAppletConfig(self, lpAppletCfg);
+    }
+    pub fn CreateUI(self: *const IImePadApplet, hwndParent: ?HWND, lpImeAppletUI: ?*IMEAPPLETUI) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateUI(self, hwndParent, lpImeAppletUI);
+    }
+    pub fn Notify(self: *const IImePadApplet, lpImePad: ?*IUnknown, notify: i32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+        return self.vtable.Notify(self, lpImePad, notify, wParam, lParam);
+    }
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IImePlugInDictDictionaryList_Value = Guid.initString("98752974-b0a6-489b-8f6f-bff3769c8eeb");
+pub const IID_IImePlugInDictDictionaryList = &IID_IImePlugInDictDictionaryList_Value;
+pub const IImePlugInDictDictionaryList = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDictionariesInUse: *const fn(
+            self: *const IImePlugInDictDictionaryList,
+            prgDictionaryGUID: ?*?*SAFEARRAY,
+            prgDateCreated: ?*?*SAFEARRAY,
+            prgfEncrypted: ?*?*SAFEARRAY,
+        ) callconv(.winapi) HRESULT,
+        DeleteDictionary: *const fn(
+            self: *const IImePlugInDictDictionaryList,
+            bstrDictionaryGUID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDictionariesInUse(self: *const IImePlugInDictDictionaryList, prgDictionaryGUID: ?*?*SAFEARRAY, prgDateCreated: ?*?*SAFEARRAY, prgfEncrypted: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDictionariesInUse(self, prgDictionaryGUID, prgDateCreated, prgfEncrypted);
+    }
+    pub fn DeleteDictionary(self: *const IImePlugInDictDictionaryList, bstrDictionaryGUID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteDictionary(self, bstrDictionaryGUID);
+    }
+};
+
+const IID_IImeSpecifyApplets_Value = Guid.initString("5d8e643c-c3a9-11d1-afef-00805f0c8b6d");
+pub const IID_IImeSpecifyApplets = &IID_IImeSpecifyApplets_Value;
+pub const IImeSpecifyApplets = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAppletIIDList: *const fn(
+            self: *const IImeSpecifyApplets,
+            refiid: ?*const Guid,
+            lpIIDList: ?*APPLETIDLIST,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAppletIIDList(self: *const IImeSpecifyApplets, refiid: ?*const Guid, lpIIDList: ?*APPLETIDLIST) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAppletIIDList(self, refiid, lpIIDList);
+    }
+};
+
+pub const IMCENUMPROC = *const fn(
+    param0: ?HIMC,
+    param1: LPARAM,
+) callconv(.winapi) BOOL;
+
+pub const IME_COMPOSITION_STRING = packed struct(u32) {
+    COMPREADSTR: u1 = 0,
+    COMPREADATTR: u1 = 0,
+    COMPREADCLAUSE: u1 = 0,
+    COMPSTR: u1 = 0,
+    COMPATTR: u1 = 0,
+    COMPCLAUSE: u1 = 0,
+    _6: u1 = 0,
+    CURSORPOS: u1 = 0,
+    DELTASTART: u1 = 0,
+    RESULTREADSTR: u1 = 0,
+    RESULTREADCLAUSE: u1 = 0,
+    RESULTSTR: u1 = 0,
+    RESULTCLAUSE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const GCS_COMPREADSTR = IME_COMPOSITION_STRING{ .COMPREADSTR = 1 };
+pub const GCS_COMPREADATTR = IME_COMPOSITION_STRING{ .COMPREADATTR = 1 };
+pub const GCS_COMPREADCLAUSE = IME_COMPOSITION_STRING{ .COMPREADCLAUSE = 1 };
+pub const GCS_COMPSTR = IME_COMPOSITION_STRING{ .COMPSTR = 1 };
+pub const GCS_COMPATTR = IME_COMPOSITION_STRING{ .COMPATTR = 1 };
+pub const GCS_COMPCLAUSE = IME_COMPOSITION_STRING{ .COMPCLAUSE = 1 };
+pub const GCS_CURSORPOS = IME_COMPOSITION_STRING{ .CURSORPOS = 1 };
+pub const GCS_DELTASTART = IME_COMPOSITION_STRING{ .DELTASTART = 1 };
+pub const GCS_RESULTREADSTR = IME_COMPOSITION_STRING{ .RESULTREADSTR = 1 };
+pub const GCS_RESULTREADCLAUSE = IME_COMPOSITION_STRING{ .RESULTREADCLAUSE = 1 };
+pub const GCS_RESULTSTR = IME_COMPOSITION_STRING{ .RESULTSTR = 1 };
+pub const GCS_RESULTCLAUSE = IME_COMPOSITION_STRING{ .RESULTCLAUSE = 1 };
+
+pub const IME_CONVERSION_MODE = packed struct(u32) {
+    NATIVE: u1 = 0,
+    KATAKANA: u1 = 0,
+    _2: u1 = 0,
+    FULLSHAPE: u1 = 0,
+    ROMAN: u1 = 0,
+    CHARCODE: u1 = 0,
+    HANJACONVERT: u1 = 0,
+    NATIVESYMBOL: u1 = 0,
+    NOCONVERSION: u1 = 0,
+    EUDC: u1 = 0,
+    SYMBOL: u1 = 0,
+    FIXED: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // CHINESE (bit index 0) conflicts with NATIVE
+    // HANGUL (bit index 0) conflicts with NATIVE
+    // JAPANESE (bit index 0) conflicts with NATIVE
+    // HANGEUL (bit index 0) conflicts with NATIVE
+    // SOFTKBD (bit index 7) conflicts with NATIVESYMBOL
+};
+pub const IME_CMODE_ALPHANUMERIC = IME_CONVERSION_MODE{ };
+pub const IME_CMODE_NATIVE = IME_CONVERSION_MODE{ .NATIVE = 1 };
+pub const IME_CMODE_CHINESE = IME_CONVERSION_MODE{ .NATIVE = 1 };
+pub const IME_CMODE_HANGUL = IME_CONVERSION_MODE{ .NATIVE = 1 };
+pub const IME_CMODE_JAPANESE = IME_CONVERSION_MODE{ .NATIVE = 1 };
+pub const IME_CMODE_KATAKANA = IME_CONVERSION_MODE{ .KATAKANA = 1 };
+pub const IME_CMODE_LANGUAGE = IME_CONVERSION_MODE{
+    .NATIVE = 1,
+    .KATAKANA = 1,
+};
+pub const IME_CMODE_FULLSHAPE = IME_CONVERSION_MODE{ .FULLSHAPE = 1 };
+pub const IME_CMODE_ROMAN = IME_CONVERSION_MODE{ .ROMAN = 1 };
+pub const IME_CMODE_CHARCODE = IME_CONVERSION_MODE{ .CHARCODE = 1 };
+pub const IME_CMODE_HANJACONVERT = IME_CONVERSION_MODE{ .HANJACONVERT = 1 };
+pub const IME_CMODE_NATIVESYMBOL = IME_CONVERSION_MODE{ .NATIVESYMBOL = 1 };
+pub const IME_CMODE_HANGEUL = IME_CONVERSION_MODE{ .NATIVE = 1 };
+pub const IME_CMODE_SOFTKBD = IME_CONVERSION_MODE{ .NATIVESYMBOL = 1 };
+pub const IME_CMODE_NOCONVERSION = IME_CONVERSION_MODE{ .NOCONVERSION = 1 };
+pub const IME_CMODE_EUDC = IME_CONVERSION_MODE{ .EUDC = 1 };
+pub const IME_CMODE_SYMBOL = IME_CONVERSION_MODE{ .SYMBOL = 1 };
+pub const IME_CMODE_FIXED = IME_CONVERSION_MODE{ .FIXED = 1 };
+pub const IME_CMODE_RESERVED = IME_CONVERSION_MODE{
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
+
+pub const IME_ESCAPE = enum(u32) {
+    QUERY_SUPPORT = 3,
+    RESERVED_FIRST = 4,
+    RESERVED_LAST = 2047,
+    PRIVATE_FIRST = 2048,
+    PRIVATE_LAST = 4095,
+    SEQUENCE_TO_INTERNAL = 4097,
+    GET_EUDC_DICTIONARY = 4099,
+    SET_EUDC_DICTIONARY = 4100,
+    MAX_KEY = 4101,
+    IME_NAME = 4102,
+    SYNC_HOTKEY = 4103,
+    HANJA_MODE = 4104,
+    AUTOMATA = 4105,
+    PRIVATE_HOTKEY = 4106,
+    GETHELPFILENAME = 4107,
+};
+pub const IME_ESC_QUERY_SUPPORT = IME_ESCAPE.QUERY_SUPPORT;
+pub const IME_ESC_RESERVED_FIRST = IME_ESCAPE.RESERVED_FIRST;
+pub const IME_ESC_RESERVED_LAST = IME_ESCAPE.RESERVED_LAST;
+pub const IME_ESC_PRIVATE_FIRST = IME_ESCAPE.PRIVATE_FIRST;
+pub const IME_ESC_PRIVATE_LAST = IME_ESCAPE.PRIVATE_LAST;
+pub const IME_ESC_SEQUENCE_TO_INTERNAL = IME_ESCAPE.SEQUENCE_TO_INTERNAL;
+pub const IME_ESC_GET_EUDC_DICTIONARY = IME_ESCAPE.GET_EUDC_DICTIONARY;
+pub const IME_ESC_SET_EUDC_DICTIONARY = IME_ESCAPE.SET_EUDC_DICTIONARY;
+pub const IME_ESC_MAX_KEY = IME_ESCAPE.MAX_KEY;
+pub const IME_ESC_IME_NAME = IME_ESCAPE.IME_NAME;
+pub const IME_ESC_SYNC_HOTKEY = IME_ESCAPE.SYNC_HOTKEY;
+pub const IME_ESC_HANJA_MODE = IME_ESCAPE.HANJA_MODE;
+pub const IME_ESC_AUTOMATA = IME_ESCAPE.AUTOMATA;
+pub const IME_ESC_PRIVATE_HOTKEY = IME_ESCAPE.PRIVATE_HOTKEY;
+pub const IME_ESC_GETHELPFILENAME = IME_ESCAPE.GETHELPFILENAME;
+
+pub const IME_HOTKEY_IDENTIFIER = enum(u32) {
+    CHOTKEY_IME_NONIME_TOGGLE = 16,
+    CHOTKEY_SHAPE_TOGGLE = 17,
+    CHOTKEY_SYMBOL_TOGGLE = 18,
+    JHOTKEY_CLOSE_OPEN = 48,
+    KHOTKEY_SHAPE_TOGGLE = 80,
+    KHOTKEY_HANJACONVERT = 81,
+    KHOTKEY_ENGLISH = 82,
+    THOTKEY_IME_NONIME_TOGGLE = 112,
+    THOTKEY_SHAPE_TOGGLE = 113,
+    THOTKEY_SYMBOL_TOGGLE = 114,
+    ITHOTKEY_RESEND_RESULTSTR = 512,
+    ITHOTKEY_PREVIOUS_COMPOSITION = 513,
+    ITHOTKEY_UISTYLE_TOGGLE = 514,
+    ITHOTKEY_RECONVERTSTRING = 515,
+};
+pub const IME_CHOTKEY_IME_NONIME_TOGGLE = IME_HOTKEY_IDENTIFIER.CHOTKEY_IME_NONIME_TOGGLE;
+pub const IME_CHOTKEY_SHAPE_TOGGLE = IME_HOTKEY_IDENTIFIER.CHOTKEY_SHAPE_TOGGLE;
+pub const IME_CHOTKEY_SYMBOL_TOGGLE = IME_HOTKEY_IDENTIFIER.CHOTKEY_SYMBOL_TOGGLE;
+pub const IME_JHOTKEY_CLOSE_OPEN = IME_HOTKEY_IDENTIFIER.JHOTKEY_CLOSE_OPEN;
+pub const IME_KHOTKEY_SHAPE_TOGGLE = IME_HOTKEY_IDENTIFIER.KHOTKEY_SHAPE_TOGGLE;
+pub const IME_KHOTKEY_HANJACONVERT = IME_HOTKEY_IDENTIFIER.KHOTKEY_HANJACONVERT;
+pub const IME_KHOTKEY_ENGLISH = IME_HOTKEY_IDENTIFIER.KHOTKEY_ENGLISH;
+pub const IME_THOTKEY_IME_NONIME_TOGGLE = IME_HOTKEY_IDENTIFIER.THOTKEY_IME_NONIME_TOGGLE;
+pub const IME_THOTKEY_SHAPE_TOGGLE = IME_HOTKEY_IDENTIFIER.THOTKEY_SHAPE_TOGGLE;
+pub const IME_THOTKEY_SYMBOL_TOGGLE = IME_HOTKEY_IDENTIFIER.THOTKEY_SYMBOL_TOGGLE;
+pub const IME_ITHOTKEY_RESEND_RESULTSTR = IME_HOTKEY_IDENTIFIER.ITHOTKEY_RESEND_RESULTSTR;
+pub const IME_ITHOTKEY_PREVIOUS_COMPOSITION = IME_HOTKEY_IDENTIFIER.ITHOTKEY_PREVIOUS_COMPOSITION;
+pub const IME_ITHOTKEY_UISTYLE_TOGGLE = IME_HOTKEY_IDENTIFIER.ITHOTKEY_UISTYLE_TOGGLE;
+pub const IME_ITHOTKEY_RECONVERTSTRING = IME_HOTKEY_IDENTIFIER.ITHOTKEY_RECONVERTSTRING;
+
+pub const IME_PAD_REQUEST_FLAGS = enum(u32) {
+    INSERTSTRING = 4097,
+    SENDCONTROL = 4100,
+    SETAPPLETSIZE = 4104,
+    GETCOMPOSITIONSTRING = 4102,
+    GETCOMPOSITIONSTRINGINFO = 4108,
+    DELETESTRING = 4112,
+    CHANGESTRING = 4113,
+    GETAPPLHWND = 4116,
+    FORCEIMEPADWINDOWSHOW = 4117,
+    POSTMODALNOTIFY = 4118,
+    GETDEFAULTUILANGID = 4119,
+    GETAPPLETUISTYLE = 4121,
+    SETAPPLETUISTYLE = 4122,
+    ISAPPLETACTIVE = 4123,
+    ISIMEPADWINDOWVISIBLE = 4124,
+    SETAPPLETMINMAXSIZE = 4125,
+    GETCONVERSIONSTATUS = 4126,
+    GETVERSION = 4127,
+    GETCURRENTIMEINFO = 4128,
+};
+pub const IMEPADREQ_INSERTSTRING = IME_PAD_REQUEST_FLAGS.INSERTSTRING;
+pub const IMEPADREQ_SENDCONTROL = IME_PAD_REQUEST_FLAGS.SENDCONTROL;
+pub const IMEPADREQ_SETAPPLETSIZE = IME_PAD_REQUEST_FLAGS.SETAPPLETSIZE;
+pub const IMEPADREQ_GETCOMPOSITIONSTRING = IME_PAD_REQUEST_FLAGS.GETCOMPOSITIONSTRING;
+pub const IMEPADREQ_GETCOMPOSITIONSTRINGINFO = IME_PAD_REQUEST_FLAGS.GETCOMPOSITIONSTRINGINFO;
+pub const IMEPADREQ_DELETESTRING = IME_PAD_REQUEST_FLAGS.DELETESTRING;
+pub const IMEPADREQ_CHANGESTRING = IME_PAD_REQUEST_FLAGS.CHANGESTRING;
+pub const IMEPADREQ_GETAPPLHWND = IME_PAD_REQUEST_FLAGS.GETAPPLHWND;
+pub const IMEPADREQ_FORCEIMEPADWINDOWSHOW = IME_PAD_REQUEST_FLAGS.FORCEIMEPADWINDOWSHOW;
+pub const IMEPADREQ_POSTMODALNOTIFY = IME_PAD_REQUEST_FLAGS.POSTMODALNOTIFY;
+pub const IMEPADREQ_GETDEFAULTUILANGID = IME_PAD_REQUEST_FLAGS.GETDEFAULTUILANGID;
+pub const IMEPADREQ_GETAPPLETUISTYLE = IME_PAD_REQUEST_FLAGS.GETAPPLETUISTYLE;
+pub const IMEPADREQ_SETAPPLETUISTYLE = IME_PAD_REQUEST_FLAGS.SETAPPLETUISTYLE;
+pub const IMEPADREQ_ISAPPLETACTIVE = IME_PAD_REQUEST_FLAGS.ISAPPLETACTIVE;
+pub const IMEPADREQ_ISIMEPADWINDOWVISIBLE = IME_PAD_REQUEST_FLAGS.ISIMEPADWINDOWVISIBLE;
+pub const IMEPADREQ_SETAPPLETMINMAXSIZE = IME_PAD_REQUEST_FLAGS.SETAPPLETMINMAXSIZE;
+pub const IMEPADREQ_GETCONVERSIONSTATUS = IME_PAD_REQUEST_FLAGS.GETCONVERSIONSTATUS;
+pub const IMEPADREQ_GETVERSION = IME_PAD_REQUEST_FLAGS.GETVERSION;
+pub const IMEPADREQ_GETCURRENTIMEINFO = IME_PAD_REQUEST_FLAGS.GETCURRENTIMEINFO;
+
+pub const IME_SENTENCE_MODE = packed struct(u32) {
+    PLAURALCLAUSE: u1 = 0,
+    SINGLECONVERT: u1 = 0,
+    AUTOMATIC: u1 = 0,
+    PHRASEPREDICT: u1 = 0,
+    CONVERSATION: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const IME_SMODE_NONE = IME_SENTENCE_MODE{ };
+pub const IME_SMODE_PLAURALCLAUSE = IME_SENTENCE_MODE{ .PLAURALCLAUSE = 1 };
+pub const IME_SMODE_SINGLECONVERT = IME_SENTENCE_MODE{ .SINGLECONVERT = 1 };
+pub const IME_SMODE_AUTOMATIC = IME_SENTENCE_MODE{ .AUTOMATIC = 1 };
+pub const IME_SMODE_PHRASEPREDICT = IME_SENTENCE_MODE{ .PHRASEPREDICT = 1 };
+pub const IME_SMODE_CONVERSATION = IME_SENTENCE_MODE{ .CONVERSATION = 1 };
+pub const IME_SMODE_RESERVED = IME_SENTENCE_MODE{
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+};
+
+pub const IMEAPPLETCFG = extern struct {
+    dwConfig: u32,
+    wchTitle: [64]u16,
+    wchTitleFontFace: [32]u16,
+    dwCharSet: u32,
+    iCategory: i32,
+    hIcon: ?HICON,
+    langID: u16,
+    dummy: u16,
+    lReserved1: LPARAM,
+};
+
+pub const IMEAPPLETUI = extern struct {
+    hwnd: ?HWND,
+    dwStyle: u32,
+    width: i32,
+    height: i32,
+    minWidth: i32,
+    minHeight: i32,
+    maxWidth: i32,
+    maxHeight: i32,
+    lReserved1: LPARAM,
+    lReserved2: LPARAM,
+};
+
+pub const IMECHARINFO = extern struct {
+    wch: u16,
+    dwCharInfo: u32,
+};
+
+pub const IMECHARPOSITION = extern struct {
+    dwSize: u32,
+    dwCharPos: u32,
+    pt: POINT,
+    cLineHeight: u32,
+    rcDocument: RECT,
+};
+
+pub const IMECOMPOSITIONSTRINGINFO = extern struct {
+    iCompStrLen: i32,
+    iCaretPos: i32,
+    iEditStart: i32,
+    iEditLen: i32,
+    iTargetStart: i32,
+    iTargetLen: i32,
+};
+
+pub const IMEDLG = extern struct {
+    cbIMEDLG: i32 align(1),
+    hwnd: ?HWND align(1),
+    lpwstrWord: ?PWSTR align(1),
+    nTabId: i32 align(1),
+};
+
+pub const IMEDP = extern struct {
+    wrdModifier: IMEWRD align(1),
+    wrdModifiee: IMEWRD align(1),
+    relID: IMEREL align(1),
+};
+
+pub const IMEFMT = enum(i32) {
+    UNKNOWN = 0,
+    MSIME2_BIN_SYSTEM = 1,
+    MSIME2_BIN_USER = 2,
+    MSIME2_TEXT_USER = 3,
+    MSIME95_BIN_SYSTEM = 4,
+    MSIME95_BIN_USER = 5,
+    MSIME95_TEXT_USER = 6,
+    MSIME97_BIN_SYSTEM = 7,
+    MSIME97_BIN_USER = 8,
+    MSIME97_TEXT_USER = 9,
+    MSIME98_BIN_SYSTEM = 10,
+    MSIME98_BIN_USER = 11,
+    MSIME98_TEXT_USER = 12,
+    ACTIVE_DICT = 13,
+    ATOK9 = 14,
+    ATOK10 = 15,
+    NEC_AI_ = 16,
+    WX_II = 17,
+    WX_III = 18,
+    VJE_20 = 19,
+    MSIME98_SYSTEM_CE = 20,
+    MSIME_BIN_SYSTEM = 21,
+    MSIME_BIN_USER = 22,
+    MSIME_TEXT_USER = 23,
+    PIME2_BIN_USER = 24,
+    PIME2_BIN_SYSTEM = 25,
+    PIME2_BIN_STANDARD_SYSTEM = 26,
+};
+pub const IFED_UNKNOWN = IMEFMT.UNKNOWN;
+pub const IFED_MSIME2_BIN_SYSTEM = IMEFMT.MSIME2_BIN_SYSTEM;
+pub const IFED_MSIME2_BIN_USER = IMEFMT.MSIME2_BIN_USER;
+pub const IFED_MSIME2_TEXT_USER = IMEFMT.MSIME2_TEXT_USER;
+pub const IFED_MSIME95_BIN_SYSTEM = IMEFMT.MSIME95_BIN_SYSTEM;
+pub const IFED_MSIME95_BIN_USER = IMEFMT.MSIME95_BIN_USER;
+pub const IFED_MSIME95_TEXT_USER = IMEFMT.MSIME95_TEXT_USER;
+pub const IFED_MSIME97_BIN_SYSTEM = IMEFMT.MSIME97_BIN_SYSTEM;
+pub const IFED_MSIME97_BIN_USER = IMEFMT.MSIME97_BIN_USER;
+pub const IFED_MSIME97_TEXT_USER = IMEFMT.MSIME97_TEXT_USER;
+pub const IFED_MSIME98_BIN_SYSTEM = IMEFMT.MSIME98_BIN_SYSTEM;
+pub const IFED_MSIME98_BIN_USER = IMEFMT.MSIME98_BIN_USER;
+pub const IFED_MSIME98_TEXT_USER = IMEFMT.MSIME98_TEXT_USER;
+pub const IFED_ACTIVE_DICT = IMEFMT.ACTIVE_DICT;
+pub const IFED_ATOK9 = IMEFMT.ATOK9;
+pub const IFED_ATOK10 = IMEFMT.ATOK10;
+pub const IFED_NEC_AI_ = IMEFMT.NEC_AI_;
+pub const IFED_WX_II = IMEFMT.WX_II;
+pub const IFED_WX_III = IMEFMT.WX_III;
+pub const IFED_VJE_20 = IMEFMT.VJE_20;
+pub const IFED_MSIME98_SYSTEM_CE = IMEFMT.MSIME98_SYSTEM_CE;
+pub const IFED_MSIME_BIN_SYSTEM = IMEFMT.MSIME_BIN_SYSTEM;
+pub const IFED_MSIME_BIN_USER = IMEFMT.MSIME_BIN_USER;
+pub const IFED_MSIME_TEXT_USER = IMEFMT.MSIME_TEXT_USER;
+pub const IFED_PIME2_BIN_USER = IMEFMT.PIME2_BIN_USER;
+pub const IFED_PIME2_BIN_SYSTEM = IMEFMT.PIME2_BIN_SYSTEM;
+pub const IFED_PIME2_BIN_STANDARD_SYSTEM = IMEFMT.PIME2_BIN_STANDARD_SYSTEM;
+
+pub const IMEINFO = extern struct {
+    dwPrivateDataSize: u32,
+    fdwProperty: u32,
+    fdwConversionCaps: u32,
+    fdwSentenceCaps: u32,
+    fdwUICaps: u32,
+    fdwSCSCaps: u32,
+    fdwSelectCaps: u32,
+};
+
+pub const IMEITEM = extern struct {
+    cbSize: i32,
+    iType: i32,
+    lpItemData: ?*anyopaque,
+};
+
+pub const IMEITEMCANDIDATE = extern struct {
+    uCount: u32,
+    imeItem: [1]IMEITEM,
+};
+
+pub const IMEKMS = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    cKeyList: u32 align(1),
+    pKeyList: ?*IMEKMSKEY align(1),
+};
+
+pub const IMEKMSFUNCDESC = extern struct {
+    cbSize: i32 align(1),
+    idLang: u16 align(1),
+    dwControl: u32 align(1),
+    pwszDescription: [128]u16 align(1),
+};
+
+pub const IMEKMSINIT = extern struct {
+    cbSize: i32 align(1),
+    hWnd: ?HWND align(1),
+};
+
+pub const IMEKMSINVK = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    dwControl: u32 align(1),
+};
+
+pub const IMEKMSKEY = extern struct {
+    dwStatus: u32 align(1),
+    dwCompStatus: u32 align(1),
+    dwVKEY: u32 align(1),
+    Anonymous1: extern union {
+        dwControl: u32 align(1),
+        dwNotUsed: u32 align(1),
+    } align(1),
+    Anonymous2: extern union {
+        pwszDscr: [31]u16 align(1),
+        pwszNoUse: [31]u16 align(1),
+    } align(1),
+};
+
+pub const IMEKMSKMP = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    idLang: u16 align(1),
+    wVKStart: u16 align(1),
+    wVKEnd: u16 align(1),
+    cKeyList: i32 align(1),
+    pKeyList: ?*IMEKMSKEY align(1),
+};
+
+pub const IMEKMSNTFY = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    fSelect: BOOL align(1),
+};
+
+pub const IMEMENUITEMINFOA = extern struct {
+    cbSize: u32,
+    fType: u32,
+    fState: u32,
+    wID: u32,
+    hbmpChecked: ?HBITMAP,
+    hbmpUnchecked: ?HBITMAP,
+    dwItemData: u32,
+    szString: [80]CHAR,
+    hbmpItem: ?HBITMAP,
+};
+
+pub const IMEMENUITEMINFOW = extern struct {
+    cbSize: u32,
+    fType: u32,
+    fState: u32,
+    wID: u32,
+    hbmpChecked: ?HBITMAP,
+    hbmpUnchecked: ?HBITMAP,
+    dwItemData: u32,
+    szString: [80]u16,
+    hbmpItem: ?HBITMAP,
+};
+
+pub const IMEREG = enum(i32) {
+    HEAD = 0,
+    TAIL = 1,
+    DEL = 2,
+};
+pub const IFED_REG_HEAD = IMEREG.HEAD;
+pub const IFED_REG_TAIL = IMEREG.TAIL;
+pub const IFED_REG_DEL = IMEREG.DEL;
+
+pub const IMEREL = enum(i32) {
+    NONE = 0,
+    NO = 1,
+    GA = 2,
+    WO = 3,
+    NI = 4,
+    DE = 5,
+    YORI = 6,
+    KARA = 7,
+    MADE = 8,
+    HE = 9,
+    TO = 10,
+    IDEOM = 11,
+    FUKU_YOUGEN = 12,
+    KEIYOU_YOUGEN = 13,
+    KEIDOU1_YOUGEN = 14,
+    KEIDOU2_YOUGEN = 15,
+    TAIGEN = 16,
+    YOUGEN = 17,
+    RENTAI_MEI = 18,
+    RENSOU = 19,
+    KEIYOU_TO_YOUGEN = 20,
+    KEIYOU_TARU_YOUGEN = 21,
+    UNKNOWN1 = 22,
+    UNKNOWN2 = 23,
+    ALL = 24,
+};
+pub const IFED_REL_NONE = IMEREL.NONE;
+pub const IFED_REL_NO = IMEREL.NO;
+pub const IFED_REL_GA = IMEREL.GA;
+pub const IFED_REL_WO = IMEREL.WO;
+pub const IFED_REL_NI = IMEREL.NI;
+pub const IFED_REL_DE = IMEREL.DE;
+pub const IFED_REL_YORI = IMEREL.YORI;
+pub const IFED_REL_KARA = IMEREL.KARA;
+pub const IFED_REL_MADE = IMEREL.MADE;
+pub const IFED_REL_HE = IMEREL.HE;
+pub const IFED_REL_TO = IMEREL.TO;
+pub const IFED_REL_IDEOM = IMEREL.IDEOM;
+pub const IFED_REL_FUKU_YOUGEN = IMEREL.FUKU_YOUGEN;
+pub const IFED_REL_KEIYOU_YOUGEN = IMEREL.KEIYOU_YOUGEN;
+pub const IFED_REL_KEIDOU1_YOUGEN = IMEREL.KEIDOU1_YOUGEN;
+pub const IFED_REL_KEIDOU2_YOUGEN = IMEREL.KEIDOU2_YOUGEN;
+pub const IFED_REL_TAIGEN = IMEREL.TAIGEN;
+pub const IFED_REL_YOUGEN = IMEREL.YOUGEN;
+pub const IFED_REL_RENTAI_MEI = IMEREL.RENTAI_MEI;
+pub const IFED_REL_RENSOU = IMEREL.RENSOU;
+pub const IFED_REL_KEIYOU_TO_YOUGEN = IMEREL.KEIYOU_TO_YOUGEN;
+pub const IFED_REL_KEIYOU_TARU_YOUGEN = IMEREL.KEIYOU_TARU_YOUGEN;
+pub const IFED_REL_UNKNOWN1 = IMEREL.UNKNOWN1;
+pub const IFED_REL_UNKNOWN2 = IMEREL.UNKNOWN2;
+pub const IFED_REL_ALL = IMEREL.ALL;
+
+pub const IMESHF = extern struct {
+    cbShf: u16 align(1),
+    verDic: u16 align(1),
+    szTitle: [48]CHAR align(1),
+    szDescription: [256]CHAR align(1),
+    szCopyright: [128]CHAR align(1),
+};
+
+pub const IMESTRINGCANDIDATE = extern struct {
+    uCount: u32,
+    lpwstr: [1]?PWSTR,
+};
+
+pub const IMESTRINGCANDIDATEINFO = extern struct {
+    dwFarEastId: u32,
+    lpFarEastInfo: ?*tabIMEFAREASTINFO,
+    fInfoMask: u32,
+    iSelIndex: i32,
+    uCount: u32,
+    lpwstr: [1]?PWSTR,
+};
+
+pub const IMEUCT = enum(i32) {
+    NONE = 0,
+    STRING_SJIS = 1,
+    STRING_UNICODE = 2,
+    USER_DEFINED = 3,
+    MAX = 4,
+};
+pub const IFED_UCT_NONE = IMEUCT.NONE;
+pub const IFED_UCT_STRING_SJIS = IMEUCT.STRING_SJIS;
+pub const IFED_UCT_STRING_UNICODE = IMEUCT.STRING_UNICODE;
+pub const IFED_UCT_USER_DEFINED = IMEUCT.USER_DEFINED;
+pub const IFED_UCT_MAX = IMEUCT.MAX;
+
+pub const IMEWRD = extern struct {
+    pwchReading: ?PWSTR align(1),
+    pwchDisplay: ?PWSTR align(1),
+    Anonymous: extern union {
+        ulPos: u32 align(1),
+        Anonymous: extern struct {
+            nPos1: u16 align(1),
+            nPos2: u16 align(1),
+        } align(1),
+    } align(1),
+    rgulAttrs: [2]u32 align(1),
+    cbComment: i32 align(1),
+    uct: IMEUCT align(1),
+    pvComment: ?*anyopaque align(1),
+};
+
+pub const INPUTCONTEXT = extern struct {
+    hWnd: ?HWND,
+    fOpen: BOOL,
+    ptStatusWndPos: POINT,
+    ptSoftKbdPos: POINT,
+    fdwConversion: u32,
+    fdwSentence: u32,
+    lfFont: extern union {
+        A: LOGFONTA,
+        W: LOGFONTW,
+    },
+    cfCompForm: COMPOSITIONFORM,
+    cfCandForm: [4]CANDIDATEFORM,
+    hCompStr: ?HIMCC,
+    hCandInfo: ?HIMCC,
+    hGuideLine: ?HIMCC,
+    hPrivate: ?HIMCC,
+    dwNumMsgBuf: u32,
+    hMsgBuf: ?HIMCC,
+    fdwInit: u32,
+    dwReserve: [3]u32,
+};
+
+pub const MORRSLT = extern struct {
+    dwSize: u32 align(1),
+    pwchOutput: ?PWSTR align(1),
+    cchOutput: u16 align(1),
+    Anonymous1: extern union {
+        pwchRead: ?PWSTR align(1),
+        pwchComp: ?PWSTR align(1),
+    } align(1),
+    Anonymous2: extern union {
+        cchRead: u16 align(1),
+        cchComp: u16 align(1),
+    } align(1),
+    pchInputPos: ?*u16 align(1),
+    pchOutputIdxWDD: ?*u16 align(1),
+    Anonymous3: extern union {
+        pchReadIdxWDD: ?*u16 align(1),
+        pchCompIdxWDD: ?*u16 align(1),
+    } align(1),
+    paMonoRubyPos: ?*u16 align(1),
+    pWDD: ?*WDD align(1),
+    cWDD: i32 align(1),
+    pPrivate: ?*anyopaque align(1),
+    BLKBuff: [1]u16 align(1),
+};
+
+pub const NOTIFY_IME_ACTION = enum(u32) {
+    CHANGECANDIDATELIST = 19,
+    CLOSECANDIDATE = 17,
+    COMPOSITIONSTR = 21,
+    IMEMENUSELECTED = 24,
+    OPENCANDIDATE = 16,
+    SELECTCANDIDATESTR = 18,
+    SETCANDIDATE_PAGESIZE = 23,
+    SETCANDIDATE_PAGESTART = 22,
+};
+pub const NI_CHANGECANDIDATELIST = NOTIFY_IME_ACTION.CHANGECANDIDATELIST;
+pub const NI_CLOSECANDIDATE = NOTIFY_IME_ACTION.CLOSECANDIDATE;
+pub const NI_COMPOSITIONSTR = NOTIFY_IME_ACTION.COMPOSITIONSTR;
+pub const NI_IMEMENUSELECTED = NOTIFY_IME_ACTION.IMEMENUSELECTED;
+pub const NI_OPENCANDIDATE = NOTIFY_IME_ACTION.OPENCANDIDATE;
+pub const NI_SELECTCANDIDATESTR = NOTIFY_IME_ACTION.SELECTCANDIDATESTR;
+pub const NI_SETCANDIDATE_PAGESIZE = NOTIFY_IME_ACTION.SETCANDIDATE_PAGESIZE;
+pub const NI_SETCANDIDATE_PAGESTART = NOTIFY_IME_ACTION.SETCANDIDATE_PAGESTART;
+
+pub const NOTIFY_IME_INDEX = enum(u32) {
+    CANCEL = 4,
+    COMPLETE = 1,
+    CONVERT = 2,
+    REVERT = 3,
+};
+pub const CPS_CANCEL = NOTIFY_IME_INDEX.CANCEL;
+pub const CPS_COMPLETE = NOTIFY_IME_INDEX.COMPLETE;
+pub const CPS_CONVERT = NOTIFY_IME_INDEX.CONVERT;
+pub const CPS_REVERT = NOTIFY_IME_INDEX.REVERT;
+
+pub const PFNLOG = *const fn(
+    param0: ?*IMEDP,
+    param1: HRESULT,
+) callconv(.winapi) BOOL;
+
+pub const POSTBL = extern struct {
+    nPos: u16 align(1),
+    szName: ?*u8 align(1),
+};
+
+pub const RECONVERTSTRING = extern struct {
+    dwSize: u32,
+    dwVersion: u32,
+    dwStrLen: u32,
+    dwStrOffset: u32,
+    dwCompStrLen: u32,
+    dwCompStrOffset: u32,
+    dwTargetStrLen: u32,
+    dwTargetStrOffset: u32,
+};
+
+pub const REGISTERWORDA = extern struct {
+    lpReading: ?PSTR,
+    lpWord: ?PSTR,
+};
+
+pub const REGISTERWORDENUMPROCA = *const fn(
+    lpszReading: ?[*:0]const u8,
+    param1: u32,
+    lpszString: ?[*:0]const u8,
+    param3: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const REGISTERWORDENUMPROCW = *const fn(
+    lpszReading: ?[*:0]const u16,
+    param1: u32,
+    lpszString: ?[*:0]const u16,
+    param3: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const REGISTERWORDW = extern struct {
+    lpReading: ?PWSTR,
+    lpWord: ?PWSTR,
+};
+
+pub const SET_COMPOSITION_STRING_TYPE = enum(u32) {
+    SETSTR = 9,
+    CHANGEATTR = 18,
+    CHANGECLAUSE = 36,
+    SETRECONVERTSTRING = 65536,
+    QUERYRECONVERTSTRING = 131072,
+};
+pub const SCS_SETSTR = SET_COMPOSITION_STRING_TYPE.SETSTR;
+pub const SCS_CHANGEATTR = SET_COMPOSITION_STRING_TYPE.CHANGEATTR;
+pub const SCS_CHANGECLAUSE = SET_COMPOSITION_STRING_TYPE.CHANGECLAUSE;
+pub const SCS_SETRECONVERTSTRING = SET_COMPOSITION_STRING_TYPE.SETRECONVERTSTRING;
+pub const SCS_QUERYRECONVERTSTRING = SET_COMPOSITION_STRING_TYPE.QUERYRECONVERTSTRING;
+
+pub const SOFTKBDDATA = extern struct {
+    uCount: u32,
+    wCode: [256]u16,
+};
+
+pub const STYLEBUFA = extern struct {
+    dwStyle: u32,
+    szDescription: [32]CHAR,
+};
+
+pub const STYLEBUFW = extern struct {
+    dwStyle: u32,
+    szDescription: [32]u16,
+};
+
+pub const tabIMEFAREASTINFO = extern struct {
+    dwSize: u32,
+    dwType: u32,
+    dwData: [1]u32,
+};
+
+pub const tabIMESTRINGINFO = extern struct {
+    dwFarEastId: u32,
+    lpwstr: ?PWSTR,
+};
+
+pub const TRANSMSG = extern struct {
+    message: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+};
+
+pub const TRANSMSGLIST = extern struct {
+    uMsgCount: u32,
+    TransMsg: [1]TRANSMSG,
+};
+
+pub const WDD = extern struct {
+    wDispPos: u16 align(1),
+    Anonymous1: extern union {
+        wReadPos: u16 align(1),
+        wCompPos: u16 align(1),
+    } align(1),
+    cchDisp: u16 align(1),
+    Anonymous2: extern union {
+        cchRead: u16 align(1),
+        cchComp: u16 align(1),
+    } align(1),
+    WDD_nReserve1: u32 align(1),
+    nPos: u16 align(1),
+    _bitfield: u16 align(1),
+    pReserved: ?*anyopaque align(1),
 };
 
 
@@ -3750,16 +3750,229 @@ pub const IActiveIME2 = extern union {
 // Section: Functions (82)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmInstallIMEA(
-    lpszIMEFileName: ?[*:0]const u8,
-    lpszLayoutText: ?[*:0]const u8,
-) callconv(.winapi) ?HKL;
+pub extern "imm32" fn ImmAssociateContext(
+    param0: ?HWND,
+    param1: ?HIMC,
+) callconv(.winapi) ?HIMC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmInstallIMEW(
-    lpszIMEFileName: ?[*:0]const u16,
-    lpszLayoutText: ?[*:0]const u16,
-) callconv(.winapi) ?HKL;
+pub extern "imm32" fn ImmAssociateContextEx(
+    param0: ?HWND,
+    param1: ?HIMC,
+    param2: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmConfigureIMEA(
+    param0: ?HKL,
+    param1: ?HWND,
+    param2: u32,
+    param3: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmConfigureIMEW(
+    param0: ?HKL,
+    param1: ?HWND,
+    param2: u32,
+    param3: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmCreateContext(
+) callconv(.winapi) ?HIMC;
+
+pub extern "imm32" fn ImmCreateIMCC(
+    param0: u32,
+) callconv(.winapi) ?HIMCC;
+
+pub extern "imm32" fn ImmCreateSoftKeyboard(
+    param0: u32,
+    param1: ?HWND,
+    param2: i32,
+    param3: i32,
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmDestroyContext(
+    param0: ?HIMC,
+) callconv(.winapi) BOOL;
+
+pub extern "imm32" fn ImmDestroyIMCC(
+    param0: ?HIMCC,
+) callconv(.winapi) ?HIMCC;
+
+pub extern "imm32" fn ImmDestroySoftKeyboard(
+    param0: ?HWND,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmDisableIME(
+    param0: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "imm32" fn ImmDisableLegacyIME(
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmDisableTextFrameService(
+    idThread: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmEnumInputContext(
+    idThread: u32,
+    lpfn: ?IMCENUMPROC,
+    lParam: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmEnumRegisterWordA(
+    param0: ?HKL,
+    param1: ?REGISTERWORDENUMPROCA,
+    lpszReading: ?[*:0]const u8,
+    param3: u32,
+    lpszRegister: ?[*:0]const u8,
+    param5: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmEnumRegisterWordW(
+    param0: ?HKL,
+    param1: ?REGISTERWORDENUMPROCW,
+    lpszReading: ?[*:0]const u16,
+    param3: u32,
+    lpszRegister: ?[*:0]const u16,
+    param5: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmEscapeA(
+    param0: ?HKL,
+    param1: ?HIMC,
+    param2: IME_ESCAPE,
+    param3: ?*anyopaque,
+) callconv(.winapi) LRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmEscapeW(
+    param0: ?HKL,
+    param1: ?HIMC,
+    param2: IME_ESCAPE,
+    param3: ?*anyopaque,
+) callconv(.winapi) LRESULT;
+
+pub extern "imm32" fn ImmGenerateMessage(
+    param0: ?HIMC,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCandidateListA(
+    param0: ?HIMC,
+    deIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpCandList: ?*CANDIDATELIST,
+    dwBufLen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCandidateListCountA(
+    param0: ?HIMC,
+    lpdwListCount: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCandidateListCountW(
+    param0: ?HIMC,
+    lpdwListCount: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCandidateListW(
+    param0: ?HIMC,
+    deIndex: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpCandList: ?*CANDIDATELIST,
+    dwBufLen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCandidateWindow(
+    param0: ?HIMC,
+    param1: u32,
+    lpCandidate: ?*CANDIDATEFORM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCompositionFontA(
+    param0: ?HIMC,
+    lplf: ?*LOGFONTA,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCompositionFontW(
+    param0: ?HIMC,
+    lplf: ?*LOGFONTW,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCompositionStringA(
+    param0: ?HIMC,
+    param1: IME_COMPOSITION_STRING,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuf: ?*anyopaque,
+    dwBufLen: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCompositionStringW(
+    param0: ?HIMC,
+    param1: IME_COMPOSITION_STRING,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuf: ?*anyopaque,
+    dwBufLen: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetCompositionWindow(
+    param0: ?HIMC,
+    lpCompForm: ?*COMPOSITIONFORM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetContext(
+    param0: ?HWND,
+) callconv(.winapi) ?HIMC;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetConversionListA(
+    param0: ?HKL,
+    param1: ?HIMC,
+    lpSrc: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    lpDst: ?*CANDIDATELIST,
+    dwBufLen: u32,
+    uFlag: GET_CONVERSION_LIST_FLAG,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetConversionListW(
+    param0: ?HKL,
+    param1: ?HIMC,
+    lpSrc: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 4?
+    lpDst: ?*CANDIDATELIST,
+    dwBufLen: u32,
+    uFlag: GET_CONVERSION_LIST_FLAG,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetConversionStatus(
+    param0: ?HIMC,
+    lpfdwConversion: ?*IME_CONVERSION_MODE,
+    lpfdwSentence: ?*IME_SENTENCE_MODE,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetDefaultIMEWnd(
@@ -3781,6 +3994,43 @@ pub extern "imm32" fn ImmGetDescriptionW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetGuideLineA(
+    param0: ?HIMC,
+    dwIndex: GET_GUIDE_LINE_TYPE,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuf: ?PSTR,
+    dwBufLen: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetGuideLineW(
+    param0: ?HIMC,
+    dwIndex: GET_GUIDE_LINE_TYPE,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuf: ?PWSTR,
+    dwBufLen: u32,
+) callconv(.winapi) u32;
+
+pub extern "imm32" fn ImmGetHotKey(
+    param0: u32,
+    lpuModifiers: ?*u32,
+    lpuVKey: ?*u32,
+    phKL: ?*isize,
+) callconv(.winapi) BOOL;
+
+pub extern "imm32" fn ImmGetIMCCLockCount(
+    param0: ?HIMCC,
+) callconv(.winapi) u32;
+
+pub extern "imm32" fn ImmGetIMCCSize(
+    param0: ?HIMCC,
+) callconv(.winapi) u32;
+
+pub extern "imm32" fn ImmGetIMCLockCount(
+    param0: ?HIMC,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetIMEFileNameA(
     param0: ?HKL,
     lpszFileName: ?[*:0]u8,
@@ -3795,10 +4045,74 @@ pub extern "imm32" fn ImmGetIMEFileNameW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetImeMenuItemsA(
+    param0: ?HIMC,
+    param1: u32,
+    param2: u32,
+    lpImeParentMenu: ?*IMEMENUITEMINFOA,
+    // TODO: what to do with BytesParamIndex 5?
+    lpImeMenu: ?*IMEMENUITEMINFOA,
+    dwSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetImeMenuItemsW(
+    param0: ?HIMC,
+    param1: u32,
+    param2: u32,
+    lpImeParentMenu: ?*IMEMENUITEMINFOW,
+    // TODO: what to do with BytesParamIndex 5?
+    lpImeMenu: ?*IMEMENUITEMINFOW,
+    dwSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetOpenStatus(
+    param0: ?HIMC,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmGetProperty(
     param0: ?HKL,
     param1: u32,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetRegisterWordStyleA(
+    param0: ?HKL,
+    nItem: u32,
+    lpStyleBuf: [*]STYLEBUFA,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetRegisterWordStyleW(
+    param0: ?HKL,
+    nItem: u32,
+    lpStyleBuf: [*]STYLEBUFW,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetStatusWindowPos(
+    param0: ?HIMC,
+    lpptPos: ?*POINT,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmGetVirtualKey(
+    param0: ?HWND,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmInstallIMEA(
+    lpszIMEFileName: ?[*:0]const u8,
+    lpszLayoutText: ?[*:0]const u8,
+) callconv(.winapi) ?HKL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmInstallIMEW(
+    lpszIMEFileName: ?[*:0]const u16,
+    lpszLayoutText: ?[*:0]const u16,
+) callconv(.winapi) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmIsIME(
@@ -3806,24 +4120,52 @@ pub extern "imm32" fn ImmIsIME(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmSimulateHotKey(
+pub extern "imm32" fn ImmIsUIMessageA(
     param0: ?HWND,
-    param1: IME_HOTKEY_IDENTIFIER,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmCreateContext(
-) callconv(.winapi) ?HIMC;
+pub extern "imm32" fn ImmIsUIMessageW(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmDestroyContext(
+pub extern "imm32" fn ImmLockIMC(
     param0: ?HIMC,
+) callconv(.winapi) ?*INPUTCONTEXT;
+
+pub extern "imm32" fn ImmLockIMCC(
+    param0: ?HIMCC,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmNotifyIME(
+    param0: ?HIMC,
+    dwAction: NOTIFY_IME_ACTION,
+    dwIndex: NOTIFY_IME_INDEX,
+    dwValue: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetContext(
-    param0: ?HWND,
-) callconv(.winapi) ?HIMC;
+pub extern "imm32" fn ImmRegisterWordA(
+    param0: ?HKL,
+    lpszReading: ?[*:0]const u8,
+    param2: u32,
+    lpszRegister: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmRegisterWordW(
+    param0: ?HKL,
+    lpszReading: ?[*:0]const u16,
+    param2: u32,
+    lpszRegister: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmReleaseContext(
@@ -3832,35 +4174,41 @@ pub extern "imm32" fn ImmReleaseContext(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmAssociateContext(
-    param0: ?HWND,
-    param1: ?HIMC,
-) callconv(.winapi) ?HIMC;
+pub extern "imm32" fn ImmRequestMessageA(
+    param0: ?HIMC,
+    param1: WPARAM,
+    param2: LPARAM,
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmAssociateContextEx(
-    param0: ?HWND,
-    param1: ?HIMC,
-    param2: u32,
+pub extern "imm32" fn ImmRequestMessageW(
+    param0: ?HIMC,
+    param1: WPARAM,
+    param2: LPARAM,
+) callconv(.winapi) LRESULT;
+
+pub extern "imm32" fn ImmReSizeIMCC(
+    param0: ?HIMCC,
+    param1: u32,
+) callconv(.winapi) ?HIMCC;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "imm32" fn ImmSetCandidateWindow(
+    param0: ?HIMC,
+    lpCandidate: ?*CANDIDATEFORM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCompositionStringA(
+pub extern "imm32" fn ImmSetCompositionFontA(
     param0: ?HIMC,
-    param1: IME_COMPOSITION_STRING,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuf: ?*anyopaque,
-    dwBufLen: u32,
-) callconv(.winapi) i32;
+    lplf: ?*LOGFONTA,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCompositionStringW(
+pub extern "imm32" fn ImmSetCompositionFontW(
     param0: ?HIMC,
-    param1: IME_COMPOSITION_STRING,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuf: ?*anyopaque,
-    dwBufLen: u32,
-) callconv(.winapi) i32;
+    lplf: ?*LOGFONTW,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetCompositionStringA(
@@ -3887,58 +4235,9 @@ pub extern "imm32" fn ImmSetCompositionStringW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCandidateListCountA(
+pub extern "imm32" fn ImmSetCompositionWindow(
     param0: ?HIMC,
-    lpdwListCount: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCandidateListCountW(
-    param0: ?HIMC,
-    lpdwListCount: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCandidateListA(
-    param0: ?HIMC,
-    deIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpCandList: ?*CANDIDATELIST,
-    dwBufLen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCandidateListW(
-    param0: ?HIMC,
-    deIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpCandList: ?*CANDIDATELIST,
-    dwBufLen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetGuideLineA(
-    param0: ?HIMC,
-    dwIndex: GET_GUIDE_LINE_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuf: ?PSTR,
-    dwBufLen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetGuideLineW(
-    param0: ?HIMC,
-    dwIndex: GET_GUIDE_LINE_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuf: ?PWSTR,
-    dwBufLen: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetConversionStatus(
-    param0: ?HIMC,
-    lpfdwConversion: ?*IME_CONVERSION_MODE,
-    lpfdwSentence: ?*IME_SENTENCE_MODE,
+    lpCompForm: ?*COMPOSITIONFORM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3948,9 +4247,11 @@ pub extern "imm32" fn ImmSetConversionStatus(
     param2: IME_SENTENCE_MODE,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetOpenStatus(
-    param0: ?HIMC,
+pub extern "imm32" fn ImmSetHotKey(
+    param0: u32,
+    param1: u32,
+    param2: u32,
+    param3: ?HKL,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3960,163 +4261,28 @@ pub extern "imm32" fn ImmSetOpenStatus(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCompositionFontA(
-    param0: ?HIMC,
-    lplf: ?*LOGFONTA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCompositionFontW(
-    param0: ?HIMC,
-    lplf: ?*LOGFONTW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmSetCompositionFontA(
-    param0: ?HIMC,
-    lplf: ?*LOGFONTA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmSetCompositionFontW(
-    param0: ?HIMC,
-    lplf: ?*LOGFONTW,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmConfigureIMEA(
-    param0: ?HKL,
-    param1: ?HWND,
-    param2: u32,
-    param3: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmConfigureIMEW(
-    param0: ?HKL,
-    param1: ?HWND,
-    param2: u32,
-    param3: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmEscapeA(
-    param0: ?HKL,
-    param1: ?HIMC,
-    param2: IME_ESCAPE,
-    param3: ?*anyopaque,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmEscapeW(
-    param0: ?HKL,
-    param1: ?HIMC,
-    param2: IME_ESCAPE,
-    param3: ?*anyopaque,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetConversionListA(
-    param0: ?HKL,
-    param1: ?HIMC,
-    lpSrc: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 4?
-    lpDst: ?*CANDIDATELIST,
-    dwBufLen: u32,
-    uFlag: GET_CONVERSION_LIST_FLAG,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetConversionListW(
-    param0: ?HKL,
-    param1: ?HIMC,
-    lpSrc: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    lpDst: ?*CANDIDATELIST,
-    dwBufLen: u32,
-    uFlag: GET_CONVERSION_LIST_FLAG,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmNotifyIME(
-    param0: ?HIMC,
-    dwAction: NOTIFY_IME_ACTION,
-    dwIndex: NOTIFY_IME_INDEX,
-    dwValue: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetStatusWindowPos(
-    param0: ?HIMC,
-    lpptPos: ?*POINT,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmSetStatusWindowPos(
     param0: ?HIMC,
     lpptPos: ?*POINT,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCompositionWindow(
-    param0: ?HIMC,
-    lpCompForm: ?*COMPOSITIONFORM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmSetCompositionWindow(
-    param0: ?HIMC,
-    lpCompForm: ?*COMPOSITIONFORM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetCandidateWindow(
-    param0: ?HIMC,
-    param1: u32,
-    lpCandidate: ?*CANDIDATEFORM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmSetCandidateWindow(
-    param0: ?HIMC,
-    lpCandidate: ?*CANDIDATEFORM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmIsUIMessageA(
+pub extern "imm32" fn ImmShowSoftKeyboard(
     param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param1: i32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmIsUIMessageW(
+pub extern "imm32" fn ImmSimulateHotKey(
     param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param1: IME_HOTKEY_IDENTIFIER,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetVirtualKey(
-    param0: ?HWND,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmRegisterWordA(
-    param0: ?HKL,
-    lpszReading: ?[*:0]const u8,
-    param2: u32,
-    lpszRegister: ?[*:0]const u8,
+pub extern "imm32" fn ImmUnlockIMC(
+    param0: ?HIMC,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmRegisterWordW(
-    param0: ?HKL,
-    lpszReading: ?[*:0]const u16,
-    param2: u32,
-    lpszRegister: ?[*:0]const u16,
+pub extern "imm32" fn ImmUnlockIMCC(
+    param0: ?HIMCC,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4135,188 +4301,15 @@ pub extern "imm32" fn ImmUnregisterWordW(
     lpszUnregister: ?[*:0]const u16,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetRegisterWordStyleA(
-    param0: ?HKL,
-    nItem: u32,
-    lpStyleBuf: [*]STYLEBUFA,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetRegisterWordStyleW(
-    param0: ?HKL,
-    nItem: u32,
-    lpStyleBuf: [*]STYLEBUFW,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmEnumRegisterWordA(
-    param0: ?HKL,
-    param1: ?REGISTERWORDENUMPROCA,
-    lpszReading: ?[*:0]const u8,
-    param3: u32,
-    lpszRegister: ?[*:0]const u8,
-    param5: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmEnumRegisterWordW(
-    param0: ?HKL,
-    param1: ?REGISTERWORDENUMPROCW,
-    lpszReading: ?[*:0]const u16,
-    param3: u32,
-    lpszRegister: ?[*:0]const u16,
-    param5: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmDisableIME(
-    param0: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmEnumInputContext(
-    idThread: u32,
-    lpfn: ?IMCENUMPROC,
-    lParam: LPARAM,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetImeMenuItemsA(
-    param0: ?HIMC,
-    param1: u32,
-    param2: u32,
-    lpImeParentMenu: ?*IMEMENUITEMINFOA,
-    // TODO: what to do with BytesParamIndex 5?
-    lpImeMenu: ?*IMEMENUITEMINFOA,
-    dwSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmGetImeMenuItemsW(
-    param0: ?HIMC,
-    param1: u32,
-    param2: u32,
-    lpImeParentMenu: ?*IMEMENUITEMINFOW,
-    // TODO: what to do with BytesParamIndex 5?
-    lpImeMenu: ?*IMEMENUITEMINFOW,
-    dwSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmDisableTextFrameService(
-    idThread: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "imm32" fn ImmDisableLegacyIME(
-) callconv(.winapi) BOOL;
-
-pub extern "imm32" fn ImmGetHotKey(
-    param0: u32,
-    lpuModifiers: ?*u32,
-    lpuVKey: ?*u32,
-    phKL: ?*isize,
-) callconv(.winapi) BOOL;
-
-pub extern "imm32" fn ImmSetHotKey(
-    param0: u32,
-    param1: u32,
-    param2: u32,
-    param3: ?HKL,
-) callconv(.winapi) BOOL;
-
-pub extern "imm32" fn ImmGenerateMessage(
-    param0: ?HIMC,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmRequestMessageA(
-    param0: ?HIMC,
-    param1: WPARAM,
-    param2: LPARAM,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "imm32" fn ImmRequestMessageW(
-    param0: ?HIMC,
-    param1: WPARAM,
-    param2: LPARAM,
-) callconv(.winapi) LRESULT;
-
-pub extern "imm32" fn ImmCreateSoftKeyboard(
-    param0: u32,
-    param1: ?HWND,
-    param2: i32,
-    param3: i32,
-) callconv(.winapi) ?HWND;
-
-pub extern "imm32" fn ImmDestroySoftKeyboard(
-    param0: ?HWND,
-) callconv(.winapi) BOOL;
-
-pub extern "imm32" fn ImmShowSoftKeyboard(
-    param0: ?HWND,
-    param1: i32,
-) callconv(.winapi) BOOL;
-
-pub extern "imm32" fn ImmLockIMC(
-    param0: ?HIMC,
-) callconv(.winapi) ?*INPUTCONTEXT;
-
-pub extern "imm32" fn ImmUnlockIMC(
-    param0: ?HIMC,
-) callconv(.winapi) BOOL;
-
-pub extern "imm32" fn ImmGetIMCLockCount(
-    param0: ?HIMC,
-) callconv(.winapi) u32;
-
-pub extern "imm32" fn ImmCreateIMCC(
-    param0: u32,
-) callconv(.winapi) ?HIMCC;
-
-pub extern "imm32" fn ImmDestroyIMCC(
-    param0: ?HIMCC,
-) callconv(.winapi) ?HIMCC;
-
-pub extern "imm32" fn ImmLockIMCC(
-    param0: ?HIMCC,
-) callconv(.winapi) ?*anyopaque;
-
-pub extern "imm32" fn ImmUnlockIMCC(
-    param0: ?HIMCC,
-) callconv(.winapi) BOOL;
-
-pub extern "imm32" fn ImmGetIMCCLockCount(
-    param0: ?HIMCC,
-) callconv(.winapi) u32;
-
-pub extern "imm32" fn ImmReSizeIMCC(
-    param0: ?HIMCC,
-    param1: u32,
-) callconv(.winapi) ?HIMCC;
-
-pub extern "imm32" fn ImmGetIMCCSize(
-    param0: ?HIMCC,
-) callconv(.winapi) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (25)
 //--------------------------------------------------------------------------------
-pub const REGISTERWORD = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().REGISTERWORDA,
-    .wide => @This().REGISTERWORDW,
+pub const IEnumRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().IEnumRegisterWordA,
+    .wide => @This().IEnumRegisterWordW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'REGISTERWORD' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const STYLEBUF = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().STYLEBUFA,
-    .wide => @This().STYLEBUFW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'STYLEBUF' requires that UNICODE be set to true or false in the root module",
+        "'IEnumRegisterWord' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const IMEMENUITEMINFO = switch (@import("../../zig.zig").unicode_mode) {
@@ -4326,6 +4319,13 @@ pub const IMEMENUITEMINFO = switch (@import("../../zig.zig").unicode_mode) {
         "'IMEMENUITEMINFO' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const REGISTERWORD = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().REGISTERWORDA,
+    .wide => @This().REGISTERWORDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'REGISTERWORD' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const REGISTERWORDENUMPROC = switch (@import("../../zig.zig").unicode_mode) {
     .ansi => @This().REGISTERWORDENUMPROCA,
     .wide => @This().REGISTERWORDENUMPROCW,
@@ -4333,81 +4333,11 @@ pub const REGISTERWORDENUMPROC = switch (@import("../../zig.zig").unicode_mode) 
         "'REGISTERWORDENUMPROC' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const IEnumRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().IEnumRegisterWordA,
-    .wide => @This().IEnumRegisterWordW,
+pub const STYLEBUF = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().STYLEBUFA,
+    .wide => @This().STYLEBUFW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'IEnumRegisterWord' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmInstallIME = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmInstallIMEA,
-    .wide => @This().ImmInstallIMEW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmInstallIME' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetDescription = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetDescriptionA,
-    .wide => @This().ImmGetDescriptionW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetDescription' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetIMEFileName = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetIMEFileNameA,
-    .wide => @This().ImmGetIMEFileNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetIMEFileName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetCompositionString = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetCompositionStringA,
-    .wide => @This().ImmGetCompositionStringW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetCompositionString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmSetCompositionString = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmSetCompositionStringA,
-    .wide => @This().ImmSetCompositionStringW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmSetCompositionString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetCandidateListCount = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetCandidateListCountA,
-    .wide => @This().ImmGetCandidateListCountW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetCandidateListCount' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetCandidateList = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetCandidateListA,
-    .wide => @This().ImmGetCandidateListW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetCandidateList' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetGuideLine = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetGuideLineA,
-    .wide => @This().ImmGetGuideLineW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetGuideLine' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetCompositionFont = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetCompositionFontA,
-    .wide => @This().ImmGetCompositionFontW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetCompositionFont' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmSetCompositionFont = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmSetCompositionFontA,
-    .wide => @This().ImmSetCompositionFontW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmSetCompositionFont' requires that UNICODE be set to true or false in the root module",
+        "'STYLEBUF' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ImmConfigureIME = switch (@import("../../zig.zig").unicode_mode) {
@@ -4417,6 +4347,13 @@ pub const ImmConfigureIME = switch (@import("../../zig.zig").unicode_mode) {
         "'ImmConfigureIME' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const ImmEnumRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmEnumRegisterWordA,
+    .wide => @This().ImmEnumRegisterWordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmEnumRegisterWord' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const ImmEscape = switch (@import("../../zig.zig").unicode_mode) {
     .ansi => @This().ImmEscapeA,
     .wide => @This().ImmEscapeW,
@@ -4424,11 +4361,81 @@ pub const ImmEscape = switch (@import("../../zig.zig").unicode_mode) {
         "'ImmEscape' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const ImmGetCandidateList = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCandidateListA,
+    .wide => @This().ImmGetCandidateListW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCandidateList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetCandidateListCount = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCandidateListCountA,
+    .wide => @This().ImmGetCandidateListCountW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCandidateListCount' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetCompositionFont = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCompositionFontA,
+    .wide => @This().ImmGetCompositionFontW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCompositionFont' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetCompositionString = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetCompositionStringA,
+    .wide => @This().ImmGetCompositionStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetCompositionString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const ImmGetConversionList = switch (@import("../../zig.zig").unicode_mode) {
     .ansi => @This().ImmGetConversionListA,
     .wide => @This().ImmGetConversionListW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'ImmGetConversionList' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetDescription = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetDescriptionA,
+    .wide => @This().ImmGetDescriptionW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetDescription' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetGuideLine = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetGuideLineA,
+    .wide => @This().ImmGetGuideLineW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetGuideLine' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetIMEFileName = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetIMEFileNameA,
+    .wide => @This().ImmGetIMEFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetIMEFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetImeMenuItems = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetImeMenuItemsA,
+    .wide => @This().ImmGetImeMenuItemsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetImeMenuItems' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmGetRegisterWordStyle = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmGetRegisterWordStyleA,
+    .wide => @This().ImmGetRegisterWordStyleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmGetRegisterWordStyle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmInstallIME = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmInstallIMEA,
+    .wide => @This().ImmInstallIMEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmInstallIME' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ImmIsUIMessage = switch (@import("../../zig.zig").unicode_mode) {
@@ -4445,39 +4452,32 @@ pub const ImmRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
         "'ImmRegisterWord' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const ImmUnregisterWord = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmUnregisterWordA,
-    .wide => @This().ImmUnregisterWordW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmUnregisterWord' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetRegisterWordStyle = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetRegisterWordStyleA,
-    .wide => @This().ImmGetRegisterWordStyleW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetRegisterWordStyle' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmEnumRegisterWord = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmEnumRegisterWordA,
-    .wide => @This().ImmEnumRegisterWordW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmEnumRegisterWord' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ImmGetImeMenuItems = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ImmGetImeMenuItemsA,
-    .wide => @This().ImmGetImeMenuItemsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ImmGetImeMenuItems' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const ImmRequestMessage = switch (@import("../../zig.zig").unicode_mode) {
     .ansi => @This().ImmRequestMessageA,
     .wide => @This().ImmRequestMessageW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'ImmRequestMessage' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmSetCompositionFont = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmSetCompositionFontA,
+    .wide => @This().ImmSetCompositionFontW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmSetCompositionFont' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmSetCompositionString = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmSetCompositionStringA,
+    .wide => @This().ImmSetCompositionStringW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmSetCompositionString' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ImmUnregisterWord = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ImmUnregisterWordA,
+    .wide => @This().ImmUnregisterWordW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ImmUnregisterWord' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -4510,13 +4510,13 @@ const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "fpCreateIFECommonInstanceType")) { _ = fpCreateIFECommonInstanceType; }
+    if (@hasDecl(@This(), "fpCreateIFEDictionaryInstanceType")) { _ = fpCreateIFEDictionaryInstanceType; }
+    if (@hasDecl(@This(), "fpCreateIFELanguageInstanceType")) { _ = fpCreateIFELanguageInstanceType; }
     if (@hasDecl(@This(), "IMCENUMPROC")) { _ = IMCENUMPROC; }
+    if (@hasDecl(@This(), "PFNLOG")) { _ = PFNLOG; }
     if (@hasDecl(@This(), "REGISTERWORDENUMPROCA")) { _ = REGISTERWORDENUMPROCA; }
     if (@hasDecl(@This(), "REGISTERWORDENUMPROCW")) { _ = REGISTERWORDENUMPROCW; }
-    if (@hasDecl(@This(), "PFNLOG")) { _ = PFNLOG; }
-    if (@hasDecl(@This(), "fpCreateIFECommonInstanceType")) { _ = fpCreateIFECommonInstanceType; }
-    if (@hasDecl(@This(), "fpCreateIFELanguageInstanceType")) { _ = fpCreateIFELanguageInstanceType; }
-    if (@hasDecl(@This(), "fpCreateIFEDictionaryInstanceType")) { _ = fpCreateIFEDictionaryInstanceType; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

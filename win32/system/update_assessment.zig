@@ -6,19 +6,42 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-const CLSID_WaaSAssessor_Value = Guid.initString("098ef871-fa9f-46af-8958-c083515d7c9c");
-pub const CLSID_WaaSAssessor = &CLSID_WaaSAssessor_Value;
-
-pub const UpdateImpactLevel = enum(i32) {
-    None = 0,
-    Low = 1,
-    Medium = 2,
-    High = 3,
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IWaaSAssessor_Value = Guid.initString("2347bbef-1a3b-45a4-902d-3e09c269b45e");
+pub const IID_IWaaSAssessor = &IID_IWaaSAssessor_Value;
+pub const IWaaSAssessor = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOSUpdateAssessment: *const fn(
+            self: *const IWaaSAssessor,
+            result: ?*OSUpdateAssessment,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOSUpdateAssessment(self, result);
+    }
 };
-pub const UpdateImpactLevel_None = UpdateImpactLevel.None;
-pub const UpdateImpactLevel_Low = UpdateImpactLevel.Low;
-pub const UpdateImpactLevel_Medium = UpdateImpactLevel.Medium;
-pub const UpdateImpactLevel_High = UpdateImpactLevel.High;
+
+pub const OSUpdateAssessment = extern struct {
+    isEndOfSupport: BOOL,
+    assessmentForCurrent: UpdateAssessment,
+    assessmentForUpToDate: UpdateAssessment,
+    securityStatus: UpdateAssessmentStatus,
+    assessmentTime: FILETIME,
+    releaseInfoTime: FILETIME,
+    currentOSBuild: ?PWSTR,
+    currentOSReleaseTime: FILETIME,
+    upToDateOSBuild: ?PWSTR,
+    upToDateOSReleaseTime: FILETIME,
+};
+
+pub const UpdateAssessment = extern struct {
+    status: UpdateAssessmentStatus,
+    impact: UpdateImpactLevel,
+    daysOutOfDate: u32,
+};
 
 pub const UpdateAssessmentStatus = enum(i32) {
     Latest = 0,
@@ -47,42 +70,19 @@ pub const UpdateAssessmentStatus_NotLatestManaged = UpdateAssessmentStatus.NotLa
 pub const UpdateAssessmentStatus_NotLatestUnknown = UpdateAssessmentStatus.NotLatestUnknown;
 pub const UpdateAssessmentStatus_NotLatestTargetedVersion = UpdateAssessmentStatus.NotLatestTargetedVersion;
 
-pub const UpdateAssessment = extern struct {
-    status: UpdateAssessmentStatus,
-    impact: UpdateImpactLevel,
-    daysOutOfDate: u32,
+pub const UpdateImpactLevel = enum(i32) {
+    None = 0,
+    Low = 1,
+    Medium = 2,
+    High = 3,
 };
+pub const UpdateImpactLevel_None = UpdateImpactLevel.None;
+pub const UpdateImpactLevel_Low = UpdateImpactLevel.Low;
+pub const UpdateImpactLevel_Medium = UpdateImpactLevel.Medium;
+pub const UpdateImpactLevel_High = UpdateImpactLevel.High;
 
-pub const OSUpdateAssessment = extern struct {
-    isEndOfSupport: BOOL,
-    assessmentForCurrent: UpdateAssessment,
-    assessmentForUpToDate: UpdateAssessment,
-    securityStatus: UpdateAssessmentStatus,
-    assessmentTime: FILETIME,
-    releaseInfoTime: FILETIME,
-    currentOSBuild: ?PWSTR,
-    currentOSReleaseTime: FILETIME,
-    upToDateOSBuild: ?PWSTR,
-    upToDateOSReleaseTime: FILETIME,
-};
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-const IID_IWaaSAssessor_Value = Guid.initString("2347bbef-1a3b-45a4-902d-3e09c269b45e");
-pub const IID_IWaaSAssessor = &IID_IWaaSAssessor_Value;
-pub const IWaaSAssessor = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOSUpdateAssessment: *const fn(
-            self: *const IWaaSAssessor,
-            result: ?*OSUpdateAssessment,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOSUpdateAssessment(self, result);
-    }
-};
+const CLSID_WaaSAssessor_Value = Guid.initString("098ef871-fa9f-46af-8958-c083515d7c9c");
+pub const CLSID_WaaSAssessor = &CLSID_WaaSAssessor_Value;
 
 
 //--------------------------------------------------------------------------------

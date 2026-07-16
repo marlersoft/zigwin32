@@ -2,183 +2,390 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (134)
 //--------------------------------------------------------------------------------
-pub const PROCESSOR_NUMBER_PKEY = DEVPROPKEY { .fmtid = Guid.initString("5724c81d-d5af-4c1f-a103-a06e28f204c6"), .pid = 1 };
-pub const GUID_DEVICE_BATTERY = Guid.initString("72631e54-78a4-11d0-bcf7-00aa00b7b32a");
-pub const GUID_DEVICE_APPLICATIONLAUNCH_BUTTON = Guid.initString("629758ee-986e-4d9e-8e47-de27f8ab054d");
-pub const GUID_DEVICE_SYS_BUTTON = Guid.initString("4afa3d53-74a7-11d0-be5e-00a0c9062857");
-pub const GUID_DEVICE_LID = Guid.initString("4afa3d52-74a7-11d0-be5e-00a0c9062857");
-pub const GUID_DEVICE_THERMAL_ZONE = Guid.initString("4afa3d51-74a7-11d0-be5e-00a0c9062857");
-pub const GUID_DEVICE_FAN = Guid.initString("05ecd13d-81da-4a2a-8a4c-524f23dd4dc9");
-pub const GUID_DEVICE_PROCESSOR = Guid.initString("97fadb10-4e33-40ae-359c-8bef029dbdd0");
-pub const GUID_DEVICE_MEMORY = Guid.initString("3fd0f03d-92e0-45fb-b75c-5ed8ffb01021");
-pub const GUID_DEVICE_ACPI_TIME = Guid.initString("97f99bf6-4497-4f18-bb22-4b9fb2fbef9c");
-pub const GUID_DEVICE_MESSAGE_INDICATOR = Guid.initString("cd48a365-fa94-4ce2-a232-a1b764e5d8b4");
-pub const GUID_CLASS_INPUT = Guid.initString("4d1e55b2-f16f-11cf-88cb-001111000030");
-pub const GUID_DEVINTERFACE_THERMAL_COOLING = Guid.initString("dbe4373d-3c81-40cb-ace4-e0e5d05f0c9f");
-pub const GUID_DEVINTERFACE_THERMAL_MANAGER = Guid.initString("927ec093-69a4-4bc0-bd02-711664714463");
-pub const BATTERY_UNKNOWN_CAPACITY = @as(u32, 4294967295);
-pub const UNKNOWN_CAPACITY = @as(u32, 4294967295);
-pub const BATTERY_SYSTEM_BATTERY = @as(u32, 2147483648);
-pub const BATTERY_CAPACITY_RELATIVE = @as(u32, 1073741824);
-pub const BATTERY_IS_SHORT_TERM = @as(u32, 536870912);
-pub const BATTERY_SEALED = @as(u32, 268435456);
-pub const BATTERY_SET_CHARGE_SUPPORTED = @as(u32, 1);
-pub const BATTERY_SET_DISCHARGE_SUPPORTED = @as(u32, 2);
-pub const BATTERY_SET_CHARGINGSOURCE_SUPPORTED = @as(u32, 4);
-pub const BATTERY_SET_CHARGER_ID_SUPPORTED = @as(u32, 8);
-pub const BATTERY_UNKNOWN_TIME = @as(u32, 4294967295);
-pub const BATTERY_UNKNOWN_CURRENT = @as(u32, 4294967295);
-pub const UNKNOWN_CURRENT = @as(u32, 4294967295);
-pub const BATTERY_USB_CHARGER_STATUS_FN_DEFAULT_USB = @as(u32, 1);
-pub const BATTERY_USB_CHARGER_STATUS_UCM_PD = @as(u32, 2);
-pub const BATTERY_UNKNOWN_VOLTAGE = @as(u32, 4294967295);
-pub const BATTERY_UNKNOWN_RATE = @as(u32, 2147483648);
-pub const UNKNOWN_RATE = @as(u32, 2147483648);
-pub const UNKNOWN_VOLTAGE = @as(u32, 4294967295);
-pub const BATTERY_POWER_ON_LINE = @as(u32, 1);
-pub const BATTERY_DISCHARGING = @as(u32, 2);
-pub const BATTERY_CHARGING = @as(u32, 4);
-pub const BATTERY_CRITICAL = @as(u32, 8);
-pub const MAX_BATTERY_STRING_SIZE = @as(u32, 128);
-pub const IOCTL_BATTERY_QUERY_TAG = @as(u32, 2703424);
-pub const IOCTL_BATTERY_QUERY_INFORMATION = @as(u32, 2703428);
-pub const IOCTL_BATTERY_SET_INFORMATION = @as(u32, 2719816);
-pub const IOCTL_BATTERY_QUERY_STATUS = @as(u32, 2703436);
-pub const IOCTL_BATTERY_CHARGING_SOURCE_CHANGE = @as(u32, 2703440);
-pub const BATTERY_TAG_INVALID = @as(u32, 0);
-pub const MAX_ACTIVE_COOLING_LEVELS = @as(u32, 10);
-pub const ACTIVE_COOLING = @as(u32, 0);
-pub const PASSIVE_COOLING = @as(u32, 1);
-pub const TZ_ACTIVATION_REASON_THERMAL = @as(u32, 1);
-pub const TZ_ACTIVATION_REASON_CURRENT = @as(u32, 2);
-pub const THERMAL_POLICY_VERSION_1 = @as(u32, 1);
-pub const THERMAL_POLICY_VERSION_2 = @as(u32, 2);
-pub const IOCTL_THERMAL_QUERY_INFORMATION = @as(u32, 2703488);
-pub const IOCTL_THERMAL_SET_COOLING_POLICY = @as(u32, 2719876);
-pub const IOCTL_RUN_ACTIVE_COOLING_METHOD = @as(u32, 2719880);
-pub const IOCTL_THERMAL_SET_PASSIVE_LIMIT = @as(u32, 2719884);
-pub const IOCTL_THERMAL_READ_TEMPERATURE = @as(u32, 2703504);
-pub const IOCTL_THERMAL_READ_POLICY = @as(u32, 2703508);
-pub const IOCTL_QUERY_LID = @as(u32, 2703552);
-pub const IOCTL_NOTIFY_SWITCH_EVENT = @as(u32, 2703616);
-pub const IOCTL_GET_SYS_BUTTON_CAPS = @as(u32, 2703680);
-pub const IOCTL_GET_SYS_BUTTON_EVENT = @as(u32, 2703684);
-pub const SYS_BUTTON_POWER = @as(u32, 1);
-pub const SYS_BUTTON_SLEEP = @as(u32, 2);
-pub const SYS_BUTTON_LID = @as(u32, 4);
-pub const SYS_BUTTON_WAKE = @as(u32, 2147483648);
-pub const SYS_BUTTON_LID_STATE_MASK = @as(u32, 196608);
-pub const SYS_BUTTON_LID_OPEN = @as(u32, 65536);
-pub const SYS_BUTTON_LID_CLOSED = @as(u32, 131072);
-pub const SYS_BUTTON_LID_INITIAL = @as(u32, 262144);
-pub const SYS_BUTTON_LID_CHANGED = @as(u32, 524288);
-pub const IOCTL_GET_PROCESSOR_OBJ_INFO = @as(u32, 2703744);
-pub const THERMAL_COOLING_INTERFACE_VERSION = @as(u32, 1);
-pub const THERMAL_DEVICE_INTERFACE_VERSION = @as(u32, 1);
-pub const IOCTL_SET_SYS_MESSAGE_INDICATOR = @as(u32, 2720192);
-pub const IOCTL_SET_WAKE_ALARM_VALUE = @as(u32, 2720256);
-pub const IOCTL_SET_WAKE_ALARM_POLICY = @as(u32, 2720260);
-pub const IOCTL_GET_WAKE_ALARM_VALUE = @as(u32, 2736648);
-pub const IOCTL_GET_WAKE_ALARM_POLICY = @as(u32, 2736652);
 pub const ACPI_TIME_ADJUST_DAYLIGHT = @as(u32, 1);
 pub const ACPI_TIME_IN_DAYLIGHT = @as(u32, 2);
 pub const ACPI_TIME_ZONE_UNKNOWN = @as(u32, 2047);
-pub const IOCTL_ACPI_GET_REAL_TIME = @as(u32, 2703888);
-pub const IOCTL_ACPI_SET_REAL_TIME = @as(u32, 2720276);
-pub const IOCTL_GET_WAKE_ALARM_SYSTEM_POWERSTATE = @as(u32, 2703896);
-pub const BATTERY_STATUS_WMI_GUID = Guid.initString("fc4670d1-ebbf-416e-87ce-374a4ebc111a");
-pub const BATTERY_RUNTIME_WMI_GUID = Guid.initString("535a3767-1ac2-49bc-a077-3f7a02e40aec");
-pub const BATTERY_TEMPERATURE_WMI_GUID = Guid.initString("1a52a14d-adce-4a44-9a3e-c8d8f15ff2c2");
-pub const BATTERY_FULL_CHARGED_CAPACITY_WMI_GUID = Guid.initString("40b40565-96f7-4435-8694-97e0e4395905");
-pub const BATTERY_CYCLE_COUNT_WMI_GUID = Guid.initString("ef98db24-0014-4c25-a50b-c724ae5cd371");
-pub const BATTERY_STATIC_DATA_WMI_GUID = Guid.initString("05e1e463-e4e2-4ea9-80cb-9bd4b3ca0655");
-pub const BATTERY_STATUS_CHANGE_WMI_GUID = Guid.initString("cddfa0c3-7c5b-4e43-a034-059fa5b84364");
-pub const BATTERY_TAG_CHANGE_WMI_GUID = Guid.initString("5e1f6e19-8786-4d23-94fc-9e746bd5d888");
-pub const BATTERY_MINIPORT_UPDATE_DATA_VER_1 = @as(u32, 1);
-pub const BATTERY_MINIPORT_UPDATE_DATA_VER_2 = @as(u32, 2);
+pub const ACTIVE_COOLING = @as(u32, 0);
+pub const BATTERY_CAPACITY_RELATIVE = @as(u32, 1073741824);
+pub const BATTERY_CHARGING = @as(u32, 4);
 pub const BATTERY_CLASS_MAJOR_VERSION = @as(u32, 1);
 pub const BATTERY_CLASS_MINOR_VERSION = @as(u32, 0);
 pub const BATTERY_CLASS_MINOR_VERSION_1 = @as(u32, 1);
-pub const GUID_DEVICE_ENERGY_METER = Guid.initString("45bd8344-7ed6-49cf-a440-c276c933b053");
-pub const IOCTL_EMI_GET_VERSION = @as(u32, 2244608);
-pub const IOCTL_EMI_GET_METADATA_SIZE = @as(u32, 2244612);
-pub const IOCTL_EMI_GET_METADATA = @as(u32, 2244616);
-pub const IOCTL_EMI_GET_MEASUREMENT = @as(u32, 2244620);
+pub const BATTERY_CRITICAL = @as(u32, 8);
+pub const BATTERY_CYCLE_COUNT_WMI_GUID = Guid.initString("ef98db24-0014-4c25-a50b-c724ae5cd371");
+pub const BATTERY_DISCHARGING = @as(u32, 2);
+pub const BATTERY_FULL_CHARGED_CAPACITY_WMI_GUID = Guid.initString("40b40565-96f7-4435-8694-97e0e4395905");
+pub const BATTERY_IS_SHORT_TERM = @as(u32, 536870912);
+pub const BATTERY_MINIPORT_UPDATE_DATA_VER_1 = @as(u32, 1);
+pub const BATTERY_MINIPORT_UPDATE_DATA_VER_2 = @as(u32, 2);
+pub const BATTERY_POWER_ON_LINE = @as(u32, 1);
+pub const BATTERY_RUNTIME_WMI_GUID = Guid.initString("535a3767-1ac2-49bc-a077-3f7a02e40aec");
+pub const BATTERY_SEALED = @as(u32, 268435456);
+pub const BATTERY_SET_CHARGE_SUPPORTED = @as(u32, 1);
+pub const BATTERY_SET_CHARGER_ID_SUPPORTED = @as(u32, 8);
+pub const BATTERY_SET_CHARGINGSOURCE_SUPPORTED = @as(u32, 4);
+pub const BATTERY_SET_DISCHARGE_SUPPORTED = @as(u32, 2);
+pub const BATTERY_STATIC_DATA_WMI_GUID = Guid.initString("05e1e463-e4e2-4ea9-80cb-9bd4b3ca0655");
+pub const BATTERY_STATUS_CHANGE_WMI_GUID = Guid.initString("cddfa0c3-7c5b-4e43-a034-059fa5b84364");
+pub const BATTERY_STATUS_WMI_GUID = Guid.initString("fc4670d1-ebbf-416e-87ce-374a4ebc111a");
+pub const BATTERY_SYSTEM_BATTERY = @as(u32, 2147483648);
+pub const BATTERY_TAG_CHANGE_WMI_GUID = Guid.initString("5e1f6e19-8786-4d23-94fc-9e746bd5d888");
+pub const BATTERY_TAG_INVALID = @as(u32, 0);
+pub const BATTERY_TEMPERATURE_WMI_GUID = Guid.initString("1a52a14d-adce-4a44-9a3e-c8d8f15ff2c2");
+pub const BATTERY_UNKNOWN_CAPACITY = @as(u32, 4294967295);
+pub const BATTERY_UNKNOWN_CURRENT = @as(u32, 4294967295);
+pub const BATTERY_UNKNOWN_RATE = @as(u32, 2147483648);
+pub const BATTERY_UNKNOWN_TIME = @as(u32, 4294967295);
+pub const BATTERY_UNKNOWN_VOLTAGE = @as(u32, 4294967295);
+pub const BATTERY_USB_CHARGER_STATUS_FN_DEFAULT_USB = @as(u32, 1);
+pub const BATTERY_USB_CHARGER_STATUS_UCM_PD = @as(u32, 2);
+pub const DEVICEPOWER_AND_OPERATION = @as(u32, 1073741824);
+pub const DEVICEPOWER_CLEAR_WAKEENABLED = @as(u32, 2);
+pub const DEVICEPOWER_FILTER_DEVICES_PRESENT = @as(u32, 536870912);
+pub const DEVICEPOWER_FILTER_HARDWARE = @as(u32, 268435456);
+pub const DEVICEPOWER_FILTER_ON_NAME = @as(u32, 33554432);
+pub const DEVICEPOWER_FILTER_WAKEENABLED = @as(u32, 134217728);
+pub const DEVICEPOWER_FILTER_WAKEPROGRAMMABLE = @as(u32, 67108864);
+pub const DEVICEPOWER_HARDWAREID = @as(u32, 2147483648);
+pub const DEVICEPOWER_SET_WAKEENABLED = @as(u32, 1);
+pub const EFFECTIVE_POWER_MODE_V1 = @as(u32, 1);
+pub const EFFECTIVE_POWER_MODE_V2 = @as(u32, 2);
 pub const EMI_NAME_MAX = @as(u32, 16);
 pub const EMI_VERSION_V1 = @as(u32, 1);
 pub const EMI_VERSION_V2 = @as(u32, 2);
-pub const EFFECTIVE_POWER_MODE_V1 = @as(u32, 1);
-pub const EFFECTIVE_POWER_MODE_V2 = @as(u32, 2);
-pub const EnableSysTrayBatteryMeter = @as(u32, 1);
 pub const EnableMultiBatteryDisplay = @as(u32, 2);
 pub const EnablePasswordLogon = @as(u32, 4);
-pub const EnableWakeOnRing = @as(u32, 8);
+pub const EnableSysTrayBatteryMeter = @as(u32, 1);
 pub const EnableVideoDimDisplay = @as(u32, 16);
-pub const POWER_ATTRIBUTE_HIDE = @as(u32, 1);
-pub const POWER_ATTRIBUTE_SHOW_AOAC = @as(u32, 2);
-pub const DEVICEPOWER_HARDWAREID = @as(u32, 2147483648);
-pub const DEVICEPOWER_AND_OPERATION = @as(u32, 1073741824);
-pub const DEVICEPOWER_FILTER_DEVICES_PRESENT = @as(u32, 536870912);
-pub const DEVICEPOWER_FILTER_HARDWARE = @as(u32, 268435456);
-pub const DEVICEPOWER_FILTER_WAKEENABLED = @as(u32, 134217728);
-pub const DEVICEPOWER_FILTER_WAKEPROGRAMMABLE = @as(u32, 67108864);
-pub const DEVICEPOWER_FILTER_ON_NAME = @as(u32, 33554432);
-pub const DEVICEPOWER_SET_WAKEENABLED = @as(u32, 1);
-pub const DEVICEPOWER_CLEAR_WAKEENABLED = @as(u32, 2);
+pub const EnableWakeOnRing = @as(u32, 8);
+pub const GUID_CLASS_INPUT = Guid.initString("4d1e55b2-f16f-11cf-88cb-001111000030");
+pub const GUID_DEVICE_ACPI_TIME = Guid.initString("97f99bf6-4497-4f18-bb22-4b9fb2fbef9c");
+pub const GUID_DEVICE_APPLICATIONLAUNCH_BUTTON = Guid.initString("629758ee-986e-4d9e-8e47-de27f8ab054d");
+pub const GUID_DEVICE_BATTERY = Guid.initString("72631e54-78a4-11d0-bcf7-00aa00b7b32a");
+pub const GUID_DEVICE_ENERGY_METER = Guid.initString("45bd8344-7ed6-49cf-a440-c276c933b053");
+pub const GUID_DEVICE_FAN = Guid.initString("05ecd13d-81da-4a2a-8a4c-524f23dd4dc9");
+pub const GUID_DEVICE_LID = Guid.initString("4afa3d52-74a7-11d0-be5e-00a0c9062857");
+pub const GUID_DEVICE_MEMORY = Guid.initString("3fd0f03d-92e0-45fb-b75c-5ed8ffb01021");
+pub const GUID_DEVICE_MESSAGE_INDICATOR = Guid.initString("cd48a365-fa94-4ce2-a232-a1b764e5d8b4");
+pub const GUID_DEVICE_PROCESSOR = Guid.initString("97fadb10-4e33-40ae-359c-8bef029dbdd0");
+pub const GUID_DEVICE_SYS_BUTTON = Guid.initString("4afa3d53-74a7-11d0-be5e-00a0c9062857");
+pub const GUID_DEVICE_THERMAL_ZONE = Guid.initString("4afa3d51-74a7-11d0-be5e-00a0c9062857");
+pub const GUID_DEVINTERFACE_THERMAL_COOLING = Guid.initString("dbe4373d-3c81-40cb-ace4-e0e5d05f0c9f");
+pub const GUID_DEVINTERFACE_THERMAL_MANAGER = Guid.initString("927ec093-69a4-4bc0-bd02-711664714463");
+pub const IOCTL_ACPI_GET_REAL_TIME = @as(u32, 2703888);
+pub const IOCTL_ACPI_SET_REAL_TIME = @as(u32, 2720276);
+pub const IOCTL_BATTERY_CHARGING_SOURCE_CHANGE = @as(u32, 2703440);
+pub const IOCTL_BATTERY_QUERY_INFORMATION = @as(u32, 2703428);
+pub const IOCTL_BATTERY_QUERY_STATUS = @as(u32, 2703436);
+pub const IOCTL_BATTERY_QUERY_TAG = @as(u32, 2703424);
+pub const IOCTL_BATTERY_SET_INFORMATION = @as(u32, 2719816);
+pub const IOCTL_EMI_GET_MEASUREMENT = @as(u32, 2244620);
+pub const IOCTL_EMI_GET_METADATA = @as(u32, 2244616);
+pub const IOCTL_EMI_GET_METADATA_SIZE = @as(u32, 2244612);
+pub const IOCTL_EMI_GET_VERSION = @as(u32, 2244608);
+pub const IOCTL_GET_PROCESSOR_OBJ_INFO = @as(u32, 2703744);
+pub const IOCTL_GET_SYS_BUTTON_CAPS = @as(u32, 2703680);
+pub const IOCTL_GET_SYS_BUTTON_EVENT = @as(u32, 2703684);
+pub const IOCTL_GET_WAKE_ALARM_POLICY = @as(u32, 2736652);
+pub const IOCTL_GET_WAKE_ALARM_SYSTEM_POWERSTATE = @as(u32, 2703896);
+pub const IOCTL_GET_WAKE_ALARM_VALUE = @as(u32, 2736648);
+pub const IOCTL_NOTIFY_SWITCH_EVENT = @as(u32, 2703616);
+pub const IOCTL_QUERY_LID = @as(u32, 2703552);
+pub const IOCTL_RUN_ACTIVE_COOLING_METHOD = @as(u32, 2719880);
+pub const IOCTL_SET_SYS_MESSAGE_INDICATOR = @as(u32, 2720192);
+pub const IOCTL_SET_WAKE_ALARM_POLICY = @as(u32, 2720260);
+pub const IOCTL_SET_WAKE_ALARM_VALUE = @as(u32, 2720256);
+pub const IOCTL_THERMAL_QUERY_INFORMATION = @as(u32, 2703488);
+pub const IOCTL_THERMAL_READ_POLICY = @as(u32, 2703508);
+pub const IOCTL_THERMAL_READ_TEMPERATURE = @as(u32, 2703504);
+pub const IOCTL_THERMAL_SET_COOLING_POLICY = @as(u32, 2719876);
+pub const IOCTL_THERMAL_SET_PASSIVE_LIMIT = @as(u32, 2719884);
+pub const MAX_ACTIVE_COOLING_LEVELS = @as(u32, 10);
+pub const MAX_BATTERY_STRING_SIZE = @as(u32, 128);
+pub const PASSIVE_COOLING = @as(u32, 1);
 pub const PDCAP_S0_SUPPORTED = @as(u32, 65536);
 pub const PDCAP_S1_SUPPORTED = @as(u32, 131072);
 pub const PDCAP_S2_SUPPORTED = @as(u32, 262144);
 pub const PDCAP_S3_SUPPORTED = @as(u32, 524288);
+pub const PDCAP_S4_SUPPORTED = @as(u32, 16777216);
+pub const PDCAP_S5_SUPPORTED = @as(u32, 33554432);
 pub const PDCAP_WAKE_FROM_S0_SUPPORTED = @as(u32, 1048576);
 pub const PDCAP_WAKE_FROM_S1_SUPPORTED = @as(u32, 2097152);
 pub const PDCAP_WAKE_FROM_S2_SUPPORTED = @as(u32, 4194304);
 pub const PDCAP_WAKE_FROM_S3_SUPPORTED = @as(u32, 8388608);
-pub const PDCAP_S4_SUPPORTED = @as(u32, 16777216);
-pub const PDCAP_S5_SUPPORTED = @as(u32, 33554432);
+pub const POWER_ATTRIBUTE_HIDE = @as(u32, 1);
+pub const POWER_ATTRIBUTE_SHOW_AOAC = @as(u32, 2);
+pub const PROCESSOR_NUMBER_PKEY = DEVPROPKEY { .fmtid = Guid.initString("5724c81d-d5af-4c1f-a103-a06e28f204c6"), .pid = 1 };
+pub const SYS_BUTTON_LID = @as(u32, 4);
+pub const SYS_BUTTON_LID_CHANGED = @as(u32, 524288);
+pub const SYS_BUTTON_LID_CLOSED = @as(u32, 131072);
+pub const SYS_BUTTON_LID_INITIAL = @as(u32, 262144);
+pub const SYS_BUTTON_LID_OPEN = @as(u32, 65536);
+pub const SYS_BUTTON_LID_STATE_MASK = @as(u32, 196608);
+pub const SYS_BUTTON_POWER = @as(u32, 1);
+pub const SYS_BUTTON_SLEEP = @as(u32, 2);
+pub const SYS_BUTTON_WAKE = @as(u32, 2147483648);
+pub const THERMAL_COOLING_INTERFACE_VERSION = @as(u32, 1);
+pub const THERMAL_DEVICE_INTERFACE_VERSION = @as(u32, 1);
 pub const THERMAL_EVENT_VERSION = @as(u32, 1);
+pub const THERMAL_POLICY_VERSION_1 = @as(u32, 1);
+pub const THERMAL_POLICY_VERSION_2 = @as(u32, 2);
+pub const TZ_ACTIVATION_REASON_CURRENT = @as(u32, 2);
+pub const TZ_ACTIVATION_REASON_THERMAL = @as(u32, 1);
+pub const UNKNOWN_CAPACITY = @as(u32, 4294967295);
+pub const UNKNOWN_CURRENT = @as(u32, 4294967295);
+pub const UNKNOWN_RATE = @as(u32, 2147483648);
+pub const UNKNOWN_VOLTAGE = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
 // Section: Types (73)
 //--------------------------------------------------------------------------------
-pub const POWER_COOLING_MODE = enum(u16) {
-    ACTIVE = 0,
-    PASSIVE = 1,
-    INVALID_MODE = 2,
-};
-pub const PO_TZ_ACTIVE = POWER_COOLING_MODE.ACTIVE;
-pub const PO_TZ_PASSIVE = POWER_COOLING_MODE.PASSIVE;
-pub const PO_TZ_INVALID_MODE = POWER_COOLING_MODE.INVALID_MODE;
-
-pub const PROCESSOR_POWER_INFORMATION = extern struct {
-    Number: u64,
-    MaxMhz: u64,
-    CurrentMhz: u64,
-    MhzLimit: u64,
-    MaxIdleState: u64,
-    CurrentIdleState: u64,
+pub const ACPI_REAL_TIME = extern struct {
+    Year: u16,
+    Month: u8,
+    Day: u8,
+    Hour: u8,
+    Minute: u8,
+    Second: u8,
+    Valid: u8,
+    Milliseconds: u16,
+    TimeZone: i16,
+    DayLight: u8,
+    Reserved1: [3]u8,
 };
 
-pub const SYSTEM_POWER_INFORMATION = extern struct {
-    MaxIdlenessAllowed: u64,
-    Idleness: u64,
-    TimeRemaining: u64,
-    CoolingMode: POWER_COOLING_MODE,
+pub const ADMINISTRATOR_POWER_POLICY = extern struct {
+    MinSleep: SYSTEM_POWER_STATE,
+    MaxSleep: SYSTEM_POWER_STATE,
+    MinVideoTimeout: u32,
+    MaxVideoTimeout: u32,
+    MinSpindownTimeout: u32,
+    MaxSpindownTimeout: u32,
 };
 
-pub const POWER_PLATFORM_ROLE_VERSION = enum(u32) {
-    @"1" = 1,
-    @"2" = 2,
+pub const BATTERY_CHARGER_STATUS = extern struct {
+    Type: BATTERY_CHARGING_SOURCE_TYPE,
+    VaData: [1]u32,
 };
-// TODO: enum 'POWER_PLATFORM_ROLE_VERSION' has known issues with its value aliases
 
-pub const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = enum(u32) {
-    SERVICE_HANDLE = 1,
-    CALLBACK = 2,
-    WINDOW_HANDLE = 0,
+pub const BATTERY_CHARGING_SOURCE = extern struct {
+    Type: BATTERY_CHARGING_SOURCE_TYPE,
+    MaxCurrent: u32,
 };
-pub const DEVICE_NOTIFY_SERVICE_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.SERVICE_HANDLE;
-pub const DEVICE_NOTIFY_CALLBACK = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.CALLBACK;
-pub const DEVICE_NOTIFY_WINDOW_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.WINDOW_HANDLE;
+
+pub const BATTERY_CHARGING_SOURCE_INFORMATION = extern struct {
+    Type: BATTERY_CHARGING_SOURCE_TYPE,
+    SourceOnline: BOOLEAN,
+};
+
+pub const BATTERY_CHARGING_SOURCE_TYPE = enum(i32) {
+    AC = 1,
+    USB = 2,
+    Wireless = 3,
+    Max = 4,
+};
+pub const BatteryChargingSourceType_AC = BATTERY_CHARGING_SOURCE_TYPE.AC;
+pub const BatteryChargingSourceType_USB = BATTERY_CHARGING_SOURCE_TYPE.USB;
+pub const BatteryChargingSourceType_Wireless = BATTERY_CHARGING_SOURCE_TYPE.Wireless;
+pub const BatteryChargingSourceType_Max = BATTERY_CHARGING_SOURCE_TYPE.Max;
+
+pub const BATTERY_INFORMATION = extern struct {
+    Capabilities: u32,
+    Technology: u8,
+    Reserved: [3]u8,
+    Chemistry: [4]u8,
+    DesignedCapacity: u32,
+    FullChargedCapacity: u32,
+    DefaultAlert1: u32,
+    DefaultAlert2: u32,
+    CriticalBias: u32,
+    CycleCount: u32,
+};
+
+pub const BATTERY_MANUFACTURE_DATE = extern struct {
+    Day: u8,
+    Month: u8,
+    Year: u16,
+};
+
+pub const BATTERY_QUERY_INFORMATION = extern struct {
+    BatteryTag: u32,
+    InformationLevel: BATTERY_QUERY_INFORMATION_LEVEL,
+    AtRate: u32,
+};
+
+pub const BATTERY_QUERY_INFORMATION_LEVEL = enum(i32) {
+    Information = 0,
+    GranularityInformation = 1,
+    Temperature = 2,
+    EstimatedTime = 3,
+    DeviceName = 4,
+    ManufactureDate = 5,
+    ManufactureName = 6,
+    UniqueID = 7,
+    SerialNumber = 8,
+};
+pub const BatteryInformation = BATTERY_QUERY_INFORMATION_LEVEL.Information;
+pub const BatteryGranularityInformation = BATTERY_QUERY_INFORMATION_LEVEL.GranularityInformation;
+pub const BatteryTemperature = BATTERY_QUERY_INFORMATION_LEVEL.Temperature;
+pub const BatteryEstimatedTime = BATTERY_QUERY_INFORMATION_LEVEL.EstimatedTime;
+pub const BatteryDeviceName = BATTERY_QUERY_INFORMATION_LEVEL.DeviceName;
+pub const BatteryManufactureDate = BATTERY_QUERY_INFORMATION_LEVEL.ManufactureDate;
+pub const BatteryManufactureName = BATTERY_QUERY_INFORMATION_LEVEL.ManufactureName;
+pub const BatteryUniqueID = BATTERY_QUERY_INFORMATION_LEVEL.UniqueID;
+pub const BatterySerialNumber = BATTERY_QUERY_INFORMATION_LEVEL.SerialNumber;
+
+pub const BATTERY_REPORTING_SCALE = extern struct {
+    Granularity: u32,
+    Capacity: u32,
+};
+
+pub const BATTERY_SET_INFORMATION = extern struct {
+    BatteryTag: u32,
+    InformationLevel: BATTERY_SET_INFORMATION_LEVEL,
+    Buffer: [1]u8,
+};
+
+pub const BATTERY_SET_INFORMATION_LEVEL = enum(i32) {
+    CriticalBias = 0,
+    Charge = 1,
+    Discharge = 2,
+    ChargingSource = 3,
+    ChargerId = 4,
+    ChargerStatus = 5,
+};
+pub const BatteryCriticalBias = BATTERY_SET_INFORMATION_LEVEL.CriticalBias;
+pub const BatteryCharge = BATTERY_SET_INFORMATION_LEVEL.Charge;
+pub const BatteryDischarge = BATTERY_SET_INFORMATION_LEVEL.Discharge;
+pub const BatteryChargingSource = BATTERY_SET_INFORMATION_LEVEL.ChargingSource;
+pub const BatteryChargerId = BATTERY_SET_INFORMATION_LEVEL.ChargerId;
+pub const BatteryChargerStatus = BATTERY_SET_INFORMATION_LEVEL.ChargerStatus;
+
+pub const BATTERY_STATUS = extern struct {
+    PowerState: u32,
+    Capacity: u32,
+    Voltage: u32,
+    Rate: i32,
+};
+
+pub const BATTERY_USB_CHARGER_STATUS = extern struct {
+    Type: BATTERY_CHARGING_SOURCE_TYPE,
+    Reserved: u32,
+    Flags: u32,
+    MaxCurrent: u32,
+    Voltage: u32,
+    PortType: USB_CHARGER_PORT,
+    PortId: u64,
+    PowerSourceInformation: ?*anyopaque,
+    OemCharger: Guid,
+};
+
+pub const BATTERY_WAIT_STATUS = extern struct {
+    BatteryTag: u32,
+    Timeout: u32,
+    PowerState: u32,
+    LowCapacity: u32,
+    HighCapacity: u32,
+};
+
+pub const CM_POWER_DATA = extern struct {
+    PD_Size: u32,
+    PD_MostRecentPowerState: DEVICE_POWER_STATE,
+    PD_Capabilities: u32,
+    PD_D1Latency: u32,
+    PD_D2Latency: u32,
+    PD_D3Latency: u32,
+    PD_PowerStateMapping: [7]DEVICE_POWER_STATE,
+    PD_DeepestSystemWake: SYSTEM_POWER_STATE,
+};
+
+pub const DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS = extern struct {
+    Callback: ?PDEVICE_NOTIFY_CALLBACK_ROUTINE,
+    Context: ?*anyopaque,
+};
+
+pub const DEVICE_POWER_STATE = enum(i32) {
+    Unspecified = 0,
+    D0 = 1,
+    D1 = 2,
+    D2 = 3,
+    D3 = 4,
+    Maximum = 5,
+};
+pub const PowerDeviceUnspecified = DEVICE_POWER_STATE.Unspecified;
+pub const PowerDeviceD0 = DEVICE_POWER_STATE.D0;
+pub const PowerDeviceD1 = DEVICE_POWER_STATE.D1;
+pub const PowerDeviceD2 = DEVICE_POWER_STATE.D2;
+pub const PowerDeviceD3 = DEVICE_POWER_STATE.D3;
+pub const PowerDeviceMaximum = DEVICE_POWER_STATE.Maximum;
+
+pub const EFFECTIVE_POWER_MODE = enum(i32) {
+    BatterySaver = 0,
+    BetterBattery = 1,
+    Balanced = 2,
+    HighPerformance = 3,
+    MaxPerformance = 4,
+    GameMode = 5,
+    MixedReality = 6,
+};
+pub const EffectivePowerModeBatterySaver = EFFECTIVE_POWER_MODE.BatterySaver;
+pub const EffectivePowerModeBetterBattery = EFFECTIVE_POWER_MODE.BetterBattery;
+pub const EffectivePowerModeBalanced = EFFECTIVE_POWER_MODE.Balanced;
+pub const EffectivePowerModeHighPerformance = EFFECTIVE_POWER_MODE.HighPerformance;
+pub const EffectivePowerModeMaxPerformance = EFFECTIVE_POWER_MODE.MaxPerformance;
+pub const EffectivePowerModeGameMode = EFFECTIVE_POWER_MODE.GameMode;
+pub const EffectivePowerModeMixedReality = EFFECTIVE_POWER_MODE.MixedReality;
+
+// TODO: this type is limited to platform 'windows10.0.17763'
+pub const EFFECTIVE_POWER_MODE_CALLBACK = *const fn(
+    Mode: EFFECTIVE_POWER_MODE,
+    Context: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const EMI_CHANNEL_MEASUREMENT_DATA = extern struct {
+    AbsoluteEnergy: u64,
+    AbsoluteTime: u64,
+};
+
+pub const EMI_CHANNEL_V2 = extern struct {
+    MeasurementUnit: EMI_MEASUREMENT_UNIT,
+    ChannelNameSize: u16,
+    ChannelName: [1]u16,
+};
+
+pub const EMI_MEASUREMENT_DATA_V2 = extern struct {
+    ChannelData: [1]EMI_CHANNEL_MEASUREMENT_DATA,
+};
+
+pub const EMI_MEASUREMENT_UNIT = enum(i32) {
+    s = 0,
+};
+pub const EmiMeasurementUnitPicowattHours = EMI_MEASUREMENT_UNIT.s;
+
+pub const EMI_METADATA_SIZE = extern struct {
+    MetadataSize: u32,
+};
+
+pub const EMI_METADATA_V1 = extern struct {
+    MeasurementUnit: EMI_MEASUREMENT_UNIT,
+    HardwareOEM: [16]u16,
+    HardwareModel: [16]u16,
+    HardwareRevision: u16,
+    MeteredHardwareNameSize: u16,
+    MeteredHardwareName: [1]u16,
+};
+
+pub const EMI_METADATA_V2 = extern struct {
+    HardwareOEM: [16]u16,
+    HardwareModel: [16]u16,
+    HardwareRevision: u16,
+    ChannelCount: u16,
+    Channels: [1]EMI_CHANNEL_V2,
+};
+
+pub const EMI_VERSION = extern struct {
+    EmiVersion: u16,
+};
 
 pub const EXECUTION_STATE = packed struct(u32) {
     SYSTEM_REQUIRED: u1 = 0,
@@ -219,6 +426,97 @@ pub const ES_CONTINUOUS = EXECUTION_STATE{ .CONTINUOUS = 1 };
 pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE{ .DISPLAY_REQUIRED = 1 };
 pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE{ .SYSTEM_REQUIRED = 1 };
 pub const ES_USER_PRESENT = EXECUTION_STATE{ .USER_PRESENT = 1 };
+
+pub const GLOBAL_MACHINE_POWER_POLICY = extern struct {
+    Revision: u32,
+    LidOpenWakeAc: SYSTEM_POWER_STATE,
+    LidOpenWakeDc: SYSTEM_POWER_STATE,
+    BroadcastCapacityResolution: u32,
+};
+
+pub const GLOBAL_POWER_POLICY = extern struct {
+    user: GLOBAL_USER_POWER_POLICY,
+    mach: GLOBAL_MACHINE_POWER_POLICY,
+};
+
+pub const GLOBAL_USER_POWER_POLICY = extern struct {
+    Revision: u32,
+    PowerButtonAc: POWER_ACTION_POLICY,
+    PowerButtonDc: POWER_ACTION_POLICY,
+    SleepButtonAc: POWER_ACTION_POLICY,
+    SleepButtonDc: POWER_ACTION_POLICY,
+    LidCloseAc: POWER_ACTION_POLICY,
+    LidCloseDc: POWER_ACTION_POLICY,
+    DischargePolicy: [4]SYSTEM_POWER_LEVEL,
+    GlobalFlags: u32,
+};
+
+// TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HPOWERNOTIFY = *opaque{};
+
+pub const LATENCY_TIME = enum(i32) {
+    DONT_CARE = 0,
+    LOWEST_LATENCY = 1,
+};
+pub const LT_DONT_CARE = LATENCY_TIME.DONT_CARE;
+pub const LT_LOWEST_LATENCY = LATENCY_TIME.LOWEST_LATENCY;
+
+pub const MACHINE_POWER_POLICY = extern struct {
+    Revision: u32,
+    MinSleepAc: SYSTEM_POWER_STATE,
+    MinSleepDc: SYSTEM_POWER_STATE,
+    ReducedLatencySleepAc: SYSTEM_POWER_STATE,
+    ReducedLatencySleepDc: SYSTEM_POWER_STATE,
+    DozeTimeoutAc: u32,
+    DozeTimeoutDc: u32,
+    DozeS4TimeoutAc: u32,
+    DozeS4TimeoutDc: u32,
+    MinThrottleAc: u8,
+    MinThrottleDc: u8,
+    pad1: [2]u8,
+    OverThrottledAc: POWER_ACTION_POLICY,
+    OverThrottledDc: POWER_ACTION_POLICY,
+};
+
+pub const MACHINE_PROCESSOR_POWER_POLICY = extern struct {
+    Revision: u32,
+    ProcessorPolicyAc: PROCESSOR_POWER_POLICY,
+    ProcessorPolicyDc: PROCESSOR_POWER_POLICY,
+};
+
+pub const PDEVICE_NOTIFY_CALLBACK_ROUTINE = *const fn(
+    Context: ?*anyopaque,
+    Type: u32,
+    Setting: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const POWER_ACTION = enum(i32) {
+    None = 0,
+    Reserved = 1,
+    Sleep = 2,
+    Hibernate = 3,
+    Shutdown = 4,
+    ShutdownReset = 5,
+    ShutdownOff = 6,
+    WarmEject = 7,
+    DisplayOff = 8,
+};
+pub const PowerActionNone = POWER_ACTION.None;
+pub const PowerActionReserved = POWER_ACTION.Reserved;
+pub const PowerActionSleep = POWER_ACTION.Sleep;
+pub const PowerActionHibernate = POWER_ACTION.Hibernate;
+pub const PowerActionShutdown = POWER_ACTION.Shutdown;
+pub const PowerActionShutdownReset = POWER_ACTION.ShutdownReset;
+pub const PowerActionShutdownOff = POWER_ACTION.ShutdownOff;
+pub const PowerActionWarmEject = POWER_ACTION.WarmEject;
+pub const PowerActionDisplayOff = POWER_ACTION.DisplayOff;
+
+pub const POWER_ACTION_POLICY = extern struct {
+    Action: POWER_ACTION,
+    Flags: u32,
+    EventCode: POWER_ACTION_POLICY_EVENT_CODE,
+};
 
 pub const POWER_ACTION_POLICY_EVENT_CODE = packed struct(u32) {
     LEVEL_USER_NOTIFY_TEXT: u1 = 0,
@@ -261,133 +559,14 @@ pub const POWER_LEVEL_USER_NOTIFY_TEXT = POWER_ACTION_POLICY_EVENT_CODE{ .LEVEL_
 pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE{ .USER_NOTIFY_BUTTON = 1 };
 pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE{ .USER_NOTIFY_SHUTDOWN = 1 };
 
-// TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HPOWERNOTIFY = *opaque{};
-
-pub const EFFECTIVE_POWER_MODE = enum(i32) {
-    BatterySaver = 0,
-    BetterBattery = 1,
-    Balanced = 2,
-    HighPerformance = 3,
-    MaxPerformance = 4,
-    GameMode = 5,
-    MixedReality = 6,
+pub const POWER_COOLING_MODE = enum(u16) {
+    ACTIVE = 0,
+    PASSIVE = 1,
+    INVALID_MODE = 2,
 };
-pub const EffectivePowerModeBatterySaver = EFFECTIVE_POWER_MODE.BatterySaver;
-pub const EffectivePowerModeBetterBattery = EFFECTIVE_POWER_MODE.BetterBattery;
-pub const EffectivePowerModeBalanced = EFFECTIVE_POWER_MODE.Balanced;
-pub const EffectivePowerModeHighPerformance = EFFECTIVE_POWER_MODE.HighPerformance;
-pub const EffectivePowerModeMaxPerformance = EFFECTIVE_POWER_MODE.MaxPerformance;
-pub const EffectivePowerModeGameMode = EFFECTIVE_POWER_MODE.GameMode;
-pub const EffectivePowerModeMixedReality = EFFECTIVE_POWER_MODE.MixedReality;
-
-// TODO: this type is limited to platform 'windows10.0.17763'
-pub const EFFECTIVE_POWER_MODE_CALLBACK = *const fn(
-    Mode: EFFECTIVE_POWER_MODE,
-    Context: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const GLOBAL_MACHINE_POWER_POLICY = extern struct {
-    Revision: u32,
-    LidOpenWakeAc: SYSTEM_POWER_STATE,
-    LidOpenWakeDc: SYSTEM_POWER_STATE,
-    BroadcastCapacityResolution: u32,
-};
-
-pub const GLOBAL_USER_POWER_POLICY = extern struct {
-    Revision: u32,
-    PowerButtonAc: POWER_ACTION_POLICY,
-    PowerButtonDc: POWER_ACTION_POLICY,
-    SleepButtonAc: POWER_ACTION_POLICY,
-    SleepButtonDc: POWER_ACTION_POLICY,
-    LidCloseAc: POWER_ACTION_POLICY,
-    LidCloseDc: POWER_ACTION_POLICY,
-    DischargePolicy: [4]SYSTEM_POWER_LEVEL,
-    GlobalFlags: u32,
-};
-
-pub const GLOBAL_POWER_POLICY = extern struct {
-    user: GLOBAL_USER_POWER_POLICY,
-    mach: GLOBAL_MACHINE_POWER_POLICY,
-};
-
-pub const MACHINE_POWER_POLICY = extern struct {
-    Revision: u32,
-    MinSleepAc: SYSTEM_POWER_STATE,
-    MinSleepDc: SYSTEM_POWER_STATE,
-    ReducedLatencySleepAc: SYSTEM_POWER_STATE,
-    ReducedLatencySleepDc: SYSTEM_POWER_STATE,
-    DozeTimeoutAc: u32,
-    DozeTimeoutDc: u32,
-    DozeS4TimeoutAc: u32,
-    DozeS4TimeoutDc: u32,
-    MinThrottleAc: u8,
-    MinThrottleDc: u8,
-    pad1: [2]u8,
-    OverThrottledAc: POWER_ACTION_POLICY,
-    OverThrottledDc: POWER_ACTION_POLICY,
-};
-
-pub const MACHINE_PROCESSOR_POWER_POLICY = extern struct {
-    Revision: u32,
-    ProcessorPolicyAc: PROCESSOR_POWER_POLICY,
-    ProcessorPolicyDc: PROCESSOR_POWER_POLICY,
-};
-
-pub const USER_POWER_POLICY = extern struct {
-    Revision: u32,
-    IdleAc: POWER_ACTION_POLICY,
-    IdleDc: POWER_ACTION_POLICY,
-    IdleTimeoutAc: u32,
-    IdleTimeoutDc: u32,
-    IdleSensitivityAc: u8,
-    IdleSensitivityDc: u8,
-    ThrottlePolicyAc: u8,
-    ThrottlePolicyDc: u8,
-    MaxSleepAc: SYSTEM_POWER_STATE,
-    MaxSleepDc: SYSTEM_POWER_STATE,
-    Reserved: [2]u32,
-    VideoTimeoutAc: u32,
-    VideoTimeoutDc: u32,
-    SpindownTimeoutAc: u32,
-    SpindownTimeoutDc: u32,
-    OptimizeForPowerAc: BOOLEAN,
-    OptimizeForPowerDc: BOOLEAN,
-    FanThrottleToleranceAc: u8,
-    FanThrottleToleranceDc: u8,
-    ForcedThrottleAc: u8,
-    ForcedThrottleDc: u8,
-};
-
-pub const POWER_POLICY = extern struct {
-    user: USER_POWER_POLICY,
-    mach: MACHINE_POWER_POLICY,
-};
-
-pub const PWRSCHEMESENUMPROC_V1 = *const fn(
-    Index: u32,
-    NameSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
-    Name: ?*i8,
-    DescriptionSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    Description: ?*i8,
-    Policy: ?*POWER_POLICY,
-    Context: LPARAM,
-) callconv(.winapi) BOOLEAN;
-
-pub const PWRSCHEMESENUMPROC = *const fn(
-    Index: u32,
-    NameSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
-    Name: ?PWSTR,
-    DescriptionSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    Description: ?PWSTR,
-    Policy: ?*POWER_POLICY,
-    Context: LPARAM,
-) callconv(.winapi) BOOLEAN;
+pub const PO_TZ_ACTIVE = POWER_COOLING_MODE.ACTIVE;
+pub const PO_TZ_PASSIVE = POWER_COOLING_MODE.PASSIVE;
+pub const PO_TZ_INVALID_MODE = POWER_COOLING_MODE.INVALID_MODE;
 
 pub const POWER_DATA_ACCESSOR = enum(i32) {
     AC_POWER_SETTING_INDEX = 0,
@@ -447,347 +626,6 @@ pub const ACCESS_DC_POWER_SETTING_MIN = POWER_DATA_ACCESSOR.DC_POWER_SETTING_MIN
 pub const ACCESS_PROFILE = POWER_DATA_ACCESSOR.PROFILE;
 pub const ACCESS_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.OVERLAY_SCHEME;
 pub const ACCESS_ACTIVE_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.ACTIVE_OVERLAY_SCHEME;
-
-pub const PDEVICE_NOTIFY_CALLBACK_ROUTINE = *const fn(
-    Context: ?*anyopaque,
-    Type: u32,
-    Setting: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS = extern struct {
-    Callback: ?PDEVICE_NOTIFY_CALLBACK_ROUTINE,
-    Context: ?*anyopaque,
-};
-
-pub const THERMAL_EVENT = extern struct {
-    Version: u32,
-    Size: u32,
-    Type: u32,
-    Temperature: u32,
-    TripPointTemperature: u32,
-    Initiator: ?PWSTR,
-};
-
-pub const BATTERY_QUERY_INFORMATION_LEVEL = enum(i32) {
-    Information = 0,
-    GranularityInformation = 1,
-    Temperature = 2,
-    EstimatedTime = 3,
-    DeviceName = 4,
-    ManufactureDate = 5,
-    ManufactureName = 6,
-    UniqueID = 7,
-    SerialNumber = 8,
-};
-pub const BatteryInformation = BATTERY_QUERY_INFORMATION_LEVEL.Information;
-pub const BatteryGranularityInformation = BATTERY_QUERY_INFORMATION_LEVEL.GranularityInformation;
-pub const BatteryTemperature = BATTERY_QUERY_INFORMATION_LEVEL.Temperature;
-pub const BatteryEstimatedTime = BATTERY_QUERY_INFORMATION_LEVEL.EstimatedTime;
-pub const BatteryDeviceName = BATTERY_QUERY_INFORMATION_LEVEL.DeviceName;
-pub const BatteryManufactureDate = BATTERY_QUERY_INFORMATION_LEVEL.ManufactureDate;
-pub const BatteryManufactureName = BATTERY_QUERY_INFORMATION_LEVEL.ManufactureName;
-pub const BatteryUniqueID = BATTERY_QUERY_INFORMATION_LEVEL.UniqueID;
-pub const BatterySerialNumber = BATTERY_QUERY_INFORMATION_LEVEL.SerialNumber;
-
-pub const BATTERY_QUERY_INFORMATION = extern struct {
-    BatteryTag: u32,
-    InformationLevel: BATTERY_QUERY_INFORMATION_LEVEL,
-    AtRate: u32,
-};
-
-pub const BATTERY_INFORMATION = extern struct {
-    Capabilities: u32,
-    Technology: u8,
-    Reserved: [3]u8,
-    Chemistry: [4]u8,
-    DesignedCapacity: u32,
-    FullChargedCapacity: u32,
-    DefaultAlert1: u32,
-    DefaultAlert2: u32,
-    CriticalBias: u32,
-    CycleCount: u32,
-};
-
-pub const BATTERY_CHARGING_SOURCE_TYPE = enum(i32) {
-    AC = 1,
-    USB = 2,
-    Wireless = 3,
-    Max = 4,
-};
-pub const BatteryChargingSourceType_AC = BATTERY_CHARGING_SOURCE_TYPE.AC;
-pub const BatteryChargingSourceType_USB = BATTERY_CHARGING_SOURCE_TYPE.USB;
-pub const BatteryChargingSourceType_Wireless = BATTERY_CHARGING_SOURCE_TYPE.Wireless;
-pub const BatteryChargingSourceType_Max = BATTERY_CHARGING_SOURCE_TYPE.Max;
-
-pub const BATTERY_CHARGING_SOURCE = extern struct {
-    Type: BATTERY_CHARGING_SOURCE_TYPE,
-    MaxCurrent: u32,
-};
-
-pub const BATTERY_CHARGING_SOURCE_INFORMATION = extern struct {
-    Type: BATTERY_CHARGING_SOURCE_TYPE,
-    SourceOnline: BOOLEAN,
-};
-
-pub const USB_CHARGER_PORT = enum(i32) {
-    Legacy = 0,
-    TypeC = 1,
-    Max = 2,
-};
-pub const UsbChargerPort_Legacy = USB_CHARGER_PORT.Legacy;
-pub const UsbChargerPort_TypeC = USB_CHARGER_PORT.TypeC;
-pub const UsbChargerPort_Max = USB_CHARGER_PORT.Max;
-
-pub const BATTERY_SET_INFORMATION_LEVEL = enum(i32) {
-    CriticalBias = 0,
-    Charge = 1,
-    Discharge = 2,
-    ChargingSource = 3,
-    ChargerId = 4,
-    ChargerStatus = 5,
-};
-pub const BatteryCriticalBias = BATTERY_SET_INFORMATION_LEVEL.CriticalBias;
-pub const BatteryCharge = BATTERY_SET_INFORMATION_LEVEL.Charge;
-pub const BatteryDischarge = BATTERY_SET_INFORMATION_LEVEL.Discharge;
-pub const BatteryChargingSource = BATTERY_SET_INFORMATION_LEVEL.ChargingSource;
-pub const BatteryChargerId = BATTERY_SET_INFORMATION_LEVEL.ChargerId;
-pub const BatteryChargerStatus = BATTERY_SET_INFORMATION_LEVEL.ChargerStatus;
-
-pub const BATTERY_SET_INFORMATION = extern struct {
-    BatteryTag: u32,
-    InformationLevel: BATTERY_SET_INFORMATION_LEVEL,
-    Buffer: [1]u8,
-};
-
-pub const BATTERY_CHARGER_STATUS = extern struct {
-    Type: BATTERY_CHARGING_SOURCE_TYPE,
-    VaData: [1]u32,
-};
-
-pub const BATTERY_USB_CHARGER_STATUS = extern struct {
-    Type: BATTERY_CHARGING_SOURCE_TYPE,
-    Reserved: u32,
-    Flags: u32,
-    MaxCurrent: u32,
-    Voltage: u32,
-    PortType: USB_CHARGER_PORT,
-    PortId: u64,
-    PowerSourceInformation: ?*anyopaque,
-    OemCharger: Guid,
-};
-
-pub const BATTERY_WAIT_STATUS = extern struct {
-    BatteryTag: u32,
-    Timeout: u32,
-    PowerState: u32,
-    LowCapacity: u32,
-    HighCapacity: u32,
-};
-
-pub const BATTERY_STATUS = extern struct {
-    PowerState: u32,
-    Capacity: u32,
-    Voltage: u32,
-    Rate: i32,
-};
-
-pub const BATTERY_MANUFACTURE_DATE = extern struct {
-    Day: u8,
-    Month: u8,
-    Year: u16,
-};
-
-pub const THERMAL_INFORMATION = extern struct {
-    ThermalStamp: u32,
-    ThermalConstant1: u32,
-    ThermalConstant2: u32,
-    Processors: usize,
-    SamplingPeriod: u32,
-    CurrentTemperature: u32,
-    PassiveTripPoint: u32,
-    CriticalTripPoint: u32,
-    ActiveTripPointCount: u8,
-    ActiveTripPoint: [10]u32,
-};
-
-pub const THERMAL_WAIT_READ = extern struct {
-    Timeout: u32,
-    LowTemperature: u32,
-    HighTemperature: u32,
-};
-
-pub const THERMAL_POLICY = extern struct {
-    Version: u32,
-    WaitForUpdate: BOOLEAN,
-    Hibernate: BOOLEAN,
-    Critical: BOOLEAN,
-    ThermalStandby: BOOLEAN,
-    ActivationReasons: u32,
-    PassiveLimit: u32,
-    ActiveLevel: u32,
-    OverThrottled: BOOLEAN,
-};
-
-pub const PROCESSOR_OBJECT_INFO = extern struct {
-    PhysicalID: u32,
-    PBlkAddress: u32,
-    PBlkLength: u8,
-};
-
-pub const PROCESSOR_OBJECT_INFO_EX = extern struct {
-    PhysicalID: u32,
-    PBlkAddress: u32,
-    PBlkLength: u8,
-    InitialApicId: u32,
-};
-
-pub const WAKE_ALARM_INFORMATION = extern struct {
-    TimerIdentifier: u32,
-    Timeout: u32,
-};
-
-pub const ACPI_REAL_TIME = extern struct {
-    Year: u16,
-    Month: u8,
-    Day: u8,
-    Hour: u8,
-    Minute: u8,
-    Second: u8,
-    Valid: u8,
-    Milliseconds: u16,
-    TimeZone: i16,
-    DayLight: u8,
-    Reserved1: [3]u8,
-};
-
-pub const EMI_MEASUREMENT_UNIT = enum(i32) {
-    s = 0,
-};
-pub const EmiMeasurementUnitPicowattHours = EMI_MEASUREMENT_UNIT.s;
-
-pub const EMI_VERSION = extern struct {
-    EmiVersion: u16,
-};
-
-pub const EMI_METADATA_SIZE = extern struct {
-    MetadataSize: u32,
-};
-
-pub const EMI_CHANNEL_MEASUREMENT_DATA = extern struct {
-    AbsoluteEnergy: u64,
-    AbsoluteTime: u64,
-};
-
-pub const EMI_METADATA_V1 = extern struct {
-    MeasurementUnit: EMI_MEASUREMENT_UNIT,
-    HardwareOEM: [16]u16,
-    HardwareModel: [16]u16,
-    HardwareRevision: u16,
-    MeteredHardwareNameSize: u16,
-    MeteredHardwareName: [1]u16,
-};
-
-pub const EMI_CHANNEL_V2 = extern struct {
-    MeasurementUnit: EMI_MEASUREMENT_UNIT,
-    ChannelNameSize: u16,
-    ChannelName: [1]u16,
-};
-
-pub const EMI_METADATA_V2 = extern struct {
-    HardwareOEM: [16]u16,
-    HardwareModel: [16]u16,
-    HardwareRevision: u16,
-    ChannelCount: u16,
-    Channels: [1]EMI_CHANNEL_V2,
-};
-
-pub const EMI_MEASUREMENT_DATA_V2 = extern struct {
-    ChannelData: [1]EMI_CHANNEL_MEASUREMENT_DATA,
-};
-
-pub const SYSTEM_POWER_STATE = enum(i32) {
-    Unspecified = 0,
-    Working = 1,
-    Sleeping1 = 2,
-    Sleeping2 = 3,
-    Sleeping3 = 4,
-    Hibernate = 5,
-    Shutdown = 6,
-    Maximum = 7,
-};
-pub const PowerSystemUnspecified = SYSTEM_POWER_STATE.Unspecified;
-pub const PowerSystemWorking = SYSTEM_POWER_STATE.Working;
-pub const PowerSystemSleeping1 = SYSTEM_POWER_STATE.Sleeping1;
-pub const PowerSystemSleeping2 = SYSTEM_POWER_STATE.Sleeping2;
-pub const PowerSystemSleeping3 = SYSTEM_POWER_STATE.Sleeping3;
-pub const PowerSystemHibernate = SYSTEM_POWER_STATE.Hibernate;
-pub const PowerSystemShutdown = SYSTEM_POWER_STATE.Shutdown;
-pub const PowerSystemMaximum = SYSTEM_POWER_STATE.Maximum;
-
-pub const POWER_ACTION = enum(i32) {
-    None = 0,
-    Reserved = 1,
-    Sleep = 2,
-    Hibernate = 3,
-    Shutdown = 4,
-    ShutdownReset = 5,
-    ShutdownOff = 6,
-    WarmEject = 7,
-    DisplayOff = 8,
-};
-pub const PowerActionNone = POWER_ACTION.None;
-pub const PowerActionReserved = POWER_ACTION.Reserved;
-pub const PowerActionSleep = POWER_ACTION.Sleep;
-pub const PowerActionHibernate = POWER_ACTION.Hibernate;
-pub const PowerActionShutdown = POWER_ACTION.Shutdown;
-pub const PowerActionShutdownReset = POWER_ACTION.ShutdownReset;
-pub const PowerActionShutdownOff = POWER_ACTION.ShutdownOff;
-pub const PowerActionWarmEject = POWER_ACTION.WarmEject;
-pub const PowerActionDisplayOff = POWER_ACTION.DisplayOff;
-
-pub const DEVICE_POWER_STATE = enum(i32) {
-    Unspecified = 0,
-    D0 = 1,
-    D1 = 2,
-    D2 = 3,
-    D3 = 4,
-    Maximum = 5,
-};
-pub const PowerDeviceUnspecified = DEVICE_POWER_STATE.Unspecified;
-pub const PowerDeviceD0 = DEVICE_POWER_STATE.D0;
-pub const PowerDeviceD1 = DEVICE_POWER_STATE.D1;
-pub const PowerDeviceD2 = DEVICE_POWER_STATE.D2;
-pub const PowerDeviceD3 = DEVICE_POWER_STATE.D3;
-pub const PowerDeviceMaximum = DEVICE_POWER_STATE.Maximum;
-
-pub const LATENCY_TIME = enum(i32) {
-    DONT_CARE = 0,
-    LOWEST_LATENCY = 1,
-};
-pub const LT_DONT_CARE = LATENCY_TIME.DONT_CARE;
-pub const LT_LOWEST_LATENCY = LATENCY_TIME.LOWEST_LATENCY;
-
-pub const POWER_REQUEST_TYPE = enum(i32) {
-    DisplayRequired = 0,
-    SystemRequired = 1,
-    AwayModeRequired = 2,
-    ExecutionRequired = 3,
-};
-pub const PowerRequestDisplayRequired = POWER_REQUEST_TYPE.DisplayRequired;
-pub const PowerRequestSystemRequired = POWER_REQUEST_TYPE.SystemRequired;
-pub const PowerRequestAwayModeRequired = POWER_REQUEST_TYPE.AwayModeRequired;
-pub const PowerRequestExecutionRequired = POWER_REQUEST_TYPE.ExecutionRequired;
-
-pub const CM_POWER_DATA = extern struct {
-    PD_Size: u32,
-    PD_MostRecentPowerState: DEVICE_POWER_STATE,
-    PD_Capabilities: u32,
-    PD_D1Latency: u32,
-    PD_D2Latency: u32,
-    PD_D3Latency: u32,
-    PD_PowerStateMapping: [7]DEVICE_POWER_STATE,
-    PD_DeepestSystemWake: SYSTEM_POWER_STATE,
-};
 
 pub const POWER_INFORMATION_LEVEL = enum(i32) {
     SystemPowerPolicyAc = 0,
@@ -988,25 +826,6 @@ pub const SessionAllowExternalDmaDevices = POWER_INFORMATION_LEVEL.SessionAllowE
 pub const SendSuspendResumeNotification = POWER_INFORMATION_LEVEL.SendSuspendResumeNotification;
 pub const PowerInformationLevelMaximum = POWER_INFORMATION_LEVEL.PowerInformationLevelMaximum;
 
-pub const SYSTEM_POWER_CONDITION = enum(i32) {
-    Ac = 0,
-    Dc = 1,
-    Hot = 2,
-    ConditionMaximum = 3,
-};
-pub const PoAc = SYSTEM_POWER_CONDITION.Ac;
-pub const PoDc = SYSTEM_POWER_CONDITION.Dc;
-pub const PoHot = SYSTEM_POWER_CONDITION.Hot;
-pub const PoConditionMaximum = SYSTEM_POWER_CONDITION.ConditionMaximum;
-
-pub const SET_POWER_SETTING_VALUE = extern struct {
-    Version: u32,
-    Guid: Guid,
-    PowerCondition: SYSTEM_POWER_CONDITION,
-    DataLength: u32,
-    Data: [1]u8,
-};
-
 pub const POWER_PLATFORM_ROLE = enum(i32) {
     Unspecified = 0,
     Desktop = 1,
@@ -1030,15 +849,183 @@ pub const PlatformRolePerformanceServer = POWER_PLATFORM_ROLE.PerformanceServer;
 pub const PlatformRoleSlate = POWER_PLATFORM_ROLE.Slate;
 pub const PlatformRoleMaximum = POWER_PLATFORM_ROLE.Maximum;
 
-pub const BATTERY_REPORTING_SCALE = extern struct {
-    Granularity: u32,
-    Capacity: u32,
+pub const POWER_PLATFORM_ROLE_VERSION = enum(u32) {
+    @"1" = 1,
+    @"2" = 2,
+};
+// TODO: enum 'POWER_PLATFORM_ROLE_VERSION' has known issues with its value aliases
+
+pub const POWER_POLICY = extern struct {
+    user: USER_POWER_POLICY,
+    mach: MACHINE_POWER_POLICY,
 };
 
-pub const POWER_ACTION_POLICY = extern struct {
-    Action: POWER_ACTION,
-    Flags: u32,
-    EventCode: POWER_ACTION_POLICY_EVENT_CODE,
+pub const POWER_REQUEST_TYPE = enum(i32) {
+    DisplayRequired = 0,
+    SystemRequired = 1,
+    AwayModeRequired = 2,
+    ExecutionRequired = 3,
+};
+pub const PowerRequestDisplayRequired = POWER_REQUEST_TYPE.DisplayRequired;
+pub const PowerRequestSystemRequired = POWER_REQUEST_TYPE.SystemRequired;
+pub const PowerRequestAwayModeRequired = POWER_REQUEST_TYPE.AwayModeRequired;
+pub const PowerRequestExecutionRequired = POWER_REQUEST_TYPE.ExecutionRequired;
+
+pub const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = enum(u32) {
+    SERVICE_HANDLE = 1,
+    CALLBACK = 2,
+    WINDOW_HANDLE = 0,
+};
+pub const DEVICE_NOTIFY_SERVICE_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.SERVICE_HANDLE;
+pub const DEVICE_NOTIFY_CALLBACK = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.CALLBACK;
+pub const DEVICE_NOTIFY_WINDOW_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.WINDOW_HANDLE;
+
+pub const POWERBROADCAST_SETTING = extern struct {
+    PowerSetting: Guid,
+    DataLength: u32,
+    Data: [1]u8,
+};
+
+pub const PROCESSOR_OBJECT_INFO = extern struct {
+    PhysicalID: u32,
+    PBlkAddress: u32,
+    PBlkLength: u8,
+};
+
+pub const PROCESSOR_OBJECT_INFO_EX = extern struct {
+    PhysicalID: u32,
+    PBlkAddress: u32,
+    PBlkLength: u8,
+    InitialApicId: u32,
+};
+
+pub const PROCESSOR_POWER_INFORMATION = extern struct {
+    Number: u64,
+    MaxMhz: u64,
+    CurrentMhz: u64,
+    MhzLimit: u64,
+    MaxIdleState: u64,
+    CurrentIdleState: u64,
+};
+
+pub const PROCESSOR_POWER_POLICY = extern struct {
+    Revision: u32,
+    DynamicThrottle: u8,
+    Spare: [3]u8,
+    _bitfield: u32,
+    PolicyCount: u32,
+    Policy: [3]PROCESSOR_POWER_POLICY_INFO,
+};
+
+pub const PROCESSOR_POWER_POLICY_INFO = extern struct {
+    TimeCheck: u32,
+    DemoteLimit: u32,
+    PromoteLimit: u32,
+    DemotePercent: u8,
+    PromotePercent: u8,
+    Spare: [2]u8,
+    _bitfield: u32,
+};
+
+pub const PWRSCHEMESENUMPROC = *const fn(
+    Index: u32,
+    NameSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
+    Name: ?PWSTR,
+    DescriptionSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Description: ?PWSTR,
+    Policy: ?*POWER_POLICY,
+    Context: LPARAM,
+) callconv(.winapi) BOOLEAN;
+
+pub const PWRSCHEMESENUMPROC_V1 = *const fn(
+    Index: u32,
+    NameSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
+    Name: ?*i8,
+    DescriptionSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Description: ?*i8,
+    Policy: ?*POWER_POLICY,
+    Context: LPARAM,
+) callconv(.winapi) BOOLEAN;
+
+pub const SET_POWER_SETTING_VALUE = extern struct {
+    Version: u32,
+    Guid: Guid,
+    PowerCondition: SYSTEM_POWER_CONDITION,
+    DataLength: u32,
+    Data: [1]u8,
+};
+
+pub const SYSTEM_BATTERY_STATE = extern struct {
+    AcOnLine: BOOLEAN,
+    BatteryPresent: BOOLEAN,
+    Charging: BOOLEAN,
+    Discharging: BOOLEAN,
+    Spare1: [3]BOOLEAN,
+    Tag: u8,
+    MaxCapacity: u32,
+    RemainingCapacity: u32,
+    Rate: u32,
+    EstimatedTime: u32,
+    DefaultAlert1: u32,
+    DefaultAlert2: u32,
+};
+
+pub const SYSTEM_POWER_CAPABILITIES = extern struct {
+    PowerButtonPresent: BOOLEAN,
+    SleepButtonPresent: BOOLEAN,
+    LidPresent: BOOLEAN,
+    SystemS1: BOOLEAN,
+    SystemS2: BOOLEAN,
+    SystemS3: BOOLEAN,
+    SystemS4: BOOLEAN,
+    SystemS5: BOOLEAN,
+    HiberFilePresent: BOOLEAN,
+    FullWake: BOOLEAN,
+    VideoDimPresent: BOOLEAN,
+    ApmPresent: BOOLEAN,
+    UpsPresent: BOOLEAN,
+    ThermalControl: BOOLEAN,
+    ProcessorThrottle: BOOLEAN,
+    ProcessorMinThrottle: u8,
+    ProcessorMaxThrottle: u8,
+    FastSystemS4: BOOLEAN,
+    Hiberboot: BOOLEAN,
+    WakeAlarmPresent: BOOLEAN,
+    AoAc: BOOLEAN,
+    DiskSpinDown: BOOLEAN,
+    HiberFileType: u8,
+    AoAcConnectivitySupported: BOOLEAN,
+    spare3: [6]u8,
+    SystemBatteriesPresent: BOOLEAN,
+    BatteriesAreShortTerm: BOOLEAN,
+    BatteryScale: [3]BATTERY_REPORTING_SCALE,
+    AcOnLineWake: SYSTEM_POWER_STATE,
+    SoftLidWake: SYSTEM_POWER_STATE,
+    RtcWake: SYSTEM_POWER_STATE,
+    MinDeviceWakeState: SYSTEM_POWER_STATE,
+    DefaultLowLatencyWake: SYSTEM_POWER_STATE,
+};
+
+pub const SYSTEM_POWER_CONDITION = enum(i32) {
+    Ac = 0,
+    Dc = 1,
+    Hot = 2,
+    ConditionMaximum = 3,
+};
+pub const PoAc = SYSTEM_POWER_CONDITION.Ac;
+pub const PoDc = SYSTEM_POWER_CONDITION.Dc;
+pub const PoHot = SYSTEM_POWER_CONDITION.Hot;
+pub const PoConditionMaximum = SYSTEM_POWER_CONDITION.ConditionMaximum;
+
+pub const SYSTEM_POWER_INFORMATION = extern struct {
+    MaxIdlenessAllowed: u64,
+    Idleness: u64,
+    TimeRemaining: u64,
+    CoolingMode: POWER_COOLING_MODE,
 };
 
 pub const SYSTEM_POWER_LEVEL = extern struct {
@@ -1080,90 +1067,24 @@ pub const SYSTEM_POWER_POLICY = extern struct {
     OverThrottled: POWER_ACTION_POLICY,
 };
 
-pub const PROCESSOR_POWER_POLICY_INFO = extern struct {
-    TimeCheck: u32,
-    DemoteLimit: u32,
-    PromoteLimit: u32,
-    DemotePercent: u8,
-    PromotePercent: u8,
-    Spare: [2]u8,
-    _bitfield: u32,
+pub const SYSTEM_POWER_STATE = enum(i32) {
+    Unspecified = 0,
+    Working = 1,
+    Sleeping1 = 2,
+    Sleeping2 = 3,
+    Sleeping3 = 4,
+    Hibernate = 5,
+    Shutdown = 6,
+    Maximum = 7,
 };
-
-pub const PROCESSOR_POWER_POLICY = extern struct {
-    Revision: u32,
-    DynamicThrottle: u8,
-    Spare: [3]u8,
-    _bitfield: u32,
-    PolicyCount: u32,
-    Policy: [3]PROCESSOR_POWER_POLICY_INFO,
-};
-
-pub const ADMINISTRATOR_POWER_POLICY = extern struct {
-    MinSleep: SYSTEM_POWER_STATE,
-    MaxSleep: SYSTEM_POWER_STATE,
-    MinVideoTimeout: u32,
-    MaxVideoTimeout: u32,
-    MinSpindownTimeout: u32,
-    MaxSpindownTimeout: u32,
-};
-
-pub const SYSTEM_POWER_CAPABILITIES = extern struct {
-    PowerButtonPresent: BOOLEAN,
-    SleepButtonPresent: BOOLEAN,
-    LidPresent: BOOLEAN,
-    SystemS1: BOOLEAN,
-    SystemS2: BOOLEAN,
-    SystemS3: BOOLEAN,
-    SystemS4: BOOLEAN,
-    SystemS5: BOOLEAN,
-    HiberFilePresent: BOOLEAN,
-    FullWake: BOOLEAN,
-    VideoDimPresent: BOOLEAN,
-    ApmPresent: BOOLEAN,
-    UpsPresent: BOOLEAN,
-    ThermalControl: BOOLEAN,
-    ProcessorThrottle: BOOLEAN,
-    ProcessorMinThrottle: u8,
-    ProcessorMaxThrottle: u8,
-    FastSystemS4: BOOLEAN,
-    Hiberboot: BOOLEAN,
-    WakeAlarmPresent: BOOLEAN,
-    AoAc: BOOLEAN,
-    DiskSpinDown: BOOLEAN,
-    HiberFileType: u8,
-    AoAcConnectivitySupported: BOOLEAN,
-    spare3: [6]u8,
-    SystemBatteriesPresent: BOOLEAN,
-    BatteriesAreShortTerm: BOOLEAN,
-    BatteryScale: [3]BATTERY_REPORTING_SCALE,
-    AcOnLineWake: SYSTEM_POWER_STATE,
-    SoftLidWake: SYSTEM_POWER_STATE,
-    RtcWake: SYSTEM_POWER_STATE,
-    MinDeviceWakeState: SYSTEM_POWER_STATE,
-    DefaultLowLatencyWake: SYSTEM_POWER_STATE,
-};
-
-pub const SYSTEM_BATTERY_STATE = extern struct {
-    AcOnLine: BOOLEAN,
-    BatteryPresent: BOOLEAN,
-    Charging: BOOLEAN,
-    Discharging: BOOLEAN,
-    Spare1: [3]BOOLEAN,
-    Tag: u8,
-    MaxCapacity: u32,
-    RemainingCapacity: u32,
-    Rate: u32,
-    EstimatedTime: u32,
-    DefaultAlert1: u32,
-    DefaultAlert2: u32,
-};
-
-pub const POWERBROADCAST_SETTING = extern struct {
-    PowerSetting: Guid,
-    DataLength: u32,
-    Data: [1]u8,
-};
+pub const PowerSystemUnspecified = SYSTEM_POWER_STATE.Unspecified;
+pub const PowerSystemWorking = SYSTEM_POWER_STATE.Working;
+pub const PowerSystemSleeping1 = SYSTEM_POWER_STATE.Sleeping1;
+pub const PowerSystemSleeping2 = SYSTEM_POWER_STATE.Sleeping2;
+pub const PowerSystemSleeping3 = SYSTEM_POWER_STATE.Sleeping3;
+pub const PowerSystemHibernate = SYSTEM_POWER_STATE.Hibernate;
+pub const PowerSystemShutdown = SYSTEM_POWER_STATE.Shutdown;
+pub const PowerSystemMaximum = SYSTEM_POWER_STATE.Maximum;
 
 pub const SYSTEM_POWER_STATUS = extern struct {
     ACLineStatus: u8,
@@ -1172,6 +1093,85 @@ pub const SYSTEM_POWER_STATUS = extern struct {
     SystemStatusFlag: u8,
     BatteryLifeTime: u32,
     BatteryFullLifeTime: u32,
+};
+
+pub const THERMAL_EVENT = extern struct {
+    Version: u32,
+    Size: u32,
+    Type: u32,
+    Temperature: u32,
+    TripPointTemperature: u32,
+    Initiator: ?PWSTR,
+};
+
+pub const THERMAL_INFORMATION = extern struct {
+    ThermalStamp: u32,
+    ThermalConstant1: u32,
+    ThermalConstant2: u32,
+    Processors: usize,
+    SamplingPeriod: u32,
+    CurrentTemperature: u32,
+    PassiveTripPoint: u32,
+    CriticalTripPoint: u32,
+    ActiveTripPointCount: u8,
+    ActiveTripPoint: [10]u32,
+};
+
+pub const THERMAL_POLICY = extern struct {
+    Version: u32,
+    WaitForUpdate: BOOLEAN,
+    Hibernate: BOOLEAN,
+    Critical: BOOLEAN,
+    ThermalStandby: BOOLEAN,
+    ActivationReasons: u32,
+    PassiveLimit: u32,
+    ActiveLevel: u32,
+    OverThrottled: BOOLEAN,
+};
+
+pub const THERMAL_WAIT_READ = extern struct {
+    Timeout: u32,
+    LowTemperature: u32,
+    HighTemperature: u32,
+};
+
+pub const USB_CHARGER_PORT = enum(i32) {
+    Legacy = 0,
+    TypeC = 1,
+    Max = 2,
+};
+pub const UsbChargerPort_Legacy = USB_CHARGER_PORT.Legacy;
+pub const UsbChargerPort_TypeC = USB_CHARGER_PORT.TypeC;
+pub const UsbChargerPort_Max = USB_CHARGER_PORT.Max;
+
+pub const USER_POWER_POLICY = extern struct {
+    Revision: u32,
+    IdleAc: POWER_ACTION_POLICY,
+    IdleDc: POWER_ACTION_POLICY,
+    IdleTimeoutAc: u32,
+    IdleTimeoutDc: u32,
+    IdleSensitivityAc: u8,
+    IdleSensitivityDc: u8,
+    ThrottlePolicyAc: u8,
+    ThrottlePolicyDc: u8,
+    MaxSleepAc: SYSTEM_POWER_STATE,
+    MaxSleepDc: SYSTEM_POWER_STATE,
+    Reserved: [2]u32,
+    VideoTimeoutAc: u32,
+    VideoTimeoutDc: u32,
+    SpindownTimeoutAc: u32,
+    SpindownTimeoutDc: u32,
+    OptimizeForPowerAc: BOOLEAN,
+    OptimizeForPowerDc: BOOLEAN,
+    FanThrottleToleranceAc: u8,
+    FanThrottleToleranceDc: u8,
+    ForcedThrottleAc: u8,
+    ForcedThrottleDc: u8,
+};
+
+pub const WAKE_ALARM_INFORMATION = extern struct {
+    TimerIdentifier: u32,
+    Timeout: u32,
 };
 
 
@@ -1190,25 +1190,202 @@ pub extern "powrprof" fn CallNtPowerInformation(
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn CanUserWritePwrScheme(
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn DeletePwrScheme(
+    uiID: u32,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn DevicePowerClose(
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn DevicePowerEnumDevices(
+    QueryIndex: u32,
+    QueryInterpretationFlags: u32,
+    QueryFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    pReturnBuffer: ?*u8,
+    pBufferSize: ?*u32,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn DevicePowerOpen(
+    DebugMask: u32,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn DevicePowerSetDeviceState(
+    DeviceDescription: ?[*:0]const u16,
+    SetFlags: u32,
+    SetData: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn EnumPwrSchemes(
+    lpfn: ?PWRSCHEMESENUMPROC,
+    lParam: LPARAM,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn GetActivePwrScheme(
+    puiID: ?*u32,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn GetCurrentPowerPolicies(
+    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
+    pPowerPolicy: ?*POWER_POLICY,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetDevicePowerState(
+    hDevice: ?HANDLE,
+    pfOn: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "powrprof" fn GetPwrCapabilities(
     lpspc: ?*SYSTEM_POWER_CAPABILITIES,
 ) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn GetPwrDiskSpindownRange(
+    puiMax: ?*u32,
+    puiMin: ?*u32,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetSystemPowerStatus(
+    lpSystemPowerStatus: ?*SYSTEM_POWER_STATUS,
+) callconv(.winapi) BOOL;
+
+pub extern "powrprof" fn IsAdminOverrideActive(
+    papp: ?*ADMINISTRATOR_POWER_POLICY,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn IsPwrHibernateAllowed(
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn IsPwrShutdownAllowed(
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn IsPwrSuspendAllowed(
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn IsSystemResumeAutomatic(
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerCanRestoreIndividualDefaultPowerScheme(
+    SchemeGuid: ?*const Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn PowerClearRequest(
+    PowerRequest: ?HANDLE,
+    RequestType: POWER_REQUEST_TYPE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerCreatePossibleSetting(
+    RootSystemPowerKey: ?HKEY,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    PossibleSettingIndex: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn PowerCreateRequest(
+    Context: ?*REASON_CONTEXT,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerCreateSetting(
+    RootSystemPowerKey: ?HKEY,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerDeleteScheme(
+    RootPowerKey: ?HKEY,
+    SchemeGuid: ?*const Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerDeterminePlatformRole(
+) callconv(.winapi) POWER_PLATFORM_ROLE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "powrprof" fn PowerDeterminePlatformRoleEx(
     Version: POWER_PLATFORM_ROLE_VERSION,
 ) callconv(.winapi) POWER_PLATFORM_ROLE;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "powrprof" fn PowerRegisterSuspendResumeNotification(
-    Flags: u32,
-    Recipient: ?HANDLE,
-    RegistrationHandle: ?*?*anyopaque,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerDuplicateScheme(
+    RootPowerKey: ?HKEY,
+    SourceSchemeGuid: ?*const Guid,
+    DestinationSchemeGuid: ?*?*Guid,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "powrprof" fn PowerUnregisterSuspendResumeNotification(
-    RegistrationHandle: ?HPOWERNOTIFY,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerEnumerate(
+    RootPowerKey: ?HKEY,
+    SchemeGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    AccessFlags: POWER_DATA_ACCESSOR,
+    Index: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    Buffer: ?*u8,
+    BufferSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerGetActiveScheme(
+    UserRootPowerKey: ?HKEY,
+    ActivePolicyGuid: ?*?*Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerImportPowerScheme(
+    RootPowerKey: ?HKEY,
+    ImportFileNamePath: ?[*:0]const u16,
+    DestinationSchemeGuid: ?*?*Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "powrprof" fn PowerIsSettingRangeDefined(
+    SubKeyGuid: ?*const Guid,
+    SettingGuid: ?*const Guid,
+) callconv(.winapi) BOOLEAN;
+
+pub extern "powrprof" fn PowerOpenSystemPowerKey(
+    phSystemPowerKey: ?*?HKEY,
+    Access: u32,
+    OpenExisting: BOOL,
+) callconv(.winapi) u32;
+
+pub extern "powrprof" fn PowerOpenUserPowerKey(
+    phUserPowerKey: ?*?HKEY,
+    Access: u32,
+    OpenExisting: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerReadACDefaultIndex(
+    RootPowerKey: ?HKEY,
+    SchemePersonalityGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    AcDefaultIndex: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1224,6 +1401,24 @@ pub extern "powrprof" fn PowerReadACValue(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerReadACValueIndex(
+    RootPowerKey: ?HKEY,
+    SchemeGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    AcValueIndex: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerReadDCDefaultIndex(
+    RootPowerKey: ?HKEY,
+    SchemePersonalityGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    DcDefaultIndex: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "powrprof" fn PowerReadDCValue(
     RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
@@ -1236,199 +1431,23 @@ pub extern "powrprof" fn PowerReadDCValue(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteACValueIndex(
-    RootPowerKey: ?HKEY,
-    SchemeGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    AcValueIndex: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteDCValueIndex(
-    RootPowerKey: ?HKEY,
-    SchemeGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    DcValueIndex: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerGetActiveScheme(
-    UserRootPowerKey: ?HKEY,
-    ActivePolicyGuid: ?*?*Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerSetActiveScheme(
-    UserRootPowerKey: ?HKEY,
-    SchemeGuid: ?*const Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "powrprof" fn PowerSettingRegisterNotification(
-    SettingGuid: ?*const Guid,
-    Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
-    Recipient: ?HANDLE,
-    RegistrationHandle: ?*?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "powrprof" fn PowerSettingUnregisterNotification(
-    RegistrationHandle: ?HPOWERNOTIFY,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows10.0.17763'
-pub extern "powrprof" fn PowerRegisterForEffectivePowerModeNotifications(
-    Version: u32,
-    Callback: ?EFFECTIVE_POWER_MODE_CALLBACK,
-    Context: ?*anyopaque,
-    RegistrationHandle: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.17763'
-pub extern "powrprof" fn PowerUnregisterFromEffectivePowerModeNotifications(
-    RegistrationHandle: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn GetPwrDiskSpindownRange(
-    puiMax: ?*u32,
-    puiMin: ?*u32,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn EnumPwrSchemes(
-    lpfn: ?PWRSCHEMESENUMPROC,
-    lParam: LPARAM,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn ReadGlobalPwrPolicy(
-    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn ReadPwrScheme(
-    uiID: u32,
-    pPowerPolicy: ?*POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn WritePwrScheme(
-    puiID: ?*u32,
-    lpszSchemeName: ?[*:0]const u16,
-    lpszDescription: ?[*:0]const u16,
-    lpScheme: ?*POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn WriteGlobalPwrPolicy(
-    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn DeletePwrScheme(
-    uiID: u32,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn GetActivePwrScheme(
-    puiID: ?*u32,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn SetActivePwrScheme(
-    uiID: u32,
-    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
-    pPowerPolicy: ?*POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn IsPwrSuspendAllowed(
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn IsPwrHibernateAllowed(
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn IsPwrShutdownAllowed(
-) callconv(.winapi) BOOLEAN;
-
-pub extern "powrprof" fn IsAdminOverrideActive(
-    papp: ?*ADMINISTRATOR_POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn SetSuspendState(
-    bHibernate: BOOLEAN,
-    bForce: BOOLEAN,
-    bWakeupEventsDisabled: BOOLEAN,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn GetCurrentPowerPolicies(
-    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
-    pPowerPolicy: ?*POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn CanUserWritePwrScheme(
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn ReadProcessorPwrScheme(
-    uiID: u32,
-    pMachineProcessorPowerPolicy: ?*MACHINE_PROCESSOR_POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn WriteProcessorPwrScheme(
-    uiID: u32,
-    pMachineProcessorPowerPolicy: ?*MACHINE_PROCESSOR_POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-pub extern "powrprof" fn ValidatePowerPolicies(
-    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
-    pPowerPolicy: ?*POWER_POLICY,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "powrprof" fn PowerIsSettingRangeDefined(
-    SubKeyGuid: ?*const Guid,
-    SettingGuid: ?*const Guid,
-) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "powrprof" fn PowerSettingAccessCheckEx(
-    AccessFlags: POWER_DATA_ACCESSOR,
-    PowerGuid: ?*const Guid,
-    AccessType: REG_SAM_FLAGS,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerSettingAccessCheck(
-    AccessFlags: POWER_DATA_ACCESSOR,
-    PowerGuid: ?*const Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadACValueIndex(
-    RootPowerKey: ?HKEY,
-    SchemeGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    AcValueIndex: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "powrprof" fn PowerReadDCValueIndex(
     RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     DcValueIndex: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerReadDescription(
+    RootPowerKey: ?HKEY,
+    SchemeGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    // TODO: what to do with BytesParamIndex 5?
+    Buffer: ?*u8,
+    BufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1443,11 +1462,33 @@ pub extern "powrprof" fn PowerReadFriendlyName(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadDescription(
+pub extern "powrprof" fn PowerReadIconResourceSpecifier(
     RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
+    // TODO: what to do with BytesParamIndex 5?
+    Buffer: ?*u8,
+    BufferSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerReadPossibleDescription(
+    RootPowerKey: ?HKEY,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    PossibleSettingIndex: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    Buffer: ?*u8,
+    BufferSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerReadPossibleFriendlyName(
+    RootPowerKey: ?HKEY,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    PossibleSettingIndex: u32,
     // TODO: what to do with BytesParamIndex 5?
     Buffer: ?*u8,
     BufferSize: ?*u32,
@@ -1466,33 +1507,17 @@ pub extern "powrprof" fn PowerReadPossibleValue(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadPossibleFriendlyName(
-    RootPowerKey: ?HKEY,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
+pub extern "powrprof" fn PowerReadSettingAttributes(
+    SubGroupGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    Buffer: ?*u8,
-    BufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadPossibleDescription(
+pub extern "powrprof" fn PowerReadValueIncrement(
     RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    Buffer: ?*u8,
-    BufferSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadValueMin(
-    RootPowerKey: ?HKEY,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    ValueMinimum: ?*u32,
+    ValueIncrement: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1504,11 +1529,11 @@ pub extern "powrprof" fn PowerReadValueMax(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadValueIncrement(
+pub extern "powrprof" fn PowerReadValueMin(
     RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    ValueIncrement: ?*u32,
+    ValueMinimum: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1521,39 +1546,138 @@ pub extern "powrprof" fn PowerReadValueUnitsSpecifier(
     BufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadACDefaultIndex(
-    RootPowerKey: ?HKEY,
-    SchemePersonalityGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    AcDefaultIndex: ?*u32,
+// TODO: this type is limited to platform 'windows10.0.17763'
+pub extern "powrprof" fn PowerRegisterForEffectivePowerModeNotifications(
+    Version: u32,
+    Callback: ?EFFECTIVE_POWER_MODE_CALLBACK,
+    Context: ?*anyopaque,
+    RegistrationHandle: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "powrprof" fn PowerRegisterSuspendResumeNotification(
+    Flags: u32,
+    Recipient: ?HANDLE,
+    RegistrationHandle: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadDCDefaultIndex(
-    RootPowerKey: ?HKEY,
-    SchemePersonalityGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
+pub extern "powrprof" fn PowerRemovePowerSetting(
+    PowerSettingSubKeyGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    DcDefaultIndex: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadIconResourceSpecifier(
+pub extern "powrprof" fn PowerReplaceDefaultPowerSchemes(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "powrprof" fn PowerReportThermalEvent(
+    Event: ?*THERMAL_EVENT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerRestoreDefaultPowerSchemes(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerRestoreIndividualDefaultPowerScheme(
+    SchemeGuid: ?*const Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerSetActiveScheme(
+    UserRootPowerKey: ?HKEY,
+    SchemeGuid: ?*const Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn PowerSetRequest(
+    PowerRequest: ?HANDLE,
+    RequestType: POWER_REQUEST_TYPE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerSettingAccessCheck(
+    AccessFlags: POWER_DATA_ACCESSOR,
+    PowerGuid: ?*const Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "powrprof" fn PowerSettingAccessCheckEx(
+    AccessFlags: POWER_DATA_ACCESSOR,
+    PowerGuid: ?*const Guid,
+    AccessType: REG_SAM_FLAGS,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "powrprof" fn PowerSettingRegisterNotification(
+    SettingGuid: ?*const Guid,
+    Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
+    Recipient: ?HANDLE,
+    RegistrationHandle: ?*?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "powrprof" fn PowerSettingUnregisterNotification(
+    RegistrationHandle: ?HPOWERNOTIFY,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows10.0.17763'
+pub extern "powrprof" fn PowerUnregisterFromEffectivePowerModeNotifications(
+    RegistrationHandle: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "powrprof" fn PowerUnregisterSuspendResumeNotification(
+    RegistrationHandle: ?HPOWERNOTIFY,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerWriteACDefaultIndex(
+    RootSystemPowerKey: ?HKEY,
+    SchemePersonalityGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    DefaultAcIndex: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerWriteACValueIndex(
+    RootPowerKey: ?HKEY,
+    SchemeGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    AcValueIndex: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerWriteDCDefaultIndex(
+    RootSystemPowerKey: ?HKEY,
+    SchemePersonalityGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    DefaultDcIndex: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerWriteDCValueIndex(
+    RootPowerKey: ?HKEY,
+    SchemeGuid: ?*const Guid,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    DcValueIndex: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerWriteDescription(
     RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     // TODO: what to do with BytesParamIndex 5?
     Buffer: ?*u8,
-    BufferSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReadSettingAttributes(
-    SubGroupGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
+    BufferSize: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1568,11 +1692,33 @@ pub extern "powrprof" fn PowerWriteFriendlyName(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteDescription(
+pub extern "powrprof" fn PowerWriteIconResourceSpecifier(
     RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
+    // TODO: what to do with BytesParamIndex 5?
+    Buffer: ?*u8,
+    BufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerWritePossibleDescription(
+    RootPowerKey: ?HKEY,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    PossibleSettingIndex: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    Buffer: ?*u8,
+    BufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "powrprof" fn PowerWritePossibleFriendlyName(
+    RootPowerKey: ?HKEY,
+    SubGroupOfPowerSettingsGuid: ?*const Guid,
+    PowerSettingGuid: ?*const Guid,
+    PossibleSettingIndex: u32,
     // TODO: what to do with BytesParamIndex 5?
     Buffer: ?*u8,
     BufferSize: u32,
@@ -1591,33 +1737,18 @@ pub extern "powrprof" fn PowerWritePossibleValue(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWritePossibleFriendlyName(
-    RootPowerKey: ?HKEY,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
+pub extern "powrprof" fn PowerWriteSettingAttributes(
+    SubGroupGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    Buffer: ?*u8,
-    BufferSize: u32,
+    Attributes: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWritePossibleDescription(
+pub extern "powrprof" fn PowerWriteValueIncrement(
     RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    Buffer: ?*u8,
-    BufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteValueMin(
-    RootPowerKey: ?HKEY,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    ValueMinimum: u32,
+    ValueIncrement: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1629,11 +1760,11 @@ pub extern "powrprof" fn PowerWriteValueMax(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteValueIncrement(
+pub extern "powrprof" fn PowerWriteValueMin(
     RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    ValueIncrement: u32,
+    ValueMinimum: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1646,159 +1777,22 @@ pub extern "powrprof" fn PowerWriteValueUnitsSpecifier(
     BufferSize: u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteACDefaultIndex(
-    RootSystemPowerKey: ?HKEY,
-    SchemePersonalityGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    DefaultAcIndex: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteDCDefaultIndex(
-    RootSystemPowerKey: ?HKEY,
-    SchemePersonalityGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    DefaultDcIndex: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteIconResourceSpecifier(
-    RootPowerKey: ?HKEY,
-    SchemeGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 5?
-    Buffer: ?*u8,
-    BufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerWriteSettingAttributes(
-    SubGroupGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    Attributes: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerDuplicateScheme(
-    RootPowerKey: ?HKEY,
-    SourceSchemeGuid: ?*const Guid,
-    DestinationSchemeGuid: ?*?*Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerImportPowerScheme(
-    RootPowerKey: ?HKEY,
-    ImportFileNamePath: ?[*:0]const u16,
-    DestinationSchemeGuid: ?*?*Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerDeleteScheme(
-    RootPowerKey: ?HKEY,
-    SchemeGuid: ?*const Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerRemovePowerSetting(
-    PowerSettingSubKeyGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerCreateSetting(
-    RootSystemPowerKey: ?HKEY,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerCreatePossibleSetting(
-    RootSystemPowerKey: ?HKEY,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    PowerSettingGuid: ?*const Guid,
-    PossibleSettingIndex: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerEnumerate(
-    RootPowerKey: ?HKEY,
-    SchemeGuid: ?*const Guid,
-    SubGroupOfPowerSettingsGuid: ?*const Guid,
-    AccessFlags: POWER_DATA_ACCESSOR,
-    Index: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    Buffer: ?*u8,
-    BufferSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub extern "powrprof" fn PowerOpenUserPowerKey(
-    phUserPowerKey: ?*?HKEY,
-    Access: u32,
-    OpenExisting: BOOL,
-) callconv(.winapi) u32;
-
-pub extern "powrprof" fn PowerOpenSystemPowerKey(
-    phSystemPowerKey: ?*?HKEY,
-    Access: u32,
-    OpenExisting: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerCanRestoreIndividualDefaultPowerScheme(
-    SchemeGuid: ?*const Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerRestoreIndividualDefaultPowerScheme(
-    SchemeGuid: ?*const Guid,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerRestoreDefaultPowerSchemes(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReplaceDefaultPowerSchemes(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerDeterminePlatformRole(
-) callconv(.winapi) POWER_PLATFORM_ROLE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn DevicePowerEnumDevices(
-    QueryIndex: u32,
-    QueryInterpretationFlags: u32,
-    QueryFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    pReturnBuffer: ?*u8,
-    pBufferSize: ?*u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn ReadGlobalPwrPolicy(
+    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
 ) callconv(.winapi) BOOLEAN;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn DevicePowerSetDeviceState(
-    DeviceDescription: ?[*:0]const u16,
-    SetFlags: u32,
-    SetData: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn DevicePowerOpen(
-    DebugMask: u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn ReadProcessorPwrScheme(
+    uiID: u32,
+    pMachineProcessorPowerPolicy: ?*MACHINE_PROCESSOR_POWER_POLICY,
 ) callconv(.winapi) BOOLEAN;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn DevicePowerClose(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn ReadPwrScheme(
+    uiID: u32,
+    pPowerPolicy: ?*POWER_POLICY,
 ) callconv(.winapi) BOOLEAN;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "powrprof" fn PowerReportThermalEvent(
-    Event: ?*THERMAL_EVENT,
-) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn RegisterPowerSettingNotification(
@@ -1807,21 +1801,11 @@ pub extern "user32" fn RegisterPowerSettingNotification(
     Flags: u32,
 ) callconv(.winapi) ?HPOWERNOTIFY;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "user32" fn UnregisterPowerSettingNotification(
-    Handle: ?HPOWERNOTIFY,
-) callconv(.winapi) BOOL;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "user32" fn RegisterSuspendResumeNotification(
     hRecipient: ?HANDLE,
     Flags: u32,
 ) callconv(.winapi) ?HPOWERNOTIFY;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn UnregisterSuspendResumeNotification(
-    Handle: ?HPOWERNOTIFY,
-) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn RequestWakeupLatency(
@@ -1829,36 +1813,18 @@ pub extern "kernel32" fn RequestWakeupLatency(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsSystemResumeAutomatic(
-) callconv(.winapi) BOOL;
+pub extern "powrprof" fn SetActivePwrScheme(
+    uiID: u32,
+    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
+    pPowerPolicy: ?*POWER_POLICY,
+) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SetThreadExecutionState(
-    esFlags: EXECUTION_STATE,
-) callconv(.winapi) EXECUTION_STATE;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn PowerCreateRequest(
-    Context: ?*REASON_CONTEXT,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn PowerSetRequest(
-    PowerRequest: ?HANDLE,
-    RequestType: POWER_REQUEST_TYPE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn PowerClearRequest(
-    PowerRequest: ?HANDLE,
-    RequestType: POWER_REQUEST_TYPE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetDevicePowerState(
-    hDevice: ?HANDLE,
-    pfOn: ?*BOOL,
-) callconv(.winapi) BOOL;
+pub extern "powrprof" fn SetSuspendState(
+    bHibernate: BOOLEAN,
+    bForce: BOOLEAN,
+    bWakeupEventsDisabled: BOOLEAN,
+) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn SetSystemPowerState(
@@ -1867,9 +1833,43 @@ pub extern "kernel32" fn SetSystemPowerState(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetSystemPowerStatus(
-    lpSystemPowerStatus: ?*SYSTEM_POWER_STATUS,
+pub extern "kernel32" fn SetThreadExecutionState(
+    esFlags: EXECUTION_STATE,
+) callconv(.winapi) EXECUTION_STATE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "user32" fn UnregisterPowerSettingNotification(
+    Handle: ?HPOWERNOTIFY,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn UnregisterSuspendResumeNotification(
+    Handle: ?HPOWERNOTIFY,
+) callconv(.winapi) BOOL;
+
+pub extern "powrprof" fn ValidatePowerPolicies(
+    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
+    pPowerPolicy: ?*POWER_POLICY,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn WriteGlobalPwrPolicy(
+    pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn WriteProcessorPwrScheme(
+    uiID: u32,
+    pMachineProcessorPowerPolicy: ?*MACHINE_PROCESSOR_POWER_POLICY,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "powrprof" fn WritePwrScheme(
+    puiID: ?*u32,
+    lpszSchemeName: ?[*:0]const u16,
+    lpszDescription: ?[*:0]const u16,
+    lpScheme: ?*POWER_POLICY,
+) callconv(.winapi) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------
@@ -1894,9 +1894,9 @@ const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     if (@hasDecl(@This(), "EFFECTIVE_POWER_MODE_CALLBACK")) { _ = EFFECTIVE_POWER_MODE_CALLBACK; }
-    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC_V1")) { _ = PWRSCHEMESENUMPROC_V1; }
-    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC")) { _ = PWRSCHEMESENUMPROC; }
     if (@hasDecl(@This(), "PDEVICE_NOTIFY_CALLBACK_ROUTINE")) { _ = PDEVICE_NOTIFY_CALLBACK_ROUTINE; }
+    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC")) { _ = PWRSCHEMESENUMPROC; }
+    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC_V1")) { _ = PWRSCHEMESENUMPROC_V1; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

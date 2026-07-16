@@ -2,449 +2,319 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (301)
 //--------------------------------------------------------------------------------
-pub const MKSYS_URLMONIKER = @as(u32, 6);
-pub const URL_MK_LEGACY = @as(u32, 0);
-pub const URL_MK_UNIFORM = @as(u32, 1);
-pub const URL_MK_NO_CANONICALIZE = @as(u32, 2);
+pub const CF_NULL = @as(u32, 0);
+pub const CONFIRMSAFETYACTION_LOADOBJECT = @as(u32, 1);
+pub const E_PENDING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147483638));
 pub const FIEF_FLAG_FORCE_JITUI = @as(u32, 1);
 pub const FIEF_FLAG_PEEK = @as(u32, 2);
-pub const FIEF_FLAG_SKIP_INSTALLED_VERSION_CHECK = @as(u32, 4);
 pub const FIEF_FLAG_RESERVED_0 = @as(u32, 8);
+pub const FIEF_FLAG_SKIP_INSTALLED_VERSION_CHECK = @as(u32, 4);
 pub const FMFD_DEFAULT = @as(u32, 0);
-pub const FMFD_URLASFILENAME = @as(u32, 1);
 pub const FMFD_ENABLEMIMESNIFFING = @as(u32, 2);
 pub const FMFD_IGNOREMIMETEXTPLAIN = @as(u32, 4);
-pub const FMFD_SERVERMIME = @as(u32, 8);
-pub const FMFD_RESPECTTEXTPLAIN = @as(u32, 16);
-pub const FMFD_RETURNUPDATEDIMGMIMES = @as(u32, 32);
 pub const FMFD_RESERVED_1 = @as(u32, 64);
 pub const FMFD_RESERVED_2 = @as(u32, 128);
-pub const UAS_EXACTLEGACY = @as(u32, 4096);
-pub const URLMON_OPTION_USERAGENT = @as(u32, 268435457);
-pub const URLMON_OPTION_USERAGENT_REFRESH = @as(u32, 268435458);
-pub const URLMON_OPTION_URL_ENCODING = @as(u32, 268435460);
-pub const URLMON_OPTION_USE_BINDSTRINGCREDS = @as(u32, 268435464);
-pub const URLMON_OPTION_USE_BROWSERAPPSDOCUMENTS = @as(u32, 268435472);
-pub const CF_NULL = @as(u32, 0);
-pub const MK_S_ASYNCHRONOUS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 262632));
-pub const S_ASYNCHRONOUS = @as(i32, 262632);
-pub const E_PENDING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147483638));
+pub const FMFD_RESPECTTEXTPLAIN = @as(u32, 16);
+pub const FMFD_RETURNUPDATEDIMGMIMES = @as(u32, 32);
+pub const FMFD_SERVERMIME = @as(u32, 8);
+pub const FMFD_URLASFILENAME = @as(u32, 1);
+pub const GET_FEATURE_FROM_PROCESS = @as(u32, 2);
+pub const GET_FEATURE_FROM_REGISTRY = @as(u32, 4);
+pub const GET_FEATURE_FROM_THREAD = @as(u32, 1);
+pub const GET_FEATURE_FROM_THREAD_INTERNET = @as(u32, 64);
+pub const GET_FEATURE_FROM_THREAD_INTRANET = @as(u32, 16);
+pub const GET_FEATURE_FROM_THREAD_LOCALMACHINE = @as(u32, 8);
+pub const GET_FEATURE_FROM_THREAD_RESTRICTED = @as(u32, 128);
+pub const GET_FEATURE_FROM_THREAD_TRUSTED = @as(u32, 32);
+pub const INET_E_AUTHENTICATION_REQUIRED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697207));
+pub const INET_E_BLOCKED_ENHANCEDPROTECTEDMODE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695930));
+pub const INET_E_BLOCKED_PLUGGABLE_PROTOCOL = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695931));
+pub const INET_E_BLOCKED_REDIRECT_XSECURITYID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697189));
+pub const INET_E_CANNOT_CONNECT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697212));
+pub const INET_E_CANNOT_INSTANTIATE_OBJECT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697200));
+pub const INET_E_CANNOT_LOAD_DATA = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697201));
+pub const INET_E_CANNOT_LOCK_REQUEST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697194));
+pub const INET_E_CANNOT_REPLACE_SFP_FILE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146696448));
+pub const INET_E_CODE_DOWNLOAD_DECLINED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146696960));
+pub const INET_E_CODE_INSTALL_BLOCKED_ARM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695932));
+pub const INET_E_CODE_INSTALL_BLOCKED_BITNESS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695929));
+pub const INET_E_CODE_INSTALL_BLOCKED_BY_HASH_POLICY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695936));
+pub const INET_E_CODE_INSTALL_BLOCKED_IMMERSIVE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695934));
+pub const INET_E_CODE_INSTALL_SUPPRESSED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146696192));
+pub const INET_E_CONNECTION_TIMEOUT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697205));
+pub const INET_E_DATA_NOT_AVAILABLE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697209));
+pub const INET_E_DEFAULT_ACTION = @as(i32, -2146697199);
+pub const INET_E_DOMINJECTIONVALIDATION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697188));
+pub const INET_E_DOWNLOAD_BLOCKED_BY_CSP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695928));
+pub const INET_E_DOWNLOAD_BLOCKED_BY_INPRIVATE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695935));
+pub const INET_E_DOWNLOAD_FAILURE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697208));
+pub const INET_E_ERROR_FIRST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697214));
+pub const INET_E_ERROR_LAST = @as(i32, -2146695928);
+pub const INET_E_FORBIDFRAMING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695933));
+pub const INET_E_HSTS_CERTIFICATE_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697186));
+pub const INET_E_INVALID_CERTIFICATE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697191));
+pub const INET_E_INVALID_REQUEST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697204));
 pub const INET_E_INVALID_URL = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697214));
 pub const INET_E_NO_SESSION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697213));
-pub const INET_E_CANNOT_CONNECT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697212));
-pub const INET_E_RESOURCE_NOT_FOUND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697211));
-pub const INET_E_OBJECT_NOT_FOUND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697210));
-pub const INET_E_DATA_NOT_AVAILABLE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697209));
-pub const INET_E_DOWNLOAD_FAILURE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697208));
-pub const INET_E_AUTHENTICATION_REQUIRED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697207));
 pub const INET_E_NO_VALID_MEDIA = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697206));
-pub const INET_E_CONNECTION_TIMEOUT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697205));
-pub const INET_E_INVALID_REQUEST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697204));
-pub const INET_E_UNKNOWN_PROTOCOL = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697203));
-pub const INET_E_SECURITY_PROBLEM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697202));
-pub const INET_E_CANNOT_LOAD_DATA = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697201));
-pub const INET_E_CANNOT_INSTANTIATE_OBJECT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697200));
-pub const INET_E_INVALID_CERTIFICATE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697191));
+pub const INET_E_OBJECT_NOT_FOUND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697210));
+pub const INET_E_QUERYOPTION_UNKNOWN = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697197));
 pub const INET_E_REDIRECT_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697196));
 pub const INET_E_REDIRECT_TO_DIR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697195));
-pub const INET_E_CANNOT_LOCK_REQUEST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697194));
-pub const INET_E_USE_EXTEND_BINDING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697193));
-pub const INET_E_TERMINATED_BIND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697192));
+pub const INET_E_REDIRECTING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697196));
 pub const INET_E_RESERVED_1 = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697190));
-pub const INET_E_BLOCKED_REDIRECT_XSECURITYID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697189));
-pub const INET_E_DOMINJECTIONVALIDATION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697188));
-pub const INET_E_VTAB_SWITCH_FORCE_ENGINE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697187));
-pub const INET_E_HSTS_CERTIFICATE_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697186));
 pub const INET_E_RESERVED_2 = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697185));
 pub const INET_E_RESERVED_3 = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697184));
 pub const INET_E_RESERVED_4 = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697183));
 pub const INET_E_RESERVED_5 = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697182));
-pub const INET_E_ERROR_FIRST = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697214));
-pub const INET_E_CODE_DOWNLOAD_DECLINED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146696960));
+pub const INET_E_RESOURCE_NOT_FOUND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697211));
 pub const INET_E_RESULT_DISPATCHED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146696704));
-pub const INET_E_CANNOT_REPLACE_SFP_FILE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146696448));
-pub const INET_E_CODE_INSTALL_SUPPRESSED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146696192));
-pub const INET_E_CODE_INSTALL_BLOCKED_BY_HASH_POLICY = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695936));
-pub const INET_E_DOWNLOAD_BLOCKED_BY_INPRIVATE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695935));
-pub const INET_E_CODE_INSTALL_BLOCKED_IMMERSIVE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695934));
-pub const INET_E_FORBIDFRAMING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695933));
-pub const INET_E_CODE_INSTALL_BLOCKED_ARM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695932));
-pub const INET_E_BLOCKED_PLUGGABLE_PROTOCOL = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695931));
-pub const INET_E_BLOCKED_ENHANCEDPROTECTEDMODE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695930));
-pub const INET_E_CODE_INSTALL_BLOCKED_BITNESS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695929));
-pub const INET_E_DOWNLOAD_BLOCKED_BY_CSP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146695928));
-pub const INET_E_ERROR_LAST = @as(i32, -2146695928);
-pub const Uri_DISPLAY_NO_FRAGMENT = @as(u32, 1);
-pub const Uri_PUNYCODE_IDN_HOST = @as(u32, 2);
-pub const Uri_DISPLAY_IDN_HOST = @as(u32, 4);
-pub const Uri_DISPLAY_NO_PUNYCODE = @as(u32, 8);
-pub const Uri_ENCODING_USER_INFO_AND_PATH_IS_PERCENT_ENCODED_UTF8 = @as(u32, 1);
-pub const Uri_ENCODING_USER_INFO_AND_PATH_IS_CP = @as(u32, 2);
-pub const Uri_ENCODING_HOST_IS_IDN = @as(u32, 4);
-pub const Uri_ENCODING_HOST_IS_PERCENT_ENCODED_UTF8 = @as(u32, 8);
-pub const Uri_ENCODING_HOST_IS_PERCENT_ENCODED_CP = @as(u32, 16);
-pub const Uri_ENCODING_QUERY_AND_FRAGMENT_IS_PERCENT_ENCODED_UTF8 = @as(u32, 32);
-pub const Uri_ENCODING_QUERY_AND_FRAGMENT_IS_CP = @as(u32, 64);
-pub const UriBuilder_USE_ORIGINAL_FLAGS = @as(u32, 1);
-pub const WININETINFO_OPTION_LOCK_HANDLE = @as(u32, 65534);
-pub const URLOSTRM_USECACHEDCOPY_ONLY = @as(u32, 1);
-pub const URLOSTRM_USECACHEDCOPY = @as(u32, 2);
-pub const URLOSTRM_GETNEWESTVERSION = @as(u32, 3);
-pub const SET_FEATURE_ON_THREAD = @as(u32, 1);
-pub const SET_FEATURE_ON_PROCESS = @as(u32, 2);
-pub const SET_FEATURE_IN_REGISTRY = @as(u32, 4);
-pub const SET_FEATURE_ON_THREAD_LOCALMACHINE = @as(u32, 8);
-pub const SET_FEATURE_ON_THREAD_INTRANET = @as(u32, 16);
-pub const SET_FEATURE_ON_THREAD_TRUSTED = @as(u32, 32);
-pub const SET_FEATURE_ON_THREAD_INTERNET = @as(u32, 64);
-pub const SET_FEATURE_ON_THREAD_RESTRICTED = @as(u32, 128);
-pub const GET_FEATURE_FROM_THREAD = @as(u32, 1);
-pub const GET_FEATURE_FROM_PROCESS = @as(u32, 2);
-pub const GET_FEATURE_FROM_REGISTRY = @as(u32, 4);
-pub const GET_FEATURE_FROM_THREAD_LOCALMACHINE = @as(u32, 8);
-pub const GET_FEATURE_FROM_THREAD_INTRANET = @as(u32, 16);
-pub const GET_FEATURE_FROM_THREAD_TRUSTED = @as(u32, 32);
-pub const GET_FEATURE_FROM_THREAD_INTERNET = @as(u32, 64);
-pub const GET_FEATURE_FROM_THREAD_RESTRICTED = @as(u32, 128);
+pub const INET_E_SECURITY_PROBLEM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697202));
+pub const INET_E_TERMINATED_BIND = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697192));
+pub const INET_E_UNKNOWN_PROTOCOL = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697203));
 pub const INET_E_USE_DEFAULT_PROTOCOLHANDLER = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697199));
 pub const INET_E_USE_DEFAULT_SETTING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697198));
-pub const INET_E_DEFAULT_ACTION = @as(i32, -2146697199);
-pub const INET_E_QUERYOPTION_UNKNOWN = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697197));
-pub const INET_E_REDIRECTING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697196));
-pub const PROTOCOLFLAG_NO_PICS_CHECK = @as(u32, 1);
-pub const MUTZ_NOSAVEDFILECHECK = @as(u32, 1);
-pub const MUTZ_ISFILE = @as(u32, 2);
+pub const INET_E_USE_EXTEND_BINDING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697193));
+pub const INET_E_VTAB_SWITCH_FORCE_ENGINE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2146697187));
+pub const MAX_SIZE_SECURITY_ID = @as(u32, 512);
+pub const MK_S_ASYNCHRONOUS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 262632));
+pub const MKSYS_URLMONIKER = @as(u32, 6);
 pub const MUTZ_ACCEPT_WILDCARD_SCHEME = @as(u32, 128);
-pub const MUTZ_ENFORCERESTRICTED = @as(u32, 256);
-pub const MUTZ_RESERVED = @as(u32, 512);
-pub const MUTZ_REQUIRESAVEDFILECHECK = @as(u32, 1024);
 pub const MUTZ_DONT_UNESCAPE = @as(u32, 2048);
 pub const MUTZ_DONT_USE_CACHE = @as(u32, 4096);
+pub const MUTZ_ENFORCERESTRICTED = @as(u32, 256);
 pub const MUTZ_FORCE_INTRANET_FLAGS = @as(u32, 8192);
 pub const MUTZ_IGNORE_ZONE_MAPPINGS = @as(u32, 16384);
-pub const MAX_SIZE_SECURITY_ID = @as(u32, 512);
-pub const URLACTION_MIN = @as(u32, 4096);
-pub const URLACTION_DOWNLOAD_MIN = @as(u32, 4096);
-pub const URLACTION_DOWNLOAD_SIGNED_ACTIVEX = @as(u32, 4097);
-pub const URLACTION_DOWNLOAD_UNSIGNED_ACTIVEX = @as(u32, 4100);
-pub const URLACTION_DOWNLOAD_CURR_MAX = @as(u32, 4100);
-pub const URLACTION_DOWNLOAD_MAX = @as(u32, 4607);
-pub const URLACTION_ACTIVEX_MIN = @as(u32, 4608);
-pub const URLACTION_ACTIVEX_RUN = @as(u32, 4608);
-pub const URLPOLICY_ACTIVEX_CHECK_LIST = @as(u32, 65536);
-pub const URLACTION_ACTIVEX_OVERRIDE_OBJECT_SAFETY = @as(u32, 4609);
-pub const URLACTION_ACTIVEX_OVERRIDE_DATA_SAFETY = @as(u32, 4610);
-pub const URLACTION_ACTIVEX_OVERRIDE_SCRIPT_SAFETY = @as(u32, 4611);
-pub const URLACTION_SCRIPT_OVERRIDE_SAFETY = @as(u32, 5121);
-pub const URLACTION_ACTIVEX_CONFIRM_NOOBJECTSAFETY = @as(u32, 4612);
-pub const URLACTION_ACTIVEX_TREATASUNTRUSTED = @as(u32, 4613);
-pub const URLACTION_ACTIVEX_NO_WEBOC_SCRIPT = @as(u32, 4614);
-pub const URLACTION_ACTIVEX_OVERRIDE_REPURPOSEDETECTION = @as(u32, 4615);
-pub const URLACTION_ACTIVEX_OVERRIDE_OPTIN = @as(u32, 4616);
-pub const URLACTION_ACTIVEX_SCRIPTLET_RUN = @as(u32, 4617);
-pub const URLACTION_ACTIVEX_DYNSRC_VIDEO_AND_ANIMATION = @as(u32, 4618);
-pub const URLACTION_ACTIVEX_OVERRIDE_DOMAINLIST = @as(u32, 4619);
-pub const URLACTION_ACTIVEX_ALLOW_TDC = @as(u32, 4620);
-pub const URLACTION_ACTIVEX_CURR_MAX = @as(u32, 4620);
-pub const URLACTION_ACTIVEX_MAX = @as(u32, 5119);
-pub const URLACTION_SCRIPT_MIN = @as(u32, 5120);
-pub const URLACTION_SCRIPT_RUN = @as(u32, 5120);
-pub const URLACTION_SCRIPT_JAVA_USE = @as(u32, 5122);
-pub const URLACTION_SCRIPT_SAFE_ACTIVEX = @as(u32, 5125);
-pub const URLACTION_CROSS_DOMAIN_DATA = @as(u32, 5126);
-pub const URLACTION_SCRIPT_PASTE = @as(u32, 5127);
-pub const URLACTION_ALLOW_XDOMAIN_SUBFRAME_RESIZE = @as(u32, 5128);
-pub const URLACTION_SCRIPT_XSSFILTER = @as(u32, 5129);
-pub const URLACTION_SCRIPT_NAVIGATE = @as(u32, 5130);
-pub const URLACTION_PLUGGABLE_PROTOCOL_XHR = @as(u32, 5131);
-pub const URLACTION_ALLOW_VBSCRIPT_IE = @as(u32, 5132);
-pub const URLACTION_ALLOW_JSCRIPT_IE = @as(u32, 5133);
-pub const URLACTION_SCRIPT_CURR_MAX = @as(u32, 5133);
-pub const URLACTION_SCRIPT_MAX = @as(u32, 5631);
-pub const URLACTION_HTML_MIN = @as(u32, 5632);
-pub const URLACTION_HTML_SUBMIT_FORMS = @as(u32, 5633);
-pub const URLACTION_HTML_SUBMIT_FORMS_FROM = @as(u32, 5634);
-pub const URLACTION_HTML_SUBMIT_FORMS_TO = @as(u32, 5635);
-pub const URLACTION_HTML_FONT_DOWNLOAD = @as(u32, 5636);
-pub const URLACTION_HTML_JAVA_RUN = @as(u32, 5637);
-pub const URLACTION_HTML_USERDATA_SAVE = @as(u32, 5638);
-pub const URLACTION_HTML_SUBFRAME_NAVIGATE = @as(u32, 5639);
-pub const URLACTION_HTML_META_REFRESH = @as(u32, 5640);
-pub const URLACTION_HTML_MIXED_CONTENT = @as(u32, 5641);
-pub const URLACTION_HTML_INCLUDE_FILE_PATH = @as(u32, 5642);
-pub const URLACTION_HTML_ALLOW_INJECTED_DYNAMIC_HTML = @as(u32, 5643);
-pub const URLACTION_HTML_REQUIRE_UTF8_DOCUMENT_CODEPAGE = @as(u32, 5644);
-pub const URLACTION_HTML_ALLOW_CROSS_DOMAIN_CANVAS = @as(u32, 5645);
-pub const URLACTION_HTML_ALLOW_WINDOW_CLOSE = @as(u32, 5646);
-pub const URLACTION_HTML_ALLOW_CROSS_DOMAIN_WEBWORKER = @as(u32, 5647);
-pub const URLACTION_HTML_ALLOW_CROSS_DOMAIN_TEXTTRACK = @as(u32, 5648);
-pub const URLACTION_HTML_ALLOW_INDEXEDDB = @as(u32, 5649);
-pub const URLACTION_HTML_MAX = @as(u32, 6143);
-pub const URLACTION_SHELL_MIN = @as(u32, 6144);
-pub const URLACTION_SHELL_INSTALL_DTITEMS = @as(u32, 6144);
-pub const URLACTION_SHELL_MOVE_OR_COPY = @as(u32, 6146);
-pub const URLACTION_SHELL_FILE_DOWNLOAD = @as(u32, 6147);
-pub const URLACTION_SHELL_VERB = @as(u32, 6148);
-pub const URLACTION_SHELL_WEBVIEW_VERB = @as(u32, 6149);
-pub const URLACTION_SHELL_SHELLEXECUTE = @as(u32, 6150);
-pub const URLACTION_SHELL_EXECUTE_HIGHRISK = @as(u32, 6150);
-pub const URLACTION_SHELL_EXECUTE_MODRISK = @as(u32, 6151);
-pub const URLACTION_SHELL_EXECUTE_LOWRISK = @as(u32, 6152);
-pub const URLACTION_SHELL_POPUPMGR = @as(u32, 6153);
-pub const URLACTION_SHELL_RTF_OBJECTS_LOAD = @as(u32, 6154);
-pub const URLACTION_SHELL_ENHANCED_DRAGDROP_SECURITY = @as(u32, 6155);
-pub const URLACTION_SHELL_EXTENSIONSECURITY = @as(u32, 6156);
-pub const URLACTION_SHELL_SECURE_DRAGSOURCE = @as(u32, 6157);
-pub const URLACTION_SHELL_REMOTEQUERY = @as(u32, 6158);
-pub const URLACTION_SHELL_PREVIEW = @as(u32, 6159);
-pub const URLACTION_SHELL_SHARE = @as(u32, 6160);
-pub const URLACTION_SHELL_ALLOW_CROSS_SITE_SHARE = @as(u32, 6161);
-pub const URLACTION_SHELL_TOCTOU_RISK = @as(u32, 6162);
-pub const URLACTION_SHELL_CURR_MAX = @as(u32, 6162);
-pub const URLACTION_SHELL_MAX = @as(u32, 6655);
-pub const URLACTION_NETWORK_MIN = @as(u32, 6656);
-pub const URLACTION_CREDENTIALS_USE = @as(u32, 6656);
-pub const URLPOLICY_CREDENTIALS_SILENT_LOGON_OK = @as(u32, 0);
-pub const URLPOLICY_CREDENTIALS_MUST_PROMPT_USER = @as(u32, 65536);
-pub const URLPOLICY_CREDENTIALS_CONDITIONAL_PROMPT = @as(u32, 131072);
-pub const URLPOLICY_CREDENTIALS_ANONYMOUS_ONLY = @as(u32, 196608);
-pub const URLACTION_AUTHENTICATE_CLIENT = @as(u32, 6657);
-pub const URLPOLICY_AUTHENTICATE_CLEARTEXT_OK = @as(u32, 0);
-pub const URLPOLICY_AUTHENTICATE_CHALLENGE_RESPONSE = @as(u32, 65536);
-pub const URLPOLICY_AUTHENTICATE_MUTUAL_ONLY = @as(u32, 196608);
-pub const URLACTION_COOKIES = @as(u32, 6658);
-pub const URLACTION_COOKIES_SESSION = @as(u32, 6659);
-pub const URLACTION_CLIENT_CERT_PROMPT = @as(u32, 6660);
-pub const URLACTION_COOKIES_THIRD_PARTY = @as(u32, 6661);
-pub const URLACTION_COOKIES_SESSION_THIRD_PARTY = @as(u32, 6662);
-pub const URLACTION_COOKIES_ENABLED = @as(u32, 6672);
-pub const URLACTION_NETWORK_CURR_MAX = @as(u32, 6672);
-pub const URLACTION_NETWORK_MAX = @as(u32, 7167);
-pub const URLACTION_JAVA_MIN = @as(u32, 7168);
-pub const URLACTION_JAVA_PERMISSIONS = @as(u32, 7168);
-pub const URLPOLICY_JAVA_PROHIBIT = @as(u32, 0);
-pub const URLPOLICY_JAVA_HIGH = @as(u32, 65536);
-pub const URLPOLICY_JAVA_MEDIUM = @as(u32, 131072);
-pub const URLPOLICY_JAVA_LOW = @as(u32, 196608);
-pub const URLPOLICY_JAVA_CUSTOM = @as(u32, 8388608);
-pub const URLACTION_JAVA_CURR_MAX = @as(u32, 7168);
-pub const URLACTION_JAVA_MAX = @as(u32, 7423);
-pub const URLACTION_INFODELIVERY_MIN = @as(u32, 7424);
-pub const URLACTION_INFODELIVERY_NO_ADDING_CHANNELS = @as(u32, 7424);
-pub const URLACTION_INFODELIVERY_NO_EDITING_CHANNELS = @as(u32, 7425);
-pub const URLACTION_INFODELIVERY_NO_REMOVING_CHANNELS = @as(u32, 7426);
-pub const URLACTION_INFODELIVERY_NO_ADDING_SUBSCRIPTIONS = @as(u32, 7427);
-pub const URLACTION_INFODELIVERY_NO_EDITING_SUBSCRIPTIONS = @as(u32, 7428);
-pub const URLACTION_INFODELIVERY_NO_REMOVING_SUBSCRIPTIONS = @as(u32, 7429);
-pub const URLACTION_INFODELIVERY_NO_CHANNEL_LOGGING = @as(u32, 7430);
-pub const URLACTION_INFODELIVERY_CURR_MAX = @as(u32, 7430);
-pub const URLACTION_INFODELIVERY_MAX = @as(u32, 7679);
-pub const URLACTION_CHANNEL_SOFTDIST_MIN = @as(u32, 7680);
-pub const URLACTION_CHANNEL_SOFTDIST_PERMISSIONS = @as(u32, 7685);
-pub const URLPOLICY_CHANNEL_SOFTDIST_PROHIBIT = @as(u32, 65536);
-pub const URLPOLICY_CHANNEL_SOFTDIST_PRECACHE = @as(u32, 131072);
-pub const URLPOLICY_CHANNEL_SOFTDIST_AUTOINSTALL = @as(u32, 196608);
-pub const URLACTION_CHANNEL_SOFTDIST_MAX = @as(u32, 7935);
-pub const URLACTION_DOTNET_USERCONTROLS = @as(u32, 8197);
-pub const URLACTION_BEHAVIOR_MIN = @as(u32, 8192);
-pub const URLACTION_BEHAVIOR_RUN = @as(u32, 8192);
-pub const URLPOLICY_BEHAVIOR_CHECK_LIST = @as(u32, 65536);
-pub const URLACTION_FEATURE_MIN = @as(u32, 8448);
-pub const URLACTION_FEATURE_MIME_SNIFFING = @as(u32, 8448);
-pub const URLACTION_FEATURE_ZONE_ELEVATION = @as(u32, 8449);
-pub const URLACTION_FEATURE_WINDOW_RESTRICTIONS = @as(u32, 8450);
-pub const URLACTION_FEATURE_SCRIPT_STATUS_BAR = @as(u32, 8451);
-pub const URLACTION_FEATURE_FORCE_ADDR_AND_STATUS = @as(u32, 8452);
-pub const URLACTION_FEATURE_BLOCK_INPUT_PROMPTS = @as(u32, 8453);
-pub const URLACTION_FEATURE_DATA_BINDING = @as(u32, 8454);
-pub const URLACTION_FEATURE_CROSSDOMAIN_FOCUS_CHANGE = @as(u32, 8455);
-pub const URLACTION_AUTOMATIC_DOWNLOAD_UI_MIN = @as(u32, 8704);
-pub const URLACTION_AUTOMATIC_DOWNLOAD_UI = @as(u32, 8704);
-pub const URLACTION_AUTOMATIC_ACTIVEX_UI = @as(u32, 8705);
-pub const URLACTION_ALLOW_RESTRICTEDPROTOCOLS = @as(u32, 8960);
-pub const URLACTION_ALLOW_APEVALUATION = @as(u32, 8961);
-pub const URLACTION_ALLOW_XHR_EVALUATION = @as(u32, 8962);
-pub const URLACTION_WINDOWS_BROWSER_APPLICATIONS = @as(u32, 9216);
-pub const URLACTION_XPS_DOCUMENTS = @as(u32, 9217);
-pub const URLACTION_LOOSE_XAML = @as(u32, 9218);
-pub const URLACTION_LOWRIGHTS = @as(u32, 9472);
-pub const URLACTION_WINFX_SETUP = @as(u32, 9728);
-pub const URLACTION_INPRIVATE_BLOCKING = @as(u32, 9984);
-pub const URLACTION_ALLOW_AUDIO_VIDEO = @as(u32, 9985);
-pub const URLACTION_ALLOW_ACTIVEX_FILTERING = @as(u32, 9986);
-pub const URLACTION_ALLOW_STRUCTURED_STORAGE_SNIFFING = @as(u32, 9987);
-pub const URLACTION_ALLOW_AUDIO_VIDEO_PLUGINS = @as(u32, 9988);
-pub const URLACTION_ALLOW_ZONE_ELEVATION_VIA_OPT_OUT = @as(u32, 9989);
-pub const URLACTION_ALLOW_ZONE_ELEVATION_OPT_OUT_ADDITION = @as(u32, 9990);
-pub const URLACTION_ALLOW_CROSSDOMAIN_DROP_WITHIN_WINDOW = @as(u32, 9992);
-pub const URLACTION_ALLOW_CROSSDOMAIN_DROP_ACROSS_WINDOWS = @as(u32, 9993);
-pub const URLACTION_ALLOW_CROSSDOMAIN_APPCACHE_MANIFEST = @as(u32, 9994);
-pub const URLACTION_ALLOW_RENDER_LEGACY_DXTFILTERS = @as(u32, 9995);
-pub const URLACTION_ALLOW_ANTIMALWARE_SCANNING_OF_ACTIVEX = @as(u32, 9996);
-pub const URLACTION_ALLOW_CSS_EXPRESSIONS = @as(u32, 9997);
-pub const URLPOLICY_ALLOW = @as(u32, 0);
-pub const URLPOLICY_QUERY = @as(u32, 1);
-pub const URLPOLICY_DISALLOW = @as(u32, 3);
-pub const URLPOLICY_NOTIFY_ON_ALLOW = @as(u32, 16);
-pub const URLPOLICY_NOTIFY_ON_DISALLOW = @as(u32, 32);
-pub const URLPOLICY_LOG_ON_ALLOW = @as(u32, 64);
-pub const URLPOLICY_LOG_ON_DISALLOW = @as(u32, 128);
-pub const URLPOLICY_MASK_PERMISSIONS = @as(u32, 15);
-pub const URLPOLICY_DONTCHECKDLGBOX = @as(u32, 256);
-pub const URLZONE_ESC_FLAG = @as(u32, 256);
+pub const MUTZ_ISFILE = @as(u32, 2);
+pub const MUTZ_NOSAVEDFILECHECK = @as(u32, 1);
+pub const MUTZ_REQUIRESAVEDFILECHECK = @as(u32, 1024);
+pub const MUTZ_RESERVED = @as(u32, 512);
+pub const PROTOCOLFLAG_NO_PICS_CHECK = @as(u32, 1);
+pub const S_ASYNCHRONOUS = @as(i32, 262632);
 pub const SECURITY_IE_STATE_GREEN = @as(u32, 0);
 pub const SECURITY_IE_STATE_RED = @as(u32, 1);
-pub const SOFTDIST_FLAG_USAGE_EMAIL = @as(u32, 1);
-pub const SOFTDIST_FLAG_USAGE_PRECACHE = @as(u32, 2);
-pub const SOFTDIST_FLAG_USAGE_AUTOINSTALL = @as(u32, 4);
-pub const SOFTDIST_FLAG_DELETE_SUBSCRIPTION = @as(u32, 8);
-pub const SOFTDIST_ADSTATE_NONE = @as(u32, 0);
+pub const SET_FEATURE_IN_REGISTRY = @as(u32, 4);
+pub const SET_FEATURE_ON_PROCESS = @as(u32, 2);
+pub const SET_FEATURE_ON_THREAD = @as(u32, 1);
+pub const SET_FEATURE_ON_THREAD_INTERNET = @as(u32, 64);
+pub const SET_FEATURE_ON_THREAD_INTRANET = @as(u32, 16);
+pub const SET_FEATURE_ON_THREAD_LOCALMACHINE = @as(u32, 8);
+pub const SET_FEATURE_ON_THREAD_RESTRICTED = @as(u32, 128);
+pub const SET_FEATURE_ON_THREAD_TRUSTED = @as(u32, 32);
 pub const SOFTDIST_ADSTATE_AVAILABLE = @as(u32, 1);
 pub const SOFTDIST_ADSTATE_DOWNLOADED = @as(u32, 2);
 pub const SOFTDIST_ADSTATE_INSTALLED = @as(u32, 3);
-pub const CONFIRMSAFETYACTION_LOADOBJECT = @as(u32, 1);
+pub const SOFTDIST_ADSTATE_NONE = @as(u32, 0);
+pub const SOFTDIST_FLAG_DELETE_SUBSCRIPTION = @as(u32, 8);
+pub const SOFTDIST_FLAG_USAGE_AUTOINSTALL = @as(u32, 4);
+pub const SOFTDIST_FLAG_USAGE_EMAIL = @as(u32, 1);
+pub const SOFTDIST_FLAG_USAGE_PRECACHE = @as(u32, 2);
+pub const UAS_EXACTLEGACY = @as(u32, 4096);
+pub const Uri_DISPLAY_IDN_HOST = @as(u32, 4);
+pub const Uri_DISPLAY_NO_FRAGMENT = @as(u32, 1);
+pub const Uri_DISPLAY_NO_PUNYCODE = @as(u32, 8);
+pub const Uri_ENCODING_HOST_IS_IDN = @as(u32, 4);
+pub const Uri_ENCODING_HOST_IS_PERCENT_ENCODED_CP = @as(u32, 16);
+pub const Uri_ENCODING_HOST_IS_PERCENT_ENCODED_UTF8 = @as(u32, 8);
+pub const Uri_ENCODING_QUERY_AND_FRAGMENT_IS_CP = @as(u32, 64);
+pub const Uri_ENCODING_QUERY_AND_FRAGMENT_IS_PERCENT_ENCODED_UTF8 = @as(u32, 32);
+pub const Uri_ENCODING_USER_INFO_AND_PATH_IS_CP = @as(u32, 2);
+pub const Uri_ENCODING_USER_INFO_AND_PATH_IS_PERCENT_ENCODED_UTF8 = @as(u32, 1);
+pub const Uri_PUNYCODE_IDN_HOST = @as(u32, 2);
+pub const UriBuilder_USE_ORIGINAL_FLAGS = @as(u32, 1);
+pub const URL_MK_LEGACY = @as(u32, 0);
+pub const URL_MK_NO_CANONICALIZE = @as(u32, 2);
+pub const URL_MK_UNIFORM = @as(u32, 1);
+pub const URLACTION_ACTIVEX_ALLOW_TDC = @as(u32, 4620);
+pub const URLACTION_ACTIVEX_CONFIRM_NOOBJECTSAFETY = @as(u32, 4612);
+pub const URLACTION_ACTIVEX_CURR_MAX = @as(u32, 4620);
+pub const URLACTION_ACTIVEX_DYNSRC_VIDEO_AND_ANIMATION = @as(u32, 4618);
+pub const URLACTION_ACTIVEX_MAX = @as(u32, 5119);
+pub const URLACTION_ACTIVEX_MIN = @as(u32, 4608);
+pub const URLACTION_ACTIVEX_NO_WEBOC_SCRIPT = @as(u32, 4614);
+pub const URLACTION_ACTIVEX_OVERRIDE_DATA_SAFETY = @as(u32, 4610);
+pub const URLACTION_ACTIVEX_OVERRIDE_DOMAINLIST = @as(u32, 4619);
+pub const URLACTION_ACTIVEX_OVERRIDE_OBJECT_SAFETY = @as(u32, 4609);
+pub const URLACTION_ACTIVEX_OVERRIDE_OPTIN = @as(u32, 4616);
+pub const URLACTION_ACTIVEX_OVERRIDE_REPURPOSEDETECTION = @as(u32, 4615);
+pub const URLACTION_ACTIVEX_OVERRIDE_SCRIPT_SAFETY = @as(u32, 4611);
+pub const URLACTION_ACTIVEX_RUN = @as(u32, 4608);
+pub const URLACTION_ACTIVEX_SCRIPTLET_RUN = @as(u32, 4617);
+pub const URLACTION_ACTIVEX_TREATASUNTRUSTED = @as(u32, 4613);
+pub const URLACTION_ALLOW_ACTIVEX_FILTERING = @as(u32, 9986);
+pub const URLACTION_ALLOW_ANTIMALWARE_SCANNING_OF_ACTIVEX = @as(u32, 9996);
+pub const URLACTION_ALLOW_APEVALUATION = @as(u32, 8961);
+pub const URLACTION_ALLOW_AUDIO_VIDEO = @as(u32, 9985);
+pub const URLACTION_ALLOW_AUDIO_VIDEO_PLUGINS = @as(u32, 9988);
+pub const URLACTION_ALLOW_CROSSDOMAIN_APPCACHE_MANIFEST = @as(u32, 9994);
+pub const URLACTION_ALLOW_CROSSDOMAIN_DROP_ACROSS_WINDOWS = @as(u32, 9993);
+pub const URLACTION_ALLOW_CROSSDOMAIN_DROP_WITHIN_WINDOW = @as(u32, 9992);
+pub const URLACTION_ALLOW_CSS_EXPRESSIONS = @as(u32, 9997);
+pub const URLACTION_ALLOW_JSCRIPT_IE = @as(u32, 5133);
+pub const URLACTION_ALLOW_RENDER_LEGACY_DXTFILTERS = @as(u32, 9995);
+pub const URLACTION_ALLOW_RESTRICTEDPROTOCOLS = @as(u32, 8960);
+pub const URLACTION_ALLOW_STRUCTURED_STORAGE_SNIFFING = @as(u32, 9987);
+pub const URLACTION_ALLOW_VBSCRIPT_IE = @as(u32, 5132);
+pub const URLACTION_ALLOW_XDOMAIN_SUBFRAME_RESIZE = @as(u32, 5128);
+pub const URLACTION_ALLOW_XHR_EVALUATION = @as(u32, 8962);
+pub const URLACTION_ALLOW_ZONE_ELEVATION_OPT_OUT_ADDITION = @as(u32, 9990);
+pub const URLACTION_ALLOW_ZONE_ELEVATION_VIA_OPT_OUT = @as(u32, 9989);
+pub const URLACTION_AUTHENTICATE_CLIENT = @as(u32, 6657);
+pub const URLACTION_AUTOMATIC_ACTIVEX_UI = @as(u32, 8705);
+pub const URLACTION_AUTOMATIC_DOWNLOAD_UI = @as(u32, 8704);
+pub const URLACTION_AUTOMATIC_DOWNLOAD_UI_MIN = @as(u32, 8704);
+pub const URLACTION_BEHAVIOR_MIN = @as(u32, 8192);
+pub const URLACTION_BEHAVIOR_RUN = @as(u32, 8192);
+pub const URLACTION_CHANNEL_SOFTDIST_MAX = @as(u32, 7935);
+pub const URLACTION_CHANNEL_SOFTDIST_MIN = @as(u32, 7680);
+pub const URLACTION_CHANNEL_SOFTDIST_PERMISSIONS = @as(u32, 7685);
+pub const URLACTION_CLIENT_CERT_PROMPT = @as(u32, 6660);
+pub const URLACTION_COOKIES = @as(u32, 6658);
+pub const URLACTION_COOKIES_ENABLED = @as(u32, 6672);
+pub const URLACTION_COOKIES_SESSION = @as(u32, 6659);
+pub const URLACTION_COOKIES_SESSION_THIRD_PARTY = @as(u32, 6662);
+pub const URLACTION_COOKIES_THIRD_PARTY = @as(u32, 6661);
+pub const URLACTION_CREDENTIALS_USE = @as(u32, 6656);
+pub const URLACTION_CROSS_DOMAIN_DATA = @as(u32, 5126);
+pub const URLACTION_DOTNET_USERCONTROLS = @as(u32, 8197);
+pub const URLACTION_DOWNLOAD_CURR_MAX = @as(u32, 4100);
+pub const URLACTION_DOWNLOAD_MAX = @as(u32, 4607);
+pub const URLACTION_DOWNLOAD_MIN = @as(u32, 4096);
+pub const URLACTION_DOWNLOAD_SIGNED_ACTIVEX = @as(u32, 4097);
+pub const URLACTION_DOWNLOAD_UNSIGNED_ACTIVEX = @as(u32, 4100);
+pub const URLACTION_FEATURE_BLOCK_INPUT_PROMPTS = @as(u32, 8453);
+pub const URLACTION_FEATURE_CROSSDOMAIN_FOCUS_CHANGE = @as(u32, 8455);
+pub const URLACTION_FEATURE_DATA_BINDING = @as(u32, 8454);
+pub const URLACTION_FEATURE_FORCE_ADDR_AND_STATUS = @as(u32, 8452);
+pub const URLACTION_FEATURE_MIME_SNIFFING = @as(u32, 8448);
+pub const URLACTION_FEATURE_MIN = @as(u32, 8448);
+pub const URLACTION_FEATURE_SCRIPT_STATUS_BAR = @as(u32, 8451);
+pub const URLACTION_FEATURE_WINDOW_RESTRICTIONS = @as(u32, 8450);
+pub const URLACTION_FEATURE_ZONE_ELEVATION = @as(u32, 8449);
+pub const URLACTION_HTML_ALLOW_CROSS_DOMAIN_CANVAS = @as(u32, 5645);
+pub const URLACTION_HTML_ALLOW_CROSS_DOMAIN_TEXTTRACK = @as(u32, 5648);
+pub const URLACTION_HTML_ALLOW_CROSS_DOMAIN_WEBWORKER = @as(u32, 5647);
+pub const URLACTION_HTML_ALLOW_INDEXEDDB = @as(u32, 5649);
+pub const URLACTION_HTML_ALLOW_INJECTED_DYNAMIC_HTML = @as(u32, 5643);
+pub const URLACTION_HTML_ALLOW_WINDOW_CLOSE = @as(u32, 5646);
+pub const URLACTION_HTML_FONT_DOWNLOAD = @as(u32, 5636);
+pub const URLACTION_HTML_INCLUDE_FILE_PATH = @as(u32, 5642);
+pub const URLACTION_HTML_JAVA_RUN = @as(u32, 5637);
+pub const URLACTION_HTML_MAX = @as(u32, 6143);
+pub const URLACTION_HTML_META_REFRESH = @as(u32, 5640);
+pub const URLACTION_HTML_MIN = @as(u32, 5632);
+pub const URLACTION_HTML_MIXED_CONTENT = @as(u32, 5641);
+pub const URLACTION_HTML_REQUIRE_UTF8_DOCUMENT_CODEPAGE = @as(u32, 5644);
+pub const URLACTION_HTML_SUBFRAME_NAVIGATE = @as(u32, 5639);
+pub const URLACTION_HTML_SUBMIT_FORMS = @as(u32, 5633);
+pub const URLACTION_HTML_SUBMIT_FORMS_FROM = @as(u32, 5634);
+pub const URLACTION_HTML_SUBMIT_FORMS_TO = @as(u32, 5635);
+pub const URLACTION_HTML_USERDATA_SAVE = @as(u32, 5638);
+pub const URLACTION_INFODELIVERY_CURR_MAX = @as(u32, 7430);
+pub const URLACTION_INFODELIVERY_MAX = @as(u32, 7679);
+pub const URLACTION_INFODELIVERY_MIN = @as(u32, 7424);
+pub const URLACTION_INFODELIVERY_NO_ADDING_CHANNELS = @as(u32, 7424);
+pub const URLACTION_INFODELIVERY_NO_ADDING_SUBSCRIPTIONS = @as(u32, 7427);
+pub const URLACTION_INFODELIVERY_NO_CHANNEL_LOGGING = @as(u32, 7430);
+pub const URLACTION_INFODELIVERY_NO_EDITING_CHANNELS = @as(u32, 7425);
+pub const URLACTION_INFODELIVERY_NO_EDITING_SUBSCRIPTIONS = @as(u32, 7428);
+pub const URLACTION_INFODELIVERY_NO_REMOVING_CHANNELS = @as(u32, 7426);
+pub const URLACTION_INFODELIVERY_NO_REMOVING_SUBSCRIPTIONS = @as(u32, 7429);
+pub const URLACTION_INPRIVATE_BLOCKING = @as(u32, 9984);
+pub const URLACTION_JAVA_CURR_MAX = @as(u32, 7168);
+pub const URLACTION_JAVA_MAX = @as(u32, 7423);
+pub const URLACTION_JAVA_MIN = @as(u32, 7168);
+pub const URLACTION_JAVA_PERMISSIONS = @as(u32, 7168);
+pub const URLACTION_LOOSE_XAML = @as(u32, 9218);
+pub const URLACTION_LOWRIGHTS = @as(u32, 9472);
+pub const URLACTION_MIN = @as(u32, 4096);
+pub const URLACTION_NETWORK_CURR_MAX = @as(u32, 6672);
+pub const URLACTION_NETWORK_MAX = @as(u32, 7167);
+pub const URLACTION_NETWORK_MIN = @as(u32, 6656);
+pub const URLACTION_PLUGGABLE_PROTOCOL_XHR = @as(u32, 5131);
+pub const URLACTION_SCRIPT_CURR_MAX = @as(u32, 5133);
+pub const URLACTION_SCRIPT_JAVA_USE = @as(u32, 5122);
+pub const URLACTION_SCRIPT_MAX = @as(u32, 5631);
+pub const URLACTION_SCRIPT_MIN = @as(u32, 5120);
+pub const URLACTION_SCRIPT_NAVIGATE = @as(u32, 5130);
+pub const URLACTION_SCRIPT_OVERRIDE_SAFETY = @as(u32, 5121);
+pub const URLACTION_SCRIPT_PASTE = @as(u32, 5127);
+pub const URLACTION_SCRIPT_RUN = @as(u32, 5120);
+pub const URLACTION_SCRIPT_SAFE_ACTIVEX = @as(u32, 5125);
+pub const URLACTION_SCRIPT_XSSFILTER = @as(u32, 5129);
+pub const URLACTION_SHELL_ALLOW_CROSS_SITE_SHARE = @as(u32, 6161);
+pub const URLACTION_SHELL_CURR_MAX = @as(u32, 6162);
+pub const URLACTION_SHELL_ENHANCED_DRAGDROP_SECURITY = @as(u32, 6155);
+pub const URLACTION_SHELL_EXECUTE_HIGHRISK = @as(u32, 6150);
+pub const URLACTION_SHELL_EXECUTE_LOWRISK = @as(u32, 6152);
+pub const URLACTION_SHELL_EXECUTE_MODRISK = @as(u32, 6151);
+pub const URLACTION_SHELL_EXTENSIONSECURITY = @as(u32, 6156);
+pub const URLACTION_SHELL_FILE_DOWNLOAD = @as(u32, 6147);
+pub const URLACTION_SHELL_INSTALL_DTITEMS = @as(u32, 6144);
+pub const URLACTION_SHELL_MAX = @as(u32, 6655);
+pub const URLACTION_SHELL_MIN = @as(u32, 6144);
+pub const URLACTION_SHELL_MOVE_OR_COPY = @as(u32, 6146);
+pub const URLACTION_SHELL_POPUPMGR = @as(u32, 6153);
+pub const URLACTION_SHELL_PREVIEW = @as(u32, 6159);
+pub const URLACTION_SHELL_REMOTEQUERY = @as(u32, 6158);
+pub const URLACTION_SHELL_RTF_OBJECTS_LOAD = @as(u32, 6154);
+pub const URLACTION_SHELL_SECURE_DRAGSOURCE = @as(u32, 6157);
+pub const URLACTION_SHELL_SHARE = @as(u32, 6160);
+pub const URLACTION_SHELL_SHELLEXECUTE = @as(u32, 6150);
+pub const URLACTION_SHELL_TOCTOU_RISK = @as(u32, 6162);
+pub const URLACTION_SHELL_VERB = @as(u32, 6148);
+pub const URLACTION_SHELL_WEBVIEW_VERB = @as(u32, 6149);
+pub const URLACTION_WINDOWS_BROWSER_APPLICATIONS = @as(u32, 9216);
+pub const URLACTION_WINFX_SETUP = @as(u32, 9728);
+pub const URLACTION_XPS_DOCUMENTS = @as(u32, 9217);
+pub const URLMON_OPTION_URL_ENCODING = @as(u32, 268435460);
+pub const URLMON_OPTION_USE_BINDSTRINGCREDS = @as(u32, 268435464);
+pub const URLMON_OPTION_USE_BROWSERAPPSDOCUMENTS = @as(u32, 268435472);
+pub const URLMON_OPTION_USERAGENT = @as(u32, 268435457);
+pub const URLMON_OPTION_USERAGENT_REFRESH = @as(u32, 268435458);
+pub const URLOSTRM_GETNEWESTVERSION = @as(u32, 3);
+pub const URLOSTRM_USECACHEDCOPY = @as(u32, 2);
+pub const URLOSTRM_USECACHEDCOPY_ONLY = @as(u32, 1);
+pub const URLPOLICY_ACTIVEX_CHECK_LIST = @as(u32, 65536);
+pub const URLPOLICY_ALLOW = @as(u32, 0);
+pub const URLPOLICY_AUTHENTICATE_CHALLENGE_RESPONSE = @as(u32, 65536);
+pub const URLPOLICY_AUTHENTICATE_CLEARTEXT_OK = @as(u32, 0);
+pub const URLPOLICY_AUTHENTICATE_MUTUAL_ONLY = @as(u32, 196608);
+pub const URLPOLICY_BEHAVIOR_CHECK_LIST = @as(u32, 65536);
+pub const URLPOLICY_CHANNEL_SOFTDIST_AUTOINSTALL = @as(u32, 196608);
+pub const URLPOLICY_CHANNEL_SOFTDIST_PRECACHE = @as(u32, 131072);
+pub const URLPOLICY_CHANNEL_SOFTDIST_PROHIBIT = @as(u32, 65536);
+pub const URLPOLICY_CREDENTIALS_ANONYMOUS_ONLY = @as(u32, 196608);
+pub const URLPOLICY_CREDENTIALS_CONDITIONAL_PROMPT = @as(u32, 131072);
+pub const URLPOLICY_CREDENTIALS_MUST_PROMPT_USER = @as(u32, 65536);
+pub const URLPOLICY_CREDENTIALS_SILENT_LOGON_OK = @as(u32, 0);
+pub const URLPOLICY_DISALLOW = @as(u32, 3);
+pub const URLPOLICY_DONTCHECKDLGBOX = @as(u32, 256);
+pub const URLPOLICY_JAVA_CUSTOM = @as(u32, 8388608);
+pub const URLPOLICY_JAVA_HIGH = @as(u32, 65536);
+pub const URLPOLICY_JAVA_LOW = @as(u32, 196608);
+pub const URLPOLICY_JAVA_MEDIUM = @as(u32, 131072);
+pub const URLPOLICY_JAVA_PROHIBIT = @as(u32, 0);
+pub const URLPOLICY_LOG_ON_ALLOW = @as(u32, 64);
+pub const URLPOLICY_LOG_ON_DISALLOW = @as(u32, 128);
+pub const URLPOLICY_MASK_PERMISSIONS = @as(u32, 15);
+pub const URLPOLICY_NOTIFY_ON_ALLOW = @as(u32, 16);
+pub const URLPOLICY_NOTIFY_ON_DISALLOW = @as(u32, 32);
+pub const URLPOLICY_QUERY = @as(u32, 1);
+pub const URLZONE_ESC_FLAG = @as(u32, 256);
+pub const WININETINFO_OPTION_LOCK_HANDLE = @as(u32, 65534);
 
 //--------------------------------------------------------------------------------
 // Section: Types (88)
 //--------------------------------------------------------------------------------
-pub const IEObjectType = enum(i32) {
-    EVENT = 0,
-    MUTEX = 1,
-    SEMAPHORE = 2,
-    SHARED_MEMORY = 3,
-    WAITABLE_TIMER = 4,
-    FILE = 5,
-    NAMED_PIPE = 6,
-    REGISTRY = 7,
+pub const AUTHENTICATEF = enum(i32) {
+    PROXY = 1,
+    BASIC = 2,
+    HTTP = 4,
 };
-pub const IE_EPM_OBJECT_EVENT = IEObjectType.EVENT;
-pub const IE_EPM_OBJECT_MUTEX = IEObjectType.MUTEX;
-pub const IE_EPM_OBJECT_SEMAPHORE = IEObjectType.SEMAPHORE;
-pub const IE_EPM_OBJECT_SHARED_MEMORY = IEObjectType.SHARED_MEMORY;
-pub const IE_EPM_OBJECT_WAITABLE_TIMER = IEObjectType.WAITABLE_TIMER;
-pub const IE_EPM_OBJECT_FILE = IEObjectType.FILE;
-pub const IE_EPM_OBJECT_NAMED_PIPE = IEObjectType.NAMED_PIPE;
-pub const IE_EPM_OBJECT_REGISTRY = IEObjectType.REGISTRY;
-
-const IID_IPersistMoniker_Value = Guid.initString("79eac9c9-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IPersistMoniker = &IID_IPersistMoniker_Value;
-pub const IPersistMoniker = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetClassID: *const fn(
-            self: *const IPersistMoniker,
-            pClassID: ?*Guid,
-        ) callconv(.winapi) HRESULT,
-        IsDirty: *const fn(
-            self: *const IPersistMoniker,
-        ) callconv(.winapi) HRESULT,
-        Load: *const fn(
-            self: *const IPersistMoniker,
-            fFullyAvailable: BOOL,
-            pimkName: ?*IMoniker,
-            pibc: ?*IBindCtx,
-            grfMode: u32,
-        ) callconv(.winapi) HRESULT,
-        Save: *const fn(
-            self: *const IPersistMoniker,
-            pimkName: ?*IMoniker,
-            pbc: ?*IBindCtx,
-            fRemember: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SaveCompleted: *const fn(
-            self: *const IPersistMoniker,
-            pimkName: ?*IMoniker,
-            pibc: ?*IBindCtx,
-        ) callconv(.winapi) HRESULT,
-        GetCurMoniker: *const fn(
-            self: *const IPersistMoniker,
-            ppimkName: ?*?*IMoniker,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetClassID(self: *const IPersistMoniker, pClassID: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClassID(self, pClassID);
-    }
-    pub fn IsDirty(self: *const IPersistMoniker) callconv(.@"inline") HRESULT {
-        return self.vtable.IsDirty(self);
-    }
-    pub fn Load(self: *const IPersistMoniker, fFullyAvailable: BOOL, pimkName: ?*IMoniker, pibc: ?*IBindCtx, grfMode: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Load(self, fFullyAvailable, pimkName, pibc, grfMode);
-    }
-    pub fn Save(self: *const IPersistMoniker, pimkName: ?*IMoniker, pbc: ?*IBindCtx, fRemember: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Save(self, pimkName, pbc, fRemember);
-    }
-    pub fn SaveCompleted(self: *const IPersistMoniker, pimkName: ?*IMoniker, pibc: ?*IBindCtx) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveCompleted(self, pimkName, pibc);
-    }
-    pub fn GetCurMoniker(self: *const IPersistMoniker, ppimkName: ?*?*IMoniker) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurMoniker(self, ppimkName);
-    }
-};
-
-pub const MONIKERPROPERTY = enum(i32) {
-    MIMETYPEPROP = 0,
-    USE_SRC_URL = 1,
-    CLASSIDPROP = 2,
-    TRUSTEDDOWNLOADPROP = 3,
-    POPUPLEVELPROP = 4,
-};
-pub const MIMETYPEPROP = MONIKERPROPERTY.MIMETYPEPROP;
-pub const USE_SRC_URL = MONIKERPROPERTY.USE_SRC_URL;
-pub const CLASSIDPROP = MONIKERPROPERTY.CLASSIDPROP;
-pub const TRUSTEDDOWNLOADPROP = MONIKERPROPERTY.TRUSTEDDOWNLOADPROP;
-pub const POPUPLEVELPROP = MONIKERPROPERTY.POPUPLEVELPROP;
-
-const IID_IMonikerProp_Value = Guid.initString("a5ca5f7f-1847-4d87-9c5b-918509f7511d");
-pub const IID_IMonikerProp = &IID_IMonikerProp_Value;
-pub const IMonikerProp = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PutProperty: *const fn(
-            self: *const IMonikerProp,
-            mkp: MONIKERPROPERTY,
-            val: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PutProperty(self: *const IMonikerProp, mkp: MONIKERPROPERTY, val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.PutProperty(self, mkp, val);
-    }
-};
-
-const IID_IBindProtocol_Value = Guid.initString("79eac9cd-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IBindProtocol = &IID_IBindProtocol_Value;
-pub const IBindProtocol = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateBinding: *const fn(
-            self: *const IBindProtocol,
-            szUrl: ?[*:0]const u16,
-            pbc: ?*IBindCtx,
-            ppb: ?*?*IBinding,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateBinding(self: *const IBindProtocol, szUrl: ?[*:0]const u16, pbc: ?*IBindCtx, ppb: ?*?*IBinding) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBinding(self, szUrl, pbc, ppb);
-    }
-};
-
-pub const BINDVERB = enum(i32) {
-    GET = 0,
-    POST = 1,
-    PUT = 2,
-    CUSTOM = 3,
-    RESERVED1 = 4,
-};
-pub const BINDVERB_GET = BINDVERB.GET;
-pub const BINDVERB_POST = BINDVERB.POST;
-pub const BINDVERB_PUT = BINDVERB.PUT;
-pub const BINDVERB_CUSTOM = BINDVERB.CUSTOM;
-pub const BINDVERB_RESERVED1 = BINDVERB.RESERVED1;
+pub const AUTHENTICATEF_PROXY = AUTHENTICATEF.PROXY;
+pub const AUTHENTICATEF_BASIC = AUTHENTICATEF.BASIC;
+pub const AUTHENTICATEF_HTTP = AUTHENTICATEF.HTTP;
 
 pub const BINDF = enum(i32) {
     ASYNCHRONOUS = 1,
@@ -511,44 +381,79 @@ pub const BINDF_RESERVED_6 = BINDF.RESERVED_6;
 pub const BINDF_RESERVED_7 = BINDF.RESERVED_7;
 pub const BINDF_RESERVED_8 = BINDF.RESERVED_8;
 
-pub const URL_ENCODING = enum(i32) {
-    NONE = 0,
-    ENABLE_UTF8 = 268435456,
-    DISABLE_UTF8 = 536870912,
+pub const BINDF2 = enum(i32) {
+    DISABLEBASICOVERHTTP = 1,
+    DISABLEAUTOCOOKIEHANDLING = 2,
+    READ_DATA_GREATER_THAN_4GB = 4,
+    DISABLE_HTTP_REDIRECT_XSECURITYID = 8,
+    SETDOWNLOADMODE = 32,
+    DISABLE_HTTP_REDIRECT_CACHING = 64,
+    KEEP_CALLBACK_MODULE_LOADED = 128,
+    ALLOW_PROXY_CRED_PROMPT = 256,
+    RESERVED_17 = 512,
+    RESERVED_16 = 1024,
+    RESERVED_15 = 2048,
+    RESERVED_14 = 4096,
+    RESERVED_13 = 8192,
+    RESERVED_12 = 16384,
+    RESERVED_11 = 32768,
+    RESERVED_10 = 65536,
+    RESERVED_F = 131072,
+    RESERVED_E = 262144,
+    RESERVED_D = 524288,
+    RESERVED_C = 1048576,
+    RESERVED_B = 2097152,
+    RESERVED_A = 4194304,
+    RESERVED_9 = 8388608,
+    RESERVED_8 = 16777216,
+    RESERVED_7 = 33554432,
+    RESERVED_6 = 67108864,
+    RESERVED_5 = 134217728,
+    RESERVED_4 = 268435456,
+    RESERVED_3 = 536870912,
+    RESERVED_2 = 1073741824,
+    RESERVED_1 = -2147483648,
 };
-pub const URL_ENCODING_NONE = URL_ENCODING.NONE;
-pub const URL_ENCODING_ENABLE_UTF8 = URL_ENCODING.ENABLE_UTF8;
-pub const URL_ENCODING_DISABLE_UTF8 = URL_ENCODING.DISABLE_UTF8;
+pub const BINDF2_DISABLEBASICOVERHTTP = BINDF2.DISABLEBASICOVERHTTP;
+pub const BINDF2_DISABLEAUTOCOOKIEHANDLING = BINDF2.DISABLEAUTOCOOKIEHANDLING;
+pub const BINDF2_READ_DATA_GREATER_THAN_4GB = BINDF2.READ_DATA_GREATER_THAN_4GB;
+pub const BINDF2_DISABLE_HTTP_REDIRECT_XSECURITYID = BINDF2.DISABLE_HTTP_REDIRECT_XSECURITYID;
+pub const BINDF2_SETDOWNLOADMODE = BINDF2.SETDOWNLOADMODE;
+pub const BINDF2_DISABLE_HTTP_REDIRECT_CACHING = BINDF2.DISABLE_HTTP_REDIRECT_CACHING;
+pub const BINDF2_KEEP_CALLBACK_MODULE_LOADED = BINDF2.KEEP_CALLBACK_MODULE_LOADED;
+pub const BINDF2_ALLOW_PROXY_CRED_PROMPT = BINDF2.ALLOW_PROXY_CRED_PROMPT;
+pub const BINDF2_RESERVED_17 = BINDF2.RESERVED_17;
+pub const BINDF2_RESERVED_16 = BINDF2.RESERVED_16;
+pub const BINDF2_RESERVED_15 = BINDF2.RESERVED_15;
+pub const BINDF2_RESERVED_14 = BINDF2.RESERVED_14;
+pub const BINDF2_RESERVED_13 = BINDF2.RESERVED_13;
+pub const BINDF2_RESERVED_12 = BINDF2.RESERVED_12;
+pub const BINDF2_RESERVED_11 = BINDF2.RESERVED_11;
+pub const BINDF2_RESERVED_10 = BINDF2.RESERVED_10;
+pub const BINDF2_RESERVED_F = BINDF2.RESERVED_F;
+pub const BINDF2_RESERVED_E = BINDF2.RESERVED_E;
+pub const BINDF2_RESERVED_D = BINDF2.RESERVED_D;
+pub const BINDF2_RESERVED_C = BINDF2.RESERVED_C;
+pub const BINDF2_RESERVED_B = BINDF2.RESERVED_B;
+pub const BINDF2_RESERVED_A = BINDF2.RESERVED_A;
+pub const BINDF2_RESERVED_9 = BINDF2.RESERVED_9;
+pub const BINDF2_RESERVED_8 = BINDF2.RESERVED_8;
+pub const BINDF2_RESERVED_7 = BINDF2.RESERVED_7;
+pub const BINDF2_RESERVED_6 = BINDF2.RESERVED_6;
+pub const BINDF2_RESERVED_5 = BINDF2.RESERVED_5;
+pub const BINDF2_RESERVED_4 = BINDF2.RESERVED_4;
+pub const BINDF2_RESERVED_3 = BINDF2.RESERVED_3;
+pub const BINDF2_RESERVED_2 = BINDF2.RESERVED_2;
+pub const BINDF2_RESERVED_1 = BINDF2.RESERVED_1;
 
-pub const REMSECURITY_ATTRIBUTES = extern struct {
-    nLength: u32,
-    lpSecurityDescriptor: u32,
-    bInheritHandle: BOOL,
+pub const BINDHANDLETYPES = enum(i32) {
+    APPCACHE = 0,
+    DEPENDENCY = 1,
+    COUNT = 2,
 };
-
-pub const RemBINDINFO = extern struct {
-    cbSize: u32,
-    szExtraInfo: ?PWSTR,
-    grfBindInfoF: u32,
-    dwBindVerb: u32,
-    szCustomVerb: ?PWSTR,
-    cbstgmedData: u32,
-    dwOptions: u32,
-    dwOptionsFlags: u32,
-    dwCodePage: u32,
-    securityAttributes: REMSECURITY_ATTRIBUTES,
-    iid: Guid,
-    pUnk: ?*IUnknown,
-    dwReserved: u32,
-};
-
-pub const RemFORMATETC = extern struct {
-    cfFormat: u32,
-    ptd: u32,
-    dwAspect: u32,
-    lindex: i32,
-    tymed: u32,
-};
+pub const BINDHANDLETYPES_APPCACHE = BINDHANDLETYPES.APPCACHE;
+pub const BINDHANDLETYPES_DEPENDENCY = BINDHANDLETYPES.DEPENDENCY;
+pub const BINDHANDLETYPES_COUNT = BINDHANDLETYPES.COUNT;
 
 pub const BINDINFO_OPTIONS = enum(i32) {
     OPTIONS_WININETFLAG = 65536,
@@ -582,23 +487,6 @@ pub const BINDINFO_WPC_LOGGING_ENABLED = BINDINFO_OPTIONS.WPC_LOGGING_ENABLED;
 pub const BINDINFO_OPTIONS_ALLOWCONNECTDATA = BINDINFO_OPTIONS.OPTIONS_ALLOWCONNECTDATA;
 pub const BINDINFO_OPTIONS_DISABLEAUTOREDIRECTS = BINDINFO_OPTIONS.OPTIONS_DISABLEAUTOREDIRECTS;
 pub const BINDINFO_OPTIONS_SHDOCVW_NAVIGATE = BINDINFO_OPTIONS.OPTIONS_SHDOCVW_NAVIGATE;
-
-pub const BSCF = enum(i32) {
-    FIRSTDATANOTIFICATION = 1,
-    INTERMEDIATEDATANOTIFICATION = 2,
-    LASTDATANOTIFICATION = 4,
-    DATAFULLYAVAILABLE = 8,
-    AVAILABLEDATASIZEUNKNOWN = 16,
-    SKIPDRAINDATAFORFILEURLS = 32,
-    @"64BITLENGTHDOWNLOAD" = 64,
-};
-pub const BSCF_FIRSTDATANOTIFICATION = BSCF.FIRSTDATANOTIFICATION;
-pub const BSCF_INTERMEDIATEDATANOTIFICATION = BSCF.INTERMEDIATEDATANOTIFICATION;
-pub const BSCF_LASTDATANOTIFICATION = BSCF.LASTDATANOTIFICATION;
-pub const BSCF_DATAFULLYAVAILABLE = BSCF.DATAFULLYAVAILABLE;
-pub const BSCF_AVAILABLEDATASIZEUNKNOWN = BSCF.AVAILABLEDATASIZEUNKNOWN;
-pub const BSCF_SKIPDRAINDATAFORFILEURLS = BSCF.SKIPDRAINDATAFORFILEURLS;
-pub const BSCF_64BITLENGTHDOWNLOAD = BSCF.@"64BITLENGTHDOWNLOAD";
 
 pub const BINDSTATUS = enum(i32) {
     FINDINGRESOURCE = 1,
@@ -761,79 +649,355 @@ pub const BINDSTATUS_RESERVED_13 = BINDSTATUS.RESERVED_13;
 pub const BINDSTATUS_RESERVED_14 = BINDSTATUS.RESERVED_14;
 pub const BINDSTATUS_LAST_PRIVATE = BINDSTATUS.RESERVED_14;
 
-pub const BINDF2 = enum(i32) {
-    DISABLEBASICOVERHTTP = 1,
-    DISABLEAUTOCOOKIEHANDLING = 2,
-    READ_DATA_GREATER_THAN_4GB = 4,
-    DISABLE_HTTP_REDIRECT_XSECURITYID = 8,
-    SETDOWNLOADMODE = 32,
-    DISABLE_HTTP_REDIRECT_CACHING = 64,
-    KEEP_CALLBACK_MODULE_LOADED = 128,
-    ALLOW_PROXY_CRED_PROMPT = 256,
-    RESERVED_17 = 512,
-    RESERVED_16 = 1024,
-    RESERVED_15 = 2048,
-    RESERVED_14 = 4096,
-    RESERVED_13 = 8192,
-    RESERVED_12 = 16384,
-    RESERVED_11 = 32768,
-    RESERVED_10 = 65536,
-    RESERVED_F = 131072,
-    RESERVED_E = 262144,
-    RESERVED_D = 524288,
-    RESERVED_C = 1048576,
-    RESERVED_B = 2097152,
-    RESERVED_A = 4194304,
-    RESERVED_9 = 8388608,
-    RESERVED_8 = 16777216,
-    RESERVED_7 = 33554432,
-    RESERVED_6 = 67108864,
-    RESERVED_5 = 134217728,
-    RESERVED_4 = 268435456,
-    RESERVED_3 = 536870912,
-    RESERVED_2 = 1073741824,
-    RESERVED_1 = -2147483648,
+pub const BINDSTRING = enum(i32) {
+    HEADERS = 1,
+    ACCEPT_MIMES = 2,
+    EXTRA_URL = 3,
+    LANGUAGE = 4,
+    USERNAME = 5,
+    PASSWORD = 6,
+    UA_PIXELS = 7,
+    UA_COLOR = 8,
+    OS = 9,
+    USER_AGENT = 10,
+    ACCEPT_ENCODINGS = 11,
+    POST_COOKIE = 12,
+    POST_DATA_MIME = 13,
+    URL = 14,
+    IID = 15,
+    FLAG_BIND_TO_OBJECT = 16,
+    PTR_BIND_CONTEXT = 17,
+    XDR_ORIGIN = 18,
+    DOWNLOADPATH = 19,
+    ROOTDOC_URL = 20,
+    INITIAL_FILENAME = 21,
+    PROXY_USERNAME = 22,
+    PROXY_PASSWORD = 23,
+    ENTERPRISE_ID = 24,
+    DOC_URL = 25,
+    SAMESITE_COOKIE_LEVEL = 26,
 };
-pub const BINDF2_DISABLEBASICOVERHTTP = BINDF2.DISABLEBASICOVERHTTP;
-pub const BINDF2_DISABLEAUTOCOOKIEHANDLING = BINDF2.DISABLEAUTOCOOKIEHANDLING;
-pub const BINDF2_READ_DATA_GREATER_THAN_4GB = BINDF2.READ_DATA_GREATER_THAN_4GB;
-pub const BINDF2_DISABLE_HTTP_REDIRECT_XSECURITYID = BINDF2.DISABLE_HTTP_REDIRECT_XSECURITYID;
-pub const BINDF2_SETDOWNLOADMODE = BINDF2.SETDOWNLOADMODE;
-pub const BINDF2_DISABLE_HTTP_REDIRECT_CACHING = BINDF2.DISABLE_HTTP_REDIRECT_CACHING;
-pub const BINDF2_KEEP_CALLBACK_MODULE_LOADED = BINDF2.KEEP_CALLBACK_MODULE_LOADED;
-pub const BINDF2_ALLOW_PROXY_CRED_PROMPT = BINDF2.ALLOW_PROXY_CRED_PROMPT;
-pub const BINDF2_RESERVED_17 = BINDF2.RESERVED_17;
-pub const BINDF2_RESERVED_16 = BINDF2.RESERVED_16;
-pub const BINDF2_RESERVED_15 = BINDF2.RESERVED_15;
-pub const BINDF2_RESERVED_14 = BINDF2.RESERVED_14;
-pub const BINDF2_RESERVED_13 = BINDF2.RESERVED_13;
-pub const BINDF2_RESERVED_12 = BINDF2.RESERVED_12;
-pub const BINDF2_RESERVED_11 = BINDF2.RESERVED_11;
-pub const BINDF2_RESERVED_10 = BINDF2.RESERVED_10;
-pub const BINDF2_RESERVED_F = BINDF2.RESERVED_F;
-pub const BINDF2_RESERVED_E = BINDF2.RESERVED_E;
-pub const BINDF2_RESERVED_D = BINDF2.RESERVED_D;
-pub const BINDF2_RESERVED_C = BINDF2.RESERVED_C;
-pub const BINDF2_RESERVED_B = BINDF2.RESERVED_B;
-pub const BINDF2_RESERVED_A = BINDF2.RESERVED_A;
-pub const BINDF2_RESERVED_9 = BINDF2.RESERVED_9;
-pub const BINDF2_RESERVED_8 = BINDF2.RESERVED_8;
-pub const BINDF2_RESERVED_7 = BINDF2.RESERVED_7;
-pub const BINDF2_RESERVED_6 = BINDF2.RESERVED_6;
-pub const BINDF2_RESERVED_5 = BINDF2.RESERVED_5;
-pub const BINDF2_RESERVED_4 = BINDF2.RESERVED_4;
-pub const BINDF2_RESERVED_3 = BINDF2.RESERVED_3;
-pub const BINDF2_RESERVED_2 = BINDF2.RESERVED_2;
-pub const BINDF2_RESERVED_1 = BINDF2.RESERVED_1;
+pub const BINDSTRING_HEADERS = BINDSTRING.HEADERS;
+pub const BINDSTRING_ACCEPT_MIMES = BINDSTRING.ACCEPT_MIMES;
+pub const BINDSTRING_EXTRA_URL = BINDSTRING.EXTRA_URL;
+pub const BINDSTRING_LANGUAGE = BINDSTRING.LANGUAGE;
+pub const BINDSTRING_USERNAME = BINDSTRING.USERNAME;
+pub const BINDSTRING_PASSWORD = BINDSTRING.PASSWORD;
+pub const BINDSTRING_UA_PIXELS = BINDSTRING.UA_PIXELS;
+pub const BINDSTRING_UA_COLOR = BINDSTRING.UA_COLOR;
+pub const BINDSTRING_OS = BINDSTRING.OS;
+pub const BINDSTRING_USER_AGENT = BINDSTRING.USER_AGENT;
+pub const BINDSTRING_ACCEPT_ENCODINGS = BINDSTRING.ACCEPT_ENCODINGS;
+pub const BINDSTRING_POST_COOKIE = BINDSTRING.POST_COOKIE;
+pub const BINDSTRING_POST_DATA_MIME = BINDSTRING.POST_DATA_MIME;
+pub const BINDSTRING_URL = BINDSTRING.URL;
+pub const BINDSTRING_IID = BINDSTRING.IID;
+pub const BINDSTRING_FLAG_BIND_TO_OBJECT = BINDSTRING.FLAG_BIND_TO_OBJECT;
+pub const BINDSTRING_PTR_BIND_CONTEXT = BINDSTRING.PTR_BIND_CONTEXT;
+pub const BINDSTRING_XDR_ORIGIN = BINDSTRING.XDR_ORIGIN;
+pub const BINDSTRING_DOWNLOADPATH = BINDSTRING.DOWNLOADPATH;
+pub const BINDSTRING_ROOTDOC_URL = BINDSTRING.ROOTDOC_URL;
+pub const BINDSTRING_INITIAL_FILENAME = BINDSTRING.INITIAL_FILENAME;
+pub const BINDSTRING_PROXY_USERNAME = BINDSTRING.PROXY_USERNAME;
+pub const BINDSTRING_PROXY_PASSWORD = BINDSTRING.PROXY_PASSWORD;
+pub const BINDSTRING_ENTERPRISE_ID = BINDSTRING.ENTERPRISE_ID;
+pub const BINDSTRING_DOC_URL = BINDSTRING.DOC_URL;
+pub const BINDSTRING_SAMESITE_COOKIE_LEVEL = BINDSTRING.SAMESITE_COOKIE_LEVEL;
 
-pub const AUTHENTICATEF = enum(i32) {
-    PROXY = 1,
-    BASIC = 2,
-    HTTP = 4,
+pub const BINDVERB = enum(i32) {
+    GET = 0,
+    POST = 1,
+    PUT = 2,
+    CUSTOM = 3,
+    RESERVED1 = 4,
 };
-pub const AUTHENTICATEF_PROXY = AUTHENTICATEF.PROXY;
-pub const AUTHENTICATEF_BASIC = AUTHENTICATEF.BASIC;
-pub const AUTHENTICATEF_HTTP = AUTHENTICATEF.HTTP;
+pub const BINDVERB_GET = BINDVERB.GET;
+pub const BINDVERB_POST = BINDVERB.POST;
+pub const BINDVERB_PUT = BINDVERB.PUT;
+pub const BINDVERB_CUSTOM = BINDVERB.CUSTOM;
+pub const BINDVERB_RESERVED1 = BINDVERB.RESERVED1;
+
+pub const BSCF = enum(i32) {
+    FIRSTDATANOTIFICATION = 1,
+    INTERMEDIATEDATANOTIFICATION = 2,
+    LASTDATANOTIFICATION = 4,
+    DATAFULLYAVAILABLE = 8,
+    AVAILABLEDATASIZEUNKNOWN = 16,
+    SKIPDRAINDATAFORFILEURLS = 32,
+    @"64BITLENGTHDOWNLOAD" = 64,
+};
+pub const BSCF_FIRSTDATANOTIFICATION = BSCF.FIRSTDATANOTIFICATION;
+pub const BSCF_INTERMEDIATEDATANOTIFICATION = BSCF.INTERMEDIATEDATANOTIFICATION;
+pub const BSCF_LASTDATANOTIFICATION = BSCF.LASTDATANOTIFICATION;
+pub const BSCF_DATAFULLYAVAILABLE = BSCF.DATAFULLYAVAILABLE;
+pub const BSCF_AVAILABLEDATASIZEUNKNOWN = BSCF.AVAILABLEDATASIZEUNKNOWN;
+pub const BSCF_SKIPDRAINDATAFORFILEURLS = BSCF.SKIPDRAINDATAFORFILEURLS;
+pub const BSCF_64BITLENGTHDOWNLOAD = BSCF.@"64BITLENGTHDOWNLOAD";
+
+pub const CIP_STATUS = enum(i32) {
+    DISK_FULL = 0,
+    ACCESS_DENIED = 1,
+    NEWER_VERSION_EXISTS = 2,
+    OLDER_VERSION_EXISTS = 3,
+    NAME_CONFLICT = 4,
+    TRUST_VERIFICATION_COMPONENT_MISSING = 5,
+    EXE_SELF_REGISTERATION_TIMEOUT = 6,
+    UNSAFE_TO_ABORT = 7,
+    NEED_REBOOT = 8,
+    NEED_REBOOT_UI_PERMISSION = 9,
+};
+pub const CIP_DISK_FULL = CIP_STATUS.DISK_FULL;
+pub const CIP_ACCESS_DENIED = CIP_STATUS.ACCESS_DENIED;
+pub const CIP_NEWER_VERSION_EXISTS = CIP_STATUS.NEWER_VERSION_EXISTS;
+pub const CIP_OLDER_VERSION_EXISTS = CIP_STATUS.OLDER_VERSION_EXISTS;
+pub const CIP_NAME_CONFLICT = CIP_STATUS.NAME_CONFLICT;
+pub const CIP_TRUST_VERIFICATION_COMPONENT_MISSING = CIP_STATUS.TRUST_VERIFICATION_COMPONENT_MISSING;
+pub const CIP_EXE_SELF_REGISTERATION_TIMEOUT = CIP_STATUS.EXE_SELF_REGISTERATION_TIMEOUT;
+pub const CIP_UNSAFE_TO_ABORT = CIP_STATUS.UNSAFE_TO_ABORT;
+pub const CIP_NEED_REBOOT = CIP_STATUS.NEED_REBOOT;
+pub const CIP_NEED_REBOOT_UI_PERMISSION = CIP_STATUS.NEED_REBOOT_UI_PERMISSION;
+
+pub const CODEBASEHOLD = extern struct {
+    cbSize: u32,
+    szDistUnit: ?PWSTR,
+    szCodeBase: ?PWSTR,
+    dwVersionMS: u32,
+    dwVersionLS: u32,
+    dwStyle: u32,
+};
+
+pub const CONFIRMSAFETY = extern struct {
+    clsid: Guid,
+    pUnk: ?*IUnknown,
+    dwFlags: u32,
+};
+
+pub const DATAINFO = extern struct {
+    ulTotalSize: u32,
+    ulavrPacketSize: u32,
+    ulConnectSpeed: u32,
+    ulProcessorSpeed: u32,
+};
+
+pub const HIT_LOGGING_INFO = extern struct {
+    dwStructSize: u32,
+    lpszLoggedUrlName: ?PSTR,
+    StartTime: SYSTEMTIME,
+    EndTime: SYSTEMTIME,
+    lpszExtendedInfo: ?PSTR,
+};
+
+const IID_IBindCallbackRedirect_Value = Guid.initString("11c81bc2-121e-4ed5-b9c4-b430bd54f2c0");
+pub const IID_IBindCallbackRedirect = &IID_IBindCallbackRedirect_Value;
+pub const IBindCallbackRedirect = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Redirect: *const fn(
+            self: *const IBindCallbackRedirect,
+            lpcUrl: ?[*:0]const u16,
+            vbCancel: ?*i16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Redirect(self: *const IBindCallbackRedirect, lpcUrl: ?[*:0]const u16, vbCancel: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.Redirect(self, lpcUrl, vbCancel);
+    }
+};
+
+const IID_IBindHttpSecurity_Value = Guid.initString("a9eda967-f50e-4a33-b358-206f6ef3086d");
+pub const IID_IBindHttpSecurity = &IID_IBindHttpSecurity_Value;
+pub const IBindHttpSecurity = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetIgnoreCertMask: *const fn(
+            self: *const IBindHttpSecurity,
+            pdwIgnoreCertMask: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetIgnoreCertMask(self: *const IBindHttpSecurity, pdwIgnoreCertMask: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIgnoreCertMask(self, pdwIgnoreCertMask);
+    }
+};
+
+const IID_IBindProtocol_Value = Guid.initString("79eac9cd-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IBindProtocol = &IID_IBindProtocol_Value;
+pub const IBindProtocol = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateBinding: *const fn(
+            self: *const IBindProtocol,
+            szUrl: ?[*:0]const u16,
+            pbc: ?*IBindCtx,
+            ppb: ?*?*IBinding,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateBinding(self: *const IBindProtocol, szUrl: ?[*:0]const u16, pbc: ?*IBindCtx, ppb: ?*?*IBinding) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBinding(self, szUrl, pbc, ppb);
+    }
+};
+
+const IID_ICatalogFileInfo_Value = Guid.initString("711c7600-6b48-11d1-b403-00aa00b92af1");
+pub const IID_ICatalogFileInfo = &IID_ICatalogFileInfo_Value;
+pub const ICatalogFileInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCatalogFile: *const fn(
+            self: *const ICatalogFileInfo,
+            ppszCatalogFile: ?*?PSTR,
+        ) callconv(.winapi) HRESULT,
+        GetJavaTrust: *const fn(
+            self: *const ICatalogFileInfo,
+            ppJavaTrust: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCatalogFile(self: *const ICatalogFileInfo, ppszCatalogFile: ?*?PSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCatalogFile(self, ppszCatalogFile);
+    }
+    pub fn GetJavaTrust(self: *const ICatalogFileInfo, ppJavaTrust: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetJavaTrust(self, ppJavaTrust);
+    }
+};
+
+const IID_ICodeInstall_Value = Guid.initString("79eac9d1-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_ICodeInstall = &IID_ICodeInstall_Value;
+pub const ICodeInstall = extern union {
+    pub const VTable = extern struct {
+        base: IWindowForBindingUI.VTable,
+        OnCodeInstallProblem: *const fn(
+            self: *const ICodeInstall,
+            ulStatusCode: u32,
+            szDestination: ?[*:0]const u16,
+            szSource: ?[*:0]const u16,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWindowForBindingUI: IWindowForBindingUI,
+    IUnknown: IUnknown,
+    pub fn OnCodeInstallProblem(self: *const ICodeInstall, ulStatusCode: u32, szDestination: ?[*:0]const u16, szSource: ?[*:0]const u16, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnCodeInstallProblem(self, ulStatusCode, szDestination, szSource, dwReserved);
+    }
+};
+
+const IID_IDataFilter_Value = Guid.initString("69d14c80-c18e-11d0-a9ce-006097942311");
+pub const IID_IDataFilter = &IID_IDataFilter_Value;
+pub const IDataFilter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        DoEncode: *const fn(
+            self: *const IDataFilter,
+            dwFlags: u32,
+            lInBufferSize: i32,
+            pbInBuffer: [*:0]u8,
+            lOutBufferSize: i32,
+            pbOutBuffer: [*:0]u8,
+            lInBytesAvailable: i32,
+            plInBytesRead: ?*i32,
+            plOutBytesWritten: ?*i32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        DoDecode: *const fn(
+            self: *const IDataFilter,
+            dwFlags: u32,
+            lInBufferSize: i32,
+            pbInBuffer: [*:0]u8,
+            lOutBufferSize: i32,
+            pbOutBuffer: [*:0]u8,
+            lInBytesAvailable: i32,
+            plInBytesRead: ?*i32,
+            plOutBytesWritten: ?*i32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        SetEncodingLevel: *const fn(
+            self: *const IDataFilter,
+            dwEncLevel: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn DoEncode(self: *const IDataFilter, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DoEncode(self, dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
+    }
+    pub fn DoDecode(self: *const IDataFilter, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DoDecode(self, dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
+    }
+    pub fn SetEncodingLevel(self: *const IDataFilter, dwEncLevel: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEncodingLevel(self, dwEncLevel);
+    }
+};
+
+const IID_IEncodingFilterFactory_Value = Guid.initString("70bdde00-c18e-11d0-a9ce-006097942311");
+pub const IID_IEncodingFilterFactory = &IID_IEncodingFilterFactory_Value;
+pub const IEncodingFilterFactory = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FindBestFilter: *const fn(
+            self: *const IEncodingFilterFactory,
+            pwzCodeIn: ?[*:0]const u16,
+            pwzCodeOut: ?[*:0]const u16,
+            info: DATAINFO,
+            ppDF: ?*?*IDataFilter,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultFilter: *const fn(
+            self: *const IEncodingFilterFactory,
+            pwzCodeIn: ?[*:0]const u16,
+            pwzCodeOut: ?[*:0]const u16,
+            ppDF: ?*?*IDataFilter,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn FindBestFilter(self: *const IEncodingFilterFactory, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, info: DATAINFO, ppDF: ?*?*IDataFilter) callconv(.@"inline") HRESULT {
+        return self.vtable.FindBestFilter(self, pwzCodeIn, pwzCodeOut, info, ppDF);
+    }
+    pub fn GetDefaultFilter(self: *const IEncodingFilterFactory, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, ppDF: ?*?*IDataFilter) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultFilter(self, pwzCodeIn, pwzCodeOut, ppDF);
+    }
+};
+
+pub const IEObjectType = enum(i32) {
+    EVENT = 0,
+    MUTEX = 1,
+    SEMAPHORE = 2,
+    SHARED_MEMORY = 3,
+    WAITABLE_TIMER = 4,
+    FILE = 5,
+    NAMED_PIPE = 6,
+    REGISTRY = 7,
+};
+pub const IE_EPM_OBJECT_EVENT = IEObjectType.EVENT;
+pub const IE_EPM_OBJECT_MUTEX = IEObjectType.MUTEX;
+pub const IE_EPM_OBJECT_SEMAPHORE = IEObjectType.SEMAPHORE;
+pub const IE_EPM_OBJECT_SHARED_MEMORY = IEObjectType.SHARED_MEMORY;
+pub const IE_EPM_OBJECT_WAITABLE_TIMER = IEObjectType.WAITABLE_TIMER;
+pub const IE_EPM_OBJECT_FILE = IEObjectType.FILE;
+pub const IE_EPM_OBJECT_NAMED_PIPE = IEObjectType.NAMED_PIPE;
+pub const IE_EPM_OBJECT_REGISTRY = IEObjectType.REGISTRY;
+
+const IID_IGetBindHandle_Value = Guid.initString("af0ff408-129d-4b20-91f0-02bd23d88352");
+pub const IID_IGetBindHandle = &IID_IGetBindHandle_Value;
+pub const IGetBindHandle = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetBindHandle: *const fn(
+            self: *const IGetBindHandle,
+            enumRequestedHandle: BINDHANDLETYPES,
+            pRetHandle: ?*?HANDLE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetBindHandle(self: *const IGetBindHandle, enumRequestedHandle: BINDHANDLETYPES, pRetHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBindHandle(self, enumRequestedHandle, pRetHandle);
+    }
+};
 
 const IID_IHttpNegotiate_Value = Guid.initString("79eac9d2-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IHttpNegotiate = &IID_IHttpNegotiate_Value;
@@ -905,170 +1069,6 @@ pub const IHttpNegotiate3 = extern union {
     }
 };
 
-const IID_IWinInetFileStream_Value = Guid.initString("f134c4b7-b1f8-4e75-b886-74b90943becb");
-pub const IID_IWinInetFileStream = &IID_IWinInetFileStream_Value;
-pub const IWinInetFileStream = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetHandleForUnlock: *const fn(
-            self: *const IWinInetFileStream,
-            hWinInetLockHandle: usize,
-            dwReserved: usize,
-        ) callconv(.winapi) HRESULT,
-        SetDeleteFile: *const fn(
-            self: *const IWinInetFileStream,
-            dwReserved: usize,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetHandleForUnlock(self: *const IWinInetFileStream, hWinInetLockHandle: usize, dwReserved: usize) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHandleForUnlock(self, hWinInetLockHandle, dwReserved);
-    }
-    pub fn SetDeleteFile(self: *const IWinInetFileStream, dwReserved: usize) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDeleteFile(self, dwReserved);
-    }
-};
-
-const IID_IWindowForBindingUI_Value = Guid.initString("79eac9d5-bafa-11ce-8c82-00aa004ba90b");
-pub const IID_IWindowForBindingUI = &IID_IWindowForBindingUI_Value;
-pub const IWindowForBindingUI = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWindow: *const fn(
-            self: *const IWindowForBindingUI,
-            rguidReason: ?*const Guid,
-            phwnd: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetWindow(self: *const IWindowForBindingUI, rguidReason: ?*const Guid, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWindow(self, rguidReason, phwnd);
-    }
-};
-
-pub const CIP_STATUS = enum(i32) {
-    DISK_FULL = 0,
-    ACCESS_DENIED = 1,
-    NEWER_VERSION_EXISTS = 2,
-    OLDER_VERSION_EXISTS = 3,
-    NAME_CONFLICT = 4,
-    TRUST_VERIFICATION_COMPONENT_MISSING = 5,
-    EXE_SELF_REGISTERATION_TIMEOUT = 6,
-    UNSAFE_TO_ABORT = 7,
-    NEED_REBOOT = 8,
-    NEED_REBOOT_UI_PERMISSION = 9,
-};
-pub const CIP_DISK_FULL = CIP_STATUS.DISK_FULL;
-pub const CIP_ACCESS_DENIED = CIP_STATUS.ACCESS_DENIED;
-pub const CIP_NEWER_VERSION_EXISTS = CIP_STATUS.NEWER_VERSION_EXISTS;
-pub const CIP_OLDER_VERSION_EXISTS = CIP_STATUS.OLDER_VERSION_EXISTS;
-pub const CIP_NAME_CONFLICT = CIP_STATUS.NAME_CONFLICT;
-pub const CIP_TRUST_VERIFICATION_COMPONENT_MISSING = CIP_STATUS.TRUST_VERIFICATION_COMPONENT_MISSING;
-pub const CIP_EXE_SELF_REGISTERATION_TIMEOUT = CIP_STATUS.EXE_SELF_REGISTERATION_TIMEOUT;
-pub const CIP_UNSAFE_TO_ABORT = CIP_STATUS.UNSAFE_TO_ABORT;
-pub const CIP_NEED_REBOOT = CIP_STATUS.NEED_REBOOT;
-pub const CIP_NEED_REBOOT_UI_PERMISSION = CIP_STATUS.NEED_REBOOT_UI_PERMISSION;
-
-const IID_ICodeInstall_Value = Guid.initString("79eac9d1-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_ICodeInstall = &IID_ICodeInstall_Value;
-pub const ICodeInstall = extern union {
-    pub const VTable = extern struct {
-        base: IWindowForBindingUI.VTable,
-        OnCodeInstallProblem: *const fn(
-            self: *const ICodeInstall,
-            ulStatusCode: u32,
-            szDestination: ?[*:0]const u16,
-            szSource: ?[*:0]const u16,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWindowForBindingUI: IWindowForBindingUI,
-    IUnknown: IUnknown,
-    pub fn OnCodeInstallProblem(self: *const ICodeInstall, ulStatusCode: u32, szDestination: ?[*:0]const u16, szSource: ?[*:0]const u16, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnCodeInstallProblem(self, ulStatusCode, szDestination, szSource, dwReserved);
-    }
-};
-
-pub const Uri_HOST_TYPE = enum(i32) {
-    UNKNOWN = 0,
-    DNS = 1,
-    IPV4 = 2,
-    IPV6 = 3,
-    IDN = 4,
-};
-pub const Uri_HOST_UNKNOWN = Uri_HOST_TYPE.UNKNOWN;
-pub const Uri_HOST_DNS = Uri_HOST_TYPE.DNS;
-pub const Uri_HOST_IPV4 = Uri_HOST_TYPE.IPV4;
-pub const Uri_HOST_IPV6 = Uri_HOST_TYPE.IPV6;
-pub const Uri_HOST_IDN = Uri_HOST_TYPE.IDN;
-
-const IID_IUriContainer_Value = Guid.initString("a158a630-ed6f-45fb-b987-f68676f57752");
-pub const IID_IUriContainer = &IID_IUriContainer_Value;
-pub const IUriContainer = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetIUri: *const fn(
-            self: *const IUriContainer,
-            ppIUri: ?*?*IUri,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetIUri(self: *const IUriContainer, ppIUri: ?*?*IUri) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIUri(self, ppIUri);
-    }
-};
-
-const IID_IUriBuilderFactory_Value = Guid.initString("e982ce48-0b96-440c-bc37-0c869b27a29e");
-pub const IID_IUriBuilderFactory = &IID_IUriBuilderFactory_Value;
-pub const IUriBuilderFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateIUriBuilder: *const fn(
-            self: *const IUriBuilderFactory,
-            dwFlags: u32,
-            dwReserved: usize,
-            ppIUriBuilder: ?*?*IUriBuilder,
-        ) callconv(.winapi) HRESULT,
-        CreateInitializedIUriBuilder: *const fn(
-            self: *const IUriBuilderFactory,
-            dwFlags: u32,
-            dwReserved: usize,
-            ppIUriBuilder: ?*?*IUriBuilder,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateIUriBuilder(self: *const IUriBuilderFactory, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateIUriBuilder(self, dwFlags, dwReserved, ppIUriBuilder);
-    }
-    pub fn CreateInitializedIUriBuilder(self: *const IUriBuilderFactory, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateInitializedIUriBuilder(self, dwFlags, dwReserved, ppIUriBuilder);
-    }
-};
-
-const IID_IWinInetInfo_Value = Guid.initString("79eac9d6-bafa-11ce-8c82-00aa004ba90b");
-pub const IID_IWinInetInfo = &IID_IWinInetInfo_Value;
-pub const IWinInetInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryOption: *const fn(
-            self: *const IWinInetInfo,
-            dwOption: u32,
-            pBuffer: [*]u8,
-            pcbBuf: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn QueryOption(self: *const IWinInetInfo, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryOption(self, dwOption, pBuffer, pcbBuf);
-    }
-};
-
 const IID_IHttpSecurity_Value = Guid.initString("79eac9d7-bafa-11ce-8c82-00aa004ba90b");
 pub const IID_IHttpSecurity = &IID_IHttpSecurity_Value;
 pub const IHttpSecurity = extern union {
@@ -1087,90 +1087,6 @@ pub const IHttpSecurity = extern union {
     }
 };
 
-const IID_IWinInetHttpInfo_Value = Guid.initString("79eac9d8-bafa-11ce-8c82-00aa004ba90b");
-pub const IID_IWinInetHttpInfo = &IID_IWinInetHttpInfo_Value;
-pub const IWinInetHttpInfo = extern union {
-    pub const VTable = extern struct {
-        base: IWinInetInfo.VTable,
-        QueryInfo: *const fn(
-            self: *const IWinInetHttpInfo,
-            dwOption: u32,
-            pBuffer: [*]u8,
-            pcbBuf: ?*u32,
-            pdwFlags: ?*u32,
-            pdwReserved: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWinInetInfo: IWinInetInfo,
-    IUnknown: IUnknown,
-    pub fn QueryInfo(self: *const IWinInetHttpInfo, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32, pdwFlags: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryInfo(self, dwOption, pBuffer, pcbBuf, pdwFlags, pdwReserved);
-    }
-};
-
-const IID_IWinInetHttpTimeouts_Value = Guid.initString("f286fa56-c1fd-4270-8e67-b3eb790a81e8");
-pub const IID_IWinInetHttpTimeouts = &IID_IWinInetHttpTimeouts_Value;
-pub const IWinInetHttpTimeouts = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRequestTimeouts: *const fn(
-            self: *const IWinInetHttpTimeouts,
-            pdwConnectTimeout: ?*u32,
-            pdwSendTimeout: ?*u32,
-            pdwReceiveTimeout: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRequestTimeouts(self: *const IWinInetHttpTimeouts, pdwConnectTimeout: ?*u32, pdwSendTimeout: ?*u32, pdwReceiveTimeout: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRequestTimeouts(self, pdwConnectTimeout, pdwSendTimeout, pdwReceiveTimeout);
-    }
-};
-
-const IID_IWinInetCacheHints_Value = Guid.initString("dd1ec3b3-8391-4fdb-a9e6-347c3caaa7dd");
-pub const IID_IWinInetCacheHints = &IID_IWinInetCacheHints_Value;
-pub const IWinInetCacheHints = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetCacheExtension: *const fn(
-            self: *const IWinInetCacheHints,
-            pwzExt: ?[*:0]const u16,
-            pszCacheFile: [*]u8,
-            pcbCacheFile: ?*u32,
-            pdwWinInetError: ?*u32,
-            pdwReserved: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetCacheExtension(self: *const IWinInetCacheHints, pwzExt: ?[*:0]const u16, pszCacheFile: [*]u8, pcbCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCacheExtension(self, pwzExt, pszCacheFile, pcbCacheFile, pdwWinInetError, pdwReserved);
-    }
-};
-
-const IID_IWinInetCacheHints2_Value = Guid.initString("7857aeac-d31f-49bf-884e-dd46df36780a");
-pub const IID_IWinInetCacheHints2 = &IID_IWinInetCacheHints2_Value;
-pub const IWinInetCacheHints2 = extern union {
-    pub const VTable = extern struct {
-        base: IWinInetCacheHints.VTable,
-        SetCacheExtension2: *const fn(
-            self: *const IWinInetCacheHints2,
-            pwzExt: ?[*:0]const u16,
-            pwzCacheFile: ?PWSTR,
-            pcchCacheFile: ?*u32,
-            pdwWinInetError: ?*u32,
-            pdwReserved: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IWinInetCacheHints: IWinInetCacheHints,
-    IUnknown: IUnknown,
-    pub fn SetCacheExtension2(self: *const IWinInetCacheHints2, pwzExt: ?[*:0]const u16, pwzCacheFile: ?PWSTR, pcchCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetCacheExtension2(self, pwzExt, pwzCacheFile, pcchCacheFile, pdwWinInetError, pdwReserved);
-    }
-};
-
 const IID_IInternet_Value = Guid.initString("79eac9e0-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IInternet = &IID_IInternet_Value;
 pub const IInternet = extern union {
@@ -1180,61 +1096,6 @@ pub const IInternet = extern union {
     vtable: *const VTable,
     IUnknown: IUnknown,
 };
-
-pub const BINDSTRING = enum(i32) {
-    HEADERS = 1,
-    ACCEPT_MIMES = 2,
-    EXTRA_URL = 3,
-    LANGUAGE = 4,
-    USERNAME = 5,
-    PASSWORD = 6,
-    UA_PIXELS = 7,
-    UA_COLOR = 8,
-    OS = 9,
-    USER_AGENT = 10,
-    ACCEPT_ENCODINGS = 11,
-    POST_COOKIE = 12,
-    POST_DATA_MIME = 13,
-    URL = 14,
-    IID = 15,
-    FLAG_BIND_TO_OBJECT = 16,
-    PTR_BIND_CONTEXT = 17,
-    XDR_ORIGIN = 18,
-    DOWNLOADPATH = 19,
-    ROOTDOC_URL = 20,
-    INITIAL_FILENAME = 21,
-    PROXY_USERNAME = 22,
-    PROXY_PASSWORD = 23,
-    ENTERPRISE_ID = 24,
-    DOC_URL = 25,
-    SAMESITE_COOKIE_LEVEL = 26,
-};
-pub const BINDSTRING_HEADERS = BINDSTRING.HEADERS;
-pub const BINDSTRING_ACCEPT_MIMES = BINDSTRING.ACCEPT_MIMES;
-pub const BINDSTRING_EXTRA_URL = BINDSTRING.EXTRA_URL;
-pub const BINDSTRING_LANGUAGE = BINDSTRING.LANGUAGE;
-pub const BINDSTRING_USERNAME = BINDSTRING.USERNAME;
-pub const BINDSTRING_PASSWORD = BINDSTRING.PASSWORD;
-pub const BINDSTRING_UA_PIXELS = BINDSTRING.UA_PIXELS;
-pub const BINDSTRING_UA_COLOR = BINDSTRING.UA_COLOR;
-pub const BINDSTRING_OS = BINDSTRING.OS;
-pub const BINDSTRING_USER_AGENT = BINDSTRING.USER_AGENT;
-pub const BINDSTRING_ACCEPT_ENCODINGS = BINDSTRING.ACCEPT_ENCODINGS;
-pub const BINDSTRING_POST_COOKIE = BINDSTRING.POST_COOKIE;
-pub const BINDSTRING_POST_DATA_MIME = BINDSTRING.POST_DATA_MIME;
-pub const BINDSTRING_URL = BINDSTRING.URL;
-pub const BINDSTRING_IID = BINDSTRING.IID;
-pub const BINDSTRING_FLAG_BIND_TO_OBJECT = BINDSTRING.FLAG_BIND_TO_OBJECT;
-pub const BINDSTRING_PTR_BIND_CONTEXT = BINDSTRING.PTR_BIND_CONTEXT;
-pub const BINDSTRING_XDR_ORIGIN = BINDSTRING.XDR_ORIGIN;
-pub const BINDSTRING_DOWNLOADPATH = BINDSTRING.DOWNLOADPATH;
-pub const BINDSTRING_ROOTDOC_URL = BINDSTRING.ROOTDOC_URL;
-pub const BINDSTRING_INITIAL_FILENAME = BINDSTRING.INITIAL_FILENAME;
-pub const BINDSTRING_PROXY_USERNAME = BINDSTRING.PROXY_USERNAME;
-pub const BINDSTRING_PROXY_PASSWORD = BINDSTRING.PROXY_PASSWORD;
-pub const BINDSTRING_ENTERPRISE_ID = BINDSTRING.ENTERPRISE_ID;
-pub const BINDSTRING_DOC_URL = BINDSTRING.DOC_URL;
-pub const BINDSTRING_SAMESITE_COOKIE_LEVEL = BINDSTRING.SAMESITE_COOKIE_LEVEL;
 
 const IID_IInternetBindInfo_Value = Guid.initString("79eac9e1-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IInternetBindInfo = &IID_IInternetBindInfo_Value;
@@ -1285,104 +1146,71 @@ pub const IInternetBindInfoEx = extern union {
     }
 };
 
-pub const PI_FLAGS = enum(i32) {
-    I_PARSE_URL = 1,
-    I_FILTER_MODE = 2,
-    I_FORCE_ASYNC = 4,
-    I_USE_WORKERTHREAD = 8,
-    I_MIMEVERIFICATION = 16,
-    I_CLSIDLOOKUP = 32,
-    I_DATAPROGRESS = 64,
-    I_SYNCHRONOUS = 128,
-    I_APARTMENTTHREADED = 256,
-    I_CLASSINSTALL = 512,
-    I_PASSONBINDCTX = 8192,
-    I_NOMIMEHANDLER = 32768,
-    I_LOADAPPDIRECT = 16384,
-    D_FORCE_SWITCH = 65536,
-    I_PREFERDEFAULTHANDLER = 131072,
-};
-pub const PI_PARSE_URL = PI_FLAGS.I_PARSE_URL;
-pub const PI_FILTER_MODE = PI_FLAGS.I_FILTER_MODE;
-pub const PI_FORCE_ASYNC = PI_FLAGS.I_FORCE_ASYNC;
-pub const PI_USE_WORKERTHREAD = PI_FLAGS.I_USE_WORKERTHREAD;
-pub const PI_MIMEVERIFICATION = PI_FLAGS.I_MIMEVERIFICATION;
-pub const PI_CLSIDLOOKUP = PI_FLAGS.I_CLSIDLOOKUP;
-pub const PI_DATAPROGRESS = PI_FLAGS.I_DATAPROGRESS;
-pub const PI_SYNCHRONOUS = PI_FLAGS.I_SYNCHRONOUS;
-pub const PI_APARTMENTTHREADED = PI_FLAGS.I_APARTMENTTHREADED;
-pub const PI_CLASSINSTALL = PI_FLAGS.I_CLASSINSTALL;
-pub const PI_PASSONBINDCTX = PI_FLAGS.I_PASSONBINDCTX;
-pub const PI_NOMIMEHANDLER = PI_FLAGS.I_NOMIMEHANDLER;
-pub const PI_LOADAPPDIRECT = PI_FLAGS.I_LOADAPPDIRECT;
-pub const PD_FORCE_SWITCH = PI_FLAGS.D_FORCE_SWITCH;
-pub const PI_PREFERDEFAULTHANDLER = PI_FLAGS.I_PREFERDEFAULTHANDLER;
-
-pub const PROTOCOLDATA = extern struct {
-    grfFlags: u32,
-    dwState: u32,
-    pData: ?*anyopaque,
-    cbData: u32,
-};
-
-pub const StartParam = extern struct {
-    iid: Guid,
-    pIBindCtx: ?*IBindCtx,
-    pItf: ?*IUnknown,
-};
-
-const IID_IInternetProtocolRoot_Value = Guid.initString("79eac9e3-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IInternetProtocolRoot = &IID_IInternetProtocolRoot_Value;
-pub const IInternetProtocolRoot = extern union {
+const IID_IInternetHostSecurityManager_Value = Guid.initString("3af280b6-cb3f-11d0-891e-00c04fb6bfc4");
+pub const IID_IInternetHostSecurityManager = &IID_IInternetHostSecurityManager_Value;
+pub const IInternetHostSecurityManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Start: *const fn(
-            self: *const IInternetProtocolRoot,
-            szUrl: ?[*:0]const u16,
-            pOIProtSink: ?*IInternetProtocolSink,
-            pOIBindInfo: ?*IInternetBindInfo,
-            grfPI: u32,
-            dwReserved: HANDLE_PTR,
+        GetSecurityId: *const fn(
+            self: *const IInternetHostSecurityManager,
+            pbSecurityId: [*:0]u8,
+            pcbSecurityId: ?*u32,
+            dwReserved: usize,
         ) callconv(.winapi) HRESULT,
-        Continue: *const fn(
-            self: *const IInternetProtocolRoot,
-            pProtocolData: ?*PROTOCOLDATA,
+        ProcessUrlAction: *const fn(
+            self: *const IInternetHostSecurityManager,
+            dwAction: u32,
+            pPolicy: [*:0]u8,
+            cbPolicy: u32,
+            pContext: ?[*:0]u8,
+            cbContext: u32,
+            dwFlags: u32,
+            dwReserved: u32,
         ) callconv(.winapi) HRESULT,
-        Abort: *const fn(
-            self: *const IInternetProtocolRoot,
-            hrReason: HRESULT,
-            dwOptions: u32,
-        ) callconv(.winapi) HRESULT,
-        Terminate: *const fn(
-            self: *const IInternetProtocolRoot,
-            dwOptions: u32,
-        ) callconv(.winapi) HRESULT,
-        Suspend: *const fn(
-            self: *const IInternetProtocolRoot,
-        ) callconv(.winapi) HRESULT,
-        Resume: *const fn(
-            self: *const IInternetProtocolRoot,
+        QueryCustomPolicy: *const fn(
+            self: *const IInternetHostSecurityManager,
+            guidKey: ?*const Guid,
+            ppPolicy: ?[*]?*u8,
+            pcbPolicy: ?*u32,
+            pContext: [*:0]u8,
+            cbContext: u32,
+            dwReserved: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IInternetProtocolRoot, szUrl: ?[*:0]const u16, pOIProtSink: ?*IInternetProtocolSink, pOIBindInfo: ?*IInternetBindInfo, grfPI: u32, dwReserved: HANDLE_PTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self, szUrl, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
+    pub fn GetSecurityId(self: *const IInternetHostSecurityManager, pbSecurityId: [*:0]u8, pcbSecurityId: ?*u32, dwReserved: usize) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSecurityId(self, pbSecurityId, pcbSecurityId, dwReserved);
     }
-    pub fn Continue(self: *const IInternetProtocolRoot, pProtocolData: ?*PROTOCOLDATA) callconv(.@"inline") HRESULT {
-        return self.vtable.Continue(self, pProtocolData);
+    pub fn ProcessUrlAction(self: *const IInternetHostSecurityManager, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?[*:0]u8, cbContext: u32, dwFlags: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ProcessUrlAction(self, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
     }
-    pub fn Abort(self: *const IInternetProtocolRoot, hrReason: HRESULT, dwOptions: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Abort(self, hrReason, dwOptions);
+    pub fn QueryCustomPolicy(self: *const IInternetHostSecurityManager, guidKey: ?*const Guid, ppPolicy: ?[*]?*u8, pcbPolicy: ?*u32, pContext: [*:0]u8, cbContext: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryCustomPolicy(self, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
     }
-    pub fn Terminate(self: *const IInternetProtocolRoot, dwOptions: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Terminate(self, dwOptions);
+};
+
+const IID_IInternetPriority_Value = Guid.initString("79eac9eb-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IInternetPriority = &IID_IInternetPriority_Value;
+pub const IInternetPriority = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetPriority: *const fn(
+            self: *const IInternetPriority,
+            nPriority: i32,
+        ) callconv(.winapi) HRESULT,
+        GetPriority: *const fn(
+            self: *const IInternetPriority,
+            pnPriority: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetPriority(self: *const IInternetPriority, nPriority: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPriority(self, nPriority);
     }
-    pub fn Suspend(self: *const IInternetProtocolRoot) callconv(.@"inline") HRESULT {
-        return self.vtable.Suspend(self);
-    }
-    pub fn Resume(self: *const IInternetProtocolRoot) callconv(.@"inline") HRESULT {
-        return self.vtable.Resume(self);
+    pub fn GetPriority(self: *const IInternetPriority, pnPriority: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPriority(self, pnPriority);
     }
 };
 
@@ -1448,6 +1276,119 @@ pub const IInternetProtocolEx = extern union {
     IUnknown: IUnknown,
     pub fn StartEx(self: *const IInternetProtocolEx, pUri: ?*IUri, pOIProtSink: ?*IInternetProtocolSink, pOIBindInfo: ?*IInternetBindInfo, grfPI: u32, dwReserved: HANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.StartEx(self, pUri, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
+    }
+};
+
+const IID_IInternetProtocolInfo_Value = Guid.initString("79eac9ec-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IInternetProtocolInfo = &IID_IInternetProtocolInfo_Value;
+pub const IInternetProtocolInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParseUrl: *const fn(
+            self: *const IInternetProtocolInfo,
+            pwzUrl: ?[*:0]const u16,
+            ParseAction: PARSEACTION,
+            dwParseFlags: u32,
+            pwzResult: ?PWSTR,
+            cchResult: u32,
+            pcchResult: ?*u32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        CombineUrl: *const fn(
+            self: *const IInternetProtocolInfo,
+            pwzBaseUrl: ?[*:0]const u16,
+            pwzRelativeUrl: ?[*:0]const u16,
+            dwCombineFlags: u32,
+            pwzResult: ?PWSTR,
+            cchResult: u32,
+            pcchResult: ?*u32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        CompareUrl: *const fn(
+            self: *const IInternetProtocolInfo,
+            pwzUrl1: ?[*:0]const u16,
+            pwzUrl2: ?[*:0]const u16,
+            dwCompareFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        QueryInfo: *const fn(
+            self: *const IInternetProtocolInfo,
+            pwzUrl: ?[*:0]const u16,
+            OueryOption: QUERYOPTION,
+            dwQueryFlags: u32,
+            pBuffer: [*]u8,
+            cbBuffer: u32,
+            pcbBuf: ?*u32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ParseUrl(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, ParseAction: PARSEACTION, dwParseFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ParseUrl(self, pwzUrl, ParseAction, dwParseFlags, pwzResult, cchResult, pcchResult, dwReserved);
+    }
+    pub fn CombineUrl(self: *const IInternetProtocolInfo, pwzBaseUrl: ?[*:0]const u16, pwzRelativeUrl: ?[*:0]const u16, dwCombineFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CombineUrl(self, pwzBaseUrl, pwzRelativeUrl, dwCombineFlags, pwzResult, cchResult, pcchResult, dwReserved);
+    }
+    pub fn CompareUrl(self: *const IInternetProtocolInfo, pwzUrl1: ?[*:0]const u16, pwzUrl2: ?[*:0]const u16, dwCompareFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CompareUrl(self, pwzUrl1, pwzUrl2, dwCompareFlags);
+    }
+    pub fn QueryInfo(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, OueryOption: QUERYOPTION, dwQueryFlags: u32, pBuffer: [*]u8, cbBuffer: u32, pcbBuf: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryInfo(self, pwzUrl, OueryOption, dwQueryFlags, pBuffer, cbBuffer, pcbBuf, dwReserved);
+    }
+};
+
+const IID_IInternetProtocolRoot_Value = Guid.initString("79eac9e3-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IInternetProtocolRoot = &IID_IInternetProtocolRoot_Value;
+pub const IInternetProtocolRoot = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Start: *const fn(
+            self: *const IInternetProtocolRoot,
+            szUrl: ?[*:0]const u16,
+            pOIProtSink: ?*IInternetProtocolSink,
+            pOIBindInfo: ?*IInternetBindInfo,
+            grfPI: u32,
+            dwReserved: HANDLE_PTR,
+        ) callconv(.winapi) HRESULT,
+        Continue: *const fn(
+            self: *const IInternetProtocolRoot,
+            pProtocolData: ?*PROTOCOLDATA,
+        ) callconv(.winapi) HRESULT,
+        Abort: *const fn(
+            self: *const IInternetProtocolRoot,
+            hrReason: HRESULT,
+            dwOptions: u32,
+        ) callconv(.winapi) HRESULT,
+        Terminate: *const fn(
+            self: *const IInternetProtocolRoot,
+            dwOptions: u32,
+        ) callconv(.winapi) HRESULT,
+        Suspend: *const fn(
+            self: *const IInternetProtocolRoot,
+        ) callconv(.winapi) HRESULT,
+        Resume: *const fn(
+            self: *const IInternetProtocolRoot,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Start(self: *const IInternetProtocolRoot, szUrl: ?[*:0]const u16, pOIProtSink: ?*IInternetProtocolSink, pOIBindInfo: ?*IInternetBindInfo, grfPI: u32, dwReserved: HANDLE_PTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self, szUrl, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
+    }
+    pub fn Continue(self: *const IInternetProtocolRoot, pProtocolData: ?*PROTOCOLDATA) callconv(.@"inline") HRESULT {
+        return self.vtable.Continue(self, pProtocolData);
+    }
+    pub fn Abort(self: *const IInternetProtocolRoot, hrReason: HRESULT, dwOptions: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Abort(self, hrReason, dwOptions);
+    }
+    pub fn Terminate(self: *const IInternetProtocolRoot, dwOptions: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Terminate(self, dwOptions);
+    }
+    pub fn Suspend(self: *const IInternetProtocolRoot) callconv(.@"inline") HRESULT {
+        return self.vtable.Suspend(self);
+    }
+    pub fn Resume(self: *const IInternetProtocolRoot) callconv(.@"inline") HRESULT {
+        return self.vtable.Resume(self);
     }
 };
 
@@ -1522,423 +1463,6 @@ pub const IInternetProtocolSinkStackable = extern union {
         return self.vtable.RollbackSwitch(self);
     }
 };
-
-pub const OIBDG_FLAGS = enum(i32) {
-    APARTMENTTHREADED = 256,
-    DATAONLY = 4096,
-};
-pub const OIBDG_APARTMENTTHREADED = OIBDG_FLAGS.APARTMENTTHREADED;
-pub const OIBDG_DATAONLY = OIBDG_FLAGS.DATAONLY;
-
-const IID_IInternetSession_Value = Guid.initString("79eac9e7-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IInternetSession = &IID_IInternetSession_Value;
-pub const IInternetSession = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        RegisterNameSpace: *const fn(
-            self: *const IInternetSession,
-            pCF: ?*IClassFactory,
-            rclsid: ?*const Guid,
-            pwzProtocol: ?[*:0]const u16,
-            cPatterns: u32,
-            ppwzPatterns: ?*const ?PWSTR,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        UnregisterNameSpace: *const fn(
-            self: *const IInternetSession,
-            pCF: ?*IClassFactory,
-            pszProtocol: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        RegisterMimeFilter: *const fn(
-            self: *const IInternetSession,
-            pCF: ?*IClassFactory,
-            rclsid: ?*const Guid,
-            pwzType: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        UnregisterMimeFilter: *const fn(
-            self: *const IInternetSession,
-            pCF: ?*IClassFactory,
-            pwzType: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        CreateBinding: *const fn(
-            self: *const IInternetSession,
-            pBC: ?*IBindCtx,
-            szUrl: ?[*:0]const u16,
-            pUnkOuter: ?*IUnknown,
-            ppUnk: ?*?*IUnknown,
-            ppOInetProt: ?*?*IInternetProtocol,
-            dwOption: u32,
-        ) callconv(.winapi) HRESULT,
-        SetSessionOption: *const fn(
-            self: *const IInternetSession,
-            dwOption: u32,
-            pBuffer: ?*anyopaque,
-            dwBufferLength: u32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        GetSessionOption: *const fn(
-            self: *const IInternetSession,
-            dwOption: u32,
-            pBuffer: ?*anyopaque,
-            pdwBufferLength: ?*u32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn RegisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzProtocol: ?[*:0]const u16, cPatterns: u32, ppwzPatterns: ?*const ?PWSTR, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterNameSpace(self, pCF, rclsid, pwzProtocol, cPatterns, ppwzPatterns, dwReserved);
-    }
-    pub fn UnregisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, pszProtocol: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterNameSpace(self, pCF, pszProtocol);
-    }
-    pub fn RegisterMimeFilter(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzType: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.RegisterMimeFilter(self, pCF, rclsid, pwzType);
-    }
-    pub fn UnregisterMimeFilter(self: *const IInternetSession, pCF: ?*IClassFactory, pwzType: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.UnregisterMimeFilter(self, pCF, pwzType);
-    }
-    pub fn CreateBinding(self: *const IInternetSession, pBC: ?*IBindCtx, szUrl: ?[*:0]const u16, pUnkOuter: ?*IUnknown, ppUnk: ?*?*IUnknown, ppOInetProt: ?*?*IInternetProtocol, dwOption: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateBinding(self, pBC, szUrl, pUnkOuter, ppUnk, ppOInetProt, dwOption);
-    }
-    pub fn SetSessionOption(self: *const IInternetSession, dwOption: u32, pBuffer: ?*anyopaque, dwBufferLength: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSessionOption(self, dwOption, pBuffer, dwBufferLength, dwReserved);
-    }
-    pub fn GetSessionOption(self: *const IInternetSession, dwOption: u32, pBuffer: ?*anyopaque, pdwBufferLength: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSessionOption(self, dwOption, pBuffer, pdwBufferLength, dwReserved);
-    }
-};
-
-const IID_IInternetThreadSwitch_Value = Guid.initString("79eac9e8-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IInternetThreadSwitch = &IID_IInternetThreadSwitch_Value;
-pub const IInternetThreadSwitch = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Prepare: *const fn(
-            self: *const IInternetThreadSwitch,
-        ) callconv(.winapi) HRESULT,
-        Continue: *const fn(
-            self: *const IInternetThreadSwitch,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Prepare(self: *const IInternetThreadSwitch) callconv(.@"inline") HRESULT {
-        return self.vtable.Prepare(self);
-    }
-    pub fn Continue(self: *const IInternetThreadSwitch) callconv(.@"inline") HRESULT {
-        return self.vtable.Continue(self);
-    }
-};
-
-const IID_IInternetPriority_Value = Guid.initString("79eac9eb-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IInternetPriority = &IID_IInternetPriority_Value;
-pub const IInternetPriority = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetPriority: *const fn(
-            self: *const IInternetPriority,
-            nPriority: i32,
-        ) callconv(.winapi) HRESULT,
-        GetPriority: *const fn(
-            self: *const IInternetPriority,
-            pnPriority: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetPriority(self: *const IInternetPriority, nPriority: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPriority(self, nPriority);
-    }
-    pub fn GetPriority(self: *const IInternetPriority, pnPriority: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPriority(self, pnPriority);
-    }
-};
-
-pub const PARSEACTION = enum(i32) {
-    CANONICALIZE = 1,
-    FRIENDLY = 2,
-    SECURITY_URL = 3,
-    ROOTDOCUMENT = 4,
-    DOCUMENT = 5,
-    ANCHOR = 6,
-    ENCODE_IS_UNESCAPE = 7,
-    DECODE_IS_ESCAPE = 8,
-    PATH_FROM_URL = 9,
-    URL_FROM_PATH = 10,
-    MIME = 11,
-    SERVER = 12,
-    SCHEMA = 13,
-    SITE = 14,
-    DOMAIN = 15,
-    LOCATION = 16,
-    SECURITY_DOMAIN = 17,
-    ESCAPE = 18,
-    UNESCAPE = 19,
-};
-pub const PARSE_CANONICALIZE = PARSEACTION.CANONICALIZE;
-pub const PARSE_FRIENDLY = PARSEACTION.FRIENDLY;
-pub const PARSE_SECURITY_URL = PARSEACTION.SECURITY_URL;
-pub const PARSE_ROOTDOCUMENT = PARSEACTION.ROOTDOCUMENT;
-pub const PARSE_DOCUMENT = PARSEACTION.DOCUMENT;
-pub const PARSE_ANCHOR = PARSEACTION.ANCHOR;
-pub const PARSE_ENCODE_IS_UNESCAPE = PARSEACTION.ENCODE_IS_UNESCAPE;
-pub const PARSE_DECODE_IS_ESCAPE = PARSEACTION.DECODE_IS_ESCAPE;
-pub const PARSE_PATH_FROM_URL = PARSEACTION.PATH_FROM_URL;
-pub const PARSE_URL_FROM_PATH = PARSEACTION.URL_FROM_PATH;
-pub const PARSE_MIME = PARSEACTION.MIME;
-pub const PARSE_SERVER = PARSEACTION.SERVER;
-pub const PARSE_SCHEMA = PARSEACTION.SCHEMA;
-pub const PARSE_SITE = PARSEACTION.SITE;
-pub const PARSE_DOMAIN = PARSEACTION.DOMAIN;
-pub const PARSE_LOCATION = PARSEACTION.LOCATION;
-pub const PARSE_SECURITY_DOMAIN = PARSEACTION.SECURITY_DOMAIN;
-pub const PARSE_ESCAPE = PARSEACTION.ESCAPE;
-pub const PARSE_UNESCAPE = PARSEACTION.UNESCAPE;
-
-pub const PSUACTION = enum(i32) {
-    DEFAULT = 1,
-    SECURITY_URL_ONLY = 2,
-};
-pub const PSU_DEFAULT = PSUACTION.DEFAULT;
-pub const PSU_SECURITY_URL_ONLY = PSUACTION.SECURITY_URL_ONLY;
-
-pub const QUERYOPTION = enum(i32) {
-    EXPIRATION_DATE = 1,
-    TIME_OF_LAST_CHANGE = 2,
-    CONTENT_ENCODING = 3,
-    CONTENT_TYPE = 4,
-    REFRESH = 5,
-    RECOMBINE = 6,
-    CAN_NAVIGATE = 7,
-    USES_NETWORK = 8,
-    IS_CACHED = 9,
-    IS_INSTALLEDENTRY = 10,
-    IS_CACHED_OR_MAPPED = 11,
-    USES_CACHE = 12,
-    IS_SECURE = 13,
-    IS_SAFE = 14,
-    USES_HISTORYFOLDER = 15,
-    IS_CACHED_AND_USABLE_OFFLINE = 16,
-};
-pub const QUERY_EXPIRATION_DATE = QUERYOPTION.EXPIRATION_DATE;
-pub const QUERY_TIME_OF_LAST_CHANGE = QUERYOPTION.TIME_OF_LAST_CHANGE;
-pub const QUERY_CONTENT_ENCODING = QUERYOPTION.CONTENT_ENCODING;
-pub const QUERY_CONTENT_TYPE = QUERYOPTION.CONTENT_TYPE;
-pub const QUERY_REFRESH = QUERYOPTION.REFRESH;
-pub const QUERY_RECOMBINE = QUERYOPTION.RECOMBINE;
-pub const QUERY_CAN_NAVIGATE = QUERYOPTION.CAN_NAVIGATE;
-pub const QUERY_USES_NETWORK = QUERYOPTION.USES_NETWORK;
-pub const QUERY_IS_CACHED = QUERYOPTION.IS_CACHED;
-pub const QUERY_IS_INSTALLEDENTRY = QUERYOPTION.IS_INSTALLEDENTRY;
-pub const QUERY_IS_CACHED_OR_MAPPED = QUERYOPTION.IS_CACHED_OR_MAPPED;
-pub const QUERY_USES_CACHE = QUERYOPTION.USES_CACHE;
-pub const QUERY_IS_SECURE = QUERYOPTION.IS_SECURE;
-pub const QUERY_IS_SAFE = QUERYOPTION.IS_SAFE;
-pub const QUERY_USES_HISTORYFOLDER = QUERYOPTION.USES_HISTORYFOLDER;
-pub const QUERY_IS_CACHED_AND_USABLE_OFFLINE = QUERYOPTION.IS_CACHED_AND_USABLE_OFFLINE;
-
-const IID_IInternetProtocolInfo_Value = Guid.initString("79eac9ec-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IInternetProtocolInfo = &IID_IInternetProtocolInfo_Value;
-pub const IInternetProtocolInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParseUrl: *const fn(
-            self: *const IInternetProtocolInfo,
-            pwzUrl: ?[*:0]const u16,
-            ParseAction: PARSEACTION,
-            dwParseFlags: u32,
-            pwzResult: ?PWSTR,
-            cchResult: u32,
-            pcchResult: ?*u32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        CombineUrl: *const fn(
-            self: *const IInternetProtocolInfo,
-            pwzBaseUrl: ?[*:0]const u16,
-            pwzRelativeUrl: ?[*:0]const u16,
-            dwCombineFlags: u32,
-            pwzResult: ?PWSTR,
-            cchResult: u32,
-            pcchResult: ?*u32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        CompareUrl: *const fn(
-            self: *const IInternetProtocolInfo,
-            pwzUrl1: ?[*:0]const u16,
-            pwzUrl2: ?[*:0]const u16,
-            dwCompareFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        QueryInfo: *const fn(
-            self: *const IInternetProtocolInfo,
-            pwzUrl: ?[*:0]const u16,
-            OueryOption: QUERYOPTION,
-            dwQueryFlags: u32,
-            pBuffer: [*]u8,
-            cbBuffer: u32,
-            pcbBuf: ?*u32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ParseUrl(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, ParseAction: PARSEACTION, dwParseFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ParseUrl(self, pwzUrl, ParseAction, dwParseFlags, pwzResult, cchResult, pcchResult, dwReserved);
-    }
-    pub fn CombineUrl(self: *const IInternetProtocolInfo, pwzBaseUrl: ?[*:0]const u16, pwzRelativeUrl: ?[*:0]const u16, dwCombineFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CombineUrl(self, pwzBaseUrl, pwzRelativeUrl, dwCombineFlags, pwzResult, cchResult, pcchResult, dwReserved);
-    }
-    pub fn CompareUrl(self: *const IInternetProtocolInfo, pwzUrl1: ?[*:0]const u16, pwzUrl2: ?[*:0]const u16, dwCompareFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CompareUrl(self, pwzUrl1, pwzUrl2, dwCompareFlags);
-    }
-    pub fn QueryInfo(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, OueryOption: QUERYOPTION, dwQueryFlags: u32, pBuffer: [*]u8, cbBuffer: u32, pcbBuf: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryInfo(self, pwzUrl, OueryOption, dwQueryFlags, pBuffer, cbBuffer, pcbBuf, dwReserved);
-    }
-};
-
-pub const INTERNETFEATURELIST = enum(i32) {
-    OBJECT_CACHING = 0,
-    ZONE_ELEVATION = 1,
-    MIME_HANDLING = 2,
-    MIME_SNIFFING = 3,
-    WINDOW_RESTRICTIONS = 4,
-    WEBOC_POPUPMANAGEMENT = 5,
-    BEHAVIORS = 6,
-    DISABLE_MK_PROTOCOL = 7,
-    LOCALMACHINE_LOCKDOWN = 8,
-    SECURITYBAND = 9,
-    RESTRICT_ACTIVEXINSTALL = 10,
-    VALIDATE_NAVIGATE_URL = 11,
-    RESTRICT_FILEDOWNLOAD = 12,
-    ADDON_MANAGEMENT = 13,
-    PROTOCOL_LOCKDOWN = 14,
-    HTTP_USERNAME_PASSWORD_DISABLE = 15,
-    SAFE_BINDTOOBJECT = 16,
-    UNC_SAVEDFILECHECK = 17,
-    GET_URL_DOM_FILEPATH_UNENCODED = 18,
-    TABBED_BROWSING = 19,
-    SSLUX = 20,
-    DISABLE_NAVIGATION_SOUNDS = 21,
-    DISABLE_LEGACY_COMPRESSION = 22,
-    FORCE_ADDR_AND_STATUS = 23,
-    XMLHTTP = 24,
-    DISABLE_TELNET_PROTOCOL = 25,
-    FEEDS = 26,
-    BLOCK_INPUT_PROMPTS = 27,
-    ENTRY_COUNT = 28,
-};
-pub const FEATURE_OBJECT_CACHING = INTERNETFEATURELIST.OBJECT_CACHING;
-pub const FEATURE_ZONE_ELEVATION = INTERNETFEATURELIST.ZONE_ELEVATION;
-pub const FEATURE_MIME_HANDLING = INTERNETFEATURELIST.MIME_HANDLING;
-pub const FEATURE_MIME_SNIFFING = INTERNETFEATURELIST.MIME_SNIFFING;
-pub const FEATURE_WINDOW_RESTRICTIONS = INTERNETFEATURELIST.WINDOW_RESTRICTIONS;
-pub const FEATURE_WEBOC_POPUPMANAGEMENT = INTERNETFEATURELIST.WEBOC_POPUPMANAGEMENT;
-pub const FEATURE_BEHAVIORS = INTERNETFEATURELIST.BEHAVIORS;
-pub const FEATURE_DISABLE_MK_PROTOCOL = INTERNETFEATURELIST.DISABLE_MK_PROTOCOL;
-pub const FEATURE_LOCALMACHINE_LOCKDOWN = INTERNETFEATURELIST.LOCALMACHINE_LOCKDOWN;
-pub const FEATURE_SECURITYBAND = INTERNETFEATURELIST.SECURITYBAND;
-pub const FEATURE_RESTRICT_ACTIVEXINSTALL = INTERNETFEATURELIST.RESTRICT_ACTIVEXINSTALL;
-pub const FEATURE_VALIDATE_NAVIGATE_URL = INTERNETFEATURELIST.VALIDATE_NAVIGATE_URL;
-pub const FEATURE_RESTRICT_FILEDOWNLOAD = INTERNETFEATURELIST.RESTRICT_FILEDOWNLOAD;
-pub const FEATURE_ADDON_MANAGEMENT = INTERNETFEATURELIST.ADDON_MANAGEMENT;
-pub const FEATURE_PROTOCOL_LOCKDOWN = INTERNETFEATURELIST.PROTOCOL_LOCKDOWN;
-pub const FEATURE_HTTP_USERNAME_PASSWORD_DISABLE = INTERNETFEATURELIST.HTTP_USERNAME_PASSWORD_DISABLE;
-pub const FEATURE_SAFE_BINDTOOBJECT = INTERNETFEATURELIST.SAFE_BINDTOOBJECT;
-pub const FEATURE_UNC_SAVEDFILECHECK = INTERNETFEATURELIST.UNC_SAVEDFILECHECK;
-pub const FEATURE_GET_URL_DOM_FILEPATH_UNENCODED = INTERNETFEATURELIST.GET_URL_DOM_FILEPATH_UNENCODED;
-pub const FEATURE_TABBED_BROWSING = INTERNETFEATURELIST.TABBED_BROWSING;
-pub const FEATURE_SSLUX = INTERNETFEATURELIST.SSLUX;
-pub const FEATURE_DISABLE_NAVIGATION_SOUNDS = INTERNETFEATURELIST.DISABLE_NAVIGATION_SOUNDS;
-pub const FEATURE_DISABLE_LEGACY_COMPRESSION = INTERNETFEATURELIST.DISABLE_LEGACY_COMPRESSION;
-pub const FEATURE_FORCE_ADDR_AND_STATUS = INTERNETFEATURELIST.FORCE_ADDR_AND_STATUS;
-pub const FEATURE_XMLHTTP = INTERNETFEATURELIST.XMLHTTP;
-pub const FEATURE_DISABLE_TELNET_PROTOCOL = INTERNETFEATURELIST.DISABLE_TELNET_PROTOCOL;
-pub const FEATURE_FEEDS = INTERNETFEATURELIST.FEEDS;
-pub const FEATURE_BLOCK_INPUT_PROMPTS = INTERNETFEATURELIST.BLOCK_INPUT_PROMPTS;
-pub const FEATURE_ENTRY_COUNT = INTERNETFEATURELIST.ENTRY_COUNT;
-
-const IID_IInternetSecurityMgrSite_Value = Guid.initString("79eac9ed-baf9-11ce-8c82-00aa004ba90b");
-pub const IID_IInternetSecurityMgrSite = &IID_IInternetSecurityMgrSite_Value;
-pub const IInternetSecurityMgrSite = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWindow: *const fn(
-            self: *const IInternetSecurityMgrSite,
-            phwnd: ?*?HWND,
-        ) callconv(.winapi) HRESULT,
-        EnableModeless: *const fn(
-            self: *const IInternetSecurityMgrSite,
-            fEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetWindow(self: *const IInternetSecurityMgrSite, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWindow(self, phwnd);
-    }
-    pub fn EnableModeless(self: *const IInternetSecurityMgrSite, fEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableModeless(self, fEnable);
-    }
-};
-
-pub const PUAF = enum(i32) {
-    DEFAULT = 0,
-    NOUI = 1,
-    ISFILE = 2,
-    WARN_IF_DENIED = 4,
-    FORCEUI_FOREGROUND = 8,
-    CHECK_TIFS = 16,
-    DONTCHECKBOXINDIALOG = 32,
-    TRUSTED = 64,
-    ACCEPT_WILDCARD_SCHEME = 128,
-    ENFORCERESTRICTED = 256,
-    NOSAVEDFILECHECK = 512,
-    REQUIRESAVEDFILECHECK = 1024,
-    DONT_USE_CACHE = 4096,
-    RESERVED1 = 8192,
-    RESERVED2 = 16384,
-    LMZ_UNLOCKED = 65536,
-    LMZ_LOCKED = 131072,
-    DEFAULTZONEPOL = 262144,
-    NPL_USE_LOCKED_IF_RESTRICTED = 524288,
-    NOUIIFLOCKED = 1048576,
-    DRAGPROTOCOLCHECK = 2097152,
-};
-pub const PUAF_DEFAULT = PUAF.DEFAULT;
-pub const PUAF_NOUI = PUAF.NOUI;
-pub const PUAF_ISFILE = PUAF.ISFILE;
-pub const PUAF_WARN_IF_DENIED = PUAF.WARN_IF_DENIED;
-pub const PUAF_FORCEUI_FOREGROUND = PUAF.FORCEUI_FOREGROUND;
-pub const PUAF_CHECK_TIFS = PUAF.CHECK_TIFS;
-pub const PUAF_DONTCHECKBOXINDIALOG = PUAF.DONTCHECKBOXINDIALOG;
-pub const PUAF_TRUSTED = PUAF.TRUSTED;
-pub const PUAF_ACCEPT_WILDCARD_SCHEME = PUAF.ACCEPT_WILDCARD_SCHEME;
-pub const PUAF_ENFORCERESTRICTED = PUAF.ENFORCERESTRICTED;
-pub const PUAF_NOSAVEDFILECHECK = PUAF.NOSAVEDFILECHECK;
-pub const PUAF_REQUIRESAVEDFILECHECK = PUAF.REQUIRESAVEDFILECHECK;
-pub const PUAF_DONT_USE_CACHE = PUAF.DONT_USE_CACHE;
-pub const PUAF_RESERVED1 = PUAF.RESERVED1;
-pub const PUAF_RESERVED2 = PUAF.RESERVED2;
-pub const PUAF_LMZ_UNLOCKED = PUAF.LMZ_UNLOCKED;
-pub const PUAF_LMZ_LOCKED = PUAF.LMZ_LOCKED;
-pub const PUAF_DEFAULTZONEPOL = PUAF.DEFAULTZONEPOL;
-pub const PUAF_NPL_USE_LOCKED_IF_RESTRICTED = PUAF.NPL_USE_LOCKED_IF_RESTRICTED;
-pub const PUAF_NOUIIFLOCKED = PUAF.NOUIIFLOCKED;
-pub const PUAF_DRAGPROTOCOLCHECK = PUAF.DRAGPROTOCOLCHECK;
-
-pub const PUAFOUT = enum(i32) {
-    DEFAULT = 0,
-    ISLOCKZONEPOLICY = 1,
-};
-pub const PUAFOUT_DEFAULT = PUAFOUT.DEFAULT;
-pub const PUAFOUT_ISLOCKZONEPOLICY = PUAFOUT.ISLOCKZONEPOLICY;
-
-pub const SZM_FLAGS = enum(i32) {
-    CREATE = 0,
-    DELETE = 1,
-};
-pub const SZM_CREATE = SZM_FLAGS.CREATE;
-pub const SZM_DELETE = SZM_FLAGS.DELETE;
 
 const IID_IInternetSecurityManager_Value = Guid.initString("79eac9ee-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IInternetSecurityManager = &IID_IInternetSecurityManager_Value;
@@ -2115,226 +1639,130 @@ pub const IInternetSecurityManagerEx2 = extern union {
     }
 };
 
-const IID_IZoneIdentifier_Value = Guid.initString("cd45f185-1b21-48e2-967b-ead743a8914e");
-pub const IID_IZoneIdentifier = &IID_IZoneIdentifier_Value;
-pub const IZoneIdentifier = extern union {
+const IID_IInternetSecurityMgrSite_Value = Guid.initString("79eac9ed-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IInternetSecurityMgrSite = &IID_IInternetSecurityMgrSite_Value;
+pub const IInternetSecurityMgrSite = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetId: *const fn(
-            self: *const IZoneIdentifier,
-            pdwZone: ?*u32,
+        GetWindow: *const fn(
+            self: *const IInternetSecurityMgrSite,
+            phwnd: ?*?HWND,
         ) callconv(.winapi) HRESULT,
-        SetId: *const fn(
-            self: *const IZoneIdentifier,
-            dwZone: u32,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IZoneIdentifier,
+        EnableModeless: *const fn(
+            self: *const IInternetSecurityMgrSite,
+            fEnable: BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IZoneIdentifier, pdwZone: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetId(self, pdwZone);
+    pub fn GetWindow(self: *const IInternetSecurityMgrSite, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWindow(self, phwnd);
     }
-    pub fn SetId(self: *const IZoneIdentifier, dwZone: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetId(self, dwZone);
-    }
-    pub fn Remove(self: *const IZoneIdentifier) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self);
+    pub fn EnableModeless(self: *const IInternetSecurityMgrSite, fEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableModeless(self, fEnable);
     }
 };
 
-const IID_IZoneIdentifier2_Value = Guid.initString("eb5e760c-09ef-45c0-b510-70830ce31e6a");
-pub const IID_IZoneIdentifier2 = &IID_IZoneIdentifier2_Value;
-pub const IZoneIdentifier2 = extern union {
-    pub const VTable = extern struct {
-        base: IZoneIdentifier.VTable,
-        GetLastWriterPackageFamilyName: *const fn(
-            self: *const IZoneIdentifier2,
-            packageFamilyName: ?*?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        SetLastWriterPackageFamilyName: *const fn(
-            self: *const IZoneIdentifier2,
-            packageFamilyName: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        RemoveLastWriterPackageFamilyName: *const fn(
-            self: *const IZoneIdentifier2,
-        ) callconv(.winapi) HRESULT,
-        GetAppZoneId: *const fn(
-            self: *const IZoneIdentifier2,
-            zone: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetAppZoneId: *const fn(
-            self: *const IZoneIdentifier2,
-            zone: u32,
-        ) callconv(.winapi) HRESULT,
-        RemoveAppZoneId: *const fn(
-            self: *const IZoneIdentifier2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IZoneIdentifier: IZoneIdentifier,
-    IUnknown: IUnknown,
-    pub fn GetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastWriterPackageFamilyName(self, packageFamilyName);
-    }
-    pub fn SetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLastWriterPackageFamilyName(self, packageFamilyName);
-    }
-    pub fn RemoveLastWriterPackageFamilyName(self: *const IZoneIdentifier2) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveLastWriterPackageFamilyName(self);
-    }
-    pub fn GetAppZoneId(self: *const IZoneIdentifier2, zone: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAppZoneId(self, zone);
-    }
-    pub fn SetAppZoneId(self: *const IZoneIdentifier2, zone: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAppZoneId(self, zone);
-    }
-    pub fn RemoveAppZoneId(self: *const IZoneIdentifier2) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAppZoneId(self);
-    }
-};
-
-const IID_IInternetHostSecurityManager_Value = Guid.initString("3af280b6-cb3f-11d0-891e-00c04fb6bfc4");
-pub const IID_IInternetHostSecurityManager = &IID_IInternetHostSecurityManager_Value;
-pub const IInternetHostSecurityManager = extern union {
+const IID_IInternetSession_Value = Guid.initString("79eac9e7-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IInternetSession = &IID_IInternetSession_Value;
+pub const IInternetSession = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSecurityId: *const fn(
-            self: *const IInternetHostSecurityManager,
-            pbSecurityId: [*:0]u8,
-            pcbSecurityId: ?*u32,
-            dwReserved: usize,
-        ) callconv(.winapi) HRESULT,
-        ProcessUrlAction: *const fn(
-            self: *const IInternetHostSecurityManager,
-            dwAction: u32,
-            pPolicy: [*:0]u8,
-            cbPolicy: u32,
-            pContext: ?[*:0]u8,
-            cbContext: u32,
-            dwFlags: u32,
+        RegisterNameSpace: *const fn(
+            self: *const IInternetSession,
+            pCF: ?*IClassFactory,
+            rclsid: ?*const Guid,
+            pwzProtocol: ?[*:0]const u16,
+            cPatterns: u32,
+            ppwzPatterns: ?*const ?PWSTR,
             dwReserved: u32,
         ) callconv(.winapi) HRESULT,
-        QueryCustomPolicy: *const fn(
-            self: *const IInternetHostSecurityManager,
-            guidKey: ?*const Guid,
-            ppPolicy: ?[*]?*u8,
-            pcbPolicy: ?*u32,
-            pContext: [*:0]u8,
-            cbContext: u32,
+        UnregisterNameSpace: *const fn(
+            self: *const IInternetSession,
+            pCF: ?*IClassFactory,
+            pszProtocol: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        RegisterMimeFilter: *const fn(
+            self: *const IInternetSession,
+            pCF: ?*IClassFactory,
+            rclsid: ?*const Guid,
+            pwzType: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        UnregisterMimeFilter: *const fn(
+            self: *const IInternetSession,
+            pCF: ?*IClassFactory,
+            pwzType: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        CreateBinding: *const fn(
+            self: *const IInternetSession,
+            pBC: ?*IBindCtx,
+            szUrl: ?[*:0]const u16,
+            pUnkOuter: ?*IUnknown,
+            ppUnk: ?*?*IUnknown,
+            ppOInetProt: ?*?*IInternetProtocol,
+            dwOption: u32,
+        ) callconv(.winapi) HRESULT,
+        SetSessionOption: *const fn(
+            self: *const IInternetSession,
+            dwOption: u32,
+            pBuffer: ?*anyopaque,
+            dwBufferLength: u32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        GetSessionOption: *const fn(
+            self: *const IInternetSession,
+            dwOption: u32,
+            pBuffer: ?*anyopaque,
+            pdwBufferLength: ?*u32,
             dwReserved: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSecurityId(self: *const IInternetHostSecurityManager, pbSecurityId: [*:0]u8, pcbSecurityId: ?*u32, dwReserved: usize) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSecurityId(self, pbSecurityId, pcbSecurityId, dwReserved);
+    pub fn RegisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzProtocol: ?[*:0]const u16, cPatterns: u32, ppwzPatterns: ?*const ?PWSTR, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterNameSpace(self, pCF, rclsid, pwzProtocol, cPatterns, ppwzPatterns, dwReserved);
     }
-    pub fn ProcessUrlAction(self: *const IInternetHostSecurityManager, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?[*:0]u8, cbContext: u32, dwFlags: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ProcessUrlAction(self, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
+    pub fn UnregisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, pszProtocol: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterNameSpace(self, pCF, pszProtocol);
     }
-    pub fn QueryCustomPolicy(self: *const IInternetHostSecurityManager, guidKey: ?*const Guid, ppPolicy: ?[*]?*u8, pcbPolicy: ?*u32, pContext: [*:0]u8, cbContext: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryCustomPolicy(self, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
+    pub fn RegisterMimeFilter(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzType: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.RegisterMimeFilter(self, pCF, rclsid, pwzType);
+    }
+    pub fn UnregisterMimeFilter(self: *const IInternetSession, pCF: ?*IClassFactory, pwzType: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.UnregisterMimeFilter(self, pCF, pwzType);
+    }
+    pub fn CreateBinding(self: *const IInternetSession, pBC: ?*IBindCtx, szUrl: ?[*:0]const u16, pUnkOuter: ?*IUnknown, ppUnk: ?*?*IUnknown, ppOInetProt: ?*?*IInternetProtocol, dwOption: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateBinding(self, pBC, szUrl, pUnkOuter, ppUnk, ppOInetProt, dwOption);
+    }
+    pub fn SetSessionOption(self: *const IInternetSession, dwOption: u32, pBuffer: ?*anyopaque, dwBufferLength: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSessionOption(self, dwOption, pBuffer, dwBufferLength, dwReserved);
+    }
+    pub fn GetSessionOption(self: *const IInternetSession, dwOption: u32, pBuffer: ?*anyopaque, pdwBufferLength: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSessionOption(self, dwOption, pBuffer, pdwBufferLength, dwReserved);
     }
 };
 
-pub const URLZONE = enum(i32) {
-    INVALID = -1,
-    PREDEFINED_MIN = 0,
-    INTRANET = 1,
-    TRUSTED = 2,
-    INTERNET = 3,
-    UNTRUSTED = 4,
-    PREDEFINED_MAX = 999,
-    USER_MIN = 1000,
-    USER_MAX = 10000,
-    pub const LOCAL_MACHINE = .PREDEFINED_MIN;
+const IID_IInternetThreadSwitch_Value = Guid.initString("79eac9e8-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IInternetThreadSwitch = &IID_IInternetThreadSwitch_Value;
+pub const IInternetThreadSwitch = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Prepare: *const fn(
+            self: *const IInternetThreadSwitch,
+        ) callconv(.winapi) HRESULT,
+        Continue: *const fn(
+            self: *const IInternetThreadSwitch,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Prepare(self: *const IInternetThreadSwitch) callconv(.@"inline") HRESULT {
+        return self.vtable.Prepare(self);
+    }
+    pub fn Continue(self: *const IInternetThreadSwitch) callconv(.@"inline") HRESULT {
+        return self.vtable.Continue(self);
+    }
 };
-pub const URLZONE_INVALID = URLZONE.INVALID;
-pub const URLZONE_PREDEFINED_MIN = URLZONE.PREDEFINED_MIN;
-pub const URLZONE_LOCAL_MACHINE = URLZONE.PREDEFINED_MIN;
-pub const URLZONE_INTRANET = URLZONE.INTRANET;
-pub const URLZONE_TRUSTED = URLZONE.TRUSTED;
-pub const URLZONE_INTERNET = URLZONE.INTERNET;
-pub const URLZONE_UNTRUSTED = URLZONE.UNTRUSTED;
-pub const URLZONE_PREDEFINED_MAX = URLZONE.PREDEFINED_MAX;
-pub const URLZONE_USER_MIN = URLZONE.USER_MIN;
-pub const URLZONE_USER_MAX = URLZONE.USER_MAX;
-
-pub const URLTEMPLATE = enum(i32) {
-    CUSTOM = 0,
-    PREDEFINED_MIN = 65536,
-    MEDLOW = 66816,
-    MEDIUM = 69632,
-    MEDHIGH = 70912,
-    HIGH = 73728,
-    PREDEFINED_MAX = 131072,
-    pub const LOW = .PREDEFINED_MIN;
-};
-pub const URLTEMPLATE_CUSTOM = URLTEMPLATE.CUSTOM;
-pub const URLTEMPLATE_PREDEFINED_MIN = URLTEMPLATE.PREDEFINED_MIN;
-pub const URLTEMPLATE_LOW = URLTEMPLATE.PREDEFINED_MIN;
-pub const URLTEMPLATE_MEDLOW = URLTEMPLATE.MEDLOW;
-pub const URLTEMPLATE_MEDIUM = URLTEMPLATE.MEDIUM;
-pub const URLTEMPLATE_MEDHIGH = URLTEMPLATE.MEDHIGH;
-pub const URLTEMPLATE_HIGH = URLTEMPLATE.HIGH;
-pub const URLTEMPLATE_PREDEFINED_MAX = URLTEMPLATE.PREDEFINED_MAX;
-
-pub const INET_ZONE_MANAGER_CONSTANTS = enum(i32) {
-    PATH = 260,
-    DESCRIPTION = 200,
-};
-pub const MAX_ZONE_PATH = INET_ZONE_MANAGER_CONSTANTS.PATH;
-pub const MAX_ZONE_DESCRIPTION = INET_ZONE_MANAGER_CONSTANTS.DESCRIPTION;
-
-pub const ZAFLAGS = enum(i32) {
-    CUSTOM_EDIT = 1,
-    ADD_SITES = 2,
-    REQUIRE_VERIFICATION = 4,
-    INCLUDE_PROXY_OVERRIDE = 8,
-    INCLUDE_INTRANET_SITES = 16,
-    NO_UI = 32,
-    SUPPORTS_VERIFICATION = 64,
-    UNC_AS_INTRANET = 128,
-    DETECT_INTRANET = 256,
-    USE_LOCKED_ZONES = 65536,
-    VERIFY_TEMPLATE_SETTINGS = 131072,
-    NO_CACHE = 262144,
-};
-pub const ZAFLAGS_CUSTOM_EDIT = ZAFLAGS.CUSTOM_EDIT;
-pub const ZAFLAGS_ADD_SITES = ZAFLAGS.ADD_SITES;
-pub const ZAFLAGS_REQUIRE_VERIFICATION = ZAFLAGS.REQUIRE_VERIFICATION;
-pub const ZAFLAGS_INCLUDE_PROXY_OVERRIDE = ZAFLAGS.INCLUDE_PROXY_OVERRIDE;
-pub const ZAFLAGS_INCLUDE_INTRANET_SITES = ZAFLAGS.INCLUDE_INTRANET_SITES;
-pub const ZAFLAGS_NO_UI = ZAFLAGS.NO_UI;
-pub const ZAFLAGS_SUPPORTS_VERIFICATION = ZAFLAGS.SUPPORTS_VERIFICATION;
-pub const ZAFLAGS_UNC_AS_INTRANET = ZAFLAGS.UNC_AS_INTRANET;
-pub const ZAFLAGS_DETECT_INTRANET = ZAFLAGS.DETECT_INTRANET;
-pub const ZAFLAGS_USE_LOCKED_ZONES = ZAFLAGS.USE_LOCKED_ZONES;
-pub const ZAFLAGS_VERIFY_TEMPLATE_SETTINGS = ZAFLAGS.VERIFY_TEMPLATE_SETTINGS;
-pub const ZAFLAGS_NO_CACHE = ZAFLAGS.NO_CACHE;
-
-pub const ZONEATTRIBUTES = extern struct {
-    cbSize: u32,
-    szDisplayName: [260]u16,
-    szDescription: [200]u16,
-    szIconPath: [260]u16,
-    dwTemplateMinLevel: u32,
-    dwTemplateRecommended: u32,
-    dwTemplateCurrentLevel: u32,
-    dwFlags: u32,
-};
-
-pub const URLZONEREG = enum(i32) {
-    DEFAULT = 0,
-    HKLM = 1,
-    HKCU = 2,
-};
-pub const URLZONEREG_DEFAULT = URLZONEREG.DEFAULT;
-pub const URLZONEREG_HKLM = URLZONEREG.HKLM;
-pub const URLZONEREG_HKCU = URLZONEREG.HKCU;
 
 const IID_IInternetZoneManager_Value = Guid.initString("79eac9ef-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IInternetZoneManager = &IID_IInternetZoneManager_Value;
@@ -2543,29 +1971,147 @@ pub const IInternetZoneManagerEx2 = extern union {
     }
 };
 
-pub const CODEBASEHOLD = extern struct {
-    cbSize: u32,
-    szDistUnit: ?PWSTR,
-    szCodeBase: ?PWSTR,
-    dwVersionMS: u32,
-    dwVersionLS: u32,
-    dwStyle: u32,
+const IID_IMonikerProp_Value = Guid.initString("a5ca5f7f-1847-4d87-9c5b-918509f7511d");
+pub const IID_IMonikerProp = &IID_IMonikerProp_Value;
+pub const IMonikerProp = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PutProperty: *const fn(
+            self: *const IMonikerProp,
+            mkp: MONIKERPROPERTY,
+            val: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PutProperty(self: *const IMonikerProp, mkp: MONIKERPROPERTY, val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.PutProperty(self, mkp, val);
+    }
 };
 
-pub const SOFTDISTINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwAdState: u32,
-    szTitle: ?PWSTR,
-    szAbstract: ?PWSTR,
-    szHREF: ?PWSTR,
-    dwInstalledVersionMS: u32,
-    dwInstalledVersionLS: u32,
-    dwUpdateVersionMS: u32,
-    dwUpdateVersionLS: u32,
-    dwAdvertisedVersionMS: u32,
-    dwAdvertisedVersionLS: u32,
-    dwReserved: u32,
+pub const INET_ZONE_MANAGER_CONSTANTS = enum(i32) {
+    PATH = 260,
+    DESCRIPTION = 200,
+};
+pub const MAX_ZONE_PATH = INET_ZONE_MANAGER_CONSTANTS.PATH;
+pub const MAX_ZONE_DESCRIPTION = INET_ZONE_MANAGER_CONSTANTS.DESCRIPTION;
+
+pub const INTERNETFEATURELIST = enum(i32) {
+    OBJECT_CACHING = 0,
+    ZONE_ELEVATION = 1,
+    MIME_HANDLING = 2,
+    MIME_SNIFFING = 3,
+    WINDOW_RESTRICTIONS = 4,
+    WEBOC_POPUPMANAGEMENT = 5,
+    BEHAVIORS = 6,
+    DISABLE_MK_PROTOCOL = 7,
+    LOCALMACHINE_LOCKDOWN = 8,
+    SECURITYBAND = 9,
+    RESTRICT_ACTIVEXINSTALL = 10,
+    VALIDATE_NAVIGATE_URL = 11,
+    RESTRICT_FILEDOWNLOAD = 12,
+    ADDON_MANAGEMENT = 13,
+    PROTOCOL_LOCKDOWN = 14,
+    HTTP_USERNAME_PASSWORD_DISABLE = 15,
+    SAFE_BINDTOOBJECT = 16,
+    UNC_SAVEDFILECHECK = 17,
+    GET_URL_DOM_FILEPATH_UNENCODED = 18,
+    TABBED_BROWSING = 19,
+    SSLUX = 20,
+    DISABLE_NAVIGATION_SOUNDS = 21,
+    DISABLE_LEGACY_COMPRESSION = 22,
+    FORCE_ADDR_AND_STATUS = 23,
+    XMLHTTP = 24,
+    DISABLE_TELNET_PROTOCOL = 25,
+    FEEDS = 26,
+    BLOCK_INPUT_PROMPTS = 27,
+    ENTRY_COUNT = 28,
+};
+pub const FEATURE_OBJECT_CACHING = INTERNETFEATURELIST.OBJECT_CACHING;
+pub const FEATURE_ZONE_ELEVATION = INTERNETFEATURELIST.ZONE_ELEVATION;
+pub const FEATURE_MIME_HANDLING = INTERNETFEATURELIST.MIME_HANDLING;
+pub const FEATURE_MIME_SNIFFING = INTERNETFEATURELIST.MIME_SNIFFING;
+pub const FEATURE_WINDOW_RESTRICTIONS = INTERNETFEATURELIST.WINDOW_RESTRICTIONS;
+pub const FEATURE_WEBOC_POPUPMANAGEMENT = INTERNETFEATURELIST.WEBOC_POPUPMANAGEMENT;
+pub const FEATURE_BEHAVIORS = INTERNETFEATURELIST.BEHAVIORS;
+pub const FEATURE_DISABLE_MK_PROTOCOL = INTERNETFEATURELIST.DISABLE_MK_PROTOCOL;
+pub const FEATURE_LOCALMACHINE_LOCKDOWN = INTERNETFEATURELIST.LOCALMACHINE_LOCKDOWN;
+pub const FEATURE_SECURITYBAND = INTERNETFEATURELIST.SECURITYBAND;
+pub const FEATURE_RESTRICT_ACTIVEXINSTALL = INTERNETFEATURELIST.RESTRICT_ACTIVEXINSTALL;
+pub const FEATURE_VALIDATE_NAVIGATE_URL = INTERNETFEATURELIST.VALIDATE_NAVIGATE_URL;
+pub const FEATURE_RESTRICT_FILEDOWNLOAD = INTERNETFEATURELIST.RESTRICT_FILEDOWNLOAD;
+pub const FEATURE_ADDON_MANAGEMENT = INTERNETFEATURELIST.ADDON_MANAGEMENT;
+pub const FEATURE_PROTOCOL_LOCKDOWN = INTERNETFEATURELIST.PROTOCOL_LOCKDOWN;
+pub const FEATURE_HTTP_USERNAME_PASSWORD_DISABLE = INTERNETFEATURELIST.HTTP_USERNAME_PASSWORD_DISABLE;
+pub const FEATURE_SAFE_BINDTOOBJECT = INTERNETFEATURELIST.SAFE_BINDTOOBJECT;
+pub const FEATURE_UNC_SAVEDFILECHECK = INTERNETFEATURELIST.UNC_SAVEDFILECHECK;
+pub const FEATURE_GET_URL_DOM_FILEPATH_UNENCODED = INTERNETFEATURELIST.GET_URL_DOM_FILEPATH_UNENCODED;
+pub const FEATURE_TABBED_BROWSING = INTERNETFEATURELIST.TABBED_BROWSING;
+pub const FEATURE_SSLUX = INTERNETFEATURELIST.SSLUX;
+pub const FEATURE_DISABLE_NAVIGATION_SOUNDS = INTERNETFEATURELIST.DISABLE_NAVIGATION_SOUNDS;
+pub const FEATURE_DISABLE_LEGACY_COMPRESSION = INTERNETFEATURELIST.DISABLE_LEGACY_COMPRESSION;
+pub const FEATURE_FORCE_ADDR_AND_STATUS = INTERNETFEATURELIST.FORCE_ADDR_AND_STATUS;
+pub const FEATURE_XMLHTTP = INTERNETFEATURELIST.XMLHTTP;
+pub const FEATURE_DISABLE_TELNET_PROTOCOL = INTERNETFEATURELIST.DISABLE_TELNET_PROTOCOL;
+pub const FEATURE_FEEDS = INTERNETFEATURELIST.FEEDS;
+pub const FEATURE_BLOCK_INPUT_PROMPTS = INTERNETFEATURELIST.BLOCK_INPUT_PROMPTS;
+pub const FEATURE_ENTRY_COUNT = INTERNETFEATURELIST.ENTRY_COUNT;
+
+const IID_IPersistMoniker_Value = Guid.initString("79eac9c9-baf9-11ce-8c82-00aa004ba90b");
+pub const IID_IPersistMoniker = &IID_IPersistMoniker_Value;
+pub const IPersistMoniker = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetClassID: *const fn(
+            self: *const IPersistMoniker,
+            pClassID: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+        IsDirty: *const fn(
+            self: *const IPersistMoniker,
+        ) callconv(.winapi) HRESULT,
+        Load: *const fn(
+            self: *const IPersistMoniker,
+            fFullyAvailable: BOOL,
+            pimkName: ?*IMoniker,
+            pibc: ?*IBindCtx,
+            grfMode: u32,
+        ) callconv(.winapi) HRESULT,
+        Save: *const fn(
+            self: *const IPersistMoniker,
+            pimkName: ?*IMoniker,
+            pbc: ?*IBindCtx,
+            fRemember: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SaveCompleted: *const fn(
+            self: *const IPersistMoniker,
+            pimkName: ?*IMoniker,
+            pibc: ?*IBindCtx,
+        ) callconv(.winapi) HRESULT,
+        GetCurMoniker: *const fn(
+            self: *const IPersistMoniker,
+            ppimkName: ?*?*IMoniker,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetClassID(self: *const IPersistMoniker, pClassID: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClassID(self, pClassID);
+    }
+    pub fn IsDirty(self: *const IPersistMoniker) callconv(.@"inline") HRESULT {
+        return self.vtable.IsDirty(self);
+    }
+    pub fn Load(self: *const IPersistMoniker, fFullyAvailable: BOOL, pimkName: ?*IMoniker, pibc: ?*IBindCtx, grfMode: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Load(self, fFullyAvailable, pimkName, pibc, grfMode);
+    }
+    pub fn Save(self: *const IPersistMoniker, pimkName: ?*IMoniker, pbc: ?*IBindCtx, fRemember: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Save(self, pimkName, pbc, fRemember);
+    }
+    pub fn SaveCompleted(self: *const IPersistMoniker, pimkName: ?*IMoniker, pibc: ?*IBindCtx) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveCompleted(self, pimkName, pibc);
+    }
+    pub fn GetCurMoniker(self: *const IPersistMoniker, ppimkName: ?*?*IMoniker) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurMoniker(self, ppimkName);
+    }
 };
 
 const IID_ISoftDistExt_Value = Guid.initString("b15b8dc1-c7e1-11d0-8680-00aa00bdcb71");
@@ -2613,133 +2159,195 @@ pub const ISoftDistExt = extern union {
     }
 };
 
-const IID_ICatalogFileInfo_Value = Guid.initString("711c7600-6b48-11d1-b403-00aa00b92af1");
-pub const IID_ICatalogFileInfo = &IID_ICatalogFileInfo_Value;
-pub const ICatalogFileInfo = extern union {
+const IID_IUriBuilderFactory_Value = Guid.initString("e982ce48-0b96-440c-bc37-0c869b27a29e");
+pub const IID_IUriBuilderFactory = &IID_IUriBuilderFactory_Value;
+pub const IUriBuilderFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCatalogFile: *const fn(
-            self: *const ICatalogFileInfo,
-            ppszCatalogFile: ?*?PSTR,
-        ) callconv(.winapi) HRESULT,
-        GetJavaTrust: *const fn(
-            self: *const ICatalogFileInfo,
-            ppJavaTrust: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCatalogFile(self: *const ICatalogFileInfo, ppszCatalogFile: ?*?PSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCatalogFile(self, ppszCatalogFile);
-    }
-    pub fn GetJavaTrust(self: *const ICatalogFileInfo, ppJavaTrust: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetJavaTrust(self, ppJavaTrust);
-    }
-};
-
-const IID_IDataFilter_Value = Guid.initString("69d14c80-c18e-11d0-a9ce-006097942311");
-pub const IID_IDataFilter = &IID_IDataFilter_Value;
-pub const IDataFilter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DoEncode: *const fn(
-            self: *const IDataFilter,
+        CreateIUriBuilder: *const fn(
+            self: *const IUriBuilderFactory,
             dwFlags: u32,
-            lInBufferSize: i32,
-            pbInBuffer: [*:0]u8,
-            lOutBufferSize: i32,
-            pbOutBuffer: [*:0]u8,
-            lInBytesAvailable: i32,
-            plInBytesRead: ?*i32,
-            plOutBytesWritten: ?*i32,
-            dwReserved: u32,
+            dwReserved: usize,
+            ppIUriBuilder: ?*?*IUriBuilder,
         ) callconv(.winapi) HRESULT,
-        DoDecode: *const fn(
-            self: *const IDataFilter,
+        CreateInitializedIUriBuilder: *const fn(
+            self: *const IUriBuilderFactory,
             dwFlags: u32,
-            lInBufferSize: i32,
-            pbInBuffer: [*:0]u8,
-            lOutBufferSize: i32,
-            pbOutBuffer: [*:0]u8,
-            lInBytesAvailable: i32,
-            plInBytesRead: ?*i32,
-            plOutBytesWritten: ?*i32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        SetEncodingLevel: *const fn(
-            self: *const IDataFilter,
-            dwEncLevel: u32,
+            dwReserved: usize,
+            ppIUriBuilder: ?*?*IUriBuilder,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DoEncode(self: *const IDataFilter, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DoEncode(self, dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
+    pub fn CreateIUriBuilder(self: *const IUriBuilderFactory, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateIUriBuilder(self, dwFlags, dwReserved, ppIUriBuilder);
     }
-    pub fn DoDecode(self: *const IDataFilter, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DoDecode(self, dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
-    }
-    pub fn SetEncodingLevel(self: *const IDataFilter, dwEncLevel: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEncodingLevel(self, dwEncLevel);
+    pub fn CreateInitializedIUriBuilder(self: *const IUriBuilderFactory, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateInitializedIUriBuilder(self, dwFlags, dwReserved, ppIUriBuilder);
     }
 };
 
-pub const PROTOCOLFILTERDATA = extern struct {
-    cbSize: u32,
-    pProtocolSink: ?*IInternetProtocolSink,
-    pProtocol: ?*IInternetProtocol,
-    pUnk: ?*IUnknown,
-    dwFilterFlags: u32,
-};
-
-pub const DATAINFO = extern struct {
-    ulTotalSize: u32,
-    ulavrPacketSize: u32,
-    ulConnectSpeed: u32,
-    ulProcessorSpeed: u32,
-};
-
-const IID_IEncodingFilterFactory_Value = Guid.initString("70bdde00-c18e-11d0-a9ce-006097942311");
-pub const IID_IEncodingFilterFactory = &IID_IEncodingFilterFactory_Value;
-pub const IEncodingFilterFactory = extern union {
+const IID_IUriContainer_Value = Guid.initString("a158a630-ed6f-45fb-b987-f68676f57752");
+pub const IID_IUriContainer = &IID_IUriContainer_Value;
+pub const IUriContainer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindBestFilter: *const fn(
-            self: *const IEncodingFilterFactory,
-            pwzCodeIn: ?[*:0]const u16,
-            pwzCodeOut: ?[*:0]const u16,
-            info: DATAINFO,
-            ppDF: ?*?*IDataFilter,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultFilter: *const fn(
-            self: *const IEncodingFilterFactory,
-            pwzCodeIn: ?[*:0]const u16,
-            pwzCodeOut: ?[*:0]const u16,
-            ppDF: ?*?*IDataFilter,
+        GetIUri: *const fn(
+            self: *const IUriContainer,
+            ppIUri: ?*?*IUri,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindBestFilter(self: *const IEncodingFilterFactory, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, info: DATAINFO, ppDF: ?*?*IDataFilter) callconv(.@"inline") HRESULT {
-        return self.vtable.FindBestFilter(self, pwzCodeIn, pwzCodeOut, info, ppDF);
-    }
-    pub fn GetDefaultFilter(self: *const IEncodingFilterFactory, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, ppDF: ?*?*IDataFilter) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultFilter(self, pwzCodeIn, pwzCodeOut, ppDF);
+    pub fn GetIUri(self: *const IUriContainer, ppIUri: ?*?*IUri) callconv(.@"inline") HRESULT {
+        return self.vtable.GetIUri(self, ppIUri);
     }
 };
 
-pub const HIT_LOGGING_INFO = extern struct {
-    dwStructSize: u32,
-    lpszLoggedUrlName: ?PSTR,
-    StartTime: SYSTEMTIME,
-    EndTime: SYSTEMTIME,
-    lpszExtendedInfo: ?PSTR,
+const IID_IWindowForBindingUI_Value = Guid.initString("79eac9d5-bafa-11ce-8c82-00aa004ba90b");
+pub const IID_IWindowForBindingUI = &IID_IWindowForBindingUI_Value;
+pub const IWindowForBindingUI = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetWindow: *const fn(
+            self: *const IWindowForBindingUI,
+            rguidReason: ?*const Guid,
+            phwnd: ?*?HWND,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetWindow(self: *const IWindowForBindingUI, rguidReason: ?*const Guid, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWindow(self, rguidReason, phwnd);
+    }
 };
 
-pub const CONFIRMSAFETY = extern struct {
-    clsid: Guid,
-    pUnk: ?*IUnknown,
-    dwFlags: u32,
+const IID_IWinInetCacheHints_Value = Guid.initString("dd1ec3b3-8391-4fdb-a9e6-347c3caaa7dd");
+pub const IID_IWinInetCacheHints = &IID_IWinInetCacheHints_Value;
+pub const IWinInetCacheHints = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetCacheExtension: *const fn(
+            self: *const IWinInetCacheHints,
+            pwzExt: ?[*:0]const u16,
+            pszCacheFile: [*]u8,
+            pcbCacheFile: ?*u32,
+            pdwWinInetError: ?*u32,
+            pdwReserved: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetCacheExtension(self: *const IWinInetCacheHints, pwzExt: ?[*:0]const u16, pszCacheFile: [*]u8, pcbCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCacheExtension(self, pwzExt, pszCacheFile, pcbCacheFile, pdwWinInetError, pdwReserved);
+    }
+};
+
+const IID_IWinInetCacheHints2_Value = Guid.initString("7857aeac-d31f-49bf-884e-dd46df36780a");
+pub const IID_IWinInetCacheHints2 = &IID_IWinInetCacheHints2_Value;
+pub const IWinInetCacheHints2 = extern union {
+    pub const VTable = extern struct {
+        base: IWinInetCacheHints.VTable,
+        SetCacheExtension2: *const fn(
+            self: *const IWinInetCacheHints2,
+            pwzExt: ?[*:0]const u16,
+            pwzCacheFile: ?PWSTR,
+            pcchCacheFile: ?*u32,
+            pdwWinInetError: ?*u32,
+            pdwReserved: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWinInetCacheHints: IWinInetCacheHints,
+    IUnknown: IUnknown,
+    pub fn SetCacheExtension2(self: *const IWinInetCacheHints2, pwzExt: ?[*:0]const u16, pwzCacheFile: ?PWSTR, pcchCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetCacheExtension2(self, pwzExt, pwzCacheFile, pcchCacheFile, pdwWinInetError, pdwReserved);
+    }
+};
+
+const IID_IWinInetFileStream_Value = Guid.initString("f134c4b7-b1f8-4e75-b886-74b90943becb");
+pub const IID_IWinInetFileStream = &IID_IWinInetFileStream_Value;
+pub const IWinInetFileStream = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetHandleForUnlock: *const fn(
+            self: *const IWinInetFileStream,
+            hWinInetLockHandle: usize,
+            dwReserved: usize,
+        ) callconv(.winapi) HRESULT,
+        SetDeleteFile: *const fn(
+            self: *const IWinInetFileStream,
+            dwReserved: usize,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetHandleForUnlock(self: *const IWinInetFileStream, hWinInetLockHandle: usize, dwReserved: usize) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHandleForUnlock(self, hWinInetLockHandle, dwReserved);
+    }
+    pub fn SetDeleteFile(self: *const IWinInetFileStream, dwReserved: usize) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDeleteFile(self, dwReserved);
+    }
+};
+
+const IID_IWinInetHttpInfo_Value = Guid.initString("79eac9d8-bafa-11ce-8c82-00aa004ba90b");
+pub const IID_IWinInetHttpInfo = &IID_IWinInetHttpInfo_Value;
+pub const IWinInetHttpInfo = extern union {
+    pub const VTable = extern struct {
+        base: IWinInetInfo.VTable,
+        QueryInfo: *const fn(
+            self: *const IWinInetHttpInfo,
+            dwOption: u32,
+            pBuffer: [*]u8,
+            pcbBuf: ?*u32,
+            pdwFlags: ?*u32,
+            pdwReserved: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IWinInetInfo: IWinInetInfo,
+    IUnknown: IUnknown,
+    pub fn QueryInfo(self: *const IWinInetHttpInfo, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32, pdwFlags: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryInfo(self, dwOption, pBuffer, pcbBuf, pdwFlags, pdwReserved);
+    }
+};
+
+const IID_IWinInetHttpTimeouts_Value = Guid.initString("f286fa56-c1fd-4270-8e67-b3eb790a81e8");
+pub const IID_IWinInetHttpTimeouts = &IID_IWinInetHttpTimeouts_Value;
+pub const IWinInetHttpTimeouts = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRequestTimeouts: *const fn(
+            self: *const IWinInetHttpTimeouts,
+            pdwConnectTimeout: ?*u32,
+            pdwSendTimeout: ?*u32,
+            pdwReceiveTimeout: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRequestTimeouts(self: *const IWinInetHttpTimeouts, pdwConnectTimeout: ?*u32, pdwSendTimeout: ?*u32, pdwReceiveTimeout: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRequestTimeouts(self, pdwConnectTimeout, pdwSendTimeout, pdwReceiveTimeout);
+    }
+};
+
+const IID_IWinInetInfo_Value = Guid.initString("79eac9d6-bafa-11ce-8c82-00aa004ba90b");
+pub const IID_IWinInetInfo = &IID_IWinInetInfo_Value;
+pub const IWinInetInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryOption: *const fn(
+            self: *const IWinInetInfo,
+            dwOption: u32,
+            pBuffer: [*]u8,
+            pcbBuf: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn QueryOption(self: *const IWinInetInfo, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryOption(self, dwOption, pBuffer, pcbBuf);
+    }
 };
 
 const IID_IWrappedProtocol_Value = Guid.initString("53c84785-8425-4dc5-971b-e58d9c19f9b6");
@@ -2760,155 +2368,469 @@ pub const IWrappedProtocol = extern union {
     }
 };
 
-pub const BINDHANDLETYPES = enum(i32) {
-    APPCACHE = 0,
-    DEPENDENCY = 1,
-    COUNT = 2,
-};
-pub const BINDHANDLETYPES_APPCACHE = BINDHANDLETYPES.APPCACHE;
-pub const BINDHANDLETYPES_DEPENDENCY = BINDHANDLETYPES.DEPENDENCY;
-pub const BINDHANDLETYPES_COUNT = BINDHANDLETYPES.COUNT;
-
-const IID_IGetBindHandle_Value = Guid.initString("af0ff408-129d-4b20-91f0-02bd23d88352");
-pub const IID_IGetBindHandle = &IID_IGetBindHandle_Value;
-pub const IGetBindHandle = extern union {
+const IID_IZoneIdentifier_Value = Guid.initString("cd45f185-1b21-48e2-967b-ead743a8914e");
+pub const IID_IZoneIdentifier = &IID_IZoneIdentifier_Value;
+pub const IZoneIdentifier = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBindHandle: *const fn(
-            self: *const IGetBindHandle,
-            enumRequestedHandle: BINDHANDLETYPES,
-            pRetHandle: ?*?HANDLE,
+        GetId: *const fn(
+            self: *const IZoneIdentifier,
+            pdwZone: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetId: *const fn(
+            self: *const IZoneIdentifier,
+            dwZone: u32,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IZoneIdentifier,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBindHandle(self: *const IGetBindHandle, enumRequestedHandle: BINDHANDLETYPES, pRetHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBindHandle(self, enumRequestedHandle, pRetHandle);
+    pub fn GetId(self: *const IZoneIdentifier, pdwZone: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetId(self, pdwZone);
+    }
+    pub fn SetId(self: *const IZoneIdentifier, dwZone: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetId(self, dwZone);
+    }
+    pub fn Remove(self: *const IZoneIdentifier) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self);
     }
 };
+
+const IID_IZoneIdentifier2_Value = Guid.initString("eb5e760c-09ef-45c0-b510-70830ce31e6a");
+pub const IID_IZoneIdentifier2 = &IID_IZoneIdentifier2_Value;
+pub const IZoneIdentifier2 = extern union {
+    pub const VTable = extern struct {
+        base: IZoneIdentifier.VTable,
+        GetLastWriterPackageFamilyName: *const fn(
+            self: *const IZoneIdentifier2,
+            packageFamilyName: ?*?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        SetLastWriterPackageFamilyName: *const fn(
+            self: *const IZoneIdentifier2,
+            packageFamilyName: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        RemoveLastWriterPackageFamilyName: *const fn(
+            self: *const IZoneIdentifier2,
+        ) callconv(.winapi) HRESULT,
+        GetAppZoneId: *const fn(
+            self: *const IZoneIdentifier2,
+            zone: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetAppZoneId: *const fn(
+            self: *const IZoneIdentifier2,
+            zone: u32,
+        ) callconv(.winapi) HRESULT,
+        RemoveAppZoneId: *const fn(
+            self: *const IZoneIdentifier2,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IZoneIdentifier: IZoneIdentifier,
+    IUnknown: IUnknown,
+    pub fn GetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastWriterPackageFamilyName(self, packageFamilyName);
+    }
+    pub fn SetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLastWriterPackageFamilyName(self, packageFamilyName);
+    }
+    pub fn RemoveLastWriterPackageFamilyName(self: *const IZoneIdentifier2) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveLastWriterPackageFamilyName(self);
+    }
+    pub fn GetAppZoneId(self: *const IZoneIdentifier2, zone: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAppZoneId(self, zone);
+    }
+    pub fn SetAppZoneId(self: *const IZoneIdentifier2, zone: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAppZoneId(self, zone);
+    }
+    pub fn RemoveAppZoneId(self: *const IZoneIdentifier2) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAppZoneId(self);
+    }
+};
+
+pub const MONIKERPROPERTY = enum(i32) {
+    MIMETYPEPROP = 0,
+    USE_SRC_URL = 1,
+    CLASSIDPROP = 2,
+    TRUSTEDDOWNLOADPROP = 3,
+    POPUPLEVELPROP = 4,
+};
+pub const MIMETYPEPROP = MONIKERPROPERTY.MIMETYPEPROP;
+pub const USE_SRC_URL = MONIKERPROPERTY.USE_SRC_URL;
+pub const CLASSIDPROP = MONIKERPROPERTY.CLASSIDPROP;
+pub const TRUSTEDDOWNLOADPROP = MONIKERPROPERTY.TRUSTEDDOWNLOADPROP;
+pub const POPUPLEVELPROP = MONIKERPROPERTY.POPUPLEVELPROP;
+
+pub const OIBDG_FLAGS = enum(i32) {
+    APARTMENTTHREADED = 256,
+    DATAONLY = 4096,
+};
+pub const OIBDG_APARTMENTTHREADED = OIBDG_FLAGS.APARTMENTTHREADED;
+pub const OIBDG_DATAONLY = OIBDG_FLAGS.DATAONLY;
+
+pub const PARSEACTION = enum(i32) {
+    CANONICALIZE = 1,
+    FRIENDLY = 2,
+    SECURITY_URL = 3,
+    ROOTDOCUMENT = 4,
+    DOCUMENT = 5,
+    ANCHOR = 6,
+    ENCODE_IS_UNESCAPE = 7,
+    DECODE_IS_ESCAPE = 8,
+    PATH_FROM_URL = 9,
+    URL_FROM_PATH = 10,
+    MIME = 11,
+    SERVER = 12,
+    SCHEMA = 13,
+    SITE = 14,
+    DOMAIN = 15,
+    LOCATION = 16,
+    SECURITY_DOMAIN = 17,
+    ESCAPE = 18,
+    UNESCAPE = 19,
+};
+pub const PARSE_CANONICALIZE = PARSEACTION.CANONICALIZE;
+pub const PARSE_FRIENDLY = PARSEACTION.FRIENDLY;
+pub const PARSE_SECURITY_URL = PARSEACTION.SECURITY_URL;
+pub const PARSE_ROOTDOCUMENT = PARSEACTION.ROOTDOCUMENT;
+pub const PARSE_DOCUMENT = PARSEACTION.DOCUMENT;
+pub const PARSE_ANCHOR = PARSEACTION.ANCHOR;
+pub const PARSE_ENCODE_IS_UNESCAPE = PARSEACTION.ENCODE_IS_UNESCAPE;
+pub const PARSE_DECODE_IS_ESCAPE = PARSEACTION.DECODE_IS_ESCAPE;
+pub const PARSE_PATH_FROM_URL = PARSEACTION.PATH_FROM_URL;
+pub const PARSE_URL_FROM_PATH = PARSEACTION.URL_FROM_PATH;
+pub const PARSE_MIME = PARSEACTION.MIME;
+pub const PARSE_SERVER = PARSEACTION.SERVER;
+pub const PARSE_SCHEMA = PARSEACTION.SCHEMA;
+pub const PARSE_SITE = PARSEACTION.SITE;
+pub const PARSE_DOMAIN = PARSEACTION.DOMAIN;
+pub const PARSE_LOCATION = PARSEACTION.LOCATION;
+pub const PARSE_SECURITY_DOMAIN = PARSEACTION.SECURITY_DOMAIN;
+pub const PARSE_ESCAPE = PARSEACTION.ESCAPE;
+pub const PARSE_UNESCAPE = PARSEACTION.UNESCAPE;
+
+pub const PI_FLAGS = enum(i32) {
+    I_PARSE_URL = 1,
+    I_FILTER_MODE = 2,
+    I_FORCE_ASYNC = 4,
+    I_USE_WORKERTHREAD = 8,
+    I_MIMEVERIFICATION = 16,
+    I_CLSIDLOOKUP = 32,
+    I_DATAPROGRESS = 64,
+    I_SYNCHRONOUS = 128,
+    I_APARTMENTTHREADED = 256,
+    I_CLASSINSTALL = 512,
+    I_PASSONBINDCTX = 8192,
+    I_NOMIMEHANDLER = 32768,
+    I_LOADAPPDIRECT = 16384,
+    D_FORCE_SWITCH = 65536,
+    I_PREFERDEFAULTHANDLER = 131072,
+};
+pub const PI_PARSE_URL = PI_FLAGS.I_PARSE_URL;
+pub const PI_FILTER_MODE = PI_FLAGS.I_FILTER_MODE;
+pub const PI_FORCE_ASYNC = PI_FLAGS.I_FORCE_ASYNC;
+pub const PI_USE_WORKERTHREAD = PI_FLAGS.I_USE_WORKERTHREAD;
+pub const PI_MIMEVERIFICATION = PI_FLAGS.I_MIMEVERIFICATION;
+pub const PI_CLSIDLOOKUP = PI_FLAGS.I_CLSIDLOOKUP;
+pub const PI_DATAPROGRESS = PI_FLAGS.I_DATAPROGRESS;
+pub const PI_SYNCHRONOUS = PI_FLAGS.I_SYNCHRONOUS;
+pub const PI_APARTMENTTHREADED = PI_FLAGS.I_APARTMENTTHREADED;
+pub const PI_CLASSINSTALL = PI_FLAGS.I_CLASSINSTALL;
+pub const PI_PASSONBINDCTX = PI_FLAGS.I_PASSONBINDCTX;
+pub const PI_NOMIMEHANDLER = PI_FLAGS.I_NOMIMEHANDLER;
+pub const PI_LOADAPPDIRECT = PI_FLAGS.I_LOADAPPDIRECT;
+pub const PD_FORCE_SWITCH = PI_FLAGS.D_FORCE_SWITCH;
+pub const PI_PREFERDEFAULTHANDLER = PI_FLAGS.I_PREFERDEFAULTHANDLER;
 
 pub const PROTOCOL_ARGUMENT = extern struct {
     szMethod: ?[*:0]const u16,
     szTargetUrl: ?[*:0]const u16,
 };
 
-const IID_IBindCallbackRedirect_Value = Guid.initString("11c81bc2-121e-4ed5-b9c4-b430bd54f2c0");
-pub const IID_IBindCallbackRedirect = &IID_IBindCallbackRedirect_Value;
-pub const IBindCallbackRedirect = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Redirect: *const fn(
-            self: *const IBindCallbackRedirect,
-            lpcUrl: ?[*:0]const u16,
-            vbCancel: ?*i16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Redirect(self: *const IBindCallbackRedirect, lpcUrl: ?[*:0]const u16, vbCancel: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.Redirect(self, lpcUrl, vbCancel);
-    }
+pub const PROTOCOLDATA = extern struct {
+    grfFlags: u32,
+    dwState: u32,
+    pData: ?*anyopaque,
+    cbData: u32,
 };
 
-const IID_IBindHttpSecurity_Value = Guid.initString("a9eda967-f50e-4a33-b358-206f6ef3086d");
-pub const IID_IBindHttpSecurity = &IID_IBindHttpSecurity_Value;
-pub const IBindHttpSecurity = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetIgnoreCertMask: *const fn(
-            self: *const IBindHttpSecurity,
-            pdwIgnoreCertMask: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetIgnoreCertMask(self: *const IBindHttpSecurity, pdwIgnoreCertMask: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetIgnoreCertMask(self, pdwIgnoreCertMask);
-    }
+pub const PROTOCOLFILTERDATA = extern struct {
+    cbSize: u32,
+    pProtocolSink: ?*IInternetProtocolSink,
+    pProtocol: ?*IInternetProtocol,
+    pUnk: ?*IUnknown,
+    dwFilterFlags: u32,
+};
+
+pub const PSUACTION = enum(i32) {
+    DEFAULT = 1,
+    SECURITY_URL_ONLY = 2,
+};
+pub const PSU_DEFAULT = PSUACTION.DEFAULT;
+pub const PSU_SECURITY_URL_ONLY = PSUACTION.SECURITY_URL_ONLY;
+
+pub const PUAF = enum(i32) {
+    DEFAULT = 0,
+    NOUI = 1,
+    ISFILE = 2,
+    WARN_IF_DENIED = 4,
+    FORCEUI_FOREGROUND = 8,
+    CHECK_TIFS = 16,
+    DONTCHECKBOXINDIALOG = 32,
+    TRUSTED = 64,
+    ACCEPT_WILDCARD_SCHEME = 128,
+    ENFORCERESTRICTED = 256,
+    NOSAVEDFILECHECK = 512,
+    REQUIRESAVEDFILECHECK = 1024,
+    DONT_USE_CACHE = 4096,
+    RESERVED1 = 8192,
+    RESERVED2 = 16384,
+    LMZ_UNLOCKED = 65536,
+    LMZ_LOCKED = 131072,
+    DEFAULTZONEPOL = 262144,
+    NPL_USE_LOCKED_IF_RESTRICTED = 524288,
+    NOUIIFLOCKED = 1048576,
+    DRAGPROTOCOLCHECK = 2097152,
+};
+pub const PUAF_DEFAULT = PUAF.DEFAULT;
+pub const PUAF_NOUI = PUAF.NOUI;
+pub const PUAF_ISFILE = PUAF.ISFILE;
+pub const PUAF_WARN_IF_DENIED = PUAF.WARN_IF_DENIED;
+pub const PUAF_FORCEUI_FOREGROUND = PUAF.FORCEUI_FOREGROUND;
+pub const PUAF_CHECK_TIFS = PUAF.CHECK_TIFS;
+pub const PUAF_DONTCHECKBOXINDIALOG = PUAF.DONTCHECKBOXINDIALOG;
+pub const PUAF_TRUSTED = PUAF.TRUSTED;
+pub const PUAF_ACCEPT_WILDCARD_SCHEME = PUAF.ACCEPT_WILDCARD_SCHEME;
+pub const PUAF_ENFORCERESTRICTED = PUAF.ENFORCERESTRICTED;
+pub const PUAF_NOSAVEDFILECHECK = PUAF.NOSAVEDFILECHECK;
+pub const PUAF_REQUIRESAVEDFILECHECK = PUAF.REQUIRESAVEDFILECHECK;
+pub const PUAF_DONT_USE_CACHE = PUAF.DONT_USE_CACHE;
+pub const PUAF_RESERVED1 = PUAF.RESERVED1;
+pub const PUAF_RESERVED2 = PUAF.RESERVED2;
+pub const PUAF_LMZ_UNLOCKED = PUAF.LMZ_UNLOCKED;
+pub const PUAF_LMZ_LOCKED = PUAF.LMZ_LOCKED;
+pub const PUAF_DEFAULTZONEPOL = PUAF.DEFAULTZONEPOL;
+pub const PUAF_NPL_USE_LOCKED_IF_RESTRICTED = PUAF.NPL_USE_LOCKED_IF_RESTRICTED;
+pub const PUAF_NOUIIFLOCKED = PUAF.NOUIIFLOCKED;
+pub const PUAF_DRAGPROTOCOLCHECK = PUAF.DRAGPROTOCOLCHECK;
+
+pub const PUAFOUT = enum(i32) {
+    DEFAULT = 0,
+    ISLOCKZONEPOLICY = 1,
+};
+pub const PUAFOUT_DEFAULT = PUAFOUT.DEFAULT;
+pub const PUAFOUT_ISLOCKZONEPOLICY = PUAFOUT.ISLOCKZONEPOLICY;
+
+pub const QUERYOPTION = enum(i32) {
+    EXPIRATION_DATE = 1,
+    TIME_OF_LAST_CHANGE = 2,
+    CONTENT_ENCODING = 3,
+    CONTENT_TYPE = 4,
+    REFRESH = 5,
+    RECOMBINE = 6,
+    CAN_NAVIGATE = 7,
+    USES_NETWORK = 8,
+    IS_CACHED = 9,
+    IS_INSTALLEDENTRY = 10,
+    IS_CACHED_OR_MAPPED = 11,
+    USES_CACHE = 12,
+    IS_SECURE = 13,
+    IS_SAFE = 14,
+    USES_HISTORYFOLDER = 15,
+    IS_CACHED_AND_USABLE_OFFLINE = 16,
+};
+pub const QUERY_EXPIRATION_DATE = QUERYOPTION.EXPIRATION_DATE;
+pub const QUERY_TIME_OF_LAST_CHANGE = QUERYOPTION.TIME_OF_LAST_CHANGE;
+pub const QUERY_CONTENT_ENCODING = QUERYOPTION.CONTENT_ENCODING;
+pub const QUERY_CONTENT_TYPE = QUERYOPTION.CONTENT_TYPE;
+pub const QUERY_REFRESH = QUERYOPTION.REFRESH;
+pub const QUERY_RECOMBINE = QUERYOPTION.RECOMBINE;
+pub const QUERY_CAN_NAVIGATE = QUERYOPTION.CAN_NAVIGATE;
+pub const QUERY_USES_NETWORK = QUERYOPTION.USES_NETWORK;
+pub const QUERY_IS_CACHED = QUERYOPTION.IS_CACHED;
+pub const QUERY_IS_INSTALLEDENTRY = QUERYOPTION.IS_INSTALLEDENTRY;
+pub const QUERY_IS_CACHED_OR_MAPPED = QUERYOPTION.IS_CACHED_OR_MAPPED;
+pub const QUERY_USES_CACHE = QUERYOPTION.USES_CACHE;
+pub const QUERY_IS_SECURE = QUERYOPTION.IS_SECURE;
+pub const QUERY_IS_SAFE = QUERYOPTION.IS_SAFE;
+pub const QUERY_USES_HISTORYFOLDER = QUERYOPTION.USES_HISTORYFOLDER;
+pub const QUERY_IS_CACHED_AND_USABLE_OFFLINE = QUERYOPTION.IS_CACHED_AND_USABLE_OFFLINE;
+
+pub const RemBINDINFO = extern struct {
+    cbSize: u32,
+    szExtraInfo: ?PWSTR,
+    grfBindInfoF: u32,
+    dwBindVerb: u32,
+    szCustomVerb: ?PWSTR,
+    cbstgmedData: u32,
+    dwOptions: u32,
+    dwOptionsFlags: u32,
+    dwCodePage: u32,
+    securityAttributes: REMSECURITY_ATTRIBUTES,
+    iid: Guid,
+    pUnk: ?*IUnknown,
+    dwReserved: u32,
+};
+
+pub const RemFORMATETC = extern struct {
+    cfFormat: u32,
+    ptd: u32,
+    dwAspect: u32,
+    lindex: i32,
+    tymed: u32,
+};
+
+pub const REMSECURITY_ATTRIBUTES = extern struct {
+    nLength: u32,
+    lpSecurityDescriptor: u32,
+    bInheritHandle: BOOL,
+};
+
+pub const SOFTDISTINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwAdState: u32,
+    szTitle: ?PWSTR,
+    szAbstract: ?PWSTR,
+    szHREF: ?PWSTR,
+    dwInstalledVersionMS: u32,
+    dwInstalledVersionLS: u32,
+    dwUpdateVersionMS: u32,
+    dwUpdateVersionLS: u32,
+    dwAdvertisedVersionMS: u32,
+    dwAdvertisedVersionLS: u32,
+    dwReserved: u32,
+};
+
+pub const StartParam = extern struct {
+    iid: Guid,
+    pIBindCtx: ?*IBindCtx,
+    pItf: ?*IUnknown,
+};
+
+pub const SZM_FLAGS = enum(i32) {
+    CREATE = 0,
+    DELETE = 1,
+};
+pub const SZM_CREATE = SZM_FLAGS.CREATE;
+pub const SZM_DELETE = SZM_FLAGS.DELETE;
+
+pub const Uri_HOST_TYPE = enum(i32) {
+    UNKNOWN = 0,
+    DNS = 1,
+    IPV4 = 2,
+    IPV6 = 3,
+    IDN = 4,
+};
+pub const Uri_HOST_UNKNOWN = Uri_HOST_TYPE.UNKNOWN;
+pub const Uri_HOST_DNS = Uri_HOST_TYPE.DNS;
+pub const Uri_HOST_IPV4 = Uri_HOST_TYPE.IPV4;
+pub const Uri_HOST_IPV6 = Uri_HOST_TYPE.IPV6;
+pub const Uri_HOST_IDN = Uri_HOST_TYPE.IDN;
+
+pub const URL_ENCODING = enum(i32) {
+    NONE = 0,
+    ENABLE_UTF8 = 268435456,
+    DISABLE_UTF8 = 536870912,
+};
+pub const URL_ENCODING_NONE = URL_ENCODING.NONE;
+pub const URL_ENCODING_ENABLE_UTF8 = URL_ENCODING.ENABLE_UTF8;
+pub const URL_ENCODING_DISABLE_UTF8 = URL_ENCODING.DISABLE_UTF8;
+
+pub const URLTEMPLATE = enum(i32) {
+    CUSTOM = 0,
+    PREDEFINED_MIN = 65536,
+    MEDLOW = 66816,
+    MEDIUM = 69632,
+    MEDHIGH = 70912,
+    HIGH = 73728,
+    PREDEFINED_MAX = 131072,
+    pub const LOW = .PREDEFINED_MIN;
+};
+pub const URLTEMPLATE_CUSTOM = URLTEMPLATE.CUSTOM;
+pub const URLTEMPLATE_PREDEFINED_MIN = URLTEMPLATE.PREDEFINED_MIN;
+pub const URLTEMPLATE_LOW = URLTEMPLATE.PREDEFINED_MIN;
+pub const URLTEMPLATE_MEDLOW = URLTEMPLATE.MEDLOW;
+pub const URLTEMPLATE_MEDIUM = URLTEMPLATE.MEDIUM;
+pub const URLTEMPLATE_MEDHIGH = URLTEMPLATE.MEDHIGH;
+pub const URLTEMPLATE_HIGH = URLTEMPLATE.HIGH;
+pub const URLTEMPLATE_PREDEFINED_MAX = URLTEMPLATE.PREDEFINED_MAX;
+
+pub const URLZONE = enum(i32) {
+    INVALID = -1,
+    PREDEFINED_MIN = 0,
+    INTRANET = 1,
+    TRUSTED = 2,
+    INTERNET = 3,
+    UNTRUSTED = 4,
+    PREDEFINED_MAX = 999,
+    USER_MIN = 1000,
+    USER_MAX = 10000,
+    pub const LOCAL_MACHINE = .PREDEFINED_MIN;
+};
+pub const URLZONE_INVALID = URLZONE.INVALID;
+pub const URLZONE_PREDEFINED_MIN = URLZONE.PREDEFINED_MIN;
+pub const URLZONE_LOCAL_MACHINE = URLZONE.PREDEFINED_MIN;
+pub const URLZONE_INTRANET = URLZONE.INTRANET;
+pub const URLZONE_TRUSTED = URLZONE.TRUSTED;
+pub const URLZONE_INTERNET = URLZONE.INTERNET;
+pub const URLZONE_UNTRUSTED = URLZONE.UNTRUSTED;
+pub const URLZONE_PREDEFINED_MAX = URLZONE.PREDEFINED_MAX;
+pub const URLZONE_USER_MIN = URLZONE.USER_MIN;
+pub const URLZONE_USER_MAX = URLZONE.USER_MAX;
+
+pub const URLZONEREG = enum(i32) {
+    DEFAULT = 0,
+    HKLM = 1,
+    HKCU = 2,
+};
+pub const URLZONEREG_DEFAULT = URLZONEREG.DEFAULT;
+pub const URLZONEREG_HKLM = URLZONEREG.HKLM;
+pub const URLZONEREG_HKCU = URLZONEREG.HKCU;
+
+pub const ZAFLAGS = enum(i32) {
+    CUSTOM_EDIT = 1,
+    ADD_SITES = 2,
+    REQUIRE_VERIFICATION = 4,
+    INCLUDE_PROXY_OVERRIDE = 8,
+    INCLUDE_INTRANET_SITES = 16,
+    NO_UI = 32,
+    SUPPORTS_VERIFICATION = 64,
+    UNC_AS_INTRANET = 128,
+    DETECT_INTRANET = 256,
+    USE_LOCKED_ZONES = 65536,
+    VERIFY_TEMPLATE_SETTINGS = 131072,
+    NO_CACHE = 262144,
+};
+pub const ZAFLAGS_CUSTOM_EDIT = ZAFLAGS.CUSTOM_EDIT;
+pub const ZAFLAGS_ADD_SITES = ZAFLAGS.ADD_SITES;
+pub const ZAFLAGS_REQUIRE_VERIFICATION = ZAFLAGS.REQUIRE_VERIFICATION;
+pub const ZAFLAGS_INCLUDE_PROXY_OVERRIDE = ZAFLAGS.INCLUDE_PROXY_OVERRIDE;
+pub const ZAFLAGS_INCLUDE_INTRANET_SITES = ZAFLAGS.INCLUDE_INTRANET_SITES;
+pub const ZAFLAGS_NO_UI = ZAFLAGS.NO_UI;
+pub const ZAFLAGS_SUPPORTS_VERIFICATION = ZAFLAGS.SUPPORTS_VERIFICATION;
+pub const ZAFLAGS_UNC_AS_INTRANET = ZAFLAGS.UNC_AS_INTRANET;
+pub const ZAFLAGS_DETECT_INTRANET = ZAFLAGS.DETECT_INTRANET;
+pub const ZAFLAGS_USE_LOCKED_ZONES = ZAFLAGS.USE_LOCKED_ZONES;
+pub const ZAFLAGS_VERIFY_TEMPLATE_SETTINGS = ZAFLAGS.VERIFY_TEMPLATE_SETTINGS;
+pub const ZAFLAGS_NO_CACHE = ZAFLAGS.NO_CACHE;
+
+pub const ZONEATTRIBUTES = extern struct {
+    cbSize: u32,
+    szDisplayName: [260]u16,
+    szDescription: [200]u16,
+    szIconPath: [260]u16,
+    dwTemplateMinLevel: u32,
+    dwTemplateRecommended: u32,
+    dwTemplateCurrentLevel: u32,
+    dwFlags: u32,
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (73)
 //--------------------------------------------------------------------------------
-pub extern "urlmon" fn CreateURLMoniker(
-    pMkCtx: ?*IMoniker,
-    szURL: ?[*:0]const u16,
-    ppmk: ?*?*IMoniker,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CreateURLMonikerEx(
-    pMkCtx: ?*IMoniker,
-    szURL: ?[*:0]const u16,
-    ppmk: ?*?*IMoniker,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn GetClassURL(
-    szURL: ?[*:0]const u16,
-    pClsID: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "urlmon" fn CreateAsyncBindCtx(
-    reserved: u32,
-    pBSCb: ?*IBindStatusCallback,
-    pEFetc: ?*IEnumFORMATETC,
-    ppBC: ?*?*IBindCtx,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CreateURLMonikerEx2(
-    pMkCtx: ?*IMoniker,
-    pUri: ?*IUri,
-    ppmk: ?*?*IMoniker,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CreateAsyncBindCtxEx(
-    pbc: ?*IBindCtx,
-    dwOptions: u32,
-    pBSCb: ?*IBindStatusCallback,
-    pEnum: ?*IEnumFORMATETC,
-    ppBC: ?*?*IBindCtx,
-    reserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn MkParseDisplayNameEx(
-    pbc: ?*IBindCtx,
-    szDisplayName: ?[*:0]const u16,
-    pchEaten: ?*u32,
-    ppmk: ?*?*IMoniker,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn RegisterBindStatusCallback(
-    pBC: ?*IBindCtx,
-    pBSCb: ?*IBindStatusCallback,
-    ppBSCBPrev: ?*?*IBindStatusCallback,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn RevokeBindStatusCallback(
-    pBC: ?*IBindCtx,
-    pBSCb: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn GetClassFileOrMime(
-    pBC: ?*IBindCtx,
-    szFilename: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*anyopaque,
-    cbSize: u32,
-    szMime: ?[*:0]const u16,
-    dwReserved: u32,
-    pclsid: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn IsValidURL(
-    pBC: ?*IBindCtx,
-    szURL: ?[*:0]const u16,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
 pub extern "urlmon" fn CoGetClassObjectFromURL(
     rCLASSID: ?*const Guid,
     szCODE: ?[*:0]const u16,
@@ -2922,260 +2844,11 @@ pub extern "urlmon" fn CoGetClassObjectFromURL(
     ppv: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn IEInstallScope(
-    pdwScope: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn FaultInIEFeature(
-    hWnd: ?HWND,
-    pClassSpec: ?*uCLSSPEC,
-    pQuery: ?*QUERYCONTEXT,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn GetComponentIDFromCLSSPEC(
-    pClassspec: ?*uCLSSPEC,
-    ppszComponentID: ?*?PSTR,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn IsAsyncMoniker(
-    pmk: ?*IMoniker,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn RegisterMediaTypes(
-    ctypes: u32,
-    rgszTypes: [*]const ?[*:0]const u8,
-    rgcfTypes: [*:0]u16,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn FindMediaType(
-    rgszTypes: ?[*:0]const u8,
-    rgcfTypes: ?*u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "urlmon" fn CreateFormatEnumerator(
-    cfmtetc: u32,
-    rgfmtetc: [*]FORMATETC,
-    ppenumfmtetc: ?*?*IEnumFORMATETC,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn RegisterFormatEnumerator(
-    pBC: ?*IBindCtx,
-    pEFetc: ?*IEnumFORMATETC,
-    reserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn RevokeFormatEnumerator(
-    pBC: ?*IBindCtx,
-    pEFetc: ?*IEnumFORMATETC,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn RegisterMediaTypeClass(
-    pBC: ?*IBindCtx,
-    ctypes: u32,
-    rgszTypes: [*]const ?[*:0]const u8,
-    rgclsID: [*]Guid,
-    reserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn FindMediaTypeClass(
-    pBC: ?*IBindCtx,
-    szType: ?[*:0]const u8,
-    pclsID: ?*Guid,
-    reserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn UrlMkSetSessionOption(
-    dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?*anyopaque,
-    dwBufferLength: u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn UrlMkGetSessionOption(
-    dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?*anyopaque,
-    dwBufferLength: u32,
-    pdwBufferLengthOut: ?*u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn FindMimeFromData(
-    pBC: ?*IBindCtx,
-    pwzUrl: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*anyopaque,
-    cbSize: u32,
-    pwzMimeProposed: ?[*:0]const u16,
-    dwMimeFlags: u32,
-    ppwzMimeOut: ?*?PWSTR,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn ObtainUserAgentString(
-    dwOption: u32,
-    pszUAOut: [*:0]u8,
-    cbSize: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CompareSecurityIds(
-    pbSecurityId1: [*:0]u8,
-    dwLen1: u32,
-    pbSecurityId2: [*:0]u8,
-    dwLen2: u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CompatFlagsFromClsid(
-    pclsid: ?*Guid,
-    pdwCompatFlags: ?*u32,
-    pdwMiscStatusFlags: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn SetAccessForIEAppContainer(
-    hObject: ?HANDLE,
-    ieObjectType: IEObjectType,
-    dwAccessMask: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn HlinkSimpleNavigateToString(
-    szTarget: ?[*:0]const u16,
-    szLocation: ?[*:0]const u16,
-    szTargetFrameName: ?[*:0]const u16,
-    pUnk: ?*IUnknown,
-    pbc: ?*IBindCtx,
-    param5: ?*IBindStatusCallback,
-    grfHLNF: u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn HlinkSimpleNavigateToMoniker(
-    pmkTarget: ?*IMoniker,
-    szLocation: ?[*:0]const u16,
-    szTargetFrameName: ?[*:0]const u16,
-    pUnk: ?*IUnknown,
-    pbc: ?*IBindCtx,
-    param5: ?*IBindStatusCallback,
-    grfHLNF: u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLOpenStreamA(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u8,
-    param2: u32,
-    param3: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLOpenStreamW(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u16,
-    param2: u32,
-    param3: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLOpenPullStreamA(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u8,
-    param2: u32,
-    param3: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLOpenPullStreamW(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u16,
-    param2: u32,
-    param3: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLDownloadToFileA(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-    param3: u32,
-    param4: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLDownloadToFileW(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: u32,
-    param4: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLDownloadToCacheFileA(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u8,
-    param2: [*:0]u8,
-    cchFileName: u32,
-    param4: u32,
-    param5: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLDownloadToCacheFileW(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u16,
-    param2: [*:0]u16,
-    cchFileName: u32,
-    param4: u32,
-    param5: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLOpenBlockingStreamA(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u8,
-    param2: ?*?*IStream,
-    param3: u32,
-    param4: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn URLOpenBlockingStreamW(
-    param0: ?*IUnknown,
-    param1: ?[*:0]const u16,
-    param2: ?*?*IStream,
-    param3: u32,
-    param4: ?*IBindStatusCallback,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn HlinkGoBack(
-    pUnk: ?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn HlinkGoForward(
-    pUnk: ?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn HlinkNavigateString(
-    pUnk: ?*IUnknown,
-    szTarget: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn HlinkNavigateMoniker(
-    pUnk: ?*IUnknown,
-    pmkTarget: ?*IMoniker,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CoInternetParseUrl(
-    pwzUrl: ?[*:0]const u16,
-    ParseAction: PARSEACTION,
-    dwFlags: u32,
-    pszResult: [*:0]u16,
-    cchResult: u32,
-    pcchResult: ?*u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CoInternetParseIUri(
-    pIUri: ?*IUri,
-    ParseAction: PARSEACTION,
-    dwFlags: u32,
-    pwzResult: [*:0]u16,
-    cchResult: u32,
-    pcchResult: ?*u32,
+pub extern "urlmon" fn CoInternetCombineIUri(
+    pBaseUri: ?*IUri,
+    pRelativeUri: ?*IUri,
+    dwCombineFlags: u32,
+    ppCombinedUri: ?*?*IUri,
     dwReserved: usize,
 ) callconv(.winapi) HRESULT;
 
@@ -3197,40 +2870,27 @@ pub extern "urlmon" fn CoInternetCombineUrlEx(
     dwReserved: usize,
 ) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn CoInternetCombineIUri(
-    pBaseUri: ?*IUri,
-    pRelativeUri: ?*IUri,
-    dwCombineFlags: u32,
-    ppCombinedUri: ?*?*IUri,
-    dwReserved: usize,
-) callconv(.winapi) HRESULT;
-
 pub extern "urlmon" fn CoInternetCompareUrl(
     pwzUrl1: ?[*:0]const u16,
     pwzUrl2: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(.winapi) HRESULT;
 
+pub extern "urlmon" fn CoInternetCreateSecurityManager(
+    pSP: ?*IServiceProvider,
+    ppSM: ?*?*IInternetSecurityManager,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CoInternetCreateZoneManager(
+    pSP: ?*IServiceProvider,
+    ppZM: ?*?*IInternetZoneManager,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
 pub extern "urlmon" fn CoInternetGetProtocolFlags(
     pwzUrl: ?[*:0]const u16,
     pdwFlags: ?*u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CoInternetQueryInfo(
-    pwzUrl: ?[*:0]const u16,
-    QueryOptions: QUERYOPTION,
-    dwQueryFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    pvBuffer: ?*anyopaque,
-    cbBuffer: u32,
-    pcbBuffer: ?*u32,
-    dwReserved: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CoInternetGetSession(
-    dwSessionMode: u32,
-    ppIInternetSession: ?*?*IInternetSession,
     dwReserved: u32,
 ) callconv(.winapi) HRESULT;
 
@@ -3248,22 +2908,15 @@ pub extern "urlmon" fn CoInternetGetSecurityUrlEx(
     dwReserved: usize,
 ) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn CoInternetSetFeatureEnabled(
-    FeatureEntry: INTERNETFEATURELIST,
-    dwFlags: u32,
-    fEnable: BOOL,
+pub extern "urlmon" fn CoInternetGetSession(
+    dwSessionMode: u32,
+    ppIInternetSession: ?*?*IInternetSession,
+    dwReserved: u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "urlmon" fn CoInternetIsFeatureEnabled(
     FeatureEntry: INTERNETFEATURELIST,
     dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "urlmon" fn CoInternetIsFeatureEnabledForUrl(
-    FeatureEntry: INTERNETFEATURELIST,
-    dwFlags: u32,
-    szURL: ?[*:0]const u16,
-    pSecMgr: ?*IInternetSecurityManager,
 ) callconv(.winapi) HRESULT;
 
 pub extern "urlmon" fn CoInternetIsFeatureEnabledForIUri(
@@ -3273,6 +2926,13 @@ pub extern "urlmon" fn CoInternetIsFeatureEnabledForIUri(
     pSecMgr: ?*IInternetSecurityManagerEx2,
 ) callconv(.winapi) HRESULT;
 
+pub extern "urlmon" fn CoInternetIsFeatureEnabledForUrl(
+    FeatureEntry: INTERNETFEATURELIST,
+    dwFlags: u32,
+    szURL: ?[*:0]const u16,
+    pSecMgr: ?*IInternetSecurityManager,
+) callconv(.winapi) HRESULT;
+
 pub extern "urlmon" fn CoInternetIsFeatureZoneElevationEnabled(
     szFromURL: ?[*:0]const u16,
     szToURL: ?[*:0]const u16,
@@ -3280,9 +2940,55 @@ pub extern "urlmon" fn CoInternetIsFeatureZoneElevationEnabled(
     dwFlags: u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn CopyStgMedium(
-    pcstgmedSrc: ?*const STGMEDIUM,
-    pstgmedDest: ?*STGMEDIUM,
+pub extern "urlmon" fn CoInternetParseIUri(
+    pIUri: ?*IUri,
+    ParseAction: PARSEACTION,
+    dwFlags: u32,
+    pwzResult: [*:0]u16,
+    cchResult: u32,
+    pcchResult: ?*u32,
+    dwReserved: usize,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CoInternetParseUrl(
+    pwzUrl: ?[*:0]const u16,
+    ParseAction: PARSEACTION,
+    dwFlags: u32,
+    pszResult: [*:0]u16,
+    cchResult: u32,
+    pcchResult: ?*u32,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CoInternetQueryInfo(
+    pwzUrl: ?[*:0]const u16,
+    QueryOptions: QUERYOPTION,
+    dwQueryFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    pvBuffer: ?*anyopaque,
+    cbBuffer: u32,
+    pcbBuffer: ?*u32,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CoInternetSetFeatureEnabled(
+    FeatureEntry: INTERNETFEATURELIST,
+    dwFlags: u32,
+    fEnable: BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CompareSecurityIds(
+    pbSecurityId1: [*:0]u8,
+    dwLen1: u32,
+    pbSecurityId2: [*:0]u8,
+    dwLen2: u32,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CompatFlagsFromClsid(
+    pclsid: ?*Guid,
+    pdwCompatFlags: ?*u32,
+    pdwMiscStatusFlags: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "urlmon" fn CopyBindInfo(
@@ -3290,23 +2996,105 @@ pub extern "urlmon" fn CopyBindInfo(
     pbiDest: ?*BINDINFO,
 ) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn ReleaseBindInfo(
-    pbindinfo: ?*BINDINFO,
-) callconv(.winapi) void;
+pub extern "urlmon" fn CopyStgMedium(
+    pcstgmedSrc: ?*const STGMEDIUM,
+    pstgmedDest: ?*STGMEDIUM,
+) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn IEGetUserPrivateNamespaceName(
-) callconv(.winapi) ?PWSTR;
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "urlmon" fn CreateAsyncBindCtx(
+    reserved: u32,
+    pBSCb: ?*IBindStatusCallback,
+    pEFetc: ?*IEnumFORMATETC,
+    ppBC: ?*?*IBindCtx,
+) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn CoInternetCreateSecurityManager(
-    pSP: ?*IServiceProvider,
-    ppSM: ?*?*IInternetSecurityManager,
+pub extern "urlmon" fn CreateAsyncBindCtxEx(
+    pbc: ?*IBindCtx,
+    dwOptions: u32,
+    pBSCb: ?*IBindStatusCallback,
+    pEnum: ?*IEnumFORMATETC,
+    ppBC: ?*?*IBindCtx,
+    reserved: u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "urlmon" fn CreateFormatEnumerator(
+    cfmtetc: u32,
+    rgfmtetc: [*]FORMATETC,
+    ppenumfmtetc: ?*?*IEnumFORMATETC,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CreateURLMoniker(
+    pMkCtx: ?*IMoniker,
+    szURL: ?[*:0]const u16,
+    ppmk: ?*?*IMoniker,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CreateURLMonikerEx(
+    pMkCtx: ?*IMoniker,
+    szURL: ?[*:0]const u16,
+    ppmk: ?*?*IMoniker,
+    dwFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn CreateURLMonikerEx2(
+    pMkCtx: ?*IMoniker,
+    pUri: ?*IUri,
+    ppmk: ?*?*IMoniker,
+    dwFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn FaultInIEFeature(
+    hWnd: ?HWND,
+    pClassSpec: ?*uCLSSPEC,
+    pQuery: ?*QUERYCONTEXT,
+    dwFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn FindMediaType(
+    rgszTypes: ?[*:0]const u8,
+    rgcfTypes: ?*u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn FindMediaTypeClass(
+    pBC: ?*IBindCtx,
+    szType: ?[*:0]const u8,
+    pclsID: ?*Guid,
+    reserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn FindMimeFromData(
+    pBC: ?*IBindCtx,
+    pwzUrl: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*anyopaque,
+    cbSize: u32,
+    pwzMimeProposed: ?[*:0]const u16,
+    dwMimeFlags: u32,
+    ppwzMimeOut: ?*?PWSTR,
     dwReserved: u32,
 ) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn CoInternetCreateZoneManager(
-    pSP: ?*IServiceProvider,
-    ppZM: ?*?*IInternetZoneManager,
+pub extern "urlmon" fn GetClassFileOrMime(
+    pBC: ?*IBindCtx,
+    szFilename: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*anyopaque,
+    cbSize: u32,
+    szMime: ?[*:0]const u16,
     dwReserved: u32,
+    pclsid: ?*Guid,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn GetClassURL(
+    szURL: ?[*:0]const u16,
+    pClsID: ?*Guid,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn GetComponentIDFromCLSSPEC(
+    pClassspec: ?*uCLSSPEC,
+    ppszComponentID: ?*?PSTR,
 ) callconv(.winapi) HRESULT;
 
 pub extern "urlmon" fn GetSoftwareUpdateInfo(
@@ -3314,11 +3102,55 @@ pub extern "urlmon" fn GetSoftwareUpdateInfo(
     psdi: ?*SOFTDISTINFO,
 ) callconv(.winapi) HRESULT;
 
-pub extern "urlmon" fn SetSoftwareUpdateAdvertisementState(
-    szDistUnit: ?[*:0]const u16,
-    dwAdState: u32,
-    dwAdvertisedVersionMS: u32,
-    dwAdvertisedVersionLS: u32,
+pub extern "urlmon" fn HlinkGoBack(
+    pUnk: ?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn HlinkGoForward(
+    pUnk: ?*IUnknown,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn HlinkNavigateMoniker(
+    pUnk: ?*IUnknown,
+    pmkTarget: ?*IMoniker,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn HlinkNavigateString(
+    pUnk: ?*IUnknown,
+    szTarget: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn HlinkSimpleNavigateToMoniker(
+    pmkTarget: ?*IMoniker,
+    szLocation: ?[*:0]const u16,
+    szTargetFrameName: ?[*:0]const u16,
+    pUnk: ?*IUnknown,
+    pbc: ?*IBindCtx,
+    param5: ?*IBindStatusCallback,
+    grfHLNF: u32,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn HlinkSimpleNavigateToString(
+    szTarget: ?[*:0]const u16,
+    szLocation: ?[*:0]const u16,
+    szTargetFrameName: ?[*:0]const u16,
+    pUnk: ?*IUnknown,
+    pbc: ?*IBindCtx,
+    param5: ?*IBindStatusCallback,
+    grfHLNF: u32,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn IEGetUserPrivateNamespaceName(
+) callconv(.winapi) ?PWSTR;
+
+pub extern "urlmon" fn IEInstallScope(
+    pdwScope: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn IsAsyncMoniker(
+    pmk: ?*IMoniker,
 ) callconv(.winapi) HRESULT;
 
 pub extern "urlmon" fn IsLoggingEnabledA(
@@ -3329,6 +3161,174 @@ pub extern "urlmon" fn IsLoggingEnabledW(
     pwszUrl: ?[*:0]const u16,
 ) callconv(.winapi) BOOL;
 
+pub extern "urlmon" fn IsValidURL(
+    pBC: ?*IBindCtx,
+    szURL: ?[*:0]const u16,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn MkParseDisplayNameEx(
+    pbc: ?*IBindCtx,
+    szDisplayName: ?[*:0]const u16,
+    pchEaten: ?*u32,
+    ppmk: ?*?*IMoniker,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn ObtainUserAgentString(
+    dwOption: u32,
+    pszUAOut: [*:0]u8,
+    cbSize: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn RegisterBindStatusCallback(
+    pBC: ?*IBindCtx,
+    pBSCb: ?*IBindStatusCallback,
+    ppBSCBPrev: ?*?*IBindStatusCallback,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn RegisterFormatEnumerator(
+    pBC: ?*IBindCtx,
+    pEFetc: ?*IEnumFORMATETC,
+    reserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn RegisterMediaTypeClass(
+    pBC: ?*IBindCtx,
+    ctypes: u32,
+    rgszTypes: [*]const ?[*:0]const u8,
+    rgclsID: [*]Guid,
+    reserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn RegisterMediaTypes(
+    ctypes: u32,
+    rgszTypes: [*]const ?[*:0]const u8,
+    rgcfTypes: [*:0]u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn ReleaseBindInfo(
+    pbindinfo: ?*BINDINFO,
+) callconv(.winapi) void;
+
+pub extern "urlmon" fn RevokeBindStatusCallback(
+    pBC: ?*IBindCtx,
+    pBSCb: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn RevokeFormatEnumerator(
+    pBC: ?*IBindCtx,
+    pEFetc: ?*IEnumFORMATETC,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn SetAccessForIEAppContainer(
+    hObject: ?HANDLE,
+    ieObjectType: IEObjectType,
+    dwAccessMask: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn SetSoftwareUpdateAdvertisementState(
+    szDistUnit: ?[*:0]const u16,
+    dwAdState: u32,
+    dwAdvertisedVersionMS: u32,
+    dwAdvertisedVersionLS: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLDownloadToCacheFileA(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u8,
+    param2: [*:0]u8,
+    cchFileName: u32,
+    param4: u32,
+    param5: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLDownloadToCacheFileW(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u16,
+    param2: [*:0]u16,
+    cchFileName: u32,
+    param4: u32,
+    param5: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLDownloadToFileA(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+    param3: u32,
+    param4: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLDownloadToFileW(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+    param3: u32,
+    param4: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn UrlMkGetSessionOption(
+    dwOption: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    pBuffer: ?*anyopaque,
+    dwBufferLength: u32,
+    pdwBufferLengthOut: ?*u32,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn UrlMkSetSessionOption(
+    dwOption: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    pBuffer: ?*anyopaque,
+    dwBufferLength: u32,
+    dwReserved: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLOpenBlockingStreamA(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u8,
+    param2: ?*?*IStream,
+    param3: u32,
+    param4: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLOpenBlockingStreamW(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u16,
+    param2: ?*?*IStream,
+    param3: u32,
+    param4: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLOpenPullStreamA(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u8,
+    param2: u32,
+    param3: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLOpenPullStreamW(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u16,
+    param2: u32,
+    param3: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLOpenStreamA(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u8,
+    param2: u32,
+    param3: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
+pub extern "urlmon" fn URLOpenStreamW(
+    param0: ?*IUnknown,
+    param1: ?[*:0]const u16,
+    param2: u32,
+    param3: ?*IBindStatusCallback,
+) callconv(.winapi) HRESULT;
+
 pub extern "urlmon" fn WriteHitLogging(
     lpLogginginfo: ?*HIT_LOGGING_INFO,
 ) callconv(.winapi) BOOL;
@@ -3337,25 +3337,11 @@ pub extern "urlmon" fn WriteHitLogging(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (6)
 //--------------------------------------------------------------------------------
-pub const URLOpenStream = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().URLOpenStreamA,
-    .wide => @This().URLOpenStreamW,
+pub const IsLoggingEnabled = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().IsLoggingEnabledA,
+    .wide => @This().IsLoggingEnabledW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'URLOpenStream' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const URLOpenPullStream = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().URLOpenPullStreamA,
-    .wide => @This().URLOpenPullStreamW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'URLOpenPullStream' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const URLDownloadToFile = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().URLDownloadToFileA,
-    .wide => @This().URLDownloadToFileW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'URLDownloadToFile' requires that UNICODE be set to true or false in the root module",
+        "'IsLoggingEnabled' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const URLDownloadToCacheFile = switch (@import("../../zig.zig").unicode_mode) {
@@ -3365,6 +3351,13 @@ pub const URLDownloadToCacheFile = switch (@import("../../zig.zig").unicode_mode
         "'URLDownloadToCacheFile' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const URLDownloadToFile = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLDownloadToFileA,
+    .wide => @This().URLDownloadToFileW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URLDownloadToFile' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const URLOpenBlockingStream = switch (@import("../../zig.zig").unicode_mode) {
     .ansi => @This().URLOpenBlockingStreamA,
     .wide => @This().URLOpenBlockingStreamW,
@@ -3372,11 +3365,18 @@ pub const URLOpenBlockingStream = switch (@import("../../zig.zig").unicode_mode)
         "'URLOpenBlockingStream' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const IsLoggingEnabled = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().IsLoggingEnabledA,
-    .wide => @This().IsLoggingEnabledW,
+pub const URLOpenPullStream = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLOpenPullStreamA,
+    .wide => @This().URLOpenPullStreamW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'IsLoggingEnabled' requires that UNICODE be set to true or false in the root module",
+        "'URLOpenPullStream' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const URLOpenStream = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().URLOpenStreamA,
+    .wide => @This().URLOpenStreamW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'URLOpenStream' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

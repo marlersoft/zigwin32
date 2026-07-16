@@ -10,12 +10,12 @@
 //--------------------------------------------------------------------------------
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
-pub extern "wsclient" fn CheckDeveloperLicense(
+pub extern "wsclient" fn AcquireDeveloperLicense(
+    hwndParent: ?HWND,
     pExpiration: ?*FILETIME,
 ) callconv(.winapi) HRESULT;
 
-pub extern "wsclient" fn AcquireDeveloperLicense(
-    hwndParent: ?HWND,
+pub extern "wsclient" fn CheckDeveloperLicense(
     pExpiration: ?*FILETIME,
 ) callconv(.winapi) HRESULT;
 

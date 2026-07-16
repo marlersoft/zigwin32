@@ -2,139 +2,99 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (26)
 //--------------------------------------------------------------------------------
-pub const wszCERTENROLLSHAREPATH = "CertSrv\\CertEnroll";
-pub const cwcHRESULTSTRING = @as(u32, 40);
-pub const szLBRACE = "{";
-pub const szRBRACE = "}";
-pub const wszLBRACE = "{";
-pub const wszRBRACE = "}";
-pub const szLPAREN = "(";
-pub const szRPAREN = ")";
-pub const wszLPAREN = "(";
-pub const wszRPAREN = ")";
 pub const CVT_SECONDS = @as(u32, 1);
 pub const cwcFILENAMESUFFIXMAX = @as(u32, 20);
+pub const cwcHRESULTSTRING = @as(u32, 40);
+pub const szLBRACE = "{";
+pub const szLPAREN = "(";
+pub const szRBRACE = "}";
+pub const szRPAREN = ")";
+pub const wszCERTENROLLSHAREPATH = "CertSrv\\CertEnroll";
+pub const wszFCSAPARM_CERTFILENAMESUFFIX = "%4";
+pub const wszFCSAPARM_CONFIGDN = "%6";
+pub const wszFCSAPARM_CRLDELTAFILENAMESUFFIX = "%9";
+pub const wszFCSAPARM_CRLFILENAMESUFFIX = "%8";
+pub const wszFCSAPARM_DOMAINDN = "%5";
+pub const wszFCSAPARM_DSCACERTATTRIBUTE = "%11";
+pub const wszFCSAPARM_DSCRLATTRIBUTE = "%10";
+pub const wszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE = "%14";
+pub const wszFCSAPARM_DSKRACERTATTRIBUTE = "%13";
+pub const wszFCSAPARM_DSUSERCERTATTRIBUTE = "%12";
+pub const wszFCSAPARM_SANITIZEDCANAME = "%3";
+pub const wszFCSAPARM_SANITIZEDCANAMEHASH = "%7";
 pub const wszFCSAPARM_SERVERDNSNAME = "%1";
 pub const wszFCSAPARM_SERVERSHORTNAME = "%2";
-pub const wszFCSAPARM_SANITIZEDCANAME = "%3";
-pub const wszFCSAPARM_CERTFILENAMESUFFIX = "%4";
-pub const wszFCSAPARM_DOMAINDN = "%5";
-pub const wszFCSAPARM_CONFIGDN = "%6";
-pub const wszFCSAPARM_SANITIZEDCANAMEHASH = "%7";
-pub const wszFCSAPARM_CRLFILENAMESUFFIX = "%8";
-pub const wszFCSAPARM_CRLDELTAFILENAMESUFFIX = "%9";
-pub const wszFCSAPARM_DSCRLATTRIBUTE = "%10";
-pub const wszFCSAPARM_DSCACERTATTRIBUTE = "%11";
-pub const wszFCSAPARM_DSUSERCERTATTRIBUTE = "%12";
-pub const wszFCSAPARM_DSKRACERTATTRIBUTE = "%13";
-pub const wszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE = "%14";
+pub const wszLBRACE = "{";
+pub const wszLPAREN = "(";
+pub const wszRBRACE = "}";
+pub const wszRPAREN = ")";
 
 //--------------------------------------------------------------------------------
 // Section: Types (106)
 //--------------------------------------------------------------------------------
-pub const TOKEN_PRIVILEGES_ATTRIBUTES = packed struct(u32) {
-    ENABLED_BY_DEFAULT: u1 = 0,
-    ENABLED: u1 = 0,
-    REMOVED: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    USED_FOR_ACCESS: u1 = 0,
+pub const ACCESS_ALLOWED_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
 };
-pub const SE_PRIVILEGE_ENABLED = TOKEN_PRIVILEGES_ATTRIBUTES{ .ENABLED = 1 };
-pub const SE_PRIVILEGE_ENABLED_BY_DEFAULT = TOKEN_PRIVILEGES_ATTRIBUTES{ .ENABLED_BY_DEFAULT = 1 };
-pub const SE_PRIVILEGE_REMOVED = TOKEN_PRIVILEGES_ATTRIBUTES{ .REMOVED = 1 };
-pub const SE_PRIVILEGE_USED_FOR_ACCESS = TOKEN_PRIVILEGES_ATTRIBUTES{ .USED_FOR_ACCESS = 1 };
 
-pub const LOGON32_PROVIDER = enum(u32) {
-    DEFAULT = 0,
-    WINNT50 = 3,
-    WINNT40 = 2,
+pub const ACCESS_ALLOWED_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
 };
-pub const LOGON32_PROVIDER_DEFAULT = LOGON32_PROVIDER.DEFAULT;
-pub const LOGON32_PROVIDER_WINNT50 = LOGON32_PROVIDER.WINNT50;
-pub const LOGON32_PROVIDER_WINNT40 = LOGON32_PROVIDER.WINNT40;
 
-pub const CREATE_RESTRICTED_TOKEN_FLAGS = packed struct(u32) {
-    DISABLE_MAX_PRIVILEGE: u1 = 0,
-    SANDBOX_INERT: u1 = 0,
-    LUA_TOKEN: u1 = 0,
-    WRITE_RESTRICTED: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
 };
-pub const DISABLE_MAX_PRIVILEGE = CREATE_RESTRICTED_TOKEN_FLAGS{ .DISABLE_MAX_PRIVILEGE = 1 };
-pub const SANDBOX_INERT = CREATE_RESTRICTED_TOKEN_FLAGS{ .SANDBOX_INERT = 1 };
-pub const LUA_TOKEN = CREATE_RESTRICTED_TOKEN_FLAGS{ .LUA_TOKEN = 1 };
-pub const WRITE_RESTRICTED = CREATE_RESTRICTED_TOKEN_FLAGS{ .WRITE_RESTRICTED = 1 };
 
-pub const LOGON32_LOGON = enum(u32) {
-    BATCH = 4,
-    INTERACTIVE = 2,
-    NETWORK = 3,
-    NETWORK_CLEARTEXT = 8,
-    NEW_CREDENTIALS = 9,
-    SERVICE = 5,
-    UNLOCK = 7,
+pub const ACCESS_ALLOWED_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
 };
-pub const LOGON32_LOGON_BATCH = LOGON32_LOGON.BATCH;
-pub const LOGON32_LOGON_INTERACTIVE = LOGON32_LOGON.INTERACTIVE;
-pub const LOGON32_LOGON_NETWORK = LOGON32_LOGON.NETWORK;
-pub const LOGON32_LOGON_NETWORK_CLEARTEXT = LOGON32_LOGON.NETWORK_CLEARTEXT;
-pub const LOGON32_LOGON_NEW_CREDENTIALS = LOGON32_LOGON.NEW_CREDENTIALS;
-pub const LOGON32_LOGON_SERVICE = LOGON32_LOGON.SERVICE;
-pub const LOGON32_LOGON_UNLOCK = LOGON32_LOGON.UNLOCK;
+
+pub const ACCESS_DENIED_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const ACCESS_DENIED_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const ACCESS_DENIED_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const ACCESS_DENIED_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const ACCESS_REASONS = extern struct {
+    Data: [32]u32,
+};
 
 pub const ACE_FLAGS = packed struct(u32) {
     OBJECT_INHERIT_ACE: u1 = 0,
@@ -191,6 +151,302 @@ pub const INHERIT_NO_PROPAGATE = ACE_FLAGS{ .NO_PROPAGATE_INHERIT_ACE = 1 };
 pub const INHERIT_ONLY = ACE_FLAGS{ .INHERIT_ONLY_ACE = 1 };
 pub const NO_INHERITANCE = ACE_FLAGS{ };
 
+pub const ACE_HEADER = extern struct {
+    AceType: u8,
+    AceFlags: u8,
+    AceSize: u16,
+};
+
+pub const ACE_REVISION = enum(u32) {
+    N = 2,
+    _DS = 4,
+};
+pub const ACL_REVISION = ACE_REVISION.N;
+pub const ACL_REVISION_DS = ACE_REVISION._DS;
+
+pub const ACL = extern struct {
+    AclRevision: u8,
+    Sbz1: u8,
+    AclSize: u16,
+    AceCount: u16,
+    Sbz2: u16,
+};
+
+pub const ACL_INFORMATION_CLASS = enum(i32) {
+    RevisionInformation = 1,
+    SizeInformation = 2,
+};
+pub const AclRevisionInformation = ACL_INFORMATION_CLASS.RevisionInformation;
+pub const AclSizeInformation = ACL_INFORMATION_CLASS.SizeInformation;
+
+pub const ACL_REVISION_INFORMATION = extern struct {
+    AclRevision: u32,
+};
+
+pub const ACL_SIZE_INFORMATION = extern struct {
+    AceCount: u32,
+    AclBytesInUse: u32,
+    AclBytesFree: u32,
+};
+
+pub const AUDIT_EVENT_TYPE = enum(i32) {
+    ObjectAccess = 0,
+    DirectoryServiceAccess = 1,
+};
+pub const AuditEventObjectAccess = AUDIT_EVENT_TYPE.ObjectAccess;
+pub const AuditEventDirectoryServiceAccess = AUDIT_EVENT_TYPE.DirectoryServiceAccess;
+
+pub const CLAIM_SECURITY_ATTRIBUTE_FLAGS = packed struct(u32) {
+    NON_INHERITABLE: u1 = 0,
+    VALUE_CASE_SENSITIVE: u1 = 0,
+    USE_FOR_DENY_ONLY: u1 = 0,
+    DISABLED_BY_DEFAULT: u1 = 0,
+    DISABLED: u1 = 0,
+    MANDATORY: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .NON_INHERITABLE = 1 };
+pub const CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .VALUE_CASE_SENSITIVE = 1 };
+pub const CLAIM_SECURITY_ATTRIBUTE_USE_FOR_DENY_ONLY = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .USE_FOR_DENY_ONLY = 1 };
+pub const CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .DISABLED_BY_DEFAULT = 1 };
+pub const CLAIM_SECURITY_ATTRIBUTE_DISABLED = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .DISABLED = 1 };
+pub const CLAIM_SECURITY_ATTRIBUTE_MANDATORY = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .MANDATORY = 1 };
+
+pub const CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
+    Version: u64,
+    Name: ?PWSTR,
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
+    pValue: ?*anyopaque,
+    ValueLength: u32,
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
+    Name: u32,
+    ValueType: CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE,
+    Reserved: u16,
+    Flags: CLAIM_SECURITY_ATTRIBUTE_FLAGS,
+    ValueCount: u32,
+    Values: extern union {
+        pInt64: [1]u32,
+        pUint64: [1]u32,
+        ppString: [1]u32,
+        pFqbn: [1]u32,
+        pOctetString: [1]u32,
+    },
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
+    Name: ?PWSTR,
+    ValueType: CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE,
+    Reserved: u16,
+    Flags: u32,
+    ValueCount: u32,
+    Values: extern union {
+        pInt64: ?*i64,
+        pUint64: ?*u64,
+        ppString: ?*?PWSTR,
+        pFqbn: ?*CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE,
+        pOctetString: ?*CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
+    },
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE = enum(u16) {
+    INT64 = 1,
+    UINT64 = 2,
+    STRING = 3,
+    OCTET_STRING = 16,
+    FQBN = 4,
+    SID = 5,
+    BOOLEAN = 6,
+};
+pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_INT64 = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.INT64;
+pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_UINT64 = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.UINT64;
+pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_STRING = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.STRING;
+pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.OCTET_STRING;
+pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.FQBN;
+pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_SID = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.SID;
+pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.BOOLEAN;
+
+pub const CLAIM_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
+    Version: u16,
+    Reserved: u16,
+    AttributeCount: u32,
+    Attribute: extern union {
+        pAttributeV1: ?*CLAIM_SECURITY_ATTRIBUTE_V1,
+    },
+};
+
+pub const CREATE_RESTRICTED_TOKEN_FLAGS = packed struct(u32) {
+    DISABLE_MAX_PRIVILEGE: u1 = 0,
+    SANDBOX_INERT: u1 = 0,
+    LUA_TOKEN: u1 = 0,
+    WRITE_RESTRICTED: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const DISABLE_MAX_PRIVILEGE = CREATE_RESTRICTED_TOKEN_FLAGS{ .DISABLE_MAX_PRIVILEGE = 1 };
+pub const SANDBOX_INERT = CREATE_RESTRICTED_TOKEN_FLAGS{ .SANDBOX_INERT = 1 };
+pub const LUA_TOKEN = CREATE_RESTRICTED_TOKEN_FLAGS{ .LUA_TOKEN = 1 };
+pub const WRITE_RESTRICTED = CREATE_RESTRICTED_TOKEN_FLAGS{ .WRITE_RESTRICTED = 1 };
+
+pub const ENUM_PERIOD = enum(i32) {
+    INVALID = -1,
+    SECONDS = 0,
+    MINUTES = 1,
+    HOURS = 2,
+    DAYS = 3,
+    WEEKS = 4,
+    MONTHS = 5,
+    YEARS = 6,
+};
+pub const ENUM_PERIOD_INVALID = ENUM_PERIOD.INVALID;
+pub const ENUM_PERIOD_SECONDS = ENUM_PERIOD.SECONDS;
+pub const ENUM_PERIOD_MINUTES = ENUM_PERIOD.MINUTES;
+pub const ENUM_PERIOD_HOURS = ENUM_PERIOD.HOURS;
+pub const ENUM_PERIOD_DAYS = ENUM_PERIOD.DAYS;
+pub const ENUM_PERIOD_WEEKS = ENUM_PERIOD.WEEKS;
+pub const ENUM_PERIOD_MONTHS = ENUM_PERIOD.MONTHS;
+pub const ENUM_PERIOD_YEARS = ENUM_PERIOD.YEARS;
+
+pub const GENERIC_MAPPING = extern struct {
+    GenericRead: u32,
+    GenericWrite: u32,
+    GenericExecute: u32,
+    GenericAll: u32,
+};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDIAGNOSTIC_DATA_QUERY_SESSION = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDIAGNOSTIC_RECORD = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDIAGNOSTIC_REPORT = isize;
+
+pub const LLFILETIME = extern struct {
+    Anonymous: extern union {
+        ll: i64,
+        ft: FILETIME,
+    },
+};
+
+pub const LOGON32_LOGON = enum(u32) {
+    BATCH = 4,
+    INTERACTIVE = 2,
+    NETWORK = 3,
+    NETWORK_CLEARTEXT = 8,
+    NEW_CREDENTIALS = 9,
+    SERVICE = 5,
+    UNLOCK = 7,
+};
+pub const LOGON32_LOGON_BATCH = LOGON32_LOGON.BATCH;
+pub const LOGON32_LOGON_INTERACTIVE = LOGON32_LOGON.INTERACTIVE;
+pub const LOGON32_LOGON_NETWORK = LOGON32_LOGON.NETWORK;
+pub const LOGON32_LOGON_NETWORK_CLEARTEXT = LOGON32_LOGON.NETWORK_CLEARTEXT;
+pub const LOGON32_LOGON_NEW_CREDENTIALS = LOGON32_LOGON.NEW_CREDENTIALS;
+pub const LOGON32_LOGON_SERVICE = LOGON32_LOGON.SERVICE;
+pub const LOGON32_LOGON_UNLOCK = LOGON32_LOGON.UNLOCK;
+
+pub const LOGON32_PROVIDER = enum(u32) {
+    DEFAULT = 0,
+    WINNT50 = 3,
+    WINNT40 = 2,
+};
+pub const LOGON32_PROVIDER_DEFAULT = LOGON32_PROVIDER.DEFAULT;
+pub const LOGON32_PROVIDER_WINNT50 = LOGON32_PROVIDER.WINNT50;
+pub const LOGON32_PROVIDER_WINNT40 = LOGON32_PROVIDER.WINNT40;
+
+pub const LUID_AND_ATTRIBUTES = extern struct {
+    Luid: LUID,
+    Attributes: TOKEN_PRIVILEGES_ATTRIBUTES,
+};
+
+pub const MANDATORY_LEVEL = enum(i32) {
+    Untrusted = 0,
+    Low = 1,
+    Medium = 2,
+    High = 3,
+    System = 4,
+    SecureProcess = 5,
+    Count = 6,
+};
+pub const MandatoryLevelUntrusted = MANDATORY_LEVEL.Untrusted;
+pub const MandatoryLevelLow = MANDATORY_LEVEL.Low;
+pub const MandatoryLevelMedium = MANDATORY_LEVEL.Medium;
+pub const MandatoryLevelHigh = MANDATORY_LEVEL.High;
+pub const MandatoryLevelSystem = MANDATORY_LEVEL.System;
+pub const MandatoryLevelSecureProcess = MANDATORY_LEVEL.SecureProcess;
+pub const MandatoryLevelCount = MANDATORY_LEVEL.Count;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const NCRYPT_DESCRIPTOR_HANDLE = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const NCRYPT_STREAM_HANDLE = isize;
+
 pub const OBJECT_SECURITY_INFORMATION = packed struct(u32) {
     OWNER_SECURITY_INFORMATION: u1 = 0,
     GROUP_SECURITY_INFORMATION: u1 = 0,
@@ -238,6 +494,95 @@ pub const SCOPE_SECURITY_INFORMATION = OBJECT_SECURITY_INFORMATION{ .SCOPE_SECUR
 pub const UNPROTECTED_DACL_SECURITY_INFORMATION = OBJECT_SECURITY_INFORMATION{ .UNPROTECTED_DACL_SECURITY_INFORMATION = 1 };
 pub const UNPROTECTED_SACL_SECURITY_INFORMATION = OBJECT_SECURITY_INFORMATION{ .UNPROTECTED_SACL_SECURITY_INFORMATION = 1 };
 
+pub const OBJECT_TYPE_LIST = extern struct {
+    Level: u16,
+    Sbz: u16,
+    ObjectType: ?*Guid,
+};
+
+pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = *const fn(
+    ClientRequest: ?*?*anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    ProtocolSubmitBuffer: ?*anyopaque,
+    ClientBufferBase: ?*anyopaque,
+    SubmitBufferLength: u32,
+    ProtocolReturnBuffer: ?*?*anyopaque,
+    ReturnBufferLength: ?*u32,
+    ProtocolStatus: ?*i32,
+) callconv(.winapi) NTSTATUS;
+
+pub const PRIVILEGE_SET = extern struct {
+    PrivilegeCount: u32,
+    Control: u32,
+    Privilege: [1]LUID_AND_ATTRIBUTES,
+};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PSECURITY_DESCRIPTOR = *anyopaque;
+
+pub const QUOTA_LIMITS = extern struct {
+    PagedPoolLimit: usize,
+    NonPagedPoolLimit: usize,
+    MinimumWorkingSetSize: usize,
+    MaximumWorkingSetSize: usize,
+    PagefileLimit: usize,
+    TimeLimit: LARGE_INTEGER,
+};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const SAFER_LEVEL_HANDLE = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const SC_HANDLE = isize;
+
+pub const SE_ACCESS_REPLY = extern struct {
+    Size: u32,
+    ResultListCount: u32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*u32,
+    AccessReason: ?*ACCESS_REASONS,
+    Privileges: ?*?*PRIVILEGE_SET,
+};
+
+pub const SE_ACCESS_REQUEST = extern struct {
+    Size: u32,
+    SeSecurityDescriptor: ?*SE_SECURITY_DESCRIPTOR,
+    DesiredAccess: u32,
+    PreviouslyGrantedAccess: u32,
+    PrincipalSelfSid: ?PSID,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectTypeListCount: u32,
+    ObjectTypeList: ?*OBJECT_TYPE_LIST,
+};
+
+pub const SE_IMPERSONATION_STATE = extern struct {
+    Token: ?*anyopaque,
+    CopyOnOpen: BOOLEAN,
+    EffectiveOnly: BOOLEAN,
+    Level: SECURITY_IMPERSONATION_LEVEL,
+};
+
+pub const SE_SECURITY_DESCRIPTOR = extern struct {
+    Size: u32,
+    Flags: u32,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+};
+
+pub const SE_SID = extern union {
+    Sid: SID,
+    Buffer: [68]u8,
+};
+
+pub const SEC_THREAD_START = *const fn(
+    lpThreadParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const SECURITY_ATTRIBUTES = extern struct {
+    nLength: u32,
+    lpSecurityDescriptor: ?*anyopaque,
+    bInheritHandle: BOOL,
+};
+
 pub const SECURITY_AUTO_INHERIT_FLAGS = packed struct(u32) {
     DACL_AUTO_INHERIT: u1 = 0,
     SACL_AUTO_INHERIT: u1 = 0,
@@ -284,23 +629,153 @@ pub const SEF_MACL_NO_READ_UP = SECURITY_AUTO_INHERIT_FLAGS{ .MACL_NO_READ_UP = 
 pub const SEF_MACL_NO_WRITE_UP = SECURITY_AUTO_INHERIT_FLAGS{ .MACL_NO_WRITE_UP = 1 };
 pub const SEF_SACL_AUTO_INHERIT = SECURITY_AUTO_INHERIT_FLAGS{ .SACL_AUTO_INHERIT = 1 };
 
-pub const ACE_REVISION = enum(u32) {
-    N = 2,
-    _DS = 4,
+pub const SECURITY_CAPABILITIES = extern struct {
+    AppContainerSid: ?PSID,
+    Capabilities: ?*SID_AND_ATTRIBUTES,
+    CapabilityCount: u32,
+    Reserved: u32,
 };
-pub const ACL_REVISION = ACE_REVISION.N;
-pub const ACL_REVISION_DS = ACE_REVISION._DS;
 
-pub const TOKEN_MANDATORY_POLICY_ID = enum(u32) {
-    OFF = 0,
-    NO_WRITE_UP = 1,
-    NEW_PROCESS_MIN = 2,
-    VALID_MASK = 3,
+pub const SECURITY_DESCRIPTOR = extern struct {
+    Revision: u8,
+    Sbz1: u8,
+    Control: u16,
+    Owner: ?PSID,
+    Group: ?PSID,
+    Sacl: ?*ACL,
+    Dacl: ?*ACL,
 };
-pub const TOKEN_MANDATORY_POLICY_OFF = TOKEN_MANDATORY_POLICY_ID.OFF;
-pub const TOKEN_MANDATORY_POLICY_NO_WRITE_UP = TOKEN_MANDATORY_POLICY_ID.NO_WRITE_UP;
-pub const TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN = TOKEN_MANDATORY_POLICY_ID.NEW_PROCESS_MIN;
-pub const TOKEN_MANDATORY_POLICY_VALID_MASK = TOKEN_MANDATORY_POLICY_ID.VALID_MASK;
+
+pub const SECURITY_IMPERSONATION_LEVEL = enum(i32) {
+    Anonymous = 0,
+    Identification = 1,
+    Impersonation = 2,
+    Delegation = 3,
+};
+pub const SecurityAnonymous = SECURITY_IMPERSONATION_LEVEL.Anonymous;
+pub const SecurityIdentification = SECURITY_IMPERSONATION_LEVEL.Identification;
+pub const SecurityImpersonation = SECURITY_IMPERSONATION_LEVEL.Impersonation;
+pub const SecurityDelegation = SECURITY_IMPERSONATION_LEVEL.Delegation;
+
+pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
+    Length: u32,
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
+    ContextTrackingMode: u8,
+    EffectiveOnly: BOOLEAN,
+};
+
+pub const SID = extern struct {
+    Revision: u8,
+    SubAuthorityCount: u8,
+    IdentifierAuthority: SID_IDENTIFIER_AUTHORITY,
+    SubAuthority: [1]u32,
+};
+
+pub const SID_AND_ATTRIBUTES = extern struct {
+    Sid: ?PSID,
+    Attributes: u32,
+};
+
+pub const SID_AND_ATTRIBUTES_HASH = extern struct {
+    SidCount: u32,
+    SidAttr: ?*SID_AND_ATTRIBUTES,
+    Hash: [32]usize,
+};
+
+pub const SID_IDENTIFIER_AUTHORITY = extern struct {
+    Value: [6]u8,
+};
+
+pub const SID_NAME_USE = enum(i32) {
+    User = 1,
+    Group = 2,
+    Domain = 3,
+    Alias = 4,
+    WellKnownGroup = 5,
+    DeletedAccount = 6,
+    Invalid = 7,
+    Unknown = 8,
+    Computer = 9,
+    Label = 10,
+    LogonSession = 11,
+};
+pub const SidTypeUser = SID_NAME_USE.User;
+pub const SidTypeGroup = SID_NAME_USE.Group;
+pub const SidTypeDomain = SID_NAME_USE.Domain;
+pub const SidTypeAlias = SID_NAME_USE.Alias;
+pub const SidTypeWellKnownGroup = SID_NAME_USE.WellKnownGroup;
+pub const SidTypeDeletedAccount = SID_NAME_USE.DeletedAccount;
+pub const SidTypeInvalid = SID_NAME_USE.Invalid;
+pub const SidTypeUnknown = SID_NAME_USE.Unknown;
+pub const SidTypeComputer = SID_NAME_USE.Computer;
+pub const SidTypeLabel = SID_NAME_USE.Label;
+pub const SidTypeLogonSession = SID_NAME_USE.LogonSession;
+
+pub const SYSTEM_ACCESS_FILTER_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
 
 pub const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = packed struct(u32) {
     OBJECT_TYPE_PRESENT: u1 = 0,
@@ -339,78 +814,45 @@ pub const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = packed struct(u32) {
 pub const ACE_OBJECT_TYPE_PRESENT = SYSTEM_AUDIT_OBJECT_ACE_FLAGS{ .OBJECT_TYPE_PRESENT = 1 };
 pub const ACE_INHERITED_OBJECT_TYPE_PRESENT = SYSTEM_AUDIT_OBJECT_ACE_FLAGS{ .INHERITED_OBJECT_TYPE_PRESENT = 1 };
 
-pub const CLAIM_SECURITY_ATTRIBUTE_FLAGS = packed struct(u32) {
-    NON_INHERITABLE: u1 = 0,
-    VALUE_CASE_SENSITIVE: u1 = 0,
-    USE_FOR_DENY_ONLY: u1 = 0,
-    DISABLED_BY_DEFAULT: u1 = 0,
-    DISABLED: u1 = 0,
-    MANDATORY: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
+pub const SYSTEM_MANDATORY_LABEL_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
 };
-pub const CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .NON_INHERITABLE = 1 };
-pub const CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .VALUE_CASE_SENSITIVE = 1 };
-pub const CLAIM_SECURITY_ATTRIBUTE_USE_FOR_DENY_ONLY = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .USE_FOR_DENY_ONLY = 1 };
-pub const CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .DISABLED_BY_DEFAULT = 1 };
-pub const CLAIM_SECURITY_ATTRIBUTE_DISABLED = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .DISABLED = 1 };
-pub const CLAIM_SECURITY_ATTRIBUTE_MANDATORY = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .MANDATORY = 1 };
 
-pub const CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE = enum(u16) {
-    INT64 = 1,
-    UINT64 = 2,
-    STRING = 3,
-    OCTET_STRING = 16,
-    FQBN = 4,
-    SID = 5,
-    BOOLEAN = 6,
+pub const SYSTEM_PROCESS_TRUST_LABEL_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
 };
-pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_INT64 = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.INT64;
-pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_UINT64 = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.UINT64;
-pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_STRING = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.STRING;
-pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.OCTET_STRING;
-pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.FQBN;
-pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_SID = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.SID;
-pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.BOOLEAN;
 
-pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = *const fn(
-    ClientRequest: ?*?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: ?*anyopaque,
-    ClientBufferBase: ?*anyopaque,
-    SubmitBufferLength: u32,
-    ProtocolReturnBuffer: ?*?*anyopaque,
-    ReturnBufferLength: ?*u32,
-    ProtocolStatus: ?*i32,
-) callconv(.winapi) NTSTATUS;
+pub const SYSTEM_RESOURCE_ATTRIBUTE_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
 
-pub const SEC_THREAD_START = *const fn(
-    lpThreadParameter: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const SYSTEM_SCOPED_POLICY_ID_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const TOKEN_ACCESS_INFORMATION = extern struct {
+    SidHash: ?*SID_AND_ATTRIBUTES_HASH,
+    RestrictedSidHash: ?*SID_AND_ATTRIBUTES_HASH,
+    Privileges: ?*TOKEN_PRIVILEGES,
+    AuthenticationId: LUID,
+    TokenType: TOKEN_TYPE,
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
+    MandatoryPolicy: TOKEN_MANDATORY_POLICY,
+    Flags: u32,
+    AppContainerNumber: u32,
+    PackageSid: ?PSID,
+    CapabilitiesHash: ?*SID_AND_ATTRIBUTES_HASH,
+    TrustLevelSid: ?PSID,
+    SecurityAttributes: ?*anyopaque,
+};
 
 pub const TOKEN_ACCESS_MASK = packed struct(u32) {
     ASSIGN_PRIMARY: u1 = 0,
@@ -500,133 +942,269 @@ pub const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK{
     .WRITE_OWNER = 1,
 };
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDIAGNOSTIC_DATA_QUERY_SESSION = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDIAGNOSTIC_REPORT = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDIAGNOSTIC_RECORD = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const NCRYPT_DESCRIPTOR_HANDLE = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const NCRYPT_STREAM_HANDLE = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const SAFER_LEVEL_HANDLE = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const SC_HANDLE = isize;
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const PSECURITY_DESCRIPTOR = *anyopaque;
-
-pub const SECURITY_ATTRIBUTES = extern struct {
-    nLength: u32,
-    lpSecurityDescriptor: ?*anyopaque,
-    bInheritHandle: BOOL,
+pub const TOKEN_APPCONTAINER_INFORMATION = extern struct {
+    TokenAppContainer: ?PSID,
 };
 
-pub const ENUM_PERIOD = enum(i32) {
-    INVALID = -1,
-    SECONDS = 0,
-    MINUTES = 1,
-    HOURS = 2,
-    DAYS = 3,
-    WEEKS = 4,
-    MONTHS = 5,
-    YEARS = 6,
-};
-pub const ENUM_PERIOD_INVALID = ENUM_PERIOD.INVALID;
-pub const ENUM_PERIOD_SECONDS = ENUM_PERIOD.SECONDS;
-pub const ENUM_PERIOD_MINUTES = ENUM_PERIOD.MINUTES;
-pub const ENUM_PERIOD_HOURS = ENUM_PERIOD.HOURS;
-pub const ENUM_PERIOD_DAYS = ENUM_PERIOD.DAYS;
-pub const ENUM_PERIOD_WEEKS = ENUM_PERIOD.WEEKS;
-pub const ENUM_PERIOD_MONTHS = ENUM_PERIOD.MONTHS;
-pub const ENUM_PERIOD_YEARS = ENUM_PERIOD.YEARS;
-
-pub const LLFILETIME = extern struct {
-    Anonymous: extern union {
-        ll: i64,
-        ft: FILETIME,
-    },
+pub const TOKEN_AUDIT_POLICY = extern struct {
+    PerUserPolicy: [30]u8,
 };
 
-pub const GENERIC_MAPPING = extern struct {
-    GenericRead: u32,
-    GenericWrite: u32,
-    GenericExecute: u32,
-    GenericAll: u32,
+pub const TOKEN_CONTROL = extern struct {
+    TokenId: LUID,
+    AuthenticationId: LUID,
+    ModifiedId: LUID,
+    TokenSource: TOKEN_SOURCE,
 };
 
-pub const LUID_AND_ATTRIBUTES = extern struct {
-    Luid: LUID,
-    Attributes: TOKEN_PRIVILEGES_ATTRIBUTES,
+pub const TOKEN_DEFAULT_DACL = extern struct {
+    DefaultDacl: ?*ACL,
 };
 
-pub const SID_IDENTIFIER_AUTHORITY = extern struct {
-    Value: [6]u8,
+pub const TOKEN_DEVICE_CLAIMS = extern struct {
+    DeviceClaims: ?*anyopaque,
 };
 
-pub const SID = extern struct {
-    Revision: u8,
-    SubAuthorityCount: u8,
-    IdentifierAuthority: SID_IDENTIFIER_AUTHORITY,
-    SubAuthority: [1]u32,
+pub const TOKEN_ELEVATION = extern struct {
+    TokenIsElevated: u32,
 };
 
-pub const SE_SID = extern union {
-    Sid: SID,
-    Buffer: [68]u8,
+pub const TOKEN_ELEVATION_TYPE = enum(i32) {
+    Default = 1,
+    Full = 2,
+    Limited = 3,
+};
+pub const TokenElevationTypeDefault = TOKEN_ELEVATION_TYPE.Default;
+pub const TokenElevationTypeFull = TOKEN_ELEVATION_TYPE.Full;
+pub const TokenElevationTypeLimited = TOKEN_ELEVATION_TYPE.Limited;
+
+pub const TOKEN_GROUPS = extern struct {
+    GroupCount: u32,
+    Groups: [1]SID_AND_ATTRIBUTES,
 };
 
-pub const SID_NAME_USE = enum(i32) {
-    User = 1,
-    Group = 2,
-    Domain = 3,
-    Alias = 4,
-    WellKnownGroup = 5,
-    DeletedAccount = 6,
-    Invalid = 7,
-    Unknown = 8,
-    Computer = 9,
-    Label = 10,
-    LogonSession = 11,
-};
-pub const SidTypeUser = SID_NAME_USE.User;
-pub const SidTypeGroup = SID_NAME_USE.Group;
-pub const SidTypeDomain = SID_NAME_USE.Domain;
-pub const SidTypeAlias = SID_NAME_USE.Alias;
-pub const SidTypeWellKnownGroup = SID_NAME_USE.WellKnownGroup;
-pub const SidTypeDeletedAccount = SID_NAME_USE.DeletedAccount;
-pub const SidTypeInvalid = SID_NAME_USE.Invalid;
-pub const SidTypeUnknown = SID_NAME_USE.Unknown;
-pub const SidTypeComputer = SID_NAME_USE.Computer;
-pub const SidTypeLabel = SID_NAME_USE.Label;
-pub const SidTypeLogonSession = SID_NAME_USE.LogonSession;
-
-pub const SID_AND_ATTRIBUTES = extern struct {
-    Sid: ?PSID,
-    Attributes: u32,
-};
-
-pub const SID_AND_ATTRIBUTES_HASH = extern struct {
+pub const TOKEN_GROUPS_AND_PRIVILEGES = extern struct {
     SidCount: u32,
-    SidAttr: ?*SID_AND_ATTRIBUTES,
-    Hash: [32]usize,
+    SidLength: u32,
+    Sids: ?*SID_AND_ATTRIBUTES,
+    RestrictedSidCount: u32,
+    RestrictedSidLength: u32,
+    RestrictedSids: ?*SID_AND_ATTRIBUTES,
+    PrivilegeCount: u32,
+    PrivilegeLength: u32,
+    Privileges: ?*LUID_AND_ATTRIBUTES,
+    AuthenticationId: LUID,
+};
+
+pub const TOKEN_INFORMATION_CLASS = enum(i32) {
+    TokenUser = 1,
+    TokenGroups = 2,
+    TokenPrivileges = 3,
+    TokenOwner = 4,
+    TokenPrimaryGroup = 5,
+    TokenDefaultDacl = 6,
+    TokenSource = 7,
+    TokenType = 8,
+    TokenImpersonationLevel = 9,
+    TokenStatistics = 10,
+    TokenRestrictedSids = 11,
+    TokenSessionId = 12,
+    TokenGroupsAndPrivileges = 13,
+    TokenSessionReference = 14,
+    TokenSandBoxInert = 15,
+    TokenAuditPolicy = 16,
+    TokenOrigin = 17,
+    TokenElevationType = 18,
+    TokenLinkedToken = 19,
+    TokenElevation = 20,
+    TokenHasRestrictions = 21,
+    TokenAccessInformation = 22,
+    TokenVirtualizationAllowed = 23,
+    TokenVirtualizationEnabled = 24,
+    TokenIntegrityLevel = 25,
+    TokenUIAccess = 26,
+    TokenMandatoryPolicy = 27,
+    TokenLogonSid = 28,
+    TokenIsAppContainer = 29,
+    TokenCapabilities = 30,
+    TokenAppContainerSid = 31,
+    TokenAppContainerNumber = 32,
+    TokenUserClaimAttributes = 33,
+    TokenDeviceClaimAttributes = 34,
+    TokenRestrictedUserClaimAttributes = 35,
+    TokenRestrictedDeviceClaimAttributes = 36,
+    TokenDeviceGroups = 37,
+    TokenRestrictedDeviceGroups = 38,
+    TokenSecurityAttributes = 39,
+    TokenIsRestricted = 40,
+    TokenProcessTrustLevel = 41,
+    TokenPrivateNameSpace = 42,
+    TokenSingletonAttributes = 43,
+    TokenBnoIsolation = 44,
+    TokenChildProcessFlags = 45,
+    TokenIsLessPrivilegedAppContainer = 46,
+    TokenIsSandboxed = 47,
+    MaxTokenInfoClass = 48,
+};
+pub const TokenUser = TOKEN_INFORMATION_CLASS.TokenUser;
+pub const TokenGroups = TOKEN_INFORMATION_CLASS.TokenGroups;
+pub const TokenPrivileges = TOKEN_INFORMATION_CLASS.TokenPrivileges;
+pub const TokenOwner = TOKEN_INFORMATION_CLASS.TokenOwner;
+pub const TokenPrimaryGroup = TOKEN_INFORMATION_CLASS.TokenPrimaryGroup;
+pub const TokenDefaultDacl = TOKEN_INFORMATION_CLASS.TokenDefaultDacl;
+pub const TokenSource = TOKEN_INFORMATION_CLASS.TokenSource;
+pub const TokenType = TOKEN_INFORMATION_CLASS.TokenType;
+pub const TokenImpersonationLevel = TOKEN_INFORMATION_CLASS.TokenImpersonationLevel;
+pub const TokenStatistics = TOKEN_INFORMATION_CLASS.TokenStatistics;
+pub const TokenRestrictedSids = TOKEN_INFORMATION_CLASS.TokenRestrictedSids;
+pub const TokenSessionId = TOKEN_INFORMATION_CLASS.TokenSessionId;
+pub const TokenGroupsAndPrivileges = TOKEN_INFORMATION_CLASS.TokenGroupsAndPrivileges;
+pub const TokenSessionReference = TOKEN_INFORMATION_CLASS.TokenSessionReference;
+pub const TokenSandBoxInert = TOKEN_INFORMATION_CLASS.TokenSandBoxInert;
+pub const TokenAuditPolicy = TOKEN_INFORMATION_CLASS.TokenAuditPolicy;
+pub const TokenOrigin = TOKEN_INFORMATION_CLASS.TokenOrigin;
+pub const TokenElevationType = TOKEN_INFORMATION_CLASS.TokenElevationType;
+pub const TokenLinkedToken = TOKEN_INFORMATION_CLASS.TokenLinkedToken;
+pub const TokenElevation = TOKEN_INFORMATION_CLASS.TokenElevation;
+pub const TokenHasRestrictions = TOKEN_INFORMATION_CLASS.TokenHasRestrictions;
+pub const TokenAccessInformation = TOKEN_INFORMATION_CLASS.TokenAccessInformation;
+pub const TokenVirtualizationAllowed = TOKEN_INFORMATION_CLASS.TokenVirtualizationAllowed;
+pub const TokenVirtualizationEnabled = TOKEN_INFORMATION_CLASS.TokenVirtualizationEnabled;
+pub const TokenIntegrityLevel = TOKEN_INFORMATION_CLASS.TokenIntegrityLevel;
+pub const TokenUIAccess = TOKEN_INFORMATION_CLASS.TokenUIAccess;
+pub const TokenMandatoryPolicy = TOKEN_INFORMATION_CLASS.TokenMandatoryPolicy;
+pub const TokenLogonSid = TOKEN_INFORMATION_CLASS.TokenLogonSid;
+pub const TokenIsAppContainer = TOKEN_INFORMATION_CLASS.TokenIsAppContainer;
+pub const TokenCapabilities = TOKEN_INFORMATION_CLASS.TokenCapabilities;
+pub const TokenAppContainerSid = TOKEN_INFORMATION_CLASS.TokenAppContainerSid;
+pub const TokenAppContainerNumber = TOKEN_INFORMATION_CLASS.TokenAppContainerNumber;
+pub const TokenUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenUserClaimAttributes;
+pub const TokenDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenDeviceClaimAttributes;
+pub const TokenRestrictedUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedUserClaimAttributes;
+pub const TokenRestrictedDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceClaimAttributes;
+pub const TokenDeviceGroups = TOKEN_INFORMATION_CLASS.TokenDeviceGroups;
+pub const TokenRestrictedDeviceGroups = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceGroups;
+pub const TokenSecurityAttributes = TOKEN_INFORMATION_CLASS.TokenSecurityAttributes;
+pub const TokenIsRestricted = TOKEN_INFORMATION_CLASS.TokenIsRestricted;
+pub const TokenProcessTrustLevel = TOKEN_INFORMATION_CLASS.TokenProcessTrustLevel;
+pub const TokenPrivateNameSpace = TOKEN_INFORMATION_CLASS.TokenPrivateNameSpace;
+pub const TokenSingletonAttributes = TOKEN_INFORMATION_CLASS.TokenSingletonAttributes;
+pub const TokenBnoIsolation = TOKEN_INFORMATION_CLASS.TokenBnoIsolation;
+pub const TokenChildProcessFlags = TOKEN_INFORMATION_CLASS.TokenChildProcessFlags;
+pub const TokenIsLessPrivilegedAppContainer = TOKEN_INFORMATION_CLASS.TokenIsLessPrivilegedAppContainer;
+pub const TokenIsSandboxed = TOKEN_INFORMATION_CLASS.TokenIsSandboxed;
+pub const MaxTokenInfoClass = TOKEN_INFORMATION_CLASS.MaxTokenInfoClass;
+
+pub const TOKEN_LINKED_TOKEN = extern struct {
+    LinkedToken: ?HANDLE,
+};
+
+pub const TOKEN_MANDATORY_LABEL = extern struct {
+    Label: SID_AND_ATTRIBUTES,
+};
+
+pub const TOKEN_MANDATORY_POLICY = extern struct {
+    Policy: TOKEN_MANDATORY_POLICY_ID,
+};
+
+pub const TOKEN_MANDATORY_POLICY_ID = enum(u32) {
+    OFF = 0,
+    NO_WRITE_UP = 1,
+    NEW_PROCESS_MIN = 2,
+    VALID_MASK = 3,
+};
+pub const TOKEN_MANDATORY_POLICY_OFF = TOKEN_MANDATORY_POLICY_ID.OFF;
+pub const TOKEN_MANDATORY_POLICY_NO_WRITE_UP = TOKEN_MANDATORY_POLICY_ID.NO_WRITE_UP;
+pub const TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN = TOKEN_MANDATORY_POLICY_ID.NEW_PROCESS_MIN;
+pub const TOKEN_MANDATORY_POLICY_VALID_MASK = TOKEN_MANDATORY_POLICY_ID.VALID_MASK;
+
+pub const TOKEN_ORIGIN = extern struct {
+    OriginatingLogonSession: LUID,
+};
+
+pub const TOKEN_OWNER = extern struct {
+    Owner: ?PSID,
+};
+
+pub const TOKEN_PRIMARY_GROUP = extern struct {
+    PrimaryGroup: ?PSID,
+};
+
+pub const TOKEN_PRIVILEGES = extern struct {
+    PrivilegeCount: u32,
+    Privileges: [1]LUID_AND_ATTRIBUTES,
+};
+
+pub const TOKEN_PRIVILEGES_ATTRIBUTES = packed struct(u32) {
+    ENABLED_BY_DEFAULT: u1 = 0,
+    ENABLED: u1 = 0,
+    REMOVED: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    USED_FOR_ACCESS: u1 = 0,
+};
+pub const SE_PRIVILEGE_ENABLED = TOKEN_PRIVILEGES_ATTRIBUTES{ .ENABLED = 1 };
+pub const SE_PRIVILEGE_ENABLED_BY_DEFAULT = TOKEN_PRIVILEGES_ATTRIBUTES{ .ENABLED_BY_DEFAULT = 1 };
+pub const SE_PRIVILEGE_REMOVED = TOKEN_PRIVILEGES_ATTRIBUTES{ .REMOVED = 1 };
+pub const SE_PRIVILEGE_USED_FOR_ACCESS = TOKEN_PRIVILEGES_ATTRIBUTES{ .USED_FOR_ACCESS = 1 };
+
+pub const TOKEN_SOURCE = extern struct {
+    SourceName: [8]CHAR,
+    SourceIdentifier: LUID,
+};
+
+pub const TOKEN_STATISTICS = extern struct {
+    TokenId: LUID,
+    AuthenticationId: LUID,
+    ExpirationTime: LARGE_INTEGER,
+    TokenType: TOKEN_TYPE,
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
+    DynamicCharged: u32,
+    DynamicAvailable: u32,
+    GroupCount: u32,
+    PrivilegeCount: u32,
+    ModifiedId: LUID,
+};
+
+pub const TOKEN_TYPE = enum(i32) {
+    Primary = 1,
+    Impersonation = 2,
+};
+pub const TokenPrimary = TOKEN_TYPE.Primary;
+pub const TokenImpersonation = TOKEN_TYPE.Impersonation;
+
+pub const TOKEN_USER = extern struct {
+    User: SID_AND_ATTRIBUTES,
+};
+
+pub const TOKEN_USER_CLAIMS = extern struct {
+    UserClaims: ?*anyopaque,
 };
 
 pub const WELL_KNOWN_SID_TYPE = enum(i32) {
@@ -872,584 +1450,6 @@ pub const WinAuthenticationKeyPropertyAttestationSid = WELL_KNOWN_SID_TYPE.Authe
 pub const WinAuthenticationFreshKeyAuthSid = WELL_KNOWN_SID_TYPE.AuthenticationFreshKeyAuthSid;
 pub const WinBuiltinDeviceOwnersSid = WELL_KNOWN_SID_TYPE.BuiltinDeviceOwnersSid;
 
-pub const ACL = extern struct {
-    AclRevision: u8,
-    Sbz1: u8,
-    AclSize: u16,
-    AceCount: u16,
-    Sbz2: u16,
-};
-
-pub const ACE_HEADER = extern struct {
-    AceType: u8,
-    AceFlags: u8,
-    AceSize: u16,
-};
-
-pub const ACCESS_ALLOWED_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_RESOURCE_ATTRIBUTE_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_SCOPED_POLICY_ID_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_MANDATORY_LABEL_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_PROCESS_TRUST_LABEL_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ACCESS_FILTER_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_ALLOWED_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACCESS_ALLOWED_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACL_INFORMATION_CLASS = enum(i32) {
-    RevisionInformation = 1,
-    SizeInformation = 2,
-};
-pub const AclRevisionInformation = ACL_INFORMATION_CLASS.RevisionInformation;
-pub const AclSizeInformation = ACL_INFORMATION_CLASS.SizeInformation;
-
-pub const ACL_REVISION_INFORMATION = extern struct {
-    AclRevision: u32,
-};
-
-pub const ACL_SIZE_INFORMATION = extern struct {
-    AceCount: u32,
-    AclBytesInUse: u32,
-    AclBytesFree: u32,
-};
-
-pub const SECURITY_DESCRIPTOR = extern struct {
-    Revision: u8,
-    Sbz1: u8,
-    Control: u16,
-    Owner: ?PSID,
-    Group: ?PSID,
-    Sacl: ?*ACL,
-    Dacl: ?*ACL,
-};
-
-pub const OBJECT_TYPE_LIST = extern struct {
-    Level: u16,
-    Sbz: u16,
-    ObjectType: ?*Guid,
-};
-
-pub const AUDIT_EVENT_TYPE = enum(i32) {
-    ObjectAccess = 0,
-    DirectoryServiceAccess = 1,
-};
-pub const AuditEventObjectAccess = AUDIT_EVENT_TYPE.ObjectAccess;
-pub const AuditEventDirectoryServiceAccess = AUDIT_EVENT_TYPE.DirectoryServiceAccess;
-
-pub const PRIVILEGE_SET = extern struct {
-    PrivilegeCount: u32,
-    Control: u32,
-    Privilege: [1]LUID_AND_ATTRIBUTES,
-};
-
-pub const ACCESS_REASONS = extern struct {
-    Data: [32]u32,
-};
-
-pub const SE_SECURITY_DESCRIPTOR = extern struct {
-    Size: u32,
-    Flags: u32,
-    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-};
-
-pub const SE_ACCESS_REQUEST = extern struct {
-    Size: u32,
-    SeSecurityDescriptor: ?*SE_SECURITY_DESCRIPTOR,
-    DesiredAccess: u32,
-    PreviouslyGrantedAccess: u32,
-    PrincipalSelfSid: ?PSID,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectTypeListCount: u32,
-    ObjectTypeList: ?*OBJECT_TYPE_LIST,
-};
-
-pub const SE_ACCESS_REPLY = extern struct {
-    Size: u32,
-    ResultListCount: u32,
-    GrantedAccess: ?*u32,
-    AccessStatus: ?*u32,
-    AccessReason: ?*ACCESS_REASONS,
-    Privileges: ?*?*PRIVILEGE_SET,
-};
-
-pub const SECURITY_IMPERSONATION_LEVEL = enum(i32) {
-    Anonymous = 0,
-    Identification = 1,
-    Impersonation = 2,
-    Delegation = 3,
-};
-pub const SecurityAnonymous = SECURITY_IMPERSONATION_LEVEL.Anonymous;
-pub const SecurityIdentification = SECURITY_IMPERSONATION_LEVEL.Identification;
-pub const SecurityImpersonation = SECURITY_IMPERSONATION_LEVEL.Impersonation;
-pub const SecurityDelegation = SECURITY_IMPERSONATION_LEVEL.Delegation;
-
-pub const TOKEN_TYPE = enum(i32) {
-    Primary = 1,
-    Impersonation = 2,
-};
-pub const TokenPrimary = TOKEN_TYPE.Primary;
-pub const TokenImpersonation = TOKEN_TYPE.Impersonation;
-
-pub const TOKEN_ELEVATION_TYPE = enum(i32) {
-    Default = 1,
-    Full = 2,
-    Limited = 3,
-};
-pub const TokenElevationTypeDefault = TOKEN_ELEVATION_TYPE.Default;
-pub const TokenElevationTypeFull = TOKEN_ELEVATION_TYPE.Full;
-pub const TokenElevationTypeLimited = TOKEN_ELEVATION_TYPE.Limited;
-
-pub const TOKEN_INFORMATION_CLASS = enum(i32) {
-    TokenUser = 1,
-    TokenGroups = 2,
-    TokenPrivileges = 3,
-    TokenOwner = 4,
-    TokenPrimaryGroup = 5,
-    TokenDefaultDacl = 6,
-    TokenSource = 7,
-    TokenType = 8,
-    TokenImpersonationLevel = 9,
-    TokenStatistics = 10,
-    TokenRestrictedSids = 11,
-    TokenSessionId = 12,
-    TokenGroupsAndPrivileges = 13,
-    TokenSessionReference = 14,
-    TokenSandBoxInert = 15,
-    TokenAuditPolicy = 16,
-    TokenOrigin = 17,
-    TokenElevationType = 18,
-    TokenLinkedToken = 19,
-    TokenElevation = 20,
-    TokenHasRestrictions = 21,
-    TokenAccessInformation = 22,
-    TokenVirtualizationAllowed = 23,
-    TokenVirtualizationEnabled = 24,
-    TokenIntegrityLevel = 25,
-    TokenUIAccess = 26,
-    TokenMandatoryPolicy = 27,
-    TokenLogonSid = 28,
-    TokenIsAppContainer = 29,
-    TokenCapabilities = 30,
-    TokenAppContainerSid = 31,
-    TokenAppContainerNumber = 32,
-    TokenUserClaimAttributes = 33,
-    TokenDeviceClaimAttributes = 34,
-    TokenRestrictedUserClaimAttributes = 35,
-    TokenRestrictedDeviceClaimAttributes = 36,
-    TokenDeviceGroups = 37,
-    TokenRestrictedDeviceGroups = 38,
-    TokenSecurityAttributes = 39,
-    TokenIsRestricted = 40,
-    TokenProcessTrustLevel = 41,
-    TokenPrivateNameSpace = 42,
-    TokenSingletonAttributes = 43,
-    TokenBnoIsolation = 44,
-    TokenChildProcessFlags = 45,
-    TokenIsLessPrivilegedAppContainer = 46,
-    TokenIsSandboxed = 47,
-    MaxTokenInfoClass = 48,
-};
-pub const TokenUser = TOKEN_INFORMATION_CLASS.TokenUser;
-pub const TokenGroups = TOKEN_INFORMATION_CLASS.TokenGroups;
-pub const TokenPrivileges = TOKEN_INFORMATION_CLASS.TokenPrivileges;
-pub const TokenOwner = TOKEN_INFORMATION_CLASS.TokenOwner;
-pub const TokenPrimaryGroup = TOKEN_INFORMATION_CLASS.TokenPrimaryGroup;
-pub const TokenDefaultDacl = TOKEN_INFORMATION_CLASS.TokenDefaultDacl;
-pub const TokenSource = TOKEN_INFORMATION_CLASS.TokenSource;
-pub const TokenType = TOKEN_INFORMATION_CLASS.TokenType;
-pub const TokenImpersonationLevel = TOKEN_INFORMATION_CLASS.TokenImpersonationLevel;
-pub const TokenStatistics = TOKEN_INFORMATION_CLASS.TokenStatistics;
-pub const TokenRestrictedSids = TOKEN_INFORMATION_CLASS.TokenRestrictedSids;
-pub const TokenSessionId = TOKEN_INFORMATION_CLASS.TokenSessionId;
-pub const TokenGroupsAndPrivileges = TOKEN_INFORMATION_CLASS.TokenGroupsAndPrivileges;
-pub const TokenSessionReference = TOKEN_INFORMATION_CLASS.TokenSessionReference;
-pub const TokenSandBoxInert = TOKEN_INFORMATION_CLASS.TokenSandBoxInert;
-pub const TokenAuditPolicy = TOKEN_INFORMATION_CLASS.TokenAuditPolicy;
-pub const TokenOrigin = TOKEN_INFORMATION_CLASS.TokenOrigin;
-pub const TokenElevationType = TOKEN_INFORMATION_CLASS.TokenElevationType;
-pub const TokenLinkedToken = TOKEN_INFORMATION_CLASS.TokenLinkedToken;
-pub const TokenElevation = TOKEN_INFORMATION_CLASS.TokenElevation;
-pub const TokenHasRestrictions = TOKEN_INFORMATION_CLASS.TokenHasRestrictions;
-pub const TokenAccessInformation = TOKEN_INFORMATION_CLASS.TokenAccessInformation;
-pub const TokenVirtualizationAllowed = TOKEN_INFORMATION_CLASS.TokenVirtualizationAllowed;
-pub const TokenVirtualizationEnabled = TOKEN_INFORMATION_CLASS.TokenVirtualizationEnabled;
-pub const TokenIntegrityLevel = TOKEN_INFORMATION_CLASS.TokenIntegrityLevel;
-pub const TokenUIAccess = TOKEN_INFORMATION_CLASS.TokenUIAccess;
-pub const TokenMandatoryPolicy = TOKEN_INFORMATION_CLASS.TokenMandatoryPolicy;
-pub const TokenLogonSid = TOKEN_INFORMATION_CLASS.TokenLogonSid;
-pub const TokenIsAppContainer = TOKEN_INFORMATION_CLASS.TokenIsAppContainer;
-pub const TokenCapabilities = TOKEN_INFORMATION_CLASS.TokenCapabilities;
-pub const TokenAppContainerSid = TOKEN_INFORMATION_CLASS.TokenAppContainerSid;
-pub const TokenAppContainerNumber = TOKEN_INFORMATION_CLASS.TokenAppContainerNumber;
-pub const TokenUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenUserClaimAttributes;
-pub const TokenDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenDeviceClaimAttributes;
-pub const TokenRestrictedUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedUserClaimAttributes;
-pub const TokenRestrictedDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceClaimAttributes;
-pub const TokenDeviceGroups = TOKEN_INFORMATION_CLASS.TokenDeviceGroups;
-pub const TokenRestrictedDeviceGroups = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceGroups;
-pub const TokenSecurityAttributes = TOKEN_INFORMATION_CLASS.TokenSecurityAttributes;
-pub const TokenIsRestricted = TOKEN_INFORMATION_CLASS.TokenIsRestricted;
-pub const TokenProcessTrustLevel = TOKEN_INFORMATION_CLASS.TokenProcessTrustLevel;
-pub const TokenPrivateNameSpace = TOKEN_INFORMATION_CLASS.TokenPrivateNameSpace;
-pub const TokenSingletonAttributes = TOKEN_INFORMATION_CLASS.TokenSingletonAttributes;
-pub const TokenBnoIsolation = TOKEN_INFORMATION_CLASS.TokenBnoIsolation;
-pub const TokenChildProcessFlags = TOKEN_INFORMATION_CLASS.TokenChildProcessFlags;
-pub const TokenIsLessPrivilegedAppContainer = TOKEN_INFORMATION_CLASS.TokenIsLessPrivilegedAppContainer;
-pub const TokenIsSandboxed = TOKEN_INFORMATION_CLASS.TokenIsSandboxed;
-pub const MaxTokenInfoClass = TOKEN_INFORMATION_CLASS.MaxTokenInfoClass;
-
-pub const TOKEN_USER = extern struct {
-    User: SID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_GROUPS = extern struct {
-    GroupCount: u32,
-    Groups: [1]SID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_PRIVILEGES = extern struct {
-    PrivilegeCount: u32,
-    Privileges: [1]LUID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_OWNER = extern struct {
-    Owner: ?PSID,
-};
-
-pub const TOKEN_PRIMARY_GROUP = extern struct {
-    PrimaryGroup: ?PSID,
-};
-
-pub const TOKEN_DEFAULT_DACL = extern struct {
-    DefaultDacl: ?*ACL,
-};
-
-pub const TOKEN_USER_CLAIMS = extern struct {
-    UserClaims: ?*anyopaque,
-};
-
-pub const TOKEN_DEVICE_CLAIMS = extern struct {
-    DeviceClaims: ?*anyopaque,
-};
-
-pub const TOKEN_GROUPS_AND_PRIVILEGES = extern struct {
-    SidCount: u32,
-    SidLength: u32,
-    Sids: ?*SID_AND_ATTRIBUTES,
-    RestrictedSidCount: u32,
-    RestrictedSidLength: u32,
-    RestrictedSids: ?*SID_AND_ATTRIBUTES,
-    PrivilegeCount: u32,
-    PrivilegeLength: u32,
-    Privileges: ?*LUID_AND_ATTRIBUTES,
-    AuthenticationId: LUID,
-};
-
-pub const TOKEN_LINKED_TOKEN = extern struct {
-    LinkedToken: ?HANDLE,
-};
-
-pub const TOKEN_ELEVATION = extern struct {
-    TokenIsElevated: u32,
-};
-
-pub const TOKEN_MANDATORY_LABEL = extern struct {
-    Label: SID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_MANDATORY_POLICY = extern struct {
-    Policy: TOKEN_MANDATORY_POLICY_ID,
-};
-
-pub const TOKEN_ACCESS_INFORMATION = extern struct {
-    SidHash: ?*SID_AND_ATTRIBUTES_HASH,
-    RestrictedSidHash: ?*SID_AND_ATTRIBUTES_HASH,
-    Privileges: ?*TOKEN_PRIVILEGES,
-    AuthenticationId: LUID,
-    TokenType: TOKEN_TYPE,
-    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    MandatoryPolicy: TOKEN_MANDATORY_POLICY,
-    Flags: u32,
-    AppContainerNumber: u32,
-    PackageSid: ?PSID,
-    CapabilitiesHash: ?*SID_AND_ATTRIBUTES_HASH,
-    TrustLevelSid: ?PSID,
-    SecurityAttributes: ?*anyopaque,
-};
-
-pub const TOKEN_AUDIT_POLICY = extern struct {
-    PerUserPolicy: [30]u8,
-};
-
-pub const TOKEN_SOURCE = extern struct {
-    SourceName: [8]CHAR,
-    SourceIdentifier: LUID,
-};
-
-pub const TOKEN_STATISTICS = extern struct {
-    TokenId: LUID,
-    AuthenticationId: LUID,
-    ExpirationTime: LARGE_INTEGER,
-    TokenType: TOKEN_TYPE,
-    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    DynamicCharged: u32,
-    DynamicAvailable: u32,
-    GroupCount: u32,
-    PrivilegeCount: u32,
-    ModifiedId: LUID,
-};
-
-pub const TOKEN_CONTROL = extern struct {
-    TokenId: LUID,
-    AuthenticationId: LUID,
-    ModifiedId: LUID,
-    TokenSource: TOKEN_SOURCE,
-};
-
-pub const TOKEN_ORIGIN = extern struct {
-    OriginatingLogonSession: LUID,
-};
-
-pub const MANDATORY_LEVEL = enum(i32) {
-    Untrusted = 0,
-    Low = 1,
-    Medium = 2,
-    High = 3,
-    System = 4,
-    SecureProcess = 5,
-    Count = 6,
-};
-pub const MandatoryLevelUntrusted = MANDATORY_LEVEL.Untrusted;
-pub const MandatoryLevelLow = MANDATORY_LEVEL.Low;
-pub const MandatoryLevelMedium = MANDATORY_LEVEL.Medium;
-pub const MandatoryLevelHigh = MANDATORY_LEVEL.High;
-pub const MandatoryLevelSystem = MANDATORY_LEVEL.System;
-pub const MandatoryLevelSecureProcess = MANDATORY_LEVEL.SecureProcess;
-pub const MandatoryLevelCount = MANDATORY_LEVEL.Count;
-
-pub const TOKEN_APPCONTAINER_INFORMATION = extern struct {
-    TokenAppContainer: ?PSID,
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
-    Version: u64,
-    Name: ?PWSTR,
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
-    pValue: ?*anyopaque,
-    ValueLength: u32,
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
-    Name: ?PWSTR,
-    ValueType: CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE,
-    Reserved: u16,
-    Flags: u32,
-    ValueCount: u32,
-    Values: extern union {
-        pInt64: ?*i64,
-        pUint64: ?*u64,
-        ppString: ?*?PWSTR,
-        pFqbn: ?*CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE,
-        pOctetString: ?*CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
-    },
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
-    Name: u32,
-    ValueType: CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE,
-    Reserved: u16,
-    Flags: CLAIM_SECURITY_ATTRIBUTE_FLAGS,
-    ValueCount: u32,
-    Values: extern union {
-        pInt64: [1]u32,
-        pUint64: [1]u32,
-        ppString: [1]u32,
-        pFqbn: [1]u32,
-        pOctetString: [1]u32,
-    },
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
-    Version: u16,
-    Reserved: u16,
-    AttributeCount: u32,
-    Attribute: extern union {
-        pAttributeV1: ?*CLAIM_SECURITY_ATTRIBUTE_V1,
-    },
-};
-
-pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
-    Length: u32,
-    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    ContextTrackingMode: u8,
-    EffectiveOnly: BOOLEAN,
-};
-
-pub const SE_IMPERSONATION_STATE = extern struct {
-    Token: ?*anyopaque,
-    CopyOnOpen: BOOLEAN,
-    EffectiveOnly: BOOLEAN,
-    Level: SECURITY_IMPERSONATION_LEVEL,
-};
-
-pub const SECURITY_CAPABILITIES = extern struct {
-    AppContainerSid: ?PSID,
-    Capabilities: ?*SID_AND_ATTRIBUTES,
-    CapabilityCount: u32,
-    Reserved: u32,
-};
-
-pub const QUOTA_LIMITS = extern struct {
-    PagedPoolLimit: usize,
-    NonPagedPoolLimit: usize,
-    MinimumWorkingSetSize: usize,
-    MaximumWorkingSetSize: usize,
-    PagefileLimit: usize,
-    TimeLimit: LARGE_INTEGER,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (133)
@@ -1465,6 +1465,21 @@ pub extern "advapi32" fn AccessCheck(
     PrivilegeSetLength: ?*u32,
     GrantedAccess: ?*u32,
     AccessStatus: ?*i32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn AccessCheckAndAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*anyopaque,
+    ObjectTypeName: ?PSTR,
+    ObjectName: ?PSTR,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    DesiredAccess: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn AccessCheckAndAuditAlarmW(
@@ -1498,19 +1513,23 @@ pub extern "advapi32" fn AccessCheckByType(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn AccessCheckByTypeResultList(
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+pub extern "advapi32" fn AccessCheckByTypeAndAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*anyopaque,
+    ObjectTypeName: ?[*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
-    ClientToken: ?HANDLE,
     DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
     GenericMapping: ?*GENERIC_MAPPING,
-    // TODO: what to do with BytesParamIndex 8?
-    PrivilegeSet: ?*PRIVILEGE_SET,
-    PrivilegeSetLength: ?*u32,
-    GrantedAccessList: [*]u32,
-    AccessStatusList: [*]u32,
+    ObjectCreation: BOOL,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn AccessCheckByTypeAndAuditAlarmW(
@@ -1532,9 +1551,67 @@ pub extern "advapi32" fn AccessCheckByTypeAndAuditAlarmW(
     pfGenerateOnClose: ?*i32,
 ) callconv(.winapi) BOOL;
 
-pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmW(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn AccessCheckByTypeResultList(
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    PrincipalSelfSid: ?PSID,
+    ClientToken: ?HANDLE,
+    DesiredAccess: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    // TODO: what to do with BytesParamIndex 8?
+    PrivilegeSet: ?*PRIVILEGE_SET,
+    PrivilegeSetLength: ?*u32,
+    GrantedAccessList: [*]u32,
+    AccessStatusList: [*]u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*anyopaque,
+    ObjectTypeName: ?[*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    PrincipalSelfSid: ?PSID,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: ?*i32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*anyopaque,
+    ClientToken: ?HANDLE,
+    ObjectTypeName: ?[*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    PrincipalSelfSid: ?PSID,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: ?*i32,
+) callconv(.winapi) BOOL;
+
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
+    ClientToken: ?HANDLE,
     ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
     SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
@@ -1551,10 +1628,9 @@ pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmW(
     pfGenerateOnClose: ?*i32,
 ) callconv(.winapi) BOOL;
 
-pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
-    ClientToken: ?HANDLE,
     ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
     SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
@@ -1671,6 +1747,18 @@ pub extern "advapi32" fn AddAuditAccessObjectAce(
     bAuditFailure: BOOL,
 ) callconv(.winapi) BOOL;
 
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "advapi32" fn AddConditionalAce(
+    pAcl: ?*ACL,
+    dwAceRevision: u32,
+    AceFlags: ACE_FLAGS,
+    AceType: u8,
+    AccessMask: u32,
+    pSid: ?PSID,
+    ConditionStr: ?[*]u16,
+    ReturnLength: ?*u32,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn AddMandatoryAce(
     pAcl: ?*ACL,
@@ -1754,13 +1842,6 @@ pub extern "advapi32" fn AreAnyAccessesGranted(
     DesiredAccess: u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn CheckTokenMembership(
-    TokenHandle: ?HANDLE,
-    SidToCheck: ?PSID,
-    IsMember: ?*BOOL,
-) callconv(.winapi) BOOL;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn CheckTokenCapability(
     TokenHandle: ?HANDLE,
@@ -1768,11 +1849,11 @@ pub extern "kernel32" fn CheckTokenCapability(
     HasCapability: ?*BOOL,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn GetAppContainerAce(
-    Acl: ?*ACL,
-    StartingAceIndex: u32,
-    AppContainerAce: ?*?*anyopaque,
-    AppContainerAceIndex: ?*u32,
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn CheckTokenMembership(
+    TokenHandle: ?HANDLE,
+    SidToCheck: ?PSID,
+    IsMember: ?*BOOL,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1859,16 +1940,17 @@ pub extern "advapi32" fn CreateWellKnownSid(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn EqualDomainSid(
-    pSid1: ?PSID,
-    pSid2: ?PSID,
-    pfEqual: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn DeleteAce(
     pAcl: ?*ACL,
     dwAceIndex: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "api-ms-win-security-base-l1-2-2" fn DeriveCapabilitySidsFromName(
+    CapName: ?[*:0]const u16,
+    CapabilityGroupSids: ?*?*?PSID,
+    CapabilityGroupSidCount: ?*u32,
+    CapabilitySids: ?*?*?PSID,
+    CapabilitySidCount: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1891,6 +1973,13 @@ pub extern "advapi32" fn DuplicateTokenEx(
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     TokenType: TOKEN_TYPE,
     phNewToken: ?*?HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn EqualDomainSid(
+    pSid1: ?PSID,
+    pSid2: ?PSID,
+    pfEqual: ?*BOOL,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1930,6 +2019,33 @@ pub extern "advapi32" fn GetAclInformation(
     pAclInformation: ?*anyopaque,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetAppContainerAce(
+    Acl: ?*ACL,
+    StartingAceIndex: u32,
+    AppContainerAce: ?*?*anyopaque,
+    AppContainerAceIndex: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetCachedSigningLevel(
+    File: ?HANDLE,
+    Flags: ?*u32,
+    SigningLevel: ?*u32,
+    // TODO: what to do with BytesParamIndex 4?
+    Thumbprint: ?*u8,
+    ThumbprintSize: ?*u32,
+    ThumbprintAlgorithm: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn GetFileSecurityA(
+    lpFileName: ?[*:0]const u8,
+    RequestedInformation: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    nLength: u32,
+    lpnLengthNeeded: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn GetFileSecurityW(
@@ -2046,6 +2162,16 @@ pub extern "advapi32" fn GetTokenInformation(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "user32" fn GetUserObjectSecurity(
+    hObj: ?HANDLE,
+    pSIRequested: ?*u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pSID: ?PSECURITY_DESCRIPTOR,
+    nLength: u32,
+    lpnLengthNeeded: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetWindowsAccountDomainSid(
     pSid: ?PSID,
     // TODO: what to do with BytesParamIndex 2?
@@ -2116,6 +2242,150 @@ pub extern "advapi32" fn IsWellKnownSid(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LogonUserA(
+    lpszUsername: ?[*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LogonUserExA(
+    lpszUsername: ?[*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+    ppLogonSid: ?*?PSID,
+    // TODO: what to do with BytesParamIndex 8?
+    ppProfileBuffer: ?*?*anyopaque,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LogonUserExW(
+    lpszUsername: ?[*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+    ppLogonSid: ?*?PSID,
+    // TODO: what to do with BytesParamIndex 8?
+    ppProfileBuffer: ?*?*anyopaque,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LogonUserW(
+    lpszUsername: ?[*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupAccountNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpAccountName: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Sid: ?PSID,
+    cbSid: ?*u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupAccountNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpAccountName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    Sid: ?PSID,
+    cbSid: ?*u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupAccountSidA(
+    lpSystemName: ?[*:0]const u8,
+    Sid: ?PSID,
+    Name: ?[*:0]u8,
+    cchName: ?*u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupAccountSidW(
+    lpSystemName: ?[*:0]const u16,
+    Sid: ?PSID,
+    Name: ?[*:0]u16,
+    cchName: ?*u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupPrivilegeDisplayNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpDisplayName: ?[*:0]u8,
+    cchDisplayName: ?*u32,
+    lpLanguageId: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupPrivilegeDisplayNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpDisplayName: ?[*:0]u16,
+    cchDisplayName: ?*u32,
+    lpLanguageId: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupPrivilegeNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpLuid: ?*LUID,
+    lpName: ?[*:0]u8,
+    cchName: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupPrivilegeNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpLuid: ?*LUID,
+    lpName: ?[*:0]u16,
+    cchName: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupPrivilegeValueA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpLuid: ?*LUID,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupPrivilegeValueW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpLuid: ?*LUID,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn MakeAbsoluteSD(
     pSelfRelativeSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     // TODO: what to do with BytesParamIndex 2?
@@ -2149,8 +2419,22 @@ pub extern "advapi32" fn MapGenericMask(
     GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(.winapi) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ObjectCloseAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*anyopaque,
+    GenerateOnClose: BOOL,
+) callconv(.winapi) BOOL;
+
 pub extern "advapi32" fn ObjectCloseAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
+    HandleId: ?*anyopaque,
+    GenerateOnClose: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ObjectDeleteAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(.winapi) BOOL;
@@ -2159,6 +2443,22 @@ pub extern "advapi32" fn ObjectDeleteAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ObjectOpenAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*anyopaque,
+    ObjectTypeName: ?PSTR,
+    ObjectName: ?PSTR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    ClientToken: ?HANDLE,
+    DesiredAccess: u32,
+    GrantedAccess: u32,
+    Privileges: ?*PRIVILEGE_SET,
+    ObjectCreation: BOOL,
+    AccessGranted: BOOL,
+    GenerateOnClose: ?*i32,
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn ObjectOpenAuditAlarmW(
@@ -2176,6 +2476,16 @@ pub extern "advapi32" fn ObjectOpenAuditAlarmW(
     GenerateOnClose: ?*i32,
 ) callconv(.winapi) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ObjectPrivilegeAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*anyopaque,
+    ClientToken: ?HANDLE,
+    DesiredAccess: u32,
+    Privileges: ?*PRIVILEGE_SET,
+    AccessGranted: BOOL,
+) callconv(.winapi) BOOL;
+
 pub extern "advapi32" fn ObjectPrivilegeAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
@@ -2190,6 +2500,15 @@ pub extern "advapi32" fn PrivilegeCheck(
     ClientToken: ?HANDLE,
     RequiredPrivileges: ?*PRIVILEGE_SET,
     pfResult: ?*i32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn PrivilegedServiceAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    ServiceName: ?[*:0]const u8,
+    ClientToken: ?HANDLE,
+    Privileges: ?*PRIVILEGE_SET,
+    AccessGranted: BOOL,
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn PrivilegedServiceAuditAlarmW(
@@ -2211,12 +2530,41 @@ pub extern "advapi32" fn RevertToSelf(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlConvertSidToUnicodeString(
+    UnicodeString: ?*UNICODE_STRING,
+    Sid: ?PSID,
+    AllocateDestinationString: BOOLEAN,
+) callconv(.winapi) NTSTATUS;
+
+pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
+    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+    SecurityDescriptorLength: u32,
+    NewSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+    NewSecurityDescriptorLength: ?*u32,
+    CheckOnly: BOOLEAN,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetAclInformation(
     pAcl: ?*ACL,
     // TODO: what to do with BytesParamIndex 2?
     pAclInformation: ?*anyopaque,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn SetCachedSigningLevel(
+    SourceFiles: [*]?HANDLE,
+    SourceFileCount: u32,
+    Flags: u32,
+    TargetFile: ?HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn SetFileSecurityA(
+    lpFileName: ?[*:0]const u8,
+    SecurityInformation: u32,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn SetFileSecurityW(
@@ -2309,360 +2657,12 @@ pub extern "advapi32" fn SetTokenInformation(
     TokenInformationLength: u32,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn SetCachedSigningLevel(
-    SourceFiles: [*]?HANDLE,
-    SourceFileCount: u32,
-    Flags: u32,
-    TargetFile: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetCachedSigningLevel(
-    File: ?HANDLE,
-    Flags: ?*u32,
-    SigningLevel: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
-    Thumbprint: ?*u8,
-    ThumbprintSize: ?*u32,
-    ThumbprintAlgorithm: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "api-ms-win-security-base-l1-2-2" fn DeriveCapabilitySidsFromName(
-    CapName: ?[*:0]const u16,
-    CapabilityGroupSids: ?*?*?PSID,
-    CapabilityGroupSidCount: ?*u32,
-    CapabilitySids: ?*?*?PSID,
-    CapabilitySidCount: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
-    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-    SecurityDescriptorLength: u32,
-    NewSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-    NewSecurityDescriptorLength: ?*u32,
-    CheckOnly: BOOLEAN,
-) callconv(.winapi) BOOLEAN;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn SetUserObjectSecurity(
     hObj: ?HANDLE,
     pSIRequested: ?*OBJECT_SECURITY_INFORMATION,
     pSID: ?PSECURITY_DESCRIPTOR,
 ) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetUserObjectSecurity(
-    hObj: ?HANDLE,
-    pSIRequested: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSID: ?PSECURITY_DESCRIPTOR,
-    nLength: u32,
-    lpnLengthNeeded: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn AccessCheckAndAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    ObjectTypeName: ?PSTR,
-    ObjectName: ?PSTR,
-    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    DesiredAccess: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: ?*u32,
-    AccessStatus: ?*i32,
-    pfGenerateOnClose: ?*i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn AccessCheckByTypeAndAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    ObjectTypeName: ?[*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    PrincipalSelfSid: ?PSID,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: ?*u32,
-    AccessStatus: ?*i32,
-    pfGenerateOnClose: ?*i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    ObjectTypeName: ?[*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    PrincipalSelfSid: ?PSID,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: ?*i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    ClientToken: ?HANDLE,
-    ObjectTypeName: ?[*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    PrincipalSelfSid: ?PSID,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: ?*i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ObjectOpenAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    ObjectTypeName: ?PSTR,
-    ObjectName: ?PSTR,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    ClientToken: ?HANDLE,
-    DesiredAccess: u32,
-    GrantedAccess: u32,
-    Privileges: ?*PRIVILEGE_SET,
-    ObjectCreation: BOOL,
-    AccessGranted: BOOL,
-    GenerateOnClose: ?*i32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ObjectPrivilegeAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    ClientToken: ?HANDLE,
-    DesiredAccess: u32,
-    Privileges: ?*PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ObjectCloseAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    GenerateOnClose: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ObjectDeleteAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*anyopaque,
-    GenerateOnClose: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn PrivilegedServiceAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    ServiceName: ?[*:0]const u8,
-    ClientToken: ?HANDLE,
-    Privileges: ?*PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "advapi32" fn AddConditionalAce(
-    pAcl: ?*ACL,
-    dwAceRevision: u32,
-    AceFlags: ACE_FLAGS,
-    AceType: u8,
-    AccessMask: u32,
-    pSid: ?PSID,
-    ConditionStr: ?[*]u16,
-    ReturnLength: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SetFileSecurityA(
-    lpFileName: ?[*:0]const u8,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn GetFileSecurityA(
-    lpFileName: ?[*:0]const u8,
-    RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    nLength: u32,
-    lpnLengthNeeded: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupAccountSidA(
-    lpSystemName: ?[*:0]const u8,
-    Sid: ?PSID,
-    Name: ?[*:0]u8,
-    cchName: ?*u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupAccountSidW(
-    lpSystemName: ?[*:0]const u16,
-    Sid: ?PSID,
-    Name: ?[*:0]u16,
-    cchName: ?*u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupAccountNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpAccountName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
-    Sid: ?PSID,
-    cbSid: ?*u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupAccountNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpAccountName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    Sid: ?PSID,
-    cbSid: ?*u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupPrivilegeValueA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    lpLuid: ?*LUID,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupPrivilegeValueW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    lpLuid: ?*LUID,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupPrivilegeNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpLuid: ?*LUID,
-    lpName: ?[*:0]u8,
-    cchName: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupPrivilegeNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpLuid: ?*LUID,
-    lpName: ?[*:0]u16,
-    cchName: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupPrivilegeDisplayNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    lpDisplayName: ?[*:0]u8,
-    cchDisplayName: ?*u32,
-    lpLanguageId: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupPrivilegeDisplayNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    lpDisplayName: ?[*:0]u16,
-    cchDisplayName: ?*u32,
-    lpLanguageId: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LogonUserA(
-    lpszUsername: ?[*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LogonUserW(
-    lpszUsername: ?[*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LogonUserExA(
-    lpszUsername: ?[*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-    ppLogonSid: ?*?PSID,
-    // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*anyopaque,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LogonUserExW(
-    lpszUsername: ?[*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-    ppLogonSid: ?*?PSID,
-    // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*anyopaque,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlConvertSidToUnicodeString(
-    UnicodeString: ?*UNICODE_STRING,
-    Sid: ?PSID,
-    AllocateDestinationString: BOOLEAN,
-) callconv(.winapi) NTSTATUS;
 
 
 //--------------------------------------------------------------------------------
@@ -2701,6 +2701,55 @@ pub const GetFileSecurity = switch (@import("zig.zig").unicode_mode) {
     .wide => @This().GetFileSecurityW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'GetFileSecurity' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LogonUser = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LogonUserA,
+    .wide => @This().LogonUserW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LogonUser' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LogonUserEx = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LogonUserExA,
+    .wide => @This().LogonUserExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LogonUserEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupAccountName = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupAccountNameA,
+    .wide => @This().LookupAccountNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupAccountName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupAccountSid = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupAccountSidA,
+    .wide => @This().LookupAccountSidW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupAccountSid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupPrivilegeDisplayName = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupPrivilegeDisplayNameA,
+    .wide => @This().LookupPrivilegeDisplayNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupPrivilegeName = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupPrivilegeNameA,
+    .wide => @This().LookupPrivilegeNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupPrivilegeValue = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupPrivilegeValueA,
+    .wide => @This().LookupPrivilegeValueW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const ObjectCloseAuditAlarm = switch (@import("zig.zig").unicode_mode) {
@@ -2743,55 +2792,6 @@ pub const SetFileSecurity = switch (@import("zig.zig").unicode_mode) {
     .wide => @This().SetFileSecurityW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'SetFileSecurity' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LookupAccountSid = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LookupAccountSidA,
-    .wide => @This().LookupAccountSidW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupAccountSid' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LookupAccountName = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LookupAccountNameA,
-    .wide => @This().LookupAccountNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupAccountName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LookupPrivilegeValue = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LookupPrivilegeValueA,
-    .wide => @This().LookupPrivilegeValueW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LookupPrivilegeName = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LookupPrivilegeNameA,
-    .wide => @This().LookupPrivilegeNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LookupPrivilegeDisplayName = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LookupPrivilegeDisplayNameA,
-    .wide => @This().LookupPrivilegeDisplayNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LogonUser = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LogonUserA,
-    .wide => @This().LogonUserW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LogonUser' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LogonUserEx = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LogonUserExA,
-    .wide => @This().LogonUserExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LogonUserEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

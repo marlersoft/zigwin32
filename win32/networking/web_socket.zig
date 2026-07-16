@@ -7,8 +7,56 @@ pub const WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = @as(u32, 123);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const WEB_SOCKET_HANDLE = isize;
+pub const WEB_SOCKET_ACTION = enum(i32) {
+    NO_ACTION = 0,
+    SEND_TO_NETWORK_ACTION = 1,
+    INDICATE_SEND_COMPLETE_ACTION = 2,
+    RECEIVE_FROM_NETWORK_ACTION = 3,
+    INDICATE_RECEIVE_COMPLETE_ACTION = 4,
+};
+pub const WEB_SOCKET_NO_ACTION = WEB_SOCKET_ACTION.NO_ACTION;
+pub const WEB_SOCKET_SEND_TO_NETWORK_ACTION = WEB_SOCKET_ACTION.SEND_TO_NETWORK_ACTION;
+pub const WEB_SOCKET_INDICATE_SEND_COMPLETE_ACTION = WEB_SOCKET_ACTION.INDICATE_SEND_COMPLETE_ACTION;
+pub const WEB_SOCKET_RECEIVE_FROM_NETWORK_ACTION = WEB_SOCKET_ACTION.RECEIVE_FROM_NETWORK_ACTION;
+pub const WEB_SOCKET_INDICATE_RECEIVE_COMPLETE_ACTION = WEB_SOCKET_ACTION.INDICATE_RECEIVE_COMPLETE_ACTION;
+
+pub const WEB_SOCKET_ACTION_QUEUE = enum(i32) {
+    SEND_ACTION_QUEUE = 1,
+    RECEIVE_ACTION_QUEUE = 2,
+    ALL_ACTION_QUEUE = 3,
+};
+pub const WEB_SOCKET_SEND_ACTION_QUEUE = WEB_SOCKET_ACTION_QUEUE.SEND_ACTION_QUEUE;
+pub const WEB_SOCKET_RECEIVE_ACTION_QUEUE = WEB_SOCKET_ACTION_QUEUE.RECEIVE_ACTION_QUEUE;
+pub const WEB_SOCKET_ALL_ACTION_QUEUE = WEB_SOCKET_ACTION_QUEUE.ALL_ACTION_QUEUE;
+
+pub const WEB_SOCKET_BUFFER = extern union {
+    Data: extern struct {
+        pbBuffer: ?*u8,
+        ulBufferLength: u32,
+    },
+    CloseStatus: extern struct {
+        pbReason: ?*u8,
+        ulReasonLength: u32,
+        usStatus: u16,
+    },
+};
+
+pub const WEB_SOCKET_BUFFER_TYPE = enum(i32) {
+    UTF8_MESSAGE_BUFFER_TYPE = -2147483648,
+    UTF8_FRAGMENT_BUFFER_TYPE = -2147483647,
+    BINARY_MESSAGE_BUFFER_TYPE = -2147483646,
+    BINARY_FRAGMENT_BUFFER_TYPE = -2147483645,
+    CLOSE_BUFFER_TYPE = -2147483644,
+    PING_PONG_BUFFER_TYPE = -2147483643,
+    UNSOLICITED_PONG_BUFFER_TYPE = -2147483642,
+};
+pub const WEB_SOCKET_UTF8_MESSAGE_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.UTF8_MESSAGE_BUFFER_TYPE;
+pub const WEB_SOCKET_UTF8_FRAGMENT_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.UTF8_FRAGMENT_BUFFER_TYPE;
+pub const WEB_SOCKET_BINARY_MESSAGE_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.BINARY_MESSAGE_BUFFER_TYPE;
+pub const WEB_SOCKET_BINARY_FRAGMENT_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.BINARY_FRAGMENT_BUFFER_TYPE;
+pub const WEB_SOCKET_CLOSE_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.CLOSE_BUFFER_TYPE;
+pub const WEB_SOCKET_PING_PONG_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.PING_PONG_BUFFER_TYPE;
+pub const WEB_SOCKET_UNSOLICITED_PONG_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.UNSOLICITED_PONG_BUFFER_TYPE;
 
 pub const WEB_SOCKET_CLOSE_STATUS = enum(i32) {
     SUCCESS_CLOSE_STATUS = 1000,
@@ -37,6 +85,22 @@ pub const WEB_SOCKET_UNSUPPORTED_EXTENSIONS_CLOSE_STATUS = WEB_SOCKET_CLOSE_STAT
 pub const WEB_SOCKET_SERVER_ERROR_CLOSE_STATUS = WEB_SOCKET_CLOSE_STATUS.SERVER_ERROR_CLOSE_STATUS;
 pub const WEB_SOCKET_SECURE_HANDSHAKE_ERROR_CLOSE_STATUS = WEB_SOCKET_CLOSE_STATUS.SECURE_HANDSHAKE_ERROR_CLOSE_STATUS;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const WEB_SOCKET_HANDLE = isize;
+
+pub const WEB_SOCKET_HTTP_HEADER = extern struct {
+    pcName: ?[*]u8,
+    ulNameLength: u32,
+    pcValue: ?[*]u8,
+    ulValueLength: u32,
+};
+
+pub const WEB_SOCKET_PROPERTY = extern struct {
+    Type: WEB_SOCKET_PROPERTY_TYPE,
+    pvValue: ?*anyopaque,
+    ulValueSize: u32,
+};
+
 pub const WEB_SOCKET_PROPERTY_TYPE = enum(i32) {
     RECEIVE_BUFFER_SIZE_PROPERTY_TYPE = 0,
     SEND_BUFFER_SIZE_PROPERTY_TYPE = 1,
@@ -54,80 +118,14 @@ pub const WEB_SOCKET_DISABLE_UTF8_VERIFICATION_PROPERTY_TYPE = WEB_SOCKET_PROPER
 pub const WEB_SOCKET_KEEPALIVE_INTERVAL_PROPERTY_TYPE = WEB_SOCKET_PROPERTY_TYPE.KEEPALIVE_INTERVAL_PROPERTY_TYPE;
 pub const WEB_SOCKET_SUPPORTED_VERSIONS_PROPERTY_TYPE = WEB_SOCKET_PROPERTY_TYPE.SUPPORTED_VERSIONS_PROPERTY_TYPE;
 
-pub const WEB_SOCKET_ACTION_QUEUE = enum(i32) {
-    SEND_ACTION_QUEUE = 1,
-    RECEIVE_ACTION_QUEUE = 2,
-    ALL_ACTION_QUEUE = 3,
-};
-pub const WEB_SOCKET_SEND_ACTION_QUEUE = WEB_SOCKET_ACTION_QUEUE.SEND_ACTION_QUEUE;
-pub const WEB_SOCKET_RECEIVE_ACTION_QUEUE = WEB_SOCKET_ACTION_QUEUE.RECEIVE_ACTION_QUEUE;
-pub const WEB_SOCKET_ALL_ACTION_QUEUE = WEB_SOCKET_ACTION_QUEUE.ALL_ACTION_QUEUE;
-
-pub const WEB_SOCKET_BUFFER_TYPE = enum(i32) {
-    UTF8_MESSAGE_BUFFER_TYPE = -2147483648,
-    UTF8_FRAGMENT_BUFFER_TYPE = -2147483647,
-    BINARY_MESSAGE_BUFFER_TYPE = -2147483646,
-    BINARY_FRAGMENT_BUFFER_TYPE = -2147483645,
-    CLOSE_BUFFER_TYPE = -2147483644,
-    PING_PONG_BUFFER_TYPE = -2147483643,
-    UNSOLICITED_PONG_BUFFER_TYPE = -2147483642,
-};
-pub const WEB_SOCKET_UTF8_MESSAGE_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.UTF8_MESSAGE_BUFFER_TYPE;
-pub const WEB_SOCKET_UTF8_FRAGMENT_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.UTF8_FRAGMENT_BUFFER_TYPE;
-pub const WEB_SOCKET_BINARY_MESSAGE_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.BINARY_MESSAGE_BUFFER_TYPE;
-pub const WEB_SOCKET_BINARY_FRAGMENT_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.BINARY_FRAGMENT_BUFFER_TYPE;
-pub const WEB_SOCKET_CLOSE_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.CLOSE_BUFFER_TYPE;
-pub const WEB_SOCKET_PING_PONG_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.PING_PONG_BUFFER_TYPE;
-pub const WEB_SOCKET_UNSOLICITED_PONG_BUFFER_TYPE = WEB_SOCKET_BUFFER_TYPE.UNSOLICITED_PONG_BUFFER_TYPE;
-
-pub const WEB_SOCKET_ACTION = enum(i32) {
-    NO_ACTION = 0,
-    SEND_TO_NETWORK_ACTION = 1,
-    INDICATE_SEND_COMPLETE_ACTION = 2,
-    RECEIVE_FROM_NETWORK_ACTION = 3,
-    INDICATE_RECEIVE_COMPLETE_ACTION = 4,
-};
-pub const WEB_SOCKET_NO_ACTION = WEB_SOCKET_ACTION.NO_ACTION;
-pub const WEB_SOCKET_SEND_TO_NETWORK_ACTION = WEB_SOCKET_ACTION.SEND_TO_NETWORK_ACTION;
-pub const WEB_SOCKET_INDICATE_SEND_COMPLETE_ACTION = WEB_SOCKET_ACTION.INDICATE_SEND_COMPLETE_ACTION;
-pub const WEB_SOCKET_RECEIVE_FROM_NETWORK_ACTION = WEB_SOCKET_ACTION.RECEIVE_FROM_NETWORK_ACTION;
-pub const WEB_SOCKET_INDICATE_RECEIVE_COMPLETE_ACTION = WEB_SOCKET_ACTION.INDICATE_RECEIVE_COMPLETE_ACTION;
-
-pub const WEB_SOCKET_PROPERTY = extern struct {
-    Type: WEB_SOCKET_PROPERTY_TYPE,
-    pvValue: ?*anyopaque,
-    ulValueSize: u32,
-};
-
-pub const WEB_SOCKET_HTTP_HEADER = extern struct {
-    pcName: ?[*]u8,
-    ulNameLength: u32,
-    pcValue: ?[*]u8,
-    ulValueLength: u32,
-};
-
-pub const WEB_SOCKET_BUFFER = extern union {
-    Data: extern struct {
-        pbBuffer: ?*u8,
-        ulBufferLength: u32,
-    },
-    CloseStatus: extern struct {
-        pbReason: ?*u8,
-        ulReasonLength: u32,
-        usStatus: u16,
-    },
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketCreateClientHandle(
-    pProperties: [*]const WEB_SOCKET_PROPERTY,
-    ulPropertyCount: u32,
-    phWebSocket: ?*WEB_SOCKET_HANDLE,
-) callconv(.winapi) HRESULT;
+pub extern "websocket" fn WebSocketAbortHandle(
+    hWebSocket: WEB_SOCKET_HANDLE,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketBeginClientHandshake(
@@ -143,23 +141,6 @@ pub extern "websocket" fn WebSocketBeginClientHandshake(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketEndClientHandshake(
-    hWebSocket: WEB_SOCKET_HANDLE,
-    pResponseHeaders: [*]const WEB_SOCKET_HTTP_HEADER,
-    ulReponseHeaderCount: u32,
-    pulSelectedExtensions: ?[*]u32,
-    pulSelectedExtensionCount: ?*u32,
-    pulSelectedSubprotocol: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketCreateServerHandle(
-    pProperties: [*]const WEB_SOCKET_PROPERTY,
-    ulPropertyCount: u32,
-    phWebSocket: ?*WEB_SOCKET_HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketBeginServerHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
     pszSubprotocolSelected: ?[*:0]const u8,
@@ -172,23 +153,44 @@ pub extern "websocket" fn WebSocketBeginServerHandshake(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
+pub extern "websocket" fn WebSocketCompleteAction(
+    hWebSocket: WEB_SOCKET_HANDLE,
+    pvActionContext: ?*anyopaque,
+    ulBytesTransferred: u32,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "websocket" fn WebSocketCreateClientHandle(
+    pProperties: [*]const WEB_SOCKET_PROPERTY,
+    ulPropertyCount: u32,
+    phWebSocket: ?*WEB_SOCKET_HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "websocket" fn WebSocketCreateServerHandle(
+    pProperties: [*]const WEB_SOCKET_PROPERTY,
+    ulPropertyCount: u32,
+    phWebSocket: ?*WEB_SOCKET_HANDLE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "websocket" fn WebSocketDeleteHandle(
+    hWebSocket: WEB_SOCKET_HANDLE,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "websocket" fn WebSocketEndClientHandshake(
+    hWebSocket: WEB_SOCKET_HANDLE,
+    pResponseHeaders: [*]const WEB_SOCKET_HTTP_HEADER,
+    ulReponseHeaderCount: u32,
+    pulSelectedExtensions: ?[*]u32,
+    pulSelectedExtensionCount: ?*u32,
+    pulSelectedSubprotocol: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketEndServerHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketSend(
-    hWebSocket: WEB_SOCKET_HANDLE,
-    BufferType: WEB_SOCKET_BUFFER_TYPE,
-    pBuffer: ?*WEB_SOCKET_BUFFER,
-    Context: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketReceive(
-    hWebSocket: WEB_SOCKET_HANDLE,
-    pBuffer: ?*WEB_SOCKET_BUFFER,
-    pvContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -204,27 +206,25 @@ pub extern "websocket" fn WebSocketGetAction(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketCompleteAction(
-    hWebSocket: WEB_SOCKET_HANDLE,
-    pvActionContext: ?*anyopaque,
-    ulBytesTransferred: u32,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketAbortHandle(
-    hWebSocket: WEB_SOCKET_HANDLE,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "websocket" fn WebSocketDeleteHandle(
-    hWebSocket: WEB_SOCKET_HANDLE,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketGetGlobalProperty(
     eType: WEB_SOCKET_PROPERTY_TYPE,
     pvValue: [*]u8,
     ulSize: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "websocket" fn WebSocketReceive(
+    hWebSocket: WEB_SOCKET_HANDLE,
+    pBuffer: ?*WEB_SOCKET_BUFFER,
+    pvContext: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "websocket" fn WebSocketSend(
+    hWebSocket: WEB_SOCKET_HANDLE,
+    BufferType: WEB_SOCKET_BUFFER_TYPE,
+    pBuffer: ?*WEB_SOCKET_BUFFER,
+    Context: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 

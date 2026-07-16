@@ -2,178 +2,223 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3)
 //--------------------------------------------------------------------------------
+pub const LIBID_UIRibbon = Guid.initString("942f35c2-e83b-45ef-b085-ac295dd63d5b");
 pub const UI_ALL_COMMANDS = @as(u32, 0);
 pub const UI_COLLECTION_INVALIDINDEX = @as(u32, 4294967295);
-pub const LIBID_UIRibbon = Guid.initString("942f35c2-e83b-45ef-b085-ac295dd63d5b");
 
 //--------------------------------------------------------------------------------
 // Section: Types (33)
 //--------------------------------------------------------------------------------
-const CLSID_UIRibbonFramework_Value = Guid.initString("926749fa-2615-4987-8845-c33e65f2b957");
-pub const CLSID_UIRibbonFramework = &CLSID_UIRibbonFramework_Value;
-
-const CLSID_UIRibbonImageFromBitmapFactory_Value = Guid.initString("0f7434b6-59b6-4250-999e-d168d6ae4293");
-pub const CLSID_UIRibbonImageFromBitmapFactory = &CLSID_UIRibbonImageFromBitmapFactory_Value;
-
-pub const UI_CONTEXTAVAILABILITY = enum(i32) {
-    NOTAVAILABLE = 0,
-    AVAILABLE = 1,
-    ACTIVE = 2,
-};
-pub const UI_CONTEXTAVAILABILITY_NOTAVAILABLE = UI_CONTEXTAVAILABILITY.NOTAVAILABLE;
-pub const UI_CONTEXTAVAILABILITY_AVAILABLE = UI_CONTEXTAVAILABILITY.AVAILABLE;
-pub const UI_CONTEXTAVAILABILITY_ACTIVE = UI_CONTEXTAVAILABILITY.ACTIVE;
-
-pub const UI_FONTPROPERTIES = enum(i32) {
-    NOTAVAILABLE = 0,
-    NOTSET = 1,
-    SET = 2,
-};
-pub const UI_FONTPROPERTIES_NOTAVAILABLE = UI_FONTPROPERTIES.NOTAVAILABLE;
-pub const UI_FONTPROPERTIES_NOTSET = UI_FONTPROPERTIES.NOTSET;
-pub const UI_FONTPROPERTIES_SET = UI_FONTPROPERTIES.SET;
-
-pub const UI_FONTVERTICALPOSITION = enum(i32) {
-    NOTAVAILABLE = 0,
-    NOTSET = 1,
-    SUPERSCRIPT = 2,
-    SUBSCRIPT = 3,
-};
-pub const UI_FONTVERTICALPOSITION_NOTAVAILABLE = UI_FONTVERTICALPOSITION.NOTAVAILABLE;
-pub const UI_FONTVERTICALPOSITION_NOTSET = UI_FONTVERTICALPOSITION.NOTSET;
-pub const UI_FONTVERTICALPOSITION_SUPERSCRIPT = UI_FONTVERTICALPOSITION.SUPERSCRIPT;
-pub const UI_FONTVERTICALPOSITION_SUBSCRIPT = UI_FONTVERTICALPOSITION.SUBSCRIPT;
-
-pub const UI_FONTUNDERLINE = enum(i32) {
-    NOTAVAILABLE = 0,
-    NOTSET = 1,
-    SET = 2,
-};
-pub const UI_FONTUNDERLINE_NOTAVAILABLE = UI_FONTUNDERLINE.NOTAVAILABLE;
-pub const UI_FONTUNDERLINE_NOTSET = UI_FONTUNDERLINE.NOTSET;
-pub const UI_FONTUNDERLINE_SET = UI_FONTUNDERLINE.SET;
-
-pub const UI_FONTDELTASIZE = enum(i32) {
-    GROW = 0,
-    SHRINK = 1,
-};
-pub const UI_FONTDELTASIZE_GROW = UI_FONTDELTASIZE.GROW;
-pub const UI_FONTDELTASIZE_SHRINK = UI_FONTDELTASIZE.SHRINK;
-
-pub const UI_CONTROLDOCK = enum(i32) {
-    TOP = 1,
-    BOTTOM = 3,
-};
-pub const UI_CONTROLDOCK_TOP = UI_CONTROLDOCK.TOP;
-pub const UI_CONTROLDOCK_BOTTOM = UI_CONTROLDOCK.BOTTOM;
-
-pub const UI_SWATCHCOLORTYPE = enum(i32) {
-    NOCOLOR = 0,
-    AUTOMATIC = 1,
-    RGB = 2,
-};
-pub const UI_SWATCHCOLORTYPE_NOCOLOR = UI_SWATCHCOLORTYPE.NOCOLOR;
-pub const UI_SWATCHCOLORTYPE_AUTOMATIC = UI_SWATCHCOLORTYPE.AUTOMATIC;
-pub const UI_SWATCHCOLORTYPE_RGB = UI_SWATCHCOLORTYPE.RGB;
-
-pub const UI_SWATCHCOLORMODE = enum(i32) {
-    NORMAL = 0,
-    MONOCHROME = 1,
-};
-pub const UI_SWATCHCOLORMODE_NORMAL = UI_SWATCHCOLORMODE.NORMAL;
-pub const UI_SWATCHCOLORMODE_MONOCHROME = UI_SWATCHCOLORMODE.MONOCHROME;
-
-pub const UI_EVENTTYPE = enum(i32) {
-    ApplicationMenuOpened = 0,
-    RibbonMinimized = 1,
-    RibbonExpanded = 2,
-    ApplicationModeSwitched = 3,
-    TabActivated = 4,
-    MenuOpened = 5,
-    CommandExecuted = 6,
-    TooltipShown = 7,
-};
-pub const UI_EVENTTYPE_ApplicationMenuOpened = UI_EVENTTYPE.ApplicationMenuOpened;
-pub const UI_EVENTTYPE_RibbonMinimized = UI_EVENTTYPE.RibbonMinimized;
-pub const UI_EVENTTYPE_RibbonExpanded = UI_EVENTTYPE.RibbonExpanded;
-pub const UI_EVENTTYPE_ApplicationModeSwitched = UI_EVENTTYPE.ApplicationModeSwitched;
-pub const UI_EVENTTYPE_TabActivated = UI_EVENTTYPE.TabActivated;
-pub const UI_EVENTTYPE_MenuOpened = UI_EVENTTYPE.MenuOpened;
-pub const UI_EVENTTYPE_CommandExecuted = UI_EVENTTYPE.CommandExecuted;
-pub const UI_EVENTTYPE_TooltipShown = UI_EVENTTYPE.TooltipShown;
-
-pub const UI_EVENTLOCATION = enum(i32) {
-    Ribbon = 0,
-    QAT = 1,
-    ApplicationMenu = 2,
-    ContextPopup = 3,
-};
-pub const UI_EVENTLOCATION_Ribbon = UI_EVENTLOCATION.Ribbon;
-pub const UI_EVENTLOCATION_QAT = UI_EVENTLOCATION.QAT;
-pub const UI_EVENTLOCATION_ApplicationMenu = UI_EVENTLOCATION.ApplicationMenu;
-pub const UI_EVENTLOCATION_ContextPopup = UI_EVENTLOCATION.ContextPopup;
-
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IUISimplePropertySet_Value = Guid.initString("c205bb48-5b1c-4219-a106-15bd0a5f24e2");
-pub const IID_IUISimplePropertySet = &IID_IUISimplePropertySet_Value;
-pub const IUISimplePropertySet = extern union {
+const IID_IUIApplication_Value = Guid.initString("d428903c-729a-491d-910d-682a08ff2522");
+pub const IID_IUIApplication = &IID_IUIApplication_Value;
+pub const IUIApplication = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetValue: *const fn(
-            self: *const IUISimplePropertySet,
+        OnViewChanged: *const fn(
+            self: *const IUIApplication,
+            viewId: u32,
+            typeID: UI_VIEWTYPE,
+            view: ?*IUnknown,
+            verb: UI_VIEWVERB,
+            uReasonCode: i32,
+        ) callconv(.winapi) HRESULT,
+        OnCreateUICommand: *const fn(
+            self: *const IUIApplication,
+            commandId: u32,
+            typeID: UI_COMMANDTYPE,
+            commandHandler: ?*?*IUICommandHandler,
+        ) callconv(.winapi) HRESULT,
+        OnDestroyUICommand: *const fn(
+            self: *const IUIApplication,
+            commandId: u32,
+            typeID: UI_COMMANDTYPE,
+            commandHandler: ?*IUICommandHandler,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnViewChanged(self: *const IUIApplication, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnViewChanged(self, viewId, typeID, view, verb, uReasonCode);
+    }
+    pub fn OnCreateUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.OnCreateUICommand(self, commandId, typeID, commandHandler);
+    }
+    pub fn OnDestroyUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDestroyUICommand(self, commandId, typeID, commandHandler);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUICollection_Value = Guid.initString("df4f45bf-6f9d-4dd7-9d68-d8f9cd18c4db");
+pub const IID_IUICollection = &IID_IUICollection_Value;
+pub const IUICollection = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCount: *const fn(
+            self: *const IUICollection,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetItem: *const fn(
+            self: *const IUICollection,
+            index: u32,
+            item: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IUICollection,
+            item: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Insert: *const fn(
+            self: *const IUICollection,
+            index: u32,
+            item: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IUICollection,
+            index: u32,
+        ) callconv(.winapi) HRESULT,
+        Replace: *const fn(
+            self: *const IUICollection,
+            indexReplaced: u32,
+            itemReplaceWith: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Clear: *const fn(
+            self: *const IUICollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IUICollection, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCount(self, count);
+    }
+    pub fn GetItem(self: *const IUICollection, index: u32, item: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.GetItem(self, index, item);
+    }
+    pub fn Add(self: *const IUICollection, item: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, item);
+    }
+    pub fn Insert(self: *const IUICollection, index: u32, item: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Insert(self, index, item);
+    }
+    pub fn RemoveAt(self: *const IUICollection, index: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn Replace(self: *const IUICollection, indexReplaced: u32, itemReplaceWith: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Replace(self, indexReplaced, itemReplaceWith);
+    }
+    pub fn Clear(self: *const IUICollection) callconv(.@"inline") HRESULT {
+        return self.vtable.Clear(self);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUICollectionChangedEvent_Value = Guid.initString("6502ae91-a14d-44b5-bbd0-62aacc581d52");
+pub const IID_IUICollectionChangedEvent = &IID_IUICollectionChangedEvent_Value;
+pub const IUICollectionChangedEvent = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnChanged: *const fn(
+            self: *const IUICollectionChangedEvent,
+            action: UI_COLLECTIONCHANGE,
+            oldIndex: u32,
+            oldItem: ?*IUnknown,
+            newIndex: u32,
+            newItem: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnChanged(self: *const IUICollectionChangedEvent, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.OnChanged(self, action, oldIndex, oldItem, newIndex, newItem);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUICommandHandler_Value = Guid.initString("75ae0a2d-dc03-4c9f-8883-069660d0beb6");
+pub const IID_IUICommandHandler = &IID_IUICommandHandler_Value;
+pub const IUICommandHandler = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Execute: *const fn(
+            self: *const IUICommandHandler,
+            commandId: u32,
+            verb: UI_EXECUTIONVERB,
             key: ?*const PROPERTYKEY,
-            value: ?*PROPVARIANT,
+            currentValue: ?*const PROPVARIANT,
+            commandExecutionProperties: ?*IUISimplePropertySet,
+        ) callconv(.winapi) HRESULT,
+        UpdateProperty: *const fn(
+            self: *const IUICommandHandler,
+            commandId: u32,
+            key: ?*const PROPERTYKEY,
+            currentValue: ?*const PROPVARIANT,
+            newValue: ?*PROPVARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetValue(self: *const IUISimplePropertySet, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetValue(self, key, value);
+    pub fn Execute(self: *const IUICommandHandler, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) callconv(.@"inline") HRESULT {
+        return self.vtable.Execute(self, commandId, verb, key, currentValue, commandExecutionProperties);
+    }
+    pub fn UpdateProperty(self: *const IUICommandHandler, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.UpdateProperty(self, commandId, key, currentValue, newValue);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IUIRibbon_Value = Guid.initString("803982ab-370a-4f7e-a9e7-8784036a6e26");
-pub const IID_IUIRibbon = &IID_IUIRibbon_Value;
-pub const IUIRibbon = extern union {
+const IID_IUIContextualUI_Value = Guid.initString("eea11f37-7c46-437c-8e55-b52122b29293");
+pub const IID_IUIContextualUI = &IID_IUIContextualUI_Value;
+pub const IUIContextualUI = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetHeight: *const fn(
-            self: *const IUIRibbon,
-            cy: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        LoadSettingsFromStream: *const fn(
-            self: *const IUIRibbon,
-            pStream: ?*IStream,
-        ) callconv(.winapi) HRESULT,
-        SaveSettingsToStream: *const fn(
-            self: *const IUIRibbon,
-            pStream: ?*IStream,
+        ShowAtLocation: *const fn(
+            self: *const IUIContextualUI,
+            x: i32,
+            y: i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHeight(self: *const IUIRibbon, cy: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHeight(self, cy);
-    }
-    pub fn LoadSettingsFromStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadSettingsFromStream(self, pStream);
-    }
-    pub fn SaveSettingsToStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveSettingsToStream(self, pStream);
+    pub fn ShowAtLocation(self: *const IUIContextualUI, x: i32, y: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.ShowAtLocation(self, x, y);
     }
 };
 
-pub const UI_INVALIDATIONS = enum(i32) {
-    STATE = 1,
-    VALUE = 2,
-    PROPERTY = 4,
-    ALLPROPERTIES = 8,
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIEventingManager_Value = Guid.initString("3be6ea7f-9a9b-4198-9368-9b0f923bd534");
+pub const IID_IUIEventingManager = &IID_IUIEventingManager_Value;
+pub const IUIEventingManager = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetEventLogger: *const fn(
+            self: *const IUIEventingManager,
+            eventLogger: ?*IUIEventLogger,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetEventLogger(self: *const IUIEventingManager, eventLogger: ?*IUIEventLogger) callconv(.@"inline") HRESULT {
+        return self.vtable.SetEventLogger(self, eventLogger);
+    }
 };
-pub const UI_INVALIDATIONS_STATE = UI_INVALIDATIONS.STATE;
-pub const UI_INVALIDATIONS_VALUE = UI_INVALIDATIONS.VALUE;
-pub const UI_INVALIDATIONS_PROPERTY = UI_INVALIDATIONS.PROPERTY;
-pub const UI_INVALIDATIONS_ALLPROPERTIES = UI_INVALIDATIONS.ALLPROPERTIES;
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUIEventLogger_Value = Guid.initString("ec3e1034-dbf4-41a1-95d5-03e0f1026e05");
+pub const IID_IUIEventLogger = &IID_IUIEventLogger_Value;
+pub const IUIEventLogger = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnUIEvent: *const fn(
+            self: *const IUIEventLogger,
+            pEventParams: ?*UI_EVENTPARAMS,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn OnUIEvent(self: *const IUIEventLogger, pEventParams: ?*UI_EVENTPARAMS) callconv(.@"inline") void {
+        return self.vtable.OnUIEvent(self, pEventParams);
+    }
+};
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIFramework_Value = Guid.initString("f4f0385d-6872-43a8-ad09-4c339cb3f5c5");
@@ -257,137 +302,92 @@ pub const IUIFramework = extern union {
     }
 };
 
-pub const UI_EVENTPARAMS_COMMAND = extern struct {
-    CommandID: u32,
-    CommandName: ?[*:0]const u16,
-    ParentCommandID: u32,
-    ParentCommandName: ?[*:0]const u16,
-    SelectionIndex: u32,
-    Location: UI_EVENTLOCATION,
-};
-
-pub const UI_EVENTPARAMS = extern struct {
-    EventType: UI_EVENTTYPE,
-    Anonymous: extern union {
-        Modes: i32,
-        Params: UI_EVENTPARAMS_COMMAND,
-    },
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIEventLogger_Value = Guid.initString("ec3e1034-dbf4-41a1-95d5-03e0f1026e05");
-pub const IID_IUIEventLogger = &IID_IUIEventLogger_Value;
-pub const IUIEventLogger = extern union {
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUIImage_Value = Guid.initString("23c8c838-4de6-436b-ab01-5554bb7c30dd");
+pub const IID_IUIImage = &IID_IUIImage_Value;
+pub const IUIImage = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnUIEvent: *const fn(
-            self: *const IUIEventLogger,
-            pEventParams: ?*UI_EVENTPARAMS,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnUIEvent(self: *const IUIEventLogger, pEventParams: ?*UI_EVENTPARAMS) callconv(.@"inline") void {
-        return self.vtable.OnUIEvent(self, pEventParams);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUIEventingManager_Value = Guid.initString("3be6ea7f-9a9b-4198-9368-9b0f923bd534");
-pub const IID_IUIEventingManager = &IID_IUIEventingManager_Value;
-pub const IUIEventingManager = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetEventLogger: *const fn(
-            self: *const IUIEventingManager,
-            eventLogger: ?*IUIEventLogger,
+        GetBitmap: *const fn(
+            self: *const IUIImage,
+            bitmap: ?*?HBITMAP,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetEventLogger(self: *const IUIEventingManager, eventLogger: ?*IUIEventLogger) callconv(.@"inline") HRESULT {
-        return self.vtable.SetEventLogger(self, eventLogger);
+    pub fn GetBitmap(self: *const IUIImage, bitmap: ?*?HBITMAP) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBitmap(self, bitmap);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IUIContextualUI_Value = Guid.initString("eea11f37-7c46-437c-8e55-b52122b29293");
-pub const IID_IUIContextualUI = &IID_IUIContextualUI_Value;
-pub const IUIContextualUI = extern union {
+const IID_IUIImageFromBitmap_Value = Guid.initString("18aba7f3-4c1c-4ba2-bf6c-f5c3326fa816");
+pub const IID_IUIImageFromBitmap = &IID_IUIImageFromBitmap_Value;
+pub const IUIImageFromBitmap = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ShowAtLocation: *const fn(
-            self: *const IUIContextualUI,
-            x: i32,
-            y: i32,
+        CreateImage: *const fn(
+            self: *const IUIImageFromBitmap,
+            bitmap: ?HBITMAP,
+            options: UI_OWNERSHIP,
+            image: ?*?*IUIImage,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowAtLocation(self: *const IUIContextualUI, x: i32, y: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.ShowAtLocation(self, x, y);
+    pub fn CreateImage(self: *const IUIImageFromBitmap, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateImage(self, bitmap, options, image);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IUICollection_Value = Guid.initString("df4f45bf-6f9d-4dd7-9d68-d8f9cd18c4db");
-pub const IID_IUICollection = &IID_IUICollection_Value;
-pub const IUICollection = extern union {
+const IID_IUIRibbon_Value = Guid.initString("803982ab-370a-4f7e-a9e7-8784036a6e26");
+pub const IID_IUIRibbon = &IID_IUIRibbon_Value;
+pub const IUIRibbon = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: *const fn(
-            self: *const IUICollection,
-            count: ?*u32,
+        GetHeight: *const fn(
+            self: *const IUIRibbon,
+            cy: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetItem: *const fn(
-            self: *const IUICollection,
-            index: u32,
-            item: ?*?*IUnknown,
+        LoadSettingsFromStream: *const fn(
+            self: *const IUIRibbon,
+            pStream: ?*IStream,
         ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IUICollection,
-            item: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Insert: *const fn(
-            self: *const IUICollection,
-            index: u32,
-            item: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        RemoveAt: *const fn(
-            self: *const IUICollection,
-            index: u32,
-        ) callconv(.winapi) HRESULT,
-        Replace: *const fn(
-            self: *const IUICollection,
-            indexReplaced: u32,
-            itemReplaceWith: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Clear: *const fn(
-            self: *const IUICollection,
+        SaveSettingsToStream: *const fn(
+            self: *const IUIRibbon,
+            pStream: ?*IStream,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IUICollection, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCount(self, count);
+    pub fn GetHeight(self: *const IUIRibbon, cy: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHeight(self, cy);
     }
-    pub fn GetItem(self: *const IUICollection, index: u32, item: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.GetItem(self, index, item);
+    pub fn LoadSettingsFromStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadSettingsFromStream(self, pStream);
     }
-    pub fn Add(self: *const IUICollection, item: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, item);
+    pub fn SaveSettingsToStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveSettingsToStream(self, pStream);
     }
-    pub fn Insert(self: *const IUICollection, index: u32, item: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Insert(self, index, item);
-    }
-    pub fn RemoveAt(self: *const IUICollection, index: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAt(self, index);
-    }
-    pub fn Replace(self: *const IUICollection, indexReplaced: u32, itemReplaceWith: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Replace(self, indexReplaced, itemReplaceWith);
-    }
-    pub fn Clear(self: *const IUICollection) callconv(.@"inline") HRESULT {
-        return self.vtable.Clear(self);
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUISimplePropertySet_Value = Guid.initString("c205bb48-5b1c-4219-a106-15bd0a5f24e2");
+pub const IID_IUISimplePropertySet = &IID_IUISimplePropertySet_Value;
+pub const IUISimplePropertySet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetValue: *const fn(
+            self: *const IUISimplePropertySet,
+            key: ?*const PROPERTYKEY,
+            value: ?*PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetValue(self: *const IUISimplePropertySet, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetValue(self, key, value);
     }
 };
 
@@ -401,69 +401,6 @@ pub const UI_COLLECTIONCHANGE_INSERT = UI_COLLECTIONCHANGE.INSERT;
 pub const UI_COLLECTIONCHANGE_REMOVE = UI_COLLECTIONCHANGE.REMOVE;
 pub const UI_COLLECTIONCHANGE_REPLACE = UI_COLLECTIONCHANGE.REPLACE;
 pub const UI_COLLECTIONCHANGE_RESET = UI_COLLECTIONCHANGE.RESET;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUICollectionChangedEvent_Value = Guid.initString("6502ae91-a14d-44b5-bbd0-62aacc581d52");
-pub const IID_IUICollectionChangedEvent = &IID_IUICollectionChangedEvent_Value;
-pub const IUICollectionChangedEvent = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnChanged: *const fn(
-            self: *const IUICollectionChangedEvent,
-            action: UI_COLLECTIONCHANGE,
-            oldIndex: u32,
-            oldItem: ?*IUnknown,
-            newIndex: u32,
-            newItem: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnChanged(self: *const IUICollectionChangedEvent, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.OnChanged(self, action, oldIndex, oldItem, newIndex, newItem);
-    }
-};
-
-pub const UI_EXECUTIONVERB = enum(i32) {
-    EXECUTE = 0,
-    PREVIEW = 1,
-    CANCELPREVIEW = 2,
-};
-pub const UI_EXECUTIONVERB_EXECUTE = UI_EXECUTIONVERB.EXECUTE;
-pub const UI_EXECUTIONVERB_PREVIEW = UI_EXECUTIONVERB.PREVIEW;
-pub const UI_EXECUTIONVERB_CANCELPREVIEW = UI_EXECUTIONVERB.CANCELPREVIEW;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUICommandHandler_Value = Guid.initString("75ae0a2d-dc03-4c9f-8883-069660d0beb6");
-pub const IID_IUICommandHandler = &IID_IUICommandHandler_Value;
-pub const IUICommandHandler = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Execute: *const fn(
-            self: *const IUICommandHandler,
-            commandId: u32,
-            verb: UI_EXECUTIONVERB,
-            key: ?*const PROPERTYKEY,
-            currentValue: ?*const PROPVARIANT,
-            commandExecutionProperties: ?*IUISimplePropertySet,
-        ) callconv(.winapi) HRESULT,
-        UpdateProperty: *const fn(
-            self: *const IUICommandHandler,
-            commandId: u32,
-            key: ?*const PROPERTYKEY,
-            currentValue: ?*const PROPVARIANT,
-            newValue: ?*PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Execute(self: *const IUICommandHandler, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) callconv(.@"inline") HRESULT {
-        return self.vtable.Execute(self, commandId, verb, key, currentValue, commandExecutionProperties);
-    }
-    pub fn UpdateProperty(self: *const IUICommandHandler, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.UpdateProperty(self, commandId, key, currentValue, newValue);
-    }
-};
 
 pub const UI_COMMANDTYPE = enum(i32) {
     UNKNOWN = 0,
@@ -494,6 +431,148 @@ pub const UI_COMMANDTYPE_RECENTITEMS = UI_COMMANDTYPE.RECENTITEMS;
 pub const UI_COMMANDTYPE_COLORANCHOR = UI_COMMANDTYPE.COLORANCHOR;
 pub const UI_COMMANDTYPE_COLORCOLLECTION = UI_COMMANDTYPE.COLORCOLLECTION;
 
+pub const UI_CONTEXTAVAILABILITY = enum(i32) {
+    NOTAVAILABLE = 0,
+    AVAILABLE = 1,
+    ACTIVE = 2,
+};
+pub const UI_CONTEXTAVAILABILITY_NOTAVAILABLE = UI_CONTEXTAVAILABILITY.NOTAVAILABLE;
+pub const UI_CONTEXTAVAILABILITY_AVAILABLE = UI_CONTEXTAVAILABILITY.AVAILABLE;
+pub const UI_CONTEXTAVAILABILITY_ACTIVE = UI_CONTEXTAVAILABILITY.ACTIVE;
+
+pub const UI_CONTROLDOCK = enum(i32) {
+    TOP = 1,
+    BOTTOM = 3,
+};
+pub const UI_CONTROLDOCK_TOP = UI_CONTROLDOCK.TOP;
+pub const UI_CONTROLDOCK_BOTTOM = UI_CONTROLDOCK.BOTTOM;
+
+pub const UI_EVENTLOCATION = enum(i32) {
+    Ribbon = 0,
+    QAT = 1,
+    ApplicationMenu = 2,
+    ContextPopup = 3,
+};
+pub const UI_EVENTLOCATION_Ribbon = UI_EVENTLOCATION.Ribbon;
+pub const UI_EVENTLOCATION_QAT = UI_EVENTLOCATION.QAT;
+pub const UI_EVENTLOCATION_ApplicationMenu = UI_EVENTLOCATION.ApplicationMenu;
+pub const UI_EVENTLOCATION_ContextPopup = UI_EVENTLOCATION.ContextPopup;
+
+pub const UI_EVENTPARAMS = extern struct {
+    EventType: UI_EVENTTYPE,
+    Anonymous: extern union {
+        Modes: i32,
+        Params: UI_EVENTPARAMS_COMMAND,
+    },
+};
+
+pub const UI_EVENTPARAMS_COMMAND = extern struct {
+    CommandID: u32,
+    CommandName: ?[*:0]const u16,
+    ParentCommandID: u32,
+    ParentCommandName: ?[*:0]const u16,
+    SelectionIndex: u32,
+    Location: UI_EVENTLOCATION,
+};
+
+pub const UI_EVENTTYPE = enum(i32) {
+    ApplicationMenuOpened = 0,
+    RibbonMinimized = 1,
+    RibbonExpanded = 2,
+    ApplicationModeSwitched = 3,
+    TabActivated = 4,
+    MenuOpened = 5,
+    CommandExecuted = 6,
+    TooltipShown = 7,
+};
+pub const UI_EVENTTYPE_ApplicationMenuOpened = UI_EVENTTYPE.ApplicationMenuOpened;
+pub const UI_EVENTTYPE_RibbonMinimized = UI_EVENTTYPE.RibbonMinimized;
+pub const UI_EVENTTYPE_RibbonExpanded = UI_EVENTTYPE.RibbonExpanded;
+pub const UI_EVENTTYPE_ApplicationModeSwitched = UI_EVENTTYPE.ApplicationModeSwitched;
+pub const UI_EVENTTYPE_TabActivated = UI_EVENTTYPE.TabActivated;
+pub const UI_EVENTTYPE_MenuOpened = UI_EVENTTYPE.MenuOpened;
+pub const UI_EVENTTYPE_CommandExecuted = UI_EVENTTYPE.CommandExecuted;
+pub const UI_EVENTTYPE_TooltipShown = UI_EVENTTYPE.TooltipShown;
+
+pub const UI_EXECUTIONVERB = enum(i32) {
+    EXECUTE = 0,
+    PREVIEW = 1,
+    CANCELPREVIEW = 2,
+};
+pub const UI_EXECUTIONVERB_EXECUTE = UI_EXECUTIONVERB.EXECUTE;
+pub const UI_EXECUTIONVERB_PREVIEW = UI_EXECUTIONVERB.PREVIEW;
+pub const UI_EXECUTIONVERB_CANCELPREVIEW = UI_EXECUTIONVERB.CANCELPREVIEW;
+
+pub const UI_FONTDELTASIZE = enum(i32) {
+    GROW = 0,
+    SHRINK = 1,
+};
+pub const UI_FONTDELTASIZE_GROW = UI_FONTDELTASIZE.GROW;
+pub const UI_FONTDELTASIZE_SHRINK = UI_FONTDELTASIZE.SHRINK;
+
+pub const UI_FONTPROPERTIES = enum(i32) {
+    NOTAVAILABLE = 0,
+    NOTSET = 1,
+    SET = 2,
+};
+pub const UI_FONTPROPERTIES_NOTAVAILABLE = UI_FONTPROPERTIES.NOTAVAILABLE;
+pub const UI_FONTPROPERTIES_NOTSET = UI_FONTPROPERTIES.NOTSET;
+pub const UI_FONTPROPERTIES_SET = UI_FONTPROPERTIES.SET;
+
+pub const UI_FONTUNDERLINE = enum(i32) {
+    NOTAVAILABLE = 0,
+    NOTSET = 1,
+    SET = 2,
+};
+pub const UI_FONTUNDERLINE_NOTAVAILABLE = UI_FONTUNDERLINE.NOTAVAILABLE;
+pub const UI_FONTUNDERLINE_NOTSET = UI_FONTUNDERLINE.NOTSET;
+pub const UI_FONTUNDERLINE_SET = UI_FONTUNDERLINE.SET;
+
+pub const UI_FONTVERTICALPOSITION = enum(i32) {
+    NOTAVAILABLE = 0,
+    NOTSET = 1,
+    SUPERSCRIPT = 2,
+    SUBSCRIPT = 3,
+};
+pub const UI_FONTVERTICALPOSITION_NOTAVAILABLE = UI_FONTVERTICALPOSITION.NOTAVAILABLE;
+pub const UI_FONTVERTICALPOSITION_NOTSET = UI_FONTVERTICALPOSITION.NOTSET;
+pub const UI_FONTVERTICALPOSITION_SUPERSCRIPT = UI_FONTVERTICALPOSITION.SUPERSCRIPT;
+pub const UI_FONTVERTICALPOSITION_SUBSCRIPT = UI_FONTVERTICALPOSITION.SUBSCRIPT;
+
+pub const UI_INVALIDATIONS = enum(i32) {
+    STATE = 1,
+    VALUE = 2,
+    PROPERTY = 4,
+    ALLPROPERTIES = 8,
+};
+pub const UI_INVALIDATIONS_STATE = UI_INVALIDATIONS.STATE;
+pub const UI_INVALIDATIONS_VALUE = UI_INVALIDATIONS.VALUE;
+pub const UI_INVALIDATIONS_PROPERTY = UI_INVALIDATIONS.PROPERTY;
+pub const UI_INVALIDATIONS_ALLPROPERTIES = UI_INVALIDATIONS.ALLPROPERTIES;
+
+pub const UI_OWNERSHIP = enum(i32) {
+    TRANSFER = 0,
+    COPY = 1,
+};
+pub const UI_OWNERSHIP_TRANSFER = UI_OWNERSHIP.TRANSFER;
+pub const UI_OWNERSHIP_COPY = UI_OWNERSHIP.COPY;
+
+pub const UI_SWATCHCOLORMODE = enum(i32) {
+    NORMAL = 0,
+    MONOCHROME = 1,
+};
+pub const UI_SWATCHCOLORMODE_NORMAL = UI_SWATCHCOLORMODE.NORMAL;
+pub const UI_SWATCHCOLORMODE_MONOCHROME = UI_SWATCHCOLORMODE.MONOCHROME;
+
+pub const UI_SWATCHCOLORTYPE = enum(i32) {
+    NOCOLOR = 0,
+    AUTOMATIC = 1,
+    RGB = 2,
+};
+pub const UI_SWATCHCOLORTYPE_NOCOLOR = UI_SWATCHCOLORTYPE.NOCOLOR;
+pub const UI_SWATCHCOLORTYPE_AUTOMATIC = UI_SWATCHCOLORTYPE.AUTOMATIC;
+pub const UI_SWATCHCOLORTYPE_RGB = UI_SWATCHCOLORTYPE.RGB;
+
 pub const UI_VIEWTYPE = enum(i32) {
     N = 1,
 };
@@ -510,90 +589,11 @@ pub const UI_VIEWVERB_DESTROY = UI_VIEWVERB.DESTROY;
 pub const UI_VIEWVERB_SIZE = UI_VIEWVERB.SIZE;
 pub const UI_VIEWVERB_ERROR = UI_VIEWVERB.ERROR;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIApplication_Value = Guid.initString("d428903c-729a-491d-910d-682a08ff2522");
-pub const IID_IUIApplication = &IID_IUIApplication_Value;
-pub const IUIApplication = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnViewChanged: *const fn(
-            self: *const IUIApplication,
-            viewId: u32,
-            typeID: UI_VIEWTYPE,
-            view: ?*IUnknown,
-            verb: UI_VIEWVERB,
-            uReasonCode: i32,
-        ) callconv(.winapi) HRESULT,
-        OnCreateUICommand: *const fn(
-            self: *const IUIApplication,
-            commandId: u32,
-            typeID: UI_COMMANDTYPE,
-            commandHandler: ?*?*IUICommandHandler,
-        ) callconv(.winapi) HRESULT,
-        OnDestroyUICommand: *const fn(
-            self: *const IUIApplication,
-            commandId: u32,
-            typeID: UI_COMMANDTYPE,
-            commandHandler: ?*IUICommandHandler,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn OnViewChanged(self: *const IUIApplication, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnViewChanged(self, viewId, typeID, view, verb, uReasonCode);
-    }
-    pub fn OnCreateUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.OnCreateUICommand(self, commandId, typeID, commandHandler);
-    }
-    pub fn OnDestroyUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDestroyUICommand(self, commandId, typeID, commandHandler);
-    }
-};
+const CLSID_UIRibbonFramework_Value = Guid.initString("926749fa-2615-4987-8845-c33e65f2b957");
+pub const CLSID_UIRibbonFramework = &CLSID_UIRibbonFramework_Value;
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIImage_Value = Guid.initString("23c8c838-4de6-436b-ab01-5554bb7c30dd");
-pub const IID_IUIImage = &IID_IUIImage_Value;
-pub const IUIImage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetBitmap: *const fn(
-            self: *const IUIImage,
-            bitmap: ?*?HBITMAP,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetBitmap(self: *const IUIImage, bitmap: ?*?HBITMAP) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBitmap(self, bitmap);
-    }
-};
-
-pub const UI_OWNERSHIP = enum(i32) {
-    TRANSFER = 0,
-    COPY = 1,
-};
-pub const UI_OWNERSHIP_TRANSFER = UI_OWNERSHIP.TRANSFER;
-pub const UI_OWNERSHIP_COPY = UI_OWNERSHIP.COPY;
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUIImageFromBitmap_Value = Guid.initString("18aba7f3-4c1c-4ba2-bf6c-f5c3326fa816");
-pub const IID_IUIImageFromBitmap = &IID_IUIImageFromBitmap_Value;
-pub const IUIImageFromBitmap = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateImage: *const fn(
-            self: *const IUIImageFromBitmap,
-            bitmap: ?HBITMAP,
-            options: UI_OWNERSHIP,
-            image: ?*?*IUIImage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateImage(self: *const IUIImageFromBitmap, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateImage(self, bitmap, options, image);
-    }
-};
+const CLSID_UIRibbonImageFromBitmapFactory_Value = Guid.initString("0f7434b6-59b6-4250-999e-d168d6ae4293");
+pub const CLSID_UIRibbonImageFromBitmapFactory = &CLSID_UIRibbonImageFromBitmapFactory_Value;
 
 
 //--------------------------------------------------------------------------------

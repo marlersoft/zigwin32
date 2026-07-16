@@ -2,305 +2,231 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (218)
 //--------------------------------------------------------------------------------
-pub const PROP_ID_SECURE_MIN = @as(u32, 26608);
-pub const PROP_ID_SECURE_MAX = @as(u32, 26623);
-pub const MAPI_DIM = @as(u32, 1);
-pub const fMapiUnicode = @as(u32, 0);
-pub const hrSuccess = @as(u32, 0);
-pub const MAPI_P1 = @as(u32, 268435456);
-pub const MAPI_SUBMITTED = @as(u32, 2147483648);
-pub const MAPI_SHORTTERM = @as(u32, 128);
-pub const MAPI_NOTRECIP = @as(u32, 64);
-pub const MAPI_THISSESSION = @as(u32, 32);
-pub const MAPI_NOW = @as(u32, 16);
-pub const MAPI_NOTRESERVED = @as(u32, 8);
-pub const MAPI_COMPOUND = @as(u32, 128);
 pub const cchProfileNameMax = @as(u32, 64);
 pub const cchProfilePassMax = @as(u32, 64);
-pub const MV_FLAG = @as(u32, 4096);
-pub const PROP_ID_NULL = @as(u32, 0);
-pub const PROP_ID_INVALID = @as(u32, 65535);
-pub const MV_INSTANCE = @as(u32, 8192);
-pub const TABLE_CHANGED = @as(u32, 1);
-pub const TABLE_ERROR = @as(u32, 2);
-pub const TABLE_ROW_ADDED = @as(u32, 3);
-pub const TABLE_ROW_DELETED = @as(u32, 4);
-pub const TABLE_ROW_MODIFIED = @as(u32, 5);
-pub const TABLE_SORT_DONE = @as(u32, 6);
-pub const TABLE_RESTRICT_DONE = @as(u32, 7);
-pub const TABLE_SETCOL_DONE = @as(u32, 8);
-pub const TABLE_RELOAD = @as(u32, 9);
-pub const szMAPINotificationMsg = "MAPI Notify window message";
+pub const E_IMAPI_BURN_VERIFICATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600697));
+pub const E_IMAPI_DF2DATA_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599672));
+pub const E_IMAPI_DF2DATA_INVALID_MEDIA_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599678));
+pub const E_IMAPI_DF2DATA_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599674));
+pub const E_IMAPI_DF2DATA_MEDIA_NOT_BLANK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599675));
+pub const E_IMAPI_DF2DATA_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599673));
+pub const E_IMAPI_DF2DATA_STREAM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599677));
+pub const E_IMAPI_DF2DATA_STREAM_TOO_LARGE_FOR_CURRENT_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599676));
+pub const E_IMAPI_DF2DATA_WRITE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599680));
+pub const E_IMAPI_DF2DATA_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599679));
+pub const E_IMAPI_DF2RAW_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599164));
+pub const E_IMAPI_DF2RAW_DATA_BLOCK_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599154));
+pub const E_IMAPI_DF2RAW_MEDIA_IS_NOT_BLANK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599162));
+pub const E_IMAPI_DF2RAW_MEDIA_IS_NOT_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599166));
+pub const E_IMAPI_DF2RAW_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599161));
+pub const E_IMAPI_DF2RAW_MEDIA_IS_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599165));
+pub const E_IMAPI_DF2RAW_NO_RECORDER_SPECIFIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599158));
+pub const E_IMAPI_DF2RAW_NOT_ENOUGH_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599159));
+pub const E_IMAPI_DF2RAW_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599152));
+pub const E_IMAPI_DF2RAW_STREAM_LEADIN_TOO_SHORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599153));
+pub const E_IMAPI_DF2RAW_STREAM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599155));
+pub const E_IMAPI_DF2RAW_WRITE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599168));
+pub const E_IMAPI_DF2RAW_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599167));
+pub const E_IMAPI_DF2TAO_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599409));
+pub const E_IMAPI_DF2TAO_INVALID_ISRC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599413));
+pub const E_IMAPI_DF2TAO_INVALID_MCN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599412));
+pub const E_IMAPI_DF2TAO_MEDIA_IS_NOT_BLANK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599418));
+pub const E_IMAPI_DF2TAO_MEDIA_IS_NOT_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599422));
+pub const E_IMAPI_DF2TAO_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599417));
+pub const E_IMAPI_DF2TAO_MEDIA_IS_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599421));
+pub const E_IMAPI_DF2TAO_NO_RECORDER_SPECIFIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599414));
+pub const E_IMAPI_DF2TAO_NOT_ENOUGH_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599415));
+pub const E_IMAPI_DF2TAO_PROPERTY_FOR_BLANK_MEDIA_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599420));
+pub const E_IMAPI_DF2TAO_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599410));
+pub const E_IMAPI_DF2TAO_STREAM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599411));
+pub const E_IMAPI_DF2TAO_TABLE_OF_CONTENTS_EMPTY_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599419));
+pub const E_IMAPI_DF2TAO_TRACK_LIMIT_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599416));
+pub const E_IMAPI_DF2TAO_WRITE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599424));
+pub const E_IMAPI_DF2TAO_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599423));
+pub const E_IMAPI_ERASE_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062598389));
+pub const E_IMAPI_ERASE_DISC_INFORMATION_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340222));
+pub const E_IMAPI_ERASE_DRIVE_FAILED_ERASE_COMMAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340219));
+pub const E_IMAPI_ERASE_DRIVE_FAILED_SPINUP_COMMAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340216));
+pub const E_IMAPI_ERASE_MEDIA_IS_NOT_ERASABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340220));
+pub const E_IMAPI_ERASE_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062598391));
+pub const E_IMAPI_ERASE_MODE_PAGE_2A_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340221));
+pub const E_IMAPI_ERASE_ONLY_ONE_RECORDER_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340223));
+pub const E_IMAPI_ERASE_RECORDER_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340224));
+pub const E_IMAPI_ERASE_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062598390));
+pub const E_IMAPI_ERASE_TOOK_LONGER_THAN_ONE_HOUR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340218));
+pub const E_IMAPI_ERASE_UNEXPECTED_DRIVE_RESPONSE_DURING_ERASE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340217));
+pub const E_IMAPI_LOSS_OF_STREAMING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599936));
+pub const E_IMAPI_RAW_IMAGE_INSUFFICIENT_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339963));
+pub const E_IMAPI_RAW_IMAGE_IS_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339968));
+pub const E_IMAPI_RAW_IMAGE_NO_TRACKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339965));
+pub const E_IMAPI_RAW_IMAGE_SECTOR_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339966));
+pub const E_IMAPI_RAW_IMAGE_TOO_MANY_TRACK_INDEXES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339962));
+pub const E_IMAPI_RAW_IMAGE_TOO_MANY_TRACKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339967));
+pub const E_IMAPI_RAW_IMAGE_TRACK_INDEX_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339961));
+pub const E_IMAPI_RAW_IMAGE_TRACK_INDEX_OFFSET_ZERO_CANNOT_BE_CLEARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339959));
+pub const E_IMAPI_RAW_IMAGE_TRACK_INDEX_TOO_CLOSE_TO_OTHER_INDEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339958));
+pub const E_IMAPI_RAW_IMAGE_TRACKS_ALREADY_ADDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339964));
+pub const E_IMAPI_RECORDER_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600175));
+pub const E_IMAPI_RECORDER_COMMAND_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600179));
+pub const E_IMAPI_RECORDER_DVD_STRUCTURE_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600178));
+pub const E_IMAPI_RECORDER_FEATURE_IS_NOT_CURRENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600181));
+pub const E_IMAPI_RECORDER_GET_CONFIGURATION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600180));
+pub const E_IMAPI_RECORDER_INVALID_MODE_PARAMETERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600184));
+pub const E_IMAPI_RECORDER_INVALID_RESPONSE_FROM_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599937));
+pub const E_IMAPI_RECORDER_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600176));
+pub const E_IMAPI_RECORDER_MEDIA_BECOMING_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600187));
+pub const E_IMAPI_RECORDER_MEDIA_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600185));
+pub const E_IMAPI_RECORDER_MEDIA_FORMAT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600186));
+pub const E_IMAPI_RECORDER_MEDIA_INCOMPATIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600189));
+pub const E_IMAPI_RECORDER_MEDIA_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600190));
+pub const E_IMAPI_RECORDER_MEDIA_NOT_FORMATTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600174));
+pub const E_IMAPI_RECORDER_MEDIA_SPEED_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600177));
+pub const E_IMAPI_RECORDER_MEDIA_UPSIDE_DOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600188));
+pub const E_IMAPI_RECORDER_MEDIA_WRITE_PROTECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600183));
+pub const E_IMAPI_RECORDER_NO_SUCH_FEATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600182));
+pub const E_IMAPI_RECORDER_NO_SUCH_MODE_PAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600191));
+pub const E_IMAPI_RECORDER_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600701));
+pub const E_IMAPI_REQUEST_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600702));
+pub const E_IMAPI_UNEXPECTED_RESPONSE_FROM_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599935));
+pub const FACILITY_IMAPI2 = @as(u32, 170);
+pub const fMapiUnicode = @as(u32, 0);
+pub const hrSuccess = @as(u32, 0);
+pub const IMAPI_E_BAD_MULTISESSION_PARAMETER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555294));
+pub const IMAPI_E_BOOT_EMULATION_IMAGE_SIZE_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555318));
+pub const IMAPI_E_BOOT_IMAGE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555320));
+pub const IMAPI_E_BOOT_OBJECT_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555319));
+pub const IMAPI_E_DATA_STREAM_CREATE_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555350));
+pub const IMAPI_E_DATA_STREAM_INCONSISTENCY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555352));
+pub const IMAPI_E_DATA_STREAM_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555351));
+pub const IMAPI_E_DATA_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555342));
+pub const IMAPI_E_DIR_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555382));
+pub const IMAPI_E_DIR_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555366));
+pub const IMAPI_E_DIRECTORY_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555349));
+pub const IMAPI_E_DISC_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555304));
+pub const IMAPI_E_DUP_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555374));
+pub const IMAPI_E_EMPTY_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555312));
+pub const IMAPI_E_FILE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555367));
+pub const IMAPI_E_FILE_SYSTEM_CHANGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555293));
+pub const IMAPI_E_FILE_SYSTEM_FEATURE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555308));
+pub const IMAPI_E_FILE_SYSTEM_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555386));
+pub const IMAPI_E_FILE_SYSTEM_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555310));
+pub const IMAPI_E_FILE_SYSTEM_READ_CONSISTENCY_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555309));
+pub const IMAPI_E_FSI_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555392));
+pub const IMAPI_E_IMAGE_SIZE_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555360));
+pub const IMAPI_E_IMAGE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555359));
+pub const IMAPI_E_IMAGEMANAGER_IMAGE_NOT_ALIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555136));
+pub const IMAPI_E_IMAGEMANAGER_IMAGE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555133));
+pub const IMAPI_E_IMAGEMANAGER_NO_IMAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555134));
+pub const IMAPI_E_IMAGEMANAGER_NO_VALID_VD_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555135));
+pub const IMAPI_E_IMPORT_MEDIA_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555303));
+pub const IMAPI_E_IMPORT_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555305));
+pub const IMAPI_E_IMPORT_SEEK_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555306));
+pub const IMAPI_E_IMPORT_TYPE_COLLISION_DIRECTORY_EXISTS_AS_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555298));
+pub const IMAPI_E_IMPORT_TYPE_COLLISION_FILE_EXISTS_AS_DIRECTORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555307));
+pub const IMAPI_E_INCOMPATIBLE_MULTISESSION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555301));
+pub const IMAPI_E_INCOMPATIBLE_PREVIOUS_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555341));
+pub const IMAPI_E_INVALID_DATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555387));
+pub const IMAPI_E_INVALID_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555391));
+pub const IMAPI_E_INVALID_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555376));
+pub const IMAPI_E_INVALID_VOLUME_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555388));
+pub const IMAPI_E_INVALID_WORKING_DIRECTORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555328));
+pub const IMAPI_E_ISO9660_LEVELS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555343));
+pub const IMAPI_E_ITEM_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555368));
+pub const IMAPI_E_MULTISESSION_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555299));
+pub const IMAPI_E_NO_COMPATIBLE_MULTISESSION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555300));
+pub const IMAPI_E_NO_OUTPUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555389));
+pub const IMAPI_E_NO_SUPPORTED_FILE_SYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555311));
+pub const IMAPI_E_NO_UNIQUE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555373));
+pub const IMAPI_E_NOT_DIR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555383));
+pub const IMAPI_E_NOT_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555384));
+pub const IMAPI_E_NOT_IN_FILE_SYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555381));
+pub const IMAPI_E_PROPERTY_NOT_ACCESSIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555296));
+pub const IMAPI_E_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555390));
+pub const IMAPI_E_RESTRICTED_NAME_VIOLATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555375));
+pub const IMAPI_E_STASHFILE_MOVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555326));
+pub const IMAPI_E_STASHFILE_OPEN_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555336));
+pub const IMAPI_E_STASHFILE_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555333));
+pub const IMAPI_E_STASHFILE_SEEK_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555335));
+pub const IMAPI_E_STASHFILE_WRITE_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555334));
+pub const IMAPI_E_TOO_MANY_DIRS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555344));
+pub const IMAPI_E_UDF_NOT_WRITE_COMPATIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555302));
+pub const IMAPI_E_UDF_REVISION_CHANGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555295));
+pub const IMAPI_E_WORKING_DIRECTORY_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555327));
+pub const IMAPI_S_IMAGE_FEATURE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11186527));
+pub const MAPI_COMPOUND = @as(u32, 128);
+pub const MAPI_DIM = @as(u32, 1);
+pub const MAPI_E_CALL_FAILED = @as(i32, -2147467259);
+pub const MAPI_E_INTERFACE_NOT_SUPPORTED = @as(i32, -2147467262);
+pub const MAPI_E_INVALID_PARAMETER = @as(i32, -2147024809);
+pub const MAPI_E_NO_ACCESS = @as(i32, -2147024891);
+pub const MAPI_E_NOT_ENOUGH_MEMORY = @as(i32, -2147024882);
 pub const MAPI_ERROR_VERSION = @as(i32, 0);
+pub const MAPI_NOTRECIP = @as(u32, 64);
+pub const MAPI_NOTRESERVED = @as(u32, 8);
+pub const MAPI_NOW = @as(u32, 16);
+pub const MAPI_ONE_OFF_NO_RICH_INFO = @as(u32, 1);
+pub const MAPI_P1 = @as(u32, 268435456);
+pub const MAPI_SHORTTERM = @as(u32, 128);
+pub const MAPI_SUBMITTED = @as(u32, 2147483648);
+pub const MAPI_THISSESSION = @as(u32, 32);
 pub const MAPI_USE_DEFAULT = @as(u32, 64);
 pub const MNID_ID = @as(u32, 0);
 pub const MNID_STRING = @as(u32, 1);
+pub const MV_FLAG = @as(u32, 4096);
+pub const MV_INSTANCE = @as(u32, 8192);
+pub const OPENSTREAMONFILE = "OpenStreamOnFile";
+pub const PRIHIGHEST = @as(u32, 32767);
+pub const PRILOWEST = @as(i32, -32768);
+pub const PRIUSER = @as(u32, 0);
+pub const PROP_ID_INVALID = @as(u32, 65535);
+pub const PROP_ID_NULL = @as(u32, 0);
+pub const PROP_ID_SECURE_MAX = @as(u32, 26623);
+pub const PROP_ID_SECURE_MIN = @as(u32, 26608);
+pub const S_IMAPI_BOTHADJUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141126));
+pub const S_IMAPI_COMMAND_HAS_SENSE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141632));
+pub const S_IMAPI_RAW_IMAGE_TRACK_INDEX_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11143688));
+pub const S_IMAPI_ROTATIONADJUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141125));
+pub const S_IMAPI_SPEEDADJUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141124));
+pub const S_IMAPI_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141890));
+pub const SERVICE_UI_ALLOWED = @as(u32, 16);
+pub const SERVICE_UI_ALWAYS = @as(u32, 2);
+pub const szHrDispatchNotifications = "HrDispatchNotifications";
+pub const szMAPINotificationMsg = "MAPI Notify window message";
+pub const szScCreateConversationIndex = "ScCreateConversationIndex";
+pub const TABLE_CHANGED = @as(u32, 1);
+pub const TABLE_ERROR = @as(u32, 2);
+pub const TABLE_RELOAD = @as(u32, 9);
+pub const TABLE_RESTRICT_DONE = @as(u32, 7);
+pub const TABLE_ROW_ADDED = @as(u32, 3);
+pub const TABLE_ROW_DELETED = @as(u32, 4);
+pub const TABLE_ROW_MODIFIED = @as(u32, 5);
+pub const TABLE_SETCOL_DONE = @as(u32, 8);
+pub const TABLE_SORT_DONE = @as(u32, 6);
+pub const TAD_ALL_ROWS = @as(u32, 1);
+pub const UI_CURRENT_PROVIDER_FIRST = @as(u32, 4);
+pub const UI_SERVICE = @as(u32, 2);
+pub const WAB_CONTEXT_ADRLIST = @as(u32, 2);
+pub const WAB_DISPLAY_ISNTDS = @as(u32, 4);
+pub const WAB_DISPLAY_LDAPURL = @as(u32, 1);
+pub const WAB_DLL_NAME = "WAB32.DLL";
+pub const WAB_DLL_PATH_KEY = "Software\\Microsoft\\WAB\\DLLPath";
+pub const WAB_ENABLE_PROFILES = @as(u32, 4194304);
+pub const WAB_IGNORE_PROFILES = @as(u32, 8388608);
 pub const WAB_LOCAL_CONTAINERS = @as(u32, 1048576);
 pub const WAB_PROFILE_CONTENTS = @as(u32, 2097152);
-pub const WAB_IGNORE_PROFILES = @as(u32, 8388608);
-pub const MAPI_ONE_OFF_NO_RICH_INFO = @as(u32, 1);
-pub const UI_SERVICE = @as(u32, 2);
-pub const SERVICE_UI_ALWAYS = @as(u32, 2);
-pub const SERVICE_UI_ALLOWED = @as(u32, 16);
-pub const UI_CURRENT_PROVIDER_FIRST = @as(u32, 4);
+pub const WAB_USE_OE_SENDMAIL = @as(u32, 1);
+pub const WAB_VCARD_FILE = @as(u32, 0);
+pub const WAB_VCARD_STREAM = @as(u32, 1);
 pub const WABOBJECT_LDAPURL_RETURN_MAILUSER = @as(u32, 1);
 pub const WABOBJECT_ME_NEW = @as(u32, 1);
 pub const WABOBJECT_ME_NOCREATE = @as(u32, 2);
-pub const WAB_VCARD_FILE = @as(u32, 0);
-pub const WAB_VCARD_STREAM = @as(u32, 1);
-pub const WAB_USE_OE_SENDMAIL = @as(u32, 1);
-pub const WAB_ENABLE_PROFILES = @as(u32, 4194304);
-pub const WAB_DISPLAY_LDAPURL = @as(u32, 1);
-pub const WAB_CONTEXT_ADRLIST = @as(u32, 2);
-pub const WAB_DISPLAY_ISNTDS = @as(u32, 4);
-pub const WAB_DLL_NAME = "WAB32.DLL";
-pub const WAB_DLL_PATH_KEY = "Software\\Microsoft\\WAB\\DLLPath";
-pub const E_IMAPI_REQUEST_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600702));
-pub const E_IMAPI_RECORDER_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600701));
-pub const S_IMAPI_SPEEDADJUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141124));
-pub const S_IMAPI_ROTATIONADJUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141125));
-pub const S_IMAPI_BOTHADJUSTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141126));
-pub const E_IMAPI_BURN_VERIFICATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600697));
-pub const S_IMAPI_COMMAND_HAS_SENSE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141632));
-pub const E_IMAPI_RECORDER_NO_SUCH_MODE_PAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600191));
-pub const E_IMAPI_RECORDER_MEDIA_NO_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600190));
-pub const E_IMAPI_RECORDER_MEDIA_INCOMPATIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600189));
-pub const E_IMAPI_RECORDER_MEDIA_UPSIDE_DOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600188));
-pub const E_IMAPI_RECORDER_MEDIA_BECOMING_READY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600187));
-pub const E_IMAPI_RECORDER_MEDIA_FORMAT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600186));
-pub const E_IMAPI_RECORDER_MEDIA_BUSY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600185));
-pub const E_IMAPI_RECORDER_INVALID_MODE_PARAMETERS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600184));
-pub const E_IMAPI_RECORDER_MEDIA_WRITE_PROTECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600183));
-pub const E_IMAPI_RECORDER_NO_SUCH_FEATURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600182));
-pub const E_IMAPI_RECORDER_FEATURE_IS_NOT_CURRENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600181));
-pub const E_IMAPI_RECORDER_GET_CONFIGURATION_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600180));
-pub const E_IMAPI_RECORDER_COMMAND_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600179));
-pub const E_IMAPI_RECORDER_DVD_STRUCTURE_NOT_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600178));
-pub const E_IMAPI_RECORDER_MEDIA_SPEED_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600177));
-pub const E_IMAPI_RECORDER_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600176));
-pub const E_IMAPI_RECORDER_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600175));
-pub const E_IMAPI_RECORDER_MEDIA_NOT_FORMATTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062600174));
-pub const E_IMAPI_RECORDER_INVALID_RESPONSE_FROM_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599937));
-pub const E_IMAPI_LOSS_OF_STREAMING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599936));
-pub const E_IMAPI_UNEXPECTED_RESPONSE_FROM_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599935));
-pub const S_IMAPI_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11141890));
-pub const E_IMAPI_DF2DATA_WRITE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599680));
-pub const E_IMAPI_DF2DATA_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599679));
-pub const E_IMAPI_DF2DATA_INVALID_MEDIA_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599678));
-pub const E_IMAPI_DF2DATA_STREAM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599677));
-pub const E_IMAPI_DF2DATA_STREAM_TOO_LARGE_FOR_CURRENT_MEDIA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599676));
-pub const E_IMAPI_DF2DATA_MEDIA_NOT_BLANK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599675));
-pub const E_IMAPI_DF2DATA_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599674));
-pub const E_IMAPI_DF2DATA_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599673));
-pub const E_IMAPI_DF2DATA_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599672));
-pub const E_IMAPI_DF2TAO_WRITE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599424));
-pub const E_IMAPI_DF2TAO_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599423));
-pub const E_IMAPI_DF2TAO_MEDIA_IS_NOT_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599422));
-pub const E_IMAPI_DF2TAO_MEDIA_IS_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599421));
-pub const E_IMAPI_DF2TAO_PROPERTY_FOR_BLANK_MEDIA_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599420));
-pub const E_IMAPI_DF2TAO_TABLE_OF_CONTENTS_EMPTY_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599419));
-pub const E_IMAPI_DF2TAO_MEDIA_IS_NOT_BLANK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599418));
-pub const E_IMAPI_DF2TAO_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599417));
-pub const E_IMAPI_DF2TAO_TRACK_LIMIT_REACHED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599416));
-pub const E_IMAPI_DF2TAO_NOT_ENOUGH_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599415));
-pub const E_IMAPI_DF2TAO_NO_RECORDER_SPECIFIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599414));
-pub const E_IMAPI_DF2TAO_INVALID_ISRC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599413));
-pub const E_IMAPI_DF2TAO_INVALID_MCN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599412));
-pub const E_IMAPI_DF2TAO_STREAM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599411));
-pub const E_IMAPI_DF2TAO_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599410));
-pub const E_IMAPI_DF2TAO_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599409));
-pub const E_IMAPI_DF2RAW_WRITE_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599168));
-pub const E_IMAPI_DF2RAW_WRITE_NOT_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599167));
-pub const E_IMAPI_DF2RAW_MEDIA_IS_NOT_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599166));
-pub const E_IMAPI_DF2RAW_MEDIA_IS_PREPARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599165));
-pub const E_IMAPI_DF2RAW_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599164));
-pub const E_IMAPI_DF2RAW_MEDIA_IS_NOT_BLANK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599162));
-pub const E_IMAPI_DF2RAW_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599161));
-pub const E_IMAPI_DF2RAW_NOT_ENOUGH_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599159));
-pub const E_IMAPI_DF2RAW_NO_RECORDER_SPECIFIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599158));
-pub const E_IMAPI_DF2RAW_STREAM_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599155));
-pub const E_IMAPI_DF2RAW_DATA_BLOCK_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599154));
-pub const E_IMAPI_DF2RAW_STREAM_LEADIN_TOO_SHORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599153));
-pub const E_IMAPI_DF2RAW_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062599152));
-pub const E_IMAPI_ERASE_RECORDER_IN_USE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340224));
-pub const E_IMAPI_ERASE_ONLY_ONE_RECORDER_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340223));
-pub const E_IMAPI_ERASE_DISC_INFORMATION_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340222));
-pub const E_IMAPI_ERASE_MODE_PAGE_2A_TOO_SMALL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340221));
-pub const E_IMAPI_ERASE_MEDIA_IS_NOT_ERASABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340220));
-pub const E_IMAPI_ERASE_DRIVE_FAILED_ERASE_COMMAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340219));
-pub const E_IMAPI_ERASE_TOOK_LONGER_THAN_ONE_HOUR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340218));
-pub const E_IMAPI_ERASE_UNEXPECTED_DRIVE_RESPONSE_DURING_ERASE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340217));
-pub const E_IMAPI_ERASE_DRIVE_FAILED_SPINUP_COMMAND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136340216));
-pub const E_IMAPI_ERASE_MEDIA_IS_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062598391));
-pub const E_IMAPI_ERASE_RECORDER_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062598390));
-pub const E_IMAPI_ERASE_CLIENT_NAME_IS_NOT_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062598389));
-pub const E_IMAPI_RAW_IMAGE_IS_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339968));
-pub const E_IMAPI_RAW_IMAGE_TOO_MANY_TRACKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339967));
-pub const E_IMAPI_RAW_IMAGE_SECTOR_TYPE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339966));
-pub const E_IMAPI_RAW_IMAGE_NO_TRACKS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339965));
-pub const E_IMAPI_RAW_IMAGE_TRACKS_ALREADY_ADDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339964));
-pub const E_IMAPI_RAW_IMAGE_INSUFFICIENT_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339963));
-pub const E_IMAPI_RAW_IMAGE_TOO_MANY_TRACK_INDEXES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339962));
-pub const E_IMAPI_RAW_IMAGE_TRACK_INDEX_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339961));
-pub const S_IMAPI_RAW_IMAGE_TRACK_INDEX_ALREADY_EXISTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11143688));
-pub const E_IMAPI_RAW_IMAGE_TRACK_INDEX_OFFSET_ZERO_CANNOT_BE_CLEARED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339959));
-pub const E_IMAPI_RAW_IMAGE_TRACK_INDEX_TOO_CLOSE_TO_OTHER_INDEX = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2136339958));
-pub const FACILITY_IMAPI2 = @as(u32, 170);
-pub const IMAPI_E_FSI_INTERNAL_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555392));
-pub const IMAPI_E_INVALID_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555391));
-pub const IMAPI_E_READONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555390));
-pub const IMAPI_E_NO_OUTPUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555389));
-pub const IMAPI_E_INVALID_VOLUME_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555388));
-pub const IMAPI_E_INVALID_DATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555387));
-pub const IMAPI_E_FILE_SYSTEM_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555386));
-pub const IMAPI_E_NOT_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555384));
-pub const IMAPI_E_NOT_DIR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555383));
-pub const IMAPI_E_DIR_NOT_EMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555382));
-pub const IMAPI_E_NOT_IN_FILE_SYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555381));
-pub const IMAPI_E_INVALID_PATH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555376));
-pub const IMAPI_E_RESTRICTED_NAME_VIOLATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555375));
-pub const IMAPI_E_DUP_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555374));
-pub const IMAPI_E_NO_UNIQUE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555373));
-pub const IMAPI_E_ITEM_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555368));
-pub const IMAPI_E_FILE_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555367));
-pub const IMAPI_E_DIR_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555366));
-pub const IMAPI_E_IMAGE_SIZE_LIMIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555360));
-pub const IMAPI_E_IMAGE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555359));
-pub const IMAPI_E_DATA_STREAM_INCONSISTENCY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555352));
-pub const IMAPI_E_DATA_STREAM_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555351));
-pub const IMAPI_E_DATA_STREAM_CREATE_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555350));
-pub const IMAPI_E_DIRECTORY_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555349));
-pub const IMAPI_E_TOO_MANY_DIRS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555344));
-pub const IMAPI_E_ISO9660_LEVELS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555343));
-pub const IMAPI_E_DATA_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555342));
-pub const IMAPI_E_INCOMPATIBLE_PREVIOUS_SESSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555341));
-pub const IMAPI_E_STASHFILE_OPEN_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555336));
-pub const IMAPI_E_STASHFILE_SEEK_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555335));
-pub const IMAPI_E_STASHFILE_WRITE_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555334));
-pub const IMAPI_E_STASHFILE_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555333));
-pub const IMAPI_E_INVALID_WORKING_DIRECTORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555328));
-pub const IMAPI_E_WORKING_DIRECTORY_SPACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555327));
-pub const IMAPI_E_STASHFILE_MOVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555326));
-pub const IMAPI_E_BOOT_IMAGE_DATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555320));
-pub const IMAPI_E_BOOT_OBJECT_CONFLICT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555319));
-pub const IMAPI_E_BOOT_EMULATION_IMAGE_SIZE_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555318));
-pub const IMAPI_E_EMPTY_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555312));
-pub const IMAPI_E_NO_SUPPORTED_FILE_SYSTEM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555311));
-pub const IMAPI_E_FILE_SYSTEM_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555310));
-pub const IMAPI_E_FILE_SYSTEM_READ_CONSISTENCY_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555309));
-pub const IMAPI_E_FILE_SYSTEM_FEATURE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555308));
-pub const IMAPI_E_IMPORT_TYPE_COLLISION_FILE_EXISTS_AS_DIRECTORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555307));
-pub const IMAPI_E_IMPORT_SEEK_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555306));
-pub const IMAPI_E_IMPORT_READ_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555305));
-pub const IMAPI_E_DISC_MISMATCH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555304));
-pub const IMAPI_E_IMPORT_MEDIA_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555303));
-pub const IMAPI_E_UDF_NOT_WRITE_COMPATIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555302));
-pub const IMAPI_E_INCOMPATIBLE_MULTISESSION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555301));
-pub const IMAPI_E_NO_COMPATIBLE_MULTISESSION_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555300));
-pub const IMAPI_E_MULTISESSION_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555299));
-pub const IMAPI_E_IMPORT_TYPE_COLLISION_DIRECTORY_EXISTS_AS_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555298));
-pub const IMAPI_S_IMAGE_FEATURE_NOT_SUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 11186527));
-pub const IMAPI_E_PROPERTY_NOT_ACCESSIBLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555296));
-pub const IMAPI_E_UDF_REVISION_CHANGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555295));
-pub const IMAPI_E_BAD_MULTISESSION_PARAMETER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555294));
-pub const IMAPI_E_FILE_SYSTEM_CHANGE_NOT_ALLOWED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555293));
-pub const IMAPI_E_IMAGEMANAGER_IMAGE_NOT_ALIGNED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555136));
-pub const IMAPI_E_IMAGEMANAGER_NO_VALID_VD_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555135));
-pub const IMAPI_E_IMAGEMANAGER_NO_IMAGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555134));
-pub const IMAPI_E_IMAGEMANAGER_IMAGE_TOO_BIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1062555133));
-pub const MAPI_E_CALL_FAILED = @as(i32, -2147467259);
-pub const MAPI_E_NOT_ENOUGH_MEMORY = @as(i32, -2147024882);
-pub const MAPI_E_INVALID_PARAMETER = @as(i32, -2147024809);
-pub const MAPI_E_INTERFACE_NOT_SUPPORTED = @as(i32, -2147467262);
-pub const MAPI_E_NO_ACCESS = @as(i32, -2147024891);
-pub const TAD_ALL_ROWS = @as(u32, 1);
-pub const PRILOWEST = @as(i32, -32768);
-pub const PRIHIGHEST = @as(u32, 32767);
-pub const PRIUSER = @as(u32, 0);
-pub const OPENSTREAMONFILE = "OpenStreamOnFile";
-pub const szHrDispatchNotifications = "HrDispatchNotifications";
-pub const szScCreateConversationIndex = "ScCreateConversationIndex";
 
 //--------------------------------------------------------------------------------
 // Section: Types (128)
 //--------------------------------------------------------------------------------
-pub const ENTRYID = extern struct {
-    abFlags: [4]u8,
-    ab: [1]u8,
-};
-
-pub const MAPIUID = extern struct {
-    ab: [16]u8,
-};
-
-pub const SPropTagArray = extern struct {
-    cValues: u32,
-    aulPropTag: [1]u32,
-};
-
-pub const SBinary = extern struct {
-    cb: u32,
-    lpb: ?*u8,
-};
-
-pub const SShortArray = extern struct {
-    cValues: u32,
-    lpi: ?*i16,
-};
-
-pub const SGuidArray = extern struct {
-    cValues: u32,
-    lpguid: ?*Guid,
-};
-
-pub const SRealArray = extern struct {
-    cValues: u32,
-    lpflt: ?*f32,
-};
-
-pub const SLongArray = extern struct {
-    cValues: u32,
-    lpl: ?*i32,
-};
-
-pub const SLargeIntegerArray = extern struct {
-    cValues: u32,
-    lpli: ?*LARGE_INTEGER,
-};
-
-pub const SDateTimeArray = extern struct {
-    cValues: u32,
-    lpft: ?*FILETIME,
-};
-
-pub const SAppTimeArray = extern struct {
-    cValues: u32,
-    lpat: ?*f64,
-};
-
-pub const SCurrencyArray = extern struct {
-    cValues: u32,
-    lpcur: ?*CY,
-};
-
-pub const SBinaryArray = extern struct {
-    cValues: u32,
-    lpbin: ?*SBinary,
-};
-
-pub const SDoubleArray = extern struct {
-    cValues: u32,
-    lpdbl: ?*f64,
-};
-
-pub const SWStringArray = extern struct {
-    cValues: u32,
-    lppszW: ?*?PWSTR,
-};
-
-pub const SLPSTRArray = extern struct {
-    cValues: u32,
-    lppszA: ?*?PSTR,
+pub const _flaglist = extern struct {
+    cFlags: u32,
+    ulFlag: [1]u32,
 };
 
 pub const _PV = extern union {
@@ -334,43 +260,8 @@ pub const _PV = extern union {
     x: i32,
 };
 
-pub const SPropValue = extern struct {
-    ulPropTag: u32,
-    dwAlignPad: u32,
-    Value: _PV,
-};
-
-pub const SPropProblem = extern struct {
-    ulIndex: u32,
-    ulPropTag: u32,
-    scode: i32,
-};
-
-pub const SPropProblemArray = extern struct {
-    cProblem: u32,
-    aProblem: [1]SPropProblem,
-};
-
-pub const FLATENTRY = extern struct {
-    cb: u32,
-    abEntry: [1]u8,
-};
-
-pub const FLATENTRYLIST = extern struct {
-    cEntries: u32,
-    cbEntries: u32,
-    abEntries: [1]u8,
-};
-
-pub const MTSID = extern struct {
-    cb: u32,
-    ab: [1]u8,
-};
-
-pub const FLATMTSIDLIST = extern struct {
-    cMTSIDs: u32,
-    cbMTSIDs: u32,
-    abMTSIDs: [1]u8,
+pub const _WABACTIONITEM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const ADRENTRY = extern struct {
@@ -384,38 +275,142 @@ pub const ADRLIST = extern struct {
     aEntries: [1]ADRENTRY,
 };
 
-pub const SRow = extern struct {
-    ulAdrEntryPad: u32,
-    cValues: u32,
-    lpProps: ?*SPropValue,
+pub const ADRPARM = extern struct {
+    cbABContEntryID: u32,
+    lpABContEntryID: ?*ENTRYID,
+    ulFlags: u32,
+    lpReserved: ?*anyopaque,
+    ulHelpContext: u32,
+    lpszHelpFileName: ?*i8,
+    lpfnABSDI: ?LPFNABSDI,
+    lpfnDismiss: ?LPFNDISMISS,
+    lpvDismissContext: ?*anyopaque,
+    lpszCaption: ?*i8,
+    lpszNewEntryTitle: ?*i8,
+    lpszDestWellsTitle: ?*i8,
+    cDestFields: u32,
+    nDestFieldFocus: u32,
+    lppszDestTitles: ?*?*i8,
+    lpulDestComps: ?*u32,
+    lpContRestriction: ?*SRestriction,
+    lpHierRestriction: ?*SRestriction,
 };
 
-pub const SRowSet = extern struct {
-    cRows: u32,
-    aRow: [1]SRow,
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const CALLERRELEASE = *const fn() callconv(.winapi) void;
+
+pub const DTBLBUTTON = extern struct {
+    ulbLpszLabel: u32,
+    ulFlags: u32,
+    ulPRControl: u32,
 };
 
-pub const LPALLOCATEBUFFER = *const fn(
-    cbSize: u32,
-    lppBuffer: ?*?*anyopaque,
-) callconv(.winapi) i32;
+pub const DTBLCHECKBOX = extern struct {
+    ulbLpszLabel: u32,
+    ulFlags: u32,
+    ulPRPropertyName: u32,
+};
 
-pub const LPALLOCATEMORE = *const fn(
-    cbSize: u32,
-    lpObject: ?*anyopaque,
-    lppBuffer: ?*?*anyopaque,
-) callconv(.winapi) i32;
+pub const DTBLCOMBOBOX = extern struct {
+    ulbLpszCharsAllowed: u32,
+    ulFlags: u32,
+    ulNumCharsAllowed: u32,
+    ulPRPropertyName: u32,
+    ulPRTableName: u32,
+};
 
-pub const LPFREEBUFFER = *const fn(
-    lpBuffer: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const DTBLDDLBX = extern struct {
+    ulFlags: u32,
+    ulPRDisplayProperty: u32,
+    ulPRSetProperty: u32,
+    ulPRTableName: u32,
+};
 
-pub const MAPIERROR = extern struct {
-    ulVersion: u32,
-    lpszError: ?*i8,
-    lpszComponent: ?*i8,
-    ulLowLevelError: u32,
+pub const DTBLEDIT = extern struct {
+    ulbLpszCharsAllowed: u32,
+    ulFlags: u32,
+    ulNumCharsAllowed: u32,
+    ulPropTag: u32,
+};
+
+pub const DTBLGROUPBOX = extern struct {
+    ulbLpszLabel: u32,
+    ulFlags: u32,
+};
+
+pub const DTBLLABEL = extern struct {
+    ulbLpszLabelName: u32,
+    ulFlags: u32,
+};
+
+pub const DTBLLBX = extern struct {
+    ulFlags: u32,
+    ulPRSetProperty: u32,
+    ulPRTableName: u32,
+};
+
+pub const DTBLMVDDLBX = extern struct {
+    ulFlags: u32,
+    ulMVPropTag: u32,
+};
+
+pub const DTBLMVLISTBOX = extern struct {
+    ulFlags: u32,
+    ulMVPropTag: u32,
+};
+
+pub const DTBLPAGE = extern struct {
+    ulbLpszLabel: u32,
+    ulFlags: u32,
+    ulbLpszComponent: u32,
     ulContext: u32,
+};
+
+pub const DTBLRADIOBUTTON = extern struct {
+    ulbLpszLabel: u32,
+    ulFlags: u32,
+    ulcButtons: u32,
+    ulPropTag: u32,
+    lReturnValue: i32,
+};
+
+pub const DTCTL = extern struct {
+    ulCtlType: u32,
+    ulCtlFlags: u32,
+    lpbNotif: ?*u8,
+    cbNotif: u32,
+    lpszFilter: ?*i8,
+    ulItemID: u32,
+    ctl: extern union {
+        lpv: ?*anyopaque,
+        lplabel: ?*DTBLLABEL,
+        lpedit: ?*DTBLEDIT,
+        lplbx: ?*DTBLLBX,
+        lpcombobox: ?*DTBLCOMBOBOX,
+        lpddlbx: ?*DTBLDDLBX,
+        lpcheckbox: ?*DTBLCHECKBOX,
+        lpgroupbox: ?*DTBLGROUPBOX,
+        lpbutton: ?*DTBLBUTTON,
+        lpradiobutton: ?*DTBLRADIOBUTTON,
+        lpmvlbx: ?*DTBLMVLISTBOX,
+        lpmvddlbx: ?*DTBLMVDDLBX,
+        lppage: ?*DTBLPAGE,
+    },
+};
+
+pub const DTPAGE = extern struct {
+    cctl: u32,
+    lpszResourceName: ?*i8,
+    Anonymous: extern union {
+        lpszComponent: ?*i8,
+        ulItemID: u32,
+    },
+    lpctl: ?*DTCTL,
+};
+
+pub const ENTRYID = extern struct {
+    abFlags: [4]u8,
+    ab: [1]u8,
 };
 
 pub const ERROR_NOTIFICATION = extern struct {
@@ -426,62 +421,343 @@ pub const ERROR_NOTIFICATION = extern struct {
     lpMAPIError: ?*MAPIERROR,
 };
 
-pub const NEWMAIL_NOTIFICATION = extern struct {
-    cbEntryID: u32,
-    lpEntryID: ?*ENTRYID,
-    cbParentID: u32,
-    lpParentID: ?*ENTRYID,
-    ulFlags: u32,
-    lpszMessageClass: ?*i8,
-    ulMessageFlags: u32,
-};
-
-pub const OBJECT_NOTIFICATION = extern struct {
-    cbEntryID: u32,
-    lpEntryID: ?*ENTRYID,
-    ulObjType: u32,
-    cbParentID: u32,
-    lpParentID: ?*ENTRYID,
-    cbOldID: u32,
-    lpOldID: ?*ENTRYID,
-    cbOldParentID: u32,
-    lpOldParentID: ?*ENTRYID,
-    lpPropTagArray: ?*SPropTagArray,
-};
-
-pub const TABLE_NOTIFICATION = extern struct {
-    ulTableEvent: u32,
-    hResult: HRESULT,
-    propIndex: SPropValue,
-    propPrior: SPropValue,
-    row: SRow,
-    ulPad: u32,
-};
-
 pub const EXTENDED_NOTIFICATION = extern struct {
     ulEvent: u32,
     cb: u32,
     pbEventParameters: ?*u8,
 };
 
-pub const STATUS_OBJECT_NOTIFICATION = extern struct {
-    cbEntryID: u32,
-    lpEntryID: ?*ENTRYID,
-    cValues: u32,
-    lpPropVals: ?*SPropValue,
+pub const FLATENTRY = extern struct {
+    cb: u32,
+    abEntry: [1]u8,
 };
 
-pub const NOTIFICATION = extern struct {
-    ulEventType: u32,
-    ulAlignPad: u32,
-    info: extern union {
-        err: ERROR_NOTIFICATION,
-        newmail: NEWMAIL_NOTIFICATION,
-        obj: OBJECT_NOTIFICATION,
-        tab: TABLE_NOTIFICATION,
-        ext: EXTENDED_NOTIFICATION,
-        statobj: STATUS_OBJECT_NOTIFICATION,
-    },
+pub const FLATENTRYLIST = extern struct {
+    cEntries: u32,
+    cbEntries: u32,
+    abEntries: [1]u8,
+};
+
+pub const FLATMTSIDLIST = extern struct {
+    cMTSIDs: u32,
+    cbMTSIDs: u32,
+    abMTSIDs: [1]u8,
+};
+
+pub const Gender = enum(i32) {
+    Unspecified = 0,
+    Female = 1,
+    Male = 2,
+};
+pub const genderUnspecified = Gender.Unspecified;
+pub const genderFemale = Gender.Female;
+pub const genderMale = Gender.Male;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub const IABContainer = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIContainer.VTable,
+        CreateEntry: *const fn(
+            self: *const IABContainer,
+            cbEntryID: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            lpEntryID: ?*ENTRYID,
+            ulCreateFlags: u32,
+            lppMAPIPropEntry: ?*?*IMAPIProp,
+        ) callconv(.winapi) HRESULT,
+        CopyEntries: *const fn(
+            self: *const IABContainer,
+            lpEntries: ?*SBinaryArray,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteEntries: *const fn(
+            self: *const IABContainer,
+            lpEntries: ?*SBinaryArray,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        ResolveNames: *const fn(
+            self: *const IABContainer,
+            lpPropTagArray: ?*SPropTagArray,
+            ulFlags: u32,
+            lpAdrList: ?*ADRLIST,
+            lpFlagList: ?*_flaglist,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMAPIContainer: IMAPIContainer,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
+    pub fn CreateEntry(self: *const IABContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEntry(self, cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
+    }
+    pub fn CopyEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyEntries(self, lpEntries, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
+    }
+    pub fn ResolveNames(self: *const IABContainer, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
+        return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+pub const IAddrBook = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIProp.VTable,
+        OpenEntry: *const fn(
+            self: *const IAddrBook,
+            cbEntryID: u32,
+            lpEntryID: ?*ENTRYID,
+            lpInterface: ?*Guid,
+            ulFlags: u32,
+            lpulObjType: ?*u32,
+            lppUnk: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        CompareEntryIDs: *const fn(
+            self: *const IAddrBook,
+            cbEntryID1: u32,
+            lpEntryID1: ?*ENTRYID,
+            cbEntryID2: u32,
+            lpEntryID2: ?*ENTRYID,
+            ulFlags: u32,
+            lpulResult: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Advise: *const fn(
+            self: *const IAddrBook,
+            cbEntryID: u32,
+            lpEntryID: ?*ENTRYID,
+            ulEventMask: u32,
+            lpAdviseSink: ?*IMAPIAdviseSink,
+            lpulConnection: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Unadvise: *const fn(
+            self: *const IAddrBook,
+            ulConnection: u32,
+        ) callconv(.winapi) HRESULT,
+        CreateOneOff: *const fn(
+            self: *const IAddrBook,
+            lpszName: ?*i8,
+            lpszAdrType: ?*i8,
+            lpszAddress: ?*i8,
+            ulFlags: u32,
+            lpcbEntryID: ?*u32,
+            lppEntryID: ?*?*ENTRYID,
+        ) callconv(.winapi) HRESULT,
+        NewEntry: *const fn(
+            self: *const IAddrBook,
+            ulUIParam: u32,
+            ulFlags: u32,
+            cbEIDContainer: u32,
+            lpEIDContainer: ?*ENTRYID,
+            cbEIDNewEntryTpl: u32,
+            lpEIDNewEntryTpl: ?*ENTRYID,
+            lpcbEIDNewEntry: ?*u32,
+            lppEIDNewEntry: ?*?*ENTRYID,
+        ) callconv(.winapi) HRESULT,
+        ResolveName: *const fn(
+            self: *const IAddrBook,
+            ulUIParam: usize,
+            ulFlags: u32,
+            lpszNewEntryTitle: ?*i8,
+            lpAdrList: ?*ADRLIST,
+        ) callconv(.winapi) HRESULT,
+        Address: *const fn(
+            self: *const IAddrBook,
+            lpulUIParam: ?*u32,
+            lpAdrParms: ?*ADRPARM,
+            lppAdrList: ?*?*ADRLIST,
+        ) callconv(.winapi) HRESULT,
+        Details: *const fn(
+            self: *const IAddrBook,
+            lpulUIParam: ?*usize,
+            lpfnDismiss: ?LPFNDISMISS,
+            lpvDismissContext: ?*anyopaque,
+            cbEntryID: u32,
+            lpEntryID: ?*ENTRYID,
+            lpfButtonCallback: ?LPFNBUTTON,
+            lpvButtonContext: ?*anyopaque,
+            lpszButtonText: ?*i8,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        RecipOptions: *const fn(
+            self: *const IAddrBook,
+            ulUIParam: u32,
+            ulFlags: u32,
+            lpRecip: ?*ADRENTRY,
+        ) callconv(.winapi) HRESULT,
+        QueryDefaultRecipOpt: *const fn(
+            self: *const IAddrBook,
+            lpszAdrType: ?*i8,
+            ulFlags: u32,
+            lpcValues: ?*u32,
+            lppOptions: ?*?*SPropValue,
+        ) callconv(.winapi) HRESULT,
+        GetPAB: *const fn(
+            self: *const IAddrBook,
+            lpcbEntryID: ?*u32,
+            lppEntryID: ?*?*ENTRYID,
+        ) callconv(.winapi) HRESULT,
+        SetPAB: *const fn(
+            self: *const IAddrBook,
+            cbEntryID: u32,
+            lpEntryID: ?*ENTRYID,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultDir: *const fn(
+            self: *const IAddrBook,
+            lpcbEntryID: ?*u32,
+            lppEntryID: ?*?*ENTRYID,
+        ) callconv(.winapi) HRESULT,
+        SetDefaultDir: *const fn(
+            self: *const IAddrBook,
+            cbEntryID: u32,
+            lpEntryID: ?*ENTRYID,
+        ) callconv(.winapi) HRESULT,
+        GetSearchPath: *const fn(
+            self: *const IAddrBook,
+            ulFlags: u32,
+            lppSearchPath: ?*?*SRowSet,
+        ) callconv(.winapi) HRESULT,
+        SetSearchPath: *const fn(
+            self: *const IAddrBook,
+            ulFlags: u32,
+            lpSearchPath: ?*SRowSet,
+        ) callconv(.winapi) HRESULT,
+        PrepareRecips: *const fn(
+            self: *const IAddrBook,
+            ulFlags: u32,
+            lpPropTagArray: ?*SPropTagArray,
+            lpRecipList: ?*ADRLIST,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
+    pub fn OpenEntry(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenEntry(self, cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
+    }
+    pub fn CompareEntryIDs(self: *const IAddrBook, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CompareEntryIDs(self, cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
+    }
+    pub fn Advise(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Advise(self, cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
+    }
+    pub fn Unadvise(self: *const IAddrBook, ulConnection: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Unadvise(self, ulConnection);
+    }
+    pub fn CreateOneOff(self: *const IAddrBook, lpszName: ?*i8, lpszAdrType: ?*i8, lpszAddress: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateOneOff(self, lpszName, lpszAdrType, lpszAddress, ulFlags, lpcbEntryID, lppEntryID);
+    }
+    pub fn NewEntry(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, cbEIDContainer: u32, lpEIDContainer: ?*ENTRYID, cbEIDNewEntryTpl: u32, lpEIDNewEntryTpl: ?*ENTRYID, lpcbEIDNewEntry: ?*u32, lppEIDNewEntry: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
+        return self.vtable.NewEntry(self, ulUIParam, ulFlags, cbEIDContainer, lpEIDContainer, cbEIDNewEntryTpl, lpEIDNewEntryTpl, lpcbEIDNewEntry, lppEIDNewEntry);
+    }
+    pub fn ResolveName(self: *const IAddrBook, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: ?*i8, lpAdrList: ?*ADRLIST) callconv(.@"inline") HRESULT {
+        return self.vtable.ResolveName(self, ulUIParam, ulFlags, lpszNewEntryTitle, lpAdrList);
+    }
+    pub fn Address(self: *const IAddrBook, lpulUIParam: ?*u32, lpAdrParms: ?*ADRPARM, lppAdrList: ?*?*ADRLIST) callconv(.@"inline") HRESULT {
+        return self.vtable.Address(self, lpulUIParam, lpAdrParms, lppAdrList);
+    }
+    pub fn Details(self: *const IAddrBook, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*anyopaque, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*anyopaque, lpszButtonText: ?*i8, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Details(self, lpulUIParam, lpfnDismiss, lpvDismissContext, cbEntryID, lpEntryID, lpfButtonCallback, lpvButtonContext, lpszButtonText, ulFlags);
+    }
+    pub fn RecipOptions(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, lpRecip: ?*ADRENTRY) callconv(.@"inline") HRESULT {
+        return self.vtable.RecipOptions(self, ulUIParam, ulFlags, lpRecip);
+    }
+    pub fn QueryDefaultRecipOpt(self: *const IAddrBook, lpszAdrType: ?*i8, ulFlags: u32, lpcValues: ?*u32, lppOptions: ?*?*SPropValue) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryDefaultRecipOpt(self, lpszAdrType, ulFlags, lpcValues, lppOptions);
+    }
+    pub fn GetPAB(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPAB(self, lpcbEntryID, lppEntryID);
+    }
+    pub fn SetPAB(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPAB(self, cbEntryID, lpEntryID);
+    }
+    pub fn GetDefaultDir(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultDir(self, lpcbEntryID, lppEntryID);
+    }
+    pub fn SetDefaultDir(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultDir(self, cbEntryID, lpEntryID);
+    }
+    pub fn GetSearchPath(self: *const IAddrBook, ulFlags: u32, lppSearchPath: ?*?*SRowSet) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSearchPath(self, ulFlags, lppSearchPath);
+    }
+    pub fn SetSearchPath(self: *const IAddrBook, ulFlags: u32, lpSearchPath: ?*SRowSet) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSearchPath(self, ulFlags, lpSearchPath);
+    }
+    pub fn PrepareRecips(self: *const IAddrBook, ulFlags: u32, lpPropTagArray: ?*SPropTagArray, lpRecipList: ?*ADRLIST) callconv(.@"inline") HRESULT {
+        return self.vtable.PrepareRecips(self, ulFlags, lpPropTagArray, lpRecipList);
+    }
+};
+
+pub const IAttach = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIProp.VTable,
+    };
+    vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+pub const IDistList = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIContainer.VTable,
+        CreateEntry: *const fn(
+            self: *const IDistList,
+            cbEntryID: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            lpEntryID: ?*ENTRYID,
+            ulCreateFlags: u32,
+            lppMAPIPropEntry: ?*?*IMAPIProp,
+        ) callconv(.winapi) HRESULT,
+        CopyEntries: *const fn(
+            self: *const IDistList,
+            lpEntries: ?*SBinaryArray,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteEntries: *const fn(
+            self: *const IDistList,
+            lpEntries: ?*SBinaryArray,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        ResolveNames: *const fn(
+            self: *const IDistList,
+            lpPropTagArray: ?*SPropTagArray,
+            ulFlags: u32,
+            lpAdrList: ?*ADRLIST,
+            lpFlagList: ?*_flaglist,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMAPIContainer: IMAPIContainer,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
+    pub fn CreateEntry(self: *const IDistList, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateEntry(self, cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
+    }
+    pub fn CopyEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyEntries(self, lpEntries, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
+    }
+    pub fn ResolveNames(self: *const IDistList, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
+        return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+pub const IMailUser = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIProp.VTable,
+    };
+    vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
 };
 
 pub const IMAPIAdviseSink = extern union {
@@ -500,11 +776,225 @@ pub const IMAPIAdviseSink = extern union {
     }
 };
 
-pub const LPNOTIFCALLBACK = *const fn(
-    lpvContext: ?*anyopaque,
-    cNotification: u32,
-    lpNotifications: ?*NOTIFICATION,
-) callconv(.winapi) i32;
+pub const IMAPIContainer = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIProp.VTable,
+        GetContentsTable: *const fn(
+            self: *const IMAPIContainer,
+            ulFlags: u32,
+            lppTable: ?*?*IMAPITable,
+        ) callconv(.winapi) HRESULT,
+        GetHierarchyTable: *const fn(
+            self: *const IMAPIContainer,
+            ulFlags: u32,
+            lppTable: ?*?*IMAPITable,
+        ) callconv(.winapi) HRESULT,
+        OpenEntry: *const fn(
+            self: *const IMAPIContainer,
+            cbEntryID: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            lpEntryID: ?*ENTRYID,
+            lpInterface: ?*Guid,
+            ulFlags: u32,
+            lpulObjType: ?*u32,
+            lppUnk: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        SetSearchCriteria: *const fn(
+            self: *const IMAPIContainer,
+            lpRestriction: ?*SRestriction,
+            lpContainerList: ?*SBinaryArray,
+            ulSearchFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetSearchCriteria: *const fn(
+            self: *const IMAPIContainer,
+            ulFlags: u32,
+            lppRestriction: ?*?*SRestriction,
+            lppContainerList: ?*?*SBinaryArray,
+            lpulSearchState: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
+    pub fn GetContentsTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetContentsTable(self, ulFlags, lppTable);
+    }
+    pub fn GetHierarchyTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHierarchyTable(self, ulFlags, lppTable);
+    }
+    pub fn OpenEntry(self: *const IMAPIContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenEntry(self, cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
+    }
+    pub fn SetSearchCriteria(self: *const IMAPIContainer, lpRestriction: ?*SRestriction, lpContainerList: ?*SBinaryArray, ulSearchFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSearchCriteria(self, lpRestriction, lpContainerList, ulSearchFlags);
+    }
+    pub fn GetSearchCriteria(self: *const IMAPIContainer, ulFlags: u32, lppRestriction: ?*?*SRestriction, lppContainerList: ?*?*SBinaryArray, lpulSearchState: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSearchCriteria(self, ulFlags, lppRestriction, lppContainerList, lpulSearchState);
+    }
+};
+
+pub const IMAPIControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLastError: *const fn(
+            self: *const IMAPIControl,
+            hResult: HRESULT,
+            ulFlags: u32,
+            lppMAPIError: ?*?*MAPIERROR,
+        ) callconv(.winapi) HRESULT,
+        Activate: *const fn(
+            self: *const IMAPIControl,
+            ulFlags: u32,
+            ulUIParam: usize,
+        ) callconv(.winapi) HRESULT,
+        GetState: *const fn(
+            self: *const IMAPIControl,
+            ulFlags: u32,
+            lpulState: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetLastError(self: *const IMAPIControl, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
+    }
+    pub fn Activate(self: *const IMAPIControl, ulFlags: u32, ulUIParam: usize) callconv(.@"inline") HRESULT {
+        return self.vtable.Activate(self, ulFlags, ulUIParam);
+    }
+    pub fn GetState(self: *const IMAPIControl, ulFlags: u32, lpulState: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetState(self, ulFlags, lpulState);
+    }
+};
+
+pub const IMAPIFolder = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIContainer.VTable,
+        CreateMessage: *const fn(
+            self: *const IMAPIFolder,
+            lpInterface: ?*Guid,
+            ulFlags: u32,
+            lppMessage: ?*?*IMessage,
+        ) callconv(.winapi) HRESULT,
+        CopyMessages: *const fn(
+            self: *const IMAPIFolder,
+            lpMsgList: ?*SBinaryArray,
+            lpInterface: ?*Guid,
+            lpDestFolder: ?*anyopaque,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteMessages: *const fn(
+            self: *const IMAPIFolder,
+            lpMsgList: ?*SBinaryArray,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        CreateFolder: *const fn(
+            self: *const IMAPIFolder,
+            ulFolderType: u32,
+            lpszFolderName: ?*i8,
+            lpszFolderComment: ?*i8,
+            lpInterface: ?*Guid,
+            ulFlags: u32,
+            lppFolder: ?*?*IMAPIFolder,
+        ) callconv(.winapi) HRESULT,
+        CopyFolder: *const fn(
+            self: *const IMAPIFolder,
+            cbEntryID: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            lpEntryID: ?*ENTRYID,
+            lpInterface: ?*Guid,
+            lpDestFolder: ?*anyopaque,
+            lpszNewFolderName: ?*i8,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteFolder: *const fn(
+            self: *const IMAPIFolder,
+            cbEntryID: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            lpEntryID: ?*ENTRYID,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        SetReadFlags: *const fn(
+            self: *const IMAPIFolder,
+            lpMsgList: ?*SBinaryArray,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetMessageStatus: *const fn(
+            self: *const IMAPIFolder,
+            cbEntryID: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            lpEntryID: ?*ENTRYID,
+            ulFlags: u32,
+            lpulMessageStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetMessageStatus: *const fn(
+            self: *const IMAPIFolder,
+            cbEntryID: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            lpEntryID: ?*ENTRYID,
+            ulNewStatus: u32,
+            ulNewStatusMask: u32,
+            lpulOldStatus: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SaveContentsSort: *const fn(
+            self: *const IMAPIFolder,
+            lpSortCriteria: ?*SSortOrderSet,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        EmptyFolder: *const fn(
+            self: *const IMAPIFolder,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMAPIContainer: IMAPIContainer,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
+    pub fn CreateMessage(self: *const IMAPIFolder, lpInterface: ?*Guid, ulFlags: u32, lppMessage: ?*?*IMessage) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateMessage(self, lpInterface, ulFlags, lppMessage);
+    }
+    pub fn CopyMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyMessages(self, lpMsgList, lpInterface, lpDestFolder, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteMessages(self, lpMsgList, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn CreateFolder(self: *const IMAPIFolder, ulFolderType: u32, lpszFolderName: ?*i8, lpszFolderComment: ?*i8, lpInterface: ?*Guid, ulFlags: u32, lppFolder: ?*?*IMAPIFolder) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateFolder(self, ulFolderType, lpszFolderName, lpszFolderComment, lpInterface, ulFlags, lppFolder);
+    }
+    pub fn CopyFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyFolder(self, cbEntryID, lpEntryID, lpInterface, lpDestFolder, lpszNewFolderName, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn DeleteFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteFolder(self, cbEntryID, lpEntryID, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn SetReadFlags(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReadFlags(self, lpMsgList, ulUIParam, lpProgress, ulFlags);
+    }
+    pub fn GetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32, lpulMessageStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetMessageStatus(self, cbEntryID, lpEntryID, ulFlags, lpulMessageStatus);
+    }
+    pub fn SetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulNewStatus: u32, ulNewStatusMask: u32, lpulOldStatus: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetMessageStatus(self, cbEntryID, lpEntryID, ulNewStatus, ulNewStatusMask, lpulOldStatus);
+    }
+    pub fn SaveContentsSort(self: *const IMAPIFolder, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveContentsSort(self, lpSortCriteria, ulFlags);
+    }
+    pub fn EmptyFolder(self: *const IMAPIFolder, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.EmptyFolder(self, ulUIParam, lpProgress, ulFlags);
+    }
+};
 
 pub const IMAPIProgress = extern union {
     pub const VTable = extern struct {
@@ -551,15 +1041,6 @@ pub const IMAPIProgress = extern union {
     pub fn SetLimits(self: *const IMAPIProgress, lpulMin: ?*u32, lpulMax: ?*u32, lpulFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLimits(self, lpulMin, lpulMax, lpulFlags);
     }
-};
-
-pub const MAPINAMEID = extern struct {
-    lpguid: ?*Guid,
-    ulKind: u32,
-    Kind: extern union {
-        lID: i32,
-        lpwstrName: ?PWSTR,
-    },
 };
 
 pub const IMAPIProp = extern union {
@@ -681,95 +1162,48 @@ pub const IMAPIProp = extern union {
     }
 };
 
-pub const SSortOrder = extern struct {
-    ulPropTag: u32,
-    ulOrder: u32,
-};
-
-pub const SSortOrderSet = extern struct {
-    cSorts: u32,
-    cCategories: u32,
-    cExpanded: u32,
-    aSort: [1]SSortOrder,
-};
-
-pub const SAndRestriction = extern struct {
-    cRes: u32,
-    lpRes: ?*SRestriction,
-};
-
-pub const SOrRestriction = extern struct {
-    cRes: u32,
-    lpRes: ?*SRestriction,
-};
-
-pub const SNotRestriction = extern struct {
-    ulReserved: u32,
-    lpRes: ?*SRestriction,
-};
-
-pub const SContentRestriction = extern struct {
-    ulFuzzyLevel: u32,
-    ulPropTag: u32,
-    lpProp: ?*SPropValue,
-};
-
-pub const SBitMaskRestriction = extern struct {
-    relBMR: u32,
-    ulPropTag: u32,
-    ulMask: u32,
-};
-
-pub const SPropertyRestriction = extern struct {
-    relop: u32,
-    ulPropTag: u32,
-    lpProp: ?*SPropValue,
-};
-
-pub const SComparePropsRestriction = extern struct {
-    relop: u32,
-    ulPropTag1: u32,
-    ulPropTag2: u32,
-};
-
-pub const SSizeRestriction = extern struct {
-    relop: u32,
-    ulPropTag: u32,
-    cb: u32,
-};
-
-pub const SExistRestriction = extern struct {
-    ulReserved1: u32,
-    ulPropTag: u32,
-    ulReserved2: u32,
-};
-
-pub const SSubRestriction = extern struct {
-    ulSubObject: u32,
-    lpRes: ?*SRestriction,
-};
-
-pub const SCommentRestriction = extern struct {
-    cValues: u32,
-    lpRes: ?*SRestriction,
-    lpProp: ?*SPropValue,
-};
-
-pub const SRestriction = extern struct {
-    rt: u32,
-    res: extern union {
-        resCompareProps: SComparePropsRestriction,
-        resAnd: SAndRestriction,
-        resOr: SOrRestriction,
-        resNot: SNotRestriction,
-        resContent: SContentRestriction,
-        resProperty: SPropertyRestriction,
-        resBitMask: SBitMaskRestriction,
-        resSize: SSizeRestriction,
-        resExist: SExistRestriction,
-        resSub: SSubRestriction,
-        resComment: SCommentRestriction,
-    },
+pub const IMAPIStatus = extern union {
+    pub const VTable = extern struct {
+        base: IMAPIProp.VTable,
+        ValidateState: *const fn(
+            self: *const IMAPIStatus,
+            ulUIParam: usize,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        SettingsDialog: *const fn(
+            self: *const IMAPIStatus,
+            ulUIParam: usize,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        ChangePassword: *const fn(
+            self: *const IMAPIStatus,
+            lpOldPass: ?*i8,
+            lpNewPass: ?*i8,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        FlushQueues: *const fn(
+            self: *const IMAPIStatus,
+            ulUIParam: usize,
+            cbTargetTransport: u32,
+            lpTargetTransport: ?[*]ENTRYID,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
+    IUnknown: IUnknown,
+    pub fn ValidateState(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ValidateState(self, ulUIParam, ulFlags);
+    }
+    pub fn SettingsDialog(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SettingsDialog(self, ulUIParam, ulFlags);
+    }
+    pub fn ChangePassword(self: *const IMAPIStatus, lpOldPass: ?*i8, lpNewPass: ?*i8, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangePassword(self, lpOldPass, lpNewPass, ulFlags);
+    }
+    pub fn FlushQueues(self: *const IMAPIStatus, ulUIParam: usize, cbTargetTransport: u32, lpTargetTransport: ?[*]ENTRYID, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.FlushQueues(self, ulUIParam, cbTargetTransport, lpTargetTransport, ulFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -977,358 +1411,80 @@ pub const IMAPITable = extern union {
     }
 };
 
-pub const IProfSect = extern union {
+pub const IMessage = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
-    };
-    vtable: *const VTable,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-};
-
-pub const IMAPIStatus = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIProp.VTable,
-        ValidateState: *const fn(
-            self: *const IMAPIStatus,
-            ulUIParam: usize,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        SettingsDialog: *const fn(
-            self: *const IMAPIStatus,
-            ulUIParam: usize,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        ChangePassword: *const fn(
-            self: *const IMAPIStatus,
-            lpOldPass: ?*i8,
-            lpNewPass: ?*i8,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        FlushQueues: *const fn(
-            self: *const IMAPIStatus,
-            ulUIParam: usize,
-            cbTargetTransport: u32,
-            lpTargetTransport: ?[*]ENTRYID,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-    pub fn ValidateState(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ValidateState(self, ulUIParam, ulFlags);
-    }
-    pub fn SettingsDialog(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SettingsDialog(self, ulUIParam, ulFlags);
-    }
-    pub fn ChangePassword(self: *const IMAPIStatus, lpOldPass: ?*i8, lpNewPass: ?*i8, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangePassword(self, lpOldPass, lpNewPass, ulFlags);
-    }
-    pub fn FlushQueues(self: *const IMAPIStatus, ulUIParam: usize, cbTargetTransport: u32, lpTargetTransport: ?[*]ENTRYID, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.FlushQueues(self, ulUIParam, cbTargetTransport, lpTargetTransport, ulFlags);
-    }
-};
-
-pub const IMAPIContainer = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIProp.VTable,
-        GetContentsTable: *const fn(
-            self: *const IMAPIContainer,
+        GetAttachmentTable: *const fn(
+            self: *const IMessage,
             ulFlags: u32,
             lppTable: ?*?*IMAPITable,
         ) callconv(.winapi) HRESULT,
-        GetHierarchyTable: *const fn(
-            self: *const IMAPIContainer,
+        OpenAttach: *const fn(
+            self: *const IMessage,
+            ulAttachmentNum: u32,
+            lpInterface: ?*Guid,
+            ulFlags: u32,
+            lppAttach: ?*?*IAttach,
+        ) callconv(.winapi) HRESULT,
+        CreateAttach: *const fn(
+            self: *const IMessage,
+            lpInterface: ?*Guid,
+            ulFlags: u32,
+            lpulAttachmentNum: ?*u32,
+            lppAttach: ?*?*IAttach,
+        ) callconv(.winapi) HRESULT,
+        DeleteAttach: *const fn(
+            self: *const IMessage,
+            ulAttachmentNum: u32,
+            ulUIParam: usize,
+            lpProgress: ?*IMAPIProgress,
+            ulFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        GetRecipientTable: *const fn(
+            self: *const IMessage,
             ulFlags: u32,
             lppTable: ?*?*IMAPITable,
         ) callconv(.winapi) HRESULT,
-        OpenEntry: *const fn(
-            self: *const IMAPIContainer,
-            cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: ?*ENTRYID,
-            lpInterface: ?*Guid,
+        ModifyRecipients: *const fn(
+            self: *const IMessage,
             ulFlags: u32,
-            lpulObjType: ?*u32,
-            lppUnk: ?*?*IUnknown,
+            lpMods: ?*ADRLIST,
         ) callconv(.winapi) HRESULT,
-        SetSearchCriteria: *const fn(
-            self: *const IMAPIContainer,
-            lpRestriction: ?*SRestriction,
-            lpContainerList: ?*SBinaryArray,
-            ulSearchFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetSearchCriteria: *const fn(
-            self: *const IMAPIContainer,
+        SubmitMessage: *const fn(
+            self: *const IMessage,
             ulFlags: u32,
-            lppRestriction: ?*?*SRestriction,
-            lppContainerList: ?*?*SBinaryArray,
-            lpulSearchState: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetReadFlag: *const fn(
+            self: *const IMessage,
+            ulFlags: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn GetContentsTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetContentsTable(self, ulFlags, lppTable);
+    pub fn GetAttachmentTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAttachmentTable(self, ulFlags, lppTable);
     }
-    pub fn GetHierarchyTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHierarchyTable(self, ulFlags, lppTable);
+    pub fn OpenAttach(self: *const IMessage, ulAttachmentNum: u32, lpInterface: ?*Guid, ulFlags: u32, lppAttach: ?*?*IAttach) callconv(.@"inline") HRESULT {
+        return self.vtable.OpenAttach(self, ulAttachmentNum, lpInterface, ulFlags, lppAttach);
     }
-    pub fn OpenEntry(self: *const IMAPIContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenEntry(self, cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
+    pub fn CreateAttach(self: *const IMessage, lpInterface: ?*Guid, ulFlags: u32, lpulAttachmentNum: ?*u32, lppAttach: ?*?*IAttach) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateAttach(self, lpInterface, ulFlags, lpulAttachmentNum, lppAttach);
     }
-    pub fn SetSearchCriteria(self: *const IMAPIContainer, lpRestriction: ?*SRestriction, lpContainerList: ?*SBinaryArray, ulSearchFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSearchCriteria(self, lpRestriction, lpContainerList, ulSearchFlags);
+    pub fn DeleteAttach(self: *const IMessage, ulAttachmentNum: u32, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteAttach(self, ulAttachmentNum, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn GetSearchCriteria(self: *const IMAPIContainer, ulFlags: u32, lppRestriction: ?*?*SRestriction, lppContainerList: ?*?*SBinaryArray, lpulSearchState: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSearchCriteria(self, ulFlags, lppRestriction, lppContainerList, lpulSearchState);
+    pub fn GetRecipientTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRecipientTable(self, ulFlags, lppTable);
     }
-};
-
-pub const _flaglist = extern struct {
-    cFlags: u32,
-    ulFlag: [1]u32,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-pub const IABContainer = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIContainer.VTable,
-        CreateEntry: *const fn(
-            self: *const IABContainer,
-            cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: ?*ENTRYID,
-            ulCreateFlags: u32,
-            lppMAPIPropEntry: ?*?*IMAPIProp,
-        ) callconv(.winapi) HRESULT,
-        CopyEntries: *const fn(
-            self: *const IABContainer,
-            lpEntries: ?*SBinaryArray,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteEntries: *const fn(
-            self: *const IABContainer,
-            lpEntries: ?*SBinaryArray,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        ResolveNames: *const fn(
-            self: *const IABContainer,
-            lpPropTagArray: ?*SPropTagArray,
-            ulFlags: u32,
-            lpAdrList: ?*ADRLIST,
-            lpFlagList: ?*_flaglist,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMAPIContainer: IMAPIContainer,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-    pub fn CreateEntry(self: *const IABContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEntry(self, cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
+    pub fn ModifyRecipients(self: *const IMessage, ulFlags: u32, lpMods: ?*ADRLIST) callconv(.@"inline") HRESULT {
+        return self.vtable.ModifyRecipients(self, ulFlags, lpMods);
     }
-    pub fn CopyEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyEntries(self, lpEntries, ulUIParam, lpProgress, ulFlags);
+    pub fn SubmitMessage(self: *const IMessage, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SubmitMessage(self, ulFlags);
     }
-    pub fn DeleteEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
-    }
-    pub fn ResolveNames(self: *const IABContainer, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
-        return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-pub const IMailUser = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIProp.VTable,
-    };
-    vtable: *const VTable,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-pub const IDistList = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIContainer.VTable,
-        CreateEntry: *const fn(
-            self: *const IDistList,
-            cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: ?*ENTRYID,
-            ulCreateFlags: u32,
-            lppMAPIPropEntry: ?*?*IMAPIProp,
-        ) callconv(.winapi) HRESULT,
-        CopyEntries: *const fn(
-            self: *const IDistList,
-            lpEntries: ?*SBinaryArray,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteEntries: *const fn(
-            self: *const IDistList,
-            lpEntries: ?*SBinaryArray,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        ResolveNames: *const fn(
-            self: *const IDistList,
-            lpPropTagArray: ?*SPropTagArray,
-            ulFlags: u32,
-            lpAdrList: ?*ADRLIST,
-            lpFlagList: ?*_flaglist,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMAPIContainer: IMAPIContainer,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-    pub fn CreateEntry(self: *const IDistList, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateEntry(self, cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
-    }
-    pub fn CopyEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyEntries(self, lpEntries, ulUIParam, lpProgress, ulFlags);
-    }
-    pub fn DeleteEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
-    }
-    pub fn ResolveNames(self: *const IDistList, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
-        return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
-    }
-};
-
-pub const IMAPIFolder = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIContainer.VTable,
-        CreateMessage: *const fn(
-            self: *const IMAPIFolder,
-            lpInterface: ?*Guid,
-            ulFlags: u32,
-            lppMessage: ?*?*IMessage,
-        ) callconv(.winapi) HRESULT,
-        CopyMessages: *const fn(
-            self: *const IMAPIFolder,
-            lpMsgList: ?*SBinaryArray,
-            lpInterface: ?*Guid,
-            lpDestFolder: ?*anyopaque,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteMessages: *const fn(
-            self: *const IMAPIFolder,
-            lpMsgList: ?*SBinaryArray,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        CreateFolder: *const fn(
-            self: *const IMAPIFolder,
-            ulFolderType: u32,
-            lpszFolderName: ?*i8,
-            lpszFolderComment: ?*i8,
-            lpInterface: ?*Guid,
-            ulFlags: u32,
-            lppFolder: ?*?*IMAPIFolder,
-        ) callconv(.winapi) HRESULT,
-        CopyFolder: *const fn(
-            self: *const IMAPIFolder,
-            cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: ?*ENTRYID,
-            lpInterface: ?*Guid,
-            lpDestFolder: ?*anyopaque,
-            lpszNewFolderName: ?*i8,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteFolder: *const fn(
-            self: *const IMAPIFolder,
-            cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: ?*ENTRYID,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        SetReadFlags: *const fn(
-            self: *const IMAPIFolder,
-            lpMsgList: ?*SBinaryArray,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetMessageStatus: *const fn(
-            self: *const IMAPIFolder,
-            cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: ?*ENTRYID,
-            ulFlags: u32,
-            lpulMessageStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetMessageStatus: *const fn(
-            self: *const IMAPIFolder,
-            cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: ?*ENTRYID,
-            ulNewStatus: u32,
-            ulNewStatusMask: u32,
-            lpulOldStatus: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SaveContentsSort: *const fn(
-            self: *const IMAPIFolder,
-            lpSortCriteria: ?*SSortOrderSet,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        EmptyFolder: *const fn(
-            self: *const IMAPIFolder,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMAPIContainer: IMAPIContainer,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-    pub fn CreateMessage(self: *const IMAPIFolder, lpInterface: ?*Guid, ulFlags: u32, lppMessage: ?*?*IMessage) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateMessage(self, lpInterface, ulFlags, lppMessage);
-    }
-    pub fn CopyMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyMessages(self, lpMsgList, lpInterface, lpDestFolder, ulUIParam, lpProgress, ulFlags);
-    }
-    pub fn DeleteMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteMessages(self, lpMsgList, ulUIParam, lpProgress, ulFlags);
-    }
-    pub fn CreateFolder(self: *const IMAPIFolder, ulFolderType: u32, lpszFolderName: ?*i8, lpszFolderComment: ?*i8, lpInterface: ?*Guid, ulFlags: u32, lppFolder: ?*?*IMAPIFolder) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateFolder(self, ulFolderType, lpszFolderName, lpszFolderComment, lpInterface, ulFlags, lppFolder);
-    }
-    pub fn CopyFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyFolder(self, cbEntryID, lpEntryID, lpInterface, lpDestFolder, lpszNewFolderName, ulUIParam, lpProgress, ulFlags);
-    }
-    pub fn DeleteFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteFolder(self, cbEntryID, lpEntryID, ulUIParam, lpProgress, ulFlags);
-    }
-    pub fn SetReadFlags(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReadFlags(self, lpMsgList, ulUIParam, lpProgress, ulFlags);
-    }
-    pub fn GetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32, lpulMessageStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetMessageStatus(self, cbEntryID, lpEntryID, ulFlags, lpulMessageStatus);
-    }
-    pub fn SetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulNewStatus: u32, ulNewStatusMask: u32, lpulOldStatus: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetMessageStatus(self, cbEntryID, lpEntryID, ulNewStatus, ulNewStatusMask, lpulOldStatus);
-    }
-    pub fn SaveContentsSort(self: *const IMAPIFolder, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveContentsSort(self, lpSortCriteria, ulFlags);
-    }
-    pub fn EmptyFolder(self: *const IMAPIFolder, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.EmptyFolder(self, ulUIParam, lpProgress, ulFlags);
+    pub fn SetReadFlag(self: *const IMessage, ulFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetReadFlag(self, ulFlags);
     }
 };
 
@@ -1467,84 +1623,7 @@ pub const IMsgStore = extern union {
     }
 };
 
-pub const IMessage = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIProp.VTable,
-        GetAttachmentTable: *const fn(
-            self: *const IMessage,
-            ulFlags: u32,
-            lppTable: ?*?*IMAPITable,
-        ) callconv(.winapi) HRESULT,
-        OpenAttach: *const fn(
-            self: *const IMessage,
-            ulAttachmentNum: u32,
-            lpInterface: ?*Guid,
-            ulFlags: u32,
-            lppAttach: ?*?*IAttach,
-        ) callconv(.winapi) HRESULT,
-        CreateAttach: *const fn(
-            self: *const IMessage,
-            lpInterface: ?*Guid,
-            ulFlags: u32,
-            lpulAttachmentNum: ?*u32,
-            lppAttach: ?*?*IAttach,
-        ) callconv(.winapi) HRESULT,
-        DeleteAttach: *const fn(
-            self: *const IMessage,
-            ulAttachmentNum: u32,
-            ulUIParam: usize,
-            lpProgress: ?*IMAPIProgress,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        GetRecipientTable: *const fn(
-            self: *const IMessage,
-            ulFlags: u32,
-            lppTable: ?*?*IMAPITable,
-        ) callconv(.winapi) HRESULT,
-        ModifyRecipients: *const fn(
-            self: *const IMessage,
-            ulFlags: u32,
-            lpMods: ?*ADRLIST,
-        ) callconv(.winapi) HRESULT,
-        SubmitMessage: *const fn(
-            self: *const IMessage,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        SetReadFlag: *const fn(
-            self: *const IMessage,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-    pub fn GetAttachmentTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAttachmentTable(self, ulFlags, lppTable);
-    }
-    pub fn OpenAttach(self: *const IMessage, ulAttachmentNum: u32, lpInterface: ?*Guid, ulFlags: u32, lppAttach: ?*?*IAttach) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenAttach(self, ulAttachmentNum, lpInterface, ulFlags, lppAttach);
-    }
-    pub fn CreateAttach(self: *const IMessage, lpInterface: ?*Guid, ulFlags: u32, lpulAttachmentNum: ?*u32, lppAttach: ?*?*IAttach) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateAttach(self, lpInterface, ulFlags, lpulAttachmentNum, lppAttach);
-    }
-    pub fn DeleteAttach(self: *const IMessage, ulAttachmentNum: u32, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteAttach(self, ulAttachmentNum, ulUIParam, lpProgress, ulFlags);
-    }
-    pub fn GetRecipientTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRecipientTable(self, ulFlags, lppTable);
-    }
-    pub fn ModifyRecipients(self: *const IMessage, ulFlags: u32, lpMods: ?*ADRLIST) callconv(.@"inline") HRESULT {
-        return self.vtable.ModifyRecipients(self, ulFlags, lpMods);
-    }
-    pub fn SubmitMessage(self: *const IMessage, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SubmitMessage(self, ulFlags);
-    }
-    pub fn SetReadFlag(self: *const IMessage, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetReadFlag(self, ulFlags);
-    }
-};
-
-pub const IAttach = extern union {
+pub const IProfSect = extern union {
     pub const VTable = extern struct {
         base: IMAPIProp.VTable,
     };
@@ -1553,151 +1632,44 @@ pub const IAttach = extern union {
     IUnknown: IUnknown,
 };
 
-pub const LPFNABSDI = *const fn(
-    ulUIParam: usize,
-    lpvmsg: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const LPFNDISMISS = *const fn(
-    ulUIParam: usize,
-    lpvContext: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const LPFNBUTTON = *const fn(
-    ulUIParam: usize,
-    lpvContext: ?*anyopaque,
-    cbEntryID: u32,
-    lpSelection: ?*ENTRYID,
-    ulFlags: u32,
-) callconv(.winapi) i32;
-
-pub const ADRPARM = extern struct {
-    cbABContEntryID: u32,
-    lpABContEntryID: ?*ENTRYID,
-    ulFlags: u32,
-    lpReserved: ?*anyopaque,
-    ulHelpContext: u32,
-    lpszHelpFileName: ?*i8,
-    lpfnABSDI: ?LPFNABSDI,
-    lpfnDismiss: ?LPFNDISMISS,
-    lpvDismissContext: ?*anyopaque,
-    lpszCaption: ?*i8,
-    lpszNewEntryTitle: ?*i8,
-    lpszDestWellsTitle: ?*i8,
-    cDestFields: u32,
-    nDestFieldFocus: u32,
-    lppszDestTitles: ?*?*i8,
-    lpulDestComps: ?*u32,
-    lpContRestriction: ?*SRestriction,
-    lpHierRestriction: ?*SRestriction,
-};
-
-pub const IMAPIControl = extern union {
+pub const IPropData = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLastError: *const fn(
-            self: *const IMAPIControl,
-            hResult: HRESULT,
-            ulFlags: u32,
-            lppMAPIError: ?*?*MAPIERROR,
+        base: IMAPIProp.VTable,
+        HrSetObjAccess: *const fn(
+            self: *const IPropData,
+            ulAccess: u32,
         ) callconv(.winapi) HRESULT,
-        Activate: *const fn(
-            self: *const IMAPIControl,
-            ulFlags: u32,
-            ulUIParam: usize,
+        HrSetPropAccess: *const fn(
+            self: *const IPropData,
+            lpPropTagArray: ?*SPropTagArray,
+            rgulAccess: ?*u32,
         ) callconv(.winapi) HRESULT,
-        GetState: *const fn(
-            self: *const IMAPIControl,
-            ulFlags: u32,
-            lpulState: ?*u32,
+        HrGetPropAccess: *const fn(
+            self: *const IPropData,
+            lppPropTagArray: ?*?*SPropTagArray,
+            lprgulAccess: ?*?*u32,
+        ) callconv(.winapi) HRESULT,
+        HrAddObjProps: *const fn(
+            self: *const IPropData,
+            lppPropTagArray: ?*SPropTagArray,
+            lprgulAccess: ?*?*SPropProblemArray,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn GetLastError(self: *const IMAPIControl, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
+    pub fn HrSetObjAccess(self: *const IPropData, ulAccess: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.HrSetObjAccess(self, ulAccess);
     }
-    pub fn Activate(self: *const IMAPIControl, ulFlags: u32, ulUIParam: usize) callconv(.@"inline") HRESULT {
-        return self.vtable.Activate(self, ulFlags, ulUIParam);
+    pub fn HrSetPropAccess(self: *const IPropData, lpPropTagArray: ?*SPropTagArray, rgulAccess: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.HrSetPropAccess(self, lpPropTagArray, rgulAccess);
     }
-    pub fn GetState(self: *const IMAPIControl, ulFlags: u32, lpulState: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetState(self, ulFlags, lpulState);
+    pub fn HrGetPropAccess(self: *const IPropData, lppPropTagArray: ?*?*SPropTagArray, lprgulAccess: ?*?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.HrGetPropAccess(self, lppPropTagArray, lprgulAccess);
     }
-};
-
-pub const DTBLLABEL = extern struct {
-    ulbLpszLabelName: u32,
-    ulFlags: u32,
-};
-
-pub const DTBLEDIT = extern struct {
-    ulbLpszCharsAllowed: u32,
-    ulFlags: u32,
-    ulNumCharsAllowed: u32,
-    ulPropTag: u32,
-};
-
-pub const DTBLLBX = extern struct {
-    ulFlags: u32,
-    ulPRSetProperty: u32,
-    ulPRTableName: u32,
-};
-
-pub const DTBLCOMBOBOX = extern struct {
-    ulbLpszCharsAllowed: u32,
-    ulFlags: u32,
-    ulNumCharsAllowed: u32,
-    ulPRPropertyName: u32,
-    ulPRTableName: u32,
-};
-
-pub const DTBLDDLBX = extern struct {
-    ulFlags: u32,
-    ulPRDisplayProperty: u32,
-    ulPRSetProperty: u32,
-    ulPRTableName: u32,
-};
-
-pub const DTBLCHECKBOX = extern struct {
-    ulbLpszLabel: u32,
-    ulFlags: u32,
-    ulPRPropertyName: u32,
-};
-
-pub const DTBLGROUPBOX = extern struct {
-    ulbLpszLabel: u32,
-    ulFlags: u32,
-};
-
-pub const DTBLBUTTON = extern struct {
-    ulbLpszLabel: u32,
-    ulFlags: u32,
-    ulPRControl: u32,
-};
-
-pub const DTBLPAGE = extern struct {
-    ulbLpszLabel: u32,
-    ulFlags: u32,
-    ulbLpszComponent: u32,
-    ulContext: u32,
-};
-
-pub const DTBLRADIOBUTTON = extern struct {
-    ulbLpszLabel: u32,
-    ulFlags: u32,
-    ulcButtons: u32,
-    ulPropTag: u32,
-    lReturnValue: i32,
-};
-
-pub const DTBLMVLISTBOX = extern struct {
-    ulFlags: u32,
-    ulMVPropTag: u32,
-};
-
-pub const DTBLMVDDLBX = extern struct {
-    ulFlags: u32,
-    ulMVPropTag: u32,
+    pub fn HrAddObjProps(self: *const IPropData, lppPropTagArray: ?*SPropTagArray, lprgulAccess: ?*?*SPropProblemArray) callconv(.@"inline") HRESULT {
+        return self.vtable.HrAddObjProps(self, lppPropTagArray, lprgulAccess);
+    }
 };
 
 pub const IProviderAdmin = extern union {
@@ -1753,18 +1725,6 @@ pub const IProviderAdmin = extern union {
         return self.vtable.OpenProfileSection(self, lpUID, lpInterface, ulFlags, lppProfSect);
     }
 };
-
-pub const Gender = enum(i32) {
-    Unspecified = 0,
-    Female = 1,
-    Male = 2,
-};
-pub const genderUnspecified = Gender.Unspecified;
-pub const genderFemale = Gender.Female;
-pub const genderMale = Gender.Male;
-
-// TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const CALLERRELEASE = *const fn() callconv(.winapi) void;
 
 pub const ITableData = extern union {
     pub const VTable = extern struct {
@@ -1849,294 +1809,22 @@ pub const ITableData = extern union {
     }
 };
 
-pub const IPropData = extern union {
-    pub const VTable = extern struct {
-        base: IMAPIProp.VTable,
-        HrSetObjAccess: *const fn(
-            self: *const IPropData,
-            ulAccess: u32,
-        ) callconv(.winapi) HRESULT,
-        HrSetPropAccess: *const fn(
-            self: *const IPropData,
-            lpPropTagArray: ?*SPropTagArray,
-            rgulAccess: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        HrGetPropAccess: *const fn(
-            self: *const IPropData,
-            lppPropTagArray: ?*?*SPropTagArray,
-            lprgulAccess: ?*?*u32,
-        ) callconv(.winapi) HRESULT,
-        HrAddObjProps: *const fn(
-            self: *const IPropData,
-            lppPropTagArray: ?*SPropTagArray,
-            lprgulAccess: ?*?*SPropProblemArray,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IMAPIProp: IMAPIProp,
-    IUnknown: IUnknown,
-    pub fn HrSetObjAccess(self: *const IPropData, ulAccess: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.HrSetObjAccess(self, ulAccess);
-    }
-    pub fn HrSetPropAccess(self: *const IPropData, lpPropTagArray: ?*SPropTagArray, rgulAccess: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.HrSetPropAccess(self, lpPropTagArray, rgulAccess);
-    }
-    pub fn HrGetPropAccess(self: *const IPropData, lppPropTagArray: ?*?*SPropTagArray, lprgulAccess: ?*?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.HrGetPropAccess(self, lppPropTagArray, lprgulAccess);
-    }
-    pub fn HrAddObjProps(self: *const IPropData, lppPropTagArray: ?*SPropTagArray, lprgulAccess: ?*?*SPropProblemArray) callconv(.@"inline") HRESULT {
-        return self.vtable.HrAddObjProps(self, lppPropTagArray, lprgulAccess);
-    }
-};
-
-pub const PFNIDLE = *const fn(
-    param0: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const LPOPENSTREAMONFILE = *const fn(
-    lpAllocateBuffer: ?LPALLOCATEBUFFER,
-    lpFreeBuffer: ?LPFREEBUFFER,
-    ulFlags: u32,
-    lpszFileName: ?*i8,
-    lpszPrefix: ?*i8,
-    lppStream: ?*?*IStream,
-) callconv(.winapi) HRESULT;
-
-pub const DTCTL = extern struct {
-    ulCtlType: u32,
-    ulCtlFlags: u32,
-    lpbNotif: ?*u8,
-    cbNotif: u32,
-    lpszFilter: ?*i8,
-    ulItemID: u32,
-    ctl: extern union {
-        lpv: ?*anyopaque,
-        lplabel: ?*DTBLLABEL,
-        lpedit: ?*DTBLEDIT,
-        lplbx: ?*DTBLLBX,
-        lpcombobox: ?*DTBLCOMBOBOX,
-        lpddlbx: ?*DTBLDDLBX,
-        lpcheckbox: ?*DTBLCHECKBOX,
-        lpgroupbox: ?*DTBLGROUPBOX,
-        lpbutton: ?*DTBLBUTTON,
-        lpradiobutton: ?*DTBLRADIOBUTTON,
-        lpmvlbx: ?*DTBLMVLISTBOX,
-        lpmvddlbx: ?*DTBLMVDDLBX,
-        lppage: ?*DTBLPAGE,
-    },
-};
-
-pub const DTPAGE = extern struct {
-    cctl: u32,
-    lpszResourceName: ?*i8,
-    Anonymous: extern union {
-        lpszComponent: ?*i8,
-        ulItemID: u32,
-    },
-    lpctl: ?*DTCTL,
-};
-
-pub const LPDISPATCHNOTIFICATIONS = *const fn(
-    ulFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub const LPCREATECONVERSATIONINDEX = *const fn(
-    cbParent: u32,
-    lpbParent: ?*u8,
-    lpcbConvIndex: ?*u32,
-    lppbConvIndex: ?*?*u8,
-) callconv(.winapi) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
-pub const IAddrBook = extern union {
+const IID_IWABExtInit_Value = Guid.initString("ea22ebf0-87a4-11d1-9acf-00a0c91f9c8b");
+pub const IID_IWABExtInit = &IID_IWABExtInit_Value;
+pub const IWABExtInit = extern union {
     pub const VTable = extern struct {
-        base: IMAPIProp.VTable,
-        OpenEntry: *const fn(
-            self: *const IAddrBook,
-            cbEntryID: u32,
-            lpEntryID: ?*ENTRYID,
-            lpInterface: ?*Guid,
-            ulFlags: u32,
-            lpulObjType: ?*u32,
-            lppUnk: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        CompareEntryIDs: *const fn(
-            self: *const IAddrBook,
-            cbEntryID1: u32,
-            lpEntryID1: ?*ENTRYID,
-            cbEntryID2: u32,
-            lpEntryID2: ?*ENTRYID,
-            ulFlags: u32,
-            lpulResult: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Advise: *const fn(
-            self: *const IAddrBook,
-            cbEntryID: u32,
-            lpEntryID: ?*ENTRYID,
-            ulEventMask: u32,
-            lpAdviseSink: ?*IMAPIAdviseSink,
-            lpulConnection: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Unadvise: *const fn(
-            self: *const IAddrBook,
-            ulConnection: u32,
-        ) callconv(.winapi) HRESULT,
-        CreateOneOff: *const fn(
-            self: *const IAddrBook,
-            lpszName: ?*i8,
-            lpszAdrType: ?*i8,
-            lpszAddress: ?*i8,
-            ulFlags: u32,
-            lpcbEntryID: ?*u32,
-            lppEntryID: ?*?*ENTRYID,
-        ) callconv(.winapi) HRESULT,
-        NewEntry: *const fn(
-            self: *const IAddrBook,
-            ulUIParam: u32,
-            ulFlags: u32,
-            cbEIDContainer: u32,
-            lpEIDContainer: ?*ENTRYID,
-            cbEIDNewEntryTpl: u32,
-            lpEIDNewEntryTpl: ?*ENTRYID,
-            lpcbEIDNewEntry: ?*u32,
-            lppEIDNewEntry: ?*?*ENTRYID,
-        ) callconv(.winapi) HRESULT,
-        ResolveName: *const fn(
-            self: *const IAddrBook,
-            ulUIParam: usize,
-            ulFlags: u32,
-            lpszNewEntryTitle: ?*i8,
-            lpAdrList: ?*ADRLIST,
-        ) callconv(.winapi) HRESULT,
-        Address: *const fn(
-            self: *const IAddrBook,
-            lpulUIParam: ?*u32,
-            lpAdrParms: ?*ADRPARM,
-            lppAdrList: ?*?*ADRLIST,
-        ) callconv(.winapi) HRESULT,
-        Details: *const fn(
-            self: *const IAddrBook,
-            lpulUIParam: ?*usize,
-            lpfnDismiss: ?LPFNDISMISS,
-            lpvDismissContext: ?*anyopaque,
-            cbEntryID: u32,
-            lpEntryID: ?*ENTRYID,
-            lpfButtonCallback: ?LPFNBUTTON,
-            lpvButtonContext: ?*anyopaque,
-            lpszButtonText: ?*i8,
-            ulFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        RecipOptions: *const fn(
-            self: *const IAddrBook,
-            ulUIParam: u32,
-            ulFlags: u32,
-            lpRecip: ?*ADRENTRY,
-        ) callconv(.winapi) HRESULT,
-        QueryDefaultRecipOpt: *const fn(
-            self: *const IAddrBook,
-            lpszAdrType: ?*i8,
-            ulFlags: u32,
-            lpcValues: ?*u32,
-            lppOptions: ?*?*SPropValue,
-        ) callconv(.winapi) HRESULT,
-        GetPAB: *const fn(
-            self: *const IAddrBook,
-            lpcbEntryID: ?*u32,
-            lppEntryID: ?*?*ENTRYID,
-        ) callconv(.winapi) HRESULT,
-        SetPAB: *const fn(
-            self: *const IAddrBook,
-            cbEntryID: u32,
-            lpEntryID: ?*ENTRYID,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultDir: *const fn(
-            self: *const IAddrBook,
-            lpcbEntryID: ?*u32,
-            lppEntryID: ?*?*ENTRYID,
-        ) callconv(.winapi) HRESULT,
-        SetDefaultDir: *const fn(
-            self: *const IAddrBook,
-            cbEntryID: u32,
-            lpEntryID: ?*ENTRYID,
-        ) callconv(.winapi) HRESULT,
-        GetSearchPath: *const fn(
-            self: *const IAddrBook,
-            ulFlags: u32,
-            lppSearchPath: ?*?*SRowSet,
-        ) callconv(.winapi) HRESULT,
-        SetSearchPath: *const fn(
-            self: *const IAddrBook,
-            ulFlags: u32,
-            lpSearchPath: ?*SRowSet,
-        ) callconv(.winapi) HRESULT,
-        PrepareRecips: *const fn(
-            self: *const IAddrBook,
-            ulFlags: u32,
-            lpPropTagArray: ?*SPropTagArray,
-            lpRecipList: ?*ADRLIST,
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IWABExtInit,
+            lpWABExtDisplay: ?*WABEXTDISPLAY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn OpenEntry(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.OpenEntry(self, cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
+    pub fn Initialize(self: *const IWABExtInit, lpWABExtDisplay: ?*WABEXTDISPLAY) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, lpWABExtDisplay);
     }
-    pub fn CompareEntryIDs(self: *const IAddrBook, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CompareEntryIDs(self, cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
-    }
-    pub fn Advise(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Advise(self, cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
-    }
-    pub fn Unadvise(self: *const IAddrBook, ulConnection: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Unadvise(self, ulConnection);
-    }
-    pub fn CreateOneOff(self: *const IAddrBook, lpszName: ?*i8, lpszAdrType: ?*i8, lpszAddress: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateOneOff(self, lpszName, lpszAdrType, lpszAddress, ulFlags, lpcbEntryID, lppEntryID);
-    }
-    pub fn NewEntry(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, cbEIDContainer: u32, lpEIDContainer: ?*ENTRYID, cbEIDNewEntryTpl: u32, lpEIDNewEntryTpl: ?*ENTRYID, lpcbEIDNewEntry: ?*u32, lppEIDNewEntry: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
-        return self.vtable.NewEntry(self, ulUIParam, ulFlags, cbEIDContainer, lpEIDContainer, cbEIDNewEntryTpl, lpEIDNewEntryTpl, lpcbEIDNewEntry, lppEIDNewEntry);
-    }
-    pub fn ResolveName(self: *const IAddrBook, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: ?*i8, lpAdrList: ?*ADRLIST) callconv(.@"inline") HRESULT {
-        return self.vtable.ResolveName(self, ulUIParam, ulFlags, lpszNewEntryTitle, lpAdrList);
-    }
-    pub fn Address(self: *const IAddrBook, lpulUIParam: ?*u32, lpAdrParms: ?*ADRPARM, lppAdrList: ?*?*ADRLIST) callconv(.@"inline") HRESULT {
-        return self.vtable.Address(self, lpulUIParam, lpAdrParms, lppAdrList);
-    }
-    pub fn Details(self: *const IAddrBook, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*anyopaque, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*anyopaque, lpszButtonText: ?*i8, ulFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Details(self, lpulUIParam, lpfnDismiss, lpvDismissContext, cbEntryID, lpEntryID, lpfButtonCallback, lpvButtonContext, lpszButtonText, ulFlags);
-    }
-    pub fn RecipOptions(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, lpRecip: ?*ADRENTRY) callconv(.@"inline") HRESULT {
-        return self.vtable.RecipOptions(self, ulUIParam, ulFlags, lpRecip);
-    }
-    pub fn QueryDefaultRecipOpt(self: *const IAddrBook, lpszAdrType: ?*i8, ulFlags: u32, lpcValues: ?*u32, lppOptions: ?*?*SPropValue) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryDefaultRecipOpt(self, lpszAdrType, ulFlags, lpcValues, lppOptions);
-    }
-    pub fn GetPAB(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPAB(self, lpcbEntryID, lppEntryID);
-    }
-    pub fn SetPAB(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPAB(self, cbEntryID, lpEntryID);
-    }
-    pub fn GetDefaultDir(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultDir(self, lpcbEntryID, lppEntryID);
-    }
-    pub fn SetDefaultDir(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultDir(self, cbEntryID, lpEntryID);
-    }
-    pub fn GetSearchPath(self: *const IAddrBook, ulFlags: u32, lppSearchPath: ?*?*SRowSet) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSearchPath(self, ulFlags, lppSearchPath);
-    }
-    pub fn SetSearchPath(self: *const IAddrBook, ulFlags: u32, lpSearchPath: ?*SRowSet) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSearchPath(self, ulFlags, lpSearchPath);
-    }
-    pub fn PrepareRecips(self: *const IAddrBook, ulFlags: u32, lpPropTagArray: ?*SPropTagArray, lpRecipList: ?*ADRLIST) callconv(.@"inline") HRESULT {
-        return self.vtable.PrepareRecips(self, ulFlags, lpPropTagArray, lpRecipList);
-    }
-};
-
-pub const _WABACTIONITEM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2263,94 +1951,6 @@ pub const IWABObject = extern union {
         return self.vtable.SetMe(self, lpIAB, ulFlags, sbEID, hwnd);
     }
 };
-
-pub const IWABOBJECT_QueryInterface_METHOD = *const fn(
-    riid: ?*const Guid,
-    ppvObj: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_AddRef_METHOD = *const fn(
-) callconv(.winapi) u32;
-
-pub const IWABOBJECT_Release_METHOD = *const fn(
-) callconv(.winapi) u32;
-
-pub const IWABOBJECT_GetLastError_METHOD = *const fn(
-    hResult: HRESULT,
-    ulFlags: u32,
-    lppMAPIError: ?*?*MAPIERROR,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_AllocateBuffer_METHOD = *const fn(
-    cbSize: u32,
-    lppBuffer: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_AllocateMore_METHOD = *const fn(
-    cbSize: u32,
-    lpObject: ?*anyopaque,
-    lppBuffer: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_FreeBuffer_METHOD = *const fn(
-    lpBuffer: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_Backup_METHOD = *const fn(
-    lpFileName: ?PSTR,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_Import_METHOD = *const fn(
-    lpWIP: ?PSTR,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_Find_METHOD = *const fn(
-    lpIAB: ?*IAddrBook,
-    hWnd: ?HWND,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_VCardDisplay_METHOD = *const fn(
-    lpIAB: ?*IAddrBook,
-    hWnd: ?HWND,
-    lpszFileName: ?PSTR,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_LDAPUrl_METHOD = *const fn(
-    lpIAB: ?*IAddrBook,
-    hWnd: ?HWND,
-    ulFlags: u32,
-    lpszURL: ?PSTR,
-    lppMailUser: ?*?*IMailUser,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_VCardCreate_METHOD = *const fn(
-    lpIAB: ?*IAddrBook,
-    ulFlags: u32,
-    lpszVCard: ?PSTR,
-    lpMailUser: ?*IMailUser,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_VCardRetrieve_METHOD = *const fn(
-    lpIAB: ?*IAddrBook,
-    ulFlags: u32,
-    lpszVCard: ?PSTR,
-    lppMailUser: ?*?*IMailUser,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_GetMe_METHOD = *const fn(
-    lpIAB: ?*IAddrBook,
-    ulFlags: u32,
-    lpdwAction: ?*u32,
-    lpsbEID: ?*SBinary,
-    hwnd: ?HWND,
-) callconv(.winapi) HRESULT;
-
-pub const IWABOBJECT_SetMe_METHOD = *const fn(
-    lpIAB: ?*IAddrBook,
-    ulFlags: u32,
-    sbEID: SBinary,
-    hwnd: ?HWND,
-) callconv(.winapi) HRESULT;
 
 pub const IWABOBJECT_ = extern union {
     pub const VTable = extern struct {
@@ -2494,68 +2094,152 @@ pub const IWABOBJECT_ = extern union {
     }
 };
 
-pub const WAB_PARAM = extern struct {
+pub const IWABOBJECT_AddRef_METHOD = *const fn(
+) callconv(.winapi) u32;
+
+pub const IWABOBJECT_AllocateBuffer_METHOD = *const fn(
     cbSize: u32,
-    hwnd: ?HWND,
-    szFileName: ?PSTR,
+    lppBuffer: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_AllocateMore_METHOD = *const fn(
+    cbSize: u32,
+    lpObject: ?*anyopaque,
+    lppBuffer: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_Backup_METHOD = *const fn(
+    lpFileName: ?PSTR,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_Find_METHOD = *const fn(
+    lpIAB: ?*IAddrBook,
+    hWnd: ?HWND,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_FreeBuffer_METHOD = *const fn(
+    lpBuffer: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_GetLastError_METHOD = *const fn(
+    hResult: HRESULT,
     ulFlags: u32,
-    guidPSExt: Guid,
-};
-
-pub const LPWABOPEN = *const fn(
-    lppAdrBook: ?*?*IAddrBook,
-    lppWABObject: ?*?*IWABObject,
-    lpWP: ?*WAB_PARAM,
-    Reserved2: u32,
+    lppMAPIError: ?*?*MAPIERROR,
 ) callconv(.winapi) HRESULT;
 
-pub const LPWABOPENEX = *const fn(
-    lppAdrBook: ?*?*IAddrBook,
-    lppWABObject: ?*?*IWABObject,
-    lpWP: ?*WAB_PARAM,
-    Reserved: u32,
-    fnAllocateBuffer: ?LPALLOCATEBUFFER,
-    fnAllocateMore: ?LPALLOCATEMORE,
-    fnFreeBuffer: ?LPFREEBUFFER,
+pub const IWABOBJECT_GetMe_METHOD = *const fn(
+    lpIAB: ?*IAddrBook,
+    ulFlags: u32,
+    lpdwAction: ?*u32,
+    lpsbEID: ?*SBinary,
+    hwnd: ?HWND,
 ) callconv(.winapi) HRESULT;
 
-pub const WABIMPORTPARAM = extern struct {
-    cbSize: u32,
-    lpAdrBook: ?*IAddrBook,
+pub const IWABOBJECT_Import_METHOD = *const fn(
+    lpWIP: ?PSTR,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_LDAPUrl_METHOD = *const fn(
+    lpIAB: ?*IAddrBook,
     hWnd: ?HWND,
     ulFlags: u32,
-    lpszFileName: ?PSTR,
-};
+    lpszURL: ?PSTR,
+    lppMailUser: ?*?*IMailUser,
+) callconv(.winapi) HRESULT;
 
-pub const WABEXTDISPLAY = extern struct {
-    cbSize: u32,
-    lpWABObject: ?*IWABObject,
-    lpAdrBook: ?*IAddrBook,
-    lpPropObj: ?*IMAPIProp,
-    fReadOnly: BOOL,
-    fDataChanged: BOOL,
+pub const IWABOBJECT_QueryInterface_METHOD = *const fn(
+    riid: ?*const Guid,
+    ppvObj: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_Release_METHOD = *const fn(
+) callconv(.winapi) u32;
+
+pub const IWABOBJECT_SetMe_METHOD = *const fn(
+    lpIAB: ?*IAddrBook,
     ulFlags: u32,
-    lpv: ?*anyopaque,
-    lpsz: ?*i8,
-};
+    sbEID: SBinary,
+    hwnd: ?HWND,
+) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IWABExtInit_Value = Guid.initString("ea22ebf0-87a4-11d1-9acf-00a0c91f9c8b");
-pub const IID_IWABExtInit = &IID_IWABExtInit_Value;
-pub const IWABExtInit = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IWABExtInit,
-            lpWABExtDisplay: ?*WABEXTDISPLAY,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWABExtInit, lpWABExtDisplay: ?*WABEXTDISPLAY) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, lpWABExtDisplay);
-    }
-};
+pub const IWABOBJECT_VCardCreate_METHOD = *const fn(
+    lpIAB: ?*IAddrBook,
+    ulFlags: u32,
+    lpszVCard: ?PSTR,
+    lpMailUser: ?*IMailUser,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_VCardDisplay_METHOD = *const fn(
+    lpIAB: ?*IAddrBook,
+    hWnd: ?HWND,
+    lpszFileName: ?PSTR,
+) callconv(.winapi) HRESULT;
+
+pub const IWABOBJECT_VCardRetrieve_METHOD = *const fn(
+    lpIAB: ?*IAddrBook,
+    ulFlags: u32,
+    lpszVCard: ?PSTR,
+    lppMailUser: ?*?*IMailUser,
+) callconv(.winapi) HRESULT;
+
+pub const LPALLOCATEBUFFER = *const fn(
+    cbSize: u32,
+    lppBuffer: ?*?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const LPALLOCATEMORE = *const fn(
+    cbSize: u32,
+    lpObject: ?*anyopaque,
+    lppBuffer: ?*?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const LPCREATECONVERSATIONINDEX = *const fn(
+    cbParent: u32,
+    lpbParent: ?*u8,
+    lpcbConvIndex: ?*u32,
+    lppbConvIndex: ?*?*u8,
+) callconv(.winapi) i32;
+
+pub const LPDISPATCHNOTIFICATIONS = *const fn(
+    ulFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub const LPFNABSDI = *const fn(
+    ulUIParam: usize,
+    lpvmsg: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const LPFNBUTTON = *const fn(
+    ulUIParam: usize,
+    lpvContext: ?*anyopaque,
+    cbEntryID: u32,
+    lpSelection: ?*ENTRYID,
+    ulFlags: u32,
+) callconv(.winapi) i32;
+
+pub const LPFNDISMISS = *const fn(
+    ulUIParam: usize,
+    lpvContext: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const LPFREEBUFFER = *const fn(
+    lpBuffer: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const LPNOTIFCALLBACK = *const fn(
+    lpvContext: ?*anyopaque,
+    cNotification: u32,
+    lpNotifications: ?*NOTIFICATION,
+) callconv(.winapi) i32;
+
+pub const LPOPENSTREAMONFILE = *const fn(
+    lpAllocateBuffer: ?LPALLOCATEBUFFER,
+    lpFreeBuffer: ?LPFREEBUFFER,
+    ulFlags: u32,
+    lpszFileName: ?*i8,
+    lpszPrefix: ?*i8,
+    lppStream: ?*?*IStream,
+) callconv(.winapi) HRESULT;
 
 pub const LPWABALLOCATEBUFFER = *const fn(
     lpWABObject: ?*IWABObject,
@@ -2575,15 +2259,363 @@ pub const LPWABFREEBUFFER = *const fn(
     lpBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
+pub const LPWABOPEN = *const fn(
+    lppAdrBook: ?*?*IAddrBook,
+    lppWABObject: ?*?*IWABObject,
+    lpWP: ?*WAB_PARAM,
+    Reserved2: u32,
+) callconv(.winapi) HRESULT;
+
+pub const LPWABOPENEX = *const fn(
+    lppAdrBook: ?*?*IAddrBook,
+    lppWABObject: ?*?*IWABObject,
+    lpWP: ?*WAB_PARAM,
+    Reserved: u32,
+    fnAllocateBuffer: ?LPALLOCATEBUFFER,
+    fnAllocateMore: ?LPALLOCATEMORE,
+    fnFreeBuffer: ?LPFREEBUFFER,
+) callconv(.winapi) HRESULT;
+
+pub const MAPIERROR = extern struct {
+    ulVersion: u32,
+    lpszError: ?*i8,
+    lpszComponent: ?*i8,
+    ulLowLevelError: u32,
+    ulContext: u32,
+};
+
+pub const MAPINAMEID = extern struct {
+    lpguid: ?*Guid,
+    ulKind: u32,
+    Kind: extern union {
+        lID: i32,
+        lpwstrName: ?PWSTR,
+    },
+};
+
+pub const MAPIUID = extern struct {
+    ab: [16]u8,
+};
+
+pub const MTSID = extern struct {
+    cb: u32,
+    ab: [1]u8,
+};
+
+pub const NEWMAIL_NOTIFICATION = extern struct {
+    cbEntryID: u32,
+    lpEntryID: ?*ENTRYID,
+    cbParentID: u32,
+    lpParentID: ?*ENTRYID,
+    ulFlags: u32,
+    lpszMessageClass: ?*i8,
+    ulMessageFlags: u32,
+};
+
+pub const NOTIFICATION = extern struct {
+    ulEventType: u32,
+    ulAlignPad: u32,
+    info: extern union {
+        err: ERROR_NOTIFICATION,
+        newmail: NEWMAIL_NOTIFICATION,
+        obj: OBJECT_NOTIFICATION,
+        tab: TABLE_NOTIFICATION,
+        ext: EXTENDED_NOTIFICATION,
+        statobj: STATUS_OBJECT_NOTIFICATION,
+    },
+};
+
 pub const NOTIFKEY = extern struct {
     cb: u32,
     ab: [1]u8,
+};
+
+pub const OBJECT_NOTIFICATION = extern struct {
+    cbEntryID: u32,
+    lpEntryID: ?*ENTRYID,
+    ulObjType: u32,
+    cbParentID: u32,
+    lpParentID: ?*ENTRYID,
+    cbOldID: u32,
+    lpOldID: ?*ENTRYID,
+    cbOldParentID: u32,
+    lpOldParentID: ?*ENTRYID,
+    lpPropTagArray: ?*SPropTagArray,
+};
+
+pub const PFNIDLE = *const fn(
+    param0: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const SAndRestriction = extern struct {
+    cRes: u32,
+    lpRes: ?*SRestriction,
+};
+
+pub const SAppTimeArray = extern struct {
+    cValues: u32,
+    lpat: ?*f64,
+};
+
+pub const SBinary = extern struct {
+    cb: u32,
+    lpb: ?*u8,
+};
+
+pub const SBinaryArray = extern struct {
+    cValues: u32,
+    lpbin: ?*SBinary,
+};
+
+pub const SBitMaskRestriction = extern struct {
+    relBMR: u32,
+    ulPropTag: u32,
+    ulMask: u32,
+};
+
+pub const SCommentRestriction = extern struct {
+    cValues: u32,
+    lpRes: ?*SRestriction,
+    lpProp: ?*SPropValue,
+};
+
+pub const SComparePropsRestriction = extern struct {
+    relop: u32,
+    ulPropTag1: u32,
+    ulPropTag2: u32,
+};
+
+pub const SContentRestriction = extern struct {
+    ulFuzzyLevel: u32,
+    ulPropTag: u32,
+    lpProp: ?*SPropValue,
+};
+
+pub const SCurrencyArray = extern struct {
+    cValues: u32,
+    lpcur: ?*CY,
+};
+
+pub const SDateTimeArray = extern struct {
+    cValues: u32,
+    lpft: ?*FILETIME,
+};
+
+pub const SDoubleArray = extern struct {
+    cValues: u32,
+    lpdbl: ?*f64,
+};
+
+pub const SExistRestriction = extern struct {
+    ulReserved1: u32,
+    ulPropTag: u32,
+    ulReserved2: u32,
+};
+
+pub const SGuidArray = extern struct {
+    cValues: u32,
+    lpguid: ?*Guid,
+};
+
+pub const SLargeIntegerArray = extern struct {
+    cValues: u32,
+    lpli: ?*LARGE_INTEGER,
+};
+
+pub const SLongArray = extern struct {
+    cValues: u32,
+    lpl: ?*i32,
+};
+
+pub const SLPSTRArray = extern struct {
+    cValues: u32,
+    lppszA: ?*?PSTR,
+};
+
+pub const SNotRestriction = extern struct {
+    ulReserved: u32,
+    lpRes: ?*SRestriction,
+};
+
+pub const SOrRestriction = extern struct {
+    cRes: u32,
+    lpRes: ?*SRestriction,
+};
+
+pub const SPropertyRestriction = extern struct {
+    relop: u32,
+    ulPropTag: u32,
+    lpProp: ?*SPropValue,
+};
+
+pub const SPropProblem = extern struct {
+    ulIndex: u32,
+    ulPropTag: u32,
+    scode: i32,
+};
+
+pub const SPropProblemArray = extern struct {
+    cProblem: u32,
+    aProblem: [1]SPropProblem,
+};
+
+pub const SPropTagArray = extern struct {
+    cValues: u32,
+    aulPropTag: [1]u32,
+};
+
+pub const SPropValue = extern struct {
+    ulPropTag: u32,
+    dwAlignPad: u32,
+    Value: _PV,
+};
+
+pub const SRealArray = extern struct {
+    cValues: u32,
+    lpflt: ?*f32,
+};
+
+pub const SRestriction = extern struct {
+    rt: u32,
+    res: extern union {
+        resCompareProps: SComparePropsRestriction,
+        resAnd: SAndRestriction,
+        resOr: SOrRestriction,
+        resNot: SNotRestriction,
+        resContent: SContentRestriction,
+        resProperty: SPropertyRestriction,
+        resBitMask: SBitMaskRestriction,
+        resSize: SSizeRestriction,
+        resExist: SExistRestriction,
+        resSub: SSubRestriction,
+        resComment: SCommentRestriction,
+    },
+};
+
+pub const SRow = extern struct {
+    ulAdrEntryPad: u32,
+    cValues: u32,
+    lpProps: ?*SPropValue,
+};
+
+pub const SRowSet = extern struct {
+    cRows: u32,
+    aRow: [1]SRow,
+};
+
+pub const SShortArray = extern struct {
+    cValues: u32,
+    lpi: ?*i16,
+};
+
+pub const SSizeRestriction = extern struct {
+    relop: u32,
+    ulPropTag: u32,
+    cb: u32,
+};
+
+pub const SSortOrder = extern struct {
+    ulPropTag: u32,
+    ulOrder: u32,
+};
+
+pub const SSortOrderSet = extern struct {
+    cSorts: u32,
+    cCategories: u32,
+    cExpanded: u32,
+    aSort: [1]SSortOrder,
+};
+
+pub const SSubRestriction = extern struct {
+    ulSubObject: u32,
+    lpRes: ?*SRestriction,
+};
+
+pub const STATUS_OBJECT_NOTIFICATION = extern struct {
+    cbEntryID: u32,
+    lpEntryID: ?*ENTRYID,
+    cValues: u32,
+    lpPropVals: ?*SPropValue,
+};
+
+pub const SWStringArray = extern struct {
+    cValues: u32,
+    lppszW: ?*?PWSTR,
+};
+
+pub const TABLE_NOTIFICATION = extern struct {
+    ulTableEvent: u32,
+    hResult: HRESULT,
+    propIndex: SPropValue,
+    propPrior: SPropValue,
+    row: SRow,
+    ulPad: u32,
+};
+
+pub const WAB_PARAM = extern struct {
+    cbSize: u32,
+    hwnd: ?HWND,
+    szFileName: ?PSTR,
+    ulFlags: u32,
+    guidPSExt: Guid,
+};
+
+pub const WABEXTDISPLAY = extern struct {
+    cbSize: u32,
+    lpWABObject: ?*IWABObject,
+    lpAdrBook: ?*IAddrBook,
+    lpPropObj: ?*IMAPIProp,
+    fReadOnly: BOOL,
+    fDataChanged: BOOL,
+    ulFlags: u32,
+    lpv: ?*anyopaque,
+    lpsz: ?*i8,
+};
+
+pub const WABIMPORTPARAM = extern struct {
+    cbSize: u32,
+    lpAdrBook: ?*IAddrBook,
+    hWnd: ?HWND,
+    ulFlags: u32,
+    lpszFileName: ?PSTR,
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (57)
 //--------------------------------------------------------------------------------
+pub extern "mapi32" fn BuildDisplayTable(
+    lpAllocateBuffer: ?LPALLOCATEBUFFER,
+    lpAllocateMore: ?LPALLOCATEMORE,
+    lpFreeBuffer: ?LPFREEBUFFER,
+    lpMalloc: ?*IMalloc,
+    hInstance: ?HINSTANCE,
+    cPages: u32,
+    lpPage: ?*DTPAGE,
+    ulFlags: u32,
+    lppTable: ?*?*IMAPITable,
+    lppTblData: ?*?*ITableData,
+) callconv(.winapi) HRESULT;
+
+pub extern "mapi32" fn ChangeIdleRoutine(
+    ftg: ?*anyopaque,
+    lpfnIdle: ?PFNIDLE,
+    lpvIdleParam: ?*anyopaque,
+    priIdle: i16,
+    csecIdle: u32,
+    iroIdle: u16,
+    ircIdle: u16,
+) callconv(.winapi) void;
+
+pub extern "mapi32" fn CreateIProp(
+    lpInterface: ?*Guid,
+    lpAllocateBuffer: ?LPALLOCATEBUFFER,
+    lpAllocateMore: ?LPALLOCATEMORE,
+    lpFreeBuffer: ?LPFREEBUFFER,
+    lpvReserved: ?*anyopaque,
+    lppPropData: ?*?*IPropData,
+) callconv(.winapi) i32;
+
 pub extern "rtm" fn CreateTable(
     lpInterface: ?*Guid,
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
@@ -2596,29 +2628,8 @@ pub extern "rtm" fn CreateTable(
     lppTableData: ?*?*ITableData,
 ) callconv(.winapi) i32;
 
-pub extern "mapi32" fn CreateIProp(
-    lpInterface: ?*Guid,
-    lpAllocateBuffer: ?LPALLOCATEBUFFER,
-    lpAllocateMore: ?LPALLOCATEMORE,
-    lpFreeBuffer: ?LPFREEBUFFER,
-    lpvReserved: ?*anyopaque,
-    lppPropData: ?*?*IPropData,
-) callconv(.winapi) i32;
-
-pub extern "mapi32" fn MAPIInitIdle(
-    lpvReserved: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub extern "mapi32" fn MAPIDeinitIdle(
+pub extern "mapi32" fn DeinitMapiUtil(
 ) callconv(.winapi) void;
-
-pub extern "mapi32" fn FtgRegisterIdleRoutine(
-    lpfnIdle: ?PFNIDLE,
-    lpvIdleParam: ?*anyopaque,
-    priIdle: i16,
-    csecIdle: u32,
-    iroIdle: u16,
-) callconv(.winapi) ?*anyopaque;
 
 pub extern "mapi32" fn DeregisterIdleRoutine(
     ftg: ?*anyopaque,
@@ -2629,48 +2640,9 @@ pub extern "mapi32" fn EnableIdleRoutine(
     fEnable: BOOL,
 ) callconv(.winapi) void;
 
-pub extern "mapi32" fn ChangeIdleRoutine(
-    ftg: ?*anyopaque,
-    lpfnIdle: ?PFNIDLE,
-    lpvIdleParam: ?*anyopaque,
-    priIdle: i16,
-    csecIdle: u32,
-    iroIdle: u16,
-    ircIdle: u16,
-) callconv(.winapi) void;
-
-pub extern "mapi32" fn MAPIGetDefaultMalloc(
-) callconv(.winapi) ?*IMalloc;
-
-pub extern "mapi32" fn OpenStreamOnFile(
-    lpAllocateBuffer: ?LPALLOCATEBUFFER,
-    lpFreeBuffer: ?LPFREEBUFFER,
-    ulFlags: u32,
-    lpszFileName: ?*i8,
-    lpszPrefix: ?*i8,
-    lppStream: ?*?*IStream,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn PropCopyMore(
-    lpSPropValueDest: ?*SPropValue,
-    lpSPropValueSrc: ?*SPropValue,
-    lpfAllocMore: ?LPALLOCATEMORE,
-    lpvObject: ?*anyopaque,
-) callconv(.winapi) i32;
-
-pub extern "mapi32" fn UlPropSize(
-    lpSPropValue: ?*SPropValue,
-) callconv(.winapi) u32;
-
 pub extern "mapi32" fn FEqualNames(
     lpName1: ?*MAPINAMEID,
     lpName2: ?*MAPINAMEID,
-) callconv(.winapi) BOOL;
-
-pub extern "mapi32" fn FPropContainsProp(
-    lpSPropValueDst: ?*SPropValue,
-    lpSPropValueSrc: ?*SPropValue,
-    ulFuzzyLevel: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "mapi32" fn FPropCompareProp(
@@ -2679,10 +2651,56 @@ pub extern "mapi32" fn FPropCompareProp(
     lpSPropValue2: ?*SPropValue,
 ) callconv(.winapi) BOOL;
 
-pub extern "mapi32" fn LPropCompareProp(
-    lpSPropValueA: ?*SPropValue,
-    lpSPropValueB: ?*SPropValue,
-) callconv(.winapi) i32;
+pub extern "mapi32" fn FPropContainsProp(
+    lpSPropValueDst: ?*SPropValue,
+    lpSPropValueSrc: ?*SPropValue,
+    ulFuzzyLevel: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mapi32" fn FPropExists(
+    lpMapiProp: ?*IMAPIProp,
+    ulPropTag: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "mapi32" fn FreePadrlist(
+    lpAdrlist: ?*ADRLIST,
+) callconv(.winapi) void;
+
+pub extern "mapi32" fn FreeProws(
+    lpRows: ?*SRowSet,
+) callconv(.winapi) void;
+
+pub extern "mapi32" fn FtAddFt(
+    ftAddend1: FILETIME,
+    ftAddend2: FILETIME,
+) callconv(.winapi) FILETIME;
+
+pub extern "mapi32" fn FtgRegisterIdleRoutine(
+    lpfnIdle: ?PFNIDLE,
+    lpvIdleParam: ?*anyopaque,
+    priIdle: i16,
+    csecIdle: u32,
+    iroIdle: u16,
+) callconv(.winapi) ?*anyopaque;
+
+pub extern "mapi32" fn FtMulDw(
+    ftMultiplier: u32,
+    ftMultiplicand: FILETIME,
+) callconv(.winapi) FILETIME;
+
+pub extern "mapi32" fn FtMulDwDw(
+    ftMultiplicand: u32,
+    ftMultiplier: u32,
+) callconv(.winapi) FILETIME;
+
+pub extern "mapi32" fn FtNegFt(
+    ft: FILETIME,
+) callconv(.winapi) FILETIME;
+
+pub extern "mapi32" fn FtSubFt(
+    ftMinuend: FILETIME,
+    ftSubtrahend: FILETIME,
+) callconv(.winapi) FILETIME;
 
 pub extern "mapi32" fn HrAddColumns(
     lptbl: ?*IMAPITable,
@@ -2705,33 +2723,90 @@ pub extern "mapi32" fn HrAllocAdviseSink(
     lppAdviseSink: ?*?*IMAPIAdviseSink,
 ) callconv(.winapi) HRESULT;
 
+pub extern "mapi32" fn HrDispatchNotifications(
+    ulFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "mapi32" fn HrGetOneProp(
+    lpMapiProp: ?*IMAPIProp,
+    ulPropTag: u32,
+    lppProp: ?*?*SPropValue,
+) callconv(.winapi) HRESULT;
+
+pub extern "mapi32" fn HrIStorageFromStream(
+    lpUnkIn: ?*IUnknown,
+    lpInterface: ?*Guid,
+    ulFlags: u32,
+    lppStorageOut: ?*?*IStorage,
+) callconv(.winapi) HRESULT;
+
+pub extern "mapi32" fn HrQueryAllRows(
+    lpTable: ?*IMAPITable,
+    lpPropTags: ?*SPropTagArray,
+    lpRestriction: ?*SRestriction,
+    lpSortOrderSet: ?*SSortOrderSet,
+    crowsMax: i32,
+    lppRows: ?*?*SRowSet,
+) callconv(.winapi) HRESULT;
+
+pub extern "mapi32" fn HrSetOneProp(
+    lpMapiProp: ?*IMAPIProp,
+    lpProp: ?*SPropValue,
+) callconv(.winapi) HRESULT;
+
 pub extern "mapi32" fn HrThisThreadAdviseSink(
     lpAdviseSink: ?*IMAPIAdviseSink,
     lppAdviseSink: ?*?*IMAPIAdviseSink,
 ) callconv(.winapi) HRESULT;
 
-pub extern "mapi32" fn HrDispatchNotifications(
-    ulFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn BuildDisplayTable(
-    lpAllocateBuffer: ?LPALLOCATEBUFFER,
-    lpAllocateMore: ?LPALLOCATEMORE,
-    lpFreeBuffer: ?LPFREEBUFFER,
-    lpMalloc: ?*IMalloc,
-    hInstance: ?HINSTANCE,
-    cPages: u32,
-    lpPage: ?*DTPAGE,
-    ulFlags: u32,
-    lppTable: ?*?*IMAPITable,
-    lppTblData: ?*?*ITableData,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn ScCountNotifications(
-    cNotifications: i32,
-    lpNotifications: ?*NOTIFICATION,
-    lpcb: ?*u32,
+pub extern "mapi32" fn LPropCompareProp(
+    lpSPropValueA: ?*SPropValue,
+    lpSPropValueB: ?*SPropValue,
 ) callconv(.winapi) i32;
+
+pub extern "mapi32" fn LpValFindProp(
+    ulPropTag: u32,
+    cValues: u32,
+    lpPropArray: ?*SPropValue,
+) callconv(.winapi) ?*SPropValue;
+
+pub extern "mapi32" fn MAPIDeinitIdle(
+) callconv(.winapi) void;
+
+pub extern "mapi32" fn MAPIGetDefaultMalloc(
+) callconv(.winapi) ?*IMalloc;
+
+pub extern "mapi32" fn MAPIInitIdle(
+    lpvReserved: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub extern "mapi32" fn OpenStreamOnFile(
+    lpAllocateBuffer: ?LPALLOCATEBUFFER,
+    lpFreeBuffer: ?LPFREEBUFFER,
+    ulFlags: u32,
+    lpszFileName: ?*i8,
+    lpszPrefix: ?*i8,
+    lppStream: ?*?*IStream,
+) callconv(.winapi) HRESULT;
+
+pub extern "mapi32" fn PpropFindProp(
+    lpPropArray: ?*SPropValue,
+    cValues: u32,
+    ulPropTag: u32,
+) callconv(.winapi) ?*SPropValue;
+
+pub extern "mapi32" fn PropCopyMore(
+    lpSPropValueDest: ?*SPropValue,
+    lpSPropValueSrc: ?*SPropValue,
+    lpfAllocMore: ?LPALLOCATEMORE,
+    lpvObject: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub extern "mapi32" fn RTFSync(
+    lpMessage: ?*IMessage,
+    ulFlags: u32,
+    lpfMessageUpdated: ?*BOOL,
+) callconv(.winapi) HRESULT;
 
 pub extern "mapi32" fn ScCopyNotifications(
     cNotification: i32,
@@ -2740,11 +2815,16 @@ pub extern "mapi32" fn ScCopyNotifications(
     lpcb: ?*u32,
 ) callconv(.winapi) i32;
 
-pub extern "mapi32" fn ScRelocNotifications(
-    cNotification: i32,
+pub extern "mapi32" fn ScCopyProps(
+    cValues: i32,
+    lpPropArray: ?*SPropValue,
+    lpvDst: ?*anyopaque,
+    lpcb: ?*u32,
+) callconv(.winapi) i32;
+
+pub extern "mapi32" fn ScCountNotifications(
+    cNotifications: i32,
     lpNotifications: ?*NOTIFICATION,
-    lpvBaseOld: ?*anyopaque,
-    lpvBaseNew: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(.winapi) i32;
 
@@ -2754,16 +2834,35 @@ pub extern "mapi32" fn ScCountProps(
     lpcb: ?*u32,
 ) callconv(.winapi) i32;
 
-pub extern "mapi32" fn LpValFindProp(
-    ulPropTag: u32,
-    cValues: u32,
-    lpPropArray: ?*SPropValue,
-) callconv(.winapi) ?*SPropValue;
+pub extern "mapi32" fn ScCreateConversationIndex(
+    cbParent: u32,
+    lpbParent: ?*u8,
+    lpcbConvIndex: ?*u32,
+    lppbConvIndex: ?*?*u8,
+) callconv(.winapi) i32;
 
-pub extern "mapi32" fn ScCopyProps(
+pub extern "mapi32" fn ScDupPropset(
     cValues: i32,
     lpPropArray: ?*SPropValue,
-    lpvDst: ?*anyopaque,
+    lpAllocateBuffer: ?LPALLOCATEBUFFER,
+    lppPropArray: ?*?*SPropValue,
+) callconv(.winapi) i32;
+
+pub extern "mapi32" fn ScInitMapiUtil(
+    ulFlags: u32,
+) callconv(.winapi) i32;
+
+pub extern "mapi32" fn ScLocalPathFromUNC(
+    lpszUNC: ?PSTR,
+    lpszLocal: [*:0]u8,
+    cchLocal: u32,
+) callconv(.winapi) i32;
+
+pub extern "mapi32" fn ScRelocNotifications(
+    cNotification: i32,
+    lpNotifications: ?*NOTIFICATION,
+    lpvBaseOld: ?*anyopaque,
+    lpvBaseNew: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(.winapi) i32;
 
@@ -2775,59 +2874,11 @@ pub extern "mapi32" fn ScRelocProps(
     lpcb: ?*u32,
 ) callconv(.winapi) i32;
 
-pub extern "mapi32" fn ScDupPropset(
-    cValues: i32,
-    lpPropArray: ?*SPropValue,
-    lpAllocateBuffer: ?LPALLOCATEBUFFER,
-    lppPropArray: ?*?*SPropValue,
+pub extern "mapi32" fn ScUNCFromLocalPath(
+    lpszLocal: ?PSTR,
+    lpszUNC: [*:0]u8,
+    cchUNC: u32,
 ) callconv(.winapi) i32;
-
-pub extern "mapi32" fn UlAddRef(
-    lpunk: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub extern "mapi32" fn UlRelease(
-    lpunk: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub extern "mapi32" fn HrGetOneProp(
-    lpMapiProp: ?*IMAPIProp,
-    ulPropTag: u32,
-    lppProp: ?*?*SPropValue,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn HrSetOneProp(
-    lpMapiProp: ?*IMAPIProp,
-    lpProp: ?*SPropValue,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn FPropExists(
-    lpMapiProp: ?*IMAPIProp,
-    ulPropTag: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "mapi32" fn PpropFindProp(
-    lpPropArray: ?*SPropValue,
-    cValues: u32,
-    ulPropTag: u32,
-) callconv(.winapi) ?*SPropValue;
-
-pub extern "mapi32" fn FreePadrlist(
-    lpAdrlist: ?*ADRLIST,
-) callconv(.winapi) void;
-
-pub extern "mapi32" fn FreeProws(
-    lpRows: ?*SRowSet,
-) callconv(.winapi) void;
-
-pub extern "mapi32" fn HrQueryAllRows(
-    lpTable: ?*IMAPITable,
-    lpPropTags: ?*SPropTagArray,
-    lpRestriction: ?*SRestriction,
-    lpSortOrderSet: ?*SSortOrderSet,
-    crowsMax: i32,
-    lppRows: ?*?*SRowSet,
-) callconv(.winapi) HRESULT;
 
 pub extern "mapi32" fn SzFindCh(
     lpsz: ?*i8,
@@ -2848,48 +2899,23 @@ pub extern "mapi32" fn UFromSz(
     lpsz: ?*i8,
 ) callconv(.winapi) u32;
 
-pub extern "mapi32" fn ScUNCFromLocalPath(
-    lpszLocal: ?PSTR,
-    lpszUNC: [*:0]u8,
-    cchUNC: u32,
-) callconv(.winapi) i32;
+pub extern "mapi32" fn UlAddRef(
+    lpunk: ?*anyopaque,
+) callconv(.winapi) u32;
 
-pub extern "mapi32" fn ScLocalPathFromUNC(
-    lpszUNC: ?PSTR,
-    lpszLocal: [*:0]u8,
-    cchLocal: u32,
-) callconv(.winapi) i32;
+pub extern "mapi32" fn UlPropSize(
+    lpSPropValue: ?*SPropValue,
+) callconv(.winapi) u32;
 
-pub extern "mapi32" fn FtAddFt(
-    ftAddend1: FILETIME,
-    ftAddend2: FILETIME,
-) callconv(.winapi) FILETIME;
+pub extern "mapi32" fn UlRelease(
+    lpunk: ?*anyopaque,
+) callconv(.winapi) u32;
 
-pub extern "mapi32" fn FtMulDwDw(
-    ftMultiplicand: u32,
-    ftMultiplier: u32,
-) callconv(.winapi) FILETIME;
-
-pub extern "mapi32" fn FtMulDw(
-    ftMultiplier: u32,
-    ftMultiplicand: FILETIME,
-) callconv(.winapi) FILETIME;
-
-pub extern "mapi32" fn FtSubFt(
-    ftMinuend: FILETIME,
-    ftSubtrahend: FILETIME,
-) callconv(.winapi) FILETIME;
-
-pub extern "mapi32" fn FtNegFt(
-    ft: FILETIME,
-) callconv(.winapi) FILETIME;
-
-pub extern "mapi32" fn ScCreateConversationIndex(
-    cbParent: u32,
-    lpbParent: ?*u8,
-    lpcbConvIndex: ?*u32,
-    lppbConvIndex: ?*?*u8,
-) callconv(.winapi) i32;
+pub extern "mapi32" fn WrapCompressedRTFStream(
+    lpCompressedRTFStream: ?*IStream,
+    ulFlags: u32,
+    lpUncompressedRTFStream: ?*?*IStream,
+) callconv(.winapi) HRESULT;
 
 pub extern "mapi32" fn WrapStoreEntryID(
     ulFlags: u32,
@@ -2901,32 +2927,6 @@ pub extern "mapi32" fn WrapStoreEntryID(
     // TODO: what to do with BytesParamIndex 4?
     lppWrappedEntry: ?*?*ENTRYID,
 ) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn RTFSync(
-    lpMessage: ?*IMessage,
-    ulFlags: u32,
-    lpfMessageUpdated: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn WrapCompressedRTFStream(
-    lpCompressedRTFStream: ?*IStream,
-    ulFlags: u32,
-    lpUncompressedRTFStream: ?*?*IStream,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn HrIStorageFromStream(
-    lpUnkIn: ?*IUnknown,
-    lpInterface: ?*Guid,
-    ulFlags: u32,
-    lppStorageOut: ?*?*IStorage,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn ScInitMapiUtil(
-    ulFlags: u32,
-) callconv(.winapi) i32;
-
-pub extern "mapi32" fn DeinitMapiUtil(
-) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------
@@ -2952,38 +2952,38 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPALLOCATEBUFFER")) { _ = LPALLOCATEBUFFER; }
-    if (@hasDecl(@This(), "LPALLOCATEMORE")) { _ = LPALLOCATEMORE; }
-    if (@hasDecl(@This(), "LPFREEBUFFER")) { _ = LPFREEBUFFER; }
-    if (@hasDecl(@This(), "LPNOTIFCALLBACK")) { _ = LPNOTIFCALLBACK; }
-    if (@hasDecl(@This(), "LPFNABSDI")) { _ = LPFNABSDI; }
-    if (@hasDecl(@This(), "LPFNDISMISS")) { _ = LPFNDISMISS; }
-    if (@hasDecl(@This(), "LPFNBUTTON")) { _ = LPFNBUTTON; }
-    if (@hasDecl(@This(), "PFNIDLE")) { _ = PFNIDLE; }
-    if (@hasDecl(@This(), "LPOPENSTREAMONFILE")) { _ = LPOPENSTREAMONFILE; }
-    if (@hasDecl(@This(), "LPDISPATCHNOTIFICATIONS")) { _ = LPDISPATCHNOTIFICATIONS; }
-    if (@hasDecl(@This(), "LPCREATECONVERSATIONINDEX")) { _ = LPCREATECONVERSATIONINDEX; }
-    if (@hasDecl(@This(), "IWABOBJECT_QueryInterface_METHOD")) { _ = IWABOBJECT_QueryInterface_METHOD; }
     if (@hasDecl(@This(), "IWABOBJECT_AddRef_METHOD")) { _ = IWABOBJECT_AddRef_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_Release_METHOD")) { _ = IWABOBJECT_Release_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_GetLastError_METHOD")) { _ = IWABOBJECT_GetLastError_METHOD; }
     if (@hasDecl(@This(), "IWABOBJECT_AllocateBuffer_METHOD")) { _ = IWABOBJECT_AllocateBuffer_METHOD; }
     if (@hasDecl(@This(), "IWABOBJECT_AllocateMore_METHOD")) { _ = IWABOBJECT_AllocateMore_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_FreeBuffer_METHOD")) { _ = IWABOBJECT_FreeBuffer_METHOD; }
     if (@hasDecl(@This(), "IWABOBJECT_Backup_METHOD")) { _ = IWABOBJECT_Backup_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_Import_METHOD")) { _ = IWABOBJECT_Import_METHOD; }
     if (@hasDecl(@This(), "IWABOBJECT_Find_METHOD")) { _ = IWABOBJECT_Find_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_VCardDisplay_METHOD")) { _ = IWABOBJECT_VCardDisplay_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_LDAPUrl_METHOD")) { _ = IWABOBJECT_LDAPUrl_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_VCardCreate_METHOD")) { _ = IWABOBJECT_VCardCreate_METHOD; }
-    if (@hasDecl(@This(), "IWABOBJECT_VCardRetrieve_METHOD")) { _ = IWABOBJECT_VCardRetrieve_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_FreeBuffer_METHOD")) { _ = IWABOBJECT_FreeBuffer_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_GetLastError_METHOD")) { _ = IWABOBJECT_GetLastError_METHOD; }
     if (@hasDecl(@This(), "IWABOBJECT_GetMe_METHOD")) { _ = IWABOBJECT_GetMe_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_Import_METHOD")) { _ = IWABOBJECT_Import_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_LDAPUrl_METHOD")) { _ = IWABOBJECT_LDAPUrl_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_QueryInterface_METHOD")) { _ = IWABOBJECT_QueryInterface_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_Release_METHOD")) { _ = IWABOBJECT_Release_METHOD; }
     if (@hasDecl(@This(), "IWABOBJECT_SetMe_METHOD")) { _ = IWABOBJECT_SetMe_METHOD; }
-    if (@hasDecl(@This(), "LPWABOPEN")) { _ = LPWABOPEN; }
-    if (@hasDecl(@This(), "LPWABOPENEX")) { _ = LPWABOPENEX; }
+    if (@hasDecl(@This(), "IWABOBJECT_VCardCreate_METHOD")) { _ = IWABOBJECT_VCardCreate_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_VCardDisplay_METHOD")) { _ = IWABOBJECT_VCardDisplay_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_VCardRetrieve_METHOD")) { _ = IWABOBJECT_VCardRetrieve_METHOD; }
+    if (@hasDecl(@This(), "LPALLOCATEBUFFER")) { _ = LPALLOCATEBUFFER; }
+    if (@hasDecl(@This(), "LPALLOCATEMORE")) { _ = LPALLOCATEMORE; }
+    if (@hasDecl(@This(), "LPCREATECONVERSATIONINDEX")) { _ = LPCREATECONVERSATIONINDEX; }
+    if (@hasDecl(@This(), "LPDISPATCHNOTIFICATIONS")) { _ = LPDISPATCHNOTIFICATIONS; }
+    if (@hasDecl(@This(), "LPFNABSDI")) { _ = LPFNABSDI; }
+    if (@hasDecl(@This(), "LPFNBUTTON")) { _ = LPFNBUTTON; }
+    if (@hasDecl(@This(), "LPFNDISMISS")) { _ = LPFNDISMISS; }
+    if (@hasDecl(@This(), "LPFREEBUFFER")) { _ = LPFREEBUFFER; }
+    if (@hasDecl(@This(), "LPNOTIFCALLBACK")) { _ = LPNOTIFCALLBACK; }
+    if (@hasDecl(@This(), "LPOPENSTREAMONFILE")) { _ = LPOPENSTREAMONFILE; }
     if (@hasDecl(@This(), "LPWABALLOCATEBUFFER")) { _ = LPWABALLOCATEBUFFER; }
     if (@hasDecl(@This(), "LPWABALLOCATEMORE")) { _ = LPWABALLOCATEMORE; }
     if (@hasDecl(@This(), "LPWABFREEBUFFER")) { _ = LPWABFREEBUFFER; }
+    if (@hasDecl(@This(), "LPWABOPEN")) { _ = LPWABOPEN; }
+    if (@hasDecl(@This(), "LPWABOPENEX")) { _ = LPWABOPENEX; }
+    if (@hasDecl(@This(), "PFNIDLE")) { _ = PFNIDLE; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

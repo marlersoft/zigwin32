@@ -6,6 +6,40 @@
 //--------------------------------------------------------------------------------
 // Section: Types (19)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HRAWINPUT = *opaque{};
+
+pub const INPUT_MESSAGE_DEVICE_TYPE = enum(i32) {
+    UNAVAILABLE = 0,
+    KEYBOARD = 1,
+    MOUSE = 2,
+    TOUCH = 4,
+    PEN = 8,
+    TOUCHPAD = 16,
+};
+pub const IMDT_UNAVAILABLE = INPUT_MESSAGE_DEVICE_TYPE.UNAVAILABLE;
+pub const IMDT_KEYBOARD = INPUT_MESSAGE_DEVICE_TYPE.KEYBOARD;
+pub const IMDT_MOUSE = INPUT_MESSAGE_DEVICE_TYPE.MOUSE;
+pub const IMDT_TOUCH = INPUT_MESSAGE_DEVICE_TYPE.TOUCH;
+pub const IMDT_PEN = INPUT_MESSAGE_DEVICE_TYPE.PEN;
+pub const IMDT_TOUCHPAD = INPUT_MESSAGE_DEVICE_TYPE.TOUCHPAD;
+
+pub const INPUT_MESSAGE_ORIGIN_ID = enum(i32) {
+    UNAVAILABLE = 0,
+    HARDWARE = 1,
+    INJECTED = 2,
+    SYSTEM = 4,
+};
+pub const IMO_UNAVAILABLE = INPUT_MESSAGE_ORIGIN_ID.UNAVAILABLE;
+pub const IMO_HARDWARE = INPUT_MESSAGE_ORIGIN_ID.HARDWARE;
+pub const IMO_INJECTED = INPUT_MESSAGE_ORIGIN_ID.INJECTED;
+pub const IMO_SYSTEM = INPUT_MESSAGE_ORIGIN_ID.SYSTEM;
+
+pub const INPUT_MESSAGE_SOURCE = extern struct {
+    deviceType: INPUT_MESSAGE_DEVICE_TYPE,
+    originId: INPUT_MESSAGE_ORIGIN_ID,
+};
+
 pub const RAW_INPUT_DATA_COMMAND_FLAGS = enum(u32) {
     HEADER = 268435461,
     INPUT = 268435459,
@@ -22,14 +56,27 @@ pub const RIDI_PREPARSEDDATA = RAW_INPUT_DEVICE_INFO_COMMAND.PREPARSEDDATA;
 pub const RIDI_DEVICENAME = RAW_INPUT_DEVICE_INFO_COMMAND.DEVICENAME;
 pub const RIDI_DEVICEINFO = RAW_INPUT_DEVICE_INFO_COMMAND.DEVICEINFO;
 
-pub const RID_DEVICE_INFO_TYPE = enum(u32) {
-    MOUSE = 0,
-    KEYBOARD = 1,
-    HID = 2,
+pub const RAWHID = extern struct {
+    dwSizeHid: u32,
+    dwCount: u32,
+    bRawData: [1]u8,
 };
-pub const RIM_TYPEMOUSE = RID_DEVICE_INFO_TYPE.MOUSE;
-pub const RIM_TYPEKEYBOARD = RID_DEVICE_INFO_TYPE.KEYBOARD;
-pub const RIM_TYPEHID = RID_DEVICE_INFO_TYPE.HID;
+
+pub const RAWINPUT = extern struct {
+    header: RAWINPUTHEADER,
+    data: extern union {
+        mouse: RAWMOUSE,
+        keyboard: RAWKEYBOARD,
+        hid: RAWHID,
+    },
+};
+
+pub const RAWINPUTDEVICE = extern struct {
+    usUsagePage: u16,
+    usUsage: u16,
+    dwFlags: RAWINPUTDEVICE_FLAGS,
+    hwndTarget: ?HWND,
+};
 
 pub const RAWINPUTDEVICE_FLAGS = packed struct(u32) {
     REMOVE: u1 = 0,
@@ -80,14 +127,25 @@ pub const RIDEV_APPKEYS = RAWINPUTDEVICE_FLAGS{ .APPKEYS = 1 };
 pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_FLAGS{ .EXINPUTSINK = 1 };
 pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_FLAGS{ .DEVNOTIFY = 1 };
 
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HRAWINPUT = *opaque{};
+pub const RAWINPUTDEVICELIST = extern struct {
+    hDevice: ?HANDLE,
+    dwType: RID_DEVICE_INFO_TYPE,
+};
 
 pub const RAWINPUTHEADER = extern struct {
     dwType: u32,
     dwSize: u32,
     hDevice: ?HANDLE,
     wParam: WPARAM,
+};
+
+pub const RAWKEYBOARD = extern struct {
+    MakeCode: u16,
+    Flags: u16,
+    Reserved: u16,
+    VKey: u16,
+    Message: u32,
+    ExtraInformation: u32,
 };
 
 pub const RAWMOUSE = extern struct {
@@ -105,35 +163,22 @@ pub const RAWMOUSE = extern struct {
     ulExtraInformation: u32,
 };
 
-pub const RAWKEYBOARD = extern struct {
-    MakeCode: u16,
-    Flags: u16,
-    Reserved: u16,
-    VKey: u16,
-    Message: u32,
-    ExtraInformation: u32,
-};
-
-pub const RAWHID = extern struct {
-    dwSizeHid: u32,
-    dwCount: u32,
-    bRawData: [1]u8,
-};
-
-pub const RAWINPUT = extern struct {
-    header: RAWINPUTHEADER,
-    data: extern union {
-        mouse: RAWMOUSE,
-        keyboard: RAWKEYBOARD,
-        hid: RAWHID,
+pub const RID_DEVICE_INFO = extern struct {
+    cbSize: u32,
+    dwType: RID_DEVICE_INFO_TYPE,
+    Anonymous: extern union {
+        mouse: RID_DEVICE_INFO_MOUSE,
+        keyboard: RID_DEVICE_INFO_KEYBOARD,
+        hid: RID_DEVICE_INFO_HID,
     },
 };
 
-pub const RID_DEVICE_INFO_MOUSE = extern struct {
-    dwId: u32,
-    dwNumberOfButtons: u32,
-    dwSampleRate: u32,
-    fHasHorizontalWheel: BOOL,
+pub const RID_DEVICE_INFO_HID = extern struct {
+    dwVendorId: u32,
+    dwProductId: u32,
+    dwVersionNumber: u32,
+    usUsagePage: u16,
+    usUsage: u16,
 };
 
 pub const RID_DEVICE_INFO_KEYBOARD = extern struct {
@@ -145,71 +190,51 @@ pub const RID_DEVICE_INFO_KEYBOARD = extern struct {
     dwNumberOfKeysTotal: u32,
 };
 
-pub const RID_DEVICE_INFO_HID = extern struct {
-    dwVendorId: u32,
-    dwProductId: u32,
-    dwVersionNumber: u32,
-    usUsagePage: u16,
-    usUsage: u16,
+pub const RID_DEVICE_INFO_MOUSE = extern struct {
+    dwId: u32,
+    dwNumberOfButtons: u32,
+    dwSampleRate: u32,
+    fHasHorizontalWheel: BOOL,
 };
 
-pub const RID_DEVICE_INFO = extern struct {
-    cbSize: u32,
-    dwType: RID_DEVICE_INFO_TYPE,
-    Anonymous: extern union {
-        mouse: RID_DEVICE_INFO_MOUSE,
-        keyboard: RID_DEVICE_INFO_KEYBOARD,
-        hid: RID_DEVICE_INFO_HID,
-    },
-};
-
-pub const RAWINPUTDEVICE = extern struct {
-    usUsagePage: u16,
-    usUsage: u16,
-    dwFlags: RAWINPUTDEVICE_FLAGS,
-    hwndTarget: ?HWND,
-};
-
-pub const RAWINPUTDEVICELIST = extern struct {
-    hDevice: ?HANDLE,
-    dwType: RID_DEVICE_INFO_TYPE,
-};
-
-pub const INPUT_MESSAGE_DEVICE_TYPE = enum(i32) {
-    UNAVAILABLE = 0,
+pub const RID_DEVICE_INFO_TYPE = enum(u32) {
+    MOUSE = 0,
     KEYBOARD = 1,
-    MOUSE = 2,
-    TOUCH = 4,
-    PEN = 8,
-    TOUCHPAD = 16,
+    HID = 2,
 };
-pub const IMDT_UNAVAILABLE = INPUT_MESSAGE_DEVICE_TYPE.UNAVAILABLE;
-pub const IMDT_KEYBOARD = INPUT_MESSAGE_DEVICE_TYPE.KEYBOARD;
-pub const IMDT_MOUSE = INPUT_MESSAGE_DEVICE_TYPE.MOUSE;
-pub const IMDT_TOUCH = INPUT_MESSAGE_DEVICE_TYPE.TOUCH;
-pub const IMDT_PEN = INPUT_MESSAGE_DEVICE_TYPE.PEN;
-pub const IMDT_TOUCHPAD = INPUT_MESSAGE_DEVICE_TYPE.TOUCHPAD;
-
-pub const INPUT_MESSAGE_ORIGIN_ID = enum(i32) {
-    UNAVAILABLE = 0,
-    HARDWARE = 1,
-    INJECTED = 2,
-    SYSTEM = 4,
-};
-pub const IMO_UNAVAILABLE = INPUT_MESSAGE_ORIGIN_ID.UNAVAILABLE;
-pub const IMO_HARDWARE = INPUT_MESSAGE_ORIGIN_ID.HARDWARE;
-pub const IMO_INJECTED = INPUT_MESSAGE_ORIGIN_ID.INJECTED;
-pub const IMO_SYSTEM = INPUT_MESSAGE_ORIGIN_ID.SYSTEM;
-
-pub const INPUT_MESSAGE_SOURCE = extern struct {
-    deviceType: INPUT_MESSAGE_DEVICE_TYPE,
-    originId: INPUT_MESSAGE_ORIGIN_ID,
-};
+pub const RIM_TYPEMOUSE = RID_DEVICE_INFO_TYPE.MOUSE;
+pub const RIM_TYPEKEYBOARD = RID_DEVICE_INFO_TYPE.KEYBOARD;
+pub const RIM_TYPEHID = RID_DEVICE_INFO_TYPE.HID;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "user32" fn DefRawInputProc(
+    paRawInput: [*]?*RAWINPUT,
+    nInput: i32,
+    cbSizeHeader: u32,
+) callconv(.winapi) LRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetCIMSSM(
+    inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "user32" fn GetCurrentInputMessageSource(
+    inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "user32" fn GetRawInputBuffer(
+    // TODO: what to do with BytesParamIndex 1?
+    pData: ?*RAWINPUT,
+    pcbSize: ?*u32,
+    cbSizeHeader: u32,
+) callconv(.winapi) u32;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn GetRawInputData(
     hRawInput: ?HRAWINPUT,
@@ -239,19 +264,11 @@ pub extern "user32" fn GetRawInputDeviceInfoW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRawInputBuffer(
-    // TODO: what to do with BytesParamIndex 1?
-    pData: ?*RAWINPUT,
-    pcbSize: ?*u32,
-    cbSizeHeader: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn RegisterRawInputDevices(
-    pRawInputDevices: [*]RAWINPUTDEVICE,
-    uiNumDevices: u32,
+pub extern "user32" fn GetRawInputDeviceList(
+    pRawInputDeviceList: ?[*]RAWINPUTDEVICELIST,
+    puiNumDevices: ?*u32,
     cbSize: u32,
-) callconv(.winapi) BOOL;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn GetRegisteredRawInputDevices(
@@ -261,27 +278,10 @@ pub extern "user32" fn GetRegisteredRawInputDevices(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRawInputDeviceList(
-    pRawInputDeviceList: ?[*]RAWINPUTDEVICELIST,
-    puiNumDevices: ?*u32,
+pub extern "user32" fn RegisterRawInputDevices(
+    pRawInputDevices: [*]RAWINPUTDEVICE,
+    uiNumDevices: u32,
     cbSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn DefRawInputProc(
-    paRawInput: [*]?*RAWINPUT,
-    nInput: i32,
-    cbSizeHeader: u32,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetCurrentInputMessageSource(
-    inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetCIMSSM(
-    inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
 ) callconv(.winapi) BOOL;
 
 

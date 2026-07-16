@@ -2,177 +2,59 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (47)
 //--------------------------------------------------------------------------------
-pub const UPNP_E_ROOT_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
-pub const UPNP_E_DEVICE_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
-pub const UPNP_E_SERVICE_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
-pub const UPNP_E_SERVICE_NODE_INCOMPLETE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
-pub const UPNP_E_DEVICE_NODE_INCOMPLETE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
-pub const UPNP_E_ICON_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220987));
-pub const UPNP_E_ICON_NODE_INCOMPLETE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
-pub const UPNP_E_INVALID_ACTION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220985));
-pub const UPNP_E_INVALID_ARGUMENTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220984));
-pub const UPNP_E_OUT_OF_SYNC = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220983));
-pub const UPNP_E_ACTION_REQUEST_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220976));
-pub const UPNP_E_TRANSPORT_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220975));
-pub const UPNP_E_VARIABLE_VALUE_UNKNOWN = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220974));
-pub const UPNP_E_INVALID_VARIABLE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220973));
-pub const UPNP_E_DEVICE_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220972));
-pub const UPNP_E_PROTOCOL_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220971));
-pub const UPNP_E_ERROR_PROCESSING_RESPONSE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220970));
-pub const UPNP_E_DEVICE_TIMEOUT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220969));
-pub const UPNP_E_INVALID_DOCUMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220224));
-pub const UPNP_E_EVENT_SUBSCRIPTION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220223));
+pub const ADDRESS_FAMILY_VALUE_NAME = "AddressFamily";
+pub const FAULT_ACTION_SPECIFIC_BASE = @as(u32, 600);
+pub const FAULT_ACTION_SPECIFIC_MAX = @as(u32, 899);
+pub const FAULT_DEVICE_INTERNAL_ERROR = @as(u32, 501);
 pub const FAULT_INVALID_ACTION = @as(u32, 401);
 pub const FAULT_INVALID_ARG = @as(u32, 402);
 pub const FAULT_INVALID_SEQUENCE_NUMBER = @as(u32, 403);
 pub const FAULT_INVALID_VARIABLE = @as(u32, 404);
-pub const FAULT_DEVICE_INTERNAL_ERROR = @as(u32, 501);
-pub const FAULT_ACTION_SPECIFIC_BASE = @as(u32, 600);
-pub const FAULT_ACTION_SPECIFIC_MAX = @as(u32, 899);
-pub const UPNP_E_ACTION_SPECIFIC_BASE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220736));
+pub const REMOTE_ADDRESS_VALUE_NAME = "RemoteAddress";
+pub const UPNP_ADDRESSFAMILY_BOTH = @as(u32, 3);
 pub const UPNP_ADDRESSFAMILY_IPv4 = @as(u32, 1);
 pub const UPNP_ADDRESSFAMILY_IPv6 = @as(u32, 2);
-pub const UPNP_ADDRESSFAMILY_BOTH = @as(u32, 3);
-pub const UPNP_SERVICE_DELAY_SCPD_AND_SUBSCRIPTION = @as(u32, 1);
-pub const UPNP_E_REQUIRED_ELEMENT_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180512));
+pub const UPNP_E_ACTION_REQUEST_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220976));
+pub const UPNP_E_ACTION_SPECIFIC_BASE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220736));
+pub const UPNP_E_DEVICE_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
+pub const UPNP_E_DEVICE_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220972));
+pub const UPNP_E_DEVICE_NODE_INCOMPLETE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
+pub const UPNP_E_DEVICE_NOTREGISTERED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180494));
+pub const UPNP_E_DEVICE_RUNNING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180495));
+pub const UPNP_E_DEVICE_TIMEOUT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220969));
 pub const UPNP_E_DUPLICATE_NOT_ALLOWED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180511));
 pub const UPNP_E_DUPLICATE_SERVICE_ID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180510));
+pub const UPNP_E_ERROR_PROCESSING_RESPONSE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220970));
+pub const UPNP_E_EVENT_SUBSCRIPTION_FAILED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220223));
+pub const UPNP_E_ICON_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220987));
+pub const UPNP_E_ICON_NODE_INCOMPLETE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
+pub const UPNP_E_INVALID_ACTION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220985));
+pub const UPNP_E_INVALID_ARGUMENTS = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220984));
 pub const UPNP_E_INVALID_DESCRIPTION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180509));
-pub const UPNP_E_INVALID_SERVICE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180508));
+pub const UPNP_E_INVALID_DOCUMENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220224));
 pub const UPNP_E_INVALID_ICON = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180507));
-pub const UPNP_E_INVALID_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180506));
 pub const UPNP_E_INVALID_ROOT_NAMESPACE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180505));
+pub const UPNP_E_INVALID_SERVICE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180508));
+pub const UPNP_E_INVALID_VARIABLE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220973));
+pub const UPNP_E_INVALID_XML = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180506));
+pub const UPNP_E_OUT_OF_SYNC = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220983));
+pub const UPNP_E_PROTOCOL_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220971));
+pub const UPNP_E_REQUIRED_ELEMENT_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180512));
+pub const UPNP_E_ROOT_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const UPNP_E_SERVICE_ELEMENT_EXPECTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
+pub const UPNP_E_SERVICE_NODE_INCOMPLETE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
 pub const UPNP_E_SUFFIX_TOO_LONG = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180504));
+pub const UPNP_E_TRANSPORT_ERROR = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220975));
 pub const UPNP_E_URLBASE_PRESENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180503));
 pub const UPNP_E_VALUE_TOO_LONG = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180496));
-pub const UPNP_E_DEVICE_RUNNING = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180495));
-pub const UPNP_E_DEVICE_NOTREGISTERED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147180494));
-pub const REMOTE_ADDRESS_VALUE_NAME = "RemoteAddress";
-pub const ADDRESS_FAMILY_VALUE_NAME = "AddressFamily";
+pub const UPNP_E_VARIABLE_VALUE_UNKNOWN = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220974));
+pub const UPNP_SERVICE_DELAY_SCPD_AND_SUBSCRIPTION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (41)
 //--------------------------------------------------------------------------------
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSWDEVICE = *opaque{};
-
-pub const SW_DEVICE_CAPABILITIES = enum(i32) {
-    None = 0,
-    Removable = 1,
-    SilentInstall = 2,
-    NoDisplayInUI = 4,
-    DriverRequired = 8,
-};
-pub const SWDeviceCapabilitiesNone = SW_DEVICE_CAPABILITIES.None;
-pub const SWDeviceCapabilitiesRemovable = SW_DEVICE_CAPABILITIES.Removable;
-pub const SWDeviceCapabilitiesSilentInstall = SW_DEVICE_CAPABILITIES.SilentInstall;
-pub const SWDeviceCapabilitiesNoDisplayInUI = SW_DEVICE_CAPABILITIES.NoDisplayInUI;
-pub const SWDeviceCapabilitiesDriverRequired = SW_DEVICE_CAPABILITIES.DriverRequired;
-
-pub const SW_DEVICE_CREATE_INFO = extern struct {
-    cbSize: u32,
-    pszInstanceId: ?[*:0]const u16,
-    pszzHardwareIds: ?[*]const u16,
-    pszzCompatibleIds: ?[*]const u16,
-    pContainerId: ?*const Guid,
-    CapabilityFlags: u32,
-    pszDeviceDescription: ?[*:0]const u16,
-    pszDeviceLocation: ?[*:0]const u16,
-    pSecurityDescriptor: ?*const SECURITY_DESCRIPTOR,
-};
-
-pub const SW_DEVICE_LIFETIME = enum(i32) {
-    Handle = 0,
-    ParentPresent = 1,
-    Max = 2,
-};
-pub const SWDeviceLifetimeHandle = SW_DEVICE_LIFETIME.Handle;
-pub const SWDeviceLifetimeParentPresent = SW_DEVICE_LIFETIME.ParentPresent;
-pub const SWDeviceLifetimeMax = SW_DEVICE_LIFETIME.Max;
-
-pub const SW_DEVICE_CREATE_CALLBACK = *const fn(
-    hSwDevice: ?HSWDEVICE,
-    CreateResult: HRESULT,
-    pContext: ?*anyopaque,
-    pszDeviceInstanceId: ?[*:0]const u16,
-) callconv(.winapi) void;
-
-const CLSID_UPnPDeviceFinder_Value = Guid.initString("e2085f28-feb7-404a-b8e7-e659bdeaaa02");
-pub const CLSID_UPnPDeviceFinder = &CLSID_UPnPDeviceFinder_Value;
-
-const CLSID_UPnPDevices_Value = Guid.initString("b9e84ffd-ad3c-40a4-b835-0882ebcbaaa8");
-pub const CLSID_UPnPDevices = &CLSID_UPnPDevices_Value;
-
-const CLSID_UPnPDevice_Value = Guid.initString("a32552c5-ba61-457a-b59a-a2561e125e33");
-pub const CLSID_UPnPDevice = &CLSID_UPnPDevice_Value;
-
-const CLSID_UPnPServices_Value = Guid.initString("c0bc4b4a-a406-4efc-932f-b8546b8100cc");
-pub const CLSID_UPnPServices = &CLSID_UPnPServices_Value;
-
-const CLSID_UPnPService_Value = Guid.initString("c624ba95-fbcb-4409-8c03-8cceec533ef1");
-pub const CLSID_UPnPService = &CLSID_UPnPService_Value;
-
-const CLSID_UPnPDescriptionDocument_Value = Guid.initString("1d8a9b47-3a28-4ce2-8a4b-bd34e45bceeb");
-pub const CLSID_UPnPDescriptionDocument = &CLSID_UPnPDescriptionDocument_Value;
-
-const CLSID_UPnPDeviceFinderEx_Value = Guid.initString("181b54fc-380b-4a75-b3f1-4ac45e9605b0");
-pub const CLSID_UPnPDeviceFinderEx = &CLSID_UPnPDeviceFinderEx_Value;
-
-const CLSID_UPnPDescriptionDocumentEx_Value = Guid.initString("33fd0563-d81a-4393-83cc-0195b1da2f91");
-pub const CLSID_UPnPDescriptionDocumentEx = &CLSID_UPnPDescriptionDocumentEx_Value;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPDeviceFinder_Value = Guid.initString("adda3d55-6f72-4319-bff9-18600a539b10");
-pub const IID_IUPnPDeviceFinder = &IID_IUPnPDeviceFinder_Value;
-pub const IUPnPDeviceFinder = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        FindByType: *const fn(
-            self: *const IUPnPDeviceFinder,
-            bstrTypeURI: ?BSTR,
-            dwFlags: u32,
-            pDevices: ?*?*IUPnPDevices,
-        ) callconv(.winapi) HRESULT,
-        CreateAsyncFind: *const fn(
-            self: *const IUPnPDeviceFinder,
-            bstrTypeURI: ?BSTR,
-            dwFlags: u32,
-            punkDeviceFinderCallback: ?*IUnknown,
-            plFindData: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        StartAsyncFind: *const fn(
-            self: *const IUPnPDeviceFinder,
-            lFindData: i32,
-        ) callconv(.winapi) HRESULT,
-        CancelAsyncFind: *const fn(
-            self: *const IUPnPDeviceFinder,
-            lFindData: i32,
-        ) callconv(.winapi) HRESULT,
-        FindByUDN: *const fn(
-            self: *const IUPnPDeviceFinder,
-            bstrUDN: ?BSTR,
-            pDevice: ?*?*IUPnPDevice,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn FindByType(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, pDevices: ?*?*IUPnPDevices) callconv(.@"inline") HRESULT {
-        return self.vtable.FindByType(self, bstrTypeURI, dwFlags, pDevices);
-    }
-    pub fn CreateAsyncFind(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, punkDeviceFinderCallback: ?*IUnknown, plFindData: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateAsyncFind(self, bstrTypeURI, dwFlags, punkDeviceFinderCallback, plFindData);
-    }
-    pub fn StartAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.StartAsyncFind(self, lFindData);
-    }
-    pub fn CancelAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelAsyncFind(self, lFindData);
-    }
-    pub fn FindByUDN(self: *const IUPnPDeviceFinder, bstrUDN: ?BSTR, pDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.FindByUDN(self, bstrUDN, pDevice);
-    }
-};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUPnPAddressFamilyControl_Value = Guid.initString("e3bf6178-694e-459f-a5a6-191ea0ffa1c7");
@@ -199,155 +81,6 @@ pub const IUPnPAddressFamilyControl = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IUPnPHttpHeaderControl_Value = Guid.initString("0405af4f-8b5c-447c-80f2-b75984a31f3c");
-pub const IID_IUPnPHttpHeaderControl = &IID_IUPnPHttpHeaderControl_Value;
-pub const IUPnPHttpHeaderControl = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddRequestHeaders: *const fn(
-            self: *const IUPnPHttpHeaderControl,
-            bstrHttpHeaders: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddRequestHeaders(self: *const IUPnPHttpHeaderControl, bstrHttpHeaders: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddRequestHeaders(self, bstrHttpHeaders);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPDeviceFinderCallback_Value = Guid.initString("415a984a-88b3-49f3-92af-0508bedf0d6c");
-pub const IID_IUPnPDeviceFinderCallback = &IID_IUPnPDeviceFinderCallback_Value;
-pub const IUPnPDeviceFinderCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        DeviceAdded: *const fn(
-            self: *const IUPnPDeviceFinderCallback,
-            lFindData: i32,
-            pDevice: ?*IUPnPDevice,
-        ) callconv(.winapi) HRESULT,
-        DeviceRemoved: *const fn(
-            self: *const IUPnPDeviceFinderCallback,
-            lFindData: i32,
-            bstrUDN: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        SearchComplete: *const fn(
-            self: *const IUPnPDeviceFinderCallback,
-            lFindData: i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn DeviceAdded(self: *const IUPnPDeviceFinderCallback, lFindData: i32, pDevice: ?*IUPnPDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceAdded(self, lFindData, pDevice);
-    }
-    pub fn DeviceRemoved(self: *const IUPnPDeviceFinderCallback, lFindData: i32, bstrUDN: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceRemoved(self, lFindData, bstrUDN);
-    }
-    pub fn SearchComplete(self: *const IUPnPDeviceFinderCallback, lFindData: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SearchComplete(self, lFindData);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPServices_Value = Guid.initString("3f8c8e9e-9a7a-4dc8-bc41-ff31fa374956");
-pub const IID_IUPnPServices = &IID_IUPnPServices_Value;
-pub const IUPnPServices = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IUPnPServices,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IUPnPServices,
-            ppunk: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IUPnPServices,
-            bstrServiceId: ?BSTR,
-            ppService: ?*?*IUPnPService,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const IUPnPServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const IUPnPServices, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppunk);
-    }
-    pub fn get_Item(self: *const IUPnPServices, bstrServiceId: ?BSTR, ppService: ?*?*IUPnPService) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, bstrServiceId, ppService);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPService_Value = Guid.initString("a295019c-dc65-47dd-90dc-7fe918a1ab44");
-pub const IID_IUPnPService = &IID_IUPnPService_Value;
-pub const IUPnPService = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        QueryStateVariable: *const fn(
-            self: *const IUPnPService,
-            bstrVariableName: ?BSTR,
-            pValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        InvokeAction: *const fn(
-            self: *const IUPnPService,
-            bstrActionName: ?BSTR,
-            vInActionArgs: VARIANT,
-            pvOutActionArgs: ?*VARIANT,
-            pvRetVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceTypeIdentifier: *const fn(
-            self: *const IUPnPService,
-            pVal: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        AddCallback: *const fn(
-            self: *const IUPnPService,
-            pUnkCallback: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: *const fn(
-            self: *const IUPnPService,
-            pbstrId: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastTransportStatus: *const fn(
-            self: *const IUPnPService,
-            plValue: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn QueryStateVariable(self: *const IUPnPService, bstrVariableName: ?BSTR, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryStateVariable(self, bstrVariableName, pValue);
-    }
-    pub fn InvokeAction(self: *const IUPnPService, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.InvokeAction(self, bstrActionName, vInActionArgs, pvOutActionArgs, pvRetVal);
-    }
-    pub fn get_ServiceTypeIdentifier(self: *const IUPnPService, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ServiceTypeIdentifier(self, pVal);
-    }
-    pub fn AddCallback(self: *const IUPnPService, pUnkCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.AddCallback(self, pUnkCallback);
-    }
-    pub fn get_Id(self: *const IUPnPService, pbstrId: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Id(self, pbstrId);
-    }
-    pub fn get_LastTransportStatus(self: *const IUPnPService, plValue: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LastTransportStatus(self, plValue);
-    }
-};
-
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUPnPAsyncResult_Value = Guid.initString("4d65fd08-d13e-4274-9c8b-dd8d028c8644");
 pub const IID_IUPnPAsyncResult = &IID_IUPnPAsyncResult_Value;
@@ -366,195 +99,85 @@ pub const IUPnPAsyncResult = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUPnPServiceAsync_Value = Guid.initString("098bdaf5-5ec1-49e7-a260-b3a11dd8680c");
-pub const IID_IUPnPServiceAsync = &IID_IUPnPServiceAsync_Value;
-pub const IUPnPServiceAsync = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BeginInvokeAction: *const fn(
-            self: *const IUPnPServiceAsync,
-            bstrActionName: ?BSTR,
-            vInActionArgs: VARIANT,
-            pAsyncResult: ?*IUPnPAsyncResult,
-            pullRequestID: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        EndInvokeAction: *const fn(
-            self: *const IUPnPServiceAsync,
-            ullRequestID: u64,
-            pvOutActionArgs: ?*VARIANT,
-            pvRetVal: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        BeginQueryStateVariable: *const fn(
-            self: *const IUPnPServiceAsync,
-            bstrVariableName: ?BSTR,
-            pAsyncResult: ?*IUPnPAsyncResult,
-            pullRequestID: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        EndQueryStateVariable: *const fn(
-            self: *const IUPnPServiceAsync,
-            ullRequestID: u64,
-            pValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        BeginSubscribeToEvents: *const fn(
-            self: *const IUPnPServiceAsync,
-            pUnkCallback: ?*IUnknown,
-            pAsyncResult: ?*IUPnPAsyncResult,
-            pullRequestID: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        EndSubscribeToEvents: *const fn(
-            self: *const IUPnPServiceAsync,
-            ullRequestID: u64,
-        ) callconv(.winapi) HRESULT,
-        BeginSCPDDownload: *const fn(
-            self: *const IUPnPServiceAsync,
-            pAsyncResult: ?*IUPnPAsyncResult,
-            pullRequestID: ?*u64,
-        ) callconv(.winapi) HRESULT,
-        EndSCPDDownload: *const fn(
-            self: *const IUPnPServiceAsync,
-            ullRequestID: u64,
-            pbstrSCPDDoc: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        CancelAsyncOperation: *const fn(
-            self: *const IUPnPServiceAsync,
-            ullRequestID: u64,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn BeginInvokeAction(self: *const IUPnPServiceAsync, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginInvokeAction(self, bstrActionName, vInActionArgs, pAsyncResult, pullRequestID);
-    }
-    pub fn EndInvokeAction(self: *const IUPnPServiceAsync, ullRequestID: u64, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.EndInvokeAction(self, ullRequestID, pvOutActionArgs, pvRetVal);
-    }
-    pub fn BeginQueryStateVariable(self: *const IUPnPServiceAsync, bstrVariableName: ?BSTR, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginQueryStateVariable(self, bstrVariableName, pAsyncResult, pullRequestID);
-    }
-    pub fn EndQueryStateVariable(self: *const IUPnPServiceAsync, ullRequestID: u64, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.EndQueryStateVariable(self, ullRequestID, pValue);
-    }
-    pub fn BeginSubscribeToEvents(self: *const IUPnPServiceAsync, pUnkCallback: ?*IUnknown, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginSubscribeToEvents(self, pUnkCallback, pAsyncResult, pullRequestID);
-    }
-    pub fn EndSubscribeToEvents(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.EndSubscribeToEvents(self, ullRequestID);
-    }
-    pub fn BeginSCPDDownload(self: *const IUPnPServiceAsync, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginSCPDDownload(self, pAsyncResult, pullRequestID);
-    }
-    pub fn EndSCPDDownload(self: *const IUPnPServiceAsync, ullRequestID: u64, pbstrSCPDDoc: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.EndSCPDDownload(self, ullRequestID, pbstrSCPDDoc);
-    }
-    pub fn CancelAsyncOperation(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelAsyncOperation(self, ullRequestID);
-    }
-};
-
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPServiceCallback_Value = Guid.initString("31fadca9-ab73-464b-b67d-5c1d0f83c8b8");
-pub const IID_IUPnPServiceCallback = &IID_IUPnPServiceCallback_Value;
-pub const IUPnPServiceCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StateVariableChanged: *const fn(
-            self: *const IUPnPServiceCallback,
-            pus: ?*IUPnPService,
-            pcwszStateVarName: ?[*:0]const u16,
-            vaValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        ServiceInstanceDied: *const fn(
-            self: *const IUPnPServiceCallback,
-            pus: ?*IUPnPService,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn StateVariableChanged(self: *const IUPnPServiceCallback, pus: ?*IUPnPService, pcwszStateVarName: ?[*:0]const u16, vaValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.StateVariableChanged(self, pus, pcwszStateVarName, vaValue);
-    }
-    pub fn ServiceInstanceDied(self: *const IUPnPServiceCallback, pus: ?*IUPnPService) callconv(.@"inline") HRESULT {
-        return self.vtable.ServiceInstanceDied(self, pus);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUPnPServiceEnumProperty_Value = Guid.initString("38873b37-91bb-49f4-b249-2e8efbb8a816");
-pub const IID_IUPnPServiceEnumProperty = &IID_IUPnPServiceEnumProperty_Value;
-pub const IUPnPServiceEnumProperty = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetServiceEnumProperty: *const fn(
-            self: *const IUPnPServiceEnumProperty,
-            dwMask: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetServiceEnumProperty(self: *const IUPnPServiceEnumProperty, dwMask: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetServiceEnumProperty(self, dwMask);
-    }
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IUPnPServiceDocumentAccess_Value = Guid.initString("21905529-0a5e-4589-825d-7e6d87ea6998");
-pub const IID_IUPnPServiceDocumentAccess = &IID_IUPnPServiceDocumentAccess_Value;
-pub const IUPnPServiceDocumentAccess = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDocumentURL: *const fn(
-            self: *const IUPnPServiceDocumentAccess,
-            pbstrDocUrl: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDocument: *const fn(
-            self: *const IUPnPServiceDocumentAccess,
-            pbstrDoc: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetDocumentURL(self: *const IUPnPServiceDocumentAccess, pbstrDocUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDocumentURL(self, pbstrDocUrl);
-    }
-    pub fn GetDocument(self: *const IUPnPServiceDocumentAccess, pbstrDoc: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDocument(self, pbstrDoc);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPDevices_Value = Guid.initString("fdbc0c73-bda3-4c66-ac4f-f2d96fdad68c");
-pub const IID_IUPnPDevices = &IID_IUPnPDevices_Value;
-pub const IUPnPDevices = extern union {
+const IID_IUPnPDescriptionDocument_Value = Guid.initString("11d1c1b2-7daa-4c9e-9595-7f82ed206d1e");
+pub const IID_IUPnPDescriptionDocument = &IID_IUPnPDescriptionDocument_Value;
+pub const IUPnPDescriptionDocument = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IUPnPDevices,
-            plCount: ?*i32,
+        get_ReadyState: *const fn(
+            self: *const IUPnPDescriptionDocument,
+            plReadyState: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Load: *const fn(
+            self: *const IUPnPDescriptionDocument,
+            bstrUrl: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        LoadAsync: *const fn(
+            self: *const IUPnPDescriptionDocument,
+            bstrUrl: ?BSTR,
+            punkCallback: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IUPnPDevices,
-            ppunk: ?*?*IUnknown,
+        get_LoadResult: *const fn(
+            self: *const IUPnPDescriptionDocument,
+            phrError: ?*i32,
         ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IUPnPDevices,
+        Abort: *const fn(
+            self: *const IUPnPDescriptionDocument,
+        ) callconv(.winapi) HRESULT,
+        RootDevice: *const fn(
+            self: *const IUPnPDescriptionDocument,
+            ppudRootDevice: ?*?*IUPnPDevice,
+        ) callconv(.winapi) HRESULT,
+        DeviceByUDN: *const fn(
+            self: *const IUPnPDescriptionDocument,
             bstrUDN: ?BSTR,
-            ppDevice: ?*?*IUPnPDevice,
+            ppudDevice: ?*?*IUPnPDevice,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IUPnPDevices, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
+    pub fn get_ReadyState(self: *const IUPnPDescriptionDocument, plReadyState: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReadyState(self, plReadyState);
     }
-    pub fn get__NewEnum(self: *const IUPnPDevices, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppunk);
+    pub fn Load(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Load(self, bstrUrl);
     }
-    pub fn get_Item(self: *const IUPnPDevices, bstrUDN: ?BSTR, ppDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, bstrUDN, ppDevice);
+    pub fn LoadAsync(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR, punkCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadAsync(self, bstrUrl, punkCallback);
+    }
+    pub fn get_LoadResult(self: *const IUPnPDescriptionDocument, phrError: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LoadResult(self, phrError);
+    }
+    pub fn Abort(self: *const IUPnPDescriptionDocument) callconv(.@"inline") HRESULT {
+        return self.vtable.Abort(self);
+    }
+    pub fn RootDevice(self: *const IUPnPDescriptionDocument, ppudRootDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.RootDevice(self, ppudRootDevice);
+    }
+    pub fn DeviceByUDN(self: *const IUPnPDescriptionDocument, bstrUDN: ?BSTR, ppudDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceByUDN(self, bstrUDN, ppudDevice);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUPnPDescriptionDocumentCallback_Value = Guid.initString("77394c69-5486-40d6-9bc3-4991983e02da");
+pub const IID_IUPnPDescriptionDocumentCallback = &IID_IUPnPDescriptionDocumentCallback_Value;
+pub const IUPnPDescriptionDocumentCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        LoadComplete: *const fn(
+            self: *const IUPnPDescriptionDocumentCallback,
+            hrLoadResult: HRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn LoadComplete(self: *const IUPnPDescriptionDocumentCallback, hrLoadResult: HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadComplete(self, hrLoadResult);
     }
 };
 
@@ -726,6 +349,52 @@ pub const IUPnPDevice = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUPnPDeviceControl_Value = Guid.initString("204810ba-73b2-11d4-bf42-00b0d0118b56");
+pub const IID_IUPnPDeviceControl = &IID_IUPnPDeviceControl_Value;
+pub const IUPnPDeviceControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IUPnPDeviceControl,
+            bstrXMLDesc: ?BSTR,
+            bstrDeviceIdentifier: ?BSTR,
+            bstrInitString: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetServiceObject: *const fn(
+            self: *const IUPnPDeviceControl,
+            bstrUDN: ?BSTR,
+            bstrServiceId: ?BSTR,
+            ppdispService: ?*?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IUPnPDeviceControl, bstrXMLDesc: ?BSTR, bstrDeviceIdentifier: ?BSTR, bstrInitString: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, bstrXMLDesc, bstrDeviceIdentifier, bstrInitString);
+    }
+    pub fn GetServiceObject(self: *const IUPnPDeviceControl, bstrUDN: ?BSTR, bstrServiceId: ?BSTR, ppdispService: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.GetServiceObject(self, bstrUDN, bstrServiceId, ppdispService);
+    }
+};
+
+const IID_IUPnPDeviceControlHttpHeaders_Value = Guid.initString("204810bb-73b2-11d4-bf42-00b0d0118b56");
+pub const IID_IUPnPDeviceControlHttpHeaders = &IID_IUPnPDeviceControlHttpHeaders_Value;
+pub const IUPnPDeviceControlHttpHeaders = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAdditionalResponseHeaders: *const fn(
+            self: *const IUPnPDeviceControlHttpHeaders,
+            bstrHttpResponseHeaders: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetAdditionalResponseHeaders(self: *const IUPnPDeviceControlHttpHeaders, bstrHttpResponseHeaders: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetAdditionalResponseHeaders(self, bstrHttpResponseHeaders);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPDeviceDocumentAccess_Value = Guid.initString("e7772804-3287-418e-9072-cf2b47238981");
 pub const IID_IUPnPDeviceDocumentAccess = &IID_IUPnPDeviceDocumentAccess_Value;
 pub const IUPnPDeviceDocumentAccess = extern union {
@@ -762,66 +431,55 @@ pub const IUPnPDeviceDocumentAccessEx = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPDescriptionDocument_Value = Guid.initString("11d1c1b2-7daa-4c9e-9595-7f82ed206d1e");
-pub const IID_IUPnPDescriptionDocument = &IID_IUPnPDescriptionDocument_Value;
-pub const IUPnPDescriptionDocument = extern union {
+const IID_IUPnPDeviceFinder_Value = Guid.initString("adda3d55-6f72-4319-bff9-18600a539b10");
+pub const IID_IUPnPDeviceFinder = &IID_IUPnPDeviceFinder_Value;
+pub const IUPnPDeviceFinder = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadyState: *const fn(
-            self: *const IUPnPDescriptionDocument,
-            plReadyState: ?*i32,
+        FindByType: *const fn(
+            self: *const IUPnPDeviceFinder,
+            bstrTypeURI: ?BSTR,
+            dwFlags: u32,
+            pDevices: ?*?*IUPnPDevices,
         ) callconv(.winapi) HRESULT,
-        Load: *const fn(
-            self: *const IUPnPDescriptionDocument,
-            bstrUrl: ?BSTR,
+        CreateAsyncFind: *const fn(
+            self: *const IUPnPDeviceFinder,
+            bstrTypeURI: ?BSTR,
+            dwFlags: u32,
+            punkDeviceFinderCallback: ?*IUnknown,
+            plFindData: ?*i32,
         ) callconv(.winapi) HRESULT,
-        LoadAsync: *const fn(
-            self: *const IUPnPDescriptionDocument,
-            bstrUrl: ?BSTR,
-            punkCallback: ?*IUnknown,
+        StartAsyncFind: *const fn(
+            self: *const IUPnPDeviceFinder,
+            lFindData: i32,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LoadResult: *const fn(
-            self: *const IUPnPDescriptionDocument,
-            phrError: ?*i32,
+        CancelAsyncFind: *const fn(
+            self: *const IUPnPDeviceFinder,
+            lFindData: i32,
         ) callconv(.winapi) HRESULT,
-        Abort: *const fn(
-            self: *const IUPnPDescriptionDocument,
-        ) callconv(.winapi) HRESULT,
-        RootDevice: *const fn(
-            self: *const IUPnPDescriptionDocument,
-            ppudRootDevice: ?*?*IUPnPDevice,
-        ) callconv(.winapi) HRESULT,
-        DeviceByUDN: *const fn(
-            self: *const IUPnPDescriptionDocument,
+        FindByUDN: *const fn(
+            self: *const IUPnPDeviceFinder,
             bstrUDN: ?BSTR,
-            ppudDevice: ?*?*IUPnPDevice,
+            pDevice: ?*?*IUPnPDevice,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ReadyState(self: *const IUPnPDescriptionDocument, plReadyState: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReadyState(self, plReadyState);
+    pub fn FindByType(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, pDevices: ?*?*IUPnPDevices) callconv(.@"inline") HRESULT {
+        return self.vtable.FindByType(self, bstrTypeURI, dwFlags, pDevices);
     }
-    pub fn Load(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Load(self, bstrUrl);
+    pub fn CreateAsyncFind(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, punkDeviceFinderCallback: ?*IUnknown, plFindData: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateAsyncFind(self, bstrTypeURI, dwFlags, punkDeviceFinderCallback, plFindData);
     }
-    pub fn LoadAsync(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR, punkCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadAsync(self, bstrUrl, punkCallback);
+    pub fn StartAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.StartAsyncFind(self, lFindData);
     }
-    pub fn get_LoadResult(self: *const IUPnPDescriptionDocument, phrError: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_LoadResult(self, phrError);
+    pub fn CancelAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelAsyncFind(self, lFindData);
     }
-    pub fn Abort(self: *const IUPnPDescriptionDocument) callconv(.@"inline") HRESULT {
-        return self.vtable.Abort(self);
-    }
-    pub fn RootDevice(self: *const IUPnPDescriptionDocument, ppudRootDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.RootDevice(self, ppudRootDevice);
-    }
-    pub fn DeviceByUDN(self: *const IUPnPDescriptionDocument, bstrUDN: ?BSTR, ppudDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
-        return self.vtable.DeviceByUDN(self, bstrUDN, ppudDevice);
+    pub fn FindByUDN(self: *const IUPnPDeviceFinder, bstrUDN: ?BSTR, pDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.FindByUDN(self, bstrUDN, pDevice);
     }
 };
 
@@ -846,28 +504,98 @@ pub const IUPnPDeviceFinderAddCallbackWithInterface = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPDescriptionDocumentCallback_Value = Guid.initString("77394c69-5486-40d6-9bc3-4991983e02da");
-pub const IID_IUPnPDescriptionDocumentCallback = &IID_IUPnPDescriptionDocumentCallback_Value;
-pub const IUPnPDescriptionDocumentCallback = extern union {
+const IID_IUPnPDeviceFinderCallback_Value = Guid.initString("415a984a-88b3-49f3-92af-0508bedf0d6c");
+pub const IID_IUPnPDeviceFinderCallback = &IID_IUPnPDeviceFinderCallback_Value;
+pub const IUPnPDeviceFinderCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LoadComplete: *const fn(
-            self: *const IUPnPDescriptionDocumentCallback,
-            hrLoadResult: HRESULT,
+        DeviceAdded: *const fn(
+            self: *const IUPnPDeviceFinderCallback,
+            lFindData: i32,
+            pDevice: ?*IUPnPDevice,
+        ) callconv(.winapi) HRESULT,
+        DeviceRemoved: *const fn(
+            self: *const IUPnPDeviceFinderCallback,
+            lFindData: i32,
+            bstrUDN: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        SearchComplete: *const fn(
+            self: *const IUPnPDeviceFinderCallback,
+            lFindData: i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LoadComplete(self: *const IUPnPDescriptionDocumentCallback, hrLoadResult: HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadComplete(self, hrLoadResult);
+    pub fn DeviceAdded(self: *const IUPnPDeviceFinderCallback, lFindData: i32, pDevice: ?*IUPnPDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceAdded(self, lFindData, pDevice);
+    }
+    pub fn DeviceRemoved(self: *const IUPnPDeviceFinderCallback, lFindData: i32, bstrUDN: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.DeviceRemoved(self, lFindData, bstrUDN);
+    }
+    pub fn SearchComplete(self: *const IUPnPDeviceFinderCallback, lFindData: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SearchComplete(self, lFindData);
     }
 };
 
-const CLSID_UPnPRegistrar_Value = Guid.initString("204810b9-73b2-11d4-bf42-00b0d0118b56");
-pub const CLSID_UPnPRegistrar = &CLSID_UPnPRegistrar_Value;
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUPnPDeviceProvider_Value = Guid.initString("204810b8-73b2-11d4-bf42-00b0d0118b56");
+pub const IID_IUPnPDeviceProvider = &IID_IUPnPDeviceProvider_Value;
+pub const IUPnPDeviceProvider = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Start: *const fn(
+            self: *const IUPnPDeviceProvider,
+            bstrInitString: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Stop: *const fn(
+            self: *const IUPnPDeviceProvider,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Start(self: *const IUPnPDeviceProvider, bstrInitString: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Start(self, bstrInitString);
+    }
+    pub fn Stop(self: *const IUPnPDeviceProvider) callconv(.@"inline") HRESULT {
+        return self.vtable.Stop(self);
+    }
+};
 
-const CLSID_UPnPRemoteEndpointInfo_Value = Guid.initString("2e5e84e9-4049-4244-b728-2d24227157c7");
-pub const CLSID_UPnPRemoteEndpointInfo = &CLSID_UPnPRemoteEndpointInfo_Value;
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUPnPDevices_Value = Guid.initString("fdbc0c73-bda3-4c66-ac4f-f2d96fdad68c");
+pub const IID_IUPnPDevices = &IID_IUPnPDevices_Value;
+pub const IUPnPDevices = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IUPnPDevices,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IUPnPDevices,
+            ppunk: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IUPnPDevices,
+            bstrUDN: ?BSTR,
+            ppDevice: ?*?*IUPnPDevice,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IUPnPDevices, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const IUPnPDevices, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppunk);
+    }
+    pub fn get_Item(self: *const IUPnPDevices, bstrUDN: ?BSTR, ppDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, bstrUDN, ppDevice);
+    }
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPEventSink_Value = Guid.initString("204810b4-73b2-11d4-bf42-00b0d0118b56");
@@ -917,6 +645,24 @@ pub const IUPnPEventSource = extern union {
     }
     pub fn Unadvise(self: *const IUPnPEventSource, pesSubscriber: ?*IUPnPEventSink) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, pesSubscriber);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IUPnPHttpHeaderControl_Value = Guid.initString("0405af4f-8b5c-447c-80f2-b75984a31f3c");
+pub const IID_IUPnPHttpHeaderControl = &IID_IUPnPHttpHeaderControl_Value;
+pub const IUPnPHttpHeaderControl = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddRequestHeaders: *const fn(
+            self: *const IUPnPHttpHeaderControl,
+            bstrHttpHeaders: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddRequestHeaders(self: *const IUPnPHttpHeaderControl, bstrHttpHeaders: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddRequestHeaders(self, bstrHttpHeaders);
     }
 };
 
@@ -990,6 +736,41 @@ pub const IUPnPRegistrar = extern union {
     }
 };
 
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IUPnPRemoteEndpointInfo_Value = Guid.initString("c92eb863-0269-4aff-9c72-75321bba2952");
+pub const IID_IUPnPRemoteEndpointInfo = &IID_IUPnPRemoteEndpointInfo_Value;
+pub const IUPnPRemoteEndpointInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDwordValue: *const fn(
+            self: *const IUPnPRemoteEndpointInfo,
+            bstrValueName: ?BSTR,
+            pdwValue: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetStringValue: *const fn(
+            self: *const IUPnPRemoteEndpointInfo,
+            bstrValueName: ?BSTR,
+            pbstrValue: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetGuidValue: *const fn(
+            self: *const IUPnPRemoteEndpointInfo,
+            bstrValueName: ?BSTR,
+            pguidValue: ?*Guid,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetDwordValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pdwValue: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDwordValue(self, bstrValueName, pdwValue);
+    }
+    pub fn GetStringValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetStringValue(self, bstrValueName, pbstrValue);
+    }
+    pub fn GetGuidValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pguidValue: ?*Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGuidValue(self, bstrValueName, pguidValue);
+    }
+};
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUPnPReregistrar_Value = Guid.initString("204810b7-73b2-11d4-bf42-00b0d0118b56");
 pub const IID_IUPnPReregistrar = &IID_IUPnPReregistrar_Value;
@@ -1027,114 +808,338 @@ pub const IUPnPReregistrar = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPDeviceControl_Value = Guid.initString("204810ba-73b2-11d4-bf42-00b0d0118b56");
-pub const IID_IUPnPDeviceControl = &IID_IUPnPDeviceControl_Value;
-pub const IUPnPDeviceControl = extern union {
+const IID_IUPnPService_Value = Guid.initString("a295019c-dc65-47dd-90dc-7fe918a1ab44");
+pub const IID_IUPnPService = &IID_IUPnPService_Value;
+pub const IUPnPService = extern union {
     pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IUPnPDeviceControl,
-            bstrXMLDesc: ?BSTR,
-            bstrDeviceIdentifier: ?BSTR,
-            bstrInitString: ?BSTR,
+        base: IDispatch.VTable,
+        QueryStateVariable: *const fn(
+            self: *const IUPnPService,
+            bstrVariableName: ?BSTR,
+            pValue: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
-        GetServiceObject: *const fn(
-            self: *const IUPnPDeviceControl,
-            bstrUDN: ?BSTR,
-            bstrServiceId: ?BSTR,
-            ppdispService: ?*?*IDispatch,
+        InvokeAction: *const fn(
+            self: *const IUPnPService,
+            bstrActionName: ?BSTR,
+            vInActionArgs: VARIANT,
+            pvOutActionArgs: ?*VARIANT,
+            pvRetVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ServiceTypeIdentifier: *const fn(
+            self: *const IUPnPService,
+            pVal: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddCallback: *const fn(
+            self: *const IUPnPService,
+            pUnkCallback: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Id: *const fn(
+            self: *const IUPnPService,
+            pbstrId: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_LastTransportStatus: *const fn(
+            self: *const IUPnPService,
+            plValue: ?*i32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IUPnPDeviceControl, bstrXMLDesc: ?BSTR, bstrDeviceIdentifier: ?BSTR, bstrInitString: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, bstrXMLDesc, bstrDeviceIdentifier, bstrInitString);
+    pub fn QueryStateVariable(self: *const IUPnPService, bstrVariableName: ?BSTR, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryStateVariable(self, bstrVariableName, pValue);
     }
-    pub fn GetServiceObject(self: *const IUPnPDeviceControl, bstrUDN: ?BSTR, bstrServiceId: ?BSTR, ppdispService: ?*?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.GetServiceObject(self, bstrUDN, bstrServiceId, ppdispService);
+    pub fn InvokeAction(self: *const IUPnPService, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.InvokeAction(self, bstrActionName, vInActionArgs, pvOutActionArgs, pvRetVal);
+    }
+    pub fn get_ServiceTypeIdentifier(self: *const IUPnPService, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ServiceTypeIdentifier(self, pVal);
+    }
+    pub fn AddCallback(self: *const IUPnPService, pUnkCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.AddCallback(self, pUnkCallback);
+    }
+    pub fn get_Id(self: *const IUPnPService, pbstrId: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Id(self, pbstrId);
+    }
+    pub fn get_LastTransportStatus(self: *const IUPnPService, plValue: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_LastTransportStatus(self, plValue);
     }
 };
 
-const IID_IUPnPDeviceControlHttpHeaders_Value = Guid.initString("204810bb-73b2-11d4-bf42-00b0d0118b56");
-pub const IID_IUPnPDeviceControlHttpHeaders = &IID_IUPnPDeviceControlHttpHeaders_Value;
-pub const IUPnPDeviceControlHttpHeaders = extern union {
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUPnPServiceAsync_Value = Guid.initString("098bdaf5-5ec1-49e7-a260-b3a11dd8680c");
+pub const IID_IUPnPServiceAsync = &IID_IUPnPServiceAsync_Value;
+pub const IUPnPServiceAsync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAdditionalResponseHeaders: *const fn(
-            self: *const IUPnPDeviceControlHttpHeaders,
-            bstrHttpResponseHeaders: ?*?BSTR,
+        BeginInvokeAction: *const fn(
+            self: *const IUPnPServiceAsync,
+            bstrActionName: ?BSTR,
+            vInActionArgs: VARIANT,
+            pAsyncResult: ?*IUPnPAsyncResult,
+            pullRequestID: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        EndInvokeAction: *const fn(
+            self: *const IUPnPServiceAsync,
+            ullRequestID: u64,
+            pvOutActionArgs: ?*VARIANT,
+            pvRetVal: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        BeginQueryStateVariable: *const fn(
+            self: *const IUPnPServiceAsync,
+            bstrVariableName: ?BSTR,
+            pAsyncResult: ?*IUPnPAsyncResult,
+            pullRequestID: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        EndQueryStateVariable: *const fn(
+            self: *const IUPnPServiceAsync,
+            ullRequestID: u64,
+            pValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        BeginSubscribeToEvents: *const fn(
+            self: *const IUPnPServiceAsync,
+            pUnkCallback: ?*IUnknown,
+            pAsyncResult: ?*IUPnPAsyncResult,
+            pullRequestID: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        EndSubscribeToEvents: *const fn(
+            self: *const IUPnPServiceAsync,
+            ullRequestID: u64,
+        ) callconv(.winapi) HRESULT,
+        BeginSCPDDownload: *const fn(
+            self: *const IUPnPServiceAsync,
+            pAsyncResult: ?*IUPnPAsyncResult,
+            pullRequestID: ?*u64,
+        ) callconv(.winapi) HRESULT,
+        EndSCPDDownload: *const fn(
+            self: *const IUPnPServiceAsync,
+            ullRequestID: u64,
+            pbstrSCPDDoc: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        CancelAsyncOperation: *const fn(
+            self: *const IUPnPServiceAsync,
+            ullRequestID: u64,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAdditionalResponseHeaders(self: *const IUPnPDeviceControlHttpHeaders, bstrHttpResponseHeaders: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetAdditionalResponseHeaders(self, bstrHttpResponseHeaders);
+    pub fn BeginInvokeAction(self: *const IUPnPServiceAsync, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginInvokeAction(self, bstrActionName, vInActionArgs, pAsyncResult, pullRequestID);
+    }
+    pub fn EndInvokeAction(self: *const IUPnPServiceAsync, ullRequestID: u64, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.EndInvokeAction(self, ullRequestID, pvOutActionArgs, pvRetVal);
+    }
+    pub fn BeginQueryStateVariable(self: *const IUPnPServiceAsync, bstrVariableName: ?BSTR, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginQueryStateVariable(self, bstrVariableName, pAsyncResult, pullRequestID);
+    }
+    pub fn EndQueryStateVariable(self: *const IUPnPServiceAsync, ullRequestID: u64, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.EndQueryStateVariable(self, ullRequestID, pValue);
+    }
+    pub fn BeginSubscribeToEvents(self: *const IUPnPServiceAsync, pUnkCallback: ?*IUnknown, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginSubscribeToEvents(self, pUnkCallback, pAsyncResult, pullRequestID);
+    }
+    pub fn EndSubscribeToEvents(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.EndSubscribeToEvents(self, ullRequestID);
+    }
+    pub fn BeginSCPDDownload(self: *const IUPnPServiceAsync, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginSCPDDownload(self, pAsyncResult, pullRequestID);
+    }
+    pub fn EndSCPDDownload(self: *const IUPnPServiceAsync, ullRequestID: u64, pbstrSCPDDoc: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.EndSCPDDownload(self, ullRequestID, pbstrSCPDDoc);
+    }
+    pub fn CancelAsyncOperation(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelAsyncOperation(self, ullRequestID);
     }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IUPnPDeviceProvider_Value = Guid.initString("204810b8-73b2-11d4-bf42-00b0d0118b56");
-pub const IID_IUPnPDeviceProvider = &IID_IUPnPDeviceProvider_Value;
-pub const IUPnPDeviceProvider = extern union {
+const IID_IUPnPServiceCallback_Value = Guid.initString("31fadca9-ab73-464b-b67d-5c1d0f83c8b8");
+pub const IID_IUPnPServiceCallback = &IID_IUPnPServiceCallback_Value;
+pub const IUPnPServiceCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Start: *const fn(
-            self: *const IUPnPDeviceProvider,
-            bstrInitString: ?BSTR,
+        StateVariableChanged: *const fn(
+            self: *const IUPnPServiceCallback,
+            pus: ?*IUPnPService,
+            pcwszStateVarName: ?[*:0]const u16,
+            vaValue: VARIANT,
         ) callconv(.winapi) HRESULT,
-        Stop: *const fn(
-            self: *const IUPnPDeviceProvider,
+        ServiceInstanceDied: *const fn(
+            self: *const IUPnPServiceCallback,
+            pus: ?*IUPnPService,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IUPnPDeviceProvider, bstrInitString: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Start(self, bstrInitString);
+    pub fn StateVariableChanged(self: *const IUPnPServiceCallback, pus: ?*IUPnPService, pcwszStateVarName: ?[*:0]const u16, vaValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.StateVariableChanged(self, pus, pcwszStateVarName, vaValue);
     }
-    pub fn Stop(self: *const IUPnPDeviceProvider) callconv(.@"inline") HRESULT {
-        return self.vtable.Stop(self);
+    pub fn ServiceInstanceDied(self: *const IUPnPServiceCallback, pus: ?*IUPnPService) callconv(.@"inline") HRESULT {
+        return self.vtable.ServiceInstanceDied(self, pus);
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IUPnPRemoteEndpointInfo_Value = Guid.initString("c92eb863-0269-4aff-9c72-75321bba2952");
-pub const IID_IUPnPRemoteEndpointInfo = &IID_IUPnPRemoteEndpointInfo_Value;
-pub const IUPnPRemoteEndpointInfo = extern union {
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUPnPServiceDocumentAccess_Value = Guid.initString("21905529-0a5e-4589-825d-7e6d87ea6998");
+pub const IID_IUPnPServiceDocumentAccess = &IID_IUPnPServiceDocumentAccess_Value;
+pub const IUPnPServiceDocumentAccess = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDwordValue: *const fn(
-            self: *const IUPnPRemoteEndpointInfo,
-            bstrValueName: ?BSTR,
-            pdwValue: ?*u32,
+        GetDocumentURL: *const fn(
+            self: *const IUPnPServiceDocumentAccess,
+            pbstrDocUrl: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        GetStringValue: *const fn(
-            self: *const IUPnPRemoteEndpointInfo,
-            bstrValueName: ?BSTR,
-            pbstrValue: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetGuidValue: *const fn(
-            self: *const IUPnPRemoteEndpointInfo,
-            bstrValueName: ?BSTR,
-            pguidValue: ?*Guid,
+        GetDocument: *const fn(
+            self: *const IUPnPServiceDocumentAccess,
+            pbstrDoc: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDwordValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pdwValue: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDwordValue(self, bstrValueName, pdwValue);
+    pub fn GetDocumentURL(self: *const IUPnPServiceDocumentAccess, pbstrDocUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDocumentURL(self, pbstrDocUrl);
     }
-    pub fn GetStringValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.GetStringValue(self, bstrValueName, pbstrValue);
-    }
-    pub fn GetGuidValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pguidValue: ?*Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGuidValue(self, bstrValueName, pguidValue);
+    pub fn GetDocument(self: *const IUPnPServiceDocumentAccess, pbstrDoc: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDocument(self, pbstrDoc);
     }
 };
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IUPnPServiceEnumProperty_Value = Guid.initString("38873b37-91bb-49f4-b249-2e8efbb8a816");
+pub const IID_IUPnPServiceEnumProperty = &IID_IUPnPServiceEnumProperty_Value;
+pub const IUPnPServiceEnumProperty = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetServiceEnumProperty: *const fn(
+            self: *const IUPnPServiceEnumProperty,
+            dwMask: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetServiceEnumProperty(self: *const IUPnPServiceEnumProperty, dwMask: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetServiceEnumProperty(self, dwMask);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_IUPnPServices_Value = Guid.initString("3f8c8e9e-9a7a-4dc8-bc41-ff31fa374956");
+pub const IID_IUPnPServices = &IID_IUPnPServices_Value;
+pub const IUPnPServices = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IUPnPServices,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IUPnPServices,
+            ppunk: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IUPnPServices,
+            bstrServiceId: ?BSTR,
+            ppService: ?*?*IUPnPService,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const IUPnPServices, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const IUPnPServices, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppunk);
+    }
+    pub fn get_Item(self: *const IUPnPServices, bstrServiceId: ?BSTR, ppService: ?*?*IUPnPService) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, bstrServiceId, ppService);
+    }
+};
+
+pub const SW_DEVICE_CAPABILITIES = enum(i32) {
+    None = 0,
+    Removable = 1,
+    SilentInstall = 2,
+    NoDisplayInUI = 4,
+    DriverRequired = 8,
+};
+pub const SWDeviceCapabilitiesNone = SW_DEVICE_CAPABILITIES.None;
+pub const SWDeviceCapabilitiesRemovable = SW_DEVICE_CAPABILITIES.Removable;
+pub const SWDeviceCapabilitiesSilentInstall = SW_DEVICE_CAPABILITIES.SilentInstall;
+pub const SWDeviceCapabilitiesNoDisplayInUI = SW_DEVICE_CAPABILITIES.NoDisplayInUI;
+pub const SWDeviceCapabilitiesDriverRequired = SW_DEVICE_CAPABILITIES.DriverRequired;
+
+pub const SW_DEVICE_CREATE_CALLBACK = *const fn(
+    hSwDevice: ?HSWDEVICE,
+    CreateResult: HRESULT,
+    pContext: ?*anyopaque,
+    pszDeviceInstanceId: ?[*:0]const u16,
+) callconv(.winapi) void;
+
+pub const SW_DEVICE_CREATE_INFO = extern struct {
+    cbSize: u32,
+    pszInstanceId: ?[*:0]const u16,
+    pszzHardwareIds: ?[*]const u16,
+    pszzCompatibleIds: ?[*]const u16,
+    pContainerId: ?*const Guid,
+    CapabilityFlags: u32,
+    pszDeviceDescription: ?[*:0]const u16,
+    pszDeviceLocation: ?[*:0]const u16,
+    pSecurityDescriptor: ?*const SECURITY_DESCRIPTOR,
+};
+
+pub const SW_DEVICE_LIFETIME = enum(i32) {
+    Handle = 0,
+    ParentPresent = 1,
+    Max = 2,
+};
+pub const SWDeviceLifetimeHandle = SW_DEVICE_LIFETIME.Handle;
+pub const SWDeviceLifetimeParentPresent = SW_DEVICE_LIFETIME.ParentPresent;
+pub const SWDeviceLifetimeMax = SW_DEVICE_LIFETIME.Max;
+
+const CLSID_UPnPDescriptionDocument_Value = Guid.initString("1d8a9b47-3a28-4ce2-8a4b-bd34e45bceeb");
+pub const CLSID_UPnPDescriptionDocument = &CLSID_UPnPDescriptionDocument_Value;
+
+const CLSID_UPnPDescriptionDocumentEx_Value = Guid.initString("33fd0563-d81a-4393-83cc-0195b1da2f91");
+pub const CLSID_UPnPDescriptionDocumentEx = &CLSID_UPnPDescriptionDocumentEx_Value;
+
+const CLSID_UPnPDevice_Value = Guid.initString("a32552c5-ba61-457a-b59a-a2561e125e33");
+pub const CLSID_UPnPDevice = &CLSID_UPnPDevice_Value;
+
+const CLSID_UPnPDeviceFinder_Value = Guid.initString("e2085f28-feb7-404a-b8e7-e659bdeaaa02");
+pub const CLSID_UPnPDeviceFinder = &CLSID_UPnPDeviceFinder_Value;
+
+const CLSID_UPnPDeviceFinderEx_Value = Guid.initString("181b54fc-380b-4a75-b3f1-4ac45e9605b0");
+pub const CLSID_UPnPDeviceFinderEx = &CLSID_UPnPDeviceFinderEx_Value;
+
+const CLSID_UPnPDevices_Value = Guid.initString("b9e84ffd-ad3c-40a4-b835-0882ebcbaaa8");
+pub const CLSID_UPnPDevices = &CLSID_UPnPDevices_Value;
+
+const CLSID_UPnPRegistrar_Value = Guid.initString("204810b9-73b2-11d4-bf42-00b0d0118b56");
+pub const CLSID_UPnPRegistrar = &CLSID_UPnPRegistrar_Value;
+
+const CLSID_UPnPRemoteEndpointInfo_Value = Guid.initString("2e5e84e9-4049-4244-b728-2d24227157c7");
+pub const CLSID_UPnPRemoteEndpointInfo = &CLSID_UPnPRemoteEndpointInfo_Value;
+
+const CLSID_UPnPService_Value = Guid.initString("c624ba95-fbcb-4409-8c03-8cceec533ef1");
+pub const CLSID_UPnPService = &CLSID_UPnPService_Value;
+
+const CLSID_UPnPServices_Value = Guid.initString("c0bc4b4a-a406-4efc-932f-b8546b8100cc");
+pub const CLSID_UPnPServices = &CLSID_UPnPServices_Value;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (9)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "cfgmgr32" fn SwDeviceClose(
+    hSwDevice: ?HSWDEVICE,
+) callconv(.winapi) void;
+
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwDeviceCreate(
     pszEnumeratorName: ?[*:0]const u16,
@@ -1147,17 +1152,6 @@ pub extern "cfgmgr32" fn SwDeviceCreate(
     phSwDevice: ?*isize,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDeviceClose(
-    hSwDevice: ?HSWDEVICE,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "cfgmgr32" fn SwDeviceSetLifetime(
-    hSwDevice: ?HSWDEVICE,
-    Lifetime: SW_DEVICE_LIFETIME,
-) callconv(.winapi) HRESULT;
-
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "cfgmgr32" fn SwDeviceGetLifetime(
     hSwDevice: ?HSWDEVICE,
@@ -1165,8 +1159,9 @@ pub extern "cfgmgr32" fn SwDeviceGetLifetime(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDevicePropertySet(
+pub extern "cfgmgr32" fn SwDeviceInterfacePropertySet(
     hSwDevice: ?HSWDEVICE,
+    pszDeviceInterfaceId: ?[*:0]const u16,
     cPropertyCount: u32,
     pProperties: [*]const DEVPROPERTY,
 ) callconv(.winapi) HRESULT;
@@ -1183,11 +1178,6 @@ pub extern "cfgmgr32" fn SwDeviceInterfaceRegister(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwMemFree(
-    pMem: ?*anyopaque,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn SwDeviceInterfaceSetState(
     hSwDevice: ?HSWDEVICE,
     pszDeviceInterfaceId: ?[*:0]const u16,
@@ -1195,12 +1185,22 @@ pub extern "cfgmgr32" fn SwDeviceInterfaceSetState(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDeviceInterfacePropertySet(
+pub extern "cfgmgr32" fn SwDevicePropertySet(
     hSwDevice: ?HSWDEVICE,
-    pszDeviceInterfaceId: ?[*:0]const u16,
     cPropertyCount: u32,
     pProperties: [*]const DEVPROPERTY,
 ) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "cfgmgr32" fn SwDeviceSetLifetime(
+    hSwDevice: ?HSWDEVICE,
+    Lifetime: SW_DEVICE_LIFETIME,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "cfgmgr32" fn SwMemFree(
+    pMem: ?*anyopaque,
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------

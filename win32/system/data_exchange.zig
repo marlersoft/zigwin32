@@ -2,66 +2,34 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (74)
 //--------------------------------------------------------------------------------
-pub const WM_DDE_FIRST = @as(u32, 992);
-pub const WM_DDE_INITIATE = @as(u32, 992);
-pub const WM_DDE_TERMINATE = @as(u32, 993);
-pub const WM_DDE_ADVISE = @as(u32, 994);
-pub const WM_DDE_UNADVISE = @as(u32, 995);
-pub const WM_DDE_ACK = @as(u32, 996);
-pub const WM_DDE_DATA = @as(u32, 997);
-pub const WM_DDE_REQUEST = @as(u32, 998);
-pub const WM_DDE_POKE = @as(u32, 999);
-pub const WM_DDE_EXECUTE = @as(u32, 1000);
-pub const WM_DDE_LAST = @as(u32, 1000);
+pub const APPCLASS_MASK = @as(i32, 15);
+pub const APPCMD_MASK = @as(i32, 4080);
 pub const CADV_LATEACK = @as(u32, 65535);
+pub const CP_WINANSI = @as(i32, 1004);
+pub const CP_WINNEUTRAL = @as(i32, 1200);
+pub const CP_WINUNICODE = @as(i32, 1200);
 pub const DDE_FACK = @as(u32, 32768);
+pub const DDE_FACKREQ = @as(u32, 32768);
+pub const DDE_FAPPSTATUS = @as(u32, 255);
 pub const DDE_FBUSY = @as(u32, 16384);
 pub const DDE_FDEFERUPD = @as(u32, 16384);
-pub const DDE_FACKREQ = @as(u32, 32768);
+pub const DDE_FNOTPROCESSED = @as(u32, 0);
 pub const DDE_FRELEASE = @as(u32, 8192);
 pub const DDE_FREQUESTED = @as(u32, 4096);
-pub const DDE_FAPPSTATUS = @as(u32, 255);
-pub const DDE_FNOTPROCESSED = @as(u32, 0);
-pub const MSGF_DDEMGR = @as(u32, 32769);
-pub const CP_WINANSI = @as(i32, 1004);
-pub const CP_WINUNICODE = @as(i32, 1200);
-pub const CP_WINNEUTRAL = @as(i32, 1200);
-pub const XTYPF_NOBLOCK = @as(u32, 2);
-pub const XTYPF_NODATA = @as(u32, 4);
-pub const XTYPF_ACKREQ = @as(u32, 8);
-pub const XCLASS_MASK = @as(u32, 64512);
-pub const XCLASS_BOOL = @as(u32, 4096);
-pub const XCLASS_DATA = @as(u32, 8192);
-pub const XCLASS_FLAGS = @as(u32, 16384);
-pub const XCLASS_NOTIFICATION = @as(u32, 32768);
-pub const XTYP_MASK = @as(u32, 240);
-pub const XTYP_SHIFT = @as(u32, 4);
-pub const TIMEOUT_ASYNC = @as(u32, 4294967295);
-pub const QID_SYNC = @as(u32, 4294967295);
-pub const SZDDESYS_TOPIC = "System";
-pub const SZDDESYS_ITEM_TOPICS = "Topics";
-pub const SZDDESYS_ITEM_SYSITEMS = "SysItems";
-pub const SZDDESYS_ITEM_RTNMSG = "ReturnMessage";
-pub const SZDDESYS_ITEM_STATUS = "Status";
-pub const SZDDESYS_ITEM_FORMATS = "Formats";
-pub const SZDDESYS_ITEM_HELP = "Help";
-pub const SZDDE_ITEM_ITEMLIST = "TopicItemList";
-pub const APPCMD_MASK = @as(i32, 4080);
-pub const APPCLASS_MASK = @as(i32, 15);
-pub const HDATA_APPOWNED = @as(u32, 1);
-pub const DMLERR_NO_ERROR = @as(u32, 0);
-pub const DMLERR_FIRST = @as(u32, 16384);
 pub const DMLERR_ADVACKTIMEOUT = @as(u32, 16384);
 pub const DMLERR_BUSY = @as(u32, 16385);
 pub const DMLERR_DATAACKTIMEOUT = @as(u32, 16386);
 pub const DMLERR_DLL_NOT_INITIALIZED = @as(u32, 16387);
 pub const DMLERR_DLL_USAGE = @as(u32, 16388);
 pub const DMLERR_EXECACKTIMEOUT = @as(u32, 16389);
+pub const DMLERR_FIRST = @as(u32, 16384);
 pub const DMLERR_INVALIDPARAMETER = @as(u32, 16390);
+pub const DMLERR_LAST = @as(u32, 16401);
 pub const DMLERR_LOW_MEMORY = @as(u32, 16391);
 pub const DMLERR_MEMORY_ERROR = @as(u32, 16392);
-pub const DMLERR_NOTPROCESSED = @as(u32, 16393);
 pub const DMLERR_NO_CONV_ESTABLISHED = @as(u32, 16394);
+pub const DMLERR_NO_ERROR = @as(u32, 0);
+pub const DMLERR_NOTPROCESSED = @as(u32, 16393);
 pub const DMLERR_POKEACKTIMEOUT = @as(u32, 16395);
 pub const DMLERR_POSTMSG_FAILED = @as(u32, 16396);
 pub const DMLERR_REENTRANCY = @as(u32, 16397);
@@ -69,17 +37,198 @@ pub const DMLERR_SERVER_DIED = @as(u32, 16398);
 pub const DMLERR_SYS_ERROR = @as(u32, 16399);
 pub const DMLERR_UNADVACKTIMEOUT = @as(u32, 16400);
 pub const DMLERR_UNFOUND_QUEUE_ID = @as(u32, 16401);
-pub const DMLERR_LAST = @as(u32, 16401);
-pub const MH_CREATE = @as(u32, 1);
-pub const MH_KEEP = @as(u32, 2);
-pub const MH_DELETE = @as(u32, 3);
-pub const MH_CLEANUP = @as(u32, 4);
+pub const HDATA_APPOWNED = @as(u32, 1);
 pub const MAX_MONITORS = @as(u32, 4);
 pub const MF_MASK = @as(u32, 4278190080);
+pub const MH_CLEANUP = @as(u32, 4);
+pub const MH_CREATE = @as(u32, 1);
+pub const MH_DELETE = @as(u32, 3);
+pub const MH_KEEP = @as(u32, 2);
+pub const MSGF_DDEMGR = @as(u32, 32769);
+pub const QID_SYNC = @as(u32, 4294967295);
+pub const SZDDE_ITEM_ITEMLIST = "TopicItemList";
+pub const SZDDESYS_ITEM_FORMATS = "Formats";
+pub const SZDDESYS_ITEM_HELP = "Help";
+pub const SZDDESYS_ITEM_RTNMSG = "ReturnMessage";
+pub const SZDDESYS_ITEM_STATUS = "Status";
+pub const SZDDESYS_ITEM_SYSITEMS = "SysItems";
+pub const SZDDESYS_ITEM_TOPICS = "Topics";
+pub const SZDDESYS_TOPIC = "System";
+pub const TIMEOUT_ASYNC = @as(u32, 4294967295);
+pub const WM_DDE_ACK = @as(u32, 996);
+pub const WM_DDE_ADVISE = @as(u32, 994);
+pub const WM_DDE_DATA = @as(u32, 997);
+pub const WM_DDE_EXECUTE = @as(u32, 1000);
+pub const WM_DDE_FIRST = @as(u32, 992);
+pub const WM_DDE_INITIATE = @as(u32, 992);
+pub const WM_DDE_LAST = @as(u32, 1000);
+pub const WM_DDE_POKE = @as(u32, 999);
+pub const WM_DDE_REQUEST = @as(u32, 998);
+pub const WM_DDE_TERMINATE = @as(u32, 993);
+pub const WM_DDE_UNADVISE = @as(u32, 995);
+pub const XCLASS_BOOL = @as(u32, 4096);
+pub const XCLASS_DATA = @as(u32, 8192);
+pub const XCLASS_FLAGS = @as(u32, 16384);
+pub const XCLASS_MASK = @as(u32, 64512);
+pub const XCLASS_NOTIFICATION = @as(u32, 32768);
+pub const XTYP_MASK = @as(u32, 240);
+pub const XTYP_SHIFT = @as(u32, 4);
+pub const XTYPF_ACKREQ = @as(u32, 8);
+pub const XTYPF_NOBLOCK = @as(u32, 2);
+pub const XTYPF_NODATA = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
+pub const CONVCONTEXT = extern struct {
+    cb: u32,
+    wFlags: u32,
+    wCountryID: u32,
+    iCodePage: i32,
+    dwLangID: u32,
+    dwSecurity: u32,
+    qos: SECURITY_QUALITY_OF_SERVICE,
+};
+
+pub const CONVINFO = extern struct {
+    cb: u32,
+    hUser: usize,
+    hConvPartner: ?HCONV,
+    hszSvcPartner: ?HSZ,
+    hszServiceReq: ?HSZ,
+    hszTopic: ?HSZ,
+    hszItem: ?HSZ,
+    wFmt: u32,
+    wType: DDE_CLIENT_TRANSACTION_TYPE,
+    wStatus: CONVINFO_STATUS,
+    wConvst: CONVINFO_CONVERSATION_STATE,
+    wLastError: u32,
+    hConvList: ?HCONVLIST,
+    ConvCtxt: CONVCONTEXT,
+    hwnd: ?HWND,
+    hwndPartner: ?HWND,
+};
+
+pub const CONVINFO_CONVERSATION_STATE = enum(u32) {
+    ADVACKRCVD = 13,
+    ADVDATAACKRCVD = 16,
+    ADVDATASENT = 15,
+    ADVSENT = 11,
+    CONNECTED = 2,
+    DATARCVD = 6,
+    EXECACKRCVD = 10,
+    EXECSENT = 9,
+    INCOMPLETE = 1,
+    INIT1 = 3,
+    INIT2 = 4,
+    NULL = 0,
+    POKEACKRCVD = 8,
+    POKESENT = 7,
+    REQSENT = 5,
+    UNADVACKRCVD = 14,
+    UNADVSENT = 12,
+};
+pub const XST_ADVACKRCVD = CONVINFO_CONVERSATION_STATE.ADVACKRCVD;
+pub const XST_ADVDATAACKRCVD = CONVINFO_CONVERSATION_STATE.ADVDATAACKRCVD;
+pub const XST_ADVDATASENT = CONVINFO_CONVERSATION_STATE.ADVDATASENT;
+pub const XST_ADVSENT = CONVINFO_CONVERSATION_STATE.ADVSENT;
+pub const XST_CONNECTED = CONVINFO_CONVERSATION_STATE.CONNECTED;
+pub const XST_DATARCVD = CONVINFO_CONVERSATION_STATE.DATARCVD;
+pub const XST_EXECACKRCVD = CONVINFO_CONVERSATION_STATE.EXECACKRCVD;
+pub const XST_EXECSENT = CONVINFO_CONVERSATION_STATE.EXECSENT;
+pub const XST_INCOMPLETE = CONVINFO_CONVERSATION_STATE.INCOMPLETE;
+pub const XST_INIT1 = CONVINFO_CONVERSATION_STATE.INIT1;
+pub const XST_INIT2 = CONVINFO_CONVERSATION_STATE.INIT2;
+pub const XST_NULL = CONVINFO_CONVERSATION_STATE.NULL;
+pub const XST_POKEACKRCVD = CONVINFO_CONVERSATION_STATE.POKEACKRCVD;
+pub const XST_POKESENT = CONVINFO_CONVERSATION_STATE.POKESENT;
+pub const XST_REQSENT = CONVINFO_CONVERSATION_STATE.REQSENT;
+pub const XST_UNADVACKRCVD = CONVINFO_CONVERSATION_STATE.UNADVACKRCVD;
+pub const XST_UNADVSENT = CONVINFO_CONVERSATION_STATE.UNADVSENT;
+
+pub const CONVINFO_STATUS = packed struct(u32) {
+    CONNECTED: u1 = 0,
+    ADVISE: u1 = 0,
+    ISLOCAL: u1 = 0,
+    BLOCKED: u1 = 0,
+    CLIENT: u1 = 0,
+    TERMINATED: u1 = 0,
+    INLIST: u1 = 0,
+    BLOCKNEXT: u1 = 0,
+    ISSELF: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const ST_ADVISE = CONVINFO_STATUS{ .ADVISE = 1 };
+pub const ST_BLOCKED = CONVINFO_STATUS{ .BLOCKED = 1 };
+pub const ST_BLOCKNEXT = CONVINFO_STATUS{ .BLOCKNEXT = 1 };
+pub const ST_CLIENT = CONVINFO_STATUS{ .CLIENT = 1 };
+pub const ST_CONNECTED = CONVINFO_STATUS{ .CONNECTED = 1 };
+pub const ST_INLIST = CONVINFO_STATUS{ .INLIST = 1 };
+pub const ST_ISLOCAL = CONVINFO_STATUS{ .ISLOCAL = 1 };
+pub const ST_ISSELF = CONVINFO_STATUS{ .ISSELF = 1 };
+pub const ST_TERMINATED = CONVINFO_STATUS{ .TERMINATED = 1 };
+
+pub const COPYDATASTRUCT = extern struct {
+    dwData: usize,
+    cbData: u32,
+    lpData: ?*anyopaque,
+};
+
+pub const DDE_CLIENT_TRANSACTION_TYPE = enum(u32) {
+    ADVSTART = 4144,
+    ADVSTOP = 32832,
+    EXECUTE = 16464,
+    POKE = 16528,
+    REQUEST = 8368,
+    ADVDATA = 16400,
+    ADVREQ = 8226,
+    CONNECT = 4194,
+    CONNECT_CONFIRM = 32882,
+    DISCONNECT = 32962,
+    MONITOR = 33010,
+    REGISTER = 32930,
+    UNREGISTER = 32978,
+    WILDCONNECT = 8418,
+    XACT_COMPLETE = 32896,
+};
+pub const XTYP_ADVSTART = DDE_CLIENT_TRANSACTION_TYPE.ADVSTART;
+pub const XTYP_ADVSTOP = DDE_CLIENT_TRANSACTION_TYPE.ADVSTOP;
+pub const XTYP_EXECUTE = DDE_CLIENT_TRANSACTION_TYPE.EXECUTE;
+pub const XTYP_POKE = DDE_CLIENT_TRANSACTION_TYPE.POKE;
+pub const XTYP_REQUEST = DDE_CLIENT_TRANSACTION_TYPE.REQUEST;
+pub const XTYP_ADVDATA = DDE_CLIENT_TRANSACTION_TYPE.ADVDATA;
+pub const XTYP_ADVREQ = DDE_CLIENT_TRANSACTION_TYPE.ADVREQ;
+pub const XTYP_CONNECT = DDE_CLIENT_TRANSACTION_TYPE.CONNECT;
+pub const XTYP_CONNECT_CONFIRM = DDE_CLIENT_TRANSACTION_TYPE.CONNECT_CONFIRM;
+pub const XTYP_DISCONNECT = DDE_CLIENT_TRANSACTION_TYPE.DISCONNECT;
+pub const XTYP_MONITOR = DDE_CLIENT_TRANSACTION_TYPE.MONITOR;
+pub const XTYP_REGISTER = DDE_CLIENT_TRANSACTION_TYPE.REGISTER;
+pub const XTYP_UNREGISTER = DDE_CLIENT_TRANSACTION_TYPE.UNREGISTER;
+pub const XTYP_WILDCONNECT = DDE_CLIENT_TRANSACTION_TYPE.WILDCONNECT;
+pub const XTYP_XACT_COMPLETE = DDE_CLIENT_TRANSACTION_TYPE.XACT_COMPLETE;
+
 pub const DDE_ENABLE_CALLBACK_CMD = enum(u32) {
     ENABLEALL = 0,
     ENABLEONE = 128,
@@ -172,132 +321,6 @@ pub const DNS_UNREGISTER = DDE_NAME_SERVICE_CMD.UNREGISTER;
 pub const DNS_FILTERON = DDE_NAME_SERVICE_CMD.FILTERON;
 pub const DNS_FILTEROFF = DDE_NAME_SERVICE_CMD.FILTEROFF;
 
-pub const DDE_CLIENT_TRANSACTION_TYPE = enum(u32) {
-    ADVSTART = 4144,
-    ADVSTOP = 32832,
-    EXECUTE = 16464,
-    POKE = 16528,
-    REQUEST = 8368,
-    ADVDATA = 16400,
-    ADVREQ = 8226,
-    CONNECT = 4194,
-    CONNECT_CONFIRM = 32882,
-    DISCONNECT = 32962,
-    MONITOR = 33010,
-    REGISTER = 32930,
-    UNREGISTER = 32978,
-    WILDCONNECT = 8418,
-    XACT_COMPLETE = 32896,
-};
-pub const XTYP_ADVSTART = DDE_CLIENT_TRANSACTION_TYPE.ADVSTART;
-pub const XTYP_ADVSTOP = DDE_CLIENT_TRANSACTION_TYPE.ADVSTOP;
-pub const XTYP_EXECUTE = DDE_CLIENT_TRANSACTION_TYPE.EXECUTE;
-pub const XTYP_POKE = DDE_CLIENT_TRANSACTION_TYPE.POKE;
-pub const XTYP_REQUEST = DDE_CLIENT_TRANSACTION_TYPE.REQUEST;
-pub const XTYP_ADVDATA = DDE_CLIENT_TRANSACTION_TYPE.ADVDATA;
-pub const XTYP_ADVREQ = DDE_CLIENT_TRANSACTION_TYPE.ADVREQ;
-pub const XTYP_CONNECT = DDE_CLIENT_TRANSACTION_TYPE.CONNECT;
-pub const XTYP_CONNECT_CONFIRM = DDE_CLIENT_TRANSACTION_TYPE.CONNECT_CONFIRM;
-pub const XTYP_DISCONNECT = DDE_CLIENT_TRANSACTION_TYPE.DISCONNECT;
-pub const XTYP_MONITOR = DDE_CLIENT_TRANSACTION_TYPE.MONITOR;
-pub const XTYP_REGISTER = DDE_CLIENT_TRANSACTION_TYPE.REGISTER;
-pub const XTYP_UNREGISTER = DDE_CLIENT_TRANSACTION_TYPE.UNREGISTER;
-pub const XTYP_WILDCONNECT = DDE_CLIENT_TRANSACTION_TYPE.WILDCONNECT;
-pub const XTYP_XACT_COMPLETE = DDE_CLIENT_TRANSACTION_TYPE.XACT_COMPLETE;
-
-pub const CONVINFO_CONVERSATION_STATE = enum(u32) {
-    ADVACKRCVD = 13,
-    ADVDATAACKRCVD = 16,
-    ADVDATASENT = 15,
-    ADVSENT = 11,
-    CONNECTED = 2,
-    DATARCVD = 6,
-    EXECACKRCVD = 10,
-    EXECSENT = 9,
-    INCOMPLETE = 1,
-    INIT1 = 3,
-    INIT2 = 4,
-    NULL = 0,
-    POKEACKRCVD = 8,
-    POKESENT = 7,
-    REQSENT = 5,
-    UNADVACKRCVD = 14,
-    UNADVSENT = 12,
-};
-pub const XST_ADVACKRCVD = CONVINFO_CONVERSATION_STATE.ADVACKRCVD;
-pub const XST_ADVDATAACKRCVD = CONVINFO_CONVERSATION_STATE.ADVDATAACKRCVD;
-pub const XST_ADVDATASENT = CONVINFO_CONVERSATION_STATE.ADVDATASENT;
-pub const XST_ADVSENT = CONVINFO_CONVERSATION_STATE.ADVSENT;
-pub const XST_CONNECTED = CONVINFO_CONVERSATION_STATE.CONNECTED;
-pub const XST_DATARCVD = CONVINFO_CONVERSATION_STATE.DATARCVD;
-pub const XST_EXECACKRCVD = CONVINFO_CONVERSATION_STATE.EXECACKRCVD;
-pub const XST_EXECSENT = CONVINFO_CONVERSATION_STATE.EXECSENT;
-pub const XST_INCOMPLETE = CONVINFO_CONVERSATION_STATE.INCOMPLETE;
-pub const XST_INIT1 = CONVINFO_CONVERSATION_STATE.INIT1;
-pub const XST_INIT2 = CONVINFO_CONVERSATION_STATE.INIT2;
-pub const XST_NULL = CONVINFO_CONVERSATION_STATE.NULL;
-pub const XST_POKEACKRCVD = CONVINFO_CONVERSATION_STATE.POKEACKRCVD;
-pub const XST_POKESENT = CONVINFO_CONVERSATION_STATE.POKESENT;
-pub const XST_REQSENT = CONVINFO_CONVERSATION_STATE.REQSENT;
-pub const XST_UNADVACKRCVD = CONVINFO_CONVERSATION_STATE.UNADVACKRCVD;
-pub const XST_UNADVSENT = CONVINFO_CONVERSATION_STATE.UNADVSENT;
-
-pub const CONVINFO_STATUS = packed struct(u32) {
-    CONNECTED: u1 = 0,
-    ADVISE: u1 = 0,
-    ISLOCAL: u1 = 0,
-    BLOCKED: u1 = 0,
-    CLIENT: u1 = 0,
-    TERMINATED: u1 = 0,
-    INLIST: u1 = 0,
-    BLOCKNEXT: u1 = 0,
-    ISSELF: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const ST_ADVISE = CONVINFO_STATUS{ .ADVISE = 1 };
-pub const ST_BLOCKED = CONVINFO_STATUS{ .BLOCKED = 1 };
-pub const ST_BLOCKNEXT = CONVINFO_STATUS{ .BLOCKNEXT = 1 };
-pub const ST_CLIENT = CONVINFO_STATUS{ .CLIENT = 1 };
-pub const ST_CONNECTED = CONVINFO_STATUS{ .CONNECTED = 1 };
-pub const ST_INLIST = CONVINFO_STATUS{ .INLIST = 1 };
-pub const ST_ISLOCAL = CONVINFO_STATUS{ .ISLOCAL = 1 };
-pub const ST_ISSELF = CONVINFO_STATUS{ .ISSELF = 1 };
-pub const ST_TERMINATED = CONVINFO_STATUS{ .TERMINATED = 1 };
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HSZ = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HCONV = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HCONVLIST = *opaque{};
-
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HDDEDATA = *opaque{};
-
 pub const DDEACK = extern struct {
     _bitfield: u16,
 };
@@ -313,67 +336,10 @@ pub const DDEDATA = extern struct {
     Value: [1]u8,
 };
 
-pub const DDEPOKE = extern struct {
-    _bitfield: u16,
-    cfFormat: i16,
-    Value: [1]u8,
-};
-
 pub const DDELN = extern struct {
     _bitfield: u16,
     cfFormat: i16,
 };
-
-pub const DDEUP = extern struct {
-    _bitfield: u16,
-    cfFormat: i16,
-    rgb: [1]u8,
-};
-
-pub const HSZPAIR = extern struct {
-    hszSvc: ?HSZ,
-    hszTopic: ?HSZ,
-};
-
-pub const CONVCONTEXT = extern struct {
-    cb: u32,
-    wFlags: u32,
-    wCountryID: u32,
-    iCodePage: i32,
-    dwLangID: u32,
-    dwSecurity: u32,
-    qos: SECURITY_QUALITY_OF_SERVICE,
-};
-
-pub const CONVINFO = extern struct {
-    cb: u32,
-    hUser: usize,
-    hConvPartner: ?HCONV,
-    hszSvcPartner: ?HSZ,
-    hszServiceReq: ?HSZ,
-    hszTopic: ?HSZ,
-    hszItem: ?HSZ,
-    wFmt: u32,
-    wType: DDE_CLIENT_TRANSACTION_TYPE,
-    wStatus: CONVINFO_STATUS,
-    wConvst: CONVINFO_CONVERSATION_STATE,
-    wLastError: u32,
-    hConvList: ?HCONVLIST,
-    ConvCtxt: CONVCONTEXT,
-    hwnd: ?HWND,
-    hwndPartner: ?HWND,
-};
-
-pub const PFNCALLBACK = *const fn(
-    wType: u32,
-    wFmt: u32,
-    hConv: ?HCONV,
-    hsz1: ?HSZ,
-    hsz2: ?HSZ,
-    hData: ?HDDEDATA,
-    dwData1: usize,
-    dwData2: usize,
-) callconv(.winapi) ?HDDEDATA;
 
 pub const DDEML_MSG_HOOK_DATA = extern struct {
     uiLo: usize,
@@ -382,15 +348,40 @@ pub const DDEML_MSG_HOOK_DATA = extern struct {
     Data: [8]u32,
 };
 
-pub const MONMSGSTRUCT = extern struct {
-    cb: u32,
-    hwndTo: ?HWND,
-    dwTime: u32,
-    hTask: ?HANDLE,
-    wMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    dmhd: DDEML_MSG_HOOK_DATA,
+pub const DDEPOKE = extern struct {
+    _bitfield: u16,
+    cfFormat: i16,
+    Value: [1]u8,
+};
+
+pub const DDEUP = extern struct {
+    _bitfield: u16,
+    cfFormat: i16,
+    rgb: [1]u8,
+};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HCONV = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HCONVLIST = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDDEDATA = *opaque{};
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HSZ = *opaque{};
+
+pub const HSZPAIR = extern struct {
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
+};
+
+pub const METAFILEPICT = extern struct {
+    mm: i32,
+    xExt: i32,
+    yExt: i32,
+    hMF: ?HMETAFILE,
 };
 
 pub const MONCBSTRUCT = extern struct {
@@ -411,6 +402,24 @@ pub const MONCBSTRUCT = extern struct {
     Data: [8]u32,
 };
 
+pub const MONCONVSTRUCT = extern struct {
+    cb: u32,
+    fConnect: BOOL,
+    dwTime: u32,
+    hTask: ?HANDLE,
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
+    hConvClient: ?HCONV,
+    hConvServer: ?HCONV,
+};
+
+pub const MONERRSTRUCT = extern struct {
+    cb: u32,
+    wLastError: u32,
+    dwTime: u32,
+    hTask: ?HANDLE,
+};
+
 pub const MONHSZSTRUCTA = extern struct {
     cb: u32,
     fsAction: BOOL,
@@ -429,13 +438,6 @@ pub const MONHSZSTRUCTW = extern struct {
     str: [1]u16,
 };
 
-pub const MONERRSTRUCT = extern struct {
-    cb: u32,
-    wLastError: u32,
-    dwTime: u32,
-    hTask: ?HANDLE,
-};
-
 pub const MONLINKSTRUCT = extern struct {
     cb: u32,
     dwTime: u32,
@@ -451,76 +453,190 @@ pub const MONLINKSTRUCT = extern struct {
     hConvClient: ?HCONV,
 };
 
-pub const MONCONVSTRUCT = extern struct {
+pub const MONMSGSTRUCT = extern struct {
     cb: u32,
-    fConnect: BOOL,
+    hwndTo: ?HWND,
     dwTime: u32,
     hTask: ?HANDLE,
-    hszSvc: ?HSZ,
-    hszTopic: ?HSZ,
-    hConvClient: ?HCONV,
-    hConvServer: ?HCONV,
+    wMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    dmhd: DDEML_MSG_HOOK_DATA,
 };
 
-pub const METAFILEPICT = extern struct {
-    mm: i32,
-    xExt: i32,
-    yExt: i32,
-    hMF: ?HMETAFILE,
-};
-
-pub const COPYDATASTRUCT = extern struct {
-    dwData: usize,
-    cbData: u32,
-    lpData: ?*anyopaque,
-};
+pub const PFNCALLBACK = *const fn(
+    wType: u32,
+    wFmt: u32,
+    hConv: ?HCONV,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
+    hData: ?HDDEDATA,
+    dwData1: usize,
+    dwData2: usize,
+) callconv(.winapi) ?HDDEDATA;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (77)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeSetQualityOfService(
-    hwndClient: ?HWND,
-    pqosNew: ?*const SECURITY_QUALITY_OF_SERVICE,
-    pqosPrev: ?*SECURITY_QUALITY_OF_SERVICE,
+pub extern "kernel32" fn AddAtomA(
+    lpString: ?[*:0]const u8,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn AddAtomW(
+    lpString: ?[*:0]const u16,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "user32" fn AddClipboardFormatListener(
+    hwnd: ?HWND,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn ImpersonateDdeClientWindow(
-    hWndClient: ?HWND,
-    hWndServer: ?HWND,
+pub extern "user32" fn ChangeClipboardChain(
+    hWndRemove: ?HWND,
+    hWndNewNext: ?HWND,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn PackDDElParam(
-    msg: u32,
-    uiLo: usize,
-    uiHi: usize,
-) callconv(.winapi) LPARAM;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn UnpackDDElParam(
-    msg: u32,
-    lParam: LPARAM,
-    puiLo: ?*usize,
-    puiHi: ?*usize,
+pub extern "user32" fn CloseClipboard(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn FreeDDElParam(
-    msg: u32,
-    lParam: LPARAM,
+pub extern "user32" fn CountClipboardFormats(
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeAbandonTransaction(
+    idInst: u32,
+    hConv: ?HCONV,
+    idTransaction: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn ReuseDDElParam(
-    lParam: LPARAM,
-    msgIn: u32,
-    msgOut: u32,
-    uiLo: usize,
-    uiHi: usize,
-) callconv(.winapi) LPARAM;
+pub extern "user32" fn DdeAccessData(
+    hData: ?HDDEDATA,
+    pcbDataSize: ?*u32,
+) callconv(.winapi) ?*u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeAddData(
+    hData: ?HDDEDATA,
+    // TODO: what to do with BytesParamIndex 2?
+    pSrc: ?*u8,
+    cb: u32,
+    cbOff: u32,
+) callconv(.winapi) ?HDDEDATA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeClientTransaction(
+    pData: ?*u8,
+    cbData: u32,
+    hConv: ?HCONV,
+    hszItem: ?HSZ,
+    wFmt: u32,
+    wType: DDE_CLIENT_TRANSACTION_TYPE,
+    dwTimeout: u32,
+    pdwResult: ?*u32,
+) callconv(.winapi) ?HDDEDATA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeCmpStringHandles(
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeConnect(
+    idInst: u32,
+    hszService: ?HSZ,
+    hszTopic: ?HSZ,
+    pCC: ?*CONVCONTEXT,
+) callconv(.winapi) ?HCONV;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeConnectList(
+    idInst: u32,
+    hszService: ?HSZ,
+    hszTopic: ?HSZ,
+    hConvList: ?HCONVLIST,
+    pCC: ?*CONVCONTEXT,
+) callconv(.winapi) ?HCONVLIST;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeCreateDataHandle(
+    idInst: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    pSrc: ?*u8,
+    cb: u32,
+    cbOff: u32,
+    hszItem: ?HSZ,
+    wFmt: u32,
+    afCmd: u32,
+) callconv(.winapi) ?HDDEDATA;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeCreateStringHandleA(
+    idInst: u32,
+    psz: ?[*:0]const u8,
+    iCodePage: i32,
+) callconv(.winapi) ?HSZ;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeCreateStringHandleW(
+    idInst: u32,
+    psz: ?[*:0]const u16,
+    iCodePage: i32,
+) callconv(.winapi) ?HSZ;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeDisconnect(
+    hConv: ?HCONV,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeDisconnectList(
+    hConvList: ?HCONVLIST,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeEnableCallback(
+    idInst: u32,
+    hConv: ?HCONV,
+    wCmd: DDE_ENABLE_CALLBACK_CMD,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeFreeDataHandle(
+    hData: ?HDDEDATA,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeFreeStringHandle(
+    idInst: u32,
+    hsz: ?HSZ,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeGetData(
+    hData: ?HDDEDATA,
+    // TODO: what to do with BytesParamIndex 2?
+    pDst: ?*u8,
+    cbMax: u32,
+    cbOff: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeGetLastError(
+    idInst: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeImpersonateClient(
+    hConv: ?HCONV,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DdeInitializeA(
@@ -539,86 +655,9 @@ pub extern "user32" fn DdeInitializeW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeUninitialize(
+pub extern "user32" fn DdeKeepStringHandle(
     idInst: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeConnectList(
-    idInst: u32,
-    hszService: ?HSZ,
-    hszTopic: ?HSZ,
-    hConvList: ?HCONVLIST,
-    pCC: ?*CONVCONTEXT,
-) callconv(.winapi) ?HCONVLIST;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeQueryNextServer(
-    hConvList: ?HCONVLIST,
-    hConvPrev: ?HCONV,
-) callconv(.winapi) ?HCONV;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeDisconnectList(
-    hConvList: ?HCONVLIST,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeConnect(
-    idInst: u32,
-    hszService: ?HSZ,
-    hszTopic: ?HSZ,
-    pCC: ?*CONVCONTEXT,
-) callconv(.winapi) ?HCONV;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeDisconnect(
-    hConv: ?HCONV,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeReconnect(
-    hConv: ?HCONV,
-) callconv(.winapi) ?HCONV;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeQueryConvInfo(
-    hConv: ?HCONV,
-    idTransaction: u32,
-    pConvInfo: ?*CONVINFO,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeSetUserHandle(
-    hConv: ?HCONV,
-    id: u32,
-    hUser: usize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeAbandonTransaction(
-    idInst: u32,
-    hConv: ?HCONV,
-    idTransaction: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdePostAdvise(
-    idInst: u32,
-    hszTopic: ?HSZ,
-    hszItem: ?HSZ,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeEnableCallback(
-    idInst: u32,
-    hConv: ?HCONV,
-    wCmd: DDE_ENABLE_CALLBACK_CMD,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeImpersonateClient(
-    hConv: ?HCONV,
+    hsz: ?HSZ,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -630,81 +669,24 @@ pub extern "user32" fn DdeNameService(
 ) callconv(.winapi) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeClientTransaction(
-    pData: ?*u8,
-    cbData: u32,
+pub extern "user32" fn DdePostAdvise(
+    idInst: u32,
+    hszTopic: ?HSZ,
+    hszItem: ?HSZ,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeQueryConvInfo(
     hConv: ?HCONV,
-    hszItem: ?HSZ,
-    wFmt: u32,
-    wType: DDE_CLIENT_TRANSACTION_TYPE,
-    dwTimeout: u32,
-    pdwResult: ?*u32,
-) callconv(.winapi) ?HDDEDATA;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeCreateDataHandle(
-    idInst: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pSrc: ?*u8,
-    cb: u32,
-    cbOff: u32,
-    hszItem: ?HSZ,
-    wFmt: u32,
-    afCmd: u32,
-) callconv(.winapi) ?HDDEDATA;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeAddData(
-    hData: ?HDDEDATA,
-    // TODO: what to do with BytesParamIndex 2?
-    pSrc: ?*u8,
-    cb: u32,
-    cbOff: u32,
-) callconv(.winapi) ?HDDEDATA;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeGetData(
-    hData: ?HDDEDATA,
-    // TODO: what to do with BytesParamIndex 2?
-    pDst: ?*u8,
-    cbMax: u32,
-    cbOff: u32,
+    idTransaction: u32,
+    pConvInfo: ?*CONVINFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeAccessData(
-    hData: ?HDDEDATA,
-    pcbDataSize: ?*u32,
-) callconv(.winapi) ?*u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeUnaccessData(
-    hData: ?HDDEDATA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeFreeDataHandle(
-    hData: ?HDDEDATA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeGetLastError(
-    idInst: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeCreateStringHandleA(
-    idInst: u32,
-    psz: ?[*:0]const u8,
-    iCodePage: i32,
-) callconv(.winapi) ?HSZ;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeCreateStringHandleW(
-    idInst: u32,
-    psz: ?[*:0]const u16,
-    iCodePage: i32,
-) callconv(.winapi) ?HSZ;
+pub extern "user32" fn DdeQueryNextServer(
+    hConvList: ?HCONVLIST,
+    hConvPrev: ?HCONV,
+) callconv(.winapi) ?HCONV;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DdeQueryStringA(
@@ -725,93 +707,82 @@ pub extern "user32" fn DdeQueryStringW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeFreeStringHandle(
+pub extern "user32" fn DdeReconnect(
+    hConv: ?HCONV,
+) callconv(.winapi) ?HCONV;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeSetQualityOfService(
+    hwndClient: ?HWND,
+    pqosNew: ?*const SECURITY_QUALITY_OF_SERVICE,
+    pqosPrev: ?*SECURITY_QUALITY_OF_SERVICE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeSetUserHandle(
+    hConv: ?HCONV,
+    id: u32,
+    hUser: usize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeUnaccessData(
+    hData: ?HDDEDATA,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn DdeUninitialize(
     idInst: u32,
-    hsz: ?HSZ,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeKeepStringHandle(
-    idInst: u32,
-    hsz: ?HSZ,
+pub extern "kernel32" fn DeleteAtom(
+    nAtom: u16,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn EmptyClipboard(
 ) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn DdeCmpStringHandles(
-    hsz1: ?HSZ,
-    hsz2: ?HSZ,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn SetWinMetaFileBits(
-    nSize: u32,
-    // TODO: what to do with BytesParamIndex 0?
-    lpMeta16Data: ?*const u8,
-    hdcRef: ?HDC,
-    lpMFP: ?*const METAFILEPICT,
-) callconv(.winapi) ?HENHMETAFILE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn OpenClipboard(
-    hWndNewOwner: ?HWND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CloseClipboard(
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetClipboardSequenceNumber(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetClipboardOwner(
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetClipboardViewer(
-    hWndNewViewer: ?HWND,
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetClipboardViewer(
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn ChangeClipboardChain(
-    hWndRemove: ?HWND,
-    hWndNewNext: ?HWND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn SetClipboardData(
-    uFormat: u32,
-    hMem: ?HANDLE,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetClipboardData(
-    uFormat: u32,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn RegisterClipboardFormatA(
-    lpszFormat: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn RegisterClipboardFormatW(
-    lpszFormat: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CountClipboardFormats(
-) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumClipboardFormats(
     format: u32,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn FindAtomA(
+    lpString: ?[*:0]const u8,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn FindAtomW(
+    lpString: ?[*:0]const u16,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn FreeDDElParam(
+    msg: u32,
+    lParam: LPARAM,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetAtomNameA(
+    nAtom: u16,
+    lpBuffer: [*:0]u8,
+    nSize: i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetAtomNameW(
+    nAtom: u16,
+    lpBuffer: [*:0]u16,
+    nSize: i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetClipboardData(
+    uFormat: u32,
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClipboardFormatNameA(
@@ -828,33 +799,26 @@ pub extern "user32" fn GetClipboardFormatNameW(
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn EmptyClipboard(
-) callconv(.winapi) BOOL;
+pub extern "user32" fn GetClipboardOwner(
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn IsClipboardFormatAvailable(
-    format: u32,
-) callconv(.winapi) BOOL;
+pub extern "user32" fn GetClipboardSequenceNumber(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetClipboardViewer(
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetOpenClipboardWindow(
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetPriorityClipboardFormat(
     paFormatPriorityList: [*]u32,
     cFormats: i32,
 ) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetOpenClipboardWindow(
-) callconv(.winapi) ?HWND;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "user32" fn AddClipboardFormatListener(
-    hwnd: ?HWND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "user32" fn RemoveClipboardFormatListener(
-    hwnd: ?HWND,
-) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetUpdatedClipboardFormats(
@@ -864,28 +828,8 @@ pub extern "user32" fn GetUpdatedClipboardFormats(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GlobalDeleteAtom(
-    nAtom: u16,
-) callconv(.winapi) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn InitAtomTable(
-    nSize: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn DeleteAtom(
-    nAtom: u16,
-) callconv(.winapi) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GlobalAddAtomA(
     lpString: ?[*:0]const u8,
-) callconv(.winapi) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GlobalAddAtomW(
-    lpString: ?[*:0]const u16,
 ) callconv(.winapi) u16;
 
 pub extern "kernel32" fn GlobalAddAtomExA(
@@ -896,6 +840,16 @@ pub extern "kernel32" fn GlobalAddAtomExA(
 pub extern "kernel32" fn GlobalAddAtomExW(
     lpString: ?[*:0]const u16,
     Flags: u32,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GlobalAddAtomW(
+    lpString: ?[*:0]const u16,
+) callconv(.winapi) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GlobalDeleteAtom(
+    nAtom: u16,
 ) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -923,38 +877,84 @@ pub extern "kernel32" fn GlobalGetAtomNameW(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn AddAtomA(
-    lpString: ?[*:0]const u8,
-) callconv(.winapi) u16;
+pub extern "user32" fn ImpersonateDdeClientWindow(
+    hWndClient: ?HWND,
+    hWndServer: ?HWND,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn AddAtomW(
-    lpString: ?[*:0]const u16,
-) callconv(.winapi) u16;
+pub extern "kernel32" fn InitAtomTable(
+    nSize: u32,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn FindAtomA(
-    lpString: ?[*:0]const u8,
-) callconv(.winapi) u16;
+pub extern "user32" fn IsClipboardFormatAvailable(
+    format: u32,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn FindAtomW(
-    lpString: ?[*:0]const u16,
-) callconv(.winapi) u16;
+pub extern "user32" fn OpenClipboard(
+    hWndNewOwner: ?HWND,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetAtomNameA(
-    nAtom: u16,
-    lpBuffer: [*:0]u8,
-    nSize: i32,
+pub extern "user32" fn PackDDElParam(
+    msg: u32,
+    uiLo: usize,
+    uiHi: usize,
+) callconv(.winapi) LPARAM;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn RegisterClipboardFormatA(
+    lpszFormat: ?[*:0]const u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetAtomNameW(
-    nAtom: u16,
-    lpBuffer: [*:0]u16,
-    nSize: i32,
+pub extern "user32" fn RegisterClipboardFormatW(
+    lpszFormat: ?[*:0]const u16,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "user32" fn RemoveClipboardFormatListener(
+    hwnd: ?HWND,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn ReuseDDElParam(
+    lParam: LPARAM,
+    msgIn: u32,
+    msgOut: u32,
+    uiLo: usize,
+    uiHi: usize,
+) callconv(.winapi) LPARAM;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetClipboardData(
+    uFormat: u32,
+    hMem: ?HANDLE,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn SetClipboardViewer(
+    hWndNewViewer: ?HWND,
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "gdi32" fn SetWinMetaFileBits(
+    nSize: u32,
+    // TODO: what to do with BytesParamIndex 0?
+    lpMeta16Data: ?*const u8,
+    hdcRef: ?HDC,
+    lpMFP: ?*const METAFILEPICT,
+) callconv(.winapi) ?HENHMETAFILE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn UnpackDDElParam(
+    msg: u32,
+    lParam: LPARAM,
+    puiLo: ?*usize,
+    puiHi: ?*usize,
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------
@@ -967,11 +967,11 @@ pub const MONHSZSTRUCT = switch (@import("../zig.zig").unicode_mode) {
         "'MONHSZSTRUCT' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const DdeInitialize = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DdeInitializeA,
-    .wide => @This().DdeInitializeW,
+pub const AddAtom = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().AddAtomA,
+    .wide => @This().AddAtomW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DdeInitialize' requires that UNICODE be set to true or false in the root module",
+        "'AddAtom' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const DdeCreateStringHandle = switch (@import("../zig.zig").unicode_mode) {
@@ -981,6 +981,13 @@ pub const DdeCreateStringHandle = switch (@import("../zig.zig").unicode_mode) {
         "'DdeCreateStringHandle' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const DdeInitialize = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DdeInitializeA,
+    .wide => @This().DdeInitializeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DdeInitialize' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const DdeQueryString = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().DdeQueryStringA,
     .wide => @This().DdeQueryStringW,
@@ -988,11 +995,18 @@ pub const DdeQueryString = switch (@import("../zig.zig").unicode_mode) {
         "'DdeQueryString' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const RegisterClipboardFormat = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RegisterClipboardFormatA,
-    .wide => @This().RegisterClipboardFormatW,
+pub const FindAtom = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindAtomA,
+    .wide => @This().FindAtomW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module",
+        "'FindAtom' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetAtomName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetAtomNameA,
+    .wide => @This().GetAtomNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetAtomName' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const GetClipboardFormatName = switch (@import("../zig.zig").unicode_mode) {
@@ -1030,25 +1044,11 @@ pub const GlobalGetAtomName = switch (@import("../zig.zig").unicode_mode) {
         "'GlobalGetAtomName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const AddAtom = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AddAtomA,
-    .wide => @This().AddAtomW,
+pub const RegisterClipboardFormat = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterClipboardFormatA,
+    .wide => @This().RegisterClipboardFormatW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AddAtom' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FindAtom = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().FindAtomA,
-    .wide => @This().FindAtomW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FindAtom' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetAtomName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetAtomNameA,
-    .wide => @This().GetAtomNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetAtomName' requires that UNICODE be set to true or false in the root module",
+        "'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

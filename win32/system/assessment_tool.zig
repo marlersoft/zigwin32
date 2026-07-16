@@ -6,71 +6,78 @@
 //--------------------------------------------------------------------------------
 // Section: Types (19)
 //--------------------------------------------------------------------------------
+const CLSID_CAccessiblityWinSAT_Value = Guid.initString("6e18f9c6-a3eb-495a-89b7-956482e19f7a");
+pub const CLSID_CAccessiblityWinSAT = &CLSID_CAccessiblityWinSAT_Value;
+
 const CLSID_CInitiateWinSAT_Value = Guid.initString("489331dc-f5e0-4528-9fda-45331bf4a571");
 pub const CLSID_CInitiateWinSAT = &CLSID_CInitiateWinSAT_Value;
-
-const CLSID_CQueryWinSAT_Value = Guid.initString("f3bdfad3-f276-49e9-9b17-c474f48f0764");
-pub const CLSID_CQueryWinSAT = &CLSID_CQueryWinSAT_Value;
-
-const CLSID_CQueryAllWinSAT_Value = Guid.initString("05df8d13-c355-47f4-a11e-851b338cefb8");
-pub const CLSID_CQueryAllWinSAT = &CLSID_CQueryAllWinSAT_Value;
 
 const CLSID_CProvideWinSATVisuals_Value = Guid.initString("9f377d7e-e551-44f8-9f94-9db392b03b7b");
 pub const CLSID_CProvideWinSATVisuals = &CLSID_CProvideWinSATVisuals_Value;
 
-const CLSID_CAccessiblityWinSAT_Value = Guid.initString("6e18f9c6-a3eb-495a-89b7-956482e19f7a");
-pub const CLSID_CAccessiblityWinSAT = &CLSID_CAccessiblityWinSAT_Value;
+const CLSID_CQueryAllWinSAT_Value = Guid.initString("05df8d13-c355-47f4-a11e-851b338cefb8");
+pub const CLSID_CQueryAllWinSAT = &CLSID_CQueryAllWinSAT_Value;
 
 const CLSID_CQueryOEMWinSATCustomization_Value = Guid.initString("c47a41b7-b729-424f-9af9-5cb3934f2dfa");
 pub const CLSID_CQueryOEMWinSATCustomization = &CLSID_CQueryOEMWinSATCustomization_Value;
 
-pub const WINSAT_OEM_DATA_TYPE = enum(i32) {
-    DATA_VALID = 0,
-    DATA_NON_SYS_CONFIG_MATCH = 1,
-    DATA_INVALID = 2,
-    NO_DATA_SUPPLIED = 3,
-};
-pub const WINSAT_OEM_DATA_VALID = WINSAT_OEM_DATA_TYPE.DATA_VALID;
-pub const WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH = WINSAT_OEM_DATA_TYPE.DATA_NON_SYS_CONFIG_MATCH;
-pub const WINSAT_OEM_DATA_INVALID = WINSAT_OEM_DATA_TYPE.DATA_INVALID;
-pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_DATA_TYPE.NO_DATA_SUPPLIED;
+const CLSID_CQueryWinSAT_Value = Guid.initString("f3bdfad3-f276-49e9-9b17-c474f48f0764");
+pub const CLSID_CQueryWinSAT = &CLSID_CQueryWinSAT_Value;
 
-pub const WINSAT_ASSESSMENT_STATE = enum(i32) {
-    MIN = 0,
-    VALID = 1,
-    INCOHERENT_WITH_HARDWARE = 2,
-    NOT_AVAILABLE = 3,
-    INVALID = 4,
-    pub const UNKNOWN = .MIN;
-    pub const MAX = .INVALID;
+const IID_IAccessibleWinSAT_Value = Guid.initString("30e6018a-94a8-4ff8-a69a-71b67413f07b");
+pub const IID_IAccessibleWinSAT = &IID_IAccessibleWinSAT_Value;
+pub const IAccessibleWinSAT = extern union {
+    pub const VTable = extern struct {
+        base: IAccessible.VTable,
+        SetAccessiblityData: *const fn(
+            self: *const IAccessibleWinSAT,
+            wsName: ?[*:0]const u16,
+            wsValue: ?[*:0]const u16,
+            wsDesc: ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAccessible: IAccessible,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn SetAccessiblityData(self: *const IAccessibleWinSAT, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAccessiblityData(self, wsName, wsValue, wsDesc);
+    }
 };
-pub const WINSAT_ASSESSMENT_STATE_MIN = WINSAT_ASSESSMENT_STATE.MIN;
-pub const WINSAT_ASSESSMENT_STATE_UNKNOWN = WINSAT_ASSESSMENT_STATE.MIN;
-pub const WINSAT_ASSESSMENT_STATE_VALID = WINSAT_ASSESSMENT_STATE.VALID;
-pub const WINSAT_ASSESSMENT_STATE_INCOHERENT_WITH_HARDWARE = WINSAT_ASSESSMENT_STATE.INCOHERENT_WITH_HARDWARE;
-pub const WINSAT_ASSESSMENT_STATE_NOT_AVAILABLE = WINSAT_ASSESSMENT_STATE.NOT_AVAILABLE;
-pub const WINSAT_ASSESSMENT_STATE_INVALID = WINSAT_ASSESSMENT_STATE.INVALID;
-pub const WINSAT_ASSESSMENT_STATE_MAX = WINSAT_ASSESSMENT_STATE.INVALID;
 
-pub const WINSAT_ASSESSMENT_TYPE = enum(i32) {
-    MEMORY = 0,
-    CPU = 1,
-    DISK = 2,
-    D3D = 3,
-    GRAPHICS = 4,
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IInitiateWinSATAssessment_Value = Guid.initString("d983fc50-f5bf-49d5-b5ed-cccb18aa7fc1");
+pub const IID_IInitiateWinSATAssessment = &IID_IInitiateWinSATAssessment_Value;
+pub const IInitiateWinSATAssessment = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitiateAssessment: *const fn(
+            self: *const IInitiateWinSATAssessment,
+            cmdLine: ?[*:0]const u16,
+            pCallbacks: ?*IWinSATInitiateEvents,
+            callerHwnd: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        InitiateFormalAssessment: *const fn(
+            self: *const IInitiateWinSATAssessment,
+            pCallbacks: ?*IWinSATInitiateEvents,
+            callerHwnd: ?HWND,
+        ) callconv(.winapi) HRESULT,
+        CancelAssessment: *const fn(
+            self: *const IInitiateWinSATAssessment,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitiateAssessment(self: *const IInitiateWinSATAssessment, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.InitiateAssessment(self, cmdLine, pCallbacks, callerHwnd);
+    }
+    pub fn InitiateFormalAssessment(self: *const IInitiateWinSATAssessment, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.@"inline") HRESULT {
+        return self.vtable.InitiateFormalAssessment(self, pCallbacks, callerHwnd);
+    }
+    pub fn CancelAssessment(self: *const IInitiateWinSATAssessment) callconv(.@"inline") HRESULT {
+        return self.vtable.CancelAssessment(self);
+    }
 };
-pub const WINSAT_ASSESSMENT_MEMORY = WINSAT_ASSESSMENT_TYPE.MEMORY;
-pub const WINSAT_ASSESSMENT_CPU = WINSAT_ASSESSMENT_TYPE.CPU;
-pub const WINSAT_ASSESSMENT_DISK = WINSAT_ASSESSMENT_TYPE.DISK;
-pub const WINSAT_ASSESSMENT_D3D = WINSAT_ASSESSMENT_TYPE.D3D;
-pub const WINSAT_ASSESSMENT_GRAPHICS = WINSAT_ASSESSMENT_TYPE.GRAPHICS;
-
-pub const WINSAT_BITMAP_SIZE = enum(i32) {
-    SMALL = 0,
-    NORMAL = 1,
-};
-pub const WINSAT_BITMAP_SIZE_SMALL = WINSAT_BITMAP_SIZE.SMALL;
-pub const WINSAT_BITMAP_SIZE_NORMAL = WINSAT_BITMAP_SIZE.NORMAL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProvideWinSATAssessmentInfo_Value = Guid.initString("0cd1c380-52d3-4678-ac6f-e929e480be9e");
@@ -161,35 +168,6 @@ pub const IProvideWinSATResultsInfo = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IQueryRecentWinSATAssessment_Value = Guid.initString("f8ad5d1f-3b47-4bdc-9375-7c6b1da4eca7");
-pub const IID_IQueryRecentWinSATAssessment = &IID_IQueryRecentWinSATAssessment_Value;
-pub const IQueryRecentWinSATAssessment = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_XML: *const fn(
-            self: *const IQueryRecentWinSATAssessment,
-            xPath: ?BSTR,
-            namespaces: ?BSTR,
-            ppDomNodeList: ?*?*IXMLDOMNodeList,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Info: *const fn(
-            self: *const IQueryRecentWinSATAssessment,
-            ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_XML(self: *const IQueryRecentWinSATAssessment, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.@"inline") HRESULT {
-        return self.vtable.get_XML(self, xPath, namespaces, ppDomNodeList);
-    }
-    pub fn get_Info(self: *const IQueryRecentWinSATAssessment, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Info(self, ppWinSATAssessmentInfo);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProvideWinSATVisuals_Value = Guid.initString("a9f4ade0-871a-42a3-b813-3078d25162c9");
 pub const IID_IProvideWinSATVisuals = &IID_IProvideWinSATVisuals_Value;
 pub const IProvideWinSATVisuals = extern union {
@@ -231,6 +209,52 @@ pub const IQueryAllWinSATAssessments = extern union {
     }
 };
 
+const IID_IQueryOEMWinSATCustomization_Value = Guid.initString("bc9a6a9f-ad4e-420e-9953-b34671e9df22");
+pub const IID_IQueryOEMWinSATCustomization = &IID_IQueryOEMWinSATCustomization_Value;
+pub const IQueryOEMWinSATCustomization = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOEMPrePopulationInfo: *const fn(
+            self: *const IQueryOEMWinSATCustomization,
+            state: ?*WINSAT_OEM_DATA_TYPE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetOEMPrePopulationInfo(self: *const IQueryOEMWinSATCustomization, state: ?*WINSAT_OEM_DATA_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetOEMPrePopulationInfo(self, state);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IQueryRecentWinSATAssessment_Value = Guid.initString("f8ad5d1f-3b47-4bdc-9375-7c6b1da4eca7");
+pub const IID_IQueryRecentWinSATAssessment = &IID_IQueryRecentWinSATAssessment_Value;
+pub const IQueryRecentWinSATAssessment = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_XML: *const fn(
+            self: *const IQueryRecentWinSATAssessment,
+            xPath: ?BSTR,
+            namespaces: ?BSTR,
+            ppDomNodeList: ?*?*IXMLDOMNodeList,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Info: *const fn(
+            self: *const IQueryRecentWinSATAssessment,
+            ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_XML(self: *const IQueryRecentWinSATAssessment, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.@"inline") HRESULT {
+        return self.vtable.get_XML(self, xPath, namespaces, ppDomNodeList);
+    }
+    pub fn get_Info(self: *const IQueryRecentWinSATAssessment, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Info(self, ppWinSATAssessmentInfo);
+    }
+};
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWinSATInitiateEvents_Value = Guid.initString("262a1918-ba0d-41d5-92c2-fab4633ee74f");
 pub const IID_IWinSATInitiateEvents = &IID_IWinSATInitiateEvents_Value;
@@ -259,77 +283,53 @@ pub const IWinSATInitiateEvents = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IInitiateWinSATAssessment_Value = Guid.initString("d983fc50-f5bf-49d5-b5ed-cccb18aa7fc1");
-pub const IID_IInitiateWinSATAssessment = &IID_IInitiateWinSATAssessment_Value;
-pub const IInitiateWinSATAssessment = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitiateAssessment: *const fn(
-            self: *const IInitiateWinSATAssessment,
-            cmdLine: ?[*:0]const u16,
-            pCallbacks: ?*IWinSATInitiateEvents,
-            callerHwnd: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        InitiateFormalAssessment: *const fn(
-            self: *const IInitiateWinSATAssessment,
-            pCallbacks: ?*IWinSATInitiateEvents,
-            callerHwnd: ?HWND,
-        ) callconv(.winapi) HRESULT,
-        CancelAssessment: *const fn(
-            self: *const IInitiateWinSATAssessment,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitiateAssessment(self: *const IInitiateWinSATAssessment, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.InitiateAssessment(self, cmdLine, pCallbacks, callerHwnd);
-    }
-    pub fn InitiateFormalAssessment(self: *const IInitiateWinSATAssessment, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.@"inline") HRESULT {
-        return self.vtable.InitiateFormalAssessment(self, pCallbacks, callerHwnd);
-    }
-    pub fn CancelAssessment(self: *const IInitiateWinSATAssessment) callconv(.@"inline") HRESULT {
-        return self.vtable.CancelAssessment(self);
-    }
+pub const WINSAT_ASSESSMENT_STATE = enum(i32) {
+    MIN = 0,
+    VALID = 1,
+    INCOHERENT_WITH_HARDWARE = 2,
+    NOT_AVAILABLE = 3,
+    INVALID = 4,
+    pub const UNKNOWN = .MIN;
+    pub const MAX = .INVALID;
 };
+pub const WINSAT_ASSESSMENT_STATE_MIN = WINSAT_ASSESSMENT_STATE.MIN;
+pub const WINSAT_ASSESSMENT_STATE_UNKNOWN = WINSAT_ASSESSMENT_STATE.MIN;
+pub const WINSAT_ASSESSMENT_STATE_VALID = WINSAT_ASSESSMENT_STATE.VALID;
+pub const WINSAT_ASSESSMENT_STATE_INCOHERENT_WITH_HARDWARE = WINSAT_ASSESSMENT_STATE.INCOHERENT_WITH_HARDWARE;
+pub const WINSAT_ASSESSMENT_STATE_NOT_AVAILABLE = WINSAT_ASSESSMENT_STATE.NOT_AVAILABLE;
+pub const WINSAT_ASSESSMENT_STATE_INVALID = WINSAT_ASSESSMENT_STATE.INVALID;
+pub const WINSAT_ASSESSMENT_STATE_MAX = WINSAT_ASSESSMENT_STATE.INVALID;
 
-const IID_IAccessibleWinSAT_Value = Guid.initString("30e6018a-94a8-4ff8-a69a-71b67413f07b");
-pub const IID_IAccessibleWinSAT = &IID_IAccessibleWinSAT_Value;
-pub const IAccessibleWinSAT = extern union {
-    pub const VTable = extern struct {
-        base: IAccessible.VTable,
-        SetAccessiblityData: *const fn(
-            self: *const IAccessibleWinSAT,
-            wsName: ?[*:0]const u16,
-            wsValue: ?[*:0]const u16,
-            wsDesc: ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAccessible: IAccessible,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn SetAccessiblityData(self: *const IAccessibleWinSAT, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAccessiblityData(self, wsName, wsValue, wsDesc);
-    }
+pub const WINSAT_ASSESSMENT_TYPE = enum(i32) {
+    MEMORY = 0,
+    CPU = 1,
+    DISK = 2,
+    D3D = 3,
+    GRAPHICS = 4,
 };
+pub const WINSAT_ASSESSMENT_MEMORY = WINSAT_ASSESSMENT_TYPE.MEMORY;
+pub const WINSAT_ASSESSMENT_CPU = WINSAT_ASSESSMENT_TYPE.CPU;
+pub const WINSAT_ASSESSMENT_DISK = WINSAT_ASSESSMENT_TYPE.DISK;
+pub const WINSAT_ASSESSMENT_D3D = WINSAT_ASSESSMENT_TYPE.D3D;
+pub const WINSAT_ASSESSMENT_GRAPHICS = WINSAT_ASSESSMENT_TYPE.GRAPHICS;
 
-const IID_IQueryOEMWinSATCustomization_Value = Guid.initString("bc9a6a9f-ad4e-420e-9953-b34671e9df22");
-pub const IID_IQueryOEMWinSATCustomization = &IID_IQueryOEMWinSATCustomization_Value;
-pub const IQueryOEMWinSATCustomization = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOEMPrePopulationInfo: *const fn(
-            self: *const IQueryOEMWinSATCustomization,
-            state: ?*WINSAT_OEM_DATA_TYPE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetOEMPrePopulationInfo(self: *const IQueryOEMWinSATCustomization, state: ?*WINSAT_OEM_DATA_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetOEMPrePopulationInfo(self, state);
-    }
+pub const WINSAT_BITMAP_SIZE = enum(i32) {
+    SMALL = 0,
+    NORMAL = 1,
 };
+pub const WINSAT_BITMAP_SIZE_SMALL = WINSAT_BITMAP_SIZE.SMALL;
+pub const WINSAT_BITMAP_SIZE_NORMAL = WINSAT_BITMAP_SIZE.NORMAL;
+
+pub const WINSAT_OEM_DATA_TYPE = enum(i32) {
+    DATA_VALID = 0,
+    DATA_NON_SYS_CONFIG_MATCH = 1,
+    DATA_INVALID = 2,
+    NO_DATA_SUPPLIED = 3,
+};
+pub const WINSAT_OEM_DATA_VALID = WINSAT_OEM_DATA_TYPE.DATA_VALID;
+pub const WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH = WINSAT_OEM_DATA_TYPE.DATA_NON_SYS_CONFIG_MATCH;
+pub const WINSAT_OEM_DATA_INVALID = WINSAT_OEM_DATA_TYPE.DATA_INVALID;
+pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_DATA_TYPE.NO_DATA_SUPPLIED;
 
 
 //--------------------------------------------------------------------------------

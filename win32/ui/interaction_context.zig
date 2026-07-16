@@ -6,33 +6,11 @@
 //--------------------------------------------------------------------------------
 // Section: Types (25)
 //--------------------------------------------------------------------------------
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const HINTERACTIONCONTEXT = *opaque{};
-
-pub const INTERACTION_ID = enum(i32) {
-    NONE = 0,
-    MANIPULATION = 1,
-    TAP = 2,
-    SECONDARY_TAP = 3,
-    HOLD = 4,
-    DRAG = 5,
-    CROSS_SLIDE = 6,
-    MAX = -1,
-};
-pub const INTERACTION_ID_NONE = INTERACTION_ID.NONE;
-pub const INTERACTION_ID_MANIPULATION = INTERACTION_ID.MANIPULATION;
-pub const INTERACTION_ID_TAP = INTERACTION_ID.TAP;
-pub const INTERACTION_ID_SECONDARY_TAP = INTERACTION_ID.SECONDARY_TAP;
-pub const INTERACTION_ID_HOLD = INTERACTION_ID.HOLD;
-pub const INTERACTION_ID_DRAG = INTERACTION_ID.DRAG;
-pub const INTERACTION_ID_CROSS_SLIDE = INTERACTION_ID.CROSS_SLIDE;
-pub const INTERACTION_ID_MAX = INTERACTION_ID.MAX;
-
-pub const INTERACTION_FLAGS = packed struct(u32) {
-    BEGIN: u1 = 0,
-    END: u1 = 0,
-    CANCEL: u1 = 0,
-    INERTIA: u1 = 0,
+pub const CROSS_SLIDE_FLAGS = packed struct(u32) {
+    SELECT: u1 = 0,
+    SPEED_BUMP: u1 = 0,
+    REARRANGE: u1 = 0,
+    _3: u1 = 0,
     _4: u1 = 0,
     _5: u1 = 0,
     _6: u1 = 0,
@@ -62,16 +40,15 @@ pub const INTERACTION_FLAGS = packed struct(u32) {
     _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const INTERACTION_FLAG_NONE = INTERACTION_FLAGS{ };
-pub const INTERACTION_FLAG_BEGIN = INTERACTION_FLAGS{ .BEGIN = 1 };
-pub const INTERACTION_FLAG_END = INTERACTION_FLAGS{ .END = 1 };
-pub const INTERACTION_FLAG_CANCEL = INTERACTION_FLAGS{ .CANCEL = 1 };
-pub const INTERACTION_FLAG_INERTIA = INTERACTION_FLAGS{ .INERTIA = 1 };
-pub const INTERACTION_FLAG_MAX = INTERACTION_FLAGS{
-    .BEGIN = 1,
-    .END = 1,
-    .CANCEL = 1,
-    .INERTIA = 1,
+pub const CROSS_SLIDE_FLAGS_NONE = CROSS_SLIDE_FLAGS{ };
+pub const CROSS_SLIDE_FLAGS_SELECT = CROSS_SLIDE_FLAGS{ .SELECT = 1 };
+pub const CROSS_SLIDE_FLAGS_SPEED_BUMP = CROSS_SLIDE_FLAGS{ .SPEED_BUMP = 1 };
+pub const CROSS_SLIDE_FLAGS_REARRANGE = CROSS_SLIDE_FLAGS{ .REARRANGE = 1 };
+pub const CROSS_SLIDE_FLAGS_MAX = CROSS_SLIDE_FLAGS{
+    .SELECT = 1,
+    .SPEED_BUMP = 1,
+    .REARRANGE = 1,
+    ._3 = 1,
     ._4 = 1,
     ._5 = 1,
     ._6 = 1,
@@ -100,6 +77,74 @@ pub const INTERACTION_FLAG_MAX = INTERACTION_FLAGS{
     ._29 = 1,
     ._30 = 1,
     ._31 = 1,
+};
+
+pub const CROSS_SLIDE_PARAMETER = extern struct {
+    threshold: CROSS_SLIDE_THRESHOLD,
+    distance: f32,
+};
+
+pub const CROSS_SLIDE_THRESHOLD = enum(i32) {
+    SELECT_START = 0,
+    SPEED_BUMP_START = 1,
+    SPEED_BUMP_END = 2,
+    REARRANGE_START = 3,
+    COUNT = 4,
+    MAX = -1,
+};
+pub const CROSS_SLIDE_THRESHOLD_SELECT_START = CROSS_SLIDE_THRESHOLD.SELECT_START;
+pub const CROSS_SLIDE_THRESHOLD_SPEED_BUMP_START = CROSS_SLIDE_THRESHOLD.SPEED_BUMP_START;
+pub const CROSS_SLIDE_THRESHOLD_SPEED_BUMP_END = CROSS_SLIDE_THRESHOLD.SPEED_BUMP_END;
+pub const CROSS_SLIDE_THRESHOLD_REARRANGE_START = CROSS_SLIDE_THRESHOLD.REARRANGE_START;
+pub const CROSS_SLIDE_THRESHOLD_COUNT = CROSS_SLIDE_THRESHOLD.COUNT;
+pub const CROSS_SLIDE_THRESHOLD_MAX = CROSS_SLIDE_THRESHOLD.MAX;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HINTERACTIONCONTEXT = *opaque{};
+
+pub const HOLD_PARAMETER = enum(i32) {
+    MIN_CONTACT_COUNT = 0,
+    MAX_CONTACT_COUNT = 1,
+    THRESHOLD_RADIUS = 2,
+    THRESHOLD_START_DELAY = 3,
+    MAX = -1,
+};
+pub const HOLD_PARAMETER_MIN_CONTACT_COUNT = HOLD_PARAMETER.MIN_CONTACT_COUNT;
+pub const HOLD_PARAMETER_MAX_CONTACT_COUNT = HOLD_PARAMETER.MAX_CONTACT_COUNT;
+pub const HOLD_PARAMETER_THRESHOLD_RADIUS = HOLD_PARAMETER.THRESHOLD_RADIUS;
+pub const HOLD_PARAMETER_THRESHOLD_START_DELAY = HOLD_PARAMETER.THRESHOLD_START_DELAY;
+pub const HOLD_PARAMETER_MAX = HOLD_PARAMETER.MAX;
+
+pub const INERTIA_PARAMETER = enum(i32) {
+    TRANSLATION_DECELERATION = 1,
+    TRANSLATION_DISPLACEMENT = 2,
+    ROTATION_DECELERATION = 3,
+    ROTATION_ANGLE = 4,
+    EXPANSION_DECELERATION = 5,
+    EXPANSION_EXPANSION = 6,
+    MAX = -1,
+};
+pub const INERTIA_PARAMETER_TRANSLATION_DECELERATION = INERTIA_PARAMETER.TRANSLATION_DECELERATION;
+pub const INERTIA_PARAMETER_TRANSLATION_DISPLACEMENT = INERTIA_PARAMETER.TRANSLATION_DISPLACEMENT;
+pub const INERTIA_PARAMETER_ROTATION_DECELERATION = INERTIA_PARAMETER.ROTATION_DECELERATION;
+pub const INERTIA_PARAMETER_ROTATION_ANGLE = INERTIA_PARAMETER.ROTATION_ANGLE;
+pub const INERTIA_PARAMETER_EXPANSION_DECELERATION = INERTIA_PARAMETER.EXPANSION_DECELERATION;
+pub const INERTIA_PARAMETER_EXPANSION_EXPANSION = INERTIA_PARAMETER.EXPANSION_EXPANSION;
+pub const INERTIA_PARAMETER_MAX = INERTIA_PARAMETER.MAX;
+
+pub const INTERACTION_ARGUMENTS_CROSS_SLIDE = extern struct {
+    flags: CROSS_SLIDE_FLAGS,
+};
+
+pub const INTERACTION_ARGUMENTS_MANIPULATION = extern struct {
+    delta: MANIPULATION_TRANSFORM,
+    cumulative: MANIPULATION_TRANSFORM,
+    velocity: MANIPULATION_VELOCITY,
+    railsState: MANIPULATION_RAILS_STATE,
+};
+
+pub const INTERACTION_ARGUMENTS_TAP = extern struct {
+    count: u32,
 };
 
 pub const INTERACTION_CONFIGURATION_FLAGS = packed struct(u32) {
@@ -212,220 +257,9 @@ pub const INTERACTION_CONFIGURATION_FLAG_MAX = INTERACTION_CONFIGURATION_FLAGS{
     ._31 = 1,
 };
 
-pub const INERTIA_PARAMETER = enum(i32) {
-    TRANSLATION_DECELERATION = 1,
-    TRANSLATION_DISPLACEMENT = 2,
-    ROTATION_DECELERATION = 3,
-    ROTATION_ANGLE = 4,
-    EXPANSION_DECELERATION = 5,
-    EXPANSION_EXPANSION = 6,
-    MAX = -1,
-};
-pub const INERTIA_PARAMETER_TRANSLATION_DECELERATION = INERTIA_PARAMETER.TRANSLATION_DECELERATION;
-pub const INERTIA_PARAMETER_TRANSLATION_DISPLACEMENT = INERTIA_PARAMETER.TRANSLATION_DISPLACEMENT;
-pub const INERTIA_PARAMETER_ROTATION_DECELERATION = INERTIA_PARAMETER.ROTATION_DECELERATION;
-pub const INERTIA_PARAMETER_ROTATION_ANGLE = INERTIA_PARAMETER.ROTATION_ANGLE;
-pub const INERTIA_PARAMETER_EXPANSION_DECELERATION = INERTIA_PARAMETER.EXPANSION_DECELERATION;
-pub const INERTIA_PARAMETER_EXPANSION_EXPANSION = INERTIA_PARAMETER.EXPANSION_EXPANSION;
-pub const INERTIA_PARAMETER_MAX = INERTIA_PARAMETER.MAX;
-
-pub const INTERACTION_STATE = enum(i32) {
-    IDLE = 0,
-    IN_INTERACTION = 1,
-    POSSIBLE_DOUBLE_TAP = 2,
-    MAX = -1,
-};
-pub const INTERACTION_STATE_IDLE = INTERACTION_STATE.IDLE;
-pub const INTERACTION_STATE_IN_INTERACTION = INTERACTION_STATE.IN_INTERACTION;
-pub const INTERACTION_STATE_POSSIBLE_DOUBLE_TAP = INTERACTION_STATE.POSSIBLE_DOUBLE_TAP;
-pub const INTERACTION_STATE_MAX = INTERACTION_STATE.MAX;
-
-pub const INTERACTION_CONTEXT_PROPERTY = enum(i32) {
-    MEASUREMENT_UNITS = 1,
-    INTERACTION_UI_FEEDBACK = 2,
-    FILTER_POINTERS = 3,
-    MAX = -1,
-};
-pub const INTERACTION_CONTEXT_PROPERTY_MEASUREMENT_UNITS = INTERACTION_CONTEXT_PROPERTY.MEASUREMENT_UNITS;
-pub const INTERACTION_CONTEXT_PROPERTY_INTERACTION_UI_FEEDBACK = INTERACTION_CONTEXT_PROPERTY.INTERACTION_UI_FEEDBACK;
-pub const INTERACTION_CONTEXT_PROPERTY_FILTER_POINTERS = INTERACTION_CONTEXT_PROPERTY.FILTER_POINTERS;
-pub const INTERACTION_CONTEXT_PROPERTY_MAX = INTERACTION_CONTEXT_PROPERTY.MAX;
-
-pub const CROSS_SLIDE_THRESHOLD = enum(i32) {
-    SELECT_START = 0,
-    SPEED_BUMP_START = 1,
-    SPEED_BUMP_END = 2,
-    REARRANGE_START = 3,
-    COUNT = 4,
-    MAX = -1,
-};
-pub const CROSS_SLIDE_THRESHOLD_SELECT_START = CROSS_SLIDE_THRESHOLD.SELECT_START;
-pub const CROSS_SLIDE_THRESHOLD_SPEED_BUMP_START = CROSS_SLIDE_THRESHOLD.SPEED_BUMP_START;
-pub const CROSS_SLIDE_THRESHOLD_SPEED_BUMP_END = CROSS_SLIDE_THRESHOLD.SPEED_BUMP_END;
-pub const CROSS_SLIDE_THRESHOLD_REARRANGE_START = CROSS_SLIDE_THRESHOLD.REARRANGE_START;
-pub const CROSS_SLIDE_THRESHOLD_COUNT = CROSS_SLIDE_THRESHOLD.COUNT;
-pub const CROSS_SLIDE_THRESHOLD_MAX = CROSS_SLIDE_THRESHOLD.MAX;
-
-pub const CROSS_SLIDE_FLAGS = packed struct(u32) {
-    SELECT: u1 = 0,
-    SPEED_BUMP: u1 = 0,
-    REARRANGE: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const CROSS_SLIDE_FLAGS_NONE = CROSS_SLIDE_FLAGS{ };
-pub const CROSS_SLIDE_FLAGS_SELECT = CROSS_SLIDE_FLAGS{ .SELECT = 1 };
-pub const CROSS_SLIDE_FLAGS_SPEED_BUMP = CROSS_SLIDE_FLAGS{ .SPEED_BUMP = 1 };
-pub const CROSS_SLIDE_FLAGS_REARRANGE = CROSS_SLIDE_FLAGS{ .REARRANGE = 1 };
-pub const CROSS_SLIDE_FLAGS_MAX = CROSS_SLIDE_FLAGS{
-    .SELECT = 1,
-    .SPEED_BUMP = 1,
-    .REARRANGE = 1,
-    ._3 = 1,
-    ._4 = 1,
-    ._5 = 1,
-    ._6 = 1,
-    ._7 = 1,
-    ._8 = 1,
-    ._9 = 1,
-    ._10 = 1,
-    ._11 = 1,
-    ._12 = 1,
-    ._13 = 1,
-    ._14 = 1,
-    ._15 = 1,
-    ._16 = 1,
-    ._17 = 1,
-    ._18 = 1,
-    ._19 = 1,
-    ._20 = 1,
-    ._21 = 1,
-    ._22 = 1,
-    ._23 = 1,
-    ._24 = 1,
-    ._25 = 1,
-    ._26 = 1,
-    ._27 = 1,
-    ._28 = 1,
-    ._29 = 1,
-    ._30 = 1,
-    ._31 = 1,
-};
-
-pub const MOUSE_WHEEL_PARAMETER = enum(i32) {
-    CHAR_TRANSLATION_X = 1,
-    CHAR_TRANSLATION_Y = 2,
-    DELTA_SCALE = 3,
-    DELTA_ROTATION = 4,
-    PAGE_TRANSLATION_X = 5,
-    PAGE_TRANSLATION_Y = 6,
-    MAX = -1,
-};
-pub const MOUSE_WHEEL_PARAMETER_CHAR_TRANSLATION_X = MOUSE_WHEEL_PARAMETER.CHAR_TRANSLATION_X;
-pub const MOUSE_WHEEL_PARAMETER_CHAR_TRANSLATION_Y = MOUSE_WHEEL_PARAMETER.CHAR_TRANSLATION_Y;
-pub const MOUSE_WHEEL_PARAMETER_DELTA_SCALE = MOUSE_WHEEL_PARAMETER.DELTA_SCALE;
-pub const MOUSE_WHEEL_PARAMETER_DELTA_ROTATION = MOUSE_WHEEL_PARAMETER.DELTA_ROTATION;
-pub const MOUSE_WHEEL_PARAMETER_PAGE_TRANSLATION_X = MOUSE_WHEEL_PARAMETER.PAGE_TRANSLATION_X;
-pub const MOUSE_WHEEL_PARAMETER_PAGE_TRANSLATION_Y = MOUSE_WHEEL_PARAMETER.PAGE_TRANSLATION_Y;
-pub const MOUSE_WHEEL_PARAMETER_MAX = MOUSE_WHEEL_PARAMETER.MAX;
-
-pub const TAP_PARAMETER = enum(i32) {
-    IN_CONTACT_COUNT = 0,
-    AX_CONTACT_COUNT = 1,
-    AX = -1,
-};
-pub const TAP_PARAMETER_MIN_CONTACT_COUNT = TAP_PARAMETER.IN_CONTACT_COUNT;
-pub const TAP_PARAMETER_MAX_CONTACT_COUNT = TAP_PARAMETER.AX_CONTACT_COUNT;
-pub const TAP_PARAMETER_MAX = TAP_PARAMETER.AX;
-
-pub const HOLD_PARAMETER = enum(i32) {
-    MIN_CONTACT_COUNT = 0,
-    MAX_CONTACT_COUNT = 1,
-    THRESHOLD_RADIUS = 2,
-    THRESHOLD_START_DELAY = 3,
-    MAX = -1,
-};
-pub const HOLD_PARAMETER_MIN_CONTACT_COUNT = HOLD_PARAMETER.MIN_CONTACT_COUNT;
-pub const HOLD_PARAMETER_MAX_CONTACT_COUNT = HOLD_PARAMETER.MAX_CONTACT_COUNT;
-pub const HOLD_PARAMETER_THRESHOLD_RADIUS = HOLD_PARAMETER.THRESHOLD_RADIUS;
-pub const HOLD_PARAMETER_THRESHOLD_START_DELAY = HOLD_PARAMETER.THRESHOLD_START_DELAY;
-pub const HOLD_PARAMETER_MAX = HOLD_PARAMETER.MAX;
-
-pub const TRANSLATION_PARAMETER = enum(i32) {
-    IN_CONTACT_COUNT = 0,
-    AX_CONTACT_COUNT = 1,
-    AX = -1,
-};
-pub const TRANSLATION_PARAMETER_MIN_CONTACT_COUNT = TRANSLATION_PARAMETER.IN_CONTACT_COUNT;
-pub const TRANSLATION_PARAMETER_MAX_CONTACT_COUNT = TRANSLATION_PARAMETER.AX_CONTACT_COUNT;
-pub const TRANSLATION_PARAMETER_MAX = TRANSLATION_PARAMETER.AX;
-
-pub const MANIPULATION_RAILS_STATE = enum(i32) {
-    UNDECIDED = 0,
-    FREE = 1,
-    RAILED = 2,
-    MAX = -1,
-};
-pub const MANIPULATION_RAILS_STATE_UNDECIDED = MANIPULATION_RAILS_STATE.UNDECIDED;
-pub const MANIPULATION_RAILS_STATE_FREE = MANIPULATION_RAILS_STATE.FREE;
-pub const MANIPULATION_RAILS_STATE_RAILED = MANIPULATION_RAILS_STATE.RAILED;
-pub const MANIPULATION_RAILS_STATE_MAX = MANIPULATION_RAILS_STATE.MAX;
-
-pub const MANIPULATION_TRANSFORM = extern struct {
-    translationX: f32,
-    translationY: f32,
-    scale: f32,
-    expansion: f32,
-    rotation: f32,
-};
-
-pub const MANIPULATION_VELOCITY = extern struct {
-    velocityX: f32,
-    velocityY: f32,
-    velocityExpansion: f32,
-    velocityAngular: f32,
-};
-
-pub const INTERACTION_ARGUMENTS_MANIPULATION = extern struct {
-    delta: MANIPULATION_TRANSFORM,
-    cumulative: MANIPULATION_TRANSFORM,
-    velocity: MANIPULATION_VELOCITY,
-    railsState: MANIPULATION_RAILS_STATE,
-};
-
-pub const INTERACTION_ARGUMENTS_TAP = extern struct {
-    count: u32,
-};
-
-pub const INTERACTION_ARGUMENTS_CROSS_SLIDE = extern struct {
-    flags: CROSS_SLIDE_FLAGS,
+pub const INTERACTION_CONTEXT_CONFIGURATION = extern struct {
+    interactionId: INTERACTION_ID,
+    enable: INTERACTION_CONFIGURATION_FLAGS,
 };
 
 pub const INTERACTION_CONTEXT_OUTPUT = extern struct {
@@ -456,16 +290,6 @@ pub const INTERACTION_CONTEXT_OUTPUT2 = extern struct {
     },
 };
 
-pub const INTERACTION_CONTEXT_CONFIGURATION = extern struct {
-    interactionId: INTERACTION_ID,
-    enable: INTERACTION_CONFIGURATION_FLAGS,
-};
-
-pub const CROSS_SLIDE_PARAMETER = extern struct {
-    threshold: CROSS_SLIDE_THRESHOLD,
-    distance: f32,
-};
-
 pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK = *const fn(
     clientData: ?*anyopaque,
     output: ?*const INTERACTION_CONTEXT_OUTPUT,
@@ -476,10 +300,199 @@ pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK2 = *const fn(
     output: ?*const INTERACTION_CONTEXT_OUTPUT2,
 ) callconv(.winapi) void;
 
+pub const INTERACTION_CONTEXT_PROPERTY = enum(i32) {
+    MEASUREMENT_UNITS = 1,
+    INTERACTION_UI_FEEDBACK = 2,
+    FILTER_POINTERS = 3,
+    MAX = -1,
+};
+pub const INTERACTION_CONTEXT_PROPERTY_MEASUREMENT_UNITS = INTERACTION_CONTEXT_PROPERTY.MEASUREMENT_UNITS;
+pub const INTERACTION_CONTEXT_PROPERTY_INTERACTION_UI_FEEDBACK = INTERACTION_CONTEXT_PROPERTY.INTERACTION_UI_FEEDBACK;
+pub const INTERACTION_CONTEXT_PROPERTY_FILTER_POINTERS = INTERACTION_CONTEXT_PROPERTY.FILTER_POINTERS;
+pub const INTERACTION_CONTEXT_PROPERTY_MAX = INTERACTION_CONTEXT_PROPERTY.MAX;
+
+pub const INTERACTION_FLAGS = packed struct(u32) {
+    BEGIN: u1 = 0,
+    END: u1 = 0,
+    CANCEL: u1 = 0,
+    INERTIA: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const INTERACTION_FLAG_NONE = INTERACTION_FLAGS{ };
+pub const INTERACTION_FLAG_BEGIN = INTERACTION_FLAGS{ .BEGIN = 1 };
+pub const INTERACTION_FLAG_END = INTERACTION_FLAGS{ .END = 1 };
+pub const INTERACTION_FLAG_CANCEL = INTERACTION_FLAGS{ .CANCEL = 1 };
+pub const INTERACTION_FLAG_INERTIA = INTERACTION_FLAGS{ .INERTIA = 1 };
+pub const INTERACTION_FLAG_MAX = INTERACTION_FLAGS{
+    .BEGIN = 1,
+    .END = 1,
+    .CANCEL = 1,
+    .INERTIA = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
+
+pub const INTERACTION_ID = enum(i32) {
+    NONE = 0,
+    MANIPULATION = 1,
+    TAP = 2,
+    SECONDARY_TAP = 3,
+    HOLD = 4,
+    DRAG = 5,
+    CROSS_SLIDE = 6,
+    MAX = -1,
+};
+pub const INTERACTION_ID_NONE = INTERACTION_ID.NONE;
+pub const INTERACTION_ID_MANIPULATION = INTERACTION_ID.MANIPULATION;
+pub const INTERACTION_ID_TAP = INTERACTION_ID.TAP;
+pub const INTERACTION_ID_SECONDARY_TAP = INTERACTION_ID.SECONDARY_TAP;
+pub const INTERACTION_ID_HOLD = INTERACTION_ID.HOLD;
+pub const INTERACTION_ID_DRAG = INTERACTION_ID.DRAG;
+pub const INTERACTION_ID_CROSS_SLIDE = INTERACTION_ID.CROSS_SLIDE;
+pub const INTERACTION_ID_MAX = INTERACTION_ID.MAX;
+
+pub const INTERACTION_STATE = enum(i32) {
+    IDLE = 0,
+    IN_INTERACTION = 1,
+    POSSIBLE_DOUBLE_TAP = 2,
+    MAX = -1,
+};
+pub const INTERACTION_STATE_IDLE = INTERACTION_STATE.IDLE;
+pub const INTERACTION_STATE_IN_INTERACTION = INTERACTION_STATE.IN_INTERACTION;
+pub const INTERACTION_STATE_POSSIBLE_DOUBLE_TAP = INTERACTION_STATE.POSSIBLE_DOUBLE_TAP;
+pub const INTERACTION_STATE_MAX = INTERACTION_STATE.MAX;
+
+pub const MANIPULATION_RAILS_STATE = enum(i32) {
+    UNDECIDED = 0,
+    FREE = 1,
+    RAILED = 2,
+    MAX = -1,
+};
+pub const MANIPULATION_RAILS_STATE_UNDECIDED = MANIPULATION_RAILS_STATE.UNDECIDED;
+pub const MANIPULATION_RAILS_STATE_FREE = MANIPULATION_RAILS_STATE.FREE;
+pub const MANIPULATION_RAILS_STATE_RAILED = MANIPULATION_RAILS_STATE.RAILED;
+pub const MANIPULATION_RAILS_STATE_MAX = MANIPULATION_RAILS_STATE.MAX;
+
+pub const MANIPULATION_TRANSFORM = extern struct {
+    translationX: f32,
+    translationY: f32,
+    scale: f32,
+    expansion: f32,
+    rotation: f32,
+};
+
+pub const MANIPULATION_VELOCITY = extern struct {
+    velocityX: f32,
+    velocityY: f32,
+    velocityExpansion: f32,
+    velocityAngular: f32,
+};
+
+pub const MOUSE_WHEEL_PARAMETER = enum(i32) {
+    CHAR_TRANSLATION_X = 1,
+    CHAR_TRANSLATION_Y = 2,
+    DELTA_SCALE = 3,
+    DELTA_ROTATION = 4,
+    PAGE_TRANSLATION_X = 5,
+    PAGE_TRANSLATION_Y = 6,
+    MAX = -1,
+};
+pub const MOUSE_WHEEL_PARAMETER_CHAR_TRANSLATION_X = MOUSE_WHEEL_PARAMETER.CHAR_TRANSLATION_X;
+pub const MOUSE_WHEEL_PARAMETER_CHAR_TRANSLATION_Y = MOUSE_WHEEL_PARAMETER.CHAR_TRANSLATION_Y;
+pub const MOUSE_WHEEL_PARAMETER_DELTA_SCALE = MOUSE_WHEEL_PARAMETER.DELTA_SCALE;
+pub const MOUSE_WHEEL_PARAMETER_DELTA_ROTATION = MOUSE_WHEEL_PARAMETER.DELTA_ROTATION;
+pub const MOUSE_WHEEL_PARAMETER_PAGE_TRANSLATION_X = MOUSE_WHEEL_PARAMETER.PAGE_TRANSLATION_X;
+pub const MOUSE_WHEEL_PARAMETER_PAGE_TRANSLATION_Y = MOUSE_WHEEL_PARAMETER.PAGE_TRANSLATION_Y;
+pub const MOUSE_WHEEL_PARAMETER_MAX = MOUSE_WHEEL_PARAMETER.MAX;
+
+pub const TAP_PARAMETER = enum(i32) {
+    IN_CONTACT_COUNT = 0,
+    AX_CONTACT_COUNT = 1,
+    AX = -1,
+};
+pub const TAP_PARAMETER_MIN_CONTACT_COUNT = TAP_PARAMETER.IN_CONTACT_COUNT;
+pub const TAP_PARAMETER_MAX_CONTACT_COUNT = TAP_PARAMETER.AX_CONTACT_COUNT;
+pub const TAP_PARAMETER_MAX = TAP_PARAMETER.AX;
+
+pub const TRANSLATION_PARAMETER = enum(i32) {
+    IN_CONTACT_COUNT = 0,
+    AX_CONTACT_COUNT = 1,
+    AX = -1,
+};
+pub const TRANSLATION_PARAMETER_MIN_CONTACT_COUNT = TRANSLATION_PARAMETER.IN_CONTACT_COUNT;
+pub const TRANSLATION_PARAMETER_MAX_CONTACT_COUNT = TRANSLATION_PARAMETER.AX_CONTACT_COUNT;
+pub const TRANSLATION_PARAMETER_MAX = TRANSLATION_PARAMETER.AX;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (30)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn AddPointerInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    pointerId: u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn BufferPointerPacketsInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    entriesCount: u32,
+    pointerInfo: [*]const POINTER_INFO,
+) callconv(.winapi) HRESULT;
+
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ninput" fn CreateInteractionContext(
     interactionContext: ?*?HINTERACTIONCONTEXT,
@@ -488,6 +501,84 @@ pub extern "ninput" fn CreateInteractionContext(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ninput" fn DestroyInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn GetCrossSlideParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    threshold: CROSS_SLIDE_THRESHOLD,
+    distance: ?*f32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ninput" fn GetHoldParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    parameter: HOLD_PARAMETER,
+    value: ?*f32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn GetInertiaParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    inertiaParameter: INERTIA_PARAMETER,
+    value: ?*f32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn GetInteractionConfigurationInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    configurationCount: u32,
+    configuration: [*]INTERACTION_CONTEXT_CONFIGURATION,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn GetMouseWheelParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    parameter: MOUSE_WHEEL_PARAMETER,
+    value: ?*f32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn GetPropertyInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    contextProperty: INTERACTION_CONTEXT_PROPERTY,
+    value: ?*u32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn GetStateInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    pointerInfo: ?*const POINTER_INFO,
+    state: ?*INTERACTION_STATE,
+) callconv(.winapi) HRESULT;
+
+pub extern "ninput" fn GetTapParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    parameter: TAP_PARAMETER,
+    value: ?*f32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ninput" fn GetTranslationParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    parameter: TRANSLATION_PARAMETER,
+    value: ?*f32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn ProcessBufferedPacketsInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn ProcessInertiaInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn ProcessPointerFramesInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    entriesCount: u32,
+    pointerCount: u32,
+    pointerInfo: ?*const POINTER_INFO,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -504,31 +595,27 @@ pub extern "ninput" fn RegisterOutputCallbackInteractionContext2(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn SetInteractionConfigurationInteractionContext(
+pub extern "ninput" fn RemovePointerInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
-    configurationCount: u32,
-    configuration: [*]const INTERACTION_CONTEXT_CONFIGURATION,
+    pointerId: u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn GetInteractionConfigurationInteractionContext(
+pub extern "ninput" fn ResetInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
-    configurationCount: u32,
-    configuration: [*]INTERACTION_CONTEXT_CONFIGURATION,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn SetPropertyInteractionContext(
+pub extern "ninput" fn SetCrossSlideParametersInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
-    contextProperty: INTERACTION_CONTEXT_PROPERTY,
-    value: u32,
+    parameterCount: u32,
+    crossSlideParameters: [*]CROSS_SLIDE_PARAMETER,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn GetPropertyInteractionContext(
+pub extern "ninput" fn SetHoldParameterInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
-    contextProperty: INTERACTION_CONTEXT_PROPERTY,
-    value: ?*u32,
+    parameter: HOLD_PARAMETER,
+    value: f32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -539,60 +626,10 @@ pub extern "ninput" fn SetInertiaParameterInteractionContext(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn GetInertiaParameterInteractionContext(
+pub extern "ninput" fn SetInteractionConfigurationInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
-    inertiaParameter: INERTIA_PARAMETER,
-    value: ?*f32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn SetCrossSlideParametersInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameterCount: u32,
-    crossSlideParameters: [*]CROSS_SLIDE_PARAMETER,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn GetCrossSlideParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    threshold: CROSS_SLIDE_THRESHOLD,
-    distance: ?*f32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ninput" fn SetTapParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameter: TAP_PARAMETER,
-    value: f32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ninput" fn GetTapParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameter: TAP_PARAMETER,
-    value: ?*f32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ninput" fn SetHoldParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameter: HOLD_PARAMETER,
-    value: f32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ninput" fn GetHoldParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameter: HOLD_PARAMETER,
-    value: ?*f32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ninput" fn SetTranslationParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameter: TRANSLATION_PARAMETER,
-    value: f32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ninput" fn GetTranslationParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameter: TRANSLATION_PARAMETER,
-    value: ?*f32,
+    configurationCount: u32,
+    configuration: [*]const INTERACTION_CONTEXT_CONFIGURATION,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -603,72 +640,35 @@ pub extern "ninput" fn SetMouseWheelParameterInteractionContext(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn GetMouseWheelParameterInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    parameter: MOUSE_WHEEL_PARAMETER,
-    value: ?*f32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn ResetInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn GetStateInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    pointerInfo: ?*const POINTER_INFO,
-    state: ?*INTERACTION_STATE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn AddPointerInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    pointerId: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn RemovePointerInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    pointerId: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn ProcessPointerFramesInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    entriesCount: u32,
-    pointerCount: u32,
-    pointerInfo: ?*const POINTER_INFO,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn BufferPointerPacketsInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-    entriesCount: u32,
-    pointerInfo: [*]const POINTER_INFO,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn ProcessBufferedPacketsInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn ProcessInertiaInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ninput" fn StopInteractionContext(
-    interactionContext: ?HINTERACTIONCONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
 pub extern "ninput" fn SetPivotInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     x: f32,
     y: f32,
     radius: f32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn SetPropertyInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    contextProperty: INTERACTION_CONTEXT_PROPERTY,
+    value: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ninput" fn SetTapParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    parameter: TAP_PARAMETER,
+    value: f32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ninput" fn SetTranslationParameterInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
+    parameter: TRANSLATION_PARAMETER,
+    value: f32,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ninput" fn StopInteractionContext(
+    interactionContext: ?HINTERACTIONCONTEXT,
 ) callconv(.winapi) HRESULT;
 
 

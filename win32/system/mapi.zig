@@ -2,65 +2,176 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (55)
 //--------------------------------------------------------------------------------
+pub const MAPI_AB_NOMODIFY = @as(u32, 1024);
+pub const MAPI_BCC = @as(u32, 3);
+pub const MAPI_BODY_AS_FILE = @as(u32, 512);
+pub const MAPI_CC = @as(u32, 2);
+pub const MAPI_DIALOG = @as(u32, 8);
+pub const MAPI_E_ACCESS_DENIED = @as(u32, 6);
+pub const MAPI_E_AMBIG_RECIP = @as(u32, 21);
+pub const MAPI_E_AMBIGUOUS_RECIPIENT = @as(u32, 21);
+pub const MAPI_E_ATTACHMENT_NOT_FOUND = @as(u32, 11);
+pub const MAPI_E_ATTACHMENT_OPEN_FAILURE = @as(u32, 12);
+pub const MAPI_E_ATTACHMENT_TOO_LARGE = @as(u32, 28);
+pub const MAPI_E_ATTACHMENT_WRITE_FAILURE = @as(u32, 13);
+pub const MAPI_E_BAD_RECIPTYPE = @as(u32, 15);
+pub const MAPI_E_DISK_FULL = @as(u32, 4);
+pub const MAPI_E_FAILURE = @as(u32, 2);
+pub const MAPI_E_INSUFFICIENT_MEMORY = @as(u32, 5);
+pub const MAPI_E_INVALID_EDITFIELDS = @as(u32, 24);
+pub const MAPI_E_INVALID_MESSAGE = @as(u32, 17);
+pub const MAPI_E_INVALID_RECIPS = @as(u32, 25);
+pub const MAPI_E_INVALID_SESSION = @as(u32, 19);
+pub const MAPI_E_LOGIN_FAILURE = @as(u32, 3);
+pub const MAPI_E_LOGON_FAILURE = @as(u32, 3);
+pub const MAPI_E_MESSAGE_IN_USE = @as(u32, 22);
+pub const MAPI_E_NETWORK_FAILURE = @as(u32, 23);
+pub const MAPI_E_NO_MESSAGES = @as(u32, 16);
+pub const MAPI_E_NOT_SUPPORTED = @as(u32, 26);
+pub const MAPI_E_TEXT_TOO_LARGE = @as(u32, 18);
+pub const MAPI_E_TOO_MANY_FILES = @as(u32, 9);
+pub const MAPI_E_TOO_MANY_RECIPIENTS = @as(u32, 10);
+pub const MAPI_E_TOO_MANY_SESSIONS = @as(u32, 8);
+pub const MAPI_E_TYPE_NOT_SUPPORTED = @as(u32, 20);
+pub const MAPI_E_UNICODE_NOT_SUPPORTED = @as(u32, 27);
+pub const MAPI_E_UNKNOWN_RECIPIENT = @as(u32, 14);
+pub const MAPI_E_USER_ABORT = @as(u32, 1);
+pub const MAPI_ENVELOPE_ONLY = @as(u32, 64);
+pub const MAPI_EXTENDED = @as(u32, 32);
+pub const MAPI_FORCE_DOWNLOAD = @as(u32, 4096);
+pub const MAPI_FORCE_UNICODE = @as(u32, 262144);
+pub const MAPI_GUARANTEE_FIFO = @as(u32, 256);
+pub const MAPI_LOGON_UI = @as(u32, 1);
+pub const MAPI_LONG_MSGID = @as(u32, 16384);
+pub const MAPI_NEW_SESSION = @as(u32, 2);
 pub const MAPI_OLE = @as(u32, 1);
 pub const MAPI_OLE_STATIC = @as(u32, 2);
 pub const MAPI_ORIG = @as(u32, 0);
-pub const MAPI_TO = @as(u32, 1);
-pub const MAPI_CC = @as(u32, 2);
-pub const MAPI_BCC = @as(u32, 3);
-pub const MAPI_UNREAD = @as(u32, 1);
+pub const MAPI_PASSWORD_UI = @as(u32, 131072);
+pub const MAPI_PEEK = @as(u32, 128);
 pub const MAPI_RECEIPT_REQUESTED = @as(u32, 2);
 pub const MAPI_SENT = @as(u32, 4);
-pub const MAPI_LOGON_UI = @as(u32, 1);
-pub const MAPI_PASSWORD_UI = @as(u32, 131072);
-pub const MAPI_NEW_SESSION = @as(u32, 2);
-pub const MAPI_FORCE_DOWNLOAD = @as(u32, 4096);
-pub const MAPI_EXTENDED = @as(u32, 32);
-pub const MAPI_DIALOG = @as(u32, 8);
-pub const MAPI_FORCE_UNICODE = @as(u32, 262144);
-pub const MAPI_UNREAD_ONLY = @as(u32, 32);
-pub const MAPI_GUARANTEE_FIFO = @as(u32, 256);
-pub const MAPI_LONG_MSGID = @as(u32, 16384);
-pub const MAPI_PEEK = @as(u32, 128);
 pub const MAPI_SUPPRESS_ATTACH = @as(u32, 2048);
-pub const MAPI_ENVELOPE_ONLY = @as(u32, 64);
-pub const MAPI_BODY_AS_FILE = @as(u32, 512);
-pub const MAPI_AB_NOMODIFY = @as(u32, 1024);
-pub const SUCCESS_SUCCESS = @as(u32, 0);
+pub const MAPI_TO = @as(u32, 1);
+pub const MAPI_UNREAD = @as(u32, 1);
+pub const MAPI_UNREAD_ONLY = @as(u32, 32);
 pub const MAPI_USER_ABORT = @as(u32, 1);
-pub const MAPI_E_USER_ABORT = @as(u32, 1);
-pub const MAPI_E_FAILURE = @as(u32, 2);
-pub const MAPI_E_LOGON_FAILURE = @as(u32, 3);
-pub const MAPI_E_LOGIN_FAILURE = @as(u32, 3);
-pub const MAPI_E_DISK_FULL = @as(u32, 4);
-pub const MAPI_E_INSUFFICIENT_MEMORY = @as(u32, 5);
-pub const MAPI_E_ACCESS_DENIED = @as(u32, 6);
-pub const MAPI_E_TOO_MANY_SESSIONS = @as(u32, 8);
-pub const MAPI_E_TOO_MANY_FILES = @as(u32, 9);
-pub const MAPI_E_TOO_MANY_RECIPIENTS = @as(u32, 10);
-pub const MAPI_E_ATTACHMENT_NOT_FOUND = @as(u32, 11);
-pub const MAPI_E_ATTACHMENT_OPEN_FAILURE = @as(u32, 12);
-pub const MAPI_E_ATTACHMENT_WRITE_FAILURE = @as(u32, 13);
-pub const MAPI_E_UNKNOWN_RECIPIENT = @as(u32, 14);
-pub const MAPI_E_BAD_RECIPTYPE = @as(u32, 15);
-pub const MAPI_E_NO_MESSAGES = @as(u32, 16);
-pub const MAPI_E_INVALID_MESSAGE = @as(u32, 17);
-pub const MAPI_E_TEXT_TOO_LARGE = @as(u32, 18);
-pub const MAPI_E_INVALID_SESSION = @as(u32, 19);
-pub const MAPI_E_TYPE_NOT_SUPPORTED = @as(u32, 20);
-pub const MAPI_E_AMBIGUOUS_RECIPIENT = @as(u32, 21);
-pub const MAPI_E_AMBIG_RECIP = @as(u32, 21);
-pub const MAPI_E_MESSAGE_IN_USE = @as(u32, 22);
-pub const MAPI_E_NETWORK_FAILURE = @as(u32, 23);
-pub const MAPI_E_INVALID_EDITFIELDS = @as(u32, 24);
-pub const MAPI_E_INVALID_RECIPS = @as(u32, 25);
-pub const MAPI_E_NOT_SUPPORTED = @as(u32, 26);
-pub const MAPI_E_UNICODE_NOT_SUPPORTED = @as(u32, 27);
-pub const MAPI_E_ATTACHMENT_TOO_LARGE = @as(u32, 28);
+pub const SUCCESS_SUCCESS = @as(u32, 0);
 
 //--------------------------------------------------------------------------------
 // Section: Types (20)
 //--------------------------------------------------------------------------------
+pub const LPMAPIADDRESS = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszCaption: ?PSTR,
+    nEditFields: u32,
+    lpszLabels: ?PSTR,
+    nRecips: u32,
+    lpRecips: ?*MapiRecipDesc,
+    flFlags: u32,
+    ulReserved: u32,
+    lpnNewRecips: ?*u32,
+    lppNewRecips: ?*?*MapiRecipDesc,
+) callconv(.winapi) u32;
+
+pub const LPMAPIDELETEMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszMessageID: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(.winapi) u32;
+
+pub const LPMAPIDETAILS = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpRecip: ?*MapiRecipDesc,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(.winapi) u32;
+
+pub const LPMAPIFINDNEXT = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszMessageType: ?PSTR,
+    lpszSeedMessageID: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lpszMessageID: ?PSTR,
+) callconv(.winapi) u32;
+
+pub const LPMAPIFREEBUFFER = *const fn(
+    pv: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const LPMAPILOGOFF = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(.winapi) u32;
+
+pub const LPMAPILOGON = *const fn(
+    ulUIParam: usize,
+    lpszProfileName: ?PSTR,
+    lpszPassword: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lplhSession: ?*usize,
+) callconv(.winapi) u32;
+
+pub const LPMAPIREADMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszMessageID: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lppMessage: ?*?*MapiMessage,
+) callconv(.winapi) u32;
+
+pub const LPMAPIRESOLVENAME = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszName: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lppRecip: ?*?*MapiRecipDesc,
+) callconv(.winapi) u32;
+
+pub const LPMAPISAVEMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpMessage: ?*MapiMessage,
+    flFlags: u32,
+    ulReserved: u32,
+    lpszMessageID: ?PSTR,
+) callconv(.winapi) u32;
+
+pub const LPMAPISENDDOCUMENTS = *const fn(
+    ulUIParam: usize,
+    lpszDelimChar: ?PSTR,
+    lpszFilePaths: ?PSTR,
+    lpszFileNames: ?PSTR,
+    ulReserved: u32,
+) callconv(.winapi) u32;
+
+pub const LPMAPISENDMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpMessage: ?*MapiMessage,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(.winapi) u32;
+
+pub const LPMAPISENDMAILW = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpMessage: ?*MapiMessageW,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(.winapi) u32;
+
 pub const MapiFileDesc = extern struct {
     ulReserved: u32,
     flFlags: u32,
@@ -85,24 +196,6 @@ pub const MapiFileTagExt = extern struct {
     lpTag: ?*u8,
     cbEncoding: u32,
     lpEncoding: ?*u8,
-};
-
-pub const MapiRecipDesc = extern struct {
-    ulReserved: u32,
-    ulRecipClass: u32,
-    lpszName: ?PSTR,
-    lpszAddress: ?PSTR,
-    ulEIDSize: u32,
-    lpEntryID: ?*anyopaque,
-};
-
-pub const MapiRecipDescW = extern struct {
-    ulReserved: u32,
-    ulRecipClass: u32,
-    lpszName: ?PWSTR,
-    lpszAddress: ?PWSTR,
-    ulEIDSize: u32,
-    lpEntryID: ?*anyopaque,
 };
 
 pub const MapiMessage = extern struct {
@@ -135,116 +228,23 @@ pub const MapiMessageW = extern struct {
     lpFiles: ?*MapiFileDescW,
 };
 
-pub const LPMAPILOGON = *const fn(
-    ulUIParam: usize,
-    lpszProfileName: ?PSTR,
-    lpszPassword: ?PSTR,
-    flFlags: u32,
+pub const MapiRecipDesc = extern struct {
     ulReserved: u32,
-    lplhSession: ?*usize,
-) callconv(.winapi) u32;
-
-pub const LPMAPILOGOFF = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    flFlags: u32,
-    ulReserved: u32,
-) callconv(.winapi) u32;
-
-pub const LPMAPISENDMAIL = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpMessage: ?*MapiMessage,
-    flFlags: u32,
-    ulReserved: u32,
-) callconv(.winapi) u32;
-
-pub const LPMAPISENDMAILW = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpMessage: ?*MapiMessageW,
-    flFlags: u32,
-    ulReserved: u32,
-) callconv(.winapi) u32;
-
-pub const LPMAPISENDDOCUMENTS = *const fn(
-    ulUIParam: usize,
-    lpszDelimChar: ?PSTR,
-    lpszFilePaths: ?PSTR,
-    lpszFileNames: ?PSTR,
-    ulReserved: u32,
-) callconv(.winapi) u32;
-
-pub const LPMAPIFINDNEXT = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpszMessageType: ?PSTR,
-    lpszSeedMessageID: ?PSTR,
-    flFlags: u32,
-    ulReserved: u32,
-    lpszMessageID: ?PSTR,
-) callconv(.winapi) u32;
-
-pub const LPMAPIREADMAIL = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpszMessageID: ?PSTR,
-    flFlags: u32,
-    ulReserved: u32,
-    lppMessage: ?*?*MapiMessage,
-) callconv(.winapi) u32;
-
-pub const LPMAPISAVEMAIL = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpMessage: ?*MapiMessage,
-    flFlags: u32,
-    ulReserved: u32,
-    lpszMessageID: ?PSTR,
-) callconv(.winapi) u32;
-
-pub const LPMAPIDELETEMAIL = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpszMessageID: ?PSTR,
-    flFlags: u32,
-    ulReserved: u32,
-) callconv(.winapi) u32;
-
-pub const LPMAPIFREEBUFFER = *const fn(
-    pv: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const LPMAPIADDRESS = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpszCaption: ?PSTR,
-    nEditFields: u32,
-    lpszLabels: ?PSTR,
-    nRecips: u32,
-    lpRecips: ?*MapiRecipDesc,
-    flFlags: u32,
-    ulReserved: u32,
-    lpnNewRecips: ?*u32,
-    lppNewRecips: ?*?*MapiRecipDesc,
-) callconv(.winapi) u32;
-
-pub const LPMAPIDETAILS = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
-    lpRecip: ?*MapiRecipDesc,
-    flFlags: u32,
-    ulReserved: u32,
-) callconv(.winapi) u32;
-
-pub const LPMAPIRESOLVENAME = *const fn(
-    lhSession: usize,
-    ulUIParam: usize,
+    ulRecipClass: u32,
     lpszName: ?PSTR,
-    flFlags: u32,
+    lpszAddress: ?PSTR,
+    ulEIDSize: u32,
+    lpEntryID: ?*anyopaque,
+};
+
+pub const MapiRecipDescW = extern struct {
     ulReserved: u32,
-    lppRecip: ?*?*MapiRecipDesc,
-) callconv(.winapi) u32;
+    ulRecipClass: u32,
+    lpszName: ?PWSTR,
+    lpszAddress: ?PWSTR,
+    ulEIDSize: u32,
+    lpEntryID: ?*anyopaque,
+};
 
 
 //--------------------------------------------------------------------------------
@@ -266,19 +266,19 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPMAPILOGON")) { _ = LPMAPILOGON; }
+    if (@hasDecl(@This(), "LPMAPIADDRESS")) { _ = LPMAPIADDRESS; }
+    if (@hasDecl(@This(), "LPMAPIDELETEMAIL")) { _ = LPMAPIDELETEMAIL; }
+    if (@hasDecl(@This(), "LPMAPIDETAILS")) { _ = LPMAPIDETAILS; }
+    if (@hasDecl(@This(), "LPMAPIFINDNEXT")) { _ = LPMAPIFINDNEXT; }
+    if (@hasDecl(@This(), "LPMAPIFREEBUFFER")) { _ = LPMAPIFREEBUFFER; }
     if (@hasDecl(@This(), "LPMAPILOGOFF")) { _ = LPMAPILOGOFF; }
+    if (@hasDecl(@This(), "LPMAPILOGON")) { _ = LPMAPILOGON; }
+    if (@hasDecl(@This(), "LPMAPIREADMAIL")) { _ = LPMAPIREADMAIL; }
+    if (@hasDecl(@This(), "LPMAPIRESOLVENAME")) { _ = LPMAPIRESOLVENAME; }
+    if (@hasDecl(@This(), "LPMAPISAVEMAIL")) { _ = LPMAPISAVEMAIL; }
+    if (@hasDecl(@This(), "LPMAPISENDDOCUMENTS")) { _ = LPMAPISENDDOCUMENTS; }
     if (@hasDecl(@This(), "LPMAPISENDMAIL")) { _ = LPMAPISENDMAIL; }
     if (@hasDecl(@This(), "LPMAPISENDMAILW")) { _ = LPMAPISENDMAILW; }
-    if (@hasDecl(@This(), "LPMAPISENDDOCUMENTS")) { _ = LPMAPISENDDOCUMENTS; }
-    if (@hasDecl(@This(), "LPMAPIFINDNEXT")) { _ = LPMAPIFINDNEXT; }
-    if (@hasDecl(@This(), "LPMAPIREADMAIL")) { _ = LPMAPIREADMAIL; }
-    if (@hasDecl(@This(), "LPMAPISAVEMAIL")) { _ = LPMAPISAVEMAIL; }
-    if (@hasDecl(@This(), "LPMAPIDELETEMAIL")) { _ = LPMAPIDELETEMAIL; }
-    if (@hasDecl(@This(), "LPMAPIFREEBUFFER")) { _ = LPMAPIFREEBUFFER; }
-    if (@hasDecl(@This(), "LPMAPIADDRESS")) { _ = LPMAPIADDRESS; }
-    if (@hasDecl(@This(), "LPMAPIDETAILS")) { _ = LPMAPIDETAILS; }
-    if (@hasDecl(@This(), "LPMAPIRESOLVENAME")) { _ = LPMAPIRESOLVENAME; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

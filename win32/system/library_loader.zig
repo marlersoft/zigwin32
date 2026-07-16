@@ -2,24 +2,72 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (14)
 //--------------------------------------------------------------------------------
-pub const FIND_RESOURCE_DIRECTORY_TYPES = @as(u32, 256);
-pub const FIND_RESOURCE_DIRECTORY_NAMES = @as(u32, 512);
+pub const CURRENT_IMPORT_REDIRECTION_VERSION = @as(u32, 1);
 pub const FIND_RESOURCE_DIRECTORY_LANGUAGES = @as(u32, 1024);
+pub const FIND_RESOURCE_DIRECTORY_NAMES = @as(u32, 512);
+pub const FIND_RESOURCE_DIRECTORY_TYPES = @as(u32, 256);
+pub const GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS = @as(u32, 4);
+pub const GET_MODULE_HANDLE_EX_FLAG_PIN = @as(u32, 1);
+pub const GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT = @as(u32, 2);
+pub const LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY = @as(u32, 32768);
 pub const RESOURCE_ENUM_LN = @as(u32, 1);
+pub const RESOURCE_ENUM_MODULE_EXACT = @as(u32, 16);
 pub const RESOURCE_ENUM_MUI = @as(u32, 2);
 pub const RESOURCE_ENUM_MUI_SYSTEM = @as(u32, 4);
 pub const RESOURCE_ENUM_VALIDATE = @as(u32, 8);
-pub const RESOURCE_ENUM_MODULE_EXACT = @as(u32, 16);
 pub const SUPPORT_LANG_NUMBER = @as(u32, 32);
-pub const GET_MODULE_HANDLE_EX_FLAG_PIN = @as(u32, 1);
-pub const GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT = @as(u32, 2);
-pub const GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS = @as(u32, 4);
-pub const CURRENT_IMPORT_REDIRECTION_VERSION = @as(u32, 1);
-pub const LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY = @as(u32, 32768);
 
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
+pub const ENUMRESLANGPROCA = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    wLanguage: u16,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+pub const ENUMRESLANGPROCW = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]align(1) const u16,
+    lpName: ?[*:0]const u16,
+    wLanguage: u16,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+pub const ENUMRESNAMEPROCA = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpName: ?PSTR,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+pub const ENUMRESNAMEPROCW = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]align(1) const u16,
+    lpName: ?PWSTR,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+pub const ENUMRESTYPEPROCA = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?PSTR,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+pub const ENUMRESTYPEPROCW = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?PWSTR,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+pub const ENUMUILANG = extern struct {
+    NumOfEnumUILang: u32,
+    SizeOfEnumUIBuffer: u32,
+    pEnumUIBuffer: ?*u16,
+};
+
 pub const LOAD_LIBRARY_FLAGS = packed struct(u32) {
     DONT_RESOLVE_DLL_REFERENCES: u1 = 0,
     LOAD_LIBRARY_AS_DATAFILE: u1 = 0,
@@ -69,54 +117,6 @@ pub const LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_S
 pub const LOAD_LIBRARY_SAFE_CURRENT_DIRS = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SAFE_CURRENT_DIRS = 1 };
 pub const LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = 1 };
 
-pub const ENUMUILANG = extern struct {
-    NumOfEnumUILang: u32,
-    SizeOfEnumUIBuffer: u32,
-    pEnumUIBuffer: ?*u16,
-};
-
-pub const ENUMRESLANGPROCA = *const fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    wLanguage: u16,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-pub const ENUMRESLANGPROCW = *const fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]align(1) const u16,
-    lpName: ?[*:0]const u16,
-    wLanguage: u16,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-pub const ENUMRESNAMEPROCA = *const fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpName: ?PSTR,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-pub const ENUMRESNAMEPROCW = *const fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]align(1) const u16,
-    lpName: ?PWSTR,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-pub const ENUMRESTYPEPROCA = *const fn(
-    hModule: ?HINSTANCE,
-    lpType: ?PSTR,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-pub const ENUMRESTYPEPROCW = *const fn(
-    hModule: ?HINSTANCE,
-    lpType: ?PWSTR,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
 pub const PGET_MODULE_HANDLE_EXA = *const fn(
     dwFlags: u32,
     lpModuleName: ?[*:0]const u8,
@@ -129,138 +129,63 @@ pub const PGET_MODULE_HANDLE_EXW = *const fn(
     phModule: ?*?HINSTANCE,
 ) callconv(.winapi) BOOL;
 
-pub const REDIRECTION_FUNCTION_DESCRIPTOR = extern struct {
-    DllName: ?[*:0]const u8,
-    FunctionName: ?[*:0]const u8,
-    RedirectionTarget: ?*anyopaque,
-};
-
 pub const REDIRECTION_DESCRIPTOR = extern struct {
     Version: u32,
     FunctionCount: u32,
     Redirections: ?*REDIRECTION_FUNCTION_DESCRIPTOR,
 };
 
+pub const REDIRECTION_FUNCTION_DESCRIPTOR = extern struct {
+    DllName: ?[*:0]const u8,
+    FunctionName: ?[*:0]const u8,
+    RedirectionTarget: ?*anyopaque,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (49)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn DisableThreadLibraryCalls(
-    hLibModule: ?HINSTANCE,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn FindResourceExW(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]align(1) const u16,
-    lpName: ?[*:0]align(1) const u16,
-    wLanguage: u16,
-) callconv(.winapi) ?HRSRC;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn FreeLibrary(
-    hLibModule: ?HINSTANCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn FreeLibraryAndExitThread(
-    hLibModule: ?HINSTANCE,
-    dwExitCode: u32,
-) callconv(.winapi) noreturn;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn FreeResource(
-    hResData: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetModuleFileNameA(
-    hModule: ?HINSTANCE,
-    lpFilename: [*:0]u8,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetModuleFileNameW(
-    hModule: ?HINSTANCE,
-    lpFilename: [*:0]u16,
-    nSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetModuleHandleA(
-    lpModuleName: ?[*:0]const u8,
-) callconv(.winapi) ?HINSTANCE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetModuleHandleW(
-    lpModuleName: ?[*:0]const u16,
-) callconv(.winapi) ?HINSTANCE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetModuleHandleExA(
-    dwFlags: u32,
-    lpModuleName: ?[*:0]const u8,
-    phModule: ?*?HINSTANCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetModuleHandleExW(
-    dwFlags: u32,
-    lpModuleName: ?[*:0]const u16,
-    phModule: ?*?HINSTANCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetProcAddress(
-    hModule: ?HINSTANCE,
-    lpProcName: ?[*:0]const u8,
-) callconv(.winapi) ?FARPROC;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LoadLibraryExA(
-    lpLibFileName: ?[*:0]const u8,
-    hFile: ?HANDLE,
-    dwFlags: LOAD_LIBRARY_FLAGS,
-) callconv(.winapi) ?HINSTANCE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LoadLibraryExW(
-    lpLibFileName: ?[*:0]const u16,
-    hFile: ?HANDLE,
-    dwFlags: LOAD_LIBRARY_FLAGS,
-) callconv(.winapi) ?HINSTANCE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn LoadResource(
-    hModule: ?HINSTANCE,
-    hResInfo: ?HRSRC,
-) callconv(.winapi) isize;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn LockResource(
-    hResData: isize,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SizeofResource(
-    hModule: ?HINSTANCE,
-    hResInfo: ?HRSRC,
-) callconv(.winapi) u32;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn AddDllDirectory(
     NewDirectory: ?[*:0]const u16,
 ) callconv(.winapi) ?*anyopaque;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn RemoveDllDirectory(
-    Cookie: ?*anyopaque,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn BeginUpdateResourceA(
+    pFileName: ?[*:0]const u8,
+    bDeleteExistingResources: BOOL,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn BeginUpdateResourceW(
+    pFileName: ?[*:0]const u16,
+    bDeleteExistingResources: BOOL,
+) callconv(.winapi) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn DisableThreadLibraryCalls(
+    hLibModule: ?HINSTANCE,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn SetDefaultDllDirectories(
-    DirectoryFlags: LOAD_LIBRARY_FLAGS,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EndUpdateResourceA(
+    hUpdate: ?HANDLE,
+    fDiscard: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EndUpdateResourceW(
+    hUpdate: ?HANDLE,
+    fDiscard: BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumResourceLanguagesA(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESLANGPROCA,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -285,6 +210,23 @@ pub extern "kernel32" fn EnumResourceLanguagesExW(
     LangId: u16,
 ) callconv(.winapi) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumResourceLanguagesW(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]align(1) const u16,
+    lpName: ?[*:0]const u16,
+    lpEnumFunc: ?ENUMRESLANGPROCW,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumResourceNamesA(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESNAMEPROCA,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn EnumResourceNamesExA(
     hModule: ?HINSTANCE,
@@ -305,6 +247,20 @@ pub extern "kernel32" fn EnumResourceNamesExW(
     LangId: u16,
 ) callconv(.winapi) BOOL;
 
+pub extern "kernel32" fn EnumResourceNamesW(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]align(1) const u16,
+    lpEnumFunc: ?ENUMRESNAMEPROCW,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn EnumResourceTypesA(
+    hModule: ?HINSTANCE,
+    lpEnumFunc: ?ENUMRESTYPEPROCA,
+    lParam: isize,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn EnumResourceTypesExA(
     hModule: ?HINSTANCE,
@@ -323,48 +279,12 @@ pub extern "kernel32" fn EnumResourceTypesExW(
     LangId: u16,
 ) callconv(.winapi) BOOL;
 
-pub extern "kernel32" fn FindResourceW(
-    hModule: ?HINSTANCE,
-    lpName: ?[*:0]align(1) const u16,
-    lpType: ?[*:0]align(1) const u16,
-) callconv(.winapi) ?HRSRC;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LoadLibraryA(
-    lpLibFileName: ?[*:0]const u8,
-) callconv(.winapi) ?HINSTANCE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LoadLibraryW(
-    lpLibFileName: ?[*:0]const u16,
-) callconv(.winapi) ?HINSTANCE;
-
-pub extern "kernel32" fn EnumResourceNamesW(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]align(1) const u16,
-    lpEnumFunc: ?ENUMRESNAMEPROCW,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumResourceNamesA(
+pub extern "kernel32" fn EnumResourceTypesW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpEnumFunc: ?ENUMRESNAMEPROCA,
+    lpEnumFunc: ?ENUMRESTYPEPROCW,
     lParam: isize,
 ) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn LoadModule(
-    lpModuleName: ?[*:0]const u8,
-    lpParameterBlock: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "kernel32" fn LoadPackagedLibrary(
-    lpwLibFileName: ?[*:0]const u16,
-    Reserved: u32,
-) callconv(.winapi) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn FindResourceA(
@@ -381,49 +301,163 @@ pub extern "kernel32" fn FindResourceExA(
     wLanguage: u16,
 ) callconv(.winapi) ?HRSRC;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumResourceTypesA(
-    hModule: ?HINSTANCE,
-    lpEnumFunc: ?ENUMRESTYPEPROCA,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumResourceTypesW(
-    hModule: ?HINSTANCE,
-    lpEnumFunc: ?ENUMRESTYPEPROCW,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumResourceLanguagesA(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    lpEnumFunc: ?ENUMRESLANGPROCA,
-    lParam: isize,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EnumResourceLanguagesW(
+pub extern "kernel32" fn FindResourceExW(
     hModule: ?HINSTANCE,
     lpType: ?[*:0]align(1) const u16,
-    lpName: ?[*:0]const u16,
-    lpEnumFunc: ?ENUMRESLANGPROCW,
-    lParam: isize,
+    lpName: ?[*:0]align(1) const u16,
+    wLanguage: u16,
+) callconv(.winapi) ?HRSRC;
+
+pub extern "kernel32" fn FindResourceW(
+    hModule: ?HINSTANCE,
+    lpName: ?[*:0]align(1) const u16,
+    lpType: ?[*:0]align(1) const u16,
+) callconv(.winapi) ?HRSRC;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn FreeLibrary(
+    hLibModule: ?HINSTANCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn FreeLibraryAndExitThread(
+    hLibModule: ?HINSTANCE,
+    dwExitCode: u32,
+) callconv(.winapi) noreturn;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn FreeResource(
+    hResData: isize,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetDllDirectoryA(
+    nBufferLength: u32,
+    lpBuffer: ?[*:0]u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetDllDirectoryW(
+    nBufferLength: u32,
+    lpBuffer: ?[*:0]u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetModuleFileNameA(
+    hModule: ?HINSTANCE,
+    lpFilename: [*:0]u8,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetModuleFileNameW(
+    hModule: ?HINSTANCE,
+    lpFilename: [*:0]u16,
+    nSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetModuleHandleA(
+    lpModuleName: ?[*:0]const u8,
+) callconv(.winapi) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetModuleHandleExA(
+    dwFlags: u32,
+    lpModuleName: ?[*:0]const u8,
+    phModule: ?*?HINSTANCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetModuleHandleExW(
+    dwFlags: u32,
+    lpModuleName: ?[*:0]const u16,
+    phModule: ?*?HINSTANCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetModuleHandleW(
+    lpModuleName: ?[*:0]const u16,
+) callconv(.winapi) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn GetProcAddress(
+    hModule: ?HINSTANCE,
+    lpProcName: ?[*:0]const u8,
+) callconv(.winapi) ?FARPROC;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LoadLibraryA(
+    lpLibFileName: ?[*:0]const u8,
+) callconv(.winapi) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LoadLibraryExA(
+    lpLibFileName: ?[*:0]const u8,
+    hFile: ?HANDLE,
+    dwFlags: LOAD_LIBRARY_FLAGS,
+) callconv(.winapi) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LoadLibraryExW(
+    lpLibFileName: ?[*:0]const u16,
+    hFile: ?HANDLE,
+    dwFlags: LOAD_LIBRARY_FLAGS,
+) callconv(.winapi) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LoadLibraryW(
+    lpLibFileName: ?[*:0]const u16,
+) callconv(.winapi) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn LoadModule(
+    lpModuleName: ?[*:0]const u8,
+    lpParameterBlock: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn LoadPackagedLibrary(
+    lpwLibFileName: ?[*:0]const u16,
+    Reserved: u32,
+) callconv(.winapi) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn LoadResource(
+    hModule: ?HINSTANCE,
+    hResInfo: ?HRSRC,
+) callconv(.winapi) isize;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn LockResource(
+    hResData: isize,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn RemoveDllDirectory(
+    Cookie: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "kernel32" fn SetDefaultDllDirectories(
+    DirectoryFlags: LOAD_LIBRARY_FLAGS,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn SetDllDirectoryA(
+    lpPathName: ?[*:0]const u8,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn SetDllDirectoryW(
+    lpPathName: ?[*:0]const u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn BeginUpdateResourceA(
-    pFileName: ?[*:0]const u8,
-    bDeleteExistingResources: BOOL,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn BeginUpdateResourceW(
-    pFileName: ?[*:0]const u16,
-    bDeleteExistingResources: BOOL,
-) callconv(.winapi) ?HANDLE;
+pub extern "kernel32" fn SizeofResource(
+    hModule: ?HINSTANCE,
+    hResInfo: ?HRSRC,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn UpdateResourceA(
@@ -446,40 +480,6 @@ pub extern "kernel32" fn UpdateResourceW(
     lpData: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EndUpdateResourceA(
-    hUpdate: ?HANDLE,
-    fDiscard: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn EndUpdateResourceW(
-    hUpdate: ?HANDLE,
-    fDiscard: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn SetDllDirectoryA(
-    lpPathName: ?[*:0]const u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn SetDllDirectoryW(
-    lpPathName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetDllDirectoryA(
-    nBufferLength: u32,
-    lpBuffer: ?[*:0]u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetDllDirectoryW(
-    nBufferLength: u32,
-    lpBuffer: ?[*:0]u16,
-) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------
@@ -513,11 +513,81 @@ pub const PGET_MODULE_HANDLE_EX = switch (@import("../zig.zig").unicode_mode) {
         "'PGET_MODULE_HANDLE_EX' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const BeginUpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BeginUpdateResourceA,
+    .wide => @This().BeginUpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BeginUpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EndUpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EndUpdateResourceA,
+    .wide => @This().EndUpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EndUpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceLanguages = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceLanguagesA,
+    .wide => @This().EnumResourceLanguagesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceLanguagesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceLanguagesExA,
+    .wide => @This().EnumResourceLanguagesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceNamesA,
+    .wide => @This().EnumResourceNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceNamesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceNamesExA,
+    .wide => @This().EnumResourceNamesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceTypes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceTypesA,
+    .wide => @This().EnumResourceTypesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceTypes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceTypesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceTypesExA,
+    .wide => @This().EnumResourceTypesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindResourceA,
+    .wide => @This().FindResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const FindResourceEx = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().FindResourceExA,
     .wide => @This().FindResourceExW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'FindResourceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDllDirectoryA,
+    .wide => @This().GetDllDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDllDirectory' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const GetModuleFileName = switch (@import("../zig.zig").unicode_mode) {
@@ -541,41 +611,6 @@ pub const GetModuleHandleEx = switch (@import("../zig.zig").unicode_mode) {
         "'GetModuleHandleEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const LoadLibraryEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LoadLibraryExA,
-    .wide => @This().LoadLibraryExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LoadLibraryEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumResourceLanguagesEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumResourceLanguagesExA,
-    .wide => @This().EnumResourceLanguagesExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumResourceNamesEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumResourceNamesExA,
-    .wide => @This().EnumResourceNamesExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumResourceTypesEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumResourceTypesExA,
-    .wide => @This().EnumResourceTypesExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FindResource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().FindResourceA,
-    .wide => @This().FindResourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FindResource' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const LoadLibrary = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().LoadLibraryA,
     .wide => @This().LoadLibraryW,
@@ -583,46 +618,11 @@ pub const LoadLibrary = switch (@import("../zig.zig").unicode_mode) {
         "'LoadLibrary' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const EnumResourceNames = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumResourceNamesA,
-    .wide => @This().EnumResourceNamesW,
+pub const LoadLibraryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadLibraryExA,
+    .wide => @This().LoadLibraryExW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumResourceNames' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumResourceTypes = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumResourceTypesA,
-    .wide => @This().EnumResourceTypesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumResourceTypes' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EnumResourceLanguages = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EnumResourceLanguagesA,
-    .wide => @This().EnumResourceLanguagesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const BeginUpdateResource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BeginUpdateResourceA,
-    .wide => @This().BeginUpdateResourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BeginUpdateResource' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const UpdateResource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().UpdateResourceA,
-    .wide => @This().UpdateResourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'UpdateResource' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const EndUpdateResource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().EndUpdateResourceA,
-    .wide => @This().EndUpdateResourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'EndUpdateResource' requires that UNICODE be set to true or false in the root module",
+        "'LoadLibraryEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const SetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
@@ -632,11 +632,11 @@ pub const SetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
         "'SetDllDirectory' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetDllDirectoryA,
-    .wide => @This().GetDllDirectoryW,
+pub const UpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdateResourceA,
+    .wide => @This().UpdateResourceW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetDllDirectory' requires that UNICODE be set to true or false in the root module",
+        "'UpdateResource' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const PIPE_UNLIMITED_INSTANCES = @as(u32, 255);
-pub const NMPWAIT_WAIT_FOREVER = @as(u32, 4294967295);
 pub const NMPWAIT_NOWAIT = @as(u32, 1);
 pub const NMPWAIT_USE_DEFAULT_WAIT = @as(u32, 0);
+pub const NMPWAIT_WAIT_FOREVER = @as(u32, 4294967295);
+pub const PIPE_UNLIMITED_INSTANCES = @as(u32, 255);
 
 //--------------------------------------------------------------------------------
 // Section: Types (1)
@@ -61,46 +61,8 @@ pub const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE{ .REJECT_REMOTE_CLIENTS =
 // Section: Functions (22)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn CreatePipe(
-    hReadPipe: ?*?HANDLE,
-    hWritePipe: ?*?HANDLE,
-    lpPipeAttributes: ?*SECURITY_ATTRIBUTES,
-    nSize: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn ConnectNamedPipe(
-    hNamedPipe: ?HANDLE,
-    lpOverlapped: ?*OVERLAPPED,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn DisconnectNamedPipe(
-    hNamedPipe: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetNamedPipeHandleState(
-    hNamedPipe: ?HANDLE,
-    lpMode: ?*NAMED_PIPE_MODE,
-    lpMaxCollectionCount: ?*u32,
-    lpCollectDataTimeout: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn PeekNamedPipe(
-    hNamedPipe: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*anyopaque,
-    nBufferSize: u32,
-    lpBytesRead: ?*u32,
-    lpTotalBytesAvail: ?*u32,
-    lpBytesLeftThisMessage: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn TransactNamedPipe(
-    hNamedPipe: ?HANDLE,
+pub extern "kernel32" fn CallNamedPipeA(
+    lpNamedPipeName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
@@ -108,54 +70,7 @@ pub extern "kernel32" fn TransactNamedPipe(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesRead: ?*u32,
-    lpOverlapped: ?*OVERLAPPED,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn CreateNamedPipeW(
-    lpName: ?[*:0]const u16,
-    dwOpenMode: FILE_FLAGS_AND_ATTRIBUTES,
-    dwPipeMode: NAMED_PIPE_MODE,
-    nMaxInstances: u32,
-    nOutBufferSize: u32,
-    nInBufferSize: u32,
-    nDefaultTimeOut: u32,
-    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(.winapi) HANDLE;
-
-pub extern "kernel32" fn WaitNamedPipeW(
-    lpNamedPipeName: ?[*:0]const u16,
     nTimeOut: u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetNamedPipeClientComputerNameW(
-    Pipe: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    ClientComputerName: ?PWSTR,
-    ClientComputerNameLength: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn ImpersonateNamedPipeClient(
-    hNamedPipe: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetNamedPipeInfo(
-    hNamedPipe: ?HANDLE,
-    lpFlags: ?*NAMED_PIPE_MODE,
-    lpOutBufferSize: ?*u32,
-    lpInBufferSize: ?*u32,
-    lpMaxInstances: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn GetNamedPipeHandleStateW(
-    hNamedPipe: ?HANDLE,
-    lpState: ?*NAMED_PIPE_MODE,
-    lpCurInstances: ?*u32,
-    lpMaxCollectionCount: ?*u32,
-    lpCollectDataTimeout: ?*u32,
-    lpUserName: ?[*:0]u16,
-    nMaxUserNameSize: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn CallNamedPipeW(
@@ -171,6 +86,12 @@ pub extern "kernel32" fn CallNamedPipeW(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn ConnectNamedPipe(
+    hNamedPipe: ?HANDLE,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn CreateNamedPipeA(
     lpName: ?[*:0]const u8,
     dwOpenMode: FILE_FLAGS_AND_ATTRIBUTES,
@@ -182,34 +103,28 @@ pub extern "kernel32" fn CreateNamedPipeA(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
 ) callconv(.winapi) HANDLE;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetNamedPipeHandleStateA(
-    hNamedPipe: ?HANDLE,
-    lpState: ?*NAMED_PIPE_MODE,
-    lpCurInstances: ?*u32,
-    lpMaxCollectionCount: ?*u32,
-    lpCollectDataTimeout: ?*u32,
-    lpUserName: ?[*:0]u8,
-    nMaxUserNameSize: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn CallNamedPipeA(
-    lpNamedPipeName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpOutBuffer: ?*anyopaque,
+pub extern "kernel32" fn CreateNamedPipeW(
+    lpName: ?[*:0]const u16,
+    dwOpenMode: FILE_FLAGS_AND_ATTRIBUTES,
+    dwPipeMode: NAMED_PIPE_MODE,
+    nMaxInstances: u32,
     nOutBufferSize: u32,
-    lpBytesRead: ?*u32,
-    nTimeOut: u32,
+    nInBufferSize: u32,
+    nDefaultTimeOut: u32,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+) callconv(.winapi) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn CreatePipe(
+    hReadPipe: ?*?HANDLE,
+    hWritePipe: ?*?HANDLE,
+    lpPipeAttributes: ?*SECURITY_ATTRIBUTES,
+    nSize: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn WaitNamedPipeA(
-    lpNamedPipeName: ?[*:0]const u8,
-    nTimeOut: u32,
+pub extern "kernel32" fn DisconnectNamedPipe(
+    hNamedPipe: ?HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -217,6 +132,13 @@ pub extern "kernel32" fn GetNamedPipeClientComputerNameA(
     Pipe: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ClientComputerName: ?PSTR,
+    ClientComputerNameLength: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetNamedPipeClientComputerNameW(
+    Pipe: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    ClientComputerName: ?PWSTR,
     ClientComputerNameLength: u32,
 ) callconv(.winapi) BOOL;
 
@@ -232,6 +154,36 @@ pub extern "kernel32" fn GetNamedPipeClientSessionId(
     ClientSessionId: ?*u32,
 ) callconv(.winapi) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetNamedPipeHandleStateA(
+    hNamedPipe: ?HANDLE,
+    lpState: ?*NAMED_PIPE_MODE,
+    lpCurInstances: ?*u32,
+    lpMaxCollectionCount: ?*u32,
+    lpCollectDataTimeout: ?*u32,
+    lpUserName: ?[*:0]u8,
+    nMaxUserNameSize: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn GetNamedPipeHandleStateW(
+    hNamedPipe: ?HANDLE,
+    lpState: ?*NAMED_PIPE_MODE,
+    lpCurInstances: ?*u32,
+    lpMaxCollectionCount: ?*u32,
+    lpCollectDataTimeout: ?*u32,
+    lpUserName: ?[*:0]u16,
+    nMaxUserNameSize: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetNamedPipeInfo(
+    hNamedPipe: ?HANDLE,
+    lpFlags: ?*NAMED_PIPE_MODE,
+    lpOutBufferSize: ?*u32,
+    lpInBufferSize: ?*u32,
+    lpMaxInstances: ?*u32,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetNamedPipeServerProcessId(
     Pipe: ?HANDLE,
@@ -244,22 +196,70 @@ pub extern "kernel32" fn GetNamedPipeServerSessionId(
     ServerSessionId: ?*u32,
 ) callconv(.winapi) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn ImpersonateNamedPipeClient(
+    hNamedPipe: ?HANDLE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn PeekNamedPipe(
+    hNamedPipe: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*anyopaque,
+    nBufferSize: u32,
+    lpBytesRead: ?*u32,
+    lpTotalBytesAvail: ?*u32,
+    lpBytesLeftThisMessage: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SetNamedPipeHandleState(
+    hNamedPipe: ?HANDLE,
+    lpMode: ?*NAMED_PIPE_MODE,
+    lpMaxCollectionCount: ?*u32,
+    lpCollectDataTimeout: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn TransactNamedPipe(
+    hNamedPipe: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesRead: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn WaitNamedPipeA(
+    lpNamedPipeName: ?[*:0]const u8,
+    nTimeOut: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "kernel32" fn WaitNamedPipeW(
+    lpNamedPipeName: ?[*:0]const u16,
+    nTimeOut: u32,
+) callconv(.winapi) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
+pub const CallNamedPipe = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CallNamedPipeA,
+    .wide => @This().CallNamedPipeW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CallNamedPipe' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const CreateNamedPipe = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().CreateNamedPipeA,
     .wide => @This().CreateNamedPipeW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'CreateNamedPipe' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WaitNamedPipe = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WaitNamedPipeA,
-    .wide => @This().WaitNamedPipeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WaitNamedPipe' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const GetNamedPipeClientComputerName = switch (@import("../zig.zig").unicode_mode) {
@@ -276,11 +276,11 @@ pub const GetNamedPipeHandleState = switch (@import("../zig.zig").unicode_mode) 
         "'GetNamedPipeHandleState' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CallNamedPipe = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CallNamedPipeA,
-    .wide => @This().CallNamedPipeW,
+pub const WaitNamedPipe = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WaitNamedPipeA,
+    .wide => @This().WaitNamedPipeW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CallNamedPipe' requires that UNICODE be set to true or false in the root module",
+        "'WaitNamedPipe' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------

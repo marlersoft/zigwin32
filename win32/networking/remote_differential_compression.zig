@@ -2,106 +2,41 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (24)
 //--------------------------------------------------------------------------------
-pub const RDCE_TABLE_FULL = @as(u32, 2147745793);
-pub const RDCE_TABLE_CORRUPT = @as(u32, 2147745794);
-pub const MSRDC_SIGNATURE_HASHSIZE = @as(u32, 16);
-pub const SimilarityFileIdMinSize = @as(u32, 4);
-pub const SimilarityFileIdMaxSize = @as(u32, 32);
-pub const MSRDC_VERSION = @as(u32, 65536);
+pub const MSRDC_DEFAULT_COMPAREBUFFER = @as(u32, 3200000);
+pub const MSRDC_DEFAULT_HASHWINDOWSIZE_1 = @as(u32, 48);
+pub const MSRDC_DEFAULT_HASHWINDOWSIZE_N = @as(u32, 2);
+pub const MSRDC_DEFAULT_HORIZONSIZE_1 = @as(u32, 1024);
+pub const MSRDC_DEFAULT_HORIZONSIZE_N = @as(u32, 128);
+pub const MSRDC_MAXIMUM_COMPAREBUFFER = @as(u32, 1073741824);
+pub const MSRDC_MAXIMUM_DEPTH = @as(u32, 8);
+pub const MSRDC_MAXIMUM_HASHWINDOWSIZE = @as(u32, 96);
+pub const MSRDC_MAXIMUM_HORIZONSIZE = @as(u32, 16384);
+pub const MSRDC_MAXIMUM_MATCHESREQUIRED = @as(u32, 16);
+pub const MSRDC_MAXIMUM_TRAITVALUE = @as(u32, 63);
+pub const MSRDC_MINIMUM_COMPAREBUFFER = @as(u32, 100000);
 pub const MSRDC_MINIMUM_COMPATIBLE_APP_VERSION = @as(u32, 65536);
 pub const MSRDC_MINIMUM_DEPTH = @as(u32, 1);
-pub const MSRDC_MAXIMUM_DEPTH = @as(u32, 8);
-pub const MSRDC_MINIMUM_COMPAREBUFFER = @as(u32, 100000);
-pub const MSRDC_MAXIMUM_COMPAREBUFFER = @as(u32, 1073741824);
-pub const MSRDC_DEFAULT_COMPAREBUFFER = @as(u32, 3200000);
-pub const MSRDC_MINIMUM_INPUTBUFFERSIZE = @as(u32, 1024);
-pub const MSRDC_MINIMUM_HORIZONSIZE = @as(u32, 128);
-pub const MSRDC_MAXIMUM_HORIZONSIZE = @as(u32, 16384);
 pub const MSRDC_MINIMUM_HASHWINDOWSIZE = @as(u32, 2);
-pub const MSRDC_MAXIMUM_HASHWINDOWSIZE = @as(u32, 96);
-pub const MSRDC_DEFAULT_HASHWINDOWSIZE_1 = @as(u32, 48);
-pub const MSRDC_DEFAULT_HORIZONSIZE_1 = @as(u32, 1024);
-pub const MSRDC_DEFAULT_HASHWINDOWSIZE_N = @as(u32, 2);
-pub const MSRDC_DEFAULT_HORIZONSIZE_N = @as(u32, 128);
-pub const MSRDC_MAXIMUM_TRAITVALUE = @as(u32, 63);
+pub const MSRDC_MINIMUM_HORIZONSIZE = @as(u32, 128);
+pub const MSRDC_MINIMUM_INPUTBUFFERSIZE = @as(u32, 1024);
 pub const MSRDC_MINIMUM_MATCHESREQUIRED = @as(u32, 1);
-pub const MSRDC_MAXIMUM_MATCHESREQUIRED = @as(u32, 16);
+pub const MSRDC_SIGNATURE_HASHSIZE = @as(u32, 16);
+pub const MSRDC_VERSION = @as(u32, 65536);
+pub const RDCE_TABLE_CORRUPT = @as(u32, 2147745794);
+pub const RDCE_TABLE_FULL = @as(u32, 2147745793);
+pub const SimilarityFileIdMaxSize = @as(u32, 32);
+pub const SimilarityFileIdMinSize = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (48)
 //--------------------------------------------------------------------------------
-const CLSID_RdcLibrary_Value = Guid.initString("96236a85-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcLibrary = &CLSID_RdcLibrary_Value;
-
-const CLSID_RdcGeneratorParameters_Value = Guid.initString("96236a86-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcGeneratorParameters = &CLSID_RdcGeneratorParameters_Value;
-
-const CLSID_RdcGeneratorFilterMaxParameters_Value = Guid.initString("96236a87-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcGeneratorFilterMaxParameters = &CLSID_RdcGeneratorFilterMaxParameters_Value;
-
-const CLSID_RdcGenerator_Value = Guid.initString("96236a88-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcGenerator = &CLSID_RdcGenerator_Value;
-
-const CLSID_RdcFileReader_Value = Guid.initString("96236a89-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcFileReader = &CLSID_RdcFileReader_Value;
-
-const CLSID_RdcSignatureReader_Value = Guid.initString("96236a8a-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcSignatureReader = &CLSID_RdcSignatureReader_Value;
-
-const CLSID_RdcComparator_Value = Guid.initString("96236a8b-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcComparator = &CLSID_RdcComparator_Value;
-
-const CLSID_SimilarityReportProgress_Value = Guid.initString("96236a8d-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_SimilarityReportProgress = &CLSID_SimilarityReportProgress_Value;
-
-const CLSID_SimilarityTableDumpState_Value = Guid.initString("96236a8e-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_SimilarityTableDumpState = &CLSID_SimilarityTableDumpState_Value;
-
-const CLSID_SimilarityTraitsTable_Value = Guid.initString("96236a8f-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_SimilarityTraitsTable = &CLSID_SimilarityTraitsTable_Value;
-
-const CLSID_SimilarityFileIdTable_Value = Guid.initString("96236a90-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_SimilarityFileIdTable = &CLSID_SimilarityFileIdTable_Value;
-
-const CLSID_Similarity_Value = Guid.initString("96236a91-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_Similarity = &CLSID_Similarity_Value;
-
-const CLSID_RdcSimilarityGenerator_Value = Guid.initString("96236a92-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_RdcSimilarityGenerator = &CLSID_RdcSimilarityGenerator_Value;
+pub const FindSimilarFileIndexResults = extern struct {
+    m_FileIndex: u32,
+    m_MatchCount: u32,
+};
 
 const CLSID_FindSimilarResults_Value = Guid.initString("96236a93-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_FindSimilarResults = &CLSID_FindSimilarResults_Value;
-
-const CLSID_SimilarityTraitsMapping_Value = Guid.initString("96236a94-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_SimilarityTraitsMapping = &CLSID_SimilarityTraitsMapping_Value;
-
-const CLSID_SimilarityTraitsMappedView_Value = Guid.initString("96236a95-9dbc-11da-9e3f-0011114ae311");
-pub const CLSID_SimilarityTraitsMappedView = &CLSID_SimilarityTraitsMappedView_Value;
-
-pub const RDC_ErrorCode = enum(i32) {
-    NoError = 0,
-    HeaderVersionNewer = 1,
-    HeaderVersionOlder = 2,
-    HeaderMissingOrCorrupt = 3,
-    HeaderWrongType = 4,
-    DataMissingOrCorrupt = 5,
-    DataTooManyRecords = 6,
-    FileChecksumMismatch = 7,
-    ApplicationError = 8,
-    Aborted = 9,
-    Win32Error = 10,
-};
-pub const RDC_NoError = RDC_ErrorCode.NoError;
-pub const RDC_HeaderVersionNewer = RDC_ErrorCode.HeaderVersionNewer;
-pub const RDC_HeaderVersionOlder = RDC_ErrorCode.HeaderVersionOlder;
-pub const RDC_HeaderMissingOrCorrupt = RDC_ErrorCode.HeaderMissingOrCorrupt;
-pub const RDC_HeaderWrongType = RDC_ErrorCode.HeaderWrongType;
-pub const RDC_DataMissingOrCorrupt = RDC_ErrorCode.DataMissingOrCorrupt;
-pub const RDC_DataTooManyRecords = RDC_ErrorCode.DataTooManyRecords;
-pub const RDC_FileChecksumMismatch = RDC_ErrorCode.FileChecksumMismatch;
-pub const RDC_ApplicationError = RDC_ErrorCode.ApplicationError;
-pub const RDC_Aborted = RDC_ErrorCode.Aborted;
-pub const RDC_Win32Error = RDC_ErrorCode.Win32Error;
 
 pub const GeneratorParametersType = enum(i32) {
     Unused = 0,
@@ -110,196 +45,51 @@ pub const GeneratorParametersType = enum(i32) {
 pub const RDCGENTYPE_Unused = GeneratorParametersType.Unused;
 pub const RDCGENTYPE_FilterMax = GeneratorParametersType.FilterMax;
 
-pub const RdcNeedType = enum(i32) {
-    SOURCE = 0,
-    TARGET = 1,
-    SEED = 2,
-    SEED_MAX = 255,
-};
-pub const RDCNEED_SOURCE = RdcNeedType.SOURCE;
-pub const RDCNEED_TARGET = RdcNeedType.TARGET;
-pub const RDCNEED_SEED = RdcNeedType.SEED;
-pub const RDCNEED_SEED_MAX = RdcNeedType.SEED_MAX;
-
-pub const RdcNeed = extern struct {
-    m_BlockType: RdcNeedType,
-    m_FileOffset: u64,
-    m_BlockLength: u64,
-};
-
-pub const RdcBufferPointer = extern struct {
-    m_Size: u32,
-    m_Used: u32,
-    m_Data: ?*u8,
-};
-
-pub const RdcNeedPointer = extern struct {
-    m_Size: u32,
-    m_Used: u32,
-    m_Data: ?*RdcNeed,
-};
-
-pub const RdcSignature = extern struct {
-    m_Signature: [16]u8,
-    m_BlockLength: u16,
-};
-
-pub const RdcSignaturePointer = extern struct {
-    m_Size: u32,
-    m_Used: u32,
-    m_Data: ?*RdcSignature,
-};
-
-pub const RdcCreatedTables = enum(i32) {
-    InvalidOrUnknown = 0,
-    Existing = 1,
-    New = 2,
-};
-pub const RDCTABLE_InvalidOrUnknown = RdcCreatedTables.InvalidOrUnknown;
-pub const RDCTABLE_Existing = RdcCreatedTables.Existing;
-pub const RDCTABLE_New = RdcCreatedTables.New;
-
-pub const RdcMappingAccessMode = enum(i32) {
-    Undefined = 0,
-    ReadOnly = 1,
-    ReadWrite = 2,
-};
-pub const RDCMAPPING_Undefined = RdcMappingAccessMode.Undefined;
-pub const RDCMAPPING_ReadOnly = RdcMappingAccessMode.ReadOnly;
-pub const RDCMAPPING_ReadWrite = RdcMappingAccessMode.ReadWrite;
-
-pub const SimilarityMappedViewInfo = extern struct {
-    m_Data: ?*u8,
-    m_Length: u32,
-};
-
-pub const SimilarityData = extern struct {
-    m_Data: [16]u8,
-};
-
-pub const FindSimilarFileIndexResults = extern struct {
-    m_FileIndex: u32,
-    m_MatchCount: u32,
-};
-
-pub const SimilarityDumpData = extern struct {
-    m_FileIndex: u32,
-    m_Data: SimilarityData,
-};
-
-pub const SimilarityFileId = extern struct {
-    m_FileId: [32]u8,
-};
-
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcGeneratorParameters_Value = Guid.initString("96236a71-9dbc-11da-9e3f-0011114ae311");
-pub const IID_IRdcGeneratorParameters = &IID_IRdcGeneratorParameters_Value;
-pub const IRdcGeneratorParameters = extern union {
+const IID_IFindSimilarResults_Value = Guid.initString("96236a81-9dbc-11da-9e3f-0011114ae311");
+pub const IID_IFindSimilarResults = &IID_IFindSimilarResults_Value;
+pub const IFindSimilarResults = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGeneratorParametersType: *const fn(
-            self: *const IRdcGeneratorParameters,
-            parametersType: ?*GeneratorParametersType,
-        ) callconv(.winapi) HRESULT,
-        GetParametersVersion: *const fn(
-            self: *const IRdcGeneratorParameters,
-            currentVersion: ?*u32,
-            minimumCompatibleAppVersion: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSerializeSize: *const fn(
-            self: *const IRdcGeneratorParameters,
+        GetSize: *const fn(
+            self: *const IFindSimilarResults,
             size: ?*u32,
         ) callconv(.winapi) HRESULT,
-        Serialize: *const fn(
-            self: *const IRdcGeneratorParameters,
-            size: u32,
-            parametersBlob: ?*u8,
-            bytesWritten: ?*u32,
+        GetNextFileId: *const fn(
+            self: *const IFindSimilarResults,
+            numTraitsMatched: ?*u32,
+            similarityFileId: ?*SimilarityFileId,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGeneratorParametersType(self: *const IRdcGeneratorParameters, parametersType: ?*GeneratorParametersType) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGeneratorParametersType(self, parametersType);
+    pub fn GetSize(self: *const IFindSimilarResults, size: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSize(self, size);
     }
-    pub fn GetParametersVersion(self: *const IRdcGeneratorParameters, currentVersion: ?*u32, minimumCompatibleAppVersion: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetParametersVersion(self, currentVersion, minimumCompatibleAppVersion);
-    }
-    pub fn GetSerializeSize(self: *const IRdcGeneratorParameters, size: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSerializeSize(self, size);
-    }
-    pub fn Serialize(self: *const IRdcGeneratorParameters, size: u32, parametersBlob: ?*u8, bytesWritten: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Serialize(self, size, parametersBlob, bytesWritten);
+    pub fn GetNextFileId(self: *const IFindSimilarResults, numTraitsMatched: ?*u32, similarityFileId: ?*SimilarityFileId) callconv(.@"inline") HRESULT {
+        return self.vtable.GetNextFileId(self, numTraitsMatched, similarityFileId);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcGeneratorFilterMaxParameters_Value = Guid.initString("96236a72-9dbc-11da-9e3f-0011114ae311");
-pub const IID_IRdcGeneratorFilterMaxParameters = &IID_IRdcGeneratorFilterMaxParameters_Value;
-pub const IRdcGeneratorFilterMaxParameters = extern union {
+const IID_IRdcComparator_Value = Guid.initString("96236a77-9dbc-11da-9e3f-0011114ae311");
+pub const IID_IRdcComparator = &IID_IRdcComparator_Value;
+pub const IRdcComparator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetHorizonSize: *const fn(
-            self: *const IRdcGeneratorFilterMaxParameters,
-            horizonSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetHorizonSize: *const fn(
-            self: *const IRdcGeneratorFilterMaxParameters,
-            horizonSize: u32,
-        ) callconv(.winapi) HRESULT,
-        GetHashWindowSize: *const fn(
-            self: *const IRdcGeneratorFilterMaxParameters,
-            hashWindowSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetHashWindowSize: *const fn(
-            self: *const IRdcGeneratorFilterMaxParameters,
-            hashWindowSize: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetHorizonSize(self: *const IRdcGeneratorFilterMaxParameters, horizonSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHorizonSize(self, horizonSize);
-    }
-    pub fn SetHorizonSize(self: *const IRdcGeneratorFilterMaxParameters, horizonSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHorizonSize(self, horizonSize);
-    }
-    pub fn GetHashWindowSize(self: *const IRdcGeneratorFilterMaxParameters, hashWindowSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetHashWindowSize(self, hashWindowSize);
-    }
-    pub fn SetHashWindowSize(self: *const IRdcGeneratorFilterMaxParameters, hashWindowSize: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetHashWindowSize(self, hashWindowSize);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcGenerator_Value = Guid.initString("96236a73-9dbc-11da-9e3f-0011114ae311");
-pub const IID_IRdcGenerator = &IID_IRdcGenerator_Value;
-pub const IRdcGenerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetGeneratorParameters: *const fn(
-            self: *const IRdcGenerator,
-            level: u32,
-            iGeneratorParameters: ?*?*IRdcGeneratorParameters,
-        ) callconv(.winapi) HRESULT,
         Process: *const fn(
-            self: *const IRdcGenerator,
+            self: *const IRdcComparator,
             endOfInput: BOOL,
             endOfOutput: ?*BOOL,
             inputBuffer: ?*RdcBufferPointer,
-            depth: u32,
-            outputBuffers: [*]?*RdcBufferPointer,
+            outputBuffer: ?*RdcNeedPointer,
             rdc_ErrorCode: ?*RDC_ErrorCode,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGeneratorParameters(self: *const IRdcGenerator, level: u32, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGeneratorParameters(self, level, iGeneratorParameters);
-    }
-    pub fn Process(self: *const IRdcGenerator, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, depth: u32, outputBuffers: [*]?*RdcBufferPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.@"inline") HRESULT {
-        return self.vtable.Process(self, endOfInput, endOfOutput, inputBuffer, depth, outputBuffers, rdc_ErrorCode);
+    pub fn Process(self: *const IRdcComparator, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, outputBuffer: ?*RdcNeedPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.@"inline") HRESULT {
+        return self.vtable.Process(self, endOfInput, endOfOutput, inputBuffer, outputBuffer, rdc_ErrorCode);
     }
 };
 
@@ -373,50 +163,114 @@ pub const IRdcFileWriter = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcSignatureReader_Value = Guid.initString("96236a76-9dbc-11da-9e3f-0011114ae311");
-pub const IID_IRdcSignatureReader = &IID_IRdcSignatureReader_Value;
-pub const IRdcSignatureReader = extern union {
+const IID_IRdcGenerator_Value = Guid.initString("96236a73-9dbc-11da-9e3f-0011114ae311");
+pub const IID_IRdcGenerator = &IID_IRdcGenerator_Value;
+pub const IRdcGenerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReadHeader: *const fn(
-            self: *const IRdcSignatureReader,
-            rdc_ErrorCode: ?*RDC_ErrorCode,
+        GetGeneratorParameters: *const fn(
+            self: *const IRdcGenerator,
+            level: u32,
+            iGeneratorParameters: ?*?*IRdcGeneratorParameters,
         ) callconv(.winapi) HRESULT,
-        ReadSignatures: *const fn(
-            self: *const IRdcSignatureReader,
-            rdcSignaturePointer: ?*RdcSignaturePointer,
+        Process: *const fn(
+            self: *const IRdcGenerator,
+            endOfInput: BOOL,
             endOfOutput: ?*BOOL,
+            inputBuffer: ?*RdcBufferPointer,
+            depth: u32,
+            outputBuffers: [*]?*RdcBufferPointer,
+            rdc_ErrorCode: ?*RDC_ErrorCode,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReadHeader(self: *const IRdcSignatureReader, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadHeader(self, rdc_ErrorCode);
+    pub fn GetGeneratorParameters(self: *const IRdcGenerator, level: u32, iGeneratorParameters: ?*?*IRdcGeneratorParameters) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGeneratorParameters(self, level, iGeneratorParameters);
     }
-    pub fn ReadSignatures(self: *const IRdcSignatureReader, rdcSignaturePointer: ?*RdcSignaturePointer, endOfOutput: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadSignatures(self, rdcSignaturePointer, endOfOutput);
+    pub fn Process(self: *const IRdcGenerator, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, depth: u32, outputBuffers: [*]?*RdcBufferPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.@"inline") HRESULT {
+        return self.vtable.Process(self, endOfInput, endOfOutput, inputBuffer, depth, outputBuffers, rdc_ErrorCode);
     }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcComparator_Value = Guid.initString("96236a77-9dbc-11da-9e3f-0011114ae311");
-pub const IID_IRdcComparator = &IID_IRdcComparator_Value;
-pub const IRdcComparator = extern union {
+const IID_IRdcGeneratorFilterMaxParameters_Value = Guid.initString("96236a72-9dbc-11da-9e3f-0011114ae311");
+pub const IID_IRdcGeneratorFilterMaxParameters = &IID_IRdcGeneratorFilterMaxParameters_Value;
+pub const IRdcGeneratorFilterMaxParameters = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Process: *const fn(
-            self: *const IRdcComparator,
-            endOfInput: BOOL,
-            endOfOutput: ?*BOOL,
-            inputBuffer: ?*RdcBufferPointer,
-            outputBuffer: ?*RdcNeedPointer,
-            rdc_ErrorCode: ?*RDC_ErrorCode,
+        GetHorizonSize: *const fn(
+            self: *const IRdcGeneratorFilterMaxParameters,
+            horizonSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetHorizonSize: *const fn(
+            self: *const IRdcGeneratorFilterMaxParameters,
+            horizonSize: u32,
+        ) callconv(.winapi) HRESULT,
+        GetHashWindowSize: *const fn(
+            self: *const IRdcGeneratorFilterMaxParameters,
+            hashWindowSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetHashWindowSize: *const fn(
+            self: *const IRdcGeneratorFilterMaxParameters,
+            hashWindowSize: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Process(self: *const IRdcComparator, endOfInput: BOOL, endOfOutput: ?*BOOL, inputBuffer: ?*RdcBufferPointer, outputBuffer: ?*RdcNeedPointer, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.@"inline") HRESULT {
-        return self.vtable.Process(self, endOfInput, endOfOutput, inputBuffer, outputBuffer, rdc_ErrorCode);
+    pub fn GetHorizonSize(self: *const IRdcGeneratorFilterMaxParameters, horizonSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHorizonSize(self, horizonSize);
+    }
+    pub fn SetHorizonSize(self: *const IRdcGeneratorFilterMaxParameters, horizonSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHorizonSize(self, horizonSize);
+    }
+    pub fn GetHashWindowSize(self: *const IRdcGeneratorFilterMaxParameters, hashWindowSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetHashWindowSize(self, hashWindowSize);
+    }
+    pub fn SetHashWindowSize(self: *const IRdcGeneratorFilterMaxParameters, hashWindowSize: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetHashWindowSize(self, hashWindowSize);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRdcGeneratorParameters_Value = Guid.initString("96236a71-9dbc-11da-9e3f-0011114ae311");
+pub const IID_IRdcGeneratorParameters = &IID_IRdcGeneratorParameters_Value;
+pub const IRdcGeneratorParameters = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetGeneratorParametersType: *const fn(
+            self: *const IRdcGeneratorParameters,
+            parametersType: ?*GeneratorParametersType,
+        ) callconv(.winapi) HRESULT,
+        GetParametersVersion: *const fn(
+            self: *const IRdcGeneratorParameters,
+            currentVersion: ?*u32,
+            minimumCompatibleAppVersion: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSerializeSize: *const fn(
+            self: *const IRdcGeneratorParameters,
+            size: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Serialize: *const fn(
+            self: *const IRdcGeneratorParameters,
+            size: u32,
+            parametersBlob: ?*u8,
+            bytesWritten: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetGeneratorParametersType(self: *const IRdcGeneratorParameters, parametersType: ?*GeneratorParametersType) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGeneratorParametersType(self, parametersType);
+    }
+    pub fn GetParametersVersion(self: *const IRdcGeneratorParameters, currentVersion: ?*u32, minimumCompatibleAppVersion: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetParametersVersion(self, currentVersion, minimumCompatibleAppVersion);
+    }
+    pub fn GetSerializeSize(self: *const IRdcGeneratorParameters, size: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSerializeSize(self, size);
+    }
+    pub fn Serialize(self: *const IRdcGeneratorParameters, size: u32, parametersBlob: ?*u8, bytesWritten: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Serialize(self, size, parametersBlob, bytesWritten);
     }
 };
 
@@ -488,6 +342,198 @@ pub const IRdcLibrary = extern union {
     }
     pub fn GetRDCVersion(self: *const IRdcLibrary, currentVersion: ?*u32, minimumCompatibleAppVersion: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRDCVersion(self, currentVersion, minimumCompatibleAppVersion);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRdcSignatureReader_Value = Guid.initString("96236a76-9dbc-11da-9e3f-0011114ae311");
+pub const IID_IRdcSignatureReader = &IID_IRdcSignatureReader_Value;
+pub const IRdcSignatureReader = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReadHeader: *const fn(
+            self: *const IRdcSignatureReader,
+            rdc_ErrorCode: ?*RDC_ErrorCode,
+        ) callconv(.winapi) HRESULT,
+        ReadSignatures: *const fn(
+            self: *const IRdcSignatureReader,
+            rdcSignaturePointer: ?*RdcSignaturePointer,
+            endOfOutput: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReadHeader(self: *const IRdcSignatureReader, rdc_ErrorCode: ?*RDC_ErrorCode) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadHeader(self, rdc_ErrorCode);
+    }
+    pub fn ReadSignatures(self: *const IRdcSignatureReader, rdcSignaturePointer: ?*RdcSignaturePointer, endOfOutput: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadSignatures(self, rdcSignaturePointer, endOfOutput);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IRdcSimilarityGenerator_Value = Guid.initString("96236a80-9dbc-11da-9e3f-0011114ae311");
+pub const IID_IRdcSimilarityGenerator = &IID_IRdcSimilarityGenerator_Value;
+pub const IRdcSimilarityGenerator = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnableSimilarity: *const fn(
+            self: *const IRdcSimilarityGenerator,
+        ) callconv(.winapi) HRESULT,
+        Results: *const fn(
+            self: *const IRdcSimilarityGenerator,
+            similarityData: ?*SimilarityData,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn EnableSimilarity(self: *const IRdcSimilarityGenerator) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableSimilarity(self);
+    }
+    pub fn Results(self: *const IRdcSimilarityGenerator, similarityData: ?*SimilarityData) callconv(.@"inline") HRESULT {
+        return self.vtable.Results(self, similarityData);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISimilarity_Value = Guid.initString("96236a83-9dbc-11da-9e3f-0011114ae311");
+pub const IID_ISimilarity = &IID_ISimilarity_Value;
+pub const ISimilarity = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateTable: *const fn(
+            self: *const ISimilarity,
+            path: ?PWSTR,
+            truncate: BOOL,
+            securityDescriptor: ?*u8,
+            recordSize: u32,
+            isNew: ?*RdcCreatedTables,
+        ) callconv(.winapi) HRESULT,
+        CreateTableIndirect: *const fn(
+            self: *const ISimilarity,
+            mapping: ?*ISimilarityTraitsMapping,
+            fileIdFile: ?*IRdcFileWriter,
+            truncate: BOOL,
+            recordSize: u32,
+            isNew: ?*RdcCreatedTables,
+        ) callconv(.winapi) HRESULT,
+        CloseTable: *const fn(
+            self: *const ISimilarity,
+            isValid: BOOL,
+        ) callconv(.winapi) HRESULT,
+        Append: *const fn(
+            self: *const ISimilarity,
+            similarityFileId: ?*SimilarityFileId,
+            similarityData: ?*SimilarityData,
+        ) callconv(.winapi) HRESULT,
+        FindSimilarFileId: *const fn(
+            self: *const ISimilarity,
+            similarityData: ?*SimilarityData,
+            numberOfMatchesRequired: u16,
+            resultsSize: u32,
+            findSimilarResults: ?*?*IFindSimilarResults,
+        ) callconv(.winapi) HRESULT,
+        CopyAndSwap: *const fn(
+            self: *const ISimilarity,
+            newSimilarityTables: ?*ISimilarity,
+            reportProgress: ?*ISimilarityReportProgress,
+        ) callconv(.winapi) HRESULT,
+        GetRecordCount: *const fn(
+            self: *const ISimilarity,
+            recordCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateTable(self: *const ISimilarity, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
+    }
+    pub fn CreateTableIndirect(self: *const ISimilarity, mapping: ?*ISimilarityTraitsMapping, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTableIndirect(self, mapping, fileIdFile, truncate, recordSize, isNew);
+    }
+    pub fn CloseTable(self: *const ISimilarity, isValid: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.CloseTable(self, isValid);
+    }
+    pub fn Append(self: *const ISimilarity, similarityFileId: ?*SimilarityFileId, similarityData: ?*SimilarityData) callconv(.@"inline") HRESULT {
+        return self.vtable.Append(self, similarityFileId, similarityData);
+    }
+    pub fn FindSimilarFileId(self: *const ISimilarity, similarityData: ?*SimilarityData, numberOfMatchesRequired: u16, resultsSize: u32, findSimilarResults: ?*?*IFindSimilarResults) callconv(.@"inline") HRESULT {
+        return self.vtable.FindSimilarFileId(self, similarityData, numberOfMatchesRequired, resultsSize, findSimilarResults);
+    }
+    pub fn CopyAndSwap(self: *const ISimilarity, newSimilarityTables: ?*ISimilarity, reportProgress: ?*ISimilarityReportProgress) callconv(.@"inline") HRESULT {
+        return self.vtable.CopyAndSwap(self, newSimilarityTables, reportProgress);
+    }
+    pub fn GetRecordCount(self: *const ISimilarity, recordCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRecordCount(self, recordCount);
+    }
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ISimilarityFileIdTable_Value = Guid.initString("96236a7f-9dbc-11da-9e3f-0011114ae311");
+pub const IID_ISimilarityFileIdTable = &IID_ISimilarityFileIdTable_Value;
+pub const ISimilarityFileIdTable = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateTable: *const fn(
+            self: *const ISimilarityFileIdTable,
+            path: ?PWSTR,
+            truncate: BOOL,
+            securityDescriptor: ?*u8,
+            recordSize: u32,
+            isNew: ?*RdcCreatedTables,
+        ) callconv(.winapi) HRESULT,
+        CreateTableIndirect: *const fn(
+            self: *const ISimilarityFileIdTable,
+            fileIdFile: ?*IRdcFileWriter,
+            truncate: BOOL,
+            recordSize: u32,
+            isNew: ?*RdcCreatedTables,
+        ) callconv(.winapi) HRESULT,
+        CloseTable: *const fn(
+            self: *const ISimilarityFileIdTable,
+            isValid: BOOL,
+        ) callconv(.winapi) HRESULT,
+        Append: *const fn(
+            self: *const ISimilarityFileIdTable,
+            similarityFileId: ?*SimilarityFileId,
+            similarityFileIndex: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Lookup: *const fn(
+            self: *const ISimilarityFileIdTable,
+            similarityFileIndex: u32,
+            similarityFileId: ?*SimilarityFileId,
+        ) callconv(.winapi) HRESULT,
+        Invalidate: *const fn(
+            self: *const ISimilarityFileIdTable,
+            similarityFileIndex: u32,
+        ) callconv(.winapi) HRESULT,
+        GetRecordCount: *const fn(
+            self: *const ISimilarityFileIdTable,
+            recordCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateTable(self: *const ISimilarityFileIdTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
+    }
+    pub fn CreateTableIndirect(self: *const ISimilarityFileIdTable, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateTableIndirect(self, fileIdFile, truncate, recordSize, isNew);
+    }
+    pub fn CloseTable(self: *const ISimilarityFileIdTable, isValid: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.CloseTable(self, isValid);
+    }
+    pub fn Append(self: *const ISimilarityFileIdTable, similarityFileId: ?*SimilarityFileId, similarityFileIndex: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Append(self, similarityFileId, similarityFileIndex);
+    }
+    pub fn Lookup(self: *const ISimilarityFileIdTable, similarityFileIndex: u32, similarityFileId: ?*SimilarityFileId) callconv(.@"inline") HRESULT {
+        return self.vtable.Lookup(self, similarityFileIndex, similarityFileId);
+    }
+    pub fn Invalidate(self: *const ISimilarityFileIdTable, similarityFileIndex: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Invalidate(self, similarityFileIndex);
+    }
+    pub fn GetRecordCount(self: *const ISimilarityFileIdTable, recordCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRecordCount(self, recordCount);
     }
 };
 
@@ -708,197 +754,151 @@ pub const ISimilarityTraitsTable = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarityFileIdTable_Value = Guid.initString("96236a7f-9dbc-11da-9e3f-0011114ae311");
-pub const IID_ISimilarityFileIdTable = &IID_ISimilarityFileIdTable_Value;
-pub const ISimilarityFileIdTable = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateTable: *const fn(
-            self: *const ISimilarityFileIdTable,
-            path: ?PWSTR,
-            truncate: BOOL,
-            securityDescriptor: ?*u8,
-            recordSize: u32,
-            isNew: ?*RdcCreatedTables,
-        ) callconv(.winapi) HRESULT,
-        CreateTableIndirect: *const fn(
-            self: *const ISimilarityFileIdTable,
-            fileIdFile: ?*IRdcFileWriter,
-            truncate: BOOL,
-            recordSize: u32,
-            isNew: ?*RdcCreatedTables,
-        ) callconv(.winapi) HRESULT,
-        CloseTable: *const fn(
-            self: *const ISimilarityFileIdTable,
-            isValid: BOOL,
-        ) callconv(.winapi) HRESULT,
-        Append: *const fn(
-            self: *const ISimilarityFileIdTable,
-            similarityFileId: ?*SimilarityFileId,
-            similarityFileIndex: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Lookup: *const fn(
-            self: *const ISimilarityFileIdTable,
-            similarityFileIndex: u32,
-            similarityFileId: ?*SimilarityFileId,
-        ) callconv(.winapi) HRESULT,
-        Invalidate: *const fn(
-            self: *const ISimilarityFileIdTable,
-            similarityFileIndex: u32,
-        ) callconv(.winapi) HRESULT,
-        GetRecordCount: *const fn(
-            self: *const ISimilarityFileIdTable,
-            recordCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateTable(self: *const ISimilarityFileIdTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
-    }
-    pub fn CreateTableIndirect(self: *const ISimilarityFileIdTable, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTableIndirect(self, fileIdFile, truncate, recordSize, isNew);
-    }
-    pub fn CloseTable(self: *const ISimilarityFileIdTable, isValid: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.CloseTable(self, isValid);
-    }
-    pub fn Append(self: *const ISimilarityFileIdTable, similarityFileId: ?*SimilarityFileId, similarityFileIndex: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Append(self, similarityFileId, similarityFileIndex);
-    }
-    pub fn Lookup(self: *const ISimilarityFileIdTable, similarityFileIndex: u32, similarityFileId: ?*SimilarityFileId) callconv(.@"inline") HRESULT {
-        return self.vtable.Lookup(self, similarityFileIndex, similarityFileId);
-    }
-    pub fn Invalidate(self: *const ISimilarityFileIdTable, similarityFileIndex: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Invalidate(self, similarityFileIndex);
-    }
-    pub fn GetRecordCount(self: *const ISimilarityFileIdTable, recordCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRecordCount(self, recordCount);
-    }
+pub const RDC_ErrorCode = enum(i32) {
+    NoError = 0,
+    HeaderVersionNewer = 1,
+    HeaderVersionOlder = 2,
+    HeaderMissingOrCorrupt = 3,
+    HeaderWrongType = 4,
+    DataMissingOrCorrupt = 5,
+    DataTooManyRecords = 6,
+    FileChecksumMismatch = 7,
+    ApplicationError = 8,
+    Aborted = 9,
+    Win32Error = 10,
+};
+pub const RDC_NoError = RDC_ErrorCode.NoError;
+pub const RDC_HeaderVersionNewer = RDC_ErrorCode.HeaderVersionNewer;
+pub const RDC_HeaderVersionOlder = RDC_ErrorCode.HeaderVersionOlder;
+pub const RDC_HeaderMissingOrCorrupt = RDC_ErrorCode.HeaderMissingOrCorrupt;
+pub const RDC_HeaderWrongType = RDC_ErrorCode.HeaderWrongType;
+pub const RDC_DataMissingOrCorrupt = RDC_ErrorCode.DataMissingOrCorrupt;
+pub const RDC_DataTooManyRecords = RDC_ErrorCode.DataTooManyRecords;
+pub const RDC_FileChecksumMismatch = RDC_ErrorCode.FileChecksumMismatch;
+pub const RDC_ApplicationError = RDC_ErrorCode.ApplicationError;
+pub const RDC_Aborted = RDC_ErrorCode.Aborted;
+pub const RDC_Win32Error = RDC_ErrorCode.Win32Error;
+
+pub const RdcBufferPointer = extern struct {
+    m_Size: u32,
+    m_Used: u32,
+    m_Data: ?*u8,
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcSimilarityGenerator_Value = Guid.initString("96236a80-9dbc-11da-9e3f-0011114ae311");
-pub const IID_IRdcSimilarityGenerator = &IID_IRdcSimilarityGenerator_Value;
-pub const IRdcSimilarityGenerator = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnableSimilarity: *const fn(
-            self: *const IRdcSimilarityGenerator,
-        ) callconv(.winapi) HRESULT,
-        Results: *const fn(
-            self: *const IRdcSimilarityGenerator,
-            similarityData: ?*SimilarityData,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn EnableSimilarity(self: *const IRdcSimilarityGenerator) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableSimilarity(self);
-    }
-    pub fn Results(self: *const IRdcSimilarityGenerator, similarityData: ?*SimilarityData) callconv(.@"inline") HRESULT {
-        return self.vtable.Results(self, similarityData);
-    }
+const CLSID_RdcComparator_Value = Guid.initString("96236a8b-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcComparator = &CLSID_RdcComparator_Value;
+
+pub const RdcCreatedTables = enum(i32) {
+    InvalidOrUnknown = 0,
+    Existing = 1,
+    New = 2,
+};
+pub const RDCTABLE_InvalidOrUnknown = RdcCreatedTables.InvalidOrUnknown;
+pub const RDCTABLE_Existing = RdcCreatedTables.Existing;
+pub const RDCTABLE_New = RdcCreatedTables.New;
+
+const CLSID_RdcFileReader_Value = Guid.initString("96236a89-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcFileReader = &CLSID_RdcFileReader_Value;
+
+const CLSID_RdcGenerator_Value = Guid.initString("96236a88-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcGenerator = &CLSID_RdcGenerator_Value;
+
+const CLSID_RdcGeneratorFilterMaxParameters_Value = Guid.initString("96236a87-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcGeneratorFilterMaxParameters = &CLSID_RdcGeneratorFilterMaxParameters_Value;
+
+const CLSID_RdcGeneratorParameters_Value = Guid.initString("96236a86-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcGeneratorParameters = &CLSID_RdcGeneratorParameters_Value;
+
+const CLSID_RdcLibrary_Value = Guid.initString("96236a85-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcLibrary = &CLSID_RdcLibrary_Value;
+
+pub const RdcMappingAccessMode = enum(i32) {
+    Undefined = 0,
+    ReadOnly = 1,
+    ReadWrite = 2,
+};
+pub const RDCMAPPING_Undefined = RdcMappingAccessMode.Undefined;
+pub const RDCMAPPING_ReadOnly = RdcMappingAccessMode.ReadOnly;
+pub const RDCMAPPING_ReadWrite = RdcMappingAccessMode.ReadWrite;
+
+pub const RdcNeed = extern struct {
+    m_BlockType: RdcNeedType,
+    m_FileOffset: u64,
+    m_BlockLength: u64,
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IFindSimilarResults_Value = Guid.initString("96236a81-9dbc-11da-9e3f-0011114ae311");
-pub const IID_IFindSimilarResults = &IID_IFindSimilarResults_Value;
-pub const IFindSimilarResults = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSize: *const fn(
-            self: *const IFindSimilarResults,
-            size: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetNextFileId: *const fn(
-            self: *const IFindSimilarResults,
-            numTraitsMatched: ?*u32,
-            similarityFileId: ?*SimilarityFileId,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetSize(self: *const IFindSimilarResults, size: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSize(self, size);
-    }
-    pub fn GetNextFileId(self: *const IFindSimilarResults, numTraitsMatched: ?*u32, similarityFileId: ?*SimilarityFileId) callconv(.@"inline") HRESULT {
-        return self.vtable.GetNextFileId(self, numTraitsMatched, similarityFileId);
-    }
+pub const RdcNeedPointer = extern struct {
+    m_Size: u32,
+    m_Used: u32,
+    m_Data: ?*RdcNeed,
 };
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarity_Value = Guid.initString("96236a83-9dbc-11da-9e3f-0011114ae311");
-pub const IID_ISimilarity = &IID_ISimilarity_Value;
-pub const ISimilarity = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateTable: *const fn(
-            self: *const ISimilarity,
-            path: ?PWSTR,
-            truncate: BOOL,
-            securityDescriptor: ?*u8,
-            recordSize: u32,
-            isNew: ?*RdcCreatedTables,
-        ) callconv(.winapi) HRESULT,
-        CreateTableIndirect: *const fn(
-            self: *const ISimilarity,
-            mapping: ?*ISimilarityTraitsMapping,
-            fileIdFile: ?*IRdcFileWriter,
-            truncate: BOOL,
-            recordSize: u32,
-            isNew: ?*RdcCreatedTables,
-        ) callconv(.winapi) HRESULT,
-        CloseTable: *const fn(
-            self: *const ISimilarity,
-            isValid: BOOL,
-        ) callconv(.winapi) HRESULT,
-        Append: *const fn(
-            self: *const ISimilarity,
-            similarityFileId: ?*SimilarityFileId,
-            similarityData: ?*SimilarityData,
-        ) callconv(.winapi) HRESULT,
-        FindSimilarFileId: *const fn(
-            self: *const ISimilarity,
-            similarityData: ?*SimilarityData,
-            numberOfMatchesRequired: u16,
-            resultsSize: u32,
-            findSimilarResults: ?*?*IFindSimilarResults,
-        ) callconv(.winapi) HRESULT,
-        CopyAndSwap: *const fn(
-            self: *const ISimilarity,
-            newSimilarityTables: ?*ISimilarity,
-            reportProgress: ?*ISimilarityReportProgress,
-        ) callconv(.winapi) HRESULT,
-        GetRecordCount: *const fn(
-            self: *const ISimilarity,
-            recordCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateTable(self: *const ISimilarity, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
-    }
-    pub fn CreateTableIndirect(self: *const ISimilarity, mapping: ?*ISimilarityTraitsMapping, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateTableIndirect(self, mapping, fileIdFile, truncate, recordSize, isNew);
-    }
-    pub fn CloseTable(self: *const ISimilarity, isValid: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.CloseTable(self, isValid);
-    }
-    pub fn Append(self: *const ISimilarity, similarityFileId: ?*SimilarityFileId, similarityData: ?*SimilarityData) callconv(.@"inline") HRESULT {
-        return self.vtable.Append(self, similarityFileId, similarityData);
-    }
-    pub fn FindSimilarFileId(self: *const ISimilarity, similarityData: ?*SimilarityData, numberOfMatchesRequired: u16, resultsSize: u32, findSimilarResults: ?*?*IFindSimilarResults) callconv(.@"inline") HRESULT {
-        return self.vtable.FindSimilarFileId(self, similarityData, numberOfMatchesRequired, resultsSize, findSimilarResults);
-    }
-    pub fn CopyAndSwap(self: *const ISimilarity, newSimilarityTables: ?*ISimilarity, reportProgress: ?*ISimilarityReportProgress) callconv(.@"inline") HRESULT {
-        return self.vtable.CopyAndSwap(self, newSimilarityTables, reportProgress);
-    }
-    pub fn GetRecordCount(self: *const ISimilarity, recordCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRecordCount(self, recordCount);
-    }
+pub const RdcNeedType = enum(i32) {
+    SOURCE = 0,
+    TARGET = 1,
+    SEED = 2,
+    SEED_MAX = 255,
 };
+pub const RDCNEED_SOURCE = RdcNeedType.SOURCE;
+pub const RDCNEED_TARGET = RdcNeedType.TARGET;
+pub const RDCNEED_SEED = RdcNeedType.SEED;
+pub const RDCNEED_SEED_MAX = RdcNeedType.SEED_MAX;
+
+pub const RdcSignature = extern struct {
+    m_Signature: [16]u8,
+    m_BlockLength: u16,
+};
+
+pub const RdcSignaturePointer = extern struct {
+    m_Size: u32,
+    m_Used: u32,
+    m_Data: ?*RdcSignature,
+};
+
+const CLSID_RdcSignatureReader_Value = Guid.initString("96236a8a-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcSignatureReader = &CLSID_RdcSignatureReader_Value;
+
+const CLSID_RdcSimilarityGenerator_Value = Guid.initString("96236a92-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_RdcSimilarityGenerator = &CLSID_RdcSimilarityGenerator_Value;
+
+const CLSID_Similarity_Value = Guid.initString("96236a91-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_Similarity = &CLSID_Similarity_Value;
+
+pub const SimilarityData = extern struct {
+    m_Data: [16]u8,
+};
+
+pub const SimilarityDumpData = extern struct {
+    m_FileIndex: u32,
+    m_Data: SimilarityData,
+};
+
+pub const SimilarityFileId = extern struct {
+    m_FileId: [32]u8,
+};
+
+const CLSID_SimilarityFileIdTable_Value = Guid.initString("96236a90-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_SimilarityFileIdTable = &CLSID_SimilarityFileIdTable_Value;
+
+pub const SimilarityMappedViewInfo = extern struct {
+    m_Data: ?*u8,
+    m_Length: u32,
+};
+
+const CLSID_SimilarityReportProgress_Value = Guid.initString("96236a8d-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_SimilarityReportProgress = &CLSID_SimilarityReportProgress_Value;
+
+const CLSID_SimilarityTableDumpState_Value = Guid.initString("96236a8e-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_SimilarityTableDumpState = &CLSID_SimilarityTableDumpState_Value;
+
+const CLSID_SimilarityTraitsMappedView_Value = Guid.initString("96236a95-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_SimilarityTraitsMappedView = &CLSID_SimilarityTraitsMappedView_Value;
+
+const CLSID_SimilarityTraitsMapping_Value = Guid.initString("96236a94-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_SimilarityTraitsMapping = &CLSID_SimilarityTraitsMapping_Value;
+
+const CLSID_SimilarityTraitsTable_Value = Guid.initString("96236a8f-9dbc-11da-9e3f-0011114ae311");
+pub const CLSID_SimilarityTraitsTable = &CLSID_SimilarityTraitsTable_Value;
 
 
 //--------------------------------------------------------------------------------

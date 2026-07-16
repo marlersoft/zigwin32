@@ -3,69 +3,367 @@
 // Section: Constants (53)
 //--------------------------------------------------------------------------------
 pub const APOERR_ALREADY_INITIALIZED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073919));
-pub const APOERR_NOT_INITIALIZED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073918));
+pub const APOERR_ALREADY_UNLOCKED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073914));
+pub const APOERR_APO_LOCKED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073910));
+pub const APOERR_BUFFERS_OVERLAP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073915));
 pub const APOERR_FORMAT_NOT_SUPPORTED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073917));
 pub const APOERR_INVALID_APO_CLSID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073916));
-pub const APOERR_BUFFERS_OVERLAP = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073915));
-pub const APOERR_ALREADY_UNLOCKED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073914));
-pub const APOERR_NUM_CONNECTIONS_INVALID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073913));
-pub const APOERR_INVALID_OUTPUT_MAXFRAMECOUNT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073912));
-pub const APOERR_INVALID_CONNECTION_FORMAT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073911));
-pub const APOERR_APO_LOCKED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073910));
 pub const APOERR_INVALID_COEFFCOUNT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073909));
 pub const APOERR_INVALID_COEFFICIENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073908));
+pub const APOERR_INVALID_CONNECTION_FORMAT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073911));
 pub const APOERR_INVALID_CURVE_PARAM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073907));
 pub const APOERR_INVALID_INPUTID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073906));
-pub const AUDIO_MIN_FRAMERATE = @as(f64, 10.0);
+pub const APOERR_INVALID_OUTPUT_MAXFRAMECOUNT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073912));
+pub const APOERR_NOT_INITIALIZED = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073918));
+pub const APOERR_NUM_CONNECTIONS_INVALID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073913));
+pub const AUDIO_MAX_CHANNELS = @as(u32, 4096);
 pub const AUDIO_MAX_FRAMERATE = @as(f64, 384000.0);
 pub const AUDIO_MIN_CHANNELS = @as(u32, 1);
-pub const AUDIO_MAX_CHANNELS = @as(u32, 4096);
-pub const PKEY_FX_Association = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 0 };
-pub const PKEY_FX_PreMixEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 1 };
-pub const PKEY_FX_PostMixEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 2 };
-pub const PKEY_FX_UserInterfaceClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 3 };
-pub const PKEY_FX_FriendlyName = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 4 };
-pub const PKEY_FX_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 5 };
-pub const PKEY_FX_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 6 };
-pub const PKEY_FX_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 7 };
-pub const PKEY_FX_KeywordDetector_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 8 };
-pub const PKEY_FX_KeywordDetector_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 9 };
-pub const PKEY_FX_KeywordDetector_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 10 };
-pub const PKEY_FX_Offload_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 11 };
-pub const PKEY_FX_Offload_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 12 };
-pub const PKEY_CompositeFX_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 13 };
-pub const PKEY_CompositeFX_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 14 };
-pub const PKEY_CompositeFX_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 15 };
-pub const PKEY_CompositeFX_KeywordDetector_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 16 };
-pub const PKEY_CompositeFX_KeywordDetector_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 17 };
-pub const PKEY_CompositeFX_KeywordDetector_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 18 };
-pub const PKEY_CompositeFX_Offload_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 19 };
-pub const PKEY_CompositeFX_Offload_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 20 };
-pub const PKEY_SFX_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 5 };
-pub const PKEY_MFX_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 6 };
-pub const PKEY_EFX_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 7 };
-pub const PKEY_SFX_KeywordDetector_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 8 };
-pub const PKEY_MFX_KeywordDetector_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 9 };
-pub const PKEY_EFX_KeywordDetector_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 10 };
-pub const PKEY_SFX_Offload_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 11 };
-pub const PKEY_MFX_Offload_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 12 };
-pub const PKEY_APO_SWFallback_ProcessingModes = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 13 };
-pub const SID_AudioProcessingObjectRTQueue = Guid.initString("458c1a1f-6899-4c12-99ac-e2e6ac253104");
-pub const SID_AudioProcessingObjectLoggingService = Guid.initString("8b8008af-09f9-456e-a173-bdb58499bce7");
-pub const AUDIOMEDIATYPE_EQUAL_FORMAT_TYPES = @as(u32, 2);
+pub const AUDIO_MIN_FRAMERATE = @as(f64, 10.0);
 pub const AUDIOMEDIATYPE_EQUAL_FORMAT_DATA = @as(u32, 4);
+pub const AUDIOMEDIATYPE_EQUAL_FORMAT_TYPES = @as(u32, 2);
 pub const AUDIOMEDIATYPE_EQUAL_FORMAT_USER_DATA = @as(u32, 8);
+pub const PKEY_APO_SWFallback_ProcessingModes = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 13 };
+pub const PKEY_CompositeFX_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 15 };
+pub const PKEY_CompositeFX_KeywordDetector_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 18 };
+pub const PKEY_CompositeFX_KeywordDetector_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 17 };
+pub const PKEY_CompositeFX_KeywordDetector_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 16 };
+pub const PKEY_CompositeFX_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 14 };
+pub const PKEY_CompositeFX_Offload_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 20 };
+pub const PKEY_CompositeFX_Offload_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 19 };
+pub const PKEY_CompositeFX_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 13 };
+pub const PKEY_EFX_KeywordDetector_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 10 };
+pub const PKEY_EFX_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 7 };
+pub const PKEY_FX_Association = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 0 };
+pub const PKEY_FX_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 7 };
+pub const PKEY_FX_FriendlyName = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 4 };
+pub const PKEY_FX_KeywordDetector_EndpointEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 10 };
+pub const PKEY_FX_KeywordDetector_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 9 };
+pub const PKEY_FX_KeywordDetector_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 8 };
+pub const PKEY_FX_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 6 };
+pub const PKEY_FX_Offload_ModeEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 12 };
+pub const PKEY_FX_Offload_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 11 };
+pub const PKEY_FX_PostMixEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 2 };
+pub const PKEY_FX_PreMixEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 1 };
+pub const PKEY_FX_StreamEffectClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 5 };
+pub const PKEY_FX_UserInterfaceClsid = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 3 };
+pub const PKEY_MFX_KeywordDetector_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 9 };
+pub const PKEY_MFX_Offload_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 12 };
+pub const PKEY_MFX_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 6 };
+pub const PKEY_SFX_KeywordDetector_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 8 };
+pub const PKEY_SFX_Offload_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 11 };
+pub const PKEY_SFX_ProcessingModes_Supported_For_Streaming = PROPERTYKEY { .fmtid = Guid.initString("d3993a3f-99c2-4402-b5ec-a92a0367664b"), .pid = 5 };
+pub const SID_AudioProcessingObjectLoggingService = Guid.initString("8b8008af-09f9-456e-a173-bdb58499bce7");
+pub const SID_AudioProcessingObjectRTQueue = Guid.initString("458c1a1f-6899-4c12-99ac-e2e6ac253104");
 
 //--------------------------------------------------------------------------------
 // Section: Types (44)
 //--------------------------------------------------------------------------------
-pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
-    guidFormatType: Guid,
-    dwSamplesPerFrame: u32,
-    dwBytesPerSampleContainer: u32,
-    dwValidBitsPerSample: u32,
-    fFramesPerSecond: f32,
-    dwChannelMask: u32,
+pub const APO_BUFFER_FLAGS = enum(i32) {
+    INVALID = 0,
+    VALID = 1,
+    SILENT = 2,
+};
+pub const BUFFER_INVALID = APO_BUFFER_FLAGS.INVALID;
+pub const BUFFER_VALID = APO_BUFFER_FLAGS.VALID;
+pub const BUFFER_SILENT = APO_BUFFER_FLAGS.SILENT;
+
+pub const APO_CONNECTION_BUFFER_TYPE = enum(i32) {
+    ALLOCATED = 0,
+    EXTERNAL = 1,
+    DEPENDANT = 2,
+};
+pub const APO_CONNECTION_BUFFER_TYPE_ALLOCATED = APO_CONNECTION_BUFFER_TYPE.ALLOCATED;
+pub const APO_CONNECTION_BUFFER_TYPE_EXTERNAL = APO_CONNECTION_BUFFER_TYPE.EXTERNAL;
+pub const APO_CONNECTION_BUFFER_TYPE_DEPENDANT = APO_CONNECTION_BUFFER_TYPE.DEPENDANT;
+
+pub const APO_CONNECTION_DESCRIPTOR = extern struct {
+    Type: APO_CONNECTION_BUFFER_TYPE,
+    pBuffer: usize,
+    u32MaxFrameCount: u32,
+    pFormat: ?*IAudioMediaType,
+    u32Signature: u32,
+};
+
+pub const APO_CONNECTION_PROPERTY = extern struct {
+    pBuffer: usize,
+    u32ValidFrameCount: u32,
+    u32BufferFlags: APO_BUFFER_FLAGS,
+    u32Signature: u32,
+};
+
+pub const APO_CONNECTION_PROPERTY_V2 = extern struct {
+    property: APO_CONNECTION_PROPERTY,
+    u64QPCTime: u64,
+};
+
+pub const APO_FLAG = enum(i32) {
+    NONE = 0,
+    INPLACE = 1,
+    SAMPLESPERFRAME_MUST_MATCH = 2,
+    FRAMESPERSECOND_MUST_MATCH = 4,
+    BITSPERSAMPLE_MUST_MATCH = 8,
+    MIXER = 16,
+    DEFAULT = 14,
+};
+pub const APO_FLAG_NONE = APO_FLAG.NONE;
+pub const APO_FLAG_INPLACE = APO_FLAG.INPLACE;
+pub const APO_FLAG_SAMPLESPERFRAME_MUST_MATCH = APO_FLAG.SAMPLESPERFRAME_MUST_MATCH;
+pub const APO_FLAG_FRAMESPERSECOND_MUST_MATCH = APO_FLAG.FRAMESPERSECOND_MUST_MATCH;
+pub const APO_FLAG_BITSPERSAMPLE_MUST_MATCH = APO_FLAG.BITSPERSAMPLE_MUST_MATCH;
+pub const APO_FLAG_MIXER = APO_FLAG.MIXER;
+pub const APO_FLAG_DEFAULT = APO_FLAG.DEFAULT;
+
+pub const APO_LOG_LEVEL = enum(i32) {
+    ALWAYS = 0,
+    CRITICAL = 1,
+    ERROR = 2,
+    WARNING = 3,
+    INFO = 4,
+    VERBOSE = 5,
+};
+pub const APO_LOG_LEVEL_ALWAYS = APO_LOG_LEVEL.ALWAYS;
+pub const APO_LOG_LEVEL_CRITICAL = APO_LOG_LEVEL.CRITICAL;
+pub const APO_LOG_LEVEL_ERROR = APO_LOG_LEVEL.ERROR;
+pub const APO_LOG_LEVEL_WARNING = APO_LOG_LEVEL.WARNING;
+pub const APO_LOG_LEVEL_INFO = APO_LOG_LEVEL.INFO;
+pub const APO_LOG_LEVEL_VERBOSE = APO_LOG_LEVEL.VERBOSE;
+
+pub const APO_NOTIFICATION = extern struct {
+    type: APO_NOTIFICATION_TYPE,
+    Anonymous: extern union {
+        audioEndpointVolumeChange: AUDIO_ENDPOINT_VOLUME_CHANGE_NOTIFICATION,
+        audioEndpointPropertyChange: AUDIO_ENDPOINT_PROPERTY_CHANGE_NOTIFICATION,
+        audioSystemEffectsPropertyChange: AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_NOTIFICATION,
+    },
+};
+
+pub const APO_NOTIFICATION_DESCRIPTOR = extern struct {
+    type: APO_NOTIFICATION_TYPE,
+    Anonymous: extern union {
+        audioEndpointVolume: AUDIO_ENDPOINT_VOLUME_APO_NOTIFICATION_DESCRIPTOR,
+        audioEndpointPropertyChange: AUDIO_ENDPOINT_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR,
+        audioSystemEffectsPropertyChange: AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR,
+    },
+};
+
+pub const APO_NOTIFICATION_TYPE = enum(i32) {
+    NONE = 0,
+    ENDPOINT_VOLUME = 1,
+    ENDPOINT_PROPERTY_CHANGE = 2,
+    SYSTEM_EFFECTS_PROPERTY_CHANGE = 3,
+};
+pub const APO_NOTIFICATION_TYPE_NONE = APO_NOTIFICATION_TYPE.NONE;
+pub const APO_NOTIFICATION_TYPE_ENDPOINT_VOLUME = APO_NOTIFICATION_TYPE.ENDPOINT_VOLUME;
+pub const APO_NOTIFICATION_TYPE_ENDPOINT_PROPERTY_CHANGE = APO_NOTIFICATION_TYPE.ENDPOINT_PROPERTY_CHANGE;
+pub const APO_NOTIFICATION_TYPE_SYSTEM_EFFECTS_PROPERTY_CHANGE = APO_NOTIFICATION_TYPE.SYSTEM_EFFECTS_PROPERTY_CHANGE;
+
+pub const APO_REG_PROPERTIES = extern struct {
+    clsid: Guid,
+    Flags: APO_FLAG,
+    szFriendlyName: [256]u16,
+    szCopyrightInfo: [256]u16,
+    u32MajorVersion: u32,
+    u32MinorVersion: u32,
+    u32MinInputConnections: u32,
+    u32MaxInputConnections: u32,
+    u32MinOutputConnections: u32,
+    u32MaxOutputConnections: u32,
+    u32MaxInstances: u32,
+    u32NumAPOInterfaces: u32,
+    iidAPOInterfaceList: [1]Guid,
+};
+
+pub const APOInitBaseStruct = extern struct {
+    cbSize: u32,
+    clsid: Guid,
+};
+
+pub const APOInitSystemEffects = extern struct {
+    APOInit: APOInitBaseStruct,
+    pAPOEndpointProperties: ?*IPropertyStore,
+    pAPOSystemEffectsProperties: ?*IPropertyStore,
+    pReserved: ?*anyopaque,
+    pDeviceCollection: ?*IMMDeviceCollection,
+};
+
+pub const APOInitSystemEffects2 = extern struct {
+    APOInit: APOInitBaseStruct,
+    pAPOEndpointProperties: ?*IPropertyStore,
+    pAPOSystemEffectsProperties: ?*IPropertyStore,
+    pReserved: ?*anyopaque,
+    pDeviceCollection: ?*IMMDeviceCollection,
+    nSoftwareIoDeviceInCollection: u32,
+    nSoftwareIoConnectorIndex: u32,
+    AudioProcessingMode: Guid,
+    InitializeForDiscoveryOnly: BOOL,
+};
+
+pub const APOInitSystemEffects3 = extern struct {
+    APOInit: APOInitBaseStruct,
+    pAPOEndpointProperties: ?*IPropertyStore,
+    pServiceProvider: ?*IServiceProvider,
+    pDeviceCollection: ?*IMMDeviceCollection,
+    nSoftwareIoDeviceInCollection: u32,
+    nSoftwareIoConnectorIndex: u32,
+    AudioProcessingMode: Guid,
+    InitializeForDiscoveryOnly: BOOL,
+};
+
+pub const AUDIO_ENDPOINT_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR = extern struct {
+    device: ?*IMMDevice,
+};
+
+pub const AUDIO_ENDPOINT_PROPERTY_CHANGE_NOTIFICATION = extern struct {
+    endpoint: ?*IMMDevice,
+    propertyStore: ?*IPropertyStore,
+    propertyKey: PROPERTYKEY,
+};
+
+pub const AUDIO_ENDPOINT_VOLUME_APO_NOTIFICATION_DESCRIPTOR = extern struct {
+    device: ?*IMMDevice,
+};
+
+pub const AUDIO_ENDPOINT_VOLUME_CHANGE_NOTIFICATION = extern struct {
+    endpoint: ?*IMMDevice,
+    volume: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
+};
+
+pub const AUDIO_FLOW_TYPE = enum(i32) {
+    LL = 0,
+    SH = 1,
+};
+pub const AUDIO_FLOW_PULL = AUDIO_FLOW_TYPE.LL;
+pub const AUDIO_FLOW_PUSH = AUDIO_FLOW_TYPE.SH;
+
+pub const AUDIO_SYSTEMEFFECT = extern struct {
+    id: Guid,
+    canSetState: BOOL,
+    state: AUDIO_SYSTEMEFFECT_STATE,
+};
+
+pub const AUDIO_SYSTEMEFFECT_STATE = enum(i32) {
+    FF = 0,
+    N = 1,
+};
+pub const AUDIO_SYSTEMEFFECT_STATE_OFF = AUDIO_SYSTEMEFFECT_STATE.FF;
+pub const AUDIO_SYSTEMEFFECT_STATE_ON = AUDIO_SYSTEMEFFECT_STATE.N;
+
+pub const AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR = extern struct {
+    device: ?*IMMDevice,
+    propertyStoreContext: Guid,
+};
+
+pub const AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_NOTIFICATION = extern struct {
+    endpoint: ?*IMMDevice,
+    propertyStoreContext: Guid,
+    propertyStoreType: AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE,
+    propertyStore: ?*IPropertyStore,
+    propertyKey: PROPERTYKEY,
+};
+
+pub const AudioFXExtensionParams = extern struct {
+    AddPageParam: LPARAM,
+    pwstrEndpointID: ?PWSTR,
+    pFxProperties: ?*IPropertyStore,
+};
+
+pub const EAudioConstriction = enum(i32) {
+    Off = 0,
+    @"48_16" = 1,
+    @"44_16" = 2,
+    @"14_14" = 3,
+    Mute = 4,
+};
+pub const eAudioConstrictionOff = EAudioConstriction.Off;
+pub const eAudioConstriction48_16 = EAudioConstriction.@"48_16";
+pub const eAudioConstriction44_16 = EAudioConstriction.@"44_16";
+pub const eAudioConstriction14_14 = EAudioConstriction.@"14_14";
+pub const eAudioConstrictionMute = EAudioConstriction.Mute;
+
+pub const FNAPONOTIFICATIONCALLBACK = *const fn(
+    pProperties: ?*APO_REG_PROPERTIES,
+    pvRefData: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+const IID_IApoAcousticEchoCancellation_Value = Guid.initString("25385759-3236-4101-a943-25693dfb5d2d");
+pub const IID_IApoAcousticEchoCancellation = &IID_IApoAcousticEchoCancellation_Value;
+pub const IApoAcousticEchoCancellation = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+};
+
+const IID_IApoAuxiliaryInputConfiguration_Value = Guid.initString("4ceb0aab-fa19-48ed-a857-87771ae1b768");
+pub const IID_IApoAuxiliaryInputConfiguration = &IID_IApoAuxiliaryInputConfiguration_Value;
+pub const IApoAuxiliaryInputConfiguration = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddAuxiliaryInput: *const fn(
+            self: *const IApoAuxiliaryInputConfiguration,
+            dwInputId: u32,
+            cbDataSize: u32,
+            pbyData: [*:0]u8,
+            pInputConnection: ?*APO_CONNECTION_DESCRIPTOR,
+        ) callconv(.winapi) HRESULT,
+        RemoveAuxiliaryInput: *const fn(
+            self: *const IApoAuxiliaryInputConfiguration,
+            dwInputId: u32,
+        ) callconv(.winapi) HRESULT,
+        IsInputFormatSupported: *const fn(
+            self: *const IApoAuxiliaryInputConfiguration,
+            pRequestedInputFormat: ?*IAudioMediaType,
+            ppSupportedInputFormat: ?*?*IAudioMediaType,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddAuxiliaryInput(self: *const IApoAuxiliaryInputConfiguration, dwInputId: u32, cbDataSize: u32, pbyData: [*:0]u8, pInputConnection: ?*APO_CONNECTION_DESCRIPTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddAuxiliaryInput(self, dwInputId, cbDataSize, pbyData, pInputConnection);
+    }
+    pub fn RemoveAuxiliaryInput(self: *const IApoAuxiliaryInputConfiguration, dwInputId: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveAuxiliaryInput(self, dwInputId);
+    }
+    pub fn IsInputFormatSupported(self: *const IApoAuxiliaryInputConfiguration, pRequestedInputFormat: ?*IAudioMediaType, ppSupportedInputFormat: ?*?*IAudioMediaType) callconv(.@"inline") HRESULT {
+        return self.vtable.IsInputFormatSupported(self, pRequestedInputFormat, ppSupportedInputFormat);
+    }
+};
+
+const IID_IApoAuxiliaryInputRT_Value = Guid.initString("f851809c-c177-49a0-b1b2-b66f017943ab");
+pub const IID_IApoAuxiliaryInputRT = &IID_IApoAuxiliaryInputRT_Value;
+pub const IApoAuxiliaryInputRT = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AcceptInput: *const fn(
+            self: *const IApoAuxiliaryInputRT,
+            dwInputId: u32,
+            pInputConnection: ?*const APO_CONNECTION_PROPERTY,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AcceptInput(self: *const IApoAuxiliaryInputRT, dwInputId: u32, pInputConnection: ?*const APO_CONNECTION_PROPERTY) callconv(.@"inline") void {
+        return self.vtable.AcceptInput(self, dwInputId, pInputConnection);
+    }
+};
+
+const IID_IAudioDeviceModulesClient_Value = Guid.initString("98f37dac-d0b6-49f5-896a-aa4d169a4c48");
+pub const IID_IAudioDeviceModulesClient = &IID_IAudioDeviceModulesClient_Value;
+pub const IAudioDeviceModulesClient = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAudioDeviceModulesManager: *const fn(
+            self: *const IAudioDeviceModulesClient,
+            pAudioDeviceModulesManager: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetAudioDeviceModulesManager(self: *const IAudioDeviceModulesClient, pAudioDeviceModulesManager: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAudioDeviceModulesManager(self, pAudioDeviceModulesManager);
+    }
 };
 
 const IID_IAudioMediaType_Value = Guid.initString("4e997f73-b71f-4798-873b-ed7dfcf15b4d");
@@ -103,188 +401,6 @@ pub const IAudioMediaType = extern union {
     }
     pub fn GetUncompressedAudioFormat(self: *const IAudioMediaType, pUncompressedAudioFormat: ?*UNCOMPRESSEDAUDIOFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.GetUncompressedAudioFormat(self, pUncompressedAudioFormat);
-    }
-};
-
-pub const APO_BUFFER_FLAGS = enum(i32) {
-    INVALID = 0,
-    VALID = 1,
-    SILENT = 2,
-};
-pub const BUFFER_INVALID = APO_BUFFER_FLAGS.INVALID;
-pub const BUFFER_VALID = APO_BUFFER_FLAGS.VALID;
-pub const BUFFER_SILENT = APO_BUFFER_FLAGS.SILENT;
-
-pub const APO_CONNECTION_PROPERTY = extern struct {
-    pBuffer: usize,
-    u32ValidFrameCount: u32,
-    u32BufferFlags: APO_BUFFER_FLAGS,
-    u32Signature: u32,
-};
-
-pub const APO_CONNECTION_PROPERTY_V2 = extern struct {
-    property: APO_CONNECTION_PROPERTY,
-    u64QPCTime: u64,
-};
-
-pub const APO_CONNECTION_BUFFER_TYPE = enum(i32) {
-    ALLOCATED = 0,
-    EXTERNAL = 1,
-    DEPENDANT = 2,
-};
-pub const APO_CONNECTION_BUFFER_TYPE_ALLOCATED = APO_CONNECTION_BUFFER_TYPE.ALLOCATED;
-pub const APO_CONNECTION_BUFFER_TYPE_EXTERNAL = APO_CONNECTION_BUFFER_TYPE.EXTERNAL;
-pub const APO_CONNECTION_BUFFER_TYPE_DEPENDANT = APO_CONNECTION_BUFFER_TYPE.DEPENDANT;
-
-pub const APO_CONNECTION_DESCRIPTOR = extern struct {
-    Type: APO_CONNECTION_BUFFER_TYPE,
-    pBuffer: usize,
-    u32MaxFrameCount: u32,
-    pFormat: ?*IAudioMediaType,
-    u32Signature: u32,
-};
-
-pub const APO_FLAG = enum(i32) {
-    NONE = 0,
-    INPLACE = 1,
-    SAMPLESPERFRAME_MUST_MATCH = 2,
-    FRAMESPERSECOND_MUST_MATCH = 4,
-    BITSPERSAMPLE_MUST_MATCH = 8,
-    MIXER = 16,
-    DEFAULT = 14,
-};
-pub const APO_FLAG_NONE = APO_FLAG.NONE;
-pub const APO_FLAG_INPLACE = APO_FLAG.INPLACE;
-pub const APO_FLAG_SAMPLESPERFRAME_MUST_MATCH = APO_FLAG.SAMPLESPERFRAME_MUST_MATCH;
-pub const APO_FLAG_FRAMESPERSECOND_MUST_MATCH = APO_FLAG.FRAMESPERSECOND_MUST_MATCH;
-pub const APO_FLAG_BITSPERSAMPLE_MUST_MATCH = APO_FLAG.BITSPERSAMPLE_MUST_MATCH;
-pub const APO_FLAG_MIXER = APO_FLAG.MIXER;
-pub const APO_FLAG_DEFAULT = APO_FLAG.DEFAULT;
-
-pub const APO_REG_PROPERTIES = extern struct {
-    clsid: Guid,
-    Flags: APO_FLAG,
-    szFriendlyName: [256]u16,
-    szCopyrightInfo: [256]u16,
-    u32MajorVersion: u32,
-    u32MinorVersion: u32,
-    u32MinInputConnections: u32,
-    u32MaxInputConnections: u32,
-    u32MinOutputConnections: u32,
-    u32MaxOutputConnections: u32,
-    u32MaxInstances: u32,
-    u32NumAPOInterfaces: u32,
-    iidAPOInterfaceList: [1]Guid,
-};
-
-pub const APOInitBaseStruct = extern struct {
-    cbSize: u32,
-    clsid: Guid,
-};
-
-pub const AUDIO_FLOW_TYPE = enum(i32) {
-    LL = 0,
-    SH = 1,
-};
-pub const AUDIO_FLOW_PULL = AUDIO_FLOW_TYPE.LL;
-pub const AUDIO_FLOW_PUSH = AUDIO_FLOW_TYPE.SH;
-
-pub const EAudioConstriction = enum(i32) {
-    Off = 0,
-    @"48_16" = 1,
-    @"44_16" = 2,
-    @"14_14" = 3,
-    Mute = 4,
-};
-pub const eAudioConstrictionOff = EAudioConstriction.Off;
-pub const eAudioConstriction48_16 = EAudioConstriction.@"48_16";
-pub const eAudioConstriction44_16 = EAudioConstriction.@"44_16";
-pub const eAudioConstriction14_14 = EAudioConstriction.@"14_14";
-pub const eAudioConstrictionMute = EAudioConstriction.Mute;
-
-const IID_IAudioProcessingObjectRT_Value = Guid.initString("9e1d6a6d-ddbc-4e95-a4c7-ad64ba37846c");
-pub const IID_IAudioProcessingObjectRT = &IID_IAudioProcessingObjectRT_Value;
-pub const IAudioProcessingObjectRT = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        APOProcess: *const fn(
-            self: *const IAudioProcessingObjectRT,
-            u32NumInputConnections: u32,
-            ppInputConnections: ?*?*APO_CONNECTION_PROPERTY,
-            u32NumOutputConnections: u32,
-            ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY,
-        ) callconv(.winapi) void,
-        CalcInputFrames: *const fn(
-            self: *const IAudioProcessingObjectRT,
-            u32OutputFrameCount: u32,
-        ) callconv(.winapi) u32,
-        CalcOutputFrames: *const fn(
-            self: *const IAudioProcessingObjectRT,
-            u32InputFrameCount: u32,
-        ) callconv(.winapi) u32,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn APOProcess(self: *const IAudioProcessingObjectRT, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_PROPERTY, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY) callconv(.@"inline") void {
-        return self.vtable.APOProcess(self, u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
-    }
-    pub fn CalcInputFrames(self: *const IAudioProcessingObjectRT, u32OutputFrameCount: u32) callconv(.@"inline") u32 {
-        return self.vtable.CalcInputFrames(self, u32OutputFrameCount);
-    }
-    pub fn CalcOutputFrames(self: *const IAudioProcessingObjectRT, u32InputFrameCount: u32) callconv(.@"inline") u32 {
-        return self.vtable.CalcOutputFrames(self, u32InputFrameCount);
-    }
-};
-
-const IID_IAudioProcessingObjectVBR_Value = Guid.initString("7ba1db8f-78ad-49cd-9591-f79d80a17c81");
-pub const IID_IAudioProcessingObjectVBR = &IID_IAudioProcessingObjectVBR_Value;
-pub const IAudioProcessingObjectVBR = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CalcMaxInputFrames: *const fn(
-            self: *const IAudioProcessingObjectVBR,
-            u32MaxOutputFrameCount: u32,
-            pu32InputFrameCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        CalcMaxOutputFrames: *const fn(
-            self: *const IAudioProcessingObjectVBR,
-            u32MaxInputFrameCount: u32,
-            pu32OutputFrameCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CalcMaxInputFrames(self: *const IAudioProcessingObjectVBR, u32MaxOutputFrameCount: u32, pu32InputFrameCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CalcMaxInputFrames(self, u32MaxOutputFrameCount, pu32InputFrameCount);
-    }
-    pub fn CalcMaxOutputFrames(self: *const IAudioProcessingObjectVBR, u32MaxInputFrameCount: u32, pu32OutputFrameCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CalcMaxOutputFrames(self, u32MaxInputFrameCount, pu32OutputFrameCount);
-    }
-};
-
-const IID_IAudioProcessingObjectConfiguration_Value = Guid.initString("0e5ed805-aba6-49c3-8f9a-2b8c889c4fa8");
-pub const IID_IAudioProcessingObjectConfiguration = &IID_IAudioProcessingObjectConfiguration_Value;
-pub const IAudioProcessingObjectConfiguration = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LockForProcess: *const fn(
-            self: *const IAudioProcessingObjectConfiguration,
-            u32NumInputConnections: u32,
-            ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
-            u32NumOutputConnections: u32,
-            ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
-        ) callconv(.winapi) HRESULT,
-        UnlockForProcess: *const fn(
-            self: *const IAudioProcessingObjectConfiguration,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn LockForProcess(self: *const IAudioProcessingObjectConfiguration, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.LockForProcess(self, u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
-    }
-    pub fn UnlockForProcess(self: *const IAudioProcessingObjectConfiguration) callconv(.@"inline") HRESULT {
-        return self.vtable.UnlockForProcess(self);
     }
 };
 
@@ -351,27 +467,151 @@ pub const IAudioProcessingObject = extern union {
     }
 };
 
-const IID_IAudioDeviceModulesClient_Value = Guid.initString("98f37dac-d0b6-49f5-896a-aa4d169a4c48");
-pub const IID_IAudioDeviceModulesClient = &IID_IAudioDeviceModulesClient_Value;
-pub const IAudioDeviceModulesClient = extern union {
+const IID_IAudioProcessingObjectConfiguration_Value = Guid.initString("0e5ed805-aba6-49c3-8f9a-2b8c889c4fa8");
+pub const IID_IAudioProcessingObjectConfiguration = &IID_IAudioProcessingObjectConfiguration_Value;
+pub const IAudioProcessingObjectConfiguration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAudioDeviceModulesManager: *const fn(
-            self: *const IAudioDeviceModulesClient,
-            pAudioDeviceModulesManager: ?*IUnknown,
+        LockForProcess: *const fn(
+            self: *const IAudioProcessingObjectConfiguration,
+            u32NumInputConnections: u32,
+            ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
+            u32NumOutputConnections: u32,
+            ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
+        ) callconv(.winapi) HRESULT,
+        UnlockForProcess: *const fn(
+            self: *const IAudioProcessingObjectConfiguration,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAudioDeviceModulesManager(self: *const IAudioDeviceModulesClient, pAudioDeviceModulesManager: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAudioDeviceModulesManager(self, pAudioDeviceModulesManager);
+    pub fn LockForProcess(self: *const IAudioProcessingObjectConfiguration, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR) callconv(.@"inline") HRESULT {
+        return self.vtable.LockForProcess(self, u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
+    }
+    pub fn UnlockForProcess(self: *const IAudioProcessingObjectConfiguration) callconv(.@"inline") HRESULT {
+        return self.vtable.UnlockForProcess(self);
     }
 };
 
-pub const FNAPONOTIFICATIONCALLBACK = *const fn(
-    pProperties: ?*APO_REG_PROPERTIES,
-    pvRefData: ?*anyopaque,
-) callconv(.winapi) HRESULT;
+const IID_IAudioProcessingObjectLoggingService_Value = Guid.initString("698f0107-1745-4708-95a5-d84478a62a65");
+pub const IID_IAudioProcessingObjectLoggingService = &IID_IAudioProcessingObjectLoggingService_Value;
+pub const IAudioProcessingObjectLoggingService = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ApoLog: *const fn(
+            self: *const IAudioProcessingObjectLoggingService,
+            level: APO_LOG_LEVEL,
+            format: ?[*:0]const u16,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ApoLog(self: *const IAudioProcessingObjectLoggingService, level: APO_LOG_LEVEL, format: ?[*:0]const u16) callconv(.@"inline") void {
+        return self.vtable.ApoLog(self, level, format);
+    }
+};
+
+const IID_IAudioProcessingObjectNotifications_Value = Guid.initString("56b0c76f-02fd-4b21-a52e-9f8219fc86e4");
+pub const IID_IAudioProcessingObjectNotifications = &IID_IAudioProcessingObjectNotifications_Value;
+pub const IAudioProcessingObjectNotifications = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetApoNotificationRegistrationInfo: *const fn(
+            self: *const IAudioProcessingObjectNotifications,
+            apoNotifications: [*]?*APO_NOTIFICATION_DESCRIPTOR,
+            count: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        HandleNotification: *const fn(
+            self: *const IAudioProcessingObjectNotifications,
+            apoNotification: ?*APO_NOTIFICATION,
+        ) callconv(.winapi) void,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetApoNotificationRegistrationInfo(self: *const IAudioProcessingObjectNotifications, apoNotifications: [*]?*APO_NOTIFICATION_DESCRIPTOR, count: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetApoNotificationRegistrationInfo(self, apoNotifications, count);
+    }
+    pub fn HandleNotification(self: *const IAudioProcessingObjectNotifications, apoNotification: ?*APO_NOTIFICATION) callconv(.@"inline") void {
+        return self.vtable.HandleNotification(self, apoNotification);
+    }
+};
+
+const IID_IAudioProcessingObjectRT_Value = Guid.initString("9e1d6a6d-ddbc-4e95-a4c7-ad64ba37846c");
+pub const IID_IAudioProcessingObjectRT = &IID_IAudioProcessingObjectRT_Value;
+pub const IAudioProcessingObjectRT = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        APOProcess: *const fn(
+            self: *const IAudioProcessingObjectRT,
+            u32NumInputConnections: u32,
+            ppInputConnections: ?*?*APO_CONNECTION_PROPERTY,
+            u32NumOutputConnections: u32,
+            ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY,
+        ) callconv(.winapi) void,
+        CalcInputFrames: *const fn(
+            self: *const IAudioProcessingObjectRT,
+            u32OutputFrameCount: u32,
+        ) callconv(.winapi) u32,
+        CalcOutputFrames: *const fn(
+            self: *const IAudioProcessingObjectRT,
+            u32InputFrameCount: u32,
+        ) callconv(.winapi) u32,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn APOProcess(self: *const IAudioProcessingObjectRT, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_PROPERTY, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY) callconv(.@"inline") void {
+        return self.vtable.APOProcess(self, u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
+    }
+    pub fn CalcInputFrames(self: *const IAudioProcessingObjectRT, u32OutputFrameCount: u32) callconv(.@"inline") u32 {
+        return self.vtable.CalcInputFrames(self, u32OutputFrameCount);
+    }
+    pub fn CalcOutputFrames(self: *const IAudioProcessingObjectRT, u32InputFrameCount: u32) callconv(.@"inline") u32 {
+        return self.vtable.CalcOutputFrames(self, u32InputFrameCount);
+    }
+};
+
+const IID_IAudioProcessingObjectRTQueueService_Value = Guid.initString("acd65e2f-955b-4b57-b9bf-ac297bb752c9");
+pub const IID_IAudioProcessingObjectRTQueueService = &IID_IAudioProcessingObjectRTQueueService_Value;
+pub const IAudioProcessingObjectRTQueueService = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetRealTimeWorkQueue: *const fn(
+            self: *const IAudioProcessingObjectRTQueueService,
+            workQueueId: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetRealTimeWorkQueue(self: *const IAudioProcessingObjectRTQueueService, workQueueId: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetRealTimeWorkQueue(self, workQueueId);
+    }
+};
+
+const IID_IAudioProcessingObjectVBR_Value = Guid.initString("7ba1db8f-78ad-49cd-9591-f79d80a17c81");
+pub const IID_IAudioProcessingObjectVBR = &IID_IAudioProcessingObjectVBR_Value;
+pub const IAudioProcessingObjectVBR = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CalcMaxInputFrames: *const fn(
+            self: *const IAudioProcessingObjectVBR,
+            u32MaxOutputFrameCount: u32,
+            pu32InputFrameCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        CalcMaxOutputFrames: *const fn(
+            self: *const IAudioProcessingObjectVBR,
+            u32MaxInputFrameCount: u32,
+            pu32OutputFrameCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CalcMaxInputFrames(self: *const IAudioProcessingObjectVBR, u32MaxOutputFrameCount: u32, pu32InputFrameCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CalcMaxInputFrames(self, u32MaxOutputFrameCount, pu32InputFrameCount);
+    }
+    pub fn CalcMaxOutputFrames(self: *const IAudioProcessingObjectVBR, u32MaxInputFrameCount: u32, pu32OutputFrameCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CalcMaxOutputFrames(self, u32MaxInputFrameCount, pu32OutputFrameCount);
+    }
+};
 
 const IID_IAudioSystemEffects_Value = Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
 pub const IID_IAudioSystemEffects = &IID_IAudioSystemEffects_Value;
@@ -400,6 +640,35 @@ pub const IAudioSystemEffects2 = extern union {
     IUnknown: IUnknown,
     pub fn GetEffectsList(self: *const IAudioSystemEffects2, ppEffectsIds: ?*?*Guid, pcEffects: ?*u32, Event: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectsList(self, ppEffectsIds, pcEffects, Event);
+    }
+};
+
+const IID_IAudioSystemEffects3_Value = Guid.initString("c58b31cd-fc6a-4255-bc1f-ad29bb0a4a17");
+pub const IID_IAudioSystemEffects3 = &IID_IAudioSystemEffects3_Value;
+pub const IAudioSystemEffects3 = extern union {
+    pub const VTable = extern struct {
+        base: IAudioSystemEffects2.VTable,
+        GetControllableSystemEffectsList: *const fn(
+            self: *const IAudioSystemEffects3,
+            effects: ?*?*AUDIO_SYSTEMEFFECT,
+            numEffects: ?*u32,
+            event: ?HANDLE,
+        ) callconv(.winapi) HRESULT,
+        SetAudioSystemEffectState: *const fn(
+            self: *const IAudioSystemEffects3,
+            effectId: Guid,
+            state: AUDIO_SYSTEMEFFECT_STATE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IAudioSystemEffects2: IAudioSystemEffects2,
+    IAudioSystemEffects: IAudioSystemEffects,
+    IUnknown: IUnknown,
+    pub fn GetControllableSystemEffectsList(self: *const IAudioSystemEffects3, effects: ?*?*AUDIO_SYSTEMEFFECT, numEffects: ?*u32, event: ?HANDLE) callconv(.@"inline") HRESULT {
+        return self.vtable.GetControllableSystemEffectsList(self, effects, numEffects, event);
+    }
+    pub fn SetAudioSystemEffectState(self: *const IAudioSystemEffects3, effectId: Guid, state: AUDIO_SYSTEMEFFECT_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.SetAudioSystemEffectState(self, effectId, state);
     }
 };
 
@@ -436,282 +705,13 @@ pub const IAudioSystemEffectsCustomFormats = extern union {
     }
 };
 
-const IID_IApoAuxiliaryInputConfiguration_Value = Guid.initString("4ceb0aab-fa19-48ed-a857-87771ae1b768");
-pub const IID_IApoAuxiliaryInputConfiguration = &IID_IApoAuxiliaryInputConfiguration_Value;
-pub const IApoAuxiliaryInputConfiguration = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddAuxiliaryInput: *const fn(
-            self: *const IApoAuxiliaryInputConfiguration,
-            dwInputId: u32,
-            cbDataSize: u32,
-            pbyData: [*:0]u8,
-            pInputConnection: ?*APO_CONNECTION_DESCRIPTOR,
-        ) callconv(.winapi) HRESULT,
-        RemoveAuxiliaryInput: *const fn(
-            self: *const IApoAuxiliaryInputConfiguration,
-            dwInputId: u32,
-        ) callconv(.winapi) HRESULT,
-        IsInputFormatSupported: *const fn(
-            self: *const IApoAuxiliaryInputConfiguration,
-            pRequestedInputFormat: ?*IAudioMediaType,
-            ppSupportedInputFormat: ?*?*IAudioMediaType,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddAuxiliaryInput(self: *const IApoAuxiliaryInputConfiguration, dwInputId: u32, cbDataSize: u32, pbyData: [*:0]u8, pInputConnection: ?*APO_CONNECTION_DESCRIPTOR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddAuxiliaryInput(self, dwInputId, cbDataSize, pbyData, pInputConnection);
-    }
-    pub fn RemoveAuxiliaryInput(self: *const IApoAuxiliaryInputConfiguration, dwInputId: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveAuxiliaryInput(self, dwInputId);
-    }
-    pub fn IsInputFormatSupported(self: *const IApoAuxiliaryInputConfiguration, pRequestedInputFormat: ?*IAudioMediaType, ppSupportedInputFormat: ?*?*IAudioMediaType) callconv(.@"inline") HRESULT {
-        return self.vtable.IsInputFormatSupported(self, pRequestedInputFormat, ppSupportedInputFormat);
-    }
-};
-
-const IID_IApoAuxiliaryInputRT_Value = Guid.initString("f851809c-c177-49a0-b1b2-b66f017943ab");
-pub const IID_IApoAuxiliaryInputRT = &IID_IApoAuxiliaryInputRT_Value;
-pub const IApoAuxiliaryInputRT = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AcceptInput: *const fn(
-            self: *const IApoAuxiliaryInputRT,
-            dwInputId: u32,
-            pInputConnection: ?*const APO_CONNECTION_PROPERTY,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AcceptInput(self: *const IApoAuxiliaryInputRT, dwInputId: u32, pInputConnection: ?*const APO_CONNECTION_PROPERTY) callconv(.@"inline") void {
-        return self.vtable.AcceptInput(self, dwInputId, pInputConnection);
-    }
-};
-
-const IID_IApoAcousticEchoCancellation_Value = Guid.initString("25385759-3236-4101-a943-25693dfb5d2d");
-pub const IID_IApoAcousticEchoCancellation = &IID_IApoAcousticEchoCancellation_Value;
-pub const IApoAcousticEchoCancellation = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-};
-
-pub const APOInitSystemEffects = extern struct {
-    APOInit: APOInitBaseStruct,
-    pAPOEndpointProperties: ?*IPropertyStore,
-    pAPOSystemEffectsProperties: ?*IPropertyStore,
-    pReserved: ?*anyopaque,
-    pDeviceCollection: ?*IMMDeviceCollection,
-};
-
-pub const APOInitSystemEffects2 = extern struct {
-    APOInit: APOInitBaseStruct,
-    pAPOEndpointProperties: ?*IPropertyStore,
-    pAPOSystemEffectsProperties: ?*IPropertyStore,
-    pReserved: ?*anyopaque,
-    pDeviceCollection: ?*IMMDeviceCollection,
-    nSoftwareIoDeviceInCollection: u32,
-    nSoftwareIoConnectorIndex: u32,
-    AudioProcessingMode: Guid,
-    InitializeForDiscoveryOnly: BOOL,
-};
-
-pub const AudioFXExtensionParams = extern struct {
-    AddPageParam: LPARAM,
-    pwstrEndpointID: ?PWSTR,
-    pFxProperties: ?*IPropertyStore,
-};
-
-pub const AUDIO_SYSTEMEFFECT_STATE = enum(i32) {
-    FF = 0,
-    N = 1,
-};
-pub const AUDIO_SYSTEMEFFECT_STATE_OFF = AUDIO_SYSTEMEFFECT_STATE.FF;
-pub const AUDIO_SYSTEMEFFECT_STATE_ON = AUDIO_SYSTEMEFFECT_STATE.N;
-
-pub const AUDIO_SYSTEMEFFECT = extern struct {
-    id: Guid,
-    canSetState: BOOL,
-    state: AUDIO_SYSTEMEFFECT_STATE,
-};
-
-const IID_IAudioSystemEffects3_Value = Guid.initString("c58b31cd-fc6a-4255-bc1f-ad29bb0a4a17");
-pub const IID_IAudioSystemEffects3 = &IID_IAudioSystemEffects3_Value;
-pub const IAudioSystemEffects3 = extern union {
-    pub const VTable = extern struct {
-        base: IAudioSystemEffects2.VTable,
-        GetControllableSystemEffectsList: *const fn(
-            self: *const IAudioSystemEffects3,
-            effects: ?*?*AUDIO_SYSTEMEFFECT,
-            numEffects: ?*u32,
-            event: ?HANDLE,
-        ) callconv(.winapi) HRESULT,
-        SetAudioSystemEffectState: *const fn(
-            self: *const IAudioSystemEffects3,
-            effectId: Guid,
-            state: AUDIO_SYSTEMEFFECT_STATE,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IAudioSystemEffects2: IAudioSystemEffects2,
-    IAudioSystemEffects: IAudioSystemEffects,
-    IUnknown: IUnknown,
-    pub fn GetControllableSystemEffectsList(self: *const IAudioSystemEffects3, effects: ?*?*AUDIO_SYSTEMEFFECT, numEffects: ?*u32, event: ?HANDLE) callconv(.@"inline") HRESULT {
-        return self.vtable.GetControllableSystemEffectsList(self, effects, numEffects, event);
-    }
-    pub fn SetAudioSystemEffectState(self: *const IAudioSystemEffects3, effectId: Guid, state: AUDIO_SYSTEMEFFECT_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.SetAudioSystemEffectState(self, effectId, state);
-    }
-};
-
-pub const APOInitSystemEffects3 = extern struct {
-    APOInit: APOInitBaseStruct,
-    pAPOEndpointProperties: ?*IPropertyStore,
-    pServiceProvider: ?*IServiceProvider,
-    pDeviceCollection: ?*IMMDeviceCollection,
-    nSoftwareIoDeviceInCollection: u32,
-    nSoftwareIoConnectorIndex: u32,
-    AudioProcessingMode: Guid,
-    InitializeForDiscoveryOnly: BOOL,
-};
-
-const IID_IAudioProcessingObjectRTQueueService_Value = Guid.initString("acd65e2f-955b-4b57-b9bf-ac297bb752c9");
-pub const IID_IAudioProcessingObjectRTQueueService = &IID_IAudioProcessingObjectRTQueueService_Value;
-pub const IAudioProcessingObjectRTQueueService = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetRealTimeWorkQueue: *const fn(
-            self: *const IAudioProcessingObjectRTQueueService,
-            workQueueId: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetRealTimeWorkQueue(self: *const IAudioProcessingObjectRTQueueService, workQueueId: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetRealTimeWorkQueue(self, workQueueId);
-    }
-};
-
-pub const APO_LOG_LEVEL = enum(i32) {
-    ALWAYS = 0,
-    CRITICAL = 1,
-    ERROR = 2,
-    WARNING = 3,
-    INFO = 4,
-    VERBOSE = 5,
-};
-pub const APO_LOG_LEVEL_ALWAYS = APO_LOG_LEVEL.ALWAYS;
-pub const APO_LOG_LEVEL_CRITICAL = APO_LOG_LEVEL.CRITICAL;
-pub const APO_LOG_LEVEL_ERROR = APO_LOG_LEVEL.ERROR;
-pub const APO_LOG_LEVEL_WARNING = APO_LOG_LEVEL.WARNING;
-pub const APO_LOG_LEVEL_INFO = APO_LOG_LEVEL.INFO;
-pub const APO_LOG_LEVEL_VERBOSE = APO_LOG_LEVEL.VERBOSE;
-
-const IID_IAudioProcessingObjectLoggingService_Value = Guid.initString("698f0107-1745-4708-95a5-d84478a62a65");
-pub const IID_IAudioProcessingObjectLoggingService = &IID_IAudioProcessingObjectLoggingService_Value;
-pub const IAudioProcessingObjectLoggingService = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ApoLog: *const fn(
-            self: *const IAudioProcessingObjectLoggingService,
-            level: APO_LOG_LEVEL,
-            format: ?[*:0]const u16,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ApoLog(self: *const IAudioProcessingObjectLoggingService, level: APO_LOG_LEVEL, format: ?[*:0]const u16) callconv(.@"inline") void {
-        return self.vtable.ApoLog(self, level, format);
-    }
-};
-
-pub const APO_NOTIFICATION_TYPE = enum(i32) {
-    NONE = 0,
-    ENDPOINT_VOLUME = 1,
-    ENDPOINT_PROPERTY_CHANGE = 2,
-    SYSTEM_EFFECTS_PROPERTY_CHANGE = 3,
-};
-pub const APO_NOTIFICATION_TYPE_NONE = APO_NOTIFICATION_TYPE.NONE;
-pub const APO_NOTIFICATION_TYPE_ENDPOINT_VOLUME = APO_NOTIFICATION_TYPE.ENDPOINT_VOLUME;
-pub const APO_NOTIFICATION_TYPE_ENDPOINT_PROPERTY_CHANGE = APO_NOTIFICATION_TYPE.ENDPOINT_PROPERTY_CHANGE;
-pub const APO_NOTIFICATION_TYPE_SYSTEM_EFFECTS_PROPERTY_CHANGE = APO_NOTIFICATION_TYPE.SYSTEM_EFFECTS_PROPERTY_CHANGE;
-
-pub const AUDIO_ENDPOINT_VOLUME_CHANGE_NOTIFICATION = extern struct {
-    endpoint: ?*IMMDevice,
-    volume: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
-};
-
-pub const AUDIO_ENDPOINT_PROPERTY_CHANGE_NOTIFICATION = extern struct {
-    endpoint: ?*IMMDevice,
-    propertyStore: ?*IPropertyStore,
-    propertyKey: PROPERTYKEY,
-};
-
-pub const AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_NOTIFICATION = extern struct {
-    endpoint: ?*IMMDevice,
-    propertyStoreContext: Guid,
-    propertyStoreType: AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE,
-    propertyStore: ?*IPropertyStore,
-    propertyKey: PROPERTYKEY,
-};
-
-pub const APO_NOTIFICATION = extern struct {
-    type: APO_NOTIFICATION_TYPE,
-    Anonymous: extern union {
-        audioEndpointVolumeChange: AUDIO_ENDPOINT_VOLUME_CHANGE_NOTIFICATION,
-        audioEndpointPropertyChange: AUDIO_ENDPOINT_PROPERTY_CHANGE_NOTIFICATION,
-        audioSystemEffectsPropertyChange: AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_NOTIFICATION,
-    },
-};
-
-pub const AUDIO_ENDPOINT_VOLUME_APO_NOTIFICATION_DESCRIPTOR = extern struct {
-    device: ?*IMMDevice,
-};
-
-pub const AUDIO_ENDPOINT_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR = extern struct {
-    device: ?*IMMDevice,
-};
-
-pub const AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR = extern struct {
-    device: ?*IMMDevice,
-    propertyStoreContext: Guid,
-};
-
-pub const APO_NOTIFICATION_DESCRIPTOR = extern struct {
-    type: APO_NOTIFICATION_TYPE,
-    Anonymous: extern union {
-        audioEndpointVolume: AUDIO_ENDPOINT_VOLUME_APO_NOTIFICATION_DESCRIPTOR,
-        audioEndpointPropertyChange: AUDIO_ENDPOINT_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR,
-        audioSystemEffectsPropertyChange: AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_APO_NOTIFICATION_DESCRIPTOR,
-    },
-};
-
-const IID_IAudioProcessingObjectNotifications_Value = Guid.initString("56b0c76f-02fd-4b21-a52e-9f8219fc86e4");
-pub const IID_IAudioProcessingObjectNotifications = &IID_IAudioProcessingObjectNotifications_Value;
-pub const IAudioProcessingObjectNotifications = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetApoNotificationRegistrationInfo: *const fn(
-            self: *const IAudioProcessingObjectNotifications,
-            apoNotifications: [*]?*APO_NOTIFICATION_DESCRIPTOR,
-            count: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        HandleNotification: *const fn(
-            self: *const IAudioProcessingObjectNotifications,
-            apoNotification: ?*APO_NOTIFICATION,
-        ) callconv(.winapi) void,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetApoNotificationRegistrationInfo(self: *const IAudioProcessingObjectNotifications, apoNotifications: [*]?*APO_NOTIFICATION_DESCRIPTOR, count: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetApoNotificationRegistrationInfo(self, apoNotifications, count);
-    }
-    pub fn HandleNotification(self: *const IAudioProcessingObjectNotifications, apoNotification: ?*APO_NOTIFICATION) callconv(.@"inline") void {
-        return self.vtable.HandleNotification(self, apoNotification);
-    }
+pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
+    guidFormatType: Guid,
+    dwSamplesPerFrame: u32,
+    dwBytesPerSampleContainer: u32,
+    dwValidBitsPerSample: u32,
+    fFramesPerSecond: f32,
+    dwChannelMask: u32,
 };
 
 

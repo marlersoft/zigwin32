@@ -2,106 +2,252 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (96)
 //--------------------------------------------------------------------------------
-pub const OFN_SHAREFALLTHROUGH = @as(u32, 2);
-pub const OFN_SHARENOWARN = @as(u32, 1);
-pub const OFN_SHAREWARN = @as(u32, 0);
+pub const CD_LBSELADD = @as(u32, 2);
+pub const CD_LBSELCHANGE = @as(u32, 0);
+pub const CD_LBSELNOITEMS = @as(i32, -1);
+pub const CD_LBSELSUB = @as(u32, 1);
 pub const CDM_FIRST = @as(u32, 1124);
-pub const CDM_LAST = @as(u32, 1224);
-pub const CDM_GETSPEC = @as(u32, 1124);
 pub const CDM_GETFILEPATH = @as(u32, 1125);
-pub const CDM_GETFOLDERPATH = @as(u32, 1126);
 pub const CDM_GETFOLDERIDLIST = @as(u32, 1127);
-pub const CDM_SETCONTROLTEXT = @as(u32, 1128);
+pub const CDM_GETFOLDERPATH = @as(u32, 1126);
+pub const CDM_GETSPEC = @as(u32, 1124);
 pub const CDM_HIDECONTROL = @as(u32, 1129);
+pub const CDM_LAST = @as(u32, 1224);
+pub const CDM_SETCONTROLTEXT = @as(u32, 1128);
 pub const CDM_SETDEFEXT = @as(u32, 1130);
+pub const COLOR_ADD = @as(u32, 712);
+pub const COLOR_BLUE = @as(u32, 708);
+pub const COLOR_BLUEACCEL = @as(u32, 728);
+pub const COLOR_BOX1 = @as(u32, 720);
+pub const COLOR_CURRENT = @as(u32, 709);
+pub const COLOR_CUSTOM1 = @as(u32, 721);
+pub const COLOR_ELEMENT = @as(u32, 716);
+pub const COLOR_GREEN = @as(u32, 707);
+pub const COLOR_GREENACCEL = @as(u32, 727);
+pub const COLOR_HUE = @as(u32, 703);
+pub const COLOR_HUEACCEL = @as(u32, 723);
+pub const COLOR_HUESCROLL = @as(u32, 700);
+pub const COLOR_LUM = @as(u32, 705);
+pub const COLOR_LUMACCEL = @as(u32, 725);
+pub const COLOR_LUMSCROLL = @as(u32, 702);
+pub const COLOR_MIX = @as(u32, 719);
+pub const COLOR_PALETTE = @as(u32, 718);
+pub const COLOR_RAINBOW = @as(u32, 710);
+pub const COLOR_RED = @as(u32, 706);
+pub const COLOR_REDACCEL = @as(u32, 726);
+pub const COLOR_SAMPLES = @as(u32, 717);
+pub const COLOR_SAT = @as(u32, 704);
+pub const COLOR_SATACCEL = @as(u32, 724);
+pub const COLOR_SATSCROLL = @as(u32, 701);
+pub const COLOR_SAVE = @as(u32, 711);
+pub const COLOR_SCHEMES = @as(u32, 715);
+pub const COLOR_SOLID = @as(u32, 713);
+pub const COLOR_SOLID_LEFT = @as(u32, 730);
+pub const COLOR_SOLID_RIGHT = @as(u32, 731);
+pub const COLOR_TUNE = @as(u32, 714);
+pub const COLOROKSTRING = "commdlg_ColorOK";
+pub const COLOROKSTRINGA = "commdlg_ColorOK";
+pub const COLOROKSTRINGW = "commdlg_ColorOK";
+pub const DLG_COLOR = @as(u32, 10);
+pub const DN_DEFAULTPRN = @as(u32, 1);
+pub const FILEOKSTRING = "commdlg_FileNameOK";
+pub const FILEOKSTRINGA = "commdlg_FileNameOK";
+pub const FILEOKSTRINGW = "commdlg_FileNameOK";
+pub const FINDMSGSTRING = "commdlg_FindReplace";
+pub const FINDMSGSTRINGA = "commdlg_FindReplace";
+pub const FINDMSGSTRINGW = "commdlg_FindReplace";
+pub const FR_NOWRAPAROUND = @as(u32, 524288);
 pub const FR_RAW = @as(u32, 131072);
 pub const FR_SHOWWRAPAROUND = @as(u32, 262144);
-pub const FR_NOWRAPAROUND = @as(u32, 524288);
 pub const FR_WRAPAROUND = @as(u32, 1048576);
 pub const FRM_FIRST = @as(u32, 1124);
 pub const FRM_LAST = @as(u32, 1224);
 pub const FRM_SETOPERATIONRESULT = @as(u32, 1124);
 pub const FRM_SETOPERATIONRESULTTEXT = @as(u32, 1125);
-pub const PS_OPENTYPE_FONTTYPE = @as(u32, 65536);
-pub const TT_OPENTYPE_FONTTYPE = @as(u32, 131072);
-pub const TYPE1_FONTTYPE = @as(u32, 262144);
-pub const SYMBOL_FONTTYPE = @as(u32, 524288);
-pub const WM_CHOOSEFONT_GETLOGFONT = @as(u32, 1025);
-pub const WM_CHOOSEFONT_SETLOGFONT = @as(u32, 1125);
-pub const WM_CHOOSEFONT_SETFLAGS = @as(u32, 1126);
-pub const LBSELCHSTRINGA = "commdlg_LBSelChangedNotify";
-pub const SHAREVISTRINGA = "commdlg_ShareViolation";
-pub const FILEOKSTRINGA = "commdlg_FileNameOK";
-pub const COLOROKSTRINGA = "commdlg_ColorOK";
-pub const SETRGBSTRINGA = "commdlg_SetRGBColor";
-pub const HELPMSGSTRINGA = "commdlg_help";
-pub const FINDMSGSTRINGA = "commdlg_FindReplace";
-pub const LBSELCHSTRINGW = "commdlg_LBSelChangedNotify";
-pub const SHAREVISTRINGW = "commdlg_ShareViolation";
-pub const FILEOKSTRINGW = "commdlg_FileNameOK";
-pub const COLOROKSTRINGW = "commdlg_ColorOK";
-pub const SETRGBSTRINGW = "commdlg_SetRGBColor";
-pub const HELPMSGSTRINGW = "commdlg_help";
-pub const FINDMSGSTRINGW = "commdlg_FindReplace";
-pub const LBSELCHSTRING = "commdlg_LBSelChangedNotify";
-pub const SHAREVISTRING = "commdlg_ShareViolation";
-pub const FILEOKSTRING = "commdlg_FileNameOK";
-pub const COLOROKSTRING = "commdlg_ColorOK";
-pub const SETRGBSTRING = "commdlg_SetRGBColor";
 pub const HELPMSGSTRING = "commdlg_help";
-pub const FINDMSGSTRING = "commdlg_FindReplace";
-pub const CD_LBSELNOITEMS = @as(i32, -1);
-pub const CD_LBSELCHANGE = @as(u32, 0);
-pub const CD_LBSELSUB = @as(u32, 1);
-pub const CD_LBSELADD = @as(u32, 2);
-pub const START_PAGE_GENERAL = @as(u32, 4294967295);
-pub const PD_RESULT_CANCEL = @as(u32, 0);
-pub const PD_RESULT_PRINT = @as(u32, 1);
-pub const PD_RESULT_APPLY = @as(u32, 2);
-pub const DN_DEFAULTPRN = @as(u32, 1);
-pub const WM_PSD_FULLPAGERECT = @as(u32, 1025);
-pub const WM_PSD_MINMARGINRECT = @as(u32, 1026);
-pub const WM_PSD_MARGINRECT = @as(u32, 1027);
-pub const WM_PSD_GREEKTEXTRECT = @as(u32, 1028);
-pub const WM_PSD_ENVSTAMPRECT = @as(u32, 1029);
-pub const WM_PSD_YAFULLPAGERECT = @as(u32, 1030);
-pub const DLG_COLOR = @as(u32, 10);
-pub const COLOR_HUESCROLL = @as(u32, 700);
-pub const COLOR_SATSCROLL = @as(u32, 701);
-pub const COLOR_LUMSCROLL = @as(u32, 702);
-pub const COLOR_HUE = @as(u32, 703);
-pub const COLOR_SAT = @as(u32, 704);
-pub const COLOR_LUM = @as(u32, 705);
-pub const COLOR_RED = @as(u32, 706);
-pub const COLOR_GREEN = @as(u32, 707);
-pub const COLOR_BLUE = @as(u32, 708);
-pub const COLOR_CURRENT = @as(u32, 709);
-pub const COLOR_RAINBOW = @as(u32, 710);
-pub const COLOR_SAVE = @as(u32, 711);
-pub const COLOR_ADD = @as(u32, 712);
-pub const COLOR_SOLID = @as(u32, 713);
-pub const COLOR_TUNE = @as(u32, 714);
-pub const COLOR_SCHEMES = @as(u32, 715);
-pub const COLOR_ELEMENT = @as(u32, 716);
-pub const COLOR_SAMPLES = @as(u32, 717);
-pub const COLOR_PALETTE = @as(u32, 718);
-pub const COLOR_MIX = @as(u32, 719);
-pub const COLOR_BOX1 = @as(u32, 720);
-pub const COLOR_CUSTOM1 = @as(u32, 721);
-pub const COLOR_HUEACCEL = @as(u32, 723);
-pub const COLOR_SATACCEL = @as(u32, 724);
-pub const COLOR_LUMACCEL = @as(u32, 725);
-pub const COLOR_REDACCEL = @as(u32, 726);
-pub const COLOR_GREENACCEL = @as(u32, 727);
-pub const COLOR_BLUEACCEL = @as(u32, 728);
-pub const COLOR_SOLID_LEFT = @as(u32, 730);
-pub const COLOR_SOLID_RIGHT = @as(u32, 731);
+pub const HELPMSGSTRINGA = "commdlg_help";
+pub const HELPMSGSTRINGW = "commdlg_help";
+pub const LBSELCHSTRING = "commdlg_LBSelChangedNotify";
+pub const LBSELCHSTRINGA = "commdlg_LBSelChangedNotify";
+pub const LBSELCHSTRINGW = "commdlg_LBSelChangedNotify";
 pub const NUM_BASIC_COLORS = @as(u32, 48);
 pub const NUM_CUSTOM_COLORS = @as(u32, 16);
+pub const OFN_SHAREFALLTHROUGH = @as(u32, 2);
+pub const OFN_SHARENOWARN = @as(u32, 1);
+pub const OFN_SHAREWARN = @as(u32, 0);
+pub const PD_RESULT_APPLY = @as(u32, 2);
+pub const PD_RESULT_CANCEL = @as(u32, 0);
+pub const PD_RESULT_PRINT = @as(u32, 1);
+pub const PS_OPENTYPE_FONTTYPE = @as(u32, 65536);
+pub const SETRGBSTRING = "commdlg_SetRGBColor";
+pub const SETRGBSTRINGA = "commdlg_SetRGBColor";
+pub const SETRGBSTRINGW = "commdlg_SetRGBColor";
+pub const SHAREVISTRING = "commdlg_ShareViolation";
+pub const SHAREVISTRINGA = "commdlg_ShareViolation";
+pub const SHAREVISTRINGW = "commdlg_ShareViolation";
+pub const START_PAGE_GENERAL = @as(u32, 4294967295);
+pub const SYMBOL_FONTTYPE = @as(u32, 524288);
+pub const TT_OPENTYPE_FONTTYPE = @as(u32, 131072);
+pub const TYPE1_FONTTYPE = @as(u32, 262144);
+pub const WM_CHOOSEFONT_GETLOGFONT = @as(u32, 1025);
+pub const WM_CHOOSEFONT_SETFLAGS = @as(u32, 1126);
+pub const WM_CHOOSEFONT_SETLOGFONT = @as(u32, 1125);
+pub const WM_PSD_ENVSTAMPRECT = @as(u32, 1029);
+pub const WM_PSD_FULLPAGERECT = @as(u32, 1025);
+pub const WM_PSD_GREEKTEXTRECT = @as(u32, 1028);
+pub const WM_PSD_MARGINRECT = @as(u32, 1027);
+pub const WM_PSD_MINMARGINRECT = @as(u32, 1026);
+pub const WM_PSD_YAFULLPAGERECT = @as(u32, 1030);
 
 //--------------------------------------------------------------------------------
 // Section: Types (63)
 //--------------------------------------------------------------------------------
+pub const CHOOSECOLOR_FLAGS = packed struct(u32) {
+    RGBINIT: u1 = 0,
+    FULLOPEN: u1 = 0,
+    PREVENTFULLOPEN: u1 = 0,
+    SHOWHELP: u1 = 0,
+    ENABLEHOOK: u1 = 0,
+    ENABLETEMPLATE: u1 = 0,
+    ENABLETEMPLATEHANDLE: u1 = 0,
+    SOLIDCOLOR: u1 = 0,
+    ANYCOLOR: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const CC_RGBINIT = CHOOSECOLOR_FLAGS{ .RGBINIT = 1 };
+pub const CC_FULLOPEN = CHOOSECOLOR_FLAGS{ .FULLOPEN = 1 };
+pub const CC_PREVENTFULLOPEN = CHOOSECOLOR_FLAGS{ .PREVENTFULLOPEN = 1 };
+pub const CC_SHOWHELP = CHOOSECOLOR_FLAGS{ .SHOWHELP = 1 };
+pub const CC_ENABLEHOOK = CHOOSECOLOR_FLAGS{ .ENABLEHOOK = 1 };
+pub const CC_ENABLETEMPLATE = CHOOSECOLOR_FLAGS{ .ENABLETEMPLATE = 1 };
+pub const CC_ENABLETEMPLATEHANDLE = CHOOSECOLOR_FLAGS{ .ENABLETEMPLATEHANDLE = 1 };
+pub const CC_SOLIDCOLOR = CHOOSECOLOR_FLAGS{ .SOLIDCOLOR = 1 };
+pub const CC_ANYCOLOR = CHOOSECOLOR_FLAGS{ .ANYCOLOR = 1 };
+
+
+
+
+
+pub const CHOOSEFONT_FLAGS = packed struct(u32) {
+    SCREENFONTS: u1 = 0,
+    PRINTERFONTS: u1 = 0,
+    SHOWHELP: u1 = 0,
+    ENABLEHOOK: u1 = 0,
+    ENABLETEMPLATE: u1 = 0,
+    ENABLETEMPLATEHANDLE: u1 = 0,
+    INITTOLOGFONTSTRUCT: u1 = 0,
+    USESTYLE: u1 = 0,
+    EFFECTS: u1 = 0,
+    APPLY: u1 = 0,
+    ANSIONLY: u1 = 0,
+    NOOEMFONTS: u1 = 0,
+    NOSIMULATIONS: u1 = 0,
+    LIMITSIZE: u1 = 0,
+    FIXEDPITCHONLY: u1 = 0,
+    WYSIWYG: u1 = 0,
+    FORCEFONTEXIST: u1 = 0,
+    SCALABLEONLY: u1 = 0,
+    TTONLY: u1 = 0,
+    NOFACESEL: u1 = 0,
+    NOSTYLESEL: u1 = 0,
+    NOSIZESEL: u1 = 0,
+    SELECTSCRIPT: u1 = 0,
+    NOSCRIPTSEL: u1 = 0,
+    NOVERTFONTS: u1 = 0,
+    INACTIVEFONTS: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // NOVECTORFONTS (bit index 11) conflicts with NOOEMFONTS
+    // SCRIPTSONLY (bit index 10) conflicts with ANSIONLY
+};
+pub const CF_APPLY = CHOOSEFONT_FLAGS{ .APPLY = 1 };
+pub const CF_ANSIONLY = CHOOSEFONT_FLAGS{ .ANSIONLY = 1 };
+pub const CF_BOTH = CHOOSEFONT_FLAGS{
+    .SCREENFONTS = 1,
+    .PRINTERFONTS = 1,
+};
+pub const CF_EFFECTS = CHOOSEFONT_FLAGS{ .EFFECTS = 1 };
+pub const CF_ENABLEHOOK = CHOOSEFONT_FLAGS{ .ENABLEHOOK = 1 };
+pub const CF_ENABLETEMPLATE = CHOOSEFONT_FLAGS{ .ENABLETEMPLATE = 1 };
+pub const CF_ENABLETEMPLATEHANDLE = CHOOSEFONT_FLAGS{ .ENABLETEMPLATEHANDLE = 1 };
+pub const CF_FIXEDPITCHONLY = CHOOSEFONT_FLAGS{ .FIXEDPITCHONLY = 1 };
+pub const CF_FORCEFONTEXIST = CHOOSEFONT_FLAGS{ .FORCEFONTEXIST = 1 };
+pub const CF_INACTIVEFONTS = CHOOSEFONT_FLAGS{ .INACTIVEFONTS = 1 };
+pub const CF_INITTOLOGFONTSTRUCT = CHOOSEFONT_FLAGS{ .INITTOLOGFONTSTRUCT = 1 };
+pub const CF_LIMITSIZE = CHOOSEFONT_FLAGS{ .LIMITSIZE = 1 };
+pub const CF_NOOEMFONTS = CHOOSEFONT_FLAGS{ .NOOEMFONTS = 1 };
+pub const CF_NOFACESEL = CHOOSEFONT_FLAGS{ .NOFACESEL = 1 };
+pub const CF_NOSCRIPTSEL = CHOOSEFONT_FLAGS{ .NOSCRIPTSEL = 1 };
+pub const CF_NOSIMULATIONS = CHOOSEFONT_FLAGS{ .NOSIMULATIONS = 1 };
+pub const CF_NOSIZESEL = CHOOSEFONT_FLAGS{ .NOSIZESEL = 1 };
+pub const CF_NOSTYLESEL = CHOOSEFONT_FLAGS{ .NOSTYLESEL = 1 };
+pub const CF_NOVECTORFONTS = CHOOSEFONT_FLAGS{ .NOOEMFONTS = 1 };
+pub const CF_NOVERTFONTS = CHOOSEFONT_FLAGS{ .NOVERTFONTS = 1 };
+pub const CF_PRINTERFONTS = CHOOSEFONT_FLAGS{ .PRINTERFONTS = 1 };
+pub const CF_SCALABLEONLY = CHOOSEFONT_FLAGS{ .SCALABLEONLY = 1 };
+pub const CF_SCREENFONTS = CHOOSEFONT_FLAGS{ .SCREENFONTS = 1 };
+pub const CF_SCRIPTSONLY = CHOOSEFONT_FLAGS{ .ANSIONLY = 1 };
+pub const CF_SELECTSCRIPT = CHOOSEFONT_FLAGS{ .SELECTSCRIPT = 1 };
+pub const CF_SHOWHELP = CHOOSEFONT_FLAGS{ .SHOWHELP = 1 };
+pub const CF_TTONLY = CHOOSEFONT_FLAGS{ .TTONLY = 1 };
+pub const CF_USESTYLE = CHOOSEFONT_FLAGS{ .USESTYLE = 1 };
+pub const CF_WYSIWYG = CHOOSEFONT_FLAGS{ .WYSIWYG = 1 };
+
+pub const CHOOSEFONT_FONT_TYPE = packed struct(u16) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    BOLD_FONTTYPE: u1 = 0,
+    ITALIC_FONTTYPE: u1 = 0,
+    REGULAR_FONTTYPE: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    SCREEN_FONTTYPE: u1 = 0,
+    PRINTER_FONTTYPE: u1 = 0,
+    SIMULATED_FONTTYPE: u1 = 0,
+};
+pub const BOLD_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .BOLD_FONTTYPE = 1 };
+pub const ITALIC_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .ITALIC_FONTTYPE = 1 };
+pub const PRINTER_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .PRINTER_FONTTYPE = 1 };
+pub const REGULAR_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .REGULAR_FONTTYPE = 1 };
+pub const SCREEN_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .SCREEN_FONTTYPE = 1 };
+pub const SIMULATED_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .SIMULATED_FONTTYPE = 1 };
+
+
+
+
+
 pub const COMMON_DLG_ERRORS = enum(u32) {
     CDERR_DIALOGFAILURE = 65535,
     CDERR_GENERALCODES = 0,
@@ -179,24 +325,26 @@ pub const FRERR_FINDREPLACECODES = COMMON_DLG_ERRORS.FRERR_FINDREPLACECODES;
 pub const FRERR_BUFFERLENGTHZERO = COMMON_DLG_ERRORS.FRERR_BUFFERLENGTHZERO;
 pub const CCERR_CHOOSECOLORCODES = COMMON_DLG_ERRORS.CCERR_CHOOSECOLORCODES;
 
-pub const CHOOSECOLOR_FLAGS = packed struct(u32) {
-    RGBINIT: u1 = 0,
-    FULLOPEN: u1 = 0,
-    PREVENTFULLOPEN: u1 = 0,
+
+
+pub const FINDREPLACE_FLAGS = packed struct(u32) {
+    DOWN: u1 = 0,
+    WHOLEWORD: u1 = 0,
+    MATCHCASE: u1 = 0,
+    FINDNEXT: u1 = 0,
+    REPLACE: u1 = 0,
+    REPLACEALL: u1 = 0,
+    DIALOGTERM: u1 = 0,
     SHOWHELP: u1 = 0,
     ENABLEHOOK: u1 = 0,
     ENABLETEMPLATE: u1 = 0,
+    NOUPDOWN: u1 = 0,
+    NOMATCHCASE: u1 = 0,
+    NOWHOLEWORD: u1 = 0,
     ENABLETEMPLATEHANDLE: u1 = 0,
-    SOLIDCOLOR: u1 = 0,
-    ANYCOLOR: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
+    HIDEUPDOWN: u1 = 0,
+    HIDEMATCHCASE: u1 = 0,
+    HIDEWHOLEWORD: u1 = 0,
     _17: u1 = 0,
     _18: u1 = 0,
     _19: u1 = 0,
@@ -213,15 +361,160 @@ pub const CHOOSECOLOR_FLAGS = packed struct(u32) {
     _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const CC_RGBINIT = CHOOSECOLOR_FLAGS{ .RGBINIT = 1 };
-pub const CC_FULLOPEN = CHOOSECOLOR_FLAGS{ .FULLOPEN = 1 };
-pub const CC_PREVENTFULLOPEN = CHOOSECOLOR_FLAGS{ .PREVENTFULLOPEN = 1 };
-pub const CC_SHOWHELP = CHOOSECOLOR_FLAGS{ .SHOWHELP = 1 };
-pub const CC_ENABLEHOOK = CHOOSECOLOR_FLAGS{ .ENABLEHOOK = 1 };
-pub const CC_ENABLETEMPLATE = CHOOSECOLOR_FLAGS{ .ENABLETEMPLATE = 1 };
-pub const CC_ENABLETEMPLATEHANDLE = CHOOSECOLOR_FLAGS{ .ENABLETEMPLATEHANDLE = 1 };
-pub const CC_SOLIDCOLOR = CHOOSECOLOR_FLAGS{ .SOLIDCOLOR = 1 };
-pub const CC_ANYCOLOR = CHOOSECOLOR_FLAGS{ .ANYCOLOR = 1 };
+pub const FR_DIALOGTERM = FINDREPLACE_FLAGS{ .DIALOGTERM = 1 };
+pub const FR_DOWN = FINDREPLACE_FLAGS{ .DOWN = 1 };
+pub const FR_ENABLEHOOK = FINDREPLACE_FLAGS{ .ENABLEHOOK = 1 };
+pub const FR_ENABLETEMPLATE = FINDREPLACE_FLAGS{ .ENABLETEMPLATE = 1 };
+pub const FR_ENABLETEMPLATEHANDLE = FINDREPLACE_FLAGS{ .ENABLETEMPLATEHANDLE = 1 };
+pub const FR_FINDNEXT = FINDREPLACE_FLAGS{ .FINDNEXT = 1 };
+pub const FR_HIDEUPDOWN = FINDREPLACE_FLAGS{ .HIDEUPDOWN = 1 };
+pub const FR_HIDEMATCHCASE = FINDREPLACE_FLAGS{ .HIDEMATCHCASE = 1 };
+pub const FR_HIDEWHOLEWORD = FINDREPLACE_FLAGS{ .HIDEWHOLEWORD = 1 };
+pub const FR_MATCHCASE = FINDREPLACE_FLAGS{ .MATCHCASE = 1 };
+pub const FR_NOMATCHCASE = FINDREPLACE_FLAGS{ .NOMATCHCASE = 1 };
+pub const FR_NOUPDOWN = FINDREPLACE_FLAGS{ .NOUPDOWN = 1 };
+pub const FR_NOWHOLEWORD = FINDREPLACE_FLAGS{ .NOWHOLEWORD = 1 };
+pub const FR_REPLACE = FINDREPLACE_FLAGS{ .REPLACE = 1 };
+pub const FR_REPLACEALL = FINDREPLACE_FLAGS{ .REPLACEALL = 1 };
+pub const FR_SHOWHELP = FINDREPLACE_FLAGS{ .SHOWHELP = 1 };
+pub const FR_WHOLEWORD = FINDREPLACE_FLAGS{ .WHOLEWORD = 1 };
+
+
+
+
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPrintDialogCallback_Value = Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
+pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
+pub const IPrintDialogCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitDone: *const fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(.winapi) HRESULT,
+        SelectionChange: *const fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(.winapi) HRESULT,
+        HandleMessage: *const fn(
+            self: *const IPrintDialogCallback,
+            hDlg: ?HWND,
+            uMsg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pResult: ?*LRESULT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InitDone(self: *const IPrintDialogCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.InitDone(self);
+    }
+    pub fn SelectionChange(self: *const IPrintDialogCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.SelectionChange(self);
+    }
+    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.HandleMessage(self, hDlg, uMsg, wParam, lParam, pResult);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPrintDialogServices_Value = Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
+pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
+pub const IPrintDialogServices = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentDevMode: *const fn(
+            self: *const IPrintDialogServices,
+            pDevMode: ?*DEVMODEA,
+            pcbSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentPrinterName: *const fn(
+            self: *const IPrintDialogServices,
+            pPrinterName: ?[*:0]u16,
+            pcchSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetCurrentPortName: *const fn(
+            self: *const IPrintDialogServices,
+            pPortName: ?[*:0]u16,
+            pcchSize: ?*u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentDevMode(self, pDevMode, pcbSize);
+    }
+    pub fn GetCurrentPrinterName(self: *const IPrintDialogServices, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPrinterName(self, pPrinterName, pcchSize);
+    }
+    pub fn GetCurrentPortName(self: *const IPrintDialogServices, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetCurrentPortName(self, pPortName, pcchSize);
+    }
+};
+
+pub const LPCCHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+pub const LPCFHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+pub const LPFRHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+pub const LPOFNHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+pub const LPPAGEPAINTHOOK = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+pub const LPPAGESETUPHOOK = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+pub const LPPRINTHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+pub const LPSETUPHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(.winapi) usize;
+
+
+
+
+
+
+
+
 
 pub const OPEN_FILENAME_FLAGS = packed struct(u32) {
     READONLY: u1 = 0,
@@ -321,6 +614,14 @@ pub const OPEN_FILENAME_FLAGS_EX = packed struct(u32) {
 pub const OFN_EX_NONE = OPEN_FILENAME_FLAGS_EX{ };
 pub const OFN_EX_NOPLACESBAR = OPEN_FILENAME_FLAGS_EX{ .PLACESBAR = 1 };
 
+
+
+
+
+
+
+
+
 pub const PAGESETUPDLG_FLAGS = packed struct(u32) {
     MINMARGINS: u1 = 0,
     MARGINS: u1 = 0,
@@ -375,126 +676,11 @@ pub const PSD_NOWARNING = PAGESETUPDLG_FLAGS{ .NOWARNING = 1 };
 pub const PSD_RETURNDEFAULT = PAGESETUPDLG_FLAGS{ .RETURNDEFAULT = 1 };
 pub const PSD_SHOWHELP = PAGESETUPDLG_FLAGS{ .SHOWHELP = 1 };
 
-pub const CHOOSEFONT_FLAGS = packed struct(u32) {
-    SCREENFONTS: u1 = 0,
-    PRINTERFONTS: u1 = 0,
-    SHOWHELP: u1 = 0,
-    ENABLEHOOK: u1 = 0,
-    ENABLETEMPLATE: u1 = 0,
-    ENABLETEMPLATEHANDLE: u1 = 0,
-    INITTOLOGFONTSTRUCT: u1 = 0,
-    USESTYLE: u1 = 0,
-    EFFECTS: u1 = 0,
-    APPLY: u1 = 0,
-    ANSIONLY: u1 = 0,
-    NOOEMFONTS: u1 = 0,
-    NOSIMULATIONS: u1 = 0,
-    LIMITSIZE: u1 = 0,
-    FIXEDPITCHONLY: u1 = 0,
-    WYSIWYG: u1 = 0,
-    FORCEFONTEXIST: u1 = 0,
-    SCALABLEONLY: u1 = 0,
-    TTONLY: u1 = 0,
-    NOFACESEL: u1 = 0,
-    NOSTYLESEL: u1 = 0,
-    NOSIZESEL: u1 = 0,
-    SELECTSCRIPT: u1 = 0,
-    NOSCRIPTSEL: u1 = 0,
-    NOVERTFONTS: u1 = 0,
-    INACTIVEFONTS: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-    // NOVECTORFONTS (bit index 11) conflicts with NOOEMFONTS
-    // SCRIPTSONLY (bit index 10) conflicts with ANSIONLY
-};
-pub const CF_APPLY = CHOOSEFONT_FLAGS{ .APPLY = 1 };
-pub const CF_ANSIONLY = CHOOSEFONT_FLAGS{ .ANSIONLY = 1 };
-pub const CF_BOTH = CHOOSEFONT_FLAGS{
-    .SCREENFONTS = 1,
-    .PRINTERFONTS = 1,
-};
-pub const CF_EFFECTS = CHOOSEFONT_FLAGS{ .EFFECTS = 1 };
-pub const CF_ENABLEHOOK = CHOOSEFONT_FLAGS{ .ENABLEHOOK = 1 };
-pub const CF_ENABLETEMPLATE = CHOOSEFONT_FLAGS{ .ENABLETEMPLATE = 1 };
-pub const CF_ENABLETEMPLATEHANDLE = CHOOSEFONT_FLAGS{ .ENABLETEMPLATEHANDLE = 1 };
-pub const CF_FIXEDPITCHONLY = CHOOSEFONT_FLAGS{ .FIXEDPITCHONLY = 1 };
-pub const CF_FORCEFONTEXIST = CHOOSEFONT_FLAGS{ .FORCEFONTEXIST = 1 };
-pub const CF_INACTIVEFONTS = CHOOSEFONT_FLAGS{ .INACTIVEFONTS = 1 };
-pub const CF_INITTOLOGFONTSTRUCT = CHOOSEFONT_FLAGS{ .INITTOLOGFONTSTRUCT = 1 };
-pub const CF_LIMITSIZE = CHOOSEFONT_FLAGS{ .LIMITSIZE = 1 };
-pub const CF_NOOEMFONTS = CHOOSEFONT_FLAGS{ .NOOEMFONTS = 1 };
-pub const CF_NOFACESEL = CHOOSEFONT_FLAGS{ .NOFACESEL = 1 };
-pub const CF_NOSCRIPTSEL = CHOOSEFONT_FLAGS{ .NOSCRIPTSEL = 1 };
-pub const CF_NOSIMULATIONS = CHOOSEFONT_FLAGS{ .NOSIMULATIONS = 1 };
-pub const CF_NOSIZESEL = CHOOSEFONT_FLAGS{ .NOSIZESEL = 1 };
-pub const CF_NOSTYLESEL = CHOOSEFONT_FLAGS{ .NOSTYLESEL = 1 };
-pub const CF_NOVECTORFONTS = CHOOSEFONT_FLAGS{ .NOOEMFONTS = 1 };
-pub const CF_NOVERTFONTS = CHOOSEFONT_FLAGS{ .NOVERTFONTS = 1 };
-pub const CF_PRINTERFONTS = CHOOSEFONT_FLAGS{ .PRINTERFONTS = 1 };
-pub const CF_SCALABLEONLY = CHOOSEFONT_FLAGS{ .SCALABLEONLY = 1 };
-pub const CF_SCREENFONTS = CHOOSEFONT_FLAGS{ .SCREENFONTS = 1 };
-pub const CF_SCRIPTSONLY = CHOOSEFONT_FLAGS{ .ANSIONLY = 1 };
-pub const CF_SELECTSCRIPT = CHOOSEFONT_FLAGS{ .SELECTSCRIPT = 1 };
-pub const CF_SHOWHELP = CHOOSEFONT_FLAGS{ .SHOWHELP = 1 };
-pub const CF_TTONLY = CHOOSEFONT_FLAGS{ .TTONLY = 1 };
-pub const CF_USESTYLE = CHOOSEFONT_FLAGS{ .USESTYLE = 1 };
-pub const CF_WYSIWYG = CHOOSEFONT_FLAGS{ .WYSIWYG = 1 };
 
-pub const FINDREPLACE_FLAGS = packed struct(u32) {
-    DOWN: u1 = 0,
-    WHOLEWORD: u1 = 0,
-    MATCHCASE: u1 = 0,
-    FINDNEXT: u1 = 0,
-    REPLACE: u1 = 0,
-    REPLACEALL: u1 = 0,
-    DIALOGTERM: u1 = 0,
-    SHOWHELP: u1 = 0,
-    ENABLEHOOK: u1 = 0,
-    ENABLETEMPLATE: u1 = 0,
-    NOUPDOWN: u1 = 0,
-    NOMATCHCASE: u1 = 0,
-    NOWHOLEWORD: u1 = 0,
-    ENABLETEMPLATEHANDLE: u1 = 0,
-    HIDEUPDOWN: u1 = 0,
-    HIDEMATCHCASE: u1 = 0,
-    HIDEWHOLEWORD: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const FR_DIALOGTERM = FINDREPLACE_FLAGS{ .DIALOGTERM = 1 };
-pub const FR_DOWN = FINDREPLACE_FLAGS{ .DOWN = 1 };
-pub const FR_ENABLEHOOK = FINDREPLACE_FLAGS{ .ENABLEHOOK = 1 };
-pub const FR_ENABLETEMPLATE = FINDREPLACE_FLAGS{ .ENABLETEMPLATE = 1 };
-pub const FR_ENABLETEMPLATEHANDLE = FINDREPLACE_FLAGS{ .ENABLETEMPLATEHANDLE = 1 };
-pub const FR_FINDNEXT = FINDREPLACE_FLAGS{ .FINDNEXT = 1 };
-pub const FR_HIDEUPDOWN = FINDREPLACE_FLAGS{ .HIDEUPDOWN = 1 };
-pub const FR_HIDEMATCHCASE = FINDREPLACE_FLAGS{ .HIDEMATCHCASE = 1 };
-pub const FR_HIDEWHOLEWORD = FINDREPLACE_FLAGS{ .HIDEWHOLEWORD = 1 };
-pub const FR_MATCHCASE = FINDREPLACE_FLAGS{ .MATCHCASE = 1 };
-pub const FR_NOMATCHCASE = FINDREPLACE_FLAGS{ .NOMATCHCASE = 1 };
-pub const FR_NOUPDOWN = FINDREPLACE_FLAGS{ .NOUPDOWN = 1 };
-pub const FR_NOWHOLEWORD = FINDREPLACE_FLAGS{ .NOWHOLEWORD = 1 };
-pub const FR_REPLACE = FINDREPLACE_FLAGS{ .REPLACE = 1 };
-pub const FR_REPLACEALL = FINDREPLACE_FLAGS{ .REPLACEALL = 1 };
-pub const FR_SHOWHELP = FINDREPLACE_FLAGS{ .SHOWHELP = 1 };
-pub const FR_WHOLEWORD = FINDREPLACE_FLAGS{ .WHOLEWORD = 1 };
+
+
+
+
 
 pub const PRINTDLGEX_FLAGS = packed struct(u32) {
     SELECTION: u1 = 0,
@@ -560,200 +746,260 @@ pub const PD_NONETWORKBUTTON = PRINTDLGEX_FLAGS{ .NONETWORKBUTTON = 1 };
 pub const PD_PRINTSETUP = PRINTDLGEX_FLAGS{ .PRINTSETUP = 1 };
 pub const PD_SHOWHELP = PRINTDLGEX_FLAGS{ .SHOWHELP = 1 };
 
-pub const CHOOSEFONT_FONT_TYPE = packed struct(u16) {
-    _0: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    BOLD_FONTTYPE: u1 = 0,
-    ITALIC_FONTTYPE: u1 = 0,
-    REGULAR_FONTTYPE: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    SCREEN_FONTTYPE: u1 = 0,
-    PRINTER_FONTTYPE: u1 = 0,
-    SIMULATED_FONTTYPE: u1 = 0,
+
+
+
+
+
+
+
+
+pub const CHOOSECOLORA = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HWND,
+        rgbResult: COLORREF,
+        lpCustColors: ?*COLORREF,
+        Flags: CHOOSECOLOR_FLAGS,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCCHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
+    .X86 => extern struct {
+        lStructSize: u32 align(1),
+        hwndOwner: ?HWND align(1),
+        hInstance: ?HWND align(1),
+        rgbResult: COLORREF align(1),
+        lpCustColors: ?*COLORREF align(1),
+        Flags: CHOOSECOLOR_FLAGS align(1),
+        lCustData: LPARAM align(1),
+        lpfnHook: ?LPCCHOOKPROC align(1),
+        lpTemplateName: ?[*:0]const u8 align(1),
+    },
 };
-pub const BOLD_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .BOLD_FONTTYPE = 1 };
-pub const ITALIC_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .ITALIC_FONTTYPE = 1 };
-pub const PRINTER_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .PRINTER_FONTTYPE = 1 };
-pub const REGULAR_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .REGULAR_FONTTYPE = 1 };
-pub const SCREEN_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .SCREEN_FONTTYPE = 1 };
-pub const SIMULATED_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .SIMULATED_FONTTYPE = 1 };
-
-pub const LPOFNHOOKPROC = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-
-
-
-
-pub const LPCCHOOKPROC = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-
-
-
-
-
-
-pub const LPFRHOOKPROC = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-
-
-pub const LPCFHOOKPROC = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-
-
-pub const LPPRINTHOOKPROC = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-pub const LPSETUPHOOKPROC = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPrintDialogCallback_Value = Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
-pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
-pub const IPrintDialogCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitDone: *const fn(
-            self: *const IPrintDialogCallback,
-        ) callconv(.winapi) HRESULT,
-        SelectionChange: *const fn(
-            self: *const IPrintDialogCallback,
-        ) callconv(.winapi) HRESULT,
-        HandleMessage: *const fn(
-            self: *const IPrintDialogCallback,
-            hDlg: ?HWND,
-            uMsg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pResult: ?*LRESULT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InitDone(self: *const IPrintDialogCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.InitDone(self);
-    }
-    pub fn SelectionChange(self: *const IPrintDialogCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.SelectionChange(self);
-    }
-    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.HandleMessage(self, hDlg, uMsg, wParam, lParam, pResult);
-    }
+pub const CHOOSECOLORW = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HWND,
+        rgbResult: COLORREF,
+        lpCustColors: ?*COLORREF,
+        Flags: CHOOSECOLOR_FLAGS,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCCHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
+    .X86 => extern struct {
+        lStructSize: u32 align(1),
+        hwndOwner: ?HWND align(1),
+        hInstance: ?HWND align(1),
+        rgbResult: COLORREF align(1),
+        lpCustColors: ?*COLORREF align(1),
+        Flags: CHOOSECOLOR_FLAGS align(1),
+        lCustData: LPARAM align(1),
+        lpfnHook: ?LPCCHOOKPROC align(1),
+        lpTemplateName: ?[*:0]const u16 align(1),
+    },
 };
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPrintDialogServices_Value = Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
-pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
-pub const IPrintDialogServices = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentDevMode: *const fn(
-            self: *const IPrintDialogServices,
-            pDevMode: ?*DEVMODEA,
-            pcbSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPrinterName: *const fn(
-            self: *const IPrintDialogServices,
-            pPrinterName: ?[*:0]u16,
-            pcchSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetCurrentPortName: *const fn(
-            self: *const IPrintDialogServices,
-            pPortName: ?[*:0]u16,
-            pcchSize: ?*u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentDevMode(self, pDevMode, pcbSize);
-    }
-    pub fn GetCurrentPrinterName(self: *const IPrintDialogServices, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPrinterName(self, pPrinterName, pcchSize);
-    }
-    pub fn GetCurrentPortName(self: *const IPrintDialogServices, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetCurrentPortName(self, pPortName, pcchSize);
-    }
+pub const CHOOSEFONTA = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDC: ?HDC,
+        lpLogFont: ?*LOGFONTA,
+        iPointSize: i32,
+        Flags: CHOOSEFONT_FLAGS,
+        rgbColors: COLORREF,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCFHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+        hInstance: ?HINSTANCE,
+        lpszStyle: ?PSTR,
+        nFontType: CHOOSEFONT_FONT_TYPE,
+        ___MISSING_ALIGNMENT__: u16,
+        nSizeMin: i32,
+        nSizeMax: i32,
+    },
+    .X86 => extern struct {
+        lStructSize: u32 align(1),
+        hwndOwner: ?HWND align(1),
+        hDC: ?HDC align(1),
+        lpLogFont: ?*LOGFONTA align(1),
+        iPointSize: i32 align(1),
+        Flags: CHOOSEFONT_FLAGS align(1),
+        rgbColors: COLORREF align(1),
+        lCustData: LPARAM align(1),
+        lpfnHook: ?LPCFHOOKPROC align(1),
+        lpTemplateName: ?[*:0]const u8 align(1),
+        hInstance: ?HINSTANCE align(1),
+        lpszStyle: ?PSTR align(1),
+        nFontType: CHOOSEFONT_FONT_TYPE align(1),
+        ___MISSING_ALIGNMENT__: u16 align(1),
+        nSizeMin: i32 align(1),
+        nSizeMax: i32 align(1),
+    },
 };
-
-
-
-
-
-pub const LPPAGEPAINTHOOK = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-pub const LPPAGESETUPHOOK = *const fn(
-    param0: ?HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) usize;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pub const CHOOSEFONTW = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDC: ?HDC,
+        lpLogFont: ?*LOGFONTW,
+        iPointSize: i32,
+        Flags: CHOOSEFONT_FLAGS,
+        rgbColors: COLORREF,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCFHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+        hInstance: ?HINSTANCE,
+        lpszStyle: ?PWSTR,
+        nFontType: CHOOSEFONT_FONT_TYPE,
+        ___MISSING_ALIGNMENT__: u16,
+        nSizeMin: i32,
+        nSizeMax: i32,
+    },
+    .X86 => extern struct {
+        lStructSize: u32 align(1),
+        hwndOwner: ?HWND align(1),
+        hDC: ?HDC align(1),
+        lpLogFont: ?*LOGFONTW align(1),
+        iPointSize: i32 align(1),
+        Flags: CHOOSEFONT_FLAGS align(1),
+        rgbColors: COLORREF align(1),
+        lCustData: LPARAM align(1),
+        lpfnHook: ?LPCFHOOKPROC align(1),
+        lpTemplateName: ?[*:0]const u16 align(1),
+        hInstance: ?HINSTANCE align(1),
+        lpszStyle: ?PWSTR align(1),
+        nFontType: CHOOSEFONT_FONT_TYPE align(1),
+        ___MISSING_ALIGNMENT__: u16 align(1),
+        nSizeMin: i32 align(1),
+        nSizeMax: i32 align(1),
+    },
+};
+pub const DEVNAMES = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        wDriverOffset: u16,
+        wDeviceOffset: u16,
+        wOutputOffset: u16,
+        wDefault: u16,
+    },
+    .X86 => extern struct {
+        wDriverOffset: u16 align(1),
+        wDeviceOffset: u16 align(1),
+        wOutputOffset: u16 align(1),
+        wDefault: u16 align(1),
+    },
+};
+pub const FINDREPLACEA = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        Flags: FINDREPLACE_FLAGS,
+        lpstrFindWhat: ?PSTR,
+        lpstrReplaceWith: ?PSTR,
+        wFindWhatLen: u16,
+        wReplaceWithLen: u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPFRHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
+    .X86 => extern struct {
+        lStructSize: u32 align(1),
+        hwndOwner: ?HWND align(1),
+        hInstance: ?HINSTANCE align(1),
+        Flags: FINDREPLACE_FLAGS align(1),
+        lpstrFindWhat: ?PSTR align(1),
+        lpstrReplaceWith: ?PSTR align(1),
+        wFindWhatLen: u16 align(1),
+        wReplaceWithLen: u16 align(1),
+        lCustData: LPARAM align(1),
+        lpfnHook: ?LPFRHOOKPROC align(1),
+        lpTemplateName: ?[*:0]const u8 align(1),
+    },
+};
+pub const FINDREPLACEW = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        Flags: FINDREPLACE_FLAGS,
+        lpstrFindWhat: ?PWSTR,
+        lpstrReplaceWith: ?PWSTR,
+        wFindWhatLen: u16,
+        wReplaceWithLen: u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPFRHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
+    .X86 => extern struct {
+        lStructSize: u32 align(1),
+        hwndOwner: ?HWND align(1),
+        hInstance: ?HINSTANCE align(1),
+        Flags: FINDREPLACE_FLAGS align(1),
+        lpstrFindWhat: ?PWSTR align(1),
+        lpstrReplaceWith: ?PWSTR align(1),
+        wFindWhatLen: u16 align(1),
+        wReplaceWithLen: u16 align(1),
+        lCustData: LPARAM align(1),
+        lpfnHook: ?LPFRHOOKPROC align(1),
+        lpTemplateName: ?[*:0]const u16 align(1),
+    },
+};
+pub const OFNOTIFYA = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEA,
+        pszFile: ?PSTR,
+    },
+    .X86 => extern struct {
+        hdr: NMHDR align(1),
+        lpOFN: ?*OPENFILENAMEA align(1),
+        pszFile: ?PSTR align(1),
+    },
+};
+pub const OFNOTIFYEXA = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEA,
+        psf: ?*anyopaque,
+        pidl: ?*anyopaque,
+    },
+    .X86 => extern struct {
+        hdr: NMHDR align(1),
+        lpOFN: ?*OPENFILENAMEA align(1),
+        psf: ?*anyopaque align(1),
+        pidl: ?*anyopaque align(1),
+    },
+};
+pub const OFNOTIFYEXW = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEW,
+        psf: ?*anyopaque,
+        pidl: ?*anyopaque,
+    },
+    .X86 => extern struct {
+        hdr: NMHDR align(1),
+        lpOFN: ?*OPENFILENAMEW align(1),
+        psf: ?*anyopaque align(1),
+        pidl: ?*anyopaque align(1),
+    },
+};
+pub const OFNOTIFYW = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEW,
+        pszFile: ?PWSTR,
+    },
+    .X86 => extern struct {
+        hdr: NMHDR align(1),
+        lpOFN: ?*OPENFILENAMEW align(1),
+        pszFile: ?PWSTR align(1),
+    },
+};
 pub const OPENFILENAME_NT4A = switch(@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
@@ -950,236 +1196,72 @@ pub const OPENFILENAMEW = switch(@import("../../zig.zig").arch) {
         FlagsEx: OPEN_FILENAME_FLAGS_EX align(1),
     },
 };
-pub const OFNOTIFYA = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        hdr: NMHDR,
-        lpOFN: ?*OPENFILENAMEA,
-        pszFile: ?PSTR,
-    },
-    .X86 => extern struct {
-        hdr: NMHDR align(1),
-        lpOFN: ?*OPENFILENAMEA align(1),
-        pszFile: ?PSTR align(1),
-    },
-};
-pub const OFNOTIFYW = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        hdr: NMHDR,
-        lpOFN: ?*OPENFILENAMEW,
-        pszFile: ?PWSTR,
-    },
-    .X86 => extern struct {
-        hdr: NMHDR align(1),
-        lpOFN: ?*OPENFILENAMEW align(1),
-        pszFile: ?PWSTR align(1),
-    },
-};
-pub const OFNOTIFYEXA = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        hdr: NMHDR,
-        lpOFN: ?*OPENFILENAMEA,
-        psf: ?*anyopaque,
-        pidl: ?*anyopaque,
-    },
-    .X86 => extern struct {
-        hdr: NMHDR align(1),
-        lpOFN: ?*OPENFILENAMEA align(1),
-        psf: ?*anyopaque align(1),
-        pidl: ?*anyopaque align(1),
-    },
-};
-pub const OFNOTIFYEXW = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        hdr: NMHDR,
-        lpOFN: ?*OPENFILENAMEW,
-        psf: ?*anyopaque,
-        pidl: ?*anyopaque,
-    },
-    .X86 => extern struct {
-        hdr: NMHDR align(1),
-        lpOFN: ?*OPENFILENAMEW align(1),
-        psf: ?*anyopaque align(1),
-        pidl: ?*anyopaque align(1),
-    },
-};
-pub const CHOOSECOLORA = switch(@import("../../zig.zig").arch) {
+pub const PAGESETUPDLGA = switch(@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
-        hInstance: ?HWND,
-        rgbResult: COLORREF,
-        lpCustColors: ?*COLORREF,
-        Flags: CHOOSECOLOR_FLAGS,
-        lCustData: LPARAM,
-        lpfnHook: ?LPCCHOOKPROC,
-        lpTemplateName: ?[*:0]const u8,
-    },
-    .X86 => extern struct {
-        lStructSize: u32 align(1),
-        hwndOwner: ?HWND align(1),
-        hInstance: ?HWND align(1),
-        rgbResult: COLORREF align(1),
-        lpCustColors: ?*COLORREF align(1),
-        Flags: CHOOSECOLOR_FLAGS align(1),
-        lCustData: LPARAM align(1),
-        lpfnHook: ?LPCCHOOKPROC align(1),
-        lpTemplateName: ?[*:0]const u8 align(1),
-    },
-};
-pub const CHOOSECOLORW = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        lStructSize: u32,
-        hwndOwner: ?HWND,
-        hInstance: ?HWND,
-        rgbResult: COLORREF,
-        lpCustColors: ?*COLORREF,
-        Flags: CHOOSECOLOR_FLAGS,
-        lCustData: LPARAM,
-        lpfnHook: ?LPCCHOOKPROC,
-        lpTemplateName: ?[*:0]const u16,
-    },
-    .X86 => extern struct {
-        lStructSize: u32 align(1),
-        hwndOwner: ?HWND align(1),
-        hInstance: ?HWND align(1),
-        rgbResult: COLORREF align(1),
-        lpCustColors: ?*COLORREF align(1),
-        Flags: CHOOSECOLOR_FLAGS align(1),
-        lCustData: LPARAM align(1),
-        lpfnHook: ?LPCCHOOKPROC align(1),
-        lpTemplateName: ?[*:0]const u16 align(1),
-    },
-};
-pub const FINDREPLACEA = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        lStructSize: u32,
-        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        Flags: PAGESETUPDLG_FLAGS,
+        ptPaperSize: POINT,
+        rtMinMargin: RECT,
+        rtMargin: RECT,
         hInstance: ?HINSTANCE,
-        Flags: FINDREPLACE_FLAGS,
-        lpstrFindWhat: ?PSTR,
-        lpstrReplaceWith: ?PSTR,
-        wFindWhatLen: u16,
-        wReplaceWithLen: u16,
         lCustData: LPARAM,
-        lpfnHook: ?LPFRHOOKPROC,
-        lpTemplateName: ?[*:0]const u8,
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
+        lpPageSetupTemplateName: ?[*:0]const u8,
+        hPageSetupTemplate: isize,
     },
     .X86 => extern struct {
         lStructSize: u32 align(1),
         hwndOwner: ?HWND align(1),
+        hDevMode: isize align(1),
+        hDevNames: isize align(1),
+        Flags: PAGESETUPDLG_FLAGS align(1),
+        ptPaperSize: POINT align(1),
+        rtMinMargin: RECT align(1),
+        rtMargin: RECT align(1),
         hInstance: ?HINSTANCE align(1),
-        Flags: FINDREPLACE_FLAGS align(1),
-        lpstrFindWhat: ?PSTR align(1),
-        lpstrReplaceWith: ?PSTR align(1),
-        wFindWhatLen: u16 align(1),
-        wReplaceWithLen: u16 align(1),
         lCustData: LPARAM align(1),
-        lpfnHook: ?LPFRHOOKPROC align(1),
-        lpTemplateName: ?[*:0]const u8 align(1),
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK align(1),
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK align(1),
+        lpPageSetupTemplateName: ?[*:0]const u8 align(1),
+        hPageSetupTemplate: isize align(1),
     },
 };
-pub const FINDREPLACEW = switch(@import("../../zig.zig").arch) {
+pub const PAGESETUPDLGW = switch(@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        Flags: PAGESETUPDLG_FLAGS,
+        ptPaperSize: POINT,
+        rtMinMargin: RECT,
+        rtMargin: RECT,
         hInstance: ?HINSTANCE,
-        Flags: FINDREPLACE_FLAGS,
-        lpstrFindWhat: ?PWSTR,
-        lpstrReplaceWith: ?PWSTR,
-        wFindWhatLen: u16,
-        wReplaceWithLen: u16,
         lCustData: LPARAM,
-        lpfnHook: ?LPFRHOOKPROC,
-        lpTemplateName: ?[*:0]const u16,
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
+        lpPageSetupTemplateName: ?[*:0]const u16,
+        hPageSetupTemplate: isize,
     },
     .X86 => extern struct {
         lStructSize: u32 align(1),
         hwndOwner: ?HWND align(1),
+        hDevMode: isize align(1),
+        hDevNames: isize align(1),
+        Flags: PAGESETUPDLG_FLAGS align(1),
+        ptPaperSize: POINT align(1),
+        rtMinMargin: RECT align(1),
+        rtMargin: RECT align(1),
         hInstance: ?HINSTANCE align(1),
-        Flags: FINDREPLACE_FLAGS align(1),
-        lpstrFindWhat: ?PWSTR align(1),
-        lpstrReplaceWith: ?PWSTR align(1),
-        wFindWhatLen: u16 align(1),
-        wReplaceWithLen: u16 align(1),
         lCustData: LPARAM align(1),
-        lpfnHook: ?LPFRHOOKPROC align(1),
-        lpTemplateName: ?[*:0]const u16 align(1),
-    },
-};
-pub const CHOOSEFONTA = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        lStructSize: u32,
-        hwndOwner: ?HWND,
-        hDC: ?HDC,
-        lpLogFont: ?*LOGFONTA,
-        iPointSize: i32,
-        Flags: CHOOSEFONT_FLAGS,
-        rgbColors: COLORREF,
-        lCustData: LPARAM,
-        lpfnHook: ?LPCFHOOKPROC,
-        lpTemplateName: ?[*:0]const u8,
-        hInstance: ?HINSTANCE,
-        lpszStyle: ?PSTR,
-        nFontType: CHOOSEFONT_FONT_TYPE,
-        ___MISSING_ALIGNMENT__: u16,
-        nSizeMin: i32,
-        nSizeMax: i32,
-    },
-    .X86 => extern struct {
-        lStructSize: u32 align(1),
-        hwndOwner: ?HWND align(1),
-        hDC: ?HDC align(1),
-        lpLogFont: ?*LOGFONTA align(1),
-        iPointSize: i32 align(1),
-        Flags: CHOOSEFONT_FLAGS align(1),
-        rgbColors: COLORREF align(1),
-        lCustData: LPARAM align(1),
-        lpfnHook: ?LPCFHOOKPROC align(1),
-        lpTemplateName: ?[*:0]const u8 align(1),
-        hInstance: ?HINSTANCE align(1),
-        lpszStyle: ?PSTR align(1),
-        nFontType: CHOOSEFONT_FONT_TYPE align(1),
-        ___MISSING_ALIGNMENT__: u16 align(1),
-        nSizeMin: i32 align(1),
-        nSizeMax: i32 align(1),
-    },
-};
-pub const CHOOSEFONTW = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        lStructSize: u32,
-        hwndOwner: ?HWND,
-        hDC: ?HDC,
-        lpLogFont: ?*LOGFONTW,
-        iPointSize: i32,
-        Flags: CHOOSEFONT_FLAGS,
-        rgbColors: COLORREF,
-        lCustData: LPARAM,
-        lpfnHook: ?LPCFHOOKPROC,
-        lpTemplateName: ?[*:0]const u16,
-        hInstance: ?HINSTANCE,
-        lpszStyle: ?PWSTR,
-        nFontType: CHOOSEFONT_FONT_TYPE,
-        ___MISSING_ALIGNMENT__: u16,
-        nSizeMin: i32,
-        nSizeMax: i32,
-    },
-    .X86 => extern struct {
-        lStructSize: u32 align(1),
-        hwndOwner: ?HWND align(1),
-        hDC: ?HDC align(1),
-        lpLogFont: ?*LOGFONTW align(1),
-        iPointSize: i32 align(1),
-        Flags: CHOOSEFONT_FLAGS align(1),
-        rgbColors: COLORREF align(1),
-        lCustData: LPARAM align(1),
-        lpfnHook: ?LPCFHOOKPROC align(1),
-        lpTemplateName: ?[*:0]const u16 align(1),
-        hInstance: ?HINSTANCE align(1),
-        lpszStyle: ?PWSTR align(1),
-        nFontType: CHOOSEFONT_FONT_TYPE align(1),
-        ___MISSING_ALIGNMENT__: u16 align(1),
-        nSizeMin: i32 align(1),
-        nSizeMax: i32 align(1),
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK align(1),
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK align(1),
+        lpPageSetupTemplateName: ?[*:0]const u16 align(1),
+        hPageSetupTemplate: isize align(1),
     },
 };
 pub const PRINTDLGA = switch(@import("../../zig.zig").arch) {
@@ -1224,60 +1306,6 @@ pub const PRINTDLGA = switch(@import("../../zig.zig").arch) {
         lpSetupTemplateName: ?[*:0]const u8 align(1),
         hPrintTemplate: isize align(1),
         hSetupTemplate: isize align(1),
-    },
-};
-pub const PRINTDLGW = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        lStructSize: u32,
-        hwndOwner: ?HWND,
-        hDevMode: isize,
-        hDevNames: isize,
-        hDC: ?HDC,
-        Flags: PRINTDLGEX_FLAGS,
-        nFromPage: u16,
-        nToPage: u16,
-        nMinPage: u16,
-        nMaxPage: u16,
-        nCopies: u16,
-        hInstance: ?HINSTANCE,
-        lCustData: LPARAM,
-        lpfnPrintHook: ?LPPRINTHOOKPROC,
-        lpfnSetupHook: ?LPSETUPHOOKPROC,
-        lpPrintTemplateName: ?[*:0]const u16,
-        lpSetupTemplateName: ?[*:0]const u16,
-        hPrintTemplate: isize,
-        hSetupTemplate: isize,
-    },
-    .X86 => extern struct {
-        lStructSize: u32 align(1),
-        hwndOwner: ?HWND align(1),
-        hDevMode: isize align(1),
-        hDevNames: isize align(1),
-        hDC: ?HDC align(1),
-        Flags: PRINTDLGEX_FLAGS align(1),
-        nFromPage: u16 align(1),
-        nToPage: u16 align(1),
-        nMinPage: u16 align(1),
-        nMaxPage: u16 align(1),
-        nCopies: u16 align(1),
-        hInstance: ?HINSTANCE align(1),
-        lCustData: LPARAM align(1),
-        lpfnPrintHook: ?LPPRINTHOOKPROC align(1),
-        lpfnSetupHook: ?LPSETUPHOOKPROC align(1),
-        lpPrintTemplateName: ?[*:0]const u16 align(1),
-        lpSetupTemplateName: ?[*:0]const u16 align(1),
-        hPrintTemplate: isize align(1),
-        hSetupTemplate: isize align(1),
-    },
-};
-pub const PRINTPAGERANGE = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        nFromPage: u32,
-        nToPage: u32,
-    },
-    .X86 => extern struct {
-        nFromPage: u32 align(1),
-        nToPage: u32 align(1),
     },
 };
 pub const PRINTDLGEXA = switch(@import("../../zig.zig").arch) {
@@ -1376,92 +1404,108 @@ pub const PRINTDLGEXW = switch(@import("../../zig.zig").arch) {
         dwResultAction: u32 align(1),
     },
 };
-pub const DEVNAMES = switch(@import("../../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        wDriverOffset: u16,
-        wDeviceOffset: u16,
-        wOutputOffset: u16,
-        wDefault: u16,
-    },
-    .X86 => extern struct {
-        wDriverOffset: u16 align(1),
-        wDeviceOffset: u16 align(1),
-        wOutputOffset: u16 align(1),
-        wDefault: u16 align(1),
-    },
-};
-pub const PAGESETUPDLGA = switch(@import("../../zig.zig").arch) {
+pub const PRINTDLGW = switch(@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
         hDevMode: isize,
         hDevNames: isize,
-        Flags: PAGESETUPDLG_FLAGS,
-        ptPaperSize: POINT,
-        rtMinMargin: RECT,
-        rtMargin: RECT,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        nFromPage: u16,
+        nToPage: u16,
+        nMinPage: u16,
+        nMaxPage: u16,
+        nCopies: u16,
         hInstance: ?HINSTANCE,
         lCustData: LPARAM,
-        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
-        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
-        lpPageSetupTemplateName: ?[*:0]const u8,
-        hPageSetupTemplate: isize,
+        lpfnPrintHook: ?LPPRINTHOOKPROC,
+        lpfnSetupHook: ?LPSETUPHOOKPROC,
+        lpPrintTemplateName: ?[*:0]const u16,
+        lpSetupTemplateName: ?[*:0]const u16,
+        hPrintTemplate: isize,
+        hSetupTemplate: isize,
     },
     .X86 => extern struct {
         lStructSize: u32 align(1),
         hwndOwner: ?HWND align(1),
         hDevMode: isize align(1),
         hDevNames: isize align(1),
-        Flags: PAGESETUPDLG_FLAGS align(1),
-        ptPaperSize: POINT align(1),
-        rtMinMargin: RECT align(1),
-        rtMargin: RECT align(1),
+        hDC: ?HDC align(1),
+        Flags: PRINTDLGEX_FLAGS align(1),
+        nFromPage: u16 align(1),
+        nToPage: u16 align(1),
+        nMinPage: u16 align(1),
+        nMaxPage: u16 align(1),
+        nCopies: u16 align(1),
         hInstance: ?HINSTANCE align(1),
         lCustData: LPARAM align(1),
-        lpfnPageSetupHook: ?LPPAGESETUPHOOK align(1),
-        lpfnPagePaintHook: ?LPPAGEPAINTHOOK align(1),
-        lpPageSetupTemplateName: ?[*:0]const u8 align(1),
-        hPageSetupTemplate: isize align(1),
+        lpfnPrintHook: ?LPPRINTHOOKPROC align(1),
+        lpfnSetupHook: ?LPSETUPHOOKPROC align(1),
+        lpPrintTemplateName: ?[*:0]const u16 align(1),
+        lpSetupTemplateName: ?[*:0]const u16 align(1),
+        hPrintTemplate: isize align(1),
+        hSetupTemplate: isize align(1),
     },
 };
-pub const PAGESETUPDLGW = switch(@import("../../zig.zig").arch) {
+pub const PRINTPAGERANGE = switch(@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
-        lStructSize: u32,
-        hwndOwner: ?HWND,
-        hDevMode: isize,
-        hDevNames: isize,
-        Flags: PAGESETUPDLG_FLAGS,
-        ptPaperSize: POINT,
-        rtMinMargin: RECT,
-        rtMargin: RECT,
-        hInstance: ?HINSTANCE,
-        lCustData: LPARAM,
-        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
-        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
-        lpPageSetupTemplateName: ?[*:0]const u16,
-        hPageSetupTemplate: isize,
+        nFromPage: u32,
+        nToPage: u32,
     },
     .X86 => extern struct {
-        lStructSize: u32 align(1),
-        hwndOwner: ?HWND align(1),
-        hDevMode: isize align(1),
-        hDevNames: isize align(1),
-        Flags: PAGESETUPDLG_FLAGS align(1),
-        ptPaperSize: POINT align(1),
-        rtMinMargin: RECT align(1),
-        rtMargin: RECT align(1),
-        hInstance: ?HINSTANCE align(1),
-        lCustData: LPARAM align(1),
-        lpfnPageSetupHook: ?LPPAGESETUPHOOK align(1),
-        lpfnPagePaintHook: ?LPPAGEPAINTHOOK align(1),
-        lpPageSetupTemplateName: ?[*:0]const u16 align(1),
-        hPageSetupTemplate: isize align(1),
+        nFromPage: u32 align(1),
+        nToPage: u32 align(1),
     },
 };
 
 //--------------------------------------------------------------------------------
 // Section: Functions (21)
 //--------------------------------------------------------------------------------
+pub extern "comdlg32" fn ChooseColorA(
+    param0: ?*CHOOSECOLORA,
+) callconv(.winapi) BOOL;
+
+pub extern "comdlg32" fn ChooseColorW(
+    param0: ?*CHOOSECOLORW,
+) callconv(.winapi) BOOL;
+
+pub extern "comdlg32" fn ChooseFontA(
+    param0: ?*CHOOSEFONTA,
+) callconv(.winapi) BOOL;
+
+pub extern "comdlg32" fn ChooseFontW(
+    param0: ?*CHOOSEFONTW,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "comdlg32" fn CommDlgExtendedError(
+) callconv(.winapi) COMMON_DLG_ERRORS;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "comdlg32" fn FindTextA(
+    param0: ?*FINDREPLACEA,
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "comdlg32" fn FindTextW(
+    param0: ?*FINDREPLACEW,
+) callconv(.winapi) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "comdlg32" fn GetFileTitleA(
+    param0: ?[*:0]const u8,
+    Buf: [*:0]u8,
+    cchSize: u16,
+) callconv(.winapi) i16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "comdlg32" fn GetFileTitleW(
+    param0: ?[*:0]const u16,
+    Buf: [*:0]u16,
+    cchSize: u16,
+) callconv(.winapi) i16;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn GetOpenFileNameA(
     param0: ?*OPENFILENAMEA,
@@ -1482,37 +1526,29 @@ pub extern "comdlg32" fn GetSaveFileNameW(
     param0: ?*OPENFILENAMEW,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comdlg32" fn GetFileTitleA(
-    param0: ?[*:0]const u8,
-    Buf: [*:0]u8,
-    cchSize: u16,
-) callconv(.winapi) i16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comdlg32" fn GetFileTitleW(
-    param0: ?[*:0]const u16,
-    Buf: [*:0]u16,
-    cchSize: u16,
-) callconv(.winapi) i16;
-
-pub extern "comdlg32" fn ChooseColorA(
-    param0: ?*CHOOSECOLORA,
+pub extern "comdlg32" fn PageSetupDlgA(
+    param0: ?*PAGESETUPDLGA,
 ) callconv(.winapi) BOOL;
 
-pub extern "comdlg32" fn ChooseColorW(
-    param0: ?*CHOOSECOLORW,
+pub extern "comdlg32" fn PageSetupDlgW(
+    param0: ?*PAGESETUPDLGW,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comdlg32" fn FindTextA(
-    param0: ?*FINDREPLACEA,
-) callconv(.winapi) ?HWND;
+pub extern "comdlg32" fn PrintDlgA(
+    pPD: ?*PRINTDLGA,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comdlg32" fn FindTextW(
-    param0: ?*FINDREPLACEW,
-) callconv(.winapi) ?HWND;
+pub extern "comdlg32" fn PrintDlgExA(
+    pPD: ?*PRINTDLGEXA,
+) callconv(.winapi) HRESULT;
+
+pub extern "comdlg32" fn PrintDlgExW(
+    pPD: ?*PRINTDLGEXW,
+) callconv(.winapi) HRESULT;
+
+pub extern "comdlg32" fn PrintDlgW(
+    pPD: ?*PRINTDLGW,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn ReplaceTextA(
@@ -1524,58 +1560,29 @@ pub extern "comdlg32" fn ReplaceTextW(
     param0: ?*FINDREPLACEW,
 ) callconv(.winapi) ?HWND;
 
-pub extern "comdlg32" fn ChooseFontA(
-    param0: ?*CHOOSEFONTA,
-) callconv(.winapi) BOOL;
-
-pub extern "comdlg32" fn ChooseFontW(
-    param0: ?*CHOOSEFONTW,
-) callconv(.winapi) BOOL;
-
-pub extern "comdlg32" fn PrintDlgA(
-    pPD: ?*PRINTDLGA,
-) callconv(.winapi) BOOL;
-
-pub extern "comdlg32" fn PrintDlgW(
-    pPD: ?*PRINTDLGW,
-) callconv(.winapi) BOOL;
-
-pub extern "comdlg32" fn PrintDlgExA(
-    pPD: ?*PRINTDLGEXA,
-) callconv(.winapi) HRESULT;
-
-pub extern "comdlg32" fn PrintDlgExW(
-    pPD: ?*PRINTDLGEXW,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comdlg32" fn CommDlgExtendedError(
-) callconv(.winapi) COMMON_DLG_ERRORS;
-
-pub extern "comdlg32" fn PageSetupDlgA(
-    param0: ?*PAGESETUPDLGA,
-) callconv(.winapi) BOOL;
-
-pub extern "comdlg32" fn PageSetupDlgW(
-    param0: ?*PAGESETUPDLGW,
-) callconv(.winapi) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (20)
 //--------------------------------------------------------------------------------
-pub const OPENFILENAME_NT4 = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().OPENFILENAME_NT4A,
-    .wide => @This().OPENFILENAME_NT4W,
+pub const CHOOSECOLOR = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CHOOSECOLORA,
+    .wide => @This().CHOOSECOLORW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OPENFILENAME_NT4' requires that UNICODE be set to true or false in the root module",
+        "'CHOOSECOLOR' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const OPENFILENAME = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().OPENFILENAMEA,
-    .wide => @This().OPENFILENAMEW,
+pub const CHOOSEFONT = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().CHOOSEFONTA,
+    .wide => @This().CHOOSEFONTW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OPENFILENAME' requires that UNICODE be set to true or false in the root module",
+        "'CHOOSEFONT' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FINDREPLACE = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().FINDREPLACEA,
+    .wide => @This().FINDREPLACEW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FINDREPLACE' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const OFNOTIFY = switch (@import("../../zig.zig").unicode_mode) {
@@ -1592,25 +1599,25 @@ pub const OFNOTIFYEX = switch (@import("../../zig.zig").unicode_mode) {
         "'OFNOTIFYEX' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CHOOSECOLOR = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().CHOOSECOLORA,
-    .wide => @This().CHOOSECOLORW,
+pub const OPENFILENAME_NT4 = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OPENFILENAME_NT4A,
+    .wide => @This().OPENFILENAME_NT4W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CHOOSECOLOR' requires that UNICODE be set to true or false in the root module",
+        "'OPENFILENAME_NT4' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const FINDREPLACE = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().FINDREPLACEA,
-    .wide => @This().FINDREPLACEW,
+pub const OPENFILENAME = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().OPENFILENAMEA,
+    .wide => @This().OPENFILENAMEW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FINDREPLACE' requires that UNICODE be set to true or false in the root module",
+        "'OPENFILENAME' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const CHOOSEFONT = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().CHOOSEFONTA,
-    .wide => @This().CHOOSEFONTW,
+pub const PAGESETUPDLG = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PAGESETUPDLGA,
+    .wide => @This().PAGESETUPDLGW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CHOOSEFONT' requires that UNICODE be set to true or false in the root module",
+        "'PAGESETUPDLG' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PRINTDLG = switch (@import("../../zig.zig").unicode_mode) {
@@ -1627,11 +1634,32 @@ pub const PRINTDLGEX = switch (@import("../../zig.zig").unicode_mode) {
         "'PRINTDLGEX' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PAGESETUPDLG = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().PAGESETUPDLGA,
-    .wide => @This().PAGESETUPDLGW,
+pub const ChooseColor = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ChooseColorA,
+    .wide => @This().ChooseColorW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PAGESETUPDLG' requires that UNICODE be set to true or false in the root module",
+        "'ChooseColor' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ChooseFont = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ChooseFontA,
+    .wide => @This().ChooseFontW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ChooseFont' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindText = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().FindTextA,
+    .wide => @This().FindTextW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindText' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetFileTitle = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().GetFileTitleA,
+    .wide => @This().GetFileTitleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetFileTitle' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const GetOpenFileName = switch (@import("../../zig.zig").unicode_mode) {
@@ -1648,39 +1676,11 @@ pub const GetSaveFileName = switch (@import("../../zig.zig").unicode_mode) {
         "'GetSaveFileName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const GetFileTitle = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().GetFileTitleA,
-    .wide => @This().GetFileTitleW,
+pub const PageSetupDlg = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().PageSetupDlgA,
+    .wide => @This().PageSetupDlgW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetFileTitle' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ChooseColor = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ChooseColorA,
-    .wide => @This().ChooseColorW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ChooseColor' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FindText = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().FindTextA,
-    .wide => @This().FindTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FindText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ReplaceText = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ReplaceTextA,
-    .wide => @This().ReplaceTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReplaceText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ChooseFont = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().ChooseFontA,
-    .wide => @This().ChooseFontW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ChooseFont' requires that UNICODE be set to true or false in the root module",
+        "'PageSetupDlg' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PrintDlg = switch (@import("../../zig.zig").unicode_mode) {
@@ -1697,11 +1697,11 @@ pub const PrintDlgEx = switch (@import("../../zig.zig").unicode_mode) {
         "'PrintDlgEx' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const PageSetupDlg = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().PageSetupDlgA,
-    .wide => @This().PageSetupDlgW,
+pub const ReplaceText = switch (@import("../../zig.zig").unicode_mode) {
+    .ansi => @This().ReplaceTextA,
+    .wide => @This().ReplaceTextW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PageSetupDlg' requires that UNICODE be set to true or false in the root module",
+        "'ReplaceText' requires that UNICODE be set to true or false in the root module",
     ),
 };
 //--------------------------------------------------------------------------------
@@ -1730,14 +1730,14 @@ const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPOFNHOOKPROC")) { _ = LPOFNHOOKPROC; }
     if (@hasDecl(@This(), "LPCCHOOKPROC")) { _ = LPCCHOOKPROC; }
-    if (@hasDecl(@This(), "LPFRHOOKPROC")) { _ = LPFRHOOKPROC; }
     if (@hasDecl(@This(), "LPCFHOOKPROC")) { _ = LPCFHOOKPROC; }
-    if (@hasDecl(@This(), "LPPRINTHOOKPROC")) { _ = LPPRINTHOOKPROC; }
-    if (@hasDecl(@This(), "LPSETUPHOOKPROC")) { _ = LPSETUPHOOKPROC; }
+    if (@hasDecl(@This(), "LPFRHOOKPROC")) { _ = LPFRHOOKPROC; }
+    if (@hasDecl(@This(), "LPOFNHOOKPROC")) { _ = LPOFNHOOKPROC; }
     if (@hasDecl(@This(), "LPPAGEPAINTHOOK")) { _ = LPPAGEPAINTHOOK; }
     if (@hasDecl(@This(), "LPPAGESETUPHOOK")) { _ = LPPAGESETUPHOOK; }
+    if (@hasDecl(@This(), "LPPRINTHOOKPROC")) { _ = LPPRINTHOOKPROC; }
+    if (@hasDecl(@This(), "LPSETUPHOOKPROC")) { _ = LPSETUPHOOKPROC; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

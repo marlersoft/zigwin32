@@ -2,175 +2,189 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (66)
 //--------------------------------------------------------------------------------
-pub const PROPSETFLAG_DEFAULT = @as(u32, 0);
-pub const PROPSETFLAG_NONSIMPLE = @as(u32, 1);
-pub const PROPSETFLAG_ANSI = @as(u32, 2);
-pub const PROPSETFLAG_UNBUFFERED = @as(u32, 4);
-pub const PROPSETFLAG_CASE_SENSITIVE = @as(u32, 8);
-pub const PROPSET_BEHAVIOR_CASE_SENSITIVE = @as(u32, 1);
-pub const PID_DICTIONARY = @as(u32, 0);
+pub const CCH_MAX_PROPSTG_NAME = @as(u32, 31);
+pub const CWCSTORAGENAME = @as(u32, 32);
+pub const PID_BEHAVIOR = @as(u32, 2147483651);
 pub const PID_CODEPAGE = @as(u32, 1);
-pub const PID_FIRST_USABLE = @as(u32, 2);
+pub const PID_DICTIONARY = @as(u32, 0);
 pub const PID_FIRST_NAME_DEFAULT = @as(u32, 4095);
+pub const PID_FIRST_USABLE = @as(u32, 2);
+pub const PID_ILLEGAL = @as(u32, 4294967295);
 pub const PID_LOCALE = @as(u32, 2147483648);
+pub const PID_MAX_READONLY = @as(u32, 3221225471);
+pub const PID_MIN_READONLY = @as(u32, 2147483648);
 pub const PID_MODIFY_TIME = @as(u32, 2147483649);
 pub const PID_SECURITY = @as(u32, 2147483650);
-pub const PID_BEHAVIOR = @as(u32, 2147483651);
-pub const PID_ILLEGAL = @as(u32, 4294967295);
-pub const PID_MIN_READONLY = @as(u32, 2147483648);
-pub const PID_MAX_READONLY = @as(u32, 3221225471);
-pub const PRSPEC_INVALID = @as(u32, 4294967295);
-pub const PROPSETHDR_OSVERSION_UNKNOWN = @as(u32, 4294967295);
 pub const PIDDI_THUMBNAIL = @as(i32, 2);
-pub const PIDSI_TITLE = @as(i32, 2);
-pub const PIDSI_SUBJECT = @as(i32, 3);
+pub const PIDDSI_BYTECOUNT = @as(u32, 4);
+pub const PIDDSI_CATEGORY = @as(u32, 2);
+pub const PIDDSI_COMPANY = @as(u32, 15);
+pub const PIDDSI_DOCPARTS = @as(u32, 13);
+pub const PIDDSI_HEADINGPAIR = @as(u32, 12);
+pub const PIDDSI_HIDDENCOUNT = @as(u32, 9);
+pub const PIDDSI_LINECOUNT = @as(u32, 5);
+pub const PIDDSI_LINKSDIRTY = @as(u32, 16);
+pub const PIDDSI_MANAGER = @as(u32, 14);
+pub const PIDDSI_MMCLIPCOUNT = @as(u32, 10);
+pub const PIDDSI_NOTECOUNT = @as(u32, 8);
+pub const PIDDSI_PARCOUNT = @as(u32, 6);
+pub const PIDDSI_PRESFORMAT = @as(u32, 3);
+pub const PIDDSI_SCALE = @as(u32, 11);
+pub const PIDDSI_SLIDECOUNT = @as(u32, 7);
+pub const PIDMSI_COPYRIGHT = @as(i32, 11);
+pub const PIDMSI_EDITOR = @as(i32, 2);
+pub const PIDMSI_OWNER = @as(i32, 8);
+pub const PIDMSI_PRODUCTION = @as(i32, 10);
+pub const PIDMSI_PROJECT = @as(i32, 6);
+pub const PIDMSI_RATING = @as(i32, 9);
+pub const PIDMSI_SEQUENCE_NO = @as(i32, 5);
+pub const PIDMSI_SOURCE = @as(i32, 4);
+pub const PIDMSI_STATUS = @as(i32, 7);
+pub const PIDMSI_SUPPLIER = @as(i32, 3);
+pub const PIDSI_APPNAME = @as(i32, 18);
 pub const PIDSI_AUTHOR = @as(i32, 4);
-pub const PIDSI_KEYWORDS = @as(i32, 5);
+pub const PIDSI_CHARCOUNT = @as(i32, 16);
 pub const PIDSI_COMMENTS = @as(i32, 6);
-pub const PIDSI_TEMPLATE = @as(i32, 7);
-pub const PIDSI_LASTAUTHOR = @as(i32, 8);
-pub const PIDSI_REVNUMBER = @as(i32, 9);
-pub const PIDSI_EDITTIME = @as(i32, 10);
-pub const PIDSI_LASTPRINTED = @as(i32, 11);
 pub const PIDSI_CREATE_DTM = @as(i32, 12);
+pub const PIDSI_DOC_SECURITY = @as(i32, 19);
+pub const PIDSI_EDITTIME = @as(i32, 10);
+pub const PIDSI_KEYWORDS = @as(i32, 5);
+pub const PIDSI_LASTAUTHOR = @as(i32, 8);
+pub const PIDSI_LASTPRINTED = @as(i32, 11);
 pub const PIDSI_LASTSAVE_DTM = @as(i32, 13);
 pub const PIDSI_PAGECOUNT = @as(i32, 14);
-pub const PIDSI_WORDCOUNT = @as(i32, 15);
-pub const PIDSI_CHARCOUNT = @as(i32, 16);
+pub const PIDSI_REVNUMBER = @as(i32, 9);
+pub const PIDSI_SUBJECT = @as(i32, 3);
+pub const PIDSI_TEMPLATE = @as(i32, 7);
 pub const PIDSI_THUMBNAIL = @as(i32, 17);
-pub const PIDSI_APPNAME = @as(i32, 18);
-pub const PIDSI_DOC_SECURITY = @as(i32, 19);
-pub const PIDDSI_CATEGORY = @as(u32, 2);
-pub const PIDDSI_PRESFORMAT = @as(u32, 3);
-pub const PIDDSI_BYTECOUNT = @as(u32, 4);
-pub const PIDDSI_LINECOUNT = @as(u32, 5);
-pub const PIDDSI_PARCOUNT = @as(u32, 6);
-pub const PIDDSI_SLIDECOUNT = @as(u32, 7);
-pub const PIDDSI_NOTECOUNT = @as(u32, 8);
-pub const PIDDSI_HIDDENCOUNT = @as(u32, 9);
-pub const PIDDSI_MMCLIPCOUNT = @as(u32, 10);
-pub const PIDDSI_SCALE = @as(u32, 11);
-pub const PIDDSI_HEADINGPAIR = @as(u32, 12);
-pub const PIDDSI_DOCPARTS = @as(u32, 13);
-pub const PIDDSI_MANAGER = @as(u32, 14);
-pub const PIDDSI_COMPANY = @as(u32, 15);
-pub const PIDDSI_LINKSDIRTY = @as(u32, 16);
-pub const PIDMSI_EDITOR = @as(i32, 2);
-pub const PIDMSI_SUPPLIER = @as(i32, 3);
-pub const PIDMSI_SOURCE = @as(i32, 4);
-pub const PIDMSI_SEQUENCE_NO = @as(i32, 5);
-pub const PIDMSI_PROJECT = @as(i32, 6);
-pub const PIDMSI_STATUS = @as(i32, 7);
-pub const PIDMSI_OWNER = @as(i32, 8);
-pub const PIDMSI_RATING = @as(i32, 9);
-pub const PIDMSI_PRODUCTION = @as(i32, 10);
-pub const PIDMSI_COPYRIGHT = @as(i32, 11);
-pub const CWCSTORAGENAME = @as(u32, 32);
+pub const PIDSI_TITLE = @as(i32, 2);
+pub const PIDSI_WORDCOUNT = @as(i32, 15);
+pub const PROPSET_BEHAVIOR_CASE_SENSITIVE = @as(u32, 1);
+pub const PROPSETFLAG_ANSI = @as(u32, 2);
+pub const PROPSETFLAG_CASE_SENSITIVE = @as(u32, 8);
+pub const PROPSETFLAG_DEFAULT = @as(u32, 0);
+pub const PROPSETFLAG_NONSIMPLE = @as(u32, 1);
+pub const PROPSETFLAG_UNBUFFERED = @as(u32, 4);
+pub const PROPSETHDR_OSVERSION_UNKNOWN = @as(u32, 4294967295);
+pub const PRSPEC_INVALID = @as(u32, 4294967295);
 pub const STGOPTIONS_VERSION = @as(u32, 1);
-pub const CCH_MAX_PROPSTG_NAME = @as(u32, 31);
 
 //--------------------------------------------------------------------------------
 // Section: Types (57)
 //--------------------------------------------------------------------------------
-pub const PROPSPEC_KIND = enum(u32) {
-    LPWSTR = 0,
-    PROPID = 1,
-};
-pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
-pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
-
-pub const STGM = packed struct(u32) {
-    WRITE: u1 = 0,
-    READWRITE: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    SHARE_EXCLUSIVE: u1 = 0,
-    SHARE_DENY_WRITE: u1 = 0,
-    SHARE_DENY_NONE: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    CREATE: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    TRANSACTED: u1 = 0,
-    CONVERT: u1 = 0,
-    PRIORITY: u1 = 0,
-    _19: u1 = 0,
-    NOSCRATCH: u1 = 0,
-    NOSNAPSHOT: u1 = 0,
-    DIRECT_SWMR: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    DELETEONRELEASE: u1 = 0,
-    SIMPLE: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const STGM_DIRECT = STGM{ };
-pub const STGM_TRANSACTED = STGM{ .TRANSACTED = 1 };
-pub const STGM_SIMPLE = STGM{ .SIMPLE = 1 };
-pub const STGM_READ = STGM{ };
-pub const STGM_WRITE = STGM{ .WRITE = 1 };
-pub const STGM_READWRITE = STGM{ .READWRITE = 1 };
-pub const STGM_SHARE_DENY_NONE = STGM{ .SHARE_DENY_NONE = 1 };
-pub const STGM_SHARE_DENY_READ = STGM{
-    .SHARE_EXCLUSIVE = 1,
-    .SHARE_DENY_WRITE = 1,
-};
-pub const STGM_SHARE_DENY_WRITE = STGM{ .SHARE_DENY_WRITE = 1 };
-pub const STGM_SHARE_EXCLUSIVE = STGM{ .SHARE_EXCLUSIVE = 1 };
-pub const STGM_PRIORITY = STGM{ .PRIORITY = 1 };
-pub const STGM_DELETEONRELEASE = STGM{ .DELETEONRELEASE = 1 };
-pub const STGM_NOSCRATCH = STGM{ .NOSCRATCH = 1 };
-pub const STGM_CREATE = STGM{ .CREATE = 1 };
-pub const STGM_CONVERT = STGM{ .CONVERT = 1 };
-pub const STGM_FAILIFTHERE = STGM{ };
-pub const STGM_NOSNAPSHOT = STGM{ .NOSNAPSHOT = 1 };
-pub const STGM_DIRECT_SWMR = STGM{ .DIRECT_SWMR = 1 };
-
-pub const STGFMT = enum(u32) {
-    STORAGE = 0,
-    NATIVE = 1,
-    FILE = 3,
-    ANY = 4,
-    DOCFILE = 5,
-    pub const DOCUMENT = .STORAGE;
-};
-pub const STGFMT_STORAGE = STGFMT.STORAGE;
-pub const STGFMT_NATIVE = STGFMT.NATIVE;
-pub const STGFMT_FILE = STGFMT.FILE;
-pub const STGFMT_ANY = STGFMT.ANY;
-pub const STGFMT_DOCFILE = STGFMT.DOCFILE;
-pub const STGFMT_DOCUMENT = STGFMT.STORAGE;
-
-pub const STGMOVE = enum(i32) {
-    MOVE = 0,
-    COPY = 1,
-    SHALLOWCOPY = 2,
-};
-pub const STGMOVE_MOVE = STGMOVE.MOVE;
-pub const STGMOVE_COPY = STGMOVE.COPY;
-pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
-
-pub const STATFLAG = enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
-};
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
-
 pub const BSTRBLOB = extern struct {
     cbSize: u32,
     pData: ?*u8,
+};
+
+pub const CABOOL = extern struct {
+    cElems: u32,
+    pElems: ?*i16,
+};
+
+pub const CABSTR = extern struct {
+    cElems: u32,
+    pElems: ?*?BSTR,
+};
+
+pub const CABSTRBLOB = extern struct {
+    cElems: u32,
+    pElems: ?*BSTRBLOB,
+};
+
+pub const CAC = extern struct {
+    cElems: u32,
+    pElems: ?PSTR,
+};
+
+pub const CACLIPDATA = extern struct {
+    cElems: u32,
+    pElems: ?*CLIPDATA,
+};
+
+pub const CACLSID = extern struct {
+    cElems: u32,
+    pElems: ?*Guid,
+};
+
+pub const CACY = extern struct {
+    cElems: u32,
+    pElems: ?*CY,
+};
+
+pub const CADATE = extern struct {
+    cElems: u32,
+    pElems: ?*f64,
+};
+
+pub const CADBL = extern struct {
+    cElems: u32,
+    pElems: ?*f64,
+};
+
+pub const CAFILETIME = extern struct {
+    cElems: u32,
+    pElems: ?*FILETIME,
+};
+
+pub const CAFLT = extern struct {
+    cElems: u32,
+    pElems: ?*f32,
+};
+
+pub const CAH = extern struct {
+    cElems: u32,
+    pElems: ?*LARGE_INTEGER,
+};
+
+pub const CAI = extern struct {
+    cElems: u32,
+    pElems: ?*i16,
+};
+
+pub const CAL = extern struct {
+    cElems: u32,
+    pElems: ?*i32,
+};
+
+pub const CALPSTR = extern struct {
+    cElems: u32,
+    pElems: ?*?PSTR,
+};
+
+pub const CALPWSTR = extern struct {
+    cElems: u32,
+    pElems: ?*?PWSTR,
+};
+
+pub const CAPROPVARIANT = extern struct {
+    cElems: u32,
+    pElems: ?*PROPVARIANT,
+};
+
+pub const CASCODE = extern struct {
+    cElems: u32,
+    pElems: ?*i32,
+};
+
+pub const CAUB = extern struct {
+    cElems: u32,
+    pElems: ?*u8,
+};
+
+pub const CAUH = extern struct {
+    cElems: u32,
+    pElems: ?*ULARGE_INTEGER,
+};
+
+pub const CAUI = extern struct {
+    cElems: u32,
+    pElems: ?*u16,
+};
+
+pub const CAUL = extern struct {
+    cElems: u32,
+    pElems: ?*u32,
 };
 
 pub const CLIPDATA = extern struct {
@@ -179,14 +193,115 @@ pub const CLIPDATA = extern struct {
     pClipData: ?*u8,
 };
 
-pub const LOCKTYPE = enum(i32) {
-    WRITE = 1,
-    EXCLUSIVE = 2,
-    ONLYONCE = 4,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IDirectWriterLock_Value = Guid.initString("0e6d4d92-6738-11cf-9608-00aa00680db4");
+pub const IID_IDirectWriterLock = &IID_IDirectWriterLock_Value;
+pub const IDirectWriterLock = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        WaitForWriteAccess: *const fn(
+            self: *const IDirectWriterLock,
+            dwTimeout: u32,
+        ) callconv(.winapi) HRESULT,
+        ReleaseWriteAccess: *const fn(
+            self: *const IDirectWriterLock,
+        ) callconv(.winapi) HRESULT,
+        HaveWriteAccess: *const fn(
+            self: *const IDirectWriterLock,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn WaitForWriteAccess(self: *const IDirectWriterLock, dwTimeout: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WaitForWriteAccess(self, dwTimeout);
+    }
+    pub fn ReleaseWriteAccess(self: *const IDirectWriterLock) callconv(.@"inline") HRESULT {
+        return self.vtable.ReleaseWriteAccess(self);
+    }
+    pub fn HaveWriteAccess(self: *const IDirectWriterLock) callconv(.@"inline") HRESULT {
+        return self.vtable.HaveWriteAccess(self);
+    }
 };
-pub const LOCK_WRITE = LOCKTYPE.WRITE;
-pub const LOCK_EXCLUSIVE = LOCKTYPE.EXCLUSIVE;
-pub const LOCK_ONLYONCE = LOCKTYPE.ONLYONCE;
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumSTATPROPSETSTG_Value = Guid.initString("0000013b-0000-0000-c000-000000000046");
+pub const IID_IEnumSTATPROPSETSTG = &IID_IEnumSTATPROPSETSTG_Value;
+pub const IEnumSTATPROPSETSTG = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumSTATPROPSETSTG,
+            celt: u32,
+            rgelt: [*]STATPROPSETSTG,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSTATPROPSETSTG,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSTATPROPSETSTG,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSTATPROPSETSTG,
+            ppenum: ?*?*IEnumSTATPROPSETSTG,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSTATPROPSETSTG, celt: u32, rgelt: [*]STATPROPSETSTG, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumSTATPROPSETSTG, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumSTATPROPSETSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumSTATPROPSETSTG, ppenum: ?*?*IEnumSTATPROPSETSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumSTATPROPSTG_Value = Guid.initString("00000139-0000-0000-c000-000000000046");
+pub const IID_IEnumSTATPROPSTG = &IID_IEnumSTATPROPSTG_Value;
+pub const IEnumSTATPROPSTG = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: *const fn(
+            self: *const IEnumSTATPROPSTG,
+            celt: u32,
+            rgelt: [*]STATPROPSTG,
+            pceltFetched: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSTATPROPSTG,
+            celt: u32,
+        ) callconv(.winapi) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSTATPROPSTG,
+        ) callconv(.winapi) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSTATPROPSTG,
+            ppenum: ?*?*IEnumSTATPROPSTG,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSTATPROPSTG, celt: u32, rgelt: [*]STATPROPSTG, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
+    }
+    pub fn Skip(self: *const IEnumSTATPROPSTG, celt: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumSTATPROPSTG, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumSTATSTG_Value = Guid.initString("0000000d-0000-0000-c000-000000000046");
@@ -228,10 +343,475 @@ pub const IEnumSTATSTG = extern union {
     }
 };
 
-pub const RemSNB = extern struct {
-    ulCntStr: u32,
-    ulCntChar: u32,
-    rgString: [1]u16,
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IFillLockBytes_Value = Guid.initString("99caf010-415e-11cf-8814-00aa00b569f5");
+pub const IID_IFillLockBytes = &IID_IFillLockBytes_Value;
+pub const IFillLockBytes = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FillAppend: *const fn(
+            self: *const IFillLockBytes,
+            // TODO: what to do with BytesParamIndex 1?
+            pv: ?*const anyopaque,
+            cb: u32,
+            pcbWritten: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        FillAt: *const fn(
+            self: *const IFillLockBytes,
+            ulOffset: ULARGE_INTEGER,
+            // TODO: what to do with BytesParamIndex 2?
+            pv: ?*const anyopaque,
+            cb: u32,
+            pcbWritten: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetFillSize: *const fn(
+            self: *const IFillLockBytes,
+            ulSize: ULARGE_INTEGER,
+        ) callconv(.winapi) HRESULT,
+        Terminate: *const fn(
+            self: *const IFillLockBytes,
+            bCanceled: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn FillAppend(self: *const IFillLockBytes, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.FillAppend(self, pv, cb, pcbWritten);
+    }
+    pub fn FillAt(self: *const IFillLockBytes, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.FillAt(self, ulOffset, pv, cb, pcbWritten);
+    }
+    pub fn SetFillSize(self: *const IFillLockBytes, ulSize: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
+        return self.vtable.SetFillSize(self, ulSize);
+    }
+    pub fn Terminate(self: *const IFillLockBytes, bCanceled: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Terminate(self, bCanceled);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ILayoutStorage_Value = Guid.initString("0e6d4d90-6738-11cf-9608-00aa00680db4");
+pub const IID_ILayoutStorage = &IID_ILayoutStorage_Value;
+pub const ILayoutStorage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        LayoutScript: *const fn(
+            self: *const ILayoutStorage,
+            pStorageLayout: [*]StorageLayout,
+            nEntries: u32,
+            glfInterleavedFlag: u32,
+        ) callconv(.winapi) HRESULT,
+        BeginMonitor: *const fn(
+            self: *const ILayoutStorage,
+        ) callconv(.winapi) HRESULT,
+        EndMonitor: *const fn(
+            self: *const ILayoutStorage,
+        ) callconv(.winapi) HRESULT,
+        ReLayoutDocfile: *const fn(
+            self: *const ILayoutStorage,
+            pwcsNewDfName: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        ReLayoutDocfileOnILockBytes: *const fn(
+            self: *const ILayoutStorage,
+            pILockBytes: ?*ILockBytes,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn LayoutScript(self: *const ILayoutStorage, pStorageLayout: [*]StorageLayout, nEntries: u32, glfInterleavedFlag: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.LayoutScript(self, pStorageLayout, nEntries, glfInterleavedFlag);
+    }
+    pub fn BeginMonitor(self: *const ILayoutStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.BeginMonitor(self);
+    }
+    pub fn EndMonitor(self: *const ILayoutStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.EndMonitor(self);
+    }
+    pub fn ReLayoutDocfile(self: *const ILayoutStorage, pwcsNewDfName: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ReLayoutDocfile(self, pwcsNewDfName);
+    }
+    pub fn ReLayoutDocfileOnILockBytes(self: *const ILayoutStorage, pILockBytes: ?*ILockBytes) callconv(.@"inline") HRESULT {
+        return self.vtable.ReLayoutDocfileOnILockBytes(self, pILockBytes);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ILockBytes_Value = Guid.initString("0000000a-0000-0000-c000-000000000046");
+pub const IID_ILockBytes = &IID_ILockBytes_Value;
+pub const ILockBytes = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReadAt: *const fn(
+            self: *const ILockBytes,
+            ulOffset: ULARGE_INTEGER,
+            // TODO: what to do with BytesParamIndex 2?
+            pv: ?*anyopaque,
+            cb: u32,
+            pcbRead: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        WriteAt: *const fn(
+            self: *const ILockBytes,
+            ulOffset: ULARGE_INTEGER,
+            // TODO: what to do with BytesParamIndex 2?
+            pv: ?*const anyopaque,
+            cb: u32,
+            pcbWritten: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Flush: *const fn(
+            self: *const ILockBytes,
+        ) callconv(.winapi) HRESULT,
+        SetSize: *const fn(
+            self: *const ILockBytes,
+            cb: ULARGE_INTEGER,
+        ) callconv(.winapi) HRESULT,
+        LockRegion: *const fn(
+            self: *const ILockBytes,
+            libOffset: ULARGE_INTEGER,
+            cb: ULARGE_INTEGER,
+            dwLockType: u32,
+        ) callconv(.winapi) HRESULT,
+        UnlockRegion: *const fn(
+            self: *const ILockBytes,
+            libOffset: ULARGE_INTEGER,
+            cb: ULARGE_INTEGER,
+            dwLockType: u32,
+        ) callconv(.winapi) HRESULT,
+        Stat: *const fn(
+            self: *const ILockBytes,
+            pstatstg: ?*STATSTG,
+            grfStatFlag: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReadAt(self: *const ILockBytes, ulOffset: ULARGE_INTEGER, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadAt(self, ulOffset, pv, cb, pcbRead);
+    }
+    pub fn WriteAt(self: *const ILockBytes, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteAt(self, ulOffset, pv, cb, pcbWritten);
+    }
+    pub fn Flush(self: *const ILockBytes) callconv(.@"inline") HRESULT {
+        return self.vtable.Flush(self);
+    }
+    pub fn SetSize(self: *const ILockBytes, cb: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
+        return self.vtable.SetSize(self, cb);
+    }
+    pub fn LockRegion(self: *const ILockBytes, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.LockRegion(self, libOffset, cb, dwLockType);
+    }
+    pub fn UnlockRegion(self: *const ILockBytes, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.UnlockRegion(self, libOffset, cb, dwLockType);
+    }
+    pub fn Stat(self: *const ILockBytes, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Stat(self, pstatstg, grfStatFlag);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPersistStorage_Value = Guid.initString("0000010a-0000-0000-c000-000000000046");
+pub const IID_IPersistStorage = &IID_IPersistStorage_Value;
+pub const IPersistStorage = extern union {
+    pub const VTable = extern struct {
+        base: IPersist.VTable,
+        IsDirty: *const fn(
+            self: *const IPersistStorage,
+        ) callconv(.winapi) HRESULT,
+        InitNew: *const fn(
+            self: *const IPersistStorage,
+            pStg: ?*IStorage,
+        ) callconv(.winapi) HRESULT,
+        Load: *const fn(
+            self: *const IPersistStorage,
+            pStg: ?*IStorage,
+        ) callconv(.winapi) HRESULT,
+        Save: *const fn(
+            self: *const IPersistStorage,
+            pStgSave: ?*IStorage,
+            fSameAsLoad: BOOL,
+        ) callconv(.winapi) HRESULT,
+        SaveCompleted: *const fn(
+            self: *const IPersistStorage,
+            pStgNew: ?*IStorage,
+        ) callconv(.winapi) HRESULT,
+        HandsOffStorage: *const fn(
+            self: *const IPersistStorage,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IPersist: IPersist,
+    IUnknown: IUnknown,
+    pub fn IsDirty(self: *const IPersistStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.IsDirty(self);
+    }
+    pub fn InitNew(self: *const IPersistStorage, pStg: ?*IStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.InitNew(self, pStg);
+    }
+    pub fn Load(self: *const IPersistStorage, pStg: ?*IStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Load(self, pStg);
+    }
+    pub fn Save(self: *const IPersistStorage, pStgSave: ?*IStorage, fSameAsLoad: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.Save(self, pStgSave, fSameAsLoad);
+    }
+    pub fn SaveCompleted(self: *const IPersistStorage, pStgNew: ?*IStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveCompleted(self, pStgNew);
+    }
+    pub fn HandsOffStorage(self: *const IPersistStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.HandsOffStorage(self);
+    }
+};
+
+const IID_IPropertyBag_Value = Guid.initString("55272a00-42cb-11ce-8135-00aa004bb851");
+pub const IID_IPropertyBag = &IID_IPropertyBag_Value;
+pub const IPropertyBag = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Read: *const fn(
+            self: *const IPropertyBag,
+            pszPropName: ?[*:0]const u16,
+            pVar: ?*VARIANT,
+            pErrorLog: ?*IErrorLog,
+        ) callconv(.winapi) HRESULT,
+        Write: *const fn(
+            self: *const IPropertyBag,
+            pszPropName: ?[*:0]const u16,
+            pVar: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Read(self: *const IPropertyBag, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT, pErrorLog: ?*IErrorLog) callconv(.@"inline") HRESULT {
+        return self.vtable.Read(self, pszPropName, pVar, pErrorLog);
+    }
+    pub fn Write(self: *const IPropertyBag, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Write(self, pszPropName, pVar);
+    }
+};
+
+const IID_IPropertyBag2_Value = Guid.initString("22f55882-280b-11d0-a8a9-00a0c90c2004");
+pub const IID_IPropertyBag2 = &IID_IPropertyBag2_Value;
+pub const IPropertyBag2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Read: *const fn(
+            self: *const IPropertyBag2,
+            cProperties: u32,
+            pPropBag: [*]PROPBAG2,
+            pErrLog: ?*IErrorLog,
+            pvarValue: [*]VARIANT,
+            phrError: [*]HRESULT,
+        ) callconv(.winapi) HRESULT,
+        Write: *const fn(
+            self: *const IPropertyBag2,
+            cProperties: u32,
+            pPropBag: [*]PROPBAG2,
+            pvarValue: [*]VARIANT,
+        ) callconv(.winapi) HRESULT,
+        CountProperties: *const fn(
+            self: *const IPropertyBag2,
+            pcProperties: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetPropertyInfo: *const fn(
+            self: *const IPropertyBag2,
+            iProperty: u32,
+            cProperties: u32,
+            pPropBag: [*]PROPBAG2,
+            pcProperties: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        LoadObject: *const fn(
+            self: *const IPropertyBag2,
+            pstrName: ?[*:0]const u16,
+            dwHint: u32,
+            pUnkObject: ?*IUnknown,
+            pErrLog: ?*IErrorLog,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Read(self: *const IPropertyBag2, cProperties: u32, pPropBag: [*]PROPBAG2, pErrLog: ?*IErrorLog, pvarValue: [*]VARIANT, phrError: [*]HRESULT) callconv(.@"inline") HRESULT {
+        return self.vtable.Read(self, cProperties, pPropBag, pErrLog, pvarValue, phrError);
+    }
+    pub fn Write(self: *const IPropertyBag2, cProperties: u32, pPropBag: [*]PROPBAG2, pvarValue: [*]VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.Write(self, cProperties, pPropBag, pvarValue);
+    }
+    pub fn CountProperties(self: *const IPropertyBag2, pcProperties: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CountProperties(self, pcProperties);
+    }
+    pub fn GetPropertyInfo(self: *const IPropertyBag2, iProperty: u32, cProperties: u32, pPropBag: [*]PROPBAG2, pcProperties: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetPropertyInfo(self, iProperty, cProperties, pPropBag, pcProperties);
+    }
+    pub fn LoadObject(self: *const IPropertyBag2, pstrName: ?[*:0]const u16, dwHint: u32, pUnkObject: ?*IUnknown, pErrLog: ?*IErrorLog) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadObject(self, pstrName, dwHint, pUnkObject, pErrLog);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPropertySetStorage_Value = Guid.initString("0000013a-0000-0000-c000-000000000046");
+pub const IID_IPropertySetStorage = &IID_IPropertySetStorage_Value;
+pub const IPropertySetStorage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: *const fn(
+            self: *const IPropertySetStorage,
+            rfmtid: ?*const Guid,
+            pclsid: ?*const Guid,
+            grfFlags: u32,
+            grfMode: u32,
+            ppprstg: ?*?*IPropertyStorage,
+        ) callconv(.winapi) HRESULT,
+        Open: *const fn(
+            self: *const IPropertySetStorage,
+            rfmtid: ?*const Guid,
+            grfMode: u32,
+            ppprstg: ?*?*IPropertyStorage,
+        ) callconv(.winapi) HRESULT,
+        Delete: *const fn(
+            self: *const IPropertySetStorage,
+            rfmtid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        Enum: *const fn(
+            self: *const IPropertySetStorage,
+            ppenum: ?*?*IEnumSTATPROPSETSTG,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Create(self: *const IPropertySetStorage, rfmtid: ?*const Guid, pclsid: ?*const Guid, grfFlags: u32, grfMode: u32, ppprstg: ?*?*IPropertyStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Create(self, rfmtid, pclsid, grfFlags, grfMode, ppprstg);
+    }
+    pub fn Open(self: *const IPropertySetStorage, rfmtid: ?*const Guid, grfMode: u32, ppprstg: ?*?*IPropertyStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, rfmtid, grfMode, ppprstg);
+    }
+    pub fn Delete(self: *const IPropertySetStorage, rfmtid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.Delete(self, rfmtid);
+    }
+    pub fn Enum(self: *const IPropertySetStorage, ppenum: ?*?*IEnumSTATPROPSETSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Enum(self, ppenum);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPropertyStorage_Value = Guid.initString("00000138-0000-0000-c000-000000000046");
+pub const IID_IPropertyStorage = &IID_IPropertyStorage_Value;
+pub const IPropertyStorage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReadMultiple: *const fn(
+            self: *const IPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+            rgpropvar: [*]PROPVARIANT,
+        ) callconv(.winapi) HRESULT,
+        WriteMultiple: *const fn(
+            self: *const IPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+            rgpropvar: [*]const PROPVARIANT,
+            propidNameFirst: u32,
+        ) callconv(.winapi) HRESULT,
+        DeleteMultiple: *const fn(
+            self: *const IPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+        ) callconv(.winapi) HRESULT,
+        ReadPropertyNames: *const fn(
+            self: *const IPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+            rglpwstrName: [*]?PWSTR,
+        ) callconv(.winapi) HRESULT,
+        WritePropertyNames: *const fn(
+            self: *const IPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+            rglpwstrName: [*]const ?[*:0]const u16,
+        ) callconv(.winapi) HRESULT,
+        DeletePropertyNames: *const fn(
+            self: *const IPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+        ) callconv(.winapi) HRESULT,
+        Commit: *const fn(
+            self: *const IPropertyStorage,
+            grfCommitFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        Revert: *const fn(
+            self: *const IPropertyStorage,
+        ) callconv(.winapi) HRESULT,
+        Enum: *const fn(
+            self: *const IPropertyStorage,
+            ppenum: ?*?*IEnumSTATPROPSTG,
+        ) callconv(.winapi) HRESULT,
+        SetTimes: *const fn(
+            self: *const IPropertyStorage,
+            pctime: ?*const FILETIME,
+            patime: ?*const FILETIME,
+            pmtime: ?*const FILETIME,
+        ) callconv(.winapi) HRESULT,
+        SetClass: *const fn(
+            self: *const IPropertyStorage,
+            clsid: ?*const Guid,
+        ) callconv(.winapi) HRESULT,
+        Stat: *const fn(
+            self: *const IPropertyStorage,
+            pstatpsstg: ?*STATPROPSETSTG,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ReadMultiple(self: *const IPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadMultiple(self, cpspec, rgpspec, rgpropvar);
+    }
+    pub fn WriteMultiple(self: *const IPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]const PROPVARIANT, propidNameFirst: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.WriteMultiple(self, cpspec, rgpspec, rgpropvar, propidNameFirst);
+    }
+    pub fn DeleteMultiple(self: *const IPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteMultiple(self, cpspec, rgpspec);
+    }
+    pub fn ReadPropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ReadPropertyNames(self, cpropid, rgpropid, rglpwstrName);
+    }
+    pub fn WritePropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.@"inline") HRESULT {
+        return self.vtable.WritePropertyNames(self, cpropid, rgpropid, rglpwstrName);
+    }
+    pub fn DeletePropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32) callconv(.@"inline") HRESULT {
+        return self.vtable.DeletePropertyNames(self, cpropid, rgpropid);
+    }
+    pub fn Commit(self: *const IPropertyStorage, grfCommitFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Commit(self, grfCommitFlags);
+    }
+    pub fn Revert(self: *const IPropertyStorage) callconv(.@"inline") HRESULT {
+        return self.vtable.Revert(self);
+    }
+    pub fn Enum(self: *const IPropertyStorage, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Enum(self, ppenum);
+    }
+    pub fn SetTimes(self: *const IPropertyStorage, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.@"inline") HRESULT {
+        return self.vtable.SetTimes(self, pctime, patime, pmtime);
+    }
+    pub fn SetClass(self: *const IPropertyStorage, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
+        return self.vtable.SetClass(self, clsid);
+    }
+    pub fn Stat(self: *const IPropertyStorage, pstatpsstg: ?*STATPROPSETSTG) callconv(.@"inline") HRESULT {
+        return self.vtable.Stat(self, pstatpsstg);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IRootStorage_Value = Guid.initString("00000012-0000-0000-c000-000000000046");
+pub const IID_IRootStorage = &IID_IRootStorage_Value;
+pub const IRootStorage = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SwitchToFile: *const fn(
+            self: *const IRootStorage,
+            pszFile: ?PWSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SwitchToFile(self: *const IRootStorage, pszFile: ?PWSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.SwitchToFile(self, pszFile);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -381,385 +961,74 @@ pub const IStorage = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPersistStorage_Value = Guid.initString("0000010a-0000-0000-c000-000000000046");
-pub const IID_IPersistStorage = &IID_IPersistStorage_Value;
-pub const IPersistStorage = extern union {
-    pub const VTable = extern struct {
-        base: IPersist.VTable,
-        IsDirty: *const fn(
-            self: *const IPersistStorage,
-        ) callconv(.winapi) HRESULT,
-        InitNew: *const fn(
-            self: *const IPersistStorage,
-            pStg: ?*IStorage,
-        ) callconv(.winapi) HRESULT,
-        Load: *const fn(
-            self: *const IPersistStorage,
-            pStg: ?*IStorage,
-        ) callconv(.winapi) HRESULT,
-        Save: *const fn(
-            self: *const IPersistStorage,
-            pStgSave: ?*IStorage,
-            fSameAsLoad: BOOL,
-        ) callconv(.winapi) HRESULT,
-        SaveCompleted: *const fn(
-            self: *const IPersistStorage,
-            pStgNew: ?*IStorage,
-        ) callconv(.winapi) HRESULT,
-        HandsOffStorage: *const fn(
-            self: *const IPersistStorage,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IPersist: IPersist,
-    IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IPersistStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.IsDirty(self);
-    }
-    pub fn InitNew(self: *const IPersistStorage, pStg: ?*IStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.InitNew(self, pStg);
-    }
-    pub fn Load(self: *const IPersistStorage, pStg: ?*IStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Load(self, pStg);
-    }
-    pub fn Save(self: *const IPersistStorage, pStgSave: ?*IStorage, fSameAsLoad: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Save(self, pStgSave, fSameAsLoad);
-    }
-    pub fn SaveCompleted(self: *const IPersistStorage, pStgNew: ?*IStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveCompleted(self, pStgNew);
-    }
-    pub fn HandsOffStorage(self: *const IPersistStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.HandsOffStorage(self);
-    }
+pub const LOCKTYPE = enum(i32) {
+    WRITE = 1,
+    EXCLUSIVE = 2,
+    ONLYONCE = 4,
+};
+pub const LOCK_WRITE = LOCKTYPE.WRITE;
+pub const LOCK_EXCLUSIVE = LOCKTYPE.EXCLUSIVE;
+pub const LOCK_ONLYONCE = LOCKTYPE.ONLYONCE;
+
+pub const OLESTREAM = extern struct {
+    lpstbl: ?*OLESTREAMVTBL,
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ILockBytes_Value = Guid.initString("0000000a-0000-0000-c000-000000000046");
-pub const IID_ILockBytes = &IID_ILockBytes_Value;
-pub const ILockBytes = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReadAt: *const fn(
-            self: *const ILockBytes,
-            ulOffset: ULARGE_INTEGER,
-            // TODO: what to do with BytesParamIndex 2?
-            pv: ?*anyopaque,
-            cb: u32,
-            pcbRead: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        WriteAt: *const fn(
-            self: *const ILockBytes,
-            ulOffset: ULARGE_INTEGER,
-            // TODO: what to do with BytesParamIndex 2?
-            pv: ?*const anyopaque,
-            cb: u32,
-            pcbWritten: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Flush: *const fn(
-            self: *const ILockBytes,
-        ) callconv(.winapi) HRESULT,
-        SetSize: *const fn(
-            self: *const ILockBytes,
-            cb: ULARGE_INTEGER,
-        ) callconv(.winapi) HRESULT,
-        LockRegion: *const fn(
-            self: *const ILockBytes,
-            libOffset: ULARGE_INTEGER,
-            cb: ULARGE_INTEGER,
-            dwLockType: u32,
-        ) callconv(.winapi) HRESULT,
-        UnlockRegion: *const fn(
-            self: *const ILockBytes,
-            libOffset: ULARGE_INTEGER,
-            cb: ULARGE_INTEGER,
-            dwLockType: u32,
-        ) callconv(.winapi) HRESULT,
-        Stat: *const fn(
-            self: *const ILockBytes,
-            pstatstg: ?*STATSTG,
-            grfStatFlag: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ReadAt(self: *const ILockBytes, ulOffset: ULARGE_INTEGER, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadAt(self, ulOffset, pv, cb, pcbRead);
-    }
-    pub fn WriteAt(self: *const ILockBytes, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteAt(self, ulOffset, pv, cb, pcbWritten);
-    }
-    pub fn Flush(self: *const ILockBytes) callconv(.@"inline") HRESULT {
-        return self.vtable.Flush(self);
-    }
-    pub fn SetSize(self: *const ILockBytes, cb: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
-        return self.vtable.SetSize(self, cb);
-    }
-    pub fn LockRegion(self: *const ILockBytes, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.LockRegion(self, libOffset, cb, dwLockType);
-    }
-    pub fn UnlockRegion(self: *const ILockBytes, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.UnlockRegion(self, libOffset, cb, dwLockType);
-    }
-    pub fn Stat(self: *const ILockBytes, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Stat(self, pstatstg, grfStatFlag);
-    }
+pub const OLESTREAMVTBL = extern struct {
+    Get: isize,
+    Put: isize,
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IRootStorage_Value = Guid.initString("00000012-0000-0000-c000-000000000046");
-pub const IID_IRootStorage = &IID_IRootStorage_Value;
-pub const IRootStorage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SwitchToFile: *const fn(
-            self: *const IRootStorage,
-            pszFile: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SwitchToFile(self: *const IRootStorage, pszFile: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.SwitchToFile(self, pszFile);
-    }
+pub const PIDMSI_STATUS_VALUE = enum(i32) {
+    NORMAL = 0,
+    NEW = 1,
+    PRELIM = 2,
+    DRAFT = 3,
+    INPROGRESS = 4,
+    EDIT = 5,
+    REVIEW = 6,
+    PROOF = 7,
+    FINAL = 8,
+    OTHER = 32767,
+};
+pub const PIDMSI_STATUS_NORMAL = PIDMSI_STATUS_VALUE.NORMAL;
+pub const PIDMSI_STATUS_NEW = PIDMSI_STATUS_VALUE.NEW;
+pub const PIDMSI_STATUS_PRELIM = PIDMSI_STATUS_VALUE.PRELIM;
+pub const PIDMSI_STATUS_DRAFT = PIDMSI_STATUS_VALUE.DRAFT;
+pub const PIDMSI_STATUS_INPROGRESS = PIDMSI_STATUS_VALUE.INPROGRESS;
+pub const PIDMSI_STATUS_EDIT = PIDMSI_STATUS_VALUE.EDIT;
+pub const PIDMSI_STATUS_REVIEW = PIDMSI_STATUS_VALUE.REVIEW;
+pub const PIDMSI_STATUS_PROOF = PIDMSI_STATUS_VALUE.PROOF;
+pub const PIDMSI_STATUS_FINAL = PIDMSI_STATUS_VALUE.FINAL;
+pub const PIDMSI_STATUS_OTHER = PIDMSI_STATUS_VALUE.OTHER;
+
+pub const PMemoryAllocator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IFillLockBytes_Value = Guid.initString("99caf010-415e-11cf-8814-00aa00b569f5");
-pub const IID_IFillLockBytes = &IID_IFillLockBytes_Value;
-pub const IFillLockBytes = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        FillAppend: *const fn(
-            self: *const IFillLockBytes,
-            // TODO: what to do with BytesParamIndex 1?
-            pv: ?*const anyopaque,
-            cb: u32,
-            pcbWritten: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        FillAt: *const fn(
-            self: *const IFillLockBytes,
-            ulOffset: ULARGE_INTEGER,
-            // TODO: what to do with BytesParamIndex 2?
-            pv: ?*const anyopaque,
-            cb: u32,
-            pcbWritten: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetFillSize: *const fn(
-            self: *const IFillLockBytes,
-            ulSize: ULARGE_INTEGER,
-        ) callconv(.winapi) HRESULT,
-        Terminate: *const fn(
-            self: *const IFillLockBytes,
-            bCanceled: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn FillAppend(self: *const IFillLockBytes, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.FillAppend(self, pv, cb, pcbWritten);
-    }
-    pub fn FillAt(self: *const IFillLockBytes, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.FillAt(self, ulOffset, pv, cb, pcbWritten);
-    }
-    pub fn SetFillSize(self: *const IFillLockBytes, ulSize: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
-        return self.vtable.SetFillSize(self, ulSize);
-    }
-    pub fn Terminate(self: *const IFillLockBytes, bCanceled: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.Terminate(self, bCanceled);
-    }
+pub const PROPBAG2 = extern struct {
+    dwType: u32,
+    vt: VARENUM,
+    cfType: u16,
+    dwHint: u32,
+    pstrName: ?PWSTR,
+    clsid: Guid,
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ILayoutStorage_Value = Guid.initString("0e6d4d90-6738-11cf-9608-00aa00680db4");
-pub const IID_ILayoutStorage = &IID_ILayoutStorage_Value;
-pub const ILayoutStorage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        LayoutScript: *const fn(
-            self: *const ILayoutStorage,
-            pStorageLayout: [*]StorageLayout,
-            nEntries: u32,
-            glfInterleavedFlag: u32,
-        ) callconv(.winapi) HRESULT,
-        BeginMonitor: *const fn(
-            self: *const ILayoutStorage,
-        ) callconv(.winapi) HRESULT,
-        EndMonitor: *const fn(
-            self: *const ILayoutStorage,
-        ) callconv(.winapi) HRESULT,
-        ReLayoutDocfile: *const fn(
-            self: *const ILayoutStorage,
-            pwcsNewDfName: ?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        ReLayoutDocfileOnILockBytes: *const fn(
-            self: *const ILayoutStorage,
-            pILockBytes: ?*ILockBytes,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn LayoutScript(self: *const ILayoutStorage, pStorageLayout: [*]StorageLayout, nEntries: u32, glfInterleavedFlag: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.LayoutScript(self, pStorageLayout, nEntries, glfInterleavedFlag);
-    }
-    pub fn BeginMonitor(self: *const ILayoutStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.BeginMonitor(self);
-    }
-    pub fn EndMonitor(self: *const ILayoutStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.EndMonitor(self);
-    }
-    pub fn ReLayoutDocfile(self: *const ILayoutStorage, pwcsNewDfName: ?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ReLayoutDocfile(self, pwcsNewDfName);
-    }
-    pub fn ReLayoutDocfileOnILockBytes(self: *const ILayoutStorage, pILockBytes: ?*ILockBytes) callconv(.@"inline") HRESULT {
-        return self.vtable.ReLayoutDocfileOnILockBytes(self, pILockBytes);
-    }
+pub const PROPSPEC = extern struct {
+    ulKind: PROPSPEC_KIND,
+    Anonymous: extern union {
+        propid: u32,
+        lpwstr: ?PWSTR,
+    },
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IDirectWriterLock_Value = Guid.initString("0e6d4d92-6738-11cf-9608-00aa00680db4");
-pub const IID_IDirectWriterLock = &IID_IDirectWriterLock_Value;
-pub const IDirectWriterLock = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        WaitForWriteAccess: *const fn(
-            self: *const IDirectWriterLock,
-            dwTimeout: u32,
-        ) callconv(.winapi) HRESULT,
-        ReleaseWriteAccess: *const fn(
-            self: *const IDirectWriterLock,
-        ) callconv(.winapi) HRESULT,
-        HaveWriteAccess: *const fn(
-            self: *const IDirectWriterLock,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn WaitForWriteAccess(self: *const IDirectWriterLock, dwTimeout: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WaitForWriteAccess(self, dwTimeout);
-    }
-    pub fn ReleaseWriteAccess(self: *const IDirectWriterLock) callconv(.@"inline") HRESULT {
-        return self.vtable.ReleaseWriteAccess(self);
-    }
-    pub fn HaveWriteAccess(self: *const IDirectWriterLock) callconv(.@"inline") HRESULT {
-        return self.vtable.HaveWriteAccess(self);
-    }
+pub const PROPSPEC_KIND = enum(u32) {
+    LPWSTR = 0,
+    PROPID = 1,
 };
-
-pub const VERSIONEDSTREAM = extern struct {
-    guidVersion: Guid,
-    pStream: ?*IStream,
-};
-
-pub const CAC = extern struct {
-    cElems: u32,
-    pElems: ?PSTR,
-};
-
-pub const CAUB = extern struct {
-    cElems: u32,
-    pElems: ?*u8,
-};
-
-pub const CAI = extern struct {
-    cElems: u32,
-    pElems: ?*i16,
-};
-
-pub const CAUI = extern struct {
-    cElems: u32,
-    pElems: ?*u16,
-};
-
-pub const CAL = extern struct {
-    cElems: u32,
-    pElems: ?*i32,
-};
-
-pub const CAUL = extern struct {
-    cElems: u32,
-    pElems: ?*u32,
-};
-
-pub const CAFLT = extern struct {
-    cElems: u32,
-    pElems: ?*f32,
-};
-
-pub const CADBL = extern struct {
-    cElems: u32,
-    pElems: ?*f64,
-};
-
-pub const CACY = extern struct {
-    cElems: u32,
-    pElems: ?*CY,
-};
-
-pub const CADATE = extern struct {
-    cElems: u32,
-    pElems: ?*f64,
-};
-
-pub const CABSTR = extern struct {
-    cElems: u32,
-    pElems: ?*?BSTR,
-};
-
-pub const CABSTRBLOB = extern struct {
-    cElems: u32,
-    pElems: ?*BSTRBLOB,
-};
-
-pub const CABOOL = extern struct {
-    cElems: u32,
-    pElems: ?*i16,
-};
-
-pub const CASCODE = extern struct {
-    cElems: u32,
-    pElems: ?*i32,
-};
-
-pub const CAPROPVARIANT = extern struct {
-    cElems: u32,
-    pElems: ?*PROPVARIANT,
-};
-
-pub const CAH = extern struct {
-    cElems: u32,
-    pElems: ?*LARGE_INTEGER,
-};
-
-pub const CAUH = extern struct {
-    cElems: u32,
-    pElems: ?*ULARGE_INTEGER,
-};
-
-pub const CALPSTR = extern struct {
-    cElems: u32,
-    pElems: ?*?PSTR,
-};
-
-pub const CALPWSTR = extern struct {
-    cElems: u32,
-    pElems: ?*?PWSTR,
-};
-
-pub const CAFILETIME = extern struct {
-    cElems: u32,
-    pElems: ?*FILETIME,
-};
-
-pub const CACLIPDATA = extern struct {
-    cElems: u32,
-    pElems: ?*CLIPDATA,
-};
-
-pub const CACLSID = extern struct {
-    cElems: u32,
-    pElems: ?*Guid,
-};
+pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
+pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
 
 pub const PROPVARIANT = extern struct {
     Anonymous: extern union {
@@ -848,19 +1117,25 @@ pub const PROPVARIANT = extern struct {
     },
 };
 
-pub const PROPSPEC = extern struct {
-    ulKind: PROPSPEC_KIND,
-    Anonymous: extern union {
-        propid: u32,
-        lpwstr: ?PWSTR,
-    },
+pub const RemSNB = extern struct {
+    ulCntStr: u32,
+    ulCntChar: u32,
+    rgString: [1]u16,
 };
 
-pub const STATPROPSTG = extern struct {
-    lpwstrName: ?PWSTR,
-    propid: u32,
-    vt: VARENUM,
+pub const SERIALIZEDPROPERTYVALUE = extern struct {
+    dwType: u32,
+    rgb: [1]u8,
 };
+
+pub const STATFLAG = enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
 
 pub const STATPROPSETSTG = extern struct {
     fmtid: Guid,
@@ -872,237 +1147,91 @@ pub const STATPROPSETSTG = extern struct {
     dwOSVersion: u32,
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertyStorage_Value = Guid.initString("00000138-0000-0000-c000-000000000046");
-pub const IID_IPropertyStorage = &IID_IPropertyStorage_Value;
-pub const IPropertyStorage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReadMultiple: *const fn(
-            self: *const IPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-            rgpropvar: [*]PROPVARIANT,
-        ) callconv(.winapi) HRESULT,
-        WriteMultiple: *const fn(
-            self: *const IPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-            rgpropvar: [*]const PROPVARIANT,
-            propidNameFirst: u32,
-        ) callconv(.winapi) HRESULT,
-        DeleteMultiple: *const fn(
-            self: *const IPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-        ) callconv(.winapi) HRESULT,
-        ReadPropertyNames: *const fn(
-            self: *const IPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]?PWSTR,
-        ) callconv(.winapi) HRESULT,
-        WritePropertyNames: *const fn(
-            self: *const IPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]const ?[*:0]const u16,
-        ) callconv(.winapi) HRESULT,
-        DeletePropertyNames: *const fn(
-            self: *const IPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-        ) callconv(.winapi) HRESULT,
-        Commit: *const fn(
-            self: *const IPropertyStorage,
-            grfCommitFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        Revert: *const fn(
-            self: *const IPropertyStorage,
-        ) callconv(.winapi) HRESULT,
-        Enum: *const fn(
-            self: *const IPropertyStorage,
-            ppenum: ?*?*IEnumSTATPROPSTG,
-        ) callconv(.winapi) HRESULT,
-        SetTimes: *const fn(
-            self: *const IPropertyStorage,
-            pctime: ?*const FILETIME,
-            patime: ?*const FILETIME,
-            pmtime: ?*const FILETIME,
-        ) callconv(.winapi) HRESULT,
-        SetClass: *const fn(
-            self: *const IPropertyStorage,
-            clsid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        Stat: *const fn(
-            self: *const IPropertyStorage,
-            pstatpsstg: ?*STATPROPSETSTG,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ReadMultiple(self: *const IPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadMultiple(self, cpspec, rgpspec, rgpropvar);
-    }
-    pub fn WriteMultiple(self: *const IPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]const PROPVARIANT, propidNameFirst: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.WriteMultiple(self, cpspec, rgpspec, rgpropvar, propidNameFirst);
-    }
-    pub fn DeleteMultiple(self: *const IPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteMultiple(self, cpspec, rgpspec);
-    }
-    pub fn ReadPropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ReadPropertyNames(self, cpropid, rgpropid, rglpwstrName);
-    }
-    pub fn WritePropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.@"inline") HRESULT {
-        return self.vtable.WritePropertyNames(self, cpropid, rgpropid, rglpwstrName);
-    }
-    pub fn DeletePropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32) callconv(.@"inline") HRESULT {
-        return self.vtable.DeletePropertyNames(self, cpropid, rgpropid);
-    }
-    pub fn Commit(self: *const IPropertyStorage, grfCommitFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Commit(self, grfCommitFlags);
-    }
-    pub fn Revert(self: *const IPropertyStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Revert(self);
-    }
-    pub fn Enum(self: *const IPropertyStorage, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Enum(self, ppenum);
-    }
-    pub fn SetTimes(self: *const IPropertyStorage, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.@"inline") HRESULT {
-        return self.vtable.SetTimes(self, pctime, patime, pmtime);
-    }
-    pub fn SetClass(self: *const IPropertyStorage, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.SetClass(self, clsid);
-    }
-    pub fn Stat(self: *const IPropertyStorage, pstatpsstg: ?*STATPROPSETSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Stat(self, pstatpsstg);
-    }
+pub const STATPROPSTG = extern struct {
+    lpwstrName: ?PWSTR,
+    propid: u32,
+    vt: VARENUM,
 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertySetStorage_Value = Guid.initString("0000013a-0000-0000-c000-000000000046");
-pub const IID_IPropertySetStorage = &IID_IPropertySetStorage_Value;
-pub const IPropertySetStorage = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: *const fn(
-            self: *const IPropertySetStorage,
-            rfmtid: ?*const Guid,
-            pclsid: ?*const Guid,
-            grfFlags: u32,
-            grfMode: u32,
-            ppprstg: ?*?*IPropertyStorage,
-        ) callconv(.winapi) HRESULT,
-        Open: *const fn(
-            self: *const IPropertySetStorage,
-            rfmtid: ?*const Guid,
-            grfMode: u32,
-            ppprstg: ?*?*IPropertyStorage,
-        ) callconv(.winapi) HRESULT,
-        Delete: *const fn(
-            self: *const IPropertySetStorage,
-            rfmtid: ?*const Guid,
-        ) callconv(.winapi) HRESULT,
-        Enum: *const fn(
-            self: *const IPropertySetStorage,
-            ppenum: ?*?*IEnumSTATPROPSETSTG,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Create(self: *const IPropertySetStorage, rfmtid: ?*const Guid, pclsid: ?*const Guid, grfFlags: u32, grfMode: u32, ppprstg: ?*?*IPropertyStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Create(self, rfmtid, pclsid, grfFlags, grfMode, ppprstg);
-    }
-    pub fn Open(self: *const IPropertySetStorage, rfmtid: ?*const Guid, grfMode: u32, ppprstg: ?*?*IPropertyStorage) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, rfmtid, grfMode, ppprstg);
-    }
-    pub fn Delete(self: *const IPropertySetStorage, rfmtid: ?*const Guid) callconv(.@"inline") HRESULT {
-        return self.vtable.Delete(self, rfmtid);
-    }
-    pub fn Enum(self: *const IPropertySetStorage, ppenum: ?*?*IEnumSTATPROPSETSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Enum(self, ppenum);
-    }
+pub const STGFMT = enum(u32) {
+    STORAGE = 0,
+    NATIVE = 1,
+    FILE = 3,
+    ANY = 4,
+    DOCFILE = 5,
+    pub const DOCUMENT = .STORAGE;
 };
+pub const STGFMT_STORAGE = STGFMT.STORAGE;
+pub const STGFMT_NATIVE = STGFMT.NATIVE;
+pub const STGFMT_FILE = STGFMT.FILE;
+pub const STGFMT_ANY = STGFMT.ANY;
+pub const STGFMT_DOCFILE = STGFMT.DOCFILE;
+pub const STGFMT_DOCUMENT = STGFMT.STORAGE;
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATPROPSTG_Value = Guid.initString("00000139-0000-0000-c000-000000000046");
-pub const IID_IEnumSTATPROPSTG = &IID_IEnumSTATPROPSTG_Value;
-pub const IEnumSTATPROPSTG = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumSTATPROPSTG,
-            celt: u32,
-            rgelt: [*]STATPROPSTG,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumSTATPROPSTG,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumSTATPROPSTG,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumSTATPROPSTG,
-            ppenum: ?*?*IEnumSTATPROPSTG,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSTATPROPSTG, celt: u32, rgelt: [*]STATPROPSTG, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumSTATPROPSTG, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumSTATPROPSTG, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
+pub const STGM = packed struct(u32) {
+    WRITE: u1 = 0,
+    READWRITE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    SHARE_EXCLUSIVE: u1 = 0,
+    SHARE_DENY_WRITE: u1 = 0,
+    SHARE_DENY_NONE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    CREATE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    TRANSACTED: u1 = 0,
+    CONVERT: u1 = 0,
+    PRIORITY: u1 = 0,
+    _19: u1 = 0,
+    NOSCRATCH: u1 = 0,
+    NOSNAPSHOT: u1 = 0,
+    DIRECT_SWMR: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    DELETEONRELEASE: u1 = 0,
+    SIMPLE: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
+pub const STGM_DIRECT = STGM{ };
+pub const STGM_TRANSACTED = STGM{ .TRANSACTED = 1 };
+pub const STGM_SIMPLE = STGM{ .SIMPLE = 1 };
+pub const STGM_READ = STGM{ };
+pub const STGM_WRITE = STGM{ .WRITE = 1 };
+pub const STGM_READWRITE = STGM{ .READWRITE = 1 };
+pub const STGM_SHARE_DENY_NONE = STGM{ .SHARE_DENY_NONE = 1 };
+pub const STGM_SHARE_DENY_READ = STGM{
+    .SHARE_EXCLUSIVE = 1,
+    .SHARE_DENY_WRITE = 1,
+};
+pub const STGM_SHARE_DENY_WRITE = STGM{ .SHARE_DENY_WRITE = 1 };
+pub const STGM_SHARE_EXCLUSIVE = STGM{ .SHARE_EXCLUSIVE = 1 };
+pub const STGM_PRIORITY = STGM{ .PRIORITY = 1 };
+pub const STGM_DELETEONRELEASE = STGM{ .DELETEONRELEASE = 1 };
+pub const STGM_NOSCRATCH = STGM{ .NOSCRATCH = 1 };
+pub const STGM_CREATE = STGM{ .CREATE = 1 };
+pub const STGM_CONVERT = STGM{ .CONVERT = 1 };
+pub const STGM_FAILIFTHERE = STGM{ };
+pub const STGM_NOSNAPSHOT = STGM{ .NOSNAPSHOT = 1 };
+pub const STGM_DIRECT_SWMR = STGM{ .DIRECT_SWMR = 1 };
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATPROPSETSTG_Value = Guid.initString("0000013b-0000-0000-c000-000000000046");
-pub const IID_IEnumSTATPROPSETSTG = &IID_IEnumSTATPROPSETSTG_Value;
-pub const IEnumSTATPROPSETSTG = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: *const fn(
-            self: *const IEnumSTATPROPSETSTG,
-            celt: u32,
-            rgelt: [*]STATPROPSETSTG,
-            pceltFetched: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumSTATPROPSETSTG,
-            celt: u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumSTATPROPSETSTG,
-        ) callconv(.winapi) HRESULT,
-        Clone: *const fn(
-            self: *const IEnumSTATPROPSETSTG,
-            ppenum: ?*?*IEnumSTATPROPSETSTG,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSTATPROPSETSTG, celt: u32, rgelt: [*]STATPROPSETSTG, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, celt, rgelt, pceltFetched);
-    }
-    pub fn Skip(self: *const IEnumSTATPROPSETSTG, celt: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, celt);
-    }
-    pub fn Reset(self: *const IEnumSTATPROPSETSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Clone(self: *const IEnumSTATPROPSETSTG, ppenum: ?*?*IEnumSTATPROPSETSTG) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppenum);
-    }
+pub const STGMOVE = enum(i32) {
+    MOVE = 0,
+    COPY = 1,
+    SHALLOWCOPY = 2,
 };
+pub const STGMOVE_MOVE = STGMOVE.MOVE;
+pub const STGMOVE_COPY = STGMOVE.COPY;
+pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
 
 pub const STGOPTIONS = extern struct {
     usVersion: u16,
@@ -1111,138 +1240,9 @@ pub const STGOPTIONS = extern struct {
     pwcsTemplateFile: ?[*:0]const u16,
 };
 
-pub const PIDMSI_STATUS_VALUE = enum(i32) {
-    NORMAL = 0,
-    NEW = 1,
-    PRELIM = 2,
-    DRAFT = 3,
-    INPROGRESS = 4,
-    EDIT = 5,
-    REVIEW = 6,
-    PROOF = 7,
-    FINAL = 8,
-    OTHER = 32767,
-};
-pub const PIDMSI_STATUS_NORMAL = PIDMSI_STATUS_VALUE.NORMAL;
-pub const PIDMSI_STATUS_NEW = PIDMSI_STATUS_VALUE.NEW;
-pub const PIDMSI_STATUS_PRELIM = PIDMSI_STATUS_VALUE.PRELIM;
-pub const PIDMSI_STATUS_DRAFT = PIDMSI_STATUS_VALUE.DRAFT;
-pub const PIDMSI_STATUS_INPROGRESS = PIDMSI_STATUS_VALUE.INPROGRESS;
-pub const PIDMSI_STATUS_EDIT = PIDMSI_STATUS_VALUE.EDIT;
-pub const PIDMSI_STATUS_REVIEW = PIDMSI_STATUS_VALUE.REVIEW;
-pub const PIDMSI_STATUS_PROOF = PIDMSI_STATUS_VALUE.PROOF;
-pub const PIDMSI_STATUS_FINAL = PIDMSI_STATUS_VALUE.FINAL;
-pub const PIDMSI_STATUS_OTHER = PIDMSI_STATUS_VALUE.OTHER;
-
-pub const SERIALIZEDPROPERTYVALUE = extern struct {
-    dwType: u32,
-    rgb: [1]u8,
-};
-
-pub const PMemoryAllocator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-const IID_IPropertyBag_Value = Guid.initString("55272a00-42cb-11ce-8135-00aa004bb851");
-pub const IID_IPropertyBag = &IID_IPropertyBag_Value;
-pub const IPropertyBag = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Read: *const fn(
-            self: *const IPropertyBag,
-            pszPropName: ?[*:0]const u16,
-            pVar: ?*VARIANT,
-            pErrorLog: ?*IErrorLog,
-        ) callconv(.winapi) HRESULT,
-        Write: *const fn(
-            self: *const IPropertyBag,
-            pszPropName: ?[*:0]const u16,
-            pVar: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Read(self: *const IPropertyBag, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT, pErrorLog: ?*IErrorLog) callconv(.@"inline") HRESULT {
-        return self.vtable.Read(self, pszPropName, pVar, pErrorLog);
-    }
-    pub fn Write(self: *const IPropertyBag, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Write(self, pszPropName, pVar);
-    }
-};
-
-pub const OLESTREAMVTBL = extern struct {
-    Get: isize,
-    Put: isize,
-};
-
-pub const OLESTREAM = extern struct {
-    lpstbl: ?*OLESTREAMVTBL,
-};
-
-pub const PROPBAG2 = extern struct {
-    dwType: u32,
-    vt: VARENUM,
-    cfType: u16,
-    dwHint: u32,
-    pstrName: ?PWSTR,
-    clsid: Guid,
-};
-
-const IID_IPropertyBag2_Value = Guid.initString("22f55882-280b-11d0-a8a9-00a0c90c2004");
-pub const IID_IPropertyBag2 = &IID_IPropertyBag2_Value;
-pub const IPropertyBag2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Read: *const fn(
-            self: *const IPropertyBag2,
-            cProperties: u32,
-            pPropBag: [*]PROPBAG2,
-            pErrLog: ?*IErrorLog,
-            pvarValue: [*]VARIANT,
-            phrError: [*]HRESULT,
-        ) callconv(.winapi) HRESULT,
-        Write: *const fn(
-            self: *const IPropertyBag2,
-            cProperties: u32,
-            pPropBag: [*]PROPBAG2,
-            pvarValue: [*]VARIANT,
-        ) callconv(.winapi) HRESULT,
-        CountProperties: *const fn(
-            self: *const IPropertyBag2,
-            pcProperties: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetPropertyInfo: *const fn(
-            self: *const IPropertyBag2,
-            iProperty: u32,
-            cProperties: u32,
-            pPropBag: [*]PROPBAG2,
-            pcProperties: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        LoadObject: *const fn(
-            self: *const IPropertyBag2,
-            pstrName: ?[*:0]const u16,
-            dwHint: u32,
-            pUnkObject: ?*IUnknown,
-            pErrLog: ?*IErrorLog,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Read(self: *const IPropertyBag2, cProperties: u32, pPropBag: [*]PROPBAG2, pErrLog: ?*IErrorLog, pvarValue: [*]VARIANT, phrError: [*]HRESULT) callconv(.@"inline") HRESULT {
-        return self.vtable.Read(self, cProperties, pPropBag, pErrLog, pvarValue, phrError);
-    }
-    pub fn Write(self: *const IPropertyBag2, cProperties: u32, pPropBag: [*]PROPBAG2, pvarValue: [*]VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.Write(self, cProperties, pPropBag, pvarValue);
-    }
-    pub fn CountProperties(self: *const IPropertyBag2, pcProperties: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CountProperties(self, pcProperties);
-    }
-    pub fn GetPropertyInfo(self: *const IPropertyBag2, iProperty: u32, cProperties: u32, pPropBag: [*]PROPBAG2, pcProperties: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetPropertyInfo(self, iProperty, cProperties, pPropBag, pcProperties);
-    }
-    pub fn LoadObject(self: *const IPropertyBag2, pstrName: ?[*:0]const u16, dwHint: u32, pUnkObject: ?*IUnknown, pErrLog: ?*IErrorLog) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadObject(self, pstrName, dwHint, pUnkObject, pErrLog);
-    }
+pub const VERSIONEDSTREAM = extern struct {
+    guidVersion: Guid,
+    pStream: ?*IStream,
 };
 
 
@@ -1272,28 +1272,18 @@ pub extern "ole32" fn CoGetInstanceFromIStorage(
     pResults: [*]MULTI_QI,
 ) callconv(.winapi) HRESULT;
 
-pub extern "ole32" fn StgOpenAsyncDocfileOnIFillLockBytes(
-    pflb: ?*IFillLockBytes,
-    grfMode: u32,
-    asyncFlags: u32,
-    ppstgOpen: ?*?*IStorage,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn CoGetInterfaceAndReleaseStream(
+    pStm: ?*IStream,
+    iid: ?*const Guid,
+    ppv: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
-pub extern "ole32" fn StgGetIFillLockBytesOnILockBytes(
-    pilb: ?*ILockBytes,
-    ppflb: ?*?*IFillLockBytes,
-) callconv(.winapi) HRESULT;
-
-pub extern "ole32" fn StgGetIFillLockBytesOnFile(
-    pwcsName: ?[*:0]const u16,
-    ppflb: ?*?*IFillLockBytes,
-) callconv(.winapi) HRESULT;
-
-pub extern "dflayout" fn StgOpenLayoutDocfile(
-    pwcsDfName: ?[*:0]const u16,
-    grfMode: u32,
-    reserved: u32,
-    ppstgOpen: ?*?*IStorage,
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn CreateILockBytesOnHGlobal(
+    hGlobal: isize,
+    fDeleteOnRelease: BOOL,
+    pplkbyt: ?*?*ILockBytes,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1304,16 +1294,78 @@ pub extern "ole32" fn CreateStreamOnHGlobal(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn FmtIdToPropStgName(
+    pfmtid: ?*const Guid,
+    oszName: ?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn FreePropVariantArray(
+    cVariants: u32,
+    rgvars: [*]PROPVARIANT,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn GetConvertStg(
+    pStg: ?*IStorage,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn GetHGlobalFromILockBytes(
+    plkbyt: ?*ILockBytes,
+    phglobal: ?*isize,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn GetHGlobalFromStream(
     pstm: ?*IStream,
     phglobal: ?*isize,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn CoGetInterfaceAndReleaseStream(
-    pStm: ?*IStream,
-    iid: ?*const Guid,
-    ppv: **anyopaque,
+pub extern "ole32" fn OleConvertIStorageToOLESTREAM(
+    pstg: ?*IStorage,
+    lpolestream: ?*OLESTREAM,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
+    pstg: ?*IStorage,
+    cfFormat: u16,
+    lWidth: i32,
+    lHeight: i32,
+    dwSize: u32,
+    pmedium: ?*STGMEDIUM,
+    polestm: ?*OLESTREAM,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn OleConvertOLESTREAMToIStorage(
+    lpolestream: ?*OLESTREAM,
+    pstg: ?*IStorage,
+    ptd: ?*const DVTARGETDEVICE,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
+    polestm: ?*OLESTREAM,
+    pstg: ?*IStorage,
+    pcfFormat: ?*u16,
+    plwWidth: ?*i32,
+    plHeight: ?*i32,
+    pdwSize: ?*u32,
+    pmedium: ?*STGMEDIUM,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn PropStgNameToFmtId(
+    oszName: ?[*:0]const u16,
+    pfmtid: ?*Guid,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn PropVariantClear(
+    pvar: ?*PROPVARIANT,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1323,15 +1375,49 @@ pub extern "ole32" fn PropVariantCopy(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn PropVariantClear(
-    pvar: ?*PROPVARIANT,
+pub extern "ole32" fn ReadClassStg(
+    pStg: ?*IStorage,
+    pclsid: ?*Guid,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn FreePropVariantArray(
-    cVariants: u32,
-    rgvars: [*]PROPVARIANT,
+pub extern "ole32" fn ReadClassStm(
+    pStm: ?*IStream,
+    pclsid: ?*Guid,
 ) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn ReadFmtUserTypeStg(
+    pstg: ?*IStorage,
+    pcf: ?*u16,
+    lplpszUserType: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn SetConvertStg(
+    pStg: ?*IStorage,
+    fConvert: BOOL,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn StgConvertPropertyToVariant(
+    pprop: ?*const SERIALIZEDPROPERTYVALUE,
+    CodePage: u16,
+    pvar: ?*PROPVARIANT,
+    pma: ?*PMemoryAllocator,
+) callconv(.winapi) BOOLEAN;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn StgConvertVariantToProperty(
+    pvar: ?*const PROPVARIANT,
+    CodePage: u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pprop: ?*SERIALIZEDPROPERTYVALUE,
+    pcb: ?*u32,
+    pid: u32,
+    fReserved: BOOLEAN,
+    pcIndirect: ?*u32,
+) callconv(.winapi) ?*SERIALIZEDPROPERTYVALUE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgCreateDocfile(
@@ -1350,41 +1436,20 @@ pub extern "ole32" fn StgCreateDocfileOnILockBytes(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgOpenStorage(
-    pwcsName: ?[*:0]const u16,
-    pstgPriority: ?*IStorage,
-    grfMode: STGM,
-    snbExclude: ?*?*u16,
-    reserved: u32,
-    ppstgOpen: ?*?*IStorage,
+pub extern "ole32" fn StgCreatePropSetStg(
+    pStorage: ?*IStorage,
+    dwReserved: u32,
+    ppPropSetStg: ?*?*IPropertySetStorage,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgOpenStorageOnILockBytes(
-    plkbyt: ?*ILockBytes,
-    pstgPriority: ?*IStorage,
-    grfMode: u32,
-    snbExclude: ?*?*u16,
-    reserved: u32,
-    ppstgOpen: ?*?*IStorage,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgIsStorageFile(
-    pwcsName: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgIsStorageILockBytes(
-    plkbyt: ?*ILockBytes,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgSetTimes(
-    lpszName: ?[*:0]const u16,
-    pctime: ?*const FILETIME,
-    patime: ?*const FILETIME,
-    pmtime: ?*const FILETIME,
+pub extern "ole32" fn StgCreatePropStg(
+    pUnk: ?*IUnknown,
+    fmtid: ?*const Guid,
+    pclsid: ?*const Guid,
+    grfFlags: u32,
+    dwReserved: u32,
+    ppPropStg: ?*?*IPropertyStorage,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1400,25 +1465,44 @@ pub extern "ole32" fn StgCreateStorageEx(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgOpenStorageEx(
+pub extern "propsys" fn StgDeserializePropVariant(
+    pprop: ?*const SERIALIZEDPROPERTYVALUE,
+    cbMax: u32,
+    ppropvar: ?*PROPVARIANT,
+) callconv(.winapi) HRESULT;
+
+pub extern "ole32" fn StgGetIFillLockBytesOnFile(
     pwcsName: ?[*:0]const u16,
-    grfMode: STGM,
-    stgfmt: STGFMT,
-    grfAttrs: u32,
-    pStgOptions: ?*STGOPTIONS,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    riid: ?*const Guid,
-    ppObjectOpen: ?*?*anyopaque,
+    ppflb: ?*?*IFillLockBytes,
+) callconv(.winapi) HRESULT;
+
+pub extern "ole32" fn StgGetIFillLockBytesOnILockBytes(
+    pilb: ?*ILockBytes,
+    ppflb: ?*?*IFillLockBytes,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgCreatePropStg(
-    pUnk: ?*IUnknown,
-    fmtid: ?*const Guid,
-    pclsid: ?*const Guid,
-    grfFlags: u32,
-    dwReserved: u32,
-    ppPropStg: ?*?*IPropertyStorage,
+pub extern "ole32" fn StgIsStorageFile(
+    pwcsName: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn StgIsStorageILockBytes(
+    plkbyt: ?*ILockBytes,
+) callconv(.winapi) HRESULT;
+
+pub extern "ole32" fn StgOpenAsyncDocfileOnIFillLockBytes(
+    pflb: ?*IFillLockBytes,
+    grfMode: u32,
+    asyncFlags: u32,
+    ppstgOpen: ?*?*IStorage,
+) callconv(.winapi) HRESULT;
+
+pub extern "dflayout" fn StgOpenLayoutDocfile(
+    pwcsDfName: ?[*:0]const u16,
+    grfMode: u32,
+    reserved: u32,
+    ppstgOpen: ?*?*IStorage,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1431,85 +1515,36 @@ pub extern "ole32" fn StgOpenPropStg(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgCreatePropSetStg(
-    pStorage: ?*IStorage,
-    dwReserved: u32,
-    ppPropSetStg: ?*?*IPropertySetStorage,
+pub extern "ole32" fn StgOpenStorage(
+    pwcsName: ?[*:0]const u16,
+    pstgPriority: ?*IStorage,
+    grfMode: STGM,
+    snbExclude: ?*?*u16,
+    reserved: u32,
+    ppstgOpen: ?*?*IStorage,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn FmtIdToPropStgName(
-    pfmtid: ?*const Guid,
-    oszName: ?PWSTR,
+pub extern "ole32" fn StgOpenStorageEx(
+    pwcsName: ?[*:0]const u16,
+    grfMode: STGM,
+    stgfmt: STGFMT,
+    grfAttrs: u32,
+    pStgOptions: ?*STGOPTIONS,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    riid: ?*const Guid,
+    ppObjectOpen: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn PropStgNameToFmtId(
-    oszName: ?[*:0]const u16,
-    pfmtid: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn ReadClassStg(
-    pStg: ?*IStorage,
-    pclsid: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn WriteClassStg(
-    pStg: ?*IStorage,
-    rclsid: ?*const Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn ReadClassStm(
-    pStm: ?*IStream,
-    pclsid: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn WriteClassStm(
-    pStm: ?*IStream,
-    rclsid: ?*const Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn GetHGlobalFromILockBytes(
+pub extern "ole32" fn StgOpenStorageOnILockBytes(
     plkbyt: ?*ILockBytes,
-    phglobal: ?*isize,
+    pstgPriority: ?*IStorage,
+    grfMode: u32,
+    snbExclude: ?*?*u16,
+    reserved: u32,
+    ppstgOpen: ?*?*IStorage,
 ) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn CreateILockBytesOnHGlobal(
-    hGlobal: isize,
-    fDeleteOnRelease: BOOL,
-    pplkbyt: ?*?*ILockBytes,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn GetConvertStg(
-    pStg: ?*IStorage,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgConvertVariantToProperty(
-    pvar: ?*const PROPVARIANT,
-    CodePage: u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pprop: ?*SERIALIZEDPROPERTYVALUE,
-    pcb: ?*u32,
-    pid: u32,
-    fReserved: BOOLEAN,
-    pcIndirect: ?*u32,
-) callconv(.winapi) ?*SERIALIZEDPROPERTYVALUE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn StgConvertPropertyToVariant(
-    pprop: ?*const SERIALIZEDPROPERTYVALUE,
-    CodePage: u16,
-    pvar: ?*PROPVARIANT,
-    pma: ?*PMemoryAllocator,
-) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgPropertyLengthAsVariant(
@@ -1521,61 +1556,6 @@ pub extern "ole32" fn StgPropertyLengthAsVariant(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn WriteFmtUserTypeStg(
-    pstg: ?*IStorage,
-    cf: u16,
-    lpszUserType: ?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn ReadFmtUserTypeStg(
-    pstg: ?*IStorage,
-    pcf: ?*u16,
-    lplpszUserType: ?*?PWSTR,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertOLESTREAMToIStorage(
-    lpolestream: ?*OLESTREAM,
-    pstg: ?*IStorage,
-    ptd: ?*const DVTARGETDEVICE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertIStorageToOLESTREAM(
-    pstg: ?*IStorage,
-    lpolestream: ?*OLESTREAM,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn SetConvertStg(
-    pStg: ?*IStorage,
-    fConvert: BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
-    pstg: ?*IStorage,
-    cfFormat: u16,
-    lWidth: i32,
-    lHeight: i32,
-    dwSize: u32,
-    pmedium: ?*STGMEDIUM,
-    polestm: ?*OLESTREAM,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
-    polestm: ?*OLESTREAM,
-    pstg: ?*IStorage,
-    pcfFormat: ?*u16,
-    plwWidth: ?*i32,
-    plHeight: ?*i32,
-    pdwSize: ?*u32,
-    pmedium: ?*STGMEDIUM,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "propsys" fn StgSerializePropVariant(
     ppropvar: ?*const PROPVARIANT,
     ppProp: ?*?*SERIALIZEDPROPERTYVALUE,
@@ -1583,10 +1563,30 @@ pub extern "propsys" fn StgSerializePropVariant(
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "propsys" fn StgDeserializePropVariant(
-    pprop: ?*const SERIALIZEDPROPERTYVALUE,
-    cbMax: u32,
-    ppropvar: ?*PROPVARIANT,
+pub extern "ole32" fn StgSetTimes(
+    lpszName: ?[*:0]const u16,
+    pctime: ?*const FILETIME,
+    patime: ?*const FILETIME,
+    pmtime: ?*const FILETIME,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn WriteClassStg(
+    pStg: ?*IStorage,
+    rclsid: ?*const Guid,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn WriteClassStm(
+    pStm: ?*IStream,
+    rclsid: ?*const Guid,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn WriteFmtUserTypeStg(
+    pstg: ?*IStorage,
+    cf: u16,
+    lpszUserType: ?PWSTR,
 ) callconv(.winapi) HRESULT;
 
 

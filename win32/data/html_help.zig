@@ -2,58 +2,207 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (274)
 //--------------------------------------------------------------------------------
-pub const HH_DISPLAY_TOPIC = @as(u32, 0);
-pub const HH_HELP_FINDER = @as(u32, 0);
-pub const HH_DISPLAY_TOC = @as(u32, 1);
+pub const CLSID_IITCmdInt = Guid.initString("4662daa2-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITDatabase = Guid.initString("66673452-8c23-11d0-a84e-00aa006c7d01");
+pub const CLSID_IITDatabaseLocal = Guid.initString("4662daa9-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITGroupUpdate = Guid.initString("4662daa4-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITIndexBuild = Guid.initString("8fa0d5aa-dedf-11d0-9a61-00c04fb68bf7");
+pub const CLSID_IITPropList = Guid.initString("4662daae-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITResultSet = Guid.initString("4662daa7-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITSvMgr = Guid.initString("4662daa3-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITWordWheel = Guid.initString("d73725c2-8c12-11d0-a84e-00aa006c7d01");
+pub const CLSID_IITWordWheelLocal = Guid.initString("4662daa8-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITWordWheelUpdate = Guid.initString("4662daa5-d393-11d0-9a56-00c04fb68bf7");
+pub const CLSID_IITWWFilterBuild = Guid.initString("8fa0d5ab-dedf-11d0-9a61-00c04fb68bf7");
+pub const CLSID_ITEngStemmer = Guid.initString("8fa0d5a8-dedf-11d0-9a61-00c04fb68bf7");
+pub const CLSID_ITStdBreaker = Guid.initString("4662daaf-d393-11d0-9a56-00c04fb68bf7");
+pub const E_ALL_WILD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479467));
+pub const E_ALREADYINIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479421));
+pub const E_ALREADYOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479533));
+pub const E_ASSERT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479546));
+pub const E_BADBREAKER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479469));
+pub const E_BADFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479549));
+pub const E_BADFILTERSIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479528));
+pub const E_BADFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479548));
+pub const E_BADINDEXFLAGS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479456));
+pub const E_BADPARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479535));
+pub const E_BADRANGEOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479459));
+pub const E_BADVALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479468));
+pub const E_BADVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479550));
+pub const E_CANTFINDDLL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479538));
+pub const E_DISKFULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479496));
+pub const E_DUPLICATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479551));
+pub const E_EXPECTEDTERM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479465));
+pub const E_FILECLOSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479503));
+pub const E_FILECREATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479504));
+pub const E_FILEDELETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479499));
+pub const E_FILEINVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479498));
+pub const E_FILENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479497));
+pub const E_FILEREAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479502));
+pub const E_FILESEEK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479501));
+pub const E_FILEWRITE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479500));
+pub const E_GETLASTERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479536));
+pub const E_GROUPIDTOOBIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479542));
+pub const E_INTERRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479545));
+pub const E_INVALIDSTATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479534));
+pub const E_MISSINGPROP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479424));
+pub const E_MISSLPAREN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479464));
+pub const E_MISSQUOTE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479462));
+pub const E_MISSRPAREN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479463));
+pub const E_NAMETOOLONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479520));
+pub const E_NOHANDLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479537));
+pub const E_NOKEYPROP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479417));
+pub const E_NOMERGEDDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479540));
+pub const E_NOPERMISSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479547));
+pub const E_NOSTEMMER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479454));
+pub const E_NOTEXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479552));
+pub const E_NOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479539));
+pub const E_NOTINIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479420));
+pub const E_NOTOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479533));
+pub const E_NOTSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479544));
+pub const E_NULLQUERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479461));
+pub const E_OUTOFRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479543));
+pub const E_PROPLISTEMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479422));
+pub const E_PROPLISTNOTEMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479423));
+pub const E_RESULTSETEMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479419));
+pub const E_STOPWORD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479460));
+pub const E_TOODEEP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479466));
+pub const E_TOOMANYCOLUMNS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479418));
+pub const E_TOOMANYDUPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479471));
+pub const E_TOOMANYOBJECTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479527));
+pub const E_TOOMANYTITLES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479541));
+pub const E_TOOMANYTOPICS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479472));
+pub const E_TREETOOBIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479470));
+pub const E_UNKNOWN_TRANSPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479530));
+pub const E_UNMATCHEDTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479458));
+pub const E_UNSUPPORTED_TRANSPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479529));
+pub const E_WILD_IN_DTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479455));
+pub const E_WORDTOOLONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479457));
+pub const HH_ALINK_LOOKUP = @as(u32, 19);
+pub const HH_CLOSE_ALL = @as(u32, 18);
 pub const HH_DISPLAY_INDEX = @as(u32, 2);
 pub const HH_DISPLAY_SEARCH = @as(u32, 3);
-pub const HH_SET_WIN_TYPE = @as(u32, 4);
-pub const HH_GET_WIN_TYPE = @as(u32, 5);
-pub const HH_GET_WIN_HANDLE = @as(u32, 6);
+pub const HH_DISPLAY_TEXT_POPUP = @as(u32, 14);
+pub const HH_DISPLAY_TOC = @as(u32, 1);
+pub const HH_DISPLAY_TOPIC = @as(u32, 0);
+pub const HH_ENUM_CATEGORY = @as(u32, 21);
+pub const HH_ENUM_CATEGORY_IT = @as(u32, 22);
 pub const HH_ENUM_INFO_TYPE = @as(u32, 7);
-pub const HH_SET_INFO_TYPE = @as(u32, 8);
-pub const HH_SYNC = @as(u32, 9);
+pub const HH_FTS_DEFAULT_PROXIMITY = @as(i32, -1);
+pub const HH_GET_LAST_ERROR = @as(u32, 20);
+pub const HH_GET_WIN_HANDLE = @as(u32, 6);
+pub const HH_GET_WIN_TYPE = @as(u32, 5);
+pub const HH_HELP_CONTEXT = @as(u32, 15);
+pub const HH_HELP_FINDER = @as(u32, 0);
+pub const HH_INITIALIZE = @as(u32, 28);
+pub const HH_KEYWORD_LOOKUP = @as(u32, 13);
+pub const HH_MAX_TABS = @as(u32, 19);
+pub const HH_PRETRANSLATEMESSAGE = @as(u32, 253);
 pub const HH_RESERVED1 = @as(u32, 10);
 pub const HH_RESERVED2 = @as(u32, 11);
 pub const HH_RESERVED3 = @as(u32, 12);
-pub const HH_KEYWORD_LOOKUP = @as(u32, 13);
-pub const HH_DISPLAY_TEXT_POPUP = @as(u32, 14);
-pub const HH_HELP_CONTEXT = @as(u32, 15);
+pub const HH_RESET_IT_FILTER = @as(u32, 23);
+pub const HH_SAFE_DISPLAY_TOPIC = @as(u32, 32);
+pub const HH_SET_EXCLUSIVE_FILTER = @as(u32, 25);
+pub const HH_SET_GLOBAL_PROPERTY = @as(u32, 252);
+pub const HH_SET_INCLUSIVE_FILTER = @as(u32, 24);
+pub const HH_SET_INFO_TYPE = @as(u32, 8);
+pub const HH_SET_QUERYSERVICE = @as(u32, 30);
+pub const HH_SET_WIN_TYPE = @as(u32, 4);
+pub const HH_SYNC = @as(u32, 9);
+pub const HH_TAB_AUTHOR = @as(i32, 5);
+pub const HH_TAB_CONTENTS = @as(i32, 0);
+pub const HH_TAB_CUSTOM_FIRST = @as(i32, 11);
+pub const HH_TAB_CUSTOM_LAST = @as(i32, 19);
+pub const HH_TAB_FAVORITES = @as(i32, 3);
+pub const HH_TAB_HISTORY = @as(i32, 4);
+pub const HH_TAB_INDEX = @as(i32, 1);
+pub const HH_TAB_SEARCH = @as(i32, 2);
 pub const HH_TP_HELP_CONTEXTMENU = @as(u32, 16);
 pub const HH_TP_HELP_WM_HELP = @as(u32, 17);
-pub const HH_CLOSE_ALL = @as(u32, 18);
-pub const HH_ALINK_LOOKUP = @as(u32, 19);
-pub const HH_GET_LAST_ERROR = @as(u32, 20);
-pub const HH_ENUM_CATEGORY = @as(u32, 21);
-pub const HH_ENUM_CATEGORY_IT = @as(u32, 22);
-pub const HH_RESET_IT_FILTER = @as(u32, 23);
-pub const HH_SET_INCLUSIVE_FILTER = @as(u32, 24);
-pub const HH_SET_EXCLUSIVE_FILTER = @as(u32, 25);
-pub const HH_INITIALIZE = @as(u32, 28);
 pub const HH_UNINITIALIZE = @as(u32, 29);
-pub const HH_SET_QUERYSERVICE = @as(u32, 30);
-pub const HH_PRETRANSLATEMESSAGE = @as(u32, 253);
-pub const HH_SET_GLOBAL_PROPERTY = @as(u32, 252);
-pub const HH_SAFE_DISPLAY_TOPIC = @as(u32, 32);
-pub const HHWIN_PROP_TAB_AUTOHIDESHOW = @as(u32, 1);
-pub const HHWIN_PROP_ONTOP = @as(u32, 2);
-pub const HHWIN_PROP_NOTITLEBAR = @as(u32, 4);
-pub const HHWIN_PROP_NODEF_STYLES = @as(u32, 8);
-pub const HHWIN_PROP_NODEF_EXSTYLES = @as(u32, 16);
-pub const HHWIN_PROP_TRI_PANE = @as(u32, 32);
-pub const HHWIN_PROP_NOTB_TEXT = @as(u32, 64);
-pub const HHWIN_PROP_POST_QUIT = @as(u32, 128);
+pub const HHACT_BACK = @as(i32, 7);
+pub const HHACT_CONTRACT = @as(i32, 6);
+pub const HHACT_CUSTOMIZE = @as(i32, 16);
+pub const HHACT_EXPAND = @as(i32, 5);
+pub const HHACT_FORWARD = @as(i32, 8);
+pub const HHACT_HIGHLIGHT = @as(i32, 15);
+pub const HHACT_HOME = @as(i32, 11);
+pub const HHACT_JUMP1 = @as(i32, 17);
+pub const HHACT_JUMP2 = @as(i32, 18);
+pub const HHACT_LAST_ENUM = @as(i32, 23);
+pub const HHACT_NOTES = @as(i32, 22);
+pub const HHACT_OPTIONS = @as(i32, 13);
+pub const HHACT_PRINT = @as(i32, 14);
+pub const HHACT_REFRESH = @as(i32, 10);
+pub const HHACT_STOP = @as(i32, 9);
+pub const HHACT_SYNC = @as(i32, 12);
+pub const HHACT_TAB_CONTENTS = @as(i32, 0);
+pub const HHACT_TAB_FAVORITES = @as(i32, 4);
+pub const HHACT_TAB_HISTORY = @as(i32, 3);
+pub const HHACT_TAB_INDEX = @as(i32, 1);
+pub const HHACT_TAB_SEARCH = @as(i32, 2);
+pub const HHACT_TOC_NEXT = @as(i32, 20);
+pub const HHACT_TOC_PREV = @as(i32, 21);
+pub const HHACT_ZOOM = @as(i32, 19);
+pub const HHWIN_BUTTON_BACK = @as(u32, 4);
+pub const HHWIN_BUTTON_BROWSE_BCK = @as(u32, 256);
+pub const HHWIN_BUTTON_BROWSE_FWD = @as(u32, 128);
+pub const HHWIN_BUTTON_CONTENTS = @as(u32, 1024);
+pub const HHWIN_BUTTON_EXPAND = @as(u32, 2);
+pub const HHWIN_BUTTON_FAVORITES = @as(u32, 131072);
+pub const HHWIN_BUTTON_FORWARD = @as(u32, 8);
+pub const HHWIN_BUTTON_HISTORY = @as(u32, 65536);
+pub const HHWIN_BUTTON_HOME = @as(u32, 64);
+pub const HHWIN_BUTTON_INDEX = @as(u32, 16384);
+pub const HHWIN_BUTTON_JUMP1 = @as(u32, 262144);
+pub const HHWIN_BUTTON_JUMP2 = @as(u32, 524288);
+pub const HHWIN_BUTTON_NOTES = @as(u32, 512);
+pub const HHWIN_BUTTON_OPTIONS = @as(u32, 4096);
+pub const HHWIN_BUTTON_PRINT = @as(u32, 8192);
+pub const HHWIN_BUTTON_REFRESH = @as(u32, 32);
+pub const HHWIN_BUTTON_SEARCH = @as(u32, 32768);
+pub const HHWIN_BUTTON_STOP = @as(u32, 16);
+pub const HHWIN_BUTTON_SYNC = @as(u32, 2048);
+pub const HHWIN_BUTTON_TOC_NEXT = @as(u32, 2097152);
+pub const HHWIN_BUTTON_TOC_PREV = @as(u32, 4194304);
+pub const HHWIN_BUTTON_ZOOM = @as(u32, 1048576);
+pub const HHWIN_NAVTAB_BOTTOM = @as(i32, 2);
+pub const HHWIN_NAVTAB_LEFT = @as(i32, 1);
+pub const HHWIN_NAVTAB_TOP = @as(i32, 0);
+pub const HHWIN_NAVTYPE_AUTHOR = @as(i32, 5);
+pub const HHWIN_NAVTYPE_CUSTOM_FIRST = @as(i32, 11);
+pub const HHWIN_NAVTYPE_FAVORITES = @as(i32, 3);
+pub const HHWIN_NAVTYPE_HISTORY = @as(i32, 4);
+pub const HHWIN_NAVTYPE_INDEX = @as(i32, 1);
+pub const HHWIN_NAVTYPE_SEARCH = @as(i32, 2);
+pub const HHWIN_NAVTYPE_TOC = @as(i32, 0);
+pub const HHWIN_PARAM_CUR_TAB = @as(u32, 8192);
+pub const HHWIN_PARAM_EXPANSION = @as(u32, 512);
+pub const HHWIN_PARAM_EXSTYLES = @as(u32, 8);
+pub const HHWIN_PARAM_HISTORY_COUNT = @as(u32, 4096);
+pub const HHWIN_PARAM_INFOTYPES = @as(u32, 128);
+pub const HHWIN_PARAM_NAV_WIDTH = @as(u32, 32);
+pub const HHWIN_PARAM_PROPERTIES = @as(u32, 2);
+pub const HHWIN_PARAM_RECT = @as(u32, 16);
+pub const HHWIN_PARAM_SHOWSTATE = @as(u32, 64);
+pub const HHWIN_PARAM_STYLES = @as(u32, 4);
+pub const HHWIN_PARAM_TABORDER = @as(u32, 2048);
+pub const HHWIN_PARAM_TABPOS = @as(u32, 1024);
+pub const HHWIN_PARAM_TB_FLAGS = @as(u32, 256);
 pub const HHWIN_PROP_AUTO_SYNC = @as(u32, 256);
-pub const HHWIN_PROP_TRACKING = @as(u32, 512);
-pub const HHWIN_PROP_TAB_SEARCH = @as(u32, 1024);
-pub const HHWIN_PROP_TAB_HISTORY = @as(u32, 2048);
-pub const HHWIN_PROP_TAB_FAVORITES = @as(u32, 4096);
 pub const HHWIN_PROP_CHANGE_TITLE = @as(u32, 8192);
+pub const HHWIN_PROP_MENU = @as(u32, 65536);
 pub const HHWIN_PROP_NAV_ONLY_WIN = @as(u32, 16384);
 pub const HHWIN_PROP_NO_TOOLBAR = @as(u32, 32768);
-pub const HHWIN_PROP_MENU = @as(u32, 65536);
+pub const HHWIN_PROP_NODEF_EXSTYLES = @as(u32, 16);
+pub const HHWIN_PROP_NODEF_STYLES = @as(u32, 8);
+pub const HHWIN_PROP_NOTB_TEXT = @as(u32, 64);
+pub const HHWIN_PROP_NOTITLEBAR = @as(u32, 4);
+pub const HHWIN_PROP_ONTOP = @as(u32, 2);
+pub const HHWIN_PROP_POST_QUIT = @as(u32, 128);
 pub const HHWIN_PROP_TAB_ADVSEARCH = @as(u32, 131072);
-pub const HHWIN_PROP_USER_POS = @as(u32, 262144);
+pub const HHWIN_PROP_TAB_AUTOHIDESHOW = @as(u32, 1);
 pub const HHWIN_PROP_TAB_CUSTOM1 = @as(u32, 524288);
 pub const HHWIN_PROP_TAB_CUSTOM2 = @as(u32, 1048576);
 pub const HHWIN_PROP_TAB_CUSTOM3 = @as(u32, 2097152);
@@ -63,274 +212,89 @@ pub const HHWIN_PROP_TAB_CUSTOM6 = @as(u32, 16777216);
 pub const HHWIN_PROP_TAB_CUSTOM7 = @as(u32, 33554432);
 pub const HHWIN_PROP_TAB_CUSTOM8 = @as(u32, 67108864);
 pub const HHWIN_PROP_TAB_CUSTOM9 = @as(u32, 134217728);
+pub const HHWIN_PROP_TAB_FAVORITES = @as(u32, 4096);
+pub const HHWIN_PROP_TAB_HISTORY = @as(u32, 2048);
+pub const HHWIN_PROP_TAB_SEARCH = @as(u32, 1024);
+pub const HHWIN_PROP_TRACKING = @as(u32, 512);
+pub const HHWIN_PROP_TRI_PANE = @as(u32, 32);
+pub const HHWIN_PROP_USER_POS = @as(u32, 262144);
 pub const HHWIN_TB_MARGIN = @as(u32, 268435456);
-pub const HHWIN_PARAM_PROPERTIES = @as(u32, 2);
-pub const HHWIN_PARAM_STYLES = @as(u32, 4);
-pub const HHWIN_PARAM_EXSTYLES = @as(u32, 8);
-pub const HHWIN_PARAM_RECT = @as(u32, 16);
-pub const HHWIN_PARAM_NAV_WIDTH = @as(u32, 32);
-pub const HHWIN_PARAM_SHOWSTATE = @as(u32, 64);
-pub const HHWIN_PARAM_INFOTYPES = @as(u32, 128);
-pub const HHWIN_PARAM_TB_FLAGS = @as(u32, 256);
-pub const HHWIN_PARAM_EXPANSION = @as(u32, 512);
-pub const HHWIN_PARAM_TABPOS = @as(u32, 1024);
-pub const HHWIN_PARAM_TABORDER = @as(u32, 2048);
-pub const HHWIN_PARAM_HISTORY_COUNT = @as(u32, 4096);
-pub const HHWIN_PARAM_CUR_TAB = @as(u32, 8192);
-pub const HHWIN_BUTTON_EXPAND = @as(u32, 2);
-pub const HHWIN_BUTTON_BACK = @as(u32, 4);
-pub const HHWIN_BUTTON_FORWARD = @as(u32, 8);
-pub const HHWIN_BUTTON_STOP = @as(u32, 16);
-pub const HHWIN_BUTTON_REFRESH = @as(u32, 32);
-pub const HHWIN_BUTTON_HOME = @as(u32, 64);
-pub const HHWIN_BUTTON_BROWSE_FWD = @as(u32, 128);
-pub const HHWIN_BUTTON_BROWSE_BCK = @as(u32, 256);
-pub const HHWIN_BUTTON_NOTES = @as(u32, 512);
-pub const HHWIN_BUTTON_CONTENTS = @as(u32, 1024);
-pub const HHWIN_BUTTON_SYNC = @as(u32, 2048);
-pub const HHWIN_BUTTON_OPTIONS = @as(u32, 4096);
-pub const HHWIN_BUTTON_PRINT = @as(u32, 8192);
-pub const HHWIN_BUTTON_INDEX = @as(u32, 16384);
-pub const HHWIN_BUTTON_SEARCH = @as(u32, 32768);
-pub const HHWIN_BUTTON_HISTORY = @as(u32, 65536);
-pub const HHWIN_BUTTON_FAVORITES = @as(u32, 131072);
-pub const HHWIN_BUTTON_JUMP1 = @as(u32, 262144);
-pub const HHWIN_BUTTON_JUMP2 = @as(u32, 524288);
-pub const HHWIN_BUTTON_ZOOM = @as(u32, 1048576);
-pub const HHWIN_BUTTON_TOC_NEXT = @as(u32, 2097152);
-pub const HHWIN_BUTTON_TOC_PREV = @as(u32, 4194304);
-pub const IDTB_EXPAND = @as(u32, 200);
-pub const IDTB_CONTRACT = @as(u32, 201);
-pub const IDTB_STOP = @as(u32, 202);
-pub const IDTB_REFRESH = @as(u32, 203);
 pub const IDTB_BACK = @as(u32, 204);
-pub const IDTB_HOME = @as(u32, 205);
-pub const IDTB_SYNC = @as(u32, 206);
-pub const IDTB_PRINT = @as(u32, 207);
-pub const IDTB_OPTIONS = @as(u32, 208);
-pub const IDTB_FORWARD = @as(u32, 209);
-pub const IDTB_NOTES = @as(u32, 210);
-pub const IDTB_BROWSE_FWD = @as(u32, 211);
 pub const IDTB_BROWSE_BACK = @as(u32, 212);
+pub const IDTB_BROWSE_FWD = @as(u32, 211);
 pub const IDTB_CONTENTS = @as(u32, 213);
-pub const IDTB_INDEX = @as(u32, 214);
-pub const IDTB_SEARCH = @as(u32, 215);
-pub const IDTB_HISTORY = @as(u32, 216);
+pub const IDTB_CONTRACT = @as(u32, 201);
+pub const IDTB_CUSTOMIZE = @as(u32, 221);
+pub const IDTB_EXPAND = @as(u32, 200);
 pub const IDTB_FAVORITES = @as(u32, 217);
+pub const IDTB_FORWARD = @as(u32, 209);
+pub const IDTB_HISTORY = @as(u32, 216);
+pub const IDTB_HOME = @as(u32, 205);
+pub const IDTB_INDEX = @as(u32, 214);
 pub const IDTB_JUMP1 = @as(u32, 218);
 pub const IDTB_JUMP2 = @as(u32, 219);
-pub const IDTB_CUSTOMIZE = @as(u32, 221);
-pub const IDTB_ZOOM = @as(u32, 222);
+pub const IDTB_NOTES = @as(u32, 210);
+pub const IDTB_OPTIONS = @as(u32, 208);
+pub const IDTB_PRINT = @as(u32, 207);
+pub const IDTB_REFRESH = @as(u32, 203);
+pub const IDTB_SEARCH = @as(u32, 215);
+pub const IDTB_STOP = @as(u32, 202);
+pub const IDTB_SYNC = @as(u32, 206);
 pub const IDTB_TOC_NEXT = @as(u32, 223);
 pub const IDTB_TOC_PREV = @as(u32, 224);
-pub const HH_MAX_TABS = @as(u32, 19);
-pub const HH_FTS_DEFAULT_PROXIMITY = @as(i32, -1);
-pub const CLSID_IITPropList = Guid.initString("4662daae-d393-11d0-9a56-00c04fb68bf7");
+pub const IDTB_ZOOM = @as(u32, 222);
+pub const IITWBC_BREAK_ACCEPT_WILDCARDS = @as(u32, 1);
+pub const IITWBC_BREAK_AND_STEM = @as(u32, 2);
+pub const IT_EXCLUSIVE = @as(i32, 1);
+pub const IT_HIDDEN = @as(i32, 2);
+pub const IT_INCLUSIVE = @as(i32, 0);
+pub const ITWW_CBKEY_MAX = @as(u32, 1024);
+pub const ITWW_OPEN_NOCONNECT = @as(u32, 1);
+pub const MAX_COLUMNS = @as(u32, 256);
 pub const PROP_ADD = @as(u32, 0);
 pub const PROP_DELETE = @as(u32, 1);
 pub const PROP_UPDATE = @as(u32, 2);
-pub const TYPE_VALUE = @as(u32, 0);
-pub const TYPE_POINTER = @as(u32, 1);
-pub const TYPE_STRING = @as(u32, 2);
-pub const CLSID_IITDatabase = Guid.initString("66673452-8c23-11d0-a84e-00aa006c7d01");
-pub const CLSID_IITDatabaseLocal = Guid.initString("4662daa9-d393-11d0-9a56-00c04fb68bf7");
-pub const STDPROP_UID = @as(u32, 1);
-pub const STDPROP_TITLE = @as(u32, 2);
-pub const STDPROP_USERDATA = @as(u32, 3);
-pub const STDPROP_KEY = @as(u32, 4);
-pub const STDPROP_SORTKEY = @as(u32, 100);
 pub const STDPROP_DISPLAYKEY = @as(u32, 101);
-pub const STDPROP_SORTORDINAL = @as(u32, 102);
-pub const STDPROP_INDEX_TEXT = @as(u32, 200);
-pub const STDPROP_INDEX_VFLD = @as(u32, 201);
+pub const STDPROP_INDEX_BREAK = @as(u32, 204);
 pub const STDPROP_INDEX_DTYPE = @as(u32, 202);
 pub const STDPROP_INDEX_LENGTH = @as(u32, 203);
-pub const STDPROP_INDEX_BREAK = @as(u32, 204);
 pub const STDPROP_INDEX_TERM = @as(u32, 210);
 pub const STDPROP_INDEX_TERM_RAW_LENGTH = @as(u32, 211);
+pub const STDPROP_INDEX_TEXT = @as(u32, 200);
+pub const STDPROP_INDEX_VFLD = @as(u32, 201);
+pub const STDPROP_KEY = @as(u32, 4);
+pub const STDPROP_SORTKEY = @as(u32, 100);
+pub const STDPROP_SORTORDINAL = @as(u32, 102);
+pub const STDPROP_TITLE = @as(u32, 2);
+pub const STDPROP_UID = @as(u32, 1);
+pub const STDPROP_USERDATA = @as(u32, 3);
 pub const STDPROP_USERPROP_BASE = @as(u32, 65536);
 pub const STDPROP_USERPROP_MAX = @as(u32, 2147483647);
 pub const SZ_WWDEST_GLOBAL = "GLOBAL";
 pub const SZ_WWDEST_KEY = "KEY";
 pub const SZ_WWDEST_OCC = "OCC";
-pub const CLSID_IITCmdInt = Guid.initString("4662daa2-d393-11d0-9a56-00c04fb68bf7");
-pub const CLSID_IITSvMgr = Guid.initString("4662daa3-d393-11d0-9a56-00c04fb68bf7");
-pub const CLSID_IITWordWheelUpdate = Guid.initString("4662daa5-d393-11d0-9a56-00c04fb68bf7");
-pub const CLSID_IITGroupUpdate = Guid.initString("4662daa4-d393-11d0-9a56-00c04fb68bf7");
-pub const CLSID_IITIndexBuild = Guid.initString("8fa0d5aa-dedf-11d0-9a61-00c04fb68bf7");
-pub const CLSID_IITWWFilterBuild = Guid.initString("8fa0d5ab-dedf-11d0-9a61-00c04fb68bf7");
-pub const CLSID_IITWordWheel = Guid.initString("d73725c2-8c12-11d0-a84e-00aa006c7d01");
-pub const CLSID_IITWordWheelLocal = Guid.initString("4662daa8-d393-11d0-9a56-00c04fb68bf7");
-pub const ITWW_OPEN_NOCONNECT = @as(u32, 1);
-pub const ITWW_CBKEY_MAX = @as(u32, 1024);
-pub const IITWBC_BREAK_ACCEPT_WILDCARDS = @as(u32, 1);
-pub const IITWBC_BREAK_AND_STEM = @as(u32, 2);
-pub const E_NOTEXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479552));
-pub const E_DUPLICATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479551));
-pub const E_BADVERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479550));
-pub const E_BADFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479549));
-pub const E_BADFORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479548));
-pub const E_NOPERMISSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479547));
-pub const E_ASSERT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479546));
-pub const E_INTERRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479545));
-pub const E_NOTSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479544));
-pub const E_OUTOFRANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479543));
-pub const E_GROUPIDTOOBIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479542));
-pub const E_TOOMANYTITLES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479541));
-pub const E_NOMERGEDDATA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479540));
-pub const E_NOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479539));
-pub const E_CANTFINDDLL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479538));
-pub const E_NOHANDLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479537));
-pub const E_GETLASTERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479536));
-pub const E_BADPARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479535));
-pub const E_INVALIDSTATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479534));
-pub const E_NOTOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479533));
-pub const E_ALREADYOPEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479533));
-pub const E_UNKNOWN_TRANSPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479530));
-pub const E_UNSUPPORTED_TRANSPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479529));
-pub const E_BADFILTERSIZE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479528));
-pub const E_TOOMANYOBJECTS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479527));
-pub const E_NAMETOOLONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479520));
-pub const E_FILECREATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479504));
-pub const E_FILECLOSE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479503));
-pub const E_FILEREAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479502));
-pub const E_FILESEEK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479501));
-pub const E_FILEWRITE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479500));
-pub const E_FILEDELETE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479499));
-pub const E_FILEINVALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479498));
-pub const E_FILENOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479497));
-pub const E_DISKFULL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479496));
-pub const E_TOOMANYTOPICS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479472));
-pub const E_TOOMANYDUPS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479471));
-pub const E_TREETOOBIG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479470));
-pub const E_BADBREAKER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479469));
-pub const E_BADVALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479468));
-pub const E_ALL_WILD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479467));
-pub const E_TOODEEP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479466));
-pub const E_EXPECTEDTERM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479465));
-pub const E_MISSLPAREN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479464));
-pub const E_MISSRPAREN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479463));
-pub const E_MISSQUOTE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479462));
-pub const E_NULLQUERY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479461));
-pub const E_STOPWORD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479460));
-pub const E_BADRANGEOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479459));
-pub const E_UNMATCHEDTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479458));
-pub const E_WORDTOOLONG = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479457));
-pub const E_BADINDEXFLAGS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479456));
-pub const E_WILD_IN_DTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479455));
-pub const E_NOSTEMMER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479454));
-pub const E_MISSINGPROP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479424));
-pub const E_PROPLISTNOTEMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479423));
-pub const E_PROPLISTEMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479422));
-pub const E_ALREADYINIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479421));
-pub const E_NOTINIT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479420));
-pub const E_RESULTSETEMPTY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479419));
-pub const E_TOOMANYCOLUMNS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479418));
-pub const E_NOKEYPROP = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147479417));
-pub const CLSID_IITResultSet = Guid.initString("4662daa7-d393-11d0-9a56-00c04fb68bf7");
-pub const MAX_COLUMNS = @as(u32, 256);
-pub const CLSID_ITStdBreaker = Guid.initString("4662daaf-d393-11d0-9a56-00c04fb68bf7");
-pub const CLSID_ITEngStemmer = Guid.initString("8fa0d5a8-dedf-11d0-9a61-00c04fb68bf7");
-pub const HHWIN_NAVTYPE_TOC = @as(i32, 0);
-pub const HHWIN_NAVTYPE_INDEX = @as(i32, 1);
-pub const HHWIN_NAVTYPE_SEARCH = @as(i32, 2);
-pub const HHWIN_NAVTYPE_FAVORITES = @as(i32, 3);
-pub const HHWIN_NAVTYPE_HISTORY = @as(i32, 4);
-pub const HHWIN_NAVTYPE_AUTHOR = @as(i32, 5);
-pub const HHWIN_NAVTYPE_CUSTOM_FIRST = @as(i32, 11);
-pub const IT_INCLUSIVE = @as(i32, 0);
-pub const IT_EXCLUSIVE = @as(i32, 1);
-pub const IT_HIDDEN = @as(i32, 2);
-pub const HHWIN_NAVTAB_TOP = @as(i32, 0);
-pub const HHWIN_NAVTAB_LEFT = @as(i32, 1);
-pub const HHWIN_NAVTAB_BOTTOM = @as(i32, 2);
-pub const HH_TAB_CONTENTS = @as(i32, 0);
-pub const HH_TAB_INDEX = @as(i32, 1);
-pub const HH_TAB_SEARCH = @as(i32, 2);
-pub const HH_TAB_FAVORITES = @as(i32, 3);
-pub const HH_TAB_HISTORY = @as(i32, 4);
-pub const HH_TAB_AUTHOR = @as(i32, 5);
-pub const HH_TAB_CUSTOM_FIRST = @as(i32, 11);
-pub const HH_TAB_CUSTOM_LAST = @as(i32, 19);
-pub const HHACT_TAB_CONTENTS = @as(i32, 0);
-pub const HHACT_TAB_INDEX = @as(i32, 1);
-pub const HHACT_TAB_SEARCH = @as(i32, 2);
-pub const HHACT_TAB_HISTORY = @as(i32, 3);
-pub const HHACT_TAB_FAVORITES = @as(i32, 4);
-pub const HHACT_EXPAND = @as(i32, 5);
-pub const HHACT_CONTRACT = @as(i32, 6);
-pub const HHACT_BACK = @as(i32, 7);
-pub const HHACT_FORWARD = @as(i32, 8);
-pub const HHACT_STOP = @as(i32, 9);
-pub const HHACT_REFRESH = @as(i32, 10);
-pub const HHACT_HOME = @as(i32, 11);
-pub const HHACT_SYNC = @as(i32, 12);
-pub const HHACT_OPTIONS = @as(i32, 13);
-pub const HHACT_PRINT = @as(i32, 14);
-pub const HHACT_HIGHLIGHT = @as(i32, 15);
-pub const HHACT_CUSTOMIZE = @as(i32, 16);
-pub const HHACT_JUMP1 = @as(i32, 17);
-pub const HHACT_JUMP2 = @as(i32, 18);
-pub const HHACT_ZOOM = @as(i32, 19);
-pub const HHACT_TOC_NEXT = @as(i32, 20);
-pub const HHACT_TOC_PREV = @as(i32, 21);
-pub const HHACT_NOTES = @as(i32, 22);
-pub const HHACT_LAST_ENUM = @as(i32, 23);
+pub const TYPE_POINTER = @as(u32, 1);
+pub const TYPE_STRING = @as(u32, 2);
+pub const TYPE_VALUE = @as(u32, 0);
 
 //--------------------------------------------------------------------------------
 // Section: Types (27)
 //--------------------------------------------------------------------------------
-pub const WORD_WHEEL_OPEN_FLAGS = packed struct(u32) {
-    _0: u1 = 0,
-    _1: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS{ };
-
-pub const HHN_NOTIFY = extern struct {
-    hdr: NMHDR,
-    pszUrl: ?[*:0]const u8,
+pub const COLUMNSTATUS = extern struct {
+    cPropCount: i32,
+    cPropsLoaded: i32,
 };
 
-pub const HH_POPUP = extern struct {
-    cbStruct: i32,
-    hinst: ?HINSTANCE,
-    idString: u32,
-    pszText: ?*i8,
-    pt: POINT,
-    clrForeground: COLORREF,
-    clrBackground: COLORREF,
-    rcMargins: RECT,
-    pszFont: ?*i8,
+pub const CProperty = extern struct {
+    dwPropID: u32,
+    cbData: u32,
+    dwType: u32,
+    Anonymous: extern union {
+        lpszwData: ?PWSTR,
+        lpvData: ?*anyopaque,
+        dwValue: u32,
+    },
+    fPersist: BOOL,
 };
 
 pub const HH_AKLINK = extern struct {
@@ -344,24 +308,18 @@ pub const HH_AKLINK = extern struct {
     fIndexOnFail: BOOL,
 };
 
-pub const HH_ENUM_IT = extern struct {
-    cbStruct: i32,
-    iType: i32,
-    pszCatName: ?[*:0]const u8,
-    pszITName: ?[*:0]const u8,
-    pszITDescription: ?[*:0]const u8,
-};
-
 pub const HH_ENUM_CAT = extern struct {
     cbStruct: i32,
     pszCatName: ?[*:0]const u8,
     pszCatDescription: ?[*:0]const u8,
 };
 
-pub const HH_SET_INFOTYPE = extern struct {
+pub const HH_ENUM_IT = extern struct {
     cbStruct: i32,
+    iType: i32,
     pszCatName: ?[*:0]const u8,
-    pszInfoTypeName: ?[*:0]const u8,
+    pszITName: ?[*:0]const u8,
+    pszITDescription: ?[*:0]const u8,
 };
 
 pub const HH_FTS_QUERY = extern struct {
@@ -373,6 +331,42 @@ pub const HH_FTS_QUERY = extern struct {
     fTitleOnly: BOOL,
     fExecute: BOOL,
     pszWindow: ?*i8,
+};
+
+pub const HH_GLOBAL_PROPERTY = extern struct {
+    id: HH_GPROPID,
+    @"var": VARIANT,
+};
+
+pub const HH_GPROPID = enum(i32) {
+    SINGLETHREAD = 1,
+    TOOLBAR_MARGIN = 2,
+    UI_LANGUAGE = 3,
+    CURRENT_SUBSET = 4,
+    CONTENT_LANGUAGE = 5,
+};
+pub const HH_GPROPID_SINGLETHREAD = HH_GPROPID.SINGLETHREAD;
+pub const HH_GPROPID_TOOLBAR_MARGIN = HH_GPROPID.TOOLBAR_MARGIN;
+pub const HH_GPROPID_UI_LANGUAGE = HH_GPROPID.UI_LANGUAGE;
+pub const HH_GPROPID_CURRENT_SUBSET = HH_GPROPID.CURRENT_SUBSET;
+pub const HH_GPROPID_CONTENT_LANGUAGE = HH_GPROPID.CONTENT_LANGUAGE;
+
+pub const HH_POPUP = extern struct {
+    cbStruct: i32,
+    hinst: ?HINSTANCE,
+    idString: u32,
+    pszText: ?*i8,
+    pt: POINT,
+    clrForeground: COLORREF,
+    clrBackground: COLORREF,
+    rcMargins: RECT,
+    pszFont: ?*i8,
+};
+
+pub const HH_SET_INFOTYPE = extern struct {
+    cbStruct: i32,
+    pszCatName: ?[*:0]const u8,
+    pszInfoTypeName: ?[*:0]const u8,
 };
 
 pub const HH_WINTYPE = extern struct {
@@ -414,6 +408,11 @@ pub const HH_WINTYPE = extern struct {
     pszCustomTabs: ?*i8,
 };
 
+pub const HHN_NOTIFY = extern struct {
+    hdr: NMHDR,
+    pszUrl: ?[*:0]const u8,
+};
+
 pub const HHNTRACK = extern struct {
     hdr: NMHDR,
     pszCurUrl: ?[*:0]const u8,
@@ -421,34 +420,60 @@ pub const HHNTRACK = extern struct {
     phhWinType: ?*HH_WINTYPE,
 };
 
-pub const HH_GPROPID = enum(i32) {
-    SINGLETHREAD = 1,
-    TOOLBAR_MARGIN = 2,
-    UI_LANGUAGE = 3,
-    CURRENT_SUBSET = 4,
-    CONTENT_LANGUAGE = 5,
+const IID_IITDatabase_Value = Guid.initString("8fa0d5a2-dedf-11d0-9a61-00c04fb68bf7");
+pub const IID_IITDatabase = &IID_IITDatabase_Value;
+pub const IITDatabase = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IITDatabase,
+            lpszHost: ?[*:0]const u16,
+            lpszMoniker: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IITDatabase,
+        ) callconv(.winapi) HRESULT,
+        CreateObject: *const fn(
+            self: *const IITDatabase,
+            rclsid: ?*const Guid,
+            pdwObjInstance: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetObject: *const fn(
+            self: *const IITDatabase,
+            dwObjInstance: u32,
+            riid: ?*const Guid,
+            ppvObj: ?*?*anyopaque,
+        ) callconv(.winapi) HRESULT,
+        GetObjectPersistence: *const fn(
+            self: *const IITDatabase,
+            lpwszObject: ?[*:0]const u16,
+            dwObjInstance: u32,
+            ppvPersistence: ?*?*anyopaque,
+            fStream: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IITDatabase, lpszHost: ?[*:0]const u16, lpszMoniker: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, lpszHost, lpszMoniker, dwFlags);
+    }
+    pub fn Close(self: *const IITDatabase) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn CreateObject(self: *const IITDatabase, rclsid: ?*const Guid, pdwObjInstance: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateObject(self, rclsid, pdwObjInstance);
+    }
+    pub fn GetObject(self: *const IITDatabase, dwObjInstance: u32, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObject(self, dwObjInstance, riid, ppvObj);
+    }
+    pub fn GetObjectPersistence(self: *const IITDatabase, lpwszObject: ?[*:0]const u16, dwObjInstance: u32, ppvPersistence: ?*?*anyopaque, fStream: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.GetObjectPersistence(self, lpwszObject, dwObjInstance, ppvPersistence, fStream);
+    }
 };
-pub const HH_GPROPID_SINGLETHREAD = HH_GPROPID.SINGLETHREAD;
-pub const HH_GPROPID_TOOLBAR_MARGIN = HH_GPROPID.TOOLBAR_MARGIN;
-pub const HH_GPROPID_UI_LANGUAGE = HH_GPROPID.UI_LANGUAGE;
-pub const HH_GPROPID_CURRENT_SUBSET = HH_GPROPID.CURRENT_SUBSET;
-pub const HH_GPROPID_CONTENT_LANGUAGE = HH_GPROPID.CONTENT_LANGUAGE;
 
-pub const HH_GLOBAL_PROPERTY = extern struct {
-    id: HH_GPROPID,
-    @"var": VARIANT,
-};
-
-pub const CProperty = extern struct {
-    dwPropID: u32,
-    cbData: u32,
-    dwType: u32,
-    Anonymous: extern union {
-        lpszwData: ?PWSTR,
-        lpvData: ?*anyopaque,
-        dwValue: u32,
-    },
-    fPersist: BOOL,
+pub const IITGroup = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IITPropList_Value = Guid.initString("1f403bb1-9997-11d0-a850-00aa006c7d01");
@@ -609,361 +634,9 @@ pub const IITPropList = extern union {
     }
 };
 
-const IID_IITDatabase_Value = Guid.initString("8fa0d5a2-dedf-11d0-9a61-00c04fb68bf7");
-pub const IID_IITDatabase = &IID_IITDatabase_Value;
-pub const IITDatabase = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IITDatabase,
-            lpszHost: ?[*:0]const u16,
-            lpszMoniker: ?[*:0]const u16,
-            dwFlags: u32,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IITDatabase,
-        ) callconv(.winapi) HRESULT,
-        CreateObject: *const fn(
-            self: *const IITDatabase,
-            rclsid: ?*const Guid,
-            pdwObjInstance: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetObject: *const fn(
-            self: *const IITDatabase,
-            dwObjInstance: u32,
-            riid: ?*const Guid,
-            ppvObj: ?*?*anyopaque,
-        ) callconv(.winapi) HRESULT,
-        GetObjectPersistence: *const fn(
-            self: *const IITDatabase,
-            lpwszObject: ?[*:0]const u16,
-            dwObjInstance: u32,
-            ppvPersistence: ?*?*anyopaque,
-            fStream: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Open(self: *const IITDatabase, lpszHost: ?[*:0]const u16, lpszMoniker: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, lpszHost, lpszMoniker, dwFlags);
-    }
-    pub fn Close(self: *const IITDatabase) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn CreateObject(self: *const IITDatabase, rclsid: ?*const Guid, pdwObjInstance: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateObject(self, rclsid, pdwObjInstance);
-    }
-    pub fn GetObject(self: *const IITDatabase, dwObjInstance: u32, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObject(self, dwObjInstance, riid, ppvObj);
-    }
-    pub fn GetObjectPersistence(self: *const IITDatabase, lpwszObject: ?[*:0]const u16, dwObjInstance: u32, ppvPersistence: ?*?*anyopaque, fStream: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.GetObjectPersistence(self, lpwszObject, dwObjInstance, ppvPersistence, fStream);
-    }
-};
-
-pub const IITGroup = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const IITQuery = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
-
-const IID_IITWordWheel_Value = Guid.initString("8fa0d5a4-dedf-11d0-9a61-00c04fb68bf7");
-pub const IID_IITWordWheel = &IID_IITWordWheel_Value;
-pub const IITWordWheel = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Open: *const fn(
-            self: *const IITWordWheel,
-            lpITDB: ?*IITDatabase,
-            lpszMoniker: ?[*:0]const u16,
-            dwFlags: WORD_WHEEL_OPEN_FLAGS,
-        ) callconv(.winapi) HRESULT,
-        Close: *const fn(
-            self: *const IITWordWheel,
-        ) callconv(.winapi) HRESULT,
-        GetLocaleInfo: *const fn(
-            self: *const IITWordWheel,
-            pdwCodePageID: ?*u32,
-            plcid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetSorterInstance: *const fn(
-            self: *const IITWordWheel,
-            pdwObjInstance: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Count: *const fn(
-            self: *const IITWordWheel,
-            pcEntries: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        LookupPrefix: *const fn(
-            self: *const IITWordWheel,
-            lpcvPrefix: ?*const anyopaque,
-            fExactMatch: BOOL,
-            plEntry: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        LookupResultSet: *const fn(
-            self: *const IITWordWheel,
-            lEntry: i32,
-            lpITResult: ?*IITResultSet,
-            cEntries: i32,
-        ) callconv(.winapi) HRESULT,
-        LookupKey: *const fn(
-            self: *const IITWordWheel,
-            lEntry: i32,
-            lpvKeyBuf: ?*anyopaque,
-            cbKeyBuf: u32,
-        ) callconv(.winapi) HRESULT,
-        SetGroup: *const fn(
-            self: *const IITWordWheel,
-            piitGroup: ?*IITGroup,
-        ) callconv(.winapi) HRESULT,
-        GetGroup: *const fn(
-            self: *const IITWordWheel,
-            ppiitGroup: ?*?*IITGroup,
-        ) callconv(.winapi) HRESULT,
-        GetDataCount: *const fn(
-            self: *const IITWordWheel,
-            lEntry: i32,
-            pdwCount: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        GetData: *const fn(
-            self: *const IITWordWheel,
-            lEntry: i32,
-            lpITResult: ?*IITResultSet,
-        ) callconv(.winapi) HRESULT,
-        GetDataColumns: *const fn(
-            self: *const IITWordWheel,
-            pRS: ?*IITResultSet,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub const Lookup = @compileError("COM method 'Lookup' must be called using one of the following overload names: LookupResultSet, LookupKey, LookupPrefix");
-    pub fn Open(self: *const IITWordWheel, lpITDB: ?*IITDatabase, lpszMoniker: ?[*:0]const u16, dwFlags: WORD_WHEEL_OPEN_FLAGS) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, lpITDB, lpszMoniker, dwFlags);
-    }
-    pub fn Close(self: *const IITWordWheel) callconv(.@"inline") HRESULT {
-        return self.vtable.Close(self);
-    }
-    pub fn GetLocaleInfo(self: *const IITWordWheel, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocaleInfo(self, pdwCodePageID, plcid);
-    }
-    pub fn GetSorterInstance(self: *const IITWordWheel, pdwObjInstance: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSorterInstance(self, pdwObjInstance);
-    }
-    pub fn Count(self: *const IITWordWheel, pcEntries: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Count(self, pcEntries);
-    }
-    pub fn LookupPrefix(self: *const IITWordWheel, lpcvPrefix: ?*const anyopaque, fExactMatch: BOOL, plEntry: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupPrefix(self, lpcvPrefix, fExactMatch, plEntry);
-    }
-    pub fn LookupResultSet(self: *const IITWordWheel, lEntry: i32, lpITResult: ?*IITResultSet, cEntries: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupResultSet(self, lEntry, lpITResult, cEntries);
-    }
-    pub fn LookupKey(self: *const IITWordWheel, lEntry: i32, lpvKeyBuf: ?*anyopaque, cbKeyBuf: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.LookupKey(self, lEntry, lpvKeyBuf, cbKeyBuf);
-    }
-    pub fn SetGroup(self: *const IITWordWheel, piitGroup: ?*IITGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.SetGroup(self, piitGroup);
-    }
-    pub fn GetGroup(self: *const IITWordWheel, ppiitGroup: ?*?*IITGroup) callconv(.@"inline") HRESULT {
-        return self.vtable.GetGroup(self, ppiitGroup);
-    }
-    pub fn GetDataCount(self: *const IITWordWheel, lEntry: i32, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataCount(self, lEntry, pdwCount);
-    }
-    pub fn GetData(self: *const IITWordWheel, lEntry: i32, lpITResult: ?*IITResultSet) callconv(.@"inline") HRESULT {
-        return self.vtable.GetData(self, lEntry, lpITResult);
-    }
-    pub fn GetDataColumns(self: *const IITWordWheel, pRS: ?*IITResultSet) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDataColumns(self, pRS);
-    }
-};
-
-const IID_IStemSink_Value = Guid.initString("fe77c330-7f42-11ce-be57-00aa0051fe20");
-pub const IID_IStemSink = &IID_IStemSink_Value;
-pub const IStemSink = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        PutAltWord: *const fn(
-            self: *const IStemSink,
-            pwcInBuf: ?[*:0]const u16,
-            cwc: u32,
-        ) callconv(.winapi) HRESULT,
-        PutWord: *const fn(
-            self: *const IStemSink,
-            pwcInBuf: ?[*:0]const u16,
-            cwc: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn PutAltWord(self: *const IStemSink, pwcInBuf: ?[*:0]const u16, cwc: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.PutAltWord(self, pwcInBuf, cwc);
-    }
-    pub fn PutWord(self: *const IStemSink, pwcInBuf: ?[*:0]const u16, cwc: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.PutWord(self, pwcInBuf, cwc);
-    }
-};
-
-const IID_IStemmerConfig_Value = Guid.initString("8fa0d5a7-dedf-11d0-9a61-00c04fb68bf7");
-pub const IID_IStemmerConfig = &IID_IStemmerConfig_Value;
-pub const IStemmerConfig = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetLocaleInfo: *const fn(
-            self: *const IStemmerConfig,
-            dwCodePageID: u32,
-            lcid: u32,
-        ) callconv(.winapi) HRESULT,
-        GetLocaleInfo: *const fn(
-            self: *const IStemmerConfig,
-            pdwCodePageID: ?*u32,
-            plcid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetControlInfo: *const fn(
-            self: *const IStemmerConfig,
-            grfStemFlags: u32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        GetControlInfo: *const fn(
-            self: *const IStemmerConfig,
-            pgrfStemFlags: ?*u32,
-            pdwReserved: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        LoadExternalStemmerData: *const fn(
-            self: *const IStemmerConfig,
-            pStream: ?*IStream,
-            dwExtDataType: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetLocaleInfo(self: *const IStemmerConfig, dwCodePageID: u32, lcid: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLocaleInfo(self, dwCodePageID, lcid);
-    }
-    pub fn GetLocaleInfo(self: *const IStemmerConfig, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocaleInfo(self, pdwCodePageID, plcid);
-    }
-    pub fn SetControlInfo(self: *const IStemmerConfig, grfStemFlags: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetControlInfo(self, grfStemFlags, dwReserved);
-    }
-    pub fn GetControlInfo(self: *const IStemmerConfig, pgrfStemFlags: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetControlInfo(self, pgrfStemFlags, pdwReserved);
-    }
-    pub fn LoadExternalStemmerData(self: *const IStemmerConfig, pStream: ?*IStream, dwExtDataType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadExternalStemmerData(self, pStream, dwExtDataType);
-    }
-};
-
-pub const IITStopWordList = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-const IID_IWordBreakerConfig_Value = Guid.initString("8fa0d5a6-dedf-11d0-9a61-00c04fb68bf7");
-pub const IID_IWordBreakerConfig = &IID_IWordBreakerConfig_Value;
-pub const IWordBreakerConfig = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetLocaleInfo: *const fn(
-            self: *const IWordBreakerConfig,
-            dwCodePageID: u32,
-            lcid: u32,
-        ) callconv(.winapi) HRESULT,
-        GetLocaleInfo: *const fn(
-            self: *const IWordBreakerConfig,
-            pdwCodePageID: ?*u32,
-            plcid: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetBreakWordType: *const fn(
-            self: *const IWordBreakerConfig,
-            dwBreakWordType: u32,
-        ) callconv(.winapi) HRESULT,
-        GetBreakWordType: *const fn(
-            self: *const IWordBreakerConfig,
-            pdwBreakWordType: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        SetControlInfo: *const fn(
-            self: *const IWordBreakerConfig,
-            grfBreakFlags: u32,
-            dwReserved: u32,
-        ) callconv(.winapi) HRESULT,
-        GetControlInfo: *const fn(
-            self: *const IWordBreakerConfig,
-            pgrfBreakFlags: ?*u32,
-            pdwReserved: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        LoadExternalBreakerData: *const fn(
-            self: *const IWordBreakerConfig,
-            pStream: ?*IStream,
-            dwExtDataType: u32,
-        ) callconv(.winapi) HRESULT,
-        SetWordStemmer: *const fn(
-            self: *const IWordBreakerConfig,
-            rclsid: ?*const Guid,
-            pStemmer: ?*IStemmer,
-        ) callconv(.winapi) HRESULT,
-        GetWordStemmer: *const fn(
-            self: *const IWordBreakerConfig,
-            ppStemmer: ?*?*IStemmer,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn SetLocaleInfo(self: *const IWordBreakerConfig, dwCodePageID: u32, lcid: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetLocaleInfo(self, dwCodePageID, lcid);
-    }
-    pub fn GetLocaleInfo(self: *const IWordBreakerConfig, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetLocaleInfo(self, pdwCodePageID, plcid);
-    }
-    pub fn SetBreakWordType(self: *const IWordBreakerConfig, dwBreakWordType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetBreakWordType(self, dwBreakWordType);
-    }
-    pub fn GetBreakWordType(self: *const IWordBreakerConfig, pdwBreakWordType: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetBreakWordType(self, pdwBreakWordType);
-    }
-    pub fn SetControlInfo(self: *const IWordBreakerConfig, grfBreakFlags: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetControlInfo(self, grfBreakFlags, dwReserved);
-    }
-    pub fn GetControlInfo(self: *const IWordBreakerConfig, pgrfBreakFlags: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetControlInfo(self, pgrfBreakFlags, pdwReserved);
-    }
-    pub fn LoadExternalBreakerData(self: *const IWordBreakerConfig, pStream: ?*IStream, dwExtDataType: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.LoadExternalBreakerData(self, pStream, dwExtDataType);
-    }
-    pub fn SetWordStemmer(self: *const IWordBreakerConfig, rclsid: ?*const Guid, pStemmer: ?*IStemmer) callconv(.@"inline") HRESULT {
-        return self.vtable.SetWordStemmer(self, rclsid, pStemmer);
-    }
-    pub fn GetWordStemmer(self: *const IWordBreakerConfig, ppStemmer: ?*?*IStemmer) callconv(.@"inline") HRESULT {
-        return self.vtable.GetWordStemmer(self, ppStemmer);
-    }
-};
-
-pub const PRIORITY = enum(i32) {
-    LOW = 0,
-    NORMAL = 1,
-    HIGH = 2,
-};
-pub const PRIORITY_LOW = PRIORITY.LOW;
-pub const PRIORITY_NORMAL = PRIORITY.NORMAL;
-pub const PRIORITY_HIGH = PRIORITY.HIGH;
-
-pub const ROWSTATUS = extern struct {
-    lRowFirst: i32,
-    cRows: i32,
-    cProperties: i32,
-    cRowsTotal: i32,
-};
-
-pub const COLUMNSTATUS = extern struct {
-    cPropCount: i32,
-    cPropsLoaded: i32,
-};
-
-pub const PFNCOLHEAPFREE = *const fn(
-    param0: ?*anyopaque,
-) callconv(.winapi) i32;
 
 const IID_IITResultSet_Value = Guid.initString("3bb91d41-998b-11d0-a850-00aa006c7d01");
 pub const IID_IITResultSet = &IID_IITResultSet_Value;
@@ -1217,6 +890,333 @@ pub const IITResultSet = extern union {
         return self.vtable.GetColumnStatus(self, lpColStatus);
     }
 };
+
+pub const IITStopWordList = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+const IID_IITWordWheel_Value = Guid.initString("8fa0d5a4-dedf-11d0-9a61-00c04fb68bf7");
+pub const IID_IITWordWheel = &IID_IITWordWheel_Value;
+pub const IITWordWheel = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Open: *const fn(
+            self: *const IITWordWheel,
+            lpITDB: ?*IITDatabase,
+            lpszMoniker: ?[*:0]const u16,
+            dwFlags: WORD_WHEEL_OPEN_FLAGS,
+        ) callconv(.winapi) HRESULT,
+        Close: *const fn(
+            self: *const IITWordWheel,
+        ) callconv(.winapi) HRESULT,
+        GetLocaleInfo: *const fn(
+            self: *const IITWordWheel,
+            pdwCodePageID: ?*u32,
+            plcid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetSorterInstance: *const fn(
+            self: *const IITWordWheel,
+            pdwObjInstance: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        Count: *const fn(
+            self: *const IITWordWheel,
+            pcEntries: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        LookupPrefix: *const fn(
+            self: *const IITWordWheel,
+            lpcvPrefix: ?*const anyopaque,
+            fExactMatch: BOOL,
+            plEntry: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        LookupResultSet: *const fn(
+            self: *const IITWordWheel,
+            lEntry: i32,
+            lpITResult: ?*IITResultSet,
+            cEntries: i32,
+        ) callconv(.winapi) HRESULT,
+        LookupKey: *const fn(
+            self: *const IITWordWheel,
+            lEntry: i32,
+            lpvKeyBuf: ?*anyopaque,
+            cbKeyBuf: u32,
+        ) callconv(.winapi) HRESULT,
+        SetGroup: *const fn(
+            self: *const IITWordWheel,
+            piitGroup: ?*IITGroup,
+        ) callconv(.winapi) HRESULT,
+        GetGroup: *const fn(
+            self: *const IITWordWheel,
+            ppiitGroup: ?*?*IITGroup,
+        ) callconv(.winapi) HRESULT,
+        GetDataCount: *const fn(
+            self: *const IITWordWheel,
+            lEntry: i32,
+            pdwCount: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        GetData: *const fn(
+            self: *const IITWordWheel,
+            lEntry: i32,
+            lpITResult: ?*IITResultSet,
+        ) callconv(.winapi) HRESULT,
+        GetDataColumns: *const fn(
+            self: *const IITWordWheel,
+            pRS: ?*IITResultSet,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub const Lookup = @compileError("COM method 'Lookup' must be called using one of the following overload names: LookupResultSet, LookupKey, LookupPrefix");
+    pub fn Open(self: *const IITWordWheel, lpITDB: ?*IITDatabase, lpszMoniker: ?[*:0]const u16, dwFlags: WORD_WHEEL_OPEN_FLAGS) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, lpITDB, lpszMoniker, dwFlags);
+    }
+    pub fn Close(self: *const IITWordWheel) callconv(.@"inline") HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn GetLocaleInfo(self: *const IITWordWheel, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocaleInfo(self, pdwCodePageID, plcid);
+    }
+    pub fn GetSorterInstance(self: *const IITWordWheel, pdwObjInstance: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSorterInstance(self, pdwObjInstance);
+    }
+    pub fn Count(self: *const IITWordWheel, pcEntries: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Count(self, pcEntries);
+    }
+    pub fn LookupPrefix(self: *const IITWordWheel, lpcvPrefix: ?*const anyopaque, fExactMatch: BOOL, plEntry: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupPrefix(self, lpcvPrefix, fExactMatch, plEntry);
+    }
+    pub fn LookupResultSet(self: *const IITWordWheel, lEntry: i32, lpITResult: ?*IITResultSet, cEntries: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupResultSet(self, lEntry, lpITResult, cEntries);
+    }
+    pub fn LookupKey(self: *const IITWordWheel, lEntry: i32, lpvKeyBuf: ?*anyopaque, cbKeyBuf: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.LookupKey(self, lEntry, lpvKeyBuf, cbKeyBuf);
+    }
+    pub fn SetGroup(self: *const IITWordWheel, piitGroup: ?*IITGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.SetGroup(self, piitGroup);
+    }
+    pub fn GetGroup(self: *const IITWordWheel, ppiitGroup: ?*?*IITGroup) callconv(.@"inline") HRESULT {
+        return self.vtable.GetGroup(self, ppiitGroup);
+    }
+    pub fn GetDataCount(self: *const IITWordWheel, lEntry: i32, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataCount(self, lEntry, pdwCount);
+    }
+    pub fn GetData(self: *const IITWordWheel, lEntry: i32, lpITResult: ?*IITResultSet) callconv(.@"inline") HRESULT {
+        return self.vtable.GetData(self, lEntry, lpITResult);
+    }
+    pub fn GetDataColumns(self: *const IITWordWheel, pRS: ?*IITResultSet) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDataColumns(self, pRS);
+    }
+};
+
+const IID_IStemmerConfig_Value = Guid.initString("8fa0d5a7-dedf-11d0-9a61-00c04fb68bf7");
+pub const IID_IStemmerConfig = &IID_IStemmerConfig_Value;
+pub const IStemmerConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetLocaleInfo: *const fn(
+            self: *const IStemmerConfig,
+            dwCodePageID: u32,
+            lcid: u32,
+        ) callconv(.winapi) HRESULT,
+        GetLocaleInfo: *const fn(
+            self: *const IStemmerConfig,
+            pdwCodePageID: ?*u32,
+            plcid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetControlInfo: *const fn(
+            self: *const IStemmerConfig,
+            grfStemFlags: u32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        GetControlInfo: *const fn(
+            self: *const IStemmerConfig,
+            pgrfStemFlags: ?*u32,
+            pdwReserved: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        LoadExternalStemmerData: *const fn(
+            self: *const IStemmerConfig,
+            pStream: ?*IStream,
+            dwExtDataType: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetLocaleInfo(self: *const IStemmerConfig, dwCodePageID: u32, lcid: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLocaleInfo(self, dwCodePageID, lcid);
+    }
+    pub fn GetLocaleInfo(self: *const IStemmerConfig, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocaleInfo(self, pdwCodePageID, plcid);
+    }
+    pub fn SetControlInfo(self: *const IStemmerConfig, grfStemFlags: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetControlInfo(self, grfStemFlags, dwReserved);
+    }
+    pub fn GetControlInfo(self: *const IStemmerConfig, pgrfStemFlags: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetControlInfo(self, pgrfStemFlags, pdwReserved);
+    }
+    pub fn LoadExternalStemmerData(self: *const IStemmerConfig, pStream: ?*IStream, dwExtDataType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadExternalStemmerData(self, pStream, dwExtDataType);
+    }
+};
+
+const IID_IStemSink_Value = Guid.initString("fe77c330-7f42-11ce-be57-00aa0051fe20");
+pub const IID_IStemSink = &IID_IStemSink_Value;
+pub const IStemSink = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        PutAltWord: *const fn(
+            self: *const IStemSink,
+            pwcInBuf: ?[*:0]const u16,
+            cwc: u32,
+        ) callconv(.winapi) HRESULT,
+        PutWord: *const fn(
+            self: *const IStemSink,
+            pwcInBuf: ?[*:0]const u16,
+            cwc: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn PutAltWord(self: *const IStemSink, pwcInBuf: ?[*:0]const u16, cwc: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.PutAltWord(self, pwcInBuf, cwc);
+    }
+    pub fn PutWord(self: *const IStemSink, pwcInBuf: ?[*:0]const u16, cwc: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.PutWord(self, pwcInBuf, cwc);
+    }
+};
+
+const IID_IWordBreakerConfig_Value = Guid.initString("8fa0d5a6-dedf-11d0-9a61-00c04fb68bf7");
+pub const IID_IWordBreakerConfig = &IID_IWordBreakerConfig_Value;
+pub const IWordBreakerConfig = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetLocaleInfo: *const fn(
+            self: *const IWordBreakerConfig,
+            dwCodePageID: u32,
+            lcid: u32,
+        ) callconv(.winapi) HRESULT,
+        GetLocaleInfo: *const fn(
+            self: *const IWordBreakerConfig,
+            pdwCodePageID: ?*u32,
+            plcid: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetBreakWordType: *const fn(
+            self: *const IWordBreakerConfig,
+            dwBreakWordType: u32,
+        ) callconv(.winapi) HRESULT,
+        GetBreakWordType: *const fn(
+            self: *const IWordBreakerConfig,
+            pdwBreakWordType: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        SetControlInfo: *const fn(
+            self: *const IWordBreakerConfig,
+            grfBreakFlags: u32,
+            dwReserved: u32,
+        ) callconv(.winapi) HRESULT,
+        GetControlInfo: *const fn(
+            self: *const IWordBreakerConfig,
+            pgrfBreakFlags: ?*u32,
+            pdwReserved: ?*u32,
+        ) callconv(.winapi) HRESULT,
+        LoadExternalBreakerData: *const fn(
+            self: *const IWordBreakerConfig,
+            pStream: ?*IStream,
+            dwExtDataType: u32,
+        ) callconv(.winapi) HRESULT,
+        SetWordStemmer: *const fn(
+            self: *const IWordBreakerConfig,
+            rclsid: ?*const Guid,
+            pStemmer: ?*IStemmer,
+        ) callconv(.winapi) HRESULT,
+        GetWordStemmer: *const fn(
+            self: *const IWordBreakerConfig,
+            ppStemmer: ?*?*IStemmer,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn SetLocaleInfo(self: *const IWordBreakerConfig, dwCodePageID: u32, lcid: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetLocaleInfo(self, dwCodePageID, lcid);
+    }
+    pub fn GetLocaleInfo(self: *const IWordBreakerConfig, pdwCodePageID: ?*u32, plcid: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetLocaleInfo(self, pdwCodePageID, plcid);
+    }
+    pub fn SetBreakWordType(self: *const IWordBreakerConfig, dwBreakWordType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetBreakWordType(self, dwBreakWordType);
+    }
+    pub fn GetBreakWordType(self: *const IWordBreakerConfig, pdwBreakWordType: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetBreakWordType(self, pdwBreakWordType);
+    }
+    pub fn SetControlInfo(self: *const IWordBreakerConfig, grfBreakFlags: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetControlInfo(self, grfBreakFlags, dwReserved);
+    }
+    pub fn GetControlInfo(self: *const IWordBreakerConfig, pgrfBreakFlags: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetControlInfo(self, pgrfBreakFlags, pdwReserved);
+    }
+    pub fn LoadExternalBreakerData(self: *const IWordBreakerConfig, pStream: ?*IStream, dwExtDataType: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.LoadExternalBreakerData(self, pStream, dwExtDataType);
+    }
+    pub fn SetWordStemmer(self: *const IWordBreakerConfig, rclsid: ?*const Guid, pStemmer: ?*IStemmer) callconv(.@"inline") HRESULT {
+        return self.vtable.SetWordStemmer(self, rclsid, pStemmer);
+    }
+    pub fn GetWordStemmer(self: *const IWordBreakerConfig, ppStemmer: ?*?*IStemmer) callconv(.@"inline") HRESULT {
+        return self.vtable.GetWordStemmer(self, ppStemmer);
+    }
+};
+
+pub const PFNCOLHEAPFREE = *const fn(
+    param0: ?*anyopaque,
+) callconv(.winapi) i32;
+
+pub const PRIORITY = enum(i32) {
+    LOW = 0,
+    NORMAL = 1,
+    HIGH = 2,
+};
+pub const PRIORITY_LOW = PRIORITY.LOW;
+pub const PRIORITY_NORMAL = PRIORITY.NORMAL;
+pub const PRIORITY_HIGH = PRIORITY.HIGH;
+
+pub const ROWSTATUS = extern struct {
+    lRowFirst: i32,
+    cRows: i32,
+    cProperties: i32,
+    cRowsTotal: i32,
+};
+
+pub const WORD_WHEEL_OPEN_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS{ };
 
 
 //--------------------------------------------------------------------------------

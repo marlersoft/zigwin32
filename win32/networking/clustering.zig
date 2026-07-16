@@ -2,450 +2,232 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (618)
 //--------------------------------------------------------------------------------
-pub const CLUSTER_VERSION_FLAG_MIXED_MODE = @as(u32, 1);
-pub const CLUSTER_VERSION_UNKNOWN = @as(u32, 4294967295);
-pub const NT4_MAJOR_VERSION = @as(u32, 1);
-pub const NT4SP4_MAJOR_VERSION = @as(u32, 2);
-pub const NT5_MAJOR_VERSION = @as(u32, 3);
-pub const NT51_MAJOR_VERSION = @as(u32, 4);
-pub const NT6_MAJOR_VERSION = @as(u32, 5);
-pub const NT7_MAJOR_VERSION = @as(u32, 6);
-pub const NT8_MAJOR_VERSION = @as(u32, 7);
-pub const NT9_MAJOR_VERSION = @as(u32, 8);
-pub const NT10_MAJOR_VERSION = @as(u32, 9);
-pub const NT11_MAJOR_VERSION = @as(u32, 10);
-pub const NT12_MAJOR_VERSION = @as(u32, 11);
-pub const NT13_MAJOR_VERSION = @as(u32, 12);
-pub const WS2016_TP4_UPGRADE_VERSION = @as(u32, 6);
-pub const WS2016_TP5_UPGRADE_VERSION = @as(u32, 7);
-pub const WS2016_RTM_UPGRADE_VERSION = @as(u32, 8);
-pub const RS3_UPGRADE_VERSION = @as(u32, 1);
-pub const RS4_UPGRADE_VERSION = @as(u32, 2);
-pub const RS5_UPGRADE_VERSION = @as(u32, 3);
-pub const NINETEEN_H1_UPGRADE_VERSION = @as(u32, 1);
-pub const NINETEEN_H2_UPGRADE_VERSION = @as(u32, 2);
-pub const MN_UPGRADE_VERSION = @as(u32, 3);
-pub const FE_UPGRADE_VERSION = @as(u32, 4);
+pub const BitLockerDecrypted = @as(i32, 4);
+pub const BitLockerDecrypting = @as(i32, 16);
+pub const BitLockerEnabled = @as(i32, 1);
+pub const BitlockerEncrypted = @as(i32, 8);
+pub const BitlockerEncrypting = @as(i32, 32);
+pub const BitLockerPaused = @as(i32, 64);
+pub const BitLockerStopped = @as(i32, 128);
 pub const CA_UPGRADE_VERSION = @as(u32, 1);
-pub const HCI_UPGRADE_BIT = @as(u32, 32768);
-pub const CLUSREG_NAME_MIXED_MODE = "MixedMode";
+pub const CLCTL_CLUSTER_BASE = @as(u32, 0);
+pub const CLCTL_GLOBAL_SHIFT = @as(u32, 23);
+pub const CLCTL_INTERNAL_SHIFT = @as(u32, 20);
+pub const CLCTL_MODIFY_SHIFT = @as(u32, 22);
+pub const CLCTL_USER_SHIFT = @as(u32, 21);
+pub const CLOUD_WITNESS_CONTAINER_NAME = "msft-cloud-witness";
+pub const CLRES_VERSION_V1_00 = @as(u32, 256);
+pub const CLRES_VERSION_V2_00 = @as(u32, 512);
+pub const CLRES_VERSION_V3_00 = @as(u32, 768);
+pub const CLRES_VERSION_V4_00 = @as(u32, 1024);
+pub const CLUS_ACCESS_ANY = @as(u32, 0);
+pub const CLUS_ACCESS_READ = @as(u32, 1);
+pub const CLUS_ACCESS_WRITE = @as(u32, 2);
+pub const CLUS_CREATE_CRYPT_CONTAINER_NOT_FOUND = @as(u32, 1);
+pub const CLUS_GLOBAL = @as(u32, 1);
+pub const CLUS_GRP_MOVE_ALLOWED = @as(u32, 0);
+pub const CLUS_GRP_MOVE_LOCKED = @as(u32, 1);
+pub const CLUS_HYBRID_QUORUM = @as(u32, 1024);
+pub const CLUS_MODIFY = @as(u32, 1);
+pub const CLUS_NAME_RES_TYPE_CLUSTER_GROUPID = "ClusterGroupId";
+pub const CLUS_NAME_RES_TYPE_DATA_RESID = "DataResourceId";
+pub const CLUS_NAME_RES_TYPE_LOG_MULTIPLE = "LogSizeMultiple";
+pub const CLUS_NAME_RES_TYPE_LOG_RESID = "LogResourceId";
+pub const CLUS_NAME_RES_TYPE_LOG_VOLUME = "LogVolume";
+pub const CLUS_NAME_RES_TYPE_MINIMUM_LOG_SIZE = "MinimumLogSizeInBytes";
+pub const CLUS_NAME_RES_TYPE_REPLICATION_GROUP_TYPE = "ReplicationClusterGroupType";
+pub const CLUS_NAME_RES_TYPE_REPLICATION_GROUPID = "ReplicationGroupId";
+pub const CLUS_NAME_RES_TYPE_SOURCE_RESID = "SourceResourceId";
+pub const CLUS_NAME_RES_TYPE_SOURCE_VOLUMES = "SourceVolumes";
+pub const CLUS_NAME_RES_TYPE_TARGET_RESID = "TargetResourceId";
+pub const CLUS_NAME_RES_TYPE_TARGET_VOLUMES = "TargetVolumes";
+pub const CLUS_NAME_RES_TYPE_UNIT_LOG_SIZE_CHANGE = "UnitOfLogSizeChangeInBytes";
+pub const CLUS_NO_MODIFY = @as(u32, 0);
+pub const CLUS_NODE_MAJORITY_QUORUM = @as(u32, 0);
+pub const CLUS_NOT_GLOBAL = @as(u32, 0);
+pub const CLUS_RES_NAME_SCALEOUT_MASTER = "Scaleout Master";
+pub const CLUS_RES_NAME_SCALEOUT_WORKER = "Scaleout Worker";
+pub const CLUS_RESDLL_OFFLINE_DO_NOT_UPDATE_PERSISTENT_STATE = @as(u32, 64);
+pub const CLUS_RESDLL_OFFLINE_DUE_TO_EMBEDDED_FAILURE = @as(u32, 16);
+pub const CLUS_RESDLL_OFFLINE_IGNORE_NETWORK_CONNECTIVITY = @as(u32, 32);
+pub const CLUS_RESDLL_OFFLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
+pub const CLUS_RESDLL_OFFLINE_QUEUE_ENABLED = @as(u32, 4);
+pub const CLUS_RESDLL_OFFLINE_RETURN_TO_SOURCE_NODE_ON_ERROR = @as(u32, 2);
+pub const CLUS_RESDLL_OFFLINE_RETURNING_TO_SOURCE_NODE_BECAUSE_OF_ERROR = @as(u32, 8);
+pub const CLUS_RESDLL_ONLINE_IGNORE_NETWORK_CONNECTIVITY = @as(u32, 16);
+pub const CLUS_RESDLL_ONLINE_IGNORE_RESOURCE_STATUS = @as(u32, 2);
+pub const CLUS_RESDLL_ONLINE_RECOVER_MONITOR_STATE = @as(u32, 1);
+pub const CLUS_RESDLL_ONLINE_RESTORE_ONLINE_STATE = @as(u32, 8);
+pub const CLUS_RESDLL_ONLINE_RETURN_TO_SOURCE_NODE_ON_ERROR = @as(u32, 4);
+pub const CLUS_RESDLL_OPEN_DONT_DELETE_TEMP_DISK = @as(u32, 2);
+pub const CLUS_RESDLL_OPEN_RECOVER_MONITOR_STATE = @as(u32, 1);
+pub const CLUS_RESTYPE_NAME_CAU = "ClusterAwareUpdatingResource";
+pub const CLUS_RESTYPE_NAME_CLOUD_WITNESS = "Cloud Witness";
+pub const CLUS_RESTYPE_NAME_CONTAINER = "Container";
+pub const CLUS_RESTYPE_NAME_CROSS_CLUSTER = "Cross Cluster Dependency Orchestrator";
+pub const CLUS_RESTYPE_NAME_DFS = "Distributed File System";
+pub const CLUS_RESTYPE_NAME_DFSR = "DFS Replicated Folder";
+pub const CLUS_RESTYPE_NAME_DHCP = "DHCP Service";
+pub const CLUS_RESTYPE_NAME_DNN = "Distributed Network Name";
+pub const CLUS_RESTYPE_NAME_FILESERVER = "File Server";
+pub const CLUS_RESTYPE_NAME_FILESHR = "File Share";
+pub const CLUS_RESTYPE_NAME_FSWITNESS = "File Share Witness";
+pub const CLUS_RESTYPE_NAME_GENAPP = "Generic Application";
+pub const CLUS_RESTYPE_NAME_GENSCRIPT = "Generic Script";
+pub const CLUS_RESTYPE_NAME_GENSVC = "Generic Service";
+pub const CLUS_RESTYPE_NAME_HARDDISK = "Physical Disk";
+pub const CLUS_RESTYPE_NAME_HCSVM = "HCS Virtual Machine";
+pub const CLUS_RESTYPE_NAME_HEALTH_SERVICE = "Health Service";
+pub const CLUS_RESTYPE_NAME_IPADDR = "IP Address";
+pub const CLUS_RESTYPE_NAME_IPV6_NATIVE = "IPv6 Address";
+pub const CLUS_RESTYPE_NAME_IPV6_TUNNEL = "IPv6 Tunnel Address";
+pub const CLUS_RESTYPE_NAME_ISCSITARGET = "iSCSI Target Server";
+pub const CLUS_RESTYPE_NAME_ISNS = "Microsoft iSNS";
+pub const CLUS_RESTYPE_NAME_MSDTC = "Distributed Transaction Coordinator";
+pub const CLUS_RESTYPE_NAME_MSMQ = "Microsoft Message Queue Server";
+pub const CLUS_RESTYPE_NAME_MSMQ_TRIGGER = "MSMQTriggers";
+pub const CLUS_RESTYPE_NAME_NAT = "Nat";
+pub const CLUS_RESTYPE_NAME_NETNAME = "Network Name";
+pub const CLUS_RESTYPE_NAME_NETWORK_FILE_SYSTEM = "Network File System";
+pub const CLUS_RESTYPE_NAME_NEW_MSMQ = "MSMQ";
+pub const CLUS_RESTYPE_NAME_NFS = "NFS Share";
+pub const CLUS_RESTYPE_NAME_NFS_MSNS = "NFS Multi Server Namespace";
+pub const CLUS_RESTYPE_NAME_NFS_V2 = "Network File System";
+pub const CLUS_RESTYPE_NAME_NV_PROVIDER_ADDRESS = "Provider Address";
+pub const CLUS_RESTYPE_NAME_PHYS_DISK = "Physical Disk";
+pub const CLUS_RESTYPE_NAME_PRTSPLR = "Print Spooler";
+pub const CLUS_RESTYPE_NAME_SCALEOUT_MASTER = "Scaleout Master";
+pub const CLUS_RESTYPE_NAME_SCALEOUT_WORKER = "Scaleout Worker";
+pub const CLUS_RESTYPE_NAME_SDDC_MANAGEMENT = "SDDC Management";
+pub const CLUS_RESTYPE_NAME_SODAFILESERVER = "Scale Out File Server";
+pub const CLUS_RESTYPE_NAME_STORAGE_POLICIES = "Storage Policies";
+pub const CLUS_RESTYPE_NAME_STORAGE_POOL = "Storage Pool";
+pub const CLUS_RESTYPE_NAME_STORAGE_REPLICA = "Storage Replica";
+pub const CLUS_RESTYPE_NAME_STORQOS = "Storage QoS Policy Manager";
+pub const CLUS_RESTYPE_NAME_TASKSCHEDULER = "Task Scheduler";
+pub const CLUS_RESTYPE_NAME_VIRTUAL_IPV4 = "Disjoint IPv4 Address";
+pub const CLUS_RESTYPE_NAME_VIRTUAL_IPV6 = "Disjoint IPv6 Address";
+pub const CLUS_RESTYPE_NAME_VM = "Virtual Machine";
+pub const CLUS_RESTYPE_NAME_VM_CONFIG = "Virtual Machine Configuration";
+pub const CLUS_RESTYPE_NAME_VM_WMI = "Virtual Machine Cluster WMI";
+pub const CLUS_RESTYPE_NAME_VMREPLICA_BROKER = "Virtual Machine Replication Broker";
+pub const CLUS_RESTYPE_NAME_VMREPLICA_COORDINATOR = "Virtual Machine Replication Coordinator";
+pub const CLUS_RESTYPE_NAME_VSSTASK = "Volume Shadow Copy Service Task";
+pub const CLUS_RESTYPE_NAME_WINS = "WINS Service";
+pub const CLUSAPI_CHANGE_ACCESS = @as(i32, 2);
+pub const CLUSAPI_CHANGE_RESOURCE_GROUP_FORCE_MOVE_TO_CSV = @as(u64, 1);
+pub const CLUSAPI_GROUP_MOVE_FAILBACK = @as(u32, 16);
+pub const CLUSAPI_GROUP_MOVE_HIGH_PRIORITY_START = @as(u32, 8);
+pub const CLUSAPI_GROUP_MOVE_IGNORE_AFFINITY_RULE = @as(u32, 32);
+pub const CLUSAPI_GROUP_MOVE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
+pub const CLUSAPI_GROUP_MOVE_QUEUE_ENABLED = @as(u32, 4);
+pub const CLUSAPI_GROUP_MOVE_RETURN_TO_SOURCE_NODE_ON_ERROR = @as(u32, 2);
+pub const CLUSAPI_GROUP_OFFLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
+pub const CLUSAPI_GROUP_ONLINE_BEST_POSSIBLE_NODE = @as(u32, 4);
+pub const CLUSAPI_GROUP_ONLINE_IGNORE_AFFINITY_RULE = @as(u32, 8);
+pub const CLUSAPI_GROUP_ONLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
+pub const CLUSAPI_GROUP_ONLINE_SYNCHRONOUS = @as(u32, 2);
+pub const CLUSAPI_NO_ACCESS = @as(i32, 4);
+pub const CLUSAPI_NODE_AVOID_PLACEMENT = @as(u32, 2);
+pub const CLUSAPI_NODE_PAUSE_REMAIN_ON_PAUSED_NODE_ON_MOVE_ERROR = @as(u32, 1);
+pub const CLUSAPI_NODE_PAUSE_RETRY_DRAIN_ON_FAILURE = @as(u32, 4);
+pub const CLUSAPI_READ_ACCESS = @as(i32, 1);
+pub const CLUSAPI_RESOURCE_OFFLINE_DO_NOT_UPDATE_PERSISTENT_STATE = @as(u32, 4);
+pub const CLUSAPI_RESOURCE_OFFLINE_FORCE_WITH_TERMINATION = @as(u32, 2);
+pub const CLUSAPI_RESOURCE_OFFLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_BEING_DELETED = @as(u32, 8);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_BEING_RESTARTED = @as(u32, 16);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_MOVING = @as(u32, 2);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_NONE = @as(u32, 0);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_PREEMPTED = @as(u32, 32);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_SHUTTING_DOWN = @as(u32, 64);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_UNKNOWN = @as(u32, 1);
+pub const CLUSAPI_RESOURCE_OFFLINE_REASON_USER_REQUESTED = @as(u32, 4);
+pub const CLUSAPI_RESOURCE_ONLINE_BEST_POSSIBLE_NODE = @as(u32, 8);
+pub const CLUSAPI_RESOURCE_ONLINE_DO_NOT_UPDATE_PERSISTENT_STATE = @as(u32, 2);
+pub const CLUSAPI_RESOURCE_ONLINE_IGNORE_AFFINITY_RULE = @as(u32, 32);
+pub const CLUSAPI_RESOURCE_ONLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
+pub const CLUSAPI_RESOURCE_ONLINE_NECESSARY_FOR_QUORUM = @as(u32, 4);
+pub const CLUSAPI_VALID_CHANGE_RESOURCE_GROUP_FLAGS = @as(u64, 1);
+pub const CLUSAPI_VERSION = @as(u32, 2560);
+pub const CLUSAPI_VERSION_RS3 = @as(u32, 2560);
 pub const CLUSAPI_VERSION_SERVER2008 = @as(u32, 1536);
 pub const CLUSAPI_VERSION_SERVER2008R2 = @as(u32, 1792);
 pub const CLUSAPI_VERSION_WINDOWS8 = @as(u32, 1793);
 pub const CLUSAPI_VERSION_WINDOWSBLUE = @as(u32, 1794);
 pub const CLUSAPI_VERSION_WINTHRESHOLD = @as(u32, 1795);
-pub const CLUSAPI_VERSION_RS3 = @as(u32, 2560);
-pub const CLUSAPI_VERSION = @as(u32, 2560);
-pub const CREATE_CLUSTER_VERSION = @as(u32, 1536);
-pub const CREATE_CLUSTER_MAJOR_VERSION_MASK = @as(u32, 4294967040);
-pub const MAX_CLUSTERNAME_LENGTH = @as(u32, 63);
-pub const CLUSTER_INSTALLED = @as(u32, 1);
-pub const CLUSTER_CONFIGURED = @as(u32, 2);
-pub const CLUSTER_RUNNING = @as(u32, 16);
-pub const CLUS_HYBRID_QUORUM = @as(u32, 1024);
-pub const CLUS_NODE_MAJORITY_QUORUM = @as(u32, 0);
-pub const CLUSCTL_RESOURCE_STATE_CHANGE_REASON_VERSION_1 = @as(u32, 1);
-pub const CLUSREG_DATABASE_SYNC_WRITE_TO_ALL_NODES = @as(u32, 1);
-pub const CLUSREG_DATABASE_ISOLATE_READ = @as(u32, 2);
-pub const CLUSTER_ENUM_ITEM_VERSION_1 = @as(u32, 1);
-pub const CLUSTER_ENUM_ITEM_VERSION = @as(u32, 1);
-pub const CLUSTER_CREATE_GROUP_INFO_VERSION_1 = @as(u32, 1);
-pub const CLUSTER_CREATE_GROUP_INFO_VERSION = @as(u32, 1);
-pub const GROUPSET_READY_SETTING_DELAY = @as(u32, 1);
-pub const GROUPSET_READY_SETTING_ONLINE = @as(u32, 2);
-pub const GROUPSET_READY_SETTING_OS_HEARTBEAT = @as(u32, 3);
-pub const GROUPSET_READY_SETTING_APPLICATION_READY = @as(u32, 4);
-pub const CLUS_GRP_MOVE_ALLOWED = @as(u32, 0);
-pub const CLUS_GRP_MOVE_LOCKED = @as(u32, 1);
-pub const CLUSAPI_READ_ACCESS = @as(i32, 1);
-pub const CLUSAPI_CHANGE_ACCESS = @as(i32, 2);
-pub const CLUSAPI_NO_ACCESS = @as(i32, 4);
-pub const CLUSTER_SET_ACCESS_TYPE_ALLOWED = @as(u32, 0);
-pub const CLUSTER_SET_ACCESS_TYPE_DENIED = @as(u32, 1);
-pub const CLUSTER_DELETE_ACCESS_CONTROL_ENTRY = @as(u32, 2);
-pub const CLUSGROUPSET_STATUS_GROUPS_PENDING = @as(u64, 1);
-pub const CLUSGROUPSET_STATUS_GROUPS_ONLINE = @as(u64, 2);
-pub const CLUSGROUPSET_STATUS_OS_HEARTBEAT = @as(u64, 4);
-pub const CLUSGROUPSET_STATUS_APPLICATION_READY = @as(u64, 8);
-pub const CLUSTER_AVAILABILITY_SET_CONFIG_V1 = @as(u32, 1);
-pub const CLUSTER_GROUP_ENUM_ITEM_VERSION_1 = @as(u32, 1);
-pub const CLUSTER_GROUP_ENUM_ITEM_VERSION = @as(u32, 1);
-pub const CLUSTER_RESOURCE_ENUM_ITEM_VERSION_1 = @as(u32, 1);
-pub const CLUSTER_RESOURCE_ENUM_ITEM_VERSION = @as(u32, 1);
-pub const CLUSAPI_NODE_PAUSE_REMAIN_ON_PAUSED_NODE_ON_MOVE_ERROR = @as(u32, 1);
-pub const CLUSAPI_NODE_AVOID_PLACEMENT = @as(u32, 2);
-pub const CLUSAPI_NODE_PAUSE_RETRY_DRAIN_ON_FAILURE = @as(u32, 4);
-pub const CLUSGRP_STATUS_LOCKED_MODE = @as(u64, 1);
-pub const CLUSGRP_STATUS_PREEMPTED = @as(u64, 2);
-pub const CLUSGRP_STATUS_WAITING_IN_QUEUE_FOR_MOVE = @as(u64, 4);
-pub const CLUSGRP_STATUS_PHYSICAL_RESOURCES_LACKING = @as(u64, 8);
-pub const CLUSGRP_STATUS_WAITING_TO_START = @as(u64, 16);
-pub const CLUSGRP_STATUS_EMBEDDED_FAILURE = @as(u64, 32);
-pub const CLUSGRP_STATUS_OFFLINE_DUE_TO_ANTIAFFINITY_CONFLICT = @as(u64, 64);
-pub const CLUSGRP_STATUS_NETWORK_FAILURE = @as(u64, 128);
-pub const CLUSGRP_STATUS_UNMONITORED = @as(u64, 256);
-pub const CLUSGRP_STATUS_OS_HEARTBEAT = @as(u64, 512);
-pub const CLUSGRP_STATUS_APPLICATION_READY = @as(u64, 1024);
-pub const CLUSGRP_STATUS_OFFLINE_NOT_LOCAL_DISK_OWNER = @as(u64, 2048);
-pub const CLUSGRP_STATUS_WAITING_FOR_DEPENDENCIES = @as(u64, 4096);
-pub const CLUSRES_STATUS_LOCKED_MODE = @as(u64, 1);
-pub const CLUSRES_STATUS_EMBEDDED_FAILURE = @as(u64, 2);
-pub const CLUSRES_STATUS_FAILED_DUE_TO_INSUFFICIENT_CPU = @as(u64, 4);
-pub const CLUSRES_STATUS_FAILED_DUE_TO_INSUFFICIENT_MEMORY = @as(u64, 8);
-pub const CLUSRES_STATUS_FAILED_DUE_TO_INSUFFICIENT_GENERIC_RESOURCES = @as(u64, 16);
-pub const CLUSRES_STATUS_NETWORK_FAILURE = @as(u64, 32);
-pub const CLUSRES_STATUS_UNMONITORED = @as(u64, 64);
-pub const CLUSRES_STATUS_OS_HEARTBEAT = @as(u64, 128);
-pub const CLUSRES_STATUS_APPLICATION_READY = @as(u64, 256);
-pub const CLUSRES_STATUS_OFFLINE_NOT_LOCAL_DISK_OWNER = @as(u64, 512);
-pub const CLUSAPI_GROUP_ONLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
-pub const CLUSAPI_GROUP_ONLINE_SYNCHRONOUS = @as(u32, 2);
-pub const CLUSAPI_GROUP_ONLINE_BEST_POSSIBLE_NODE = @as(u32, 4);
-pub const CLUSAPI_GROUP_ONLINE_IGNORE_AFFINITY_RULE = @as(u32, 8);
-pub const CLUSAPI_GROUP_OFFLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
-pub const CLUSAPI_RESOURCE_ONLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
-pub const CLUSAPI_RESOURCE_ONLINE_DO_NOT_UPDATE_PERSISTENT_STATE = @as(u32, 2);
-pub const CLUSAPI_RESOURCE_ONLINE_NECESSARY_FOR_QUORUM = @as(u32, 4);
-pub const CLUSAPI_RESOURCE_ONLINE_BEST_POSSIBLE_NODE = @as(u32, 8);
-pub const CLUSAPI_RESOURCE_ONLINE_IGNORE_AFFINITY_RULE = @as(u32, 32);
-pub const CLUSAPI_RESOURCE_OFFLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
-pub const CLUSAPI_RESOURCE_OFFLINE_FORCE_WITH_TERMINATION = @as(u32, 2);
-pub const CLUSAPI_RESOURCE_OFFLINE_DO_NOT_UPDATE_PERSISTENT_STATE = @as(u32, 4);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_NONE = @as(u32, 0);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_UNKNOWN = @as(u32, 1);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_MOVING = @as(u32, 2);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_USER_REQUESTED = @as(u32, 4);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_BEING_DELETED = @as(u32, 8);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_BEING_RESTARTED = @as(u32, 16);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_PREEMPTED = @as(u32, 32);
-pub const CLUSAPI_RESOURCE_OFFLINE_REASON_SHUTTING_DOWN = @as(u32, 64);
-pub const CLUSAPI_GROUP_MOVE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
-pub const CLUSAPI_GROUP_MOVE_RETURN_TO_SOURCE_NODE_ON_ERROR = @as(u32, 2);
-pub const CLUSAPI_GROUP_MOVE_QUEUE_ENABLED = @as(u32, 4);
-pub const CLUSAPI_GROUP_MOVE_HIGH_PRIORITY_START = @as(u32, 8);
-pub const CLUSAPI_GROUP_MOVE_FAILBACK = @as(u32, 16);
-pub const CLUSAPI_GROUP_MOVE_IGNORE_AFFINITY_RULE = @as(u32, 32);
-pub const CLUSAPI_CHANGE_RESOURCE_GROUP_FORCE_MOVE_TO_CSV = @as(u64, 1);
-pub const CLUSAPI_VALID_CHANGE_RESOURCE_GROUP_FLAGS = @as(u64, 1);
-pub const GROUP_FAILURE_INFO_VERSION_1 = @as(u32, 1);
-pub const RESOURCE_FAILURE_INFO_VERSION_1 = @as(u32, 1);
-pub const CLUS_ACCESS_ANY = @as(u32, 0);
-pub const CLUS_ACCESS_READ = @as(u32, 1);
-pub const CLUS_ACCESS_WRITE = @as(u32, 2);
-pub const CLUS_NO_MODIFY = @as(u32, 0);
-pub const CLUS_MODIFY = @as(u32, 1);
-pub const CLUS_NOT_GLOBAL = @as(u32, 0);
-pub const CLUS_GLOBAL = @as(u32, 1);
-pub const CLUSCTL_ACCESS_SHIFT = @as(u32, 0);
-pub const CLUSCTL_FUNCTION_SHIFT = @as(u32, 2);
-pub const CLCTL_INTERNAL_SHIFT = @as(u32, 20);
-pub const CLCTL_USER_SHIFT = @as(u32, 21);
-pub const CLCTL_MODIFY_SHIFT = @as(u32, 22);
-pub const CLCTL_GLOBAL_SHIFT = @as(u32, 23);
-pub const CLUSCTL_OBJECT_SHIFT = @as(u32, 24);
-pub const CLUSCTL_CONTROL_CODE_MASK = @as(u32, 4194303);
-pub const CLUSCTL_OBJECT_MASK = @as(u32, 255);
 pub const CLUSCTL_ACCESS_MODE_MASK = @as(u32, 3);
-pub const CLCTL_CLUSTER_BASE = @as(u32, 0);
-pub const BitLockerEnabled = @as(i32, 1);
-pub const BitLockerDecrypted = @as(i32, 4);
-pub const BitlockerEncrypted = @as(i32, 8);
-pub const BitLockerDecrypting = @as(i32, 16);
-pub const BitlockerEncrypting = @as(i32, 32);
-pub const BitLockerPaused = @as(i32, 64);
-pub const BitLockerStopped = @as(i32, 128);
-pub const RedirectedIOReasonUserRequest = @as(u64, 1);
-pub const RedirectedIOReasonUnsafeFileSystemFilter = @as(u64, 2);
-pub const RedirectedIOReasonUnsafeVolumeFilter = @as(u64, 4);
-pub const RedirectedIOReasonFileSystemTiering = @as(u64, 8);
-pub const RedirectedIOReasonBitLockerInitializing = @as(u64, 16);
-pub const RedirectedIOReasonReFs = @as(u64, 32);
-pub const RedirectedIOReasonMax = @as(u64, 9223372036854775808);
-pub const VolumeRedirectedIOReasonNoDiskConnectivity = @as(u64, 1);
-pub const VolumeRedirectedIOReasonStorageSpaceNotAttached = @as(u64, 2);
-pub const VolumeRedirectedIOReasonVolumeReplicationEnabled = @as(u64, 4);
-pub const VolumeRedirectedIOReasonMax = @as(u64, 9223372036854775808);
-pub const MAX_OBJECTID = @as(u32, 64);
-pub const MAX_CO_PASSWORD_LENGTH = @as(u32, 16);
-pub const GUID_PRESENT = @as(u32, 1);
-pub const CREATEDC_PRESENT = @as(u32, 2);
-pub const MAX_CO_PASSWORD_LENGTHEX = @as(u32, 127);
-pub const MAX_CO_PASSWORD_STORAGEEX = @as(u32, 128);
-pub const MAX_CREATINGDC_LENGTH = @as(u32, 256);
-pub const DNS_LENGTH = @as(u32, 64);
-pub const MAINTENANCE_MODE_V2_SIG = @as(u32, 2881155087);
-pub const NNLEN = @as(u32, 80);
-pub const CLUS_RESTYPE_NAME_GENAPP = "Generic Application";
-pub const CLUS_RESTYPE_NAME_GENSVC = "Generic Service";
-pub const CLUS_RESTYPE_NAME_GENSCRIPT = "Generic Script";
-pub const CLUS_RESTYPE_NAME_IPADDR = "IP Address";
-pub const CLUS_RESTYPE_NAME_NETNAME = "Network Name";
-pub const CLUS_RESTYPE_NAME_DNN = "Distributed Network Name";
-pub const CLUS_RESTYPE_NAME_FILESHR = "File Share";
-pub const CLUS_RESTYPE_NAME_PRTSPLR = "Print Spooler";
-pub const CLUS_RESTYPE_NAME_IPV6_NATIVE = "IPv6 Address";
-pub const CLUS_RESTYPE_NAME_IPV6_TUNNEL = "IPv6 Tunnel Address";
-pub const CLUS_RESTYPE_NAME_VSSTASK = "Volume Shadow Copy Service Task";
-pub const CLUS_RESTYPE_NAME_WINS = "WINS Service";
-pub const CLUS_RESTYPE_NAME_DHCP = "DHCP Service";
-pub const CLUS_RESTYPE_NAME_MSMQ = "Microsoft Message Queue Server";
-pub const CLUS_RESTYPE_NAME_NEW_MSMQ = "MSMQ";
-pub const CLUS_RESTYPE_NAME_MSMQ_TRIGGER = "MSMQTriggers";
-pub const CLUS_RESTYPE_NAME_MSDTC = "Distributed Transaction Coordinator";
-pub const CLUS_RESTYPE_NAME_NFS = "NFS Share";
-pub const CLUS_RESTYPE_NAME_NETWORK_FILE_SYSTEM = "Network File System";
-pub const CLUS_RESTYPE_NAME_ISNS = "Microsoft iSNS";
-pub const CLUS_RESTYPE_NAME_HARDDISK = "Physical Disk";
-pub const CLUS_RESTYPE_NAME_PHYS_DISK = "Physical Disk";
-pub const CLUS_RESTYPE_NAME_FSWITNESS = "File Share Witness";
-pub const CLUS_RESTYPE_NAME_FILESERVER = "File Server";
-pub const CLUS_RESTYPE_NAME_SODAFILESERVER = "Scale Out File Server";
-pub const CLUS_RESTYPE_NAME_DFS = "Distributed File System";
-pub const CLUS_RESTYPE_NAME_DFSR = "DFS Replicated Folder";
-pub const CLUS_RESTYPE_NAME_VM = "Virtual Machine";
-pub const CLUS_RESTYPE_NAME_VM_CONFIG = "Virtual Machine Configuration";
-pub const CLUS_RESTYPE_NAME_ISCSITARGET = "iSCSI Target Server";
-pub const CLUS_RESTYPE_NAME_STORAGE_POOL = "Storage Pool";
-pub const CLUS_RESTYPE_NAME_TASKSCHEDULER = "Task Scheduler";
-pub const CLUS_RESTYPE_NAME_VMREPLICA_BROKER = "Virtual Machine Replication Broker";
-pub const CLUS_RESTYPE_NAME_VMREPLICA_COORDINATOR = "Virtual Machine Replication Coordinator";
-pub const CLUS_RESTYPE_NAME_NFS_V2 = "Network File System";
-pub const CLUS_RESTYPE_NAME_NFS_MSNS = "NFS Multi Server Namespace";
-pub const CLUS_RESTYPE_NAME_CAU = "ClusterAwareUpdatingResource";
-pub const CLUS_RESTYPE_NAME_NV_PROVIDER_ADDRESS = "Provider Address";
-pub const CLUS_RESTYPE_NAME_NAT = "Nat";
-pub const CLUS_RESTYPE_NAME_STORAGE_POLICIES = "Storage Policies";
-pub const CLUS_RESTYPE_NAME_STORQOS = "Storage QoS Policy Manager";
-pub const CLUS_RESTYPE_NAME_HEALTH_SERVICE = "Health Service";
-pub const CLUS_RESTYPE_NAME_VM_WMI = "Virtual Machine Cluster WMI";
-pub const CLUS_RESTYPE_NAME_SDDC_MANAGEMENT = "SDDC Management";
-pub const CLUS_RESTYPE_NAME_HCSVM = "HCS Virtual Machine";
-pub const CLUS_RESTYPE_NAME_VIRTUAL_IPV4 = "Disjoint IPv4 Address";
-pub const CLUS_RESTYPE_NAME_VIRTUAL_IPV6 = "Disjoint IPv6 Address";
-pub const CLUS_RESTYPE_NAME_CLOUD_WITNESS = "Cloud Witness";
-pub const CLUS_RESTYPE_NAME_STORAGE_REPLICA = "Storage Replica";
-pub const CLUS_RESTYPE_NAME_CROSS_CLUSTER = "Cross Cluster Dependency Orchestrator";
-pub const CLUS_RESTYPE_NAME_SCALEOUT_MASTER = "Scaleout Master";
-pub const CLUS_RESTYPE_NAME_SCALEOUT_WORKER = "Scaleout Worker";
-pub const CLUS_RESTYPE_NAME_CONTAINER = "Container";
-pub const CLUS_RES_NAME_SCALEOUT_MASTER = "Scaleout Master";
-pub const CLUS_RES_NAME_SCALEOUT_WORKER = "Scaleout Worker";
-pub const CLUSREG_NAME_CLUS_DESC = "Description";
-pub const CLUSREG_NAME_CLUS_SD = "Security Descriptor";
-pub const CLUSREG_NAME_CLUS_DEFAULT_NETWORK_ROLE = "DefaultNetworkRole";
-pub const CLUSREG_NAME_QUORUM_ARBITRATION_TIMEOUT = "QuorumArbitrationTimeMax";
-pub const CLUSTER_HANG_TIMEOUT_KEYNAME = "ClusSvcHangTimeout";
-pub const CLUSTER_HANG_RECOVERY_ACTION_KEYNAME = "HangRecoveryAction";
-pub const CLUSTER_CSA_VSS_STATE = "BackupInProgress";
-pub const CLUSTER_REQUEST_REPLY_TIMEOUT = "RequestReplyTimeout";
-pub const CLUSTER_WITNESS_FAILED_RESTART_INTERVAL = "WitnessRestartInterval";
-pub const CLUSTER_WITNESS_DATABASE_WRITE_TIMEOUT = "WitnessDatabaseWriteTimeout";
-pub const CLUSTER_ADD_EVICT_DELAY = "AddEvictDelay";
-pub const CLUSREG_NAME_FIXQUORUM = "FixQuorum";
-pub const CLUSREG_NAME_PREVENTQUORUM = "PreventQuorum";
-pub const CLUSREG_NAME_IGNORE_PERSISTENT_STATE = "IgnorePersistentStateOnStartup";
-pub const CLUSTER_SHARED_VOLUMES_ROOT = "SharedVolumesRoot";
-pub const ENABLE_CLUSTER_SHARED_VOLUMES = "EnableSharedVolumes";
-pub const CLUSTER_SHARED_VOLUME_VSS_WRITER_OPERATION_TIMEOUT = "SharedVolumeVssWriterOperationTimeout";
-pub const USE_CLIENT_ACCESS_NETWORKS_FOR_CSV = "UseClientAccessNetworksForSharedVolumes";
-pub const CLUSTER_CSV_COMPATIBLE_FILTERS = "SharedVolumeCompatibleFilters";
-pub const CLUSTER_CSV_INCOMPATIBLE_FILTERS = "SharedVolumeIncompatibleFilters";
-pub const CLUSTER_GROUP_WAIT_DELAY = "ClusterGroupWaitDelay";
-pub const MINIMUM_PREEMPTOR_PRIORITY = "MinimumPreemptorPriority";
-pub const MINIMUM_NEVER_PREEMPT_PRIORITY = "MinimumNeverPreemptPriority";
-pub const CLUSTER_ENFORCED_ANTIAFFINITY = "ClusterEnforcedAntiaffinity";
-pub const CLUSREG_NAME_SHUTDOWN_TIMEOUT_MINUTES = "ShutdownTimeoutInMinutes";
-pub const CLUSREG_NAME_CSV_MDS_SD = "SharedVolumeSecurityDescriptor";
-pub const CLUSREG_NAME_FAILOVER_MOVE_MIGRATION_TYPE = "FailoverMoveMigrationType";
-pub const CLUSREG_NAME_CSV_BLOCK_CACHE = "BlockCacheSize";
-pub const CLUSREG_NAME_ROUTE_HISTORY_LENGTH = "RouteHistoryLength";
-pub const CLUSREG_NAME_LAST_RECENT_EVENTS_RESET_TIME = "RecentEventsResetTime";
-pub const CLUSREG_NAME_DRAIN_ON_SHUTDOWN = "DrainOnShutdown";
-pub const CLUSREG_NAME_NETFT_IPSEC_ENABLED = "NetftIPSecEnabled";
-pub const CLUSREG_NAME_WITNESS_DYNAMIC_WEIGHT = "WitnessDynamicWeight";
-pub const CLUSREG_NAME_MESSAGE_BUFFER_LENGTH = "MessageBufferLength";
-pub const CLUSREG_NAME_DATABASE_READ_WRITE_MODE = "DatabaseReadWriteMode";
-pub const CLUSREG_NAME_FUNCTIONAL_LEVEL = "ClusterFunctionalLevel";
-pub const CLUSREG_NAME_UPGRADE_VERSION = "ClusterUpgradeVersion";
-pub const CLUSREG_NAME_RESILIENCY_LEVEL = "ResiliencyLevel";
-pub const CLUSREG_NAME_RESILIENCY_DEFAULT_SECONDS = "ResiliencyDefaultPeriod";
-pub const CLUSREG_NAME_QUARANTINE_THRESHOLD = "QuarantineThreshold";
-pub const CLUSREG_NAME_QUARANTINE_DURATION = "QuarantineDuration";
-pub const CLUSTER_S2D_ENABLED = "S2DEnabled";
-pub const CLUSTER_S2D_BUS_TYPES = "S2DBusTypes";
-pub const CLUSTER_S2D_CACHE_PAGE_SIZE_KBYTES = "S2DCachePageSizeKBytes";
-pub const CLUSTER_S2D_OPTIMIZATIONS = "S2DOptimizations";
-pub const CLUSTER_S2D_IO_LATENCY_THRESHOLD = "S2DIOLatencyThreshold";
-pub const CLUSTER_S2D_CACHE_DESIRED_STATE = "S2DCacheDesiredState";
-pub const CLUSTER_S2D_CACHE_METADATA_RESERVE = "S2DCacheMetadataReserveBytes";
-pub const CLUSTER_S2D_CACHE_FLASH_RESERVE_PERCENT = "S2DCacheFlashReservePercent";
-pub const CLUSTER_S2D_CACHE_BEHAVIOR_FLAGS = "S2DCacheBehavior";
-pub const CLUSTER_NAME_PREFERRED_SITE = "PreferredSite";
-pub const CLUSTER_NAME_AUTO_BALANCER_MODE = "AutoBalancerMode";
-pub const CLUSTER_NAME_AUTO_BALANCER_LEVEL = "AutoBalancerLevel";
-pub const CLUSREG_NAME_GROUP_DEPENDENCY_TIMEOUT = "GroupDependencyTimeout";
-pub const CLUSREG_NAME_PLACEMENT_OPTIONS = "PlacementOptions";
-pub const CLUSREG_NAME_ENABLED_EVENT_LOGS = "EnabledEventLogs";
-pub const CLUSREG_NAME_SAME_SUBNET_DELAY = "SameSubnetDelay";
-pub const CLUSREG_NAME_CROSS_SUBNET_DELAY = "CrossSubnetDelay";
-pub const CLUSREG_NAME_CROSS_SITE_DELAY = "CrossSiteDelay";
-pub const CLUSREG_NAME_SAME_SUBNET_THRESHOLD = "SameSubnetThreshold";
-pub const CLUSREG_NAME_CROSS_SUBNET_THRESHOLD = "CrossSubnetThreshold";
-pub const CLUSREG_NAME_CROSS_SITE_THRESHOLD = "CrossSiteThreshold";
-pub const CLUSREG_NAME_PLUMB_ALL_CROSS_SUBNET_ROUTES = "PlumbAllCrossSubnetRoutes";
-pub const CLUSREG_NAME_NODE_NAME = "NodeName";
-pub const CLUSREG_NAME_NODE_HIGHEST_VERSION = "NodeHighestVersion";
-pub const CLUSREG_NAME_NODE_LOWEST_VERSION = "NodeLowestVersion";
-pub const CLUSREG_NAME_NODE_DESC = "Description";
-pub const CLUSREG_NAME_NODE_MAJOR_VERSION = "MajorVersion";
-pub const CLUSREG_NAME_NODE_MINOR_VERSION = "MinorVersion";
-pub const CLUSREG_NAME_NODE_BUILD_NUMBER = "BuildNumber";
-pub const CLUSREG_NAME_NODE_CSDVERSION = "CSDVersion";
-pub const CLUSREG_NAME_NODE_WEIGHT = "NodeWeight";
-pub const CLUSREG_NAME_NODE_DYNAMIC_WEIGHT = "DynamicWeight";
-pub const CLUSREG_NAME_NODE_IS_PRIMARY = "IsPrimary";
-pub const CLUSREG_NAME_NODE_DRAIN_STATUS = "NodeDrainStatus";
-pub const CLUSREG_NAME_NODE_DRAIN_TARGET = "NodeDrainTarget";
-pub const CLUSREG_NAME_NODE_NEEDS_PQ = "NeedsPreventQuorum";
-pub const CLUSREG_NAME_NODE_FDID = "FaultDomainId";
-pub const CLUSREG_NAME_NODE_STATUS_INFO = "StatusInformation";
-pub const CLUSREG_NAME_NODE_FAULT_DOMAIN = "FaultDomain";
-pub const CLUSREG_NAME_NODE_MODEL = "Model";
-pub const CLUSREG_NAME_NODE_SERIALNUMBER = "SerialNumber";
-pub const CLUSREG_NAME_NODE_MANUFACTURER = "Manufacturer";
-pub const CLUSREG_NAME_GRP_NAME = "Name";
-pub const CLUSREG_NAME_GRP_TYPE = "GroupType";
-pub const CLUSREG_NAME_GRP_DESC = "Description";
-pub const CLUSREG_NAME_GRP_PERSISTENT_STATE = "PersistentState";
-pub const CLUSREG_NAME_GRP_FAILBACK_TYPE = "AutoFailbackType";
-pub const CLUSREG_NAME_GRP_FAILBACK_WIN_START = "FailbackWindowStart";
-pub const CLUSREG_NAME_GRP_FAILBACK_WIN_END = "FailbackWindowEnd";
-pub const CLUSREG_NAME_GRP_FAILOVER_THRESHOLD = "FailoverThreshold";
-pub const CLUSREG_NAME_GRP_FAILOVER_PERIOD = "FailoverPeriod";
-pub const CLUSREG_NAME_GRP_PRIORITY = "Priority";
-pub const CLUSREG_NAME_GRP_DEFAULT_OWNER = "DefaultOwner";
-pub const CLUSREG_NAME_GRP_STATUS_INFORMATION = "StatusInformation";
-pub const CLUSREG_NAME_GRP_ANTI_AFFINITY_CLASS_NAME = "AntiAffinityClassNames";
-pub const CLUSREG_NAME_GRP_START_DELAY = "GroupStartDelay";
-pub const CLUSREG_NAME_GRP_CCF_EPOCH = "CCFEpoch";
-pub const CLUSREG_NAME_GRP_CCF_EPOCH_HIGH = "CCFEpochHigh";
-pub const CLUSREG_NAME_GRP_RESILIENCY_PERIOD = "ResiliencyPeriod";
-pub const CLUSREG_NAME_GRP_PREFERRED_SITE = "PreferredSite";
-pub const CLUSREG_NAME_GRP_COLD_START_SETTING = "ColdStartSetting";
-pub const CLUSREG_NAME_GRP_FAULT_DOMAIN = "FaultDomain";
-pub const CLUSREG_NAME_GRP_UPDATE_DOMAIN = "UpdateDomain";
-pub const CLUSREG_NAME_GRP_PLACEMENT_OPTIONS = "PlacementOptions";
-pub const CLUSREG_NAME_GRP_LOCK_MOVE = "LockedFromMoving";
-pub const CLUSREG_NAME_RES_NAME = "Name";
-pub const CLUSREG_NAME_RES_TYPE = "Type";
-pub const CLUSREG_NAME_RES_DESC = "Description";
-pub const CLUSREG_NAME_RES_SEPARATE_MONITOR = "SeparateMonitor";
-pub const CLUSREG_NAME_RES_PERSISTENT_STATE = "PersistentState";
-pub const CLUSREG_NAME_RES_LOOKS_ALIVE = "LooksAlivePollInterval";
-pub const CLUSREG_NAME_RES_IS_ALIVE = "IsAlivePollInterval";
-pub const CLUSREG_NAME_RES_RESTART_ACTION = "RestartAction";
-pub const CLUSREG_NAME_RES_RESTART_THRESHOLD = "RestartThreshold";
-pub const CLUSREG_NAME_RES_RESTART_PERIOD = "RestartPeriod";
-pub const CLUSREG_NAME_RES_RESTART_DELAY = "RestartDelay";
-pub const CLUSREG_NAME_RES_RETRY_PERIOD_ON_FAILURE = "RetryPeriodOnFailure";
-pub const CLUSREG_NAME_RES_EMBEDDED_FAILURE_ACTION = "EmbeddedFailureAction";
-pub const CLUSREG_NAME_RES_PENDING_TIMEOUT = "PendingTimeout";
-pub const CLUSREG_NAME_RES_DEADLOCK_TIMEOUT = "DeadlockTimeout";
-pub const CLUSREG_NAME_RES_MONITOR_PID = "MonitorProcessId";
-pub const CLUSREG_NAME_RES_STATUS_INFORMATION = "StatusInformation";
-pub const CLUSREG_NAME_RES_LAST_OPERATION_STATUS_CODE = "LastOperationStatusCode";
-pub const CLUSREG_NAME_RES_DATA1 = "ResourceSpecificData1";
-pub const CLUSREG_NAME_RES_DATA2 = "ResourceSpecificData2";
-pub const CLUSREG_NAME_RES_STATUS = "ResourceSpecificStatus";
-pub const CLUSREG_NAME_RESTYPE_NAME = "Name";
-pub const CLUSREG_NAME_RESTYPE_DESC = "Description";
-pub const CLUSREG_NAME_RESTYPE_DLL_NAME = "DllName";
-pub const CLUSREG_NAME_RESTYPE_ADMIN_EXTENSIONS = "AdminExtensions";
-pub const CLUSREG_NAME_RESTYPE_LOOKS_ALIVE = "LooksAlivePollInterval";
-pub const CLUSREG_NAME_RESTYPE_IS_ALIVE = "IsAlivePollInterval";
-pub const CLUSREG_NAME_RESTYPE_PENDING_TIMEOUT = "PendingTimeout";
-pub const CLUSREG_NAME_RESTYPE_DEADLOCK_TIMEOUT = "DeadlockTimeout";
-pub const CLUSREG_NAME_RESTYPE_DUMP_POLICY = "DumpPolicy";
-pub const CLUSREG_NAME_RESTYPE_DUMP_LOG_QUERY = "DumpLogQuery";
-pub const CLUSREG_NAME_RESTYPE_DUMP_SERVICES = "DumpServices";
-pub const CLUSREG_NAME_RESTYPE_ENABLED_EVENT_LOGS = "EnabledEventLogs";
-pub const CLUSREG_NAME_RESTYPE_MAX_MONITORS = "MaximumMonitors";
-pub const CLUSREG_NAME_RESTYPE_WPR_START_AFTER = "WprStartAfter";
-pub const CLUSREG_NAME_RESTYPE_WPR_PROFILES = "WprProfiles";
-pub const CLUSREG_NAME_NET_NAME = "Name";
-pub const CLUSREG_NAME_NET_IPV6_ADDRESSES = "IPv6Addresses";
-pub const CLUSREG_NAME_NET_IPV6_PREFIXLENGTHS = "IPv6PrefixLengths";
-pub const CLUSREG_NAME_NET_IPV4_ADDRESSES = "IPv4Addresses";
-pub const CLUSREG_NAME_NET_IPV4_PREFIXLENGTHS = "IPv4PrefixLengths";
-pub const CLUSREG_NAME_NET_ADDRESS = "Address";
-pub const CLUSREG_NAME_NET_ADDRESS_MASK = "AddressMask";
-pub const CLUSREG_NAME_NET_DESC = "Description";
-pub const CLUSREG_NAME_NET_ROLE = "Role";
-pub const CLUSREG_NAME_NET_SPEED = "LinkSpeed";
-pub const CLUSREG_NAME_NET_RDMA_CAPABLE = "RdmaCapable";
-pub const CLUSREG_NAME_NET_RSS_CAPABLE = "RssCapable";
-pub const CLUSREG_NAME_NET_METRIC = "Metric";
-pub const CLUSREG_NAME_NET_AUTOMETRIC = "AutoMetric";
-pub const CLUSREG_NAME_NETIFACE_NAME = "Name";
-pub const CLUSREG_NAME_NETIFACE_NODE = "Node";
-pub const CLUSREG_NAME_NETIFACE_NETWORK = "Network";
-pub const CLUSREG_NAME_NETIFACE_ADAPTER_NAME = "Adapter";
-pub const CLUSREG_NAME_NETIFACE_ADAPTER_ID = "AdapterId";
-pub const CLUSREG_NAME_NETIFACE_DHCP_ENABLED = "DhcpEnabled";
-pub const CLUSREG_NAME_NETIFACE_IPV6_ADDRESSES = "IPv6Addresses";
-pub const CLUSREG_NAME_NETIFACE_IPV4_ADDRESSES = "IPv4Addresses";
-pub const CLUSREG_NAME_NETIFACE_ADDRESS = "Address";
-pub const CLUSREG_NAME_NETIFACE_DESC = "Description";
-pub const CLUSREG_NAME_GROUPSET_NAME = "Name";
-pub const CLUSREG_NAME_GROUPSET_STARTUP_SETTING = "StartupSetting";
-pub const CLUSREG_NAME_GROUPSET_STARTUP_COUNT = "StartupCount";
-pub const CLUSREG_NAME_GROUPSET_STARTUP_DELAY = "StartupDelay";
-pub const CLUSREG_NAME_GROUPSET_IS_GLOBAL = "IsGlobal";
-pub const CLUSREG_NAME_GROUPSET_STATUS_INFORMATION = "StatusInformation";
-pub const CLUSREG_NAME_GROUPSET_IS_AVAILABILITY_SET = "IsAvailabilitySet";
-pub const CLUSREG_NAME_GROUPSET_UPDATE_DOMAINS = "UpdateDomains";
-pub const CLUSREG_NAME_GROUPSET_FAULT_DOMAINS = "FaultDomains";
-pub const CLUSREG_NAME_GROUPSET_RESERVE_NODE = "ReserveSpareNode";
-pub const CLUSREG_NAME_GROUPSET_AVAILABILITY_SET_INDEX_TO_NODE_MAPPING = "NodeDomainInfo";
+pub const CLUSCTL_ACCESS_SHIFT = @as(u32, 0);
+pub const CLUSCTL_CONTROL_CODE_MASK = @as(u32, 4194303);
+pub const CLUSCTL_FUNCTION_SHIFT = @as(u32, 2);
+pub const CLUSCTL_GET_OPERATION_CONTEXT_PARAMS_VERSION_1 = @as(u32, 1);
+pub const CLUSCTL_OBJECT_MASK = @as(u32, 255);
+pub const CLUSCTL_OBJECT_SHIFT = @as(u32, 24);
+pub const CLUSCTL_RESOURCE_STATE_CHANGE_REASON_VERSION_1 = @as(u32, 1);
+pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_FLAG_ADD_VOLUME_INFO = @as(u32, 1);
+pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_FLAG_FILTER_BY_POOL = @as(u32, 2);
+pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_FLAG_INCLUDE_NON_SHARED_DISKS = @as(u32, 4);
+pub const CLUSGROUPSET_STATUS_APPLICATION_READY = @as(u64, 8);
+pub const CLUSGROUPSET_STATUS_GROUPS_ONLINE = @as(u64, 2);
+pub const CLUSGROUPSET_STATUS_GROUPS_PENDING = @as(u64, 1);
+pub const CLUSGROUPSET_STATUS_OS_HEARTBEAT = @as(u64, 4);
+pub const CLUSGRP_STATUS_APPLICATION_READY = @as(u64, 1024);
+pub const CLUSGRP_STATUS_EMBEDDED_FAILURE = @as(u64, 32);
+pub const CLUSGRP_STATUS_LOCKED_MODE = @as(u64, 1);
+pub const CLUSGRP_STATUS_NETWORK_FAILURE = @as(u64, 128);
+pub const CLUSGRP_STATUS_OFFLINE_DUE_TO_ANTIAFFINITY_CONFLICT = @as(u64, 64);
+pub const CLUSGRP_STATUS_OFFLINE_NOT_LOCAL_DISK_OWNER = @as(u64, 2048);
+pub const CLUSGRP_STATUS_OS_HEARTBEAT = @as(u64, 512);
+pub const CLUSGRP_STATUS_PHYSICAL_RESOURCES_LACKING = @as(u64, 8);
+pub const CLUSGRP_STATUS_PREEMPTED = @as(u64, 2);
+pub const CLUSGRP_STATUS_UNMONITORED = @as(u64, 256);
+pub const CLUSGRP_STATUS_WAITING_FOR_DEPENDENCIES = @as(u64, 4096);
+pub const CLUSGRP_STATUS_WAITING_IN_QUEUE_FOR_MOVE = @as(u64, 4);
+pub const CLUSGRP_STATUS_WAITING_TO_START = @as(u64, 16);
+pub const CLUSREG_DATABASE_ISOLATE_READ = @as(u32, 2);
+pub const CLUSREG_DATABASE_SYNC_WRITE_TO_ALL_NODES = @as(u32, 1);
+pub const CLUSREG_KEYNAME_OBJECTGUIDS = "ObjectGUIDs";
+pub const CLUSREG_NAME_AFFINITYRULE_ENABLED = "Enabled";
+pub const CLUSREG_NAME_AFFINITYRULE_GROUPS = "Groups";
 pub const CLUSREG_NAME_AFFINITYRULE_NAME = "Name";
 pub const CLUSREG_NAME_AFFINITYRULE_TYPE = "RuleType";
-pub const CLUSREG_NAME_AFFINITYRULE_GROUPS = "Groups";
-pub const CLUSREG_NAME_AFFINITYRULE_ENABLED = "Enabled";
-pub const CLUSREG_NAME_START_MEMORY = "StartMemory";
-pub const CLUSREG_NAME_VIRTUAL_NUMA_COUNT = "VirtualNumaCount";
+pub const CLUSREG_NAME_CLOUDWITNESS_ACCOUNT_NAME = "AccountName";
+pub const CLUSREG_NAME_CLOUDWITNESS_CONTAINER_NAME = "ContainerName";
+pub const CLUSREG_NAME_CLOUDWITNESS_ENDPOINT_INFO = "EndpointInfo";
+pub const CLUSREG_NAME_CLOUDWITNESS_PRIMARY_KEY = "PrimaryKey";
+pub const CLUSREG_NAME_CLOUDWITNESS_PRIMARY_TOKEN = "PrimaryToken";
+pub const CLUSREG_NAME_CLUS_DEFAULT_NETWORK_ROLE = "DefaultNetworkRole";
+pub const CLUSREG_NAME_CLUS_DESC = "Description";
+pub const CLUSREG_NAME_CLUS_SD = "Security Descriptor";
+pub const CLUSREG_NAME_CROSS_SITE_DELAY = "CrossSiteDelay";
+pub const CLUSREG_NAME_CROSS_SITE_THRESHOLD = "CrossSiteThreshold";
+pub const CLUSREG_NAME_CROSS_SUBNET_DELAY = "CrossSubnetDelay";
+pub const CLUSREG_NAME_CROSS_SUBNET_THRESHOLD = "CrossSubnetThreshold";
+pub const CLUSREG_NAME_CSV_BLOCK_CACHE = "BlockCacheSize";
+pub const CLUSREG_NAME_CSV_MDS_SD = "SharedVolumeSecurityDescriptor";
+pub const CLUSREG_NAME_DATABASE_READ_WRITE_MODE = "DatabaseReadWriteMode";
 pub const CLUSREG_NAME_DDA_DEVICE_ALLOCATIONS = "DdaDeviceAllocations";
-pub const CLUSREG_NAME_GPUP_DEVICE_ALLOCATIONS = "GpupDeviceAllocations";
-pub const CLUSREG_NAME_PHYSDISK_DISKIDTYPE = "DiskIdType";
-pub const CLUSREG_NAME_PHYSDISK_DISKSIGNATURE = "DiskSignature";
-pub const CLUSREG_NAME_PHYSDISK_DISKIDGUID = "DiskIdGuid";
-pub const CLUSREG_NAME_PHYSDISK_DISKRUNCHKDSK = "DiskRunChkDsk";
-pub const CLUSREG_NAME_PHYSDISK_DISKUNIQUEIDS = "DiskUniqueIds";
-pub const CLUSREG_NAME_PHYSDISK_DISKVOLUMEINFO = "DiskVolumeInfo";
-pub const CLUSREG_NAME_PHYSDISK_DISKARBTYPE = "DiskArbType";
-pub const CLUSREG_NAME_PHYSDISK_DISKARBINTERVAL = "DiskArbInterval";
-pub const CLUSREG_NAME_PHYSDISK_DISKPATH = "DiskPath";
-pub const CLUSREG_NAME_PHYSDISK_DISKRELOAD = "DiskReload";
-pub const CLUSREG_NAME_PHYSDISK_MAINTMODE = "MaintenanceMode";
-pub const CLUSREG_NAME_PHYSDISK_DISKIODELAY = "MaxIoLatency";
-pub const CLUSREG_NAME_PHYSDISK_MIGRATEFIXUP = "MigrateDriveLetters";
-pub const CLUSREG_NAME_PHYSDISK_CSVWRITETHROUGH = "CsvEnforceWriteThrough";
-pub const CLUSREG_NAME_PHYSDISK_CSVBLOCKCACHE = "EnableBlockCache";
-pub const CLUSREG_NAME_PHYSDISK_FASTONLINEARBITRATE = "FastOnlineArbitrate";
-pub const CLUSREG_NAME_PHYSDISK_SPACEIDGUID = "VirtualDiskId";
-pub const CLUSREG_NAME_STORAGESPACE_POOLIDGUID = "PoolId";
-pub const CLUSREG_NAME_PHYSDISK_CSVSNAPSHOTDIFFAREASIZE = "SnapshotDiffSize";
-pub const CLUSREG_NAME_PHYSDISK_CSVSNAPSHOTAGELIMIT = "SnapshotAgeLimit";
-pub const CLUSREG_NAME_PHYSDISK_DISKGUID = "DiskGuid";
-pub const CLUSREG_NAME_PHYSDISK_VOLSNAPACTIVATETIMEOUT = "VolsnapActivateTimeout";
-pub const CLUSREG_NAME_PHYSDISK_DISKRECOVERYACTION = "DiskRecoveryAction";
-pub const CLUSREG_NAME_STORAGESPACE_NAME = "VirtualDiskName";
-pub const CLUSREG_NAME_STORAGESPACE_DESCRIPTION = "VirtualDiskDescription";
-pub const CLUSREG_NAME_STORAGESPACE_HEALTH = "VirtualDiskHealth";
-pub const CLUSREG_NAME_STORAGESPACE_STATE = "VirtualDiskState";
-pub const CLUSREG_NAME_STORAGESPACE_PROVISIONING = "VirtualDiskProvisioning";
-pub const CLUSREG_NAME_STORAGESPACE_RESILIENCYTYPE = "VirtualDiskResiliencyType";
-pub const CLUSREG_NAME_STORAGESPACE_RESILIENCYCOLUMNS = "VirtualDiskResiliencyColumns";
-pub const CLUSREG_NAME_STORAGESPACE_RESILIENCYINTERLEAVE = "VirtualDiskResiliencyInterleave";
+pub const CLUSREG_NAME_DHCP_BACKUP_PATH = "BackupPath";
+pub const CLUSREG_NAME_DHCP_DATABASE_PATH = "DatabasePath";
+pub const CLUSREG_NAME_DRAIN_ON_SHUTDOWN = "DrainOnShutdown";
+pub const CLUSREG_NAME_ENABLED_EVENT_LOGS = "EnabledEventLogs";
+pub const CLUSREG_NAME_FAILOVER_MOVE_MIGRATION_TYPE = "FailoverMoveMigrationType";
+pub const CLUSREG_NAME_FILESHR_CA_TIMEOUT = "CATimeout";
+pub const CLUSREG_NAME_FILESHR_HIDE_SUBDIR_SHARES = "HideSubDirShares";
+pub const CLUSREG_NAME_FILESHR_IS_DFS_ROOT = "IsDfsRoot";
+pub const CLUSREG_NAME_FILESHR_MAX_USERS = "MaxUsers";
+pub const CLUSREG_NAME_FILESHR_PATH = "Path";
+pub const CLUSREG_NAME_FILESHR_REMARK = "Remark";
+pub const CLUSREG_NAME_FILESHR_SD = "Security Descriptor";
+pub const CLUSREG_NAME_FILESHR_SERVER_NAME = "ServerName";
+pub const CLUSREG_NAME_FILESHR_SHARE_FLAGS = "ShareFlags";
+pub const CLUSREG_NAME_FILESHR_SHARE_NAME = "ShareName";
+pub const CLUSREG_NAME_FILESHR_SHARE_SUBDIRS = "ShareSubDirs";
+pub const CLUSREG_NAME_FIXQUORUM = "FixQuorum";
+pub const CLUSREG_NAME_FSWITNESS_ARB_DELAY = "ArbitrationDelay";
+pub const CLUSREG_NAME_FSWITNESS_IMPERSONATE_CNO = "ImpersonateCNO";
+pub const CLUSREG_NAME_FSWITNESS_SHARE_PATH = "SharePath";
+pub const CLUSREG_NAME_FUNCTIONAL_LEVEL = "ClusterFunctionalLevel";
 pub const CLUSREG_NAME_GENAPP_COMMAND_LINE = "CommandLine";
 pub const CLUSREG_NAME_GENAPP_CURRENT_DIRECTORY = "CurrentDirectory";
 pub const CLUSREG_NAME_GENAPP_USE_NETWORK_NAME = "UseNetworkName";
@@ -453,242 +235,400 @@ pub const CLUSREG_NAME_GENSCRIPT_SCRIPT_FILEPATH = "ScriptFilepath";
 pub const CLUSREG_NAME_GENSVC_SERVICE_NAME = "ServiceName";
 pub const CLUSREG_NAME_GENSVC_STARTUP_PARAMS = "StartupParameters";
 pub const CLUSREG_NAME_GENSVC_USE_NETWORK_NAME = "UseNetworkName";
-pub const CLUSREG_NAME_IPADDR_NETWORK = "Network";
+pub const CLUSREG_NAME_GPUP_DEVICE_ALLOCATIONS = "GpupDeviceAllocations";
+pub const CLUSREG_NAME_GROUP_DEPENDENCY_TIMEOUT = "GroupDependencyTimeout";
+pub const CLUSREG_NAME_GROUPSET_AVAILABILITY_SET_INDEX_TO_NODE_MAPPING = "NodeDomainInfo";
+pub const CLUSREG_NAME_GROUPSET_FAULT_DOMAINS = "FaultDomains";
+pub const CLUSREG_NAME_GROUPSET_IS_AVAILABILITY_SET = "IsAvailabilitySet";
+pub const CLUSREG_NAME_GROUPSET_IS_GLOBAL = "IsGlobal";
+pub const CLUSREG_NAME_GROUPSET_NAME = "Name";
+pub const CLUSREG_NAME_GROUPSET_RESERVE_NODE = "ReserveSpareNode";
+pub const CLUSREG_NAME_GROUPSET_STARTUP_COUNT = "StartupCount";
+pub const CLUSREG_NAME_GROUPSET_STARTUP_DELAY = "StartupDelay";
+pub const CLUSREG_NAME_GROUPSET_STARTUP_SETTING = "StartupSetting";
+pub const CLUSREG_NAME_GROUPSET_STATUS_INFORMATION = "StatusInformation";
+pub const CLUSREG_NAME_GROUPSET_UPDATE_DOMAINS = "UpdateDomains";
+pub const CLUSREG_NAME_GRP_ANTI_AFFINITY_CLASS_NAME = "AntiAffinityClassNames";
+pub const CLUSREG_NAME_GRP_CCF_EPOCH = "CCFEpoch";
+pub const CLUSREG_NAME_GRP_CCF_EPOCH_HIGH = "CCFEpochHigh";
+pub const CLUSREG_NAME_GRP_COLD_START_SETTING = "ColdStartSetting";
+pub const CLUSREG_NAME_GRP_DEFAULT_OWNER = "DefaultOwner";
+pub const CLUSREG_NAME_GRP_DESC = "Description";
+pub const CLUSREG_NAME_GRP_FAILBACK_TYPE = "AutoFailbackType";
+pub const CLUSREG_NAME_GRP_FAILBACK_WIN_END = "FailbackWindowEnd";
+pub const CLUSREG_NAME_GRP_FAILBACK_WIN_START = "FailbackWindowStart";
+pub const CLUSREG_NAME_GRP_FAILOVER_PERIOD = "FailoverPeriod";
+pub const CLUSREG_NAME_GRP_FAILOVER_THRESHOLD = "FailoverThreshold";
+pub const CLUSREG_NAME_GRP_FAULT_DOMAIN = "FaultDomain";
+pub const CLUSREG_NAME_GRP_LOCK_MOVE = "LockedFromMoving";
+pub const CLUSREG_NAME_GRP_NAME = "Name";
+pub const CLUSREG_NAME_GRP_PERSISTENT_STATE = "PersistentState";
+pub const CLUSREG_NAME_GRP_PLACEMENT_OPTIONS = "PlacementOptions";
+pub const CLUSREG_NAME_GRP_PREFERRED_SITE = "PreferredSite";
+pub const CLUSREG_NAME_GRP_PRIORITY = "Priority";
+pub const CLUSREG_NAME_GRP_RESILIENCY_PERIOD = "ResiliencyPeriod";
+pub const CLUSREG_NAME_GRP_START_DELAY = "GroupStartDelay";
+pub const CLUSREG_NAME_GRP_STATUS_INFORMATION = "StatusInformation";
+pub const CLUSREG_NAME_GRP_TYPE = "GroupType";
+pub const CLUSREG_NAME_GRP_UPDATE_DOMAIN = "UpdateDomain";
+pub const CLUSREG_NAME_IGNORE_PERSISTENT_STATE = "IgnorePersistentStateOnStartup";
 pub const CLUSREG_NAME_IPADDR_ADDRESS = "Address";
-pub const CLUSREG_NAME_IPADDR_SUBNET_MASK = "SubnetMask";
-pub const CLUSREG_NAME_IPADDR_ENABLE_NETBIOS = "EnableNetBIOS";
-pub const CLUSREG_NAME_IPADDR_OVERRIDE_ADDRMATCH = "OverrideAddressMatch";
+pub const CLUSREG_NAME_IPADDR_DHCP_ADDRESS = "DhcpAddress";
+pub const CLUSREG_NAME_IPADDR_DHCP_SERVER = "DhcpServer";
+pub const CLUSREG_NAME_IPADDR_DHCP_SUBNET_MASK = "DhcpSubnetMask";
 pub const CLUSREG_NAME_IPADDR_ENABLE_DHCP = "EnableDhcp";
+pub const CLUSREG_NAME_IPADDR_ENABLE_NETBIOS = "EnableNetBIOS";
 pub const CLUSREG_NAME_IPADDR_LEASE_OBTAINED_TIME = "LeaseObtainedTime";
 pub const CLUSREG_NAME_IPADDR_LEASE_TERMINATES_TIME = "LeaseExpiresTime";
+pub const CLUSREG_NAME_IPADDR_NETWORK = "Network";
+pub const CLUSREG_NAME_IPADDR_OVERRIDE_ADDRMATCH = "OverrideAddressMatch";
+pub const CLUSREG_NAME_IPADDR_PROBE_FAILURE_THRESHOLD = "ProbeFailureThreshold";
+pub const CLUSREG_NAME_IPADDR_PROBE_PORT = "ProbePort";
+pub const CLUSREG_NAME_IPADDR_SHARED_NETNAME = "SharedNetname";
+pub const CLUSREG_NAME_IPADDR_SUBNET_MASK = "SubnetMask";
 pub const CLUSREG_NAME_IPADDR_T1 = "T1";
 pub const CLUSREG_NAME_IPADDR_T2 = "T2";
-pub const CLUSREG_NAME_IPADDR_DHCP_SERVER = "DhcpServer";
-pub const CLUSREG_NAME_IPADDR_DHCP_ADDRESS = "DhcpAddress";
-pub const CLUSREG_NAME_IPADDR_DHCP_SUBNET_MASK = "DhcpSubnetMask";
-pub const CLUSREG_NAME_IPADDR_SHARED_NETNAME = "SharedNetname";
-pub const CLUSREG_NAME_IPADDR_PROBE_PORT = "ProbePort";
-pub const CLUSREG_NAME_IPADDR_PROBE_FAILURE_THRESHOLD = "ProbeFailureThreshold";
-pub const CLUSREG_NAME_IPV6_NATIVE_NETWORK = "Network";
 pub const CLUSREG_NAME_IPV6_NATIVE_ADDRESS = "Address";
+pub const CLUSREG_NAME_IPV6_NATIVE_NETWORK = "Network";
 pub const CLUSREG_NAME_IPV6_NATIVE_PREFIX_LENGTH = "PrefixLength";
 pub const CLUSREG_NAME_IPV6_TUNNEL_ADDRESS = "Address";
 pub const CLUSREG_NAME_IPV6_TUNNEL_TUNNELTYPE = "TunnelType";
-pub const CLUSREG_NAME_NETNAME_NAME = "Name";
+pub const CLUSREG_NAME_LAST_RECENT_EVENTS_RESET_TIME = "RecentEventsResetTime";
+pub const CLUSREG_NAME_LOG_FILE_PATH = "LogFilePath";
+pub const CLUSREG_NAME_MESSAGE_BUFFER_LENGTH = "MessageBufferLength";
+pub const CLUSREG_NAME_MIXED_MODE = "MixedMode";
+pub const CLUSREG_NAME_NET_ADDRESS = "Address";
+pub const CLUSREG_NAME_NET_ADDRESS_MASK = "AddressMask";
+pub const CLUSREG_NAME_NET_AUTOMETRIC = "AutoMetric";
+pub const CLUSREG_NAME_NET_DESC = "Description";
+pub const CLUSREG_NAME_NET_IPV4_ADDRESSES = "IPv4Addresses";
+pub const CLUSREG_NAME_NET_IPV4_PREFIXLENGTHS = "IPv4PrefixLengths";
+pub const CLUSREG_NAME_NET_IPV6_ADDRESSES = "IPv6Addresses";
+pub const CLUSREG_NAME_NET_IPV6_PREFIXLENGTHS = "IPv6PrefixLengths";
+pub const CLUSREG_NAME_NET_METRIC = "Metric";
+pub const CLUSREG_NAME_NET_NAME = "Name";
+pub const CLUSREG_NAME_NET_RDMA_CAPABLE = "RdmaCapable";
+pub const CLUSREG_NAME_NET_ROLE = "Role";
+pub const CLUSREG_NAME_NET_RSS_CAPABLE = "RssCapable";
+pub const CLUSREG_NAME_NET_SPEED = "LinkSpeed";
+pub const CLUSREG_NAME_NETFT_IPSEC_ENABLED = "NetftIPSecEnabled";
+pub const CLUSREG_NAME_NETIFACE_ADAPTER_ID = "AdapterId";
+pub const CLUSREG_NAME_NETIFACE_ADAPTER_NAME = "Adapter";
+pub const CLUSREG_NAME_NETIFACE_ADDRESS = "Address";
+pub const CLUSREG_NAME_NETIFACE_DESC = "Description";
+pub const CLUSREG_NAME_NETIFACE_DHCP_ENABLED = "DhcpEnabled";
+pub const CLUSREG_NAME_NETIFACE_IPV4_ADDRESSES = "IPv4Addresses";
+pub const CLUSREG_NAME_NETIFACE_IPV6_ADDRESSES = "IPv6Addresses";
+pub const CLUSREG_NAME_NETIFACE_NAME = "Name";
+pub const CLUSREG_NAME_NETIFACE_NETWORK = "Network";
+pub const CLUSREG_NAME_NETIFACE_NODE = "Node";
+pub const CLUSREG_NAME_NETNAME_AD_AWARE = "ADAware";
+pub const CLUSREG_NAME_NETNAME_ALIASES = "Aliases";
+pub const CLUSREG_NAME_NETNAME_CONTAINERGUID = "CryptoContainerGUID";
 pub const CLUSREG_NAME_NETNAME_CREATING_DC = "CreatingDC";
-pub const CLUSREG_NAME_NETNAME_OBJECT_ID = "ObjectGUID";
+pub const CLUSREG_NAME_NETNAME_DNN_DISABLE_CLONES = "DisableClones";
 pub const CLUSREG_NAME_NETNAME_DNS_NAME = "DnsName";
+pub const CLUSREG_NAME_NETNAME_DNS_SUFFIX = "DnsSuffix";
+pub const CLUSREG_NAME_NETNAME_EXCLUDE_NETWORKS = "ExcludeNetworks";
+pub const CLUSREG_NAME_NETNAME_HOST_TTL = "HostRecordTTL";
+pub const CLUSREG_NAME_NETNAME_IN_USE_NETWORKS = "InUseNetworks";
+pub const CLUSREG_NAME_NETNAME_LAST_DNS_UPDATE = "LastDNSUpdateTime";
+pub const CLUSREG_NAME_NETNAME_NAME = "Name";
+pub const CLUSREG_NAME_NETNAME_OBJECT_ID = "ObjectGUID";
+pub const CLUSREG_NAME_NETNAME_PUBLISH_PTR = "PublishPTRRecords";
+pub const CLUSREG_NAME_NETNAME_REGISTER_ALL_IP = "RegisterAllProvidersIP";
 pub const CLUSREG_NAME_NETNAME_REMAP_PIPE_NAMES = "RemapPipeNames";
+pub const CLUSREG_NAME_NETNAME_REMOVEVCO_ONDELETE = "DeleteVcoOnResCleanup";
 pub const CLUSREG_NAME_NETNAME_RESOURCE_DATA = "ResourceData";
-pub const CLUSREG_NAME_NETNAME_STATUS_NETBIOS = "StatusNetBIOS";
 pub const CLUSREG_NAME_NETNAME_STATUS_DNS = "StatusDNS";
 pub const CLUSREG_NAME_NETNAME_STATUS_KERBEROS = "StatusKerberos";
+pub const CLUSREG_NAME_NETNAME_STATUS_NETBIOS = "StatusNetBIOS";
 pub const CLUSREG_NAME_NETNAME_VCO_CONTAINER = "VcoContainer";
-pub const CLUSREG_NAME_NETNAME_LAST_DNS_UPDATE = "LastDNSUpdateTime";
-pub const CLUSREG_NAME_NETNAME_CONTAINERGUID = "CryptoContainerGUID";
-pub const CLUSREG_NAME_NETNAME_HOST_TTL = "HostRecordTTL";
-pub const CLUSREG_NAME_NETNAME_PUBLISH_PTR = "PublishPTRRecords";
-pub const CLUSREG_NAME_NETNAME_REMOVEVCO_ONDELETE = "DeleteVcoOnResCleanup";
-pub const CLUSREG_NAME_NETNAME_REGISTER_ALL_IP = "RegisterAllProvidersIP";
-pub const CLUSREG_KEYNAME_OBJECTGUIDS = "ObjectGUIDs";
-pub const CLUSREG_NAME_NETNAME_EXCLUDE_NETWORKS = "ExcludeNetworks";
-pub const CLUSREG_NAME_NETNAME_ALIASES = "Aliases";
-pub const CLUSREG_NAME_NETNAME_IN_USE_NETWORKS = "InUseNetworks";
-pub const CLUSREG_NAME_NETNAME_DNS_SUFFIX = "DnsSuffix";
-pub const CLUSREG_NAME_NETNAME_AD_AWARE = "ADAware";
-pub const CLUSREG_NAME_NETNAME_DNN_DISABLE_CLONES = "DisableClones";
+pub const CLUSREG_NAME_NODE_BUILD_NUMBER = "BuildNumber";
+pub const CLUSREG_NAME_NODE_CSDVERSION = "CSDVersion";
+pub const CLUSREG_NAME_NODE_DESC = "Description";
+pub const CLUSREG_NAME_NODE_DRAIN_STATUS = "NodeDrainStatus";
+pub const CLUSREG_NAME_NODE_DRAIN_TARGET = "NodeDrainTarget";
+pub const CLUSREG_NAME_NODE_DYNAMIC_WEIGHT = "DynamicWeight";
+pub const CLUSREG_NAME_NODE_FAULT_DOMAIN = "FaultDomain";
+pub const CLUSREG_NAME_NODE_FDID = "FaultDomainId";
+pub const CLUSREG_NAME_NODE_HIGHEST_VERSION = "NodeHighestVersion";
+pub const CLUSREG_NAME_NODE_IS_PRIMARY = "IsPrimary";
+pub const CLUSREG_NAME_NODE_LOWEST_VERSION = "NodeLowestVersion";
+pub const CLUSREG_NAME_NODE_MAJOR_VERSION = "MajorVersion";
+pub const CLUSREG_NAME_NODE_MANUFACTURER = "Manufacturer";
+pub const CLUSREG_NAME_NODE_MINOR_VERSION = "MinorVersion";
+pub const CLUSREG_NAME_NODE_MODEL = "Model";
+pub const CLUSREG_NAME_NODE_NAME = "NodeName";
+pub const CLUSREG_NAME_NODE_NEEDS_PQ = "NeedsPreventQuorum";
+pub const CLUSREG_NAME_NODE_SERIALNUMBER = "SerialNumber";
+pub const CLUSREG_NAME_NODE_STATUS_INFO = "StatusInformation";
+pub const CLUSREG_NAME_NODE_WEIGHT = "NodeWeight";
+pub const CLUSREG_NAME_PHYSDISK_CSVBLOCKCACHE = "EnableBlockCache";
+pub const CLUSREG_NAME_PHYSDISK_CSVSNAPSHOTAGELIMIT = "SnapshotAgeLimit";
+pub const CLUSREG_NAME_PHYSDISK_CSVSNAPSHOTDIFFAREASIZE = "SnapshotDiffSize";
+pub const CLUSREG_NAME_PHYSDISK_CSVWRITETHROUGH = "CsvEnforceWriteThrough";
+pub const CLUSREG_NAME_PHYSDISK_DISKARBINTERVAL = "DiskArbInterval";
+pub const CLUSREG_NAME_PHYSDISK_DISKARBTYPE = "DiskArbType";
+pub const CLUSREG_NAME_PHYSDISK_DISKGUID = "DiskGuid";
+pub const CLUSREG_NAME_PHYSDISK_DISKIDGUID = "DiskIdGuid";
+pub const CLUSREG_NAME_PHYSDISK_DISKIDTYPE = "DiskIdType";
+pub const CLUSREG_NAME_PHYSDISK_DISKIODELAY = "MaxIoLatency";
+pub const CLUSREG_NAME_PHYSDISK_DISKPATH = "DiskPath";
+pub const CLUSREG_NAME_PHYSDISK_DISKRECOVERYACTION = "DiskRecoveryAction";
+pub const CLUSREG_NAME_PHYSDISK_DISKRELOAD = "DiskReload";
+pub const CLUSREG_NAME_PHYSDISK_DISKRUNCHKDSK = "DiskRunChkDsk";
+pub const CLUSREG_NAME_PHYSDISK_DISKSIGNATURE = "DiskSignature";
+pub const CLUSREG_NAME_PHYSDISK_DISKUNIQUEIDS = "DiskUniqueIds";
+pub const CLUSREG_NAME_PHYSDISK_DISKVOLUMEINFO = "DiskVolumeInfo";
+pub const CLUSREG_NAME_PHYSDISK_FASTONLINEARBITRATE = "FastOnlineArbitrate";
+pub const CLUSREG_NAME_PHYSDISK_MAINTMODE = "MaintenanceMode";
+pub const CLUSREG_NAME_PHYSDISK_MIGRATEFIXUP = "MigrateDriveLetters";
+pub const CLUSREG_NAME_PHYSDISK_SPACEIDGUID = "VirtualDiskId";
+pub const CLUSREG_NAME_PHYSDISK_VOLSNAPACTIVATETIMEOUT = "VolsnapActivateTimeout";
+pub const CLUSREG_NAME_PLACEMENT_OPTIONS = "PlacementOptions";
+pub const CLUSREG_NAME_PLUMB_ALL_CROSS_SUBNET_ROUTES = "PlumbAllCrossSubnetRoutes";
+pub const CLUSREG_NAME_PREVENTQUORUM = "PreventQuorum";
 pub const CLUSREG_NAME_PRTSPOOL_DEFAULT_SPOOL_DIR = "DefaultSpoolDirectory";
 pub const CLUSREG_NAME_PRTSPOOL_TIMEOUT = "JobCompletionTimeout";
-pub const CLUSREG_NAME_FILESHR_SERVER_NAME = "ServerName";
-pub const CLUSREG_NAME_FILESHR_SHARE_NAME = "ShareName";
-pub const CLUSREG_NAME_FILESHR_PATH = "Path";
-pub const CLUSREG_NAME_FILESHR_REMARK = "Remark";
-pub const CLUSREG_NAME_FILESHR_MAX_USERS = "MaxUsers";
-pub const CLUSREG_NAME_FILESHR_SD = "Security Descriptor";
-pub const CLUSREG_NAME_FILESHR_SHARE_SUBDIRS = "ShareSubDirs";
-pub const CLUSREG_NAME_FILESHR_HIDE_SUBDIR_SHARES = "HideSubDirShares";
-pub const CLUSREG_NAME_FILESHR_IS_DFS_ROOT = "IsDfsRoot";
-pub const CLUSREG_NAME_FILESHR_SHARE_FLAGS = "ShareFlags";
-pub const CLUSREG_NAME_FILESHR_CA_TIMEOUT = "CATimeout";
-pub const CLUSREG_NAME_DHCP_DATABASE_PATH = "DatabasePath";
-pub const CLUSREG_NAME_DHCP_BACKUP_PATH = "BackupPath";
-pub const CLUSREG_NAME_LOG_FILE_PATH = "LogFilePath";
-pub const CLUSREG_NAME_WINS_DATABASE_PATH = "DatabasePath";
-pub const CLUSREG_NAME_WINS_BACKUP_PATH = "BackupPath";
-pub const CLUSREG_NAME_VSSTASK_CURRENTDIRECTORY = "CurrentDirectory";
-pub const CLUSREG_NAME_VSSTASK_APPNAME = "ApplicationName";
-pub const CLUSREG_NAME_VSSTASK_APPPARAMS = "ApplicationParams";
-pub const CLUSREG_NAME_VSSTASK_TRIGGERARRAY = "TriggerArray";
-pub const CLUSREG_NAME_FSWITNESS_SHARE_PATH = "SharePath";
-pub const CLUSREG_NAME_FSWITNESS_ARB_DELAY = "ArbitrationDelay";
-pub const CLUSREG_NAME_FSWITNESS_IMPERSONATE_CNO = "ImpersonateCNO";
-pub const CLUSREG_NAME_STORAGESPACE_POOLNAME = "Name";
+pub const CLUSREG_NAME_QUARANTINE_DURATION = "QuarantineDuration";
+pub const CLUSREG_NAME_QUARANTINE_THRESHOLD = "QuarantineThreshold";
+pub const CLUSREG_NAME_QUORUM_ARBITRATION_TIMEOUT = "QuorumArbitrationTimeMax";
+pub const CLUSREG_NAME_RES_DATA1 = "ResourceSpecificData1";
+pub const CLUSREG_NAME_RES_DATA2 = "ResourceSpecificData2";
+pub const CLUSREG_NAME_RES_DEADLOCK_TIMEOUT = "DeadlockTimeout";
+pub const CLUSREG_NAME_RES_DESC = "Description";
+pub const CLUSREG_NAME_RES_EMBEDDED_FAILURE_ACTION = "EmbeddedFailureAction";
+pub const CLUSREG_NAME_RES_IS_ALIVE = "IsAlivePollInterval";
+pub const CLUSREG_NAME_RES_LAST_OPERATION_STATUS_CODE = "LastOperationStatusCode";
+pub const CLUSREG_NAME_RES_LOOKS_ALIVE = "LooksAlivePollInterval";
+pub const CLUSREG_NAME_RES_MONITOR_PID = "MonitorProcessId";
+pub const CLUSREG_NAME_RES_NAME = "Name";
+pub const CLUSREG_NAME_RES_PENDING_TIMEOUT = "PendingTimeout";
+pub const CLUSREG_NAME_RES_PERSISTENT_STATE = "PersistentState";
+pub const CLUSREG_NAME_RES_RESTART_ACTION = "RestartAction";
+pub const CLUSREG_NAME_RES_RESTART_DELAY = "RestartDelay";
+pub const CLUSREG_NAME_RES_RESTART_PERIOD = "RestartPeriod";
+pub const CLUSREG_NAME_RES_RESTART_THRESHOLD = "RestartThreshold";
+pub const CLUSREG_NAME_RES_RETRY_PERIOD_ON_FAILURE = "RetryPeriodOnFailure";
+pub const CLUSREG_NAME_RES_SEPARATE_MONITOR = "SeparateMonitor";
+pub const CLUSREG_NAME_RES_STATUS = "ResourceSpecificStatus";
+pub const CLUSREG_NAME_RES_STATUS_INFORMATION = "StatusInformation";
+pub const CLUSREG_NAME_RES_TYPE = "Type";
+pub const CLUSREG_NAME_RESILIENCY_DEFAULT_SECONDS = "ResiliencyDefaultPeriod";
+pub const CLUSREG_NAME_RESILIENCY_LEVEL = "ResiliencyLevel";
+pub const CLUSREG_NAME_RESTYPE_ADMIN_EXTENSIONS = "AdminExtensions";
+pub const CLUSREG_NAME_RESTYPE_DEADLOCK_TIMEOUT = "DeadlockTimeout";
+pub const CLUSREG_NAME_RESTYPE_DESC = "Description";
+pub const CLUSREG_NAME_RESTYPE_DLL_NAME = "DllName";
+pub const CLUSREG_NAME_RESTYPE_DUMP_LOG_QUERY = "DumpLogQuery";
+pub const CLUSREG_NAME_RESTYPE_DUMP_POLICY = "DumpPolicy";
+pub const CLUSREG_NAME_RESTYPE_DUMP_SERVICES = "DumpServices";
+pub const CLUSREG_NAME_RESTYPE_ENABLED_EVENT_LOGS = "EnabledEventLogs";
+pub const CLUSREG_NAME_RESTYPE_IS_ALIVE = "IsAlivePollInterval";
+pub const CLUSREG_NAME_RESTYPE_LOOKS_ALIVE = "LooksAlivePollInterval";
+pub const CLUSREG_NAME_RESTYPE_MAX_MONITORS = "MaximumMonitors";
+pub const CLUSREG_NAME_RESTYPE_NAME = "Name";
+pub const CLUSREG_NAME_RESTYPE_PENDING_TIMEOUT = "PendingTimeout";
+pub const CLUSREG_NAME_RESTYPE_WPR_PROFILES = "WprProfiles";
+pub const CLUSREG_NAME_RESTYPE_WPR_START_AFTER = "WprStartAfter";
+pub const CLUSREG_NAME_ROUTE_HISTORY_LENGTH = "RouteHistoryLength";
+pub const CLUSREG_NAME_SAME_SUBNET_DELAY = "SameSubnetDelay";
+pub const CLUSREG_NAME_SAME_SUBNET_THRESHOLD = "SameSubnetThreshold";
+pub const CLUSREG_NAME_SHUTDOWN_TIMEOUT_MINUTES = "ShutdownTimeoutInMinutes";
+pub const CLUSREG_NAME_SOFS_SMBASYMMETRYMODE = "SmbAsymmetryMode";
+pub const CLUSREG_NAME_START_MEMORY = "StartMemory";
+pub const CLUSREG_NAME_STORAGESPACE_DESCRIPTION = "VirtualDiskDescription";
+pub const CLUSREG_NAME_STORAGESPACE_HEALTH = "VirtualDiskHealth";
+pub const CLUSREG_NAME_STORAGESPACE_NAME = "VirtualDiskName";
+pub const CLUSREG_NAME_STORAGESPACE_POOLARBITRATE = "Arbitrate";
+pub const CLUSREG_NAME_STORAGESPACE_POOLCONSUMEDCAPACITY = "ConsumedCapacity";
 pub const CLUSREG_NAME_STORAGESPACE_POOLDESC = "Description";
 pub const CLUSREG_NAME_STORAGESPACE_POOLDRIVEIDS = "DriveIds";
 pub const CLUSREG_NAME_STORAGESPACE_POOLHEALTH = "Health";
-pub const CLUSREG_NAME_STORAGESPACE_POOLSTATE = "State";
-pub const CLUSREG_NAME_STORAGESPACE_POOLTOTALCAPACITY = "TotalCapacity";
-pub const CLUSREG_NAME_STORAGESPACE_POOLCONSUMEDCAPACITY = "ConsumedCapacity";
-pub const CLUSREG_NAME_STORAGESPACE_POOLARBITRATE = "Arbitrate";
-pub const CLUSREG_NAME_STORAGESPACE_POOLREEVALTIMEOUT = "ReEvaluatePlacementTimeout";
+pub const CLUSREG_NAME_STORAGESPACE_POOLIDGUID = "PoolId";
+pub const CLUSREG_NAME_STORAGESPACE_POOLNAME = "Name";
 pub const CLUSREG_NAME_STORAGESPACE_POOLQUORUMSHARE = "PoolQuorumShare";
 pub const CLUSREG_NAME_STORAGESPACE_POOLQUORUMUSERACCOUNT = "PoolQuorumUserAccount";
-pub const CLUSREG_NAME_SOFS_SMBASYMMETRYMODE = "SmbAsymmetryMode";
-pub const CLUSREG_NAME_VIP_PREFIX_LENGTH = "PrefixLength";
+pub const CLUSREG_NAME_STORAGESPACE_POOLREEVALTIMEOUT = "ReEvaluatePlacementTimeout";
+pub const CLUSREG_NAME_STORAGESPACE_POOLSTATE = "State";
+pub const CLUSREG_NAME_STORAGESPACE_POOLTOTALCAPACITY = "TotalCapacity";
+pub const CLUSREG_NAME_STORAGESPACE_PROVISIONING = "VirtualDiskProvisioning";
+pub const CLUSREG_NAME_STORAGESPACE_RESILIENCYCOLUMNS = "VirtualDiskResiliencyColumns";
+pub const CLUSREG_NAME_STORAGESPACE_RESILIENCYINTERLEAVE = "VirtualDiskResiliencyInterleave";
+pub const CLUSREG_NAME_STORAGESPACE_RESILIENCYTYPE = "VirtualDiskResiliencyType";
+pub const CLUSREG_NAME_STORAGESPACE_STATE = "VirtualDiskState";
+pub const CLUSREG_NAME_UPGRADE_VERSION = "ClusterUpgradeVersion";
 pub const CLUSREG_NAME_VIP_ADAPTER_NAME = "AdapterName";
 pub const CLUSREG_NAME_VIP_ADDRESS = "Address";
-pub const CLUSREG_NAME_VIP_VSID = "VSID";
+pub const CLUSREG_NAME_VIP_PREFIX_LENGTH = "PrefixLength";
 pub const CLUSREG_NAME_VIP_RDID = "RDID";
-pub const CLUSREG_NAME_CLOUDWITNESS_PRIMARY_TOKEN = "PrimaryToken";
-pub const CLUSREG_NAME_CLOUDWITNESS_PRIMARY_KEY = "PrimaryKey";
-pub const CLUSREG_NAME_CLOUDWITNESS_ACCOUNT_NAME = "AccountName";
-pub const CLUSREG_NAME_CLOUDWITNESS_ENDPOINT_INFO = "EndpointInfo";
-pub const CLUSREG_NAME_CLOUDWITNESS_CONTAINER_NAME = "ContainerName";
-pub const CLOUD_WITNESS_CONTAINER_NAME = "msft-cloud-witness";
-pub const CLUS_NAME_RES_TYPE_SOURCE_RESID = "SourceResourceId";
-pub const CLUS_NAME_RES_TYPE_TARGET_RESID = "TargetResourceId";
-pub const CLUS_NAME_RES_TYPE_SOURCE_VOLUMES = "SourceVolumes";
-pub const CLUS_NAME_RES_TYPE_TARGET_VOLUMES = "TargetVolumes";
-pub const CLUS_NAME_RES_TYPE_DATA_RESID = "DataResourceId";
-pub const CLUS_NAME_RES_TYPE_LOG_RESID = "LogResourceId";
-pub const CLUS_NAME_RES_TYPE_LOG_VOLUME = "LogVolume";
-pub const CLUS_NAME_RES_TYPE_REPLICATION_GROUPID = "ReplicationGroupId";
-pub const CLUS_NAME_RES_TYPE_CLUSTER_GROUPID = "ClusterGroupId";
-pub const CLUS_NAME_RES_TYPE_REPLICATION_GROUP_TYPE = "ReplicationClusterGroupType";
-pub const CLUS_NAME_RES_TYPE_MINIMUM_LOG_SIZE = "MinimumLogSizeInBytes";
-pub const CLUS_NAME_RES_TYPE_UNIT_LOG_SIZE_CHANGE = "UnitOfLogSizeChangeInBytes";
-pub const CLUS_NAME_RES_TYPE_LOG_MULTIPLE = "LogSizeMultiple";
-pub const SR_REPLICATED_PARTITION_DISALLOW_MULTINODE_IO = @as(u32, 1);
-pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_FLAG_ADD_VOLUME_INFO = @as(u32, 1);
-pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_FLAG_FILTER_BY_POOL = @as(u32, 2);
-pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_FLAG_INCLUDE_NON_SHARED_DISKS = @as(u32, 4);
-pub const STARTUP_ROUTINE = "Startup";
-pub const CLRES_VERSION_V1_00 = @as(u32, 256);
-pub const STARTUP_EX_ROUTINE = "StartupEx";
-pub const CLRES_VERSION_V2_00 = @as(u32, 512);
-pub const CLRES_VERSION_V3_00 = @as(u32, 768);
-pub const CLRES_VERSION_V4_00 = @as(u32, 1024);
-pub const CLUSCTL_GET_OPERATION_CONTEXT_PARAMS_VERSION_1 = @as(u32, 1);
+pub const CLUSREG_NAME_VIP_VSID = "VSID";
+pub const CLUSREG_NAME_VIRTUAL_NUMA_COUNT = "VirtualNumaCount";
+pub const CLUSREG_NAME_VSSTASK_APPNAME = "ApplicationName";
+pub const CLUSREG_NAME_VSSTASK_APPPARAMS = "ApplicationParams";
+pub const CLUSREG_NAME_VSSTASK_CURRENTDIRECTORY = "CurrentDirectory";
+pub const CLUSREG_NAME_VSSTASK_TRIGGERARRAY = "TriggerArray";
+pub const CLUSREG_NAME_WINS_BACKUP_PATH = "BackupPath";
+pub const CLUSREG_NAME_WINS_DATABASE_PATH = "DatabasePath";
+pub const CLUSREG_NAME_WITNESS_DYNAMIC_WEIGHT = "WitnessDynamicWeight";
 pub const CLUSRES_NAME_GET_OPERATION_CONTEXT_FLAGS = "Flags";
-pub const CLUSRESDLL_STATUS_OFFLINE_BUSY = @as(u32, 1);
-pub const CLUSRESDLL_STATUS_OFFLINE_SOURCE_THROTTLED = @as(u32, 2);
-pub const CLUSRESDLL_STATUS_OFFLINE_DESTINATION_THROTTLED = @as(u32, 4);
-pub const CLUSRESDLL_STATUS_OFFLINE_DESTINATION_REJECTED = @as(u32, 8);
-pub const CLUSRESDLL_STATUS_INSUFFICIENT_MEMORY = @as(u32, 16);
-pub const CLUSRESDLL_STATUS_INSUFFICIENT_PROCESSOR = @as(u32, 32);
-pub const CLUSRESDLL_STATUS_INSUFFICIENT_OTHER_RESOURCES = @as(u32, 64);
-pub const CLUSRESDLL_STATUS_INVALID_PARAMETERS = @as(u32, 128);
-pub const CLUSRESDLL_STATUS_NETWORK_NOT_AVAILABLE = @as(u32, 256);
+pub const CLUSRES_STATUS_APPLICATION_READY = @as(u64, 256);
+pub const CLUSRES_STATUS_EMBEDDED_FAILURE = @as(u64, 2);
+pub const CLUSRES_STATUS_FAILED_DUE_TO_INSUFFICIENT_CPU = @as(u64, 4);
+pub const CLUSRES_STATUS_FAILED_DUE_TO_INSUFFICIENT_GENERIC_RESOURCES = @as(u64, 16);
+pub const CLUSRES_STATUS_FAILED_DUE_TO_INSUFFICIENT_MEMORY = @as(u64, 8);
+pub const CLUSRES_STATUS_LOCKED_MODE = @as(u64, 1);
+pub const CLUSRES_STATUS_NETWORK_FAILURE = @as(u64, 32);
+pub const CLUSRES_STATUS_OFFLINE_NOT_LOCAL_DISK_OWNER = @as(u64, 512);
+pub const CLUSRES_STATUS_OS_HEARTBEAT = @as(u64, 128);
+pub const CLUSRES_STATUS_UNMONITORED = @as(u64, 64);
 pub const CLUSRESDLL_STATUS_DO_NOT_COLLECT_WER_REPORT = @as(u32, 1073741824);
 pub const CLUSRESDLL_STATUS_DUMP_NOW = @as(u32, 2147483648);
-pub const CLUS_RESDLL_OPEN_RECOVER_MONITOR_STATE = @as(u32, 1);
-pub const CLUS_RESDLL_ONLINE_RECOVER_MONITOR_STATE = @as(u32, 1);
-pub const CLUS_RESDLL_ONLINE_IGNORE_RESOURCE_STATUS = @as(u32, 2);
-pub const CLUS_RESDLL_ONLINE_RETURN_TO_SOURCE_NODE_ON_ERROR = @as(u32, 4);
-pub const CLUS_RESDLL_ONLINE_RESTORE_ONLINE_STATE = @as(u32, 8);
-pub const CLUS_RESDLL_ONLINE_IGNORE_NETWORK_CONNECTIVITY = @as(u32, 16);
-pub const CLUS_RESDLL_OFFLINE_IGNORE_RESOURCE_STATUS = @as(u32, 1);
-pub const CLUS_RESDLL_OFFLINE_RETURN_TO_SOURCE_NODE_ON_ERROR = @as(u32, 2);
-pub const CLUS_RESDLL_OFFLINE_QUEUE_ENABLED = @as(u32, 4);
-pub const CLUS_RESDLL_OFFLINE_RETURNING_TO_SOURCE_NODE_BECAUSE_OF_ERROR = @as(u32, 8);
-pub const CLUS_RESDLL_OFFLINE_DUE_TO_EMBEDDED_FAILURE = @as(u32, 16);
-pub const CLUS_RESDLL_OFFLINE_IGNORE_NETWORK_CONNECTIVITY = @as(u32, 32);
-pub const CLUS_RESDLL_OFFLINE_DO_NOT_UPDATE_PERSISTENT_STATE = @as(u32, 64);
-pub const CLUS_RESDLL_OPEN_DONT_DELETE_TEMP_DISK = @as(u32, 2);
-pub const RESTYPE_MONITOR_SHUTTING_DOWN_NODE_STOP = @as(u32, 1);
+pub const CLUSRESDLL_STATUS_INSUFFICIENT_MEMORY = @as(u32, 16);
+pub const CLUSRESDLL_STATUS_INSUFFICIENT_OTHER_RESOURCES = @as(u32, 64);
+pub const CLUSRESDLL_STATUS_INSUFFICIENT_PROCESSOR = @as(u32, 32);
+pub const CLUSRESDLL_STATUS_INVALID_PARAMETERS = @as(u32, 128);
+pub const CLUSRESDLL_STATUS_NETWORK_NOT_AVAILABLE = @as(u32, 256);
+pub const CLUSRESDLL_STATUS_OFFLINE_BUSY = @as(u32, 1);
+pub const CLUSRESDLL_STATUS_OFFLINE_DESTINATION_REJECTED = @as(u32, 8);
+pub const CLUSRESDLL_STATUS_OFFLINE_DESTINATION_THROTTLED = @as(u32, 4);
+pub const CLUSRESDLL_STATUS_OFFLINE_SOURCE_THROTTLED = @as(u32, 2);
+pub const CLUSTER_ADD_EVICT_DELAY = "AddEvictDelay";
+pub const CLUSTER_AVAILABILITY_SET_CONFIG_V1 = @as(u32, 1);
+pub const CLUSTER_CONFIGURED = @as(u32, 2);
+pub const CLUSTER_CREATE_GROUP_INFO_VERSION = @as(u32, 1);
+pub const CLUSTER_CREATE_GROUP_INFO_VERSION_1 = @as(u32, 1);
+pub const CLUSTER_CSA_VSS_STATE = "BackupInProgress";
+pub const CLUSTER_CSV_COMPATIBLE_FILTERS = "SharedVolumeCompatibleFilters";
+pub const CLUSTER_CSV_INCOMPATIBLE_FILTERS = "SharedVolumeIncompatibleFilters";
+pub const CLUSTER_DELETE_ACCESS_CONTROL_ENTRY = @as(u32, 2);
+pub const CLUSTER_ENFORCED_ANTIAFFINITY = "ClusterEnforcedAntiaffinity";
+pub const CLUSTER_ENUM_ITEM_VERSION = @as(u32, 1);
+pub const CLUSTER_ENUM_ITEM_VERSION_1 = @as(u32, 1);
+pub const CLUSTER_GROUP_ENUM_ITEM_VERSION = @as(u32, 1);
+pub const CLUSTER_GROUP_ENUM_ITEM_VERSION_1 = @as(u32, 1);
+pub const CLUSTER_GROUP_WAIT_DELAY = "ClusterGroupWaitDelay";
+pub const CLUSTER_HANG_RECOVERY_ACTION_KEYNAME = "HangRecoveryAction";
+pub const CLUSTER_HANG_TIMEOUT_KEYNAME = "ClusSvcHangTimeout";
+pub const CLUSTER_HEALTH_FAULT_ARGS = @as(u32, 7);
+pub const CLUSTER_HEALTH_FAULT_DESCRIPTION = @as(u32, 3);
+pub const CLUSTER_HEALTH_FAULT_DESCRIPTION_LABEL = "Description";
+pub const CLUSTER_HEALTH_FAULT_ERRORCODE = @as(u32, 2);
+pub const CLUSTER_HEALTH_FAULT_ERRORCODE_LABEL = "ErrorCode";
+pub const CLUSTER_HEALTH_FAULT_ERRORTYPE = @as(u32, 1);
+pub const CLUSTER_HEALTH_FAULT_ERRORTYPE_LABEL = "ErrorType";
+pub const CLUSTER_HEALTH_FAULT_FLAGS = @as(u32, 5);
+pub const CLUSTER_HEALTH_FAULT_FLAGS_LABEL = "Flags";
+pub const CLUSTER_HEALTH_FAULT_ID = @as(u32, 0);
+pub const CLUSTER_HEALTH_FAULT_ID_LABEL = "Id";
+pub const CLUSTER_HEALTH_FAULT_PROPERTY_NAME = "ClusterHealth";
+pub const CLUSTER_HEALTH_FAULT_PROVIDER = @as(u32, 4);
+pub const CLUSTER_HEALTH_FAULT_PROVIDER_LABEL = "Provider";
+pub const CLUSTER_HEALTH_FAULT_RESERVED = @as(u32, 6);
+pub const CLUSTER_HEALTH_FAULT_RESERVED_LABEL = "Reserved";
+pub const CLUSTER_INSTALLED = @as(u32, 1);
+pub const CLUSTER_NAME_AUTO_BALANCER_LEVEL = "AutoBalancerLevel";
+pub const CLUSTER_NAME_AUTO_BALANCER_MODE = "AutoBalancerMode";
+pub const CLUSTER_NAME_PREFERRED_SITE = "PreferredSite";
+pub const CLUSTER_REQUEST_REPLY_TIMEOUT = "RequestReplyTimeout";
+pub const CLUSTER_RESOURCE_ENUM_ITEM_VERSION = @as(u32, 1);
+pub const CLUSTER_RESOURCE_ENUM_ITEM_VERSION_1 = @as(u32, 1);
+pub const CLUSTER_RUNNING = @as(u32, 16);
+pub const CLUSTER_S2D_BUS_TYPES = "S2DBusTypes";
+pub const CLUSTER_S2D_CACHE_BEHAVIOR_FLAGS = "S2DCacheBehavior";
+pub const CLUSTER_S2D_CACHE_DESIRED_STATE = "S2DCacheDesiredState";
+pub const CLUSTER_S2D_CACHE_FLASH_RESERVE_PERCENT = "S2DCacheFlashReservePercent";
+pub const CLUSTER_S2D_CACHE_METADATA_RESERVE = "S2DCacheMetadataReserveBytes";
+pub const CLUSTER_S2D_CACHE_PAGE_SIZE_KBYTES = "S2DCachePageSizeKBytes";
+pub const CLUSTER_S2D_ENABLED = "S2DEnabled";
+pub const CLUSTER_S2D_IO_LATENCY_THRESHOLD = "S2DIOLatencyThreshold";
+pub const CLUSTER_S2D_OPTIMIZATIONS = "S2DOptimizations";
+pub const CLUSTER_SET_ACCESS_TYPE_ALLOWED = @as(u32, 0);
+pub const CLUSTER_SET_ACCESS_TYPE_DENIED = @as(u32, 1);
+pub const CLUSTER_SHARED_VOLUME_VSS_WRITER_OPERATION_TIMEOUT = "SharedVolumeVssWriterOperationTimeout";
+pub const CLUSTER_SHARED_VOLUMES_ROOT = "SharedVolumesRoot";
+pub const CLUSTER_VERSION_FLAG_MIXED_MODE = @as(u32, 1);
+pub const CLUSTER_VERSION_UNKNOWN = @as(u32, 4294967295);
+pub const CLUSTER_WITNESS_DATABASE_WRITE_TIMEOUT = "WitnessDatabaseWriteTimeout";
+pub const CLUSTER_WITNESS_FAILED_RESTART_INTERVAL = "WitnessRestartInterval";
+pub const CREATE_CLUSTER_MAJOR_VERSION_MASK = @as(u32, 4294967040);
+pub const CREATE_CLUSTER_VERSION = @as(u32, 1536);
+pub const CREATEDC_PRESENT = @as(u32, 2);
+pub const DNS_LENGTH = @as(u32, 64);
+pub const ENABLE_CLUSTER_SHARED_VOLUMES = "EnableSharedVolumes";
+pub const FE_UPGRADE_VERSION = @as(u32, 4);
+pub const GROUP_FAILURE_INFO_VERSION_1 = @as(u32, 1);
+pub const GROUPSET_READY_SETTING_APPLICATION_READY = @as(u32, 4);
+pub const GROUPSET_READY_SETTING_DELAY = @as(u32, 1);
+pub const GROUPSET_READY_SETTING_ONLINE = @as(u32, 2);
+pub const GROUPSET_READY_SETTING_OS_HEARTBEAT = @as(u32, 3);
+pub const GUID_PRESENT = @as(u32, 1);
+pub const HCI_UPGRADE_BIT = @as(u32, 32768);
+pub const LOCKED_MODE_FLAGS_DONT_REMOVE_FROM_MOVE_QUEUE = @as(u32, 1);
+pub const MAINTENANCE_MODE_V2_SIG = @as(u32, 2881155087);
+pub const MAX_CLUSTERNAME_LENGTH = @as(u32, 63);
+pub const MAX_CO_PASSWORD_LENGTH = @as(u32, 16);
+pub const MAX_CO_PASSWORD_LENGTHEX = @as(u32, 127);
+pub const MAX_CO_PASSWORD_STORAGEEX = @as(u32, 128);
+pub const MAX_CREATINGDC_LENGTH = @as(u32, 256);
+pub const MAX_OBJECTID = @as(u32, 64);
+pub const MINIMUM_NEVER_PREEMPT_PRIORITY = "MinimumNeverPreemptPriority";
+pub const MINIMUM_PREEMPTOR_PRIORITY = "MinimumPreemptorPriority";
+pub const MN_UPGRADE_VERSION = @as(u32, 3);
+pub const NINETEEN_H1_UPGRADE_VERSION = @as(u32, 1);
+pub const NINETEEN_H2_UPGRADE_VERSION = @as(u32, 2);
+pub const NNLEN = @as(u32, 80);
+pub const NT10_MAJOR_VERSION = @as(u32, 9);
+pub const NT11_MAJOR_VERSION = @as(u32, 10);
+pub const NT12_MAJOR_VERSION = @as(u32, 11);
+pub const NT13_MAJOR_VERSION = @as(u32, 12);
+pub const NT4_MAJOR_VERSION = @as(u32, 1);
+pub const NT4SP4_MAJOR_VERSION = @as(u32, 2);
+pub const NT51_MAJOR_VERSION = @as(u32, 4);
+pub const NT5_MAJOR_VERSION = @as(u32, 3);
+pub const NT6_MAJOR_VERSION = @as(u32, 5);
+pub const NT7_MAJOR_VERSION = @as(u32, 6);
+pub const NT8_MAJOR_VERSION = @as(u32, 7);
+pub const NT9_MAJOR_VERSION = @as(u32, 8);
+pub const RedirectedIOReasonBitLockerInitializing = @as(u64, 16);
+pub const RedirectedIOReasonFileSystemTiering = @as(u64, 8);
+pub const RedirectedIOReasonMax = @as(u64, 9223372036854775808);
+pub const RedirectedIOReasonReFs = @as(u64, 32);
+pub const RedirectedIOReasonUnsafeFileSystemFilter = @as(u64, 2);
+pub const RedirectedIOReasonUnsafeVolumeFilter = @as(u64, 4);
+pub const RedirectedIOReasonUserRequest = @as(u64, 1);
+pub const RESOURCE_FAILURE_INFO_VERSION_1 = @as(u32, 1);
 pub const RESTYPE_MONITOR_SHUTTING_DOWN_CLUSSVC_CRASH = @as(u32, 2);
+pub const RESTYPE_MONITOR_SHUTTING_DOWN_NODE_STOP = @as(u32, 1);
+pub const RESUTIL_PROPITEM_IN_MEMORY = @as(u32, 8);
 pub const RESUTIL_PROPITEM_READ_ONLY = @as(u32, 1);
 pub const RESUTIL_PROPITEM_REQUIRED = @as(u32, 2);
 pub const RESUTIL_PROPITEM_SIGNED = @as(u32, 4);
-pub const RESUTIL_PROPITEM_IN_MEMORY = @as(u32, 8);
-pub const LOCKED_MODE_FLAGS_DONT_REMOVE_FROM_MOVE_QUEUE = @as(u32, 1);
-pub const CLUSTER_HEALTH_FAULT_PROPERTY_NAME = "ClusterHealth";
-pub const CLUSTER_HEALTH_FAULT_ARGS = @as(u32, 7);
-pub const CLUSTER_HEALTH_FAULT_ID = @as(u32, 0);
-pub const CLUSTER_HEALTH_FAULT_ERRORTYPE = @as(u32, 1);
-pub const CLUSTER_HEALTH_FAULT_ERRORCODE = @as(u32, 2);
-pub const CLUSTER_HEALTH_FAULT_DESCRIPTION = @as(u32, 3);
-pub const CLUSTER_HEALTH_FAULT_PROVIDER = @as(u32, 4);
-pub const CLUSTER_HEALTH_FAULT_FLAGS = @as(u32, 5);
-pub const CLUSTER_HEALTH_FAULT_RESERVED = @as(u32, 6);
-pub const CLUSTER_HEALTH_FAULT_ID_LABEL = "Id";
-pub const CLUSTER_HEALTH_FAULT_ERRORTYPE_LABEL = "ErrorType";
-pub const CLUSTER_HEALTH_FAULT_ERRORCODE_LABEL = "ErrorCode";
-pub const CLUSTER_HEALTH_FAULT_DESCRIPTION_LABEL = "Description";
-pub const CLUSTER_HEALTH_FAULT_PROVIDER_LABEL = "Provider";
-pub const CLUSTER_HEALTH_FAULT_FLAGS_LABEL = "Flags";
-pub const CLUSTER_HEALTH_FAULT_RESERVED_LABEL = "Reserved";
-pub const CLUS_CREATE_CRYPT_CONTAINER_NOT_FOUND = @as(u32, 1);
+pub const RS3_UPGRADE_VERSION = @as(u32, 1);
+pub const RS4_UPGRADE_VERSION = @as(u32, 2);
+pub const RS5_UPGRADE_VERSION = @as(u32, 3);
 pub const SET_APPINSTANCE_CSV_FLAGS_VALID_ONLY_IF_CSV_COORDINATOR = @as(u32, 1);
+pub const SR_REPLICATED_PARTITION_DISALLOW_MULTINODE_IO = @as(u32, 1);
+pub const STARTUP_EX_ROUTINE = "StartupEx";
+pub const STARTUP_ROUTINE = "Startup";
+pub const USE_CLIENT_ACCESS_NETWORKS_FOR_CSV = "UseClientAccessNetworksForSharedVolumes";
+pub const VolumeRedirectedIOReasonMax = @as(u64, 9223372036854775808);
+pub const VolumeRedirectedIOReasonNoDiskConnectivity = @as(u64, 1);
+pub const VolumeRedirectedIOReasonStorageSpaceNotAttached = @as(u64, 2);
+pub const VolumeRedirectedIOReasonVolumeReplicationEnabled = @as(u64, 4);
+pub const WS2016_RTM_UPGRADE_VERSION = @as(u32, 8);
+pub const WS2016_TP4_UPGRADE_VERSION = @as(u32, 6);
+pub const WS2016_TP5_UPGRADE_VERSION = @as(u32, 7);
 
 //--------------------------------------------------------------------------------
 // Section: Types (689)
 //--------------------------------------------------------------------------------
-pub const CLUSPROP_RESOURCE_CLASS_INFO = extern struct {
-    Base: CLUSPROP_VALUE,
-    Base2: CLUS_RESOURCE_CLASS_INFO,
-};
-
-pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT = extern struct {
-    Base: CLUSTER_SHARED_VOLUME_RENAME_INPUT_VOLUME,
-    Base2: CLUSTER_SHARED_VOLUME_RENAME_INPUT_NAME,
-};
-
-pub const CLUSTER_SHARED_VOLUME_RENAME_GUID_INPUT = extern struct {
-    Base: CLUSTER_SHARED_VOLUME_RENAME_INPUT_VOLUME,
-    Base2: CLUSTER_SHARED_VOLUME_RENAME_INPUT_GUID_NAME,
-};
-
-pub const CLUSPROP_PARTITION_INFO = extern struct {
-    Base: CLUSPROP_VALUE,
-    Base2: CLUS_PARTITION_INFO,
-};
-
-pub const CLUSPROP_PARTITION_INFO_EX = extern struct {
-    Base: CLUSPROP_VALUE,
-    Base2: CLUS_PARTITION_INFO_EX,
-};
-
-pub const CLUSPROP_PARTITION_INFO_EX2 = extern struct {
-    Base: CLUSPROP_PARTITION_INFO_EX,
-    Base2: CLUS_PARTITION_INFO_EX2,
-};
-
-pub const CLUSPROP_FTSET_INFO = extern struct {
-    Base: CLUSPROP_VALUE,
-    Base2: CLUS_FTSET_INFO,
-};
-
-pub const CLUSPROP_SCSI_ADDRESS = extern struct {
-    Base: CLUSPROP_VALUE,
-    Base2: CLUS_SCSI_ADDRESS,
-};
-
-pub const _HCLUSTER = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HNODE = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HRESOURCE = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HGROUP = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HNETWORK = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HNETINTERFACE = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const _HCHANGE = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _HCLUSCRYPTPROVIDER = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
@@ -696,63 +636,23 @@ pub const _HCLUSENUM = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const _HGROUPENUM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HRESENUM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HNETWORKENUM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HNODEENUM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HNETINTERFACEENUM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HRESTYPEENUM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HREGBATCH = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HREGBATCHPORT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HREGBATCHNOTIFICATION = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HREGREADBATCH = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HREGREADBATCHREPLY = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _HNODEENUMEX = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const _HCLUSENUMEX = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const _HGROUPENUMEX = extern struct {
+pub const _HCLUSTER = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const _HRESENUMEX = extern struct {
+pub const _HGROUP = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _HGROUPENUM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _HGROUPENUMEX = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
@@ -764,1903 +664,69 @@ pub const _HGROUPSETENUM = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUSTER_QUORUM_TYPE = enum(i32) {
-    OperationalQuorum = 0,
-    ModifyQuorum = 1,
+pub const _HNETINTERFACE = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const OperationalQuorum = CLUSTER_QUORUM_TYPE.OperationalQuorum;
-pub const ModifyQuorum = CLUSTER_QUORUM_TYPE.ModifyQuorum;
 
-pub const CLUSTERVERSIONINFO_NT4 = extern struct {
-    dwVersionInfoSize: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    BuildNumber: u16,
-    szVendorId: [64]u16,
-    szCSDVersion: [64]u16,
+pub const _HNETINTERFACEENUM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUSTERVERSIONINFO = extern struct {
-    dwVersionInfoSize: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    BuildNumber: u16,
-    szVendorId: [64]u16,
-    szCSDVersion: [64]u16,
-    dwClusterHighestVersion: u32,
-    dwClusterLowestVersion: u32,
-    dwFlags: u32,
-    dwReserved: u32,
+pub const _HNETWORK = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUS_STARTING_PARAMS = extern struct {
-    dwSize: u32,
-    bForm: BOOL,
-    bFirst: BOOL,
+pub const _HNETWORKENUM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const NODE_CLUSTER_STATE = enum(i32) {
-    NotInstalled = 0,
-    NotConfigured = 1,
-    NotRunning = 3,
-    Running = 19,
+pub const _HNODE = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const ClusterStateNotInstalled = NODE_CLUSTER_STATE.NotInstalled;
-pub const ClusterStateNotConfigured = NODE_CLUSTER_STATE.NotConfigured;
-pub const ClusterStateNotRunning = NODE_CLUSTER_STATE.NotRunning;
-pub const ClusterStateRunning = NODE_CLUSTER_STATE.Running;
 
-pub const CLUSTER_RESOURCE_STATE_CHANGE_REASON = enum(i32) {
-    Unknown = 0,
-    Move = 1,
-    Failover = 2,
-    FailedMove = 3,
-    Shutdown = 4,
-    Rundown = 5,
+pub const _HNODEENUM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const eResourceStateChangeReasonUnknown = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Unknown;
-pub const eResourceStateChangeReasonMove = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Move;
-pub const eResourceStateChangeReasonFailover = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Failover;
-pub const eResourceStateChangeReasonFailedMove = CLUSTER_RESOURCE_STATE_CHANGE_REASON.FailedMove;
-pub const eResourceStateChangeReasonShutdown = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Shutdown;
-pub const eResourceStateChangeReasonRundown = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Rundown;
 
-pub const CLUSTER_REG_COMMAND = enum(i32) {
-    COMMAND_NONE = 0,
-    SET_VALUE = 1,
-    CREATE_KEY = 2,
-    DELETE_KEY = 3,
-    DELETE_VALUE = 4,
-    SET_KEY_SECURITY = 5,
-    VALUE_DELETED = 6,
-    READ_KEY = 7,
-    READ_VALUE = 8,
-    READ_ERROR = 9,
-    CONTROL_COMMAND = 10,
-    CONDITION_EXISTS = 11,
-    CONDITION_NOT_EXISTS = 12,
-    CONDITION_IS_EQUAL = 13,
-    CONDITION_IS_NOT_EQUAL = 14,
-    CONDITION_IS_GREATER_THAN = 15,
-    CONDITION_IS_LESS_THAN = 16,
-    CONDITION_KEY_EXISTS = 17,
-    CONDITION_KEY_NOT_EXISTS = 18,
-    LAST_COMMAND = 19,
+pub const _HNODEENUMEX = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const CLUSREG_COMMAND_NONE = CLUSTER_REG_COMMAND.COMMAND_NONE;
-pub const CLUSREG_SET_VALUE = CLUSTER_REG_COMMAND.SET_VALUE;
-pub const CLUSREG_CREATE_KEY = CLUSTER_REG_COMMAND.CREATE_KEY;
-pub const CLUSREG_DELETE_KEY = CLUSTER_REG_COMMAND.DELETE_KEY;
-pub const CLUSREG_DELETE_VALUE = CLUSTER_REG_COMMAND.DELETE_VALUE;
-pub const CLUSREG_SET_KEY_SECURITY = CLUSTER_REG_COMMAND.SET_KEY_SECURITY;
-pub const CLUSREG_VALUE_DELETED = CLUSTER_REG_COMMAND.VALUE_DELETED;
-pub const CLUSREG_READ_KEY = CLUSTER_REG_COMMAND.READ_KEY;
-pub const CLUSREG_READ_VALUE = CLUSTER_REG_COMMAND.READ_VALUE;
-pub const CLUSREG_READ_ERROR = CLUSTER_REG_COMMAND.READ_ERROR;
-pub const CLUSREG_CONTROL_COMMAND = CLUSTER_REG_COMMAND.CONTROL_COMMAND;
-pub const CLUSREG_CONDITION_EXISTS = CLUSTER_REG_COMMAND.CONDITION_EXISTS;
-pub const CLUSREG_CONDITION_NOT_EXISTS = CLUSTER_REG_COMMAND.CONDITION_NOT_EXISTS;
-pub const CLUSREG_CONDITION_IS_EQUAL = CLUSTER_REG_COMMAND.CONDITION_IS_EQUAL;
-pub const CLUSREG_CONDITION_IS_NOT_EQUAL = CLUSTER_REG_COMMAND.CONDITION_IS_NOT_EQUAL;
-pub const CLUSREG_CONDITION_IS_GREATER_THAN = CLUSTER_REG_COMMAND.CONDITION_IS_GREATER_THAN;
-pub const CLUSREG_CONDITION_IS_LESS_THAN = CLUSTER_REG_COMMAND.CONDITION_IS_LESS_THAN;
-pub const CLUSREG_CONDITION_KEY_EXISTS = CLUSTER_REG_COMMAND.CONDITION_KEY_EXISTS;
-pub const CLUSREG_CONDITION_KEY_NOT_EXISTS = CLUSTER_REG_COMMAND.CONDITION_KEY_NOT_EXISTS;
-pub const CLUSREG_LAST_COMMAND = CLUSTER_REG_COMMAND.LAST_COMMAND;
 
-pub const CLUSCTL_RESOURCE_STATE_CHANGE_REASON_STRUCT = extern struct {
-    dwSize: u32,
-    dwVersion: u32,
-    eReason: CLUSTER_RESOURCE_STATE_CHANGE_REASON,
+pub const _HREGBATCH = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUSTER_BATCH_COMMAND = extern struct {
-    Command: CLUSTER_REG_COMMAND,
-    dwOptions: u32,
-    wzName: ?[*:0]const u16,
-    lpData: ?*const u8,
-    cbData: u32,
+pub const _HREGBATCHNOTIFICATION = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUSTER_READ_BATCH_COMMAND = extern struct {
-    Command: CLUSTER_REG_COMMAND,
-    dwOptions: u32,
-    wzSubkeyName: ?[*:0]const u16,
-    wzValueName: ?[*:0]const u16,
-    lpData: ?*const u8,
-    cbData: u32,
+pub const _HREGBATCHPORT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUSTER_ENUM_ITEM = extern struct {
-    dwVersion: u32,
-    dwType: u32,
-    cbId: u32,
-    lpszId: ?PWSTR,
-    cbName: u32,
-    lpszName: ?PWSTR,
+pub const _HREGREADBATCH = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUSGROUP_TYPE = enum(i32) {
-    CoreCluster = 1,
-    AvailableStorage = 2,
-    Temporary = 3,
-    SharedVolume = 4,
-    StoragePool = 5,
-    FileServer = 100,
-    PrintServer = 101,
-    DhcpServer = 102,
-    Dtc = 103,
-    Msmq = 104,
-    Wins = 105,
-    StandAloneDfs = 106,
-    GenericApplication = 107,
-    GenericService = 108,
-    GenericScript = 109,
-    IScsiNameService = 110,
-    VirtualMachine = 111,
-    TsSessionBroker = 112,
-    IScsiTarget = 113,
-    ScaleoutFileServer = 114,
-    VMReplicaBroker = 115,
-    TaskScheduler = 116,
-    ClusterUpdateAgent = 117,
-    ScaleoutCluster = 118,
-    StorageReplica = 119,
-    VMReplicaCoordinator = 120,
-    CrossClusterOrchestrator = 121,
-    InfrastructureFileServer = 122,
-    CoreSddc = 123,
-    Unknown = 9999,
+pub const _HREGREADBATCHREPLY = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const ClusGroupTypeCoreCluster = CLUSGROUP_TYPE.CoreCluster;
-pub const ClusGroupTypeAvailableStorage = CLUSGROUP_TYPE.AvailableStorage;
-pub const ClusGroupTypeTemporary = CLUSGROUP_TYPE.Temporary;
-pub const ClusGroupTypeSharedVolume = CLUSGROUP_TYPE.SharedVolume;
-pub const ClusGroupTypeStoragePool = CLUSGROUP_TYPE.StoragePool;
-pub const ClusGroupTypeFileServer = CLUSGROUP_TYPE.FileServer;
-pub const ClusGroupTypePrintServer = CLUSGROUP_TYPE.PrintServer;
-pub const ClusGroupTypeDhcpServer = CLUSGROUP_TYPE.DhcpServer;
-pub const ClusGroupTypeDtc = CLUSGROUP_TYPE.Dtc;
-pub const ClusGroupTypeMsmq = CLUSGROUP_TYPE.Msmq;
-pub const ClusGroupTypeWins = CLUSGROUP_TYPE.Wins;
-pub const ClusGroupTypeStandAloneDfs = CLUSGROUP_TYPE.StandAloneDfs;
-pub const ClusGroupTypeGenericApplication = CLUSGROUP_TYPE.GenericApplication;
-pub const ClusGroupTypeGenericService = CLUSGROUP_TYPE.GenericService;
-pub const ClusGroupTypeGenericScript = CLUSGROUP_TYPE.GenericScript;
-pub const ClusGroupTypeIScsiNameService = CLUSGROUP_TYPE.IScsiNameService;
-pub const ClusGroupTypeVirtualMachine = CLUSGROUP_TYPE.VirtualMachine;
-pub const ClusGroupTypeTsSessionBroker = CLUSGROUP_TYPE.TsSessionBroker;
-pub const ClusGroupTypeIScsiTarget = CLUSGROUP_TYPE.IScsiTarget;
-pub const ClusGroupTypeScaleoutFileServer = CLUSGROUP_TYPE.ScaleoutFileServer;
-pub const ClusGroupTypeVMReplicaBroker = CLUSGROUP_TYPE.VMReplicaBroker;
-pub const ClusGroupTypeTaskScheduler = CLUSGROUP_TYPE.TaskScheduler;
-pub const ClusGroupTypeClusterUpdateAgent = CLUSGROUP_TYPE.ClusterUpdateAgent;
-pub const ClusGroupTypeScaleoutCluster = CLUSGROUP_TYPE.ScaleoutCluster;
-pub const ClusGroupTypeStorageReplica = CLUSGROUP_TYPE.StorageReplica;
-pub const ClusGroupTypeVMReplicaCoordinator = CLUSGROUP_TYPE.VMReplicaCoordinator;
-pub const ClusGroupTypeCrossClusterOrchestrator = CLUSGROUP_TYPE.CrossClusterOrchestrator;
-pub const ClusGroupTypeInfrastructureFileServer = CLUSGROUP_TYPE.InfrastructureFileServer;
-pub const ClusGroupTypeCoreSddc = CLUSGROUP_TYPE.CoreSddc;
-pub const ClusGroupTypeUnknown = CLUSGROUP_TYPE.Unknown;
 
-pub const CLUSTER_CREATE_GROUP_INFO = extern struct {
-    dwVersion: u32,
-    groupType: CLUSGROUP_TYPE,
+pub const _HRESENUM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const CLUSTER_MGMT_POINT_TYPE = enum(i32) {
-    NONE = 0,
-    CNO = 1,
-    DNS_ONLY = 2,
-    CNO_ONLY = 3,
+pub const _HRESENUMEX = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const CLUSTER_MGMT_POINT_TYPE_NONE = CLUSTER_MGMT_POINT_TYPE.NONE;
-pub const CLUSTER_MGMT_POINT_TYPE_CNO = CLUSTER_MGMT_POINT_TYPE.CNO;
-pub const CLUSTER_MGMT_POINT_TYPE_DNS_ONLY = CLUSTER_MGMT_POINT_TYPE.DNS_ONLY;
-pub const CLUSTER_MGMT_POINT_TYPE_CNO_ONLY = CLUSTER_MGMT_POINT_TYPE.CNO_ONLY;
 
-pub const CLUSTER_MGMT_POINT_RESTYPE = enum(i32) {
-    AUTO = 0,
-    SNN = 1,
-    DNN = 2,
+pub const _HRESOURCE = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const CLUSTER_MGMT_POINT_RESTYPE_AUTO = CLUSTER_MGMT_POINT_RESTYPE.AUTO;
-pub const CLUSTER_MGMT_POINT_RESTYPE_SNN = CLUSTER_MGMT_POINT_RESTYPE.SNN;
-pub const CLUSTER_MGMT_POINT_RESTYPE_DNN = CLUSTER_MGMT_POINT_RESTYPE.DNN;
 
-pub const CLUSTER_CLOUD_TYPE = enum(i32) {
-    NONE = 0,
-    AZURE = 1,
-    MIXED = 128,
-    UNKNOWN = -1,
+pub const _HRESTYPEENUM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const CLUSTER_CLOUD_TYPE_NONE = CLUSTER_CLOUD_TYPE.NONE;
-pub const CLUSTER_CLOUD_TYPE_AZURE = CLUSTER_CLOUD_TYPE.AZURE;
-pub const CLUSTER_CLOUD_TYPE_MIXED = CLUSTER_CLOUD_TYPE.MIXED;
-pub const CLUSTER_CLOUD_TYPE_UNKNOWN = CLUSTER_CLOUD_TYPE.UNKNOWN;
-
-pub const CLUS_GROUP_START_SETTING = enum(i32) {
-    START_ALWAYS = 0,
-    DO_NOT_START = 1,
-    START_ALLOWED = 2,
-};
-pub const CLUS_GROUP_START_ALWAYS = CLUS_GROUP_START_SETTING.START_ALWAYS;
-pub const CLUS_GROUP_DO_NOT_START = CLUS_GROUP_START_SETTING.DO_NOT_START;
-pub const CLUS_GROUP_START_ALLOWED = CLUS_GROUP_START_SETTING.START_ALLOWED;
-
-pub const CLUS_AFFINITY_RULE_TYPE = enum(i32) {
-    NONE = 0,
-    SAME_FAULT_DOMAIN = 1,
-    SAME_NODE = 2,
-    DIFFERENT_FAULT_DOMAIN = 3,
-    DIFFERENT_NODE = 4,
-    pub const MIN = .NONE;
-    pub const MAX = .DIFFERENT_NODE;
-};
-pub const CLUS_AFFINITY_RULE_NONE = CLUS_AFFINITY_RULE_TYPE.NONE;
-pub const CLUS_AFFINITY_RULE_SAME_FAULT_DOMAIN = CLUS_AFFINITY_RULE_TYPE.SAME_FAULT_DOMAIN;
-pub const CLUS_AFFINITY_RULE_SAME_NODE = CLUS_AFFINITY_RULE_TYPE.SAME_NODE;
-pub const CLUS_AFFINITY_RULE_DIFFERENT_FAULT_DOMAIN = CLUS_AFFINITY_RULE_TYPE.DIFFERENT_FAULT_DOMAIN;
-pub const CLUS_AFFINITY_RULE_DIFFERENT_NODE = CLUS_AFFINITY_RULE_TYPE.DIFFERENT_NODE;
-pub const CLUS_AFFINITY_RULE_MIN = CLUS_AFFINITY_RULE_TYPE.NONE;
-pub const CLUS_AFFINITY_RULE_MAX = CLUS_AFFINITY_RULE_TYPE.DIFFERENT_NODE;
-
-pub const CLUSTER_QUORUM_VALUE = enum(i32) {
-    MAINTAINED = 0,
-    LOST = 1,
-};
-pub const CLUSTER_QUORUM_MAINTAINED = CLUSTER_QUORUM_VALUE.MAINTAINED;
-pub const CLUSTER_QUORUM_LOST = CLUSTER_QUORUM_VALUE.LOST;
-
-pub const CLUSTER_VALIDATE_PATH = extern struct {
-    szPath: [1]u16,
-};
-
-pub const CLUSTER_VALIDATE_DIRECTORY = extern struct {
-    szPath: [1]u16,
-};
-
-pub const CLUSTER_VALIDATE_NETNAME = extern struct {
-    szNetworkName: [1]u16,
-};
-
-pub const CLUSTER_VALIDATE_CSV_FILENAME = extern struct {
-    szFileName: [1]u16,
-};
-
-pub const CLUSTER_SET_PASSWORD_STATUS = extern struct {
-    NodeId: u32,
-    SetAttempted: BOOLEAN,
-    ReturnStatus: u32,
-};
-
-pub const CLUSTER_IP_ENTRY = extern struct {
-    lpszIpAddress: ?[*:0]const u16,
-    dwPrefixLength: u32,
-};
-
-pub const CREATE_CLUSTER_CONFIG = extern struct {
-    dwVersion: u32,
-    lpszClusterName: ?[*:0]const u16,
-    cNodes: u32,
-    ppszNodeNames: ?*?PWSTR,
-    cIpEntries: u32,
-    pIpEntries: ?*CLUSTER_IP_ENTRY,
-    fEmptyCluster: BOOLEAN,
-    managementPointType: CLUSTER_MGMT_POINT_TYPE,
-    managementPointResType: CLUSTER_MGMT_POINT_RESTYPE,
-};
-
-pub const CREATE_CLUSTER_NAME_ACCOUNT = extern struct {
-    dwVersion: u32,
-    lpszClusterName: ?[*:0]const u16,
-    dwFlags: u32,
-    pszUserName: ?[*:0]const u16,
-    pszPassword: ?[*:0]const u16,
-    pszDomain: ?[*:0]const u16,
-    managementPointType: CLUSTER_MGMT_POINT_TYPE,
-    managementPointResType: CLUSTER_MGMT_POINT_RESTYPE,
-    bUpgradeVCOs: BOOLEAN,
-};
-
-pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = *const fn(
-    lpszNodeName: ?[*:0]const u16,
-    pdwClusterState: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_OPEN_CLUSTER = *const fn(
-    lpszClusterName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HCLUSTER;
-
-pub const PCLUSAPI_OPEN_CLUSTER_EX = *const fn(
-    lpszClusterName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HCLUSTER;
-
-pub const PCLUSAPI_CLOSE_CLUSTER = *const fn(
-    hCluster: ?*_HCLUSTER,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_SetClusterName = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNewClusterName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_INFORMATION = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszClusterName: [*:0]u16,
-    lpcchClusterName: ?*u32,
-    lpClusterInfo: ?*CLUSTERVERSIONINFO,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: [*:0]u16,
-    lpcchResourceName: ?*u32,
-    lpszDeviceName: [*:0]u16,
-    lpcchDeviceName: ?*u32,
-    lpdwMaxQuorumLogSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-    lpszDeviceName: ?[*:0]const u16,
-    dwMaxQuoLogSize: u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_BACKUP_CLUSTER_DATABASE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszPathName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_RESTORE_CLUSTER_DATABASE = *const fn(
-    lpszPathName: ?[*:0]const u16,
-    bForce: BOOL,
-    lpszQuorumDriveLetter: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER = *const fn(
-    hCluster: ?*_HCLUSTER,
-    NetworkCount: u32,
-    NetworkList: [*]?*_HNETWORK,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = *const fn(
-    lpszClusterName: ?[*:0]const u16,
-    lpszNewPassword: ?[*:0]const u16,
-    dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
-    lpcbReturnStatusBufferSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_CONTROL = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_UPGRADE_PHASE = enum(i32) {
-    Initialize = 1,
-    ValidatingUpgrade = 2,
-    UpgradingComponents = 3,
-    InstallingNewComponents = 4,
-    UpgradeComplete = 5,
-};
-pub const ClusterUpgradePhaseInitialize = CLUSTER_UPGRADE_PHASE.Initialize;
-pub const ClusterUpgradePhaseValidatingUpgrade = CLUSTER_UPGRADE_PHASE.ValidatingUpgrade;
-pub const ClusterUpgradePhaseUpgradingComponents = CLUSTER_UPGRADE_PHASE.UpgradingComponents;
-pub const ClusterUpgradePhaseInstallingNewComponents = CLUSTER_UPGRADE_PHASE.InstallingNewComponents;
-pub const ClusterUpgradePhaseUpgradeComplete = CLUSTER_UPGRADE_PHASE.UpgradeComplete;
-
-pub const PCLUSTER_UPGRADE_PROGRESS_CALLBACK = *const fn(
-    pvCallbackArg: ?*anyopaque,
-    eUpgradePhase: CLUSTER_UPGRADE_PHASE,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_CLUSTER_UPGRADE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    perform: BOOL,
-    pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_CHANGE = enum(i32) {
-    NODE_STATE = 1,
-    NODE_DELETED = 2,
-    NODE_ADDED = 4,
-    NODE_PROPERTY = 8,
-    REGISTRY_NAME = 16,
-    REGISTRY_ATTRIBUTES = 32,
-    REGISTRY_VALUE = 64,
-    REGISTRY_SUBTREE = 128,
-    RESOURCE_STATE = 256,
-    RESOURCE_DELETED = 512,
-    RESOURCE_ADDED = 1024,
-    RESOURCE_PROPERTY = 2048,
-    GROUP_STATE = 4096,
-    GROUP_DELETED = 8192,
-    GROUP_ADDED = 16384,
-    GROUP_PROPERTY = 32768,
-    RESOURCE_TYPE_DELETED = 65536,
-    RESOURCE_TYPE_ADDED = 131072,
-    RESOURCE_TYPE_PROPERTY = 262144,
-    CLUSTER_RECONNECT = 524288,
-    NETWORK_STATE = 1048576,
-    NETWORK_DELETED = 2097152,
-    NETWORK_ADDED = 4194304,
-    NETWORK_PROPERTY = 8388608,
-    NETINTERFACE_STATE = 16777216,
-    NETINTERFACE_DELETED = 33554432,
-    NETINTERFACE_ADDED = 67108864,
-    NETINTERFACE_PROPERTY = 134217728,
-    QUORUM_STATE = 268435456,
-    CLUSTER_STATE = 536870912,
-    CLUSTER_PROPERTY = 1073741824,
-    HANDLE_CLOSE = -2147483648,
-    ALL = -1,
-};
-pub const CLUSTER_CHANGE_NODE_STATE = CLUSTER_CHANGE.NODE_STATE;
-pub const CLUSTER_CHANGE_NODE_DELETED = CLUSTER_CHANGE.NODE_DELETED;
-pub const CLUSTER_CHANGE_NODE_ADDED = CLUSTER_CHANGE.NODE_ADDED;
-pub const CLUSTER_CHANGE_NODE_PROPERTY = CLUSTER_CHANGE.NODE_PROPERTY;
-pub const CLUSTER_CHANGE_REGISTRY_NAME = CLUSTER_CHANGE.REGISTRY_NAME;
-pub const CLUSTER_CHANGE_REGISTRY_ATTRIBUTES = CLUSTER_CHANGE.REGISTRY_ATTRIBUTES;
-pub const CLUSTER_CHANGE_REGISTRY_VALUE = CLUSTER_CHANGE.REGISTRY_VALUE;
-pub const CLUSTER_CHANGE_REGISTRY_SUBTREE = CLUSTER_CHANGE.REGISTRY_SUBTREE;
-pub const CLUSTER_CHANGE_RESOURCE_STATE = CLUSTER_CHANGE.RESOURCE_STATE;
-pub const CLUSTER_CHANGE_RESOURCE_DELETED = CLUSTER_CHANGE.RESOURCE_DELETED;
-pub const CLUSTER_CHANGE_RESOURCE_ADDED = CLUSTER_CHANGE.RESOURCE_ADDED;
-pub const CLUSTER_CHANGE_RESOURCE_PROPERTY = CLUSTER_CHANGE.RESOURCE_PROPERTY;
-pub const CLUSTER_CHANGE_GROUP_STATE = CLUSTER_CHANGE.GROUP_STATE;
-pub const CLUSTER_CHANGE_GROUP_DELETED = CLUSTER_CHANGE.GROUP_DELETED;
-pub const CLUSTER_CHANGE_GROUP_ADDED = CLUSTER_CHANGE.GROUP_ADDED;
-pub const CLUSTER_CHANGE_GROUP_PROPERTY = CLUSTER_CHANGE.GROUP_PROPERTY;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_DELETED = CLUSTER_CHANGE.RESOURCE_TYPE_DELETED;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_ADDED = CLUSTER_CHANGE.RESOURCE_TYPE_ADDED;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_PROPERTY = CLUSTER_CHANGE.RESOURCE_TYPE_PROPERTY;
-pub const CLUSTER_CHANGE_CLUSTER_RECONNECT = CLUSTER_CHANGE.CLUSTER_RECONNECT;
-pub const CLUSTER_CHANGE_NETWORK_STATE = CLUSTER_CHANGE.NETWORK_STATE;
-pub const CLUSTER_CHANGE_NETWORK_DELETED = CLUSTER_CHANGE.NETWORK_DELETED;
-pub const CLUSTER_CHANGE_NETWORK_ADDED = CLUSTER_CHANGE.NETWORK_ADDED;
-pub const CLUSTER_CHANGE_NETWORK_PROPERTY = CLUSTER_CHANGE.NETWORK_PROPERTY;
-pub const CLUSTER_CHANGE_NETINTERFACE_STATE = CLUSTER_CHANGE.NETINTERFACE_STATE;
-pub const CLUSTER_CHANGE_NETINTERFACE_DELETED = CLUSTER_CHANGE.NETINTERFACE_DELETED;
-pub const CLUSTER_CHANGE_NETINTERFACE_ADDED = CLUSTER_CHANGE.NETINTERFACE_ADDED;
-pub const CLUSTER_CHANGE_NETINTERFACE_PROPERTY = CLUSTER_CHANGE.NETINTERFACE_PROPERTY;
-pub const CLUSTER_CHANGE_QUORUM_STATE = CLUSTER_CHANGE.QUORUM_STATE;
-pub const CLUSTER_CHANGE_CLUSTER_STATE = CLUSTER_CHANGE.CLUSTER_STATE;
-pub const CLUSTER_CHANGE_CLUSTER_PROPERTY = CLUSTER_CHANGE.CLUSTER_PROPERTY;
-pub const CLUSTER_CHANGE_HANDLE_CLOSE = CLUSTER_CHANGE.HANDLE_CLOSE;
-pub const CLUSTER_CHANGE_ALL = CLUSTER_CHANGE.ALL;
-
-pub const CLUSTER_NOTIFICATIONS_VERSION = enum(i32) {
-    @"1" = 1,
-    @"2" = 2,
-};
-pub const CLUSTER_NOTIFICATIONS_V1 = CLUSTER_NOTIFICATIONS_VERSION.@"1";
-pub const CLUSTER_NOTIFICATIONS_V2 = CLUSTER_NOTIFICATIONS_VERSION.@"2";
-
-pub const CLUSTER_CHANGE_CLUSTER_V2 = enum(i32) {
-    RECONNECT_V2 = 1,
-    STATE_V2 = 2,
-    GROUP_ADDED_V2 = 4,
-    HANDLE_CLOSE_V2 = 8,
-    NETWORK_ADDED_V2 = 16,
-    NODE_ADDED_V2 = 32,
-    RESOURCE_TYPE_ADDED_V2 = 64,
-    COMMON_PROPERTY_V2 = 128,
-    PRIVATE_PROPERTY_V2 = 256,
-    LOST_NOTIFICATIONS_V2 = 512,
-    RENAME_V2 = 1024,
-    MEMBERSHIP_V2 = 2048,
-    UPGRADED_V2 = 4096,
-    ALL_V2 = 8191,
-};
-pub const CLUSTER_CHANGE_CLUSTER_RECONNECT_V2 = CLUSTER_CHANGE_CLUSTER_V2.RECONNECT_V2;
-pub const CLUSTER_CHANGE_CLUSTER_STATE_V2 = CLUSTER_CHANGE_CLUSTER_V2.STATE_V2;
-pub const CLUSTER_CHANGE_CLUSTER_GROUP_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.GROUP_ADDED_V2;
-pub const CLUSTER_CHANGE_CLUSTER_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_CLUSTER_V2.HANDLE_CLOSE_V2;
-pub const CLUSTER_CHANGE_CLUSTER_NETWORK_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.NETWORK_ADDED_V2;
-pub const CLUSTER_CHANGE_CLUSTER_NODE_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.NODE_ADDED_V2;
-pub const CLUSTER_CHANGE_CLUSTER_RESOURCE_TYPE_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.RESOURCE_TYPE_ADDED_V2;
-pub const CLUSTER_CHANGE_CLUSTER_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_CLUSTER_V2.COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_CLUSTER_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_CLUSTER_V2.PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_CLUSTER_LOST_NOTIFICATIONS_V2 = CLUSTER_CHANGE_CLUSTER_V2.LOST_NOTIFICATIONS_V2;
-pub const CLUSTER_CHANGE_CLUSTER_RENAME_V2 = CLUSTER_CHANGE_CLUSTER_V2.RENAME_V2;
-pub const CLUSTER_CHANGE_CLUSTER_MEMBERSHIP_V2 = CLUSTER_CHANGE_CLUSTER_V2.MEMBERSHIP_V2;
-pub const CLUSTER_CHANGE_CLUSTER_UPGRADED_V2 = CLUSTER_CHANGE_CLUSTER_V2.UPGRADED_V2;
-pub const CLUSTER_CHANGE_CLUSTER_ALL_V2 = CLUSTER_CHANGE_CLUSTER_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_GROUP_V2 = enum(i32) {
-    DELETED_V2 = 1,
-    COMMON_PROPERTY_V2 = 2,
-    PRIVATE_PROPERTY_V2 = 4,
-    STATE_V2 = 8,
-    OWNER_NODE_V2 = 16,
-    PREFERRED_OWNERS_V2 = 32,
-    RESOURCE_ADDED_V2 = 64,
-    RESOURCE_GAINED_V2 = 128,
-    RESOURCE_LOST_V2 = 256,
-    HANDLE_CLOSE_V2 = 512,
-    ALL_V2 = 1023,
-};
-pub const CLUSTER_CHANGE_GROUP_DELETED_V2 = CLUSTER_CHANGE_GROUP_V2.DELETED_V2;
-pub const CLUSTER_CHANGE_GROUP_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_GROUP_V2.COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_GROUP_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_GROUP_V2.PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_GROUP_STATE_V2 = CLUSTER_CHANGE_GROUP_V2.STATE_V2;
-pub const CLUSTER_CHANGE_GROUP_OWNER_NODE_V2 = CLUSTER_CHANGE_GROUP_V2.OWNER_NODE_V2;
-pub const CLUSTER_CHANGE_GROUP_PREFERRED_OWNERS_V2 = CLUSTER_CHANGE_GROUP_V2.PREFERRED_OWNERS_V2;
-pub const CLUSTER_CHANGE_GROUP_RESOURCE_ADDED_V2 = CLUSTER_CHANGE_GROUP_V2.RESOURCE_ADDED_V2;
-pub const CLUSTER_CHANGE_GROUP_RESOURCE_GAINED_V2 = CLUSTER_CHANGE_GROUP_V2.RESOURCE_GAINED_V2;
-pub const CLUSTER_CHANGE_GROUP_RESOURCE_LOST_V2 = CLUSTER_CHANGE_GROUP_V2.RESOURCE_LOST_V2;
-pub const CLUSTER_CHANGE_GROUP_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_GROUP_V2.HANDLE_CLOSE_V2;
-pub const CLUSTER_CHANGE_GROUP_ALL_V2 = CLUSTER_CHANGE_GROUP_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_GROUPSET_V2 = enum(i32) {
-    DELETED_v2 = 1,
-    COMMON_PROPERTY_V2 = 2,
-    PRIVATE_PROPERTY_V2 = 4,
-    STATE_V2 = 8,
-    GROUP_ADDED = 16,
-    GROUP_REMOVED = 32,
-    DEPENDENCIES_V2 = 64,
-    DEPENDENTS_V2 = 128,
-    HANDLE_CLOSE_v2 = 256,
-    ALL_V2 = 511,
-};
-pub const CLUSTER_CHANGE_GROUPSET_DELETED_v2 = CLUSTER_CHANGE_GROUPSET_V2.DELETED_v2;
-pub const CLUSTER_CHANGE_GROUPSET_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_GROUPSET_V2.COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_GROUPSET_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_GROUPSET_V2.PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_GROUPSET_STATE_V2 = CLUSTER_CHANGE_GROUPSET_V2.STATE_V2;
-pub const CLUSTER_CHANGE_GROUPSET_GROUP_ADDED = CLUSTER_CHANGE_GROUPSET_V2.GROUP_ADDED;
-pub const CLUSTER_CHANGE_GROUPSET_GROUP_REMOVED = CLUSTER_CHANGE_GROUPSET_V2.GROUP_REMOVED;
-pub const CLUSTER_CHANGE_GROUPSET_DEPENDENCIES_V2 = CLUSTER_CHANGE_GROUPSET_V2.DEPENDENCIES_V2;
-pub const CLUSTER_CHANGE_GROUPSET_DEPENDENTS_V2 = CLUSTER_CHANGE_GROUPSET_V2.DEPENDENTS_V2;
-pub const CLUSTER_CHANGE_GROUPSET_HANDLE_CLOSE_v2 = CLUSTER_CHANGE_GROUPSET_V2.HANDLE_CLOSE_v2;
-pub const CLUSTER_CHANGE_GROUPSET_ALL_V2 = CLUSTER_CHANGE_GROUPSET_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_RESOURCE_V2 = enum(i32) {
-    COMMON_PROPERTY_V2 = 1,
-    PRIVATE_PROPERTY_V2 = 2,
-    STATE_V2 = 4,
-    OWNER_GROUP_V2 = 8,
-    DEPENDENCIES_V2 = 16,
-    DEPENDENTS_V2 = 32,
-    POSSIBLE_OWNERS_V2 = 64,
-    DELETED_V2 = 128,
-    DLL_UPGRADED_V2 = 256,
-    HANDLE_CLOSE_V2 = 512,
-    TERMINAL_STATE_V2 = 1024,
-    ALL_V2 = 2047,
-};
-pub const CLUSTER_CHANGE_RESOURCE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_V2.COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_RESOURCE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_V2.PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_RESOURCE_STATE_V2 = CLUSTER_CHANGE_RESOURCE_V2.STATE_V2;
-pub const CLUSTER_CHANGE_RESOURCE_OWNER_GROUP_V2 = CLUSTER_CHANGE_RESOURCE_V2.OWNER_GROUP_V2;
-pub const CLUSTER_CHANGE_RESOURCE_DEPENDENCIES_V2 = CLUSTER_CHANGE_RESOURCE_V2.DEPENDENCIES_V2;
-pub const CLUSTER_CHANGE_RESOURCE_DEPENDENTS_V2 = CLUSTER_CHANGE_RESOURCE_V2.DEPENDENTS_V2;
-pub const CLUSTER_CHANGE_RESOURCE_POSSIBLE_OWNERS_V2 = CLUSTER_CHANGE_RESOURCE_V2.POSSIBLE_OWNERS_V2;
-pub const CLUSTER_CHANGE_RESOURCE_DELETED_V2 = CLUSTER_CHANGE_RESOURCE_V2.DELETED_V2;
-pub const CLUSTER_CHANGE_RESOURCE_DLL_UPGRADED_V2 = CLUSTER_CHANGE_RESOURCE_V2.DLL_UPGRADED_V2;
-pub const CLUSTER_CHANGE_RESOURCE_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_RESOURCE_V2.HANDLE_CLOSE_V2;
-pub const CLUSTER_CHANGE_RESOURCE_TERMINAL_STATE_V2 = CLUSTER_CHANGE_RESOURCE_V2.TERMINAL_STATE_V2;
-pub const CLUSTER_CHANGE_RESOURCE_ALL_V2 = CLUSTER_CHANGE_RESOURCE_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_V2 = enum(i32) {
-    CHANGE_RESOURCE_TYPE_DELETED_V2 = 1,
-    CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2 = 2,
-    CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2 = 4,
-    CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2 = 8,
-    CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2 = 16,
-    RESOURCE_TYPE_SPECIFIC_V2 = 32,
-    CHANGE_RESOURCE_TYPE_ALL_V2 = 63,
-};
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_DELETED_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_DELETED_V2;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2;
-pub const CLUSTER_RESOURCE_TYPE_SPECIFIC_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.RESOURCE_TYPE_SPECIFIC_V2;
-pub const CLUSTER_CHANGE_RESOURCE_TYPE_ALL_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_ALL_V2;
-
-pub const CLUSTER_CHANGE_NETINTERFACE_V2 = enum(i32) {
-    DELETED_V2 = 1,
-    COMMON_PROPERTY_V2 = 2,
-    PRIVATE_PROPERTY_V2 = 4,
-    STATE_V2 = 8,
-    HANDLE_CLOSE_V2 = 16,
-    ALL_V2 = 31,
-};
-pub const CLUSTER_CHANGE_NETINTERFACE_DELETED_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.DELETED_V2;
-pub const CLUSTER_CHANGE_NETINTERFACE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_NETINTERFACE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_NETINTERFACE_STATE_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.STATE_V2;
-pub const CLUSTER_CHANGE_NETINTERFACE_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.HANDLE_CLOSE_V2;
-pub const CLUSTER_CHANGE_NETINTERFACE_ALL_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_NETWORK_V2 = enum(i32) {
-    DELETED_V2 = 1,
-    COMMON_PROPERTY_V2 = 2,
-    PRIVATE_PROPERTY_V2 = 4,
-    STATE_V2 = 8,
-    HANDLE_CLOSE_V2 = 16,
-    ALL_V2 = 31,
-};
-pub const CLUSTER_CHANGE_NETWORK_DELETED_V2 = CLUSTER_CHANGE_NETWORK_V2.DELETED_V2;
-pub const CLUSTER_CHANGE_NETWORK_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_NETWORK_V2.COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_NETWORK_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_NETWORK_V2.PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_NETWORK_STATE_V2 = CLUSTER_CHANGE_NETWORK_V2.STATE_V2;
-pub const CLUSTER_CHANGE_NETWORK_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_NETWORK_V2.HANDLE_CLOSE_V2;
-pub const CLUSTER_CHANGE_NETWORK_ALL_V2 = CLUSTER_CHANGE_NETWORK_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_NODE_V2 = enum(i32) {
-    NETINTERFACE_ADDED_V2 = 1,
-    DELETED_V2 = 2,
-    COMMON_PROPERTY_V2 = 4,
-    PRIVATE_PROPERTY_V2 = 8,
-    STATE_V2 = 16,
-    GROUP_GAINED_V2 = 32,
-    GROUP_LOST_V2 = 64,
-    HANDLE_CLOSE_V2 = 128,
-    ALL_V2 = 255,
-};
-pub const CLUSTER_CHANGE_NODE_NETINTERFACE_ADDED_V2 = CLUSTER_CHANGE_NODE_V2.NETINTERFACE_ADDED_V2;
-pub const CLUSTER_CHANGE_NODE_DELETED_V2 = CLUSTER_CHANGE_NODE_V2.DELETED_V2;
-pub const CLUSTER_CHANGE_NODE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_NODE_V2.COMMON_PROPERTY_V2;
-pub const CLUSTER_CHANGE_NODE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_NODE_V2.PRIVATE_PROPERTY_V2;
-pub const CLUSTER_CHANGE_NODE_STATE_V2 = CLUSTER_CHANGE_NODE_V2.STATE_V2;
-pub const CLUSTER_CHANGE_NODE_GROUP_GAINED_V2 = CLUSTER_CHANGE_NODE_V2.GROUP_GAINED_V2;
-pub const CLUSTER_CHANGE_NODE_GROUP_LOST_V2 = CLUSTER_CHANGE_NODE_V2.GROUP_LOST_V2;
-pub const CLUSTER_CHANGE_NODE_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_NODE_V2.HANDLE_CLOSE_V2;
-pub const CLUSTER_CHANGE_NODE_ALL_V2 = CLUSTER_CHANGE_NODE_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_REGISTRY_V2 = enum(i32) {
-    ATTRIBUTES_V2 = 1,
-    NAME_V2 = 2,
-    SUBTREE_V2 = 4,
-    VALUE_V2 = 8,
-    HANDLE_CLOSE_V2 = 16,
-    ALL_V2 = 31,
-};
-pub const CLUSTER_CHANGE_REGISTRY_ATTRIBUTES_V2 = CLUSTER_CHANGE_REGISTRY_V2.ATTRIBUTES_V2;
-pub const CLUSTER_CHANGE_REGISTRY_NAME_V2 = CLUSTER_CHANGE_REGISTRY_V2.NAME_V2;
-pub const CLUSTER_CHANGE_REGISTRY_SUBTREE_V2 = CLUSTER_CHANGE_REGISTRY_V2.SUBTREE_V2;
-pub const CLUSTER_CHANGE_REGISTRY_VALUE_V2 = CLUSTER_CHANGE_REGISTRY_V2.VALUE_V2;
-pub const CLUSTER_CHANGE_REGISTRY_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_REGISTRY_V2.HANDLE_CLOSE_V2;
-pub const CLUSTER_CHANGE_REGISTRY_ALL_V2 = CLUSTER_CHANGE_REGISTRY_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_QUORUM_V2 = enum(i32) {
-    STATE_V2 = 1,
-    pub const ALL_V2 = .STATE_V2;
-};
-pub const CLUSTER_CHANGE_QUORUM_STATE_V2 = CLUSTER_CHANGE_QUORUM_V2.STATE_V2;
-pub const CLUSTER_CHANGE_QUORUM_ALL_V2 = CLUSTER_CHANGE_QUORUM_V2.STATE_V2;
-
-pub const CLUSTER_CHANGE_SHARED_VOLUME_V2 = enum(i32) {
-    STATE_V2 = 1,
-    ADDED_V2 = 2,
-    REMOVED_V2 = 4,
-    ALL_V2 = 7,
-};
-pub const CLUSTER_CHANGE_SHARED_VOLUME_STATE_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.STATE_V2;
-pub const CLUSTER_CHANGE_SHARED_VOLUME_ADDED_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.ADDED_V2;
-pub const CLUSTER_CHANGE_SHARED_VOLUME_REMOVED_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.REMOVED_V2;
-pub const CLUSTER_CHANGE_SHARED_VOLUME_ALL_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.ALL_V2;
-
-pub const CLUSTER_CHANGE_SPACEPORT_V2 = enum(i32) {
-    @"2" = 1,
-};
-pub const CLUSTER_CHANGE_SPACEPORT_CUSTOM_PNP_V2 = CLUSTER_CHANGE_SPACEPORT_V2.@"2";
-
-pub const CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2 = enum(i32) {
-    NODE_PREPARE = 1,
-    NODE_COMMIT = 2,
-    NODE_POSTCOMMIT = 4,
-    ALL = 7,
-};
-pub const CLUSTER_CHANGE_UPGRADE_NODE_PREPARE = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.NODE_PREPARE;
-pub const CLUSTER_CHANGE_UPGRADE_NODE_COMMIT = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.NODE_COMMIT;
-pub const CLUSTER_CHANGE_UPGRADE_NODE_POSTCOMMIT = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.NODE_POSTCOMMIT;
-pub const CLUSTER_CHANGE_UPGRADE_ALL = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.ALL;
-
-pub const CLUSTER_OBJECT_TYPE = enum(i32) {
-    NONE = 0,
-    CLUSTER = 1,
-    GROUP = 2,
-    RESOURCE = 3,
-    RESOURCE_TYPE = 4,
-    NETWORK_INTERFACE = 5,
-    NETWORK = 6,
-    NODE = 7,
-    REGISTRY = 8,
-    QUORUM = 9,
-    SHARED_VOLUME = 10,
-    GROUPSET = 13,
-    AFFINITYRULE = 16,
-};
-pub const CLUSTER_OBJECT_TYPE_NONE = CLUSTER_OBJECT_TYPE.NONE;
-pub const CLUSTER_OBJECT_TYPE_CLUSTER = CLUSTER_OBJECT_TYPE.CLUSTER;
-pub const CLUSTER_OBJECT_TYPE_GROUP = CLUSTER_OBJECT_TYPE.GROUP;
-pub const CLUSTER_OBJECT_TYPE_RESOURCE = CLUSTER_OBJECT_TYPE.RESOURCE;
-pub const CLUSTER_OBJECT_TYPE_RESOURCE_TYPE = CLUSTER_OBJECT_TYPE.RESOURCE_TYPE;
-pub const CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE = CLUSTER_OBJECT_TYPE.NETWORK_INTERFACE;
-pub const CLUSTER_OBJECT_TYPE_NETWORK = CLUSTER_OBJECT_TYPE.NETWORK;
-pub const CLUSTER_OBJECT_TYPE_NODE = CLUSTER_OBJECT_TYPE.NODE;
-pub const CLUSTER_OBJECT_TYPE_REGISTRY = CLUSTER_OBJECT_TYPE.REGISTRY;
-pub const CLUSTER_OBJECT_TYPE_QUORUM = CLUSTER_OBJECT_TYPE.QUORUM;
-pub const CLUSTER_OBJECT_TYPE_SHARED_VOLUME = CLUSTER_OBJECT_TYPE.SHARED_VOLUME;
-pub const CLUSTER_OBJECT_TYPE_GROUPSET = CLUSTER_OBJECT_TYPE.GROUPSET;
-pub const CLUSTER_OBJECT_TYPE_AFFINITYRULE = CLUSTER_OBJECT_TYPE.AFFINITYRULE;
-
-pub const CLUSTERSET_OBJECT_TYPE = enum(i32) {
-    NONE = 0,
-    MEMBER = 1,
-    WORKLOAD = 2,
-    DATABASE = 3,
-};
-pub const CLUSTERSET_OBJECT_TYPE_NONE = CLUSTERSET_OBJECT_TYPE.NONE;
-pub const CLUSTERSET_OBJECT_TYPE_MEMBER = CLUSTERSET_OBJECT_TYPE.MEMBER;
-pub const CLUSTERSET_OBJECT_TYPE_WORKLOAD = CLUSTERSET_OBJECT_TYPE.WORKLOAD;
-pub const CLUSTERSET_OBJECT_TYPE_DATABASE = CLUSTERSET_OBJECT_TYPE.DATABASE;
-
-pub const NOTIFY_FILTER_AND_TYPE = extern struct {
-    dwObjectType: u32,
-    FilterFlags: i64,
-};
-
-pub const CLUSTER_MEMBERSHIP_INFO = extern struct {
-    HasQuorum: BOOL,
-    UpnodesSize: u32,
-    Upnodes: [1]u8,
-};
-
-pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = *const fn(
-    hChange: ?*_HCHANGE,
-    hCluster: ?*_HCLUSTER,
-    Filters: ?*NOTIFY_FILTER_AND_TYPE,
-    dwFilterCount: u32,
-    dwNotifyKey: usize,
-) callconv(.winapi) ?*_HCHANGE;
-
-pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = *const fn(
-    hChange: ?*_HCHANGE,
-    Filter: NOTIFY_FILTER_AND_TYPE,
-    hObject: ?HANDLE,
-    dwNotifyKey: usize,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = *const fn(
-    hChange: ?*_HCHANGE,
-    lphTargetEvent: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = *const fn(
-    hChange: ?*_HCHANGE,
-    lpdwNotifyKey: ?*usize,
-    pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
-    buffer: ?*u8,
-    lpcchBufferSize: ?*u32,
-    lpszObjectId: ?PWSTR,
-    lpcchObjectId: ?*u32,
-    lpszParentId: ?PWSTR,
-    lpcchParentId: ?*u32,
-    lpszName: ?PWSTR,
-    lpcchName: ?*u32,
-    lpszType: ?PWSTR,
-    lpcchType: ?*u32,
-    dwMilliseconds: u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = *const fn(
-    hChange: ?*_HCHANGE,
-    hCluster: ?*_HCLUSTER,
-    dwFilter: u32,
-    dwNotifyKey: usize,
-) callconv(.winapi) ?*_HCHANGE;
-
-pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = *const fn(
-    hChange: ?*_HCHANGE,
-    dwFilterType: u32,
-    hObject: ?HANDLE,
-    dwNotifyKey: usize,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_NOTIFY = *const fn(
-    hChange: ?*_HCHANGE,
-    lpdwNotifyKey: ?*usize,
-    lpdwFilterType: ?*u32,
-    lpszName: ?[*:0]u16,
-    lpcchName: ?*u32,
-    dwMilliseconds: u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT = *const fn(
-    hChange: ?*_HCHANGE,
-) callconv(.winapi) BOOL;
-
-pub const CLUSTER_ENUM = enum(i32) {
-    NODE = 1,
-    RESTYPE = 2,
-    RESOURCE = 4,
-    GROUP = 8,
-    NETWORK = 16,
-    NETINTERFACE = 32,
-    SHARED_VOLUME_GROUP = 536870912,
-    SHARED_VOLUME_RESOURCE = 1073741824,
-    INTERNAL_NETWORK = -2147483648,
-    ALL = 63,
-};
-pub const CLUSTER_ENUM_NODE = CLUSTER_ENUM.NODE;
-pub const CLUSTER_ENUM_RESTYPE = CLUSTER_ENUM.RESTYPE;
-pub const CLUSTER_ENUM_RESOURCE = CLUSTER_ENUM.RESOURCE;
-pub const CLUSTER_ENUM_GROUP = CLUSTER_ENUM.GROUP;
-pub const CLUSTER_ENUM_NETWORK = CLUSTER_ENUM.NETWORK;
-pub const CLUSTER_ENUM_NETINTERFACE = CLUSTER_ENUM.NETINTERFACE;
-pub const CLUSTER_ENUM_SHARED_VOLUME_GROUP = CLUSTER_ENUM.SHARED_VOLUME_GROUP;
-pub const CLUSTER_ENUM_SHARED_VOLUME_RESOURCE = CLUSTER_ENUM.SHARED_VOLUME_RESOURCE;
-pub const CLUSTER_ENUM_INTERNAL_NETWORK = CLUSTER_ENUM.INTERNAL_NETWORK;
-pub const CLUSTER_ENUM_ALL = CLUSTER_ENUM.ALL;
-
-pub const PCLUSAPI_CLUSTER_OPEN_ENUM = *const fn(
-    hCluster: ?*_HCLUSTER,
-    dwType: u32,
-) callconv(.winapi) ?*_HCLUSENUM;
-
-pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT = *const fn(
-    hEnum: ?*_HCLUSENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_ENUM = *const fn(
-    hEnum: ?*_HCLUSENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_CLOSE_ENUM = *const fn(
-    hEnum: ?*_HCLUSENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_OPEN_ENUM_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    dwType: u32,
-    pOptions: ?*anyopaque,
-) callconv(.winapi) ?*_HCLUSENUMEX;
-
-pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX = *const fn(
-    hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_ENUM_EX = *const fn(
-    hClusterEnum: ?*_HCLUSENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_CLOSE_ENUM_EX = *const fn(
-    hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupSetName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HGROUPSET;
-
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupSetName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HGROUPSET;
-
-pub const PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-    hGroupName: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY = *const fn(
-    hDependentGroup: ?*_HGROUP,
-    hProviderGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION = *const fn(
-    hGroupSet: ?*_HGROUP,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY = *const fn(
-    hGroup: ?*_HGROUP,
-    hDependsOn: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY = *const fn(
-    hDependentGroupSet: ?*_HGROUPSET,
-    hProviderGroupSet: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-    hDependsOn: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = *const fn(
-    hDependentGroup: ?*_HGROUP,
-    hProviderGroupSet: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = *const fn(
-    hGroup: ?*_HGROUP,
-    hDependsOn: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET = *const fn(
-    hGroupSet: ?*_HGROUPSET,
-) callconv(.winapi) ?*_HCLUSTER;
-
-pub const PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY = *const fn(
-    hDependentGroupSet: ?*_HGROUPSET,
-    lpRemoteClusterName: ?[*:0]const u16,
-    lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY = *const fn(
-    hDependentGroupSet: ?*_HGROUPSET,
-    lpRemoteClusterName: ?[*:0]const u16,
-    lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_AVAILABILITY_SET_CONFIG = extern struct {
-    dwVersion: u32,
-    dwUpdateDomains: u32,
-    dwFaultDomains: u32,
-    bReserveSpareNode: BOOL,
-};
-
-pub const PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpAvailabilitySetName: ?[*:0]const u16,
-    pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
-) callconv(.winapi) ?*_HGROUPSET;
-
-pub const PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    ruleType: CLUS_AFFINITY_RULE_TYPE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = *const fn(
-    hCluster: ?*_HCLUSTER,
-    affinityRuleName: ?[*:0]const u16,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpInBuffer: ?*anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_NODE_ENUM = enum(i32) {
-    NETINTERFACES = 1,
-    GROUPS = 2,
-    PREFERRED_GROUPS = 4,
-    ALL = 3,
-};
-pub const CLUSTER_NODE_ENUM_NETINTERFACES = CLUSTER_NODE_ENUM.NETINTERFACES;
-pub const CLUSTER_NODE_ENUM_GROUPS = CLUSTER_NODE_ENUM.GROUPS;
-pub const CLUSTER_NODE_ENUM_PREFERRED_GROUPS = CLUSTER_NODE_ENUM.PREFERRED_GROUPS;
-pub const CLUSTER_NODE_ENUM_ALL = CLUSTER_NODE_ENUM.ALL;
-
-pub const CLUSTER_NODE_STATE = enum(i32) {
-    StateUnknown = -1,
-    Up = 0,
-    Down = 1,
-    Paused = 2,
-    Joining = 3,
-};
-pub const ClusterNodeStateUnknown = CLUSTER_NODE_STATE.StateUnknown;
-pub const ClusterNodeUp = CLUSTER_NODE_STATE.Up;
-pub const ClusterNodeDown = CLUSTER_NODE_STATE.Down;
-pub const ClusterNodePaused = CLUSTER_NODE_STATE.Paused;
-pub const ClusterNodeJoining = CLUSTER_NODE_STATE.Joining;
-
-pub const CLUSTER_STORAGENODE_STATE = enum(i32) {
-    StateUnknown = 0,
-    Up = 1,
-    Down = 2,
-    Paused = 3,
-    Starting = 4,
-    Stopping = 5,
-};
-pub const ClusterStorageNodeStateUnknown = CLUSTER_STORAGENODE_STATE.StateUnknown;
-pub const ClusterStorageNodeUp = CLUSTER_STORAGENODE_STATE.Up;
-pub const ClusterStorageNodeDown = CLUSTER_STORAGENODE_STATE.Down;
-pub const ClusterStorageNodePaused = CLUSTER_STORAGENODE_STATE.Paused;
-pub const ClusterStorageNodeStarting = CLUSTER_STORAGENODE_STATE.Starting;
-pub const ClusterStorageNodeStopping = CLUSTER_STORAGENODE_STATE.Stopping;
-
-pub const CLUSTER_NODE_DRAIN_STATUS = enum(i32) {
-    NodeDrainStatusNotInitiated = 0,
-    NodeDrainStatusInProgress = 1,
-    NodeDrainStatusCompleted = 2,
-    NodeDrainStatusFailed = 3,
-    ClusterNodeDrainStatusCount = 4,
-};
-pub const NodeDrainStatusNotInitiated = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusNotInitiated;
-pub const NodeDrainStatusInProgress = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusInProgress;
-pub const NodeDrainStatusCompleted = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusCompleted;
-pub const NodeDrainStatusFailed = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusFailed;
-pub const ClusterNodeDrainStatusCount = CLUSTER_NODE_DRAIN_STATUS.ClusterNodeDrainStatusCount;
-
-pub const CLUSTER_NODE_STATUS = enum(i32) {
-    Normal = 0,
-    Isolated = 1,
-    Quarantined = 2,
-    DrainInProgress = 4,
-    DrainCompleted = 8,
-    DrainFailed = 16,
-    AvoidPlacement = 32,
-    Max = 51,
-};
-pub const NodeStatusNormal = CLUSTER_NODE_STATUS.Normal;
-pub const NodeStatusIsolated = CLUSTER_NODE_STATUS.Isolated;
-pub const NodeStatusQuarantined = CLUSTER_NODE_STATUS.Quarantined;
-pub const NodeStatusDrainInProgress = CLUSTER_NODE_STATUS.DrainInProgress;
-pub const NodeStatusDrainCompleted = CLUSTER_NODE_STATUS.DrainCompleted;
-pub const NodeStatusDrainFailed = CLUSTER_NODE_STATUS.DrainFailed;
-pub const NodeStatusAvoidPlacement = CLUSTER_NODE_STATUS.AvoidPlacement;
-pub const NodeStatusMax = CLUSTER_NODE_STATUS.Max;
-
-pub const PCLUSAPI_OPEN_CLUSTER_NODE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HNODE;
-
-pub const PCLUSAPI_OPEN_CLUSTER_NODE_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HNODE;
-
-pub const PCLUSAPI_OPEN_NODE_BY_ID = *const fn(
-    hCluster: ?*_HCLUSTER,
-    nodeId: u32,
-) callconv(.winapi) ?*_HNODE;
-
-pub const PCLUSAPI_CLOSE_CLUSTER_NODE = *const fn(
-    hNode: ?*_HNODE,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_GET_CLUSTER_NODE_STATE = *const fn(
-    hNode: ?*_HNODE,
-) callconv(.winapi) CLUSTER_NODE_STATE;
-
-pub const PCLUSAPI_GET_CLUSTER_NODE_ID = *const fn(
-    hNode: ?*_HNODE,
-    lpszNodeId: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_FROM_NODE = *const fn(
-    hNode: ?*_HNODE,
-) callconv(.winapi) ?*_HCLUSTER;
-
-pub const PCLUSAPI_PAUSE_CLUSTER_NODE = *const fn(
-    hNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_RESUME_CLUSTER_NODE = *const fn(
-    hNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_EVICT_CLUSTER_NODE = *const fn(
-    hNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM = *const fn(
-    hNode: ?*_HNODE,
-    dwType: u32,
-) callconv(.winapi) ?*_HNODEENUM;
-
-pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX = *const fn(
-    hNode: ?*_HNODE,
-    dwType: u32,
-    pOptions: ?*anyopaque,
-) callconv(.winapi) ?*_HNODEENUMEX;
-
-pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX = *const fn(
-    hNodeEnum: ?*_HNODEENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NODE_ENUM_EX = *const fn(
-    hNodeEnum: ?*_HNODEENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX = *const fn(
-    hNodeEnum: ?*_HNODEENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT = *const fn(
-    hNodeEnum: ?*_HNODEENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM = *const fn(
-    hNodeEnum: ?*_HNODEENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NODE_ENUM = *const fn(
-    hNodeEnum: ?*_HNODEENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_EVICT_CLUSTER_NODE_EX = *const fn(
-    hNode: ?*_HNODE,
-    dwTimeOut: u32,
-    phrCleanupStatus: ?*HRESULT,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszTypeName: ?[*:0]const u16,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
-
-pub const CLUSTER_GROUP_ENUM = enum(i32) {
-    CONTAINS = 1,
-    NODES = 2,
-    ALL = 3,
-};
-pub const CLUSTER_GROUP_ENUM_CONTAINS = CLUSTER_GROUP_ENUM.CONTAINS;
-pub const CLUSTER_GROUP_ENUM_NODES = CLUSTER_GROUP_ENUM.NODES;
-pub const CLUSTER_GROUP_ENUM_ALL = CLUSTER_GROUP_ENUM.ALL;
-
-pub const CLUSTER_GROUP_STATE = enum(i32) {
-    StateUnknown = -1,
-    Online = 0,
-    Offline = 1,
-    Failed = 2,
-    PartialOnline = 3,
-    Pending = 4,
-};
-pub const ClusterGroupStateUnknown = CLUSTER_GROUP_STATE.StateUnknown;
-pub const ClusterGroupOnline = CLUSTER_GROUP_STATE.Online;
-pub const ClusterGroupOffline = CLUSTER_GROUP_STATE.Offline;
-pub const ClusterGroupFailed = CLUSTER_GROUP_STATE.Failed;
-pub const ClusterGroupPartialOnline = CLUSTER_GROUP_STATE.PartialOnline;
-pub const ClusterGroupPending = CLUSTER_GROUP_STATE.Pending;
-
-pub const CLUSTER_GROUP_PRIORITY = enum(i32) {
-    Disabled = 0,
-    Low = 1000,
-    Medium = 2000,
-    High = 3000,
-};
-pub const PriorityDisabled = CLUSTER_GROUP_PRIORITY.Disabled;
-pub const PriorityLow = CLUSTER_GROUP_PRIORITY.Low;
-pub const PriorityMedium = CLUSTER_GROUP_PRIORITY.Medium;
-pub const PriorityHigh = CLUSTER_GROUP_PRIORITY.High;
-
-pub const CLUSTER_GROUP_AUTOFAILBACK_TYPE = enum(i32) {
-    PreventFailback = 0,
-    AllowFailback = 1,
-    FailbackTypeCount = 2,
-};
-pub const ClusterGroupPreventFailback = CLUSTER_GROUP_AUTOFAILBACK_TYPE.PreventFailback;
-pub const ClusterGroupAllowFailback = CLUSTER_GROUP_AUTOFAILBACK_TYPE.AllowFailback;
-pub const ClusterGroupFailbackTypeCount = CLUSTER_GROUP_AUTOFAILBACK_TYPE.FailbackTypeCount;
-
-pub const CLUSTER_GROUP_ENUM_ITEM = extern struct {
-    dwVersion: u32,
-    cbId: u32,
-    lpszId: ?PWSTR,
-    cbName: u32,
-    lpszName: ?PWSTR,
-    state: CLUSTER_GROUP_STATE,
-    cbOwnerNode: u32,
-    lpszOwnerNode: ?PWSTR,
-    dwFlags: u32,
-    cbProperties: u32,
-    pProperties: ?*anyopaque,
-    cbRoProperties: u32,
-    pRoProperties: ?*anyopaque,
-};
-
-pub const CLUSTER_RESOURCE_ENUM_ITEM = extern struct {
-    dwVersion: u32,
-    cbId: u32,
-    lpszId: ?PWSTR,
-    cbName: u32,
-    lpszName: ?PWSTR,
-    cbOwnerGroupName: u32,
-    lpszOwnerGroupName: ?PWSTR,
-    cbOwnerGroupId: u32,
-    lpszOwnerGroupId: ?PWSTR,
-    cbProperties: u32,
-    pProperties: ?*anyopaque,
-    cbRoProperties: u32,
-    pRoProperties: ?*anyopaque,
-};
-
-pub const PCLUSAPI_CREATE_CLUSTER_GROUP = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HGROUP;
-
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HGROUP;
-
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HGROUP;
-
-pub const PCLUSAPI_PAUSE_CLUSTER_NODE_EX = *const fn(
-    hNode: ?*_HNODE,
-    bDrainNode: BOOL,
-    dwPauseFlags: u32,
-    hNodeDrainTarget: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_NODE_RESUME_FAILBACK_TYPE = enum(i32) {
-    DoNotFailbackGroups = 0,
-    FailbackGroupsImmediately = 1,
-    FailbackGroupsPerPolicy = 2,
-    ClusterNodeResumeFailbackTypeCount = 3,
-};
-pub const DoNotFailbackGroups = CLUSTER_NODE_RESUME_FAILBACK_TYPE.DoNotFailbackGroups;
-pub const FailbackGroupsImmediately = CLUSTER_NODE_RESUME_FAILBACK_TYPE.FailbackGroupsImmediately;
-pub const FailbackGroupsPerPolicy = CLUSTER_NODE_RESUME_FAILBACK_TYPE.FailbackGroupsPerPolicy;
-pub const ClusterNodeResumeFailbackTypeCount = CLUSTER_NODE_RESUME_FAILBACK_TYPE.ClusterNodeResumeFailbackTypeCount;
-
-pub const PCLUSAPI_RESUME_CLUSTER_NODE_EX = *const fn(
-    hNode: ?*_HNODE,
-    eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
-    dwResumeFlagsReserved: u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CREATE_CLUSTER_GROUPEX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-    pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
-) callconv(.winapi) ?*_HGROUP;
-
-pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
-    lpszProperties: ?[*:0]const u16,
-    cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpszRoProperties: ?[*:0]const u16,
-    cbRoProperties: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HGROUPENUMEX;
-
-pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX = *const fn(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_GROUP_ENUM_EX = *const fn(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX = *const fn(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
-    lpszProperties: ?[*:0]const u16,
-    cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpszRoProperties: ?[*:0]const u16,
-    cbRoProperties: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HRESENUMEX;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX = *const fn(
-    hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX = *const fn(
-    hResourceEnumEx: ?*_HRESENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX = *const fn(
-    hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_RESTART_CLUSTER_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLOSE_CLUSTER_GROUP = *const fn(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP = *const fn(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) ?*_HCLUSTER;
-
-pub const PCLUSAPI_GET_CLUSTER_GROUP_STATE = *const fn(
-    hGroup: ?*_HGROUP,
-    lpszNodeName: ?[*:0]u16,
-    lpcchNodeName: ?*u32,
-) callconv(.winapi) CLUSTER_GROUP_STATE;
-
-pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = *const fn(
-    hGroup: ?*_HGROUP,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = *const fn(
-    hGroup: ?*_HGROUP,
-    NodeCount: u32,
-    NodeList: ?[*]?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = *const fn(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_MOVE_CLUSTER_GROUP = *const fn(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_OFFLINE_CLUSTER_GROUP = *const fn(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_DELETE_CLUSTER_GROUP = *const fn(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_DESTROY_CLUSTER_GROUP = *const fn(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = *const fn(
-    hGroup: ?*_HGROUP,
-    dwType: u32,
-) callconv(.winapi) ?*_HGROUPENUM;
-
-pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT = *const fn(
-    hGroupEnum: ?*_HGROUPENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_GROUP_ENUM = *const fn(
-    hGroupEnum: ?*_HGROUPENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszResourceName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM = *const fn(
-    hGroupEnum: ?*_HGROUPENUM,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_RESOURCE_STATE = enum(i32) {
-    StateUnknown = -1,
-    Inherited = 0,
-    Initializing = 1,
-    Online = 2,
-    Offline = 3,
-    Failed = 4,
-    Pending = 128,
-    OnlinePending = 129,
-    OfflinePending = 130,
-};
-pub const ClusterResourceStateUnknown = CLUSTER_RESOURCE_STATE.StateUnknown;
-pub const ClusterResourceInherited = CLUSTER_RESOURCE_STATE.Inherited;
-pub const ClusterResourceInitializing = CLUSTER_RESOURCE_STATE.Initializing;
-pub const ClusterResourceOnline = CLUSTER_RESOURCE_STATE.Online;
-pub const ClusterResourceOffline = CLUSTER_RESOURCE_STATE.Offline;
-pub const ClusterResourceFailed = CLUSTER_RESOURCE_STATE.Failed;
-pub const ClusterResourcePending = CLUSTER_RESOURCE_STATE.Pending;
-pub const ClusterResourceOnlinePending = CLUSTER_RESOURCE_STATE.OnlinePending;
-pub const ClusterResourceOfflinePending = CLUSTER_RESOURCE_STATE.OfflinePending;
-
-pub const CLUSTER_RESOURCE_RESTART_ACTION = enum(i32) {
-    DontRestart = 0,
-    RestartNoNotify = 1,
-    RestartNotify = 2,
-    RestartActionCount = 3,
-};
-pub const ClusterResourceDontRestart = CLUSTER_RESOURCE_RESTART_ACTION.DontRestart;
-pub const ClusterResourceRestartNoNotify = CLUSTER_RESOURCE_RESTART_ACTION.RestartNoNotify;
-pub const ClusterResourceRestartNotify = CLUSTER_RESOURCE_RESTART_ACTION.RestartNotify;
-pub const ClusterResourceRestartActionCount = CLUSTER_RESOURCE_RESTART_ACTION.RestartActionCount;
-
-pub const CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION = enum(i32) {
-    None = 0,
-    LogOnly = 1,
-    Recover = 2,
-};
-pub const ClusterResourceEmbeddedFailureActionNone = CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION.None;
-pub const ClusterResourceEmbeddedFailureActionLogOnly = CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION.LogOnly;
-pub const ClusterResourceEmbeddedFailureActionRecover = CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION.Recover;
-
-pub const CLUSTER_RESOURCE_CREATE_FLAGS = enum(i32) {
-    DEFAULT_MONITOR = 0,
-    SEPARATE_MONITOR = 1,
-    pub const VALID_FLAGS = .SEPARATE_MONITOR;
-};
-pub const CLUSTER_RESOURCE_DEFAULT_MONITOR = CLUSTER_RESOURCE_CREATE_FLAGS.DEFAULT_MONITOR;
-pub const CLUSTER_RESOURCE_SEPARATE_MONITOR = CLUSTER_RESOURCE_CREATE_FLAGS.SEPARATE_MONITOR;
-pub const CLUSTER_RESOURCE_VALID_FLAGS = CLUSTER_RESOURCE_CREATE_FLAGS.SEPARATE_MONITOR;
-
-pub const CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE = enum(i32) {
-    SnapshotStateUnknown = 0,
-    PrepareForHWSnapshot = 1,
-    HWSnapshotCompleted = 2,
-    PrepareForFreeze = 3,
-};
-pub const ClusterSharedVolumeSnapshotStateUnknown = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.SnapshotStateUnknown;
-pub const ClusterSharedVolumePrepareForHWSnapshot = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.PrepareForHWSnapshot;
-pub const ClusterSharedVolumeHWSnapshotCompleted = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.HWSnapshotCompleted;
-pub const ClusterSharedVolumePrepareForFreeze = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.PrepareForFreeze;
-
-pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE = *const fn(
-    hGroup: ?*_HGROUP,
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HRESOURCE;
-
-pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-pub const PCLUSAPI_CLOSE_CLUSTER_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_GET_CLUSTER_FROM_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) ?*_HCLUSTER;
-
-pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = *const fn(
-    hResource: ?*_HRESOURCE,
-    lpszNodeName: ?[*:0]u16,
-    lpcchNodeName: ?*u32,
-    lpszGroupName: ?[*:0]u16,
-    lpcchGroupName: ?*u32,
-) callconv(.winapi) CLUSTER_RESOURCE_STATE;
-
-pub const PCLUSAPI_SET_CLUSTER_RESOURCE_NAME = *const fn(
-    hResource: ?*_HRESOURCE,
-    lpszResourceName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_FAIL_CLUSTER_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ONLINE_CLUSTER_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_OFFLINE_CLUSTER_RESOURCE = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP = *const fn(
-    hResource: ?*_HRESOURCE,
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX = *const fn(
-    hResource: ?*_HRESOURCE,
-    hGroup: ?*_HGROUP,
-    Flags: u64,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE = *const fn(
-    hResource: ?*_HRESOURCE,
-    hNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE = *const fn(
-    hResource: ?*_HRESOURCE,
-    hNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY = *const fn(
-    hResource: ?*_HRESOURCE,
-    hDependsOn: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY = *const fn(
-    hResource: ?*_HRESOURCE,
-    hDependsOn: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = *const fn(
-    hResource: ?*_HRESOURCE,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = *const fn(
-    hResource: ?*_HRESOURCE,
-    lpszDependencyExpression: ?[*:0]u16,
-    lpcchDependencyExpression: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME = *const fn(
-    lpszPathName: ?[*:0]const u16,
-    pbFileIsOnSharedVolume: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE = *const fn(
-    guidSnapshotSet: Guid,
-    lpszVolumeName: ?[*:0]const u16,
-    state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT = *const fn(
-    hResource: ?*_HRESOURCE,
-    hResourceDependent: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = *const fn(
-    hResource: ?*_HRESOURCE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = *const fn(
-    hGroup: ?*_HGROUP,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NODE_CONTROL = *const fn(
-    hNode: ?*_HNODE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME = *const fn(
-    hResource: ?*_HRESOURCE,
-    lpBuffer: [*:0]u16,
-    nSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-pub const CLUSTER_PROPERTY_TYPE = enum(i32) {
-    UNKNOWN = -1,
-    ENDMARK = 0,
-    LIST_VALUE = 1,
-    RESCLASS = 2,
-    RESERVED1 = 3,
-    NAME = 4,
-    SIGNATURE = 5,
-    SCSI_ADDRESS = 6,
-    DISK_NUMBER = 7,
-    PARTITION_INFO = 8,
-    FTSET_INFO = 9,
-    DISK_SERIALNUMBER = 10,
-    DISK_GUID = 11,
-    DISK_SIZE = 12,
-    PARTITION_INFO_EX = 13,
-    PARTITION_INFO_EX2 = 14,
-    STORAGE_DEVICE_ID_DESCRIPTOR = 15,
-    USER = 32768,
-};
-pub const CLUSPROP_TYPE_UNKNOWN = CLUSTER_PROPERTY_TYPE.UNKNOWN;
-pub const CLUSPROP_TYPE_ENDMARK = CLUSTER_PROPERTY_TYPE.ENDMARK;
-pub const CLUSPROP_TYPE_LIST_VALUE = CLUSTER_PROPERTY_TYPE.LIST_VALUE;
-pub const CLUSPROP_TYPE_RESCLASS = CLUSTER_PROPERTY_TYPE.RESCLASS;
-pub const CLUSPROP_TYPE_RESERVED1 = CLUSTER_PROPERTY_TYPE.RESERVED1;
-pub const CLUSPROP_TYPE_NAME = CLUSTER_PROPERTY_TYPE.NAME;
-pub const CLUSPROP_TYPE_SIGNATURE = CLUSTER_PROPERTY_TYPE.SIGNATURE;
-pub const CLUSPROP_TYPE_SCSI_ADDRESS = CLUSTER_PROPERTY_TYPE.SCSI_ADDRESS;
-pub const CLUSPROP_TYPE_DISK_NUMBER = CLUSTER_PROPERTY_TYPE.DISK_NUMBER;
-pub const CLUSPROP_TYPE_PARTITION_INFO = CLUSTER_PROPERTY_TYPE.PARTITION_INFO;
-pub const CLUSPROP_TYPE_FTSET_INFO = CLUSTER_PROPERTY_TYPE.FTSET_INFO;
-pub const CLUSPROP_TYPE_DISK_SERIALNUMBER = CLUSTER_PROPERTY_TYPE.DISK_SERIALNUMBER;
-pub const CLUSPROP_TYPE_DISK_GUID = CLUSTER_PROPERTY_TYPE.DISK_GUID;
-pub const CLUSPROP_TYPE_DISK_SIZE = CLUSTER_PROPERTY_TYPE.DISK_SIZE;
-pub const CLUSPROP_TYPE_PARTITION_INFO_EX = CLUSTER_PROPERTY_TYPE.PARTITION_INFO_EX;
-pub const CLUSPROP_TYPE_PARTITION_INFO_EX2 = CLUSTER_PROPERTY_TYPE.PARTITION_INFO_EX2;
-pub const CLUSPROP_TYPE_STORAGE_DEVICE_ID_DESCRIPTOR = CLUSTER_PROPERTY_TYPE.STORAGE_DEVICE_ID_DESCRIPTOR;
-pub const CLUSPROP_TYPE_USER = CLUSTER_PROPERTY_TYPE.USER;
-
-pub const CLUSTER_PROPERTY_FORMAT = enum(i32) {
-    UNKNOWN = 0,
-    BINARY = 1,
-    DWORD = 2,
-    SZ = 3,
-    EXPAND_SZ = 4,
-    MULTI_SZ = 5,
-    ULARGE_INTEGER = 6,
-    LONG = 7,
-    EXPANDED_SZ = 8,
-    SECURITY_DESCRIPTOR = 9,
-    LARGE_INTEGER = 10,
-    WORD = 11,
-    FILETIME = 12,
-    VALUE_LIST = 13,
-    PROPERTY_LIST = 14,
-    USER = 32768,
-};
-pub const CLUSPROP_FORMAT_UNKNOWN = CLUSTER_PROPERTY_FORMAT.UNKNOWN;
-pub const CLUSPROP_FORMAT_BINARY = CLUSTER_PROPERTY_FORMAT.BINARY;
-pub const CLUSPROP_FORMAT_DWORD = CLUSTER_PROPERTY_FORMAT.DWORD;
-pub const CLUSPROP_FORMAT_SZ = CLUSTER_PROPERTY_FORMAT.SZ;
-pub const CLUSPROP_FORMAT_EXPAND_SZ = CLUSTER_PROPERTY_FORMAT.EXPAND_SZ;
-pub const CLUSPROP_FORMAT_MULTI_SZ = CLUSTER_PROPERTY_FORMAT.MULTI_SZ;
-pub const CLUSPROP_FORMAT_ULARGE_INTEGER = CLUSTER_PROPERTY_FORMAT.ULARGE_INTEGER;
-pub const CLUSPROP_FORMAT_LONG = CLUSTER_PROPERTY_FORMAT.LONG;
-pub const CLUSPROP_FORMAT_EXPANDED_SZ = CLUSTER_PROPERTY_FORMAT.EXPANDED_SZ;
-pub const CLUSPROP_FORMAT_SECURITY_DESCRIPTOR = CLUSTER_PROPERTY_FORMAT.SECURITY_DESCRIPTOR;
-pub const CLUSPROP_FORMAT_LARGE_INTEGER = CLUSTER_PROPERTY_FORMAT.LARGE_INTEGER;
-pub const CLUSPROP_FORMAT_WORD = CLUSTER_PROPERTY_FORMAT.WORD;
-pub const CLUSPROP_FORMAT_FILETIME = CLUSTER_PROPERTY_FORMAT.FILETIME;
-pub const CLUSPROP_FORMAT_VALUE_LIST = CLUSTER_PROPERTY_FORMAT.VALUE_LIST;
-pub const CLUSPROP_FORMAT_PROPERTY_LIST = CLUSTER_PROPERTY_FORMAT.PROPERTY_LIST;
-pub const CLUSPROP_FORMAT_USER = CLUSTER_PROPERTY_FORMAT.USER;
-
-pub const CLUSTER_PROPERTY_SYNTAX = enum(u32) {
-    ENDMARK = 0,
-    NAME = 262147,
-    RESCLASS = 131074,
-    LIST_VALUE_SZ = 65539,
-    LIST_VALUE_EXPAND_SZ = 65540,
-    LIST_VALUE_DWORD = 65538,
-    LIST_VALUE_BINARY = 65537,
-    LIST_VALUE_MULTI_SZ = 65541,
-    LIST_VALUE_LONG = 65543,
-    LIST_VALUE_EXPANDED_SZ = 65544,
-    LIST_VALUE_SECURITY_DESCRIPTOR = 65545,
-    LIST_VALUE_LARGE_INTEGER = 65546,
-    LIST_VALUE_ULARGE_INTEGER = 65542,
-    LIST_VALUE_WORD = 65547,
-    LIST_VALUE_PROPERTY_LIST = 65550,
-    LIST_VALUE_FILETIME = 65548,
-    DISK_SIGNATURE = 327682,
-    SCSI_ADDRESS = 393218,
-    DISK_NUMBER = 458754,
-    PARTITION_INFO = 524289,
-    FTSET_INFO = 589825,
-    DISK_SERIALNUMBER = 655363,
-    DISK_GUID = 720899,
-    DISK_SIZE = 786438,
-    PARTITION_INFO_EX = 851969,
-    PARTITION_INFO_EX2 = 917505,
-    STORAGE_DEVICE_ID_DESCRIPTOR = 983041,
-};
-pub const CLUSPROP_SYNTAX_ENDMARK = CLUSTER_PROPERTY_SYNTAX.ENDMARK;
-pub const CLUSPROP_SYNTAX_NAME = CLUSTER_PROPERTY_SYNTAX.NAME;
-pub const CLUSPROP_SYNTAX_RESCLASS = CLUSTER_PROPERTY_SYNTAX.RESCLASS;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_SZ;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_EXPAND_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_EXPAND_SZ;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_DWORD = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_DWORD;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_BINARY = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_BINARY;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_MULTI_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_MULTI_SZ;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_LONG = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_LONG;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_EXPANDED_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_EXPANDED_SZ;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_SECURITY_DESCRIPTOR = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_SECURITY_DESCRIPTOR;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_LARGE_INTEGER = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_LARGE_INTEGER;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_ULARGE_INTEGER = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_ULARGE_INTEGER;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_WORD = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_WORD;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_PROPERTY_LIST = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_PROPERTY_LIST;
-pub const CLUSPROP_SYNTAX_LIST_VALUE_FILETIME = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_FILETIME;
-pub const CLUSPROP_SYNTAX_DISK_SIGNATURE = CLUSTER_PROPERTY_SYNTAX.DISK_SIGNATURE;
-pub const CLUSPROP_SYNTAX_SCSI_ADDRESS = CLUSTER_PROPERTY_SYNTAX.SCSI_ADDRESS;
-pub const CLUSPROP_SYNTAX_DISK_NUMBER = CLUSTER_PROPERTY_SYNTAX.DISK_NUMBER;
-pub const CLUSPROP_SYNTAX_PARTITION_INFO = CLUSTER_PROPERTY_SYNTAX.PARTITION_INFO;
-pub const CLUSPROP_SYNTAX_FTSET_INFO = CLUSTER_PROPERTY_SYNTAX.FTSET_INFO;
-pub const CLUSPROP_SYNTAX_DISK_SERIALNUMBER = CLUSTER_PROPERTY_SYNTAX.DISK_SERIALNUMBER;
-pub const CLUSPROP_SYNTAX_DISK_GUID = CLUSTER_PROPERTY_SYNTAX.DISK_GUID;
-pub const CLUSPROP_SYNTAX_DISK_SIZE = CLUSTER_PROPERTY_SYNTAX.DISK_SIZE;
-pub const CLUSPROP_SYNTAX_PARTITION_INFO_EX = CLUSTER_PROPERTY_SYNTAX.PARTITION_INFO_EX;
-pub const CLUSPROP_SYNTAX_PARTITION_INFO_EX2 = CLUSTER_PROPERTY_SYNTAX.PARTITION_INFO_EX2;
-pub const CLUSPROP_SYNTAX_STORAGE_DEVICE_ID_DESCRIPTOR = CLUSTER_PROPERTY_SYNTAX.STORAGE_DEVICE_ID_DESCRIPTOR;
-
-pub const GROUP_FAILURE_INFO = extern struct {
-    dwFailoverAttemptsRemaining: u32,
-    dwFailoverPeriodRemaining: u32,
-};
-
-pub const GROUP_FAILURE_INFO_BUFFER = extern struct {
-    dwVersion: u32,
-    Info: GROUP_FAILURE_INFO,
-};
-
-pub const RESOURCE_FAILURE_INFO = extern struct {
-    dwRestartAttemptsRemaining: u32,
-    dwRestartPeriodRemaining: u32,
-};
-
-pub const RESOURCE_FAILURE_INFO_BUFFER = extern struct {
-    dwVersion: u32,
-    Info: RESOURCE_FAILURE_INFO,
-};
-
-pub const RESOURCE_TERMINAL_FAILURE_INFO_BUFFER = extern struct {
-    isTerminalFailure: BOOL,
-    restartPeriodRemaining: u32,
-};
-
-pub const CLUSTER_CONTROL_OBJECT = enum(i32) {
-    INVALID = 0,
-    RESOURCE = 1,
-    RESOURCE_TYPE = 2,
-    GROUP = 3,
-    NODE = 4,
-    NETWORK = 5,
-    NETINTERFACE = 6,
-    CLUSTER = 7,
-    GROUPSET = 8,
-    AFFINITYRULE = 9,
-    USER = 128,
-};
-pub const CLUS_OBJECT_INVALID = CLUSTER_CONTROL_OBJECT.INVALID;
-pub const CLUS_OBJECT_RESOURCE = CLUSTER_CONTROL_OBJECT.RESOURCE;
-pub const CLUS_OBJECT_RESOURCE_TYPE = CLUSTER_CONTROL_OBJECT.RESOURCE_TYPE;
-pub const CLUS_OBJECT_GROUP = CLUSTER_CONTROL_OBJECT.GROUP;
-pub const CLUS_OBJECT_NODE = CLUSTER_CONTROL_OBJECT.NODE;
-pub const CLUS_OBJECT_NETWORK = CLUSTER_CONTROL_OBJECT.NETWORK;
-pub const CLUS_OBJECT_NETINTERFACE = CLUSTER_CONTROL_OBJECT.NETINTERFACE;
-pub const CLUS_OBJECT_CLUSTER = CLUSTER_CONTROL_OBJECT.CLUSTER;
-pub const CLUS_OBJECT_GROUPSET = CLUSTER_CONTROL_OBJECT.GROUPSET;
-pub const CLUS_OBJECT_AFFINITYRULE = CLUSTER_CONTROL_OBJECT.AFFINITYRULE;
-pub const CLUS_OBJECT_USER = CLUSTER_CONTROL_OBJECT.USER;
 
 pub const CLCTL_CODES = enum(i32) {
     LCTL_UNKNOWN = 0,
@@ -3051,6 +1117,713 @@ pub const CLCTL_VALIDATE_CHANGE_GROUP = CLCTL_CODES.LCTL_VALIDATE_CHANGE_GROUP;
 pub const CLCTL_CHECK_DRAIN_VETO = CLCTL_CODES.LCTL_CHECK_DRAIN_VETO;
 pub const CLCTL_NOTIFY_DRAIN_COMPLETE = CLCTL_CODES.LCTL_NOTIFY_DRAIN_COMPLETE;
 
+pub const CLRES_CALLBACK_FUNCTION_TABLE = extern struct {
+    LogEvent: ?PLOG_EVENT_ROUTINE,
+    SetResourceStatusEx: ?PSET_RESOURCE_STATUS_ROUTINE_EX,
+    SetResourceLockedMode: ?PSET_RESOURCE_LOCKED_MODE_ROUTINE,
+    SignalFailure: ?PSIGNAL_FAILURE_ROUTINE,
+    SetResourceInMemoryNodeLocalProperties: ?PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE,
+    EndControlCall: ?PEND_CONTROL_CALL,
+    EndTypeControlCall: ?PEND_TYPE_CONTROL_CALL,
+    ExtendControlCall: ?PEXTEND_RES_CONTROL_CALL,
+    ExtendTypeControlCall: ?PEXTEND_RES_TYPE_CONTROL_CALL,
+    RaiseResTypeNotification: ?PRAISE_RES_TYPE_NOTIFICATION,
+    ChangeResourceProcessForDumps: ?PCHANGE_RESOURCE_PROCESS_FOR_DUMPS,
+    ChangeResTypeProcessForDumps: ?PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS,
+    SetInternalState: ?PSET_INTERNAL_STATE,
+    SetResourceLockedModeEx: ?PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE,
+    RequestDump: ?PREQUEST_DUMP_ROUTINE,
+};
+
+pub const CLRES_FUNCTION_TABLE = extern struct {
+    TableSize: u32,
+    Version: u32,
+    Anonymous: extern union {
+        V1Functions: CLRES_V1_FUNCTIONS,
+        V2Functions: CLRES_V2_FUNCTIONS,
+        V3Functions: CLRES_V3_FUNCTIONS,
+        V4Functions: CLRES_V4_FUNCTIONS,
+    },
+};
+
+pub const CLRES_V1_FUNCTIONS = extern struct {
+    Open: ?POPEN_ROUTINE,
+    Close: ?PCLOSE_ROUTINE,
+    Online: ?PONLINE_ROUTINE,
+    Offline: ?POFFLINE_ROUTINE,
+    Terminate: ?PTERMINATE_ROUTINE,
+    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
+    IsAlive: ?PIS_ALIVE_ROUTINE,
+    Arbitrate: ?PARBITRATE_ROUTINE,
+    Release: ?PRELEASE_ROUTINE,
+    ResourceControl: ?PRESOURCE_CONTROL_ROUTINE,
+    ResourceTypeControl: ?PRESOURCE_TYPE_CONTROL_ROUTINE,
+};
+
+pub const CLRES_V2_FUNCTIONS = extern struct {
+    Open: ?POPEN_V2_ROUTINE,
+    Close: ?PCLOSE_ROUTINE,
+    Online: ?PONLINE_V2_ROUTINE,
+    Offline: ?POFFLINE_V2_ROUTINE,
+    Terminate: ?PTERMINATE_ROUTINE,
+    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
+    IsAlive: ?PIS_ALIVE_ROUTINE,
+    Arbitrate: ?PARBITRATE_ROUTINE,
+    Release: ?PRELEASE_ROUTINE,
+    ResourceControl: ?PRESOURCE_CONTROL_ROUTINE,
+    ResourceTypeControl: ?PRESOURCE_TYPE_CONTROL_ROUTINE,
+    Cancel: ?PCANCEL_ROUTINE,
+};
+
+pub const CLRES_V3_FUNCTIONS = extern struct {
+    Open: ?POPEN_V2_ROUTINE,
+    Close: ?PCLOSE_ROUTINE,
+    Online: ?PONLINE_V2_ROUTINE,
+    Offline: ?POFFLINE_V2_ROUTINE,
+    Terminate: ?PTERMINATE_ROUTINE,
+    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
+    IsAlive: ?PIS_ALIVE_ROUTINE,
+    Arbitrate: ?PARBITRATE_ROUTINE,
+    Release: ?PRELEASE_ROUTINE,
+    BeginResourceControl: ?PBEGIN_RESCALL_ROUTINE,
+    BeginResourceTypeControl: ?PBEGIN_RESTYPECALL_ROUTINE,
+    Cancel: ?PCANCEL_ROUTINE,
+};
+
+pub const CLRES_V4_FUNCTIONS = extern struct {
+    Open: ?POPEN_V2_ROUTINE,
+    Close: ?PCLOSE_ROUTINE,
+    Online: ?PONLINE_V2_ROUTINE,
+    Offline: ?POFFLINE_V2_ROUTINE,
+    Terminate: ?PTERMINATE_ROUTINE,
+    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
+    IsAlive: ?PIS_ALIVE_ROUTINE,
+    Arbitrate: ?PARBITRATE_ROUTINE,
+    Release: ?PRELEASE_ROUTINE,
+    BeginResourceControl: ?PBEGIN_RESCALL_ROUTINE,
+    BeginResourceTypeControl: ?PBEGIN_RESTYPECALL_ROUTINE,
+    Cancel: ?PCANCEL_ROUTINE,
+    BeginResourceControlAsUser: ?PBEGIN_RESCALL_AS_USER_ROUTINE,
+    BeginResourceTypeControlAsUser: ?PBEGIN_RESTYPECALL_AS_USER_ROUTINE,
+};
+
+pub const CLUADMEX_OBJECT_TYPE = enum(i32) {
+    NONE = 0,
+    CLUSTER = 1,
+    NODE = 2,
+    GROUP = 3,
+    RESOURCE = 4,
+    RESOURCETYPE = 5,
+    NETWORK = 6,
+    NETINTERFACE = 7,
+};
+pub const CLUADMEX_OT_NONE = CLUADMEX_OBJECT_TYPE.NONE;
+pub const CLUADMEX_OT_CLUSTER = CLUADMEX_OBJECT_TYPE.CLUSTER;
+pub const CLUADMEX_OT_NODE = CLUADMEX_OBJECT_TYPE.NODE;
+pub const CLUADMEX_OT_GROUP = CLUADMEX_OBJECT_TYPE.GROUP;
+pub const CLUADMEX_OT_RESOURCE = CLUADMEX_OBJECT_TYPE.RESOURCE;
+pub const CLUADMEX_OT_RESOURCETYPE = CLUADMEX_OBJECT_TYPE.RESOURCETYPE;
+pub const CLUADMEX_OT_NETWORK = CLUADMEX_OBJECT_TYPE.NETWORK;
+pub const CLUADMEX_OT_NETINTERFACE = CLUADMEX_OBJECT_TYPE.NETINTERFACE;
+
+pub const CLUS_AFFINITY_RULE_TYPE = enum(i32) {
+    NONE = 0,
+    SAME_FAULT_DOMAIN = 1,
+    SAME_NODE = 2,
+    DIFFERENT_FAULT_DOMAIN = 3,
+    DIFFERENT_NODE = 4,
+    pub const MIN = .NONE;
+    pub const MAX = .DIFFERENT_NODE;
+};
+pub const CLUS_AFFINITY_RULE_NONE = CLUS_AFFINITY_RULE_TYPE.NONE;
+pub const CLUS_AFFINITY_RULE_SAME_FAULT_DOMAIN = CLUS_AFFINITY_RULE_TYPE.SAME_FAULT_DOMAIN;
+pub const CLUS_AFFINITY_RULE_SAME_NODE = CLUS_AFFINITY_RULE_TYPE.SAME_NODE;
+pub const CLUS_AFFINITY_RULE_DIFFERENT_FAULT_DOMAIN = CLUS_AFFINITY_RULE_TYPE.DIFFERENT_FAULT_DOMAIN;
+pub const CLUS_AFFINITY_RULE_DIFFERENT_NODE = CLUS_AFFINITY_RULE_TYPE.DIFFERENT_NODE;
+pub const CLUS_AFFINITY_RULE_MIN = CLUS_AFFINITY_RULE_TYPE.NONE;
+pub const CLUS_AFFINITY_RULE_MAX = CLUS_AFFINITY_RULE_TYPE.DIFFERENT_NODE;
+
+pub const CLUS_CHARACTERISTICS = enum(i32) {
+    UNKNOWN = 0,
+    QUORUM = 1,
+    DELETE_REQUIRES_ALL_NODES = 2,
+    LOCAL_QUORUM = 4,
+    LOCAL_QUORUM_DEBUG = 8,
+    REQUIRES_STATE_CHANGE_REASON = 16,
+    BROADCAST_DELETE = 32,
+    SINGLE_CLUSTER_INSTANCE = 64,
+    SINGLE_GROUP_INSTANCE = 128,
+    COEXIST_IN_SHARED_VOLUME_GROUP = 256,
+    PLACEMENT_DATA = 512,
+    MONITOR_DETACH = 1024,
+    MONITOR_REATTACH = 2048,
+    OPERATION_CONTEXT = 4096,
+    CLONES = 8192,
+    NOT_PREEMPTABLE = 16384,
+    NOTIFY_NEW_OWNER = 32768,
+    SUPPORTS_UNMONITORED_STATE = 65536,
+    INFRASTRUCTURE = 131072,
+    VETO_DRAIN = 262144,
+    DRAIN_LOCAL_OFFLINE = 524288,
+};
+pub const CLUS_CHAR_UNKNOWN = CLUS_CHARACTERISTICS.UNKNOWN;
+pub const CLUS_CHAR_QUORUM = CLUS_CHARACTERISTICS.QUORUM;
+pub const CLUS_CHAR_DELETE_REQUIRES_ALL_NODES = CLUS_CHARACTERISTICS.DELETE_REQUIRES_ALL_NODES;
+pub const CLUS_CHAR_LOCAL_QUORUM = CLUS_CHARACTERISTICS.LOCAL_QUORUM;
+pub const CLUS_CHAR_LOCAL_QUORUM_DEBUG = CLUS_CHARACTERISTICS.LOCAL_QUORUM_DEBUG;
+pub const CLUS_CHAR_REQUIRES_STATE_CHANGE_REASON = CLUS_CHARACTERISTICS.REQUIRES_STATE_CHANGE_REASON;
+pub const CLUS_CHAR_BROADCAST_DELETE = CLUS_CHARACTERISTICS.BROADCAST_DELETE;
+pub const CLUS_CHAR_SINGLE_CLUSTER_INSTANCE = CLUS_CHARACTERISTICS.SINGLE_CLUSTER_INSTANCE;
+pub const CLUS_CHAR_SINGLE_GROUP_INSTANCE = CLUS_CHARACTERISTICS.SINGLE_GROUP_INSTANCE;
+pub const CLUS_CHAR_COEXIST_IN_SHARED_VOLUME_GROUP = CLUS_CHARACTERISTICS.COEXIST_IN_SHARED_VOLUME_GROUP;
+pub const CLUS_CHAR_PLACEMENT_DATA = CLUS_CHARACTERISTICS.PLACEMENT_DATA;
+pub const CLUS_CHAR_MONITOR_DETACH = CLUS_CHARACTERISTICS.MONITOR_DETACH;
+pub const CLUS_CHAR_MONITOR_REATTACH = CLUS_CHARACTERISTICS.MONITOR_REATTACH;
+pub const CLUS_CHAR_OPERATION_CONTEXT = CLUS_CHARACTERISTICS.OPERATION_CONTEXT;
+pub const CLUS_CHAR_CLONES = CLUS_CHARACTERISTICS.CLONES;
+pub const CLUS_CHAR_NOT_PREEMPTABLE = CLUS_CHARACTERISTICS.NOT_PREEMPTABLE;
+pub const CLUS_CHAR_NOTIFY_NEW_OWNER = CLUS_CHARACTERISTICS.NOTIFY_NEW_OWNER;
+pub const CLUS_CHAR_SUPPORTS_UNMONITORED_STATE = CLUS_CHARACTERISTICS.SUPPORTS_UNMONITORED_STATE;
+pub const CLUS_CHAR_INFRASTRUCTURE = CLUS_CHARACTERISTICS.INFRASTRUCTURE;
+pub const CLUS_CHAR_VETO_DRAIN = CLUS_CHARACTERISTICS.VETO_DRAIN;
+pub const CLUS_CHAR_DRAIN_LOCAL_OFFLINE = CLUS_CHARACTERISTICS.DRAIN_LOCAL_OFFLINE;
+
+pub const CLUS_CHKDSK_INFO = extern struct {
+    PartitionNumber: u32,
+    ChkdskState: u32,
+    FileIdCount: u32,
+    FileIdList: [1]u64,
+};
+
+pub const CLUS_CREATE_INFRASTRUCTURE_FILESERVER_INPUT = extern struct {
+    FileServerName: [16]u16,
+};
+
+pub const CLUS_CREATE_INFRASTRUCTURE_FILESERVER_OUTPUT = extern struct {
+    FileServerName: [260]u16,
+};
+
+pub const CLUS_CSV_MAINTENANCE_MODE_INFO = extern struct {
+    InMaintenance: BOOL,
+    VolumeName: [260]u16,
+};
+
+pub const CLUS_CSV_VOLUME_INFO = extern struct {
+    VolumeOffset: ULARGE_INTEGER,
+    PartitionNumber: u32,
+    FaultState: CLUSTER_CSV_VOLUME_FAULT_STATE,
+    BackupState: CLUSTER_SHARED_VOLUME_BACKUP_STATE,
+    szVolumeFriendlyName: [260]u16,
+    szVolumeName: [50]u16,
+};
+
+pub const CLUS_CSV_VOLUME_NAME = extern struct {
+    VolumeOffset: LARGE_INTEGER,
+    szVolumeName: [260]u16,
+    szRootPath: [263]u16,
+};
+
+pub const CLUS_DISK_NUMBER_INFO = extern struct {
+    DiskNumber: u32,
+    BytesPerSector: u32,
+};
+
+pub const CLUS_DNN_LEADER_STATUS = extern struct {
+    IsOnline: BOOL,
+    IsFileServerPresent: BOOL,
+};
+
+pub const CLUS_DNN_SODAFS_CLONE_STATUS = extern struct {
+    NodeId: u32,
+    Status: CLUSTER_RESOURCE_STATE,
+};
+
+pub const CLUS_FLAGS = enum(i32) {
+    E = 1,
+};
+pub const CLUS_FLAG_CORE = CLUS_FLAGS.E;
+
+pub const CLUS_FORCE_QUORUM_INFO = extern struct {
+    dwSize: u32,
+    dwNodeBitMask: u32,
+    dwMaxNumberofNodes: u32,
+    multiszNodeList: [1]u16,
+};
+
+pub const CLUS_FTSET_INFO = extern struct {
+    dwRootSignature: u32,
+    dwFtType: u32,
+};
+
+pub const CLUS_GROUP_START_SETTING = enum(i32) {
+    START_ALWAYS = 0,
+    DO_NOT_START = 1,
+    START_ALLOWED = 2,
+};
+pub const CLUS_GROUP_START_ALWAYS = CLUS_GROUP_START_SETTING.START_ALWAYS;
+pub const CLUS_GROUP_DO_NOT_START = CLUS_GROUP_START_SETTING.DO_NOT_START;
+pub const CLUS_GROUP_START_ALLOWED = CLUS_GROUP_START_SETTING.START_ALLOWED;
+
+pub const CLUS_MAINTENANCE_MODE_INFO = extern struct {
+    InMaintenance: BOOL,
+};
+
+pub const CLUS_MAINTENANCE_MODE_INFOEX = extern struct {
+    InMaintenance: BOOL,
+    MaintainenceModeType: MAINTENANCE_MODE_TYPE_ENUM,
+    InternalState: CLUSTER_RESOURCE_STATE,
+    Signature: u32,
+};
+
+pub const CLUS_NETNAME_IP_INFO_ENTRY = extern struct {
+    NodeId: u32,
+    AddressSize: u32,
+    Address: [1]u8,
+};
+
+pub const CLUS_NETNAME_IP_INFO_FOR_MULTICHANNEL = extern struct {
+    szName: [64]u16,
+    NumEntries: u32,
+    IpInfo: [1]CLUS_NETNAME_IP_INFO_ENTRY,
+};
+
+pub const CLUS_NETNAME_PWD_INFO = extern struct {
+    Flags: u32,
+    Password: [16]u16,
+    CreatingDC: [258]u16,
+    ObjectGuid: [64]u16,
+};
+
+pub const CLUS_NETNAME_PWD_INFOEX = extern struct {
+    Flags: u32,
+    Password: [128]u16,
+    CreatingDC: [258]u16,
+    ObjectGuid: [64]u16,
+};
+
+pub const CLUS_NETNAME_VS_TOKEN_INFO = extern struct {
+    ProcessID: u32,
+    DesiredAccess: u32,
+    InheritHandle: BOOL,
+};
+
+pub const CLUS_PARTITION_INFO = extern struct {
+    dwFlags: u32,
+    szDeviceName: [260]u16,
+    szVolumeLabel: [260]u16,
+    dwSerialNumber: u32,
+    rgdwMaximumComponentLength: u32,
+    dwFileSystemFlags: u32,
+    szFileSystem: [32]u16,
+};
+
+pub const CLUS_PARTITION_INFO_EX = extern struct {
+    dwFlags: u32,
+    szDeviceName: [260]u16,
+    szVolumeLabel: [260]u16,
+    dwSerialNumber: u32,
+    rgdwMaximumComponentLength: u32,
+    dwFileSystemFlags: u32,
+    szFileSystem: [32]u16,
+    TotalSizeInBytes: ULARGE_INTEGER,
+    FreeSizeInBytes: ULARGE_INTEGER,
+    DeviceNumber: u32,
+    PartitionNumber: u32,
+    VolumeGuid: Guid,
+};
+
+pub const CLUS_PARTITION_INFO_EX2 = extern struct {
+    GptPartitionId: Guid,
+    szPartitionName: [260]u16,
+    EncryptionFlags: u32,
+};
+
+pub const CLUS_PROVIDER_STATE_CHANGE_INFO = extern struct {
+    dwSize: u32,
+    resourceState: CLUSTER_RESOURCE_STATE,
+    szProviderId: [1]u16,
+};
+
+pub const CLUS_RESOURCE_CLASS_INFO = extern struct {
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            Anonymous: extern union {
+                dw: u32,
+                rc: CLUSTER_RESOURCE_CLASS,
+            },
+            SubClass: u32,
+        },
+        li: ULARGE_INTEGER,
+    },
+};
+
+pub const CLUS_RESSUBCLASS = enum(i32) {
+    D = -2147483648,
+};
+pub const CLUS_RESSUBCLASS_SHARED = CLUS_RESSUBCLASS.D;
+
+pub const CLUS_RESSUBCLASS_NETWORK = enum(i32) {
+    L = -2147483648,
+};
+pub const CLUS_RESSUBCLASS_NETWORK_INTERNET_PROTOCOL = CLUS_RESSUBCLASS_NETWORK.L;
+
+pub const CLUS_RESSUBCLASS_STORAGE = enum(i32) {
+    SHARED_BUS = -2147483648,
+    DISK = 1073741824,
+    REPLICATION = 268435456,
+};
+pub const CLUS_RESSUBCLASS_STORAGE_SHARED_BUS = CLUS_RESSUBCLASS_STORAGE.SHARED_BUS;
+pub const CLUS_RESSUBCLASS_STORAGE_DISK = CLUS_RESSUBCLASS_STORAGE.DISK;
+pub const CLUS_RESSUBCLASS_STORAGE_REPLICATION = CLUS_RESSUBCLASS_STORAGE.REPLICATION;
+
+pub const CLUS_SCSI_ADDRESS = extern struct {
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            PortNumber: u8,
+            PathId: u8,
+            TargetId: u8,
+            Lun: u8,
+        },
+        dw: u32,
+    },
+};
+
+pub const CLUS_SET_MAINTENANCE_MODE_INPUT = extern struct {
+    InMaintenance: BOOL,
+    ExtraParameterSize: u32,
+    ExtraParameter: [1]u8,
+};
+
+pub const CLUS_SHARED_VOLUME_BACKUP_MODE = extern struct {
+    BackupState: CLUSTER_SHARED_VOLUME_BACKUP_STATE,
+    DelayTimerInSecs: u32,
+    VolumeName: [260]u16,
+};
+
+pub const CLUS_STARTING_PARAMS = extern struct {
+    dwSize: u32,
+    bForm: BOOL,
+    bFirst: BOOL,
+};
+
+pub const CLUS_STORAGE_GET_AVAILABLE_DRIVELETTERS = extern struct {
+    AvailDrivelettersMask: u32,
+};
+
+pub const CLUS_STORAGE_REMAP_DRIVELETTER = extern struct {
+    CurrentDriveLetterMask: u32,
+    TargetDriveLetterMask: u32,
+};
+
+pub const CLUS_STORAGE_SET_DRIVELETTER = extern struct {
+    PartitionNumber: u32,
+    DriveLetterMask: u32,
+};
+
+pub const CLUS_WORKER = extern struct {
+    hThread: ?HANDLE,
+    Terminate: BOOL,
+};
+
+const CLSID_ClusApplication_Value = Guid.initString("f2e606e5-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusApplication = &CLSID_ClusApplication_Value;
+
+const CLSID_ClusCryptoKeys_Value = Guid.initString("f2e6072b-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusCryptoKeys = &CLSID_ClusCryptoKeys_Value;
+
+pub const CLUSCTL_AFFINITYRULE_CODES = enum(i32) {
+    GET_COMMON_PROPERTIES = 150995033,
+    GET_RO_COMMON_PROPERTIES = 150995029,
+    SET_COMMON_PROPERTIES = 155189342,
+    GET_ID = 150995001,
+    GET_GROUPNAMES = 151006577,
+};
+pub const CLUSCTL_AFFINITYRULE_GET_COMMON_PROPERTIES = CLUSCTL_AFFINITYRULE_CODES.GET_COMMON_PROPERTIES;
+pub const CLUSCTL_AFFINITYRULE_GET_RO_COMMON_PROPERTIES = CLUSCTL_AFFINITYRULE_CODES.GET_RO_COMMON_PROPERTIES;
+pub const CLUSCTL_AFFINITYRULE_SET_COMMON_PROPERTIES = CLUSCTL_AFFINITYRULE_CODES.SET_COMMON_PROPERTIES;
+pub const CLUSCTL_AFFINITYRULE_GET_ID = CLUSCTL_AFFINITYRULE_CODES.GET_ID;
+pub const CLUSCTL_AFFINITYRULE_GET_GROUPNAMES = CLUSCTL_AFFINITYRULE_CODES.GET_GROUPNAMES;
+
+pub const CLUSCTL_CLUSTER_CODES = enum(i32) {
+    UNKNOWN = 117440512,
+    GET_FQDN = 117440573,
+    SET_STORAGE_CONFIGURATION = 121635554,
+    GET_STORAGE_CONFIGURATION = 117441253,
+    GET_STORAGE_CONFIG_ATTRIBUTES = 117441257,
+    ENUM_COMMON_PROPERTIES = 117440593,
+    GET_RO_COMMON_PROPERTIES = 117440597,
+    GET_COMMON_PROPERTIES = 117440601,
+    SET_COMMON_PROPERTIES = 121634910,
+    VALIDATE_COMMON_PROPERTIES = 117440609,
+    ENUM_PRIVATE_PROPERTIES = 117440633,
+    GET_RO_PRIVATE_PROPERTIES = 117440637,
+    GET_PRIVATE_PROPERTIES = 117440641,
+    SET_PRIVATE_PROPERTIES = 121634950,
+    VALIDATE_PRIVATE_PROPERTIES = 117440649,
+    GET_COMMON_PROPERTY_FMTS = 117440613,
+    GET_PRIVATE_PROPERTY_FMTS = 117440653,
+    CHECK_VOTER_EVICT = 117440581,
+    CHECK_VOTER_DOWN = 117440585,
+    SHUTDOWN = 117440589,
+    BATCH_BLOCK_KEY = 117441086,
+    BATCH_UNBLOCK_KEY = 117441089,
+    GET_SHARED_VOLUME_ID = 117441169,
+    GET_CLUSDB_TIMESTAMP = 117441193,
+    GET_GUM_LOCK_OWNER = 117441209,
+    REMOVE_NODE = 121635566,
+    SET_ACCOUNT_ACCESS = 121635058,
+    CLEAR_NODE_CONNECTION_INFO = 121635590,
+    SET_DNS_DOMAIN = 121635594,
+    SET_CLUSTER_S2D_ENABLED = 121646434,
+    SET_CLUSTER_S2D_CACHE_METADATA_RESERVE_BYTES = 121646446,
+    STORAGE_RENAME_SHARED_VOLUME = 117452246,
+    STORAGE_RENAME_SHARED_VOLUME_GUID = 117452250,
+    RELOAD_AUTOLOGGER_CONFIG = 117452242,
+    ENUM_AFFINITY_RULE_NAMES = 117452253,
+    GET_NODES_IN_FD = 117452257,
+    FORCE_FLUSH_DB = 121646566,
+    GET_CLMUSR_TOKEN = 117440877,
+};
+pub const CLUSCTL_CLUSTER_UNKNOWN = CLUSCTL_CLUSTER_CODES.UNKNOWN;
+pub const CLUSCTL_CLUSTER_GET_FQDN = CLUSCTL_CLUSTER_CODES.GET_FQDN;
+pub const CLUSCTL_CLUSTER_SET_STORAGE_CONFIGURATION = CLUSCTL_CLUSTER_CODES.SET_STORAGE_CONFIGURATION;
+pub const CLUSCTL_CLUSTER_GET_STORAGE_CONFIGURATION = CLUSCTL_CLUSTER_CODES.GET_STORAGE_CONFIGURATION;
+pub const CLUSCTL_CLUSTER_GET_STORAGE_CONFIG_ATTRIBUTES = CLUSCTL_CLUSTER_CODES.GET_STORAGE_CONFIG_ATTRIBUTES;
+pub const CLUSCTL_CLUSTER_ENUM_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.ENUM_COMMON_PROPERTIES;
+pub const CLUSCTL_CLUSTER_GET_RO_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_RO_COMMON_PROPERTIES;
+pub const CLUSCTL_CLUSTER_GET_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_COMMON_PROPERTIES;
+pub const CLUSCTL_CLUSTER_SET_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.SET_COMMON_PROPERTIES;
+pub const CLUSCTL_CLUSTER_VALIDATE_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.VALIDATE_COMMON_PROPERTIES;
+pub const CLUSCTL_CLUSTER_ENUM_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.ENUM_PRIVATE_PROPERTIES;
+pub const CLUSCTL_CLUSTER_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_RO_PRIVATE_PROPERTIES;
+pub const CLUSCTL_CLUSTER_GET_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_CLUSTER_SET_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.SET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_CLUSTER_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.VALIDATE_PRIVATE_PROPERTIES;
+pub const CLUSCTL_CLUSTER_GET_COMMON_PROPERTY_FMTS = CLUSCTL_CLUSTER_CODES.GET_COMMON_PROPERTY_FMTS;
+pub const CLUSCTL_CLUSTER_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_CLUSTER_CODES.GET_PRIVATE_PROPERTY_FMTS;
+pub const CLUSCTL_CLUSTER_CHECK_VOTER_EVICT = CLUSCTL_CLUSTER_CODES.CHECK_VOTER_EVICT;
+pub const CLUSCTL_CLUSTER_CHECK_VOTER_DOWN = CLUSCTL_CLUSTER_CODES.CHECK_VOTER_DOWN;
+pub const CLUSCTL_CLUSTER_SHUTDOWN = CLUSCTL_CLUSTER_CODES.SHUTDOWN;
+pub const CLUSCTL_CLUSTER_BATCH_BLOCK_KEY = CLUSCTL_CLUSTER_CODES.BATCH_BLOCK_KEY;
+pub const CLUSCTL_CLUSTER_BATCH_UNBLOCK_KEY = CLUSCTL_CLUSTER_CODES.BATCH_UNBLOCK_KEY;
+pub const CLUSCTL_CLUSTER_GET_SHARED_VOLUME_ID = CLUSCTL_CLUSTER_CODES.GET_SHARED_VOLUME_ID;
+pub const CLUSCTL_CLUSTER_GET_CLUSDB_TIMESTAMP = CLUSCTL_CLUSTER_CODES.GET_CLUSDB_TIMESTAMP;
+pub const CLUSCTL_CLUSTER_GET_GUM_LOCK_OWNER = CLUSCTL_CLUSTER_CODES.GET_GUM_LOCK_OWNER;
+pub const CLUSCTL_CLUSTER_REMOVE_NODE = CLUSCTL_CLUSTER_CODES.REMOVE_NODE;
+pub const CLUSCTL_CLUSTER_SET_ACCOUNT_ACCESS = CLUSCTL_CLUSTER_CODES.SET_ACCOUNT_ACCESS;
+pub const CLUSCTL_CLUSTER_CLEAR_NODE_CONNECTION_INFO = CLUSCTL_CLUSTER_CODES.CLEAR_NODE_CONNECTION_INFO;
+pub const CLUSCTL_CLUSTER_SET_DNS_DOMAIN = CLUSCTL_CLUSTER_CODES.SET_DNS_DOMAIN;
+pub const CLUSCTL_CLUSTER_SET_CLUSTER_S2D_ENABLED = CLUSCTL_CLUSTER_CODES.SET_CLUSTER_S2D_ENABLED;
+pub const CLUSCTL_CLUSTER_SET_CLUSTER_S2D_CACHE_METADATA_RESERVE_BYTES = CLUSCTL_CLUSTER_CODES.SET_CLUSTER_S2D_CACHE_METADATA_RESERVE_BYTES;
+pub const CLUSCTL_CLUSTER_STORAGE_RENAME_SHARED_VOLUME = CLUSCTL_CLUSTER_CODES.STORAGE_RENAME_SHARED_VOLUME;
+pub const CLUSCTL_CLUSTER_STORAGE_RENAME_SHARED_VOLUME_GUID = CLUSCTL_CLUSTER_CODES.STORAGE_RENAME_SHARED_VOLUME_GUID;
+pub const CLUSCTL_CLUSTER_RELOAD_AUTOLOGGER_CONFIG = CLUSCTL_CLUSTER_CODES.RELOAD_AUTOLOGGER_CONFIG;
+pub const CLUSCTL_CLUSTER_ENUM_AFFINITY_RULE_NAMES = CLUSCTL_CLUSTER_CODES.ENUM_AFFINITY_RULE_NAMES;
+pub const CLUSCTL_CLUSTER_GET_NODES_IN_FD = CLUSCTL_CLUSTER_CODES.GET_NODES_IN_FD;
+pub const CLUSCTL_CLUSTER_FORCE_FLUSH_DB = CLUSCTL_CLUSTER_CODES.FORCE_FLUSH_DB;
+pub const CLUSCTL_CLUSTER_GET_CLMUSR_TOKEN = CLUSCTL_CLUSTER_CODES.GET_CLMUSR_TOKEN;
+
+pub const CLUSCTL_GROUP_CODES = enum(i32) {
+    UNKNOWN = 50331648,
+    GET_CHARACTERISTICS = 50331653,
+    GET_FLAGS = 50331657,
+    GET_NAME = 50331689,
+    GET_ID = 50331705,
+    ENUM_COMMON_PROPERTIES = 50331729,
+    GET_RO_COMMON_PROPERTIES = 50331733,
+    GET_COMMON_PROPERTIES = 50331737,
+    SET_COMMON_PROPERTIES = 54526046,
+    VALIDATE_COMMON_PROPERTIES = 50331745,
+    ENUM_PRIVATE_PROPERTIES = 50331769,
+    GET_RO_PRIVATE_PROPERTIES = 50331773,
+    GET_PRIVATE_PROPERTIES = 50331777,
+    SET_PRIVATE_PROPERTIES = 54526086,
+    VALIDATE_PRIVATE_PROPERTIES = 50331785,
+    QUERY_DELETE = 50332089,
+    GET_COMMON_PROPERTY_FMTS = 50331749,
+    GET_PRIVATE_PROPERTY_FMTS = 50331789,
+    GET_FAILURE_INFO = 50331673,
+    GET_LAST_MOVE_TIME = 50332377,
+    SET_CCF_FROM_MASTER = 54537606,
+};
+pub const CLUSCTL_GROUP_UNKNOWN = CLUSCTL_GROUP_CODES.UNKNOWN;
+pub const CLUSCTL_GROUP_GET_CHARACTERISTICS = CLUSCTL_GROUP_CODES.GET_CHARACTERISTICS;
+pub const CLUSCTL_GROUP_GET_FLAGS = CLUSCTL_GROUP_CODES.GET_FLAGS;
+pub const CLUSCTL_GROUP_GET_NAME = CLUSCTL_GROUP_CODES.GET_NAME;
+pub const CLUSCTL_GROUP_GET_ID = CLUSCTL_GROUP_CODES.GET_ID;
+pub const CLUSCTL_GROUP_ENUM_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.ENUM_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUP_GET_RO_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.GET_RO_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUP_GET_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.GET_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUP_SET_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.SET_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUP_VALIDATE_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.VALIDATE_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUP_ENUM_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.ENUM_PRIVATE_PROPERTIES;
+pub const CLUSCTL_GROUP_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.GET_RO_PRIVATE_PROPERTIES;
+pub const CLUSCTL_GROUP_GET_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.GET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_GROUP_SET_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.SET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_GROUP_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.VALIDATE_PRIVATE_PROPERTIES;
+pub const CLUSCTL_GROUP_QUERY_DELETE = CLUSCTL_GROUP_CODES.QUERY_DELETE;
+pub const CLUSCTL_GROUP_GET_COMMON_PROPERTY_FMTS = CLUSCTL_GROUP_CODES.GET_COMMON_PROPERTY_FMTS;
+pub const CLUSCTL_GROUP_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_GROUP_CODES.GET_PRIVATE_PROPERTY_FMTS;
+pub const CLUSCTL_GROUP_GET_FAILURE_INFO = CLUSCTL_GROUP_CODES.GET_FAILURE_INFO;
+pub const CLUSCTL_GROUP_GET_LAST_MOVE_TIME = CLUSCTL_GROUP_CODES.GET_LAST_MOVE_TIME;
+pub const CLUSCTL_GROUP_SET_CCF_FROM_MASTER = CLUSCTL_GROUP_CODES.SET_CCF_FROM_MASTER;
+
+pub const CLUSCTL_GROUP_GET_LAST_MOVE_TIME_OUTPUT = extern struct {
+    GetTickCount64: u64,
+    GetSystemTime: SYSTEMTIME,
+    NodeId: u32,
+};
+
+pub const CLUSCTL_GROUPSET_CODES = enum(i32) {
+    SET_GET_COMMON_PROPERTIES = 134217817,
+    SET_GET_RO_COMMON_PROPERTIES = 134217813,
+    SET_SET_COMMON_PROPERTIES = 138412126,
+    SET_GET_GROUPS = 134229361,
+    SET_GET_PROVIDER_GROUPS = 134229365,
+    SET_GET_PROVIDER_GROUPSETS = 134229369,
+    _GET_PROVIDER_GROUPS = 134229373,
+    _GET_PROVIDER_GROUPSETS = 134229377,
+    SET_GET_ID = 134217785,
+};
+pub const CLUSCTL_GROUPSET_GET_COMMON_PROPERTIES = CLUSCTL_GROUPSET_CODES.SET_GET_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUPSET_GET_RO_COMMON_PROPERTIES = CLUSCTL_GROUPSET_CODES.SET_GET_RO_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUPSET_SET_COMMON_PROPERTIES = CLUSCTL_GROUPSET_CODES.SET_SET_COMMON_PROPERTIES;
+pub const CLUSCTL_GROUPSET_GET_GROUPS = CLUSCTL_GROUPSET_CODES.SET_GET_GROUPS;
+pub const CLUSCTL_GROUPSET_GET_PROVIDER_GROUPS = CLUSCTL_GROUPSET_CODES.SET_GET_PROVIDER_GROUPS;
+pub const CLUSCTL_GROUPSET_GET_PROVIDER_GROUPSETS = CLUSCTL_GROUPSET_CODES.SET_GET_PROVIDER_GROUPSETS;
+pub const CLUSCTL_GROUP_GET_PROVIDER_GROUPS = CLUSCTL_GROUPSET_CODES._GET_PROVIDER_GROUPS;
+pub const CLUSCTL_GROUP_GET_PROVIDER_GROUPSETS = CLUSCTL_GROUPSET_CODES._GET_PROVIDER_GROUPSETS;
+pub const CLUSCTL_GROUPSET_GET_ID = CLUSCTL_GROUPSET_CODES.SET_GET_ID;
+
+pub const CLUSCTL_NETINTERFACE_CODES = enum(i32) {
+    UNKNOWN = 100663296,
+    GET_CHARACTERISTICS = 100663301,
+    GET_FLAGS = 100663305,
+    GET_NAME = 100663337,
+    GET_ID = 100663353,
+    GET_NODE = 100663345,
+    GET_NETWORK = 100663349,
+    ENUM_COMMON_PROPERTIES = 100663377,
+    GET_RO_COMMON_PROPERTIES = 100663381,
+    GET_COMMON_PROPERTIES = 100663385,
+    SET_COMMON_PROPERTIES = 104857694,
+    VALIDATE_COMMON_PROPERTIES = 100663393,
+    ENUM_PRIVATE_PROPERTIES = 100663417,
+    GET_RO_PRIVATE_PROPERTIES = 100663421,
+    GET_PRIVATE_PROPERTIES = 100663425,
+    SET_PRIVATE_PROPERTIES = 104857734,
+    VALIDATE_PRIVATE_PROPERTIES = 100663433,
+    GET_COMMON_PROPERTY_FMTS = 100663397,
+    GET_PRIVATE_PROPERTY_FMTS = 100663437,
+};
+pub const CLUSCTL_NETINTERFACE_UNKNOWN = CLUSCTL_NETINTERFACE_CODES.UNKNOWN;
+pub const CLUSCTL_NETINTERFACE_GET_CHARACTERISTICS = CLUSCTL_NETINTERFACE_CODES.GET_CHARACTERISTICS;
+pub const CLUSCTL_NETINTERFACE_GET_FLAGS = CLUSCTL_NETINTERFACE_CODES.GET_FLAGS;
+pub const CLUSCTL_NETINTERFACE_GET_NAME = CLUSCTL_NETINTERFACE_CODES.GET_NAME;
+pub const CLUSCTL_NETINTERFACE_GET_ID = CLUSCTL_NETINTERFACE_CODES.GET_ID;
+pub const CLUSCTL_NETINTERFACE_GET_NODE = CLUSCTL_NETINTERFACE_CODES.GET_NODE;
+pub const CLUSCTL_NETINTERFACE_GET_NETWORK = CLUSCTL_NETINTERFACE_CODES.GET_NETWORK;
+pub const CLUSCTL_NETINTERFACE_ENUM_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.ENUM_COMMON_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_GET_RO_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_RO_COMMON_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_GET_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_COMMON_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_SET_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.SET_COMMON_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_VALIDATE_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.VALIDATE_COMMON_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_ENUM_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.ENUM_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_RO_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_GET_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_SET_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.SET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.VALIDATE_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETINTERFACE_GET_COMMON_PROPERTY_FMTS = CLUSCTL_NETINTERFACE_CODES.GET_COMMON_PROPERTY_FMTS;
+pub const CLUSCTL_NETINTERFACE_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_NETINTERFACE_CODES.GET_PRIVATE_PROPERTY_FMTS;
+
+pub const CLUSCTL_NETWORK_CODES = enum(i32) {
+    UNKNOWN = 83886080,
+    GET_CHARACTERISTICS = 83886085,
+    GET_FLAGS = 83886089,
+    GET_NAME = 83886121,
+    GET_ID = 83886137,
+    ENUM_COMMON_PROPERTIES = 83886161,
+    GET_RO_COMMON_PROPERTIES = 83886165,
+    GET_COMMON_PROPERTIES = 83886169,
+    SET_COMMON_PROPERTIES = 88080478,
+    VALIDATE_COMMON_PROPERTIES = 83886177,
+    ENUM_PRIVATE_PROPERTIES = 83886201,
+    GET_RO_PRIVATE_PROPERTIES = 83886205,
+    GET_PRIVATE_PROPERTIES = 83886209,
+    SET_PRIVATE_PROPERTIES = 88080518,
+    VALIDATE_PRIVATE_PROPERTIES = 83886217,
+    GET_COMMON_PROPERTY_FMTS = 83886181,
+    GET_PRIVATE_PROPERTY_FMTS = 83886221,
+};
+pub const CLUSCTL_NETWORK_UNKNOWN = CLUSCTL_NETWORK_CODES.UNKNOWN;
+pub const CLUSCTL_NETWORK_GET_CHARACTERISTICS = CLUSCTL_NETWORK_CODES.GET_CHARACTERISTICS;
+pub const CLUSCTL_NETWORK_GET_FLAGS = CLUSCTL_NETWORK_CODES.GET_FLAGS;
+pub const CLUSCTL_NETWORK_GET_NAME = CLUSCTL_NETWORK_CODES.GET_NAME;
+pub const CLUSCTL_NETWORK_GET_ID = CLUSCTL_NETWORK_CODES.GET_ID;
+pub const CLUSCTL_NETWORK_ENUM_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.ENUM_COMMON_PROPERTIES;
+pub const CLUSCTL_NETWORK_GET_RO_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_RO_COMMON_PROPERTIES;
+pub const CLUSCTL_NETWORK_GET_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_COMMON_PROPERTIES;
+pub const CLUSCTL_NETWORK_SET_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.SET_COMMON_PROPERTIES;
+pub const CLUSCTL_NETWORK_VALIDATE_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.VALIDATE_COMMON_PROPERTIES;
+pub const CLUSCTL_NETWORK_ENUM_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.ENUM_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETWORK_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_RO_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETWORK_GET_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETWORK_SET_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.SET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETWORK_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.VALIDATE_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NETWORK_GET_COMMON_PROPERTY_FMTS = CLUSCTL_NETWORK_CODES.GET_COMMON_PROPERTY_FMTS;
+pub const CLUSCTL_NETWORK_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_NETWORK_CODES.GET_PRIVATE_PROPERTY_FMTS;
+
+pub const CLUSCTL_NODE_CODES = enum(i32) {
+    UNKNOWN = 67108864,
+    GET_CHARACTERISTICS = 67108869,
+    GET_FLAGS = 67108873,
+    GET_NAME = 67108905,
+    GET_ID = 67108921,
+    ENUM_COMMON_PROPERTIES = 67108945,
+    GET_RO_COMMON_PROPERTIES = 67108949,
+    GET_COMMON_PROPERTIES = 67108953,
+    SET_COMMON_PROPERTIES = 71303262,
+    VALIDATE_COMMON_PROPERTIES = 67108961,
+    ENUM_PRIVATE_PROPERTIES = 67108985,
+    GET_RO_PRIVATE_PROPERTIES = 67108989,
+    GET_PRIVATE_PROPERTIES = 67108993,
+    SET_PRIVATE_PROPERTIES = 71303302,
+    VALIDATE_PRIVATE_PROPERTIES = 67109001,
+    GET_COMMON_PROPERTY_FMTS = 67108965,
+    GET_PRIVATE_PROPERTY_FMTS = 67109005,
+    GET_CLUSTER_SERVICE_ACCOUNT_NAME = 67108929,
+    GET_STUCK_NODES = 67109565,
+    INJECT_GEM_FAULT = 67109569,
+    INTRODUCE_GEM_REPAIR_DELAY = 67109573,
+    SEND_DUMMY_GEM_MESSAGES = 67109577,
+    BLOCK_GEM_SEND_RECV = 67109581,
+    GET_GEMID_VECTOR = 67109585,
+};
+pub const CLUSCTL_NODE_UNKNOWN = CLUSCTL_NODE_CODES.UNKNOWN;
+pub const CLUSCTL_NODE_GET_CHARACTERISTICS = CLUSCTL_NODE_CODES.GET_CHARACTERISTICS;
+pub const CLUSCTL_NODE_GET_FLAGS = CLUSCTL_NODE_CODES.GET_FLAGS;
+pub const CLUSCTL_NODE_GET_NAME = CLUSCTL_NODE_CODES.GET_NAME;
+pub const CLUSCTL_NODE_GET_ID = CLUSCTL_NODE_CODES.GET_ID;
+pub const CLUSCTL_NODE_ENUM_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.ENUM_COMMON_PROPERTIES;
+pub const CLUSCTL_NODE_GET_RO_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.GET_RO_COMMON_PROPERTIES;
+pub const CLUSCTL_NODE_GET_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.GET_COMMON_PROPERTIES;
+pub const CLUSCTL_NODE_SET_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.SET_COMMON_PROPERTIES;
+pub const CLUSCTL_NODE_VALIDATE_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.VALIDATE_COMMON_PROPERTIES;
+pub const CLUSCTL_NODE_ENUM_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.ENUM_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NODE_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.GET_RO_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NODE_GET_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.GET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NODE_SET_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.SET_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NODE_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.VALIDATE_PRIVATE_PROPERTIES;
+pub const CLUSCTL_NODE_GET_COMMON_PROPERTY_FMTS = CLUSCTL_NODE_CODES.GET_COMMON_PROPERTY_FMTS;
+pub const CLUSCTL_NODE_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_NODE_CODES.GET_PRIVATE_PROPERTY_FMTS;
+pub const CLUSCTL_NODE_GET_CLUSTER_SERVICE_ACCOUNT_NAME = CLUSCTL_NODE_CODES.GET_CLUSTER_SERVICE_ACCOUNT_NAME;
+pub const CLUSCTL_NODE_GET_STUCK_NODES = CLUSCTL_NODE_CODES.GET_STUCK_NODES;
+pub const CLUSCTL_NODE_INJECT_GEM_FAULT = CLUSCTL_NODE_CODES.INJECT_GEM_FAULT;
+pub const CLUSCTL_NODE_INTRODUCE_GEM_REPAIR_DELAY = CLUSCTL_NODE_CODES.INTRODUCE_GEM_REPAIR_DELAY;
+pub const CLUSCTL_NODE_SEND_DUMMY_GEM_MESSAGES = CLUSCTL_NODE_CODES.SEND_DUMMY_GEM_MESSAGES;
+pub const CLUSCTL_NODE_BLOCK_GEM_SEND_RECV = CLUSCTL_NODE_CODES.BLOCK_GEM_SEND_RECV;
+pub const CLUSCTL_NODE_GET_GEMID_VECTOR = CLUSCTL_NODE_CODES.GET_GEMID_VECTOR;
+
 pub const CLUSCTL_RESOURCE_CODES = enum(i32) {
     RESOURCE_UNKNOWN = 16777216,
     RESOURCE_GET_CHARACTERISTICS = 16777221,
@@ -3274,6 +2047,12 @@ pub const CLUSCTL_RESOURCE_CHECK_DRAIN_VETO = CLUSCTL_RESOURCE_CODES.RESOURCE_CH
 pub const CLUSCTL_RESOURCE_NOTIFY_DRAIN_COMPLETE = CLUSCTL_RESOURCE_CODES.RESOURCE_NOTIFY_DRAIN_COMPLETE;
 pub const CLUSCTL_RESOURCE_GET_NODES_IN_FD = CLUSCTL_RESOURCE_CODES.RESOURCE_GET_NODES_IN_FD;
 
+pub const CLUSCTL_RESOURCE_STATE_CHANGE_REASON_STRUCT = extern struct {
+    dwSize: u32,
+    dwVersion: u32,
+    eReason: CLUSTER_RESOURCE_STATE_CHANGE_REASON,
+};
+
 pub const CLUSCTL_RESOURCE_TYPE_CODES = enum(i32) {
     RESOURCE_TYPE_UNKNOWN = 33554432,
     RESOURCE_TYPE_GET_CHARACTERISTICS = 33554437,
@@ -3407,785 +2186,116 @@ pub const CLUSCTL_RESOURCE_TYPE_NOTIFY_MONITOR_SHUTTING_DOWN = CLUSCTL_RESOURCE_
 pub const CLUSCTL_RESOURCE_TYPE_CHECK_DRAIN_VETO = CLUSCTL_RESOURCE_TYPE_CODES.RESOURCE_TYPE_CHECK_DRAIN_VETO;
 pub const CLUSCTL_RESOURCE_TYPE_NOTIFY_DRAIN_COMPLETE = CLUSCTL_RESOURCE_TYPE_CODES.RESOURCE_TYPE_NOTIFY_DRAIN_COMPLETE;
 
-pub const CLUSCTL_GROUP_CODES = enum(i32) {
-    UNKNOWN = 50331648,
-    GET_CHARACTERISTICS = 50331653,
-    GET_FLAGS = 50331657,
-    GET_NAME = 50331689,
-    GET_ID = 50331705,
-    ENUM_COMMON_PROPERTIES = 50331729,
-    GET_RO_COMMON_PROPERTIES = 50331733,
-    GET_COMMON_PROPERTIES = 50331737,
-    SET_COMMON_PROPERTIES = 54526046,
-    VALIDATE_COMMON_PROPERTIES = 50331745,
-    ENUM_PRIVATE_PROPERTIES = 50331769,
-    GET_RO_PRIVATE_PROPERTIES = 50331773,
-    GET_PRIVATE_PROPERTIES = 50331777,
-    SET_PRIVATE_PROPERTIES = 54526086,
-    VALIDATE_PRIVATE_PROPERTIES = 50331785,
-    QUERY_DELETE = 50332089,
-    GET_COMMON_PROPERTY_FMTS = 50331749,
-    GET_PRIVATE_PROPERTY_FMTS = 50331789,
-    GET_FAILURE_INFO = 50331673,
-    GET_LAST_MOVE_TIME = 50332377,
-    SET_CCF_FROM_MASTER = 54537606,
-};
-pub const CLUSCTL_GROUP_UNKNOWN = CLUSCTL_GROUP_CODES.UNKNOWN;
-pub const CLUSCTL_GROUP_GET_CHARACTERISTICS = CLUSCTL_GROUP_CODES.GET_CHARACTERISTICS;
-pub const CLUSCTL_GROUP_GET_FLAGS = CLUSCTL_GROUP_CODES.GET_FLAGS;
-pub const CLUSCTL_GROUP_GET_NAME = CLUSCTL_GROUP_CODES.GET_NAME;
-pub const CLUSCTL_GROUP_GET_ID = CLUSCTL_GROUP_CODES.GET_ID;
-pub const CLUSCTL_GROUP_ENUM_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.ENUM_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUP_GET_RO_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.GET_RO_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUP_GET_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.GET_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUP_SET_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.SET_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUP_VALIDATE_COMMON_PROPERTIES = CLUSCTL_GROUP_CODES.VALIDATE_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUP_ENUM_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.ENUM_PRIVATE_PROPERTIES;
-pub const CLUSCTL_GROUP_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.GET_RO_PRIVATE_PROPERTIES;
-pub const CLUSCTL_GROUP_GET_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.GET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_GROUP_SET_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.SET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_GROUP_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_GROUP_CODES.VALIDATE_PRIVATE_PROPERTIES;
-pub const CLUSCTL_GROUP_QUERY_DELETE = CLUSCTL_GROUP_CODES.QUERY_DELETE;
-pub const CLUSCTL_GROUP_GET_COMMON_PROPERTY_FMTS = CLUSCTL_GROUP_CODES.GET_COMMON_PROPERTY_FMTS;
-pub const CLUSCTL_GROUP_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_GROUP_CODES.GET_PRIVATE_PROPERTY_FMTS;
-pub const CLUSCTL_GROUP_GET_FAILURE_INFO = CLUSCTL_GROUP_CODES.GET_FAILURE_INFO;
-pub const CLUSCTL_GROUP_GET_LAST_MOVE_TIME = CLUSCTL_GROUP_CODES.GET_LAST_MOVE_TIME;
-pub const CLUSCTL_GROUP_SET_CCF_FROM_MASTER = CLUSCTL_GROUP_CODES.SET_CCF_FROM_MASTER;
-
-pub const CLUSCTL_NODE_CODES = enum(i32) {
-    UNKNOWN = 67108864,
-    GET_CHARACTERISTICS = 67108869,
-    GET_FLAGS = 67108873,
-    GET_NAME = 67108905,
-    GET_ID = 67108921,
-    ENUM_COMMON_PROPERTIES = 67108945,
-    GET_RO_COMMON_PROPERTIES = 67108949,
-    GET_COMMON_PROPERTIES = 67108953,
-    SET_COMMON_PROPERTIES = 71303262,
-    VALIDATE_COMMON_PROPERTIES = 67108961,
-    ENUM_PRIVATE_PROPERTIES = 67108985,
-    GET_RO_PRIVATE_PROPERTIES = 67108989,
-    GET_PRIVATE_PROPERTIES = 67108993,
-    SET_PRIVATE_PROPERTIES = 71303302,
-    VALIDATE_PRIVATE_PROPERTIES = 67109001,
-    GET_COMMON_PROPERTY_FMTS = 67108965,
-    GET_PRIVATE_PROPERTY_FMTS = 67109005,
-    GET_CLUSTER_SERVICE_ACCOUNT_NAME = 67108929,
-    GET_STUCK_NODES = 67109565,
-    INJECT_GEM_FAULT = 67109569,
-    INTRODUCE_GEM_REPAIR_DELAY = 67109573,
-    SEND_DUMMY_GEM_MESSAGES = 67109577,
-    BLOCK_GEM_SEND_RECV = 67109581,
-    GET_GEMID_VECTOR = 67109585,
-};
-pub const CLUSCTL_NODE_UNKNOWN = CLUSCTL_NODE_CODES.UNKNOWN;
-pub const CLUSCTL_NODE_GET_CHARACTERISTICS = CLUSCTL_NODE_CODES.GET_CHARACTERISTICS;
-pub const CLUSCTL_NODE_GET_FLAGS = CLUSCTL_NODE_CODES.GET_FLAGS;
-pub const CLUSCTL_NODE_GET_NAME = CLUSCTL_NODE_CODES.GET_NAME;
-pub const CLUSCTL_NODE_GET_ID = CLUSCTL_NODE_CODES.GET_ID;
-pub const CLUSCTL_NODE_ENUM_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.ENUM_COMMON_PROPERTIES;
-pub const CLUSCTL_NODE_GET_RO_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.GET_RO_COMMON_PROPERTIES;
-pub const CLUSCTL_NODE_GET_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.GET_COMMON_PROPERTIES;
-pub const CLUSCTL_NODE_SET_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.SET_COMMON_PROPERTIES;
-pub const CLUSCTL_NODE_VALIDATE_COMMON_PROPERTIES = CLUSCTL_NODE_CODES.VALIDATE_COMMON_PROPERTIES;
-pub const CLUSCTL_NODE_ENUM_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.ENUM_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NODE_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.GET_RO_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NODE_GET_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.GET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NODE_SET_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.SET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NODE_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_NODE_CODES.VALIDATE_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NODE_GET_COMMON_PROPERTY_FMTS = CLUSCTL_NODE_CODES.GET_COMMON_PROPERTY_FMTS;
-pub const CLUSCTL_NODE_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_NODE_CODES.GET_PRIVATE_PROPERTY_FMTS;
-pub const CLUSCTL_NODE_GET_CLUSTER_SERVICE_ACCOUNT_NAME = CLUSCTL_NODE_CODES.GET_CLUSTER_SERVICE_ACCOUNT_NAME;
-pub const CLUSCTL_NODE_GET_STUCK_NODES = CLUSCTL_NODE_CODES.GET_STUCK_NODES;
-pub const CLUSCTL_NODE_INJECT_GEM_FAULT = CLUSCTL_NODE_CODES.INJECT_GEM_FAULT;
-pub const CLUSCTL_NODE_INTRODUCE_GEM_REPAIR_DELAY = CLUSCTL_NODE_CODES.INTRODUCE_GEM_REPAIR_DELAY;
-pub const CLUSCTL_NODE_SEND_DUMMY_GEM_MESSAGES = CLUSCTL_NODE_CODES.SEND_DUMMY_GEM_MESSAGES;
-pub const CLUSCTL_NODE_BLOCK_GEM_SEND_RECV = CLUSCTL_NODE_CODES.BLOCK_GEM_SEND_RECV;
-pub const CLUSCTL_NODE_GET_GEMID_VECTOR = CLUSCTL_NODE_CODES.GET_GEMID_VECTOR;
-
-pub const CLUSCTL_NETWORK_CODES = enum(i32) {
-    UNKNOWN = 83886080,
-    GET_CHARACTERISTICS = 83886085,
-    GET_FLAGS = 83886089,
-    GET_NAME = 83886121,
-    GET_ID = 83886137,
-    ENUM_COMMON_PROPERTIES = 83886161,
-    GET_RO_COMMON_PROPERTIES = 83886165,
-    GET_COMMON_PROPERTIES = 83886169,
-    SET_COMMON_PROPERTIES = 88080478,
-    VALIDATE_COMMON_PROPERTIES = 83886177,
-    ENUM_PRIVATE_PROPERTIES = 83886201,
-    GET_RO_PRIVATE_PROPERTIES = 83886205,
-    GET_PRIVATE_PROPERTIES = 83886209,
-    SET_PRIVATE_PROPERTIES = 88080518,
-    VALIDATE_PRIVATE_PROPERTIES = 83886217,
-    GET_COMMON_PROPERTY_FMTS = 83886181,
-    GET_PRIVATE_PROPERTY_FMTS = 83886221,
-};
-pub const CLUSCTL_NETWORK_UNKNOWN = CLUSCTL_NETWORK_CODES.UNKNOWN;
-pub const CLUSCTL_NETWORK_GET_CHARACTERISTICS = CLUSCTL_NETWORK_CODES.GET_CHARACTERISTICS;
-pub const CLUSCTL_NETWORK_GET_FLAGS = CLUSCTL_NETWORK_CODES.GET_FLAGS;
-pub const CLUSCTL_NETWORK_GET_NAME = CLUSCTL_NETWORK_CODES.GET_NAME;
-pub const CLUSCTL_NETWORK_GET_ID = CLUSCTL_NETWORK_CODES.GET_ID;
-pub const CLUSCTL_NETWORK_ENUM_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.ENUM_COMMON_PROPERTIES;
-pub const CLUSCTL_NETWORK_GET_RO_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_RO_COMMON_PROPERTIES;
-pub const CLUSCTL_NETWORK_GET_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_COMMON_PROPERTIES;
-pub const CLUSCTL_NETWORK_SET_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.SET_COMMON_PROPERTIES;
-pub const CLUSCTL_NETWORK_VALIDATE_COMMON_PROPERTIES = CLUSCTL_NETWORK_CODES.VALIDATE_COMMON_PROPERTIES;
-pub const CLUSCTL_NETWORK_ENUM_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.ENUM_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETWORK_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_RO_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETWORK_GET_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.GET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETWORK_SET_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.SET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETWORK_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_NETWORK_CODES.VALIDATE_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETWORK_GET_COMMON_PROPERTY_FMTS = CLUSCTL_NETWORK_CODES.GET_COMMON_PROPERTY_FMTS;
-pub const CLUSCTL_NETWORK_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_NETWORK_CODES.GET_PRIVATE_PROPERTY_FMTS;
-
-pub const CLUSCTL_NETINTERFACE_CODES = enum(i32) {
-    UNKNOWN = 100663296,
-    GET_CHARACTERISTICS = 100663301,
-    GET_FLAGS = 100663305,
-    GET_NAME = 100663337,
-    GET_ID = 100663353,
-    GET_NODE = 100663345,
-    GET_NETWORK = 100663349,
-    ENUM_COMMON_PROPERTIES = 100663377,
-    GET_RO_COMMON_PROPERTIES = 100663381,
-    GET_COMMON_PROPERTIES = 100663385,
-    SET_COMMON_PROPERTIES = 104857694,
-    VALIDATE_COMMON_PROPERTIES = 100663393,
-    ENUM_PRIVATE_PROPERTIES = 100663417,
-    GET_RO_PRIVATE_PROPERTIES = 100663421,
-    GET_PRIVATE_PROPERTIES = 100663425,
-    SET_PRIVATE_PROPERTIES = 104857734,
-    VALIDATE_PRIVATE_PROPERTIES = 100663433,
-    GET_COMMON_PROPERTY_FMTS = 100663397,
-    GET_PRIVATE_PROPERTY_FMTS = 100663437,
-};
-pub const CLUSCTL_NETINTERFACE_UNKNOWN = CLUSCTL_NETINTERFACE_CODES.UNKNOWN;
-pub const CLUSCTL_NETINTERFACE_GET_CHARACTERISTICS = CLUSCTL_NETINTERFACE_CODES.GET_CHARACTERISTICS;
-pub const CLUSCTL_NETINTERFACE_GET_FLAGS = CLUSCTL_NETINTERFACE_CODES.GET_FLAGS;
-pub const CLUSCTL_NETINTERFACE_GET_NAME = CLUSCTL_NETINTERFACE_CODES.GET_NAME;
-pub const CLUSCTL_NETINTERFACE_GET_ID = CLUSCTL_NETINTERFACE_CODES.GET_ID;
-pub const CLUSCTL_NETINTERFACE_GET_NODE = CLUSCTL_NETINTERFACE_CODES.GET_NODE;
-pub const CLUSCTL_NETINTERFACE_GET_NETWORK = CLUSCTL_NETINTERFACE_CODES.GET_NETWORK;
-pub const CLUSCTL_NETINTERFACE_ENUM_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.ENUM_COMMON_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_GET_RO_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_RO_COMMON_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_GET_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_COMMON_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_SET_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.SET_COMMON_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_VALIDATE_COMMON_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.VALIDATE_COMMON_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_ENUM_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.ENUM_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_RO_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_GET_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.GET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_SET_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.SET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_NETINTERFACE_CODES.VALIDATE_PRIVATE_PROPERTIES;
-pub const CLUSCTL_NETINTERFACE_GET_COMMON_PROPERTY_FMTS = CLUSCTL_NETINTERFACE_CODES.GET_COMMON_PROPERTY_FMTS;
-pub const CLUSCTL_NETINTERFACE_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_NETINTERFACE_CODES.GET_PRIVATE_PROPERTY_FMTS;
-
-pub const CLUSCTL_CLUSTER_CODES = enum(i32) {
-    UNKNOWN = 117440512,
-    GET_FQDN = 117440573,
-    SET_STORAGE_CONFIGURATION = 121635554,
-    GET_STORAGE_CONFIGURATION = 117441253,
-    GET_STORAGE_CONFIG_ATTRIBUTES = 117441257,
-    ENUM_COMMON_PROPERTIES = 117440593,
-    GET_RO_COMMON_PROPERTIES = 117440597,
-    GET_COMMON_PROPERTIES = 117440601,
-    SET_COMMON_PROPERTIES = 121634910,
-    VALIDATE_COMMON_PROPERTIES = 117440609,
-    ENUM_PRIVATE_PROPERTIES = 117440633,
-    GET_RO_PRIVATE_PROPERTIES = 117440637,
-    GET_PRIVATE_PROPERTIES = 117440641,
-    SET_PRIVATE_PROPERTIES = 121634950,
-    VALIDATE_PRIVATE_PROPERTIES = 117440649,
-    GET_COMMON_PROPERTY_FMTS = 117440613,
-    GET_PRIVATE_PROPERTY_FMTS = 117440653,
-    CHECK_VOTER_EVICT = 117440581,
-    CHECK_VOTER_DOWN = 117440585,
-    SHUTDOWN = 117440589,
-    BATCH_BLOCK_KEY = 117441086,
-    BATCH_UNBLOCK_KEY = 117441089,
-    GET_SHARED_VOLUME_ID = 117441169,
-    GET_CLUSDB_TIMESTAMP = 117441193,
-    GET_GUM_LOCK_OWNER = 117441209,
-    REMOVE_NODE = 121635566,
-    SET_ACCOUNT_ACCESS = 121635058,
-    CLEAR_NODE_CONNECTION_INFO = 121635590,
-    SET_DNS_DOMAIN = 121635594,
-    SET_CLUSTER_S2D_ENABLED = 121646434,
-    SET_CLUSTER_S2D_CACHE_METADATA_RESERVE_BYTES = 121646446,
-    STORAGE_RENAME_SHARED_VOLUME = 117452246,
-    STORAGE_RENAME_SHARED_VOLUME_GUID = 117452250,
-    RELOAD_AUTOLOGGER_CONFIG = 117452242,
-    ENUM_AFFINITY_RULE_NAMES = 117452253,
-    GET_NODES_IN_FD = 117452257,
-    FORCE_FLUSH_DB = 121646566,
-    GET_CLMUSR_TOKEN = 117440877,
-};
-pub const CLUSCTL_CLUSTER_UNKNOWN = CLUSCTL_CLUSTER_CODES.UNKNOWN;
-pub const CLUSCTL_CLUSTER_GET_FQDN = CLUSCTL_CLUSTER_CODES.GET_FQDN;
-pub const CLUSCTL_CLUSTER_SET_STORAGE_CONFIGURATION = CLUSCTL_CLUSTER_CODES.SET_STORAGE_CONFIGURATION;
-pub const CLUSCTL_CLUSTER_GET_STORAGE_CONFIGURATION = CLUSCTL_CLUSTER_CODES.GET_STORAGE_CONFIGURATION;
-pub const CLUSCTL_CLUSTER_GET_STORAGE_CONFIG_ATTRIBUTES = CLUSCTL_CLUSTER_CODES.GET_STORAGE_CONFIG_ATTRIBUTES;
-pub const CLUSCTL_CLUSTER_ENUM_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.ENUM_COMMON_PROPERTIES;
-pub const CLUSCTL_CLUSTER_GET_RO_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_RO_COMMON_PROPERTIES;
-pub const CLUSCTL_CLUSTER_GET_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_COMMON_PROPERTIES;
-pub const CLUSCTL_CLUSTER_SET_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.SET_COMMON_PROPERTIES;
-pub const CLUSCTL_CLUSTER_VALIDATE_COMMON_PROPERTIES = CLUSCTL_CLUSTER_CODES.VALIDATE_COMMON_PROPERTIES;
-pub const CLUSCTL_CLUSTER_ENUM_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.ENUM_PRIVATE_PROPERTIES;
-pub const CLUSCTL_CLUSTER_GET_RO_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_RO_PRIVATE_PROPERTIES;
-pub const CLUSCTL_CLUSTER_GET_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.GET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_CLUSTER_SET_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.SET_PRIVATE_PROPERTIES;
-pub const CLUSCTL_CLUSTER_VALIDATE_PRIVATE_PROPERTIES = CLUSCTL_CLUSTER_CODES.VALIDATE_PRIVATE_PROPERTIES;
-pub const CLUSCTL_CLUSTER_GET_COMMON_PROPERTY_FMTS = CLUSCTL_CLUSTER_CODES.GET_COMMON_PROPERTY_FMTS;
-pub const CLUSCTL_CLUSTER_GET_PRIVATE_PROPERTY_FMTS = CLUSCTL_CLUSTER_CODES.GET_PRIVATE_PROPERTY_FMTS;
-pub const CLUSCTL_CLUSTER_CHECK_VOTER_EVICT = CLUSCTL_CLUSTER_CODES.CHECK_VOTER_EVICT;
-pub const CLUSCTL_CLUSTER_CHECK_VOTER_DOWN = CLUSCTL_CLUSTER_CODES.CHECK_VOTER_DOWN;
-pub const CLUSCTL_CLUSTER_SHUTDOWN = CLUSCTL_CLUSTER_CODES.SHUTDOWN;
-pub const CLUSCTL_CLUSTER_BATCH_BLOCK_KEY = CLUSCTL_CLUSTER_CODES.BATCH_BLOCK_KEY;
-pub const CLUSCTL_CLUSTER_BATCH_UNBLOCK_KEY = CLUSCTL_CLUSTER_CODES.BATCH_UNBLOCK_KEY;
-pub const CLUSCTL_CLUSTER_GET_SHARED_VOLUME_ID = CLUSCTL_CLUSTER_CODES.GET_SHARED_VOLUME_ID;
-pub const CLUSCTL_CLUSTER_GET_CLUSDB_TIMESTAMP = CLUSCTL_CLUSTER_CODES.GET_CLUSDB_TIMESTAMP;
-pub const CLUSCTL_CLUSTER_GET_GUM_LOCK_OWNER = CLUSCTL_CLUSTER_CODES.GET_GUM_LOCK_OWNER;
-pub const CLUSCTL_CLUSTER_REMOVE_NODE = CLUSCTL_CLUSTER_CODES.REMOVE_NODE;
-pub const CLUSCTL_CLUSTER_SET_ACCOUNT_ACCESS = CLUSCTL_CLUSTER_CODES.SET_ACCOUNT_ACCESS;
-pub const CLUSCTL_CLUSTER_CLEAR_NODE_CONNECTION_INFO = CLUSCTL_CLUSTER_CODES.CLEAR_NODE_CONNECTION_INFO;
-pub const CLUSCTL_CLUSTER_SET_DNS_DOMAIN = CLUSCTL_CLUSTER_CODES.SET_DNS_DOMAIN;
-pub const CLUSCTL_CLUSTER_SET_CLUSTER_S2D_ENABLED = CLUSCTL_CLUSTER_CODES.SET_CLUSTER_S2D_ENABLED;
-pub const CLUSCTL_CLUSTER_SET_CLUSTER_S2D_CACHE_METADATA_RESERVE_BYTES = CLUSCTL_CLUSTER_CODES.SET_CLUSTER_S2D_CACHE_METADATA_RESERVE_BYTES;
-pub const CLUSCTL_CLUSTER_STORAGE_RENAME_SHARED_VOLUME = CLUSCTL_CLUSTER_CODES.STORAGE_RENAME_SHARED_VOLUME;
-pub const CLUSCTL_CLUSTER_STORAGE_RENAME_SHARED_VOLUME_GUID = CLUSCTL_CLUSTER_CODES.STORAGE_RENAME_SHARED_VOLUME_GUID;
-pub const CLUSCTL_CLUSTER_RELOAD_AUTOLOGGER_CONFIG = CLUSCTL_CLUSTER_CODES.RELOAD_AUTOLOGGER_CONFIG;
-pub const CLUSCTL_CLUSTER_ENUM_AFFINITY_RULE_NAMES = CLUSCTL_CLUSTER_CODES.ENUM_AFFINITY_RULE_NAMES;
-pub const CLUSCTL_CLUSTER_GET_NODES_IN_FD = CLUSCTL_CLUSTER_CODES.GET_NODES_IN_FD;
-pub const CLUSCTL_CLUSTER_FORCE_FLUSH_DB = CLUSCTL_CLUSTER_CODES.FORCE_FLUSH_DB;
-pub const CLUSCTL_CLUSTER_GET_CLMUSR_TOKEN = CLUSCTL_CLUSTER_CODES.GET_CLMUSR_TOKEN;
-
-pub const CLUSCTL_GROUPSET_CODES = enum(i32) {
-    SET_GET_COMMON_PROPERTIES = 134217817,
-    SET_GET_RO_COMMON_PROPERTIES = 134217813,
-    SET_SET_COMMON_PROPERTIES = 138412126,
-    SET_GET_GROUPS = 134229361,
-    SET_GET_PROVIDER_GROUPS = 134229365,
-    SET_GET_PROVIDER_GROUPSETS = 134229369,
-    _GET_PROVIDER_GROUPS = 134229373,
-    _GET_PROVIDER_GROUPSETS = 134229377,
-    SET_GET_ID = 134217785,
-};
-pub const CLUSCTL_GROUPSET_GET_COMMON_PROPERTIES = CLUSCTL_GROUPSET_CODES.SET_GET_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUPSET_GET_RO_COMMON_PROPERTIES = CLUSCTL_GROUPSET_CODES.SET_GET_RO_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUPSET_SET_COMMON_PROPERTIES = CLUSCTL_GROUPSET_CODES.SET_SET_COMMON_PROPERTIES;
-pub const CLUSCTL_GROUPSET_GET_GROUPS = CLUSCTL_GROUPSET_CODES.SET_GET_GROUPS;
-pub const CLUSCTL_GROUPSET_GET_PROVIDER_GROUPS = CLUSCTL_GROUPSET_CODES.SET_GET_PROVIDER_GROUPS;
-pub const CLUSCTL_GROUPSET_GET_PROVIDER_GROUPSETS = CLUSCTL_GROUPSET_CODES.SET_GET_PROVIDER_GROUPSETS;
-pub const CLUSCTL_GROUP_GET_PROVIDER_GROUPS = CLUSCTL_GROUPSET_CODES._GET_PROVIDER_GROUPS;
-pub const CLUSCTL_GROUP_GET_PROVIDER_GROUPSETS = CLUSCTL_GROUPSET_CODES._GET_PROVIDER_GROUPSETS;
-pub const CLUSCTL_GROUPSET_GET_ID = CLUSCTL_GROUPSET_CODES.SET_GET_ID;
-
-pub const CLUSCTL_AFFINITYRULE_CODES = enum(i32) {
-    GET_COMMON_PROPERTIES = 150995033,
-    GET_RO_COMMON_PROPERTIES = 150995029,
-    SET_COMMON_PROPERTIES = 155189342,
-    GET_ID = 150995001,
-    GET_GROUPNAMES = 151006577,
-};
-pub const CLUSCTL_AFFINITYRULE_GET_COMMON_PROPERTIES = CLUSCTL_AFFINITYRULE_CODES.GET_COMMON_PROPERTIES;
-pub const CLUSCTL_AFFINITYRULE_GET_RO_COMMON_PROPERTIES = CLUSCTL_AFFINITYRULE_CODES.GET_RO_COMMON_PROPERTIES;
-pub const CLUSCTL_AFFINITYRULE_SET_COMMON_PROPERTIES = CLUSCTL_AFFINITYRULE_CODES.SET_COMMON_PROPERTIES;
-pub const CLUSCTL_AFFINITYRULE_GET_ID = CLUSCTL_AFFINITYRULE_CODES.GET_ID;
-pub const CLUSCTL_AFFINITYRULE_GET_GROUPNAMES = CLUSCTL_AFFINITYRULE_CODES.GET_GROUPNAMES;
-
-pub const CLUSTER_RESOURCE_CLASS = enum(i32) {
-    UNKNOWN = 0,
-    STORAGE = 1,
-    NETWORK = 2,
-    USER = 32768,
-};
-pub const CLUS_RESCLASS_UNKNOWN = CLUSTER_RESOURCE_CLASS.UNKNOWN;
-pub const CLUS_RESCLASS_STORAGE = CLUSTER_RESOURCE_CLASS.STORAGE;
-pub const CLUS_RESCLASS_NETWORK = CLUSTER_RESOURCE_CLASS.NETWORK;
-pub const CLUS_RESCLASS_USER = CLUSTER_RESOURCE_CLASS.USER;
-
-pub const CLUS_RESSUBCLASS = enum(i32) {
-    D = -2147483648,
-};
-pub const CLUS_RESSUBCLASS_SHARED = CLUS_RESSUBCLASS.D;
-
-pub const CLUS_RESSUBCLASS_STORAGE = enum(i32) {
-    SHARED_BUS = -2147483648,
-    DISK = 1073741824,
-    REPLICATION = 268435456,
-};
-pub const CLUS_RESSUBCLASS_STORAGE_SHARED_BUS = CLUS_RESSUBCLASS_STORAGE.SHARED_BUS;
-pub const CLUS_RESSUBCLASS_STORAGE_DISK = CLUS_RESSUBCLASS_STORAGE.DISK;
-pub const CLUS_RESSUBCLASS_STORAGE_REPLICATION = CLUS_RESSUBCLASS_STORAGE.REPLICATION;
-
-pub const CLUS_RESSUBCLASS_NETWORK = enum(i32) {
-    L = -2147483648,
-};
-pub const CLUS_RESSUBCLASS_NETWORK_INTERNET_PROTOCOL = CLUS_RESSUBCLASS_NETWORK.L;
-
-pub const CLUS_CHARACTERISTICS = enum(i32) {
-    UNKNOWN = 0,
-    QUORUM = 1,
-    DELETE_REQUIRES_ALL_NODES = 2,
-    LOCAL_QUORUM = 4,
-    LOCAL_QUORUM_DEBUG = 8,
-    REQUIRES_STATE_CHANGE_REASON = 16,
-    BROADCAST_DELETE = 32,
-    SINGLE_CLUSTER_INSTANCE = 64,
-    SINGLE_GROUP_INSTANCE = 128,
-    COEXIST_IN_SHARED_VOLUME_GROUP = 256,
-    PLACEMENT_DATA = 512,
-    MONITOR_DETACH = 1024,
-    MONITOR_REATTACH = 2048,
-    OPERATION_CONTEXT = 4096,
-    CLONES = 8192,
-    NOT_PREEMPTABLE = 16384,
-    NOTIFY_NEW_OWNER = 32768,
-    SUPPORTS_UNMONITORED_STATE = 65536,
-    INFRASTRUCTURE = 131072,
-    VETO_DRAIN = 262144,
-    DRAIN_LOCAL_OFFLINE = 524288,
-};
-pub const CLUS_CHAR_UNKNOWN = CLUS_CHARACTERISTICS.UNKNOWN;
-pub const CLUS_CHAR_QUORUM = CLUS_CHARACTERISTICS.QUORUM;
-pub const CLUS_CHAR_DELETE_REQUIRES_ALL_NODES = CLUS_CHARACTERISTICS.DELETE_REQUIRES_ALL_NODES;
-pub const CLUS_CHAR_LOCAL_QUORUM = CLUS_CHARACTERISTICS.LOCAL_QUORUM;
-pub const CLUS_CHAR_LOCAL_QUORUM_DEBUG = CLUS_CHARACTERISTICS.LOCAL_QUORUM_DEBUG;
-pub const CLUS_CHAR_REQUIRES_STATE_CHANGE_REASON = CLUS_CHARACTERISTICS.REQUIRES_STATE_CHANGE_REASON;
-pub const CLUS_CHAR_BROADCAST_DELETE = CLUS_CHARACTERISTICS.BROADCAST_DELETE;
-pub const CLUS_CHAR_SINGLE_CLUSTER_INSTANCE = CLUS_CHARACTERISTICS.SINGLE_CLUSTER_INSTANCE;
-pub const CLUS_CHAR_SINGLE_GROUP_INSTANCE = CLUS_CHARACTERISTICS.SINGLE_GROUP_INSTANCE;
-pub const CLUS_CHAR_COEXIST_IN_SHARED_VOLUME_GROUP = CLUS_CHARACTERISTICS.COEXIST_IN_SHARED_VOLUME_GROUP;
-pub const CLUS_CHAR_PLACEMENT_DATA = CLUS_CHARACTERISTICS.PLACEMENT_DATA;
-pub const CLUS_CHAR_MONITOR_DETACH = CLUS_CHARACTERISTICS.MONITOR_DETACH;
-pub const CLUS_CHAR_MONITOR_REATTACH = CLUS_CHARACTERISTICS.MONITOR_REATTACH;
-pub const CLUS_CHAR_OPERATION_CONTEXT = CLUS_CHARACTERISTICS.OPERATION_CONTEXT;
-pub const CLUS_CHAR_CLONES = CLUS_CHARACTERISTICS.CLONES;
-pub const CLUS_CHAR_NOT_PREEMPTABLE = CLUS_CHARACTERISTICS.NOT_PREEMPTABLE;
-pub const CLUS_CHAR_NOTIFY_NEW_OWNER = CLUS_CHARACTERISTICS.NOTIFY_NEW_OWNER;
-pub const CLUS_CHAR_SUPPORTS_UNMONITORED_STATE = CLUS_CHARACTERISTICS.SUPPORTS_UNMONITORED_STATE;
-pub const CLUS_CHAR_INFRASTRUCTURE = CLUS_CHARACTERISTICS.INFRASTRUCTURE;
-pub const CLUS_CHAR_VETO_DRAIN = CLUS_CHARACTERISTICS.VETO_DRAIN;
-pub const CLUS_CHAR_DRAIN_LOCAL_OFFLINE = CLUS_CHARACTERISTICS.DRAIN_LOCAL_OFFLINE;
-
-pub const CLUS_FLAGS = enum(i32) {
-    E = 1,
-};
-pub const CLUS_FLAG_CORE = CLUS_FLAGS.E;
-
-pub const CLUSPROP_SYNTAX = extern union {
-    dw: u32,
-    Anonymous: extern struct {
-        wFormat: u16,
-        wType: u16,
-    },
+pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_INPUT = extern struct {
+    dwFlags: u32,
+    guidPoolFilter: Guid,
 };
 
-pub const CLUSPROP_VALUE = extern struct {
-    Syntax: CLUSPROP_SYNTAX,
-    cbLength: u32,
+const CLSID_ClusDisk_Value = Guid.initString("f2e60723-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusDisk = &CLSID_ClusDisk_Value;
+
+const CLSID_ClusDisks_Value = Guid.initString("f2e60725-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusDisks = &CLSID_ClusDisks_Value;
+
+pub const CLUSGROUP_TYPE = enum(i32) {
+    CoreCluster = 1,
+    AvailableStorage = 2,
+    Temporary = 3,
+    SharedVolume = 4,
+    StoragePool = 5,
+    FileServer = 100,
+    PrintServer = 101,
+    DhcpServer = 102,
+    Dtc = 103,
+    Msmq = 104,
+    Wins = 105,
+    StandAloneDfs = 106,
+    GenericApplication = 107,
+    GenericService = 108,
+    GenericScript = 109,
+    IScsiNameService = 110,
+    VirtualMachine = 111,
+    TsSessionBroker = 112,
+    IScsiTarget = 113,
+    ScaleoutFileServer = 114,
+    VMReplicaBroker = 115,
+    TaskScheduler = 116,
+    ClusterUpdateAgent = 117,
+    ScaleoutCluster = 118,
+    StorageReplica = 119,
+    VMReplicaCoordinator = 120,
+    CrossClusterOrchestrator = 121,
+    InfrastructureFileServer = 122,
+    CoreSddc = 123,
+    Unknown = 9999,
 };
+pub const ClusGroupTypeCoreCluster = CLUSGROUP_TYPE.CoreCluster;
+pub const ClusGroupTypeAvailableStorage = CLUSGROUP_TYPE.AvailableStorage;
+pub const ClusGroupTypeTemporary = CLUSGROUP_TYPE.Temporary;
+pub const ClusGroupTypeSharedVolume = CLUSGROUP_TYPE.SharedVolume;
+pub const ClusGroupTypeStoragePool = CLUSGROUP_TYPE.StoragePool;
+pub const ClusGroupTypeFileServer = CLUSGROUP_TYPE.FileServer;
+pub const ClusGroupTypePrintServer = CLUSGROUP_TYPE.PrintServer;
+pub const ClusGroupTypeDhcpServer = CLUSGROUP_TYPE.DhcpServer;
+pub const ClusGroupTypeDtc = CLUSGROUP_TYPE.Dtc;
+pub const ClusGroupTypeMsmq = CLUSGROUP_TYPE.Msmq;
+pub const ClusGroupTypeWins = CLUSGROUP_TYPE.Wins;
+pub const ClusGroupTypeStandAloneDfs = CLUSGROUP_TYPE.StandAloneDfs;
+pub const ClusGroupTypeGenericApplication = CLUSGROUP_TYPE.GenericApplication;
+pub const ClusGroupTypeGenericService = CLUSGROUP_TYPE.GenericService;
+pub const ClusGroupTypeGenericScript = CLUSGROUP_TYPE.GenericScript;
+pub const ClusGroupTypeIScsiNameService = CLUSGROUP_TYPE.IScsiNameService;
+pub const ClusGroupTypeVirtualMachine = CLUSGROUP_TYPE.VirtualMachine;
+pub const ClusGroupTypeTsSessionBroker = CLUSGROUP_TYPE.TsSessionBroker;
+pub const ClusGroupTypeIScsiTarget = CLUSGROUP_TYPE.IScsiTarget;
+pub const ClusGroupTypeScaleoutFileServer = CLUSGROUP_TYPE.ScaleoutFileServer;
+pub const ClusGroupTypeVMReplicaBroker = CLUSGROUP_TYPE.VMReplicaBroker;
+pub const ClusGroupTypeTaskScheduler = CLUSGROUP_TYPE.TaskScheduler;
+pub const ClusGroupTypeClusterUpdateAgent = CLUSGROUP_TYPE.ClusterUpdateAgent;
+pub const ClusGroupTypeScaleoutCluster = CLUSGROUP_TYPE.ScaleoutCluster;
+pub const ClusGroupTypeStorageReplica = CLUSGROUP_TYPE.StorageReplica;
+pub const ClusGroupTypeVMReplicaCoordinator = CLUSGROUP_TYPE.VMReplicaCoordinator;
+pub const ClusGroupTypeCrossClusterOrchestrator = CLUSGROUP_TYPE.CrossClusterOrchestrator;
+pub const ClusGroupTypeInfrastructureFileServer = CLUSGROUP_TYPE.InfrastructureFileServer;
+pub const ClusGroupTypeCoreSddc = CLUSGROUP_TYPE.CoreSddc;
+pub const ClusGroupTypeUnknown = CLUSGROUP_TYPE.Unknown;
+
+const CLSID_ClusNetInterface_Value = Guid.initString("f2e606ed-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNetInterface = &CLSID_ClusNetInterface_Value;
+
+const CLSID_ClusNetInterfaces_Value = Guid.initString("f2e606ef-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNetInterfaces = &CLSID_ClusNetInterfaces_Value;
+
+const CLSID_ClusNetwork_Value = Guid.initString("f2e606f1-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNetwork = &CLSID_ClusNetwork_Value;
+
+const CLSID_ClusNetworkNetInterfaces_Value = Guid.initString("f2e606f5-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNetworkNetInterfaces = &CLSID_ClusNetworkNetInterfaces_Value;
+
+const CLSID_ClusNetworks_Value = Guid.initString("f2e606f3-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNetworks = &CLSID_ClusNetworks_Value;
+
+const CLSID_ClusNode_Value = Guid.initString("f2e606f7-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNode = &CLSID_ClusNode_Value;
+
+const CLSID_ClusNodeNetInterfaces_Value = Guid.initString("f2e606fb-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNodeNetInterfaces = &CLSID_ClusNodeNetInterfaces_Value;
+
+const CLSID_ClusNodes_Value = Guid.initString("f2e606f9-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusNodes = &CLSID_ClusNodes_Value;
+
+const CLSID_ClusPartition_Value = Guid.initString("f2e6071f-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusPartition = &CLSID_ClusPartition_Value;
+
+const CLSID_ClusPartitionEx_Value = Guid.initString("53d51d26-b51b-4a79-b2c3-5048d93a98fc");
+pub const CLSID_ClusPartitionEx = &CLSID_ClusPartitionEx_Value;
+
+const CLSID_ClusPartitions_Value = Guid.initString("f2e60721-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusPartitions = &CLSID_ClusPartitions_Value;
 
 pub const CLUSPROP_BINARY = extern struct {
     Base: CLUSPROP_VALUE,
     rgb: [1]u8,
-};
-
-pub const CLUSPROP_WORD = extern struct {
-    Base: CLUSPROP_VALUE,
-    w: u16,
-};
-
-pub const CLUSPROP_DWORD = extern struct {
-    Base: CLUSPROP_VALUE,
-    dw: u32,
-};
-
-pub const CLUSPROP_LONG = extern struct {
-    Base: CLUSPROP_VALUE,
-    l: i32,
-};
-
-pub const CLUSPROP_SZ = extern struct {
-    Base: CLUSPROP_VALUE,
-    sz: [1]u16,
-};
-
-pub const CLUSPROP_ULARGE_INTEGER = extern struct {
-    Base: CLUSPROP_VALUE,
-    li: ULARGE_INTEGER,
-};
-
-pub const CLUSPROP_LARGE_INTEGER = extern struct {
-    Base: CLUSPROP_VALUE,
-    li: LARGE_INTEGER,
-};
-
-pub const CLUSPROP_SECURITY_DESCRIPTOR = extern struct {
-    Base: CLUSPROP_VALUE,
-    Anonymous: extern union {
-        sd: SECURITY_DESCRIPTOR_RELATIVE,
-        rgbSecurityDescriptor: [1]u8,
-    },
-};
-
-pub const CLUSPROP_FILETIME = extern struct {
-    Base: CLUSPROP_VALUE,
-    ft: FILETIME,
-};
-
-pub const CLUS_RESOURCE_CLASS_INFO = extern struct {
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            Anonymous: extern union {
-                dw: u32,
-                rc: CLUSTER_RESOURCE_CLASS,
-            },
-            SubClass: u32,
-        },
-        li: ULARGE_INTEGER,
-    },
-};
-
-pub const CLUSPROP_RESOURCE_CLASS = extern struct {
-    Base: CLUSPROP_VALUE,
-    rc: CLUSTER_RESOURCE_CLASS,
-};
-
-pub const CLUSPROP_REQUIRED_DEPENDENCY = extern union {
-    Value: CLUSPROP_VALUE,
-    ResClass: CLUSPROP_RESOURCE_CLASS,
-    ResTypeName: CLUSPROP_SZ,
-};
-
-pub const CLUSPROP_PIFLAGS = enum(i32) {
-    STICKY = 1,
-    REMOVABLE = 2,
-    USABLE = 4,
-    DEFAULT_QUORUM = 8,
-    USABLE_FOR_CSV = 16,
-    ENCRYPTION_ENABLED = 32,
-    RAW = 64,
-    UNKNOWN = -2147483648,
-};
-pub const CLUSPROP_PIFLAG_STICKY = CLUSPROP_PIFLAGS.STICKY;
-pub const CLUSPROP_PIFLAG_REMOVABLE = CLUSPROP_PIFLAGS.REMOVABLE;
-pub const CLUSPROP_PIFLAG_USABLE = CLUSPROP_PIFLAGS.USABLE;
-pub const CLUSPROP_PIFLAG_DEFAULT_QUORUM = CLUSPROP_PIFLAGS.DEFAULT_QUORUM;
-pub const CLUSPROP_PIFLAG_USABLE_FOR_CSV = CLUSPROP_PIFLAGS.USABLE_FOR_CSV;
-pub const CLUSPROP_PIFLAG_ENCRYPTION_ENABLED = CLUSPROP_PIFLAGS.ENCRYPTION_ENABLED;
-pub const CLUSPROP_PIFLAG_RAW = CLUSPROP_PIFLAGS.RAW;
-pub const CLUSPROP_PIFLAG_UNKNOWN = CLUSPROP_PIFLAGS.UNKNOWN;
-
-pub const CLUS_FORCE_QUORUM_INFO = extern struct {
-    dwSize: u32,
-    dwNodeBitMask: u32,
-    dwMaxNumberofNodes: u32,
-    multiszNodeList: [1]u16,
-};
-
-pub const CLUS_PARTITION_INFO = extern struct {
-    dwFlags: u32,
-    szDeviceName: [260]u16,
-    szVolumeLabel: [260]u16,
-    dwSerialNumber: u32,
-    rgdwMaximumComponentLength: u32,
-    dwFileSystemFlags: u32,
-    szFileSystem: [32]u16,
-};
-
-pub const CLUS_PARTITION_INFO_EX = extern struct {
-    dwFlags: u32,
-    szDeviceName: [260]u16,
-    szVolumeLabel: [260]u16,
-    dwSerialNumber: u32,
-    rgdwMaximumComponentLength: u32,
-    dwFileSystemFlags: u32,
-    szFileSystem: [32]u16,
-    TotalSizeInBytes: ULARGE_INTEGER,
-    FreeSizeInBytes: ULARGE_INTEGER,
-    DeviceNumber: u32,
-    PartitionNumber: u32,
-    VolumeGuid: Guid,
-};
-
-pub const CLUS_PARTITION_INFO_EX2 = extern struct {
-    GptPartitionId: Guid,
-    szPartitionName: [260]u16,
-    EncryptionFlags: u32,
-};
-
-pub const CLUSTER_CSV_VOLUME_FAULT_STATE = enum(i32) {
-    NoFaults = 0,
-    NoDirectIO = 1,
-    NoAccess = 2,
-    InMaintenance = 4,
-    Dismounted = 8,
-};
-pub const VolumeStateNoFaults = CLUSTER_CSV_VOLUME_FAULT_STATE.NoFaults;
-pub const VolumeStateNoDirectIO = CLUSTER_CSV_VOLUME_FAULT_STATE.NoDirectIO;
-pub const VolumeStateNoAccess = CLUSTER_CSV_VOLUME_FAULT_STATE.NoAccess;
-pub const VolumeStateInMaintenance = CLUSTER_CSV_VOLUME_FAULT_STATE.InMaintenance;
-pub const VolumeStateDismounted = CLUSTER_CSV_VOLUME_FAULT_STATE.Dismounted;
-
-pub const CLUSTER_SHARED_VOLUME_BACKUP_STATE = enum(i32) {
-    None = 0,
-    InProgress = 1,
-};
-pub const VolumeBackupNone = CLUSTER_SHARED_VOLUME_BACKUP_STATE.None;
-pub const VolumeBackupInProgress = CLUSTER_SHARED_VOLUME_BACKUP_STATE.InProgress;
-
-pub const CLUS_CSV_VOLUME_INFO = extern struct {
-    VolumeOffset: ULARGE_INTEGER,
-    PartitionNumber: u32,
-    FaultState: CLUSTER_CSV_VOLUME_FAULT_STATE,
-    BackupState: CLUSTER_SHARED_VOLUME_BACKUP_STATE,
-    szVolumeFriendlyName: [260]u16,
-    szVolumeName: [50]u16,
-};
-
-pub const CLUS_CSV_VOLUME_NAME = extern struct {
-    VolumeOffset: LARGE_INTEGER,
-    szVolumeName: [260]u16,
-    szRootPath: [263]u16,
-};
-
-pub const CLUSTER_SHARED_VOLUME_STATE = enum(i32) {
-    Unavailable = 0,
-    Paused = 1,
-    Active = 2,
-    ActiveRedirected = 3,
-    ActiveVolumeRedirected = 4,
-};
-pub const SharedVolumeStateUnavailable = CLUSTER_SHARED_VOLUME_STATE.Unavailable;
-pub const SharedVolumeStatePaused = CLUSTER_SHARED_VOLUME_STATE.Paused;
-pub const SharedVolumeStateActive = CLUSTER_SHARED_VOLUME_STATE.Active;
-pub const SharedVolumeStateActiveRedirected = CLUSTER_SHARED_VOLUME_STATE.ActiveRedirected;
-pub const SharedVolumeStateActiveVolumeRedirected = CLUSTER_SHARED_VOLUME_STATE.ActiveVolumeRedirected;
-
-pub const CLUSTER_SHARED_VOLUME_STATE_INFO = extern struct {
-    szVolumeName: [260]u16,
-    szNodeName: [260]u16,
-    VolumeState: CLUSTER_SHARED_VOLUME_STATE,
-};
-
-pub const CLUSTER_SHARED_VOLUME_STATE_INFO_EX = extern struct {
-    szVolumeName: [260]u16,
-    szNodeName: [260]u16,
-    VolumeState: CLUSTER_SHARED_VOLUME_STATE,
-    szVolumeFriendlyName: [260]u16,
-    RedirectedIOReason: u64,
-    VolumeRedirectedIOReason: u64,
-};
-
-pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE = enum(i32) {
-    None = 0,
-    VolumeOffset = 1,
-    VolumeId = 2,
-    VolumeName = 3,
-    VolumeGuid = 4,
-};
-pub const ClusterSharedVolumeRenameInputTypeNone = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.None;
-pub const ClusterSharedVolumeRenameInputTypeVolumeOffset = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeOffset;
-pub const ClusterSharedVolumeRenameInputTypeVolumeId = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeId;
-pub const ClusterSharedVolumeRenameInputTypeVolumeName = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeName;
-pub const ClusterSharedVolumeRenameInputTypeVolumeGuid = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeGuid;
-
-pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_VOLUME = extern struct {
-    InputType: CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE,
-    Anonymous: extern union {
-        VolumeOffset: u64,
-        VolumeId: [260]u16,
-        VolumeName: [260]u16,
-        VolumeGuid: [50]u16,
-    },
-};
-
-pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_NAME = extern struct {
-    NewVolumeName: [260]u16,
-};
-
-pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_GUID_NAME = extern struct {
-    NewVolumeName: [260]u16,
-    NewVolumeGuid: [50]u16,
-};
-
-pub const CLUS_CHKDSK_INFO = extern struct {
-    PartitionNumber: u32,
-    ChkdskState: u32,
-    FileIdCount: u32,
-    FileIdList: [1]u64,
-};
-
-pub const CLUS_DISK_NUMBER_INFO = extern struct {
-    DiskNumber: u32,
-    BytesPerSector: u32,
-};
-
-pub const CLUS_SHARED_VOLUME_BACKUP_MODE = extern struct {
-    BackupState: CLUSTER_SHARED_VOLUME_BACKUP_STATE,
-    DelayTimerInSecs: u32,
-    VolumeName: [260]u16,
-};
-
-pub const CLUS_FTSET_INFO = extern struct {
-    dwRootSignature: u32,
-    dwFtType: u32,
-};
-
-pub const CLUS_SCSI_ADDRESS = extern struct {
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            PortNumber: u8,
-            PathId: u8,
-            TargetId: u8,
-            Lun: u8,
-        },
-        dw: u32,
-    },
-};
-
-pub const CLUS_NETNAME_VS_TOKEN_INFO = extern struct {
-    ProcessID: u32,
-    DesiredAccess: u32,
-    InheritHandle: BOOL,
-};
-
-pub const CLUS_NETNAME_PWD_INFO = extern struct {
-    Flags: u32,
-    Password: [16]u16,
-    CreatingDC: [258]u16,
-    ObjectGuid: [64]u16,
-};
-
-pub const CLUS_NETNAME_PWD_INFOEX = extern struct {
-    Flags: u32,
-    Password: [128]u16,
-    CreatingDC: [258]u16,
-    ObjectGuid: [64]u16,
-};
-
-pub const CLUS_DNN_LEADER_STATUS = extern struct {
-    IsOnline: BOOL,
-    IsFileServerPresent: BOOL,
-};
-
-pub const CLUS_DNN_SODAFS_CLONE_STATUS = extern struct {
-    NodeId: u32,
-    Status: CLUSTER_RESOURCE_STATE,
-};
-
-pub const CLUS_NETNAME_IP_INFO_ENTRY = extern struct {
-    NodeId: u32,
-    AddressSize: u32,
-    Address: [1]u8,
-};
-
-pub const CLUS_NETNAME_IP_INFO_FOR_MULTICHANNEL = extern struct {
-    szName: [64]u16,
-    NumEntries: u32,
-    IpInfo: [1]CLUS_NETNAME_IP_INFO_ENTRY,
-};
-
-pub const CLUS_MAINTENANCE_MODE_INFO = extern struct {
-    InMaintenance: BOOL,
-};
-
-pub const CLUS_CSV_MAINTENANCE_MODE_INFO = extern struct {
-    InMaintenance: BOOL,
-    VolumeName: [260]u16,
-};
-
-pub const MAINTENANCE_MODE_TYPE_ENUM = enum(i32) {
-    DisableIsAliveCheck = 1,
-    OfflineResource = 2,
-    UnclusterResource = 3,
-};
-pub const MaintenanceModeTypeDisableIsAliveCheck = MAINTENANCE_MODE_TYPE_ENUM.DisableIsAliveCheck;
-pub const MaintenanceModeTypeOfflineResource = MAINTENANCE_MODE_TYPE_ENUM.OfflineResource;
-pub const MaintenanceModeTypeUnclusterResource = MAINTENANCE_MODE_TYPE_ENUM.UnclusterResource;
-
-pub const CLUS_MAINTENANCE_MODE_INFOEX = extern struct {
-    InMaintenance: BOOL,
-    MaintainenceModeType: MAINTENANCE_MODE_TYPE_ENUM,
-    InternalState: CLUSTER_RESOURCE_STATE,
-    Signature: u32,
-};
-
-pub const CLUS_SET_MAINTENANCE_MODE_INPUT = extern struct {
-    InMaintenance: BOOL,
-    ExtraParameterSize: u32,
-    ExtraParameter: [1]u8,
-};
-
-pub const CLUS_STORAGE_SET_DRIVELETTER = extern struct {
-    PartitionNumber: u32,
-    DriveLetterMask: u32,
-};
-
-pub const CLUS_STORAGE_GET_AVAILABLE_DRIVELETTERS = extern struct {
-    AvailDrivelettersMask: u32,
-};
-
-pub const CLUS_STORAGE_REMAP_DRIVELETTER = extern struct {
-    CurrentDriveLetterMask: u32,
-    TargetDriveLetterMask: u32,
-};
-
-pub const CLUS_PROVIDER_STATE_CHANGE_INFO = extern struct {
-    dwSize: u32,
-    resourceState: CLUSTER_RESOURCE_STATE,
-    szProviderId: [1]u16,
-};
-
-pub const CLUS_CREATE_INFRASTRUCTURE_FILESERVER_INPUT = extern struct {
-    FileServerName: [16]u16,
-};
-
-pub const CLUS_CREATE_INFRASTRUCTURE_FILESERVER_OUTPUT = extern struct {
-    FileServerName: [260]u16,
-};
-
-pub const CLUSPROP_LIST = extern struct {
-    nPropertyCount: u32,
-    PropertyName: CLUSPROP_SZ,
-};
-
-pub const CLUSPROP_IPADDR_ENABLENETBIOS = enum(i32) {
-    DISABLED = 0,
-    ENABLED = 1,
-    TRACK_NIC = 2,
-};
-pub const CLUSPROP_IPADDR_ENABLENETBIOS_DISABLED = CLUSPROP_IPADDR_ENABLENETBIOS.DISABLED;
-pub const CLUSPROP_IPADDR_ENABLENETBIOS_ENABLED = CLUSPROP_IPADDR_ENABLENETBIOS.ENABLED;
-pub const CLUSPROP_IPADDR_ENABLENETBIOS_TRACK_NIC = CLUSPROP_IPADDR_ENABLENETBIOS.TRACK_NIC;
-
-pub const FILESHARE_CHANGE_ENUM = enum(i32) {
-    NONE = 0,
-    ADD = 1,
-    DEL = 2,
-    MODIFY = 3,
-};
-pub const FILESHARE_CHANGE_NONE = FILESHARE_CHANGE_ENUM.NONE;
-pub const FILESHARE_CHANGE_ADD = FILESHARE_CHANGE_ENUM.ADD;
-pub const FILESHARE_CHANGE_DEL = FILESHARE_CHANGE_ENUM.DEL;
-pub const FILESHARE_CHANGE_MODIFY = FILESHARE_CHANGE_ENUM.MODIFY;
-
-pub const FILESHARE_CHANGE = extern struct {
-    Change: FILESHARE_CHANGE_ENUM,
-    ShareName: [84]u16,
-};
-
-pub const FILESHARE_CHANGE_LIST = extern struct {
-    NumEntries: u32,
-    ChangeEntry: [1]FILESHARE_CHANGE,
-};
-
-pub const CLUSCTL_GROUP_GET_LAST_MOVE_TIME_OUTPUT = extern struct {
-    GetTickCount64: u64,
-    GetSystemTime: SYSTEMTIME,
-    NodeId: u32,
 };
 
 pub const CLUSPROP_BUFFER_HELPER = extern union {
@@ -4219,1278 +2329,654 @@ pub const CLUSPROP_BUFFER_HELPER = extern union {
     pFileTimeValue: ?*CLUSPROP_FILETIME,
 };
 
-pub const CLUSTER_RESOURCE_ENUM = enum(i32) {
-    DEPENDS = 1,
-    PROVIDES = 2,
-    NODES = 4,
-    ALL = 7,
+pub const CLUSPROP_DWORD = extern struct {
+    Base: CLUSPROP_VALUE,
+    dw: u32,
 };
-pub const CLUSTER_RESOURCE_ENUM_DEPENDS = CLUSTER_RESOURCE_ENUM.DEPENDS;
-pub const CLUSTER_RESOURCE_ENUM_PROVIDES = CLUSTER_RESOURCE_ENUM.PROVIDES;
-pub const CLUSTER_RESOURCE_ENUM_NODES = CLUSTER_RESOURCE_ENUM.NODES;
-pub const CLUSTER_RESOURCE_ENUM_ALL = CLUSTER_RESOURCE_ENUM.ALL;
 
-pub const CLUSTER_RESOURCE_TYPE_ENUM = enum(i32) {
-    NODES = 1,
-    RESOURCES = 2,
-    ALL = 3,
+pub const CLUSPROP_FILETIME = extern struct {
+    Base: CLUSPROP_VALUE,
+    ft: FILETIME,
 };
-pub const CLUSTER_RESOURCE_TYPE_ENUM_NODES = CLUSTER_RESOURCE_TYPE_ENUM.NODES;
-pub const CLUSTER_RESOURCE_TYPE_ENUM_RESOURCES = CLUSTER_RESOURCE_TYPE_ENUM.RESOURCES;
-pub const CLUSTER_RESOURCE_TYPE_ENUM_ALL = CLUSTER_RESOURCE_TYPE_ENUM.ALL;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = *const fn(
-    hResource: ?*_HRESOURCE,
-    dwType: u32,
-) callconv(.winapi) ?*_HRESENUM;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT = *const fn(
-    hResEnum: ?*_HRESENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = *const fn(
-    hResEnum: ?*_HRESENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM = *const fn(
-    hResEnum: ?*_HRESENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-    lpszDisplayName: ?[*:0]const u16,
-    lpszResourceTypeDll: ?[*:0]const u16,
-    dwLooksAlivePollInterval: u32,
-    dwIsAlivePollInterval: u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-    dwType: u32,
-) callconv(.winapi) ?*_HRESTYPEENUM;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT = *const fn(
-    hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = *const fn(
-    hResTypeEnum: ?*_HRESTYPEENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM = *const fn(
-    hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_NETWORK_ENUM = enum(i32) {
-    NETINTERFACES = 1,
-    pub const ALL = .NETINTERFACES;
+pub const CLUSPROP_FTSET_INFO = extern struct {
+    Base: CLUSPROP_VALUE,
+    Base2: CLUS_FTSET_INFO,
 };
-pub const CLUSTER_NETWORK_ENUM_NETINTERFACES = CLUSTER_NETWORK_ENUM.NETINTERFACES;
-pub const CLUSTER_NETWORK_ENUM_ALL = CLUSTER_NETWORK_ENUM.NETINTERFACES;
 
-pub const CLUSTER_NETWORK_STATE = enum(i32) {
-    StateUnknown = -1,
-    Unavailable = 0,
-    Down = 1,
-    Partitioned = 2,
-    Up = 3,
+pub const CLUSPROP_IPADDR_ENABLENETBIOS = enum(i32) {
+    DISABLED = 0,
+    ENABLED = 1,
+    TRACK_NIC = 2,
 };
-pub const ClusterNetworkStateUnknown = CLUSTER_NETWORK_STATE.StateUnknown;
-pub const ClusterNetworkUnavailable = CLUSTER_NETWORK_STATE.Unavailable;
-pub const ClusterNetworkDown = CLUSTER_NETWORK_STATE.Down;
-pub const ClusterNetworkPartitioned = CLUSTER_NETWORK_STATE.Partitioned;
-pub const ClusterNetworkUp = CLUSTER_NETWORK_STATE.Up;
+pub const CLUSPROP_IPADDR_ENABLENETBIOS_DISABLED = CLUSPROP_IPADDR_ENABLENETBIOS.DISABLED;
+pub const CLUSPROP_IPADDR_ENABLENETBIOS_ENABLED = CLUSPROP_IPADDR_ENABLENETBIOS.ENABLED;
+pub const CLUSPROP_IPADDR_ENABLENETBIOS_TRACK_NIC = CLUSPROP_IPADDR_ENABLENETBIOS.TRACK_NIC;
 
-pub const CLUSTER_NETWORK_ROLE = enum(i32) {
-    None = 0,
-    InternalUse = 1,
-    ClientAccess = 2,
-    InternalAndClient = 3,
+pub const CLUSPROP_LARGE_INTEGER = extern struct {
+    Base: CLUSPROP_VALUE,
+    li: LARGE_INTEGER,
 };
-pub const ClusterNetworkRoleNone = CLUSTER_NETWORK_ROLE.None;
-pub const ClusterNetworkRoleInternalUse = CLUSTER_NETWORK_ROLE.InternalUse;
-pub const ClusterNetworkRoleClientAccess = CLUSTER_NETWORK_ROLE.ClientAccess;
-pub const ClusterNetworkRoleInternalAndClient = CLUSTER_NETWORK_ROLE.InternalAndClient;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETWORK = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNetworkName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HNETWORK;
-
-pub const PCLUSAPI_OPEN_CLUSTER_NETWORK_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNetworkName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HNETWORK;
-
-pub const PCLUSAPI_CLOSE_CLUSTER_NETWORK = *const fn(
-    hNetwork: ?*_HNETWORK,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSAPI_GET_CLUSTER_FROM_NETWORK = *const fn(
-    hNetwork: ?*_HNETWORK,
-) callconv(.winapi) ?*_HCLUSTER;
-
-pub const PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM = *const fn(
-    hNetwork: ?*_HNETWORK,
-    dwType: u32,
-) callconv(.winapi) ?*_HNETWORKENUM;
-
-pub const PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT = *const fn(
-    hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = *const fn(
-    hNetworkEnum: ?*_HNETWORKENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM = *const fn(
-    hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_STATE = *const fn(
-    hNetwork: ?*_HNETWORK,
-) callconv(.winapi) CLUSTER_NETWORK_STATE;
-
-pub const PCLUSAPI_SET_CLUSTER_NETWORK_NAME = *const fn(
-    hNetwork: ?*_HNETWORK,
-    lpszName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_ID = *const fn(
-    hNetwork: ?*_HNETWORK,
-    lpszNetworkId: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = *const fn(
-    hNetwork: ?*_HNETWORK,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_NETINTERFACE_STATE = enum(i32) {
-    StateUnknown = -1,
-    Unavailable = 0,
-    Failed = 1,
-    Unreachable = 2,
-    Up = 3,
+pub const CLUSPROP_LIST = extern struct {
+    nPropertyCount: u32,
+    PropertyName: CLUSPROP_SZ,
 };
-pub const ClusterNetInterfaceStateUnknown = CLUSTER_NETINTERFACE_STATE.StateUnknown;
-pub const ClusterNetInterfaceUnavailable = CLUSTER_NETINTERFACE_STATE.Unavailable;
-pub const ClusterNetInterfaceFailed = CLUSTER_NETINTERFACE_STATE.Failed;
-pub const ClusterNetInterfaceUnreachable = CLUSTER_NETINTERFACE_STATE.Unreachable;
-pub const ClusterNetInterfaceUp = CLUSTER_NETINTERFACE_STATE.Up;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszInterfaceName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HNETINTERFACE;
+pub const CLUSPROP_LONG = extern struct {
+    Base: CLUSPROP_VALUE,
+    l: i32,
+};
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNetInterfaceName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HNETINTERFACE;
+pub const CLUSPROP_PARTITION_INFO = extern struct {
+    Base: CLUSPROP_VALUE,
+    Base2: CLUS_PARTITION_INFO,
+};
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    lpszNetworkName: ?[*:0]const u16,
-    lpszInterfaceName: ?[*:0]u16,
-    lpcchInterfaceName: ?*u32,
-) callconv(.winapi) u32;
+pub const CLUSPROP_PARTITION_INFO_EX = extern struct {
+    Base: CLUSPROP_VALUE,
+    Base2: CLUS_PARTITION_INFO_EX,
+};
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE = *const fn(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(.winapi) BOOL;
+pub const CLUSPROP_PARTITION_INFO_EX2 = extern struct {
+    Base: CLUSPROP_PARTITION_INFO_EX,
+    Base2: CLUS_PARTITION_INFO_EX2,
+};
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE = *const fn(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(.winapi) ?*_HCLUSTER;
+pub const CLUSPROP_PIFLAGS = enum(i32) {
+    STICKY = 1,
+    REMOVABLE = 2,
+    USABLE = 4,
+    DEFAULT_QUORUM = 8,
+    USABLE_FOR_CSV = 16,
+    ENCRYPTION_ENABLED = 32,
+    RAW = 64,
+    UNKNOWN = -2147483648,
+};
+pub const CLUSPROP_PIFLAG_STICKY = CLUSPROP_PIFLAGS.STICKY;
+pub const CLUSPROP_PIFLAG_REMOVABLE = CLUSPROP_PIFLAGS.REMOVABLE;
+pub const CLUSPROP_PIFLAG_USABLE = CLUSPROP_PIFLAGS.USABLE;
+pub const CLUSPROP_PIFLAG_DEFAULT_QUORUM = CLUSPROP_PIFLAGS.DEFAULT_QUORUM;
+pub const CLUSPROP_PIFLAG_USABLE_FOR_CSV = CLUSPROP_PIFLAGS.USABLE_FOR_CSV;
+pub const CLUSPROP_PIFLAG_ENCRYPTION_ENABLED = CLUSPROP_PIFLAGS.ENCRYPTION_ENABLED;
+pub const CLUSPROP_PIFLAG_RAW = CLUSPROP_PIFLAGS.RAW;
+pub const CLUSPROP_PIFLAG_UNKNOWN = CLUSPROP_PIFLAGS.UNKNOWN;
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE = *const fn(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(.winapi) CLUSTER_NETINTERFACE_STATE;
+pub const CLUSPROP_REQUIRED_DEPENDENCY = extern union {
+    Value: CLUSPROP_VALUE,
+    ResClass: CLUSPROP_RESOURCE_CLASS,
+    ResTypeName: CLUSPROP_SZ,
+};
 
-pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = *const fn(
-    hNetInterface: ?*_HNETINTERFACE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
+pub const CLUSPROP_RESOURCE_CLASS = extern struct {
+    Base: CLUSPROP_VALUE,
+    rc: CLUSTER_RESOURCE_CLASS,
+};
 
-pub const PCLUSAPI_GET_CLUSTER_KEY = *const fn(
-    hCluster: ?*_HCLUSTER,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub const CLUSPROP_RESOURCE_CLASS_INFO = extern struct {
+    Base: CLUSPROP_VALUE,
+    Base2: CLUS_RESOURCE_CLASS_INFO,
+};
 
-pub const PCLUSAPI_GET_CLUSTER_GROUP_KEY = *const fn(
-    hGroup: ?*_HGROUP,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub const CLUSPROP_SCSI_ADDRESS = extern struct {
+    Base: CLUSPROP_VALUE,
+    Base2: CLUS_SCSI_ADDRESS,
+};
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_KEY = *const fn(
-    hResource: ?*_HRESOURCE,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub const CLUSPROP_SECURITY_DESCRIPTOR = extern struct {
+    Base: CLUSPROP_VALUE,
+    Anonymous: extern union {
+        sd: SECURITY_DESCRIPTOR_RELATIVE,
+        rgbSecurityDescriptor: [1]u8,
+    },
+};
 
-pub const PCLUSAPI_GET_CLUSTER_NODE_KEY = *const fn(
-    hNode: ?*_HNODE,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub const CLUSPROP_SYNTAX = extern union {
+    dw: u32,
+    Anonymous: extern struct {
+        wFormat: u16,
+        wType: u16,
+    },
+};
 
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_KEY = *const fn(
-    hNetwork: ?*_HNETWORK,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub const CLUSPROP_SZ = extern struct {
+    Base: CLUSPROP_VALUE,
+    sz: [1]u16,
+};
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY = *const fn(
-    hNetInterface: ?*_HNETINTERFACE,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub const CLUSPROP_ULARGE_INTEGER = extern struct {
+    Base: CLUSPROP_VALUE,
+    li: ULARGE_INTEGER,
+};
 
-pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = *const fn(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
+pub const CLUSPROP_VALUE = extern struct {
+    Syntax: CLUSPROP_SYNTAX,
+    cbLength: u32,
+};
+
+pub const CLUSPROP_WORD = extern struct {
+    Base: CLUSPROP_VALUE,
+    w: u16,
+};
+
+const CLSID_ClusProperties_Value = Guid.initString("f2e606ff-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusProperties = &CLSID_ClusProperties_Value;
+
+const CLSID_ClusProperty_Value = Guid.initString("f2e606fd-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusProperty = &CLSID_ClusProperty_Value;
+
+const CLSID_ClusPropertyValue_Value = Guid.initString("f2e60719-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusPropertyValue = &CLSID_ClusPropertyValue_Value;
+
+const CLSID_ClusPropertyValueData_Value = Guid.initString("f2e6071d-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusPropertyValueData = &CLSID_ClusPropertyValueData_Value;
+
+const CLSID_ClusPropertyValues_Value = Guid.initString("f2e6071b-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusPropertyValues = &CLSID_ClusPropertyValues_Value;
+
+const CLSID_ClusRefObject_Value = Guid.initString("f2e60701-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusRefObject = &CLSID_ClusRefObject_Value;
+
+const CLSID_ClusRegistryKeys_Value = Guid.initString("f2e60729-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusRegistryKeys = &CLSID_ClusRegistryKeys_Value;
+
+const CLSID_ClusResDependencies_Value = Guid.initString("f2e60703-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResDependencies = &CLSID_ClusResDependencies_Value;
+
+const CLSID_ClusResDependents_Value = Guid.initString("f2e6072d-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResDependents = &CLSID_ClusResDependents_Value;
+
+const CLSID_ClusResGroup_Value = Guid.initString("f2e60705-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResGroup = &CLSID_ClusResGroup_Value;
+
+const CLSID_ClusResGroupPreferredOwnerNodes_Value = Guid.initString("f2e606e7-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResGroupPreferredOwnerNodes = &CLSID_ClusResGroupPreferredOwnerNodes_Value;
+
+const CLSID_ClusResGroupResources_Value = Guid.initString("f2e606e9-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResGroupResources = &CLSID_ClusResGroupResources_Value;
+
+const CLSID_ClusResGroups_Value = Guid.initString("f2e60707-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResGroups = &CLSID_ClusResGroups_Value;
+
+const CLSID_ClusResource_Value = Guid.initString("f2e60709-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResource = &CLSID_ClusResource_Value;
+
+const CLSID_ClusResources_Value = Guid.initString("f2e6070b-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResources = &CLSID_ClusResources_Value;
+
+const CLSID_ClusResPossibleOwnerNodes_Value = Guid.initString("f2e6070d-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResPossibleOwnerNodes = &CLSID_ClusResPossibleOwnerNodes_Value;
+
+const CLSID_ClusResType_Value = Guid.initString("f2e6070f-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResType = &CLSID_ClusResType_Value;
+
+const CLSID_ClusResTypePossibleOwnerNodes_Value = Guid.initString("f2e60717-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResTypePossibleOwnerNodes = &CLSID_ClusResTypePossibleOwnerNodes_Value;
+
+const CLSID_ClusResTypeResources_Value = Guid.initString("f2e60713-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResTypeResources = &CLSID_ClusResTypeResources_Value;
+
+const CLSID_ClusResTypes_Value = Guid.initString("f2e60711-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusResTypes = &CLSID_ClusResTypes_Value;
+
+const CLSID_ClusScsiAddress_Value = Guid.initString("f2e60727-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusScsiAddress = &CLSID_ClusScsiAddress_Value;
+
+const CLSID_Cluster_Value = Guid.initString("f2e606e3-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_Cluster = &CLSID_Cluster_Value;
+
+pub const CLUSTER_AVAILABILITY_SET_CONFIG = extern struct {
+    dwVersion: u32,
+    dwUpdateDomains: u32,
+    dwFaultDomains: u32,
+    bReserveSpareNode: BOOL,
+};
+
+pub const CLUSTER_BATCH_COMMAND = extern struct {
+    Command: CLUSTER_REG_COMMAND,
     dwOptions: u32,
-    samDesired: u32,
-    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    phkResult: ?*?HKEY,
-    lpdwDisposition: ?*u32,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_OPEN_KEY = *const fn(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-    samDesired: u32,
-    phkResult: ?*?HKEY,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_DELETE_KEY = *const fn(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_CLOSE_KEY = *const fn(
-    hKey: ?HKEY,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = *const fn(
-    hKey: ?HKEY,
-    dwIndex: u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-    lpftLastWriteTime: ?*FILETIME,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = *const fn(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-    dwType: u32,
+    wzName: ?[*:0]const u16,
     lpData: ?*const u8,
     cbData: u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_REG_DELETE_VALUE = *const fn(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = *const fn(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-    lpdwValueType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpData: ?*u8,
-    lpcbData: ?*u32,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = *const fn(
-    hKey: ?HKEY,
-    dwIndex: u32,
-    lpszValueName: [*:0]u16,
-    lpcchValueName: ?*u32,
-    lpdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpData: ?*u8,
-    lpcbData: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = *const fn(
-    hKey: ?HKEY,
-    lpcSubKeys: ?*u32,
-    lpcbMaxSubKeyLen: ?*u32,
-    lpcValues: ?*u32,
-    lpcbMaxValueNameLen: ?*u32,
-    lpcbMaxValueLen: ?*u32,
-    lpcbSecurityDescriptor: ?*u32,
-    lpftLastWriteTime: ?*FILETIME,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = *const fn(
-    hKey: ?HKEY,
-    RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    lpcbSecurityDescriptor: ?*u32,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = *const fn(
-    hKey: ?HKEY,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    flags: u32,
-) callconv(.winapi) i32;
-
-pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = *const fn(
-    hKey: ?HKEY,
-    pHREGBATCH: ?*?*_HREGBATCH,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_BATCH_ADD_COMMAND = *const fn(
-    hRegBatch: ?*_HREGBATCH,
-    dwCommand: CLUSTER_REG_COMMAND,
-    wzName: ?PWSTR,
-    dwOptions: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*const anyopaque,
-    cbData: u32,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_CLOSE_BATCH = *const fn(
-    hRegBatch: ?*_HREGBATCH,
-    bCommit: BOOL,
-    failedCommandNumber: ?*i32,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_BATCH_READ_COMMAND = *const fn(
-    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-    pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION = *const fn(
-    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT = *const fn(
-    hKey: ?HKEY,
-    phBatchNotifyPort: ?*?*_HREGBATCHPORT,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT = *const fn(
-    hBatchNotifyPort: ?*_HREGBATCHPORT,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_GET_BATCH_NOTIFICATION = *const fn(
-    hBatchNotify: ?*_HREGBATCHPORT,
-    phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_CREATE_READ_BATCH = *const fn(
-    hKey: ?HKEY,
-    phRegReadBatch: ?*?*_HREGREADBATCH,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_READ_BATCH_ADD_COMMAND = *const fn(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    wzSubkeyName: ?[*:0]const u16,
-    wzValueName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_CLOSE_READ_BATCH = *const fn(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_CLOSE_READ_BATCH_EX = *const fn(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    flags: u32,
-    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND = *const fn(
-    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-    pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_REG_CLOSE_READ_BATCH_REPLY = *const fn(
-    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-) callconv(.winapi) i32;
-
-pub const PCLUSTER_SET_ACCOUNT_ACCESS = *const fn(
-    hCluster: ?*_HCLUSTER,
-    szAccountSID: ?[*:0]const u16,
-    dwAccess: u32,
-    dwControlType: u32,
-) callconv(.winapi) u32;
-
-pub const CLUSTER_SETUP_PHASE = enum(i32) {
-    Initialize = 1,
-    ValidateNodeState = 100,
-    ValidateNetft = 102,
-    ValidateClusDisk = 103,
-    ConfigureClusSvc = 104,
-    StartingClusSvc = 105,
-    QueryClusterNameAccount = 106,
-    ValidateClusterNameAccount = 107,
-    CreateClusterAccount = 108,
-    ConfigureClusterAccount = 109,
-    FormingCluster = 200,
-    AddClusterProperties = 201,
-    CreateResourceTypes = 202,
-    CreateGroups = 203,
-    CreateIPAddressResources = 204,
-    CreateNetworkName = 205,
-    ClusterGroupOnline = 206,
-    GettingCurrentMembership = 300,
-    AddNodeToCluster = 301,
-    NodeUp = 302,
-    MoveGroup = 400,
-    DeleteGroup = 401,
-    CleanupCOs = 402,
-    OfflineGroup = 403,
-    EvictNode = 404,
-    CleanupNode = 405,
-    CoreGroupCleanup = 406,
-    FailureCleanup = 999,
 };
-pub const ClusterSetupPhaseInitialize = CLUSTER_SETUP_PHASE.Initialize;
-pub const ClusterSetupPhaseValidateNodeState = CLUSTER_SETUP_PHASE.ValidateNodeState;
-pub const ClusterSetupPhaseValidateNetft = CLUSTER_SETUP_PHASE.ValidateNetft;
-pub const ClusterSetupPhaseValidateClusDisk = CLUSTER_SETUP_PHASE.ValidateClusDisk;
-pub const ClusterSetupPhaseConfigureClusSvc = CLUSTER_SETUP_PHASE.ConfigureClusSvc;
-pub const ClusterSetupPhaseStartingClusSvc = CLUSTER_SETUP_PHASE.StartingClusSvc;
-pub const ClusterSetupPhaseQueryClusterNameAccount = CLUSTER_SETUP_PHASE.QueryClusterNameAccount;
-pub const ClusterSetupPhaseValidateClusterNameAccount = CLUSTER_SETUP_PHASE.ValidateClusterNameAccount;
-pub const ClusterSetupPhaseCreateClusterAccount = CLUSTER_SETUP_PHASE.CreateClusterAccount;
-pub const ClusterSetupPhaseConfigureClusterAccount = CLUSTER_SETUP_PHASE.ConfigureClusterAccount;
-pub const ClusterSetupPhaseFormingCluster = CLUSTER_SETUP_PHASE.FormingCluster;
-pub const ClusterSetupPhaseAddClusterProperties = CLUSTER_SETUP_PHASE.AddClusterProperties;
-pub const ClusterSetupPhaseCreateResourceTypes = CLUSTER_SETUP_PHASE.CreateResourceTypes;
-pub const ClusterSetupPhaseCreateGroups = CLUSTER_SETUP_PHASE.CreateGroups;
-pub const ClusterSetupPhaseCreateIPAddressResources = CLUSTER_SETUP_PHASE.CreateIPAddressResources;
-pub const ClusterSetupPhaseCreateNetworkName = CLUSTER_SETUP_PHASE.CreateNetworkName;
-pub const ClusterSetupPhaseClusterGroupOnline = CLUSTER_SETUP_PHASE.ClusterGroupOnline;
-pub const ClusterSetupPhaseGettingCurrentMembership = CLUSTER_SETUP_PHASE.GettingCurrentMembership;
-pub const ClusterSetupPhaseAddNodeToCluster = CLUSTER_SETUP_PHASE.AddNodeToCluster;
-pub const ClusterSetupPhaseNodeUp = CLUSTER_SETUP_PHASE.NodeUp;
-pub const ClusterSetupPhaseMoveGroup = CLUSTER_SETUP_PHASE.MoveGroup;
-pub const ClusterSetupPhaseDeleteGroup = CLUSTER_SETUP_PHASE.DeleteGroup;
-pub const ClusterSetupPhaseCleanupCOs = CLUSTER_SETUP_PHASE.CleanupCOs;
-pub const ClusterSetupPhaseOfflineGroup = CLUSTER_SETUP_PHASE.OfflineGroup;
-pub const ClusterSetupPhaseEvictNode = CLUSTER_SETUP_PHASE.EvictNode;
-pub const ClusterSetupPhaseCleanupNode = CLUSTER_SETUP_PHASE.CleanupNode;
-pub const ClusterSetupPhaseCoreGroupCleanup = CLUSTER_SETUP_PHASE.CoreGroupCleanup;
-pub const ClusterSetupPhaseFailureCleanup = CLUSTER_SETUP_PHASE.FailureCleanup;
 
-pub const CLUSTER_SETUP_PHASE_TYPE = enum(i32) {
-    Start = 1,
-    Continue = 2,
-    End = 3,
-    Report = 4,
+pub const CLUSTER_CHANGE = enum(i32) {
+    NODE_STATE = 1,
+    NODE_DELETED = 2,
+    NODE_ADDED = 4,
+    NODE_PROPERTY = 8,
+    REGISTRY_NAME = 16,
+    REGISTRY_ATTRIBUTES = 32,
+    REGISTRY_VALUE = 64,
+    REGISTRY_SUBTREE = 128,
+    RESOURCE_STATE = 256,
+    RESOURCE_DELETED = 512,
+    RESOURCE_ADDED = 1024,
+    RESOURCE_PROPERTY = 2048,
+    GROUP_STATE = 4096,
+    GROUP_DELETED = 8192,
+    GROUP_ADDED = 16384,
+    GROUP_PROPERTY = 32768,
+    RESOURCE_TYPE_DELETED = 65536,
+    RESOURCE_TYPE_ADDED = 131072,
+    RESOURCE_TYPE_PROPERTY = 262144,
+    CLUSTER_RECONNECT = 524288,
+    NETWORK_STATE = 1048576,
+    NETWORK_DELETED = 2097152,
+    NETWORK_ADDED = 4194304,
+    NETWORK_PROPERTY = 8388608,
+    NETINTERFACE_STATE = 16777216,
+    NETINTERFACE_DELETED = 33554432,
+    NETINTERFACE_ADDED = 67108864,
+    NETINTERFACE_PROPERTY = 134217728,
+    QUORUM_STATE = 268435456,
+    CLUSTER_STATE = 536870912,
+    CLUSTER_PROPERTY = 1073741824,
+    HANDLE_CLOSE = -2147483648,
+    ALL = -1,
 };
-pub const ClusterSetupPhaseStart = CLUSTER_SETUP_PHASE_TYPE.Start;
-pub const ClusterSetupPhaseContinue = CLUSTER_SETUP_PHASE_TYPE.Continue;
-pub const ClusterSetupPhaseEnd = CLUSTER_SETUP_PHASE_TYPE.End;
-pub const ClusterSetupPhaseReport = CLUSTER_SETUP_PHASE_TYPE.Report;
+pub const CLUSTER_CHANGE_NODE_STATE = CLUSTER_CHANGE.NODE_STATE;
+pub const CLUSTER_CHANGE_NODE_DELETED = CLUSTER_CHANGE.NODE_DELETED;
+pub const CLUSTER_CHANGE_NODE_ADDED = CLUSTER_CHANGE.NODE_ADDED;
+pub const CLUSTER_CHANGE_NODE_PROPERTY = CLUSTER_CHANGE.NODE_PROPERTY;
+pub const CLUSTER_CHANGE_REGISTRY_NAME = CLUSTER_CHANGE.REGISTRY_NAME;
+pub const CLUSTER_CHANGE_REGISTRY_ATTRIBUTES = CLUSTER_CHANGE.REGISTRY_ATTRIBUTES;
+pub const CLUSTER_CHANGE_REGISTRY_VALUE = CLUSTER_CHANGE.REGISTRY_VALUE;
+pub const CLUSTER_CHANGE_REGISTRY_SUBTREE = CLUSTER_CHANGE.REGISTRY_SUBTREE;
+pub const CLUSTER_CHANGE_RESOURCE_STATE = CLUSTER_CHANGE.RESOURCE_STATE;
+pub const CLUSTER_CHANGE_RESOURCE_DELETED = CLUSTER_CHANGE.RESOURCE_DELETED;
+pub const CLUSTER_CHANGE_RESOURCE_ADDED = CLUSTER_CHANGE.RESOURCE_ADDED;
+pub const CLUSTER_CHANGE_RESOURCE_PROPERTY = CLUSTER_CHANGE.RESOURCE_PROPERTY;
+pub const CLUSTER_CHANGE_GROUP_STATE = CLUSTER_CHANGE.GROUP_STATE;
+pub const CLUSTER_CHANGE_GROUP_DELETED = CLUSTER_CHANGE.GROUP_DELETED;
+pub const CLUSTER_CHANGE_GROUP_ADDED = CLUSTER_CHANGE.GROUP_ADDED;
+pub const CLUSTER_CHANGE_GROUP_PROPERTY = CLUSTER_CHANGE.GROUP_PROPERTY;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_DELETED = CLUSTER_CHANGE.RESOURCE_TYPE_DELETED;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_ADDED = CLUSTER_CHANGE.RESOURCE_TYPE_ADDED;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_PROPERTY = CLUSTER_CHANGE.RESOURCE_TYPE_PROPERTY;
+pub const CLUSTER_CHANGE_CLUSTER_RECONNECT = CLUSTER_CHANGE.CLUSTER_RECONNECT;
+pub const CLUSTER_CHANGE_NETWORK_STATE = CLUSTER_CHANGE.NETWORK_STATE;
+pub const CLUSTER_CHANGE_NETWORK_DELETED = CLUSTER_CHANGE.NETWORK_DELETED;
+pub const CLUSTER_CHANGE_NETWORK_ADDED = CLUSTER_CHANGE.NETWORK_ADDED;
+pub const CLUSTER_CHANGE_NETWORK_PROPERTY = CLUSTER_CHANGE.NETWORK_PROPERTY;
+pub const CLUSTER_CHANGE_NETINTERFACE_STATE = CLUSTER_CHANGE.NETINTERFACE_STATE;
+pub const CLUSTER_CHANGE_NETINTERFACE_DELETED = CLUSTER_CHANGE.NETINTERFACE_DELETED;
+pub const CLUSTER_CHANGE_NETINTERFACE_ADDED = CLUSTER_CHANGE.NETINTERFACE_ADDED;
+pub const CLUSTER_CHANGE_NETINTERFACE_PROPERTY = CLUSTER_CHANGE.NETINTERFACE_PROPERTY;
+pub const CLUSTER_CHANGE_QUORUM_STATE = CLUSTER_CHANGE.QUORUM_STATE;
+pub const CLUSTER_CHANGE_CLUSTER_STATE = CLUSTER_CHANGE.CLUSTER_STATE;
+pub const CLUSTER_CHANGE_CLUSTER_PROPERTY = CLUSTER_CHANGE.CLUSTER_PROPERTY;
+pub const CLUSTER_CHANGE_HANDLE_CLOSE = CLUSTER_CHANGE.HANDLE_CLOSE;
+pub const CLUSTER_CHANGE_ALL = CLUSTER_CHANGE.ALL;
 
-pub const CLUSTER_SETUP_PHASE_SEVERITY = enum(i32) {
-    Informational = 1,
-    Warning = 2,
-    Fatal = 3,
+pub const CLUSTER_CHANGE_CLUSTER_V2 = enum(i32) {
+    RECONNECT_V2 = 1,
+    STATE_V2 = 2,
+    GROUP_ADDED_V2 = 4,
+    HANDLE_CLOSE_V2 = 8,
+    NETWORK_ADDED_V2 = 16,
+    NODE_ADDED_V2 = 32,
+    RESOURCE_TYPE_ADDED_V2 = 64,
+    COMMON_PROPERTY_V2 = 128,
+    PRIVATE_PROPERTY_V2 = 256,
+    LOST_NOTIFICATIONS_V2 = 512,
+    RENAME_V2 = 1024,
+    MEMBERSHIP_V2 = 2048,
+    UPGRADED_V2 = 4096,
+    ALL_V2 = 8191,
 };
-pub const ClusterSetupPhaseInformational = CLUSTER_SETUP_PHASE_SEVERITY.Informational;
-pub const ClusterSetupPhaseWarning = CLUSTER_SETUP_PHASE_SEVERITY.Warning;
-pub const ClusterSetupPhaseFatal = CLUSTER_SETUP_PHASE_SEVERITY.Fatal;
+pub const CLUSTER_CHANGE_CLUSTER_RECONNECT_V2 = CLUSTER_CHANGE_CLUSTER_V2.RECONNECT_V2;
+pub const CLUSTER_CHANGE_CLUSTER_STATE_V2 = CLUSTER_CHANGE_CLUSTER_V2.STATE_V2;
+pub const CLUSTER_CHANGE_CLUSTER_GROUP_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.GROUP_ADDED_V2;
+pub const CLUSTER_CHANGE_CLUSTER_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_CLUSTER_V2.HANDLE_CLOSE_V2;
+pub const CLUSTER_CHANGE_CLUSTER_NETWORK_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.NETWORK_ADDED_V2;
+pub const CLUSTER_CHANGE_CLUSTER_NODE_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.NODE_ADDED_V2;
+pub const CLUSTER_CHANGE_CLUSTER_RESOURCE_TYPE_ADDED_V2 = CLUSTER_CHANGE_CLUSTER_V2.RESOURCE_TYPE_ADDED_V2;
+pub const CLUSTER_CHANGE_CLUSTER_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_CLUSTER_V2.COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_CLUSTER_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_CLUSTER_V2.PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_CLUSTER_LOST_NOTIFICATIONS_V2 = CLUSTER_CHANGE_CLUSTER_V2.LOST_NOTIFICATIONS_V2;
+pub const CLUSTER_CHANGE_CLUSTER_RENAME_V2 = CLUSTER_CHANGE_CLUSTER_V2.RENAME_V2;
+pub const CLUSTER_CHANGE_CLUSTER_MEMBERSHIP_V2 = CLUSTER_CHANGE_CLUSTER_V2.MEMBERSHIP_V2;
+pub const CLUSTER_CHANGE_CLUSTER_UPGRADED_V2 = CLUSTER_CHANGE_CLUSTER_V2.UPGRADED_V2;
+pub const CLUSTER_CHANGE_CLUSTER_ALL_V2 = CLUSTER_CHANGE_CLUSTER_V2.ALL_V2;
 
-pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = *const fn(
-    pvCallbackArg: ?*anyopaque,
-    eSetupPhase: CLUSTER_SETUP_PHASE,
-    ePhaseType: CLUSTER_SETUP_PHASE_TYPE,
-    ePhaseSeverity: CLUSTER_SETUP_PHASE_SEVERITY,
-    dwPercentComplete: u32,
-    lpszObjectName: ?[*:0]const u16,
-    dwStatus: u32,
-) callconv(.winapi) BOOL;
+pub const CLUSTER_CHANGE_GROUP_V2 = enum(i32) {
+    DELETED_V2 = 1,
+    COMMON_PROPERTY_V2 = 2,
+    PRIVATE_PROPERTY_V2 = 4,
+    STATE_V2 = 8,
+    OWNER_NODE_V2 = 16,
+    PREFERRED_OWNERS_V2 = 32,
+    RESOURCE_ADDED_V2 = 64,
+    RESOURCE_GAINED_V2 = 128,
+    RESOURCE_LOST_V2 = 256,
+    HANDLE_CLOSE_V2 = 512,
+    ALL_V2 = 1023,
+};
+pub const CLUSTER_CHANGE_GROUP_DELETED_V2 = CLUSTER_CHANGE_GROUP_V2.DELETED_V2;
+pub const CLUSTER_CHANGE_GROUP_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_GROUP_V2.COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_GROUP_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_GROUP_V2.PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_GROUP_STATE_V2 = CLUSTER_CHANGE_GROUP_V2.STATE_V2;
+pub const CLUSTER_CHANGE_GROUP_OWNER_NODE_V2 = CLUSTER_CHANGE_GROUP_V2.OWNER_NODE_V2;
+pub const CLUSTER_CHANGE_GROUP_PREFERRED_OWNERS_V2 = CLUSTER_CHANGE_GROUP_V2.PREFERRED_OWNERS_V2;
+pub const CLUSTER_CHANGE_GROUP_RESOURCE_ADDED_V2 = CLUSTER_CHANGE_GROUP_V2.RESOURCE_ADDED_V2;
+pub const CLUSTER_CHANGE_GROUP_RESOURCE_GAINED_V2 = CLUSTER_CHANGE_GROUP_V2.RESOURCE_GAINED_V2;
+pub const CLUSTER_CHANGE_GROUP_RESOURCE_LOST_V2 = CLUSTER_CHANGE_GROUP_V2.RESOURCE_LOST_V2;
+pub const CLUSTER_CHANGE_GROUP_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_GROUP_V2.HANDLE_CLOSE_V2;
+pub const CLUSTER_CHANGE_GROUP_ALL_V2 = CLUSTER_CHANGE_GROUP_V2.ALL_V2;
 
-pub const PCLUSAPI_CREATE_CLUSTER = *const fn(
-    pConfig: ?*CREATE_CLUSTER_CONFIG,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) ?*_HCLUSTER;
+pub const CLUSTER_CHANGE_GROUPSET_V2 = enum(i32) {
+    DELETED_v2 = 1,
+    COMMON_PROPERTY_V2 = 2,
+    PRIVATE_PROPERTY_V2 = 4,
+    STATE_V2 = 8,
+    GROUP_ADDED = 16,
+    GROUP_REMOVED = 32,
+    DEPENDENCIES_V2 = 64,
+    DEPENDENTS_V2 = 128,
+    HANDLE_CLOSE_v2 = 256,
+    ALL_V2 = 511,
+};
+pub const CLUSTER_CHANGE_GROUPSET_DELETED_v2 = CLUSTER_CHANGE_GROUPSET_V2.DELETED_v2;
+pub const CLUSTER_CHANGE_GROUPSET_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_GROUPSET_V2.COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_GROUPSET_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_GROUPSET_V2.PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_GROUPSET_STATE_V2 = CLUSTER_CHANGE_GROUPSET_V2.STATE_V2;
+pub const CLUSTER_CHANGE_GROUPSET_GROUP_ADDED = CLUSTER_CHANGE_GROUPSET_V2.GROUP_ADDED;
+pub const CLUSTER_CHANGE_GROUPSET_GROUP_REMOVED = CLUSTER_CHANGE_GROUPSET_V2.GROUP_REMOVED;
+pub const CLUSTER_CHANGE_GROUPSET_DEPENDENCIES_V2 = CLUSTER_CHANGE_GROUPSET_V2.DEPENDENCIES_V2;
+pub const CLUSTER_CHANGE_GROUPSET_DEPENDENTS_V2 = CLUSTER_CHANGE_GROUPSET_V2.DEPENDENTS_V2;
+pub const CLUSTER_CHANGE_GROUPSET_HANDLE_CLOSE_v2 = CLUSTER_CHANGE_GROUPSET_V2.HANDLE_CLOSE_v2;
+pub const CLUSTER_CHANGE_GROUPSET_ALL_V2 = CLUSTER_CHANGE_GROUPSET_V2.ALL_V2;
 
-pub const PCLUSAPI_CREATE_CLUSTER_CNOLESS = *const fn(
-    pConfig: ?*CREATE_CLUSTER_CONFIG,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) ?*_HCLUSTER;
+pub const CLUSTER_CHANGE_NETINTERFACE_V2 = enum(i32) {
+    DELETED_V2 = 1,
+    COMMON_PROPERTY_V2 = 2,
+    PRIVATE_PROPERTY_V2 = 4,
+    STATE_V2 = 8,
+    HANDLE_CLOSE_V2 = 16,
+    ALL_V2 = 31,
+};
+pub const CLUSTER_CHANGE_NETINTERFACE_DELETED_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.DELETED_V2;
+pub const CLUSTER_CHANGE_NETINTERFACE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_NETINTERFACE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_NETINTERFACE_STATE_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.STATE_V2;
+pub const CLUSTER_CHANGE_NETINTERFACE_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.HANDLE_CLOSE_V2;
+pub const CLUSTER_CHANGE_NETINTERFACE_ALL_V2 = CLUSTER_CHANGE_NETINTERFACE_V2.ALL_V2;
 
-pub const PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT = *const fn(
-    hCluster: ?*_HCLUSTER,
-    pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_CHANGE_NETWORK_V2 = enum(i32) {
+    DELETED_V2 = 1,
+    COMMON_PROPERTY_V2 = 2,
+    PRIVATE_PROPERTY_V2 = 4,
+    STATE_V2 = 8,
+    HANDLE_CLOSE_V2 = 16,
+    ALL_V2 = 31,
+};
+pub const CLUSTER_CHANGE_NETWORK_DELETED_V2 = CLUSTER_CHANGE_NETWORK_V2.DELETED_V2;
+pub const CLUSTER_CHANGE_NETWORK_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_NETWORK_V2.COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_NETWORK_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_NETWORK_V2.PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_NETWORK_STATE_V2 = CLUSTER_CHANGE_NETWORK_V2.STATE_V2;
+pub const CLUSTER_CHANGE_NETWORK_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_NETWORK_V2.HANDLE_CLOSE_V2;
+pub const CLUSTER_CHANGE_NETWORK_ALL_V2 = CLUSTER_CHANGE_NETWORK_V2.ALL_V2;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT = *const fn(
-    hCluster: ?*_HCLUSTER,
-) callconv(.winapi) u32;
+pub const CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2 = enum(i32) {
+    NODE_PREPARE = 1,
+    NODE_COMMIT = 2,
+    NODE_POSTCOMMIT = 4,
+    ALL = 7,
+};
+pub const CLUSTER_CHANGE_UPGRADE_NODE_PREPARE = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.NODE_PREPARE;
+pub const CLUSTER_CHANGE_UPGRADE_NODE_COMMIT = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.NODE_COMMIT;
+pub const CLUSTER_CHANGE_UPGRADE_NODE_POSTCOMMIT = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.NODE_POSTCOMMIT;
+pub const CLUSTER_CHANGE_UPGRADE_ALL = CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2.ALL;
 
-pub const PCLUSAPI_ADD_CLUSTER_NODE = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) ?*_HNODE;
+pub const CLUSTER_CHANGE_NODE_V2 = enum(i32) {
+    NETINTERFACE_ADDED_V2 = 1,
+    DELETED_V2 = 2,
+    COMMON_PROPERTY_V2 = 4,
+    PRIVATE_PROPERTY_V2 = 8,
+    STATE_V2 = 16,
+    GROUP_GAINED_V2 = 32,
+    GROUP_LOST_V2 = 64,
+    HANDLE_CLOSE_V2 = 128,
+    ALL_V2 = 255,
+};
+pub const CLUSTER_CHANGE_NODE_NETINTERFACE_ADDED_V2 = CLUSTER_CHANGE_NODE_V2.NETINTERFACE_ADDED_V2;
+pub const CLUSTER_CHANGE_NODE_DELETED_V2 = CLUSTER_CHANGE_NODE_V2.DELETED_V2;
+pub const CLUSTER_CHANGE_NODE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_NODE_V2.COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_NODE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_NODE_V2.PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_NODE_STATE_V2 = CLUSTER_CHANGE_NODE_V2.STATE_V2;
+pub const CLUSTER_CHANGE_NODE_GROUP_GAINED_V2 = CLUSTER_CHANGE_NODE_V2.GROUP_GAINED_V2;
+pub const CLUSTER_CHANGE_NODE_GROUP_LOST_V2 = CLUSTER_CHANGE_NODE_V2.GROUP_LOST_V2;
+pub const CLUSTER_CHANGE_NODE_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_NODE_V2.HANDLE_CLOSE_V2;
+pub const CLUSTER_CHANGE_NODE_ALL_V2 = CLUSTER_CHANGE_NODE_V2.ALL_V2;
 
-pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
+pub const CLUSTER_CHANGE_QUORUM_V2 = enum(i32) {
+    STATE_V2 = 1,
+    pub const ALL_V2 = .STATE_V2;
+};
+pub const CLUSTER_CHANGE_QUORUM_STATE_V2 = CLUSTER_CHANGE_QUORUM_V2.STATE_V2;
+pub const CLUSTER_CHANGE_QUORUM_ALL_V2 = CLUSTER_CHANGE_QUORUM_V2.STATE_V2;
+
+pub const CLUSTER_CHANGE_REGISTRY_V2 = enum(i32) {
+    ATTRIBUTES_V2 = 1,
+    NAME_V2 = 2,
+    SUBTREE_V2 = 4,
+    VALUE_V2 = 8,
+    HANDLE_CLOSE_V2 = 16,
+    ALL_V2 = 31,
+};
+pub const CLUSTER_CHANGE_REGISTRY_ATTRIBUTES_V2 = CLUSTER_CHANGE_REGISTRY_V2.ATTRIBUTES_V2;
+pub const CLUSTER_CHANGE_REGISTRY_NAME_V2 = CLUSTER_CHANGE_REGISTRY_V2.NAME_V2;
+pub const CLUSTER_CHANGE_REGISTRY_SUBTREE_V2 = CLUSTER_CHANGE_REGISTRY_V2.SUBTREE_V2;
+pub const CLUSTER_CHANGE_REGISTRY_VALUE_V2 = CLUSTER_CHANGE_REGISTRY_V2.VALUE_V2;
+pub const CLUSTER_CHANGE_REGISTRY_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_REGISTRY_V2.HANDLE_CLOSE_V2;
+pub const CLUSTER_CHANGE_REGISTRY_ALL_V2 = CLUSTER_CHANGE_REGISTRY_V2.ALL_V2;
+
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_V2 = enum(i32) {
+    CHANGE_RESOURCE_TYPE_DELETED_V2 = 1,
+    CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2 = 2,
+    CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2 = 4,
+    CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2 = 8,
+    CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2 = 16,
+    RESOURCE_TYPE_SPECIFIC_V2 = 32,
+    CHANGE_RESOURCE_TYPE_ALL_V2 = 63,
+};
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_DELETED_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_DELETED_V2;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2;
+pub const CLUSTER_RESOURCE_TYPE_SPECIFIC_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.RESOURCE_TYPE_SPECIFIC_V2;
+pub const CLUSTER_CHANGE_RESOURCE_TYPE_ALL_V2 = CLUSTER_CHANGE_RESOURCE_TYPE_V2.CHANGE_RESOURCE_TYPE_ALL_V2;
+
+pub const CLUSTER_CHANGE_RESOURCE_V2 = enum(i32) {
+    COMMON_PROPERTY_V2 = 1,
+    PRIVATE_PROPERTY_V2 = 2,
+    STATE_V2 = 4,
+    OWNER_GROUP_V2 = 8,
+    DEPENDENCIES_V2 = 16,
+    DEPENDENTS_V2 = 32,
+    POSSIBLE_OWNERS_V2 = 64,
+    DELETED_V2 = 128,
+    DLL_UPGRADED_V2 = 256,
+    HANDLE_CLOSE_V2 = 512,
+    TERMINAL_STATE_V2 = 1024,
+    ALL_V2 = 2047,
+};
+pub const CLUSTER_CHANGE_RESOURCE_COMMON_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_V2.COMMON_PROPERTY_V2;
+pub const CLUSTER_CHANGE_RESOURCE_PRIVATE_PROPERTY_V2 = CLUSTER_CHANGE_RESOURCE_V2.PRIVATE_PROPERTY_V2;
+pub const CLUSTER_CHANGE_RESOURCE_STATE_V2 = CLUSTER_CHANGE_RESOURCE_V2.STATE_V2;
+pub const CLUSTER_CHANGE_RESOURCE_OWNER_GROUP_V2 = CLUSTER_CHANGE_RESOURCE_V2.OWNER_GROUP_V2;
+pub const CLUSTER_CHANGE_RESOURCE_DEPENDENCIES_V2 = CLUSTER_CHANGE_RESOURCE_V2.DEPENDENCIES_V2;
+pub const CLUSTER_CHANGE_RESOURCE_DEPENDENTS_V2 = CLUSTER_CHANGE_RESOURCE_V2.DEPENDENTS_V2;
+pub const CLUSTER_CHANGE_RESOURCE_POSSIBLE_OWNERS_V2 = CLUSTER_CHANGE_RESOURCE_V2.POSSIBLE_OWNERS_V2;
+pub const CLUSTER_CHANGE_RESOURCE_DELETED_V2 = CLUSTER_CHANGE_RESOURCE_V2.DELETED_V2;
+pub const CLUSTER_CHANGE_RESOURCE_DLL_UPGRADED_V2 = CLUSTER_CHANGE_RESOURCE_V2.DLL_UPGRADED_V2;
+pub const CLUSTER_CHANGE_RESOURCE_HANDLE_CLOSE_V2 = CLUSTER_CHANGE_RESOURCE_V2.HANDLE_CLOSE_V2;
+pub const CLUSTER_CHANGE_RESOURCE_TERMINAL_STATE_V2 = CLUSTER_CHANGE_RESOURCE_V2.TERMINAL_STATE_V2;
+pub const CLUSTER_CHANGE_RESOURCE_ALL_V2 = CLUSTER_CHANGE_RESOURCE_V2.ALL_V2;
+
+pub const CLUSTER_CHANGE_SHARED_VOLUME_V2 = enum(i32) {
+    STATE_V2 = 1,
+    ADDED_V2 = 2,
+    REMOVED_V2 = 4,
+    ALL_V2 = 7,
+};
+pub const CLUSTER_CHANGE_SHARED_VOLUME_STATE_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.STATE_V2;
+pub const CLUSTER_CHANGE_SHARED_VOLUME_ADDED_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.ADDED_V2;
+pub const CLUSTER_CHANGE_SHARED_VOLUME_REMOVED_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.REMOVED_V2;
+pub const CLUSTER_CHANGE_SHARED_VOLUME_ALL_V2 = CLUSTER_CHANGE_SHARED_VOLUME_V2.ALL_V2;
+
+pub const CLUSTER_CHANGE_SPACEPORT_V2 = enum(i32) {
+    @"2" = 1,
+};
+pub const CLUSTER_CHANGE_SPACEPORT_CUSTOM_PNP_V2 = CLUSTER_CHANGE_SPACEPORT_V2.@"2";
+
+pub const CLUSTER_CLOUD_TYPE = enum(i32) {
+    NONE = 0,
+    AZURE = 1,
+    MIXED = 128,
+    UNKNOWN = -1,
+};
+pub const CLUSTER_CLOUD_TYPE_NONE = CLUSTER_CLOUD_TYPE.NONE;
+pub const CLUSTER_CLOUD_TYPE_AZURE = CLUSTER_CLOUD_TYPE.AZURE;
+pub const CLUSTER_CLOUD_TYPE_MIXED = CLUSTER_CLOUD_TYPE.MIXED;
+pub const CLUSTER_CLOUD_TYPE_UNKNOWN = CLUSTER_CLOUD_TYPE.UNKNOWN;
+
+pub const CLUSTER_CONTROL_OBJECT = enum(i32) {
+    INVALID = 0,
+    RESOURCE = 1,
+    RESOURCE_TYPE = 2,
+    GROUP = 3,
+    NODE = 4,
+    NETWORK = 5,
+    NETINTERFACE = 6,
+    CLUSTER = 7,
+    GROUPSET = 8,
+    AFFINITYRULE = 9,
+    USER = 128,
+};
+pub const CLUS_OBJECT_INVALID = CLUSTER_CONTROL_OBJECT.INVALID;
+pub const CLUS_OBJECT_RESOURCE = CLUSTER_CONTROL_OBJECT.RESOURCE;
+pub const CLUS_OBJECT_RESOURCE_TYPE = CLUSTER_CONTROL_OBJECT.RESOURCE_TYPE;
+pub const CLUS_OBJECT_GROUP = CLUSTER_CONTROL_OBJECT.GROUP;
+pub const CLUS_OBJECT_NODE = CLUSTER_CONTROL_OBJECT.NODE;
+pub const CLUS_OBJECT_NETWORK = CLUSTER_CONTROL_OBJECT.NETWORK;
+pub const CLUS_OBJECT_NETINTERFACE = CLUSTER_CONTROL_OBJECT.NETINTERFACE;
+pub const CLUS_OBJECT_CLUSTER = CLUSTER_CONTROL_OBJECT.CLUSTER;
+pub const CLUS_OBJECT_GROUPSET = CLUSTER_CONTROL_OBJECT.GROUPSET;
+pub const CLUS_OBJECT_AFFINITYRULE = CLUSTER_CONTROL_OBJECT.AFFINITYRULE;
+pub const CLUS_OBJECT_USER = CLUSTER_CONTROL_OBJECT.USER;
+
+pub const CLUSTER_CREATE_GROUP_INFO = extern struct {
+    dwVersion: u32,
+    groupType: CLUSGROUP_TYPE,
+};
+
+pub const CLUSTER_CSV_VOLUME_FAULT_STATE = enum(i32) {
+    NoFaults = 0,
+    NoDirectIO = 1,
+    NoAccess = 2,
+    InMaintenance = 4,
+    Dismounted = 8,
+};
+pub const VolumeStateNoFaults = CLUSTER_CSV_VOLUME_FAULT_STATE.NoFaults;
+pub const VolumeStateNoDirectIO = CLUSTER_CSV_VOLUME_FAULT_STATE.NoDirectIO;
+pub const VolumeStateNoAccess = CLUSTER_CSV_VOLUME_FAULT_STATE.NoAccess;
+pub const VolumeStateInMaintenance = CLUSTER_CSV_VOLUME_FAULT_STATE.InMaintenance;
+pub const VolumeStateDismounted = CLUSTER_CSV_VOLUME_FAULT_STATE.Dismounted;
+
+pub const CLUSTER_ENUM = enum(i32) {
+    NODE = 1,
+    RESTYPE = 2,
+    RESOURCE = 4,
+    GROUP = 8,
+    NETWORK = 16,
+    NETINTERFACE = 32,
+    SHARED_VOLUME_GROUP = 536870912,
+    SHARED_VOLUME_RESOURCE = 1073741824,
+    INTERNAL_NETWORK = -2147483648,
+    ALL = 63,
+};
+pub const CLUSTER_ENUM_NODE = CLUSTER_ENUM.NODE;
+pub const CLUSTER_ENUM_RESTYPE = CLUSTER_ENUM.RESTYPE;
+pub const CLUSTER_ENUM_RESOURCE = CLUSTER_ENUM.RESOURCE;
+pub const CLUSTER_ENUM_GROUP = CLUSTER_ENUM.GROUP;
+pub const CLUSTER_ENUM_NETWORK = CLUSTER_ENUM.NETWORK;
+pub const CLUSTER_ENUM_NETINTERFACE = CLUSTER_ENUM.NETINTERFACE;
+pub const CLUSTER_ENUM_SHARED_VOLUME_GROUP = CLUSTER_ENUM.SHARED_VOLUME_GROUP;
+pub const CLUSTER_ENUM_SHARED_VOLUME_RESOURCE = CLUSTER_ENUM.SHARED_VOLUME_RESOURCE;
+pub const CLUSTER_ENUM_INTERNAL_NETWORK = CLUSTER_ENUM.INTERNAL_NETWORK;
+pub const CLUSTER_ENUM_ALL = CLUSTER_ENUM.ALL;
+
+pub const CLUSTER_ENUM_ITEM = extern struct {
+    dwVersion: u32,
+    dwType: u32,
+    cbId: u32,
+    lpszId: ?PWSTR,
+    cbName: u32,
+    lpszName: ?PWSTR,
+};
+
+pub const CLUSTER_GROUP_AUTOFAILBACK_TYPE = enum(i32) {
+    PreventFailback = 0,
+    AllowFailback = 1,
+    FailbackTypeCount = 2,
+};
+pub const ClusterGroupPreventFailback = CLUSTER_GROUP_AUTOFAILBACK_TYPE.PreventFailback;
+pub const ClusterGroupAllowFailback = CLUSTER_GROUP_AUTOFAILBACK_TYPE.AllowFailback;
+pub const ClusterGroupFailbackTypeCount = CLUSTER_GROUP_AUTOFAILBACK_TYPE.FailbackTypeCount;
+
+pub const CLUSTER_GROUP_ENUM = enum(i32) {
+    CONTAINS = 1,
+    NODES = 2,
+    ALL = 3,
+};
+pub const CLUSTER_GROUP_ENUM_CONTAINS = CLUSTER_GROUP_ENUM.CONTAINS;
+pub const CLUSTER_GROUP_ENUM_NODES = CLUSTER_GROUP_ENUM.NODES;
+pub const CLUSTER_GROUP_ENUM_ALL = CLUSTER_GROUP_ENUM.ALL;
+
+pub const CLUSTER_GROUP_ENUM_ITEM = extern struct {
+    dwVersion: u32,
+    cbId: u32,
+    lpszId: ?PWSTR,
+    cbName: u32,
+    lpszName: ?PWSTR,
+    state: CLUSTER_GROUP_STATE,
+    cbOwnerNode: u32,
+    lpszOwnerNode: ?PWSTR,
     dwFlags: u32,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) ?*_HNODE;
-
-pub const PCLUSAPI_DESTROY_CLUSTER = *const fn(
-    hCluster: ?*_HCLUSTER,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-    fdeleteVirtualComputerObjects: BOOL,
-) callconv(.winapi) u32;
-
-pub const PLACEMENT_OPTIONS = enum(i32) {
-    MIN_VALUE = 0,
-    DISABLE_CSV_VM_DEPENDENCY = 1,
-    CONSIDER_OFFLINE_VMS = 2,
-    DONT_USE_MEMORY = 4,
-    DONT_USE_CPU = 8,
-    DONT_USE_LOCAL_TEMP_DISK = 16,
-    DONT_RESUME_VMS_WITH_EXISTING_TEMP_DISK = 32,
-    SAVE_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = 64,
-    DONT_RESUME_AVAILABILTY_SET_VMS_WITH_EXISTING_TEMP_DISK = 128,
-    SAVE_AVAILABILTY_SET_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = 256,
-    AVAILABILITY_SET_DOMAIN_AFFINITY = 512,
-    ALL = 1023,
-    pub const DEFAULT_PLACEMENT_OPTIONS = .MIN_VALUE;
-};
-pub const PLACEMENT_OPTIONS_MIN_VALUE = PLACEMENT_OPTIONS.MIN_VALUE;
-pub const PLACEMENT_OPTIONS_DEFAULT_PLACEMENT_OPTIONS = PLACEMENT_OPTIONS.MIN_VALUE;
-pub const PLACEMENT_OPTIONS_DISABLE_CSV_VM_DEPENDENCY = PLACEMENT_OPTIONS.DISABLE_CSV_VM_DEPENDENCY;
-pub const PLACEMENT_OPTIONS_CONSIDER_OFFLINE_VMS = PLACEMENT_OPTIONS.CONSIDER_OFFLINE_VMS;
-pub const PLACEMENT_OPTIONS_DONT_USE_MEMORY = PLACEMENT_OPTIONS.DONT_USE_MEMORY;
-pub const PLACEMENT_OPTIONS_DONT_USE_CPU = PLACEMENT_OPTIONS.DONT_USE_CPU;
-pub const PLACEMENT_OPTIONS_DONT_USE_LOCAL_TEMP_DISK = PLACEMENT_OPTIONS.DONT_USE_LOCAL_TEMP_DISK;
-pub const PLACEMENT_OPTIONS_DONT_RESUME_VMS_WITH_EXISTING_TEMP_DISK = PLACEMENT_OPTIONS.DONT_RESUME_VMS_WITH_EXISTING_TEMP_DISK;
-pub const PLACEMENT_OPTIONS_SAVE_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = PLACEMENT_OPTIONS.SAVE_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE;
-pub const PLACEMENT_OPTIONS_DONT_RESUME_AVAILABILTY_SET_VMS_WITH_EXISTING_TEMP_DISK = PLACEMENT_OPTIONS.DONT_RESUME_AVAILABILTY_SET_VMS_WITH_EXISTING_TEMP_DISK;
-pub const PLACEMENT_OPTIONS_SAVE_AVAILABILTY_SET_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = PLACEMENT_OPTIONS.SAVE_AVAILABILTY_SET_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE;
-pub const PLACEMENT_OPTIONS_AVAILABILITY_SET_DOMAIN_AFFINITY = PLACEMENT_OPTIONS.AVAILABILITY_SET_DOMAIN_AFFINITY;
-pub const PLACEMENT_OPTIONS_ALL = PLACEMENT_OPTIONS.ALL;
-
-pub const GRP_PLACEMENT_OPTIONS = enum(i32) {
-    MIN_VALUE = 0,
-    DISABLE_AUTOBALANCING = 1,
-    pub const DEFAULT = .MIN_VALUE;
-    pub const ALL = .DISABLE_AUTOBALANCING;
-};
-pub const GRP_PLACEMENT_OPTIONS_MIN_VALUE = GRP_PLACEMENT_OPTIONS.MIN_VALUE;
-pub const GRP_PLACEMENT_OPTIONS_DEFAULT = GRP_PLACEMENT_OPTIONS.MIN_VALUE;
-pub const GRP_PLACEMENT_OPTIONS_DISABLE_AUTOBALANCING = GRP_PLACEMENT_OPTIONS.DISABLE_AUTOBALANCING;
-pub const GRP_PLACEMENT_OPTIONS_ALL = GRP_PLACEMENT_OPTIONS.DISABLE_AUTOBALANCING;
-
-pub const SR_RESOURCE_TYPE_REPLICATED_PARTITION_INFO = extern struct {
-    PartitionOffset: u64,
-    Capabilities: u32,
+    cbProperties: u32,
+    pProperties: ?*anyopaque,
+    cbRoProperties: u32,
+    pRoProperties: ?*anyopaque,
 };
 
-pub const SR_RESOURCE_TYPE_REPLICATED_PARTITION_ARRAY = extern struct {
-    Count: u32,
-    PartitionArray: [1]SR_RESOURCE_TYPE_REPLICATED_PARTITION_INFO,
+pub const CLUSTER_GROUP_PRIORITY = enum(i32) {
+    Disabled = 0,
+    Low = 1000,
+    Medium = 2000,
+    High = 3000,
 };
+pub const PriorityDisabled = CLUSTER_GROUP_PRIORITY.Disabled;
+pub const PriorityLow = CLUSTER_GROUP_PRIORITY.Low;
+pub const PriorityMedium = CLUSTER_GROUP_PRIORITY.Medium;
+pub const PriorityHigh = CLUSTER_GROUP_PRIORITY.High;
 
-pub const SR_REPLICATED_DISK_TYPE = enum(i32) {
-    None = 0,
-    Source = 1,
-    LogSource = 2,
-    Destination = 3,
-    LogDestination = 4,
-    NotInParthership = 5,
-    LogNotInParthership = 6,
-    Other = 7,
+pub const CLUSTER_GROUP_STATE = enum(i32) {
+    StateUnknown = -1,
+    Online = 0,
+    Offline = 1,
+    Failed = 2,
+    PartialOnline = 3,
+    Pending = 4,
 };
-pub const SrReplicatedDiskTypeNone = SR_REPLICATED_DISK_TYPE.None;
-pub const SrReplicatedDiskTypeSource = SR_REPLICATED_DISK_TYPE.Source;
-pub const SrReplicatedDiskTypeLogSource = SR_REPLICATED_DISK_TYPE.LogSource;
-pub const SrReplicatedDiskTypeDestination = SR_REPLICATED_DISK_TYPE.Destination;
-pub const SrReplicatedDiskTypeLogDestination = SR_REPLICATED_DISK_TYPE.LogDestination;
-pub const SrReplicatedDiskTypeNotInParthership = SR_REPLICATED_DISK_TYPE.NotInParthership;
-pub const SrReplicatedDiskTypeLogNotInParthership = SR_REPLICATED_DISK_TYPE.LogNotInParthership;
-pub const SrReplicatedDiskTypeOther = SR_REPLICATED_DISK_TYPE.Other;
-
-pub const SR_DISK_REPLICATION_ELIGIBLE = enum(i32) {
-    None = 0,
-    Yes = 1,
-    Offline = 2,
-    NotGpt = 3,
-    PartitionLayoutMismatch = 4,
-    InsufficientFreeSpace = 5,
-    NotInSameSite = 6,
-    InSameSite = 7,
-    FileSystemNotSupported = 8,
-    AlreadyInReplication = 9,
-    SameAsSpecifiedDisk = 10,
-    Other = 9999,
-};
-pub const SrDiskReplicationEligibleNone = SR_DISK_REPLICATION_ELIGIBLE.None;
-pub const SrDiskReplicationEligibleYes = SR_DISK_REPLICATION_ELIGIBLE.Yes;
-pub const SrDiskReplicationEligibleOffline = SR_DISK_REPLICATION_ELIGIBLE.Offline;
-pub const SrDiskReplicationEligibleNotGpt = SR_DISK_REPLICATION_ELIGIBLE.NotGpt;
-pub const SrDiskReplicationEligiblePartitionLayoutMismatch = SR_DISK_REPLICATION_ELIGIBLE.PartitionLayoutMismatch;
-pub const SrDiskReplicationEligibleInsufficientFreeSpace = SR_DISK_REPLICATION_ELIGIBLE.InsufficientFreeSpace;
-pub const SrDiskReplicationEligibleNotInSameSite = SR_DISK_REPLICATION_ELIGIBLE.NotInSameSite;
-pub const SrDiskReplicationEligibleInSameSite = SR_DISK_REPLICATION_ELIGIBLE.InSameSite;
-pub const SrDiskReplicationEligibleFileSystemNotSupported = SR_DISK_REPLICATION_ELIGIBLE.FileSystemNotSupported;
-pub const SrDiskReplicationEligibleAlreadyInReplication = SR_DISK_REPLICATION_ELIGIBLE.AlreadyInReplication;
-pub const SrDiskReplicationEligibleSameAsSpecifiedDisk = SR_DISK_REPLICATION_ELIGIBLE.SameAsSpecifiedDisk;
-pub const SrDiskReplicationEligibleOther = SR_DISK_REPLICATION_ELIGIBLE.Other;
-
-pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_LOGDISKS = extern struct {
-    DataDiskGuid: Guid,
-    IncludeOfflineDisks: BOOLEAN,
-};
-
-pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_TARGET_DATADISKS = extern struct {
-    SourceDataDiskGuid: Guid,
-    TargetReplicationGroupGuid: Guid,
-    SkipConnectivityCheck: BOOLEAN,
-    IncludeOfflineDisks: BOOLEAN,
-};
-
-pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_SOURCE_DATADISKS = extern struct {
-    DataDiskGuid: Guid,
-    IncludeAvailableStoargeDisks: BOOLEAN,
-};
-
-pub const SR_RESOURCE_TYPE_DISK_INFO = extern struct {
-    Reason: SR_DISK_REPLICATION_ELIGIBLE,
-    DiskGuid: Guid,
-};
-
-pub const SR_RESOURCE_TYPE_ELIGIBLE_DISKS_RESULT = extern struct {
-    Count: u16,
-    DiskInfo: [1]SR_RESOURCE_TYPE_DISK_INFO,
-};
-
-pub const SR_RESOURCE_TYPE_REPLICATED_DISK = extern struct {
-    Type: SR_REPLICATED_DISK_TYPE,
-    ClusterDiskResourceGuid: Guid,
-    ReplicationGroupId: Guid,
-    ReplicationGroupName: [260]u16,
-};
-
-pub const SR_RESOURCE_TYPE_REPLICATED_DISKS_RESULT = extern struct {
-    Count: u16,
-    ReplicatedDisks: [1]SR_RESOURCE_TYPE_REPLICATED_DISK,
-};
-
-pub const SR_RESOURCE_TYPE_ADD_REPLICATION_GROUP = extern struct {
-    ReplicationGroupName: [260]u16,
-    Description: [260]u16,
-    LogPath: [260]u16,
-    MaxLogSizeInBytes: u64,
-    LogType: u16,
-    ReplicationMode: u32,
-    MinimumPartnersInSync: u32,
-    EnableWriteConsistency: BOOLEAN,
-    EnableEncryption: BOOLEAN,
-    CertificateThumbprint: [260]u16,
-    VolumeNameCount: u32,
-    VolumeNames: [260]u16,
-};
-
-pub const SR_RESOURCE_TYPE_ADD_REPLICATION_GROUP_RESULT = extern struct {
-    Result: u32,
-    ErrorString: [260]u16,
-};
-
-pub const CLUSCTL_RESOURCE_TYPE_STORAGE_GET_AVAILABLE_DISKS_EX2_INPUT = extern struct {
-    dwFlags: u32,
-    guidPoolFilter: Guid,
-};
-
-pub const RESOURCE_STATUS = extern struct {
-    ResourceState: CLUSTER_RESOURCE_STATE,
-    CheckPoint: u32,
-    WaitHint: u32,
-    EventHandle: ?HANDLE,
-};
-
-pub const NodeUtilizationInfoElement = extern struct {
-    Id: u64,
-    AvailableMemory: u64,
-    AvailableMemoryAfterReclamation: u64,
-};
-
-pub const ResourceUtilizationInfoElement = extern struct {
-    PhysicalNumaId: u64,
-    CurrentMemory: u64,
-};
-
-pub const VM_RESDLL_CONTEXT = enum(i32) {
-    TurnOff = 0,
-    Save = 1,
-    Shutdown = 2,
-    ShutdownForce = 3,
-    LiveMigration = 4,
-};
-pub const VmResdllContextTurnOff = VM_RESDLL_CONTEXT.TurnOff;
-pub const VmResdllContextSave = VM_RESDLL_CONTEXT.Save;
-pub const VmResdllContextShutdown = VM_RESDLL_CONTEXT.Shutdown;
-pub const VmResdllContextShutdownForce = VM_RESDLL_CONTEXT.ShutdownForce;
-pub const VmResdllContextLiveMigration = VM_RESDLL_CONTEXT.LiveMigration;
-
-pub const RESDLL_CONTEXT_OPERATION_TYPE = enum(i32) {
-    Failback = 0,
-    Drain = 1,
-    DrainFailure = 2,
-    EmbeddedFailure = 3,
-    Preemption = 4,
-    NetworkDisconnect = 5,
-    NetworkDisconnectMoveRetry = 6,
-};
-pub const ResdllContextOperationTypeFailback = RESDLL_CONTEXT_OPERATION_TYPE.Failback;
-pub const ResdllContextOperationTypeDrain = RESDLL_CONTEXT_OPERATION_TYPE.Drain;
-pub const ResdllContextOperationTypeDrainFailure = RESDLL_CONTEXT_OPERATION_TYPE.DrainFailure;
-pub const ResdllContextOperationTypeEmbeddedFailure = RESDLL_CONTEXT_OPERATION_TYPE.EmbeddedFailure;
-pub const ResdllContextOperationTypePreemption = RESDLL_CONTEXT_OPERATION_TYPE.Preemption;
-pub const ResdllContextOperationTypeNetworkDisconnect = RESDLL_CONTEXT_OPERATION_TYPE.NetworkDisconnect;
-pub const ResdllContextOperationTypeNetworkDisconnectMoveRetry = RESDLL_CONTEXT_OPERATION_TYPE.NetworkDisconnectMoveRetry;
-
-pub const GET_OPERATION_CONTEXT_PARAMS = extern struct {
-    Size: u32,
-    Version: u32,
-    Type: RESDLL_CONTEXT_OPERATION_TYPE,
-    Priority: u32,
-};
-
-pub const RESOURCE_STATUS_EX = extern struct {
-    ResourceState: CLUSTER_RESOURCE_STATE,
-    CheckPoint: u32,
-    EventHandle: ?HANDLE,
-    ApplicationSpecificErrorCode: u32,
-    Flags: u32,
-    WaitHint: u32,
-};
-
-pub const PSET_RESOURCE_STATUS_ROUTINE_EX = *const fn(
-    ResourceHandle: isize,
-    ResourceStatus: ?*RESOURCE_STATUS_EX,
-) callconv(.winapi) u32;
-
-pub const PSET_RESOURCE_STATUS_ROUTINE = *const fn(
-    ResourceHandle: isize,
-    ResourceStatus: ?*RESOURCE_STATUS,
-) callconv(.winapi) u32;
-
-pub const PQUORUM_RESOURCE_LOST = *const fn(
-    Resource: isize,
-) callconv(.winapi) void;
-
-pub const LOG_LEVEL = enum(i32) {
-    INFORMATION = 0,
-    WARNING = 1,
-    ERROR = 2,
-    SEVERE = 3,
-};
-pub const LOG_INFORMATION = LOG_LEVEL.INFORMATION;
-pub const LOG_WARNING = LOG_LEVEL.WARNING;
-pub const LOG_ERROR = LOG_LEVEL.ERROR;
-pub const LOG_SEVERE = LOG_LEVEL.SEVERE;
-
-pub const PLOG_EVENT_ROUTINE = *const fn(
-    ResourceHandle: isize,
-    LogLevel: LOG_LEVEL,
-    FormatString: ?[*:0]const u16,
-) callconv(.winapi) void;
-
-pub const POPEN_ROUTINE = *const fn(
-    ResourceName: ?[*:0]const u16,
-    ResourceKey: ?HKEY,
-    ResourceHandle: isize,
-) callconv(.winapi) ?*anyopaque;
-
-pub const PCLOSE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const PONLINE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    EventHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub const POFFLINE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PTERMINATE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-) callconv(.winapi) void;
-
-pub const PIS_ALIVE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const PLOOKS_ALIVE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub const PARBITRATE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    LostQuorumResource: ?PQUORUM_RESOURCE_LOST,
-) callconv(.winapi) u32;
-
-pub const PRELEASE_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PRESOURCE_CONTROL_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESOURCE_TYPE_CONTROL_ROUTINE = *const fn(
-    ResourceTypeName: ?[*:0]const u16,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-pub const POPEN_V2_ROUTINE = *const fn(
-    ResourceName: ?[*:0]const u16,
-    ResourceKey: ?HKEY,
-    ResourceHandle: isize,
-    OpenFlags: u32,
-) callconv(.winapi) ?*anyopaque;
-
-pub const PONLINE_V2_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    EventHandle: ?*?HANDLE,
-    OnlineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    InBuffer: ?*u8,
-    InBufferSize: u32,
-    Reserved: u32,
-) callconv(.winapi) u32;
-
-pub const POFFLINE_V2_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    DestinationNodeName: ?[*:0]const u16,
-    OfflineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    InBuffer: ?*u8,
-    InBufferSize: u32,
-    Reserved: u32,
-) callconv(.winapi) u32;
-
-pub const PCANCEL_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    CancelFlags_RESERVED: u32,
-) callconv(.winapi) u32;
-
-pub const PBEGIN_RESCALL_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub const PBEGIN_RESTYPECALL_ROUTINE = *const fn(
-    ResourceTypeName: ?[*:0]const u16,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub const RESOURCE_EXIT_STATE = enum(i32) {
-    Continue = 0,
-    Terminate = 1,
-    Max = 2,
-};
-pub const ResourceExitStateContinue = RESOURCE_EXIT_STATE.Continue;
-pub const ResourceExitStateTerminate = RESOURCE_EXIT_STATE.Terminate;
-pub const ResourceExitStateMax = RESOURCE_EXIT_STATE.Max;
-
-pub const PBEGIN_RESCALL_AS_USER_ROUTINE = *const fn(
-    Resource: ?*anyopaque,
-    TokenHandle: ?HANDLE,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = *const fn(
-    ResourceTypeName: ?[*:0]const u16,
-    TokenHandle: ?HANDLE,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub const CLRES_V1_FUNCTIONS = extern struct {
-    Open: ?POPEN_ROUTINE,
-    Close: ?PCLOSE_ROUTINE,
-    Online: ?PONLINE_ROUTINE,
-    Offline: ?POFFLINE_ROUTINE,
-    Terminate: ?PTERMINATE_ROUTINE,
-    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
-    IsAlive: ?PIS_ALIVE_ROUTINE,
-    Arbitrate: ?PARBITRATE_ROUTINE,
-    Release: ?PRELEASE_ROUTINE,
-    ResourceControl: ?PRESOURCE_CONTROL_ROUTINE,
-    ResourceTypeControl: ?PRESOURCE_TYPE_CONTROL_ROUTINE,
-};
-
-pub const CLRES_V2_FUNCTIONS = extern struct {
-    Open: ?POPEN_V2_ROUTINE,
-    Close: ?PCLOSE_ROUTINE,
-    Online: ?PONLINE_V2_ROUTINE,
-    Offline: ?POFFLINE_V2_ROUTINE,
-    Terminate: ?PTERMINATE_ROUTINE,
-    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
-    IsAlive: ?PIS_ALIVE_ROUTINE,
-    Arbitrate: ?PARBITRATE_ROUTINE,
-    Release: ?PRELEASE_ROUTINE,
-    ResourceControl: ?PRESOURCE_CONTROL_ROUTINE,
-    ResourceTypeControl: ?PRESOURCE_TYPE_CONTROL_ROUTINE,
-    Cancel: ?PCANCEL_ROUTINE,
-};
-
-pub const CLRES_V3_FUNCTIONS = extern struct {
-    Open: ?POPEN_V2_ROUTINE,
-    Close: ?PCLOSE_ROUTINE,
-    Online: ?PONLINE_V2_ROUTINE,
-    Offline: ?POFFLINE_V2_ROUTINE,
-    Terminate: ?PTERMINATE_ROUTINE,
-    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
-    IsAlive: ?PIS_ALIVE_ROUTINE,
-    Arbitrate: ?PARBITRATE_ROUTINE,
-    Release: ?PRELEASE_ROUTINE,
-    BeginResourceControl: ?PBEGIN_RESCALL_ROUTINE,
-    BeginResourceTypeControl: ?PBEGIN_RESTYPECALL_ROUTINE,
-    Cancel: ?PCANCEL_ROUTINE,
-};
-
-pub const CLRES_V4_FUNCTIONS = extern struct {
-    Open: ?POPEN_V2_ROUTINE,
-    Close: ?PCLOSE_ROUTINE,
-    Online: ?PONLINE_V2_ROUTINE,
-    Offline: ?POFFLINE_V2_ROUTINE,
-    Terminate: ?PTERMINATE_ROUTINE,
-    LooksAlive: ?PLOOKS_ALIVE_ROUTINE,
-    IsAlive: ?PIS_ALIVE_ROUTINE,
-    Arbitrate: ?PARBITRATE_ROUTINE,
-    Release: ?PRELEASE_ROUTINE,
-    BeginResourceControl: ?PBEGIN_RESCALL_ROUTINE,
-    BeginResourceTypeControl: ?PBEGIN_RESTYPECALL_ROUTINE,
-    Cancel: ?PCANCEL_ROUTINE,
-    BeginResourceControlAsUser: ?PBEGIN_RESCALL_AS_USER_ROUTINE,
-    BeginResourceTypeControlAsUser: ?PBEGIN_RESTYPECALL_AS_USER_ROUTINE,
-};
-
-pub const CLRES_FUNCTION_TABLE = extern struct {
-    TableSize: u32,
-    Version: u32,
-    Anonymous: extern union {
-        V1Functions: CLRES_V1_FUNCTIONS,
-        V2Functions: CLRES_V2_FUNCTIONS,
-        V3Functions: CLRES_V3_FUNCTIONS,
-        V4Functions: CLRES_V4_FUNCTIONS,
-    },
-};
-
-pub const RESUTIL_LARGEINT_DATA = extern struct {
-    Default: LARGE_INTEGER,
-    Minimum: LARGE_INTEGER,
-    Maximum: LARGE_INTEGER,
-};
-
-pub const RESUTIL_ULARGEINT_DATA = extern struct {
-    Default: ULARGE_INTEGER,
-    Minimum: ULARGE_INTEGER,
-    Maximum: ULARGE_INTEGER,
-};
-
-pub const RESUTIL_FILETIME_DATA = extern struct {
-    Default: FILETIME,
-    Minimum: FILETIME,
-    Maximum: FILETIME,
-};
-
-pub const RESUTIL_PROPERTY_ITEM = extern struct {
-    Name: ?PWSTR,
-    KeyName: ?PWSTR,
-    Format: u32,
-    Anonymous: extern union {
-        DefaultPtr: usize,
-        Default: u32,
-        lpDefault: ?*anyopaque,
-        LargeIntData: ?*RESUTIL_LARGEINT_DATA,
-        ULargeIntData: ?*RESUTIL_ULARGEINT_DATA,
-        FileTimeData: ?*RESUTIL_FILETIME_DATA,
-    },
-    Minimum: u32,
-    Maximum: u32,
-    Flags: u32,
-    Offset: u32,
-};
-
-pub const PSTARTUP_ROUTINE = *const fn(
-    ResourceType: ?[*:0]const u16,
-    MinVersionSupported: u32,
-    MaxVersionSupported: u32,
-    SetResourceStatus: ?PSET_RESOURCE_STATUS_ROUTINE,
-    LogEvent: ?PLOG_EVENT_ROUTINE,
-    FunctionTable: ?*?*CLRES_FUNCTION_TABLE,
-) callconv(.winapi) u32;
-
-pub const FAILURE_TYPE = enum(i32) {
-    GENERAL = 0,
-    EMBEDDED = 1,
-    NETWORK_LOSS = 2,
-};
-pub const FAILURE_TYPE_GENERAL = FAILURE_TYPE.GENERAL;
-pub const FAILURE_TYPE_EMBEDDED = FAILURE_TYPE.EMBEDDED;
-pub const FAILURE_TYPE_NETWORK_LOSS = FAILURE_TYPE.NETWORK_LOSS;
-
-pub const CLUSTER_RESOURCE_APPLICATION_STATE = enum(i32) {
-    StateUnknown = 1,
-    OSHeartBeat = 2,
-    Ready = 3,
-};
-pub const ClusterResourceApplicationStateUnknown = CLUSTER_RESOURCE_APPLICATION_STATE.StateUnknown;
-pub const ClusterResourceApplicationOSHeartBeat = CLUSTER_RESOURCE_APPLICATION_STATE.OSHeartBeat;
-pub const ClusterResourceApplicationReady = CLUSTER_RESOURCE_APPLICATION_STATE.Ready;
-
-pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = *const fn(
-    ResourceHandle: isize,
-    LockedModeEnabled: BOOL,
-    LockedModeReason: u32,
-) callconv(.winapi) u32;
-
-pub const PSIGNAL_FAILURE_ROUTINE = *const fn(
-    ResourceHandle: isize,
-    FailureType: FAILURE_TYPE,
-    ApplicationSpecificErrorCode: u32,
-) callconv(.winapi) u32;
-
-pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = *const fn(
-    ResourceHandle: isize,
-    propertyListBuffer: ?*u8,
-    propertyListBufferSize: u32,
-) callconv(.winapi) u32;
-
-pub const PEND_CONTROL_CALL = *const fn(
-    context: i64,
-    status: u32,
-) callconv(.winapi) u32;
-
-pub const PEND_TYPE_CONTROL_CALL = *const fn(
-    context: i64,
-    status: u32,
-) callconv(.winapi) u32;
-
-pub const PEXTEND_RES_CONTROL_CALL = *const fn(
-    context: i64,
-    newTimeoutInMs: u32,
-) callconv(.winapi) u32;
-
-pub const PEXTEND_RES_TYPE_CONTROL_CALL = *const fn(
-    context: i64,
-    newTimeoutInMs: u32,
-) callconv(.winapi) u32;
-
-pub const PRAISE_RES_TYPE_NOTIFICATION = *const fn(
-    ResourceType: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
-    pPayload: ?*const u8,
-    payloadSize: u32,
-) callconv(.winapi) u32;
-
-pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = *const fn(
-    resource: isize,
-    processName: ?[*:0]const u16,
-    processId: u32,
-    isAdd: BOOL,
-) callconv(.winapi) u32;
-
-pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = *const fn(
-    resourceTypeName: ?[*:0]const u16,
-    processName: ?[*:0]const u16,
-    processId: u32,
-    isAdd: BOOL,
-) callconv(.winapi) u32;
-
-pub const PSET_INTERNAL_STATE = *const fn(
-    param0: isize,
-    stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
-    active: BOOL,
-) callconv(.winapi) u32;
-
-pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = *const fn(
-    ResourceHandle: isize,
-    LockedModeEnabled: BOOL,
-    LockedModeReason: u32,
-    LockedModeFlags: u32,
-) callconv(.winapi) u32;
-
-pub const PREQUEST_DUMP_ROUTINE = *const fn(
-    ResourceHandle: isize,
-    DumpDueToCallInProgress: BOOL,
-    DumpDelayInMs: u32,
-) callconv(.winapi) u32;
-
-pub const CLRES_CALLBACK_FUNCTION_TABLE = extern struct {
-    LogEvent: ?PLOG_EVENT_ROUTINE,
-    SetResourceStatusEx: ?PSET_RESOURCE_STATUS_ROUTINE_EX,
-    SetResourceLockedMode: ?PSET_RESOURCE_LOCKED_MODE_ROUTINE,
-    SignalFailure: ?PSIGNAL_FAILURE_ROUTINE,
-    SetResourceInMemoryNodeLocalProperties: ?PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE,
-    EndControlCall: ?PEND_CONTROL_CALL,
-    EndTypeControlCall: ?PEND_TYPE_CONTROL_CALL,
-    ExtendControlCall: ?PEXTEND_RES_CONTROL_CALL,
-    ExtendTypeControlCall: ?PEXTEND_RES_TYPE_CONTROL_CALL,
-    RaiseResTypeNotification: ?PRAISE_RES_TYPE_NOTIFICATION,
-    ChangeResourceProcessForDumps: ?PCHANGE_RESOURCE_PROCESS_FOR_DUMPS,
-    ChangeResTypeProcessForDumps: ?PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS,
-    SetInternalState: ?PSET_INTERNAL_STATE,
-    SetResourceLockedModeEx: ?PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE,
-    RequestDump: ?PREQUEST_DUMP_ROUTINE,
-};
-
-pub const PSTARTUP_EX_ROUTINE = *const fn(
-    ResourceType: ?[*:0]const u16,
-    MinVersionSupported: u32,
-    MaxVersionSupported: u32,
-    MonitorCallbackFunctions: ?*CLRES_CALLBACK_FUNCTION_TABLE,
-    ResourceDllInterfaceFunctions: ?*?*CLRES_FUNCTION_TABLE,
-) callconv(.winapi) u32;
-
-pub const RESOURCE_MONITOR_STATE = enum(i32) {
-    Initializing = 0,
-    Idle = 1,
-    StartingResource = 2,
-    InitializingResource = 3,
-    OnlineResource = 4,
-    OfflineResource = 5,
-    ShutdownResource = 6,
-    DeletingResource = 7,
-    IsAlivePoll = 8,
-    LooksAlivePoll = 9,
-    ArbitrateResource = 10,
-    ReleaseResource = 11,
-    ResourceControl = 12,
-    ResourceTypeControl = 13,
-    TerminateResource = 14,
-    Deadlocked = 15,
-};
-pub const RmonInitializing = RESOURCE_MONITOR_STATE.Initializing;
-pub const RmonIdle = RESOURCE_MONITOR_STATE.Idle;
-pub const RmonStartingResource = RESOURCE_MONITOR_STATE.StartingResource;
-pub const RmonInitializingResource = RESOURCE_MONITOR_STATE.InitializingResource;
-pub const RmonOnlineResource = RESOURCE_MONITOR_STATE.OnlineResource;
-pub const RmonOfflineResource = RESOURCE_MONITOR_STATE.OfflineResource;
-pub const RmonShutdownResource = RESOURCE_MONITOR_STATE.ShutdownResource;
-pub const RmonDeletingResource = RESOURCE_MONITOR_STATE.DeletingResource;
-pub const RmonIsAlivePoll = RESOURCE_MONITOR_STATE.IsAlivePoll;
-pub const RmonLooksAlivePoll = RESOURCE_MONITOR_STATE.LooksAlivePoll;
-pub const RmonArbitrateResource = RESOURCE_MONITOR_STATE.ArbitrateResource;
-pub const RmonReleaseResource = RESOURCE_MONITOR_STATE.ReleaseResource;
-pub const RmonResourceControl = RESOURCE_MONITOR_STATE.ResourceControl;
-pub const RmonResourceTypeControl = RESOURCE_MONITOR_STATE.ResourceTypeControl;
-pub const RmonTerminateResource = RESOURCE_MONITOR_STATE.TerminateResource;
-pub const RmonDeadlocked = RESOURCE_MONITOR_STATE.Deadlocked;
-
-pub const MONITOR_STATE = extern struct {
-    LastUpdate: LARGE_INTEGER,
-    State: RESOURCE_MONITOR_STATE,
-    ActiveResource: ?HANDLE,
-    ResmonStop: BOOL,
-};
-
-pub const POST_UPGRADE_VERSION_INFO = extern struct {
-    newMajorVersion: u32,
-    newUpgradeVersion: u32,
-    oldMajorVersion: u32,
-    oldUpgradeVersion: u32,
-    reserved: u32,
-};
+pub const ClusterGroupStateUnknown = CLUSTER_GROUP_STATE.StateUnknown;
+pub const ClusterGroupOnline = CLUSTER_GROUP_STATE.Online;
+pub const ClusterGroupOffline = CLUSTER_GROUP_STATE.Offline;
+pub const ClusterGroupFailed = CLUSTER_GROUP_STATE.Failed;
+pub const ClusterGroupPartialOnline = CLUSTER_GROUP_STATE.PartialOnline;
+pub const ClusterGroupPending = CLUSTER_GROUP_STATE.Pending;
 
 pub const CLUSTER_HEALTH_FAULT = extern struct {
     Id: ?PWSTR,
@@ -5507,620 +2993,501 @@ pub const CLUSTER_HEALTH_FAULT_ARRAY = extern struct {
     faults: ?*CLUSTER_HEALTH_FAULT,
 };
 
-pub const PRESUTIL_START_RESOURCE_SERVICE = *const fn(
-    pszServiceName: ?[*:0]const u16,
-    phServiceHandle: ?*isize,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = *const fn(
-    pszServiceName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_STOP_RESOURCE_SERVICE = *const fn(
-    pszServiceName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_VERIFY_SERVICE = *const fn(
-    hServiceHandle: SC_HANDLE,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_STOP_SERVICE = *const fn(
-    hServiceHandle: SC_HANDLE,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_CREATE_DIRECTORY_TREE = *const fn(
-    pszPath: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_IS_PATH_VALID = *const fn(
-    pszPath: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub const PRESUTIL_ENUM_PROPERTIES = *const fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pszOutProperties: ?PWSTR,
-    cbOutPropertiesSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
-    hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
-    pszOutProperties: ?PWSTR,
-    cbOutPropertiesSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_PROPERTIES = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_ALL_PROPERTIES = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_PRIVATE_PROPERTIES = *const fn(
-    hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_PROPERTY_SIZE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
-    pcbOutPropertyListSize: ?*u32,
-    pnPropertyCount: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_PROPERTY = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyItem: ?*?*anyopaque,
-    pcbOutPropertyItemSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_VERIFY_PROPERTY_TABLE = *const fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 4?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    pOutParams: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_PROPERTY_TABLE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 5?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    pOutParams: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_PROPERTY_TABLE_EX = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    bAllowUnknownProperties: BOOL,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    bForceWrite: BOOL,
-    pOutParams: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    pInParams: ?*const u8,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    pOutParams: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    pInParams: ?*const u8,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    bForceWrite: BOOL,
-    pOutParams: ?*u8,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    pOutParams: ?*u8,
-    bCheckForRequiredProperties: BOOL,
-    pszNameOfPropInError: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = *const fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyList: ?*anyopaque,
-    pcbOutPropertyListSize: ?*u32,
-    pInParams: ?*const u8,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_DUP_PARAMETER_BLOCK = *const fn(
-    pOutParams: ?*u8,
-    pInParams: ?*const u8,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FREE_PARAMETER_BLOCK = *const fn(
-    pOutParams: ?*u8,
-    pInParams: ?*const u8,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(.winapi) void;
-
-pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    pOutPropertyList: ?*anyopaque,
-    pcbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = *const fn(
-    hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_DUP_STRING = *const fn(
-    pszInString: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-pub const PRESUTIL_GET_BINARY_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_SZ_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-pub const PRESUTIL_GET_EXPAND_SZ_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    bExpand: BOOL,
-) callconv(.winapi) ?PWSTR;
-
-pub const PRESUTIL_GET_DWORD_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pdwOutValue: ?*u32,
-    dwDefaultValue: u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_QWORD_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pqwOutValue: ?*u64,
-    qwDefaultValue: u64,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_BINARY_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pbNewValue: ?*const u8,
-    cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_SZ_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_EXPAND_SZ_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_MULTI_SZ_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pszNewValue: ?[*:0]const u16,
-    cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    ppszOutValue: ?*?PWSTR,
-    pcbOutValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_DWORD_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    dwNewValue: u32,
-    pdwOutValue: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_QWORD_VALUE = *const fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    qwNewValue: u64,
-    pqwOutValue: ?*u64,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_BINARY_PROPERTY = *const fn(
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-    pValueStruct: ?*const CLUSPROP_BINARY,
-    // TODO: what to do with BytesParamIndex 4?
-    pbOldValue: ?*const u8,
-    cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_SZ_PROPERTY = *const fn(
-    ppszOutValue: ?*?PWSTR,
-    pValueStruct: ?*const CLUSPROP_SZ,
-    pszOldValue: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = *const fn(
-    ppszOutValue: ?*?PWSTR,
-    pcbOutValueSize: ?*u32,
-    pValueStruct: ?*const CLUSPROP_SZ,
-    // TODO: what to do with BytesParamIndex 4?
-    pszOldValue: ?[*:0]const u16,
-    cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_DWORD_PROPERTY = *const fn(
-    pdwOutValue: ?*u32,
-    pValueStruct: ?*const CLUSPROP_DWORD,
-    dwOldValue: u32,
-    dwMinimum: u32,
-    dwMaximum: u32,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_LONG_PROPERTY = *const fn(
-    plOutValue: ?*i32,
-    pValueStruct: ?*const CLUSPROP_LONG,
-    lOldValue: i32,
-    lMinimum: i32,
-    lMaximum: i32,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_FILETIME_PROPERTY = *const fn(
-    pftOutValue: ?*FILETIME,
-    pValueStruct: ?*const CLUSPROP_FILETIME,
-    ftOldValue: FILETIME,
-    ftMinimum: FILETIME,
-    ftMaximum: FILETIME,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME = *const fn(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) ?*anyopaque;
-
-pub const PRESUTIL_FREE_ENVIRONMENT = *const fn(
-    lpEnvironment: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = *const fn(
-    pszSrc: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = *const fn(
-    pszServiceName: ?[*:0]const u16,
-    hResource: ?*_HRESOURCE,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = *const fn(
-    pszServiceName: ?[*:0]const u16,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = *const fn(
-    pszServiceName: ?[*:0]const u16,
-    schSCMHandle: SC_HANDLE,
-    phService: ?*isize,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_DWORD_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pdwPropertyValue: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_BINARY_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    pbPropertyValue: ?*?*u8,
-    pcbPropertyValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    pszPropertyValue: ?*?PWSTR,
-    pcbPropertyValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_LONG_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    plPropertyValue: ?*i32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    plPropertyValue: ?*u64,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_FIND_FILETIME_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pftPropertyValue: ?*FILETIME,
-) callconv(.winapi) u32;
-
-pub const CLUS_WORKER = extern struct {
-    hThread: ?HANDLE,
-    Terminate: BOOL,
+pub const CLUSTER_IP_ENTRY = extern struct {
+    lpszIpAddress: ?[*:0]const u16,
+    dwPrefixLength: u32,
 };
 
-pub const PWORKER_START_ROUTINE = *const fn(
-    pWorker: ?*CLUS_WORKER,
-    lpThreadParameter: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_MEMBERSHIP_INFO = extern struct {
+    HasQuorum: BOOL,
+    UpnodesSize: u32,
+    Upnodes: [1]u8,
+};
 
-pub const PCLUSAPI_CLUS_WORKER_CREATE = *const fn(
-    lpWorker: ?*CLUS_WORKER,
-    lpStartAddress: ?PWORKER_START_ROUTINE,
-    lpParameter: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_MGMT_POINT_RESTYPE = enum(i32) {
+    AUTO = 0,
+    SNN = 1,
+    DNN = 2,
+};
+pub const CLUSTER_MGMT_POINT_RESTYPE_AUTO = CLUSTER_MGMT_POINT_RESTYPE.AUTO;
+pub const CLUSTER_MGMT_POINT_RESTYPE_SNN = CLUSTER_MGMT_POINT_RESTYPE.SNN;
+pub const CLUSTER_MGMT_POINT_RESTYPE_DNN = CLUSTER_MGMT_POINT_RESTYPE.DNN;
 
-pub const PCLUSAPIClusWorkerCheckTerminate = *const fn(
-    lpWorker: ?*CLUS_WORKER,
-) callconv(.winapi) BOOL;
+pub const CLUSTER_MGMT_POINT_TYPE = enum(i32) {
+    NONE = 0,
+    CNO = 1,
+    DNS_ONLY = 2,
+    CNO_ONLY = 3,
+};
+pub const CLUSTER_MGMT_POINT_TYPE_NONE = CLUSTER_MGMT_POINT_TYPE.NONE;
+pub const CLUSTER_MGMT_POINT_TYPE_CNO = CLUSTER_MGMT_POINT_TYPE.CNO;
+pub const CLUSTER_MGMT_POINT_TYPE_DNS_ONLY = CLUSTER_MGMT_POINT_TYPE.DNS_ONLY;
+pub const CLUSTER_MGMT_POINT_TYPE_CNO_ONLY = CLUSTER_MGMT_POINT_TYPE.CNO_ONLY;
 
-pub const PCLUSAPI_CLUS_WORKER_TERMINATE = *const fn(
-    lpWorker: ?*CLUS_WORKER,
-) callconv(.winapi) void;
+pub const CLUSTER_NETINTERFACE_STATE = enum(i32) {
+    StateUnknown = -1,
+    Unavailable = 0,
+    Failed = 1,
+    Unreachable = 2,
+    Up = 3,
+};
+pub const ClusterNetInterfaceStateUnknown = CLUSTER_NETINTERFACE_STATE.StateUnknown;
+pub const ClusterNetInterfaceUnavailable = CLUSTER_NETINTERFACE_STATE.Unavailable;
+pub const ClusterNetInterfaceFailed = CLUSTER_NETINTERFACE_STATE.Failed;
+pub const ClusterNetInterfaceUnreachable = CLUSTER_NETINTERFACE_STATE.Unreachable;
+pub const ClusterNetInterfaceUp = CLUSTER_NETINTERFACE_STATE.Up;
 
-pub const LPRESOURCE_CALLBACK = *const fn(
-    param0: ?*_HRESOURCE,
-    param1: ?*_HRESOURCE,
-    param2: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_NETWORK_ENUM = enum(i32) {
+    NETINTERFACES = 1,
+    pub const ALL = .NETINTERFACES;
+};
+pub const CLUSTER_NETWORK_ENUM_NETINTERFACES = CLUSTER_NETWORK_ENUM.NETINTERFACES;
+pub const CLUSTER_NETWORK_ENUM_ALL = CLUSTER_NETWORK_ENUM.NETINTERFACES;
 
-pub const LPRESOURCE_CALLBACK_EX = *const fn(
-    param0: ?*_HCLUSTER,
-    param1: ?*_HRESOURCE,
-    param2: ?*_HRESOURCE,
-    param3: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_NETWORK_ROLE = enum(i32) {
+    None = 0,
+    InternalUse = 1,
+    ClientAccess = 2,
+    InternalAndClient = 3,
+};
+pub const ClusterNetworkRoleNone = CLUSTER_NETWORK_ROLE.None;
+pub const ClusterNetworkRoleInternalUse = CLUSTER_NETWORK_ROLE.InternalUse;
+pub const ClusterNetworkRoleClientAccess = CLUSTER_NETWORK_ROLE.ClientAccess;
+pub const ClusterNetworkRoleInternalAndClient = CLUSTER_NETWORK_ROLE.InternalAndClient;
 
-pub const LPGROUP_CALLBACK_EX = *const fn(
-    param0: ?*_HCLUSTER,
-    param1: ?*_HGROUP,
-    param2: ?*_HGROUP,
-    param3: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_NETWORK_STATE = enum(i32) {
+    StateUnknown = -1,
+    Unavailable = 0,
+    Down = 1,
+    Partitioned = 2,
+    Up = 3,
+};
+pub const ClusterNetworkStateUnknown = CLUSTER_NETWORK_STATE.StateUnknown;
+pub const ClusterNetworkUnavailable = CLUSTER_NETWORK_STATE.Unavailable;
+pub const ClusterNetworkDown = CLUSTER_NETWORK_STATE.Down;
+pub const ClusterNetworkPartitioned = CLUSTER_NETWORK_STATE.Partitioned;
+pub const ClusterNetworkUp = CLUSTER_NETWORK_STATE.Up;
 
-pub const LPNODE_CALLBACK = *const fn(
-    param0: ?*_HCLUSTER,
-    param1: ?*_HNODE,
-    param2: CLUSTER_NODE_STATE,
-    param3: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_NODE_DRAIN_STATUS = enum(i32) {
+    NodeDrainStatusNotInitiated = 0,
+    NodeDrainStatusInProgress = 1,
+    NodeDrainStatusCompleted = 2,
+    NodeDrainStatusFailed = 3,
+    ClusterNodeDrainStatusCount = 4,
+};
+pub const NodeDrainStatusNotInitiated = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusNotInitiated;
+pub const NodeDrainStatusInProgress = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusInProgress;
+pub const NodeDrainStatusCompleted = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusCompleted;
+pub const NodeDrainStatusFailed = CLUSTER_NODE_DRAIN_STATUS.NodeDrainStatusFailed;
+pub const ClusterNodeDrainStatusCount = CLUSTER_NODE_DRAIN_STATUS.ClusterNodeDrainStatusCount;
 
-pub const PRESUTIL_RESOURCES_EQUAL = *const fn(
-    hSelf: ?*_HRESOURCE,
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
+pub const CLUSTER_NODE_ENUM = enum(i32) {
+    NETINTERFACES = 1,
+    GROUPS = 2,
+    PREFERRED_GROUPS = 4,
+    ALL = 3,
+};
+pub const CLUSTER_NODE_ENUM_NETINTERFACES = CLUSTER_NODE_ENUM.NETINTERFACES;
+pub const CLUSTER_NODE_ENUM_GROUPS = CLUSTER_NODE_ENUM.GROUPS;
+pub const CLUSTER_NODE_ENUM_PREFERRED_GROUPS = CLUSTER_NODE_ENUM.PREFERRED_GROUPS;
+pub const CLUSTER_NODE_ENUM_ALL = CLUSTER_NODE_ENUM.ALL;
 
-pub const PRESUTIL_RESOURCE_TYPES_EQUAL = *const fn(
-    lpszResourceTypeName: ?[*:0]const u16,
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
+pub const CLUSTER_NODE_RESUME_FAILBACK_TYPE = enum(i32) {
+    DoNotFailbackGroups = 0,
+    FailbackGroupsImmediately = 1,
+    FailbackGroupsPerPolicy = 2,
+    ClusterNodeResumeFailbackTypeCount = 3,
+};
+pub const DoNotFailbackGroups = CLUSTER_NODE_RESUME_FAILBACK_TYPE.DoNotFailbackGroups;
+pub const FailbackGroupsImmediately = CLUSTER_NODE_RESUME_FAILBACK_TYPE.FailbackGroupsImmediately;
+pub const FailbackGroupsPerPolicy = CLUSTER_NODE_RESUME_FAILBACK_TYPE.FailbackGroupsPerPolicy;
+pub const ClusterNodeResumeFailbackTypeCount = CLUSTER_NODE_RESUME_FAILBACK_TYPE.ClusterNodeResumeFailbackTypeCount;
 
-pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = *const fn(
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
+pub const CLUSTER_NODE_STATE = enum(i32) {
+    StateUnknown = -1,
+    Up = 0,
+    Down = 1,
+    Paused = 2,
+    Joining = 3,
+};
+pub const ClusterNodeStateUnknown = CLUSTER_NODE_STATE.StateUnknown;
+pub const ClusterNodeUp = CLUSTER_NODE_STATE.Up;
+pub const ClusterNodeDown = CLUSTER_NODE_STATE.Down;
+pub const ClusterNodePaused = CLUSTER_NODE_STATE.Paused;
+pub const ClusterNodeJoining = CLUSTER_NODE_STATE.Joining;
 
-pub const PRESUTIL_ENUM_RESOURCES = *const fn(
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_NODE_STATUS = enum(i32) {
+    Normal = 0,
+    Isolated = 1,
+    Quarantined = 2,
+    DrainInProgress = 4,
+    DrainCompleted = 8,
+    DrainFailed = 16,
+    AvoidPlacement = 32,
+    Max = 51,
+};
+pub const NodeStatusNormal = CLUSTER_NODE_STATUS.Normal;
+pub const NodeStatusIsolated = CLUSTER_NODE_STATUS.Isolated;
+pub const NodeStatusQuarantined = CLUSTER_NODE_STATUS.Quarantined;
+pub const NodeStatusDrainInProgress = CLUSTER_NODE_STATUS.DrainInProgress;
+pub const NodeStatusDrainCompleted = CLUSTER_NODE_STATUS.DrainCompleted;
+pub const NodeStatusDrainFailed = CLUSTER_NODE_STATUS.DrainFailed;
+pub const NodeStatusAvoidPlacement = CLUSTER_NODE_STATUS.AvoidPlacement;
+pub const NodeStatusMax = CLUSTER_NODE_STATUS.Max;
 
-pub const PRESUTIL_ENUM_RESOURCES_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
+pub const CLUSTER_NOTIFICATIONS_VERSION = enum(i32) {
+    @"1" = 1,
+    @"2" = 2,
+};
+pub const CLUSTER_NOTIFICATIONS_V1 = CLUSTER_NOTIFICATIONS_VERSION.@"1";
+pub const CLUSTER_NOTIFICATIONS_V2 = CLUSTER_NOTIFICATIONS_VERSION.@"2";
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY = *const fn(
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-) callconv(.winapi) ?*_HRESOURCE;
+pub const CLUSTER_OBJECT_TYPE = enum(i32) {
+    NONE = 0,
+    CLUSTER = 1,
+    GROUP = 2,
+    RESOURCE = 3,
+    RESOURCE_TYPE = 4,
+    NETWORK_INTERFACE = 5,
+    NETWORK = 6,
+    NODE = 7,
+    REGISTRY = 8,
+    QUORUM = 9,
+    SHARED_VOLUME = 10,
+    GROUPSET = 13,
+    AFFINITYRULE = 16,
+};
+pub const CLUSTER_OBJECT_TYPE_NONE = CLUSTER_OBJECT_TYPE.NONE;
+pub const CLUSTER_OBJECT_TYPE_CLUSTER = CLUSTER_OBJECT_TYPE.CLUSTER;
+pub const CLUSTER_OBJECT_TYPE_GROUP = CLUSTER_OBJECT_TYPE.GROUP;
+pub const CLUSTER_OBJECT_TYPE_RESOURCE = CLUSTER_OBJECT_TYPE.RESOURCE;
+pub const CLUSTER_OBJECT_TYPE_RESOURCE_TYPE = CLUSTER_OBJECT_TYPE.RESOURCE_TYPE;
+pub const CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE = CLUSTER_OBJECT_TYPE.NETWORK_INTERFACE;
+pub const CLUSTER_OBJECT_TYPE_NETWORK = CLUSTER_OBJECT_TYPE.NETWORK;
+pub const CLUSTER_OBJECT_TYPE_NODE = CLUSTER_OBJECT_TYPE.NODE;
+pub const CLUSTER_OBJECT_TYPE_REGISTRY = CLUSTER_OBJECT_TYPE.REGISTRY;
+pub const CLUSTER_OBJECT_TYPE_QUORUM = CLUSTER_OBJECT_TYPE.QUORUM;
+pub const CLUSTER_OBJECT_TYPE_SHARED_VOLUME = CLUSTER_OBJECT_TYPE.SHARED_VOLUME;
+pub const CLUSTER_OBJECT_TYPE_GROUPSET = CLUSTER_OBJECT_TYPE.GROUPSET;
+pub const CLUSTER_OBJECT_TYPE_AFFINITYRULE = CLUSTER_OBJECT_TYPE.AFFINITYRULE;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    bRecurse: BOOL,
-) callconv(.winapi) ?*_HRESOURCE;
+pub const CLUSTER_PROPERTY_FORMAT = enum(i32) {
+    UNKNOWN = 0,
+    BINARY = 1,
+    DWORD = 2,
+    SZ = 3,
+    EXPAND_SZ = 4,
+    MULTI_SZ = 5,
+    ULARGE_INTEGER = 6,
+    LONG = 7,
+    EXPANDED_SZ = 8,
+    SECURITY_DESCRIPTOR = 9,
+    LARGE_INTEGER = 10,
+    WORD = 11,
+    FILETIME = 12,
+    VALUE_LIST = 13,
+    PROPERTY_LIST = 14,
+    USER = 32768,
+};
+pub const CLUSPROP_FORMAT_UNKNOWN = CLUSTER_PROPERTY_FORMAT.UNKNOWN;
+pub const CLUSPROP_FORMAT_BINARY = CLUSTER_PROPERTY_FORMAT.BINARY;
+pub const CLUSPROP_FORMAT_DWORD = CLUSTER_PROPERTY_FORMAT.DWORD;
+pub const CLUSPROP_FORMAT_SZ = CLUSTER_PROPERTY_FORMAT.SZ;
+pub const CLUSPROP_FORMAT_EXPAND_SZ = CLUSTER_PROPERTY_FORMAT.EXPAND_SZ;
+pub const CLUSPROP_FORMAT_MULTI_SZ = CLUSTER_PROPERTY_FORMAT.MULTI_SZ;
+pub const CLUSPROP_FORMAT_ULARGE_INTEGER = CLUSTER_PROPERTY_FORMAT.ULARGE_INTEGER;
+pub const CLUSPROP_FORMAT_LONG = CLUSTER_PROPERTY_FORMAT.LONG;
+pub const CLUSPROP_FORMAT_EXPANDED_SZ = CLUSTER_PROPERTY_FORMAT.EXPANDED_SZ;
+pub const CLUSPROP_FORMAT_SECURITY_DESCRIPTOR = CLUSTER_PROPERTY_FORMAT.SECURITY_DESCRIPTOR;
+pub const CLUSPROP_FORMAT_LARGE_INTEGER = CLUSTER_PROPERTY_FORMAT.LARGE_INTEGER;
+pub const CLUSPROP_FORMAT_WORD = CLUSTER_PROPERTY_FORMAT.WORD;
+pub const CLUSPROP_FORMAT_FILETIME = CLUSTER_PROPERTY_FORMAT.FILETIME;
+pub const CLUSPROP_FORMAT_VALUE_LIST = CLUSTER_PROPERTY_FORMAT.VALUE_LIST;
+pub const CLUSPROP_FORMAT_PROPERTY_LIST = CLUSTER_PROPERTY_FORMAT.PROPERTY_LIST;
+pub const CLUSPROP_FORMAT_USER = CLUSTER_PROPERTY_FORMAT.USER;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    bRecurse: BOOL,
-) callconv(.winapi) ?*_HRESOURCE;
+pub const CLUSTER_PROPERTY_SYNTAX = enum(u32) {
+    ENDMARK = 0,
+    NAME = 262147,
+    RESCLASS = 131074,
+    LIST_VALUE_SZ = 65539,
+    LIST_VALUE_EXPAND_SZ = 65540,
+    LIST_VALUE_DWORD = 65538,
+    LIST_VALUE_BINARY = 65537,
+    LIST_VALUE_MULTI_SZ = 65541,
+    LIST_VALUE_LONG = 65543,
+    LIST_VALUE_EXPANDED_SZ = 65544,
+    LIST_VALUE_SECURITY_DESCRIPTOR = 65545,
+    LIST_VALUE_LARGE_INTEGER = 65546,
+    LIST_VALUE_ULARGE_INTEGER = 65542,
+    LIST_VALUE_WORD = 65547,
+    LIST_VALUE_PROPERTY_LIST = 65550,
+    LIST_VALUE_FILETIME = 65548,
+    DISK_SIGNATURE = 327682,
+    SCSI_ADDRESS = 393218,
+    DISK_NUMBER = 458754,
+    PARTITION_INFO = 524289,
+    FTSET_INFO = 589825,
+    DISK_SERIALNUMBER = 655363,
+    DISK_GUID = 720899,
+    DISK_SIZE = 786438,
+    PARTITION_INFO_EX = 851969,
+    PARTITION_INFO_EX2 = 917505,
+    STORAGE_DEVICE_ID_DESCRIPTOR = 983041,
+};
+pub const CLUSPROP_SYNTAX_ENDMARK = CLUSTER_PROPERTY_SYNTAX.ENDMARK;
+pub const CLUSPROP_SYNTAX_NAME = CLUSTER_PROPERTY_SYNTAX.NAME;
+pub const CLUSPROP_SYNTAX_RESCLASS = CLUSTER_PROPERTY_SYNTAX.RESCLASS;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_SZ;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_EXPAND_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_EXPAND_SZ;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_DWORD = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_DWORD;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_BINARY = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_BINARY;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_MULTI_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_MULTI_SZ;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_LONG = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_LONG;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_EXPANDED_SZ = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_EXPANDED_SZ;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_SECURITY_DESCRIPTOR = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_SECURITY_DESCRIPTOR;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_LARGE_INTEGER = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_LARGE_INTEGER;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_ULARGE_INTEGER = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_ULARGE_INTEGER;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_WORD = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_WORD;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_PROPERTY_LIST = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_PROPERTY_LIST;
+pub const CLUSPROP_SYNTAX_LIST_VALUE_FILETIME = CLUSTER_PROPERTY_SYNTAX.LIST_VALUE_FILETIME;
+pub const CLUSPROP_SYNTAX_DISK_SIGNATURE = CLUSTER_PROPERTY_SYNTAX.DISK_SIGNATURE;
+pub const CLUSPROP_SYNTAX_SCSI_ADDRESS = CLUSTER_PROPERTY_SYNTAX.SCSI_ADDRESS;
+pub const CLUSPROP_SYNTAX_DISK_NUMBER = CLUSTER_PROPERTY_SYNTAX.DISK_NUMBER;
+pub const CLUSPROP_SYNTAX_PARTITION_INFO = CLUSTER_PROPERTY_SYNTAX.PARTITION_INFO;
+pub const CLUSPROP_SYNTAX_FTSET_INFO = CLUSTER_PROPERTY_SYNTAX.FTSET_INFO;
+pub const CLUSPROP_SYNTAX_DISK_SERIALNUMBER = CLUSTER_PROPERTY_SYNTAX.DISK_SERIALNUMBER;
+pub const CLUSPROP_SYNTAX_DISK_GUID = CLUSTER_PROPERTY_SYNTAX.DISK_GUID;
+pub const CLUSPROP_SYNTAX_DISK_SIZE = CLUSTER_PROPERTY_SYNTAX.DISK_SIZE;
+pub const CLUSPROP_SYNTAX_PARTITION_INFO_EX = CLUSTER_PROPERTY_SYNTAX.PARTITION_INFO_EX;
+pub const CLUSPROP_SYNTAX_PARTITION_INFO_EX2 = CLUSTER_PROPERTY_SYNTAX.PARTITION_INFO_EX2;
+pub const CLUSPROP_SYNTAX_STORAGE_DEVICE_ID_DESCRIPTOR = CLUSTER_PROPERTY_SYNTAX.STORAGE_DEVICE_ID_DESCRIPTOR;
 
-pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY = *const fn(
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-) callconv(.winapi) ?*_HRESOURCE;
+pub const CLUSTER_PROPERTY_TYPE = enum(i32) {
+    UNKNOWN = -1,
+    ENDMARK = 0,
+    LIST_VALUE = 1,
+    RESCLASS = 2,
+    RESERVED1 = 3,
+    NAME = 4,
+    SIGNATURE = 5,
+    SCSI_ADDRESS = 6,
+    DISK_NUMBER = 7,
+    PARTITION_INFO = 8,
+    FTSET_INFO = 9,
+    DISK_SERIALNUMBER = 10,
+    DISK_GUID = 11,
+    DISK_SIZE = 12,
+    PARTITION_INFO_EX = 13,
+    PARTITION_INFO_EX2 = 14,
+    STORAGE_DEVICE_ID_DESCRIPTOR = 15,
+    USER = 32768,
+};
+pub const CLUSPROP_TYPE_UNKNOWN = CLUSTER_PROPERTY_TYPE.UNKNOWN;
+pub const CLUSPROP_TYPE_ENDMARK = CLUSTER_PROPERTY_TYPE.ENDMARK;
+pub const CLUSPROP_TYPE_LIST_VALUE = CLUSTER_PROPERTY_TYPE.LIST_VALUE;
+pub const CLUSPROP_TYPE_RESCLASS = CLUSTER_PROPERTY_TYPE.RESCLASS;
+pub const CLUSPROP_TYPE_RESERVED1 = CLUSTER_PROPERTY_TYPE.RESERVED1;
+pub const CLUSPROP_TYPE_NAME = CLUSTER_PROPERTY_TYPE.NAME;
+pub const CLUSPROP_TYPE_SIGNATURE = CLUSTER_PROPERTY_TYPE.SIGNATURE;
+pub const CLUSPROP_TYPE_SCSI_ADDRESS = CLUSTER_PROPERTY_TYPE.SCSI_ADDRESS;
+pub const CLUSPROP_TYPE_DISK_NUMBER = CLUSTER_PROPERTY_TYPE.DISK_NUMBER;
+pub const CLUSPROP_TYPE_PARTITION_INFO = CLUSTER_PROPERTY_TYPE.PARTITION_INFO;
+pub const CLUSPROP_TYPE_FTSET_INFO = CLUSTER_PROPERTY_TYPE.FTSET_INFO;
+pub const CLUSPROP_TYPE_DISK_SERIALNUMBER = CLUSTER_PROPERTY_TYPE.DISK_SERIALNUMBER;
+pub const CLUSPROP_TYPE_DISK_GUID = CLUSTER_PROPERTY_TYPE.DISK_GUID;
+pub const CLUSPROP_TYPE_DISK_SIZE = CLUSTER_PROPERTY_TYPE.DISK_SIZE;
+pub const CLUSPROP_TYPE_PARTITION_INFO_EX = CLUSTER_PROPERTY_TYPE.PARTITION_INFO_EX;
+pub const CLUSPROP_TYPE_PARTITION_INFO_EX2 = CLUSTER_PROPERTY_TYPE.PARTITION_INFO_EX2;
+pub const CLUSPROP_TYPE_STORAGE_DEVICE_ID_DESCRIPTOR = CLUSTER_PROPERTY_TYPE.STORAGE_DEVICE_ID_DESCRIPTOR;
+pub const CLUSPROP_TYPE_USER = CLUSTER_PROPERTY_TYPE.USER;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = *const fn(
-    hResource: ?*_HRESOURCE,
-    pszAddress: [*:0]u16,
-    pcchAddress: ?*u32,
-    pszSubnetMask: [*:0]u16,
-    pcchSubnetMask: ?*u32,
-    pszNetwork: [*:0]u16,
-    pcchNetwork: ?*u32,
-) callconv(.winapi) u32;
+pub const CLUSTER_QUORUM_TYPE = enum(i32) {
+    OperationalQuorum = 0,
+    ModifyQuorum = 1,
+};
+pub const OperationalQuorum = CLUSTER_QUORUM_TYPE.OperationalQuorum;
+pub const ModifyQuorum = CLUSTER_QUORUM_TYPE.ModifyQuorum;
 
-pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hResource: ?*_HRESOURCE,
-    pszDriveLetter: [*:0]u16,
-    pcchDriveLetter: ?*u32,
-) callconv(.winapi) u32;
+pub const CLUSTER_QUORUM_VALUE = enum(i32) {
+    MAINTAINED = 0,
+    LOST = 1,
+};
+pub const CLUSTER_QUORUM_MAINTAINED = CLUSTER_QUORUM_VALUE.MAINTAINED;
+pub const CLUSTER_QUORUM_LOST = CLUSTER_QUORUM_VALUE.LOST;
 
-pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = *const fn(
-    dwServicePid: u32,
-    bOffline: BOOL,
-    pdwResourceState: ?*u32,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(.winapi) u32;
+pub const CLUSTER_READ_BATCH_COMMAND = extern struct {
+    Command: CLUSTER_REG_COMMAND,
+    dwOptions: u32,
+    wzSubkeyName: ?[*:0]const u16,
+    wzValueName: ?[*:0]const u16,
+    lpData: ?*const u8,
+    cbData: u32,
+};
 
-pub const PRESUTIL_GET_PROPERTY_FORMATS = *const fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyFormatList: ?*anyopaque,
-    cbPropertyFormatListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
+pub const CLUSTER_REG_COMMAND = enum(i32) {
+    COMMAND_NONE = 0,
+    SET_VALUE = 1,
+    CREATE_KEY = 2,
+    DELETE_KEY = 3,
+    DELETE_VALUE = 4,
+    SET_KEY_SECURITY = 5,
+    VALUE_DELETED = 6,
+    READ_KEY = 7,
+    READ_VALUE = 8,
+    READ_ERROR = 9,
+    CONTROL_COMMAND = 10,
+    CONDITION_EXISTS = 11,
+    CONDITION_NOT_EXISTS = 12,
+    CONDITION_IS_EQUAL = 13,
+    CONDITION_IS_NOT_EQUAL = 14,
+    CONDITION_IS_GREATER_THAN = 15,
+    CONDITION_IS_LESS_THAN = 16,
+    CONDITION_KEY_EXISTS = 17,
+    CONDITION_KEY_NOT_EXISTS = 18,
+    LAST_COMMAND = 19,
+};
+pub const CLUSREG_COMMAND_NONE = CLUSTER_REG_COMMAND.COMMAND_NONE;
+pub const CLUSREG_SET_VALUE = CLUSTER_REG_COMMAND.SET_VALUE;
+pub const CLUSREG_CREATE_KEY = CLUSTER_REG_COMMAND.CREATE_KEY;
+pub const CLUSREG_DELETE_KEY = CLUSTER_REG_COMMAND.DELETE_KEY;
+pub const CLUSREG_DELETE_VALUE = CLUSTER_REG_COMMAND.DELETE_VALUE;
+pub const CLUSREG_SET_KEY_SECURITY = CLUSTER_REG_COMMAND.SET_KEY_SECURITY;
+pub const CLUSREG_VALUE_DELETED = CLUSTER_REG_COMMAND.VALUE_DELETED;
+pub const CLUSREG_READ_KEY = CLUSTER_REG_COMMAND.READ_KEY;
+pub const CLUSREG_READ_VALUE = CLUSTER_REG_COMMAND.READ_VALUE;
+pub const CLUSREG_READ_ERROR = CLUSTER_REG_COMMAND.READ_ERROR;
+pub const CLUSREG_CONTROL_COMMAND = CLUSTER_REG_COMMAND.CONTROL_COMMAND;
+pub const CLUSREG_CONDITION_EXISTS = CLUSTER_REG_COMMAND.CONDITION_EXISTS;
+pub const CLUSREG_CONDITION_NOT_EXISTS = CLUSTER_REG_COMMAND.CONDITION_NOT_EXISTS;
+pub const CLUSREG_CONDITION_IS_EQUAL = CLUSTER_REG_COMMAND.CONDITION_IS_EQUAL;
+pub const CLUSREG_CONDITION_IS_NOT_EQUAL = CLUSTER_REG_COMMAND.CONDITION_IS_NOT_EQUAL;
+pub const CLUSREG_CONDITION_IS_GREATER_THAN = CLUSTER_REG_COMMAND.CONDITION_IS_GREATER_THAN;
+pub const CLUSREG_CONDITION_IS_LESS_THAN = CLUSTER_REG_COMMAND.CONDITION_IS_LESS_THAN;
+pub const CLUSREG_CONDITION_KEY_EXISTS = CLUSTER_REG_COMMAND.CONDITION_KEY_EXISTS;
+pub const CLUSREG_CONDITION_KEY_NOT_EXISTS = CLUSTER_REG_COMMAND.CONDITION_KEY_NOT_EXISTS;
+pub const CLUSREG_LAST_COMMAND = CLUSTER_REG_COMMAND.LAST_COMMAND;
 
-pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES = *const fn(
-    hCluster: ?*_HCLUSTER,
-    phClusterNameResource: ?*?*_HRESOURCE,
-    phClusterIPAddressResource: ?*?*_HRESOURCE,
-    phClusterQuorumResource: ?*?*_HRESOURCE,
-) callconv(.winapi) u32;
+pub const CLUSTER_RESOURCE_APPLICATION_STATE = enum(i32) {
+    StateUnknown = 1,
+    OSHeartBeat = 2,
+    Ready = 3,
+};
+pub const ClusterResourceApplicationStateUnknown = CLUSTER_RESOURCE_APPLICATION_STATE.StateUnknown;
+pub const ClusterResourceApplicationOSHeartBeat = CLUSTER_RESOURCE_APPLICATION_STATE.OSHeartBeat;
+pub const ClusterResourceApplicationReady = CLUSTER_RESOURCE_APPLICATION_STATE.Ready;
 
-pub const PRESUTIL_GET_RESOURCE_NAME = *const fn(
-    hResource: ?*_HRESOURCE,
-    pszResourceName: [*:0]u16,
-    pcchResourceNameInOut: ?*u32,
-) callconv(.winapi) u32;
+pub const CLUSTER_RESOURCE_CLASS = enum(i32) {
+    UNKNOWN = 0,
+    STORAGE = 1,
+    NETWORK = 2,
+    USER = 32768,
+};
+pub const CLUS_RESCLASS_UNKNOWN = CLUSTER_RESOURCE_CLASS.UNKNOWN;
+pub const CLUS_RESCLASS_STORAGE = CLUSTER_RESOURCE_CLASS.STORAGE;
+pub const CLUS_RESCLASS_NETWORK = CLUSTER_RESOURCE_CLASS.NETWORK;
+pub const CLUS_RESCLASS_USER = CLUSTER_RESOURCE_CLASS.USER;
+
+pub const CLUSTER_RESOURCE_CREATE_FLAGS = enum(i32) {
+    DEFAULT_MONITOR = 0,
+    SEPARATE_MONITOR = 1,
+    pub const VALID_FLAGS = .SEPARATE_MONITOR;
+};
+pub const CLUSTER_RESOURCE_DEFAULT_MONITOR = CLUSTER_RESOURCE_CREATE_FLAGS.DEFAULT_MONITOR;
+pub const CLUSTER_RESOURCE_SEPARATE_MONITOR = CLUSTER_RESOURCE_CREATE_FLAGS.SEPARATE_MONITOR;
+pub const CLUSTER_RESOURCE_VALID_FLAGS = CLUSTER_RESOURCE_CREATE_FLAGS.SEPARATE_MONITOR;
+
+pub const CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION = enum(i32) {
+    None = 0,
+    LogOnly = 1,
+    Recover = 2,
+};
+pub const ClusterResourceEmbeddedFailureActionNone = CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION.None;
+pub const ClusterResourceEmbeddedFailureActionLogOnly = CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION.LogOnly;
+pub const ClusterResourceEmbeddedFailureActionRecover = CLUSTER_RESOURCE_EMBEDDED_FAILURE_ACTION.Recover;
+
+pub const CLUSTER_RESOURCE_ENUM = enum(i32) {
+    DEPENDS = 1,
+    PROVIDES = 2,
+    NODES = 4,
+    ALL = 7,
+};
+pub const CLUSTER_RESOURCE_ENUM_DEPENDS = CLUSTER_RESOURCE_ENUM.DEPENDS;
+pub const CLUSTER_RESOURCE_ENUM_PROVIDES = CLUSTER_RESOURCE_ENUM.PROVIDES;
+pub const CLUSTER_RESOURCE_ENUM_NODES = CLUSTER_RESOURCE_ENUM.NODES;
+pub const CLUSTER_RESOURCE_ENUM_ALL = CLUSTER_RESOURCE_ENUM.ALL;
+
+pub const CLUSTER_RESOURCE_ENUM_ITEM = extern struct {
+    dwVersion: u32,
+    cbId: u32,
+    lpszId: ?PWSTR,
+    cbName: u32,
+    lpszName: ?PWSTR,
+    cbOwnerGroupName: u32,
+    lpszOwnerGroupName: ?PWSTR,
+    cbOwnerGroupId: u32,
+    lpszOwnerGroupId: ?PWSTR,
+    cbProperties: u32,
+    pProperties: ?*anyopaque,
+    cbRoProperties: u32,
+    pRoProperties: ?*anyopaque,
+};
+
+pub const CLUSTER_RESOURCE_RESTART_ACTION = enum(i32) {
+    DontRestart = 0,
+    RestartNoNotify = 1,
+    RestartNotify = 2,
+    RestartActionCount = 3,
+};
+pub const ClusterResourceDontRestart = CLUSTER_RESOURCE_RESTART_ACTION.DontRestart;
+pub const ClusterResourceRestartNoNotify = CLUSTER_RESOURCE_RESTART_ACTION.RestartNoNotify;
+pub const ClusterResourceRestartNotify = CLUSTER_RESOURCE_RESTART_ACTION.RestartNotify;
+pub const ClusterResourceRestartActionCount = CLUSTER_RESOURCE_RESTART_ACTION.RestartActionCount;
+
+pub const CLUSTER_RESOURCE_STATE = enum(i32) {
+    StateUnknown = -1,
+    Inherited = 0,
+    Initializing = 1,
+    Online = 2,
+    Offline = 3,
+    Failed = 4,
+    Pending = 128,
+    OnlinePending = 129,
+    OfflinePending = 130,
+};
+pub const ClusterResourceStateUnknown = CLUSTER_RESOURCE_STATE.StateUnknown;
+pub const ClusterResourceInherited = CLUSTER_RESOURCE_STATE.Inherited;
+pub const ClusterResourceInitializing = CLUSTER_RESOURCE_STATE.Initializing;
+pub const ClusterResourceOnline = CLUSTER_RESOURCE_STATE.Online;
+pub const ClusterResourceOffline = CLUSTER_RESOURCE_STATE.Offline;
+pub const ClusterResourceFailed = CLUSTER_RESOURCE_STATE.Failed;
+pub const ClusterResourcePending = CLUSTER_RESOURCE_STATE.Pending;
+pub const ClusterResourceOnlinePending = CLUSTER_RESOURCE_STATE.OnlinePending;
+pub const ClusterResourceOfflinePending = CLUSTER_RESOURCE_STATE.OfflinePending;
+
+pub const CLUSTER_RESOURCE_STATE_CHANGE_REASON = enum(i32) {
+    Unknown = 0,
+    Move = 1,
+    Failover = 2,
+    FailedMove = 3,
+    Shutdown = 4,
+    Rundown = 5,
+};
+pub const eResourceStateChangeReasonUnknown = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Unknown;
+pub const eResourceStateChangeReasonMove = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Move;
+pub const eResourceStateChangeReasonFailover = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Failover;
+pub const eResourceStateChangeReasonFailedMove = CLUSTER_RESOURCE_STATE_CHANGE_REASON.FailedMove;
+pub const eResourceStateChangeReasonShutdown = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Shutdown;
+pub const eResourceStateChangeReasonRundown = CLUSTER_RESOURCE_STATE_CHANGE_REASON.Rundown;
+
+pub const CLUSTER_RESOURCE_TYPE_ENUM = enum(i32) {
+    NODES = 1,
+    RESOURCES = 2,
+    ALL = 3,
+};
+pub const CLUSTER_RESOURCE_TYPE_ENUM_NODES = CLUSTER_RESOURCE_TYPE_ENUM.NODES;
+pub const CLUSTER_RESOURCE_TYPE_ENUM_RESOURCES = CLUSTER_RESOURCE_TYPE_ENUM.RESOURCES;
+pub const CLUSTER_RESOURCE_TYPE_ENUM_ALL = CLUSTER_RESOURCE_TYPE_ENUM.ALL;
 
 pub const CLUSTER_ROLE = enum(i32) {
     DHCP = 0,
@@ -6198,247 +3565,346 @@ pub const ClusterRoleUnknown = CLUSTER_ROLE_STATE.Unknown;
 pub const ClusterRoleClustered = CLUSTER_ROLE_STATE.Clustered;
 pub const ClusterRoleUnclustered = CLUSTER_ROLE_STATE.Unclustered;
 
-pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = *const fn(
-    lpszPathName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSTER_GET_VOLUME_PATH_NAME = *const fn(
-    lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
-    cchBufferLength: u32,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = *const fn(
-    lpszVolumeMountPoint: ?[*:0]const u16,
-    lpszVolumeName: ?PWSTR,
-    cchBufferLength: u32,
-) callconv(.winapi) BOOL;
-
-pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = *const fn(
-    lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
-    lpcchVolumePathName: ?*u32,
-    lpszVolumeName: ?PWSTR,
-    lpcchVolumeName: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = *const fn(
-    lpszVolumePathName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = *const fn(
-    pszServiceName: ?[*:0]const u16,
-    schSCMHandle: SC_HANDLE,
-    phService: ?*isize,
-    dwDesiredAccess: u32,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_ENUM_RESOURCES_EX2 = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-    dwDesiredAccess: u32,
-) callconv(.winapi) u32;
-
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_EX = *const fn(
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    bRecurse: BOOL,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = *const fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    bRecurse: BOOL,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = *const fn(
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = *const fn(
-    hClusterIn: ?*_HCLUSTER,
-    phClusterNameResourceOut: ?*?*_HRESOURCE,
-    phClusterIPAddressResourceOut: ?*?*_HRESOURCE,
-    phClusterQuorumResourceOut: ?*?*_HRESOURCE,
-    dwDesiredAccess: u32,
-) callconv(.winapi) u32;
-
-pub const _HCLUSCRYPTPROVIDER = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const CLUSTER_SET_PASSWORD_STATUS = extern struct {
+    NodeId: u32,
+    SetAttempted: BOOLEAN,
+    ReturnStatus: u32,
 };
 
-pub const POPEN_CLUSTER_CRYPT_PROVIDER = *const fn(
-    lpszResource: ?[*:0]const u16,
-    lpszProvider: ?*i8,
-    dwType: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
+pub const CLUSTER_SETUP_PHASE = enum(i32) {
+    Initialize = 1,
+    ValidateNodeState = 100,
+    ValidateNetft = 102,
+    ValidateClusDisk = 103,
+    ConfigureClusSvc = 104,
+    StartingClusSvc = 105,
+    QueryClusterNameAccount = 106,
+    ValidateClusterNameAccount = 107,
+    CreateClusterAccount = 108,
+    ConfigureClusterAccount = 109,
+    FormingCluster = 200,
+    AddClusterProperties = 201,
+    CreateResourceTypes = 202,
+    CreateGroups = 203,
+    CreateIPAddressResources = 204,
+    CreateNetworkName = 205,
+    ClusterGroupOnline = 206,
+    GettingCurrentMembership = 300,
+    AddNodeToCluster = 301,
+    NodeUp = 302,
+    MoveGroup = 400,
+    DeleteGroup = 401,
+    CleanupCOs = 402,
+    OfflineGroup = 403,
+    EvictNode = 404,
+    CleanupNode = 405,
+    CoreGroupCleanup = 406,
+    FailureCleanup = 999,
+};
+pub const ClusterSetupPhaseInitialize = CLUSTER_SETUP_PHASE.Initialize;
+pub const ClusterSetupPhaseValidateNodeState = CLUSTER_SETUP_PHASE.ValidateNodeState;
+pub const ClusterSetupPhaseValidateNetft = CLUSTER_SETUP_PHASE.ValidateNetft;
+pub const ClusterSetupPhaseValidateClusDisk = CLUSTER_SETUP_PHASE.ValidateClusDisk;
+pub const ClusterSetupPhaseConfigureClusSvc = CLUSTER_SETUP_PHASE.ConfigureClusSvc;
+pub const ClusterSetupPhaseStartingClusSvc = CLUSTER_SETUP_PHASE.StartingClusSvc;
+pub const ClusterSetupPhaseQueryClusterNameAccount = CLUSTER_SETUP_PHASE.QueryClusterNameAccount;
+pub const ClusterSetupPhaseValidateClusterNameAccount = CLUSTER_SETUP_PHASE.ValidateClusterNameAccount;
+pub const ClusterSetupPhaseCreateClusterAccount = CLUSTER_SETUP_PHASE.CreateClusterAccount;
+pub const ClusterSetupPhaseConfigureClusterAccount = CLUSTER_SETUP_PHASE.ConfigureClusterAccount;
+pub const ClusterSetupPhaseFormingCluster = CLUSTER_SETUP_PHASE.FormingCluster;
+pub const ClusterSetupPhaseAddClusterProperties = CLUSTER_SETUP_PHASE.AddClusterProperties;
+pub const ClusterSetupPhaseCreateResourceTypes = CLUSTER_SETUP_PHASE.CreateResourceTypes;
+pub const ClusterSetupPhaseCreateGroups = CLUSTER_SETUP_PHASE.CreateGroups;
+pub const ClusterSetupPhaseCreateIPAddressResources = CLUSTER_SETUP_PHASE.CreateIPAddressResources;
+pub const ClusterSetupPhaseCreateNetworkName = CLUSTER_SETUP_PHASE.CreateNetworkName;
+pub const ClusterSetupPhaseClusterGroupOnline = CLUSTER_SETUP_PHASE.ClusterGroupOnline;
+pub const ClusterSetupPhaseGettingCurrentMembership = CLUSTER_SETUP_PHASE.GettingCurrentMembership;
+pub const ClusterSetupPhaseAddNodeToCluster = CLUSTER_SETUP_PHASE.AddNodeToCluster;
+pub const ClusterSetupPhaseNodeUp = CLUSTER_SETUP_PHASE.NodeUp;
+pub const ClusterSetupPhaseMoveGroup = CLUSTER_SETUP_PHASE.MoveGroup;
+pub const ClusterSetupPhaseDeleteGroup = CLUSTER_SETUP_PHASE.DeleteGroup;
+pub const ClusterSetupPhaseCleanupCOs = CLUSTER_SETUP_PHASE.CleanupCOs;
+pub const ClusterSetupPhaseOfflineGroup = CLUSTER_SETUP_PHASE.OfflineGroup;
+pub const ClusterSetupPhaseEvictNode = CLUSTER_SETUP_PHASE.EvictNode;
+pub const ClusterSetupPhaseCleanupNode = CLUSTER_SETUP_PHASE.CleanupNode;
+pub const ClusterSetupPhaseCoreGroupCleanup = CLUSTER_SETUP_PHASE.CoreGroupCleanup;
+pub const ClusterSetupPhaseFailureCleanup = CLUSTER_SETUP_PHASE.FailureCleanup;
 
-pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = *const fn(
-    lpszResource: ?[*:0]const u16,
-    lpszKeyname: ?[*:0]const u16,
-    lpszProvider: ?*i8,
-    dwType: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
+pub const CLUSTER_SETUP_PHASE_SEVERITY = enum(i32) {
+    Informational = 1,
+    Warning = 2,
+    Fatal = 3,
+};
+pub const ClusterSetupPhaseInformational = CLUSTER_SETUP_PHASE_SEVERITY.Informational;
+pub const ClusterSetupPhaseWarning = CLUSTER_SETUP_PHASE_SEVERITY.Warning;
+pub const ClusterSetupPhaseFatal = CLUSTER_SETUP_PHASE_SEVERITY.Fatal;
 
-pub const PCLOSE_CLUSTER_CRYPT_PROVIDER = *const fn(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-) callconv(.winapi) u32;
+pub const CLUSTER_SETUP_PHASE_TYPE = enum(i32) {
+    Start = 1,
+    Continue = 2,
+    End = 3,
+    Report = 4,
+};
+pub const ClusterSetupPhaseStart = CLUSTER_SETUP_PHASE_TYPE.Start;
+pub const ClusterSetupPhaseContinue = CLUSTER_SETUP_PHASE_TYPE.Continue;
+pub const ClusterSetupPhaseEnd = CLUSTER_SETUP_PHASE_TYPE.End;
+pub const ClusterSetupPhaseReport = CLUSTER_SETUP_PHASE_TYPE.Report;
 
-pub const PCLUSTER_ENCRYPT = *const fn(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-    pData: [*:0]u8,
-    cbData: u32,
-    ppData: ?*?*u8,
-    pcbData: ?*u32,
-) callconv(.winapi) u32;
+pub const CLUSTER_SHARED_VOLUME_BACKUP_STATE = enum(i32) {
+    None = 0,
+    InProgress = 1,
+};
+pub const VolumeBackupNone = CLUSTER_SHARED_VOLUME_BACKUP_STATE.None;
+pub const VolumeBackupInProgress = CLUSTER_SHARED_VOLUME_BACKUP_STATE.InProgress;
 
-pub const PCLUSTER_DECRYPT = *const fn(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-    pCryptInput: ?*u8,
-    cbCryptInput: u32,
-    ppCryptOutput: ?*?*u8,
-    pcbCryptOutput: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PFREE_CLUSTER_CRYPT = *const fn(
-    pCryptInfo: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub const PRES_UTIL_VERIFY_SHUTDOWN_SAFE = *const fn(
-    flags: u32,
-    reason: u32,
-    pResult: ?*u32,
-) callconv(.winapi) u32;
-
-pub const PaxosTagCStruct = extern struct {
-    __padding__PaxosTagVtable: u64,
-    __padding__NextEpochVtable: u64,
-    __padding__NextEpoch_DateTimeVtable: u64,
-    NextEpoch_DateTime_ticks: u64,
-    NextEpoch_Value: i32,
-    __padding__BoundryNextEpoch: u32,
-    __padding__EpochVtable: u64,
-    __padding__Epoch_DateTimeVtable: u64,
-    Epoch_DateTime_ticks: u64,
-    Epoch_Value: i32,
-    __padding__BoundryEpoch: u32,
-    Sequence: i32,
-    __padding__BoundrySequence: u32,
+pub const CLUSTER_SHARED_VOLUME_RENAME_GUID_INPUT = extern struct {
+    Base: CLUSTER_SHARED_VOLUME_RENAME_INPUT_VOLUME,
+    Base2: CLUSTER_SHARED_VOLUME_RENAME_INPUT_GUID_NAME,
 };
 
-pub const WitnessTagUpdateHelper = extern struct {
-    Version: i32,
-    paxosToSet: PaxosTagCStruct,
-    paxosToValidate: PaxosTagCStruct,
+pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT = extern struct {
+    Base: CLUSTER_SHARED_VOLUME_RENAME_INPUT_VOLUME,
+    Base2: CLUSTER_SHARED_VOLUME_RENAME_INPUT_NAME,
 };
 
-pub const WitnessTagHelper = extern struct {
-    Version: i32,
-    paxosToValidate: PaxosTagCStruct,
+pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_GUID_NAME = extern struct {
+    NewVolumeName: [260]u16,
+    NewVolumeGuid: [50]u16,
 };
 
-pub const PREGISTER_APPINSTANCE = *const fn(
-    ProcessHandle: ?HANDLE,
-    AppInstanceId: ?*Guid,
-    ChildrenInheritAppInstance: BOOL,
-) callconv(.winapi) u32;
+pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_NAME = extern struct {
+    NewVolumeName: [260]u16,
+};
 
-pub const PREGISTER_APPINSTANCE_VERSION = *const fn(
-    AppInstanceId: ?*Guid,
-    InstanceVersionHigh: u64,
-    InstanceVersionLow: u64,
-) callconv(.winapi) u32;
+pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE = enum(i32) {
+    None = 0,
+    VolumeOffset = 1,
+    VolumeId = 2,
+    VolumeName = 3,
+    VolumeGuid = 4,
+};
+pub const ClusterSharedVolumeRenameInputTypeNone = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.None;
+pub const ClusterSharedVolumeRenameInputTypeVolumeOffset = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeOffset;
+pub const ClusterSharedVolumeRenameInputTypeVolumeId = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeId;
+pub const ClusterSharedVolumeRenameInputTypeVolumeName = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeName;
+pub const ClusterSharedVolumeRenameInputTypeVolumeGuid = CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE.VolumeGuid;
 
-pub const PQUERY_APPINSTANCE_VERSION = *const fn(
-    AppInstanceId: ?*Guid,
-    InstanceVersionHigh: ?*u64,
-    InstanceVersionLow: ?*u64,
-    VersionStatus: ?*NTSTATUS,
-) callconv(.winapi) u32;
+pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_VOLUME = extern struct {
+    InputType: CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE,
+    Anonymous: extern union {
+        VolumeOffset: u64,
+        VolumeId: [260]u16,
+        VolumeName: [260]u16,
+        VolumeGuid: [50]u16,
+    },
+};
 
-pub const PRESET_ALL_APPINSTANCE_VERSIONS = *const fn(
-) callconv(.winapi) u32;
+pub const CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE = enum(i32) {
+    SnapshotStateUnknown = 0,
+    PrepareForHWSnapshot = 1,
+    HWSnapshotCompleted = 2,
+    PrepareForFreeze = 3,
+};
+pub const ClusterSharedVolumeSnapshotStateUnknown = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.SnapshotStateUnknown;
+pub const ClusterSharedVolumePrepareForHWSnapshot = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.PrepareForHWSnapshot;
+pub const ClusterSharedVolumeHWSnapshotCompleted = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.HWSnapshotCompleted;
+pub const ClusterSharedVolumePrepareForFreeze = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.PrepareForFreeze;
 
-pub const SET_APP_INSTANCE_CSV_FLAGS = *const fn(
-    ProcessHandle: ?HANDLE,
-    Mask: u32,
-    Flags: u32,
-) callconv(.winapi) u32;
+pub const CLUSTER_SHARED_VOLUME_STATE = enum(i32) {
+    Unavailable = 0,
+    Paused = 1,
+    Active = 2,
+    ActiveRedirected = 3,
+    ActiveVolumeRedirected = 4,
+};
+pub const SharedVolumeStateUnavailable = CLUSTER_SHARED_VOLUME_STATE.Unavailable;
+pub const SharedVolumeStatePaused = CLUSTER_SHARED_VOLUME_STATE.Paused;
+pub const SharedVolumeStateActive = CLUSTER_SHARED_VOLUME_STATE.Active;
+pub const SharedVolumeStateActiveRedirected = CLUSTER_SHARED_VOLUME_STATE.ActiveRedirected;
+pub const SharedVolumeStateActiveVolumeRedirected = CLUSTER_SHARED_VOLUME_STATE.ActiveVolumeRedirected;
 
-pub const CLUADMEX_OBJECT_TYPE = enum(i32) {
+pub const CLUSTER_SHARED_VOLUME_STATE_INFO = extern struct {
+    szVolumeName: [260]u16,
+    szNodeName: [260]u16,
+    VolumeState: CLUSTER_SHARED_VOLUME_STATE,
+};
+
+pub const CLUSTER_SHARED_VOLUME_STATE_INFO_EX = extern struct {
+    szVolumeName: [260]u16,
+    szNodeName: [260]u16,
+    VolumeState: CLUSTER_SHARED_VOLUME_STATE,
+    szVolumeFriendlyName: [260]u16,
+    RedirectedIOReason: u64,
+    VolumeRedirectedIOReason: u64,
+};
+
+pub const CLUSTER_STORAGENODE_STATE = enum(i32) {
+    StateUnknown = 0,
+    Up = 1,
+    Down = 2,
+    Paused = 3,
+    Starting = 4,
+    Stopping = 5,
+};
+pub const ClusterStorageNodeStateUnknown = CLUSTER_STORAGENODE_STATE.StateUnknown;
+pub const ClusterStorageNodeUp = CLUSTER_STORAGENODE_STATE.Up;
+pub const ClusterStorageNodeDown = CLUSTER_STORAGENODE_STATE.Down;
+pub const ClusterStorageNodePaused = CLUSTER_STORAGENODE_STATE.Paused;
+pub const ClusterStorageNodeStarting = CLUSTER_STORAGENODE_STATE.Starting;
+pub const ClusterStorageNodeStopping = CLUSTER_STORAGENODE_STATE.Stopping;
+
+pub const CLUSTER_UPGRADE_PHASE = enum(i32) {
+    Initialize = 1,
+    ValidatingUpgrade = 2,
+    UpgradingComponents = 3,
+    InstallingNewComponents = 4,
+    UpgradeComplete = 5,
+};
+pub const ClusterUpgradePhaseInitialize = CLUSTER_UPGRADE_PHASE.Initialize;
+pub const ClusterUpgradePhaseValidatingUpgrade = CLUSTER_UPGRADE_PHASE.ValidatingUpgrade;
+pub const ClusterUpgradePhaseUpgradingComponents = CLUSTER_UPGRADE_PHASE.UpgradingComponents;
+pub const ClusterUpgradePhaseInstallingNewComponents = CLUSTER_UPGRADE_PHASE.InstallingNewComponents;
+pub const ClusterUpgradePhaseUpgradeComplete = CLUSTER_UPGRADE_PHASE.UpgradeComplete;
+
+pub const CLUSTER_VALIDATE_CSV_FILENAME = extern struct {
+    szFileName: [1]u16,
+};
+
+pub const CLUSTER_VALIDATE_DIRECTORY = extern struct {
+    szPath: [1]u16,
+};
+
+pub const CLUSTER_VALIDATE_NETNAME = extern struct {
+    szNetworkName: [1]u16,
+};
+
+pub const CLUSTER_VALIDATE_PATH = extern struct {
+    szPath: [1]u16,
+};
+
+const CLSID_ClusterNames_Value = Guid.initString("f2e606eb-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusterNames = &CLSID_ClusterNames_Value;
+
+pub const CLUSTERSET_OBJECT_TYPE = enum(i32) {
     NONE = 0,
-    CLUSTER = 1,
-    NODE = 2,
-    GROUP = 3,
-    RESOURCE = 4,
-    RESOURCETYPE = 5,
-    NETWORK = 6,
-    NETINTERFACE = 7,
+    MEMBER = 1,
+    WORKLOAD = 2,
+    DATABASE = 3,
 };
-pub const CLUADMEX_OT_NONE = CLUADMEX_OBJECT_TYPE.NONE;
-pub const CLUADMEX_OT_CLUSTER = CLUADMEX_OBJECT_TYPE.CLUSTER;
-pub const CLUADMEX_OT_NODE = CLUADMEX_OBJECT_TYPE.NODE;
-pub const CLUADMEX_OT_GROUP = CLUADMEX_OBJECT_TYPE.GROUP;
-pub const CLUADMEX_OT_RESOURCE = CLUADMEX_OBJECT_TYPE.RESOURCE;
-pub const CLUADMEX_OT_RESOURCETYPE = CLUADMEX_OBJECT_TYPE.RESOURCETYPE;
-pub const CLUADMEX_OT_NETWORK = CLUADMEX_OBJECT_TYPE.NETWORK;
-pub const CLUADMEX_OT_NETINTERFACE = CLUADMEX_OBJECT_TYPE.NETINTERFACE;
+pub const CLUSTERSET_OBJECT_TYPE_NONE = CLUSTERSET_OBJECT_TYPE.NONE;
+pub const CLUSTERSET_OBJECT_TYPE_MEMBER = CLUSTERSET_OBJECT_TYPE.MEMBER;
+pub const CLUSTERSET_OBJECT_TYPE_WORKLOAD = CLUSTERSET_OBJECT_TYPE.WORKLOAD;
+pub const CLUSTERSET_OBJECT_TYPE_DATABASE = CLUSTERSET_OBJECT_TYPE.DATABASE;
 
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IGetClusterUIInfo_Value = Guid.initString("97dede50-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IGetClusterUIInfo = &IID_IGetClusterUIInfo_Value;
-pub const IGetClusterUIInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetClusterName: *const fn(
-            self: *const IGetClusterUIInfo,
-            lpszName: ?BSTR,
-            pcchName: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        GetLocale: *const fn(
-            self: *const IGetClusterUIInfo,
-        ) callconv(.winapi) u32,
-        GetFont: *const fn(
-            self: *const IGetClusterUIInfo,
-        ) callconv(.winapi) ?HFONT,
-        GetIcon: *const fn(
-            self: *const IGetClusterUIInfo,
-        ) callconv(.winapi) ?HICON,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetClusterName(self: *const IGetClusterUIInfo, lpszName: ?BSTR, pcchName: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.GetClusterName(self, lpszName, pcchName);
-    }
-    pub fn GetLocale(self: *const IGetClusterUIInfo) callconv(.@"inline") u32 {
-        return self.vtable.GetLocale(self);
-    }
-    pub fn GetFont(self: *const IGetClusterUIInfo) callconv(.@"inline") ?HFONT {
-        return self.vtable.GetFont(self);
-    }
-    pub fn GetIcon(self: *const IGetClusterUIInfo) callconv(.@"inline") ?HICON {
-        return self.vtable.GetIcon(self);
-    }
+pub const CLUSTERVERSIONINFO = extern struct {
+    dwVersionInfoSize: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+    BuildNumber: u16,
+    szVendorId: [64]u16,
+    szCSDVersion: [64]u16,
+    dwClusterHighestVersion: u32,
+    dwClusterLowestVersion: u32,
+    dwFlags: u32,
+    dwReserved: u32,
 };
+
+pub const CLUSTERVERSIONINFO_NT4 = extern struct {
+    dwVersionInfoSize: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+    BuildNumber: u16,
+    szVendorId: [64]u16,
+    szCSDVersion: [64]u16,
+};
+
+const CLSID_ClusVersion_Value = Guid.initString("f2e60715-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_ClusVersion = &CLSID_ClusVersion_Value;
+
+pub const CREATE_CLUSTER_CONFIG = extern struct {
+    dwVersion: u32,
+    lpszClusterName: ?[*:0]const u16,
+    cNodes: u32,
+    ppszNodeNames: ?*?PWSTR,
+    cIpEntries: u32,
+    pIpEntries: ?*CLUSTER_IP_ENTRY,
+    fEmptyCluster: BOOLEAN,
+    managementPointType: CLUSTER_MGMT_POINT_TYPE,
+    managementPointResType: CLUSTER_MGMT_POINT_RESTYPE,
+};
+
+pub const CREATE_CLUSTER_NAME_ACCOUNT = extern struct {
+    dwVersion: u32,
+    lpszClusterName: ?[*:0]const u16,
+    dwFlags: u32,
+    pszUserName: ?[*:0]const u16,
+    pszPassword: ?[*:0]const u16,
+    pszDomain: ?[*:0]const u16,
+    managementPointType: CLUSTER_MGMT_POINT_TYPE,
+    managementPointResType: CLUSTER_MGMT_POINT_RESTYPE,
+    bUpgradeVCOs: BOOLEAN,
+};
+
+const CLSID_DomainNames_Value = Guid.initString("f2e606e1-2631-11d1-89f1-00a0c90d061e");
+pub const CLSID_DomainNames = &CLSID_DomainNames_Value;
+
+pub const FAILURE_TYPE = enum(i32) {
+    GENERAL = 0,
+    EMBEDDED = 1,
+    NETWORK_LOSS = 2,
+};
+pub const FAILURE_TYPE_GENERAL = FAILURE_TYPE.GENERAL;
+pub const FAILURE_TYPE_EMBEDDED = FAILURE_TYPE.EMBEDDED;
+pub const FAILURE_TYPE_NETWORK_LOSS = FAILURE_TYPE.NETWORK_LOSS;
+
+pub const FILESHARE_CHANGE = extern struct {
+    Change: FILESHARE_CHANGE_ENUM,
+    ShareName: [84]u16,
+};
+
+pub const FILESHARE_CHANGE_ENUM = enum(i32) {
+    NONE = 0,
+    ADD = 1,
+    DEL = 2,
+    MODIFY = 3,
+};
+pub const FILESHARE_CHANGE_NONE = FILESHARE_CHANGE_ENUM.NONE;
+pub const FILESHARE_CHANGE_ADD = FILESHARE_CHANGE_ENUM.ADD;
+pub const FILESHARE_CHANGE_DEL = FILESHARE_CHANGE_ENUM.DEL;
+pub const FILESHARE_CHANGE_MODIFY = FILESHARE_CHANGE_ENUM.MODIFY;
+
+pub const FILESHARE_CHANGE_LIST = extern struct {
+    NumEntries: u32,
+    ChangeEntry: [1]FILESHARE_CHANGE,
+};
+
+pub const GET_OPERATION_CONTEXT_PARAMS = extern struct {
+    Size: u32,
+    Version: u32,
+    Type: RESDLL_CONTEXT_OPERATION_TYPE,
+    Priority: u32,
+};
+
+pub const GROUP_FAILURE_INFO = extern struct {
+    dwFailoverAttemptsRemaining: u32,
+    dwFailoverPeriodRemaining: u32,
+};
+
+pub const GROUP_FAILURE_INFO_BUFFER = extern struct {
+    dwVersion: u32,
+    Info: GROUP_FAILURE_INFO,
+};
+
+pub const GRP_PLACEMENT_OPTIONS = enum(i32) {
+    MIN_VALUE = 0,
+    DISABLE_AUTOBALANCING = 1,
+    pub const DEFAULT = .MIN_VALUE;
+    pub const ALL = .DISABLE_AUTOBALANCING;
+};
+pub const GRP_PLACEMENT_OPTIONS_MIN_VALUE = GRP_PLACEMENT_OPTIONS.MIN_VALUE;
+pub const GRP_PLACEMENT_OPTIONS_DEFAULT = GRP_PLACEMENT_OPTIONS.MIN_VALUE;
+pub const GRP_PLACEMENT_OPTIONS_DISABLE_AUTOBALANCING = GRP_PLACEMENT_OPTIONS.DISABLE_AUTOBALANCING;
+pub const GRP_PLACEMENT_OPTIONS_ALL = GRP_PLACEMENT_OPTIONS.DISABLE_AUTOBALANCING;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterDataInfo_Value = Guid.initString("97dede51-fc6b-11cf-b5f5-00a0c90ab505");
@@ -6472,6 +3938,78 @@ pub const IGetClusterDataInfo = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
+const IID_IGetClusterGroupInfo_Value = Guid.initString("97dede54-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IGetClusterGroupInfo = &IID_IGetClusterGroupInfo_Value;
+pub const IGetClusterGroupInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetGroupHandle: *const fn(
+            self: *const IGetClusterGroupInfo,
+            lObjIndex: i32,
+        ) callconv(.winapi) ?*_HGROUP,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetGroupHandle(self: *const IGetClusterGroupInfo, lObjIndex: i32) callconv(.@"inline") ?*_HGROUP {
+        return self.vtable.GetGroupHandle(self, lObjIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IGetClusterNetInterfaceInfo_Value = Guid.initString("97dede57-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IGetClusterNetInterfaceInfo = &IID_IGetClusterNetInterfaceInfo_Value;
+pub const IGetClusterNetInterfaceInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNetInterfaceHandle: *const fn(
+            self: *const IGetClusterNetInterfaceInfo,
+            lObjIndex: i32,
+        ) callconv(.winapi) ?*_HNETINTERFACE,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNetInterfaceHandle(self: *const IGetClusterNetInterfaceInfo, lObjIndex: i32) callconv(.@"inline") ?*_HNETINTERFACE {
+        return self.vtable.GetNetInterfaceHandle(self, lObjIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IGetClusterNetworkInfo_Value = Guid.initString("97dede56-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IGetClusterNetworkInfo = &IID_IGetClusterNetworkInfo_Value;
+pub const IGetClusterNetworkInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNetworkHandle: *const fn(
+            self: *const IGetClusterNetworkInfo,
+            lObjIndex: i32,
+        ) callconv(.winapi) ?*_HNETWORK,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNetworkHandle(self: *const IGetClusterNetworkInfo, lObjIndex: i32) callconv(.@"inline") ?*_HNETWORK {
+        return self.vtable.GetNetworkHandle(self, lObjIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IGetClusterNodeInfo_Value = Guid.initString("97dede53-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IGetClusterNodeInfo = &IID_IGetClusterNodeInfo_Value;
+pub const IGetClusterNodeInfo = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNodeHandle: *const fn(
+            self: *const IGetClusterNodeInfo,
+            lObjIndex: i32,
+        ) callconv(.winapi) ?*_HNODE,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn GetNodeHandle(self: *const IGetClusterNodeInfo, lObjIndex: i32) callconv(.@"inline") ?*_HNODE {
+        return self.vtable.GetNodeHandle(self, lObjIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
 const IID_IGetClusterObjectInfo_Value = Guid.initString("97dede52-fc6b-11cf-b5f5-00a0c90ab505");
 pub const IID_IGetClusterObjectInfo = &IID_IGetClusterObjectInfo_Value;
 pub const IGetClusterObjectInfo = extern union {
@@ -6495,42 +4033,6 @@ pub const IGetClusterObjectInfo = extern union {
     }
     pub fn GetObjectType(self: *const IGetClusterObjectInfo, lObjIndex: i32) callconv(.@"inline") CLUADMEX_OBJECT_TYPE {
         return self.vtable.GetObjectType(self, lObjIndex);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IGetClusterNodeInfo_Value = Guid.initString("97dede53-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IGetClusterNodeInfo = &IID_IGetClusterNodeInfo_Value;
-pub const IGetClusterNodeInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNodeHandle: *const fn(
-            self: *const IGetClusterNodeInfo,
-            lObjIndex: i32,
-        ) callconv(.winapi) ?*_HNODE,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNodeHandle(self: *const IGetClusterNodeInfo, lObjIndex: i32) callconv(.@"inline") ?*_HNODE {
-        return self.vtable.GetNodeHandle(self, lObjIndex);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IGetClusterGroupInfo_Value = Guid.initString("97dede54-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IGetClusterGroupInfo = &IID_IGetClusterGroupInfo_Value;
-pub const IGetClusterGroupInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetGroupHandle: *const fn(
-            self: *const IGetClusterGroupInfo,
-            lObjIndex: i32,
-        ) callconv(.winapi) ?*_HGROUP,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetGroupHandle(self: *const IGetClusterGroupInfo, lObjIndex: i32) callconv(.@"inline") ?*_HGROUP {
-        return self.vtable.GetGroupHandle(self, lObjIndex);
     }
 };
 
@@ -6571,347 +4073,41 @@ pub const IGetClusterResourceInfo = extern union {
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
-const IID_IGetClusterNetworkInfo_Value = Guid.initString("97dede56-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IGetClusterNetworkInfo = &IID_IGetClusterNetworkInfo_Value;
-pub const IGetClusterNetworkInfo = extern union {
+const IID_IGetClusterUIInfo_Value = Guid.initString("97dede50-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IGetClusterUIInfo = &IID_IGetClusterUIInfo_Value;
+pub const IGetClusterUIInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNetworkHandle: *const fn(
-            self: *const IGetClusterNetworkInfo,
-            lObjIndex: i32,
-        ) callconv(.winapi) ?*_HNETWORK,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNetworkHandle(self: *const IGetClusterNetworkInfo, lObjIndex: i32) callconv(.@"inline") ?*_HNETWORK {
-        return self.vtable.GetNetworkHandle(self, lObjIndex);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IGetClusterNetInterfaceInfo_Value = Guid.initString("97dede57-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IGetClusterNetInterfaceInfo = &IID_IGetClusterNetInterfaceInfo_Value;
-pub const IGetClusterNetInterfaceInfo = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNetInterfaceHandle: *const fn(
-            self: *const IGetClusterNetInterfaceInfo,
-            lObjIndex: i32,
-        ) callconv(.winapi) ?*_HNETINTERFACE,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn GetNetInterfaceHandle(self: *const IGetClusterNetInterfaceInfo, lObjIndex: i32) callconv(.@"inline") ?*_HNETINTERFACE {
-        return self.vtable.GetNetInterfaceHandle(self, lObjIndex);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWCPropertySheetCallback_Value = Guid.initString("97dede60-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWCPropertySheetCallback = &IID_IWCPropertySheetCallback_Value;
-pub const IWCPropertySheetCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddPropertySheetPage: *const fn(
-            self: *const IWCPropertySheetCallback,
-            hpage: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddPropertySheetPage(self: *const IWCPropertySheetCallback, hpage: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddPropertySheetPage(self, hpage);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWEExtendPropertySheet_Value = Guid.initString("97dede61-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWEExtendPropertySheet = &IID_IWEExtendPropertySheet_Value;
-pub const IWEExtendPropertySheet = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreatePropertySheetPages: *const fn(
-            self: *const IWEExtendPropertySheet,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCPropertySheetCallback,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreatePropertySheetPages(self: *const IWEExtendPropertySheet, piData: ?*IUnknown, piCallback: ?*IWCPropertySheetCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.CreatePropertySheetPages(self, piData, piCallback);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IWCWizardCallback_Value = Guid.initString("97dede62-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWCWizardCallback = &IID_IWCWizardCallback_Value;
-pub const IWCWizardCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddWizardPage: *const fn(
-            self: *const IWCWizardCallback,
-            hpage: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        EnableNext: *const fn(
-            self: *const IWCWizardCallback,
-            hpage: ?*i32,
-            bEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddWizardPage(self: *const IWCWizardCallback, hpage: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddWizardPage(self, hpage);
-    }
-    pub fn EnableNext(self: *const IWCWizardCallback, hpage: ?*i32, bEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableNext(self, hpage, bEnable);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IWEExtendWizard_Value = Guid.initString("97dede63-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWEExtendWizard = &IID_IWEExtendWizard_Value;
-pub const IWEExtendWizard = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateWizardPages: *const fn(
-            self: *const IWEExtendWizard,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCWizardCallback,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateWizardPages(self: *const IWEExtendWizard, piData: ?*IUnknown, piCallback: ?*IWCWizardCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateWizardPages(self, piData, piCallback);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IWCContextMenuCallback_Value = Guid.initString("97dede64-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWCContextMenuCallback = &IID_IWCContextMenuCallback_Value;
-pub const IWCContextMenuCallback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddExtensionMenuItem: *const fn(
-            self: *const IWCContextMenuCallback,
+        GetClusterName: *const fn(
+            self: *const IGetClusterUIInfo,
             lpszName: ?BSTR,
-            lpszStatusBarText: ?BSTR,
-            nCommandID: u32,
-            nSubmenuCommandID: u32,
-            uFlags: u32,
+            pcchName: ?*i32,
         ) callconv(.winapi) HRESULT,
+        GetLocale: *const fn(
+            self: *const IGetClusterUIInfo,
+        ) callconv(.winapi) u32,
+        GetFont: *const fn(
+            self: *const IGetClusterUIInfo,
+        ) callconv(.winapi) ?HFONT,
+        GetIcon: *const fn(
+            self: *const IGetClusterUIInfo,
+        ) callconv(.winapi) ?HICON,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddExtensionMenuItem(self: *const IWCContextMenuCallback, lpszName: ?BSTR, lpszStatusBarText: ?BSTR, nCommandID: u32, nSubmenuCommandID: u32, uFlags: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddExtensionMenuItem(self, lpszName, lpszStatusBarText, nCommandID, nSubmenuCommandID, uFlags);
+    pub fn GetClusterName(self: *const IGetClusterUIInfo, lpszName: ?BSTR, pcchName: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.GetClusterName(self, lpszName, pcchName);
+    }
+    pub fn GetLocale(self: *const IGetClusterUIInfo) callconv(.@"inline") u32 {
+        return self.vtable.GetLocale(self);
+    }
+    pub fn GetFont(self: *const IGetClusterUIInfo) callconv(.@"inline") ?HFONT {
+        return self.vtable.GetFont(self);
+    }
+    pub fn GetIcon(self: *const IGetClusterUIInfo) callconv(.@"inline") ?HICON {
+        return self.vtable.GetIcon(self);
     }
 };
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IWEExtendContextMenu_Value = Guid.initString("97dede65-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWEExtendContextMenu = &IID_IWEExtendContextMenu_Value;
-pub const IWEExtendContextMenu = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddContextMenuItems: *const fn(
-            self: *const IWEExtendContextMenu,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCContextMenuCallback,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddContextMenuItems(self: *const IWEExtendContextMenu, piData: ?*IUnknown, piCallback: ?*IWCContextMenuCallback) callconv(.@"inline") HRESULT {
-        return self.vtable.AddContextMenuItems(self, piData, piCallback);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IWEInvokeCommand_Value = Guid.initString("97dede66-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWEInvokeCommand = &IID_IWEInvokeCommand_Value;
-pub const IWEInvokeCommand = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InvokeCommand: *const fn(
-            self: *const IWEInvokeCommand,
-            nCommandID: u32,
-            piData: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn InvokeCommand(self: *const IWEInvokeCommand, nCommandID: u32, piData: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.InvokeCommand(self, nCommandID, piData);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IWCWizard97Callback_Value = Guid.initString("97dede67-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWCWizard97Callback = &IID_IWCWizard97Callback_Value;
-pub const IWCWizard97Callback = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddWizard97Page: *const fn(
-            self: *const IWCWizard97Callback,
-            hpage: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        EnableNext: *const fn(
-            self: *const IWCWizard97Callback,
-            hpage: ?*i32,
-            bEnable: BOOL,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn AddWizard97Page(self: *const IWCWizard97Callback, hpage: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.AddWizard97Page(self, hpage);
-    }
-    pub fn EnableNext(self: *const IWCWizard97Callback, hpage: ?*i32, bEnable: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.EnableNext(self, hpage, bEnable);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2003'
-const IID_IWEExtendWizard97_Value = Guid.initString("97dede68-fc6b-11cf-b5f5-00a0c90ab505");
-pub const IID_IWEExtendWizard97 = &IID_IWEExtendWizard97_Value;
-pub const IWEExtendWizard97 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateWizard97Pages: *const fn(
-            self: *const IWEExtendWizard97,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCWizard97Callback,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateWizard97Pages(self: *const IWEExtendWizard97, piData: ?*IUnknown, piCallback: ?*IWCWizard97Callback) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateWizard97Pages(self, piData, piCallback);
-    }
-};
-
-const CLSID_ClusApplication_Value = Guid.initString("f2e606e5-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusApplication = &CLSID_ClusApplication_Value;
-
-const CLSID_Cluster_Value = Guid.initString("f2e606e3-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_Cluster = &CLSID_Cluster_Value;
-
-const CLSID_ClusVersion_Value = Guid.initString("f2e60715-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusVersion = &CLSID_ClusVersion_Value;
-
-const CLSID_ClusResType_Value = Guid.initString("f2e6070f-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResType = &CLSID_ClusResType_Value;
-
-const CLSID_ClusProperty_Value = Guid.initString("f2e606fd-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusProperty = &CLSID_ClusProperty_Value;
-
-const CLSID_ClusProperties_Value = Guid.initString("f2e606ff-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusProperties = &CLSID_ClusProperties_Value;
-
-const CLSID_DomainNames_Value = Guid.initString("f2e606e1-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_DomainNames = &CLSID_DomainNames_Value;
-
-const CLSID_ClusNetwork_Value = Guid.initString("f2e606f1-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNetwork = &CLSID_ClusNetwork_Value;
-
-const CLSID_ClusNetInterface_Value = Guid.initString("f2e606ed-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNetInterface = &CLSID_ClusNetInterface_Value;
-
-const CLSID_ClusNetInterfaces_Value = Guid.initString("f2e606ef-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNetInterfaces = &CLSID_ClusNetInterfaces_Value;
-
-const CLSID_ClusResDependencies_Value = Guid.initString("f2e60703-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResDependencies = &CLSID_ClusResDependencies_Value;
-
-const CLSID_ClusResGroupResources_Value = Guid.initString("f2e606e9-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResGroupResources = &CLSID_ClusResGroupResources_Value;
-
-const CLSID_ClusResTypeResources_Value = Guid.initString("f2e60713-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResTypeResources = &CLSID_ClusResTypeResources_Value;
-
-const CLSID_ClusResGroupPreferredOwnerNodes_Value = Guid.initString("f2e606e7-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResGroupPreferredOwnerNodes = &CLSID_ClusResGroupPreferredOwnerNodes_Value;
-
-const CLSID_ClusResPossibleOwnerNodes_Value = Guid.initString("f2e6070d-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResPossibleOwnerNodes = &CLSID_ClusResPossibleOwnerNodes_Value;
-
-const CLSID_ClusNetworks_Value = Guid.initString("f2e606f3-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNetworks = &CLSID_ClusNetworks_Value;
-
-const CLSID_ClusNetworkNetInterfaces_Value = Guid.initString("f2e606f5-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNetworkNetInterfaces = &CLSID_ClusNetworkNetInterfaces_Value;
-
-const CLSID_ClusNodeNetInterfaces_Value = Guid.initString("f2e606fb-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNodeNetInterfaces = &CLSID_ClusNodeNetInterfaces_Value;
-
-const CLSID_ClusRefObject_Value = Guid.initString("f2e60701-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusRefObject = &CLSID_ClusRefObject_Value;
-
-const CLSID_ClusterNames_Value = Guid.initString("f2e606eb-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusterNames = &CLSID_ClusterNames_Value;
-
-const CLSID_ClusNode_Value = Guid.initString("f2e606f7-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNode = &CLSID_ClusNode_Value;
-
-const CLSID_ClusNodes_Value = Guid.initString("f2e606f9-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusNodes = &CLSID_ClusNodes_Value;
-
-const CLSID_ClusResGroup_Value = Guid.initString("f2e60705-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResGroup = &CLSID_ClusResGroup_Value;
-
-const CLSID_ClusResGroups_Value = Guid.initString("f2e60707-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResGroups = &CLSID_ClusResGroups_Value;
-
-const CLSID_ClusResource_Value = Guid.initString("f2e60709-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResource = &CLSID_ClusResource_Value;
-
-const CLSID_ClusResources_Value = Guid.initString("f2e6070b-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResources = &CLSID_ClusResources_Value;
-
-const CLSID_ClusResTypes_Value = Guid.initString("f2e60711-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResTypes = &CLSID_ClusResTypes_Value;
-
-const CLSID_ClusResTypePossibleOwnerNodes_Value = Guid.initString("f2e60717-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResTypePossibleOwnerNodes = &CLSID_ClusResTypePossibleOwnerNodes_Value;
-
-const CLSID_ClusPropertyValue_Value = Guid.initString("f2e60719-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusPropertyValue = &CLSID_ClusPropertyValue_Value;
-
-const CLSID_ClusPropertyValues_Value = Guid.initString("f2e6071b-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusPropertyValues = &CLSID_ClusPropertyValues_Value;
-
-const CLSID_ClusPropertyValueData_Value = Guid.initString("f2e6071d-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusPropertyValueData = &CLSID_ClusPropertyValueData_Value;
-
-const CLSID_ClusPartition_Value = Guid.initString("f2e6071f-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusPartition = &CLSID_ClusPartition_Value;
-
-const CLSID_ClusPartitionEx_Value = Guid.initString("53d51d26-b51b-4a79-b2c3-5048d93a98fc");
-pub const CLSID_ClusPartitionEx = &CLSID_ClusPartitionEx_Value;
-
-const CLSID_ClusPartitions_Value = Guid.initString("f2e60721-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusPartitions = &CLSID_ClusPartitions_Value;
-
-const CLSID_ClusDisk_Value = Guid.initString("f2e60723-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusDisk = &CLSID_ClusDisk_Value;
-
-const CLSID_ClusDisks_Value = Guid.initString("f2e60725-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusDisks = &CLSID_ClusDisks_Value;
-
-const CLSID_ClusScsiAddress_Value = Guid.initString("f2e60727-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusScsiAddress = &CLSID_ClusScsiAddress_Value;
-
-const CLSID_ClusRegistryKeys_Value = Guid.initString("f2e60729-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusRegistryKeys = &CLSID_ClusRegistryKeys_Value;
-
-const CLSID_ClusCryptoKeys_Value = Guid.initString("f2e6072b-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusCryptoKeys = &CLSID_ClusCryptoKeys_Value;
-
-const CLSID_ClusResDependents_Value = Guid.initString("f2e6072d-2631-11d1-89f1-00a0c90d061e");
-pub const CLSID_ClusResDependents = &CLSID_ClusResDependents_Value;
 
 const IID_ISClusApplication_Value = Guid.initString("f2e606e6-2631-11d1-89f1-00a0c90d061e");
 pub const IID_ISClusApplication = &IID_ISClusApplication_Value;
@@ -6948,381 +4144,433 @@ pub const ISClusApplication = extern union {
     }
 };
 
-const IID_ISDomainNames_Value = Guid.initString("f2e606e2-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISDomainNames = &IID_ISDomainNames_Value;
-pub const ISDomainNames = extern union {
+const IID_ISClusCryptoKeys_Value = Guid.initString("f2e6072c-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusCryptoKeys = &IID_ISClusCryptoKeys_Value;
+pub const ISClusCryptoKeys = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const ISDomainNames,
+            self: *const ISClusCryptoKeys,
             plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const ISDomainNames,
+            self: *const ISClusCryptoKeys,
             retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
-            self: *const ISDomainNames,
+            self: *const ISClusCryptoKeys,
         ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
-            self: *const ISDomainNames,
+            self: *const ISClusCryptoKeys,
             varIndex: VARIANT,
-            pbstrDomainName: ?*?BSTR,
+            pbstrCyrptoKey: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddItem: *const fn(
+            self: *const ISClusCryptoKeys,
+            bstrCryptoKey: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ISClusCryptoKeys,
+            varIndex: VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISDomainNames, plCount: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const ISClusCryptoKeys, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISDomainNames, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const ISClusCryptoKeys, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISDomainNames) callconv(.@"inline") HRESULT {
+    pub fn Refresh(self: *const ISClusCryptoKeys) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISDomainNames, varIndex: VARIANT, pbstrDomainName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, pbstrDomainName);
+    pub fn get_Item(self: *const ISClusCryptoKeys, varIndex: VARIANT, pbstrCyrptoKey: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, pbstrCyrptoKey);
+    }
+    pub fn AddItem(self: *const ISClusCryptoKeys, bstrCryptoKey: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, bstrCryptoKey);
+    }
+    pub fn RemoveItem(self: *const ISClusCryptoKeys, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 
-const IID_ISClusterNames_Value = Guid.initString("f2e606ec-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusterNames = &IID_ISClusterNames_Value;
-pub const ISClusterNames = extern union {
+const IID_ISClusDisk_Value = Guid.initString("f2e60724-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusDisk = &IID_ISClusDisk_Value;
+pub const ISClusDisk = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Signature: *const fn(
+            self: *const ISClusDisk,
+            plSignature: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ScsiAddress: *const fn(
+            self: *const ISClusDisk,
+            ppScsiAddress: ?*?*ISClusScsiAddress,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DiskNumber: *const fn(
+            self: *const ISClusDisk,
+            plDiskNumber: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Partitions: *const fn(
+            self: *const ISClusDisk,
+            ppPartitions: ?*?*ISClusPartitions,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Signature(self: *const ISClusDisk, plSignature: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Signature(self, plSignature);
+    }
+    pub fn get_ScsiAddress(self: *const ISClusDisk, ppScsiAddress: ?*?*ISClusScsiAddress) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ScsiAddress(self, ppScsiAddress);
+    }
+    pub fn get_DiskNumber(self: *const ISClusDisk, plDiskNumber: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DiskNumber(self, plDiskNumber);
+    }
+    pub fn get_Partitions(self: *const ISClusDisk, ppPartitions: ?*?*ISClusPartitions) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Partitions(self, ppPartitions);
+    }
+};
+
+const IID_ISClusDisks_Value = Guid.initString("f2e60726-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusDisks = &IID_ISClusDisks_Value;
+pub const ISClusDisks = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const ISClusterNames,
+            self: *const ISClusDisks,
             plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const ISClusterNames,
+            self: *const ISClusDisks,
             retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusterNames,
-        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
-            self: *const ISClusterNames,
+            self: *const ISClusDisks,
             varIndex: VARIANT,
-            pbstrClusterName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainName: *const fn(
-            self: *const ISClusterNames,
-            pbstrDomainName: ?*?BSTR,
+            ppDisk: ?*?*ISClusDisk,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusterNames, plCount: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const ISClusDisks, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusterNames, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const ISClusDisks, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusterNames) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusterNames, varIndex: VARIANT, pbstrClusterName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, pbstrClusterName);
-    }
-    pub fn get_DomainName(self: *const ISClusterNames, pbstrDomainName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DomainName(self, pbstrDomainName);
+    pub fn get_Item(self: *const ISClusDisks, varIndex: VARIANT, ppDisk: ?*?*ISClusDisk) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppDisk);
     }
 };
 
-const IID_ISClusRefObject_Value = Guid.initString("f2e60702-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusRefObject = &IID_ISClusRefObject_Value;
-pub const ISClusRefObject = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: *const fn(
-            self: *const ISClusRefObject,
-            phandle: ?*usize,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Handle(self: *const ISClusRefObject, phandle: ?*usize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Handle(self, phandle);
-    }
-};
-
-const IID_ISClusVersion_Value = Guid.initString("f2e60716-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusVersion = &IID_ISClusVersion_Value;
-pub const ISClusVersion = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const ISClusVersion,
-            pbstrClusterName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MajorVersion: *const fn(
-            self: *const ISClusVersion,
-            pnMajorVersion: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinorVersion: *const fn(
-            self: *const ISClusVersion,
-            pnMinorVersion: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BuildNumber: *const fn(
-            self: *const ISClusVersion,
-            pnBuildNumber: ?*i16,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VendorId: *const fn(
-            self: *const ISClusVersion,
-            pbstrVendorId: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CSDVersion: *const fn(
-            self: *const ISClusVersion,
-            pbstrCSDVersion: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterHighestVersion: *const fn(
-            self: *const ISClusVersion,
-            pnClusterHighestVersion: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterLowestVersion: *const fn(
-            self: *const ISClusVersion,
-            pnClusterLowestVersion: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: *const fn(
-            self: *const ISClusVersion,
-            pnFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MixedVersion: *const fn(
-            self: *const ISClusVersion,
-            pvarMixedVersion: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const ISClusVersion, pbstrClusterName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrClusterName);
-    }
-    pub fn get_MajorVersion(self: *const ISClusVersion, pnMajorVersion: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MajorVersion(self, pnMajorVersion);
-    }
-    pub fn get_MinorVersion(self: *const ISClusVersion, pnMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MinorVersion(self, pnMinorVersion);
-    }
-    pub fn get_BuildNumber(self: *const ISClusVersion, pnBuildNumber: ?*i16) callconv(.@"inline") HRESULT {
-        return self.vtable.get_BuildNumber(self, pnBuildNumber);
-    }
-    pub fn get_VendorId(self: *const ISClusVersion, pbstrVendorId: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_VendorId(self, pbstrVendorId);
-    }
-    pub fn get_CSDVersion(self: *const ISClusVersion, pbstrCSDVersion: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CSDVersion(self, pbstrCSDVersion);
-    }
-    pub fn get_ClusterHighestVersion(self: *const ISClusVersion, pnClusterHighestVersion: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClusterHighestVersion(self, pnClusterHighestVersion);
-    }
-    pub fn get_ClusterLowestVersion(self: *const ISClusVersion, pnClusterLowestVersion: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ClusterLowestVersion(self, pnClusterLowestVersion);
-    }
-    pub fn get_Flags(self: *const ISClusVersion, pnFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Flags(self, pnFlags);
-    }
-    pub fn get_MixedVersion(self: *const ISClusVersion, pvarMixedVersion: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MixedVersion(self, pvarMixedVersion);
-    }
-};
-
-const IID_ISCluster_Value = Guid.initString("f2e606e4-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISCluster = &IID_ISCluster_Value;
-pub const ISCluster = extern union {
+const IID_ISClusNetInterface_Value = Guid.initString("f2e606ee-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusNetInterface = &IID_ISClusNetInterface_Value;
+pub const ISClusNetInterface = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonProperties: *const fn(
-            self: *const ISCluster,
+            self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
-            self: *const ISCluster,
+            self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
-            self: *const ISCluster,
+            self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
-            self: *const ISCluster,
+            self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: *const fn(
-            self: *const ISCluster,
-            phandle: ?*usize,
-        ) callconv(.winapi) HRESULT,
-        Open: *const fn(
-            self: *const ISCluster,
-            bstrClusterName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
-            self: *const ISCluster,
+            self: *const ISClusNetInterface,
             pbstrName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const ISCluster,
-            bstrClusterName: ?BSTR,
+        get_Handle: *const fn(
+            self: *const ISClusNetInterface,
+            phandle: ?*usize,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: *const fn(
-            self: *const ISCluster,
-            ppClusVersion: ?*?*ISClusVersion,
+        get_State: *const fn(
+            self: *const ISClusNetInterface,
+            dwState: ?*CLUSTER_NETINTERFACE_STATE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumResource: *const fn(
-            self: *const ISCluster,
-            pClusterResource: ?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumResource: *const fn(
-            self: *const ISCluster,
-            pClusterResource: ?*?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumLogSize: *const fn(
-            self: *const ISCluster,
-            pnLogSize: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumLogSize: *const fn(
-            self: *const ISCluster,
-            nLogSize: i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumPath: *const fn(
-            self: *const ISCluster,
-            ppPath: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumPath: *const fn(
-            self: *const ISCluster,
-            pPath: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Nodes: *const fn(
-            self: *const ISCluster,
-            ppNodes: ?*?*ISClusNodes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceGroups: *const fn(
-            self: *const ISCluster,
-            ppClusterResourceGroups: ?*?*ISClusResGroups,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Resources: *const fn(
-            self: *const ISCluster,
-            ppClusterResources: ?*?*ISClusResources,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceTypes: *const fn(
-            self: *const ISCluster,
-            ppResourceTypes: ?*?*ISClusResTypes,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Networks: *const fn(
-            self: *const ISCluster,
-            ppNetworks: ?*?*ISClusNetworks,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: *const fn(
-            self: *const ISCluster,
-            ppNetInterfaces: ?*?*ISClusNetInterfaces,
+        get_Cluster: *const fn(
+            self: *const ISClusNetInterface,
+            ppCluster: ?*?*ISCluster,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+    pub fn get_CommonProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+    pub fn get_PrivateProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+    pub fn get_CommonROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Handle(self: *const ISCluster, phandle: ?*usize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Handle(self, phandle);
-    }
-    pub fn Open(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Open(self, bstrClusterName);
-    }
-    pub fn get_Name(self: *const ISCluster, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const ISClusNetInterface, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, bstrClusterName);
+    pub fn get_Handle(self: *const ISClusNetInterface, phandle: ?*usize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Handle(self, phandle);
     }
-    pub fn get_Version(self: *const ISCluster, ppClusVersion: ?*?*ISClusVersion) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Version(self, ppClusVersion);
+    pub fn get_State(self: *const ISClusNetInterface, dwState: ?*CLUSTER_NETINTERFACE_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, dwState);
     }
-    pub fn put_QuorumResource(self: *const ISCluster, pClusterResource: ?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.put_QuorumResource(self, pClusterResource);
+    pub fn get_Cluster(self: *const ISClusNetInterface, ppCluster: ?*?*ISCluster) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Cluster(self, ppCluster);
     }
-    pub fn get_QuorumResource(self: *const ISCluster, pClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuorumResource(self, pClusterResource);
+};
+
+const IID_ISClusNetInterfaces_Value = Guid.initString("f2e606f0-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusNetInterfaces = &IID_ISClusNetInterfaces_Value;
+pub const ISClusNetInterfaces = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusNetInterfaces,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusNetInterfaces,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusNetInterfaces,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusNetInterfaces,
+            varIndex: VARIANT,
+            ppClusNetInterface: ?*?*ISClusNetInterface,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusNetInterfaces, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
     }
-    pub fn get_QuorumLogSize(self: *const ISCluster, pnLogSize: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuorumLogSize(self, pnLogSize);
+    pub fn get__NewEnum(self: *const ISClusNetInterfaces, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn put_QuorumLogSize(self: *const ISCluster, nLogSize: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.put_QuorumLogSize(self, nLogSize);
+    pub fn Refresh(self: *const ISClusNetInterfaces) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
     }
-    pub fn get_QuorumPath(self: *const ISCluster, ppPath: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_QuorumPath(self, ppPath);
+    pub fn get_Item(self: *const ISClusNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
     }
-    pub fn put_QuorumPath(self: *const ISCluster, pPath: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_QuorumPath(self, pPath);
+};
+
+const IID_ISClusNetwork_Value = Guid.initString("f2e606f2-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusNetwork = &IID_ISClusNetwork_Value;
+pub const ISClusNetwork = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CommonProperties: *const fn(
+            self: *const ISClusNetwork,
+            ppProperties: ?*?*ISClusProperties,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PrivateProperties: *const fn(
+            self: *const ISClusNetwork,
+            ppProperties: ?*?*ISClusProperties,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CommonROProperties: *const fn(
+            self: *const ISClusNetwork,
+            ppProperties: ?*?*ISClusProperties,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PrivateROProperties: *const fn(
+            self: *const ISClusNetwork,
+            ppProperties: ?*?*ISClusProperties,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Handle: *const fn(
+            self: *const ISClusNetwork,
+            phandle: ?*usize,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const ISClusNetwork,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const ISClusNetwork,
+            bstrNetworkName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NetworkID: *const fn(
+            self: *const ISClusNetwork,
+            pbstrNetworkID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_State: *const fn(
+            self: *const ISClusNetwork,
+            dwState: ?*CLUSTER_NETWORK_STATE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NetInterfaces: *const fn(
+            self: *const ISClusNetwork,
+            ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Cluster: *const fn(
+            self: *const ISClusNetwork,
+            ppCluster: ?*?*ISCluster,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_CommonProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_Nodes(self: *const ISCluster, ppNodes: ?*?*ISClusNodes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Nodes(self, ppNodes);
+    pub fn get_PrivateProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_ResourceGroups(self: *const ISCluster, ppClusterResourceGroups: ?*?*ISClusResGroups) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ResourceGroups(self, ppClusterResourceGroups);
+    pub fn get_CommonROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_Resources(self: *const ISCluster, ppClusterResources: ?*?*ISClusResources) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Resources(self, ppClusterResources);
+    pub fn get_PrivateROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_ResourceTypes(self: *const ISCluster, ppResourceTypes: ?*?*ISClusResTypes) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ResourceTypes(self, ppResourceTypes);
+    pub fn get_Handle(self: *const ISClusNetwork, phandle: ?*usize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Handle(self, phandle);
     }
-    pub fn get_Networks(self: *const ISCluster, ppNetworks: ?*?*ISClusNetworks) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Networks(self, ppNetworks);
+    pub fn get_Name(self: *const ISClusNetwork, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_NetInterfaces(self: *const ISCluster, ppNetInterfaces: ?*?*ISClusNetInterfaces) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NetInterfaces(self, ppNetInterfaces);
+    pub fn put_Name(self: *const ISClusNetwork, bstrNetworkName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, bstrNetworkName);
+    }
+    pub fn get_NetworkID(self: *const ISClusNetwork, pbstrNetworkID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NetworkID(self, pbstrNetworkID);
+    }
+    pub fn get_State(self: *const ISClusNetwork, dwState: ?*CLUSTER_NETWORK_STATE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_State(self, dwState);
+    }
+    pub fn get_NetInterfaces(self: *const ISClusNetwork, ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NetInterfaces(self, ppClusNetInterfaces);
+    }
+    pub fn get_Cluster(self: *const ISClusNetwork, ppCluster: ?*?*ISCluster) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Cluster(self, ppCluster);
+    }
+};
+
+const IID_ISClusNetworkNetInterfaces_Value = Guid.initString("f2e606f6-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusNetworkNetInterfaces = &IID_ISClusNetworkNetInterfaces_Value;
+pub const ISClusNetworkNetInterfaces = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusNetworkNetInterfaces,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusNetworkNetInterfaces,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusNetworkNetInterfaces,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusNetworkNetInterfaces,
+            varIndex: VARIANT,
+            ppClusNetInterface: ?*?*ISClusNetInterface,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusNetworkNetInterfaces, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusNetworkNetInterfaces, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusNetworkNetInterfaces) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusNetworkNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
+    }
+};
+
+const IID_ISClusNetworks_Value = Guid.initString("f2e606f4-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusNetworks = &IID_ISClusNetworks_Value;
+pub const ISClusNetworks = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusNetworks,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusNetworks,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusNetworks,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusNetworks,
+            varIndex: VARIANT,
+            ppClusNetwork: ?*?*ISClusNetwork,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusNetworks, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusNetworks, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusNetworks) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusNetworks, varIndex: VARIANT, ppClusNetwork: ?*?*ISClusNetwork) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusNetwork);
     }
 };
 
@@ -7443,303 +4691,6 @@ pub const ISClusNode = extern union {
     }
 };
 
-const IID_ISClusNodes_Value = Guid.initString("f2e606fa-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusNodes = &IID_ISClusNodes_Value;
-pub const ISClusNodes = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusNodes,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusNodes,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusNodes,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusNodes,
-            varIndex: VARIANT,
-            ppNode: ?*?*ISClusNode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNodes, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusNodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusNodes) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppNode);
-    }
-};
-
-const IID_ISClusNetwork_Value = Guid.initString("f2e606f2-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusNetwork = &IID_ISClusNetwork_Value;
-pub const ISClusNetwork = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: *const fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: *const fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: *const fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: *const fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: *const fn(
-            self: *const ISClusNetwork,
-            phandle: ?*usize,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const ISClusNetwork,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const ISClusNetwork,
-            bstrNetworkName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkID: *const fn(
-            self: *const ISClusNetwork,
-            pbstrNetworkID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const ISClusNetwork,
-            dwState: ?*CLUSTER_NETWORK_STATE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: *const fn(
-            self: *const ISClusNetwork,
-            ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: *const fn(
-            self: *const ISClusNetwork,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CommonProperties(self, ppProperties);
-    }
-    pub fn get_PrivateProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PrivateProperties(self, ppProperties);
-    }
-    pub fn get_CommonROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CommonROProperties(self, ppProperties);
-    }
-    pub fn get_PrivateROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PrivateROProperties(self, ppProperties);
-    }
-    pub fn get_Handle(self: *const ISClusNetwork, phandle: ?*usize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Handle(self, phandle);
-    }
-    pub fn get_Name(self: *const ISClusNetwork, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn put_Name(self: *const ISClusNetwork, bstrNetworkName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, bstrNetworkName);
-    }
-    pub fn get_NetworkID(self: *const ISClusNetwork, pbstrNetworkID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NetworkID(self, pbstrNetworkID);
-    }
-    pub fn get_State(self: *const ISClusNetwork, dwState: ?*CLUSTER_NETWORK_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, dwState);
-    }
-    pub fn get_NetInterfaces(self: *const ISClusNetwork, ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NetInterfaces(self, ppClusNetInterfaces);
-    }
-    pub fn get_Cluster(self: *const ISClusNetwork, ppCluster: ?*?*ISCluster) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Cluster(self, ppCluster);
-    }
-};
-
-const IID_ISClusNetworks_Value = Guid.initString("f2e606f4-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusNetworks = &IID_ISClusNetworks_Value;
-pub const ISClusNetworks = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusNetworks,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusNetworks,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusNetworks,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusNetworks,
-            varIndex: VARIANT,
-            ppClusNetwork: ?*?*ISClusNetwork,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNetworks, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusNetworks, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusNetworks) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusNetworks, varIndex: VARIANT, ppClusNetwork: ?*?*ISClusNetwork) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusNetwork);
-    }
-};
-
-const IID_ISClusNetInterface_Value = Guid.initString("f2e606ee-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusNetInterface = &IID_ISClusNetInterface_Value;
-pub const ISClusNetInterface = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: *const fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: *const fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: *const fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: *const fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const ISClusNetInterface,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: *const fn(
-            self: *const ISClusNetInterface,
-            phandle: ?*usize,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: *const fn(
-            self: *const ISClusNetInterface,
-            dwState: ?*CLUSTER_NETINTERFACE_STATE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: *const fn(
-            self: *const ISClusNetInterface,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CommonProperties(self, ppProperties);
-    }
-    pub fn get_PrivateProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PrivateProperties(self, ppProperties);
-    }
-    pub fn get_CommonROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_CommonROProperties(self, ppProperties);
-    }
-    pub fn get_PrivateROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PrivateROProperties(self, ppProperties);
-    }
-    pub fn get_Name(self: *const ISClusNetInterface, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn get_Handle(self: *const ISClusNetInterface, phandle: ?*usize) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Handle(self, phandle);
-    }
-    pub fn get_State(self: *const ISClusNetInterface, dwState: ?*CLUSTER_NETINTERFACE_STATE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_State(self, dwState);
-    }
-    pub fn get_Cluster(self: *const ISClusNetInterface, ppCluster: ?*?*ISCluster) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Cluster(self, ppCluster);
-    }
-};
-
-const IID_ISClusNetInterfaces_Value = Guid.initString("f2e606f0-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusNetInterfaces = &IID_ISClusNetInterfaces_Value;
-pub const ISClusNetInterfaces = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusNetInterfaces,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusNetInterfaces,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusNetInterfaces,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusNetInterfaces,
-            varIndex: VARIANT,
-            ppClusNetInterface: ?*?*ISClusNetInterface,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNetInterfaces, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusNetInterfaces, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusNetInterfaces) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
-    }
-};
-
 const IID_ISClusNodeNetInterfaces_Value = Guid.initString("f2e606fc-2631-11d1-89f1-00a0c90d061e");
 pub const IID_ISClusNodeNetInterfaces = &IID_ISClusNodeNetInterfaces_Value;
 pub const ISClusNodeNetInterfaces = extern union {
@@ -7781,44 +4732,826 @@ pub const ISClusNodeNetInterfaces = extern union {
     }
 };
 
-const IID_ISClusNetworkNetInterfaces_Value = Guid.initString("f2e606f6-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusNetworkNetInterfaces = &IID_ISClusNetworkNetInterfaces_Value;
-pub const ISClusNetworkNetInterfaces = extern union {
+const IID_ISClusNodes_Value = Guid.initString("f2e606fa-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusNodes = &IID_ISClusNodes_Value;
+pub const ISClusNodes = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const ISClusNetworkNetInterfaces,
+            self: *const ISClusNodes,
             plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const ISClusNetworkNetInterfaces,
+            self: *const ISClusNodes,
             retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
-            self: *const ISClusNetworkNetInterfaces,
+            self: *const ISClusNodes,
         ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
-            self: *const ISClusNetworkNetInterfaces,
+            self: *const ISClusNodes,
             varIndex: VARIANT,
-            ppClusNetInterface: ?*?*ISClusNetInterface,
+            ppNode: ?*?*ISClusNode,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNetworkNetInterfaces, plCount: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const ISClusNodes, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusNetworkNetInterfaces, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const ISClusNodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusNetworkNetInterfaces) callconv(.@"inline") HRESULT {
+    pub fn Refresh(self: *const ISClusNodes) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusNetworkNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
+    pub fn get_Item(self: *const ISClusNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppNode);
+    }
+};
+
+const IID_ISClusPartition_Value = Guid.initString("f2e60720-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusPartition = &IID_ISClusPartition_Value;
+pub const ISClusPartition = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Flags: *const fn(
+            self: *const ISClusPartition,
+            plFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceName: *const fn(
+            self: *const ISClusPartition,
+            pbstrDeviceName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_VolumeLabel: *const fn(
+            self: *const ISClusPartition,
+            pbstrVolumeLabel: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SerialNumber: *const fn(
+            self: *const ISClusPartition,
+            plSerialNumber: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MaximumComponentLength: *const fn(
+            self: *const ISClusPartition,
+            plMaximumComponentLength: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileSystemFlags: *const fn(
+            self: *const ISClusPartition,
+            plFileSystemFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FileSystem: *const fn(
+            self: *const ISClusPartition,
+            pbstrFileSystem: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Flags(self: *const ISClusPartition, plFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Flags(self, plFlags);
+    }
+    pub fn get_DeviceName(self: *const ISClusPartition, pbstrDeviceName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceName(self, pbstrDeviceName);
+    }
+    pub fn get_VolumeLabel(self: *const ISClusPartition, pbstrVolumeLabel: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_VolumeLabel(self, pbstrVolumeLabel);
+    }
+    pub fn get_SerialNumber(self: *const ISClusPartition, plSerialNumber: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_SerialNumber(self, plSerialNumber);
+    }
+    pub fn get_MaximumComponentLength(self: *const ISClusPartition, plMaximumComponentLength: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MaximumComponentLength(self, plMaximumComponentLength);
+    }
+    pub fn get_FileSystemFlags(self: *const ISClusPartition, plFileSystemFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileSystemFlags(self, plFileSystemFlags);
+    }
+    pub fn get_FileSystem(self: *const ISClusPartition, pbstrFileSystem: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FileSystem(self, pbstrFileSystem);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_ISClusPartitionEx_Value = Guid.initString("8802d4fe-b32e-4ad1-9dbd-64f18e1166ce");
+pub const IID_ISClusPartitionEx = &IID_ISClusPartitionEx_Value;
+pub const ISClusPartitionEx = extern union {
+    pub const VTable = extern struct {
+        base: ISClusPartition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TotalSize: *const fn(
+            self: *const ISClusPartitionEx,
+            plTotalSize: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_FreeSpace: *const fn(
+            self: *const ISClusPartitionEx,
+            plFreeSpace: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DeviceNumber: *const fn(
+            self: *const ISClusPartitionEx,
+            plDeviceNumber: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PartitionNumber: *const fn(
+            self: *const ISClusPartitionEx,
+            plPartitionNumber: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_VolumeGuid: *const fn(
+            self: *const ISClusPartitionEx,
+            pbstrVolumeGuid: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    ISClusPartition: ISClusPartition,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_TotalSize(self: *const ISClusPartitionEx, plTotalSize: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_TotalSize(self, plTotalSize);
+    }
+    pub fn get_FreeSpace(self: *const ISClusPartitionEx, plFreeSpace: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_FreeSpace(self, plFreeSpace);
+    }
+    pub fn get_DeviceNumber(self: *const ISClusPartitionEx, plDeviceNumber: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DeviceNumber(self, plDeviceNumber);
+    }
+    pub fn get_PartitionNumber(self: *const ISClusPartitionEx, plPartitionNumber: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PartitionNumber(self, plPartitionNumber);
+    }
+    pub fn get_VolumeGuid(self: *const ISClusPartitionEx, pbstrVolumeGuid: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_VolumeGuid(self, pbstrVolumeGuid);
+    }
+};
+
+const IID_ISClusPartitions_Value = Guid.initString("f2e60722-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusPartitions = &IID_ISClusPartitions_Value;
+pub const ISClusPartitions = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusPartitions,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusPartitions,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusPartitions,
+            varIndex: VARIANT,
+            ppPartition: ?*?*ISClusPartition,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusPartitions, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusPartitions, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Item(self: *const ISClusPartitions, varIndex: VARIANT, ppPartition: ?*?*ISClusPartition) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppPartition);
+    }
+};
+
+const IID_ISClusProperties_Value = Guid.initString("f2e60700-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusProperties = &IID_ISClusProperties_Value;
+pub const ISClusProperties = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusProperties,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusProperties,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusProperties,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusProperties,
+            varIndex: VARIANT,
+            ppClusProperty: ?*?*ISClusProperty,
+        ) callconv(.winapi) HRESULT,
+        CreateItem: *const fn(
+            self: *const ISClusProperties,
+            bstrName: ?BSTR,
+            varValue: VARIANT,
+            pProperty: ?*?*ISClusProperty,
+        ) callconv(.winapi) HRESULT,
+        UseDefaultValue: *const fn(
+            self: *const ISClusProperties,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SaveChanges: *const fn(
+            self: *const ISClusProperties,
+            pvarStatusCode: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReadOnly: *const fn(
+            self: *const ISClusProperties,
+            pvarReadOnly: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Private: *const fn(
+            self: *const ISClusProperties,
+            pvarPrivate: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Common: *const fn(
+            self: *const ISClusProperties,
+            pvarCommon: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Modified: *const fn(
+            self: *const ISClusProperties,
+            pvarModified: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusProperties, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusProperties, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusProperties, varIndex: VARIANT, ppClusProperty: ?*?*ISClusProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusProperty);
+    }
+    pub fn CreateItem(self: *const ISClusProperties, bstrName: ?BSTR, varValue: VARIANT, pProperty: ?*?*ISClusProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateItem(self, bstrName, varValue, pProperty);
+    }
+    pub fn UseDefaultValue(self: *const ISClusProperties, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.UseDefaultValue(self, varIndex);
+    }
+    pub fn SaveChanges(self: *const ISClusProperties, pvarStatusCode: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveChanges(self, pvarStatusCode);
+    }
+    pub fn get_ReadOnly(self: *const ISClusProperties, pvarReadOnly: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReadOnly(self, pvarReadOnly);
+    }
+    pub fn get_Private(self: *const ISClusProperties, pvarPrivate: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Private(self, pvarPrivate);
+    }
+    pub fn get_Common(self: *const ISClusProperties, pvarCommon: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Common(self, pvarCommon);
+    }
+    pub fn get_Modified(self: *const ISClusProperties, pvarModified: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Modified(self, pvarModified);
+    }
+};
+
+const IID_ISClusProperty_Value = Guid.initString("f2e606fe-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusProperty = &IID_ISClusProperty_Value;
+pub const ISClusProperty = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const ISClusProperty,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Length: *const fn(
+            self: *const ISClusProperty,
+            pLength: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ValueCount: *const fn(
+            self: *const ISClusProperty,
+            pCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Values: *const fn(
+            self: *const ISClusProperty,
+            ppClusterPropertyValues: ?*?*ISClusPropertyValues,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const ISClusProperty,
+            pvarValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const ISClusProperty,
+            varValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const ISClusProperty,
+            pType: ?*CLUSTER_PROPERTY_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Type: *const fn(
+            self: *const ISClusProperty,
+            Type: CLUSTER_PROPERTY_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Format: *const fn(
+            self: *const ISClusProperty,
+            pFormat: ?*CLUSTER_PROPERTY_FORMAT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Format: *const fn(
+            self: *const ISClusProperty,
+            Format: CLUSTER_PROPERTY_FORMAT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ReadOnly: *const fn(
+            self: *const ISClusProperty,
+            pvarReadOnly: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Private: *const fn(
+            self: *const ISClusProperty,
+            pvarPrivate: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Common: *const fn(
+            self: *const ISClusProperty,
+            pvarCommon: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Modified: *const fn(
+            self: *const ISClusProperty,
+            pvarModified: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        UseDefaultValue: *const fn(
+            self: *const ISClusProperty,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const ISClusProperty, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn get_Length(self: *const ISClusProperty, pLength: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Length(self, pLength);
+    }
+    pub fn get_ValueCount(self: *const ISClusProperty, pCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ValueCount(self, pCount);
+    }
+    pub fn get_Values(self: *const ISClusProperty, ppClusterPropertyValues: ?*?*ISClusPropertyValues) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Values(self, ppClusterPropertyValues);
+    }
+    pub fn get_Value(self: *const ISClusProperty, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pvarValue);
+    }
+    pub fn put_Value(self: *const ISClusProperty, varValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, varValue);
+    }
+    pub fn get_Type(self: *const ISClusProperty, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, pType);
+    }
+    pub fn put_Type(self: *const ISClusProperty, Type: CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Type(self, Type);
+    }
+    pub fn get_Format(self: *const ISClusProperty, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Format(self, pFormat);
+    }
+    pub fn put_Format(self: *const ISClusProperty, Format: CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Format(self, Format);
+    }
+    pub fn get_ReadOnly(self: *const ISClusProperty, pvarReadOnly: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ReadOnly(self, pvarReadOnly);
+    }
+    pub fn get_Private(self: *const ISClusProperty, pvarPrivate: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Private(self, pvarPrivate);
+    }
+    pub fn get_Common(self: *const ISClusProperty, pvarCommon: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Common(self, pvarCommon);
+    }
+    pub fn get_Modified(self: *const ISClusProperty, pvarModified: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Modified(self, pvarModified);
+    }
+    pub fn UseDefaultValue(self: *const ISClusProperty) callconv(.@"inline") HRESULT {
+        return self.vtable.UseDefaultValue(self);
+    }
+};
+
+const IID_ISClusPropertyValue_Value = Guid.initString("f2e6071a-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusPropertyValue = &IID_ISClusPropertyValue_Value;
+pub const ISClusPropertyValue = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const ISClusPropertyValue,
+            pvarValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const ISClusPropertyValue,
+            varValue: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Type: *const fn(
+            self: *const ISClusPropertyValue,
+            pType: ?*CLUSTER_PROPERTY_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Type: *const fn(
+            self: *const ISClusPropertyValue,
+            Type: CLUSTER_PROPERTY_TYPE,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Format: *const fn(
+            self: *const ISClusPropertyValue,
+            pFormat: ?*CLUSTER_PROPERTY_FORMAT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Format: *const fn(
+            self: *const ISClusPropertyValue,
+            Format: CLUSTER_PROPERTY_FORMAT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Length: *const fn(
+            self: *const ISClusPropertyValue,
+            pLength: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DataCount: *const fn(
+            self: *const ISClusPropertyValue,
+            pCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Data: *const fn(
+            self: *const ISClusPropertyValue,
+            ppClusterPropertyValueData: ?*?*ISClusPropertyValueData,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Value(self: *const ISClusPropertyValue, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, pvarValue);
+    }
+    pub fn put_Value(self: *const ISClusPropertyValue, varValue: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, varValue);
+    }
+    pub fn get_Type(self: *const ISClusPropertyValue, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Type(self, pType);
+    }
+    pub fn put_Type(self: *const ISClusPropertyValue, Type: CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Type(self, Type);
+    }
+    pub fn get_Format(self: *const ISClusPropertyValue, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Format(self, pFormat);
+    }
+    pub fn put_Format(self: *const ISClusPropertyValue, Format: CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Format(self, Format);
+    }
+    pub fn get_Length(self: *const ISClusPropertyValue, pLength: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Length(self, pLength);
+    }
+    pub fn get_DataCount(self: *const ISClusPropertyValue, pCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DataCount(self, pCount);
+    }
+    pub fn get_Data(self: *const ISClusPropertyValue, ppClusterPropertyValueData: ?*?*ISClusPropertyValueData) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Data(self, ppClusterPropertyValueData);
+    }
+};
+
+const IID_ISClusPropertyValueData_Value = Guid.initString("f2e6071e-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusPropertyValueData = &IID_ISClusPropertyValueData_Value;
+pub const ISClusPropertyValueData = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusPropertyValueData,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusPropertyValueData,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusPropertyValueData,
+            varIndex: VARIANT,
+            pvarValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        CreateItem: *const fn(
+            self: *const ISClusPropertyValueData,
+            varValue: VARIANT,
+            pvarData: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ISClusPropertyValueData,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusPropertyValueData, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusPropertyValueData, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Item(self: *const ISClusPropertyValueData, varIndex: VARIANT, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, pvarValue);
+    }
+    pub fn CreateItem(self: *const ISClusPropertyValueData, varValue: VARIANT, pvarData: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateItem(self, varValue, pvarData);
+    }
+    pub fn RemoveItem(self: *const ISClusPropertyValueData, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, varIndex);
+    }
+};
+
+const IID_ISClusPropertyValues_Value = Guid.initString("f2e6071c-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusPropertyValues = &IID_ISClusPropertyValues_Value;
+pub const ISClusPropertyValues = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusPropertyValues,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusPropertyValues,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusPropertyValues,
+            varIndex: VARIANT,
+            ppPropertyValue: ?*?*ISClusPropertyValue,
+        ) callconv(.winapi) HRESULT,
+        CreateItem: *const fn(
+            self: *const ISClusPropertyValues,
+            bstrName: ?BSTR,
+            varValue: VARIANT,
+            ppPropertyValue: ?*?*ISClusPropertyValue,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ISClusPropertyValues,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusPropertyValues, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusPropertyValues, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn get_Item(self: *const ISClusPropertyValues, varIndex: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppPropertyValue);
+    }
+    pub fn CreateItem(self: *const ISClusPropertyValues, bstrName: ?BSTR, varValue: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateItem(self, bstrName, varValue, ppPropertyValue);
+    }
+    pub fn RemoveItem(self: *const ISClusPropertyValues, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, varIndex);
+    }
+};
+
+const IID_ISClusRefObject_Value = Guid.initString("f2e60702-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusRefObject = &IID_ISClusRefObject_Value;
+pub const ISClusRefObject = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Handle: *const fn(
+            self: *const ISClusRefObject,
+            phandle: ?*usize,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Handle(self: *const ISClusRefObject, phandle: ?*usize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Handle(self, phandle);
+    }
+};
+
+const IID_ISClusRegistryKeys_Value = Guid.initString("f2e6072a-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusRegistryKeys = &IID_ISClusRegistryKeys_Value;
+pub const ISClusRegistryKeys = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusRegistryKeys,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusRegistryKeys,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusRegistryKeys,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusRegistryKeys,
+            varIndex: VARIANT,
+            pbstrRegistryKey: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        AddItem: *const fn(
+            self: *const ISClusRegistryKeys,
+            bstrRegistryKey: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ISClusRegistryKeys,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusRegistryKeys, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusRegistryKeys, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusRegistryKeys) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusRegistryKeys, varIndex: VARIANT, pbstrRegistryKey: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, pbstrRegistryKey);
+    }
+    pub fn AddItem(self: *const ISClusRegistryKeys, bstrRegistryKey: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, bstrRegistryKey);
+    }
+    pub fn RemoveItem(self: *const ISClusRegistryKeys, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, varIndex);
+    }
+};
+
+const IID_ISClusResDependencies_Value = Guid.initString("f2e60704-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusResDependencies = &IID_ISClusResDependencies_Value;
+pub const ISClusResDependencies = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusResDependencies,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusResDependencies,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusResDependencies,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusResDependencies,
+            varIndex: VARIANT,
+            ppClusResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        CreateItem: *const fn(
+            self: *const ISClusResDependencies,
+            bstrResourceName: ?BSTR,
+            bstrResourceType: ?BSTR,
+            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+            ppClusterResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        DeleteItem: *const fn(
+            self: *const ISClusResDependencies,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddItem: *const fn(
+            self: *const ISClusResDependencies,
+            pResource: ?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ISClusResDependencies,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusResDependencies, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusResDependencies, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusResDependencies) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusResDependencies, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
+    }
+    pub fn CreateItem(self: *const ISClusResDependencies, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+    }
+    pub fn DeleteItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItem(self, varIndex);
+    }
+    pub fn AddItem(self: *const ISClusResDependencies, pResource: ?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, pResource);
+    }
+    pub fn RemoveItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, varIndex);
+    }
+};
+
+const IID_ISClusResDependents_Value = Guid.initString("f2e6072e-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusResDependents = &IID_ISClusResDependents_Value;
+pub const ISClusResDependents = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusResDependents,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusResDependents,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusResDependents,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusResDependents,
+            varIndex: VARIANT,
+            ppClusResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        CreateItem: *const fn(
+            self: *const ISClusResDependents,
+            bstrResourceName: ?BSTR,
+            bstrResourceType: ?BSTR,
+            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+            ppClusterResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        DeleteItem: *const fn(
+            self: *const ISClusResDependents,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        AddItem: *const fn(
+            self: *const ISClusResDependents,
+            pResource: ?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ISClusResDependents,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusResDependents, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusResDependents, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusResDependents) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusResDependents, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
+    }
+    pub fn CreateItem(self: *const ISClusResDependents, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+    }
+    pub fn DeleteItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItem(self, varIndex);
+    }
+    pub fn AddItem(self: *const ISClusResDependents, pResource: ?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, pResource);
+    }
+    pub fn RemoveItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 
@@ -7958,6 +5691,141 @@ pub const ISClusResGroup = extern union {
     }
     pub fn get_Cluster(self: *const ISClusResGroup, ppCluster: ?*?*ISCluster) callconv(.@"inline") HRESULT {
         return self.vtable.get_Cluster(self, ppCluster);
+    }
+};
+
+const IID_ISClusResGroupPreferredOwnerNodes_Value = Guid.initString("f2e606e8-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusResGroupPreferredOwnerNodes = &IID_ISClusResGroupPreferredOwnerNodes_Value;
+pub const ISClusResGroupPreferredOwnerNodes = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+            varIndex: VARIANT,
+            ppNode: ?*?*ISClusNode,
+        ) callconv(.winapi) HRESULT,
+        InsertItem: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+            pNode: ?*ISClusNode,
+            nPosition: i32,
+        ) callconv(.winapi) HRESULT,
+        RemoveItem: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Modified: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+            pvarModified: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        SaveChanges: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+        ) callconv(.winapi) HRESULT,
+        AddItem: *const fn(
+            self: *const ISClusResGroupPreferredOwnerNodes,
+            pNode: ?*ISClusNode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusResGroupPreferredOwnerNodes, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusResGroupPreferredOwnerNodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppNode);
+    }
+    pub fn InsertItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode, nPosition: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.InsertItem(self, pNode, nPosition);
+    }
+    pub fn RemoveItem(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveItem(self, varIndex);
+    }
+    pub fn get_Modified(self: *const ISClusResGroupPreferredOwnerNodes, pvarModified: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Modified(self, pvarModified);
+    }
+    pub fn SaveChanges(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.@"inline") HRESULT {
+        return self.vtable.SaveChanges(self);
+    }
+    pub fn AddItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode) callconv(.@"inline") HRESULT {
+        return self.vtable.AddItem(self, pNode);
+    }
+};
+
+const IID_ISClusResGroupResources_Value = Guid.initString("f2e606ea-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusResGroupResources = &IID_ISClusResGroupResources_Value;
+pub const ISClusResGroupResources = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusResGroupResources,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusResGroupResources,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusResGroupResources,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusResGroupResources,
+            varIndex: VARIANT,
+            ppClusResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        CreateItem: *const fn(
+            self: *const ISClusResGroupResources,
+            bstrResourceName: ?BSTR,
+            bstrResourceType: ?BSTR,
+            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+            ppClusterResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        DeleteItem: *const fn(
+            self: *const ISClusResGroupResources,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusResGroupResources, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusResGroupResources, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusResGroupResources) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusResGroupResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
+    }
+    pub fn CreateItem(self: *const ISClusResGroupResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+    }
+    pub fn DeleteItem(self: *const ISClusResGroupResources, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItem(self, varIndex);
     }
 };
 
@@ -8277,194 +6145,6 @@ pub const ISClusResource = extern union {
     }
 };
 
-const IID_ISClusResDependencies_Value = Guid.initString("f2e60704-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusResDependencies = &IID_ISClusResDependencies_Value;
-pub const ISClusResDependencies = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusResDependencies,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusResDependencies,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusResDependencies,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusResDependencies,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        CreateItem: *const fn(
-            self: *const ISClusResDependencies,
-            bstrResourceName: ?BSTR,
-            bstrResourceType: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        DeleteItem: *const fn(
-            self: *const ISClusResDependencies,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        AddItem: *const fn(
-            self: *const ISClusResDependencies,
-            pResource: ?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ISClusResDependencies,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResDependencies, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusResDependencies, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusResDependencies) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusResDependencies, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusResource);
-    }
-    pub fn CreateItem(self: *const ISClusResDependencies, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
-    }
-    pub fn DeleteItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItem(self, varIndex);
-    }
-    pub fn AddItem(self: *const ISClusResDependencies, pResource: ?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, pResource);
-    }
-    pub fn RemoveItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, varIndex);
-    }
-};
-
-const IID_ISClusResGroupResources_Value = Guid.initString("f2e606ea-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusResGroupResources = &IID_ISClusResGroupResources_Value;
-pub const ISClusResGroupResources = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusResGroupResources,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusResGroupResources,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusResGroupResources,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusResGroupResources,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        CreateItem: *const fn(
-            self: *const ISClusResGroupResources,
-            bstrResourceName: ?BSTR,
-            bstrResourceType: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        DeleteItem: *const fn(
-            self: *const ISClusResGroupResources,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResGroupResources, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusResGroupResources, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusResGroupResources) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusResGroupResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusResource);
-    }
-    pub fn CreateItem(self: *const ISClusResGroupResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
-    }
-    pub fn DeleteItem(self: *const ISClusResGroupResources, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItem(self, varIndex);
-    }
-};
-
-const IID_ISClusResTypeResources_Value = Guid.initString("f2e60714-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusResTypeResources = &IID_ISClusResTypeResources_Value;
-pub const ISClusResTypeResources = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusResTypeResources,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusResTypeResources,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusResTypeResources,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusResTypeResources,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        CreateItem: *const fn(
-            self: *const ISClusResTypeResources,
-            bstrResourceName: ?BSTR,
-            bstrGroupName: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(.winapi) HRESULT,
-        DeleteItem: *const fn(
-            self: *const ISClusResTypeResources,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResTypeResources, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusResTypeResources, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusResTypeResources) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusResTypeResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusResource);
-    }
-    pub fn CreateItem(self: *const ISClusResTypeResources, bstrResourceName: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateItem(self, bstrResourceName, bstrGroupName, dwFlags, ppClusterResource);
-    }
-    pub fn DeleteItem(self: *const ISClusResTypeResources, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItem(self, varIndex);
-    }
-};
-
 const IID_ISClusResources_Value = Guid.initString("f2e6070c-2631-11d1-89f1-00a0c90d061e");
 pub const IID_ISClusResources = &IID_ISClusResources_Value;
 pub const ISClusResources = extern union {
@@ -8521,83 +6201,6 @@ pub const ISClusResources = extern union {
     }
     pub fn DeleteItem(self: *const ISClusResources, varIndex: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
-    }
-};
-
-const IID_ISClusResGroupPreferredOwnerNodes_Value = Guid.initString("f2e606e8-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusResGroupPreferredOwnerNodes = &IID_ISClusResGroupPreferredOwnerNodes_Value;
-pub const ISClusResGroupPreferredOwnerNodes = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            varIndex: VARIANT,
-            ppNode: ?*?*ISClusNode,
-        ) callconv(.winapi) HRESULT,
-        InsertItem: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            pNode: ?*ISClusNode,
-            nPosition: i32,
-        ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            pvarModified: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SaveChanges: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-        ) callconv(.winapi) HRESULT,
-        AddItem: *const fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            pNode: ?*ISClusNode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResGroupPreferredOwnerNodes, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusResGroupPreferredOwnerNodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppNode);
-    }
-    pub fn InsertItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode, nPosition: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.InsertItem(self, pNode, nPosition);
-    }
-    pub fn RemoveItem(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, varIndex);
-    }
-    pub fn get_Modified(self: *const ISClusResGroupPreferredOwnerNodes, pvarModified: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Modified(self, pvarModified);
-    }
-    pub fn SaveChanges(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveChanges(self);
-    }
-    pub fn AddItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, pNode);
     }
 };
 
@@ -8661,47 +6264,6 @@ pub const ISClusResPossibleOwnerNodes = extern union {
     }
     pub fn get_Modified(self: *const ISClusResPossibleOwnerNodes, pvarModified: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Modified(self, pvarModified);
-    }
-};
-
-const IID_ISClusResTypePossibleOwnerNodes_Value = Guid.initString("f2e60718-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusResTypePossibleOwnerNodes = &IID_ISClusResTypePossibleOwnerNodes_Value;
-pub const ISClusResTypePossibleOwnerNodes = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-            varIndex: VARIANT,
-            ppNode: ?*?*ISClusNode,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResTypePossibleOwnerNodes, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusResTypePossibleOwnerNodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusResTypePossibleOwnerNodes) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusResTypePossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppNode);
     }
 };
 
@@ -8794,6 +6356,105 @@ pub const ISClusResType = extern union {
     }
 };
 
+const IID_ISClusResTypePossibleOwnerNodes_Value = Guid.initString("f2e60718-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusResTypePossibleOwnerNodes = &IID_ISClusResTypePossibleOwnerNodes_Value;
+pub const ISClusResTypePossibleOwnerNodes = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusResTypePossibleOwnerNodes,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusResTypePossibleOwnerNodes,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusResTypePossibleOwnerNodes,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusResTypePossibleOwnerNodes,
+            varIndex: VARIANT,
+            ppNode: ?*?*ISClusNode,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusResTypePossibleOwnerNodes, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusResTypePossibleOwnerNodes, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusResTypePossibleOwnerNodes) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusResTypePossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppNode);
+    }
+};
+
+const IID_ISClusResTypeResources_Value = Guid.initString("f2e60714-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusResTypeResources = &IID_ISClusResTypeResources_Value;
+pub const ISClusResTypeResources = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISClusResTypeResources,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISClusResTypeResources,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISClusResTypeResources,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISClusResTypeResources,
+            varIndex: VARIANT,
+            ppClusResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        CreateItem: *const fn(
+            self: *const ISClusResTypeResources,
+            bstrResourceName: ?BSTR,
+            bstrGroupName: ?BSTR,
+            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+            ppClusterResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        DeleteItem: *const fn(
+            self: *const ISClusResTypeResources,
+            varIndex: VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISClusResTypeResources, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISClusResTypeResources, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISClusResTypeResources) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISClusResTypeResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
+    }
+    pub fn CreateItem(self: *const ISClusResTypeResources, bstrResourceName: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateItem(self, bstrResourceName, bstrGroupName, dwFlags, ppClusterResource);
+    }
+    pub fn DeleteItem(self: *const ISClusResTypeResources, varIndex: VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.DeleteItem(self, varIndex);
+    }
+};
+
 const IID_ISClusResTypes_Value = Guid.initString("f2e60712-2631-11d1-89f1-00a0c90d061e");
 pub const IID_ISClusResTypes = &IID_ISClusResTypes_Value;
 pub const ISClusResTypes = extern union {
@@ -8854,648 +6515,6 @@ pub const ISClusResTypes = extern union {
     }
 };
 
-const IID_ISClusProperty_Value = Guid.initString("f2e606fe-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusProperty = &IID_ISClusProperty_Value;
-pub const ISClusProperty = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const ISClusProperty,
-            pbstrName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: *const fn(
-            self: *const ISClusProperty,
-            pLength: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueCount: *const fn(
-            self: *const ISClusProperty,
-            pCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Values: *const fn(
-            self: *const ISClusProperty,
-            ppClusterPropertyValues: ?*?*ISClusPropertyValues,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const ISClusProperty,
-            pvarValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const ISClusProperty,
-            varValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const ISClusProperty,
-            pType: ?*CLUSTER_PROPERTY_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: *const fn(
-            self: *const ISClusProperty,
-            Type: CLUSTER_PROPERTY_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Format: *const fn(
-            self: *const ISClusProperty,
-            pFormat: ?*CLUSTER_PROPERTY_FORMAT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Format: *const fn(
-            self: *const ISClusProperty,
-            Format: CLUSTER_PROPERTY_FORMAT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: *const fn(
-            self: *const ISClusProperty,
-            pvarReadOnly: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Private: *const fn(
-            self: *const ISClusProperty,
-            pvarPrivate: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Common: *const fn(
-            self: *const ISClusProperty,
-            pvarCommon: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: *const fn(
-            self: *const ISClusProperty,
-            pvarModified: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        UseDefaultValue: *const fn(
-            self: *const ISClusProperty,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const ISClusProperty, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, pbstrName);
-    }
-    pub fn get_Length(self: *const ISClusProperty, pLength: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Length(self, pLength);
-    }
-    pub fn get_ValueCount(self: *const ISClusProperty, pCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ValueCount(self, pCount);
-    }
-    pub fn get_Values(self: *const ISClusProperty, ppClusterPropertyValues: ?*?*ISClusPropertyValues) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Values(self, ppClusterPropertyValues);
-    }
-    pub fn get_Value(self: *const ISClusProperty, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pvarValue);
-    }
-    pub fn put_Value(self: *const ISClusProperty, varValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, varValue);
-    }
-    pub fn get_Type(self: *const ISClusProperty, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, pType);
-    }
-    pub fn put_Type(self: *const ISClusProperty, Type: CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Type(self, Type);
-    }
-    pub fn get_Format(self: *const ISClusProperty, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Format(self, pFormat);
-    }
-    pub fn put_Format(self: *const ISClusProperty, Format: CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Format(self, Format);
-    }
-    pub fn get_ReadOnly(self: *const ISClusProperty, pvarReadOnly: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReadOnly(self, pvarReadOnly);
-    }
-    pub fn get_Private(self: *const ISClusProperty, pvarPrivate: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Private(self, pvarPrivate);
-    }
-    pub fn get_Common(self: *const ISClusProperty, pvarCommon: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Common(self, pvarCommon);
-    }
-    pub fn get_Modified(self: *const ISClusProperty, pvarModified: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Modified(self, pvarModified);
-    }
-    pub fn UseDefaultValue(self: *const ISClusProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.UseDefaultValue(self);
-    }
-};
-
-const IID_ISClusPropertyValue_Value = Guid.initString("f2e6071a-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusPropertyValue = &IID_ISClusPropertyValue_Value;
-pub const ISClusPropertyValue = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const ISClusPropertyValue,
-            pvarValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const ISClusPropertyValue,
-            varValue: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: *const fn(
-            self: *const ISClusPropertyValue,
-            pType: ?*CLUSTER_PROPERTY_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: *const fn(
-            self: *const ISClusPropertyValue,
-            Type: CLUSTER_PROPERTY_TYPE,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Format: *const fn(
-            self: *const ISClusPropertyValue,
-            pFormat: ?*CLUSTER_PROPERTY_FORMAT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Format: *const fn(
-            self: *const ISClusPropertyValue,
-            Format: CLUSTER_PROPERTY_FORMAT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: *const fn(
-            self: *const ISClusPropertyValue,
-            pLength: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataCount: *const fn(
-            self: *const ISClusPropertyValue,
-            pCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: *const fn(
-            self: *const ISClusPropertyValue,
-            ppClusterPropertyValueData: ?*?*ISClusPropertyValueData,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Value(self: *const ISClusPropertyValue, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, pvarValue);
-    }
-    pub fn put_Value(self: *const ISClusPropertyValue, varValue: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, varValue);
-    }
-    pub fn get_Type(self: *const ISClusPropertyValue, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Type(self, pType);
-    }
-    pub fn put_Type(self: *const ISClusPropertyValue, Type: CLUSTER_PROPERTY_TYPE) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Type(self, Type);
-    }
-    pub fn get_Format(self: *const ISClusPropertyValue, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Format(self, pFormat);
-    }
-    pub fn put_Format(self: *const ISClusPropertyValue, Format: CLUSTER_PROPERTY_FORMAT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Format(self, Format);
-    }
-    pub fn get_Length(self: *const ISClusPropertyValue, pLength: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Length(self, pLength);
-    }
-    pub fn get_DataCount(self: *const ISClusPropertyValue, pCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DataCount(self, pCount);
-    }
-    pub fn get_Data(self: *const ISClusPropertyValue, ppClusterPropertyValueData: ?*?*ISClusPropertyValueData) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Data(self, ppClusterPropertyValueData);
-    }
-};
-
-const IID_ISClusPropertyValues_Value = Guid.initString("f2e6071c-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusPropertyValues = &IID_ISClusPropertyValues_Value;
-pub const ISClusPropertyValues = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusPropertyValues,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusPropertyValues,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusPropertyValues,
-            varIndex: VARIANT,
-            ppPropertyValue: ?*?*ISClusPropertyValue,
-        ) callconv(.winapi) HRESULT,
-        CreateItem: *const fn(
-            self: *const ISClusPropertyValues,
-            bstrName: ?BSTR,
-            varValue: VARIANT,
-            ppPropertyValue: ?*?*ISClusPropertyValue,
-        ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ISClusPropertyValues,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusPropertyValues, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusPropertyValues, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Item(self: *const ISClusPropertyValues, varIndex: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppPropertyValue);
-    }
-    pub fn CreateItem(self: *const ISClusPropertyValues, bstrName: ?BSTR, varValue: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateItem(self, bstrName, varValue, ppPropertyValue);
-    }
-    pub fn RemoveItem(self: *const ISClusPropertyValues, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, varIndex);
-    }
-};
-
-const IID_ISClusProperties_Value = Guid.initString("f2e60700-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusProperties = &IID_ISClusProperties_Value;
-pub const ISClusProperties = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusProperties,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusProperties,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusProperties,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusProperties,
-            varIndex: VARIANT,
-            ppClusProperty: ?*?*ISClusProperty,
-        ) callconv(.winapi) HRESULT,
-        CreateItem: *const fn(
-            self: *const ISClusProperties,
-            bstrName: ?BSTR,
-            varValue: VARIANT,
-            pProperty: ?*?*ISClusProperty,
-        ) callconv(.winapi) HRESULT,
-        UseDefaultValue: *const fn(
-            self: *const ISClusProperties,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-        SaveChanges: *const fn(
-            self: *const ISClusProperties,
-            pvarStatusCode: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: *const fn(
-            self: *const ISClusProperties,
-            pvarReadOnly: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Private: *const fn(
-            self: *const ISClusProperties,
-            pvarPrivate: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Common: *const fn(
-            self: *const ISClusProperties,
-            pvarCommon: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: *const fn(
-            self: *const ISClusProperties,
-            pvarModified: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusProperties, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusProperties, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn Refresh(self: *const ISClusProperties) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
-    }
-    pub fn get_Item(self: *const ISClusProperties, varIndex: VARIANT, ppClusProperty: ?*?*ISClusProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusProperty);
-    }
-    pub fn CreateItem(self: *const ISClusProperties, bstrName: ?BSTR, varValue: VARIANT, pProperty: ?*?*ISClusProperty) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateItem(self, bstrName, varValue, pProperty);
-    }
-    pub fn UseDefaultValue(self: *const ISClusProperties, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.UseDefaultValue(self, varIndex);
-    }
-    pub fn SaveChanges(self: *const ISClusProperties, pvarStatusCode: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.SaveChanges(self, pvarStatusCode);
-    }
-    pub fn get_ReadOnly(self: *const ISClusProperties, pvarReadOnly: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ReadOnly(self, pvarReadOnly);
-    }
-    pub fn get_Private(self: *const ISClusProperties, pvarPrivate: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Private(self, pvarPrivate);
-    }
-    pub fn get_Common(self: *const ISClusProperties, pvarCommon: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Common(self, pvarCommon);
-    }
-    pub fn get_Modified(self: *const ISClusProperties, pvarModified: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Modified(self, pvarModified);
-    }
-};
-
-const IID_ISClusPropertyValueData_Value = Guid.initString("f2e6071e-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusPropertyValueData = &IID_ISClusPropertyValueData_Value;
-pub const ISClusPropertyValueData = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusPropertyValueData,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusPropertyValueData,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusPropertyValueData,
-            varIndex: VARIANT,
-            pvarValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        CreateItem: *const fn(
-            self: *const ISClusPropertyValueData,
-            varValue: VARIANT,
-            pvarData: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ISClusPropertyValueData,
-            varIndex: VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusPropertyValueData, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusPropertyValueData, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Item(self: *const ISClusPropertyValueData, varIndex: VARIANT, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, pvarValue);
-    }
-    pub fn CreateItem(self: *const ISClusPropertyValueData, varValue: VARIANT, pvarData: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateItem(self, varValue, pvarData);
-    }
-    pub fn RemoveItem(self: *const ISClusPropertyValueData, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, varIndex);
-    }
-};
-
-const IID_ISClusPartition_Value = Guid.initString("f2e60720-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusPartition = &IID_ISClusPartition_Value;
-pub const ISClusPartition = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: *const fn(
-            self: *const ISClusPartition,
-            plFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceName: *const fn(
-            self: *const ISClusPartition,
-            pbstrDeviceName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeLabel: *const fn(
-            self: *const ISClusPartition,
-            pbstrVolumeLabel: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SerialNumber: *const fn(
-            self: *const ISClusPartition,
-            plSerialNumber: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumComponentLength: *const fn(
-            self: *const ISClusPartition,
-            plMaximumComponentLength: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileSystemFlags: *const fn(
-            self: *const ISClusPartition,
-            plFileSystemFlags: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileSystem: *const fn(
-            self: *const ISClusPartition,
-            pbstrFileSystem: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Flags(self: *const ISClusPartition, plFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Flags(self, plFlags);
-    }
-    pub fn get_DeviceName(self: *const ISClusPartition, pbstrDeviceName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceName(self, pbstrDeviceName);
-    }
-    pub fn get_VolumeLabel(self: *const ISClusPartition, pbstrVolumeLabel: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_VolumeLabel(self, pbstrVolumeLabel);
-    }
-    pub fn get_SerialNumber(self: *const ISClusPartition, plSerialNumber: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_SerialNumber(self, plSerialNumber);
-    }
-    pub fn get_MaximumComponentLength(self: *const ISClusPartition, plMaximumComponentLength: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_MaximumComponentLength(self, plMaximumComponentLength);
-    }
-    pub fn get_FileSystemFlags(self: *const ISClusPartition, plFileSystemFlags: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileSystemFlags(self, plFileSystemFlags);
-    }
-    pub fn get_FileSystem(self: *const ISClusPartition, pbstrFileSystem: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FileSystem(self, pbstrFileSystem);
-    }
-};
-
-// TODO: this type is limited to platform 'windowsServer2008'
-const IID_ISClusPartitionEx_Value = Guid.initString("8802d4fe-b32e-4ad1-9dbd-64f18e1166ce");
-pub const IID_ISClusPartitionEx = &IID_ISClusPartitionEx_Value;
-pub const ISClusPartitionEx = extern union {
-    pub const VTable = extern struct {
-        base: ISClusPartition.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TotalSize: *const fn(
-            self: *const ISClusPartitionEx,
-            plTotalSize: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FreeSpace: *const fn(
-            self: *const ISClusPartitionEx,
-            plFreeSpace: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceNumber: *const fn(
-            self: *const ISClusPartitionEx,
-            plDeviceNumber: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PartitionNumber: *const fn(
-            self: *const ISClusPartitionEx,
-            plPartitionNumber: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeGuid: *const fn(
-            self: *const ISClusPartitionEx,
-            pbstrVolumeGuid: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    ISClusPartition: ISClusPartition,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_TotalSize(self: *const ISClusPartitionEx, plTotalSize: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_TotalSize(self, plTotalSize);
-    }
-    pub fn get_FreeSpace(self: *const ISClusPartitionEx, plFreeSpace: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_FreeSpace(self, plFreeSpace);
-    }
-    pub fn get_DeviceNumber(self: *const ISClusPartitionEx, plDeviceNumber: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DeviceNumber(self, plDeviceNumber);
-    }
-    pub fn get_PartitionNumber(self: *const ISClusPartitionEx, plPartitionNumber: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PartitionNumber(self, plPartitionNumber);
-    }
-    pub fn get_VolumeGuid(self: *const ISClusPartitionEx, pbstrVolumeGuid: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_VolumeGuid(self, pbstrVolumeGuid);
-    }
-};
-
-const IID_ISClusPartitions_Value = Guid.initString("f2e60722-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusPartitions = &IID_ISClusPartitions_Value;
-pub const ISClusPartitions = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusPartitions,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusPartitions,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusPartitions,
-            varIndex: VARIANT,
-            ppPartition: ?*?*ISClusPartition,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusPartitions, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusPartitions, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Item(self: *const ISClusPartitions, varIndex: VARIANT, ppPartition: ?*?*ISClusPartition) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppPartition);
-    }
-};
-
-const IID_ISClusDisk_Value = Guid.initString("f2e60724-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusDisk = &IID_ISClusDisk_Value;
-pub const ISClusDisk = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Signature: *const fn(
-            self: *const ISClusDisk,
-            plSignature: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ScsiAddress: *const fn(
-            self: *const ISClusDisk,
-            ppScsiAddress: ?*?*ISClusScsiAddress,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DiskNumber: *const fn(
-            self: *const ISClusDisk,
-            plDiskNumber: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Partitions: *const fn(
-            self: *const ISClusDisk,
-            ppPartitions: ?*?*ISClusPartitions,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Signature(self: *const ISClusDisk, plSignature: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Signature(self, plSignature);
-    }
-    pub fn get_ScsiAddress(self: *const ISClusDisk, ppScsiAddress: ?*?*ISClusScsiAddress) callconv(.@"inline") HRESULT {
-        return self.vtable.get_ScsiAddress(self, ppScsiAddress);
-    }
-    pub fn get_DiskNumber(self: *const ISClusDisk, plDiskNumber: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_DiskNumber(self, plDiskNumber);
-    }
-    pub fn get_Partitions(self: *const ISClusDisk, ppPartitions: ?*?*ISClusPartitions) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Partitions(self, ppPartitions);
-    }
-};
-
-const IID_ISClusDisks_Value = Guid.initString("f2e60726-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusDisks = &IID_ISClusDisks_Value;
-pub const ISClusDisks = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusDisks,
-            plCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusDisks,
-            retval: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusDisks,
-            varIndex: VARIANT,
-            ppDisk: ?*?*ISClusDisk,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusDisks, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
-    }
-    pub fn get__NewEnum(self: *const ISClusDisks, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
-    }
-    pub fn get_Item(self: *const ISClusDisks, varIndex: VARIANT, ppDisk: ?*?*ISClusDisk) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppDisk);
-    }
-};
-
 const IID_ISClusScsiAddress_Value = Guid.initString("f2e60728-2631-11d1-89f1-00a0c90d061e");
 pub const IID_ISClusScsiAddress = &IID_ISClusScsiAddress_Value;
 pub const ISClusScsiAddress = extern union {
@@ -9539,278 +6558,873 @@ pub const ISClusScsiAddress = extern union {
     }
 };
 
-const IID_ISClusRegistryKeys_Value = Guid.initString("f2e6072a-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusRegistryKeys = &IID_ISClusRegistryKeys_Value;
-pub const ISClusRegistryKeys = extern union {
+const IID_ISCluster_Value = Guid.initString("f2e606e4-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISCluster = &IID_ISCluster_Value;
+pub const ISCluster = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusRegistryKeys,
-            plCount: ?*i32,
+        get_CommonProperties: *const fn(
+            self: *const ISCluster,
+            ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusRegistryKeys,
-            retval: ?*?*IUnknown,
+        get_PrivateProperties: *const fn(
+            self: *const ISCluster,
+            ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusRegistryKeys,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CommonROProperties: *const fn(
+            self: *const ISCluster,
+            ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusRegistryKeys,
-            varIndex: VARIANT,
-            pbstrRegistryKey: ?*?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PrivateROProperties: *const fn(
+            self: *const ISCluster,
+            ppProperties: ?*?*ISClusProperties,
         ) callconv(.winapi) HRESULT,
-        AddItem: *const fn(
-            self: *const ISClusRegistryKeys,
-            bstrRegistryKey: ?BSTR,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Handle: *const fn(
+            self: *const ISCluster,
+            phandle: ?*usize,
         ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ISClusRegistryKeys,
-            varIndex: VARIANT,
+        Open: *const fn(
+            self: *const ISCluster,
+            bstrClusterName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const ISCluster,
+            pbstrName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const ISCluster,
+            bstrClusterName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Version: *const fn(
+            self: *const ISCluster,
+            ppClusVersion: ?*?*ISClusVersion,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_QuorumResource: *const fn(
+            self: *const ISCluster,
+            pClusterResource: ?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuorumResource: *const fn(
+            self: *const ISCluster,
+            pClusterResource: ?*?*ISClusResource,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuorumLogSize: *const fn(
+            self: *const ISCluster,
+            pnLogSize: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_QuorumLogSize: *const fn(
+            self: *const ISCluster,
+            nLogSize: i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_QuorumPath: *const fn(
+            self: *const ISCluster,
+            ppPath: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_QuorumPath: *const fn(
+            self: *const ISCluster,
+            pPath: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Nodes: *const fn(
+            self: *const ISCluster,
+            ppNodes: ?*?*ISClusNodes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ResourceGroups: *const fn(
+            self: *const ISCluster,
+            ppClusterResourceGroups: ?*?*ISClusResGroups,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Resources: *const fn(
+            self: *const ISCluster,
+            ppClusterResources: ?*?*ISClusResources,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ResourceTypes: *const fn(
+            self: *const ISCluster,
+            ppResourceTypes: ?*?*ISClusResTypes,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Networks: *const fn(
+            self: *const ISCluster,
+            ppNetworks: ?*?*ISClusNetworks,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NetInterfaces: *const fn(
+            self: *const ISCluster,
+            ppNetInterfaces: ?*?*ISClusNetInterfaces,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusRegistryKeys, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
+    pub fn get_CommonProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get__NewEnum(self: *const ISClusRegistryKeys, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
+    pub fn get_PrivateProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn Refresh(self: *const ISClusRegistryKeys) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
+    pub fn get_CommonROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_Item(self: *const ISClusRegistryKeys, varIndex: VARIANT, pbstrRegistryKey: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, pbstrRegistryKey);
+    pub fn get_PrivateROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn AddItem(self: *const ISClusRegistryKeys, bstrRegistryKey: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, bstrRegistryKey);
+    pub fn get_Handle(self: *const ISCluster, phandle: ?*usize) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Handle(self, phandle);
     }
-    pub fn RemoveItem(self: *const ISClusRegistryKeys, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, varIndex);
+    pub fn Open(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Open(self, bstrClusterName);
+    }
+    pub fn get_Name(self: *const ISCluster, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn put_Name(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, bstrClusterName);
+    }
+    pub fn get_Version(self: *const ISCluster, ppClusVersion: ?*?*ISClusVersion) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Version(self, ppClusVersion);
+    }
+    pub fn put_QuorumResource(self: *const ISCluster, pClusterResource: ?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.put_QuorumResource(self, pClusterResource);
+    }
+    pub fn get_QuorumResource(self: *const ISCluster, pClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuorumResource(self, pClusterResource);
+    }
+    pub fn get_QuorumLogSize(self: *const ISCluster, pnLogSize: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuorumLogSize(self, pnLogSize);
+    }
+    pub fn put_QuorumLogSize(self: *const ISCluster, nLogSize: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.put_QuorumLogSize(self, nLogSize);
+    }
+    pub fn get_QuorumPath(self: *const ISCluster, ppPath: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_QuorumPath(self, ppPath);
+    }
+    pub fn put_QuorumPath(self: *const ISCluster, pPath: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_QuorumPath(self, pPath);
+    }
+    pub fn get_Nodes(self: *const ISCluster, ppNodes: ?*?*ISClusNodes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Nodes(self, ppNodes);
+    }
+    pub fn get_ResourceGroups(self: *const ISCluster, ppClusterResourceGroups: ?*?*ISClusResGroups) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ResourceGroups(self, ppClusterResourceGroups);
+    }
+    pub fn get_Resources(self: *const ISCluster, ppClusterResources: ?*?*ISClusResources) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Resources(self, ppClusterResources);
+    }
+    pub fn get_ResourceTypes(self: *const ISCluster, ppResourceTypes: ?*?*ISClusResTypes) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ResourceTypes(self, ppResourceTypes);
+    }
+    pub fn get_Networks(self: *const ISCluster, ppNetworks: ?*?*ISClusNetworks) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Networks(self, ppNetworks);
+    }
+    pub fn get_NetInterfaces(self: *const ISCluster, ppNetInterfaces: ?*?*ISClusNetInterfaces) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NetInterfaces(self, ppNetInterfaces);
     }
 };
 
-const IID_ISClusCryptoKeys_Value = Guid.initString("f2e6072c-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusCryptoKeys = &IID_ISClusCryptoKeys_Value;
-pub const ISClusCryptoKeys = extern union {
+const IID_ISClusterNames_Value = Guid.initString("f2e606ec-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusterNames = &IID_ISClusterNames_Value;
+pub const ISClusterNames = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
-            self: *const ISClusCryptoKeys,
+            self: *const ISClusterNames,
             plCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
-            self: *const ISClusCryptoKeys,
+            self: *const ISClusterNames,
             retval: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
-            self: *const ISClusCryptoKeys,
+            self: *const ISClusterNames,
         ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
-            self: *const ISClusCryptoKeys,
+            self: *const ISClusterNames,
             varIndex: VARIANT,
-            pbstrCyrptoKey: ?*?BSTR,
+            pbstrClusterName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        AddItem: *const fn(
-            self: *const ISClusCryptoKeys,
-            bstrCryptoKey: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ISClusCryptoKeys,
-            varIndex: VARIANT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_DomainName: *const fn(
+            self: *const ISClusterNames,
+            pbstrDomainName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusCryptoKeys, plCount: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_Count(self: *const ISClusterNames, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusCryptoKeys, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn get__NewEnum(self: *const ISClusterNames, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusCryptoKeys) callconv(.@"inline") HRESULT {
+    pub fn Refresh(self: *const ISClusterNames) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusCryptoKeys, varIndex: VARIANT, pbstrCyrptoKey: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, pbstrCyrptoKey);
+    pub fn get_Item(self: *const ISClusterNames, varIndex: VARIANT, pbstrClusterName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, pbstrClusterName);
     }
-    pub fn AddItem(self: *const ISClusCryptoKeys, bstrCryptoKey: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, bstrCryptoKey);
-    }
-    pub fn RemoveItem(self: *const ISClusCryptoKeys, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, varIndex);
+    pub fn get_DomainName(self: *const ISClusterNames, pbstrDomainName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_DomainName(self, pbstrDomainName);
     }
 };
 
-const IID_ISClusResDependents_Value = Guid.initString("f2e6072e-2631-11d1-89f1-00a0c90d061e");
-pub const IID_ISClusResDependents = &IID_ISClusResDependents_Value;
-pub const ISClusResDependents = extern union {
+const IID_ISClusVersion_Value = Guid.initString("f2e60716-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISClusVersion = &IID_ISClusVersion_Value;
+pub const ISClusVersion = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const ISClusResDependents,
-            plCount: ?*i32,
+        get_Name: *const fn(
+            self: *const ISClusVersion,
+            pbstrClusterName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const ISClusResDependents,
-            retval: ?*?*IUnknown,
+        get_MajorVersion: *const fn(
+            self: *const ISClusVersion,
+            pnMajorVersion: ?*i32,
         ) callconv(.winapi) HRESULT,
-        Refresh: *const fn(
-            self: *const ISClusResDependents,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MinorVersion: *const fn(
+            self: *const ISClusVersion,
+            pnMinorVersion: ?*i32,
         ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const ISClusResDependents,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_BuildNumber: *const fn(
+            self: *const ISClusVersion,
+            pnBuildNumber: ?*i16,
         ) callconv(.winapi) HRESULT,
-        CreateItem: *const fn(
-            self: *const ISClusResDependents,
-            bstrResourceName: ?BSTR,
-            bstrResourceType: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_VendorId: *const fn(
+            self: *const ISClusVersion,
+            pbstrVendorId: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        DeleteItem: *const fn(
-            self: *const ISClusResDependents,
-            varIndex: VARIANT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CSDVersion: *const fn(
+            self: *const ISClusVersion,
+            pbstrCSDVersion: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
-        AddItem: *const fn(
-            self: *const ISClusResDependents,
-            pResource: ?*ISClusResource,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClusterHighestVersion: *const fn(
+            self: *const ISClusVersion,
+            pnClusterHighestVersion: ?*i32,
         ) callconv(.winapi) HRESULT,
-        RemoveItem: *const fn(
-            self: *const ISClusResDependents,
-            varIndex: VARIANT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ClusterLowestVersion: *const fn(
+            self: *const ISClusVersion,
+            pnClusterLowestVersion: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Flags: *const fn(
+            self: *const ISClusVersion,
+            pnFlags: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_MixedVersion: *const fn(
+            self: *const ISClusVersion,
+            pvarMixedVersion: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResDependents, plCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, plCount);
+    pub fn get_Name(self: *const ISClusVersion, pbstrClusterName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, pbstrClusterName);
     }
-    pub fn get__NewEnum(self: *const ISClusResDependents, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, retval);
+    pub fn get_MajorVersion(self: *const ISClusVersion, pnMajorVersion: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MajorVersion(self, pnMajorVersion);
     }
-    pub fn Refresh(self: *const ISClusResDependents) callconv(.@"inline") HRESULT {
-        return self.vtable.Refresh(self);
+    pub fn get_MinorVersion(self: *const ISClusVersion, pnMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MinorVersion(self, pnMinorVersion);
     }
-    pub fn get_Item(self: *const ISClusResDependents, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, varIndex, ppClusResource);
+    pub fn get_BuildNumber(self: *const ISClusVersion, pnBuildNumber: ?*i16) callconv(.@"inline") HRESULT {
+        return self.vtable.get_BuildNumber(self, pnBuildNumber);
     }
-    pub fn CreateItem(self: *const ISClusResDependents, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+    pub fn get_VendorId(self: *const ISClusVersion, pbstrVendorId: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_VendorId(self, pbstrVendorId);
     }
-    pub fn DeleteItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.DeleteItem(self, varIndex);
+    pub fn get_CSDVersion(self: *const ISClusVersion, pbstrCSDVersion: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_CSDVersion(self, pbstrCSDVersion);
     }
-    pub fn AddItem(self: *const ISClusResDependents, pResource: ?*ISClusResource) callconv(.@"inline") HRESULT {
-        return self.vtable.AddItem(self, pResource);
+    pub fn get_ClusterHighestVersion(self: *const ISClusVersion, pnClusterHighestVersion: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClusterHighestVersion(self, pnClusterHighestVersion);
     }
-    pub fn RemoveItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveItem(self, varIndex);
+    pub fn get_ClusterLowestVersion(self: *const ISClusVersion, pnClusterLowestVersion: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_ClusterLowestVersion(self, pnClusterLowestVersion);
+    }
+    pub fn get_Flags(self: *const ISClusVersion, pnFlags: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Flags(self, pnFlags);
+    }
+    pub fn get_MixedVersion(self: *const ISClusVersion, pvarMixedVersion: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_MixedVersion(self, pvarMixedVersion);
     }
 };
 
+const IID_ISDomainNames_Value = Guid.initString("f2e606e2-2631-11d1-89f1-00a0c90d061e");
+pub const IID_ISDomainNames = &IID_ISDomainNames_Value;
+pub const ISDomainNames = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const ISDomainNames,
+            plCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const ISDomainNames,
+            retval: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Refresh: *const fn(
+            self: *const ISDomainNames,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const ISDomainNames,
+            varIndex: VARIANT,
+            pbstrDomainName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Count(self: *const ISDomainNames, plCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, plCount);
+    }
+    pub fn get__NewEnum(self: *const ISDomainNames, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
+    }
+    pub fn Refresh(self: *const ISDomainNames) callconv(.@"inline") HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn get_Item(self: *const ISDomainNames, varIndex: VARIANT, pbstrDomainName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, varIndex, pbstrDomainName);
+    }
+};
 
-//--------------------------------------------------------------------------------
-// Section: Functions (351)
-//--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IWCContextMenuCallback_Value = Guid.initString("97dede64-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWCContextMenuCallback = &IID_IWCContextMenuCallback_Value;
+pub const IWCContextMenuCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddExtensionMenuItem: *const fn(
+            self: *const IWCContextMenuCallback,
+            lpszName: ?BSTR,
+            lpszStatusBarText: ?BSTR,
+            nCommandID: u32,
+            nSubmenuCommandID: u32,
+            uFlags: u32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddExtensionMenuItem(self: *const IWCContextMenuCallback, lpszName: ?BSTR, lpszStatusBarText: ?BSTR, nCommandID: u32, nSubmenuCommandID: u32, uFlags: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddExtensionMenuItem(self, lpszName, lpszStatusBarText, nCommandID, nSubmenuCommandID, uFlags);
+    }
+};
+
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetNodeClusterState(
-    lpszNodeName: ?[*:0]const u16,
-    pdwClusterState: ?*u32,
+const IID_IWCPropertySheetCallback_Value = Guid.initString("97dede60-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWCPropertySheetCallback = &IID_IWCPropertySheetCallback_Value;
+pub const IWCPropertySheetCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddPropertySheetPage: *const fn(
+            self: *const IWCPropertySheetCallback,
+            hpage: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddPropertySheetPage(self: *const IWCPropertySheetCallback, hpage: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddPropertySheetPage(self, hpage);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IWCWizard97Callback_Value = Guid.initString("97dede67-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWCWizard97Callback = &IID_IWCWizard97Callback_Value;
+pub const IWCWizard97Callback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddWizard97Page: *const fn(
+            self: *const IWCWizard97Callback,
+            hpage: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        EnableNext: *const fn(
+            self: *const IWCWizard97Callback,
+            hpage: ?*i32,
+            bEnable: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddWizard97Page(self: *const IWCWizard97Callback, hpage: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddWizard97Page(self, hpage);
+    }
+    pub fn EnableNext(self: *const IWCWizard97Callback, hpage: ?*i32, bEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableNext(self, hpage, bEnable);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IWCWizardCallback_Value = Guid.initString("97dede62-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWCWizardCallback = &IID_IWCWizardCallback_Value;
+pub const IWCWizardCallback = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddWizardPage: *const fn(
+            self: *const IWCWizardCallback,
+            hpage: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        EnableNext: *const fn(
+            self: *const IWCWizardCallback,
+            hpage: ?*i32,
+            bEnable: BOOL,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddWizardPage(self: *const IWCWizardCallback, hpage: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.AddWizardPage(self, hpage);
+    }
+    pub fn EnableNext(self: *const IWCWizardCallback, hpage: ?*i32, bEnable: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.EnableNext(self, hpage, bEnable);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IWEExtendContextMenu_Value = Guid.initString("97dede65-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWEExtendContextMenu = &IID_IWEExtendContextMenu_Value;
+pub const IWEExtendContextMenu = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddContextMenuItems: *const fn(
+            self: *const IWEExtendContextMenu,
+            piData: ?*IUnknown,
+            piCallback: ?*IWCContextMenuCallback,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn AddContextMenuItems(self: *const IWEExtendContextMenu, piData: ?*IUnknown, piCallback: ?*IWCContextMenuCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.AddContextMenuItems(self, piData, piCallback);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2008'
+const IID_IWEExtendPropertySheet_Value = Guid.initString("97dede61-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWEExtendPropertySheet = &IID_IWEExtendPropertySheet_Value;
+pub const IWEExtendPropertySheet = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreatePropertySheetPages: *const fn(
+            self: *const IWEExtendPropertySheet,
+            piData: ?*IUnknown,
+            piCallback: ?*IWCPropertySheetCallback,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreatePropertySheetPages(self: *const IWEExtendPropertySheet, piData: ?*IUnknown, piCallback: ?*IWCPropertySheetCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.CreatePropertySheetPages(self, piData, piCallback);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IWEExtendWizard_Value = Guid.initString("97dede63-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWEExtendWizard = &IID_IWEExtendWizard_Value;
+pub const IWEExtendWizard = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateWizardPages: *const fn(
+            self: *const IWEExtendWizard,
+            piData: ?*IUnknown,
+            piCallback: ?*IWCWizardCallback,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateWizardPages(self: *const IWEExtendWizard, piData: ?*IUnknown, piCallback: ?*IWCWizardCallback) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateWizardPages(self, piData, piCallback);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IWEExtendWizard97_Value = Guid.initString("97dede68-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWEExtendWizard97 = &IID_IWEExtendWizard97_Value;
+pub const IWEExtendWizard97 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateWizard97Pages: *const fn(
+            self: *const IWEExtendWizard97,
+            piData: ?*IUnknown,
+            piCallback: ?*IWCWizard97Callback,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn CreateWizard97Pages(self: *const IWEExtendWizard97, piData: ?*IUnknown, piCallback: ?*IWCWizard97Callback) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateWizard97Pages(self, piData, piCallback);
+    }
+};
+
+// TODO: this type is limited to platform 'windowsServer2003'
+const IID_IWEInvokeCommand_Value = Guid.initString("97dede66-fc6b-11cf-b5f5-00a0c90ab505");
+pub const IID_IWEInvokeCommand = &IID_IWEInvokeCommand_Value;
+pub const IWEInvokeCommand = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InvokeCommand: *const fn(
+            self: *const IWEInvokeCommand,
+            nCommandID: u32,
+            piData: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn InvokeCommand(self: *const IWEInvokeCommand, nCommandID: u32, piData: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.InvokeCommand(self, nCommandID, piData);
+    }
+};
+
+pub const LOG_LEVEL = enum(i32) {
+    INFORMATION = 0,
+    WARNING = 1,
+    ERROR = 2,
+    SEVERE = 3,
+};
+pub const LOG_INFORMATION = LOG_LEVEL.INFORMATION;
+pub const LOG_WARNING = LOG_LEVEL.WARNING;
+pub const LOG_ERROR = LOG_LEVEL.ERROR;
+pub const LOG_SEVERE = LOG_LEVEL.SEVERE;
+
+pub const LPGROUP_CALLBACK_EX = *const fn(
+    param0: ?*_HCLUSTER,
+    param1: ?*_HGROUP,
+    param2: ?*_HGROUP,
+    param3: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenCluster(
-    lpszClusterName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HCLUSTER;
+pub const LPNODE_CALLBACK = *const fn(
+    param0: ?*_HCLUSTER,
+    param1: ?*_HNODE,
+    param2: CLUSTER_NODE_STATE,
+    param3: ?*anyopaque,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterEx(
-    lpszClusterName: ?[*:0]const u16,
-    DesiredAccess: u32,
-    GrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HCLUSTER;
+pub const LPRESOURCE_CALLBACK = *const fn(
+    param0: ?*_HRESOURCE,
+    param1: ?*_HRESOURCE,
+    param2: ?*anyopaque,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CloseCluster(
+pub const LPRESOURCE_CALLBACK_EX = *const fn(
+    param0: ?*_HCLUSTER,
+    param1: ?*_HRESOURCE,
+    param2: ?*_HRESOURCE,
+    param3: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const MAINTENANCE_MODE_TYPE_ENUM = enum(i32) {
+    DisableIsAliveCheck = 1,
+    OfflineResource = 2,
+    UnclusterResource = 3,
+};
+pub const MaintenanceModeTypeDisableIsAliveCheck = MAINTENANCE_MODE_TYPE_ENUM.DisableIsAliveCheck;
+pub const MaintenanceModeTypeOfflineResource = MAINTENANCE_MODE_TYPE_ENUM.OfflineResource;
+pub const MaintenanceModeTypeUnclusterResource = MAINTENANCE_MODE_TYPE_ENUM.UnclusterResource;
+
+pub const MONITOR_STATE = extern struct {
+    LastUpdate: LARGE_INTEGER,
+    State: RESOURCE_MONITOR_STATE,
+    ActiveResource: ?HANDLE,
+    ResmonStop: BOOL,
+};
+
+pub const NODE_CLUSTER_STATE = enum(i32) {
+    NotInstalled = 0,
+    NotConfigured = 1,
+    NotRunning = 3,
+    Running = 19,
+};
+pub const ClusterStateNotInstalled = NODE_CLUSTER_STATE.NotInstalled;
+pub const ClusterStateNotConfigured = NODE_CLUSTER_STATE.NotConfigured;
+pub const ClusterStateNotRunning = NODE_CLUSTER_STATE.NotRunning;
+pub const ClusterStateRunning = NODE_CLUSTER_STATE.Running;
+
+pub const NodeUtilizationInfoElement = extern struct {
+    Id: u64,
+    AvailableMemory: u64,
+    AvailableMemoryAfterReclamation: u64,
+};
+
+pub const NOTIFY_FILTER_AND_TYPE = extern struct {
+    dwObjectType: u32,
+    FilterFlags: i64,
+};
+
+pub const PARBITRATE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    LostQuorumResource: ?PQUORUM_RESOURCE_LOST,
+) callconv(.winapi) u32;
+
+pub const PaxosTagCStruct = extern struct {
+    __padding__PaxosTagVtable: u64,
+    __padding__NextEpochVtable: u64,
+    __padding__NextEpoch_DateTimeVtable: u64,
+    NextEpoch_DateTime_ticks: u64,
+    NextEpoch_Value: i32,
+    __padding__BoundryNextEpoch: u32,
+    __padding__EpochVtable: u64,
+    __padding__Epoch_DateTimeVtable: u64,
+    Epoch_DateTime_ticks: u64,
+    Epoch_Value: i32,
+    __padding__BoundryEpoch: u32,
+    Sequence: i32,
+    __padding__BoundrySequence: u32,
+};
+
+pub const PBEGIN_RESCALL_AS_USER_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    TokenHandle: ?HANDLE,
+    ControlCode: u32,
+    InBuffer: ?*anyopaque,
+    InBufferSize: u32,
+    OutBuffer: ?*anyopaque,
+    OutBufferSize: u32,
+    BytesReturned: ?*u32,
+    context: i64,
+    ReturnedAsynchronously: ?*BOOL,
+) callconv(.winapi) u32;
+
+pub const PBEGIN_RESCALL_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    ControlCode: u32,
+    InBuffer: ?*anyopaque,
+    InBufferSize: u32,
+    OutBuffer: ?*anyopaque,
+    OutBufferSize: u32,
+    BytesReturned: ?*u32,
+    context: i64,
+    ReturnedAsynchronously: ?*BOOL,
+) callconv(.winapi) u32;
+
+pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = *const fn(
+    ResourceTypeName: ?[*:0]const u16,
+    TokenHandle: ?HANDLE,
+    ControlCode: u32,
+    InBuffer: ?*anyopaque,
+    InBufferSize: u32,
+    OutBuffer: ?*anyopaque,
+    OutBufferSize: u32,
+    BytesReturned: ?*u32,
+    context: i64,
+    ReturnedAsynchronously: ?*BOOL,
+) callconv(.winapi) u32;
+
+pub const PBEGIN_RESTYPECALL_ROUTINE = *const fn(
+    ResourceTypeName: ?[*:0]const u16,
+    ControlCode: u32,
+    InBuffer: ?*anyopaque,
+    InBufferSize: u32,
+    OutBuffer: ?*anyopaque,
+    OutBufferSize: u32,
+    BytesReturned: ?*u32,
+    context: i64,
+    ReturnedAsynchronously: ?*BOOL,
+) callconv(.winapi) u32;
+
+pub const PCANCEL_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    CancelFlags_RESERVED: u32,
+) callconv(.winapi) u32;
+
+pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = *const fn(
+    resourceTypeName: ?[*:0]const u16,
+    processName: ?[*:0]const u16,
+    processId: u32,
+    isAdd: BOOL,
+) callconv(.winapi) u32;
+
+pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = *const fn(
+    resource: isize,
+    processName: ?[*:0]const u16,
+    processId: u32,
+    isAdd: BOOL,
+) callconv(.winapi) u32;
+
+pub const PCLOSE_CLUSTER_CRYPT_PROVIDER = *const fn(
+    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+) callconv(.winapi) u32;
+
+pub const PCLOSE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY = *const fn(
+    hDependentGroup: ?*_HGROUP,
+    hProviderGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY = *const fn(
+    hDependentGroupSet: ?*_HGROUPSET,
+    hProviderGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = *const fn(
+    hDependentGroup: ?*_HGROUP,
+    hProviderGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ADD_CLUSTER_NODE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) ?*_HNODE;
+
+pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    dwFlags: u32,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) ?*_HNODE;
+
+pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY = *const fn(
+    hResource: ?*_HRESOURCE,
+    hDependsOn: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE = *const fn(
+    hResource: ?*_HRESOURCE,
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY = *const fn(
+    hDependentGroupSet: ?*_HGROUPSET,
+    lpRemoteClusterName: ?[*:0]const u16,
+    lpRemoteGroupSetName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_BACKUP_CLUSTER_DATABASE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszPathName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT = *const fn(
+    hResource: ?*_HRESOURCE,
+    hResourceDependent: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP = *const fn(
+    hResource: ?*_HRESOURCE,
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX = *const fn(
+    hResource: ?*_HRESOURCE,
+    hGroup: ?*_HGROUP,
+    Flags: u64,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLOSE_CLUSTER = *const fn(
     hCluster: ?*_HCLUSTER,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn SetClusterName(
-    hCluster: ?*_HCLUSTER,
-    lpszNewClusterName: ?[*:0]const u16,
-) callconv(.winapi) u32;
+pub const PCLUSAPI_CLOSE_CLUSTER_GROUP = *const fn(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterInformation(
-    hCluster: ?*_HCLUSTER,
-    lpszClusterName: [*:0]u16,
-    lpcchClusterName: ?*u32,
-    lpClusterInfo: ?*CLUSTERVERSIONINFO,
-) callconv(.winapi) u32;
+pub const PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterQuorumResource(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: [*:0]u16,
-    lpcchResourceName: ?*u32,
-    lpszDeviceName: [*:0]u16,
-    lpcchDeviceName: ?*u32,
-    lpdwMaxQuorumLogSize: ?*u32,
-) callconv(.winapi) u32;
+pub const PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE = *const fn(
+    hNetInterface: ?*_HNETINTERFACE,
+) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn SetClusterQuorumResource(
+pub const PCLUSAPI_CLOSE_CLUSTER_NETWORK = *const fn(
+    hNetwork: ?*_HNETWORK,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSAPI_CLOSE_CLUSTER_NODE = *const fn(
+    hNode: ?*_HNODE,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT = *const fn(
+    hChange: ?*_HCHANGE,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSAPI_CLOSE_CLUSTER_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
-    lpszDeviceName: ?[*:0]const u16,
-    dwMaxQuoLogSize: u32,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSAPI_CLUS_WORKER_CREATE = *const fn(
+    lpWorker: ?*CLUS_WORKER,
+    lpStartAddress: ?PWORKER_START_ROUTINE,
+    lpParameter: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "clusapi" fn BackupClusterDatabase(
+pub const PCLUSAPI_CLUS_WORKER_TERMINATE = *const fn(
+    lpWorker: ?*CLUS_WORKER,
+) callconv(.winapi) void;
+
+pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE = *const fn(
     hCluster: ?*_HCLUSTER,
-    lpszPathName: ?[*:0]const u16,
+    ruleName: ?[*:0]const u16,
+    hGroup: ?*_HGROUP,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "clusapi" fn RestoreClusterDatabase(
-    lpszPathName: ?[*:0]const u16,
-    bForce: BOOL,
-    lpszQuorumDriveLetter: ?[*:0]const u16,
+pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+    hGroup: ?*_HGROUP,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "clusapi" fn SetClusterNetworkPriorityOrder(
+pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = *const fn(
     hCluster: ?*_HCLUSTER,
-    NetworkCount: u32,
-    NetworkList: [*]?*_HNETWORK,
+    affinityRuleName: ?[*:0]const u16,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpInBuffer: ?*anyopaque,
+    cbInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 7?
+    lpOutBuffer: ?*anyopaque,
+    cbOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2003'
-pub extern "clusapi" fn SetClusterServiceAccountPassword(
-    lpszClusterName: ?[*:0]const u16,
-    lpszNewPassword: ?[*:0]const u16,
-    dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
-    lpcbReturnStatusBufferSize: ?*u32,
+pub const PCLUSAPI_CLUSTER_CLOSE_ENUM = *const fn(
+    hEnum: ?*_HCLUSENUM,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterControl(
+pub const PCLUSAPI_CLUSTER_CLOSE_ENUM_EX = *const fn(
+    hClusterEnum: ?*_HCLUSENUMEX,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_CONTROL = *const fn(
     hCluster: ?*_HCLUSTER,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -9823,100 +7437,13 @@ pub extern "clusapi" fn ClusterControl(
     lpBytesReturned: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterUpgradeFunctionalLevel(
+pub const PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE = *const fn(
     hCluster: ?*_HCLUSTER,
-    perform: BOOL,
-    pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
+    ruleName: ?[*:0]const u16,
+    ruleType: CLUS_AFFINITY_RULE_TYPE,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn CreateClusterNotifyPortV2(
-    hChange: ?*_HCHANGE,
-    hCluster: ?*_HCLUSTER,
-    Filters: ?*NOTIFY_FILTER_AND_TYPE,
-    dwFilterCount: u32,
-    dwNotifyKey: usize,
-) callconv(.winapi) ?*_HCHANGE;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn RegisterClusterNotifyV2(
-    hChange: ?*_HCHANGE,
-    Filter: NOTIFY_FILTER_AND_TYPE,
-    hObject: ?HANDLE,
-    dwNotifyKey: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn GetNotifyEventHandle(
-    hChange: ?*_HCHANGE,
-    lphTargetEvent: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn GetClusterNotifyV2(
-    hChange: ?*_HCHANGE,
-    lpdwNotifyKey: ?*usize,
-    pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
-    buffer: ?*u8,
-    lpbBufferSize: ?*u32,
-    lpszObjectId: ?[*:0]u16,
-    lpcchObjectId: ?*u32,
-    lpszParentId: ?[*:0]u16,
-    lpcchParentId: ?*u32,
-    lpszName: ?[*:0]u16,
-    lpcchName: ?*u32,
-    lpszType: ?[*:0]u16,
-    lpcchType: ?*u32,
-    dwMilliseconds: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CreateClusterNotifyPort(
-    hChange: ?*_HCHANGE,
-    hCluster: ?*_HCLUSTER,
-    dwFilter: u32,
-    dwNotifyKey: usize,
-) callconv(.winapi) ?*_HCHANGE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn RegisterClusterNotify(
-    hChange: ?*_HCHANGE,
-    dwFilterType: u32,
-    hObject: ?HANDLE,
-    dwNotifyKey: usize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNotify(
-    hChange: ?*_HCHANGE,
-    lpdwNotifyKey: ?*usize,
-    lpdwFilterType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-    dwMilliseconds: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CloseClusterNotifyPort(
-    hChange: ?*_HCHANGE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterOpenEnum(
-    hCluster: ?*_HCLUSTER,
-    dwType: u32,
-) callconv(.winapi) ?*_HCLUSENUM;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterGetEnumCount(
-    hEnum: ?*_HCLUSENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterEnum(
+pub const PCLUSAPI_CLUSTER_ENUM = *const fn(
     hEnum: ?*_HCLUSENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
@@ -9924,56 +7451,2446 @@ pub extern "clusapi" fn ClusterEnum(
     lpcchName: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterCloseEnum(
-    hEnum: ?*_HCLUSENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterOpenEnumEx(
-    hCluster: ?*_HCLUSTER,
-    dwType: u32,
-    pOptions: ?*anyopaque,
-) callconv(.winapi) ?*_HCLUSENUMEX;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterGetEnumCountEx(
-    hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterEnumEx(
+pub const PCLUSAPI_CLUSTER_ENUM_EX = *const fn(
     hClusterEnum: ?*_HCLUSENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_ENUM_ITEM,
     cbItem: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterCloseEnumEx(
+pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT = *const fn(
+    hEnum: ?*_HCLUSENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX = *const fn(
     hClusterEnum: ?*_HCLUSENUMEX,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn CreateClusterGroupSet(
+pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM = *const fn(
+    hGroupEnum: ?*_HGROUPENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX = *const fn(
+    hGroupEnumEx: ?*_HGROUPENUMEX,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = *const fn(
+    hGroup: ?*_HGROUP,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_ENUM = *const fn(
+    hGroupEnum: ?*_HGROUPENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszResourceName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_ENUM_EX = *const fn(
+    hGroupEnumEx: ?*_HGROUPENUMEX,
+    dwIndex: u32,
+    pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
+    cbItem: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT = *const fn(
+    hGroupEnum: ?*_HGROUPENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX = *const fn(
+    hGroupEnumEx: ?*_HGROUPENUMEX,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    cbInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    cbOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = *const fn(
+    hGroup: ?*_HGROUP,
+    dwType: u32,
+) callconv(.winapi) ?*_HGROUPENUM;
+
+pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = *const fn(
     hCluster: ?*_HCLUSTER,
-    groupSetName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 2?
+    lpszProperties: ?[*:0]const u16,
+    cbProperties: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpszRoProperties: ?[*:0]const u16,
+    cbRoProperties: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HGROUPENUMEX;
+
+pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = *const fn(
+    hNetInterface: ?*_HNETINTERFACE,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM = *const fn(
+    hNetworkEnum: ?*_HNETWORKENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = *const fn(
+    hNetwork: ?*_HNETWORK,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = *const fn(
+    hNetworkEnum: ?*_HNETWORKENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT = *const fn(
+    hNetworkEnum: ?*_HNETWORKENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM = *const fn(
+    hNetwork: ?*_HNETWORK,
+    dwType: u32,
+) callconv(.winapi) ?*_HNETWORKENUM;
+
+pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM = *const fn(
+    hNodeEnum: ?*_HNODEENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX = *const fn(
+    hNodeEnum: ?*_HNODEENUMEX,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NODE_CONTROL = *const fn(
+    hNode: ?*_HNODE,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NODE_ENUM = *const fn(
+    hNodeEnum: ?*_HNODEENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NODE_ENUM_EX = *const fn(
+    hNodeEnum: ?*_HNODEENUMEX,
+    dwIndex: u32,
+    pItem: ?*CLUSTER_ENUM_ITEM,
+    cbItem: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT = *const fn(
+    hNodeEnum: ?*_HNODEENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX = *const fn(
+    hNodeEnum: ?*_HNODEENUMEX,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM = *const fn(
+    hNode: ?*_HNODE,
+    dwType: u32,
+) callconv(.winapi) ?*_HNODEENUM;
+
+pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX = *const fn(
+    hNode: ?*_HNODE,
+    dwType: u32,
+    pOptions: ?*anyopaque,
+) callconv(.winapi) ?*_HNODEENUMEX;
+
+pub const PCLUSAPI_CLUSTER_OPEN_ENUM = *const fn(
+    hCluster: ?*_HCLUSTER,
+    dwType: u32,
+) callconv(.winapi) ?*_HCLUSENUM;
+
+pub const PCLUSAPI_CLUSTER_OPEN_ENUM_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    dwType: u32,
+    pOptions: ?*anyopaque,
+) callconv(.winapi) ?*_HCLUSENUMEX;
+
+pub const PCLUSAPI_CLUSTER_REG_CLOSE_KEY = *const fn(
+    hKey: ?HKEY,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = *const fn(
+    hKey: ?HKEY,
+    pHREGBATCH: ?*?*_HREGBATCH,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = *const fn(
+    hKey: ?HKEY,
+    lpszSubKey: ?[*:0]const u16,
+    dwOptions: u32,
+    samDesired: u32,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    phkResult: ?*?HKEY,
+    lpdwDisposition: ?*u32,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_DELETE_KEY = *const fn(
+    hKey: ?HKEY,
+    lpszSubKey: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_DELETE_VALUE = *const fn(
+    hKey: ?HKEY,
+    lpszValueName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = *const fn(
+    hKey: ?HKEY,
+    dwIndex: u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+    lpftLastWriteTime: ?*FILETIME,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = *const fn(
+    hKey: ?HKEY,
+    dwIndex: u32,
+    lpszValueName: [*:0]u16,
+    lpcchValueName: ?*u32,
+    lpdwType: ?*u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpData: ?*u8,
+    lpcbData: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = *const fn(
+    hKey: ?HKEY,
+    RequestedInformation: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    lpcbSecurityDescriptor: ?*u32,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_OPEN_KEY = *const fn(
+    hKey: ?HKEY,
+    lpszSubKey: ?[*:0]const u16,
+    samDesired: u32,
+    phkResult: ?*?HKEY,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = *const fn(
+    hKey: ?HKEY,
+    lpcSubKeys: ?*u32,
+    lpcbMaxSubKeyLen: ?*u32,
+    lpcValues: ?*u32,
+    lpcbMaxValueNameLen: ?*u32,
+    lpcbMaxValueLen: ?*u32,
+    lpcbSecurityDescriptor: ?*u32,
+    lpftLastWriteTime: ?*FILETIME,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = *const fn(
+    hKey: ?HKEY,
+    lpszValueName: ?[*:0]const u16,
+    lpdwValueType: ?*u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpData: ?*u8,
+    lpcbData: ?*u32,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = *const fn(
+    hKey: ?HKEY,
+    SecurityInformation: u32,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = *const fn(
+    hKey: ?HKEY,
+    lpszValueName: ?[*:0]const u16,
+    dwType: u32,
+    lpData: ?*const u8,
+    cbData: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    flags: u32,
+) callconv(.winapi) i32;
+
+pub const PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    ruleName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    ruleName: ?[*:0]const u16,
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+    hGroupName: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM = *const fn(
+    hResEnum: ?*_HRESENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX = *const fn(
+    hResourceEnumEx: ?*_HRESENUMEX,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = *const fn(
+    hResource: ?*_HRESOURCE,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    cbInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    cbOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = *const fn(
+    hResEnum: ?*_HRESENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX = *const fn(
+    hResourceEnumEx: ?*_HRESENUMEX,
+    dwIndex: u32,
+    pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
+    cbItem: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT = *const fn(
+    hResEnum: ?*_HRESENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX = *const fn(
+    hResourceEnumEx: ?*_HRESENUMEX,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = *const fn(
+    hResource: ?*_HRESOURCE,
+    dwType: u32,
+) callconv(.winapi) ?*_HRESENUM;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    // TODO: what to do with BytesParamIndex 2?
+    lpszProperties: ?[*:0]const u16,
+    cbProperties: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpszRoProperties: ?[*:0]const u16,
+    cbRoProperties: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HRESENUMEX;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM = *const fn(
+    hResTypeEnum: ?*_HRESTYPEENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceTypeName: ?[*:0]const u16,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 7?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = *const fn(
+    hResTypeEnum: ?*_HRESTYPEENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT = *const fn(
+    hResTypeEnum: ?*_HRESTYPEENUM,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceTypeName: ?[*:0]const u16,
+    dwType: u32,
+) callconv(.winapi) ?*_HRESTYPEENUM;
+
+pub const PCLUSAPI_CLUSTER_UPGRADE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    perform: BOOL,
+    pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CREATE_CLUSTER = *const fn(
+    pConfig: ?*CREATE_CLUSTER_CONFIG,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpAvailabilitySetName: ?[*:0]const u16,
+    pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
 ) callconv(.winapi) ?*_HGROUPSET;
 
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn OpenClusterGroupSet(
+pub const PCLUSAPI_CREATE_CLUSTER_CNOLESS = *const fn(
+    pConfig: ?*CREATE_CLUSTER_CONFIG,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_CREATE_CLUSTER_GROUP = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HGROUP;
+
+pub const PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszGroupSetName: ?[*:0]const u16,
 ) callconv(.winapi) ?*_HGROUPSET;
+
+pub const PCLUSAPI_CREATE_CLUSTER_GROUPEX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+    pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
+) callconv(.winapi) ?*_HGROUP;
+
+pub const PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT = *const fn(
+    hCluster: ?*_HCLUSTER,
+    pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = *const fn(
+    hChange: ?*_HCHANGE,
+    hCluster: ?*_HCLUSTER,
+    dwFilter: u32,
+    dwNotifyKey: usize,
+) callconv(.winapi) ?*_HCHANGE;
+
+pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = *const fn(
+    hChange: ?*_HCHANGE,
+    hCluster: ?*_HCLUSTER,
+    Filters: ?*NOTIFY_FILTER_AND_TYPE,
+    dwFilterCount: u32,
+    dwNotifyKey: usize,
+) callconv(.winapi) ?*_HCHANGE;
+
+pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE = *const fn(
+    hGroup: ?*_HGROUP,
+    lpszResourceName: ?[*:0]const u16,
+    lpszResourceType: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceTypeName: ?[*:0]const u16,
+    lpszDisplayName: ?[*:0]const u16,
+    lpszResourceTypeDll: ?[*:0]const u16,
+    dwLooksAlivePollInterval: u32,
+    dwIsAlivePollInterval: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_DELETE_CLUSTER_GROUP = *const fn(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceTypeName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_DESTROY_CLUSTER = *const fn(
+    hCluster: ?*_HCLUSTER,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+    fdeleteVirtualComputerObjects: BOOL,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_DESTROY_CLUSTER_GROUP = *const fn(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_EVICT_CLUSTER_NODE = *const fn(
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_EVICT_CLUSTER_NODE_EX = *const fn(
+    hNode: ?*_HNODE,
+    dwTimeOut: u32,
+    phrCleanupStatus: ?*HRESULT,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_FAIL_CLUSTER_RESOURCE = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP = *const fn(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE = *const fn(
+    hNetInterface: ?*_HNETINTERFACE,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_GET_CLUSTER_FROM_NETWORK = *const fn(
+    hNetwork: ?*_HNETWORK,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_GET_CLUSTER_FROM_NODE = *const fn(
+    hNode: ?*_HNODE,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_GET_CLUSTER_FROM_RESOURCE = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_GET_CLUSTER_GROUP_KEY = *const fn(
+    hGroup: ?*_HGROUP,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub const PCLUSAPI_GET_CLUSTER_GROUP_STATE = *const fn(
+    hGroup: ?*_HGROUP,
+    lpszNodeName: ?[*:0]u16,
+    lpcchNodeName: ?*u32,
+) callconv(.winapi) CLUSTER_GROUP_STATE;
+
+pub const PCLUSAPI_GET_CLUSTER_INFORMATION = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszClusterName: [*:0]u16,
+    lpcchClusterName: ?*u32,
+    lpClusterInfo: ?*CLUSTERVERSIONINFO,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_KEY = *const fn(
+    hCluster: ?*_HCLUSTER,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    lpszNetworkName: ?[*:0]const u16,
+    lpszInterfaceName: ?[*:0]u16,
+    lpcchInterfaceName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY = *const fn(
+    hNetInterface: ?*_HNETINTERFACE,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE = *const fn(
+    hNetInterface: ?*_HNETINTERFACE,
+) callconv(.winapi) CLUSTER_NETINTERFACE_STATE;
+
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_ID = *const fn(
+    hNetwork: ?*_HNETWORK,
+    lpszNetworkId: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_KEY = *const fn(
+    hNetwork: ?*_HNETWORK,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_STATE = *const fn(
+    hNetwork: ?*_HNETWORK,
+) callconv(.winapi) CLUSTER_NETWORK_STATE;
+
+pub const PCLUSAPI_GET_CLUSTER_NODE_ID = *const fn(
+    hNode: ?*_HNODE,
+    lpszNodeId: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_NODE_KEY = *const fn(
+    hNode: ?*_HNODE,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub const PCLUSAPI_GET_CLUSTER_NODE_STATE = *const fn(
+    hNode: ?*_HNODE,
+) callconv(.winapi) CLUSTER_NODE_STATE;
+
+pub const PCLUSAPI_GET_CLUSTER_NOTIFY = *const fn(
+    hChange: ?*_HCHANGE,
+    lpdwNotifyKey: ?*usize,
+    lpdwFilterType: ?*u32,
+    lpszName: ?[*:0]u16,
+    lpcchName: ?*u32,
+    dwMilliseconds: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = *const fn(
+    hChange: ?*_HCHANGE,
+    lpdwNotifyKey: ?*usize,
+    pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
+    buffer: ?*u8,
+    lpcchBufferSize: ?*u32,
+    lpszObjectId: ?PWSTR,
+    lpcchObjectId: ?*u32,
+    lpszParentId: ?PWSTR,
+    lpcchParentId: ?*u32,
+    lpszName: ?PWSTR,
+    lpcchName: ?*u32,
+    lpszType: ?PWSTR,
+    lpcchType: ?*u32,
+    dwMilliseconds: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceName: [*:0]u16,
+    lpcchResourceName: ?*u32,
+    lpszDeviceName: [*:0]u16,
+    lpcchDeviceName: ?*u32,
+    lpdwMaxQuorumLogSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = *const fn(
+    hResource: ?*_HRESOURCE,
+    lpszDependencyExpression: ?[*:0]u16,
+    lpcchDependencyExpression: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_KEY = *const fn(
+    hResource: ?*_HRESOURCE,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME = *const fn(
+    hResource: ?*_HRESOURCE,
+    lpBuffer: [*:0]u16,
+    nSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = *const fn(
+    hResource: ?*_HRESOURCE,
+    lpszNodeName: ?[*:0]u16,
+    lpcchNodeName: ?*u32,
+    lpszGroupName: ?[*:0]u16,
+    lpcchGroupName: ?*u32,
+) callconv(.winapi) CLUSTER_RESOURCE_STATE;
+
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszTypeName: ?[*:0]const u16,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = *const fn(
+    lpszNodeName: ?[*:0]const u16,
+    pdwClusterState: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = *const fn(
+    hChange: ?*_HCHANGE,
+    lphTargetEvent: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME = *const fn(
+    lpszPathName: ?[*:0]const u16,
+    pbFileIsOnSharedVolume: ?*BOOL,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_MOVE_CLUSTER_GROUP = *const fn(
+    hGroup: ?*_HGROUP,
+    hDestinationNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_OFFLINE_CLUSTER_GROUP = *const fn(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_OFFLINE_CLUSTER_RESOURCE = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = *const fn(
+    hGroup: ?*_HGROUP,
+    hDestinationNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_ONLINE_CLUSTER_RESOURCE = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_OPEN_CLUSTER = *const fn(
+    lpszClusterName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_OPEN_CLUSTER_EX = *const fn(
+    lpszClusterName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HGROUP;
+
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HGROUP;
+
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupSetName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HGROUPSET;
+
+pub const PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszInterfaceName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HNETINTERFACE;
+
+pub const PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNetInterfaceName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HNETINTERFACE;
+
+pub const PCLUSAPI_OPEN_CLUSTER_NETWORK = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNetworkName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HNETWORK;
+
+pub const PCLUSAPI_OPEN_CLUSTER_NETWORK_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNetworkName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HNETWORK;
+
+pub const PCLUSAPI_OPEN_CLUSTER_NODE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HNODE;
+
+pub const PCLUSAPI_OPEN_CLUSTER_NODE_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HNODE;
+
+pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PCLUSAPI_OPEN_NODE_BY_ID = *const fn(
+    hCluster: ?*_HCLUSTER,
+    nodeId: u32,
+) callconv(.winapi) ?*_HNODE;
+
+pub const PCLUSAPI_PAUSE_CLUSTER_NODE = *const fn(
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_PAUSE_CLUSTER_NODE_EX = *const fn(
+    hNode: ?*_HNODE,
+    bDrainNode: BOOL,
+    dwPauseFlags: u32,
+    hNodeDrainTarget: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = *const fn(
+    hChange: ?*_HCHANGE,
+    dwFilterType: u32,
+    hObject: ?HANDLE,
+    dwNotifyKey: usize,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = *const fn(
+    hChange: ?*_HCHANGE,
+    Filter: NOTIFY_FILTER_AND_TYPE,
+    hObject: ?HANDLE,
+    dwNotifyKey: usize,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY = *const fn(
+    hGroup: ?*_HGROUP,
+    hDependsOn: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+    hDependsOn: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = *const fn(
+    hGroup: ?*_HGROUP,
+    hDependsOn: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT = *const fn(
+    hCluster: ?*_HCLUSTER,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY = *const fn(
+    hResource: ?*_HRESOURCE,
+    hDependsOn: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE = *const fn(
+    hResource: ?*_HRESOURCE,
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY = *const fn(
+    hDependentGroupSet: ?*_HGROUPSET,
+    lpRemoteClusterName: ?[*:0]const u16,
+    lpRemoteGroupSetName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_RESTART_CLUSTER_RESOURCE = *const fn(
+    hResource: ?*_HRESOURCE,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_RESTORE_CLUSTER_DATABASE = *const fn(
+    lpszPathName: ?[*:0]const u16,
+    bForce: BOOL,
+    lpszQuorumDriveLetter: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_RESUME_CLUSTER_NODE = *const fn(
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_RESUME_CLUSTER_NODE_EX = *const fn(
+    hNode: ?*_HNODE,
+    eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
+    dwResumeFlagsReserved: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION = *const fn(
+    hGroupSet: ?*_HGROUPSET,
+    lpszDependencyExpression: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = *const fn(
+    hGroup: ?*_HGROUP,
+    lpszGroupName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = *const fn(
+    hGroup: ?*_HGROUP,
+    NodeCount: u32,
+    NodeList: ?[*]?*_HNODE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_NETWORK_NAME = *const fn(
+    hNetwork: ?*_HNETWORK,
+    lpszName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER = *const fn(
+    hCluster: ?*_HCLUSTER,
+    NetworkCount: u32,
+    NetworkList: [*]?*_HNETWORK,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE = *const fn(
+    hResource: ?*_HRESOURCE,
+    lpszDeviceName: ?[*:0]const u16,
+    dwMaxQuoLogSize: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = *const fn(
+    hResource: ?*_HRESOURCE,
+    lpszDependencyExpression: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_RESOURCE_NAME = *const fn(
+    hResource: ?*_HRESOURCE,
+    lpszResourceName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = *const fn(
+    lpszClusterName: ?[*:0]const u16,
+    lpszNewPassword: ?[*:0]const u16,
+    dwFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
+    lpcbReturnStatusBufferSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION = *const fn(
+    hGroupSet: ?*_HGROUP,
+    lpszDependencyExpression: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SetClusterName = *const fn(
+    hCluster: ?*_HCLUSTER,
+    lpszNewClusterName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE = *const fn(
+    guidSnapshotSet: Guid,
+    lpszVolumeName: ?[*:0]const u16,
+    state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
+) callconv(.winapi) u32;
+
+pub const PCLUSAPIClusWorkerCheckTerminate = *const fn(
+    lpWorker: ?*CLUS_WORKER,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = *const fn(
+    lpszVolumePathName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PCLUSTER_DECRYPT = *const fn(
+    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+    pCryptInput: ?*u8,
+    cbCryptInput: u32,
+    ppCryptOutput: ?*?*u8,
+    pcbCryptOutput: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSTER_ENCRYPT = *const fn(
+    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+    pData: [*:0]u8,
+    cbData: u32,
+    ppData: ?*?*u8,
+    pcbData: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = *const fn(
+    lpszVolumeMountPoint: ?[*:0]const u16,
+    lpszVolumeName: ?PWSTR,
+    cchBufferLength: u32,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSTER_GET_VOLUME_PATH_NAME = *const fn(
+    lpszFileName: ?[*:0]const u16,
+    lpszVolumePathName: ?PWSTR,
+    cchBufferLength: u32,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = *const fn(
+    lpszPathName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = *const fn(
+    lpszFileName: ?[*:0]const u16,
+    lpszVolumePathName: ?PWSTR,
+    lpcchVolumePathName: ?*u32,
+    lpszVolumeName: ?PWSTR,
+    lpcchVolumeName: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSTER_REG_BATCH_ADD_COMMAND = *const fn(
+    hRegBatch: ?*_HREGBATCH,
+    dwCommand: CLUSTER_REG_COMMAND,
+    wzName: ?PWSTR,
+    dwOptions: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpData: ?*const anyopaque,
+    cbData: u32,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION = *const fn(
+    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_BATCH_READ_COMMAND = *const fn(
+    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+    pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_CLOSE_BATCH = *const fn(
+    hRegBatch: ?*_HREGBATCH,
+    bCommit: BOOL,
+    failedCommandNumber: ?*i32,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT = *const fn(
+    hBatchNotifyPort: ?*_HREGBATCHPORT,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_CLOSE_READ_BATCH = *const fn(
+    hRegReadBatch: ?*_HREGREADBATCH,
+    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_CLOSE_READ_BATCH_EX = *const fn(
+    hRegReadBatch: ?*_HREGREADBATCH,
+    flags: u32,
+    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_CLOSE_READ_BATCH_REPLY = *const fn(
+    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT = *const fn(
+    hKey: ?HKEY,
+    phBatchNotifyPort: ?*?*_HREGBATCHPORT,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_CREATE_READ_BATCH = *const fn(
+    hKey: ?HKEY,
+    phRegReadBatch: ?*?*_HREGREADBATCH,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_GET_BATCH_NOTIFICATION = *const fn(
+    hBatchNotify: ?*_HREGBATCHPORT,
+    phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_READ_BATCH_ADD_COMMAND = *const fn(
+    hRegReadBatch: ?*_HREGREADBATCH,
+    wzSubkeyName: ?[*:0]const u16,
+    wzValueName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND = *const fn(
+    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+    pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
+) callconv(.winapi) i32;
+
+pub const PCLUSTER_SET_ACCOUNT_ACCESS = *const fn(
+    hCluster: ?*_HCLUSTER,
+    szAccountSID: ?[*:0]const u16,
+    dwAccess: u32,
+    dwControlType: u32,
+) callconv(.winapi) u32;
+
+pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = *const fn(
+    pvCallbackArg: ?*anyopaque,
+    eSetupPhase: CLUSTER_SETUP_PHASE,
+    ePhaseType: CLUSTER_SETUP_PHASE_TYPE,
+    ePhaseSeverity: CLUSTER_SETUP_PHASE_SEVERITY,
+    dwPercentComplete: u32,
+    lpszObjectName: ?[*:0]const u16,
+    dwStatus: u32,
+) callconv(.winapi) BOOL;
+
+pub const PCLUSTER_UPGRADE_PROGRESS_CALLBACK = *const fn(
+    pvCallbackArg: ?*anyopaque,
+    eUpgradePhase: CLUSTER_UPGRADE_PHASE,
+) callconv(.winapi) BOOL;
+
+pub const PEND_CONTROL_CALL = *const fn(
+    context: i64,
+    status: u32,
+) callconv(.winapi) u32;
+
+pub const PEND_TYPE_CONTROL_CALL = *const fn(
+    context: i64,
+    status: u32,
+) callconv(.winapi) u32;
+
+pub const PEXTEND_RES_CONTROL_CALL = *const fn(
+    context: i64,
+    newTimeoutInMs: u32,
+) callconv(.winapi) u32;
+
+pub const PEXTEND_RES_TYPE_CONTROL_CALL = *const fn(
+    context: i64,
+    newTimeoutInMs: u32,
+) callconv(.winapi) u32;
+
+pub const PFREE_CLUSTER_CRYPT = *const fn(
+    pCryptInfo: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PIS_ALIVE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const PLACEMENT_OPTIONS = enum(i32) {
+    MIN_VALUE = 0,
+    DISABLE_CSV_VM_DEPENDENCY = 1,
+    CONSIDER_OFFLINE_VMS = 2,
+    DONT_USE_MEMORY = 4,
+    DONT_USE_CPU = 8,
+    DONT_USE_LOCAL_TEMP_DISK = 16,
+    DONT_RESUME_VMS_WITH_EXISTING_TEMP_DISK = 32,
+    SAVE_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = 64,
+    DONT_RESUME_AVAILABILTY_SET_VMS_WITH_EXISTING_TEMP_DISK = 128,
+    SAVE_AVAILABILTY_SET_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = 256,
+    AVAILABILITY_SET_DOMAIN_AFFINITY = 512,
+    ALL = 1023,
+    pub const DEFAULT_PLACEMENT_OPTIONS = .MIN_VALUE;
+};
+pub const PLACEMENT_OPTIONS_MIN_VALUE = PLACEMENT_OPTIONS.MIN_VALUE;
+pub const PLACEMENT_OPTIONS_DEFAULT_PLACEMENT_OPTIONS = PLACEMENT_OPTIONS.MIN_VALUE;
+pub const PLACEMENT_OPTIONS_DISABLE_CSV_VM_DEPENDENCY = PLACEMENT_OPTIONS.DISABLE_CSV_VM_DEPENDENCY;
+pub const PLACEMENT_OPTIONS_CONSIDER_OFFLINE_VMS = PLACEMENT_OPTIONS.CONSIDER_OFFLINE_VMS;
+pub const PLACEMENT_OPTIONS_DONT_USE_MEMORY = PLACEMENT_OPTIONS.DONT_USE_MEMORY;
+pub const PLACEMENT_OPTIONS_DONT_USE_CPU = PLACEMENT_OPTIONS.DONT_USE_CPU;
+pub const PLACEMENT_OPTIONS_DONT_USE_LOCAL_TEMP_DISK = PLACEMENT_OPTIONS.DONT_USE_LOCAL_TEMP_DISK;
+pub const PLACEMENT_OPTIONS_DONT_RESUME_VMS_WITH_EXISTING_TEMP_DISK = PLACEMENT_OPTIONS.DONT_RESUME_VMS_WITH_EXISTING_TEMP_DISK;
+pub const PLACEMENT_OPTIONS_SAVE_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = PLACEMENT_OPTIONS.SAVE_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE;
+pub const PLACEMENT_OPTIONS_DONT_RESUME_AVAILABILTY_SET_VMS_WITH_EXISTING_TEMP_DISK = PLACEMENT_OPTIONS.DONT_RESUME_AVAILABILTY_SET_VMS_WITH_EXISTING_TEMP_DISK;
+pub const PLACEMENT_OPTIONS_SAVE_AVAILABILTY_SET_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE = PLACEMENT_OPTIONS.SAVE_AVAILABILTY_SET_VMS_WITH_LOCAL_DISK_ON_DRAIN_OVERWRITE;
+pub const PLACEMENT_OPTIONS_AVAILABILITY_SET_DOMAIN_AFFINITY = PLACEMENT_OPTIONS.AVAILABILITY_SET_DOMAIN_AFFINITY;
+pub const PLACEMENT_OPTIONS_ALL = PLACEMENT_OPTIONS.ALL;
+
+pub const PLOG_EVENT_ROUTINE = *const fn(
+    ResourceHandle: isize,
+    LogLevel: LOG_LEVEL,
+    FormatString: ?[*:0]const u16,
+) callconv(.winapi) void;
+
+pub const PLOOKS_ALIVE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub const POFFLINE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const POFFLINE_V2_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    DestinationNodeName: ?[*:0]const u16,
+    OfflineFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    InBuffer: ?*u8,
+    InBufferSize: u32,
+    Reserved: u32,
+) callconv(.winapi) u32;
+
+pub const PONLINE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    EventHandle: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+pub const PONLINE_V2_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    EventHandle: ?*?HANDLE,
+    OnlineFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    InBuffer: ?*u8,
+    InBufferSize: u32,
+    Reserved: u32,
+) callconv(.winapi) u32;
+
+pub const POPEN_CLUSTER_CRYPT_PROVIDER = *const fn(
+    lpszResource: ?[*:0]const u16,
+    lpszProvider: ?*i8,
+    dwType: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
+
+pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = *const fn(
+    lpszResource: ?[*:0]const u16,
+    lpszKeyname: ?[*:0]const u16,
+    lpszProvider: ?*i8,
+    dwType: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
+
+pub const POPEN_ROUTINE = *const fn(
+    ResourceName: ?[*:0]const u16,
+    ResourceKey: ?HKEY,
+    ResourceHandle: isize,
+) callconv(.winapi) ?*anyopaque;
+
+pub const POPEN_V2_ROUTINE = *const fn(
+    ResourceName: ?[*:0]const u16,
+    ResourceKey: ?HKEY,
+    ResourceHandle: isize,
+    OpenFlags: u32,
+) callconv(.winapi) ?*anyopaque;
+
+pub const POST_UPGRADE_VERSION_INFO = extern struct {
+    newMajorVersion: u32,
+    newUpgradeVersion: u32,
+    oldMajorVersion: u32,
+    oldUpgradeVersion: u32,
+    reserved: u32,
+};
+
+pub const PQUERY_APPINSTANCE_VERSION = *const fn(
+    AppInstanceId: ?*Guid,
+    InstanceVersionHigh: ?*u64,
+    InstanceVersionLow: ?*u64,
+    VersionStatus: ?*NTSTATUS,
+) callconv(.winapi) u32;
+
+pub const PQUORUM_RESOURCE_LOST = *const fn(
+    Resource: isize,
+) callconv(.winapi) void;
+
+pub const PRAISE_RES_TYPE_NOTIFICATION = *const fn(
+    ResourceType: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 2?
+    pPayload: ?*const u8,
+    payloadSize: u32,
+) callconv(.winapi) u32;
+
+pub const PREGISTER_APPINSTANCE = *const fn(
+    ProcessHandle: ?HANDLE,
+    AppInstanceId: ?*Guid,
+    ChildrenInheritAppInstance: BOOL,
+) callconv(.winapi) u32;
+
+pub const PREGISTER_APPINSTANCE_VERSION = *const fn(
+    AppInstanceId: ?*Guid,
+    InstanceVersionHigh: u64,
+    InstanceVersionLow: u64,
+) callconv(.winapi) u32;
+
+pub const PRELEASE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PREQUEST_DUMP_ROUTINE = *const fn(
+    ResourceHandle: isize,
+    DumpDueToCallInProgress: BOOL,
+    DumpDelayInMs: u32,
+) callconv(.winapi) u32;
+
+pub const PRES_UTIL_VERIFY_SHUTDOWN_SAFE = *const fn(
+    flags: u32,
+    reason: u32,
+    pResult: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESET_ALL_APPINSTANCE_VERSIONS = *const fn(
+) callconv(.winapi) u32;
+
+pub const PRESOURCE_CONTROL_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+    ControlCode: u32,
+    InBuffer: ?*anyopaque,
+    InBufferSize: u32,
+    OutBuffer: ?*anyopaque,
+    OutBufferSize: u32,
+    BytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESOURCE_TYPE_CONTROL_ROUTINE = *const fn(
+    ResourceTypeName: ?[*:0]const u16,
+    ControlCode: u32,
+    InBuffer: ?*anyopaque,
+    InBufferSize: u32,
+    OutBuffer: ?*anyopaque,
+    OutBufferSize: u32,
+    BytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    pOutPropertyList: ?*anyopaque,
+    pcbOutPropertyListSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_CREATE_DIRECTORY_TREE = *const fn(
+    pszPath: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_DUP_PARAMETER_BLOCK = *const fn(
+    pOutParams: ?*u8,
+    pInParams: ?*const u8,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_DUP_STRING = *const fn(
+    pszInString: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
+    hkeyClusterKey: ?HKEY,
+    // TODO: what to do with BytesParamIndex 2?
+    pszOutProperties: ?PWSTR,
+    cbOutPropertiesSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_ENUM_PROPERTIES = *const fn(
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 2?
+    pszOutProperties: ?PWSTR,
+    cbOutPropertiesSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_ENUM_RESOURCES = *const fn(
+    hSelf: ?*_HRESOURCE,
+    lpszResTypeName: ?[*:0]const u16,
+    pResCallBack: ?LPRESOURCE_CALLBACK,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_ENUM_RESOURCES_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?*_HRESOURCE,
+    lpszResTypeName: ?[*:0]const u16,
+    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_ENUM_RESOURCES_EX2 = *const fn(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?*_HRESOURCE,
+    lpszResTypeName: ?[*:0]const u16,
+    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+    pParameter: ?*anyopaque,
+    dwDesiredAccess: u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = *const fn(
+    pszSrc: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+pub const PRESUTIL_FIND_BINARY_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 4?
+    pbPropertyValue: ?*?*u8,
+    pcbPropertyValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = *const fn(
+    hCluster: ?*_HCLUSTER,
+    hResource: ?*_HRESOURCE,
+    pszDriveLetter: [*:0]u16,
+    pcchDriveLetter: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_DWORD_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pdwPropertyValue: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pszPropertyValue: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pszPropertyValue: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_FILETIME_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pftPropertyValue: ?*FILETIME,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_LONG_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    plPropertyValue: ?*i32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 4?
+    pszPropertyValue: ?*?PWSTR,
+    pcbPropertyValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_SZ_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pszPropertyValue: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    plPropertyValue: ?*u64,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FREE_ENVIRONMENT = *const fn(
+    lpEnvironment: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_FREE_PARAMETER_BLOCK = *const fn(
+    pOutParams: ?*u8,
+    pInParams: ?*const u8,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+) callconv(.winapi) void;
+
+pub const PRESUTIL_GET_ALL_PROPERTIES = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 3?
+    pOutPropertyList: ?*anyopaque,
+    cbOutPropertyListSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_BINARY_PROPERTY = *const fn(
+    ppbOutValue: ?*?*u8,
+    pcbOutValueSize: ?*u32,
+    pValueStruct: ?*const CLUSPROP_BINARY,
+    // TODO: what to do with BytesParamIndex 4?
+    pbOldValue: ?*const u8,
+    cbOldValueSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_BINARY_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    ppbOutValue: ?*?*u8,
+    pcbOutValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES = *const fn(
+    hCluster: ?*_HCLUSTER,
+    phClusterNameResource: ?*?*_HRESOURCE,
+    phClusterIPAddressResource: ?*?*_HRESOURCE,
+    phClusterQuorumResource: ?*?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = *const fn(
+    hClusterIn: ?*_HCLUSTER,
+    phClusterNameResourceOut: ?*?*_HRESOURCE,
+    phClusterIPAddressResourceOut: ?*?*_HRESOURCE,
+    phClusterQuorumResourceOut: ?*?*_HRESOURCE,
+    dwDesiredAccess: u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_DWORD_PROPERTY = *const fn(
+    pdwOutValue: ?*u32,
+    pValueStruct: ?*const CLUSPROP_DWORD,
+    dwOldValue: u32,
+    dwMinimum: u32,
+    dwMaximum: u32,
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_DWORD_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    pdwOutValue: ?*u32,
+    dwDefaultValue: u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME = *const fn(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) ?*anyopaque;
+
+pub const PRESUTIL_GET_EXPAND_SZ_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    bExpand: BOOL,
+) callconv(.winapi) ?PWSTR;
+
+pub const PRESUTIL_GET_FILETIME_PROPERTY = *const fn(
+    pftOutValue: ?*FILETIME,
+    pValueStruct: ?*const CLUSPROP_FILETIME,
+    ftOldValue: FILETIME,
+    ftMinimum: FILETIME,
+    ftMaximum: FILETIME,
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_LONG_PROPERTY = *const fn(
+    plOutValue: ?*i32,
+    pValueStruct: ?*const CLUSPROP_LONG,
+    lOldValue: i32,
+    lMinimum: i32,
+    lMaximum: i32,
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = *const fn(
+    ppszOutValue: ?*?PWSTR,
+    pcbOutValueSize: ?*u32,
+    pValueStruct: ?*const CLUSPROP_SZ,
+    // TODO: what to do with BytesParamIndex 4?
+    pszOldValue: ?[*:0]const u16,
+    cbOldValueSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_PRIVATE_PROPERTIES = *const fn(
+    hkeyClusterKey: ?HKEY,
+    // TODO: what to do with BytesParamIndex 2?
+    pOutPropertyList: ?*anyopaque,
+    cbOutPropertyListSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_PROPERTIES = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 3?
+    pOutPropertyList: ?*anyopaque,
+    cbOutPropertyListSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    pOutParams: ?*u8,
+    bCheckForRequiredProperties: BOOL,
+    pszNameOfPropInError: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_PROPERTY = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 3?
+    pOutPropertyItem: ?*?*anyopaque,
+    pcbOutPropertyItemSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_PROPERTY_FORMATS = *const fn(
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 2?
+    pOutPropertyFormatList: ?*anyopaque,
+    cbPropertyFormatListSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_PROPERTY_SIZE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
+    pcbOutPropertyListSize: ?*u32,
+    pnPropertyCount: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_QWORD_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    pqwOutValue: ?*u64,
+    qwDefaultValue: u64,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY = *const fn(
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS = *const fn(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    prci: ?*CLUS_RESOURCE_CLASS_INFO,
+    bRecurse: BOOL,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    prci: ?*CLUS_RESOURCE_CLASS_INFO,
+    bRecurse: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME = *const fn(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+    bRecurse: BOOL,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = *const fn(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+    bRecurse: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_EX = *const fn(
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = *const fn(
+    hResource: ?*_HRESOURCE,
+    pszAddress: [*:0]u16,
+    pcchAddress: ?*u32,
+    pszSubnetMask: [*:0]u16,
+    pcchSubnetMask: ?*u32,
+    pszNetwork: [*:0]u16,
+    pcchNetwork: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_RESOURCE_NAME = *const fn(
+    hResource: ?*_HRESOURCE,
+    pszResourceName: [*:0]u16,
+    pcchResourceNameInOut: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY = *const fn(
+    lpszResourceName: ?[*:0]const u16,
+    lpszResourceType: ?[*:0]const u16,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = *const fn(
+    lpszResourceName: ?[*:0]const u16,
+    lpszResourceType: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+pub const PRESUTIL_GET_SZ_PROPERTY = *const fn(
+    ppszOutValue: ?*?PWSTR,
+    pValueStruct: ?*const CLUSPROP_SZ,
+    pszOldValue: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 4?
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_GET_SZ_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+pub const PRESUTIL_IS_PATH_VALID = *const fn(
+    pszPath: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = *const fn(
+    prci: ?*CLUS_RESOURCE_CLASS_INFO,
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = *const fn(
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 2?
+    pOutPropertyList: ?*anyopaque,
+    pcbOutPropertyListSize: ?*u32,
+    pInParams: ?*const u8,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = *const fn(
+    pszServiceName: ?[*:0]const u16,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_RESOURCE_TYPES_EQUAL = *const fn(
+    lpszResourceTypeName: ?[*:0]const u16,
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+pub const PRESUTIL_RESOURCES_EQUAL = *const fn(
+    hSelf: ?*_HRESOURCE,
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+pub const PRESUTIL_SET_BINARY_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pbNewValue: ?*const u8,
+    cbNewValueSize: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    ppbOutValue: ?*?*u8,
+    pcbOutValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_DWORD_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    dwNewValue: u32,
+    pdwOutValue: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_EXPAND_SZ_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    pszNewValue: ?[*:0]const u16,
+    ppszOutString: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_MULTI_SZ_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pszNewValue: ?[*:0]const u16,
+    cbNewValueSize: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    ppszOutValue: ?*?PWSTR,
+    pcbOutValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = *const fn(
+    hkeyClusterKey: ?HKEY,
+    // TODO: what to do with BytesParamIndex 2?
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    Reserved: ?*anyopaque,
+    pInParams: ?*const u8,
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    pOutParams: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    Reserved: ?*anyopaque,
+    pInParams: ?*const u8,
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    bForceWrite: BOOL,
+    pOutParams: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_PROPERTY_TABLE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    Reserved: ?*anyopaque,
+    bAllowUnknownProperties: BOOL,
+    // TODO: what to do with BytesParamIndex 5?
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    pOutParams: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_PROPERTY_TABLE_EX = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    Reserved: ?*anyopaque,
+    bAllowUnknownProperties: BOOL,
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    bForceWrite: BOOL,
+    pOutParams: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_QWORD_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    qwNewValue: u64,
+    pqwOutValue: ?*u64,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = *const fn(
+    pszServiceName: ?[*:0]const u16,
+    hResource: ?*_HRESOURCE,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = *const fn(
+    pszServiceName: ?[*:0]const u16,
+    schSCMHandle: SC_HANDLE,
+    phService: ?*isize,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = *const fn(
+    pszServiceName: ?[*:0]const u16,
+    schSCMHandle: SC_HANDLE,
+    phService: ?*isize,
+    dwDesiredAccess: u32,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_SZ_VALUE = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    pszNewValue: ?[*:0]const u16,
+    ppszOutString: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = *const fn(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 3?
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_START_RESOURCE_SERVICE = *const fn(
+    pszServiceName: ?[*:0]const u16,
+    phServiceHandle: ?*isize,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_STOP_RESOURCE_SERVICE = *const fn(
+    pszServiceName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_STOP_SERVICE = *const fn(
+    hServiceHandle: SC_HANDLE,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = *const fn(
+    dwServicePid: u32,
+    bOffline: BOOL,
+    pdwResourceState: ?*u32,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_VERIFY_PROPERTY_TABLE = *const fn(
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    Reserved: ?*anyopaque,
+    bAllowUnknownProperties: BOOL,
+    // TODO: what to do with BytesParamIndex 4?
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    pOutParams: ?*u8,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = *const fn(
+    pszServiceName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub const PRESUTIL_VERIFY_SERVICE = *const fn(
+    hServiceHandle: SC_HANDLE,
+) callconv(.winapi) u32;
+
+pub const PSET_INTERNAL_STATE = *const fn(
+    param0: isize,
+    stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
+    active: BOOL,
+) callconv(.winapi) u32;
+
+pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = *const fn(
+    ResourceHandle: isize,
+    propertyListBuffer: ?*u8,
+    propertyListBufferSize: u32,
+) callconv(.winapi) u32;
+
+pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = *const fn(
+    ResourceHandle: isize,
+    LockedModeEnabled: BOOL,
+    LockedModeReason: u32,
+    LockedModeFlags: u32,
+) callconv(.winapi) u32;
+
+pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = *const fn(
+    ResourceHandle: isize,
+    LockedModeEnabled: BOOL,
+    LockedModeReason: u32,
+) callconv(.winapi) u32;
+
+pub const PSET_RESOURCE_STATUS_ROUTINE = *const fn(
+    ResourceHandle: isize,
+    ResourceStatus: ?*RESOURCE_STATUS,
+) callconv(.winapi) u32;
+
+pub const PSET_RESOURCE_STATUS_ROUTINE_EX = *const fn(
+    ResourceHandle: isize,
+    ResourceStatus: ?*RESOURCE_STATUS_EX,
+) callconv(.winapi) u32;
+
+pub const PSIGNAL_FAILURE_ROUTINE = *const fn(
+    ResourceHandle: isize,
+    FailureType: FAILURE_TYPE,
+    ApplicationSpecificErrorCode: u32,
+) callconv(.winapi) u32;
+
+pub const PSTARTUP_EX_ROUTINE = *const fn(
+    ResourceType: ?[*:0]const u16,
+    MinVersionSupported: u32,
+    MaxVersionSupported: u32,
+    MonitorCallbackFunctions: ?*CLRES_CALLBACK_FUNCTION_TABLE,
+    ResourceDllInterfaceFunctions: ?*?*CLRES_FUNCTION_TABLE,
+) callconv(.winapi) u32;
+
+pub const PSTARTUP_ROUTINE = *const fn(
+    ResourceType: ?[*:0]const u16,
+    MinVersionSupported: u32,
+    MaxVersionSupported: u32,
+    SetResourceStatus: ?PSET_RESOURCE_STATUS_ROUTINE,
+    LogEvent: ?PLOG_EVENT_ROUTINE,
+    FunctionTable: ?*?*CLRES_FUNCTION_TABLE,
+) callconv(.winapi) u32;
+
+pub const PTERMINATE_ROUTINE = *const fn(
+    Resource: ?*anyopaque,
+) callconv(.winapi) void;
+
+pub const PWORKER_START_ROUTINE = *const fn(
+    pWorker: ?*CLUS_WORKER,
+    lpThreadParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub const RESDLL_CONTEXT_OPERATION_TYPE = enum(i32) {
+    Failback = 0,
+    Drain = 1,
+    DrainFailure = 2,
+    EmbeddedFailure = 3,
+    Preemption = 4,
+    NetworkDisconnect = 5,
+    NetworkDisconnectMoveRetry = 6,
+};
+pub const ResdllContextOperationTypeFailback = RESDLL_CONTEXT_OPERATION_TYPE.Failback;
+pub const ResdllContextOperationTypeDrain = RESDLL_CONTEXT_OPERATION_TYPE.Drain;
+pub const ResdllContextOperationTypeDrainFailure = RESDLL_CONTEXT_OPERATION_TYPE.DrainFailure;
+pub const ResdllContextOperationTypeEmbeddedFailure = RESDLL_CONTEXT_OPERATION_TYPE.EmbeddedFailure;
+pub const ResdllContextOperationTypePreemption = RESDLL_CONTEXT_OPERATION_TYPE.Preemption;
+pub const ResdllContextOperationTypeNetworkDisconnect = RESDLL_CONTEXT_OPERATION_TYPE.NetworkDisconnect;
+pub const ResdllContextOperationTypeNetworkDisconnectMoveRetry = RESDLL_CONTEXT_OPERATION_TYPE.NetworkDisconnectMoveRetry;
+
+pub const RESOURCE_EXIT_STATE = enum(i32) {
+    Continue = 0,
+    Terminate = 1,
+    Max = 2,
+};
+pub const ResourceExitStateContinue = RESOURCE_EXIT_STATE.Continue;
+pub const ResourceExitStateTerminate = RESOURCE_EXIT_STATE.Terminate;
+pub const ResourceExitStateMax = RESOURCE_EXIT_STATE.Max;
+
+pub const RESOURCE_FAILURE_INFO = extern struct {
+    dwRestartAttemptsRemaining: u32,
+    dwRestartPeriodRemaining: u32,
+};
+
+pub const RESOURCE_FAILURE_INFO_BUFFER = extern struct {
+    dwVersion: u32,
+    Info: RESOURCE_FAILURE_INFO,
+};
+
+pub const RESOURCE_MONITOR_STATE = enum(i32) {
+    Initializing = 0,
+    Idle = 1,
+    StartingResource = 2,
+    InitializingResource = 3,
+    OnlineResource = 4,
+    OfflineResource = 5,
+    ShutdownResource = 6,
+    DeletingResource = 7,
+    IsAlivePoll = 8,
+    LooksAlivePoll = 9,
+    ArbitrateResource = 10,
+    ReleaseResource = 11,
+    ResourceControl = 12,
+    ResourceTypeControl = 13,
+    TerminateResource = 14,
+    Deadlocked = 15,
+};
+pub const RmonInitializing = RESOURCE_MONITOR_STATE.Initializing;
+pub const RmonIdle = RESOURCE_MONITOR_STATE.Idle;
+pub const RmonStartingResource = RESOURCE_MONITOR_STATE.StartingResource;
+pub const RmonInitializingResource = RESOURCE_MONITOR_STATE.InitializingResource;
+pub const RmonOnlineResource = RESOURCE_MONITOR_STATE.OnlineResource;
+pub const RmonOfflineResource = RESOURCE_MONITOR_STATE.OfflineResource;
+pub const RmonShutdownResource = RESOURCE_MONITOR_STATE.ShutdownResource;
+pub const RmonDeletingResource = RESOURCE_MONITOR_STATE.DeletingResource;
+pub const RmonIsAlivePoll = RESOURCE_MONITOR_STATE.IsAlivePoll;
+pub const RmonLooksAlivePoll = RESOURCE_MONITOR_STATE.LooksAlivePoll;
+pub const RmonArbitrateResource = RESOURCE_MONITOR_STATE.ArbitrateResource;
+pub const RmonReleaseResource = RESOURCE_MONITOR_STATE.ReleaseResource;
+pub const RmonResourceControl = RESOURCE_MONITOR_STATE.ResourceControl;
+pub const RmonResourceTypeControl = RESOURCE_MONITOR_STATE.ResourceTypeControl;
+pub const RmonTerminateResource = RESOURCE_MONITOR_STATE.TerminateResource;
+pub const RmonDeadlocked = RESOURCE_MONITOR_STATE.Deadlocked;
+
+pub const RESOURCE_STATUS = extern struct {
+    ResourceState: CLUSTER_RESOURCE_STATE,
+    CheckPoint: u32,
+    WaitHint: u32,
+    EventHandle: ?HANDLE,
+};
+
+pub const RESOURCE_STATUS_EX = extern struct {
+    ResourceState: CLUSTER_RESOURCE_STATE,
+    CheckPoint: u32,
+    EventHandle: ?HANDLE,
+    ApplicationSpecificErrorCode: u32,
+    Flags: u32,
+    WaitHint: u32,
+};
+
+pub const RESOURCE_TERMINAL_FAILURE_INFO_BUFFER = extern struct {
+    isTerminalFailure: BOOL,
+    restartPeriodRemaining: u32,
+};
+
+pub const ResourceUtilizationInfoElement = extern struct {
+    PhysicalNumaId: u64,
+    CurrentMemory: u64,
+};
+
+pub const RESUTIL_FILETIME_DATA = extern struct {
+    Default: FILETIME,
+    Minimum: FILETIME,
+    Maximum: FILETIME,
+};
+
+pub const RESUTIL_LARGEINT_DATA = extern struct {
+    Default: LARGE_INTEGER,
+    Minimum: LARGE_INTEGER,
+    Maximum: LARGE_INTEGER,
+};
+
+pub const RESUTIL_PROPERTY_ITEM = extern struct {
+    Name: ?PWSTR,
+    KeyName: ?PWSTR,
+    Format: u32,
+    Anonymous: extern union {
+        DefaultPtr: usize,
+        Default: u32,
+        lpDefault: ?*anyopaque,
+        LargeIntData: ?*RESUTIL_LARGEINT_DATA,
+        ULargeIntData: ?*RESUTIL_ULARGEINT_DATA,
+        FileTimeData: ?*RESUTIL_FILETIME_DATA,
+    },
+    Minimum: u32,
+    Maximum: u32,
+    Flags: u32,
+    Offset: u32,
+};
+
+pub const RESUTIL_ULARGEINT_DATA = extern struct {
+    Default: ULARGE_INTEGER,
+    Minimum: ULARGE_INTEGER,
+    Maximum: ULARGE_INTEGER,
+};
+
+pub const SET_APP_INSTANCE_CSV_FLAGS = *const fn(
+    ProcessHandle: ?HANDLE,
+    Mask: u32,
+    Flags: u32,
+) callconv(.winapi) u32;
+
+pub const SR_DISK_REPLICATION_ELIGIBLE = enum(i32) {
+    None = 0,
+    Yes = 1,
+    Offline = 2,
+    NotGpt = 3,
+    PartitionLayoutMismatch = 4,
+    InsufficientFreeSpace = 5,
+    NotInSameSite = 6,
+    InSameSite = 7,
+    FileSystemNotSupported = 8,
+    AlreadyInReplication = 9,
+    SameAsSpecifiedDisk = 10,
+    Other = 9999,
+};
+pub const SrDiskReplicationEligibleNone = SR_DISK_REPLICATION_ELIGIBLE.None;
+pub const SrDiskReplicationEligibleYes = SR_DISK_REPLICATION_ELIGIBLE.Yes;
+pub const SrDiskReplicationEligibleOffline = SR_DISK_REPLICATION_ELIGIBLE.Offline;
+pub const SrDiskReplicationEligibleNotGpt = SR_DISK_REPLICATION_ELIGIBLE.NotGpt;
+pub const SrDiskReplicationEligiblePartitionLayoutMismatch = SR_DISK_REPLICATION_ELIGIBLE.PartitionLayoutMismatch;
+pub const SrDiskReplicationEligibleInsufficientFreeSpace = SR_DISK_REPLICATION_ELIGIBLE.InsufficientFreeSpace;
+pub const SrDiskReplicationEligibleNotInSameSite = SR_DISK_REPLICATION_ELIGIBLE.NotInSameSite;
+pub const SrDiskReplicationEligibleInSameSite = SR_DISK_REPLICATION_ELIGIBLE.InSameSite;
+pub const SrDiskReplicationEligibleFileSystemNotSupported = SR_DISK_REPLICATION_ELIGIBLE.FileSystemNotSupported;
+pub const SrDiskReplicationEligibleAlreadyInReplication = SR_DISK_REPLICATION_ELIGIBLE.AlreadyInReplication;
+pub const SrDiskReplicationEligibleSameAsSpecifiedDisk = SR_DISK_REPLICATION_ELIGIBLE.SameAsSpecifiedDisk;
+pub const SrDiskReplicationEligibleOther = SR_DISK_REPLICATION_ELIGIBLE.Other;
+
+pub const SR_REPLICATED_DISK_TYPE = enum(i32) {
+    None = 0,
+    Source = 1,
+    LogSource = 2,
+    Destination = 3,
+    LogDestination = 4,
+    NotInParthership = 5,
+    LogNotInParthership = 6,
+    Other = 7,
+};
+pub const SrReplicatedDiskTypeNone = SR_REPLICATED_DISK_TYPE.None;
+pub const SrReplicatedDiskTypeSource = SR_REPLICATED_DISK_TYPE.Source;
+pub const SrReplicatedDiskTypeLogSource = SR_REPLICATED_DISK_TYPE.LogSource;
+pub const SrReplicatedDiskTypeDestination = SR_REPLICATED_DISK_TYPE.Destination;
+pub const SrReplicatedDiskTypeLogDestination = SR_REPLICATED_DISK_TYPE.LogDestination;
+pub const SrReplicatedDiskTypeNotInParthership = SR_REPLICATED_DISK_TYPE.NotInParthership;
+pub const SrReplicatedDiskTypeLogNotInParthership = SR_REPLICATED_DISK_TYPE.LogNotInParthership;
+pub const SrReplicatedDiskTypeOther = SR_REPLICATED_DISK_TYPE.Other;
+
+pub const SR_RESOURCE_TYPE_ADD_REPLICATION_GROUP = extern struct {
+    ReplicationGroupName: [260]u16,
+    Description: [260]u16,
+    LogPath: [260]u16,
+    MaxLogSizeInBytes: u64,
+    LogType: u16,
+    ReplicationMode: u32,
+    MinimumPartnersInSync: u32,
+    EnableWriteConsistency: BOOLEAN,
+    EnableEncryption: BOOLEAN,
+    CertificateThumbprint: [260]u16,
+    VolumeNameCount: u32,
+    VolumeNames: [260]u16,
+};
+
+pub const SR_RESOURCE_TYPE_ADD_REPLICATION_GROUP_RESULT = extern struct {
+    Result: u32,
+    ErrorString: [260]u16,
+};
+
+pub const SR_RESOURCE_TYPE_DISK_INFO = extern struct {
+    Reason: SR_DISK_REPLICATION_ELIGIBLE,
+    DiskGuid: Guid,
+};
+
+pub const SR_RESOURCE_TYPE_ELIGIBLE_DISKS_RESULT = extern struct {
+    Count: u16,
+    DiskInfo: [1]SR_RESOURCE_TYPE_DISK_INFO,
+};
+
+pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_LOGDISKS = extern struct {
+    DataDiskGuid: Guid,
+    IncludeOfflineDisks: BOOLEAN,
+};
+
+pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_SOURCE_DATADISKS = extern struct {
+    DataDiskGuid: Guid,
+    IncludeAvailableStoargeDisks: BOOLEAN,
+};
+
+pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_TARGET_DATADISKS = extern struct {
+    SourceDataDiskGuid: Guid,
+    TargetReplicationGroupGuid: Guid,
+    SkipConnectivityCheck: BOOLEAN,
+    IncludeOfflineDisks: BOOLEAN,
+};
+
+pub const SR_RESOURCE_TYPE_REPLICATED_DISK = extern struct {
+    Type: SR_REPLICATED_DISK_TYPE,
+    ClusterDiskResourceGuid: Guid,
+    ReplicationGroupId: Guid,
+    ReplicationGroupName: [260]u16,
+};
+
+pub const SR_RESOURCE_TYPE_REPLICATED_DISKS_RESULT = extern struct {
+    Count: u16,
+    ReplicatedDisks: [1]SR_RESOURCE_TYPE_REPLICATED_DISK,
+};
+
+pub const SR_RESOURCE_TYPE_REPLICATED_PARTITION_ARRAY = extern struct {
+    Count: u32,
+    PartitionArray: [1]SR_RESOURCE_TYPE_REPLICATED_PARTITION_INFO,
+};
+
+pub const SR_RESOURCE_TYPE_REPLICATED_PARTITION_INFO = extern struct {
+    PartitionOffset: u64,
+    Capabilities: u32,
+};
+
+pub const VM_RESDLL_CONTEXT = enum(i32) {
+    TurnOff = 0,
+    Save = 1,
+    Shutdown = 2,
+    ShutdownForce = 3,
+    LiveMigration = 4,
+};
+pub const VmResdllContextTurnOff = VM_RESDLL_CONTEXT.TurnOff;
+pub const VmResdllContextSave = VM_RESDLL_CONTEXT.Save;
+pub const VmResdllContextShutdown = VM_RESDLL_CONTEXT.Shutdown;
+pub const VmResdllContextShutdownForce = VM_RESDLL_CONTEXT.ShutdownForce;
+pub const VmResdllContextLiveMigration = VM_RESDLL_CONTEXT.LiveMigration;
+
+pub const WitnessTagHelper = extern struct {
+    Version: i32,
+    paxosToValidate: PaxosTagCStruct,
+};
+
+pub const WitnessTagUpdateHelper = extern struct {
+    Version: i32,
+    paxosToSet: PaxosTagCStruct,
+    paxosToValidate: PaxosTagCStruct,
+};
+
+
+//--------------------------------------------------------------------------------
+// Section: Functions (351)
+//--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn AddClusterGroupDependency(
+    hDependentGroup: ?*_HGROUP,
+    hProviderGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn AddClusterGroupSetDependency(
+    hDependentGroupSet: ?*_HGROUPSET,
+    hProviderGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn AddClusterGroupToGroupSetDependency(
+    hDependentGroup: ?*_HGROUP,
+    hProviderGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn AddClusterNode(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) ?*_HNODE;
+
+pub extern "clusapi" fn AddClusterNodeEx(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    dwFlags: u32,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) ?*_HNODE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn AddClusterResourceDependency(
+    hResource: ?*_HRESOURCE,
+    hDependsOn: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn AddClusterResourceNode(
+    hResource: ?*_HRESOURCE,
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn AddClusterStorageNode(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+    lpszClusterStorageNodeDescription: ?[*:0]const u16,
+    lpszClusterStorageNodeLocation: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn AddCrossClusterGroupSetDependency(
+    hDependentGroupSet: ?*_HGROUPSET,
+    lpRemoteClusterName: ?[*:0]const u16,
+    lpRemoteGroupSetName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn AddResourceToClusterSharedVolumes(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "clusapi" fn BackupClusterDatabase(
+    hCluster: ?*_HCLUSTER,
+    lpszPathName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn CancelClusterGroupOperation(
+    hGroup: ?*_HGROUP,
+    dwCancelFlags_RESERVED: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CanResourceBeDependent(
+    hResource: ?*_HRESOURCE,
+    hResourceDependent: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ChangeClusterResourceGroup(
+    hResource: ?*_HRESOURCE,
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn ChangeClusterResourceGroupEx(
+    hResource: ?*_HRESOURCE,
+    hGroup: ?*_HGROUP,
+    Flags: u64,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CloseCluster(
+    hCluster: ?*_HCLUSTER,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn CloseClusterCryptProvider(
+    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CloseClusterGroup(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn CloseClusterGroupSet(
     hGroupSet: ?*_HGROUPSET,
 ) callconv(.winapi) BOOL;
 
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CloseClusterNetInterface(
+    hNetInterface: ?*_HNETINTERFACE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CloseClusterNetwork(
+    hNetwork: ?*_HNETWORK,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CloseClusterNode(
+    hNode: ?*_HNODE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CloseClusterNotifyPort(
+    hChange: ?*_HCHANGE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CloseClusterResource(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn DeleteClusterGroupSet(
-    hGroupSet: ?*_HGROUPSET,
+pub extern "resutils" fn ClusAddClusterHealthFault(
+    hCluster: ?*_HCLUSTER,
+    failure: ?*CLUSTER_HEALTH_FAULT,
+    param2: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn ClusGetClusterHealthFaults(
+    hCluster: ?*_HCLUSTER,
+    objects: ?*CLUSTER_HEALTH_FAULT_ARRAY,
+    flags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn ClusRemoveClusterHealthFault(
+    hCluster: ?*_HCLUSTER,
+    id: ?[*:0]const u16,
+    flags: u32,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn ClusterAddGroupToAffinityRule(
+    hCluster: ?*_HCLUSTER,
+    ruleName: ?[*:0]const u16,
+    hGroup: ?*_HGROUP,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
@@ -9987,143 +9904,6 @@ pub extern "clusapi" fn ClusterAddGroupToGroupSetWithDomains(
     hGroup: ?*_HGROUP,
     faultDomain: u32,
     updateDomain: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterRemoveGroupFromGroupSet(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterGroupSetControl(
-    hGroupSet: ?*_HGROUPSET,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn AddClusterGroupDependency(
-    hDependentGroup: ?*_HGROUP,
-    hProviderGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn SetGroupDependencyExpression(
-    hGroup: ?*_HGROUP,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn RemoveClusterGroupDependency(
-    hGroup: ?*_HGROUP,
-    hDependsOn: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn AddClusterGroupSetDependency(
-    hDependentGroupSet: ?*_HGROUPSET,
-    hProviderGroupSet: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn SetClusterGroupSetDependencyExpression(
-    hGroupSet: ?*_HGROUPSET,
-    lpszDependencyExprssion: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn RemoveClusterGroupSetDependency(
-    hGroupSet: ?*_HGROUPSET,
-    hDependsOn: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn AddClusterGroupToGroupSetDependency(
-    hDependentGroup: ?*_HGROUP,
-    hProviderGroupSet: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn RemoveClusterGroupToGroupSetDependency(
-    hGroup: ?*_HGROUP,
-    hDependsOn: ?*_HGROUPSET,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterGroupSetOpenEnum(
-    hCluster: ?*_HCLUSTER,
-) callconv(.winapi) ?*_HGROUPSETENUM;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterGroupSetGetEnumCount(
-    hGroupSetEnum: ?*_HGROUPSETENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterGroupSetEnum(
-    hGroupSetEnum: ?*_HGROUPSETENUM,
-    dwIndex: u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterGroupSetCloseEnum(
-    hGroupSetEnum: ?*_HGROUPSETENUM,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn AddCrossClusterGroupSetDependency(
-    hDependentGroupSet: ?*_HGROUPSET,
-    lpRemoteClusterName: ?[*:0]const u16,
-    lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn RemoveCrossClusterGroupSetDependency(
-    hDependentGroupSet: ?*_HGROUPSET,
-    lpRemoteClusterName: ?[*:0]const u16,
-    lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn CreateClusterAvailabilitySet(
-    hCluster: ?*_HCLUSTER,
-    lpAvailabilitySetName: ?[*:0]const u16,
-    pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
-) callconv(.winapi) ?*_HGROUPSET;
-
-pub extern "clusapi" fn ClusterNodeReplacement(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeNameCurrent: ?[*:0]const u16,
-    lpszNodeNameNew: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn ClusterCreateAffinityRule(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    ruleType: CLUS_AFFINITY_RULE_TYPE,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn ClusterRemoveAffinityRule(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn ClusterAddGroupToAffinityRule(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn ClusterRemoveGroupFromAffinityRule(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    hGroup: ?*_HGROUP,
 ) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ClusterAffinityRuleControl(
@@ -10141,67 +9921,228 @@ pub extern "clusapi" fn ClusterAffinityRuleControl(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterNode(
+pub extern "resutils" fn ClusterClearBackupStateForSharedVolume(
+    lpszVolumePathName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterCloseEnum(
+    hEnum: ?*_HCLUSENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterCloseEnumEx(
+    hClusterEnum: ?*_HCLUSENUMEX,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterControl(
     hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HNODE;
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterNodeEx(
+pub extern "clusapi" fn ClusterCreateAffinityRule(
     hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HNODE;
+    ruleName: ?[*:0]const u16,
+    ruleType: CLUS_AFFINITY_RULE_TYPE,
+) callconv(.winapi) u32;
 
-pub extern "clusapi" fn OpenClusterNodeById(
-    hCluster: ?*_HCLUSTER,
-    nodeId: u32,
-) callconv(.winapi) ?*_HNODE;
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ClusterDecrypt(
+    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+    pCryptInput: ?*u8,
+    cbCryptInput: u32,
+    ppCryptOutput: ?*?*u8,
+    pcbCryptOutput: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ClusterEncrypt(
+    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+    pData: [*:0]u8,
+    cbData: u32,
+    ppData: ?*?*u8,
+    pcbData: ?*u32,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CloseClusterNode(
-    hNode: ?*_HNODE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNodeState(
-    hNode: ?*_HNODE,
-) callconv(.winapi) CLUSTER_NODE_STATE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNodeId(
-    hNode: ?*_HNODE,
-    lpszNodeId: [*:0]u16,
+pub extern "clusapi" fn ClusterEnum(
+    hEnum: ?*_HCLUSENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
     lpcchName: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterFromNode(
-    hNode: ?*_HNODE,
-) callconv(.winapi) ?*_HCLUSTER;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn PauseClusterNode(
-    hNode: ?*_HNODE,
+pub extern "clusapi" fn ClusterEnumEx(
+    hClusterEnum: ?*_HCLUSENUMEX,
+    dwIndex: u32,
+    pItem: ?*CLUSTER_ENUM_ITEM,
+    cbItem: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ResumeClusterNode(
-    hNode: ?*_HNODE,
+pub extern "clusapi" fn ClusterGetEnumCount(
+    hEnum: ?*_HCLUSENUM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn EvictClusterNode(
-    hNode: ?*_HNODE,
+pub extern "clusapi" fn ClusterGetEnumCountEx(
+    hClusterEnum: ?*_HCLUSENUMEX,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ClusterGetVolumeNameForVolumeMountPoint(
+    lpszVolumeMountPoint: ?[*:0]const u16,
+    lpszVolumeName: ?PWSTR,
+    cchBufferLength: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ClusterGetVolumePathName(
+    lpszFileName: ?[*:0]const u16,
+    lpszVolumePathName: ?PWSTR,
+    cchBufferLength: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterGroupCloseEnum(
+    hGroupEnum: ?*_HGROUPENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterGroupCloseEnumEx(
+    hGroupEnumEx: ?*_HGROUPENUMEX,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterGroupControl(
+    hGroup: ?*_HGROUP,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterGroupEnum(
+    hGroupEnum: ?*_HGROUPENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszResourceName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterGroupEnumEx(
+    hGroupEnumEx: ?*_HGROUPENUMEX,
+    dwIndex: u32,
+    pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
+    cbItem: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterGroupGetEnumCount(
+    hGroupEnum: ?*_HGROUPENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterGroupGetEnumCountEx(
+    hGroupEnumEx: ?*_HGROUPENUMEX,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterGroupOpenEnum(
+    hGroup: ?*_HGROUP,
+    dwType: u32,
+) callconv(.winapi) ?*_HGROUPENUM;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterGroupOpenEnumEx(
+    hCluster: ?*_HCLUSTER,
+    // TODO: what to do with BytesParamIndex 2?
+    lpszProperties: ?[*:0]const u16,
+    cbProperties: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpszRoProperties: ?[*:0]const u16,
+    cbRoProperties: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HGROUPENUMEX;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterGroupSetCloseEnum(
+    hGroupSetEnum: ?*_HGROUPSETENUM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterNetInterfaceOpenEnum(
+pub extern "clusapi" fn ClusterGroupSetControl(
+    hGroupSet: ?*_HGROUPSET,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    cbInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    cbOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterGroupSetEnum(
+    hGroupSetEnum: ?*_HGROUPSETENUM,
+    dwIndex: u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterGroupSetGetEnumCount(
+    hGroupSetEnum: ?*_HGROUPSETENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterGroupSetOpenEnum(
     hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    lpszNetworkName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HNETINTERFACEENUM;
+) callconv(.winapi) ?*_HGROUPSETENUM;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ClusterIsPathOnSharedVolume(
+    lpszPathName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterNetInterfaceCloseEnum(
+    hNetInterfaceEnum: ?*_HNETINTERFACEENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNetInterfaceControl(
+    hNetInterface: ?*_HNETINTERFACE,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterNetInterfaceEnum(
@@ -10212,8 +10153,100 @@ pub extern "clusapi" fn ClusterNetInterfaceEnum(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterNetInterfaceCloseEnum(
-    hNetInterfaceEnum: ?*_HNETINTERFACEENUM,
+pub extern "clusapi" fn ClusterNetInterfaceOpenEnum(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    lpszNetworkName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HNETINTERFACEENUM;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNetworkCloseEnum(
+    hNetworkEnum: ?*_HNETWORKENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNetworkControl(
+    hNetwork: ?*_HNETWORK,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNetworkEnum(
+    hNetworkEnum: ?*_HNETWORKENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNetworkGetEnumCount(
+    hNetworkEnum: ?*_HNETWORKENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNetworkOpenEnum(
+    hNetwork: ?*_HNETWORK,
+    dwType: u32,
+) callconv(.winapi) ?*_HNETWORKENUM;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNodeCloseEnum(
+    hNodeEnum: ?*_HNODEENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNodeCloseEnumEx(
+    hNodeEnum: ?*_HNODEENUMEX,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNodeControl(
+    hNode: ?*_HNODE,
+    hHostNode: ?*_HNODE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNodeEnum(
+    hNodeEnum: ?*_HNODEENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNodeEnumEx(
+    hNodeEnum: ?*_HNODEENUMEX,
+    dwIndex: u32,
+    pItem: ?*CLUSTER_ENUM_ITEM,
+    cbItem: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNodeGetEnumCount(
+    hNodeEnum: ?*_HNODEENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterNodeGetEnumCountEx(
+    hNodeEnum: ?*_HNODEENUMEX,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -10229,444 +10262,265 @@ pub extern "clusapi" fn ClusterNodeOpenEnumEx(
     pOptions: ?*anyopaque,
 ) callconv(.winapi) ?*_HNODEENUMEX;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNodeGetEnumCountEx(
-    hNodeEnum: ?*_HNODEENUMEX,
+pub extern "clusapi" fn ClusterNodeReplacement(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeNameCurrent: ?[*:0]const u16,
+    lpszNodeNameNew: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNodeEnumEx(
-    hNodeEnum: ?*_HNODEENUMEX,
+pub extern "clusapi" fn ClusterOpenEnum(
+    hCluster: ?*_HCLUSTER,
+    dwType: u32,
+) callconv(.winapi) ?*_HCLUSENUM;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterOpenEnumEx(
+    hCluster: ?*_HCLUSTER,
+    dwType: u32,
+    pOptions: ?*anyopaque,
+) callconv(.winapi) ?*_HCLUSENUMEX;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ClusterPrepareSharedVolumeForBackup(
+    lpszFileName: ?[*:0]const u16,
+    lpszVolumePathName: ?PWSTR,
+    lpcchVolumePathName: ?*u32,
+    lpszVolumeName: ?PWSTR,
+    lpcchVolumeName: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegBatchAddCommand(
+    hRegBatch: ?*_HREGBATCH,
+    dwCommand: CLUSTER_REG_COMMAND,
+    wzName: ?[*:0]const u16,
+    dwOptions: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpData: ?*const anyopaque,
+    cbData: u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegBatchCloseNotification(
+    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegBatchReadCommand(
+    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+    pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegCloseBatch(
+    hRegBatch: ?*_HREGBATCH,
+    bCommit: BOOL,
+    failedCommandNumber: ?*i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterRegCloseBatchEx(
+    hRegBatch: ?*_HREGBATCH,
+    flags: u32,
+    failedCommandNumber: ?*i32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegCloseBatchNotifyPort(
+    hBatchNotifyPort: ?*_HREGBATCHPORT,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegCloseKey(
+    hKey: ?HKEY,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterRegCloseReadBatch(
+    hRegReadBatch: ?*_HREGREADBATCH,
+    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterRegCloseReadBatchEx(
+    hRegReadBatch: ?*_HREGREADBATCH,
+    flags: u32,
+    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterRegCloseReadBatchReply(
+    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegCreateBatch(
+    hKey: ?HKEY,
+    pHREGBATCH: ?*?*_HREGBATCH,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegCreateBatchNotifyPort(
+    hKey: ?HKEY,
+    phBatchNotifyPort: ?*?*_HREGBATCHPORT,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegCreateKey(
+    hKey: ?HKEY,
+    lpszSubKey: ?[*:0]const u16,
+    dwOptions: u32,
+    samDesired: u32,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    phkResult: ?*?HKEY,
+    lpdwDisposition: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterRegCreateReadBatch(
+    hKey: ?HKEY,
+    phRegReadBatch: ?*?*_HREGREADBATCH,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegDeleteKey(
+    hKey: ?HKEY,
+    lpszSubKey: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegDeleteValue(
+    hKey: ?HKEY,
+    lpszValueName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegEnumKey(
+    hKey: ?HKEY,
     dwIndex: u32,
-    pItem: ?*CLUSTER_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNodeCloseEnumEx(
-    hNodeEnum: ?*_HNODEENUMEX,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNodeGetEnumCount(
-    hNodeEnum: ?*_HNODEENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNodeCloseEnum(
-    hNodeEnum: ?*_HNODEENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNodeEnum(
-    hNodeEnum: ?*_HNODEENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
+    lpftLastWriteTime: ?*FILETIME,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegEnumValue(
+    hKey: ?HKEY,
+    dwIndex: u32,
+    lpszValueName: [*:0]u16,
+    lpcchValueName: ?*u32,
+    lpdwType: ?*u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpData: ?*u8,
+    lpcbData: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn EvictClusterNodeEx(
-    hNode: ?*_HNODE,
-    dwTimeOut: u32,
-    phrCleanupStatus: ?*HRESULT,
-) callconv(.winapi) u32;
+pub extern "clusapi" fn ClusterRegGetBatchNotification(
+    hBatchNotify: ?*_HREGBATCHPORT,
+    phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterResourceTypeKey(
-    hCluster: ?*_HCLUSTER,
-    lpszTypeName: ?[*:0]const u16,
+pub extern "clusapi" fn ClusterRegGetKeySecurity(
+    hKey: ?HKEY,
+    RequestedInformation: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    lpcbSecurityDescriptor: ?*u32,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegOpenKey(
+    hKey: ?HKEY,
+    lpszSubKey: ?[*:0]const u16,
     samDesired: u32,
-) callconv(.winapi) ?HKEY;
+    phkResult: ?*?HKEY,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CreateClusterGroup(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HGROUP;
+pub extern "clusapi" fn ClusterRegQueryInfoKey(
+    hKey: ?HKEY,
+    lpcSubKeys: ?*u32,
+    lpcchMaxSubKeyLen: ?*u32,
+    lpcValues: ?*u32,
+    lpcchMaxValueNameLen: ?*u32,
+    lpcbMaxValueLen: ?*u32,
+    lpcbSecurityDescriptor: ?*u32,
+    lpftLastWriteTime: ?*FILETIME,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterGroup(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HGROUP;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterGroupEx(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HGROUP;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn PauseClusterNodeEx(
-    hNode: ?*_HNODE,
-    bDrainNode: BOOL,
-    dwPauseFlags: u32,
-    hNodeDrainTarget: ?*_HNODE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ResumeClusterNodeEx(
-    hNode: ?*_HNODE,
-    eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
-    dwResumeFlagsReserved: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn CreateClusterGroupEx(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-    pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
-) callconv(.winapi) ?*_HGROUP;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterGroupOpenEnumEx(
-    hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
-    lpszProperties: ?[*:0]const u16,
-    cbProperties: u32,
+pub extern "clusapi" fn ClusterRegQueryValue(
+    hKey: ?HKEY,
+    lpszValueName: ?[*:0]const u16,
+    lpdwValueType: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpszRoProperties: ?[*:0]const u16,
-    cbRoProperties: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HGROUPENUMEX;
+    lpData: ?*u8,
+    lpcbData: ?*u32,
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterGroupGetEnumCountEx(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
+pub extern "clusapi" fn ClusterRegReadBatchAddCommand(
+    hRegReadBatch: ?*_HREGREADBATCH,
+    wzSubkeyName: ?[*:0]const u16,
+    wzValueName: ?[*:0]const u16,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterRegReadBatchReplyNextCommand(
+    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+    pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegSetKeySecurity(
+    hKey: ?HKEY,
+    SecurityInformation: u32,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+) callconv(.winapi) i32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterRegSetValue(
+    hKey: ?HKEY,
+    lpszValueName: ?[*:0]const u16,
+    dwType: u32,
+    lpData: ?*const u8,
+    cbData: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterGroupEnumEx(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterGroupCloseEnumEx(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterResourceOpenEnumEx(
+pub extern "clusapi" fn ClusterRegSyncDatabase(
     hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
-    lpszProperties: ?[*:0]const u16,
-    cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpszRoProperties: ?[*:0]const u16,
-    cbRoProperties: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HRESENUMEX;
+    flags: u32,
+) callconv(.winapi) i32;
 
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterResourceGetEnumCountEx(
-    hResourceEnumEx: ?*_HRESENUMEX,
+pub extern "clusapi" fn ClusterRemoveAffinityRule(
+    hCluster: ?*_HCLUSTER,
+    ruleName: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterResourceEnumEx(
-    hResourceEnumEx: ?*_HRESENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
-    cbItem: ?*u32,
+pub extern "clusapi" fn ClusterRemoveGroupFromAffinityRule(
+    hCluster: ?*_HCLUSTER,
+    ruleName: ?[*:0]const u16,
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterRemoveGroupFromGroupSet(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterResourceCloseEnum(
+    hResEnum: ?*_HRESENUM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterResourceCloseEnumEx(
     hResourceEnumEx: ?*_HRESENUMEX,
 ) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn OnlineClusterGroupEx(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-    dwOnlineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*u8,
-    cbInBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn OfflineClusterGroupEx(
-    hGroup: ?*_HGROUP,
-    dwOfflineFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpInBuffer: ?*u8,
-    cbInBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn OnlineClusterResourceEx(
-    hResource: ?*_HRESOURCE,
-    dwOnlineFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpInBuffer: ?*u8,
-    cbInBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn OfflineClusterResourceEx(
-    hResource: ?*_HRESOURCE,
-    dwOfflineFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpInBuffer: ?*u8,
-    cbInBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn MoveClusterGroupEx(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-    dwMoveFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*u8,
-    cbInBufferSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn CancelClusterGroupOperation(
-    hGroup: ?*_HGROUP,
-    dwCancelFlags_RESERVED: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn RestartClusterResource(
-    hResource: ?*_HRESOURCE,
-    dwFlags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CloseClusterGroup(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterFromGroup(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) ?*_HCLUSTER;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterGroupState(
-    hGroup: ?*_HGROUP,
-    lpszNodeName: ?[*:0]u16,
-    lpcchNodeName: ?*u32,
-) callconv(.winapi) CLUSTER_GROUP_STATE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn SetClusterGroupName(
-    hGroup: ?*_HGROUP,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn SetClusterGroupNodeList(
-    hGroup: ?*_HGROUP,
-    NodeCount: u32,
-    NodeList: ?[*]?*_HNODE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OnlineClusterGroup(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn MoveClusterGroup(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OfflineClusterGroup(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn DeleteClusterGroup(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn DestroyClusterGroup(
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterGroupOpenEnum(
-    hGroup: ?*_HGROUP,
-    dwType: u32,
-) callconv(.winapi) ?*_HGROUPENUM;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterGroupGetEnumCount(
-    hGroupEnum: ?*_HGROUPENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterGroupEnum(
-    hGroupEnum: ?*_HGROUPENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszResourceName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterGroupCloseEnum(
-    hGroupEnum: ?*_HGROUPENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CreateClusterResource(
-    hGroup: ?*_HGROUP,
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterResource(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterResourceEx(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CloseClusterResource(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterFromResource(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) ?*_HCLUSTER;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn DeleteClusterResource(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterResourceState(
-    hResource: ?*_HRESOURCE,
-    lpszNodeName: ?[*:0]u16,
-    lpcchNodeName: ?*u32,
-    lpszGroupName: ?[*:0]u16,
-    lpcchGroupName: ?*u32,
-) callconv(.winapi) CLUSTER_RESOURCE_STATE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn SetClusterResourceName(
-    hResource: ?*_HRESOURCE,
-    lpszResourceName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn FailClusterResource(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OnlineClusterResource(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OfflineClusterResource(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ChangeClusterResourceGroup(
-    hResource: ?*_HRESOURCE,
-    hGroup: ?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn ChangeClusterResourceGroupEx(
-    hResource: ?*_HRESOURCE,
-    hGroup: ?*_HGROUP,
-    Flags: u64,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn AddClusterResourceNode(
-    hResource: ?*_HRESOURCE,
-    hNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn RemoveClusterResourceNode(
-    hResource: ?*_HRESOURCE,
-    hNode: ?*_HNODE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn AddClusterResourceDependency(
-    hResource: ?*_HRESOURCE,
-    hDependsOn: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn RemoveClusterResourceDependency(
-    hResource: ?*_HRESOURCE,
-    hDependsOn: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn SetClusterResourceDependencyExpression(
-    hResource: ?*_HRESOURCE,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterResourceDependencyExpression(
-    hResource: ?*_HRESOURCE,
-    lpszDependencyExpression: ?[*:0]u16,
-    lpcchDependencyExpression: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn AddResourceToClusterSharedVolumes(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn RemoveResourceFromClusterSharedVolumes(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn IsFileOnClusterSharedVolume(
-    lpszPathName: ?[*:0]const u16,
-    pbFileIsOnSharedVolume: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterSharedVolumeSetSnapshotState(
-    guidSnapshotSet: Guid,
-    lpszVolumeName: ?[*:0]const u16,
-    state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CanResourceBeDependent(
-    hResource: ?*_HRESOURCE,
-    hResourceDependent: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceControl(
@@ -10694,6 +10548,56 @@ pub extern "clusapi" fn ClusterResourceControlAsUser(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterResourceEnum(
+    hResEnum: ?*_HRESENUM,
+    dwIndex: u32,
+    lpdwType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterResourceEnumEx(
+    hResourceEnumEx: ?*_HRESENUMEX,
+    dwIndex: u32,
+    pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
+    cbItem: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterResourceGetEnumCount(
+    hResEnum: ?*_HRESENUM,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterResourceGetEnumCountEx(
+    hResourceEnumEx: ?*_HRESENUMEX,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterResourceOpenEnum(
+    hResource: ?*_HRESOURCE,
+    dwType: u32,
+) callconv(.winapi) ?*_HRESENUM;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ClusterResourceOpenEnumEx(
+    hCluster: ?*_HCLUSTER,
+    // TODO: what to do with BytesParamIndex 2?
+    lpszProperties: ?[*:0]const u16,
+    cbProperties: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpszRoProperties: ?[*:0]const u16,
+    cbRoProperties: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HRESENUMEX;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterResourceTypeCloseEnum(
+    hResTypeEnum: ?*_HRESTYPEENUM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -10727,54 +10631,8 @@ pub extern "clusapi" fn ClusterResourceTypeControlAsUser(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterGroupControl(
-    hGroup: ?*_HGROUP,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNodeControl(
-    hNode: ?*_HNODE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterResourceNetworkName(
-    hResource: ?*_HRESOURCE,
-    lpBuffer: [*:0]u16,
-    nSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceOpenEnum(
-    hResource: ?*_HRESOURCE,
-    dwType: u32,
-) callconv(.winapi) ?*_HRESENUM;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceGetEnumCount(
-    hResEnum: ?*_HRESENUM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceEnum(
-    hResEnum: ?*_HRESENUM,
+pub extern "clusapi" fn ClusterResourceTypeEnum(
+    hResTypeEnum: ?*_HRESTYPEENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
@@ -10782,9 +10640,135 @@ pub extern "clusapi" fn ClusterResourceEnum(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceCloseEnum(
-    hResEnum: ?*_HRESENUM,
+pub extern "clusapi" fn ClusterResourceTypeGetEnumCount(
+    hResTypeEnum: ?*_HRESTYPEENUM,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterResourceTypeOpenEnum(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceTypeName: ?[*:0]const u16,
+    dwType: u32,
+) callconv(.winapi) ?*_HRESTYPEENUM;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterSetAccountAccess(
+    hCluster: ?*_HCLUSTER,
+    szAccountSID: ?[*:0]const u16,
+    dwAccess: u32,
+    dwControlType: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn ClusterSharedVolumeSetSnapshotState(
+    guidSnapshotSet: Guid,
+    lpszVolumeName: ?[*:0]const u16,
+    state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn ClusterUpgradeFunctionalLevel(
+    hCluster: ?*_HCLUSTER,
+    perform: BOOL,
+    pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ClusWorkerCheckTerminate(
+    lpWorker: ?*CLUS_WORKER,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ClusWorkerCreate(
+    lpWorker: ?*CLUS_WORKER,
+    lpStartAddress: ?PWORKER_START_ROUTINE,
+    lpParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn ClusWorkersTerminate(
+    ClusWorkers: [*]?*CLUS_WORKER,
+    ClusWorkersCount: usize,
+    TimeoutInMilliseconds: u32,
+    WaitOnly: BOOL,
+) callconv(.winapi) u32;
+
+pub extern "resutils" fn ClusWorkerTerminate(
+    lpWorker: ?*CLUS_WORKER,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn ClusWorkerTerminateEx(
+    ClusWorker: ?*CLUS_WORKER,
+    TimeoutInMilliseconds: u32,
+    WaitOnly: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CreateCluster(
+    pConfig: ?*CREATE_CLUSTER_CONFIG,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) ?*_HCLUSTER;
+
+pub extern "clusapi" fn CreateClusterAvailabilitySet(
+    hCluster: ?*_HCLUSTER,
+    lpAvailabilitySetName: ?[*:0]const u16,
+    pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
+) callconv(.winapi) ?*_HGROUPSET;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CreateClusterGroup(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HGROUP;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn CreateClusterGroupEx(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+    pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
+) callconv(.winapi) ?*_HGROUP;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn CreateClusterGroupSet(
+    hCluster: ?*_HCLUSTER,
+    groupSetName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HGROUPSET;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn CreateClusterNameAccount(
+    hCluster: ?*_HCLUSTER,
+    pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CreateClusterNotifyPort(
+    hChange: ?*_HCHANGE,
+    hCluster: ?*_HCLUSTER,
+    dwFilter: u32,
+    dwNotifyKey: usize,
+) callconv(.winapi) ?*_HCHANGE;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn CreateClusterNotifyPortV2(
+    hChange: ?*_HCHANGE,
+    hCluster: ?*_HCLUSTER,
+    Filters: ?*NOTIFY_FILTER_AND_TYPE,
+    dwFilterCount: u32,
+    dwNotifyKey: usize,
+) callconv(.winapi) ?*_HCHANGE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn CreateClusterResource(
+    hGroup: ?*_HGROUP,
+    lpszResourceName: ?[*:0]const u16,
+    lpszResourceType: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CreateClusterResourceType(
@@ -10797,55 +10781,102 @@ pub extern "clusapi" fn CreateClusterResourceType(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn DeleteClusterGroup(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn DeleteClusterGroupSet(
+    hGroupSet: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn DeleteClusterResource(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn DeleteClusterResourceType(
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceTypeOpenEnum(
+pub extern "clusapi" fn DestroyCluster(
     hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-    dwType: u32,
-) callconv(.winapi) ?*_HRESTYPEENUM;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceTypeGetEnumCount(
-    hResTypeEnum: ?*_HRESTYPEENUM,
+    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+    pvCallbackArg: ?*anyopaque,
+    fdeleteVirtualComputerObjects: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceTypeEnum(
-    hResTypeEnum: ?*_HRESTYPEENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
+pub extern "clusapi" fn DestroyClusterGroup(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn DetermineClusterCloudTypeFromCluster(
+    hCluster: ?*_HCLUSTER,
+    pCloudType: ?*CLUSTER_CLOUD_TYPE,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn DetermineClusterCloudTypeFromNodelist(
+    cNodes: u32,
+    ppszNodeNames: ?*?PWSTR,
+    pCloudType: ?*CLUSTER_CLOUD_TYPE,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn DetermineCNOResTypeFromCluster(
+    hCluster: ?*_HCLUSTER,
+    pCNOResType: ?*CLUSTER_MGMT_POINT_RESTYPE,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn DetermineCNOResTypeFromNodelist(
+    cNodes: u32,
+    ppszNodeNames: ?*?PWSTR,
+    pCNOResType: ?*CLUSTER_MGMT_POINT_RESTYPE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterResourceTypeCloseEnum(
-    hResTypeEnum: ?*_HRESTYPEENUM,
+pub extern "clusapi" fn EvictClusterNode(
+    hNode: ?*_HNODE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterNetwork(
-    hCluster: ?*_HCLUSTER,
-    lpszNetworkName: ?[*:0]const u16,
-) callconv(.winapi) ?*_HNETWORK;
+pub extern "clusapi" fn EvictClusterNodeEx(
+    hNode: ?*_HNODE,
+    dwTimeOut: u32,
+    phrCleanupStatus: ?*HRESULT,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn OpenClusterNetworkEx(
-    hCluster: ?*_HCLUSTER,
-    lpszNetworkName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(.winapi) ?*_HNETWORK;
+pub extern "clusapi" fn FailClusterResource(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn FreeClusterCrypt(
+    pCryptInfo: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn FreeClusterHealthFault(
+    clusterHealthFault: ?*CLUSTER_HEALTH_FAULT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn FreeClusterHealthFaultArray(
+    clusterHealthFaultArray: ?*CLUSTER_HEALTH_FAULT_ARRAY,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CloseClusterNetwork(
-    hNetwork: ?*_HNETWORK,
-) callconv(.winapi) BOOL;
+pub extern "clusapi" fn GetClusterFromGroup(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) ?*_HCLUSTER;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterFromNetInterface(
+    hNetInterface: ?*_HNETINTERFACE,
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterFromNetwork(
@@ -10853,40 +10884,61 @@ pub extern "clusapi" fn GetClusterFromNetwork(
 ) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNetworkOpenEnum(
-    hNetwork: ?*_HNETWORK,
-    dwType: u32,
-) callconv(.winapi) ?*_HNETWORKENUM;
+pub extern "clusapi" fn GetClusterFromNode(
+    hNode: ?*_HNODE,
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNetworkGetEnumCount(
-    hNetworkEnum: ?*_HNETWORKENUM,
+pub extern "clusapi" fn GetClusterFromResource(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) ?*_HCLUSTER;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterGroupKey(
+    hGroup: ?*_HGROUP,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterGroupState(
+    hGroup: ?*_HGROUP,
+    lpszNodeName: ?[*:0]u16,
+    lpcchNodeName: ?*u32,
+) callconv(.winapi) CLUSTER_GROUP_STATE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterInformation(
+    hCluster: ?*_HCLUSTER,
+    lpszClusterName: [*:0]u16,
+    lpcchClusterName: ?*u32,
+    lpClusterInfo: ?*CLUSTERVERSIONINFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNetworkEnum(
-    hNetworkEnum: ?*_HNETWORKENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
+pub extern "clusapi" fn GetClusterKey(
+    hCluster: ?*_HCLUSTER,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterNetInterface(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    lpszNetworkName: ?[*:0]const u16,
+    lpszInterfaceName: [*:0]u16,
+    lpcchInterfaceName: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNetworkCloseEnum(
-    hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(.winapi) u32;
+pub extern "clusapi" fn GetClusterNetInterfaceKey(
+    hNetInterface: ?*_HNETINTERFACE,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNetworkState(
-    hNetwork: ?*_HNETWORK,
-) callconv(.winapi) CLUSTER_NETWORK_STATE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn SetClusterNetworkName(
-    hNetwork: ?*_HNETWORK,
-    lpszName: ?[*:0]const u16,
-) callconv(.winapi) u32;
+pub extern "clusapi" fn GetClusterNetInterfaceState(
+    hNetInterface: ?*_HNETINTERFACE,
+) callconv(.winapi) CLUSTER_NETINTERFACE_STATE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNetworkId(
@@ -10896,18 +10948,263 @@ pub extern "clusapi" fn GetClusterNetworkId(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNetworkControl(
+pub extern "clusapi" fn GetClusterNetworkKey(
     hNetwork: ?*_HNETWORK,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterNetworkState(
+    hNetwork: ?*_HNETWORK,
+) callconv(.winapi) CLUSTER_NETWORK_STATE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterNodeId(
+    hNode: ?*_HNODE,
+    lpszNodeId: [*:0]u16,
+    lpcchName: ?*u32,
 ) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterNodeKey(
+    hNode: ?*_HNODE,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterNodeState(
+    hNode: ?*_HNODE,
+) callconv(.winapi) CLUSTER_NODE_STATE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterNotify(
+    hChange: ?*_HCHANGE,
+    lpdwNotifyKey: ?*usize,
+    lpdwFilterType: ?*u32,
+    lpszName: [*:0]u16,
+    lpcchName: ?*u32,
+    dwMilliseconds: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn GetClusterNotifyV2(
+    hChange: ?*_HCHANGE,
+    lpdwNotifyKey: ?*usize,
+    pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
+    // TODO: what to do with BytesParamIndex 4?
+    buffer: ?*u8,
+    lpbBufferSize: ?*u32,
+    lpszObjectId: ?[*:0]u16,
+    lpcchObjectId: ?*u32,
+    lpszParentId: ?[*:0]u16,
+    lpcchParentId: ?*u32,
+    lpszName: ?[*:0]u16,
+    lpcchName: ?*u32,
+    lpszType: ?[*:0]u16,
+    lpcchType: ?*u32,
+    dwMilliseconds: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterQuorumResource(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceName: [*:0]u16,
+    lpcchResourceName: ?*u32,
+    lpszDeviceName: [*:0]u16,
+    lpcchDeviceName: ?*u32,
+    lpdwMaxQuorumLogSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterResourceDependencyExpression(
+    hResource: ?*_HRESOURCE,
+    lpszDependencyExpression: ?[*:0]u16,
+    lpcchDependencyExpression: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterResourceKey(
+    hResource: ?*_HRESOURCE,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterResourceNetworkName(
+    hResource: ?*_HRESOURCE,
+    lpBuffer: [*:0]u16,
+    nSize: ?*u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterResourceState(
+    hResource: ?*_HRESOURCE,
+    lpszNodeName: ?[*:0]u16,
+    lpcchNodeName: ?*u32,
+    lpszGroupName: ?[*:0]u16,
+    lpcchGroupName: ?*u32,
+) callconv(.winapi) CLUSTER_RESOURCE_STATE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetClusterResourceTypeKey(
+    hCluster: ?*_HCLUSTER,
+    lpszTypeName: ?[*:0]const u16,
+    samDesired: u32,
+) callconv(.winapi) ?HKEY;
+
+pub extern "clusapi" fn GetNodeCloudTypeDW(
+    ppszNodeName: ?[*:0]const u16,
+    NodeCloudType: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn GetNodeClusterState(
+    lpszNodeName: ?[*:0]const u16,
+    pdwClusterState: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn GetNotifyEventHandle(
+    hChange: ?*_HCHANGE,
+    lphTargetEvent: ?*?HANDLE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn InitializeClusterHealthFault(
+    clusterHealthFault: ?*CLUSTER_HEALTH_FAULT,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn InitializeClusterHealthFaultArray(
+    clusterHealthFaultArray: ?*CLUSTER_HEALTH_FAULT_ARRAY,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn IsFileOnClusterSharedVolume(
+    lpszPathName: ?[*:0]const u16,
+    pbFileIsOnSharedVolume: ?*BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn MoveClusterGroup(
+    hGroup: ?*_HGROUP,
+    hDestinationNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn MoveClusterGroupEx(
+    hGroup: ?*_HGROUP,
+    hDestinationNode: ?*_HNODE,
+    dwMoveFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*u8,
+    cbInBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OfflineClusterGroup(
+    hGroup: ?*_HGROUP,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn OfflineClusterGroupEx(
+    hGroup: ?*_HGROUP,
+    dwOfflineFlags: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpInBuffer: ?*u8,
+    cbInBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OfflineClusterResource(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn OfflineClusterResourceEx(
+    hResource: ?*_HRESOURCE,
+    dwOfflineFlags: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpInBuffer: ?*u8,
+    cbInBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OnlineClusterGroup(
+    hGroup: ?*_HGROUP,
+    hDestinationNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn OnlineClusterGroupEx(
+    hGroup: ?*_HGROUP,
+    hDestinationNode: ?*_HNODE,
+    dwOnlineFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpInBuffer: ?*u8,
+    cbInBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OnlineClusterResource(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn OnlineClusterResourceEx(
+    hResource: ?*_HRESOURCE,
+    dwOnlineFlags: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpInBuffer: ?*u8,
+    cbInBufferSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OpenCluster(
+    lpszClusterName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HCLUSTER;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn OpenClusterCryptProvider(
+    lpszResource: ?[*:0]const u16,
+    lpszProvider: ?*i8,
+    dwType: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
+
+pub extern "resutils" fn OpenClusterCryptProviderEx(
+    lpszResource: ?[*:0]const u16,
+    lpszKeyname: ?[*:0]const u16,
+    lpszProvider: ?*i8,
+    dwType: u32,
+    dwFlags: u32,
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OpenClusterEx(
+    lpszClusterName: ?[*:0]const u16,
+    DesiredAccess: u32,
+    GrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HCLUSTER;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OpenClusterGroup(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HGROUP;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OpenClusterGroupEx(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HGROUP;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn OpenClusterGroupSet(
+    hCluster: ?*_HCLUSTER,
+    lpszGroupSetName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HGROUPSET;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterNetInterface(
@@ -10924,338 +11221,99 @@ pub extern "clusapi" fn OpenClusterNetInterfaceEx(
 ) callconv(.winapi) ?*_HNETINTERFACE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNetInterface(
+pub extern "clusapi" fn OpenClusterNetwork(
+    hCluster: ?*_HCLUSTER,
+    lpszNetworkName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HNETWORK;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OpenClusterNetworkEx(
+    hCluster: ?*_HCLUSTER,
+    lpszNetworkName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HNETWORK;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn OpenClusterNode(
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
-    lpszNetworkName: ?[*:0]const u16,
-    lpszInterfaceName: [*:0]u16,
-    lpcchInterfaceName: ?*u32,
-) callconv(.winapi) u32;
+) callconv(.winapi) ?*_HNODE;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CloseClusterNetInterface(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterFromNetInterface(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(.winapi) ?*_HCLUSTER;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNetInterfaceState(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(.winapi) CLUSTER_NETINTERFACE_STATE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterNetInterfaceControl(
-    hNetInterface: ?*_HNETINTERFACE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterKey(
+pub extern "clusapi" fn OpenClusterNodeById(
     hCluster: ?*_HCLUSTER,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+    nodeId: u32,
+) callconv(.winapi) ?*_HNODE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterGroupKey(
-    hGroup: ?*_HGROUP,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub extern "clusapi" fn OpenClusterNodeEx(
+    hCluster: ?*_HCLUSTER,
+    lpszNodeName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HNODE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterResourceKey(
-    hResource: ?*_HRESOURCE,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub extern "clusapi" fn OpenClusterResource(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceName: ?[*:0]const u16,
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNodeKey(
+pub extern "clusapi" fn OpenClusterResourceEx(
+    hCluster: ?*_HCLUSTER,
+    lpszResourceName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    lpdwGrantedAccess: ?*u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn PauseClusterNode(
     hNode: ?*_HNODE,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNetworkKey(
-    hNetwork: ?*_HNETWORK,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn PauseClusterNodeEx(
+    hNode: ?*_HNODE,
+    bDrainNode: BOOL,
+    dwPauseFlags: u32,
+    hNodeDrainTarget: ?*_HNODE,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn GetClusterNetInterfaceKey(
-    hNetInterface: ?*_HNETINTERFACE,
-    samDesired: u32,
-) callconv(.winapi) ?HKEY;
+pub extern "ntlanman" fn QueryAppInstanceVersion(
+    AppInstanceId: ?*Guid,
+    InstanceVersionHigh: ?*u64,
+    InstanceVersionLow: ?*u64,
+    VersionStatus: ?*NTSTATUS,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegCreateKey(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-    dwOptions: u32,
-    samDesired: u32,
-    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    phkResult: ?*?HKEY,
-    lpdwDisposition: ?*u32,
-) callconv(.winapi) i32;
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "ntlanman" fn RegisterAppInstance(
+    ProcessHandle: ?HANDLE,
+    AppInstanceId: ?*Guid,
+    ChildrenInheritAppInstance: BOOL,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegOpenKey(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-    samDesired: u32,
-    phkResult: ?*?HKEY,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegDeleteKey(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegCloseKey(
-    hKey: ?HKEY,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegEnumKey(
-    hKey: ?HKEY,
-    dwIndex: u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-    lpftLastWriteTime: ?*FILETIME,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegSetValue(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-    dwType: u32,
-    lpData: ?*const u8,
-    cbData: u32,
+pub extern "ntlanman" fn RegisterAppInstanceVersion(
+    AppInstanceId: ?*Guid,
+    InstanceVersionHigh: u64,
+    InstanceVersionLow: u64,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegDeleteValue(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
+pub extern "clusapi" fn RegisterClusterNotify(
+    hChange: ?*_HCHANGE,
+    dwFilterType: u32,
+    hObject: ?HANDLE,
+    dwNotifyKey: usize,
 ) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegQueryValue(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-    lpdwValueType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpData: ?*u8,
-    lpcbData: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegEnumValue(
-    hKey: ?HKEY,
-    dwIndex: u32,
-    lpszValueName: [*:0]u16,
-    lpcchValueName: ?*u32,
-    lpdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpData: ?*u8,
-    lpcbData: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegQueryInfoKey(
-    hKey: ?HKEY,
-    lpcSubKeys: ?*u32,
-    lpcchMaxSubKeyLen: ?*u32,
-    lpcValues: ?*u32,
-    lpcchMaxValueNameLen: ?*u32,
-    lpcbMaxValueLen: ?*u32,
-    lpcbSecurityDescriptor: ?*u32,
-    lpftLastWriteTime: ?*FILETIME,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegGetKeySecurity(
-    hKey: ?HKEY,
-    RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    lpcbSecurityDescriptor: ?*u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegSetKeySecurity(
-    hKey: ?HKEY,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterRegSyncDatabase(
-    hCluster: ?*_HCLUSTER,
-    flags: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegCreateBatch(
-    hKey: ?HKEY,
-    pHREGBATCH: ?*?*_HREGBATCH,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegBatchAddCommand(
-    hRegBatch: ?*_HREGBATCH,
-    dwCommand: CLUSTER_REG_COMMAND,
-    wzName: ?[*:0]const u16,
-    dwOptions: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*const anyopaque,
-    cbData: u32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegCloseBatch(
-    hRegBatch: ?*_HREGBATCH,
-    bCommit: BOOL,
-    failedCommandNumber: ?*i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterRegCloseBatchEx(
-    hRegBatch: ?*_HREGBATCH,
-    flags: u32,
-    failedCommandNumber: ?*i32,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegBatchReadCommand(
-    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-    pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegBatchCloseNotification(
-    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegCreateBatchNotifyPort(
-    hKey: ?HKEY,
-    phBatchNotifyPort: ?*?*_HREGBATCHPORT,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegCloseBatchNotifyPort(
-    hBatchNotifyPort: ?*_HREGBATCHPORT,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn ClusterRegGetBatchNotification(
-    hBatchNotify: ?*_HREGBATCHPORT,
-    phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterRegCreateReadBatch(
-    hKey: ?HKEY,
-    phRegReadBatch: ?*?*_HREGREADBATCH,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterRegReadBatchAddCommand(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    wzSubkeyName: ?[*:0]const u16,
-    wzValueName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterRegCloseReadBatch(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterRegCloseReadBatchEx(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    flags: u32,
-    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterRegReadBatchReplyNextCommand(
-    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-    pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "clusapi" fn ClusterRegCloseReadBatchReply(
-    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn ClusterSetAccountAccess(
-    hCluster: ?*_HCLUSTER,
-    szAccountSID: ?[*:0]const u16,
-    dwAccess: u32,
-    dwControlType: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn CreateCluster(
-    pConfig: ?*CREATE_CLUSTER_CONFIG,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) ?*_HCLUSTER;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "clusapi" fn CreateClusterNameAccount(
-    hCluster: ?*_HCLUSTER,
-    pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn RemoveClusterNameAccount(
-    hCluster: ?*_HCLUSTER,
-    bDeleteComputerObjects: BOOL,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn DetermineCNOResTypeFromNodelist(
-    cNodes: u32,
-    ppszNodeNames: ?*?PWSTR,
-    pCNOResType: ?*CLUSTER_MGMT_POINT_RESTYPE,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn DetermineCNOResTypeFromCluster(
-    hCluster: ?*_HCLUSTER,
-    pCNOResType: ?*CLUSTER_MGMT_POINT_RESTYPE,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn DetermineClusterCloudTypeFromNodelist(
-    cNodes: u32,
-    ppszNodeNames: ?*?PWSTR,
-    pCloudType: ?*CLUSTER_CLOUD_TYPE,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn DetermineClusterCloudTypeFromCluster(
-    hCluster: ?*_HCLUSTER,
-    pCloudType: ?*CLUSTER_CLOUD_TYPE,
-) callconv(.winapi) u32;
-
-pub extern "clusapi" fn GetNodeCloudTypeDW(
-    ppszNodeName: ?[*:0]const u16,
-    NodeCloudType: ?*u32,
+pub extern "clusapi" fn RegisterClusterNotifyV2(
+    hChange: ?*_HCHANGE,
+    Filter: NOTIFY_FILTER_AND_TYPE,
+    hObject: ?HANDLE,
+    dwNotifyKey: usize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
@@ -11267,30 +11325,40 @@ pub extern "clusapi" fn RegisterClusterResourceTypeNotifyV2(
     dwNotifyKey: usize,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn AddClusterNode(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) ?*_HNODE;
-
-pub extern "clusapi" fn AddClusterStorageNode(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-    lpszClusterStorageNodeDescription: ?[*:0]const u16,
-    lpszClusterStorageNodeLocation: ?[*:0]const u16,
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn RemoveClusterGroupDependency(
+    hGroup: ?*_HGROUP,
+    hDependsOn: ?*_HGROUP,
 ) callconv(.winapi) u32;
 
-pub extern "clusapi" fn AddClusterNodeEx(
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn RemoveClusterGroupSetDependency(
+    hGroupSet: ?*_HGROUPSET,
+    hDependsOn: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn RemoveClusterGroupToGroupSetDependency(
+    hGroup: ?*_HGROUP,
+    hDependsOn: ?*_HGROUPSET,
+) callconv(.winapi) u32;
+
+pub extern "clusapi" fn RemoveClusterNameAccount(
     hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    dwFlags: u32,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(.winapi) ?*_HNODE;
+    bDeleteComputerObjects: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn RemoveClusterResourceDependency(
+    hResource: ?*_HRESOURCE,
+    hDependsOn: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn RemoveClusterResourceNode(
+    hResource: ?*_HRESOURCE,
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn RemoveClusterStorageNode(
     hCluster: ?*_HCLUSTER,
@@ -11299,79 +11367,53 @@ pub extern "clusapi" fn RemoveClusterStorageNode(
     dwFlags: u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "clusapi" fn DestroyCluster(
-    hCluster: ?*_HCLUSTER,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-    fdeleteVirtualComputerObjects: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn InitializeClusterHealthFault(
-    clusterHealthFault: ?*CLUSTER_HEALTH_FAULT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn InitializeClusterHealthFaultArray(
-    clusterHealthFaultArray: ?*CLUSTER_HEALTH_FAULT_ARRAY,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn FreeClusterHealthFault(
-    clusterHealthFault: ?*CLUSTER_HEALTH_FAULT,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn FreeClusterHealthFaultArray(
-    clusterHealthFaultArray: ?*CLUSTER_HEALTH_FAULT_ARRAY,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ClusGetClusterHealthFaults(
-    hCluster: ?*_HCLUSTER,
-    objects: ?*CLUSTER_HEALTH_FAULT_ARRAY,
-    flags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ClusRemoveClusterHealthFault(
-    hCluster: ?*_HCLUSTER,
-    id: ?[*:0]const u16,
-    flags: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ClusAddClusterHealthFault(
-    hCluster: ?*_HCLUSTER,
-    failure: ?*CLUSTER_HEALTH_FAULT,
-    param2: u32,
+pub extern "clusapi" fn RemoveCrossClusterGroupSetDependency(
+    hDependentGroupSet: ?*_HGROUPSET,
+    lpRemoteClusterName: ?[*:0]const u16,
+    lpRemoteGroupSetName: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilStartResourceService(
-    pszServiceName: ?[*:0]const u16,
-    phServiceHandle: ?*isize,
+pub extern "clusapi" fn RemoveResourceFromClusterSharedVolumes(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+pub extern "ntlanman" fn ResetAllAppInstanceVersions(
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn RestartClusterResource(
+    hResource: ?*_HRESOURCE,
+    dwFlags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "clusapi" fn RestoreClusterDatabase(
+    lpszPathName: ?[*:0]const u16,
+    bForce: BOOL,
+    lpszQuorumDriveLetter: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilVerifyResourceService(
-    pszServiceName: ?[*:0]const u16,
+pub extern "clusapi" fn ResumeClusterNode(
+    hNode: ?*_HNODE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "clusapi" fn ResumeClusterNodeEx(
+    hNode: ?*_HNODE,
+    eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
+    dwResumeFlagsReserved: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilStopResourceService(
-    pszServiceName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilVerifyService(
-    hServiceHandle: SC_HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilStopService(
-    hServiceHandle: SC_HANDLE,
+pub extern "resutils" fn ResUtilAddUnknownProperties(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    pOutPropertyList: ?*anyopaque,
+    pcbOutPropertyListSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11379,10 +11421,52 @@ pub extern "resutils" fn ResUtilCreateDirectoryTree(
     pszPath: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
+pub extern "resutils" fn ResUtilDupGroup(
+    group: ?*_HGROUP,
+    copy: ?*?*_HGROUP,
+) callconv(.winapi) u32;
+
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilIsPathValid(
-    pszPath: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
+pub extern "resutils" fn ResUtilDupParameterBlock(
+    pOutParams: ?*u8,
+    pInParams: ?*const u8,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+) callconv(.winapi) u32;
+
+pub extern "resutils" fn ResUtilDupResource(
+    group: ?*_HRESOURCE,
+    copy: ?*?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilDupString(
+    pszInString: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+pub extern "resutils" fn ResUtilEnumGroups(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?*_HGROUP,
+    pResCallBack: ?LPGROUP_CALLBACK_EX,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+pub extern "resutils" fn ResUtilEnumGroupsEx(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?*_HGROUP,
+    groupType: CLUSGROUP_TYPE,
+    pResCallBack: ?LPGROUP_CALLBACK_EX,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilEnumPrivateProperties(
+    hkeyClusterKey: ?HKEY,
+    // TODO: what to do with BytesParamIndex 2?
+    pszOutProperties: ?PWSTR,
+    cbOutPropertiesSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilEnumProperties(
@@ -11395,11 +11479,276 @@ pub extern "resutils" fn ResUtilEnumProperties(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilEnumPrivateProperties(
+pub extern "resutils" fn ResUtilEnumResources(
+    hSelf: ?*_HRESOURCE,
+    lpszResTypeName: ?[*:0]const u16,
+    pResCallBack: ?LPRESOURCE_CALLBACK,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilEnumResourcesEx(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?*_HRESOURCE,
+    lpszResTypeName: ?[*:0]const u16,
+    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ResUtilEnumResourcesEx2(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?*_HRESOURCE,
+    lpszResTypeName: ?[*:0]const u16,
+    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+    pParameter: ?*anyopaque,
+    dwDesiredAccess: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilExpandEnvironmentStrings(
+    pszSrc: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindBinaryProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 4?
+    pbPropertyValue: ?*?*u8,
+    pcbPropertyValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindDependentDiskResourceDriveLetter(
+    hCluster: ?*_HCLUSTER,
+    hResource: ?*_HRESOURCE,
+    pszDriveLetter: [*:0]u16,
+    pcchDriveLetter: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindDwordProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pdwPropertyValue: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindExpandedSzProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pszPropertyValue: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindExpandSzProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pszPropertyValue: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindFileTimeProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pftPropertyValue: ?*FILETIME,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindLongProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    plPropertyValue: ?*i32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindMultiSzProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 4?
+    pszPropertyValue: ?*?PWSTR,
+    pcbPropertyValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFindSzProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    pszPropertyValue: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn ResUtilFindULargeIntegerProperty(
+    // TODO: what to do with BytesParamIndex 1?
+    pPropertyList: ?*const anyopaque,
+    cbPropertyListSize: u32,
+    pszPropertyName: ?[*:0]const u16,
+    plPropertyValue: ?*u64,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFreeEnvironment(
+    lpEnvironment: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilFreeParameterBlock(
+    pOutParams: ?*u8,
+    pInParams: ?*const u8,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetAllProperties(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 3?
+    pOutPropertyList: ?*anyopaque,
+    cbOutPropertyListSize: u32,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetBinaryProperty(
+    ppbOutValue: ?*?*u8,
+    pcbOutValueSize: ?*u32,
+    pValueStruct: ?*const CLUSPROP_BINARY,
+    // TODO: what to do with BytesParamIndex 4?
+    pbOldValue: ?*const u8,
+    cbOldValueSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetBinaryValue(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    ppbOutValue: ?*?*u8,
+    pcbOutValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+pub extern "resutils" fn ResUtilGetClusterGroupType(
+    hGroup: ?*_HGROUP,
+    groupType: ?*CLUSGROUP_TYPE,
+) callconv(.winapi) u32;
+
+pub extern "resutils" fn ResUtilGetClusterId(
+    hCluster: ?*_HCLUSTER,
+    guid: ?*Guid,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetClusterRoleState(
+    hCluster: ?*_HCLUSTER,
+    eClusterRole: CLUSTER_ROLE,
+) callconv(.winapi) CLUSTER_ROLE_STATE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetCoreClusterResources(
+    hCluster: ?*_HCLUSTER,
+    phClusterNameResource: ?*?*_HRESOURCE,
+    phClusterIPAddressResource: ?*?*_HRESOURCE,
+    phClusterQuorumResource: ?*?*_HRESOURCE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ResUtilGetCoreClusterResourcesEx(
+    hClusterIn: ?*_HCLUSTER,
+    phClusterNameResourceOut: ?*?*_HRESOURCE,
+    phClusterQuorumResourceOut: ?*?*_HRESOURCE,
+    dwDesiredAccess: u32,
+) callconv(.winapi) u32;
+
+pub extern "resutils" fn ResUtilGetCoreGroup(
+    hCluster: ?*_HCLUSTER,
+) callconv(.winapi) ?*_HGROUP;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetDwordProperty(
+    pdwOutValue: ?*u32,
+    pValueStruct: ?*const CLUSPROP_DWORD,
+    dwOldValue: u32,
+    dwMinimum: u32,
+    dwMaximum: u32,
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetDwordValue(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    pdwOutValue: ?*u32,
+    dwDefaultValue: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetEnvironmentWithNetName(
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) ?*anyopaque;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetFileTimeProperty(
+    pftOutValue: ?*FILETIME,
+    pValueStruct: ?*const CLUSPROP_FILETIME,
+    ftOldValue: FILETIME,
+    ftMinimum: FILETIME,
+    ftMaximum: FILETIME,
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetLongProperty(
+    plOutValue: ?*i32,
+    pValueStruct: ?*const CLUSPROP_LONG,
+    lOldValue: i32,
+    lMinimum: i32,
+    lMaximum: i32,
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetMultiSzProperty(
+    ppszOutValue: ?*?PWSTR,
+    pcbOutValueSize: ?*u32,
+    pValueStruct: ?*const CLUSPROP_SZ,
+    // TODO: what to do with BytesParamIndex 4?
+    pszOldValue: ?[*:0]const u16,
+    cbOldValueSize: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetPrivateProperties(
     hkeyClusterKey: ?HKEY,
     // TODO: what to do with BytesParamIndex 2?
-    pszOutProperties: ?PWSTR,
-    cbOutPropertiesSize: u32,
+    pOutPropertyList: ?*anyopaque,
+    cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
 ) callconv(.winapi) u32;
@@ -11416,22 +11765,29 @@ pub extern "resutils" fn ResUtilGetProperties(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetAllProperties(
+pub extern "resutils" fn ResUtilGetPropertiesToParameterBlock(
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
+    pOutParams: ?*u8,
+    bCheckForRequiredProperties: BOOL,
+    pszNameOfPropInError: ?*?PWSTR,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetPrivateProperties(
+pub extern "resutils" fn ResUtilGetProperty(
     hkeyClusterKey: ?HKEY,
+    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 3?
+    pOutPropertyItem: ?*?*anyopaque,
+    pcbOutPropertyItemSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetPropertyFormats(
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
+    pOutPropertyFormatList: ?*anyopaque,
+    cbPropertyFormatListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
 ) callconv(.winapi) u32;
@@ -11445,22 +11801,253 @@ pub extern "resutils" fn ResUtilGetPropertySize(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetProperty(
+pub extern "resutils" fn ResUtilGetQwordValue(
     hkeyClusterKey: ?HKEY,
-    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyItem: ?*?*anyopaque,
-    pcbOutPropertyItemSize: ?*u32,
+    pszValueName: ?[*:0]const u16,
+    pqwOutValue: ?*u64,
+    qwDefaultValue: u64,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilVerifyPropertyTable(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    bAllowUnknownProperties: BOOL,
+pub extern "resutils" fn ResUtilGetResourceDependency(
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetResourceDependencyByClass(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    prci: ?*CLUS_RESOURCE_CLASS_INFO,
+    bRecurse: BOOL,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ResUtilGetResourceDependencyByClassEx(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    prci: ?*CLUS_RESOURCE_CLASS_INFO,
+    bRecurse: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetResourceDependencyByName(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+    bRecurse: BOOL,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ResUtilGetResourceDependencyByNameEx(
+    hCluster: ?*_HCLUSTER,
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+    bRecurse: BOOL,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ResUtilGetResourceDependencyEx(
+    hSelf: ?HANDLE,
+    lpszResourceType: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetResourceDependentIPAddressProps(
+    hResource: ?*_HRESOURCE,
+    pszAddress: [*:0]u16,
+    pcchAddress: ?*u32,
+    pszSubnetMask: [*:0]u16,
+    pcchSubnetMask: ?*u32,
+    pszNetwork: [*:0]u16,
+    pcchNetwork: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetResourceName(
+    hResource: ?*_HRESOURCE,
+    pszResourceName: [*:0]u16,
+    pcchResourceNameInOut: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetResourceNameDependency(
+    lpszResourceName: ?[*:0]const u16,
+    lpszResourceType: ?[*:0]const u16,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ResUtilGetResourceNameDependencyEx(
+    lpszResourceName: ?[*:0]const u16,
+    lpszResourceType: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+) callconv(.winapi) ?*_HRESOURCE;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetSzProperty(
+    ppszOutValue: ?*?PWSTR,
+    pValueStruct: ?*const CLUSPROP_SZ,
+    pszOldValue: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 4?
+    ppPropertyList: ?*?*u8,
+    pcbPropertyListSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilGetSzValue(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+) callconv(.winapi) ?PWSTR;
+
+pub extern "resutils" fn ResUtilGroupsEqual(
+    hSelf: ?*_HGROUP,
+    hGroup: ?*_HGROUP,
+    pEqual: ?*BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilIsPathValid(
+    pszPath: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilIsResourceClassEqual(
+    prci: ?*CLUS_RESOURCE_CLASS_INFO,
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn ResUtilLeftPaxosIsLessThanRight(
+    left: ?*const PaxosTagCStruct,
+    right: ?*const PaxosTagCStruct,
+) callconv(.winapi) BOOL;
+
+pub extern "resutils" fn ResUtilNodeEnum(
+    hCluster: ?*_HCLUSTER,
+    pNodeCallBack: ?LPNODE_CALLBACK,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "resutils" fn ResUtilPaxosComparer(
+    left: ?*const PaxosTagCStruct,
+    right: ?*const PaxosTagCStruct,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilPropertyListFromParameterBlock(
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    // TODO: what to do with BytesParamIndex 2?
+    pOutPropertyList: ?*anyopaque,
+    pcbOutPropertyListSize: ?*u32,
+    pInParams: ?*const u8,
+    pcbBytesReturned: ?*u32,
+    pcbRequired: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilRemoveResourceServiceEnvironment(
+    pszServiceName: ?[*:0]const u16,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+pub extern "resutils" fn ResUtilResourceDepEnum(
+    hSelf: ?*_HRESOURCE,
+    enumType: u32,
+    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+    pParameter: ?*anyopaque,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilResourcesEqual(
+    hSelf: ?*_HRESOURCE,
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilResourceTypesEqual(
+    lpszResourceTypeName: ?[*:0]const u16,
+    hResource: ?*_HRESOURCE,
+) callconv(.winapi) BOOL;
+
+pub extern "resutils" fn ResUtilsDeleteKeyTree(
+    key: ?HKEY,
+    keyName: ?[*:0]const u16,
+    treatNoKeyAsError: BOOL,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetBinaryValue(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pbNewValue: ?*const u8,
+    cbNewValueSize: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    ppbOutValue: ?*?*u8,
+    pcbOutValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetDwordValue(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    dwNewValue: u32,
+    pdwOutValue: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetExpandSzValue(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    pszNewValue: ?[*:0]const u16,
+    ppszOutString: ?*?PWSTR,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetMultiSzValue(
+    hkeyClusterKey: ?HKEY,
+    pszValueName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pszNewValue: ?[*:0]const u16,
+    cbNewValueSize: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    ppszOutValue: ?*?PWSTR,
+    pcbOutValueSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetPrivatePropertyList(
+    hkeyClusterKey: ?HKEY,
+    // TODO: what to do with BytesParamIndex 2?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetPropertyParameterBlock(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    Reserved: ?*anyopaque,
+    pInParams: ?*const u8,
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    pOutParams: ?*u8,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetPropertyParameterBlockEx(
+    hkeyClusterKey: ?HKEY,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    Reserved: ?*anyopaque,
+    pInParams: ?*const u8,
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    bForceWrite: BOOL,
     pOutParams: ?*u8,
 ) callconv(.winapi) u32;
 
@@ -11489,142 +12076,38 @@ pub extern "resutils" fn ResUtilSetPropertyTableEx(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetPropertyParameterBlock(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    pInParams: ?*const u8,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    pOutParams: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetPropertyParameterBlockEx(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    pInParams: ?*const u8,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    bForceWrite: BOOL,
-    pOutParams: ?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetUnknownProperties(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetPropertiesToParameterBlock(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    pOutParams: ?*u8,
-    bCheckForRequiredProperties: BOOL,
-    pszNameOfPropInError: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilPropertyListFromParameterBlock(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyList: ?*anyopaque,
-    pcbOutPropertyListSize: ?*u32,
-    pInParams: ?*const u8,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilDupParameterBlock(
-    pOutParams: ?*u8,
-    pInParams: ?*const u8,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFreeParameterBlock(
-    pOutParams: ?*u8,
-    pInParams: ?*const u8,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilAddUnknownProperties(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    pOutPropertyList: ?*anyopaque,
-    pcbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetPrivatePropertyList(
-    hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilVerifyPrivatePropertyList(
-    // TODO: what to do with BytesParamIndex 1?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilDupString(
-    pszInString: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetBinaryValue(
+pub extern "resutils" fn ResUtilSetQwordValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetSzValue(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetDwordValue(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pdwOutValue: ?*u32,
-    dwDefaultValue: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetQwordValue(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
+    qwNewValue: u64,
     pqwOutValue: ?*u64,
-    qwDefaultValue: u64,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetBinaryValue(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pbNewValue: ?*const u8,
-    cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
+pub extern "resutils" fn ResUtilSetResourceServiceEnvironment(
+    pszServiceName: ?[*:0]const u16,
+    hResource: ?*_HRESOURCE,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilSetResourceServiceStartParameters(
+    pszServiceName: ?[*:0]const u16,
+    schSCMHandle: SC_HANDLE,
+    phService: ?*isize,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2012'
+pub extern "resutils" fn ResUtilSetResourceServiceStartParametersEx(
+    pszServiceName: ?[*:0]const u16,
+    schSCMHandle: SC_HANDLE,
+    phService: ?*isize,
+    dwDesiredAccess: u32,
+    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+    hResourceHandle: isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11636,39 +12119,12 @@ pub extern "resutils" fn ResUtilSetSzValue(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetExpandSzValue(
+pub extern "resutils" fn ResUtilSetUnknownProperties(
     hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetMultiSzValue(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
+    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 3?
-    pszNewValue: ?[*:0]const u16,
-    cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    ppszOutValue: ?*?PWSTR,
-    pcbOutValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetDwordValue(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    dwNewValue: u32,
-    pdwOutValue: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetQwordValue(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    qwNewValue: u64,
-    pqwOutValue: ?*u64,
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -11683,309 +12139,19 @@ pub extern "resutils" fn ResUtilSetValueEx(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetBinaryProperty(
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-    pValueStruct: ?*const CLUSPROP_BINARY,
-    // TODO: what to do with BytesParamIndex 4?
-    pbOldValue: ?*const u8,
-    cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetSzProperty(
-    ppszOutValue: ?*?PWSTR,
-    pValueStruct: ?*const CLUSPROP_SZ,
-    pszOldValue: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetMultiSzProperty(
-    ppszOutValue: ?*?PWSTR,
-    pcbOutValueSize: ?*u32,
-    pValueStruct: ?*const CLUSPROP_SZ,
-    // TODO: what to do with BytesParamIndex 4?
-    pszOldValue: ?[*:0]const u16,
-    cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetDwordProperty(
-    pdwOutValue: ?*u32,
-    pValueStruct: ?*const CLUSPROP_DWORD,
-    dwOldValue: u32,
-    dwMinimum: u32,
-    dwMaximum: u32,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetLongProperty(
-    plOutValue: ?*i32,
-    pValueStruct: ?*const CLUSPROP_LONG,
-    lOldValue: i32,
-    lMinimum: i32,
-    lMaximum: i32,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetFileTimeProperty(
-    pftOutValue: ?*FILETIME,
-    pValueStruct: ?*const CLUSPROP_FILETIME,
-    ftOldValue: FILETIME,
-    ftMinimum: FILETIME,
-    ftMaximum: FILETIME,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetEnvironmentWithNetName(
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) ?*anyopaque;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFreeEnvironment(
-    lpEnvironment: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilExpandEnvironmentStrings(
-    pszSrc: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetResourceServiceEnvironment(
+pub extern "resutils" fn ResUtilStartResourceService(
     pszServiceName: ?[*:0]const u16,
-    hResource: ?*_HRESOURCE,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
+    phServiceHandle: ?*isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilRemoveResourceServiceEnvironment(
+pub extern "resutils" fn ResUtilStopResourceService(
     pszServiceName: ?[*:0]const u16,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilSetResourceServiceStartParameters(
-    pszServiceName: ?[*:0]const u16,
-    schSCMHandle: SC_HANDLE,
-    phService: ?*isize,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindExpandSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindExpandedSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindDwordProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pdwPropertyValue: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindBinaryProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    pbPropertyValue: ?*?*u8,
-    pcbPropertyValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindMultiSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    pszPropertyValue: ?*?PWSTR,
-    pcbPropertyValueSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindLongProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    plPropertyValue: ?*i32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ResUtilFindULargeIntegerProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    plPropertyValue: ?*u64,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindFileTimeProperty(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pftPropertyValue: ?*FILETIME,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ClusWorkerCreate(
-    lpWorker: ?*CLUS_WORKER,
-    lpStartAddress: ?PWORKER_START_ROUTINE,
-    lpParameter: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ClusWorkerCheckTerminate(
-    lpWorker: ?*CLUS_WORKER,
-) callconv(.winapi) BOOL;
-
-pub extern "resutils" fn ClusWorkerTerminate(
-    lpWorker: ?*CLUS_WORKER,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ClusWorkerTerminateEx(
-    ClusWorker: ?*CLUS_WORKER,
-    TimeoutInMilliseconds: u32,
-    WaitOnly: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ClusWorkersTerminate(
-    ClusWorkers: [*]?*CLUS_WORKER,
-    ClusWorkersCount: usize,
-    TimeoutInMilliseconds: u32,
-    WaitOnly: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilResourcesEqual(
-    hSelf: ?*_HRESOURCE,
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilResourceTypesEqual(
-    lpszResourceTypeName: ?[*:0]const u16,
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilIsResourceClassEqual(
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    hResource: ?*_HRESOURCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilEnumResources(
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilEnumResourcesEx(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetResourceDependency(
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetResourceDependencyByName(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    bRecurse: BOOL,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetResourceDependencyByClass(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    bRecurse: BOOL,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetResourceNameDependency(
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetResourceDependentIPAddressProps(
-    hResource: ?*_HRESOURCE,
-    pszAddress: [*:0]u16,
-    pcchAddress: ?*u32,
-    pszSubnetMask: [*:0]u16,
-    pcchSubnetMask: ?*u32,
-    pszNetwork: [*:0]u16,
-    pcchNetwork: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilFindDependentDiskResourceDriveLetter(
-    hCluster: ?*_HCLUSTER,
-    hResource: ?*_HRESOURCE,
-    pszDriveLetter: [*:0]u16,
-    pcchDriveLetter: ?*u32,
+pub extern "resutils" fn ResUtilStopService(
+    hServiceHandle: SC_HANDLE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11998,171 +12164,31 @@ pub extern "resutils" fn ResUtilTerminateServiceProcessFromResDll(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetPropertyFormats(
+pub extern "resutils" fn ResUtilVerifyPrivatePropertyList(
+    // TODO: what to do with BytesParamIndex 1?
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilVerifyPropertyTable(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyFormatList: ?*anyopaque,
-    cbPropertyFormatListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
+    Reserved: ?*anyopaque,
+    bAllowUnknownProperties: BOOL,
+    // TODO: what to do with BytesParamIndex 4?
+    pInPropertyList: ?*const anyopaque,
+    cbInPropertyListSize: u32,
+    pOutParams: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetCoreClusterResources(
-    hCluster: ?*_HCLUSTER,
-    phClusterNameResource: ?*?*_HRESOURCE,
-    phClusterIPAddressResource: ?*?*_HRESOURCE,
-    phClusterQuorumResource: ?*?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetResourceName(
-    hResource: ?*_HRESOURCE,
-    pszResourceName: [*:0]u16,
-    pcchResourceNameInOut: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ResUtilGetClusterRoleState(
-    hCluster: ?*_HCLUSTER,
-    eClusterRole: CLUSTER_ROLE,
-) callconv(.winapi) CLUSTER_ROLE_STATE;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ClusterIsPathOnSharedVolume(
-    lpszPathName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ClusterGetVolumePathName(
-    lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
-    cchBufferLength: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ClusterGetVolumeNameForVolumeMountPoint(
-    lpszVolumeMountPoint: ?[*:0]const u16,
-    lpszVolumeName: ?PWSTR,
-    cchBufferLength: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ClusterPrepareSharedVolumeForBackup(
-    lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
-    lpcchVolumePathName: ?*u32,
-    lpszVolumeName: ?PWSTR,
-    lpcchVolumeName: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2008'
-pub extern "resutils" fn ClusterClearBackupStateForSharedVolume(
-    lpszVolumePathName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ResUtilSetResourceServiceStartParametersEx(
+pub extern "resutils" fn ResUtilVerifyResourceService(
     pszServiceName: ?[*:0]const u16,
-    schSCMHandle: SC_HANDLE,
-    phService: ?*isize,
-    dwDesiredAccess: u32,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ResUtilEnumResourcesEx2(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-    dwDesiredAccess: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ResUtilGetResourceDependencyEx(
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ResUtilGetResourceDependencyByNameEx(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    bRecurse: BOOL,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ResUtilGetResourceDependencyByClassEx(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    bRecurse: BOOL,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ResUtilGetResourceNameDependencyEx(
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-) callconv(.winapi) ?*_HRESOURCE;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ResUtilGetCoreClusterResourcesEx(
-    hClusterIn: ?*_HCLUSTER,
-    phClusterNameResourceOut: ?*?*_HRESOURCE,
-    phClusterQuorumResourceOut: ?*?*_HRESOURCE,
-    dwDesiredAccess: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn OpenClusterCryptProvider(
-    lpszResource: ?[*:0]const u16,
-    lpszProvider: ?*i8,
-    dwType: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
-
-pub extern "resutils" fn OpenClusterCryptProviderEx(
-    lpszResource: ?[*:0]const u16,
-    lpszKeyname: ?[*:0]const u16,
-    lpszProvider: ?*i8,
-    dwType: u32,
-    dwFlags: u32,
-) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn CloseClusterCryptProvider(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ClusterEncrypt(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-    pData: [*:0]u8,
-    cbData: u32,
-    ppData: ?*?*u8,
-    pcbData: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn ClusterDecrypt(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-    pCryptInput: ?*u8,
-    cbCryptInput: u32,
-    ppCryptOutput: ?*?*u8,
-    pcbCryptOutput: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "resutils" fn FreeClusterCrypt(
-    pCryptInfo: ?*anyopaque,
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "resutils" fn ResUtilVerifyService(
+    hServiceHandle: SC_HANDLE,
 ) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilVerifyShutdownSafe(
@@ -12172,109 +12198,83 @@ pub extern "resutils" fn ResUtilVerifyShutdownSafe(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ResUtilPaxosComparer(
-    left: ?*const PaxosTagCStruct,
-    right: ?*const PaxosTagCStruct,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windowsServer2016'
-pub extern "resutils" fn ResUtilLeftPaxosIsLessThanRight(
-    left: ?*const PaxosTagCStruct,
-    right: ?*const PaxosTagCStruct,
-) callconv(.winapi) BOOL;
-
-pub extern "resutils" fn ResUtilsDeleteKeyTree(
-    key: ?HKEY,
-    keyName: ?[*:0]const u16,
-    treatNoKeyAsError: BOOL,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilGroupsEqual(
-    hSelf: ?*_HGROUP,
-    hGroup: ?*_HGROUP,
-    pEqual: ?*BOOL,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilEnumGroups(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HGROUP,
-    pResCallBack: ?LPGROUP_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilEnumGroupsEx(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HGROUP,
-    groupType: CLUSGROUP_TYPE,
-    pResCallBack: ?LPGROUP_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilDupGroup(
-    group: ?*_HGROUP,
-    copy: ?*?*_HGROUP,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilGetClusterGroupType(
-    hGroup: ?*_HGROUP,
-    groupType: ?*CLUSGROUP_TYPE,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilGetCoreGroup(
-    hCluster: ?*_HCLUSTER,
-) callconv(.winapi) ?*_HGROUP;
-
-pub extern "resutils" fn ResUtilResourceDepEnum(
-    hSelf: ?*_HRESOURCE,
-    enumType: u32,
-    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilDupResource(
-    group: ?*_HRESOURCE,
-    copy: ?*?*_HRESOURCE,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilGetClusterId(
-    hCluster: ?*_HCLUSTER,
-    guid: ?*Guid,
-) callconv(.winapi) u32;
-
-pub extern "resutils" fn ResUtilNodeEnum(
-    hCluster: ?*_HCLUSTER,
-    pNodeCallBack: ?LPNODE_CALLBACK,
-    pParameter: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2012'
-pub extern "ntlanman" fn RegisterAppInstance(
-    ProcessHandle: ?HANDLE,
-    AppInstanceId: ?*Guid,
-    ChildrenInheritAppInstance: BOOL,
-) callconv(.winapi) u32;
-
-pub extern "ntlanman" fn RegisterAppInstanceVersion(
-    AppInstanceId: ?*Guid,
-    InstanceVersionHigh: u64,
-    InstanceVersionLow: u64,
-) callconv(.winapi) u32;
-
-pub extern "ntlanman" fn QueryAppInstanceVersion(
-    AppInstanceId: ?*Guid,
-    InstanceVersionHigh: ?*u64,
-    InstanceVersionLow: ?*u64,
-    VersionStatus: ?*NTSTATUS,
-) callconv(.winapi) u32;
-
-pub extern "ntlanman" fn ResetAllAppInstanceVersions(
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windowsServer2016'
 pub extern "ntlanman" fn SetAppInstanceCsvFlags(
     ProcessHandle: ?HANDLE,
     Mask: u32,
     Flags: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn SetClusterGroupName(
+    hGroup: ?*_HGROUP,
+    lpszGroupName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn SetClusterGroupNodeList(
+    hGroup: ?*_HGROUP,
+    NodeCount: u32,
+    NodeList: ?[*]?*_HNODE,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn SetClusterGroupSetDependencyExpression(
+    hGroupSet: ?*_HGROUPSET,
+    lpszDependencyExprssion: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn SetClusterName(
+    hCluster: ?*_HCLUSTER,
+    lpszNewClusterName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn SetClusterNetworkName(
+    hNetwork: ?*_HNETWORK,
+    lpszName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "clusapi" fn SetClusterNetworkPriorityOrder(
+    hCluster: ?*_HCLUSTER,
+    NetworkCount: u32,
+    NetworkList: [*]?*_HNETWORK,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn SetClusterQuorumResource(
+    hResource: ?*_HRESOURCE,
+    lpszDeviceName: ?[*:0]const u16,
+    dwMaxQuoLogSize: u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn SetClusterResourceDependencyExpression(
+    hResource: ?*_HRESOURCE,
+    lpszDependencyExpression: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2008'
+pub extern "clusapi" fn SetClusterResourceName(
+    hResource: ?*_HRESOURCE,
+    lpszResourceName: ?[*:0]const u16,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2003'
+pub extern "clusapi" fn SetClusterServiceAccountPassword(
+    lpszClusterName: ?[*:0]const u16,
+    lpszNewPassword: ?[*:0]const u16,
+    dwFlags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
+    lpcbReturnStatusBufferSize: ?*u32,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windowsServer2016'
+pub extern "clusapi" fn SetGroupDependencyExpression(
+    hGroup: ?*_HGROUP,
+    lpszDependencyExpression: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
 
@@ -12309,354 +12309,354 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PCLUSAPI_GET_NODE_CLUSTER_STATE")) { _ = PCLUSAPI_GET_NODE_CLUSTER_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER")) { _ = PCLUSAPI_OPEN_CLUSTER; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER")) { _ = PCLUSAPI_CLOSE_CLUSTER; }
-    if (@hasDecl(@This(), "PCLUSAPI_SetClusterName")) { _ = PCLUSAPI_SetClusterName; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_INFORMATION")) { _ = PCLUSAPI_GET_CLUSTER_INFORMATION; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE")) { _ = PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE")) { _ = PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_BACKUP_CLUSTER_DATABASE")) { _ = PCLUSAPI_BACKUP_CLUSTER_DATABASE; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESTORE_CLUSTER_DATABASE")) { _ = PCLUSAPI_RESTORE_CLUSTER_DATABASE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER")) { _ = PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD")) { _ = PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CONTROL")) { _ = PCLUSAPI_CLUSTER_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSTER_UPGRADE_PROGRESS_CALLBACK")) { _ = PCLUSTER_UPGRADE_PROGRESS_CALLBACK; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_UPGRADE")) { _ = PCLUSAPI_CLUSTER_UPGRADE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2")) { _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2")) { _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2")) { _ = PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY_V2")) { _ = PCLUSAPI_GET_CLUSTER_NOTIFY_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT")) { _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY")) { _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY")) { _ = PCLUSAPI_GET_CLUSTER_NOTIFY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT")) { _ = PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM")) { _ = PCLUSAPI_CLUSTER_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET")) { _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET")) { _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL")) { _ = PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL; }
+    if (@hasDecl(@This(), "LPGROUP_CALLBACK_EX")) { _ = LPGROUP_CALLBACK_EX; }
+    if (@hasDecl(@This(), "LPNODE_CALLBACK")) { _ = LPNODE_CALLBACK; }
+    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK")) { _ = LPRESOURCE_CALLBACK; }
+    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK_EX")) { _ = LPRESOURCE_CALLBACK_EX; }
+    if (@hasDecl(@This(), "PARBITRATE_ROUTINE")) { _ = PARBITRATE_ROUTINE; }
+    if (@hasDecl(@This(), "PBEGIN_RESCALL_AS_USER_ROUTINE")) { _ = PBEGIN_RESCALL_AS_USER_ROUTINE; }
+    if (@hasDecl(@This(), "PBEGIN_RESCALL_ROUTINE")) { _ = PBEGIN_RESCALL_ROUTINE; }
+    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_AS_USER_ROUTINE")) { _ = PBEGIN_RESTYPECALL_AS_USER_ROUTINE; }
+    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_ROUTINE")) { _ = PBEGIN_RESTYPECALL_ROUTINE; }
+    if (@hasDecl(@This(), "PCANCEL_ROUTINE")) { _ = PCANCEL_ROUTINE; }
+    if (@hasDecl(@This(), "PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS")) { _ = PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS; }
+    if (@hasDecl(@This(), "PCHANGE_RESOURCE_PROCESS_FOR_DUMPS")) { _ = PCHANGE_RESOURCE_PROCESS_FOR_DUMPS; }
+    if (@hasDecl(@This(), "PCLOSE_CLUSTER_CRYPT_PROVIDER")) { _ = PCLOSE_CLUSTER_CRYPT_PROVIDER; }
+    if (@hasDecl(@This(), "PCLOSE_ROUTINE")) { _ = PCLOSE_ROUTINE; }
     if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY; }
     if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY; }
     if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET")) { _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET")) { _ = PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL")) { _ = PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE")) { _ = PCLUSAPI_OPEN_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_NODE_BY_ID")) { _ = PCLUSAPI_OPEN_NODE_BY_ID; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NODE")) { _ = PCLUSAPI_CLOSE_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NODE_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_ID")) { _ = PCLUSAPI_GET_CLUSTER_NODE_ID; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NODE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE")) { _ = PCLUSAPI_PAUSE_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE")) { _ = PCLUSAPI_RESUME_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE")) { _ = PCLUSAPI_EVICT_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE_EX")) { _ = PCLUSAPI_EVICT_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE_EX")) { _ = PCLUSAPI_PAUSE_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE_EX")) { _ = PCLUSAPI_RESUME_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUPEX")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUPEX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESTART_CLUSTER_RESOURCE")) { _ = PCLUSAPI_RESTART_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP")) { _ = PCLUSAPI_CLOSE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP")) { _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_STATE")) { _ = PCLUSAPI_GET_CLUSTER_GROUP_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NAME")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST; }
-    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_GROUP")) { _ = PCLUSAPI_ONLINE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_MOVE_CLUSTER_GROUP")) { _ = PCLUSAPI_MOVE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_GROUP")) { _ = PCLUSAPI_OFFLINE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP")) { _ = PCLUSAPI_DELETE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_DESTROY_CLUSTER_GROUP")) { _ = PCLUSAPI_DESTROY_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE")) { _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_CLOSE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_RESOURCE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_NAME")) { _ = PCLUSAPI_SET_CLUSTER_RESOURCE_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_FAIL_CLUSTER_RESOURCE")) { _ = PCLUSAPI_FAIL_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_ONLINE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_OFFLINE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP")) { _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX")) { _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE")) { _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE")) { _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES")) { _ = PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES")) { _ = PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES; }
-    if (@hasDecl(@This(), "PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME")) { _ = PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME; }
-    if (@hasDecl(@This(), "PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE")) { _ = PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT")) { _ = PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CONTROL")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CONTROL")) { _ = PCLUSAPI_CLUSTER_GROUP_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CONTROL")) { _ = PCLUSAPI_CLUSTER_NODE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE")) { _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE")) { _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK")) { _ = PCLUSAPI_OPEN_CLUSTER_NETWORK; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NETWORK_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NETWORK")) { _ = PCLUSAPI_CLOSE_CLUSTER_NETWORK; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NETWORK")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NETWORK; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_NAME")) { _ = PCLUSAPI_SET_CLUSTER_NETWORK_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_ID")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_ID; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CONTROL")) { _ = PCLUSAPI_CLUSTER_NETWORK_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL")) { _ = PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_KEY")) { _ = PCLUSAPI_GET_CLUSTER_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_KEY")) { _ = PCLUSAPI_GET_CLUSTER_GROUP_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NODE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_CREATE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_OPEN_KEY")) { _ = PCLUSAPI_CLUSTER_REG_OPEN_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_DELETE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CLOSE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_CLOSE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_KEY")) { _ = PCLUSAPI_CLUSTER_REG_ENUM_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_SET_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_DELETE_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_QUERY_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_ENUM_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY")) { _ = PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY")) { _ = PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY")) { _ = PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SYNC_DATABASE")) { _ = PCLUSAPI_CLUSTER_REG_SYNC_DATABASE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_BATCH")) { _ = PCLUSAPI_CLUSTER_REG_CREATE_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_ADD_COMMAND")) { _ = PCLUSTER_REG_BATCH_ADD_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH")) { _ = PCLUSTER_REG_CLOSE_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_READ_COMMAND")) { _ = PCLUSTER_REG_BATCH_READ_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION")) { _ = PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT")) { _ = PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT")) { _ = PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_GET_BATCH_NOTIFICATION")) { _ = PCLUSTER_REG_GET_BATCH_NOTIFICATION; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_READ_BATCH")) { _ = PCLUSTER_REG_CREATE_READ_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_ADD_COMMAND")) { _ = PCLUSTER_REG_READ_BATCH_ADD_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_EX")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH_EX; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND")) { _ = PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_REPLY")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH_REPLY; }
-    if (@hasDecl(@This(), "PCLUSTER_SET_ACCOUNT_ACCESS")) { _ = PCLUSTER_SET_ACCOUNT_ACCESS; }
-    if (@hasDecl(@This(), "PCLUSTER_SETUP_PROGRESS_CALLBACK")) { _ = PCLUSTER_SETUP_PROGRESS_CALLBACK; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER")) { _ = PCLUSAPI_CREATE_CLUSTER; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_CNOLESS")) { _ = PCLUSAPI_CREATE_CLUSTER_CNOLESS; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT")) { _ = PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT")) { _ = PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT; }
     if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_NODE")) { _ = PCLUSAPI_ADD_CLUSTER_NODE; }
     if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_NODE_EX")) { _ = PCLUSAPI_ADD_CLUSTER_NODE_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY; }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE")) { _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY; }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES")) { _ = PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES; }
+    if (@hasDecl(@This(), "PCLUSAPI_BACKUP_CLUSTER_DATABASE")) { _ = PCLUSAPI_BACKUP_CLUSTER_DATABASE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT")) { _ = PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP")) { _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX")) { _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER")) { _ = PCLUSAPI_CLOSE_CLUSTER; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP")) { _ = PCLUSAPI_CLOSE_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NETWORK")) { _ = PCLUSAPI_CLOSE_CLUSTER_NETWORK; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NODE")) { _ = PCLUSAPI_CLOSE_CLUSTER_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT")) { _ = PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_CLOSE_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_CREATE")) { _ = PCLUSAPI_CLUS_WORKER_CREATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_TERMINATE")) { _ = PCLUSAPI_CLUS_WORKER_TERMINATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET")) { _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL")) { _ = PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_CLOSE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_CLOSE_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CONTROL")) { _ = PCLUSAPI_CLUSTER_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM")) { _ = PCLUSAPI_CLUSTER_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CONTROL")) { _ = PCLUSAPI_CLUSTER_GROUP_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL")) { _ = PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL")) { _ = PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CONTROL")) { _ = PCLUSAPI_CLUSTER_NETWORK_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CONTROL")) { _ = PCLUSAPI_CLUSTER_NODE_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_OPEN_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_OPEN_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CLOSE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_CLOSE_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_BATCH")) { _ = PCLUSAPI_CLUSTER_REG_CREATE_BATCH; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_CREATE_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_DELETE_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_DELETE_VALUE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_KEY")) { _ = PCLUSAPI_CLUSTER_REG_ENUM_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_ENUM_VALUE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY")) { _ = PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_OPEN_KEY")) { _ = PCLUSAPI_CLUSTER_REG_OPEN_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY")) { _ = PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_QUERY_VALUE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY")) { _ = PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_SET_VALUE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SYNC_DATABASE")) { _ = PCLUSAPI_CLUSTER_REG_SYNC_DATABASE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET")) { _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CONTROL")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM; }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_UPGRADE")) { _ = PCLUSAPI_CLUSTER_UPGRADE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER")) { _ = PCLUSAPI_CREATE_CLUSTER; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET")) { _ = PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_CNOLESS")) { _ = PCLUSAPI_CREATE_CLUSTER_CNOLESS; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUPEX")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUPEX; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT")) { _ = PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT")) { _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2")) { _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE")) { _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE; }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP")) { _ = PCLUSAPI_DELETE_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET; }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE")) { _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE; }
     if (@hasDecl(@This(), "PCLUSAPI_DESTROY_CLUSTER")) { _ = PCLUSAPI_DESTROY_CLUSTER; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE_EX")) { _ = PSET_RESOURCE_STATUS_ROUTINE_EX; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE")) { _ = PSET_RESOURCE_STATUS_ROUTINE; }
-    if (@hasDecl(@This(), "PQUORUM_RESOURCE_LOST")) { _ = PQUORUM_RESOURCE_LOST; }
-    if (@hasDecl(@This(), "PLOG_EVENT_ROUTINE")) { _ = PLOG_EVENT_ROUTINE; }
-    if (@hasDecl(@This(), "POPEN_ROUTINE")) { _ = POPEN_ROUTINE; }
-    if (@hasDecl(@This(), "PCLOSE_ROUTINE")) { _ = PCLOSE_ROUTINE; }
-    if (@hasDecl(@This(), "PONLINE_ROUTINE")) { _ = PONLINE_ROUTINE; }
-    if (@hasDecl(@This(), "POFFLINE_ROUTINE")) { _ = POFFLINE_ROUTINE; }
-    if (@hasDecl(@This(), "PTERMINATE_ROUTINE")) { _ = PTERMINATE_ROUTINE; }
-    if (@hasDecl(@This(), "PIS_ALIVE_ROUTINE")) { _ = PIS_ALIVE_ROUTINE; }
-    if (@hasDecl(@This(), "PLOOKS_ALIVE_ROUTINE")) { _ = PLOOKS_ALIVE_ROUTINE; }
-    if (@hasDecl(@This(), "PARBITRATE_ROUTINE")) { _ = PARBITRATE_ROUTINE; }
-    if (@hasDecl(@This(), "PRELEASE_ROUTINE")) { _ = PRELEASE_ROUTINE; }
-    if (@hasDecl(@This(), "PRESOURCE_CONTROL_ROUTINE")) { _ = PRESOURCE_CONTROL_ROUTINE; }
-    if (@hasDecl(@This(), "PRESOURCE_TYPE_CONTROL_ROUTINE")) { _ = PRESOURCE_TYPE_CONTROL_ROUTINE; }
-    if (@hasDecl(@This(), "POPEN_V2_ROUTINE")) { _ = POPEN_V2_ROUTINE; }
-    if (@hasDecl(@This(), "PONLINE_V2_ROUTINE")) { _ = PONLINE_V2_ROUTINE; }
-    if (@hasDecl(@This(), "POFFLINE_V2_ROUTINE")) { _ = POFFLINE_V2_ROUTINE; }
-    if (@hasDecl(@This(), "PCANCEL_ROUTINE")) { _ = PCANCEL_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESCALL_ROUTINE")) { _ = PBEGIN_RESCALL_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_ROUTINE")) { _ = PBEGIN_RESTYPECALL_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESCALL_AS_USER_ROUTINE")) { _ = PBEGIN_RESCALL_AS_USER_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_AS_USER_ROUTINE")) { _ = PBEGIN_RESTYPECALL_AS_USER_ROUTINE; }
-    if (@hasDecl(@This(), "PSTARTUP_ROUTINE")) { _ = PSTARTUP_ROUTINE; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_ROUTINE")) { _ = PSET_RESOURCE_LOCKED_MODE_ROUTINE; }
-    if (@hasDecl(@This(), "PSIGNAL_FAILURE_ROUTINE")) { _ = PSIGNAL_FAILURE_ROUTINE; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE")) { _ = PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE; }
+    if (@hasDecl(@This(), "PCLUSAPI_DESTROY_CLUSTER_GROUP")) { _ = PCLUSAPI_DESTROY_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE")) { _ = PCLUSAPI_EVICT_CLUSTER_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE_EX")) { _ = PCLUSAPI_EVICT_CLUSTER_NODE_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_FAIL_CLUSTER_RESOURCE")) { _ = PCLUSAPI_FAIL_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP")) { _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET")) { _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NETWORK")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NETWORK; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NODE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_RESOURCE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_KEY")) { _ = PCLUSAPI_GET_CLUSTER_GROUP_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_STATE")) { _ = PCLUSAPI_GET_CLUSTER_GROUP_STATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_INFORMATION")) { _ = PCLUSAPI_GET_CLUSTER_INFORMATION; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_KEY")) { _ = PCLUSAPI_GET_CLUSTER_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_ID")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_ID; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_STATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_ID")) { _ = PCLUSAPI_GET_CLUSTER_NODE_ID; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NODE_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NODE_STATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY")) { _ = PCLUSAPI_GET_CLUSTER_NOTIFY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY_V2")) { _ = PCLUSAPI_GET_CLUSTER_NOTIFY_V2; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE")) { _ = PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_STATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_NODE_CLUSTER_STATE")) { _ = PCLUSAPI_GET_NODE_CLUSTER_STATE; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2")) { _ = PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2; }
+    if (@hasDecl(@This(), "PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME")) { _ = PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME; }
+    if (@hasDecl(@This(), "PCLUSAPI_MOVE_CLUSTER_GROUP")) { _ = PCLUSAPI_MOVE_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_GROUP")) { _ = PCLUSAPI_OFFLINE_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_OFFLINE_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_GROUP")) { _ = PCLUSAPI_ONLINE_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_ONLINE_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER")) { _ = PCLUSAPI_OPEN_CLUSTER; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK")) { _ = PCLUSAPI_OPEN_CLUSTER_NETWORK; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NETWORK_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE")) { _ = PCLUSAPI_OPEN_CLUSTER_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NODE_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE")) { _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_NODE_BY_ID")) { _ = PCLUSAPI_OPEN_NODE_BY_ID; }
+    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE")) { _ = PCLUSAPI_PAUSE_CLUSTER_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE_EX")) { _ = PCLUSAPI_PAUSE_CLUSTER_NODE_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY")) { _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY; }
+    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2")) { _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT")) { _ = PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE")) { _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY; }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES")) { _ = PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES; }
+    if (@hasDecl(@This(), "PCLUSAPI_RESTART_CLUSTER_RESOURCE")) { _ = PCLUSAPI_RESTART_CLUSTER_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_RESTORE_CLUSTER_DATABASE")) { _ = PCLUSAPI_RESTORE_CLUSTER_DATABASE; }
+    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE")) { _ = PCLUSAPI_RESUME_CLUSTER_NODE; }
+    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE_EX")) { _ = PCLUSAPI_RESUME_CLUSTER_NODE_EX; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NAME")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_NAME; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_NAME")) { _ = PCLUSAPI_SET_CLUSTER_NETWORK_NAME; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER")) { _ = PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE")) { _ = PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_NAME")) { _ = PCLUSAPI_SET_CLUSTER_RESOURCE_NAME; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD")) { _ = PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD; }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION; }
+    if (@hasDecl(@This(), "PCLUSAPI_SetClusterName")) { _ = PCLUSAPI_SetClusterName; }
+    if (@hasDecl(@This(), "PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE")) { _ = PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE; }
+    if (@hasDecl(@This(), "PCLUSAPIClusWorkerCheckTerminate")) { _ = PCLUSAPIClusWorkerCheckTerminate; }
+    if (@hasDecl(@This(), "PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME")) { _ = PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME; }
+    if (@hasDecl(@This(), "PCLUSTER_DECRYPT")) { _ = PCLUSTER_DECRYPT; }
+    if (@hasDecl(@This(), "PCLUSTER_ENCRYPT")) { _ = PCLUSTER_ENCRYPT; }
+    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT")) { _ = PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT; }
+    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_PATH_NAME")) { _ = PCLUSTER_GET_VOLUME_PATH_NAME; }
+    if (@hasDecl(@This(), "PCLUSTER_IS_PATH_ON_SHARED_VOLUME")) { _ = PCLUSTER_IS_PATH_ON_SHARED_VOLUME; }
+    if (@hasDecl(@This(), "PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP")) { _ = PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_ADD_COMMAND")) { _ = PCLUSTER_REG_BATCH_ADD_COMMAND; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION")) { _ = PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_READ_COMMAND")) { _ = PCLUSTER_REG_BATCH_READ_COMMAND; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH")) { _ = PCLUSTER_REG_CLOSE_BATCH; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT")) { _ = PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_EX")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH_EX; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_REPLY")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH_REPLY; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT")) { _ = PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_READ_BATCH")) { _ = PCLUSTER_REG_CREATE_READ_BATCH; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_GET_BATCH_NOTIFICATION")) { _ = PCLUSTER_REG_GET_BATCH_NOTIFICATION; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_ADD_COMMAND")) { _ = PCLUSTER_REG_READ_BATCH_ADD_COMMAND; }
+    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND")) { _ = PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND; }
+    if (@hasDecl(@This(), "PCLUSTER_SET_ACCOUNT_ACCESS")) { _ = PCLUSTER_SET_ACCOUNT_ACCESS; }
+    if (@hasDecl(@This(), "PCLUSTER_SETUP_PROGRESS_CALLBACK")) { _ = PCLUSTER_SETUP_PROGRESS_CALLBACK; }
+    if (@hasDecl(@This(), "PCLUSTER_UPGRADE_PROGRESS_CALLBACK")) { _ = PCLUSTER_UPGRADE_PROGRESS_CALLBACK; }
     if (@hasDecl(@This(), "PEND_CONTROL_CALL")) { _ = PEND_CONTROL_CALL; }
     if (@hasDecl(@This(), "PEND_TYPE_CONTROL_CALL")) { _ = PEND_TYPE_CONTROL_CALL; }
     if (@hasDecl(@This(), "PEXTEND_RES_CONTROL_CALL")) { _ = PEXTEND_RES_CONTROL_CALL; }
     if (@hasDecl(@This(), "PEXTEND_RES_TYPE_CONTROL_CALL")) { _ = PEXTEND_RES_TYPE_CONTROL_CALL; }
-    if (@hasDecl(@This(), "PRAISE_RES_TYPE_NOTIFICATION")) { _ = PRAISE_RES_TYPE_NOTIFICATION; }
-    if (@hasDecl(@This(), "PCHANGE_RESOURCE_PROCESS_FOR_DUMPS")) { _ = PCHANGE_RESOURCE_PROCESS_FOR_DUMPS; }
-    if (@hasDecl(@This(), "PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS")) { _ = PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS; }
-    if (@hasDecl(@This(), "PSET_INTERNAL_STATE")) { _ = PSET_INTERNAL_STATE; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE")) { _ = PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE; }
-    if (@hasDecl(@This(), "PREQUEST_DUMP_ROUTINE")) { _ = PREQUEST_DUMP_ROUTINE; }
-    if (@hasDecl(@This(), "PSTARTUP_EX_ROUTINE")) { _ = PSTARTUP_EX_ROUTINE; }
-    if (@hasDecl(@This(), "PRESUTIL_START_RESOURCE_SERVICE")) { _ = PRESUTIL_START_RESOURCE_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_RESOURCE_SERVICE")) { _ = PRESUTIL_VERIFY_RESOURCE_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_STOP_RESOURCE_SERVICE")) { _ = PRESUTIL_STOP_RESOURCE_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_SERVICE")) { _ = PRESUTIL_VERIFY_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_STOP_SERVICE")) { _ = PRESUTIL_STOP_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_CREATE_DIRECTORY_TREE")) { _ = PRESUTIL_CREATE_DIRECTORY_TREE; }
-    if (@hasDecl(@This(), "PRESUTIL_IS_PATH_VALID")) { _ = PRESUTIL_IS_PATH_VALID; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_PROPERTIES")) { _ = PRESUTIL_ENUM_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_PRIVATE_PROPERTIES")) { _ = PRESUTIL_ENUM_PRIVATE_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES")) { _ = PRESUTIL_GET_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_ALL_PROPERTIES")) { _ = PRESUTIL_GET_ALL_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PRIVATE_PROPERTIES")) { _ = PRESUTIL_GET_PRIVATE_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_SIZE")) { _ = PRESUTIL_GET_PROPERTY_SIZE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY")) { _ = PRESUTIL_GET_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PROPERTY_TABLE")) { _ = PRESUTIL_VERIFY_PROPERTY_TABLE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE")) { _ = PRESUTIL_SET_PROPERTY_TABLE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE_EX")) { _ = PRESUTIL_SET_PROPERTY_TABLE_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK")) { _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX")) { _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_UNKNOWN_PROPERTIES")) { _ = PRESUTIL_SET_UNKNOWN_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK")) { _ = PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK")) { _ = PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_DUP_PARAMETER_BLOCK")) { _ = PRESUTIL_DUP_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_FREE_PARAMETER_BLOCK")) { _ = PRESUTIL_FREE_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_ADD_UNKNOWN_PROPERTIES")) { _ = PRESUTIL_ADD_UNKNOWN_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PRIVATE_PROPERTY_LIST")) { _ = PRESUTIL_SET_PRIVATE_PROPERTY_LIST; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST")) { _ = PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST; }
-    if (@hasDecl(@This(), "PRESUTIL_DUP_STRING")) { _ = PRESUTIL_DUP_STRING; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_VALUE")) { _ = PRESUTIL_GET_BINARY_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_VALUE")) { _ = PRESUTIL_GET_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_EXPAND_SZ_VALUE")) { _ = PRESUTIL_GET_EXPAND_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_VALUE")) { _ = PRESUTIL_GET_DWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_QWORD_VALUE")) { _ = PRESUTIL_GET_QWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_BINARY_VALUE")) { _ = PRESUTIL_SET_BINARY_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_SZ_VALUE")) { _ = PRESUTIL_SET_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_EXPAND_SZ_VALUE")) { _ = PRESUTIL_SET_EXPAND_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_MULTI_SZ_VALUE")) { _ = PRESUTIL_SET_MULTI_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_DWORD_VALUE")) { _ = PRESUTIL_SET_DWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_QWORD_VALUE")) { _ = PRESUTIL_SET_QWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_PROPERTY")) { _ = PRESUTIL_GET_BINARY_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_PROPERTY")) { _ = PRESUTIL_GET_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_MULTI_SZ_PROPERTY")) { _ = PRESUTIL_GET_MULTI_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_PROPERTY")) { _ = PRESUTIL_GET_DWORD_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_LONG_PROPERTY")) { _ = PRESUTIL_GET_LONG_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_FILETIME_PROPERTY")) { _ = PRESUTIL_GET_FILETIME_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME")) { _ = PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME; }
-    if (@hasDecl(@This(), "PRESUTIL_FREE_ENVIRONMENT")) { _ = PRESUTIL_FREE_ENVIRONMENT; }
-    if (@hasDecl(@This(), "PRESUTIL_EXPAND_ENVIRONMENT_STRINGS")) { _ = PRESUTIL_EXPAND_ENVIRONMENT_STRINGS; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT; }
-    if (@hasDecl(@This(), "PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT")) { _ = PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_SZ_PROPERTY")) { _ = PRESUTIL_FIND_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPAND_SZ_PROPERTY")) { _ = PRESUTIL_FIND_EXPAND_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPANDED_SZ_PROPERTY")) { _ = PRESUTIL_FIND_EXPANDED_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_DWORD_PROPERTY")) { _ = PRESUTIL_FIND_DWORD_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_BINARY_PROPERTY")) { _ = PRESUTIL_FIND_BINARY_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_MULTI_SZ_PROPERTY")) { _ = PRESUTIL_FIND_MULTI_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_LONG_PROPERTY")) { _ = PRESUTIL_FIND_LONG_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_ULARGEINTEGER_PROPERTY")) { _ = PRESUTIL_FIND_ULARGEINTEGER_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_FILETIME_PROPERTY")) { _ = PRESUTIL_FIND_FILETIME_PROPERTY; }
-    if (@hasDecl(@This(), "PWORKER_START_ROUTINE")) { _ = PWORKER_START_ROUTINE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_CREATE")) { _ = PCLUSAPI_CLUS_WORKER_CREATE; }
-    if (@hasDecl(@This(), "PCLUSAPIClusWorkerCheckTerminate")) { _ = PCLUSAPIClusWorkerCheckTerminate; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_TERMINATE")) { _ = PCLUSAPI_CLUS_WORKER_TERMINATE; }
-    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK")) { _ = LPRESOURCE_CALLBACK; }
-    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK_EX")) { _ = LPRESOURCE_CALLBACK_EX; }
-    if (@hasDecl(@This(), "LPGROUP_CALLBACK_EX")) { _ = LPGROUP_CALLBACK_EX; }
-    if (@hasDecl(@This(), "LPNODE_CALLBACK")) { _ = LPNODE_CALLBACK; }
-    if (@hasDecl(@This(), "PRESUTIL_RESOURCES_EQUAL")) { _ = PRESUTIL_RESOURCES_EQUAL; }
-    if (@hasDecl(@This(), "PRESUTIL_RESOURCE_TYPES_EQUAL")) { _ = PRESUTIL_RESOURCE_TYPES_EQUAL; }
-    if (@hasDecl(@This(), "PRESUTIL_IS_RESOURCE_CLASS_EQUAL")) { _ = PRESUTIL_IS_RESOURCE_CLASS_EQUAL; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES")) { _ = PRESUTIL_ENUM_RESOURCES; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX")) { _ = PRESUTIL_ENUM_RESOURCES_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY")) { _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER")) { _ = PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER; }
-    if (@hasDecl(@This(), "PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL")) { _ = PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_FORMATS")) { _ = PRESUTIL_GET_PROPERTY_FORMATS; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES")) { _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME")) { _ = PRESUTIL_GET_RESOURCE_NAME; }
-    if (@hasDecl(@This(), "PCLUSTER_IS_PATH_ON_SHARED_VOLUME")) { _ = PCLUSTER_IS_PATH_ON_SHARED_VOLUME; }
-    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_PATH_NAME")) { _ = PCLUSTER_GET_VOLUME_PATH_NAME; }
-    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT")) { _ = PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT; }
-    if (@hasDecl(@This(), "PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP")) { _ = PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP; }
-    if (@hasDecl(@This(), "PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME")) { _ = PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX2")) { _ = PRESUTIL_ENUM_RESOURCES_EX2; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX")) { _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX")) { _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX; }
+    if (@hasDecl(@This(), "PFREE_CLUSTER_CRYPT")) { _ = PFREE_CLUSTER_CRYPT; }
+    if (@hasDecl(@This(), "PIS_ALIVE_ROUTINE")) { _ = PIS_ALIVE_ROUTINE; }
+    if (@hasDecl(@This(), "PLOG_EVENT_ROUTINE")) { _ = PLOG_EVENT_ROUTINE; }
+    if (@hasDecl(@This(), "PLOOKS_ALIVE_ROUTINE")) { _ = PLOOKS_ALIVE_ROUTINE; }
+    if (@hasDecl(@This(), "POFFLINE_ROUTINE")) { _ = POFFLINE_ROUTINE; }
+    if (@hasDecl(@This(), "POFFLINE_V2_ROUTINE")) { _ = POFFLINE_V2_ROUTINE; }
+    if (@hasDecl(@This(), "PONLINE_ROUTINE")) { _ = PONLINE_ROUTINE; }
+    if (@hasDecl(@This(), "PONLINE_V2_ROUTINE")) { _ = PONLINE_V2_ROUTINE; }
     if (@hasDecl(@This(), "POPEN_CLUSTER_CRYPT_PROVIDER")) { _ = POPEN_CLUSTER_CRYPT_PROVIDER; }
     if (@hasDecl(@This(), "POPEN_CLUSTER_CRYPT_PROVIDEREX")) { _ = POPEN_CLUSTER_CRYPT_PROVIDEREX; }
-    if (@hasDecl(@This(), "PCLOSE_CLUSTER_CRYPT_PROVIDER")) { _ = PCLOSE_CLUSTER_CRYPT_PROVIDER; }
-    if (@hasDecl(@This(), "PCLUSTER_ENCRYPT")) { _ = PCLUSTER_ENCRYPT; }
-    if (@hasDecl(@This(), "PCLUSTER_DECRYPT")) { _ = PCLUSTER_DECRYPT; }
-    if (@hasDecl(@This(), "PFREE_CLUSTER_CRYPT")) { _ = PFREE_CLUSTER_CRYPT; }
-    if (@hasDecl(@This(), "PRES_UTIL_VERIFY_SHUTDOWN_SAFE")) { _ = PRES_UTIL_VERIFY_SHUTDOWN_SAFE; }
+    if (@hasDecl(@This(), "POPEN_ROUTINE")) { _ = POPEN_ROUTINE; }
+    if (@hasDecl(@This(), "POPEN_V2_ROUTINE")) { _ = POPEN_V2_ROUTINE; }
+    if (@hasDecl(@This(), "PQUERY_APPINSTANCE_VERSION")) { _ = PQUERY_APPINSTANCE_VERSION; }
+    if (@hasDecl(@This(), "PQUORUM_RESOURCE_LOST")) { _ = PQUORUM_RESOURCE_LOST; }
+    if (@hasDecl(@This(), "PRAISE_RES_TYPE_NOTIFICATION")) { _ = PRAISE_RES_TYPE_NOTIFICATION; }
     if (@hasDecl(@This(), "PREGISTER_APPINSTANCE")) { _ = PREGISTER_APPINSTANCE; }
     if (@hasDecl(@This(), "PREGISTER_APPINSTANCE_VERSION")) { _ = PREGISTER_APPINSTANCE_VERSION; }
-    if (@hasDecl(@This(), "PQUERY_APPINSTANCE_VERSION")) { _ = PQUERY_APPINSTANCE_VERSION; }
+    if (@hasDecl(@This(), "PRELEASE_ROUTINE")) { _ = PRELEASE_ROUTINE; }
+    if (@hasDecl(@This(), "PREQUEST_DUMP_ROUTINE")) { _ = PREQUEST_DUMP_ROUTINE; }
+    if (@hasDecl(@This(), "PRES_UTIL_VERIFY_SHUTDOWN_SAFE")) { _ = PRES_UTIL_VERIFY_SHUTDOWN_SAFE; }
     if (@hasDecl(@This(), "PRESET_ALL_APPINSTANCE_VERSIONS")) { _ = PRESET_ALL_APPINSTANCE_VERSIONS; }
+    if (@hasDecl(@This(), "PRESOURCE_CONTROL_ROUTINE")) { _ = PRESOURCE_CONTROL_ROUTINE; }
+    if (@hasDecl(@This(), "PRESOURCE_TYPE_CONTROL_ROUTINE")) { _ = PRESOURCE_TYPE_CONTROL_ROUTINE; }
+    if (@hasDecl(@This(), "PRESUTIL_ADD_UNKNOWN_PROPERTIES")) { _ = PRESUTIL_ADD_UNKNOWN_PROPERTIES; }
+    if (@hasDecl(@This(), "PRESUTIL_CREATE_DIRECTORY_TREE")) { _ = PRESUTIL_CREATE_DIRECTORY_TREE; }
+    if (@hasDecl(@This(), "PRESUTIL_DUP_PARAMETER_BLOCK")) { _ = PRESUTIL_DUP_PARAMETER_BLOCK; }
+    if (@hasDecl(@This(), "PRESUTIL_DUP_STRING")) { _ = PRESUTIL_DUP_STRING; }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_PRIVATE_PROPERTIES")) { _ = PRESUTIL_ENUM_PRIVATE_PROPERTIES; }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_PROPERTIES")) { _ = PRESUTIL_ENUM_PROPERTIES; }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES")) { _ = PRESUTIL_ENUM_RESOURCES; }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX")) { _ = PRESUTIL_ENUM_RESOURCES_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX2")) { _ = PRESUTIL_ENUM_RESOURCES_EX2; }
+    if (@hasDecl(@This(), "PRESUTIL_EXPAND_ENVIRONMENT_STRINGS")) { _ = PRESUTIL_EXPAND_ENVIRONMENT_STRINGS; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_BINARY_PROPERTY")) { _ = PRESUTIL_FIND_BINARY_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER")) { _ = PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_DWORD_PROPERTY")) { _ = PRESUTIL_FIND_DWORD_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPAND_SZ_PROPERTY")) { _ = PRESUTIL_FIND_EXPAND_SZ_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPANDED_SZ_PROPERTY")) { _ = PRESUTIL_FIND_EXPANDED_SZ_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_FILETIME_PROPERTY")) { _ = PRESUTIL_FIND_FILETIME_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_LONG_PROPERTY")) { _ = PRESUTIL_FIND_LONG_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_MULTI_SZ_PROPERTY")) { _ = PRESUTIL_FIND_MULTI_SZ_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_SZ_PROPERTY")) { _ = PRESUTIL_FIND_SZ_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_ULARGEINTEGER_PROPERTY")) { _ = PRESUTIL_FIND_ULARGEINTEGER_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_FREE_ENVIRONMENT")) { _ = PRESUTIL_FREE_ENVIRONMENT; }
+    if (@hasDecl(@This(), "PRESUTIL_FREE_PARAMETER_BLOCK")) { _ = PRESUTIL_FREE_PARAMETER_BLOCK; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_ALL_PROPERTIES")) { _ = PRESUTIL_GET_ALL_PROPERTIES; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_PROPERTY")) { _ = PRESUTIL_GET_BINARY_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_VALUE")) { _ = PRESUTIL_GET_BINARY_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES")) { _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX")) { _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_PROPERTY")) { _ = PRESUTIL_GET_DWORD_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_VALUE")) { _ = PRESUTIL_GET_DWORD_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME")) { _ = PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_EXPAND_SZ_VALUE")) { _ = PRESUTIL_GET_EXPAND_SZ_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_FILETIME_PROPERTY")) { _ = PRESUTIL_GET_FILETIME_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_LONG_PROPERTY")) { _ = PRESUTIL_GET_LONG_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_MULTI_SZ_PROPERTY")) { _ = PRESUTIL_GET_MULTI_SZ_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PRIVATE_PROPERTIES")) { _ = PRESUTIL_GET_PRIVATE_PROPERTIES; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES")) { _ = PRESUTIL_GET_PROPERTIES; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK")) { _ = PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY")) { _ = PRESUTIL_GET_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_FORMATS")) { _ = PRESUTIL_GET_PROPERTY_FORMATS; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_SIZE")) { _ = PRESUTIL_GET_PROPERTY_SIZE; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_QWORD_VALUE")) { _ = PRESUTIL_GET_QWORD_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME")) { _ = PRESUTIL_GET_RESOURCE_NAME; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY")) { _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX")) { _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_PROPERTY")) { _ = PRESUTIL_GET_SZ_PROPERTY; }
+    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_VALUE")) { _ = PRESUTIL_GET_SZ_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_IS_PATH_VALID")) { _ = PRESUTIL_IS_PATH_VALID; }
+    if (@hasDecl(@This(), "PRESUTIL_IS_RESOURCE_CLASS_EQUAL")) { _ = PRESUTIL_IS_RESOURCE_CLASS_EQUAL; }
+    if (@hasDecl(@This(), "PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK")) { _ = PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK; }
+    if (@hasDecl(@This(), "PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT")) { _ = PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT; }
+    if (@hasDecl(@This(), "PRESUTIL_RESOURCE_TYPES_EQUAL")) { _ = PRESUTIL_RESOURCE_TYPES_EQUAL; }
+    if (@hasDecl(@This(), "PRESUTIL_RESOURCES_EQUAL")) { _ = PRESUTIL_RESOURCES_EQUAL; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_BINARY_VALUE")) { _ = PRESUTIL_SET_BINARY_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_DWORD_VALUE")) { _ = PRESUTIL_SET_DWORD_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_EXPAND_SZ_VALUE")) { _ = PRESUTIL_SET_EXPAND_SZ_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_MULTI_SZ_VALUE")) { _ = PRESUTIL_SET_MULTI_SZ_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PRIVATE_PROPERTY_LIST")) { _ = PRESUTIL_SET_PRIVATE_PROPERTY_LIST; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK")) { _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX")) { _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE")) { _ = PRESUTIL_SET_PROPERTY_TABLE; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE_EX")) { _ = PRESUTIL_SET_PROPERTY_TABLE_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_QWORD_VALUE")) { _ = PRESUTIL_SET_QWORD_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_SZ_VALUE")) { _ = PRESUTIL_SET_SZ_VALUE; }
+    if (@hasDecl(@This(), "PRESUTIL_SET_UNKNOWN_PROPERTIES")) { _ = PRESUTIL_SET_UNKNOWN_PROPERTIES; }
+    if (@hasDecl(@This(), "PRESUTIL_START_RESOURCE_SERVICE")) { _ = PRESUTIL_START_RESOURCE_SERVICE; }
+    if (@hasDecl(@This(), "PRESUTIL_STOP_RESOURCE_SERVICE")) { _ = PRESUTIL_STOP_RESOURCE_SERVICE; }
+    if (@hasDecl(@This(), "PRESUTIL_STOP_SERVICE")) { _ = PRESUTIL_STOP_SERVICE; }
+    if (@hasDecl(@This(), "PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL")) { _ = PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL; }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST")) { _ = PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST; }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PROPERTY_TABLE")) { _ = PRESUTIL_VERIFY_PROPERTY_TABLE; }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_RESOURCE_SERVICE")) { _ = PRESUTIL_VERIFY_RESOURCE_SERVICE; }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_SERVICE")) { _ = PRESUTIL_VERIFY_SERVICE; }
+    if (@hasDecl(@This(), "PSET_INTERNAL_STATE")) { _ = PSET_INTERNAL_STATE; }
+    if (@hasDecl(@This(), "PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE")) { _ = PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE; }
+    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE")) { _ = PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE; }
+    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_ROUTINE")) { _ = PSET_RESOURCE_LOCKED_MODE_ROUTINE; }
+    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE")) { _ = PSET_RESOURCE_STATUS_ROUTINE; }
+    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE_EX")) { _ = PSET_RESOURCE_STATUS_ROUTINE_EX; }
+    if (@hasDecl(@This(), "PSIGNAL_FAILURE_ROUTINE")) { _ = PSIGNAL_FAILURE_ROUTINE; }
+    if (@hasDecl(@This(), "PSTARTUP_EX_ROUTINE")) { _ = PSTARTUP_EX_ROUTINE; }
+    if (@hasDecl(@This(), "PSTARTUP_ROUTINE")) { _ = PSTARTUP_ROUTINE; }
+    if (@hasDecl(@This(), "PTERMINATE_ROUTINE")) { _ = PTERMINATE_ROUTINE; }
+    if (@hasDecl(@This(), "PWORKER_START_ROUTINE")) { _ = PWORKER_START_ROUTINE; }
     if (@hasDecl(@This(), "SET_APP_INSTANCE_CSV_FLAGS")) { _ = SET_APP_INSTANCE_CSV_FLAGS; }
 
     @setEvalBranchQuota(

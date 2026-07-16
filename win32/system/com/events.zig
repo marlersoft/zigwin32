@@ -6,17 +6,35 @@
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
-const CLSID_CEventSystem_Value = Guid.initString("4e14fba2-2e22-11d1-9964-00c04fbbb345");
-pub const CLSID_CEventSystem = &CLSID_CEventSystem_Value;
+const CLSID_CEventClass_Value = Guid.initString("cdbec9c0-7a68-11d1-88f9-0080c7d771bf");
+pub const CLSID_CEventClass = &CLSID_CEventClass_Value;
 
 const CLSID_CEventPublisher_Value = Guid.initString("ab944620-79c6-11d1-88f9-0080c7d771bf");
 pub const CLSID_CEventPublisher = &CLSID_CEventPublisher_Value;
 
-const CLSID_CEventClass_Value = Guid.initString("cdbec9c0-7a68-11d1-88f9-0080c7d771bf");
-pub const CLSID_CEventClass = &CLSID_CEventClass_Value;
-
 const CLSID_CEventSubscription_Value = Guid.initString("7542e960-79c7-11d1-88f9-0080c7d771bf");
 pub const CLSID_CEventSubscription = &CLSID_CEventSubscription_Value;
+
+const CLSID_CEventSystem_Value = Guid.initString("4e14fba2-2e22-11d1-9964-00c04fbbb345");
+pub const CLSID_CEventSystem = &CLSID_CEventSystem_Value;
+
+pub const COMEVENTSYSCHANGEINFO = extern struct {
+    cbSize: u32,
+    changeType: EOC_ChangeType,
+    objectId: ?BSTR,
+    partitionId: ?BSTR,
+    applicationId: ?BSTR,
+    reserved: [10]Guid,
+};
+
+pub const EOC_ChangeType = enum(i32) {
+    NewObject = 0,
+    ModifiedObject = 1,
+    DeletedObject = 2,
+};
+pub const EOC_NewObject = EOC_ChangeType.NewObject;
+pub const EOC_ModifiedObject = EOC_ChangeType.ModifiedObject;
+pub const EOC_DeletedObject = EOC_ChangeType.DeletedObject;
 
 const CLSID_EventObjectChange_Value = Guid.initString("d0565000-9df4-11d1-a281-00c04fca0aa7");
 pub const CLSID_EventObjectChange = &CLSID_EventObjectChange_Value;
@@ -24,189 +42,53 @@ pub const CLSID_EventObjectChange = &CLSID_EventObjectChange_Value;
 const CLSID_EventObjectChange2_Value = Guid.initString("bb07bacd-cd56-4e63-a8ff-cbf0355fb9f4");
 pub const CLSID_EventObjectChange2 = &CLSID_EventObjectChange2_Value;
 
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEventSystem_Value = Guid.initString("4e14fb9f-2e22-11d1-9964-00c04fbbb345");
-pub const IID_IEventSystem = &IID_IEventSystem_Value;
-pub const IEventSystem = extern union {
+const IID_IDontSupportEventSubscription_Value = Guid.initString("784121f1-62a6-4b89-855f-d65f296de83a");
+pub const IID_IDontSupportEventSubscription = &IID_IDontSupportEventSubscription_Value;
+pub const IDontSupportEventSubscription = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        Query: *const fn(
-            self: *const IEventSystem,
-            progID: ?BSTR,
-            queryCriteria: ?BSTR,
-            errorIndex: ?*i32,
-            ppInterface: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Store: *const fn(
-            self: *const IEventSystem,
-            ProgID: ?BSTR,
-            pInterface: ?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IEventSystem,
-            progID: ?BSTR,
-            queryCriteria: ?BSTR,
-            errorIndex: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventObjectChangeEventClassID: *const fn(
-            self: *const IEventSystem,
-            pbstrEventClassID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        QueryS: *const fn(
-            self: *const IEventSystem,
-            progID: ?BSTR,
-            queryCriteria: ?BSTR,
-            ppInterface: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        RemoveS: *const fn(
-            self: *const IEventSystem,
-            progID: ?BSTR,
-            queryCriteria: ?BSTR,
-        ) callconv(.winapi) HRESULT,
+        base: IUnknown.VTable,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Query(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32, ppInterface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Query(self, progID, queryCriteria, errorIndex, ppInterface);
-    }
-    pub fn Store(self: *const IEventSystem, ProgID: ?BSTR, pInterface: ?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.Store(self, ProgID, pInterface);
-    }
-    pub fn Remove(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, progID, queryCriteria, errorIndex);
-    }
-    pub fn get_EventObjectChangeEventClassID(self: *const IEventSystem, pbstrEventClassID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_EventObjectChangeEventClassID(self, pbstrEventClassID);
-    }
-    pub fn QueryS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, ppInterface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.QueryS(self, progID, queryCriteria, ppInterface);
-    }
-    pub fn RemoveS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveS(self, progID, queryCriteria);
-    }
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventPublisher_Value = Guid.initString("e341516b-2e32-11d1-9964-00c04fbbb345");
-pub const IID_IEventPublisher = &IID_IEventPublisher_Value;
-pub const IEventPublisher = extern union {
+const IID_IEnumEventObject_Value = Guid.initString("f4a07d63-2e25-11d1-9964-00c04fbbb345");
+pub const IID_IEnumEventObject = &IID_IEnumEventObject_Value;
+pub const IEnumEventObject = extern union {
     pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PublisherID: *const fn(
-            self: *const IEventPublisher,
-            pbstrPublisherID: ?*?BSTR,
+        base: IUnknown.VTable,
+        Clone: *const fn(
+            self: *const IEnumEventObject,
+            ppInterface: ?*?*IEnumEventObject,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PublisherID: *const fn(
-            self: *const IEventPublisher,
-            bstrPublisherID: ?BSTR,
+        Next: *const fn(
+            self: *const IEnumEventObject,
+            cReqElem: u32,
+            ppInterface: [*]?*IUnknown,
+            cRetElem: ?*u32,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PublisherName: *const fn(
-            self: *const IEventPublisher,
-            pbstrPublisherName: ?*?BSTR,
+        Reset: *const fn(
+            self: *const IEnumEventObject,
         ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PublisherName: *const fn(
-            self: *const IEventPublisher,
-            bstrPublisherName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PublisherType: *const fn(
-            self: *const IEventPublisher,
-            pbstrPublisherType: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PublisherType: *const fn(
-            self: *const IEventPublisher,
-            bstrPublisherType: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OwnerSID: *const fn(
-            self: *const IEventPublisher,
-            pbstrOwnerSID: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OwnerSID: *const fn(
-            self: *const IEventPublisher,
-            bstrOwnerSID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: *const fn(
-            self: *const IEventPublisher,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: *const fn(
-            self: *const IEventPublisher,
-            bstrDescription: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultProperty: *const fn(
-            self: *const IEventPublisher,
-            bstrPropertyName: ?BSTR,
-            propertyValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        PutDefaultProperty: *const fn(
-            self: *const IEventPublisher,
-            bstrPropertyName: ?BSTR,
-            propertyValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        RemoveDefaultProperty: *const fn(
-            self: *const IEventPublisher,
-            bstrPropertyName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        GetDefaultPropertyCollection: *const fn(
-            self: *const IEventPublisher,
-            collection: ?*?*IEventObjectCollection,
+        Skip: *const fn(
+            self: *const IEnumEventObject,
+            cSkipElem: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PublisherID(self: *const IEventPublisher, pbstrPublisherID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PublisherID(self, pbstrPublisherID);
+    pub fn Clone(self: *const IEnumEventObject, ppInterface: ?*?*IEnumEventObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Clone(self, ppInterface);
     }
-    pub fn put_PublisherID(self: *const IEventPublisher, bstrPublisherID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PublisherID(self, bstrPublisherID);
+    pub fn Next(self: *const IEnumEventObject, cReqElem: u32, ppInterface: [*]?*IUnknown, cRetElem: ?*u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Next(self, cReqElem, ppInterface, cRetElem);
     }
-    pub fn get_PublisherName(self: *const IEventPublisher, pbstrPublisherName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PublisherName(self, pbstrPublisherName);
+    pub fn Reset(self: *const IEnumEventObject) callconv(.@"inline") HRESULT {
+        return self.vtable.Reset(self);
     }
-    pub fn put_PublisherName(self: *const IEventPublisher, bstrPublisherName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PublisherName(self, bstrPublisherName);
-    }
-    pub fn get_PublisherType(self: *const IEventPublisher, pbstrPublisherType: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_PublisherType(self, pbstrPublisherType);
-    }
-    pub fn put_PublisherType(self: *const IEventPublisher, bstrPublisherType: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_PublisherType(self, bstrPublisherType);
-    }
-    pub fn get_OwnerSID(self: *const IEventPublisher, pbstrOwnerSID: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_OwnerSID(self, pbstrOwnerSID);
-    }
-    pub fn put_OwnerSID(self: *const IEventPublisher, bstrOwnerSID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_OwnerSID(self, bstrOwnerSID);
-    }
-    pub fn get_Description(self: *const IEventPublisher, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Description(self, pbstrDescription);
-    }
-    pub fn put_Description(self: *const IEventPublisher, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Description(self, bstrDescription);
-    }
-    pub fn GetDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultProperty(self, bstrPropertyName, propertyValue);
-    }
-    pub fn PutDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.PutDefaultProperty(self, bstrPropertyName, propertyValue);
-    }
-    pub fn RemoveDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.RemoveDefaultProperty(self, bstrPropertyName);
-    }
-    pub fn GetDefaultPropertyCollection(self: *const IEventPublisher, collection: ?*?*IEventObjectCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetDefaultPropertyCollection(self, collection);
+    pub fn Skip(self: *const IEnumEventObject, cSkipElem: u32) callconv(.@"inline") HRESULT {
+        return self.vtable.Skip(self, cSkipElem);
     }
 };
 
@@ -408,6 +290,346 @@ pub const IEventClass2 = extern union {
     }
     pub fn put_FireInParallel(self: *const IEventClass2, fFireInParallel: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_FireInParallel(self, fFireInParallel);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEventControl_Value = Guid.initString("0343e2f4-86f6-11d1-b760-00c04fb926af");
+pub const IID_IEventControl = &IID_IEventControl_Value;
+pub const IEventControl = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        SetPublisherFilter: *const fn(
+            self: *const IEventControl,
+            methodName: ?BSTR,
+            pPublisherFilter: ?*IPublisherFilter,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AllowInprocActivation: *const fn(
+            self: *const IEventControl,
+            pfAllowInprocActivation: ?*BOOL,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_AllowInprocActivation: *const fn(
+            self: *const IEventControl,
+            fAllowInprocActivation: BOOL,
+        ) callconv(.winapi) HRESULT,
+        GetSubscriptions: *const fn(
+            self: *const IEventControl,
+            methodName: ?BSTR,
+            optionalCriteria: ?BSTR,
+            optionalErrorIndex: ?*i32,
+            ppCollection: ?*?*IEventObjectCollection,
+        ) callconv(.winapi) HRESULT,
+        SetDefaultQuery: *const fn(
+            self: *const IEventControl,
+            methodName: ?BSTR,
+            criteria: ?BSTR,
+            errorIndex: ?*i32,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn SetPublisherFilter(self: *const IEventControl, methodName: ?BSTR, pPublisherFilter: ?*IPublisherFilter) callconv(.@"inline") HRESULT {
+        return self.vtable.SetPublisherFilter(self, methodName, pPublisherFilter);
+    }
+    pub fn get_AllowInprocActivation(self: *const IEventControl, pfAllowInprocActivation: ?*BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.get_AllowInprocActivation(self, pfAllowInprocActivation);
+    }
+    pub fn put_AllowInprocActivation(self: *const IEventControl, fAllowInprocActivation: BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.put_AllowInprocActivation(self, fAllowInprocActivation);
+    }
+    pub fn GetSubscriptions(self: *const IEventControl, methodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetSubscriptions(self, methodName, optionalCriteria, optionalErrorIndex, ppCollection);
+    }
+    pub fn SetDefaultQuery(self: *const IEventControl, methodName: ?BSTR, criteria: ?BSTR, errorIndex: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.SetDefaultQuery(self, methodName, criteria, errorIndex);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEventObjectChange_Value = Guid.initString("f4a07d70-2e25-11d1-9964-00c04fbbb345");
+pub const IID_IEventObjectChange = &IID_IEventObjectChange_Value;
+pub const IEventObjectChange = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ChangedSubscription: *const fn(
+            self: *const IEventObjectChange,
+            changeType: EOC_ChangeType,
+            bstrSubscriptionID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ChangedEventClass: *const fn(
+            self: *const IEventObjectChange,
+            changeType: EOC_ChangeType,
+            bstrEventClassID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        ChangedPublisher: *const fn(
+            self: *const IEventObjectChange,
+            changeType: EOC_ChangeType,
+            bstrPublisherID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ChangedSubscription(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrSubscriptionID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangedSubscription(self, changeType, bstrSubscriptionID);
+    }
+    pub fn ChangedEventClass(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrEventClassID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangedEventClass(self, changeType, bstrEventClassID);
+    }
+    pub fn ChangedPublisher(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrPublisherID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangedPublisher(self, changeType, bstrPublisherID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEventObjectChange2_Value = Guid.initString("7701a9c3-bd68-438f-83e0-67bf4f53a422");
+pub const IID_IEventObjectChange2 = &IID_IEventObjectChange2_Value;
+pub const IEventObjectChange2 = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ChangedSubscription: *const fn(
+            self: *const IEventObjectChange2,
+            pInfo: ?*COMEVENTSYSCHANGEINFO,
+        ) callconv(.winapi) HRESULT,
+        ChangedEventClass: *const fn(
+            self: *const IEventObjectChange2,
+            pInfo: ?*COMEVENTSYSCHANGEINFO,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ChangedSubscription(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangedSubscription(self, pInfo);
+    }
+    pub fn ChangedEventClass(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.@"inline") HRESULT {
+        return self.vtable.ChangedEventClass(self, pInfo);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEventObjectCollection_Value = Guid.initString("f89ac270-d4eb-11d1-b682-00805fc79216");
+pub const IID_IEventObjectCollection = &IID_IEventObjectCollection_Value;
+pub const IEventObjectCollection = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get__NewEnum: *const fn(
+            self: *const IEventObjectCollection,
+            ppUnkEnum: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        get_Item: *const fn(
+            self: *const IEventObjectCollection,
+            objectID: ?BSTR,
+            pItem: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_NewEnum: *const fn(
+            self: *const IEventObjectCollection,
+            ppEnum: ?*?*IEnumEventObject,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: *const fn(
+            self: *const IEventObjectCollection,
+            pCount: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        Add: *const fn(
+            self: *const IEventObjectCollection,
+            item: ?*VARIANT,
+            objectID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IEventObjectCollection,
+            objectID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IEventObjectCollection, ppUnkEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.get__NewEnum(self, ppUnkEnum);
+    }
+    pub fn get_Item(self: *const IEventObjectCollection, objectID: ?BSTR, pItem: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Item(self, objectID, pItem);
+    }
+    pub fn get_NewEnum(self: *const IEventObjectCollection, ppEnum: ?*?*IEnumEventObject) callconv(.@"inline") HRESULT {
+        return self.vtable.get_NewEnum(self, ppEnum);
+    }
+    pub fn get_Count(self: *const IEventObjectCollection, pCount: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Count(self, pCount);
+    }
+    pub fn Add(self: *const IEventObjectCollection, item: ?*VARIANT, objectID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Add(self, item, objectID);
+    }
+    pub fn Remove(self: *const IEventObjectCollection, objectID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, objectID);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEventProperty_Value = Guid.initString("da538ee2-f4de-11d1-b6bb-00805fc79216");
+pub const IID_IEventProperty = &IID_IEventProperty_Value;
+pub const IEventProperty = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Name: *const fn(
+            self: *const IEventProperty,
+            propertyName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Name: *const fn(
+            self: *const IEventProperty,
+            propertyName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Value: *const fn(
+            self: *const IEventProperty,
+            propertyValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Value: *const fn(
+            self: *const IEventProperty,
+            propertyValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IEventProperty, propertyName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Name(self, propertyName);
+    }
+    pub fn put_Name(self: *const IEventProperty, propertyName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Name(self, propertyName);
+    }
+    pub fn get_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Value(self, propertyValue);
+    }
+    pub fn put_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Value(self, propertyValue);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEventPublisher_Value = Guid.initString("e341516b-2e32-11d1-9964-00c04fbbb345");
+pub const IID_IEventPublisher = &IID_IEventPublisher_Value;
+pub const IEventPublisher = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PublisherID: *const fn(
+            self: *const IEventPublisher,
+            pbstrPublisherID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PublisherID: *const fn(
+            self: *const IEventPublisher,
+            bstrPublisherID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PublisherName: *const fn(
+            self: *const IEventPublisher,
+            pbstrPublisherName: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PublisherName: *const fn(
+            self: *const IEventPublisher,
+            bstrPublisherName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PublisherType: *const fn(
+            self: *const IEventPublisher,
+            pbstrPublisherType: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PublisherType: *const fn(
+            self: *const IEventPublisher,
+            bstrPublisherType: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_OwnerSID: *const fn(
+            self: *const IEventPublisher,
+            pbstrOwnerSID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_OwnerSID: *const fn(
+            self: *const IEventPublisher,
+            bstrOwnerSID: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Description: *const fn(
+            self: *const IEventPublisher,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_Description: *const fn(
+            self: *const IEventPublisher,
+            bstrDescription: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultProperty: *const fn(
+            self: *const IEventPublisher,
+            bstrPropertyName: ?BSTR,
+            propertyValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        PutDefaultProperty: *const fn(
+            self: *const IEventPublisher,
+            bstrPropertyName: ?BSTR,
+            propertyValue: ?*VARIANT,
+        ) callconv(.winapi) HRESULT,
+        RemoveDefaultProperty: *const fn(
+            self: *const IEventPublisher,
+            bstrPropertyName: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        GetDefaultPropertyCollection: *const fn(
+            self: *const IEventPublisher,
+            collection: ?*?*IEventObjectCollection,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_PublisherID(self: *const IEventPublisher, pbstrPublisherID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PublisherID(self, pbstrPublisherID);
+    }
+    pub fn put_PublisherID(self: *const IEventPublisher, bstrPublisherID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PublisherID(self, bstrPublisherID);
+    }
+    pub fn get_PublisherName(self: *const IEventPublisher, pbstrPublisherName: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PublisherName(self, pbstrPublisherName);
+    }
+    pub fn put_PublisherName(self: *const IEventPublisher, bstrPublisherName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PublisherName(self, bstrPublisherName);
+    }
+    pub fn get_PublisherType(self: *const IEventPublisher, pbstrPublisherType: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_PublisherType(self, pbstrPublisherType);
+    }
+    pub fn put_PublisherType(self: *const IEventPublisher, bstrPublisherType: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_PublisherType(self, bstrPublisherType);
+    }
+    pub fn get_OwnerSID(self: *const IEventPublisher, pbstrOwnerSID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_OwnerSID(self, pbstrOwnerSID);
+    }
+    pub fn put_OwnerSID(self: *const IEventPublisher, bstrOwnerSID: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_OwnerSID(self, bstrOwnerSID);
+    }
+    pub fn get_Description(self: *const IEventPublisher, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_Description(self, pbstrDescription);
+    }
+    pub fn put_Description(self: *const IEventPublisher, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.put_Description(self, bstrDescription);
+    }
+    pub fn GetDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultProperty(self, bstrPropertyName, propertyValue);
+    }
+    pub fn PutDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+        return self.vtable.PutDefaultProperty(self, bstrPropertyName, propertyValue);
+    }
+    pub fn RemoveDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveDefaultProperty(self, bstrPropertyName);
+    }
+    pub fn GetDefaultPropertyCollection(self: *const IEventPublisher, collection: ?*?*IEventObjectCollection) callconv(.@"inline") HRESULT {
+        return self.vtable.GetDefaultPropertyCollection(self, collection);
     }
 };
 
@@ -692,6 +914,70 @@ pub const IEventSubscription = extern union {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
+const IID_IEventSystem_Value = Guid.initString("4e14fb9f-2e22-11d1-9964-00c04fbbb345");
+pub const IID_IEventSystem = &IID_IEventSystem_Value;
+pub const IEventSystem = extern union {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        Query: *const fn(
+            self: *const IEventSystem,
+            progID: ?BSTR,
+            queryCriteria: ?BSTR,
+            errorIndex: ?*i32,
+            ppInterface: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Store: *const fn(
+            self: *const IEventSystem,
+            ProgID: ?BSTR,
+            pInterface: ?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        Remove: *const fn(
+            self: *const IEventSystem,
+            progID: ?BSTR,
+            queryCriteria: ?BSTR,
+            errorIndex: ?*i32,
+        ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_EventObjectChangeEventClassID: *const fn(
+            self: *const IEventSystem,
+            pbstrEventClassID: ?*?BSTR,
+        ) callconv(.winapi) HRESULT,
+        QueryS: *const fn(
+            self: *const IEventSystem,
+            progID: ?BSTR,
+            queryCriteria: ?BSTR,
+            ppInterface: ?*?*IUnknown,
+        ) callconv(.winapi) HRESULT,
+        RemoveS: *const fn(
+            self: *const IEventSystem,
+            progID: ?BSTR,
+            queryCriteria: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Query(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32, ppInterface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Query(self, progID, queryCriteria, errorIndex, ppInterface);
+    }
+    pub fn Store(self: *const IEventSystem, ProgID: ?BSTR, pInterface: ?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.Store(self, ProgID, pInterface);
+    }
+    pub fn Remove(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32) callconv(.@"inline") HRESULT {
+        return self.vtable.Remove(self, progID, queryCriteria, errorIndex);
+    }
+    pub fn get_EventObjectChangeEventClassID(self: *const IEventSystem, pbstrEventClassID: ?*?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.get_EventObjectChangeEventClassID(self, pbstrEventClassID);
+    }
+    pub fn QueryS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, ppInterface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+        return self.vtable.QueryS(self, progID, queryCriteria, ppInterface);
+    }
+    pub fn RemoveS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.RemoveS(self, progID, queryCriteria);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
 const IID_IFiringControl_Value = Guid.initString("e0498c93-4efe-11d1-9971-00c04fbbb345");
 pub const IID_IFiringControl = &IID_IFiringControl_Value;
 pub const IFiringControl = extern union {
@@ -707,336 +993,6 @@ pub const IFiringControl = extern union {
     IUnknown: IUnknown,
     pub fn FireSubscription(self: *const IFiringControl, subscription: ?*IEventSubscription) callconv(.@"inline") HRESULT {
         return self.vtable.FireSubscription(self, subscription);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPublisherFilter_Value = Guid.initString("465e5cc0-7b26-11d1-88fb-0080c7d771bf");
-pub const IID_IPublisherFilter = &IID_IPublisherFilter_Value;
-pub const IPublisherFilter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IPublisherFilter,
-            methodName: ?BSTR,
-            dispUserDefined: ?*IDispatch,
-        ) callconv(.winapi) HRESULT,
-        PrepareToFire: *const fn(
-            self: *const IPublisherFilter,
-            methodName: ?BSTR,
-            firingControl: ?*IFiringControl,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IPublisherFilter, methodName: ?BSTR, dispUserDefined: ?*IDispatch) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, methodName, dispUserDefined);
-    }
-    pub fn PrepareToFire(self: *const IPublisherFilter, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.@"inline") HRESULT {
-        return self.vtable.PrepareToFire(self, methodName, firingControl);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IMultiInterfacePublisherFilter_Value = Guid.initString("465e5cc1-7b26-11d1-88fb-0080c7d771bf");
-pub const IID_IMultiInterfacePublisherFilter = &IID_IMultiInterfacePublisherFilter_Value;
-pub const IMultiInterfacePublisherFilter = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: *const fn(
-            self: *const IMultiInterfacePublisherFilter,
-            pEIC: ?*IMultiInterfaceEventControl,
-        ) callconv(.winapi) HRESULT,
-        PrepareToFire: *const fn(
-            self: *const IMultiInterfacePublisherFilter,
-            iid: ?*const Guid,
-            methodName: ?BSTR,
-            firingControl: ?*IFiringControl,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Initialize(self: *const IMultiInterfacePublisherFilter, pEIC: ?*IMultiInterfaceEventControl) callconv(.@"inline") HRESULT {
-        return self.vtable.Initialize(self, pEIC);
-    }
-    pub fn PrepareToFire(self: *const IMultiInterfacePublisherFilter, iid: ?*const Guid, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.@"inline") HRESULT {
-        return self.vtable.PrepareToFire(self, iid, methodName, firingControl);
-    }
-};
-
-pub const EOC_ChangeType = enum(i32) {
-    NewObject = 0,
-    ModifiedObject = 1,
-    DeletedObject = 2,
-};
-pub const EOC_NewObject = EOC_ChangeType.NewObject;
-pub const EOC_ModifiedObject = EOC_ChangeType.ModifiedObject;
-pub const EOC_DeletedObject = EOC_ChangeType.DeletedObject;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEventObjectChange_Value = Guid.initString("f4a07d70-2e25-11d1-9964-00c04fbbb345");
-pub const IID_IEventObjectChange = &IID_IEventObjectChange_Value;
-pub const IEventObjectChange = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ChangedSubscription: *const fn(
-            self: *const IEventObjectChange,
-            changeType: EOC_ChangeType,
-            bstrSubscriptionID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ChangedEventClass: *const fn(
-            self: *const IEventObjectChange,
-            changeType: EOC_ChangeType,
-            bstrEventClassID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        ChangedPublisher: *const fn(
-            self: *const IEventObjectChange,
-            changeType: EOC_ChangeType,
-            bstrPublisherID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ChangedSubscription(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrSubscriptionID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangedSubscription(self, changeType, bstrSubscriptionID);
-    }
-    pub fn ChangedEventClass(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrEventClassID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangedEventClass(self, changeType, bstrEventClassID);
-    }
-    pub fn ChangedPublisher(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrPublisherID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangedPublisher(self, changeType, bstrPublisherID);
-    }
-};
-
-pub const COMEVENTSYSCHANGEINFO = extern struct {
-    cbSize: u32,
-    changeType: EOC_ChangeType,
-    objectId: ?BSTR,
-    partitionId: ?BSTR,
-    applicationId: ?BSTR,
-    reserved: [10]Guid,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEventObjectChange2_Value = Guid.initString("7701a9c3-bd68-438f-83e0-67bf4f53a422");
-pub const IID_IEventObjectChange2 = &IID_IEventObjectChange2_Value;
-pub const IEventObjectChange2 = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ChangedSubscription: *const fn(
-            self: *const IEventObjectChange2,
-            pInfo: ?*COMEVENTSYSCHANGEINFO,
-        ) callconv(.winapi) HRESULT,
-        ChangedEventClass: *const fn(
-            self: *const IEventObjectChange2,
-            pInfo: ?*COMEVENTSYSCHANGEINFO,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn ChangedSubscription(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangedSubscription(self, pInfo);
-    }
-    pub fn ChangedEventClass(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.@"inline") HRESULT {
-        return self.vtable.ChangedEventClass(self, pInfo);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumEventObject_Value = Guid.initString("f4a07d63-2e25-11d1-9964-00c04fbbb345");
-pub const IID_IEnumEventObject = &IID_IEnumEventObject_Value;
-pub const IEnumEventObject = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Clone: *const fn(
-            self: *const IEnumEventObject,
-            ppInterface: ?*?*IEnumEventObject,
-        ) callconv(.winapi) HRESULT,
-        Next: *const fn(
-            self: *const IEnumEventObject,
-            cReqElem: u32,
-            ppInterface: [*]?*IUnknown,
-            cRetElem: ?*u32,
-        ) callconv(.winapi) HRESULT,
-        Reset: *const fn(
-            self: *const IEnumEventObject,
-        ) callconv(.winapi) HRESULT,
-        Skip: *const fn(
-            self: *const IEnumEventObject,
-            cSkipElem: u32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumEventObject, ppInterface: ?*?*IEnumEventObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Clone(self, ppInterface);
-    }
-    pub fn Next(self: *const IEnumEventObject, cReqElem: u32, ppInterface: [*]?*IUnknown, cRetElem: ?*u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Next(self, cReqElem, ppInterface, cRetElem);
-    }
-    pub fn Reset(self: *const IEnumEventObject) callconv(.@"inline") HRESULT {
-        return self.vtable.Reset(self);
-    }
-    pub fn Skip(self: *const IEnumEventObject, cSkipElem: u32) callconv(.@"inline") HRESULT {
-        return self.vtable.Skip(self, cSkipElem);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEventObjectCollection_Value = Guid.initString("f89ac270-d4eb-11d1-b682-00805fc79216");
-pub const IID_IEventObjectCollection = &IID_IEventObjectCollection_Value;
-pub const IEventObjectCollection = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: *const fn(
-            self: *const IEventObjectCollection,
-            ppUnkEnum: ?*?*IUnknown,
-        ) callconv(.winapi) HRESULT,
-        get_Item: *const fn(
-            self: *const IEventObjectCollection,
-            objectID: ?BSTR,
-            pItem: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NewEnum: *const fn(
-            self: *const IEventObjectCollection,
-            ppEnum: ?*?*IEnumEventObject,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: *const fn(
-            self: *const IEventObjectCollection,
-            pCount: ?*i32,
-        ) callconv(.winapi) HRESULT,
-        Add: *const fn(
-            self: *const IEventObjectCollection,
-            item: ?*VARIANT,
-            objectID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        Remove: *const fn(
-            self: *const IEventObjectCollection,
-            objectID: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IEventObjectCollection, ppUnkEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
-        return self.vtable.get__NewEnum(self, ppUnkEnum);
-    }
-    pub fn get_Item(self: *const IEventObjectCollection, objectID: ?BSTR, pItem: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Item(self, objectID, pItem);
-    }
-    pub fn get_NewEnum(self: *const IEventObjectCollection, ppEnum: ?*?*IEnumEventObject) callconv(.@"inline") HRESULT {
-        return self.vtable.get_NewEnum(self, ppEnum);
-    }
-    pub fn get_Count(self: *const IEventObjectCollection, pCount: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Count(self, pCount);
-    }
-    pub fn Add(self: *const IEventObjectCollection, item: ?*VARIANT, objectID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Add(self, item, objectID);
-    }
-    pub fn Remove(self: *const IEventObjectCollection, objectID: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.Remove(self, objectID);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEventProperty_Value = Guid.initString("da538ee2-f4de-11d1-b6bb-00805fc79216");
-pub const IID_IEventProperty = &IID_IEventProperty_Value;
-pub const IEventProperty = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: *const fn(
-            self: *const IEventProperty,
-            propertyName: ?*?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: *const fn(
-            self: *const IEventProperty,
-            propertyName: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: *const fn(
-            self: *const IEventProperty,
-            propertyValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: *const fn(
-            self: *const IEventProperty,
-            propertyValue: ?*VARIANT,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn get_Name(self: *const IEventProperty, propertyName: ?*?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Name(self, propertyName);
-    }
-    pub fn put_Name(self: *const IEventProperty, propertyName: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Name(self, propertyName);
-    }
-    pub fn get_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.get_Value(self, propertyValue);
-    }
-    pub fn put_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
-        return self.vtable.put_Value(self, propertyValue);
-    }
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEventControl_Value = Guid.initString("0343e2f4-86f6-11d1-b760-00c04fb926af");
-pub const IID_IEventControl = &IID_IEventControl_Value;
-pub const IEventControl = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        SetPublisherFilter: *const fn(
-            self: *const IEventControl,
-            methodName: ?BSTR,
-            pPublisherFilter: ?*IPublisherFilter,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowInprocActivation: *const fn(
-            self: *const IEventControl,
-            pfAllowInprocActivation: ?*BOOL,
-        ) callconv(.winapi) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowInprocActivation: *const fn(
-            self: *const IEventControl,
-            fAllowInprocActivation: BOOL,
-        ) callconv(.winapi) HRESULT,
-        GetSubscriptions: *const fn(
-            self: *const IEventControl,
-            methodName: ?BSTR,
-            optionalCriteria: ?BSTR,
-            optionalErrorIndex: ?*i32,
-            ppCollection: ?*?*IEventObjectCollection,
-        ) callconv(.winapi) HRESULT,
-        SetDefaultQuery: *const fn(
-            self: *const IEventControl,
-            methodName: ?BSTR,
-            criteria: ?BSTR,
-            errorIndex: ?*i32,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn SetPublisherFilter(self: *const IEventControl, methodName: ?BSTR, pPublisherFilter: ?*IPublisherFilter) callconv(.@"inline") HRESULT {
-        return self.vtable.SetPublisherFilter(self, methodName, pPublisherFilter);
-    }
-    pub fn get_AllowInprocActivation(self: *const IEventControl, pfAllowInprocActivation: ?*BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.get_AllowInprocActivation(self, pfAllowInprocActivation);
-    }
-    pub fn put_AllowInprocActivation(self: *const IEventControl, fAllowInprocActivation: BOOL) callconv(.@"inline") HRESULT {
-        return self.vtable.put_AllowInprocActivation(self, fAllowInprocActivation);
-    }
-    pub fn GetSubscriptions(self: *const IEventControl, methodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) callconv(.@"inline") HRESULT {
-        return self.vtable.GetSubscriptions(self, methodName, optionalCriteria, optionalErrorIndex, ppCollection);
-    }
-    pub fn SetDefaultQuery(self: *const IEventControl, methodName: ?BSTR, criteria: ?BSTR, errorIndex: ?*i32) callconv(.@"inline") HRESULT {
-        return self.vtable.SetDefaultQuery(self, methodName, criteria, errorIndex);
     }
 };
 
@@ -1111,14 +1067,58 @@ pub const IMultiInterfaceEventControl = extern union {
     }
 };
 
-const IID_IDontSupportEventSubscription_Value = Guid.initString("784121f1-62a6-4b89-855f-d65f296de83a");
-pub const IID_IDontSupportEventSubscription = &IID_IDontSupportEventSubscription_Value;
-pub const IDontSupportEventSubscription = extern union {
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IMultiInterfacePublisherFilter_Value = Guid.initString("465e5cc1-7b26-11d1-88fb-0080c7d771bf");
+pub const IID_IMultiInterfacePublisherFilter = &IID_IMultiInterfacePublisherFilter_Value;
+pub const IMultiInterfacePublisherFilter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IMultiInterfacePublisherFilter,
+            pEIC: ?*IMultiInterfaceEventControl,
+        ) callconv(.winapi) HRESULT,
+        PrepareToFire: *const fn(
+            self: *const IMultiInterfacePublisherFilter,
+            iid: ?*const Guid,
+            methodName: ?BSTR,
+            firingControl: ?*IFiringControl,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
+    pub fn Initialize(self: *const IMultiInterfacePublisherFilter, pEIC: ?*IMultiInterfaceEventControl) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, pEIC);
+    }
+    pub fn PrepareToFire(self: *const IMultiInterfacePublisherFilter, iid: ?*const Guid, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.@"inline") HRESULT {
+        return self.vtable.PrepareToFire(self, iid, methodName, firingControl);
+    }
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPublisherFilter_Value = Guid.initString("465e5cc0-7b26-11d1-88fb-0080c7d771bf");
+pub const IID_IPublisherFilter = &IID_IPublisherFilter_Value;
+pub const IPublisherFilter = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: *const fn(
+            self: *const IPublisherFilter,
+            methodName: ?BSTR,
+            dispUserDefined: ?*IDispatch,
+        ) callconv(.winapi) HRESULT,
+        PrepareToFire: *const fn(
+            self: *const IPublisherFilter,
+            methodName: ?BSTR,
+            firingControl: ?*IFiringControl,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IPublisherFilter, methodName: ?BSTR, dispUserDefined: ?*IDispatch) callconv(.@"inline") HRESULT {
+        return self.vtable.Initialize(self, methodName, dispUserDefined);
+    }
+    pub fn PrepareToFire(self: *const IPublisherFilter, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.@"inline") HRESULT {
+        return self.vtable.PrepareToFire(self, methodName, firingControl);
+    }
 };
 
 

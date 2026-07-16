@@ -6,6 +6,66 @@
 //--------------------------------------------------------------------------------
 // Section: Types (34)
 //--------------------------------------------------------------------------------
+pub const JOB_OBJECT_CPU_RATE_CONTROL = packed struct(u32) {
+    ENABLE: u1 = 0,
+    WEIGHT_BASED: u1 = 0,
+    HARD_CAP: u1 = 0,
+    NOTIFY: u1 = 0,
+    MIN_MAX_RATE: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const JOB_OBJECT_CPU_RATE_CONTROL_ENABLE = JOB_OBJECT_CPU_RATE_CONTROL{ .ENABLE = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED = JOB_OBJECT_CPU_RATE_CONTROL{ .WEIGHT_BASED = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP = JOB_OBJECT_CPU_RATE_CONTROL{ .HARD_CAP = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY = JOB_OBJECT_CPU_RATE_CONTROL{ .NOTIFY = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_MIN_MAX_RATE = JOB_OBJECT_CPU_RATE_CONTROL{ .MIN_MAX_RATE = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_CPU_RATE_CONTROL{
+    .ENABLE = 1,
+    .WEIGHT_BASED = 1,
+    .HARD_CAP = 1,
+    .NOTIFY = 1,
+    .MIN_MAX_RATE = 1,
+};
+
+pub const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = enum(i32) {
+    ENABLE = 1,
+    STANDALONE_VOLUME = 2,
+    FORCE_UNIT_ACCESS_ALL = 4,
+    FORCE_UNIT_ACCESS_ON_SOFT_CAP = 8,
+    VALID_FLAGS = 15,
+};
+pub const JOB_OBJECT_IO_RATE_CONTROL_ENABLE = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.ENABLE;
+pub const JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.STANDALONE_VOLUME;
+pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.FORCE_UNIT_ACCESS_ALL;
+pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.FORCE_UNIT_ACCESS_ON_SOFT_CAP;
+pub const JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.VALID_FLAGS;
+
 pub const JOB_OBJECT_LIMIT = packed struct(u32) {
     LIMIT_WORKINGSET: u1 = 0,
     LIMIT_PROCESS_TIME: u1 = 0,
@@ -124,15 +184,15 @@ pub const JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT{
     .LIMIT_NET_RATE_CONTROL = 1,
 };
 
-pub const JOB_OBJECT_UILIMIT = packed struct(u32) {
-    HANDLES: u1 = 0,
-    READCLIPBOARD: u1 = 0,
-    WRITECLIPBOARD: u1 = 0,
-    SYSTEMPARAMETERS: u1 = 0,
-    DISPLAYSETTINGS: u1 = 0,
-    GLOBALATOMS: u1 = 0,
-    DESKTOP: u1 = 0,
-    EXITWINDOWS: u1 = 0,
+pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = packed struct(u32) {
+    ENABLE: u1 = 0,
+    MAX_BANDWIDTH: u1 = 0,
+    DSCP_TAG: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
     _8: u1 = 0,
     _9: u1 = 0,
     _10: u1 = 0,
@@ -158,15 +218,14 @@ pub const JOB_OBJECT_UILIMIT = packed struct(u32) {
     _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT{ };
-pub const JOB_OBJECT_UILIMIT_HANDLES = JOB_OBJECT_UILIMIT{ .HANDLES = 1 };
-pub const JOB_OBJECT_UILIMIT_READCLIPBOARD = JOB_OBJECT_UILIMIT{ .READCLIPBOARD = 1 };
-pub const JOB_OBJECT_UILIMIT_WRITECLIPBOARD = JOB_OBJECT_UILIMIT{ .WRITECLIPBOARD = 1 };
-pub const JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = JOB_OBJECT_UILIMIT{ .SYSTEMPARAMETERS = 1 };
-pub const JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = JOB_OBJECT_UILIMIT{ .DISPLAYSETTINGS = 1 };
-pub const JOB_OBJECT_UILIMIT_GLOBALATOMS = JOB_OBJECT_UILIMIT{ .GLOBALATOMS = 1 };
-pub const JOB_OBJECT_UILIMIT_DESKTOP = JOB_OBJECT_UILIMIT{ .DESKTOP = 1 };
-pub const JOB_OBJECT_UILIMIT_EXITWINDOWS = JOB_OBJECT_UILIMIT{ .EXITWINDOWS = 1 };
+pub const JOB_OBJECT_NET_RATE_CONTROL_ENABLE = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .ENABLE = 1 };
+pub const JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .MAX_BANDWIDTH = 1 };
+pub const JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .DSCP_TAG = 1 };
+pub const JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{
+    .ENABLE = 1,
+    .MAX_BANDWIDTH = 1,
+    .DSCP_TAG = 1,
+};
 
 pub const JOB_OBJECT_SECURITY = packed struct(u32) {
     NO_ADMIN: u1 = 0,
@@ -213,15 +272,22 @@ pub const JOB_OBJECT_SECURITY_VALID_FLAGS = JOB_OBJECT_SECURITY{
     .FILTER_TOKENS = 1,
 };
 
-pub const JOB_OBJECT_CPU_RATE_CONTROL = packed struct(u32) {
-    ENABLE: u1 = 0,
-    WEIGHT_BASED: u1 = 0,
-    HARD_CAP: u1 = 0,
-    NOTIFY: u1 = 0,
-    MIN_MAX_RATE: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
+pub const JOB_OBJECT_TERMINATE_AT_END_ACTION = enum(u32) {
+    TERMINATE_AT_END_OF_JOB = 0,
+    POST_AT_END_OF_JOB = 1,
+};
+pub const JOB_OBJECT_TERMINATE_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.TERMINATE_AT_END_OF_JOB;
+pub const JOB_OBJECT_POST_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.POST_AT_END_OF_JOB;
+
+pub const JOB_OBJECT_UILIMIT = packed struct(u32) {
+    HANDLES: u1 = 0,
+    READCLIPBOARD: u1 = 0,
+    WRITECLIPBOARD: u1 = 0,
+    SYSTEMPARAMETERS: u1 = 0,
+    DISPLAYSETTINGS: u1 = 0,
+    GLOBALATOMS: u1 = 0,
+    DESKTOP: u1 = 0,
+    EXITWINDOWS: u1 = 0,
     _8: u1 = 0,
     _9: u1 = 0,
     _10: u1 = 0,
@@ -247,39 +313,25 @@ pub const JOB_OBJECT_CPU_RATE_CONTROL = packed struct(u32) {
     _30: u1 = 0,
     _31: u1 = 0,
 };
-pub const JOB_OBJECT_CPU_RATE_CONTROL_ENABLE = JOB_OBJECT_CPU_RATE_CONTROL{ .ENABLE = 1 };
-pub const JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED = JOB_OBJECT_CPU_RATE_CONTROL{ .WEIGHT_BASED = 1 };
-pub const JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP = JOB_OBJECT_CPU_RATE_CONTROL{ .HARD_CAP = 1 };
-pub const JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY = JOB_OBJECT_CPU_RATE_CONTROL{ .NOTIFY = 1 };
-pub const JOB_OBJECT_CPU_RATE_CONTROL_MIN_MAX_RATE = JOB_OBJECT_CPU_RATE_CONTROL{ .MIN_MAX_RATE = 1 };
-pub const JOB_OBJECT_CPU_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_CPU_RATE_CONTROL{
-    .ENABLE = 1,
-    .WEIGHT_BASED = 1,
-    .HARD_CAP = 1,
-    .NOTIFY = 1,
-    .MIN_MAX_RATE = 1,
-};
-
-pub const JOB_OBJECT_TERMINATE_AT_END_ACTION = enum(u32) {
-    TERMINATE_AT_END_OF_JOB = 0,
-    POST_AT_END_OF_JOB = 1,
-};
-pub const JOB_OBJECT_TERMINATE_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.TERMINATE_AT_END_OF_JOB;
-pub const JOB_OBJECT_POST_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.POST_AT_END_OF_JOB;
-
-pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
-    MaxIops: i64,
-    MaxBandwidth: i64,
-    ReservationIops: i64,
-    VolumeName: ?[*:0]const u16,
-    BaseIoSize: u32,
-    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
-};
+pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT{ };
+pub const JOB_OBJECT_UILIMIT_HANDLES = JOB_OBJECT_UILIMIT{ .HANDLES = 1 };
+pub const JOB_OBJECT_UILIMIT_READCLIPBOARD = JOB_OBJECT_UILIMIT{ .READCLIPBOARD = 1 };
+pub const JOB_OBJECT_UILIMIT_WRITECLIPBOARD = JOB_OBJECT_UILIMIT{ .WRITECLIPBOARD = 1 };
+pub const JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = JOB_OBJECT_UILIMIT{ .SYSTEMPARAMETERS = 1 };
+pub const JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = JOB_OBJECT_UILIMIT{ .DISPLAYSETTINGS = 1 };
+pub const JOB_OBJECT_UILIMIT_GLOBALATOMS = JOB_OBJECT_UILIMIT{ .GLOBALATOMS = 1 };
+pub const JOB_OBJECT_UILIMIT_DESKTOP = JOB_OBJECT_UILIMIT{ .DESKTOP = 1 };
+pub const JOB_OBJECT_UILIMIT_EXITWINDOWS = JOB_OBJECT_UILIMIT{ .EXITWINDOWS = 1 };
 
 pub const JOB_SET_ARRAY = extern struct {
     JobHandle: ?HANDLE,
     MemberLevel: u32,
     Flags: u32,
+};
+
+pub const JOBOBJECT_ASSOCIATE_COMPLETION_PORT = extern struct {
+    CompletionKey: ?*anyopaque,
+    CompletionPort: ?HANDLE,
 };
 
 pub const JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = extern struct {
@@ -291,6 +343,11 @@ pub const JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = extern struct {
     TotalProcesses: u32,
     ActiveProcesses: u32,
     TotalTerminatedProcesses: u32,
+};
+
+pub const JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = extern struct {
+    BasicInfo: JOBOBJECT_BASIC_ACCOUNTING_INFORMATION,
+    IoInfo: IO_COUNTERS,
 };
 
 pub const JOBOBJECT_BASIC_LIMIT_INFORMATION = extern struct {
@@ -305,15 +362,6 @@ pub const JOBOBJECT_BASIC_LIMIT_INFORMATION = extern struct {
     SchedulingClass: u32,
 };
 
-pub const JOBOBJECT_EXTENDED_LIMIT_INFORMATION = extern struct {
-    BasicLimitInformation: JOBOBJECT_BASIC_LIMIT_INFORMATION,
-    IoInfo: IO_COUNTERS,
-    ProcessMemoryLimit: usize,
-    JobMemoryLimit: usize,
-    PeakProcessMemoryUsed: usize,
-    PeakJobMemoryUsed: usize,
-};
-
 pub const JOBOBJECT_BASIC_PROCESS_ID_LIST = extern struct {
     NumberOfAssignedProcesses: u32,
     NumberOfProcessIdsInList: u32,
@@ -322,126 +370,6 @@ pub const JOBOBJECT_BASIC_PROCESS_ID_LIST = extern struct {
 
 pub const JOBOBJECT_BASIC_UI_RESTRICTIONS = extern struct {
     UIRestrictionsClass: JOB_OBJECT_UILIMIT,
-};
-
-pub const JOBOBJECT_SECURITY_LIMIT_INFORMATION = extern struct {
-    SecurityLimitFlags: JOB_OBJECT_SECURITY,
-    JobToken: ?HANDLE,
-    SidsToDisable: ?*TOKEN_GROUPS,
-    PrivilegesToDelete: ?*TOKEN_PRIVILEGES,
-    RestrictedSids: ?*TOKEN_GROUPS,
-};
-
-pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
-    EndOfJobTimeAction: JOB_OBJECT_TERMINATE_AT_END_ACTION,
-};
-
-pub const JOBOBJECT_ASSOCIATE_COMPLETION_PORT = extern struct {
-    CompletionKey: ?*anyopaque,
-    CompletionPort: ?HANDLE,
-};
-
-pub const JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = extern struct {
-    BasicInfo: JOBOBJECT_BASIC_ACCOUNTING_INFORMATION,
-    IoInfo: IO_COUNTERS,
-};
-
-pub const JOBOBJECT_JOBSET_INFORMATION = extern struct {
-    MemberLevel: u32,
-};
-
-pub const JOBOBJECT_RATE_CONTROL_TOLERANCE = enum(i32) {
-    Low = 1,
-    Medium = 2,
-    High = 3,
-};
-pub const ToleranceLow = JOBOBJECT_RATE_CONTROL_TOLERANCE.Low;
-pub const ToleranceMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE.Medium;
-pub const ToleranceHigh = JOBOBJECT_RATE_CONTROL_TOLERANCE.High;
-
-pub const JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = enum(i32) {
-    Short = 1,
-    Medium = 2,
-    Long = 3,
-};
-// TODO: enum 'JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL' has known issues with its value aliases
-
-pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = extern struct {
-    IoReadBytesLimit: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    JobMemoryLimit: u64,
-    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-    LimitFlags: JOB_OBJECT_LIMIT,
-};
-
-pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 = extern struct {
-    IoReadBytesLimit: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    Anonymous1: extern union {
-        JobHighMemoryLimit: u64,
-        JobMemoryLimit: u64,
-    },
-    Anonymous2: extern union {
-        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    },
-    Anonymous3: extern union {
-        RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-        CpuRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-    },
-    LimitFlags: JOB_OBJECT_LIMIT,
-    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    JobLowMemoryLimit: u64,
-    IoRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    NetRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-};
-
-pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION = extern struct {
-    LimitFlags: JOB_OBJECT_LIMIT,
-    ViolationLimitFlags: JOB_OBJECT_LIMIT,
-    IoReadBytes: u64,
-    IoReadBytesLimit: u64,
-    IoWriteBytes: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTime: LARGE_INTEGER,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    JobMemory: u64,
-    JobMemoryLimit: u64,
-    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-};
-
-pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 = extern struct {
-    LimitFlags: JOB_OBJECT_LIMIT,
-    ViolationLimitFlags: JOB_OBJECT_LIMIT,
-    IoReadBytes: u64,
-    IoReadBytesLimit: u64,
-    IoWriteBytes: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTime: LARGE_INTEGER,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    JobMemory: u64,
-    Anonymous1: extern union {
-        JobHighMemoryLimit: u64,
-        JobMemoryLimit: u64,
-    },
-    Anonymous2: extern union {
-        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    },
-    Anonymous3: extern union {
-        RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-        CpuRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    },
-    JobLowMemoryLimit: u64,
-    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    IoRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    NetRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
 };
 
 pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
@@ -456,67 +384,49 @@ pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
     },
 };
 
-pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = packed struct(u32) {
-    ENABLE: u1 = 0,
-    MAX_BANDWIDTH: u1 = 0,
-    DSCP_TAG: u1 = 0,
-    _3: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const JOB_OBJECT_NET_RATE_CONTROL_ENABLE = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .ENABLE = 1 };
-pub const JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .MAX_BANDWIDTH = 1 };
-pub const JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .DSCP_TAG = 1 };
-pub const JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{
-    .ENABLE = 1,
-    .MAX_BANDWIDTH = 1,
-    .DSCP_TAG = 1,
+pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
+    EndOfJobTimeAction: JOB_OBJECT_TERMINATE_AT_END_ACTION,
 };
 
-pub const JOBOBJECT_NET_RATE_CONTROL_INFORMATION = extern struct {
-    MaxBandwidth: u64,
-    ControlFlags: JOB_OBJECT_NET_RATE_CONTROL_FLAGS,
-    DscpTag: u8,
+pub const JOBOBJECT_EXTENDED_LIMIT_INFORMATION = extern struct {
+    BasicLimitInformation: JOBOBJECT_BASIC_LIMIT_INFORMATION,
+    IoInfo: IO_COUNTERS,
+    ProcessMemoryLimit: usize,
+    JobMemoryLimit: usize,
+    PeakProcessMemoryUsed: usize,
+    PeakJobMemoryUsed: usize,
 };
 
-pub const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = enum(i32) {
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS = enum(i32) {
     ENABLE = 1,
-    STANDALONE_VOLUME = 2,
-    FORCE_UNIT_ACCESS_ALL = 4,
-    FORCE_UNIT_ACCESS_ON_SOFT_CAP = 8,
-    VALID_FLAGS = 15,
+    DISABLE = 2,
+    VALID_FLAGS = 3,
 };
-pub const JOB_OBJECT_IO_RATE_CONTROL_ENABLE = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.ENABLE;
-pub const JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.STANDALONE_VOLUME;
-pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.FORCE_UNIT_ACCESS_ALL;
-pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.FORCE_UNIT_ACCESS_ON_SOFT_CAP;
-pub const JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.VALID_FLAGS;
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.ENABLE;
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.DISABLE;
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.VALID_FLAGS;
+
+pub const JOBOBJECT_IO_ATTRIBUTION_INFORMATION = extern struct {
+    ControlFlags: u32,
+    ReadStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
+    WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
+};
+
+pub const JOBOBJECT_IO_ATTRIBUTION_STATS = extern struct {
+    IoCount: usize,
+    TotalNonOverlappedQueueTime: u64,
+    TotalNonOverlappedServiceTime: u64,
+    TotalSize: u64,
+};
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: ?[*:0]const u16,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+};
 
 pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE = extern struct {
     MaxIops: i64,
@@ -566,26 +476,116 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 = extern struct {
     LimitExcessNotifyTimePercent: i64,
 };
 
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS = enum(i32) {
-    ENABLE = 1,
-    DISABLE = 2,
-    VALID_FLAGS = 3,
-};
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.ENABLE;
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.DISABLE;
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.VALID_FLAGS;
-
-pub const JOBOBJECT_IO_ATTRIBUTION_STATS = extern struct {
-    IoCount: usize,
-    TotalNonOverlappedQueueTime: u64,
-    TotalNonOverlappedServiceTime: u64,
-    TotalSize: u64,
+pub const JOBOBJECT_JOBSET_INFORMATION = extern struct {
+    MemberLevel: u32,
 };
 
-pub const JOBOBJECT_IO_ATTRIBUTION_INFORMATION = extern struct {
-    ControlFlags: u32,
-    ReadStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
-    WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
+pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION = extern struct {
+    LimitFlags: JOB_OBJECT_LIMIT,
+    ViolationLimitFlags: JOB_OBJECT_LIMIT,
+    IoReadBytes: u64,
+    IoReadBytesLimit: u64,
+    IoWriteBytes: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTime: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemory: u64,
+    JobMemoryLimit: u64,
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+};
+
+pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 = extern struct {
+    LimitFlags: JOB_OBJECT_LIMIT,
+    ViolationLimitFlags: JOB_OBJECT_LIMIT,
+    IoReadBytes: u64,
+    IoReadBytesLimit: u64,
+    IoWriteBytes: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTime: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemory: u64,
+    Anonymous1: extern union {
+        JobHighMemoryLimit: u64,
+        JobMemoryLimit: u64,
+    },
+    Anonymous2: extern union {
+        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    Anonymous3: extern union {
+        RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    JobLowMemoryLimit: u64,
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    IoRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+};
+
+pub const JOBOBJECT_NET_RATE_CONTROL_INFORMATION = extern struct {
+    MaxBandwidth: u64,
+    ControlFlags: JOB_OBJECT_NET_RATE_CONTROL_FLAGS,
+    DscpTag: u8,
+};
+
+pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = extern struct {
+    IoReadBytesLimit: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemoryLimit: u64,
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    LimitFlags: JOB_OBJECT_LIMIT,
+};
+
+pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 = extern struct {
+    IoReadBytesLimit: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    Anonymous1: extern union {
+        JobHighMemoryLimit: u64,
+        JobMemoryLimit: u64,
+    },
+    Anonymous2: extern union {
+        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    Anonymous3: extern union {
+        RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+        CpuRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    },
+    LimitFlags: JOB_OBJECT_LIMIT,
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    JobLowMemoryLimit: u64,
+    IoRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+};
+
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE = enum(i32) {
+    Low = 1,
+    Medium = 2,
+    High = 3,
+};
+pub const ToleranceLow = JOBOBJECT_RATE_CONTROL_TOLERANCE.Low;
+pub const ToleranceMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE.Medium;
+pub const ToleranceHigh = JOBOBJECT_RATE_CONTROL_TOLERANCE.High;
+
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = enum(i32) {
+    Short = 1,
+    Medium = 2,
+    Long = 3,
+};
+// TODO: enum 'JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL' has known issues with its value aliases
+
+pub const JOBOBJECT_SECURITY_LIMIT_INFORMATION = extern struct {
+    SecurityLimitFlags: JOB_OBJECT_SECURITY,
+    JobToken: ?HANDLE,
+    SidsToDisable: ?*TOKEN_GROUPS,
+    PrivilegesToDelete: ?*TOKEN_PRIVILEGES,
+    RestrictedSids: ?*TOKEN_GROUPS,
 };
 
 pub const JOBOBJECTINFOCLASS = enum(i32) {
@@ -692,11 +692,16 @@ pub const MaxJobObjectInfoClass = JOBOBJECTINFOCLASS.MaxJobObjectInfoClass;
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsProcessInJob(
-    ProcessHandle: ?HANDLE,
-    JobHandle: ?HANDLE,
-    Result: ?*BOOL,
+pub extern "kernel32" fn AssignProcessToJobObject(
+    hJob: ?HANDLE,
+    hProcess: ?HANDLE,
 ) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn CreateJobObjectA(
+    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u8,
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateJobObjectW(
@@ -704,10 +709,30 @@ pub extern "kernel32" fn CreateJobObjectW(
     lpName: ?[*:0]const u16,
 ) callconv(.winapi) ?HANDLE;
 
+pub extern "kernel32" fn CreateJobSet(
+    NumJob: u32,
+    UserJobSet: [*]JOB_SET_ARRAY,
+    Flags: u32,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "kernel32" fn FreeMemoryJobObject(
     Buffer: ?*anyopaque,
 ) callconv(.winapi) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn IsProcessInJob(
+    ProcessHandle: ?HANDLE,
+    JobHandle: ?HANDLE,
+    Result: ?*BOOL,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn OpenJobObjectA(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: ?[*:0]const u8,
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn OpenJobObjectW(
@@ -715,33 +740,6 @@ pub extern "kernel32" fn OpenJobObjectW(
     bInheritHandle: BOOL,
     lpName: ?[*:0]const u16,
 ) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn AssignProcessToJobObject(
-    hJob: ?HANDLE,
-    hProcess: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn TerminateJobObject(
-    hJob: ?HANDLE,
-    uExitCode: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SetInformationJobObject(
-    hJob: ?HANDLE,
-    JobObjectInformationClass: JOBOBJECTINFOCLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    lpJobObjectInformation: ?*anyopaque,
-    cbJobObjectInformationLength: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "kernel32" fn SetIoRateControlInformationJobObject(
-    hJob: ?HANDLE,
-    IoRateControlInfo: ?*JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
-) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn QueryInformationJobObject(
@@ -762,29 +760,31 @@ pub extern "kernel32" fn QueryIoRateControlInformationJobObject(
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn SetInformationJobObject(
+    hJob: ?HANDLE,
+    JobObjectInformationClass: JOBOBJECTINFOCLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    lpJobObjectInformation: ?*anyopaque,
+    cbJobObjectInformationLength: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "kernel32" fn SetIoRateControlInformationJobObject(
+    hJob: ?HANDLE,
+    IoRateControlInfo: ?*JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
+) callconv(.winapi) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn TerminateJobObject(
+    hJob: ?HANDLE,
+    uExitCode: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn UserHandleGrantAccess(
     hUserHandle: ?HANDLE,
     hJob: ?HANDLE,
     bGrant: BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn CreateJobObjectA(
-    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u8,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn OpenJobObjectA(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: ?[*:0]const u8,
-) callconv(.winapi) ?HANDLE;
-
-pub extern "kernel32" fn CreateJobSet(
-    NumJob: u32,
-    UserJobSet: [*]JOB_SET_ARRAY,
-    Flags: u32,
 ) callconv(.winapi) BOOL;
 
 

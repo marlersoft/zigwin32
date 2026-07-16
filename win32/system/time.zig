@@ -2,30 +2,20 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (10)
 //--------------------------------------------------------------------------------
-pub const wszW32TimeRegKeyTimeProviders = "System\\CurrentControlSet\\Services\\W32Time\\TimeProviders";
-pub const wszW32TimeRegKeyPolicyTimeProviders = "Software\\Policies\\Microsoft\\W32Time\\TimeProviders";
-pub const wszW32TimeRegValueEnabled = "Enabled";
-pub const wszW32TimeRegValueDllName = "DllName";
-pub const wszW32TimeRegValueInputProvider = "InputProvider";
-pub const wszW32TimeRegValueMetaDataProvider = "MetaDataProvider";
-pub const TSF_Hardware = @as(u32, 1);
 pub const TSF_Authenticated = @as(u32, 2);
+pub const TSF_Hardware = @as(u32, 1);
 pub const TSF_IPv6 = @as(u32, 4);
 pub const TSF_SignatureAuthenticated = @as(u32, 8);
+pub const wszW32TimeRegKeyPolicyTimeProviders = "Software\\Policies\\Microsoft\\W32Time\\TimeProviders";
+pub const wszW32TimeRegKeyTimeProviders = "System\\CurrentControlSet\\Services\\W32Time\\TimeProviders";
+pub const wszW32TimeRegValueDllName = "DllName";
+pub const wszW32TimeRegValueEnabled = "Enabled";
+pub const wszW32TimeRegValueInputProvider = "InputProvider";
+pub const wszW32TimeRegValueMetaDataProvider = "MetaDataProvider";
 
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-pub const TIME_ZONE_INFORMATION = extern struct {
-    Bias: i32,
-    StandardName: [32]u16,
-    StandardDate: SYSTEMTIME,
-    StandardBias: i32,
-    DaylightName: [32]u16,
-    DaylightDate: SYSTEMTIME,
-    DaylightBias: i32,
-};
-
 pub const DYNAMIC_TIME_ZONE_INFORMATION = extern struct {
     Bias: i32,
     StandardName: [32]u16,
@@ -38,23 +28,25 @@ pub const DYNAMIC_TIME_ZONE_INFORMATION = extern struct {
     DynamicDaylightTimeDisabled: BOOLEAN,
 };
 
+pub const TIME_ZONE_INFORMATION = extern struct {
+    Bias: i32,
+    StandardName: [32]u16,
+    StandardDate: SYSTEMTIME,
+    StandardBias: i32,
+    DaylightName: [32]u16,
+    DaylightDate: SYSTEMTIME,
+    DaylightBias: i32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (15)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SystemTimeToTzSpecificLocalTime(
-    lpTimeZoneInformation: ?*const TIME_ZONE_INFORMATION,
-    lpUniversalTime: ?*const SYSTEMTIME,
-    lpLocalTime: ?*SYSTEMTIME,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn TzSpecificLocalTimeToSystemTime(
-    lpTimeZoneInformation: ?*const TIME_ZONE_INFORMATION,
-    lpLocalTime: ?*const SYSTEMTIME,
-    lpUniversalTime: ?*SYSTEMTIME,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "advapi32" fn EnumDynamicTimeZoneInformation(
+    dwIndex: u32,
+    lpTimeZoneInformation: ?*DYNAMIC_TIME_ZONE_INFORMATION,
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FileTimeToSystemTime(
@@ -62,43 +54,9 @@ pub extern "kernel32" fn FileTimeToSystemTime(
     lpSystemTime: ?*SYSTEMTIME,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SystemTimeToFileTime(
-    lpSystemTime: ?*const SYSTEMTIME,
-    lpFileTime: ?*FILETIME,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetTimeZoneInformation(
-    lpTimeZoneInformation: ?*TIME_ZONE_INFORMATION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetTimeZoneInformation(
-    lpTimeZoneInformation: ?*const TIME_ZONE_INFORMATION,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn SetDynamicTimeZoneInformation(
-    lpTimeZoneInformation: ?*const DYNAMIC_TIME_ZONE_INFORMATION,
-) callconv(.winapi) BOOL;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetDynamicTimeZoneInformation(
     pTimeZoneInformation: ?*DYNAMIC_TIME_ZONE_INFORMATION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetTimeZoneInformationForYear(
-    wYear: u16,
-    pdtzi: ?*DYNAMIC_TIME_ZONE_INFORMATION,
-    ptzi: ?*TIME_ZONE_INFORMATION,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "advapi32" fn EnumDynamicTimeZoneInformation(
-    dwIndex: u32,
-    lpTimeZoneInformation: ?*DYNAMIC_TIME_ZONE_INFORMATION,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -108,18 +66,16 @@ pub extern "advapi32" fn GetDynamicTimeZoneInformationEffectiveYears(
     LastYear: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn SystemTimeToTzSpecificLocalTimeEx(
-    lpTimeZoneInformation: ?*const DYNAMIC_TIME_ZONE_INFORMATION,
-    lpUniversalTime: ?*const SYSTEMTIME,
-    lpLocalTime: ?*SYSTEMTIME,
-) callconv(.winapi) BOOL;
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn GetTimeZoneInformation(
+    lpTimeZoneInformation: ?*TIME_ZONE_INFORMATION,
+) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn TzSpecificLocalTimeToSystemTimeEx(
-    lpTimeZoneInformation: ?*const DYNAMIC_TIME_ZONE_INFORMATION,
-    lpLocalTime: ?*const SYSTEMTIME,
-    lpUniversalTime: ?*SYSTEMTIME,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn GetTimeZoneInformationForYear(
+    wYear: u16,
+    pdtzi: ?*DYNAMIC_TIME_ZONE_INFORMATION,
+    ptzi: ?*TIME_ZONE_INFORMATION,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn LocalFileTimeToLocalSystemTime(
@@ -132,6 +88,50 @@ pub extern "kernel32" fn LocalSystemTimeToLocalFileTime(
     timeZoneInformation: ?*const TIME_ZONE_INFORMATION,
     localSystemTime: ?*const SYSTEMTIME,
     localFileTime: ?*FILETIME,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "kernel32" fn SetDynamicTimeZoneInformation(
+    lpTimeZoneInformation: ?*const DYNAMIC_TIME_ZONE_INFORMATION,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SetTimeZoneInformation(
+    lpTimeZoneInformation: ?*const TIME_ZONE_INFORMATION,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SystemTimeToFileTime(
+    lpSystemTime: ?*const SYSTEMTIME,
+    lpFileTime: ?*FILETIME,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "kernel32" fn SystemTimeToTzSpecificLocalTime(
+    lpTimeZoneInformation: ?*const TIME_ZONE_INFORMATION,
+    lpUniversalTime: ?*const SYSTEMTIME,
+    lpLocalTime: ?*SYSTEMTIME,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn SystemTimeToTzSpecificLocalTimeEx(
+    lpTimeZoneInformation: ?*const DYNAMIC_TIME_ZONE_INFORMATION,
+    lpUniversalTime: ?*const SYSTEMTIME,
+    lpLocalTime: ?*SYSTEMTIME,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "kernel32" fn TzSpecificLocalTimeToSystemTime(
+    lpTimeZoneInformation: ?*const TIME_ZONE_INFORMATION,
+    lpLocalTime: ?*const SYSTEMTIME,
+    lpUniversalTime: ?*SYSTEMTIME,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "kernel32" fn TzSpecificLocalTimeToSystemTimeEx(
+    lpTimeZoneInformation: ?*const DYNAMIC_TIME_ZONE_INFORMATION,
+    lpLocalTime: ?*const SYSTEMTIME,
+    lpUniversalTime: ?*SYSTEMTIME,
 ) callconv(.winapi) BOOL;
 
 

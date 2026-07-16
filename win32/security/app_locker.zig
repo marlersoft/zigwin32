@@ -2,51 +2,86 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (41)
 //--------------------------------------------------------------------------------
-pub const SAFER_SCOPEID_MACHINE = @as(u32, 1);
-pub const SAFER_SCOPEID_USER = @as(u32, 2);
+pub const SAFER_CRITERIA_APPX_PACKAGE = @as(u32, 32);
+pub const SAFER_CRITERIA_AUTHENTICODE = @as(u32, 8);
+pub const SAFER_CRITERIA_IMAGEHASH = @as(u32, 4);
+pub const SAFER_CRITERIA_IMAGEPATH = @as(u32, 1);
+pub const SAFER_CRITERIA_IMAGEPATH_NT = @as(u32, 4096);
+pub const SAFER_CRITERIA_NOSIGNEDHASH = @as(u32, 2);
+pub const SAFER_CRITERIA_URLZONE = @as(u32, 16);
+pub const SAFER_LEVEL_OPEN = @as(u32, 1);
+pub const SAFER_LEVELID_CONSTRAINED = @as(u32, 65536);
+pub const SAFER_LEVELID_DISALLOWED = @as(u32, 0);
 pub const SAFER_LEVELID_FULLYTRUSTED = @as(u32, 262144);
 pub const SAFER_LEVELID_NORMALUSER = @as(u32, 131072);
-pub const SAFER_LEVELID_CONSTRAINED = @as(u32, 65536);
 pub const SAFER_LEVELID_UNTRUSTED = @as(u32, 4096);
-pub const SAFER_LEVELID_DISALLOWED = @as(u32, 0);
-pub const SAFER_LEVEL_OPEN = @as(u32, 1);
-pub const SAFER_MAX_FRIENDLYNAME_SIZE = @as(u32, 256);
 pub const SAFER_MAX_DESCRIPTION_SIZE = @as(u32, 256);
+pub const SAFER_MAX_FRIENDLYNAME_SIZE = @as(u32, 256);
 pub const SAFER_MAX_HASH_SIZE = @as(u32, 64);
-pub const SAFER_CRITERIA_IMAGEPATH = @as(u32, 1);
-pub const SAFER_CRITERIA_NOSIGNEDHASH = @as(u32, 2);
-pub const SAFER_CRITERIA_IMAGEHASH = @as(u32, 4);
-pub const SAFER_CRITERIA_AUTHENTICODE = @as(u32, 8);
-pub const SAFER_CRITERIA_URLZONE = @as(u32, 16);
-pub const SAFER_CRITERIA_APPX_PACKAGE = @as(u32, 32);
-pub const SAFER_CRITERIA_IMAGEPATH_NT = @as(u32, 4096);
-pub const SAFER_POLICY_JOBID_MASK = @as(u32, 4278190080);
+pub const SAFER_POLICY_BLOCK_CLIENT_UI = @as(u32, 8192);
+pub const SAFER_POLICY_HASH_DUPLICATE = @as(u32, 262144);
 pub const SAFER_POLICY_JOBID_CONSTRAINED = @as(u32, 67108864);
+pub const SAFER_POLICY_JOBID_MASK = @as(u32, 4278190080);
 pub const SAFER_POLICY_JOBID_UNTRUSTED = @as(u32, 50331648);
+pub const SAFER_POLICY_ONLY_AUDIT = @as(u32, 4096);
 pub const SAFER_POLICY_ONLY_EXES = @as(u32, 65536);
 pub const SAFER_POLICY_SANDBOX_INERT = @as(u32, 131072);
-pub const SAFER_POLICY_HASH_DUPLICATE = @as(u32, 262144);
-pub const SAFER_POLICY_ONLY_AUDIT = @as(u32, 4096);
-pub const SAFER_POLICY_BLOCK_CLIENT_UI = @as(u32, 8192);
-pub const SAFER_POLICY_UIFLAGS_MASK = @as(u32, 255);
-pub const SAFER_POLICY_UIFLAGS_INFORMATION_PROMPT = @as(u32, 1);
-pub const SAFER_POLICY_UIFLAGS_OPTION_PROMPT = @as(u32, 2);
 pub const SAFER_POLICY_UIFLAGS_HIDDEN = @as(u32, 4);
-pub const SRP_POLICY_EXE = "EXE";
+pub const SAFER_POLICY_UIFLAGS_INFORMATION_PROMPT = @as(u32, 1);
+pub const SAFER_POLICY_UIFLAGS_MASK = @as(u32, 255);
+pub const SAFER_POLICY_UIFLAGS_OPTION_PROMPT = @as(u32, 2);
+pub const SAFER_SCOPEID_MACHINE = @as(u32, 1);
+pub const SAFER_SCOPEID_USER = @as(u32, 2);
+pub const SRP_POLICY_APPX = "APPX";
 pub const SRP_POLICY_DLL = "DLL";
+pub const SRP_POLICY_EXE = "EXE";
+pub const SRP_POLICY_MANAGEDINSTALLER = "MANAGEDINSTALLER";
 pub const SRP_POLICY_MSI = "MSI";
+pub const SRP_POLICY_NOV2 = "IGNORESRPV2";
 pub const SRP_POLICY_SCRIPT = "SCRIPT";
 pub const SRP_POLICY_SHELL = "SHELL";
-pub const SRP_POLICY_NOV2 = "IGNORESRPV2";
-pub const SRP_POLICY_APPX = "APPX";
+pub const SRP_POLICY_WLDPCONFIGCI = "WLDPCONFIGCI";
 pub const SRP_POLICY_WLDPMSI = "WLDPMSI";
 pub const SRP_POLICY_WLDPSCRIPT = "WLDPSCRIPT";
-pub const SRP_POLICY_WLDPCONFIGCI = "WLDPCONFIGCI";
-pub const SRP_POLICY_MANAGEDINSTALLER = "MANAGEDINSTALLER";
 
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
+pub const SAFER_CODE_PROPERTIES_V1 = extern struct {
+    cbSize: u32,
+    dwCheckFlags: u32,
+    ImagePath: ?[*:0]const u16,
+    hImageFileHandle: ?HANDLE,
+    UrlZoneId: u32,
+    ImageHash: [64]u8,
+    dwImageHashSize: u32,
+    ImageSize: LARGE_INTEGER,
+    HashAlgorithm: u32,
+    pByteBlock: ?*u8,
+    hWndParent: ?HWND,
+    dwWVTUIChoice: u32,
+};
+
+pub const SAFER_CODE_PROPERTIES_V2 = extern struct {
+    cbSize: u32,
+    dwCheckFlags: u32,
+    ImagePath: ?[*:0]const u16,
+    hImageFileHandle: ?HANDLE,
+    UrlZoneId: u32,
+    ImageHash: [64]u8,
+    dwImageHashSize: u32,
+    ImageSize: LARGE_INTEGER,
+    HashAlgorithm: u32,
+    pByteBlock: ?*u8,
+    hWndParent: ?HWND,
+    dwWVTUIChoice: u32,
+    PackageMoniker: ?[*:0]const u16,
+    PackagePublisher: ?[*:0]const u16,
+    PackageName: ?[*:0]const u16,
+    PackageVersion: u64,
+    PackageIsFramework: BOOL,
+};
+
 pub const SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS = packed struct(u32) {
     NULL_IF_EQUAL: u1 = 0,
     COMPARE_ONLY: u1 = 0,
@@ -86,57 +121,43 @@ pub const SAFER_TOKEN_COMPARE_ONLY = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS{ .COMP
 pub const SAFER_TOKEN_MAKE_INERT = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS{ .MAKE_INERT = 1 };
 pub const SAFER_TOKEN_WANT_FLAGS = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS{ .WANT_FLAGS = 1 };
 
-pub const SAFER_CODE_PROPERTIES_V1 = extern struct {
-    cbSize: u32,
-    dwCheckFlags: u32,
-    ImagePath: ?[*:0]const u16,
-    hImageFileHandle: ?HANDLE,
-    UrlZoneId: u32,
+pub const SAFER_HASH_IDENTIFICATION = extern struct {
+    header: SAFER_IDENTIFICATION_HEADER,
+    Description: [256]u16,
+    FriendlyName: [256]u16,
+    HashSize: u32,
     ImageHash: [64]u8,
-    dwImageHashSize: u32,
-    ImageSize: LARGE_INTEGER,
     HashAlgorithm: u32,
-    pByteBlock: ?*u8,
-    hWndParent: ?HWND,
-    dwWVTUIChoice: u32,
+    ImageSize: LARGE_INTEGER,
+    dwSaferFlags: u32,
 };
 
-pub const SAFER_CODE_PROPERTIES_V2 = extern struct {
-    cbSize: u32,
-    dwCheckFlags: u32,
-    ImagePath: ?[*:0]const u16,
-    hImageFileHandle: ?HANDLE,
-    UrlZoneId: u32,
+pub const SAFER_HASH_IDENTIFICATION2 = extern struct {
+    hashIdentification: SAFER_HASH_IDENTIFICATION,
+    HashSize: u32,
     ImageHash: [64]u8,
-    dwImageHashSize: u32,
-    ImageSize: LARGE_INTEGER,
     HashAlgorithm: u32,
-    pByteBlock: ?*u8,
-    hWndParent: ?HWND,
-    dwWVTUIChoice: u32,
-    PackageMoniker: ?[*:0]const u16,
-    PackagePublisher: ?[*:0]const u16,
-    PackageName: ?[*:0]const u16,
-    PackageVersion: u64,
-    PackageIsFramework: BOOL,
 };
 
-pub const SAFER_POLICY_INFO_CLASS = enum(i32) {
-    LevelList = 1,
-    EnableTransparentEnforcement = 2,
-    DefaultLevel = 3,
-    EvaluateUserScope = 4,
-    ScopeFlags = 5,
-    DefaultLevelFlags = 6,
-    AuthenticodeEnabled = 7,
+pub const SAFER_IDENTIFICATION_HEADER = extern struct {
+    dwIdentificationType: SAFER_IDENTIFICATION_TYPES,
+    cbStructSize: u32,
+    IdentificationGuid: Guid,
+    lastModified: FILETIME,
 };
-pub const SaferPolicyLevelList = SAFER_POLICY_INFO_CLASS.LevelList;
-pub const SaferPolicyEnableTransparentEnforcement = SAFER_POLICY_INFO_CLASS.EnableTransparentEnforcement;
-pub const SaferPolicyDefaultLevel = SAFER_POLICY_INFO_CLASS.DefaultLevel;
-pub const SaferPolicyEvaluateUserScope = SAFER_POLICY_INFO_CLASS.EvaluateUserScope;
-pub const SaferPolicyScopeFlags = SAFER_POLICY_INFO_CLASS.ScopeFlags;
-pub const SaferPolicyDefaultLevelFlags = SAFER_POLICY_INFO_CLASS.DefaultLevelFlags;
-pub const SaferPolicyAuthenticodeEnabled = SAFER_POLICY_INFO_CLASS.AuthenticodeEnabled;
+
+pub const SAFER_IDENTIFICATION_TYPES = enum(i32) {
+    Default = 0,
+    TypeImageName = 1,
+    TypeImageHash = 2,
+    TypeUrlZone = 3,
+    TypeCertificate = 4,
+};
+pub const SaferIdentityDefault = SAFER_IDENTIFICATION_TYPES.Default;
+pub const SaferIdentityTypeImageName = SAFER_IDENTIFICATION_TYPES.TypeImageName;
+pub const SaferIdentityTypeImageHash = SAFER_IDENTIFICATION_TYPES.TypeImageHash;
+pub const SaferIdentityTypeUrlZone = SAFER_IDENTIFICATION_TYPES.TypeUrlZone;
+pub const SaferIdentityTypeCertificate = SAFER_IDENTIFICATION_TYPES.TypeCertificate;
 
 pub const SAFER_OBJECT_INFO_CLASS = enum(i32) {
     LevelId = 1,
@@ -173,26 +194,6 @@ pub const SaferObjectAllIdentificationGuids = SAFER_OBJECT_INFO_CLASS.AllIdentif
 pub const SaferObjectSingleIdentification = SAFER_OBJECT_INFO_CLASS.SingleIdentification;
 pub const SaferObjectExtendedError = SAFER_OBJECT_INFO_CLASS.ExtendedError;
 
-pub const SAFER_IDENTIFICATION_TYPES = enum(i32) {
-    Default = 0,
-    TypeImageName = 1,
-    TypeImageHash = 2,
-    TypeUrlZone = 3,
-    TypeCertificate = 4,
-};
-pub const SaferIdentityDefault = SAFER_IDENTIFICATION_TYPES.Default;
-pub const SaferIdentityTypeImageName = SAFER_IDENTIFICATION_TYPES.TypeImageName;
-pub const SaferIdentityTypeImageHash = SAFER_IDENTIFICATION_TYPES.TypeImageHash;
-pub const SaferIdentityTypeUrlZone = SAFER_IDENTIFICATION_TYPES.TypeUrlZone;
-pub const SaferIdentityTypeCertificate = SAFER_IDENTIFICATION_TYPES.TypeCertificate;
-
-pub const SAFER_IDENTIFICATION_HEADER = extern struct {
-    dwIdentificationType: SAFER_IDENTIFICATION_TYPES,
-    cbStructSize: u32,
-    IdentificationGuid: Guid,
-    lastModified: FILETIME,
-};
-
 pub const SAFER_PATHNAME_IDENTIFICATION = extern struct {
     header: SAFER_IDENTIFICATION_HEADER,
     Description: [256]u16,
@@ -200,23 +201,22 @@ pub const SAFER_PATHNAME_IDENTIFICATION = extern struct {
     dwSaferFlags: u32,
 };
 
-pub const SAFER_HASH_IDENTIFICATION = extern struct {
-    header: SAFER_IDENTIFICATION_HEADER,
-    Description: [256]u16,
-    FriendlyName: [256]u16,
-    HashSize: u32,
-    ImageHash: [64]u8,
-    HashAlgorithm: u32,
-    ImageSize: LARGE_INTEGER,
-    dwSaferFlags: u32,
+pub const SAFER_POLICY_INFO_CLASS = enum(i32) {
+    LevelList = 1,
+    EnableTransparentEnforcement = 2,
+    DefaultLevel = 3,
+    EvaluateUserScope = 4,
+    ScopeFlags = 5,
+    DefaultLevelFlags = 6,
+    AuthenticodeEnabled = 7,
 };
-
-pub const SAFER_HASH_IDENTIFICATION2 = extern struct {
-    hashIdentification: SAFER_HASH_IDENTIFICATION,
-    HashSize: u32,
-    ImageHash: [64]u8,
-    HashAlgorithm: u32,
-};
+pub const SaferPolicyLevelList = SAFER_POLICY_INFO_CLASS.LevelList;
+pub const SaferPolicyEnableTransparentEnforcement = SAFER_POLICY_INFO_CLASS.EnableTransparentEnforcement;
+pub const SaferPolicyDefaultLevel = SAFER_POLICY_INFO_CLASS.DefaultLevel;
+pub const SaferPolicyEvaluateUserScope = SAFER_POLICY_INFO_CLASS.EvaluateUserScope;
+pub const SaferPolicyScopeFlags = SAFER_POLICY_INFO_CLASS.ScopeFlags;
+pub const SaferPolicyDefaultLevelFlags = SAFER_POLICY_INFO_CLASS.DefaultLevelFlags;
+pub const SaferPolicyAuthenticodeEnabled = SAFER_POLICY_INFO_CLASS.AuthenticodeEnabled;
 
 pub const SAFER_URLZONE_IDENTIFICATION = extern struct {
     header: SAFER_IDENTIFICATION_HEADER,
@@ -229,23 +229,16 @@ pub const SAFER_URLZONE_IDENTIFICATION = extern struct {
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferGetPolicyInformation(
-    dwScopeId: u32,
-    SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
-    InfoBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    InfoBuffer: ?*anyopaque,
-    InfoBufferRetSize: ?*u32,
-    lpReserved: ?*anyopaque,
+pub extern "advapi32" fn SaferCloseLevel(
+    hLevelHandle: SAFER_LEVEL_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferSetPolicyInformation(
-    dwScopeId: u32,
-    SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
-    InfoBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    InfoBuffer: ?*anyopaque,
+pub extern "advapi32" fn SaferComputeTokenFromLevel(
+    LevelHandle: SAFER_LEVEL_HANDLE,
+    InAccessToken: ?HANDLE,
+    OutAccessToken: ?*?HANDLE,
+    dwFlags: SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
     lpReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -255,28 +248,6 @@ pub extern "advapi32" fn SaferCreateLevel(
     dwLevelId: u32,
     OpenFlags: u32,
     pLevelHandle: ?*SAFER_LEVEL_HANDLE,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferCloseLevel(
-    hLevelHandle: SAFER_LEVEL_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferIdentifyLevel(
-    dwNumProperties: u32,
-    pCodeProperties: ?[*]SAFER_CODE_PROPERTIES_V2,
-    pLevelHandle: ?*SAFER_LEVEL_HANDLE,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferComputeTokenFromLevel(
-    LevelHandle: SAFER_LEVEL_HANDLE,
-    InAccessToken: ?HANDLE,
-    OutAccessToken: ?*?HANDLE,
-    dwFlags: SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
     lpReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -291,12 +262,28 @@ pub extern "advapi32" fn SaferGetLevelInformation(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferSetLevelInformation(
-    LevelHandle: SAFER_LEVEL_HANDLE,
-    dwInfoType: SAFER_OBJECT_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    lpQueryBuffer: ?*anyopaque,
-    dwInBufferSize: u32,
+pub extern "advapi32" fn SaferGetPolicyInformation(
+    dwScopeId: u32,
+    SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
+    InfoBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    InfoBuffer: ?*anyopaque,
+    InfoBufferRetSize: ?*u32,
+    lpReserved: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn SaferIdentifyLevel(
+    dwNumProperties: u32,
+    pCodeProperties: ?[*]SAFER_CODE_PROPERTIES_V2,
+    pLevelHandle: ?*SAFER_LEVEL_HANDLE,
+    lpReserved: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn SaferiIsExecutableFileType(
+    szFullPathname: ?[*:0]const u16,
+    bFromShellExecute: BOOLEAN,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -307,9 +294,22 @@ pub extern "advapi32" fn SaferRecordEventLogEntry(
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferiIsExecutableFileType(
-    szFullPathname: ?[*:0]const u16,
-    bFromShellExecute: BOOLEAN,
+pub extern "advapi32" fn SaferSetLevelInformation(
+    LevelHandle: SAFER_LEVEL_HANDLE,
+    dwInfoType: SAFER_OBJECT_INFO_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    lpQueryBuffer: ?*anyopaque,
+    dwInBufferSize: u32,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn SaferSetPolicyInformation(
+    dwScopeId: u32,
+    SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
+    InfoBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 2?
+    InfoBuffer: ?*anyopaque,
+    lpReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 

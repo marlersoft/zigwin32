@@ -2,36 +2,36 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (30)
 //--------------------------------------------------------------------------------
-pub const NDF_ERROR_START = @as(u32, 63744);
-pub const NDF_E_LENGTH_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895616));
-pub const NDF_E_NOHELPERCLASS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895615));
+pub const DF_IMPERSONATION = @as(u32, 2147483648);
+pub const DF_TRACELESS = @as(u32, 1073741824);
+pub const NDF_ADD_CAPTURE_TRACE = @as(u32, 1);
+pub const NDF_APPLY_INCLUSION_LIST_FILTER = @as(u32, 2);
+pub const NDF_E_BAD_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895611));
 pub const NDF_E_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895614));
 pub const NDF_E_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895612));
-pub const NDF_E_BAD_PARAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895611));
-pub const NDF_E_VALIDATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895610));
-pub const NDF_E_UNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895609));
+pub const NDF_E_LENGTH_EXCEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895616));
+pub const NDF_E_NOHELPERCLASS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895615));
 pub const NDF_E_PROBLEM_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895608));
-pub const RF_WORKAROUND = @as(u32, 536870912);
-pub const RF_USER_ACTION = @as(u32, 268435456);
-pub const RF_USER_CONFIRMATION = @as(u32, 134217728);
-pub const RF_INFORMATION_ONLY = @as(u32, 33554432);
-pub const RF_UI_ONLY = @as(u32, 16777216);
-pub const RF_SHOW_EVENTS = @as(u32, 8388608);
-pub const RF_VALIDATE_HELPTOPIC = @as(u32, 4194304);
-pub const RF_REPRO = @as(u32, 2097152);
+pub const NDF_E_UNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895609));
+pub const NDF_E_VALIDATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2146895610));
+pub const NDF_ERROR_START = @as(u32, 63744);
+pub const NDF_INBOUND_FLAG_EDGETRAVERSAL = @as(u32, 1);
+pub const NDF_INBOUND_FLAG_HEALTHCHECK = @as(u32, 2);
+pub const RCF_ISCONFIRMED = @as(u32, 2);
+pub const RCF_ISLEAF = @as(u32, 1);
+pub const RCF_ISTHIRDPARTY = @as(u32, 4);
 pub const RF_CONTACT_ADMIN = @as(u32, 131072);
+pub const RF_INFORMATION_ONLY = @as(u32, 33554432);
+pub const RF_REPRO = @as(u32, 2097152);
 pub const RF_RESERVED = @as(u32, 1073741824);
 pub const RF_RESERVED_CA = @as(u32, 2147483648);
 pub const RF_RESERVED_LNI = @as(u32, 65536);
-pub const RCF_ISLEAF = @as(u32, 1);
-pub const RCF_ISCONFIRMED = @as(u32, 2);
-pub const RCF_ISTHIRDPARTY = @as(u32, 4);
-pub const DF_IMPERSONATION = @as(u32, 2147483648);
-pub const DF_TRACELESS = @as(u32, 1073741824);
-pub const NDF_INBOUND_FLAG_EDGETRAVERSAL = @as(u32, 1);
-pub const NDF_INBOUND_FLAG_HEALTHCHECK = @as(u32, 2);
-pub const NDF_ADD_CAPTURE_TRACE = @as(u32, 1);
-pub const NDF_APPLY_INCLUSION_LIST_FILTER = @as(u32, 2);
+pub const RF_SHOW_EVENTS = @as(u32, 8388608);
+pub const RF_UI_ONLY = @as(u32, 16777216);
+pub const RF_USER_ACTION = @as(u32, 268435456);
+pub const RF_USER_CONFIRMATION = @as(u32, 134217728);
+pub const RF_VALIDATE_HELPTOPIC = @as(u32, 4194304);
+pub const RF_WORKAROUND = @as(u32, 536870912);
 
 //--------------------------------------------------------------------------------
 // Section: Types (25)
@@ -69,19 +69,29 @@ pub const AT_LIFE_TIME = ATTRIBUTE_TYPE.LIFE_TIME;
 pub const AT_SOCKADDR = ATTRIBUTE_TYPE.SOCKADDR;
 pub const AT_OCTET_STRING = ATTRIBUTE_TYPE.OCTET_STRING;
 
-pub const OCTET_STRING = extern struct {
-    dwLength: u32,
-    lpValue: ?*u8,
-};
-
-pub const LIFE_TIME = extern struct {
-    startTime: FILETIME,
-    endTime: FILETIME,
-};
-
 pub const DIAG_SOCKADDR = extern struct {
     family: u16,
     data: [126]CHAR,
+};
+
+pub const DIAGNOSIS_STATUS = enum(i32) {
+    NOT_IMPLEMENTED = 0,
+    CONFIRMED = 1,
+    REJECTED = 2,
+    INDETERMINATE = 3,
+    DEFERRED = 4,
+    PASSTHROUGH = 5,
+};
+pub const DS_NOT_IMPLEMENTED = DIAGNOSIS_STATUS.NOT_IMPLEMENTED;
+pub const DS_CONFIRMED = DIAGNOSIS_STATUS.CONFIRMED;
+pub const DS_REJECTED = DIAGNOSIS_STATUS.REJECTED;
+pub const DS_INDETERMINATE = DIAGNOSIS_STATUS.INDETERMINATE;
+pub const DS_DEFERRED = DIAGNOSIS_STATUS.DEFERRED;
+pub const DS_PASSTHROUGH = DIAGNOSIS_STATUS.PASSTHROUGH;
+
+pub const DiagnosticsInfo = extern struct {
+    cost: i32,
+    flags: u32,
 };
 
 pub const HELPER_ATTRIBUTE = extern struct {
@@ -105,128 +115,10 @@ pub const HELPER_ATTRIBUTE = extern struct {
     },
 };
 
-pub const REPAIR_SCOPE = enum(i32) {
-    SYSTEM = 0,
-    USER = 1,
-    APPLICATION = 2,
-    PROCESS = 3,
+pub const HelperAttributeInfo = extern struct {
+    pwszName: ?PWSTR,
+    type: ATTRIBUTE_TYPE,
 };
-pub const RS_SYSTEM = REPAIR_SCOPE.SYSTEM;
-pub const RS_USER = REPAIR_SCOPE.USER;
-pub const RS_APPLICATION = REPAIR_SCOPE.APPLICATION;
-pub const RS_PROCESS = REPAIR_SCOPE.PROCESS;
-
-pub const REPAIR_RISK = enum(i32) {
-    NOROLLBACK = 0,
-    ROLLBACK = 1,
-    NORISK = 2,
-};
-pub const RR_NOROLLBACK = REPAIR_RISK.NOROLLBACK;
-pub const RR_ROLLBACK = REPAIR_RISK.ROLLBACK;
-pub const RR_NORISK = REPAIR_RISK.NORISK;
-
-pub const UI_INFO_TYPE = enum(i32) {
-    INVALID = 0,
-    NONE = 1,
-    SHELL_COMMAND = 2,
-    HELP_PANE = 3,
-    DUI = 4,
-};
-pub const UIT_INVALID = UI_INFO_TYPE.INVALID;
-pub const UIT_NONE = UI_INFO_TYPE.NONE;
-pub const UIT_SHELL_COMMAND = UI_INFO_TYPE.SHELL_COMMAND;
-pub const UIT_HELP_PANE = UI_INFO_TYPE.HELP_PANE;
-pub const UIT_DUI = UI_INFO_TYPE.DUI;
-
-pub const ShellCommandInfo = extern struct {
-    pwszOperation: ?PWSTR,
-    pwszFile: ?PWSTR,
-    pwszParameters: ?PWSTR,
-    pwszDirectory: ?PWSTR,
-    nShowCmd: u32,
-};
-
-pub const UiInfo = extern struct {
-    type: UI_INFO_TYPE,
-    Anonymous: extern union {
-        pwzNull: ?PWSTR,
-        ShellInfo: ShellCommandInfo,
-        pwzHelpUrl: ?PWSTR,
-        pwzDui: ?PWSTR,
-    },
-};
-
-pub const RepairInfo = extern struct {
-    guid: Guid,
-    pwszClassName: ?PWSTR,
-    pwszDescription: ?PWSTR,
-    sidType: u32,
-    cost: i32,
-    flags: u32,
-    scope: REPAIR_SCOPE,
-    risk: REPAIR_RISK,
-    UiInfo: UiInfo,
-    rootCauseIndex: i32,
-};
-
-pub const RepairInfoEx = extern struct {
-    repair: RepairInfo,
-    repairRank: u16,
-};
-
-pub const RootCauseInfo = extern struct {
-    pwszDescription: ?PWSTR,
-    rootCauseID: Guid,
-    rootCauseFlags: u32,
-    networkInterfaceID: Guid,
-    pRepairs: ?*RepairInfoEx,
-    repairCount: u16,
-};
-
-pub const DIAGNOSIS_STATUS = enum(i32) {
-    NOT_IMPLEMENTED = 0,
-    CONFIRMED = 1,
-    REJECTED = 2,
-    INDETERMINATE = 3,
-    DEFERRED = 4,
-    PASSTHROUGH = 5,
-};
-pub const DS_NOT_IMPLEMENTED = DIAGNOSIS_STATUS.NOT_IMPLEMENTED;
-pub const DS_CONFIRMED = DIAGNOSIS_STATUS.CONFIRMED;
-pub const DS_REJECTED = DIAGNOSIS_STATUS.REJECTED;
-pub const DS_INDETERMINATE = DIAGNOSIS_STATUS.INDETERMINATE;
-pub const DS_DEFERRED = DIAGNOSIS_STATUS.DEFERRED;
-pub const DS_PASSTHROUGH = DIAGNOSIS_STATUS.PASSTHROUGH;
-
-pub const REPAIR_STATUS = enum(i32) {
-    NOT_IMPLEMENTED = 0,
-    REPAIRED = 1,
-    UNREPAIRED = 2,
-    DEFERRED = 3,
-    USER_ACTION = 4,
-};
-pub const RS_NOT_IMPLEMENTED = REPAIR_STATUS.NOT_IMPLEMENTED;
-pub const RS_REPAIRED = REPAIR_STATUS.REPAIRED;
-pub const RS_UNREPAIRED = REPAIR_STATUS.UNREPAIRED;
-pub const RS_DEFERRED = REPAIR_STATUS.DEFERRED;
-pub const RS_USER_ACTION = REPAIR_STATUS.USER_ACTION;
-
-pub const PROBLEM_TYPE = enum(i32) {
-    INVALID = 0,
-    LOW_HEALTH = 1,
-    LOWER_HEALTH = 2,
-    DOWN_STREAM_HEALTH = 4,
-    HIGH_UTILIZATION = 8,
-    HIGHER_UTILIZATION = 16,
-    UP_STREAM_UTILIZATION = 32,
-};
-pub const PT_INVALID = PROBLEM_TYPE.INVALID;
-pub const PT_LOW_HEALTH = PROBLEM_TYPE.LOW_HEALTH;
-pub const PT_LOWER_HEALTH = PROBLEM_TYPE.LOWER_HEALTH;
-pub const PT_DOWN_STREAM_HEALTH = PROBLEM_TYPE.DOWN_STREAM_HEALTH;
-pub const PT_HIGH_UTILIZATION = PROBLEM_TYPE.HIGH_UTILIZATION;
-pub const PT_HIGHER_UTILIZATION = PROBLEM_TYPE.HIGHER_UTILIZATION;
-pub const PT_UP_STREAM_UTILIZATION = PROBLEM_TYPE.UP_STREAM_UTILIZATION;
 
 pub const HYPOTHESIS = extern struct {
     pwszClassName: ?PWSTR,
@@ -235,14 +127,29 @@ pub const HYPOTHESIS = extern struct {
     rgAttributes: ?*HELPER_ATTRIBUTE,
 };
 
-pub const HelperAttributeInfo = extern struct {
-    pwszName: ?PWSTR,
-    type: ATTRIBUTE_TYPE,
+pub const HypothesisResult = extern struct {
+    hypothesis: HYPOTHESIS,
+    pathStatus: DIAGNOSIS_STATUS,
 };
 
-pub const DiagnosticsInfo = extern struct {
-    cost: i32,
-    flags: u32,
+const IID_INetDiagExtensibleHelper_Value = Guid.initString("c0b35748-ebf5-11d8-bbe9-505054503030");
+pub const IID_INetDiagExtensibleHelper = &IID_INetDiagExtensibleHelper_Value;
+pub const INetDiagExtensibleHelper = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ResolveAttributes: *const fn(
+            self: *const INetDiagExtensibleHelper,
+            celt: u32,
+            rgKeyAttributes: [*]HELPER_ATTRIBUTE,
+            pcelt: ?*u32,
+            prgMatchValues: [*]?*HELPER_ATTRIBUTE,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn ResolveAttributes(self: *const INetDiagExtensibleHelper, celt: u32, rgKeyAttributes: [*]HELPER_ATTRIBUTE, pcelt: ?*u32, prgMatchValues: [*]?*HELPER_ATTRIBUTE) callconv(.@"inline") HRESULT {
+        return self.vtable.ResolveAttributes(self, celt, rgKeyAttributes, pcelt, prgMatchValues);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -399,30 +306,6 @@ pub const INetDiagHelper = extern union {
     }
 };
 
-pub const HypothesisResult = extern struct {
-    hypothesis: HYPOTHESIS,
-    pathStatus: DIAGNOSIS_STATUS,
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_INetDiagHelperUtilFactory_Value = Guid.initString("104613fb-bc57-4178-95ba-88809698354a");
-pub const IID_INetDiagHelperUtilFactory = &IID_INetDiagHelperUtilFactory_Value;
-pub const INetDiagHelperUtilFactory = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateUtilityInstance: *const fn(
-            self: *const INetDiagHelperUtilFactory,
-            riid: ?*const Guid,
-            ppvObject: **anyopaque,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn CreateUtilityInstance(self: *const INetDiagHelperUtilFactory, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.@"inline") HRESULT {
-        return self.vtable.CreateUtilityInstance(self, riid, ppvObject);
-    }
-};
-
 // TODO: this type is limited to platform 'windows6.1'
 const IID_INetDiagHelperEx_Value = Guid.initString("972dab4d-e4e3-4fc6-ae54-5f65ccde4a15");
 pub const IID_INetDiagHelperEx = &IID_INetDiagHelperEx_Value;
@@ -476,65 +359,159 @@ pub const INetDiagHelperInfo = extern union {
     }
 };
 
-const IID_INetDiagExtensibleHelper_Value = Guid.initString("c0b35748-ebf5-11d8-bbe9-505054503030");
-pub const IID_INetDiagExtensibleHelper = &IID_INetDiagExtensibleHelper_Value;
-pub const INetDiagExtensibleHelper = extern union {
+// TODO: this type is limited to platform 'windows6.1'
+const IID_INetDiagHelperUtilFactory_Value = Guid.initString("104613fb-bc57-4178-95ba-88809698354a");
+pub const IID_INetDiagHelperUtilFactory = &IID_INetDiagHelperUtilFactory_Value;
+pub const INetDiagHelperUtilFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ResolveAttributes: *const fn(
-            self: *const INetDiagExtensibleHelper,
-            celt: u32,
-            rgKeyAttributes: [*]HELPER_ATTRIBUTE,
-            pcelt: ?*u32,
-            prgMatchValues: [*]?*HELPER_ATTRIBUTE,
+        CreateUtilityInstance: *const fn(
+            self: *const INetDiagHelperUtilFactory,
+            riid: ?*const Guid,
+            ppvObject: **anyopaque,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ResolveAttributes(self: *const INetDiagExtensibleHelper, celt: u32, rgKeyAttributes: [*]HELPER_ATTRIBUTE, pcelt: ?*u32, prgMatchValues: [*]?*HELPER_ATTRIBUTE) callconv(.@"inline") HRESULT {
-        return self.vtable.ResolveAttributes(self, celt, rgKeyAttributes, pcelt, prgMatchValues);
+    pub fn CreateUtilityInstance(self: *const INetDiagHelperUtilFactory, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.@"inline") HRESULT {
+        return self.vtable.CreateUtilityInstance(self, riid, ppvObject);
     }
+};
+
+pub const LIFE_TIME = extern struct {
+    startTime: FILETIME,
+    endTime: FILETIME,
+};
+
+pub const OCTET_STRING = extern struct {
+    dwLength: u32,
+    lpValue: ?*u8,
+};
+
+pub const PROBLEM_TYPE = enum(i32) {
+    INVALID = 0,
+    LOW_HEALTH = 1,
+    LOWER_HEALTH = 2,
+    DOWN_STREAM_HEALTH = 4,
+    HIGH_UTILIZATION = 8,
+    HIGHER_UTILIZATION = 16,
+    UP_STREAM_UTILIZATION = 32,
+};
+pub const PT_INVALID = PROBLEM_TYPE.INVALID;
+pub const PT_LOW_HEALTH = PROBLEM_TYPE.LOW_HEALTH;
+pub const PT_LOWER_HEALTH = PROBLEM_TYPE.LOWER_HEALTH;
+pub const PT_DOWN_STREAM_HEALTH = PROBLEM_TYPE.DOWN_STREAM_HEALTH;
+pub const PT_HIGH_UTILIZATION = PROBLEM_TYPE.HIGH_UTILIZATION;
+pub const PT_HIGHER_UTILIZATION = PROBLEM_TYPE.HIGHER_UTILIZATION;
+pub const PT_UP_STREAM_UTILIZATION = PROBLEM_TYPE.UP_STREAM_UTILIZATION;
+
+pub const REPAIR_RISK = enum(i32) {
+    NOROLLBACK = 0,
+    ROLLBACK = 1,
+    NORISK = 2,
+};
+pub const RR_NOROLLBACK = REPAIR_RISK.NOROLLBACK;
+pub const RR_ROLLBACK = REPAIR_RISK.ROLLBACK;
+pub const RR_NORISK = REPAIR_RISK.NORISK;
+
+pub const REPAIR_SCOPE = enum(i32) {
+    SYSTEM = 0,
+    USER = 1,
+    APPLICATION = 2,
+    PROCESS = 3,
+};
+pub const RS_SYSTEM = REPAIR_SCOPE.SYSTEM;
+pub const RS_USER = REPAIR_SCOPE.USER;
+pub const RS_APPLICATION = REPAIR_SCOPE.APPLICATION;
+pub const RS_PROCESS = REPAIR_SCOPE.PROCESS;
+
+pub const REPAIR_STATUS = enum(i32) {
+    NOT_IMPLEMENTED = 0,
+    REPAIRED = 1,
+    UNREPAIRED = 2,
+    DEFERRED = 3,
+    USER_ACTION = 4,
+};
+pub const RS_NOT_IMPLEMENTED = REPAIR_STATUS.NOT_IMPLEMENTED;
+pub const RS_REPAIRED = REPAIR_STATUS.REPAIRED;
+pub const RS_UNREPAIRED = REPAIR_STATUS.UNREPAIRED;
+pub const RS_DEFERRED = REPAIR_STATUS.DEFERRED;
+pub const RS_USER_ACTION = REPAIR_STATUS.USER_ACTION;
+
+pub const RepairInfo = extern struct {
+    guid: Guid,
+    pwszClassName: ?PWSTR,
+    pwszDescription: ?PWSTR,
+    sidType: u32,
+    cost: i32,
+    flags: u32,
+    scope: REPAIR_SCOPE,
+    risk: REPAIR_RISK,
+    UiInfo: UiInfo,
+    rootCauseIndex: i32,
+};
+
+pub const RepairInfoEx = extern struct {
+    repair: RepairInfo,
+    repairRank: u16,
+};
+
+pub const RootCauseInfo = extern struct {
+    pwszDescription: ?PWSTR,
+    rootCauseID: Guid,
+    rootCauseFlags: u32,
+    networkInterfaceID: Guid,
+    pRepairs: ?*RepairInfoEx,
+    repairCount: u16,
+};
+
+pub const ShellCommandInfo = extern struct {
+    pwszOperation: ?PWSTR,
+    pwszFile: ?PWSTR,
+    pwszParameters: ?PWSTR,
+    pwszDirectory: ?PWSTR,
+    nShowCmd: u32,
+};
+
+pub const UI_INFO_TYPE = enum(i32) {
+    INVALID = 0,
+    NONE = 1,
+    SHELL_COMMAND = 2,
+    HELP_PANE = 3,
+    DUI = 4,
+};
+pub const UIT_INVALID = UI_INFO_TYPE.INVALID;
+pub const UIT_NONE = UI_INFO_TYPE.NONE;
+pub const UIT_SHELL_COMMAND = UI_INFO_TYPE.SHELL_COMMAND;
+pub const UIT_HELP_PANE = UI_INFO_TYPE.HELP_PANE;
+pub const UIT_DUI = UI_INFO_TYPE.DUI;
+
+pub const UiInfo = extern struct {
+    type: UI_INFO_TYPE,
+    Anonymous: extern union {
+        pwzNull: ?PWSTR,
+        ShellInfo: ShellCommandInfo,
+        pwzHelpUrl: ?PWSTR,
+        pwzDui: ?PWSTR,
+    },
 };
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (16)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfCreateIncident(
-    helperClassName: ?[*:0]const u16,
-    celt: u32,
-    attributes: [*]HELPER_ATTRIBUTE,
-    handle: ?*?*anyopaque,
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "ndfapi" fn NdfCancelIncident(
+    Handle: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfCreateWinSockIncident(
-    sock: ?SOCKET,
-    host: ?[*:0]const u16,
-    port: u16,
-    appId: ?[*:0]const u16,
-    userId: ?*SID,
-    handle: ?*?*anyopaque,
+pub extern "ndfapi" fn NdfCloseIncident(
+    handle: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfCreateWebIncident(
-    url: ?[*:0]const u16,
-    handle: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfCreateWebIncidentEx(
-    url: ?[*:0]const u16,
-    useWinHTTP: BOOL,
-    moduleName: ?PWSTR,
-    handle: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfCreateSharingIncident(
-    UNCPath: ?[*:0]const u16,
+pub extern "ndfapi" fn NdfCreateConnectivityIncident(
     handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -545,8 +522,22 @@ pub extern "ndfapi" fn NdfCreateDNSIncident(
     handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "ndfapi" fn NdfCreateGroupingIncident(
+    CloudName: ?[*:0]const u16,
+    GroupName: ?[*:0]const u16,
+    Identity: ?[*:0]const u16,
+    Invitation: ?[*:0]const u16,
+    Addresses: ?*SOCKET_ADDRESS_LIST,
+    appId: ?[*:0]const u16,
+    handle: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfCreateConnectivityIncident(
+pub extern "ndfapi" fn NdfCreateIncident(
+    helperClassName: ?[*:0]const u16,
+    celt: u32,
+    attributes: [*]HELPER_ATTRIBUTE,
     handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -565,26 +556,34 @@ pub extern "ndfapi" fn NdfCreatePnrpIncident(
     handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "ndfapi" fn NdfCreateGroupingIncident(
-    CloudName: ?[*:0]const u16,
-    GroupName: ?[*:0]const u16,
-    Identity: ?[*:0]const u16,
-    Invitation: ?[*:0]const u16,
-    Addresses: ?*SOCKET_ADDRESS_LIST,
-    appId: ?[*:0]const u16,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "ndfapi" fn NdfCreateSharingIncident(
+    UNCPath: ?[*:0]const u16,
     handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfExecuteDiagnosis(
-    handle: ?*anyopaque,
-    hwnd: ?HWND,
+pub extern "ndfapi" fn NdfCreateWebIncident(
+    url: ?[*:0]const u16,
+    handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ndfapi" fn NdfCloseIncident(
-    handle: ?*anyopaque,
+pub extern "ndfapi" fn NdfCreateWebIncidentEx(
+    url: ?[*:0]const u16,
+    useWinHTTP: BOOL,
+    moduleName: ?PWSTR,
+    handle: ?*?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "ndfapi" fn NdfCreateWinSockIncident(
+    sock: ?SOCKET,
+    host: ?[*:0]const u16,
+    port: u16,
+    appId: ?[*:0]const u16,
+    userId: ?*SID,
+    handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -596,22 +595,23 @@ pub extern "ndfapi" fn NdfDiagnoseIncident(
     dwFlags: u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "ndfapi" fn NdfRepairIncident(
-    Handle: ?*anyopaque,
-    RepairEx: ?*RepairInfoEx,
-    dwWait: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "ndfapi" fn NdfCancelIncident(
-    Handle: ?*anyopaque,
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "ndfapi" fn NdfExecuteDiagnosis(
+    handle: ?*anyopaque,
+    hwnd: ?HWND,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ndfapi" fn NdfGetTraceFile(
     Handle: ?*anyopaque,
     TraceFileLocation: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "ndfapi" fn NdfRepairIncident(
+    Handle: ?*anyopaque,
+    RepairEx: ?*RepairInfoEx,
+    dwWait: u32,
 ) callconv(.winapi) HRESULT;
 
 

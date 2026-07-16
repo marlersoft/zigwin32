@@ -6,6 +6,24 @@
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
+const IID_IDummyHICONIncluder_Value = Guid.initString("947990de-cc28-11d2-a0f7-00805f858fb1");
+pub const IID_IDummyHICONIncluder = &IID_IDummyHICONIncluder_Value;
+pub const IDummyHICONIncluder = extern union {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Dummy: *const fn(
+            self: *const IDummyHICONIncluder,
+            h1: ?HICON,
+            h2: ?HDC,
+        ) callconv(.winapi) HRESULT,
+    };
+    vtable: *const VTable,
+    IUnknown: IUnknown,
+    pub fn Dummy(self: *const IDummyHICONIncluder, h1: ?HICON, h2: ?HDC) callconv(.@"inline") HRESULT {
+        return self.vtable.Dummy(self, h1, h2);
+    }
+};
+
 const IID_IThumbnailExtractor_Value = Guid.initString("969dc708-5c76-11d1-8d86-0000f804b057");
 pub const IID_IThumbnailExtractor = &IID_IThumbnailExtractor_Value;
 pub const IThumbnailExtractor = extern union {
@@ -32,24 +50,6 @@ pub const IThumbnailExtractor = extern union {
     }
     pub fn OnFileUpdated(self: *const IThumbnailExtractor, pStg: ?*IStorage) callconv(.@"inline") HRESULT {
         return self.vtable.OnFileUpdated(self, pStg);
-    }
-};
-
-const IID_IDummyHICONIncluder_Value = Guid.initString("947990de-cc28-11d2-a0f7-00805f858fb1");
-pub const IID_IDummyHICONIncluder = &IID_IDummyHICONIncluder_Value;
-pub const IDummyHICONIncluder = extern union {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Dummy: *const fn(
-            self: *const IDummyHICONIncluder,
-            h1: ?HICON,
-            h2: ?HDC,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IUnknown: IUnknown,
-    pub fn Dummy(self: *const IDummyHICONIncluder, h1: ?HICON, h2: ?HDC) callconv(.@"inline") HRESULT {
-        return self.vtable.Dummy(self, h1, h2);
     }
 };
 
